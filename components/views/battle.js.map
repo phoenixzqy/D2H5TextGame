@@ -1,0 +1,1 @@
+{"version":3,"file":"battle.js","sourceRoot":"","sources":["../../src/components/views/battle.ts"],"names":[],"mappings":"AAGkC","sourcesContent":["import {LitElement, html, css} from 'lit';\nimport {customElement, property} from 'lit/decorators.js';\n\n@customElement('view-battlegroud')\n"]}

@@ -1,0 +1,1 @@
+{"version":3,"file":"battleground.d.ts","sourceRoot":"","sources":["../../src/view/penal/battleground.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,UAAU,EAAY,MAAM,KAAK,CAAC;AAG1C,qBACa,YAAa,SAAQ,UAAU;IAC1C,MAAM,CAAC,MAAM,+BA4BX;IAGF,QAAQ,UAAM;IAGd,MAAM,UAAM;IAGZ,IAAI,SAAU;IACd,MAAM;CAOP;AAED,OAAO,CAAC,MAAM,CAAC;IACb,UAAU,qBAAqB;QAC7B,mBAAmB,EAAE,YAAY,CAAC;KACnC;CACF"}

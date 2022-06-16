@@ -1,0 +1,1 @@
+{"version":3,"file":"monster.d.ts","sourceRoot":"","sources":["../../src/components/model/monster.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,UAAU,EAAY,MAAM,KAAK,CAAC;AAG1C,qBACa,OAAQ,SAAQ,UAAU;IACrC,MAAM,CAAC,MAAM,+BAIX;IAGF,GAAG,EAAC,MAAM,EAAE,CAAM;IAGlB,IAAI,SAAM;IAEV,MAAM;CAKP;AAED,OAAO,CAAC,MAAM,CAAC;IACb,UAAU,qBAAqB;QAC7B,eAAe,EAAE,OAAO,CAAC;KAC1B;CACF"}

@@ -1,0 +1,61 @@
+{
+  characters: {
+    amazon: "Amazon.gif",
+    assassin: "Assassin.gif",
+    barbarian: "Barbarian.gif",
+    druid: "Druid.gif",
+    necromancer: "Necromancer.gif",
+    paladin: "Paladin.gif",
+    sorceress: "Sorceress.gif"
+  },
+  monsters: {
+    fallen: [
+      "Fallen.gif",
+      "Carver.gif",
+      "Dark_One.gif",
+      "Devilkin.gif",
+      "Warped_One.gif"
+    ],
+    fallenShaman: [
+      "Fallen_Shaman.gif",
+      "Carver_Shaman.gif",
+      "Dark_Shaman.gif",
+      "Devilkin_Shaman.gif",
+      "Warped_Shaman.gif"
+    ],
+    corruptRogue: [
+      "Corrupt_Rogue.gif",
+      "Black_Rogue.gif",
+      "Dark_Stalker.gif",
+      "Flesh_Hunter.gif",
+      "Vile_Hunter.gif"
+    ],
+    corruptRogueArcher: [
+      "Dark_Ranger.gif",
+      "Black_Archer.gif",
+      "Dark_Archer.gif",
+      "Flesh_Archer.gif",
+      "Vile_Archer.gif"
+    ],
+    corruptRogueSpearwoman: [
+      "Dark_Spearwoman.gif",
+      "Black_Lancer.gif",
+      "Dark_Lancer.gif",
+      "Vile_Lancer.gif"
+    ],
+    skeleton: [
+      "Skeleton.gif",
+      "Bone_Warrior.gif",
+      "Burning_Dead.gif",
+      "Horror.gif",
+      "Returned.gif"
+    ],
+    skeletonArcher: [
+      "Skeleton_Archer.gif",
+      "Bone_Archer.gif",
+      "Burning_Dead_Archer.gif",
+      "Horror_Archer.gif",
+      "Returned_Archer.gif"
+    ]
+  }
+}

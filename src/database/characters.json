@@ -1,0 +1,20 @@
+{
+  necromancer: {
+    base: {
+      hp: 45,
+      mana: 25,
+      hpRegeneration: 1,
+      manaRegeneration: 0.5,
+      strenth: 15,
+      dexterity: 25,
+      vitality: 15,
+      energy: 25
+    },
+    growth: {
+      hp: 1.5,
+      mana: 2,
+      hpRegeneration: 0.1,
+      manaRegeneration: 0.15
+    }
+  }
+}

@@ -1,0 +1,309 @@
+{
+  fallen: {
+    name: "沉沦魔",
+    base: {
+      life: [1, 4],
+      attack: [1, 2],
+      attackRating: 12,
+      defense: 5,
+      blockRate: 9,
+      exp: 32,
+      resistance: {
+        cold: 0,
+        fire: 0,
+        lightning: 0,
+        magic: 0,
+        physical: 0,
+        poison: 0
+      },
+      skills: [
+        {
+          name: "lightningFlare",
+          lvl: 1,
+          gainAtLvl: 1,
+          type: "elite"
+        }
+      ]
+    },
+    growth: {
+      life: [2, 2.5],
+      attack: [0.34, 0.35],
+      attackRating: 10.24,
+      defense: 10,
+      blockRate: 0.1,
+      exp: 31.74,
+      resistance: {
+        cold: 0.4,
+        fire: 1,
+        lightning: 0,
+        magic: 0.15,
+        physical: 0,
+        poison: 0
+      }
+    }
+  },
+  fallenShaman: {
+    name: "沉沦魔法师",
+    base: {
+      life: [5, 9],
+      attack: [1, 3],
+      attackRating: 12,
+      defense: 10,
+      blockRate: 4,
+      exp: 32,
+      resistance: {
+        cold: 0,
+        fire: 25,
+        lightning: 0,
+        magic: 0,
+        physical: 0,
+        poison: 0
+      },
+      skills: [
+        {
+          name: "resurrection",
+          lvl: 1,
+          gainAtLvl: 1,
+          type: "normal"
+        },
+        {
+          name: "fireball",
+          lvl: 1,
+          gainAtLvl: 1,
+          type: "normal"
+        }
+      ]
+    },
+    growth: {
+      life: [2, 2.5],
+      attack: [0.34, 0.37],
+      attackRating: 10.24,
+      defense: 13.2,
+      blockRate: 0,
+      exp: 113.29,
+      resistance: {
+        cold: 0,
+        fire: 1.2,
+        lightning: 0,
+        magic: 0,
+        physical: 0,
+        poison: 0
+      }
+    }
+  },
+  corruptRogue: {
+    name: "堕落的罗格",
+    base: {
+      life: [5, 9],
+      attack: [1, 3],
+      attackRating: 12,
+      defense: 10,
+      blockRate: 12,
+      exp: 31,
+      resistance: {
+        cold: 0,
+        fire: 0,
+        lightning: 0,
+        magic: 0,
+        physical: 0,
+        poison: 0
+      },
+      skills: [
+        {
+          name: "lightningFlare",
+          lvl: 1,
+          gainAtLvl: 1,
+          type: "elite"
+        }
+      ]
+    },
+    growth: {
+      life: [10.68, 18.116],
+      attack: [0.55, 1.07],
+      attackRating: 10.24,
+      defense: 17.28,
+      blockRate: 0.1,
+      exp: 84.1,
+      resistance: {
+        cold: 1,
+        fire: 0.33,
+        lightning: 0.33,
+        magic: 0.2,
+        physical: 0,
+        poison: 0.2
+      }
+    }
+  },
+  corruptRogueArcher: {
+    name: "堕落的罗格射手",
+    base: {
+      life: [13, 19],
+      attack: [2, 3],
+      attackRating: 66,
+      defense: 20,
+      blockRate: 13,
+      exp: 54,
+      resistance: {
+        cold: 0,
+        fire: 0,
+        lightning: 0,
+        magic: 0,
+        physical: 0,
+        poison: 0
+      },
+      skills: [
+        {
+          name: "lightningFlare",
+          lvl: 1,
+          gainAtLvl: 1,
+          type: "elite"
+        }
+      ]
+    },
+    growth: {
+      life: [10.68, 18.116],
+      attack: [0.55, 0.82],
+      attackRating: 36.75,
+      defense: 15.86,
+      blockRate: 0.1,
+      exp: 93.10,
+      resistance: {
+        cold: 1,
+        fire: 0.33,
+        lightning: 0.33,
+        magic: 0.2,
+        physical: 0,
+        poison: 0.2
+      }
+    }
+  },
+  corruptRogueSpearwoman: {
+    name: "堕落的罗格投矛手",
+    base: {
+      life: [7, 11],
+      attack: [2, 4],
+      attackRating: 12,
+      defense: 10,
+      blockRate: 4,
+      exp: 36,
+      resistance: {
+        cold: 0,
+        fire: 0,
+        lightning: 0,
+        magic: 0,
+        physical: 0,
+        poison: 0
+      },
+      skills: [
+        {
+          name: "lightningFlare",
+          lvl: 1,
+          gainAtLvl: 1,
+          type: "elite"
+        }
+      ]
+    },
+    growth: {
+      life: [14.48, 20.79],
+      attack: [0.62, 1],
+      attackRating: 36.75,
+      defense: 15.86,
+      blockRate: 0.1,
+      exp: 93.10,
+      resistance: {
+        cold: 1,
+        fire: 0.33,
+        lightning: 0.33,
+        magic: 0.2,
+        physical: 0,
+        poison: 0.2
+      }
+    }
+  },
+  skeleton: {
+    name: "骷髅兵",
+    base: {
+      life: [5, 9],
+      attack: [1, 3],
+      attackRating: 12,
+      defense: 10,
+      blockRate: 12,
+      exp: 31,
+      resistance: {
+        cold: 0,
+        fire: 0,
+        lightning: 0,
+        magic: 0,
+        physical: 0,
+        poison: 0
+      },
+      skills: [
+        {
+          name: "lightningFlare",
+          lvl: 1,
+          gainAtLvl: 1,
+          type: "elite"
+        }
+      ]
+    },
+    growth: {
+      life: [10.68, 18.116],
+      attack: [0.55, 1.07],
+      attackRating: 10.24,
+      defense: 17.28,
+      blockRate: 0.1,
+      exp: 84.1,
+      resistance: {
+        cold: 1,
+        fire: 0.33,
+        lightning: 0.33,
+        magic: 0.2,
+        physical: 0,
+        poison: 0.2
+      }
+    }
+  },
+  skeletonArcher: {
+    name: "骷髅射手",
+    base: {
+      life: [13, 19],
+      attack: [2, 3],
+      attackRating: 66,
+      defense: 20,
+      blockRate: 13,
+      exp: 54,
+      resistance: {
+        cold: 0,
+        fire: 0,
+        lightning: 0,
+        magic: 0,
+        physical: 0,
+        poison: 0
+      },
+      skills: [
+        {
+          name: "lightningFlare",
+          lvl: 1,
+          gainAtLvl: 1,
+          type: "elite"
+        }
+      ]
+    },
+    growth: {
+      life: [10.68, 18.116],
+      attack: [0.55, 0.82],
+      attackRating: 36.75,
+      defense: 15.86,
+      blockRate: 0.1,
+      exp: 93.10,
+      resistance: {
+        cold: 1,
+        fire: 0.33,
+        lightning: 0.33,
+        magic: 0.2,
+        physical: 0,
+        poison: 0.2
+      }
+    }
+  },
+}

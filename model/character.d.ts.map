@@ -1,0 +1,1 @@
+{"version":3,"file":"character.d.ts","sourceRoot":"","sources":["../src/model/character.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,kBAAkB,EAAC,MAAM,YAAY,CAAC;AAIzD,MAAM,WAAW,mBAAoB,SAAQ,kBAAkB;IAC7D,KAAK,EAAE,MAAM,CAAC;CACf;AAED,qBAAa,SAAU,SAAQ,QAAQ;IAErC,KAAK,EAAE,MAAM,CAAC;gBAGF,UAAU,EAAE,mBAAmB;CAK5C"}
