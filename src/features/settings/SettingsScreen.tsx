@@ -8,6 +8,9 @@ import { Button, Modal, Panel, ScreenShell } from '@/ui';
 import {
   useMetaStore,
   usePlayerStore,
+  useInventoryStore,
+  useMapStore,
+  useCombatStore,
   exportSave,
   importSave,
   deleteSave,
@@ -97,8 +100,14 @@ export function SettingsScreen() {
   const handleDelete = async () => {
     try {
       await deleteSave();
+      // Wipe in-memory state so the user lands on a clean home screen
+      usePlayerStore.getState().reset();
+      useInventoryStore.getState().reset();
+      useMapStore.getState().reset();
+      useCombatStore.getState().reset();
       setConfirmDelete(false);
       flash(t('deleteSuccess', { defaultValue: '存档已删除' }));
+      navigate('/', { replace: true });
     } catch {
       flash(t('deleteFailed', { defaultValue: '删除失败' }));
     }
