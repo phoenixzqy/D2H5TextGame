@@ -20,9 +20,27 @@ export type MonsterTier = 'trash' | 'elite' | 'champion' | 'boss';
 export interface ActiveStatus {
   readonly id: string;
   readonly stacks: number;
-  /** Remaining duration in turns; -1 = permanent (until dispelled). */
+  /**
+   * Remaining duration in turns (legacy turn-based callers); -1 = permanent.
+   * The combat engine now drives expiry via {@link expiresAtMs}; the `remaining`
+   * field is preserved for non-combat callers (analyzers, tests) using the
+   * round-based {@link tickStatuses} helper.
+   */
   readonly remaining: number;
-  /** Damage per stack per tick (for DoTs). */
+  /**
+   * Absolute simulation-time (ms) at which the status expires. When set, the
+   * combat engine drops the status as soon as `simClockMs >= expiresAtMs`.
+   * Undefined for legacy turn-based statuses or permanent statuses.
+   */
+  readonly expiresAtMs?: number;
+  /**
+   * Damage per stack per **second** (for DoTs).
+   *
+   * NOTE: historically this was "per round/tick". With the timeline scheduler,
+   * DoT chunks are computed proportionally to elapsed sim-time, so this value
+   * is now interpreted as damage-per-second. Existing data values stay
+   * numerically the same — they just represent a slower per-second rate.
+   */
   readonly dotPerStack?: number;
   /** Damage type for DoT damage. */
   readonly damageType?: DamageType;
@@ -51,14 +69,42 @@ export interface CombatUnit {
   readonly activeBuffIds: readonly string[];
   /** Boss enrage activated? */
   readonly enraged: boolean;
-  /** Has this unit been "summoned-on-start" already? */
-  readonly summonedAdds: boolean;
+  /**
+   * Has summon-on-start been cast for this unit?
+   *
+   * @deprecated Optional and ignored by the combat engine. Summon caps are
+   * now enforced via per-owner counts in {@link CombatUnit.summonOwnerId}.
+   * Field kept optional for back-compat with legacy unit factories.
+   */
+  readonly summonedAdds?: boolean;
   /** Cached resistance penalty from Act IV/V (subtracted from each resist). */
   readonly resistPenalty?: number;
   /** Owner unit id (for summons). */
   readonly ownerId?: string;
   /** Is this a summon? */
   readonly summon?: boolean;
+  /**
+   * Combat role of this unit. When omitted the engine infers it from
+   * `side`/`id`/`summonOwnerId`. Used by targeting (taunt prefers `summon`)
+   * and victory checks (hero death = enemy victory).
+   */
+  readonly kind?: 'hero' | 'summon' | 'monster';
+  /** Owner id of a summon. Set by the engine when summons are spawned. */
+  readonly summonOwnerId?: string;
+}
+
+/**
+ * Infer a combat unit's role when {@link CombatUnit.kind} is not set.
+ * - explicit `kind` wins
+ * - any unit with `summonOwnerId` is a summon
+ * - player-side units whose id begins with `player-` are heroes
+ * - everything else is a monster
+ */
+export function inferKind(u: CombatUnit): 'hero' | 'summon' | 'monster' {
+  if (u.kind) return u.kind;
+  if (u.summonOwnerId !== undefined || u.summon === true) return 'summon';
+  if (u.side === 'player' && u.id.startsWith('player-')) return 'hero';
+  return 'monster';
 }
 
 /**

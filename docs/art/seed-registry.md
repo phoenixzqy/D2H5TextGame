@@ -37,6 +37,7 @@
 | 4         | monsters.act1.zombie        | Zombie                      | 0                |       |
 | 5         | monsters.act1.bone-warrior  | Skeleton Warrior            | 0                |       |
 | 6         | monsters.act1.dark-stalker  | Corrupt Rogue (Dark Stalker)| 0                |       |
+| 7         | monsters.act1.skeleton-warrior-summon | Skeleton Warrior (Necromancer summon, ALLY) | 0 | Friendly summon variant. Glowing pale ice-blue eye sockets + blue necrotic wisp trailing skull mark it as allied vs the hostile `bone-warrior` (sid 5). Upright guardian pose intentionally contrasts the hostile version's hunched menace. |
 | 20        | monsters.act2.sand-raider   | Sand Raider                 | 0                |       |
 | 21        | monsters.act2.mummy         | Greater Mummy               | 0                |       |
 | 22        | monsters.act2.beetle        | Sand Beetle                 | 0                |       |

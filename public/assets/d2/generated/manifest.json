@@ -1388,6 +1388,25 @@
       "bytes": 87604,
       "sha256": "2fd7312b5745b2c685a91799ffbfcf0a3958f4bcce85c26e223dc6ec35e4f765",
       "generatedAt": "2026-04-28T20:27:30.880Z"
+    },
+    {
+      "id": "monsters.act1.skeleton-warrior-summon",
+      "category": "monster",
+      "subject": "Skeleton Warrior, raised by a necromancer as a loyal guardian",
+      "descriptors": "weathered bone skeletal warrior, glowing pale ice-blue eye sockets, faint blue necrotic wisps trailing from skull, rusty notched short sword, battered small round wooden shield, tattered loincloth, exposed ribcage, dark stone dungeon background, chiaroscuro lighting, oil painting",
+      "subjectId": 7,
+      "variant": 0,
+      "seed": 200007,
+      "model": "flux",
+      "width": 1024,
+      "height": 1024,
+      "prompt": "masterpiece dark fantasy oil painting, gothic Diablo II inspired, painterly brushwork, dramatic chiaroscuro lighting, muted earth tones with deep shadows and warm highlights, cinematic composition, high detail, weathered medieval setting, no modern elements, menacing creature portrait, single monster, three-quarter view, dim dungeon or wilderness backdrop, anatomically grounded, sinewy musculature or undead decay as appropriate, oil painting, subject: Skeleton Warrior, raised by a necromancer as a loyal guardian, weathered bone skeletal warrior, glowing pale ice-blue eye sockets, faint blue necrotic wisps trailing from skull, rusty notched short sword, battered small round wooden shield, tattered loincloth, exposed ribcage, dark stone dungeon background, chiaroscuro lighting, oil painting",
+      "negativePrompt": "text, watermark, signature, logo, ui, hud, frame, border, modern clothing, modern weapons, sci-fi, neon, anime, chibi, cute, cartoon, low contrast, oversaturated, plastic skin, smooth skin, extra fingers, extra limbs, deformed hands, deformed face, blurry, low quality, jpeg artifacts, out of frame, cropped, cute, friendly, mascot, cartoon villain, group of monsters",
+      "sourceUrl": "https://image.pollinations.ai/prompt/masterpiece%20dark%20fantasy%20oil%20painting%2C%20gothic%20Diablo%20II%20inspired%2C%20painterly%20brushwork%2C%20dramatic%20chiaroscuro%20lighting%2C%20muted%20earth%20tones%20with%20deep%20shadows%20and%20warm%20highlights%2C%20cinematic%20composition%2C%20high%20detail%2C%20weathered%20medieval%20setting%2C%20no%20modern%20elements%2C%20menacing%20creature%20portrait%2C%20single%20monster%2C%20three-quarter%20view%2C%20dim%20dungeon%20or%20wilderness%20backdrop%2C%20anatomically%20grounded%2C%20sinewy%20musculature%20or%20undead%20decay%20as%20appropriate%2C%20oil%20painting%2C%20subject%3A%20Skeleton%20Warrior%2C%20raised%20by%20a%20necromancer%20as%20a%20loyal%20guardian%2C%20weathered%20bone%20skeletal%20warrior%2C%20glowing%20pale%20ice-blue%20eye%20sockets%2C%20faint%20blue%20necrotic%20wisps%20trailing%20from%20skull%2C%20rusty%20notched%20short%20sword%2C%20battered%20small%20round%20wooden%20shield%2C%20tattered%20loincloth%2C%20exposed%20ribcage%2C%20dark%20stone%20dungeon%20background%2C%20chiaroscuro%20lighting%2C%20oil%20painting?model=flux&width=1024&height=1024&seed=200007&negative_prompt=text%2C+watermark%2C+signature%2C+logo%2C+ui%2C+hud%2C+frame%2C+border%2C+modern+clothing%2C+modern+weapons%2C+sci-fi%2C+neon%2C+anime%2C+chibi%2C+cute%2C+cartoon%2C+low+contrast%2C+oversaturated%2C+plastic+skin%2C+smooth+skin%2C+extra+fingers%2C+extra+limbs%2C+deformed+hands%2C+deformed+face%2C+blurry%2C+low+quality%2C+jpeg+artifacts%2C+out+of+frame%2C+cropped%2C+cute%2C+friendly%2C+mascot%2C+cartoon+villain%2C+group+of+monsters&nologo=true&private=true",
+      "file": "public/assets/d2/generated/monsters/monsters.act1.skeleton-warrior-summon.png",
+      "bytes": 110178,
+      "sha256": "74936a8d5ea0475965ec8fe8002e2a080353a248d45a3f18cb6fb010fbc7dcce",
+      "generatedAt": "2026-04-28T22:36:07.695Z"
     }
   ]
 }

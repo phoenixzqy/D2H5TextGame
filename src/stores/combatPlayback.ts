@@ -89,6 +89,19 @@ export function applyEventToTeams(
       );
       break;
     }
+    case 'summon': {
+      const exists =
+        teams.player.some((u) => u.id === ev.unit.id) ||
+        teams.enemy.some((u) => u.id === ev.unit.id);
+      if (!exists) {
+        if (ev.unit.side === 'player') {
+          teams = { player: [...teams.player, ev.unit], enemy: teams.enemy };
+        } else {
+          teams = { player: teams.player, enemy: [...teams.enemy, ev.unit] };
+        }
+      }
+      break;
+    }
     case 'enrage': {
       teams = patchUnit(teams, ev.target, (u) => ({ ...u, enraged: true }));
       break;

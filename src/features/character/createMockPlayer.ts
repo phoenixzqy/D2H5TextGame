@@ -58,6 +58,13 @@ export function createMockPlayer(name: string, cls: CharacterClass): Player {
   };
   const derivedStats = deriveStats(coreStats, 1);
 
+  // Per-class default kit so battles aren't "basic-attack only" out of the box.
+  // The combat engine resolves skills via the registry (`comboOrder` only).
+  // We intentionally leave `skills` empty here; full `SkillDef` records are
+  // produced by the skill catalog loader, not by this mock factory.
+  const comboOrder: readonly string[] =
+    cls === 'necromancer' ? ['necromancer.raise_skeleton'] : [];
+
   return {
     id: `player-${String(Date.now())}`,
     name,
@@ -69,7 +76,7 @@ export function createMockPlayer(name: string, cls: CharacterClass): Player {
     statusEffects: [],
     cooldowns: [],
     skills: [],
-    comboOrder: [],
+    comboOrder,
     alive: true,
     turnOrder: 0,
     class: cls,

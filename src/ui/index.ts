@@ -13,6 +13,7 @@ export { GameImage } from './GameImage';
 export {
   getClassPortraitUrl,
   getMonsterImageUrl,
+  getSummonImageUrl,
   getItemIconUrl,
   getBaseItemIconUrl,
   getNpcPortraitUrl,

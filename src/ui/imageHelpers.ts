@@ -66,6 +66,30 @@ export function getMonsterImageUrl(monsterId: string): string {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Summons (player-side pets / skeletons / golems)                    */
+/* ------------------------------------------------------------------ */
+/**
+ * Map a summon ID (or summon unit name) to a portrait URL.
+ *
+ * Currently only the Necromancer's skeleton warrior has a dedicated asset;
+ * unknown summon IDs fall back to the monster image lookup so we still
+ * render *something* coherent (e.g. a skeleton-warrior monster portrait).
+ *
+ * TODO(art-director): replace placeholder once the dedicated summon
+ * portraits land at `/assets/d2/generated/summons/summons.<slug>.png`.
+ */
+export function getSummonImageUrl(summonId: string): string {
+  const slug = toKebab(summonId);
+  if (slug === 'skeleton' || slug.includes('skeleton')) {
+    // Placeholder: reuse the monster slot until art-director ships
+    // dedicated summon portraits.
+    return `${BASE}/monsters/monsters.act1.skeleton-warrior-summon.png`;
+  }
+  // Generic fallback — try monster-image lookup (kebab slug).
+  return getMonsterImageUrl(slug);
+}
+
+/* ------------------------------------------------------------------ */
 /*  Item icons                                                         */
 /* ------------------------------------------------------------------ */
 const KNOWN_BASE_ICONS = new Set([

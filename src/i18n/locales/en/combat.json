@@ -25,6 +25,7 @@
   "speedX": "{{x}}x",
   "skip": "Skip",
   "acting": "Acting",
+  "summon": "Summon",
   "log_lines": {
     "hit": "{{attacker}} hits {{target}} for {{amount}} {{type}} damage.",
     "crit": "CRITICAL! {{attacker}} hits {{target}} for {{amount}} {{type}} damage!",

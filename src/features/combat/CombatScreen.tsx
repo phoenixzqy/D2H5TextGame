@@ -13,11 +13,12 @@
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button, Panel, StatBar, ScreenShell, GameImage, getClassPortraitUrl, getMonsterImageUrl } from '@/ui';
+import { Button, Panel, StatBar, ScreenShell, GameImage, getClassPortraitUrl, getMonsterImageUrl, getSummonImageUrl } from '@/ui';
 import { useCombatStore, usePlayerStore } from '@/stores';
 import { startSimpleBattle } from '@/stores/combatHelpers';
 import type { CombatLogEntry } from '@/stores/combatStore';
 import type { CombatUnit } from '@/engine/combat/types';
+import { inferKind } from '@/engine/combat/types';
 import type { KillRewards } from '@/engine/loot/award';
 
 const MAX_LOG = 200;
@@ -92,13 +93,14 @@ export function CombatScreen() {
   }, [playbackComplete, outcome]);
 
   // Currently-acting unit id — derived by walking back from the cursor to
-  // the most recent `action` event in the current turn (gives the pulsing
-  // border on the active unit). Reset at every `turn-start`.
+  // the most recent `action` event. With the timeline scheduler, turn-start
+  // events fire every 5 sim-seconds and no longer bound a "round", so we
+  // simply use the most recent action: the highlight follows the active
+  // actor and naturally moves to the next when their action resolves.
   const actingActorId = useMemo(() => {
     for (let i = Math.min(eventCursor - 1, recordedEvents.length - 1); i >= 0; i--) {
       const ev = recordedEvents[i];
       if (!ev) continue;
-      if (ev.kind === 'turn-start') return null;
       if (ev.kind === 'action') return ev.actor;
     }
     return null;
@@ -196,8 +198,11 @@ export function CombatScreen() {
               </p>
             ) : (
               <ul className="space-y-2">
-                {playerTeam.map((u) => (
-                  <li key={u.id}>
+                {orderAlliesWithSummons(playerTeam).map((u) => (
+                  <li
+                    key={u.id}
+                    className={inferKind(u) === 'summon' ? 'pl-3 border-l-2 border-d2-border/60' : ''}
+                  >
                     <UnitBars unit={u} acting={u.id === actingActorId} />
                   </li>
                 ))}
@@ -256,13 +261,22 @@ export function CombatScreen() {
 function UnitBars({ unit, compact = false, acting = false }: { unit: CombatUnit; compact?: boolean; acting?: boolean }) {
   const { t } = useTranslation('combat');
   const player = usePlayerStore((s) => s.player);
+  const kind = inferKind(unit);
+  const isSummon = kind === 'summon';
 
-  // Derive avatar: player-side units use class portrait; enemies use monster image
-  const avatarSrc =
-    unit.side === 'player' && player
-      ? getClassPortraitUrl(player.class)
-      : getMonsterImageUrl(extractMonsterSlug(unit.name, unit.id));
-  const avatarFallback = (unit.name.charAt(0) || '?').toUpperCase();
+  // Derive avatar:
+  //  - hero (player-side, non-summon)   → class portrait
+  //  - summon (player-side)             → summon portrait helper
+  //  - enemy                            → monster image
+  let avatarSrc: string;
+  if (isSummon) {
+    avatarSrc = getSummonImageUrl(extractMonsterSlug(unit.name, unit.id));
+  } else if (unit.side === 'player' && player) {
+    avatarSrc = getClassPortraitUrl(player.class);
+  } else {
+    avatarSrc = getMonsterImageUrl(extractMonsterSlug(unit.name, unit.id));
+  }
+  const avatarFallback = isSummon ? '💀' : (unit.name.charAt(0) || '?').toUpperCase();
 
   const isDead = unit.life <= 0;
   const borderClass = isDead
@@ -276,6 +290,7 @@ function UnitBars({ unit, compact = false, acting = false }: { unit: CombatUnit;
       className={`border ${borderClass} rounded p-2 bg-d2-bg/40 flex items-start gap-2 transition-colors`}
       data-acting={acting || undefined}
       data-dead={isDead || undefined}
+      data-kind={kind}
     >
       <GameImage
         src={avatarSrc}
@@ -285,7 +300,18 @@ function UnitBars({ unit, compact = false, acting = false }: { unit: CombatUnit;
       />
       <div className="flex-1 min-w-0">
         <div className="flex items-center justify-between mb-1 text-sm gap-2">
-          <span className="font-serif text-d2-gold truncate">{unit.name}</span>
+          <span className="font-serif text-d2-gold truncate flex items-center gap-1">
+            {unit.name}
+            {isSummon && (
+              <span
+                className="text-[10px] px-1.5 py-0.5 rounded bg-d2-border/60 text-d2-white/80 font-sans uppercase tracking-wide"
+                aria-label={t('summon', { defaultValue: '召唤物' })}
+                data-testid="summon-badge"
+              >
+                {t('summon', { defaultValue: '召唤物' })}
+              </span>
+            )}
+          </span>
           <span className="flex items-center gap-1 text-xs text-d2-white/60 shrink-0">
             {acting && !isDead && (
               <span
@@ -384,6 +410,46 @@ function CombatLog({ entries }: { entries: CombatLogEntry[] }) {
       )}
     </Panel>
   );
+}
+
+/**
+ * Order the allies list so that each summon appears immediately after its
+ * owner. Heroes/non-summons keep their relative spawn order; orphan
+ * summons (no matching owner in the team) fall through to the end.
+ */
+function orderAlliesWithSummons(team: readonly CombatUnit[]): CombatUnit[] {
+  const heroes: CombatUnit[] = [];
+  const summonsByOwner = new Map<string, CombatUnit[]>();
+  const orphans: CombatUnit[] = [];
+
+  for (const u of team) {
+    if (inferKind(u) === 'summon') {
+      const owner = u.summonOwnerId;
+      if (owner) {
+        const arr = summonsByOwner.get(owner) ?? [];
+        arr.push(u);
+        summonsByOwner.set(owner, arr);
+      } else {
+        orphans.push(u);
+      }
+    } else {
+      heroes.push(u);
+    }
+  }
+
+  const out: CombatUnit[] = [];
+  for (const h of heroes) {
+    out.push(h);
+    const pets = summonsByOwner.get(h.id);
+    if (pets) {
+      out.push(...pets);
+      summonsByOwner.delete(h.id);
+    }
+  }
+  // Any summons whose owner wasn't found (e.g. owner died but engine kept the unit briefly).
+  for (const remaining of summonsByOwner.values()) out.push(...remaining);
+  out.push(...orphans);
+  return out;
 }
 
 /**

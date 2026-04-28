@@ -1,18 +1,20 @@
 /**
- * Deterministic battle runner.
+ * Deterministic battle runner — timeline scheduler.
  *
- * Pure: same initial state + same seed → same event log.
+ * Pure: same initial state + same seed → same event log, including
+ * `simClockMs` annotations.
  *
- * Turn structure (per side, per round, in `turnOrder`):
- *  1. If unit dead → skip.
- *  2. Tick cooldowns and DoT damage and statuses.
- *  3. Cast summon-on-start skills once (round 1 only).
- *  4. If stunned → emit `stunned`, skip action.
- *  5. Pick action via priority: first ready+affordable+valid skill, else basic attack.
- *  6. Apply effects (damage, buff, debuff, summon, heal).
- *  7. Check deaths; trigger plague spread; emit orb drops.
+ * Each combat unit has its own action period derived from `attackSpeed`
+ * via {@link actionPeriodMs}; faster units therefore act more often than
+ * slow ones over a given sim-second budget. Statuses, cooldowns and DoTs
+ * are all keyed to {@link State.simClockMs} (milliseconds), not rounds.
  *
- * The runner does **not** roll loot; the caller does that on combat resolution.
+ * Loop invariant:
+ *   1. Find unit with smallest `nextActionAt` (insertion-order tie-break).
+ *   2. Advance `simClockMs` to that value (never backward).
+ *   3. Expire statuses; apply elapsed-time DoT chunk for that unit.
+ *   4. If still alive: take action (skill via {@link chooseSkill} or basic).
+ *   5. Reschedule that unit at `simClockMs + actionPeriodMs(speed)`.
  *
  * @module engine/combat/combat
  */
@@ -20,10 +22,11 @@
 import type { Rng } from '../rng';
 import { createRng } from '../rng';
 import type { CombatUnit, CombatSide } from './types';
+import { inferKind } from './types';
 import { resolveDamage, type DamageInput } from './damage';
 import {
   applyStatus,
-  tickStatuses,
+  expireStatuses,
   hasStatus,
   isStunned,
   spreadPlague,
@@ -31,9 +34,9 @@ import {
 } from './status';
 import { comboMultiplier } from './combo';
 import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
-import { calculateTurnOrder } from '../turn-order';
 import { chooseSkill, isImmobilized, shouldEnrage } from '../ai/policy';
 import { getSkill } from '../skills/registry';
+import { buildSummon } from '../skills/summons';
 import type {
   RegisteredSkill,
   SkillEffect,
@@ -42,6 +45,22 @@ import type {
   SummonEffect,
   HealEffect
 } from '../skills/effects';
+
+/** ms per sim-second. */
+export const SECONDS = 1000;
+/** Hard sim-time cap; battles longer than this end in a draw. */
+export const MAX_SIM_MS = 60_000;
+/** Hard action cap as a runaway-loop safety net. */
+export const MAX_ACTIONS = 1000;
+
+/**
+ * Compute action period (ms) for a unit with the given attack speed.
+ * `clamp(2500 - speed*8, 400, 2000)`.
+ */
+export function actionPeriodMs(attackSpeed: number): number {
+  const raw = 2500 - Math.floor(attackSpeed) * 8;
+  return Math.max(400, Math.min(2000, raw));
+}
 
 /** Possible combat events. */
 export type BattleEvent =
@@ -58,7 +77,12 @@ export type BattleEvent =
     }
   | { readonly kind: 'status'; readonly target: string; readonly statusId: string }
   | { readonly kind: 'buff'; readonly target: string; readonly buffId: string }
-  | { readonly kind: 'summon'; readonly owner: string; readonly summonId: string }
+  | {
+      readonly kind: 'summon';
+      readonly owner: string;
+      readonly summonId: string;
+      readonly unit: CombatUnit;
+    }
   | { readonly kind: 'heal'; readonly target: string; readonly amount: number }
   | { readonly kind: 'death'; readonly target: string }
   | { readonly kind: 'enrage'; readonly target: string }
@@ -80,16 +104,34 @@ export interface CombatSnapshot {
 export interface CombatResult {
   readonly events: readonly BattleEvent[];
   readonly winner: CombatSide | null;
+  /** All player-side units that ever existed (including spawned summons). */
   readonly playerTeam: readonly CombatUnit[];
+  /** All enemy-side units that ever existed (including spawned summons). */
   readonly enemyTeam: readonly CombatUnit[];
+  /** Number of "turns" emitted (5-second sim-time boundaries crossed). */
   readonly rounds: number;
 }
 
 interface State {
   units: Map<string, CombatUnit>;
   events: BattleEvent[];
+  /** parallel array: simClockMs at the moment events[i] was emitted. */
+  simTimes: number[];
   rng: Rng;
   act: 1 | 2 | 3 | 4 | 5;
+  simClockMs: number;
+  /** insertion order index per unit (stable scheduler tie-break) */
+  insertionIdx: Map<string, number>;
+  /** time-based scheduler state */
+  nextActionAt: Map<string, number>;
+  cooldownExpiresAt: Map<string, Map<string, number>>;
+  lastDotTickAt: Map<string, number>;
+  /** highest "turn" emitted (5s boundaries). */
+  turnsEmitted: number;
+  /** sticky flag — hero death = enemy victory regardless of summons. */
+  heroDead: boolean;
+  /** spawn counter, monotonically increasing. */
+  insertionCounter: number;
 }
 
 function alive(u: CombatUnit): boolean {
@@ -98,12 +140,34 @@ function alive(u: CombatUnit): boolean {
 
 function emit(state: State, ev: BattleEvent): void {
   state.events.push(ev);
+  state.simTimes.push(state.simClockMs);
 }
 
 function aliveOf(state: State, side: CombatSide): CombatUnit[] {
   const out: CombatUnit[] = [];
   for (const u of state.units.values()) if (u.side === side && alive(u)) out.push(u);
   return out;
+}
+
+/** Sort enemies for targeting: summons first (taunt), then by spawn order. */
+function targetPriority(state: State, units: readonly CombatUnit[]): CombatUnit[] {
+  const arr = [...units];
+  arr.sort((a, b) => {
+    const ka = inferKind(a) === 'summon' ? 0 : 1;
+    const kb = inferKind(b) === 'summon' ? 0 : 1;
+    if (ka !== kb) return ka - kb;
+    const ia = state.insertionIdx.get(a.id) ?? 0;
+    const ib = state.insertionIdx.get(b.id) ?? 0;
+    return ia - ib;
+  });
+  return arr;
+}
+
+function registerUnit(state: State, u: CombatUnit): void {
+  state.units.set(u.id, u);
+  if (!state.insertionIdx.has(u.id)) {
+    state.insertionIdx.set(u.id, state.insertionCounter++);
+  }
 }
 
 /** Compute damage with combo lookup applied. */
@@ -126,7 +190,7 @@ function buildDamageInput(
     critMult: stats.critDamage,
     defenderResistances: defender.stats.resistances,
     defenderArmor: defender.stats.defense,
-    defenderMagicResist: defender.stats.defense, // unified — caller can split via custom stat
+    defenderMagicResist: defender.stats.defense,
     defenderDodge:
       effect.damageType === 'physical' || effect.damageType === 'thorns'
         ? defender.stats.physDodge
@@ -161,7 +225,6 @@ function applyDamageToUnit(
   const newLife = Math.max(0, defender.life - outcome.final);
   state.units.set(defenderId, { ...defender, life: newLife });
 
-  // Apply on-hit status
   if (effect.applyStatus) {
     const chance = effect.applyStatus.chance ?? 1;
     if (state.rng.chance(chance)) {
@@ -179,6 +242,7 @@ function applyDamageToUnit(
             {
               id: effect.applyStatus.id,
               sourceId: attackerId,
+              simClockMs: state.simClockMs,
               ...(dotPerStack !== undefined ? { dotPerStack } : {}),
               damageType: effect.damageType
             },
@@ -191,7 +255,6 @@ function applyDamageToUnit(
     }
   }
 
-  // Death
   const after = state.units.get(defenderId);
   if (after && !alive(after)) {
     emit(state, { kind: 'death', target: defenderId });
@@ -200,6 +263,11 @@ function applyDamageToUnit(
 }
 
 function handleDeath(state: State, dead: CombatUnit): void {
+  // Hero death = enemy victory (sticky).
+  if (inferKind(dead) === 'hero') {
+    state.heroDead = true;
+  }
+
   // Plague spread
   if (hasStatus(dead, 'plague') || hasStatus(dead, 'poison')) {
     const sameSideAlive = [...state.units.values()].filter(
@@ -208,12 +276,24 @@ function handleDeath(state: State, dead: CombatUnit): void {
     const updated = spreadPlague(dead, sameSideAlive, 0.5, state.rng);
     for (const u of updated) state.units.set(u.id, u);
   }
-  // Orb drops (only enemy deaths reward player team)
-  if (dead.side === 'enemy') {
+
+  // Despawn summons whose owner just died.
+  if (inferKind(dead) !== 'summon') {
+    const orphans = [...state.units.values()].filter(
+      (u) => u.summonOwnerId === dead.id && alive(u)
+    );
+    for (const o of orphans) {
+      state.units.set(o.id, { ...o, life: 0 });
+      state.nextActionAt.delete(o.id);
+      emit(state, { kind: 'death', target: o.id });
+    }
+  }
+
+  // Orb drops — only enemy heroes/monsters drop, not summons.
+  if (dead.side === 'enemy' && inferKind(dead) !== 'summon') {
     const orbs = rollOrbDrops(dead.tier, state.rng);
     const players = aliveOf(state, 'player');
     if (players.length > 0 && orbs.length > 0) {
-      // Apply each orb to all alive players (D3-style)
       for (const p of players) {
         const updated = applyOrbs(p, orbs);
         state.units.set(p.id, updated);
@@ -225,6 +305,17 @@ function handleDeath(state: State, dead: CombatUnit): void {
       }
     }
   }
+
+  // Remove from action scheduler.
+  state.nextActionAt.delete(dead.id);
+}
+
+function summonsOf(state: State, ownerId: string): CombatUnit[] {
+  const out: CombatUnit[] = [];
+  for (const u of state.units.values()) {
+    if (u.summonOwnerId === ownerId && alive(u)) out.push(u);
+  }
+  return out;
 }
 
 function applyEffect(
@@ -236,14 +327,8 @@ function applyEffect(
 ): void {
   switch (effect.kind) {
     case 'damage': {
-      // Pick targets
-      const skill = effect; // narrowing
-      const targets: readonly CombatUnit[] =
-        enemySideAlive.length === 0 ? [] : enemySideAlive;
-      // Use first target for single, all for area/all
-      // Caller (cast) decides single vs area via the skill.target and slices accordingly.
-      for (const t of targets) {
-        applyDamageToUnit(state, actorId, t.id, skill);
+      for (const t of enemySideAlive) {
+        applyDamageToUnit(state, actorId, t.id, effect);
       }
       break;
     }
@@ -265,6 +350,7 @@ function applyEffect(
           {
             id: effect.statusId,
             sourceId: actorId,
+            simClockMs: state.simClockMs,
             ...(effect.duration !== undefined ? { duration: effect.duration } : {})
           },
           state.rng
@@ -275,12 +361,31 @@ function applyEffect(
       break;
     }
     case 'summon': {
-      const actor = state.units.get(actorId);
-      if (!actor) return;
-      // If summon-on-start gating is on, only fire once.
-      if (actor.summonedAdds) return;
-      state.units.set(actorId, { ...actor, summonedAdds: true });
-      emit(state, { kind: 'summon', owner: actorId, summonId: effect.summonId });
+      const owner = state.units.get(actorId);
+      if (!owner) return;
+      const existing = summonsOf(state, actorId).length;
+      const cap = effect.maxCount > 0 ? effect.maxCount : 5;
+      if (existing >= cap) return;
+      const summon = buildSummon(owner, effect.summonId);
+      if (!summon) {
+        // Unknown template — log & no-op.
+        // eslint-disable-next-line no-console
+        console.warn(`[combat] unknown summonId: ${effect.summonId}`);
+        return;
+      }
+      registerUnit(state, summon);
+      state.nextActionAt.set(
+        summon.id,
+        state.simClockMs + actionPeriodMs(summon.stats.attackSpeed)
+      );
+      state.lastDotTickAt.set(summon.id, state.simClockMs);
+      state.cooldownExpiresAt.set(summon.id, new Map());
+      emit(state, {
+        kind: 'summon',
+        owner: actorId,
+        summonId: effect.summonId,
+        unit: summon
+      });
       break;
     }
     case 'heal': {
@@ -291,8 +396,7 @@ function applyEffect(
           : allySideAlive;
       for (const t of targets) {
         const amt =
-          heal.amount ??
-          Math.floor(t.stats.lifeMax * (heal.pctOfMaxLife ?? 0));
+          heal.amount ?? Math.floor(t.stats.lifeMax * (heal.pctOfMaxLife ?? 0));
         const newLife = Math.min(t.stats.lifeMax, t.life + amt);
         state.units.set(t.id, { ...t, life: newLife });
         emit(state, { kind: 'heal', target: t.id, amount: amt });
@@ -302,32 +406,34 @@ function applyEffect(
   }
 }
 
-function castSkill(
-  state: State,
-  actorId: string,
-  skill: RegisteredSkill
-): void {
+function castSkill(state: State, actorId: string, skill: RegisteredSkill): void {
   const actor = state.units.get(actorId);
   if (!actor) return;
 
-  // Pay cost & start CD
   const newMana = Math.max(0, actor.mana - skill.manaCost);
-  const newCooldowns = { ...actor.cooldowns, [skill.id]: skill.cooldown };
-  state.units.set(actorId, { ...actor, mana: newMana, cooldowns: newCooldowns });
+  state.units.set(actorId, { ...actor, mana: newMana });
+
+  // Time-based cooldown.
+  if (skill.cooldown > 0) {
+    let cdMap = state.cooldownExpiresAt.get(actorId);
+    if (!cdMap) {
+      cdMap = new Map();
+      state.cooldownExpiresAt.set(actorId, cdMap);
+    }
+    cdMap.set(skill.id, state.simClockMs + skill.cooldown * SECONDS);
+  }
 
   emit(state, { kind: 'action', actor: actorId, skillId: skill.id });
 
   const enemySide: CombatSide = actor.side === 'player' ? 'enemy' : 'player';
-  const enemies = aliveOf(state, enemySide);
+  const enemies = targetPriority(state, aliveOf(state, enemySide));
   const allies = aliveOf(state, actor.side);
 
-  // Slice targets per skill.target
   let targetEnemies: CombatUnit[] = enemies;
   if (skill.target === 'single-enemy' && enemies.length > 0) {
     const firstEnemy = enemies[0];
     if (firstEnemy) targetEnemies = [firstEnemy];
   } else if (skill.target === 'area-enemies') {
-    // First two enemies (a "splash")
     targetEnemies = enemies.slice(0, 2);
   }
 
@@ -340,14 +446,13 @@ function basicAttack(state: State, actorId: string): void {
   const actor = state.units.get(actorId);
   if (!actor) return;
   const enemySide: CombatSide = actor.side === 'player' ? 'enemy' : 'player';
-  const enemies = aliveOf(state, enemySide);
+  const enemies = targetPriority(state, aliveOf(state, enemySide));
   if (enemies.length === 0) return;
   const target = enemies[0];
   if (!target) return;
 
   emit(state, { kind: 'action', actor: actorId, skillId: null });
-  const stats = actor.stats;
-  const baseAttack = Math.max(1, Math.floor(stats.attack));
+  const baseAttack = Math.max(1, Math.floor(actor.stats.attack));
   const effect: DamageEffect = {
     kind: 'damage',
     damageType: 'physical',
@@ -356,39 +461,52 @@ function basicAttack(state: State, actorId: string): void {
   applyDamageToUnit(state, actorId, target.id, effect);
 }
 
-function tickUnit(state: State, unitId: string): void {
+/**
+ * Tick effects keyed to elapsed sim-time for one unit, just before it acts.
+ * Returns true if the unit died from DoT.
+ */
+function tickUnit(state: State, unitId: string): boolean {
   const before = state.units.get(unitId);
-  if (!before || !alive(before)) return;
+  if (!before || !alive(before)) return true;
 
-  // Cooldowns -1
-  const cds: Record<string, number> = {};
-  for (const [k, v] of Object.entries(before.cooldowns)) {
-    if (v - 1 > 0) cds[k] = v - 1;
-  }
-  let unit: CombatUnit = { ...before, cooldowns: cds };
-
-  // DoT damage application
-  const { total } = dotDamageThisTick(unit);
-  if (total > 0) {
-    const newLife = Math.max(0, unit.life - total);
-    unit = { ...unit, life: newLife };
-    emit(state, { kind: 'dot', target: unitId, amount: total });
-    if (newLife <= 0) {
-      state.units.set(unitId, unit);
-      emit(state, { kind: 'death', target: unitId });
-      handleDeath(state, unit);
-      return;
+  // 1) Refresh effective per-skill cooldown view (chooseSkill reads it).
+  const cdMap = state.cooldownExpiresAt.get(unitId);
+  const effectiveCds: Record<string, number> = {};
+  if (cdMap) {
+    for (const [skillId, exp] of cdMap) {
+      if (exp > state.simClockMs) effectiveCds[skillId] = exp - state.simClockMs;
     }
   }
 
-  // Tick statuses (decrement durations)
-  unit = tickStatuses(unit);
+  // 2) Expire statuses whose expiresAtMs has passed.
+  let unit = expireStatuses(before, state.simClockMs);
+  unit = { ...unit, cooldowns: effectiveCds };
+
+  // 3) DoT chunk for elapsed time since this unit's last DoT tick.
+  const last = state.lastDotTickAt.get(unitId) ?? state.simClockMs;
+  const elapsedMs = Math.max(0, state.simClockMs - last);
+  const { total: perSec } = dotDamageThisTick(unit);
+  if (perSec > 0 && elapsedMs > 0) {
+    const dmg = Math.max(1, Math.floor((perSec * elapsedMs) / SECONDS));
+    const newLife = Math.max(0, unit.life - dmg);
+    unit = { ...unit, life: newLife };
+    state.units.set(unitId, unit);
+    emit(state, { kind: 'dot', target: unitId, amount: dmg });
+    if (newLife <= 0) {
+      emit(state, { kind: 'death', target: unitId });
+      handleDeath(state, unit);
+      state.lastDotTickAt.set(unitId, state.simClockMs);
+      return true;
+    }
+  }
+  state.lastDotTickAt.set(unitId, state.simClockMs);
   state.units.set(unitId, unit);
+  return false;
 }
 
 function castSummonsOnStart(state: State, unitId: string): void {
   const unit = state.units.get(unitId);
-  if (!unit || unit.summonedAdds) return;
+  if (!unit) return;
   for (const skillId of unit.skillOrder) {
     const skill = getSkill(skillId);
     if (!skill?.summonOnStart) continue;
@@ -429,6 +547,8 @@ function checkEnrage(state: State, unitId: string): void {
 }
 
 function winnerOf(state: State): CombatSide | null {
+  // Hero death = sticky enemy win.
+  if (state.heroDead) return 'enemy';
   const playersAlive = aliveOf(state, 'player').length > 0;
   const enemiesAlive = aliveOf(state, 'enemy').length > 0;
   if (playersAlive && !enemiesAlive) return 'player';
@@ -437,155 +557,194 @@ function winnerOf(state: State): CombatSide | null {
   return null;
 }
 
-/**
- * Run a deterministic battle.
- * Returns events in the exact order they occurred.
- *
- * Determinism contract: same {@link CombatSnapshot} (same seed, same starting
- * units, same skill registry) ⇒ same {@link CombatResult.events}.
- */
-export function runBattle(snapshot: CombatSnapshot): CombatResult {
-  const state: State = {
-    units: new Map(),
-    events: [],
-    rng: createRng(snapshot.seed),
-    act: snapshot.act ?? 1
-  };
-  for (const u of snapshot.playerTeam) state.units.set(u.id, u);
-  for (const u of snapshot.enemyTeam) state.units.set(u.id, u);
-
-  const maxRounds = snapshot.maxRounds ?? 100;
-
-  // Initial summon-on-start phase (all units, in turn order)
-  const startSpeeds = [...state.units.values()].map((u) => ({
-    id: u.id,
-    attackSpeed: u.stats.attackSpeed
-  }));
-  const startOrder = calculateTurnOrder(startSpeeds, state.rng);
-  for (const id of startOrder) castSummonsOnStart(state, id);
-
-  let rounds = 0;
-  for (let round = 0; round < maxRounds; round++) {
-    rounds = round + 1;
-    emit(state, { kind: 'turn-start', turn: rounds });
-
-    // Compute turn order from CURRENT alive units
-    const speeds = [...state.units.values()]
-      .filter(alive)
-      .map((u) => ({ id: u.id, attackSpeed: u.stats.attackSpeed }));
-    const order = calculateTurnOrder(speeds, state.rng);
-
-    for (const id of order) {
-      tickUnit(state, id);
-      checkEnrage(state, id);
-      if (winnerOf(state) !== null && aliveOf(state, 'player').length === 0) break;
-      if (aliveOf(state, 'enemy').length === 0) break;
-      takeAction(state, id);
-      const w = winnerOf(state);
-      if (w !== null) break;
-    }
-
-    const w = winnerOf(state);
-    if (w !== null) {
-      emit(state, { kind: 'end', winner: w });
-      return {
-        events: state.events,
-        winner: w,
-        playerTeam: snapshot.playerTeam.map((u) => state.units.get(u.id) ?? u),
-        enemyTeam: snapshot.enemyTeam.map((u) => state.units.get(u.id) ?? u),
-        rounds
-      };
+/** Pick next actor — smallest nextActionAt, insertion-order tiebreak. */
+function pickNextActor(state: State): { id: string; at: number } | null {
+  let bestId: string | null = null;
+  let bestAt = Infinity;
+  let bestIdx = Infinity;
+  for (const [id, at] of state.nextActionAt) {
+    const u = state.units.get(id);
+    if (!u || !alive(u)) continue;
+    const idx = state.insertionIdx.get(id) ?? 0;
+    if (at < bestAt || (at === bestAt && idx < bestIdx)) {
+      bestAt = at;
+      bestIdx = idx;
+      bestId = id;
     }
   }
+  if (bestId === null) return null;
+  return { id: bestId, at: bestAt };
+}
 
-  emit(state, { kind: 'end', winner: null });
-  return {
-    events: state.events,
-    winner: null,
-    playerTeam: snapshot.playerTeam.map((u) => state.units.get(u.id) ?? u),
-    enemyTeam: snapshot.enemyTeam.map((u) => state.units.get(u.id) ?? u),
-    rounds
-  };
+/** Emit `turn-start` for every 5-second boundary crossed up to `simClockMs`. */
+function emitTurnBoundaries(state: State): void {
+  const turnsTarget = Math.floor(state.simClockMs / 5000) + 1;
+  while (state.turnsEmitted < turnsTarget) {
+    state.turnsEmitted++;
+    emit(state, { kind: 'turn-start', turn: state.turnsEmitted });
+  }
+}
+
+/**
+ * Run a deterministic battle.
+ *
+ * Determinism contract: same {@link CombatSnapshot} ⇒ identical event log
+ * (including event-attached `simClockMs` in {@link runBattleRecorded}).
+ */
+export function runBattle(snapshot: CombatSnapshot): CombatResult {
+  return runBattleWithTimestamps(snapshot).result;
 }
 
 // Re-export for downstream consumers needing types.
 export type { BuffEffect, SummonEffect };
 
 /**
- * A {@link BattleEvent} annotated with a UI playback delay (ms) hint.
- *
- * The engine produces these during {@link runBattleRecorded}; the UI is free
- * to use, ignore, or override the value when animating the recorded battle.
+ * A {@link BattleEvent} annotated with sim-time + a UI playback delay (ms)
+ * hint. The engine produces these during {@link runBattleRecorded}; the UI
+ * uses `uiDelayMs` to pace animation between events.
  */
-export type RecordedBattleEvent = BattleEvent & { readonly uiDelayMs: number };
+export type RecordedBattleEvent = BattleEvent & {
+  /** Simulation clock (ms) at which the event was emitted. */
+  readonly simClockMs: number;
+  /** Suggested UI delay (ms) to wait before rendering this event. */
+  readonly uiDelayMs: number;
+};
 
 /** Result of {@link runBattleRecorded}. */
 export interface RecordedBattleResult {
-  /** Battle events with attached `uiDelayMs` hints, in occurrence order. */
+  /** Battle events with attached `simClockMs` + `uiDelayMs` hints. */
   readonly events: readonly RecordedBattleEvent[];
   /** The full {@link CombatResult} (final state, winner, rounds). */
   readonly result: CombatResult;
 }
 
 /**
- * Compute a UI playback delay (ms) for an event, given an attack-speed
- * lookup for unit ids. The actor's speed is only consulted for `action`
- * events; for everything else a fixed schedule is used.
- *
- * Rules:
- *  - turn-start → 200ms
- *  - action     → clamp(2500 − attackSpeed × 8, 400, 2000)
- *  - damage     → 150ms
- *  - heal       → 150ms
- *  - death      → 400ms
- *  - end        → 100ms
- *  - default    → 100ms
+ * Compute UI delay (ms) for the *current* event given the *previous* event's
+ * `simClockMs`. The delay equals the sim-time delta clamped to `[50, 3000]`.
+ * The very first event uses a fixed 200ms warm-up.
  */
 export function computeUiDelayMs(
-  ev: BattleEvent,
-  attackSpeedById: ReadonlyMap<string, number>
+  currentSimClockMs: number,
+  previousSimClockMs: number | null
 ): number {
-  switch (ev.kind) {
-    case 'turn-start':
-      return 200;
-    case 'action': {
-      const speed = attackSpeedById.get(ev.actor) ?? 0;
-      return Math.max(400, Math.min(2000, 2500 - speed * 8));
-    }
-    case 'damage':
-    case 'heal':
-      return 150;
-    case 'death':
-      return 400;
-    case 'end':
-      return 100;
-    default:
-      return 100;
-  }
+  if (previousSimClockMs === null) return 200;
+  const delta = currentSimClockMs - previousSimClockMs;
+  return Math.max(50, Math.min(3000, delta));
 }
 
 /**
- * Run a deterministic battle and return events annotated with `uiDelayMs`
- * hints suitable for stepped UI playback.
+ * Run a deterministic battle and return events annotated with `simClockMs`
+ * and `uiDelayMs` hints suitable for stepped UI playback.
  *
- * The battle outcome is fully determined when this returns — the UI just
- * animates the recorded events in order, optionally pausing/resuming.
- *
- * Determinism: identical to {@link runBattle} for the same snapshot; the
- * delay annotation is a pure function of the event + the snapshot's
- * starting `attackSpeed` per unit.
+ * The battle outcome is fully determined when this returns.
  */
 export function runBattleRecorded(snapshot: CombatSnapshot): RecordedBattleResult {
-  const result = runBattle(snapshot);
-  const speeds = new Map<string, number>();
-  for (const u of snapshot.playerTeam) speeds.set(u.id, u.stats.attackSpeed);
-  for (const u of snapshot.enemyTeam) speeds.set(u.id, u.stats.attackSpeed);
+  const { events, simTimes, result } = runBattleWithTimestamps(snapshot);
 
-  const events: RecordedBattleEvent[] = result.events.map((ev) => {
-    const uiDelayMs = computeUiDelayMs(ev, speeds);
-    // Spreading a discriminated union widens the type; cast back.
-    return { ...ev, uiDelayMs } as RecordedBattleEvent;
-  });
+  const recorded: RecordedBattleEvent[] = [];
+  let prev: number | null = null;
+  for (let i = 0; i < events.length; i++) {
+    const ev = events[i];
+    const ts = simTimes[i] ?? 0;
+    if (!ev) continue;
+    const uiDelayMs = computeUiDelayMs(ts, prev);
+    recorded.push({ ...ev, simClockMs: ts, uiDelayMs } as RecordedBattleEvent);
+    prev = ts;
+  }
 
-  return { events, result };
+  return { events: recorded, result };
+}
+
+/**
+ * Internal twin of {@link runBattle} that also records the simClockMs
+ * snapshot for every emitted event. Kept private to avoid leaking the
+ * timing array into the main public surface.
+ */
+function runBattleWithTimestamps(snapshot: CombatSnapshot): {
+  events: BattleEvent[];
+  simTimes: number[];
+  result: CombatResult;
+} {
+  const state: State = {
+    units: new Map(),
+    events: [],
+    simTimes: [],
+    rng: createRng(snapshot.seed),
+    act: snapshot.act ?? 1,
+    simClockMs: 0,
+    insertionIdx: new Map(),
+    nextActionAt: new Map(),
+    cooldownExpiresAt: new Map(),
+    lastDotTickAt: new Map(),
+    turnsEmitted: 0,
+    heroDead: false,
+    insertionCounter: 0
+  };
+
+  for (const u of snapshot.playerTeam) registerUnit(state, u);
+  for (const u of snapshot.enemyTeam) registerUnit(state, u);
+
+  for (const u of state.units.values()) {
+    state.nextActionAt.set(u.id, actionPeriodMs(u.stats.attackSpeed));
+    state.lastDotTickAt.set(u.id, 0);
+    state.cooldownExpiresAt.set(u.id, new Map());
+  }
+  emitTurnBoundaries(state);
+
+  const startOrder = [...state.units.values()]
+    .sort(
+      (a, b) =>
+        (state.insertionIdx.get(a.id) ?? 0) - (state.insertionIdx.get(b.id) ?? 0)
+    )
+    .map((u) => u.id);
+  for (const id of startOrder) castSummonsOnStart(state, id);
+
+  let actionsTaken = 0;
+  while (
+    winnerOf(state) === null &&
+    state.simClockMs < MAX_SIM_MS &&
+    actionsTaken < MAX_ACTIONS
+  ) {
+    const next = pickNextActor(state);
+    if (!next) break;
+    if (next.at > state.simClockMs) state.simClockMs = next.at;
+    emitTurnBoundaries(state);
+    const died = tickUnit(state, next.id);
+    if (died) {
+      state.nextActionAt.delete(next.id);
+      continue;
+    }
+    checkEnrage(state, next.id);
+    if (winnerOf(state) !== null) break;
+    takeAction(state, next.id);
+    actionsTaken++;
+    const after = state.units.get(next.id);
+    if (after && alive(after)) {
+      state.nextActionAt.set(
+        next.id,
+        state.simClockMs + actionPeriodMs(after.stats.attackSpeed)
+      );
+    } else {
+      state.nextActionAt.delete(next.id);
+    }
+  }
+
+  const winner = winnerOf(state);
+  emit(state, { kind: 'end', winner });
+
+  const all = [...state.units.values()].sort(
+    (a, b) =>
+      (state.insertionIdx.get(a.id) ?? 0) - (state.insertionIdx.get(b.id) ?? 0)
+  );
+  const playerTeam = all.filter((u) => u.side === 'player');
+  const enemyTeam = all.filter((u) => u.side === 'enemy');
+
+  const result: CombatResult = {
+    events: state.events,
+    winner,
+    playerTeam,
+    enemyTeam,
+    rounds: state.turnsEmitted
+  };
+  return { events: state.events, simTimes: state.simTimes, result };
 }

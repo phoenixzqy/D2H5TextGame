@@ -65,9 +65,21 @@ export const STATUS_DEFAULTS: Readonly<Record<StatusId, StatusConfig>> = Object.
 export interface ApplyStatusInput {
   readonly id: string;
   readonly sourceId: string;
-  /** Override default duration. */
+  /** Override default duration in turns (legacy callers). */
   readonly duration?: number;
-  /** DoT damage per stack per tick (for poison/ignite/bleed). */
+  /**
+   * Override default duration in **milliseconds** (sim-time callers).
+   * If set together with {@link simClockMs}, the engine sets
+   * `expiresAtMs = simClockMs + durationMs`.
+   */
+  readonly durationMs?: number;
+  /**
+   * Current simulation clock in ms. When provided, the produced
+   * {@link ActiveStatus} is given an `expiresAtMs` rather than a
+   * decremented `remaining`-counter lifecycle.
+   */
+  readonly simClockMs?: number;
+  /** DoT damage per stack per **second** (sim-time). */
   readonly dotPerStack?: number;
   /** Damage type for DoT. */
   readonly damageType?: ActiveStatus['damageType'];
@@ -115,6 +127,10 @@ export function applyStatus(
   }
 
   const idx = unit.statuses.findIndex((s) => s.id === input.id);
+  const expiresAtMs =
+    input.simClockMs !== undefined
+      ? input.simClockMs + (input.durationMs ?? dur * 1000)
+      : undefined;
   let next: ActiveStatus[];
   if (idx === -1) {
     const newStatus: ActiveStatus = {
@@ -122,6 +138,7 @@ export function applyStatus(
       stacks: 1,
       remaining: dur,
       sourceId: input.sourceId,
+      ...(expiresAtMs !== undefined ? { expiresAtMs } : {}),
       ...(input.dotPerStack !== undefined ? { dotPerStack: input.dotPerStack } : {}),
       ...(input.damageType !== undefined ? { damageType: input.damageType } : {})
     };
@@ -131,10 +148,15 @@ export function applyStatus(
     if (!prev) return unit;
     const stacks =
       cfg.maxStacks > 1 ? Math.min(cfg.maxStacks, prev.stacks + 1) : prev.stacks;
+    const newExpiresAtMs =
+      expiresAtMs !== undefined
+        ? Math.max(prev.expiresAtMs ?? 0, expiresAtMs)
+        : prev.expiresAtMs;
     const updated: ActiveStatus = {
       ...prev,
       stacks,
-      remaining: Math.max(prev.remaining, dur)
+      remaining: Math.max(prev.remaining, dur),
+      ...(newExpiresAtMs !== undefined ? { expiresAtMs: newExpiresAtMs } : {})
     };
     next = unit.statuses.map((s, i) => (i === idx ? updated : s));
   }
@@ -146,7 +168,10 @@ export function applyStatus(
       id: 'paralyze-cd',
       stacks: 1,
       remaining: 5,
-      sourceId: input.sourceId
+      sourceId: input.sourceId,
+      ...(input.simClockMs !== undefined
+        ? { expiresAtMs: input.simClockMs + 5 * 1000 }
+        : {})
     };
     next =
       existingCdIdx === -1
@@ -154,6 +179,18 @@ export function applyStatus(
         : next.map((s, i) => (i === existingCdIdx ? cdMarker : s));
   }
 
+  return { ...unit, statuses: next };
+}
+
+/**
+ * Drop statuses whose `expiresAtMs` has passed. Pure; returns a new unit.
+ * Statuses without `expiresAtMs` (turn-based legacy) are preserved.
+ */
+export function expireStatuses(unit: CombatUnit, simClockMs: number): CombatUnit {
+  const next = unit.statuses.filter(
+    (s) => s.expiresAtMs === undefined || s.expiresAtMs > simClockMs
+  );
+  if (next.length === unit.statuses.length) return unit;
   return { ...unit, statuses: next };
 }
 

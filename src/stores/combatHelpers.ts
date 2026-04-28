@@ -33,21 +33,30 @@ export function playerToCombatUnit(player: Player): CombatUnit {
     skillOrder: player.comboOrder,
     activeBuffIds: [],
     enraged: false,
-    summonedAdds: false
+    summonedAdds: false,
+    kind: 'hero'
   };
 }
 
+const ENEMY_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
 /**
- * Create a simple enemy unit for testing
+ * Create a simple enemy unit for testing.
+ * @param level monster level
+ * @param index optional 0-based index for naming uniqueness ("Fallen A", …)
  */
-export function createSimpleEnemy(level: number): CombatUnit {
+export function createSimpleEnemy(level: number, index?: number): CombatUnit {
   // Numbers per docs/balance/early-game-spec.md §4 (trash baseline).
   const lvlAbove1 = Math.max(0, level - 1);
   const life = 50 + lvlAbove1 * 16;
   const attack = 32 + lvlAbove1 * 5;
   const defense = 4 + Math.floor(lvlAbove1 * 1.5);
-  const enemyId = `enemy-${String(Date.now())}-${String(Math.random())}`;
-  const enemyName = `Fallen Lv${String(level)}`;
+  const enemyId = `enemy-${String(Date.now())}-${String(index ?? 0)}-${String(Math.random())}`;
+  const suffix =
+    index === undefined
+      ? ''
+      : ` ${ENEMY_ALPHABET[index] ?? `#${String(index + 1)}`}`;
+  const enemyName = `Fallen Lv${String(level)}${suffix}`;
   return {
     id: enemyId,
     name: enemyName,
@@ -84,7 +93,8 @@ export function createSimpleEnemy(level: number): CombatUnit {
     skillOrder: [],
     activeBuffIds: [],
     enraged: false,
-    summonedAdds: false
+    summonedAdds: false,
+    kind: 'monster'
   };
 }
 
@@ -185,6 +195,15 @@ export function battleEventToLogEntry(
         value: event.amount
       };
     }
+    case 'summon': {
+      const ownerName = getName(event.owner);
+      return {
+        type: 'system',
+        actorId: event.owner,
+        actorName: ownerName,
+        message: `${ownerName} summons ${event.unit.name}`
+      };
+    }
     case 'end':
       return {
         type: 'system',
@@ -272,7 +291,7 @@ export function startSimpleBattle(enemyLevel = 1, enemyCount = 3) {
   const enemies: CombatUnit[] = [];
 
   for (let i = 0; i < enemyCount; i++) {
-    enemies.push(createSimpleEnemy(enemyLevel));
+    enemies.push(createSimpleEnemy(enemyLevel, enemyCount > 1 ? i : undefined));
   }
 
   // Run the battle — fully resolved synchronously.
@@ -286,7 +305,9 @@ export function startSimpleBattle(enemyLevel = 1, enemyCount = 3) {
   // On victory, roll loot for every slain enemy and dispatch into inventory.
   let rewards: KillRewards | undefined;
   if (result.winner === 'player') {
-    const slain = result.enemyTeam.filter((u) => u.life <= 0);
+    const slain = result.enemyTeam.filter(
+      (u) => u.life <= 0 && u.kind !== 'summon'
+    );
     const mapState = useMapStore.getState();
     const act = (Math.min(5, Math.max(1, mapState.currentAct)) as 1 | 2 | 3 | 4 | 5);
     const treasureClassId = `loot/trash-act${String(act)}`;

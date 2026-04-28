@@ -75,6 +75,15 @@ export interface RegisteredSkill {
   readonly id: string;
   readonly archetype: string;
   readonly target: SkillTarget;
+  /**
+   * Cooldown in **seconds** (sim-time). The combat engine multiplies this by
+   * 1000 and stores `cooldownExpiresAt = simClockMs + cooldown*1000` after
+   * each cast. A value of 0 means "no cooldown".
+   *
+   * @remarks Historically this was "rounds"; with the timeline scheduler the
+   * unit is seconds — data values typically remain numerically the same (0,
+   * 1, 2, 3, …) but now describe sim-seconds.
+   */
   readonly cooldown: number;
   readonly manaCost: number;
   readonly effects: readonly SkillEffect[];

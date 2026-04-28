@@ -193,6 +193,15 @@ function eventToLogEntry(
         value: event.amount
       };
     }
+    case 'summon': {
+      const ownerName = getName(event.owner);
+      return {
+        type: 'system',
+        actorId: event.owner,
+        actorName: ownerName,
+        message: `${ownerName} summons ${event.unit.name}`
+      };
+    }
     case 'end':
       return {
         type: 'system',
@@ -205,7 +214,7 @@ function eventToLogEntry(
   }
 }
 
-export const useCombatStore = create<CombatState>((set, get) => ({
+export const useCombatStore= create<CombatState>((set, get) => ({
   ...initialState,
 
   startCombat: (playerTeam, enemyTeam, totalWaves) => { set({
@@ -298,7 +307,17 @@ export const useCombatStore = create<CombatState>((set, get) => ({
       return;
     }
     const stepped = applyEventToTeams(state.playerTeam, state.enemyTeam, ev);
-    const logEntry = eventToLogEntry(ev, state.unitNameMap);
+
+    // Extend the name map when a summon enters the battle so the log resolves
+    // its display name.
+    let nameMap = state.unitNameMap;
+    if (ev.kind === 'summon' && !nameMap.has(ev.unit.id)) {
+      const next = new Map(nameMap);
+      next.set(ev.unit.id, ev.unit.name);
+      nameMap = next;
+    }
+
+    const logEntry = eventToLogEntry(ev, nameMap);
     const newLog = logEntry
       ? [
           ...state.log,
@@ -328,6 +347,7 @@ export const useCombatStore = create<CombatState>((set, get) => ({
       log: newLog,
       eventCursor: nextCursor,
       playbackComplete: finished,
+      unitNameMap: nameMap,
       currentTurn: ev.kind === 'turn-start' ? ev.turn : state.currentTurn
     });
   },
