@@ -59,7 +59,7 @@ describe('CharacterScreen', () => {
     expect(core).toHaveTextContent('10');
 
     expect(screen.getByTestId('char-stat-points')).toHaveTextContent('0');
-    expect(screen.getByTestId('char-skill-points')).toHaveTextContent('0');
+    expect(screen.getByTestId('char-skill-points')).toHaveTextContent('1');
 
     expect(screen.getByTestId('char-derived-stats')).toBeInTheDocument();
     expect(screen.getByTestId('char-resistances')).toBeInTheDocument();

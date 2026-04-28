@@ -10,7 +10,7 @@
  * @ md+:
  *   2-column: left = allies+enemies, right = log
  */
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, Panel, StatBar, ScreenShell, GameImage, getClassPortraitUrl, getMonsterImageUrl } from '@/ui';
@@ -21,6 +21,8 @@ import type { CombatUnit } from '@/engine/combat/types';
 import type { KillRewards } from '@/engine/loot/award';
 
 const MAX_LOG = 200;
+const SPEED_CYCLE = [1, 2, 4] as const;
+type Speed = (typeof SPEED_CYCLE)[number];
 
 const RARITY_COLORS: Record<string, string> = {
   normal: 'text-d2-white',
@@ -48,17 +50,77 @@ export function CombatScreen() {
   const toggleAutoMode = useCombatStore((s) => s.toggleAutoMode);
   const endCombat = useCombatStore((s) => s.endCombat);
 
+  // Recorded-event playback selectors
+  const recordedEvents = useCombatStore((s) => s.recordedEvents);
+  const eventCursor = useCombatStore((s) => s.eventCursor);
+  const playbackComplete = useCombatStore((s) => s.playbackComplete);
+  const outcome = useCombatStore((s) => s.outcome);
+  const tick = useCombatStore((s) => s.tick);
+
   const recentLog = useMemo(() => log.slice(-MAX_LOG), [log]);
   const [rewards, setRewards] = useState<KillRewards | null>(null);
+  const [speed, setSpeed] = useState<Speed>(1);
 
   // Auto-start battle if not in combat yet
   useEffect(() => {
     if (!inCombat && player) {
       const level = player.level || 1;
-      const result = startSimpleBattle(level, 3);
-      if (result?.rewards) setRewards(result.rewards);
+      startSimpleBattle(level, 3);
+      setRewards(null);
     }
   }, [inCombat, player]);
+
+  // Timer-driven playback: schedule the next event after its uiDelayMs
+  // (divided by the chosen speed multiplier). Re-runs whenever the cursor,
+  // pause state, or speed changes.
+  useEffect(() => {
+    if (!inCombat || isPaused || playbackComplete) return;
+    const next = recordedEvents[eventCursor];
+    if (!next) return;
+    const delay = Math.max(50, Math.floor(next.uiDelayMs / speed));
+    const handle = setTimeout(() => {
+      tick();
+    }, delay);
+    return () => { clearTimeout(handle); };
+  }, [inCombat, isPaused, playbackComplete, eventCursor, recordedEvents, tick, speed]);
+
+  // Reveal rewards summary only after playback completes.
+  useEffect(() => {
+    if (playbackComplete && outcome?.rewards) {
+      setRewards(outcome.rewards);
+    }
+  }, [playbackComplete, outcome]);
+
+  // Currently-acting unit id — derived by walking back from the cursor to
+  // the most recent `action` event in the current turn (gives the pulsing
+  // border on the active unit). Reset at every `turn-start`.
+  const actingActorId = useMemo(() => {
+    for (let i = Math.min(eventCursor - 1, recordedEvents.length - 1); i >= 0; i--) {
+      const ev = recordedEvents[i];
+      if (!ev) continue;
+      if (ev.kind === 'turn-start') return null;
+      if (ev.kind === 'action') return ev.actor;
+    }
+    return null;
+  }, [eventCursor, recordedEvents]);
+
+  const cycleSpeed = useCallback(() => {
+    setSpeed((cur) => {
+      const idx = SPEED_CYCLE.indexOf(cur);
+      const nextIdx = (idx + 1) % SPEED_CYCLE.length;
+      return SPEED_CYCLE[nextIdx] ?? 1;
+    });
+  }, []);
+
+  const handleSkip = useCallback(() => {
+    // Resume if paused so advanceEvent isn't a no-op, then drain.
+    const store = useCombatStore.getState();
+    if (store.isPaused) store.resumePlayback();
+    let safety = 10_000;
+    while (!useCombatStore.getState().playbackComplete && safety-- > 0) {
+      useCombatStore.getState().advanceEvent();
+    }
+  }, []);
 
   const handleFlee = () => {
     endCombat();
@@ -77,14 +139,33 @@ export function CombatScreen() {
               defaultValue: `Wave ${String(currentWave || 1)} / ${String(totalWaves || 1)}`,
             })}
           </span>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap justify-end">
             <Button
               variant="secondary"
               className="min-h-[40px] px-3 text-sm"
               onClick={togglePause}
               aria-pressed={isPaused}
+              disabled={playbackComplete}
             >
               {isPaused ? t('resume') : t('pause')}
+            </Button>
+            <Button
+              variant="secondary"
+              className="min-h-[40px] px-2 text-sm tabular-nums"
+              onClick={cycleSpeed}
+              aria-label={t('speed', { defaultValue: '速度' })}
+              title={t('speed', { defaultValue: '速度' })}
+              disabled={playbackComplete}
+            >
+              {t('speedX', { x: speed, defaultValue: `${String(speed)}x` })}
+            </Button>
+            <Button
+              variant="secondary"
+              className="min-h-[40px] px-3 text-sm"
+              onClick={handleSkip}
+              disabled={playbackComplete}
+            >
+              {t('skip', { defaultValue: '跳过' })}
             </Button>
             <label className="flex items-center gap-1 text-xs cursor-pointer min-h-[40px]">
               <input
@@ -117,7 +198,7 @@ export function CombatScreen() {
               <ul className="space-y-2">
                 {playerTeam.map((u) => (
                   <li key={u.id}>
-                    <UnitBars unit={u} />
+                    <UnitBars unit={u} acting={u.id === actingActorId} />
                   </li>
                 ))}
               </ul>
@@ -133,7 +214,7 @@ export function CombatScreen() {
               <ul className="space-y-2 max-h-72 overflow-y-auto pr-1">
                 {enemyTeam.map((u) => (
                   <li key={u.id}>
-                    <UnitBars unit={u} compact />
+                    <UnitBars unit={u} compact acting={u.id === actingActorId} />
                   </li>
                 ))}
               </ul>
@@ -143,7 +224,7 @@ export function CombatScreen() {
 
         <CombatLog entries={recentLog} />
       </div>
-      {rewards && (rewards.items.length > 0 || rewards.gold > 0) && (
+      {playbackComplete && rewards && (rewards.items.length > 0 || rewards.gold > 0) && (
         <div className="max-w-5xl mx-auto mt-3" data-testid="loot-summary">
           <Panel title={t('loot', { defaultValue: '战利品' })}>
             {rewards.gold > 0 && (
@@ -172,7 +253,7 @@ export function CombatScreen() {
   );
 }
 
-function UnitBars({ unit, compact = false }: { unit: CombatUnit; compact?: boolean }) {
+function UnitBars({ unit, compact = false, acting = false }: { unit: CombatUnit; compact?: boolean; acting?: boolean }) {
   const { t } = useTranslation('combat');
   const player = usePlayerStore((s) => s.player);
 
@@ -183,8 +264,19 @@ function UnitBars({ unit, compact = false }: { unit: CombatUnit; compact?: boole
       : getMonsterImageUrl(extractMonsterSlug(unit.name, unit.id));
   const avatarFallback = (unit.name.charAt(0) || '?').toUpperCase();
 
+  const isDead = unit.life <= 0;
+  const borderClass = isDead
+    ? 'border-d2-border opacity-50'
+    : acting
+      ? 'border-d2-gold ring-2 ring-d2-gold/40 animate-pulse motion-reduce:animate-none'
+      : 'border-d2-border';
+
   return (
-    <div className="border border-d2-border rounded p-2 bg-d2-bg/40 flex items-start gap-2">
+    <div
+      className={`border ${borderClass} rounded p-2 bg-d2-bg/40 flex items-start gap-2 transition-colors`}
+      data-acting={acting || undefined}
+      data-dead={isDead || undefined}
+    >
       <GameImage
         src={avatarSrc}
         alt={unit.name}
@@ -192,10 +284,19 @@ function UnitBars({ unit, compact = false }: { unit: CombatUnit; compact?: boole
         size={compact ? 'sm' : 'md'}
       />
       <div className="flex-1 min-w-0">
-        <div className="flex items-center justify-between mb-1 text-sm">
+        <div className="flex items-center justify-between mb-1 text-sm gap-2">
           <span className="font-serif text-d2-gold truncate">{unit.name}</span>
-          <span className="text-xs text-d2-white/60">
-            Lv {unit.level}
+          <span className="flex items-center gap-1 text-xs text-d2-white/60 shrink-0">
+            {acting && !isDead && (
+              <span
+                className="text-d2-gold"
+                aria-label={t('acting', { defaultValue: '行动中' })}
+                title={t('acting', { defaultValue: '行动中' })}
+              >
+                💢
+              </span>
+            )}
+            <span>Lv {unit.level}</span>
           </span>
         </div>
         {compact ? (

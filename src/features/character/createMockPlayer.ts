@@ -76,7 +76,7 @@ export function createMockPlayer(name: string, cls: CharacterClass): Player {
     experience: 0,
     experienceToNextLevel: 100,
     statPoints: 0,
-    skillPoints: 0,
+    skillPoints: 1,
     equipment: [],
   };
 }

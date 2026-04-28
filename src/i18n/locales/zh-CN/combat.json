@@ -21,6 +21,10 @@
   "noEnemies": "没有敌人",
   "hp": "生命",
   "mp": "法力",
+  "speed": "速度",
+  "speedX": "{{x}}x",
+  "skip": "跳过",
+  "acting": "行动中",
   "log_lines": {
     "hit": "{{attacker}} 对 {{target}} 造成 {{amount}} 点{{type}}伤害。",
     "crit": "暴击！{{attacker}} 对 {{target}} 造成 {{amount}} 点{{type}}伤害！",

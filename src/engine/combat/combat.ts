@@ -510,3 +510,82 @@ export function runBattle(snapshot: CombatSnapshot): CombatResult {
 
 // Re-export for downstream consumers needing types.
 export type { BuffEffect, SummonEffect };
+
+/**
+ * A {@link BattleEvent} annotated with a UI playback delay (ms) hint.
+ *
+ * The engine produces these during {@link runBattleRecorded}; the UI is free
+ * to use, ignore, or override the value when animating the recorded battle.
+ */
+export type RecordedBattleEvent = BattleEvent & { readonly uiDelayMs: number };
+
+/** Result of {@link runBattleRecorded}. */
+export interface RecordedBattleResult {
+  /** Battle events with attached `uiDelayMs` hints, in occurrence order. */
+  readonly events: readonly RecordedBattleEvent[];
+  /** The full {@link CombatResult} (final state, winner, rounds). */
+  readonly result: CombatResult;
+}
+
+/**
+ * Compute a UI playback delay (ms) for an event, given an attack-speed
+ * lookup for unit ids. The actor's speed is only consulted for `action`
+ * events; for everything else a fixed schedule is used.
+ *
+ * Rules:
+ *  - turn-start → 200ms
+ *  - action     → clamp(2500 − attackSpeed × 8, 400, 2000)
+ *  - damage     → 150ms
+ *  - heal       → 150ms
+ *  - death      → 400ms
+ *  - end        → 100ms
+ *  - default    → 100ms
+ */
+export function computeUiDelayMs(
+  ev: BattleEvent,
+  attackSpeedById: ReadonlyMap<string, number>
+): number {
+  switch (ev.kind) {
+    case 'turn-start':
+      return 200;
+    case 'action': {
+      const speed = attackSpeedById.get(ev.actor) ?? 0;
+      return Math.max(400, Math.min(2000, 2500 - speed * 8));
+    }
+    case 'damage':
+    case 'heal':
+      return 150;
+    case 'death':
+      return 400;
+    case 'end':
+      return 100;
+    default:
+      return 100;
+  }
+}
+
+/**
+ * Run a deterministic battle and return events annotated with `uiDelayMs`
+ * hints suitable for stepped UI playback.
+ *
+ * The battle outcome is fully determined when this returns — the UI just
+ * animates the recorded events in order, optionally pausing/resuming.
+ *
+ * Determinism: identical to {@link runBattle} for the same snapshot; the
+ * delay annotation is a pure function of the event + the snapshot's
+ * starting `attackSpeed` per unit.
+ */
+export function runBattleRecorded(snapshot: CombatSnapshot): RecordedBattleResult {
+  const result = runBattle(snapshot);
+  const speeds = new Map<string, number>();
+  for (const u of snapshot.playerTeam) speeds.set(u.id, u.stats.attackSpeed);
+  for (const u of snapshot.enemyTeam) speeds.set(u.id, u.stats.attackSpeed);
+
+  const events: RecordedBattleEvent[] = result.events.map((ev) => {
+    const uiDelayMs = computeUiDelayMs(ev, speeds);
+    // Spreading a discriminated union widens the type; cast back.
+    return { ...ev, uiDelayMs } as RecordedBattleEvent;
+  });
+
+  return { events, result };
+}

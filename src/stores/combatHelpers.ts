@@ -3,7 +3,7 @@
  * Bridge between engine and stores for playability
  */
 
-import { runBattle, type BattleEvent } from '@/engine/combat/combat';
+import { runBattleRecorded, type BattleEvent } from '@/engine/combat/combat';
 import type { CombatUnit } from '@/engine/combat/types';
 import type { Player } from '@/engine/types/entities';
 import type { Item } from '@/engine/types/items';
@@ -41,7 +41,11 @@ export function playerToCombatUnit(player: Player): CombatUnit {
  * Create a simple enemy unit for testing
  */
 export function createSimpleEnemy(level: number): CombatUnit {
-  const baseHp = 50 + level * 20;
+  // Numbers per docs/balance/early-game-spec.md §4 (trash baseline).
+  const lvlAbove1 = Math.max(0, level - 1);
+  const life = 50 + lvlAbove1 * 16;
+  const attack = 32 + lvlAbove1 * 5;
+  const defense = 4 + Math.floor(lvlAbove1 * 1.5);
   const enemyId = `enemy-${String(Date.now())}-${String(Math.random())}`;
   const enemyName = `Fallen Lv${String(level)}`;
   return {
@@ -51,15 +55,15 @@ export function createSimpleEnemy(level: number): CombatUnit {
     level,
     tier: 'trash',
     stats: {
-      life: baseHp,
-      lifeMax: baseHp,
+      life,
+      lifeMax: life,
       mana: 0,
       manaMax: 0,
-      attack: 100 + level * 10,
-      defense: level * 5,
-      attackSpeed: 80,
+      attack,
+      defense,
+      attackSpeed: 95,
       critChance: 0.05,
-      critDamage: 2,
+      critDamage: 1.5,
       physDodge: 0.05,
       magicDodge: 0.05,
       magicFind: 0,
@@ -73,7 +77,7 @@ export function createSimpleEnemy(level: number): CombatUnit {
         physical: 0
       }
     },
-    life: baseHp,
+    life,
     mana: 0,
     statuses: [],
     cooldowns: {},
@@ -251,12 +255,14 @@ export function awardLootForVictory(opts: {
 }
 
 /**
- * Start a simple battle for testing/demo
+ * Start a simple battle for testing/demo. Uses the recorded-event API so
+ * the UI can animate playback over time. Returns the engine's
+ * {@link CombatResult}-shaped object plus rolled rewards (if any).
  */
 export function startSimpleBattle(enemyLevel = 1, enemyCount = 3) {
   const playerState = usePlayerStore.getState();
   const combatState = useCombatStore.getState();
-  
+
   if (!playerState.player) {
     console.warn('No player to start battle');
     return;
@@ -264,42 +270,17 @@ export function startSimpleBattle(enemyLevel = 1, enemyCount = 3) {
 
   const playerUnit = playerToCombatUnit(playerState.player);
   const enemies: CombatUnit[] = [];
-  
+
   for (let i = 0; i < enemyCount; i++) {
     enemies.push(createSimpleEnemy(enemyLevel));
   }
 
-  // Start combat in the store
-  combatState.startCombat([playerUnit], enemies, 1);
-
-  // Run the battle
+  // Run the battle — fully resolved synchronously.
   const seed = Date.now();
-  const result = runBattle({
+  const { events, result } = runBattleRecorded({
     seed,
     playerTeam: [playerUnit],
     enemyTeam: enemies
-  });
-
-  // Build unit ID → name map from result units
-  const unitMap = new Map<string, string>();
-  [...result.playerTeam, ...result.enemyTeam].forEach((unit) => {
-    unitMap.set(unit.id, unit.name);
-  });
-
-  // Process events into the log
-  result.events.forEach((event) => {
-    const logEntry = battleEventToLogEntry(event, unitMap);
-    if (logEntry) {
-      combatState.addLogEntry(logEntry);
-    }
-  });
-
-  // Update final unit states from result
-  result.playerTeam.forEach((unit: CombatUnit) => {
-    combatState.updateUnit(unit.id, () => unit);
-  });
-  result.enemyTeam.forEach((unit: CombatUnit) => {
-    combatState.updateUnit(unit.id, () => unit);
   });
 
   // On victory, roll loot for every slain enemy and dispatch into inventory.
@@ -316,6 +297,26 @@ export function startSimpleBattle(enemyLevel = 1, enemyCount = 3) {
       seed: seed ^ 0x9e3779b1
     });
   }
+
+  // Build unit ID → name map from result units (final names; ids are stable).
+  const unitMap = new Map<string, string>();
+  [...result.playerTeam, ...result.enemyTeam].forEach((unit) => {
+    unitMap.set(unit.id, unit.name);
+  });
+
+  // Hand the recorded battle to the store; UI will tick playback.
+  combatState.setRecordedBattle({
+    initialPlayerTeam: [playerUnit],
+    initialEnemyTeam: enemies,
+    events,
+    unitNameMap: unitMap,
+    outcome: {
+      winner: result.winner,
+      finalPlayerTeam: result.playerTeam,
+      finalEnemyTeam: result.enemyTeam,
+      ...(rewards ? { rewards } : {})
+    }
+  });
 
   return { ...result, rewards };
 }
