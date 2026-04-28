@@ -4,6 +4,8 @@
     "name": "Magic Arrow",
     "description": "Fires an arcane-imbued arrow that costs no ammunition.",
     "icon": "skills/amazon/magic-arrow.png",
+    "tree": "Bow and Crossbow Skills",
+    "requiredLevel": 1,
     "trigger": "active",
     "target": "single-enemy",
     "cooldown": 1,
@@ -32,6 +34,11 @@
     "name": "Multiple Shot",
     "description": "Fires a spread of arrows hitting up to 5 enemies in a cone.",
     "icon": "skills/amazon/multiple-shot.png",
+    "tree": "Bow and Crossbow Skills",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-amazon-magic-arrow"
+    ],
     "trigger": "active",
     "target": "area-enemies",
     "cooldown": 2,
@@ -60,6 +67,12 @@
     "name": "Freezing Arrow",
     "description": "Fires a frozen arrow that explodes in a cone, chilling and sometimes freezing enemies.",
     "icon": "skills/amazon/freezing-arrow.png",
+    "tree": "Bow and Crossbow Skills",
+    "requiredLevel": 30,
+    "prerequisites": [
+      "skills-amazon-cold-arrow",
+      "skills-amazon-ice-arrow"
+    ],
     "trigger": "active",
     "target": "area-enemies",
     "cooldown": 2,
@@ -93,6 +106,14 @@
     "name": "Lightning Fury",
     "description": "Hurls a lightning javelin that splits and chains to all nearby enemies.",
     "icon": "skills/amazon/lightning-fury.png",
+    "tree": "Javelin and Spear Skills",
+    "requiredLevel": 30,
+    "prerequisites": [
+      "skills-amazon-jab",
+      "skills-amazon-power-strike",
+      "skills-amazon-lightning-bolt",
+      "skills-amazon-charged-strike"
+    ],
     "trigger": "active",
     "target": "all-enemies",
     "cooldown": 3,
@@ -128,6 +149,11 @@
     "name": "Plague Javelin",
     "description": "Throws a javelin that releases poison clouds, applying 3 stacks of poison and spreading on kill.",
     "icon": "skills/amazon/plague-javelin.png",
+    "tree": "Javelin and Spear Skills",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-amazon-poison-javelin"
+    ],
     "trigger": "active",
     "target": "area-enemies",
     "cooldown": 2,
@@ -163,6 +189,13 @@
     "name": "Strafe",
     "description": "A rapid volley of arrows that strikes all enemies in combat.",
     "icon": "skills/amazon/strafe.png",
+    "tree": "Bow and Crossbow Skills",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-amazon-magic-arrow",
+      "skills-amazon-multiple-shot",
+      "skills-amazon-guided-arrow"
+    ],
     "trigger": "active",
     "target": "all-enemies",
     "cooldown": 2,
@@ -191,6 +224,8 @@
     "name": "Critical Strike",
     "description": "Increases critical hit chance by 15%.",
     "icon": "skills/amazon/critical-strike.png",
+    "tree": "Passive and Magic Skills",
+    "requiredLevel": 1,
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
@@ -202,6 +237,11 @@
     "name": "Penetrate",
     "description": "Increases hit chance by 20% by reducing enemy dodge.",
     "icon": "skills/amazon/penetrate.png",
+    "tree": "Passive and Magic Skills",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-amazon-critical-strike"
+    ],
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
@@ -213,6 +253,8 @@
     "name": "Dodge",
     "description": "Increases physical dodge chance by 25%.",
     "icon": "skills/amazon/dodge.png",
+    "tree": "Passive and Magic Skills",
+    "requiredLevel": 6,
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
@@ -224,10 +266,635 @@
     "name": "Valkyrie",
     "description": "Summons a Valkyrie warrior to fight at your side.",
     "icon": "skills/amazon/valkyrie.png",
+    "tree": "Passive and Magic Skills",
+    "requiredLevel": 30,
+    "prerequisites": [
+      "skills-amazon-critical-strike",
+      "skills-amazon-dodge",
+      "skills-amazon-decoy"
+    ],
     "trigger": "passive",
     "target": "summon",
     "cooldown": 0,
     "minLevel": 18,
     "maxLevel": 20
+  },
+  {
+    "id": "skills-amazon-jab",
+    "name": "skills.amazon.jab.name",
+    "description": "skills.amazon.jab.desc",
+    "icon": "skills/amazon/jab.png",
+    "tree": "Javelin and Spear Skills",
+    "requiredLevel": 1,
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 5
+    },
+    "damage": {
+      "min": 30,
+      "max": 45,
+      "breakdown": {
+        "physical": 45
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 3
+    }
+  },
+  {
+    "id": "skills-amazon-power-strike",
+    "name": "skills.amazon.power-strike.name",
+    "description": "skills.amazon.power-strike.desc",
+    "icon": "skills/amazon/power-strike.png",
+    "tree": "Javelin and Spear Skills",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-amazon-jab"
+    ],
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 10
+    },
+    "damage": {
+      "min": 40,
+      "max": 60,
+      "breakdown": {
+        "physical": 30,
+        "lightning": 30
+      }
+    },
+    "damageType": "lightning",
+    "appliesTags": [
+      "lightning",
+      "shock",
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 4
+    }
+  },
+  {
+    "id": "skills-amazon-poison-javelin",
+    "name": "skills.amazon.poison-javelin.name",
+    "description": "skills.amazon.poison-javelin.desc",
+    "icon": "skills/amazon/poison-javelin.png",
+    "tree": "Javelin and Spear Skills",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-amazon-jab"
+    ],
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 10
+    },
+    "damage": {
+      "min": 20,
+      "max": 35,
+      "breakdown": {
+        "poison": 35
+      }
+    },
+    "damageType": "poison",
+    "appliesStatus": [
+      "poison"
+    ],
+    "appliesTags": [
+      "poison"
+    ],
+    "scaling": {
+      "damagePerLevel": 3
+    }
+  },
+  {
+    "id": "skills-amazon-impale",
+    "name": "skills.amazon.impale.name",
+    "description": "skills.amazon.impale.desc",
+    "icon": "skills/amazon/impale.png",
+    "tree": "Javelin and Spear Skills",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-amazon-jab",
+      "skills-amazon-power-strike"
+    ],
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 10
+    },
+    "damage": {
+      "min": 75,
+      "max": 110,
+      "breakdown": {
+        "physical": 110
+      }
+    },
+    "damageType": "physical",
+    "appliesStatus": [
+      "bleed"
+    ],
+    "appliesTags": [
+      "physical",
+      "bleed"
+    ],
+    "scaling": {
+      "damagePerLevel": 7
+    }
+  },
+  {
+    "id": "skills-amazon-lightning-bolt",
+    "name": "skills.amazon.lightning-bolt.name",
+    "description": "skills.amazon.lightning-bolt.desc",
+    "icon": "skills/amazon/lightning-bolt.png",
+    "tree": "Javelin and Spear Skills",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-amazon-jab",
+      "skills-amazon-power-strike"
+    ],
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 15
+    },
+    "damage": {
+      "min": 50,
+      "max": 75,
+      "breakdown": {
+        "lightning": 75
+      }
+    },
+    "damageType": "lightning",
+    "appliesTags": [
+      "lightning",
+      "shock"
+    ],
+    "scaling": {
+      "damagePerLevel": 5
+    }
+  },
+  {
+    "id": "skills-amazon-charged-strike",
+    "name": "skills.amazon.charged-strike.name",
+    "description": "skills.amazon.charged-strike.desc",
+    "icon": "skills/amazon/charged-strike.png",
+    "tree": "Javelin and Spear Skills",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-amazon-jab",
+      "skills-amazon-power-strike",
+      "skills-amazon-lightning-bolt"
+    ],
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 20
+    },
+    "damage": {
+      "min": 70,
+      "max": 100,
+      "breakdown": {
+        "lightning": 100
+      }
+    },
+    "damageType": "lightning",
+    "appliesTags": [
+      "lightning",
+      "shock"
+    ],
+    "scaling": {
+      "damagePerLevel": 6
+    }
+  },
+  {
+    "id": "skills-amazon-fend",
+    "name": "skills.amazon.fend.name",
+    "description": "skills.amazon.fend.desc",
+    "icon": "skills/amazon/fend.png",
+    "tree": "Javelin and Spear Skills",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-amazon-jab",
+      "skills-amazon-power-strike",
+      "skills-amazon-impale"
+    ],
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 25
+    },
+    "damage": {
+      "min": 70,
+      "max": 95,
+      "breakdown": {
+        "physical": 95
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 6
+    }
+  },
+  {
+    "id": "skills-amazon-lightning-strike",
+    "name": "skills.amazon.lightning-strike.name",
+    "description": "skills.amazon.lightning-strike.desc",
+    "icon": "skills/amazon/lightning-strike.png",
+    "tree": "Javelin and Spear Skills",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-amazon-jab",
+      "skills-amazon-power-strike",
+      "skills-amazon-lightning-bolt",
+      "skills-amazon-charged-strike"
+    ],
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 25
+    },
+    "damage": {
+      "min": 80,
+      "max": 110,
+      "breakdown": {
+        "lightning": 110
+      }
+    },
+    "damageType": "lightning",
+    "appliesStatus": [
+      "paralyze"
+    ],
+    "appliesTags": [
+      "lightning",
+      "shock"
+    ],
+    "scaling": {
+      "damagePerLevel": 7
+    }
+  },
+  {
+    "id": "skills-amazon-inner-sight",
+    "name": "skills.amazon.inner-sight.name",
+    "description": "skills.amazon.inner-sight.desc",
+    "icon": "skills/amazon/inner-sight.png",
+    "tree": "Passive and Magic Skills",
+    "requiredLevel": 1,
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 5
+    },
+    "appliesStatus": [
+      "inner-sight"
+    ],
+    "appliesTags": [
+      "amp-damage"
+    ]
+  },
+  {
+    "id": "skills-amazon-slow-missiles",
+    "name": "skills.amazon.slow-missiles.name",
+    "description": "skills.amazon.slow-missiles.desc",
+    "icon": "skills/amazon/slow-missiles.png",
+    "tree": "Passive and Magic Skills",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-amazon-inner-sight"
+    ],
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 10
+    },
+    "appliesStatus": [
+      "slow-missiles"
+    ]
+  },
+  {
+    "id": "skills-amazon-avoid",
+    "name": "skills.amazon.avoid.name",
+    "description": "skills.amazon.avoid.desc",
+    "icon": "skills/amazon/avoid.png",
+    "tree": "Passive and Magic Skills",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-amazon-dodge"
+    ],
+    "passive": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-amazon-decoy",
+    "name": "skills.amazon.decoy.name",
+    "description": "skills.amazon.decoy.desc",
+    "icon": "skills/amazon/decoy.png",
+    "tree": "Passive and Magic Skills",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-amazon-inner-sight",
+      "skills-amazon-dodge"
+    ],
+    "trigger": "active",
+    "target": "self",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 15
+    }
+  },
+  {
+    "id": "skills-amazon-evade",
+    "name": "skills.amazon.evade.name",
+    "description": "skills.amazon.evade.desc",
+    "icon": "skills/amazon/evade.png",
+    "tree": "Passive and Magic Skills",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-amazon-dodge",
+      "skills-amazon-avoid"
+    ],
+    "passive": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-amazon-pierce",
+    "name": "skills.amazon.pierce.name",
+    "description": "skills.amazon.pierce.desc",
+    "icon": "skills/amazon/pierce.png",
+    "tree": "Passive and Magic Skills",
+    "requiredLevel": 30,
+    "prerequisites": [
+      "skills-amazon-critical-strike",
+      "skills-amazon-penetrate"
+    ],
+    "passive": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-amazon-fire-arrow",
+    "name": "skills.amazon.fire-arrow.name",
+    "description": "skills.amazon.fire-arrow.desc",
+    "icon": "skills/amazon/fire-arrow.png",
+    "tree": "Bow and Crossbow Skills",
+    "requiredLevel": 1,
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 8
+    },
+    "damage": {
+      "min": 35,
+      "max": 55,
+      "breakdown": {
+        "fire": 55
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "scaling": {
+      "damagePerLevel": 4
+    }
+  },
+  {
+    "id": "skills-amazon-cold-arrow",
+    "name": "skills.amazon.cold-arrow.name",
+    "description": "skills.amazon.cold-arrow.desc",
+    "icon": "skills/amazon/cold-arrow.png",
+    "tree": "Bow and Crossbow Skills",
+    "requiredLevel": 6,
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 10
+    },
+    "damage": {
+      "min": 35,
+      "max": 55,
+      "breakdown": {
+        "cold": 55
+      }
+    },
+    "damageType": "cold",
+    "appliesStatus": [
+      "chill"
+    ],
+    "appliesTags": [
+      "cold",
+      "chill"
+    ],
+    "scaling": {
+      "damagePerLevel": 4
+    }
+  },
+  {
+    "id": "skills-amazon-exploding-arrow",
+    "name": "skills.amazon.exploding-arrow.name",
+    "description": "skills.amazon.exploding-arrow.desc",
+    "icon": "skills/amazon/exploding-arrow.png",
+    "tree": "Bow and Crossbow Skills",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-amazon-fire-arrow"
+    ],
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 15
+    },
+    "damage": {
+      "min": 55,
+      "max": 80,
+      "breakdown": {
+        "fire": 80
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "scaling": {
+      "damagePerLevel": 5
+    }
+  },
+  {
+    "id": "skills-amazon-ice-arrow",
+    "name": "skills.amazon.ice-arrow.name",
+    "description": "skills.amazon.ice-arrow.desc",
+    "icon": "skills/amazon/ice-arrow.png",
+    "tree": "Bow and Crossbow Skills",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-amazon-cold-arrow"
+    ],
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 15
+    },
+    "damage": {
+      "min": 55,
+      "max": 80,
+      "breakdown": {
+        "cold": 80
+      }
+    },
+    "damageType": "cold",
+    "appliesStatus": [
+      "freeze",
+      "chill"
+    ],
+    "appliesTags": [
+      "cold",
+      "chill"
+    ],
+    "scaling": {
+      "damagePerLevel": 5
+    }
+  },
+  {
+    "id": "skills-amazon-guided-arrow",
+    "name": "skills.amazon.guided-arrow.name",
+    "description": "skills.amazon.guided-arrow.desc",
+    "icon": "skills/amazon/guided-arrow.png",
+    "tree": "Bow and Crossbow Skills",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-amazon-magic-arrow",
+      "skills-amazon-multiple-shot"
+    ],
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 20
+    },
+    "damage": {
+      "min": 70,
+      "max": 100,
+      "breakdown": {
+        "physical": 100
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 6
+    }
+  },
+  {
+    "id": "skills-amazon-immolation-arrow",
+    "name": "skills.amazon.immolation-arrow.name",
+    "description": "skills.amazon.immolation-arrow.desc",
+    "icon": "skills/amazon/immolation-arrow.png",
+    "tree": "Bow and Crossbow Skills",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-amazon-fire-arrow",
+      "skills-amazon-exploding-arrow"
+    ],
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 30
+    },
+    "damage": {
+      "min": 90,
+      "max": 130,
+      "breakdown": {
+        "fire": 130
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "scaling": {
+      "damagePerLevel": 8
+    }
   }
 ]

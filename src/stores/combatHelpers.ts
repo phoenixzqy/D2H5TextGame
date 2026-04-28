@@ -80,8 +80,15 @@ export function createSimpleEnemy(level: number): CombatUnit {
 
 /**
  * Convert battle events to combat log entries
+ * @param event - The battle event to convert
+ * @param unitMap - Optional map of unit IDs to names for display
  */
-export function battleEventToLogEntry(event: BattleEvent): Omit<CombatLogEntry, 'id' | 'timestamp'> | null {
+export function battleEventToLogEntry(
+  event: BattleEvent,
+  unitMap?: ReadonlyMap<string, string>
+): Omit<CombatLogEntry, 'id' | 'timestamp'> | null {
+  const getName = (id: string): string => unitMap?.get(id) ?? id;
+
   switch (event.kind) {
     case 'turn-start':
       return {
@@ -90,67 +97,84 @@ export function battleEventToLogEntry(event: BattleEvent): Omit<CombatLogEntry, 
         actorName: 'System',
         message: `Turn ${String(event.turn)} starts`
       };
-    case 'action':
+    case 'action': {
+      const actorName = getName(event.actor);
       return {
         type: 'skill',
         actorId: event.actor,
-        actorName: event.actor,
-        message: `${event.actor} uses ${event.skillId ?? 'basic attack'}`
+        actorName,
+        message: `${actorName} uses ${event.skillId ?? 'basic attack'}`
       };
-    case 'damage':
+    }
+    case 'damage': {
+      const sourceName = getName(event.source);
+      const targetName = getName(event.target);
       return {
         type: 'damage',
         actorId: event.source,
-        actorName: event.source,
+        actorName: sourceName,
         targetId: event.target,
-        targetName: event.target,
-        message: `${event.source} deals ${String(event.amount)} ${event.damageType} damage to ${event.target}${event.crit ? ' (CRIT!)' : ''}${event.dodged ? ' (DODGED)' : ''}`,
+        targetName,
+        message: `${sourceName} deals ${String(event.amount)} ${event.damageType} damage to ${targetName}${event.crit ? ' (CRIT!)' : ''}${event.dodged ? ' (DODGED)' : ''}`,
         value: event.amount
       };
-    case 'death':
+    }
+    case 'death': {
+      const targetName = getName(event.target);
       return {
         type: 'death',
         actorId: event.target,
-        actorName: event.target,
-        message: `${event.target} has died`
+        actorName: targetName,
+        message: `${targetName} has died`
       };
-    case 'heal':
+    }
+    case 'heal': {
+      const targetName = getName(event.target);
       return {
         type: 'heal',
         actorId: event.target,
-        actorName: event.target,
-        message: `${event.target} heals for ${String(event.amount)}`,
+        actorName: targetName,
+        message: `${targetName} heals for ${String(event.amount)}`,
         value: event.amount
       };
-    case 'buff':
+    }
+    case 'buff': {
+      const targetName = getName(event.target);
       return {
         type: 'buff',
         actorId: event.target,
-        actorName: event.target,
-        message: `${event.target} gains ${event.buffId}`
+        actorName: targetName,
+        message: `${targetName} gains ${event.buffId}`
       };
-    case 'status':
+    }
+    case 'status': {
+      const targetName = getName(event.target);
       return {
         type: 'debuff',
         actorId: event.target,
-        actorName: event.target,
-        message: `${event.target} is afflicted with ${event.statusId}`
+        actorName: targetName,
+        message: `${targetName} is afflicted with ${event.statusId}`
       };
-    case 'stunned':
+    }
+    case 'stunned': {
+      const targetName = getName(event.target);
       return {
         type: 'system',
         actorId: event.target,
-        actorName: event.target,
-        message: `${event.target} is stunned and cannot act`
+        actorName: targetName,
+        message: `${targetName} is stunned and cannot act`
       };
-    case 'dot':
+    }
+    case 'dot': {
+      const targetName = getName(event.target);
       return {
         type: 'damage',
         actorId: event.target,
-        actorName: event.target,
-        message: `${event.target} takes ${String(event.amount)} DoT damage`,
+        actorName: targetName,
+        message: `${targetName} takes ${String(event.amount)} DoT damage`,
         value: event.amount
       };
+    }
     case 'end':
       return {
         type: 'system',
@@ -193,9 +217,15 @@ export function startSimpleBattle(enemyLevel = 1, enemyCount = 3) {
     enemyTeam: enemies
   });
 
+  // Build unit ID → name map from result units
+  const unitMap = new Map<string, string>();
+  [...result.playerTeam, ...result.enemyTeam].forEach((unit) => {
+    unitMap.set(unit.id, unit.name);
+  });
+
   // Process events into the log
   result.events.forEach((event) => {
-    const logEntry = battleEventToLogEntry(event);
+    const logEntry = battleEventToLogEntry(event, unitMap);
     if (logEntry) {
       combatState.addLogEntry(logEntry);
     }

@@ -4,6 +4,11 @@
     "name": "Zeal",
     "description": "A flurry of melee strikes that hits up to 3 nearby enemies.",
     "icon": "skills/paladin/zeal.png",
+    "tree": "Combat Skills",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-paladin-sacrifice"
+    ],
     "trigger": "active",
     "target": "area-enemies",
     "cooldown": 1,
@@ -36,6 +41,12 @@
     "name": "Holy Bolt",
     "description": "Fires a bolt of holy energy at a single enemy, healing the caster for 50% of the damage dealt.",
     "icon": "skills/paladin/holy-bolt.png",
+    "tree": "Combat Skills",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-paladin-sacrifice",
+      "skills-paladin-smite"
+    ],
     "trigger": "active",
     "target": "single-enemy",
     "cooldown": 1,
@@ -64,6 +75,11 @@
     "name": "Blessed Hammer",
     "description": "Summons spinning hammers of blessed energy that ignore magic resist.",
     "icon": "skills/paladin/blessed-hammer.png",
+    "tree": "Combat Skills",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-paladin-might"
+    ],
     "trigger": "active",
     "target": "all-enemies",
     "cooldown": 2,
@@ -92,6 +108,12 @@
     "name": "Vengeance",
     "description": "A righteous strike that deals fire, cold, and lightning damage simultaneously.",
     "icon": "skills/paladin/vengeance.png",
+    "tree": "Combat Skills",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-paladin-sacrifice",
+      "skills-paladin-zeal"
+    ],
     "trigger": "active",
     "target": "single-enemy",
     "cooldown": 2,
@@ -132,6 +154,12 @@
     "name": "Charge",
     "description": "Charges a target, dealing heavy physical damage and stunning for 1 turn.",
     "icon": "skills/paladin/charge.png",
+    "tree": "Combat Skills",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-paladin-sacrifice",
+      "skills-paladin-smite"
+    ],
     "trigger": "active",
     "target": "single-enemy",
     "cooldown": 3,
@@ -163,6 +191,12 @@
     "name": "Fist of the Heavens",
     "description": "Calls down lightning from the heavens, paralyzing all enemies.",
     "icon": "skills/paladin/fist-of-heavens.png",
+    "tree": "Combat Skills",
+    "requiredLevel": 30,
+    "prerequisites": [
+      "skills-paladin-holy-bolt",
+      "skills-paladin-blessed-hammer"
+    ],
     "trigger": "active",
     "target": "all-enemies",
     "cooldown": 4,
@@ -195,6 +229,9 @@
     "name": "Might",
     "description": "Aura: increases physical damage of self and mercenary by 50%.",
     "icon": "skills/paladin/might.png",
+    "tree": "Offensive Auras",
+    "requiredLevel": 1,
+    "aura": true,
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
@@ -206,6 +243,12 @@
     "name": "Holy Fire",
     "description": "Aura: deals 20 fire damage per turn to all enemies and applies burn.",
     "icon": "skills/paladin/holy-fire.png",
+    "tree": "Offensive Auras",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-paladin-might"
+    ],
+    "aura": true,
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
@@ -221,6 +264,15 @@
     "name": "Conviction",
     "description": "Aura: reduces all resistances of all enemies by 25%.",
     "icon": "skills/paladin/conviction.png",
+    "tree": "Offensive Auras",
+    "requiredLevel": 30,
+    "prerequisites": [
+      "skills-paladin-might",
+      "skills-paladin-blessed-aim",
+      "skills-paladin-concentration",
+      "skills-paladin-fanaticism"
+    ],
+    "aura": true,
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
@@ -235,10 +287,453 @@
     "name": "Meditation",
     "description": "Aura: regenerates 5 mana per turn for self and mercenary.",
     "icon": "skills/paladin/meditation.png",
+    "tree": "Defensive Auras",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-paladin-prayer",
+      "skills-paladin-cleansing"
+    ],
+    "aura": true,
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
     "maxLevel": 20
+  },
+  {
+    "id": "skills-paladin-sacrifice",
+    "name": "skills.paladin.sacrifice.name",
+    "description": "skills.paladin.sacrifice.desc",
+    "icon": "skills/paladin/sacrifice.png",
+    "tree": "Combat Skills",
+    "requiredLevel": 1,
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 0
+    },
+    "damage": {
+      "min": 40,
+      "max": 60,
+      "breakdown": {
+        "physical": 60
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 4
+    }
+  },
+  {
+    "id": "skills-paladin-smite",
+    "name": "skills.paladin.smite.name",
+    "description": "skills.paladin.smite.desc",
+    "icon": "skills/paladin/smite.png",
+    "tree": "Combat Skills",
+    "requiredLevel": 1,
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 5
+    },
+    "damage": {
+      "min": 30,
+      "max": 45,
+      "breakdown": {
+        "physical": 45
+      }
+    },
+    "damageType": "physical",
+    "appliesStatus": [
+      "stun"
+    ],
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 3
+    }
+  },
+  {
+    "id": "skills-paladin-conversion",
+    "name": "skills.paladin.conversion.name",
+    "description": "skills.paladin.conversion.desc",
+    "icon": "skills/paladin/conversion.png",
+    "tree": "Combat Skills",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-paladin-zeal",
+      "skills-paladin-vengeance"
+    ],
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 25
+    },
+    "damage": {
+      "min": 60,
+      "max": 85,
+      "breakdown": {
+        "physical": 85
+      }
+    },
+    "damageType": "physical",
+    "appliesStatus": [
+      "converted"
+    ],
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 5
+    }
+  },
+  {
+    "id": "skills-paladin-holy-shield",
+    "name": "skills.paladin.holy-shield.name",
+    "description": "skills.paladin.holy-shield.desc",
+    "icon": "skills/paladin/holy-shield.png",
+    "tree": "Combat Skills",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-paladin-smite"
+    ],
+    "trigger": "active",
+    "target": "self",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 35
+    },
+    "appliesStatus": [
+      "holy-shield"
+    ]
+  },
+  {
+    "id": "skills-paladin-thorns",
+    "name": "skills.paladin.thorns.name",
+    "description": "skills.paladin.thorns.desc",
+    "icon": "skills/paladin/thorns.png",
+    "tree": "Offensive Auras",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-paladin-might"
+    ],
+    "aura": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "appliesTags": [
+      "physical"
+    ]
+  },
+  {
+    "id": "skills-paladin-blessed-aim",
+    "name": "skills.paladin.blessed-aim.name",
+    "description": "skills.paladin.blessed-aim.desc",
+    "icon": "skills/paladin/blessed-aim.png",
+    "tree": "Offensive Auras",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-paladin-might"
+    ],
+    "aura": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-paladin-concentration",
+    "name": "skills.paladin.concentration.name",
+    "description": "skills.paladin.concentration.desc",
+    "icon": "skills/paladin/concentration.png",
+    "tree": "Offensive Auras",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-paladin-might",
+      "skills-paladin-blessed-aim"
+    ],
+    "aura": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "appliesTags": [
+      "physical"
+    ]
+  },
+  {
+    "id": "skills-paladin-holy-freeze",
+    "name": "skills.paladin.holy-freeze.name",
+    "description": "skills.paladin.holy-freeze.desc",
+    "icon": "skills/paladin/holy-freeze.png",
+    "tree": "Offensive Auras",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-paladin-might",
+      "skills-paladin-holy-fire"
+    ],
+    "aura": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "appliesTags": [
+      "cold",
+      "chill"
+    ]
+  },
+  {
+    "id": "skills-paladin-holy-shock",
+    "name": "skills.paladin.holy-shock.name",
+    "description": "skills.paladin.holy-shock.desc",
+    "icon": "skills/paladin/holy-shock.png",
+    "tree": "Offensive Auras",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-paladin-might",
+      "skills-paladin-holy-fire",
+      "skills-paladin-holy-freeze"
+    ],
+    "aura": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "appliesTags": [
+      "lightning",
+      "shock"
+    ]
+  },
+  {
+    "id": "skills-paladin-sanctuary",
+    "name": "skills.paladin.sanctuary.name",
+    "description": "skills.paladin.sanctuary.desc",
+    "icon": "skills/paladin/sanctuary.png",
+    "tree": "Offensive Auras",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-paladin-might",
+      "skills-paladin-blessed-aim"
+    ],
+    "aura": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "appliesTags": [
+      "arcane"
+    ]
+  },
+  {
+    "id": "skills-paladin-fanaticism",
+    "name": "skills.paladin.fanaticism.name",
+    "description": "skills.paladin.fanaticism.desc",
+    "icon": "skills/paladin/fanaticism.png",
+    "tree": "Offensive Auras",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-paladin-might",
+      "skills-paladin-blessed-aim",
+      "skills-paladin-concentration"
+    ],
+    "aura": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "appliesTags": [
+      "physical"
+    ]
+  },
+  {
+    "id": "skills-paladin-prayer",
+    "name": "skills.paladin.prayer.name",
+    "description": "skills.paladin.prayer.desc",
+    "icon": "skills/paladin/prayer.png",
+    "tree": "Defensive Auras",
+    "requiredLevel": 1,
+    "aura": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-paladin-resist-fire",
+    "name": "skills.paladin.resist-fire.name",
+    "description": "skills.paladin.resist-fire.desc",
+    "icon": "skills/paladin/resist-fire.png",
+    "tree": "Defensive Auras",
+    "requiredLevel": 1,
+    "aura": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "appliesTags": [
+      "fire"
+    ]
+  },
+  {
+    "id": "skills-paladin-defiance",
+    "name": "skills.paladin.defiance.name",
+    "description": "skills.paladin.defiance.desc",
+    "icon": "skills/paladin/defiance.png",
+    "tree": "Defensive Auras",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-paladin-prayer"
+    ],
+    "aura": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-paladin-resist-cold",
+    "name": "skills.paladin.resist-cold.name",
+    "description": "skills.paladin.resist-cold.desc",
+    "icon": "skills/paladin/resist-cold.png",
+    "tree": "Defensive Auras",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-paladin-resist-fire"
+    ],
+    "aura": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "appliesTags": [
+      "cold"
+    ]
+  },
+  {
+    "id": "skills-paladin-cleansing",
+    "name": "skills.paladin.cleansing.name",
+    "description": "skills.paladin.cleansing.desc",
+    "icon": "skills/paladin/cleansing.png",
+    "tree": "Defensive Auras",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-paladin-prayer"
+    ],
+    "aura": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-paladin-resist-lightning",
+    "name": "skills.paladin.resist-lightning.name",
+    "description": "skills.paladin.resist-lightning.desc",
+    "icon": "skills/paladin/resist-lightning.png",
+    "tree": "Defensive Auras",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-paladin-resist-fire",
+      "skills-paladin-resist-cold"
+    ],
+    "aura": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "appliesTags": [
+      "lightning"
+    ]
+  },
+  {
+    "id": "skills-paladin-vigor",
+    "name": "skills.paladin.vigor.name",
+    "description": "skills.paladin.vigor.desc",
+    "icon": "skills/paladin/vigor.png",
+    "tree": "Defensive Auras",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-paladin-prayer",
+      "skills-paladin-defiance",
+      "skills-paladin-cleansing"
+    ],
+    "aura": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-paladin-redemption",
+    "name": "skills.paladin.redemption.name",
+    "description": "skills.paladin.redemption.desc",
+    "icon": "skills/paladin/redemption.png",
+    "tree": "Defensive Auras",
+    "requiredLevel": 30,
+    "prerequisites": [
+      "skills-paladin-prayer",
+      "skills-paladin-cleansing",
+      "skills-paladin-meditation"
+    ],
+    "aura": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-paladin-salvation",
+    "name": "skills.paladin.salvation.name",
+    "description": "skills.paladin.salvation.desc",
+    "icon": "skills/paladin/salvation.png",
+    "tree": "Defensive Auras",
+    "requiredLevel": 30,
+    "prerequisites": [
+      "skills-paladin-resist-fire",
+      "skills-paladin-resist-cold",
+      "skills-paladin-resist-lightning"
+    ],
+    "aura": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "appliesTags": [
+      "fire",
+      "cold",
+      "lightning"
+    ]
   }
 ]

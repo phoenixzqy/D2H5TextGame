@@ -151,10 +151,38 @@ test.describe('Full Playthrough', () => {
     await page.goto('/settings');
     await expect(page.getByTestId('settings-screen')).toBeVisible({ timeout: 10000 });
 
-    // Just verify settings screen works - stealth toggle may be a button or checkbox
-    const content = await page.textContent('body');
-    const hasContent = content && content.length > 100;
-    expect(hasContent).toBeTruthy();
+    // Verify initial state (stealth OFF by default)
+    let bodyClasses = await page.evaluate(() => document.body.className);
+    expect(bodyClasses).not.toContain('stealth');
+
+    // Toggle stealth mode ON
+    const stealthToggle = page.getByTestId('toggle-stealth');
+    await stealthToggle.click();
+
+    // Wait a bit for the effect to apply
+    await page.waitForTimeout(100);
+
+    // Verify stealth class is applied
+    bodyClasses = await page.evaluate(() => document.body.className);
+    expect(bodyClasses).toContain('stealth');
+
+    // Verify the toggle is checked
+    const isChecked = await stealthToggle.isChecked();
+    expect(isChecked).toBe(true);
+
+    // Toggle stealth mode OFF
+    await stealthToggle.click();
+
+    // Wait a bit for the effect to remove
+    await page.waitForTimeout(100);
+
+    // Verify stealth class is removed
+    bodyClasses = await page.evaluate(() => document.body.className);
+    expect(bodyClasses).not.toContain('stealth');
+
+    // Verify the toggle is unchecked
+    const isUnchecked = await stealthToggle.isChecked();
+    expect(isUnchecked).toBe(false);
   });
 });
 

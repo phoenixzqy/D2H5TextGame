@@ -4,6 +4,11 @@
     "name": "Shock Web",
     "description": "Lays a web of crackling lightning that paralyzes all enemies in combat.",
     "icon": "skills/assassin/shock-web.png",
+    "tree": "Traps",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-assassin-fire-blast"
+    ],
     "trigger": "active",
     "target": "all-enemies",
     "cooldown": 2,
@@ -39,6 +44,8 @@
     "name": "Fire Blast",
     "description": "Throws an explosive fire trap that bursts in a cone, burning enemies.",
     "icon": "skills/assassin/fire-blast.png",
+    "tree": "Traps",
+    "requiredLevel": 1,
     "trigger": "active",
     "target": "area-enemies",
     "cooldown": 2,
@@ -71,6 +78,11 @@
     "name": "Blade Fury",
     "description": "Hurls a flurry of blades in a cone, striking multiple enemies.",
     "icon": "skills/assassin/blade-fury.png",
+    "tree": "Traps",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-assassin-blade-sentinel"
+    ],
     "trigger": "active",
     "target": "area-enemies",
     "cooldown": 1,
@@ -99,6 +111,12 @@
     "name": "Mind Blast",
     "description": "Releases a psychic shockwave that burns mana and stuns all enemies.",
     "icon": "skills/assassin/mind-blast.png",
+    "tree": "Shadow Disciplines",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-assassin-psychic-hammer",
+      "skills-assassin-cloak-of-shadows"
+    ],
     "trigger": "active",
     "target": "all-enemies",
     "cooldown": 3,
@@ -131,6 +149,11 @@
     "name": "Dragon Claw",
     "description": "A pair of swift claw strikes against a single target with bonus crit chance.",
     "icon": "skills/assassin/dragon-claw.png",
+    "tree": "Martial Arts",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-assassin-dragon-talon"
+    ],
     "trigger": "active",
     "target": "single-enemy",
     "cooldown": 1,
@@ -159,6 +182,15 @@
     "name": "Phoenix Strike",
     "description": "A combo strike that releases fire, cold, and lightning charges on a single target.",
     "icon": "skills/assassin/phoenix-strike.png",
+    "tree": "Martial Arts",
+    "requiredLevel": 30,
+    "prerequisites": [
+      "skills-assassin-tiger-strike",
+      "skills-assassin-cobra-strike",
+      "skills-assassin-fists-of-fire",
+      "skills-assassin-claws-of-thunder",
+      "skills-assassin-blades-of-ice"
+    ],
     "trigger": "active",
     "target": "single-enemy",
     "cooldown": 3,
@@ -199,6 +231,8 @@
     "name": "Claw Mastery",
     "description": "Increases damage with claw weapons by 50%.",
     "icon": "skills/assassin/claw-mastery.png",
+    "tree": "Shadow Disciplines",
+    "requiredLevel": 1,
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
@@ -210,6 +244,11 @@
     "name": "Weapon Block",
     "description": "When dual-wielding, gain 30% physical dodge chance.",
     "icon": "skills/assassin/weapon-block.png",
+    "tree": "Shadow Disciplines",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-assassin-claw-mastery"
+    ],
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
@@ -221,6 +260,11 @@
     "name": "Fade",
     "description": "At combat start, gain +30% all resistances and +15% physical dodge.",
     "icon": "skills/assassin/fade.png",
+    "tree": "Shadow Disciplines",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-assassin-burst-of-speed"
+    ],
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
@@ -232,6 +276,12 @@
     "name": "Venom",
     "description": "Basic attacks apply 1 stack of poison to the target.",
     "icon": "skills/assassin/venom.png",
+    "tree": "Shadow Disciplines",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-assassin-psychic-hammer",
+      "skills-assassin-cloak-of-shadows"
+    ],
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
@@ -240,5 +290,658 @@
     "appliesTags": [
       "poison"
     ]
+  },
+  {
+    "id": "skills-assassin-tiger-strike",
+    "name": "skills.assassin.tiger-strike.name",
+    "description": "skills.assassin.tiger-strike.desc",
+    "icon": "skills/assassin/tiger-strike.png",
+    "tree": "Martial Arts",
+    "requiredLevel": 1,
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 3
+    },
+    "damage": {
+      "min": 35,
+      "max": 55,
+      "breakdown": {
+        "physical": 55
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 4
+    }
+  },
+  {
+    "id": "skills-assassin-dragon-talon",
+    "name": "skills.assassin.dragon-talon.name",
+    "description": "skills.assassin.dragon-talon.desc",
+    "icon": "skills/assassin/dragon-talon.png",
+    "tree": "Martial Arts",
+    "requiredLevel": 1,
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 4
+    },
+    "damage": {
+      "min": 40,
+      "max": 60,
+      "breakdown": {
+        "physical": 60
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 4
+    }
+  },
+  {
+    "id": "skills-assassin-fists-of-fire",
+    "name": "skills.assassin.fists-of-fire.name",
+    "description": "skills.assassin.fists-of-fire.desc",
+    "icon": "skills/assassin/fists-of-fire.png",
+    "tree": "Martial Arts",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-assassin-tiger-strike"
+    ],
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 5
+    },
+    "damage": {
+      "min": 45,
+      "max": 70,
+      "breakdown": {
+        "fire": 70
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn",
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 5
+    }
+  },
+  {
+    "id": "skills-assassin-cobra-strike",
+    "name": "skills.assassin.cobra-strike.name",
+    "description": "skills.assassin.cobra-strike.desc",
+    "icon": "skills/assassin/cobra-strike.png",
+    "tree": "Martial Arts",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-assassin-tiger-strike"
+    ],
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 9
+    },
+    "damage": {
+      "min": 55,
+      "max": 80,
+      "breakdown": {
+        "physical": 80
+      }
+    },
+    "damageType": "physical",
+    "appliesStatus": [
+      "life-steal",
+      "mana-steal"
+    ],
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 5
+    }
+  },
+  {
+    "id": "skills-assassin-claws-of-thunder",
+    "name": "skills.assassin.claws-of-thunder.name",
+    "description": "skills.assassin.claws-of-thunder.desc",
+    "icon": "skills/assassin/claws-of-thunder.png",
+    "tree": "Martial Arts",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-assassin-tiger-strike",
+      "skills-assassin-fists-of-fire"
+    ],
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 7
+    },
+    "damage": {
+      "min": 60,
+      "max": 90,
+      "breakdown": {
+        "lightning": 90
+      }
+    },
+    "damageType": "lightning",
+    "appliesTags": [
+      "lightning",
+      "shock",
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 6
+    }
+  },
+  {
+    "id": "skills-assassin-dragon-tail",
+    "name": "skills.assassin.dragon-tail.name",
+    "description": "skills.assassin.dragon-tail.desc",
+    "icon": "skills/assassin/dragon-tail.png",
+    "tree": "Martial Arts",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-assassin-dragon-talon"
+    ],
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 13
+    },
+    "damage": {
+      "min": 70,
+      "max": 100,
+      "breakdown": {
+        "fire": 100
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn",
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 6
+    }
+  },
+  {
+    "id": "skills-assassin-blades-of-ice",
+    "name": "skills.assassin.blades-of-ice.name",
+    "description": "skills.assassin.blades-of-ice.desc",
+    "icon": "skills/assassin/blades-of-ice.png",
+    "tree": "Martial Arts",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-assassin-tiger-strike",
+      "skills-assassin-fists-of-fire",
+      "skills-assassin-claws-of-thunder"
+    ],
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 9
+    },
+    "damage": {
+      "min": 70,
+      "max": 100,
+      "breakdown": {
+        "cold": 100
+      }
+    },
+    "damageType": "cold",
+    "appliesStatus": [
+      "chill"
+    ],
+    "appliesTags": [
+      "cold",
+      "chill",
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 6
+    }
+  },
+  {
+    "id": "skills-assassin-dragon-flight",
+    "name": "skills.assassin.dragon-flight.name",
+    "description": "skills.assassin.dragon-flight.desc",
+    "icon": "skills/assassin/dragon-flight.png",
+    "tree": "Martial Arts",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-assassin-dragon-talon",
+      "skills-assassin-dragon-tail"
+    ],
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 15
+    },
+    "damage": {
+      "min": 80,
+      "max": 115,
+      "breakdown": {
+        "physical": 115
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 7
+    }
+  },
+  {
+    "id": "skills-assassin-psychic-hammer",
+    "name": "skills.assassin.psychic-hammer.name",
+    "description": "skills.assassin.psychic-hammer.desc",
+    "icon": "skills/assassin/psychic-hammer.png",
+    "tree": "Shadow Disciplines",
+    "requiredLevel": 1,
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 6
+    },
+    "damage": {
+      "min": 30,
+      "max": 45,
+      "breakdown": {
+        "arcane": 45
+      }
+    },
+    "damageType": "arcane",
+    "appliesStatus": [
+      "knockback"
+    ],
+    "appliesTags": [
+      "arcane"
+    ],
+    "scaling": {
+      "damagePerLevel": 3
+    }
+  },
+  {
+    "id": "skills-assassin-burst-of-speed",
+    "name": "skills.assassin.burst-of-speed.name",
+    "description": "skills.assassin.burst-of-speed.desc",
+    "icon": "skills/assassin/burst-of-speed.png",
+    "tree": "Shadow Disciplines",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-assassin-claw-mastery"
+    ],
+    "trigger": "active",
+    "target": "self",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 11
+    },
+    "appliesStatus": [
+      "burst-of-speed"
+    ]
+  },
+  {
+    "id": "skills-assassin-cloak-of-shadows",
+    "name": "skills.assassin.cloak-of-shadows.name",
+    "description": "skills.assassin.cloak-of-shadows.desc",
+    "icon": "skills/assassin/cloak-of-shadows.png",
+    "tree": "Shadow Disciplines",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-assassin-psychic-hammer"
+    ],
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 13
+    },
+    "appliesStatus": [
+      "cloak-of-shadows",
+      "blind"
+    ]
+  },
+  {
+    "id": "skills-assassin-shadow-warrior",
+    "name": "skills.assassin.shadow-warrior.name",
+    "description": "skills.assassin.shadow-warrior.desc",
+    "icon": "skills/assassin/shadow-warrior.png",
+    "tree": "Shadow Disciplines",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-assassin-claw-mastery",
+      "skills-assassin-burst-of-speed"
+    ],
+    "summon": true,
+    "trigger": "active",
+    "target": "summon",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 22
+    }
+  },
+  {
+    "id": "skills-assassin-shadow-master",
+    "name": "skills.assassin.shadow-master.name",
+    "description": "skills.assassin.shadow-master.desc",
+    "icon": "skills/assassin/shadow-master.png",
+    "tree": "Shadow Disciplines",
+    "requiredLevel": 30,
+    "prerequisites": [
+      "skills-assassin-claw-mastery",
+      "skills-assassin-burst-of-speed",
+      "skills-assassin-shadow-warrior"
+    ],
+    "summon": true,
+    "trigger": "active",
+    "target": "summon",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 35
+    }
+  },
+  {
+    "id": "skills-assassin-charged-bolt-sentry",
+    "name": "skills.assassin.charged-bolt-sentry.name",
+    "description": "skills.assassin.charged-bolt-sentry.desc",
+    "icon": "skills/assassin/charged-bolt-sentry.png",
+    "tree": "Traps",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-assassin-fire-blast"
+    ],
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 13
+    },
+    "damage": {
+      "min": 40,
+      "max": 60,
+      "breakdown": {
+        "lightning": 60
+      }
+    },
+    "damageType": "lightning",
+    "appliesTags": [
+      "lightning",
+      "shock"
+    ],
+    "scaling": {
+      "damagePerLevel": 4
+    }
+  },
+  {
+    "id": "skills-assassin-wake-of-fire",
+    "name": "skills.assassin.wake-of-fire.name",
+    "description": "skills.assassin.wake-of-fire.desc",
+    "icon": "skills/assassin/wake-of-fire.png",
+    "tree": "Traps",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-assassin-fire-blast"
+    ],
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 17
+    },
+    "damage": {
+      "min": 60,
+      "max": 85,
+      "breakdown": {
+        "fire": 85
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "scaling": {
+      "damagePerLevel": 5
+    }
+  },
+  {
+    "id": "skills-assassin-blade-sentinel",
+    "name": "skills.assassin.blade-sentinel.name",
+    "description": "skills.assassin.blade-sentinel.desc",
+    "icon": "skills/assassin/blade-sentinel.png",
+    "tree": "Traps",
+    "requiredLevel": 12,
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 15
+    },
+    "damage": {
+      "min": 50,
+      "max": 75,
+      "breakdown": {
+        "physical": 75
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 5
+    }
+  },
+  {
+    "id": "skills-assassin-lightning-sentry",
+    "name": "skills.assassin.lightning-sentry.name",
+    "description": "skills.assassin.lightning-sentry.desc",
+    "icon": "skills/assassin/lightning-sentry.png",
+    "tree": "Traps",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-assassin-fire-blast",
+      "skills-assassin-shock-web",
+      "skills-assassin-charged-bolt-sentry"
+    ],
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 22
+    },
+    "damage": {
+      "min": 75,
+      "max": 110,
+      "breakdown": {
+        "lightning": 110
+      }
+    },
+    "damageType": "lightning",
+    "appliesTags": [
+      "lightning",
+      "shock"
+    ],
+    "scaling": {
+      "damagePerLevel": 6
+    }
+  },
+  {
+    "id": "skills-assassin-wake-of-inferno",
+    "name": "skills.assassin.wake-of-inferno.name",
+    "description": "skills.assassin.wake-of-inferno.desc",
+    "icon": "skills/assassin/wake-of-inferno.png",
+    "tree": "Traps",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-assassin-fire-blast",
+      "skills-assassin-wake-of-fire"
+    ],
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 25
+    },
+    "damage": {
+      "min": 90,
+      "max": 130,
+      "breakdown": {
+        "fire": 130
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "scaling": {
+      "damagePerLevel": 7
+    }
+  },
+  {
+    "id": "skills-assassin-death-sentry",
+    "name": "skills.assassin.death-sentry.name",
+    "description": "skills.assassin.death-sentry.desc",
+    "icon": "skills/assassin/death-sentry.png",
+    "tree": "Traps",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-assassin-fire-blast",
+      "skills-assassin-shock-web",
+      "skills-assassin-charged-bolt-sentry",
+      "skills-assassin-lightning-sentry"
+    ],
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 27
+    },
+    "damage": {
+      "min": 85,
+      "max": 125,
+      "breakdown": {
+        "fire": 125
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "scaling": {
+      "damagePerLevel": 7
+    }
+  },
+  {
+    "id": "skills-assassin-blade-shield",
+    "name": "skills.assassin.blade-shield.name",
+    "description": "skills.assassin.blade-shield.desc",
+    "icon": "skills/assassin/blade-shield.png",
+    "tree": "Traps",
+    "requiredLevel": 30,
+    "prerequisites": [
+      "skills-assassin-blade-sentinel",
+      "skills-assassin-blade-fury"
+    ],
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 30
+    },
+    "damage": {
+      "min": 95,
+      "max": 135,
+      "breakdown": {
+        "physical": 135
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 8
+    }
   }
 ]

@@ -4,6 +4,8 @@
     "name": "Bash",
     "description": "A powerful single-target strike with the equipped weapon.",
     "icon": "skills/barbarian/bash.png",
+    "tree": "Combat Skills",
+    "requiredLevel": 1,
     "trigger": "active",
     "target": "single-enemy",
     "cooldown": 1,
@@ -32,6 +34,8 @@
     "name": "Double Swing",
     "description": "Two cleaving strikes that hit up to 3 enemies.",
     "icon": "skills/barbarian/double-swing.png",
+    "tree": "Combat Skills",
+    "requiredLevel": 1,
     "trigger": "active",
     "target": "area-enemies",
     "cooldown": 1,
@@ -60,6 +64,14 @@
     "name": "Whirlwind",
     "description": "Spins through enemies, dealing physical damage to all targets.",
     "icon": "skills/barbarian/whirlwind.png",
+    "tree": "Combat Skills",
+    "requiredLevel": 30,
+    "prerequisites": [
+      "skills-barbarian-bash",
+      "skills-barbarian-leap",
+      "skills-barbarian-stun",
+      "skills-barbarian-concentrate"
+    ],
     "trigger": "active",
     "target": "all-enemies",
     "cooldown": 2,
@@ -92,6 +104,12 @@
     "name": "Leap Attack",
     "description": "Leaps to a new position and lands with crushing force, stunning all nearby enemies.",
     "icon": "skills/barbarian/leap-attack.png",
+    "tree": "Combat Skills",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-barbarian-bash",
+      "skills-barbarian-leap"
+    ],
     "trigger": "active",
     "target": "all-enemies",
     "cooldown": 3,
@@ -123,6 +141,14 @@
     "name": "Berserk",
     "description": "An arcane-fueled rage strike that converts physical damage to arcane.",
     "icon": "skills/barbarian/berserk.png",
+    "tree": "Combat Skills",
+    "requiredLevel": 30,
+    "prerequisites": [
+      "skills-barbarian-bash",
+      "skills-barbarian-stun",
+      "skills-barbarian-concentrate",
+      "skills-barbarian-frenzy"
+    ],
     "trigger": "active",
     "target": "single-enemy",
     "cooldown": 2,
@@ -151,6 +177,14 @@
     "name": "War Cry",
     "description": "A devastating shout that damages and stuns all enemies.",
     "icon": "skills/barbarian/war-cry.png",
+    "tree": "Warcries",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-barbarian-howl",
+      "skills-barbarian-taunt",
+      "skills-barbarian-shout",
+      "skills-barbarian-battle-cry"
+    ],
     "trigger": "active",
     "target": "all-enemies",
     "cooldown": 3,
@@ -182,6 +216,8 @@
     "name": "Iron Skin",
     "description": "Increases defense by 100%.",
     "icon": "skills/barbarian/iron-skin.png",
+    "tree": "Combat Masteries",
+    "requiredLevel": 12,
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
@@ -193,6 +229,11 @@
     "name": "Natural Resistance",
     "description": "Increases all resistances by 30%.",
     "icon": "skills/barbarian/natural-resistance.png",
+    "tree": "Combat Masteries",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-barbarian-iron-skin"
+    ],
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
@@ -204,6 +245,13 @@
     "name": "Battle Orders",
     "description": "At combat start, increases max HP and mana by 50%.",
     "icon": "skills/barbarian/battle-orders.png",
+    "tree": "Warcries",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-barbarian-howl",
+      "skills-barbarian-shout",
+      "skills-barbarian-battle-cry"
+    ],
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
@@ -215,10 +263,436 @@
     "name": "Shout",
     "description": "At combat start, grants self and mercenary +50% defense for 5 turns.",
     "icon": "skills/barbarian/shout.png",
+    "tree": "Warcries",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-barbarian-howl"
+    ],
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
     "maxLevel": 20
+  },
+  {
+    "id": "skills-barbarian-sword-mastery",
+    "name": "skills.barbarian.sword-mastery.name",
+    "description": "skills.barbarian.sword-mastery.desc",
+    "icon": "skills/barbarian/sword-mastery.png",
+    "tree": "Combat Masteries",
+    "requiredLevel": 1,
+    "passive": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-barbarian-axe-mastery",
+    "name": "skills.barbarian.axe-mastery.name",
+    "description": "skills.barbarian.axe-mastery.desc",
+    "icon": "skills/barbarian/axe-mastery.png",
+    "tree": "Combat Masteries",
+    "requiredLevel": 1,
+    "passive": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-barbarian-mace-mastery",
+    "name": "skills.barbarian.mace-mastery.name",
+    "description": "skills.barbarian.mace-mastery.desc",
+    "icon": "skills/barbarian/mace-mastery.png",
+    "tree": "Combat Masteries",
+    "requiredLevel": 1,
+    "passive": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-barbarian-pole-arm-mastery",
+    "name": "skills.barbarian.pole-arm-mastery.name",
+    "description": "skills.barbarian.pole-arm-mastery.desc",
+    "icon": "skills/barbarian/pole-arm-mastery.png",
+    "tree": "Combat Masteries",
+    "requiredLevel": 6,
+    "passive": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-barbarian-throwing-mastery",
+    "name": "skills.barbarian.throwing-mastery.name",
+    "description": "skills.barbarian.throwing-mastery.desc",
+    "icon": "skills/barbarian/throwing-mastery.png",
+    "tree": "Combat Masteries",
+    "requiredLevel": 6,
+    "passive": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-barbarian-spear-mastery",
+    "name": "skills.barbarian.spear-mastery.name",
+    "description": "skills.barbarian.spear-mastery.desc",
+    "icon": "skills/barbarian/spear-mastery.png",
+    "tree": "Combat Masteries",
+    "requiredLevel": 6,
+    "passive": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-barbarian-increased-stamina",
+    "name": "skills.barbarian.increased-stamina.name",
+    "description": "skills.barbarian.increased-stamina.desc",
+    "icon": "skills/barbarian/increased-stamina.png",
+    "tree": "Combat Masteries",
+    "requiredLevel": 12,
+    "passive": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-barbarian-increased-speed",
+    "name": "skills.barbarian.increased-speed.name",
+    "description": "skills.barbarian.increased-speed.desc",
+    "icon": "skills/barbarian/increased-speed.png",
+    "tree": "Combat Masteries",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-barbarian-increased-stamina"
+    ],
+    "passive": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-barbarian-leap",
+    "name": "skills.barbarian.leap.name",
+    "description": "skills.barbarian.leap.desc",
+    "icon": "skills/barbarian/leap.png",
+    "tree": "Combat Skills",
+    "requiredLevel": 6,
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 8
+    },
+    "appliesStatus": [
+      "knockback"
+    ]
+  },
+  {
+    "id": "skills-barbarian-stun",
+    "name": "skills.barbarian.stun.name",
+    "description": "skills.barbarian.stun.desc",
+    "icon": "skills/barbarian/stun.png",
+    "tree": "Combat Skills",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-barbarian-bash"
+    ],
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 8
+    },
+    "damage": {
+      "min": 45,
+      "max": 65,
+      "breakdown": {
+        "physical": 65
+      }
+    },
+    "damageType": "physical",
+    "appliesStatus": [
+      "stun"
+    ],
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 4
+    }
+  },
+  {
+    "id": "skills-barbarian-double-throw",
+    "name": "skills.barbarian.double-throw.name",
+    "description": "skills.barbarian.double-throw.desc",
+    "icon": "skills/barbarian/double-throw.png",
+    "tree": "Combat Skills",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-barbarian-double-swing"
+    ],
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 12
+    },
+    "damage": {
+      "min": 50,
+      "max": 75,
+      "breakdown": {
+        "physical": 75
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 5
+    }
+  },
+  {
+    "id": "skills-barbarian-concentrate",
+    "name": "skills.barbarian.concentrate.name",
+    "description": "skills.barbarian.concentrate.desc",
+    "icon": "skills/barbarian/concentrate.png",
+    "tree": "Combat Skills",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-barbarian-bash",
+      "skills-barbarian-stun"
+    ],
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 10
+    },
+    "damage": {
+      "min": 70,
+      "max": 100,
+      "breakdown": {
+        "physical": 100
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 7
+    }
+  },
+  {
+    "id": "skills-barbarian-frenzy",
+    "name": "skills.barbarian.frenzy.name",
+    "description": "skills.barbarian.frenzy.desc",
+    "icon": "skills/barbarian/frenzy.png",
+    "tree": "Combat Skills",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-barbarian-bash",
+      "skills-barbarian-double-swing",
+      "skills-barbarian-stun",
+      "skills-barbarian-concentrate"
+    ],
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 12
+    },
+    "damage": {
+      "min": 85,
+      "max": 120,
+      "breakdown": {
+        "physical": 120
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 8
+    }
+  },
+  {
+    "id": "skills-barbarian-howl",
+    "name": "skills.barbarian.howl.name",
+    "description": "skills.barbarian.howl.desc",
+    "icon": "skills/barbarian/howl.png",
+    "tree": "Warcries",
+    "requiredLevel": 1,
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 4
+    },
+    "appliesStatus": [
+      "howl"
+    ]
+  },
+  {
+    "id": "skills-barbarian-find-potion",
+    "name": "skills.barbarian.find-potion.name",
+    "description": "skills.barbarian.find-potion.desc",
+    "icon": "skills/barbarian/find-potion.png",
+    "tree": "Warcries",
+    "requiredLevel": 1,
+    "trigger": "active",
+    "target": "self",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 2
+    }
+  },
+  {
+    "id": "skills-barbarian-taunt",
+    "name": "skills.barbarian.taunt.name",
+    "description": "skills.barbarian.taunt.desc",
+    "icon": "skills/barbarian/taunt.png",
+    "tree": "Warcries",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-barbarian-howl"
+    ],
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 3
+    },
+    "appliesStatus": [
+      "taunt"
+    ]
+  },
+  {
+    "id": "skills-barbarian-find-item",
+    "name": "skills.barbarian.find-item.name",
+    "description": "skills.barbarian.find-item.desc",
+    "icon": "skills/barbarian/find-item.png",
+    "tree": "Warcries",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-barbarian-find-potion"
+    ],
+    "trigger": "active",
+    "target": "self",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 7
+    }
+  },
+  {
+    "id": "skills-barbarian-battle-cry",
+    "name": "skills.barbarian.battle-cry.name",
+    "description": "skills.barbarian.battle-cry.desc",
+    "icon": "skills/barbarian/battle-cry.png",
+    "tree": "Warcries",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-barbarian-howl",
+      "skills-barbarian-taunt"
+    ],
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 6
+    },
+    "appliesStatus": [
+      "battle-cry"
+    ],
+    "appliesTags": [
+      "amp-damage"
+    ]
+  },
+  {
+    "id": "skills-barbarian-grim-ward",
+    "name": "skills.barbarian.grim-ward.name",
+    "description": "skills.barbarian.grim-ward.desc",
+    "icon": "skills/barbarian/grim-ward.png",
+    "tree": "Warcries",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-barbarian-howl",
+      "skills-barbarian-taunt"
+    ],
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 7
+    },
+    "appliesStatus": [
+      "grim-ward"
+    ]
+  },
+  {
+    "id": "skills-barbarian-battle-command",
+    "name": "skills.barbarian.battle-command.name",
+    "description": "skills.barbarian.battle-command.desc",
+    "icon": "skills/barbarian/battle-command.png",
+    "tree": "Warcries",
+    "requiredLevel": 30,
+    "prerequisites": [
+      "skills-barbarian-battle-orders",
+      "skills-barbarian-battle-cry"
+    ],
+    "trigger": "active",
+    "target": "self",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 11
+    },
+    "appliesStatus": [
+      "battle-command"
+    ]
   }
 ]

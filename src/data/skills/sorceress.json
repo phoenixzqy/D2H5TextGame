@@ -4,6 +4,8 @@
     "name": "Ice Bolt",
     "description": "Hurls a single bolt of ice at an enemy, dealing cold damage and chilling them.",
     "icon": "skills/sorceress/ice-bolt.png",
+    "tree": "Cold Spells",
+    "requiredLevel": 1,
     "trigger": "active",
     "target": "single-enemy",
     "cooldown": 1,
@@ -36,6 +38,11 @@
     "name": "Frost Nova",
     "description": "Releases a burst of cold radiating outward, chilling all enemies and freezing some.",
     "icon": "skills/sorceress/frost-nova.png",
+    "tree": "Cold Spells",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-sorceress-ice-bolt"
+    ],
     "trigger": "active",
     "target": "all-enemies",
     "cooldown": 3,
@@ -69,6 +76,14 @@
     "name": "Frozen Orb",
     "description": "Hurls an orb of cold that pierces enemies and showers shards in a cone.",
     "icon": "skills/sorceress/frozen-orb.png",
+    "tree": "Cold Spells",
+    "requiredLevel": 30,
+    "prerequisites": [
+      "skills-sorceress-ice-bolt",
+      "skills-sorceress-frost-nova",
+      "skills-sorceress-ice-blast",
+      "skills-sorceress-glacial-spike"
+    ],
     "trigger": "active",
     "target": "area-enemies",
     "cooldown": 2,
@@ -101,6 +116,12 @@
     "name": "Chain Lightning",
     "description": "Releases a chain of lightning that bounces between up to 5 enemies, paralyzing them.",
     "icon": "skills/sorceress/chain-lightning.png",
+    "tree": "Lightning Spells",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-sorceress-charged-bolt",
+      "skills-sorceress-lightning"
+    ],
     "trigger": "active",
     "target": "area-enemies",
     "cooldown": 2,
@@ -136,6 +157,11 @@
     "name": "Fire Ball",
     "description": "Lobs an exploding fireball that deals high single-target fire damage and burns the target.",
     "icon": "skills/sorceress/fire-ball.png",
+    "tree": "Fire Spells",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-sorceress-fire-bolt"
+    ],
     "trigger": "active",
     "target": "single-enemy",
     "cooldown": 1,
@@ -168,6 +194,13 @@
     "name": "Meteor",
     "description": "Calls down a flaming meteor, dealing massive AOE fire damage and melting armor.",
     "icon": "skills/sorceress/meteor.png",
+    "tree": "Fire Spells",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-sorceress-fire-bolt",
+      "skills-sorceress-inferno",
+      "skills-sorceress-fire-ball"
+    ],
     "trigger": "active",
     "target": "all-enemies",
     "cooldown": 4,
@@ -202,6 +235,14 @@
     "name": "Cold Mastery",
     "description": "Reduces enemy cold resistance by 15%.",
     "icon": "skills/sorceress/cold-mastery.png",
+    "tree": "Cold Spells",
+    "requiredLevel": 30,
+    "prerequisites": [
+      "skills-sorceress-ice-bolt",
+      "skills-sorceress-frost-nova",
+      "skills-sorceress-ice-blast",
+      "skills-sorceress-glacial-spike"
+    ],
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
@@ -213,6 +254,13 @@
     "name": "Lightning Mastery",
     "description": "Increases lightning damage dealt by 30%.",
     "icon": "skills/sorceress/lightning-mastery.png",
+    "tree": "Lightning Spells",
+    "requiredLevel": 30,
+    "prerequisites": [
+      "skills-sorceress-charged-bolt",
+      "skills-sorceress-lightning",
+      "skills-sorceress-chain-lightning"
+    ],
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
@@ -224,6 +272,14 @@
     "name": "Fire Mastery",
     "description": "Increases fire damage dealt by 30%.",
     "icon": "skills/sorceress/fire-mastery.png",
+    "tree": "Fire Spells",
+    "requiredLevel": 30,
+    "prerequisites": [
+      "skills-sorceress-fire-bolt",
+      "skills-sorceress-inferno",
+      "skills-sorceress-fire-ball",
+      "skills-sorceress-meteor"
+    ],
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
@@ -235,10 +291,646 @@
     "name": "Energy Shield",
     "description": "Diverts 30% of incoming damage to mana instead of life.",
     "icon": "skills/sorceress/energy-shield.png",
+    "tree": "Lightning Spells",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-sorceress-telekinesis",
+      "skills-sorceress-static-field"
+    ],
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
     "minLevel": 18,
     "maxLevel": 20
+  },
+  {
+    "id": "skills-sorceress-frozen-armor",
+    "name": "skills.sorceress.frozen-armor.name",
+    "description": "skills.sorceress.frozen-armor.desc",
+    "icon": "skills/sorceress/frozen-armor.png",
+    "tree": "Cold Spells",
+    "requiredLevel": 1,
+    "trigger": "active",
+    "target": "self",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 7
+    },
+    "appliesStatus": [
+      "frozen-armor"
+    ],
+    "appliesTags": [
+      "cold"
+    ]
+  },
+  {
+    "id": "skills-sorceress-ice-blast",
+    "name": "skills.sorceress.ice-blast.name",
+    "description": "skills.sorceress.ice-blast.desc",
+    "icon": "skills/sorceress/ice-blast.png",
+    "tree": "Cold Spells",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-sorceress-ice-bolt"
+    ],
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 12
+    },
+    "damage": {
+      "min": 45,
+      "max": 65,
+      "breakdown": {
+        "cold": 65
+      }
+    },
+    "damageType": "cold",
+    "appliesStatus": [
+      "freeze",
+      "chill"
+    ],
+    "appliesTags": [
+      "cold",
+      "chill"
+    ],
+    "scaling": {
+      "damagePerLevel": 4
+    }
+  },
+  {
+    "id": "skills-sorceress-shiver-armor",
+    "name": "skills.sorceress.shiver-armor.name",
+    "description": "skills.sorceress.shiver-armor.desc",
+    "icon": "skills/sorceress/shiver-armor.png",
+    "tree": "Cold Spells",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-sorceress-frozen-armor"
+    ],
+    "trigger": "active",
+    "target": "self",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 11
+    },
+    "appliesStatus": [
+      "shiver-armor"
+    ],
+    "appliesTags": [
+      "cold",
+      "chill"
+    ]
+  },
+  {
+    "id": "skills-sorceress-glacial-spike",
+    "name": "skills.sorceress.glacial-spike.name",
+    "description": "skills.sorceress.glacial-spike.desc",
+    "icon": "skills/sorceress/glacial-spike.png",
+    "tree": "Cold Spells",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-sorceress-ice-bolt",
+      "skills-sorceress-frost-nova",
+      "skills-sorceress-ice-blast"
+    ],
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 20
+    },
+    "damage": {
+      "min": 55,
+      "max": 80,
+      "breakdown": {
+        "cold": 80
+      }
+    },
+    "damageType": "cold",
+    "appliesStatus": [
+      "freeze",
+      "chill"
+    ],
+    "appliesTags": [
+      "cold",
+      "chill"
+    ],
+    "scaling": {
+      "damagePerLevel": 5
+    }
+  },
+  {
+    "id": "skills-sorceress-blizzard",
+    "name": "skills.sorceress.blizzard.name",
+    "description": "skills.sorceress.blizzard.desc",
+    "icon": "skills/sorceress/blizzard.png",
+    "tree": "Cold Spells",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-sorceress-ice-bolt",
+      "skills-sorceress-frost-nova",
+      "skills-sorceress-ice-blast",
+      "skills-sorceress-glacial-spike"
+    ],
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 35
+    },
+    "damage": {
+      "min": 85,
+      "max": 125,
+      "breakdown": {
+        "cold": 125
+      }
+    },
+    "damageType": "cold",
+    "appliesStatus": [
+      "chill"
+    ],
+    "appliesTags": [
+      "cold",
+      "chill"
+    ],
+    "scaling": {
+      "damagePerLevel": 8
+    }
+  },
+  {
+    "id": "skills-sorceress-chilling-armor",
+    "name": "skills.sorceress.chilling-armor.name",
+    "description": "skills.sorceress.chilling-armor.desc",
+    "icon": "skills/sorceress/chilling-armor.png",
+    "tree": "Cold Spells",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-sorceress-frozen-armor",
+      "skills-sorceress-shiver-armor"
+    ],
+    "trigger": "active",
+    "target": "self",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 15
+    },
+    "appliesStatus": [
+      "chilling-armor"
+    ],
+    "appliesTags": [
+      "cold",
+      "chill"
+    ]
+  },
+  {
+    "id": "skills-sorceress-charged-bolt",
+    "name": "skills.sorceress.charged-bolt.name",
+    "description": "skills.sorceress.charged-bolt.desc",
+    "icon": "skills/sorceress/charged-bolt.png",
+    "tree": "Lightning Spells",
+    "requiredLevel": 1,
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 8
+    },
+    "damage": {
+      "min": 25,
+      "max": 40,
+      "breakdown": {
+        "lightning": 40
+      }
+    },
+    "damageType": "lightning",
+    "appliesTags": [
+      "lightning",
+      "shock"
+    ],
+    "scaling": {
+      "damagePerLevel": 3
+    }
+  },
+  {
+    "id": "skills-sorceress-static-field",
+    "name": "skills.sorceress.static-field.name",
+    "description": "skills.sorceress.static-field.desc",
+    "icon": "skills/sorceress/static-field.png",
+    "tree": "Lightning Spells",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-sorceress-charged-bolt"
+    ],
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 10
+    },
+    "appliesStatus": [
+      "static-field"
+    ],
+    "appliesTags": [
+      "lightning",
+      "shock",
+      "amp-damage"
+    ]
+  },
+  {
+    "id": "skills-sorceress-telekinesis",
+    "name": "skills.sorceress.telekinesis.name",
+    "description": "skills.sorceress.telekinesis.desc",
+    "icon": "skills/sorceress/telekinesis.png",
+    "tree": "Lightning Spells",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-sorceress-charged-bolt"
+    ],
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 7
+    },
+    "appliesStatus": [
+      "knockback"
+    ],
+    "appliesTags": [
+      "arcane"
+    ]
+  },
+  {
+    "id": "skills-sorceress-nova",
+    "name": "skills.sorceress.nova.name",
+    "description": "skills.sorceress.nova.desc",
+    "icon": "skills/sorceress/nova.png",
+    "tree": "Lightning Spells",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-sorceress-charged-bolt",
+      "skills-sorceress-static-field"
+    ],
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 18
+    },
+    "damage": {
+      "min": 40,
+      "max": 60,
+      "breakdown": {
+        "lightning": 60
+      }
+    },
+    "damageType": "lightning",
+    "appliesTags": [
+      "lightning",
+      "shock"
+    ],
+    "scaling": {
+      "damagePerLevel": 4
+    }
+  },
+  {
+    "id": "skills-sorceress-lightning",
+    "name": "skills.sorceress.lightning.name",
+    "description": "skills.sorceress.lightning.desc",
+    "icon": "skills/sorceress/lightning.png",
+    "tree": "Lightning Spells",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-sorceress-charged-bolt"
+    ],
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 15
+    },
+    "damage": {
+      "min": 45,
+      "max": 80,
+      "breakdown": {
+        "lightning": 80
+      }
+    },
+    "damageType": "lightning",
+    "appliesTags": [
+      "lightning",
+      "shock"
+    ],
+    "scaling": {
+      "damagePerLevel": 6
+    }
+  },
+  {
+    "id": "skills-sorceress-teleport",
+    "name": "skills.sorceress.teleport.name",
+    "description": "skills.sorceress.teleport.desc",
+    "icon": "skills/sorceress/teleport.png",
+    "tree": "Lightning Spells",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-sorceress-telekinesis"
+    ],
+    "trigger": "active",
+    "target": "self",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 20
+    }
+  },
+  {
+    "id": "skills-sorceress-thunder-storm",
+    "name": "skills.sorceress.thunder-storm.name",
+    "description": "skills.sorceress.thunder-storm.desc",
+    "icon": "skills/sorceress/thunder-storm.png",
+    "tree": "Lightning Spells",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-sorceress-charged-bolt",
+      "skills-sorceress-lightning",
+      "skills-sorceress-chain-lightning"
+    ],
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 30
+    },
+    "damage": {
+      "min": 70,
+      "max": 110,
+      "breakdown": {
+        "lightning": 110
+      }
+    },
+    "damageType": "lightning",
+    "appliesStatus": [
+      "paralyze"
+    ],
+    "appliesTags": [
+      "lightning",
+      "shock"
+    ],
+    "scaling": {
+      "damagePerLevel": 7
+    }
+  },
+  {
+    "id": "skills-sorceress-fire-bolt",
+    "name": "skills.sorceress.fire-bolt.name",
+    "description": "skills.sorceress.fire-bolt.desc",
+    "icon": "skills/sorceress/fire-bolt.png",
+    "tree": "Fire Spells",
+    "requiredLevel": 1,
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 8
+    },
+    "damage": {
+      "min": 30,
+      "max": 45,
+      "breakdown": {
+        "fire": 45
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "scaling": {
+      "damagePerLevel": 4
+    }
+  },
+  {
+    "id": "skills-sorceress-warmth",
+    "name": "skills.sorceress.warmth.name",
+    "description": "skills.sorceress.warmth.desc",
+    "icon": "skills/sorceress/warmth.png",
+    "tree": "Fire Spells",
+    "requiredLevel": 1,
+    "passive": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-sorceress-inferno",
+    "name": "skills.sorceress.inferno.name",
+    "description": "skills.sorceress.inferno.desc",
+    "icon": "skills/sorceress/inferno.png",
+    "tree": "Fire Spells",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-sorceress-fire-bolt"
+    ],
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 10
+    },
+    "damage": {
+      "min": 35,
+      "max": 55,
+      "breakdown": {
+        "fire": 55
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "scaling": {
+      "damagePerLevel": 4
+    }
+  },
+  {
+    "id": "skills-sorceress-blaze",
+    "name": "skills.sorceress.blaze.name",
+    "description": "skills.sorceress.blaze.desc",
+    "icon": "skills/sorceress/blaze.png",
+    "tree": "Fire Spells",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-sorceress-fire-bolt",
+      "skills-sorceress-inferno"
+    ],
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 22
+    },
+    "damage": {
+      "min": 60,
+      "max": 85,
+      "breakdown": {
+        "fire": 85
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "scaling": {
+      "damagePerLevel": 5
+    }
+  },
+  {
+    "id": "skills-sorceress-fire-wall",
+    "name": "skills.sorceress.fire-wall.name",
+    "description": "skills.sorceress.fire-wall.desc",
+    "icon": "skills/sorceress/fire-wall.png",
+    "tree": "Fire Spells",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-sorceress-fire-bolt",
+      "skills-sorceress-inferno"
+    ],
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 25
+    },
+    "damage": {
+      "min": 70,
+      "max": 100,
+      "breakdown": {
+        "fire": 100
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "scaling": {
+      "damagePerLevel": 6
+    }
+  },
+  {
+    "id": "skills-sorceress-enchant",
+    "name": "skills.sorceress.enchant.name",
+    "description": "skills.sorceress.enchant.desc",
+    "icon": "skills/sorceress/enchant.png",
+    "tree": "Fire Spells",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-sorceress-fire-bolt",
+      "skills-sorceress-warmth"
+    ],
+    "trigger": "active",
+    "target": "self",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 22
+    },
+    "appliesStatus": [
+      "enchant"
+    ],
+    "appliesTags": [
+      "fire"
+    ]
+  },
+  {
+    "id": "skills-sorceress-hydra",
+    "name": "skills.sorceress.hydra.name",
+    "description": "skills.sorceress.hydra.desc",
+    "icon": "skills/sorceress/hydra.png",
+    "tree": "Fire Spells",
+    "requiredLevel": 30,
+    "prerequisites": [
+      "skills-sorceress-fire-bolt",
+      "skills-sorceress-inferno",
+      "skills-sorceress-fire-ball",
+      "skills-sorceress-fire-wall"
+    ],
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 40
+    },
+    "damage": {
+      "min": 95,
+      "max": 140,
+      "breakdown": {
+        "fire": 140
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "scaling": {
+      "damagePerLevel": 9
+    }
   }
 ]

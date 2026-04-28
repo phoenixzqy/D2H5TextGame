@@ -4,6 +4,8 @@
     "name": "Firestorm",
     "description": "Summons a storm of fire that strikes all enemies and applies burn.",
     "icon": "skills/druid/firestorm.png",
+    "tree": "Elemental",
+    "requiredLevel": 1,
     "trigger": "active",
     "target": "all-enemies",
     "cooldown": 2,
@@ -36,6 +38,8 @@
     "name": "Arctic Blast",
     "description": "Exhales a cone of freezing wind, chilling enemies hit.",
     "icon": "skills/druid/arctic-blast.png",
+    "tree": "Elemental",
+    "requiredLevel": 6,
     "trigger": "active",
     "target": "area-enemies",
     "cooldown": 2,
@@ -68,6 +72,12 @@
     "name": "Tornado",
     "description": "Summons a swirling tornado that tears through enemies in a cone.",
     "icon": "skills/druid/tornado.png",
+    "tree": "Elemental",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-druid-cyclone-armor",
+      "skills-druid-twister"
+    ],
     "trigger": "active",
     "target": "area-enemies",
     "cooldown": 2,
@@ -96,20 +106,32 @@
     "name": "Summon Dire Wolf",
     "description": "Summons a fierce dire wolf companion to fight at your side (max 3).",
     "icon": "skills/druid/summon-dire-wolf.png",
+    "tree": "Summoning",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-druid-summon-spirit-wolf"
+    ],
+    "summon": true,
     "trigger": "active",
     "target": "summon",
     "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
     "cost": {
       "mana": 20
-    },
-    "minLevel": 1,
-    "maxLevel": 20
+    }
   },
   {
     "id": "skills-druid-werewolf-maul",
     "name": "Werewolf: Maul",
     "description": "Transforms into a werewolf and rends a single enemy, causing them to bleed.",
     "icon": "skills/druid/werewolf-maul.png",
+    "tree": "Shape-Shifting",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-druid-werewolf",
+      "skills-druid-lycanthropy"
+    ],
     "trigger": "active",
     "target": "single-enemy",
     "cooldown": 1,
@@ -142,6 +164,14 @@
     "name": "Hurricane",
     "description": "Summons a hurricane that batters all enemies with cold winds.",
     "icon": "skills/druid/hurricane.png",
+    "tree": "Elemental",
+    "requiredLevel": 30,
+    "prerequisites": [
+      "skills-druid-arctic-blast",
+      "skills-druid-cyclone-armor",
+      "skills-druid-twister",
+      "skills-druid-tornado"
+    ],
     "trigger": "active",
     "target": "all-enemies",
     "cooldown": 4,
@@ -174,6 +204,8 @@
     "name": "Elemental Mastery",
     "description": "Increases fire and cold damage by 30%.",
     "icon": "skills/druid/elemental-mastery.png",
+    "tree": "Elemental",
+    "requiredLevel": 30,
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
@@ -185,6 +217,8 @@
     "name": "Lycanthropy",
     "description": "Increases max HP by 50% while in werewolf form.",
     "icon": "skills/druid/lycanthropy.png",
+    "tree": "Shape-Shifting",
+    "requiredLevel": 1,
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
@@ -196,6 +230,11 @@
     "name": "Heart of Wolverine",
     "description": "Aura: increases attack speed of self and allies by 30%.",
     "icon": "skills/druid/heart-of-wolverine.png",
+    "tree": "Summoning",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-druid-oak-sage"
+    ],
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
@@ -207,10 +246,629 @@
     "name": "Oak Sage",
     "description": "Aura: increases max HP of self and allies by 50%.",
     "icon": "skills/druid/oak-sage.png",
+    "tree": "Summoning",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-druid-raven"
+    ],
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
     "minLevel": 18,
     "maxLevel": 20
+  },
+  {
+    "id": "skills-druid-molten-boulder",
+    "name": "skills.druid.molten-boulder.name",
+    "description": "skills.druid.molten-boulder.desc",
+    "icon": "skills/druid/molten-boulder.png",
+    "tree": "Elemental",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-druid-firestorm"
+    ],
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 12
+    },
+    "damage": {
+      "min": 45,
+      "max": 65,
+      "breakdown": {
+        "fire": 65
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "scaling": {
+      "damagePerLevel": 4
+    }
+  },
+  {
+    "id": "skills-druid-fissure",
+    "name": "skills.druid.fissure.name",
+    "description": "skills.druid.fissure.desc",
+    "icon": "skills/druid/fissure.png",
+    "tree": "Elemental",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-druid-firestorm",
+      "skills-druid-molten-boulder"
+    ],
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 20
+    },
+    "damage": {
+      "min": 60,
+      "max": 90,
+      "breakdown": {
+        "fire": 90
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "scaling": {
+      "damagePerLevel": 5
+    }
+  },
+  {
+    "id": "skills-druid-cyclone-armor",
+    "name": "skills.druid.cyclone-armor.name",
+    "description": "skills.druid.cyclone-armor.desc",
+    "icon": "skills/druid/cyclone-armor.png",
+    "tree": "Elemental",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-druid-arctic-blast"
+    ],
+    "trigger": "active",
+    "target": "self",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 17
+    },
+    "appliesStatus": [
+      "cyclone-armor"
+    ]
+  },
+  {
+    "id": "skills-druid-twister",
+    "name": "skills.druid.twister.name",
+    "description": "skills.druid.twister.desc",
+    "icon": "skills/druid/twister.png",
+    "tree": "Elemental",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-druid-cyclone-armor"
+    ],
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 18
+    },
+    "damage": {
+      "min": 60,
+      "max": 90,
+      "breakdown": {
+        "physical": 90
+      }
+    },
+    "damageType": "physical",
+    "appliesStatus": [
+      "stun"
+    ],
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 5
+    }
+  },
+  {
+    "id": "skills-druid-volcano",
+    "name": "skills.druid.volcano.name",
+    "description": "skills.druid.volcano.desc",
+    "icon": "skills/druid/volcano.png",
+    "tree": "Elemental",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-druid-firestorm",
+      "skills-druid-molten-boulder",
+      "skills-druid-fissure"
+    ],
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 27
+    },
+    "damage": {
+      "min": 80,
+      "max": 115,
+      "breakdown": {
+        "fire": 115
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "scaling": {
+      "damagePerLevel": 7
+    }
+  },
+  {
+    "id": "skills-druid-armageddon",
+    "name": "skills.druid.armageddon.name",
+    "description": "skills.druid.armageddon.desc",
+    "icon": "skills/druid/armageddon.png",
+    "tree": "Elemental",
+    "requiredLevel": 30,
+    "prerequisites": [
+      "skills-druid-firestorm",
+      "skills-druid-molten-boulder",
+      "skills-druid-fissure",
+      "skills-druid-volcano"
+    ],
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 5,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 35
+    },
+    "damage": {
+      "min": 110,
+      "max": 160,
+      "breakdown": {
+        "fire": 160
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "scaling": {
+      "damagePerLevel": 9
+    }
+  },
+  {
+    "id": "skills-druid-werewolf",
+    "name": "skills.druid.werewolf.name",
+    "description": "skills.druid.werewolf.desc",
+    "icon": "skills/druid/werewolf.png",
+    "tree": "Shape-Shifting",
+    "requiredLevel": 1,
+    "trigger": "active",
+    "target": "self",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 5
+    },
+    "appliesStatus": [
+      "werewolf"
+    ]
+  },
+  {
+    "id": "skills-druid-werebear",
+    "name": "skills.druid.werebear.name",
+    "description": "skills.druid.werebear.desc",
+    "icon": "skills/druid/werebear.png",
+    "tree": "Shape-Shifting",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-druid-lycanthropy"
+    ],
+    "trigger": "active",
+    "target": "self",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 5
+    },
+    "appliesStatus": [
+      "werebear"
+    ]
+  },
+  {
+    "id": "skills-druid-feral-rage",
+    "name": "skills.druid.feral-rage.name",
+    "description": "skills.druid.feral-rage.desc",
+    "icon": "skills/druid/feral-rage.png",
+    "tree": "Shape-Shifting",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-druid-werewolf"
+    ],
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 3
+    },
+    "damage": {
+      "min": 45,
+      "max": 65,
+      "breakdown": {
+        "physical": 65
+      }
+    },
+    "damageType": "physical",
+    "appliesStatus": [
+      "feral-rage",
+      "bleed"
+    ],
+    "appliesTags": [
+      "physical",
+      "bleed"
+    ],
+    "scaling": {
+      "damagePerLevel": 4
+    }
+  },
+  {
+    "id": "skills-druid-rabies",
+    "name": "skills.druid.rabies.name",
+    "description": "skills.druid.rabies.desc",
+    "icon": "skills/druid/rabies.png",
+    "tree": "Shape-Shifting",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-druid-werewolf",
+      "skills-druid-feral-rage",
+      "skills-druid-werewolf-maul"
+    ],
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 12
+    },
+    "damage": {
+      "min": 50,
+      "max": 75,
+      "breakdown": {
+        "poison": 75
+      }
+    },
+    "damageType": "poison",
+    "appliesStatus": [
+      "poison"
+    ],
+    "appliesTags": [
+      "poison"
+    ],
+    "scaling": {
+      "damagePerLevel": 5
+    }
+  },
+  {
+    "id": "skills-druid-fire-claws",
+    "name": "skills.druid.fire-claws.name",
+    "description": "skills.druid.fire-claws.desc",
+    "icon": "skills/druid/fire-claws.png",
+    "tree": "Shape-Shifting",
+    "requiredLevel": 18,
+    "prerequisites": [
+      "skills-druid-werebear",
+      "skills-druid-werewolf-maul"
+    ],
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 9
+    },
+    "damage": {
+      "min": 70,
+      "max": 100,
+      "breakdown": {
+        "fire": 100
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "scaling": {
+      "damagePerLevel": 6
+    }
+  },
+  {
+    "id": "skills-druid-hunger",
+    "name": "skills.druid.hunger.name",
+    "description": "skills.druid.hunger.desc",
+    "icon": "skills/druid/hunger.png",
+    "tree": "Shape-Shifting",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-druid-werewolf",
+      "skills-druid-werebear",
+      "skills-druid-feral-rage"
+    ],
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 11
+    },
+    "damage": {
+      "min": 60,
+      "max": 85,
+      "breakdown": {
+        "physical": 85
+      }
+    },
+    "damageType": "physical",
+    "appliesStatus": [
+      "hunger"
+    ],
+    "appliesTags": [
+      "physical",
+      "bleed"
+    ],
+    "scaling": {
+      "damagePerLevel": 5
+    }
+  },
+  {
+    "id": "skills-druid-shock-wave",
+    "name": "skills.druid.shock-wave.name",
+    "description": "skills.druid.shock-wave.desc",
+    "icon": "skills/druid/shock-wave.png",
+    "tree": "Shape-Shifting",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-druid-werebear",
+      "skills-druid-werewolf-maul"
+    ],
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 14
+    },
+    "damage": {
+      "min": 50,
+      "max": 75,
+      "breakdown": {
+        "physical": 75
+      }
+    },
+    "damageType": "physical",
+    "appliesStatus": [
+      "stun"
+    ],
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 5
+    }
+  },
+  {
+    "id": "skills-druid-fury",
+    "name": "skills.druid.fury.name",
+    "description": "skills.druid.fury.desc",
+    "icon": "skills/druid/fury.png",
+    "tree": "Shape-Shifting",
+    "requiredLevel": 30,
+    "prerequisites": [
+      "skills-druid-werewolf",
+      "skills-druid-feral-rage",
+      "skills-druid-werewolf-maul",
+      "skills-druid-rabies"
+    ],
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 11
+    },
+    "damage": {
+      "min": 95,
+      "max": 135,
+      "breakdown": {
+        "physical": 135
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 8
+    }
+  },
+  {
+    "id": "skills-druid-raven",
+    "name": "skills.druid.raven.name",
+    "description": "skills.druid.raven.desc",
+    "icon": "skills/druid/raven.png",
+    "tree": "Summoning",
+    "requiredLevel": 1,
+    "summon": true,
+    "trigger": "active",
+    "target": "summon",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 6
+    }
+  },
+  {
+    "id": "skills-druid-poison-creeper",
+    "name": "skills.druid.poison-creeper.name",
+    "description": "skills.druid.poison-creeper.desc",
+    "icon": "skills/druid/poison-creeper.png",
+    "tree": "Summoning",
+    "requiredLevel": 1,
+    "summon": true,
+    "trigger": "active",
+    "target": "summon",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 8
+    }
+  },
+  {
+    "id": "skills-druid-summon-spirit-wolf",
+    "name": "skills.druid.summon-spirit-wolf.name",
+    "description": "skills.druid.summon-spirit-wolf.desc",
+    "icon": "skills/druid/summon-spirit-wolf.png",
+    "tree": "Summoning",
+    "requiredLevel": 6,
+    "prerequisites": [
+      "skills-druid-raven"
+    ],
+    "summon": true,
+    "trigger": "active",
+    "target": "summon",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 14
+    }
+  },
+  {
+    "id": "skills-druid-carrion-vine",
+    "name": "skills.druid.carrion-vine.name",
+    "description": "skills.druid.carrion-vine.desc",
+    "icon": "skills/druid/carrion-vine.png",
+    "tree": "Summoning",
+    "requiredLevel": 12,
+    "prerequisites": [
+      "skills-druid-poison-creeper"
+    ],
+    "summon": true,
+    "trigger": "active",
+    "target": "summon",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 14
+    }
+  },
+  {
+    "id": "skills-druid-solar-creeper",
+    "name": "skills.druid.solar-creeper.name",
+    "description": "skills.druid.solar-creeper.desc",
+    "icon": "skills/druid/solar-creeper.png",
+    "tree": "Summoning",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-druid-poison-creeper",
+      "skills-druid-carrion-vine"
+    ],
+    "summon": true,
+    "trigger": "active",
+    "target": "summon",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 18
+    }
+  },
+  {
+    "id": "skills-druid-spirit-of-barbs",
+    "name": "skills.druid.spirit-of-barbs.name",
+    "description": "skills.druid.spirit-of-barbs.desc",
+    "icon": "skills/druid/spirit-of-barbs.png",
+    "tree": "Summoning",
+    "requiredLevel": 24,
+    "prerequisites": [
+      "skills-druid-oak-sage",
+      "skills-druid-heart-of-wolverine"
+    ],
+    "passive": true,
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-druid-summon-grizzly",
+    "name": "skills.druid.summon-grizzly.name",
+    "description": "skills.druid.summon-grizzly.desc",
+    "icon": "skills/druid/summon-grizzly.png",
+    "tree": "Summoning",
+    "requiredLevel": 30,
+    "prerequisites": [
+      "skills-druid-raven",
+      "skills-druid-summon-spirit-wolf",
+      "skills-druid-summon-dire-wolf"
+    ],
+    "summon": true,
+    "trigger": "active",
+    "target": "summon",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 35
+    }
   }
 ]

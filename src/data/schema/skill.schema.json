@@ -19,6 +19,32 @@
     "description": {
       "type": "string"
     },
+    "tree": {
+      "type": "string",
+      "description": "Skill tree name (e.g., 'Cold', 'Combat Masteries', 'Curses')"
+    },
+    "requiredLevel": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Character level required to unlock this skill"
+    },
+    "prerequisites": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Array of skill IDs that must be learned first"
+    },
+    "passive": {
+      "type": "boolean",
+      "description": "True if this is a passive skill with always-on effect"
+    },
+    "aura": {
+      "type": "boolean",
+      "description": "True if this is a toggled aura skill (Paladin)"
+    },
+    "summon": {
+      "type": "boolean",
+      "description": "True if this skill summons a creature"
+    },
     "icon": {
       "type": "string",
       "description": "Icon asset path"
