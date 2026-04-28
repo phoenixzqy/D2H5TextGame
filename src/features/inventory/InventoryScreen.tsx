@@ -9,7 +9,7 @@
  */
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, ItemTooltip, Panel, ScreenShell, Tabs, Tooltip } from '@/ui';
+import { Button, GameImage, ItemTooltip, Panel, ScreenShell, Tabs, Tooltip, getItemIconUrl } from '@/ui';
 import { useInventoryStore } from '@/stores';
 import type { Item, EquipmentSlot } from '@/engine/types/items';
 
@@ -145,15 +145,24 @@ function ItemGrid({
                 className={[
                   'w-full text-left min-h-[56px] px-3 py-2 rounded border bg-d2-bg/40',
                   'focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold',
+                  'flex items-center gap-2',
                   selectedId === it.id ? 'border-d2-gold' : 'border-d2-border hover:border-d2-gold/60',
                 ].join(' ')}
                 data-testid={`inv-item-${it.id}`}
               >
-                <div className={`font-serif truncate ${rarityTextClass(it.rarity)}`}>
-                  {it.baseId}
-                </div>
-                <div className="text-xs text-d2-white/60">
-                  {t('itemLevel', { defaultValue: '物品等级' })} {it.level}
+                <GameImage
+                  src={getItemIconUrl(it)}
+                  alt=""
+                  fallbackIcon={(it.equipSlot ?? it.baseId).charAt(0).toUpperCase() || '?'}
+                  size="sm"
+                />
+                <div className="min-w-0 flex-1">
+                  <div className={`font-serif truncate ${rarityTextClass(it.rarity)}`}>
+                    {it.baseId}
+                  </div>
+                  <div className="text-xs text-d2-white/60">
+                    {t('itemLevel', { defaultValue: '物品等级' })} {it.level}
+                  </div>
                 </div>
               </button>
             </Tooltip>
@@ -226,17 +235,27 @@ function EquipmentPanel({
             className="border border-d2-border rounded p-3 bg-d2-bg/40 min-h-[64px]
                        flex items-center justify-between gap-2"
           >
-            <div className="min-w-0">
-              <div className="text-xs text-d2-white/60">{t(`slots.${slot}`)}</div>
-              {item ? (
-                <div className={`font-serif truncate ${rarityTextClass(item.rarity)}`}>
-                  {item.baseId}
-                </div>
-              ) : (
-                <div className="text-sm text-d2-white/40 italic">
-                  {t('empty', { defaultValue: '空' })}
-                </div>
+            <div className="flex items-center gap-2 min-w-0">
+              {item && (
+                <GameImage
+                  src={getItemIconUrl(item)}
+                  alt=""
+                  fallbackIcon={(item.equipSlot ?? slot).charAt(0).toUpperCase()}
+                  size="sm"
+                />
               )}
+              <div className="min-w-0">
+                <div className="text-xs text-d2-white/60">{t(`slots.${slot}`)}</div>
+                {item ? (
+                  <div className={`font-serif truncate ${rarityTextClass(item.rarity)}`}>
+                    {item.baseId}
+                  </div>
+                ) : (
+                  <div className="text-sm text-d2-white/40 italic">
+                    {t('empty', { defaultValue: '空' })}
+                  </div>
+                )}
+              </div>
             </div>
             {item && (
               <Button

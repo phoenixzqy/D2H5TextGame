@@ -8,7 +8,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button, Panel, ScreenShell } from '@/ui';
+import { Button, Panel, ScreenShell, GameImage, getZoneArtUrl } from '@/ui';
 import { useMapStore, useMetaStore } from '@/stores';
 
 interface SubArea {
@@ -102,10 +102,17 @@ export function MapScreen() {
                 type="button"
                 onClick={() => { setOpenAct(isOpen ? -1 : act.number); }}
                 aria-expanded={isOpen}
-                className="w-full flex items-center justify-between px-4 py-3 min-h-[48px]
+                className="w-full flex items-center gap-3 px-3 py-2 min-h-[56px]
                            hover:bg-black/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold"
               >
-                <span className="text-d2-gold font-serif">
+                <GameImage
+                  src={getZoneArtUrl(act.number)}
+                  alt=""
+                  fallbackIcon={String(act.number)}
+                  size="lg"
+                  className="!w-16 !h-12 !rounded"
+                />
+                <span className="flex-1 text-left text-d2-gold font-serif">
                   {t('act', { number: act.number })} ·{' '}
                   {t(act.nameKey, { defaultValue: `Act ${String(act.number)}` })}
                 </span>
@@ -124,7 +131,14 @@ export function MapScreen() {
                     const unlocked = actUnlocked;
                     return (
                       <li key={sa.id} className="px-3 py-2 flex flex-wrap items-center gap-2">
-                        <div className="flex-1 min-w-[160px]">
+                        <GameImage
+                          src={getZoneArtUrl(act.number)}
+                          alt=""
+                          fallbackIcon={String(act.number)}
+                          size="sm"
+                          className="!w-10 !h-8 !rounded"
+                        />
+                        <div className="flex-1 min-w-[140px]">
                           <div className="text-d2-white text-sm">
                             {t(sa.nameKey, { defaultValue: sa.id })}
                           </div>

@@ -9,7 +9,7 @@
  */
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button, Panel, ScreenShell } from '@/ui';
+import { Button, Panel, ScreenShell, GameImage, getZoneArtUrl, getNpcPortraitUrl } from '@/ui';
 import { useMapStore, usePlayerStore } from '@/stores';
 
 interface NPC {
@@ -45,6 +45,19 @@ export function TownScreen() {
         </span>
       }
     >
+      {/* Zone-art background */}
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden>
+        <img
+          src={getZoneArtUrl(currentAct)}
+          alt=""
+          className="w-full h-full object-cover opacity-20"
+          loading="lazy"
+          decoding="async"
+          onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-d2-bg/60 to-d2-bg" />
+      </div>
+
       <div className="space-y-4 max-w-3xl mx-auto">
         <Panel title={t('npcs')}>
           <ul className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -57,7 +70,12 @@ export function TownScreen() {
                              focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold p-2"
                   aria-label={t(npc.nameKey, { defaultValue: npc.id })}
                 >
-                  <span className="text-2xl" aria-hidden>{npc.emoji}</span>
+                  <GameImage
+                    src={getNpcPortraitUrl(npc.id, currentAct)}
+                    alt={t(npc.nameKey, { defaultValue: npc.id })}
+                    fallbackIcon={npc.emoji}
+                    size="md"
+                  />
                   <span className="text-xs text-d2-white/80 truncate max-w-full">
                     {t(npc.nameKey, { defaultValue: npc.id })}
                   </span>

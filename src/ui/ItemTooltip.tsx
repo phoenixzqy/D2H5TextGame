@@ -2,6 +2,8 @@
  * Item tooltip component
  */
 
+import { GameImage } from './GameImage';
+import { getItemIconUrl } from './imageHelpers';
 import { RarityText } from './RarityText';
 import type { Item } from '@/engine/types/items';
 
@@ -18,6 +20,16 @@ export function ItemTooltip({ item, className = '' }: ItemTooltipProps) {
         ${className}
       `}
     >
+      {/* Item icon */}
+      <div className="flex justify-center mb-2">
+        <GameImage
+          src={getItemIconUrl(item)}
+          alt=""
+          fallbackIcon={(item.equipSlot ?? item.baseId).charAt(0).toUpperCase() || '?'}
+          size="lg"
+        />
+      </div>
+
       {/* Item name (uses baseId until catalog lookup is wired in frontend) */}
       <RarityText rarity={item.rarity} className="text-base font-bold block mb-2">
         {item.baseId}

@@ -14,7 +14,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button, Panel } from '@/ui';
+import { Button, Panel, getZoneArtUrl } from '@/ui';
 import { hasSave } from '@/stores';
 
 export function HomeScreen() {
@@ -43,13 +43,22 @@ export function HomeScreen() {
 
   return (
     <div
-      className="min-h-[100dvh] flex flex-col items-center justify-between
+      className="relative min-h-[100dvh] flex flex-col items-center justify-between
                  px-4 py-8 pt-[max(2rem,env(safe-area-inset-top))]
                  pb-[max(2rem,env(safe-area-inset-bottom))]
-                 bg-gradient-to-b from-d2-bg via-d2-panel to-d2-bg"
+                 bg-gradient-to-b from-d2-bg via-d2-panel to-d2-bg overflow-hidden"
       data-testid="home-screen"
     >
-      <div className="flex-1 flex items-center justify-center w-full">
+      <img
+        src={getZoneArtUrl(1)}
+        alt=""
+        aria-hidden
+        className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none"
+        loading="lazy"
+        decoding="async"
+        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+      />
+      <div className="relative z-10 flex-1 flex items-center justify-center w-full">
         <Panel className="max-w-md w-full text-center">
           <div className="mb-8">
             <h1 className="text-4xl md:text-5xl font-bold text-d2-gold mb-2 drop-shadow-lg font-serif">
@@ -89,7 +98,7 @@ export function HomeScreen() {
         </Panel>
       </div>
 
-      <footer className="mt-6 text-center">
+      <footer className="relative z-10 mt-6 text-center">
         <a
           href="https://www.buymeacoffee.com/"
           target="_blank"

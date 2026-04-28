@@ -9,3 +9,13 @@ export { ItemTooltip } from './ItemTooltip';
 export { BottomNav } from './BottomNav';
 export { ScreenShell } from './ScreenShell';
 export { CharacterHud } from './CharacterHud';
+export { GameImage } from './GameImage';
+export {
+  getClassPortraitUrl,
+  getMonsterImageUrl,
+  getItemIconUrl,
+  getBaseItemIconUrl,
+  getNpcPortraitUrl,
+  getZoneArtUrl,
+  rarityBgClass,
+} from './imageHelpers';

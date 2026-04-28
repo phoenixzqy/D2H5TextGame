@@ -13,7 +13,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button, Panel, StatBar, ScreenShell } from '@/ui';
+import { Button, Panel, StatBar, ScreenShell, GameImage, getClassPortraitUrl, getMonsterImageUrl } from '@/ui';
 import { useCombatStore, usePlayerStore } from '@/stores';
 import { startSimpleBattle } from '@/stores/combatHelpers';
 import type { CombatLogEntry } from '@/stores/combatStore';
@@ -174,34 +174,51 @@ export function CombatScreen() {
 
 function UnitBars({ unit, compact = false }: { unit: CombatUnit; compact?: boolean }) {
   const { t } = useTranslation('combat');
+  const player = usePlayerStore((s) => s.player);
+
+  // Derive avatar: player-side units use class portrait; enemies use monster image
+  const avatarSrc =
+    unit.side === 'player' && player
+      ? getClassPortraitUrl(player.class)
+      : getMonsterImageUrl(extractMonsterSlug(unit.name, unit.id));
+  const avatarFallback = (unit.name.charAt(0) || '?').toUpperCase();
+
   return (
-    <div className="border border-d2-border rounded p-2 bg-d2-bg/40">
-      <div className="flex items-center justify-between mb-1 text-sm">
-        <span className="font-serif text-d2-gold truncate">{unit.name}</span>
-        <span className="text-xs text-d2-white/60">
-          Lv {unit.level}
-        </span>
-      </div>
-      {compact ? (
-        <StatBar current={unit.life} max={unit.stats.life} color="hp" showValues={false} />
-      ) : (
-        <StatBar
-          current={unit.life}
-          max={unit.stats.life}
-          color="hp"
-          label={t('hp', { defaultValue: 'HP' })}
-        />
-      )}
-      {!compact && unit.stats.mana > 0 && (
-        <div className="mt-1">
-          <StatBar
-            current={unit.mana}
-            max={unit.stats.mana}
-            color="mp"
-            label={t('mp', { defaultValue: 'MP' })}
-          />
+    <div className="border border-d2-border rounded p-2 bg-d2-bg/40 flex items-start gap-2">
+      <GameImage
+        src={avatarSrc}
+        alt={unit.name}
+        fallbackIcon={avatarFallback}
+        size={compact ? 'sm' : 'md'}
+      />
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center justify-between mb-1 text-sm">
+          <span className="font-serif text-d2-gold truncate">{unit.name}</span>
+          <span className="text-xs text-d2-white/60">
+            Lv {unit.level}
+          </span>
         </div>
-      )}
+        {compact ? (
+          <StatBar current={unit.life} max={unit.stats.life} color="hp" showValues={false} />
+        ) : (
+          <StatBar
+            current={unit.life}
+            max={unit.stats.life}
+            color="hp"
+            label={t('hp', { defaultValue: 'HP' })}
+          />
+        )}
+        {!compact && unit.stats.mana > 0 && (
+          <div className="mt-1">
+            <StatBar
+              current={unit.mana}
+              max={unit.stats.mana}
+              color="mp"
+              label={t('mp', { defaultValue: 'MP' })}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -266,6 +283,22 @@ function CombatLog({ entries }: { entries: CombatLogEntry[] }) {
       )}
     </Panel>
   );
+}
+
+/**
+ * Extract a monster slug for image lookup from a CombatUnit's display name.
+ * Strips trailing level/title suffixes like " Lv1", " (Boss)", etc.
+ * Falls back to the raw id when name is empty.
+ *
+ * Examples:
+ *   "Fallen Lv1"       → "fallen"
+ *   "Bone Warrior Lv5" → "bone-warrior"
+ *   "Andariel"         → "andariel"
+ */
+function extractMonsterSlug(name: string, id: string): string {
+  const trimmed = name.replace(/\s+(?:Lv|Lvl|Level|等级)\s*\d+.*$/i, '').trim();
+  const base = trimmed || id;
+  return base.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
 }
 
 function logTypeClass(type: CombatLogEntry['type']): string {

@@ -72,7 +72,7 @@ export function CharacterScreen() {
 function HeroStrip({ player }: { player: Player }) {
   const { t } = useTranslation(['character', 'common']);
   const [errored, setErrored] = useState(false);
-  const portrait = `/assets/d2/generated/class-portraits/${player.class}.png`;
+  const portrait = `/assets/d2/generated/class-portraits/classes.${player.class}.png`;
   const xpMax = Math.max(1, player.experienceToNextLevel);
   return (
     <Panel className="!p-3">

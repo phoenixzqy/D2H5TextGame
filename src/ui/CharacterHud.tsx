@@ -105,7 +105,7 @@ export function CharacterHud() {
 function Avatar({ player }: { player: Player }) {
   const [errored, setErrored] = useState(false);
   const cls = player.class;
-  const src = `/assets/d2/generated/class-portraits/${cls}.png`;
+  const src = `/assets/d2/generated/class-portraits/classes.${cls}.png`;
   const initial = (cls.charAt(0) || player.name.charAt(0) || '?').toUpperCase();
 
   return (

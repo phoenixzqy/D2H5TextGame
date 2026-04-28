@@ -12,7 +12,7 @@
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button, Panel } from '@/ui';
+import { Button, Panel, GameImage, getClassPortraitUrl } from '@/ui';
 import { usePlayerStore } from '@/stores';
 import {
   CHARACTER_CLASSES,
@@ -79,14 +79,22 @@ export function CharacterCreate() {
                   aria-pressed={selected}
                   className={[
                     'min-h-[64px] px-3 py-2 rounded border text-base font-serif',
+                    'flex flex-col items-center gap-1',
                     'focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold transition-colors',
                     selected
-                      ? 'border-d2-gold bg-d2-gold/10 text-d2-gold'
+                      ? 'border-d2-gold bg-d2-gold/10 text-d2-gold shadow-[0_0_8px_rgba(218,165,32,0.35)]'
                       : 'border-d2-border bg-d2-panel text-d2-white hover:border-d2-gold/60',
                   ].join(' ')}
                   data-testid={`class-${cls}`}
                 >
-                  {t(`classes.${cls}`)}
+                  <GameImage
+                    src={getClassPortraitUrl(cls)}
+                    alt={t(`classes.${cls}`)}
+                    fallbackIcon={cls.charAt(0).toUpperCase()}
+                    size="lg"
+                    className={selected ? 'border-d2-gold' : ''}
+                  />
+                  <span className="truncate max-w-full">{t(`classes.${cls}`)}</span>
                 </button>
               );
             })}
