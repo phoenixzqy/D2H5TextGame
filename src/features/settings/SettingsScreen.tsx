@@ -3,9 +3,11 @@
  */
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { Button, Modal, Panel, ScreenShell } from '@/ui';
 import {
   useMetaStore,
+  usePlayerStore,
   exportSave,
   importSave,
   deleteSave,
@@ -18,6 +20,8 @@ const APP_VERSION =
 
 export function SettingsScreen() {
   const { t, i18n } = useTranslation(['settings', 'common']);
+  const navigate = useNavigate();
+  const hasCharacter = usePlayerStore((s) => s.player !== null);
 
   const settings = useMetaStore((s) => s.settings);
   const setLocale = useMetaStore((s) => s.setLocale);
@@ -101,8 +105,20 @@ export function SettingsScreen() {
   };
 
   return (
-    <ScreenShell testId="settings-screen" title={t('settings')}>
+    <ScreenShell testId="settings-screen" title={t('settings')} hideNav={!hasCharacter}>
       <div className="max-w-2xl mx-auto space-y-4">
+        {!hasCharacter && (
+          <Panel>
+            <Button
+              variant="secondary"
+              className="w-full min-h-[44px]"
+              onClick={() => { navigate('/'); }}
+              data-testid="settings-back-home"
+            >
+              ← {t('common:back', { defaultValue: '返回' })}
+            </Button>
+          </Panel>
+        )}
         <Panel title={t('language')}>
           <div className="flex gap-2">
             {(['zh-CN', 'en'] as const).map((loc) => (
