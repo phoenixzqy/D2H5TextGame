@@ -1,279 +1,811 @@
 [
   {
-    "id": "mercs/act2-holy-freeze",
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "desert-merc",
+    "reqLevel": 12,
+    "baseStats": {
+      "vitality": 24,
+      "energy": 10,
+      "dexterity": 18,
+      "strength": 28
+    },
+    "rarity": "SSR",
+    "signatureSkillId": "aura-holy-freeze",
     "name": "Desert Merc — Holy Freeze",
+    "comboOrder": [
+      "mskill-jab"
+    ],
+    "id": "mercs/act2-holy-freeze",
     "archetype": "front",
-    "rarity": "SSR",
-    "baseStats": { "strength": 28, "dexterity": 18, "vitality": 24, "energy": 10 },
-    "skills": ["mskill-jab", "aura-holy-freeze"],
-    "comboOrder": ["mskill-jab"],
-    "reqLevel": 12,
-    "flavor": "A Lut Gholein spear-bearer whose every step crystallises the air. The cold of his aura slows the wicked into easy prey."
+    "iconAsset": "assets/d2/generated/mercs/desert-merc-holy-freeze-icon.png",
+    "flavor": "A Lut Gholein spear-bearer whose every step crystallises the air. The cold of his aura slows the wicked into easy prey.",
+    "skills": [
+      "mskill-jab",
+      "aura-holy-freeze"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/desert-merc-holy-freeze-portrait.png"
   },
   {
-    "id": "mercs/act2-might",
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "desert-merc",
+    "reqLevel": 12,
+    "baseStats": {
+      "vitality": 24,
+      "energy": 10,
+      "dexterity": 18,
+      "strength": 32
+    },
+    "rarity": "SSR",
+    "signatureSkillId": "aura-might",
     "name": "Desert Merc — Might",
+    "comboOrder": [
+      "mskill-jab"
+    ],
+    "id": "mercs/act2-might",
     "archetype": "front",
-    "rarity": "SSR",
-    "baseStats": { "strength": 32, "dexterity": 18, "vitality": 24, "energy": 10 },
-    "skills": ["mskill-jab", "aura-might"],
-    "comboOrder": ["mskill-jab"],
-    "reqLevel": 12,
-    "flavor": "His war chant lends strength to the entire warband; even a peasant's club bites like a falcata at his side."
+    "iconAsset": "assets/d2/generated/mercs/desert-merc-might-icon.png",
+    "flavor": "His war chant lends strength to the entire warband; even a peasant's club bites like a falcata at his side.",
+    "skills": [
+      "mskill-jab",
+      "aura-might"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/desert-merc-might-portrait.png"
   },
   {
-    "id": "mercs/act3-iron-wolf-fire",
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "iron-wolf",
+    "reqLevel": 18,
+    "baseStats": {
+      "vitality": 18,
+      "energy": 28,
+      "dexterity": 16,
+      "strength": 14
+    },
+    "rarity": "SSR",
+    "signatureSkillId": "mskill-fire-ball",
     "name": "Iron Wolf — Fire",
+    "comboOrder": [
+      "mskill-fire-ball"
+    ],
+    "id": "mercs/act3-iron-wolf-fire",
     "archetype": "back",
-    "rarity": "SSR",
-    "baseStats": { "strength": 14, "dexterity": 16, "vitality": 18, "energy": 28 },
-    "skills": ["mskill-fire-ball", "passive-fire-mastery"],
-    "comboOrder": ["mskill-fire-ball"],
-    "reqLevel": 18,
-    "flavor": "An Iron Wolf of Kurast who has bound the spirit of flame to his blade. He laughs at jungle rain — it boils before it lands."
+    "iconAsset": "assets/d2/generated/mercs/iron-wolf-fire-icon.png",
+    "flavor": "An Iron Wolf of Kurast who has bound the spirit of flame to his blade. He laughs at jungle rain — it boils before it lands.",
+    "skills": [
+      "mskill-fire-ball",
+      "passive-fire-mastery"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/iron-wolf-fire-portrait.png"
   },
   {
-    "id": "mercs/act5-barbarian-battle-orders",
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "barbarian",
+    "reqLevel": 24,
+    "baseStats": {
+      "vitality": 28,
+      "energy": 12,
+      "dexterity": 16,
+      "strength": 34
+    },
+    "rarity": "SSR",
+    "signatureSkillId": "aura-battle-orders",
     "name": "Barbarian — Battle Orders",
+    "comboOrder": [
+      "mskill-bash"
+    ],
+    "id": "mercs/act5-barbarian-battle-orders",
     "archetype": "front",
-    "rarity": "SSR",
-    "baseStats": { "strength": 34, "dexterity": 16, "vitality": 28, "energy": 12 },
-    "skills": ["mskill-bash", "aura-battle-orders"],
-    "comboOrder": ["mskill-bash"],
-    "reqLevel": 24,
-    "flavor": "A Bul-Kathos veteran whose roar inflates the lungs and the courage of every soul within earshot."
+    "iconAsset": "assets/d2/generated/mercs/barbarian-battle-orders-icon.png",
+    "flavor": "A Bul-Kathos veteran whose roar inflates the lungs and the courage of every soul within earshot.",
+    "skills": [
+      "mskill-bash",
+      "aura-battle-orders"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/barbarian-battle-orders-portrait.png"
   },
   {
-    "id": "mercs/act1-rogue-pierce",
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "rogue",
+    "reqLevel": 6,
+    "baseStats": {
+      "vitality": 18,
+      "energy": 14,
+      "dexterity": 30,
+      "strength": 16
+    },
+    "rarity": "SSR",
+    "signatureSkillId": "mskill-pierce-arrow",
     "name": "Rogue Scout — Pierce",
+    "comboOrder": [
+      "mskill-pierce-arrow"
+    ],
+    "id": "mercs/act1-rogue-pierce",
     "archetype": "back",
-    "rarity": "SSR",
-    "baseStats": { "strength": 16, "dexterity": 30, "vitality": 18, "energy": 14 },
-    "skills": ["mskill-pierce-arrow", "passive-critical"],
-    "comboOrder": ["mskill-pierce-arrow"],
-    "reqLevel": 6,
-    "flavor": "A Sister of the Sightless Eye whose arrows stitch through three foes before burying themselves in the fourth."
+    "iconAsset": "assets/d2/generated/mercs/rogue-pierce-icon.png",
+    "flavor": "A Sister of the Sightless Eye whose arrows stitch through three foes before burying themselves in the fourth.",
+    "skills": [
+      "mskill-pierce-arrow",
+      "passive-critical"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/rogue-pierce-portrait.png"
   },
-
   {
-    "id": "mercs/act2-thorns",
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "desert-merc",
+    "reqLevel": 12,
+    "baseStats": {
+      "vitality": 24,
+      "energy": 10,
+      "dexterity": 18,
+      "strength": 26
+    },
+    "rarity": "SR",
+    "signatureSkillId": "aura-thorns",
     "name": "Desert Merc — Thorns",
+    "comboOrder": [
+      "mskill-jab"
+    ],
+    "id": "mercs/act2-thorns",
     "archetype": "front",
-    "rarity": "SR",
-    "baseStats": { "strength": 26, "dexterity": 18, "vitality": 24, "energy": 10 },
-    "skills": ["mskill-jab", "aura-thorns"],
-    "comboOrder": ["mskill-jab"],
-    "reqLevel": 12,
-    "flavor": "Strike him and reap your own ribs — his armour bleeds the careless attacker."
+    "iconAsset": "assets/d2/generated/mercs/desert-merc-thorns-icon.png",
+    "flavor": "Strike him and reap your own ribs — his armour bleeds the careless attacker.",
+    "skills": [
+      "mskill-jab",
+      "aura-thorns"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/desert-merc-thorns-portrait.png"
   },
   {
-    "id": "mercs/act2-prayer",
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "desert-merc",
+    "reqLevel": 12,
+    "baseStats": {
+      "vitality": 24,
+      "energy": 14,
+      "dexterity": 16,
+      "strength": 24
+    },
+    "rarity": "SR",
+    "signatureSkillId": "aura-prayer",
     "name": "Desert Merc — Prayer",
+    "comboOrder": [
+      "mskill-jab"
+    ],
+    "id": "mercs/act2-prayer",
     "archetype": "front",
-    "rarity": "SR",
-    "baseStats": { "strength": 24, "dexterity": 16, "vitality": 24, "energy": 14 },
-    "skills": ["mskill-jab", "aura-prayer"],
-    "comboOrder": ["mskill-jab"],
-    "reqLevel": 12,
-    "flavor": "He whispers Zakarum litanies between thrusts; wounds close on those near him as if Akarat himself watched."
+    "iconAsset": "assets/d2/generated/mercs/desert-merc-prayer-icon.png",
+    "flavor": "He whispers Zakarum litanies between thrusts; wounds close on those near him as if Akarat himself watched.",
+    "skills": [
+      "mskill-jab",
+      "aura-prayer"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/desert-merc-prayer-portrait.png"
   },
   {
-    "id": "mercs/act3-iron-wolf-cold",
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "iron-wolf",
+    "reqLevel": 18,
+    "baseStats": {
+      "vitality": 18,
+      "energy": 26,
+      "dexterity": 16,
+      "strength": 14
+    },
+    "rarity": "SR",
+    "signatureSkillId": "mskill-glacial-spike",
     "name": "Iron Wolf — Cold",
+    "comboOrder": [
+      "mskill-glacial-spike"
+    ],
+    "id": "mercs/act3-iron-wolf-cold",
     "archetype": "back",
-    "rarity": "SR",
-    "baseStats": { "strength": 14, "dexterity": 16, "vitality": 18, "energy": 26 },
-    "skills": ["mskill-glacial-spike"],
-    "comboOrder": ["mskill-glacial-spike"],
-    "reqLevel": 18,
-    "flavor": "His glacial spikes leave the swamps of Kurast white with frost long after the battle is done."
+    "iconAsset": "assets/d2/generated/mercs/iron-wolf-cold-icon.png",
+    "flavor": "His glacial spikes leave the swamps of Kurast white with frost long after the battle is done.",
+    "skills": [
+      "mskill-glacial-spike"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/iron-wolf-cold-portrait.png"
   },
   {
-    "id": "mercs/act3-iron-wolf-lightning",
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "iron-wolf",
+    "reqLevel": 18,
+    "baseStats": {
+      "vitality": 18,
+      "energy": 26,
+      "dexterity": 18,
+      "strength": 14
+    },
+    "rarity": "SR",
+    "signatureSkillId": "mskill-charged-bolt",
     "name": "Iron Wolf — Lightning",
+    "comboOrder": [
+      "mskill-charged-bolt"
+    ],
+    "id": "mercs/act3-iron-wolf-lightning",
     "archetype": "back",
-    "rarity": "SR",
-    "baseStats": { "strength": 14, "dexterity": 18, "vitality": 18, "energy": 26 },
-    "skills": ["mskill-charged-bolt"],
-    "comboOrder": ["mskill-charged-bolt"],
-    "reqLevel": 18,
-    "flavor": "Five errant bolts dance from his fingertips — sometimes they all find the same throat."
+    "iconAsset": "assets/d2/generated/mercs/iron-wolf-lightning-icon.png",
+    "flavor": "Five errant bolts dance from his fingertips — sometimes they all find the same throat.",
+    "skills": [
+      "mskill-charged-bolt"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/iron-wolf-lightning-portrait.png"
   },
   {
-    "id": "mercs/act1-rogue-fire",
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "rogue",
+    "reqLevel": 6,
+    "baseStats": {
+      "vitality": 18,
+      "energy": 16,
+      "dexterity": 26,
+      "strength": 14
+    },
+    "rarity": "SR",
+    "signatureSkillId": "mskill-fire-arrow",
     "name": "Rogue Scout — Fire Arrow",
+    "comboOrder": [
+      "mskill-fire-arrow"
+    ],
+    "id": "mercs/act1-rogue-fire",
     "archetype": "back",
-    "rarity": "SR",
-    "baseStats": { "strength": 14, "dexterity": 26, "vitality": 18, "energy": 16 },
-    "skills": ["mskill-fire-arrow"],
-    "comboOrder": ["mskill-fire-arrow"],
-    "reqLevel": 6,
-    "flavor": "She dips each shaft in pitch and breath — a single shot lights a whole nest of fallen on fire."
+    "iconAsset": "assets/d2/generated/mercs/rogue-fire-icon.png",
+    "flavor": "She dips each shaft in pitch and breath — a single shot lights a whole nest of fallen on fire.",
+    "skills": [
+      "mskill-fire-arrow"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/rogue-fire-portrait.png"
   },
   {
-    "id": "mercs/act1-rogue-cold",
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "rogue",
+    "reqLevel": 6,
+    "baseStats": {
+      "vitality": 18,
+      "energy": 16,
+      "dexterity": 26,
+      "strength": 14
+    },
+    "rarity": "SR",
+    "signatureSkillId": "mskill-cold-arrow",
     "name": "Rogue Scout — Cold Arrow",
+    "comboOrder": [
+      "mskill-cold-arrow"
+    ],
+    "id": "mercs/act1-rogue-cold",
     "archetype": "back",
-    "rarity": "SR",
-    "baseStats": { "strength": 14, "dexterity": 26, "vitality": 18, "energy": 16 },
-    "skills": ["mskill-cold-arrow"],
-    "comboOrder": ["mskill-cold-arrow"],
-    "reqLevel": 6,
-    "flavor": "Each arrowhead is hollowed and packed with rime-salt; what it does not kill, it sluggishly preserves for the next volley."
+    "iconAsset": "assets/d2/generated/mercs/rogue-cold-icon.png",
+    "flavor": "Each arrowhead is hollowed and packed with rime-salt; what it does not kill, it sluggishly preserves for the next volley.",
+    "skills": [
+      "mskill-cold-arrow"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/rogue-cold-portrait.png"
   },
   {
-    "id": "mercs/act5-barbarian-war-cry",
-    "name": "Barbarian — War Cry",
-    "archetype": "front",
-    "rarity": "SR",
-    "baseStats": { "strength": 30, "dexterity": 16, "vitality": 26, "energy": 12 },
-    "skills": ["mskill-war-cry"],
-    "comboOrder": ["mskill-war-cry"],
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "barbarian",
     "reqLevel": 24,
-    "flavor": "His shout has felled a charging beast at twenty paces. Lesser foes simply forget how to stand."
-  },
-  {
-    "id": "mercs/act4-paladin-holy-fire",
-    "name": "Paladin — Holy Fire",
-    "archetype": "front",
+    "baseStats": {
+      "vitality": 26,
+      "energy": 12,
+      "dexterity": 16,
+      "strength": 30
+    },
     "rarity": "SR",
-    "baseStats": { "strength": 24, "dexterity": 18, "vitality": 22, "energy": 14 },
-    "skills": ["mskill-holy-fire"],
-    "comboOrder": ["mskill-holy-fire"],
+    "signatureSkillId": "mskill-war-cry",
+    "name": "Barbarian — War Cry",
+    "comboOrder": [
+      "mskill-war-cry"
+    ],
+    "id": "mercs/act5-barbarian-war-cry",
+    "archetype": "front",
+    "iconAsset": "assets/d2/generated/mercs/barbarian-war-cry-icon.png",
+    "flavor": "His shout has felled a charging beast at twenty paces. Lesser foes simply forget how to stand.",
+    "skills": [
+      "mskill-war-cry"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/barbarian-war-cry-portrait.png"
+  },
+  {
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "paladin",
     "reqLevel": 20,
-    "flavor": "A Pandemonium pilgrim wreathed in sanctified flame — the demons cower not from heat, but from judgement."
+    "baseStats": {
+      "vitality": 22,
+      "energy": 14,
+      "dexterity": 18,
+      "strength": 24
+    },
+    "rarity": "SR",
+    "signatureSkillId": "mskill-holy-fire",
+    "name": "Paladin — Holy Fire",
+    "comboOrder": [
+      "mskill-holy-fire"
+    ],
+    "id": "mercs/act4-paladin-holy-fire",
+    "archetype": "front",
+    "iconAsset": "assets/d2/generated/mercs/paladin-holy-fire-icon.png",
+    "flavor": "A Pandemonium pilgrim wreathed in sanctified flame — the demons cower not from heat, but from judgement.",
+    "skills": [
+      "mskill-holy-fire"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/paladin-holy-fire-portrait.png"
   },
-
   {
-    "id": "mercs/act1-rogue-trainee",
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "rogue",
+    "reqLevel": 3,
+    "baseStats": {
+      "vitality": 16,
+      "energy": 12,
+      "dexterity": 22,
+      "strength": 12
+    },
+    "rarity": "R",
+    "signatureSkillId": "mskill-basic-arrow",
     "name": "Rogue Scout — Trainee",
+    "comboOrder": [
+      "mskill-basic-arrow"
+    ],
+    "id": "mercs/act1-rogue-trainee",
     "archetype": "back",
-    "rarity": "R",
-    "baseStats": { "strength": 12, "dexterity": 22, "vitality": 16, "energy": 12 },
-    "skills": ["mskill-basic-arrow"],
-    "comboOrder": ["mskill-basic-arrow"],
-    "reqLevel": 3,
-    "flavor": "Fresh from the Monastery's archery yard, her draw is steady even if her count of demons is still zero."
+    "iconAsset": "assets/d2/generated/mercs/rogue-trainee-icon.png",
+    "flavor": "Fresh from the Monastery's archery yard, her draw is steady even if her count of demons is still zero.",
+    "skills": [
+      "mskill-basic-arrow"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/rogue-trainee-portrait.png"
   },
   {
-    "id": "mercs/act1-rogue-inner-sight",
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "rogue",
+    "reqLevel": 3,
+    "baseStats": {
+      "vitality": 16,
+      "energy": 14,
+      "dexterity": 22,
+      "strength": 12
+    },
+    "rarity": "R",
+    "signatureSkillId": "mskill-inner-sight",
     "name": "Rogue Scout — Inner Sight",
+    "comboOrder": [
+      "mskill-inner-sight"
+    ],
+    "id": "mercs/act1-rogue-inner-sight",
     "archetype": "back",
-    "rarity": "R",
-    "baseStats": { "strength": 12, "dexterity": 22, "vitality": 16, "energy": 14 },
-    "skills": ["mskill-inner-sight"],
-    "comboOrder": ["mskill-inner-sight"],
-    "reqLevel": 3,
-    "flavor": "She paints the foe in moonlight only her allies can see — every gap in their armour suddenly becomes a target."
+    "iconAsset": "assets/d2/generated/mercs/rogue-inner-sight-icon.png",
+    "flavor": "She paints the foe in moonlight only her allies can see — every gap in their armour suddenly becomes a target.",
+    "skills": [
+      "mskill-inner-sight"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/rogue-inner-sight-portrait.png"
   },
   {
-    "id": "mercs/act2-blessed-aim",
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "desert-merc",
+    "reqLevel": 10,
+    "baseStats": {
+      "vitality": 20,
+      "energy": 10,
+      "dexterity": 18,
+      "strength": 22
+    },
+    "rarity": "R",
+    "signatureSkillId": "aura-blessed-aim",
     "name": "Desert Merc — Blessed Aim",
+    "comboOrder": [
+      "mskill-jab"
+    ],
+    "id": "mercs/act2-blessed-aim",
     "archetype": "front",
-    "rarity": "R",
-    "baseStats": { "strength": 22, "dexterity": 18, "vitality": 20, "energy": 10 },
-    "skills": ["mskill-jab", "aura-blessed-aim"],
-    "comboOrder": ["mskill-jab"],
-    "reqLevel": 10,
-    "flavor": "Even the wildest spear-thrust seems to find a vital organ when this man is at your side."
+    "iconAsset": "assets/d2/generated/mercs/desert-merc-blessed-aim-icon.png",
+    "flavor": "Even the wildest spear-thrust seems to find a vital organ when this man is at your side.",
+    "skills": [
+      "mskill-jab",
+      "aura-blessed-aim"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/desert-merc-blessed-aim-portrait.png"
   },
   {
-    "id": "mercs/act2-defiance",
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "desert-merc",
+    "reqLevel": 10,
+    "baseStats": {
+      "vitality": 24,
+      "energy": 10,
+      "dexterity": 16,
+      "strength": 20
+    },
+    "rarity": "R",
+    "signatureSkillId": "aura-defiance",
     "name": "Desert Merc — Defiance",
+    "comboOrder": [
+      "mskill-jab"
+    ],
+    "id": "mercs/act2-defiance",
     "archetype": "front",
-    "rarity": "R",
-    "baseStats": { "strength": 20, "dexterity": 16, "vitality": 24, "energy": 10 },
-    "skills": ["mskill-jab", "aura-defiance"],
-    "comboOrder": ["mskill-jab"],
-    "reqLevel": 10,
-    "flavor": "He plants his spear and the desert wind itself seems to refuse to blow against you."
+    "iconAsset": "assets/d2/generated/mercs/desert-merc-defiance-icon.png",
+    "flavor": "He plants his spear and the desert wind itself seems to refuse to blow against you.",
+    "skills": [
+      "mskill-jab",
+      "aura-defiance"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/desert-merc-defiance-portrait.png"
   },
   {
-    "id": "mercs/act3-iron-wolf-frozen-armor",
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "iron-wolf",
+    "reqLevel": 16,
+    "baseStats": {
+      "vitality": 16,
+      "energy": 24,
+      "dexterity": 14,
+      "strength": 12
+    },
+    "rarity": "R",
+    "signatureSkillId": "mskill-frozen-armor",
     "name": "Iron Wolf — Frozen Armor",
+    "comboOrder": [
+      "mskill-frozen-armor"
+    ],
+    "id": "mercs/act3-iron-wolf-frozen-armor",
     "archetype": "back",
-    "rarity": "R",
-    "baseStats": { "strength": 12, "dexterity": 14, "vitality": 16, "energy": 24 },
-    "skills": ["mskill-frozen-armor"],
-    "comboOrder": ["mskill-frozen-armor"],
-    "reqLevel": 16,
-    "flavor": "A Iron Wolf novice wrapped in a shimmering glacis — the last thing many a melee attacker ever embraces."
+    "iconAsset": "assets/d2/generated/mercs/iron-wolf-frozen-armor-icon.png",
+    "flavor": "A Iron Wolf novice wrapped in a shimmering glacis — the last thing many a melee attacker ever embraces.",
+    "skills": [
+      "mskill-frozen-armor"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/iron-wolf-frozen-armor-portrait.png"
   },
   {
-    "id": "mercs/act3-iron-wolf-telekinesis",
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "iron-wolf",
+    "reqLevel": 16,
+    "baseStats": {
+      "vitality": 16,
+      "energy": 24,
+      "dexterity": 14,
+      "strength": 12
+    },
+    "rarity": "R",
+    "signatureSkillId": "mskill-telekinesis",
     "name": "Iron Wolf — Telekinesis",
+    "comboOrder": [
+      "mskill-telekinesis"
+    ],
+    "id": "mercs/act3-iron-wolf-telekinesis",
     "archetype": "back",
-    "rarity": "R",
-    "baseStats": { "strength": 12, "dexterity": 14, "vitality": 16, "energy": 24 },
-    "skills": ["mskill-telekinesis"],
-    "comboOrder": ["mskill-telekinesis"],
-    "reqLevel": 16,
-    "flavor": "He never touches the foe — and the foe rarely touches the ground."
+    "iconAsset": "assets/d2/generated/mercs/iron-wolf-telekinesis-icon.png",
+    "flavor": "He never touches the foe — and the foe rarely touches the ground.",
+    "skills": [
+      "mskill-telekinesis"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/iron-wolf-telekinesis-portrait.png"
   },
   {
-    "id": "mercs/act3-militia-pikeman",
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "militia",
+    "reqLevel": 14,
+    "baseStats": {
+      "vitality": 20,
+      "energy": 8,
+      "dexterity": 16,
+      "strength": 22
+    },
+    "rarity": "R",
+    "signatureSkillId": "mskill-pierce-thrust",
     "name": "Militia — Pikeman",
+    "comboOrder": [
+      "mskill-pierce-thrust"
+    ],
+    "id": "mercs/act3-militia-pikeman",
     "archetype": "front",
-    "rarity": "R",
-    "baseStats": { "strength": 22, "dexterity": 16, "vitality": 20, "energy": 8 },
-    "skills": ["mskill-pierce-thrust"],
-    "comboOrder": ["mskill-pierce-thrust"],
-    "reqLevel": 14,
-    "flavor": "A Kurast docks volunteer with a sharpened mop handle and remarkable resolve."
+    "iconAsset": "assets/d2/generated/mercs/militia-pikeman-icon.png",
+    "flavor": "A Kurast docks volunteer with a sharpened mop handle and remarkable resolve.",
+    "skills": [
+      "mskill-pierce-thrust"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/militia-pikeman-portrait.png"
   },
   {
-    "id": "mercs/act3-militia-swordsman",
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "militia",
+    "reqLevel": 14,
+    "baseStats": {
+      "vitality": 20,
+      "energy": 8,
+      "dexterity": 18,
+      "strength": 22
+    },
+    "rarity": "R",
+    "signatureSkillId": "mskill-chop",
     "name": "Militia — Swordsman",
+    "comboOrder": [
+      "mskill-chop"
+    ],
+    "id": "mercs/act3-militia-swordsman",
     "archetype": "front",
-    "rarity": "R",
-    "baseStats": { "strength": 22, "dexterity": 18, "vitality": 20, "energy": 8 },
-    "skills": ["mskill-chop"],
-    "comboOrder": ["mskill-chop"],
-    "reqLevel": 14,
-    "flavor": "Two months of swordplay lessons from a retired Iron Wolf — not nothing, not much."
+    "iconAsset": "assets/d2/generated/mercs/militia-swordsman-icon.png",
+    "flavor": "Two months of swordplay lessons from a retired Iron Wolf — not nothing, not much.",
+    "skills": [
+      "mskill-chop"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/militia-swordsman-portrait.png"
   },
   {
-    "id": "mercs/tavern-thief-pickpocket",
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "thief",
+    "reqLevel": 5,
+    "baseStats": {
+      "vitality": 16,
+      "energy": 10,
+      "dexterity": 22,
+      "strength": 12
+    },
+    "rarity": "R",
+    "signatureSkillId": "mskill-pilfer",
     "name": "Thief — Pickpocket",
+    "comboOrder": [
+      "mskill-pilfer"
+    ],
+    "id": "mercs/tavern-thief-pickpocket",
     "archetype": "support",
-    "rarity": "R",
-    "baseStats": { "strength": 12, "dexterity": 22, "vitality": 16, "energy": 10 },
-    "skills": ["mskill-pilfer"],
-    "comboOrder": ["mskill-pilfer"],
-    "reqLevel": 5,
-    "flavor": "She insists she's only here for the gold — but the demons drop the most interesting purses."
+    "iconAsset": "assets/d2/generated/mercs/thief-pickpocket-icon.png",
+    "flavor": "She insists she's only here for the gold — but the demons drop the most interesting purses.",
+    "skills": [
+      "mskill-pilfer"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/thief-pickpocket-portrait.png"
   },
   {
-    "id": "mercs/tavern-acolyte-priestess",
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "acolyte",
+    "reqLevel": 5,
+    "baseStats": {
+      "vitality": 16,
+      "energy": 24,
+      "dexterity": 14,
+      "strength": 10
+    },
+    "rarity": "R",
+    "signatureSkillId": "mskill-minor-heal",
     "name": "Acolyte Priestess",
+    "comboOrder": [
+      "mskill-minor-heal"
+    ],
+    "id": "mercs/tavern-acolyte-priestess",
     "archetype": "back",
-    "rarity": "R",
-    "baseStats": { "strength": 10, "dexterity": 14, "vitality": 16, "energy": 24 },
-    "skills": ["mskill-minor-heal"],
-    "comboOrder": ["mskill-minor-heal"],
-    "reqLevel": 5,
-    "flavor": "An apprentice of the Zakarum, still nervous of blood, but her healing hymn never falters."
+    "iconAsset": "assets/d2/generated/mercs/acolyte-priestess-icon.png",
+    "flavor": "An apprentice of the Zakarum, still nervous of blood, but her healing hymn never falters.",
+    "skills": [
+      "mskill-minor-heal"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/acolyte-priestess-portrait.png"
   },
   {
-    "id": "mercs/act5-barbarian-recruit",
-    "name": "Barbarian Recruit",
-    "archetype": "front",
-    "rarity": "R",
-    "baseStats": { "strength": 26, "dexterity": 14, "vitality": 24, "energy": 8 },
-    "skills": ["mskill-basic-swing"],
-    "comboOrder": ["mskill-basic-swing"],
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "barbarian",
     "reqLevel": 22,
-    "flavor": "Fresh down from Arreat, eager to prove that his clan markings are not just decoration."
+    "baseStats": {
+      "vitality": 24,
+      "energy": 8,
+      "dexterity": 14,
+      "strength": 26
+    },
+    "rarity": "R",
+    "signatureSkillId": "mskill-basic-swing",
+    "name": "Barbarian Recruit",
+    "comboOrder": [
+      "mskill-basic-swing"
+    ],
+    "id": "mercs/act5-barbarian-recruit",
+    "archetype": "front",
+    "iconAsset": "assets/d2/generated/mercs/barbarian-recruit-icon.png",
+    "flavor": "Fresh down from Arreat, eager to prove that his clan markings are not just decoration.",
+    "skills": [
+      "mskill-basic-swing"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/barbarian-recruit-portrait.png"
   },
   {
-    "id": "mercs/act4-paladin-initiate",
-    "name": "Paladin Initiate",
-    "archetype": "front",
-    "rarity": "R",
-    "baseStats": { "strength": 22, "dexterity": 16, "vitality": 20, "energy": 12 },
-    "skills": ["mskill-smite"],
-    "comboOrder": ["mskill-smite"],
+    "starUpgradeCurve": {
+      "4": 1.3,
+      "2": 1.1,
+      "1": 1.0,
+      "6": 1.6,
+      "5": 1.4,
+      "3": 1.2
+    },
+    "classRef": "paladin",
     "reqLevel": 18,
-    "flavor": "A Pandemonium novice whose shield bash carries more conviction than skill — for now."
+    "baseStats": {
+      "vitality": 20,
+      "energy": 12,
+      "dexterity": 16,
+      "strength": 22
+    },
+    "rarity": "R",
+    "signatureSkillId": "mskill-smite",
+    "name": "Paladin Initiate",
+    "comboOrder": [
+      "mskill-smite"
+    ],
+    "id": "mercs/act4-paladin-initiate",
+    "archetype": "front",
+    "iconAsset": "assets/d2/generated/mercs/paladin-initiate-icon.png",
+    "flavor": "A Pandemonium novice whose shield bash carries more conviction than skill — for now.",
+    "skills": [
+      "mskill-smite"
+    ],
+    "portraitAsset": "assets/d2/generated/mercs/paladin-initiate-portrait.png"
   }
 ]

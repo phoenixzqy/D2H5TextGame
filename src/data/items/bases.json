@@ -646,5 +646,128 @@
     "reqLevel": 60,
     "sockets": 4,
     "canHaveAffixes": true
+  },
+  {
+    "type": "jewelry",
+    "baseDefense": 0,
+    "id": "items/base/ring",
+    "reqLevel": 1,
+    "name": "Ring",
+    "slot": "ring-left",
+    "sockets": 0,
+    "canHaveAffixes": true
+  },
+  {
+    "type": "armor",
+    "baseDefense": 5,
+    "id": "items/base/gloves",
+    "reqLevel": 1,
+    "name": "Gloves",
+    "slot": "gloves",
+    "sockets": 0,
+    "canHaveAffixes": true
+  },
+  {
+    "type": "armor",
+    "baseDefense": 5,
+    "id": "items/base/boots",
+    "reqLevel": 1,
+    "name": "Boots",
+    "slot": "boots",
+    "sockets": 0,
+    "canHaveAffixes": true
+  },
+  {
+    "type": "armor",
+    "baseDefense": 3,
+    "id": "items/base/belt",
+    "reqLevel": 1,
+    "name": "Belt",
+    "slot": "belt",
+    "sockets": 0,
+    "canHaveAffixes": true
+  },
+  {
+    "type": "armor",
+    "baseDefense": 30,
+    "id": "items/base/armor-light",
+    "reqLevel": 10,
+    "name": "Light Armor",
+    "slot": "chest",
+    "sockets": 2,
+    "canHaveAffixes": true
+  },
+  {
+    "type": "armor",
+    "baseDefense": 100,
+    "id": "items/base/armor-heavy",
+    "reqLevel": 40,
+    "name": "Heavy Armor",
+    "slot": "chest",
+    "sockets": 3,
+    "canHaveAffixes": true
+  },
+  {
+    "name": "Bow",
+    "reqLevel": 10,
+    "type": "weapon",
+    "id": "items/base/weapon-bow",
+    "slot": "weapon",
+    "sockets": 2,
+    "canHaveAffixes": true
+  },
+  {
+    "name": "Crossbow",
+    "reqLevel": 15,
+    "type": "weapon",
+    "id": "items/base/weapon-crossbow",
+    "slot": "weapon",
+    "sockets": 2,
+    "canHaveAffixes": true
+  },
+  {
+    "name": "Polearm",
+    "reqLevel": 20,
+    "type": "weapon",
+    "id": "items/base/weapon-polearm",
+    "slot": "weapon",
+    "sockets": 3,
+    "canHaveAffixes": true
+  },
+  {
+    "name": "Wand",
+    "reqLevel": 5,
+    "type": "weapon",
+    "id": "items/base/weapon-wand",
+    "slot": "weapon",
+    "sockets": 1,
+    "canHaveAffixes": true
+  },
+  {
+    "name": "Scepter",
+    "reqLevel": 15,
+    "type": "weapon",
+    "id": "items/base/weapon-scepter",
+    "slot": "weapon",
+    "sockets": 2,
+    "canHaveAffixes": true
+  },
+  {
+    "name": "Mace",
+    "reqLevel": 10,
+    "type": "weapon",
+    "id": "items/base/weapon-mace",
+    "slot": "weapon",
+    "sockets": 2,
+    "canHaveAffixes": true
+  },
+  {
+    "name": "Axe",
+    "reqLevel": 12,
+    "type": "weapon",
+    "id": "items/base/weapon-axe",
+    "slot": "weapon",
+    "sockets": 2,
+    "canHaveAffixes": true
   }
 ]

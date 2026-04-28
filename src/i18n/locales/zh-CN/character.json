@@ -20,5 +20,40 @@
     "amazon": "亚马逊",
     "druid": "德鲁伊",
     "assassin": "刺客"
-  }
+  },
+  "hud": {
+    "aria": "{{name}} · 等级 {{level}}。点击查看角色面板。"
+  },
+  "screen": {
+    "title": "角色",
+    "noCharacter": "尚未创建角色",
+    "derived": "派生属性",
+    "resistances": "抗性",
+    "equipment": "装备",
+    "noEquipment": "尚未装备任何物品",
+    "statPoints": "可用属性点",
+    "skillPoints": "可用技能点"
+  },
+  "title": "角色",
+  "attributes": {
+    "vitality": "体力",
+    "energy": "精力",
+    "dexterity": "敏捷",
+    "strength": "力量"
+  },
+  "derived": {
+    "mana": "法力",
+    "magicDodge": "魔法闪避",
+    "defense": "防御",
+    "life": "生命",
+    "attackRating": "攻击等级",
+    "physDodge": "物理闪避"
+  },
+  "resistances": {
+    "cold": "冰霜抗性",
+    "poison": "毒素抗性",
+    "fire": "火焰抗性",
+    "light": "闪电抗性"
+  },
+  "equipped": "已装备"
 }

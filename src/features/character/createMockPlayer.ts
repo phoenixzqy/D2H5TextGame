@@ -3,7 +3,8 @@
  * Returns a Player that satisfies the strict types in `engine/types/entities.ts`.
  */
 import type { Player } from '@/engine/types/entities';
-import type { CoreStats, DerivedStats } from '@/engine/types/attributes';
+import type { CoreStats } from '@/engine/types/attributes';
+import { deriveStats } from '@/engine/progression/stats';
 
 export type CharacterClass =
   | 'barbarian'
@@ -55,34 +56,7 @@ export function createMockPlayer(name: string, cls: CharacterClass): Player {
     vitality: stats.vitality,
     energy: stats.energy,
   };
-  const derivedStats: DerivedStats = {
-    life: stats.life,
-    lifeMax: stats.life,
-    mana: stats.mana,
-    manaMax: stats.mana,
-    attack: 10 + stats.dexterity,
-    defense: 10 + stats.dexterity,
-    attackSpeed: 100,
-    castSpeed: 100,
-    moveSpeed: 100,
-    critChance: 5,
-    critDamage: 150,
-    physDodge: 0,
-    magicDodge: 0,
-    blockChance: 0,
-    lifeRegen: 0,
-    manaRegen: 1,
-    magicFind: 0,
-    goldFind: 0,
-    resistances: {
-      fire: 0,
-      cold: 0,
-      lightning: 0,
-      poison: 0,
-      arcane: 0,
-      physical: 0,
-    },
-  } as unknown as DerivedStats;
+  const derivedStats = deriveStats(coreStats, 1);
 
   return {
     id: `player-${String(Date.now())}`,
@@ -104,5 +78,5 @@ export function createMockPlayer(name: string, cls: CharacterClass): Player {
     statPoints: 0,
     skillPoints: 0,
     equipment: [],
-  } as Player;
+  };
 }

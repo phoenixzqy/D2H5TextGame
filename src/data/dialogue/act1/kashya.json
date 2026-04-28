@@ -1,0 +1,37 @@
+{
+  "id": "dialogue/act1/kashya",
+  "npcId": "kashya",
+  "greetings": [
+    {
+      "whenFlags": ["quest_sisters_burial_grounds_complete"],
+      "text": "You have given my fallen sisters peace. Blood Raven is no more. I... I am grateful, warrior."
+    },
+    {
+      "text": "I am Kashya, captain of the Rogue archers. We've lost many sisters to the darkness. If you prove yourself, I can assign a Rogue scout to accompany you."
+    }
+  ],
+  "services": [
+    {
+      "type": "hire",
+      "prompt": "Hire a Rogue mercenary",
+      "response": "Take your pick. These sisters have lost their home, but not their will to fight. Treat them well."
+    }
+  ],
+  "questBranches": [
+    {
+      "questId": "quest_sisters_burial_grounds",
+      "stage": "offer",
+      "text": "Blood Raven — one of our finest archers — has been corrupted. She now commands the dead in the Sisters' Burial Grounds. End her torment. Slay her."
+    },
+    {
+      "questId": "quest_sisters_burial_grounds",
+      "stage": "in-progress",
+      "text": "Blood Raven still defiles the Burial Grounds. She was once a hero. Now she must be stopped."
+    },
+    {
+      "questId": "quest_sisters_burial_grounds",
+      "stage": "complete",
+      "text": "You have freed Blood Raven from her cursed existence. She can rest now. You have my respect, and the Rogues will fight at your side."
+    }
+  ]
+}

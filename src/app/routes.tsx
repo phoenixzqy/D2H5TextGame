@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { HomeScreen } from '@/features/character/HomeScreen';
 import { CharacterCreate } from '@/features/character/CharacterCreate';
+import { CharacterScreen } from '@/features/character/CharacterScreen';
 import { TownScreen } from '@/features/town/TownScreen';
 import { MapScreen } from '@/features/map/MapScreen';
 import { CombatScreen } from '@/features/combat/CombatScreen';
@@ -17,6 +18,14 @@ export function AppRoutes() {
     <Routes>
       <Route path="/" element={<HomeScreen />} />
       <Route path="/character/new" element={<CharacterCreate />} />
+      <Route
+        path="/character"
+        element={
+          <RequireCharacter>
+            <CharacterScreen />
+          </RequireCharacter>
+        }
+      />
       <Route path="/settings" element={<SettingsScreen />} />
       <Route
         path="/town"

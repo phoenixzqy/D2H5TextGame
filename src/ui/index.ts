@@ -8,3 +8,4 @@ export { RarityText } from './RarityText';
 export { ItemTooltip } from './ItemTooltip';
 export { BottomNav } from './BottomNav';
 export { ScreenShell } from './ScreenShell';
+export { CharacterHud } from './CharacterHud';

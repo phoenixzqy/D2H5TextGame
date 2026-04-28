@@ -9,5 +9,9 @@
   "recentPulls": "Recent Pulls",
   "noRecent": "No history yet",
   "result": "Pull Result",
-  "confirm": "Confirm"
+  "confirm": "Confirm",
+  "banner": "Banner",
+  "bannerName": "Wish of the Horadrim",
+  "grant": "+90 💠 (dev)",
+  "isNew": "NEW"
 }

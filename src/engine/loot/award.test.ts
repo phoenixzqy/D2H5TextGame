@@ -1,0 +1,126 @@
+/**
+ * Award orchestrator tests — focus on determinism and basic plumbing.
+ */
+import { describe, it, expect, beforeEach } from 'vitest';
+import { createRng } from '../rng';
+import type { ItemBase } from '../types/items';
+import type { TreasureClass } from './drop-roller';
+import { rollKillRewards, rollBatchRewards, type AwardDataPools } from './award';
+import { __resetItemSeqForTests } from './item-instance';
+
+const baseShortSword: ItemBase = {
+  id: 'wp1h_short_sword',
+  name: 'Short Sword',
+  type: 'weapon',
+  slot: 'weapon',
+  reqLevel: 1,
+  canHaveAffixes: true
+};
+const baseHelm: ItemBase = {
+  id: 'helm_cap',
+  name: 'Cap',
+  type: 'armor',
+  slot: 'head',
+  reqLevel: 1,
+  canHaveAffixes: true
+};
+
+const tc: TreasureClass = {
+  id: 'tc_test',
+  picks: [
+    { baseId: 'wp1h_short_sword', weight: 100, qlvlMin: 1, qlvlMax: 20 },
+    { baseId: 'helm_cap', weight: 100, qlvlMin: 1, qlvlMax: 20 }
+  ],
+  numPicks: 3,
+  noDropChance: 0
+};
+
+const pools: AwardDataPools = {
+  bases: new Map([
+    [baseShortSword.id, baseShortSword],
+    [baseHelm.id, baseHelm]
+  ]),
+  affixes: [
+    { id: 'pre.sharp', name: 'Sharp', type: 'prefix', minIlvl: 1, damageBonus: { min: 1, max: 5, breakdown: { physical: 5 } } },
+    { id: 'pre.fiery', name: 'Fiery', type: 'prefix', minIlvl: 1, damageBonus: { min: 1, max: 10, breakdown: { fire: 10 } } },
+    { id: 'suf.health', name: 'of Health', type: 'suffix', minIlvl: 1, statMods: { life: 10 } },
+    { id: 'suf.warding', name: 'of Warding', type: 'suffix', minIlvl: 1, resistances: { fire: 5 } }
+  ],
+  uniques: [
+    { id: 'unique.gnarled-root', name: 'Gnarled Root', baseId: 'wp1h_short_sword', reqLevel: 1 }
+  ],
+  setPieces: [],
+  treasureClasses: new Map([[tc.id, tc]])
+};
+
+describe('award.rollKillRewards', () => {
+  beforeEach(() => { __resetItemSeqForTests(); });
+
+  it('is deterministic for a fixed seed', () => {
+    const a = rollKillRewards(
+      { tier: 'elite', monsterLevel: 5, treasureClassId: tc.id, magicFind: 100, goldFind: 0, act: 1 },
+      pools,
+      createRng(123)
+    );
+    __resetItemSeqForTests();
+    const b = rollKillRewards(
+      { tier: 'elite', monsterLevel: 5, treasureClassId: tc.id, magicFind: 100, goldFind: 0, act: 1 },
+      pools,
+      createRng(123)
+    );
+    expect(b.items.map((i) => ({ baseId: i.baseId, rarity: i.rarity, level: i.level })))
+      .toEqual(a.items.map((i) => ({ baseId: i.baseId, rarity: i.rarity, level: i.level })));
+    expect(b.gold).toBe(a.gold);
+  });
+
+  it('awards gold even when treasure class is unknown', () => {
+    const r = rollKillRewards(
+      { tier: 'trash', monsterLevel: 3, treasureClassId: 'tc_missing', magicFind: 0, goldFind: 0, act: 1 },
+      pools,
+      createRng(7)
+    );
+    expect(r.items).toEqual([]);
+    expect(r.gold).toBeGreaterThan(0);
+  });
+
+  it('boss kills produce items and gold', () => {
+    const r = rollKillRewards(
+      { tier: 'boss', monsterLevel: 14, treasureClassId: tc.id, magicFind: 200, goldFind: 50, act: 1 },
+      pools,
+      createRng(42)
+    );
+    expect(r.items.length).toBeGreaterThan(0);
+    expect(r.gold).toBeGreaterThan(0);
+  });
+
+  it('mixes rarities at high MF', () => {
+    let allWhite = true;
+    const r = rollBatchRewards(
+      Array.from({ length: 30 }, () => ({
+        tier: 'trash' as const,
+        monsterLevel: 5,
+        treasureClassId: tc.id,
+        magicFind: 1000,
+        goldFind: 0,
+        act: 1 as const
+      })),
+      pools,
+      createRng(2024)
+    );
+    for (const it of r.items) if (it.rarity !== 'normal') allWhite = false;
+    expect(allWhite).toBe(false);
+  });
+
+  it('generates valid items with stable ids', () => {
+    const r = rollKillRewards(
+      { tier: 'elite', monsterLevel: 5, treasureClassId: tc.id, magicFind: 50, goldFind: 0, act: 1 },
+      pools,
+      createRng(99)
+    );
+    for (const it of r.items) {
+      expect(it.id).toMatch(/^it-/);
+      expect(pools.bases.has(it.baseId)).toBe(true);
+      expect(it.level).toBe(5);
+    }
+  });
+});

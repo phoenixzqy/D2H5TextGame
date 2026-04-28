@@ -9,7 +9,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, Panel, ScreenShell } from '@/ui';
-import { useMapStore } from '@/stores';
+import { useMapStore, useMetaStore } from '@/stores';
 
 interface SubArea {
   id: string;
@@ -76,10 +76,8 @@ export function MapScreen() {
   const { t } = useTranslation(['map', 'common']);
   const navigate = useNavigate();
   const setLocation = useMapStore((s) => s.setCurrentLocation);
-  const updateIdle = (() => {
-    // Lazy import to avoid breaking if tests mock differently
-    return null;
-  })();
+  const isActUnlocked = useMapStore((s) => s.isActUnlocked);
+  const setIdleTarget = useMetaStore((s) => s.setIdleTarget);
 
   const [openAct, setOpenAct] = useState<number>(1);
 
@@ -89,8 +87,7 @@ export function MapScreen() {
   };
   const farmHere = (act: number, subId: string) => {
     setLocation(act, subId);
-    // idle target update happens in engine wave
-    void updateIdle;
+    setIdleTarget(subId);
   };
 
   return (
@@ -98,7 +95,7 @@ export function MapScreen() {
       <div className="space-y-3 max-w-3xl mx-auto">
         {ACTS.map((act) => {
           const isOpen = openAct === act.number;
-          const actUnlocked = act.unlockedByDefault ?? false;
+          const actUnlocked = isActUnlocked(act.number);
           return (
             <Panel key={act.number} className="p-0 overflow-hidden">
               <button
@@ -124,7 +121,7 @@ export function MapScreen() {
               {isOpen && (
                 <ul className="border-t border-d2-border divide-y divide-d2-border/50">
                   {act.subAreas.map((sa) => {
-                    const unlocked = (sa.unlockedByDefault ?? false) || actUnlocked;
+                    const unlocked = actUnlocked;
                     return (
                       <li key={sa.id} className="px-3 py-2 flex flex-wrap items-center gap-2">
                         <div className="flex-1 min-w-[160px]">

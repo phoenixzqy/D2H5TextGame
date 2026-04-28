@@ -1,0 +1,42 @@
+{
+  "id": "dialogue/act1/warriv",
+  "npcId": "warriv",
+  "greetings": [
+    {
+      "whenFlags": ["quest_sisters_to_the_slaughter_complete"],
+      "text": "Andariel is dead? Then the way east is clear! My caravan can finally move. I'll take you to Lut Gholein when you're ready."
+    },
+    {
+      "text": "Greetings. I'm Warriv, leader of this caravan. We've been stuck here since the roads became too dangerous. If you can clear the path, we can move on."
+    }
+  ],
+  "services": [
+    {
+      "type": "travel",
+      "prompt": "Take me to Lut Gholein",
+      "response": "The way east is open. Climb aboard! Lut Gholein awaits — and so does Act II."
+    },
+    {
+      "type": "trade",
+      "prompt": "Show me your wares",
+      "response": "I carry supplies from the east — some weapons, armor, odds and ends. Take a look."
+    }
+  ],
+  "questBranches": [
+    {
+      "questId": "quest_sisters_to_the_slaughter",
+      "stage": "offer",
+      "text": "The monastery catacombs lead down to something... ancient. Andariel, the Maiden of Anguish, has claimed them. She's the one behind this demonic invasion. Slay her, and the way east will be clear."
+    },
+    {
+      "questId": "quest_sisters_to_the_slaughter",
+      "stage": "in-progress",
+      "text": "Andariel waits in the deepest level of the catacombs. Be prepared — she is a Lesser Evil, not some mere demon."
+    },
+    {
+      "questId": "quest_sisters_to_the_slaughter",
+      "stage": "complete",
+      "text": "Andariel is dead! Incredible! The Rogue Pass is safe again. My caravan can finally move east to Lut Gholein. You've earned passage, warrior."
+    }
+  ]
+}

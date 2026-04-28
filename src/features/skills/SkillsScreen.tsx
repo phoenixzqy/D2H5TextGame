@@ -36,20 +36,24 @@ export function SkillsScreen() {
     return organizeSkillsByTree(allSkills);
   }, [allSkills]);
 
-  // Build a map of allocated skill levels
+  // Build a map of allocated skill levels from player.skillLevels (real allocation state).
   const allocatedSkills = useMemo(() => {
     const map = new Map<string, number>();
-    // TODO: This should come from player state when skill allocation is implemented
-    // For now, we'll track based on player.skills array if available
-    if (player?.skills) {
+    const levels = player?.skillLevels;
+    if (levels) {
+      for (const [id, lvl] of Object.entries(levels)) {
+        if (lvl > 0) map.set(id, lvl);
+      }
+    }
+    // Back-compat: some legacy player objects expose `skills` array.
+    if (map.size === 0 && player?.skills) {
       player.skills.forEach((skill) => {
-        // Skill might have a level property or we assume 1 point if present
         const level = 'level' in skill && typeof skill.level === 'number' ? skill.level : 1;
         map.set(skill.id, level);
       });
     }
     return map;
-  }, [player?.skills]);
+  }, [player?.skillLevels, player?.skills]);
 
   const combo = useMemo<string[]>(() => {
     const arr = (player?.comboOrder ?? []).slice(0, COMBO_SLOTS);

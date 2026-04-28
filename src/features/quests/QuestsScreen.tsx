@@ -1,96 +1,94 @@
 /**
- * QuestsScreen — Tabs (Main / Side / Bounty), quest list with objectives + rewards.
+ * QuestsScreen — real quests grouped by act.
+ *
+ * Layout (mobile-first 360×640):
+ *   [tabs: main | side | bounty]
+ *   ── Act I ────────────────
+ *     [QuestCard]
+ *     [QuestCard]
+ *   ── Act II ───────────────
+ *     ...
+ *
+ * Source: `loadQuestsByAct()` (reads `src/data/quests/{main,side}.json`).
+ * Progress: `useMapStore.questProgress` (id → { status, objectives }).
+ *
+ * No business logic in this component — quest definitions and progress are
+ * pulled via loaders/stores; rendering only.
  */
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Panel, ScreenShell, Tabs } from '@/ui';
 import { useMapStore } from '@/stores';
+import {
+  loadQuestsByAct,
+  questI18nKey,
+  actNumber,
+  type QuestDef,
+  type QuestType
+} from '@/data/loaders/quests';
 
-interface MockQuest {
-  id: string;
-  category: 'main' | 'side' | 'bounty';
-  nameKey: string;
-  descKey: string;
-  objectives: { key: string; done: boolean }[];
-  rewards: { type: 'xp' | 'gold' | 'item'; amount?: number; itemKey?: string }[];
-  status: 'available' | 'inProgress' | 'completed' | 'locked';
-}
+type QuestStatus = 'locked' | 'available' | 'inProgress' | 'completed';
 
-const MOCK_QUESTS: MockQuest[] = [
-  {
-    id: 'q-den-of-evil',
-    category: 'main',
-    nameKey: 'quests.q.denOfEvil.name',
-    descKey: 'quests.q.denOfEvil.desc',
-    objectives: [{ key: 'quests.q.denOfEvil.obj1', done: false }],
-    rewards: [{ type: 'xp', amount: 500 }, { type: 'gold', amount: 200 }],
-    status: 'inProgress',
-  },
-  {
-    id: 'q-sisters-burial',
-    category: 'main',
-    nameKey: 'quests.q.sistersBurial.name',
-    descKey: 'quests.q.sistersBurial.desc',
-    objectives: [{ key: 'quests.q.sistersBurial.obj1', done: false }],
-    rewards: [{ type: 'xp', amount: 800 }],
-    status: 'available',
-  },
-  {
-    id: 'q-charsi-imbue',
-    category: 'side',
-    nameKey: 'quests.q.charsi.name',
-    descKey: 'quests.q.charsi.desc',
-    objectives: [{ key: 'quests.q.charsi.obj1', done: false }],
-    rewards: [{ type: 'item', itemKey: 'quests.reward.imbue' }],
-    status: 'available',
-  },
-  {
-    id: 'q-bounty-andariel',
-    category: 'bounty',
-    nameKey: 'quests.q.bountyAndariel.name',
-    descKey: 'quests.q.bountyAndariel.desc',
-    objectives: [{ key: 'quests.q.bountyAndariel.obj1', done: false }],
-    rewards: [{ type: 'gold', amount: 1500 }],
-    status: 'locked',
-  },
+const ACT_ORDER: readonly string[] = [
+  'acts/act1',
+  'acts/act2',
+  'acts/act3',
+  'acts/act4',
+  'acts/act5'
 ];
 
 export function QuestsScreen() {
   const { t } = useTranslation(['quests', 'common']);
   const questProgress = useMapStore((s) => s.questProgress);
 
-  const merged = MOCK_QUESTS.map((q) => {
-    const stored = questProgress[q.id];
-    return stored ? { ...q, status: stored.status } : q;
-  });
+  const byAct = useMemo(() => loadQuestsByAct(), []);
 
-  const renderList = (cat: MockQuest['category']) => {
-    const list = merged.filter((q) => q.category === cat);
-    if (list.length === 0) {
+  const renderType = (type: QuestType) => {
+    const acts = ACT_ORDER.filter((actId) => byAct.has(actId));
+    const sections = acts
+      .map((actId) => {
+        const quests = (byAct.get(actId) ?? []).filter((q) => q.type === type);
+        return { actId, quests };
+      })
+      .filter((s) => s.quests.length > 0);
+
+    if (sections.length === 0) {
       return (
-        <p className="text-sm text-d2-white/60 italic p-4 text-center">
-          {t('empty', { defaultValue: '暂无任务' })}
-        </p>
+        <p className="text-sm text-d2-white/60 italic p-4 text-center">{t('empty')}</p>
       );
     }
+
     return (
-      <ul className="space-y-2">
-        {list.map((q) => (
-          <li key={q.id}>
-            <QuestCard quest={q} />
-          </li>
+      <div className="space-y-4">
+        {sections.map(({ actId, quests }) => (
+          <section key={actId} aria-labelledby={`hdr-${actId}`}>
+            <h2
+              id={`hdr-${actId}`}
+              className="text-sm font-serif text-d2-gold/80 mb-2 border-b border-d2-border pb-1"
+            >
+              {t(`act.${actNumber(actId)}`, { defaultValue: actId })}
+            </h2>
+            <ul className="space-y-2">
+              {quests.map((q) => (
+                <li key={q.id}>
+                  <QuestCard quest={q} status={resolveStatus(q, questProgress)} />
+                </li>
+              ))}
+            </ul>
+          </section>
         ))}
-      </ul>
+      </div>
     );
   };
 
   return (
-    <ScreenShell testId="quests-screen" title={t('quests')}>
+    <ScreenShell testId="quests-screen" title={t('title')}>
       <div className="max-w-3xl mx-auto">
         <Tabs
           tabs={[
-            { id: 'main', label: t('main'), content: renderList('main') },
-            { id: 'side', label: t('side'), content: renderList('side') },
-            { id: 'bounty', label: t('bounty'), content: renderList('bounty') },
+            { id: 'main', label: t('main'), content: renderType('main') },
+            { id: 'side', label: t('side'), content: renderType('side') },
+            { id: 'bounty', label: t('bounty'), content: renderType('bounty') }
           ]}
           defaultTab="main"
         />
@@ -99,60 +97,116 @@ export function QuestsScreen() {
   );
 }
 
-function QuestCard({ quest }: { quest: MockQuest }) {
+function resolveStatus(
+  quest: QuestDef,
+  progress: Record<string, { status: QuestStatus; objectives: Record<string, boolean> }>
+): QuestStatus {
+  const stored = progress[quest.id];
+  if (stored) return stored.status;
+  // Default: locked if a prereq isn't completed; available otherwise.
+  if (quest.prerequisites && quest.prerequisites.length > 0) {
+    const allDone = quest.prerequisites.every(
+      (pid) => progress[pid]?.status === 'completed'
+    );
+    return allDone ? 'available' : 'locked';
+  }
+  return 'available';
+}
+
+function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) {
   const { t } = useTranslation('quests');
+  const slug = questI18nKey(quest.id);
+  const name = t(`byId.${slug}.name`, { defaultValue: quest.name });
+  const desc = t(`byId.${slug}.desc`, { defaultValue: quest.description });
+
   return (
     <Panel
       className={
-        quest.status === 'locked'
+        status === 'locked'
           ? 'opacity-60'
-          : quest.status === 'completed'
+          : status === 'completed'
           ? 'border-d2-set'
           : ''
       }
+      data-testid={`quest-${quest.id}`}
     >
       <div className="flex items-start justify-between gap-2 mb-2">
-        <h3 className="font-serif text-d2-gold">
-          {t(quest.nameKey, { defaultValue: quest.id })}
-        </h3>
-        <StatusBadge status={quest.status} />
+        <h3 className="font-serif text-d2-gold text-sm sm:text-base">{name}</h3>
+        <StatusBadge status={status} />
       </div>
-      <p className="text-xs text-d2-white/70 mb-2">{t(quest.descKey, { defaultValue: '' })}</p>
+      <p className="text-xs text-d2-white/70 mb-2">{desc}</p>
       <div className="text-xs">
         <div className="text-d2-white/60 mb-1">{t('objectives')}</div>
         <ul className="list-disc list-inside space-y-0.5 mb-2">
-          {quest.objectives.map((o, i) => (
-            <li key={i} className={o.done ? 'line-through text-d2-set' : ''}>
-              {t(o.key, { defaultValue: o.key })}
-            </li>
-          ))}
+          {quest.objectives.map((o, i) => {
+            const objKey = `byId.${slug}.obj${String(i + 1)}`;
+            const done =
+              status === 'completed' ||
+              Boolean(
+                useMapStore.getState().questProgress[quest.id]?.objectives[o.id]
+              );
+            return (
+              <li key={o.id} className={done ? 'line-through text-d2-set' : ''}>
+                {t(objKey, { defaultValue: o.description })}
+                {typeof o.count === 'number' ? ` (×${String(o.count)})` : ''}
+              </li>
+            );
+          })}
         </ul>
-        <div className="text-d2-white/60 mb-1">{t('rewards')}</div>
-        <ul className="flex flex-wrap gap-2">
-          {quest.rewards.map((r, i) => (
-            <li key={i} className="border border-d2-border rounded px-2 py-0.5 bg-d2-bg/40">
-              {r.type === 'xp' && `✨ ${String(r.amount ?? 0)} XP`}
-              {r.type === 'gold' && `💰 ${String(r.amount ?? 0)}`}
-              {r.type === 'item' && `🎁 ${t(r.itemKey ?? '', { defaultValue: 'Item' })}`}
-            </li>
-          ))}
-        </ul>
+        {quest.rewards && Object.keys(quest.rewards).length > 0 && (
+          <>
+            <div className="text-d2-white/60 mb-1">{t('rewards')}</div>
+            <ul className="flex flex-wrap gap-1.5">
+              {Object.entries(quest.rewards).map(([k, v]) => (
+                <li
+                  key={k}
+                  className="border border-d2-border rounded px-2 py-0.5 bg-d2-bg/40"
+                >
+                  {formatReward(k, v, t)}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
       </div>
     </Panel>
   );
 }
 
-function StatusBadge({ status }: { status: MockQuest['status'] }) {
+function formatReward(
+  k: string,
+  v: unknown,
+  t: ReturnType<typeof useTranslation<'quests'>>['t']
+): string {
+  if (k === 'xp' && typeof v === 'number')
+    return `✨ ${String(v)} ${t('rewardLabel.xp', { defaultValue: 'XP' })}`;
+  if (k === 'gold' && typeof v === 'number') return `💰 ${String(v)}`;
+  if (k === 'skillPoints' && typeof v === 'number')
+    return `🎯 +${String(v)} ${t('rewardLabel.skillPoint', { defaultValue: 'Skill' })}`;
+  if (k === 'mercenaryUnlock' && typeof v === 'string') return `🛡️ ${v}`;
+  if (k === 'service' && typeof v === 'string') return `🏷️ ${v}`;
+  if (k === 'itemDrop' && typeof v === 'string') return `🎁 ${v}`;
+  if (k === 'lootTable' && typeof v === 'string') return `📦 ${v}`;
+  if (k === 'areaUnlock' && typeof v === 'string') return `🗺️ ${v}`;
+  if (k === 'npcUnlock' && typeof v === 'string') return `👤 ${v}`;
+  if (k === 'stat' && typeof v === 'object' && v !== null)
+    return `📈 +${JSON.stringify(v)}`;
+  return `${k}: ${typeof v === 'object' ? JSON.stringify(v) : String(v)}`;
+}
+
+function StatusBadge({ status }: { status: QuestStatus }) {
   const { t } = useTranslation('quests');
-  const map: Record<MockQuest['status'], { label: string; cls: string }> = {
+  const map: Record<QuestStatus, { label: string; cls: string }> = {
     inProgress: { label: t('inProgress'), cls: 'text-d2-rare border-d2-rare/60' },
     completed: { label: t('completed'), cls: 'text-d2-set border-d2-set/60' },
     locked: { label: t('locked'), cls: 'text-d2-white/50 border-d2-border' },
-    available: { label: t('available', { defaultValue: '可领取' }), cls: 'text-d2-gold border-d2-gold/60' },
+    available: { label: t('available'), cls: 'text-d2-gold border-d2-gold/60' }
   };
   const m = map[status];
   return (
-    <span className={`text-[10px] uppercase tracking-wide border rounded px-2 py-0.5 ${m.cls}`}>
+    <span
+      className={`text-[10px] uppercase tracking-wide border rounded px-2 py-0.5 whitespace-nowrap ${m.cls}`}
+    >
       {m.label}
     </span>
   );

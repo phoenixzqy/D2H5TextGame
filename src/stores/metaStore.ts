@@ -5,6 +5,19 @@
 
 import { create } from 'zustand';
 import type { Settings, IdleState, GachaState } from '@/engine/types/save';
+import { loadMercPool, type MercDef } from '@/data/loaders/mercs';
+import { createRng } from '@/engine/rng';
+import { rollMany, pickFromPool, type GachaRarity } from '@/engine/gacha/roller';
+import { createMercFromDef } from './mercFactory';
+import { useMercStore } from './mercStore';
+
+/** Result of a single gacha pull surfaced to the UI. */
+export interface GachaPullResult {
+  readonly mercDef: MercDef;
+  readonly rarity: GachaRarity;
+  /** True when this pull recruited a new merc; false on duplicate. */
+  readonly isNew: boolean;
+}
 
 interface MetaState {
   settings: Settings;
@@ -18,12 +31,19 @@ interface MetaState {
   toggleSound: () => void;
   toggleMusic: () => void;
   toggleAutoCombat: () => void;
+  setIdleTarget: (areaId: string | undefined) => void;
   updateIdleState: (idleState: Partial<IdleState>) => void;
   updateGachaState: (gachaState: Partial<GachaState>) => void;
   addGachaCurrency: (amount: number) => void;
   spendGachaCurrency: (amount: number) => boolean;
   incrementPity: () => void;
   resetPity: () => void;
+  /**
+   * Run an N-pull gacha. Returns the results, or `null` when the player
+   * lacks enough currency. Spends `count × banner.cost.single` currency,
+   * threads pity through every pull, and adds new mercs to `useMercStore`.
+   */
+  pullGacha: (count: number) => GachaPullResult[] | null;
   reset: () => void;
 }
 
@@ -95,6 +115,18 @@ export const useMetaStore = create<MetaState>((set, get) => ({
       autoCombat: !state.settings.autoCombat
     }
   })); },
+
+  /** Persist the player's chosen idle-farming target sub-area. */
+  setIdleTarget: (areaId: string | undefined) => { set((state) => {
+    const nextIdle: IdleState = areaId === undefined
+      ? (() => {
+          const { idleTarget: _omit, ...rest } = state.idleState;
+          void _omit;
+          return rest as IdleState;
+        })()
+      : { ...state.idleState, idleTarget: areaId };
+    return { idleState: nextIdle };
+  }); },
   
   updateIdleState: (idleState) => { set((state) => ({
     idleState: {
@@ -146,7 +178,70 @@ export const useMetaStore = create<MetaState>((set, get) => ({
       pityCounter: 0
     }
   })); },
-  
+
+  pullGacha: (count) => {
+    const pool = loadMercPool();
+    const totalCost = pool.banner.cost.single * count;
+    const state = get();
+    if (state.gachaState.currency < totalCost) return null;
+
+    // Charge up-front so any thrown errors below leave the wallet
+    // unchanged (we restore on throw via try/catch).
+    set((s) => ({
+      gachaState: {
+        ...s.gachaState,
+        currency: s.gachaState.currency - totalCost
+      }
+    }));
+
+    try {
+      const rng = createRng((Date.now() ^ state.gachaState.pityCounter) >>> 0);
+      const { results, finalPity } = rollMany(
+        rng,
+        pool.rates,
+        state.gachaState.pityCounter,
+        pool.pity.ssr.threshold,
+        count
+      );
+      // Build a quick lookup from id → MercDef
+      const byId = new Map<string, MercDef>();
+      for (const m of pool.pool) byId.set(m.id, m);
+
+      const ownedIds = new Set(useMercStore.getState().ownedMercs.map((m) => m.id));
+      const out: GachaPullResult[] = [];
+      for (const roll of results) {
+        const mercId = pickFromPool(rng, pool.banner.pool, roll.rarity);
+        const def = byId.get(mercId);
+        if (!def) continue;
+        const isNew = !ownedIds.has(def.id);
+        if (isNew) {
+          useMercStore.getState().addMerc(createMercFromDef(def));
+          ownedIds.add(def.id);
+        }
+        out.push({ mercDef: def, rarity: roll.rarity, isNew });
+      }
+
+      const ownedSnapshot = [...useMercStore.getState().ownedMercs.map((m) => m.id)];
+      set((s) => ({
+        gachaState: {
+          ...s.gachaState,
+          pityCounter: finalPity,
+          ownedMercIds: ownedSnapshot
+        }
+      }));
+      return out;
+    } catch (err) {
+      // Refund on unexpected failure.
+      set((s) => ({
+        gachaState: {
+          ...s.gachaState,
+          currency: s.gachaState.currency + totalCost
+        }
+      }));
+      throw err;
+    }
+  },
+
   reset: () => { set({
     settings: initialSettings,
     idleState: initialIdleState,

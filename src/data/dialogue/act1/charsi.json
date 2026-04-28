@@ -1,0 +1,47 @@
+{
+  "id": "dialogue/act1/charsi",
+  "npcId": "charsi",
+  "greetings": [
+    {
+      "whenFlags": ["quest_tools_of_the_trade_complete"],
+      "text": "Thanks again for bringing back my Horadric Malus! I can imbue one normal item with magic now, whenever you're ready."
+    },
+    {
+      "text": "Good day to ya! I'm Charsi, the blacksmith here. Need anything repaired or want to trade?"
+    }
+  ],
+  "services": [
+    {
+      "type": "repair",
+      "prompt": "Repair my equipment",
+      "response": "Sure thing. A few taps of the hammer and it'll be good as new."
+    },
+    {
+      "type": "trade",
+      "prompt": "Show me your wares",
+      "response": "I got weapons, armor, bolts and arrows. All good quality, camp-made."
+    },
+    {
+      "type": "imbue",
+      "prompt": "Imbue an item",
+      "response": "Alright! Hand me a plain item and I'll make it magical with the Horadric Malus. This is a one-time thing, so choose wisely!"
+    }
+  ],
+  "questBranches": [
+    {
+      "questId": "quest_tools_of_the_trade",
+      "stage": "offer",
+      "text": "I had an enchanted smithing hammer — the Horadric Malus. But the monastery fell and it's still in there somewhere, in the Barracks I think. If you could bring it back, I could do so much more for the camp."
+    },
+    {
+      "questId": "quest_tools_of_the_trade",
+      "stage": "in-progress",
+      "text": "Find my Malus in the Barracks of the monastery. It's a special hammer — you'll know it when you see it."
+    },
+    {
+      "questId": "quest_tools_of_the_trade",
+      "stage": "complete",
+      "text": "You found it! My Malus! Oh, thank you! As thanks, I can imbue one normal item with powerful magic for you. Just say the word."
+    }
+  ]
+}

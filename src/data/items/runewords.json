@@ -614,5 +614,283 @@
         "life": 12
       }
     }
+  },
+  {
+    "stats": {
+      "grantsSkills": [
+        "aura-conviction"
+      ],
+      "statMods": {
+        "attackSpeed": 45,
+        "critChance": 20,
+        "attack": 300
+      }
+    },
+    "runes": [
+      "runes/ber",
+      "runes/mal",
+      "runes/ber",
+      "runes/ist"
+    ],
+    "allowedBases": [
+      "weapon"
+    ],
+    "name": "Infinity",
+    "reqLevel": 63,
+    "id": "runewords/infinity",
+    "sockets": 4
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 300
+      },
+      "coreStats": {
+        "strength": 40
+      },
+      "grantsSkills": [
+        "skill-lycanthropy"
+      ]
+    },
+    "runes": [
+      "runes/ber",
+      "runes/tir",
+      "runes/um",
+      "runes/mal",
+      "runes/lum"
+    ],
+    "allowedBases": [
+      "weapon"
+    ],
+    "name": "Beast",
+    "reqLevel": 63,
+    "id": "runewords/beast",
+    "sockets": 5
+  },
+  {
+    "stats": {
+      "resistances": {
+        "lightning": 65,
+        "fire": 65,
+        "cold": 65,
+        "poison": 65
+      },
+      "statMods": {
+        "life": 70,
+        "defense": 180
+      },
+      "coreStats": {
+        "vitality": 20,
+        "strength": 15
+      }
+    },
+    "runes": [
+      "runes/dol",
+      "runes/um",
+      "runes/ber",
+      "runes/ist"
+    ],
+    "allowedBases": [
+      "armor"
+    ],
+    "name": "Chains of Honor",
+    "reqLevel": 63,
+    "id": "runewords/chains-of-honor",
+    "sockets": 4
+  },
+  {
+    "stats": {
+      "statMods": {
+        "defense": 140
+      },
+      "resistances": {
+        "poison": 100
+      },
+      "grantsSkills": [
+        "aura-thorns-aura"
+      ]
+    },
+    "runes": [
+      "runes/ral",
+      "runes/ohm",
+      "runes/sur",
+      "runes/eth"
+    ],
+    "allowedBases": [
+      "armor"
+    ],
+    "name": "Bramble",
+    "reqLevel": 61,
+    "id": "runewords/bramble",
+    "sockets": 4
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 350,
+        "critChance": 25
+      },
+      "coreStats": {
+        "strength": 30
+      },
+      "grantsSkills": [
+        "skill-fade"
+      ]
+    },
+    "runes": [
+      "runes/jah",
+      "runes/mal",
+      "runes/jah",
+      "runes/sur",
+      "runes/jah",
+      "runes/ber"
+    ],
+    "allowedBases": [
+      "weapon"
+    ],
+    "name": "Last Wish",
+    "reqLevel": 65,
+    "id": "runewords/last-wish",
+    "sockets": 6
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 280
+      },
+      "resistances": {
+        "lightning": 50,
+        "fire": 50
+      },
+      "grantsSkills": [
+        "aura-redemption"
+      ]
+    },
+    "runes": [
+      "runes/vex",
+      "runes/vex",
+      "runes/lo",
+      "runes/jah"
+    ],
+    "allowedBases": [
+      "weapon"
+    ],
+    "name": "Phoenix",
+    "reqLevel": 65,
+    "id": "runewords/phoenix",
+    "sockets": 4
+  },
+  {
+    "stats": {
+      "statMods": {
+        "mana": 100,
+        "defense": 120
+      },
+      "resistances": {
+        "lightning": 30
+      },
+      "grantsSkills": [
+        "aura-holy-shock"
+      ]
+    },
+    "runes": [
+      "runes/io",
+      "runes/jah",
+      "runes/pul"
+    ],
+    "allowedBases": [
+      "armor"
+    ],
+    "name": "Dream",
+    "reqLevel": 65,
+    "id": "runewords/dream",
+    "sockets": 3
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 300,
+        "attackSpeed": 33
+      },
+      "resistances": {
+        "fire": 40
+      },
+      "grantsSkills": [
+        "skill-blaze"
+      ]
+    },
+    "runes": [
+      "runes/sur",
+      "runes/cham",
+      "runes/amn",
+      "runes/lo"
+    ],
+    "allowedBases": [
+      "weapon"
+    ],
+    "name": "Hand of Justice",
+    "reqLevel": 67,
+    "id": "runewords/hand-of-justice",
+    "sockets": 4
+  },
+  {
+    "stats": {
+      "resistances": {
+        "lightning": 30,
+        "fire": 30,
+        "cold": 30,
+        "poison": 30
+      },
+      "statMods": {
+        "defense": 220
+      },
+      "coreStats": {
+        "vitality": 20
+      },
+      "grantsSkills": [
+        "aura-defiance"
+      ]
+    },
+    "runes": [
+      "runes/vex",
+      "runes/ohm",
+      "runes/ist",
+      "runes/dol"
+    ],
+    "allowedBases": [
+      "weapon"
+    ],
+    "name": "Exile",
+    "reqLevel": 57,
+    "id": "runewords/exile",
+    "sockets": 4
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 400,
+        "critChance": 50
+      },
+      "coreStats": {
+        "strength": 25
+      },
+      "grantsSkills": [
+        "skill-chain-lightning"
+      ]
+    },
+    "runes": [
+      "runes/hel",
+      "runes/el",
+      "runes/vex",
+      "runes/ort",
+      "runes/gul"
+    ],
+    "allowedBases": [
+      "weapon"
+    ],
+    "name": "Death",
+    "reqLevel": 55,
+    "id": "runewords/death",
+    "sockets": 5
   }
 ]

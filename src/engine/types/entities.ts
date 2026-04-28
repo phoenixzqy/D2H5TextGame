@@ -74,6 +74,13 @@ export interface Player extends Unit {
   /** Available skill points */
   readonly skillPoints: number;
   
+  /**
+   * Allocated skill levels keyed by skill id. When a skill point is spent
+   * via `usePlayerStore.allocateSkillPoint`, the matching entry is
+   * incremented. Absent entries are treated as level 0 (unallocated).
+   */
+  readonly skillLevels?: Readonly<Record<string, number>>;
+  
   /** Equipped items */
   readonly equipment: readonly Item[];
 }

@@ -6,8 +6,14 @@
 import { runBattle, type BattleEvent } from '@/engine/combat/combat';
 import type { CombatUnit } from '@/engine/combat/types';
 import type { Player } from '@/engine/types/entities';
+import type { Item } from '@/engine/types/items';
+import { rollKillRewards, type KillRewards } from '@/engine/loot/award';
+import { loadAwardPools } from '@/data/loaders/loot';
 import { useCombatStore, type CombatLogEntry } from './combatStore';
+import { useInventoryStore } from './inventoryStore';
+import { useMapStore } from './mapStore';
 import { usePlayerStore } from './playerStore';
+import { createRng } from '@/engine/rng';
 
 /**
  * Convert a Player to a CombatUnit for battle
@@ -188,6 +194,63 @@ export function battleEventToLogEntry(
 }
 
 /**
+ * Award post-victory loot for a list of slain enemies. Pure dispatcher:
+ * rolls items + currencies via the engine and pushes them into the
+ * inventory store. Returns the aggregated rewards so the UI can render a
+ * loot summary panel.
+ */
+export function awardLootForVictory(opts: {
+  readonly slainEnemies: readonly CombatUnit[];
+  readonly act: 1 | 2 | 3 | 4 | 5;
+  readonly treasureClassId: string;
+  readonly seed: number;
+}): KillRewards {
+  const player = usePlayerStore.getState().player;
+  const magicFind = player?.derivedStats.magicFind ?? 0;
+  const goldFind = player?.derivedStats.goldFind ?? 0;
+  const pools = loadAwardPools();
+  const rng = createRng(opts.seed >>> 0);
+  const inv = useInventoryStore.getState();
+
+  const items: Item[] = [];
+  let gold = 0;
+  let runes = 0;
+  let gems = 0;
+  let wishstones = 0;
+
+  for (const enemy of opts.slainEnemies) {
+    const r = rollKillRewards(
+      {
+        tier: enemy.tier,
+        monsterLevel: enemy.level,
+        treasureClassId: opts.treasureClassId,
+        magicFind,
+        goldFind,
+        act: opts.act,
+        difficulty: 'normal'
+      },
+      pools,
+      rng
+    );
+    for (const it of r.items) {
+      items.push(it);
+      inv.addItem(it);
+    }
+    gold += r.gold;
+    runes += r.runes;
+    gems += r.gems;
+    wishstones += r.wishstones;
+  }
+
+  if (gold > 0) inv.addCurrency('gold', gold);
+  if (runes > 0) inv.addCurrency('rune-shard', runes);
+  if (gems > 0) inv.addCurrency('gem-shard', gems);
+  if (wishstones > 0) inv.addCurrency('wishstone', wishstones);
+
+  return { items, gold, runes, gems, wishstones };
+}
+
+/**
  * Start a simple battle for testing/demo
  */
 export function startSimpleBattle(enemyLevel = 1, enemyCount = 3) {
@@ -239,5 +302,20 @@ export function startSimpleBattle(enemyLevel = 1, enemyCount = 3) {
     combatState.updateUnit(unit.id, () => unit);
   });
 
-  return result;
+  // On victory, roll loot for every slain enemy and dispatch into inventory.
+  let rewards: KillRewards | undefined;
+  if (result.winner === 'player') {
+    const slain = result.enemyTeam.filter((u) => u.life <= 0);
+    const mapState = useMapStore.getState();
+    const act = (Math.min(5, Math.max(1, mapState.currentAct)) as 1 | 2 | 3 | 4 | 5);
+    const treasureClassId = `loot/trash-act${String(act)}`;
+    rewards = awardLootForVictory({
+      slainEnemies: slain,
+      act,
+      treasureClassId,
+      seed: seed ^ 0x9e3779b1
+    });
+  }
+
+  return { ...result, rewards };
 }

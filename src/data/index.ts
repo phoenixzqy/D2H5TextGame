@@ -90,11 +90,17 @@ export const dropTableFiles = ['./loot/treasure-classes.json'] as const;
 /** Magic-find curve singleton. */
 export const mfCurveFile = './loot/mf-curve.json';
 
+/** Rarity rules singleton. */
+export const rarityRulesFile = './items/rarity-rules.json';
+
 /** Mercenary definition files. */
 export const mercFiles = ['./gacha/mercenaries.json'] as const;
 
 /** Gacha banner singleton. */
 export const bannerConfigFile = './gacha/banner-config.json';
+
+/** Dialogue files. */
+export const dialogueFiles = ['./dialogue/act1/*.json'] as const;
 
 /** Quest files. */
 export const mainQuestsFile = './quests/main.json';
@@ -170,7 +176,17 @@ const mercModules = import.meta.glob<unknown[]>(
   { eager: true, import: 'default' }
 ) as JsonModule<unknown[]>;
 
+const dialogueModules = import.meta.glob<unknown[]>(
+  './dialogue/act1/*.json',
+  { eager: true, import: 'default' }
+) as JsonModule<unknown[]>;
+
 const mfCurveModules = import.meta.glob<unknown>('./loot/mf-curve.json', {
+  eager: true,
+  import: 'default'
+}) as JsonModule<unknown>;
+
+const rarityRulesModules = import.meta.glob<unknown>('./items/rarity-rules.json', {
   eager: true,
   import: 'default'
 }) as JsonModule<unknown>;
@@ -237,10 +253,17 @@ export const dropTables = flatten<{ id: string }>(
 export const mercenaries = flatten<{ id: string }>(
   mercModules as JsonModule<{ id: string }[]>
 );
+export const dialogues = flatten<{ id: string }>(
+  dialogueModules as JsonModule<{ id: string }[]>
+);
 
 /** Singleton: magic-find diminishing-returns curve. */
 export const mfCurve = single<{ id: string }>(
   mfCurveModules as JsonModule<{ id: string }>
+);
+/** Singleton: rarity rules. */
+export const rarityRules = single<{ id: string }>(
+  rarityRulesModules as JsonModule<{ id: string }>
 );
 /** Singleton: gacha banner configuration. */
 export const bannerConfig = single<Record<string, unknown>>(

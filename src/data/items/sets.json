@@ -155,5 +155,563 @@
       },
       "4": {}
     }
+  },
+  {
+    "id": "sets/trang-oul-avatar",
+    "items": [
+      "sets/trang-oul-avatar/helm",
+      "sets/trang-oul-avatar/armor",
+      "sets/trang-oul-avatar/gloves",
+      "sets/trang-oul-avatar/shield"
+    ],
+    "name": "Trang-Oul's Avatar",
+    "bonuses": {
+      "3": {
+        "statMods": {
+          "mana": 100
+        }
+      },
+      "4": {
+        "resistances": {
+          "lightning": 40,
+          "fire": 40,
+          "cold": 40,
+          "poison": 100
+        },
+        "statMods": {
+          "defense": 150
+        },
+        "coreStats": {
+          "energy": 30,
+          "vitality": 30
+        }
+      },
+      "2": {
+        "resistances": {
+          "poison": 50
+        }
+      }
+    }
+  },
+  {
+    "id": "sets/natalya-odium",
+    "items": [
+      "sets/natalya-odium/helm",
+      "sets/natalya-odium/armor",
+      "sets/natalya-odium/boots",
+      "sets/natalya-odium/weapon"
+    ],
+    "name": "Natalya's Odium",
+    "bonuses": {
+      "3": {
+        "statMods": {
+          "critChance": 15
+        }
+      },
+      "4": {
+        "resistances": {
+          "lightning": 30,
+          "fire": 30,
+          "cold": 30,
+          "poison": 50
+        },
+        "statMods": {
+          "attackSpeed": 40,
+          "critDamage": 50
+        },
+        "coreStats": {
+          "vitality": 20,
+          "dexterity": 40
+        }
+      },
+      "2": {
+        "coreStats": {
+          "dexterity": 20
+        }
+      }
+    }
+  },
+  {
+    "id": "sets/sigon-complete-steel",
+    "items": [
+      "sets/sigon-complete-steel/helm",
+      "sets/sigon-complete-steel/armor",
+      "sets/sigon-complete-steel/gloves",
+      "sets/sigon-complete-steel/belt",
+      "sets/sigon-complete-steel/boots",
+      "sets/sigon-complete-steel/shield"
+    ],
+    "name": "Sigon's Complete Steel",
+    "bonuses": {
+      "3": {
+        "statMods": {
+          "attackSpeed": 30
+        }
+      },
+      "6": {
+        "statMods": {
+          "life": 100,
+          "defense": 120,
+          "attack": 200
+        },
+        "coreStats": {
+          "vitality": 30,
+          "strength": 40
+        }
+      },
+      "2": {
+        "coreStats": {
+          "strength": 15
+        }
+      }
+    }
+  },
+  {
+    "id": "sets/cleglaw-brace",
+    "items": [
+      "sets/cleglaw-brace/weapon",
+      "sets/cleglaw-brace/shield",
+      "sets/cleglaw-brace/gloves"
+    ],
+    "name": "Cleglaw's Brace",
+    "bonuses": {
+      "2": {
+        "statMods": {
+          "attack": 80
+        }
+      },
+      "3": {
+        "statMods": {
+          "physDodge": 15,
+          "defense": 50,
+          "attack": 150
+        }
+      }
+    }
+  },
+  {
+    "id": "sets/death-disguise",
+    "items": [
+      "sets/death-disguise/sash",
+      "sets/death-disguise/gloves",
+      "sets/death-disguise/armor"
+    ],
+    "name": "Death's Disguise",
+    "bonuses": {
+      "2": {
+        "coreStats": {
+          "dexterity": 15
+        }
+      },
+      "3": {
+        "resistances": {
+          "poison": 50
+        },
+        "statMods": {
+          "life": 60,
+          "defense": 80
+        }
+      }
+    }
+  },
+  {
+    "id": "sets/hsarus-defense",
+    "items": [
+      "sets/hsarus-defense/belt",
+      "sets/hsarus-defense/boots",
+      "sets/hsarus-defense/shield"
+    ],
+    "name": "Hsarus' Defense",
+    "bonuses": {
+      "2": {
+        "resistances": {
+          "cold": 25,
+          "fire": 25
+        }
+      },
+      "3": {
+        "statMods": {
+          "defense": 100
+        },
+        "coreStats": {
+          "vitality": 20
+        }
+      }
+    }
+  },
+  {
+    "id": "sets/iratha-finery",
+    "items": [
+      "sets/iratha-finery/amulet",
+      "sets/iratha-finery/weapon",
+      "sets/iratha-finery/gloves",
+      "sets/iratha-finery/helm"
+    ],
+    "name": "Iratha's Finery",
+    "bonuses": {
+      "4": {
+        "resistances": {
+          "lightning": 50,
+          "fire": 50,
+          "cold": 50,
+          "poison": 50
+        }
+      },
+      "2": {
+        "resistances": {
+          "lightning": 30,
+          "fire": 30
+        }
+      }
+    }
+  },
+  {
+    "id": "sets/isenhart-armory",
+    "items": [
+      "sets/isenhart-armory/armor",
+      "sets/isenhart-armory/helm",
+      "sets/isenhart-armory/weapon",
+      "sets/isenhart-armory/shield"
+    ],
+    "name": "Isenhart's Armory",
+    "bonuses": {
+      "4": {
+        "statMods": {
+          "attack": 150,
+          "defense": 100
+        },
+        "coreStats": {
+          "dexterity": 20,
+          "strength": 15
+        }
+      },
+      "2": {
+        "coreStats": {
+          "dexterity": 10
+        }
+      }
+    }
+  },
+  {
+    "id": "sets/arctic-gear",
+    "items": [
+      "sets/arctic-gear/armor",
+      "sets/arctic-gear/belt",
+      "sets/arctic-gear/gloves",
+      "sets/arctic-gear/helm"
+    ],
+    "name": "Arctic Gear",
+    "bonuses": {
+      "4": {
+        "resistances": {
+          "cold": 100,
+          "fire": 30
+        },
+        "statMods": {
+          "defense": 150
+        }
+      },
+      "2": {
+        "resistances": {
+          "cold": 50
+        }
+      }
+    }
+  },
+  {
+    "id": "sets/civerb-vestments",
+    "items": [
+      "sets/civerb-vestments/weapon",
+      "sets/civerb-vestments/shield",
+      "sets/civerb-vestments/amulet"
+    ],
+    "name": "Civerb's Vestments",
+    "bonuses": {
+      "2": {
+        "statMods": {
+          "attack": 100
+        }
+      },
+      "3": {
+        "statMods": {
+          "attack": 150,
+          "magicFind": 25
+        }
+      }
+    }
+  },
+  {
+    "id": "sets/cathan-traps",
+    "items": [
+      "sets/cathan-traps/ring",
+      "sets/cathan-traps/amulet",
+      "sets/cathan-traps/armor",
+      "sets/cathan-traps/helm",
+      "sets/cathan-traps/gloves"
+    ],
+    "name": "Cathan's Traps",
+    "bonuses": {
+      "3": {
+        "resistances": {
+          "fire": 50
+        }
+      },
+      "5": {
+        "resistances": {
+          "fire": 60
+        },
+        "statMods": {
+          "magicFind": 50
+        },
+        "coreStats": {
+          "dexterity": 20,
+          "strength": 20
+        }
+      },
+      "2": {
+        "statMods": {
+          "magicFind": 25
+        }
+      }
+    }
+  },
+  {
+    "id": "sets/vidala-rig",
+    "items": [
+      "sets/vidala-rig/boots",
+      "sets/vidala-rig/amulet",
+      "sets/vidala-rig/armor",
+      "sets/vidala-rig/weapon"
+    ],
+    "name": "Vidala's Rig",
+    "bonuses": {
+      "4": {
+        "statMods": {
+          "attack": 200,
+          "attackSpeed": 30
+        },
+        "coreStats": {
+          "vitality": 15,
+          "dexterity": 35
+        }
+      },
+      "2": {
+        "coreStats": {
+          "dexterity": 15
+        }
+      }
+    }
+  },
+  {
+    "id": "sets/aldur-watchtower",
+    "items": [
+      "sets/aldur-watchtower/helm",
+      "sets/aldur-watchtower/armor",
+      "sets/aldur-watchtower/boots",
+      "sets/aldur-watchtower/weapon"
+    ],
+    "name": "Aldur's Watchtower",
+    "bonuses": {
+      "3": {
+        "statMods": {
+          "attackSpeed": 40
+        }
+      },
+      "4": {
+        "resistances": {
+          "lightning": 40,
+          "fire": 40,
+          "cold": 40,
+          "poison": 40
+        },
+        "statMods": {
+          "life": 150
+        },
+        "coreStats": {
+          "strength": 30,
+          "energy": 20,
+          "vitality": 30
+        }
+      },
+      "2": {
+        "coreStats": {
+          "vitality": 15,
+          "strength": 15
+        }
+      }
+    }
+  },
+  {
+    "id": "sets/bul-kathos-children",
+    "items": [
+      "sets/bul-kathos-children/weapon1",
+      "sets/bul-kathos-children/weapon2"
+    ],
+    "name": "Bul-Kathos' Children",
+    "bonuses": {
+      "2": {
+        "statMods": {
+          "attackSpeed": 50,
+          "life": 200,
+          "attack": 300
+        },
+        "coreStats": {
+          "vitality": 30,
+          "strength": 40
+        }
+      }
+    }
+  },
+  {
+    "id": "sets/griswold-legacy",
+    "items": [
+      "sets/griswold-legacy/helm",
+      "sets/griswold-legacy/armor",
+      "sets/griswold-legacy/weapon",
+      "sets/griswold-legacy/shield"
+    ],
+    "name": "Griswold's Legacy",
+    "bonuses": {
+      "3": {
+        "resistances": {
+          "lightning": 40,
+          "fire": 40,
+          "cold": 40,
+          "poison": 40
+        }
+      },
+      "4": {
+        "resistances": {
+          "lightning": 60,
+          "fire": 60,
+          "cold": 60,
+          "poison": 60
+        },
+        "statMods": {
+          "defense": 200
+        },
+        "coreStats": {
+          "vitality": 30,
+          "strength": 30
+        }
+      },
+      "2": {
+        "statMods": {
+          "defense": 100
+        }
+      }
+    }
+  },
+  {
+    "id": "sets/naj-ancient-vestige",
+    "items": [
+      "sets/naj-ancient-vestige/armor",
+      "sets/naj-ancient-vestige/weapon",
+      "sets/naj-ancient-vestige/helm"
+    ],
+    "name": "Naj's Ancient Vestige",
+    "bonuses": {
+      "2": {
+        "statMods": {
+          "defense": 120
+        }
+      },
+      "3": {
+        "statMods": {
+          "mana": 150,
+          "defense": 180
+        },
+        "coreStats": {
+          "energy": 40
+        },
+        "grantsSkills": [
+          "skill-teleport"
+        ]
+      }
+    }
+  },
+  {
+    "id": "sets/sander-folly",
+    "items": [
+      "sets/sander-folly/gloves",
+      "sets/sander-folly/boots",
+      "sets/sander-folly/weapon"
+    ],
+    "name": "Sander's Folly",
+    "bonuses": {
+      "2": {
+        "coreStats": {
+          "dexterity": 15
+        }
+      },
+      "3": {
+        "statMods": {
+          "attack": 150,
+          "attackSpeed": 40
+        }
+      }
+    }
+  },
+  {
+    "id": "sets/mavina-battle-hymn",
+    "items": [
+      "sets/mavina-battle-hymn/helm",
+      "sets/mavina-battle-hymn/armor",
+      "sets/mavina-battle-hymn/belt",
+      "sets/mavina-battle-hymn/gloves",
+      "sets/mavina-battle-hymn/weapon"
+    ],
+    "name": "M'avina's Battle Hymn",
+    "bonuses": {
+      "3": {
+        "statMods": {
+          "attackSpeed": 30
+        }
+      },
+      "5": {
+        "statMods": {
+          "attackSpeed": 50,
+          "magicFind": 40,
+          "attack": 250
+        },
+        "coreStats": {
+          "vitality": 25,
+          "dexterity": 50
+        }
+      },
+      "2": {
+        "coreStats": {
+          "dexterity": 20
+        }
+      }
+    }
+  },
+  {
+    "id": "sets/orphan-call",
+    "items": [
+      "sets/orphan-call/helm",
+      "sets/orphan-call/armor",
+      "sets/orphan-call/gloves",
+      "sets/orphan-call/weapon"
+    ],
+    "name": "Orphan's Call",
+    "bonuses": {
+      "4": {
+        "statMods": {
+          "life": 150,
+          "defense": 150
+        },
+        "coreStats": {
+          "vitality": 30,
+          "strength": 40
+        }
+      },
+      "2": {
+        "coreStats": {
+          "vitality": 15,
+          "strength": 15
+        }
+      }
+    }
   }
 ]

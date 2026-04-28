@@ -7,20 +7,20 @@
     "tenPull": 90
   },
   "rates": {
-    "SSR": 0.02,
-    "SR": 0.13,
-    "R": 0.85
+    "SSR": 0.10,
+    "SR": 0.30,
+    "R": 0.60
   },
   "pity": {
     "sr": {
-      "threshold": 10,
+      "threshold": 30,
       "guaranteedTier": "SR",
-      "description": "Every 10 pulls without an SR+ guarantees the next pull is SR or higher. The SR-guaranteed slot still has a 2% upgrade chance to SSR."
+      "description": "Every 30 pulls without an SR+ guarantees the next pull is SR or higher. The SR-guaranteed slot still has a 10% upgrade chance to SSR."
     },
     "ssr": {
-      "threshold": 50,
+      "threshold": 90,
       "guaranteedTier": "SSR",
-      "description": "Every 50 pulls without an SSR guarantees the next pull is SSR. Counter is independent of the SR pity counter."
+      "description": "Every 90 pulls without an SSR guarantees the next pull is SSR. Counter is independent of the SR pity counter."
     },
     "carryAcrossSessions": true,
     "resetRules": {

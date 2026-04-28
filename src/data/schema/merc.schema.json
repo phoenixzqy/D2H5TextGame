@@ -4,7 +4,7 @@
   "title": "Mercenary Definition",
   "description": "Mercenary archetype definition",
   "type": "object",
-  "required": ["id", "name", "archetype", "rarity", "baseStats", "skills", "reqLevel"],
+  "required": ["id", "name", "archetype", "rarity", "baseStats", "skills", "reqLevel", "classRef", "signatureSkillId", "starUpgradeCurve", "portraitAsset", "iconAsset"],
   "additionalProperties": false,
   "properties": {
     "id": {
@@ -15,6 +15,11 @@
       "type": "string",
       "minLength": 1
     },
+    "classRef": {
+      "type": "string",
+      "description": "Class/archetype reference — superset of player classes plus D2 merc archetypes",
+      "enum": ["amazon", "assassin", "barbarian", "druid", "necromancer", "paladin", "sorceress", "rogue", "desert-merc", "iron-wolf", "militia", "thief", "acolyte"]
+    },
     "archetype": {
       "type": "string",
       "description": "Mercenary class/type"
@@ -23,8 +28,23 @@
       "type": "string",
       "enum": ["R", "SR", "SSR"]
     },
+    "signatureSkillId": {
+      "type": "string",
+      "description": "Signature skill ID (gains +1 rank per star)"
+    },
     "baseStats": {
       "$ref": "#/$defs/baseStats"
+    },
+    "starUpgradeCurve": {
+      "$ref": "#/$defs/starUpgradeCurve"
+    },
+    "portraitAsset": {
+      "type": "string",
+      "description": "Path to portrait image under public/"
+    },
+    "iconAsset": {
+      "type": "string",
+      "description": "Path to icon image under public/"
     },
     "skills": {
       "type": "array",
@@ -56,6 +76,19 @@
         "dexterity": { "type": "integer", "minimum": 1 },
         "vitality": { "type": "integer", "minimum": 1 },
         "energy": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "starUpgradeCurve": {
+      "type": "object",
+      "required": ["1", "2", "3", "4", "5", "6"],
+      "additionalProperties": false,
+      "properties": {
+        "1": { "type": "number", "description": "Stat multiplier at 1★", "minimum": 1.0 },
+        "2": { "type": "number", "description": "Stat multiplier at 2★", "minimum": 1.0 },
+        "3": { "type": "number", "description": "Stat multiplier at 3★", "minimum": 1.0 },
+        "4": { "type": "number", "description": "Stat multiplier at 4★", "minimum": 1.0 },
+        "5": { "type": "number", "description": "Stat multiplier at 5★", "minimum": 1.0 },
+        "6": { "type": "number", "description": "Stat multiplier at 6★", "minimum": 1.0 }
       }
     }
   }

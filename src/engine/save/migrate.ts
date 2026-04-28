@@ -7,7 +7,7 @@
  * @module engine/save/migrate
  */
 
-import { MIGRATIONS, type SaveV1 } from '../types/save';
+import { CURRENT_SAVE_VERSION, MIGRATIONS, type SaveCurrent } from '../types/save';
 
 /** A save in any past or current version. */
 export interface VersionedSave {
@@ -18,7 +18,10 @@ export interface VersionedSave {
  * Run all migrations needed to bring `save` up to the current version.
  * Throws if a required migration is missing.
  */
-export function runMigrations(save: VersionedSave, targetVersion = 1): SaveV1 {
+export function runMigrations(
+  save: VersionedSave,
+  targetVersion: number = CURRENT_SAVE_VERSION
+): SaveCurrent {
   let current: VersionedSave = save;
   while (current.version < targetVersion) {
     const next = current.version + 1;
@@ -35,5 +38,5 @@ export function runMigrations(save: VersionedSave, targetVersion = 1): SaveV1 {
       `Save version ${String(current.version)} is newer than target ${String(targetVersion)}`
     );
   }
-  return current as SaveV1;
+  return current as SaveCurrent;
 }

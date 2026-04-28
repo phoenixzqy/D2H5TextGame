@@ -1,0 +1,62 @@
+{
+  "id": "dialogue/act1/akara",
+  "npcId": "akara",
+  "greetings": [
+    {
+      "whenFlags": ["quest_den_of_evil_complete"],
+      "text": "Greetings, warrior. You have cleansed the Den of Evil. The Sisterhood is grateful."
+    },
+    {
+      "text": "Welcome, stranger. I sense great strength in you. I am Akara, High Priestess of the Sisterhood of the Sightless Eye. We need your help to cleanse this land of the demonic infestation."
+    }
+  ],
+  "services": [
+    {
+      "type": "heal",
+      "prompt": "Heal me",
+      "response": "Stand still. The wounds of battle are not permanent, but they must be tended. May the Light guide you."
+    },
+    {
+      "type": "identify",
+      "prompt": "Identify items",
+      "response": "Ah, an enchanted item. Let me peer into its nature... Yes, I see its powers now."
+    },
+    {
+      "type": "trade",
+      "prompt": "Show me your wares",
+      "response": "I have potions, scrolls, and some basic equipment. Take what you need."
+    }
+  ],
+  "questBranches": [
+    {
+      "questId": "quest_den_of_evil",
+      "stage": "offer",
+      "text": "There is a place of great evil in the wilderness. We call it the Den of Evil. Every night, more demons emerge from that cursed place. Slay them all, and perhaps we can begin to reclaim this land."
+    },
+    {
+      "questId": "quest_den_of_evil",
+      "stage": "in-progress",
+      "text": "The Den of Evil still teems with demons. You must destroy every last one of them."
+    },
+    {
+      "questId": "quest_den_of_evil",
+      "stage": "complete",
+      "text": "You have cleansed the Den! I can feel the evil lifting. As reward, I shall grant you a skill point to enhance your abilities."
+    },
+    {
+      "questId": "quest_search_for_cain",
+      "stage": "offer",
+      "text": "Deckard Cain is a scholar of great knowledge. Tristram has fallen to darkness, but he may yet live. Find the Tree of Inifuss in the Dark Wood — its bark holds the key to open Tristram's portal."
+    },
+    {
+      "questId": "quest_search_for_cain",
+      "stage": "in-progress",
+      "text": "Have you found the Tree of Inifuss? The scroll it holds will reveal the way to Tristram."
+    },
+    {
+      "questId": "quest_search_for_cain",
+      "stage": "complete",
+      "text": "You saved Deckard Cain! He is safe here now. Thank you, warrior. From now on, he will identify your items for free."
+    }
+  ]
+}

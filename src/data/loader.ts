@@ -31,6 +31,8 @@ import actSchema from './schema/act.schema.json';
 import subAreaSchema from './schema/sub-area.schema.json';
 import mercSchema from './schema/merc.schema.json';
 import dropTableSchema from './schema/drop-table.schema.json';
+import dialogueSchema from './schema/dialogue.schema.json';
+import rarityRulesSchema from './schema/rarity-rules.schema.json';
 
 // Eagerly-loaded JSON datasets (see ./index.ts)
 import {
@@ -46,8 +48,10 @@ import {
   subAreas as subAreaEntries,
   mercenaries as mercEntries,
   dropTables as dropTableEntries,
+  dialogues as dialogueEntries,
   mfCurve,
   bannerConfig,
+  rarityRules,
   mainQuests,
   sideQuests
 } from './index';
@@ -81,10 +85,13 @@ export interface GameData {
   readonly subAreas: ReadonlyMap<string, SubAreaDef>;
   readonly mercenaries: ReadonlyMap<string, unknown>; // TODO: type after merc impl
   readonly dropTables: ReadonlyMap<string, unknown>; // TODO: type after drop impl
+  readonly dialogues: ReadonlyMap<string, unknown>;
   /** Magic-find diminishing-returns curve singleton. */
   readonly mfCurve: Readonly<Record<string, unknown>>;
   /** Gacha banner configuration singleton. */
   readonly bannerConfig: Readonly<Record<string, unknown>>;
+  /** Rarity rules configuration singleton. */
+  readonly rarityRules: Readonly<Record<string, unknown>>;
   /** All quests (main + side), keyed by quest id. */
   readonly quests: ReadonlyMap<string, Readonly<Record<string, unknown>>>;
 }
@@ -116,6 +123,8 @@ function createValidator(): Ajv2020 {
   ajv.addSchema(subAreaSchema);
   ajv.addSchema(mercSchema);
   ajv.addSchema(dropTableSchema);
+  ajv.addSchema(dialogueSchema);
+  ajv.addSchema(rarityRulesSchema);
 
   return ajv;
 }
@@ -242,6 +251,11 @@ export async function loadGameData(): Promise<GameData> {
     dropTableSchema.$id,
     'dropTables'
   );
+  const dialogues = buildDataMap<{ id: string }>(
+    dialogueEntries,
+    dialogueSchema.$id,
+    'dialogues'
+  );
 
   // Singletons + quests — no per-entry schema validation yet (no schemas
   // committed for these documents). They are surfaced as opaque records
@@ -279,8 +293,10 @@ export async function loadGameData(): Promise<GameData> {
     subAreas: Object.freeze(subAreas),
     mercenaries: Object.freeze(mercenaries),
     dropTables: Object.freeze(dropTables),
+    dialogues: Object.freeze(dialogues),
     mfCurve: Object.freeze(mfCurve as Record<string, unknown>),
     bannerConfig: Object.freeze(bannerConfig),
+    rarityRules: Object.freeze(rarityRules as Record<string, unknown>),
     quests: Object.freeze(quests)
   });
 

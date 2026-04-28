@@ -674,5 +674,799 @@
         "arcane": 20
       }
     }
+  },
+  {
+    "stats": {
+      "statMods": {
+        "mana": 20,
+        "life": 15
+      }
+    },
+    "name": "Manald Heal",
+    "baseId": "items/base/ring",
+    "flavor": "A ring of regeneration stolen from the temple of Mana.",
+    "reqLevel": 15,
+    "id": "items/unique/manald-heal"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "goldFind": 50,
+        "magicFind": 30
+      }
+    },
+    "name": "Nagelring",
+    "baseId": "items/base/ring",
+    "flavor": "The merchant's favorite — more gold means more treasures to find.",
+    "reqLevel": 10,
+    "id": "items/unique/nagelring"
+  },
+  {
+    "stats": {
+      "coreStats": {
+        "vitality": 10
+      },
+      "statMods": {
+        "life": 50
+      }
+    },
+    "name": "Bul-Kathos' Wedding Band",
+    "baseId": "items/base/ring",
+    "flavor": "Worn by the ancient warlord himself. It whispers of strength and vitality.",
+    "reqLevel": 58,
+    "id": "items/unique/bul-kathos-wedding-band"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "defense": 60,
+        "life": 100
+      }
+    },
+    "name": "Vampire Gaze",
+    "baseId": "items/base/helm-casque",
+    "flavor": "It feeds on suffering and offers stolen life in return.",
+    "reqLevel": 41,
+    "id": "items/unique/vampiregaze"
+  },
+  {
+    "stats": {
+      "coreStats": {
+        "strength": 25,
+        "dexterity": 10
+      },
+      "statMods": {
+        "life": 80
+      }
+    },
+    "name": "Arreat's Face",
+    "baseId": "items/base/helm-armet",
+    "flavor": "The war-mask of Mount Arreat's guardians. Strength and savagery incarnate.",
+    "reqLevel": 42,
+    "id": "items/unique/arreat-face"
+  },
+  {
+    "stats": {
+      "resistances": {
+        "fire": 20,
+        "lightning": 20,
+        "cold": 20,
+        "poison": 20
+      },
+      "statMods": {
+        "physDodge": 15,
+        "defense": 100
+      }
+    },
+    "name": "Steelshade",
+    "baseId": "items/base/helm-armet",
+    "flavor": "A helm of tempered shadow-steel. It deflects both blows and magic.",
+    "reqLevel": 62,
+    "id": "items/unique/steelshade"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "magicFind": 35
+      }
+    },
+    "name": "Tarnhelm",
+    "baseId": "items/base/helm-skull-cap",
+    "flavor": "A humble cap that nevertheless draws fortune to the wearer.",
+    "reqLevel": 15,
+    "id": "items/unique/tarnhelm"
+  },
+  {
+    "stats": {
+      "coreStats": {
+        "vitality": 10
+      },
+      "resistances": {
+        "poison": 30
+      }
+    },
+    "name": "Wormskull",
+    "baseId": "items/base/helm-skull-cap",
+    "flavor": "Crawling with carrion magic. It grants unholy vitality.",
+    "reqLevel": 21,
+    "id": "items/unique/wormskull"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "defense": 180
+      },
+      "coreStats": {
+        "strength": 15,
+        "vitality": 15
+      },
+      "resistances": {
+        "fire": 20,
+        "lightning": 20,
+        "cold": 20,
+        "poison": 20
+      }
+    },
+    "name": "Duriel's Shell",
+    "baseId": "items/base/armor-heavy",
+    "flavor": "Armor forged from the carapace of the Lord of Pain himself.",
+    "reqLevel": 41,
+    "id": "items/unique/duriel-shell"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "defense": 250
+      },
+      "coreStats": {
+        "strength": 20,
+        "vitality": 20
+      },
+      "resistances": {
+        "fire": 50,
+        "lightning": 50,
+        "cold": 50
+      }
+    },
+    "name": "Leviathan",
+    "baseId": "items/base/armor-heavy",
+    "flavor": "An oceanic titan's hide. It grants near-immunity to the elements.",
+    "reqLevel": 65,
+    "id": "items/unique/leviathan"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "defense": 200
+      },
+      "coreStats": {
+        "strength": 15,
+        "energy": 20,
+        "vitality": 20
+      },
+      "resistances": {
+        "fire": 25,
+        "lightning": 25,
+        "cold": 25,
+        "arcane": 40,
+        "poison": 25
+      }
+    },
+    "name": "Tyrael's Might",
+    "baseId": "items/base/armor-heavy",
+    "flavor": "The archangel's own breastplate. It weighs nothing and grants endless endurance.",
+    "reqLevel": 84,
+    "id": "items/unique/tyrael-might"
+  },
+  {
+    "stats": {
+      "resistances": {
+        "cold": 30
+      },
+      "statMods": {
+        "mana": 40
+      }
+    },
+    "name": "Frostburn",
+    "baseId": "items/base/gloves",
+    "flavor": "Frozen gauntlets that amplify both mana and chill.",
+    "reqLevel": 29,
+    "id": "items/unique/frostburn"
+  },
+  {
+    "stats": {
+      "coreStats": {
+        "vitality": 10
+      },
+      "statMods": {
+        "defense": 10,
+        "life": 30
+      }
+    },
+    "name": "Bloodfist",
+    "baseId": "items/base/gloves",
+    "flavor": "Soaked in the blood of past battles. Grants raw vitality.",
+    "reqLevel": 12,
+    "id": "items/unique/bloodfist"
+  },
+  {
+    "stats": {
+      "resistances": {
+        "fire": 40
+      },
+      "statMods": {
+        "attack": 50
+      }
+    },
+    "name": "Lava Gout",
+    "baseId": "items/base/gloves",
+    "flavor": "Forged in the heart of a volcano. They burn enemies on contact.",
+    "reqLevel": 42,
+    "id": "items/unique/lava-gout"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "mana": 30,
+        "life": 30,
+        "attack": 40
+      }
+    },
+    "name": "Soul Drainer",
+    "baseId": "items/base/gloves",
+    "flavor": "Each strike saps the life and mana of foes, feeding the wearer.",
+    "reqLevel": 48,
+    "id": "items/unique/soul-drainer"
+  },
+  {
+    "stats": {
+      "resistances": {
+        "fire": 25
+      }
+    },
+    "name": "Hotspur",
+    "baseId": "items/base/boots",
+    "flavor": "A rogue's lucky boots. They ward off flames.",
+    "reqLevel": 5,
+    "id": "items/unique/hotspur"
+  },
+  {
+    "stats": {
+      "coreStats": {
+        "strength": 10
+      },
+      "statMods": {
+        "attack": 50,
+        "defense": 20,
+        "critChance": 15
+      }
+    },
+    "name": "Gore Rider",
+    "baseId": "items/base/boots",
+    "flavor": "Stained with demon blood. They crush bones and amplify deadly strikes.",
+    "reqLevel": 47,
+    "id": "items/unique/gore-rider"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "defense": 40
+      },
+      "coreStats": {
+        "strength": 10,
+        "dexterity": 10,
+        "vitality": 15
+      },
+      "resistances": {
+        "poison": 40
+      }
+    },
+    "name": "Sandstorm Trek",
+    "baseId": "items/base/boots",
+    "flavor": "Worn across countless deserts. Grants stamina and resilience.",
+    "reqLevel": 64,
+    "id": "items/unique/sandstorm-trek"
+  },
+  {
+    "stats": {
+      "coreStats": {
+        "dexterity": 15
+      },
+      "statMods": {
+        "attack": 30
+      }
+    },
+    "name": "Razortail",
+    "baseId": "items/base/belt-light",
+    "flavor": "Crafted from a demon's spine. Arrows and bolts pierce through foes.",
+    "reqLevel": 32,
+    "id": "items/unique/razortail"
+  },
+  {
+    "stats": {
+      "coreStats": {
+        "strength": 15,
+        "vitality": 15
+      },
+      "resistances": {
+        "lightning": 50
+      }
+    },
+    "name": "Thundergod's Vigor",
+    "baseId": "items/base/belt",
+    "flavor": "Infused with the fury of storms. Lightning magic crackles within.",
+    "reqLevel": 47,
+    "id": "items/unique/thundergod-vigor"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "mana": 100
+      },
+      "coreStats": {
+        "energy": 20
+      },
+      "resistances": {
+        "poison": 40
+      }
+    },
+    "name": "Arachnid Mesh",
+    "baseId": "items/base/belt",
+    "flavor": "Woven by the Spider Queen herself. A sorceress's ultimate belt.",
+    "reqLevel": 80,
+    "id": "items/unique/arachnid-mesh"
+  },
+  {
+    "stats": {
+      "coreStats": {
+        "vitality": 40
+      },
+      "statMods": {
+        "defense": 60,
+        "life": 100
+      }
+    },
+    "name": "Verdungo's Hearty Cord",
+    "baseId": "items/base/belt-heavy",
+    "flavor": "The barbarian lord's belt. Grants tremendous vitality.",
+    "reqLevel": 63,
+    "id": "items/unique/verdungo-cord"
+  },
+  {
+    "stats": {
+      "coreStats": {
+        "energy": 10
+      },
+      "statMods": {
+        "mana": 80,
+        "defense": 40
+      }
+    },
+    "name": "Lidless Wall",
+    "baseId": "items/base/sh-dragon-shield",
+    "flavor": "A sorceress's shield that never blinks. Grants arcane clarity.",
+    "reqLevel": 41,
+    "id": "items/unique/lidless-wall"
+  },
+  {
+    "stats": {
+      "resistances": {
+        "fire": 20,
+        "lightning": 20,
+        "cold": 20
+      },
+      "statMods": {
+        "physDodge": 10,
+        "defense": 80
+      }
+    },
+    "name": "Whitstan's Guard",
+    "baseId": "items/base/sh-dragon-shield",
+    "flavor": "A paladin's ward. It deflects blows with holy resilience.",
+    "reqLevel": 29,
+    "id": "items/unique/whistan-guard"
+  },
+  {
+    "stats": {
+      "resistances": {
+        "fire": 25,
+        "lightning": 25,
+        "cold": 25
+      },
+      "statMods": {
+        "defense": 100
+      }
+    },
+    "name": "Moser's Blessed Circle",
+    "baseId": "items/base/sh-dragon-shield",
+    "flavor": "Engraved with protective runes. It wards off all harm.",
+    "reqLevel": 31,
+    "id": "items/unique/moser-circle"
+  },
+  {
+    "stats": {
+      "resistances": {
+        "fire": 30,
+        "lightning": 30,
+        "cold": 30
+      },
+      "statMods": {
+        "magicDodge": 20,
+        "defense": 150
+      }
+    },
+    "name": "Gerke's Sanctuary",
+    "baseId": "items/base/sh-dragon-shield",
+    "flavor": "A massive ward blessed by a fallen paladin.",
+    "reqLevel": 44,
+    "id": "items/unique/gerke-sanctuary"
+  },
+  {
+    "stats": {
+      "resistances": {
+        "arcane": 30
+      },
+      "statMods": {
+        "magicDodge": 15,
+        "defense": 90
+      }
+    },
+    "name": "Spirit Ward",
+    "baseId": "items/base/sh-dragon-shield",
+    "flavor": "Bound with ancestral spirits. It deflects magical and physical harm.",
+    "reqLevel": 40,
+    "id": "items/unique/spirit-ward"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 200
+      },
+      "damageBonus": {
+        "breakdown": {
+          "arcane": 225
+        },
+        "min": 200,
+        "max": 250
+      }
+    },
+    "name": "Azurewrath",
+    "baseId": "items/base/wp1h-long-sword",
+    "flavor": "The blade of a celestial warrior. Demons flee before its light.",
+    "reqLevel": 85,
+    "id": "items/unique/azurewrath"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 180,
+        "attackSpeed": 30
+      },
+      "damageBonus": {
+        "breakdown": {
+          "lightning": 100
+        },
+        "min": 80,
+        "max": 120
+      },
+      "resistances": {
+        "lightning": 50
+      }
+    },
+    "name": "Lightsabre",
+    "baseId": "items/base/wp1h-long-sword",
+    "flavor": "A sword of pure lightning. It crackles with every swing.",
+    "reqLevel": 66,
+    "id": "items/unique/lightsabre"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 160
+      },
+      "damageBonus": {
+        "breakdown": {
+          "cold": 80
+        },
+        "min": 60,
+        "max": 100
+      },
+      "resistances": {
+        "cold": 40
+      }
+    },
+    "name": "Frostwind",
+    "baseId": "items/base/wp1h-long-sword",
+    "flavor": "An icy blade that freezes foes mid-swing.",
+    "reqLevel": 54,
+    "id": "items/unique/frostwind"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 200,
+        "magicFind": 40,
+        "goldFind": 100
+      },
+      "coreStats": {
+        "dexterity": 20
+      },
+      "damageBonus": {
+        "breakdown": {
+          "lightning": 100
+        },
+        "min": 80,
+        "max": 120
+      }
+    },
+    "name": "Goldstrike Arch",
+    "baseId": "items/base/weapon-bow",
+    "flavor": "A merchant-king's bow. It turns kills into coins.",
+    "reqLevel": 46,
+    "id": "items/unique/goldstrike-arch"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 210,
+        "attackSpeed": 60
+      },
+      "damageBonus": {
+        "breakdown": {
+          "physical": 120
+        },
+        "min": 100,
+        "max": 140
+      }
+    },
+    "name": "Demon Machine",
+    "baseId": "items/base/weapon-crossbow",
+    "flavor": "A crossbow possessed by a demon's spirit. It fires with unholy speed.",
+    "reqLevel": 49,
+    "id": "items/unique/demon-machine"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 270
+      },
+      "damageBonus": {
+        "breakdown": {
+          "physical": 175
+        },
+        "min": 150,
+        "max": 200
+      }
+    },
+    "name": "The Reaper's Toll",
+    "baseId": "items/base/weapon-polearm",
+    "flavor": "A polearm that saps life from the living and delivers it to the wielder.",
+    "reqLevel": 75,
+    "id": "items/unique/reaper-toll"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 310,
+        "magicFind": 60
+      },
+      "coreStats": {
+        "strength": 30,
+        "vitality": 20
+      },
+      "damageBonus": {
+        "breakdown": {
+          "physical": 250
+        },
+        "min": 200,
+        "max": 300
+      }
+    },
+    "name": "Tomb Reaver",
+    "baseId": "items/base/weapon-polearm",
+    "flavor": "Unearthed from a king's tomb. It grants power beyond measure.",
+    "reqLevel": 84,
+    "id": "items/unique/tomb-reaver"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 120
+      },
+      "coreStats": {
+        "energy": 20
+      },
+      "damageBonus": {
+        "breakdown": {
+          "poison": 80
+        },
+        "min": 60,
+        "max": 100
+      },
+      "resistances": {
+        "poison": 50
+      }
+    },
+    "name": "Death's Web",
+    "baseId": "items/base/weapon-wand",
+    "flavor": "A necromancer's ultimate wand. Poison courses through every hex.",
+    "reqLevel": 66,
+    "id": "items/unique/death-web"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 190
+      },
+      "coreStats": {
+        "strength": 15,
+        "vitality": 15
+      },
+      "damageBonus": {
+        "breakdown": {
+          "arcane": 100
+        },
+        "min": 80,
+        "max": 120
+      }
+    },
+    "name": "Heaven's Light",
+    "baseId": "items/base/weapon-scepter",
+    "flavor": "A holy scepter blessed by angels. Paladins wield it with devotion.",
+    "reqLevel": 61,
+    "id": "items/unique/heaven-light"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 240
+      },
+      "coreStats": {
+        "strength": 25
+      },
+      "damageBonus": {
+        "breakdown": {
+          "physical": 150
+        },
+        "min": 120,
+        "max": 180
+      }
+    },
+    "name": "Astreon's Iron Ward",
+    "baseId": "items/base/weapon-mace",
+    "flavor": "A legendary warlord's mace. It crushes both armor and bone.",
+    "reqLevel": 66,
+    "id": "items/unique/astreon-iron-ward"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 260
+      },
+      "coreStats": {
+        "strength": 30
+      },
+      "damageBonus": {
+        "breakdown": {
+          "lightning": 125
+        },
+        "min": 100,
+        "max": 150
+      },
+      "resistances": {
+        "lightning": 60
+      }
+    },
+    "name": "Schaefer's Hammer",
+    "baseId": "items/base/weapon-mace",
+    "flavor": "A thunderous warhammer. It calls down lightning on the wicked.",
+    "reqLevel": 79,
+    "id": "items/unique/schaefer-hammer"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 210,
+        "attackSpeed": 25
+      },
+      "damageBonus": {
+        "breakdown": {
+          "lightning": 100
+        },
+        "min": 80,
+        "max": 120
+      }
+    },
+    "name": "Stormlash",
+    "baseId": "items/base/weapon-mace",
+    "flavor": "A scourge that channels the fury of storms.",
+    "reqLevel": 59,
+    "id": "items/unique/stormlash"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 280
+      },
+      "coreStats": {
+        "strength": 25,
+        "vitality": 20
+      },
+      "damageBonus": {
+        "breakdown": {
+          "physical": 175
+        },
+        "min": 150,
+        "max": 200
+      }
+    },
+    "name": "Baranar's Star",
+    "baseId": "items/base/weapon-mace",
+    "flavor": "A devil's own mace. It crushes the righteous and the damned alike.",
+    "reqLevel": 81,
+    "id": "items/unique/baranar-star"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 250
+      },
+      "coreStats": {
+        "strength": 30
+      },
+      "damageBonus": {
+        "breakdown": {
+          "fire": 150
+        },
+        "min": 120,
+        "max": 180
+      }
+    },
+    "name": "Hellslayer",
+    "baseId": "items/base/weapon-axe",
+    "flavor": "An axe forged in the depths of the Burning Hells.",
+    "reqLevel": 66,
+    "id": "items/unique/hellslayer"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "attack": 270
+      },
+      "coreStats": {
+        "strength": 25
+      },
+      "damageBonus": {
+        "breakdown": {
+          "lightning": 125
+        },
+        "min": 100,
+        "max": 150
+      }
+    },
+    "name": "Stormspire",
+    "baseId": "items/base/weapon-polearm",
+    "flavor": "A towering polearm that calls lightning from the sky.",
+    "reqLevel": 70,
+    "id": "items/unique/stormspire"
+  },
+  {
+    "stats": {
+      "statMods": {
+        "defense": 120
+      },
+      "coreStats": {
+        "vitality": 20
+      },
+      "resistances": {
+        "poison": 40,
+        "fire": 20
+      }
+    },
+    "name": "Blackoak Shield",
+    "baseId": "items/base/sh-dragon-shield",
+    "flavor": "A druidic shield carved from the heartwood of a cursed oak.",
+    "reqLevel": 61,
+    "id": "items/unique/blackoak-shield"
   }
 ]

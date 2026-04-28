@@ -160,7 +160,12 @@ export function SettingsScreen() {
             <Button variant="secondary" className="min-h-[44px]" onClick={() => { void handleSave(); }}>
               {t('saveNow', { defaultValue: '保存' })}
             </Button>
-            <Button variant="secondary" className="min-h-[44px]" onClick={() => { void handleExport(); }}>
+            <Button
+              variant="secondary"
+              className="min-h-[44px]"
+              onClick={() => { void handleExport(); }}
+              data-testid="export-save-button"
+            >
               {t('exportSave')}
             </Button>
             <Button variant="secondary" className="min-h-[44px]" onClick={() => { setImportOpen(true); }}>

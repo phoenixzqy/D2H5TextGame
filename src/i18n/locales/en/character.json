@@ -20,5 +20,40 @@
     "amazon": "Amazon",
     "druid": "Druid",
     "assassin": "Assassin"
-  }
+  },
+  "hud": {
+    "aria": "{{name}} · Level {{level}}. Open character sheet."
+  },
+  "screen": {
+    "title": "Character",
+    "noCharacter": "No character created yet",
+    "derived": "Derived Stats",
+    "resistances": "Resistances",
+    "equipment": "Equipment",
+    "noEquipment": "No items equipped",
+    "statPoints": "Stat Points",
+    "skillPoints": "Skill Points"
+  },
+  "title": "Character",
+  "attributes": {
+    "vitality": "Vitality",
+    "energy": "Energy",
+    "dexterity": "Dexterity",
+    "strength": "Strength"
+  },
+  "derived": {
+    "mana": "Mana",
+    "magicDodge": "Magic Dodge",
+    "defense": "Defense",
+    "life": "Life",
+    "attackRating": "Attack Rating",
+    "physDodge": "Physical Dodge"
+  },
+  "resistances": {
+    "cold": "Cold Resistance",
+    "poison": "Poison Resistance",
+    "fire": "Fire Resistance",
+    "light": "Lightning Resistance"
+  },
+  "equipped": "Equipped"
 }

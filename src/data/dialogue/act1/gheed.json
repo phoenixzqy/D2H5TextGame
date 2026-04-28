@@ -1,0 +1,27 @@
+{
+  "id": "dialogue/act1/gheed",
+  "npcId": "gheed",
+  "greetings": [
+    {
+      "text": "Gheed's the name. Pleasure's mine. I deal in hard-to-find items and mercenaries. Got coin? I got goods."
+    }
+  ],
+  "services": [
+    {
+      "type": "gamble",
+      "prompt": "Let me gamble",
+      "response": "Heh! Feeling lucky, are we? I'll sell you unidentified gear — could be junk, could be a treasure. Your gold, your risk."
+    },
+    {
+      "type": "hire",
+      "prompt": "Hire a mercenary",
+      "response": "Looking for an extra sword arm? Or bow? I know some Rogues from the monastery who'd fight for gold. Pick one."
+    },
+    {
+      "type": "trade",
+      "prompt": "Show me your wares",
+      "response": "Keys, scrolls, potions, the occasional trinket. What are ya buyin'?"
+    }
+  ],
+  "questBranches": []
+}

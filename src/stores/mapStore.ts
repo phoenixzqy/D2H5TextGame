@@ -4,6 +4,7 @@
  */
 
 import { create } from 'zustand';
+import { isActUnlocked as engineIsActUnlocked, isSubAreaUnlocked as engineIsSubAreaUnlocked } from '@/engine/map/unlock';
 
 interface QuestProgress {
   id: string;
@@ -22,7 +23,10 @@ interface MapState {
   setCurrentLocation: (actNumber: number, subAreaId: string) => void;
   updateQuestProgress: (questId: string, progress: Partial<QuestProgress>) => void;
   completeQuest: (questId: string) => void;
-  isAreaUnlocked: (areaId: string) => boolean;
+  /** Convenience selector for the act-unlock engine predicate. */
+  isActUnlocked: (actNumber: number) => boolean;
+  /** Sub-area unlock — currently follows act-level gating. */
+  isAreaUnlocked: (act: number) => boolean;
   reset: () => void;
 }
 
@@ -79,10 +83,22 @@ export const useMapStore = create<MapState>((set, get) => ({
     };
   }); },
   
-  isAreaUnlocked: (areaId) => {
+  isActUnlocked: (actNumber) => {
     const state = get();
-    // TODO: Implement unlock logic based on quest progress
-    return state.discoveredAreas.includes(areaId);
+    const completed = new Set<string>();
+    for (const [qid, qp] of Object.entries(state.questProgress)) {
+      if (qp.status === 'completed') completed.add(qid);
+    }
+    return engineIsActUnlocked(actNumber, completed);
+  },
+
+  isAreaUnlocked: (act) => {
+    const state = get();
+    const completed = new Set<string>();
+    for (const [qid, qp] of Object.entries(state.questProgress)) {
+      if (qp.status === 'completed') completed.add(qid);
+    }
+    return engineIsSubAreaUnlocked(act, completed);
   },
   
   reset: () => { set(initialState); }

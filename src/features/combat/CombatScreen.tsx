@@ -18,8 +18,18 @@ import { useCombatStore, usePlayerStore } from '@/stores';
 import { startSimpleBattle } from '@/stores/combatHelpers';
 import type { CombatLogEntry } from '@/stores/combatStore';
 import type { CombatUnit } from '@/engine/combat/types';
+import type { KillRewards } from '@/engine/loot/award';
 
 const MAX_LOG = 200;
+
+const RARITY_COLORS: Record<string, string> = {
+  normal: 'text-d2-white',
+  magic: 'text-blue-300',
+  rare: 'text-yellow-300',
+  set: 'text-green-400',
+  unique: 'text-d2-gold',
+  runeword: 'text-orange-400',
+};
 
 export function CombatScreen() {
   const { t } = useTranslation(['combat', 'common']);
@@ -39,12 +49,14 @@ export function CombatScreen() {
   const endCombat = useCombatStore((s) => s.endCombat);
 
   const recentLog = useMemo(() => log.slice(-MAX_LOG), [log]);
+  const [rewards, setRewards] = useState<KillRewards | null>(null);
 
   // Auto-start battle if not in combat yet
   useEffect(() => {
     if (!inCombat && player) {
       const level = player.level || 1;
-      startSimpleBattle(level, 3);
+      const result = startSimpleBattle(level, 3);
+      if (result?.rewards) setRewards(result.rewards);
     }
   }, [inCombat, player]);
 
@@ -131,6 +143,31 @@ export function CombatScreen() {
 
         <CombatLog entries={recentLog} />
       </div>
+      {rewards && (rewards.items.length > 0 || rewards.gold > 0) && (
+        <div className="max-w-5xl mx-auto mt-3" data-testid="loot-summary">
+          <Panel title={t('loot', { defaultValue: '战利品' })}>
+            {rewards.gold > 0 && (
+              <div className="text-d2-gold text-sm mb-1">+{rewards.gold} {t('gold', { defaultValue: '金币' })}</div>
+            )}
+            {rewards.items.length > 0 && (
+              <ul className="space-y-1 text-sm" data-testid="loot-items">
+                {rewards.items.map((it) => (
+                  <li key={it.id} className={RARITY_COLORS[it.rarity] ?? 'text-d2-white'}>
+                    {it.baseId.split('/').pop()} <span className="text-xs text-d2-white/50">[{it.rarity} · iLvl {it.level}]</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {(rewards.runes > 0 || rewards.gems > 0 || rewards.wishstones > 0) && (
+              <div className="text-xs text-d2-white/70 mt-2">
+                {rewards.runes > 0 && <span className="mr-2">+{rewards.runes} rune</span>}
+                {rewards.gems > 0 && <span className="mr-2">+{rewards.gems} gem</span>}
+                {rewards.wishstones > 0 && <span className="mr-2">+{rewards.wishstones} wishstone</span>}
+              </div>
+            )}
+          </Panel>
+        </div>
+      )}
     </ScreenShell>
   );
 }

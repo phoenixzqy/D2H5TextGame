@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/dialogue.json",
+  "title": "NPC Dialogue Definition",
+  "description": "NPC dialogue tree (per NPC)",
+  "type": "object",
+  "required": ["id", "npcId", "greetings", "services"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^dialogue/[a-z0-9/-]+$"
+    },
+    "npcId": {
+      "type": "string",
+      "description": "NPC identifier"
+    },
+    "greetings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/greeting"
+      }
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/service"
+      }
+    },
+    "questBranches": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/questBranch"
+      },
+      "description": "Quest-specific dialogue branches"
+    }
+  },
+  "$defs": {
+    "greeting": {
+      "type": "object",
+      "required": ["text"],
+      "additionalProperties": false,
+      "properties": {
+        "whenFlags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Conditional flags (quest progress, story flags, etc.)"
+        },
+        "text": {
+          "type": "string",
+          "description": "Prose greeting text (embedded)"
+        },
+        "textKey": {
+          "type": "string",
+          "description": "Optional i18n key for future localization"
+        }
+      }
+    },
+    "service": {
+      "type": "object",
+      "required": ["type", "prompt", "response"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["heal", "repair", "identify", "gamble", "hire", "travel", "trade", "imbue"],
+          "description": "Service type"
+        },
+        "prompt": {
+          "type": "string",
+          "description": "Service prompt text (embedded)"
+        },
+        "response": {
+          "type": "string",
+          "description": "NPC response text (embedded)"
+        },
+        "promptKey": {
+          "type": "string",
+          "description": "Optional i18n key"
+        },
+        "responseKey": {
+          "type": "string",
+          "description": "Optional i18n key"
+        }
+      }
+    },
+    "questBranch": {
+      "type": "object",
+      "required": ["questId", "stage", "text"],
+      "additionalProperties": false,
+      "properties": {
+        "questId": {
+          "type": "string",
+          "description": "Quest ID"
+        },
+        "stage": {
+          "type": "string",
+          "enum": ["offer", "in-progress", "complete", "reward-granted"],
+          "description": "Quest stage"
+        },
+        "text": {
+          "type": "string",
+          "description": "Dialogue text (embedded)"
+        },
+        "textKey": {
+          "type": "string",
+          "description": "Optional i18n key"
+        }
+      }
+    }
+  }
+}

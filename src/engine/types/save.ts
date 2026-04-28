@@ -4,13 +4,19 @@
  */
 
 import type { Player, Mercenary } from './entities';
-import type { Inventory } from './items';
+import type { Inventory, Item } from './items';
 import type { MapProgress } from './maps';
 
 /**
- * Save file version
+ * Current save format version. Bump this and add an entry to {@link MIGRATIONS}
+ * whenever the on-disk shape changes.
  */
-export type SaveVersion = 1;
+export const CURRENT_SAVE_VERSION = 2;
+
+/**
+ * Save file version (most recent).
+ */
+export type SaveVersion = typeof CURRENT_SAVE_VERSION;
 
 /**
  * Settings
@@ -59,52 +65,130 @@ export interface GachaState {
 }
 
 /**
- * Save file v1
+ * Quest progress entry (persisted in {@link SaveV2.map}).
+ */
+export interface QuestProgressData {
+  readonly id: string;
+  readonly status: 'locked' | 'available' | 'inProgress' | 'completed';
+  readonly objectives: Readonly<Record<string, boolean>>;
+}
+
+/**
+ * Save file v1 (legacy — engine-shape, never deployed to users).
+ *
+ * Retained for migration only. New code should target {@link SaveV2}.
  */
 export interface SaveV1 {
   readonly version: 1;
-  
-  /** Player character */
   readonly player: Player;
-  
-  /** Inventory (backpack + stash) */
   readonly inventory: Inventory;
-  
-  /** Owned mercenaries */
   readonly mercenaries: readonly Mercenary[];
-  
-  /** Active mercenary ID (if any) */
   readonly activeMercId?: string;
-  
-  /** Map progress */
   readonly mapProgress: MapProgress;
-  
-  /** Idle/offline state */
   readonly idleState: IdleState;
-  
-  /** Gacha state */
   readonly gachaState: GachaState;
-  
-  /** Settings */
   readonly settings: Settings;
-  
-  /** Save timestamp */
   readonly timestamp: number;
 }
 
 /**
- * Migration function type
+ * Persisted inventory snapshot. Mirrors `useInventoryStore` shape so save/load
+ * is a near-direct copy with no lossy conversion.
+ */
+export interface InventorySaveData {
+  readonly backpack: readonly Item[];
+  readonly stash: readonly Item[];
+  readonly equipped: Readonly<Record<string, Item | null>>;
+  readonly currencies: Readonly<Record<string, number>>;
+}
+
+/** Persisted mercenary snapshot. */
+export interface MercSaveData {
+  readonly ownedMercs: readonly Mercenary[];
+  readonly fieldedMercId: string | null;
+}
+
+/** Persisted map snapshot. */
+export interface MapSaveData {
+  readonly currentAct: number;
+  readonly currentSubAreaId: string | null;
+  readonly discoveredAreas: readonly string[];
+  readonly questProgress: Readonly<Record<string, QuestProgressData>>;
+}
+
+/** Persisted meta (settings + idle + gacha) snapshot. */
+export interface MetaSaveData {
+  readonly settings: Settings;
+  readonly idleState: IdleState;
+  readonly gachaState: GachaState;
+}
+
+/**
+ * Save file v2 — the current on-disk format. Slices map 1:1 to Zustand stores
+ * to avoid translation logic on every mutation.
+ */
+export interface SaveV2 {
+  readonly version: 2;
+  readonly timestamp: number;
+  readonly player: Player;
+  readonly inventory: InventorySaveData;
+  readonly mercs: MercSaveData;
+  readonly map: MapSaveData;
+  readonly meta: MetaSaveData;
+}
+
+/** Alias to whichever version is current; bump along with {@link CURRENT_SAVE_VERSION}. */
+export type SaveCurrent = SaveV2;
+
+/**
+ * Migration function type. Each entry receives the previous version's shape
+ * (typed `unknown` because old data may be arbitrary JSON) and returns the next.
  */
 export type Migration<From = unknown, To = unknown> = (oldSave: From) => To;
 
 /**
- * Migrations map
- * Keyed by target version
- * 
- * Example:
- * MIGRATIONS[2] = (v1: SaveV1) => SaveV2 { ... }
+ * Migrations keyed by **target** version. To upgrade an N-versioned save to
+ * N+1, call `MIGRATIONS[N+1](save)`. {@link runMigrations} handles chaining.
  */
 export const MIGRATIONS: Record<number, Migration> = {
-  // Placeholder: Add migrations when bumping save version
-  // 2: (v1: SaveV1): SaveV2 => { ... }
+  /** v1 (legacy engine-shape) → v2 (store-shape). */
+  2: (raw: unknown): SaveV2 => {
+    const v1 = raw as SaveV1;
+    const equipped: Record<string, Item | null> = {};
+    const eq: unknown = v1.inventory.equipment;
+    if (eq instanceof Map) {
+      for (const [slot, item] of eq) equipped[slot as string] = item as Item;
+    } else if (Array.isArray(eq)) {
+      // Already JSON-serialized via toJsonSafe: [[slot, item], ...]
+      for (const entry of eq as readonly (readonly [string, Item])[]) {
+        equipped[entry[0]] = entry[1];
+      }
+    }
+    return {
+      version: 2,
+      timestamp: v1.timestamp,
+      player: v1.player,
+      inventory: {
+        backpack: v1.inventory.backpack,
+        stash: v1.inventory.stash,
+        equipped,
+        currencies: {}
+      },
+      mercs: {
+        ownedMercs: v1.mercenaries,
+        fieldedMercId: v1.activeMercId ?? null
+      },
+      map: {
+        currentAct: v1.mapProgress.currentAct,
+        currentSubAreaId: v1.mapProgress.currentSubArea,
+        discoveredAreas: v1.mapProgress.completedSubAreas,
+        questProgress: {}
+      },
+      meta: {
+        settings: v1.settings,
+        idleState: v1.idleState,
+        gachaState: v1.gachaState
+      }
+    };
+  }
 };

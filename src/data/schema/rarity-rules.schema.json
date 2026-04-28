@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/rarity-rules.json",
+  "title": "Rarity Rules Definition",
+  "description": "Drop weights and affix-count distributions per rarity tier",
+  "type": "object",
+  "required": ["id", "tiers"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "const": "config/rarity-rules"
+    },
+    "tiers": {
+      "type": "object",
+      "required": ["white", "magic", "rare", "set", "unique"],
+      "additionalProperties": false,
+      "properties": {
+        "white": { "$ref": "#/$defs/rarityTier" },
+        "magic": { "$ref": "#/$defs/rarityTier" },
+        "rare": { "$ref": "#/$defs/rarityTier" },
+        "set": { "$ref": "#/$defs/rarityTier" },
+        "unique": { "$ref": "#/$defs/rarityTier" }
+      }
+    }
+  },
+  "$defs": {
+    "rarityTier": {
+      "type": "object",
+      "required": ["dropWeight", "affixCount"],
+      "additionalProperties": false,
+      "properties": {
+        "dropWeight": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Relative drop weight"
+        },
+        "affixCount": {
+          "type": "object",
+          "required": ["prefix", "suffix"],
+          "additionalProperties": false,
+          "properties": {
+            "prefix": {
+              "type": "object",
+              "required": ["min", "max"],
+              "properties": {
+                "min": { "type": "integer", "minimum": 0 },
+                "max": { "type": "integer", "minimum": 0 }
+              }
+            },
+            "suffix": {
+              "type": "object",
+              "required": ["min", "max"],
+              "properties": {
+                "min": { "type": "integer", "minimum": 0 },
+                "max": { "type": "integer", "minimum": 0 }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

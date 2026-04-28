@@ -5,6 +5,7 @@
 
 export * from './migrations';
 export * from './save-adapter';
+export * from './persistence';
 export { usePlayerStore } from './playerStore';
 export { useInventoryStore } from './inventoryStore';
 export { useCombatStore } from './combatStore';
