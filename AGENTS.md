@@ -11,6 +11,7 @@ agent in `.github/agents/<name>.agent.md`. Project rules live in
 | `architect` | Tech stack, repo structure, build/CI, perf budgets. |
 | `game-designer` | Combat math, skills, buffs, balance, progression curves. |
 | `level-designer` | Cross-system balance: map difficulty curves, monster/gear/skill stat tuning, encounter pacing, drop economy. Backed by sims. |
+| `art-director` | Owns visual style guide & seed registry. Reviews every image-gen request and output. Single gatekeeper for art consistency. |
 | `engine-dev` | Implements pure-TS game engine (combat, skills, buffs, RNG). |
 | `frontend-dev` | React UI, Tailwind, mobile-first layouts, i18n wiring. |
 | `content-designer` | JSON data: monsters, items, runes, runewords, maps. |

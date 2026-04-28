@@ -70,5 +70,25 @@ run in Web Workers and be unit-tested deterministically.
 - Conventional commit messages.
 - PRs require Reviewer agent approval and green CI before merge.
 
+## Generated visual assets
+All in-game art (class portraits, monster cards, item icons, UI
+backgrounds, zone art) is produced via the **`image-gen` skill** which
+calls the free **Pollinations.AI** endpoint. Style consistency is owned
+by the **`art-director` agent**. Hard rules:
+- All image generation goes through `art-director`. No agent calls
+  `image-gen` without an approved request.
+- Every category preset (model, size, seed-base, prompt suffix, negative
+  list) lives in `docs/art/style-presets.json` (mirrored in
+  `docs/art/style-guide.md`). Don't bypass it.
+- Allocate a `subjectId` in `docs/art/seed-registry.md` *before*
+  generating, so the same subject regenerates identically forever.
+- Outputs land under `public/assets/d2/generated/<category>/` with an
+  append-only entry in `public/assets/d2/generated/manifest.json`
+  (prompt, seed, model, sha256, timestamp). Never edit historical
+  manifest entries.
+- Run via: `npm run image-gen -- --category … --id … --subjectId … --subject … --descriptors …`
+- Public-release audit of the manifest is a release blocker — same
+  policy as other D2-derived assets.
+
 ## When in doubt
 Ask the **PM agent**. Don't guess product decisions.

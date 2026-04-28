@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "service": "pollinations.ai",
+  "entries": [
+    {
+      "id": "items.unique.shako",
+      "category": "item-icon",
+      "subject": "Harlequin Crest unique helm (Shako)",
+      "descriptors": "weathered leather jester cap, gold trim, three small bells, faint magical aura",
+      "subjectId": 1,
+      "variant": 0,
+      "seed": 300001,
+      "model": "flux",
+      "width": 512,
+      "height": 512,
+      "prompt": "masterpiece dark fantasy oil painting, gothic Diablo II inspired, painterly brushwork, dramatic chiaroscuro lighting, muted earth tones with deep shadows and warm highlights, cinematic composition, high detail, weathered medieval setting, no modern elements, single magic item, floating in dark void, centered, three-quarter view, ornate detail, faint magical glow appropriate to rarity, painterly icon style, dark near-black background, no shadow ground, subject: Harlequin Crest unique helm (Shako), weathered leather jester cap, gold trim, three small bells, faint magical aura",
+      "negativePrompt": "text, watermark, signature, logo, ui, hud, frame, border, modern clothing, modern weapons, sci-fi, neon, anime, chibi, cute, cartoon, low contrast, oversaturated, plastic skin, smooth skin, extra fingers, extra limbs, deformed hands, deformed face, blurry, low quality, jpeg artifacts, out of frame, cropped, character, person, hand holding item, scene, landscape, transparent background, multiple items",
+      "sourceUrl": "https://image.pollinations.ai/prompt/masterpiece%20dark%20fantasy%20oil%20painting%2C%20gothic%20Diablo%20II%20inspired%2C%20painterly%20brushwork%2C%20dramatic%20chiaroscuro%20lighting%2C%20muted%20earth%20tones%20with%20deep%20shadows%20and%20warm%20highlights%2C%20cinematic%20composition%2C%20high%20detail%2C%20weathered%20medieval%20setting%2C%20no%20modern%20elements%2C%20single%20magic%20item%2C%20floating%20in%20dark%20void%2C%20centered%2C%20three-quarter%20view%2C%20ornate%20detail%2C%20faint%20magical%20glow%20appropriate%20to%20rarity%2C%20painterly%20icon%20style%2C%20dark%20near-black%20background%2C%20no%20shadow%20ground%2C%20subject%3A%20Harlequin%20Crest%20unique%20helm%20(Shako)%2C%20weathered%20leather%20jester%20cap%2C%20gold%20trim%2C%20three%20small%20bells%2C%20faint%20magical%20aura?model=flux&width=512&height=512&seed=300001&negative_prompt=text%2C+watermark%2C+signature%2C+logo%2C+ui%2C+hud%2C+frame%2C+border%2C+modern+clothing%2C+modern+weapons%2C+sci-fi%2C+neon%2C+anime%2C+chibi%2C+cute%2C+cartoon%2C+low+contrast%2C+oversaturated%2C+plastic+skin%2C+smooth+skin%2C+extra+fingers%2C+extra+limbs%2C+deformed+hands%2C+deformed+face%2C+blurry%2C+low+quality%2C+jpeg+artifacts%2C+out+of+frame%2C+cropped%2C+character%2C+person%2C+hand+holding+item%2C+scene%2C+landscape%2C+transparent+background%2C+multiple+items&nologo=true&private=true",
+      "file": "public/assets/d2/generated/item-icons/items.unique.shako.png",
+      "bytes": 44961,
+      "sha256": "90c045fe48d0e3a85ec2f27bd668b707d3b456588452ea057b0705f40514ad60",
+      "generatedAt": "2026-04-28T07:46:45.881Z"
+    }
+  ]
+}

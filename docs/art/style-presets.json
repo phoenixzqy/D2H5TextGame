@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "service": {
+    "name": "pollinations.ai",
+    "endpoint": "https://image.pollinations.ai/prompt/",
+    "extraQuery": { "nologo": "true", "private": "true" }
+  },
+  "globalPreamble": "masterpiece dark fantasy oil painting, gothic Diablo II inspired, painterly brushwork, dramatic chiaroscuro lighting, muted earth tones with deep shadows and warm highlights, cinematic composition, high detail, weathered medieval setting, no modern elements",
+  "globalNegative": "text, watermark, signature, logo, ui, hud, frame, border, modern clothing, modern weapons, sci-fi, neon, anime, chibi, cute, cartoon, low contrast, oversaturated, plastic skin, smooth skin, extra fingers, extra limbs, deformed hands, deformed face, blurry, low quality, jpeg artifacts, out of frame, cropped",
+  "categories": {
+    "class-portrait": {
+      "model": "flux",
+      "width": 768,
+      "height": 1024,
+      "seedBase": 100000,
+      "styleSuffix": "full-body heroic portrait, single character, centered, three-quarter view, detailed armor, atmospheric background hinting at their homeland, rim lighting, oil painting on aged canvas",
+      "negativeAdditions": "group shot, multiple characters, full landscape",
+      "outputDir": "public/assets/d2/generated/class-portraits"
+    },
+    "monster": {
+      "model": "flux",
+      "width": 1024,
+      "height": 1024,
+      "seedBase": 200000,
+      "styleSuffix": "menacing creature portrait, single monster, three-quarter view, dim dungeon or wilderness backdrop, anatomically grounded, sinewy musculature or undead decay as appropriate, oil painting",
+      "negativeAdditions": "cute, friendly, mascot, cartoon villain, group of monsters",
+      "outputDir": "public/assets/d2/generated/monsters"
+    },
+    "item-icon": {
+      "model": "flux",
+      "width": 512,
+      "height": 512,
+      "seedBase": 300000,
+      "styleSuffix": "single magic item, floating in dark void, centered, three-quarter view, ornate detail, faint magical glow appropriate to rarity, painterly icon style, dark near-black background, no shadow ground",
+      "negativeAdditions": "character, person, hand holding item, scene, landscape, transparent background, multiple items",
+      "outputDir": "public/assets/d2/generated/item-icons"
+    },
+    "ui-background": {
+      "model": "flux",
+      "width": 1920,
+      "height": 1080,
+      "seedBase": 400000,
+      "styleSuffix": "wide establishing shot, atmospheric, no people, no readable text, symmetric composition with empty negative space in lower third for UI, oil painting matte, deep depth of field",
+      "negativeAdditions": "characters, people, monsters, text, ui elements, hud",
+      "outputDir": "public/assets/d2/generated/ui-backgrounds"
+    },
+    "zone-art": {
+      "model": "flux",
+      "width": 1600,
+      "height": 900,
+      "seedBase": 500000,
+      "styleSuffix": "cinematic establishing shot of a Diablo II zone, atmospheric perspective, small silhouetted hero figure for scale optional, dramatic sky, matte painting style",
+      "negativeAdditions": "text, ui, hud, modern buildings",
+      "outputDir": "public/assets/d2/generated/zone-art"
+    }
+  }
+}
