@@ -1,0 +1,13 @@
+{
+  "silhouette": "Missing artwork",
+  "tapToInspect": "Tap to inspect",
+  "speed": {
+    "1x": "1×",
+    "2x": "2×",
+    "4x": "4×",
+    "skip": "Skip"
+  },
+  "speedLabel": "Playback speed",
+  "allies": "Allies",
+  "enemies": "Enemies"
+}

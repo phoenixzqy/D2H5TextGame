@@ -6,6 +6,13 @@
   "resume": "Resume",
   "flee": "Flee",
   "autoMode": "Auto",
+  "speed": {
+    "1x": "1×",
+    "2x": "2×",
+    "4x": "4×",
+    "skip": "Skip"
+  },
+  "speedLabel": "Speed",
   "victory": "Victory",
   "defeat": "Defeat",
   "rewards": "Loot",

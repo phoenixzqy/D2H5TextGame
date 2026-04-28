@@ -6,6 +6,13 @@
   "resume": "继续",
   "flee": "逃跑",
   "autoMode": "自动",
+  "speed": {
+    "1x": "1×",
+    "2x": "2×",
+    "4x": "4×",
+    "skip": "跳过"
+  },
+  "speedLabel": "速度",
   "victory": "胜利",
   "defeat": "失败",
   "rewards": "战利品",

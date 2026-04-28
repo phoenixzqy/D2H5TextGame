@@ -12,7 +12,7 @@
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button, Panel } from '@/ui';
+import { Button, GameCard, Panel, resolveClassPortrait } from '@/ui';
 import { usePlayerStore } from '@/stores';
 import {
   CHARACTER_CLASSES,
@@ -68,26 +68,32 @@ export function CharacterCreate() {
         </header>
 
         <Panel title={t('selectClass')}>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 justify-items-center">
             {CHARACTER_CLASSES.map((cls) => {
               const selected = selectedClass === cls;
+              const preview = getStartingStatPreview(cls);
               return (
-                <button
+                <GameCard
                   key={cls}
-                  type="button"
+                  variant="character"
+                  size="md"
+                  name={t(`classes.${cls}`, { defaultValue: cls })}
+                  rarity="unique"
+                  image={resolveClassPortrait(cls) ?? undefined}
+                  stats={[
+                    { label: 'STR', value: preview.strength },
+                    { label: 'DEX', value: preview.dexterity },
+                    { label: 'VIT', value: preview.vitality },
+                    { label: 'ENG', value: preview.energy }
+                  ]}
+                  bars={[
+                    { kind: 'hp', current: preview.life, max: preview.life },
+                    { kind: 'mp', current: preview.mana, max: preview.mana }
+                  ]}
+                  selected={selected}
                   onClick={() => { setSelectedClass(cls); }}
-                  aria-pressed={selected}
-                  className={[
-                    'min-h-[64px] px-3 py-2 rounded border text-base font-serif',
-                    'focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold transition-colors',
-                    selected
-                      ? 'border-d2-gold bg-d2-gold/10 text-d2-gold'
-                      : 'border-d2-border bg-d2-panel text-d2-white hover:border-d2-gold/60',
-                  ].join(' ')}
-                  data-testid={`class-${cls}`}
-                >
-                  {t(`classes.${cls}`)}
-                </button>
+                  testId={`class-${cls}`}
+                />
               );
             })}
           </div>

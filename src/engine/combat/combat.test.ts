@@ -10,7 +10,7 @@ const baseStats: DerivedStats = {
   manaMax: 50,
   attack: 10,
   defense: 0,
-  attackSpeed: 10,
+  attackSpeed: 100,
   critChance: 0,
   critDamage: 1.5,
   physDodge: 0,

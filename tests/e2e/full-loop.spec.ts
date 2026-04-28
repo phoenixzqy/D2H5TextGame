@@ -58,27 +58,24 @@ test.describe('Final acceptance — full loop', () => {
       .first();
     await enterBtn.click();
 
-    const battle = await waitForBattleResolution(page, 30_000);
+    const battle = await waitForBattleResolution(page, 60_000);
 
-    // If the player won, loot-summary should appear (BUG flag if not).
-    if (battle.playerWon) {
-      // soft-assert: loot panel may render with only currency, not items.
-      await expect
-        .soft(page.getByTestId('loot-summary'))
-        .toBeVisible({ timeout: 2_000 });
-      const lootItemCount = battle.lootItems
-        ? await battle.lootItems.locator('li').count()
-        : 0;
-      expect.soft(lootItemCount).toBeGreaterThanOrEqual(0);
-    } else {
-      // Engine produced a non-player-win at L1 vs 3 L1 Fallen — flagged for
-      // game-designer/engine-dev review (see report). The full loop test
-      // continues regardless.
-      // eslint-disable-next-line no-console
-      console.warn(
-        '[full-loop] player did not win first Blood Moor encounter — investigate balance.'
-      );
-    }
+    // Hard expectation: a freshly-rolled L1 character MUST beat the first
+    // 3-mob Blood Moor pull (per docs/design/level1-balance.md). If this
+    // ever flips, the L1 balance regression has returned — fail loudly.
+    expect(
+      battle.playerWon,
+      'L1 balance regression: fresh character lost to 3 L1 Fallen — see docs/design/level1-balance.md.'
+    ).toBe(true);
+
+    // soft-assert: loot panel may render with only currency, not items.
+    await expect
+      .soft(page.getByTestId('loot-summary'))
+      .toBeVisible({ timeout: 2_000 });
+    const lootItemCount = battle.lootItems
+      ? await battle.lootItems.locator('li').count()
+      : 0;
+    expect.soft(lootItemCount).toBeGreaterThanOrEqual(0);
 
     // Return to town via flee
     await page.getByRole('button', { name: /逃跑|Flee/i }).click();
@@ -91,12 +88,15 @@ test.describe('Final acceptance — full loop', () => {
     const invItems = page.locator('[data-testid^="inv-item-"]');
     const invCount = await invItems.count();
     if (invCount > 0) {
-      // First item should have a font-serif element with rarity color class
+      // First item should have a rarity-coloured border / gem on the card.
+      // GameCard for items renders a compact icon (no text banner), so we
+      // look for the rarity class on the frame or gem — any rarity bucket.
       const first = invItems.first();
       await expect(first).toBeVisible();
       const innerHtml = await first.innerHTML();
-      expect(innerHtml).toMatch(
-        /text-d2-(white|magic|rare|unique|set|runeword)/
+      const outerHtml = await first.evaluate((el) => el.outerHTML);
+      expect(outerHtml + innerHtml).toMatch(
+        /(bg|border|text)-d2-(white|magic|rare|unique|set|runeword|gold)/
       );
       // Click it and try to equip if equip button is enabled
       await first.click();

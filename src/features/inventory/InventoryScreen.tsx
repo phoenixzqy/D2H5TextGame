@@ -9,7 +9,16 @@
  */
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, ItemTooltip, Panel, ScreenShell, Tabs, Tooltip } from '@/ui';
+import {
+  Button,
+  GameCard,
+  ItemTooltip,
+  Panel,
+  ScreenShell,
+  Tabs,
+  Tooltip,
+  resolveItemIcon
+} from '@/ui';
 import { useInventoryStore } from '@/stores';
 import type { Item, EquipmentSlot } from '@/engine/types/items';
 
@@ -130,32 +139,23 @@ function ItemGrid({
   return (
     <div className="grid grid-cols-1 md:grid-cols-[1fr_minmax(220px,280px)] gap-3">
       <ul
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2"
+        className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-2"
         role="listbox"
         aria-label={t('items', { defaultValue: 'Items' })}
       >
         {items.map((it) => (
           <li key={it.id}>
             <Tooltip content={<ItemTooltip item={it} />}>
-              <button
-                type="button"
+              <GameCard
+                variant="item"
+                size="md"
+                name={it.baseId.split('/').pop() ?? it.baseId}
+                rarity={it.rarity}
+                image={resolveItemIcon(it.baseId) ?? undefined}
+                selected={selectedId === it.id}
                 onClick={() => { setSelectedId(it.id); }}
-                aria-selected={selectedId === it.id}
-                role="option"
-                className={[
-                  'w-full text-left min-h-[56px] px-3 py-2 rounded border bg-d2-bg/40',
-                  'focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold',
-                  selectedId === it.id ? 'border-d2-gold' : 'border-d2-border hover:border-d2-gold/60',
-                ].join(' ')}
-                data-testid={`inv-item-${it.id}`}
-              >
-                <div className={`font-serif truncate ${rarityTextClass(it.rarity)}`}>
-                  {it.baseId}
-                </div>
-                <div className="text-xs text-d2-white/60">
-                  {t('itemLevel', { defaultValue: '物品等级' })} {it.level}
-                </div>
-              </button>
+                testId={`inv-item-${it.id}`}
+              />
             </Tooltip>
           </li>
         ))}

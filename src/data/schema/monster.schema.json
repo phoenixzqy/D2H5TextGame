@@ -68,6 +68,12 @@
         "type": "string"
       },
       "description": "Elite affix IDs this monster can roll"
+    },
+    "attackIntervalMs": {
+      "type": "integer",
+      "minimum": 300,
+      "maximum": 5000,
+      "description": "Base swing interval in virtual ms (tick scheduler). Optional; if absent, derived as round(120000 / attackSpeed)."
     }
   },
   "$defs": {

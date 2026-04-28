@@ -1,0 +1,115 @@
+{
+  "_comment": [
+    "==========================================================================",
+    " D2 H5 Text Game — Asset Mapping (art-director, append-only)",
+    "==========================================================================",
+    "",
+    " Purpose:",
+    "   Flat resolver from a gameplay ID's stable suffix to the public URL of",
+    "   a painted asset under public/assets/d2/generated/. Consumed by the UI",
+    "   layer; the engine never reads this file. Treat as append-only — when",
+    "   new art lands, add a key; do NOT rename or delete existing keys.",
+    "",
+    " Key convention:",
+    "   - The gameplay layer uses fully-qualified IDs of the form",
+    "       <category-prefix>/<key>",
+    "     for example: 'monsters/act1.fallen', 'items/unique.shako',",
+    "     'classes/barbarian', 'zones/act1.rogue-encampment',",
+    "     'mercs/act1-rogue-pierce'.",
+    "   - This map's keys are the trailing <key> segment after the slash.",
+    "     The UI strips the category prefix before lookup. This keeps the",
+    "     map flat and lets us share keys cleanly across categories.",
+    "   - Asset filenames mirror the engine ID with dots:",
+    "       monsters/act1.fallen  ->  monsters.act1.fallen.png",
+    "       items/unique.shako    ->  items.unique.shako.png",
+    "     except bosses live under monsters/bosses.* in the manifest; the",
+    "     mapping hides this — UI always queries by 'act1.andariel' etc.",
+    "",
+    " Fallback semantics:",
+    "   - string  -> use this URL directly.",
+    "   - null    -> intentionally absent; UI shows the silhouette.",
+    "   - missing -> bug; UI shows silhouette and warns in dev.",
+    "",
+    " Mercs:",
+    "   No dedicated merc art exists today. Engine merc IDs are granular",
+    "   (act1-rogue-pierce, act3-iron-wolf-fire, ...). The UI should:",
+    "     1. Try the exact key in this map (always null for now).",
+    "     2. If null, derive an archetype proxy by matching the merc ID",
+    "        prefix against the 'mercs' table below — those keys map to",
+    "        class portraits as a temporary stand-in.",
+    "   The four canonical archetype keys (rogue-archer, desert-mercenary,",
+    "   iron-wolf, barbarian-warrior) cover every merc currently in",
+    "   src/data/gacha/mercenaries.json. See card-design-spec.md § 11 for",
+    "   the queued list of dedicated merc portraits.",
+    "",
+    " Style: paths are absolute under the public/ root, served from /. No",
+    " trailing query strings; UI may append cache-busting if needed.",
+    "=========================================================================="
+  ],
+
+  "version": 1,
+
+  "classes": {
+    "amazon":      "/assets/d2/generated/class-portraits/classes.amazon.png",
+    "assassin":    "/assets/d2/generated/class-portraits/classes.assassin.png",
+    "barbarian":   "/assets/d2/generated/class-portraits/classes.barbarian.png",
+    "druid":       "/assets/d2/generated/class-portraits/classes.druid.png",
+    "necromancer": "/assets/d2/generated/class-portraits/classes.necromancer.png",
+    "paladin":     "/assets/d2/generated/class-portraits/classes.paladin.png",
+    "sorceress":   "/assets/d2/generated/class-portraits/classes.sorceress.png"
+  },
+
+  "monsters": {
+    "act1.fallen":         "/assets/d2/generated/monsters/monsters.act1.fallen.png",
+    "act1.fallen-shaman":  "/assets/d2/generated/monsters/monsters.act1.fallen-shaman.png",
+    "act1.zombie":         "/assets/d2/generated/monsters/monsters.act1.zombie.png",
+    "act1.quill-rat":      "/assets/d2/generated/monsters/monsters.act1.quill-rat.png",
+    "act1.bone-warrior":   "/assets/d2/generated/monsters/monsters.act1.bone-warrior.png",
+    "act1.dark-stalker":   "/assets/d2/generated/monsters/monsters.act1.dark-stalker.png",
+
+    "act1.andariel":       "/assets/d2/generated/monsters/bosses.act1.andariel.png",
+    "act1.blood-raven":    "/assets/d2/generated/monsters/bosses.act1.blood-raven.png"
+  },
+
+  "items": {
+    "unique.shako":             "/assets/d2/generated/item-icons/items.unique.shako.png",
+    "unique.andariels-visage":  "/assets/d2/generated/item-icons/items.unique.andariels-visage.png",
+    "unique.arreats-face":      "/assets/d2/generated/item-icons/items.unique.arreats-face.png",
+    "unique.buriza-do-kyanon":  "/assets/d2/generated/item-icons/items.unique.buriza-do-kyanon.png",
+    "unique.deaths-touch":      "/assets/d2/generated/item-icons/items.unique.deaths-touch.png",
+    "unique.grandfather":       "/assets/d2/generated/item-icons/items.unique.grandfather.png",
+    "unique.herald-of-zakarum": "/assets/d2/generated/item-icons/items.unique.herald-of-zakarum.png",
+    "unique.lightsabre":        "/assets/d2/generated/item-icons/items.unique.lightsabre.png",
+    "unique.stone-of-jordan":   "/assets/d2/generated/item-icons/items.unique.stone-of-jordan.png",
+    "unique.tal-rasha-helm":    "/assets/d2/generated/item-icons/items.unique.tal-rasha-helm.png",
+    "unique.windforce":         "/assets/d2/generated/item-icons/items.unique.windforce.png",
+    "unique.wizardspike":       "/assets/d2/generated/item-icons/items.unique.wizardspike.png"
+  },
+
+  "zones": {
+    "act1.rogue-encampment":     "/assets/d2/generated/zone-art/zones.act1.rogue-encampment.png",
+    "act2.lut-gholein":          "/assets/d2/generated/zone-art/zones.act2.lut-gholein.png",
+    "act3.kurast-docks":         "/assets/d2/generated/zone-art/zones.act3.kurast-docks.png",
+    "act4.pandemonium-fortress": "/assets/d2/generated/zone-art/zones.act4.pandemonium-fortress.png",
+    "act5.harrogath":            "/assets/d2/generated/zone-art/zones.act5.harrogath.png"
+  },
+
+  "mercs": {
+    "rogue-archer":       "/assets/d2/generated/class-portraits/classes.amazon.png",
+    "desert-mercenary":   "/assets/d2/generated/class-portraits/classes.barbarian.png",
+    "iron-wolf":          "/assets/d2/generated/class-portraits/classes.sorceress.png",
+    "barbarian-warrior":  "/assets/d2/generated/class-portraits/classes.barbarian.png",
+
+    "_archetype_rules": {
+      "_comment": "UI maps engine merc IDs (mercs/<id>) to the proxy keys above using these prefix rules. First match wins. Update when content-designer adds new merc archetypes.",
+      "act1-rogue-":          "rogue-archer",
+      "act2-":                "desert-mercenary",
+      "act3-iron-wolf-":      "iron-wolf",
+      "act3-militia-":        "desert-mercenary",
+      "act4-paladin-":        null,
+      "act5-barbarian-":      "barbarian-warrior",
+      "tavern-thief-":        null,
+      "tavern-acolyte-":      null
+    }
+  }
+}

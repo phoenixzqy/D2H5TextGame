@@ -9,6 +9,7 @@ import type { Player } from '@/engine/types/entities';
 import type { Item } from '@/engine/types/items';
 import { rollKillRewards, type KillRewards } from '@/engine/loot/award';
 import { loadAwardPools } from '@/data/loaders/loot';
+import { buildMonster } from '@/engine/spawn/buildMonster';
 import { useCombatStore, type CombatLogEntry } from './combatStore';
 import { useInventoryStore } from './inventoryStore';
 import { useMapStore } from './mapStore';
@@ -38,50 +39,14 @@ export function playerToCombatUnit(player: Player): CombatUnit {
 }
 
 /**
- * Create a simple enemy unit for testing
+ * Create a simple enemy unit for testing/playability.
+ *
+ * Now routed through {@link buildMonster} so the production combat path
+ * uses the same JSON archetype the simulator does (`monsters/act1.fallen`).
+ * See `docs/design/level1-balance.md` §4.1.
  */
-export function createSimpleEnemy(level: number): CombatUnit {
-  const baseHp = 50 + level * 20;
-  const enemyId = `enemy-${String(Date.now())}-${String(Math.random())}`;
-  const enemyName = `Fallen Lv${String(level)}`;
-  return {
-    id: enemyId,
-    name: enemyName,
-    side: 'enemy',
-    level,
-    tier: 'trash',
-    stats: {
-      life: baseHp,
-      lifeMax: baseHp,
-      mana: 0,
-      manaMax: 0,
-      attack: 100 + level * 10,
-      defense: level * 5,
-      attackSpeed: 80,
-      critChance: 0.05,
-      critDamage: 2,
-      physDodge: 0.05,
-      magicDodge: 0.05,
-      magicFind: 0,
-      goldFind: 0,
-      resistances: {
-        fire: 0,
-        cold: 0,
-        lightning: 0,
-        poison: 0,
-        arcane: 0,
-        physical: 0
-      }
-    },
-    life: baseHp,
-    mana: 0,
-    statuses: [],
-    cooldowns: {},
-    skillOrder: [],
-    activeBuffIds: [],
-    enraged: false,
-    summonedAdds: false
-  };
+export function createSimpleEnemy(level: number, idSuffix: string | number = 0): CombatUnit {
+  return buildMonster('monsters/act1.fallen', Math.max(1, level), 'trash', idSuffix);
 }
 
 /**
@@ -266,7 +231,7 @@ export function startSimpleBattle(enemyLevel = 1, enemyCount = 3) {
   const enemies: CombatUnit[] = [];
   
   for (let i = 0; i < enemyCount; i++) {
-    enemies.push(createSimpleEnemy(enemyLevel));
+    enemies.push(createSimpleEnemy(enemyLevel, i));
   }
 
   // Start combat in the store

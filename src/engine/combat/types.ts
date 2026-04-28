@@ -22,6 +22,13 @@ export interface ActiveStatus {
   readonly stacks: number;
   /** Remaining duration in turns; -1 = permanent (until dispelled). */
   readonly remaining: number;
+  /**
+   * Remaining duration in *virtual milliseconds* — used by the tick-based
+   * scheduler ({@link import('./scheduler').runBattleStream}). Stamped from
+   * `remaining * 1200` when the scheduler first observes a status. Undefined
+   * for permanent statuses (when `remaining < 0`) or before stamping.
+   */
+  readonly remainingMs?: number;
   /** Damage per stack per tick (for DoTs). */
   readonly dotPerStack?: number;
   /** Damage type for DoT damage. */
@@ -53,6 +60,15 @@ export interface CombatUnit {
   readonly enraged: boolean;
   /** Has this unit been "summoned-on-start" already? */
   readonly summonedAdds: boolean;
+  /**
+   * Base swing interval in *virtual milliseconds*, before haste.
+   *
+   * Used by the tick-based combat scheduler. If absent at scheduler entry,
+   * the engine derives it from `attackSpeed` via
+   * `Math.round(120000 / Math.max(1, attackSpeed))` so a unit with the
+   * legacy default `attackSpeed: 100` gets `1200 ms`. Floors at 50 ms.
+   */
+  readonly attackIntervalMs?: number;
   /** Cached resistance penalty from Act IV/V (subtracted from each resist). */
   readonly resistPenalty?: number;
   /** Owner unit id (for summons). */

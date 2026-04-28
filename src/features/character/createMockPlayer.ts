@@ -26,8 +26,12 @@ export interface StatPreview {
 
 const CLASS_STATS: Record<CharacterClass, StatPreview> = {
   barbarian: { strength: 30, dexterity: 20, vitality: 25, energy: 10, life: 55, mana: 10 },
-  sorceress: { strength: 10, dexterity: 25, vitality: 10, energy: 35, life: 40, mana: 35 },
-  necromancer: { strength: 15, dexterity: 25, vitality: 15, energy: 25, life: 45, mana: 25 },
+  // L1 caster nudge — see docs/design/level1-balance.md §4.2.
+  // Vitality 10→13 (life 120→126), Energy 35→32 (mana 102→98) to give
+  // Sorceress a 5% eHP cushion vs the Blood Moor opening pull.
+  sorceress: { strength: 10, dexterity: 25, vitality: 13, energy: 32, life: 40, mana: 35 },
+  // Necromancer Vit 15→17 (life 130→134) for the same reason.
+  necromancer: { strength: 15, dexterity: 25, vitality: 17, energy: 25, life: 45, mana: 25 },
   paladin: { strength: 25, dexterity: 20, vitality: 25, energy: 15, life: 55, mana: 15 },
   amazon: { strength: 20, dexterity: 25, vitality: 20, energy: 15, life: 50, mana: 15 },
   druid: { strength: 15, dexterity: 20, vitality: 25, energy: 20, life: 55, mana: 20 },

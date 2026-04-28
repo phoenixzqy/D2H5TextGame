@@ -60,7 +60,19 @@
     "cooldown": {
       "type": "number",
       "minimum": 0,
-      "description": "Cooldown in turns"
+      "description": "Cooldown in turns (legacy; prefer cooldownMs)"
+    },
+    "cooldownMs": {
+      "type": "integer",
+      "minimum": 1000,
+      "maximum": 60000,
+      "description": "Cooldown in virtual ms (tick scheduler). Optional; defaults to cooldown * 1200 with floor 1000."
+    },
+    "castTimeMs": {
+      "type": "integer",
+      "minimum": 200,
+      "maximum": 5000,
+      "description": "Animation lock in virtual ms after casting. Defaults to the actor's attackIntervalMs."
     },
     "cost": {
       "type": "object",

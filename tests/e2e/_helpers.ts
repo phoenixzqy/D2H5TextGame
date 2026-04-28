@@ -81,18 +81,26 @@ export async function navTo(page: Page, route: string): Promise<void> {
  */
 export async function waitForBattleResolution(
   page: Page,
-  timeoutMs = 30_000
+  timeoutMs = 60_000
 ): Promise<{ playerWon: boolean; lootItems: Locator | null }> {
   await expect(page.getByTestId('combat-screen')).toBeVisible({ timeout: 10_000 });
 
-  // Auto-mode is engine-driven; toggle on if not already, defensively.
-  const autoCheckbox = page.locator('input[type="checkbox"]').first();
-  if (await autoCheckbox.count()) {
-    const checked = await autoCheckbox.isChecked().catch(() => false);
-    if (!checked) {
-      await autoCheckbox.check().catch(() => undefined);
+  // Move the cursor away from the combat log — the log pauses playback
+  // while hovered (pause-on-hover UX) which would otherwise stall the
+  // tests if Playwright's pointer happens to land over the log panel.
+  await page.mouse.move(0, 0);
+
+  // Fast-forward by cycling the speed button to "skip" (1× → 2× → 4× → skip).
+  const speedBtn = page.getByTestId('combat-speed-btn');
+  if (await speedBtn.count()) {
+    for (let i = 0; i < 3; i++) {
+      await speedBtn.click().catch(() => undefined);
+      await page.waitForTimeout(20);
     }
   }
+
+  // Re-park the cursor in case the click left it over the log.
+  await page.mouse.move(0, 0);
 
   // The 'end' BattleEvent emits a log line containing "wins" or
   // "ended in a draw". Either signals resolution.
