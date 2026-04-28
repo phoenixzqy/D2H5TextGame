@@ -1,0 +1,31 @@
+{
+  "inventory.title": "Inventory",
+  "backpack": "Backpack",
+  "stash": "Stash",
+  "equipment": "Equipment",
+  "equip": "Equip",
+  "unequip": "Unequip",
+  "sell": "Sell",
+  "salvage": "Salvage",
+  "transfer": "Transfer",
+  "details": "Details",
+  "items": "Items",
+  "selectItem": "Select an item",
+  "emptyBackpack": "Backpack is empty",
+  "emptyStash": "Stash is empty",
+  "empty": "Empty",
+  "itemLevel": "iLvl",
+  "slots": {
+    "head": "Head",
+    "chest": "Chest",
+    "gloves": "Gloves",
+    "belt": "Belt",
+    "boots": "Boots",
+    "amulet": "Amulet",
+    "ring-left": "Ring (L)",
+    "ring-right": "Ring (R)",
+    "weapon": "Weapon",
+    "offhand": "Offhand"
+  },
+  "capacity": "Capacity: {{current}}/{{max}}"
+}

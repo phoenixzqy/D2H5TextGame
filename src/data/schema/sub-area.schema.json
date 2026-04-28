@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/sub-area.json",
+  "title": "Sub-Area Definition",
+  "description": "Sub-area (map zone) definition with waves and encounters",
+  "type": "object",
+  "required": ["id", "name", "actId", "areaLevel", "waves", "hasBoss", "lootTable"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^areas/[a-z0-9-]+$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "actId": {
+      "type": "string",
+      "pattern": "^acts/act[1-5]$"
+    },
+    "areaLevel": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "waves": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/wave" },
+      "minItems": 1
+    },
+    "hasBoss": {
+      "type": "boolean"
+    },
+    "bossEncounter": {
+      "$ref": "#/$defs/encounter"
+    },
+    "lootTable": {
+      "type": "string",
+      "description": "Loot table ID"
+    },
+    "flavor": {
+      "type": "string",
+      "description": "Short English flavor text shown on entry"
+    }
+  },
+  "$defs": {
+    "wave": {
+      "type": "object",
+      "required": ["id", "type"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["trash", "elite", "boss", "treasure", "shrine"]
+        },
+        "encounters": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/encounter" }
+        },
+        "lootTable": { "type": "string" }
+      }
+    },
+    "encounter": {
+      "type": "object",
+      "required": ["id", "monsters", "level"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "monsters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["archetypeId", "count"],
+            "additionalProperties": false,
+            "properties": {
+              "archetypeId": { "type": "string" },
+              "count": { "type": "integer", "minimum": 1 },
+              "elite": { "type": "boolean" },
+              "boss": { "type": "boolean" }
+            }
+          },
+          "minItems": 1
+        },
+        "level": { "type": "integer", "minimum": 1 }
+      }
+    }
+  }
+}

@@ -1,0 +1,244 @@
+[
+  {
+    "id": "skills-paladin-zeal",
+    "name": "Zeal",
+    "description": "A flurry of melee strikes that hits up to 3 nearby enemies.",
+    "icon": "skills/paladin/zeal.png",
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 10
+    },
+    "damage": {
+      "min": 40,
+      "max": 60,
+      "breakdown": {
+        "physical": 60
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ],
+    "synergies": {
+      "burn": 1.25,
+      "chill": 1.1
+    },
+    "scaling": {
+      "damagePerLevel": 4
+    }
+  },
+  {
+    "id": "skills-paladin-holy-bolt",
+    "name": "Holy Bolt",
+    "description": "Fires a bolt of holy energy at a single enemy, healing the caster for 50% of the damage dealt.",
+    "icon": "skills/paladin/holy-bolt.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 15
+    },
+    "damage": {
+      "min": 50,
+      "max": 70,
+      "breakdown": {
+        "arcane": 70
+      }
+    },
+    "damageType": "arcane",
+    "appliesTags": [
+      "arcane"
+    ],
+    "scaling": {
+      "damagePerLevel": 5
+    }
+  },
+  {
+    "id": "skills-paladin-blessed-hammer",
+    "name": "Blessed Hammer",
+    "description": "Summons spinning hammers of blessed energy that ignore magic resist.",
+    "icon": "skills/paladin/blessed-hammer.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 25
+    },
+    "damage": {
+      "min": 60,
+      "max": 90,
+      "breakdown": {
+        "arcane": 90
+      }
+    },
+    "damageType": "arcane",
+    "appliesTags": [
+      "arcane"
+    ],
+    "scaling": {
+      "damagePerLevel": 6
+    }
+  },
+  {
+    "id": "skills-paladin-vengeance",
+    "name": "Vengeance",
+    "description": "A righteous strike that deals fire, cold, and lightning damage simultaneously.",
+    "icon": "skills/paladin/vengeance.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 30
+    },
+    "damage": {
+      "min": 90,
+      "max": 150,
+      "breakdown": {
+        "fire": 50,
+        "cold": 50,
+        "lightning": 50
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn",
+      "chill",
+      "paralyze"
+    ],
+    "appliesTags": [
+      "fire",
+      "cold",
+      "lightning",
+      "burn",
+      "chill",
+      "shock"
+    ],
+    "scaling": {
+      "damagePerLevel": 9
+    }
+  },
+  {
+    "id": "skills-paladin-charge",
+    "name": "Charge",
+    "description": "Charges a target, dealing heavy physical damage and stunning for 1 turn.",
+    "icon": "skills/paladin/charge.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 20
+    },
+    "damage": {
+      "min": 80,
+      "max": 120,
+      "breakdown": {
+        "physical": 120
+      }
+    },
+    "damageType": "physical",
+    "appliesStatus": [
+      "stun"
+    ],
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 8
+    }
+  },
+  {
+    "id": "skills-paladin-fist-of-heavens",
+    "name": "Fist of the Heavens",
+    "description": "Calls down lightning from the heavens, paralyzing all enemies.",
+    "icon": "skills/paladin/fist-of-heavens.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 50
+    },
+    "damage": {
+      "min": 100,
+      "max": 150,
+      "breakdown": {
+        "lightning": 150
+      }
+    },
+    "damageType": "lightning",
+    "appliesStatus": [
+      "paralyze"
+    ],
+    "appliesTags": [
+      "lightning",
+      "shock"
+    ],
+    "scaling": {
+      "damagePerLevel": 10
+    }
+  },
+  {
+    "id": "skills-paladin-might",
+    "name": "Might",
+    "description": "Aura: increases physical damage of self and mercenary by 50%.",
+    "icon": "skills/paladin/might.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-paladin-holy-fire",
+    "name": "Holy Fire",
+    "description": "Aura: deals 20 fire damage per turn to all enemies and applies burn.",
+    "icon": "skills/paladin/holy-fire.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "appliesTags": [
+      "fire",
+      "burn"
+    ]
+  },
+  {
+    "id": "skills-paladin-conviction",
+    "name": "Conviction",
+    "description": "Aura: reduces all resistances of all enemies by 25%.",
+    "icon": "skills/paladin/conviction.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 24,
+    "maxLevel": 20,
+    "appliesTags": [
+      "amp-damage"
+    ]
+  },
+  {
+    "id": "skills-paladin-meditation",
+    "name": "Meditation",
+    "description": "Aura: regenerates 5 mana per turn for self and mercenary.",
+    "icon": "skills/paladin/meditation.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  }
+]

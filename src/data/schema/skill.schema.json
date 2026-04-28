@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/skill.json",
+  "title": "Skill Definition",
+  "description": "Skill template definition",
+  "type": "object",
+  "required": ["id", "name", "description", "trigger", "target", "cooldown", "minLevel", "maxLevel"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Unique skill ID"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string",
+      "description": "Icon asset path"
+    },
+    "trigger": {
+      "type": "string",
+      "enum": ["active", "passive", "on-hit", "on-kill", "on-damaged", "on-dodge"]
+    },
+    "target": {
+      "type": "string",
+      "enum": ["self", "single-enemy", "all-enemies", "area-enemies", "single-ally", "all-allies", "summon"]
+    },
+    "cooldown": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Cooldown in turns"
+    },
+    "cost": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mana": { "type": "number", "minimum": 0 },
+        "life": { "type": "number", "minimum": 0 }
+      }
+    },
+    "damage": {
+      "$ref": "#/$defs/damageInfo"
+    },
+    "damageType": {
+      "$ref": "#/$defs/damageType"
+    },
+    "appliesStatus": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Status effect IDs applied"
+    },
+    "heal": {
+      "type": "object",
+      "required": ["min", "max", "target"],
+      "additionalProperties": false,
+      "properties": {
+        "min": { "type": "number", "minimum": 0 },
+        "max": { "type": "number", "minimum": 0 },
+        "target": {
+          "type": "string",
+          "enum": ["self", "ally"]
+        }
+      }
+    },
+    "appliesTags": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/comboTag" }
+    },
+    "synergies": {
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^(cold|fire|lightning|poison|physical|arcane|chill|burn|shock|bleed|amp-damage)$": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Damage multiplier for this combo tag"
+        }
+      }
+    },
+    "minLevel": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "maxLevel": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "scaling": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "damagePerLevel": { "type": "number" },
+        "cooldownPerLevel": { "type": "number" },
+        "costPerLevel": { "type": "number" }
+      }
+    }
+  },
+  "$defs": {
+    "damageType": {
+      "type": "string",
+      "enum": ["physical", "fire", "cold", "lightning", "arcane", "poison", "thorns"]
+    },
+    "comboTag": {
+      "type": "string",
+      "enum": ["cold", "fire", "lightning", "poison", "physical", "arcane", "chill", "burn", "shock", "bleed", "amp-damage"]
+    },
+    "damageInfo": {
+      "type": "object",
+      "required": ["min", "max", "breakdown"],
+      "additionalProperties": false,
+      "properties": {
+        "min": { "type": "number", "minimum": 0 },
+        "max": { "type": "number", "minimum": 0 },
+        "breakdown": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "physical": { "type": "number", "minimum": 0 },
+            "fire": { "type": "number", "minimum": 0 },
+            "cold": { "type": "number", "minimum": 0 },
+            "lightning": { "type": "number", "minimum": 0 },
+            "arcane": { "type": "number", "minimum": 0 },
+            "poison": { "type": "number", "minimum": 0 },
+            "thorns": { "type": "number", "minimum": 0 }
+          }
+        }
+      }
+    }
+  }
+}

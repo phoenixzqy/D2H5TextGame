@@ -1,0 +1,523 @@
+[
+  {
+    "id": "loot/trash-act1",
+    "name": "Act I Trash",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-cap", "rarity": "normal", "weight": 200, "minLevel": 1, "maxLevel": 10 },
+      { "type": "item", "itemBase": "items/base/helm-skull-cap", "rarity": "normal", "weight": 150, "minLevel": 4, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/armor-quilted", "rarity": "normal", "weight": 200, "minLevel": 1, "maxLevel": 10 },
+      { "type": "item", "itemBase": "items/base/armor-leather", "rarity": "normal", "weight": 150, "minLevel": 5, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/glove-leather", "rarity": "normal", "weight": 200, "minLevel": 1, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/boot-leather", "rarity": "normal", "weight": 200, "minLevel": 1, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/belt-sash", "rarity": "normal", "weight": 200, "minLevel": 1, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/belt-light", "rarity": "normal", "weight": 100, "minLevel": 6, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/wp1h-short-sword", "rarity": "normal", "weight": 250, "minLevel": 1, "maxLevel": 10 },
+      { "type": "item", "itemBase": "items/base/wp1h-scimitar", "rarity": "normal", "weight": 150, "minLevel": 7, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/wp2h-two-handed-sword", "rarity": "normal", "weight": 100, "minLevel": 1, "maxLevel": 10 },
+      { "type": "item", "itemBase": "items/base/wp2h-great-axe", "rarity": "normal", "weight": 70, "minLevel": 7, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/sh-buckler", "rarity": "normal", "weight": 150, "minLevel": 1, "maxLevel": 10 },
+      { "type": "item", "itemBase": "items/base/sh-kite", "rarity": "normal", "weight": 100, "minLevel": 7, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/ring-iron", "rarity": "normal", "weight": 80, "minLevel": 1, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/ring-silver", "rarity": "normal", "weight": 50, "minLevel": 9, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/amu-tin", "rarity": "normal", "weight": 60, "minLevel": 1, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/amu-brass", "rarity": "normal", "weight": 40, "minLevel": 9, "maxLevel": 14 }
+    ]
+  },
+  {
+    "id": "loot/trash-act2",
+    "name": "Act II Trash",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-skull-cap", "rarity": "normal", "weight": 300, "minLevel": 14, "maxLevel": 22 },
+      { "type": "item", "itemBase": "items/base/helm-war-hat", "rarity": "normal", "weight": 80, "minLevel": 22, "maxLevel": 28 },
+      { "type": "item", "itemBase": "items/base/armor-leather", "rarity": "normal", "weight": 300, "minLevel": 14, "maxLevel": 22 },
+      { "type": "item", "itemBase": "items/base/armor-chain-mail", "rarity": "normal", "weight": 80, "minLevel": 22, "maxLevel": 28 },
+      { "type": "item", "itemBase": "items/base/glove-heavy", "rarity": "normal", "weight": 200, "minLevel": 14, "maxLevel": 26 },
+      { "type": "item", "itemBase": "items/base/boot-heavy", "rarity": "normal", "weight": 220, "minLevel": 14, "maxLevel": 26 },
+      { "type": "item", "itemBase": "items/base/belt-light", "rarity": "normal", "weight": 220, "minLevel": 14, "maxLevel": 26 },
+      { "type": "item", "itemBase": "items/base/wp1h-scimitar", "rarity": "normal", "weight": 300, "minLevel": 14, "maxLevel": 22 },
+      { "type": "item", "itemBase": "items/base/wp1h-long-sword", "rarity": "normal", "weight": 70, "minLevel": 22, "maxLevel": 28 },
+      { "type": "item", "itemBase": "items/base/wp2h-great-axe", "rarity": "normal", "weight": 150, "minLevel": 14, "maxLevel": 26 },
+      { "type": "item", "itemBase": "items/base/sh-kite", "rarity": "normal", "weight": 200, "minLevel": 14, "maxLevel": 26 },
+      { "type": "item", "itemBase": "items/base/sh-aegis", "rarity": "normal", "weight": 60, "minLevel": 22, "maxLevel": 28 },
+      { "type": "item", "itemBase": "items/base/ring-silver", "rarity": "normal", "weight": 100, "minLevel": 14, "maxLevel": 26 },
+      { "type": "item", "itemBase": "items/base/amu-brass", "rarity": "normal", "weight": 80, "minLevel": 14, "maxLevel": 26 }
+    ]
+  },
+  {
+    "id": "loot/trash-act3",
+    "name": "Act III Trash",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-war-hat", "rarity": "normal", "weight": 200, "minLevel": 26, "maxLevel": 38 },
+      { "type": "item", "itemBase": "items/base/helm-armet", "rarity": "normal", "weight": 50, "minLevel": 38, "maxLevel": 45 },
+      { "type": "item", "itemBase": "items/base/armor-chain-mail", "rarity": "normal", "weight": 200, "minLevel": 26, "maxLevel": 38 },
+      { "type": "item", "itemBase": "items/base/armor-dusk-shroud", "rarity": "normal", "weight": 40, "minLevel": 38, "maxLevel": 45 },
+      { "type": "item", "itemBase": "items/base/glove-heavy", "rarity": "normal", "weight": 180, "minLevel": 26, "maxLevel": 40 },
+      { "type": "item", "itemBase": "items/base/boot-heavy", "rarity": "normal", "weight": 180, "minLevel": 26, "maxLevel": 40 },
+      { "type": "item", "itemBase": "items/base/belt-light", "rarity": "normal", "weight": 180, "minLevel": 26, "maxLevel": 40 },
+      { "type": "item", "itemBase": "items/base/wp1h-long-sword", "rarity": "normal", "weight": 200, "minLevel": 26, "maxLevel": 38 },
+      { "type": "item", "itemBase": "items/base/wp1h-phase-blade", "rarity": "normal", "weight": 30, "minLevel": 38, "maxLevel": 45 },
+      { "type": "item", "itemBase": "items/base/wp2h-great-axe", "rarity": "normal", "weight": 120, "minLevel": 26, "maxLevel": 40 },
+      { "type": "item", "itemBase": "items/base/sh-aegis", "rarity": "normal", "weight": 150, "minLevel": 26, "maxLevel": 40 },
+      { "type": "item", "itemBase": "items/base/sh-monarch", "rarity": "normal", "weight": 50, "minLevel": 38, "maxLevel": 45 },
+      { "type": "item", "itemBase": "items/base/ring-jade", "rarity": "normal", "weight": 80, "minLevel": 26, "maxLevel": 40 },
+      { "type": "item", "itemBase": "items/base/amu-silver", "rarity": "normal", "weight": 60, "minLevel": 26, "maxLevel": 40 }
+    ]
+  },
+  {
+    "id": "loot/trash-act4",
+    "name": "Act IV Trash",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-armet", "rarity": "normal", "weight": 200, "minLevel": 40, "maxLevel": 55 },
+      { "type": "item", "itemBase": "items/base/armor-dusk-shroud", "rarity": "normal", "weight": 200, "minLevel": 40, "maxLevel": 55 },
+      { "type": "item", "itemBase": "items/base/armor-wyrmhide", "rarity": "normal", "weight": 150, "minLevel": 45, "maxLevel": 55 },
+      { "type": "item", "itemBase": "items/base/glove-bramble", "rarity": "normal", "weight": 180, "minLevel": 40, "maxLevel": 55 },
+      { "type": "item", "itemBase": "items/base/boot-mesh", "rarity": "normal", "weight": 180, "minLevel": 40, "maxLevel": 55 },
+      { "type": "item", "itemBase": "items/base/belt-mesh", "rarity": "normal", "weight": 180, "minLevel": 40, "maxLevel": 55 },
+      { "type": "item", "itemBase": "items/base/wp1h-phase-blade", "rarity": "normal", "weight": 180, "minLevel": 40, "maxLevel": 55 },
+      { "type": "item", "itemBase": "items/base/wp2h-colossus-sword", "rarity": "normal", "weight": 120, "minLevel": 40, "maxLevel": 55 },
+      { "type": "item", "itemBase": "items/base/sh-monarch", "rarity": "normal", "weight": 180, "minLevel": 40, "maxLevel": 55 },
+      { "type": "item", "itemBase": "items/base/ring-amber", "rarity": "normal", "weight": 100, "minLevel": 40, "maxLevel": 55 },
+      { "type": "item", "itemBase": "items/base/amu-jade", "rarity": "normal", "weight": 80, "minLevel": 40, "maxLevel": 55 }
+    ]
+  },
+  {
+    "id": "loot/trash-act5",
+    "name": "Act V Trash",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-armet", "rarity": "normal", "weight": 220, "minLevel": 55, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/helm-corona", "rarity": "normal", "weight": 150, "minLevel": 60, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/armor-dusk-shroud", "rarity": "normal", "weight": 220, "minLevel": 55, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/armor-wyrmhide", "rarity": "normal", "weight": 200, "minLevel": 55, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/armor-archon-plate", "rarity": "normal", "weight": 150, "minLevel": 60, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/glove-bramble", "rarity": "normal", "weight": 200, "minLevel": 55, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/boot-mesh", "rarity": "normal", "weight": 200, "minLevel": 55, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/belt-spiderweb", "rarity": "normal", "weight": 200, "minLevel": 60, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/wp1h-phase-blade", "rarity": "normal", "weight": 200, "minLevel": 55, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/wp2h-colossus-sword", "rarity": "normal", "weight": 180, "minLevel": 55, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/sh-monarch", "rarity": "normal", "weight": 220, "minLevel": 55, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/sh-sacred-targe", "rarity": "normal", "weight": 150, "minLevel": 60, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/ring-obsidian", "rarity": "normal", "weight": 120, "minLevel": 55, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/ring-zircon", "rarity": "normal", "weight": 100, "minLevel": 58, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/amu-obsidian", "rarity": "normal", "weight": 100, "minLevel": 55, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/amu-zircon", "rarity": "normal", "weight": 80, "minLevel": 58, "maxLevel": 75 }
+    ]
+  },
+
+  {
+    "id": "loot/champion-act1",
+    "name": "Act I Champion",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-skull-cap", "rarity": "magic", "weight": 150, "minLevel": 6, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/armor-leather", "rarity": "magic", "weight": 150, "minLevel": 7, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/wp1h-scimitar", "rarity": "magic", "weight": 150, "minLevel": 9, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/sh-kite", "rarity": "magic", "weight": 100, "minLevel": 9, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/ring-silver", "rarity": "magic", "weight": 80, "minLevel": 9, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/amu-brass", "rarity": "magic", "weight": 60, "minLevel": 9, "maxLevel": 14 }
+    ]
+  },
+  {
+    "id": "loot/champion-act2",
+    "name": "Act II Champion",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-war-hat", "rarity": "magic", "weight": 150, "minLevel": 16, "maxLevel": 28 },
+      { "type": "item", "itemBase": "items/base/armor-chain-mail", "rarity": "magic", "weight": 150, "minLevel": 16, "maxLevel": 28 },
+      { "type": "item", "itemBase": "items/base/wp1h-long-sword", "rarity": "magic", "weight": 150, "minLevel": 22, "maxLevel": 28 },
+      { "type": "item", "itemBase": "items/base/sh-aegis", "rarity": "magic", "weight": 100, "minLevel": 22, "maxLevel": 28 },
+      { "type": "item", "itemBase": "items/base/ring-silver", "rarity": "magic", "weight": 100, "minLevel": 16, "maxLevel": 28 }
+    ]
+  },
+  {
+    "id": "loot/champion-act3",
+    "name": "Act III Champion",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-armet", "rarity": "magic", "weight": 150, "minLevel": 28, "maxLevel": 45 },
+      { "type": "item", "itemBase": "items/base/armor-dusk-shroud", "rarity": "magic", "weight": 150, "minLevel": 28, "maxLevel": 45 },
+      { "type": "item", "itemBase": "items/base/wp1h-phase-blade", "rarity": "magic", "weight": 120, "minLevel": 38, "maxLevel": 45 },
+      { "type": "item", "itemBase": "items/base/sh-monarch", "rarity": "magic", "weight": 100, "minLevel": 38, "maxLevel": 45 },
+      { "type": "item", "itemBase": "items/base/ring-jade", "rarity": "magic", "weight": 100, "minLevel": 28, "maxLevel": 45 }
+    ]
+  },
+  {
+    "id": "loot/champion-act4",
+    "name": "Act IV Champion",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-armet", "rarity": "magic", "weight": 150, "minLevel": 42, "maxLevel": 55 },
+      { "type": "item", "itemBase": "items/base/armor-wyrmhide", "rarity": "magic", "weight": 150, "minLevel": 42, "maxLevel": 55 },
+      { "type": "item", "itemBase": "items/base/wp2h-colossus-sword", "rarity": "magic", "weight": 120, "minLevel": 42, "maxLevel": 55 },
+      { "type": "item", "itemBase": "items/base/ring-amber", "rarity": "magic", "weight": 100, "minLevel": 42, "maxLevel": 55 }
+    ]
+  },
+  {
+    "id": "loot/champion-act5",
+    "name": "Act V Champion",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-corona", "rarity": "magic", "weight": 150, "minLevel": 57, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/armor-archon-plate", "rarity": "magic", "weight": 150, "minLevel": 57, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/wp1h-phase-blade", "rarity": "magic", "weight": 150, "minLevel": 57, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/sh-sacred-targe", "rarity": "magic", "weight": 120, "minLevel": 60, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/ring-zircon", "rarity": "magic", "weight": 100, "minLevel": 58, "maxLevel": 75 }
+    ]
+  },
+
+  {
+    "id": "loot/unique-act1",
+    "name": "Act I Unique Mob",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-skull-cap", "rarity": "rare", "weight": 120, "minLevel": 7, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/armor-leather", "rarity": "rare", "weight": 120, "minLevel": 8, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/wp1h-scimitar", "rarity": "rare", "weight": 120, "minLevel": 10, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/sh-kite", "rarity": "rare", "weight": 80, "minLevel": 10, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/ring-silver", "rarity": "rare", "weight": 80, "minLevel": 9, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/amu-brass", "rarity": "rare", "weight": 60, "minLevel": 9, "maxLevel": 14 }
+    ]
+  },
+  {
+    "id": "loot/unique-act2",
+    "name": "Act II Unique Mob",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-war-hat", "rarity": "rare", "weight": 120, "minLevel": 17, "maxLevel": 28 },
+      { "type": "item", "itemBase": "items/base/armor-chain-mail", "rarity": "rare", "weight": 120, "minLevel": 17, "maxLevel": 28 },
+      { "type": "item", "itemBase": "items/base/wp1h-long-sword", "rarity": "rare", "weight": 120, "minLevel": 22, "maxLevel": 28 },
+      { "type": "item", "itemBase": "items/base/sh-aegis", "rarity": "rare", "weight": 80, "minLevel": 22, "maxLevel": 28 },
+      { "type": "item", "itemBase": "items/base/ring-silver", "rarity": "rare", "weight": 100, "minLevel": 17, "maxLevel": 28 }
+    ]
+  },
+  {
+    "id": "loot/unique-act3",
+    "name": "Act III Unique Mob",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-armet", "rarity": "rare", "weight": 120, "minLevel": 29, "maxLevel": 45 },
+      { "type": "item", "itemBase": "items/base/armor-dusk-shroud", "rarity": "rare", "weight": 120, "minLevel": 29, "maxLevel": 45 },
+      { "type": "item", "itemBase": "items/base/wp1h-phase-blade", "rarity": "rare", "weight": 100, "minLevel": 38, "maxLevel": 45 },
+      { "type": "item", "itemBase": "items/base/sh-monarch", "rarity": "rare", "weight": 100, "minLevel": 38, "maxLevel": 45 },
+      { "type": "item", "itemBase": "items/base/ring-jade", "rarity": "rare", "weight": 100, "minLevel": 29, "maxLevel": 45 }
+    ]
+  },
+  {
+    "id": "loot/unique-act4",
+    "name": "Act IV Unique Mob",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-armet", "rarity": "rare", "weight": 120, "minLevel": 43, "maxLevel": 55 },
+      { "type": "item", "itemBase": "items/base/armor-wyrmhide", "rarity": "rare", "weight": 120, "minLevel": 43, "maxLevel": 55 },
+      { "type": "item", "itemBase": "items/base/wp2h-colossus-sword", "rarity": "rare", "weight": 100, "minLevel": 43, "maxLevel": 55 },
+      { "type": "item", "itemBase": "items/base/ring-amber", "rarity": "rare", "weight": 100, "minLevel": 43, "maxLevel": 55 }
+    ]
+  },
+  {
+    "id": "loot/unique-act5",
+    "name": "Act V Unique Mob",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-corona", "rarity": "rare", "weight": 120, "minLevel": 58, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/armor-archon-plate", "rarity": "rare", "weight": 120, "minLevel": 58, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/wp1h-phase-blade", "rarity": "rare", "weight": 120, "minLevel": 58, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/sh-sacred-targe", "rarity": "rare", "weight": 100, "minLevel": 60, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/ring-zircon", "rarity": "rare", "weight": 100, "minLevel": 58, "maxLevel": 75 }
+    ]
+  },
+
+  {
+    "id": "loot/jewelry-act1",
+    "name": "Act I Jewelry",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/ring-iron", "rarity": "magic", "weight": 200, "minLevel": 1, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/ring-silver", "rarity": "magic", "weight": 120, "minLevel": 9, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/amu-tin", "rarity": "magic", "weight": 150, "minLevel": 1, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/amu-brass", "rarity": "magic", "weight": 80, "minLevel": 9, "maxLevel": 14 }
+    ]
+  },
+  {
+    "id": "loot/jewelry-act2",
+    "name": "Act II Jewelry",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/ring-silver", "rarity": "magic", "weight": 150, "minLevel": 14, "maxLevel": 28 },
+      { "type": "item", "itemBase": "items/base/ring-jade", "rarity": "magic", "weight": 80, "minLevel": 23, "maxLevel": 32 },
+      { "type": "item", "itemBase": "items/base/amu-brass", "rarity": "magic", "weight": 120, "minLevel": 14, "maxLevel": 28 },
+      { "type": "item", "itemBase": "items/base/amu-silver", "rarity": "magic", "weight": 70, "minLevel": 23, "maxLevel": 32 }
+    ]
+  },
+  {
+    "id": "loot/jewelry-act3",
+    "name": "Act III Jewelry",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/ring-jade", "rarity": "magic", "weight": 150, "minLevel": 26, "maxLevel": 45 },
+      { "type": "item", "itemBase": "items/base/ring-amber", "rarity": "magic", "weight": 80, "minLevel": 33, "maxLevel": 45 },
+      { "type": "item", "itemBase": "items/base/amu-silver", "rarity": "magic", "weight": 120, "minLevel": 26, "maxLevel": 45 },
+      { "type": "item", "itemBase": "items/base/amu-jade", "rarity": "magic", "weight": 70, "minLevel": 33, "maxLevel": 45 }
+    ]
+  },
+  {
+    "id": "loot/jewelry-act4",
+    "name": "Act IV Jewelry",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/ring-amber", "rarity": "magic", "weight": 150, "minLevel": 40, "maxLevel": 58 },
+      { "type": "item", "itemBase": "items/base/ring-obsidian", "rarity": "magic", "weight": 80, "minLevel": 48, "maxLevel": 58 },
+      { "type": "item", "itemBase": "items/base/amu-jade", "rarity": "magic", "weight": 120, "minLevel": 40, "maxLevel": 58 },
+      { "type": "item", "itemBase": "items/base/amu-obsidian", "rarity": "magic", "weight": 70, "minLevel": 48, "maxLevel": 58 }
+    ]
+  },
+  {
+    "id": "loot/jewelry-act5",
+    "name": "Act V Jewelry",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/ring-obsidian", "rarity": "magic", "weight": 150, "minLevel": 55, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/ring-zircon", "rarity": "magic", "weight": 100, "minLevel": 58, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/amu-obsidian", "rarity": "magic", "weight": 120, "minLevel": 55, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/amu-zircon", "rarity": "magic", "weight": 100, "minLevel": 58, "maxLevel": 75 }
+    ]
+  },
+
+  {
+    "id": "loot/mini-act1",
+    "name": "Act I Mini-Boss",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-skull-cap", "rarity": "rare", "weight": 100, "minLevel": 7, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/armor-leather", "rarity": "rare", "weight": 100, "minLevel": 8, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/wp1h-scimitar", "rarity": "rare", "weight": 100, "minLevel": 10, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/ring-silver", "rarity": "rare", "weight": 80, "minLevel": 9, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/amu-brass", "rarity": "rare", "weight": 60, "minLevel": 9, "maxLevel": 14 },
+      { "type": "rune", "weight": 30, "minLevel": 7, "maxLevel": 14 },
+      { "type": "currency", "itemId": "currency/wishstone", "weight": 100, "quantityMin": 6, "quantityMax": 8 },
+      { "type": "gem", "weight": 50, "quantityMin": 1, "quantityMax": 2 }
+    ]
+  },
+  {
+    "id": "loot/mini-act2",
+    "name": "Act II Mini-Boss",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-war-hat", "rarity": "rare", "weight": 100, "minLevel": 17, "maxLevel": 28 },
+      { "type": "item", "itemBase": "items/base/armor-chain-mail", "rarity": "rare", "weight": 100, "minLevel": 17, "maxLevel": 28 },
+      { "type": "item", "itemBase": "items/base/wp1h-long-sword", "rarity": "rare", "weight": 100, "minLevel": 22, "maxLevel": 28 },
+      { "type": "item", "itemBase": "items/base/ring-jade", "rarity": "rare", "weight": 80, "minLevel": 23, "maxLevel": 32 },
+      { "type": "rune", "weight": 30, "minLevel": 17, "maxLevel": 28 },
+      { "type": "currency", "itemId": "currency/wishstone", "weight": 100, "quantityMin": 7, "quantityMax": 9 },
+      { "type": "gem", "weight": 60, "quantityMin": 1, "quantityMax": 3 }
+    ]
+  },
+  {
+    "id": "loot/mini-act3",
+    "name": "Act III Mini-Boss",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-armet", "rarity": "rare", "weight": 100, "minLevel": 29, "maxLevel": 45 },
+      { "type": "item", "itemBase": "items/base/armor-dusk-shroud", "rarity": "rare", "weight": 100, "minLevel": 29, "maxLevel": 45 },
+      { "type": "item", "itemBase": "items/base/wp1h-phase-blade", "rarity": "rare", "weight": 80, "minLevel": 38, "maxLevel": 45 },
+      { "type": "item", "itemBase": "items/base/amu-jade", "rarity": "rare", "weight": 80, "minLevel": 33, "maxLevel": 45 },
+      { "type": "rune", "weight": 30, "minLevel": 29, "maxLevel": 45 },
+      { "type": "currency", "itemId": "currency/wishstone", "weight": 100, "quantityMin": 8, "quantityMax": 10 },
+      { "type": "gem", "weight": 60, "quantityMin": 2, "quantityMax": 3 }
+    ]
+  },
+  {
+    "id": "loot/mini-act4",
+    "name": "Act IV Mini-Boss",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-armet", "rarity": "rare", "weight": 100, "minLevel": 43, "maxLevel": 55 },
+      { "type": "item", "itemBase": "items/base/armor-wyrmhide", "rarity": "rare", "weight": 100, "minLevel": 43, "maxLevel": 55 },
+      { "type": "item", "itemBase": "items/base/wp2h-colossus-sword", "rarity": "rare", "weight": 100, "minLevel": 43, "maxLevel": 55 },
+      { "type": "item", "itemBase": "items/base/ring-amber", "rarity": "rare", "weight": 80, "minLevel": 43, "maxLevel": 55 },
+      { "type": "rune", "weight": 30, "minLevel": 43, "maxLevel": 55 },
+      { "type": "currency", "itemId": "currency/wishstone", "weight": 100, "quantityMin": 9, "quantityMax": 10 },
+      { "type": "gem", "weight": 60, "quantityMin": 2, "quantityMax": 3 }
+    ]
+  },
+  {
+    "id": "loot/mini-act5",
+    "name": "Act V Mini-Boss",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-corona", "rarity": "rare", "weight": 100, "minLevel": 58, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/armor-archon-plate", "rarity": "rare", "weight": 100, "minLevel": 58, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/wp1h-phase-blade", "rarity": "rare", "weight": 100, "minLevel": 58, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/ring-zircon", "rarity": "rare", "weight": 80, "minLevel": 58, "maxLevel": 75 },
+      { "type": "rune", "weight": 30, "minLevel": 58, "maxLevel": 75 },
+      { "type": "currency", "itemId": "currency/wishstone", "weight": 100, "quantityMin": 9, "quantityMax": 10 },
+      { "type": "gem", "weight": 60, "quantityMin": 2, "quantityMax": 4 }
+    ]
+  },
+
+  {
+    "id": "loot/act1-boss",
+    "name": "Andariel",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-skull-cap", "rarity": "rare", "weight": 120, "minLevel": 9, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/armor-leather", "rarity": "rare", "weight": 120, "minLevel": 10, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/wp1h-scimitar", "rarity": "rare", "weight": 120, "minLevel": 12, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/sh-kite", "rarity": "rare", "weight": 80, "minLevel": 12, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/ring-silver", "rarity": "rare", "weight": 100, "minLevel": 9, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/amu-brass", "rarity": "rare", "weight": 80, "minLevel": 9, "maxLevel": 14 },
+      { "type": "item", "itemBase": "items/base/wp1h-scimitar", "rarity": "unique", "weight": 30, "minLevel": 9, "maxLevel": 14 },
+      { "type": "rune", "weight": 100, "minLevel": 9, "maxLevel": 18 },
+      { "type": "gem", "weight": 80, "quantityMin": 2, "quantityMax": 2 },
+      { "type": "currency", "itemId": "currency/wishstone", "weight": 100, "quantityMin": 8, "quantityMax": 8 },
+      { "type": "gold", "weight": 100, "quantityMin": 1500, "quantityMax": 4000 }
+    ]
+  },
+  {
+    "id": "loot/act2-boss",
+    "name": "Duriel",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-war-hat", "rarity": "rare", "weight": 120, "minLevel": 19, "maxLevel": 28 },
+      { "type": "item", "itemBase": "items/base/armor-chain-mail", "rarity": "rare", "weight": 120, "minLevel": 19, "maxLevel": 28 },
+      { "type": "item", "itemBase": "items/base/wp1h-long-sword", "rarity": "rare", "weight": 120, "minLevel": 22, "maxLevel": 28 },
+      { "type": "item", "itemBase": "items/base/sh-aegis", "rarity": "rare", "weight": 80, "minLevel": 22, "maxLevel": 28 },
+      { "type": "item", "itemBase": "items/base/ring-jade", "rarity": "rare", "weight": 100, "minLevel": 23, "maxLevel": 32 },
+      { "type": "item", "itemBase": "items/base/amu-silver", "rarity": "rare", "weight": 80, "minLevel": 23, "maxLevel": 32 },
+      { "type": "item", "itemBase": "items/base/ring-jade", "rarity": "unique", "weight": 35, "minLevel": 23, "maxLevel": 32 },
+      { "type": "rune", "weight": 100, "minLevel": 19, "maxLevel": 30 },
+      { "type": "gem", "weight": 80, "quantityMin": 3, "quantityMax": 3 },
+      { "type": "currency", "itemId": "currency/wishstone", "weight": 100, "quantityMin": 12, "quantityMax": 12 },
+      { "type": "gold", "weight": 100, "quantityMin": 4000, "quantityMax": 9000 }
+    ]
+  },
+  {
+    "id": "loot/act3-boss",
+    "name": "Mephisto",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-armet", "rarity": "rare", "weight": 120, "minLevel": 31, "maxLevel": 45 },
+      { "type": "item", "itemBase": "items/base/armor-dusk-shroud", "rarity": "rare", "weight": 120, "minLevel": 31, "maxLevel": 45 },
+      { "type": "item", "itemBase": "items/base/wp1h-phase-blade", "rarity": "rare", "weight": 120, "minLevel": 38, "maxLevel": 45 },
+      { "type": "item", "itemBase": "items/base/sh-monarch", "rarity": "rare", "weight": 100, "minLevel": 38, "maxLevel": 45 },
+      { "type": "item", "itemBase": "items/base/ring-amber", "rarity": "rare", "weight": 100, "minLevel": 33, "maxLevel": 45 },
+      { "type": "item", "itemBase": "items/base/amu-jade", "rarity": "rare", "weight": 100, "minLevel": 33, "maxLevel": 45 },
+      { "type": "item", "itemBase": "items/base/armor-dusk-shroud", "rarity": "unique", "weight": 40, "minLevel": 38, "maxLevel": 45 },
+      { "type": "rune", "weight": 100, "minLevel": 31, "maxLevel": 45 },
+      { "type": "gem", "weight": 80, "quantityMin": 4, "quantityMax": 4 },
+      { "type": "currency", "itemId": "currency/wishstone", "weight": 100, "quantityMin": 16, "quantityMax": 16 },
+      { "type": "gold", "weight": 100, "quantityMin": 9000, "quantityMax": 18000 }
+    ]
+  },
+  {
+    "id": "loot/act4-boss",
+    "name": "Diablo",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-armet", "rarity": "rare", "weight": 120, "minLevel": 45, "maxLevel": 55 },
+      { "type": "item", "itemBase": "items/base/armor-wyrmhide", "rarity": "rare", "weight": 120, "minLevel": 45, "maxLevel": 55 },
+      { "type": "item", "itemBase": "items/base/wp2h-colossus-sword", "rarity": "rare", "weight": 120, "minLevel": 45, "maxLevel": 55 },
+      { "type": "item", "itemBase": "items/base/sh-monarch", "rarity": "rare", "weight": 100, "minLevel": 45, "maxLevel": 55 },
+      { "type": "item", "itemBase": "items/base/ring-obsidian", "rarity": "rare", "weight": 100, "minLevel": 48, "maxLevel": 58 },
+      { "type": "item", "itemBase": "items/base/amu-obsidian", "rarity": "rare", "weight": 100, "minLevel": 48, "maxLevel": 58 },
+      { "type": "item", "itemBase": "items/base/wp2h-colossus-sword", "rarity": "unique", "weight": 50, "minLevel": 45, "maxLevel": 55 },
+      { "type": "item", "itemBase": "items/base/armor-wyrmhide", "rarity": "set", "weight": 40, "minLevel": 45, "maxLevel": 55 },
+      { "type": "rune", "weight": 100, "minLevel": 45, "maxLevel": 60 },
+      { "type": "gem", "weight": 80, "quantityMin": 5, "quantityMax": 5 },
+      { "type": "currency", "itemId": "currency/wishstone", "weight": 100, "quantityMin": 24, "quantityMax": 24 },
+      { "type": "gold", "weight": 100, "quantityMin": 18000, "quantityMax": 35000 }
+    ]
+  },
+  {
+    "id": "loot/act5-boss",
+    "name": "Baal",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-corona", "rarity": "rare", "weight": 120, "minLevel": 60, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/armor-archon-plate", "rarity": "rare", "weight": 120, "minLevel": 60, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/wp1h-phase-blade", "rarity": "rare", "weight": 120, "minLevel": 60, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/sh-sacred-targe", "rarity": "rare", "weight": 100, "minLevel": 60, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/ring-zircon", "rarity": "rare", "weight": 100, "minLevel": 58, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/amu-zircon", "rarity": "rare", "weight": 100, "minLevel": 58, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/wp1h-phase-blade", "rarity": "unique", "weight": 60, "minLevel": 60, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/armor-archon-plate", "rarity": "set", "weight": 50, "minLevel": 60, "maxLevel": 75 },
+      { "type": "rune", "weight": 100, "minLevel": 60, "maxLevel": 90 },
+      { "type": "gem", "weight": 80, "quantityMin": 8, "quantityMax": 8 },
+      { "type": "currency", "itemId": "currency/wishstone", "weight": 100, "quantityMin": 40, "quantityMax": 40 },
+      { "type": "gold", "weight": 100, "quantityMin": 35000, "quantityMax": 80000 }
+    ]
+  },
+
+  {
+    "id": "loot/treasure-goblin",
+    "name": "Treasure Goblin",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-armet", "rarity": "rare", "weight": 100, "minLevel": 1 },
+      { "type": "item", "itemBase": "items/base/armor-wyrmhide", "rarity": "rare", "weight": 100, "minLevel": 1 },
+      { "type": "item", "itemBase": "items/base/wp1h-phase-blade", "rarity": "rare", "weight": 100, "minLevel": 1 },
+      { "type": "item", "itemBase": "items/base/ring-amber", "rarity": "rare", "weight": 100, "minLevel": 1 },
+      { "type": "item", "itemBase": "items/base/amu-jade", "rarity": "rare", "weight": 100, "minLevel": 1 },
+      { "type": "item", "itemBase": "items/base/wp1h-phase-blade", "rarity": "unique", "weight": 25, "minLevel": 1 },
+      { "type": "item", "itemBase": "items/base/armor-wyrmhide", "rarity": "set", "weight": 25, "minLevel": 1 },
+      { "type": "rune", "weight": 100, "quantityMin": 1, "quantityMax": 4, "minLevel": 1 },
+      { "type": "gem", "weight": 100, "quantityMin": 5, "quantityMax": 10, "minLevel": 1 },
+      { "type": "currency", "itemId": "currency/wishstone", "weight": 100, "quantityMin": 1, "quantityMax": 3 },
+      { "type": "gold", "weight": 100, "quantityMin": 1000, "quantityMax": 8000 }
+    ]
+  },
+  {
+    "id": "loot/countess-runes",
+    "name": "The Countess Rune Cache",
+    "entries": [
+      { "type": "rune", "itemId": "items/rune/ral", "weight": 100 },
+      { "type": "rune", "itemId": "items/rune/ort", "weight": 90 },
+      { "type": "rune", "itemId": "items/rune/thul", "weight": 80 },
+      { "type": "rune", "itemId": "items/rune/amn", "weight": 70 },
+      { "type": "rune", "itemId": "items/rune/sol", "weight": 60 },
+      { "type": "rune", "itemId": "items/rune/shael", "weight": 40 },
+      { "type": "rune", "itemId": "items/rune/dol", "weight": 30 },
+      { "type": "rune", "itemId": "items/rune/io", "weight": 20 },
+      { "type": "rune", "itemId": "items/rune/lum", "weight": 10 }
+    ]
+  },
+  {
+    "id": "loot/andariel-q",
+    "name": "Andariel Quest Reward",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-skull-cap", "rarity": "unique", "weight": 100, "minLevel": 12, "maxLevel": 30 },
+      { "type": "item", "itemBase": "items/base/armor-leather", "rarity": "rare", "weight": 200, "minLevel": 12, "maxLevel": 30 },
+      { "type": "rune", "itemId": "items/rune/tal", "weight": 50 },
+      { "type": "gold", "weight": 100, "quantityMin": 5000, "quantityMax": 12000 }
+    ]
+  },
+  {
+    "id": "loot/duriel-q",
+    "name": "Duriel Quest Reward",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/armor-chain-mail", "rarity": "unique", "weight": 80, "minLevel": 22, "maxLevel": 40 },
+      { "type": "item", "itemBase": "items/base/wp1h-long-sword", "rarity": "rare", "weight": 200, "minLevel": 22, "maxLevel": 40 },
+      { "type": "rune", "itemId": "items/rune/io", "weight": 60 },
+      { "type": "gold", "weight": 100, "quantityMin": 12000, "quantityMax": 25000 }
+    ]
+  },
+  {
+    "id": "loot/mephisto-q",
+    "name": "Mephisto Quest Reward",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/armor-dusk-shroud", "rarity": "unique", "weight": 60, "minLevel": 38, "maxLevel": 60 },
+      { "type": "item", "itemBase": "items/base/wp1h-phase-blade", "rarity": "rare", "weight": 150, "minLevel": 38, "maxLevel": 60 },
+      { "type": "rune", "itemId": "items/rune/lem", "weight": 50 },
+      { "type": "gold", "weight": 100, "quantityMin": 25000, "quantityMax": 60000 }
+    ]
+  },
+  {
+    "id": "loot/hellforge-runes",
+    "name": "Hellforge Reward",
+    "entries": [
+      { "type": "rune", "itemId": "items/rune/hel", "weight": 80 },
+      { "type": "rune", "itemId": "items/rune/io", "weight": 70 },
+      { "type": "rune", "itemId": "items/rune/lum", "weight": 60 },
+      { "type": "rune", "itemId": "items/rune/ko", "weight": 50 },
+      { "type": "rune", "itemId": "items/rune/fal", "weight": 40 },
+      { "type": "rune", "itemId": "items/rune/lem", "weight": 30 },
+      { "type": "rune", "itemId": "items/rune/pul", "weight": 20 },
+      { "type": "rune", "itemId": "items/rune/um", "weight": 10 }
+    ]
+  },
+  {
+    "id": "loot/diablo-q",
+    "name": "Diablo Quest Reward",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/helm-armet", "rarity": "unique", "weight": 80, "minLevel": 50, "maxLevel": 75 },
+      { "type": "item", "itemBase": "items/base/wp2h-thunder-maul", "rarity": "rare", "weight": 150, "minLevel": 50, "maxLevel": 75 },
+      { "type": "rune", "itemId": "items/rune/um", "weight": 40 },
+      { "type": "rune", "itemId": "items/rune/mal", "weight": 30 },
+      { "type": "gold", "weight": 100, "quantityMin": 50000, "quantityMax": 120000 }
+    ]
+  },
+  {
+    "id": "loot/baal-q",
+    "name": "Baal Quest Reward",
+    "entries": [
+      { "type": "item", "itemBase": "items/base/armor-archon-plate", "rarity": "unique", "weight": 60, "minLevel": 60, "maxLevel": 85 },
+      { "type": "item", "itemBase": "items/base/wp1h-phase-blade", "rarity": "unique", "weight": 80, "minLevel": 60, "maxLevel": 85 },
+      { "type": "rune", "itemId": "items/rune/ist", "weight": 30 },
+      { "type": "rune", "itemId": "items/rune/gul", "weight": 20 },
+      { "type": "rune", "itemId": "items/rune/vex", "weight": 10 },
+      { "type": "gold", "weight": 100, "quantityMin": 100000, "quantityMax": 250000 }
+    ]
+  }
+]

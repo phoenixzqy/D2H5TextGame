@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/item-base.json",
+  "title": "Item Base Definition",
+  "description": "Base item template (white item)",
+  "type": "object",
+  "required": ["id", "name", "type", "reqLevel", "canHaveAffixes"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^items/base/[a-z0-9-]+$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "type": {
+      "type": "string",
+      "enum": ["weapon", "armor", "jewelry", "charm", "rune", "gem", "material"]
+    },
+    "slot": {
+      "type": ["string", "null"],
+      "enum": ["head", "chest", "gloves", "belt", "boots", "amulet", "ring-left", "ring-right", "weapon", "offhand", null]
+    },
+    "baseDamage": {
+      "$ref": "#/$defs/damageInfo"
+    },
+    "baseDefense": {
+      "type": "number",
+      "minimum": 0
+    },
+    "reqLevel": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "reqStats": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "strength": { "type": "integer", "minimum": 0 },
+        "dexterity": { "type": "integer", "minimum": 0 },
+        "vitality": { "type": "integer", "minimum": 0 },
+        "energy": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "sockets": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 6
+    },
+    "canHaveAffixes": {
+      "type": "boolean"
+    }
+  },
+  "$defs": {
+    "damageInfo": {
+      "type": "object",
+      "required": ["min", "max", "breakdown"],
+      "additionalProperties": false,
+      "properties": {
+        "min": { "type": "number", "minimum": 0 },
+        "max": { "type": "number", "minimum": 0 },
+        "breakdown": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "physical": { "type": "number", "minimum": 0 },
+            "fire": { "type": "number", "minimum": 0 },
+            "cold": { "type": "number", "minimum": 0 },
+            "lightning": { "type": "number", "minimum": 0 },
+            "arcane": { "type": "number", "minimum": 0 },
+            "poison": { "type": "number", "minimum": 0 },
+            "thorns": { "type": "number", "minimum": 0 }
+          }
+        }
+      }
+    }
+  }
+}

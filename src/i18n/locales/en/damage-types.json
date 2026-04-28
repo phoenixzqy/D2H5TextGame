@@ -1,0 +1,54 @@
+{
+  "_meta": {
+    "source": "Diablo2TextGame.md — 7 damage types: physical/fire/cold/lightning/arcane/poison/thorns"
+  },
+  "type": {
+    "physical": "Physical",
+    "fire": "Fire",
+    "cold": "Cold",
+    "lightning": "Lightning",
+    "arcane": "Arcane",
+    "poison": "Poison",
+    "thorns": "Thorns"
+  },
+  "typeLong": {
+    "physical": "Physical Damage",
+    "fire": "Fire Damage",
+    "cold": "Cold Damage",
+    "lightning": "Lightning Damage",
+    "arcane": "Arcane Damage",
+    "poison": "Poison Damage",
+    "thorns": "Thorns Reflection"
+  },
+  "resist": {
+    "physical": "Physical Resist",
+    "fire": "Fire Resist",
+    "cold": "Cold Resist",
+    "lightning": "Lightning Resist",
+    "arcane": "Arcane Resist",
+    "poison": "Poison Resist",
+    "thorns": "Thorns Resist"
+  },
+  "status": {
+    "bleed": "Bleed",
+    "burn": "Burn",
+    "chill": "Chill",
+    "freeze": "Freeze",
+    "shock": "Shock",
+    "paralyze": "Paralyze",
+    "amp-damage": "Amplify Damage",
+    "poison": "Poisoned",
+    "armor-melt": "Armor Melt",
+    "stun": "Stun",
+    "thorns": "Thorns"
+  },
+  "signature": {
+    "physical": "Signature: Bleed",
+    "fire": "Signature: Burn",
+    "cold": "Signature: Chill / Freeze",
+    "lightning": "Signature: Paralyze",
+    "arcane": "Signature: Amplify Damage",
+    "poison": "Signature: Stacking Poison",
+    "thorns": "Signature: Reflect"
+  }
+}

@@ -1,0 +1,328 @@
+[
+  {
+    "id": "areas/act2-rocky-waste",
+    "name": "Rocky Waste",
+    "actId": "acts/act2",
+    "areaLevel": 14,
+    "hasBoss": false,
+    "lootTable": "loot/trash-act2",
+    "flavor": "Sun-bleached canyons outside Lut Gholein where sand raiders ambush caravans.",
+    "waves": [
+      {
+        "id": "w1",
+        "type": "trash",
+        "encounters": [
+          { "id": "act2-rw-w1-e1", "level": 14,
+            "monsters": [
+              { "archetypeId": "monsters/act2.sand-raider", "count": 3 },
+              { "archetypeId": "monsters/act2.sand-maggot", "count": 1 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w2",
+        "type": "trash",
+        "encounters": [
+          { "id": "act2-rw-w2-e1", "level": 14,
+            "monsters": [
+              { "archetypeId": "monsters/act2.scarab", "count": 3 },
+              { "archetypeId": "monsters/act2.vulture-demon", "count": 2 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w3",
+        "type": "trash",
+        "encounters": [
+          { "id": "act2-rw-w3-e1", "level": 15,
+            "monsters": [
+              { "archetypeId": "monsters/act2.sand-raider", "count": 2 },
+              { "archetypeId": "monsters/act2.claw-viper", "count": 2 }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w4",
+        "type": "elite",
+        "encounters": [
+          { "id": "act2-rw-w4-e1", "level": 16,
+            "monsters": [
+              { "archetypeId": "monsters/act2.horror-mage", "count": 1, "elite": true },
+              { "archetypeId": "monsters/act2.sand-raider", "count": 3 }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "areas/act2-dry-hills",
+    "name": "Dry Hills",
+    "actId": "acts/act2",
+    "areaLevel": 16,
+    "hasBoss": false,
+    "lootTable": "loot/trash-act2",
+    "flavor": "Cracked clay terraces where vulture demons circle and viper cults coil in the rocks.",
+    "waves": [
+      {
+        "id": "w1", "type": "trash",
+        "encounters": [
+          { "id": "act2-dh-w1-e1", "level": 16,
+            "monsters": [
+              { "archetypeId": "monsters/act2.vulture-demon", "count": 3 },
+              { "archetypeId": "monsters/act2.scarab", "count": 2 }
+            ] } ]
+      },
+      {
+        "id": "w2", "type": "trash",
+        "encounters": [
+          { "id": "act2-dh-w2-e1", "level": 16,
+            "monsters": [
+              { "archetypeId": "monsters/act2.claw-viper", "count": 3 },
+              { "archetypeId": "monsters/act2.mummy", "count": 1 }
+            ] } ]
+      },
+      {
+        "id": "w3", "type": "trash",
+        "encounters": [
+          { "id": "act2-dh-w3-e1", "level": 17,
+            "monsters": [
+              { "archetypeId": "monsters/act2.sand-raider", "count": 2 },
+              { "archetypeId": "monsters/act2.horror-mage", "count": 2 }
+            ] } ]
+      },
+      {
+        "id": "w4", "type": "elite",
+        "encounters": [
+          { "id": "act2-dh-w4-e1", "level": 18,
+            "monsters": [
+              { "archetypeId": "monsters/act2.scarab", "count": 2, "elite": true },
+              { "archetypeId": "monsters/act2.claw-viper", "count": 3 }
+            ] } ]
+      },
+      {
+        "id": "w5", "type": "trash",
+        "encounters": [
+          { "id": "act2-dh-w5-e1", "level": 18,
+            "monsters": [
+              { "archetypeId": "monsters/act2.mummy", "count": 2 },
+              { "archetypeId": "monsters/act2.sand-maggot", "count": 2 }
+            ] } ]
+      }
+    ]
+  },
+  {
+    "id": "areas/act2-far-oasis",
+    "name": "Far Oasis",
+    "actId": "acts/act2",
+    "areaLevel": 18,
+    "hasBoss": true,
+    "lootTable": "loot/trash-act2",
+    "flavor": "A green crescent of palms hides Radament's burial chamber beneath the dunes.",
+    "bossEncounter": {
+      "id": "act2-far-oasis-radament", "level": 20,
+      "monsters": [
+        { "archetypeId": "monsters/act2.greater-mummy", "count": 1, "boss": true },
+        { "archetypeId": "monsters/act2.mummy", "count": 4 }
+      ]
+    },
+    "waves": [
+      {
+        "id": "w1", "type": "trash",
+        "encounters": [
+          { "id": "act2-fo-w1-e1", "level": 18,
+            "monsters": [
+              { "archetypeId": "monsters/act2.sand-maggot", "count": 3 },
+              { "archetypeId": "monsters/act2.sand-raider", "count": 2 }
+            ] } ]
+      },
+      {
+        "id": "w2", "type": "trash",
+        "encounters": [
+          { "id": "act2-fo-w2-e1", "level": 19,
+            "monsters": [
+              { "archetypeId": "monsters/act2.mummy", "count": 3 },
+              { "archetypeId": "monsters/act2.horror-mage", "count": 1 }
+            ] } ]
+      },
+      {
+        "id": "w3", "type": "trash",
+        "encounters": [
+          { "id": "act2-fo-w3-e1", "level": 19,
+            "monsters": [
+              { "archetypeId": "monsters/act2.scarab", "count": 3 },
+              { "archetypeId": "monsters/act2.sand-maggot", "count": 2 }
+            ] } ]
+      },
+      {
+        "id": "w4", "type": "elite",
+        "encounters": [
+          { "id": "act2-fo-w4-e1", "level": 20,
+            "monsters": [
+              { "archetypeId": "monsters/act2.claw-viper", "count": 2, "elite": true },
+              { "archetypeId": "monsters/act2.vulture-demon", "count": 2 }
+            ] } ]
+      },
+      {
+        "id": "w5", "type": "boss", "lootTable": "loot/mini-act2",
+        "encounters": [
+          { "id": "act2-fo-w5-e1", "level": 20,
+            "monsters": [
+              { "archetypeId": "monsters/act2.greater-mummy", "count": 1, "boss": true }
+            ] } ]
+      }
+    ]
+  },
+  {
+    "id": "areas/act2-lost-city",
+    "name": "Lost City",
+    "actId": "acts/act2",
+    "areaLevel": 21,
+    "hasBoss": false,
+    "lootTable": "loot/trash-act2",
+    "flavor": "Sun-baked ruins of a forgotten dynasty, now home to viper temples and beetle swarms.",
+    "waves": [
+      { "id": "w1", "type": "trash",
+        "encounters": [{ "id": "act2-lc-w1-e1", "level": 21,
+          "monsters": [
+            { "archetypeId": "monsters/act2.greater-mummy", "count": 2 },
+            { "archetypeId": "monsters/act2.mummy", "count": 3 }
+          ] }] },
+      { "id": "w2", "type": "trash",
+        "encounters": [{ "id": "act2-lc-w2-e1", "level": 21,
+          "monsters": [
+            { "archetypeId": "monsters/act2.claw-viper", "count": 3 },
+            { "archetypeId": "monsters/act2.scarab", "count": 2 }
+          ] }] },
+      { "id": "w3", "type": "trash",
+        "encounters": [{ "id": "act2-lc-w3-e1", "level": 22,
+          "monsters": [
+            { "archetypeId": "monsters/act2.horror-mage", "count": 2 },
+            { "archetypeId": "monsters/act2.sand-raider", "count": 3 }
+          ] }] },
+      { "id": "w4", "type": "elite",
+        "encounters": [{ "id": "act2-lc-w4-e1", "level": 22,
+          "monsters": [
+            { "archetypeId": "monsters/act2.scarab", "count": 2, "elite": true },
+            { "archetypeId": "monsters/act2.greater-mummy", "count": 2 }
+          ] }] },
+      { "id": "w5", "type": "trash",
+        "encounters": [{ "id": "act2-lc-w5-e1", "level": 23,
+          "monsters": [
+            { "archetypeId": "monsters/act2.undead-flayer", "count": 2 },
+            { "archetypeId": "monsters/act2.mummy", "count": 3 }
+          ] }] },
+      { "id": "w6", "type": "treasure", "lootTable": "loot/treasure-goblin",
+        "encounters": [{ "id": "act2-lc-w6-e1", "level": 23,
+          "monsters": [
+            { "archetypeId": "monsters/act2.sand-raider", "count": 1, "elite": true }
+          ] }] }
+    ]
+  },
+  {
+    "id": "areas/act2-arcane-sanctuary",
+    "name": "Arcane Sanctuary",
+    "actId": "acts/act2",
+    "areaLevel": 23,
+    "hasBoss": true,
+    "lootTable": "loot/trash-act2",
+    "flavor": "An impossible glass labyrinth suspended in the void, patrolled by the Summoner's wraiths.",
+    "bossEncounter": {
+      "id": "act2-arcane-summoner", "level": 25,
+      "monsters": [
+        { "archetypeId": "monsters/act2.horror-mage", "count": 1, "boss": true },
+        { "archetypeId": "monsters/act2.undead-flayer", "count": 3 }
+      ]
+    },
+    "waves": [
+      { "id": "w1", "type": "trash",
+        "encounters": [{ "id": "act2-as-w1-e1", "level": 23,
+          "monsters": [
+            { "archetypeId": "monsters/act2.undead-flayer", "count": 3 },
+            { "archetypeId": "monsters/act2.horror-mage", "count": 1 }
+          ] }] },
+      { "id": "w2", "type": "trash",
+        "encounters": [{ "id": "act2-as-w2-e1", "level": 23,
+          "monsters": [
+            { "archetypeId": "monsters/act2.greater-mummy", "count": 2 },
+            { "archetypeId": "monsters/act2.claw-viper", "count": 2 }
+          ] }] },
+      { "id": "w3", "type": "elite",
+        "encounters": [{ "id": "act2-as-w3-e1", "level": 24,
+          "monsters": [
+            { "archetypeId": "monsters/act2.horror-mage", "count": 2, "elite": true },
+            { "archetypeId": "monsters/act2.undead-flayer", "count": 2 }
+          ] }] },
+      { "id": "w4", "type": "trash",
+        "encounters": [{ "id": "act2-as-w4-e1", "level": 24,
+          "monsters": [
+            { "archetypeId": "monsters/act2.sand-raider", "count": 2 },
+            { "archetypeId": "monsters/act2.greater-mummy", "count": 2 }
+          ] }] },
+      { "id": "w5", "type": "elite",
+        "encounters": [{ "id": "act2-as-w5-e1", "level": 25,
+          "monsters": [
+            { "archetypeId": "monsters/act2.undead-flayer", "count": 3, "elite": true }
+          ] }] },
+      { "id": "w6", "type": "boss", "lootTable": "loot/mini-act2",
+        "encounters": [{ "id": "act2-as-w6-e1", "level": 25,
+          "monsters": [
+            { "archetypeId": "monsters/act2.horror-mage", "count": 1, "boss": true }
+          ] }] }
+    ]
+  },
+  {
+    "id": "areas/act2-tomb-of-tal-rasha",
+    "name": "Tomb of Tal Rasha (Duriel)",
+    "actId": "acts/act2",
+    "areaLevel": 25,
+    "hasBoss": true,
+    "lootTable": "loot/trash-act2",
+    "flavor": "Cold black stone seven storeys deep — Duriel awaits in the chamber where Baal's brother slumbers.",
+    "bossEncounter": {
+      "id": "act2-tomb-duriel", "level": 27,
+      "monsters": [
+        { "archetypeId": "monsters/act2.duriel", "count": 1, "boss": true }
+      ]
+    },
+    "waves": [
+      { "id": "w1", "type": "trash",
+        "encounters": [{ "id": "act2-tt-w1-e1", "level": 25,
+          "monsters": [
+            { "archetypeId": "monsters/act2.greater-mummy", "count": 3 },
+            { "archetypeId": "monsters/act2.mummy", "count": 3 }
+          ] }] },
+      { "id": "w2", "type": "trash",
+        "encounters": [{ "id": "act2-tt-w2-e1", "level": 25,
+          "monsters": [
+            { "archetypeId": "monsters/act2.undead-flayer", "count": 3 },
+            { "archetypeId": "monsters/act2.horror-mage", "count": 2 }
+          ] }] },
+      { "id": "w3", "type": "elite",
+        "encounters": [{ "id": "act2-tt-w3-e1", "level": 26,
+          "monsters": [
+            { "archetypeId": "monsters/act2.greater-mummy", "count": 2, "elite": true },
+            { "archetypeId": "monsters/act2.horror-mage", "count": 2 }
+          ] }] },
+      { "id": "w4", "type": "elite",
+        "encounters": [{ "id": "act2-tt-w4-e1", "level": 26,
+          "monsters": [
+            { "archetypeId": "monsters/act2.undead-flayer", "count": 3, "elite": true }
+          ] }] },
+      { "id": "w5", "type": "trash",
+        "encounters": [{ "id": "act2-tt-w5-e1", "level": 27,
+          "monsters": [
+            { "archetypeId": "monsters/act2.scarab", "count": 3 },
+            { "archetypeId": "monsters/act2.sand-raider", "count": 2 }
+          ] }] },
+      { "id": "w6", "type": "boss", "lootTable": "loot/act2-boss",
+        "encounters": [{ "id": "act2-tt-w6-e1", "level": 27,
+          "monsters": [
+            { "archetypeId": "monsters/act2.duriel", "count": 1, "boss": true }
+          ] }] }
+    ]
+  }
+]

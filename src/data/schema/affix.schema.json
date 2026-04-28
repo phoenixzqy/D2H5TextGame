@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/affix.json",
+  "title": "Affix Definition",
+  "description": "Magic/rare item affix (prefix or suffix)",
+  "type": "object",
+  "required": ["id", "name", "type", "minIlvl"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^affixes/(prefix|suffix)/[a-z0-9-]+$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "type": {
+      "type": "string",
+      "enum": ["prefix", "suffix"]
+    },
+    "minIlvl": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Minimum item level for this affix"
+    },
+    "coreStats": {
+      "$ref": "#/$defs/coreStats"
+    },
+    "resistances": {
+      "$ref": "#/$defs/resistances"
+    },
+    "statMods": {
+      "$ref": "#/$defs/statMods"
+    },
+    "grantsSkills": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Skill IDs granted by this affix"
+    },
+    "damageBonus": {
+      "$ref": "#/$defs/damageInfo"
+    }
+  },
+  "$defs": {
+    "coreStats": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "strength": { "type": "integer" },
+        "dexterity": { "type": "integer" },
+        "vitality": { "type": "integer" },
+        "energy": { "type": "integer" }
+      }
+    },
+    "resistances": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fire": { "type": "number" },
+        "cold": { "type": "number" },
+        "lightning": { "type": "number" },
+        "poison": { "type": "number" },
+        "arcane": { "type": "number" },
+        "physical": { "type": "number" }
+      }
+    },
+    "statMods": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "life": { "type": "number" },
+        "mana": { "type": "number" },
+        "attack": { "type": "number" },
+        "defense": { "type": "number" },
+        "attackSpeed": { "type": "number" },
+        "critChance": { "type": "number", "minimum": 0, "maximum": 1 },
+        "critDamage": { "type": "number", "minimum": 1 },
+        "physDodge": { "type": "number", "minimum": 0, "maximum": 1 },
+        "magicDodge": { "type": "number", "minimum": 0, "maximum": 1 },
+        "magicFind": { "type": "number", "minimum": 0 },
+        "goldFind": { "type": "number", "minimum": 0 }
+      }
+    },
+    "damageInfo": {
+      "type": "object",
+      "required": ["min", "max", "breakdown"],
+      "additionalProperties": false,
+      "properties": {
+        "min": { "type": "number", "minimum": 0 },
+        "max": { "type": "number", "minimum": 0 },
+        "breakdown": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "physical": { "type": "number", "minimum": 0 },
+            "fire": { "type": "number", "minimum": 0 },
+            "cold": { "type": "number", "minimum": 0 },
+            "lightning": { "type": "number", "minimum": 0 },
+            "arcane": { "type": "number", "minimum": 0 },
+            "poison": { "type": "number", "minimum": 0 },
+            "thorns": { "type": "number", "minimum": 0 }
+          }
+        }
+      }
+    }
+  }
+}

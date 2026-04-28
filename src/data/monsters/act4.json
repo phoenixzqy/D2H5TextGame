@@ -1,0 +1,350 @@
+[
+  {
+    "id": "monsters/act4.venom-lord",
+    "name": "Venom Lord",
+    "life": [
+      300,
+      400
+    ],
+    "lifeGrowth": [
+      30,
+      40
+    ],
+    "skills": [
+      "monster-strong-melee",
+      "monster-poison-spit",
+      "monster-inferno"
+    ],
+    "attackSpeed": 105,
+    "defense": 55,
+    "resistances": {
+      "poison": 50,
+      "fire": 25
+    },
+    "baseExperience": 25,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act4.abyss-knight",
+    "name": "Abyss Knight",
+    "life": [
+      350,
+      500
+    ],
+    "lifeGrowth": [
+      35,
+      50
+    ],
+    "skills": [
+      "monster-strong-melee",
+      "monster-charge"
+    ],
+    "attackSpeed": 110,
+    "defense": 80,
+    "resistances": {
+      "physical": 50
+    },
+    "baseExperience": 50,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act4.stygian-doll",
+    "name": "Stygian Doll",
+    "life": [
+      100,
+      150
+    ],
+    "lifeGrowth": [
+      10,
+      15
+    ],
+    "skills": [
+      "monster-weak-melee",
+      "monster-corpse-explosion"
+    ],
+    "attackSpeed": 120,
+    "defense": 30,
+    "resistances": {},
+    "baseExperience": 10,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act4.damned",
+    "name": "The Damned",
+    "life": [
+      150,
+      200
+    ],
+    "lifeGrowth": [
+      15,
+      20
+    ],
+    "skills": [
+      "monster-weak-melee"
+    ],
+    "attackSpeed": 90,
+    "defense": 32,
+    "resistances": {},
+    "baseExperience": 10,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act4.doom-caster",
+    "name": "Doom Caster",
+    "life": [
+      280,
+      380
+    ],
+    "lifeGrowth": [
+      28,
+      38
+    ],
+    "skills": [
+      "monster-fire-ball",
+      "monster-frost-nova"
+    ],
+    "attackSpeed": 105,
+    "defense": 50,
+    "resistances": {
+      "fire": 50,
+      "cold": 50
+    },
+    "baseExperience": 25,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act4.oblivion-knight",
+    "name": "Oblivion Knight",
+    "life": [
+      320,
+      450
+    ],
+    "lifeGrowth": [
+      32,
+      45
+    ],
+    "skills": [
+      "monster-strong-melee",
+      "monster-bone-spirit"
+    ],
+    "attackSpeed": 100,
+    "defense": 60,
+    "resistances": {
+      "fire": 50,
+      "cold": 50,
+      "lightning": 50,
+      "poison": 50,
+      "arcane": 50
+    },
+    "baseExperience": 25,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act4.pit-lord",
+    "name": "Pit Lord",
+    "life": [
+      400,
+      600
+    ],
+    "lifeGrowth": [
+      40,
+      60
+    ],
+    "skills": [
+      "monster-strong-melee",
+      "monster-fire-breath",
+      "monster-charge"
+    ],
+    "attackSpeed": 105,
+    "defense": 85,
+    "resistances": {
+      "fire": 75
+    },
+    "baseExperience": 50,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act4.mega-demon",
+    "name": "Mega Demon",
+    "life": [
+      450,
+      650
+    ],
+    "lifeGrowth": [
+      45,
+      65
+    ],
+    "skills": [
+      "monster-strong-melee",
+      "monster-inferno"
+    ],
+    "attackSpeed": 110,
+    "defense": 80,
+    "resistances": {
+      "fire": 50,
+      "physical": 25
+    },
+    "baseExperience": 50,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act4.izual",
+    "name": "Izual",
+    "life": [
+      2500,
+      3000
+    ],
+    "lifeGrowth": [
+      200,
+      250
+    ],
+    "skills": [
+      "monster-strong-melee",
+      "monster-frost-nova",
+      "monster-charge"
+    ],
+    "attackSpeed": 125,
+    "defense": 170,
+    "resistances": {
+      "cold": 75,
+      "physical": 50
+    },
+    "baseExperience": 1500,
+    "canBeElite": false,
+    "canBeBoss": true
+  },
+  {
+    "id": "monsters/act4.diablo",
+    "name": "Diablo",
+    "life": [
+      5000,
+      6000
+    ],
+    "lifeGrowth": [
+      300,
+      400
+    ],
+    "skills": [
+      "monster-fire-breath",
+      "monster-lightning",
+      "monster-bone-prison",
+      "monster-charge"
+    ],
+    "attackSpeed": 140,
+    "defense": 250,
+    "resistances": {
+      "fire": 75,
+      "lightning": 75,
+      "cold": 50,
+      "poison": 50,
+      "arcane": 50
+    },
+    "baseExperience": 3000,
+    "canBeElite": false,
+    "canBeBoss": true
+  }
+]

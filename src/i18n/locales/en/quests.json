@@ -1,0 +1,190 @@
+{
+  "title": "Quests",
+  "main": "Main",
+  "side": "Side",
+  "bounty": "Bounty",
+  "inProgress": "In Progress",
+  "completed": "Completed",
+  "locked": "Locked",
+  "available": "Available",
+  "objectives": "Objectives",
+  "rewards": "Rewards",
+  "empty": "No quests",
+  "turnIn": "Turn In",
+  "abandon": "Abandon",
+  "act": {
+    "1": "Act I Quests",
+    "2": "Act II Quests",
+    "3": "Act III Quests",
+    "4": "Act IV Quests",
+    "5": "Act V Quests"
+  },
+  "byId": {
+    "act1-den-of-evil": {
+      "name": "Den of Evil",
+      "desc": "Cleanse the Den of Evil near the Rogue Encampment.",
+      "obj1": "Slay all monsters in the Den"
+    },
+    "act1-sisters-burial": {
+      "name": "Sisters' Burial Grounds",
+      "desc": "Lay Blood Raven's spirit to rest.",
+      "obj1": "Defeat Blood Raven"
+    },
+    "act1-search-for-cain": {
+      "name": "The Search for Cain",
+      "desc": "Travel to Tristram to rescue Deckard Cain.",
+      "obj1": "Find Cain in Tristram"
+    },
+    "act1-forgotten-tower": {
+      "name": "The Forgotten Tower",
+      "desc": "Explore the Forgotten Tower in the Stony Field and defeat the Countess.",
+      "obj1": "Defeat the Countess"
+    },
+    "act1-tools-of-the-trade": {
+      "name": "Tools of the Trade",
+      "desc": "Return Charsi's Horadric Malus to her.",
+      "obj1": "Recover the Horadric Malus"
+    },
+    "act1-andariel": {
+      "name": "Bounty: Andariel",
+      "desc": "Defeat Andariel in the corrupted Monastery.",
+      "obj1": "Defeat Andariel"
+    },
+    "act2-radaments-lair": {
+      "name": "Radament's Lair",
+      "desc": "Descend into the sewers and defeat Radament.",
+      "obj1": "Defeat Radament"
+    },
+    "act2-horadric-staff": {
+      "name": "The Horadric Staff",
+      "desc": "Collect the parts of the Horadric Staff and combine them.",
+      "obj1": "Find the Staff Top",
+      "obj2": "Find the Amber Gem",
+      "obj3": "Find the Staff Shaft"
+    },
+    "act2-tainted-sun": {
+      "name": "The Tainted Sun",
+      "desc": "Slay the Claw Viper priests and restore the sun.",
+      "obj1": "Defeat the Claw Viper priest"
+    },
+    "act2-arcane-sanctuary": {
+      "name": "The Arcane Sanctuary",
+      "desc": "Find the location of Tal Rasha's tomb in Baal's old sanctuary.",
+      "obj1": "Find the journal"
+    },
+    "act2-summoner": {
+      "name": "The Summoner",
+      "desc": "Defeat the corrupted Horadrim known as The Summoner.",
+      "obj1": "Defeat The Summoner"
+    },
+    "act2-duriel": {
+      "name": "Bounty: Duriel",
+      "desc": "Defeat Duriel inside the Tomb of Tal Rasha.",
+      "obj1": "Defeat Duriel"
+    },
+    "act3-golden-bird": {
+      "name": "The Golden Bird",
+      "desc": "Return the Golden Bird statue to Akara.",
+      "obj1": "Return the statue"
+    },
+    "act3-blade-of-old-religion": {
+      "name": "Blade of the Old Religion",
+      "desc": "Recover the Gidbinn from the Flayer Jungle.",
+      "obj1": "Recover the Gidbinn"
+    },
+    "act3-khalims-will": {
+      "name": "Khalim's Will",
+      "desc": "Combine Khalim's Eye, Heart, Brain, and Flail into Khalim's Will.",
+      "obj1": "Khalim's Eye",
+      "obj2": "Khalim's Heart",
+      "obj3": "Khalim's Brain",
+      "obj4": "Khalim's Flail"
+    },
+    "act3-mephisto": {
+      "name": "Bounty: Mephisto",
+      "desc": "Descend into the Durance of Hate and defeat Mephisto.",
+      "obj1": "Defeat Mephisto"
+    },
+    "act4-fallen-angel": {
+      "name": "The Fallen Angel",
+      "desc": "Defeat the fallen angel Izual on the Plains of Despair.",
+      "obj1": "Defeat Izual"
+    },
+    "act4-hells-forge": {
+      "name": "Hell's Forge",
+      "desc": "Smash Mephisto's soulstone on Hell's Forge.",
+      "obj1": "Destroy the soulstone"
+    },
+    "act4-terrors-end": {
+      "name": "Terror's End",
+      "desc": "Defeat Diablo in the Chaos Sanctuary.",
+      "obj1": "Defeat Diablo"
+    },
+    "act5-siege": {
+      "name": "Siege on Harrogath",
+      "desc": "Repel the demonic siege of Harrogath.",
+      "obj1": "Defeat Shenk the Overseer"
+    },
+    "act5-rescue-anya": {
+      "name": "Rescue on Mount Arreat",
+      "desc": "Free Anya from her icy prison in the Frigid Highlands.",
+      "obj1": "Find Anya",
+      "obj2": "Defeat Nihlathak"
+    },
+    "act5-prison-of-ice": {
+      "name": "Prison of Ice",
+      "desc": "Break the curse of ice from Anya.",
+      "obj1": "Use the Scroll of Resistance"
+    },
+    "act5-betrayal-of-harrogath": {
+      "name": "Betrayal of Harrogath",
+      "desc": "Uncover the traitor in Harrogath.",
+      "obj1": "Defeat Nihlathak the Traitor"
+    },
+    "act5-rite-of-passage": {
+      "name": "Rite of Passage",
+      "desc": "Defeat the three Ancients atop Mount Arreat.",
+      "obj1": "Defeat the Ancients"
+    },
+    "act5-eve-of-destruction": {
+      "name": "Eve of Destruction",
+      "desc": "Defeat Baal at the Throne of Destruction.",
+      "obj1": "Defeat Baal"
+    }
+  },
+  "rewardLabel": {
+    "imbue": "Imbue Charge",
+    "skillPoint": "Skill Point",
+    "statPoint": "Stat Point",
+    "gold": "Gold",
+    "rune": "Rune",
+    "xp": "XP"
+  },
+  "quests": {
+    "q": {
+      "denOfEvil": {
+        "name": "Den of Evil",
+        "desc": "Cleanse the nearby Den of Evil.",
+        "obj1": "Slay all monsters in the Den"
+      },
+      "sistersBurial": {
+        "name": "Sisters' Burial Grounds",
+        "desc": "Lay Blood Raven to rest.",
+        "obj1": "Defeat Blood Raven"
+      },
+      "charsi": {
+        "name": "Tools of the Trade",
+        "desc": "Return Charsi's tools to unlock imbue.",
+        "obj1": "Recover the Horadric Malus"
+      },
+      "bountyAndariel": {
+        "name": "Bounty: Andariel",
+        "desc": "Defeat Andariel in the Catacombs.",
+        "obj1": "Defeat Andariel"
+      }
+    },
+    "reward": {
+      "imbue": "Imbue Charge"
+    }
+  }
+}

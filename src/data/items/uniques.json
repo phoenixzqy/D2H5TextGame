@@ -1,0 +1,678 @@
+[
+  {
+    "id": "items/unique/shako",
+    "name": "Harlequin Crest",
+    "baseId": "items/base/helm-war-hat",
+    "reqLevel": 50,
+    "flavor": "Once worn by a jester whose laughter still echoes in its bells.",
+    "stats": {
+      "coreStats": {
+        "strength": 2,
+        "dexterity": 2,
+        "vitality": 2,
+        "energy": 2
+      },
+      "statMods": {
+        "life": 75,
+        "mana": 75,
+        "magicFind": 50
+      }
+    }
+  },
+  {
+    "id": "items/unique/andariels-visage",
+    "name": "Andariels Visage",
+    "baseId": "items/base/helm-giant-conch",
+    "reqLevel": 60,
+    "flavor": "The face of the Maiden of Anguish, twisted in eternal pain.",
+    "stats": {
+      "statMods": {
+        "attackSpeed": 30,
+        "defense": 120
+      },
+      "resistances": {
+        "fire": -30
+      }
+    }
+  },
+  {
+    "id": "items/unique/crown-of-ages",
+    "name": "Crown of Ages",
+    "baseId": "items/base/helm-armet",
+    "reqLevel": 65,
+    "flavor": "The crown bears the weight of centuries of fallen kings.",
+    "stats": {
+      "statMods": {
+        "life": 50
+      },
+      "resistances": {
+        "fire": 20,
+        "cold": 20,
+        "lightning": 20,
+        "poison": 20,
+        "arcane": 20
+      }
+    }
+  },
+  {
+    "id": "items/unique/giant-skull",
+    "name": "Giant Skull",
+    "baseId": "items/base/helm-giant-conch",
+    "reqLevel": 60,
+    "flavor": "The bleached skull of a slain giant, an unsettling helm.",
+    "stats": {
+      "coreStats": {
+        "strength": 50
+      },
+      "statMods": {
+        "defense": 200
+      }
+    }
+  },
+  {
+    "id": "items/unique/griffons-eye",
+    "name": "Griffons Eye",
+    "baseId": "items/base/helm-armet",
+    "reqLevel": 65,
+    "flavor": "A diadem set with the eye of a great griffon.",
+    "stats": {
+      "statMods": {
+        "attackSpeed": 15
+      },
+      "damageBonus": {
+        "min": 0,
+        "max": 30,
+        "breakdown": {
+          "lightning": 30
+        }
+      }
+    }
+  },
+  {
+    "id": "items/unique/skin-of-vipermagi",
+    "name": "Skin of the Vipermagi",
+    "baseId": "items/base/armor-leather",
+    "reqLevel": 29,
+    "flavor": "Stripped from the great serpent-mages of the deep jungles.",
+    "stats": {
+      "resistances": {
+        "fire": 30,
+        "cold": 30,
+        "lightning": 30,
+        "poison": 30,
+        "arcane": 30
+      }
+    }
+  },
+  {
+    "id": "items/unique/que-hegan-wisdom",
+    "name": "Que-Hegans Wisdom",
+    "baseId": "items/base/armor-chain-mail",
+    "reqLevel": 51,
+    "flavor": "The robes of a high Vizjerei sage.",
+    "stats": {
+      "coreStats": {
+        "energy": 10
+      },
+      "statMods": {
+        "mana": 30,
+        "attackSpeed": 15
+      }
+    }
+  },
+  {
+    "id": "items/unique/tyraels-might",
+    "name": "Tyraels Might",
+    "baseId": "items/base/armor-archon-plate",
+    "reqLevel": 84,
+    "flavor": "Forged in the High Heavens by the Archangel of Justice himself.",
+    "stats": {
+      "coreStats": {
+        "strength": 25,
+        "dexterity": 25,
+        "vitality": 25,
+        "energy": 25
+      },
+      "statMods": {
+        "magicFind": 30
+      }
+    }
+  },
+  {
+    "id": "items/unique/arkaines-valor",
+    "name": "Arkaines Valor",
+    "baseId": "items/base/armor-archon-plate",
+    "reqLevel": 85,
+    "flavor": "The legendary armor of an ancient hero of the heroes ages.",
+    "stats": {
+      "coreStats": {
+        "vitality": 30
+      },
+      "statMods": {
+        "defense": 165,
+        "life": 60
+      }
+    }
+  },
+  {
+    "id": "items/unique/chains-of-honor-armor",
+    "name": "Chains of Honor",
+    "baseId": "items/base/armor-archon-plate",
+    "reqLevel": 65,
+    "flavor": "Bound in honor, oathsworn never to break.",
+    "stats": {
+      "coreStats": {
+        "strength": 20,
+        "vitality": 20
+      },
+      "statMods": {
+        "defense": 200
+      },
+      "resistances": {
+        "fire": 65,
+        "cold": 65,
+        "lightning": 65,
+        "poison": 65,
+        "arcane": 65
+      }
+    }
+  },
+  {
+    "id": "items/unique/dracs-grasp",
+    "name": "Draculs Grasp",
+    "baseId": "items/base/glove-vampirebone",
+    "reqLevel": 76,
+    "flavor": "The hand of a vampire lord, still hungering for blood.",
+    "stats": {
+      "coreStats": {
+        "strength": 20
+      }
+    }
+  },
+  {
+    "id": "items/unique/steelrend",
+    "name": "Steelrend",
+    "baseId": "items/base/glove-bramble-mitts",
+    "reqLevel": 70,
+    "flavor": "Gauntlets that shred steel as easily as cloth.",
+    "stats": {
+      "coreStats": {
+        "strength": 25
+      },
+      "statMods": {
+        "defense": 75
+      }
+    }
+  },
+  {
+    "id": "items/unique/lavagout",
+    "name": "Lava Gout",
+    "baseId": "items/base/glove-light-gauntlets",
+    "reqLevel": 42,
+    "flavor": "The Smiths own gauntlets, eternally burning.",
+    "stats": {
+      "statMods": {
+        "attackSpeed": 20
+      },
+      "damageBonus": {
+        "min": 0,
+        "max": 24,
+        "breakdown": {
+          "fire": 24
+        }
+      }
+    }
+  },
+  {
+    "id": "items/unique/magefist",
+    "name": "Magefist",
+    "baseId": "items/base/glove-light-gauntlets",
+    "reqLevel": 23,
+    "flavor": "Worn by an apprentice of the Vizjerei. It bears no fear of fire.",
+    "stats": {
+      "damageBonus": {
+        "min": 0,
+        "max": 25,
+        "breakdown": {
+          "fire": 25
+        }
+      }
+    }
+  },
+  {
+    "id": "items/unique/war-traveler",
+    "name": "War Traveler",
+    "baseId": "items/base/boot-light-plated",
+    "reqLevel": 42,
+    "flavor": "These boots have walked the lands of every Sanctuary.",
+    "stats": {
+      "coreStats": {
+        "strength": 20,
+        "vitality": 20
+      },
+      "statMods": {
+        "magicFind": 50,
+        "attackSpeed": 10
+      }
+    }
+  },
+  {
+    "id": "items/unique/gore-riders",
+    "name": "Gore Rider",
+    "baseId": "items/base/boot-demonhide",
+    "reqLevel": 47,
+    "flavor": "Boots stained dark with the blood of countless foes.",
+    "stats": {
+      "statMods": {
+        "attackSpeed": 30
+      }
+    }
+  },
+  {
+    "id": "items/unique/silkweave",
+    "name": "Silkweave",
+    "baseId": "items/base/boot-demonhide",
+    "reqLevel": 50,
+    "flavor": "Boots woven from the silk of the Spider Queen.",
+    "stats": {
+      "statMods": {
+        "mana": 50,
+        "magicDodge": 0.2
+      }
+    }
+  },
+  {
+    "id": "items/unique/marrowwalk",
+    "name": "Marrowwalk",
+    "baseId": "items/base/boot-myrmidon-greaves",
+    "reqLevel": 66,
+    "flavor": "Necromantic greaves that drink the marrow of the slain.",
+    "stats": {
+      "coreStats": {
+        "strength": 22
+      },
+      "statMods": {
+        "attackSpeed": 20,
+        "defense": 120
+      }
+    }
+  },
+  {
+    "id": "items/unique/string-of-ears",
+    "name": "String of Ears",
+    "baseId": "items/base/belt-demonhide",
+    "reqLevel": 29,
+    "flavor": "A grim trophy belt strung with the ears of fallen demons.",
+    "stats": {
+      "coreStats": {
+        "vitality": 15
+      },
+      "statMods": {
+        "defense": 75
+      }
+    }
+  },
+  {
+    "id": "items/unique/arachnids-mesh",
+    "name": "Arachnid Mesh",
+    "baseId": "items/base/belt-mithril-coil",
+    "reqLevel": 80,
+    "flavor": "Spun from the silk of the Spider Mother of the Pandemonium.",
+    "stats": {
+      "statMods": {
+        "mana": 25
+      }
+    }
+  },
+  {
+    "id": "items/unique/thundergods-vigor",
+    "name": "Thundergods Vigor",
+    "baseId": "items/base/belt-plated",
+    "reqLevel": 47,
+    "flavor": "Belt forged from the lightning of the Skovos heavens.",
+    "stats": {
+      "coreStats": {
+        "strength": 20,
+        "vitality": 20
+      },
+      "damageBonus": {
+        "min": 5,
+        "max": 10,
+        "breakdown": {
+          "lightning": 10
+        }
+      }
+    }
+  },
+  {
+    "id": "items/unique/verdungos-hearty",
+    "name": "Verdungos Hearty Cord",
+    "baseId": "items/base/belt-mithril-coil",
+    "reqLevel": 63,
+    "flavor": "A belt that strengthens the bearer with every breath.",
+    "stats": {
+      "coreStats": {
+        "vitality": 35
+      },
+      "statMods": {
+        "mana": 100
+      },
+      "resistances": {
+        "fire": 10,
+        "cold": 10,
+        "lightning": 10,
+        "poison": 10,
+        "arcane": 10
+      }
+    }
+  },
+  {
+    "id": "items/unique/stone-of-jordan",
+    "name": "Stone of Jordan",
+    "baseId": "items/base/ring-silver",
+    "reqLevel": 29,
+    "flavor": "A ring of legend, the dream of every adventurer.",
+    "stats": {
+      "statMods": {
+        "mana": 20
+      },
+      "damageBonus": {
+        "min": 1,
+        "max": 12,
+        "breakdown": {
+          "lightning": 12
+        }
+      }
+    }
+  },
+  {
+    "id": "items/unique/bul-kathos",
+    "name": "Bul-Kathos Wedding Band",
+    "baseId": "items/base/ring-amber",
+    "reqLevel": 58,
+    "flavor": "An ancient barbarian king gave this to his bride.",
+    "stats": {
+      "coreStats": {
+        "strength": 20
+      },
+      "statMods": {
+        "life": 50
+      }
+    }
+  },
+  {
+    "id": "items/unique/raven-frost",
+    "name": "Raven Frost",
+    "baseId": "items/base/ring-amber",
+    "reqLevel": 45,
+    "flavor": "A ring of pure cold, hewn from the heart of an icy storm.",
+    "stats": {
+      "coreStats": {
+        "dexterity": 17
+      },
+      "statMods": {
+        "mana": 40
+      },
+      "damageBonus": {
+        "min": 15,
+        "max": 45,
+        "breakdown": {
+          "cold": 45
+        }
+      }
+    }
+  },
+  {
+    "id": "items/unique/carrion-wind",
+    "name": "Carrion Wind",
+    "baseId": "items/base/ring-obsidian",
+    "reqLevel": 60,
+    "flavor": "It carries the stench of the Burial Grounds.",
+    "stats": {
+      "statMods": {
+        "physDodge": 0.1
+      },
+      "resistances": {
+        "fire": 10,
+        "cold": 10,
+        "lightning": 10,
+        "poison": 10,
+        "arcane": 10
+      }
+    }
+  },
+  {
+    "id": "items/unique/mara-kaleidoscope",
+    "name": "Maras Kaleidoscope",
+    "baseId": "items/base/amu-obsidian",
+    "reqLevel": 67,
+    "flavor": "Beloved of mages, a tiny window onto every magic.",
+    "stats": {
+      "coreStats": {
+        "strength": 5,
+        "dexterity": 5,
+        "vitality": 5,
+        "energy": 5
+      },
+      "resistances": {
+        "fire": 25,
+        "cold": 25,
+        "lightning": 25,
+        "poison": 25,
+        "arcane": 25
+      }
+    }
+  },
+  {
+    "id": "items/unique/highlords-wrath",
+    "name": "Highlords Wrath",
+    "baseId": "items/base/amu-obsidian",
+    "reqLevel": 65,
+    "flavor": "The sigil of the Highlord. Lightning sings in its chains.",
+    "stats": {
+      "statMods": {
+        "attackSpeed": 20
+      },
+      "damageBonus": {
+        "min": 0,
+        "max": 20,
+        "breakdown": {
+          "lightning": 20
+        }
+      }
+    }
+  },
+  {
+    "id": "items/unique/atmas-scarab",
+    "name": "Atmas Scarab",
+    "baseId": "items/base/amu-silver",
+    "reqLevel": 60,
+    "flavor": "Worn by a tavern-keeper who fled a burning desert city.",
+    "stats": {}
+  },
+  {
+    "id": "items/unique/seraphs-hymn",
+    "name": "Seraphs Hymn",
+    "baseId": "items/base/amu-zircon",
+    "reqLevel": 65,
+    "flavor": "The angels sing of judgment, and the wicked tremble.",
+    "stats": {
+      "statMods": {
+        "defense": 50
+      }
+    }
+  },
+  {
+    "id": "items/unique/grandfather",
+    "name": "The Grandfather",
+    "baseId": "items/base/wp2h-colossus-blade",
+    "reqLevel": 81,
+    "flavor": "A sword wielded by an ancient hero. The blade alone weighs more than most men.",
+    "stats": {
+      "coreStats": {
+        "strength": 20,
+        "dexterity": 20,
+        "vitality": 20,
+        "energy": 20
+      },
+      "statMods": {
+        "attackSpeed": 50
+      },
+      "damageBonus": {
+        "min": 0,
+        "max": 80,
+        "breakdown": {
+          "physical": 80
+        }
+      }
+    }
+  },
+  {
+    "id": "items/unique/doombringer",
+    "name": "Doombringer",
+    "baseId": "items/base/wp1h-war-sword",
+    "reqLevel": 69,
+    "flavor": "A sword that hums with the death-cries of all who have fallen to it.",
+    "stats": {
+      "coreStats": {
+        "strength": 40
+      }
+    }
+  },
+  {
+    "id": "items/unique/breath-of-the-dying-uniq",
+    "name": "Breath of the Dying",
+    "baseId": "items/base/wp1h-phase-blade",
+    "reqLevel": 69,
+    "flavor": "The last breath of the slain rises from this blade.",
+    "stats": {
+      "coreStats": {
+        "strength": 12,
+        "dexterity": 12,
+        "vitality": 12,
+        "energy": 12
+      },
+      "statMods": {
+        "attackSpeed": 60
+      }
+    }
+  },
+  {
+    "id": "items/unique/windforce",
+    "name": "Windforce",
+    "baseId": "items/base/wp2h-thunder-maul",
+    "reqLevel": 73,
+    "flavor": "Imbued with the howling tempest of the Plains of Despair.",
+    "stats": {
+      "statMods": {
+        "attackSpeed": 20
+      }
+    }
+  },
+  {
+    "id": "items/unique/buriza-do-kyanon",
+    "name": "Buriza-Do Kyanon",
+    "baseId": "items/base/wp2h-giant-thresher",
+    "reqLevel": 65,
+    "flavor": "A weapon of legend, said to pierce the heavens.",
+    "stats": {
+      "statMods": {
+        "attackSpeed": 50
+      },
+      "damageBonus": {
+        "min": 10,
+        "max": 14,
+        "breakdown": {
+          "cold": 14
+        }
+      }
+    }
+  },
+  {
+    "id": "items/unique/eaglehorn",
+    "name": "Eaglehorn",
+    "baseId": "items/base/wp2h-war-pike",
+    "reqLevel": 69,
+    "flavor": "The bow of an ancient hunter, said to never miss its mark.",
+    "stats": {
+      "statMods": {
+        "attack": 200
+      }
+    }
+  },
+  {
+    "id": "items/unique/oculus",
+    "name": "The Oculus",
+    "baseId": "items/base/wp1h-war-sword",
+    "reqLevel": 42,
+    "flavor": "A swirling crystal orb, said to peer beyond the veil between worlds.",
+    "stats": {
+      "coreStats": {
+        "energy": 15
+      },
+      "statMods": {
+        "magicFind": 20,
+        "mana": 50
+      },
+      "resistances": {
+        "fire": 20,
+        "cold": 20,
+        "lightning": 20,
+        "poison": 20,
+        "arcane": 20
+      }
+    }
+  },
+  {
+    "id": "items/unique/griffons-strike",
+    "name": "Griffons Strike",
+    "baseId": "items/base/wp2h-thunder-maul",
+    "reqLevel": 65,
+    "flavor": "A maul charged with the fury of a thunderstorm.",
+    "stats": {
+      "statMods": {
+        "attackSpeed": 30
+      }
+    }
+  },
+  {
+    "id": "items/unique/stormshield",
+    "name": "Stormshield",
+    "baseId": "items/base/sh-monarch",
+    "reqLevel": 73,
+    "flavor": "Forged in the heart of a great tempest, this shield turns aside the worst blows.",
+    "stats": {
+      "coreStats": {
+        "strength": 30
+      },
+      "statMods": {
+        "defense": 60
+      },
+      "resistances": {
+        "lightning": 25
+      }
+    }
+  },
+  {
+    "id": "items/unique/homunculus",
+    "name": "Homunculus",
+    "baseId": "items/base/sh-aegis",
+    "reqLevel": 50,
+    "flavor": "A grotesque doll, unsettlingly aware. The dark arts hum within.",
+    "stats": {
+      "coreStats": {
+        "energy": 15
+      },
+      "statMods": {
+        "mana": 80
+      },
+      "resistances": {
+        "fire": 20,
+        "cold": 20,
+        "lightning": 20,
+        "poison": 20,
+        "arcane": 20
+      }
+    }
+  }
+]

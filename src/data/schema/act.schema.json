@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/act.json",
+  "title": "Act Definition",
+  "description": "Act (chapter) definition with town and sub-areas",
+  "type": "object",
+  "required": ["id", "name", "act", "town", "subAreas", "reqLevel"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^acts/act[1-5]$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "act": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "town": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subAreas": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Sub-area IDs in this act"
+    },
+    "reqLevel": {
+      "type": "integer",
+      "minimum": 1
+    }
+  }
+}

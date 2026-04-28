@@ -1,0 +1,233 @@
+[
+  {
+    "id": "skills-amazon-magic-arrow",
+    "name": "Magic Arrow",
+    "description": "Fires an arcane-imbued arrow that costs no ammunition.",
+    "icon": "skills/amazon/magic-arrow.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 5
+    },
+    "damage": {
+      "min": 35,
+      "max": 50,
+      "breakdown": {
+        "arcane": 50
+      }
+    },
+    "damageType": "arcane",
+    "appliesTags": [
+      "arcane"
+    ],
+    "scaling": {
+      "damagePerLevel": 4
+    }
+  },
+  {
+    "id": "skills-amazon-multiple-shot",
+    "name": "Multiple Shot",
+    "description": "Fires a spread of arrows hitting up to 5 enemies in a cone.",
+    "icon": "skills/amazon/multiple-shot.png",
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 15
+    },
+    "damage": {
+      "min": 40,
+      "max": 60,
+      "breakdown": {
+        "physical": 60
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 4
+    }
+  },
+  {
+    "id": "skills-amazon-freezing-arrow",
+    "name": "Freezing Arrow",
+    "description": "Fires a frozen arrow that explodes in a cone, chilling and sometimes freezing enemies.",
+    "icon": "skills/amazon/freezing-arrow.png",
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 20
+    },
+    "damage": {
+      "min": 50,
+      "max": 70,
+      "breakdown": {
+        "cold": 70
+      }
+    },
+    "damageType": "cold",
+    "appliesStatus": [
+      "chill",
+      "freeze"
+    ],
+    "appliesTags": [
+      "cold",
+      "chill"
+    ],
+    "scaling": {
+      "damagePerLevel": 5
+    }
+  },
+  {
+    "id": "skills-amazon-lightning-fury",
+    "name": "Lightning Fury",
+    "description": "Hurls a lightning javelin that splits and chains to all nearby enemies.",
+    "icon": "skills/amazon/lightning-fury.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 30
+    },
+    "damage": {
+      "min": 60,
+      "max": 90,
+      "breakdown": {
+        "lightning": 90
+      }
+    },
+    "damageType": "lightning",
+    "appliesStatus": [
+      "paralyze"
+    ],
+    "appliesTags": [
+      "lightning",
+      "shock"
+    ],
+    "synergies": {
+      "chill": 1.3
+    },
+    "scaling": {
+      "damagePerLevel": 6
+    }
+  },
+  {
+    "id": "skills-amazon-plague-javelin",
+    "name": "Plague Javelin",
+    "description": "Throws a javelin that releases poison clouds, applying 3 stacks of poison and spreading on kill.",
+    "icon": "skills/amazon/plague-javelin.png",
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 25
+    },
+    "damage": {
+      "min": 30,
+      "max": 50,
+      "breakdown": {
+        "poison": 50
+      }
+    },
+    "damageType": "poison",
+    "appliesStatus": [
+      "poison",
+      "plague"
+    ],
+    "appliesTags": [
+      "poison"
+    ],
+    "synergies": {
+      "burn": 1.15
+    },
+    "scaling": {
+      "damagePerLevel": 3
+    }
+  },
+  {
+    "id": "skills-amazon-strafe",
+    "name": "Strafe",
+    "description": "A rapid volley of arrows that strikes all enemies in combat.",
+    "icon": "skills/amazon/strafe.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 20
+    },
+    "damage": {
+      "min": 35,
+      "max": 55,
+      "breakdown": {
+        "physical": 55
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 4
+    }
+  },
+  {
+    "id": "skills-amazon-critical-strike",
+    "name": "Critical Strike",
+    "description": "Increases critical hit chance by 15%.",
+    "icon": "skills/amazon/critical-strike.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-amazon-penetrate",
+    "name": "Penetrate",
+    "description": "Increases hit chance by 20% by reducing enemy dodge.",
+    "icon": "skills/amazon/penetrate.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-amazon-dodge",
+    "name": "Dodge",
+    "description": "Increases physical dodge chance by 25%.",
+    "icon": "skills/amazon/dodge.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-amazon-valkyrie",
+    "name": "Valkyrie",
+    "description": "Summons a Valkyrie warrior to fight at your side.",
+    "icon": "skills/amazon/valkyrie.png",
+    "trigger": "passive",
+    "target": "summon",
+    "cooldown": 0,
+    "minLevel": 18,
+    "maxLevel": 20
+  }
+]

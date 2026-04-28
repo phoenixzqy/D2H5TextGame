@@ -1,0 +1,31 @@
+{
+  "inventory.title": "背包",
+  "backpack": "背包",
+  "stash": "仓库",
+  "equipment": "装备",
+  "equip": "装备",
+  "unequip": "卸下",
+  "sell": "出售",
+  "salvage": "分解",
+  "transfer": "转移",
+  "details": "详情",
+  "items": "物品",
+  "selectItem": "选择一件物品",
+  "emptyBackpack": "背包空空如也",
+  "emptyStash": "仓库空空如也",
+  "empty": "空",
+  "itemLevel": "物品等级",
+  "slots": {
+    "head": "头部",
+    "chest": "胸甲",
+    "gloves": "手套",
+    "belt": "腰带",
+    "boots": "靴子",
+    "amulet": "项链",
+    "ring-left": "戒指 (左)",
+    "ring-right": "戒指 (右)",
+    "weapon": "武器",
+    "offhand": "副手"
+  },
+  "capacity": "容量: {{current}}/{{max}}"
+}

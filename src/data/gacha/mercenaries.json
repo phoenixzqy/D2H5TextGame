@@ -1,0 +1,279 @@
+[
+  {
+    "id": "mercs/act2-holy-freeze",
+    "name": "Desert Merc — Holy Freeze",
+    "archetype": "front",
+    "rarity": "SSR",
+    "baseStats": { "strength": 28, "dexterity": 18, "vitality": 24, "energy": 10 },
+    "skills": ["mskill-jab", "aura-holy-freeze"],
+    "comboOrder": ["mskill-jab"],
+    "reqLevel": 12,
+    "flavor": "A Lut Gholein spear-bearer whose every step crystallises the air. The cold of his aura slows the wicked into easy prey."
+  },
+  {
+    "id": "mercs/act2-might",
+    "name": "Desert Merc — Might",
+    "archetype": "front",
+    "rarity": "SSR",
+    "baseStats": { "strength": 32, "dexterity": 18, "vitality": 24, "energy": 10 },
+    "skills": ["mskill-jab", "aura-might"],
+    "comboOrder": ["mskill-jab"],
+    "reqLevel": 12,
+    "flavor": "His war chant lends strength to the entire warband; even a peasant's club bites like a falcata at his side."
+  },
+  {
+    "id": "mercs/act3-iron-wolf-fire",
+    "name": "Iron Wolf — Fire",
+    "archetype": "back",
+    "rarity": "SSR",
+    "baseStats": { "strength": 14, "dexterity": 16, "vitality": 18, "energy": 28 },
+    "skills": ["mskill-fire-ball", "passive-fire-mastery"],
+    "comboOrder": ["mskill-fire-ball"],
+    "reqLevel": 18,
+    "flavor": "An Iron Wolf of Kurast who has bound the spirit of flame to his blade. He laughs at jungle rain — it boils before it lands."
+  },
+  {
+    "id": "mercs/act5-barbarian-battle-orders",
+    "name": "Barbarian — Battle Orders",
+    "archetype": "front",
+    "rarity": "SSR",
+    "baseStats": { "strength": 34, "dexterity": 16, "vitality": 28, "energy": 12 },
+    "skills": ["mskill-bash", "aura-battle-orders"],
+    "comboOrder": ["mskill-bash"],
+    "reqLevel": 24,
+    "flavor": "A Bul-Kathos veteran whose roar inflates the lungs and the courage of every soul within earshot."
+  },
+  {
+    "id": "mercs/act1-rogue-pierce",
+    "name": "Rogue Scout — Pierce",
+    "archetype": "back",
+    "rarity": "SSR",
+    "baseStats": { "strength": 16, "dexterity": 30, "vitality": 18, "energy": 14 },
+    "skills": ["mskill-pierce-arrow", "passive-critical"],
+    "comboOrder": ["mskill-pierce-arrow"],
+    "reqLevel": 6,
+    "flavor": "A Sister of the Sightless Eye whose arrows stitch through three foes before burying themselves in the fourth."
+  },
+
+  {
+    "id": "mercs/act2-thorns",
+    "name": "Desert Merc — Thorns",
+    "archetype": "front",
+    "rarity": "SR",
+    "baseStats": { "strength": 26, "dexterity": 18, "vitality": 24, "energy": 10 },
+    "skills": ["mskill-jab", "aura-thorns"],
+    "comboOrder": ["mskill-jab"],
+    "reqLevel": 12,
+    "flavor": "Strike him and reap your own ribs — his armour bleeds the careless attacker."
+  },
+  {
+    "id": "mercs/act2-prayer",
+    "name": "Desert Merc — Prayer",
+    "archetype": "front",
+    "rarity": "SR",
+    "baseStats": { "strength": 24, "dexterity": 16, "vitality": 24, "energy": 14 },
+    "skills": ["mskill-jab", "aura-prayer"],
+    "comboOrder": ["mskill-jab"],
+    "reqLevel": 12,
+    "flavor": "He whispers Zakarum litanies between thrusts; wounds close on those near him as if Akarat himself watched."
+  },
+  {
+    "id": "mercs/act3-iron-wolf-cold",
+    "name": "Iron Wolf — Cold",
+    "archetype": "back",
+    "rarity": "SR",
+    "baseStats": { "strength": 14, "dexterity": 16, "vitality": 18, "energy": 26 },
+    "skills": ["mskill-glacial-spike"],
+    "comboOrder": ["mskill-glacial-spike"],
+    "reqLevel": 18,
+    "flavor": "His glacial spikes leave the swamps of Kurast white with frost long after the battle is done."
+  },
+  {
+    "id": "mercs/act3-iron-wolf-lightning",
+    "name": "Iron Wolf — Lightning",
+    "archetype": "back",
+    "rarity": "SR",
+    "baseStats": { "strength": 14, "dexterity": 18, "vitality": 18, "energy": 26 },
+    "skills": ["mskill-charged-bolt"],
+    "comboOrder": ["mskill-charged-bolt"],
+    "reqLevel": 18,
+    "flavor": "Five errant bolts dance from his fingertips — sometimes they all find the same throat."
+  },
+  {
+    "id": "mercs/act1-rogue-fire",
+    "name": "Rogue Scout — Fire Arrow",
+    "archetype": "back",
+    "rarity": "SR",
+    "baseStats": { "strength": 14, "dexterity": 26, "vitality": 18, "energy": 16 },
+    "skills": ["mskill-fire-arrow"],
+    "comboOrder": ["mskill-fire-arrow"],
+    "reqLevel": 6,
+    "flavor": "She dips each shaft in pitch and breath — a single shot lights a whole nest of fallen on fire."
+  },
+  {
+    "id": "mercs/act1-rogue-cold",
+    "name": "Rogue Scout — Cold Arrow",
+    "archetype": "back",
+    "rarity": "SR",
+    "baseStats": { "strength": 14, "dexterity": 26, "vitality": 18, "energy": 16 },
+    "skills": ["mskill-cold-arrow"],
+    "comboOrder": ["mskill-cold-arrow"],
+    "reqLevel": 6,
+    "flavor": "Each arrowhead is hollowed and packed with rime-salt; what it does not kill, it sluggishly preserves for the next volley."
+  },
+  {
+    "id": "mercs/act5-barbarian-war-cry",
+    "name": "Barbarian — War Cry",
+    "archetype": "front",
+    "rarity": "SR",
+    "baseStats": { "strength": 30, "dexterity": 16, "vitality": 26, "energy": 12 },
+    "skills": ["mskill-war-cry"],
+    "comboOrder": ["mskill-war-cry"],
+    "reqLevel": 24,
+    "flavor": "His shout has felled a charging beast at twenty paces. Lesser foes simply forget how to stand."
+  },
+  {
+    "id": "mercs/act4-paladin-holy-fire",
+    "name": "Paladin — Holy Fire",
+    "archetype": "front",
+    "rarity": "SR",
+    "baseStats": { "strength": 24, "dexterity": 18, "vitality": 22, "energy": 14 },
+    "skills": ["mskill-holy-fire"],
+    "comboOrder": ["mskill-holy-fire"],
+    "reqLevel": 20,
+    "flavor": "A Pandemonium pilgrim wreathed in sanctified flame — the demons cower not from heat, but from judgement."
+  },
+
+  {
+    "id": "mercs/act1-rogue-trainee",
+    "name": "Rogue Scout — Trainee",
+    "archetype": "back",
+    "rarity": "R",
+    "baseStats": { "strength": 12, "dexterity": 22, "vitality": 16, "energy": 12 },
+    "skills": ["mskill-basic-arrow"],
+    "comboOrder": ["mskill-basic-arrow"],
+    "reqLevel": 3,
+    "flavor": "Fresh from the Monastery's archery yard, her draw is steady even if her count of demons is still zero."
+  },
+  {
+    "id": "mercs/act1-rogue-inner-sight",
+    "name": "Rogue Scout — Inner Sight",
+    "archetype": "back",
+    "rarity": "R",
+    "baseStats": { "strength": 12, "dexterity": 22, "vitality": 16, "energy": 14 },
+    "skills": ["mskill-inner-sight"],
+    "comboOrder": ["mskill-inner-sight"],
+    "reqLevel": 3,
+    "flavor": "She paints the foe in moonlight only her allies can see — every gap in their armour suddenly becomes a target."
+  },
+  {
+    "id": "mercs/act2-blessed-aim",
+    "name": "Desert Merc — Blessed Aim",
+    "archetype": "front",
+    "rarity": "R",
+    "baseStats": { "strength": 22, "dexterity": 18, "vitality": 20, "energy": 10 },
+    "skills": ["mskill-jab", "aura-blessed-aim"],
+    "comboOrder": ["mskill-jab"],
+    "reqLevel": 10,
+    "flavor": "Even the wildest spear-thrust seems to find a vital organ when this man is at your side."
+  },
+  {
+    "id": "mercs/act2-defiance",
+    "name": "Desert Merc — Defiance",
+    "archetype": "front",
+    "rarity": "R",
+    "baseStats": { "strength": 20, "dexterity": 16, "vitality": 24, "energy": 10 },
+    "skills": ["mskill-jab", "aura-defiance"],
+    "comboOrder": ["mskill-jab"],
+    "reqLevel": 10,
+    "flavor": "He plants his spear and the desert wind itself seems to refuse to blow against you."
+  },
+  {
+    "id": "mercs/act3-iron-wolf-frozen-armor",
+    "name": "Iron Wolf — Frozen Armor",
+    "archetype": "back",
+    "rarity": "R",
+    "baseStats": { "strength": 12, "dexterity": 14, "vitality": 16, "energy": 24 },
+    "skills": ["mskill-frozen-armor"],
+    "comboOrder": ["mskill-frozen-armor"],
+    "reqLevel": 16,
+    "flavor": "A Iron Wolf novice wrapped in a shimmering glacis — the last thing many a melee attacker ever embraces."
+  },
+  {
+    "id": "mercs/act3-iron-wolf-telekinesis",
+    "name": "Iron Wolf — Telekinesis",
+    "archetype": "back",
+    "rarity": "R",
+    "baseStats": { "strength": 12, "dexterity": 14, "vitality": 16, "energy": 24 },
+    "skills": ["mskill-telekinesis"],
+    "comboOrder": ["mskill-telekinesis"],
+    "reqLevel": 16,
+    "flavor": "He never touches the foe — and the foe rarely touches the ground."
+  },
+  {
+    "id": "mercs/act3-militia-pikeman",
+    "name": "Militia — Pikeman",
+    "archetype": "front",
+    "rarity": "R",
+    "baseStats": { "strength": 22, "dexterity": 16, "vitality": 20, "energy": 8 },
+    "skills": ["mskill-pierce-thrust"],
+    "comboOrder": ["mskill-pierce-thrust"],
+    "reqLevel": 14,
+    "flavor": "A Kurast docks volunteer with a sharpened mop handle and remarkable resolve."
+  },
+  {
+    "id": "mercs/act3-militia-swordsman",
+    "name": "Militia — Swordsman",
+    "archetype": "front",
+    "rarity": "R",
+    "baseStats": { "strength": 22, "dexterity": 18, "vitality": 20, "energy": 8 },
+    "skills": ["mskill-chop"],
+    "comboOrder": ["mskill-chop"],
+    "reqLevel": 14,
+    "flavor": "Two months of swordplay lessons from a retired Iron Wolf — not nothing, not much."
+  },
+  {
+    "id": "mercs/tavern-thief-pickpocket",
+    "name": "Thief — Pickpocket",
+    "archetype": "support",
+    "rarity": "R",
+    "baseStats": { "strength": 12, "dexterity": 22, "vitality": 16, "energy": 10 },
+    "skills": ["mskill-pilfer"],
+    "comboOrder": ["mskill-pilfer"],
+    "reqLevel": 5,
+    "flavor": "She insists she's only here for the gold — but the demons drop the most interesting purses."
+  },
+  {
+    "id": "mercs/tavern-acolyte-priestess",
+    "name": "Acolyte Priestess",
+    "archetype": "back",
+    "rarity": "R",
+    "baseStats": { "strength": 10, "dexterity": 14, "vitality": 16, "energy": 24 },
+    "skills": ["mskill-minor-heal"],
+    "comboOrder": ["mskill-minor-heal"],
+    "reqLevel": 5,
+    "flavor": "An apprentice of the Zakarum, still nervous of blood, but her healing hymn never falters."
+  },
+  {
+    "id": "mercs/act5-barbarian-recruit",
+    "name": "Barbarian Recruit",
+    "archetype": "front",
+    "rarity": "R",
+    "baseStats": { "strength": 26, "dexterity": 14, "vitality": 24, "energy": 8 },
+    "skills": ["mskill-basic-swing"],
+    "comboOrder": ["mskill-basic-swing"],
+    "reqLevel": 22,
+    "flavor": "Fresh down from Arreat, eager to prove that his clan markings are not just decoration."
+  },
+  {
+    "id": "mercs/act4-paladin-initiate",
+    "name": "Paladin Initiate",
+    "archetype": "front",
+    "rarity": "R",
+    "baseStats": { "strength": 22, "dexterity": 16, "vitality": 20, "energy": 12 },
+    "skills": ["mskill-smite"],
+    "comboOrder": ["mskill-smite"],
+    "reqLevel": 18,
+    "flavor": "A Pandemonium novice whose shield bash carries more conviction than skill — for now."
+  }
+]

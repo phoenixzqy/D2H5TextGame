@@ -1,0 +1,45 @@
+{
+  "id": "loot/mf-curve",
+  "name": "Magic Find Diminishing Returns",
+  "description": "MF curve parameters from drop-tables.md §11. effectiveMF = MF / (MF + constant) * cap.",
+  "formula": "effectiveMF = floor(MF / (MF + constant) * cap)",
+  "constant": 250,
+  "cap": 600,
+  "baseRarityWeights": {
+    "white": 1000,
+    "blue": 300,
+    "rare": 80,
+    "set": 8,
+    "unique": 4
+  },
+  "rarityModulators": {
+    "white":  { "op": "mul", "expr": "(1 - effectiveMF / 1200)" },
+    "blue":   { "op": "mul", "expr": "(1 + effectiveMF / 600)" },
+    "rare":   { "op": "mul", "expr": "(1 + effectiveMF / 400)" },
+    "set":    { "op": "mul", "expr": "(1 + effectiveMF / 200)" },
+    "unique": { "op": "mul", "expr": "(1 + effectiveMF / 180)" }
+  },
+  "tierMultipliers": {
+    "trash":     { "rare": 1.0, "set": 1.0, "unique": 1.0 },
+    "champion":  { "rare": 1.5, "set": 2.0, "unique": 3.0 },
+    "unique":    { "rare": 2.0, "set": 3.0, "unique": 6.0 },
+    "miniBoss":  { "rare": 3.0, "set": 4.0, "unique": 8.0 },
+    "boss":      { "rare": 4.0, "set": 6.0, "unique": 12.0 }
+  },
+  "samplePoints": [
+    { "mf": 0,    "effectiveMF": 0,   "uniqueMultiplier": 1.00 },
+    { "mf": 100,  "effectiveMF": 171, "uniqueMultiplier": 1.95 },
+    { "mf": 200,  "effectiveMF": 267, "uniqueMultiplier": 2.49 },
+    { "mf": 300,  "effectiveMF": 327, "uniqueMultiplier": 2.82 },
+    { "mf": 500,  "effectiveMF": 400, "uniqueMultiplier": 3.22 },
+    { "mf": 800,  "effectiveMF": 457, "uniqueMultiplier": 3.54 },
+    { "mf": 1500, "effectiveMF": 514, "uniqueMultiplier": 3.86 }
+  ],
+  "softCap": 300,
+  "hardCap": 800,
+  "notes": [
+    "Soft cap ~300 MF; hard ceiling ~800 MF.",
+    "Encourages 200–400 MF gear builds without sacrificing power.",
+    "All RNG must go through engine/rng.ts seeded PRNG."
+  ]
+}

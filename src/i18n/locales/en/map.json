@@ -1,0 +1,31 @@
+{
+  "worldMap": "World Map",
+  "act": "Act {{number}}",
+  "recommendedLevel": "Recommended Lv: {{level}}",
+  "locked": "Locked",
+  "unlocked": "Unlocked",
+  "farmHere": "Farm Here",
+  "enter": "Enter",
+  "actName": {
+    "1": "Rogue Encampment",
+    "2": "Lut Gholein",
+    "3": "Kurast Docks",
+    "4": "The Pandemonium Fortress",
+    "5": "Harrogath"
+  },
+  "subArea": {
+    "a1-blood-moor": "Blood Moor",
+    "a1-cold-plains": "Cold Plains",
+    "a1-stony-field": "Stony Field",
+    "a1-dark-wood": "Dark Wood",
+    "a1-tristram": "Tristram",
+    "a2-rocky-waste": "Rocky Waste",
+    "a2-dry-hills": "Dry Hills",
+    "a3-spider-forest": "Spider Forest",
+    "a3-flayer-jungle": "Flayer Jungle",
+    "a4-outer-steppes": "Outer Steppes",
+    "a4-river-of-flame": "River of Flame",
+    "a5-bloody-foothills": "Bloody Foothills",
+    "a5-worldstone-keep": "Worldstone Keep"
+  }
+}

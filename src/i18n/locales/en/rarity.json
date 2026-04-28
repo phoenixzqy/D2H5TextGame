@@ -1,0 +1,31 @@
+{
+  "_meta": {
+    "source": "Diablo II rarity tiers"
+  },
+  "tier": {
+    "normal": "Normal",
+    "white": "White",
+    "superior": "Superior",
+    "magic": "Magic",
+    "rare": "Rare",
+    "set": "Set",
+    "unique": "Unique",
+    "runeword": "Runeword",
+    "crafted": "Crafted",
+    "legendary": "Legendary"
+  },
+  "label": {
+    "normal": "Normal Item",
+    "magic": "Magic Item",
+    "rare": "Rare Item",
+    "unique": "Unique Item",
+    "set": "Set Item",
+    "runeword": "Runeword",
+    "crafted": "Crafted Item"
+  },
+  "merc": {
+    "R": "R",
+    "SR": "SR",
+    "SSR": "SSR"
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "title": "Skills",
+  "skillTree": "Skill Tree",
+  "activeSkills": "Active Skill Priority",
+  "allocate": "Allocate",
+  "pointsRemaining": "Skill Points: {{count}}",
+  "comboOrder": "Combo Order",
+  "dragToReorder": "Use arrow buttons to reorder",
+  "moveUp": "Move up",
+  "moveDown": "Move down",
+  "slotN": "Slot {{n}}",
+  "tab": {
+    "combat": "Combat",
+    "passive": "Passive"
+  },
+  "trigger": {
+    "active": "Active",
+    "passive": "Passive",
+    "aura": "Aura",
+    "onCombatStart": "On Combat Start"
+  },
+  "tooltip": {
+    "cooldown": "Cooldown: {{seconds}}s",
+    "manaCost": "Mana Cost: {{amount}}",
+    "damage": "Damage: {{min}}-{{max}}",
+    "scaling": "+{{amount}} damage per level",
+    "level": "Level {{current}}/{{max}}",
+    "minLevel": "Requires Level {{level}}"
+  },
+  "amazon": {
+    "magic-arrow": { "name": "Magic Arrow", "desc": "Fires an arcane-imbued arrow that costs no ammunition." },
+    "multiple-shot": { "name": "Multiple Shot", "desc": "Fires a spread of arrows hitting up to 5 enemies in a cone." },
+    "freezing-arrow": { "name": "Freezing Arrow", "desc": "Fires a frozen arrow that explodes in a cone, chilling and sometimes freezing enemies." },
+    "lightning-fury": { "name": "Lightning Fury", "desc": "Hurls a lightning javelin that splits and chains to all nearby enemies." },
+    "plague-javelin": { "name": "Plague Javelin", "desc": "Throws a javelin that releases poison clouds, applying 3 stacks of poison and spreading on kill." },
+    "strafe": { "name": "Strafe", "desc": "A rapid volley of arrows that strikes all enemies in combat." },
+    "critical-strike": { "name": "Critical Strike", "desc": "Increases critical hit chance by 15%." },
+    "penetrate": { "name": "Penetrate", "desc": "Increases hit chance by 20% by reducing enemy dodge." },
+    "dodge": { "name": "Dodge", "desc": "Increases physical dodge chance by 25%." },
+    "valkyrie": { "name": "Valkyrie", "desc": "Summons a Valkyrie warrior to fight at your side." }
+  },
+  "assassin": {
+    "shock-web": { "name": "Shock Web", "desc": "Lays a web of crackling lightning that paralyzes all enemies in combat." },
+    "fire-blast": { "name": "Fire Blast", "desc": "Throws an explosive fire trap that bursts in a cone, burning enemies." },
+    "blade-fury": { "name": "Blade Fury", "desc": "Hurls a flurry of blades in a cone, striking multiple enemies." },
+    "mind-blast": { "name": "Mind Blast", "desc": "Releases a psychic shockwave that burns mana and stuns all enemies." },
+    "dragon-claw": { "name": "Dragon Claw", "desc": "A pair of swift claw strikes against a single target with bonus crit chance." },
+    "phoenix-strike": { "name": "Phoenix Strike", "desc": "A combo strike that releases fire, cold, and lightning charges on a single target." },
+    "claw-mastery": { "name": "Claw Mastery", "desc": "Increases damage with claw weapons by 50%." },
+    "weapon-block": { "name": "Weapon Block", "desc": "When dual-wielding, gain 30% physical dodge chance." },
+    "fade": { "name": "Fade", "desc": "At combat start, gain +30% all resistances and +15% physical dodge." },
+    "venom": { "name": "Venom", "desc": "Basic attacks apply 1 stack of poison to the target." }
+  },
+  "barbarian": {
+    "bash": { "name": "Bash", "desc": "A powerful single-target strike with the equipped weapon." },
+    "double-swing": { "name": "Double Swing", "desc": "Two cleaving strikes that hit up to 3 enemies." },
+    "whirlwind": { "name": "Whirlwind", "desc": "Spins through enemies, dealing physical damage to all targets." },
+    "leap-attack": { "name": "Leap Attack", "desc": "Leaps to a new position and lands with crushing force, stunning all nearby enemies." },
+    "berserk": { "name": "Berserk", "desc": "An arcane-fueled rage strike that converts physical damage to arcane." },
+    "war-cry": { "name": "War Cry", "desc": "A devastating shout that damages and stuns all enemies." },
+    "iron-skin": { "name": "Iron Skin", "desc": "Increases defense by 100%." },
+    "natural-resistance": { "name": "Natural Resistance", "desc": "Increases all resistances by 30%." },
+    "battle-orders": { "name": "Battle Orders", "desc": "At combat start, increases max HP and mana by 50%." },
+    "shout": { "name": "Shout", "desc": "At combat start, grants self and mercenary +50% defense for 5 turns." }
+  },
+  "druid": {
+    "firestorm": { "name": "Firestorm", "desc": "Summons a storm of fire that strikes all enemies and applies burn." },
+    "arctic-blast": { "name": "Arctic Blast", "desc": "Exhales a cone of freezing wind, chilling enemies hit." },
+    "tornado": { "name": "Tornado", "desc": "Summons a swirling tornado that tears through enemies in a cone." },
+    "summon-dire-wolf": { "name": "Summon Dire Wolf", "desc": "Summons a fierce dire wolf companion to fight at your side (max 3)." },
+    "werewolf-maul": { "name": "Werewolf: Maul", "desc": "Transforms into a werewolf and rends a single enemy, causing them to bleed." },
+    "hurricane": { "name": "Hurricane", "desc": "Summons a hurricane that batters all enemies with cold winds." },
+    "elemental-mastery": { "name": "Elemental Mastery", "desc": "Increases fire and cold damage by 30%." },
+    "lycanthropy": { "name": "Lycanthropy", "desc": "Increases max HP by 50% while in werewolf form." },
+    "heart-of-wolverine": { "name": "Heart of Wolverine", "desc": "Aura: increases attack speed of self and allies by 30%." },
+    "oak-sage": { "name": "Oak Sage", "desc": "Aura: increases max HP of self and allies by 50%." }
+  },
+  "necromancer": {
+    "raise-skeleton": { "name": "Raise Skeleton", "desc": "Raises a skeleton warrior from a corpse to fight for you (max 5)." },
+    "corpse-explosion": { "name": "Corpse Explosion", "desc": "Detonates a fresh corpse, dealing fire damage to all nearby enemies and burning them." },
+    "poison-nova": { "name": "Poison Nova", "desc": "Releases a nova of toxic energy, applying 2 stacks of poison to all enemies." },
+    "bone-spear": { "name": "Bone Spear", "desc": "Hurls a piercing bone spear that ignores armor and deals arcane damage." },
+    "amplify-damage": { "name": "Amplify Damage", "desc": "Curses all enemies, reducing their physical resistance by 50% for several turns." },
+    "decrepify": { "name": "Decrepify", "desc": "Curses all enemies, reducing their attack speed by 50% and damage by 33%." },
+    "summon-mastery": { "name": "Summon Mastery", "desc": "Increases minion HP and damage by 50%." },
+    "poison-mastery": { "name": "Poison and Bone Mastery", "desc": "Increases poison and arcane damage by 30%." },
+    "blood-golem": { "name": "Blood Golem", "desc": "Always-on aura: 10% of damage dealt is returned as life." },
+    "bone-armor": { "name": "Bone Armor", "desc": "At combat start, gain a 100-point absorb shield that blocks incoming damage." }
+  },
+  "paladin": {
+    "zeal": { "name": "Zeal", "desc": "A flurry of melee strikes that hits up to 3 nearby enemies." },
+    "holy-bolt": { "name": "Holy Bolt", "desc": "Fires a bolt of holy energy at a single enemy, healing the caster for 50% of the damage dealt." },
+    "blessed-hammer": { "name": "Blessed Hammer", "desc": "Summons spinning hammers of blessed energy that ignore magic resist." },
+    "vengeance": { "name": "Vengeance", "desc": "A righteous strike that deals fire, cold, and lightning damage simultaneously." },
+    "charge": { "name": "Charge", "desc": "Charges a target, dealing heavy physical damage and stunning for 1 turn." },
+    "fist-of-heavens": { "name": "Fist of the Heavens", "desc": "Calls down lightning from the heavens, paralyzing all enemies." },
+    "might": { "name": "Might", "desc": "Aura: increases physical damage of self and mercenary by 50%." },
+    "holy-fire": { "name": "Holy Fire", "desc": "Aura: deals 20 fire damage per turn to all enemies and applies burn." },
+    "conviction": { "name": "Conviction", "desc": "Aura: reduces all resistances of all enemies by 25%." },
+    "meditation": { "name": "Meditation", "desc": "Aura: regenerates 5 mana per turn for self and mercenary." }
+  },
+  "sorceress": {
+    "ice-bolt": { "name": "Ice Bolt", "desc": "Hurls a single bolt of ice at an enemy, dealing cold damage and chilling them." },
+    "frost-nova": { "name": "Frost Nova", "desc": "Releases a burst of cold radiating outward, chilling all enemies and freezing some." },
+    "frozen-orb": { "name": "Frozen Orb", "desc": "Hurls an orb of cold that pierces enemies and showers shards in a cone." },
+    "chain-lightning": { "name": "Chain Lightning", "desc": "Releases a chain of lightning that bounces between up to 5 enemies, paralyzing them." },
+    "fire-ball": { "name": "Fire Ball", "desc": "Lobs an exploding fireball that deals high single-target fire damage and burns the target." },
+    "meteor": { "name": "Meteor", "desc": "Calls down a flaming meteor, dealing massive AOE fire damage and melting armor." },
+    "cold-mastery": { "name": "Cold Mastery", "desc": "Reduces enemy cold resistance by 15%." },
+    "lightning-mastery": { "name": "Lightning Mastery", "desc": "Increases lightning damage dealt by 30%." },
+    "fire-mastery": { "name": "Fire Mastery", "desc": "Increases fire damage dealt by 30%." },
+    "energy-shield": { "name": "Energy Shield", "desc": "Diverts 30% of incoming damage to mana instead of life." }
+  },
+  "monster": {
+    "weak-melee": { "name": "Weak Melee", "desc": "A clumsy melee swing used by trash mobs." },
+    "strong-melee": { "name": "Strong Melee", "desc": "A powerful melee strike used by elites and bosses." },
+    "fire-breath": { "name": "Fire Breath", "desc": "A cone of flame breathed at the party, burning targets." },
+    "poison-spit": { "name": "Poison Spit", "desc": "Spits venom at a single target, applying 2 stacks of poison." },
+    "lightning-bolt": { "name": "Lightning Bolt", "desc": "Hurls a bolt of lightning at a single target." },
+    "frost-aura": { "name": "Frost Aura", "desc": "An aura of cold that chills all nearby enemies each turn." },
+    "monster-charge": { "name": "Charge", "desc": "A boss ability: charges a target for heavy physical damage." },
+    "summon-adds": { "name": "Summon Minions", "desc": "Summons 2 trash minions to aid the boss." },
+    "heal": { "name": "Heal", "desc": "Restores 30% of the caster's max HP." },
+    "teleport": { "name": "Teleport", "desc": "Teleports to a new position, gaining +50% dodge for 1 turn." },
+    "ice-shard": { "name": "Ice Shard", "desc": "Hurls a shard of ice at a single target, chilling them." },
+    "inferno": { "name": "Inferno", "desc": "Bathes all enemies in fire over time." },
+    "thunder-storm": { "name": "Thunder Storm", "desc": "Calls down lightning bolts on all enemies." },
+    "poison-cloud": { "name": "Poison Cloud", "desc": "Releases a cloud of toxic gas that poisons all enemies." },
+    "arcane-bolt": { "name": "Arcane Bolt", "desc": "Fires a bolt of arcane energy at a single target." },
+    "rend": { "name": "Rend", "desc": "A vicious melee tear that causes the target to bleed." },
+    "frozen-orb": { "name": "Frozen Orb", "desc": "Hurls a frozen orb that hits all enemies." },
+    "leap": { "name": "Leap", "desc": "Leaps and crashes down on all enemies, stunning briefly." },
+    "enrage": { "name": "Enrage", "desc": "Boss enrages, gaining +50% damage for 5 turns." },
+    "thorns-aura": { "name": "Thorns Aura", "desc": "Reflects a portion of melee damage taken back to attackers." }
+  },
+  "skills": {
+    "tab": {
+      "combat": "Combat",
+      "passive": "Passive"
+    },
+    "s": {
+      "bash": "Bash",
+      "cleave": "Cleave",
+      "whirlwind": "Whirlwind",
+      "ironSkin": "Iron Skin",
+      "naturalResist": "Natural Resistance"
+    }
+  }
+}

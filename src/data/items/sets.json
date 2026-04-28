@@ -1,0 +1,159 @@
+[
+  {
+    "id": "sets/tal-rashas-wrappings",
+    "name": "Tal Rashas Wrappings",
+    "items": [
+      "sets/tal-rashas-wrappings/amulet",
+      "sets/tal-rashas-wrappings/armor",
+      "sets/tal-rashas-wrappings/helm",
+      "sets/tal-rashas-wrappings/belt"
+    ],
+    "bonuses": {
+      "2": {},
+      "3": {},
+      "4": {
+        "statMods": {
+          "mana": 120,
+          "attackSpeed": 20
+        },
+        "resistances": {
+          "fire": 30,
+          "cold": 30,
+          "lightning": 30,
+          "poison": 30,
+          "arcane": 30
+        }
+      }
+    }
+  },
+  {
+    "id": "sets/immortal-king",
+    "name": "Immortal King",
+    "items": [
+      "sets/immortal-king/helm",
+      "sets/immortal-king/armor",
+      "sets/immortal-king/gloves",
+      "sets/immortal-king/belt"
+    ],
+    "bonuses": {
+      "2": {
+        "coreStats": {
+          "vitality": 25
+        }
+      },
+      "3": {
+        "statMods": {
+          "attackSpeed": 50
+        }
+      },
+      "4": {
+        "coreStats": {
+          "strength": 50,
+          "dexterity": 50,
+          "vitality": 50,
+          "energy": 50
+        }
+      }
+    }
+  },
+  {
+    "id": "sets/natalyas-odium",
+    "name": "Natalyas Odium",
+    "items": [
+      "sets/natalyas-odium/helm",
+      "sets/natalyas-odium/armor",
+      "sets/natalyas-odium/boots",
+      "sets/natalyas-odium/weapon"
+    ],
+    "bonuses": {
+      "2": {
+        "statMods": {
+          "physDodge": 0.15
+        }
+      },
+      "3": {
+        "resistances": {
+          "cold": 30
+        }
+      },
+      "4": {
+        "statMods": {
+          "attackSpeed": 30
+        }
+      }
+    }
+  },
+  {
+    "id": "sets/trang-ouls-avatar",
+    "name": "Trang-Ouls Avatar",
+    "items": [
+      "sets/trang-ouls-avatar/helm",
+      "sets/trang-ouls-avatar/armor",
+      "sets/trang-ouls-avatar/gloves",
+      "sets/trang-ouls-avatar/belt"
+    ],
+    "bonuses": {
+      "2": {},
+      "3": {
+        "resistances": {
+          "fire": 25
+        }
+      },
+      "4": {}
+    }
+  },
+  {
+    "id": "sets/aldurs-watchtower",
+    "name": "Aldurs Watchtower",
+    "items": [
+      "sets/aldurs-watchtower/helm",
+      "sets/aldurs-watchtower/armor",
+      "sets/aldurs-watchtower/boots",
+      "sets/aldurs-watchtower/weapon"
+    ],
+    "bonuses": {
+      "2": {
+        "coreStats": {
+          "dexterity": 20
+        }
+      },
+      "3": {
+        "statMods": {
+          "magicFind": 20
+        }
+      },
+      "4": {
+        "statMods": {
+          "life": 60
+        }
+      }
+    }
+  },
+  {
+    "id": "sets/griswolds-legacy",
+    "name": "Griswolds Legacy",
+    "items": [
+      "sets/griswolds-legacy/helm",
+      "sets/griswolds-legacy/armor",
+      "sets/griswolds-legacy/shield",
+      "sets/griswolds-legacy/weapon"
+    ],
+    "bonuses": {
+      "2": {
+        "statMods": {
+          "attackSpeed": 20
+        }
+      },
+      "3": {
+        "resistances": {
+          "fire": 25,
+          "cold": 25,
+          "lightning": 25,
+          "poison": 25,
+          "arcane": 25
+        }
+      },
+      "4": {}
+    }
+  }
+]

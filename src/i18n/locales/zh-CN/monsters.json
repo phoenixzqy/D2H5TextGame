@@ -1,0 +1,66 @@
+{
+  "_meta": {
+    "source": "Diablo II / D2R bestiary; Chinese names per Blizzard 暗黑破坏神2 简体中文版 + Arreat Summit",
+    "keyConvention": "monster id 'monsters/<act>.<slug>' → nested act.<slug>"
+  },
+  "act1": {
+    "fallen": "沉沦魔",
+    "zombie": "僵尸",
+    "quill-rat": "棘背鼠",
+    "dark-archer": "黑暗弓手",
+    "fallen-shaman": "沉沦魔萨满",
+    "carver": "屠夫",
+    "tainted": "污秽者",
+    "bone-warrior": "骸骨战士",
+    "dark-stalker": "黑暗潜伏者",
+    "blood-raven": "血鸦"
+  },
+  "act2": {
+    "sand-raider": "沙之掠夺者",
+    "horror-mage": "恐惧法师",
+    "claw-viper": "爪蝮蛇",
+    "scarab": "圣甲虫",
+    "mummy": "木乃伊",
+    "vulture-demon": "秃鹰恶魔",
+    "sand-maggot": "沙之蛆虫",
+    "greater-mummy": "高级木乃伊",
+    "undead-flayer": "不死剥皮兽",
+    "duriel": "督瑞尔"
+  },
+  "act3": {
+    "jungle-hunter": "丛林猎人",
+    "fetish": "拜物教徒",
+    "spider": "巨型蜘蛛",
+    "flayer": "剥皮兽",
+    "thorned-hulk": "多刺巨兽",
+    "swamp-dweller": "沼泽居民",
+    "doom-ape": "末日狂猿",
+    "infector": "感染者",
+    "serpent-magus": "蛇之法师",
+    "mephisto": "墨菲斯托"
+  },
+  "act4": {
+    "venom-lord": "剧毒领主",
+    "abyss-knight": "深渊骑士",
+    "stygian-doll": "冥河娃娃",
+    "damned": "受诅咒者",
+    "doom-caster": "末日施法者",
+    "oblivion-knight": "湮灭骑士",
+    "pit-lord": "深渊领主",
+    "mega-demon": "巨型恶魔",
+    "izual": "伊斯库尔",
+    "diablo": "暗黑破坏神"
+  },
+  "act5": {
+    "barbarian-savage": "野蛮人狂徒",
+    "death-mauler": "死亡屠夫",
+    "overseer": "监察者",
+    "blood-lord": "血之领主",
+    "warped-shaman": "扭曲萨满",
+    "succubus": "魅魔",
+    "frozen-terror": "冰封惊魂",
+    "ancient-barbarian": "远古野蛮人",
+    "baal-minion": "巴尔的爪牙",
+    "baal": "巴尔"
+  }
+}

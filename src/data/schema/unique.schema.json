@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/unique.json",
+  "title": "Unique Item Definition",
+  "description": "Unique (gold) item definition",
+  "type": "object",
+  "required": ["id", "name", "baseId", "reqLevel", "stats"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^items/unique/[a-z0-9-]+$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "baseId": {
+      "type": "string",
+      "description": "Reference to item base"
+    },
+    "reqLevel": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "flavor": {
+      "type": "string",
+      "description": "Flavor text"
+    },
+    "stats": {
+      "$ref": "#/$defs/stats"
+    }
+  },
+  "$defs": {
+    "stats": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "coreStats": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "strength": { "type": "integer" },
+            "dexterity": { "type": "integer" },
+            "vitality": { "type": "integer" },
+            "energy": { "type": "integer" }
+          }
+        },
+        "resistances": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "fire": { "type": "number" },
+            "cold": { "type": "number" },
+            "lightning": { "type": "number" },
+            "poison": { "type": "number" },
+            "arcane": { "type": "number" },
+            "physical": { "type": "number" }
+          }
+        },
+        "statMods": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "life": { "type": "number" },
+            "mana": { "type": "number" },
+            "attack": { "type": "number" },
+            "defense": { "type": "number" },
+            "attackSpeed": { "type": "number" },
+            "critChance": { "type": "number" },
+            "critDamage": { "type": "number" },
+            "physDodge": { "type": "number" },
+            "magicDodge": { "type": "number" },
+            "magicFind": { "type": "number" },
+            "goldFind": { "type": "number" }
+          }
+        },
+        "grantsSkills": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "damageBonus": {
+          "type": "object",
+          "required": ["min", "max", "breakdown"],
+          "additionalProperties": false,
+          "properties": {
+            "min": { "type": "number" },
+            "max": { "type": "number" },
+            "breakdown": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "physical": { "type": "number" },
+                "fire": { "type": "number" },
+                "cold": { "type": "number" },
+                "lightning": { "type": "number" },
+                "arcane": { "type": "number" },
+                "poison": { "type": "number" },
+                "thorns": { "type": "number" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

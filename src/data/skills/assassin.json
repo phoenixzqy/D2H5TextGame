@@ -1,0 +1,244 @@
+[
+  {
+    "id": "skills-assassin-shock-web",
+    "name": "Shock Web",
+    "description": "Lays a web of crackling lightning that paralyzes all enemies in combat.",
+    "icon": "skills/assassin/shock-web.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 20
+    },
+    "damage": {
+      "min": 30,
+      "max": 50,
+      "breakdown": {
+        "lightning": 50
+      }
+    },
+    "damageType": "lightning",
+    "appliesStatus": [
+      "paralyze"
+    ],
+    "appliesTags": [
+      "lightning",
+      "shock"
+    ],
+    "synergies": {
+      "chill": 1.3
+    },
+    "scaling": {
+      "damagePerLevel": 3
+    }
+  },
+  {
+    "id": "skills-assassin-fire-blast",
+    "name": "Fire Blast",
+    "description": "Throws an explosive fire trap that bursts in a cone, burning enemies.",
+    "icon": "skills/assassin/fire-blast.png",
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 25
+    },
+    "damage": {
+      "min": 50,
+      "max": 70,
+      "breakdown": {
+        "fire": 70
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "scaling": {
+      "damagePerLevel": 5
+    }
+  },
+  {
+    "id": "skills-assassin-blade-fury",
+    "name": "Blade Fury",
+    "description": "Hurls a flurry of blades in a cone, striking multiple enemies.",
+    "icon": "skills/assassin/blade-fury.png",
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 15
+    },
+    "damage": {
+      "min": 40,
+      "max": 60,
+      "breakdown": {
+        "physical": 60
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 4
+    }
+  },
+  {
+    "id": "skills-assassin-mind-blast",
+    "name": "Mind Blast",
+    "description": "Releases a psychic shockwave that burns mana and stuns all enemies.",
+    "icon": "skills/assassin/mind-blast.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 30
+    },
+    "damage": {
+      "min": 50,
+      "max": 70,
+      "breakdown": {
+        "arcane": 70
+      }
+    },
+    "damageType": "arcane",
+    "appliesStatus": [
+      "mana-burn",
+      "stun"
+    ],
+    "appliesTags": [
+      "arcane"
+    ],
+    "scaling": {
+      "damagePerLevel": 5
+    }
+  },
+  {
+    "id": "skills-assassin-dragon-claw",
+    "name": "Dragon Claw",
+    "description": "A pair of swift claw strikes against a single target with bonus crit chance.",
+    "icon": "skills/assassin/dragon-claw.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 20
+    },
+    "damage": {
+      "min": 70,
+      "max": 100,
+      "breakdown": {
+        "physical": 100
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 7
+    }
+  },
+  {
+    "id": "skills-assassin-phoenix-strike",
+    "name": "Phoenix Strike",
+    "description": "A combo strike that releases fire, cold, and lightning charges on a single target.",
+    "icon": "skills/assassin/phoenix-strike.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 40
+    },
+    "damage": {
+      "min": 120,
+      "max": 180,
+      "breakdown": {
+        "fire": 60,
+        "cold": 60,
+        "lightning": 60
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn",
+      "chill",
+      "paralyze"
+    ],
+    "appliesTags": [
+      "fire",
+      "cold",
+      "lightning",
+      "burn",
+      "chill",
+      "shock"
+    ],
+    "scaling": {
+      "damagePerLevel": 12
+    }
+  },
+  {
+    "id": "skills-assassin-claw-mastery",
+    "name": "Claw Mastery",
+    "description": "Increases damage with claw weapons by 50%.",
+    "icon": "skills/assassin/claw-mastery.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-assassin-weapon-block",
+    "name": "Weapon Block",
+    "description": "When dual-wielding, gain 30% physical dodge chance.",
+    "icon": "skills/assassin/weapon-block.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-assassin-fade",
+    "name": "Fade",
+    "description": "At combat start, gain +30% all resistances and +15% physical dodge.",
+    "icon": "skills/assassin/fade.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-assassin-venom",
+    "name": "Venom",
+    "description": "Basic attacks apply 1 stack of poison to the target.",
+    "icon": "skills/assassin/venom.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "appliesTags": [
+      "poison"
+    ]
+  }
+]

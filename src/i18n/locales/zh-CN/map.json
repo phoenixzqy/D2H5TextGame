@@ -1,0 +1,31 @@
+{
+  "worldMap": "世界地图",
+  "act": "第 {{number}} 章",
+  "recommendedLevel": "推荐等级: {{level}}",
+  "locked": "锁定",
+  "unlocked": "已解锁",
+  "farmHere": "在此挂机",
+  "enter": "进入",
+  "actName": {
+    "1": "罗格营地",
+    "2": "鲁加丁",
+    "3": "库拉斯特港",
+    "4": "派丁法尔",
+    "5": "哈洛加斯"
+  },
+  "subArea": {
+    "a1-blood-moor": "血腥旷野",
+    "a1-cold-plains": "冰冷平原",
+    "a1-stony-field": "石旷野",
+    "a1-dark-wood": "黑色森林",
+    "a1-tristram": "崔斯特瑞姆",
+    "a2-rocky-waste": "岩石荒地",
+    "a2-dry-hills": "干涸山岭",
+    "a3-spider-forest": "蜘蛛森林",
+    "a3-flayer-jungle": "剥皮丛林",
+    "a4-outer-steppes": "外缘草原",
+    "a4-river-of-flame": "炎河",
+    "a5-bloody-foothills": "血色丘陵",
+    "a5-worldstone-keep": "世界之石要塞"
+  }
+}

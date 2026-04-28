@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/drop-table.json",
+  "title": "Drop Table Definition",
+  "description": "Loot drop table definition",
+  "type": "object",
+  "required": ["id", "entries"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^loot/[a-z0-9-]+$"
+    },
+    "name": {
+      "type": "string"
+    },
+    "entries": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/dropEntry" },
+      "minItems": 1
+    }
+  },
+  "$defs": {
+    "dropEntry": {
+      "type": "object",
+      "required": ["type", "weight"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["item", "gold", "rune", "gem", "material", "currency"]
+        },
+        "weight": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Relative drop weight"
+        },
+        "itemId": {
+          "type": "string",
+          "description": "Specific item ID (if type=item)"
+        },
+        "itemBase": {
+          "type": "string",
+          "description": "Item base ID for random rolls"
+        },
+        "rarity": {
+          "type": "string",
+          "enum": ["normal", "magic", "rare", "unique", "set", "runeword"],
+          "description": "Rarity for random item drops"
+        },
+        "quantityMin": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Min quantity (for stackables)"
+        },
+        "quantityMax": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Max quantity (for stackables)"
+        },
+        "minLevel": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Min area level required"
+        },
+        "maxLevel": {
+          "type": "integer",
+          "description": "Max area level (null = no cap)"
+        }
+      }
+    }
+  }
+}

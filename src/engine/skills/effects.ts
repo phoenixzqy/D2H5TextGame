@@ -1,0 +1,87 @@
+/**
+ * Skill effect primitives.
+ *
+ * A "skill effect" describes what a skill DOES when fired. Effects compose:
+ * a single skill cast may produce damage + status + buff in one fire call.
+ *
+ * Concrete effect resolution is performed in {@link import('../combat/combat').runBattle}.
+ *
+ * @module engine/skills/effects
+ */
+
+import type { ComboTag, SkillTarget } from '../types/skills';
+import type { DamageType } from '../types/attributes';
+
+/** Damage primitive. */
+export interface DamageEffect {
+  readonly kind: 'damage';
+  readonly damageType: DamageType;
+  /** [min, max] base at skill rank 1. */
+  readonly base: readonly [number, number];
+  /** Per-rank growth [min, max]. */
+  readonly perRank?: readonly [number, number];
+  /** Tags the hit applies (combo synergies). */
+  readonly tags?: readonly ComboTag[];
+  /** Status to apply on hit (status-id from combat/status.ts). */
+  readonly applyStatus?: {
+    readonly id: string;
+    readonly chance?: number; // 0..1, default 1
+    readonly stacksOnApply?: number; // default 1
+    readonly dotPctOfDamage?: number; // for DoTs, fraction of dealt damage per tick
+  };
+}
+
+/** Heal primitive. */
+export interface HealEffect {
+  readonly kind: 'heal';
+  /** Flat amount or % max (one of). */
+  readonly amount?: number;
+  readonly pctOfMaxLife?: number;
+  readonly target: 'self' | 'ally' | 'all-allies';
+}
+
+/** Buff primitive. */
+export interface BuffEffect {
+  readonly kind: 'buff';
+  readonly id: string;
+  readonly duration: number;
+  readonly statMods?: Record<string, number>;
+}
+
+/** Debuff primitive (applies a status to enemies, no damage). */
+export interface DebuffEffect {
+  readonly kind: 'debuff';
+  readonly statusId: string;
+  readonly duration?: number;
+}
+
+/** Summon primitive. */
+export interface SummonEffect {
+  readonly kind: 'summon';
+  readonly summonId: string;
+  readonly maxCount: number;
+}
+
+/** Union of effect primitives. */
+export type SkillEffect =
+  | DamageEffect
+  | HealEffect
+  | BuffEffect
+  | DebuffEffect
+  | SummonEffect;
+
+/** A registered skill (engine-side). */
+export interface RegisteredSkill {
+  readonly id: string;
+  readonly archetype: string;
+  readonly target: SkillTarget;
+  readonly cooldown: number;
+  readonly manaCost: number;
+  readonly effects: readonly SkillEffect[];
+  /** Buff skills are skipped if the buff is already active. */
+  readonly isBuff?: boolean;
+  /** Summon-on-start (cast once at combat start). */
+  readonly summonOnStart?: boolean;
+  /** Min level to use. */
+  readonly minLevel: number;
+}

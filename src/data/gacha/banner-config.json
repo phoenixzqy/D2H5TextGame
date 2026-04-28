@@ -1,0 +1,80 @@
+{
+  "bannerId": "gacha_horadrim",
+  "name": "Wish of the Horadrim",
+  "currency": "item_wishstone",
+  "cost": {
+    "single": 10,
+    "tenPull": 90
+  },
+  "rates": {
+    "SSR": 0.02,
+    "SR": 0.13,
+    "R": 0.85
+  },
+  "pity": {
+    "sr": {
+      "threshold": 10,
+      "guaranteedTier": "SR",
+      "description": "Every 10 pulls without an SR+ guarantees the next pull is SR or higher. The SR-guaranteed slot still has a 2% upgrade chance to SSR."
+    },
+    "ssr": {
+      "threshold": 50,
+      "guaranteedTier": "SSR",
+      "description": "Every 50 pulls without an SSR guarantees the next pull is SSR. Counter is independent of the SR pity counter."
+    },
+    "carryAcrossSessions": true,
+    "resetRules": {
+      "onSSR": ["pullsSinceSSR", "pullsSinceSR"],
+      "onSR": ["pullsSinceSR"],
+      "onR": []
+    }
+  },
+  "shardConversion": {
+    "perDuplicate": {
+      "SSR": 15,
+      "SR": 5,
+      "R": 2
+    },
+    "shardsPerStar": 100,
+    "maxStars": 5,
+    "starBonuses": {
+      "statMultiplierPerStar": 0.08,
+      "signatureSkillRankPerStar": 1,
+      "skillRankCapAboveBase": 5
+    }
+  },
+  "pool": {
+    "SSR": [
+      "mercs/act2-holy-freeze",
+      "mercs/act2-might",
+      "mercs/act3-iron-wolf-fire",
+      "mercs/act5-barbarian-battle-orders",
+      "mercs/act1-rogue-pierce"
+    ],
+    "SR": [
+      "mercs/act2-thorns",
+      "mercs/act2-prayer",
+      "mercs/act3-iron-wolf-cold",
+      "mercs/act3-iron-wolf-lightning",
+      "mercs/act1-rogue-fire",
+      "mercs/act1-rogue-cold",
+      "mercs/act5-barbarian-war-cry",
+      "mercs/act4-paladin-holy-fire"
+    ],
+    "R": [
+      "mercs/act1-rogue-trainee",
+      "mercs/act1-rogue-inner-sight",
+      "mercs/act2-blessed-aim",
+      "mercs/act2-defiance",
+      "mercs/act3-iron-wolf-frozen-armor",
+      "mercs/act3-iron-wolf-telekinesis",
+      "mercs/act3-militia-pikeman",
+      "mercs/act3-militia-swordsman",
+      "mercs/tavern-thief-pickpocket",
+      "mercs/tavern-acolyte-priestess",
+      "mercs/act5-barbarian-recruit",
+      "mercs/act4-paladin-initiate"
+    ]
+  },
+  "uiHistoryCap": 100
+}

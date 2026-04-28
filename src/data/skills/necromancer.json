@@ -1,0 +1,194 @@
+[
+  {
+    "id": "skills-necromancer-raise-skeleton",
+    "name": "Raise Skeleton",
+    "description": "Raises a skeleton warrior from a corpse to fight for you (max 5).",
+    "icon": "skills/necromancer/raise-skeleton.png",
+    "trigger": "active",
+    "target": "summon",
+    "cooldown": 1,
+    "cost": {
+      "mana": 15
+    },
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-necromancer-corpse-explosion",
+    "name": "Corpse Explosion",
+    "description": "Detonates a fresh corpse, dealing fire damage to all nearby enemies and burning them.",
+    "icon": "skills/necromancer/corpse-explosion.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 20
+    },
+    "damage": {
+      "min": 50,
+      "max": 80,
+      "breakdown": {
+        "fire": 80
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "scaling": {
+      "damagePerLevel": 5
+    }
+  },
+  {
+    "id": "skills-necromancer-poison-nova",
+    "name": "Poison Nova",
+    "description": "Releases a nova of toxic energy, applying 2 stacks of poison to all enemies.",
+    "icon": "skills/necromancer/poison-nova.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 25
+    },
+    "damage": {
+      "min": 20,
+      "max": 30,
+      "breakdown": {
+        "poison": 30
+      }
+    },
+    "damageType": "poison",
+    "appliesStatus": [
+      "poison"
+    ],
+    "appliesTags": [
+      "poison"
+    ],
+    "scaling": {
+      "damagePerLevel": 2
+    }
+  },
+  {
+    "id": "skills-necromancer-bone-spear",
+    "name": "Bone Spear",
+    "description": "Hurls a piercing bone spear that ignores armor and deals arcane damage.",
+    "icon": "skills/necromancer/bone-spear.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 20
+    },
+    "damage": {
+      "min": 60,
+      "max": 90,
+      "breakdown": {
+        "arcane": 90
+      }
+    },
+    "damageType": "arcane",
+    "appliesTags": [
+      "arcane"
+    ],
+    "scaling": {
+      "damagePerLevel": 6
+    }
+  },
+  {
+    "id": "skills-necromancer-amplify-damage",
+    "name": "Amplify Damage",
+    "description": "Curses all enemies, reducing their physical resistance by 50% for several turns.",
+    "icon": "skills/necromancer/amplify-damage.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "cost": {
+      "mana": 15
+    },
+    "appliesStatus": [
+      "amplify-damage"
+    ],
+    "appliesTags": [
+      "amp-damage"
+    ],
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-necromancer-decrepify",
+    "name": "Decrepify",
+    "description": "Curses all enemies, reducing their attack speed by 50% and damage by 33%.",
+    "icon": "skills/necromancer/decrepify.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "cost": {
+      "mana": 20
+    },
+    "appliesStatus": [
+      "decrepify"
+    ],
+    "appliesTags": [
+      "amp-damage"
+    ],
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-necromancer-summon-mastery",
+    "name": "Summon Mastery",
+    "description": "Increases minion HP and damage by 50%.",
+    "icon": "skills/necromancer/summon-mastery.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-necromancer-poison-mastery",
+    "name": "Poison and Bone Mastery",
+    "description": "Increases poison and arcane damage by 30%.",
+    "icon": "skills/necromancer/poison-mastery.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-necromancer-blood-golem",
+    "name": "Blood Golem",
+    "description": "Always-on aura: 10% of damage dealt is returned as life.",
+    "icon": "skills/necromancer/blood-golem.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "appliesTags": [
+      "physical"
+    ]
+  },
+  {
+    "id": "skills-necromancer-bone-armor",
+    "name": "Bone Armor",
+    "description": "At combat start, gain a 100-point absorb shield that blocks incoming damage.",
+    "icon": "skills/necromancer/bone-armor.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  }
+]

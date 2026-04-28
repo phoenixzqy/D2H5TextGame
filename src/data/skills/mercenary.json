@@ -1,0 +1,457 @@
+[
+  {
+    "id": "mskill-jab",
+    "name": "Jab",
+    "description": "A rapid spear thrust used by Desert Mercs.",
+    "icon": "skills/merc/jab.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "damage": {
+      "min": 18,
+      "max": 28,
+      "breakdown": { "physical": 28 }
+    },
+    "damageType": "physical",
+    "appliesTags": ["physical"]
+  },
+  {
+    "id": "mskill-bash",
+    "name": "Bash",
+    "description": "A heavy weapon swing that can stun.",
+    "icon": "skills/merc/bash.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "damage": {
+      "min": 25,
+      "max": 40,
+      "breakdown": { "physical": 40 }
+    },
+    "damageType": "physical",
+    "appliesStatus": ["stun"],
+    "appliesTags": ["physical"]
+  },
+  {
+    "id": "mskill-smite",
+    "name": "Smite",
+    "description": "Bashes the foe with the shield, briefly stunning.",
+    "icon": "skills/merc/smite.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "damage": {
+      "min": 22,
+      "max": 35,
+      "breakdown": { "physical": 35 }
+    },
+    "damageType": "physical",
+    "appliesStatus": ["stun"],
+    "appliesTags": ["physical"]
+  },
+  {
+    "id": "mskill-chop",
+    "name": "Chop",
+    "description": "A militia swordsman's basic chopping strike.",
+    "icon": "skills/merc/chop.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "damage": {
+      "min": 16,
+      "max": 26,
+      "breakdown": { "physical": 26 }
+    },
+    "damageType": "physical",
+    "appliesTags": ["physical"]
+  },
+  {
+    "id": "mskill-pierce-thrust",
+    "name": "Pierce Thrust",
+    "description": "A long pike thrust that pierces armor.",
+    "icon": "skills/merc/pierce-thrust.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "damage": {
+      "min": 20,
+      "max": 32,
+      "breakdown": { "physical": 32 }
+    },
+    "damageType": "physical",
+    "appliesTags": ["physical"]
+  },
+  {
+    "id": "mskill-basic-swing",
+    "name": "Basic Swing",
+    "description": "A barbarian recruit's basic two-handed swing.",
+    "icon": "skills/merc/basic-swing.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "damage": {
+      "min": 18,
+      "max": 30,
+      "breakdown": { "physical": 30 }
+    },
+    "damageType": "physical",
+    "appliesTags": ["physical"]
+  },
+  {
+    "id": "mskill-pilfer",
+    "name": "Pilfer",
+    "description": "A rogue's quick stab with a chance to steal gold.",
+    "icon": "skills/merc/pilfer.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "damage": {
+      "min": 14,
+      "max": 24,
+      "breakdown": { "physical": 24 }
+    },
+    "damageType": "physical",
+    "appliesTags": ["physical"]
+  },
+  {
+    "id": "mskill-basic-arrow",
+    "name": "Basic Arrow",
+    "description": "A standard arrow shot used by trainee rogues.",
+    "icon": "skills/merc/basic-arrow.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "damage": {
+      "min": 16,
+      "max": 26,
+      "breakdown": { "physical": 26 }
+    },
+    "damageType": "physical",
+    "appliesTags": ["physical"]
+  },
+  {
+    "id": "mskill-fire-arrow",
+    "name": "Fire Arrow",
+    "description": "A flaming arrow that ignites its target.",
+    "icon": "skills/merc/fire-arrow.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "damage": {
+      "min": 22,
+      "max": 36,
+      "breakdown": { "fire": 36 }
+    },
+    "damageType": "fire",
+    "appliesStatus": ["burn"],
+    "appliesTags": ["fire", "burn"]
+  },
+  {
+    "id": "mskill-cold-arrow",
+    "name": "Cold Arrow",
+    "description": "A frost-tipped arrow that chills its target.",
+    "icon": "skills/merc/cold-arrow.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "damage": {
+      "min": 22,
+      "max": 36,
+      "breakdown": { "cold": 36 }
+    },
+    "damageType": "cold",
+    "appliesStatus": ["chill"],
+    "appliesTags": ["cold", "chill"]
+  },
+  {
+    "id": "mskill-pierce-arrow",
+    "name": "Pierce Arrow",
+    "description": "An arrow that punches through multiple foes.",
+    "icon": "skills/merc/pierce-arrow.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "damage": {
+      "min": 26,
+      "max": 42,
+      "breakdown": { "physical": 42 }
+    },
+    "damageType": "physical",
+    "appliesTags": ["physical"]
+  },
+  {
+    "id": "mskill-inner-sight",
+    "name": "Inner Sight",
+    "description": "Reveals weak points on enemies, lowering their defense.",
+    "icon": "skills/merc/inner-sight.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 5,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "appliesTags": ["amp-damage"]
+  },
+  {
+    "id": "mskill-fire-ball",
+    "name": "Fire Ball",
+    "description": "An Iron Wolf's signature explosion of fire.",
+    "icon": "skills/merc/fire-ball.png",
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "damage": {
+      "min": 32,
+      "max": 52,
+      "breakdown": { "fire": 52 }
+    },
+    "damageType": "fire",
+    "appliesStatus": ["burn"],
+    "appliesTags": ["fire", "burn"]
+  },
+  {
+    "id": "mskill-glacial-spike",
+    "name": "Glacial Spike",
+    "description": "Hurls a frozen spike that freezes its target.",
+    "icon": "skills/merc/glacial-spike.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "damage": {
+      "min": 30,
+      "max": 48,
+      "breakdown": { "cold": 48 }
+    },
+    "damageType": "cold",
+    "appliesStatus": ["chill"],
+    "appliesTags": ["cold", "chill"]
+  },
+  {
+    "id": "mskill-charged-bolt",
+    "name": "Charged Bolt",
+    "description": "Fires erratic lightning bolts at random enemies.",
+    "icon": "skills/merc/charged-bolt.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "damage": {
+      "min": 28,
+      "max": 50,
+      "breakdown": { "lightning": 50 }
+    },
+    "damageType": "lightning",
+    "appliesStatus": ["paralyze"],
+    "appliesTags": ["lightning", "shock"]
+  },
+  {
+    "id": "mskill-frozen-armor",
+    "name": "Frozen Armor",
+    "description": "Wraps the caster in icy armor that chills attackers.",
+    "icon": "skills/merc/frozen-armor.png",
+    "trigger": "active",
+    "target": "self",
+    "cooldown": 6,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "mskill-telekinesis",
+    "name": "Telekinesis",
+    "description": "A telekinetic shove that knocks foes back.",
+    "icon": "skills/merc/telekinesis.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "damage": {
+      "min": 20,
+      "max": 32,
+      "breakdown": { "arcane": 32 }
+    },
+    "damageType": "arcane",
+    "appliesTags": ["arcane"]
+  },
+  {
+    "id": "mskill-war-cry",
+    "name": "War Cry",
+    "description": "A barbarian shout that stuns foes and rallies allies.",
+    "icon": "skills/merc/war-cry.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 5,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "damage": {
+      "min": 18,
+      "max": 30,
+      "breakdown": { "physical": 30 }
+    },
+    "damageType": "physical",
+    "appliesStatus": ["stun"],
+    "appliesTags": ["physical"]
+  },
+  {
+    "id": "mskill-holy-fire",
+    "name": "Holy Fire Strike",
+    "description": "A paladin attack imbued with holy fire damage.",
+    "icon": "skills/merc/holy-fire.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "damage": {
+      "min": 24,
+      "max": 40,
+      "breakdown": { "fire": 40 }
+    },
+    "damageType": "fire",
+    "appliesStatus": ["burn"],
+    "appliesTags": ["fire", "burn"]
+  },
+  {
+    "id": "mskill-minor-heal",
+    "name": "Minor Heal",
+    "description": "An acolyte's healing prayer that restores ally life.",
+    "icon": "skills/merc/minor-heal.png",
+    "trigger": "active",
+    "target": "single-ally",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "heal": {
+      "min": 30,
+      "max": 50,
+      "target": "ally"
+    }
+  },
+  {
+    "id": "aura-holy-freeze",
+    "name": "Holy Freeze Aura",
+    "description": "An aura of cold that slows nearby enemies.",
+    "icon": "skills/merc/aura-holy-freeze.png",
+    "trigger": "passive",
+    "target": "all-enemies",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "appliesStatus": ["chill"],
+    "appliesTags": ["cold", "chill"]
+  },
+  {
+    "id": "aura-might",
+    "name": "Might Aura",
+    "description": "An aura that increases physical damage of allies.",
+    "icon": "skills/merc/aura-might.png",
+    "trigger": "passive",
+    "target": "all-allies",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "aura-thorns",
+    "name": "Thorns Aura",
+    "description": "Reflects a portion of melee damage to attackers.",
+    "icon": "skills/merc/aura-thorns.png",
+    "trigger": "passive",
+    "target": "all-allies",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "aura-prayer",
+    "name": "Prayer Aura",
+    "description": "Slowly regenerates the life of nearby allies.",
+    "icon": "skills/merc/aura-prayer.png",
+    "trigger": "passive",
+    "target": "all-allies",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "aura-blessed-aim",
+    "name": "Blessed Aim Aura",
+    "description": "Increases the attack rating of allies.",
+    "icon": "skills/merc/aura-blessed-aim.png",
+    "trigger": "passive",
+    "target": "all-allies",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "aura-defiance",
+    "name": "Defiance Aura",
+    "description": "Increases the defense of nearby allies.",
+    "icon": "skills/merc/aura-defiance.png",
+    "trigger": "passive",
+    "target": "all-allies",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "aura-battle-orders",
+    "name": "Battle Orders",
+    "description": "A barbarian war shout that boosts ally life and mana.",
+    "icon": "skills/merc/aura-battle-orders.png",
+    "trigger": "passive",
+    "target": "all-allies",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "passive-fire-mastery",
+    "name": "Fire Mastery",
+    "description": "Passive: increases fire damage dealt by the caster.",
+    "icon": "skills/merc/passive-fire-mastery.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "passive-critical",
+    "name": "Critical Strike",
+    "description": "Passive: chance to deal double damage on hit.",
+    "icon": "skills/merc/passive-critical.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  }
+]

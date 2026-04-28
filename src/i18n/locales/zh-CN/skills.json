@@ -1,0 +1,149 @@
+{
+  "title": "技能",
+  "skillTree": "技能树",
+  "activeSkills": "主动技能顺序",
+  "allocate": "分配",
+  "pointsRemaining": "剩余技能点: {{count}}",
+  "comboOrder": "技能连携顺序",
+  "dragToReorder": "选择并使用箭头按钮调整顺序",
+  "moveUp": "上移",
+  "moveDown": "下移",
+  "slotN": "槽位 {{n}}",
+  "tab": {
+    "combat": "战斗",
+    "passive": "被动"
+  },
+  "trigger": {
+    "active": "主动",
+    "passive": "被动",
+    "aura": "光环",
+    "onCombatStart": "战斗开始时"
+  },
+  "tooltip": {
+    "cooldown": "冷却: {{seconds}}秒",
+    "manaCost": "法力消耗: {{amount}}",
+    "damage": "伤害: {{min}}-{{max}}",
+    "scaling": "每级 +{{amount}} 伤害",
+    "level": "等级 {{current}}/{{max}}",
+    "minLevel": "需要等级 {{level}}"
+  },
+  "amazon": {
+    "magic-arrow": { "name": "魔法箭", "desc": "射出一支奥术箭矢，无需消耗弹药。" },
+    "multiple-shot": { "name": "多重箭", "desc": "扇形射出多支箭矢，最多命中 5 个敌人。" },
+    "freezing-arrow": { "name": "冰冻箭", "desc": "射出在锥形区域爆裂的冰箭，造成减速并有几率冰封敌人。" },
+    "lightning-fury": { "name": "闪电之怒", "desc": "投出闪电标枪，分裂并连锁所有附近敌人。" },
+    "plague-javelin": { "name": "瘟疫标枪", "desc": "投出释放毒云的标枪，附加 3 层中毒，击杀时扩散。" },
+    "strafe": { "name": "扫射", "desc": "快速连射，命中战斗中所有敌人。" },
+    "critical-strike": { "name": "致命攻击", "desc": "暴击率提升 15%。" },
+    "penetrate": { "name": "穿透", "desc": "降低敌人闪避，命中率提升 20%。" },
+    "dodge": { "name": "闪躲", "desc": "物理闪避率提升 25%。" },
+    "valkyrie": { "name": "女武神", "desc": "召唤一名女武神战士并肩作战。" }
+  },
+  "assassin": {
+    "shock-web": { "name": "电击网", "desc": "布下闪电之网，麻痹战斗中所有敌人。" },
+    "fire-blast": { "name": "烈焰冲击", "desc": "投掷锥形爆裂的火焰陷阱，灼烧敌人。" },
+    "blade-fury": { "name": "刀锋之怒", "desc": "锥形射出连续刀刃，命中多个敌人。" },
+    "mind-blast": { "name": "精神爆裂", "desc": "释放精神冲击波，灼烧法力并晕眩所有敌人。" },
+    "dragon-claw": { "name": "龙爪", "desc": "对单体目标连续两次爪击，附加额外暴击率。" },
+    "phoenix-strike": { "name": "凤凰攻击", "desc": "连击释放火、冰、电三种能量，单体目标。" },
+    "claw-mastery": { "name": "爪类精通", "desc": "爪类武器伤害 +50%。" },
+    "weapon-block": { "name": "武器格挡", "desc": "双持时获得 30% 物理闪避。" },
+    "fade": { "name": "阴影", "desc": "战斗开始时获得 +30% 全抗与 +15% 物理闪避。" },
+    "venom": { "name": "剧毒", "desc": "普攻附加 1 层中毒。" }
+  },
+  "barbarian": {
+    "bash": { "name": "重击", "desc": "用装备武器对单体造成强力一击。" },
+    "double-swing": { "name": "双手挥击", "desc": "两次挥砍，命中最多 3 个敌人。" },
+    "whirlwind": { "name": "旋风斩", "desc": "旋转穿越敌群，对所有目标造成物理伤害。" },
+    "leap-attack": { "name": "跳跃攻击", "desc": "跳跃落地造成毁灭性冲击，晕眩所有附近敌人。" },
+    "berserk": { "name": "狂暴", "desc": "奥术狂怒一击，将物理伤害转化为奥术伤害。" },
+    "war-cry": { "name": "战吼", "desc": "毁灭性的怒吼，伤害并晕眩所有敌人。" },
+    "iron-skin": { "name": "钢铁之肤", "desc": "防御 +100%。" },
+    "natural-resistance": { "name": "自然抗性", "desc": "全抗性 +30%。" },
+    "battle-orders": { "name": "战斗命令", "desc": "战斗开始时最大生命与法力 +50%。" },
+    "shout": { "name": "嘶吼", "desc": "战斗开始时为自己与佣兵 +50% 防御 5 回合。" }
+  },
+  "druid": {
+    "firestorm": { "name": "火焰风暴", "desc": "召唤火风暴打击所有敌人并附加燃烧。" },
+    "arctic-blast": { "name": "极地冲击", "desc": "吐出冰冻锥形气流，减速命中目标。" },
+    "tornado": { "name": "龙卷风", "desc": "召唤龙卷风撕裂锥形范围内的敌人。" },
+    "summon-dire-wolf": { "name": "召唤恶狼", "desc": "召唤一只凶猛的恶狼伴随作战 (上限 3)。" },
+    "werewolf-maul": { "name": "狼人：重伤", "desc": "化身狼人撕裂单体敌人，使其流血。" },
+    "hurricane": { "name": "飓风", "desc": "召唤飓风以冰风击打所有敌人。" },
+    "elemental-mastery": { "name": "元素精通", "desc": "火与冰伤害 +30%。" },
+    "lycanthropy": { "name": "兽形变换", "desc": "狼人形态下最大生命 +50%。" },
+    "heart-of-wolverine": { "name": "狼獾之心", "desc": "光环：自身与友军攻击速度 +30%。" },
+    "oak-sage": { "name": "橡树智者", "desc": "光环：自身与友军最大生命 +50%。" }
+  },
+  "necromancer": {
+    "raise-skeleton": { "name": "召唤骷髅", "desc": "从尸体中复活骷髅战士为你而战 (上限 5)。" },
+    "corpse-explosion": { "name": "尸体爆炸", "desc": "引爆新鲜尸体，对所有附近敌人造成火焰伤害并附加燃烧。" },
+    "poison-nova": { "name": "毒云术", "desc": "释放毒能新星，对所有敌人附加 2 层中毒。" },
+    "bone-spear": { "name": "骨矛", "desc": "投出穿透骨矛，无视护甲并造成奥术伤害。" },
+    "amplify-damage": { "name": "加强伤害", "desc": "诅咒所有敌人，使其物理抗性 -50% 持续数回合。" },
+    "decrepify": { "name": "衰老术", "desc": "诅咒所有敌人，攻击速度 -50%、伤害 -33%。" },
+    "summon-mastery": { "name": "召唤精通", "desc": "随从生命与伤害 +50%。" },
+    "poison-mastery": { "name": "毒素与骨之精通", "desc": "毒素与奥术伤害 +30%。" },
+    "blood-golem": { "name": "血魔像", "desc": "常驻光环：所造成伤害的 10% 转化为生命。" },
+    "bone-armor": { "name": "骨甲", "desc": "战斗开始时获得 100 点吸收护盾，抵挡来袭伤害。" }
+  },
+  "paladin": {
+    "zeal": { "name": "热忱", "desc": "连续近战打击，命中最多 3 个附近敌人。" },
+    "holy-bolt": { "name": "神圣箭", "desc": "对单体敌人射出神圣能量箭，治疗自身相当于伤害的 50%。" },
+    "blessed-hammer": { "name": "祝福之锤", "desc": "召唤旋转的祝福之锤，无视魔法抗性。" },
+    "vengeance": { "name": "复仇", "desc": "正义之击，同时造成火、冰、闪电伤害。" },
+    "charge": { "name": "冲锋", "desc": "冲向目标造成大量物理伤害并晕眩 1 回合。" },
+    "fist-of-heavens": { "name": "天堂之拳", "desc": "从天降下闪电，麻痹所有敌人。" },
+    "might": { "name": "力量", "desc": "光环：自身与佣兵物理伤害 +50%。" },
+    "holy-fire": { "name": "神圣之火", "desc": "光环：每回合对所有敌人造成 20 点火焰伤害并附加燃烧。" },
+    "conviction": { "name": "信念", "desc": "光环：所有敌人全抗性 -25%。" },
+    "meditation": { "name": "冥想", "desc": "光环：自身与佣兵每回合恢复 5 点法力。" }
+  },
+  "sorceress": {
+    "ice-bolt": { "name": "冰冻箭", "desc": "向敌人投出一支冰箭，造成冰冷伤害并使其减速。" },
+    "frost-nova": { "name": "冰霜新星", "desc": "向四周释放寒霜爆发，减速所有敌人并冰封部分目标。" },
+    "frozen-orb": { "name": "冰封球", "desc": "投出穿透敌人的寒冰之球，并向锥形范围喷射碎冰。" },
+    "chain-lightning": { "name": "闪电链", "desc": "释放闪电链在最多 5 个敌人之间跳跃，使其麻痹。" },
+    "fire-ball": { "name": "火球术", "desc": "投出爆炸火球，对单体造成高额火焰伤害并附加燃烧。" },
+    "meteor": { "name": "流星术", "desc": "召唤燃烧陨石，造成大范围火焰伤害并熔毁护甲。" },
+    "cold-mastery": { "name": "冰冷精通", "desc": "降低敌人冰冷抗性 15%。" },
+    "lightning-mastery": { "name": "闪电精通", "desc": "造成的闪电伤害 +30%。" },
+    "fire-mastery": { "name": "火焰精通", "desc": "造成的火焰伤害 +30%。" },
+    "energy-shield": { "name": "能量护盾", "desc": "30% 来袭伤害转由法力承受。" }
+  },
+  "monster": {
+    "weak-melee": { "name": "弱近战", "desc": "杂兵的笨拙近战挥击。" },
+    "strong-melee": { "name": "强力近战", "desc": "精英与首领使用的强力近战一击。" },
+    "fire-breath": { "name": "火焰吐息", "desc": "对队伍喷出锥形火焰，灼烧目标。" },
+    "poison-spit": { "name": "毒液喷射", "desc": "向单体目标喷射毒液，附加 2 层中毒。" },
+    "lightning-bolt": { "name": "闪电箭", "desc": "向单体目标投出闪电。" },
+    "frost-aura": { "name": "寒霜光环", "desc": "每回合减速所有附近敌人的寒冷光环。" },
+    "monster-charge": { "name": "冲锋", "desc": "首领技能：冲向目标造成沉重物理伤害。" },
+    "summon-adds": { "name": "召唤随从", "desc": "召唤 2 个杂兵协助首领。" },
+    "heal": { "name": "治疗", "desc": "恢复施法者最大生命的 30%。" },
+    "teleport": { "name": "传送", "desc": "传送至新位置，1 回合内闪避 +50%。" },
+    "ice-shard": { "name": "冰刺", "desc": "向单体目标投出冰刺并使其减速。" },
+    "inferno": { "name": "炼狱", "desc": "对所有敌人持续喷出火焰。" },
+    "thunder-storm": { "name": "雷暴", "desc": "向所有敌人召唤闪电。" },
+    "poison-cloud": { "name": "毒云", "desc": "释放毒气云，对所有敌人施加中毒。" },
+    "arcane-bolt": { "name": "奥术箭", "desc": "向单体目标射出奥术能量箭。" },
+    "rend": { "name": "撕裂", "desc": "凶残的近战撕咬，使目标流血。" },
+    "frozen-orb": { "name": "冰封球", "desc": "投出冰封之球，命中所有敌人。" },
+    "leap": { "name": "跳跃", "desc": "跳跃落地砸向所有敌人，造成短暂晕眩。" },
+    "enrage": { "name": "激怒", "desc": "首领激怒，5 回合内伤害 +50%。" },
+    "thorns-aura": { "name": "荆棘光环", "desc": "反弹一部分受到的近战伤害。" }
+  },
+  "skills": {
+    "tab": {
+      "combat": "战斗",
+      "passive": "被动"
+    },
+    "s": {
+      "bash": "重击",
+      "cleave": "横扫",
+      "whirlwind": "旋风斩",
+      "ironSkin": "钢铁之肤",
+      "naturalResist": "自然抗性"
+    }
+  }
+}

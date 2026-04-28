@@ -1,0 +1,51 @@
+{
+  "_meta": {
+    "source": "Diablo II / D2R world; act+area names per Blizzard 简体中文版",
+    "keyConvention": "id 'acts/actN' → act.actN; id 'areas/<slug>' → area.<slug>"
+  },
+  "act": {
+    "act1": "第一幕 — 失明之眼",
+    "act2": "第二幕 — 维兹杰雷的秘密",
+    "act3": "第三幕 — 地狱之门",
+    "act4": "第四幕 — 折磨",
+    "act5": "第五幕 — 毁灭之王"
+  },
+  "town": {
+    "act1": "罗格营地",
+    "act2": "鲁加丁",
+    "act3": "库拉斯特港",
+    "act4": "派丁法尔",
+    "act5": "哈洛加斯"
+  },
+  "area": {
+    "act1-blood-moor": "血腥旷野",
+    "act1-den-of-evil": "邪恶巢穴",
+    "act1-cold-plains": "冰冷平原",
+    "act1-burial-grounds": "墓地",
+    "act1-dark-wood": "黑色森林",
+    "act1-catacombs": "地下墓穴 (安达利尔)",
+    "act2-rocky-waste": "岩石荒地",
+    "act2-dry-hills": "干涸山岭",
+    "act2-far-oasis": "远方绿洲",
+    "act2-lost-city": "失落之城",
+    "act2-arcane-sanctuary": "奥术庇护所",
+    "act2-tomb-of-tal-rasha": "塔拉夏之墓 (督瑞尔)",
+    "act3-spider-forest": "蜘蛛森林",
+    "act3-great-marsh": "大沼泽",
+    "act3-flayer-jungle": "剥皮丛林",
+    "act3-kurast-bazaar": "库拉斯特市集",
+    "act3-travincal": "崔凡卡",
+    "act3-durance-of-hate": "仇恨穿越 (墨菲斯托)",
+    "act4-outer-steppes": "外缘草原",
+    "act4-plains-of-despair": "绝望平原",
+    "act4-city-of-the-damned": "受诅咒之城",
+    "act4-river-of-flame": "炎河",
+    "act4-chaos-sanctuary": "混乱圣域 (暗黑破坏神)",
+    "act5-bloody-foothills": "血色山丘",
+    "act5-frigid-highlands": "寒霜高地",
+    "act5-arreat-plateau": "亚瑞特高原",
+    "act5-crystalline-passage": "水晶通道",
+    "act5-ancients-way": "远古之道",
+    "act5-throne-of-destruction": "毁灭王座 (巴尔)"
+  }
+}

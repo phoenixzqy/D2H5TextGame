@@ -1,0 +1,216 @@
+[
+  {
+    "id": "skills-druid-firestorm",
+    "name": "Firestorm",
+    "description": "Summons a storm of fire that strikes all enemies and applies burn.",
+    "icon": "skills/druid/firestorm.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 20
+    },
+    "damage": {
+      "min": 40,
+      "max": 60,
+      "breakdown": {
+        "fire": 60
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "scaling": {
+      "damagePerLevel": 4
+    }
+  },
+  {
+    "id": "skills-druid-arctic-blast",
+    "name": "Arctic Blast",
+    "description": "Exhales a cone of freezing wind, chilling enemies hit.",
+    "icon": "skills/druid/arctic-blast.png",
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 25
+    },
+    "damage": {
+      "min": 50,
+      "max": 70,
+      "breakdown": {
+        "cold": 70
+      }
+    },
+    "damageType": "cold",
+    "appliesStatus": [
+      "chill"
+    ],
+    "appliesTags": [
+      "cold",
+      "chill"
+    ],
+    "scaling": {
+      "damagePerLevel": 5
+    }
+  },
+  {
+    "id": "skills-druid-tornado",
+    "name": "Tornado",
+    "description": "Summons a swirling tornado that tears through enemies in a cone.",
+    "icon": "skills/druid/tornado.png",
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 30
+    },
+    "damage": {
+      "min": 60,
+      "max": 90,
+      "breakdown": {
+        "physical": 90
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 6
+    }
+  },
+  {
+    "id": "skills-druid-summon-dire-wolf",
+    "name": "Summon Dire Wolf",
+    "description": "Summons a fierce dire wolf companion to fight at your side (max 3).",
+    "icon": "skills/druid/summon-dire-wolf.png",
+    "trigger": "active",
+    "target": "summon",
+    "cooldown": 1,
+    "cost": {
+      "mana": 20
+    },
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-druid-werewolf-maul",
+    "name": "Werewolf: Maul",
+    "description": "Transforms into a werewolf and rends a single enemy, causing them to bleed.",
+    "icon": "skills/druid/werewolf-maul.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 15
+    },
+    "damage": {
+      "min": 80,
+      "max": 120,
+      "breakdown": {
+        "physical": 120
+      }
+    },
+    "damageType": "physical",
+    "appliesStatus": [
+      "bleed"
+    ],
+    "appliesTags": [
+      "physical",
+      "bleed"
+    ],
+    "scaling": {
+      "damagePerLevel": 8
+    }
+  },
+  {
+    "id": "skills-druid-hurricane",
+    "name": "Hurricane",
+    "description": "Summons a hurricane that batters all enemies with cold winds.",
+    "icon": "skills/druid/hurricane.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 50
+    },
+    "damage": {
+      "min": 70,
+      "max": 100,
+      "breakdown": {
+        "cold": 100
+      }
+    },
+    "damageType": "cold",
+    "appliesStatus": [
+      "chill"
+    ],
+    "appliesTags": [
+      "cold",
+      "chill"
+    ],
+    "scaling": {
+      "damagePerLevel": 7
+    }
+  },
+  {
+    "id": "skills-druid-elemental-mastery",
+    "name": "Elemental Mastery",
+    "description": "Increases fire and cold damage by 30%.",
+    "icon": "skills/druid/elemental-mastery.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-druid-lycanthropy",
+    "name": "Lycanthropy",
+    "description": "Increases max HP by 50% while in werewolf form.",
+    "icon": "skills/druid/lycanthropy.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-druid-heart-of-wolverine",
+    "name": "Heart of Wolverine",
+    "description": "Aura: increases attack speed of self and allies by 30%.",
+    "icon": "skills/druid/heart-of-wolverine.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-druid-oak-sage",
+    "name": "Oak Sage",
+    "description": "Aura: increases max HP of self and allies by 50%.",
+    "icon": "skills/druid/oak-sage.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 18,
+    "maxLevel": 20
+  }
+]

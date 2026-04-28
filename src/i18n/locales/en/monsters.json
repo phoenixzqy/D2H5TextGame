@@ -1,0 +1,66 @@
+{
+  "_meta": {
+    "source": "Diablo II / D2R bestiary",
+    "keyConvention": "monster id 'monsters/<act>.<slug>' → nested act.<slug>"
+  },
+  "act1": {
+    "fallen": "Fallen",
+    "zombie": "Zombie",
+    "quill-rat": "Quill Rat",
+    "dark-archer": "Dark Archer",
+    "fallen-shaman": "Fallen Shaman",
+    "carver": "Carver",
+    "tainted": "Tainted",
+    "bone-warrior": "Bone Warrior",
+    "dark-stalker": "Dark Stalker",
+    "blood-raven": "Blood Raven"
+  },
+  "act2": {
+    "sand-raider": "Sand Raider",
+    "horror-mage": "Horror Mage",
+    "claw-viper": "Claw Viper",
+    "scarab": "Scarab",
+    "mummy": "Mummy",
+    "vulture-demon": "Vulture Demon",
+    "sand-maggot": "Sand Maggot",
+    "greater-mummy": "Greater Mummy",
+    "undead-flayer": "Undead Flayer",
+    "duriel": "Duriel"
+  },
+  "act3": {
+    "jungle-hunter": "Jungle Hunter",
+    "fetish": "Fetish",
+    "spider": "Giant Spider",
+    "flayer": "Flayer",
+    "thorned-hulk": "Thorned Hulk",
+    "swamp-dweller": "Swamp Dweller",
+    "doom-ape": "Doom Ape",
+    "infector": "Infector",
+    "serpent-magus": "Serpent Magus",
+    "mephisto": "Mephisto"
+  },
+  "act4": {
+    "venom-lord": "Venom Lord",
+    "abyss-knight": "Abyss Knight",
+    "stygian-doll": "Stygian Doll",
+    "damned": "The Damned",
+    "doom-caster": "Doom Caster",
+    "oblivion-knight": "Oblivion Knight",
+    "pit-lord": "Pit Lord",
+    "mega-demon": "Mega Demon",
+    "izual": "Izual",
+    "diablo": "Diablo"
+  },
+  "act5": {
+    "barbarian-savage": "Barbarian Savage",
+    "death-mauler": "Death Mauler",
+    "overseer": "Overseer",
+    "blood-lord": "Blood Lord",
+    "warped-shaman": "Warped Shaman",
+    "succubus": "Succubus",
+    "frozen-terror": "Frozen Terror",
+    "ancient-barbarian": "Ancient Barbarian",
+    "baal-minion": "Baal's Minion",
+    "baal": "Baal"
+  }
+}

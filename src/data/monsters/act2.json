@@ -1,0 +1,341 @@
+[
+  {
+    "id": "monsters/act2.sand-raider",
+    "name": "Sand Raider",
+    "life": [
+      60,
+      80
+    ],
+    "lifeGrowth": [
+      6,
+      8
+    ],
+    "skills": [
+      "monster-weak-melee"
+    ],
+    "attackSpeed": 95,
+    "defense": 20,
+    "resistances": {},
+    "baseExperience": 10,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act2.horror-mage",
+    "name": "Horror Mage",
+    "life": [
+      80,
+      120
+    ],
+    "lifeGrowth": [
+      8,
+      12
+    ],
+    "skills": [
+      "monster-lightning-bolt",
+      "monster-frost-bolt"
+    ],
+    "attackSpeed": 100,
+    "defense": 30,
+    "resistances": {
+      "cold": 25,
+      "lightning": 25
+    },
+    "baseExperience": 25,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act2.claw-viper",
+    "name": "Claw Viper",
+    "life": [
+      50,
+      70
+    ],
+    "lifeGrowth": [
+      5,
+      8
+    ],
+    "skills": [
+      "monster-weak-melee",
+      "monster-poison-spit"
+    ],
+    "attackSpeed": 110,
+    "defense": 18,
+    "resistances": {
+      "poison": 50
+    },
+    "baseExperience": 10,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act2.scarab",
+    "name": "Scarab",
+    "life": [
+      40,
+      60
+    ],
+    "lifeGrowth": [
+      4,
+      6
+    ],
+    "skills": [
+      "monster-weak-melee"
+    ],
+    "attackSpeed": 80,
+    "defense": 25,
+    "resistances": {
+      "physical": 25
+    },
+    "baseExperience": 10,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act2.mummy",
+    "name": "Mummy",
+    "life": [
+      70,
+      100
+    ],
+    "lifeGrowth": [
+      7,
+      10
+    ],
+    "skills": [
+      "monster-strong-melee"
+    ],
+    "attackSpeed": 70,
+    "defense": 22,
+    "resistances": {
+      "fire": 25
+    },
+    "baseExperience": 10,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act2.vulture-demon",
+    "name": "Vulture Demon",
+    "life": [
+      90,
+      130
+    ],
+    "lifeGrowth": [
+      9,
+      13
+    ],
+    "skills": [
+      "monster-strong-melee",
+      "monster-charge"
+    ],
+    "attackSpeed": 115,
+    "defense": 32,
+    "resistances": {},
+    "baseExperience": 25,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act2.sand-maggot",
+    "name": "Sand Maggot",
+    "life": [
+      80,
+      120
+    ],
+    "lifeGrowth": [
+      8,
+      12
+    ],
+    "skills": [
+      "monster-weak-melee",
+      "monster-weak-ranged"
+    ],
+    "attackSpeed": 85,
+    "defense": 20,
+    "resistances": {},
+    "baseExperience": 10,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act2.greater-mummy",
+    "name": "Greater Mummy",
+    "life": [
+      150,
+      200
+    ],
+    "lifeGrowth": [
+      15,
+      20
+    ],
+    "skills": [
+      "monster-strong-melee",
+      "monster-fire-breath"
+    ],
+    "attackSpeed": 100,
+    "defense": 55,
+    "resistances": {
+      "fire": 50
+    },
+    "baseExperience": 50,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act2.undead-flayer",
+    "name": "Undead Flayer",
+    "life": [
+      100,
+      140
+    ],
+    "lifeGrowth": [
+      10,
+      14
+    ],
+    "skills": [
+      "monster-strong-melee"
+    ],
+    "attackSpeed": 110,
+    "defense": 30,
+    "resistances": {},
+    "baseExperience": 25,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act2.duriel",
+    "name": "Duriel",
+    "life": [
+      1200,
+      1500
+    ],
+    "lifeGrowth": [
+      100,
+      150
+    ],
+    "skills": [
+      "monster-strong-melee",
+      "monster-charge",
+      "monster-frost-aura"
+    ],
+    "attackSpeed": 125,
+    "defense": 120,
+    "resistances": {
+      "cold": 75,
+      "fire": -25
+    },
+    "baseExperience": 600,
+    "canBeElite": false,
+    "canBeBoss": true
+  }
+]

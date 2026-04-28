@@ -1,0 +1,244 @@
+[
+  {
+    "id": "skills-sorceress-ice-bolt",
+    "name": "Ice Bolt",
+    "description": "Hurls a single bolt of ice at an enemy, dealing cold damage and chilling them.",
+    "icon": "skills/sorceress/ice-bolt.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 10
+    },
+    "damage": {
+      "min": 30,
+      "max": 45,
+      "breakdown": {
+        "cold": 45
+      }
+    },
+    "damageType": "cold",
+    "appliesStatus": [
+      "chill"
+    ],
+    "appliesTags": [
+      "cold",
+      "chill"
+    ],
+    "scaling": {
+      "damagePerLevel": 4
+    }
+  },
+  {
+    "id": "skills-sorceress-frost-nova",
+    "name": "Frost Nova",
+    "description": "Releases a burst of cold radiating outward, chilling all enemies and freezing some.",
+    "icon": "skills/sorceress/frost-nova.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 20
+    },
+    "damage": {
+      "min": 25,
+      "max": 35,
+      "breakdown": {
+        "cold": 35
+      }
+    },
+    "damageType": "cold",
+    "appliesStatus": [
+      "chill",
+      "freeze"
+    ],
+    "appliesTags": [
+      "cold",
+      "chill"
+    ],
+    "scaling": {
+      "damagePerLevel": 3
+    }
+  },
+  {
+    "id": "skills-sorceress-frozen-orb",
+    "name": "Frozen Orb",
+    "description": "Hurls an orb of cold that pierces enemies and showers shards in a cone.",
+    "icon": "skills/sorceress/frozen-orb.png",
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 30
+    },
+    "damage": {
+      "min": 60,
+      "max": 90,
+      "breakdown": {
+        "cold": 90
+      }
+    },
+    "damageType": "cold",
+    "appliesStatus": [
+      "chill"
+    ],
+    "appliesTags": [
+      "cold",
+      "chill"
+    ],
+    "scaling": {
+      "damagePerLevel": 6
+    }
+  },
+  {
+    "id": "skills-sorceress-chain-lightning",
+    "name": "Chain Lightning",
+    "description": "Releases a chain of lightning that bounces between up to 5 enemies, paralyzing them.",
+    "icon": "skills/sorceress/chain-lightning.png",
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 25
+    },
+    "damage": {
+      "min": 50,
+      "max": 70,
+      "breakdown": {
+        "lightning": 70
+      }
+    },
+    "damageType": "lightning",
+    "appliesStatus": [
+      "paralyze"
+    ],
+    "appliesTags": [
+      "lightning",
+      "shock"
+    ],
+    "synergies": {
+      "chill": 1.3
+    },
+    "scaling": {
+      "damagePerLevel": 5
+    }
+  },
+  {
+    "id": "skills-sorceress-fire-ball",
+    "name": "Fire Ball",
+    "description": "Lobs an exploding fireball that deals high single-target fire damage and burns the target.",
+    "icon": "skills/sorceress/fire-ball.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 20
+    },
+    "damage": {
+      "min": 70,
+      "max": 100,
+      "breakdown": {
+        "fire": 100
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ],
+    "scaling": {
+      "damagePerLevel": 7
+    }
+  },
+  {
+    "id": "skills-sorceress-meteor",
+    "name": "Meteor",
+    "description": "Calls down a flaming meteor, dealing massive AOE fire damage and melting armor.",
+    "icon": "skills/sorceress/meteor.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 50
+    },
+    "damage": {
+      "min": 100,
+      "max": 150,
+      "breakdown": {
+        "fire": 150
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn",
+      "armor-melt"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn",
+      "amp-damage"
+    ],
+    "scaling": {
+      "damagePerLevel": 10
+    }
+  },
+  {
+    "id": "skills-sorceress-cold-mastery",
+    "name": "Cold Mastery",
+    "description": "Reduces enemy cold resistance by 15%.",
+    "icon": "skills/sorceress/cold-mastery.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 12,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-sorceress-lightning-mastery",
+    "name": "Lightning Mastery",
+    "description": "Increases lightning damage dealt by 30%.",
+    "icon": "skills/sorceress/lightning-mastery.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 12,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-sorceress-fire-mastery",
+    "name": "Fire Mastery",
+    "description": "Increases fire damage dealt by 30%.",
+    "icon": "skills/sorceress/fire-mastery.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 12,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-sorceress-energy-shield",
+    "name": "Energy Shield",
+    "description": "Diverts 30% of incoming damage to mana instead of life.",
+    "icon": "skills/sorceress/energy-shield.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 18,
+    "maxLevel": 20
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "_meta": {
+    "source": "Diablo II rarity tiers"
+  },
+  "tier": {
+    "normal": "普通",
+    "white": "白色",
+    "superior": "高级",
+    "magic": "魔法",
+    "rare": "稀有",
+    "set": "套装",
+    "unique": "暗金",
+    "runeword": "符文之语",
+    "crafted": "工艺",
+    "legendary": "传奇"
+  },
+  "label": {
+    "normal": "普通物品",
+    "magic": "魔法物品",
+    "rare": "稀有物品",
+    "unique": "暗金物品",
+    "set": "套装物品",
+    "runeword": "符文之语",
+    "crafted": "工艺物品"
+  },
+  "merc": {
+    "R": "R 级",
+    "SR": "SR 级",
+    "SSR": "SSR 级"
+  }
+}

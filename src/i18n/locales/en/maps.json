@@ -1,0 +1,51 @@
+{
+  "_meta": {
+    "source": "Diablo II / D2R world; canonical English names from Arreat Summit",
+    "keyConvention": "id 'acts/actN' → act.actN; id 'areas/<slug>' → area.<slug>"
+  },
+  "act": {
+    "act1": "Act I — Sightless Eye",
+    "act2": "Act II — Secret of the Vizjerei",
+    "act3": "Act III — Infernal Gate",
+    "act4": "Act IV — Harrowing",
+    "act5": "Act V — Lord of Destruction"
+  },
+  "town": {
+    "act1": "Rogue Encampment",
+    "act2": "Lut Gholein",
+    "act3": "Kurast Docks",
+    "act4": "The Pandemonium Fortress",
+    "act5": "Harrogath"
+  },
+  "area": {
+    "act1-blood-moor": "Blood Moor",
+    "act1-den-of-evil": "Den of Evil",
+    "act1-cold-plains": "Cold Plains",
+    "act1-burial-grounds": "Burial Grounds",
+    "act1-dark-wood": "Dark Wood",
+    "act1-catacombs": "Catacombs (Andariel)",
+    "act2-rocky-waste": "Rocky Waste",
+    "act2-dry-hills": "Dry Hills",
+    "act2-far-oasis": "Far Oasis",
+    "act2-lost-city": "Lost City",
+    "act2-arcane-sanctuary": "Arcane Sanctuary",
+    "act2-tomb-of-tal-rasha": "Tomb of Tal Rasha (Duriel)",
+    "act3-spider-forest": "Spider Forest",
+    "act3-great-marsh": "Great Marsh",
+    "act3-flayer-jungle": "Flayer Jungle",
+    "act3-kurast-bazaar": "Kurast Bazaar",
+    "act3-travincal": "Travincal",
+    "act3-durance-of-hate": "Durance of Hate (Mephisto)",
+    "act4-outer-steppes": "Outer Steppes",
+    "act4-plains-of-despair": "Plains of Despair",
+    "act4-city-of-the-damned": "City of the Damned",
+    "act4-river-of-flame": "River of Flame",
+    "act4-chaos-sanctuary": "Chaos Sanctuary (Diablo)",
+    "act5-bloody-foothills": "Bloody Foothills",
+    "act5-frigid-highlands": "Frigid Highlands",
+    "act5-arreat-plateau": "Arreat Plateau",
+    "act5-crystalline-passage": "Crystalline Passage",
+    "act5-ancients-way": "Ancient's Way",
+    "act5-throne-of-destruction": "Throne of Destruction (Baal)"
+  }
+}

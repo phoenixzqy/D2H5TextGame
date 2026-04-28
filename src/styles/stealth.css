@@ -1,0 +1,83 @@
+/**
+ * Stealth mode styles (摸鱼模式)
+ * Hides icons and reduces color vibrancy for workplace discretion
+ */
+
+body.stealth {
+  /* Hide all images and icons */
+  img,
+  svg,
+  video,
+  [data-icon] {
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  /* Neutralize rarity colors to grayscale */
+  .text-d2-magic,
+  .text-d2-rare,
+  .text-d2-unique,
+  .text-d2-set,
+  .text-d2-runeword,
+  .text-d2-gold {
+    color: #9ca3af !important; /* gray-400 */
+  }
+
+  /* Tone down backgrounds */
+  .bg-d2-gold,
+  .bg-d2-rare,
+  .bg-d2-magic,
+  .bg-d2-unique,
+  .bg-d2-set,
+  .bg-d2-runeword {
+    background-color: #4b5563 !important; /* gray-600 */
+  }
+
+  /* Neutralize borders */
+  .border-d2-gold,
+  .border-d2-rare,
+  .border-d2-magic {
+    border-color: #6b7280 !important; /* gray-500 */
+  }
+
+  /* Remove shadows */
+  .shadow-d2-gold,
+  .shadow-lg,
+  .shadow-2xl {
+    box-shadow: none !important;
+  }
+
+  /* Hide hover effects */
+  button:hover,
+  a:hover {
+    transform: none !important;
+  }
+
+  /* Mute gradients */
+  .bg-gradient-to-b,
+  .bg-gradient-to-r {
+    background-image: none !important;
+    background-color: #1a1a1a !important;
+  }
+
+  /* Disable animations */
+  * {
+    animation-duration: 0s !important;
+    transition-duration: 0s !important;
+  }
+}
+
+/* Add a subtle indicator when stealth mode is active */
+body.stealth::before {
+  content: '摸鱼模式';
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 4px 8px;
+  background: #374151;
+  color: #9ca3af;
+  font-size: 10px;
+  z-index: 9999;
+  opacity: 0.3;
+  pointer-events: none;
+}

@@ -1,0 +1,169 @@
+/**
+ * MapScreen — pick an act and a sub-area.
+ *
+ * Layout:
+ *   [ Acts collapsible list (I–V) ]
+ *     [ sub-area row × N: name, rec lvl, lock badge, [Farm] [Enter] ]
+ */
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { Button, Panel, ScreenShell } from '@/ui';
+import { useMapStore } from '@/stores';
+
+interface SubArea {
+  id: string;
+  nameKey: string;
+  recommendedLevel: number;
+  unlockedByDefault?: boolean;
+}
+
+interface Act {
+  number: number;
+  nameKey: string;
+  unlockedByDefault?: boolean;
+  subAreas: SubArea[];
+}
+
+const ACTS: Act[] = [
+  {
+    number: 1,
+    nameKey: 'map.actName.1',
+    unlockedByDefault: true,
+    subAreas: [
+      { id: 'a1-blood-moor', nameKey: 'map.subArea.a1-blood-moor', recommendedLevel: 1, unlockedByDefault: true },
+      { id: 'a1-cold-plains', nameKey: 'map.subArea.a1-cold-plains', recommendedLevel: 5 },
+      { id: 'a1-stony-field', nameKey: 'map.subArea.a1-stony-field', recommendedLevel: 8 },
+      { id: 'a1-dark-wood', nameKey: 'map.subArea.a1-dark-wood', recommendedLevel: 12 },
+      { id: 'a1-tristram', nameKey: 'map.subArea.a1-tristram', recommendedLevel: 15 },
+    ],
+  },
+  {
+    number: 2,
+    nameKey: 'map.actName.2',
+    subAreas: [
+      { id: 'a2-rocky-waste', nameKey: 'map.subArea.a2-rocky-waste', recommendedLevel: 16 },
+      { id: 'a2-dry-hills', nameKey: 'map.subArea.a2-dry-hills', recommendedLevel: 20 },
+    ],
+  },
+  {
+    number: 3,
+    nameKey: 'map.actName.3',
+    subAreas: [
+      { id: 'a3-spider-forest', nameKey: 'map.subArea.a3-spider-forest', recommendedLevel: 24 },
+      { id: 'a3-flayer-jungle', nameKey: 'map.subArea.a3-flayer-jungle', recommendedLevel: 28 },
+    ],
+  },
+  {
+    number: 4,
+    nameKey: 'map.actName.4',
+    subAreas: [
+      { id: 'a4-outer-steppes', nameKey: 'map.subArea.a4-outer-steppes', recommendedLevel: 32 },
+      { id: 'a4-river-of-flame', nameKey: 'map.subArea.a4-river-of-flame', recommendedLevel: 35 },
+    ],
+  },
+  {
+    number: 5,
+    nameKey: 'map.actName.5',
+    subAreas: [
+      { id: 'a5-bloody-foothills', nameKey: 'map.subArea.a5-bloody-foothills', recommendedLevel: 38 },
+      { id: 'a5-worldstone-keep', nameKey: 'map.subArea.a5-worldstone-keep', recommendedLevel: 45 },
+    ],
+  },
+];
+
+export function MapScreen() {
+  const { t } = useTranslation(['map', 'common']);
+  const navigate = useNavigate();
+  const setLocation = useMapStore((s) => s.setCurrentLocation);
+  const updateIdle = (() => {
+    // Lazy import to avoid breaking if tests mock differently
+    return null;
+  })();
+
+  const [openAct, setOpenAct] = useState<number>(1);
+
+  const enterArea = (act: number, subId: string) => {
+    setLocation(act, subId);
+    navigate('/combat');
+  };
+  const farmHere = (act: number, subId: string) => {
+    setLocation(act, subId);
+    // idle target update happens in engine wave
+    void updateIdle;
+  };
+
+  return (
+    <ScreenShell testId="map-screen" title={t('worldMap')}>
+      <div className="space-y-3 max-w-3xl mx-auto">
+        {ACTS.map((act) => {
+          const isOpen = openAct === act.number;
+          const actUnlocked = act.unlockedByDefault ?? false;
+          return (
+            <Panel key={act.number} className="p-0 overflow-hidden">
+              <button
+                type="button"
+                onClick={() => { setOpenAct(isOpen ? -1 : act.number); }}
+                aria-expanded={isOpen}
+                className="w-full flex items-center justify-between px-4 py-3 min-h-[48px]
+                           hover:bg-black/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold"
+              >
+                <span className="text-d2-gold font-serif">
+                  {t('act', { number: act.number })} ·{' '}
+                  {t(act.nameKey, { defaultValue: `Act ${String(act.number)}` })}
+                </span>
+                <span className="flex items-center gap-2 text-xs">
+                  {!actUnlocked && (
+                    <span className="text-d2-white/50" aria-label={t('locked')}>
+                      🔒 {t('locked')}
+                    </span>
+                  )}
+                  <span aria-hidden>{isOpen ? '▾' : '▸'}</span>
+                </span>
+              </button>
+              {isOpen && (
+                <ul className="border-t border-d2-border divide-y divide-d2-border/50">
+                  {act.subAreas.map((sa) => {
+                    const unlocked = (sa.unlockedByDefault ?? false) || actUnlocked;
+                    return (
+                      <li key={sa.id} className="px-3 py-2 flex flex-wrap items-center gap-2">
+                        <div className="flex-1 min-w-[160px]">
+                          <div className="text-d2-white text-sm">
+                            {t(sa.nameKey, { defaultValue: sa.id })}
+                          </div>
+                          <div className="text-xs text-d2-white/60">
+                            {t('recommendedLevel', { level: sa.recommendedLevel })}
+                          </div>
+                        </div>
+                        {!unlocked ? (
+                          <span className="text-xs text-d2-white/50">🔒 {t('locked')}</span>
+                        ) : (
+                          <div className="flex gap-2">
+                            <Button
+                              variant="secondary"
+                              className="min-h-[40px] text-sm"
+                              onClick={() => { farmHere(act.number, sa.id); }}
+                            >
+                              {t('farmHere')}
+                            </Button>
+                            <Button
+                              variant="primary"
+                              className="min-h-[40px] text-sm"
+                              onClick={() => { enterArea(act.number, sa.id); }}
+                            >
+                              {t('enter', { defaultValue: '进入' })}
+                            </Button>
+                          </div>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
+            </Panel>
+          );
+        })}
+      </div>
+    </ScreenShell>
+  );
+}

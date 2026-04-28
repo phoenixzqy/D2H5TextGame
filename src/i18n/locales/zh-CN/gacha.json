@@ -1,0 +1,13 @@
+{
+  "gacha": "招募",
+  "wishstones": "祈愿石",
+  "singlePull": "单抽",
+  "tenPull": "十连抽",
+  "cost": "消耗: {{amount}}",
+  "pityCounter": "保底计数: {{count}} / 90",
+  "rates": "概率",
+  "recentPulls": "最近招募",
+  "noRecent": "暂无记录",
+  "result": "招募结果",
+  "confirm": "确认"
+}

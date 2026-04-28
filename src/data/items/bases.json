@@ -1,0 +1,650 @@
+[
+  {
+    "id": "items/base/helm-cap",
+    "name": "Cap",
+    "type": "armor",
+    "slot": "head",
+    "baseDefense": 7,
+    "reqLevel": 1,
+    "sockets": 2,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/helm-skull-cap",
+    "name": "Skull Cap",
+    "type": "armor",
+    "slot": "head",
+    "baseDefense": 12,
+    "reqLevel": 5,
+    "sockets": 2,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/helm-war-hat",
+    "name": "War Hat",
+    "type": "armor",
+    "slot": "head",
+    "baseDefense": 30,
+    "reqLevel": 22,
+    "sockets": 3,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/helm-casque",
+    "name": "Casque",
+    "type": "armor",
+    "slot": "head",
+    "baseDefense": 45,
+    "reqLevel": 28,
+    "sockets": 3,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/helm-armet",
+    "name": "Armet",
+    "type": "armor",
+    "slot": "head",
+    "baseDefense": 75,
+    "reqLevel": 45,
+    "sockets": 4,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/helm-giant-conch",
+    "name": "Giant Conch",
+    "type": "armor",
+    "slot": "head",
+    "baseDefense": 105,
+    "reqLevel": 55,
+    "sockets": 4,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/armor-quilted",
+    "name": "Quilted Armor",
+    "type": "armor",
+    "slot": "chest",
+    "baseDefense": 10,
+    "reqLevel": 1,
+    "sockets": 2,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/armor-leather",
+    "name": "Leather Armor",
+    "type": "armor",
+    "slot": "chest",
+    "baseDefense": 21,
+    "reqLevel": 6,
+    "sockets": 2,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/armor-chain-mail",
+    "name": "Chain Mail",
+    "type": "armor",
+    "slot": "chest",
+    "baseDefense": 53,
+    "reqLevel": 25,
+    "sockets": 3,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/armor-breast-plate",
+    "name": "Breast Plate",
+    "type": "armor",
+    "slot": "chest",
+    "baseDefense": 75,
+    "reqLevel": 32,
+    "sockets": 3,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/armor-dusk-shroud",
+    "name": "Dusk Shroud",
+    "type": "armor",
+    "slot": "chest",
+    "baseDefense": 125,
+    "reqLevel": 50,
+    "sockets": 4,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/armor-archon-plate",
+    "name": "Archon Plate",
+    "type": "armor",
+    "slot": "chest",
+    "baseDefense": 180,
+    "reqLevel": 60,
+    "sockets": 4,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/glove-leather",
+    "name": "Leather Gloves",
+    "type": "armor",
+    "slot": "gloves",
+    "baseDefense": 4,
+    "reqLevel": 1,
+    "sockets": 1,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/glove-heavy",
+    "name": "Heavy Gloves",
+    "type": "armor",
+    "slot": "gloves",
+    "baseDefense": 8,
+    "reqLevel": 7,
+    "sockets": 2,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/glove-chain",
+    "name": "Chain Gloves",
+    "type": "armor",
+    "slot": "gloves",
+    "baseDefense": 17,
+    "reqLevel": 24,
+    "sockets": 2,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/glove-light-gauntlets",
+    "name": "Light Gauntlets",
+    "type": "armor",
+    "slot": "gloves",
+    "baseDefense": 26,
+    "reqLevel": 30,
+    "sockets": 3,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/glove-vampirebone",
+    "name": "Vampirebone Gloves",
+    "type": "armor",
+    "slot": "gloves",
+    "baseDefense": 42,
+    "reqLevel": 48,
+    "sockets": 3,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/glove-bramble-mitts",
+    "name": "Bramble Mitts",
+    "type": "armor",
+    "slot": "gloves",
+    "baseDefense": 58,
+    "reqLevel": 58,
+    "sockets": 4,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/boot-leather",
+    "name": "Boots",
+    "type": "armor",
+    "slot": "boots",
+    "baseDefense": 4,
+    "reqLevel": 1,
+    "sockets": 1,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/boot-heavy",
+    "name": "Heavy Boots",
+    "type": "armor",
+    "slot": "boots",
+    "baseDefense": 8,
+    "reqLevel": 7,
+    "sockets": 2,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/boot-chain",
+    "name": "Chain Boots",
+    "type": "armor",
+    "slot": "boots",
+    "baseDefense": 17,
+    "reqLevel": 24,
+    "sockets": 2,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/boot-light-plated",
+    "name": "Light Plated Boots",
+    "type": "armor",
+    "slot": "boots",
+    "baseDefense": 26,
+    "reqLevel": 30,
+    "sockets": 3,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/boot-demonhide",
+    "name": "Demonhide Boots",
+    "type": "armor",
+    "slot": "boots",
+    "baseDefense": 42,
+    "reqLevel": 48,
+    "sockets": 3,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/boot-myrmidon-greaves",
+    "name": "Myrmidon Greaves",
+    "type": "armor",
+    "slot": "boots",
+    "baseDefense": 58,
+    "reqLevel": 58,
+    "sockets": 4,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/belt-sash",
+    "name": "Sash",
+    "type": "armor",
+    "slot": "belt",
+    "baseDefense": 3,
+    "reqLevel": 1,
+    "sockets": 1,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/belt-light",
+    "name": "Light Belt",
+    "type": "armor",
+    "slot": "belt",
+    "baseDefense": 5,
+    "reqLevel": 7,
+    "sockets": 1,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/belt-heavy",
+    "name": "Heavy Belt",
+    "type": "armor",
+    "slot": "belt",
+    "baseDefense": 10,
+    "reqLevel": 22,
+    "sockets": 2,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/belt-plated",
+    "name": "Plated Belt",
+    "type": "armor",
+    "slot": "belt",
+    "baseDefense": 17,
+    "reqLevel": 30,
+    "sockets": 2,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/belt-demonhide",
+    "name": "Demonhide Sash",
+    "type": "armor",
+    "slot": "belt",
+    "baseDefense": 30,
+    "reqLevel": 48,
+    "sockets": 3,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/belt-mithril-coil",
+    "name": "Mithril Coil",
+    "type": "armor",
+    "slot": "belt",
+    "baseDefense": 48,
+    "reqLevel": 58,
+    "sockets": 3,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/ring-iron",
+    "name": "Iron Ring",
+    "type": "jewelry",
+    "slot": "ring-left",
+    "reqLevel": 1,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/ring-silver",
+    "name": "Silver Ring",
+    "type": "jewelry",
+    "slot": "ring-left",
+    "reqLevel": 10,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/ring-jade",
+    "name": "Jade Ring",
+    "type": "jewelry",
+    "slot": "ring-left",
+    "reqLevel": 25,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/ring-amber",
+    "name": "Amber Ring",
+    "type": "jewelry",
+    "slot": "ring-left",
+    "reqLevel": 35,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/ring-obsidian",
+    "name": "Obsidian Ring",
+    "type": "jewelry",
+    "slot": "ring-left",
+    "reqLevel": 50,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/ring-zircon",
+    "name": "Zircon Ring",
+    "type": "jewelry",
+    "slot": "ring-left",
+    "reqLevel": 60,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/amu-tin",
+    "name": "Tin Amulet",
+    "type": "jewelry",
+    "slot": "amulet",
+    "reqLevel": 1,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/amu-brass",
+    "name": "Brass Amulet",
+    "type": "jewelry",
+    "slot": "amulet",
+    "reqLevel": 10,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/amu-silver",
+    "name": "Silver Amulet",
+    "type": "jewelry",
+    "slot": "amulet",
+    "reqLevel": 25,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/amu-jade",
+    "name": "Jade Amulet",
+    "type": "jewelry",
+    "slot": "amulet",
+    "reqLevel": 35,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/amu-obsidian",
+    "name": "Obsidian Amulet",
+    "type": "jewelry",
+    "slot": "amulet",
+    "reqLevel": 50,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/amu-zircon",
+    "name": "Zircon Amulet",
+    "type": "jewelry",
+    "slot": "amulet",
+    "reqLevel": 60,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/wp1h-short-sword",
+    "name": "Short Sword",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 4,
+      "max": 8,
+      "breakdown": {
+        "physical": 8
+      }
+    },
+    "reqLevel": 1,
+    "sockets": 2,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/wp1h-scimitar",
+    "name": "Scimitar",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 7,
+      "max": 13,
+      "breakdown": {
+        "physical": 13
+      }
+    },
+    "reqLevel": 8,
+    "sockets": 2,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/wp1h-long-sword",
+    "name": "Long Sword",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 14,
+      "max": 24,
+      "breakdown": {
+        "physical": 24
+      }
+    },
+    "reqLevel": 22,
+    "sockets": 3,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/wp1h-war-sword",
+    "name": "War Sword",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 20,
+      "max": 32,
+      "breakdown": {
+        "physical": 32
+      }
+    },
+    "reqLevel": 32,
+    "sockets": 3,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/wp1h-phase-blade",
+    "name": "Phase Blade",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 32,
+      "max": 55,
+      "breakdown": {
+        "physical": 55
+      }
+    },
+    "reqLevel": 50,
+    "sockets": 4,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/wp1h-legend-sword",
+    "name": "Legend Sword",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 45,
+      "max": 75,
+      "breakdown": {
+        "physical": 75
+      }
+    },
+    "reqLevel": 60,
+    "sockets": 6,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/wp2h-two-handed-sword",
+    "name": "Two-Handed Sword",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 8,
+      "max": 18,
+      "breakdown": {
+        "physical": 18
+      }
+    },
+    "reqLevel": 1,
+    "sockets": 2,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/wp2h-great-axe",
+    "name": "Great Axe",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 12,
+      "max": 24,
+      "breakdown": {
+        "physical": 24
+      }
+    },
+    "reqLevel": 8,
+    "sockets": 2,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/wp2h-war-pike",
+    "name": "War Pike",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 22,
+      "max": 48,
+      "breakdown": {
+        "physical": 48
+      }
+    },
+    "reqLevel": 24,
+    "sockets": 3,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/wp2h-giant-thresher",
+    "name": "Giant Thresher",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 32,
+      "max": 62,
+      "breakdown": {
+        "physical": 62
+      }
+    },
+    "reqLevel": 35,
+    "sockets": 4,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/wp2h-colossus-blade",
+    "name": "Colossus Blade",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 50,
+      "max": 95,
+      "breakdown": {
+        "physical": 95
+      }
+    },
+    "reqLevel": 52,
+    "sockets": 5,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/wp2h-thunder-maul",
+    "name": "Thunder Maul",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 65,
+      "max": 120,
+      "breakdown": {
+        "physical": 120
+      }
+    },
+    "reqLevel": 62,
+    "sockets": 6,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/sh-buckler",
+    "name": "Buckler",
+    "type": "armor",
+    "slot": "offhand",
+    "baseDefense": 6,
+    "reqLevel": 1,
+    "sockets": 1,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/sh-kite",
+    "name": "Kite Shield",
+    "type": "armor",
+    "slot": "offhand",
+    "baseDefense": 15,
+    "reqLevel": 8,
+    "sockets": 2,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/sh-aegis",
+    "name": "Aegis",
+    "type": "armor",
+    "slot": "offhand",
+    "baseDefense": 29,
+    "reqLevel": 25,
+    "sockets": 3,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/sh-dragon-shield",
+    "name": "Dragon Shield",
+    "type": "armor",
+    "slot": "offhand",
+    "baseDefense": 40,
+    "reqLevel": 35,
+    "sockets": 3,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/sh-monarch",
+    "name": "Monarch",
+    "type": "armor",
+    "slot": "offhand",
+    "baseDefense": 63,
+    "reqLevel": 50,
+    "sockets": 4,
+    "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/sh-sacred-targe",
+    "name": "Sacred Targe",
+    "type": "armor",
+    "slot": "offhand",
+    "baseDefense": 83,
+    "reqLevel": 60,
+    "sockets": 4,
+    "canHaveAffixes": true
+  }
+]

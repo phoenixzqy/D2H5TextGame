@@ -1,0 +1,243 @@
+[
+  {
+    "id": "areas/act4-outer-steppes",
+    "name": "Outer Steppes",
+    "actId": "acts/act4",
+    "areaLevel": 42,
+    "hasBoss": false,
+    "lootTable": "loot/trash-act4",
+    "flavor": "Cracked basalt plains beyond the Pandemonium gate, prowled by venom lords and abyss knights.",
+    "waves": [
+      { "id": "w1", "type": "trash",
+        "encounters": [{ "id": "act4-os-w1-e1", "level": 42,
+          "monsters": [
+            { "archetypeId": "monsters/act4.venom-lord", "count": 3 },
+            { "archetypeId": "monsters/act4.abyss-knight", "count": 2 }
+          ] }] },
+      { "id": "w2", "type": "trash",
+        "encounters": [{ "id": "act4-os-w2-e1", "level": 43,
+          "monsters": [
+            { "archetypeId": "monsters/act4.stygian-doll", "count": 4 },
+            { "archetypeId": "monsters/act4.damned", "count": 2 }
+          ] }] },
+      { "id": "w3", "type": "trash",
+        "encounters": [{ "id": "act4-os-w3-e1", "level": 43,
+          "monsters": [
+            { "archetypeId": "monsters/act4.doom-caster", "count": 2 },
+            { "archetypeId": "monsters/act4.abyss-knight", "count": 2 }
+          ] }] },
+      { "id": "w4", "type": "elite",
+        "encounters": [{ "id": "act4-os-w4-e1", "level": 44,
+          "monsters": [
+            { "archetypeId": "monsters/act4.venom-lord", "count": 2, "elite": true },
+            { "archetypeId": "monsters/act4.stygian-doll", "count": 3 }
+          ] }] },
+      { "id": "w5", "type": "trash",
+        "encounters": [{ "id": "act4-os-w5-e1", "level": 44,
+          "monsters": [
+            { "archetypeId": "monsters/act4.pit-lord", "count": 2 },
+            { "archetypeId": "monsters/act4.damned", "count": 2 }
+          ] }] }
+    ]
+  },
+  {
+    "id": "areas/act4-plains-of-despair",
+    "name": "Plains of Despair",
+    "actId": "acts/act4",
+    "areaLevel": 45,
+    "hasBoss": true,
+    "lootTable": "loot/trash-act4",
+    "flavor": "Howling grey wastes where Izual, the fallen angel, stalks his cursed exile.",
+    "bossEncounter": {
+      "id": "act4-pod-izual", "level": 47,
+      "monsters": [
+        { "archetypeId": "monsters/act4.izual", "count": 1, "boss": true },
+        { "archetypeId": "monsters/act4.oblivion-knight", "count": 2 }
+      ]
+    },
+    "waves": [
+      { "id": "w1", "type": "trash",
+        "encounters": [{ "id": "act4-pod-w1-e1", "level": 45,
+          "monsters": [
+            { "archetypeId": "monsters/act4.damned", "count": 4 },
+            { "archetypeId": "monsters/act4.doom-caster", "count": 2 }
+          ] }] },
+      { "id": "w2", "type": "trash",
+        "encounters": [{ "id": "act4-pod-w2-e1", "level": 45,
+          "monsters": [
+            { "archetypeId": "monsters/act4.oblivion-knight", "count": 2 },
+            { "archetypeId": "monsters/act4.abyss-knight", "count": 2 }
+          ] }] },
+      { "id": "w3", "type": "elite",
+        "encounters": [{ "id": "act4-pod-w3-e1", "level": 46,
+          "monsters": [
+            { "archetypeId": "monsters/act4.venom-lord", "count": 2, "elite": true },
+            { "archetypeId": "monsters/act4.stygian-doll", "count": 3 }
+          ] }] },
+      { "id": "w4", "type": "trash",
+        "encounters": [{ "id": "act4-pod-w4-e1", "level": 46,
+          "monsters": [
+            { "archetypeId": "monsters/act4.pit-lord", "count": 2 },
+            { "archetypeId": "monsters/act4.mega-demon", "count": 1 }
+          ] }] },
+      { "id": "w5", "type": "boss", "lootTable": "loot/mini-act4",
+        "encounters": [{ "id": "act4-pod-w5-e1", "level": 47,
+          "monsters": [
+            { "archetypeId": "monsters/act4.izual", "count": 1, "boss": true }
+          ] }] }
+    ]
+  },
+  {
+    "id": "areas/act4-city-of-the-damned",
+    "name": "City of the Damned",
+    "actId": "acts/act4",
+    "areaLevel": 48,
+    "hasBoss": false,
+    "lootTable": "loot/trash-act4",
+    "flavor": "Blackened basilicas burn unending; balrogs and the spitter-kind feast on the unrepentant.",
+    "waves": [
+      { "id": "w1", "type": "trash",
+        "encounters": [{ "id": "act4-cd-w1-e1", "level": 48,
+          "monsters": [
+            { "archetypeId": "monsters/act4.mega-demon", "count": 2 },
+            { "archetypeId": "monsters/act4.damned", "count": 3 }
+          ] }] },
+      { "id": "w2", "type": "trash",
+        "encounters": [{ "id": "act4-cd-w2-e1", "level": 48,
+          "monsters": [
+            { "archetypeId": "monsters/act4.doom-caster", "count": 3 },
+            { "archetypeId": "monsters/act4.stygian-doll", "count": 3 }
+          ] }] },
+      { "id": "w3", "type": "trash",
+        "encounters": [{ "id": "act4-cd-w3-e1", "level": 49,
+          "monsters": [
+            { "archetypeId": "monsters/act4.oblivion-knight", "count": 2 },
+            { "archetypeId": "monsters/act4.pit-lord", "count": 2 }
+          ] }] },
+      { "id": "w4", "type": "elite",
+        "encounters": [{ "id": "act4-cd-w4-e1", "level": 50,
+          "monsters": [
+            { "archetypeId": "monsters/act4.mega-demon", "count": 2, "elite": true },
+            { "archetypeId": "monsters/act4.venom-lord", "count": 2 }
+          ] }] },
+      { "id": "w5", "type": "trash",
+        "encounters": [{ "id": "act4-cd-w5-e1", "level": 50,
+          "monsters": [
+            { "archetypeId": "monsters/act4.abyss-knight", "count": 3 },
+            { "archetypeId": "monsters/act4.doom-caster", "count": 2 }
+          ] }] },
+      { "id": "w6", "type": "treasure", "lootTable": "loot/treasure-goblin",
+        "encounters": [{ "id": "act4-cd-w6-e1", "level": 50,
+          "monsters": [
+            { "archetypeId": "monsters/act4.stygian-doll", "count": 1, "elite": true }
+          ] }] }
+    ]
+  },
+  {
+    "id": "areas/act4-river-of-flame",
+    "name": "River of Flame",
+    "actId": "acts/act4",
+    "areaLevel": 51,
+    "hasBoss": true,
+    "lootTable": "loot/trash-act4",
+    "flavor": "A boiling lava artery; Hephasto the Armorer guards the bridge with his hammer of forged hate.",
+    "bossEncounter": {
+      "id": "act4-rof-hephasto", "level": 53,
+      "monsters": [
+        { "archetypeId": "monsters/act4.mega-demon", "count": 1, "boss": true },
+        { "archetypeId": "monsters/act4.pit-lord", "count": 3 }
+      ]
+    },
+    "waves": [
+      { "id": "w1", "type": "trash",
+        "encounters": [{ "id": "act4-rof-w1-e1", "level": 51,
+          "monsters": [
+            { "archetypeId": "monsters/act4.pit-lord", "count": 3 },
+            { "archetypeId": "monsters/act4.venom-lord", "count": 2 }
+          ] }] },
+      { "id": "w2", "type": "trash",
+        "encounters": [{ "id": "act4-rof-w2-e1", "level": 51,
+          "monsters": [
+            { "archetypeId": "monsters/act4.mega-demon", "count": 2 },
+            { "archetypeId": "monsters/act4.doom-caster", "count": 2 }
+          ] }] },
+      { "id": "w3", "type": "elite",
+        "encounters": [{ "id": "act4-rof-w3-e1", "level": 52,
+          "monsters": [
+            { "archetypeId": "monsters/act4.oblivion-knight", "count": 2, "elite": true },
+            { "archetypeId": "monsters/act4.abyss-knight", "count": 2 }
+          ] }] },
+      { "id": "w4", "type": "trash",
+        "encounters": [{ "id": "act4-rof-w4-e1", "level": 52,
+          "monsters": [
+            { "archetypeId": "monsters/act4.damned", "count": 3 },
+            { "archetypeId": "monsters/act4.stygian-doll", "count": 3 }
+          ] }] },
+      { "id": "w5", "type": "elite",
+        "encounters": [{ "id": "act4-rof-w5-e1", "level": 53,
+          "monsters": [
+            { "archetypeId": "monsters/act4.pit-lord", "count": 3, "elite": true }
+          ] }] },
+      { "id": "w6", "type": "boss", "lootTable": "loot/mini-act4",
+        "encounters": [{ "id": "act4-rof-w6-e1", "level": 53,
+          "monsters": [
+            { "archetypeId": "monsters/act4.mega-demon", "count": 1, "boss": true }
+          ] }] }
+    ]
+  },
+  {
+    "id": "areas/act4-chaos-sanctuary",
+    "name": "Chaos Sanctuary (Diablo)",
+    "actId": "acts/act4",
+    "areaLevel": 54,
+    "hasBoss": true,
+    "lootTable": "loot/trash-act4",
+    "flavor": "The pentagram on the obsidian floor pulses red — break three seals to summon the Prime Evil.",
+    "bossEncounter": {
+      "id": "act4-cs-diablo", "level": 57,
+      "monsters": [
+        { "archetypeId": "monsters/act4.diablo", "count": 1, "boss": true }
+      ]
+    },
+    "waves": [
+      { "id": "w1", "type": "trash",
+        "encounters": [{ "id": "act4-cs-w1-e1", "level": 54,
+          "monsters": [
+            { "archetypeId": "monsters/act4.oblivion-knight", "count": 3 },
+            { "archetypeId": "monsters/act4.venom-lord", "count": 2 }
+          ] }] },
+      { "id": "w2", "type": "trash",
+        "encounters": [{ "id": "act4-cs-w2-e1", "level": 55,
+          "monsters": [
+            { "archetypeId": "monsters/act4.mega-demon", "count": 2 },
+            { "archetypeId": "monsters/act4.pit-lord", "count": 3 }
+          ] }] },
+      { "id": "w3", "type": "trash",
+        "encounters": [{ "id": "act4-cs-w3-e1", "level": 55,
+          "monsters": [
+            { "archetypeId": "monsters/act4.damned", "count": 4 },
+            { "archetypeId": "monsters/act4.abyss-knight", "count": 2 }
+          ] }] },
+      { "id": "w4", "type": "elite",
+        "encounters": [{ "id": "act4-cs-w4-e1", "level": 56,
+          "monsters": [
+            { "archetypeId": "monsters/act4.oblivion-knight", "count": 3, "elite": true }
+          ] }] },
+      { "id": "w5", "type": "elite",
+        "encounters": [{ "id": "act4-cs-w5-e1", "level": 56,
+          "monsters": [
+            { "archetypeId": "monsters/act4.venom-lord", "count": 3, "elite": true }
+          ] }] },
+      { "id": "w6", "type": "elite",
+        "encounters": [{ "id": "act4-cs-w6-e1", "level": 57,
+          "monsters": [
+            { "archetypeId": "monsters/act4.mega-demon", "count": 2, "elite": true }
+          ] }] },
+      { "id": "w7", "type": "boss", "lootTable": "loot/act4-boss",
+        "encounters": [{ "id": "act4-cs-w7-e1", "level": 57,
+          "monsters": [
+            { "archetypeId": "monsters/act4.diablo", "count": 1, "boss": true }
+          ] }] }
+    ]
+  }
+]

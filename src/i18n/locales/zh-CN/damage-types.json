@@ -1,0 +1,54 @@
+{
+  "_meta": {
+    "source": "Diablo2TextGame.md — 7 damage types: physical/fire/cold/lightning/arcane/poison/thorns"
+  },
+  "type": {
+    "physical": "物理",
+    "fire": "火焰",
+    "cold": "冰冷",
+    "lightning": "闪电",
+    "arcane": "奥术",
+    "poison": "毒素",
+    "thorns": "荆棘"
+  },
+  "typeLong": {
+    "physical": "物理伤害",
+    "fire": "火焰伤害",
+    "cold": "冰冷伤害",
+    "lightning": "闪电伤害",
+    "arcane": "奥术伤害",
+    "poison": "毒素伤害",
+    "thorns": "荆棘反伤"
+  },
+  "resist": {
+    "physical": "物理抗性",
+    "fire": "火焰抗性",
+    "cold": "冰冷抗性",
+    "lightning": "闪电抗性",
+    "arcane": "奥术抗性",
+    "poison": "毒素抗性",
+    "thorns": "荆棘抗性"
+  },
+  "status": {
+    "bleed": "流血",
+    "burn": "燃烧",
+    "chill": "冰冻减速",
+    "freeze": "冰封",
+    "shock": "麻痹",
+    "paralyze": "麻痹",
+    "amp-damage": "增幅伤害",
+    "poison": "中毒",
+    "armor-melt": "护甲熔毁",
+    "stun": "晕眩",
+    "thorns": "荆棘"
+  },
+  "signature": {
+    "physical": "标志: 流血",
+    "fire": "标志: 燃烧",
+    "cold": "标志: 冰冻减速 / 冰封",
+    "lightning": "标志: 麻痹",
+    "arcane": "标志: 增幅伤害",
+    "poison": "标志: 中毒叠加",
+    "thorns": "标志: 反伤"
+  }
+}

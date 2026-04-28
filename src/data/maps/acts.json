@@ -1,0 +1,76 @@
+[
+  {
+    "id": "acts/act1",
+    "name": "Act I — Sightless Eye",
+    "act": 1,
+    "town": "Rogue Encampment",
+    "reqLevel": 1,
+    "subAreas": [
+      "areas/act1-blood-moor",
+      "areas/act1-den-of-evil",
+      "areas/act1-cold-plains",
+      "areas/act1-burial-grounds",
+      "areas/act1-dark-wood",
+      "areas/act1-catacombs"
+    ]
+  },
+  {
+    "id": "acts/act2",
+    "name": "Act II — Secret of the Vizjerei",
+    "act": 2,
+    "town": "Lut Gholein",
+    "reqLevel": 14,
+    "subAreas": [
+      "areas/act2-rocky-waste",
+      "areas/act2-dry-hills",
+      "areas/act2-far-oasis",
+      "areas/act2-lost-city",
+      "areas/act2-arcane-sanctuary",
+      "areas/act2-tomb-of-tal-rasha"
+    ]
+  },
+  {
+    "id": "acts/act3",
+    "name": "Act III — Infernal Gate",
+    "act": 3,
+    "town": "Kurast Docks",
+    "reqLevel": 26,
+    "subAreas": [
+      "areas/act3-spider-forest",
+      "areas/act3-great-marsh",
+      "areas/act3-flayer-jungle",
+      "areas/act3-kurast-bazaar",
+      "areas/act3-travincal",
+      "areas/act3-durance-of-hate"
+    ]
+  },
+  {
+    "id": "acts/act4",
+    "name": "Act IV — Harrowing",
+    "act": 4,
+    "town": "Pandemonium Fortress",
+    "reqLevel": 40,
+    "subAreas": [
+      "areas/act4-outer-steppes",
+      "areas/act4-plains-of-despair",
+      "areas/act4-city-of-the-damned",
+      "areas/act4-river-of-flame",
+      "areas/act4-chaos-sanctuary"
+    ]
+  },
+  {
+    "id": "acts/act5",
+    "name": "Act V — Lord of Destruction",
+    "act": 5,
+    "town": "Harrogath",
+    "reqLevel": 55,
+    "subAreas": [
+      "areas/act5-bloody-foothills",
+      "areas/act5-frigid-highlands",
+      "areas/act5-arreat-plateau",
+      "areas/act5-crystalline-passage",
+      "areas/act5-ancients-way",
+      "areas/act5-throne-of-destruction"
+    ]
+  }
+]

@@ -1,0 +1,65 @@
+@import './stealth.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    @apply h-full;
+  }
+
+  body {
+    @apply bg-d2-bg text-d2-white font-sans antialiased;
+    /* Prevent pull-to-refresh on mobile */
+    overscroll-behavior-y: contain;
+  }
+
+  #root {
+    @apply h-full;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  /* D2-themed scrollbar */
+  .scrollbar-d2 {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.d2.border') theme('colors.d2.bg');
+  }
+
+  .scrollbar-d2::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .scrollbar-d2::-webkit-scrollbar-track {
+    @apply bg-d2-bg;
+  }
+
+  .scrollbar-d2::-webkit-scrollbar-thumb {
+    @apply bg-d2-border rounded;
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.2s ease-in-out;
+  }
+}

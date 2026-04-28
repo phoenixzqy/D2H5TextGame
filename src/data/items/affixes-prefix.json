@@ -1,0 +1,530 @@
+[
+  {
+    "id": "affixes/prefix/sharp",
+    "name": "Sharp",
+    "type": "prefix",
+    "minIlvl": 4,
+    "damageBonus": {
+      "min": 0,
+      "max": 50,
+      "breakdown": {
+        "physical": 50
+      }
+    }
+  },
+  {
+    "id": "affixes/prefix/jagged",
+    "name": "Jagged",
+    "type": "prefix",
+    "minIlvl": 4,
+    "damageBonus": {
+      "min": 7,
+      "max": 10,
+      "breakdown": {
+        "physical": 10
+      }
+    }
+  },
+  {
+    "id": "affixes/prefix/fiery",
+    "name": "Fiery",
+    "type": "prefix",
+    "minIlvl": 4,
+    "damageBonus": {
+      "min": 11,
+      "max": 20,
+      "breakdown": {
+        "fire": 20
+      }
+    }
+  },
+  {
+    "id": "affixes/prefix/smoking",
+    "name": "Smoking",
+    "type": "prefix",
+    "minIlvl": 4,
+    "damageBonus": {
+      "min": 0,
+      "max": 35,
+      "breakdown": {
+        "fire": 35
+      }
+    }
+  },
+  {
+    "id": "affixes/prefix/chilling",
+    "name": "Chilling",
+    "type": "prefix",
+    "minIlvl": 4,
+    "damageBonus": {
+      "min": 11,
+      "max": 20,
+      "breakdown": {
+        "cold": 20
+      }
+    }
+  },
+  {
+    "id": "affixes/prefix/glacial",
+    "name": "Glacial",
+    "type": "prefix",
+    "minIlvl": 4,
+    "damageBonus": {
+      "min": 0,
+      "max": 35,
+      "breakdown": {
+        "cold": 35
+      }
+    }
+  },
+  {
+    "id": "affixes/prefix/static",
+    "name": "Static",
+    "type": "prefix",
+    "minIlvl": 4,
+    "damageBonus": {
+      "min": 15,
+      "max": 28,
+      "breakdown": {
+        "lightning": 28
+      }
+    }
+  },
+  {
+    "id": "affixes/prefix/thundering",
+    "name": "Thundering",
+    "type": "prefix",
+    "minIlvl": 4,
+    "damageBonus": {
+      "min": 0,
+      "max": 35,
+      "breakdown": {
+        "lightning": 35
+      }
+    }
+  },
+  {
+    "id": "affixes/prefix/arcane",
+    "name": "Arcane",
+    "type": "prefix",
+    "minIlvl": 4,
+    "damageBonus": {
+      "min": 11,
+      "max": 20,
+      "breakdown": {
+        "arcane": 20
+      }
+    }
+  },
+  {
+    "id": "affixes/prefix/venomous",
+    "name": "Venomous",
+    "type": "prefix",
+    "minIlvl": 4,
+    "damageBonus": {
+      "min": 6,
+      "max": 10,
+      "breakdown": {
+        "poison": 10
+      }
+    }
+  },
+  {
+    "id": "affixes/prefix/thorned",
+    "name": "Thorned",
+    "type": "prefix",
+    "minIlvl": 4,
+    "damageBonus": {
+      "min": 9,
+      "max": 16,
+      "breakdown": {
+        "thorns": 16
+      }
+    }
+  },
+  {
+    "id": "affixes/prefix/robust",
+    "name": "Robust",
+    "type": "prefix",
+    "minIlvl": 4,
+    "statMods": {
+      "life": 28
+    }
+  },
+  {
+    "id": "affixes/prefix/mystical",
+    "name": "Mystical",
+    "type": "prefix",
+    "minIlvl": 4,
+    "statMods": {
+      "mana": 28
+    }
+  },
+  {
+    "id": "affixes/prefix/strong",
+    "name": "Strong",
+    "type": "prefix",
+    "minIlvl": 4,
+    "coreStats": {
+      "strength": 7
+    }
+  },
+  {
+    "id": "affixes/prefix/dextrous",
+    "name": "Dextrous",
+    "type": "prefix",
+    "minIlvl": 4,
+    "coreStats": {
+      "dexterity": 7
+    }
+  },
+  {
+    "id": "affixes/prefix/vital",
+    "name": "Vital",
+    "type": "prefix",
+    "minIlvl": 4,
+    "coreStats": {
+      "vitality": 7
+    }
+  },
+  {
+    "id": "affixes/prefix/lucid",
+    "name": "Lucid",
+    "type": "prefix",
+    "minIlvl": 4,
+    "coreStats": {
+      "energy": 7
+    }
+  },
+  {
+    "id": "affixes/prefix/warding",
+    "name": "Warding",
+    "type": "prefix",
+    "minIlvl": 4,
+    "statMods": {
+      "defense": 38
+    }
+  },
+  {
+    "id": "affixes/prefix/shimmering",
+    "name": "Shimmering",
+    "type": "prefix",
+    "minIlvl": 4,
+    "resistances": {
+      "fire": 9,
+      "cold": 9,
+      "lightning": 9,
+      "poison": 9,
+      "arcane": 9
+    }
+  },
+  {
+    "id": "affixes/prefix/azure",
+    "name": "Azure",
+    "type": "prefix",
+    "minIlvl": 4,
+    "resistances": {
+      "cold": 19
+    }
+  },
+  {
+    "id": "affixes/prefix/ruby",
+    "name": "Ruby",
+    "type": "prefix",
+    "minIlvl": 4,
+    "resistances": {
+      "fire": 19
+    }
+  },
+  {
+    "id": "affixes/prefix/amber",
+    "name": "Amber",
+    "type": "prefix",
+    "minIlvl": 4,
+    "resistances": {
+      "lightning": 19
+    }
+  },
+  {
+    "id": "affixes/prefix/emerald",
+    "name": "Emerald",
+    "type": "prefix",
+    "minIlvl": 4,
+    "resistances": {
+      "poison": 19
+    }
+  },
+  {
+    "id": "affixes/prefix/sapphire",
+    "name": "Sapphire",
+    "type": "prefix",
+    "minIlvl": 4,
+    "resistances": {
+      "arcane": 19
+    }
+  },
+  {
+    "id": "affixes/prefix/swift",
+    "name": "Swift",
+    "type": "prefix",
+    "minIlvl": 4,
+    "statMods": {
+      "attackSpeed": 11
+    }
+  },
+  {
+    "id": "affixes/prefix/lethal",
+    "name": "Lethal",
+    "type": "prefix",
+    "minIlvl": 4,
+    "statMods": {
+      "critChance": 0.07
+    }
+  },
+  {
+    "id": "affixes/prefix/savage",
+    "name": "Savage",
+    "type": "prefix",
+    "minIlvl": 4,
+    "statMods": {
+      "critDamage": 1.28
+    }
+  },
+  {
+    "id": "affixes/prefix/lifestealing",
+    "name": "Lifestealing",
+    "type": "prefix",
+    "minIlvl": 4,
+    "statMods": {
+      "life": 6
+    }
+  },
+  {
+    "id": "affixes/prefix/manatap",
+    "name": "Manatap",
+    "type": "prefix",
+    "minIlvl": 4,
+    "statMods": {
+      "mana": 6
+    }
+  },
+  {
+    "id": "affixes/prefix/piercing",
+    "name": "Piercing",
+    "type": "prefix",
+    "minIlvl": 4
+  },
+  {
+    "id": "affixes/prefix/burning",
+    "name": "Burning",
+    "type": "prefix",
+    "minIlvl": 4
+  },
+  {
+    "id": "affixes/prefix/freezing",
+    "name": "Freezing",
+    "type": "prefix",
+    "minIlvl": 4
+  },
+  {
+    "id": "affixes/prefix/shocking",
+    "name": "Shocking",
+    "type": "prefix",
+    "minIlvl": 4
+  },
+  {
+    "id": "affixes/prefix/corrosive",
+    "name": "Corrosive",
+    "type": "prefix",
+    "minIlvl": 4
+  },
+  {
+    "id": "affixes/prefix/nimble",
+    "name": "Nimble",
+    "type": "prefix",
+    "minIlvl": 4,
+    "statMods": {
+      "physDodge": 0.06
+    }
+  },
+  {
+    "id": "affixes/prefix/ethereal",
+    "name": "Ethereal",
+    "type": "prefix",
+    "minIlvl": 4,
+    "statMods": {
+      "magicDodge": 0.06
+    }
+  },
+  {
+    "id": "affixes/prefix/blocking",
+    "name": "Blocking",
+    "type": "prefix",
+    "minIlvl": 4
+  },
+  {
+    "id": "affixes/prefix/blessed",
+    "name": "Blessed",
+    "type": "prefix",
+    "minIlvl": 20
+  },
+  {
+    "id": "affixes/prefix/arcanist",
+    "name": "Arcanist",
+    "type": "prefix",
+    "minIlvl": 20
+  },
+  {
+    "id": "affixes/prefix/warrior",
+    "name": "Warrior",
+    "type": "prefix",
+    "minIlvl": 20
+  },
+  {
+    "id": "affixes/prefix/lucky",
+    "name": "Lucky",
+    "type": "prefix",
+    "minIlvl": 4,
+    "statMods": {
+      "magicFind": 28
+    }
+  },
+  {
+    "id": "affixes/prefix/glimmering",
+    "name": "Glimmering",
+    "type": "prefix",
+    "minIlvl": 4,
+    "statMods": {
+      "goldFind": 55
+    }
+  },
+  {
+    "id": "affixes/prefix/vampiric",
+    "name": "Vampiric",
+    "type": "prefix",
+    "minIlvl": 4
+  },
+  {
+    "id": "affixes/prefix/thirsting",
+    "name": "Thirsting",
+    "type": "prefix",
+    "minIlvl": 4
+  },
+  {
+    "id": "affixes/prefix/dread",
+    "name": "Dread",
+    "type": "prefix",
+    "minIlvl": 4
+  },
+  {
+    "id": "affixes/prefix/chain",
+    "name": "Chain",
+    "type": "prefix",
+    "minIlvl": 4
+  },
+  {
+    "id": "affixes/prefix/explosive",
+    "name": "Explosive",
+    "type": "prefix",
+    "minIlvl": 4
+  },
+  {
+    "id": "affixes/prefix/pure",
+    "name": "Pure",
+    "type": "prefix",
+    "minIlvl": 4
+  },
+  {
+    "id": "affixes/prefix/holy",
+    "name": "Holy",
+    "type": "prefix",
+    "minIlvl": 4
+  },
+  {
+    "id": "affixes/prefix/demonic",
+    "name": "Demonic",
+    "type": "prefix",
+    "minIlvl": 4
+  },
+  {
+    "id": "affixes/prefix/godly",
+    "name": "Godly",
+    "type": "prefix",
+    "minIlvl": 36
+  },
+  {
+    "id": "affixes/prefix/replenishing",
+    "name": "Replenishing",
+    "type": "prefix",
+    "minIlvl": 4,
+    "statMods": {
+      "life": 8
+    }
+  },
+  {
+    "id": "affixes/prefix/meditative",
+    "name": "Meditative",
+    "type": "prefix",
+    "minIlvl": 4,
+    "statMods": {
+      "mana": 8
+    }
+  },
+  {
+    "id": "affixes/prefix/resolute",
+    "name": "Resolute",
+    "type": "prefix",
+    "minIlvl": 4
+  },
+  {
+    "id": "affixes/prefix/iron",
+    "name": "Iron",
+    "type": "prefix",
+    "minIlvl": 4,
+    "statMods": {
+      "defense": 55
+    }
+  },
+  {
+    "id": "affixes/prefix/rugged",
+    "name": "Rugged",
+    "type": "prefix",
+    "minIlvl": 4,
+    "statMods": {
+      "life": 3
+    }
+  },
+  {
+    "id": "affixes/prefix/sage",
+    "name": "Sage",
+    "type": "prefix",
+    "minIlvl": 4,
+    "statMods": {
+      "mana": 3
+    }
+  },
+  {
+    "id": "affixes/prefix/keen",
+    "name": "Keen",
+    "type": "prefix",
+    "minIlvl": 4,
+    "statMods": {
+      "attack": 28
+    }
+  },
+  {
+    "id": "affixes/prefix/radiant",
+    "name": "Radiant",
+    "type": "prefix",
+    "minIlvl": 4,
+    "statMods": {
+      "magicFind": 12
+    }
+  },
+  {
+    "id": "affixes/prefix/grandmaster",
+    "name": "Grandmaster",
+    "type": "prefix",
+    "minIlvl": 20
+  }
+]

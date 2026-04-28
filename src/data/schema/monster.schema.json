@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/monster.json",
+  "title": "Monster Definition",
+  "description": "Monster archetype definition matching Diablo2TextGame.md §7.2",
+  "type": "object",
+  "required": ["id", "name", "life", "lifeGrowth", "skills", "baseExperience"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^monsters/[a-z0-9-]+(\\.[a-z0-9-]+)?$",
+      "description": "Unique monster ID (e.g. 'monsters/act1.fallen')"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Display name"
+    },
+    "life": {
+      "$ref": "#/$defs/range",
+      "description": "Base life at level 1 [min, max]"
+    },
+    "lifeGrowth": {
+      "$ref": "#/$defs/range",
+      "description": "Life growth per level [min, max]"
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9-]+$"
+      },
+      "minItems": 1,
+      "description": "Skill IDs this monster can use"
+    },
+    "attackSpeed": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Base attack speed"
+    },
+    "defense": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Base defense"
+    },
+    "resistances": {
+      "$ref": "#/$defs/resistances"
+    },
+    "baseExperience": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Experience reward at level 1"
+    },
+    "canBeElite": {
+      "type": "boolean",
+      "default": true,
+      "description": "Can this monster spawn as elite/champion?"
+    },
+    "canBeBoss": {
+      "type": "boolean",
+      "default": false,
+      "description": "Can this monster be a boss?"
+    },
+    "eliteAffixes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Elite affix IDs this monster can roll"
+    }
+  },
+  "$defs": {
+    "range": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "[min, max] range"
+    },
+    "resistances": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fire": { "type": "number" },
+        "cold": { "type": "number" },
+        "lightning": { "type": "number" },
+        "poison": { "type": "number" },
+        "arcane": { "type": "number" },
+        "physical": { "type": "number" }
+      }
+    }
+  }
+}

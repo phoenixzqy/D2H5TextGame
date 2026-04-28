@@ -1,0 +1,370 @@
+{
+  "$schema": "../schema/quest.schema.json",
+  "quests": [
+    {
+      "id": "quests/act1-den-of-evil",
+      "name": "Den of Evil",
+      "type": "main",
+      "actId": "acts/act1",
+      "giver": "npc/akara",
+      "description": "Akara of the Rogue Encampment asks you to cleanse a nearby cave overrun by demons. Slay every monster within the Den of Evil to restore Akara's faith in her people.",
+      "objectives": [
+        { "id": "obj-clear-den", "type": "clear-area", "areaId": "areas/act1_den_of_evil", "description": "Slay all monsters in the Den of Evil." },
+        { "id": "obj-return", "type": "talk", "npcId": "npc/akara", "description": "Return to Akara." }
+      ],
+      "rewards": { "xp": 500, "gold": 0, "skillPoints": 1 },
+      "unlocks": "areas/act1_cold_plains",
+      "order": 1
+    },
+    {
+      "id": "quests/act1-sisters-burial-grounds",
+      "name": "Sisters' Burial Grounds",
+      "type": "main",
+      "actId": "acts/act1",
+      "giver": "npc/kashya",
+      "description": "Kashya, captain of the Rogues, demands you destroy Blood Raven, a former sister now twisted into a champion of evil who raises the dead in the Burial Grounds.",
+      "objectives": [
+        { "id": "obj-kill-blood-raven", "type": "kill", "targetId": "monsters/blood_raven", "areaId": "areas/act1_burial_grounds", "description": "Slay Blood Raven." },
+        { "id": "obj-return", "type": "talk", "npcId": "npc/kashya", "description": "Return to Kashya." }
+      ],
+      "rewards": { "xp": 1500, "mercenaryUnlock": "mercs/act1-rogue-trainee" },
+      "unlocks": "areas/act1_dark_wood",
+      "order": 2
+    },
+    {
+      "id": "quests/act1-search-for-cain",
+      "name": "The Search for Cain",
+      "type": "main",
+      "actId": "acts/act1",
+      "giver": "npc/akara",
+      "description": "Find Deckard Cain, the last of the Horadrim. Travel through the Dark Wood and the Black Marsh to the ruined village of Tristram and free him from the demonic cage.",
+      "objectives": [
+        { "id": "obj-inifuss-tree", "type": "interact", "targetId": "objects/inifuss_tree", "areaId": "areas/act1_dark_wood", "description": "Retrieve the Scroll of Inifuss." },
+        { "id": "obj-decode", "type": "talk", "npcId": "npc/akara", "description": "Have Akara decipher the scroll." },
+        { "id": "obj-rescue-cain", "type": "interact", "targetId": "objects/cain_cage", "areaId": "areas/act1_tristram", "description": "Free Deckard Cain from his cage." }
+      ],
+      "rewards": { "xp": 2500, "service": "identify_free", "npcUnlock": "npc/cain" },
+      "unlocks": "services/identify",
+      "order": 3
+    },
+    {
+      "id": "quests/act1-forgotten-tower",
+      "name": "The Forgotten Tower",
+      "type": "main",
+      "actId": "acts/act1",
+      "giver": "objects/moldy_tome",
+      "description": "A moldy tome speaks of a forgotten tower drowned in evil and gold. Descend the Forgotten Tower and slay the Countess in her bloody chamber.",
+      "objectives": [
+        { "id": "obj-kill-countess", "type": "kill", "targetId": "monsters/the_countess", "areaId": "areas/act1_countess_chamber", "description": "Slay the Countess." }
+      ],
+      "rewards": { "xp": 3000, "gold": 5000, "lootTable": "loot/countess-runes" },
+      "unlocks": null,
+      "order": 4
+    },
+    {
+      "id": "quests/act1-tools-of-the-trade",
+      "name": "Tools of the Trade",
+      "type": "main",
+      "actId": "acts/act1",
+      "giver": "npc/charsi",
+      "description": "Charsi the smith left her enchanted Horadric Malus in the Monastery Barracks when she fled. Recover it so she may forge again.",
+      "objectives": [
+        { "id": "obj-recover-malus", "type": "fetch", "itemId": "quest/horadric_malus", "areaId": "areas/act1_monastery_barracks", "description": "Recover the Horadric Malus." },
+        { "id": "obj-imbue-ready", "type": "talk", "npcId": "npc/charsi", "description": "Return the Malus to Charsi." }
+      ],
+      "rewards": { "xp": 3500, "service": "imbue_item" },
+      "unlocks": "services/imbue",
+      "order": 5
+    },
+    {
+      "id": "quests/act1-sisters-to-the-slaughter",
+      "name": "Sisters to the Slaughter",
+      "type": "main",
+      "actId": "acts/act1",
+      "giver": "npc/cain",
+      "description": "Andariel, the Maiden of Anguish, has corrupted the Rogue Monastery. Descend through the Catacombs and slay her to free the Sisters and reopen the path east.",
+      "objectives": [
+        { "id": "obj-kill-andariel", "type": "kill-boss", "targetId": "monsters/andariel", "areaId": "areas/act1_catacombs_4", "description": "Slay Andariel." }
+      ],
+      "rewards": { "xp": 8000, "skillPoints": 0, "lootTable": "loot/andariel-q", "itemDrop": "items/unique_act1_boss" },
+      "unlocks": "acts/act2",
+      "order": 6
+    },
+
+    {
+      "id": "quests/act2-radaments-lair",
+      "name": "Radament's Lair",
+      "type": "main",
+      "actId": "acts/act2",
+      "giver": "npc/atma",
+      "description": "Atma the tavern keeper begs you to slay Radament, a mummy that haunts the sewers beneath Lut Gholein and devours the city's people.",
+      "objectives": [
+        { "id": "obj-kill-radament", "type": "kill", "targetId": "monsters/radament", "areaId": "areas/act2_sewers_3", "description": "Slay Radament in the sewers." }
+      ],
+      "rewards": { "xp": 5000, "skillPoints": 1, "itemDrop": "items/book_of_skill" },
+      "unlocks": null,
+      "order": 7
+    },
+    {
+      "id": "quests/act2-horadric-staff",
+      "name": "The Horadric Staff",
+      "type": "main",
+      "actId": "acts/act2",
+      "giver": "npc/cain",
+      "description": "Cain reveals that Tal Rasha's tomb can only be opened with the Horadric Staff. Recover the Cube, the Staff shaft, and the Viper Amulet, then assemble them.",
+      "objectives": [
+        { "id": "obj-cube", "type": "fetch", "itemId": "quest/horadric_cube", "areaId": "areas/act2_halls_of_the_dead_3", "description": "Recover the Horadric Cube." },
+        { "id": "obj-shaft", "type": "fetch", "itemId": "quest/staff_of_kings", "areaId": "areas/act2_maggot_lair_3", "description": "Recover the Staff of Kings." },
+        { "id": "obj-amulet", "type": "fetch", "itemId": "quest/viper_amulet", "areaId": "areas/act2_claw_viper_temple_2", "description": "Recover the Amulet of the Viper." },
+        { "id": "obj-transmute", "type": "transmute", "recipe": "horadric_staff", "description": "Combine staff and amulet in the Horadric Cube." }
+      ],
+      "rewards": { "xp": 6000, "itemDrop": "items/horadric_cube" },
+      "unlocks": "areas/act2_canyon_of_the_magi",
+      "order": 8
+    },
+    {
+      "id": "quests/act2-tainted-sun",
+      "name": "The Tainted Sun",
+      "type": "main",
+      "actId": "acts/act2",
+      "giver": "npc/drognan",
+      "description": "An eclipse smothers the desert sun, the work of the Claw Vipers reviving their idol. Destroy the Serpent Altar deep within the Claw Viper Temple.",
+      "objectives": [
+        { "id": "obj-destroy-altar", "type": "interact", "targetId": "objects/serpent_altar", "areaId": "areas/act2_claw_viper_temple_2", "description": "Destroy the Serpent Altar." }
+      ],
+      "rewards": { "xp": 4500 },
+      "unlocks": null,
+      "order": 9
+    },
+    {
+      "id": "quests/act2-arcane-sanctuary",
+      "name": "The Arcane Sanctuary",
+      "type": "main",
+      "actId": "acts/act2",
+      "giver": "npc/jerhyn",
+      "description": "Jerhyn fears the palace cellar holds a portal to Horazon's Arcane Sanctuary. Search it and find the journal that reveals the true Tomb of Tal Rasha.",
+      "objectives": [
+        { "id": "obj-find-summoner", "type": "kill", "targetId": "monsters/the_summoner", "areaId": "areas/act2_arcane_sanctuary", "description": "Defeat the Summoner." },
+        { "id": "obj-read-journal", "type": "interact", "targetId": "objects/horazon_journal", "areaId": "areas/act2_arcane_sanctuary", "description": "Read Horazon's journal to identify the true tomb." }
+      ],
+      "rewards": { "xp": 7000, "skillPoints": 1 },
+      "unlocks": "areas/act2_canyon_of_the_magi",
+      "order": 10
+    },
+    {
+      "id": "quests/act2-seven-tombs",
+      "name": "The Seven Tombs",
+      "type": "main",
+      "actId": "acts/act2",
+      "giver": "npc/jerhyn",
+      "description": "Within the true Tomb of Tal Rasha, Baal's prison hosts the Lord of Pain himself: Duriel. Shatter the orifice with the Horadric Staff and slay him.",
+      "objectives": [
+        { "id": "obj-open-tomb", "type": "interact", "targetId": "objects/tal_rasha_orifice", "itemRequired": "quest/horadric_staff", "description": "Place the Horadric Staff into the orifice." },
+        { "id": "obj-kill-duriel", "type": "kill-boss", "targetId": "monsters/duriel", "areaId": "areas/act2_duriels_lair", "description": "Slay Duriel." }
+      ],
+      "rewards": { "xp": 12000, "lootTable": "loot/duriel-q" },
+      "unlocks": "acts/act3",
+      "order": 11
+    },
+
+    {
+      "id": "quests/act3-golden-bird",
+      "name": "The Golden Bird",
+      "type": "main",
+      "actId": "acts/act3",
+      "giver": "npc/cain",
+      "description": "A jade figurine of a golden bird, looted from Skatsimi monks, can be transmuted into a potion of life. Find it and bring it to Alkor.",
+      "objectives": [
+        { "id": "obj-find-figurine", "type": "fetch", "itemId": "quest/jade_figurine", "areaId": "areas/act3_spider_forest", "description": "Find the Jade Figurine." },
+        { "id": "obj-give-cain", "type": "talk", "npcId": "npc/cain", "description": "Give the figurine to Cain." },
+        { "id": "obj-give-alkor", "type": "talk", "npcId": "npc/alkor", "description": "Bring the Golden Bird to Alkor." }
+      ],
+      "rewards": { "xp": 4000, "itemDrop": "items/potion_of_life_q", "stat": { "life": 20 } },
+      "unlocks": null,
+      "order": 12
+    },
+    {
+      "id": "quests/act3-blade-of-the-old-religion",
+      "name": "Blade of the Old Religion",
+      "type": "main",
+      "actId": "acts/act3",
+      "giver": "npc/hratli",
+      "description": "Hratli the smith asks you to recover the Gidbinn, a sacred blade hidden in the Flayer Jungle, to free the Kurast refugees from fetish slavery.",
+      "objectives": [
+        { "id": "obj-find-gidbinn", "type": "interact", "targetId": "objects/gidbinn_altar", "areaId": "areas/act3_flayer_jungle", "description": "Recover the Gidbinn from its altar." },
+        { "id": "obj-deliver", "type": "talk", "npcId": "npc/ormus", "description": "Deliver the Gidbinn to Ormus." }
+      ],
+      "rewards": { "xp": 5000, "itemDrop": "items/unique_ring_random" },
+      "unlocks": null,
+      "order": 13
+    },
+    {
+      "id": "quests/act3-khalims-will",
+      "name": "Khalim's Will",
+      "type": "main",
+      "actId": "acts/act3",
+      "giver": "npc/cain",
+      "description": "To shatter the Compelling Orb that protects Mephisto, you must reassemble Khalim's Will: his Heart, Brain, Eye, and Flail, scattered across Kurast.",
+      "objectives": [
+        { "id": "obj-heart", "type": "fetch", "itemId": "quest/khalims_heart", "areaId": "areas/act3_flayer_dungeon_3", "description": "Recover Khalim's Heart." },
+        { "id": "obj-brain", "type": "fetch", "itemId": "quest/khalims_brain", "areaId": "areas/act3_great_marsh", "description": "Recover Khalim's Brain." },
+        { "id": "obj-eye", "type": "fetch", "itemId": "quest/khalims_eye", "areaId": "areas/act3_sewers_2", "description": "Recover Khalim's Eye." },
+        { "id": "obj-flail", "type": "fetch", "itemId": "quest/khalims_flail", "areaId": "areas/act3_travincal", "description": "Recover Khalim's Flail from the High Council." },
+        { "id": "obj-transmute", "type": "transmute", "recipe": "khalims_will", "description": "Transmute the four parts in the Horadric Cube." }
+      ],
+      "rewards": { "xp": 8000, "itemDrop": "items/khalims_will" },
+      "unlocks": "areas/act3_durance_of_hate_1",
+      "order": 14
+    },
+    {
+      "id": "quests/act3-lam-esens-tome",
+      "name": "Lam Esen's Tome",
+      "type": "main",
+      "actId": "acts/act3",
+      "giver": "npc/alkor",
+      "description": "Alkor seeks the Black Book of Lam Esen, hidden somewhere in the temples of Kurast. Recover it and learn its secrets.",
+      "objectives": [
+        { "id": "obj-find-tome", "type": "fetch", "itemId": "quest/lam_esens_tome", "areaId": "areas/act3_kurast_temples", "description": "Recover the Black Book of Lam Esen." },
+        { "id": "obj-deliver", "type": "talk", "npcId": "npc/alkor", "description": "Deliver the tome to Alkor." }
+      ],
+      "rewards": { "xp": 6000, "stat": { "attribute_points": 5 } },
+      "unlocks": null,
+      "order": 15
+    },
+    {
+      "id": "quests/act3-guardian",
+      "name": "The Guardian",
+      "type": "main",
+      "actId": "acts/act3",
+      "giver": "npc/ormus",
+      "description": "Mephisto, Lord of Hatred, awaits in the Durance of Hate beneath Travincal. Strike him down and seal the wound he has torn in the world.",
+      "objectives": [
+        { "id": "obj-kill-mephisto", "type": "kill-boss", "targetId": "monsters/mephisto", "areaId": "areas/act3_durance_of_hate_3", "description": "Slay Mephisto." }
+      ],
+      "rewards": { "xp": 18000, "lootTable": "loot/mephisto-q", "itemDrop": "items/soulstone_mephisto" },
+      "unlocks": "acts/act4",
+      "order": 16
+    },
+
+    {
+      "id": "quests/act4-fallen-angel",
+      "name": "The Fallen Angel",
+      "type": "main",
+      "actId": "acts/act4",
+      "giver": "npc/tyrael",
+      "description": "Izual, the fallen angel who betrayed Heaven, wanders the Plains of Despair as a corrupted shade. Free his tortured soul.",
+      "objectives": [
+        { "id": "obj-kill-izual", "type": "kill", "targetId": "monsters/izual", "areaId": "areas/act4_plains_of_despair", "description": "Defeat Izual and free his soul." }
+      ],
+      "rewards": { "xp": 9000, "skillPoints": 2 },
+      "unlocks": null,
+      "order": 17
+    },
+    {
+      "id": "quests/act4-hellforge",
+      "name": "Hell's Forge",
+      "type": "main",
+      "actId": "acts/act4",
+      "giver": "npc/cain",
+      "description": "Cain bids you destroy Mephisto's Soulstone on the Hellforge. Use Hephasto's hammer to shatter the gem and release a shower of runes and gems.",
+      "objectives": [
+        { "id": "obj-kill-hephasto", "type": "kill", "targetId": "monsters/hephasto", "areaId": "areas/act4_river_of_flame", "description": "Defeat Hephasto the Armorer." },
+        { "id": "obj-shatter", "type": "interact", "targetId": "objects/hellforge", "itemRequired": "items/soulstone_mephisto", "description": "Shatter the Soulstone on the Hellforge." }
+      ],
+      "rewards": { "xp": 7000, "lootTable": "loot/hellforge-runes" },
+      "unlocks": null,
+      "order": 18
+    },
+    {
+      "id": "quests/act4-terrors-end",
+      "name": "Terror's End",
+      "type": "main",
+      "actId": "acts/act4",
+      "giver": "npc/tyrael",
+      "description": "Diablo, Lord of Terror, has manifested in the Chaos Sanctuary. Break the seals, draw him out, and end his reign over the mortal world.",
+      "objectives": [
+        { "id": "obj-seal-1", "type": "interact", "targetId": "objects/diablo_seal_1", "areaId": "areas/act4_chaos_sanctuary", "description": "Break the first seal." },
+        { "id": "obj-seal-2", "type": "interact", "targetId": "objects/diablo_seal_2", "areaId": "areas/act4_chaos_sanctuary", "description": "Break the second seal." },
+        { "id": "obj-seal-3", "type": "interact", "targetId": "objects/diablo_seal_3", "areaId": "areas/act4_chaos_sanctuary", "description": "Break the third seal." },
+        { "id": "obj-kill-diablo", "type": "kill-boss", "targetId": "monsters/diablo", "areaId": "areas/act4_chaos_sanctuary", "description": "Slay Diablo." }
+      ],
+      "rewards": { "xp": 25000, "skillPoints": 0, "lootTable": "loot/diablo-q" },
+      "unlocks": "acts/act5",
+      "order": 19
+    },
+
+    {
+      "id": "quests/act5-siege-on-harrogath",
+      "name": "Siege on Harrogath",
+      "type": "main",
+      "actId": "acts/act5",
+      "giver": "npc/larzuk",
+      "description": "Baal's lieutenant Shenk the Overseer drives demons against Harrogath's walls. Break the siege by slaying him on the Bloody Foothills.",
+      "objectives": [
+        { "id": "obj-kill-shenk", "type": "kill", "targetId": "monsters/shenk_the_overseer", "areaId": "areas/act5_bloody_foothills", "description": "Slay Shenk the Overseer." }
+      ],
+      "rewards": { "xp": 10000, "service": "socket_item" },
+      "unlocks": "services/socket",
+      "order": 20
+    },
+    {
+      "id": "quests/act5-rescue-on-mount-arreat",
+      "name": "Rescue on Mount Arreat",
+      "type": "main",
+      "actId": "acts/act5",
+      "giver": "npc/qual_kehk",
+      "description": "Demons have captured barbarian warriors in the Frigid Highlands. Free them so they may rejoin Harrogath's defense.",
+      "objectives": [
+        { "id": "obj-free-15", "type": "rescue", "targetId": "npc/barbarian_prisoner", "count": 15, "areaId": "areas/act5_frigid_highlands", "description": "Free the captured barbarians." }
+      ],
+      "rewards": { "xp": 8000, "skillPoints": 1, "stat": { "all_resist": 5 } },
+      "unlocks": null,
+      "order": 21
+    },
+    {
+      "id": "quests/act5-prison-of-ice",
+      "name": "Prison of Ice",
+      "type": "main",
+      "actId": "acts/act5",
+      "giver": "npc/malah",
+      "description": "Anya, the elder's daughter, has been frozen by Nihlathak and exiled. Find her, thaw her with Malah's potion, and confront Nihlathak in the Halls of Vaught.",
+      "objectives": [
+        { "id": "obj-find-anya", "type": "interact", "targetId": "objects/frozen_anya", "areaId": "areas/act5_crystalline_passage", "description": "Find Anya in the Crystalline Passage." },
+        { "id": "obj-thaw", "type": "use-item", "itemId": "quest/malahs_potion", "description": "Thaw Anya with Malah's potion." },
+        { "id": "obj-kill-nihlathak", "type": "kill", "targetId": "monsters/nihlathak", "areaId": "areas/act5_halls_of_vaught", "description": "Slay Nihlathak." }
+      ],
+      "rewards": { "xp": 12000, "service": "personalize_item", "stat": { "all_resist": 10 }, "itemDrop": "items/scroll_of_resist" },
+      "unlocks": "services/personalize",
+      "order": 22
+    },
+    {
+      "id": "quests/act5-rite-of-passage",
+      "name": "Rite of Passage",
+      "type": "main",
+      "actId": "acts/act5",
+      "giver": "npc/qual_kehk",
+      "description": "To enter the Worldstone Keep, you must complete the Ancients' Rite. Climb to the Arreat Summit and defeat Talic, Korlic, and Madawc in single combat.",
+      "objectives": [
+        { "id": "obj-kill-ancients", "type": "kill-boss-group", "targetId": "monsters/the_ancients", "areaId": "areas/act5_arreat_summit", "description": "Defeat the three Ancients." }
+      ],
+      "rewards": { "xp": 15000, "skillPoints": 1 },
+      "unlocks": "areas/act5_worldstone_keep_1",
+      "order": 23
+    },
+    {
+      "id": "quests/act5-eve-of-destruction",
+      "name": "Eve of Destruction",
+      "type": "main",
+      "actId": "acts/act5",
+      "giver": "npc/tyrael",
+      "description": "Baal, Lord of Destruction, has reached the Worldstone Chamber. End his life before he corrupts the Worldstone forever.",
+      "objectives": [
+        { "id": "obj-throne-waves", "type": "survive-waves", "areaId": "areas/act5_throne_of_destruction", "waves": 5, "description": "Defeat Baal's five minion waves in the Throne of Destruction." },
+        { "id": "obj-kill-baal", "type": "kill-boss", "targetId": "monsters/baal", "areaId": "areas/act5_worldstone_chamber", "description": "Slay Baal." }
+      ],
+      "rewards": { "xp": 40000, "skillPoints": 0, "lootTable": "loot/baal-q", "title": "titles/slayer_of_baal" },
+      "unlocks": "difficulty/nightmare",
+      "order": 24
+    }
+  ]
+}

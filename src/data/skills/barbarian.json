@@ -1,0 +1,224 @@
+[
+  {
+    "id": "skills-barbarian-bash",
+    "name": "Bash",
+    "description": "A powerful single-target strike with the equipped weapon.",
+    "icon": "skills/barbarian/bash.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 5
+    },
+    "damage": {
+      "min": 50,
+      "max": 70,
+      "breakdown": {
+        "physical": 70
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 5
+    }
+  },
+  {
+    "id": "skills-barbarian-double-swing",
+    "name": "Double Swing",
+    "description": "Two cleaving strikes that hit up to 3 enemies.",
+    "icon": "skills/barbarian/double-swing.png",
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 10
+    },
+    "damage": {
+      "min": 40,
+      "max": 60,
+      "breakdown": {
+        "physical": 60
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 4
+    }
+  },
+  {
+    "id": "skills-barbarian-whirlwind",
+    "name": "Whirlwind",
+    "description": "Spins through enemies, dealing physical damage to all targets.",
+    "icon": "skills/barbarian/whirlwind.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 25
+    },
+    "damage": {
+      "min": 60,
+      "max": 90,
+      "breakdown": {
+        "physical": 90
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ],
+    "synergies": {
+      "chill": 1.1,
+      "burn": 1.25
+    },
+    "scaling": {
+      "damagePerLevel": 6
+    }
+  },
+  {
+    "id": "skills-barbarian-leap-attack",
+    "name": "Leap Attack",
+    "description": "Leaps to a new position and lands with crushing force, stunning all nearby enemies.",
+    "icon": "skills/barbarian/leap-attack.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 20
+    },
+    "damage": {
+      "min": 70,
+      "max": 100,
+      "breakdown": {
+        "physical": 100
+      }
+    },
+    "damageType": "physical",
+    "appliesStatus": [
+      "stun"
+    ],
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 7
+    }
+  },
+  {
+    "id": "skills-barbarian-berserk",
+    "name": "Berserk",
+    "description": "An arcane-fueled rage strike that converts physical damage to arcane.",
+    "icon": "skills/barbarian/berserk.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 20
+    },
+    "damage": {
+      "min": 80,
+      "max": 120,
+      "breakdown": {
+        "arcane": 120
+      }
+    },
+    "damageType": "arcane",
+    "appliesTags": [
+      "arcane"
+    ],
+    "scaling": {
+      "damagePerLevel": 8
+    }
+  },
+  {
+    "id": "skills-barbarian-war-cry",
+    "name": "War Cry",
+    "description": "A devastating shout that damages and stuns all enemies.",
+    "icon": "skills/barbarian/war-cry.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 20,
+    "cost": {
+      "mana": 30
+    },
+    "damage": {
+      "min": 30,
+      "max": 50,
+      "breakdown": {
+        "physical": 50
+      }
+    },
+    "damageType": "physical",
+    "appliesStatus": [
+      "stun"
+    ],
+    "appliesTags": [
+      "physical"
+    ],
+    "scaling": {
+      "damagePerLevel": 3
+    }
+  },
+  {
+    "id": "skills-barbarian-iron-skin",
+    "name": "Iron Skin",
+    "description": "Increases defense by 100%.",
+    "icon": "skills/barbarian/iron-skin.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-barbarian-natural-resistance",
+    "name": "Natural Resistance",
+    "description": "Increases all resistances by 30%.",
+    "icon": "skills/barbarian/natural-resistance.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-barbarian-battle-orders",
+    "name": "Battle Orders",
+    "description": "At combat start, increases max HP and mana by 50%.",
+    "icon": "skills/barbarian/battle-orders.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  },
+  {
+    "id": "skills-barbarian-shout",
+    "name": "Shout",
+    "description": "At combat start, grants self and mercenary +50% defense for 5 turns.",
+    "icon": "skills/barbarian/shout.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 20
+  }
+]

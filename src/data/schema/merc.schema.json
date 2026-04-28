@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/merc.json",
+  "title": "Mercenary Definition",
+  "description": "Mercenary archetype definition",
+  "type": "object",
+  "required": ["id", "name", "archetype", "rarity", "baseStats", "skills", "reqLevel"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^mercs/[a-z0-9-]+$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "archetype": {
+      "type": "string",
+      "description": "Mercenary class/type"
+    },
+    "rarity": {
+      "type": "string",
+      "enum": ["R", "SR", "SSR"]
+    },
+    "baseStats": {
+      "$ref": "#/$defs/baseStats"
+    },
+    "skills": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Skill IDs"
+    },
+    "comboOrder": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Default skill combo order"
+    },
+    "reqLevel": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "flavor": {
+      "type": "string",
+      "description": "Flavor text"
+    }
+  },
+  "$defs": {
+    "baseStats": {
+      "type": "object",
+      "required": ["strength", "dexterity", "vitality", "energy"],
+      "additionalProperties": false,
+      "properties": {
+        "strength": { "type": "integer", "minimum": 1 },
+        "dexterity": { "type": "integer", "minimum": 1 },
+        "vitality": { "type": "integer", "minimum": 1 },
+        "energy": { "type": "integer", "minimum": 1 }
+      }
+    }
+  }
+}

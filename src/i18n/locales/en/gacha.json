@@ -1,0 +1,13 @@
+{
+  "gacha": "Recruit",
+  "wishstones": "Wishstones",
+  "singlePull": "Single Pull",
+  "tenPull": "10× Pull",
+  "cost": "Cost: {{amount}}",
+  "pityCounter": "Pity: {{count}} / 90",
+  "rates": "Rates",
+  "recentPulls": "Recent Pulls",
+  "noRecent": "No history yet",
+  "result": "Pull Result",
+  "confirm": "Confirm"
+}

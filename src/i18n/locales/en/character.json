@@ -1,0 +1,24 @@
+{
+  "createCharacter": "Create Character",
+  "selectClass": "Select Class",
+  "characterName": "Character Name",
+  "enterName": "Enter Name",
+  "male": "Male",
+  "female": "Female",
+  "gender": "Gender",
+  "startGame": "Enter",
+  "startingStats": "Starting Stats",
+  "strength": "Strength",
+  "dexterity": "Dexterity",
+  "vitality": "Vitality",
+  "energy": "Energy",
+  "classes": {
+    "barbarian": "Barbarian",
+    "sorceress": "Sorceress",
+    "necromancer": "Necromancer",
+    "paladin": "Paladin",
+    "amazon": "Amazon",
+    "druid": "Druid",
+    "assassin": "Assassin"
+  }
+}

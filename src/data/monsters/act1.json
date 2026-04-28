@@ -1,0 +1,371 @@
+[
+  {
+    "id": "monsters/act1.fallen",
+    "name": "Fallen",
+    "life": [
+      30,
+      50
+    ],
+    "lifeGrowth": [
+      3,
+      5
+    ],
+    "skills": [
+      "monster-weak-melee",
+      "monster-panic-flee"
+    ],
+    "attackSpeed": 95,
+    "defense": 10,
+    "resistances": {},
+    "baseExperience": 10,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act1.zombie",
+    "name": "Zombie",
+    "life": [
+      50,
+      70
+    ],
+    "lifeGrowth": [
+      5,
+      7
+    ],
+    "skills": [
+      "monster-weak-melee"
+    ],
+    "attackSpeed": 60,
+    "defense": 12,
+    "resistances": {
+      "fire": 0,
+      "cold": 25
+    },
+    "baseExperience": 10,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act1.quill-rat",
+    "name": "Quill Rat",
+    "life": [
+      20,
+      40
+    ],
+    "lifeGrowth": [
+      2,
+      4
+    ],
+    "skills": [
+      "monster-weak-melee"
+    ],
+    "attackSpeed": 120,
+    "defense": 8,
+    "resistances": {},
+    "baseExperience": 10,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act1.dark-archer",
+    "name": "Dark Archer",
+    "life": [
+      40,
+      60
+    ],
+    "lifeGrowth": [
+      4,
+      6
+    ],
+    "skills": [
+      "monster-weak-ranged"
+    ],
+    "attackSpeed": 100,
+    "defense": 15,
+    "resistances": {},
+    "baseExperience": 10,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act1.fallen-shaman",
+    "name": "Fallen Shaman",
+    "life": [
+      60,
+      90
+    ],
+    "lifeGrowth": [
+      6,
+      10
+    ],
+    "skills": [
+      "monster-fire-bolt",
+      "monster-resurrect-fallen"
+    ],
+    "attackSpeed": 85,
+    "defense": 20,
+    "resistances": {
+      "fire": 25
+    },
+    "baseExperience": 25,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act1.carver",
+    "name": "Carver",
+    "life": [
+      40,
+      60
+    ],
+    "lifeGrowth": [
+      4,
+      6
+    ],
+    "skills": [
+      "monster-weak-melee"
+    ],
+    "attackSpeed": 100,
+    "defense": 15,
+    "resistances": {},
+    "baseExperience": 10,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act1.tainted",
+    "name": "Tainted",
+    "life": [
+      50,
+      70
+    ],
+    "lifeGrowth": [
+      5,
+      7
+    ],
+    "skills": [
+      "monster-weak-melee",
+      "monster-poison-spit"
+    ],
+    "attackSpeed": 90,
+    "defense": 15,
+    "resistances": {
+      "poison": 25
+    },
+    "baseExperience": 10,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act1.bone-warrior",
+    "name": "Bone Warrior",
+    "life": [
+      70,
+      100
+    ],
+    "lifeGrowth": [
+      7,
+      10
+    ],
+    "skills": [
+      "monster-strong-melee"
+    ],
+    "attackSpeed": 90,
+    "defense": 35,
+    "resistances": {
+      "physical": 25
+    },
+    "baseExperience": 25,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act1.dark-stalker",
+    "name": "Dark Stalker",
+    "life": [
+      100,
+      150
+    ],
+    "lifeGrowth": [
+      10,
+      15
+    ],
+    "skills": [
+      "monster-strong-melee",
+      "monster-charge"
+    ],
+    "attackSpeed": 120,
+    "defense": 50,
+    "resistances": {
+      "fire": 25,
+      "cold": 25,
+      "lightning": 25,
+      "poison": 25,
+      "arcane": 25
+    },
+    "baseExperience": 50,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act1.blood-raven",
+    "name": "Blood Raven",
+    "life": [
+      500,
+      700
+    ],
+    "lifeGrowth": [
+      50,
+      70
+    ],
+    "skills": [
+      "monster-fire-arrow",
+      "monster-summon-adds"
+    ],
+    "attackSpeed": 130,
+    "defense": 80,
+    "resistances": {
+      "fire": 50,
+      "cold": -25
+    },
+    "baseExperience": 300,
+    "canBeElite": false,
+    "canBeBoss": true
+  },
+  {
+    "id": "monsters/act1.andariel",
+    "name": "Andariel, Maiden of Anguish",
+    "life": [
+      2200,
+      2800
+    ],
+    "lifeGrowth": [
+      220,
+      280
+    ],
+    "skills": [
+      "monster-strong-melee",
+      "monster-poison-spit",
+      "monster-poison-cloud",
+      "monster-charge"
+    ],
+    "attackSpeed": 110,
+    "defense": 200,
+    "resistances": {
+      "poison": 75,
+      "fire": 50,
+      "cold": 0
+    },
+    "baseExperience": 1500,
+    "canBeElite": false,
+    "canBeBoss": true
+  }
+]

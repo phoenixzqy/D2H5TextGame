@@ -1,0 +1,800 @@
+[
+  {
+    "id": "monster-weak-melee",
+    "name": "Weak Melee",
+    "description": "A clumsy melee swing used by trash mobs.",
+    "icon": "skills/monster/weak-melee.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 10,
+      "max": 15,
+      "breakdown": {
+        "physical": 15
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ]
+  },
+  {
+    "id": "monster-strong-melee",
+    "name": "Strong Melee",
+    "description": "A powerful melee strike used by elites and bosses.",
+    "icon": "skills/monster/strong-melee.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 30,
+      "max": 50,
+      "breakdown": {
+        "physical": 50
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ]
+  },
+  {
+    "id": "monster-fire-breath",
+    "name": "Fire Breath",
+    "description": "A cone of flame breathed at the party, burning targets.",
+    "icon": "skills/monster/fire-breath.png",
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 40,
+      "max": 60,
+      "breakdown": {
+        "fire": 60
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ]
+  },
+  {
+    "id": "monster-poison-spit",
+    "name": "Poison Spit",
+    "description": "Spits venom at a single target, applying 2 stacks of poison.",
+    "icon": "skills/monster/poison-spit.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 20,
+      "max": 30,
+      "breakdown": {
+        "poison": 30
+      }
+    },
+    "damageType": "poison",
+    "appliesStatus": [
+      "poison"
+    ],
+    "appliesTags": [
+      "poison"
+    ]
+  },
+  {
+    "id": "monster-lightning-bolt",
+    "name": "Lightning Bolt",
+    "description": "Hurls a bolt of lightning at a single target.",
+    "icon": "skills/monster/lightning-bolt.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 50,
+      "max": 70,
+      "breakdown": {
+        "lightning": 70
+      }
+    },
+    "damageType": "lightning",
+    "appliesStatus": [
+      "paralyze"
+    ],
+    "appliesTags": [
+      "lightning",
+      "shock"
+    ]
+  },
+  {
+    "id": "monster-frost-aura",
+    "name": "Frost Aura",
+    "description": "An aura of cold that chills all nearby enemies each turn.",
+    "icon": "skills/monster/frost-aura.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 15,
+      "max": 25,
+      "breakdown": {
+        "cold": 25
+      }
+    },
+    "damageType": "cold",
+    "appliesStatus": [
+      "chill"
+    ],
+    "appliesTags": [
+      "cold",
+      "chill"
+    ]
+  },
+  {
+    "id": "monster-charge",
+    "name": "Charge",
+    "description": "A boss ability: charges a target for heavy physical damage.",
+    "icon": "skills/monster/monster-charge.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 60,
+      "max": 90,
+      "breakdown": {
+        "physical": 90
+      }
+    },
+    "damageType": "physical",
+    "appliesTags": [
+      "physical"
+    ]
+  },
+  {
+    "id": "monster-summon-adds",
+    "name": "Summon Minions",
+    "description": "Summons 2 trash minions to aid the boss.",
+    "icon": "skills/monster/summon-adds.png",
+    "trigger": "active",
+    "target": "summon",
+    "cooldown": 5,
+    "minLevel": 1,
+    "maxLevel": 1
+  },
+  {
+    "id": "monster-heal",
+    "name": "Heal",
+    "description": "Restores 30% of the caster's max HP.",
+    "icon": "skills/monster/heal.png",
+    "trigger": "active",
+    "target": "self",
+    "cooldown": 4,
+    "heal": {
+      "min": 30,
+      "max": 30,
+      "target": "self"
+    },
+    "minLevel": 1,
+    "maxLevel": 1
+  },
+  {
+    "id": "monster-teleport",
+    "name": "Teleport",
+    "description": "Teleports to a new position, gaining +50% dodge for 1 turn.",
+    "icon": "skills/monster/teleport.png",
+    "trigger": "active",
+    "target": "self",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 1
+  },
+  {
+    "id": "monster-ice-shard",
+    "name": "Ice Shard",
+    "description": "Hurls a shard of ice at a single target, chilling them.",
+    "icon": "skills/monster/ice-shard.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 35,
+      "max": 55,
+      "breakdown": {
+        "cold": 55
+      }
+    },
+    "damageType": "cold",
+    "appliesStatus": [
+      "chill"
+    ],
+    "appliesTags": [
+      "cold",
+      "chill"
+    ]
+  },
+  {
+    "id": "monster-inferno",
+    "name": "Inferno",
+    "description": "Bathes all enemies in fire over time.",
+    "icon": "skills/monster/inferno.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 25,
+      "max": 40,
+      "breakdown": {
+        "fire": 40
+      }
+    },
+    "damageType": "fire",
+    "appliesStatus": [
+      "burn"
+    ],
+    "appliesTags": [
+      "fire",
+      "burn"
+    ]
+  },
+  {
+    "id": "monster-thunder-storm",
+    "name": "Thunder Storm",
+    "description": "Calls down lightning bolts on all enemies.",
+    "icon": "skills/monster/thunder-storm.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 40,
+      "max": 60,
+      "breakdown": {
+        "lightning": 60
+      }
+    },
+    "damageType": "lightning",
+    "appliesStatus": [
+      "paralyze"
+    ],
+    "appliesTags": [
+      "lightning",
+      "shock"
+    ]
+  },
+  {
+    "id": "monster-poison-cloud",
+    "name": "Poison Cloud",
+    "description": "Releases a cloud of toxic gas that poisons all enemies.",
+    "icon": "skills/monster/poison-cloud.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 15,
+      "max": 25,
+      "breakdown": {
+        "poison": 25
+      }
+    },
+    "damageType": "poison",
+    "appliesStatus": [
+      "poison"
+    ],
+    "appliesTags": [
+      "poison"
+    ]
+  },
+  {
+    "id": "monster-arcane-bolt",
+    "name": "Arcane Bolt",
+    "description": "Fires a bolt of arcane energy at a single target.",
+    "icon": "skills/monster/arcane-bolt.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 45,
+      "max": 65,
+      "breakdown": {
+        "arcane": 65
+      }
+    },
+    "damageType": "arcane",
+    "appliesTags": [
+      "arcane"
+    ]
+  },
+  {
+    "id": "monster-rend",
+    "name": "Rend",
+    "description": "A vicious melee tear that causes the target to bleed.",
+    "icon": "skills/monster/rend.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 25,
+      "max": 40,
+      "breakdown": {
+        "physical": 40
+      }
+    },
+    "damageType": "physical",
+    "appliesStatus": [
+      "bleed"
+    ],
+    "appliesTags": [
+      "physical",
+      "bleed"
+    ]
+  },
+  {
+    "id": "monster-frozen-orb",
+    "name": "Frozen Orb",
+    "description": "Hurls a frozen orb that hits all enemies.",
+    "icon": "skills/monster/frozen-orb.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 45,
+      "max": 65,
+      "breakdown": {
+        "cold": 65
+      }
+    },
+    "damageType": "cold",
+    "appliesStatus": [
+      "chill"
+    ],
+    "appliesTags": [
+      "cold",
+      "chill"
+    ]
+  },
+  {
+    "id": "monster-leap",
+    "name": "Leap",
+    "description": "Leaps and crashes down on all enemies, stunning briefly.",
+    "icon": "skills/monster/leap.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 30,
+      "max": 50,
+      "breakdown": {
+        "physical": 50
+      }
+    },
+    "damageType": "physical",
+    "appliesStatus": [
+      "stun"
+    ],
+    "appliesTags": [
+      "physical"
+    ]
+  },
+  {
+    "id": "monster-enrage",
+    "name": "Enrage",
+    "description": "Boss enrages, gaining +50% damage for 5 turns.",
+    "icon": "skills/monster/enrage.png",
+    "trigger": "passive",
+    "target": "self",
+    "cooldown": 0,
+    "minLevel": 1,
+    "maxLevel": 1
+  },
+  {
+    "id": "monster-thorns-aura",
+    "name": "Thorns Aura",
+    "description": "Reflects a portion of melee damage taken back to attackers.",
+    "icon": "skills/monster/thorns-aura.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 5,
+      "max": 15,
+      "breakdown": {
+        "thorns": 15
+      }
+    },
+    "damageType": "thorns",
+    "appliesTags": [
+      "physical"
+    ]
+  },
+  {
+    "id": "monster-panic-flee",
+    "name": "Panic Flee",
+    "description": "The Fallen panics and flees in fear, granting itself extra dodge for a turn.",
+    "icon": "skills/monster/panic-flee.png",
+    "trigger": "active",
+    "target": "self",
+    "cooldown": 5,
+    "minLevel": 1,
+    "maxLevel": 1
+  },
+  {
+    "id": "monster-weak-ranged",
+    "name": "Weak Ranged",
+    "description": "A weak ranged attack used by trash archers and shooters.",
+    "icon": "skills/monster/weak-ranged.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 1,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 12,
+      "max": 18,
+      "breakdown": { "physical": 18 }
+    },
+    "damageType": "physical",
+    "appliesTags": ["physical"]
+  },
+  {
+    "id": "monster-fire-bolt",
+    "name": "Fire Bolt",
+    "description": "Hurls a small bolt of fire at one target.",
+    "icon": "skills/monster/fire-bolt.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 25,
+      "max": 40,
+      "breakdown": { "fire": 40 }
+    },
+    "damageType": "fire",
+    "appliesStatus": ["burn"],
+    "appliesTags": ["fire", "burn"]
+  },
+  {
+    "id": "monster-resurrect-fallen",
+    "name": "Resurrect Fallen",
+    "description": "Shamans revive recently-slain Fallen allies.",
+    "icon": "skills/monster/resurrect-fallen.png",
+    "trigger": "active",
+    "target": "summon",
+    "cooldown": 5,
+    "minLevel": 1,
+    "maxLevel": 1
+  },
+  {
+    "id": "monster-frost-bolt",
+    "name": "Frost Bolt",
+    "description": "Hurls a bolt of cold that chills its target.",
+    "icon": "skills/monster/frost-bolt.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 25,
+      "max": 40,
+      "breakdown": { "cold": 40 }
+    },
+    "damageType": "cold",
+    "appliesStatus": ["chill"],
+    "appliesTags": ["cold", "chill"]
+  },
+  {
+    "id": "monster-fire-arrow",
+    "name": "Fire Arrow",
+    "description": "Looses a flaming arrow at a single target, igniting them.",
+    "icon": "skills/monster/fire-arrow.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 35,
+      "max": 55,
+      "breakdown": { "fire": 55 }
+    },
+    "damageType": "fire",
+    "appliesStatus": ["burn"],
+    "appliesTags": ["fire", "burn"]
+  },
+  {
+    "id": "monster-poison-dagger",
+    "name": "Poison Dagger",
+    "description": "A vicious dagger thrust laced with toxin.",
+    "icon": "skills/monster/poison-dagger.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 20,
+      "max": 35,
+      "breakdown": { "poison": 35 }
+    },
+    "damageType": "poison",
+    "appliesStatus": ["poison"],
+    "appliesTags": ["poison"]
+  },
+  {
+    "id": "monster-fire-ball",
+    "name": "Fire Ball",
+    "description": "A small explosion of fire that scorches all nearby enemies.",
+    "icon": "skills/monster/fire-ball.png",
+    "trigger": "active",
+    "target": "area-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 45,
+      "max": 70,
+      "breakdown": { "fire": 70 }
+    },
+    "damageType": "fire",
+    "appliesStatus": ["burn"],
+    "appliesTags": ["fire", "burn"]
+  },
+  {
+    "id": "monster-frost-nova",
+    "name": "Frost Nova",
+    "description": "A circle of frost erupts outward, chilling all enemies.",
+    "icon": "skills/monster/frost-nova.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 30,
+      "max": 50,
+      "breakdown": { "cold": 50 }
+    },
+    "damageType": "cold",
+    "appliesStatus": ["chill"],
+    "appliesTags": ["cold", "chill"]
+  },
+  {
+    "id": "monster-lightning",
+    "name": "Lightning",
+    "description": "Hurls a bolt of lightning that arcs through enemies.",
+    "icon": "skills/monster/lightning.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 40,
+      "max": 65,
+      "breakdown": { "lightning": 65 }
+    },
+    "damageType": "lightning",
+    "appliesStatus": ["paralyze"],
+    "appliesTags": ["lightning", "shock"]
+  },
+  {
+    "id": "monster-corpse-explosion",
+    "name": "Corpse Explosion",
+    "description": "Detonates a nearby corpse for area physical and fire damage.",
+    "icon": "skills/monster/corpse-explosion.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 35,
+      "max": 60,
+      "breakdown": { "physical": 30, "fire": 30 }
+    },
+    "damageType": "fire",
+    "appliesTags": ["fire", "physical"]
+  },
+  {
+    "id": "monster-bone-spirit",
+    "name": "Bone Spirit",
+    "description": "A homing bone spirit that seeks the most wounded foe.",
+    "icon": "skills/monster/bone-spirit.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 50,
+      "max": 80,
+      "breakdown": { "arcane": 80 }
+    },
+    "damageType": "arcane",
+    "appliesTags": ["arcane"]
+  },
+  {
+    "id": "monster-bone-prison",
+    "name": "Bone Prison",
+    "description": "Encases the target in a bone cage, preventing dodge.",
+    "icon": "skills/monster/bone-prison.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "appliesStatus": ["stun"]
+  },
+  {
+    "id": "monster-leap-attack",
+    "name": "Leap Attack",
+    "description": "Leaps onto a target and crashes down for heavy physical damage.",
+    "icon": "skills/monster/leap-attack.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 60,
+      "max": 90,
+      "breakdown": { "physical": 90 }
+    },
+    "damageType": "physical",
+    "appliesStatus": ["stun"],
+    "appliesTags": ["physical"]
+  },
+  {
+    "id": "monster-war-cry",
+    "name": "War Cry",
+    "description": "A thunderous shout that stuns nearby foes.",
+    "icon": "skills/monster/war-cry.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 20,
+      "max": 35,
+      "breakdown": { "physical": 35 }
+    },
+    "damageType": "physical",
+    "appliesStatus": ["stun"],
+    "appliesTags": ["physical"]
+  },
+  {
+    "id": "monster-shout",
+    "name": "Shout",
+    "description": "A rallying barbarian shout that increases the caster's defense.",
+    "icon": "skills/monster/shout.png",
+    "trigger": "active",
+    "target": "self",
+    "cooldown": 5,
+    "minLevel": 1,
+    "maxLevel": 1
+  },
+  {
+    "id": "monster-whirlwind",
+    "name": "Whirlwind",
+    "description": "Spins through enemies, striking everyone in melee range.",
+    "icon": "skills/monster/whirlwind.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 50,
+      "max": 80,
+      "breakdown": { "physical": 80 }
+    },
+    "damageType": "physical",
+    "appliesTags": ["physical"]
+  },
+  {
+    "id": "monster-curse",
+    "name": "Curse",
+    "description": "A vile curse that amplifies damage taken by the target.",
+    "icon": "skills/monster/curse.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "appliesTags": ["amp-damage"]
+  },
+  {
+    "id": "monster-mana-rift",
+    "name": "Mana Rift",
+    "description": "Tears open a rift that drains the target's mana and burns them.",
+    "icon": "skills/monster/mana-rift.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 3,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 40,
+      "max": 60,
+      "breakdown": { "arcane": 60 }
+    },
+    "damageType": "arcane",
+    "appliesTags": ["arcane"]
+  },
+  {
+    "id": "monster-tentacles",
+    "name": "Festering Tentacles",
+    "description": "Summons writhing tentacles that lash all enemies.",
+    "icon": "skills/monster/tentacles.png",
+    "trigger": "active",
+    "target": "all-enemies",
+    "cooldown": 4,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 45,
+      "max": 70,
+      "breakdown": { "physical": 35, "poison": 35 }
+    },
+    "damageType": "physical",
+    "appliesStatus": ["poison"],
+    "appliesTags": ["physical", "poison"]
+  },
+  {
+    "id": "monster-plague-spit",
+    "name": "Plague Spit",
+    "description": "Spits a globule of plague that poisons enemies.",
+    "icon": "skills/monster/plague-spit.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 25,
+      "max": 40,
+      "breakdown": { "poison": 40 }
+    },
+    "damageType": "poison",
+    "appliesStatus": ["poison"],
+    "appliesTags": ["poison"]
+  }
+]

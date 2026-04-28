@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/runeword.json",
+  "title": "Runeword Definition",
+  "description": "Runeword (orange) item definition",
+  "type": "object",
+  "required": ["id", "name", "runes", "allowedBases", "sockets", "reqLevel", "stats"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^runewords/[a-z0-9-]+$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "runes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 2,
+      "description": "Required rune sequence (in order)"
+    },
+    "allowedBases": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["weapon", "armor", "jewelry", "charm", "rune", "gem", "material"]
+      },
+      "minItems": 1
+    },
+    "sockets": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 6
+    },
+    "reqLevel": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "stats": {
+      "$ref": "#/$defs/stats"
+    }
+  },
+  "$defs": {
+    "stats": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "coreStats": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "strength": { "type": "integer" },
+            "dexterity": { "type": "integer" },
+            "vitality": { "type": "integer" },
+            "energy": { "type": "integer" }
+          }
+        },
+        "resistances": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "fire": { "type": "number" },
+            "cold": { "type": "number" },
+            "lightning": { "type": "number" },
+            "poison": { "type": "number" },
+            "arcane": { "type": "number" },
+            "physical": { "type": "number" }
+          }
+        },
+        "statMods": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "life": { "type": "number" },
+            "mana": { "type": "number" },
+            "attack": { "type": "number" },
+            "defense": { "type": "number" },
+            "attackSpeed": { "type": "number" },
+            "critChance": { "type": "number" },
+            "critDamage": { "type": "number" },
+            "physDodge": { "type": "number" },
+            "magicDodge": { "type": "number" },
+            "magicFind": { "type": "number" },
+            "goldFind": { "type": "number" }
+          }
+        },
+        "grantsSkills": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

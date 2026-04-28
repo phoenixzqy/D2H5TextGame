@@ -1,0 +1,618 @@
+[
+  {
+    "id": "runewords/steel",
+    "name": "Steel",
+    "runes": [
+      "runes/tir",
+      "runes/el"
+    ],
+    "allowedBases": [
+      "weapon"
+    ],
+    "sockets": 2,
+    "reqLevel": 13,
+    "stats": {
+      "statMods": {
+        "attackSpeed": 25,
+        "attack": 50,
+        "mana": 2
+      }
+    }
+  },
+  {
+    "id": "runewords/stealth",
+    "name": "Stealth",
+    "runes": [
+      "runes/tal",
+      "runes/eth"
+    ],
+    "allowedBases": [
+      "armor"
+    ],
+    "sockets": 2,
+    "reqLevel": 17,
+    "stats": {
+      "coreStats": {
+        "dexterity": 6
+      },
+      "statMods": {
+        "mana": 15
+      },
+      "resistances": {
+        "poison": 30
+      }
+    }
+  },
+  {
+    "id": "runewords/leaf",
+    "name": "Leaf",
+    "runes": [
+      "runes/tir",
+      "runes/ral"
+    ],
+    "allowedBases": [
+      "weapon"
+    ],
+    "sockets": 2,
+    "reqLevel": 19,
+    "stats": {
+      "resistances": {
+        "cold": 33
+      }
+    }
+  },
+  {
+    "id": "runewords/malice",
+    "name": "Malice",
+    "runes": [
+      "runes/ith",
+      "runes/el",
+      "runes/eth"
+    ],
+    "allowedBases": [
+      "weapon"
+    ],
+    "sockets": 3,
+    "reqLevel": 15,
+    "stats": {
+      "statMods": {
+        "attack": 50,
+        "life": 5
+      }
+    }
+  },
+  {
+    "id": "runewords/strength",
+    "name": "Strength",
+    "runes": [
+      "runes/amn",
+      "runes/tir"
+    ],
+    "allowedBases": [
+      "weapon"
+    ],
+    "sockets": 2,
+    "reqLevel": 25,
+    "stats": {
+      "coreStats": {
+        "strength": 20,
+        "vitality": 10
+      },
+      "statMods": {
+        "critChance": 0.25,
+        "mana": 2
+      }
+    }
+  },
+  {
+    "id": "runewords/ancients-pledge",
+    "name": "Ancients Pledge",
+    "runes": [
+      "runes/ral",
+      "runes/ort",
+      "runes/tal"
+    ],
+    "allowedBases": [
+      "armor"
+    ],
+    "sockets": 3,
+    "reqLevel": 21,
+    "stats": {
+      "statMods": {
+        "defense": 50
+      },
+      "resistances": {
+        "fire": 48,
+        "cold": 43,
+        "lightning": 48,
+        "poison": 48
+      }
+    }
+  },
+  {
+    "id": "runewords/lore",
+    "name": "Lore",
+    "runes": [
+      "runes/ort",
+      "runes/sol"
+    ],
+    "allowedBases": [
+      "armor"
+    ],
+    "sockets": 2,
+    "reqLevel": 27,
+    "stats": {
+      "coreStats": {
+        "energy": 10
+      },
+      "resistances": {
+        "lightning": 30
+      }
+    }
+  },
+  {
+    "id": "runewords/wealth",
+    "name": "Wealth",
+    "runes": [
+      "runes/lem",
+      "runes/ko",
+      "runes/tir"
+    ],
+    "allowedBases": [
+      "armor"
+    ],
+    "sockets": 3,
+    "reqLevel": 43,
+    "stats": {
+      "coreStats": {
+        "dexterity": 10
+      },
+      "statMods": {
+        "goldFind": 300,
+        "magicFind": 100,
+        "mana": 2
+      }
+    }
+  },
+  {
+    "id": "runewords/steelclash",
+    "name": "Steelclash",
+    "runes": [
+      "runes/shael",
+      "runes/eth",
+      "runes/lum"
+    ],
+    "allowedBases": [
+      "armor"
+    ],
+    "sockets": 3,
+    "reqLevel": 29,
+    "stats": {
+      "coreStats": {
+        "energy": 10
+      },
+      "statMods": {
+        "mana": 15
+      }
+    }
+  },
+  {
+    "id": "runewords/smoke",
+    "name": "Smoke",
+    "runes": [
+      "runes/nef",
+      "runes/lum"
+    ],
+    "allowedBases": [
+      "armor"
+    ],
+    "sockets": 2,
+    "reqLevel": 37,
+    "stats": {
+      "coreStats": {
+        "energy": 10
+      },
+      "statMods": {
+        "defense": 280
+      },
+      "resistances": {
+        "fire": 15,
+        "cold": 15,
+        "lightning": 15,
+        "poison": 15,
+        "arcane": 15
+      }
+    }
+  },
+  {
+    "id": "runewords/rhyme",
+    "name": "Rhyme",
+    "runes": [
+      "runes/shael",
+      "runes/eth"
+    ],
+    "allowedBases": [
+      "armor"
+    ],
+    "sockets": 2,
+    "reqLevel": 29,
+    "stats": {
+      "statMods": {
+        "magicFind": 50,
+        "goldFind": 25,
+        "mana": 15
+      },
+      "resistances": {
+        "fire": 25,
+        "cold": 25,
+        "lightning": 25,
+        "poison": 25,
+        "arcane": 25
+      }
+    }
+  },
+  {
+    "id": "runewords/insight",
+    "name": "Insight",
+    "runes": [
+      "runes/ral",
+      "runes/tir",
+      "runes/tal",
+      "runes/sol"
+    ],
+    "allowedBases": [
+      "weapon"
+    ],
+    "sockets": 4,
+    "reqLevel": 27,
+    "stats": {
+      "coreStats": {
+        "strength": 5,
+        "dexterity": 5,
+        "vitality": 5,
+        "energy": 5
+      },
+      "statMods": {
+        "attack": 180,
+        "mana": 8
+      }
+    }
+  },
+  {
+    "id": "runewords/treachery",
+    "name": "Treachery",
+    "runes": [
+      "runes/shael",
+      "runes/thul",
+      "runes/lem"
+    ],
+    "allowedBases": [
+      "armor"
+    ],
+    "sockets": 3,
+    "reqLevel": 43,
+    "stats": {
+      "statMods": {
+        "attackSpeed": 45,
+        "goldFind": 50
+      }
+    }
+  },
+  {
+    "id": "runewords/duress",
+    "name": "Duress",
+    "runes": [
+      "runes/shael",
+      "runes/um",
+      "runes/thul"
+    ],
+    "allowedBases": [
+      "armor"
+    ],
+    "sockets": 3,
+    "reqLevel": 47,
+    "stats": {
+      "statMods": {
+        "attackSpeed": 40
+      },
+      "resistances": {
+        "fire": 15,
+        "cold": 15,
+        "lightning": 15,
+        "poison": 15,
+        "arcane": 15
+      }
+    }
+  },
+  {
+    "id": "runewords/spirit",
+    "name": "Spirit",
+    "runes": [
+      "runes/tal",
+      "runes/thul",
+      "runes/ort",
+      "runes/amn"
+    ],
+    "allowedBases": [
+      "weapon",
+      "armor"
+    ],
+    "sockets": 4,
+    "reqLevel": 25,
+    "stats": {
+      "statMods": {
+        "mana": 112,
+        "life": 89
+      },
+      "resistances": {
+        "cold": 25,
+        "lightning": 35,
+        "poison": 35
+      }
+    }
+  },
+  {
+    "id": "runewords/lionheart",
+    "name": "Lionheart",
+    "runes": [
+      "runes/hel",
+      "runes/lum",
+      "runes/fal"
+    ],
+    "allowedBases": [
+      "armor"
+    ],
+    "sockets": 3,
+    "reqLevel": 41,
+    "stats": {
+      "coreStats": {
+        "strength": 20,
+        "vitality": 15
+      },
+      "statMods": {
+        "life": 50
+      },
+      "resistances": {
+        "fire": 30,
+        "cold": 30,
+        "lightning": 30,
+        "poison": 30,
+        "arcane": 30
+      }
+    }
+  },
+  {
+    "id": "runewords/obedience",
+    "name": "Obedience",
+    "runes": [
+      "runes/hel",
+      "runes/ko",
+      "runes/thul",
+      "runes/eth",
+      "runes/fal"
+    ],
+    "allowedBases": [
+      "weapon"
+    ],
+    "sockets": 5,
+    "reqLevel": 41,
+    "stats": {
+      "coreStats": {
+        "strength": 10,
+        "dexterity": 10
+      },
+      "statMods": {
+        "attack": 200
+      },
+      "resistances": {
+        "fire": 30,
+        "cold": 30,
+        "lightning": 30,
+        "poison": 30,
+        "arcane": 30
+      }
+    }
+  },
+  {
+    "id": "runewords/passion",
+    "name": "Passion",
+    "runes": [
+      "runes/dol",
+      "runes/ort",
+      "runes/eld",
+      "runes/lem"
+    ],
+    "allowedBases": [
+      "weapon"
+    ],
+    "sockets": 4,
+    "reqLevel": 43,
+    "stats": {
+      "statMods": {
+        "attackSpeed": 25,
+        "goldFind": 75
+      }
+    }
+  },
+  {
+    "id": "runewords/oath",
+    "name": "Oath",
+    "runes": [
+      "runes/shael",
+      "runes/pul",
+      "runes/mal",
+      "runes/lum"
+    ],
+    "allowedBases": [
+      "weapon"
+    ],
+    "sockets": 4,
+    "reqLevel": 49,
+    "stats": {
+      "coreStats": {
+        "energy": 10
+      },
+      "statMods": {
+        "attackSpeed": 50
+      }
+    }
+  },
+  {
+    "id": "runewords/fortitude",
+    "name": "Fortitude",
+    "runes": [
+      "runes/el",
+      "runes/sol",
+      "runes/dol",
+      "runes/lo"
+    ],
+    "allowedBases": [
+      "weapon",
+      "armor"
+    ],
+    "sockets": 4,
+    "reqLevel": 59,
+    "stats": {
+      "statMods": {
+        "attackSpeed": 20,
+        "defense": 200
+      },
+      "resistances": {
+        "fire": 15,
+        "cold": 15,
+        "lightning": 15,
+        "poison": 15,
+        "arcane": 15
+      }
+    }
+  },
+  {
+    "id": "runewords/call-to-arms",
+    "name": "Call to Arms",
+    "runes": [
+      "runes/amn",
+      "runes/ral",
+      "runes/mal",
+      "runes/ist",
+      "runes/ohm"
+    ],
+    "allowedBases": [
+      "weapon"
+    ],
+    "sockets": 5,
+    "reqLevel": 57,
+    "stats": {
+      "statMods": {
+        "attackSpeed": 40,
+        "magicFind": 30
+      }
+    }
+  },
+  {
+    "id": "runewords/heart-of-the-oak",
+    "name": "Heart of the Oak",
+    "runes": [
+      "runes/ko",
+      "runes/vex",
+      "runes/pul",
+      "runes/thul"
+    ],
+    "allowedBases": [
+      "weapon"
+    ],
+    "sockets": 4,
+    "reqLevel": 55,
+    "stats": {
+      "coreStats": {
+        "dexterity": 12,
+        "vitality": 10
+      },
+      "statMods": {
+        "attackSpeed": 40,
+        "mana": 75
+      },
+      "resistances": {
+        "fire": 30,
+        "cold": 30,
+        "lightning": 30,
+        "poison": 30,
+        "arcane": 30
+      }
+    }
+  },
+  {
+    "id": "runewords/enigma",
+    "name": "Enigma",
+    "runes": [
+      "runes/jah",
+      "runes/ith",
+      "runes/ber"
+    ],
+    "allowedBases": [
+      "armor"
+    ],
+    "sockets": 3,
+    "reqLevel": 65,
+    "stats": {
+      "coreStats": {
+        "strength": 75
+      },
+      "statMods": {
+        "defense": 760,
+        "life": 14,
+        "magicFind": 105
+      }
+    }
+  },
+  {
+    "id": "runewords/breath-of-the-dying",
+    "name": "Breath of the Dying",
+    "runes": [
+      "runes/vex",
+      "runes/hel",
+      "runes/el",
+      "runes/eld",
+      "runes/zod",
+      "runes/eth"
+    ],
+    "allowedBases": [
+      "weapon"
+    ],
+    "sockets": 6,
+    "reqLevel": 69,
+    "stats": {
+      "coreStats": {
+        "strength": 50,
+        "dexterity": 50,
+        "vitality": 50,
+        "energy": 50
+      },
+      "statMods": {
+        "attackSpeed": 60
+      }
+    }
+  },
+  {
+    "id": "runewords/grief",
+    "name": "Grief",
+    "runes": [
+      "runes/eth",
+      "runes/tir",
+      "runes/lo",
+      "runes/mal",
+      "runes/ral"
+    ],
+    "allowedBases": [
+      "weapon"
+    ],
+    "sockets": 5,
+    "reqLevel": 59,
+    "stats": {
+      "statMods": {
+        "attackSpeed": 35,
+        "mana": 2,
+        "life": 12
+      }
+    }
+  }
+]

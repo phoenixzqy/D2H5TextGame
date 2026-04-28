@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#0a0a0a"/>
+  <path d="M256 80 L294 200 L419 200 L317 272 L355 392 L256 320 L157 392 L195 272 L93 200 L218 200 Z" 
+        fill="#c8a85a" stroke="#f5e26b" stroke-width="4"/>
+  <text x="256" y="465" font-family="serif" font-size="72" font-weight="bold" 
+        fill="#c8a85a" text-anchor="middle">D2</text>
+</svg>

@@ -1,0 +1,355 @@
+[
+  {
+    "id": "monsters/act3.jungle-hunter",
+    "name": "Jungle Hunter",
+    "life": [
+      100,
+      140
+    ],
+    "lifeGrowth": [
+      10,
+      14
+    ],
+    "skills": [
+      "monster-weak-melee",
+      "monster-leap"
+    ],
+    "attackSpeed": 110,
+    "defense": 25,
+    "resistances": {},
+    "baseExperience": 10,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act3.fetish",
+    "name": "Fetish",
+    "life": [
+      80,
+      120
+    ],
+    "lifeGrowth": [
+      8,
+      12
+    ],
+    "skills": [
+      "monster-weak-melee",
+      "monster-poison-dagger"
+    ],
+    "attackSpeed": 115,
+    "defense": 22,
+    "resistances": {
+      "poison": 25
+    },
+    "baseExperience": 10,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act3.spider",
+    "name": "Giant Spider",
+    "life": [
+      90,
+      130
+    ],
+    "lifeGrowth": [
+      9,
+      13
+    ],
+    "skills": [
+      "monster-weak-melee",
+      "monster-poison-spit"
+    ],
+    "attackSpeed": 100,
+    "defense": 24,
+    "resistances": {
+      "poison": 50
+    },
+    "baseExperience": 10,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act3.flayer",
+    "name": "Flayer",
+    "life": [
+      110,
+      150
+    ],
+    "lifeGrowth": [
+      11,
+      15
+    ],
+    "skills": [
+      "monster-strong-melee"
+    ],
+    "attackSpeed": 105,
+    "defense": 28,
+    "resistances": {},
+    "baseExperience": 10,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act3.thorned-hulk",
+    "name": "Thorned Hulk",
+    "life": [
+      200,
+      280
+    ],
+    "lifeGrowth": [
+      20,
+      28
+    ],
+    "skills": [
+      "monster-strong-melee",
+      "monster-thorns-aura"
+    ],
+    "attackSpeed": 85,
+    "defense": 45,
+    "resistances": {
+      "physical": 50
+    },
+    "baseExperience": 25,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act3.swamp-dweller",
+    "name": "Swamp Dweller",
+    "life": [
+      120,
+      160
+    ],
+    "lifeGrowth": [
+      12,
+      16
+    ],
+    "skills": [
+      "monster-weak-melee",
+      "monster-poison-cloud"
+    ],
+    "attackSpeed": 90,
+    "defense": 26,
+    "resistances": {
+      "poison": 25
+    },
+    "baseExperience": 10,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act3.doom-ape",
+    "name": "Doom Ape",
+    "life": [
+      250,
+      350
+    ],
+    "lifeGrowth": [
+      25,
+      35
+    ],
+    "skills": [
+      "monster-strong-melee",
+      "monster-charge"
+    ],
+    "attackSpeed": 115,
+    "defense": 60,
+    "resistances": {
+      "fire": 25,
+      "cold": 25,
+      "lightning": 25,
+      "poison": 25,
+      "arcane": 25
+    },
+    "baseExperience": 50,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act3.infector",
+    "name": "Infector",
+    "life": [
+      180,
+      240
+    ],
+    "lifeGrowth": [
+      18,
+      24
+    ],
+    "skills": [
+      "monster-weak-melee",
+      "monster-plague-spit"
+    ],
+    "attackSpeed": 95,
+    "defense": 38,
+    "resistances": {
+      "poison": 75
+    },
+    "baseExperience": 25,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act3.serpent-magus",
+    "name": "Serpent Magus",
+    "life": [
+      150,
+      210
+    ],
+    "lifeGrowth": [
+      15,
+      21
+    ],
+    "skills": [
+      "monster-fire-ball",
+      "monster-lightning-bolt"
+    ],
+    "attackSpeed": 100,
+    "defense": 32,
+    "resistances": {
+      "fire": 25,
+      "lightning": 25
+    },
+    "baseExperience": 25,
+    "canBeElite": true,
+    "canBeBoss": false,
+    "eliteAffixes": [
+      "extra-fast",
+      "extra-strong",
+      "cursed",
+      "fire-enchanted",
+      "cold-enchanted",
+      "lightning-enchanted",
+      "mana-burn",
+      "spectral-hit",
+      "stone-skin",
+      "teleportation"
+    ]
+  },
+  {
+    "id": "monsters/act3.mephisto",
+    "name": "Mephisto",
+    "life": [
+      2000,
+      2500
+    ],
+    "lifeGrowth": [
+      150,
+      200
+    ],
+    "skills": [
+      "monster-frost-nova",
+      "monster-lightning",
+      "monster-poison-cloud"
+    ],
+    "attackSpeed": 120,
+    "defense": 150,
+    "resistances": {
+      "fire": 50,
+      "cold": 50,
+      "lightning": 50,
+      "poison": 100,
+      "arcane": 50
+    },
+    "baseExperience": 1200,
+    "canBeElite": false,
+    "canBeBoss": true
+  }
+]

@@ -1,0 +1,66 @@
+{
+  "title": "任务",
+  "main": "主线",
+  "side": "支线",
+  "bounty": "悬赏",
+  "inProgress": "进行中",
+  "completed": "已完成",
+  "locked": "未解锁",
+  "available": "可领取",
+  "objectives": "目标",
+  "rewards": "奖励",
+  "empty": "暂无任务",
+  "turnIn": "交付",
+  "abandon": "放弃",
+  "act": {
+    "1": "第一幕任务",
+    "2": "第二幕任务",
+    "3": "第三幕任务",
+    "4": "第四幕任务",
+    "5": "第五幕任务"
+  },
+  "byId": {
+    "act1-den-of-evil": { "name": "邪恶巢穴", "desc": "净化罗格营地附近的邪恶巢穴。", "obj1": "击杀巢穴中所有怪物" },
+    "act1-sisters-burial": { "name": "姐妹的安息", "desc": "将布雷尔的灵魂送回安息之地。", "obj1": "击败血鸦" },
+    "act1-search-for-cain": { "name": "寻找凯恩", "desc": "前往崔斯特瑞姆解救流浪者凯恩。", "obj1": "在崔斯特瑞姆找到凯恩" },
+    "act1-forgotten-tower": { "name": "被遗忘的高塔", "desc": "探索石旷野中的被遗忘高塔，击败伯爵。", "obj1": "击败大伯爵" },
+    "act1-tools-of-the-trade": { "name": "查西的赋魔", "desc": "将查西的金属之锤交还给她。", "obj1": "找回赋魔之箱" },
+    "act1-andariel": { "name": "悬赏：安达利尔", "desc": "击败堕落修女堡的安达利尔。", "obj1": "击败安达利尔" },
+    "act2-radaments-lair": { "name": "拉达门特的巢穴", "desc": "深入下水道击败拉达门特。", "obj1": "击败拉达门特" },
+    "act2-horadric-staff": { "name": "霍拉德里克之杖", "desc": "集齐霍拉德里克之杖的零件并合成。", "obj1": "找到杖头", "obj2": "找到琥珀宝石", "obj3": "找到杖身" },
+    "act2-tainted-sun": { "name": "被污染的太阳", "desc": "击败爪蝮蛇祭坛的守卫，恢复阳光。", "obj1": "击败爪蝮蛇祭司" },
+    "act2-arcane-sanctuary": { "name": "奥术庇护所", "desc": "在巴尔的旧庇护所中找到塔拉夏之墓的方位。", "obj1": "找到日记" },
+    "act2-summoner": { "name": "召唤师", "desc": "击败堕落的霍拉德里姆——召唤师。", "obj1": "击败召唤师" },
+    "act2-duriel": { "name": "悬赏：督瑞尔", "desc": "于塔拉夏之墓击败督瑞尔。", "obj1": "击败督瑞尔" },
+    "act3-golden-bird": { "name": "金鸟", "desc": "将金鸟雕像归还给阿卡拉。", "obj1": "归还雕像" },
+    "act3-blade-of-old-religion": { "name": "古神信仰之刃", "desc": "找到剥皮丛林中的祭祀之刃。", "obj1": "找回剥皮兽之刃" },
+    "act3-khalims-will": { "name": "卡林的意志", "desc": "集齐卡林的眼、心、脑、肌组装出卡林意志。", "obj1": "卡林之眼", "obj2": "卡林之心", "obj3": "卡林之脑", "obj4": "卡林之肌" },
+    "act3-mephisto": { "name": "悬赏：墨菲斯托", "desc": "深入仇恨穿越击败墨菲斯托。", "obj1": "击败墨菲斯托" },
+    "act4-fallen-angel": { "name": "堕落天使", "desc": "于绝望平原击败堕天使伊斯库尔。", "obj1": "击败伊斯库尔" },
+    "act4-hells-forge": { "name": "地狱熔炉", "desc": "在地狱熔炉中砸碎墨菲斯托的灵魂石。", "obj1": "击碎灵魂石" },
+    "act4-terrors-end": { "name": "恐惧的终结", "desc": "于混乱圣域击败暗黑破坏神。", "obj1": "击败暗黑破坏神" },
+    "act5-siege": { "name": "围攻哈洛加斯", "desc": "击退攻打哈洛加斯的恶魔大军。", "obj1": "击败谢南什·达克" },
+    "act5-rescue-anya": { "name": "解救安雅", "desc": "在寒霜高地解救被冰封的安雅。", "obj1": "找到安雅", "obj2": "击败尼雷塞克" },
+    "act5-prison-of-ice": { "name": "冰封监狱", "desc": "解开安雅身上的冰封诅咒。", "obj1": "使用解咒卷轴" },
+    "act5-betrayal-of-harrogath": { "name": "哈洛加斯的背叛", "desc": "找出哈洛加斯城中的叛徒。", "obj1": "击败叛徒奈拉斯" },
+    "act5-rite-of-passage": { "name": "古代试炼", "desc": "在亚瑞特山顶击败三位远古守护者。", "obj1": "击败古代守卫者" },
+    "act5-eve-of-destruction": { "name": "毁灭前夕", "desc": "于毁灭王座击败巴尔。", "obj1": "击败巴尔" }
+  },
+  "rewardLabel": {
+    "imbue": "赋魔卷轴",
+    "skillPoint": "技能点",
+    "statPoint": "属性点",
+    "gold": "金币",
+    "rune": "符文",
+    "xp": "经验"
+  },
+  "quests": {
+    "q": {
+      "denOfEvil": { "name": "邪恶巢穴", "desc": "净化罗格营地附近的邪恶巢穴。", "obj1": "击杀巢穴中所有怪物" },
+      "sistersBurial": { "name": "姐妹的安息", "desc": "将布雷尔的灵魂送回安息之地。", "obj1": "击败布雷尔" },
+      "charsi": { "name": "查西的赋魔", "desc": "将查西的金属交给她以解锁赋魔。", "obj1": "找回赋魔之箱" },
+      "bountyAndariel": { "name": "悬赏: 安达利尔", "desc": "击败堕落修女堡的安达利尔。", "obj1": "击败安达利尔" }
+    },
+    "reward": { "imbue": "赋魔卷轴" }
+  }
+}

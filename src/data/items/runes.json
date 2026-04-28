@@ -1,0 +1,458 @@
+[
+  {
+    "id": "runes/el",
+    "name": "El",
+    "tier": 1,
+    "weaponEffect": {
+      "statMods": {
+        "attack": 50
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "defense": 15
+      }
+    },
+    "shieldEffect": {
+      "statMods": {
+        "defense": 15
+      }
+    }
+  },
+  {
+    "id": "runes/eld",
+    "name": "Eld",
+    "tier": 1,
+    "weaponEffect": {},
+    "armorEffect": {},
+    "shieldEffect": {}
+  },
+  {
+    "id": "runes/tir",
+    "name": "Tir",
+    "tier": 1,
+    "weaponEffect": {
+      "statMods": {
+        "mana": 2
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "mana": 2
+      }
+    },
+    "shieldEffect": {
+      "statMods": {
+        "mana": 2
+      }
+    }
+  },
+  {
+    "id": "runes/nef",
+    "name": "Nef",
+    "tier": 1,
+    "weaponEffect": {},
+    "armorEffect": {
+      "statMods": {
+        "defense": 30
+      }
+    },
+    "shieldEffect": {
+      "statMods": {
+        "defense": 30
+      }
+    }
+  },
+  {
+    "id": "runes/eth",
+    "name": "Eth",
+    "tier": 1,
+    "weaponEffect": {},
+    "armorEffect": {
+      "statMods": {
+        "mana": 15
+      }
+    },
+    "shieldEffect": {
+      "statMods": {
+        "mana": 15
+      }
+    }
+  },
+  {
+    "id": "runes/ith",
+    "name": "Ith",
+    "tier": 2,
+    "weaponEffect": {},
+    "armorEffect": {},
+    "shieldEffect": {}
+  },
+  {
+    "id": "runes/tal",
+    "name": "Tal",
+    "tier": 2,
+    "weaponEffect": {},
+    "armorEffect": {
+      "resistances": {
+        "poison": 30
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "poison": 35
+      }
+    }
+  },
+  {
+    "id": "runes/ral",
+    "name": "Ral",
+    "tier": 2,
+    "weaponEffect": {},
+    "armorEffect": {
+      "resistances": {
+        "fire": 30
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "fire": 35
+      }
+    }
+  },
+  {
+    "id": "runes/ort",
+    "name": "Ort",
+    "tier": 2,
+    "weaponEffect": {},
+    "armorEffect": {
+      "resistances": {
+        "lightning": 30
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "lightning": 35
+      }
+    }
+  },
+  {
+    "id": "runes/thul",
+    "name": "Thul",
+    "tier": 2,
+    "weaponEffect": {},
+    "armorEffect": {
+      "resistances": {
+        "cold": 30
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "cold": 35
+      }
+    }
+  },
+  {
+    "id": "runes/amn",
+    "name": "Amn",
+    "tier": 3,
+    "weaponEffect": {},
+    "armorEffect": {},
+    "shieldEffect": {}
+  },
+  {
+    "id": "runes/sol",
+    "name": "Sol",
+    "tier": 3,
+    "weaponEffect": {},
+    "armorEffect": {},
+    "shieldEffect": {}
+  },
+  {
+    "id": "runes/shael",
+    "name": "Shael",
+    "tier": 3,
+    "weaponEffect": {
+      "statMods": {
+        "attackSpeed": 20
+      }
+    },
+    "armorEffect": {},
+    "shieldEffect": {}
+  },
+  {
+    "id": "runes/dol",
+    "name": "Dol",
+    "tier": 3,
+    "weaponEffect": {},
+    "armorEffect": {},
+    "shieldEffect": {}
+  },
+  {
+    "id": "runes/hel",
+    "name": "Hel",
+    "tier": 4,
+    "weaponEffect": {},
+    "armorEffect": {},
+    "shieldEffect": {}
+  },
+  {
+    "id": "runes/io",
+    "name": "Io",
+    "tier": 4,
+    "weaponEffect": {
+      "coreStats": {
+        "vitality": 10
+      }
+    },
+    "armorEffect": {
+      "coreStats": {
+        "vitality": 10
+      }
+    },
+    "shieldEffect": {
+      "coreStats": {
+        "vitality": 10
+      }
+    }
+  },
+  {
+    "id": "runes/lum",
+    "name": "Lum",
+    "tier": 4,
+    "weaponEffect": {
+      "coreStats": {
+        "energy": 10
+      }
+    },
+    "armorEffect": {
+      "coreStats": {
+        "energy": 10
+      }
+    },
+    "shieldEffect": {
+      "coreStats": {
+        "energy": 10
+      }
+    }
+  },
+  {
+    "id": "runes/ko",
+    "name": "Ko",
+    "tier": 5,
+    "weaponEffect": {
+      "coreStats": {
+        "dexterity": 10
+      }
+    },
+    "armorEffect": {
+      "coreStats": {
+        "dexterity": 10
+      }
+    },
+    "shieldEffect": {
+      "coreStats": {
+        "dexterity": 10
+      }
+    }
+  },
+  {
+    "id": "runes/fal",
+    "name": "Fal",
+    "tier": 5,
+    "weaponEffect": {
+      "coreStats": {
+        "strength": 10
+      }
+    },
+    "armorEffect": {
+      "coreStats": {
+        "strength": 10
+      }
+    },
+    "shieldEffect": {
+      "coreStats": {
+        "strength": 10
+      }
+    }
+  },
+  {
+    "id": "runes/lem",
+    "name": "Lem",
+    "tier": 5,
+    "weaponEffect": {
+      "statMods": {
+        "goldFind": 75
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "goldFind": 50
+      }
+    },
+    "shieldEffect": {
+      "statMods": {
+        "goldFind": 50
+      }
+    }
+  },
+  {
+    "id": "runes/pul",
+    "name": "Pul",
+    "tier": 6,
+    "weaponEffect": {},
+    "armorEffect": {
+      "statMods": {
+        "defense": 30
+      }
+    },
+    "shieldEffect": {
+      "statMods": {
+        "defense": 30
+      }
+    }
+  },
+  {
+    "id": "runes/um",
+    "name": "Um",
+    "tier": 6,
+    "weaponEffect": {},
+    "armorEffect": {
+      "resistances": {
+        "fire": 15,
+        "cold": 15,
+        "lightning": 15,
+        "poison": 15,
+        "arcane": 15
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "fire": 22,
+        "cold": 22,
+        "lightning": 22,
+        "poison": 22,
+        "arcane": 22
+      }
+    }
+  },
+  {
+    "id": "runes/mal",
+    "name": "Mal",
+    "tier": 7,
+    "weaponEffect": {},
+    "armorEffect": {},
+    "shieldEffect": {}
+  },
+  {
+    "id": "runes/ist",
+    "name": "Ist",
+    "tier": 7,
+    "weaponEffect": {
+      "statMods": {
+        "magicFind": 30
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "magicFind": 25
+      }
+    },
+    "shieldEffect": {
+      "statMods": {
+        "magicFind": 25
+      }
+    }
+  },
+  {
+    "id": "runes/gul",
+    "name": "Gul",
+    "tier": 8,
+    "weaponEffect": {
+      "statMods": {
+        "attack": 20
+      }
+    },
+    "armorEffect": {},
+    "shieldEffect": {}
+  },
+  {
+    "id": "runes/vex",
+    "name": "Vex",
+    "tier": 8,
+    "weaponEffect": {},
+    "armorEffect": {},
+    "shieldEffect": {}
+  },
+  {
+    "id": "runes/ohm",
+    "name": "Ohm",
+    "tier": 9,
+    "weaponEffect": {},
+    "armorEffect": {},
+    "shieldEffect": {}
+  },
+  {
+    "id": "runes/lo",
+    "name": "Lo",
+    "tier": 9,
+    "weaponEffect": {},
+    "armorEffect": {},
+    "shieldEffect": {}
+  },
+  {
+    "id": "runes/sur",
+    "name": "Sur",
+    "tier": 10,
+    "weaponEffect": {},
+    "armorEffect": {
+      "statMods": {
+        "mana": 50
+      }
+    },
+    "shieldEffect": {
+      "statMods": {
+        "mana": 50
+      }
+    }
+  },
+  {
+    "id": "runes/ber",
+    "name": "Ber",
+    "tier": 10,
+    "weaponEffect": {},
+    "armorEffect": {},
+    "shieldEffect": {}
+  },
+  {
+    "id": "runes/jah",
+    "name": "Jah",
+    "tier": 11,
+    "weaponEffect": {},
+    "armorEffect": {
+      "statMods": {
+        "life": 50
+      }
+    },
+    "shieldEffect": {
+      "statMods": {
+        "life": 50
+      }
+    }
+  },
+  {
+    "id": "runes/cham",
+    "name": "Cham",
+    "tier": 11,
+    "weaponEffect": {},
+    "armorEffect": {},
+    "shieldEffect": {}
+  },
+  {
+    "id": "runes/zod",
+    "name": "Zod",
+    "tier": 12,
+    "weaponEffect": {},
+    "armorEffect": {},
+    "shieldEffect": {}
+  }
+]

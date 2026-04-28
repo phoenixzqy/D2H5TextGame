@@ -1,0 +1,24 @@
+{
+  "createCharacter": "创建角色",
+  "selectClass": "选择职业",
+  "characterName": "角色名称",
+  "enterName": "输入名称",
+  "male": "男",
+  "female": "女",
+  "gender": "性别",
+  "startGame": "进入",
+  "startingStats": "起始属性",
+  "strength": "力量",
+  "dexterity": "敏捷",
+  "vitality": "体力",
+  "energy": "能量",
+  "classes": {
+    "barbarian": "野蛮人",
+    "sorceress": "法师",
+    "necromancer": "死灵法师",
+    "paladin": "圣骑士",
+    "amazon": "亚马逊",
+    "druid": "德鲁伊",
+    "assassin": "刺客"
+  }
+}

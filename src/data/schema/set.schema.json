@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/set.json",
+  "title": "Set Definition",
+  "description": "Set (green) item collection definition",
+  "type": "object",
+  "required": ["id", "name", "items", "bonuses"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^sets/[a-z0-9-]+$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "items": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 2,
+      "description": "Item IDs in this set"
+    },
+    "bonuses": {
+      "type": "object",
+      "patternProperties": {
+        "^[0-9]+$": {
+          "$ref": "#/$defs/setBonus"
+        }
+      },
+      "description": "Set bonuses keyed by number of pieces equipped"
+    }
+  },
+  "$defs": {
+    "setBonus": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "coreStats": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "strength": { "type": "integer" },
+            "dexterity": { "type": "integer" },
+            "vitality": { "type": "integer" },
+            "energy": { "type": "integer" }
+          }
+        },
+        "resistances": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "fire": { "type": "number" },
+            "cold": { "type": "number" },
+            "lightning": { "type": "number" },
+            "poison": { "type": "number" },
+            "arcane": { "type": "number" },
+            "physical": { "type": "number" }
+          }
+        },
+        "statMods": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "life": { "type": "number" },
+            "mana": { "type": "number" },
+            "attack": { "type": "number" },
+            "defense": { "type": "number" },
+            "attackSpeed": { "type": "number" },
+            "critChance": { "type": "number" },
+            "critDamage": { "type": "number" },
+            "physDodge": { "type": "number" },
+            "magicDodge": { "type": "number" },
+            "magicFind": { "type": "number" },
+            "goldFind": { "type": "number" }
+          }
+        },
+        "grantsSkills": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}
