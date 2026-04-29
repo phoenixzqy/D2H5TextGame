@@ -17,14 +17,23 @@ import {
   type IdleBonus,
   type TickReward
 } from '@/engine/idle';
-import { useMapStore, useMetaStore, usePlayerStore } from '@/stores';
+import { useInventoryStore, useMapStore, useMetaStore, usePlayerStore } from '@/stores';
 import { resolveSubArea } from '@/stores/subAreaResolver';
 import { monsters as monsterList } from '@/data/index';
+import { loadAwardPools } from '@/data/loaders/loot';
+import { rollKillRewards } from '@/engine/loot/award';
+import { createRng, hashSeed } from '@/engine/rng';
 import { deriveMonsterNameKey } from '@/stores/combatHelpers';
 import i18n from '@/i18n';
 
 /** Default seconds-per-tick (matches engine default). */
 export const DEFAULT_TICK_SECONDS = 6;
+
+type ActNumber = 1 | 2 | 3 | 4 | 5;
+
+function clampAct(act: number): ActNumber {
+  return Math.min(5, Math.max(1, Math.trunc(act))) as ActNumber;
+}
 
 interface IdleTickerState {
   readonly tickSeconds: number;
@@ -52,18 +61,22 @@ export const useIdleTickerStore = create<IdleTickerState>((set, get) => ({
   ...initial,
 
   applyTick: () => {
-    const player = usePlayerStore.getState().player;
+    const playerStore = usePlayerStore.getState();
+    const player = playerStore.player;
     const map = useMapStore.getState();
+    const inventory = useInventoryStore.getState();
     const meta = useMetaStore.getState();
     if (!player) return;
 
     // Raw reward shape: lift the engine's xpForKill curve indirectly
     // via baseExperience on the area's first archetype, multiplied by
     // a "1 kill per tick" approximation so the strip shows movement.
-    const subArea = resolveSubArea(map.currentAct, map.currentSubAreaId);
-    const archetypePrefix = `monsters/act${String(map.currentAct)}.`;
+    const act = clampAct(map.currentAct);
+    const subArea = resolveSubArea(act, map.currentSubAreaId);
+    const archetypePrefix = `monsters/act${String(act)}.`;
     const archetypes = monsterList.filter((m) => m.id.startsWith(archetypePrefix));
-    const arch = archetypes[get().tickCount % Math.max(1, archetypes.length)] ?? archetypes[0];
+    const tickCount = get().tickCount;
+    const arch = archetypes[tickCount % Math.max(1, archetypes.length)] ?? archetypes[0];
     const baseXp = arch?.baseExperience ?? 5;
     const raw: TickReward = {
       xp: baseXp,
@@ -77,6 +90,33 @@ export const useIdleTickerStore = create<IdleTickerState>((set, get) => ({
       baseMagicFind: player.derivedStats.magicFind
     });
 
+    if (reward.xp > 0) playerStore.gainExperience(reward.xp);
+    if (reward.runeShards > 0) inventory.addCurrency('rune-shard', reward.runeShards);
+    for (const [currencyId, amount] of Object.entries(reward.currencies)) {
+      if (amount > 0) inventory.addCurrency(currencyId, amount);
+    }
+
+    if (arch) {
+      const loot = rollKillRewards(
+        {
+          tier: 'trash',
+          monsterLevel: subArea?.areaLevel ?? player.level,
+          treasureClassId: subArea?.lootTable ?? `loot/trash-act${String(act)}`,
+          magicFind: reward.effectiveMagicFind,
+          goldFind: player.derivedStats.goldFind,
+          act,
+          difficulty: 'normal'
+        },
+        loadAwardPools(),
+        createRng(hashSeed(`idle|${player.id}|${String(tickCount)}|${subArea?.id ?? map.currentSubAreaId ?? 'unknown'}`))
+      );
+      for (const item of loot.items) inventory.addItem(item);
+      const totalRuneShards = loot.runeShards + loot.runes;
+      if (totalRuneShards > 0) inventory.addCurrency('rune-shard', totalRuneShards);
+      if (loot.gems > 0) inventory.addCurrency('gem-shard', loot.gems);
+      if (loot.wishstones > 0) inventory.addCurrency('wishstone', loot.wishstones);
+    }
+
     // Lookup display name through monsters i18n namespace.
     const lastKillName = arch
       ? i18n.t(`monsters:${deriveMonsterNameKey(arch)}`, {
@@ -85,13 +125,12 @@ export const useIdleTickerStore = create<IdleTickerState>((set, get) => ({
       : null;
 
     void meta; // placeholder: future hook into metaStore.idleState
-    void subArea;
 
     set({
       lastReward: reward,
       lastKillName,
       bonus,
-      tickCount: get().tickCount + 1
+      tickCount: tickCount + 1
     });
   },
 

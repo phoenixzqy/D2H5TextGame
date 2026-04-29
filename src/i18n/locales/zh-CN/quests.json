@@ -9,6 +9,8 @@
   "available": "可领取",
   "objectives": "目标",
   "rewards": "奖励",
+  "claimReward": "领取奖励",
+  "rewardClaimed": "已领取",
   "empty": "暂无任务",
   "turnIn": "交付",
   "abandon": "放弃",

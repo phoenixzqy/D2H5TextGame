@@ -6,6 +6,11 @@
   "unlocked": "Unlocked",
   "farmHere": "Farm Here",
   "enter": "Enter",
+  "cleared": "Cleared",
+  "uncleared": "Not cleared",
+  "idleHere": "Idling",
+  "idleHereShort": "Idling",
+  "stopIdle": "Stop idling",
   "actName": {
     "1": "Rogue Encampment",
     "2": "Lut Gholein",

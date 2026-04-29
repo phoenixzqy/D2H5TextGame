@@ -58,18 +58,21 @@ export function CharacterScreen() {
   return (
     <ScreenShell testId="character-screen" title={t('character:screen.title', { defaultValue: '角色' })}>
       <div className="max-w-5xl mx-auto space-y-3">
+        {/* Bug #13 row 1: hero card + experience  ·  derived stats */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 items-start" data-testid="char-top-row">
           <div data-testid="hero-strip">
             <HeroStrip player={player} />
           </div>
+          <DerivedStatsPanel player={player} />
+        </div>
+        {/* Bug #13 row 2: primary attributes  ·  resistances */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 items-start">
           <div data-testid="core-attributes-panel">
             <CoreAttributesPanel player={player} />
           </div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 items-start">
-          <DerivedStatsPanel player={player} />
           <ResistancesPanel player={player} />
         </div>
+        {/* Bug #13 row 3: equipment */}
         <EquipmentSummaryPanel equipped={equipped} />
       </div>
     </ScreenShell>

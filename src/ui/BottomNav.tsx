@@ -4,6 +4,7 @@
  */
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useMetaStore } from '@/stores';
 
 interface NavItem {
   to: string;
@@ -24,17 +25,19 @@ const ITEMS: NavItem[] = [
 ];
 
 export function BottomNav() {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation(['common', 'map']);
+  const idleTarget = useMetaStore((s) => s.idleState.idleTarget);
 
   return (
     <nav
       aria-label={t('nav.aria', { defaultValue: 'Main navigation' })}
       className="
-        fixed inset-x-0 bottom-0 z-40
+        order-last md:order-first
+        flex-shrink-0
         bg-d2-panel/95 backdrop-blur border-t border-d2-border
         pb-[env(safe-area-inset-bottom)]
-        md:static md:border-t-0 md:border-r md:bg-d2-panel md:pb-0
-        md:w-20 md:h-screen md:flex-shrink-0
+        md:border-t-0 md:border-r md:bg-d2-panel md:pb-0
+        md:w-20 md:h-full md:overflow-y-auto
       "
     >
       <ul
@@ -43,6 +46,18 @@ export function BottomNav() {
           md:flex-col md:items-stretch md:justify-start md:gap-1 md:p-2 md:overflow-y-auto
         "
       >
+        {idleTarget && (
+          <li
+            className="hidden md:block px-1 pb-2 text-[10px] text-d2-gold/90"
+            data-testid="idle-sidebar-chip"
+            title={t(`map:subArea.${idleTarget}`, { defaultValue: idleTarget })}
+          >
+            <span className="block truncate">⚙️ {t('map:idleHereShort', { defaultValue: '挂机中' })}</span>
+            <span className="block truncate text-d2-white/70">
+              {t(`map:subArea.${idleTarget}`, { defaultValue: idleTarget })}
+            </span>
+          </li>
+        )}
         {ITEMS.map((item) => (
           <li key={item.to} className="flex-1 md:flex-none">
             <NavLink

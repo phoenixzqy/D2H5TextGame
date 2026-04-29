@@ -23,6 +23,7 @@
   "log": "战斗日志",
   "logEmpty": "战斗即将开始…",
   "logPaused": "已暂停滚动 (移开光标继续)",
+  "logHoverPausedHint": "日志已暂停滚动",
   "allies": "我方",
   "enemies": "敌人",
   "noAllies": "无单位",

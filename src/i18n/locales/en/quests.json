@@ -9,6 +9,8 @@
   "available": "Available",
   "objectives": "Objectives",
   "rewards": "Rewards",
+  "claimReward": "Claim Reward",
+  "rewardClaimed": "Claimed",
   "empty": "No quests",
   "turnIn": "Turn In",
   "abandon": "Abandon",

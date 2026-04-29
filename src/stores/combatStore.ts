@@ -164,15 +164,25 @@ export const useCombatStore= create<CombatState>((set, get) => ({
     outcome: null
   }); },
 
+    // Bug #1 (P0) - reset all run state on endCombat
   endCombat: () => { set({
     inCombat: false,
     playerTeam: [],
     enemyTeam: [],
+    log: [],
     currentTurn: 0,
+    currentWave: 1,
+    totalWaves: 1,
+    isPaused: false,
     recordedEvents: [],
     eventCursor: 0,
     playbackComplete: false,
-    outcome: null
+    unitNameMap: new Map(),
+    outcome: null,
+    subAreaRunId: null,
+    runVictory: false,
+    runDefeat: false,
+    runRewards: emptyRewards()
   }); },
 
   addLogEntry: (entry) => { set((state) => ({

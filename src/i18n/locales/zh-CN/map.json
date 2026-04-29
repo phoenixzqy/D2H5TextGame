@@ -6,6 +6,11 @@
   "unlocked": "已解锁",
   "farmHere": "在此挂机",
   "enter": "进入",
+  "cleared": "已通过",
+  "uncleared": "未通过",
+  "idleHere": "正在挂机",
+  "idleHereShort": "挂机中",
+  "stopIdle": "停止挂机",
   "actName": {
     "1": "罗格营地",
     "2": "鲁加丁",

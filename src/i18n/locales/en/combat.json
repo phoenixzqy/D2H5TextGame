@@ -23,6 +23,7 @@
   "log": "Combat Log",
   "logEmpty": "Battle starting…",
   "logPaused": "Auto-scroll paused (move cursor away to resume)",
+  "logHoverPausedHint": "Log auto-scroll paused",
   "allies": "Allies",
   "enemies": "Enemies",
   "noAllies": "No units",
