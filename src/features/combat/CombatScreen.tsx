@@ -40,7 +40,7 @@ const RARITY_COLORS: Record<string, string> = {
 };
 
 export function CombatScreen() {
-  const { t } = useTranslation(['combat', 'common']);
+  const { t } = useTranslation(['combat', 'common', 'map']);
   const navigate = useNavigate();
 
   const player = usePlayerStore((s) => s.player);
@@ -69,6 +69,7 @@ export function CombatScreen() {
   const subAreaRunId = useCombatStore((s) => s.subAreaRunId);
 
   const currentAct = useMapStore((s) => s.currentAct);
+  const currentSubAreaId = useMapStore((s) => s.currentSubAreaId);
   const setLocation = useMapStore((s) => s.setCurrentLocation);
 
   const recentLog = useMemo(() => log.slice(-MAX_LOG), [log]);
@@ -191,12 +192,27 @@ export function CombatScreen() {
       testId="combat-screen"
       title={
         <div className="flex items-center justify-between gap-2 w-full">
-          <span aria-live="polite" data-testid="wave-counter">
-            {t('wave', {
-              current: currentWave || 1,
-              total: totalWaves || 1,
-            })}
-          </span>
+          <div className="flex flex-col leading-tight min-w-0">
+            <span aria-live="polite" data-testid="wave-counter" className="truncate">
+              {t('wave', {
+                current: currentWave || 1,
+                total: totalWaves || 1,
+              })}
+              {currentSubAreaId && (
+                <>
+                  {' · '}
+                  <span data-testid="combat-sub-area-name" className="text-d2-gold">
+                    {tDataKey(t, `map.subArea.${currentSubAreaId}`)}
+                  </span>
+                </>
+              )}
+            </span>
+            <span className="text-[10px] uppercase tracking-wide text-d2-white/60" data-testid="combat-act-name">
+              {t('map:act', { number: currentAct, defaultValue: `Act ${String(currentAct)}` })}
+              {' · '}
+              {tDataKey(t, `map.actName.${String(currentAct)}`)}
+            </span>
+          </div>
           <div className="flex items-center gap-2 flex-wrap justify-end">
             {logHoverPaused && (
               <span
