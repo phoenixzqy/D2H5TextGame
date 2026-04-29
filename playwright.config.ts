@@ -1,8 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const e2ePort = process.env.E2E_PORT ? parseInt(process.env.E2E_PORT) : 4173;
 const e2eWebServerCommand = process.platform === 'win32'
-  ? 'set VITE_E2E=true&& npm run build && npm run preview'
-  : 'VITE_E2E=true npm run build && VITE_E2E=true npm run preview';
+  ? `set VITE_E2E=true&& npm run build && npm run preview -- --port ${e2ePort}`
+  : `VITE_E2E=true npm run build && VITE_E2E=true npm run preview -- --port ${e2ePort}`;
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -16,7 +17,7 @@ export default defineConfig({
   reporter: 'html',
   outputDir: 'playwright-report',
   use: {
-    baseURL: 'http://localhost:4173',
+    baseURL: `http://localhost:${process.env.E2E_PORT ?? 4173}`,
     trace: 'on-first-retry',
     screenshot: 'only-on-failure'
   },
@@ -40,7 +41,7 @@ export default defineConfig({
 
   webServer: {
     command: e2eWebServerCommand,
-    port: 4173,
+    port: e2ePort,
     reuseExistingServer: false,
     timeout: 120 * 1000,
     env: {

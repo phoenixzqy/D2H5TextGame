@@ -135,7 +135,7 @@ export function SkillsScreen() {
                       </div>
                       {skill.description && (
                         <div className="text-xs text-d2-white/50 mt-1 line-clamp-2">
-                          {skill.description}
+                          {tDataKey(t, skill.description)}
                         </div>
                       )}
                     </div>
