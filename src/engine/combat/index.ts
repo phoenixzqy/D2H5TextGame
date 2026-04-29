@@ -8,3 +8,5 @@ export * from './status';
 export * from './combo';
 export * from './orbs';
 export * from './combat';
+export * from './monster-factory';
+export * from './sub-area-run';

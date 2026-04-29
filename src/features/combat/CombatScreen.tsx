@@ -14,12 +14,17 @@ import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, Panel, ScreenShell, GameCard, getClassPortraitUrl, getMonsterImageUrl, getSummonImageUrl } from '@/ui';
-import { useCombatStore, usePlayerStore } from '@/stores';
-import { startSimpleBattle } from '@/stores/combatHelpers';
+import { useCombatStore, useMapStore, usePlayerStore } from '@/stores';
+import {
+  startSubAreaRun,
+  advanceWaveOrFinish,
+  abortSubAreaRun,
+  hasActiveSubAreaRun
+} from '@/stores/combatHelpers';
+import { nextSubAreaInAct } from '@/stores/subAreaResolver';
 import type { CombatLogEntry } from '@/stores/combatStore';
 import type { CombatUnit } from '@/engine/combat/types';
 import { inferKind } from '@/engine/combat/types';
-import type { KillRewards } from '@/engine/loot/award';
 
 const MAX_LOG = 200;
 const SPEED_CYCLE = [1, 2, 4] as const;
@@ -55,21 +60,28 @@ export function CombatScreen() {
   const recordedEvents = useCombatStore((s) => s.recordedEvents);
   const eventCursor = useCombatStore((s) => s.eventCursor);
   const playbackComplete = useCombatStore((s) => s.playbackComplete);
-  const outcome = useCombatStore((s) => s.outcome);
   const tick = useCombatStore((s) => s.tick);
 
-  const recentLog = useMemo(() => log.slice(-MAX_LOG), [log]);
-  const [rewards, setRewards] = useState<KillRewards | null>(null);
-  const [speed, setSpeed] = useState<Speed>(1);
+  // Sub-area run selectors (Bugs #5/#16/#21)
+  const runVictory = useCombatStore((s) => s.runVictory);
+  const runDefeat = useCombatStore((s) => s.runDefeat);
+  const runRewards = useCombatStore((s) => s.runRewards);
+  const subAreaRunId = useCombatStore((s) => s.subAreaRunId);
 
-  // Auto-start battle if not in combat yet
+  const currentAct = useMapStore((s) => s.currentAct);
+  const setLocation = useMapStore((s) => s.setCurrentLocation);
+
+  const recentLog = useMemo(() => log.slice(-MAX_LOG), [log]);
+  const [speed, setSpeed] = useState<Speed>(1);
+  // Inter-wave countdown banner; null = no pending advance.
+  const [nextWaveCountingDown, setNextWaveCountingDown] = useState(false);
+
+  // Auto-start a sub-area run if none is in flight.
   useEffect(() => {
-    if (!inCombat && player) {
-      const level = player.level || 1;
-      startSimpleBattle(level, 3);
-      setRewards(null);
+    if (!inCombat && player && !runVictory && !runDefeat) {
+      startSubAreaRun();
     }
-  }, [inCombat, player]);
+  }, [inCombat, player, runVictory, runDefeat]);
 
   // Timer-driven playback: schedule the next event after its uiDelayMs
   // (divided by the chosen speed multiplier). Re-runs whenever the cursor,
@@ -85,12 +97,26 @@ export function CombatScreen() {
     return () => { clearTimeout(handle); };
   }, [inCombat, isPaused, playbackComplete, eventCursor, recordedEvents, tick, speed]);
 
-  // Reveal rewards summary only after playback completes.
+  // Wave completion → auto-advance to next wave (1.5s pause) OR finalize run.
+  // The 1.5s pause is the recommended default per the spec; it gives the
+  // player time to read the last log line before the next wave appears.
   useEffect(() => {
-    if (playbackComplete && outcome?.rewards) {
-      setRewards(outcome.rewards);
+    if (!playbackComplete) {
+      setNextWaveCountingDown(false);
+      return;
     }
-  }, [playbackComplete, outcome]);
+    // Run already finalized — nothing to do.
+    if (runVictory || runDefeat) return;
+    // No active sub-area run (synthetic battle); skip the wave loop.
+    if (!hasActiveSubAreaRun()) return;
+
+    setNextWaveCountingDown(true);
+    const handle = setTimeout(() => {
+      advanceWaveOrFinish();
+      setNextWaveCountingDown(false);
+    }, 1500);
+    return () => { clearTimeout(handle); };
+  }, [playbackComplete, runVictory, runDefeat]);
 
   // Currently-acting unit id — derived by walking back from the cursor to
   // the most recent `action` event. With the timeline scheduler, turn-start
@@ -124,7 +150,33 @@ export function CombatScreen() {
     }
   }, []);
 
+  // Mid-run flee: a sub-area run is in flight → bail to the world map (#21).
+  // Synthetic / no-run battles fall through to the town hub as before.
   const handleFlee = () => {
+    const wasInRun = hasActiveSubAreaRun() || subAreaRunId !== null;
+    abortSubAreaRun();
+    endCombat();
+    navigate(wasInRun ? '/map' : '/town');
+  };
+
+  // Compute next sub-area for the post-victory CTA.
+  const nextSubArea = useMemo(
+    () => nextSubAreaInAct(currentAct, subAreaRunId),
+    [currentAct, subAreaRunId]
+  );
+
+  const handleContinueToNext = () => {
+    if (!nextSubArea) return;
+    setLocation(currentAct, nextSubArea.id);
+    endCombat(); // will trigger auto-start in the mount effect
+  };
+
+  const handleReturnToMap = () => {
+    endCombat();
+    navigate('/map');
+  };
+
+  const handleReturnToTown = () => {
     endCombat();
     navigate('/town');
   };
@@ -232,28 +284,76 @@ export function CombatScreen() {
 
         <CombatLog entries={recentLog} />
       </div>
-      {playbackComplete && rewards && (rewards.items.length > 0 || rewards.runeShards > 0 || rewards.runes > 0) && (
-        <div className="max-w-5xl mx-auto mt-3" data-testid="loot-summary">
-          <Panel title={t('loot', { defaultValue: '战利品' })}>
-            {rewards.runeShards > 0 && (
-              <div className="text-d2-gold text-sm mb-1">+{rewards.runeShards} {t('runeShard', { defaultValue: '符文碎片' })}</div>
-            )}
-            {rewards.items.length > 0 && (
-              <ul className="space-y-1 text-sm" data-testid="loot-items">
-                {rewards.items.map((it) => (
-                  <li key={it.id} className={RARITY_COLORS[it.rarity] ?? 'text-d2-white'}>
-                    {it.baseId.split('/').pop()} <span className="text-xs text-d2-white/50">[{it.rarity} · iLvl {it.level}]</span>
-                  </li>
-                ))}
-              </ul>
-            )}
-            {(rewards.runes > 0 || rewards.gems > 0 || rewards.wishstones > 0) && (
-              <div className="text-xs text-d2-white/70 mt-2">
-                {rewards.runes > 0 && <span className="mr-2">+{rewards.runes} rune</span>}
-                {rewards.gems > 0 && <span className="mr-2">+{rewards.gems} gem</span>}
-                {rewards.wishstones > 0 && <span className="mr-2">+{rewards.wishstones} wishstone</span>}
+      {nextWaveCountingDown && !runVictory && !runDefeat && (
+        <div
+          className="max-w-5xl mx-auto mt-3 text-center text-d2-gold text-sm"
+          data-testid="next-wave-banner"
+          aria-live="polite"
+        >
+          {t('nextWaveIn', { defaultValue: 'Next wave in 1.5s…' })}
+        </div>
+      )}
+      {(runVictory || runDefeat) && (
+        <div className="max-w-5xl mx-auto mt-3" data-testid={runVictory ? 'victory-panel' : 'defeat-panel'}>
+          <Panel
+            title={runVictory
+              ? t('runVictoryTitle', { defaultValue: 'Sub-area cleared!' })
+              : t('runDefeatTitle', { defaultValue: 'Defeated' })}
+          >
+            {runVictory && (runRewards.items.length > 0 || runRewards.runeShards > 0) && (
+              <div className="mb-2" data-testid="loot-summary">
+                {runRewards.runeShards > 0 && (
+                  <div className="text-d2-gold text-sm mb-1">
+                    +{runRewards.runeShards} {t('runeShard', { defaultValue: '符文碎片' })}
+                  </div>
+                )}
+                {runRewards.items.length > 0 && (
+                  <ul className="space-y-1 text-sm" data-testid="loot-items">
+                    {runRewards.items.map((it) => (
+                      <li key={it.id} className={RARITY_COLORS[it.rarity] ?? 'text-d2-white'}>
+                        {it.baseId.split('/').pop()}{' '}
+                        <span className="text-xs text-d2-white/50">[{it.rarity} · iLvl {it.level}]</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {(runRewards.runes > 0 || runRewards.gems > 0 || runRewards.wishstones > 0) && (
+                  <div className="text-xs text-d2-white/70 mt-2">
+                    {runRewards.runes > 0 && <span className="mr-2">+{runRewards.runes} rune</span>}
+                    {runRewards.gems > 0 && <span className="mr-2">+{runRewards.gems} gem</span>}
+                    {runRewards.wishstones > 0 && <span className="mr-2">+{runRewards.wishstones} wishstone</span>}
+                  </div>
+                )}
               </div>
             )}
+            <div className="flex flex-wrap gap-2 mt-2">
+              {runVictory && nextSubArea && (
+                <Button
+                  variant="primary"
+                  className="min-h-[40px] text-sm"
+                  onClick={handleContinueToNext}
+                  data-testid="continue-next-subarea"
+                >
+                  {t('continueToNextSubArea', { defaultValue: 'Continue to next sub-area' })}
+                </Button>
+              )}
+              <Button
+                variant="secondary"
+                className="min-h-[40px] text-sm"
+                onClick={handleReturnToMap}
+                data-testid="return-to-map"
+              >
+                {t('returnToMap', { defaultValue: 'Return to map' })}
+              </Button>
+              <Button
+                variant="secondary"
+                className="min-h-[40px] text-sm"
+                onClick={handleReturnToTown}
+                data-testid="return-to-town"
+              >
+                {t('returnToTown', { defaultValue: 'Return to town' })}
+              </Button>
+            </div>
           </Panel>
         </div>
       )}

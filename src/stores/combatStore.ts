@@ -51,6 +51,19 @@ interface CombatState {
   unitNameMap: UnitNameMap;
   outcome: RecordedBattleOutcome | null;
 
+  /**
+   * Identifier of the active sub-area run, or null when the combat
+   * screen is showing a one-off / synthetic battle. Used by the UI's
+   * "Continue to next sub-area" CTA on full-run victory.
+   */
+  subAreaRunId: string | null;
+  /** True when every wave in the active run has resolved with the player alive. */
+  runVictory: boolean;
+  /** True when the player team died at any point in the run. */
+  runDefeat: boolean;
+  /** Accumulated rewards summary across every wave in the active run. */
+  runRewards: KillRewards;
+
   // Actions
   startCombat: (playerTeam: CombatUnit[], enemyTeam: CombatUnit[], totalWaves: number) => void;
   endCombat: () => void;
@@ -74,13 +87,32 @@ interface CombatState {
     events: readonly RecordedBattleEvent[];
     unitNameMap: UnitNameMap;
     outcome: RecordedBattleOutcome;
+    /** 1-based wave index (defaults to current value). */
+    currentWave?: number;
+    /** Total wave count (defaults to current value). */
+    totalWaves?: number;
+    /** Sub-area run id (null/undefined for one-off battles). */
+    subAreaRunId?: string | null;
   }) => void;
+  /** Mark the active sub-area run as fully cleared. */
+  markRunVictory: () => void;
+  /** Mark the active sub-area run as failed (player team wiped). */
+  markRunDefeat: () => void;
+  /** Add the most recent wave's rewards into the run-aggregate counter. */
+  accumulateRunRewards: (rewards: KillRewards) => void;
+  /** Reset the run-aggregate rewards (called when starting a new run). */
+  resetRunRewards: () => void;
   /** Advance the cursor by one event (no-op when paused or complete). */
   advanceEvent: () => void;
   /** Alias for {@link advanceEvent} kept for UI timer ergonomics. */
   tick: () => void;
   pausePlayback: () => void;
   resumePlayback: () => void;
+}
+
+/** Empty {@link KillRewards} value used to seed run-aggregate state. */
+function emptyRewards(): KillRewards {
+  return { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0 };
 }
 
 const initialState = {
@@ -97,7 +129,11 @@ const initialState = {
   eventCursor: 0,
   playbackComplete: false,
   unitNameMap: new Map() as UnitNameMap,
-  outcome: null as RecordedBattleOutcome | null
+  outcome: null as RecordedBattleOutcome | null,
+  subAreaRunId: null as string | null,
+  runVictory: false,
+  runDefeat: false,
+  runRewards: emptyRewards()
 };
 
 // Local: build a log entry from event without circular import on combatHelpers.
@@ -281,8 +317,17 @@ export const useCombatStore= create<CombatState>((set, get) => ({
 
   reset: () => { set(initialState); },
 
-  setRecordedBattle: ({ initialPlayerTeam, initialEnemyTeam, events, unitNameMap, outcome }) => {
-    set({
+  setRecordedBattle: ({
+    initialPlayerTeam,
+    initialEnemyTeam,
+    events,
+    unitNameMap,
+    outcome,
+    currentWave,
+    totalWaves,
+    subAreaRunId
+  }) => {
+    set((state) => ({
       inCombat: true,
       playerTeam: [...initialPlayerTeam],
       enemyTeam: [...initialEnemyTeam],
@@ -293,9 +338,30 @@ export const useCombatStore= create<CombatState>((set, get) => ({
       currentTurn: 0,
       isPaused: false,
       unitNameMap,
-      outcome
-    });
+      outcome,
+      currentWave: currentWave ?? state.currentWave,
+      totalWaves: totalWaves ?? state.totalWaves,
+      subAreaRunId: subAreaRunId === undefined ? state.subAreaRunId : subAreaRunId,
+      // A new wave clears the per-wave run flags; final flags are set
+      // explicitly via markRunVictory / markRunDefeat after playback.
+      runVictory: false,
+      runDefeat: false
+    }));
   },
+
+  markRunVictory: () => { set({ runVictory: true, runDefeat: false }); },
+  markRunDefeat: () => { set({ runDefeat: true, runVictory: false }); },
+
+  accumulateRunRewards: (rewards) => { set((state) => ({
+    runRewards: {
+      items: [...state.runRewards.items, ...rewards.items],
+      runeShards: state.runRewards.runeShards + rewards.runeShards,
+      runes: state.runRewards.runes + rewards.runes,
+      gems: state.runRewards.gems + rewards.gems,
+      wishstones: state.runRewards.wishstones + rewards.wishstones
+    }
+  })); },
+  resetRunRewards: () => { set({ runRewards: emptyRewards() }); },
 
   advanceEvent: () => {
     const state = get();

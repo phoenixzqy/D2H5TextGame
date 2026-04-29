@@ -4,19 +4,30 @@
  */
 
 import { runBattleRecorded, type BattleEvent } from '@/engine/combat/combat';
-import type { CombatUnit } from '@/engine/combat/types';
+import type { CombatUnit, MonsterTier } from '@/engine/combat/types';
+import { inferKind } from '@/engine/combat/types';
 import type { Player } from '@/engine/types/entities';
 import type { Item } from '@/engine/types/items';
+import type { MonsterDef } from '@/engine/types/monsters';
 import { rollKillRewards, type KillRewards } from '@/engine/loot/award';
 import { xpForKill } from '@/engine/progression/xp';
+import {
+  buildMonsterUnit,
+  resolveWavePlan,
+  synthDefaultPlan,
+  type WavePlan,
+  type WaveSpec
+} from '@/engine/combat';
 import { loadAwardPools } from '@/data/loaders/loot';
+import { monsters as monsterList } from '@/data/index';
+import { resolveSubArea } from './subAreaResolver';
 import { useCombatStore, type CombatLogEntry } from './combatStore';
 import { useInventoryStore } from './inventoryStore';
 import { useMapStore } from './mapStore';
 import { usePlayerStore } from './playerStore';
 import { useMercStore } from './mercStore';
 import { mercToCombatUnit } from './mercToCombatUnit';
-import { createRng } from '@/engine/rng';
+import { createRng, hashSeed } from '@/engine/rng';
 
 /**
  * Convert a Player to a CombatUnit for battle
@@ -41,64 +52,27 @@ export function playerToCombatUnit(player: Player): CombatUnit {
   };
 }
 
-const ENEMY_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+// ---------------------------------------------------------------------------
+// Monster catalog (data-driven; bug #6)
+// ---------------------------------------------------------------------------
+
+let monsterIndex: ReadonlyMap<string, MonsterDef> | null = null;
+function getMonsterIndex(): ReadonlyMap<string, MonsterDef> {
+  if (monsterIndex) return monsterIndex;
+  const m = new Map<string, MonsterDef>();
+  for (const def of monsterList) m.set(def.id, def);
+  monsterIndex = m;
+  return m;
+}
 
 /**
- * Create a simple enemy unit for testing.
- * @param level monster level
- * @param index optional 0-based index for naming uniqueness ("Fallen A", …)
+ * Pick a fallback monster archetype id for a given act, used when the
+ * synthetic default wave plan needs a placeholder.
  */
-export function createSimpleEnemy(level: number, index?: number): CombatUnit {
-  // Numbers per docs/balance/early-game-spec.md §4 (trash baseline).
-  const lvlAbove1 = Math.max(0, level - 1);
-  const life = 50 + lvlAbove1 * 16;
-  const attack = 32 + lvlAbove1 * 5;
-  const defense = 4 + Math.floor(lvlAbove1 * 1.5);
-  const enemyId = `enemy-${String(Date.now())}-${String(index ?? 0)}-${String(Math.random())}`;
-  const suffix =
-    index === undefined
-      ? ''
-      : ` ${ENEMY_ALPHABET[index] ?? `#${String(index + 1)}`}`;
-  const enemyName = `Fallen Lv${String(level)}${suffix}`;
-  return {
-    id: enemyId,
-    name: enemyName,
-    side: 'enemy',
-    level,
-    tier: 'trash',
-    stats: {
-      life,
-      lifeMax: life,
-      mana: 0,
-      manaMax: 0,
-      attack,
-      defense,
-      attackSpeed: 95,
-      critChance: 0.05,
-      critDamage: 1.5,
-      physDodge: 0.05,
-      magicDodge: 0.05,
-      magicFind: 0,
-      goldFind: 0,
-      resistances: {
-        fire: 0,
-        cold: 0,
-        lightning: 0,
-        poison: 0,
-        arcane: 0,
-        physical: 0
-      }
-    },
-    life,
-    mana: 0,
-    statuses: [],
-    cooldowns: {},
-    skillOrder: [],
-    activeBuffIds: [],
-    enraged: false,
-    summonedAdds: false,
-    kind: 'monster'
-  };
+function pickFallbackArchetypeId(act: number): string {
+  const prefix = `monsters/act${String(act)}.`;
+  const candidates = monsterList.filter((m) => m.id.startsWith(prefix));
+  return (candidates[0] ?? monsterList[0])?.id ?? 'monsters/act1.fallen';
 }
 
 /**
@@ -220,6 +194,36 @@ export function battleEventToLogEntry(
 }
 
 /**
+ * Build the enemy team for a single {@link WaveSpec} from JSON monster
+ * definitions. Falls back to the act's first archetype when an
+ * archetype id is missing from the catalog (defensive — should never
+ * happen for shipped data).
+ */
+export function buildEnemiesForWave(wave: WaveSpec, seed: number): CombatUnit[] {
+  const idx = getMonsterIndex();
+  const rng = createRng(seed >>> 0);
+  const enemies: CombatUnit[] = [];
+
+  for (const spawn of wave.spawns) {
+    const def =
+      idx.get(spawn.archetypeId) ??
+      [...idx.values()].find((m) => m.id.endsWith(spawn.archetypeId.split('/').pop() ?? '')) ??
+      [...idx.values()][0];
+    if (!def) continue; // empty catalog — should never happen at runtime
+    enemies.push(
+      buildMonsterUnit({
+        def,
+        level: spawn.level,
+        tier: spawn.tier,
+        rng,
+        index: spawn.index
+      })
+    );
+  }
+  return enemies;
+}
+
+/**
  * Award post-victory loot for a list of slain enemies. Pure dispatcher:
  * rolls items + currencies via the engine and pushes them into the
  * inventory store. Returns the aggregated rewards so the UI can render a
@@ -276,74 +280,198 @@ export function awardLootForVictory(opts: {
   return { items, runeShards, runes, gems, wishstones };
 }
 
-/**
- * Start a simple battle for testing/demo. Uses the recorded-event API so
- * the UI can animate playback over time. Returns the engine's
- * {@link CombatResult}-shaped object plus rolled rewards (if any).
- */
-export function startSimpleBattle(enemyLevel = 1, enemyCount = 3) {
-  const playerState = usePlayerStore.getState();
-  const combatState = useCombatStore.getState();
+// ---------------------------------------------------------------------------
+// Sub-area run state (mid-flight; not persisted to save)
+// ---------------------------------------------------------------------------
 
+interface ActiveRun {
+  readonly plan: WavePlan;
+  readonly act: 1 | 2 | 3 | 4 | 5;
+  readonly seed: number;
+  readonly playerUnit: CombatUnit;
+  /** Index of the wave currently being played (0-based). */
+  waveIdx: number;
+  /** Ongoing alive player-side units carried between waves. */
+  carryPlayerTeam: CombatUnit[];
+}
+
+let activeRun: ActiveRun | null = null;
+
+/** @returns whether a sub-area run is currently active. */
+export function hasActiveSubAreaRun(): boolean {
+  return activeRun !== null;
+}
+
+/**
+ * Start a sub-area run.
+ *
+ * Reads the requested sub-area definition from JSON (or falls back to a
+ * synthetic 4-wave plan), then plays the first wave. Subsequent waves
+ * are advanced via {@link advanceWaveOrFinish}, called by the UI when
+ * playback of the current wave completes and the player team is alive.
+ *
+ * @param opts - sub-area run options
+ *   - `subAreaId`: explicit id; defaults to `mapStore.currentSubAreaId`.
+ *   - `act`: act number; defaults to `mapStore.currentAct`.
+ *   - `level`: optional override for monster level (else from JSON).
+ */
+export function startSubAreaRun(opts: {
+  readonly subAreaId?: string | null;
+  readonly act?: number;
+  readonly level?: number;
+} = {}): { runId: string; totalWaves: number } | null {
+  const playerState = usePlayerStore.getState();
+  const combat = useCombatStore.getState();
   if (!playerState.player) {
-    console.warn('No player to start battle');
-    return;
+    console.warn('[startSubAreaRun] no player; abort');
+    return null;
   }
 
+  const map = useMapStore.getState();
+  const act = clampAct(opts.act ?? map.currentAct);
+  const subAreaId = opts.subAreaId ?? map.currentSubAreaId;
+  const subArea = resolveSubArea(act, subAreaId);
+
+  // Resolve a wave plan, falling back to the synthetic 4-wave default.
+  const fallbackArchetype = pickFallbackArchetypeId(act);
+  const plan = subArea
+    ? resolveWavePlan(subArea, fallbackArchetype, subArea.areaLevel)
+    : synthDefaultPlan(
+        {
+          id: `areas/synth-act${String(act)}`,
+          lootTable: `loot/trash-act${String(act)}`,
+          areaLevel: opts.level ?? playerState.player.level
+        },
+        fallbackArchetype,
+        opts.level ?? playerState.player.level
+      );
+
+  const seed = hashSeed(`${plan.subAreaId}|${String(Date.now())}`);
   const playerUnit = playerToCombatUnit(playerState.player);
   const fieldedMerc = useMercStore.getState().getFieldedMerc();
   const playerTeam: CombatUnit[] = fieldedMerc
     ? [playerUnit, mercToCombatUnit(fieldedMerc)]
     : [playerUnit];
-  const enemies: CombatUnit[] = [];
 
-  for (let i = 0; i < enemyCount; i++) {
-    enemies.push(createSimpleEnemy(enemyLevel, enemyCount > 1 ? i : undefined));
-  }
-
-  // Run the battle — fully resolved synchronously.
-  const seed = Date.now();
-  const { events, result } = runBattleRecorded({
+  activeRun = {
+    plan,
+    act,
     seed,
-    playerTeam,
-    enemyTeam: enemies
-  });
+    playerUnit,
+    waveIdx: 0,
+    carryPlayerTeam: playerTeam
+  };
 
-  // On victory, roll loot for every slain enemy and dispatch into inventory.
-  let rewards: KillRewards | undefined;
-  let xpGained = 0;
-  let levelUp: { readonly levelsGained: number; readonly newLevel: number } | undefined;
-  if (result.winner === 'player') {
-    const slain = result.enemyTeam.filter(
-      (u) => u.life <= 0 && u.kind !== 'summon'
-    );
+  // Reset per-run aggregate state in the store.
+  combat.resetRunRewards();
+
+  playWave(0);
+  return { runId: plan.subAreaId, totalWaves: plan.waves.length };
+}
+
+/**
+ * Advance to the next wave (if any) or finish the run. Intended to be
+ * invoked by the UI once `playbackComplete === true` for the current
+ * wave's recorded battle. Idempotent.
+ *
+ * @returns the new state after the call:
+ *   - `'next-wave'` — a new wave's recorded battle has been installed.
+ *   - `'victory'`   — the run is fully cleared.
+ *   - `'defeat'`    — the player team died on the just-finished wave.
+ *   - `'idle'`      — no active run.
+ */
+export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idle' {
+  if (!activeRun) return 'idle';
+  const combat = useCombatStore.getState();
+  const outcome = combat.outcome;
+
+  if (!outcome) return 'idle';
+
+  const slain = outcome.finalEnemyTeam.filter(
+    (u) => u.life <= 0 && inferKind(u) !== 'summon'
+  );
+  if (outcome.winner === 'player' && slain.length > 0) {
+    let xpGained = 0;
     for (const enemy of slain) xpGained += xpForKill(enemy.level);
     if (xpGained > 0) {
       const xpResult = usePlayerStore.getState().gainExperience(xpGained);
       if (xpResult.levelsGained > 0) {
-        levelUp = { levelsGained: xpResult.levelsGained, newLevel: xpResult.newLevel };
+        combat.addLogEntry({
+          type: 'system',
+          actorId: 'system',
+          actorName: 'System',
+          message: `combat:levelUp:${String(xpResult.newLevel)}`
+        });
       }
     }
 
-    const mapState = useMapStore.getState();
-    const act = (Math.min(5, Math.max(1, mapState.currentAct)) as 1 | 2 | 3 | 4 | 5);
-    const treasureClassId = `loot/trash-act${String(act)}`;
-    rewards = awardLootForVictory({
+    const wave = activeRun.plan.waves[activeRun.waveIdx];
+    const tcId = wave?.lootTable ?? activeRun.plan.defaultLootTable;
+    const rewards = awardLootForVictory({
       slainEnemies: slain,
-      act,
-      treasureClassId,
-      seed: seed ^ 0x9e3779b1
+      act: activeRun.act,
+      treasureClassId: tcId,
+      seed: activeRun.seed ^ 0x9e3779b1 ^ activeRun.waveIdx
     });
+    combat.accumulateRunRewards(rewards);
   }
 
-  // Build unit ID → name map from result units (final names; ids are stable).
+  const alivePlayer = outcome.finalPlayerTeam.find(
+    (u) => u.id === activeRun?.playerUnit.id && u.life > 0
+  );
+
+  if (!alivePlayer) {
+    combat.markRunDefeat();
+    activeRun = null;
+    return 'defeat';
+  }
+
+  activeRun.carryPlayerTeam = outcome.finalPlayerTeam.filter(
+    (u) => inferKind(u) !== 'summon' && u.life > 0
+  );
+  const nextIdx = activeRun.waveIdx + 1;
+  if (nextIdx >= activeRun.plan.waves.length) {
+    combat.markRunVictory();
+    activeRun = null;
+    return 'victory';
+  }
+  activeRun.waveIdx = nextIdx;
+  playWave(nextIdx);
+  return 'next-wave';
+}
+
+/** Tear down the active run without touching combat state. */
+export function abortSubAreaRun(): void {
+  activeRun = null;
+}
+
+/**
+ * Internal: build & install the recorded battle for the given wave index
+ * in the active run. Intentionally isolated so {@link startSubAreaRun}
+ * and {@link advanceWaveOrFinish} share one code path.
+ */
+function playWave(waveIdx: number): void {
+  if (!activeRun) return;
+  const wave = activeRun.plan.waves[waveIdx];
+  if (!wave) return;
+  const combat = useCombatStore.getState();
+
+  const waveSeed = (activeRun.seed ^ ((waveIdx + 1) * 0x9e3779b1)) >>> 0;
+  const enemies = buildEnemiesForWave(wave, waveSeed);
+  const playerTeam = activeRun.carryPlayerTeam;
+
+  const { events, result } = runBattleRecorded({
+    seed: waveSeed,
+    playerTeam,
+    enemyTeam: enemies
+  });
+
   const unitMap = new Map<string, string>();
   [...result.playerTeam, ...result.enemyTeam].forEach((unit) => {
     unitMap.set(unit.id, unit.name);
   });
 
-  // Hand the recorded battle to the store; UI will tick playback.
-  combatState.setRecordedBattle({
+  combat.setRecordedBattle({
     initialPlayerTeam: playerTeam,
     initialEnemyTeam: enemies,
     events,
@@ -351,19 +479,53 @@ export function startSimpleBattle(enemyLevel = 1, enemyCount = 3) {
     outcome: {
       winner: result.winner,
       finalPlayerTeam: result.playerTeam,
-      finalEnemyTeam: result.enemyTeam,
-      ...(rewards ? { rewards } : {})
-    }
+      finalEnemyTeam: result.enemyTeam
+    },
+    currentWave: waveIdx + 1,
+    totalWaves: activeRun.plan.waves.length,
+    subAreaRunId: activeRun.plan.subAreaId
   });
+}
 
-  if (levelUp) {
-    useCombatStore.getState().addLogEntry({
-      type: 'system',
-      actorId: 'system',
-      actorName: 'System',
-      message: `combat:levelUp:${String(levelUp.newLevel)}`
-    });
+function clampAct(n: number): 1 | 2 | 3 | 4 | 5 {
+  return (Math.min(5, Math.max(1, Math.floor(n))) as 1 | 2 | 3 | 4 | 5);
+}
+
+/**
+ * Backwards-compat shim: legacy "synthetic Fallen battle" entry point.
+ * Now delegates to {@link startSubAreaRun} so callers (older E2E tests
+ * and one-off demos) immediately benefit from the multi-wave flow and
+ * data-driven monsters.
+ *
+ * @deprecated use {@link startSubAreaRun} directly.
+ */
+export function startSimpleBattle(enemyLevel = 1, _enemyCount = 3): void {
+  void _enemyCount; // ignored — wave plan dictates enemy counts now
+  startSubAreaRun({ level: enemyLevel });
+}
+
+/**
+ * Lightweight, side-effect-free spawn helper retained so legacy combat
+ * unit tests that fabricate trivial enemies can still construct one.
+ *
+ * The production code path is {@link buildEnemiesForWave}; this is an
+ * adapter that picks the act-1 Fallen archetype out of JSON and hands
+ * it to {@link buildMonsterUnit}.
+ */
+export function createSimpleEnemy(level: number, index?: number): CombatUnit {
+  const idx = getMonsterIndex();
+  const def =
+    idx.get('monsters/act1.fallen') ??
+    [...idx.values()][0];
+  if (!def) {
+    throw new Error('createSimpleEnemy: no monsters in JSON catalog');
   }
-
-  return { ...result, rewards, xpGained, ...(levelUp ? { levelUp } : {}) };
+  const tier: MonsterTier = 'trash';
+  return buildMonsterUnit({
+    def,
+    level,
+    tier,
+    rng: createRng(hashSeed(`simple-${String(level)}-${String(index ?? 0)}`)),
+    ...(index !== undefined ? { index } : {})
+  });
 }

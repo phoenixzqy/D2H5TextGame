@@ -1,6 +1,12 @@
 {
   "title": "Combat",
   "wave": "Wave {{current}} / {{total}}",
+  "nextWaveIn": "Next wave in 1.5s…",
+  "runVictoryTitle": "Sub-area cleared!",
+  "runDefeatTitle": "Defeated",
+  "continueToNextSubArea": "Continue to next sub-area",
+  "returnToMap": "Return to map",
+  "returnToTown": "Return to town",
   "turn": "Turn",
   "pause": "Pause",
   "resume": "Resume",
