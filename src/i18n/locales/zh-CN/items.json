@@ -3,6 +3,41 @@
     "source": "Diablo II / D2R item DB; CN names per Blizzard 简体中文版 + Arreat Summit",
     "keyConvention": "item id 'items/<category>/<slug>' → nested <category>.<slug>"
   },
+  "types": {
+    "weapon": "武器",
+    "armor": "护甲",
+    "jewelry": "珠宝",
+    "charm": "护符",
+    "rune": "符文",
+    "gem": "宝石",
+    "material": "材料"
+  },
+  "slots": {
+    "head": "头盔槽",
+    "chest": "护甲槽",
+    "gloves": "手套槽",
+    "belt": "腰带槽",
+    "boots": "靴子槽",
+    "amulet": "项链槽",
+    "ring-left": "戒指槽 (左)",
+    "ring-right": "戒指槽 (右)",
+    "weapon": "武器槽",
+    "offhand": "副手槽"
+  },
+  "tooltip": {
+    "subtitle": "{{type}} · {{slot}}",
+    "subtitleNoSlot": "{{type}}",
+    "damage": "伤害: {{min}}–{{max}}",
+    "defense": "防御: {{value}}",
+    "required": "需求",
+    "reqLevel": "等级 {{value}}",
+    "reqStr": "力量 {{value}}",
+    "reqDex": "敏捷 {{value}}",
+    "reqVit": "体力 {{value}}",
+    "reqEng": "精神 {{value}}",
+    "ilvl": "物品等级 {{value}}",
+    "sockets": "插槽 ×{{value}}"
+  },
   "base": {
     "helm-cap": "帽子",
     "helm-skull-cap": "头盖骨",

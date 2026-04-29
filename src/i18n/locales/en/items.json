@@ -3,6 +3,41 @@
     "source": "Diablo II / D2R item DB; canonical English names from Arreat Summit",
     "keyConvention": "item id 'items/<category>/<slug>' → nested <category>.<slug>"
   },
+  "types": {
+    "weapon": "Weapon",
+    "armor": "Armor",
+    "jewelry": "Jewelry",
+    "charm": "Charm",
+    "rune": "Rune",
+    "gem": "Gem",
+    "material": "Material"
+  },
+  "slots": {
+    "head": "Helm",
+    "chest": "Body Armor",
+    "gloves": "Gloves",
+    "belt": "Belt",
+    "boots": "Boots",
+    "amulet": "Amulet",
+    "ring-left": "Ring (L)",
+    "ring-right": "Ring (R)",
+    "weapon": "Weapon",
+    "offhand": "Offhand"
+  },
+  "tooltip": {
+    "subtitle": "{{type}} — {{slot}}",
+    "subtitleNoSlot": "{{type}}",
+    "damage": "Damage: {{min}}–{{max}}",
+    "defense": "Defense: {{value}}",
+    "required": "Required",
+    "reqLevel": "Lvl {{value}}",
+    "reqStr": "Str {{value}}",
+    "reqDex": "Dex {{value}}",
+    "reqVit": "Vit {{value}}",
+    "reqEng": "Eng {{value}}",
+    "ilvl": "iLvl {{value}}",
+    "sockets": "Sockets ×{{value}}"
+  },
   "base": {
     "helm-cap": "Cap",
     "helm-skull-cap": "Skull Cap",
