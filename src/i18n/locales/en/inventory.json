@@ -51,6 +51,7 @@
     "compare": {
       "current": "Currently Equipped",
       "candidate": "Candidate",
+      "slotEmpty": "(empty slot)",
       "stat": {
         "lifeMax": "Life",
         "manaMax": "Mana",

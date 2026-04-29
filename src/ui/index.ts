@@ -7,6 +7,8 @@ export { StatBar } from './StatBar';
 export { RarityText } from './RarityText';
 export { ItemTooltip } from './ItemTooltip';
 export { ItemCompareTooltip } from './ItemCompareTooltip';
+export { StatSheet } from './StatSheet';
+export { EquippedItemModal } from './EquippedItemModal';
 export { BottomNav } from './BottomNav';
 export { ScreenShell } from './ScreenShell';
 export { CharacterHud } from './CharacterHud';
