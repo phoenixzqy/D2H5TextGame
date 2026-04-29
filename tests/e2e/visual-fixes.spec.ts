@@ -71,20 +71,22 @@ test.describe('Issue 1 — Character layout', () => {
     expect(className ?? '').toMatch(/grid-cols-1/);
     expect(className ?? '').toMatch(/md:grid-cols-2/);
 
+    // Bug #13 reordered rows: char-top-row is now hero + derived stats
+    // (core attributes moved to the next row).
     const hero = page.getByTestId('hero-strip');
-    const attrs = page.getByTestId('core-attributes-panel');
+    const sideBySide = page.getByTestId('char-derived-stats');
     await expect(hero).toBeVisible();
-    await expect(attrs).toBeVisible();
+    await expect(sideBySide).toBeVisible();
 
     const heroBox = await hero.boundingBox();
-    const attrsBox = await attrs.boundingBox();
+    const sideBox = await sideBySide.boundingBox();
     expect(heroBox).not.toBeNull();
-    expect(attrsBox).not.toBeNull();
-    if (!heroBox || !attrsBox) return;
-    // attributes panel is to the right of hero strip's midpoint
-    expect(attrsBox.x).toBeGreaterThan(heroBox.x + heroBox.width / 2);
+    expect(sideBox).not.toBeNull();
+    if (!heroBox || !sideBox) return;
+    // panel is to the right of hero strip's midpoint
+    expect(sideBox.x).toBeGreaterThan(heroBox.x + heroBox.width / 2);
     // and roughly aligned vertically (top of one within the other's vertical span)
-    expect(attrsBox.y).toBeLessThan(heroBox.y + heroBox.height);
+    expect(sideBox.y).toBeLessThan(heroBox.y + heroBox.height);
 
     await page.screenshot({
       path: path.join(SHOT_DIR, 'character-1280.png'),
