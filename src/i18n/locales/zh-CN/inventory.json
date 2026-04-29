@@ -51,6 +51,7 @@
     "compare": {
       "current": "当前装备",
       "candidate": "候选装备",
+      "statHeader": "属性",
       "slotEmpty": "（未装备）",
       "stat": {
         "lifeMax": "生命上限",
