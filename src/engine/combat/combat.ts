@@ -163,6 +163,63 @@ function targetPriority(state: State, units: readonly CombatUnit[]): CombatUnit[
   return arr;
 }
 
+/**
+ * Threat weight per defender role.
+ *
+ * Bug #2 (P0) — monsters previously hit `targetPriority(...)[0]` every action
+ * which, with no summons in play, always resolved to the player hero. With
+ * mercs/summons on the field aggro must be **shared**: summons taunt slightly
+ * (front-line bias) but heroes/mercs still take their fair share.
+ *
+ * Weights: summons = 3, heroes/mercs = 2, anything else = 1. The light
+ * summon bias preserves the existing taunt behaviour without making
+ * heroes effectively untargetable. All randomness flows through the
+ * seeded engine RNG so battles remain deterministic.
+ */
+function threatWeight(unit: CombatUnit): number {
+  const kind = inferKind(unit);
+  if (kind === 'summon') return 3;
+  if (kind === 'hero' || kind === 'merc') return 2;
+  return 1;
+}
+
+/**
+ * Pick a single defender for an attacker out of a list of alive opponents.
+ *
+ * Selection rules:
+ *  - Empty input → undefined.
+ *  - Singleton → that unit (no RNG churn).
+ *  - Player-side attacker → first by {@link targetPriority} (deterministic,
+ *    taunt-respecting; matches v1 behaviour the rest of the engine relies on).
+ *  - Enemy-side attacker → weighted random pick using {@link threatWeight}
+ *    so monsters spread aggro across hero + mercs + summons. The RNG is
+ *    the seeded engine RNG so battles remain deterministic.
+ */
+function pickDefender(
+  state: State,
+  attacker: CombatUnit,
+  candidates: readonly CombatUnit[]
+): CombatUnit | undefined {
+  if (candidates.length === 0) return undefined;
+  if (candidates.length === 1) return candidates[0];
+
+  if (attacker.side === 'player') {
+    const sorted = targetPriority(state, candidates);
+    return sorted[0];
+  }
+
+  let total = 0;
+  for (const c of candidates) total += threatWeight(c);
+  if (total <= 0) return candidates[0];
+  const roll = state.rng.nextInt(0, total - 1);
+  let acc = 0;
+  for (const c of candidates) {
+    acc += threatWeight(c);
+    if (roll < acc) return c;
+  }
+  return candidates[candidates.length - 1];
+}
+
 function registerUnit(state: State, u: CombatUnit): void {
   state.units.set(u.id, u);
   if (!state.insertionIdx.has(u.id)) {
@@ -289,6 +346,31 @@ function handleDeath(state: State, dead: CombatUnit): void {
     }
   }
 
+  // Bug #3 (P0) - when a summon dies, refund the parent skill's mana cost
+  // on the owner so they can re-cast on their next action ("骷髅兵死后再
+  // 触发技能重新召唤"). Without this, a Necromancer with raise_skeleton
+  // (mana cost 15, no cooldown, no in-combat regen) hits a hard mana wall
+  // at 5 lifetime summons; once their mana drains, dead skeletons are
+  // never replaced.
+  if (inferKind(dead) === 'summon' && dead.summonOwnerId) {
+    const owner = state.units.get(dead.summonOwnerId);
+    if (owner && alive(owner)) {
+      const summonSkill = owner.skillOrder
+        .map((id) => getSkill(id))
+        .find((s): s is RegisteredSkill =>
+          !!s && s.effects.some((e): e is SummonEffect => e.kind === 'summon')
+        );
+      if (summonSkill) {
+        const refundedMana = Math.min(
+          owner.stats.manaMax,
+          owner.mana + summonSkill.manaCost
+        );
+        state.units.set(owner.id, { ...owner, mana: refundedMana });
+        const cdMap = state.cooldownExpiresAt.get(owner.id);
+        if (cdMap) cdMap.delete(summonSkill.id);
+      }
+    }
+  }
   // Orb drops — only enemy heroes/monsters drop, not summons.
   if (dead.side === 'enemy' && inferKind(dead) !== 'summon') {
     const orbs = rollOrbDrops(dead.tier, state.rng);
@@ -426,13 +508,14 @@ function castSkill(state: State, actorId: string, skill: RegisteredSkill): void 
   emit(state, { kind: 'action', actor: actorId, skillId: skill.id });
 
   const enemySide: CombatSide = actor.side === 'player' ? 'enemy' : 'player';
-  const enemies = targetPriority(state, aliveOf(state, enemySide));
+  const enemiesAliveRaw = aliveOf(state, enemySide);
+  const enemies = targetPriority(state, enemiesAliveRaw);
   const allies = aliveOf(state, actor.side);
 
   let targetEnemies: CombatUnit[] = enemies;
-  if (skill.target === 'single-enemy' && enemies.length > 0) {
-    const firstEnemy = enemies[0];
-    if (firstEnemy) targetEnemies = [firstEnemy];
+  if (skill.target === 'single-enemy' && enemiesAliveRaw.length > 0) {
+    const picked = pickDefender(state, actor, enemiesAliveRaw);
+    if (picked) targetEnemies = [picked];
   } else if (skill.target === 'area-enemies') {
     targetEnemies = enemies.slice(0, 2);
   }
@@ -446,9 +529,8 @@ function basicAttack(state: State, actorId: string): void {
   const actor = state.units.get(actorId);
   if (!actor) return;
   const enemySide: CombatSide = actor.side === 'player' ? 'enemy' : 'player';
-  const enemies = targetPriority(state, aliveOf(state, enemySide));
-  if (enemies.length === 0) return;
-  const target = enemies[0];
+  const enemiesAlive = aliveOf(state, enemySide);
+  const target = pickDefender(state, actor, enemiesAlive);
   if (!target) return;
 
   emit(state, { kind: 'action', actor: actorId, skillId: null });

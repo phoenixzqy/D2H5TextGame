@@ -361,7 +361,7 @@ describe('mercToCombatUnit (Bug #2)', () => {
     const unit = mercToCombatUnit(buildMerc());
     expect(unit.id).toBe('merc-merc-test-1');
     expect(unit.side).toBe('player');
-    expect(unit.kind).toBe('hero');
+    expect(unit.kind).toBe('merc');
     expect(unit.skillOrder.length).toBeGreaterThan(0);
     for (const id of unit.skillOrder) expect(getSkill(id), id).toBeDefined();
   });

@@ -87,8 +87,12 @@ export interface CombatUnit {
    * Combat role of this unit. When omitted the engine infers it from
    * `side`/`id`/`summonOwnerId`. Used by targeting (taunt prefers `summon`)
    * and victory checks (hero death = enemy victory).
+   *
+   * `merc` is an ally that fights alongside the hero but whose death does
+   * NOT end the run (Bug #2). For threat/aggro purposes mercs are treated
+   * the same as heroes.
    */
-  readonly kind?: 'hero' | 'summon' | 'monster';
+  readonly kind?: 'hero' | 'merc' | 'summon' | 'monster';
   /** Owner id of a summon. Set by the engine when summons are spawned. */
   readonly summonOwnerId?: string;
 }
@@ -97,12 +101,14 @@ export interface CombatUnit {
  * Infer a combat unit's role when {@link CombatUnit.kind} is not set.
  * - explicit `kind` wins
  * - any unit with `summonOwnerId` is a summon
+ * - player-side units whose id begins with `merc-` are mercenaries
  * - player-side units whose id begins with `player-` are heroes
  * - everything else is a monster
  */
-export function inferKind(u: CombatUnit): 'hero' | 'summon' | 'monster' {
+export function inferKind(u: CombatUnit): 'hero' | 'merc' | 'summon' | 'monster' {
   if (u.kind) return u.kind;
   if (u.summonOwnerId !== undefined || u.summon === true) return 'summon';
+  if (u.side === 'player' && u.id.startsWith('merc-')) return 'merc';
   if (u.side === 'player' && u.id.startsWith('player-')) return 'hero';
   return 'monster';
 }
