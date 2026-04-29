@@ -76,8 +76,11 @@ test.describe('Skills Screen', () => {
       await navTo(page, 'skills');
       await expect(page.getByTestId('skills-screen')).toBeVisible();
       
-      // Verify priority list exists with 5 slots
-      await expect(page.getByTestId('skills-screen')).toBeVisible();
+      // Active-skill priority list lives in the "active" tab (Bug #11 refactor).
+      // Click the tab to render its panel, then assert.
+      await page.locator('button[role="tab"][aria-controls="tabpanel-active"]').click();
+      await expect(page.locator('#tabpanel-active')).toBeVisible();
+      
       const selects = await page.locator('select').filter({ hasText: /无|None|— —/ }).count();
       expect(selects).toBeGreaterThanOrEqual(5);
       
