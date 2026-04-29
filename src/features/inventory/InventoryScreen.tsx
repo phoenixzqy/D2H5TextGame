@@ -365,6 +365,7 @@ function glyphForItem(item: Item):
       if (base.slot === 'offhand' || slug.startsWith('sh-')) return 'shield';
       return 'armor';
     }
+    // Remaining type === 'material' (TS-narrowed) — show scroll glyph.
     return 'scroll';
   }
   // Fallbacks when the base catalog doesn't know this id.
