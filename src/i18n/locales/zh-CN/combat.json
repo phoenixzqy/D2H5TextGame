@@ -73,5 +73,23 @@
     "poison": "毒素",
     "thorns": "荆棘",
     "true": "真实"
+  },
+  "event": {
+    "basicAttack": "{{actor}} 普攻 {{target}}，造成 {{amount}} 点{{type}}伤害。",
+    "basicAttackMiss": "{{actor}} 的普攻被 {{target}} 闪避！",
+    "skillCast": "{{actor}} 施放了 {{skill}}。",
+    "skillCastNoTarget": "{{actor}} 施放 {{skill}}，但无有效目标。",
+    "dodge": "{{target}} 闪避了 {{actor}} 的攻击！",
+    "block": "{{target}} 格挡了 {{actor}} 的攻击。",
+    "miss": "{{actor}} 未命中。",
+    "summon": "{{actor}} 召唤了 {{minion}}。",
+    "death": "{{target}} 倒下了。",
+    "victory": "胜利！所有敌人已被击败。",
+    "defeat": "失败… 你的小队倒下了。",
+    "flee": "{{actor}} 逃离了战斗。",
+    "waveStart": "第 {{wave}} 波 — {{enemies}} 出现！",
+    "bossArrives": "{{boss}} 出现了！",
+    "lootGained": "获得 {{item}}。",
+    "goldGained": "获得 {{amount}} 金币。"
   }
 }
