@@ -1,5 +1,5 @@
 /**
- * Independent secondary drops: gold, wishstones, runes, gems.
+ * Independent secondary drops: rune-shards, wishstones, runes, gems; no gold per GDD §8.
  *
  * Source: docs/design/drop-tables.md §7–§10.
  *
@@ -41,11 +41,11 @@ const DIFFICULTY_MULT: Readonly<Record<Difficulty, number>> = {
   hell: 1.5
 };
 
-/** Gold drop calculation. */
-export function rollGold(
+/** Rune-shard drop calculation (replaces gold). */
+export function rollRuneShards(
   monsterLevel: number,
   tier: MonsterTier,
-  goldFindPct: number,
+  currencyFindPct: number,
   rng: Rng
 ): number {
   const tierMult: Record<MonsterTier, number> = {
@@ -57,13 +57,14 @@ export function rollGold(
   const base = 5;
   const variance = 0.7 + rng.next() * 0.6; // [0.7, 1.3)
   return Math.floor(
-    base * monsterLevel * tierMult[tier] * (1 + goldFindPct / 100) * variance
+    base * monsterLevel * tierMult[tier] * (1 + currencyFindPct / 100) * variance
   );
 }
 
 /** Currency drop bundle from a single kill (no items, only "currency"). */
 export interface CurrencyDrops {
-  readonly gold: number;
+  /** Universal per-kill currency (replaces gold). */
+  readonly runeShards: number;
   readonly wishstones: number;
   readonly runes: number;
   readonly gems: number;
@@ -75,7 +76,7 @@ export function rollCurrencyDrops(
   tier: MonsterTier,
   act: 1 | 2 | 3 | 4 | 5,
   difficulty: Difficulty,
-  goldFindPct: number,
+  currencyFindPct: number,
   rng: Rng
 ): CurrencyDrops {
   const diff = DIFFICULTY_MULT[difficulty];
@@ -90,6 +91,6 @@ export function rollCurrencyDrops(
 
   const runes = rng.chance(RUNE_CHANCE[tier]) ? 1 : 0;
   const gems = rng.chance(GEM_CHANCE[tier]) ? 1 : 0;
-  const gold = rollGold(monsterLevel, tier, goldFindPct, rng);
-  return { gold, wishstones, runes, gems };
+  const runeShards = rollRuneShards(monsterLevel, tier, currencyFindPct, rng);
+  return { runeShards, wishstones, runes, gems };
 }

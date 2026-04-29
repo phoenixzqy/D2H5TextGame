@@ -88,7 +88,7 @@ describe('playerStore.respec', () => {
 
   it('returns no-allocations when nothing is allocated', () => {
     const p = createMockPlayer('Hero', 'sorceress');
-    usePlayerStore.getState().setPlayer(p);
+    usePlayerStore.getState().setPlayer({ ...p, skillLevels: {} });
     const r = usePlayerStore.getState().respec({ getGold: () => 100000, spendGold: () => true });
     expect(r).toBe('no-allocations');
   });

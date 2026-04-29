@@ -11,6 +11,8 @@
   "rewards": "Loot",
   "xpGained": "Gained XP: {{amount}}",
   "levelUp": "Level Up!",
+  "runeShard": "Rune Shards",
+  "levelUpToast": "Level up! You are now level {{level}}",
   "continue": "Continue",
   "log": "Combat Log",
   "logEmpty": "Battle starting…",

@@ -6,6 +6,11 @@
 import { create } from 'zustand';
 import { loadItemBases } from '@/data/loaders/loot';
 import type { EquipmentSlot, Item, ItemBase } from '@/engine/types/items';
+import {
+  checkEligibility,
+  slotCandidates,
+  type PlayerLike
+} from '@/features/inventory/compareEquip';
 import { usePlayerStore } from './playerStore';
 
 interface EquipSuccess {
@@ -36,6 +41,13 @@ interface InventoryState {
   unequipItem: (slot: string) => UnequipResult;
   moveToStash: (itemId: string) => void;
   moveToBackpack: (itemId: string) => void;
+  /**
+   * Backpack items whose base matches `slot` AND whose `reqLevel`/`reqStats`
+   * the supplied player meets. Drives the `<EquipPicker>` modal's enabled
+   * row list. Slot-matches that fail eligibility must be discovered via the
+   * lower-level `slotCandidates` + `checkEligibility` helpers in compareEquip.ts.
+   */
+  eligibleForSlot: (slot: EquipmentSlot, player: PlayerLike) => Item[];
   addCurrency: (currencyId: string, amount: number) => void;
   spendCurrency: (currencyId: string, amount: number) => boolean;
   getCurrency: (currencyId: string) => number;
@@ -173,6 +185,13 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
     };
   }); },
   
+  eligibleForSlot: (slot, player) => {
+    const bases = loadItemBases();
+    return slotCandidates(get().backpack, slot, bases).filter(
+      (it) => checkEligibility(it, player, bases).eligible
+    );
+  },
+
   addCurrency: (currencyId, amount) => { set((state) => ({
     currencies: {
       ...state.currencies,

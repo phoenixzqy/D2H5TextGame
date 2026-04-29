@@ -11,7 +11,7 @@ import type { MapProgress } from './maps';
  * Current save format version. Bump this and add an entry to {@link MIGRATIONS}
  * whenever the on-disk shape changes.
  */
-export const CURRENT_SAVE_VERSION = 2;
+export const CURRENT_SAVE_VERSION = 3;
 
 /**
  * Save file version (most recent).
@@ -124,7 +124,7 @@ export interface MetaSaveData {
 }
 
 /**
- * Save file v2 — the current on-disk format. Slices map 1:1 to Zustand stores
+ * Save file v2. Slices map 1:1 to Zustand stores
  * to avoid translation logic on every mutation.
  */
 export interface SaveV2 {
@@ -137,8 +137,19 @@ export interface SaveV2 {
   readonly meta: MetaSaveData;
 }
 
+/** Save file v3 — folds legacy gold into rune-shards. */
+export interface SaveV3 {
+  readonly version: 3;
+  readonly timestamp: number;
+  readonly player: Player;
+  readonly inventory: InventorySaveData;
+  readonly mercs: MercSaveData;
+  readonly map: MapSaveData;
+  readonly meta: MetaSaveData;
+}
+
 /** Alias to whichever version is current; bump along with {@link CURRENT_SAVE_VERSION}. */
-export type SaveCurrent = SaveV2;
+export type SaveCurrent = SaveV3;
 
 /**
  * Migration function type. Each entry receives the previous version's shape
@@ -188,6 +199,23 @@ export const MIGRATIONS: Record<number, Migration> = {
         settings: v1.settings,
         idleState: v1.idleState,
         gachaState: v1.gachaState
+      }
+    };
+  },
+  /** v2 → v3: fold legacy gold into rune-shards. */
+  3: (raw: unknown): SaveV3 => {
+    const v2 = raw as SaveV2;
+    const { gold, ...restCurrencies } = v2.inventory.currencies;
+    const runeShardTotal = (restCurrencies['rune-shard'] ?? 0) + (gold ?? 0);
+    return {
+      ...v2,
+      version: 3,
+      inventory: {
+        ...v2.inventory,
+        currencies: {
+          ...restCurrencies,
+          ...(runeShardTotal > 0 ? { 'rune-shard': runeShardTotal } : {})
+        }
       }
     };
   }

@@ -8,11 +8,14 @@ import type { CombatUnit } from '@/engine/combat/types';
 import type { Player } from '@/engine/types/entities';
 import type { Item } from '@/engine/types/items';
 import { rollKillRewards, type KillRewards } from '@/engine/loot/award';
+import { xpForKill } from '@/engine/progression/xp';
 import { loadAwardPools } from '@/data/loaders/loot';
 import { useCombatStore, type CombatLogEntry } from './combatStore';
 import { useInventoryStore } from './inventoryStore';
 import { useMapStore } from './mapStore';
 import { usePlayerStore } from './playerStore';
+import { useMercStore } from './mercStore';
+import { mercToCombatUnit } from './mercToCombatUnit';
 import { createRng } from '@/engine/rng';
 
 /**
@@ -236,7 +239,7 @@ export function awardLootForVictory(opts: {
   const inv = useInventoryStore.getState();
 
   const items: Item[] = [];
-  let gold = 0;
+  let runeShards = 0;
   let runes = 0;
   let gems = 0;
   let wishstones = 0;
@@ -259,18 +262,18 @@ export function awardLootForVictory(opts: {
       items.push(it);
       inv.addItem(it);
     }
-    gold += r.gold;
+    runeShards += r.runeShards;
     runes += r.runes;
     gems += r.gems;
     wishstones += r.wishstones;
   }
 
-  if (gold > 0) inv.addCurrency('gold', gold);
-  if (runes > 0) inv.addCurrency('rune-shard', runes);
+  const totalRuneShards = runeShards + runes;
+  if (totalRuneShards > 0) inv.addCurrency('rune-shard', totalRuneShards);
   if (gems > 0) inv.addCurrency('gem-shard', gems);
   if (wishstones > 0) inv.addCurrency('wishstone', wishstones);
 
-  return { items, gold, runes, gems, wishstones };
+  return { items, runeShards, runes, gems, wishstones };
 }
 
 /**
@@ -288,6 +291,10 @@ export function startSimpleBattle(enemyLevel = 1, enemyCount = 3) {
   }
 
   const playerUnit = playerToCombatUnit(playerState.player);
+  const fieldedMerc = useMercStore.getState().getFieldedMerc();
+  const playerTeam: CombatUnit[] = fieldedMerc
+    ? [playerUnit, mercToCombatUnit(fieldedMerc)]
+    : [playerUnit];
   const enemies: CombatUnit[] = [];
 
   for (let i = 0; i < enemyCount; i++) {
@@ -298,16 +305,26 @@ export function startSimpleBattle(enemyLevel = 1, enemyCount = 3) {
   const seed = Date.now();
   const { events, result } = runBattleRecorded({
     seed,
-    playerTeam: [playerUnit],
+    playerTeam,
     enemyTeam: enemies
   });
 
   // On victory, roll loot for every slain enemy and dispatch into inventory.
   let rewards: KillRewards | undefined;
+  let xpGained = 0;
+  let levelUp: { readonly levelsGained: number; readonly newLevel: number } | undefined;
   if (result.winner === 'player') {
     const slain = result.enemyTeam.filter(
       (u) => u.life <= 0 && u.kind !== 'summon'
     );
+    for (const enemy of slain) xpGained += xpForKill(enemy.level);
+    if (xpGained > 0) {
+      const xpResult = usePlayerStore.getState().gainExperience(xpGained);
+      if (xpResult.levelsGained > 0) {
+        levelUp = { levelsGained: xpResult.levelsGained, newLevel: xpResult.newLevel };
+      }
+    }
+
     const mapState = useMapStore.getState();
     const act = (Math.min(5, Math.max(1, mapState.currentAct)) as 1 | 2 | 3 | 4 | 5);
     const treasureClassId = `loot/trash-act${String(act)}`;
@@ -327,7 +344,7 @@ export function startSimpleBattle(enemyLevel = 1, enemyCount = 3) {
 
   // Hand the recorded battle to the store; UI will tick playback.
   combatState.setRecordedBattle({
-    initialPlayerTeam: [playerUnit],
+    initialPlayerTeam: playerTeam,
     initialEnemyTeam: enemies,
     events,
     unitNameMap: unitMap,
@@ -339,5 +356,14 @@ export function startSimpleBattle(enemyLevel = 1, enemyCount = 3) {
     }
   });
 
-  return { ...result, rewards };
+  if (levelUp) {
+    useCombatStore.getState().addLogEntry({
+      type: 'system',
+      actorId: 'system',
+      actorName: 'System',
+      message: `combat:levelUp:${String(levelUp.newLevel)}`
+    });
+  }
+
+  return { ...result, rewards, xpGained, ...(levelUp ? { levelUp } : {}) };
 }

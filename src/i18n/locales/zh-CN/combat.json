@@ -11,6 +11,8 @@
   "rewards": "战利品",
   "xpGained": "获得经验: {{amount}}",
   "levelUp": "升级!",
+  "runeShard": "符文碎片",
+  "levelUpToast": "升级！现在是 {{level}} 级",
   "continue": "继续",
   "log": "战斗日志",
   "logEmpty": "战斗即将开始…",

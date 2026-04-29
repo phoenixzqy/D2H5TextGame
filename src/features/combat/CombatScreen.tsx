@@ -232,11 +232,11 @@ export function CombatScreen() {
 
         <CombatLog entries={recentLog} />
       </div>
-      {playbackComplete && rewards && (rewards.items.length > 0 || rewards.gold > 0) && (
+      {playbackComplete && rewards && (rewards.items.length > 0 || rewards.runeShards > 0 || rewards.runes > 0) && (
         <div className="max-w-5xl mx-auto mt-3" data-testid="loot-summary">
           <Panel title={t('loot', { defaultValue: '战利品' })}>
-            {rewards.gold > 0 && (
-              <div className="text-d2-gold text-sm mb-1">+{rewards.gold} {t('gold', { defaultValue: '金币' })}</div>
+            {rewards.runeShards > 0 && (
+              <div className="text-d2-gold text-sm mb-1">+{rewards.runeShards} {t('runeShard', { defaultValue: '符文碎片' })}</div>
             )}
             {rewards.items.length > 0 && (
               <ul className="space-y-1 text-sm" data-testid="loot-items">
