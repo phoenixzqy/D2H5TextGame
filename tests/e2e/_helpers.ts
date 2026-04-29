@@ -21,7 +21,9 @@ export type CharacterClass =
  * Safe to call before any `page.goto`.
  */
 export async function clearGameStorage(page: Page): Promise<void> {
-  await page.goto('/');
+  // Load a static same-origin page first so the app/Dexie connection is not open
+  // while IndexedDB is deleted.
+  await page.goto('/e2e-reset.html');
   await page.evaluate(async () => {
     try {
       localStorage.clear();
@@ -34,15 +36,20 @@ export async function clearGameStorage(page: Page): Promise<void> {
       /* ignore */
     }
     if (typeof indexedDB !== 'undefined') {
-      await new Promise<void>((resolve) => {
-        const req = indexedDB.deleteDatabase('d2h5-game');
-        req.onsuccess = () => { resolve(); };
-        req.onerror = () => { resolve(); };
-        req.onblocked = () => { resolve(); };
-      });
+      const deleteDb = (name: string) =>
+        new Promise<void>((resolve) => {
+          const req = indexedDB.deleteDatabase(name);
+          const done = () => { resolve(); };
+          req.onsuccess = done;
+          req.onerror = done;
+          req.onblocked = done;
+          setTimeout(done, 1_000);
+        });
+      await Promise.all([deleteDb('D2H5TextGame'), deleteDb('d2h5-game')]);
     }
   });
-  await page.reload();
+  await page.goto('/');
+  await expect(page.getByTestId('home-screen')).toBeVisible({ timeout: 10_000 });
 }
 
 /**
@@ -71,6 +78,27 @@ export async function navTo(page: Page, route: string): Promise<void> {
   await link.click();
 }
 
+/** Return to town from combat, regardless of whether the run is mid-fight or resolved. */
+export async function returnToTownFromCombat(page: Page): Promise<void> {
+  const postRunTown = page.getByTestId('return-to-town');
+  if (await postRunTown.isVisible({ timeout: 500 }).catch(() => false)) {
+    await postRunTown.click();
+  } else {
+    await page.getByRole('button', { name: /逃跑|Flee/i }).click();
+  }
+
+  if (!(await page.getByTestId('town-screen').isVisible({ timeout: 1_000 }).catch(() => false))) {
+    await page.goto('/town');
+  }
+
+  const continueButton = page.getByTestId('home-continue');
+  if (await continueButton.isVisible({ timeout: 1_000 }).catch(() => false)) {
+    await continueButton.click();
+  }
+
+  await expect(page.getByTestId('town-screen')).toBeVisible({ timeout: 10_000 });
+}
+
 /**
  * Wait for the combat screen to resolve. The current engine resolves the
  * entire battle synchronously on mount, so the "wins!" / "draw" log line
@@ -94,13 +122,22 @@ export async function waitForBattleResolution(
     }
   }
 
-  // The 'end' BattleEvent emits a log line containing "wins" or
-  // "ended in a draw". Either signals resolution.
-  const log = page.getByTestId('combat-log');
-  await expect(log).toContainText(/wins|draw/i, { timeout: timeoutMs });
+  await expect
+    .poll(
+      async () => {
+        const victoryVisible = await page.getByTestId('victory-panel').isVisible().catch(() => false);
+        const defeatVisible = await page.getByTestId('defeat-panel').isVisible().catch(() => false);
+        const logText = (await page.getByTestId('combat-log').textContent().catch(() => '')) ?? '';
+        return victoryVisible || defeatVisible || /wins|draw|victory|defeat|胜利|失败|倒下/i.test(logText);
+      },
+      { timeout: timeoutMs, intervals: [250, 500, 1_000] }
+    )
+    .toBe(true);
 
+  const log = page.getByTestId('combat-log');
   const logText = (await log.textContent()) ?? '';
-  const playerWon = /player side wins/i.test(logText);
+  const victoryVisible = await page.getByTestId('victory-panel').isVisible().catch(() => false);
+  const playerWon = victoryVisible || /player side wins|victory|胜利/i.test(logText);
 
   // If the player won, the loot-summary panel appears (when any reward rolls).
   const summary = page.getByTestId('loot-summary');

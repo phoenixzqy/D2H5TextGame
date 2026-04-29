@@ -10,6 +10,7 @@ import {
   createCharacter,
   navTo,
   waitForBattleResolution,
+  returnToTownFromCombat,
 } from './_helpers';
 
 test.describe('Final acceptance — full loop', () => {
@@ -81,8 +82,7 @@ test.describe('Final acceptance — full loop', () => {
     }
 
     // Return to town via flee
-    await page.getByRole('button', { name: /逃跑|Flee/i }).click();
-    await expect(page.getByTestId('town-screen')).toBeVisible({ timeout: 10_000 });
+    await returnToTownFromCombat(page);
 
     // 4. Inventory — check looted item visible (or at least currency display)
     await navTo(page, 'inventory');

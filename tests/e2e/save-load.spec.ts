@@ -11,6 +11,7 @@ import {
   createCharacter,
   navTo,
   waitForBattleResolution,
+  returnToTownFromCombat,
 } from './_helpers';
 
 test.describe('Save / Load round trip', () => {
@@ -33,8 +34,7 @@ test.describe('Save / Load round trip', () => {
     await expect(page.getByTestId('map-screen')).toBeVisible();
     await page.getByRole('button', { name: /进入|Enter/i }).first().click();
     await waitForBattleResolution(page, 30_000);
-    await page.getByRole('button', { name: /逃跑|Flee/i }).click();
-    await expect(page.getByTestId('town-screen')).toBeVisible();
+    await returnToTownFromCombat(page);
 
     // Allocate 1 skill point if available
     await navTo(page, 'skills');

@@ -1,5 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const e2eWebServerCommand = process.platform === 'win32'
+  ? 'set VITE_E2E=true&& npm run build && npm run preview'
+  : 'VITE_E2E=true npm run build && VITE_E2E=true npm run preview';
+
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
@@ -35,9 +39,9 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: 'npm run build && npm run preview',
+    command: e2eWebServerCommand,
     port: 4173,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: false,
     timeout: 120 * 1000,
     env: {
       VITE_E2E: 'true'
