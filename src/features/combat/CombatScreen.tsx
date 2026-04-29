@@ -186,7 +186,7 @@ export function CombatScreen() {
       testId="combat-screen"
       title={
         <div className="flex items-center justify-between gap-2 w-full">
-          <span aria-live="polite">
+          <span aria-live="polite" data-testid="wave-counter">
             {t('wave', {
               current: currentWave || 1,
               total: totalWaves || 1,
@@ -218,6 +218,7 @@ export function CombatScreen() {
               className="min-h-[40px] px-3 text-sm"
               onClick={handleSkip}
               disabled={playbackComplete}
+              data-testid="skip-button"
             >
               {t('skip', { defaultValue: '跳过' })}
             </Button>
