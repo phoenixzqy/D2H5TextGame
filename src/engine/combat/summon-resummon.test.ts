@@ -35,7 +35,7 @@ describe('Bug #3 — re-summon after summon death', () => {
       life: 5000
     });
     const result = runBattle({
-      seed: 1234, playerTeam: [necro], enemyTeam: [enemy], maxRounds: 30, maxActions: 200
+      seed: 1234, playerTeam: [necro], enemyTeam: [enemy]
     });
     const summons = result.events.filter(
       (e): e is Extract<BattleEvent, { kind: 'summon' }> => e.kind === 'summon'
@@ -70,7 +70,7 @@ describe('Bug #3 — re-summon after summon death', () => {
       life: 5000
     });
     const result = runBattle({
-      seed: 7, playerTeam: [necro], enemyTeam: [enemy], maxRounds: 30, maxActions: 200
+      seed: 11, playerTeam: [necro], enemyTeam: [enemy]
     });
     const summons = result.events.filter((e) => e.kind === 'summon');
     expect(summons.length).toBeGreaterThanOrEqual(2);
@@ -88,7 +88,7 @@ describe('Bug #3 — re-summon after summon death', () => {
       life: 1_000_000
     });
     const result = runBattle({
-      seed: 42, playerTeam: [necro], enemyTeam: [enemy], maxRounds: 30, maxActions: 200
+      seed: 42, playerTeam: [necro], enemyTeam: [enemy]
     });
     const liveSkeletons = result.playerTeam.filter(
       (u) => u.id.startsWith('necro-summon-skeleton-') && u.life > 0

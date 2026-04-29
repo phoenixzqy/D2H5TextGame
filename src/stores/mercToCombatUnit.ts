@@ -39,6 +39,6 @@ export function mercToCombatUnit(merc: Mercenary): CombatUnit {
     activeBuffIds: [],
     enraged: false,
     summonedAdds: false,
-    kind: 'hero'
+    kind: 'merc'
   };
 }
