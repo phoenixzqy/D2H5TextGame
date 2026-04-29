@@ -1,6 +1,12 @@
 {
   "title": "战斗",
   "wave": "第 {{current}} 波 / 共 {{total}} 波",
+  "nextWaveIn": "下一波 1.5 秒后开始…",
+  "runVictoryTitle": "通关本区域！",
+  "runDefeatTitle": "战败",
+  "continueToNextSubArea": "前往下一区域",
+  "returnToMap": "返回地图",
+  "returnToTown": "返回营地",
   "turn": "回合",
   "pause": "暂停",
   "resume": "继续",
