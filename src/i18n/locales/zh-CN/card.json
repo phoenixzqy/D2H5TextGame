@@ -1,0 +1,13 @@
+{
+  "silhouette": "缺少美术",
+  "tapToInspect": "点击查看",
+  "speed": {
+    "1x": "1×",
+    "2x": "2×",
+    "4x": "4×",
+    "skip": "跳过"
+  },
+  "speedLabel": "播放速度",
+  "allies": "我方",
+  "enemies": "敌人"
+}

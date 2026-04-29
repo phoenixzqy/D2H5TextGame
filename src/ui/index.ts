@@ -10,6 +10,15 @@ export { BottomNav } from './BottomNav';
 export { ScreenShell } from './ScreenShell';
 export { CharacterHud } from './CharacterHud';
 export { GameImage } from './GameImage';
+export { GameCard } from './GameCard';
+export type {
+  GameCardProps,
+  CardVariant,
+  CardSize,
+  CardRarity,
+  CardStat,
+  CardBar
+} from './GameCard';
 export {
   getClassPortraitUrl,
   getMonsterImageUrl,
@@ -20,3 +29,10 @@ export {
   getZoneArtUrl,
   rarityBgClass,
 } from './imageHelpers';
+export {
+  resolveClassPortrait,
+  resolveMonsterArt,
+  resolveItemIcon,
+  resolveZoneArt,
+  resolveMercArt
+} from './cardAssets';
