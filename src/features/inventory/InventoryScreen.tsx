@@ -11,6 +11,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
+  EquippedItemModal,
   GameCard,
   ItemTooltip,
   Panel,
@@ -19,7 +20,7 @@ import {
   Tooltip,
   resolveItemIcon
 } from '@/ui';
-import { useInventoryStore } from '@/stores';
+import { useInventoryStore, usePlayerStore } from '@/stores';
 import { loadItemBases } from '@/data/loaders/loot';
 import { EquipPicker } from './EquipPicker';
 import type { Item, EquipmentSlot, ItemBase } from '@/engine/types/items';
@@ -55,6 +56,9 @@ export function InventoryScreen() {
   const [toast, setToast] = useState<ToastState>(null);
   const toastTimerRef = useRef<number | null>(null);
   const [pickerSlot, setPickerSlot] = useState<EquipmentSlot | null>(null);
+
+  const [viewSlot, setViewSlot] = useState<EquipmentSlot | null>(null);
+  const player = usePlayerStore((s) => s.player);
 
   useEffect(() => () => {
     if (toastTimerRef.current !== null) window.clearTimeout(toastTimerRef.current);
@@ -125,6 +129,7 @@ export function InventoryScreen() {
                   equipped={equipped}
                   onUnequip={handleUnequip}
                   onSlotClick={(slot) => { setPickerSlot(slot); }}
+                  onViewSlot={(slot) => { setViewSlot(slot); }}
                 />
               ),
             },
@@ -155,6 +160,12 @@ export function InventoryScreen() {
         onClose={() => { setPickerSlot(null); }}
         onEquipped={(it) => { showToast(t('toast.equipped', { name: itemDisplayName(it) }), 'success'); }}
         onEquipFailed={(it) => { showToast(t('toast.equipFailed', { name: itemDisplayName(it) }), 'error'); }}
+      />
+      <EquippedItemModal
+        slot={viewSlot}
+        item={viewSlot ? (equipped[viewSlot] ?? null) : null}
+        derivedStats={player?.derivedStats ?? null}
+        onClose={() => { setViewSlot(null); }}
       />
     </ScreenShell>
   );
@@ -271,10 +282,12 @@ function EquipmentPanel({
   equipped,
   onUnequip,
   onSlotClick,
+  onViewSlot,
 }: {
   equipped: Record<string, Item | null>;
   onUnequip: (slot: EquipmentSlot) => void;
   onSlotClick: (slot: EquipmentSlot) => void;
+  onViewSlot: (slot: EquipmentSlot) => void;
 }) {
   const { t } = useTranslation('inventory');
   return (
@@ -313,18 +326,34 @@ function EquipmentPanel({
                   </div>
                 )}
               </div>
-              {item && (
-                <Button
-                  variant="secondary"
-                  className="min-h-[40px] text-xs shrink-0"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onUnequip(slot);
-                  }}
-                >
-                  {t('unequip')}
-                </Button>
-              )}
+              <div className="flex items-center gap-2 shrink-0">
+                {item && (
+                  <Button
+                    variant="secondary"
+                    className="min-h-[40px] text-xs"
+                    aria-label={t('details')}
+                    data-testid={`equip-slot-${slot}-details`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onViewSlot(slot);
+                    }}
+                  >
+                    {t('details')}
+                  </Button>
+                )}
+                {item && (
+                  <Button
+                    variant="secondary"
+                    className="min-h-[40px] text-xs"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onUnequip(slot);
+                    }}
+                  >
+                    {t('unequip')}
+                  </Button>
+                )}
+              </div>
             </div>
           </li>
         );

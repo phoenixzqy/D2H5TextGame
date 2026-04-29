@@ -13,15 +13,17 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { TFunction } from 'i18next';
-import { Button, ItemCompareTooltip, RarityText, resolveItemIcon } from '@/ui';
+import { Button, ItemCompareTooltip, RarityText, StatSheet, resolveItemIcon } from '@/ui';
 import { useInventoryStore, usePlayerStore } from '@/stores';
 import {
   checkEligibility,
   compareEquip,
   slotCandidates,
+  type ComparableStatKey,
   type EligibilityResult
 } from './compareEquip';
 import { loadItemBases } from '@/data/loaders/loot';
+import type { DerivedStats, Resistances } from '@/engine/types/attributes';
 import type { EquipmentSlot, Item } from '@/engine/types/items';
 
 interface Props {
@@ -178,7 +180,15 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
             </ul>
           )}
 
-          {compare && <ItemCompareTooltip compare={compare} />}
+          {compare ? (
+            <ItemCompareTooltip compare={compare} />
+          ) : (
+            <CurrentEquippedSheet
+              slot={slot}
+              equipped={equipped}
+              derivedStats={player?.derivedStats ?? null}
+            />
+          )}
         </div>
 
         <footer className="flex flex-wrap gap-2 p-4 border-t border-d2-border bg-d2-bg/40">
@@ -234,4 +244,39 @@ function formatReasons(elig: EligibilityResult, t: TFunction): string {
       });
     })
     .join('，');
+}
+
+/**
+ * "Current equipment" readout shown when no candidate is selected.
+ * Pulls the player's live derived stats (already incorporates equipped
+ * gear) and renders them via `<StatSheet mode="single">`.
+ */
+const STAT_KEYS: readonly ComparableStatKey[] = [
+  'lifeMax', 'manaMax', 'attack', 'defense', 'attackSpeed',
+  'critChance', 'critDamage', 'physDodge', 'magicDodge'
+];
+
+function CurrentEquippedSheet({
+  slot,
+  equipped,
+  derivedStats
+}: {
+  readonly slot: EquipmentSlot;
+  readonly equipped: Readonly<Record<string, Item | null>>;
+  readonly derivedStats: DerivedStats | null;
+}) {
+  if (!derivedStats) return null;
+  const item = equipped[slot] ?? null;
+  const stats = {} as Record<ComparableStatKey, number>;
+  for (const k of STAT_KEYS) stats[k] = derivedStats[k];
+  const resistances: Record<keyof Resistances, number> = { ...derivedStats.resistances };
+  return (
+    <StatSheet
+      mode="single"
+      item={item}
+      stats={stats}
+      resistances={resistances}
+      emptySlot={item === null}
+    />
+  );
 }

@@ -51,6 +51,7 @@
     "compare": {
       "current": "当前装备",
       "candidate": "候选装备",
+      "slotEmpty": "（未装备）",
       "stat": {
         "lifeMax": "生命上限",
         "manaMax": "法力上限",
