@@ -72,7 +72,7 @@ interface CompareProps {
 export type StatSheetProps = SingleProps | CompareProps;
 
 export function StatSheet(props: StatSheetProps): JSX.Element {
-  const { t } = useTranslation(['inventory', 'common']);
+  const { t } = useTranslation(['inventory', 'common', 'items']);
 
   const showCurrent = props.mode === 'single' || props.current !== null;
   const showCandidate = props.mode === 'compare';
@@ -123,7 +123,7 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
                 />
               </th>
             )}
-            {showCandidate && props.mode === 'compare' && (
+            {props.mode === 'compare' && (
               <th scope="col" className="text-right pb-2 pl-2 font-normal align-bottom">
                 <HeaderCell
                   label={t('equipFlow.compare.candidate')}
