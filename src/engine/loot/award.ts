@@ -112,7 +112,7 @@ export function rollBatchRewards(
   let runes = 0;
   let gems = 0;
   for (const k of kills) {
-    const r = rollKillRewards(k, pools, rng);
+    const r: KillRewards = rollKillRewards(k, pools, rng);
     items.push(...r.items);
     runeShards += r.runeShards;
     wishstones += r.wishstones;
