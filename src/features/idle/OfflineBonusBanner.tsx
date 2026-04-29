@@ -26,8 +26,7 @@ export function OfflineBonusChip(): JSX.Element | null {
                  min-h-[28px]"
       aria-label={t('offlineBonus.chipLabel', {
         pct,
-        minutes: formatMinutes(bonus.remainingSeconds),
-        defaultValue: `+${String(pct)}% XP for ${String(formatMinutes(bonus.remainingSeconds))} min`
+        minutes: formatMinutes(bonus.remainingSeconds)
       })}
     >
       ⏳ +{pct}% · {formatMinutes(bonus.remainingSeconds)}m
@@ -49,16 +48,10 @@ export function OfflineBonusBanner(): JSX.Element | null {
     >
       <div className="flex items-center justify-between gap-3 min-h-[44px]">
         <div className="text-d2-gold font-serif text-base">
-          ⏳ {t('offlineBonus.title', {
-            pct,
-            defaultValue: `+${String(pct)}% XP boost`
-          })}
+          ⏳ {t('offlineBonus.title', { pct })}
         </div>
         <div className="text-d2-white/80 text-sm">
-          {t('offlineBonus.remaining', {
-            minutes,
-            defaultValue: `next ${String(minutes)} min`
-          })}
+          {t('offlineBonus.remaining', { minutes })}
         </div>
       </div>
     </Panel>

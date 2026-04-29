@@ -204,7 +204,7 @@ const ITEM_TYPE_GLYPH: Record<ItemTypeGlyphKey, string> = {
 
 function Silhouette({ variant }: { variant: CardVariant }): JSX.Element {
   const { t } = useTranslation('card');
-  const label = t('silhouette', { defaultValue: 'Missing artwork' });
+  const label = t('silhouette');
   // Single-path 24×24 SVGs — currentColor so the parent tints them.
   let d = '';
   switch (variant) {

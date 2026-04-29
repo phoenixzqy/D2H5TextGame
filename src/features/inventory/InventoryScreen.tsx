@@ -75,7 +75,7 @@ export function InventoryScreen() {
   };
 
   return (
-    <ScreenShell testId="inventory-screen" title={t('inventory.title', { defaultValue: '背包' })}>
+    <ScreenShell testId="inventory-screen" title={t('inventory.title')}>
       <div className="max-w-5xl mx-auto">
         <Tabs
           tabs={[
@@ -188,7 +188,7 @@ function ItemGrid({
   if (items.length === 0) {
     return (
       <p className="text-sm text-d2-white/60 italic p-4 text-center">
-        {t(emptyKey, { defaultValue: '空空如也' })}
+        {t(emptyKey)}
       </p>
     );
   }
@@ -198,7 +198,7 @@ function ItemGrid({
       <ul
         className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-2"
         role="listbox"
-        aria-label={t('items', { defaultValue: 'Items' })}
+        aria-label={t('items')}
       >
         {items.map((it) => (
           <li key={it.id}>
@@ -219,7 +219,7 @@ function ItemGrid({
         ))}
       </ul>
 
-      <Panel title={t('details', { defaultValue: '详情' })} className="md:sticky md:top-20 h-fit">
+      <Panel title={t('details')} className="md:sticky md:top-20 h-fit">
         {selected ? (
           <div className="space-y-2 text-sm">
             <ItemTooltip item={selected} />
@@ -259,7 +259,7 @@ function ItemGrid({
           </div>
         ) : (
           <p className="text-sm text-d2-white/60 italic">
-            {t('selectItem', { defaultValue: '选择一件物品' })}
+            {t('selectItem')}
           </p>
         )}
       </Panel>
@@ -309,7 +309,7 @@ function EquipmentPanel({
                   </div>
                 ) : (
                   <div className="text-sm text-d2-white/40 italic">
-                    {t('empty', { defaultValue: '空' })}
+                    {t('empty')}
                   </div>
                 )}
               </div>

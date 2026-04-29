@@ -63,12 +63,12 @@ export function ItemTooltip({ item, className = '' }: ItemTooltipProps): JSX.Ele
   const base: ItemBase | undefined = loadItemBases().get(item.baseId);
 
   const slug = baseSlug(item.baseId);
-  const displayName = t(`base.${slug}`, { defaultValue: base?.name ?? slug });
+  const displayName = t(`base.${slug}`);
 
-  const typeLabel = base ? t(`types.${base.type}`, { defaultValue: base.type }) : '';
+  const typeLabel = base ? t(`types.${base.type}`) : '';
   const slotLabel =
     base?.slot && SLOT_KEYS.includes(base.slot)
-      ? t(`slots.${base.slot}`, { defaultValue: base.slot })
+      ? t(`slots.${base.slot}`)
       : '';
   const subtitle = base
     ? slotLabel

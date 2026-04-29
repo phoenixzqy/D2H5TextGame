@@ -195,7 +195,6 @@ export function CombatScreen() {
             {t('wave', {
               current: currentWave || 1,
               total: totalWaves || 1,
-              defaultValue: `Wave ${String(currentWave || 1)} / ${String(totalWaves || 1)}`,
             })}
           </span>
           <div className="flex items-center gap-2 flex-wrap justify-end">
@@ -205,7 +204,7 @@ export function CombatScreen() {
                 data-testid="log-hover-paused-hint"
                 aria-live="polite"
               >
-                {t('logHoverPausedHint', { defaultValue: '日志已暂停滚动' })}
+                {t('logHoverPausedHint')}
               </span>
             )}
             <Button
@@ -221,11 +220,11 @@ export function CombatScreen() {
               variant="secondary"
               className="min-h-[40px] px-2 text-sm tabular-nums"
               onClick={cycleSpeed}
-              aria-label={t('speed', { defaultValue: '速度' })}
-              title={t('speed', { defaultValue: '速度' })}
+              aria-label={t('speed')}
+              title={t('speed')}
               disabled={playbackComplete}
             >
-              {t('speedX', { x: speed, defaultValue: `${String(speed)}x` })}
+              {t('speedX', { x: speed })}
             </Button>
             <Button
               variant="secondary"
@@ -234,7 +233,7 @@ export function CombatScreen() {
               disabled={playbackComplete}
               data-testid="skip-button"
             >
-              {t('skip', { defaultValue: '跳过' })}
+              {t('skip')}
             </Button>
             <label className="flex items-center gap-1 text-xs cursor-pointer min-h-[40px]">
               <input
@@ -258,10 +257,10 @@ export function CombatScreen() {
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-5xl mx-auto">
         <div className="space-y-3 min-w-0">
-          <Panel title={t('allies', { defaultValue: '我方' })}>
+          <Panel title={t('allies')}>
             {playerTeam.length === 0 ? (
               <p className="text-sm text-d2-white/60">
-                {t('noAllies', { defaultValue: '无单位' })}
+                {t('noAllies')}
               </p>
             ) : (
               <div className="flex flex-wrap gap-3" data-testid="allies-list">
@@ -277,10 +276,10 @@ export function CombatScreen() {
             )}
           </Panel>
 
-          <Panel title={t('enemies', { defaultValue: '敌人' })}>
+          <Panel title={t('enemies')}>
             {enemyTeam.length === 0 ? (
               <p className="text-sm text-d2-white/60">
-                {t('noEnemies', { defaultValue: '没有敌人' })}
+                {t('noEnemies')}
               </p>
             ) : (
               <div className="flex flex-wrap gap-3" data-testid="enemies-list">
@@ -305,21 +304,21 @@ export function CombatScreen() {
           data-testid="next-wave-banner"
           aria-live="polite"
         >
-          {t('nextWaveIn', { defaultValue: 'Next wave in 1.5s…' })}
+          {t('nextWaveIn')}
         </div>
       )}
       {(runVictory || runDefeat) && (
         <div className="max-w-5xl mx-auto mt-3" data-testid={runVictory ? 'victory-panel' : 'defeat-panel'}>
           <Panel
             title={runVictory
-              ? t('runVictoryTitle', { defaultValue: 'Sub-area cleared!' })
-              : t('runDefeatTitle', { defaultValue: 'Defeated' })}
+              ? t('runVictoryTitle')
+              : t('runDefeatTitle')}
           >
             {runVictory && (runRewards.items.length > 0 || runRewards.runeShards > 0) && (
               <div className="mb-2" data-testid="loot-summary">
                 {runRewards.runeShards > 0 && (
                   <div className="text-d2-gold text-sm mb-1">
-                    +{runRewards.runeShards} {t('runeShard', { defaultValue: '符文碎片' })}
+                    +{runRewards.runeShards} {t('runeShard')}
                   </div>
                 )}
                 {runRewards.items.length > 0 && (
@@ -349,7 +348,7 @@ export function CombatScreen() {
                   onClick={handleContinueToNext}
                   data-testid="continue-next-subarea"
                 >
-                  {t('continueToNextSubArea', { defaultValue: 'Continue to next sub-area' })}
+                  {t('continueToNextSubArea')}
                 </Button>
               )}
               <Button
@@ -358,7 +357,7 @@ export function CombatScreen() {
                 onClick={handleReturnToMap}
                 data-testid="return-to-map"
               >
-                {t('returnToMap', { defaultValue: 'Return to map' })}
+                {t('returnToMap')}
               </Button>
               <Button
                 variant="secondary"
@@ -366,7 +365,7 @@ export function CombatScreen() {
                 onClick={handleReturnToTown}
                 data-testid="return-to-town"
               >
-                {t('returnToTown', { defaultValue: 'Return to town' })}
+                {t('returnToTown')}
               </Button>
             </div>
           </Panel>
@@ -420,7 +419,7 @@ function UnitCard({
   }
 
   const subtitle = isSummon
-    ? t('summon', { defaultValue: '召唤物' })
+    ? t('summon')
     : `Lv ${String(unit.level)}`;
 
   const wrapperCls = isDead ? 'opacity-50 grayscale' : '';
@@ -486,7 +485,7 @@ function CombatLog({
 
   return (
     <Panel
-      title={t('log', { defaultValue: '战斗日志' })}
+      title={t('log')}
       className="flex flex-col"
     >
       <div
@@ -503,7 +502,7 @@ function CombatLog({
       >
         {entries.length === 0 ? (
           <p className="text-d2-white/40 italic">
-            {t('logEmpty', { defaultValue: '战斗即将开始…' })}
+            {t('logEmpty')}
           </p>
         ) : (
           entries.map((e) => (

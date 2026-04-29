@@ -30,7 +30,7 @@ export function BottomNav() {
 
   return (
     <nav
-      aria-label={t('nav.aria', { defaultValue: 'Main navigation' })}
+      aria-label={t('nav.aria')}
       className="
         order-last md:order-first
         flex-shrink-0
@@ -50,11 +50,11 @@ export function BottomNav() {
           <li
             className="hidden md:block px-1 pb-2 text-[10px] text-d2-gold/90"
             data-testid="idle-sidebar-chip"
-            title={t(`map:subArea.${idleTarget}`, { defaultValue: idleTarget })}
+            title={t(`map:subArea.${idleTarget}`)}
           >
-            <span className="block truncate">⚙️ {t('map:idleHereShort', { defaultValue: '挂机中' })}</span>
+            <span className="block truncate">⚙️ {t('map:idleHereShort')}</span>
             <span className="block truncate text-d2-white/70">
-              {t(`map:subArea.${idleTarget}`, { defaultValue: idleTarget })}
+              {t(`map:subArea.${idleTarget}`)}
             </span>
           </li>
         )}

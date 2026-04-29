@@ -51,13 +51,13 @@ export function SettingsScreen() {
     try {
       const existing = await loadSave();
       if (!existing) {
-        flash(t('saveNoData', { defaultValue: '无可保存的数据' }));
+        flash(t('saveNoData'));
         return;
       }
       await saveSave({ ...existing, timestamp: Date.now() });
-      flash(t('saveSuccess', { defaultValue: '已保存' }));
+      flash(t('saveSuccess'));
     } catch {
-      flash(t('saveFailed', { defaultValue: '保存失败' }));
+      flash(t('saveFailed'));
     }
   };
 
@@ -65,7 +65,7 @@ export function SettingsScreen() {
     try {
       const json = await exportSave();
       if (!json) {
-        flash(t('saveNoData', { defaultValue: '无存档可导出' }));
+        flash(t('saveNoData'));
         return;
       }
       try {
@@ -80,9 +80,9 @@ export function SettingsScreen() {
       a.download = `d2h5-save-${String(Date.now())}.json`;
       a.click();
       URL.revokeObjectURL(url);
-      flash(t('exportSuccess', { defaultValue: '已导出' }));
+      flash(t('exportSuccess'));
     } catch {
-      flash(t('exportFailed', { defaultValue: '导出失败' }));
+      flash(t('exportFailed'));
     }
   };
 
@@ -91,9 +91,9 @@ export function SettingsScreen() {
       await importSave(importText);
       setImportOpen(false);
       setImportText('');
-      flash(t('importSuccess', { defaultValue: '导入成功' }));
+      flash(t('importSuccess'));
     } catch {
-      flash(t('importFailed', { defaultValue: '导入失败:格式无效' }));
+      flash(t('importFailed'));
     }
   };
 
@@ -106,10 +106,10 @@ export function SettingsScreen() {
       useMapStore.getState().reset();
       useCombatStore.getState().reset();
       setConfirmDelete(false);
-      flash(t('deleteSuccess', { defaultValue: '存档已删除' }));
+      flash(t('deleteSuccess'));
       navigate('/', { replace: true });
     } catch {
-      flash(t('deleteFailed', { defaultValue: '删除失败' }));
+      flash(t('deleteFailed'));
     }
   };
 
@@ -124,7 +124,7 @@ export function SettingsScreen() {
               onClick={() => { navigate('/'); }}
               data-testid="settings-back-home"
             >
-              ← {t('common:back', { defaultValue: '返回' })}
+              ← {t('common:back')}
             </Button>
           </Panel>
         )}
@@ -144,6 +144,7 @@ export function SettingsScreen() {
                     : 'border-d2-border bg-d2-panel text-d2-white',
                 ].join(' ')}
               >
+                {/* language self-names — do not translate */}
                 {loc === 'zh-CN' ? '简体中文' : 'English'}
               </button>
             ))}
@@ -167,7 +168,7 @@ export function SettingsScreen() {
         <Panel title={t('saveLoad')}>
           <div className="grid grid-cols-2 gap-2">
             <Button variant="secondary" className="min-h-[44px]" onClick={() => { void handleSave(); }}>
-              {t('saveNow', { defaultValue: '保存' })}
+              {t('saveNow')}
             </Button>
             <Button
               variant="secondary"
@@ -210,7 +211,7 @@ export function SettingsScreen() {
             className="flex-1 min-h-[44px]"
             onClick={() => { setConfirmDelete(false); }}
           >
-            {t('common:cancel', { defaultValue: '取消' })}
+            {t('common:cancel')}
           </Button>
           <Button variant="danger" className="flex-1 min-h-[44px]" onClick={() => { void handleDelete(); }}>
             {t('deleteSave')}
@@ -223,7 +224,7 @@ export function SettingsScreen() {
           value={importText}
           onChange={(e) => { setImportText(e.target.value); }}
           rows={8}
-          placeholder={t('importPlaceholder', { defaultValue: '粘贴存档 JSON…' })}
+          placeholder={t('importPlaceholder')}
           className="w-full bg-d2-bg border border-d2-border rounded p-2 text-xs font-mono
                      focus:outline-none focus:border-d2-gold"
         />
@@ -233,7 +234,7 @@ export function SettingsScreen() {
             className="flex-1 min-h-[44px]"
             onClick={() => { setImportOpen(false); }}
           >
-            {t('common:cancel', { defaultValue: '取消' })}
+            {t('common:cancel')}
           </Button>
           <Button
             variant="primary"

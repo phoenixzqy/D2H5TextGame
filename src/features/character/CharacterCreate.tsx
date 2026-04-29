@@ -59,9 +59,9 @@ export function CharacterCreate() {
             onClick={() => { navigate('/'); }}
             className="text-d2-white/70 hover:text-d2-gold min-h-[44px] min-w-[44px]
                        focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold rounded"
-            aria-label={t('common:back', { defaultValue: 'Back' })}
+            aria-label={t('common:back')}
           >
-            ← {t('common:back', { defaultValue: '返回' })}
+            ← {t('common:back')}
           </button>
           <h1 className="text-2xl font-serif text-d2-gold">{t('createCharacter')}</h1>
           <div className="w-12" aria-hidden />
@@ -77,7 +77,7 @@ export function CharacterCreate() {
                   key={cls}
                   variant="character"
                   size="md"
-                  name={t(`classes.${cls}`, { defaultValue: cls })}
+                  name={t(`classes.${cls}`)}
                   rarity="unique"
                   image={resolveClassPortrait(cls) ?? undefined}
                   stats={[
@@ -114,7 +114,7 @@ export function CharacterCreate() {
           />
         </Panel>
 
-        <Panel title={t('gender', { defaultValue: '性别' })}>
+        <Panel title={t('gender')}>
           <div className="flex gap-2">
             {(['male', 'female'] as const).map((g) => (
               <button
@@ -137,14 +137,14 @@ export function CharacterCreate() {
         </Panel>
 
         {stats && (
-          <Panel title={t('startingStats', { defaultValue: '起始属性' })}>
+          <Panel title={t('startingStats')}>
             <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-              <StatRow label={t('strength', { defaultValue: '力量' })} value={stats.strength} />
-              <StatRow label={t('dexterity', { defaultValue: '敏捷' })} value={stats.dexterity} />
-              <StatRow label={t('vitality', { defaultValue: '体力' })} value={stats.vitality} />
-              <StatRow label={t('energy', { defaultValue: '能量' })} value={stats.energy} />
-              <StatRow label={t('common:life', { defaultValue: '生命' })} value={stats.life} accent="text-red-400" />
-              <StatRow label={t('common:mana', { defaultValue: '法力' })} value={stats.mana} accent="text-blue-400" />
+              <StatRow label={t('strength')} value={stats.strength} />
+              <StatRow label={t('dexterity')} value={stats.dexterity} />
+              <StatRow label={t('vitality')} value={stats.vitality} />
+              <StatRow label={t('energy')} value={stats.energy} />
+              <StatRow label={t('common:life')} value={stats.life} accent="text-red-400" />
+              <StatRow label={t('common:mana')} value={stats.mana} accent="text-blue-400" />
             </dl>
           </Panel>
         )}

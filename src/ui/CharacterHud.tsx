@@ -52,7 +52,6 @@ export function CharacterHud() {
       aria-label={t('hud.aria', {
         name: player.name,
         level: player.level,
-        defaultValue: '{{name}} - Level {{level}}. Open character sheet.',
       })}
       className="
         fixed z-40 right-1 md:right-2
@@ -75,7 +74,7 @@ export function CharacterHud() {
             {player.name}
           </span>
           <span className="text-[10px] md:text-xs text-d2-white/70 shrink-0">
-            {t('common:level', { defaultValue: 'Level' })} {player.level}
+            {t('common:level')} {player.level}
           </span>
         </div>
         <MiniBar

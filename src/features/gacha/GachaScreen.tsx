@@ -51,9 +51,9 @@ export function GachaScreen() {
         <Panel>
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="min-w-0">
-              <div className="text-xs text-d2-white/60">{t('banner', { defaultValue: 'Banner' })}</div>
+              <div className="text-xs text-d2-white/60">{t('banner')}</div>
               <div className="text-lg font-serif text-d2-gold truncate">
-                {t('bannerName', { defaultValue: banner.banner.name })}
+                {t('bannerName')}
               </div>
             </div>
             <div>
@@ -90,7 +90,7 @@ export function GachaScreen() {
                 onClick={() => { addCurrency(COST_TEN); }}
                 data-testid="gacha-add-currency"
               >
-                {t('grant', { defaultValue: '+ 90 💠 (dev)' })}
+                {t('grant')}
               </Button>
             </div>
           )}
@@ -182,7 +182,7 @@ function RevealRow({ result, index }: { result: GachaPullResult; index: number }
   const { t } = useTranslation(['gacha', 'mercs']);
   const rt = RARITY_TO_TEXT[result.rarity];
   const slug = mercSlug(result.mercDef.id);
-  const localizedName = t(`mercs:byId.${slug}.name`, { defaultValue: result.mercDef.name });
+  const localizedName = t(`mercs:byId.${slug}.name`);
   const tone = rarityTone(result.rarity);
   return (
     <li
@@ -193,7 +193,7 @@ function RevealRow({ result, index }: { result: GachaPullResult; index: number }
       <RarityText rarity={rt}>{localizedName}</RarityText>
       <span className="text-xs text-d2-white/60">
         {result.rarity}
-        {result.isNew ? ` · ${t('isNew', { defaultValue: 'NEW' })}` : ''}
+        {result.isNew ? ` · ${t('isNew')}` : ''}
       </span>
     </li>
   );

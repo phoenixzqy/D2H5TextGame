@@ -111,7 +111,7 @@ export function HomeScreen() {
           className="text-xs text-d2-border hover:text-d2-gold underline-offset-2 hover:underline
                      focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold rounded"
         >
-          ☕ {t('home.bmc', { defaultValue: t('settings:bmcLink') })}
+          ☕ {t('home.bmc')}
         </a>
       </footer>
     </div>

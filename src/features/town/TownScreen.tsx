@@ -39,7 +39,7 @@ export function TownScreen() {
       testId="town-screen"
       title={
         <span>
-          {t('map:act', { number: currentAct, defaultValue: `第 ${String(currentAct)} 章` })} ·{' '}
+          {t('map:act', { number: currentAct })} ·{' '}
           {t('town')}
           {player && <span className="ml-2 text-sm text-d2-white/60">— {player.name}</span>}
         </span>
@@ -68,16 +68,16 @@ export function TownScreen() {
                   className="w-full min-h-[80px] flex flex-col items-center justify-center gap-1
                              border border-d2-border rounded bg-d2-bg/40 hover:border-d2-gold/60
                              focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold p-2"
-                  aria-label={t(npc.nameKey, { defaultValue: npc.id })}
+                  aria-label={t(npc.nameKey)}
                 >
                   <GameImage
                     src={getNpcPortraitUrl(npc.id, currentAct)}
-                    alt={t(npc.nameKey, { defaultValue: npc.id })}
+                    alt={t(npc.nameKey)}
                     fallbackIcon={npc.emoji}
                     size="md"
                   />
                   <span className="text-xs text-d2-white/80 truncate max-w-full">
-                    {t(npc.nameKey, { defaultValue: npc.id })}
+                    {t(npc.nameKey)}
                   </span>
                 </button>
               </li>

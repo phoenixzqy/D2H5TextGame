@@ -67,7 +67,7 @@ export function QuestsScreen() {
               id={`hdr-${actId}`}
               className="text-sm font-serif text-d2-gold/80 mb-2 border-b border-d2-border pb-1"
             >
-              {t(`act.${actNumber(actId)}`, { defaultValue: actId })}
+              {t(`act.${actNumber(actId)}`)}
             </h2>
             <ul className="space-y-2">
               {quests.map((q) => (
@@ -117,8 +117,8 @@ function resolveStatus(
 function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) {
   const { t } = useTranslation(['quests', 'common']);
   const slug = questI18nKey(quest.id);
-  const name = t(`byId.${slug}.name`, { defaultValue: quest.name });
-  const desc = t(`byId.${slug}.desc`, { defaultValue: quest.description });
+  const name = t(`byId.${slug}.name`);
+  const desc = t(`byId.${slug}.desc`);
   const rewardClaimed = useMapStore((s) => s.questProgress[quest.id]?.rewardClaimed ?? false);
   const [, force] = useState(0);
   const claimable = status === 'completed' && !rewardClaimed && canClaim(quest.id);
@@ -151,7 +151,7 @@ function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) 
               );
             return (
               <li key={o.id} className={done ? 'line-through text-d2-set' : ''}>
-                {t(objKey, { defaultValue: o.description })}
+                {t(objKey)}
                 {typeof o.count === 'number' ? ` (×${String(o.count)})` : ''}
               </li>
             );
@@ -181,8 +181,8 @@ function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) 
                 data-testid={`quest-claim-${quest.id}`}
               >
                 {rewardClaimed
-                  ? t('rewardClaimed', { defaultValue: '已领取' })
-                  : t('claimReward', { defaultValue: '领取奖励' })}
+                  ? t('rewardClaimed')
+                  : t('claimReward')}
               </Button>
             )}
           </>
@@ -198,10 +198,10 @@ function formatReward(
   t: ReturnType<typeof useTranslation<'quests'>>['t']
 ): string {
   if (k === 'xp' && typeof v === 'number')
-    return `✨ ${String(v)} ${t('rewardLabel.xp', { defaultValue: 'XP' })}`;
+    return `✨ ${String(v)} ${t('rewardLabel.xp')}`;
   if (k === 'gold' && typeof v === 'number') return `💰 ${String(v)}`;
   if (k === 'skillPoints' && typeof v === 'number')
-    return `🎯 +${String(v)} ${t('rewardLabel.skillPoint', { defaultValue: 'Skill' })}`;
+    return `🎯 +${String(v)} ${t('rewardLabel.skillPoint')}`;
   if (k === 'mercenaryUnlock' && typeof v === 'string') return `🛡️ ${v}`;
   if (k === 'service' && typeof v === 'string') return `🏷️ ${v}`;
   if (k === 'itemDrop' && typeof v === 'string') return `🎁 ${v}`;

@@ -94,7 +94,7 @@ export function MapScreen() {
   };
 
   const idleAreaName = idleTarget
-    ? t(`subArea.${idleTarget}`, { defaultValue: idleTarget })
+    ? t(`subArea.${idleTarget}`)
     : null;
 
   return (
@@ -109,7 +109,7 @@ export function MapScreen() {
           >
             <span aria-hidden>⚙️</span>
             <span className="flex-1 truncate">
-              {t('idleHere', { defaultValue: '正在挂机' })}: {idleAreaName}
+              {t('idleHere')}: {idleAreaName}
             </span>
             <button
               type="button"
@@ -117,7 +117,7 @@ export function MapScreen() {
               className="text-xs text-d2-white/70 hover:text-d2-gold underline underline-offset-2"
               data-testid="idle-stop-button"
             >
-              {t('stopIdle', { defaultValue: '停止挂机' })}
+              {t('stopIdle')}
             </button>
           </div>
         )}
@@ -142,7 +142,7 @@ export function MapScreen() {
                 />
                 <span className="flex-1 text-left text-d2-gold font-serif">
                   {t('act', { number: act.number })} ·{' '}
-                  {t(act.nameKey, { defaultValue: `Act ${String(act.number)}` })}
+                  {t(act.nameKey)}
                 </span>
                 <span className="flex items-center gap-2 text-xs">
                   {!actUnlocked && (
@@ -182,14 +182,14 @@ export function MapScreen() {
                         <div className="flex-1 min-w-[140px]">
                           <div className={`text-sm flex items-center gap-2 ${cleared ? 'text-d2-white/70' : 'text-d2-white'}`}>
                             <span className="truncate">
-                              {t(sa.nameKey, { defaultValue: sa.id })}
+                              {t(sa.nameKey)}
                             </span>
                             {unlocked && cleared && (
                               <span
                                 className="text-[10px] uppercase text-d2-set border border-d2-set/60 rounded px-1.5 py-0.5"
                                 data-testid={`cleared-badge-${sa.id}`}
                               >
-                                ✓ {t('cleared', { defaultValue: '已通过' })}
+                                ✓ {t('cleared')}
                               </span>
                             )}
                             {unlocked && !cleared && (
@@ -197,12 +197,12 @@ export function MapScreen() {
                                 className="text-[10px] uppercase text-d2-gold/80 border border-d2-gold/50 rounded px-1.5 py-0.5"
                                 data-testid={`uncleared-badge-${sa.id}`}
                               >
-                                {t('uncleared', { defaultValue: '未通过' })}
+                                {t('uncleared')}
                               </span>
                             )}
                             {isIdleHere && (
                               <span className="text-[10px] uppercase text-d2-white/80 border border-d2-white/40 rounded px-1.5 py-0.5">
-                                {t('idleHereShort', { defaultValue: '挂机中' })}
+                                {t('idleHereShort')}
                               </span>
                             )}
                           </div>
@@ -226,7 +226,7 @@ export function MapScreen() {
                               className="min-h-[40px] text-sm"
                               onClick={() => { enterArea(act.number, sa.id); }}
                             >
-                              {t('enter', { defaultValue: '进入' })}
+                              {t('enter')}
                             </Button>
                           </div>
                         )}

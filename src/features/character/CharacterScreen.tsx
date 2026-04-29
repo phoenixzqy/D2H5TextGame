@@ -47,16 +47,16 @@ export function CharacterScreen() {
 
   if (!player) {
     return (
-      <ScreenShell testId="character-screen" title={t('character:screen.title', { defaultValue: '角色' })}>
+      <ScreenShell testId="character-screen" title={t('character:screen.title')}>
         <p className="text-d2-white/60 italic p-4 text-center">
-          {t('character:screen.noCharacter', { defaultValue: '尚未创建角色' })}
+          {t('character:screen.noCharacter')}
         </p>
       </ScreenShell>
     );
   }
 
   return (
-    <ScreenShell testId="character-screen" title={t('character:screen.title', { defaultValue: '角色' })}>
+    <ScreenShell testId="character-screen" title={t('character:screen.title')}>
       <div className="max-w-5xl mx-auto space-y-3">
         {/* Bug #13 row 1: hero card + experience  ·  derived stats */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 items-start" data-testid="char-top-row">
@@ -92,7 +92,7 @@ function HeroStrip({ player }: { player: Player }) {
           variant="character"
           size="lg"
           name={player.name}
-          subtitle={t(`character:classes.${player.class}`, { defaultValue: player.class })}
+          subtitle={t(`character:classes.${player.class}`)}
           rarity="unique"
           image={portrait ?? undefined}
           stats={[
@@ -113,18 +113,18 @@ function HeroStrip({ player }: { player: Player }) {
           </div>
           <div className="text-xs md:text-sm text-d2-white/70">
             <span data-testid="char-class">
-              {t(`character:classes.${player.class}`, { defaultValue: player.class })}
+              {t(`character:classes.${player.class}`)}
             </span>
             <span className="mx-2 text-d2-border">·</span>
             <span data-testid="char-level">
-              {t('common:level', { defaultValue: 'Level' })} {player.level}
+              {t('common:level')} {player.level}
             </span>
           </div>
           <StatBar
             current={Math.min(player.experience, xpMax)}
             max={xpMax}
             color="xp"
-            label={t('common:xp', { defaultValue: 'XP' })}
+            label={t('common:xp')}
           />
         </div>
       </div>
@@ -143,7 +143,7 @@ function CoreAttributesPanel({ player }: { player: Player }) {
   ];
   return (
     <Panel
-      title={t('common:stats.title', { defaultValue: '属性' })}
+      title={t('common:stats.title')}
       className="!p-3"
     >
       <div data-testid="char-core-stats">
@@ -160,14 +160,14 @@ function CoreAttributesPanel({ player }: { player: Player }) {
         </ul>
         <div className="flex flex-wrap gap-3 mt-3 text-xs text-d2-white/70">
           <span>
-            {t('character:screen.statPoints', { defaultValue: '可用属性点' })}
+            {t('character:screen.statPoints')}
             {': '}
             <span className="text-d2-gold font-bold" data-testid="char-stat-points">
               {player.statPoints}
             </span>
           </span>
           <span>
-            {t('character:screen.skillPoints', { defaultValue: '可用技能点' })}
+            {t('character:screen.skillPoints')}
             {': '}
             <span className="text-d2-gold font-bold" data-testid="char-skill-points">
               {player.skillPoints}
@@ -184,7 +184,7 @@ function DerivedStatsPanel({ player }: { player: Player }) {
   const ds = player.derivedStats;
   return (
     <Panel
-      title={t('character:screen.derived', { defaultValue: '派生属性' })}
+      title={t('character:screen.derived')}
       className="!p-3"
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2" data-testid="char-derived-stats">
@@ -192,13 +192,13 @@ function DerivedStatsPanel({ player }: { player: Player }) {
           current={ds.life}
           max={Math.max(1, ds.lifeMax)}
           color="hp"
-          label={t('common:life', { defaultValue: 'Life' })}
+          label={t('common:life')}
         />
         <StatBar
           current={ds.mana}
           max={Math.max(1, ds.manaMax)}
           color="mp"
-          label={t('common:mana', { defaultValue: 'Mana' })}
+          label={t('common:mana')}
         />
       </div>
       <ul className="grid grid-cols-2 gap-2 mt-3 text-sm">
@@ -239,7 +239,7 @@ function ResistancesPanel({ player }: { player: Player }) {
   const res = player.derivedStats.resistances;
   return (
     <Panel
-      title={t('character:screen.resistances', { defaultValue: '抗性' })}
+      title={t('character:screen.resistances')}
       className="!p-3"
     >
       <ul className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm" data-testid="char-resistances">
@@ -251,7 +251,7 @@ function ResistancesPanel({ player }: { player: Player }) {
               className="flex items-center justify-between border border-d2-border/60 rounded px-3 py-2 bg-d2-bg/40"
             >
               <span className="text-d2-white/80">
-                {t(`damage-types:resist.${k}`, { defaultValue: k })}
+                {t(`damage-types:resist.${k}`)}
               </span>
               <span className={resistClass(v)}>{String(v)}%</span>
             </li>
@@ -272,12 +272,12 @@ function EquipmentSummaryPanel({
   const anyEquipped = entries.some((e) => e.item !== null);
   return (
     <Panel
-      title={t('character:screen.equipment', { defaultValue: '装备' })}
+      title={t('character:screen.equipment')}
       className="!p-3"
     >
       {!anyEquipped ? (
         <p className="text-sm text-d2-white/60 italic">
-          {t('character:screen.noEquipment', { defaultValue: '尚未装备任何物品' })}
+          {t('character:screen.noEquipment')}
         </p>
       ) : (
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm" data-testid="char-equipment">
@@ -287,7 +287,7 @@ function EquipmentSummaryPanel({
               className="flex items-center justify-between gap-2 border border-d2-border/60 rounded px-3 py-2 bg-d2-bg/40 min-h-[44px]"
             >
               <span className="text-xs text-d2-white/60 shrink-0">
-                {t(`inventory:slots.${slot}`, { defaultValue: slot })}
+                {t(`inventory:slots.${slot}`)}
               </span>
               {item ? (
                 <RarityText rarity={item.rarity} className="font-serif truncate text-right">
@@ -295,7 +295,7 @@ function EquipmentSummaryPanel({
                 </RarityText>
               ) : (
                 <span className="text-d2-white/40 italic">
-                  {t('inventory:empty', { defaultValue: '空' })}
+                  {t('inventory:empty')}
                 </span>
               )}
             </li>
