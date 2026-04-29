@@ -128,8 +128,13 @@ function inferBaseFromId(baseId: string): string | null {
   }
   // Special cases for potion naming variants
   if (!best) {
-    if (/health|life|red/.test(slug) && /potion/.test(slug)) best = 'potion-health';
-    else if (/mana|blue/.test(slug) && /potion/.test(slug)) best = 'potion-mana';
+    if (slug.includes('potion')) {
+      if (slug.includes('health') || slug.includes('life') || slug.includes('red')) {
+        best = 'potion-health';
+      } else if (slug.includes('mana') || slug.includes('blue')) {
+        best = 'potion-mana';
+      }
+    }
   }
   return best;
 }
@@ -190,7 +195,7 @@ const ZONE_MAP: Record<number, string> = {
 };
 
 export function getZoneArtUrl(act: number): string {
-  const slug = ZONE_MAP[act] ?? ZONE_MAP[1];
+  const slug = ZONE_MAP[act] ?? ZONE_MAP[1] ?? 'rogue-encampment';
   return `${BASE}/zone-art/zones.act${String(act)}.${slug}.png`;
 }
 

@@ -109,7 +109,8 @@ describe('runBattle (timeline scheduler)', () => {
       (e): e is Extract<BattleEvent, { kind: 'summon' }> => e.kind === 'summon'
     );
     expect(summons.length).toBeGreaterThan(0);
-    const first = summons[0]!;
+    const first = summons[0];
+    if (!first) throw new Error('expected summon event');
     expect(first.owner).toBe('p1');
     expect(first.summonId).toBe('skeleton');
     expect(first.unit.kind).toBe('summon');
@@ -180,7 +181,7 @@ describe('runBattle (timeline scheduler)', () => {
     const result = runBattle({ seed: 5, playerTeam: [player], enemyTeam: [enemy] });
     const action = result.events.find((e) => e.kind === 'action');
     expect(action).toBeDefined();
-    if (action && action.kind === 'action') {
+    if (action?.kind === 'action') {
       expect(action.skillId).toBeNull();
     }
   });
@@ -343,8 +344,9 @@ describe('cooldowns are sim-time (seconds)', () => {
       (e) => e.kind === 'action' && e.skillId === 'sorceress.frozen_orb'
     );
     expect(orbCasts.length).toBeGreaterThanOrEqual(2);
-    const first = orbCasts[0]!;
-    const second = orbCasts[1]!;
+    const first = orbCasts[0];
+    const second = orbCasts[1];
+    if (!first || !second) throw new Error('expected at least 2 orb casts');
     expect(second.simClockMs - first.simClockMs).toBeGreaterThanOrEqual(2000);
     // The naïve "every action would recast" world would have second at +900ms.
     expect(second.simClockMs - first.simClockMs).toBeGreaterThan(900);
@@ -486,8 +488,9 @@ describe('runBattleRecorded — sim-time annotations', () => {
     });
     expect(events[0]?.uiDelayMs).toBe(200);
     for (let i = 1; i < events.length; i++) {
-      const prev = events[i - 1]!;
-      const cur = events[i]!;
+      const prev = events[i - 1];
+      const cur = events[i];
+      if (!prev || !cur) throw new Error('unexpected sparse events array');
       const expected = Math.max(50, Math.min(3000, cur.simClockMs - prev.simClockMs));
       expect(cur.uiDelayMs).toBe(expected);
     }
