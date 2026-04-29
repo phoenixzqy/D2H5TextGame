@@ -16,11 +16,13 @@ import type { Item } from '../types/items';
 import type { MonsterTier } from '../combat/types';
 import { rollDrops, type TreasureClass } from './drop-roller';
 import { rollCurrencyDrops, type Difficulty, type CurrencyDrops } from './orbs-and-currency';
-import { generateItem, type ItemDataPools } from './item-instance';
+import { rollItem, type ItemRollPools } from './rollItem';
 
 /** Data pools required to award loot. */
-export interface AwardDataPools extends ItemDataPools {
+export interface AwardDataPools extends ItemRollPools {
   readonly treasureClasses: ReadonlyMap<string, TreasureClass>;
+  readonly uniques?: readonly unknown[];
+  readonly setPieces?: readonly unknown[];
 }
 
 /** Per-kill input. */
@@ -80,7 +82,7 @@ export function rollKillRewards(
 
   const items: Item[] = [];
   for (const d of drops) {
-    const it = generateItem(d, pools, rng);
+    const it = rollItem(d, pools, rng);
     if (it) items.push(it);
   }
 

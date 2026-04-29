@@ -11,7 +11,7 @@ import type { MapProgress } from './maps';
  * Current save format version. Bump this and add an entry to {@link MIGRATIONS}
  * whenever the on-disk shape changes.
  */
-export const CURRENT_SAVE_VERSION = 4;
+export const CURRENT_SAVE_VERSION = 5;
 
 /**
  * Save file version (most recent).
@@ -171,7 +171,17 @@ export interface SaveV4 {
 }
 
 /** Alias to whichever version is current; bump along with {@link CURRENT_SAVE_VERSION}. */
-export type SaveCurrent = SaveV4;
+export interface SaveV5 {
+  readonly version: 5;
+  readonly timestamp: number;
+  readonly player: Player;
+  readonly inventory: InventorySaveData;
+  readonly mercs: MercSaveData;
+  readonly map: MapSaveData;
+  readonly meta: MetaSaveData;
+}
+
+export type SaveCurrent = SaveV5;
 
 /**
  * Migration function type. Each entry receives the previous version's shape
@@ -262,6 +272,31 @@ export const MIGRATIONS: Record<number, Migration> = {
         ...v3.map,
         clearedSubAreas: [],
         questProgress
+      }
+    };
+  },
+  /** v4 to v5: ensure legacy items have rolled-instance containers. */
+  5: (raw: unknown): SaveV5 => {
+    const v4 = raw as SaveV4;
+    const migrateItem = (item: Item): Item => ({
+      ...item,
+      ilvl: item.ilvl ?? item.level,
+      baseRolls: item.baseRolls ?? {},
+      affixes: item.affixes ?? []
+    });
+    const migrateItemOrNull = (item: Item | null): Item | null => item ? migrateItem(item) : null;
+    return {
+      ...v4,
+      version: 5,
+      inventory: {
+        ...v4.inventory,
+        backpack: v4.inventory.backpack.map(migrateItem),
+        stash: v4.inventory.stash.map(migrateItem),
+        equipped: Object.fromEntries(Object.entries(v4.inventory.equipped).map(([slot, item]) => [slot, migrateItemOrNull(item)]))
+      },
+      mercs: {
+        ...v4.mercs,
+        mercEquipment: Object.fromEntries(Object.entries(v4.mercs.mercEquipment).map(([mercId, equipment]) => [mercId, Object.fromEntries(Object.entries(equipment).map(([slot, item]) => [slot, migrateItemOrNull(item ?? null)]))]))
       }
     };
   }

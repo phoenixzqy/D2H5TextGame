@@ -1,0 +1,11 @@
+{
+  "attack": { "flat": "+{{value}} Attack" },
+  "defense": { "flat": "+{{value}} Defense" },
+  "life": { "flat": "+{{value}} Life" },
+  "mana": { "flat": "+{{value}} Mana" },
+  "critChance": { "flat": "+{{value}}% Critical Chance" },
+  "critDamage": { "flat": "+{{value}}% Critical Damage" },
+  "physDodge": { "flat": "+{{value}}% Physical Dodge" },
+  "magicDodge": { "flat": "+{{value}}% Magic Dodge" },
+  "res": { "fire": "+{{value}} Fire Resistance", "cold": "+{{value}} Cold Resistance", "lightning": "+{{value}} Lightning Resistance", "poison": "+{{value}} Poison Resistance", "arcane": "+{{value}} Arcane Resistance", "physical": "+{{value}} Physical Resistance" }
+}

@@ -19,6 +19,7 @@ import zhCN_maps from './locales/zh-CN/maps.json';
 import zhCN_rarity from './locales/zh-CN/rarity.json';
 import zhCN_damageTypes from './locales/zh-CN/damage-types.json';
 import zhCN_card from './locales/zh-CN/card.json';
+import zhCN_affixes from './locales/zh-CN/affixes.json';
 
 import en_common from './locales/en/common.json';
 import en_character from './locales/en/character.json';
@@ -37,6 +38,7 @@ import en_maps from './locales/en/maps.json';
 import en_rarity from './locales/en/rarity.json';
 import en_damageTypes from './locales/en/damage-types.json';
 import en_card from './locales/en/card.json';
+import en_affixes from './locales/en/affixes.json';
 
 const resources = {
   'zh-CN': {
@@ -56,7 +58,8 @@ const resources = {
     maps: zhCN_maps,
     rarity: zhCN_rarity,
     'damage-types': zhCN_damageTypes,
-    card: zhCN_card
+    card: zhCN_card,
+    affixes: zhCN_affixes
   },
   en: {
     common: en_common,
@@ -75,7 +78,8 @@ const resources = {
     maps: en_maps,
     rarity: en_rarity,
     'damage-types': en_damageTypes,
-    card: en_card
+    card: en_card,
+    affixes: en_affixes
   }
 };
 
@@ -87,7 +91,7 @@ i18n
     fallbackLng: 'en',
     lng: 'zh-CN',
     defaultNS: 'common',
-    ns: ['common', 'character', 'combat', 'inventory', 'skills', 'settings', 'town', 'map', 'mercs', 'gacha', 'quests', 'monsters', 'items', 'maps', 'rarity', 'damage-types', 'card'],
+    ns: ['common', 'character', 'combat', 'inventory', 'skills', 'settings', 'town', 'map', 'mercs', 'gacha', 'quests', 'monsters', 'items', 'maps', 'rarity', 'damage-types', 'card', 'affixes'],
     interpolation: {
       escapeValue: false // React already escapes
     },

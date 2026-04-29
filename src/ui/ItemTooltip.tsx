@@ -21,6 +21,7 @@
 import { useTranslation } from 'react-i18next';
 import { RarityText } from './RarityText';
 import { resolveItemIcon } from './cardAssets';
+import { formatAffixRoll } from './affixFormat';
 import { loadItemBases } from '@/data/loaders/loot';
 import type { Item, ItemBase, EquipmentSlot } from '@/engine/types/items';
 
@@ -59,6 +60,7 @@ function baseSlug(baseId: string): string {
 
 export function ItemTooltip({ item, className = '' }: ItemTooltipProps): JSX.Element {
   const { t } = useTranslation('items');
+  const { t: tAffix } = useTranslation('affixes');
   const icon = resolveItemIcon(item.baseId);
   const base: ItemBase | undefined = loadItemBases().get(item.baseId);
 
@@ -80,13 +82,13 @@ export function ItemTooltip({ item, className = '' }: ItemTooltipProps): JSX.Ele
   const damageLine =
     base?.type === 'weapon' && base.baseDamage
       ? t('tooltip.damage', {
-          min: base.baseDamage.min,
-          max: base.baseDamage.max
+          min: item.baseRolls?.attack ?? base.baseDamage.min,
+          max: item.baseRolls?.attack ?? base.baseDamage.max
         })
       : null;
   const defenseLine =
     base?.type === 'armor' && typeof base.baseDefense === 'number' && base.baseDefense > 0
-      ? t('tooltip.defense', { value: base.baseDefense })
+      ? t('tooltip.defense', { value: item.baseRolls?.defense ?? base.baseDefense })
       : null;
 
   const reqRows: string[] = [];
@@ -158,7 +160,7 @@ export function ItemTooltip({ item, className = '' }: ItemTooltipProps): JSX.Ele
       )}
 
       <div className="text-d2-white/70 text-[11px] text-center mb-2">
-        {t('tooltip.ilvl', { value: item.level })}
+        {t('tooltip.ilvl', { value: item.ilvl ?? item.level })}
         {base?.sockets ? ` · ${t('tooltip.sockets', { value: base.sockets })}` : ''}
       </div>
 
@@ -181,7 +183,7 @@ export function ItemTooltip({ item, className = '' }: ItemTooltipProps): JSX.Ele
         <ul className="space-y-0.5 pt-2 border-t border-d2-border/60 mt-2">
           {item.affixes.map((affix, idx) => (
             <li key={idx} className="text-d2-magic text-xs">
-              {affix.affixId}
+              {formatAffixRoll(affix, tAffix)}
             </li>
           ))}
         </ul>

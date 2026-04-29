@@ -7,9 +7,10 @@
  * @module data/loaders/loot
  */
 
-import type { ItemBase } from '@/engine/types/items';
+import type { Affix, ItemBase } from '@/engine/types/items';
 import type { TreasureClass, TcPick } from '@/engine/loot/drop-roller';
-import type { JsonAffix, JsonUnique, JsonSetPiece, ItemDataPools } from '@/engine/loot/item-instance';
+import type { JsonUnique, JsonSetPiece } from '@/engine/loot/item-instance';
+import type { RarityAffixCount, RarityAffixRules } from '@/engine/loot/rollItem';
 import type { AwardDataPools } from '@/engine/loot/award';
 
 import basesJson from '@/data/items/bases.json';
@@ -18,6 +19,7 @@ import affixSuffixJson from '@/data/items/affixes-suffix.json';
 import uniquesJson from '@/data/items/uniques.json';
 import setsJson from '@/data/items/sets.json';
 import treasureClassesJson from '@/data/loot/treasure-classes.json';
+import rarityRulesJson from '@/data/items/rarity-rules.json';
 
 interface JsonTcEntry {
   readonly type: string;
@@ -33,10 +35,11 @@ interface JsonTreasureClass {
 }
 
 let cachedBases: ReadonlyMap<string, ItemBase> | null = null;
-let cachedAffixes: readonly JsonAffix[] | null = null;
+let cachedAffixes: readonly Affix[] | null = null;
 let cachedUniques: readonly JsonUnique[] | null = null;
 let cachedSetPieces: readonly JsonSetPiece[] | null = null;
 let cachedTcs: ReadonlyMap<string, TreasureClass> | null = null;
+let cachedRarityRules: RarityAffixRules | null = null;
 
 /** Item base map keyed by id. */
 export function loadItemBases(): ReadonlyMap<string, ItemBase> {
@@ -48,11 +51,11 @@ export function loadItemBases(): ReadonlyMap<string, ItemBase> {
 }
 
 /** Combined prefix + suffix affix pool. */
-export function loadAffixPool(): readonly JsonAffix[] {
+export function loadAffixPool(): readonly Affix[] {
   if (cachedAffixes) return cachedAffixes;
-  const pool: JsonAffix[] = [
-    ...(affixPrefixJson as readonly JsonAffix[]),
-    ...(affixSuffixJson as readonly JsonAffix[])
+  const pool: Affix[] = [
+    ...(affixPrefixJson as readonly Affix[]),
+    ...(affixSuffixJson as readonly Affix[])
   ];
   cachedAffixes = pool;
   return pool;
@@ -96,13 +99,16 @@ export function loadTreasureClasses(): ReadonlyMap<string, TreasureClass> {
   return map;
 }
 
+export function loadRarityAffixRules(): RarityAffixRules {
+  if (cachedRarityRules) return cachedRarityRules;
+  const raw = rarityRulesJson as unknown as { readonly tiers: Record<string, { readonly affixCount: RarityAffixCount }> };
+  cachedRarityRules = Object.fromEntries(
+    Object.entries(raw.tiers).map(([rarity, tier]) => [rarity, tier.affixCount])
+  ) as RarityAffixRules;
+  return cachedRarityRules;
+}
+
 /** Bundle every loader call into a single award-ready data set. */
 export function loadAwardPools(): AwardDataPools {
-  const itemPools: ItemDataPools = {
-    bases: loadItemBases(),
-    affixes: loadAffixPool(),
-    uniques: loadUniques(),
-    setPieces: loadSetPieces()
-  };
-  return { ...itemPools, treasureClasses: loadTreasureClasses() };
+  return { bases: loadItemBases(), affixes: loadAffixPool(), rarityRules: loadRarityAffixRules(), treasureClasses: loadTreasureClasses() };
 }

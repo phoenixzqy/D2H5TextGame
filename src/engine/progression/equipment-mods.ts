@@ -8,7 +8,8 @@
  * @module engine/progression/equipment-mods
  */
 
-import { loadItemBases } from '@/data/loaders/loot';
+import { loadAffixPool, loadItemBases } from '@/data/loaders/loot';
+import { computeStats } from '@/engine/items/computeStats';
 import type { DerivedModifiers } from './stats';
 import type { CoreStats, Resistances } from '../types/attributes';
 import type { Item } from '../types/items';
@@ -67,58 +68,8 @@ const ZERO_MODS: MutableEquipmentMods = {
   physicalRes: 0
 };
 
-const STAT_MOD_KEYS = new Set<keyof EquipmentMods>([
-  'life',
-  'mana',
-  'attack',
-  'defense',
-  'attackSpeed',
-  'critChance',
-  'critDamage',
-  'physDodge',
-  'magicDodge',
-  'magicFind',
-  'goldFind'
-]);
-
-const CORE_STAT_KEYS = new Set<keyof CoreStats>(['strength', 'dexterity', 'vitality', 'energy']);
-
-const RESIST_TO_MOD_KEY: Readonly<Record<keyof Resistances | 'all', keyof EquipmentMods>> = {
-  fire: 'fireRes',
-  cold: 'coldRes',
-  lightning: 'lightningRes',
-  poison: 'poisonRes',
-  arcane: 'arcaneRes',
-  physical: 'physicalRes',
-  all: 'allRes'
-};
-
 function add(mods: MutableEquipmentMods, key: keyof EquipmentMods, value: number): void {
   mods[key] += value;
-}
-
-function addAffixValue(mods: MutableEquipmentMods, path: string, value: number): void {
-  const [group, stat] = path.split('.');
-  if (!group || !stat) return;
-
-  if (group === 'coreStats' && CORE_STAT_KEYS.has(stat as keyof CoreStats)) {
-    add(mods, stat as keyof CoreStats, value);
-    return;
-  }
-
-  if (group === 'resistances' && stat in RESIST_TO_MOD_KEY) {
-    add(mods, RESIST_TO_MOD_KEY[stat as keyof Resistances | 'all'], value);
-    return;
-  }
-
-  if (group === 'statMods' && STAT_MOD_KEYS.has(stat as keyof EquipmentMods)) {
-    add(mods, stat as keyof EquipmentMods, value);
-    return;
-  }
-
-  if (group === 'damageBonus' && stat === 'value') {
-    add(mods, 'attack', value);
-  }
 }
 
 function compact(mods: MutableEquipmentMods): EquipmentMods {
@@ -136,18 +87,18 @@ function compact(mods: MutableEquipmentMods): EquipmentMods {
 export function aggregateEquipmentMods(equipped: Readonly<Record<string, Item | null>>): EquipmentMods {
   const mods: MutableEquipmentMods = { ...ZERO_MODS };
   const bases = loadItemBases();
+  const affixMap = new Map(loadAffixPool().map((affix) => [affix.id, affix]));
 
   for (const item of Object.values(equipped)) {
     if (!item) continue;
-    const base = bases.get(item.baseId);
-    if (base?.baseDefense) add(mods, 'defense', base.baseDefense);
-    if (base?.baseDamage) add(mods, 'attack', base.baseDamage.max);
-
-    for (const affix of item.affixes ?? []) {
-      for (const [path, value] of affix.values.entries()) {
-        addAffixValue(mods, path, value);
-      }
-    }
+    const itemStats = computeStats(item, bases.get(item.baseId), affixMap);
+    add(mods, 'attack', itemStats.attack); add(mods, 'defense', itemStats.defense);
+    add(mods, 'life', itemStats.life); add(mods, 'mana', itemStats.mana);
+    add(mods, 'critChance', itemStats.critChance); add(mods, 'critDamage', itemStats.critDamage);
+    add(mods, 'physDodge', itemStats.physDodge); add(mods, 'magicDodge', itemStats.magicDodge);
+    add(mods, 'fireRes', itemStats.fireRes); add(mods, 'coldRes', itemStats.coldRes);
+    add(mods, 'lightningRes', itemStats.lightningRes); add(mods, 'poisonRes', itemStats.poisonRes);
+    add(mods, 'arcaneRes', itemStats.arcaneRes); add(mods, 'physicalRes', itemStats.physicalRes);
   }
 
   return compact(mods);

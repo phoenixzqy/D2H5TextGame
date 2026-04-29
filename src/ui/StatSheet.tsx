@@ -21,6 +21,7 @@
 import type { TFunction } from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { RarityText } from './RarityText';
+import { formatAffixRoll } from './affixFormat';
 import {
   STAT_META,
   RESIST_KEYS,
@@ -66,6 +67,7 @@ export type StatSheetProps = SingleProps | CompareProps;
 
 export function StatSheet(props: StatSheetProps): JSX.Element {
   const { t } = useTranslation(['inventory', 'common']);
+  const { t: tAffix } = useTranslation('affixes');
   return (
     <div
       className={[
@@ -160,14 +162,14 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
       {props.mode === 'compare' && props.candidate.affixes && props.candidate.affixes.length > 0 && (
         <ul className="mt-2 pt-2 border-t border-d2-border/60 space-y-0.5">
           {props.candidate.affixes.map((a, i) => (
-            <li key={i} className="text-d2-magic truncate">{a.affixId}</li>
+            <li key={i} className="text-d2-magic truncate">{formatAffixRoll(a, tAffix)}</li>
           ))}
         </ul>
       )}
       {props.mode === 'single' && props.item?.affixes && props.item.affixes.length > 0 && (
         <ul className="mt-2 pt-2 border-t border-d2-border/60 space-y-0.5">
           {props.item.affixes.map((a, i) => (
-            <li key={i} className="text-d2-magic truncate">{a.affixId}</li>
+            <li key={i} className="text-d2-magic truncate">{formatAffixRoll(a, tAffix)}</li>
           ))}
         </ul>
       )}

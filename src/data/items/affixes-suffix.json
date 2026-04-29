@@ -1,514 +1,282 @@
 [
   {
-    "id": "affixes/suffix/of-health",
-    "name": "of Health",
-    "type": "suffix",
-    "minIlvl": 4,
-    "statMods": {
-      "life": 28
-    }
-  },
-  {
-    "id": "affixes/suffix/of-the-mind",
-    "name": "of the Mind",
-    "type": "suffix",
-    "minIlvl": 4,
-    "statMods": {
-      "mana": 28
-    }
-  },
-  {
-    "id": "affixes/suffix/of-strength",
-    "name": "of Strength",
-    "type": "suffix",
-    "minIlvl": 4,
-    "coreStats": {
-      "strength": 7
-    }
-  },
-  {
-    "id": "affixes/suffix/of-dexterity",
-    "name": "of Dexterity",
-    "type": "suffix",
-    "minIlvl": 4,
-    "coreStats": {
-      "dexterity": 7
-    }
-  },
-  {
-    "id": "affixes/suffix/of-vitality",
-    "name": "of Vitality",
-    "type": "suffix",
-    "minIlvl": 4,
-    "coreStats": {
-      "vitality": 7
-    }
-  },
-  {
-    "id": "affixes/suffix/of-energy",
-    "name": "of Energy",
-    "type": "suffix",
-    "minIlvl": 4,
-    "coreStats": {
-      "energy": 7
-    }
-  },
-  {
-    "id": "affixes/suffix/of-warding",
-    "name": "of Warding",
-    "type": "suffix",
-    "minIlvl": 4,
-    "resistances": {
-      "fire": 9,
-      "cold": 9,
-      "lightning": 9,
-      "poison": 9,
-      "arcane": 9
-    }
-  },
-  {
-    "id": "affixes/suffix/of-flame",
-    "name": "of Flame",
-    "type": "suffix",
-    "minIlvl": 4,
-    "resistances": {
-      "fire": 19
-    }
-  },
-  {
-    "id": "affixes/suffix/of-ice",
-    "name": "of Ice",
-    "type": "suffix",
-    "minIlvl": 4,
-    "resistances": {
-      "cold": 19
-    }
-  },
-  {
-    "id": "affixes/suffix/of-thunder",
-    "name": "of Thunder",
-    "type": "suffix",
-    "minIlvl": 4,
-    "resistances": {
-      "lightning": 19
-    }
-  },
-  {
-    "id": "affixes/suffix/of-venom",
-    "name": "of Venom",
-    "type": "suffix",
-    "minIlvl": 4,
-    "resistances": {
-      "poison": 19
-    }
-  },
-  {
-    "id": "affixes/suffix/of-shielding",
-    "name": "of Shielding",
-    "type": "suffix",
-    "minIlvl": 4,
-    "resistances": {
-      "arcane": 19
-    }
-  },
-  {
-    "id": "affixes/suffix/of-speed",
-    "name": "of Speed",
-    "type": "suffix",
-    "minIlvl": 4,
-    "statMods": {
-      "attackSpeed": 11
-    }
-  },
-  {
-    "id": "affixes/suffix/of-alacrity",
-    "name": "of Alacrity",
-    "type": "suffix",
-    "minIlvl": 4,
-    "statMods": {
-      "attackSpeed": 9
-    }
-  },
-  {
-    "id": "affixes/suffix/of-precision",
-    "name": "of Precision",
-    "type": "suffix",
-    "minIlvl": 4,
-    "statMods": {
-      "critChance": 0.07
-    }
-  },
-  {
-    "id": "affixes/suffix/of-carnage",
-    "name": "of Carnage",
-    "type": "suffix",
-    "minIlvl": 4,
-    "statMods": {
-      "critDamage": 1.28
-    }
-  },
-  {
-    "id": "affixes/suffix/of-butchery",
-    "name": "of Butchery",
-    "type": "suffix",
-    "minIlvl": 4,
-    "damageBonus": {
-      "min": 0,
-      "max": 50,
-      "breakdown": {
-        "physical": 50
+    "id": "affix.fire.resistance",
+    "kind": "suffix",
+    "appliesTo": [
+      "armor",
+      "jewelry",
+      "charm"
+    ],
+    "stat": "fireRes",
+    "tiers": [
+      {
+        "ilvlMin": 1,
+        "ilvlMax": 10,
+        "valueMin": 3,
+        "valueMax": 8
+      },
+      {
+        "ilvlMin": 11,
+        "ilvlMax": 25,
+        "valueMin": 8,
+        "valueMax": 18
+      },
+      {
+        "ilvlMin": 26,
+        "ilvlMax": 99,
+        "valueMin": 18,
+        "valueMax": 35
       }
-    }
+    ],
+    "rarityWeights": {
+      "magic": 1,
+      "rare": 1
+    },
+    "i18nKey": "res.fire"
   },
   {
-    "id": "affixes/suffix/of-burning",
-    "name": "of Burning",
-    "type": "suffix",
-    "minIlvl": 4,
-    "damageBonus": {
-      "min": 0,
-      "max": 28,
-      "breakdown": {
-        "fire": 28
+    "id": "affix.cold.resistance",
+    "kind": "suffix",
+    "appliesTo": [
+      "armor",
+      "jewelry",
+      "charm"
+    ],
+    "stat": "coldRes",
+    "tiers": [
+      {
+        "ilvlMin": 1,
+        "ilvlMax": 10,
+        "valueMin": 3,
+        "valueMax": 8
+      },
+      {
+        "ilvlMin": 11,
+        "ilvlMax": 25,
+        "valueMin": 8,
+        "valueMax": 18
+      },
+      {
+        "ilvlMin": 26,
+        "ilvlMax": 99,
+        "valueMin": 18,
+        "valueMax": 35
       }
-    }
+    ],
+    "rarityWeights": {
+      "magic": 1,
+      "rare": 1
+    },
+    "i18nKey": "res.cold"
   },
   {
-    "id": "affixes/suffix/of-frost",
-    "name": "of Frost",
-    "type": "suffix",
-    "minIlvl": 4,
-    "damageBonus": {
-      "min": 0,
-      "max": 28,
-      "breakdown": {
-        "cold": 28
+    "id": "affix.lightning.resistance",
+    "kind": "suffix",
+    "appliesTo": [
+      "armor",
+      "jewelry",
+      "charm"
+    ],
+    "stat": "lightningRes",
+    "tiers": [
+      {
+        "ilvlMin": 1,
+        "ilvlMax": 10,
+        "valueMin": 3,
+        "valueMax": 8
+      },
+      {
+        "ilvlMin": 11,
+        "ilvlMax": 25,
+        "valueMin": 8,
+        "valueMax": 18
+      },
+      {
+        "ilvlMin": 26,
+        "ilvlMax": 99,
+        "valueMin": 18,
+        "valueMax": 35
       }
-    }
+    ],
+    "rarityWeights": {
+      "magic": 1,
+      "rare": 1
+    },
+    "i18nKey": "res.lightning"
   },
   {
-    "id": "affixes/suffix/of-storms",
-    "name": "of Storms",
-    "type": "suffix",
-    "minIlvl": 4,
-    "damageBonus": {
-      "min": 0,
-      "max": 28,
-      "breakdown": {
-        "lightning": 28
+    "id": "affix.poison.resistance",
+    "kind": "suffix",
+    "appliesTo": [
+      "armor",
+      "jewelry",
+      "charm"
+    ],
+    "stat": "poisonRes",
+    "tiers": [
+      {
+        "ilvlMin": 1,
+        "ilvlMax": 10,
+        "valueMin": 3,
+        "valueMax": 8
+      },
+      {
+        "ilvlMin": 11,
+        "ilvlMax": 25,
+        "valueMin": 8,
+        "valueMax": 18
+      },
+      {
+        "ilvlMin": 26,
+        "ilvlMax": 99,
+        "valueMin": 18,
+        "valueMax": 35
       }
-    }
+    ],
+    "rarityWeights": {
+      "magic": 1,
+      "rare": 1
+    },
+    "i18nKey": "res.poison"
   },
   {
-    "id": "affixes/suffix/of-blight",
-    "name": "of Blight",
-    "type": "suffix",
-    "minIlvl": 4,
-    "damageBonus": {
-      "min": 0,
-      "max": 28,
-      "breakdown": {
-        "poison": 28
+    "id": "affix.arcane.resistance",
+    "kind": "suffix",
+    "appliesTo": [
+      "armor",
+      "jewelry",
+      "charm"
+    ],
+    "stat": "arcaneRes",
+    "tiers": [
+      {
+        "ilvlMin": 1,
+        "ilvlMax": 10,
+        "valueMin": 3,
+        "valueMax": 8
+      },
+      {
+        "ilvlMin": 11,
+        "ilvlMax": 25,
+        "valueMin": 8,
+        "valueMax": 18
+      },
+      {
+        "ilvlMin": 26,
+        "ilvlMax": 99,
+        "valueMin": 18,
+        "valueMax": 35
       }
-    }
+    ],
+    "rarityWeights": {
+      "magic": 1,
+      "rare": 1
+    },
+    "i18nKey": "res.arcane"
   },
   {
-    "id": "affixes/suffix/of-arcana",
-    "name": "of Arcana",
-    "type": "suffix",
-    "minIlvl": 4,
-    "damageBonus": {
-      "min": 0,
-      "max": 28,
-      "breakdown": {
-        "arcane": 28
+    "id": "affix.physical.resistance",
+    "kind": "suffix",
+    "appliesTo": [
+      "armor",
+      "jewelry",
+      "charm"
+    ],
+    "stat": "physicalRes",
+    "tiers": [
+      {
+        "ilvlMin": 1,
+        "ilvlMax": 10,
+        "valueMin": 2,
+        "valueMax": 5
+      },
+      {
+        "ilvlMin": 11,
+        "ilvlMax": 25,
+        "valueMin": 5,
+        "valueMax": 12
+      },
+      {
+        "ilvlMin": 26,
+        "ilvlMax": 99,
+        "valueMin": 12,
+        "valueMax": 24
       }
-    }
+    ],
+    "rarityWeights": {
+      "magic": 1,
+      "rare": 1
+    },
+    "i18nKey": "res.physical"
   },
   {
-    "id": "affixes/suffix/of-lifesteal",
-    "name": "of Lifesteal",
-    "type": "suffix",
-    "minIlvl": 4
-  },
-  {
-    "id": "affixes/suffix/of-manasteal",
-    "name": "of Manasteal",
-    "type": "suffix",
-    "minIlvl": 4
-  },
-  {
-    "id": "affixes/suffix/of-regeneration",
-    "name": "of Regeneration",
-    "type": "suffix",
-    "minIlvl": 4,
-    "statMods": {
-      "life": 8
-    }
-  },
-  {
-    "id": "affixes/suffix/of-meditation",
-    "name": "of Meditation",
-    "type": "suffix",
-    "minIlvl": 4,
-    "statMods": {
-      "mana": 8
-    }
-  },
-  {
-    "id": "affixes/suffix/of-thorns",
-    "name": "of Thorns",
-    "type": "suffix",
-    "minIlvl": 4,
-    "damageBonus": {
-      "min": 9,
-      "max": 16,
-      "breakdown": {
-        "thorns": 16
+    "id": "affix.wolf.life.flat",
+    "kind": "suffix",
+    "appliesTo": [
+      "weapon",
+      "jewelry",
+      "charm"
+    ],
+    "stat": "life",
+    "tiers": [
+      {
+        "ilvlMin": 1,
+        "ilvlMax": 10,
+        "valueMin": 4,
+        "valueMax": 12
+      },
+      {
+        "ilvlMin": 11,
+        "ilvlMax": 25,
+        "valueMin": 12,
+        "valueMax": 28
+      },
+      {
+        "ilvlMin": 26,
+        "ilvlMax": 99,
+        "valueMin": 25,
+        "valueMax": 55
       }
-    }
+    ],
+    "rarityWeights": {
+      "magic": 1,
+      "rare": 1
+    },
+    "i18nKey": "life.flat"
   },
   {
-    "id": "affixes/suffix/of-thorned-rage",
-    "name": "of Thorned Rage",
-    "type": "suffix",
-    "minIlvl": 4
-  },
-  {
-    "id": "affixes/suffix/of-blocking",
-    "name": "of Blocking",
-    "type": "suffix",
-    "minIlvl": 4
-  },
-  {
-    "id": "affixes/suffix/of-evasion",
-    "name": "of Evasion",
-    "type": "suffix",
-    "minIlvl": 4,
-    "statMods": {
-      "physDodge": 0.06
-    }
-  },
-  {
-    "id": "affixes/suffix/of-phasing",
-    "name": "of Phasing",
-    "type": "suffix",
-    "minIlvl": 4,
-    "statMods": {
-      "magicDodge": 0.06
-    }
-  },
-  {
-    "id": "affixes/suffix/of-balance",
-    "name": "of Balance",
-    "type": "suffix",
-    "minIlvl": 4
-  },
-  {
-    "id": "affixes/suffix/of-perfection",
-    "name": "of Perfection",
-    "type": "suffix",
-    "minIlvl": 4,
-    "statMods": {
-      "attack": 28
-    }
-  },
-  {
-    "id": "affixes/suffix/of-truth",
-    "name": "of Truth",
-    "type": "suffix",
-    "minIlvl": 4
-  },
-  {
-    "id": "affixes/suffix/of-slaying",
-    "name": "of Slaying",
-    "type": "suffix",
-    "minIlvl": 4
-  },
-  {
-    "id": "affixes/suffix/of-quickness",
-    "name": "of Quickness",
-    "type": "suffix",
-    "minIlvl": 4
-  },
-  {
-    "id": "affixes/suffix/of-passage",
-    "name": "of Passage",
-    "type": "suffix",
-    "minIlvl": 4
-  },
-  {
-    "id": "affixes/suffix/of-chance",
-    "name": "of Chance",
-    "type": "suffix",
-    "minIlvl": 4,
-    "statMods": {
-      "magicFind": 28
-    }
-  },
-  {
-    "id": "affixes/suffix/of-greed",
-    "name": "of Greed",
-    "type": "suffix",
-    "minIlvl": 4,
-    "statMods": {
-      "goldFind": 55
-    }
-  },
-  {
-    "id": "affixes/suffix/of-the-bear",
-    "name": "of the Bear",
-    "type": "suffix",
-    "minIlvl": 4
-  },
-  {
-    "id": "affixes/suffix/of-freezing",
-    "name": "of Freezing",
-    "type": "suffix",
-    "minIlvl": 4
-  },
-  {
-    "id": "affixes/suffix/of-blinding",
-    "name": "of Blinding",
-    "type": "suffix",
-    "minIlvl": 4
-  },
-  {
-    "id": "affixes/suffix/of-amplification",
-    "name": "of Amplification",
-    "type": "suffix",
-    "minIlvl": 4
-  },
-  {
-    "id": "affixes/suffix/of-destruction",
-    "name": "of Destruction",
-    "type": "suffix",
-    "minIlvl": 4
-  },
-  {
-    "id": "affixes/suffix/of-kings",
-    "name": "of Kings",
-    "type": "suffix",
-    "minIlvl": 36
-  },
-  {
-    "id": "affixes/suffix/of-apprentice",
-    "name": "of Apprentice",
-    "type": "suffix",
-    "minIlvl": 20
-  },
-  {
-    "id": "affixes/suffix/of-the-whale",
-    "name": "of the Whale",
-    "type": "suffix",
-    "minIlvl": 4,
-    "statMods": {
-      "life": 75
-    }
-  },
-  {
-    "id": "affixes/suffix/of-the-titan",
-    "name": "of the Titan",
-    "type": "suffix",
-    "minIlvl": 4,
-    "coreStats": {
-      "strength": 11
-    }
-  },
-  {
-    "id": "affixes/suffix/of-wraith",
-    "name": "of Wraith",
-    "type": "suffix",
-    "minIlvl": 4
-  },
-  {
-    "id": "affixes/suffix/of-doom",
-    "name": "of Doom",
-    "type": "suffix",
-    "minIlvl": 4
-  },
-  {
-    "id": "affixes/suffix/of-remedy",
-    "name": "of Remedy",
-    "type": "suffix",
-    "minIlvl": 4
-  },
-  {
-    "id": "affixes/suffix/of-warmth",
-    "name": "of Warmth",
-    "type": "suffix",
-    "minIlvl": 4
-  },
-  {
-    "id": "affixes/suffix/of-grounding",
-    "name": "of Grounding",
-    "type": "suffix",
-    "minIlvl": 4
-  },
-  {
-    "id": "affixes/suffix/of-might",
-    "name": "of Might",
-    "type": "suffix",
-    "minIlvl": 4,
-    "coreStats": {
-      "strength": 7
-    }
-  },
-  {
-    "id": "affixes/suffix/of-the-fox",
-    "name": "of the Fox",
-    "type": "suffix",
-    "minIlvl": 4,
-    "coreStats": {
-      "dexterity": 7
-    }
-  },
-  {
-    "id": "affixes/suffix/of-the-giant",
-    "name": "of the Giant",
-    "type": "suffix",
-    "minIlvl": 4,
-    "coreStats": {
-      "vitality": 7
-    }
-  },
-  {
-    "id": "affixes/suffix/of-sorcery",
-    "name": "of Sorcery",
-    "type": "suffix",
-    "minIlvl": 4,
-    "coreStats": {
-      "energy": 7
-    }
-  },
-  {
-    "id": "affixes/suffix/of-haste",
-    "name": "of Haste",
-    "type": "suffix",
-    "minIlvl": 4,
-    "statMods": {
-      "attackSpeed": 11
-    }
-  },
-  {
-    "id": "affixes/suffix/of-pacing",
-    "name": "of Pacing",
-    "type": "suffix",
-    "minIlvl": 4,
-    "statMods": {
-      "attackSpeed": 9
-    }
-  },
-  {
-    "id": "affixes/suffix/of-assault",
-    "name": "of Assault",
-    "type": "suffix",
-    "minIlvl": 4
-  },
-  {
-    "id": "affixes/suffix/of-finality",
-    "name": "of Finality",
-    "type": "suffix",
-    "minIlvl": 4
+    "id": "affix.bat.mana.flat",
+    "kind": "suffix",
+    "appliesTo": [
+      "weapon",
+      "jewelry",
+      "charm"
+    ],
+    "stat": "mana",
+    "tiers": [
+      {
+        "ilvlMin": 1,
+        "ilvlMax": 10,
+        "valueMin": 4,
+        "valueMax": 12
+      },
+      {
+        "ilvlMin": 11,
+        "ilvlMax": 25,
+        "valueMin": 12,
+        "valueMax": 28
+      },
+      {
+        "ilvlMin": 26,
+        "ilvlMax": 99,
+        "valueMin": 25,
+        "valueMax": 55
+      }
+    ],
+    "rarityWeights": {
+      "magic": 1,
+      "rare": 1
+    },
+    "i18nKey": "mana.flat"
   }
 ]
