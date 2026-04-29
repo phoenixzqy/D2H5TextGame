@@ -78,12 +78,15 @@ export function snapshotStores(): SaveCurrent | null {
     },
     mercs: {
       ownedMercs: merc.ownedMercs,
-      fieldedMercId: merc.fieldedMercId
+      fieldedMercId: merc.fieldedMercId,
+      mercEquipment: merc.mercEquipment,
+      mercProgress: merc.mercProgress
     },
     map: {
       currentAct: map.currentAct,
       currentSubAreaId: map.currentSubAreaId,
       discoveredAreas: map.discoveredAreas,
+      clearedSubAreas: map.clearedSubAreas,
       questProgress: map.questProgress
     },
     meta: {
@@ -180,12 +183,15 @@ export async function hydrateFromSave(): Promise<boolean> {
       });
       useMercStore.setState({
         ownedMercs: [...data.mercs.ownedMercs],
-        fieldedMercId: data.mercs.fieldedMercId
+        fieldedMercId: data.mercs.fieldedMercId,
+        mercEquipment: { ...data.mercs.mercEquipment },
+        mercProgress: { ...data.mercs.mercProgress }
       });
       useMapStore.setState({
         currentAct: data.map.currentAct,
         currentSubAreaId: data.map.currentSubAreaId,
         discoveredAreas: [...data.map.discoveredAreas],
+        clearedSubAreas: [...data.map.clearedSubAreas],
         questProgress: { ...data.map.questProgress }
       });
       useMetaStore.setState({

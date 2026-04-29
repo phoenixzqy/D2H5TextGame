@@ -4,14 +4,14 @@
  */
 
 import type { Player, Mercenary } from './entities';
-import type { Inventory, Item } from './items';
+import type { EquipmentSlot, Inventory, Item } from './items';
 import type { MapProgress } from './maps';
 
 /**
  * Current save format version. Bump this and add an entry to {@link MIGRATIONS}
  * whenever the on-disk shape changes.
  */
-export const CURRENT_SAVE_VERSION = 3;
+export const CURRENT_SAVE_VERSION = 4;
 
 /**
  * Save file version (most recent).
@@ -71,6 +71,7 @@ export interface QuestProgressData {
   readonly id: string;
   readonly status: 'locked' | 'available' | 'inProgress' | 'completed';
   readonly objectives: Readonly<Record<string, boolean>>;
+  readonly rewardClaimed?: boolean;
 }
 
 /**
@@ -102,10 +103,19 @@ export interface InventorySaveData {
   readonly currencies: Readonly<Record<string, number>>;
 }
 
+/** Persisted mercenary progression snapshot. */
+export interface MercProgressSaveData {
+  readonly experience: number;
+  readonly experienceToNextLevel: number;
+  readonly level?: number;
+}
+
 /** Persisted mercenary snapshot. */
 export interface MercSaveData {
   readonly ownedMercs: readonly Mercenary[];
   readonly fieldedMercId: string | null;
+  readonly mercEquipment: Readonly<Record<string, Partial<Record<EquipmentSlot, Item | null>>>>;
+  readonly mercProgress: Readonly<Record<string, MercProgressSaveData>>;
 }
 
 /** Persisted map snapshot. */
@@ -113,6 +123,7 @@ export interface MapSaveData {
   readonly currentAct: number;
   readonly currentSubAreaId: string | null;
   readonly discoveredAreas: readonly string[];
+  readonly clearedSubAreas: readonly string[];
   readonly questProgress: Readonly<Record<string, QuestProgressData>>;
 }
 
@@ -132,8 +143,8 @@ export interface SaveV2 {
   readonly timestamp: number;
   readonly player: Player;
   readonly inventory: InventorySaveData;
-  readonly mercs: MercSaveData;
-  readonly map: MapSaveData;
+  readonly mercs: Omit<MercSaveData, 'mercEquipment' | 'mercProgress'>;
+  readonly map: Omit<MapSaveData, 'clearedSubAreas'>;
   readonly meta: MetaSaveData;
 }
 
@@ -143,13 +154,24 @@ export interface SaveV3 {
   readonly timestamp: number;
   readonly player: Player;
   readonly inventory: InventorySaveData;
+  readonly mercs: Omit<MercSaveData, 'mercEquipment' | 'mercProgress'>;
+  readonly map: Omit<MapSaveData, 'clearedSubAreas'>;
+  readonly meta: MetaSaveData;
+}
+
+/** Save file v4 — persists map clears and merc equipment/progression. */
+export interface SaveV4 {
+  readonly version: 4;
+  readonly timestamp: number;
+  readonly player: Player;
+  readonly inventory: InventorySaveData;
   readonly mercs: MercSaveData;
   readonly map: MapSaveData;
   readonly meta: MetaSaveData;
 }
 
 /** Alias to whichever version is current; bump along with {@link CURRENT_SAVE_VERSION}. */
-export type SaveCurrent = SaveV3;
+export type SaveCurrent = SaveV4;
 
 /**
  * Migration function type. Each entry receives the previous version's shape
@@ -216,6 +238,30 @@ export const MIGRATIONS: Record<number, Migration> = {
           ...restCurrencies,
           ...(runeShardTotal > 0 ? { 'rune-shard': runeShardTotal } : {})
         }
+      }
+    };
+  },
+  /** v3 → v4: add newly persisted map and merc slices with safe defaults. */
+  4: (raw: unknown): SaveV4 => {
+    const v3 = raw as SaveV3;
+    const questProgress = Object.fromEntries(
+      Object.entries(v3.map.questProgress).map(([id, progress]) => [
+        id,
+        { ...progress, rewardClaimed: progress.rewardClaimed ?? false }
+      ])
+    );
+    return {
+      ...v3,
+      version: 4,
+      mercs: {
+        ...v3.mercs,
+        mercEquipment: {},
+        mercProgress: {}
+      },
+      map: {
+        ...v3.map,
+        clearedSubAreas: [],
+        questProgress
       }
     };
   }

@@ -8,7 +8,8 @@ import {
   MIGRATIONS,
   type SaveCurrent,
   type SaveV1,
-  type SaveV2
+  type SaveV2,
+  type SaveV3
 } from '../types/save';
 
 function fakePlayer(): SaveCurrent['player'] {
@@ -43,12 +44,18 @@ function buildSampleSaveCurrent(): SaveCurrent {
       equipped: { weapon: null, head: null },
       currencies: { gold: 42, runes: 3 }
     },
-    mercs: { ownedMercs: [], fieldedMercId: null },
+    mercs: {
+      ownedMercs: [],
+      fieldedMercId: null,
+      mercEquipment: {},
+      mercProgress: {}
+    },
     map: {
       currentAct: 1,
       currentSubAreaId: 'rogue-camp',
       discoveredAreas: ['rogue-camp', 'blood-moor'],
-      questProgress: { 'q-den': { id: 'q-den', status: 'inProgress', objectives: { entered: true } } }
+      clearedSubAreas: ['blood-moor'],
+      questProgress: { 'q-den': { id: 'q-den', status: 'inProgress', objectives: { entered: true }, rewardClaimed: true } }
     },
     meta: {
       settings: {
@@ -81,6 +88,10 @@ describe('save round-trip', () => {
     expect(reparsed.version).toBe(CURRENT_SAVE_VERSION);
     expect(reparsed.inventory.currencies.gold).toBe(42);
     expect(reparsed.map.discoveredAreas).toEqual(['rogue-camp', 'blood-moor']);
+    expect(reparsed.map.clearedSubAreas).toEqual(['blood-moor']);
+    expect(reparsed.map.questProgress['q-den']?.rewardClaimed).toBe(true);
+    expect(reparsed.mercs.mercEquipment).toEqual({});
+    expect(reparsed.mercs.mercProgress).toEqual({});
     expect(reparsed.meta.settings.locale).toBe('zh-CN');
   });
 
@@ -169,8 +180,15 @@ describe('runMigrations', () => {
     expect(out.meta.gachaState.pityCounter).toBe(7);
     expect(out.inventory.equipped.weapon).toEqual({ id: 'w1' });
     expect(out.inventory.currencies).toEqual({});
+    expect(out.map.clearedSubAreas).toEqual([]);
+    expect(out.mercs.mercEquipment).toEqual({});
+    expect(out.mercs.mercProgress).toEqual({});
   });
 
+  it('declares v4 as current and registers the v4 migration', () => {
+    expect(CURRENT_SAVE_VERSION).toBe(4);
+    expect(MIGRATIONS[4]).toBeDefined();
+  });
 
   it('migrates v2 → v3 by folding currencies.gold into rune-shard', () => {
     const current = buildSampleSaveCurrent();
@@ -187,6 +205,33 @@ describe('runMigrations', () => {
     expect(out.inventory.currencies.gold).toBeUndefined();
     expect(out.inventory.currencies['rune-shard']).toBe(47);
     expect(out.inventory.currencies.runes).toBe(3);
+  });
+
+  it('migrates v3 → v4 with safe defaults for newly persisted fields', () => {
+    const current = buildSampleSaveCurrent();
+    const { mercEquipment: _mercEquipment, mercProgress: _mercProgress, ...legacyMercs } = current.mercs;
+    const { clearedSubAreas: _clearedSubAreas, ...legacyMap } = current.map;
+    void _mercEquipment;
+    void _mercProgress;
+    void _clearedSubAreas;
+    const v3: SaveV3 = {
+      ...current,
+      version: 3,
+      mercs: legacyMercs,
+      map: {
+        ...legacyMap,
+        questProgress: {
+          'q-den': { id: 'q-den', status: 'completed', objectives: { killed: true } }
+        }
+      }
+    };
+
+    const out = runMigrations(v3, CURRENT_SAVE_VERSION);
+    expect(out.version).toBe(4);
+    expect(out.map.clearedSubAreas).toEqual([]);
+    expect(out.map.questProgress['q-den']?.rewardClaimed).toBe(false);
+    expect(out.mercs.mercEquipment).toEqual({});
+    expect(out.mercs.mercProgress).toEqual({});
   });
 
   it('handles already-JSON-serialized v1 equipment (array of [slot, item])', () => {

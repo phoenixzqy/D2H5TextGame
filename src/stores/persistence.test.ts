@@ -5,6 +5,8 @@
  */
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { CURRENT_SAVE_VERSION, type SaveCurrent } from '@/engine/types/save';
+import type { Mercenary } from '@/engine/types/entities';
+import type { Item } from '@/engine/types/items';
 
 const mockSaveStore: { current: SaveCurrent | null } = { current: null };
 const saveSpy = vi.fn((data: SaveCurrent) => {
@@ -48,6 +50,22 @@ function fakePlayer(): NonNullable<ReturnType<typeof usePlayerStore.getState>['p
     comboOrder: [], alive: true, turnOrder: 0,
     classId: 'barbarian', experience: 0, statPoints: 0, skillPoints: 0
   } as unknown as NonNullable<ReturnType<typeof usePlayerStore.getState>['player']>;
+}
+
+function fakeMerc(): Mercenary {
+  return {
+    id: 'merc-persist-1', name: 'Kashya', type: 'mercenary', team: 'player', level: 2,
+    coreStats: { strength: 20, dexterity: 25, vitality: 20, energy: 10 },
+    derivedStats: { life: 80, lifeMax: 80, mana: 20, manaMax: 20, attack: 30, defense: 5, attackSpeed: 30, critChance: 0.05, critDamage: 1.5, physDodge: 0.05, magicDodge: 0.05, magicFind: 0, goldFind: 0, resistances: { fire: 0, cold: 0, lightning: 0, poison: 0, arcane: 0, physical: 0 } },
+    statusEffects: [], cooldowns: [], skills: [], comboOrder: ['mskill-basic-arrow'], alive: true, turnOrder: 0, archetype: 'back', rarity: 'R', equipment: []
+  };
+}
+
+function fakeItem(): Item {
+  return {
+    id: 'item-persist-1', baseId: 'items/short-sword', rarity: 'normal', level: 1,
+    identified: true, equipped: true, equipSlot: 'weapon'
+  };
 }
 
 function resetAllStores(): void {
@@ -164,6 +182,19 @@ describe('persistence', () => {
       useMetaStore.getState().setLocale('en');
       useMapStore.getState().setCurrentLocation(2, 'lut-gholein');
       useMapStore.getState().discoverArea('rogue-camp');
+      useMapStore.getState().markCleared('blood-moor');
+      useMapStore.getState().updateQuestProgress('q-den', {
+        status: 'completed',
+        objectives: { killed: true },
+        rewardClaimed: true
+      });
+      const merc = fakeMerc();
+      useMercStore.getState().addMerc(merc);
+      useMercStore.getState().setFieldedMerc(merc.id);
+      useMercStore.setState({
+        mercEquipment: { [merc.id]: { weapon: fakeItem(), offhand: null } },
+        mercProgress: { [merc.id]: { experience: 23, experienceToNextLevel: 50 } }
+      });
 
       // 2. Snapshot + persist.
       const snap = snapshotStores();
@@ -185,6 +216,12 @@ describe('persistence', () => {
       expect(useMapStore.getState().currentAct).toBe(2);
       expect(useMapStore.getState().currentSubAreaId).toBe('lut-gholein');
       expect(useMapStore.getState().discoveredAreas).toContain('rogue-camp');
+      expect(useMapStore.getState().clearedSubAreas).toEqual(['blood-moor']);
+      expect(useMapStore.getState().questProgress['q-den']?.rewardClaimed).toBe(true);
+      expect(useMercStore.getState().fieldedMercId).toBe(merc.id);
+      expect(useMercStore.getState().mercEquipment[merc.id]?.weapon).toEqual(fakeItem());
+      expect(useMercStore.getState().mercEquipment[merc.id]?.offhand).toBeNull();
+      expect(useMercStore.getState().mercProgress[merc.id]).toEqual({ experience: 23, experienceToNextLevel: 50 });
       expect(useHydrationStore.getState().status).toBe('ready');
     });
 
