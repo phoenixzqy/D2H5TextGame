@@ -11,8 +11,9 @@
  * Reads-only: pulls from `usePlayerStore` and `useInventoryStore`.
  * No allocation buttons here — that flow lives elsewhere.
  */
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { GameCard, Panel, ScreenShell, StatBar, RarityText, resolveClassPortrait } from '@/ui';
+import { EquippedItemModal, GameCard, Panel, ScreenShell, StatBar, RarityText, resolveClassPortrait } from '@/ui';
 import { useInventoryStore, usePlayerStore } from '@/stores';
 import type { Player } from '@/engine/types/entities';
 import type { EquipmentSlot, Item } from '@/engine/types/items';
@@ -44,6 +45,7 @@ export function CharacterScreen() {
   const { t } = useTranslation(['character', 'common', 'inventory', 'damage-types']);
   const player = usePlayerStore((s) => s.player);
   const equipped = useInventoryStore((s) => s.equipped);
+  const [viewSlot, setViewSlot] = useState<EquipmentSlot | null>(null);
 
   if (!player) {
     return (
@@ -73,8 +75,17 @@ export function CharacterScreen() {
           <ResistancesPanel player={player} />
         </div>
         {/* Bug #13 row 3: equipment */}
-        <EquipmentSummaryPanel equipped={equipped} />
+        <EquipmentSummaryPanel
+          equipped={equipped}
+          onSlotClick={(slot) => { setViewSlot(slot); }}
+        />
       </div>
+      <EquippedItemModal
+        slot={viewSlot}
+        item={viewSlot ? (equipped[viewSlot] ?? null) : null}
+        derivedStats={player.derivedStats}
+        onClose={() => { setViewSlot(null); }}
+      />
     </ScreenShell>
   );
 }
@@ -264,8 +275,10 @@ function ResistancesPanel({ player }: { player: Player }) {
 
 function EquipmentSummaryPanel({
   equipped,
+  onSlotClick,
 }: {
   equipped: Record<string, Item | null>;
+  onSlotClick: (slot: EquipmentSlot) => void;
 }) {
   const { t } = useTranslation(['character', 'inventory']);
   const entries = SLOT_ORDER.map((slot) => ({ slot, item: equipped[slot] ?? null }));
@@ -282,22 +295,27 @@ function EquipmentSummaryPanel({
       ) : (
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm" data-testid="char-equipment">
           {entries.map(({ slot, item }) => (
-            <li
-              key={slot}
-              className="flex items-center justify-between gap-2 border border-d2-border/60 rounded px-3 py-2 bg-d2-bg/40 min-h-[44px]"
-            >
-              <span className="text-xs text-d2-white/60 shrink-0">
-                {t(`inventory:slots.${slot}`)}
-              </span>
-              {item ? (
-                <RarityText rarity={item.rarity} className="font-serif truncate text-right">
-                  {item.baseId}
-                </RarityText>
-              ) : (
-                <span className="text-d2-white/40 italic">
-                  {t('inventory:empty')}
+            <li key={slot}>
+              <button
+                type="button"
+                onClick={() => { onSlotClick(slot); }}
+                data-testid={`char-equip-slot-${slot}`}
+                aria-label={t(`inventory:slots.${slot}`)}
+                className="w-full flex items-center justify-between gap-2 border border-d2-border/60 rounded px-3 py-2 bg-d2-bg/40 min-h-[44px] text-left hover:border-d2-gold/60 focus:outline-none focus:ring-2 focus:ring-d2-gold transition-colors"
+              >
+                <span className="text-xs text-d2-white/60 shrink-0">
+                  {t(`inventory:slots.${slot}`)}
                 </span>
-              )}
+                {item ? (
+                  <RarityText rarity={item.rarity} className="font-serif truncate text-right">
+                    {item.baseId}
+                  </RarityText>
+                ) : (
+                  <span className="text-d2-white/40 italic">
+                    {t('inventory:empty')}
+                  </span>
+                )}
+              </button>
             </li>
           ))}
         </ul>
