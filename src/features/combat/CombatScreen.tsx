@@ -560,17 +560,42 @@ function orderAlliesWithSummons(team: readonly CombatUnit[]): CombatUnit[] {
 }
 
 /**
- * Extract a monster slug for image lookup from a CombatUnit's display name.
- * Strips trailing level/title suffixes like " Lv1", " (Boss)", etc.
- * Falls back to the raw id when name is empty.
+ * Extract a monster slug for image lookup from a CombatUnit's id/name.
+ *
+ * Prefers `id` because `monster-factory` stamps it as
+ * `enemy-act<N>.<slug>-<idx>-<hex>` (or `enemy-<slug>-<idx>-<hex>`),
+ * which is stable regardless of display-name suffixes such as
+ *   - instance letter:  "Fallen A", "Fallen B"
+ *   - tier badge:       "Fallen (Elite)", "Andariel (Boss)"
+ *   - epithet/comma:    "Andariel, Maiden of Anguish"
+ *   - level suffix:     "Fallen Lv1", "堕落者 等级 1"
+ *
+ * Falls back to a name-based slug only when the id pattern doesn't match.
  *
  * Examples:
- *   "Fallen Lv1"       → "fallen"
- *   "Bone Warrior Lv5" → "bone-warrior"
- *   "Andariel"         → "andariel"
+ *   id="enemy-act1.fallen-0-1a2b"           → "fallen"
+ *   id="enemy-act1.andariel-0-cd34"         → "andariel"
+ *   id="enemy-act2.sand-maggot-young-2-ef"  → "sand-maggot-young"
+ *   name="Fallen Lv1"                       → "fallen"
  */
 function extractMonsterSlug(name: string, id: string): string {
-  const trimmed = name.replace(/\s+(?:Lv|Lvl|Level|等级)\s*\d+.*$/i, '').trim();
+  // Preferred path: parse the engine-stamped id.
+  // monster-factory builds: `enemy-${archetypeSlug}-${index}-${hexTag}`
+  // where archetypeSlug is `act<N>.<kebab>` (last segment of `monsters/act<N>.<kebab>`).
+  const idMatch = /^enemy-(?:act\d+\.)?([a-z0-9-]+?)-\d+-[a-f0-9]+$/i.exec(id);
+  if (idMatch?.[1]) return idMatch[1].toLowerCase();
+
+  // Fallback: clean the display name. Strip — in this order —
+  //   1) tier badge in trailing parens, e.g. " (Elite)", " (Boss)"
+  //   2) localized level suffix " Lv1", " 等级 1"
+  //   3) lone trailing instance letter " A".."Z"
+  //   4) epithet after the first comma ("Andariel, Maiden of Anguish" → "Andariel")
+  const trimmed = name
+    .replace(/\s*\([^)]*\)\s*$/g, '')
+    .replace(/\s+(?:Lv|Lvl|Level|等级)\s*\d+.*$/i, '')
+    .replace(/\s+[A-Z]$/, '')
+    .replace(/,.*$/, '')
+    .trim();
   const base = trimmed || id;
   return base.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
 }
