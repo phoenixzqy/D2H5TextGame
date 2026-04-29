@@ -9,6 +9,13 @@
   "moveUp": "Move up",
   "moveDown": "Move down",
   "slotN": "Slot {{n}}",
+  "allocatePoint": "Allocate point to {{skill}}",
+  "tree": {
+    "all": "All Skills",
+    "combat": "Combat Skills",
+    "passive": "Passive Skills",
+    "general": "General Skills"
+  },
   "tab": {
     "combat": "Combat",
     "passive": "Passive",

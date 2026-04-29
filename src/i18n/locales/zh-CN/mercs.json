@@ -21,9 +21,13 @@
   "type": {
     "rogue": "罗格侦察兵",
     "desert": "沙漠佣兵",
+    "desert-merc": "沙漠佣兵",
     "iron-wolf": "铁狼",
     "barbarian": "野蛮人",
     "paladin": "圣骑士",
+    "militia": "民兵",
+    "thief": "盗贼",
+    "acolyte": "侍僧",
     "tavern": "酒馆"
   },
   "byId": {

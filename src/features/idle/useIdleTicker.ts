@@ -118,10 +118,9 @@ export const useIdleTickerStore = create<IdleTickerState>((set, get) => ({
     }
 
     // Lookup display name through monsters i18n namespace.
-    const lastKillName = arch
-      ? i18n.t(`monsters:${deriveMonsterNameKey(arch)}`, {
-          defaultValue: arch.name
-        })
+    const lastKillNameKey = arch ? `monsters:${deriveMonsterNameKey(arch)}` : null;
+    const lastKillName = lastKillNameKey
+      ? (i18n.exists(lastKillNameKey) ? i18n.t(lastKillNameKey) : arch?.name ?? lastKillNameKey)
       : null;
 
     void meta; // placeholder: future hook into metaStore.idleState

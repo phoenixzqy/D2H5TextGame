@@ -21,9 +21,13 @@
   "type": {
     "rogue": "Rogue Scout",
     "desert": "Desert Mercenary",
+    "desert-merc": "Desert Mercenary",
     "iron-wolf": "Iron Wolf",
     "barbarian": "Barbarian",
     "paladin": "Paladin",
+    "militia": "Militia",
+    "thief": "Thief",
+    "acolyte": "Acolyte",
     "tavern": "Tavern"
   },
   "byId": {

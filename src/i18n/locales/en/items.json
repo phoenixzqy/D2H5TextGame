@@ -98,7 +98,20 @@
     "sh-aegis": "Aegis",
     "sh-dragon-shield": "Dragon Shield",
     "sh-monarch": "Monarch",
-    "sh-sacred-targe": "Sacred Targe"
+    "sh-sacred-targe": "Sacred Targe",
+    "ring": "Ring",
+    "gloves": "Gloves",
+    "boots": "Boots",
+    "belt": "Belt",
+    "armor-light": "Light Armor",
+    "armor-heavy": "Heavy Armor",
+    "weapon-bow": "Bow",
+    "weapon-crossbow": "Crossbow",
+    "weapon-polearm": "Polearm",
+    "weapon-wand": "Wand",
+    "weapon-scepter": "Scepter",
+    "weapon-mace": "Mace",
+    "weapon-axe": "Axe"
   },
   "unique": {
     "shako": "Harlequin Crest",

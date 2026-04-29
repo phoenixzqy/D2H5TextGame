@@ -9,6 +9,13 @@
   "moveUp": "上移",
   "moveDown": "下移",
   "slotN": "槽位 {{n}}",
+  "allocatePoint": "分配技能点到 {{skill}}",
+  "tree": {
+    "all": "全部技能",
+    "combat": "战斗技能",
+    "passive": "被动技能",
+    "general": "通用技能"
+  },
   "tab": {
     "combat": "战斗",
     "passive": "被动",

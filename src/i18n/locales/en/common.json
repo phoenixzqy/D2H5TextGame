@@ -25,6 +25,8 @@
   "warning": "Warning",
   "success": "Success",
   "none": "None",
+  "requiresLevel": "Requires Level {{level}}",
+  "noPlayer": "No character selected",
   "level": "Level",
   "life": "Life",
   "mana": "Mana",

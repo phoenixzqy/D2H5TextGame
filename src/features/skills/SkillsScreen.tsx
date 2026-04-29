@@ -80,7 +80,7 @@ export function SkillsScreen() {
       <ScreenShell testId="skills-screen" title={t('title')}>
         <div className="max-w-5xl mx-auto">
           <Panel>
-            <p className="text-d2-white/70">{t('common:noPlayer', { defaultValue: 'No character selected' })}</p>
+            <p className="text-d2-white/70">{t('common:noPlayer')}</p>
           </Panel>
         </div>
       </ScreenShell>
@@ -90,9 +90,9 @@ export function SkillsScreen() {
   const treePanel = (
     <div className="space-y-3" data-testid="skills-tree-panel">
       {Array.from(skillTrees.entries()).map(([treeName, treeSkills]) => {
-        const treeKey = treeName === 'all' ? 'skills.tree.all' : `skills.tree.${treeName}`;
+        const treeKey = treeName === 'all' ? 'tree.all' : `tree.${treeName}`;
         return (
-          <Panel key={treeName} title={t(treeKey, { defaultValue: treeName })}>
+          <Panel key={treeName} title={t(treeKey)}>
             <ul className="space-y-2">
               {treeSkills.map((skill: SkillTemplate) => {
                 const locked = isSkillLocked(skill, playerLevel, allocatedSkills);
@@ -116,7 +116,7 @@ export function SkillsScreen() {
                         {allocatedLevel} / {skill.maxLevel}
                         {locked && skill.minLevel && (
                           <span className="ml-2 text-d2-white/40">
-                            🔒 {t('common:requiresLevel', { defaultValue: '需要等级' })} {skill.minLevel}
+                            🔒 {t('common:requiresLevel', { level: skill.minLevel })}
                           </span>
                         )}
                         {prereqs.length > 0 && (
@@ -136,9 +136,9 @@ export function SkillsScreen() {
                       className="min-h-[40px] text-xs shrink-0"
                       disabled={!canAllocate}
                       onClick={() => { allocateSkillPoint(skill.id); }}
-                      aria-label={t('allocatePoint', { skill: skill.name, defaultValue: `Allocate point to ${skill.name}` })}
+                      aria-label={t('allocatePoint', { skill: skill.name })}
                     >
-                      {t('allocate', { defaultValue: '+' })}
+                      {t('allocate')}
                     </Button>
                   </li>
                 );
@@ -165,9 +165,9 @@ export function SkillsScreen() {
               onChange={(e) => { setComboAt(idx, e.target.value); }}
               className="flex-1 min-h-[40px] bg-d2-bg border border-d2-border rounded px-2 text-sm
                          focus:outline-none focus:border-d2-gold"
-              aria-label={t('slotN', { n: idx + 1, defaultValue: `Slot ${String(idx + 1)}` })}
+              aria-label={t('slotN', { n: idx + 1 })}
             >
-              <option value="">— {t('common:none', { defaultValue: '无' })} —</option>
+              <option value="">— {t('common:none')} —</option>
               {allSkills.filter(sk => sk.trigger === 'active').map((sk) => (
                 <option key={sk.id} value={sk.id}>{sk.name}</option>
               ))}
@@ -176,7 +176,7 @@ export function SkillsScreen() {
               type="button"
               onClick={() => { moveCombo(idx, -1); }}
               disabled={idx === 0}
-              aria-label={t('moveUp', { defaultValue: '上移' })}
+              aria-label={t('moveUp')}
               className="w-10 h-10 flex items-center justify-center rounded border border-d2-border
                          disabled:opacity-30 hover:border-d2-gold/60 focus:outline-none
                          focus-visible:ring-2 focus-visible:ring-d2-gold"
@@ -187,7 +187,7 @@ export function SkillsScreen() {
               type="button"
               onClick={() => { moveCombo(idx, 1); }}
               disabled={idx === combo.length - 1}
-              aria-label={t('moveDown', { defaultValue: '下移' })}
+              aria-label={t('moveDown')}
               className="w-10 h-10 flex items-center justify-center rounded border border-d2-border
                          disabled:opacity-30 hover:border-d2-gold/60 focus:outline-none
                          focus-visible:ring-2 focus-visible:ring-d2-gold"
@@ -206,14 +206,14 @@ export function SkillsScreen() {
         <Panel className="flex items-center justify-between">
           <span className="text-d2-gold">{t('pointsRemaining', { count: skillPoints })}</span>
           <span className="text-xs text-d2-white/50">
-            {t('common:level', { defaultValue: '等级' })} {playerLevel}
+            {t('common:level')} {playerLevel}
           </span>
         </Panel>
 
         <Tabs
           tabs={[
-            { id: 'tree', label: t('tab.tree', { defaultValue: '技能树' }), content: treePanel },
-            { id: 'active', label: t('tab.active', { defaultValue: '主动技能' }), content: activePanel }
+            { id: 'tree', label: t('tab.tree'), content: treePanel },
+            { id: 'active', label: t('tab.active'), content: activePanel }
           ]}
         />
       </div>

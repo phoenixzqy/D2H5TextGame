@@ -25,6 +25,8 @@
   "warning": "警告",
   "success": "成功",
   "none": "无",
+  "requiresLevel": "需要等级 {{level}}",
+  "noPlayer": "尚未选择角色",
   "level": "等级",
   "life": "生命",
   "mana": "法力",

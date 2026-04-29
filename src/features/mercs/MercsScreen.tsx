@@ -97,10 +97,10 @@ function MercCard({
   const baseId = merc.id.split('#')[0] ?? merc.id;
   const slug = baseId.includes('/') ? baseId.slice(baseId.indexOf('/') + 1) : baseId;
   const portrait = resolveMercArt(slug) ?? (def ? resolveMercArt(def.classRef) : null);
-  const localizedName = t(`byId.${slug}.name`, { defaultValue: merc.name });
-  const lore = t(`byId.${slug}.lore`, { defaultValue: def?.flavor ?? '' });
+  const localizedName = t(`byId.${slug}.name`);
+  const lore = t(`byId.${slug}.lore`);
   const archetype = def?.classRef
-    ? t(`character:classes.${def.classRef}`, { defaultValue: def.classRef })
+    ? t(`type.${def.classRef}`)
     : t(`rarity.${merc.rarity}`);
 
   const xpPct = Math.min(100, Math.floor((progress.experience / Math.max(1, progress.experienceToNextLevel)) * 100));
@@ -144,7 +144,7 @@ function MercCard({
           </div>
           {def?.signatureSkillId && (
             <div className="text-xs text-d2-gold/80 mt-1 truncate" title={def.signatureSkillId}>
-              {t('signature', { defaultValue: 'Signature' })}: {def.signatureSkillId}
+              {t('signature')}: {def.signatureSkillId}
             </div>
           )}
           {lore && (
@@ -153,7 +153,7 @@ function MercCard({
           {/* Bug #12 — XP bar */}
           <div className="mt-2" data-testid={`merc-xp-${baseId}`}>
             <div className="flex justify-between text-[10px] text-d2-white/60">
-              <span>{t('xp', { defaultValue: 'XP' })}</span>
+              <span>{t('xp')}</span>
               <span>{progress.experience} / {progress.experienceToNextLevel}</span>
             </div>
             <div className="h-1.5 bg-d2-bg/60 border border-d2-border rounded overflow-hidden mt-0.5">
@@ -183,7 +183,7 @@ function MercCard({
           onClick={() => { setEquipOpen(true); }}
           data-testid={`merc-equipment-${baseId}`}
         >
-          {t('equipment', { defaultValue: '装备' })} ({equippedCount}/{MERC_EQUIPMENT_SLOTS.length})
+          {t('equipment')} ({equippedCount}/{MERC_EQUIPMENT_SLOTS.length})
         </Button>
         <Button
           variant="secondary"
@@ -191,17 +191,17 @@ function MercCard({
           onClick={() => { setConfirmOpen(true); }}
           data-testid={`merc-dismiss-${baseId}`}
         >
-          {t('dismiss', { defaultValue: '解雇' })}
+          {t('dismiss')}
         </Button>
       </div>
 
-      <Modal isOpen={confirmOpen} onClose={() => { setConfirmOpen(false); }} title={t('confirmDismissTitle', { defaultValue: '解雇佣兵？' })}>
+      <Modal isOpen={confirmOpen} onClose={() => { setConfirmOpen(false); }} title={t('confirmDismissTitle')}>
         <p className="text-sm text-d2-white/80 mb-4">
-          {t('confirmDismissBody', { name: localizedName, defaultValue: `确认解雇 ${localizedName}？已装备的物品会归还到背包。` })}
+          {t('confirmDismissBody', { name: localizedName })}
         </p>
         <div className="flex gap-2 justify-end">
           <Button variant="secondary" onClick={() => { setConfirmOpen(false); }}>
-            {t('common:cancel', { defaultValue: '取消' })}
+            {t('common:cancel')}
           </Button>
           <Button
             variant="primary"
@@ -209,12 +209,12 @@ function MercCard({
             data-testid={`merc-dismiss-confirm-${baseId}`}
             className="border-red-600 text-red-200"
           >
-            {t('confirmDismiss', { defaultValue: '确认解雇' })}
+            {t('confirmDismiss')}
           </Button>
         </div>
       </Modal>
 
-      <Modal isOpen={equipOpen} onClose={() => { setEquipOpen(false); }} title={`${localizedName} — ${t('equipment', { defaultValue: '装备' })}`}>
+      <Modal isOpen={equipOpen} onClose={() => { setEquipOpen(false); }} title={`${localizedName} — ${t('equipment')}`}>
         <MercEquipmentEditor mercId={merc.id} equipment={equipment} />
       </Modal>
     </Panel>
@@ -255,10 +255,10 @@ function MercEquipmentEditor({
         return (
           <li key={slot} className="flex items-center gap-2 border border-d2-border rounded p-2 bg-d2-bg/40">
             <span className="w-20 shrink-0 text-xs text-d2-gold/80 uppercase">
-              {t(`inventory:slot.${slot}`, { defaultValue: slot })}
+              {t(`inventory:slots.${slot}`)}
             </span>
             <span className="flex-1 min-w-0 truncate text-sm text-d2-white/80">
-              {equipped ? equipped.baseId : <em className="text-d2-white/40">{t('empty', { defaultValue: '空' })}</em>}
+              {equipped ? equipped.baseId : <em className="text-d2-white/40">{t('empty')}</em>}
             </span>
             {equipped && (
               <Button
@@ -269,7 +269,7 @@ function MercEquipmentEditor({
                   if (it) addItem(it);
                 }}
               >
-                {t('inventory:unequip', { defaultValue: '卸下' })}
+                {t('inventory:unequip')}
               </Button>
             )}
             <select
@@ -284,9 +284,9 @@ function MercEquipmentEditor({
                 if (displaced) addItem(displaced);
                 removeItem(item.id);
               }}
-              aria-label={t('equip', { slot, defaultValue: `Equip ${slot}` })}
+              aria-label={t('inventory:equip')}
             >
-              <option value="">{t('inventory:equip', { defaultValue: '装备' })}…</option>
+              <option value="">{t('inventory:equip')}…</option>
               {candidates.map((it) => (
                 <option key={it.id} value={it.id}>{it.baseId}</option>
               ))}
