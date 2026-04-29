@@ -16,6 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, Panel, getZoneArtUrl } from '@/ui';
 import { hasSave } from '@/stores';
+import { OfflineBonusBanner } from '@/features/idle/OfflineBonusBanner';
 
 export function HomeScreen() {
   const { t } = useTranslation();
@@ -65,6 +66,10 @@ export function HomeScreen() {
               {t('home.title')}
             </h1>
             <p className="text-lg text-d2-rare">{t('home.subtitle')}</p>
+          </div>
+
+          <div className="mb-4">
+            <OfflineBonusBanner />
           </div>
 
           <div className="space-y-3">

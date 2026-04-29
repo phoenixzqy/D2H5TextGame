@@ -23,6 +23,15 @@ interface MetaState {
   settings: Settings;
   idleState: IdleState;
   gachaState: GachaState;
+  /**
+   * Wall-clock timestamp (ms) when the page last became hidden /
+   * unloaded. Bug #20 — used by `useOfflineBonus` to compute a
+   * multiplier window without relying on `lastSavedAt` (the save
+   * adapter does not surface that field). Not persisted to disk; it
+   * resets on every fresh page load, which is the intended behavior
+   * (only same-session backgrounding accrues an offline bonus).
+   */
+  lastClosedAt: number | null;
   
   // Actions
   updateSettings: (settings: Partial<Settings>) => void;
@@ -38,6 +47,8 @@ interface MetaState {
   spendGachaCurrency: (amount: number) => boolean;
   incrementPity: () => void;
   resetPity: () => void;
+  /** Mark the page as backgrounded (Bug #20). */
+  markClosed: (at?: number) => void;
   /**
    * Run an N-pull gacha. Returns the results, or `null` when the player
    * lacks enough currency. Spends `count × banner.cost.single` currency,
@@ -73,6 +84,7 @@ export const useMetaStore = create<MetaState>((set, get) => ({
   settings: initialSettings,
   idleState: initialIdleState,
   gachaState: initialGachaState,
+  lastClosedAt: null,
   
   updateSettings: (settings) => { set((state) => ({
     settings: {
@@ -242,9 +254,12 @@ export const useMetaStore = create<MetaState>((set, get) => ({
     }
   },
 
+  markClosed: (at) => { set({ lastClosedAt: at ?? Date.now() }); },
+
   reset: () => { set({
     settings: initialSettings,
     idleState: initialIdleState,
-    gachaState: initialGachaState
+    gachaState: initialGachaState,
+    lastClosedAt: null
   }); }
 }));

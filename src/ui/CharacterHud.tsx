@@ -25,6 +25,7 @@ import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { usePlayerStore } from '@/stores';
+import { OfflineBonusChip } from '@/features/idle/OfflineBonusBanner';
 import type { Player } from '@/engine/types/entities';
 
 const HIDDEN_PATHS = new Set<string>(['/', '/character/new', '/character', '/combat']);
@@ -43,6 +44,7 @@ export function CharacterHud() {
   };
 
   return (
+    <>
     <button
       type="button"
       onClick={handleClick}
@@ -99,6 +101,13 @@ export function CharacterHud() {
         />
       </div>
     </button>
+    <div
+      className="fixed z-40 right-1 md:right-2
+                 top-[calc(64px+max(0.25rem,env(safe-area-inset-top)))]"
+    >
+      <OfflineBonusChip />
+    </div>
+    </>
   );
 }
 
