@@ -75,5 +75,23 @@
     "poison": "poison",
     "thorns": "thorns",
     "true": "true"
+  },
+  "event": {
+    "basicAttack": "{{actor}} attacks {{target}} for {{amount}} {{type}} damage.",
+    "basicAttackMiss": "{{actor}}'s attack misses {{target}}.",
+    "skillCast": "{{actor}} casts {{skill}}.",
+    "skillCastNoTarget": "{{actor}} casts {{skill}} but has no valid target.",
+    "dodge": "{{target}} dodges {{actor}}'s attack!",
+    "block": "{{target}} blocks {{actor}}'s attack.",
+    "miss": "{{actor}} misses.",
+    "summon": "{{actor}} summons {{minion}}.",
+    "death": "{{target}} falls.",
+    "victory": "Victory! All enemies are defeated.",
+    "defeat": "Defeat... your team has fallen.",
+    "flee": "{{actor}} flees from battle.",
+    "waveStart": "Wave {{wave}} — {{enemies}} appear!",
+    "bossArrives": "{{boss}} arrives!",
+    "lootGained": "Obtained {{item}}.",
+    "goldGained": "Obtained {{amount}} gold."
   }
 }

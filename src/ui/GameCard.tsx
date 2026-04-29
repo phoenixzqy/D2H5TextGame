@@ -87,6 +87,11 @@ export interface GameCardProps {
   readonly onClick?: (() => void) | undefined;
   readonly className?: string | undefined;
   readonly testId?: string | undefined;
+  /**
+   * Item-type glyph for the corner badge (variant='item' only).
+   * Bug #18 — lets players distinguish weapon vs ring vs charm at a glance.
+   */
+  readonly itemGlyph?: ItemTypeGlyphKey | undefined;
 }
 
 // ── size maps ────────────────────────────────────────────────────────────
@@ -168,6 +173,31 @@ const BAR_BG: Record<CardBar['kind'], string> = {
   hp: 'bg-red-600',
   mp: 'bg-blue-600',
   stamina: 'bg-yellow-600'
+};
+
+// ── item-type glyphs ─────────────────────────────────────────────────────
+// Bug #18: small badge in the corner of variant=item cards so the player
+// can distinguish weapon vs armor vs ring vs charm at a glance, without
+// opening the tooltip. Unicode-only — no asset pipeline.
+type ItemTypeGlyphKey =
+  | 'weapon'
+  | 'shield'
+  | 'jewelry'
+  | 'scroll'
+  | 'charm'
+  | 'gem'
+  | 'rune'
+  | 'armor';
+
+const ITEM_TYPE_GLYPH: Record<ItemTypeGlyphKey, string> = {
+  weapon: '⚔️',
+  shield: '🛡️',
+  jewelry: '💍',
+  scroll: '📜',
+  charm: '🧿',
+  gem: '💎',
+  rune: '🔮',
+  armor: '🥋'
 };
 
 // ── silhouettes ──────────────────────────────────────────────────────────
@@ -341,7 +371,8 @@ function GameCardImpl({
   selected = false,
   onClick,
   className = '',
-  testId
+  testId,
+  itemGlyph
 }: GameCardProps): JSX.Element {
   const isItemCompact = variant === 'item';
 
@@ -386,6 +417,20 @@ function GameCardImpl({
           className={`pointer-events-none absolute top-0.5 right-0.5 w-1.5 h-1.5 rounded-full ${RARITY_GEM[rarity]}`}
           aria-hidden
         />
+      )}
+
+      {isItemCompact && itemGlyph && (
+        // ≤14px corner badge so it never crowds a 48dp item slot.
+        <span
+          className="pointer-events-none absolute bottom-0.5 left-0.5 leading-none
+                     bg-black/70 border border-d2-border/80 rounded-sm
+                     w-3.5 h-3.5 flex items-center justify-center
+                     text-[9px] select-none"
+          aria-hidden
+          data-testid="item-type-badge"
+        >
+          {ITEM_TYPE_GLYPH[itemGlyph]}
+        </span>
       )}
 
       {!isItemCompact && ((stats?.length ?? 0) > 0 || (bars?.length ?? 0) > 0 || footer) && (

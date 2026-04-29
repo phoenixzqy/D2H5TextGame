@@ -1,20 +1,28 @@
 /**
- * ItemTooltip — D2-style expanded item card. Replaces the older
- * minimalist tooltip with the variant-`item` (expanded) layout from
- * docs/art/card-design-spec.md §3.3 (b).
+ * ItemTooltip — D2-style expanded item card.
  *
- *   ┌─────────────────────┐
- *   │   <name in rarity>  │
- *   │   <base type>       │
- *   │     [icon 80×80]    │
- *   │   ilvl 12           │
- *   │   <stat lines>      │
- *   │   <flavor>          │
- *   └─────────────────────┘
+ * Layout (per Bug #7 spec):
+ *   1. Item name colored by rarity.
+ *   2. Sub-line: localized type + slot, e.g. "武器 · 武器槽".
+ *   3. Damage block (weapons) OR Defense block (armor/shield).
+ *   4. Requirements (level / str / dex / vit / eng).
+ *      NOTE: We do NOT compare against the wearing character's stats here —
+ *      that would require either a store call or props plumbing the player's
+ *      stats through every Tooltip caller. Per task spec, we render
+ *      requirements in neutral color in that case. Requirement-vs-character
+ *      coloring is deferred to Bug #9 (`<EquipPicker>`) which already needs
+ *      character context.
+ *   5. Affix lines (existing).
+ *
+ * Item base lookup goes through `loadItemBases()` from the data-loader layer
+ * (the project's selector pattern for catalog data — there is no items
+ * Zustand store).
  */
+import { useTranslation } from 'react-i18next';
 import { RarityText } from './RarityText';
 import { resolveItemIcon } from './cardAssets';
-import type { Item } from '@/engine/types/items';
+import { loadItemBases } from '@/data/loaders/loot';
+import type { Item, ItemBase, EquipmentSlot } from '@/engine/types/items';
 
 interface ItemTooltipProps {
   item: Item;
@@ -30,8 +38,60 @@ const RARITY_BORDER: Record<Item['rarity'], string> = {
   runeword: 'border-d2-runeword'
 };
 
-export function ItemTooltip({ item, className = '' }: ItemTooltipProps) {
+/** Slot key in i18n inventory.slots / items.slots — same enum strings. */
+const SLOT_KEYS: readonly EquipmentSlot[] = [
+  'head',
+  'chest',
+  'gloves',
+  'belt',
+  'boots',
+  'amulet',
+  'ring-left',
+  'ring-right',
+  'weapon',
+  'offhand'
+];
+
+/** Pull the trailing slug from `items/base/<slug>` for the items.base lookup. */
+function baseSlug(baseId: string): string {
+  return baseId.split('/').pop() ?? baseId;
+}
+
+export function ItemTooltip({ item, className = '' }: ItemTooltipProps): JSX.Element {
+  const { t } = useTranslation('items');
   const icon = resolveItemIcon(item.baseId);
+  const base: ItemBase | undefined = loadItemBases().get(item.baseId);
+
+  const slug = baseSlug(item.baseId);
+  const displayName = t(`base.${slug}`, { defaultValue: base?.name ?? slug });
+
+  const typeLabel = base ? t(`types.${base.type}`, { defaultValue: base.type }) : '';
+  const slotLabel =
+    base?.slot && SLOT_KEYS.includes(base.slot)
+      ? t(`slots.${base.slot}`, { defaultValue: base.slot })
+      : '';
+  const subtitle = base
+    ? slotLabel
+      ? t('tooltip.subtitle', { type: typeLabel, slot: slotLabel })
+      : t('tooltip.subtitleNoSlot', { type: typeLabel })
+    : null;
+
+  const weaponDamage = base?.type === 'weapon' ? base.baseDamage : undefined;
+  const armorDefense =
+    base?.type === 'armor' && typeof base.baseDefense === 'number' && base.baseDefense > 0
+      ? base.baseDefense
+      : undefined;
+
+  const reqRows: string[] = [];
+  if (base) {
+    if (base.reqLevel > 1) reqRows.push(t('tooltip.reqLevel', { value: base.reqLevel }));
+    const rs = base.reqStats;
+    if (rs?.strength) reqRows.push(t('tooltip.reqStr', { value: rs.strength }));
+    if (rs?.dexterity) reqRows.push(t('tooltip.reqDex', { value: rs.dexterity }));
+    if (rs?.vitality) reqRows.push(t('tooltip.reqVit', { value: rs.vitality }));
+    if (rs?.energy) reqRows.push(t('tooltip.reqEng', { value: rs.energy }));
+  }
+
   return (
     <div
       className={[
@@ -43,12 +103,22 @@ export function ItemTooltip({ item, className = '' }: ItemTooltipProps) {
         .filter(Boolean)
         .join(' ')}
       role="tooltip"
+      data-testid="item-tooltip"
     >
+      {/* (1) Name */}
       <div className="text-center mb-1">
         <RarityText rarity={item.rarity} className="font-serif text-base font-bold block">
-          {item.baseId.split('/').pop() ?? item.baseId}
+          {displayName}
         </RarityText>
-        <div className="text-[11px] text-d2-white/70 truncate">{item.baseId}</div>
+        {/* (2) Type · Slot */}
+        {subtitle && (
+          <div
+            className="text-[11px] text-d2-white/70 truncate"
+            data-testid="item-tooltip-subtitle"
+          >
+            {subtitle}
+          </div>
+        )}
       </div>
 
       <div className="flex justify-center my-2">
@@ -56,7 +126,7 @@ export function ItemTooltip({ item, className = '' }: ItemTooltipProps) {
           {icon ? (
             <img
               src={icon}
-              alt={item.baseId}
+              alt={displayName}
               loading="lazy"
               className="w-full h-full object-contain"
             />
@@ -68,12 +138,43 @@ export function ItemTooltip({ item, className = '' }: ItemTooltipProps) {
         </div>
       </div>
 
+      {/* (3) Damage / Defense */}
+      {weaponDamage && (
+        <div className="text-center text-d2-white text-xs mb-1" data-testid="item-tooltip-damage">
+          {t('tooltip.damage', {
+            min: weaponDamage.min,
+            max: weaponDamage.max
+          })}
+        </div>
+      )}
+      {armorDefense && (
+        <div className="text-center text-d2-white text-xs mb-1" data-testid="item-tooltip-defense">
+          {t('tooltip.defense', { value: armorDefense })}
+        </div>
+      )}
+
       <div className="text-d2-white/70 text-[11px] text-center mb-2">
-        ilvl {item.level}
+        {t('tooltip.ilvl', { value: item.level })}
+        {base?.sockets ? ` · ${t('tooltip.sockets', { value: base.sockets })}` : ''}
       </div>
 
+      {/* (4) Requirements */}
+      {reqRows.length > 0 && (
+        <div className="pt-2 border-t border-d2-border/60 text-[11px] text-d2-white/80 text-center">
+          <div className="text-d2-white/50 uppercase tracking-wide text-[10px] mb-0.5">
+            {t('tooltip.required')}
+          </div>
+          <div className="flex flex-wrap justify-center gap-x-2 gap-y-0.5">
+            {reqRows.map((row) => (
+              <span key={row}>{row}</span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* (5) Affixes */}
       {item.affixes && item.affixes.length > 0 && (
-        <ul className="space-y-0.5 pt-2 border-t border-d2-border/60">
+        <ul className="space-y-0.5 pt-2 border-t border-d2-border/60 mt-2">
           {item.affixes.map((affix, idx) => (
             <li key={idx} className="text-d2-magic text-xs">
               {affix.affixId}
