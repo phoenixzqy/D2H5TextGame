@@ -33,7 +33,7 @@
     "equipFailed": "无法装备 {{name}}",
     "unequipped": "已卸下 {{name}}"
   },
-  "equip": {
+  "equipFlow": {
     "picker": {
       "title": "装备：{{slot}}",
       "empty": "背包中没有可装备到此栏位的物品。",

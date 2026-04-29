@@ -69,8 +69,8 @@ export function ItemCompareTooltip({ compare, className = '' }: Props) {
       data-testid="item-compare"
     >
       <div className="grid grid-cols-2 gap-3">
-        <Column heading={t('equip.compare.current', { defaultValue: '当前装备' })} item={current} stats={stats} resistances={resistances} side="current" t={t} />
-        <Column heading={t('equip.compare.candidate', { defaultValue: '候选装备' })} item={candidate} stats={stats} resistances={resistances} side="candidate" t={t} />
+        <Column heading={t('equipFlow.compare.current')} item={current} stats={stats} resistances={resistances} side="current" t={t} />
+        <Column heading={t('equipFlow.compare.candidate')} item={candidate} stats={stats} resistances={resistances} side="candidate" t={t} />
       </div>
     </div>
   );
@@ -94,7 +94,7 @@ function Column({ heading, item, stats, resistances, side, t }: ColumnProps) {
           {itemDisplayName(item)}
         </RarityText>
       ) : (
-        <div className="text-d2-white/40 italic mb-2">{t('empty', { defaultValue: '空' })}</div>
+        <div className="text-d2-white/40 italic mb-2">{t('empty')}</div>
       )}
 
       <ul className="space-y-0.5">
@@ -112,7 +112,7 @@ function Column({ heading, item, stats, resistances, side, t }: ColumnProps) {
             const delta = r.delta;
             return (
               <li key={key} className="flex justify-between gap-1">
-                <span className="text-d2-white/70">{t(`equip.compare.resist.${key}`, { defaultValue: key })}</span>
+                <span className="text-d2-white/70">{t(`equipFlow.compare.resist.${key}`)}</span>
                 <span className="text-d2-white tabular-nums">{value}</span>
                 {side === 'candidate' && delta !== 0 && (
                   <span className={`tabular-nums ${deltaClass(delta)}`}>
@@ -147,7 +147,7 @@ function StatRow({ statKey, stat, side, t }: StatRowProps) {
   const value = side === 'current' ? stat.current : stat.candidate;
   return (
     <li className="flex items-baseline justify-between gap-1">
-      <span className="text-d2-white/70 truncate">{t(`equip.compare.stat.${statKey}`, { defaultValue: statKey })}</span>
+      <span className="text-d2-white/70 truncate">{t(`equipFlow.compare.stat.${statKey}`)}</span>
       <span className="text-d2-white tabular-nums">{fmt(statKey, value)}</span>
       {side === 'candidate' && stat.delta !== 0 && (
         <span className={`tabular-nums ${deltaClass(stat.delta)}`} aria-label={fmtDelta(statKey, stat.delta)}>

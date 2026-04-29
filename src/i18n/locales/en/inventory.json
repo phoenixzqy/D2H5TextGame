@@ -33,7 +33,7 @@
     "equipFailed": "Cannot equip {{name}}",
     "unequipped": "Unequipped {{name}}"
   },
-  "equip": {
+  "equipFlow": {
     "picker": {
       "title": "Equip: {{slot}}",
       "empty": "No backpack items fit this slot.",

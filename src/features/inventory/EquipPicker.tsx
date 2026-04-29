@@ -116,12 +116,12 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
       >
         <header className="flex items-center justify-between p-4 border-b border-d2-border">
           <h2 id="equip-picker-title" className="text-lg sm:text-xl font-serif font-bold text-d2-gold">
-            {t('equip.picker.title', { defaultValue: '装备：{{slot}}', slot: slotLabel })}
+            {t('equipFlow.picker.title', { slot: slotLabel })}
           </h2>
           <Button
             variant="secondary"
             className="min-h-[44px] min-w-[44px] !px-3"
-            aria-label={t('common:close', { defaultValue: '关闭' })}
+            aria-label={t('common:close')}
             onClick={onClose}
             data-testid="equip-picker-close"
           >
@@ -132,7 +132,7 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
         <div className="flex-1 overflow-y-auto scrollbar-d2 p-4 space-y-4">
           {candidates.length === 0 ? (
             <p className="text-sm text-d2-white/60 italic text-center py-6">
-              {t('equip.picker.empty', { defaultValue: '背包中没有可装备到此栏位的物品。' })}
+              {t('equipFlow.picker.empty')}
             </p>
           ) : (
             <ul className="space-y-2" role="listbox" aria-label={slotLabel}>
@@ -163,7 +163,7 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
                           {itemDisplayName(it)}
                         </RarityText>
                         <div className="text-xs text-d2-white/60">
-                          {t('itemLevel', { defaultValue: 'iLvl' })} {it.level}
+                          {t('itemLevel')} {it.level}
                         </div>
                         {!elig.eligible && (
                           <div className="text-xs text-d2-red mt-0.5">
@@ -183,7 +183,7 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
 
         <footer className="flex flex-wrap gap-2 p-4 border-t border-d2-border bg-d2-bg/40">
           <Button variant="secondary" className="min-h-[44px] flex-1" onClick={onClose}>
-            {t('common:cancel', { defaultValue: '取消' })}
+            {t('common:cancel')}
           </Button>
           <Button
             variant="primary"
@@ -192,7 +192,7 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
             onClick={handleEquip}
             data-testid="equip-picker-confirm"
           >
-            {t('equip', { defaultValue: '装备' })}
+            {t('equip')}
           </Button>
         </footer>
       </div>
@@ -221,15 +221,13 @@ function formatReasons(elig: EligibilityResult, t: TFunction): string {
   return elig.reasons
     .map((r) => {
       if (r.kind === 'level') {
-        return t('equip.picker.reason.level', {
-          defaultValue: '需要等级 {{required}}',
+        return t('equipFlow.picker.reason.level', {
           required: r.required,
           current: r.current
         });
       }
-      const statName = t(`equip.picker.stat.${r.stat ?? ''}`, { defaultValue: String(r.stat ?? '') });
-      return t('equip.picker.reason.stat', {
-        defaultValue: '需要 {{stat}} {{required}}',
+      const statName = t(`equipFlow.picker.stat.${r.stat ?? ''}`);
+      return t('equipFlow.picker.reason.stat', {
         stat: statName,
         required: r.required,
         current: r.current
