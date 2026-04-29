@@ -13,7 +13,7 @@
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button, Panel, StatBar, ScreenShell, GameImage, getClassPortraitUrl, getMonsterImageUrl, getSummonImageUrl } from '@/ui';
+import { Button, Panel, ScreenShell, GameCard, getClassPortraitUrl, getMonsterImageUrl, getSummonImageUrl } from '@/ui';
 import { useCombatStore, usePlayerStore } from '@/stores';
 import { startSimpleBattle } from '@/stores/combatHelpers';
 import type { CombatLogEntry } from '@/stores/combatStore';
@@ -189,24 +189,24 @@ export function CombatScreen() {
         </div>
       }
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-5xl mx-auto h-full">
-        <div className="space-y-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-5xl mx-auto">
+        <div className="space-y-3 min-w-0">
           <Panel title={t('allies', { defaultValue: '我方' })}>
             {playerTeam.length === 0 ? (
               <p className="text-sm text-d2-white/60">
                 {t('noAllies', { defaultValue: '无单位' })}
               </p>
             ) : (
-              <ul className="space-y-2">
+              <div className="flex flex-wrap gap-3" data-testid="allies-list">
                 {orderAlliesWithSummons(playerTeam).map((u) => (
-                  <li
+                  <UnitCard
                     key={u.id}
-                    className={inferKind(u) === 'summon' ? 'pl-3 border-l-2 border-d2-border/60' : ''}
-                  >
-                    <UnitBars unit={u} acting={u.id === actingActorId} />
-                  </li>
+                    unit={u}
+                    size="md"
+                    acting={u.id === actingActorId}
+                  />
                 ))}
-              </ul>
+              </div>
             )}
           </Panel>
 
@@ -216,13 +216,16 @@ export function CombatScreen() {
                 {t('noEnemies', { defaultValue: '没有敌人' })}
               </p>
             ) : (
-              <ul className="space-y-2 max-h-72 overflow-y-auto pr-1">
+              <div className="flex flex-wrap gap-3" data-testid="enemies-list">
                 {enemyTeam.map((u) => (
-                  <li key={u.id}>
-                    <UnitBars unit={u} compact acting={u.id === actingActorId} />
-                  </li>
+                  <UnitCard
+                    key={u.id}
+                    unit={u}
+                    size="sm"
+                    acting={u.id === actingActorId}
+                  />
                 ))}
-              </ul>
+              </div>
             )}
           </Panel>
         </div>
@@ -258,94 +261,77 @@ export function CombatScreen() {
   );
 }
 
-function UnitBars({ unit, compact = false, acting = false }: { unit: CombatUnit; compact?: boolean; acting?: boolean }) {
+function UnitCard({
+  unit,
+  size,
+  acting = false,
+}: {
+  unit: CombatUnit;
+  size: 'sm' | 'md';
+  acting?: boolean;
+}) {
   const { t } = useTranslation('combat');
   const player = usePlayerStore((s) => s.player);
   const kind = inferKind(unit);
   const isSummon = kind === 'summon';
+  const isPlayerSide = unit.side === 'player';
 
   // Derive avatar:
   //  - hero (player-side, non-summon)   → class portrait
   //  - summon (player-side)             → summon portrait helper
   //  - enemy                            → monster image
-  let avatarSrc: string;
+  let avatarSrc: string | undefined;
   if (isSummon) {
     avatarSrc = getSummonImageUrl(extractMonsterSlug(unit.name, unit.id));
-  } else if (unit.side === 'player' && player) {
+  } else if (isPlayerSide && player) {
     avatarSrc = getClassPortraitUrl(player.class);
   } else {
     avatarSrc = getMonsterImageUrl(extractMonsterSlug(unit.name, unit.id));
   }
-  const avatarFallback = isSummon ? '💀' : (unit.name.charAt(0) || '?').toUpperCase();
 
   const isDead = unit.life <= 0;
-  const borderClass = isDead
-    ? 'border-d2-border opacity-50'
-    : acting
-      ? 'border-d2-gold ring-2 ring-d2-gold/40 animate-pulse motion-reduce:animate-none'
-      : 'border-d2-border';
+  const variant: 'character' | 'monster' = isPlayerSide ? 'character' : 'monster';
+  const rarity = isPlayerSide
+    ? isSummon
+      ? 'magic'
+      : 'unique'
+    : 'common';
+
+  const bars: { kind: 'hp' | 'mp'; current: number; max: number }[] = [
+    { kind: 'hp', current: unit.life, max: Math.max(1, unit.stats.life) },
+  ];
+  if (size === 'md' && unit.stats.mana > 0) {
+    bars.push({ kind: 'mp', current: unit.mana, max: Math.max(1, unit.stats.mana) });
+  }
+
+  const subtitle = isSummon
+    ? t('summon', { defaultValue: '召唤物' })
+    : `Lv ${String(unit.level)}`;
+
+  const wrapperCls = isDead ? 'opacity-50 grayscale' : '';
+  const ringCls = acting && !isDead ? 'ring-2 ring-d2-gold' : '';
+  const sideTestId = isPlayerSide ? 'combat-ally-card' : 'combat-enemy-card';
 
   return (
     <div
-      className={`border ${borderClass} rounded p-2 bg-d2-bg/40 flex items-start gap-2 transition-colors`}
+      className={`${wrapperCls} ${ringCls} rounded-md transition-opacity`}
       data-acting={acting || undefined}
       data-dead={isDead || undefined}
       data-kind={kind}
+      data-testid={`unit-card-${unit.id}`}
+      data-side-testid={sideTestId}
     >
-      <GameImage
-        src={avatarSrc}
-        alt={unit.name}
-        fallbackIcon={avatarFallback}
-        size={compact ? 'sm' : 'md'}
+      <span className="sr-only" data-testid={sideTestId} />
+      <GameCard
+        variant={variant}
+        size={size}
+        name={unit.name}
+        subtitle={subtitle}
+        rarity={rarity}
+        image={avatarSrc}
+        bars={bars}
+        stats={size === 'md' ? [{ label: 'LV', value: unit.level }] : undefined}
       />
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center justify-between mb-1 text-sm gap-2">
-          <span className="font-serif text-d2-gold truncate flex items-center gap-1">
-            {unit.name}
-            {isSummon && (
-              <span
-                className="text-[10px] px-1.5 py-0.5 rounded bg-d2-border/60 text-d2-white/80 font-sans uppercase tracking-wide"
-                aria-label={t('summon', { defaultValue: '召唤物' })}
-                data-testid="summon-badge"
-              >
-                {t('summon', { defaultValue: '召唤物' })}
-              </span>
-            )}
-          </span>
-          <span className="flex items-center gap-1 text-xs text-d2-white/60 shrink-0">
-            {acting && !isDead && (
-              <span
-                className="text-d2-gold"
-                aria-label={t('acting', { defaultValue: '行动中' })}
-                title={t('acting', { defaultValue: '行动中' })}
-              >
-                💢
-              </span>
-            )}
-            <span>Lv {unit.level}</span>
-          </span>
-        </div>
-        {compact ? (
-          <StatBar current={unit.life} max={unit.stats.life} color="hp" showValues={false} />
-        ) : (
-          <StatBar
-            current={unit.life}
-            max={unit.stats.life}
-            color="hp"
-            label={t('hp', { defaultValue: 'HP' })}
-          />
-        )}
-        {!compact && unit.stats.mana > 0 && (
-          <div className="mt-1">
-            <StatBar
-              current={unit.mana}
-              max={unit.stats.mana}
-              color="mp"
-              label={t('mp', { defaultValue: 'MP' })}
-            />
-          </div>
-        )}
-      </div>
     </div>
   );
 }
@@ -354,18 +340,18 @@ function UnitBars({ unit, compact = false, acting = false }: { unit: CombatUnit;
  *  auto-scrolls to bottom unless the user is hovering or has scrolled away. */
 function CombatLog({ entries }: { entries: CombatLogEntry[] }) {
   const { t } = useTranslation('combat');
-  const ref = useRef<HTMLDivElement>(null);
+  const logContainerRef = useRef<HTMLDivElement>(null);
   const [paused, setPaused] = useState(false);
   const [pinned, setPinned] = useState(true);
 
   useEffect(() => {
     if (paused || !pinned) return;
-    const el = ref.current;
+    const el = logContainerRef.current;
     if (el) el.scrollTop = el.scrollHeight;
-  }, [entries, paused, pinned]);
+  }, [entries.length, paused, pinned]);
 
   const onScroll = () => {
-    const el = ref.current;
+    const el = logContainerRef.current;
     if (!el) return;
     const atBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 24;
     setPinned(atBottom);
@@ -374,14 +360,14 @@ function CombatLog({ entries }: { entries: CombatLogEntry[] }) {
   return (
     <Panel
       title={t('log', { defaultValue: '战斗日志' })}
-      className="flex flex-col min-h-[240px] md:min-h-[420px]"
+      className="flex flex-col"
     >
       <div
-        ref={ref}
+        ref={logContainerRef}
         onScroll={onScroll}
         onMouseEnter={() => { setPaused(true); }}
         onMouseLeave={() => { setPaused(false); }}
-        className="flex-1 overflow-y-auto bg-black/40 rounded p-2
+        className="max-h-[40vh] md:max-h-[28rem] overflow-y-auto bg-black/40 rounded p-2
                    font-mono text-xs leading-relaxed scrollbar-d2"
         role="log"
         aria-live="polite"

@@ -3,6 +3,9 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 import '@/styles/index.css';
 import '@/i18n'; // Initialize i18n
+import { installTestBridge } from './test-bridge';
+
+installTestBridge();
 
 // Register service worker for PWA
 if ('serviceWorker' in navigator) {

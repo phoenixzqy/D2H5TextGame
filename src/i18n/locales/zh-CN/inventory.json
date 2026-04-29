@@ -27,5 +27,10 @@
     "weapon": "武器",
     "offhand": "副手"
   },
-  "capacity": "容量: {{current}}/{{max}}"
+  "capacity": "容量: {{current}}/{{max}}",
+  "toast": {
+    "equipped": "已装备 {{name}}",
+    "equipFailed": "无法装备 {{name}}",
+    "unequipped": "已卸下 {{name}}"
+  }
 }

@@ -5,6 +5,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { usePlayerStore, respecCost } from './playerStore';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { getSkillsForClass } from './skillsHelpers';
+import type { Item } from '@/engine/types/items';
 
 describe('playerStore.allocateSkillPoint', () => {
   beforeEach(() => {
@@ -126,5 +127,77 @@ describe('respecCost', () => {
     expect(respecCost(10)).toBe(10000);
     expect(respecCost(50)).toBe(50000);
     expect(respecCost(99)).toBe(50000);
+  });
+});
+
+describe('playerStore.recomputeDerived — heal preservation', () => {
+  beforeEach(() => { usePlayerStore.getState().reset(); });
+
+  it('preserves current life when equipping a vitality-boosting item', () => {
+    const p = createMockPlayer('Hero', 'sorceress');
+    usePlayerStore.getState().setPlayer(p);
+
+    // Wound the player to 1 hp.
+    const player = usePlayerStore.getState().player;
+    if (!player) throw new Error('player missing');
+    const originalLifeMax = player.derivedStats.lifeMax;
+    usePlayerStore.getState().setPlayer({
+      ...player,
+      derivedStats: { ...player.derivedStats, life: 1 }
+    });
+
+    // Equip a synthetic helm that boosts vitality by 50.
+    const helm: Item = {
+      id: 'helm-vit',
+      baseId: 'items/base/helm-cap',
+      rarity: 'magic',
+      level: 1,
+      identified: true,
+      equipped: false,
+      affixes: [
+        { affixId: 'affix-vit', values: new Map([['coreStats.vitality', 50]]) }
+      ]
+    };
+
+    usePlayerStore.getState().recomputeDerived({ head: helm });
+
+    const after = usePlayerStore.getState().player;
+    if (!after) throw new Error('player missing after recompute');
+    expect(after.derivedStats.life).toBe(1);                // preserved, not full-healed
+    expect(after.derivedStats.lifeMax).toBeGreaterThan(originalLifeMax);
+  });
+
+  it('clamps current life down when new lifeMax is below previous life', () => {
+    const p = createMockPlayer('Hero', 'sorceress');
+    usePlayerStore.getState().setPlayer(p);
+
+    const player = usePlayerStore.getState().player;
+    if (!player) throw new Error('player missing');
+    const startingLifeMax = player.derivedStats.lifeMax;
+    // Synthesize a state where current life is at full cap.
+    usePlayerStore.getState().setPlayer({
+      ...player,
+      derivedStats: { ...player.derivedStats, life: startingLifeMax }
+    });
+
+    // Equip an item with negative life (rare but possible — e.g. cursed mod).
+    const cursed: Item = {
+      id: 'cursed-1',
+      baseId: 'items/base/helm-cap',
+      rarity: 'magic',
+      level: 1,
+      identified: true,
+      equipped: false,
+      affixes: [
+        { affixId: 'affix-curse', values: new Map([['statMods.life', -10000]]) }
+      ]
+    };
+
+    usePlayerStore.getState().recomputeDerived({ head: cursed });
+
+    const after = usePlayerStore.getState().player;
+    if (!after) throw new Error('player missing after recompute');
+    expect(after.derivedStats.life).toBe(after.derivedStats.lifeMax); // clamped down to (now lower) cap
+    expect(after.derivedStats.life).toBeLessThan(startingLifeMax);
   });
 });

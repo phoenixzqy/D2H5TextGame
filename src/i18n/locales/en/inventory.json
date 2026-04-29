@@ -27,5 +27,10 @@
     "weapon": "Weapon",
     "offhand": "Offhand"
   },
-  "capacity": "Capacity: {{current}}/{{max}}"
+  "capacity": "Capacity: {{current}}/{{max}}",
+  "toast": {
+    "equipped": "Equipped {{name}}",
+    "equipFailed": "Cannot equip {{name}}",
+    "unequipped": "Unequipped {{name}}"
+  }
 }

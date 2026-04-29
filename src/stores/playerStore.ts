@@ -6,6 +6,9 @@
 import { create } from 'zustand';
 import type { Player } from '@/engine/types/entities';
 import type { CoreStats } from '@/engine/types/attributes';
+import type { Item } from '@/engine/types/items';
+import { aggregateEquipmentMods, applyEquipmentCoreMods, equipmentModsToDerivedModifiers } from '@/engine/progression/equipment-mods';
+import { deriveStats } from '@/engine/progression/stats';
 import { getSkillsForClass, type SkillTemplate } from './skillsHelpers';
 
 /**
@@ -49,6 +52,8 @@ interface PlayerState {
    * throwing so the UI can render a tooltip.
    */
   allocateSkillPoint: (skillId: string) => AllocateSkillResult;
+  /** Recompute derived player stats from base stats and equipped item mods. */
+  recomputeDerived: (equipped: Record<string, Item | null>) => void;
   /**
    * Refund every allocated skill point at the cost of {@link respecCost}
    * gold. Caller supplies `getGold` / `spendGold` callbacks (the inventory
@@ -150,6 +155,31 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     });
     return 'ok';
   },
+
+  recomputeDerived: (equipped) => { set((state) => {
+    if (!state.player) return state;
+    const equipmentMods = aggregateEquipmentMods(equipped);
+    const coreWithEquipment = applyEquipmentCoreMods(state.player.coreStats, equipmentMods);
+    const fresh = deriveStats(
+      coreWithEquipment,
+      state.player.level,
+      equipmentModsToDerivedModifiers(equipmentMods)
+    );
+    // Preserve current life/mana pools across recompute (equip / unequip
+    // must not silently full-heal). Clamp down to new caps if the new max
+    // dropped below current (e.g. unequipping a vitality-boosting item).
+    const prev = state.player.derivedStats;
+    return {
+      player: {
+        ...state.player,
+        derivedStats: {
+          ...fresh,
+          life: Math.min(fresh.lifeMax, prev.life),
+          mana: Math.min(fresh.manaMax, prev.mana)
+        }
+      }
+    };
+  }); },
 
   respec: (deps) => {
     const state = get();

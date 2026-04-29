@@ -9,6 +9,7 @@
 import { useState } from 'react';
 
 type ImageSize = 'xs' | 'sm' | 'md' | 'lg';
+type ObjectPosition = 'top' | 'center';
 
 interface GameImageProps {
   /** Image URL. When empty / undefined the fallback is shown immediately. */
@@ -22,6 +23,12 @@ interface GameImageProps {
   size?: ImageSize;
   /** If true the outer wrapper is a plain span (for inline contexts). */
   inline?: boolean;
+  /**
+   * Vertical anchor for the cropped image. Defaults to `'center'`. Pass
+   * `'top'` for portraits — generated character/monster art has the head in
+   * the upper third of the canvas, so center-cropping decapitates them.
+   */
+  objectPosition?: ObjectPosition;
 }
 
 const SIZE_CLASSES: Record<ImageSize, string> = {
@@ -38,12 +45,14 @@ export function GameImage({
   className = '',
   size = 'md',
   inline = false,
+  objectPosition = 'center',
 }: GameImageProps) {
   const [errored, setErrored] = useState(false);
   const showImage = !!src && !errored;
 
   const sizeClass = SIZE_CLASSES[size];
   const Tag = inline ? 'span' : 'div';
+  const posClass = objectPosition === 'top' ? 'object-top' : 'object-center';
 
   return (
     <Tag
@@ -61,7 +70,7 @@ export function GameImage({
         <img
           src={src}
           alt={alt}
-          className="w-full h-full object-cover"
+          className={`w-full h-full object-cover ${posClass}`}
           loading="lazy"
           decoding="async"
           onError={() => { setErrored(true); }}

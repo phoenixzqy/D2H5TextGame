@@ -55,8 +55,8 @@ appended to the prompt, and category-specific **negative additions**.
 - **Model**: `flux`
 - **Size**: `768 × 1024` (3:4 portrait)
 - **Seed-base**: `100000`
-- **Style suffix**: `full-body heroic portrait, single character, centered, three-quarter view, detailed armor, atmospheric background hinting at their homeland, rim lighting, oil painting on aged canvas`
-- **Negative additions**: `group shot, multiple characters, full landscape`
+- **Style suffix**: `heroic waist-up portrait, single character, centered, three-quarter view, detailed armor, atmospheric background hinting at their homeland, rim lighting, oil painting on aged canvas, ample headroom above subject with safe margin from top edge, head positioned in upper third roughly 25 to 35 percent down from the top, eyes on the upper-third horizon line, torso filling the central safe zone, frame ends at mid-torso or waist, subject survives a center crop at 1:1 and 16:9`
+- **Negative additions**: `group shot, multiple characters, full landscape, head touching top of frame, head cropped, headroom too tight, forehead clipped, hair clipped at top, subject flush with top edge, low camera angle looking up`
 
 Canonical subjects: Amazon, Assassin, Barbarian, Druid, Necromancer, Paladin, Sorceress.
 
@@ -64,8 +64,8 @@ Canonical subjects: Amazon, Assassin, Barbarian, Druid, Necromancer, Paladin, So
 - **Model**: `flux`
 - **Size**: `1024 × 1024` (square card)
 - **Seed-base**: `200000`
-- **Style suffix**: `menacing creature portrait, single monster, three-quarter view, dim dungeon or wilderness backdrop, anatomically grounded, sinewy musculature or undead decay as appropriate, oil painting`
-- **Negative additions**: `cute, friendly, mascot, cartoon villain, group of monsters`
+- **Style suffix**: `menacing creature portrait, single monster, centered, three-quarter view, dim dungeon or wilderness backdrop, anatomically grounded, sinewy musculature or undead decay as appropriate, oil painting, ample headroom above subject with safe margin from top edge, head or skull positioned in upper third roughly 25 to 35 percent down from the top, body centroid centered in frame, full-body creatures fully contained with margin on all sides, subject survives a center crop at 1:1 and 3:4`
+- **Negative additions**: `cute, friendly, mascot, cartoon villain, group of monsters, head touching top of frame, head cropped, horns clipped, headroom too tight, subject flush with top edge`
 
 ### 4.3 `item-icon`
 - **Model**: `flux`
@@ -89,7 +89,47 @@ Canonical subjects: Amazon, Assassin, Barbarian, Druid, Necromancer, Paladin, So
 - **Style suffix**: `cinematic establishing shot of a Diablo II zone, atmospheric perspective, small silhouetted hero figure for scale optional, dramatic sky, matte painting style`
 - **Negative additions**: `text, ui, hud, modern buildings`
 
-## 5. Seed strategy
+## 5. Subject framing (preset v2, 2026-04-28)
+
+Card UIs across the game crop generated images with `object-fit: cover`
+and `object-position: center` at multiple aspect ratios (square 1:1,
+portrait 3:4, landscape 16:9). A subject framed flush against the top
+edge of the source image gets its head sliced off the moment any of
+those crops shrinks the visible window.
+
+**The rule for every preset that produces a subject (class portraits,
+monsters, named NPCs, mercenaries, bosses):**
+
+1. **Headroom**: the subject's head sits ~25–35% from the **top** of
+   the canvas. Hair / horns / helm crests stay inside the frame with a
+   visible margin above them.
+2. **Eye line**: roughly on the upper-third horizon (rule of thirds,
+   classical portrait convention).
+3. **Torso in the center safe zone**: the chest/upper-torso fills the
+   middle vertical band so a centered square crop captures face +
+   shoulders + chest, never just-a-face or just-a-belt.
+4. **Bottom of frame**: mid-torso or waist for humanoid portraits;
+   full-body monsters keep their centroid centered with margin on all
+   four sides.
+5. **No low up-shots.** A camera pitched up at the subject pushes the
+   head into the top edge — explicitly negatived.
+
+These directives are baked into the `class-portrait` and `monster`
+category style suffixes and negative additions. Other categories
+(`item-icon`, `ui-background`, `zone-art`) are not subject portraits
+and follow their own composition rules.
+
+### Existing assets
+All currently committed class portraits and monster cards were
+generated under preset **v1** (no headroom directive) and will sit
+high in the frame. The frontend works around this with
+`object-position: center top` on card images. Existing `subjectId`
+allocations in [`seed-registry.md`](./seed-registry.md) are **kept
+as-is** — we do not invalidate seeds for a framing change. When any
+asset is regenerated for unrelated reasons, it should bump `variant`
+under preset v2 and inherit the corrected framing automatically.
+
+## 6. Seed strategy
 
 The skill computes the final seed as:
 
@@ -106,13 +146,13 @@ This guarantees:
 - Different subjects in the same category cluster in a known seed range,
   so families share a "feel".
 
-## 6. Re-roll policy
+## 7. Re-roll policy
 If art-director rejects an output:
 1. First try `variant=1`.
 2. Then `variant=2`, `variant=3`, …
 3. If 3 variants fail, escalate to PM — the preset itself may need tuning.
 
-## 7. Source / attribution
+## 8. Source / attribution
 All images are AI-generated via **Pollinations.AI**. Manifest at
 `public/assets/d2/generated/manifest.json` records prompt, seed, model,
 sha256, and timestamp for every file. The project remains private; before

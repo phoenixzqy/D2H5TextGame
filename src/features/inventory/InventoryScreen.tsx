@@ -7,7 +7,7 @@
  *   [ Item grid: 1-col on phones, 2-col @sm, 3-col @md ]
  *   [ Side details panel for selected item with action buttons ]
  */
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
@@ -38,6 +38,8 @@ const SLOT_ORDER: EquipmentSlot[] = [
 const MAX_BACKPACK = 40;
 const MAX_STASH = 100;
 
+type ToastState = { readonly message: string; readonly tone: 'success' | 'error' } | null;
+
 export function InventoryScreen() {
   const { t } = useTranslation(['inventory', 'common']);
   const backpack = useInventoryStore((s) => s.backpack);
@@ -48,6 +50,26 @@ export function InventoryScreen() {
   const unequipItem = useInventoryStore((s) => s.unequipItem);
   const moveToStash = useInventoryStore((s) => s.moveToStash);
   const moveToBackpack = useInventoryStore((s) => s.moveToBackpack);
+  const [toast, setToast] = useState<ToastState>(null);
+  const toastTimerRef = useRef<number | null>(null);
+
+  useEffect(() => () => {
+    if (toastTimerRef.current !== null) window.clearTimeout(toastTimerRef.current);
+  }, []);
+
+  const showToast = (message: string, tone: 'success' | 'error'): void => {
+    if (toastTimerRef.current !== null) window.clearTimeout(toastTimerRef.current);
+    setToast({ message, tone });
+    toastTimerRef.current = window.setTimeout(() => { setToast(null); }, 1800);
+  };
+
+  const handleUnequip = (slot: EquipmentSlot): void => {
+    const item = equipped[slot];
+    const result = unequipItem(slot);
+    if (item && result.ok) {
+      showToast(t('toast.unequipped', { name: itemDisplayName(item) }), 'success');
+    }
+  };
 
   return (
     <ScreenShell testId="inventory-screen" title={t('inventory.title', { defaultValue: '背包' })}>
@@ -62,9 +84,13 @@ export function InventoryScreen() {
                   items={backpack}
                   emptyKey="emptyBackpack"
                   primaryAction={(it) => {
-                    if (it.equipSlot) {
-                      equipItem(it, it.equipSlot);
-                    }
+                    const result = equipItem(it);
+                    showToast(
+                      result.ok
+                        ? t('toast.equipped', { name: itemDisplayName(it) })
+                        : t('toast.equipFailed', { name: itemDisplayName(it) }),
+                      result.ok ? 'success' : 'error'
+                    );
                   }}
                   primaryLabel={t('equip')}
                   secondaryAction={(it) => { moveToStash(it.id); }}
@@ -92,12 +118,30 @@ export function InventoryScreen() {
               id: 'equipment',
               label: t('equipment'),
               content: (
-                <EquipmentPanel equipped={equipped} onUnequip={(slot) => { unequipItem(slot); }} />
+                <EquipmentPanel equipped={equipped} onUnequip={handleUnequip} />
               ),
             },
           ]}
           defaultTab="backpack"
         />
+      </div>
+      <div
+        aria-live="polite"
+        aria-atomic="true"
+        data-testid="inventory-toast"
+        className="pointer-events-none fixed inset-x-3 bottom-4 z-50 flex justify-center sm:inset-x-auto sm:right-4 sm:justify-end"
+      >
+        {toast && (
+          <div
+            className={`max-w-[calc(100vw-1.5rem)] rounded border px-4 py-3 text-sm shadow-d2 sm:max-w-sm ${
+              toast.tone === 'success'
+                ? 'border-d2-green/60 bg-d2-panel/95 text-d2-green'
+                : 'border-d2-red/60 bg-d2-panel/95 text-d2-red'
+            }`}
+          >
+            {toast.message}
+          </div>
+        )}
       </div>
     </ScreenShell>
   );
@@ -149,7 +193,7 @@ function ItemGrid({
               <GameCard
                 variant="item"
                 size="md"
-                name={it.baseId.split('/').pop() ?? it.baseId}
+                name={itemDisplayName(it)}
                 rarity={it.rarity}
                 image={resolveItemIcon(it.baseId) ?? undefined}
                 selected={selectedId === it.id}
@@ -170,6 +214,7 @@ function ItemGrid({
                 <Button
                   variant="primary"
                   className="min-h-[40px] flex-1"
+                  data-testid="inv-primary-action"
                   onClick={() => { primaryAction(selected); }}
                 >
                   {primaryLabel}
@@ -217,7 +262,7 @@ function EquipmentPanel({
 }) {
   const { t } = useTranslation('inventory');
   return (
-      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
       {SLOT_ORDER.map((slot) => {
         const item = equipped[slot];
         return (
@@ -230,7 +275,7 @@ function EquipmentPanel({
               <div className="text-xs text-d2-white/60">{t(`slots.${slot}`)}</div>
               {item ? (
                 <div className={`font-serif truncate ${rarityTextClass(item.rarity)}`}>
-                  {item.baseId}
+                  {itemDisplayName(item)}
                 </div>
               ) : (
                 <div className="text-sm text-d2-white/40 italic">
@@ -252,6 +297,10 @@ function EquipmentPanel({
       })}
     </ul>
   );
+}
+
+function itemDisplayName(item: Item): string {
+  return item.baseId.split('/').pop() ?? item.baseId;
 }
 
 function rarityTextClass(rarity: Item['rarity']): string {

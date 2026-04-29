@@ -252,6 +252,10 @@ function CardArt({
 }): JSX.Element {
   const [errored, setErrored] = useState(false);
   const showImg = image && !errored;
+  // Portraits (character/monster/merc) are generated with the head in the
+  // upper third of the canvas — center crop chops it off, so anchor to top.
+  // Item icons stay center-cropped so the icon sits dead-center in its slot.
+  const objectPosCls = variant === 'item' ? 'object-center' : 'object-top';
   return (
     <div
       className="relative flex-1 overflow-hidden bg-d2-bg/80 flex items-center justify-center"
@@ -263,7 +267,7 @@ function CardArt({
           alt={name}
           loading="lazy"
           decoding="async"
-          className="w-full h-full object-cover"
+          className={`w-full h-full object-cover ${objectPosCls}`}
           onError={() => {
             setErrored(true);
           }}

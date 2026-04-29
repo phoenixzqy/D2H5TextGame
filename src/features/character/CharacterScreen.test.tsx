@@ -71,20 +71,22 @@ describe('CharacterScreen', () => {
 
     const sword: Item = {
       id: 'item-1',
-      baseId: 'short-sword',
+      baseId: 'items/base/wp1h-short-sword',
       rarity: 'unique',
       level: 5,
       identified: true,
-      equipped: true,
-      equipSlot: 'weapon',
+      equipped: false,
     };
-    act(() => { useInventoryStore.getState().equipItem(sword, 'weapon'); });
+    act(() => {
+      useInventoryStore.getState().addItem(sword);
+      useInventoryStore.getState().equipItem(sword);
+    });
 
     renderScreen();
 
     const equip = screen.getByTestId('char-equipment');
     expect(equip).toBeInTheDocument();
-    expect(equip).toHaveTextContent('short-sword');
+    expect(equip).toHaveTextContent('items/base/wp1h-short-sword');
     // unique => text-d2-unique class on the RarityText span
     const span = equip.querySelector('.text-d2-unique');
     expect(span).not.toBeNull();
