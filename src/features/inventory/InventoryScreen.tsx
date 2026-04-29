@@ -9,7 +9,16 @@
  */
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, GameImage, ItemTooltip, Panel, ScreenShell, Tabs, Tooltip, getItemIconUrl } from '@/ui';
+import {
+  Button,
+  GameCard,
+  ItemTooltip,
+  Panel,
+  ScreenShell,
+  Tabs,
+  Tooltip,
+  resolveItemIcon
+} from '@/ui';
 import { useInventoryStore } from '@/stores';
 import type { Item, EquipmentSlot } from '@/engine/types/items';
 
@@ -130,41 +139,23 @@ function ItemGrid({
   return (
     <div className="grid grid-cols-1 md:grid-cols-[1fr_minmax(220px,280px)] gap-3">
       <ul
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2"
+        className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-2"
         role="listbox"
         aria-label={t('items', { defaultValue: 'Items' })}
       >
         {items.map((it) => (
           <li key={it.id}>
             <Tooltip content={<ItemTooltip item={it} />}>
-              <button
-                type="button"
+              <GameCard
+                variant="item"
+                size="md"
+                name={it.baseId.split('/').pop() ?? it.baseId}
+                rarity={it.rarity}
+                image={resolveItemIcon(it.baseId) ?? undefined}
+                selected={selectedId === it.id}
                 onClick={() => { setSelectedId(it.id); }}
-                aria-selected={selectedId === it.id}
-                role="option"
-                className={[
-                  'w-full text-left min-h-[56px] px-3 py-2 rounded border bg-d2-bg/40',
-                  'focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold',
-                  'flex items-center gap-2',
-                  selectedId === it.id ? 'border-d2-gold' : 'border-d2-border hover:border-d2-gold/60',
-                ].join(' ')}
-                data-testid={`inv-item-${it.id}`}
-              >
-                <GameImage
-                  src={getItemIconUrl(it)}
-                  alt=""
-                  fallbackIcon={(it.equipSlot ?? it.baseId).charAt(0).toUpperCase() || '?'}
-                  size="sm"
-                />
-                <div className="min-w-0 flex-1">
-                  <div className={`font-serif truncate ${rarityTextClass(it.rarity)}`}>
-                    {it.baseId}
-                  </div>
-                  <div className="text-xs text-d2-white/60">
-                    {t('itemLevel', { defaultValue: '物品等级' })} {it.level}
-                  </div>
-                </div>
-              </button>
+                testId={`inv-item-${it.id}`}
+              />
             </Tooltip>
           </li>
         ))}
@@ -235,27 +226,17 @@ function EquipmentPanel({
             className="border border-d2-border rounded p-3 bg-d2-bg/40 min-h-[64px]
                        flex items-center justify-between gap-2"
           >
-            <div className="flex items-center gap-2 min-w-0">
-              {item && (
-                <GameImage
-                  src={getItemIconUrl(item)}
-                  alt=""
-                  fallbackIcon={(item.equipSlot ?? slot).charAt(0).toUpperCase()}
-                  size="sm"
-                />
+            <div className="min-w-0">
+              <div className="text-xs text-d2-white/60">{t(`slots.${slot}`)}</div>
+              {item ? (
+                <div className={`font-serif truncate ${rarityTextClass(item.rarity)}`}>
+                  {item.baseId}
+                </div>
+              ) : (
+                <div className="text-sm text-d2-white/40 italic">
+                  {t('empty', { defaultValue: '空' })}
+                </div>
               )}
-              <div className="min-w-0">
-                <div className="text-xs text-d2-white/60">{t(`slots.${slot}`)}</div>
-                {item ? (
-                  <div className={`font-serif truncate ${rarityTextClass(item.rarity)}`}>
-                    {item.baseId}
-                  </div>
-                ) : (
-                  <div className="text-sm text-d2-white/40 italic">
-                    {t('empty', { defaultValue: '空' })}
-                  </div>
-                )}
-              </div>
             </div>
             {item && (
               <Button

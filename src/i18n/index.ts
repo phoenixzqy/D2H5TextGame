@@ -20,7 +20,7 @@ import zhCN_rarity from './locales/zh-CN/rarity.json';
 import zhCN_damageTypes from './locales/zh-CN/damage-types.json';
 import zhCN_card from './locales/zh-CN/card.json';
 
-import en_commonfrom './locales/en/common.json';
+import en_common from './locales/en/common.json';
 import en_character from './locales/en/character.json';
 import en_combat from './locales/en/combat.json';
 import en_inventory from './locales/en/inventory.json';

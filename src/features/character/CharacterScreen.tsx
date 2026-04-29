@@ -11,9 +11,8 @@
  * Reads-only: pulls from `usePlayerStore` and `useInventoryStore`.
  * No allocation buttons here — that flow lives elsewhere.
  */
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Panel, ScreenShell, StatBar, RarityText } from '@/ui';
+import { GameCard, Panel, ScreenShell, StatBar, RarityText, resolveClassPortrait } from '@/ui';
 import { useInventoryStore, usePlayerStore } from '@/stores';
 import type { Player } from '@/engine/types/entities';
 import type { EquipmentSlot, Item } from '@/engine/types/items';
@@ -71,36 +70,37 @@ export function CharacterScreen() {
 
 function HeroStrip({ player }: { player: Player }) {
   const { t } = useTranslation(['character', 'common']);
-  const [errored, setErrored] = useState(false);
-  const portrait = `/assets/d2/generated/class-portraits/classes.${player.class}.png`;
   const xpMax = Math.max(1, player.experienceToNextLevel);
+  const ds = player.derivedStats;
+  const cs = player.coreStats;
+  const portrait = resolveClassPortrait(player.class);
   return (
     <Panel className="!p-3">
-      <div className="flex items-center gap-3">
-        <div
-          className="shrink-0 w-16 h-16 md:w-20 md:h-20 rounded border border-d2-border bg-d2-bg/60 flex items-center justify-center overflow-hidden"
-          aria-hidden
-        >
-          {!errored ? (
-            <img
-              src={portrait}
-              alt=""
-              className="w-full h-full object-cover"
-              onError={() => { setErrored(true); }}
-              loading="lazy"
-              decoding="async"
-            />
-          ) : (
-            <span className="font-serif text-d2-gold text-2xl md:text-3xl select-none">
-              {(player.class.charAt(0) || player.name.charAt(0) || '?').toUpperCase()}
-            </span>
-          )}
-        </div>
-        <div className="flex-1 min-w-0">
+      <div className="flex items-start gap-3 flex-wrap">
+        <GameCard
+          variant="character"
+          size="lg"
+          name={player.name}
+          subtitle={t(`character:classes.${player.class}`, { defaultValue: player.class })}
+          rarity="unique"
+          image={portrait ?? undefined}
+          stats={[
+            { label: 'STR', value: cs.strength },
+            { label: 'DEX', value: cs.dexterity },
+            { label: 'VIT', value: cs.vitality },
+            { label: 'ENG', value: cs.energy }
+          ]}
+          bars={[
+            { kind: 'hp', current: ds.life, max: Math.max(1, ds.lifeMax) },
+            { kind: 'mp', current: ds.mana, max: Math.max(1, ds.manaMax) }
+          ]}
+          testId="hero-card"
+        />
+        <div className="flex-1 min-w-[180px] space-y-2 mt-2">
           <div className="font-serif text-d2-gold text-lg md:text-xl truncate" data-testid="char-name">
             {player.name}
           </div>
-          <div className="text-xs md:text-sm text-d2-white/70 mb-2">
+          <div className="text-xs md:text-sm text-d2-white/70">
             <span data-testid="char-class">
               {t(`character:classes.${player.class}`, { defaultValue: player.class })}
             </span>
