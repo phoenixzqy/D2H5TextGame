@@ -26,6 +26,7 @@ export {
   getClassPortraitUrl,
   getMonsterImageUrl,
   getSummonImageUrl,
+  getMercPortraitUrl,
   getItemIconUrl,
   getBaseItemIconUrl,
   getNpcPortraitUrl,
