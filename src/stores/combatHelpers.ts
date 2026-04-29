@@ -387,6 +387,11 @@ export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idl
   const nextIdx = activeRun.waveIdx + 1;
   if (nextIdx >= activeRun.plan.waves.length) {
     combat.markRunVictory();
+    // Bug #3 — record the cleared sub-area so MapScreen flips its
+    // badge and idle farming unlocks. Idempotent on the store side.
+    // If engine-dev (fix/engine-skills-encounter) later moves this
+    // call into markRunVictory itself, drop this line on merge.
+    useMapStore.getState().markCleared(activeRun.plan.subAreaId);
     activeRun = null;
     return 'victory';
   }
