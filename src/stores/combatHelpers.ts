@@ -236,7 +236,7 @@ export function awardLootForVictory(opts: {
   const inv = useInventoryStore.getState();
 
   const items: Item[] = [];
-  let gold = 0;
+  let runeShards = 0;
   let runes = 0;
   let gems = 0;
   let wishstones = 0;
@@ -259,18 +259,18 @@ export function awardLootForVictory(opts: {
       items.push(it);
       inv.addItem(it);
     }
-    gold += r.gold;
+    runeShards += r.runeShards;
     runes += r.runes;
     gems += r.gems;
     wishstones += r.wishstones;
   }
 
-  if (gold > 0) inv.addCurrency('gold', gold);
-  if (runes > 0) inv.addCurrency('rune-shard', runes);
+  const totalRuneShards = runeShards + runes;
+  if (totalRuneShards > 0) inv.addCurrency('rune-shard', totalRuneShards);
   if (gems > 0) inv.addCurrency('gem-shard', gems);
   if (wishstones > 0) inv.addCurrency('wishstone', wishstones);
 
-  return { items, gold, runes, gems, wishstones };
+  return { items, runeShards, runes, gems, wishstones };
 }
 
 /**

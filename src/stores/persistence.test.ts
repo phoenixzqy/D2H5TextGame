@@ -4,7 +4,7 @@
  * Mocks the Dexie-backed save-adapter to avoid IndexedDB.
  */
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import type { SaveCurrent } from '@/engine/types/save';
+import { CURRENT_SAVE_VERSION, type SaveCurrent } from '@/engine/types/save';
 
 const mockSaveStore: { current: SaveCurrent | null } = { current: null };
 const saveSpy = vi.fn((data: SaveCurrent) => {
@@ -77,7 +77,7 @@ describe('persistence', () => {
       usePlayerStore.getState().setPlayer(fakePlayer());
       const snap = snapshotStores();
       expect(snap).not.toBeNull();
-      expect(snap?.version).toBe(2);
+      expect(snap?.version).toBe(CURRENT_SAVE_VERSION);
       expect(snap?.player.id).toBe('p1');
     });
   });
@@ -91,7 +91,7 @@ describe('persistence', () => {
 
         // Fire many mutations within the debounce window.
         for (let i = 0; i < 10; i++) {
-          useInventoryStore.getState().addCurrency('gold', 1);
+          useInventoryStore.getState().addCurrency('rune-shard', 1);
         }
         expect(saveSpy).not.toHaveBeenCalled();
 
@@ -102,7 +102,7 @@ describe('persistence', () => {
         // Cross the threshold.
         await vi.advanceTimersByTimeAsync(2);
         expect(saveSpy).toHaveBeenCalledTimes(1);
-        expect(saveSpy.mock.calls[0]?.[0].inventory.currencies.gold).toBe(10);
+        expect(saveSpy.mock.calls[0]?.[0].inventory.currencies['rune-shard']).toBe(10);
       } finally {
         vi.useRealTimers();
         stopAutoSave();
@@ -127,7 +127,7 @@ describe('persistence', () => {
       try {
         usePlayerStore.getState().setPlayer(fakePlayer());
         startAutoSave();
-        useInventoryStore.getState().addCurrency('gold', 5);
+        useInventoryStore.getState().addCurrency('rune-shard', 5);
         const p = flushSave();
         expect(p).not.toBeNull();
         await p;
@@ -147,7 +147,7 @@ describe('persistence', () => {
         usePlayerStore.getState().setPlayer(fakePlayer());
         startAutoSave();
         stopAutoSave();
-        useInventoryStore.getState().addCurrency('gold', 1);
+        useInventoryStore.getState().addCurrency('rune-shard', 1);
         await vi.advanceTimersByTimeAsync(AUTO_SAVE_DEBOUNCE_MS + 10);
         expect(saveSpy).not.toHaveBeenCalled();
       } finally {
@@ -237,7 +237,7 @@ describe('persistence', () => {
         expect(useHydrationStore.getState().status).toBe('ready');
 
         // Auto-save should be active now.
-        useInventoryStore.getState().addCurrency('gold', 1);
+        useInventoryStore.getState().addCurrency('rune-shard', 1);
         await vi.advanceTimersByTimeAsync(AUTO_SAVE_DEBOUNCE_MS + 10);
         expect(saveSpy).toHaveBeenCalled();
       } finally {

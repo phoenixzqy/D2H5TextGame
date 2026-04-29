@@ -7,7 +7,8 @@ import {
   CURRENT_SAVE_VERSION,
   MIGRATIONS,
   type SaveCurrent,
-  type SaveV1
+  type SaveV1,
+  type SaveV2
 } from '../types/save';
 
 function fakePlayer(): SaveCurrent['player'] {
@@ -157,7 +158,7 @@ describe('runMigrations', () => {
     };
 
     const out = runMigrations(v1, CURRENT_SAVE_VERSION);
-    expect(out.version).toBe(2);
+    expect(out.version).toBe(CURRENT_SAVE_VERSION);
     expect(out.timestamp).toBe(999);
     expect(out.player.id).toBe('p1');
     expect(out.mercs.fieldedMercId).toBe('rogue-1');
@@ -168,6 +169,24 @@ describe('runMigrations', () => {
     expect(out.meta.gachaState.pityCounter).toBe(7);
     expect(out.inventory.equipped.weapon).toEqual({ id: 'w1' });
     expect(out.inventory.currencies).toEqual({});
+  });
+
+
+  it('migrates v2 → v3 by folding currencies.gold into rune-shard', () => {
+    const current = buildSampleSaveCurrent();
+    const v2: SaveV2 = {
+      ...current,
+      version: 2,
+      inventory: {
+        ...current.inventory,
+        currencies: { gold: 42, runes: 3, 'rune-shard': 5 }
+      }
+    };
+
+    const out = runMigrations(v2, CURRENT_SAVE_VERSION);
+    expect(out.inventory.currencies.gold).toBeUndefined();
+    expect(out.inventory.currencies['rune-shard']).toBe(47);
+    expect(out.inventory.currencies.runes).toBe(3);
   });
 
   it('handles already-JSON-serialized v1 equipment (array of [slot, item])', () => {

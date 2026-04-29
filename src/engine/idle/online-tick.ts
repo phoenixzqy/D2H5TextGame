@@ -14,8 +14,8 @@ import { bonusMultiplier, consumeOnlineSession } from './offline-bonus';
 export interface TickReward {
   /** Raw XP gained this tick (post-multiplier, pre-cap). */
   readonly xp: number;
-  /** Raw gold this tick. */
-  readonly gold: number;
+  /** Raw rune-shards this tick (replaces gold per GDD §8). */
+  readonly runeShards: number;
   /** Effective MF used on this tick. */
   readonly effectiveMagicFind: number;
   /** Wishstones, runes, gems collected this tick. */
@@ -25,7 +25,7 @@ export interface TickReward {
 /** Empty reward. */
 export const EMPTY_REWARD: TickReward = {
   xp: 0,
-  gold: 0,
+  runeShards: 0,
   effectiveMagicFind: 0,
   currencies: Object.freeze({})
 };
@@ -53,7 +53,7 @@ export function onlineTick(
   const mult = bonusMultiplier(bonus);
   const reward: TickReward = {
     xp: Math.floor(rawReward.xp * mult),
-    gold: rawReward.gold,
+    runeShards: rawReward.runeShards,
     effectiveMagicFind: Math.floor(config.baseMagicFind * mult),
     currencies: rawReward.currencies
   };

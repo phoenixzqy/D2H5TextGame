@@ -70,27 +70,27 @@ describe('award.rollKillRewards', () => {
     );
     expect(b.items.map((i) => ({ baseId: i.baseId, rarity: i.rarity, level: i.level })))
       .toEqual(a.items.map((i) => ({ baseId: i.baseId, rarity: i.rarity, level: i.level })));
-    expect(b.gold).toBe(a.gold);
+    expect(b.runeShards).toBe(a.runeShards);
   });
 
-  it('awards gold even when treasure class is unknown', () => {
+  it('awards rune-shards even when treasure class is unknown', () => {
     const r = rollKillRewards(
       { tier: 'trash', monsterLevel: 3, treasureClassId: 'tc_missing', magicFind: 0, goldFind: 0, act: 1 },
       pools,
       createRng(7)
     );
     expect(r.items).toEqual([]);
-    expect(r.gold).toBeGreaterThan(0);
+    expect(r.runeShards).toBeGreaterThan(0);
   });
 
-  it('boss kills produce items and gold', () => {
+  it('boss kills produce items and rune-shards', () => {
     const r = rollKillRewards(
       { tier: 'boss', monsterLevel: 14, treasureClassId: tc.id, magicFind: 200, goldFind: 50, act: 1 },
       pools,
       createRng(42)
     );
     expect(r.items.length).toBeGreaterThan(0);
-    expect(r.gold).toBeGreaterThan(0);
+    expect(r.runeShards).toBeGreaterThan(0);
   });
 
   it('mixes rarities at high MF', () => {

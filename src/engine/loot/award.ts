@@ -2,7 +2,7 @@
  * Kill-reward orchestrator.
  *
  * Given a slain monster's tier/level, the area's treasure-class id, and the
- * player's MF/GF, returns a complete reward bundle: rolled items, gold, and
+ * player's MF/GF, returns a complete reward bundle: rolled items, rune-shards, and
  * secondary currency drops (runes/gems/wishstones).
  *
  * This is the high-level entry point combat consumers should call on victory.
@@ -41,7 +41,7 @@ export interface KillRewards extends CurrencyDrops {
 }
 
 /** Empty rewards (used for unknown TCs to keep call sites simple). */
-const EMPTY: KillRewards = { items: [], gold: 0, wishstones: 0, runes: 0, gems: 0 };
+const EMPTY: KillRewards = { items: [], runeShards: 0, wishstones: 0, runes: 0, gems: 0 };
 
 /**
  * Roll the full reward set for a single kill. Items are materialised from the
@@ -56,7 +56,7 @@ export function rollKillRewards(
 ): KillRewards {
   const tc = pools.treasureClasses.get(input.treasureClassId);
   if (!tc) {
-    // Even without items, award the gold baseline so the player isn't empty-handed.
+    // Even without items, award the rune-shard baseline so the player isn't empty-handed.
     const cur = rollCurrencyDrops(
       input.monsterLevel,
       input.tier,
@@ -107,17 +107,17 @@ export function rollBatchRewards(
 ): KillRewards {
   if (kills.length === 0) return EMPTY;
   const items: Item[] = [];
-  let gold = 0;
+  let runeShards = 0;
   let wishstones = 0;
   let runes = 0;
   let gems = 0;
   for (const k of kills) {
     const r = rollKillRewards(k, pools, rng);
     items.push(...r.items);
-    gold += r.gold;
+    runeShards += r.runeShards;
     wishstones += r.wishstones;
     runes += r.runes;
     gems += r.gems;
   }
-  return { items, gold, wishstones, runes, gems };
+  return { items, runeShards, wishstones, runes, gems };
 }
