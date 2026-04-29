@@ -6,24 +6,43 @@
  * `playerTeam` so the AI scheduler cycles its action periods alongside the
  * player's.
  *
- * Skill loadout: merc skills declared in `data/skills/mercenary.json` are
- * not registered in the engine's runtime skill registry (only the 70
- * default class skills are). v1 wiring maps `archetype` to a registered
- * skill so the merc actually contributes damage. Full data-driven merc
- * skill registration is a separate task for content-designer.
+ * Skill loadout priority (deduped, first-seen wins):
+ *   1. `merc.signatureSkillId`  — the headline ability advertised on the
+ *      gacha card. Without this the merc would basic-attack forever.
+ *   2. `merc.comboOrder`        — authored data-driven priority list.
+ *   3. archetype default        — last-resort placeholder when (1) and
+ *      (2) are both empty (e.g. legacy roster entries).
+ *
+ * Engine alias resolution (`engine/skills/aliases.ts`) handles the
+ * data-side id → canonical engine-id translation for `mskill-*` /
+ * `aura-*` ids.
  */
 import type { Mercenary } from '@/engine/types/entities';
 import type { CombatUnit } from '@/engine/combat/types';
 
 const ARCHETYPE_SKILLS: Readonly<Record<string, readonly string[]>> = Object.freeze({
-  front: ['barbarian.bash'],
-  back: ['amazon.magic_arrow']
+  front: ['mskill-bash'],
+  back: ['mskill-basic-arrow']
 });
-const DEFAULT_SKILL_ORDER: readonly string[] = ['barbarian.bash'];
+const DEFAULT_SKILL_ORDER: readonly string[] = ['mskill-jab'];
 
 /** Build a runtime CombatUnit from an owned Mercenary. */
 export function mercToCombatUnit(merc: Mercenary): CombatUnit {
-  const skillOrder = ARCHETYPE_SKILLS[merc.archetype] ?? DEFAULT_SKILL_ORDER;
+  const order: string[] = [];
+  const seen = new Set<string>();
+  const push = (id: string | undefined): void => {
+    if (!id) return;
+    if (seen.has(id)) return;
+    seen.add(id);
+    order.push(id);
+  };
+  push(merc.signatureSkillId);
+  for (const id of merc.comboOrder) push(id);
+  if (order.length === 0) {
+    const fallback = ARCHETYPE_SKILLS[merc.archetype] ?? DEFAULT_SKILL_ORDER;
+    for (const id of fallback) push(id);
+  }
+
   return {
     id: `merc-${merc.id}`,
     name: merc.name,
@@ -35,7 +54,7 @@ export function mercToCombatUnit(merc: Mercenary): CombatUnit {
     mana: merc.derivedStats.manaMax,
     statuses: [],
     cooldowns: {},
-    skillOrder: [...skillOrder],
+    skillOrder: order,
     activeBuffIds: [],
     enraged: false,
     summonedAdds: false,

@@ -51,14 +51,19 @@ export function eventToLocalizedLogEntry(
     case 'action': {
       const actorName = getName(event.actor);
       if (event.skillId) {
+        // Localize skill id via skills:<id>.name with skillId fallback so
+        // unknown ids still render as "Bash" rather than `barbarian.bash`.
+        const skillName = i18n.t(`skills:${event.skillId}.name`, {
+          defaultValue: event.skillId
+        });
         return {
           type: 'skill',
           actorId: event.actor,
           actorName,
           message: tx('combat:event.skillCast', {
             actor: actorName,
-            skill: event.skillId,
-            defaultValue: `${actorName} casts ${event.skillId}`
+            skill: skillName,
+            defaultValue: `${actorName} casts ${skillName}`
           })
         };
       }
