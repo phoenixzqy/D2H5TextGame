@@ -152,7 +152,7 @@ export function GachaScreen() {
                   className="border border-d2-border rounded px-2 py-1 truncate"
                 >
                   <RarityText rarity={RARITY_TO_TEXT[r.rarity]}>
-                    {r.mercDef.name}
+                    {t(`mercs:byId.${mercSlug(r.mercDef.id)}.name`, { defaultValue: r.mercDef.name })}
                   </RarityText>
                 </li>
               ))}

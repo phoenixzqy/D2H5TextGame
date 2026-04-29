@@ -16,7 +16,7 @@
  */
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, GameCard, Modal, Panel, ScreenShell, resolveMercArt, tItemName } from '@/ui';
+import { Button, GameCard, Modal, Panel, ScreenShell, resolveMercArt, tDataKey, tItemName } from '@/ui';
 import { useMercStore, useInventoryStore } from '@/stores';
 import { MERC_EQUIPMENT_SLOTS, type MercEquipment } from '@/stores/mercStore';
 import type { Mercenary } from '@/engine/types/entities';
@@ -134,7 +134,7 @@ function MercCard({
                 ]
               : [{ label: 'LVL', value: merc.level }]
           }
-          footer={def?.signatureSkillId}
+          footer={def?.signatureSkillId ? tDataKey(t, `mercs.skillName.${def.signatureSkillId}`) : undefined}
         />
         <div className="min-w-0 flex-1">
           <div className="text-xs text-d2-white/60 flex flex-wrap gap-x-2">
@@ -144,7 +144,7 @@ function MercCard({
           </div>
           {def?.signatureSkillId && (
             <div className="text-xs text-d2-gold/80 mt-1 truncate" title={def.signatureSkillId}>
-              {t('signature')}: {def.signatureSkillId}
+              {t('signature')}: {tDataKey(t, `mercs.skillName.${def.signatureSkillId}`)}
             </div>
           )}
           {lore && (
