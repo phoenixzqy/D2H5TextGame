@@ -9,13 +9,16 @@
  * kept minimal — store references plus a single `seedItem` helper — and
  * never invoked by app code.
  */
-import { useInventoryStore, usePlayerStore, useCombatStore } from '@/stores';
+import { useInventoryStore, usePlayerStore, useCombatStore, useMercStore } from '@/stores';
+import { createMercFromDef } from '@/stores/mercFactory';
+import { loadMercPool } from '@/data/loaders/mercs';
 import type { Item, Rarity } from '@/engine/types/items';
 
 export interface TestBridge {
   readonly inventory: typeof useInventoryStore;
   readonly player: typeof usePlayerStore;
   readonly combat: typeof useCombatStore;
+  readonly merc: typeof useMercStore;
   /**
    * Push a minimal {@link Item} into the backpack. Returns the new item id.
    * Affixes are intentionally empty — base `baseDefense`/`baseDamage` is
@@ -25,6 +28,12 @@ export interface TestBridge {
     baseId: string,
     opts?: { rarity?: Rarity; level?: number; toStash?: boolean }
   ) => string;
+  /**
+   * Seed a mercenary into the roster and optionally field it.
+   * Picks the first available merc def from the pool when `defId` is omitted.
+   * Returns the runtime merc id (may include `#` instance suffix).
+   */
+  seedMerc: (opts?: { defId?: string; field?: boolean }) => string;
 }
 
 declare global {
@@ -50,6 +59,7 @@ export function installTestBridge(): void {
     inventory: useInventoryStore,
     player: usePlayerStore,
     combat: useCombatStore,
+    merc: useMercStore,
     seedItem: (baseId, opts = {}) => {
       const item: Item = {
         id: nextSeedId(),
@@ -61,6 +71,20 @@ export function installTestBridge(): void {
       };
       useInventoryStore.getState().addItem(item, opts.toStash ?? false);
       return item.id;
+    },
+    seedMerc: (opts = {}) => {
+      const pool = loadMercPool();
+      const def = opts.defId
+        ? pool.pool.find((d) => d.id === opts.defId) ?? pool.pool[0]
+        : pool.pool[0];
+      if (!def) throw new Error('[seedMerc] mercenary pool is empty');
+      const suffix = `e2e-${String(Date.now())}`;
+      const mercEntity = createMercFromDef(def, suffix);
+      useMercStore.getState().addMerc(mercEntity);
+      if (opts.field !== false) {
+        useMercStore.getState().setFieldedMerc(mercEntity.id);
+      }
+      return mercEntity.id;
     }
   };
   (window as unknown as { __GAME__: TestBridge }).__GAME__ = bridge;
