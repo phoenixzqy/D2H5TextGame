@@ -11,7 +11,9 @@
   "slotN": "槽位 {{n}}",
   "tab": {
     "combat": "战斗",
-    "passive": "被动"
+    "passive": "被动",
+    "tree": "技能树",
+    "active": "主动技能"
   },
   "trigger": {
     "active": "主动",

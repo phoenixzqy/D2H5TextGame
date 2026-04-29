@@ -78,7 +78,9 @@ export function MapScreen() {
   const navigate = useNavigate();
   const setLocation = useMapStore((s) => s.setCurrentLocation);
   const isActUnlocked = useMapStore((s) => s.isActUnlocked);
+  const clearedSubAreas = useMapStore((s) => s.clearedSubAreas);
   const setIdleTarget = useMetaStore((s) => s.setIdleTarget);
+  const idleTarget = useMetaStore((s) => s.idleState.idleTarget);
 
   const [openAct, setOpenAct] = useState<number>(1);
 
@@ -91,9 +93,34 @@ export function MapScreen() {
     setIdleTarget(subId);
   };
 
+  const idleAreaName = idleTarget
+    ? t(`subArea.${idleTarget}`, { defaultValue: idleTarget })
+    : null;
+
   return (
     <ScreenShell testId="map-screen" title={t('worldMap')}>
       <div className="space-y-3 max-w-3xl mx-auto pb-12">
+        {idleTarget && idleAreaName && (
+          <div
+            className="sticky top-0 z-20 -mx-3 md:-mx-6 px-3 md:px-6 py-2
+                       bg-d2-panel/95 backdrop-blur border-b border-d2-gold/40
+                       text-sm text-d2-gold flex items-center gap-2"
+            data-testid="idle-location-banner"
+          >
+            <span aria-hidden>⚙️</span>
+            <span className="flex-1 truncate">
+              {t('idleHere', { defaultValue: '正在挂机' })}: {idleAreaName}
+            </span>
+            <button
+              type="button"
+              onClick={() => { setIdleTarget(undefined); }}
+              className="text-xs text-d2-white/70 hover:text-d2-gold underline underline-offset-2"
+              data-testid="idle-stop-button"
+            >
+              {t('stopIdle', { defaultValue: '停止挂机' })}
+            </button>
+          </div>
+        )}
         {ACTS.map((act) => {
           const isOpen = openAct === act.number;
           const actUnlocked = isActUnlocked(act.number);
@@ -130,8 +157,21 @@ export function MapScreen() {
                 <ul className="border-t border-d2-border divide-y divide-d2-border/50">
                   {act.subAreas.map((sa) => {
                     const unlocked = actUnlocked;
+                    const cleared = clearedSubAreas.includes(sa.id);
+                    const isIdleHere = idleTarget === sa.id;
+                    const rowCls = !unlocked
+                      ? ''
+                      : cleared
+                      ? 'opacity-80'
+                      : 'border-l-2 border-d2-gold/60';
                     return (
-                      <li key={sa.id} className="px-3 py-2 flex flex-wrap items-center gap-2">
+                      <li
+                        key={sa.id}
+                        className={`px-3 py-2 flex flex-wrap items-center gap-2 ${rowCls}`}
+                        data-testid={`sub-area-row-${sa.id}`}
+                        data-cleared={cleared || undefined}
+                        data-idle-here={isIdleHere || undefined}
+                      >
                         <GameImage
                           src={getZoneArtUrl(act.number)}
                           alt=""
@@ -140,8 +180,31 @@ export function MapScreen() {
                           className="!w-10 !h-8 !rounded"
                         />
                         <div className="flex-1 min-w-[140px]">
-                          <div className="text-d2-white text-sm">
-                            {t(sa.nameKey, { defaultValue: sa.id })}
+                          <div className={`text-sm flex items-center gap-2 ${cleared ? 'text-d2-white/70' : 'text-d2-white'}`}>
+                            <span className="truncate">
+                              {t(sa.nameKey, { defaultValue: sa.id })}
+                            </span>
+                            {unlocked && cleared && (
+                              <span
+                                className="text-[10px] uppercase text-d2-set border border-d2-set/60 rounded px-1.5 py-0.5"
+                                data-testid={`cleared-badge-${sa.id}`}
+                              >
+                                ✓ {t('cleared', { defaultValue: '已通过' })}
+                              </span>
+                            )}
+                            {unlocked && !cleared && (
+                              <span
+                                className="text-[10px] uppercase text-d2-gold/80 border border-d2-gold/50 rounded px-1.5 py-0.5"
+                                data-testid={`uncleared-badge-${sa.id}`}
+                              >
+                                {t('uncleared', { defaultValue: '未通过' })}
+                              </span>
+                            )}
+                            {isIdleHere && (
+                              <span className="text-[10px] uppercase text-d2-white/80 border border-d2-white/40 rounded px-1.5 py-0.5">
+                                {t('idleHereShort', { defaultValue: '挂机中' })}
+                              </span>
+                            )}
                           </div>
                           <div className="text-xs text-d2-white/60">
                             {t('recommendedLevel', { level: sa.recommendedLevel })}

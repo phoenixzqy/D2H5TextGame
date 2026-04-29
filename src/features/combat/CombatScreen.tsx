@@ -181,6 +181,11 @@ export function CombatScreen() {
     navigate('/town');
   };
 
+  // Bug #4 — combat-log hover-pause hint is hoisted to the combat header
+  // (top-right). The CombatLog reports pause via this setter so the badge
+  // can render compactly next to the action buttons.
+  const [logHoverPaused, setLogHoverPaused] = useState(false);
+
   return (
     <ScreenShell
       testId="combat-screen"
@@ -194,6 +199,15 @@ export function CombatScreen() {
             })}
           </span>
           <div className="flex items-center gap-2 flex-wrap justify-end">
+            {logHoverPaused && (
+              <span
+                className="text-[10px] uppercase tracking-wide text-d2-gold/90 border border-d2-gold/50 rounded px-2 py-0.5 bg-black/30"
+                data-testid="log-hover-paused-hint"
+                aria-live="polite"
+              >
+                {t('logHoverPausedHint', { defaultValue: '日志已暂停滚动' })}
+              </span>
+            )}
             <Button
               variant="secondary"
               className="min-h-[40px] px-3 text-sm"
@@ -283,7 +297,7 @@ export function CombatScreen() {
           </Panel>
         </div>
 
-        <CombatLog entries={recentLog} />
+        <CombatLog entries={recentLog} onHoverPausedChange={setLogHoverPaused} />
       </div>
       {nextWaveCountingDown && !runVictory && !runDefeat && (
         <div
@@ -439,8 +453,15 @@ function UnitCard({
 }
 
 /** Combat log: virtualized-ish (DOM only renders last MAX_LOG via slice in parent),
- *  auto-scrolls to bottom unless the user is hovering or has scrolled away. */
-function CombatLog({ entries }: { entries: CombatLogEntry[] }) {
+ *  auto-scrolls to bottom unless the user is hovering or has scrolled away.
+ *  Bug #4: pause hint is now reported up to the combat header. */
+function CombatLog({
+  entries,
+  onHoverPausedChange,
+}: {
+  entries: CombatLogEntry[];
+  onHoverPausedChange?: (paused: boolean) => void;
+}) {
   const { t } = useTranslation('combat');
   const logContainerRef = useRef<HTMLDivElement>(null);
   const [paused, setPaused] = useState(false);
@@ -451,6 +472,10 @@ function CombatLog({ entries }: { entries: CombatLogEntry[] }) {
     const el = logContainerRef.current;
     if (el) el.scrollTop = el.scrollHeight;
   }, [entries.length, paused, pinned]);
+
+  useEffect(() => {
+    onHoverPausedChange?.(paused);
+  }, [paused, onHoverPausedChange]);
 
   const onScroll = () => {
     const el = logContainerRef.current;
@@ -491,11 +516,6 @@ function CombatLog({ entries }: { entries: CombatLogEntry[] }) {
           ))
         )}
       </div>
-      {paused && (
-        <p className="text-[10px] text-d2-white/50 mt-1 text-right">
-          {t('logPaused', { defaultValue: '已暂停滚动 (移开光标继续)' })}
-        </p>
-      )}
     </Panel>
   );
 }

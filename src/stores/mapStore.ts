@@ -10,12 +10,22 @@ interface QuestProgress {
   id: string;
   status: 'locked' | 'available' | 'inProgress' | 'completed';
   objectives: Record<string, boolean>;
+  /** Bug #9 — set true when the player claims rewards for a completed quest. */
+  rewardClaimed?: boolean;
 }
 
 interface MapState {
   currentAct: number;
   currentSubAreaId: string | null;
   discoveredAreas: string[];
+  /**
+   * Bug #5 — sub-areas the player has cleared (main quest done OR boss
+   * defeated). Engine should call `markCleared(subAreaId)` when those
+   * triggers fire; until that wires up, the run-victory flow can also
+   * call it directly. UI uses this set to render the "✓ 已通过" badge
+   * vs the "未通过" accent border.
+   */
+  clearedSubAreas: string[];
   questProgress: Record<string, QuestProgress>;
   
   // Actions
@@ -23,6 +33,11 @@ interface MapState {
   setCurrentLocation: (actNumber: number, subAreaId: string) => void;
   updateQuestProgress: (questId: string, progress: Partial<QuestProgress>) => void;
   completeQuest: (questId: string) => void;
+  /** Bug #9 — flip the rewardClaimed flag for a completed quest. */
+  markQuestRewardClaimed: (questId: string) => void;
+  /** Bug #5 — record a sub-area as cleared. Idempotent. */
+  markCleared: (subAreaId: string) => void;
+  isCleared: (subAreaId: string) => boolean;
   /** Convenience selector for the act-unlock engine predicate. */
   isActUnlocked: (actNumber: number) => boolean;
   /** Sub-area unlock — currently follows act-level gating. */
@@ -34,6 +49,7 @@ const initialState = {
   currentAct: 1,
   currentSubAreaId: null,
   discoveredAreas: [] as string[],
+  clearedSubAreas: [] as string[],
   questProgress: {} as Record<string, QuestProgress>
 };
 
@@ -82,6 +98,24 @@ export const useMapStore = create<MapState>((set, get) => ({
       }
     };
   }); },
+
+  markQuestRewardClaimed: (questId) => { set((state) => {
+    const existing = state.questProgress[questId];
+    if (!existing) return state;
+    return {
+      questProgress: {
+        ...state.questProgress,
+        [questId]: { ...existing, rewardClaimed: true }
+      }
+    };
+  }); },
+
+  markCleared: (subAreaId) => { set((state) => {
+    if (state.clearedSubAreas.includes(subAreaId)) return state;
+    return { clearedSubAreas: [...state.clearedSubAreas, subAreaId] };
+  }); },
+
+  isCleared: (subAreaId) => get().clearedSubAreas.includes(subAreaId),
   
   isActUnlocked: (actNumber) => {
     const state = get();

@@ -15,10 +15,11 @@
  * No business logic in this component — quest definitions and progress are
  * pulled via loaders/stores; rendering only.
  */
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Panel, ScreenShell, Tabs } from '@/ui';
+import { Button, Panel, ScreenShell, Tabs } from '@/ui';
 import { useMapStore } from '@/stores';
+import { claimQuestReward, canClaim } from './claimReward';
 import {
   loadQuestsByAct,
   questI18nKey,
@@ -114,10 +115,13 @@ function resolveStatus(
 }
 
 function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) {
-  const { t } = useTranslation('quests');
+  const { t } = useTranslation(['quests', 'common']);
   const slug = questI18nKey(quest.id);
   const name = t(`byId.${slug}.name`, { defaultValue: quest.name });
   const desc = t(`byId.${slug}.desc`, { defaultValue: quest.description });
+  const rewardClaimed = useMapStore((s) => s.questProgress[quest.id]?.rewardClaimed ?? false);
+  const [, force] = useState(0);
+  const claimable = status === 'completed' && !rewardClaimed && canClaim(quest.id);
 
   return (
     <Panel
@@ -156,7 +160,7 @@ function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) 
         {quest.rewards && Object.keys(quest.rewards).length > 0 && (
           <>
             <div className="text-d2-white/60 mb-1">{t('rewards')}</div>
-            <ul className="flex flex-wrap gap-1.5">
+            <ul className="flex flex-wrap gap-1.5 mb-2">
               {Object.entries(quest.rewards).map(([k, v]) => (
                 <li
                   key={k}
@@ -166,6 +170,21 @@ function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) 
                 </li>
               ))}
             </ul>
+            {status === 'completed' && (
+              <Button
+                variant="primary"
+                className="min-h-[40px] text-xs"
+                disabled={!claimable}
+                onClick={() => {
+                  if (claimQuestReward(quest.id) === 'ok') force((n) => n + 1);
+                }}
+                data-testid={`quest-claim-${quest.id}`}
+              >
+                {rewardClaimed
+                  ? t('rewardClaimed', { defaultValue: '已领取' })
+                  : t('claimReward', { defaultValue: '领取奖励' })}
+              </Button>
+            )}
           </>
         )}
       </div>

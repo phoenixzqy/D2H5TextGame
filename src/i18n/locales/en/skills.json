@@ -11,7 +11,9 @@
   "slotN": "Slot {{n}}",
   "tab": {
     "combat": "Combat",
-    "passive": "Passive"
+    "passive": "Passive",
+    "tree": "Skill Tree",
+    "active": "Active Skills"
   },
   "trigger": {
     "active": "Active",
