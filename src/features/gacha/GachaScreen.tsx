@@ -81,17 +81,19 @@ export function GachaScreen() {
               </div>
             </div>
           </div>
-          {/* Dev helper: grant currency for local testing. */}
-          <div className="mt-3 text-right">
-            <Button
-              variant="secondary"
-              className="min-h-[40px] text-xs"
-              onClick={() => { addCurrency(COST_TEN); }}
-              data-testid="gacha-add-currency"
-            >
-              {t('grant', { defaultValue: '+ 90 💠 (dev)' })}
-            </Button>
-          </div>
+          {/* Dev helper: grant currency for local testing. Hidden in prod (Bug #15). */}
+          {import.meta.env.DEV && (
+            <div className="mt-3 text-right">
+              <Button
+                variant="secondary"
+                className="min-h-[40px] text-xs"
+                onClick={() => { addCurrency(COST_TEN); }}
+                data-testid="gacha-add-currency"
+              >
+                {t('grant', { defaultValue: '+ 90 💠 (dev)' })}
+              </Button>
+            </div>
+          )}
         </Panel>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
