@@ -29,31 +29,27 @@ const RESIST_KEYS_LOCAL: readonly (keyof Resistances)[] = [
 ];
 
 function singleStats(): Record<ComparableStatKey, number> {
-  return STAT_KEYS.reduce<Record<ComparableStatKey, number>>((acc, k) => {
-    acc[k] = 10;
-    return acc;
-  }, {});
+  const stats: Partial<Record<ComparableStatKey, number>> = {};
+  for (const key of STAT_KEYS) stats[key] = 10;
+  return stats as Record<ComparableStatKey, number>;
 }
 
 function singleResists(): Record<keyof Resistances, number> {
-  return RESIST_KEYS_LOCAL.reduce<Record<keyof Resistances, number>>((acc, k) => {
-    acc[k] = 0;
-    return acc;
-  }, {});
+  const resists: Partial<Record<keyof Resistances, number>> = {};
+  for (const key of RESIST_KEYS_LOCAL) resists[key] = 0;
+  return resists as Record<keyof Resistances, number>;
 }
 
 function compareStats(): Record<ComparableStatKey, StatDelta> {
-  return STAT_KEYS.reduce<Record<ComparableStatKey, StatDelta>>((acc, k) => {
-    acc[k] = { current: 10, candidate: 12, delta: 2 };
-    return acc;
-  }, {});
+  const stats: Partial<Record<ComparableStatKey, StatDelta>> = {};
+  for (const key of STAT_KEYS) stats[key] = { current: 10, candidate: 12, delta: 2 };
+  return stats as Record<ComparableStatKey, StatDelta>;
 }
 
 function compareResists(): Record<keyof Resistances, StatDelta> {
-  return RESIST_KEYS_LOCAL.reduce<Record<keyof Resistances, StatDelta>>((acc, k) => {
-    acc[k] = { current: 0, candidate: 0, delta: 0 };
-    return acc;
-  }, {});
+  const resists: Partial<Record<keyof Resistances, StatDelta>> = {};
+  for (const key of RESIST_KEYS_LOCAL) resists[key] = { current: 0, candidate: 0, delta: 0 };
+  return resists as Record<keyof Resistances, StatDelta>;
 }
 
 const candidate: Item = {

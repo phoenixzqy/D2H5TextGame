@@ -136,7 +136,7 @@
     "i18nKey": "mana.flat"
   },
   {
-    "id": "affix.precise.crit_chance",
+    "id": "affix.precise.crit-chance",
     "kind": "prefix",
     "appliesTo": [
       "weapon",
@@ -170,7 +170,7 @@
     "i18nKey": "critChance.flat"
   },
   {
-    "id": "affix.savage.crit_damage",
+    "id": "affix.savage.crit-damage",
     "kind": "prefix",
     "appliesTo": [
       "weapon",
@@ -204,7 +204,7 @@
     "i18nKey": "critDamage.flat"
   },
   {
-    "id": "affix.nimble.phys_dodge",
+    "id": "affix.nimble.phys-dodge",
     "kind": "prefix",
     "appliesTo": [
       "armor",
@@ -239,7 +239,7 @@
     "i18nKey": "physDodge.flat"
   },
   {
-    "id": "affix.ethereal.magic_dodge",
+    "id": "affix.ethereal.magic-dodge",
     "kind": "prefix",
     "appliesTo": [
       "armor",

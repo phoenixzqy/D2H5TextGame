@@ -72,6 +72,20 @@ function add(mods: MutableEquipmentMods, key: keyof EquipmentMods, value: number
   mods[key] += value;
 }
 
+
+const CORE_STAT_KEYS = new Set<keyof CoreStats>(['strength', 'dexterity', 'vitality', 'energy']);
+const STAT_MOD_KEYS = new Set<keyof EquipmentMods>(['life','mana','attack','defense','attackSpeed','critChance','critDamage','physDodge','magicDodge','magicFind','goldFind']);
+const RESIST_TO_MOD_KEY: Readonly<Record<keyof Resistances | 'all', keyof EquipmentMods>> = { fire: 'fireRes', cold: 'coldRes', lightning: 'lightningRes', poison: 'poisonRes', arcane: 'arcaneRes', physical: 'physicalRes', all: 'allRes' };
+
+function addLegacyAffixValue(mods: MutableEquipmentMods, path: string, value: number): void {
+  const [group, stat] = path.split('.');
+  if (!group || !stat) return;
+  if (group === 'coreStats' && CORE_STAT_KEYS.has(stat as keyof CoreStats)) { add(mods, stat as keyof CoreStats, value); return; }
+  if (group === 'resistances' && stat in RESIST_TO_MOD_KEY) { add(mods, RESIST_TO_MOD_KEY[stat as keyof Resistances | 'all'], value); return; }
+  if (group === 'statMods' && STAT_MOD_KEYS.has(stat as keyof EquipmentMods)) { add(mods, stat as keyof EquipmentMods, value); return; }
+  if (group === 'damageBonus' && stat === 'value') add(mods, 'attack', value);
+}
+
 function compact(mods: MutableEquipmentMods): EquipmentMods {
   const out: Partial<MutableEquipmentMods> = {};
   for (const [key, value] of Object.entries(mods) as [keyof EquipmentMods, number][]) {
@@ -99,6 +113,10 @@ export function aggregateEquipmentMods(equipped: Readonly<Record<string, Item | 
     add(mods, 'fireRes', itemStats.fireRes); add(mods, 'coldRes', itemStats.coldRes);
     add(mods, 'lightningRes', itemStats.lightningRes); add(mods, 'poisonRes', itemStats.poisonRes);
     add(mods, 'arcaneRes', itemStats.arcaneRes); add(mods, 'physicalRes', itemStats.physicalRes);
+    for (const affix of item.affixes ?? []) {
+      if (!('values' in affix)) continue;
+      for (const [path, value] of affix.values.entries()) addLegacyAffixValue(mods, path, value);
+    }
   }
 
   return compact(mods);

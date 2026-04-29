@@ -178,16 +178,16 @@ describe('runMigrations', () => {
     expect(out.map.discoveredAreas).toEqual(['rogue-camp']);
     expect(out.meta.settings.locale).toBe('en');
     expect(out.meta.gachaState.pityCounter).toBe(7);
-    expect(out.inventory.equipped.weapon).toEqual({ id: 'w1' });
+    expect(out.inventory.equipped.weapon).toMatchObject({ id: 'w1', affixes: [], baseRolls: {} });
     expect(out.inventory.currencies).toEqual({});
     expect(out.map.clearedSubAreas).toEqual([]);
     expect(out.mercs.mercEquipment).toEqual({});
     expect(out.mercs.mercProgress).toEqual({});
   });
 
-  it('declares v4 as current and registers the v4 migration', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(4);
-    expect(MIGRATIONS[4]).toBeDefined();
+  it('declares v5 as current and registers the v5 migration', () => {
+    expect(CURRENT_SAVE_VERSION).toBe(5);
+    expect(MIGRATIONS[5]).toBeDefined();
   });
 
   it('migrates v2 → v3 by folding currencies.gold into rune-shard', () => {
@@ -227,7 +227,7 @@ describe('runMigrations', () => {
     };
 
     const out = runMigrations(v3, CURRENT_SAVE_VERSION);
-    expect(out.version).toBe(4);
+    expect(out.version).toBe(CURRENT_SAVE_VERSION);
     expect(out.map.clearedSubAreas).toEqual([]);
     expect(out.map.questProgress['q-den']?.rewardClaimed).toBe(false);
     expect(out.mercs.mercEquipment).toEqual({});
@@ -263,7 +263,7 @@ describe('runMigrations', () => {
     };
 
     const out = runMigrations(v1raw, CURRENT_SAVE_VERSION);
-    expect(out.inventory.equipped.head).toEqual({ id: 'h1' });
+    expect(out.inventory.equipped.head).toMatchObject({ id: 'h1', affixes: [], baseRolls: {} });
     expect(out.mercs.fieldedMercId).toBeNull();
   });
 });

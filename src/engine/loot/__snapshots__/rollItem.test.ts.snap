@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`rollItem > is deterministic and snapshots the same seed 1`] = `
+{
+  "affixes": [
+    {
+      "id": "affix.crit",
+      "rolledValue": 2,
+      "tier": 0,
+    },
+    {
+      "id": "affix.mana",
+      "rolledValue": 10,
+      "tier": 0,
+    },
+  ],
+  "baseId": "items/base/wp1h-short-sword",
+  "baseRolls": {
+    "attack": 8,
+  },
+  "equipped": false,
+  "generatedName": {},
+  "id": "it-8mkob-1",
+  "identified": true,
+  "ilvl": 12,
+  "level": 12,
+  "rarity": "magic",
+}
+`;
