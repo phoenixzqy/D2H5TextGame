@@ -48,6 +48,16 @@ export const CHARACTER_CLASSES: readonly CharacterClass[] = [
   'assassin',
 ] as const;
 
+const STARTER_COMBO: Record<CharacterClass, readonly string[]> = {
+  barbarian: ['barbarian.bash'],
+  paladin: ['paladin.holy_fire', 'paladin.zeal'],
+  sorceress: ['sorceress.frost_nova', 'sorceress.ice_bolt'],
+  amazon: ['amazon.magic_arrow'],
+  necromancer: ['necromancer.raise_skeleton'],
+  druid: ['druid.summon_dire_wolf', 'druid.firestorm'],
+  assassin: ['assassin.shock_web']
+};
+
 export function createMockPlayer(name: string, cls: CharacterClass): Player {
   const stats = CLASS_STATS[cls];
   const coreStats: CoreStats = {
@@ -57,13 +67,6 @@ export function createMockPlayer(name: string, cls: CharacterClass): Player {
     energy: stats.energy,
   };
   const derivedStats = deriveStats(coreStats, 1);
-
-  // Per-class default kit so battles aren't "basic-attack only" out of the box.
-  // The combat engine resolves skills via the registry (`comboOrder` only).
-  // We intentionally leave `skills` empty here; full `SkillDef` records are
-  // produced by the skill catalog loader, not by this mock factory.
-  const comboOrder: readonly string[] =
-    cls === 'necromancer' ? ['necromancer.raise_skeleton'] : [];
 
   return {
     id: `player-${String(Date.now())}`,
@@ -76,7 +79,8 @@ export function createMockPlayer(name: string, cls: CharacterClass): Player {
     statusEffects: [],
     cooldowns: [],
     skills: [],
-    comboOrder,
+    comboOrder: STARTER_COMBO[cls],
+    skillLevels: Object.fromEntries(STARTER_COMBO[cls].map((id) => [id, 1])) as Readonly<Record<string, number>>,
     alive: true,
     turnOrder: 0,
     class: cls,
