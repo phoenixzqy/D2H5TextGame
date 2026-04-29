@@ -313,8 +313,11 @@ export function startSubAreaRun(opts: {
     carryPlayerTeam: playerTeam
   };
 
-  // Reset per-run aggregate state in the store.
+  // Reset per-run aggregate state. Bug #1 (P0): also clear sticky runVictory/runDefeat/subAreaRunId so a second run after a finished one renders cleanly.
   combat.resetRunRewards();
+  if (combat.runVictory || combat.runDefeat || combat.subAreaRunId !== null) {
+    useCombatStore.setState({ runVictory: false, runDefeat: false, subAreaRunId: null });
+  }
 
   playWave(0);
   return { runId: plan.subAreaId, totalWaves: plan.waves.length };

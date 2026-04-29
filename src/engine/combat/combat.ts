@@ -289,6 +289,31 @@ function handleDeath(state: State, dead: CombatUnit): void {
     }
   }
 
+  // Bug #3 (P0) - when a summon dies, refund the parent skill's mana cost
+  // on the owner so they can re-cast on their next action ("骷髅兵死后再
+  // 触发技能重新召唤"). Without this, a Necromancer with raise_skeleton
+  // (mana cost 15, no cooldown, no in-combat regen) hits a hard mana wall
+  // at 5 lifetime summons; once their mana drains, dead skeletons are
+  // never replaced.
+  if (inferKind(dead) === 'summon' && dead.summonOwnerId) {
+    const owner = state.units.get(dead.summonOwnerId);
+    if (owner && alive(owner)) {
+      const summonSkill = owner.skillOrder
+        .map((id) => getSkill(id))
+        .find((s): s is RegisteredSkill =>
+          !!s && s.effects.some((e): e is SummonEffect => e.kind === 'summon')
+        );
+      if (summonSkill) {
+        const refundedMana = Math.min(
+          owner.stats.manaMax,
+          owner.mana + summonSkill.manaCost
+        );
+        state.units.set(owner.id, { ...owner, mana: refundedMana });
+        const cdMap = state.cooldownExpiresAt.get(owner.id);
+        if (cdMap) cdMap.delete(summonSkill.id);
+      }
+    }
+  }
   // Orb drops — only enemy heroes/monsters drop, not summons.
   if (dead.side === 'enemy' && inferKind(dead) !== 'summon') {
     const orbs = rollOrbDrops(dead.tier, state.rng);
