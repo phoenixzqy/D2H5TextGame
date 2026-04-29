@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, Panel, ScreenShell, GameImage, getZoneArtUrl, tDataKey } from '@/ui';
 import { useMapStore, useMetaStore } from '@/stores';
+import { resolveSubArea } from '@/stores/subAreaResolver';
 import { IdleTickerStrip } from '@/features/idle/IdleTickerStrip';
 
 interface SubArea {
@@ -92,6 +93,20 @@ export function MapScreen() {
     setLocation(act, subId);
     setIdleTarget(subId);
   };
+  const stopFarming = () => { setIdleTarget(undefined); };
+
+  /**
+   * Bugs #3 & #5 — `clearedSubAreas` stores canonical plan ids
+   * (e.g. `areas/act1-blood-moor`) emitted by the engine, while this
+   * screen's UI ids are aliases (e.g. `a1-blood-moor`). Resolve through
+   * subAreaResolver so the cleared-badge + idle gate compare apples to
+   * apples.
+   */
+  const isSubAreaCleared = (act: number, alias: string): boolean => {
+    if (clearedSubAreas.includes(alias)) return true;
+    const def = resolveSubArea(act, alias);
+    return def !== null && clearedSubAreas.includes(def.id);
+  };
 
   const idleAreaName = idleTarget
     ? t(`subArea.${idleTarget}`)
@@ -157,7 +172,7 @@ export function MapScreen() {
                 <ul className="border-t border-d2-border divide-y divide-d2-border/50">
                   {act.subAreas.map((sa) => {
                     const unlocked = actUnlocked;
-                    const cleared = clearedSubAreas.includes(sa.id);
+                    const cleared = isSubAreaCleared(act.number, sa.id);
                     const isIdleHere = idleTarget === sa.id;
                     const rowCls = !unlocked
                       ? ''
@@ -214,16 +229,48 @@ export function MapScreen() {
                           <span className="text-xs text-d2-white/50">🔒 {t('locked')}</span>
                         ) : (
                           <div className="flex gap-2">
-                            <Button
-                              variant="secondary"
-                              className="min-h-[40px] text-sm"
-                              onClick={() => { farmHere(act.number, sa.id); }}
-                            >
-                              {t('farmHere')}
-                            </Button>
+                            {isIdleHere ? (
+                              // Bug #4 — give the row a clearly-visible
+                              // "Stop Farming" toggle so the player can
+                              // halt idle without leaving the page.
+                              <Button
+                                variant="danger"
+                                className="min-h-[44px] min-w-[44px] text-sm"
+                                onClick={stopFarming}
+                                data-testid={`stop-farming-${sa.id}`}
+                                aria-pressed={true}
+                              >
+                                ⏹ {t('stopFarming')}
+                              </Button>
+                            ) : !cleared ? (
+                              // Bug #5 — idle is unlocked only after the
+                              // first clear. Render disabled-with-lock so
+                              // layout stays stable.
+                              <Button
+                                variant="secondary"
+                                className="min-h-[44px] min-w-[44px] text-sm opacity-60"
+                                onClick={() => { /* disabled */ }}
+                                disabled
+                                aria-disabled={true}
+                                title={t('farmLockedHint')}
+                                aria-label={t('farmLockedHint')}
+                                data-testid={`farm-locked-${sa.id}`}
+                              >
+                                🔒 {t('farmHere')}
+                              </Button>
+                            ) : (
+                              <Button
+                                variant="secondary"
+                                className="min-h-[44px] min-w-[44px] text-sm"
+                                onClick={() => { farmHere(act.number, sa.id); }}
+                                data-testid={`farm-here-${sa.id}`}
+                              >
+                                {t('farmHere')}
+                              </Button>
+                            )}
                             <Button
                               variant="primary"
-                              className="min-h-[40px] text-sm"
+                              className="min-h-[44px] min-w-[44px] text-sm"
                               onClick={() => { enterArea(act.number, sa.id); }}
                             >
                               {t('enter')}

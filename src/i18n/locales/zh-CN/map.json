@@ -5,6 +5,8 @@
   "locked": "锁定",
   "unlocked": "已解锁",
   "farmHere": "在此挂机",
+  "stopFarming": "停止挂机",
+  "farmLockedHint": "请先通关此区域以解锁挂机",
   "enter": "进入",
   "cleared": "已通过",
   "uncleared": "未通过",

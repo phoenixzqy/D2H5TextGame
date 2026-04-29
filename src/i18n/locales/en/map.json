@@ -5,6 +5,8 @@
   "locked": "Locked",
   "unlocked": "Unlocked",
   "farmHere": "Farm Here",
+  "stopFarming": "Stop Farming",
+  "farmLockedHint": "Clear this area first to enable idle farming",
   "enter": "Enter",
   "cleared": "Cleared",
   "uncleared": "Not cleared",
