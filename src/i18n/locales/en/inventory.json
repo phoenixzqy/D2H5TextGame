@@ -5,10 +5,12 @@
   "equipment": "Equipment",
   "equip": "Equip",
   "unequip": "Unequip",
-  "sell": "Sell",
+  "discard": "Discard",
   "salvage": "Salvage",
   "transfer": "Transfer",
   "details": "Details",
+  "close": "Close",
+  "cancel": "Cancel",
   "items": "Items",
   "selectItem": "Select an item",
   "emptyBackpack": "Backpack is empty",
@@ -31,7 +33,45 @@
   "toast": {
     "equipped": "Equipped {{name}}",
     "equipFailed": "Cannot equip {{name}}",
-    "unequipped": "Unequipped {{name}}"
+    "unequipped": "Unequipped {{name}}",
+    "discarded": "Discarded {{name}}",
+    "bulkDiscarded": "Discarded {{count}} items"
+  },
+  "detail": {
+    "typeLine": "{{type}} · {{slot}} · iLvl {{ilvl}}",
+    "typeLineNoSlot": "{{type}} · iLvl {{ilvl}}",
+    "required": "Required",
+    "reqLevel": "Lvl {{value}}",
+    "reqStr": "Str {{value}}",
+    "reqDex": "Dex {{value}}",
+    "reqVit": "Vit {{value}}",
+    "reqEng": "Eng {{value}}",
+    "baseStats": "Base Stats",
+    "damage": "Damage {{min}}–{{max}}",
+    "defense": "Defense {{value}}",
+    "affixes": "Affixes",
+    "sockets": "Sockets",
+    "emptySocket": "[ ]",
+    "filledSocket": "[{{name}}]",
+    "setBonus": "Set Bonus",
+    "uniqueFlavor": "Legendary"
+  },
+  "discardConfirm": {
+    "title": "Confirm Discard",
+    "body": "Discard {{name}}? This cannot be undone."
+  },
+  "bulk": {
+    "menu": "Bulk",
+    "discardNormal": "Discard all Normal",
+    "discardMagic": "Discard all Magic",
+    "discardRare": "Discard all Rare",
+    "discardBelowTier": "Discard all below equipped tier",
+    "noMatches": "No matching items",
+    "confirmTitle": "Confirm Bulk Discard",
+    "confirmBody": "Will discard {{count}} items. This cannot be undone.",
+    "exclusionNote": "Unique and set items are always preserved.",
+    "andMore": "…and {{count}} more",
+    "confirmAction": "Confirm Discard"
   },
   "equipFlow": {
     "picker": {

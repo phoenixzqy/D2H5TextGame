@@ -20,3 +20,9 @@ Affix-rolls deferred follow-ups:
 2. Expand random affix pool toward the 60-prefix/60-suffix endgame target in docs/design/items-spec.md.
 3. Add dedicated visual polish for rarity-tier affix colors beyond base rarity coloring.
 
+Inventory UX overhaul follow-ups:
+1. Inventory "discard" is permanent destruction (the game has no currency yet).
+   Replace with a salvage → materials flow once crafting ships
+   (TODO marker in src/features/inventory/InventoryScreen.tsx and
+   src/stores/inventoryStore.ts).
+
