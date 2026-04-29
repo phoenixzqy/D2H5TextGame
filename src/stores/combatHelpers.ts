@@ -13,6 +13,8 @@ import { useCombatStore, type CombatLogEntry } from './combatStore';
 import { useInventoryStore } from './inventoryStore';
 import { useMapStore } from './mapStore';
 import { usePlayerStore } from './playerStore';
+import { useMercStore } from './mercStore';
+import { mercToCombatUnit } from './mercToCombatUnit';
 import { createRng } from '@/engine/rng';
 
 /**
@@ -288,6 +290,10 @@ export function startSimpleBattle(enemyLevel = 1, enemyCount = 3) {
   }
 
   const playerUnit = playerToCombatUnit(playerState.player);
+  const fieldedMerc = useMercStore.getState().getFieldedMerc();
+  const playerTeam: CombatUnit[] = fieldedMerc
+    ? [playerUnit, mercToCombatUnit(fieldedMerc)]
+    : [playerUnit];
   const enemies: CombatUnit[] = [];
 
   for (let i = 0; i < enemyCount; i++) {
@@ -298,7 +304,7 @@ export function startSimpleBattle(enemyLevel = 1, enemyCount = 3) {
   const seed = Date.now();
   const { events, result } = runBattleRecorded({
     seed,
-    playerTeam: [playerUnit],
+    playerTeam,
     enemyTeam: enemies
   });
 
@@ -327,7 +333,7 @@ export function startSimpleBattle(enemyLevel = 1, enemyCount = 3) {
 
   // Hand the recorded battle to the store; UI will tick playback.
   combatState.setRecordedBattle({
-    initialPlayerTeam: [playerUnit],
+    initialPlayerTeam: playerTeam,
     initialEnemyTeam: enemies,
     events,
     unitNameMap: unitMap,
