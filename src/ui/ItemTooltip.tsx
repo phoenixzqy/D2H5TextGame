@@ -76,9 +76,18 @@ export function ItemTooltip({ item, className = '' }: ItemTooltipProps): JSX.Ele
       : t('tooltip.subtitleNoSlot', { type: typeLabel })
     : null;
 
-  const isWeapon = base?.type === 'weapon' && base.baseDamage;
-  const isArmor =
-    base?.type === 'armor' && typeof base.baseDefense === 'number' && base.baseDefense > 0;
+  // Pre-compute damage/defense lines so JSX doesn't need ?. dance.
+  const damageLine =
+    base?.type === 'weapon' && base.baseDamage
+      ? t('tooltip.damage', {
+          min: base.baseDamage.min,
+          max: base.baseDamage.max
+        })
+      : null;
+  const defenseLine =
+    base?.type === 'armor' && typeof base.baseDefense === 'number' && base.baseDefense > 0
+      ? t('tooltip.defense', { value: base.baseDefense })
+      : null;
 
   const reqRows: string[] = [];
   if (base) {
@@ -137,17 +146,14 @@ export function ItemTooltip({ item, className = '' }: ItemTooltipProps): JSX.Ele
       </div>
 
       {/* (3) Damage / Defense */}
-      {isWeapon && base?.baseDamage && (
+      {damageLine !== null && (
         <div className="text-center text-d2-white text-xs mb-1" data-testid="item-tooltip-damage">
-          {t('tooltip.damage', {
-            min: base.baseDamage.min,
-            max: base.baseDamage.max
-          })}
+          {damageLine}
         </div>
       )}
-      {isArmor && (
+      {defenseLine !== null && (
         <div className="text-center text-d2-white text-xs mb-1" data-testid="item-tooltip-defense">
-          {t('tooltip.defense', { value: base?.baseDefense })}
+          {defenseLine}
         </div>
       )}
 
