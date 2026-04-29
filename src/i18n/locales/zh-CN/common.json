@@ -73,5 +73,15 @@
   "skills.title": "技能",
   "gacha.title": "招募",
   "mercenary.title": "雇佣兵",
-  "combat.title": "战斗"
+  "combat.title": "战斗",
+  "offlineBonus": {
+    "title": "离线奖励 +{{pct}}% 经验",
+    "remaining": "剩余 {{minutes}} 分钟",
+    "chipLabel": "+{{pct}}% 经验加成，剩余 {{minutes}} 分钟"
+  },
+  "idleTicker": {
+    "summary": "每 {{seconds}} 秒：+{{xp}} 经验，+{{drops}} 战利品",
+    "lastKill": "最近击杀：{{name}}",
+    "idle": "暂未触发挂机收益"
+  }
 }

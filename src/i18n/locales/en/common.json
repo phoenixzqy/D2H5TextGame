@@ -73,5 +73,15 @@
   "skills.title": "Skills",
   "gacha.title": "Recruit",
   "mercenary.title": "Mercenaries",
-  "combat.title": "Combat"
+  "combat.title": "Combat",
+  "offlineBonus": {
+    "title": "+{{pct}}% XP boost",
+    "remaining": "next {{minutes}} min",
+    "chipLabel": "+{{pct}}% XP for {{minutes}} min"
+  },
+  "idleTicker": {
+    "summary": "every {{seconds}}s: +{{xp}} XP, +{{drops}} drops",
+    "lastKill": "last kill: {{name}}",
+    "idle": "no idle yields yet"
+  }
 }

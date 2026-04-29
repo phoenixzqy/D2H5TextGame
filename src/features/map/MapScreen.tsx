@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, Panel, ScreenShell, GameImage, getZoneArtUrl } from '@/ui';
 import { useMapStore, useMetaStore } from '@/stores';
+import { IdleTickerStrip } from '@/features/idle/IdleTickerStrip';
 
 interface SubArea {
   id: string;
@@ -92,7 +93,7 @@ export function MapScreen() {
 
   return (
     <ScreenShell testId="map-screen" title={t('worldMap')}>
-      <div className="space-y-3 max-w-3xl mx-auto">
+      <div className="space-y-3 max-w-3xl mx-auto pb-12">
         {ACTS.map((act) => {
           const isOpen = openAct === act.number;
           const actUnlocked = isActUnlocked(act.number);
@@ -175,6 +176,7 @@ export function MapScreen() {
           );
         })}
       </div>
+      <IdleTickerStrip />
     </ScreenShell>
   );
 }

@@ -3,6 +3,7 @@
  * Bridge between engine and stores for playability
  */
 
+import i18n from '@/i18n';
 import { runBattleRecorded, type BattleEvent } from '@/engine/combat/combat';
 import type { CombatUnit, MonsterTier } from '@/engine/combat/types';
 import { inferKind } from '@/engine/combat/types';
@@ -22,6 +23,7 @@ import { loadAwardPools } from '@/data/loaders/loot';
 import { monsters as monsterList } from '@/data/index';
 import { resolveSubArea } from './subAreaResolver';
 import { useCombatStore, type CombatLogEntry } from './combatStore';
+import { eventToLocalizedLogEntry } from './eventToLogI18n';
 import { useInventoryStore } from './inventoryStore';
 import { useMapStore } from './mapStore';
 import { usePlayerStore } from './playerStore';
@@ -76,121 +78,70 @@ function pickFallbackArchetypeId(act: number): string {
 }
 
 /**
- * Convert battle events to combat log entries
+ * Convert battle events to combat log entries.
+ *
+ * Bug #11 — all human-readable strings now go through i18next so the
+ * combat log honours the active locale (zh-CN by default). Monster
+ * names should be resolved via {@link resolveMonsterDisplayName} when
+ * the unit map is built.
+ *
  * @param event - The battle event to convert
- * @param unitMap - Optional map of unit IDs to names for display
+ * @param unitMap - Optional map of unit IDs to (already-localized) display names.
  */
 export function battleEventToLogEntry(
   event: BattleEvent,
   unitMap?: ReadonlyMap<string, string>
 ): Omit<CombatLogEntry, 'id' | 'timestamp'> | null {
-  const getName = (id: string): string => unitMap?.get(id) ?? id;
+  return eventToLocalizedLogEntry(event, unitMap);
+}
 
-  switch (event.kind) {
-    case 'turn-start':
-      return {
-        type: 'system',
-        actorId: 'system',
-        actorName: 'System',
-        message: `Turn ${String(event.turn)} starts`
-      };
-    case 'action': {
-      const actorName = getName(event.actor);
-      return {
-        type: 'skill',
-        actorId: event.actor,
-        actorName,
-        message: `${actorName} uses ${event.skillId ?? 'basic attack'}`
-      };
-    }
-    case 'damage': {
-      const sourceName = getName(event.source);
-      const targetName = getName(event.target);
-      return {
-        type: 'damage',
-        actorId: event.source,
-        actorName: sourceName,
-        targetId: event.target,
-        targetName,
-        message: `${sourceName} deals ${String(event.amount)} ${event.damageType} damage to ${targetName}${event.crit ? ' (CRIT!)' : ''}${event.dodged ? ' (DODGED)' : ''}`,
-        value: event.amount
-      };
-    }
-    case 'death': {
-      const targetName = getName(event.target);
-      return {
-        type: 'death',
-        actorId: event.target,
-        actorName: targetName,
-        message: `${targetName} has died`
-      };
-    }
-    case 'heal': {
-      const targetName = getName(event.target);
-      return {
-        type: 'heal',
-        actorId: event.target,
-        actorName: targetName,
-        message: `${targetName} heals for ${String(event.amount)}`,
-        value: event.amount
-      };
-    }
-    case 'buff': {
-      const targetName = getName(event.target);
-      return {
-        type: 'buff',
-        actorId: event.target,
-        actorName: targetName,
-        message: `${targetName} gains ${event.buffId}`
-      };
-    }
-    case 'status': {
-      const targetName = getName(event.target);
-      return {
-        type: 'debuff',
-        actorId: event.target,
-        actorName: targetName,
-        message: `${targetName} is afflicted with ${event.statusId}`
-      };
-    }
-    case 'stunned': {
-      const targetName = getName(event.target);
-      return {
-        type: 'system',
-        actorId: event.target,
-        actorName: targetName,
-        message: `${targetName} is stunned and cannot act`
-      };
-    }
-    case 'dot': {
-      const targetName = getName(event.target);
-      return {
-        type: 'damage',
-        actorId: event.target,
-        actorName: targetName,
-        message: `${targetName} takes ${String(event.amount)} DoT damage`,
-        value: event.amount
-      };
-    }
-    case 'summon': {
-      const ownerName = getName(event.owner);
-      return {
-        type: 'system',
-        actorId: event.owner,
-        actorName: ownerName,
-        message: `${ownerName} summons ${event.unit.name}`
-      };
-    }
-    case 'end':
-      return {
-        type: 'system',
-        actorId: 'system',
-        actorName: 'System',
-        message: event.winner ? `${event.winner} side wins!` : 'Battle ended in a draw'
-      };
-    default:
-      return null;
-  }
+// ---------------------------------------------------------------------------
+// Monster display-name localization (Bug #11)
+// ---------------------------------------------------------------------------
+
+/**
+ * Derive the i18n key (under the `monsters:` namespace) for a monster
+ * archetype id like `monsters/act1.fallen` → `fallen`, or
+ * `monsters/act1.dark-stalker` → `darkStalker`. Mirrors the camelCase
+ * convention used by `i18n/locales/{zh-CN,en}/monsters.json`.
+ *
+ * Engine `MonsterDef` does not currently carry a `nameKey`; deriving
+ * here keeps the data files unchanged while still allowing localized
+ * display names. If a `nameKey` field is introduced upstream this
+ * helper transparently prefers it.
+ */
+export function deriveMonsterNameKey(def: { id: string; nameKey?: string }): string {
+  if (def.nameKey && def.nameKey.length > 0) return def.nameKey;
+  const last = def.id.split('/').pop() ?? def.id;
+  const after = last.includes('.') ? last.split('.').slice(1).join('.') : last;
+  return after.replace(/-([a-z])/g, (_, c: string) => c.toUpperCase());
+}
+
+/**
+ * Localized display name for a built monster {@link CombatUnit}.
+ * Falls back to `unit.name` when no archetype can be resolved.
+ */
+export function resolveMonsterDisplayName(unit: CombatUnit): string {
+  if (unit.kind !== 'monster') return unit.name;
+  // Engine ids look like `enemy-{slug}-{index}-{idTag}` where slug is the
+  // archetype's last `/` segment (e.g. `act1.fallen`).
+  const m = /^enemy-([^]+?)-\d+-[0-9a-f]+$/i.exec(unit.id);
+  const slug = m?.[1];
+  if (!slug) return unit.name;
+  const idx = getMonsterIndex();
+  const def =
+    idx.get(`monsters/${slug}`) ??
+    [...idx.values()].find((d) => d.id.endsWith(`.${slug}`) || d.id.endsWith(`/${slug}`));
+  if (!def) return unit.name;
+  const key = deriveMonsterNameKey(def);
+  const localized = i18n.t(`monsters:${key}`, { defaultValue: def.name });
+
+  // Preserve the engine's optional " A"/"(Elite)"/"(Boss)" suffix so
+  // multiple instances stay distinguishable.
+  const suffix = unit.name.length > def.name.length
+    ? unit.name.slice(def.name.length)
+    : '';
+  return `${localized}${suffix}`;
 }
 
 /**
@@ -468,7 +419,7 @@ function playWave(waveIdx: number): void {
 
   const unitMap = new Map<string, string>();
   [...result.playerTeam, ...result.enemyTeam].forEach((unit) => {
-    unitMap.set(unit.id, unit.name);
+    unitMap.set(unit.id, resolveMonsterDisplayName(unit));
   });
 
   combat.setRecordedBattle({

@@ -37,8 +37,8 @@ const SLOT_ORDER: EquipmentSlot[] = [
   'offhand',
 ];
 
-const MAX_BACKPACK = 40;
-const MAX_STASH = 100;
+const MAX_BACKPACK = 100;
+const MAX_STASH = 500;
 
 type ToastState = { readonly message: string; readonly tone: 'success' | 'error' } | null;
 

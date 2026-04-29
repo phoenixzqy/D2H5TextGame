@@ -27,6 +27,31 @@ import { getSkill } from '@/engine/skills/registry';
 
 describe('combatHelpers', () => {
   describe('battleEventToLogEntry', () => {
+    it('renders the basic-attack damage event in zh-CN with the localized monster name (Bug #11)', () => {
+      // Locale is zh-CN by default in i18n init.
+      const event: BattleEvent = {
+        kind: 'damage',
+        source: 'enemy-act1.fallen-0-abcd',
+        target: 'player-001',
+        damageType: 'physical',
+        amount: 5,
+        crit: false,
+        dodged: false
+      };
+      const unitMap = new Map([
+        ['enemy-act1.fallen-0-abcd', '堕落者'],
+        ['player-001', 'Astaroth']
+      ]);
+      const result = battleEventToLogEntry(event, unitMap);
+      expect(result).toBeDefined();
+      // zh-CN template: "{{actor}} 普攻 {{target}}…" — must start with the
+      // localized monster name, never the legacy "Fallen Lv" string.
+      expect(result?.message.startsWith('堕落者')).toBe(true);
+      expect(result?.message).not.toContain('Fallen Lv');
+      expect(result?.message).not.toContain('physical');
+      expect(result?.message).toContain('物理');
+    });
+
     it('should show player name from map instead of ID in action event', () => {
       const event: BattleEvent = {
         kind: 'action',
