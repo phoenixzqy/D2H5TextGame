@@ -176,7 +176,7 @@ function resetStores(): void {
   useMercStore.getState().reset();
   useCombatStore.getState().reset();
   useInventoryStore.getState().reset();
-  useMapStore.getState().reset?.();
+  useMapStore.getState().reset();
 }
 
 function buildMerc(overrides: Partial<Mercenary> = {}): Mercenary {

@@ -96,7 +96,7 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
   const slotLabel = t(`slots.${slot}`);
 
   return (
-    /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
+    /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-element-interactions */
     <div
       className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-4 bg-black/80"
       onClick={onClose}
