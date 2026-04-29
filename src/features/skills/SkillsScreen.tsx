@@ -12,7 +12,7 @@
  */
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Panel, ScreenShell, Tabs } from '@/ui';
+import { Button, Panel, ScreenShell, Tabs, tDataKey } from '@/ui';
 import { usePlayerStore } from '@/stores';
 import { getSkillsForClass, organizeSkillsByTree, isSkillLocked, type SkillTemplate } from '@/stores/skillsHelpers';
 
@@ -90,9 +90,14 @@ export function SkillsScreen() {
   const treePanel = (
     <div className="space-y-3" data-testid="skills-tree-panel">
       {Array.from(skillTrees.entries()).map(([treeName, treeSkills]) => {
-        const treeKey = treeName === 'all' ? 'tree.all' : `tree.${treeName}`;
+        // Tree names in skill JSON are free-form (e.g. "Poison and Bone
+        // Spells"). Slugify into a stable key for the locale lookup, and
+        // fall back to the raw English name if no translation exists so
+        // we never render the literal `tree.…` key string.
+        const treeSlug = treeName === 'all' ? 'all' : slugifyTreeName(treeName);
+        const treeTitle = t(`tree.${treeSlug}`, { defaultValue: treeName });
         return (
-          <Panel key={treeName} title={t(treeKey)}>
+          <Panel key={treeName} title={treeTitle}>
             <ul className="space-y-2">
               {treeSkills.map((skill: SkillTemplate) => {
                 const locked = isSkillLocked(skill, playerLevel, allocatedSkills);
@@ -111,7 +116,7 @@ export function SkillsScreen() {
                                rounded p-2 bg-d2-bg/40 ${locked ? 'opacity-50' : ''} ${indent}`}
                   >
                     <div className="min-w-0 flex-1">
-                      <div className="font-serif text-d2-white truncate">{skill.name}</div>
+                      <div className="font-serif text-d2-white truncate">{tDataKey(t, skill.name)}</div>
                       <div className="text-xs text-d2-white/60">
                         {allocatedLevel} / {skill.maxLevel}
                         {locked && skill.minLevel && (
@@ -121,7 +126,10 @@ export function SkillsScreen() {
                         )}
                         {prereqs.length > 0 && (
                           <span className="ml-2 text-d2-white/40 block">
-                            ↳ {prereqs.map(pid => allSkills.find(s => s.id === pid)?.name ?? pid).join(', ')}
+                            ↳ {prereqs.map(pid => {
+                              const p = allSkills.find(s => s.id === pid);
+                              return p ? tDataKey(t, p.name) : pid;
+                            }).join(', ')}
                           </span>
                         )}
                       </div>
@@ -136,7 +144,7 @@ export function SkillsScreen() {
                       className="min-h-[40px] text-xs shrink-0"
                       disabled={!canAllocate}
                       onClick={() => { allocateSkillPoint(skill.id); }}
-                      aria-label={t('allocatePoint', { skill: skill.name })}
+                      aria-label={t('allocatePoint', { skill: tDataKey(t, skill.name) })}
                     >
                       {t('allocate')}
                     </Button>
@@ -169,7 +177,7 @@ export function SkillsScreen() {
             >
               <option value="">— {t('common:none')} —</option>
               {allSkills.filter(sk => sk.trigger === 'active').map((sk) => (
-                <option key={sk.id} value={sk.id}>{sk.name}</option>
+                <option key={sk.id} value={sk.id}>{tDataKey(t, sk.name)}</option>
               ))}
             </select>
             <button
@@ -219,4 +227,12 @@ export function SkillsScreen() {
       </div>
     </ScreenShell>
   );
+}
+
+/** Slugify a free-form skill-tree name into a stable i18n key segment. */
+function slugifyTreeName(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
 }

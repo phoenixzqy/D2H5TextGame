@@ -13,7 +13,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { TFunction } from 'i18next';
-import { Button, ItemCompareTooltip, RarityText, StatSheet, resolveItemIcon } from '@/ui';
+import { Button, ItemCompareTooltip, RarityText, StatSheet, resolveItemIcon, tItemName } from '@/ui';
 import { useInventoryStore, usePlayerStore } from '@/stores';
 import {
   checkEligibility,
@@ -138,11 +138,11 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
             </p>
           ) : (
             <ul className="space-y-2" role="listbox" aria-label={slotLabel}>
-              {candidates.map((it) => {
+              {candidates.map((it, idx) => {
                 const elig = eligibility.get(it.id) ?? { eligible: true, reasons: [] };
                 const isSelected = selectedId === it.id;
                 return (
-                  <li key={it.id}>
+                  <li key={`${it.id}-${String(idx)}`}>
                     <button
                       type="button"
                       role="option"
@@ -162,7 +162,7 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
                       <ItemThumb item={it} />
                       <div className="min-w-0 flex-1">
                         <RarityText rarity={it.rarity} className="font-serif truncate block">
-                          {itemDisplayName(it)}
+                          {tItemName(t, it)}
                         </RarityText>
                         <div className="text-xs text-d2-white/60">
                           {t('itemLevel')} {it.level}
@@ -221,10 +221,6 @@ function ItemThumb({ item }: { readonly item: Item }) {
       )}
     </div>
   );
-}
-
-function itemDisplayName(item: Item): string {
-  return item.baseId.split('/').pop() ?? item.baseId;
 }
 
 function formatReasons(elig: EligibilityResult, t: TFunction): string {

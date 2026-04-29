@@ -39,3 +39,4 @@ export {
   resolveZoneArt,
   resolveMercArt
 } from './cardAssets';
+export { tDataKey, tItemName, itemBaseSlug } from './i18nKey';

@@ -8,7 +8,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button, Panel, ScreenShell, GameImage, getZoneArtUrl } from '@/ui';
+import { Button, Panel, ScreenShell, GameImage, getZoneArtUrl, tDataKey } from '@/ui';
 import { useMapStore, useMetaStore } from '@/stores';
 import { IdleTickerStrip } from '@/features/idle/IdleTickerStrip';
 
@@ -142,7 +142,7 @@ export function MapScreen() {
                 />
                 <span className="flex-1 text-left text-d2-gold font-serif">
                   {t('act', { number: act.number })} ·{' '}
-                  {t(act.nameKey)}
+                  {tDataKey(t, act.nameKey)}
                 </span>
                 <span className="flex items-center gap-2 text-xs">
                   {!actUnlocked && (
@@ -182,7 +182,7 @@ export function MapScreen() {
                         <div className="flex-1 min-w-[140px]">
                           <div className={`text-sm flex items-center gap-2 ${cleared ? 'text-d2-white/70' : 'text-d2-white'}`}>
                             <span className="truncate">
-                              {t(sa.nameKey)}
+                              {tDataKey(t, sa.nameKey)}
                             </span>
                             {unlocked && cleared && (
                               <span

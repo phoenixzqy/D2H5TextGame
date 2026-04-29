@@ -27,24 +27,22 @@
  */
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import i18n from '@/i18n';
 import {
   Button,
   EquippedItemModal,
-  GameCard,
-  ItemTooltip,
   Modal,
   Panel,
   ScreenShell,
   Tabs,
-  Tooltip,
-  resolveItemIcon
+  tItemName
 } from '@/ui';
 import { useInventoryStore, usePlayerStore } from '@/stores';
-import { loadItemBases } from '@/data/loaders/loot';
 import { EquipPicker } from './EquipPicker';
 import { ItemDetailPanel } from './ItemDetailPanel';
 import { BulkDiscardToolbar } from './BulkDiscardToolbar';
-import type { Item, EquipmentSlot, ItemBase } from '@/engine/types/items';
+import { BackpackGrid } from './BackpackGrid';
+import type { Item, EquipmentSlot } from '@/engine/types/items';
 
 const SLOT_ORDER: EquipmentSlot[] = [
   'head',
@@ -285,6 +283,7 @@ function BackpackTabContent({
       <BulkDiscardToolbar backpack={items} equipped={equipped} onDiscard={onBulkDiscard} />
       <ItemGridLayout
         items={items}
+        capacity={MAX_BACKPACK}
         emptyKey="emptyBackpack"
         selectedId={selectedId}
         setSelectedId={setSelectedId}
@@ -333,6 +332,7 @@ function StashTabContent({
   return (
     <ItemGridLayout
       items={items}
+      capacity={Math.min(MAX_STASH, Math.max(60, items.length + 20))}
       emptyKey="emptyStash"
       selectedId={selectedId}
       setSelectedId={setSelectedId}
@@ -357,6 +357,7 @@ function StashTabContent({
 
 interface GridLayoutProps {
   readonly items: readonly Item[];
+  readonly capacity: number;
   readonly emptyKey: string;
   readonly selectedId: string | null;
   readonly setSelectedId: (id: string | null) => void;
@@ -366,6 +367,7 @@ interface GridLayoutProps {
 
 function ItemGridLayout({
   items,
+  capacity,
   emptyKey,
   selectedId,
   setSelectedId,
@@ -386,47 +388,30 @@ function ItemGridLayout({
   const open = selectedId !== null && detailPanel !== null;
   const isDesktop = useIsDesktop();
 
-  if (items.length === 0) {
-    return (
-      <p className="text-sm text-d2-white/60 italic p-4 text-center">
-        {t(emptyKey)}
-      </p>
-    );
-  }
-
   return (
     <div
       className={[
         'grid gap-3 transition-all duration-200',
         // md (tablet) gets a narrower sidebar; lg+ uses 340px.
-        open ? 'md:grid-cols-[1fr_280px] lg:grid-cols-[1fr_340px]' : 'grid-cols-1'
+        open ? 'md:grid-cols-[minmax(0,1fr)_280px] lg:grid-cols-[minmax(0,1fr)_340px]' : 'grid-cols-1'
       ].join(' ')}
       data-testid="inventory-layout"
       data-detail-open={open}
     >
-      <ul
-        className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 gap-2 content-start"
-        role="listbox"
-        aria-label={t('items')}
-      >
-        {items.map((it) => (
-          <li key={it.id}>
-            <Tooltip content={<ItemTooltip item={it} />}>
-              <GameCard
-                variant="item"
-                size="md"
-                name={itemDisplayName(it)}
-                rarity={it.rarity}
-                image={resolveItemIcon(it.baseId) ?? undefined}
-                itemGlyph={glyphForItem(it)}
-                selected={selectedId === it.id}
-                onClick={() => { setSelectedId(selectedId === it.id ? null : it.id); }}
-                testId={`inv-item-${it.id}`}
-              />
-            </Tooltip>
-          </li>
-        ))}
-      </ul>
+      <div className="min-w-0">
+        {items.length === 0 ? (
+          <p className="text-sm text-d2-white/60 italic p-4 text-center">
+            {t(emptyKey)}
+          </p>
+        ) : (
+          <BackpackGrid
+            items={items}
+            capacity={capacity}
+            selectedId={selectedId}
+            onSelect={setSelectedId}
+          />
+        )}
+      </div>
 
       {/* Desktop / tablet sidebar OR mobile bottom sheet — exclusive render
           based on viewport so testids never collide between the two trees. */}
@@ -580,45 +565,7 @@ function EquipmentPanel({
 }
 
 function itemDisplayName(item: Item): string {
-  return item.baseId.split('/').pop() ?? item.baseId;
-}
-
-/**
- * Map an item's base type / slot to a corner-badge glyph for the inventory
- * card. Bug #18. Pure: looks the base up in the JSON catalog (cached) and
- * falls back to slug heuristics if the base is missing.
- */
-function glyphForItem(item: Item):
-  | 'weapon'
-  | 'shield'
-  | 'jewelry'
-  | 'scroll'
-  | 'charm'
-  | 'gem'
-  | 'rune'
-  | 'armor'
-  | undefined {
-  const base: ItemBase | undefined = loadItemBases().get(item.baseId);
-  const slug = item.baseId.split('/').pop() ?? '';
-  if (base) {
-    if (base.type === 'weapon') return 'weapon';
-    if (base.type === 'jewelry') return 'jewelry';
-    if (base.type === 'charm') return 'charm';
-    if (base.type === 'gem') return 'gem';
-    if (base.type === 'rune') return 'rune';
-    if (base.type === 'armor') {
-      // Shields are armor-typed but use the offhand slot.
-      if (base.slot === 'offhand' || slug.startsWith('sh-')) return 'shield';
-      return 'armor';
-    }
-    // Remaining type === 'material' (TS-narrowed) — show scroll glyph.
-    return 'scroll';
-  }
-  // Fallbacks when the base catalog doesn't know this id.
-  if (slug.startsWith('sh-')) return 'shield';
-  if (slug.startsWith('wp')) return 'weapon';
-  if (slug.startsWith('ring-') || slug.startsWith('amu-')) return 'jewelry';
-  return undefined;
+  return tItemName(i18n.t.bind(i18n), item);
 }
 
 function rarityTextClass(rarity: Item['rarity']): string {

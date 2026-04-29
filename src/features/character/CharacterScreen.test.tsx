@@ -86,7 +86,9 @@ describe('CharacterScreen', () => {
 
     const equip = screen.getByTestId('char-equipment');
     expect(equip).toBeInTheDocument();
-    expect(equip).toHaveTextContent('items/base/wp1h-short-sword');
+    // Renders the localized name resolved via items:base.<slug> (zh-CN preferred,
+    // English fallback). Matches either to be locale-agnostic.
+    expect(equip.textContent).toMatch(/(短剑|Short Sword)/);
     // unique => text-d2-unique class on the RarityText span
     const span = equip.querySelector('.text-d2-unique');
     expect(span).not.toBeNull();

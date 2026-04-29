@@ -13,7 +13,7 @@
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button, Panel, ScreenShell, GameCard, getClassPortraitUrl, getMonsterImageUrl, getSummonImageUrl } from '@/ui';
+import { Button, Panel, ScreenShell, GameCard, getClassPortraitUrl, getMonsterImageUrl, getSummonImageUrl, tItemName } from '@/ui';
 import { useCombatStore, useMapStore, usePlayerStore } from '@/stores';
 import {
   startSubAreaRun,
@@ -325,7 +325,7 @@ export function CombatScreen() {
                   <ul className="space-y-1 text-sm" data-testid="loot-items">
                     {runRewards.items.map((it) => (
                       <li key={it.id} className={RARITY_COLORS[it.rarity] ?? 'text-d2-white'}>
-                        {it.baseId.split('/').pop()}{' '}
+                        {tItemName(t, it)}{' '}
                         <span className="text-xs text-d2-white/50">[{it.rarity} · iLvl {it.level}]</span>
                       </li>
                     ))}

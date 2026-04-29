@@ -13,6 +13,7 @@
   "cancel": "Cancel",
   "items": "Items",
   "selectItem": "Select an item",
+  "emptySlot": "Empty slot",
   "emptyBackpack": "Backpack is empty",
   "emptyStash": "Stash is empty",
   "empty": "Empty",
@@ -115,3 +116,4 @@
     }
   }
 }
+

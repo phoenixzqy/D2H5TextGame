@@ -13,7 +13,7 @@
  */
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { EquippedItemModal, GameCard, Panel, ScreenShell, StatBar, RarityText, resolveClassPortrait } from '@/ui';
+import { EquippedItemModal, GameCard, Panel, ScreenShell, StatBar, RarityText, resolveClassPortrait, tItemName } from '@/ui';
 import { useInventoryStore, usePlayerStore } from '@/stores';
 import type { Player } from '@/engine/types/entities';
 import type { EquipmentSlot, Item } from '@/engine/types/items';
@@ -308,7 +308,7 @@ function EquipmentSummaryPanel({
                 </span>
                 {item ? (
                   <RarityText rarity={item.rarity} className="font-serif truncate text-right">
-                    {item.baseId}
+                    {tItemName(t, item)}
                   </RarityText>
                 ) : (
                   <span className="text-d2-white/40 italic">

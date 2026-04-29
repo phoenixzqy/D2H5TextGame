@@ -13,6 +13,7 @@
 
 import { create } from 'zustand';
 import { buildSave } from '@/engine/save';
+import { seedItemSeqFromIds } from '@/engine/loot/rollItem';
 import type { SaveCurrent } from '@/engine/types/save';
 import { hasSave, loadSave, saveSave } from './save-adapter';
 import { useCombatStore } from './combatStore';
@@ -199,6 +200,7 @@ export async function hydrateFromSave(): Promise<boolean> {
         idleState: data.meta.idleState,
         gachaState: data.meta.gachaState
       });
+      seedItemSeqFromHydratedSave(data);
     } finally {
       suppressSaves = false;
     }
@@ -209,6 +211,28 @@ export async function hydrateFromSave(): Promise<boolean> {
     useHydrationStore.getState().setStatus('error', msg);
     return false;
   }
+}
+
+/**
+ * After a save is rehydrated, advance the in-memory item-id sequence past
+ * the highest seq encoded in any persisted item id. Without this, a fresh
+ * page load (which resets the seq counter to 0) can re-issue an id that
+ * already lives in the loaded backpack/stash/equipment, causing React
+ * "two children with the same key" warnings and equip/swap collisions.
+ */
+function seedItemSeqFromHydratedSave(data: SaveCurrent): void {
+  const ids: string[] = [];
+  for (const it of data.inventory.backpack) ids.push(it.id);
+  for (const it of data.inventory.stash) ids.push(it.id);
+  for (const it of Object.values(data.inventory.equipped)) {
+    if (it) ids.push(it.id);
+  }
+  for (const equip of Object.values(data.mercs.mercEquipment)) {
+    for (const it of Object.values(equip)) {
+      if (it) ids.push(it.id);
+    }
+  }
+  seedItemSeqFromIds(ids);
 }
 
 /**
