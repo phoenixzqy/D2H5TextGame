@@ -273,12 +273,12 @@ function buildToDoList() {
       const safeId  = toSafeId(canonId);
       const outFile = join(ITEM_ICONS_DIR, `${safeId}.png`);
 
-      // Skip if file > 5KB AND manifest entry exists
+      // Skip if file > 5KB exists (manifest may be incomplete due to race condition)
       const hasManifest = manifestIds.has(canonId);
       const hasFile = existsSync(outFile) && (() => {
         try { return statSync(outFile).size > 5120; } catch { return false; }
       })();
-      if (hasManifest && hasFile) continue;
+      if (hasFile) continue;
 
       // Get or allocate subjectId
       let subjectId = itemAlloc.get(canonId);
@@ -326,7 +326,8 @@ function buildToDoList() {
         const hasFile = existsSync(outFile) && (() => {
           try { return statSync(outFile).size > 5120; } catch { return false; }
         })();
-        if (hasManifest && hasFile) continue;
+        // Skip if file already exists (manifest may be incomplete due to race condition)
+        if (hasFile) continue;
 
         // Get or allocate subjectId
         let subjectId = monsterAlloc.get(canonId);
