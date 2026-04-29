@@ -32,3 +32,10 @@ You are the **QA Engineer**. You make sure it actually works.
 ## Tools / skills
 - `webapp-testing` skill for Playwright patterns and selectors.
 - `combat-balance` skill for running sim harness.
+- `test-driven-development` — your default mode. Red → Green → Refactor.
+  Bug fixes follow the **Prove-It Pattern**: write a failing reproduction
+  test before any fix attempt.
+- `debugging-and-error-recovery` — Stop-the-line when CI/tests break. Reproduce,
+  localize, reduce, fix the root cause, add a regression test.
+- `browser-testing-with-devtools` — when a UI bug needs runtime DOM/console/
+  network inspection beyond what Playwright assertions catch.

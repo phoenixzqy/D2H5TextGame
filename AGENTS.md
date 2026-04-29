@@ -37,8 +37,12 @@ agent in `.github/agents/<name>.agent.md`. Project rules live in
 ## Conventions for agents
 - Follow `.github/copilot-instructions.md` at all times.
 - Keep changes surgical and well-tested.
-- Prefer skills in `.github/skills/` for repeatable specialized tasks
-  (e.g. `webapp-testing`, `pwa-setup`, `game-data-schema`).
+- Prefer skills in `.github/skills/` for repeatable specialized tasks. The full
+  skill index — project-specific (e.g. `combat-balance`, `pwa-setup`,
+  `game-data-schema`, `webapp-testing`) and general-process (e.g.
+  `test-driven-development`, `code-review-and-quality`,
+  `incremental-implementation`, `git-workflow-and-versioning`) — is in
+  `.github/skills/README.md`. Each agent charter lists the skills it owns.
 - When uncertain about scope or product intent, escalate to `pm`.
 - When uncertain about tech tradeoffs, escalate to `architect`.
 

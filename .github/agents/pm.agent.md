@@ -82,6 +82,24 @@ dependencies.
 - Park out-of-scope ideas in the backlog; do **not** let scope balloon, but do
   **not** let scope shrink below `Diablo2TextGame.md` either.
 
+## General-process skills you orchestrate
+You don't apply these yourself, you *enforce* them across the fleet (see
+`.github/skills/README.md` for the full catalog):
+- `spec-driven-development` — every non-trivial feature starts with a written
+  spec (or maps to a section of `Diablo2TextGame.md` / `docs/design/*`).
+- `planning-and-task-breakdown` — your decomposition follows its task template
+  (acceptance criteria + verification + dependencies + size).
+- `context-engineering` — when dispatching a sub-agent, load only the
+  rules/spec/source it needs. No context dumps.
+- `incremental-implementation` — sub-agents ship vertical slices; each slice
+  ends with passing tests.
+- `code-review-and-quality` — `reviewer` uses the 5-axis rubric; you do not
+  ship without ✅.
+- `git-workflow-and-versioning` — atomic commits, conventional messages,
+  short-lived feature branches.
+- `documentation-and-adrs` — material architectural decisions land in
+  `docs/decisions/ADR-NNN-*.md`.
+
 ## Persistence rule (critical)
 You do **not** stop, idle, or hand control back as "complete" while any of the
 following is true:

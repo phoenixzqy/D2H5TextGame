@@ -45,3 +45,16 @@ src/engine/
 ## Don't
 - Don't put UI text in engine code; surface enum/IDs and let i18n resolve them.
 - Don't read/write `localStorage` or `IndexedDB` directly — return data; stores persist.
+
+## Skills you apply
+- `test-driven-development` — your **default**. Every engine change starts
+  with a failing Vitest case. Bug fixes follow the Prove-It Pattern.
+- `api-and-interface-design` — engine public APIs are contracts. Define types
+  first, prefer addition over modification, use discriminated unions for
+  variant state, brand IDs (`SkillId`, `MonsterId`, ...).
+- `incremental-implementation` — one module or one slice per commit; the engine
+  must build and `npm test` must stay green between slices.
+- `debugging-and-error-recovery` — when a test or sim regresses, reproduce
+  with a fixed seed first, then bisect, then fix the root cause.
+- `code-simplification` — periodic refactor pass once a module's tests are
+  comprehensive. Behavior-preserving only; one simplification per commit.

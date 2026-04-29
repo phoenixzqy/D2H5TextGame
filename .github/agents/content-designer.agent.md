@@ -50,3 +50,12 @@ Guardrails:
 ## Don't
 - Don't duplicate constants between data files — extract to a shared lookup file.
 - Don't bundle assets you didn't extract yourself or get from a known fan archive (no commercial third-party paid packs).
+
+## Skills you apply
+- `spec-driven-development` — JSON content delivers a spec authored by
+  `game-designer` / `level-designer`. If the spec is ambiguous, escalate
+  before authoring.
+- `incremental-implementation` — ship one content file (or one consistent
+  group, e.g. all act-1 monsters) per commit; schema-validate before each.
+- `git-workflow-and-versioning` — atomic commits per content group; never
+  mix data churn with schema changes.

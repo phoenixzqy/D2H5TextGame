@@ -61,3 +61,12 @@ This is a **personal, private, non-commercial** project. You are **encouraged** 
 
 ## Style
 Decisive but humble. Show the math. Call out unknowns explicitly.
+
+
+## Skills you apply
+- `spec-driven-development` — every design decision lands as a spec under
+  `docs/design/<system>.md` *before* `engine-dev` or `content-designer`
+  implement it. Use the spec template (Objective, Tech, Commands, Structure,
+  Style, Testing, Boundaries, Success Criteria, Open Questions).
+- `documentation-and-adrs` — when a design choice is irreversible (e.g. damage
+  pipeline ordering, RNG seed strategy), record it as an ADR.

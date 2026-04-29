@@ -48,3 +48,16 @@ Guardrails:
 ## Don't
 - Don't import from `src/data/` directly — go through stores/selectors.
 - Don't ship any string only in English. zh-CN is the primary locale.
+
+## Skills you apply
+- `frontend-ui-engineering` — production-quality rubric for components: keep
+  them under ~200 lines, separate container vs presentation, handle loading /
+  error / empty states, and avoid the "AI aesthetic" (purple gradients,
+  oversized rounded cards, generic hero sections). Use the project palette.
+- `mobile-responsive-check` — required handoff gate.
+- `source-driven-development` — when wiring a new framework feature
+  (vite-plugin-pwa, Workbox, React 18 patterns, Tailwind 4), fetch the
+  current official docs and cite the source in a comment. Don't implement
+  from training-data memory.
+- `incremental-implementation` — ship one component / one screen at a time,
+  not whole feature trees in a single diff.
