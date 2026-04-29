@@ -117,8 +117,13 @@ function resolveStatus(
 function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) {
   const { t } = useTranslation(['quests', 'common']);
   const slug = questI18nKey(quest.id);
-  const name = t(`byId.${slug}.name`);
-  const desc = t(`byId.${slug}.desc`);
+  // Quest data files ship with English `name`, `description`, and per-objective
+  // `description` strings; locale files override by slug. When the slug has no
+  // matching locale entry (e.g. the JSON id `act1-sisters-burial-grounds`
+  // doesn't match the locale's `act1-sisters-burial`), fall back to the
+  // English text from the data file rather than rendering the literal key.
+  const name = t(`byId.${slug}.name`, { defaultValue: quest.name });
+  const desc = t(`byId.${slug}.desc`, { defaultValue: quest.description });
   const rewardClaimed = useMapStore((s) => s.questProgress[quest.id]?.rewardClaimed ?? false);
   const [, force] = useState(0);
   const claimable = status === 'completed' && !rewardClaimed && canClaim(quest.id);
@@ -151,7 +156,7 @@ function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) 
               );
             return (
               <li key={o.id} className={done ? 'line-through text-d2-set' : ''}>
-                {t(objKey)}
+                {t(objKey, { defaultValue: o.description })}
                 {typeof o.count === 'number' ? ` (×${String(o.count)})` : ''}
               </li>
             );

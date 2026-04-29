@@ -85,7 +85,7 @@ export function BulkDiscardToolbar({
             <Button
               key={b.mode}
               variant="secondary"
-              className="min-h-[44px] text-xs"
+              className="!px-3 !py-2 min-h-[44px] text-xs leading-tight whitespace-normal text-left max-w-full"
               disabled={disabled}
               title={disabled ? t('bulk.noMatches') : undefined}
               data-testid={`bulk-discard-${b.mode}`}
@@ -114,14 +114,14 @@ export function BulkDiscardToolbar({
             className="max-h-60 overflow-y-auto border border-d2-border/60 rounded p-2 space-y-0.5"
             data-testid="bulk-discard-preview"
           >
-            {pending.slice(0, MAX_PREVIEW).map((it) => {
+            {pending.slice(0, MAX_PREVIEW).map((it, idx) => {
               const slug = it.baseId.split('/').pop() ?? it.baseId;
               const baseName = tItems(`base.${slug}`);
               const prefix = it.generatedName?.prefix?.trim();
               const suffix = it.generatedName?.suffix?.trim();
               const name = [prefix, baseName, suffix].filter(Boolean).join(' ');
               return (
-                <li key={it.id}>
+                <li key={`${it.id}-${String(idx)}`}>
                   <RarityText rarity={it.rarity} className="text-xs">
                     {name}
                   </RarityText>

@@ -7,6 +7,23 @@ export interface RollItemInput { readonly baseId: string; readonly rarity: Rarit
 export interface ItemRollPools { readonly bases: ReadonlyMap<string, ItemBase>; readonly affixes: readonly Affix[]; readonly rarityRules?: RarityAffixRules }
 let itemSeq = 0; export function __resetRollItemSeqForTests(): void { itemSeq = 0; }
 function nextItemId(rng: Rng): string { itemSeq = (itemSeq + 1) >>> 0; return `it-${rng.nextInt(0, 0xffffff).toString(36)}-${itemSeq.toString(36)}`; }
+/**
+ * Advance the in-memory item-id sequence past the highest seq encoded in
+ * any of the given existing ids. Call after hydrating a save so freshly
+ * rolled items can never collide with persisted ones (the rng portion
+ * alone is not unique — only ~16M values — so we rely on the seq suffix
+ * to disambiguate).
+ */
+export function seedItemSeqFromIds(ids: Iterable<string>): void {
+  let max = itemSeq;
+  for (const id of ids) {
+    const m = /^it-[0-9a-z]+-([0-9a-z]+)$/.exec(id);
+    if (!m?.[1]) continue;
+    const n = parseInt(m[1], 36);
+    if (Number.isFinite(n) && n > max) max = n;
+  }
+  itemSeq = max >>> 0;
+}
 function defaultRules(rarity: Rarity): RarityAffixCount { if (rarity === 'magic') return { prefix:{min:1,max:1}, suffix:{min:1,max:1} }; if (rarity === 'rare') return { prefix:{min:1,max:3}, suffix:{min:1,max:3}, total:{min:4,max:6} }; return { prefix:{min:0,max:0}, suffix:{min:0,max:0}, total:{min:0,max:0} }; }
 function rulesFor(rarity: Rarity, rules?: RarityAffixRules): RarityAffixCount { return rules?.[rarity] ?? defaultRules(rarity); }
 function rollBaseStats(base: ItemBase, rng: Rng): Partial<Record<ItemStatKey, number>> { const rolls: Partial<Record<ItemStatKey, number>> = {}; if (base.baseDamage) rolls.attack = rng.nextInt(Math.ceil(base.baseDamage.min), Math.floor(base.baseDamage.max)); if (typeof base.baseDefense === 'number' && base.baseDefense > 0) { const v = Math.max(1, Math.round(base.baseDefense * 0.15)); rolls.defense = rng.nextInt(Math.max(1, base.baseDefense - v), base.baseDefense + v); } return rolls; }

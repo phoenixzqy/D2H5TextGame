@@ -92,6 +92,13 @@ export interface GameCardProps {
    * Bug #18 — lets players distinguish weapon vs ring vs charm at a glance.
    */
   readonly itemGlyph?: ItemTypeGlyphKey | undefined;
+  /**
+   * When true, the card drops its fixed `w-/h-` dimensions and stretches to
+   * fill its parent (with `aspect-square` for variant='item'). Used by the
+   * inventory grid so every slot is a uniform cell whose size is owned by
+   * the grid container, not by the card itself.
+   */
+  readonly fluid?: boolean | undefined;
 }
 
 // ── size maps ────────────────────────────────────────────────────────────
@@ -372,11 +379,16 @@ function GameCardImpl({
   onClick,
   className = '',
   testId,
-  itemGlyph
+  itemGlyph,
+  fluid = false
 }: GameCardProps): JSX.Element {
   const isItemCompact = variant === 'item';
 
-  const sizeCls = SIZE_MAP[variant][size];
+  const sizeCls = fluid
+    ? isItemCompact
+      ? 'w-full h-full aspect-square'
+      : 'w-full h-full'
+    : SIZE_MAP[variant][size];
   const padCls =
     size === 'lg' ? 'p-3' : size === 'md' ? 'p-2' : 'p-1.5';
   const strokeCls = STROKE_BY_RARITY[rarity] ?? (size === 'sm' ? 'border' : 'border-2');
@@ -386,7 +398,9 @@ function GameCardImpl({
 
   // Compose classes
   const frameCls = [
-    'relative inline-flex flex-col rounded-md overflow-hidden',
+    fluid
+      ? 'relative flex flex-col rounded-md overflow-hidden'
+      : 'relative inline-flex flex-col rounded-md overflow-hidden',
     'bg-d2-panel text-d2-white shadow-inner shadow-black/60',
     'transition-transform duration-150',
     sizeCls,

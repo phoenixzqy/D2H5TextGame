@@ -16,7 +16,7 @@
  */
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, GameCard, Modal, Panel, ScreenShell, resolveMercArt } from '@/ui';
+import { Button, GameCard, Modal, Panel, ScreenShell, resolveMercArt, tItemName } from '@/ui';
 import { useMercStore, useInventoryStore } from '@/stores';
 import { MERC_EQUIPMENT_SLOTS, type MercEquipment } from '@/stores/mercStore';
 import type { Mercenary } from '@/engine/types/entities';
@@ -258,7 +258,7 @@ function MercEquipmentEditor({
               {t(`inventory:slots.${slot}`)}
             </span>
             <span className="flex-1 min-w-0 truncate text-sm text-d2-white/80">
-              {equipped ? equipped.baseId : <em className="text-d2-white/40">{t('empty')}</em>}
+              {equipped ? tItemName(t, equipped) : <em className="text-d2-white/40">{t('empty')}</em>}
             </span>
             {equipped && (
               <Button
@@ -288,7 +288,7 @@ function MercEquipmentEditor({
             >
               <option value="">{t('inventory:equip')}…</option>
               {candidates.map((it) => (
-                <option key={it.id} value={it.id}>{it.baseId}</option>
+                <option key={it.id} value={it.id}>{tItemName(t, it)}</option>
               ))}
             </select>
           </li>

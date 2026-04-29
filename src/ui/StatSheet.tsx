@@ -29,6 +29,7 @@ import type { TFunction } from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { RarityText } from './RarityText';
 import { formatAffixRoll } from './affixFormat';
+import { tItemName } from './i18nKey';
 import {
   STAT_META,
   RESIST_KEYS,
@@ -46,10 +47,6 @@ const STAT_ORDER: readonly ComparableStatKey[] = [
   'lifeMax', 'manaMax', 'attack', 'defense', 'attackSpeed',
   'critChance', 'critDamage', 'physDodge', 'magicDodge'
 ];
-
-function itemDisplayName(item: Item): string {
-  return item.baseId.split('/').pop() ?? item.baseId;
-}
 
 interface SingleProps {
   readonly mode: 'single';
@@ -313,7 +310,7 @@ function HeaderCell({
           rarity={item.rarity}
           className="font-serif text-xs font-bold block truncate max-w-full"
         >
-          {itemDisplayName(item)}
+          {tItemName(t, item)}
         </RarityText>
       ) : (
         <span className="text-d2-white/40 italic text-xs">
