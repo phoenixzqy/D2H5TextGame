@@ -11,7 +11,10 @@
  */
 import { useInventoryStore, usePlayerStore, useCombatStore, useMercStore } from '@/stores';
 import { createMercFromDef } from '@/stores/mercFactory';
+import { loadAwardPools } from '@/data/loaders/loot';
 import { loadMercPool } from '@/data/loaders/mercs';
+import { rollItem } from '@/engine/loot/rollItem';
+import { createRng, hashSeed } from '@/engine/rng';
 import type { Item, Rarity } from '@/engine/types/items';
 
 export interface TestBridge {
@@ -20,9 +23,7 @@ export interface TestBridge {
   readonly combat: typeof useCombatStore;
   readonly merc: typeof useMercStore;
   /**
-   * Push a minimal {@link Item} into the backpack. Returns the new item id.
-   * Affixes are intentionally empty — base `baseDefense`/`baseDamage` is
-   * enough to verify equip → derived-stat recompute.
+   * Roll a full item instance into the backpack. Returns the new item id.
    */
   seedItem: (
     baseId: string,
@@ -61,14 +62,27 @@ export function installTestBridge(): void {
     combat: useCombatStore,
     merc: useMercStore,
     seedItem: (baseId, opts = {}) => {
-      const item: Item = {
-        id: nextSeedId(),
-        baseId,
-        rarity: opts.rarity ?? 'normal',
-        level: opts.level ?? 1,
-        identified: true,
-        equipped: false
-      };
+      const id = nextSeedId();
+      const rarity = opts.rarity ?? 'normal';
+      const level = opts.level ?? 1;
+      const rolled = rollItem(
+        { baseId, rarity, ilvl: level },
+        loadAwardPools(),
+        createRng(hashSeed(`${id}:${baseId}:${rarity}:${String(level)}`))
+      );
+      const item: Item = rolled
+        ? { ...rolled, id, identified: true, equipped: false }
+        : {
+            id,
+            baseId,
+            rarity,
+            level,
+            ilvl: level,
+            baseRolls: {},
+            affixes: [],
+            identified: true,
+            equipped: false
+          };
       useInventoryStore.getState().addItem(item, opts.toStash ?? false);
       return item.id;
     },

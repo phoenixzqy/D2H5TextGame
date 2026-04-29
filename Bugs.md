@@ -15,3 +15,8 @@ Bugs: 1. 战斗页面在完成一次战斗，无论失败还是成功，都无
 属性，抗性
 装备
 
+Affix-rolls deferred follow-ups:
+1. Author full unique/set fixed-affix data beyond MVP starter coverage.
+2. Expand random affix pool toward the 60-prefix/60-suffix endgame target in docs/design/items-spec.md.
+3. Add dedicated visual polish for rarity-tier affix colors beyond base rarity coloring.
+

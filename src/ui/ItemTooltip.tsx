@@ -180,9 +180,9 @@ export function ItemTooltip({ item, className = '' }: ItemTooltipProps): JSX.Ele
 
       {/* (5) Affixes */}
       {item.affixes && item.affixes.length > 0 && (
-        <ul className="space-y-0.5 pt-2 border-t border-d2-border/60 mt-2">
+        <ul className="space-y-0.5 pt-2 border-t border-d2-border/60 mt-2" data-testid="item-tooltip-affixes">
           {item.affixes.map((affix, idx) => (
-            <li key={idx} className="text-d2-magic text-xs">
+            <li key={idx} className="text-d2-magic text-xs" data-testid="item-tooltip-affix">
               {formatAffixRoll(affix, tAffix)}
             </li>
           ))}

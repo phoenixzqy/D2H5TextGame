@@ -240,16 +240,16 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
       </table>
 
       {props.mode === 'compare' && props.candidate.affixes && props.candidate.affixes.length > 0 && (
-        <ul className="mt-2 pt-2 border-t border-d2-border/60 space-y-0.5">
+        <ul className="mt-2 pt-2 border-t border-d2-border/60 space-y-0.5" data-testid="stat-sheet-affixes">
           {props.candidate.affixes.map((a, i) => (
-            <li key={i} className="text-d2-magic truncate">{formatAffixRoll(a, tAffix)}</li>
+            <li key={i} className="text-d2-magic truncate" data-testid="stat-sheet-affix">{formatAffixRoll(a, tAffix)}</li>
           ))}
         </ul>
       )}
       {props.mode === 'single' && props.item?.affixes && props.item.affixes.length > 0 && (
-        <ul className="mt-2 pt-2 border-t border-d2-border/60 space-y-0.5">
+        <ul className="mt-2 pt-2 border-t border-d2-border/60 space-y-0.5" data-testid="stat-sheet-affixes">
           {props.item.affixes.map((a, i) => (
-            <li key={i} className="text-d2-magic truncate">{formatAffixRoll(a, tAffix)}</li>
+            <li key={i} className="text-d2-magic truncate" data-testid="stat-sheet-affix">{formatAffixRoll(a, tAffix)}</li>
           ))}
         </ul>
       )}
