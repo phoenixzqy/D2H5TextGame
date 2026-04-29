@@ -452,6 +452,19 @@ describe('startSimpleBattle — Bug #12', () => {
     advanceWaveOrFinish();
     expect(useInventoryStore.getState().getCurrency('gold')).toBe(0);
   });
+
+  it('shares combat victory XP with the fielded merc', () => {
+    usePlayerStore.getState().setPlayer(boostedSorceress());
+    const merc = buildMerc();
+    useMercStore.getState().addMerc(merc);
+    useMercStore.getState().setFieldedMerc(merc.id);
+    startSimpleBattle(1, 3);
+    const slain = useCombatStore.getState().outcome?.finalEnemyTeam.filter((u) => u.life <= 0) ?? [];
+    const expectedXp = slain.reduce((total, enemy) => total + xpForKill(enemy.level), 0);
+    drainEvents();
+    advanceWaveOrFinish();
+    expect(useMercStore.getState().getMercProgress(merc.id).experience).toBe(Math.floor(expectedXp * 0.5));
+  });
 });
 
 describe('awardLootForVictory (Bug #12 — no gold)', () => {

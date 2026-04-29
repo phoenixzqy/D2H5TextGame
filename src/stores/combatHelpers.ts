@@ -349,6 +349,7 @@ export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idl
     for (const enemy of slain) xpGained += xpForKill(enemy.level);
     if (xpGained > 0) {
       const xpResult = usePlayerStore.getState().gainExperience(xpGained);
+      useMercStore.getState().shareExperienceWithFielded(xpGained);
       if (xpResult.levelsGained > 0) {
         combat.addLogEntry({
           type: 'system',
