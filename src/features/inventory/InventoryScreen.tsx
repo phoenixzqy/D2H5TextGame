@@ -20,7 +20,8 @@ import {
   resolveItemIcon
 } from '@/ui';
 import { useInventoryStore } from '@/stores';
-import type { Item, EquipmentSlot } from '@/engine/types/items';
+import { loadItemBases } from '@/data/loaders/loot';
+import type { Item, EquipmentSlot, ItemBase } from '@/engine/types/items';
 
 const SLOT_ORDER: EquipmentSlot[] = [
   'head',
@@ -196,6 +197,7 @@ function ItemGrid({
                 name={itemDisplayName(it)}
                 rarity={it.rarity}
                 image={resolveItemIcon(it.baseId) ?? undefined}
+                itemGlyph={glyphForItem(it)}
                 selected={selectedId === it.id}
                 onClick={() => { setSelectedId(it.id); }}
                 testId={`inv-item-${it.id}`}
@@ -301,6 +303,43 @@ function EquipmentPanel({
 
 function itemDisplayName(item: Item): string {
   return item.baseId.split('/').pop() ?? item.baseId;
+}
+
+/**
+ * Map an item's base type / slot to a corner-badge glyph for the inventory
+ * card. Bug #18. Pure: looks the base up in the JSON catalog (cached) and
+ * falls back to slug heuristics if the base is missing.
+ */
+function glyphForItem(item: Item):
+  | 'weapon'
+  | 'shield'
+  | 'jewelry'
+  | 'scroll'
+  | 'charm'
+  | 'gem'
+  | 'rune'
+  | 'armor'
+  | undefined {
+  const base: ItemBase | undefined = loadItemBases().get(item.baseId);
+  const slug = item.baseId.split('/').pop() ?? '';
+  if (base) {
+    if (base.type === 'weapon') return 'weapon';
+    if (base.type === 'jewelry') return 'jewelry';
+    if (base.type === 'charm') return 'charm';
+    if (base.type === 'gem') return 'gem';
+    if (base.type === 'rune') return 'rune';
+    if (base.type === 'armor') {
+      // Shields are armor-typed but use the offhand slot.
+      if (base.slot === 'offhand' || slug.startsWith('sh-')) return 'shield';
+      return 'armor';
+    }
+    if (base.type === 'material') return 'scroll';
+  }
+  // Fallbacks when the base catalog doesn't know this id.
+  if (slug.startsWith('sh-')) return 'shield';
+  if (slug.startsWith('wp')) return 'weapon';
+  if (slug.startsWith('ring-') || slug.startsWith('amu-')) return 'jewelry';
+  return undefined;
 }
 
 function rarityTextClass(rarity: Item['rarity']): string {
