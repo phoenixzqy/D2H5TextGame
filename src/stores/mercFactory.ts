@@ -39,6 +39,7 @@ export function createMercFromDef(def: MercDef, instanceSuffix?: string): Mercen
     alive: true,
     turnOrder: 0,
     archetype: def.archetype,
+    classId: def.classRef,
     rarity: def.rarity,
     equipment: []
   };

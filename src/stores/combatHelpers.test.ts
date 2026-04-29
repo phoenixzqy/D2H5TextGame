@@ -463,7 +463,7 @@ describe('startSimpleBattle — Bug #12', () => {
     const expectedXp = slain.reduce((total, enemy) => total + xpForKill(enemy.level), 0);
     drainEvents();
     advanceWaveOrFinish();
-    expect(useMercStore.getState().getMercProgress(merc.id).experience).toBe(Math.floor(expectedXp * 0.5));
+    expect(useMercStore.getState().getMercProgress(merc.id).experience).toBe(Math.floor(expectedXp * 0.75));
   });
 });
 

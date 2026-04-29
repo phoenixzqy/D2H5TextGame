@@ -92,9 +92,19 @@ export interface Mercenary extends Unit {
   readonly type: 'mercenary';
   readonly team: 'player';
   
-  /** Mercenary archetype/class */
+  /** Mercenary role archetype: 'front' | 'back' | 'support' (drives AI/positioning). */
   readonly archetype: string;
-  
+
+  /**
+   * Mercenary class id, e.g. `'rogue' | 'desert-merc' | 'iron-wolf' |
+   * 'barbarian' | 'paladin' | 'militia' | 'thief' | 'acolyte'`. Populated from
+   * `MercDef.classRef`. Drives per-class progression (life/stat gains) in
+   * {@link useMercStore.addExperience}. Optional for back-compat with mercs
+   * created before this field existed; resolution falls back to a sensible
+   * default in that case.
+   */
+  readonly classId?: string;
+
   /** Rarity tier (for gacha mercs) */
   readonly rarity: 'R' | 'SR' | 'SSR';
   

@@ -141,7 +141,7 @@ export const DEFAULT_SKILLS: readonly RegisteredSkill[] = Object.freeze([
   build({ id: 'druid.firestorm', archetype: 'druid', target: 'all-enemies', cooldown: 2, manaCost: 20, damageType: 'fire', base: [40, 60], status: { id: 'ignite', dotPct: 0.1 } }),
   build({ id: 'druid.arctic_blast', archetype: 'druid', target: 'area-enemies', cooldown: 2, manaCost: 25, damageType: 'cold', base: [50, 70], status: { id: 'chill' } }),
   build({ id: 'druid.tornado', archetype: 'druid', target: 'area-enemies', cooldown: 2, manaCost: 30, damageType: 'physical', base: [60, 90] }),
-  build({ id: 'druid.summon_dire_wolf', archetype: 'druid', target: 'summon', cooldown: 0, manaCost: 20, summon: { summonId: 'dire_wolf', max: 3, onStart: true } }),
+  build({ id: 'druid.summon_dire_wolf', archetype: 'druid', target: 'summon', cooldown: 0, manaCost: 20, summon: { summonId: 'dire_wolf', max: 5, onStart: true } }),
   build({ id: 'druid.werewolf_maul', archetype: 'druid', target: 'single-enemy', cooldown: 1, manaCost: 15, damageType: 'physical', base: [80, 120], status: { id: 'bleed', dotPct: 0.08 } }),
   build({ id: 'druid.hurricane', archetype: 'druid', target: 'all-enemies', cooldown: 4, manaCost: 50, damageType: 'cold', base: [70, 100], status: { id: 'chill' } }),
   build({ id: 'druid.elemental_mastery', archetype: 'druid', target: 'self', cooldown: 0, manaCost: 0, buff: { id: 'elemental_mastery', duration: -1 } }),

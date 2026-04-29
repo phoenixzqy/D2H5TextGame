@@ -11,7 +11,7 @@ import type { Item } from '@/engine/types/items';
 
 const core: CoreStats = { strength: 10, dexterity: 10, vitality: 10, energy: 10 };
 
-function makeMerc(id = 'mercs/act1-rogue-trainee'): Mercenary {
+function makeMerc(id = 'mercs/act1-rogue-trainee', classId: string | null = 'rogue'): Mercenary {
   return {
     id,
     name: id,
@@ -26,7 +26,8 @@ function makeMerc(id = 'mercs/act1-rogue-trainee'): Mercenary {
     comboOrder: [],
     alive: true,
     turnOrder: 0,
-    archetype: 'rogue',
+    archetype: 'back',
+    ...(classId !== null ? { classId } : {}),
     rarity: 'R',
     equipment: []
   } as Mercenary;
@@ -105,7 +106,7 @@ describe('mercStore — addExperience / shareExperienceWithFielded (Bug #12)', (
   });
 
   it('levels up when XP crosses the threshold and bumps stats', () => {
-    const m = makeMerc();
+    const m = makeMerc(); // rogue: life+8, str+1, dex+3, energy+1
     useMercStore.getState().addMerc(m);
     const before = useMercStore.getState().ownedMercs[0];
     if (!before) throw new Error('merc not added');
@@ -117,8 +118,9 @@ describe('mercStore — addExperience / shareExperienceWithFielded (Bug #12)', (
     if (!after) throw new Error('merc missing post-grant');
     expect(after.level).toBe(2);
     expect(after.coreStats.strength).toBe(before.coreStats.strength + 1);
-    expect(after.coreStats.dexterity).toBe(before.coreStats.dexterity + 1);
-    expect(after.derivedStats.lifeMax).toBe(before.derivedStats.lifeMax + 5);
+    expect(after.coreStats.dexterity).toBe(before.coreStats.dexterity + 3);
+    expect(after.coreStats.energy).toBe(before.coreStats.energy + 1);
+    expect(after.derivedStats.lifeMax).toBe(before.derivedStats.lifeMax + 8);
     expect(useMercStore.getState().mercProgress[m.id]?.experience).toBe(5);
   });
 
@@ -137,6 +139,88 @@ describe('mercStore — addExperience / shareExperienceWithFielded (Bug #12)', (
     expect(useMercStore.getState().mercProgress[m.id]?.experience ?? 0).toBe(0);
     useMercStore.getState().setFieldedMerc(m.id);
     useMercStore.getState().shareExperienceWithFielded(20);
-    expect(useMercStore.getState().mercProgress[m.id]?.experience).toBe(10); // 50% share
+    expect(useMercStore.getState().mercProgress[m.id]?.experience).toBe(15); // 75% share
+  });
+});
+
+describe('mercStore — per-class progression (Bug #12)', () => {
+  it('applies distinct gains for different classes', () => {
+    const rogue = makeMerc('mercs/test-rogue', 'rogue');
+    const barb = makeMerc('mercs/test-barb', 'barbarian');
+    useMercStore.getState().addMerc(rogue);
+    useMercStore.getState().addMerc(barb);
+    const rBefore = useMercStore.getState().ownedMercs.find((x) => x.id === rogue.id);
+    const bBefore = useMercStore.getState().ownedMercs.find((x) => x.id === barb.id);
+    if (!rBefore || !bBefore) throw new Error('mercs not added');
+
+    const need = mercXpForLevel(1);
+    useMercStore.getState().addExperience(rogue.id, need);
+    useMercStore.getState().addExperience(barb.id, need);
+
+    const rAfter = useMercStore.getState().ownedMercs.find((x) => x.id === rogue.id);
+    const bAfter = useMercStore.getState().ownedMercs.find((x) => x.id === barb.id);
+    if (!rAfter || !bAfter) throw new Error('mercs gone');
+
+    // rogue: dex+3, life+8, str+1
+    expect(rAfter.coreStats.dexterity - rBefore.coreStats.dexterity).toBe(3);
+    expect(rAfter.derivedStats.lifeMax - rBefore.derivedStats.lifeMax).toBe(8);
+    // barbarian: str+3, dex+2, life+16
+    expect(bAfter.coreStats.strength - bBefore.coreStats.strength).toBe(3);
+    expect(bAfter.coreStats.dexterity - bBefore.coreStats.dexterity).toBe(2);
+    expect(bAfter.derivedStats.lifeMax - bBefore.derivedStats.lifeMax).toBe(16);
+
+    // Distinct: rogue and barbarian must not gain identical stat blocks.
+    expect(rAfter.coreStats.dexterity - rBefore.coreStats.dexterity)
+      .not.toBe(bAfter.coreStats.dexterity - bBefore.coreStats.dexterity);
+    expect(rAfter.derivedStats.lifeMax - rBefore.derivedStats.lifeMax)
+      .not.toBe(bAfter.derivedStats.lifeMax - bBefore.derivedStats.lifeMax);
+  });
+
+  it('falls back to default gains for unknown class ids', () => {
+    const unknown = makeMerc('mercs/test-unknown', 'no-such-class');
+    useMercStore.getState().addMerc(unknown);
+    const before = useMercStore.getState().ownedMercs.find((x) => x.id === unknown.id);
+    if (!before) throw new Error('merc not added');
+    const need = mercXpForLevel(1);
+    useMercStore.getState().addExperience(unknown.id, need);
+    const after = useMercStore.getState().ownedMercs.find((x) => x.id === unknown.id);
+    if (!after) throw new Error('merc missing');
+    // default: life+10, str+2, dex+1, energy+1
+    expect(after.derivedStats.lifeMax - before.derivedStats.lifeMax).toBe(10);
+    expect(after.coreStats.strength - before.coreStats.strength).toBe(2);
+    expect(after.coreStats.dexterity - before.coreStats.dexterity).toBe(1);
+    expect(after.coreStats.energy - before.coreStats.energy).toBe(1);
+  });
+
+  it('falls back to default when classId is missing entirely', () => {
+    const noClass = makeMerc('mercs/test-noclass', null);
+    useMercStore.getState().addMerc(noClass);
+    const before = useMercStore.getState().ownedMercs.find((x) => x.id === noClass.id);
+    if (!before) throw new Error('merc not added');
+    useMercStore.getState().addExperience(noClass.id, mercXpForLevel(1));
+    const after = useMercStore.getState().ownedMercs.find((x) => x.id === noClass.id);
+    if (!after) throw new Error('merc missing');
+    expect(after.derivedStats.lifeMax - before.derivedStats.lifeMax).toBe(10);
+  });
+});
+
+describe('mercStore — XP curve sanity (Bug #12)', () => {
+  it('is monotonic across levels 1..98', () => {
+    for (let L = 1; L < 98; L++) {
+      expect(mercXpForLevel(L + 1)).toBeGreaterThan(mercXpForLevel(L));
+    }
+  });
+
+  it('produces finite, safe-integer values up to L=99', () => {
+    const top = mercXpForLevel(99);
+    expect(Number.isFinite(top)).toBe(true);
+    expect(Number.isSafeInteger(top)).toBe(true);
+    expect(top).toBeLessThan(Number.MAX_SAFE_INTEGER);
+  });
+
+  it('matches design targets at L=1 and L=10', () => {
+    expect(mercXpForLevel(1)).toBe(60);
+    // floor(60 * 10 * 1.30^9) — keep as a regression anchor.
+    expect(mercXpForLevel(10)).toBe(Math.floor(60 * 10 * Math.pow(1.30, 9)));
   });
 });

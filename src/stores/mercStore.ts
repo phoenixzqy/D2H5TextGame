@@ -10,27 +10,87 @@ import type { EquipmentSlot, Item, ItemBase } from '@/engine/types/items';
 import { loadItemBases } from '@/data/loaders/loot';
 
 /**
- * Bug #12 — fixed XP curve for mercenaries (placeholder).
- * `xpForLevel(n)` is the XP needed to advance from level n to n+1.
- * Tuned so a level-1 merc reaches level-up after a handful of fights.
+ * Mercenary XP curve (canonical).
  *
- * TODO(game-designer): replace with the canonical merc XP table.
+ * `mercXpForLevel(L)` = XP required to advance **from level L to L+1**.
+ *
+ * Formula:  `floor(60 * L * 1.30^(L-1))`
+ *
+ * Rationale:
+ *  - L=1 → 60 XP. With Act-1 fallen kills granting ~20-30 XP (× 0.75 merc
+ *    share ≈ 15-22 XP/kill) a fielded trainee dings to L2 in 3-4 fights.
+ *  - L=10 → 6,362 XP. At ~80 monster XP × 0.75 share ≈ 60/kill, that is
+ *    ~106 kills to clear L10→L11 — within the 100-200 kill design target.
+ *  - L=99 → ≈ 8.6e14 XP. Comfortably below `Number.MAX_SAFE_INTEGER`
+ *    (≈ 9.0e15) so all arithmetic remains exact integer.
+ *
+ * Inspired by classic D2 monster-XP scaling (per-area XP grows ~1.25-1.35×
+ * per level), with a per-level linear `L` factor to keep the early game
+ * brisk without trivialising the late game. Curve was tuned by hand to the
+ * targets above; if `qa-engineer` runs a sim, we can revisit the 1.30 base.
+ *
+ * Monotonic: `mercXpForLevel(L+1) > mercXpForLevel(L)` for all L ≥ 1.
  */
 export function mercXpForLevel(level: number): number {
-  return Math.max(50, Math.floor(50 * Math.pow(1.35, Math.max(1, level) - 1)));
+  const L = Math.max(1, level);
+  return Math.floor(60 * L * Math.pow(1.30, L - 1));
 }
 
 /**
- * Bug #12 — fixed share of player XP that piped to active-party mercs.
- * 0.5 = 50%. TODO(game-designer): finalize.
+ * Share of player kill-XP credited to the currently-fielded mercenary.
+ *
+ * 0.75 = 75%. In classic D2 a hireling gets full party XP at the same area;
+ * we apply a small 25% tax so soloing without a merc is never strictly
+ * inferior on raw XP/hr while keeping merc progression meaningful.
+ *
+ * Cited: PureDiablo / Arreat Summit hireling notes (party XP share at same
+ * level / area). We deliberately do *not* model D2's level-difference XP
+ * penalty — the merc is treated as same-area for this game.
  */
-export const MERC_XP_SHARE = 0.5;
+export const MERC_XP_SHARE = 0.75;
+
+/** Per-level gain block applied on each merc level-up. */
+interface PerLevelGain {
+  readonly life: number;
+  readonly strength: number;
+  readonly dexterity: number;
+  readonly energy: number;
+}
 
 /**
- * Bug #12 — placeholder per-level stat gains. TODO(game-designer): replace
- * with per-class tables (rogue/desert/iron-wolf/barbarian/paladin/...).
+ * Per-class per-level stat gains, keyed by `Mercenary.classId` (which mirrors
+ * `MercDef.classRef`). Values picked to give each class a distinct identity:
+ *  - rogue / thief   → dex-heavy archers / skirmishers
+ *  - desert-merc     → str + life polearm tank
+ *  - iron-wolf       → caster (low life, high energy)
+ *  - barbarian       → highest life pool, str-heavy
+ *  - paladin         → balanced front-line
+ *  - militia         → unremarkable generalist
+ *  - acolyte         → caster healer (energy-focused)
+ *
+ * Class IDs not present in this table fall through to {@link DEFAULT_PER_LEVEL_GAIN}.
  */
-const PER_LEVEL_GAIN = { life: 5, strength: 1, dexterity: 1 } as const;
+const PER_LEVEL_GAIN_BY_CLASS: Readonly<Record<string, PerLevelGain>> = Object.freeze({
+  'rogue':        { life: 8,  strength: 1, dexterity: 3, energy: 1 },
+  'desert-merc':  { life: 14, strength: 3, dexterity: 1, energy: 1 },
+  'iron-wolf':    { life: 6,  strength: 1, dexterity: 1, energy: 4 },
+  'barbarian':    { life: 16, strength: 3, dexterity: 2, energy: 0 },
+  'paladin':      { life: 12, strength: 2, dexterity: 1, energy: 1 },
+  'militia':      { life: 10, strength: 2, dexterity: 1, energy: 1 },
+  'thief':        { life: 7,  strength: 1, dexterity: 3, energy: 1 },
+  'acolyte':      { life: 6,  strength: 1, dexterity: 1, energy: 4 }
+});
+
+/** Fallback gains for unknown / legacy classes. */
+const DEFAULT_PER_LEVEL_GAIN: PerLevelGain = Object.freeze({
+  life: 10, strength: 2, dexterity: 1, energy: 1
+});
+
+/** Resolve gains for a merc class id (case-sensitive). */
+export function getPerLevelGain(classId: string | undefined): PerLevelGain {
+  if (!classId) return DEFAULT_PER_LEVEL_GAIN;
+  return PER_LEVEL_GAIN_BY_CLASS[classId] ?? DEFAULT_PER_LEVEL_GAIN;
+}
 
 interface MercProgress {
   experience: number;
@@ -233,16 +293,18 @@ export const useMercStore = create<MercState>((set, get) => ({
       const updatedMercs = s.ownedMercs.map((m) => {
         if (m.id !== mercId) return m;
         if (levelsGained === 0) return m;
+        const gain = getPerLevelGain(m.classId);
         const ds = m.derivedStats;
         const cs = m.coreStats;
-        const lifeBonus = PER_LEVEL_GAIN.life * levelsGained;
+        const lifeBonus = gain.life * levelsGained;
         return {
           ...m,
           level,
           coreStats: {
             ...cs,
-            strength: cs.strength + PER_LEVEL_GAIN.strength * levelsGained,
-            dexterity: cs.dexterity + PER_LEVEL_GAIN.dexterity * levelsGained
+            strength: cs.strength + gain.strength * levelsGained,
+            dexterity: cs.dexterity + gain.dexterity * levelsGained,
+            energy: cs.energy + gain.energy * levelsGained
           },
           derivedStats: {
             ...ds,
