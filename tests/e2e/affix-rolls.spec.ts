@@ -134,6 +134,13 @@ for (const locale of ['zh-CN', 'en'] as const) {
       fullPage: false,
     });
 
+    // Dismiss the inventory detail panel (mobile bottom-sheet would otherwise
+    // intercept the Equipment tab click via its backdrop).
+    const closeBtn = page.getByTestId('inv-detail-close');
+    if (await closeBtn.count() > 0) {
+      await closeBtn.first().click();
+    }
+
     const equipTab = page.getByRole('tab', { name: /装备|Equipment/i }).first();
     await equipTab.click();
     const slot = page.getByTestId('equip-slot-weapon');

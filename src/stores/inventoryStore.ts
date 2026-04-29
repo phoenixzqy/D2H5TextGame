@@ -37,6 +37,16 @@ interface InventoryState {
   // Actions
   addItem: (item: Item, toStash?: boolean) => void;
   removeItem: (itemId: string) => void;
+  /**
+   * Permanently discards a backpack/stash item. Functionally identical to
+   * {@link removeItem} but expresses the player-visible semantic: there is
+   * no currency in the game, so removed items are destroyed, not sold.
+   *
+   * TODO(game-designer): replace with salvage→materials when crafting ships.
+   */
+  discardItem: (itemId: string) => void;
+  /** Bulk variant of {@link discardItem}. Removes any matching ids in either container. */
+  bulkDiscard: (itemIds: readonly string[]) => void;
   equipItem: (item: Item) => EquipResult;
   unequipItem: (slot: string) => UnequipResult;
   moveToStash: (itemId: string) => void;
@@ -103,6 +113,19 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
     backpack: state.backpack.filter((i) => i.id !== itemId),
     stash: state.stash.filter((i) => i.id !== itemId)
   })); },
+
+  discardItem: (itemId) => { set((state) => ({
+    backpack: state.backpack.filter((i) => i.id !== itemId),
+    stash: state.stash.filter((i) => i.id !== itemId)
+  })); },
+
+  bulkDiscard: (itemIds) => { set((state) => {
+    const ids = new Set(itemIds);
+    return {
+      backpack: state.backpack.filter((i) => !ids.has(i.id)),
+      stash: state.stash.filter((i) => !ids.has(i.id))
+    };
+  }); },
   
   equipItem: (item) => {
     const bases = loadItemBases();

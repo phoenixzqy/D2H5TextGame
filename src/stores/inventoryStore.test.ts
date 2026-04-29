@@ -143,3 +143,51 @@ describe('useInventoryStore equipItem', () => {
     expect(after.equipped).toEqual(before.equipped);
   });
 });
+
+describe('useInventoryStore discard actions', () => {
+  beforeEach(() => {
+    useInventoryStore.getState().reset();
+    usePlayerStore.getState().reset();
+    usePlayerStore.getState().setPlayer(makePlayer());
+  });
+
+  it('discardItem removes a backpack item permanently', () => {
+    const helm = item('helm-1', 'items/base/helm-cap');
+    addItems(helm);
+
+    useInventoryStore.getState().discardItem('helm-1');
+
+    expect(useInventoryStore.getState().backpack).toEqual([]);
+    expect(useInventoryStore.getState().stash).toEqual([]);
+  });
+
+  it('discardItem removes a stash item permanently', () => {
+    const helm = item('helm-1', 'items/base/helm-cap');
+    useInventoryStore.getState().addItem(helm, true);
+
+    useInventoryStore.getState().discardItem('helm-1');
+
+    expect(useInventoryStore.getState().stash).toEqual([]);
+  });
+
+  it('bulkDiscard removes every supplied id from both backpack and stash', () => {
+    const a = item('a', 'items/base/helm-cap');
+    const b = item('b', 'items/base/helm-cap');
+    const c = item('c', 'items/base/helm-cap');
+    addItems(a, b);
+    useInventoryStore.getState().addItem(c, true);
+
+    useInventoryStore.getState().bulkDiscard(['a', 'c']);
+
+    const state = useInventoryStore.getState();
+    expect(state.backpack.map((i) => i.id)).toEqual(['b']);
+    expect(state.stash).toEqual([]);
+  });
+
+  it('bulkDiscard with an empty list is a no-op', () => {
+    const a = item('a', 'items/base/helm-cap');
+    addItems(a);
+    useInventoryStore.getState().bulkDiscard([]);
+    expect(useInventoryStore.getState().backpack.map((i) => i.id)).toEqual(['a']);
+  });
+});
