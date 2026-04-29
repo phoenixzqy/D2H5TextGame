@@ -224,6 +224,12 @@ export async function getBackpackCount(page: Page): Promise<number> {
  * Safe to call after createCharacter, before entering combat.
  */
 export async function boostPlayer(page: Page): Promise<void> {
+  await expect
+    .poll(async () => page.evaluate(() => Boolean(window.__GAME__?.player)), {
+      timeout: 10_000,
+      intervals: [250, 500, 1_000],
+    })
+    .toBe(true);
   await page.evaluate(() => {
     const game = (
       window as unknown as {
@@ -237,7 +243,7 @@ export async function boostPlayer(page: Page): Promise<void> {
         };
       }
     ).__GAME__;
-    if (!game) return;
+    if (!game) throw new Error('test bridge not installed');
     const state = game.player.getState();
     const p = state.player;
     if (!p) return;
@@ -251,7 +257,11 @@ export async function boostPlayer(page: Page): Promise<void> {
         mana: 9999,
         manaMax: 9999,
         attack: 9999,
-        defense: 999,
+        defense: 9999,
+        attackSpeed: 999,
+        critChance: 0,
+        physDodge: 1,
+        magicDodge: 1,
       },
     });
   });

@@ -16,7 +16,7 @@ function renderScreen() {
   return render(
     <I18nextProvider i18n={i18n}>
       <Suspense fallback={null}>
-        <MemoryRouter>
+        <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
           <QuestsScreen />
         </MemoryRouter>
       </Suspense>

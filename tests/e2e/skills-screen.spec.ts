@@ -3,6 +3,7 @@
  * Verifies that skills load correctly per class and display proper layouts
  */
 import { test, expect } from '@playwright/test';
+import { clearGameStorage, createCharacter, navTo } from './_helpers';
 
 const DESKTOP_VIEWPORT = { width: 1280, height: 800 };
 const MOBILE_VIEWPORT = { width: 360, height: 640 };
@@ -12,24 +13,12 @@ test.describe('Skills Screen', () => {
     test.use({ viewport: DESKTOP_VIEWPORT });
 
     test('should display Necromancer skills when Necromancer is selected', async ({ page }) => {
-      await page.goto('http://localhost:5173', { waitUntil: 'networkidle' });
-      
-      // Clear any existing state
-      await page.evaluate(() => { localStorage.clear(); });
-      await page.reload({ waitUntil: 'networkidle' });
-      
-      // Navigate to character creation and select Necromancer
-      await page.getByTestId('home-new-game').click();
-      await page.getByTestId('class-necromancer').click();
-      await page.getByTestId('character-name-input').fill('TestNecro');
-      await page.getByTestId('character-start-btn').click();
-      
-      // Wait for town screen to load
-      await expect(page.getByTestId('town-screen')).toBeVisible({ timeout: 10000 });
+      await clearGameStorage(page);
+      await createCharacter(page, { class: 'necromancer', name: 'TestNecro' });
       
       // Navigate to skills screen
-      const skillsNav = page.getByRole('link', { name: /技能|Skills/i });
-      await skillsNav.click();
+      await navTo(page, 'skills');
+      await expect(page.getByTestId('skills-screen')).toBeVisible();
       
       // Verify Necromancer-canonical skills are present
       const pageContent = await page.textContent('body');
@@ -44,24 +33,12 @@ test.describe('Skills Screen', () => {
     });
 
     test('should display Sorceress skills when Sorceress is selected', async ({ page }) => {
-      await page.goto('http://localhost:5173', { waitUntil: 'networkidle' });
-      
-      // Clear any existing state
-      await page.evaluate(() => { localStorage.clear(); });
-      await page.reload({ waitUntil: 'networkidle' });
-      
-      // Navigate to character creation and select Sorceress
-      await page.getByTestId('home-new-game').click();
-      await page.getByTestId('class-sorceress').click();
-      await page.getByTestId('character-name-input').fill('TestSorc');
-      await page.getByTestId('character-start-btn').click();
-      
-      // Wait for town screen to load
-      await expect(page.getByTestId('town-screen')).toBeVisible({ timeout: 10000 });
+      await clearGameStorage(page);
+      await createCharacter(page, { class: 'sorceress', name: 'TestSorc' });
       
       // Navigate to skills screen
-      const skillsNav = page.getByRole('link', { name: /技能|Skills/i });
-      await skillsNav.click();
+      await navTo(page, 'skills');
+      await expect(page.getByTestId('skills-screen')).toBeVisible();
       
       // Verify Sorceress-canonical skills are present
       const pageContent = await page.textContent('body');
@@ -76,24 +53,12 @@ test.describe('Skills Screen', () => {
     });
 
     test('should show locked skills with level requirements', async ({ page }) => {
-      await page.goto('http://localhost:5173', { waitUntil: 'networkidle' });
-      
-      // Clear any existing state
-      await page.evaluate(() => { localStorage.clear(); });
-      await page.reload({ waitUntil: 'networkidle' });
-      
-      // Create a level 1 character
-      await page.getByTestId('home-new-game').click();
-      await page.getByTestId('class-sorceress').click();
-      await page.getByTestId('character-name-input').fill('TestSorc');
-      await page.getByTestId('character-start-btn').click();
-      
-      // Wait for town screen to load
-      await expect(page.getByTestId('town-screen')).toBeVisible({ timeout: 10000 });
+      await clearGameStorage(page);
+      await createCharacter(page, { class: 'sorceress', name: 'TestSorc' });
       
       // Navigate to skills screen
-      const skillsNav = page.getByRole('link', { name: /技能|Skills/i });
-      await skillsNav.click();
+      await navTo(page, 'skills');
+      await expect(page.getByTestId('skills-screen')).toBeVisible();
       
       // Check for locked skills (minLevel > 1)
       const pageContent = await page.textContent('body');
@@ -104,24 +69,12 @@ test.describe('Skills Screen', () => {
     });
 
     test('should display active skill priority list', async ({ page }) => {
-      await page.goto('http://localhost:5173', { waitUntil: 'networkidle' });
-      
-      // Clear any existing state
-      await page.evaluate(() => { localStorage.clear(); });
-      await page.reload({ waitUntil: 'networkidle' });
-      
-      // Create character
-      await page.getByTestId('home-new-game').click();
-      await page.getByTestId('class-necromancer').click();
-      await page.getByTestId('character-name-input').fill('TestNecro');
-      await page.getByTestId('character-start-btn').click();
-      
-      // Wait for town screen to load
-      await expect(page.getByTestId('town-screen')).toBeVisible({ timeout: 10000 });
+      await clearGameStorage(page);
+      await createCharacter(page, { class: 'necromancer', name: 'TestNecro' });
       
       // Navigate to skills screen
-      const skillsNav = page.getByRole('link', { name: /技能|Skills/i });
-      await skillsNav.click();
+      await navTo(page, 'skills');
+      await expect(page.getByTestId('skills-screen')).toBeVisible();
       
       // Verify priority list exists with 5 slots
       await expect(page.getByTestId('skills-screen')).toBeVisible();
@@ -138,24 +91,12 @@ test.describe('Skills Screen', () => {
     test.use({ viewport: MOBILE_VIEWPORT });
 
     test('should display Necromancer skills on mobile', async ({ page }) => {
-      await page.goto('http://localhost:5173', { waitUntil: 'networkidle' });
-      
-      // Clear any existing state
-      await page.evaluate(() => { localStorage.clear(); });
-      await page.reload({ waitUntil: 'networkidle' });
-      
-      // Navigate to character creation and select Necromancer
-      await page.getByTestId('home-new-game').click();
-      await page.getByTestId('class-necromancer').click();
-      await page.getByTestId('character-name-input').fill('TestNecro');
-      await page.getByTestId('character-start-btn').click();
-      
-      // Wait for town screen to load
-      await expect(page.getByTestId('town-screen')).toBeVisible({ timeout: 10000 });
+      await clearGameStorage(page);
+      await createCharacter(page, { class: 'necromancer', name: 'TestNecro' });
       
       // Navigate to skills screen
-      const skillsNav = page.getByRole('link', { name: /技能|Skills/i });
-      await skillsNav.click();
+      await navTo(page, 'skills');
+      await expect(page.getByTestId('skills-screen')).toBeVisible();
       
       // Verify Necromancer-canonical skills are present
       const pageContent = await page.textContent('body');
@@ -173,24 +114,12 @@ test.describe('Skills Screen', () => {
     });
 
     test('should display Sorceress skills on mobile', async ({ page }) => {
-      await page.goto('http://localhost:5173', { waitUntil: 'networkidle' });
-      
-      // Clear any existing state
-      await page.evaluate(() => { localStorage.clear(); });
-      await page.reload({ waitUntil: 'networkidle' });
-      
-      // Navigate to character creation and select Sorceress
-      await page.getByTestId('home-new-game').click();
-      await page.getByTestId('class-sorceress').click();
-      await page.getByTestId('character-name-input').fill('TestSorc');
-      await page.getByTestId('character-start-btn').click();
-      
-      // Wait for town screen to load
-      await expect(page.getByTestId('town-screen')).toBeVisible({ timeout: 10000 });
+      await clearGameStorage(page);
+      await createCharacter(page, { class: 'sorceress', name: 'TestSorc' });
       
       // Navigate to skills screen
-      const skillsNav = page.getByRole('link', { name: /技能|Skills/i });
-      await skillsNav.click();
+      await navTo(page, 'skills');
+      await expect(page.getByTestId('skills-screen')).toBeVisible();
       
       // Verify Sorceress-canonical skills are present
       const pageContent = await page.textContent('body');

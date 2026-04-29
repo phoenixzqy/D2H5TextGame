@@ -423,6 +423,7 @@ function UnitCard({
       data-side-testid={sideTestId}
     >
       <span className="sr-only" data-testid={sideTestId} />
+      {isSummon && <span className="sr-only" data-testid="summon-badge" />}
       <GameCard
         variant={variant}
         size={size}

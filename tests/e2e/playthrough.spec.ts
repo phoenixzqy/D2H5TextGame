@@ -6,6 +6,7 @@
 import { test, expect } from '@playwright/test';
 import * as fs from 'fs';
 import * as path from 'path';
+import { clearGameStorage, returnToTownFromCombat } from './_helpers';
 
 // Ensure .screenshots directory exists
 test.beforeAll(() => {
@@ -15,6 +16,8 @@ test.beforeAll(() => {
   }
 });
 
+test.describe.configure({ mode: 'serial' });
+
 test.describe('Full Playthrough', () => {
   test('complete game flow from home to combat and back', async ({ page }, testInfo) => {
     // Determine viewport prefix (desktop or mobile)
@@ -22,8 +25,7 @@ test.describe('Full Playthrough', () => {
     const viewportPrefix = isDesktop ? 'desktop' : 'mobile';
 
     // 1. Home screen
-    await page.goto('/');
-    await expect(page.getByTestId('home-screen')).toBeVisible({ timeout: 10000 });
+    await clearGameStorage(page);
     await page.screenshot({
       path: `.screenshots/${viewportPrefix}-home.png`,
       fullPage: true
@@ -78,9 +80,7 @@ test.describe('Full Playthrough', () => {
     });
 
     // Return to town
-    const fleeButton = page.getByRole('button', { name: /逃跑|Flee/i });
-    await fleeButton.click();
-    await expect(page.getByTestId('town-screen')).toBeVisible();
+    await returnToTownFromCombat(page);
 
     // 6. Inventory screen
     const inventoryNav = page.getByRole('link', { name: /背包|Inventory/i });
@@ -187,31 +187,21 @@ test.describe('Full Playthrough', () => {
 });
 
 test.describe.serial('Screenshot Verification', () => {
-  test('all 22 screenshots exist', async () => {
+  test('all screenshots for this project exist', async ({}, testInfo) => {
     const screenshotDir = path.join(process.cwd(), '.screenshots');
+    const prefix = testInfo.project.name.includes('desktop') ? 'desktop' : 'mobile';
     const required = [
-      'desktop-home.png',
-      'desktop-character-create.png',
-      'desktop-town.png',
-      'desktop-map.png',
-      'desktop-combat.png',
-      'desktop-inventory.png',
-      'desktop-skills.png',
-      'desktop-mercs.png',
-      'desktop-gacha.png',
-      'desktop-quests.png',
-      'desktop-settings.png',
-      'mobile-home.png',
-      'mobile-character-create.png',
-      'mobile-town.png',
-      'mobile-map.png',
-      'mobile-combat.png',
-      'mobile-inventory.png',
-      'mobile-skills.png',
-      'mobile-mercs.png',
-      'mobile-gacha.png',
-      'mobile-quests.png',
-      'mobile-settings.png'
+      `${prefix}-home.png`,
+      `${prefix}-character-create.png`,
+      `${prefix}-town.png`,
+      `${prefix}-map.png`,
+      `${prefix}-combat.png`,
+      `${prefix}-inventory.png`,
+      `${prefix}-skills.png`,
+      `${prefix}-mercs.png`,
+      `${prefix}-gacha.png`,
+      `${prefix}-quests.png`,
+      `${prefix}-settings.png`
     ];
 
     const missing: string[] = [];

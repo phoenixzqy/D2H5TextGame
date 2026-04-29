@@ -9,6 +9,7 @@ import {
   createCharacter,
   navTo,
   waitForBattleResolution,
+  returnToTownFromCombat,
   bbox,
   rectsIntersect,
 } from './_helpers';
@@ -97,8 +98,7 @@ test.describe('Mobile responsive flow', () => {
         await waitForBattleResolution(page, 30_000);
         const fleeBtn = page.getByRole('button', { name: /逃跑|Flee/i });
         await checkTapTarget(fleeBtn, 'combat-flee');
-        await fleeBtn.click();
-        await expect(page.getByTestId('town-screen')).toBeVisible();
+        await returnToTownFromCombat(page);
         await checkNoOverflow('town-after-combat');
 
         // Step: inventory
