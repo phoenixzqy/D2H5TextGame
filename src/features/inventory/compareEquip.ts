@@ -1,18 +1,17 @@
 /**
  * compareEquip — pure helpers for the equipment picker / comparison flyout.
  *
- * No React, no stores, no I/O beyond `loadItemBases()` (which reads JSON
- * synchronously and caches). Used by:
+ * No React, no stores, no I/O beyond `loadItemBases()` (cached). Used by:
  *   - `inventoryStore.eligibleForSlot()` (slot filter + req gate)
  *   - `<EquipPicker>` modal (list with greyed-out ineligible rows)
  *   - `<ItemCompareTooltip>` (side-by-side stat deltas vs equipped)
  *
- * Comparison strategy: we *clone* the equipped record, drop the candidate
- * into the resolved target slot (handling 2H weapon → clears offhand, etc.
- * mirroring the live `equipItem` reducer), then re-run the same engine
- * pipeline `aggregateEquipmentMods → applyEquipmentCoreMods → deriveStats`
- * the player store uses on real equip. That guarantees deltas match what
- * the player will actually see *post-equip*.
+ * Comparison strategy: clone the equipped record, drop the candidate into
+ * the resolved target slot (mirroring `equipItem` rules: 2H weapon clears
+ * offhand, ring assignment), then re-run the same engine pipeline
+ * `aggregateEquipmentMods → applyEquipmentCoreMods → deriveStats` the
+ * player store uses on real equip. Deltas therefore match what the player
+ * will actually see post-equip.
  *
  * @module features/inventory/compareEquip
  */
@@ -27,7 +26,6 @@ import { deriveStats } from '@/engine/progression/stats';
 import type { CoreStats, DerivedStats, Resistances } from '@/engine/types/attributes';
 import type { EquipmentSlot, Item, ItemBase } from '@/engine/types/items';
 
-/** Subset of `Player` fields needed for eligibility + comparison. */
 export interface PlayerLike {
   readonly level: number;
   readonly coreStats: CoreStats;
@@ -74,24 +72,12 @@ export interface CompareResult {
 }
 
 const COMPARABLE_KEYS: readonly ComparableStatKey[] = [
-  'lifeMax',
-  'manaMax',
-  'attack',
-  'defense',
-  'attackSpeed',
-  'critChance',
-  'critDamage',
-  'physDodge',
-  'magicDodge'
+  'lifeMax', 'manaMax', 'attack', 'defense', 'attackSpeed',
+  'critChance', 'critDamage', 'physDodge', 'magicDodge'
 ];
 
 const RESIST_KEYS: readonly (keyof Resistances)[] = [
-  'fire',
-  'cold',
-  'lightning',
-  'poison',
-  'arcane',
-  'physical'
+  'fire', 'cold', 'lightning', 'poison', 'arcane', 'physical'
 ];
 
 export function slotMatches(itemSlot: EquipmentSlot | null | undefined, targetSlot: EquipmentSlot): boolean {

@@ -1,6 +1,3 @@
-/**
- * Unit tests for compareEquip.ts. Uses real loaded item bases.
- */
 import { describe, expect, it } from 'vitest';
 import {
   checkEligibility,
@@ -27,13 +24,7 @@ function mkItem(baseId: string, overrides: Partial<Item> = {}): Item {
 }
 
 function mkPlayer(level: number, core: Partial<CoreStats> = {}): PlayerLike {
-  const coreStats: CoreStats = {
-    strength: 20,
-    dexterity: 20,
-    vitality: 20,
-    energy: 20,
-    ...core
-  };
+  const coreStats: CoreStats = { strength: 20, dexterity: 20, vitality: 20, energy: 20, ...core };
   return { level, coreStats, derivedStats: deriveStats(coreStats, level) };
 }
 
@@ -83,7 +74,7 @@ describe('checkEligibility', () => {
 describe('compareEquip', () => {
   const bases = loadItemBases();
 
-  it('reports a positive defense delta when upgrading helm from cap (7) to skull-cap (12)', () => {
+  it('reports a positive defense delta when upgrading helm cap (7) → skull-cap (12)', () => {
     const player = mkPlayer(10);
     const cap = mkItem('items/base/helm-cap');
     const skullCap = mkItem('items/base/helm-skull-cap');
@@ -91,7 +82,6 @@ describe('compareEquip', () => {
     const result = compareEquip(player, skullCap, 'head', equipped, bases);
     expect(result.current?.baseId).toBe('items/base/helm-cap');
     expect(result.stats.defense.delta).toBe(5);
-    expect(result.stats.defense.candidate).toBeGreaterThan(result.stats.defense.current);
   });
 
   it('reports a negative defense delta when downgrading helm', () => {

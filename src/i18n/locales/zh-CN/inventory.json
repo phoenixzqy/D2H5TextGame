@@ -32,5 +32,44 @@
     "equipped": "已装备 {{name}}",
     "equipFailed": "无法装备 {{name}}",
     "unequipped": "已卸下 {{name}}"
+  },
+  "equip": {
+    "picker": {
+      "title": "装备：{{slot}}",
+      "empty": "背包中没有可装备到此栏位的物品。",
+      "reason": {
+        "level": "需要等级 {{required}}（当前 {{current}}）",
+        "stat": "需要 {{stat}} {{required}}（当前 {{current}}）"
+      },
+      "stat": {
+        "strength": "力量",
+        "dexterity": "敏捷",
+        "vitality": "体力",
+        "energy": "精力"
+      }
+    },
+    "compare": {
+      "current": "当前装备",
+      "candidate": "候选装备",
+      "stat": {
+        "lifeMax": "生命上限",
+        "manaMax": "法力上限",
+        "attack": "攻击力",
+        "defense": "防御",
+        "attackSpeed": "攻击速度",
+        "critChance": "暴击率",
+        "critDamage": "暴击伤害",
+        "physDodge": "物理闪避",
+        "magicDodge": "魔法闪避"
+      },
+      "resist": {
+        "fire": "火焰抗性",
+        "cold": "冰冷抗性",
+        "lightning": "闪电抗性",
+        "poison": "毒素抗性",
+        "arcane": "奥术抗性",
+        "physical": "物理减伤"
+      }
+    }
   }
 }

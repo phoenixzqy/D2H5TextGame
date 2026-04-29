@@ -62,6 +62,15 @@ export function xpScale(playerLevel: number, monsterLevel: number): number {
   return Math.max(0.1, 1 - (diff - 5) * 0.1);
 }
 
+/**
+ * XP awarded for slaying a monster of `monsterLevel`.
+ * v1 baseline: `max(5, round(10 * monsterLevel))`.
+ */
+export function xpForKill(monsterLevel: number): number {
+  if (!Number.isFinite(monsterLevel) || monsterLevel < 1) return 5;
+  return Math.max(5, Math.round(10 * monsterLevel));
+}
+
 /** Result of awarding XP to a player. */
 export interface AwardXpResult {
   /** Total XP after applying the award. */

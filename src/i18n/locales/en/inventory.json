@@ -32,5 +32,44 @@
     "equipped": "Equipped {{name}}",
     "equipFailed": "Cannot equip {{name}}",
     "unequipped": "Unequipped {{name}}"
+  },
+  "equip": {
+    "picker": {
+      "title": "Equip: {{slot}}",
+      "empty": "No backpack items fit this slot.",
+      "reason": {
+        "level": "Requires level {{required}} (current {{current}})",
+        "stat": "Requires {{stat}} {{required}} (current {{current}})"
+      },
+      "stat": {
+        "strength": "Strength",
+        "dexterity": "Dexterity",
+        "vitality": "Vitality",
+        "energy": "Energy"
+      }
+    },
+    "compare": {
+      "current": "Currently Equipped",
+      "candidate": "Candidate",
+      "stat": {
+        "lifeMax": "Life",
+        "manaMax": "Mana",
+        "attack": "Attack",
+        "defense": "Defense",
+        "attackSpeed": "Atk Speed",
+        "critChance": "Crit Chance",
+        "critDamage": "Crit Damage",
+        "physDodge": "Phys Dodge",
+        "magicDodge": "Magic Dodge"
+      },
+      "resist": {
+        "fire": "Fire Resist",
+        "cold": "Cold Resist",
+        "lightning": "Lightning Resist",
+        "poison": "Poison Resist",
+        "arcane": "Arcane Resist",
+        "physical": "Phys Mitigation"
+      }
+    }
   }
 }

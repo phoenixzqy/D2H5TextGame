@@ -8,6 +8,7 @@ import type { CombatUnit } from '@/engine/combat/types';
 import type { Player } from '@/engine/types/entities';
 import type { Item } from '@/engine/types/items';
 import { rollKillRewards, type KillRewards } from '@/engine/loot/award';
+import { xpForKill } from '@/engine/progression/xp';
 import { loadAwardPools } from '@/data/loaders/loot';
 import { useCombatStore, type CombatLogEntry } from './combatStore';
 import { useInventoryStore } from './inventoryStore';
@@ -310,10 +311,20 @@ export function startSimpleBattle(enemyLevel = 1, enemyCount = 3) {
 
   // On victory, roll loot for every slain enemy and dispatch into inventory.
   let rewards: KillRewards | undefined;
+  let xpGained = 0;
+  let levelUp: { readonly levelsGained: number; readonly newLevel: number } | undefined;
   if (result.winner === 'player') {
     const slain = result.enemyTeam.filter(
       (u) => u.life <= 0 && u.kind !== 'summon'
     );
+    for (const enemy of slain) xpGained += xpForKill(enemy.level);
+    if (xpGained > 0) {
+      const xpResult = usePlayerStore.getState().gainExperience(xpGained);
+      if (xpResult.levelsGained > 0) {
+        levelUp = { levelsGained: xpResult.levelsGained, newLevel: xpResult.newLevel };
+      }
+    }
+
     const mapState = useMapStore.getState();
     const act = (Math.min(5, Math.max(1, mapState.currentAct)) as 1 | 2 | 3 | 4 | 5);
     const treasureClassId = `loot/trash-act${String(act)}`;
@@ -345,5 +356,14 @@ export function startSimpleBattle(enemyLevel = 1, enemyCount = 3) {
     }
   });
 
-  return { ...result, rewards };
+  if (levelUp) {
+    useCombatStore.getState().addLogEntry({
+      type: 'system',
+      actorId: 'system',
+      actorName: 'System',
+      message: `combat:levelUp:${String(levelUp.newLevel)}`
+    });
+  }
+
+  return { ...result, rewards, xpGained, ...(levelUp ? { levelUp } : {}) };
 }

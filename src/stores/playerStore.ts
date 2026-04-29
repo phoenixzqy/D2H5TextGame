@@ -9,6 +9,7 @@ import type { CoreStats } from '@/engine/types/attributes';
 import type { Item } from '@/engine/types/items';
 import { aggregateEquipmentMods, applyEquipmentCoreMods, equipmentModsToDerivedModifiers } from '@/engine/progression/equipment-mods';
 import { deriveStats } from '@/engine/progression/stats';
+import { awardXp, xpRequired, xpTotal, LEVEL_CAP } from '@/engine/progression/xp';
 import { getSkillsForClass, type SkillTemplate } from './skillsHelpers';
 
 /**
@@ -36,6 +37,13 @@ export type AllocateSkillResult =
 /** Result codes returned by {@link PlayerState.respec}. */
 export type RespecResult = 'ok' | 'no-player' | 'no-allocations' | 'insufficient-gold';
 
+export interface GainExperienceResult {
+  readonly levelsGained: number;
+  readonly newLevel: number;
+  readonly statPointsGranted: number;
+  readonly skillPointsGranted: number;
+}
+
 interface PlayerState {
   player: Player | null;
   
@@ -43,6 +51,7 @@ interface PlayerState {
   setPlayer: (player: Player) => void;
   updateStats: (stats: Partial<CoreStats>) => void;
   addXP: (amount: number) => void;
+  gainExperience: (amount: number) => GainExperienceResult;
   levelUp: () => void;
   allocateStatPoint: (stat: keyof CoreStats) => void;
   /**
@@ -96,6 +105,46 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
       }
     };
   }); },
+  gainExperience: (amount) => {
+    const state = get();
+    const player = state.player;
+    if (!player || amount <= 0) {
+      return { levelsGained: 0, newLevel: player?.level ?? 1, statPointsGranted: 0, skillPointsGranted: 0 };
+    }
+    // Player.experience is "XP earned into the current level" (CharacterScreen
+    // renders experience / experienceToNextLevel). Convert to cumulative XP for
+    // `awardXp`, then convert back.
+    const cumulative = xpTotal(player.level) + player.experience;
+    const result = awardXp(cumulative, amount);
+    const cappedLevel = Math.min(LEVEL_CAP, result.level);
+    const intoLevel = Math.max(0, result.totalXp - xpTotal(cappedLevel));
+    const xpForNext = cappedLevel >= LEVEL_CAP ? Math.max(1, intoLevel) : xpRequired(cappedLevel);
+    const newDerived = deriveStats(player.coreStats, cappedLevel);
+    const preservedLife = Math.min(newDerived.lifeMax, player.derivedStats.life);
+    const preservedMana = Math.min(newDerived.manaMax, player.derivedStats.mana);
+    const levelsGained = cappedLevel - player.level;
+    set({
+      player: {
+        ...player,
+        level: cappedLevel,
+        experience: intoLevel,
+        experienceToNextLevel: xpForNext,
+        statPoints: player.statPoints + result.statPointsGranted,
+        skillPoints: player.skillPoints + result.skillPointsGranted,
+        derivedStats: {
+          ...newDerived,
+          life: preservedLife,
+          mana: preservedMana
+        }
+      }
+    });
+    return {
+      levelsGained,
+      newLevel: cappedLevel,
+      statPointsGranted: result.statPointsGranted,
+      skillPointsGranted: result.skillPointsGranted
+    };
+  },
   
   levelUp: () => { set((state) => {
     if (!state.player) return state;
