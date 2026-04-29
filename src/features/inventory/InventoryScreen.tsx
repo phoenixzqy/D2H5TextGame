@@ -20,6 +20,7 @@ import {
   resolveItemIcon
 } from '@/ui';
 import { useInventoryStore } from '@/stores';
+import { EquipPicker } from './EquipPicker';
 import { loadItemBases } from '@/data/loaders/loot';
 import type { Item, EquipmentSlot, ItemBase } from '@/engine/types/items';
 
@@ -53,6 +54,7 @@ export function InventoryScreen() {
   const moveToBackpack = useInventoryStore((s) => s.moveToBackpack);
   const [toast, setToast] = useState<ToastState>(null);
   const toastTimerRef = useRef<number | null>(null);
+  const [pickerSlot, setPickerSlot] = useState<EquipmentSlot | null>(null);
 
   useEffect(() => () => {
     if (toastTimerRef.current !== null) window.clearTimeout(toastTimerRef.current);
@@ -119,7 +121,11 @@ export function InventoryScreen() {
               id: 'equipment',
               label: t('equipment'),
               content: (
-                <EquipmentPanel equipped={equipped} onUnequip={handleUnequip} />
+                <EquipmentPanel
+                  equipped={equipped}
+                  onUnequip={handleUnequip}
+                  onSlotClick={(slot) => { setPickerSlot(slot); }}
+                />
               ),
             },
           ]}
@@ -144,6 +150,12 @@ export function InventoryScreen() {
           </div>
         )}
       </div>
+      <EquipPicker
+        slot={pickerSlot}
+        onClose={() => { setPickerSlot(null); }}
+        onEquipped={(it) => { showToast(t('toast.equipped', { name: itemDisplayName(it) }), 'success'); }}
+        onEquipFailed={(it) => { showToast(t('toast.equipFailed', { name: itemDisplayName(it) }), 'error'); }}
+      />
     </ScreenShell>
   );
 }
@@ -258,9 +270,11 @@ function ItemGrid({
 function EquipmentPanel({
   equipped,
   onUnequip,
+  onSlotClick,
 }: {
   equipped: Record<string, Item | null>;
   onUnequip: (slot: EquipmentSlot) => void;
+  onSlotClick: (slot: EquipmentSlot) => void;
 }) {
   const { t } = useTranslation('inventory');
   return (
@@ -268,32 +282,50 @@ function EquipmentPanel({
       {SLOT_ORDER.map((slot) => {
         const item = equipped[slot];
         return (
-          <li
-            key={slot}
-            className="border border-d2-border rounded p-3 bg-d2-bg/40 min-h-[64px]
-                       flex items-center justify-between gap-2"
-          >
-            <div className="min-w-0">
-              <div className="text-xs text-d2-white/60">{t(`slots.${slot}`)}</div>
-              {item ? (
-                <div className={`font-serif truncate ${rarityTextClass(item.rarity)}`}>
-                  {itemDisplayName(item)}
-                </div>
-              ) : (
-                <div className="text-sm text-d2-white/40 italic">
-                  {t('empty', { defaultValue: '空' })}
-                </div>
+          <li key={slot}>
+            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={() => { onSlotClick(slot); }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onSlotClick(slot);
+                }
+              }}
+              data-testid={`equip-slot-${slot}`}
+              aria-label={t(`slots.${slot}`)}
+              className="w-full border border-d2-border rounded p-3 bg-d2-bg/40 min-h-[64px]
+                         flex items-center justify-between gap-2 text-left cursor-pointer
+                         hover:border-d2-gold/60 focus:outline-none focus:ring-2 focus:ring-d2-gold
+                         transition-colors"
+            >
+              <div className="min-w-0">
+                <div className="text-xs text-d2-white/60">{t(`slots.${slot}`)}</div>
+                {item ? (
+                  <div className={`font-serif truncate ${rarityTextClass(item.rarity)}`}>
+                    {itemDisplayName(item)}
+                  </div>
+                ) : (
+                  <div className="text-sm text-d2-white/40 italic">
+                    {t('empty', { defaultValue: '空' })}
+                  </div>
+                )}
+              </div>
+              {item && (
+                <Button
+                  variant="secondary"
+                  className="min-h-[40px] text-xs shrink-0"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onUnequip(slot);
+                  }}
+                >
+                  {t('unequip')}
+                </Button>
               )}
             </div>
-            {item && (
-              <Button
-                variant="secondary"
-                className="min-h-[40px] text-xs"
-                onClick={() => { onUnequip(slot); }}
-              >
-                {t('unequip')}
-              </Button>
-            )}
           </li>
         );
       })}
