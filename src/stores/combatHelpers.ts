@@ -325,6 +325,14 @@ export function startSimpleBattle(enemyLevel = 1, enemyCount = 3) {
       }
     }
 
+    for (const enemy of slain) xpGained += xpForKill(enemy.level);
+    if (xpGained > 0) {
+      const xpResult = usePlayerStore.getState().gainExperience(xpGained);
+      if (xpResult.levelsGained > 0) {
+        levelUp = { levelsGained: xpResult.levelsGained, newLevel: xpResult.newLevel };
+      }
+    }
+
     const mapState = useMapStore.getState();
     const act = (Math.min(5, Math.max(1, mapState.currentAct)) as 1 | 2 | 3 | 4 | 5);
     const treasureClassId = `loot/trash-act${String(act)}`;
