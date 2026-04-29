@@ -41,10 +41,10 @@ const pools: AwardDataPools = {
     [baseHelm.id, baseHelm]
   ]),
   affixes: [
-    { id: 'pre.sharp', name: 'Sharp', type: 'prefix', minIlvl: 1, damageBonus: { min: 1, max: 5, breakdown: { physical: 5 } } },
-    { id: 'pre.fiery', name: 'Fiery', type: 'prefix', minIlvl: 1, damageBonus: { min: 1, max: 10, breakdown: { fire: 10 } } },
-    { id: 'suf.health', name: 'of Health', type: 'suffix', minIlvl: 1, statMods: { life: 10 } },
-    { id: 'suf.warding', name: 'of Warding', type: 'suffix', minIlvl: 1, resistances: { fire: 5 } }
+    { id: 'pre.sharp', kind: 'prefix', appliesTo: ['weapon'], stat: 'attack', tiers: [{ ilvlMin: 1, ilvlMax: 99, valueMin: 1, valueMax: 5 }], rarityWeights: { magic: 1, rare: 1 }, i18nKey: 'attack.flat' },
+    { id: 'pre.defense', kind: 'prefix', appliesTo: ['armor'], stat: 'defense', tiers: [{ ilvlMin: 1, ilvlMax: 99, valueMin: 1, valueMax: 5 }], rarityWeights: { magic: 1, rare: 1 }, i18nKey: 'defense.flat' },
+    { id: 'suf.health', kind: 'suffix', appliesTo: ['weapon', 'armor'], stat: 'life', tiers: [{ ilvlMin: 1, ilvlMax: 99, valueMin: 10, valueMax: 10 }], rarityWeights: { magic: 1, rare: 1 }, i18nKey: 'life.flat' },
+    { id: 'suf.warding', kind: 'suffix', appliesTo: ['weapon', 'armor'], stat: 'fireRes', tiers: [{ ilvlMin: 1, ilvlMax: 99, valueMin: 5, valueMax: 5 }], rarityWeights: { magic: 1, rare: 1 }, i18nKey: 'res.fire' }
   ],
   uniques: [
     { id: 'unique.gnarled-root', name: 'Gnarled Root', baseId: 'wp1h_short_sword', reqLevel: 1 }

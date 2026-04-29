@@ -1,0 +1,11 @@
+{
+  "attack": { "flat": "+{{value}} 攻击力" },
+  "defense": { "flat": "+{{value}} 防御" },
+  "life": { "flat": "+{{value}} 生命" },
+  "mana": { "flat": "+{{value}} 法力" },
+  "critChance": { "flat": "+{{value}}% 暴击率" },
+  "critDamage": { "flat": "+{{value}}% 暴击伤害" },
+  "physDodge": { "flat": "+{{value}}% 物理闪避" },
+  "magicDodge": { "flat": "+{{value}}% 法术闪避" },
+  "res": { "fire": "+{{value}} 火焰抗性", "cold": "+{{value}} 冰冷抗性", "lightning": "+{{value}} 闪电抗性", "poison": "+{{value}} 毒素抗性", "arcane": "+{{value}} 奥术抗性", "physical": "+{{value}} 物理抗性" }
+}

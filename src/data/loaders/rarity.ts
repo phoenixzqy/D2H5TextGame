@@ -20,7 +20,7 @@ export interface RarityTier {
 export interface RarityRules {
   id: string;
   tiers: {
-    white: RarityTier;
+    normal: RarityTier;
     magic: RarityTier;
     rare: RarityTier;
     set: RarityTier;
@@ -34,5 +34,5 @@ import rarityRulesData from '../items/rarity-rules.json';
  * Load rarity rules configuration
  */
 export function loadRarityRules(): Readonly<RarityRules> {
-  return Object.freeze(rarityRulesData as RarityRules);
+  return Object.freeze(rarityRulesData as unknown as RarityRules);
 }

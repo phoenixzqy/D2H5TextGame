@@ -3,7 +3,7 @@
  * @module engine/types/items
  */
 
-import type { DamageInfo, CoreStats, Resistances } from './attributes';
+import type { DamageInfo, CoreStats } from './attributes';
 
 /**
  * Item rarity enumeration
@@ -43,6 +43,11 @@ export type ItemBaseType =
   | 'gem'
   | 'material';
 
+export type ItemStatKey =
+  | 'attack' | 'life' | 'mana' | 'defense' | 'critChance' | 'critDamage'
+  | 'physDodge' | 'magicDodge' | 'fireRes' | 'coldRes' | 'lightningRes'
+  | 'poisonRes' | 'arcaneRes' | 'physicalRes';
+
 /**
  * Item base definition (the white item template)
  */
@@ -71,52 +76,23 @@ export interface ItemBase {
   readonly canHaveAffixes: boolean;
 }
 
-/**
- * Affix (prefix or suffix modifier)
- */
+/** A single item-level-gated value range for an affix. */
+export interface AffixTier { readonly ilvlMin: number; readonly ilvlMax: number; readonly valueMin: number; readonly valueMax: number }
+
+/** JSON-driven affix definition. */
 export interface Affix {
   readonly id: string;
-  readonly name: string;
-  readonly type: 'prefix' | 'suffix';
-  
-  /** Minimum item level required for this affix to spawn */
-  readonly minIlvl: number;
-  
-  /** Core stat modifiers */
-  readonly coreStats?: Partial<CoreStats>;
-  
-  /** Resistance modifiers */
-  readonly resistances?: Partial<Resistances>;
-  
-  /** Other stat modifiers */
-  readonly statMods?: {
-    readonly life?: number;
-    readonly mana?: number;
-    readonly attack?: number;
-    readonly defense?: number;
-    readonly attackSpeed?: number;
-    readonly critChance?: number;
-    readonly critDamage?: number;
-    readonly physDodge?: number;
-    readonly magicDodge?: number;
-    readonly magicFind?: number;
-    readonly goldFind?: number;
-  };
-  
-  /** Skill IDs granted by this affix */
-  readonly grantsSkills?: readonly string[];
-  
-  /** Damage bonus */
-  readonly damageBonus?: DamageInfo;
+  readonly kind: 'prefix' | 'suffix';
+  readonly appliesTo: readonly ItemBaseType[];
+  readonly stat: ItemStatKey;
+  readonly tiers: readonly AffixTier[];
+  readonly rarityWeights: Readonly<Partial<Record<Rarity, number>>>;
+  readonly i18nKey: string;
 }
 
-/**
- * Affix roll - an affix instance on an item with its rolled values
- */
-export interface AffixRoll {
-  readonly affixId: string;
-  readonly values: ReadonlyMap<string, number>;
-}
+export interface RolledAffix { readonly id: string; readonly tier: number; readonly rolledValue: number }
+export interface LegacyAffixRoll { readonly affixId: string; readonly values: ReadonlyMap<string, number> }
+export type AffixRoll = RolledAffix | LegacyAffixRoll
 
 /**
  * Item instance
@@ -125,7 +101,10 @@ export interface Item {
   readonly id: string; // unique instance ID
   readonly baseId: string; // references ItemBase
   readonly rarity: Rarity;
-  readonly level: number; // item level
+  readonly level: number;
+  readonly ilvl?: number;
+  readonly baseRolls?: Partial<Record<ItemStatKey, number>>;
+  readonly generatedName?: { readonly prefix?: string; readonly suffix?: string };
   
   /** Affixes (for magic/rare items) */
   readonly affixes?: readonly AffixRoll[];
@@ -226,3 +205,4 @@ export interface Inventory {
   /** Max stash size */
   readonly maxStash: number;
 }
+
