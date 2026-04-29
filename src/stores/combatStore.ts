@@ -9,6 +9,7 @@ import type { RecordedBattleEvent } from '@/engine/combat/combat';
 import type { CombatSide } from '@/engine/combat/types';
 import type { KillRewards } from '@/engine/loot/award';
 import { applyEventToTeams } from './combatPlayback';
+import { eventToLocalizedLogEntry } from './eventToLogI18n';
 
 export interface CombatLogEntry {
   id: string;
@@ -136,118 +137,13 @@ const initialState = {
   runRewards: emptyRewards()
 };
 
-// Local: build a log entry from event without circular import on combatHelpers.
+// Delegate to the shared i18n-aware converter; kept as a thin alias so
+// the call site below stays readable.
 function eventToLogEntry(
   event: RecordedBattleEvent,
   unitMap: UnitNameMap
 ): Omit<CombatLogEntry, 'id' | 'timestamp'> | null {
-  const getName = (id: string): string => unitMap.get(id) ?? id;
-
-  switch (event.kind) {
-    case 'turn-start':
-      return {
-        type: 'system',
-        actorId: 'system',
-        actorName: 'System',
-        message: `Turn ${String(event.turn)} starts`
-      };
-    case 'action': {
-      const actorName = getName(event.actor);
-      return {
-        type: 'skill',
-        actorId: event.actor,
-        actorName,
-        message: `${actorName} uses ${event.skillId ?? 'basic attack'}`
-      };
-    }
-    case 'damage': {
-      const sourceName = getName(event.source);
-      const targetName = getName(event.target);
-      return {
-        type: 'damage',
-        actorId: event.source,
-        actorName: sourceName,
-        targetId: event.target,
-        targetName,
-        message: `${sourceName} deals ${String(event.amount)} ${event.damageType} damage to ${targetName}${event.crit ? ' (CRIT!)' : ''}${event.dodged ? ' (DODGED)' : ''}`,
-        value: event.amount
-      };
-    }
-    case 'death': {
-      const targetName = getName(event.target);
-      return {
-        type: 'death',
-        actorId: event.target,
-        actorName: targetName,
-        message: `${targetName} has died`
-      };
-    }
-    case 'heal': {
-      const targetName = getName(event.target);
-      return {
-        type: 'heal',
-        actorId: event.target,
-        actorName: targetName,
-        message: `${targetName} heals for ${String(event.amount)}`,
-        value: event.amount
-      };
-    }
-    case 'buff': {
-      const targetName = getName(event.target);
-      return {
-        type: 'buff',
-        actorId: event.target,
-        actorName: targetName,
-        message: `${targetName} gains ${event.buffId}`
-      };
-    }
-    case 'status': {
-      const targetName = getName(event.target);
-      return {
-        type: 'debuff',
-        actorId: event.target,
-        actorName: targetName,
-        message: `${targetName} is afflicted with ${event.statusId}`
-      };
-    }
-    case 'stunned': {
-      const targetName = getName(event.target);
-      return {
-        type: 'system',
-        actorId: event.target,
-        actorName: targetName,
-        message: `${targetName} is stunned and cannot act`
-      };
-    }
-    case 'dot': {
-      const targetName = getName(event.target);
-      return {
-        type: 'damage',
-        actorId: event.target,
-        actorName: targetName,
-        message: `${targetName} takes ${String(event.amount)} DoT damage`,
-        value: event.amount
-      };
-    }
-    case 'summon': {
-      const ownerName = getName(event.owner);
-      return {
-        type: 'system',
-        actorId: event.owner,
-        actorName: ownerName,
-        message: `${ownerName} summons ${event.unit.name}`
-      };
-    }
-    case 'end':
-      return {
-        type: 'system',
-        actorId: 'system',
-        actorName: 'System',
-        message: event.winner ? `${event.winner} side wins!` : 'Battle ended in a draw'
-      };
-    default:
-      return null;
-  }
+  return eventToLocalizedLogEntry(event, unitMap);
 }
 
 export const useCombatStore= create<CombatState>((set, get) => ({
