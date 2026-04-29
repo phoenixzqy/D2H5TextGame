@@ -31,10 +31,12 @@ import {
   Button,
   EquippedItemModal,
   GameCard,
+  ItemTooltip,
   Modal,
   Panel,
   ScreenShell,
   Tabs,
+  Tooltip,
   resolveItemIcon
 } from '@/ui';
 import { useInventoryStore, usePlayerStore } from '@/stores';
@@ -382,6 +384,7 @@ function ItemGridLayout({
   }, [selectedId, setSelectedId]);
 
   const open = selectedId !== null && detailPanel !== null;
+  const isDesktop = useIsDesktop();
 
   if (items.length === 0) {
     return (
@@ -408,39 +411,57 @@ function ItemGridLayout({
       >
         {items.map((it) => (
           <li key={it.id}>
-            <GameCard
-              variant="item"
-              size="md"
-              name={itemDisplayName(it)}
-              rarity={it.rarity}
-              image={resolveItemIcon(it.baseId) ?? undefined}
-              itemGlyph={glyphForItem(it)}
-              selected={selectedId === it.id}
-              onClick={() => { setSelectedId(selectedId === it.id ? null : it.id); }}
-              testId={`inv-item-${it.id}`}
-            />
+            <Tooltip content={<ItemTooltip item={it} />}>
+              <GameCard
+                variant="item"
+                size="md"
+                name={itemDisplayName(it)}
+                rarity={it.rarity}
+                image={resolveItemIcon(it.baseId) ?? undefined}
+                itemGlyph={glyphForItem(it)}
+                selected={selectedId === it.id}
+                onClick={() => { setSelectedId(selectedId === it.id ? null : it.id); }}
+                testId={`inv-item-${it.id}`}
+              />
+            </Tooltip>
           </li>
         ))}
       </ul>
 
-      {/* Desktop / tablet sidebar: takes the second grid column from md+. */}
-      {open && (
+      {/* Desktop / tablet sidebar OR mobile bottom sheet — exclusive render
+          based on viewport so testids never collide between the two trees. */}
+      {open && isDesktop && (
         <Panel
-          className="hidden md:block md:sticky md:top-20 h-fit"
+          className="md:sticky md:top-20 h-fit"
           data-testid="inv-detail-sidebar"
         >
           {detailPanel}
         </Panel>
       )}
-
-      {/* Mobile bottom sheet (below md). Backdrop dims the page; tap-outside dismisses. */}
-      {open && (
+      {open && !isDesktop && (
         <MobileBottomSheet onClose={() => { setSelectedId(null); }}>
           {detailPanel}
         </MobileBottomSheet>
       )}
     </div>
   );
+}
+
+function useIsDesktop(): boolean {
+  const [isDesktop, setIsDesktop] = useState<boolean>(() => {
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+      return true;
+    }
+    return window.matchMedia('(min-width: 768px)').matches;
+  });
+  useEffect(() => {
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') return;
+    const mql = window.matchMedia('(min-width: 768px)');
+    const onChange = (e: MediaQueryListEvent): void => { setIsDesktop(e.matches); };
+    mql.addEventListener('change', onChange);
+    return () => { mql.removeEventListener('change', onChange); };
+  }, []);
+  return isDesktop;
 }
 
 function MobileBottomSheet({
