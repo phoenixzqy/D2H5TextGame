@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/class.json",
+  "title": "Class Definition",
+  "description": "Developer-editable character class tuning definition",
+  "type": "object",
+  "required": ["id", "name", "startingStats", "statGrowth", "lifePerLevel", "manaPerLevel", "starterSkills"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^classes/[a-z0-9-]+$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "startingStats": { "$ref": "#/$defs/coreStats" },
+    "statGrowth": { "$ref": "#/$defs/coreStats" },
+    "lifePerLevel": {
+      "type": "number",
+      "minimum": 0
+    },
+    "manaPerLevel": {
+      "type": "number",
+      "minimum": 0
+    },
+    "starterSkills": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    }
+  },
+  "$defs": {
+    "coreStats": {
+      "type": "object",
+      "required": ["strength", "dexterity", "vitality", "energy"],
+      "additionalProperties": false,
+      "properties": {
+        "strength": { "type": "number", "minimum": 0 },
+        "dexterity": { "type": "number", "minimum": 0 },
+        "vitality": { "type": "number", "minimum": 0 },
+        "energy": { "type": "number", "minimum": 0 }
+      }
+    }
+  }
+}

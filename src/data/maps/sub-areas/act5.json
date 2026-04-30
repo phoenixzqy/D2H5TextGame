@@ -280,6 +280,14 @@
         { "archetypeId": "monsters/act5.baal", "count": 1, "boss": true }
       ]
     },
+    "chapterBoss": {
+      "archetypeId": "monsters/act5.baal",
+      "hp": 7200,
+      "atk": 520,
+      "def": 560,
+      "skills": ["monster-tentacles"],
+      "dropTable": "loot/act5-boss"
+    },
     "waves": [
       { "id": "w1", "type": "elite",
         "encounters": [{ "id": "act5-tod-w1-e1", "level": 75,

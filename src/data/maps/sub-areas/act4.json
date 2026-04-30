@@ -199,6 +199,14 @@
         { "archetypeId": "monsters/act4.diablo", "count": 1, "boss": true }
       ]
     },
+    "chapterBoss": {
+      "archetypeId": "monsters/act4.diablo",
+      "hp": 5600,
+      "atk": 420,
+      "def": 460,
+      "skills": ["monster-inferno"],
+      "dropTable": "loot/act4-boss"
+    },
     "waves": [
       { "id": "w1", "type": "trash",
         "encounters": [{ "id": "act4-cs-w1-e1", "level": 54,

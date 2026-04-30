@@ -1,0 +1,9 @@
+{
+  "id": "classes/necromancer",
+  "name": "Necromancer",
+  "startingStats": { "strength": 15, "dexterity": 25, "vitality": 15, "energy": 25 },
+  "statGrowth": { "strength": 1, "dexterity": 1.5, "vitality": 1.5, "energy": 2.5 },
+  "lifePerLevel": 7,
+  "manaPerLevel": 5,
+  "starterSkills": ["necromancer.raise_skeleton"]
+}

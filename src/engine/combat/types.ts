@@ -14,7 +14,7 @@ import type { ComboTag } from '../types/skills';
 export type CombatSide = 'player' | 'enemy';
 
 /** Tier of a monster — drives loot/affix/enrage rules. */
-export type MonsterTier = 'trash' | 'elite' | 'champion' | 'boss';
+export type MonsterTier = 'trash' | 'elite' | 'champion' | 'rare-elite' | 'rare-minion' | 'boss' | 'chapter-boss';
 
 /** Active status effect on a combat unit. */
 export interface ActiveStatus {

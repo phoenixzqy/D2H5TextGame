@@ -23,6 +23,11 @@
       "type": "integer",
       "minimum": 1
     },
+    "monsterPool": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/monsterPoolEntry" },
+      "description": "Weighted monster archetype pool available to this area"
+    },
     "waves": {
       "type": "array",
       "items": { "$ref": "#/$defs/wave" },
@@ -34,6 +39,9 @@
     "bossEncounter": {
       "$ref": "#/$defs/encounter"
     },
+    "chapterBoss": {
+      "$ref": "#/$defs/chapterBoss"
+    },
     "lootTable": {
       "type": "string",
       "description": "Loot table ID"
@@ -44,6 +52,37 @@
     }
   },
   "$defs": {
+    "monsterPoolEntry": {
+      "type": "object",
+      "required": ["archetypeId", "weight"],
+      "additionalProperties": false,
+      "properties": {
+        "archetypeId": { "type": "string" },
+        "weight": { "type": "number", "exclusiveMinimum": 0 }
+      }
+    },
+    "chapterBoss": {
+      "type": "object",
+      "description": "Act-ending boss gate that replaces the final wave.",
+      "required": ["archetypeId", "hp", "atk", "def", "skills", "dropTable"],
+      "additionalProperties": false,
+      "properties": {
+        "archetypeId": { "type": "string" },
+        "hp": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Base HP before applying elite-config.chapterBossHpMultiplier."
+        },
+        "atk":{ "type": "integer", "minimum": 1 },
+        "def": { "type": "integer", "minimum": 0 },
+        "skills": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "dropTable": { "type": "string" }
+      }
+    },
     "wave": {
       "type": "object",
       "required": ["id", "type"],

@@ -59,6 +59,7 @@ export type CardRarity =
   | 'common'
   | 'champion'
   | 'elite'
+  | 'rareElite'
   | 'boss';
 
 export interface CardStat {
@@ -136,8 +137,9 @@ const RARITY_TEXT: Record<CardRarity, string> = {
   unique: 'text-d2-unique',
   runeword: 'text-d2-runeword',
   common: 'text-d2-white',
-  champion: 'text-d2-magic',
+  champion: 'text-d2-unique',
   elite: 'text-d2-rare',
+  rareElite: 'text-d2-runeword',
   boss: 'text-d2-boss'
 };
 
@@ -149,8 +151,9 @@ const RARITY_BORDER: Record<CardRarity, string> = {
   unique: 'border-d2-unique',
   runeword: 'border-d2-runeword',
   common: 'border-d2-white/40',
-  champion: 'border-d2-magic',
+  champion: 'border-d2-unique',
   elite: 'border-d2-rare',
+  rareElite: 'border-d2-runeword',
   boss: 'border-d2-boss'
 };
 
@@ -162,14 +165,16 @@ const RARITY_GEM: Record<CardRarity, string> = {
   unique: 'bg-d2-unique',
   runeword: 'bg-d2-runeword',
   common: 'bg-d2-white/60',
-  champion: 'bg-d2-magic',
+  champion: 'bg-d2-unique',
   elite: 'bg-d2-rare',
+  rareElite: 'bg-d2-runeword',
   boss: 'bg-d2-boss'
 };
 
 const STROKE_BY_RARITY: Partial<Record<CardRarity, string>> = {
   champion: 'border-2',
   elite: 'border-2',
+  rareElite: 'border-2',
   boss: 'border-[3px] motion-safe:animate-d2-shimmer motion-reduce:animate-none',
   runeword: 'border-2 motion-safe:animate-d2-shimmer motion-reduce:animate-none'
 };

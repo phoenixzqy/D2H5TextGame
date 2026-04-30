@@ -13,7 +13,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { TFunction } from 'i18next';
-import { Button, ItemCompareTooltip, RarityText, StatSheet, resolveItemIcon, tItemName } from '@/ui';
+import { Button, ItemCompareTooltip, ItemTooltip, RarityText, StatSheet, resolveItemIcon, tItemName } from '@/ui';
 import { useInventoryStore, usePlayerStore } from '@/stores';
 import {
   checkEligibility,
@@ -181,7 +181,15 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
           )}
 
           {compare ? (
-            <ItemCompareTooltip compare={compare} />
+            <div className="space-y-3">
+              {/* Show the candidate item's own stat sheet so the user
+                  sees its intrinsic properties (affixes, damage/defense)
+                  alongside the player-stat comparison. */}
+              <div className="flex justify-center">
+                <ItemTooltip item={compare.candidate} />
+              </div>
+              <ItemCompareTooltip compare={compare} />
+            </div>
           ) : (
             <CurrentEquippedSheet
               slot={slot}

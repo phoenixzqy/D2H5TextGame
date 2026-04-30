@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/elite-config.json",
+  "title": "Elite Spawn Configuration",
+  "description": "Configurable random champion / rare-elite spawn rules and elite affix skill pool.",
+  "type": "object",
+  "required": [
+    "id",
+    "normalChampionChance",
+    "normalRareEliteChance",
+    "rareEliteMagicFindBonus",
+    "rareEliteResistanceBonus",
+    "chapterBossHpMultiplier",
+    "multipliers",
+    "affixes"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "const": "elite/default" },
+    "normalChampionChance": { "type": "number", "minimum": 0, "maximum": 1, "description": "Chance that a Normal trash wave is replaced by one champion." },
+    "normalRareEliteChance": { "type": "number", "minimum": 0, "maximum": 1, "description": "Chance that a Normal trash wave is replaced by a rare elite plus minions." },
+    "rareEliteMagicFindBonus": { "type": "integer", "minimum": 0, "description": "Flat magic-find bonus applied when rolling rare-elite item drops." },
+    "rareEliteResistanceBonus": { "type": "integer", "minimum": 0, "description": "Flat all-resistance bonus applied to rare elites." },
+    "chapterBossHpMultiplier": { "type": "number", "exclusiveMinimum": 0, "description": "Multiplier applied to chapterBoss.hp when building act-ending bosses." },
+    "multipliers": {
+      "type": "object",
+      "required": ["champion", "rareElite", "rareMinion"],
+      "additionalProperties": false,
+      "properties": {
+        "champion": { "$ref": "#/$defs/statMultipliers" },
+        "rareElite": { "$ref": "#/$defs/statMultipliers" },
+        "rareMinion": { "$ref": "#/$defs/statMultipliers" }
+      }
+    },
+    "affixes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/affix" },
+      "minItems": 1
+    }
+  },
+  "$defs": {
+    "statMultipliers": {
+      "type": "object",
+      "required": ["life", "attack", "defense"],
+      "additionalProperties": false,
+      "properties": {
+        "life": { "type": "number", "exclusiveMinimum": 0 },
+        "attack": { "type": "number", "exclusiveMinimum": 0 },
+        "defense": { "type": "number", "exclusiveMinimum": 0 }
+      }
+    },
+    "affix": {
+      "type": "object",
+      "required": ["id", "nameKey", "skillId"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^elite-affix/[a-z0-9-]+$" },
+        "nameKey": { "type": "string", "description": "i18n key for player-visible affix name." },
+        "skillId": { "type": "string", "description": "Monster skill appended to elite units that roll this affix." }
+      }
+    }
+  }
+}

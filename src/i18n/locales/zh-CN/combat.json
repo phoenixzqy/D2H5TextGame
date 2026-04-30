@@ -110,5 +110,17 @@
     "bossArrives": "{{boss}} 出现了！",
     "lootGained": "获得 {{item}}。",
     "goldGained": "获得 {{amount}} 金币。"
+  },
+  "bossIntro": "令人窒息的恐惧笼罩战场——{{boss}} 现身，阻断通往下一章的道路。",
+  "tier": {
+    "champion": "冠军怪",
+    "rare-elite": "稀有精英"
+  },
+  "eliteAffix": {
+    "extraFireDamage": "额外火焰伤害",
+    "fast": "高速",
+    "coldEnchanted": "冰冷强化",
+    "lightningEnchanted": "闪电强化",
+    "magicResistant": "魔法抵抗"
   }
 }

@@ -4,78 +4,56 @@
  * Layout:
  *   [ Acts collapsible list (I–V) ]
  *     [ sub-area row × N: name, rec lvl, lock badge, [Farm] [Enter] ]
+ *
+ * The acts/sub-areas list is derived from the canonical JSON dataset
+ * (`src/data/maps/**`) so every UI row maps 1:1 to a data id. This
+ * removed a long-running bug where sub-areas listed in the UI but
+ * absent from the data could never be marked cleared (their alias
+ * resolved to nothing in `subAreaResolver`, so `markCleared` landed on
+ * a synthetic id the badge logic never checked).
  */
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, Panel, ScreenShell, GameImage, getZoneArtUrl, tDataKey } from '@/ui';
 import { useMapStore, useMetaStore } from '@/stores';
-import { resolveSubArea } from '@/stores/subAreaResolver';
+import { subAreas as subAreaList, acts as actList, monsters as monsterList } from '@/data/index';
+import { ACT_GATE_BOSS_SUB_AREAS } from '@/engine/map/unlock';
 import { IdleTickerStrip } from '@/features/idle/IdleTickerStrip';
 
 interface SubArea {
   id: string;
+  alias: string;
   nameKey: string;
+  fallbackName: string;
   recommendedLevel: number;
-  unlockedByDefault?: boolean;
+  bossArchetypeId?: string;
 }
 
 interface Act {
   number: number;
   nameKey: string;
-  unlockedByDefault?: boolean;
+  fallbackName: string;
   subAreas: SubArea[];
 }
 
-const ACTS: Act[] = [
-  {
-    number: 1,
-    nameKey: 'map.actName.1',
-    unlockedByDefault: true,
-    subAreas: [
-      { id: 'a1-blood-moor', nameKey: 'map.subArea.a1-blood-moor', recommendedLevel: 1, unlockedByDefault: true },
-      { id: 'a1-cold-plains', nameKey: 'map.subArea.a1-cold-plains', recommendedLevel: 5 },
-      { id: 'a1-stony-field', nameKey: 'map.subArea.a1-stony-field', recommendedLevel: 8 },
-      { id: 'a1-dark-wood', nameKey: 'map.subArea.a1-dark-wood', recommendedLevel: 12 },
-      { id: 'a1-tristram', nameKey: 'map.subArea.a1-tristram', recommendedLevel: 15 },
-    ],
-  },
-  {
-    number: 2,
-    nameKey: 'map.actName.2',
-    subAreas: [
-      { id: 'a2-rocky-waste', nameKey: 'map.subArea.a2-rocky-waste', recommendedLevel: 16 },
-      { id: 'a2-dry-hills', nameKey: 'map.subArea.a2-dry-hills', recommendedLevel: 20 },
-    ],
-  },
-  {
-    number: 3,
-    nameKey: 'map.actName.3',
-    subAreas: [
-      { id: 'a3-spider-forest', nameKey: 'map.subArea.a3-spider-forest', recommendedLevel: 24 },
-      { id: 'a3-flayer-jungle', nameKey: 'map.subArea.a3-flayer-jungle', recommendedLevel: 28 },
-    ],
-  },
-  {
-    number: 4,
-    nameKey: 'map.actName.4',
-    subAreas: [
-      { id: 'a4-outer-steppes', nameKey: 'map.subArea.a4-outer-steppes', recommendedLevel: 32 },
-      { id: 'a4-river-of-flame', nameKey: 'map.subArea.a4-river-of-flame', recommendedLevel: 35 },
-    ],
-  },
-  {
-    number: 5,
-    nameKey: 'map.actName.5',
-    subAreas: [
-      { id: 'a5-bloody-foothills', nameKey: 'map.subArea.a5-bloody-foothills', recommendedLevel: 38 },
-      { id: 'a5-worldstone-keep', nameKey: 'map.subArea.a5-worldstone-keep', recommendedLevel: 45 },
-    ],
-  },
-];
+function actNumberFromId(id: string): number {
+  const match = /act([1-5])/.exec(id);
+  return match?.[1] ? Number(match[1]) : 1;
+}
+
+function aliasFromId(id: string): string {
+  return id.replace(/^areas\/act([1-5])-/, 'a$1-');
+}
+
+function monsterNameKeyFromId(id: string): string {
+  const last = id.split('/').pop() ?? id;
+  const after = last.includes('.') ? last.split('.').slice(1).join('.') : last;
+  return after.replace(/-([a-z])/g, (_, c: string) => c.toUpperCase());
+}
 
 export function MapScreen() {
-  const { t } = useTranslation(['map', 'common']);
+  const { t } = useTranslation(['map', 'common', 'monsters']);
   const navigate = useNavigate();
   const setLocation = useMapStore((s) => s.setCurrentLocation);
   const isActUnlocked = useMapStore((s) => s.isActUnlocked);
@@ -84,6 +62,38 @@ export function MapScreen() {
   const idleTarget = useMetaStore((s) => s.idleState.idleTarget);
 
   const [openAct, setOpenAct] = useState<number>(1);
+
+  // Build the act/sub-area tree once from the canonical data set so
+  // every UI row lines up with a real id (no alias drift).
+  const ACTS = useMemo<Act[]>(() => {
+    const byAct = new Map<number, SubArea[]>();
+    for (const sa of subAreaList) {
+      const actNum = actNumberFromId(sa.actId);
+      const alias = aliasFromId(sa.id);
+      const list = byAct.get(actNum) ?? [];
+      list.push({
+        id: sa.id,
+        alias,
+        nameKey: `map.subArea.${alias}`,
+        fallbackName: sa.name,
+        recommendedLevel: sa.areaLevel,
+        ...(sa.chapterBoss ? { bossArchetypeId: sa.chapterBoss.archetypeId } : {})
+      });
+      byAct.set(actNum, list);
+    }
+    return actList
+      .map((a) => {
+        const num = actNumberFromId(a.id);
+        return {
+          number: num,
+          nameKey: `map.actName.${String(num)}`,
+          fallbackName: a.name,
+          subAreas: byAct.get(num) ?? []
+        };
+      })
+      .filter((a) => a.subAreas.length > 0)
+      .sort((a, b) => a.number - b.number);
+  }, []);
 
   const enterArea = (act: number, subId: string) => {
     setLocation(act, subId);
@@ -96,21 +106,30 @@ export function MapScreen() {
   const stopFarming = () => { setIdleTarget(undefined); };
 
   /**
-   * Bugs #3 & #5 — `clearedSubAreas` stores canonical plan ids
-   * (e.g. `areas/act1-blood-moor`) emitted by the engine, while this
-   * screen's UI ids are aliases (e.g. `a1-blood-moor`). Resolve through
-   * subAreaResolver so the cleared-badge + idle gate compare apples to
-   * apples.
+   * `clearedSubAreas` may contain either the canonical id (preferred,
+   * emitted by the engine since the data-driven refactor) or its
+   * legacy alias (saves from before the refactor). Check both.
    */
-  const isSubAreaCleared = (act: number, alias: string): boolean => {
-    if (clearedSubAreas.includes(alias)) return true;
-    const def = resolveSubArea(act, alias);
-    return def !== null && clearedSubAreas.includes(def.id);
+  const isSubAreaCleared = (sa: SubArea): boolean =>
+    clearedSubAreas.includes(sa.id) || clearedSubAreas.includes(sa.alias);
+
+  // Find the alias for the current idle target so the banner can render
+  // a localized name.
+  const idleAreaName = idleTarget
+    ? t(`subArea.${aliasFromId(idleTarget)}`, { defaultValue: t(`subArea.${idleTarget}`, { defaultValue: idleTarget }) })
+    : null;
+
+  const bossDisplayName = (archetypeId: string | undefined, fallback: string): string => {
+    if (!archetypeId) return fallback;
+    const def = monsterList.find((m) => m.id === archetypeId);
+    const key = monsterNameKeyFromId(def?.id ?? archetypeId);
+    return t(`monsters:${key}`, { defaultValue: def?.name ?? fallback });
   };
 
-  const idleAreaName = idleTarget
-    ? t(`subArea.${idleTarget}`)
-    : null;
+  const gateBossDisplayName = (act: number): string => {
+    const gateSubArea = subAreaList.find((sa) => sa.id === ACT_GATE_BOSS_SUB_AREAS[act]);
+    return bossDisplayName(gateSubArea?.chapterBoss?.archetypeId, gateSubArea?.name ?? t('locked'));
+  };
 
   return (
     <ScreenShell testId="map-screen" title={t('worldMap')}>
@@ -161,7 +180,17 @@ export function MapScreen() {
                 </span>
                 <span className="flex items-center gap-2 text-xs">
                   {!actUnlocked && (
-                    <span className="text-d2-white/50" aria-label={t('locked')}>
+                    <span
+                      className="text-d2-white/50"
+                      aria-label={t('defeatBossToUnlockAct', {
+                        boss: gateBossDisplayName(act.number),
+                        act: act.number
+                      })}
+                      title={t('defeatBossToUnlockAct', {
+                        boss: gateBossDisplayName(act.number),
+                        act: act.number
+                      })}
+                    >
                       🔒 {t('locked')}
                     </span>
                   )}
@@ -172,8 +201,8 @@ export function MapScreen() {
                 <ul className="border-t border-d2-border divide-y divide-d2-border/50">
                   {act.subAreas.map((sa) => {
                     const unlocked = actUnlocked;
-                    const cleared = isSubAreaCleared(act.number, sa.id);
-                    const isIdleHere = idleTarget === sa.id;
+                    const cleared = isSubAreaCleared(sa);
+                    const isIdleHere = idleTarget === sa.id || idleTarget === sa.alias;
                     const rowCls = !unlocked
                       ? ''
                       : cleared
@@ -183,7 +212,7 @@ export function MapScreen() {
                       <li
                         key={sa.id}
                         className={`px-3 py-2 flex flex-wrap items-center gap-2 ${rowCls}`}
-                        data-testid={`sub-area-row-${sa.id}`}
+                        data-testid={`sub-area-row-${sa.alias}`}
                         data-cleared={cleared || undefined}
                         data-idle-here={isIdleHere || undefined}
                       >
@@ -197,12 +226,12 @@ export function MapScreen() {
                         <div className="flex-1 min-w-[140px]">
                           <div className={`text-sm flex items-center gap-2 ${cleared ? 'text-d2-white/70' : 'text-d2-white'}`}>
                             <span className="truncate">
-                              {tDataKey(t, sa.nameKey)}
+                              {t(sa.nameKey, { defaultValue: sa.fallbackName })}
                             </span>
                             {unlocked && cleared && (
                               <span
                                 className="text-[10px] uppercase text-d2-set border border-d2-set/60 rounded px-1.5 py-0.5"
-                                data-testid={`cleared-badge-${sa.id}`}
+                                data-testid={`cleared-badge-${sa.alias}`}
                               >
                                 ✓ {t('cleared')}
                               </span>
@@ -210,9 +239,18 @@ export function MapScreen() {
                             {unlocked && !cleared && (
                               <span
                                 className="text-[10px] uppercase text-d2-gold/80 border border-d2-gold/50 rounded px-1.5 py-0.5"
-                                data-testid={`uncleared-badge-${sa.id}`}
+                                data-testid={`uncleared-badge-${sa.alias}`}
                               >
                                 {t('uncleared')}
+                              </span>
+                            )}
+                            {sa.bossArchetypeId && (
+                              <span
+                                className="text-[10px] uppercase text-orange-300 border border-orange-400/60 rounded px-1.5 py-0.5"
+                                title={bossDisplayName(sa.bossArchetypeId, sa.fallbackName)}
+                                data-testid={`boss-badge-${sa.alias}`}
+                              >
+                                {t('bossBadge')}
                               </span>
                             )}
                             {isIdleHere && (
@@ -226,7 +264,15 @@ export function MapScreen() {
                           </div>
                         </div>
                         {!unlocked ? (
-                          <span className="text-xs text-d2-white/50">🔒 {t('locked')}</span>
+                          <span
+                            className="text-xs text-d2-white/50"
+                            title={t('defeatBossToUnlockAct', {
+                              boss: gateBossDisplayName(act.number),
+                              act: act.number
+                            })}
+                          >
+                            🔒 {t('locked')}
+                          </span>
                         ) : (
                           <div className="flex gap-2">
                             {isIdleHere ? (
@@ -237,7 +283,7 @@ export function MapScreen() {
                                 variant="danger"
                                 className="min-h-[44px] min-w-[44px] text-sm"
                                 onClick={stopFarming}
-                                data-testid={`stop-farming-${sa.id}`}
+                                data-testid={`stop-farming-${sa.alias}`}
                                 aria-pressed={true}
                               >
                                 ⏹ {t('stopFarming')}
@@ -254,7 +300,7 @@ export function MapScreen() {
                                 aria-disabled={true}
                                 title={t('farmLockedHint')}
                                 aria-label={t('farmLockedHint')}
-                                data-testid={`farm-locked-${sa.id}`}
+                                data-testid={`farm-locked-${sa.alias}`}
                               >
                                 🔒 {t('farmHere')}
                               </Button>
@@ -262,8 +308,8 @@ export function MapScreen() {
                               <Button
                                 variant="secondary"
                                 className="min-h-[44px] min-w-[44px] text-sm"
-                                onClick={() => { farmHere(act.number, sa.id); }}
-                                data-testid={`farm-here-${sa.id}`}
+                                onClick={() => { farmHere(act.number, sa.alias); }}
+                                data-testid={`farm-here-${sa.alias}`}
                               >
                                 {t('farmHere')}
                               </Button>
@@ -271,7 +317,7 @@ export function MapScreen() {
                             <Button
                               variant="primary"
                               className="min-h-[44px] min-w-[44px] text-sm"
-                              onClick={() => { enterArea(act.number, sa.id); }}
+                              onClick={() => { enterArea(act.number, sa.alias); }}
                             >
                               {t('enter')}
                             </Button>

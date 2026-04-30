@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { HomeScreen } from '@/features/character/HomeScreen';
 import { CharacterCreate } from '@/features/character/CharacterCreate';
@@ -13,6 +14,10 @@ import { QuestsScreen } from '@/features/quests/QuestsScreen';
 import { SettingsScreen } from '@/features/settings/SettingsScreen';
 import { RequireCharacter } from './RequireCharacter';
 
+const DevToolShell = import.meta.env.DEV
+  ? lazy(() => import('@/features/dev/DevToolShell'))
+  : null;
+
 export function AppRoutes() {
   return (
     <Routes>
@@ -27,6 +32,16 @@ export function AppRoutes() {
         }
       />
       <Route path="/settings" element={<SettingsScreen />} />
+      {import.meta.env.DEV && DevToolShell && (
+        <Route
+          path="/dev/*"
+          element={
+            <Suspense fallback={<div className="min-h-[100dvh] bg-d2-bg p-4 text-d2-gold">Loading Dev Tool...</div>}>
+              <DevToolShell />
+            </Suspense>
+          }
+        />
+      )}
       <Route
         path="/town"
         element={

@@ -288,6 +288,14 @@
         { "archetypeId": "monsters/act2.duriel", "count": 1, "boss": true }
       ]
     },
+    "chapterBoss": {
+      "archetypeId": "monsters/act2.duriel",
+      "hp": 3200,
+      "atk": 220,
+      "def": 280,
+      "skills": ["monster-charge"],
+      "dropTable": "loot/act2-boss"
+    },
     "waves": [
       { "id": "w1", "type": "trash",
         "encounters": [{ "id": "act2-tt-w1-e1", "level": 25,

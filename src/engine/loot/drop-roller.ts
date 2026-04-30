@@ -75,8 +75,11 @@ const TIER_RARITY_MULT: Readonly<
 > = {
   trash: { rare: 1, set: 1, unique: 1 },
   elite: { rare: 1.5, set: 2, unique: 3 },
-  champion: { rare: 1.5, set: 2, unique: 3 },
-  boss: { rare: 4, set: 6, unique: 12 }
+  'rare-minion': { rare: 1.5, set: 2, unique: 3 },
+  champion: { rare: 4, set: 6, unique: 12 },
+  'rare-elite': { rare: 4, set: 6, unique: 12 },
+  boss: { rare: 4, set: 6, unique: 12 },
+  'chapter-boss': { rare: 4, set: 6, unique: 12 }
 };
 
 const BASE_WEIGHTS = {
@@ -121,16 +124,22 @@ export function rollRarity(
 const NO_DROP_CHANCE: Readonly<Record<MonsterTier, number>> = {
   trash: 0.6,
   elite: 0.12,
-  champion: 0.06,
-  boss: 0
+  'rare-minion': 0.12,
+  champion: 0,
+  'rare-elite': 0,
+  boss: 0,
+  'chapter-boss': 0
 };
 
 /** Per-tier default number of picks (drop-tables §3). */
 const DEFAULT_PICKS: Readonly<Record<MonsterTier, number>> = {
   trash: 1,
   elite: 2,
-  champion: 3,
-  boss: 5
+  'rare-minion': 2,
+  champion: 5,
+  'rare-elite': 5,
+  boss: 5,
+  'chapter-boss': 5
 };
 
 /** Inputs for a full kill drop. */

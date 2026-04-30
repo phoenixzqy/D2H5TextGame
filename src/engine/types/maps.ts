@@ -32,6 +32,9 @@ export interface SubAreaDef {
   /** Area level (determines monster level) */
   readonly areaLevel: number;
   
+  /** Weighted monster archetype pool available to this area. */
+  readonly monsterPool?: readonly MonsterPoolEntry[];
+  
   /** Waves in this sub-area */
   readonly waves: readonly WaveDef[];
   
@@ -40,6 +43,9 @@ export interface SubAreaDef {
   
   /** Boss encounter (if any) */
   readonly bossEncounter?: Encounter;
+
+  /** Chapter-ending act boss gate. Replaces the final wave when present. */
+  readonly chapterBoss?: ChapterBossDef;
   
   /** Loot table ID */
   readonly lootTable: string;
@@ -48,6 +54,21 @@ export interface SubAreaDef {
 /**
  * Wave definition (roguelike structure)
  */
+export interface ChapterBossDef {
+  readonly archetypeId: string;
+  readonly hp: number;
+  readonly atk: number;
+  readonly def: number;
+  readonly skills: readonly string[];
+  readonly dropTable: string;
+}
+
+/** Weighted monster-pool entry for a sub-area. */
+export interface MonsterPoolEntry {
+  readonly archetypeId: string;
+  readonly weight: number;
+}
+
 export interface WaveDef {
   readonly id: string;
   readonly type: 'trash' | 'elite' | 'boss' | 'treasure' | 'shrine';

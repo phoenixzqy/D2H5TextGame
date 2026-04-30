@@ -15,7 +15,8 @@ import type {
   RuneWord,
   SetDef,
   ActDef,
-  SubAreaDef
+  SubAreaDef,
+  EliteConfigDef
 } from '../engine/types';
 
 // Import schemas
@@ -33,6 +34,7 @@ import mercSchema from './schema/merc.schema.json';
 import dropTableSchema from './schema/drop-table.schema.json';
 import dialogueSchema from './schema/dialogue.schema.json';
 import rarityRulesSchema from './schema/rarity-rules.schema.json';
+import eliteConfigSchema from './schema/elite-config.schema.json';
 
 // Eagerly-loaded JSON datasets (see ./index.ts)
 import {
@@ -52,6 +54,7 @@ import {
   mfCurve,
   bannerConfig,
   rarityRules,
+  eliteConfig,
   mainQuests,
   sideQuests
 } from './index';
@@ -92,6 +95,8 @@ export interface GameData {
   readonly bannerConfig: Readonly<Record<string, unknown>>;
   /** Rarity rules configuration singleton. */
   readonly rarityRules: Readonly<Record<string, unknown>>;
+  /** Elite spawn and affix configuration singleton. */
+  readonly eliteConfig: EliteConfigDef;
   /** All quests (main + side), keyed by quest id. */
   readonly quests: ReadonlyMap<string, Readonly<Record<string, unknown>>>;
 }
@@ -125,6 +130,7 @@ function createValidator(): Ajv2020 {
   ajv.addSchema(dropTableSchema);
   ajv.addSchema(dialogueSchema);
   ajv.addSchema(rarityRulesSchema);
+  ajv.addSchema(eliteConfigSchema);
 
   return ajv;
 }
@@ -297,6 +303,13 @@ export async function loadGameData(): Promise<GameData> {
     mfCurve: Object.freeze(mfCurve as Record<string, unknown>),
     bannerConfig: Object.freeze(bannerConfig),
     rarityRules: Object.freeze(rarityRules as Record<string, unknown>),
+    eliteConfig: Object.freeze(
+      validateData<EliteConfigDef>(
+        eliteConfigSchema.$id,
+        eliteConfig,
+        'eliteConfig'
+      )
+    ),
     quests: Object.freeze(quests)
   });
 

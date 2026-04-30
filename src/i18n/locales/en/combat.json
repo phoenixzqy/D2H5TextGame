@@ -110,5 +110,17 @@
     "bossArrives": "{{boss}} arrives!",
     "lootGained": "Obtained {{item}}.",
     "goldGained": "Obtained {{amount}} gold."
+  },
+  "bossIntro": "A suffocating dread fills the air — {{boss}} steps forward to bar the road to the next Act.",
+  "tier": {
+    "champion": "Champion",
+    "rare-elite": "Rare Elite"
+  },
+  "eliteAffix": {
+    "extraFireDamage": "Extra Fire Damage",
+    "fast": "Fast",
+    "coldEnchanted": "Cold Enchanted",
+    "lightningEnchanted": "Lightning Enchanted",
+    "magicResistant": "Magic Resistant"
   }
 }

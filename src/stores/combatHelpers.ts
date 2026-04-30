@@ -4,7 +4,7 @@
  */
 
 import i18n from '@/i18n';
-import { runBattleRecorded, type BattleEvent } from '@/engine/combat/combat';
+import { runBattleRecorded, type BattleEvent, type RecordedBattleEvent } from '@/engine/combat/combat';
 import type { CombatUnit, MonsterTier } from '@/engine/combat/types';
 import { inferKind } from '@/engine/combat/types';
 import type { Player } from '@/engine/types/entities';
@@ -20,7 +20,7 @@ import {
   type WaveSpec
 } from '@/engine/combat';
 import { loadAwardPools } from '@/data/loaders/loot';
-import { monsters as monsterList } from '@/data/index';
+import { eliteConfig, monsters as monsterList } from '@/data/index';
 import { resolveSubArea } from './subAreaResolver';
 import { useCombatStore, type CombatLogEntry } from './combatStore';
 import { eventToLocalizedLogEntry } from './eventToLogI18n';
@@ -167,7 +167,19 @@ export function buildEnemiesForWave(wave: WaveSpec, seed: number): CombatUnit[] 
         level: spawn.level,
         tier: spawn.tier,
         rng,
-        index: spawn.index
+        index: spawn.index,
+        ...(spawn.eliteAffix ? { extraSkillIds: [spawn.eliteAffix.skillId] } : {}),
+        ...(spawn.tier === 'rare-elite' ? { resistanceBonus: eliteConfig.rareEliteResistanceBonus } : {}),
+        ...(spawn.chapterBoss
+          ? {
+              skillOrderOverride: spawn.chapterBoss.skills,
+              statOverrides: {
+                lifeMax: spawn.chapterBoss.hp * eliteConfig.chapterBossHpMultiplier,
+                attack: spawn.chapterBoss.atk,
+                defense: spawn.chapterBoss.def
+              }
+            }
+          : {})
       })
     );
   }
@@ -447,10 +459,23 @@ function playWave(waveIdx: number): void {
     unitMap.set(unit.id, resolveMonsterDisplayName(unit));
   });
 
+  const playbackEvents: readonly RecordedBattleEvent[] = wave.bossIntro
+    ? [
+        {
+          kind: 'message',
+          messageKey: 'combat:bossIntro',
+          params: { boss: unitMap.get(enemies[0]?.id ?? '') ?? enemies[0]?.name ?? wave.bossIntro.bossArchetypeId },
+          simClockMs: 0,
+          uiDelayMs: 1200
+        },
+        ...events
+      ]
+    : events;
+
   combat.setRecordedBattle({
     initialPlayerTeam: playerTeam,
     initialEnemyTeam: enemies,
-    events,
+    events: playbackEvents,
     unitNameMap: unitMap,
     outcome: {
       winner: result.winner,

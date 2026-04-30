@@ -25,7 +25,7 @@ export function comboMultiplier(
   target: CombatUnit,
   incoming: DamageType
 ): number {
-  const isBoss = target.tier === 'boss';
+  const isBoss = target.tier === 'boss' || target.tier === 'chapter-boss';
   let mult = 1;
 
   // Cold debuffs

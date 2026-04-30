@@ -112,7 +112,7 @@ export function applyStatus(
 ): CombatUnit {
   const cfg = lookupConfig(input.id, input.config);
   const baseDur = input.duration ?? cfg.duration;
-  const isBoss = unit.tier === 'boss';
+  const isBoss = unit.tier === 'boss' || unit.tier === 'chapter-boss';
   const dur =
     isBoss && cfg.bossDurationMult !== undefined
       ? Math.max(1, Math.floor(baseDur * cfg.bossDurationMult))
