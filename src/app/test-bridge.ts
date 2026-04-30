@@ -11,6 +11,7 @@
  */
 import { useInventoryStore, usePlayerStore, useCombatStore, useMercStore } from '@/stores';
 import { createMercFromDef } from '@/stores/mercFactory';
+import { flushSave } from '@/stores/persistence';
 import { loadAwardPools } from '@/data/loaders/loot';
 import { loadMercPool } from '@/data/loaders/mercs';
 import { rollItem } from '@/engine/loot/rollItem';
@@ -35,6 +36,12 @@ export interface TestBridge {
    * Returns the runtime merc id (may include `#` instance suffix).
    */
   seedMerc: (opts?: { defId?: string; field?: boolean }) => string;
+  /**
+   * Force the pending debounced auto-save to flush immediately.
+   * Resolves once the IndexedDB write completes (or the snapshot is empty).
+   * Replaces `page.waitForTimeout(AUTO_SAVE_DEBOUNCE_MS + slack)` in E2E specs.
+   */
+  flushSave: () => Promise<void>;
 }
 
 declare global {
@@ -99,6 +106,10 @@ export function installTestBridge(): void {
         useMercStore.getState().setFieldedMerc(mercEntity.id);
       }
       return mercEntity.id;
+    },
+    flushSave: async () => {
+      const p = flushSave();
+      if (p) await p;
     }
   };
   (window as unknown as { __GAME__: TestBridge }).__GAME__ = bridge;

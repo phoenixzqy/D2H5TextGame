@@ -5,7 +5,7 @@
  *  - Dev item editor exposes image preview plus weapon fields.
  */
 import { test, expect } from '@playwright/test';
-import { clearGameStorage, createCharacter } from './_helpers';
+import { clearGameStorage, createCharacter, flushSave } from './_helpers';
 
 test.describe('Dev tool shell — HUD + back-to-game', () => {
   test('hides CharacterHud on /dev and /dev/items, and back link goes to /town when character exists', async ({ page }) => {
@@ -15,11 +15,10 @@ test.describe('Dev tool shell — HUD + back-to-game', () => {
     // Sanity: HUD is visible in town when character exists.
     await expect(page.getByTestId('character-hud')).toBeVisible();
 
-    // Allow the debounced auto-save (AUTO_SAVE_DEBOUNCE_MS = 500ms) to flush
+    // Force the debounced auto-save (AUTO_SAVE_DEBOUNCE_MS = 500ms) to flush
     // to IndexedDB before we hard-reload into /dev. Otherwise the reload
     // races autosave and the player store rehydrates as null.
-    // eslint-disable-next-line playwright/no-wait-for-timeout
-    await page.waitForTimeout(800);
+    await flushSave(page);
 
     await page.goto('/dev');
     const backLink = page.getByTestId('dev-back-to-game');
