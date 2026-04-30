@@ -1,6 +1,6 @@
 ---
 name: start
-description: **Canonical entry point** for any new session. Detects project stage and routes the user to the right agent + workflow. Reads `Diablo2TextGame.md`, the session `plan.md`, the SQL `todos`, and the latest milestone file. Use this first when you don't know where to begin — it replaces the "always start with the producer" pattern.
+description: "**Canonical entry point** for any new session. Detects project stage and routes the user to the right agent + workflow. Reads `Diablo2TextGame.md`, the session `plan.md`, the SQL `todos`, and the latest milestone file. Use this first when you don't know where to begin — it replaces the \"always start with the producer\" pattern."
 ---
 
 # Skill: start
