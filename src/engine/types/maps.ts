@@ -68,7 +68,16 @@ export interface Encounter {
   /** Monster archetype IDs and counts */
   readonly monsters: readonly {
     readonly archetypeId: string;
-    readonly count: number;
+    /**
+     * Fixed count. Mutually exclusive with `countMin`/`countMax`.
+     * Optional — when omitted, the per-tier default range applies
+     * (see engine/combat/sub-area-run.ts → defaultCountRange).
+     */
+    readonly count?: number;
+    /** Inclusive lower bound for a randomized count roll. */
+    readonly countMin?: number;
+    /** Inclusive upper bound for a randomized count roll. */
+    readonly countMax?: number;
     readonly elite?: boolean;
     readonly boss?: boolean;
   }[];

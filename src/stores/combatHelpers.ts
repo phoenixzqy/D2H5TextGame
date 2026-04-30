@@ -284,20 +284,27 @@ export function startSubAreaRun(opts: {
   const subArea = resolveSubArea(act, subAreaId);
 
   // Resolve a wave plan, falling back to the synthetic 4-wave default.
+  // Run seed is generated up-front and threaded into wave-plan resolution
+  // so spawn-count rolls are reproducible per-run (Bug C).
   const fallbackArchetype = pickFallbackArchetypeId(act);
+  const synthId = `areas/synth-act${String(act)}`;
+  const planSeed = hashSeed(
+    `${subArea?.id ?? synthId}|${String(Date.now())}`
+  );
   const plan = subArea
-    ? resolveWavePlan(subArea, fallbackArchetype, subArea.areaLevel)
+    ? resolveWavePlan(subArea, fallbackArchetype, subArea.areaLevel, planSeed)
     : synthDefaultPlan(
         {
-          id: `areas/synth-act${String(act)}`,
+          id: synthId,
           lootTable: `loot/trash-act${String(act)}`,
           areaLevel: opts.level ?? playerState.player.level
         },
         fallbackArchetype,
-        opts.level ?? playerState.player.level
+        opts.level ?? playerState.player.level,
+        planSeed
       );
 
-  const seed = hashSeed(`${plan.subAreaId}|${String(Date.now())}`);
+  const seed = planSeed;
   const playerUnit = playerToCombatUnit(playerState.player);
   const fieldedMerc = useMercStore.getState().getFieldedMerc();
   const playerTeam: CombatUnit[] = fieldedMerc
@@ -386,6 +393,15 @@ export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idl
   );
   const nextIdx = activeRun.waveIdx + 1;
   if (nextIdx >= activeRun.plan.waves.length) {
+    // Bug B — mark the sub-area cleared on engine-side so any caller
+    // benefits (idempotent in mapStore). Persistence is handled by the
+    // existing zustand-persist subscription on mapStore.
+    const clearedId = activeRun.plan.subAreaId;
+    try {
+      useMapStore.getState().markCleared(clearedId);
+    } catch {
+      // mapStore unavailable in some test harnesses; best-effort.
+    }
     combat.markRunVictory();
     activeRun = null;
     return 'victory';

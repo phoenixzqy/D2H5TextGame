@@ -267,6 +267,13 @@ describe('combatHelpers', () => {
       expect(['victory', 'defeat']).toContain(status);
       // After finalization the active run is torn down.
       expect(hasActiveSubAreaRun()).toBe(false);
+
+      // Bug B — on victory, the sub-area must be marked cleared so the
+      // map screen renders the "✓ 已通过" badge and the next-map flow
+      // sees a fresh, non-stale state on the next entry.
+      if (status === 'victory') {
+        expect(useMapStore.getState().isCleared('areas/act1-den-of-evil')).toBe(true);
+      }
     });
 
     it('falls back to a 4-wave default plan when the sub-area id is unknown', () => {
@@ -455,7 +462,10 @@ describe('startSimpleBattle — Bug #12', () => {
 
   it('shares combat victory XP with the fielded merc', () => {
     usePlayerStore.getState().setPlayer(boostedSorceress());
-    const merc = buildMerc();
+    // Merc at level 10 — large XP-to-next-level so the rolled wave (now
+    // 3-8 enemies post Bug C) cannot accidentally level up the merc and
+    // wipe progress.experience to a leftover.
+    const merc = buildMerc({ level: 10 });
     useMercStore.getState().addMerc(merc);
     useMercStore.getState().setFieldedMerc(merc.id);
     startSimpleBattle(1, 3);

@@ -105,6 +105,16 @@ export interface Mercenary extends Unit {
    */
   readonly classId?: string;
 
+  /**
+   * Signature/headline skill id from MercDef.signatureSkillId (e.g.
+   * `aura-might`, `mskill-fire-ball`). The combat layer prepends this to
+   * the merc's runtime skillOrder so the merc actually casts its
+   * advertised ability instead of falling back to a basic attack.
+   * Optional for back-compat with mercs persisted before this field
+   * existed.
+   */
+  readonly signatureSkillId?: string;
+
   /** Rarity tier (for gacha mercs) */
   readonly rarity: 'R' | 'SR' | 'SSR';
   

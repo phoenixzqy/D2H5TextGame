@@ -41,6 +41,7 @@ export function createMercFromDef(def: MercDef, instanceSuffix?: string): Mercen
     archetype: def.archetype,
     classId: def.classRef,
     rarity: def.rarity,
+    signatureSkillId: def.signatureSkillId,
     equipment: []
   };
 }

@@ -186,3 +186,127 @@ describe('resolveWavePlan', () => {
     ]);
   });
 });
+
+// ---------------------------------------------------------------------------
+// Bug C — randomized spawn counts (3–20 per wave, seeded RNG, schema-aware)
+// ---------------------------------------------------------------------------
+import { encountersToSpawns, MAX_SPAWNS_PER_WAVE } from './sub-area-run';
+import { createRng } from '../rng';
+
+describe('Bug C — encountersToSpawns count randomization', () => {
+  it('honors fixed `count` for back-compat (no RNG dependence)', () => {
+    const spawns = encountersToSpawns(
+      [{ id: 'e', level: 1, monsters: [{ archetypeId: 'A', count: 4 }] }],
+      'trash',
+      createRng(0)
+    );
+    expect(spawns).toHaveLength(4);
+  });
+
+  it('rolls within [countMin, countMax] inclusive, seed-deterministic', () => {
+    const enc = [
+      { id: 'e', level: 1, monsters: [{ archetypeId: 'A', countMin: 3, countMax: 8 }] }
+    ];
+    const a = encountersToSpawns(enc, 'trash', createRng(123));
+    const b = encountersToSpawns(enc, 'trash', createRng(123));
+    expect(a.length).toBe(b.length);
+    expect(a.length).toBeGreaterThanOrEqual(3);
+    expect(a.length).toBeLessThanOrEqual(8);
+  });
+
+  it('defaults to per-tier range when count is unspecified', () => {
+    // Seed many runs and assert the distribution is bounded by [3,8].
+    let minSeen = Infinity;
+    let maxSeen = 0;
+    for (let s = 1; s <= 50; s++) {
+      const sp = encountersToSpawns(
+        [{ id: 'e', level: 1, monsters: [{ archetypeId: 'A' }] }],
+        'trash',
+        createRng(s)
+      );
+      minSeen = Math.min(minSeen, sp.length);
+      maxSeen = Math.max(maxSeen, sp.length);
+      expect(sp.length).toBeGreaterThanOrEqual(3);
+      expect(sp.length).toBeLessThanOrEqual(8);
+    }
+    expect(minSeen).toBeGreaterThanOrEqual(3);
+    expect(maxSeen).toBeLessThanOrEqual(8);
+    // With 50 different seeds we expect to see at least 2 distinct values.
+    expect(maxSeen).toBeGreaterThan(minSeen);
+  });
+
+  it('elite waves default to [1,3]', () => {
+    for (let s = 1; s <= 30; s++) {
+      const sp = encountersToSpawns(
+        [{ id: 'e', level: 1, monsters: [{ archetypeId: 'A' }] }],
+        'elite',
+        createRng(s)
+      );
+      expect(sp.length).toBeGreaterThanOrEqual(1);
+      expect(sp.length).toBeLessThanOrEqual(3);
+    }
+  });
+
+  it('boss waves default to exactly 1', () => {
+    for (let s = 1; s <= 5; s++) {
+      const sp = encountersToSpawns(
+        [{ id: 'e', level: 1, monsters: [{ archetypeId: 'A' }] }],
+        'boss',
+        createRng(s)
+      );
+      expect(sp.length).toBe(1);
+    }
+  });
+
+  it('caps total spawns at MAX_SPAWNS_PER_WAVE (20) globally', () => {
+    const enc = [
+      {
+        id: 'e',
+        level: 1,
+        monsters: [
+          { archetypeId: 'A', count: 15 },
+          { archetypeId: 'B', count: 15 } // sum 30 → must clamp to 20
+        ]
+      }
+    ];
+    const sp = encountersToSpawns(enc, 'trash', createRng(0));
+    expect(sp.length).toBeLessThanOrEqual(MAX_SPAWNS_PER_WAVE);
+  });
+
+  it('never spawns 0 monsters even when a roll bottoms out', () => {
+    // countMin=1,countMax=1 forces 1.
+    const sp = encountersToSpawns(
+      [{ id: 'e', level: 1, monsters: [{ archetypeId: 'A', countMin: 1, countMax: 1 }] }],
+      'trash',
+      createRng(7)
+    );
+    expect(sp.length).toBe(1);
+  });
+
+  it('synthDefaultPlan is seed-deterministic and respects the [3,8]/[1,3]/[1,1] ranges', () => {
+    const planA = synthDefaultPlan(
+      { id: 'areas/x', lootTable: 'lt', areaLevel: 1 },
+      'monsters/act1.fallen',
+      1,
+      42
+    );
+    const planB = synthDefaultPlan(
+      { id: 'areas/x', lootTable: 'lt', areaLevel: 1 },
+      'monsters/act1.fallen',
+      1,
+      42
+    );
+    expect(planA.waves.map((w) => w.spawns.length)).toEqual(
+      planB.waves.map((w) => w.spawns.length)
+    );
+    // trash, trash, elite, boss
+    const counts = planA.waves.map((w) => w.spawns.length);
+    expect(counts[0]).toBeGreaterThanOrEqual(3);
+    expect(counts[0]).toBeLessThanOrEqual(8);
+    expect(counts[1]).toBeGreaterThanOrEqual(3);
+    expect(counts[1]).toBeLessThanOrEqual(8);
+    expect(counts[2]).toBeGreaterThanOrEqual(1);
+    expect(counts[2]).toBeLessThanOrEqual(3);
+    expect(counts[3]).toBe(1);
+  });
+});

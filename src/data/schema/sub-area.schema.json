@@ -71,11 +71,13 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["archetypeId", "count"],
+            "required": ["archetypeId"],
             "additionalProperties": false,
             "properties": {
               "archetypeId": { "type": "string" },
-              "count": { "type": "integer", "minimum": 1 },
+              "count": { "type": "integer", "minimum": 1, "maximum": 20 },
+              "countMin": { "type": "integer", "minimum": 1, "maximum": 20 },
+              "countMax": { "type": "integer", "minimum": 1, "maximum": 20 },
               "elite": { "type": "boolean" },
               "boss": { "type": "boolean" }
             }
