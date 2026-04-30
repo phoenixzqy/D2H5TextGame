@@ -554,7 +554,7 @@
     "reqLevel": 24,
     "sockets": 3,
     "canHaveAffixes": true,
-    "weaponType": "spear",
+    "weaponType": "polearm",
     "handedness": "twoHanded"
   },
   {
