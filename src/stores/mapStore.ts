@@ -123,7 +123,7 @@ export const useMapStore = create<MapState>((set, get) => ({
     for (const [qid, qp] of Object.entries(state.questProgress)) {
       if (qp.status === 'completed') completed.add(qid);
     }
-    return engineIsActUnlocked(actNumber, completed);
+    return engineIsActUnlocked(actNumber, completed, new Set(state.clearedSubAreas));
   },
 
   isAreaUnlocked: (act) => {
@@ -132,7 +132,7 @@ export const useMapStore = create<MapState>((set, get) => ({
     for (const [qid, qp] of Object.entries(state.questProgress)) {
       if (qp.status === 'completed') completed.add(qid);
     }
-    return engineIsSubAreaUnlocked(act, completed);
+    return engineIsSubAreaUnlocked(act, completed, new Set(state.clearedSubAreas));
   },
   
   reset: () => { set(initialState); }

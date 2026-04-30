@@ -179,7 +179,7 @@ export function ItemTooltip({ item, className = '' }: ItemTooltipProps): JSX.Ele
       )}
 
       {/* (5) Affixes */}
-      {item.affixes && item.affixes.length > 0 && (
+      {item.affixes && item.affixes.length > 0 ? (
         <ul className="space-y-0.5 pt-2 border-t border-d2-border/60 mt-2" data-testid="item-tooltip-affixes">
           {item.affixes.map((affix, idx) => (
             <li key={idx} className="text-d2-magic text-xs" data-testid="item-tooltip-affix">
@@ -187,6 +187,15 @@ export function ItemTooltip({ item, className = '' }: ItemTooltipProps): JSX.Ele
             </li>
           ))}
         </ul>
+      ) : (
+        damageLine === null && defenseLine === null && (
+          <div
+            className="pt-2 border-t border-d2-border/60 mt-2 text-[11px] text-d2-white/50 italic text-center"
+            data-testid="item-tooltip-no-mods"
+          >
+            {t('tooltip.noModifiers', { defaultValue: 'No special modifiers' })}
+          </div>
+        )
       )}
     </div>
   );

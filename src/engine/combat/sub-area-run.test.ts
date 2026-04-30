@@ -160,6 +160,13 @@ describe('resolveWavePlan', () => {
     expect(last?.spawns[0]?.tier).toBe('boss');
   });
 
+  it('applies area-level scaling while preserving encounter spread', () => {
+    const tuned: SubAreaDef = { ...BLOOD_MOOR, areaLevel: 20 };
+    const plan = resolveWavePlan(tuned, 'monsters/act1.fallen', 1);
+    expect(plan.waves[0]?.spawns[0]?.level).toBe(20);
+    expect(plan.waves[1]?.spawns[0]?.level).toBe(20);
+  });
+
   it('skips waves whose encounters resolve to zero spawns', () => {
     const withShrine: SubAreaDef = {
       ...BLOOD_MOOR,

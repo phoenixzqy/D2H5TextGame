@@ -27,7 +27,10 @@ export const ORB_DROP_CHANCE: Readonly<Record<MonsterTier, number>> = Object.fre
   trash: 0.25,
   elite: 1.0,
   champion: 1.0,
-  boss: 1.0
+  'rare-elite': 1.0,
+  'rare-minion': 1.0,
+  boss: 1.0,
+  'chapter-boss': 1.0
 });
 
 /**

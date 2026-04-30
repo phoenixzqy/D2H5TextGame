@@ -11,10 +11,14 @@
  * @module engine/loot/award
  */
 
+import defaultEliteConfigJson from '../../data/elite/elite-config.json';
 import type { Rng } from '../rng';
+import type { EliteConfigDef } from '../types/elite';
 import type { Item } from '../types/items';
 import type { MonsterTier } from '../combat/types';
 import { rollDrops, type TreasureClass } from './drop-roller';
+
+const RARE_ELITE_MAGIC_FIND_BONUS = (defaultEliteConfigJson as EliteConfigDef).rareEliteMagicFindBonus;
 import { rollCurrencyDrops, type Difficulty, type CurrencyDrops } from './orbs-and-currency';
 import { rollItem, type ItemRollPools } from './rollItem';
 
@@ -75,7 +79,7 @@ export function rollKillRewards(
       tc,
       tier: input.tier,
       monsterLevel: input.monsterLevel,
-      magicFind: input.magicFind
+      magicFind: input.magicFind + (input.tier === 'rare-elite' ? RARE_ELITE_MAGIC_FIND_BONUS : 0)
     },
     rng
   );

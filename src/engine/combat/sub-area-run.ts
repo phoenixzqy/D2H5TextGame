@@ -26,9 +26,15 @@ import type {
   WaveDef,
   Encounter
 } from '../types/maps';
+import defaultEliteConfigJson from '../../data/elite/elite-config.json';
 import type { MonsterTier } from './types';
 import type { Rng } from '../rng';
 import { createRng } from '../rng';
+import { scaleMonsterLevelForArea } from './monster-factory';
+import type { ChapterBossDef } from '../types/maps';
+import type { EliteAffixDef, EliteConfigDef } from '../types/elite';
+
+export const DEFAULT_ELITE_CONFIG = defaultEliteConfigJson as EliteConfigDef;
 
 /** Per-monster spawn directive resolved from a wave/encounter. */
 export interface MonsterSpawn {
@@ -37,6 +43,10 @@ export interface MonsterSpawn {
   readonly level: number;
   /** Per-archetype 0-based index inside this wave (for naming). */
   readonly index: number;
+  /** Elite affix shared by champion / rare packs. */
+  readonly eliteAffix?: EliteAffixDef;
+  /** Chapter-boss stat override payload. */
+  readonly chapterBoss?: ChapterBossDef;
 }
 
 /** Resolved spec for a single wave inside a sub-area run. */
@@ -48,6 +58,10 @@ export interface WaveSpec {
   readonly spawns: readonly MonsterSpawn[];
   /** Optional loot-table override (per-wave) inherited from JSON. */
   readonly lootTable?: string;
+  /** Boss intro cue for UI/log playback. */
+  readonly bossIntro?: {
+    readonly bossArchetypeId: string;
+  };
 }
 
 /** Full ordered wave plan for a sub-area run. */
@@ -112,14 +126,20 @@ export function resolveWavePlan(
   subArea: SubAreaDef,
   fallbackArchetypeId: string,
   fallbackLevel: number,
-  seed = 0
+  seed?: number,
+  eliteConfig: EliteConfigDef = DEFAULT_ELITE_CONFIG
 ): WavePlan {
-  const rng = createRng(seed >>> 0);
+  const rng = createRng((seed ?? 0) >>> 0);
+  const shouldRollRandomElites = seed !== undefined;
   const out: WaveSpec[] = [];
+  const baseLevel = findSubAreaBaseLevel(subArea);
 
   for (const wave of subArea.waves) {
-    const spawns = encountersToSpawns(wave.encounters ?? [], wave.type, rng);
-    if (spawns.length === 0) continue;
+    const baseSpawns = encountersToSpawns(wave.encounters ?? [], wave.type, rng, subArea.areaLevel, baseLevel);
+    if (baseSpawns.length === 0) continue;
+    const spawns = shouldRollRandomElites && wave.type === 'trash'
+      ? maybeReplaceTrashWithElite(baseSpawns, rng, eliteConfig)
+      : baseSpawns;
     out.push({
       id: wave.id,
       waveTier: wave.type,
@@ -131,7 +151,7 @@ export function resolveWavePlan(
   if (subArea.hasBoss && subArea.bossEncounter) {
     const lastIsBoss = out.length > 0 && out[out.length - 1]?.waveTier === 'boss';
     if (!lastIsBoss) {
-      const spawns = encountersToSpawns([subArea.bossEncounter], 'boss', rng);
+      const spawns = encountersToSpawns([subArea.bossEncounter], 'boss', rng, subArea.areaLevel, baseLevel);
       if (spawns.length > 0) {
         out.push({
           id: `${subArea.id}-boss`,
@@ -142,14 +162,81 @@ export function resolveWavePlan(
     }
   }
 
+  if (subArea.chapterBoss) {
+    const chapterWave = chapterBossWave(subArea.id, subArea.chapterBoss, scaleMonsterLevelForArea(fallbackLevel, subArea.areaLevel, baseLevel));
+    if (out.length === 0) out.push(chapterWave);
+    else out[out.length - 1] = chapterWave;
+  }
+
   if (out.length === 0) {
-    return synthDefaultPlan(subArea, fallbackArchetypeId, fallbackLevel, seed);
+    return synthDefaultPlan(subArea, fallbackArchetypeId, fallbackLevel, seed ?? 0);
   }
 
   return {
     subAreaId: subArea.id,
     waves: out,
     defaultLootTable: subArea.lootTable
+  };
+}
+
+function findSubAreaBaseLevel(subArea: SubAreaDef): number {
+  const levels: number[] = [];
+  for (const wave of subArea.waves) {
+    for (const encounter of wave.encounters ?? []) {
+      levels.push(encounter.level);
+    }
+  }
+  if (subArea.bossEncounter) levels.push(subArea.bossEncounter.level);
+  return levels.length > 0 ? Math.min(...levels) : subArea.areaLevel;
+}
+
+function maybeReplaceTrashWithElite(
+  baseSpawns: readonly MonsterSpawn[],
+  rng: Rng,
+  config: EliteConfigDef
+): readonly MonsterSpawn[] {
+  const trash = baseSpawns.filter((s) => s.tier === 'trash');
+  if (trash.length === 0) return baseSpawns;
+
+  const affix = rng.pick(config.affixes);
+  const leader = rng.pick(trash);
+  if (rng.chance(config.normalRareEliteChance)) {
+    return buildRareElitePack(leader, affix);
+  }
+  if (rng.chance(config.normalChampionChance)) {
+    return [{ ...leader, tier: 'champion', index: 0, eliteAffix: affix }];
+  }
+  return baseSpawns;
+}
+
+function buildRareElitePack(leader: MonsterSpawn, affix: EliteAffixDef): readonly MonsterSpawn[] {
+  const pack: MonsterSpawn[] = [
+    { ...leader, tier: 'rare-elite', index: 0, eliteAffix: affix }
+  ];
+  for (let i = 1; i <= 3; i++) {
+    pack.push({ ...leader, tier: 'rare-minion', index: i, eliteAffix: affix });
+  }
+  return pack;
+}
+
+function chapterBossWave(
+  subAreaId: string,
+  boss: ChapterBossDef,
+  fallbackLevel: number
+): WaveSpec {
+  const spawn: MonsterSpawn = {
+    archetypeId: boss.archetypeId,
+    tier: 'chapter-boss',
+    level: fallbackLevel,
+    index: 0,
+    chapterBoss: boss
+  };
+  return {
+    id: `${subAreaId}-chapter-boss`,
+    waveTier: 'boss',
+    spawns: [spawn],
+    lootTable: boss.dropTable,
+    bossIntro: { bossArchetypeId: boss.archetypeId }
   };
 }
 
@@ -174,7 +261,8 @@ export function synthDefaultPlan(
     const count = clampSpawn(rng.nextInt(entry.countMin, entry.countMax));
     const spawns: MonsterSpawn[] = [];
     for (let i = 0; i < count; i++) {
-      spawns.push({ archetypeId, tier, level, index: i });
+      const effectiveLevel = scaleMonsterLevelForArea(level, subArea.areaLevel, subArea.areaLevel);
+      spawns.push({ archetypeId, tier, level: effectiveLevel, index: i });
     }
     return {
       id: `${subArea.id}-w${String(waveIdx + 1)}`,
@@ -213,7 +301,9 @@ function clampSpawn(n: number): number {
 export function encountersToSpawns(
   encounters: readonly Encounter[],
   waveTier: WaveDef['type'],
-  rng?: Rng
+  rng?: Rng,
+  areaLevel?: number,
+  baseLevel?: number
 ): MonsterSpawn[] {
   const out: MonsterSpawn[] = [];
   const perArchetypeIdx = new Map<string, number>();
@@ -254,7 +344,9 @@ export function encountersToSpawns(
         out.push({
           archetypeId: m.archetypeId,
           tier,
-          level: enc.level,
+          level: areaLevel === undefined || baseLevel === undefined
+            ? enc.level
+            : scaleMonsterLevelForArea(enc.level, areaLevel, baseLevel),
           index: idx
         });
       }

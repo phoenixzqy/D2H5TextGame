@@ -366,6 +366,14 @@
         { "archetypeId": "monsters/act1.bone-warrior", "count": 4 }
       ]
     },
+    "chapterBoss": {
+      "archetypeId": "monsters/act1.andariel",
+      "hp": 2200,
+      "atk": 150,
+      "def": 200,
+      "skills": ["monster-poison-cloud"],
+      "dropTable": "loot/act1-boss"
+    },
     "waves": [
       {
         "id": "w1",

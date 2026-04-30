@@ -1,0 +1,9 @@
+{
+  "id": "classes/amazon",
+  "name": "Amazon",
+  "startingStats": { "strength": 20, "dexterity": 25, "vitality": 20, "energy": 15 },
+  "statGrowth": { "strength": 1.5, "dexterity": 2.5, "vitality": 2, "energy": 1 },
+  "lifePerLevel": 8,
+  "manaPerLevel": 4,
+  "starterSkills": ["amazon.magic_arrow"]
+}

@@ -36,7 +36,8 @@
     "reqVit": "Vit {{value}}",
     "reqEng": "Eng {{value}}",
     "ilvl": "iLvl {{value}}",
-    "sockets": "Sockets ×{{value}}"
+    "sockets": "Sockets ×{{value}}",
+    "noModifiers": "No special modifiers"
   },
   "base": {
     "helm-cap": "Cap",

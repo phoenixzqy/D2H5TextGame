@@ -64,6 +64,7 @@ export function actionPeriodMs(attackSpeed: number): number {
 
 /** Possible combat events. */
 export type BattleEvent =
+  | { readonly kind: 'message'; readonly messageKey: string; readonly params?: Readonly<Record<string, string | number>> }
   | { readonly kind: 'turn-start'; readonly turn: number }
   | { readonly kind: 'action'; readonly actor: string; readonly skillId: string | null }
   | {

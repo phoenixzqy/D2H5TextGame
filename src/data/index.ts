@@ -22,7 +22,8 @@ import type {
   RuneWord,
   SetDef,
   ActDef,
-  SubAreaDef
+  SubAreaDef,
+  EliteConfigDef
 } from '../engine/types';
 
 // ---------------------------------------------------------------------------
@@ -98,6 +99,9 @@ export const mercFiles = ['./gacha/mercenaries.json'] as const;
 
 /** Gacha banner singleton. */
 export const bannerConfigFile = './gacha/banner-config.json';
+
+/** Elite spawn configuration singleton. */
+export const eliteConfigFile = './elite/elite-config.json';
 
 /** Dialogue files. */
 export const dialogueFiles = ['./dialogue/act1/*.json'] as const;
@@ -196,6 +200,11 @@ const bannerConfigModules = import.meta.glob<unknown>(
   { eager: true, import: 'default' }
 ) as JsonModule<unknown>;
 
+const eliteConfigModules = import.meta.glob<unknown>(
+  './elite/elite-config.json',
+  { eager: true, import: 'default' }
+) as JsonModule<unknown>;
+
 const mainQuestsModules = import.meta.glob<unknown>('./quests/main.json', {
   eager: true,
   import: 'default'
@@ -268,6 +277,10 @@ export const rarityRules = single<{ id: string }>(
 /** Singleton: gacha banner configuration. */
 export const bannerConfig = single<Record<string, unknown>>(
   bannerConfigModules as JsonModule<Record<string, unknown>>
+);
+/** Singleton: elite spawn configuration. */
+export const eliteConfig = single<EliteConfigDef>(
+  eliteConfigModules as JsonModule<EliteConfigDef>
 );
 /** Singleton: main quest line. */
 export const mainQuests = single<{ quests: { id: string }[] }>(

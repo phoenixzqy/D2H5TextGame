@@ -21,7 +21,9 @@
  * @module engine/combat/monster-factory
  */
 
+import defaultEliteConfigJson from '../../data/elite/elite-config.json';
 import type { Rng } from '../rng';
+import type { EliteConfigDef } from '../types/elite';
 import type { MonsterDef } from '../types/monsters';
 import type { Resistances } from '../types/attributes';
 import type { CombatUnit, MonsterTier } from './types';
@@ -32,6 +34,7 @@ const GROWTH_ATK = 5;
 /** Default base defense if the monster JSON does not specify one. */
 const BASE_DEF = 4;
 const GROWTH_DEF = 1.5;
+const ELITE_CONFIG = defaultEliteConfigJson as EliteConfigDef;
 
 /**
  * Per-tier multipliers applied **on top of** the level-scaled base stats.
@@ -44,9 +47,12 @@ export const TIER_MULTIPLIERS: Readonly<
   Record<MonsterTier, { readonly life: number; readonly attack: number; readonly defense: number }>
 > = {
   trash: { life: 1.0, attack: 1.0, defense: 1.0 },
-  champion: { life: 1.4, attack: 1.2, defense: 1.2 },
   elite: { life: 1.6, attack: 1.3, defense: 1.3 },
-  boss: { life: 3.0, attack: 1.6, defense: 1.5 }
+  boss: { life: 3.0, attack: 1.6, defense: 1.5 },
+  champion: ELITE_CONFIG.multipliers.champion,
+  'rare-elite': ELITE_CONFIG.multipliers.rareElite,
+  'rare-minion': ELITE_CONFIG.multipliers.rareMinion,
+  'chapter-boss': { life: 1.0, attack: 1.0, defense: 1.0 }
 };
 
 /** Letter suffixes for multiple monsters of the same archetype in one wave. */
@@ -86,6 +92,18 @@ export interface BuildMonsterOpts {
    * given seed + RNG fork).
    */
   readonly id?: string;
+  /** Extra skill ids appended by elite affixes. */
+  readonly extraSkillIds?: readonly string[];
+  /** Full skill order override, used by chapter bosses. */
+  readonly skillOrderOverride?: readonly string[];
+  /** Exact stat overrides applied after tier multipliers. */
+  readonly statOverrides?: {
+    readonly lifeMax?: number;
+    readonly attack?: number;
+    readonly defense?: number;
+  };
+  /** Additive resistance bonus applied after the monster JSON resistances. */
+  readonly resistanceBonus?: number;
 }
 
 /**
@@ -94,6 +112,24 @@ export interface BuildMonsterOpts {
  * Deterministic w.r.t. the supplied {@link Rng}: same RNG state + same opts
  * → identical unit (life roll, name suffix, ID).
  */
+/**
+ * Scale an encounter-authored monster level into a sub-area effective level.
+ *
+ * The base level is the original low watermark for the area's authored
+ * encounters; changing `areaLevel` therefore shifts the area while preserving
+ * half of the encounter-to-encounter spread.
+ */
+export function scaleMonsterLevelForArea(
+  monsterLevel: number,
+  areaLevel: number,
+  baseLevel: number
+): number {
+  const safeAreaLevel = Number.isFinite(areaLevel) ? areaLevel : monsterLevel;
+  const safeBaseLevel = Number.isFinite(baseLevel) ? baseLevel : safeAreaLevel;
+  const effective = Math.round(safeAreaLevel + (monsterLevel - safeBaseLevel) * 0.5);
+  return Math.max(1, effective);
+}
+
 export function buildMonsterUnit(opts: BuildMonsterOpts): CombatUnit {
   const { def, level, tier, rng, index } = opts;
 
@@ -103,26 +139,29 @@ export function buildMonsterUnit(opts: BuildMonsterOpts): CombatUnit {
   const baseLife = rollFloat(rng, lifeMin, lifeMax);
   const growth = rollFloat(rng, growMin, growMax);
   const rawLife = baseLife + Math.max(0, level - 1) * growth;
-  const lifeMaxStat = Math.max(1, Math.round(rawLife * TIER_MULTIPLIERS[tier].life));
+  const rolledLifeMax = Math.max(1, Math.round(rawLife * TIER_MULTIPLIERS[tier].life));
+  const lifeMaxStat = opts.statOverrides?.lifeMax ?? rolledLifeMax;
 
   // 2. Attack: derived (no per-arch JSON yet — see early-game-spec §4).
   const rawAtk = BASE_ATK + Math.max(0, level - 1) * GROWTH_ATK;
-  const attack = Math.round(rawAtk * TIER_MULTIPLIERS[tier].attack);
+  const attack = opts.statOverrides?.attack ?? Math.round(rawAtk * TIER_MULTIPLIERS[tier].attack);
 
   // 3. Defense: from JSON if present, else trash baseline; level-scaled.
   const baseDef = def.defense ?? BASE_DEF;
   const rawDef = baseDef + Math.max(0, level - 1) * GROWTH_DEF;
-  const defense = Math.round(rawDef * TIER_MULTIPLIERS[tier].defense);
+  const defense = opts.statOverrides?.defense ?? Math.round(rawDef * TIER_MULTIPLIERS[tier].defense);
 
   // 4. Resistances — fill missing slots with zero so DerivedStats is total.
   const r = def.resistances ?? {};
+  const bonus = opts.resistanceBonus ?? 0;
+  const clampRes = (v: number): number => Math.min(75, Math.max(-100, v + bonus));
   const resistances: Resistances = {
-    fire: r.fire ?? 0,
-    cold: r.cold ?? 0,
-    lightning: r.lightning ?? 0,
-    poison: r.poison ?? 0,
-    arcane: r.arcane ?? 0,
-    physical: r.physical ?? 0
+    fire: clampRes(r.fire ?? 0),
+    cold: clampRes(r.cold ?? 0),
+    lightning: clampRes(r.lightning ?? 0),
+    poison: clampRes(r.poison ?? 0),
+    arcane: clampRes(r.arcane ?? 0),
+    physical: clampRes(r.physical ?? 0)
   };
 
   // 5. Display name with optional index suffix and tier badge.
@@ -131,7 +170,7 @@ export function buildMonsterUnit(opts: BuildMonsterOpts): CombatUnit {
     index === undefined
       ? ''
       : ` ${SUFFIX_ALPHABET[index] ?? `#${String(index + 1)}`}`;
-  const tierBadge = tier === 'boss' ? ' (Boss)' : tier === 'elite' ? ' (Elite)' : '';
+  const tierBadge = tier === 'boss' || tier === 'chapter-boss' ? ' (Boss)' : tier === 'elite' ? ' (Elite)' : '';
   const name = `${baseName}${suffix}${tierBadge}`;
 
   // 6. ID — synth via RNG when not provided so unit ids are unique within a
@@ -143,14 +182,15 @@ export function buildMonsterUnit(opts: BuildMonsterOpts): CombatUnit {
     `enemy-${slug}-${String(index ?? 0)}-${idTag}`;
 
   // 7. Crit / dodge — flat trash baseline. Tier 'boss' gets +5% crit.
-  const critChance = tier === 'boss' ? 0.10 : 0.05;
-  const critDamage = tier === 'boss' ? 1.75 : 1.5;
+  const isBossTier = tier === 'boss' || tier === 'chapter-boss';
+  const critChance = isBossTier ? 0.10 : 0.05;
+  const critDamage = isBossTier ? 1.75 : 1.5;
   const physDodge = 0.05;
   const magicDodge = 0.05;
 
   // 8. Skill order: prepend a "signature" cue for boss to guarantee at least
   // one big-skill action; engine's AI policy handles cooldowns.
-  const skillOrder: readonly string[] = def.skills;
+  const skillOrder: readonly string[] = opts.skillOrderOverride ?? appendUnique(def.skills, opts.extraSkillIds ?? []);
 
   const unit: CombatUnit = {
     id,
@@ -197,6 +237,14 @@ export function pickEliteAffix(def: MonsterDef, rng: Rng): string {
       ? def.eliteAffixes
       : DEFAULT_ELITE_AFFIXES;
   return rng.pick(pool);
+}
+
+function appendUnique(base: readonly string[], extra: readonly string[]): readonly string[] {
+  const out = [...base];
+  for (const skillId of extra) {
+    if (!out.includes(skillId)) out.push(skillId);
+  }
+  return out;
 }
 
 /** Float roll in [min, max] (inclusive) using the seeded RNG. */

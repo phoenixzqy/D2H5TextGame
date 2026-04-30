@@ -1,0 +1,40 @@
+{
+  "id": "elite/default",
+  "normalChampionChance": 0.1,
+  "normalRareEliteChance": 0.02,
+  "rareEliteMagicFindBonus": 50,
+  "rareEliteResistanceBonus": 30,
+  "chapterBossHpMultiplier": 8,
+  "multipliers": {
+    "champion": { "life": 3, "attack": 1.5, "defense": 1.3 },
+    "rareElite": { "life": 4, "attack": 2, "defense": 1.3 },
+    "rareMinion": { "life": 2, "attack": 1.3, "defense": 1.15 }
+  },
+  "affixes": [
+    {
+      "id": "elite-affix/extra-fire-damage",
+      "nameKey": "combat.eliteAffix.extraFireDamage",
+      "skillId": "monster-fire-ball"
+    },
+    {
+      "id": "elite-affix/fast",
+      "nameKey": "combat.eliteAffix.fast",
+      "skillId": "monster-charge"
+    },
+    {
+      "id": "elite-affix/cold-enchanted",
+      "nameKey": "combat.eliteAffix.coldEnchanted",
+      "skillId": "monster-frost-nova"
+    },
+    {
+      "id": "elite-affix/lightning-enchanted",
+      "nameKey": "combat.eliteAffix.lightningEnchanted",
+      "skillId": "monster-lightning"
+    },
+    {
+      "id": "elite-affix/magic-resistant",
+      "nameKey": "combat.eliteAffix.magicResistant",
+      "skillId": "monster-arcane-bolt"
+    }
+  ]
+}

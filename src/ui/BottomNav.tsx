@@ -8,11 +8,12 @@ import { useMetaStore } from '@/stores';
 
 interface NavItem {
   to: string;
-  labelKey: string;
+  labelKey?: string;
+  label?: string;
   icon: string; // unicode glyph; replaced with sprites later
 }
 
-const ITEMS: NavItem[] = [
+const ITEMS: readonly NavItem[] = [
   { to: '/town', labelKey: 'nav.town', icon: '🏰' },
   { to: '/map', labelKey: 'nav.map', icon: '🗺️' },
   { to: '/combat', labelKey: 'nav.combat', icon: '⚔️' },
@@ -23,6 +24,10 @@ const ITEMS: NavItem[] = [
   { to: '/quests', labelKey: 'nav.quests', icon: '📜' },
   { to: '/settings', labelKey: 'nav.settings', icon: '⚙️' },
 ];
+
+const NAV_ITEMS = import.meta.env.DEV
+  ? [...ITEMS, { to: '/dev', label: 'Dev Tool', icon: '🛠️' }]
+  : ITEMS;
 
 export function BottomNav() {
   const { t } = useTranslation(['common', 'map']);
@@ -58,7 +63,7 @@ export function BottomNav() {
             </span>
           </li>
         )}
-        {ITEMS.map((item) => (
+        {NAV_ITEMS.map((item) => (
           <li key={item.to} className="flex-1 md:flex-none">
             <NavLink
               to={item.to}
@@ -77,7 +82,7 @@ export function BottomNav() {
                 {item.icon}
               </span>
               <span className="text-[10px] md:text-xs leading-tight truncate max-w-full">
-                {t(item.labelKey)}
+                {item.label ?? (item.labelKey ? t(item.labelKey) : '')}
               </span>
             </NavLink>
           </li>

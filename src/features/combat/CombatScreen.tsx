@@ -1,14 +1,13 @@
 /**
  * CombatScreen — main combat UI.
  *
- * Layout @ 360×640 (portrait):
- *   [ Header: Wave X / Y · Pause / Auto / Flee ]
- *   [ Allies row (HP bars) ]
- *   [ Enemies list  (HP bars, vertical scroll if many) ]
- *   [ Combat log (flex-1 grows, last 200 entries, auto-scroll, pause on hover) ]
+ * Layout @ md+:
+ *   [ Header: act / sub-area / wave / pause / auto / flee ]
+ *   [ Top row: Allies (left) | Enemies (right) ]
+ *   [ Combat log (fixed bottom, scrollable) ]
  *
- * @ md+:
- *   2-column: left = allies+enemies, right = log
+ * Card sizes are kept compact ('sm') so 4-5 ally cards fit in one
+ * column at typical desktop heights without scrolling.
  */
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -29,6 +28,10 @@ import { inferKind } from '@/engine/combat/types';
 const MAX_LOG = 200;
 const SPEED_CYCLE = [1, 2, 4] as const;
 type Speed = (typeof SPEED_CYCLE)[number];
+
+function mapSubAreaNameKey(id: string): string {
+  return `map.subArea.${id.replace(/^areas\/act([1-5])-/, 'a$1-')}`;
+}
 
 const RARITY_COLORS: Record<string, string> = {
   normal: 'text-d2-white',
@@ -202,7 +205,7 @@ export function CombatScreen() {
                 <>
                   {' · '}
                   <span data-testid="combat-sub-area-name" className="text-d2-gold">
-                    {tDataKey(t, `map.subArea.${currentSubAreaId}`)}
+                    {tDataKey(t, mapSubAreaNameKey(currentSubAreaId))}
                   </span>
                 </>
               )}
@@ -271,47 +274,47 @@ export function CombatScreen() {
         </div>
       }
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-5xl mx-auto">
-        <div className="space-y-3 min-w-0">
-          <Panel title={t('allies')}>
-            {playerTeam.length === 0 ? (
-              <p className="text-sm text-d2-white/60">
-                {t('noAllies')}
-              </p>
-            ) : (
-              <div className="flex flex-wrap gap-3" data-testid="allies-list">
-                {orderAlliesWithSummons(playerTeam).map((u) => (
-                  <UnitCard
-                    key={u.id}
-                    unit={u}
-                    size="md"
-                    acting={u.id === actingActorId}
-                  />
-                ))}
-              </div>
-            )}
-          </Panel>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-6xl mx-auto">
+        <Panel title={t('allies')}>
+          {playerTeam.length === 0 ? (
+            <p className="text-sm text-d2-white/60">
+              {t('noAllies')}
+            </p>
+          ) : (
+            <div className="flex flex-wrap gap-2 content-start" data-testid="allies-list">
+              {orderAlliesWithSummons(playerTeam).map((u) => (
+                <UnitCard
+                  key={u.id}
+                  unit={u}
+                  size="sm"
+                  acting={u.id === actingActorId}
+                />
+              ))}
+            </div>
+          )}
+        </Panel>
 
-          <Panel title={t('enemies')}>
-            {enemyTeam.length === 0 ? (
-              <p className="text-sm text-d2-white/60">
-                {t('noEnemies')}
-              </p>
-            ) : (
-              <div className="flex flex-wrap gap-3" data-testid="enemies-list">
-                {enemyTeam.map((u) => (
-                  <UnitCard
-                    key={u.id}
-                    unit={u}
-                    size="sm"
-                    acting={u.id === actingActorId}
-                  />
-                ))}
-              </div>
-            )}
-          </Panel>
-        </div>
+        <Panel title={t('enemies')}>
+          {enemyTeam.length === 0 ? (
+            <p className="text-sm text-d2-white/60">
+              {t('noEnemies')}
+            </p>
+          ) : (
+            <div className="flex flex-wrap gap-2 content-start" data-testid="enemies-list">
+              {enemyTeam.map((u) => (
+                <UnitCard
+                  key={u.id}
+                  unit={u}
+                  size="sm"
+                  acting={u.id === actingActorId}
+                />
+              ))}
+            </div>
+          )}
+        </Panel>
+      </div>
 
+      <div className="max-w-6xl mx-auto mt-3">
         <CombatLog entries={recentLog} onHoverPausedChange={setLogHoverPaused} />
       </div>
       {nextWaveCountingDown && !runVictory && !runDefeat && (
@@ -434,7 +437,13 @@ function UnitCard({
       : isMerc
       ? 'rare'
       : 'unique'
-    : 'common';
+    : unit.tier === 'champion'
+      ? 'champion'
+      : unit.tier === 'rare-elite'
+        ? 'rareElite'
+        : unit.tier === 'boss' || unit.tier === 'chapter-boss'
+          ? 'boss'
+          : 'common';
 
   const bars: { kind: 'hp' | 'mp'; current: number; max: number }[] = [
     { kind: 'hp', current: unit.life, max: Math.max(1, unit.stats.life) },
@@ -443,9 +452,13 @@ function UnitCard({
     bars.push({ kind: 'mp', current: unit.mana, max: Math.max(1, unit.stats.mana) });
   }
 
+  const tierKey = unit.tier === 'rare-elite' ? 'rare-elite' : unit.tier;
+  const tierLabel = !isPlayerSide && (unit.tier === 'champion' || unit.tier === 'rare-elite')
+    ? ` · ${t(`tier.${tierKey}`)}`
+    : '';
   const subtitle = isSummon
     ? t('summon')
-    : `Lv ${String(unit.level)}`;
+    : `Lv ${String(unit.level)}${tierLabel}`;
 
   const wrapperCls = isDead ? 'opacity-50 grayscale' : '';
   const ringCls = acting && !isDead ? 'ring-2 ring-d2-gold' : '';
@@ -545,22 +558,23 @@ function CombatLog({
 }
 
 /**
- * Order the allies list so that each summon appears immediately after its
- * owner. Heroes/non-summons keep their relative spawn order; orphan
- * summons (no matching owner in the team) fall through to the end.
+ * Order the allies list so cards render in this canonical order:
+ *   hero → mercs (ungrouped) → each hero's summons → each merc's summons → orphan summons.
  *
- * Dead summons are filtered out entirely — they don't contribute to
- * combat any more and a greyed-out skeleton card is just visual noise.
- * Hero/merc cards are kept on death so the player can still read their
- * final state.
+ * Within each group, original spawn order is preserved. Dead summons
+ * are filtered out — they don't contribute to combat any more and a
+ * greyed-out skeleton card is just visual noise. Hero/merc cards are
+ * kept on death so the player can still read their final state.
  */
 function orderAlliesWithSummons(team: readonly CombatUnit[]): CombatUnit[] {
   const heroes: CombatUnit[] = [];
+  const mercs: CombatUnit[] = [];
   const summonsByOwner = new Map<string, CombatUnit[]>();
   const orphans: CombatUnit[] = [];
 
   for (const u of team) {
-    if (inferKind(u) === 'summon') {
+    const kind = inferKind(u);
+    if (kind === 'summon') {
       // Skip corpses — summons leave no card behind once they die.
       if (u.life <= 0) continue;
       const owner = u.summonOwnerId;
@@ -571,18 +585,33 @@ function orderAlliesWithSummons(team: readonly CombatUnit[]): CombatUnit[] {
       } else {
         orphans.push(u);
       }
+    } else if (kind === 'merc') {
+      mercs.push(u);
     } else {
       heroes.push(u);
     }
   }
 
   const out: CombatUnit[] = [];
+  // 1. Heroes first (typically just one).
+  for (const h of heroes) out.push(h);
+  // 2. Mercs next, in original order.
+  for (const m of mercs) out.push(m);
+  // 3. Then each hero's pets, then each merc's pets — keeps owners
+  //    visually adjacent to their summons without breaking the
+  //    hero/merc/pet ordering.
   for (const h of heroes) {
-    out.push(h);
     const pets = summonsByOwner.get(h.id);
     if (pets) {
       out.push(...pets);
       summonsByOwner.delete(h.id);
+    }
+  }
+  for (const m of mercs) {
+    const pets = summonsByOwner.get(m.id);
+    if (pets) {
+      out.push(...pets);
+      summonsByOwner.delete(m.id);
     }
   }
   // Any summons whose owner wasn't found (e.g. owner died but engine kept the unit briefly).

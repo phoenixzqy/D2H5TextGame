@@ -252,6 +252,14 @@
         { "archetypeId": "monsters/act3.mephisto", "count": 1, "boss": true }
       ]
     },
+    "chapterBoss": {
+      "archetypeId": "monsters/act3.mephisto",
+      "hp": 4200,
+      "atk": 300,
+      "def": 360,
+      "skills": ["monster-lightning"],
+      "dropTable": "loot/act3-boss"
+    },
     "waves": [
       { "id": "w1", "type": "trash",
         "encounters": [{ "id": "act3-dh-w1-e1", "level": 40,

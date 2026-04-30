@@ -36,7 +36,8 @@
     "reqVit": "体力 {{value}}",
     "reqEng": "精神 {{value}}",
     "ilvl": "物品等级 {{value}}",
-    "sockets": "插槽 ×{{value}}"
+    "sockets": "插槽 ×{{value}}",
+    "noModifiers": "无特殊属性"
   },
   "base": {
     "helm-cap": "帽子",

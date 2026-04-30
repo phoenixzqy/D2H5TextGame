@@ -38,6 +38,13 @@ export function eventToLocalizedLogEntry(
   const getName = (id: string): string => unitMap?.get(id) ?? id;
 
   switch (event.kind) {
+    case 'message':
+      return {
+        type: 'system',
+        actorId: 'system',
+        actorName: tx('combat:event.system', { defaultValue: 'System' }),
+        message: tx(event.messageKey, event.params)
+      };
     case 'turn-start':
       return {
         type: 'system',

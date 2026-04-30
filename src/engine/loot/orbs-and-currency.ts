@@ -16,22 +16,31 @@ export type Difficulty = 'normal' | 'nightmare' | 'hell';
 const RUNE_CHANCE: Readonly<Record<MonsterTier, number>> = {
   trash: 0.006,
   elite: 0.05,
-  champion: 0.03,
-  boss: 1
+  'rare-minion': 0.05,
+  champion: 0.05,
+  'rare-elite': 0.08,
+  boss: 1,
+  'chapter-boss': 1
 };
 const GEM_CHANCE: Readonly<Record<MonsterTier, number>> = {
   trash: 0.015,
   elite: 0.08,
-  champion: 0.04,
-  boss: 1
+  'rare-minion': 0.08,
+  champion: 0.08,
+  'rare-elite': 0.12,
+  boss: 1,
+  'chapter-boss': 1
 };
 
 /** Wishstone awards (drop-tables §9). */
 const WISHSTONE_BY_TIER_AND_ACT: Readonly<Record<MonsterTier, number[]>> = {
   trash: [0, 0, 0, 0, 0],
   elite: [1, 1, 1, 2, 2],
+  'rare-minion': [1, 1, 1, 2, 2],
   champion: [0, 0, 1, 1, 1], // expected value 0.4 ≈ 40% chance for 1
-  boss: [8, 12, 16, 24, 40]
+  'rare-elite': [2, 2, 3, 3, 4],
+  boss: [8, 12, 16, 24, 40],
+  'chapter-boss': [8, 12, 16, 24, 40]
 };
 
 /** Difficulty multipliers from drop-tables §9. */
@@ -51,8 +60,11 @@ export function rollRuneShards(
   const tierMult: Record<MonsterTier, number> = {
     trash: 1,
     elite: 2.5,
+    'rare-minion': 2.5,
     champion: 4,
-    boss: 50
+    'rare-elite': 6,
+    boss: 50,
+    'chapter-boss': 50
   };
   const base = 5;
   const variance = 0.7 + rng.next() * 0.6; // [0.7, 1.3)
@@ -85,8 +97,8 @@ export function rollCurrencyDrops(
   let wishstones = 0;
   if (tier === 'champion') {
     if (rng.chance(0.4)) wishstones = 1;
-  } else if (tier === 'boss' || tier === 'elite') {
-    wishstones = Math.floor(wishstoneBase * (tier === 'boss' ? diff : 1));
+  } else if (tier === 'boss' || tier === 'chapter-boss' || tier === 'elite' || tier === 'rare-minion' || tier === 'rare-elite') {
+    wishstones = Math.floor(wishstoneBase * (tier === 'boss' || tier === 'chapter-boss' ? diff : 1));
   }
 
   const runes = rng.chance(RUNE_CHANCE[tier]) ? 1 : 0;

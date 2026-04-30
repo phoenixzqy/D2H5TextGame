@@ -1,0 +1,9 @@
+{
+  "id": "classes/paladin",
+  "name": "Paladin",
+  "startingStats": { "strength": 25, "dexterity": 20, "vitality": 25, "energy": 15 },
+  "statGrowth": { "strength": 2.25, "dexterity": 1.5, "vitality": 2.25, "energy": 1 },
+  "lifePerLevel": 9,
+  "manaPerLevel": 4,
+  "starterSkills": ["paladin.holy_fire", "paladin.zeal"]
+}

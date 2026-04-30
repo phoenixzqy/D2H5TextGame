@@ -5,7 +5,7 @@
 import { describe, it, expect } from 'vitest';
 import { createRng } from '../rng';
 import type { MonsterDef } from '../types/monsters';
-import { buildMonsterUnit, TIER_MULTIPLIERS, pickEliteAffix } from './monster-factory';
+import { buildMonsterUnit, TIER_MULTIPLIERS, pickEliteAffix, scaleMonsterLevelForArea } from './monster-factory';
 
 const FALLEN: MonsterDef = {
   id: 'monsters/act1.fallen',
@@ -98,5 +98,10 @@ describe('monster-factory', () => {
     const affix = pickEliteAffix(noAffixes, createRng(2));
     expect(typeof affix).toBe('string');
     expect(affix.length).toBeGreaterThan(0);
+  });
+
+  it('scales authored encounter level from the sub-area area level', () => {
+    expect(scaleMonsterLevelForArea(8, 20, 4)).toBe(22);
+    expect(scaleMonsterLevelForArea(1, 1, 1)).toBe(1);
   });
 });

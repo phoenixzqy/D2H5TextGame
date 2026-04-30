@@ -23,6 +23,15 @@ export const ACT_GATE_QUESTS: Readonly<Record<number, string>> = {
   5: 'quests/act4-terrors-end'               // Diablo
 };
 
+/** Previous act's chapter-boss sub-area whose clear unlocks the target act. */
+export const ACT_GATE_BOSS_SUB_AREAS: Readonly<Record<number, string>> = {
+  2: 'areas/act1-catacombs',
+  3: 'areas/act2-tomb-of-tal-rasha',
+  4: 'areas/act3-durance-of-hate',
+  5: 'areas/act4-chaos-sanctuary'
+};
+
+
 /**
  * Return `true` if the given act is currently unlocked.
  *
@@ -31,20 +40,24 @@ export const ACT_GATE_QUESTS: Readonly<Record<number, string>> = {
  */
 export function isActUnlocked(
   act: number,
-  completedQuestIds: ReadonlySet<string>
+  completedQuestIds: ReadonlySet<string>,
+  clearedSubAreaIds: ReadonlySet<string> = new Set()
 ): boolean {
   if (act <= 1) return true;
-  const gate = ACT_GATE_QUESTS[act];
-  if (!gate) return false;
-  return completedQuestIds.has(gate);
+  const questGate = ACT_GATE_QUESTS[act];
+  const bossGate = ACT_GATE_BOSS_SUB_AREAS[act];
+  if (!questGate && !bossGate) return false;
+  return (questGate !== undefined && completedQuestIds.has(questGate)) ||
+    (bossGate !== undefined && clearedSubAreaIds.has(bossGate));
 }
 
 /** Return the highest unlocked act (≥1). */
 export function highestUnlockedAct(
-  completedQuestIds: ReadonlySet<string>
+  completedQuestIds: ReadonlySet<string>,
+  clearedSubAreaIds: ReadonlySet<string> = new Set()
 ): number {
   for (let a = 5; a >= 1; a--) {
-    if (isActUnlocked(a, completedQuestIds)) return a;
+    if (isActUnlocked(a, completedQuestIds, clearedSubAreaIds)) return a;
   }
   return 1;
 }
@@ -59,20 +72,22 @@ export function highestUnlockedAct(
  */
 export function isSubAreaUnlocked(
   act: number,
-  completedQuestIds: ReadonlySet<string>
+  completedQuestIds: ReadonlySet<string>,
+  clearedSubAreaIds: ReadonlySet<string> = new Set()
 ): boolean {
-  return isActUnlocked(act, completedQuestIds);
+  return isActUnlocked(act, completedQuestIds, clearedSubAreaIds);
 }
 
 /**
  * Build the set of unlocked act numbers from a list of completed quest ids.
  */
 export function getUnlockedActs(
-  completedQuestIds: ReadonlySet<string>
+  completedQuestIds: ReadonlySet<string>,
+  clearedSubAreaIds: ReadonlySet<string> = new Set()
 ): readonly number[] {
   const out: number[] = [1];
   for (let a = 2; a <= 5; a++) {
-    if (isActUnlocked(a, completedQuestIds)) out.push(a);
+    if (isActUnlocked(a, completedQuestIds, clearedSubAreaIds)) out.push(a);
   }
   return out;
 }

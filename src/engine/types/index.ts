@@ -9,5 +9,10 @@ export * from './items';
 export * from './entities';
 export * from './monsters';
 export * from './maps';
+export type {
+  EliteConfigDef,
+  EliteStatMultipliers,
+  EliteAffixDef as SkillEliteAffixDef
+} from './elite';
 export * from './combat';
 export * from './save';

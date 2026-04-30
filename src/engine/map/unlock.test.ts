@@ -4,6 +4,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   ACT_GATE_QUESTS,
+  ACT_GATE_BOSS_SUB_AREAS,
   isActUnlocked,
   isSubAreaUnlocked,
   highestUnlockedAct,
@@ -15,11 +16,13 @@ describe('map/unlock', () => {
     expect(isActUnlocked(1, new Set())).toBe(true);
   });
 
-  it('act 2 requires Andariel', () => {
+  it('act 2 requires either the Andariel quest or cleared chapter-boss sub-area', () => {
     const empty = new Set<string>();
     expect(isActUnlocked(2, empty)).toBe(false);
     const done = new Set([ACT_GATE_QUESTS[2] ?? '']);
     expect(isActUnlocked(2, done)).toBe(true);
+    const cleared = new Set([ACT_GATE_BOSS_SUB_AREAS[2] ?? '']);
+    expect(isActUnlocked(2, empty, cleared)).toBe(true);
   });
 
   it('progressively unlocks acts as boss quests are completed', () => {
@@ -41,6 +44,14 @@ describe('map/unlock', () => {
     expect(isSubAreaUnlocked(2, empty)).toBe(false);
     const done = new Set([ACT_GATE_QUESTS[2] ?? '']);
     expect(isSubAreaUnlocked(2, done)).toBe(true);
+  });
+
+  it('keeps act N+1 locked until act N chapter boss sub-area is cleared', () => {
+    const quests = new Set<string>();
+    const cleared = new Set<string>();
+    expect(isActUnlocked(3, quests, cleared)).toBe(false);
+    cleared.add(ACT_GATE_BOSS_SUB_AREAS[3] ?? '');
+    expect(isActUnlocked(3, quests, cleared)).toBe(true);
   });
 
   it('getUnlockedActs returns ascending list', () => {
