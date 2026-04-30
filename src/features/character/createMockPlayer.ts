@@ -4,6 +4,7 @@
  */
 import type { Player } from '@/engine/types/entities';
 import type { CoreStats } from '@/engine/types/attributes';
+import type { Item } from '@/engine/types/items';
 import { deriveStats } from '@/engine/progression/stats';
 
 export type CharacterClass =
@@ -58,6 +59,19 @@ const STARTER_COMBO: Record<CharacterClass, readonly string[]> = {
   assassin: ['assassin.shock_web']
 };
 
+function createStarterEquipment(cls: CharacterClass): readonly Item[] {
+  if (cls !== 'amazon') return [];
+  return [{
+    id: `starter-amazon-bow-${String(Date.now())}`,
+    baseId: 'items/base/weapon-bow',
+    rarity: 'normal',
+    level: 1,
+    identified: true,
+    equipped: true,
+    equipSlot: 'weapon'
+  }];
+}
+
 export function createMockPlayer(name: string, cls: CharacterClass): Player {
   const stats = CLASS_STATS[cls];
   const coreStats: CoreStats = {
@@ -88,6 +102,6 @@ export function createMockPlayer(name: string, cls: CharacterClass): Player {
     experienceToNextLevel: 100,
     statPoints: 0,
     skillPoints: 1,
-    equipment: [],
+    equipment: createStarterEquipment(cls),
   };
 }

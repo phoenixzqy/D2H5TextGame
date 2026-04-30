@@ -75,16 +75,20 @@ test.describe('dev tool — image preview + weapon dropdowns', () => {
 
   test('weapon base reveals weaponType + handedness selects', async ({ page }) => {
     await page.goto('/dev/items');
-    // Pick a weapon entry — the data file ships `items/base/wp1h-short-sword`.
-    await page.locator('select').nth(1).selectOption({ index: 1 });
-    await expect(page.getByTestId('weapon-fields')).toBeVisible();
-    await expect(page.getByLabel(/weapon type|武器类型/i)).toBeVisible();
-    await expect(page.getByLabel(/handedness|持握方式/i)).toBeVisible();
+    const entrySelect = page.locator('select').nth(1);
+    await expect(entrySelect).toContainText('items.base.wp1h-short-sword');
+    await entrySelect.selectOption({ label: 'items.base.wp1h-short-sword' });
+    const weaponFields = page.getByTestId('weapon-fields');
+    await expect(weaponFields).toBeVisible();
+    await expect(weaponFields.locator('#dev-weaponType')).toBeVisible();
+    await expect(weaponFields.locator('#dev-handedness')).toBeVisible();
   });
 
   test('non-weapon base hides weaponType + handedness selects', async ({ page }) => {
     await page.goto('/dev/items');
-    await page.locator('select').nth(1).selectOption({ index: 0 });
+    const entrySelect = page.locator('select').nth(1);
+    await expect(entrySelect).toContainText('items.base.helm-cap');
+    await entrySelect.selectOption({ label: 'items.base.helm-cap' });
     await expect(page.getByTestId('weapon-fields')).toHaveCount(0);
   });
 });

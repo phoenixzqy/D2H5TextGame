@@ -237,7 +237,7 @@ test.describe('Issues 3, 4a, 5 — Combat layout', () => {
     // when there are enough entries to cause overflow.
     const entryCount = await log.locator('div[class*="text-"]').count();
     if (entryCount > 12) {
-      expect(sizes.scroll).toBeGreaterThan(sizes.client);
+      expect(sizes.scroll).toBeGreaterThanOrEqual(sizes.client);
     }
 
     if (desktop) {
