@@ -20,7 +20,7 @@ import { clearGameStorage, createCharacter, navTo } from './_helpers';
 
 const OUTDIR = path.resolve(process.cwd(), '.screenshots', 'equip-compare-ux-v2');
 
-test.describe('Equip compare UX v2 — visual evidence', () => {
+test.describe('Equip compare UX v2 — visual evidence @responsive', () => {
   test('captures Bug A + Bug B screenshots', async ({ page, viewport }) => {
     test.setTimeout(60_000);
     const tag = (viewport?.width ?? 0) <= 480 ? 'mobile' : 'desktop';

@@ -46,7 +46,7 @@ async function seedShortSword(page: Page): Promise<string> {
   });
 }
 
-test.describe('Bug #7 + #8 — Item tooltip', () => {
+test.describe('Bug #7 + #8 — Item tooltip @responsive', () => {
   test('shows type subtitle and stays inside viewport', async ({ page }, info) => {
     test.setTimeout(60_000);
     const projectName = info.project.name;

@@ -33,7 +33,7 @@ async function openWeaponPicker(page: import('@playwright/test').Page) {
   await expect(page.getByTestId('equip-picker')).toBeVisible();
 }
 
-test.describe('EquipPicker v3 — redesigned compare flow', () => {
+test.describe('EquipPicker v3 — redesigned compare flow @desktop-only', () => {
   test('auto-selects first eligible + populates compare-panel data-cols', async ({ page }) => {
     await clearGameStorage(page);
     await createCharacter(page, { class: 'barbarian', name: 'PickerV3' });

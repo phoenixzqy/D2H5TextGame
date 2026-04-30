@@ -20,7 +20,7 @@ import {
   waitForBattleResolution
 } from './_helpers';
 
-test.describe('Combat <-> Map flow (fix/combat-map-screen-bugs)', () => {
+test.describe('Combat <-> Map flow (fix/combat-map-screen-bugs) @responsive', () => {
   test('clears the first sub-area, gates idle, and shows map identity in combat', async ({ page }) => {
     test.setTimeout(120_000);
 

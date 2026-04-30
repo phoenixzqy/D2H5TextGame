@@ -49,7 +49,7 @@ async function setLanguage(page: Page, lang: 'zh-CN' | 'en'): Promise<void> {
   }, lang);
 }
 
-test.describe('Inventory overhaul — desktop two-column layout', () => {
+test.describe('Inventory overhaul — desktop two-column layout @desktop-only', () => {
   test('opens detail sidebar; bulk toolbar visible; close dismisses', async ({ page }, info) => {
     test.skip(info.project.name !== 'chromium-desktop', 'desktop-only');
     test.setTimeout(60_000);
@@ -81,7 +81,7 @@ test.describe('Inventory overhaul — desktop two-column layout', () => {
   });
 });
 
-test.describe('Inventory overhaul — mobile bottom sheet', () => {
+test.describe('Inventory overhaul — mobile bottom sheet @mobile-only', () => {
   test('selecting item opens bottom sheet; backdrop tap dismisses', async ({ page }, info) => {
     test.skip(info.project.name !== 'mobile-portrait', 'mobile-only');
     test.setTimeout(60_000);
@@ -108,7 +108,7 @@ test.describe('Inventory overhaul — mobile bottom sheet', () => {
   });
 });
 
-test.describe('Inventory overhaul — bulk discard (en)', () => {
+test.describe('Inventory overhaul — bulk discard (en) @desktop-only', () => {
   test('discardNormal opens confirm with preview, removes items', async ({ page }, info) => {
     test.skip(info.project.name !== 'chromium-desktop', 'desktop-only');
     test.setTimeout(60_000);
@@ -140,7 +140,7 @@ test.describe('Inventory overhaul — bulk discard (en)', () => {
   });
 });
 
-test.describe('Inventory overhaul — no console errors', () => {
+test.describe('Inventory overhaul — no console errors @desktop-only', () => {
   test('opening + interacting with inventory produces no console errors', async ({ page }, info) => {
     test.skip(info.project.name !== 'chromium-desktop', 'desktop-only');
     test.setTimeout(60_000);

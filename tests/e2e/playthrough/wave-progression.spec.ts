@@ -16,7 +16,7 @@
 import { test, expect } from '@playwright/test';
 import { clearGameStorage, createCharacter, enterFirstCombat, boostPlayer, waitForBattleLoaded, drainCurrentWave } from './_setup';
 
-test.describe('Bug #5 + #16 — Wave progression and elite/boss tier', () => {
+test.describe('Bug #5 + #16 — Wave progression and elite/boss tier @desktop-only', () => {
   test.beforeEach(({}, testInfo) => {
     test.skip(
       testInfo.project.name !== 'chromium-desktop',

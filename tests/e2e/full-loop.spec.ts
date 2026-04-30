@@ -14,7 +14,7 @@ import {
   returnToTownFromCombat,
 } from './_helpers';
 
-test.describe('Final acceptance — full loop', () => {
+test.describe('Final acceptance — full loop @desktop-only', () => {
   test.beforeEach(({}, testInfo) => {
     test.skip(
       testInfo.project.name !== 'chromium-desktop',

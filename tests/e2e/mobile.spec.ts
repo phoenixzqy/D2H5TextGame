@@ -19,7 +19,7 @@ const MOBILE_VIEWPORTS: { name: string; width: number; height: number }[] = [
   { name: '412x915 (Pixel 6 Pro)', width: 412, height: 915 },
 ];
 
-test.describe('Mobile responsive flow', () => {
+test.describe('Mobile responsive flow @desktop-only', () => {
   // Run once on the desktop project; we override viewport per test.
   test.beforeEach(({}, testInfo) => {
     test.skip(

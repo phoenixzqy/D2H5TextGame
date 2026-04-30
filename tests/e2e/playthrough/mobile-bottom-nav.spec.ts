@@ -11,7 +11,7 @@
 import { test, expect } from '@playwright/test';
 import { clearGameStorage, createCharacter } from './_setup';
 
-test.describe('Mobile bottom nav — layout integrity', () => {
+test.describe('Mobile bottom nav — layout integrity @mobile-only', () => {
   test.beforeEach(({}, testInfo) => {
     test.skip(
       testInfo.project.name !== 'mobile-portrait',
