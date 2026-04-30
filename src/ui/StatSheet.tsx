@@ -34,6 +34,8 @@ import {
   STAT_META,
   RESIST_KEYS,
   deltaColorClass,
+  deltaTrend,
+  deltaArrow,
   formatStatDelta,
   formatStatValue,
   formatResistDelta,
@@ -70,12 +72,16 @@ interface CompareProps {
 export type StatSheetProps = SingleProps | CompareProps;
 
 export function StatSheet(props: StatSheetProps): JSX.Element {
-  const { t } = useTranslation(['inventory', 'common', 'items']);
+  const { t } = useTranslation(['inventory', 'common', 'items', 'rarity']);
   const { t: tAffix } = useTranslation('affixes');
 
-  const showCurrent = props.mode === 'single' || props.current !== null;
+  // Compare mode always shows 3 columns (even when current is null, the
+  // empty-slot placeholder is rendered in the current column) so the
+  // header/data-col contract is stable for E2E and so layout doesn't shift
+  // when the user equips into an empty slot. Single mode is always 2 cols.
+  // showCurrent is always true; kept as a constant for readability.
   const showCandidate = props.mode === 'compare';
-  const colCount = 1 + (showCurrent ? 1 : 0) + (showCandidate ? 1 : 0);
+  const colCount = 2 + (showCandidate ? 1 : 0);
 
   const hasResist = RESIST_KEYS.some((k) => {
     if (props.mode === 'single') return props.resistances[k] !== 0;
@@ -101,7 +107,7 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
       >
         <colgroup>
           <col />
-          {showCurrent && <col className="w-[34%] sm:w-[32%]" />}
+          <col className="w-[34%] sm:w-[32%]" />
           {showCandidate && <col className="w-[40%] sm:w-[36%]" />}
         </colgroup>
         <thead>
@@ -112,18 +118,32 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
             >
               {t('equipFlow.compare.statHeader')}
             </th>
-            {showCurrent && (
-              <th scope="col" className="text-right pb-2 pl-2 font-normal align-bottom">
-                <HeaderCell
-                  label={t('equipFlow.compare.current')}
-                  item={props.mode === 'single' ? props.item : props.current}
-                  emptyAsSlot={props.mode === 'single' && (props.emptySlot ?? false)}
-                  t={t}
-                />
-              </th>
-            )}
+            <th
+              scope="col"
+              className="text-right pb-2 pl-2 font-normal align-bottom"
+              data-col="current"
+              data-testid="current-item-header"
+              data-empty={
+                ((props.mode === 'single' && (props.emptySlot ?? false)) ||
+                  (props.mode === 'compare' && props.current === null))
+                  ? 'true'
+                  : 'false'
+              }
+            >
+              <HeaderCell
+                label={t('equipFlow.compare.current')}
+                item={props.mode === 'single' ? props.item : props.current}
+                emptyAsSlot={props.mode === 'single' && (props.emptySlot ?? false)}
+                t={t}
+              />
+            </th>
             {props.mode === 'compare' && (
-              <th scope="col" className="text-right pb-2 pl-2 font-normal align-bottom">
+              <th
+                scope="col"
+                className="text-right pb-2 pl-2 font-normal align-bottom"
+                data-col="candidate"
+                data-testid="candidate-item-header"
+              >
                 <HeaderCell
                   label={t('equipFlow.compare.candidate')}
                   item={props.candidate}
@@ -156,30 +176,50 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
             }
             const stat = props.stats[key];
             const deltaText = formatStatDelta(meta.format, stat.delta);
+            const trend = deltaTrend(stat.delta, meta.higherIsBetter);
+            const arrow = deltaArrow(stat.delta);
+            const srKey = stat.delta > 0
+              ? 'equipFlow.compare.deltaUp'
+              : stat.delta < 0
+                ? 'equipFlow.compare.deltaDown'
+                : '';
             const candidateCell = (
               <>
                 <span className="text-d2-white">
                   {formatStatValue(meta.format, stat.candidate)}
                 </span>
                 {deltaText !== '' && (
-                  <span className={`ml-1 ${deltaColorClass(stat.delta, meta.higherIsBetter)}`}>
-                    ({deltaText})
+                  <span
+                    className={`ml-1 ${deltaColorClass(stat.delta, meta.higherIsBetter)}`}
+                    data-trend={trend}
+                    data-testid="stat-delta"
+                  >
+                    <span aria-hidden="true">{arrow}</span>
+                    <span aria-hidden="true">({deltaText})</span>
+                    {srKey !== '' && (
+                      <span className="sr-only">
+                        {' '}
+                        {t(srKey, { value: deltaText.replace(/^[+-]/, '') })}
+                      </span>
+                    )}
                   </span>
                 )}
               </>
             );
-            const currentCell = showCurrent ? (
+            const currentCell = (
               <span className="text-d2-white/60">
-                {formatStatValue(meta.format, stat.current)}
+                {props.current === null
+                  ? '—'
+                  : formatStatValue(meta.format, stat.current)}
               </span>
-            ) : null;
+            );
             return (
               <StatRow
                 key={key}
                 label={label}
                 currentCell={currentCell}
                 candidateCell={candidateCell}
-                showCurrent={showCurrent}
+                showCurrent
                 showCandidate
               />
             );
@@ -208,26 +248,35 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
               const r = props.resistances[key];
               if (r.current === 0 && r.candidate === 0) return null;
               const deltaText = formatResistDelta(r.delta);
+              const trend = deltaTrend(r.delta, true);
+              const arrow = deltaArrow(r.delta);
               const candidateCell = (
                 <>
                   <span className="text-d2-white">{formatResistValue(r.candidate)}</span>
                   {deltaText !== '' && (
-                    <span className={`ml-1 ${deltaColorClass(r.delta, true)}`}>
-                      ({deltaText})
+                    <span
+                      className={`ml-1 ${deltaColorClass(r.delta, true)}`}
+                      data-trend={trend}
+                      data-testid="stat-delta"
+                    >
+                      <span aria-hidden="true">{arrow}</span>
+                      <span aria-hidden="true">({deltaText})</span>
                     </span>
                   )}
                 </>
               );
-              const currentCell = showCurrent ? (
-                <span className="text-d2-white/60">{formatResistValue(r.current)}</span>
-              ) : null;
+              const currentCell = (
+                <span className="text-d2-white/60">
+                  {props.current === null ? '—' : formatResistValue(r.current)}
+                </span>
+              );
               return (
                 <StatRow
                   key={key}
                   label={label}
                   currentCell={currentCell}
                   candidateCell={candidateCell}
-                  showCurrent={showCurrent}
+                  showCurrent
                   showCandidate
                 />
               );
@@ -300,18 +349,45 @@ function HeaderCell({
   readonly emptyAsSlot: boolean;
   readonly t: TFunction;
 }) {
+  // Bug 2 fix: when current and candidate share the same baseId (e.g. a
+  // normal Short Sword vs a magic Short Sword), rendering only the base
+  // name produces two visually-identical headers — the user can't tell
+  // which column is which. Disambiguate every header with a small badge
+  // that shows the rarity tier and (if any) affix count, e.g.:
+  //   "短剑"               normal, no affixes
+  //   "短剑 · 魔法 +2"     magic, 2 affixes
+  //   "Short Sword · Magic +2"
+  // Both i18n locales already ship rarity:tier.<r> keys, so we reuse
+  // those rather than introducing locale-specific glue.
+  const affixCount = item?.affixes?.length ?? 0;
+  const rarityLabel = item ? t(`rarity:tier.${item.rarity}`) : '';
+  const badgeBits: string[] = [];
+  if (rarityLabel) badgeBits.push(rarityLabel);
+  if (affixCount > 0) badgeBits.push(`+${String(affixCount)}`);
+  const badge = badgeBits.join(' ');
+
   return (
     <div className="min-w-0 flex flex-col items-end">
       <span className="text-[10px] uppercase tracking-wide text-d2-white/60">
         {label}
       </span>
       {item ? (
-        <RarityText
-          rarity={item.rarity}
-          className="font-serif text-xs font-bold block truncate max-w-full"
-        >
-          {tItemName(t, item)}
-        </RarityText>
+        <>
+          <RarityText
+            rarity={item.rarity}
+            className="font-serif text-xs font-bold block truncate max-w-full"
+          >
+            <span data-testid="header-item-name">{tItemName(t, item)}</span>
+          </RarityText>
+          {badge !== '' && (
+            <span
+              className="text-[10px] text-d2-white/55 truncate max-w-full"
+              data-testid="header-item-badge"
+            >
+              {badge}
+            </span>
+          )}
+        </>
       ) : (
         <span className="text-d2-white/40 italic text-xs">
           {emptyAsSlot ? t('equipFlow.compare.slotEmpty') : t('empty')}

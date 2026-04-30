@@ -58,6 +58,38 @@ function baseSlug(baseId: string): string {
   return baseId.split('/').pop() ?? baseId;
 }
 
+/**
+ * Build the localized defense line for armor tooltips.
+ *
+ * Defensive guard for Bug 1 — guarantees we never call
+ * `t('tooltip.defense', { value })` with `value === undefined`. Even if the
+ * earlier `base.type === 'armor' && base.baseDefense > 0` gate is correct,
+ * folding the resolution into a single helper that asserts the resolved
+ * value is a finite number provides:
+ *   - TS narrowing for the caller (returns string | null, never throws),
+ *   - a centralized place to assert the i18n contract,
+ *   - a unit-testable surface for the degenerate input case.
+ *
+ * Returns `null` (and renders no defense line) whenever the resolved
+ * value is not a finite, positive number.
+ */
+function buildDefenseLine(
+  t: ReturnType<typeof useTranslation>['t'],
+  item: Item,
+  base: ItemBase | undefined
+): string | null {
+  if (!base || base.type !== 'armor') return null;
+  const baseDef = base.baseDefense;
+  if (typeof baseDef !== 'number' || !Number.isFinite(baseDef) || baseDef <= 0) {
+    return null;
+  }
+  const rolled = item.baseRolls?.defense;
+  const value =
+    typeof rolled === 'number' && Number.isFinite(rolled) ? rolled : baseDef;
+  if (typeof value !== 'number' || !Number.isFinite(value)) return null;
+  return t('tooltip.defense', { value });
+}
+
 export function ItemTooltip({ item, className = '' }: ItemTooltipProps): JSX.Element {
   const { t } = useTranslation('items');
   const { t: tAffix } = useTranslation('affixes');
@@ -86,10 +118,7 @@ export function ItemTooltip({ item, className = '' }: ItemTooltipProps): JSX.Ele
           max: item.baseRolls?.attack ?? base.baseDamage.max
         })
       : null;
-  const defenseLine =
-    base?.type === 'armor' && typeof base.baseDefense === 'number' && base.baseDefense > 0
-      ? t('tooltip.defense', { value: item.baseRolls?.defense ?? base.baseDefense })
-      : null;
+  const defenseLine = buildDefenseLine(t, item, base);
 
   const reqRows: string[] = [];
   if (base) {

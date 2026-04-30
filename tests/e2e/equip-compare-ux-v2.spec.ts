@@ -2,10 +2,15 @@
  * equip-compare-ux-v2.spec.ts — visual evidence for the fix to Bug A
  * (inline +/-Δ compare panel) and Bug B (read-only equipped stat sheet).
  *
+ * UPDATED for feat/equip-picker-v3 redesign: the picker now AUTO-SELECTS
+ * the first eligible candidate on open, so the empty-current+candidate
+ * compare view is reached without an explicit row click. Single-mode
+ * `item-stat-sheet` is no longer rendered inside the picker (it's only
+ * the fallback path when there are zero candidates). The character-screen
+ * read-only modal still uses `item-stat-sheet` and is unchanged.
+ *
  * Captures screenshots at desktop (1280×800) and mobile (360×640):
- *   - bugB-equip-picker-current-empty       (empty slot, current-only sheet)
- *   - bugA-equip-picker-compare-empty       (empty current vs candidate)
- *   - bugB-equip-picker-current-equipped    (current item, no candidate)
+ *   - bugA-equip-picker-compare-empty       (empty current vs auto-picked candidate)
  *   - bugA-equip-picker-compare-equipped    (item vs candidate, real deltas)
  *   - bugB-character-equipped-modal         (read-only modal from char screen)
  */
@@ -23,7 +28,6 @@ test.describe('Equip compare UX v2 — visual evidence', () => {
     await clearGameStorage(page);
     await createCharacter(page, { class: 'barbarian', name: 'CompareUX' });
 
-    // Seed two weapons (different rarities differentiate visual rows).
     const seeded = await page.evaluate(() => {
       const game = (
         window as unknown as {
@@ -45,26 +49,12 @@ test.describe('Equip compare UX v2 — visual evidence', () => {
     const equipTab = page.getByRole('tab', { name: /装备|Equipment/i }).first();
     await equipTab.click();
 
-    // ----------------------------------------------------------------
-    // Bug B (empty) — open weapon slot when nothing is equipped.
-    // ----------------------------------------------------------------
+    // Empty slot + auto-selected candidate → compare panel visible.
     const slot = page.getByTestId('equip-slot-weapon');
     await expect(slot).toBeVisible();
-    // Click the label area so we don't accidentally tap any nested
-    // action button (Details / Unequip) when the slot has an item.
     await slot.click({ position: { x: 24, y: 24 } });
     await expect(page.getByTestId('equip-picker')).toBeVisible();
-    const statSheet = page.getByTestId('item-stat-sheet');
-    await expect(statSheet).toBeVisible();
-    await page.screenshot({
-      path: path.join(OUTDIR, `bugB-equip-picker-current-empty-${tag}.png`),
-      fullPage: false
-    });
-
-    // ----------------------------------------------------------------
-    // Bug A (empty→candidate) — selecting a candidate flips to compare.
-    // ----------------------------------------------------------------
-    await page.getByTestId(`equip-picker-row-${seeded.a}`).click();
+    await expect(page.getByTestId('compare-panel')).toBeVisible();
     await expect(page.getByTestId('item-compare')).toBeVisible();
     await page.screenshot({
       path: path.join(OUTDIR, `bugA-equip-picker-compare-empty-${tag}.png`),
@@ -75,20 +65,11 @@ test.describe('Equip compare UX v2 — visual evidence', () => {
     await page.getByTestId('equip-picker-confirm').click();
     await expect(page.getByTestId('equip-picker')).not.toBeVisible();
 
-    // ----------------------------------------------------------------
-    // Bug B (equipped) — re-open picker, current item shown, no candidate.
-    // ----------------------------------------------------------------
+    // Re-open with weapon equipped → magic candidate remains in backpack;
+    // auto-select picks it → real ±Δ rows visible.
     await slot.click({ position: { x: 24, y: 24 } });
     await expect(page.getByTestId('equip-picker')).toBeVisible();
-    await expect(page.getByTestId('item-stat-sheet')).toBeVisible();
-    await page.screenshot({
-      path: path.join(OUTDIR, `bugB-equip-picker-current-equipped-${tag}.png`),
-      fullPage: false
-    });
-
-    // ----------------------------------------------------------------
-    // Bug A (real deltas) — pick the magic candidate, see ±Δ rows.
-    // ----------------------------------------------------------------
+    await expect(page.getByTestId('compare-panel')).toBeVisible();
     await page.getByTestId(`equip-picker-row-${seeded.b}`).click();
     await expect(page.getByTestId('item-compare')).toBeVisible();
     await page.screenshot({
@@ -99,11 +80,9 @@ test.describe('Equip compare UX v2 — visual evidence', () => {
     await page.getByTestId('equip-picker-close').click();
     await expect(page.getByTestId('equip-picker')).not.toBeVisible();
 
-    // ----------------------------------------------------------------
     // Bug B — read-only modal from CharacterScreen (no swap mode).
-    // BottomNav has no /character link; the CharacterHud (top-right)
-    // is the documented entry point.
-    // ----------------------------------------------------------------
+    // Unchanged by the redesign; this entry point still uses the single-
+    // mode StatSheet (`item-stat-sheet`).
     await page.getByTestId('character-hud').click();
     await expect(page.getByTestId('character-screen')).toBeVisible();
     const charSlot = page.getByTestId('char-equip-slot-weapon');
@@ -119,4 +98,3 @@ test.describe('Equip compare UX v2 — visual evidence', () => {
     await expect(modal).not.toBeVisible();
   });
 });
-
