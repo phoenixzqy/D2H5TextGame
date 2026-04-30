@@ -11,7 +11,7 @@
 import { test, expect } from '@playwright/test';
 import { clearGameStorage, createCharacter, enterFirstCombat, skipToResolution, boostPlayer } from './_setup';
 
-test.describe('Bug #2 — Mercenary fights in combat', () => {
+test.describe('Bug #2 — Mercenary fights in combat @desktop-only', () => {
   test('fielded merc appears in allies panel and acts in combat log', async ({ page }) => {
     test.setTimeout(60_000);
 

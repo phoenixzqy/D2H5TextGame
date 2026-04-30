@@ -14,7 +14,7 @@ import {
   returnToTownFromCombat,
 } from './_helpers';
 
-test.describe('Save / Load round trip', () => {
+test.describe('Save / Load round trip @responsive', () => {
   test.beforeEach(({}, testInfo) => {
     test.skip(
       testInfo.project.name !== 'chromium-desktop',

@@ -32,7 +32,7 @@ async function seedWeapon(page: Page, count = 1): Promise<string[]> {
   }, count);
 }
 
-test.describe('Bug #7 — Item tooltip subtitle (desktop)', () => {
+test.describe('Bug #7 — Item tooltip subtitle (desktop) @desktop-only', () => {
   test.beforeEach(({}, testInfo) => {
     test.skip(
       testInfo.project.name !== 'chromium-desktop',
@@ -70,7 +70,7 @@ test.describe('Bug #7 — Item tooltip subtitle (desktop)', () => {
   });
 });
 
-test.describe('Bug #8 — Tooltip viewport clip (mobile)', () => {
+test.describe('Bug #8 — Tooltip viewport clip (mobile) @mobile-only', () => {
   test.beforeEach(({}, testInfo) => {
     test.skip(
       testInfo.project.name !== 'mobile-portrait',

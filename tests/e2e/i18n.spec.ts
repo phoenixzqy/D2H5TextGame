@@ -4,7 +4,7 @@
 import { test, expect } from '@playwright/test';
 import { clearGameStorage, createCharacter, navTo } from './_helpers';
 
-test.describe('i18n locale switching', () => {
+test.describe('i18n locale switching @responsive', () => {
   test.beforeEach(({}, testInfo) => {
     test.skip(
       testInfo.project.name !== 'chromium-desktop',

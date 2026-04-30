@@ -5,7 +5,7 @@
 import { test, expect } from '@playwright/test';
 import { clearGameStorage, createCharacter, navTo } from './_helpers';
 
-test.describe('summon + timeline UI', () => {
+test.describe('summon + timeline UI @desktop-only', () => {
   test.use({ viewport: { width: 360, height: 640 } });
 
   test('necromancer summons a skeleton; highlight follows actor', async ({ page }) => {

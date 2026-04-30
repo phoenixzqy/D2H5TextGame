@@ -11,7 +11,7 @@
 import { test, expect } from '@playwright/test';
 import { clearGameStorage, createCharacter, navTo } from '../_helpers';
 
-test.describe('Bug #9 + #10 — Equip picker and comparison panel', () => {
+test.describe('Bug #9 + #10 — Equip picker and comparison panel @desktop-only', () => {
   test('empty slot opens picker, comparison shows stat deltas, equip closes modal', async ({ page }) => {
     test.setTimeout(60_000);
 

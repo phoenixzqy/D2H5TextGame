@@ -21,7 +21,7 @@ test.describe('Smoke Test', () => {
     await expect(startButton).toBeVisible();
   });
 
-  test('home page is responsive on mobile', async ({ page }) => {
+  test('home page is responsive on mobile @mobile-only', async ({ page }) => {
     // This test will run in mobile-portrait project (Pixel 5)
     await page.goto('/');
 

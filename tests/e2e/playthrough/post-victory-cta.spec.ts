@@ -19,7 +19,7 @@ import {
   skipViaStore,
 } from './_setup';
 
-test.describe('Bug #21 — Post-victory CTAs', () => {
+test.describe('Bug #21 — Post-victory CTAs @desktop-only', () => {
   test.beforeEach(({}, testInfo) => {
     test.skip(
       testInfo.project.name !== 'chromium-desktop',

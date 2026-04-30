@@ -42,7 +42,7 @@ async function openSkillsScreenAsNecro(page: Parameters<typeof createCharacter>[
 
 // ── Desktop tests ──────────────────────────────────────────────────────────
 
-test.describe('No raw i18n keys — desktop', () => {
+test.describe('No raw i18n keys — desktop @desktop-only', () => {
   test.use({ viewport: DESKTOP_VP });
 
   test('Skills screen (Necromancer) has no raw skill key patterns', async ({ page }) => {
@@ -111,7 +111,7 @@ test.describe('No raw i18n keys — desktop', () => {
 
 // ── Mobile tests ───────────────────────────────────────────────────────────
 
-test.describe('No raw i18n keys — mobile 360×640', () => {
+test.describe('No raw i18n keys — mobile 360×640 @desktop-only', () => {
   test.use({ viewport: MOBILE_VP });
 
   test('Skills screen (Necromancer) has no raw skill key patterns on mobile', async ({ page }) => {

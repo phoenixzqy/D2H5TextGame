@@ -40,7 +40,7 @@ async function seedItem(
   );
 }
 
-test.describe('Inventory grid spacing — desktop', () => {
+test.describe('Inventory grid spacing — desktop @desktop-only', () => {
   test('uniform cells; no horizontal overflow on toolbar', async ({ page }, info) => {
     test.skip(info.project.name !== 'chromium-desktop', 'desktop-only');
     test.setTimeout(60_000);
@@ -73,7 +73,7 @@ test.describe('Inventory grid spacing — desktop', () => {
   });
 });
 
-test.describe('Inventory grid spacing — mobile', () => {
+test.describe('Inventory grid spacing — mobile @mobile-only', () => {
   test('toolbar wraps within viewport; no horizontal overflow', async ({ page }, info) => {
     test.skip(info.project.name !== 'mobile-portrait', 'mobile-only');
     test.setTimeout(60_000);

@@ -18,7 +18,7 @@ test.beforeAll(() => {
 
 test.describe.configure({ mode: 'serial' });
 
-test.describe('Full Playthrough', () => {
+test.describe('Full Playthrough @responsive', () => {
   test('complete game flow from home to combat and back', async ({ page }, testInfo) => {
     // Determine viewport prefix (desktop or mobile)
     const isDesktop = testInfo.project.name.includes('desktop');
