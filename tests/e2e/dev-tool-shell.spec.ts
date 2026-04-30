@@ -2,7 +2,7 @@
  * Dev Tool shell E2E:
  *  - HUD must not render on /dev or /dev/* routes.
  *  - Sidebar must show a "back to game" link.
- *  - Clicking it routes to /town when a player exists, /  otherwise.
+ *  - Dev item editor exposes image preview plus weapon fields.
  */
 import { test, expect } from '@playwright/test';
 import { clearGameStorage, createCharacter } from './_helpers';
@@ -60,5 +60,31 @@ test.describe('Dev tool shell — HUD + back-to-game', () => {
 
     await expect(page).toHaveURL(/\/$/);
     await expect(page.getByTestId('home-screen')).toBeVisible();
+  });
+});
+
+test.describe('dev tool — image preview + weapon dropdowns', () => {
+  test('items editor shows image preview + Inferred badge for a base item', async ({ page }) => {
+    await page.goto('/dev/items');
+    const field = page.getByTestId('dev-image-field').first();
+    await expect(field).toBeVisible();
+    await expect(field).toHaveAttribute('data-override-state', /override|inferred/);
+    const badge = page.getByTestId('dev-image-field-badge').first();
+    await expect(badge).toBeVisible();
+  });
+
+  test('weapon base reveals weaponType + handedness selects', async ({ page }) => {
+    await page.goto('/dev/items');
+    // Pick a weapon entry — the data file ships `items/base/wp1h-short-sword`.
+    await page.locator('select').nth(1).selectOption({ index: 1 });
+    await expect(page.getByTestId('weapon-fields')).toBeVisible();
+    await expect(page.getByLabel(/weapon type|武器类型/i)).toBeVisible();
+    await expect(page.getByLabel(/handedness|持握方式/i)).toBeVisible();
+  });
+
+  test('non-weapon base hides weaponType + handedness selects', async ({ page }) => {
+    await page.goto('/dev/items');
+    await page.locator('select').nth(1).selectOption({ index: 0 });
+    await expect(page.getByTestId('weapon-fields')).toHaveCount(0);
   });
 });

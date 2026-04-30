@@ -1,3 +1,45 @@
 {
-  "backToGame": "← 返回游戏"
+  "backToGame": "← 返回游戏",
+  "imageField": {
+    "label": "贴图预览",
+    "lookupKey": "查找键",
+    "overridePath": "覆盖路径",
+    "overridePathPlaceholder": "/assets/d2/...",
+    "save": "保存覆盖",
+    "clearOverride": "清除覆盖",
+    "saved": "已保存",
+    "saveFailed": "保存失败",
+    "loadFailed": "加载覆盖失败",
+    "noPreview": "暂无图像",
+    "altInferred": "{{kind}} {{id}}（推断贴图）",
+    "altOverride": "{{kind}} {{id}}（手动覆盖）",
+    "badge": {
+      "override": "已覆盖",
+      "inferred": "推断"
+    }
+  },
+  "itemsEditor": {
+    "weaponType": "武器类型",
+    "handedness": "持握方式",
+    "requiredForWeapon": "武器必填字段"
+  },
+  "weaponType": {
+    "sword": "剑",
+    "axe": "斧",
+    "mace": "锤",
+    "dagger": "匕首",
+    "spear": "矛",
+    "polearm": "长柄武器",
+    "bow": "弓",
+    "crossbow": "弩",
+    "throwing": "投掷武器",
+    "staff": "法杖",
+    "wand": "魔杖",
+    "scepter": "权杖",
+    "orb": "法珠"
+  },
+  "handedness": {
+    "oneHanded": "单手",
+    "twoHanded": "双手"
+  }
 }
