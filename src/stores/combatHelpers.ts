@@ -386,6 +386,15 @@ export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idl
   );
   const nextIdx = activeRun.waveIdx + 1;
   if (nextIdx >= activeRun.plan.waves.length) {
+    // Bug B — mark the sub-area cleared on engine-side so any caller
+    // benefits (idempotent in mapStore). Persistence is handled by the
+    // existing zustand-persist subscription on mapStore.
+    const clearedId = activeRun.plan.subAreaId;
+    try {
+      useMapStore.getState().markCleared(clearedId);
+    } catch {
+      // mapStore unavailable in some test harnesses; best-effort.
+    }
     combat.markRunVictory();
     activeRun = null;
     return 'victory';
