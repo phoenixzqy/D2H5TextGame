@@ -1,5 +1,7 @@
 # Engine core-loop fixes
 
+- chore(test): quarantined combat.test.ts "multiple enemies ... suffixes A/B/C" (cold dynamic-import flake; TODO engine-dev root-cause).
+
 ## Bugs fixed
 - Bug #12: removed gold from kill rewards and UI summaries; kill currency is now `runeShards`, folded into inventory currency `rune-shard` with rare rune drops.
 - Bug #1: victory now awards XP via `xpForKill`, updates player level/progression through `gainExperience`, and records level-up log markers.
