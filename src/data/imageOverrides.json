@@ -1,0 +1,10 @@
+{
+  "$schema": "./schema/image-overrides.schema.json",
+  "version": 1,
+  "overrides": {
+    "class": {},
+    "monster": {},
+    "item": {},
+    "merc": {}
+  }
+}

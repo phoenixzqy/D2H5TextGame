@@ -19,6 +19,7 @@ import {
   BASE_ITEM_ICONS,
   ZONE_ART
 } from './generatedAssetMaps';
+import { getImageOverride } from './imageOverrides';
 
 /** Prefix-rule table for mercenary archetype proxying. First match wins. */
 const MERC_ARCHETYPE_RULES: readonly (readonly [prefix: string, archetype: string | null])[] = [
@@ -57,6 +58,8 @@ function warnMissing(category: string, key: string): void {
 
 export function resolveClassPortrait(classId: string): string | null {
   const key = stripPrefix(classId);
+  const override = getImageOverride('class', key);
+  if (override) return override;
   if (key in CLASS_PORTRAITS) return CLASS_PORTRAITS[key] ?? null;
   warnMissing('class', key);
   return null;
@@ -64,6 +67,8 @@ export function resolveClassPortrait(classId: string): string | null {
 
 export function resolveMonsterArt(monsterId: string): string | null {
   const key = stripPrefix(monsterId);
+  const override = getImageOverride('monster', key);
+  if (override) return override;
   if (key in MONSTER_ART) return MONSTER_ART[key] ?? null;
   warnMissing('monster', key);
   return null;
@@ -117,6 +122,10 @@ export function resolveItemIcon(baseId: string): string | null {
   if (!baseId) return null;
   const key = stripPrefix(baseId);
 
+  // Override takes precedence over inferred archetype lookup.
+  const override = getImageOverride('item', key);
+  if (override) return override;
+
   // 1) Unique items: `unique.<slug>` or `unique/<slug>`
   const uniqueMatch = /^unique[./](.+)$/.exec(key);
   if (uniqueMatch?.[1]) {
@@ -155,6 +164,9 @@ export function resolveZoneArt(zoneId: string): string | null {
  */
 export function resolveMercArt(mercId: string): string | null {
   const key = stripPrefix(mercId);
+  // 0) Manual override wins over all inferred logic.
+  const override = getImageOverride('merc', key);
+  if (override) return override;
   // 1) exact match against canonical archetype keys
   if (key in MERC_ARCHETYPES) return MERC_ARCHETYPES[key] ?? null;
   // 2) prefix-rule walk
