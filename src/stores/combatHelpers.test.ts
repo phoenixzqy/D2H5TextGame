@@ -462,7 +462,10 @@ describe('startSimpleBattle — Bug #12', () => {
 
   it('shares combat victory XP with the fielded merc', () => {
     usePlayerStore.getState().setPlayer(boostedSorceress());
-    const merc = buildMerc();
+    // Merc at level 10 — large XP-to-next-level so the rolled wave (now
+    // 3-8 enemies post Bug C) cannot accidentally level up the merc and
+    // wipe progress.experience to a leftover.
+    const merc = buildMerc({ level: 10 });
     useMercStore.getState().addMerc(merc);
     useMercStore.getState().setFieldedMerc(merc.id);
     startSimpleBattle(1, 3);

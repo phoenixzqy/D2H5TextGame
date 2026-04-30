@@ -59,13 +59,15 @@ export function aliasToCanonical(id: string): string | undefined {
 
   const skillsMatch = /^skills-([a-z]+)-(.+)$/.exec(id);
   if (skillsMatch) {
-    const [, cls, rest] = skillsMatch;
-    return `${cls!}.${rest!.replace(/-/g, '_')}`;
+    const cls = skillsMatch[1] ?? '';
+    const rest = skillsMatch[2] ?? '';
+    return `${cls}.${rest.replace(/-/g, '_')}`;
   }
 
   const monsterMatch = /^monster-(.+)$/.exec(id);
   if (monsterMatch) {
-    return `monster.${monsterMatch[1]!.replace(/-/g, '_')}`;
+    const rest = monsterMatch[1] ?? '';
+    return `monster.${rest.replace(/-/g, '_')}`;
   }
 
   if (id.includes('/') || id.includes('-')) {
@@ -94,7 +96,7 @@ interface StubSpec {
 }
 
 function stub(spec: StubSpec): RegisteredSkill {
-  const effects: RegisteredSkill['effects'] = [];
+  const effects: import('./effects').SkillEffect[] = [];
   if (spec.damageType && spec.base) {
     effects.push({
       kind: 'damage',
