@@ -29,6 +29,30 @@ jobs:
       - name: Type check
         run: npm run typecheck
 
+      - name: i18n lint (report-only)
+        # Surfaces untranslated game-data literals and missing i18n keys.
+        # Non-blocking for now — there is a known backlog of raw English
+        # strings in src/data/**/*.json. Tighten to blocking once the
+        # backlog is cleared. Report is uploaded as an artifact below
+        # and the step's outcome is visible in the job summary.
+        id: i18n_lint
+        continue-on-error: true
+        run: |
+          mkdir -p i18n-lint-report
+          node scripts/i18n-lint.mjs > i18n-lint-report/report.txt || true
+          node scripts/i18n-lint.mjs --json > i18n-lint-report/report.json || true
+          # Re-run once more so the step's exit code reflects the verdict.
+          # continue-on-error: true keeps the job green either way.
+          node scripts/i18n-lint.mjs --quiet
+
+      - name: Upload i18n-lint report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: i18n-lint-report
+          path: i18n-lint-report/
+          retention-days: 14
+
       - name: Unit tests
         run: npm test -- --run --coverage
 
