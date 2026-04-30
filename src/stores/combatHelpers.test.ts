@@ -286,6 +286,60 @@ describe('combatHelpers', () => {
       expect(useCombatStore.getState().totalWaves).toBe(4);
     });
 
+    it('Bug #3 — marks the sub-area cleared on run-victory and persists in the snapshot', async () => {
+      // Boost the hero so the deterministic mock barb steamrolls the
+      // 4-wave default plan.
+      const boosted = createMockPlayer('Crusher', 'barbarian');
+      const buffed = {
+        ...boosted,
+        derivedStats: {
+          ...boosted.derivedStats,
+          life: 99999, lifeMax: 99999, mana: 9999, manaMax: 9999,
+          attack: 9999, defense: 9999, attackSpeed: 200
+        }
+      };
+      usePlayerStore.getState().setPlayer(buffed);
+      useMapStore.getState().setCurrentLocation(1, 'a1-blood-moor');
+
+      const handle = startSubAreaRun();
+      expect(handle).not.toBeNull();
+
+      let safety = 50;
+      let status: 'next-wave' | 'victory' | 'defeat' | 'idle' = 'next-wave';
+      while (status === 'next-wave' && safety-- > 0) {
+        drainEvents();
+        status = advanceWaveOrFinish();
+      }
+      expect(status).toBe('victory');
+
+      const cleared = useMapStore.getState().clearedSubAreas;
+      expect(cleared.length).toBeGreaterThan(0);
+      const planId = cleared[0] ?? '';
+      expect(useMapStore.getState().isCleared(planId)).toBe(true);
+
+      // Persistence snapshot must include clearedSubAreas — hydration
+      // copies the field through (see persistence.ts).
+      const { snapshotStores } = await import('./persistence');
+      const snap = snapshotStores();
+      expect(snap).not.toBeNull();
+      expect(snap?.map.clearedSubAreas).toContain(planId);
+
+      // Round-trip simulation: wipe store, then re-apply the snapshot
+      // exactly as hydrateFromSave does.
+      useMapStore.getState().reset();
+      expect(useMapStore.getState().clearedSubAreas).toEqual([]);
+      if (snap) {
+        useMapStore.setState({
+          currentAct: snap.map.currentAct,
+          currentSubAreaId: snap.map.currentSubAreaId,
+          discoveredAreas: [...snap.map.discoveredAreas],
+          clearedSubAreas: [...snap.map.clearedSubAreas],
+          questProgress: { ...snap.map.questProgress }
+        });
+      }
+      expect(useMapStore.getState().clearedSubAreas).toContain(planId);
+    });
+
     it('buildEnemiesForWave applies tier multipliers (elite/boss > trash)', () => {
       const trashUnits = buildEnemiesForWave(
         {

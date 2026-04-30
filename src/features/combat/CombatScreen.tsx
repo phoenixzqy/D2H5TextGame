@@ -13,7 +13,7 @@
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button, Panel, ScreenShell, GameCard, getClassPortraitUrl, getMonsterImageUrl, getSummonImageUrl, tItemName } from '@/ui';
+import { Button, Panel, ScreenShell, GameCard, getClassPortraitUrl, getMercPortraitUrl, getMonsterImageUrl, getSummonImageUrl, tDataKey, tItemName } from '@/ui';
 import { useCombatStore, useMapStore, usePlayerStore } from '@/stores';
 import {
   startSubAreaRun,
@@ -40,7 +40,7 @@ const RARITY_COLORS: Record<string, string> = {
 };
 
 export function CombatScreen() {
-  const { t } = useTranslation(['combat', 'common']);
+  const { t } = useTranslation(['combat', 'common', 'map']);
   const navigate = useNavigate();
 
   const player = usePlayerStore((s) => s.player);
@@ -69,6 +69,7 @@ export function CombatScreen() {
   const subAreaRunId = useCombatStore((s) => s.subAreaRunId);
 
   const currentAct = useMapStore((s) => s.currentAct);
+  const currentSubAreaId = useMapStore((s) => s.currentSubAreaId);
   const setLocation = useMapStore((s) => s.setCurrentLocation);
 
   const recentLog = useMemo(() => log.slice(-MAX_LOG), [log]);
@@ -191,12 +192,27 @@ export function CombatScreen() {
       testId="combat-screen"
       title={
         <div className="flex items-center justify-between gap-2 w-full">
-          <span aria-live="polite" data-testid="wave-counter">
-            {t('wave', {
-              current: currentWave || 1,
-              total: totalWaves || 1,
-            })}
-          </span>
+          <div className="flex flex-col leading-tight min-w-0">
+            <span aria-live="polite" data-testid="wave-counter" className="truncate">
+              {t('wave', {
+                current: currentWave || 1,
+                total: totalWaves || 1,
+              })}
+              {currentSubAreaId && (
+                <>
+                  {' · '}
+                  <span data-testid="combat-sub-area-name" className="text-d2-gold">
+                    {tDataKey(t, `map.subArea.${currentSubAreaId}`)}
+                  </span>
+                </>
+              )}
+            </span>
+            <span className="text-[10px] uppercase tracking-wide text-d2-white/60" data-testid="combat-act-name">
+              {t('map:act', { number: currentAct, defaultValue: `Act ${String(currentAct)}` })}
+              {' · '}
+              {tDataKey(t, `map.actName.${String(currentAct)}`)}
+            </span>
+          </div>
           <div className="flex items-center gap-2 flex-wrap justify-end">
             {logHoverPaused && (
               <span
@@ -390,24 +406,33 @@ function UnitCard({
   const isSummon = kind === 'summon';
   const isPlayerSide = unit.side === 'player';
 
+  const isDead = unit.life <= 0;
+  const variant: 'character' | 'monster' = isPlayerSide ? 'character' : 'monster';
+  const isMerc = kind === 'merc';
+
   // Derive avatar:
-  //  - hero (player-side, non-summon)   → class portrait
-  //  - summon (player-side)             → summon portrait helper
-  //  - enemy                            → monster image
+  //  - hero (player-side, non-summon, non-merc) → class portrait
+  //  - merc (player-side)                       → merc portraitAsset by id
+  //  - summon (player-side)                     → summon portrait helper
+  //  - enemy                                    → monster image
   let avatarSrc: string | undefined;
   if (isSummon) {
     avatarSrc = getSummonImageUrl(extractMonsterSlug(unit.name, unit.id));
+  } else if (isMerc) {
+    // Combat unit id is `merc-<mercDefId>`; strip prefix to recover def id.
+    const mercDefId = unit.id.startsWith('merc-') ? unit.id.slice('merc-'.length) : unit.id;
+    avatarSrc = getMercPortraitUrl(mercDefId) ?? undefined;
   } else if (isPlayerSide && player) {
     avatarSrc = getClassPortraitUrl(player.class);
   } else {
     avatarSrc = getMonsterImageUrl(extractMonsterSlug(unit.name, unit.id));
   }
 
-  const isDead = unit.life <= 0;
-  const variant: 'character' | 'monster' = isPlayerSide ? 'character' : 'monster';
   const rarity = isPlayerSide
     ? isSummon
       ? 'magic'
+      : isMerc
+      ? 'rare'
       : 'unique'
     : 'common';
 

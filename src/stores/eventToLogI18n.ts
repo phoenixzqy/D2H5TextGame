@@ -51,8 +51,11 @@ export function eventToLocalizedLogEntry(
     case 'action': {
       const actorName = getName(event.actor);
       if (event.skillId) {
-        // Localize skill id via skills:<id>.name with skillId fallback so
-        // unknown ids still render as "Bash" rather than `barbarian.bash`.
+        // Translate the skill id (e.g. `barbarian.bash`) to its
+        // localized name (e.g. `重击`). Skill names live under the
+        // `skills:` namespace as `<class>.<skill>.name`. Falls back to
+        // the raw id when no translation exists so the engine never
+        // ships an empty log line.
         const skillName = i18n.t(`skills:${event.skillId}.name`, {
           defaultValue: event.skillId
         });

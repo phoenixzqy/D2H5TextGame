@@ -8,6 +8,8 @@
 
 const BASE = '/assets/d2/generated';
 
+import { loadMercPool } from '@/data/loaders/mercs';
+
 /* ------------------------------------------------------------------ */
 /*  Class portraits                                                    */
 /* ------------------------------------------------------------------ */
@@ -87,6 +89,30 @@ export function getSummonImageUrl(summonId: string): string {
   }
   // Generic fallback — try monster-image lookup (kebab slug).
   return getMonsterImageUrl(slug);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Mercenary portraits                                                */
+/* ------------------------------------------------------------------ */
+/**
+ * Resolve a mercenary portrait URL from a merc def id (e.g.
+ * `mercs/act2-holy-freeze`). Looks up `portraitAsset` on the loaded
+ * gacha pool. Returns `null` when the merc id (or its asset) is
+ * missing, so callers can render a silhouette fallback exactly like
+ * monster cards.
+ *
+ * Bug #1 (combat-screen) — previously every player-side non-summon
+ * unit (including the fielded merc) reused the hero's class portrait,
+ * making it impossible to tell merc and player apart.
+ */
+export function getMercPortraitUrl(mercId: string): string | null {
+  if (!mercId) return null;
+  const pool = loadMercPool().pool;
+  const def = pool.find((m) => m.id === mercId);
+  const asset = def?.portraitAsset;
+  if (!asset) return null;
+  // Asset paths in JSON are stored without a leading slash.
+  return asset.startsWith('/') ? asset : `/${asset}`;
 }
 
 /* ------------------------------------------------------------------ */
