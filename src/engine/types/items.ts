@@ -74,6 +74,15 @@ export interface ItemBase {
   
   /** Can this base have random affixes? */
   readonly canHaveAffixes: boolean;
+
+  /** Weapon subtype (sword/axe/mace/bow/...). Optional, for weapons only. */
+  readonly weaponType?: string;
+
+  /** Weapon handedness. Optional, for weapons only. */
+  readonly handedness?: '1h' | '2h';
+
+  /** Optional dev override for the icon URL. Resolvers prefer this when set. */
+  readonly imagePath?: string;
 }
 
 /** A single item-level-gated value range for an affix. */

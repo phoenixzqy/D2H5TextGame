@@ -1,7 +1,9 @@
 import { NumberField, StringListField } from './DevEditorFields';
 import { DevDataManager } from './DevDataManager';
+import { DevImageField } from './DevImageField';
 import { asNumber, asRecord, getAtPath, type JsonRecord } from './devJson';
 import { classFiles } from './devPaths';
+import { resolveClassPortrait } from '@/ui';
 
 export function ClassesEditor() {
   return (
@@ -20,6 +22,7 @@ function ClassFields({ entry, onChange }: { readonly entry: JsonRecord; readonly
   const previewLevels = [1, 10, 30];
   return (
     <div className="space-y-4">
+      <DevImageField entry={entry} onChange={onChange} resolve={resolveClassPortrait} />
       <div>
         <h2 className="mb-2 font-serif text-lg text-d2-gold">Starting stats</h2>
         <div className="grid gap-3 sm:grid-cols-2">

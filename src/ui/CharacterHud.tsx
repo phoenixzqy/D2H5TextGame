@@ -29,6 +29,7 @@ import { OfflineBonusChip } from '@/features/idle/OfflineBonusBanner';
 import type { Player } from '@/engine/types/entities';
 
 const HIDDEN_PATHS = new Set<string>(['/', '/character/new', '/character', '/combat']);
+const HIDDEN_PREFIXES: readonly string[] = ['/dev'];
 
 export function CharacterHud() {
   const { t } = useTranslation(['character', 'common']);
@@ -38,6 +39,7 @@ export function CharacterHud() {
 
   if (!player) return null;
   if (HIDDEN_PATHS.has(location.pathname)) return null;
+  if (HIDDEN_PREFIXES.some((p) => location.pathname === p || location.pathname.startsWith(`${p}/`))) return null;
 
   const handleClick = (): void => {
     navigate('/character');
