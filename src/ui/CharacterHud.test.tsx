@@ -125,4 +125,26 @@ describe('CharacterHud', () => {
     renderAt('/character');
     expect(screen.queryByTestId('character-hud')).toBeNull();
   });
+
+  it('hides on /dev and any /dev/* route', () => {
+    const player = createMockPlayer('Korlic', 'barbarian');
+    act(() => { usePlayerStore.getState().setPlayer(player); });
+
+    renderAt('/dev');
+    expect(screen.queryByTestId('character-hud')).toBeNull();
+
+    renderAt('/dev/items');
+    expect(screen.queryByTestId('character-hud')).toBeNull();
+
+    renderAt('/dev/classes/sorceress');
+    expect(screen.queryByTestId('character-hud')).toBeNull();
+  });
+
+  it('still renders on routes that merely contain "dev" as a substring', () => {
+    const player = createMockPlayer('Korlic', 'barbarian');
+    act(() => { usePlayerStore.getState().setPlayer(player); });
+
+    renderAt('/town');
+    expect(screen.queryByTestId('character-hud')).toBeInTheDocument();
+  });
 });

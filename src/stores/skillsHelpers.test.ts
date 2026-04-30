@@ -10,27 +10,27 @@ describe('skillsHelpers', () => {
       const skills = getSkillsForClass('necromancer');
       
       expect(skills.length).toBeGreaterThan(5); // More than the 5 hardcoded barbarian skills
-      expect(skills.some(s => s.name === 'Bone Spear')).toBe(true);
-      expect(skills.some(s => s.name === 'Raise Skeleton')).toBe(true);
-      expect(skills.some(s => s.name === 'Whirlwind')).toBe(false); // No Barbarian skills
+      expect(skills.some(s => s.id === 'skills-necromancer-bone-spear')).toBe(true);
+      expect(skills.some(s => s.id === 'skills-necromancer-raise-skeleton')).toBe(true);
+      expect(skills.some(s => s.id === 'skills-barbarian-whirlwind')).toBe(false); // No Barbarian skills
     });
 
     it('should return Barbarian skills for barbarian class', () => {
       const skills = getSkillsForClass('barbarian');
       
       expect(skills.length).toBeGreaterThan(5);
-      expect(skills.some(s => s.name === 'Bash')).toBe(true);
-      expect(skills.some(s => s.name === 'Whirlwind')).toBe(true);
-      expect(skills.some(s => s.name === 'Bone Spear')).toBe(false); // No Necromancer skills
+      expect(skills.some(s => s.id === 'skills-barbarian-bash')).toBe(true);
+      expect(skills.some(s => s.id === 'skills-barbarian-whirlwind')).toBe(true);
+      expect(skills.some(s => s.id === 'skills-necromancer-bone-spear')).toBe(false); // No Necromancer skills
     });
 
     it('should return Sorceress skills for sorceress class', () => {
       const skills = getSkillsForClass('sorceress');
       
       expect(skills.length).toBeGreaterThan(5);
-      expect(skills.some(s => s.name === 'Frozen Orb')).toBe(true);
-      expect(skills.some(s => s.name === 'Ice Bolt')).toBe(true);
-      expect(skills.some(s => s.name === 'Whirlwind')).toBe(false); // No Barbarian skills
+      expect(skills.some(s => s.id === 'skills-sorceress-frozen-orb')).toBe(true);
+      expect(skills.some(s => s.id === 'skills-sorceress-ice-bolt')).toBe(true);
+      expect(skills.some(s => s.id === 'skills-barbarian-whirlwind')).toBe(false); // No Barbarian skills
     });
 
     it('should handle case-insensitive class names', () => {

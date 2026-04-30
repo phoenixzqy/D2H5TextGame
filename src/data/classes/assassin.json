@@ -1,6 +1,6 @@
 {
   "id": "classes/assassin",
-  "name": "Assassin",
+  "name": "character.classes.assassin",
   "startingStats": { "strength": 20, "dexterity": 20, "vitality": 20, "energy": 25 },
   "statGrowth": { "strength": 1.75, "dexterity": 2.25, "vitality": 1.75, "energy": 1.5 },
   "lifePerLevel": 8,

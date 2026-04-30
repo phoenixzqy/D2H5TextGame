@@ -1,7 +1,7 @@
 [
   {
     "id": "items/base/helm-cap",
-    "name": "Cap",
+    "name": "items.base.helm-cap",
     "type": "armor",
     "slot": "head",
     "baseDefense": 7,
@@ -11,7 +11,7 @@
   },
   {
     "id": "items/base/helm-skull-cap",
-    "name": "Skull Cap",
+    "name": "items.base.helm-skull-cap",
     "type": "armor",
     "slot": "head",
     "baseDefense": 12,
@@ -21,7 +21,7 @@
   },
   {
     "id": "items/base/helm-war-hat",
-    "name": "War Hat",
+    "name": "items.base.helm-war-hat",
     "type": "armor",
     "slot": "head",
     "baseDefense": 30,
@@ -31,7 +31,7 @@
   },
   {
     "id": "items/base/helm-casque",
-    "name": "Casque",
+    "name": "items.base.helm-casque",
     "type": "armor",
     "slot": "head",
     "baseDefense": 45,
@@ -41,7 +41,7 @@
   },
   {
     "id": "items/base/helm-armet",
-    "name": "Armet",
+    "name": "items.base.helm-armet",
     "type": "armor",
     "slot": "head",
     "baseDefense": 75,
@@ -51,7 +51,7 @@
   },
   {
     "id": "items/base/helm-giant-conch",
-    "name": "Giant Conch",
+    "name": "items.base.helm-giant-conch",
     "type": "armor",
     "slot": "head",
     "baseDefense": 105,
@@ -61,7 +61,7 @@
   },
   {
     "id": "items/base/armor-quilted",
-    "name": "Quilted Armor",
+    "name": "items.base.armor-quilted",
     "type": "armor",
     "slot": "chest",
     "baseDefense": 10,
@@ -71,7 +71,7 @@
   },
   {
     "id": "items/base/armor-leather",
-    "name": "Leather Armor",
+    "name": "items.base.armor-leather",
     "type": "armor",
     "slot": "chest",
     "baseDefense": 21,
@@ -81,7 +81,7 @@
   },
   {
     "id": "items/base/armor-chain-mail",
-    "name": "Chain Mail",
+    "name": "items.base.armor-chain-mail",
     "type": "armor",
     "slot": "chest",
     "baseDefense": 53,
@@ -91,7 +91,7 @@
   },
   {
     "id": "items/base/armor-breast-plate",
-    "name": "Breast Plate",
+    "name": "items.base.armor-breast-plate",
     "type": "armor",
     "slot": "chest",
     "baseDefense": 75,
@@ -101,7 +101,7 @@
   },
   {
     "id": "items/base/armor-dusk-shroud",
-    "name": "Dusk Shroud",
+    "name": "items.base.armor-dusk-shroud",
     "type": "armor",
     "slot": "chest",
     "baseDefense": 125,
@@ -111,7 +111,7 @@
   },
   {
     "id": "items/base/armor-archon-plate",
-    "name": "Archon Plate",
+    "name": "items.base.armor-archon-plate",
     "type": "armor",
     "slot": "chest",
     "baseDefense": 180,
@@ -121,7 +121,7 @@
   },
   {
     "id": "items/base/glove-leather",
-    "name": "Leather Gloves",
+    "name": "items.base.glove-leather",
     "type": "armor",
     "slot": "gloves",
     "baseDefense": 4,
@@ -131,7 +131,7 @@
   },
   {
     "id": "items/base/glove-heavy",
-    "name": "Heavy Gloves",
+    "name": "items.base.glove-heavy",
     "type": "armor",
     "slot": "gloves",
     "baseDefense": 8,
@@ -141,7 +141,7 @@
   },
   {
     "id": "items/base/glove-chain",
-    "name": "Chain Gloves",
+    "name": "items.base.glove-chain",
     "type": "armor",
     "slot": "gloves",
     "baseDefense": 17,
@@ -151,7 +151,7 @@
   },
   {
     "id": "items/base/glove-light-gauntlets",
-    "name": "Light Gauntlets",
+    "name": "items.base.glove-light-gauntlets",
     "type": "armor",
     "slot": "gloves",
     "baseDefense": 26,
@@ -161,7 +161,7 @@
   },
   {
     "id": "items/base/glove-vampirebone",
-    "name": "Vampirebone Gloves",
+    "name": "items.base.glove-vampirebone",
     "type": "armor",
     "slot": "gloves",
     "baseDefense": 42,
@@ -171,7 +171,7 @@
   },
   {
     "id": "items/base/glove-bramble-mitts",
-    "name": "Bramble Mitts",
+    "name": "items.base.glove-bramble-mitts",
     "type": "armor",
     "slot": "gloves",
     "baseDefense": 58,
@@ -181,7 +181,7 @@
   },
   {
     "id": "items/base/boot-leather",
-    "name": "Boots",
+    "name": "items.base.boot-leather",
     "type": "armor",
     "slot": "boots",
     "baseDefense": 4,
@@ -191,7 +191,7 @@
   },
   {
     "id": "items/base/boot-heavy",
-    "name": "Heavy Boots",
+    "name": "items.base.boot-heavy",
     "type": "armor",
     "slot": "boots",
     "baseDefense": 8,
@@ -201,7 +201,7 @@
   },
   {
     "id": "items/base/boot-chain",
-    "name": "Chain Boots",
+    "name": "items.base.boot-chain",
     "type": "armor",
     "slot": "boots",
     "baseDefense": 17,
@@ -211,7 +211,7 @@
   },
   {
     "id": "items/base/boot-light-plated",
-    "name": "Light Plated Boots",
+    "name": "items.base.boot-light-plated",
     "type": "armor",
     "slot": "boots",
     "baseDefense": 26,
@@ -221,7 +221,7 @@
   },
   {
     "id": "items/base/boot-demonhide",
-    "name": "Demonhide Boots",
+    "name": "items.base.boot-demonhide",
     "type": "armor",
     "slot": "boots",
     "baseDefense": 42,
@@ -231,7 +231,7 @@
   },
   {
     "id": "items/base/boot-myrmidon-greaves",
-    "name": "Myrmidon Greaves",
+    "name": "items.base.boot-myrmidon-greaves",
     "type": "armor",
     "slot": "boots",
     "baseDefense": 58,
@@ -241,7 +241,7 @@
   },
   {
     "id": "items/base/belt-sash",
-    "name": "Sash",
+    "name": "items.base.belt-sash",
     "type": "armor",
     "slot": "belt",
     "baseDefense": 3,
@@ -251,7 +251,7 @@
   },
   {
     "id": "items/base/belt-light",
-    "name": "Light Belt",
+    "name": "items.base.belt-light",
     "type": "armor",
     "slot": "belt",
     "baseDefense": 5,
@@ -261,7 +261,7 @@
   },
   {
     "id": "items/base/belt-heavy",
-    "name": "Heavy Belt",
+    "name": "items.base.belt-heavy",
     "type": "armor",
     "slot": "belt",
     "baseDefense": 10,
@@ -271,7 +271,7 @@
   },
   {
     "id": "items/base/belt-plated",
-    "name": "Plated Belt",
+    "name": "items.base.belt-plated",
     "type": "armor",
     "slot": "belt",
     "baseDefense": 17,
@@ -281,7 +281,7 @@
   },
   {
     "id": "items/base/belt-demonhide",
-    "name": "Demonhide Sash",
+    "name": "items.base.belt-demonhide",
     "type": "armor",
     "slot": "belt",
     "baseDefense": 30,
@@ -291,7 +291,7 @@
   },
   {
     "id": "items/base/belt-mithril-coil",
-    "name": "Mithril Coil",
+    "name": "items.base.belt-mithril-coil",
     "type": "armor",
     "slot": "belt",
     "baseDefense": 48,
@@ -301,7 +301,7 @@
   },
   {
     "id": "items/base/ring-iron",
-    "name": "Iron Ring",
+    "name": "items.base.ring-iron",
     "type": "jewelry",
     "slot": "ring-left",
     "reqLevel": 1,
@@ -309,7 +309,7 @@
   },
   {
     "id": "items/base/ring-silver",
-    "name": "Silver Ring",
+    "name": "items.base.ring-silver",
     "type": "jewelry",
     "slot": "ring-left",
     "reqLevel": 10,
@@ -317,7 +317,7 @@
   },
   {
     "id": "items/base/ring-jade",
-    "name": "Jade Ring",
+    "name": "items.base.ring-jade",
     "type": "jewelry",
     "slot": "ring-left",
     "reqLevel": 25,
@@ -325,7 +325,7 @@
   },
   {
     "id": "items/base/ring-amber",
-    "name": "Amber Ring",
+    "name": "items.base.ring-amber",
     "type": "jewelry",
     "slot": "ring-left",
     "reqLevel": 35,
@@ -333,7 +333,7 @@
   },
   {
     "id": "items/base/ring-obsidian",
-    "name": "Obsidian Ring",
+    "name": "items.base.ring-obsidian",
     "type": "jewelry",
     "slot": "ring-left",
     "reqLevel": 50,
@@ -341,7 +341,7 @@
   },
   {
     "id": "items/base/ring-zircon",
-    "name": "Zircon Ring",
+    "name": "items.base.ring-zircon",
     "type": "jewelry",
     "slot": "ring-left",
     "reqLevel": 60,
@@ -349,7 +349,7 @@
   },
   {
     "id": "items/base/amu-tin",
-    "name": "Tin Amulet",
+    "name": "items.base.amu-tin",
     "type": "jewelry",
     "slot": "amulet",
     "reqLevel": 1,
@@ -357,7 +357,7 @@
   },
   {
     "id": "items/base/amu-brass",
-    "name": "Brass Amulet",
+    "name": "items.base.amu-brass",
     "type": "jewelry",
     "slot": "amulet",
     "reqLevel": 10,
@@ -365,7 +365,7 @@
   },
   {
     "id": "items/base/amu-silver",
-    "name": "Silver Amulet",
+    "name": "items.base.amu-silver",
     "type": "jewelry",
     "slot": "amulet",
     "reqLevel": 25,
@@ -373,7 +373,7 @@
   },
   {
     "id": "items/base/amu-jade",
-    "name": "Jade Amulet",
+    "name": "items.base.amu-jade",
     "type": "jewelry",
     "slot": "amulet",
     "reqLevel": 35,
@@ -381,7 +381,7 @@
   },
   {
     "id": "items/base/amu-obsidian",
-    "name": "Obsidian Amulet",
+    "name": "items.base.amu-obsidian",
     "type": "jewelry",
     "slot": "amulet",
     "reqLevel": 50,
@@ -389,7 +389,7 @@
   },
   {
     "id": "items/base/amu-zircon",
-    "name": "Zircon Amulet",
+    "name": "items.base.amu-zircon",
     "type": "jewelry",
     "slot": "amulet",
     "reqLevel": 60,
@@ -397,7 +397,7 @@
   },
   {
     "id": "items/base/wp1h-short-sword",
-    "name": "Short Sword",
+    "name": "items.base.wp1h-short-sword",
     "type": "weapon",
     "slot": "weapon",
     "baseDamage": {
@@ -413,7 +413,7 @@
   },
   {
     "id": "items/base/wp1h-scimitar",
-    "name": "Scimitar",
+    "name": "items.base.wp1h-scimitar",
     "type": "weapon",
     "slot": "weapon",
     "baseDamage": {
@@ -429,7 +429,7 @@
   },
   {
     "id": "items/base/wp1h-long-sword",
-    "name": "Long Sword",
+    "name": "items.base.wp1h-long-sword",
     "type": "weapon",
     "slot": "weapon",
     "baseDamage": {
@@ -445,7 +445,7 @@
   },
   {
     "id": "items/base/wp1h-war-sword",
-    "name": "War Sword",
+    "name": "items.base.wp1h-war-sword",
     "type": "weapon",
     "slot": "weapon",
     "baseDamage": {
@@ -461,7 +461,7 @@
   },
   {
     "id": "items/base/wp1h-phase-blade",
-    "name": "Phase Blade",
+    "name": "items.base.wp1h-phase-blade",
     "type": "weapon",
     "slot": "weapon",
     "baseDamage": {
@@ -477,7 +477,7 @@
   },
   {
     "id": "items/base/wp1h-legend-sword",
-    "name": "Legend Sword",
+    "name": "items.base.wp1h-legend-sword",
     "type": "weapon",
     "slot": "weapon",
     "baseDamage": {
@@ -493,7 +493,7 @@
   },
   {
     "id": "items/base/wp2h-two-handed-sword",
-    "name": "Two-Handed Sword",
+    "name": "items.base.wp2h-two-handed-sword",
     "type": "weapon",
     "slot": "weapon",
     "baseDamage": {
@@ -509,7 +509,7 @@
   },
   {
     "id": "items/base/wp2h-great-axe",
-    "name": "Great Axe",
+    "name": "items.base.wp2h-great-axe",
     "type": "weapon",
     "slot": "weapon",
     "baseDamage": {
@@ -525,7 +525,7 @@
   },
   {
     "id": "items/base/wp2h-war-pike",
-    "name": "War Pike",
+    "name": "items.base.wp2h-war-pike",
     "type": "weapon",
     "slot": "weapon",
     "baseDamage": {
@@ -541,7 +541,7 @@
   },
   {
     "id": "items/base/wp2h-giant-thresher",
-    "name": "Giant Thresher",
+    "name": "items.base.wp2h-giant-thresher",
     "type": "weapon",
     "slot": "weapon",
     "baseDamage": {
@@ -557,7 +557,7 @@
   },
   {
     "id": "items/base/wp2h-colossus-blade",
-    "name": "Colossus Blade",
+    "name": "items.base.wp2h-colossus-blade",
     "type": "weapon",
     "slot": "weapon",
     "baseDamage": {
@@ -573,7 +573,7 @@
   },
   {
     "id": "items/base/wp2h-thunder-maul",
-    "name": "Thunder Maul",
+    "name": "items.base.wp2h-thunder-maul",
     "type": "weapon",
     "slot": "weapon",
     "baseDamage": {
@@ -589,7 +589,7 @@
   },
   {
     "id": "items/base/sh-buckler",
-    "name": "Buckler",
+    "name": "items.base.sh-buckler",
     "type": "armor",
     "slot": "offhand",
     "baseDefense": 6,
@@ -599,7 +599,7 @@
   },
   {
     "id": "items/base/sh-kite",
-    "name": "Kite Shield",
+    "name": "items.base.sh-kite",
     "type": "armor",
     "slot": "offhand",
     "baseDefense": 15,
@@ -609,7 +609,7 @@
   },
   {
     "id": "items/base/sh-aegis",
-    "name": "Aegis",
+    "name": "items.base.sh-aegis",
     "type": "armor",
     "slot": "offhand",
     "baseDefense": 29,
@@ -619,7 +619,7 @@
   },
   {
     "id": "items/base/sh-dragon-shield",
-    "name": "Dragon Shield",
+    "name": "items.base.sh-dragon-shield",
     "type": "armor",
     "slot": "offhand",
     "baseDefense": 40,
@@ -629,7 +629,7 @@
   },
   {
     "id": "items/base/sh-monarch",
-    "name": "Monarch",
+    "name": "items.base.sh-monarch",
     "type": "armor",
     "slot": "offhand",
     "baseDefense": 63,
@@ -639,7 +639,7 @@
   },
   {
     "id": "items/base/sh-sacred-targe",
-    "name": "Sacred Targe",
+    "name": "items.base.sh-sacred-targe",
     "type": "armor",
     "slot": "offhand",
     "baseDefense": 83,
@@ -652,7 +652,7 @@
     "baseDefense": 0,
     "id": "items/base/ring",
     "reqLevel": 1,
-    "name": "Ring",
+    "name": "items.base.ring",
     "slot": "ring-left",
     "sockets": 0,
     "canHaveAffixes": true
@@ -662,7 +662,7 @@
     "baseDefense": 5,
     "id": "items/base/gloves",
     "reqLevel": 1,
-    "name": "Gloves",
+    "name": "items.base.gloves",
     "slot": "gloves",
     "sockets": 0,
     "canHaveAffixes": true
@@ -672,7 +672,7 @@
     "baseDefense": 5,
     "id": "items/base/boots",
     "reqLevel": 1,
-    "name": "Boots",
+    "name": "items.base.boots",
     "slot": "boots",
     "sockets": 0,
     "canHaveAffixes": true
@@ -682,7 +682,7 @@
     "baseDefense": 3,
     "id": "items/base/belt",
     "reqLevel": 1,
-    "name": "Belt",
+    "name": "items.base.belt",
     "slot": "belt",
     "sockets": 0,
     "canHaveAffixes": true
@@ -692,7 +692,7 @@
     "baseDefense": 30,
     "id": "items/base/armor-light",
     "reqLevel": 10,
-    "name": "Light Armor",
+    "name": "items.base.armor-light",
     "slot": "chest",
     "sockets": 2,
     "canHaveAffixes": true
@@ -702,13 +702,13 @@
     "baseDefense": 100,
     "id": "items/base/armor-heavy",
     "reqLevel": 40,
-    "name": "Heavy Armor",
+    "name": "items.base.armor-heavy",
     "slot": "chest",
     "sockets": 3,
     "canHaveAffixes": true
   },
   {
-    "name": "Bow",
+    "name": "items.base.weapon-bow",
     "reqLevel": 10,
     "type": "weapon",
     "id": "items/base/weapon-bow",
@@ -717,7 +717,7 @@
     "canHaveAffixes": true
   },
   {
-    "name": "Crossbow",
+    "name": "items.base.weapon-crossbow",
     "reqLevel": 15,
     "type": "weapon",
     "id": "items/base/weapon-crossbow",
@@ -726,7 +726,7 @@
     "canHaveAffixes": true
   },
   {
-    "name": "Polearm",
+    "name": "items.base.weapon-polearm",
     "reqLevel": 20,
     "type": "weapon",
     "id": "items/base/weapon-polearm",
@@ -735,7 +735,7 @@
     "canHaveAffixes": true
   },
   {
-    "name": "Wand",
+    "name": "items.base.weapon-wand",
     "reqLevel": 5,
     "type": "weapon",
     "id": "items/base/weapon-wand",
@@ -744,7 +744,7 @@
     "canHaveAffixes": true
   },
   {
-    "name": "Scepter",
+    "name": "items.base.weapon-scepter",
     "reqLevel": 15,
     "type": "weapon",
     "id": "items/base/weapon-scepter",
@@ -753,7 +753,7 @@
     "canHaveAffixes": true
   },
   {
-    "name": "Mace",
+    "name": "items.base.weapon-mace",
     "reqLevel": 10,
     "type": "weapon",
     "id": "items/base/weapon-mace",
@@ -762,7 +762,7 @@
     "canHaveAffixes": true
   },
   {
-    "name": "Axe",
+    "name": "items.base.weapon-axe",
     "reqLevel": 12,
     "type": "weapon",
     "id": "items/base/weapon-axe",

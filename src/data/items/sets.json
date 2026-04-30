@@ -1,7 +1,7 @@
 [
   {
     "id": "sets/aldurs-watchtower",
-    "name": "Aldur's Watchtower",
+    "name": "items.set.aldurs-watchtower",
     "items": [
       "sets/aldurs-watchtower/helm",
       "sets/aldurs-watchtower/armor",
@@ -397,7 +397,7 @@
   },
   {
     "id": "sets/griswolds-legacy",
-    "name": "Griswold's Legacy",
+    "name": "items.set.griswolds-legacy",
     "items": [
       "sets/griswolds-legacy/helm",
       "sets/griswolds-legacy/armor",
@@ -531,7 +531,7 @@
   },
   {
     "id": "sets/immortal-king",
-    "name": "Immortal King",
+    "name": "items.set.immortal-king",
     "items": [
       "sets/immortal-king/helm",
       "sets/immortal-king/armor",
@@ -770,7 +770,7 @@
   },
   {
     "id": "sets/natalyas-odium",
-    "name": "Natalya's Odium",
+    "name": "items.set.natalyas-odium",
     "items": [
       "sets/natalyas-odium/helm",
       "sets/natalyas-odium/armor",
@@ -938,7 +938,7 @@
   },
   {
     "id": "sets/tal-rashas-wrappings",
-    "name": "Tal Rasha's Wrappings",
+    "name": "items.set.tal-rashas-wrappings",
     "items": [
       "sets/tal-rashas-wrappings/amulet",
       "sets/tal-rashas-wrappings/armor",
@@ -1030,7 +1030,7 @@
   },
   {
     "id": "sets/trang-ouls-avatar",
-    "name": "Trang-Oul's Avatar",
+    "name": "items.set.trang-ouls-avatar",
     "items": [
       "sets/trang-ouls-avatar/helm",
       "sets/trang-ouls-avatar/armor",

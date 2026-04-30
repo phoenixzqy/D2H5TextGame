@@ -1,6 +1,6 @@
 {
   "id": "classes/barbarian",
-  "name": "Barbarian",
+  "name": "character.classes.barbarian",
   "startingStats": { "strength": 30, "dexterity": 20, "vitality": 25, "energy": 10 },
   "statGrowth": { "strength": 3, "dexterity": 1.5, "vitality": 2.5, "energy": 0.5 },
   "lifePerLevel": 10,

@@ -1,7 +1,7 @@
 [
   {
     "id": "areas/act4-outer-steppes",
-    "name": "Outer Steppes",
+    "name": "maps.area.act4-outer-steppes",
     "actId": "acts/act4",
     "areaLevel": 42,
     "hasBoss": false,
@@ -42,7 +42,7 @@
   },
   {
     "id": "areas/act4-plains-of-despair",
-    "name": "Plains of Despair",
+    "name": "maps.area.act4-plains-of-despair",
     "actId": "acts/act4",
     "areaLevel": 45,
     "hasBoss": true,
@@ -89,7 +89,7 @@
   },
   {
     "id": "areas/act4-city-of-the-damned",
-    "name": "City of the Damned",
+    "name": "maps.area.act4-city-of-the-damned",
     "actId": "acts/act4",
     "areaLevel": 48,
     "hasBoss": false,
@@ -135,7 +135,7 @@
   },
   {
     "id": "areas/act4-river-of-flame",
-    "name": "River of Flame",
+    "name": "maps.area.act4-river-of-flame",
     "actId": "acts/act4",
     "areaLevel": 51,
     "hasBoss": true,
@@ -187,7 +187,7 @@
   },
   {
     "id": "areas/act4-chaos-sanctuary",
-    "name": "Chaos Sanctuary (Diablo)",
+    "name": "maps.area.act4-chaos-sanctuary",
     "actId": "acts/act4",
     "areaLevel": 54,
     "hasBoss": true,

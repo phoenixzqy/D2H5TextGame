@@ -1,7 +1,7 @@
 [
   {
     "id": "areas/act1-blood-moor",
-    "name": "Blood Moor",
+    "name": "maps.area.act1-blood-moor",
     "actId": "acts/act1",
     "areaLevel": 2,
     "hasBoss": false,
@@ -55,7 +55,7 @@
   },
   {
     "id": "areas/act1-den-of-evil",
-    "name": "Den of Evil",
+    "name": "maps.area.act1-den-of-evil",
     "actId": "acts/act1",
     "areaLevel": 3,
     "hasBoss": true,
@@ -130,7 +130,7 @@
   },
   {
     "id": "areas/act1-cold-plains",
-    "name": "Cold Plains",
+    "name": "maps.area.act1-cold-plains",
     "actId": "acts/act1",
     "areaLevel": 5,
     "hasBoss": false,
@@ -197,7 +197,7 @@
   },
   {
     "id": "areas/act1-burial-grounds",
-    "name": "Burial Grounds",
+    "name": "maps.area.act1-burial-grounds",
     "actId": "acts/act1",
     "areaLevel": 7,
     "hasBoss": true,
@@ -271,7 +271,7 @@
   },
   {
     "id": "areas/act1-dark-wood",
-    "name": "Dark Wood",
+    "name": "maps.area.act1-dark-wood",
     "actId": "acts/act1",
     "areaLevel": 9,
     "hasBoss": false,
@@ -352,7 +352,7 @@
   },
   {
     "id": "areas/act1-catacombs",
-    "name": "Catacombs (Andariel)",
+    "name": "maps.area.act1-catacombs",
     "actId": "acts/act1",
     "areaLevel": 12,
     "hasBoss": true,

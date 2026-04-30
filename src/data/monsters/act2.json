@@ -1,7 +1,7 @@
 [
   {
     "id": "monsters/act2.sand-raider",
-    "name": "Sand Raider",
+    "name": "monsters.sandRaider",
     "life": [60, 80],
     "lifeGrowth": [6, 8],
     "skills": ["monster-weak-melee"],
@@ -15,7 +15,7 @@
   },
   {
     "id": "monsters/act2.marauder",
-    "name": "Marauder",
+    "name": "monsters.marauder",
     "life": [85, 110],
     "lifeGrowth": [8, 11],
     "skills": ["monster-strong-melee", "monster-charge"],
@@ -29,7 +29,7 @@
   },
   {
     "id": "monsters/act2.invader",
-    "name": "Invader",
+    "name": "monsters.invader",
     "life": [120, 160],
     "lifeGrowth": [12, 16],
     "skills": ["monster-strong-melee", "monster-rend"],
@@ -43,7 +43,7 @@
   },
   {
     "id": "monsters/act2.infidel",
-    "name": "Infidel",
+    "name": "monsters.infidel",
     "life": [170, 220],
     "lifeGrowth": [17, 22],
     "skills": ["monster-strong-melee", "monster-charge", "monster-enrage"],
@@ -57,7 +57,7 @@
   },
   {
     "id": "monsters/act2.fire-eye",
-    "name": "Fire Eye",
+    "name": "monsters.fireEye",
     "life": [620, 780],
     "lifeGrowth": [62, 78],
     "skills": ["monster-strong-melee", "monster-fire-breath", "monster-charge"],
@@ -70,7 +70,7 @@
   },
   {
     "id": "monsters/act2.sand-maggot",
-    "name": "Sand Maggot",
+    "name": "monsters.sandMaggot",
     "life": [80, 120],
     "lifeGrowth": [8, 12],
     "skills": ["monster-weak-melee", "monster-weak-ranged"],
@@ -84,7 +84,7 @@
   },
   {
     "id": "monsters/act2.sand-maggot-young",
-    "name": "Sand Maggot Young",
+    "name": "monsters.sandMaggotYoung",
     "life": [25, 40],
     "lifeGrowth": [3, 5],
     "skills": ["monster-weak-melee"],
@@ -98,7 +98,7 @@
   },
   {
     "id": "monsters/act2.rock-worm",
-    "name": "Rock Worm",
+    "name": "monsters.rockWorm",
     "life": [95, 135],
     "lifeGrowth": [9, 13],
     "skills": ["monster-weak-melee", "monster-poison-spit"],
@@ -112,7 +112,7 @@
   },
   {
     "id": "monsters/act2.devourer",
-    "name": "Devourer",
+    "name": "monsters.devourer",
     "life": [140, 190],
     "lifeGrowth": [14, 19],
     "skills": ["monster-strong-melee", "monster-poison-spit"],
@@ -126,7 +126,7 @@
   },
   {
     "id": "monsters/act2.coldworm-the-burrower",
-    "name": "Coldworm the Burrower",
+    "name": "monsters.coldwormTheBurrower",
     "life": [580, 740],
     "lifeGrowth": [58, 74],
     "skills": ["monster-strong-melee", "monster-poison-cloud", "monster-summon-adds"],
@@ -139,7 +139,7 @@
   },
   {
     "id": "monsters/act2.dune-beast",
-    "name": "Dune Beast",
+    "name": "monsters.duneBeast",
     "life": [180, 230],
     "lifeGrowth": [18, 23],
     "skills": ["monster-strong-melee", "monster-rend"],
@@ -153,7 +153,7 @@
   },
   {
     "id": "monsters/act2.saber-cat",
-    "name": "Saber Cat",
+    "name": "monsters.saberCat",
     "life": [110, 150],
     "lifeGrowth": [11, 15],
     "skills": ["monster-weak-melee", "monster-leap-attack", "monster-weak-ranged"],
@@ -167,7 +167,7 @@
   },
   {
     "id": "monsters/act2.bloodhawk",
-    "name": "Bloodhawk",
+    "name": "monsters.bloodhawk",
     "life": [55, 80],
     "lifeGrowth": [5, 8],
     "skills": ["monster-weak-melee", "monster-charge"],
@@ -181,7 +181,7 @@
   },
   {
     "id": "monsters/act2.claw-viper",
-    "name": "Claw Viper",
+    "name": "monsters.clawViper",
     "life": [50, 70],
     "lifeGrowth": [5, 8],
     "skills": ["monster-weak-melee", "monster-poison-spit"],
@@ -195,7 +195,7 @@
   },
   {
     "id": "monsters/act2.salamander",
-    "name": "Salamander",
+    "name": "monsters.salamander",
     "life": [110, 145],
     "lifeGrowth": [11, 15],
     "skills": ["monster-strong-melee", "monster-fire-bolt"],
@@ -209,7 +209,7 @@
   },
   {
     "id": "monsters/act2.pit-viper",
-    "name": "Pit Viper",
+    "name": "monsters.pitViper",
     "life": [130, 170],
     "lifeGrowth": [13, 17],
     "skills": ["monster-strong-melee", "monster-poison-spit", "monster-charge"],
@@ -223,7 +223,7 @@
   },
   {
     "id": "monsters/act2.fangskin",
-    "name": "Fangskin",
+    "name": "monsters.fangskin",
     "life": [560, 720],
     "lifeGrowth": [56, 72],
     "skills": ["monster-strong-melee", "monster-lightning-bolt", "monster-charge"],
@@ -236,7 +236,7 @@
   },
   {
     "id": "monsters/act2.mummy",
-    "name": "Mummy",
+    "name": "monsters.mummy",
     "life": [70, 100],
     "lifeGrowth": [7, 10],
     "skills": ["monster-strong-melee"],
@@ -250,7 +250,7 @@
   },
   {
     "id": "monsters/act2.greater-mummy",
-    "name": "Greater Mummy",
+    "name": "monsters.greaterMummy",
     "life": [150, 200],
     "lifeGrowth": [15, 20],
     "skills": ["monster-strong-melee", "monster-fire-breath", "monster-curse"],
@@ -264,7 +264,7 @@
   },
   {
     "id": "monsters/act2.burning-dead-archer",
-    "name": "Burning Dead Archer",
+    "name": "monsters.burningDeadArcher",
     "life": [100, 135],
     "lifeGrowth": [10, 14],
     "skills": ["monster-weak-ranged", "monster-fire-arrow"],
@@ -278,7 +278,7 @@
   },
   {
     "id": "monsters/act2.horadrim-ancient",
-    "name": "Horadrim Ancient",
+    "name": "monsters.horadrimAncient",
     "life": [220, 290],
     "lifeGrowth": [22, 29],
     "skills": ["monster-strong-melee", "monster-fire-breath", "monster-curse"],
@@ -292,7 +292,7 @@
   },
   {
     "id": "monsters/act2.ancient-kaa",
-    "name": "Ancient Kaa the Soulless",
+    "name": "monsters.ancientKaa",
     "life": [700, 880],
     "lifeGrowth": [70, 88],
     "skills": ["monster-strong-melee", "monster-curse", "monster-bone-spirit"],
@@ -305,7 +305,7 @@
   },
   {
     "id": "monsters/act2.radament",
-    "name": "Radament",
+    "name": "monsters.radament",
     "life": [820, 1020],
     "lifeGrowth": [82, 102],
     "skills": ["monster-strong-melee", "monster-poison-cloud", "monster-summon-adds", "monster-fire-breath"],
@@ -318,7 +318,7 @@
   },
   {
     "id": "monsters/act2.horror-mage",
-    "name": "Horror Mage",
+    "name": "monsters.horrorMage",
     "life": [80, 120],
     "lifeGrowth": [8, 12],
     "skills": ["monster-lightning-bolt", "monster-frost-bolt"],
@@ -332,7 +332,7 @@
   },
   {
     "id": "monsters/act2.cantor",
-    "name": "Cantor",
+    "name": "monsters.cantor",
     "life": [150, 190],
     "lifeGrowth": [15, 19],
     "skills": ["monster-fire-bolt", "monster-frost-bolt", "monster-lightning-bolt", "monster-heal"],
@@ -346,7 +346,7 @@
   },
   {
     "id": "monsters/act2.dark-elder",
-    "name": "Dark Elder",
+    "name": "monsters.darkElder",
     "life": [540, 700],
     "lifeGrowth": [54, 70],
     "skills": ["monster-fire-bolt", "monster-frost-bolt", "monster-lightning-bolt", "monster-heal", "monster-curse"],
@@ -359,7 +359,7 @@
   },
   {
     "id": "monsters/act2.scarab",
-    "name": "Scarab",
+    "name": "monsters.scarab",
     "life": [40, 60],
     "lifeGrowth": [4, 6],
     "skills": ["monster-weak-melee"],
@@ -373,7 +373,7 @@
   },
   {
     "id": "monsters/act2.steel-scarab",
-    "name": "Steel Scarab",
+    "name": "monsters.steelScarab",
     "life": [120, 160],
     "lifeGrowth": [12, 16],
     "skills": ["monster-weak-melee", "monster-lightning-bolt"],
@@ -387,7 +387,7 @@
   },
   {
     "id": "monsters/act2.plague-bug",
-    "name": "Plague Bug",
+    "name": "monsters.plagueBug",
     "life": [100, 140],
     "lifeGrowth": [10, 14],
     "skills": ["monster-weak-melee", "monster-poison-spit"],
@@ -401,7 +401,7 @@
   },
   {
     "id": "monsters/act2.death-beetle",
-    "name": "Death Beetle",
+    "name": "monsters.deathBeetle",
     "life": [160, 210],
     "lifeGrowth": [16, 21],
     "skills": ["monster-strong-melee", "monster-lightning-bolt"],
@@ -415,7 +415,7 @@
   },
   {
     "id": "monsters/act2.beetleburst",
-    "name": "Beetleburst",
+    "name": "monsters.beetleburst",
     "life": [560, 720],
     "lifeGrowth": [56, 72],
     "skills": ["monster-strong-melee", "monster-thunder-storm", "monster-lightning"],
@@ -428,7 +428,7 @@
   },
   {
     "id": "monsters/act2.sand-leaper",
-    "name": "Sand Leaper",
+    "name": "monsters.sandLeaper",
     "life": [85, 115],
     "lifeGrowth": [8, 12],
     "skills": ["monster-weak-melee", "monster-leap-attack"],
@@ -442,7 +442,7 @@
   },
   {
     "id": "monsters/act2.cave-leaper",
-    "name": "Cave Leaper",
+    "name": "monsters.caveLeaper",
     "life": [125, 165],
     "lifeGrowth": [12, 16],
     "skills": ["monster-strong-melee", "monster-leap-attack", "monster-rend"],
@@ -456,7 +456,7 @@
   },
   {
     "id": "monsters/act2.vulture-demon",
-    "name": "Vulture Demon",
+    "name": "monsters.vultureDemon",
     "life": [90, 130],
     "lifeGrowth": [9, 13],
     "skills": ["monster-strong-melee", "monster-charge"],
@@ -470,7 +470,7 @@
   },
   {
     "id": "monsters/act2.undead-scavenger",
-    "name": "Undead Scavenger",
+    "name": "monsters.undeadScavenger",
     "life": [140, 180],
     "lifeGrowth": [14, 18],
     "skills": ["monster-strong-melee", "monster-charge", "monster-rend"],
@@ -484,7 +484,7 @@
   },
   {
     "id": "monsters/act2.undead-flayer",
-    "name": "Undead Flayer",
+    "name": "monsters.undeadFlayer",
     "life": [100, 140],
     "lifeGrowth": [10, 14],
     "skills": ["monster-strong-melee"],
@@ -498,7 +498,7 @@
   },
   {
     "id": "monsters/act2.the-summoner",
-    "name": "The Summoner",
+    "name": "monsters.theSummoner",
     "life": [780, 980],
     "lifeGrowth": [78, 98],
     "skills": ["monster-fire-ball", "monster-frost-nova", "monster-lightning", "monster-teleport", "monster-summon-adds"],
@@ -511,7 +511,7 @@
   },
   {
     "id": "monsters/act2.duriel",
-    "name": "Duriel",
+    "name": "monsters.duriel",
     "life": [1200, 1500],
     "lifeGrowth": [100, 150],
     "skills": ["monster-strong-melee", "monster-charge", "monster-frost-aura"],

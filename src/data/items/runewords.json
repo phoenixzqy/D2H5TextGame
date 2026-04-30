@@ -1,7 +1,7 @@
 [
   {
     "id": "runewords/steel",
-    "name": "Steel",
+    "name": "items.runeword.steel",
     "runes": [
       "runes/tir",
       "runes/el"
@@ -21,7 +21,7 @@
   },
   {
     "id": "runewords/stealth",
-    "name": "Stealth",
+    "name": "items.runeword.stealth",
     "runes": [
       "runes/tal",
       "runes/eth"
@@ -45,7 +45,7 @@
   },
   {
     "id": "runewords/leaf",
-    "name": "Leaf",
+    "name": "items.runeword.leaf",
     "runes": [
       "runes/tir",
       "runes/ral"
@@ -63,7 +63,7 @@
   },
   {
     "id": "runewords/malice",
-    "name": "Malice",
+    "name": "items.runeword.malice",
     "runes": [
       "runes/ith",
       "runes/el",
@@ -83,7 +83,7 @@
   },
   {
     "id": "runewords/strength",
-    "name": "Strength",
+    "name": "items.runeword.strength",
     "runes": [
       "runes/amn",
       "runes/tir"
@@ -106,7 +106,7 @@
   },
   {
     "id": "runewords/ancients-pledge",
-    "name": "Ancients Pledge",
+    "name": "items.runeword.ancients-pledge",
     "runes": [
       "runes/ral",
       "runes/ort",
@@ -131,7 +131,7 @@
   },
   {
     "id": "runewords/lore",
-    "name": "Lore",
+    "name": "items.runeword.lore",
     "runes": [
       "runes/ort",
       "runes/sol"
@@ -152,7 +152,7 @@
   },
   {
     "id": "runewords/wealth",
-    "name": "Wealth",
+    "name": "items.runeword.wealth",
     "runes": [
       "runes/lem",
       "runes/ko",
@@ -176,7 +176,7 @@
   },
   {
     "id": "runewords/steelclash",
-    "name": "Steelclash",
+    "name": "items.runeword.steelclash",
     "runes": [
       "runes/shael",
       "runes/eth",
@@ -198,7 +198,7 @@
   },
   {
     "id": "runewords/smoke",
-    "name": "Smoke",
+    "name": "items.runeword.smoke",
     "runes": [
       "runes/nef",
       "runes/lum"
@@ -226,7 +226,7 @@
   },
   {
     "id": "runewords/rhyme",
-    "name": "Rhyme",
+    "name": "items.runeword.rhyme",
     "runes": [
       "runes/shael",
       "runes/eth"
@@ -253,7 +253,7 @@
   },
   {
     "id": "runewords/insight",
-    "name": "Insight",
+    "name": "items.runeword.insight",
     "runes": [
       "runes/ral",
       "runes/tir",
@@ -280,7 +280,7 @@
   },
   {
     "id": "runewords/treachery",
-    "name": "Treachery",
+    "name": "items.runeword.treachery",
     "runes": [
       "runes/shael",
       "runes/thul",
@@ -300,7 +300,7 @@
   },
   {
     "id": "runewords/duress",
-    "name": "Duress",
+    "name": "items.runeword.duress",
     "runes": [
       "runes/shael",
       "runes/um",
@@ -326,7 +326,7 @@
   },
   {
     "id": "runewords/spirit",
-    "name": "Spirit",
+    "name": "items.runeword.spirit",
     "runes": [
       "runes/tal",
       "runes/thul",
@@ -353,7 +353,7 @@
   },
   {
     "id": "runewords/lionheart",
-    "name": "Lionheart",
+    "name": "items.runeword.lionheart",
     "runes": [
       "runes/hel",
       "runes/lum",
@@ -383,7 +383,7 @@
   },
   {
     "id": "runewords/obedience",
-    "name": "Obedience",
+    "name": "items.runeword.obedience",
     "runes": [
       "runes/hel",
       "runes/ko",
@@ -415,7 +415,7 @@
   },
   {
     "id": "runewords/passion",
-    "name": "Passion",
+    "name": "items.runeword.passion",
     "runes": [
       "runes/dol",
       "runes/ort",
@@ -436,7 +436,7 @@
   },
   {
     "id": "runewords/oath",
-    "name": "Oath",
+    "name": "items.runeword.oath",
     "runes": [
       "runes/shael",
       "runes/pul",
@@ -459,7 +459,7 @@
   },
   {
     "id": "runewords/fortitude",
-    "name": "Fortitude",
+    "name": "items.runeword.fortitude",
     "runes": [
       "runes/el",
       "runes/sol",
@@ -488,7 +488,7 @@
   },
   {
     "id": "runewords/call-to-arms",
-    "name": "Call to Arms",
+    "name": "items.runeword.call-to-arms",
     "runes": [
       "runes/amn",
       "runes/ral",
@@ -510,7 +510,7 @@
   },
   {
     "id": "runewords/heart-of-the-oak",
-    "name": "Heart of the Oak",
+    "name": "items.runeword.heart-of-the-oak",
     "runes": [
       "runes/ko",
       "runes/vex",
@@ -542,7 +542,7 @@
   },
   {
     "id": "runewords/enigma",
-    "name": "Enigma",
+    "name": "items.runeword.enigma",
     "runes": [
       "runes/jah",
       "runes/ith",
@@ -566,7 +566,7 @@
   },
   {
     "id": "runewords/breath-of-the-dying",
-    "name": "Breath of the Dying",
+    "name": "items.runeword.breath-of-the-dying",
     "runes": [
       "runes/vex",
       "runes/hel",
@@ -594,7 +594,7 @@
   },
   {
     "id": "runewords/grief",
-    "name": "Grief",
+    "name": "items.runeword.grief",
     "runes": [
       "runes/eth",
       "runes/tir",
