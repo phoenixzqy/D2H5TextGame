@@ -14,7 +14,9 @@ import { QuestsScreen } from '@/features/quests/QuestsScreen';
 import { SettingsScreen } from '@/features/settings/SettingsScreen';
 import { RequireCharacter } from './RequireCharacter';
 
-const DevToolShell = import.meta.env.DEV
+const DEV_TOOL_ENABLED = import.meta.env.DEV || import.meta.env.VITE_E2E === 'true';
+
+const DevToolShell = DEV_TOOL_ENABLED
   ? lazy(() => import('@/features/dev/DevToolShell'))
   : null;
 
@@ -32,7 +34,7 @@ export function AppRoutes() {
         }
       />
       <Route path="/settings" element={<SettingsScreen />} />
-      {import.meta.env.DEV && DevToolShell && (
+      {DEV_TOOL_ENABLED && DevToolShell && (
         <Route
           path="/dev/*"
           element={

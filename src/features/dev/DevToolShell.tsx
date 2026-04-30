@@ -1,9 +1,11 @@
-import { NavLink, Navigate, Route, Routes } from 'react-router-dom';
+import { NavLink, Navigate, Route, Routes, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { ClassesEditor } from './ClassesEditor';
 import { ItemsEditor } from './ItemsEditor';
 import { SkillsEditor } from './SkillsEditor';
 import { MonstersEditor } from './MonstersEditor';
 import { MapManager } from './MapManager';
+import { usePlayerStore } from '@/stores';
 
 const links = [
   { to: '/dev/classes', label: 'Classes', description: 'Class stats and starter skills' },
@@ -14,9 +16,25 @@ const links = [
 ] as const;
 
 export default function DevToolShell() {
+  const { t } = useTranslation('dev');
+  const navigate = useNavigate();
+  const hasPlayer = usePlayerStore((s) => s.player !== null);
+
+  const handleBack = (): void => {
+    navigate(hasPlayer ? '/town' : '/');
+  };
+
   return (
     <div className="min-h-[100dvh] bg-d2-bg text-d2-white md:flex">
       <aside className="border-b border-d2-border bg-d2-panel p-3 md:w-64 md:border-b-0 md:border-r">
+        <button
+          type="button"
+          onClick={handleBack}
+          data-testid="dev-back-to-game"
+          className="mb-3 inline-flex min-h-[36px] items-center rounded border border-d2-border px-2 py-1 text-xs text-d2-white/75 hover:border-d2-gold/70 hover:text-d2-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold"
+        >
+          {t('backToGame')}
+        </button>
         <div className="mb-4">
           <p className="text-xs uppercase tracking-wide text-d2-white/50">Localhost only</p>
           <h1 className="font-serif text-2xl text-d2-gold">Dev Tool</h1>
