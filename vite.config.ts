@@ -35,7 +35,14 @@ function devDataPlugin(): Plugin {
   return {
     name: 'd2h5-dev-data-middleware',
     configureServer(server) {
-      installDevDataMiddleware(server.middlewares, () => {
+      // In E2E mode (VITE_E2E=true) we skip the HMR full-reload that would
+      // normally fire after a /__dev/data POST. The reload races test
+      // assertions (e.g. badge state, response capture) and provides no
+      // value to E2E specs — components already update local state after
+      // the save promise resolves. This restores parity with preview mode,
+      // which has no HMR and was the previous E2E baseline. (P03)
+      const e2eMode = process.env.VITE_E2E === 'true';
+      installDevDataMiddleware(server.middlewares, e2eMode ? undefined : () => {
         server.ws.send({ type: 'full-reload' });
       });
     },
