@@ -43,7 +43,7 @@ This is a **personal, private, non-commercial** project. You are **encouraged** 
 - Stat values may be copied from the official game / Arreat Summit / patch notes as a baseline; the `game-designer` may then tune them.
 
 Guardrails:
-- Keep the project private. If we ever publish, this clause must be revisited — flag any public-release work to PM.
+- Keep the project private. If we ever publish, this clause must be revisited — flag any public-release work to producer.
 - Avoid wholesale copy-paste of Blizzard's *story chapter* prose into the repo; reference act/quest names + short flavor lines is fine.
 - Cite sources with a one-line comment / SOURCE.md so reviewers can verify.
 

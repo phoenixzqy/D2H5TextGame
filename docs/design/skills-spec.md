@@ -11,7 +11,7 @@
 
 This document defines **~70 skills** across 7 character archetypes. Each archetype has ~6 active skills + ~4 passives for v1. Skills are JSON-defined; `content-designer` owns the data files. This spec provides the **design template** and **example skill catalog**.
 
-**JSON Schema:** `src/data/schema/skill.schema.json` (to be created by `architect` + `content-designer`).
+**JSON Schema:** `src/data/schema/skill.schema.json` (to be created by `technical-director` + `content-designer`).
 
 ---
 
@@ -285,7 +285,7 @@ Monsters use a simplified skill set. Examples:
 **Next steps:**
 1. `content-designer` creates `src/data/skills/*.json` files (one per archetype + one for monsters).
 2. Populate all 70+ skills with the fields from §2.
-3. Validate against `src/data/schema/skill.schema.json` (JSON Schema to be created by `architect`).
+3. Validate against `src/data/schema/skill.schema.json` (JSON Schema to be created by `technical-director`).
 4. Cross-reference `statusApplied` IDs with `combat-formulas.md` §9.
 
 ---

@@ -50,7 +50,7 @@ Player damage **out** is in target range; only enemy damage **in** is broken.
 
 ### One subtle issue (flag, do not fix in this pass)
 
-`buildDamageInput` (combat.ts) sets `defenderMagicResist = defender.stats.defense`. That means cold/lightning/arcane currently mitigate against the *armor* number, not a separate magic-resist stat. Acceptable for v1 because the `DerivedStats` type doesn't yet have `magicResist`. **Open question for PM:** add `magicResist` field, or accept armor-as-MR for v1? Tracked separately — no change in this spec.
+`buildDamageInput` (combat.ts) sets `defenderMagicResist = defender.stats.defense`. That means cold/lightning/arcane currently mitigate against the *armor* number, not a separate magic-resist stat. Acceptable for v1 because the `DerivedStats` type doesn't yet have `magicResist`. **Open question for producer:** add `magicResist` field, or accept armor-as-MR for v1? Tracked separately — no change in this spec.
 
 ### Basic attack base damage is a single point, not a range
 
@@ -112,7 +112,7 @@ For reference (existing, unchanged):
 - `defense = 20 + (lvl-1)·3`
 - `physDodge = 0.05 + Dex·0.002`
 
-### Starting points (per PM request)
+### Starting points (per producer request)
 
 - L1 character: **1 skill point, 0 stat points**
 - Each level after L1: **+5 stat points, +1 skill point**
@@ -164,7 +164,7 @@ Naive math (no skills, focus-fire): 3 enemies × 3.5 hits to kill = ~10.5 player
 
 That's above the 30% target without skill use. **With one cleave/AOE skill** (e.g. Sorc Frost Nova, Pally Holy Fire aura, Barb Whirlwind tap) clearing or softening the wave in 1–2 player turns, projected loss drops to ~20–25%. ✅ contingent on skill availability.
 
-**Implication for engine-dev:** L1 starting skill must include at least one usable damage skill (single-target nuke OR AOE). With `skillPoints = 1` at L1, the character-creation flow must auto-allocate that point into the class's tier-1 attack skill, OR force the player to spend it before entering combat. **Open question for PM** — see §9.
+**Implication for engine-dev:** L1 starting skill must include at least one usable damage skill (single-target nuke OR AOE). With `skillPoints = 1` at L1, the character-creation flow must auto-allocate that point into the class's tier-1 attack skill, OR force the player to spend it before entering combat. **Open question for producer** — see §9.
 
 ---
 
@@ -192,7 +192,7 @@ Run these as Vitest balance sims (seeded RNG, 1000 trials each):
 
 ---
 
-## 9. Open questions for PM
+## 9. Open questions for producer
 
 1. **L1 skill auto-allocation.** With `skillPoints=1` at L1, must character creation force the player to spend it before first combat, or auto-pick the class's signature tier-1 skill (Sorc → Fire Bolt; Barb → Bash; etc.)? My recommendation: **auto-allocate signature skill** to keep the L1 tutorial frictionless; player can respec later.
 2. **Magic resist field.** Should `DerivedStats` gain a separate `magicResist` number, or do we keep using `defense` for both armor and MR through Act 1? Affects content-designer Act 2+ work.
@@ -204,6 +204,6 @@ Run these as Vitest balance sims (seeded RNG, 1000 trials each):
 ## 10. Hand-offs
 
 - **engine-dev:** apply §4 (createSimpleEnemy rewrite), §5 (createMockPlayer skillPoints + totalSkillPoints).
-- **content-designer:** after PM approves §9 Q4, extend monster JSON schema and port §4 numbers into `act1.json`. Apply archetype multipliers from §4 table to the seven Act 1 monsters already on file.
+- **content-designer:** after producer approves §9 Q4, extend monster JSON schema and port §4 numbers into `act1.json`. Apply archetype multipliers from §4 table to the seven Act 1 monsters already on file.
 - **qa-engineer:** implement §7 acceptance sims; add to CI as `balance-early-game.test.ts`.
 - **frontend-dev:** no UI changes required; verify combat log readability with new (lower) damage numbers on mobile.

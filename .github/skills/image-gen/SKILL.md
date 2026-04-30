@@ -103,7 +103,7 @@ node .github/skills/image-gen/scripts/image-gen.mjs \
 2. Never edit historical manifest entries — append only.
 3. Never invent a `subjectId`. Allocate it in `seed-registry.md` first.
 4. Don't bypass the global preamble / negative prompt.
-5. If 3 variants in a row are rejected, escalate to PM — the preset
+5. If 3 variants in a row are rejected, escalate to producer — the preset
    itself probably needs tuning.
 
 ## Failure modes

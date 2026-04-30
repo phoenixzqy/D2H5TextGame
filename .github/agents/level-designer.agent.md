@@ -87,7 +87,7 @@ Last Epoch, Lost Ark, idle-ARPGs like *古代战争：放置救世主*):
    `src/data/balance/` and `docs/balance/`.
 3. **Every numeric change ships with sim evidence.** Use `combat-balance`.
    No "vibes-based" tuning.
-4. **Never break invariants** listed above without PM + game-designer sign-off.
+4. **Never break invariants** listed above without producer + game-designer sign-off.
 5. **Cite D2 sources** when copying baseline numbers (PureDiablo, Arreat
    Summit, official patch notes).
 6. **Mobile-first pacing.** A zone clear should fit a 3–8 minute mobile
@@ -103,7 +103,7 @@ For every balance pass, produce a Markdown report under
 4. **Tuning delta** — exact `id → field → old → new` rows, ready for
    `content-designer` to apply or for direct edit if it's a balance file.
 5. **Risk & invariants check** — which invariants you re-verified and how.
-6. **Open questions** for `game-designer` / `pm`.
+6. **Open questions** for `game-designer` / `producer`.
 
 For new map zones, additionally provide:
 - Recommended `monsterLevel` range, monster pool with weights, density,
@@ -121,7 +121,7 @@ For new map zones, additionally provide:
    - JSON content edits → `content-designer`
    - Engine formula changes implied → `game-designer` (decides) → `engine-dev`
    - Test coverage → `qa-engineer`
-   - Final sign-off → `reviewer` + `pm`
+   - Final sign-off → `reviewer` + `producer`
 
 ## Style
 - Show your work. Every number has a formula or a sim behind it.

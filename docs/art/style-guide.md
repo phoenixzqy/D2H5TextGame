@@ -150,7 +150,7 @@ This guarantees:
 If art-director rejects an output:
 1. First try `variant=1`.
 2. Then `variant=2`, `variant=3`, …
-3. If 3 variants fail, escalate to PM — the preset itself may need tuning.
+3. If 3 variants fail, escalate to producer — the preset itself may need tuning.
 
 ## 8. Source / attribution
 All images are AI-generated via **Pollinations.AI**. Manifest at

@@ -13,14 +13,14 @@
 | Field | Value |
 |---|---|
 | **Version** | 0.1 (formalized from notes) |
-| **Owner** | `pm` agent (see `AGENTS.md`) |
+| **Owner** | `producer` agent (see `AGENTS.md`) |
 | **Source of truth** | This file |
 | **Original notes** | [`Diablo2TextGame.original.md`](./Diablo2TextGame.original.md) |
 | **Status legend** | ✅ DECIDED · 🟡 OPEN · ⏸️ DEFERRED (v2+) |
 
-Decisions in this document are binding for v1 unless explicitly marked 🟡 OPEN. Changes require PM + Architect + Game Designer alignment.
+Decisions in this document are binding for v1 unless explicitly marked 🟡 OPEN. Changes require producer + Technical Director + Game Designer alignment.
 
-> 本文档是 v1 设计的真理之源。决议条目除非标记 🟡 OPEN，否则视为已锁定。变更需 PM + 架构师 + 游戏策划三方共识。
+> 本文档是 v1 设计的真理之源。决议条目除非标记 🟡 OPEN，否则视为已锁定。变更需 producer + 架构师 + 游戏策划三方共识。
 
 ---
 
@@ -285,12 +285,12 @@ Guardrails (mandatory):
 
 | # | Question | Owner | Notes |
 |---|---|---|---|
-| 1 | Inventory / stash exact caps | architect + content-designer | 提案 500 / 2000；以性能为准 |
+| 1 | Inventory / stash exact caps | Technical Director + content-designer | 提案 500 / 2000；以性能为准 |
 | 2 | Gacha pool composition beyond mercs | game-designer | 加入符文/装备的破坏性评估 |
 | 3 | Quest UI shape (board vs dialogue tree vs hybrid) | frontend-dev | 等 mockup |
 | 4 | Endgame dungeon modifier pool | game-designer | v1 末期再定 |
 | 5 | Combo synergy matrix specifics (numbers) | game-designer | `docs/design/combo-matrix.md` |
-| 6 | Save schema versioning policy + first migrations | architect | 见 `stores/migrations.ts`（待建） |
+| 6 | Save schema versioning policy + first migrations | Technical Director | 见 `stores/migrations.ts`（待建） |
 | 7 | Map sub-area layout: pure roguelike vs linear vs mixed | game-designer | v1 默认 roguelike |
 
 ---
@@ -316,4 +316,4 @@ Guardrails (mandatory):
 | Version | Date | Author | Notes |
 |---|---|---|---|
 | 0.0 | initial | (notes) | Original brainstorm — preserved as `Diablo2TextGame.original.md` |
-| 0.1 | this commit | `pm` | Formalized into bilingual GDD; locked decisions on combat, currency, scope, lifecycle |
+| 0.1 | this commit | `producer` | Formalized into bilingual GDD; locked decisions on combat, currency, scope, lifecycle |

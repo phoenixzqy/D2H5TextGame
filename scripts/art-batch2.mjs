@@ -9,7 +9,7 @@
  *   - Act 2-5 end bosses (P3, must-have)
  *
  * Skill icons (P4) are intentionally deferred — they require a brand-new
- * `skill-icon` category preset, which is a meta-design change and needs PM
+ * `skill-icon` category preset, which is a meta-design change and needs producer
  * sign-off per the art-director rules.
  *
  * Usage:

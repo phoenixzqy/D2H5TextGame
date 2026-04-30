@@ -522,12 +522,12 @@ art-director when we revisit:
 | P3 | `zone-art` | All non-town sub-areas (Blood Moor, Cold Plains, Stony Field, Tristram, …) | Today only the 5 act towns have zone art. |
 | P3 | `ui-background` | Main menu, character select, combat backdrop variants per act | Currently no UI backgrounds at all. |
 
-Art-director will allocate `subjectId`s in `seed-registry.md` when PM
+Art-director will allocate `subjectId`s in `seed-registry.md` when producer
 green-lights a generation pass.
 
 ---
 
-## 12. Open questions for PM
+## 12. Open questions for producer
 
 1. Do we want a **card-back** design (for future merc gacha pulls / item
    reveal animations)? Out of v1 scope but trivial to add as a sixth

@@ -15,7 +15,7 @@ This document defines **monster archetypes** and provides a **catalog of ~50 mon
 - **Skill priority list** (1–3 skills)
 - **Tier** (trash / elite / champion / boss)
 
-**JSON Schema:** `src/data/schema/monster.schema.json` (to be created by `architect` + `content-designer`).
+**JSON Schema:** `src/data/schema/monster.schema.json` (to be created by `technical-director` + `content-designer`).
 
 ---
 

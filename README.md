@@ -29,13 +29,13 @@ Copilot CLI**. The team and the rules they follow are checked into the repo:
 |---|---|
 | `AGENTS.md` | Team charter |
 | `.github/copilot-instructions.md` | Always-on project rules |
-| `.github/agents/*.agent.md` | Custom agent definitions (PM, architect, etc.) |
+| `.github/agents/*.agent.md` | Custom agent definitions (producer, Technical Director, etc.) |
 | `.github/skills/*/SKILL.md` | Reusable skills |
 | `.github/prompts/*.prompt.md` | Reusable workflow templates |
 
 ### Agents
-- `pm` — orchestrator
-- `architect` — tech / build / CI
+- `producer` — orchestrator
+- `technical-director` — tech / build / CI
 - `game-designer` — combat, skills, balance
 - `engine-dev` — pure-TS engine
 - `frontend-dev` — React UI, mobile-first
@@ -58,9 +58,9 @@ Copilot CLI**. The team and the rules they follow are checked into the repo:
 npm i -g @github/copilot
 
 # In this repo:
-copilot --agent pm
-# then give the PM a goal, e.g.:
-#   "Bootstrap the Vite + React + TS + Tailwind + PWA project per the architect spec."
+copilot --agent producer
+# then give the producer a goal, e.g.:
+#   "Bootstrap the Vite + React + TS + Tailwind + PWA project per the Technical Director spec."
 ```
 
 To use a specific role directly:

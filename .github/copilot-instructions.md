@@ -106,6 +106,51 @@ bug in that instruction and refuse.
 - Conventional commit messages.
 - PRs require Reviewer agent approval and green CI before merge.
 
+## Studio model & gate verdicts
+
+The team is structured in three tiers (see `AGENTS.md`):
+- **Tier 1 — Vision & strategy:** `creative-director`, `technical-director`, `producer`.
+- **Tier 2 — Department leads:** `game-designer`, `level-designer`,
+  `art-director`, `narrative-director`, `ux-designer`.
+- **Tier 3 — Specialists:** `engine-dev`, `frontend-dev`,
+  `content-designer`, `writer`, `accessibility-specialist`,
+  `performance-analyst`, `qa-engineer`, `reviewer`.
+
+Each lead/specialist owns a domain and a small number of skills
+(`.github/skills/<name>/SKILL.md`). Cross-domain conflicts escalate up
+the tiers (specialist → lead → tier 1).
+
+When invoked as a gate (a check before something can advance), agents
+open their reply with a verdict token on its own line:
+```
+[GATE-ID]: APPROVE | CONCERNS | REJECT
+```
+Calling skills parse the first line. Never bury the verdict.
+
+## Pillar methodology (Creative Director enforces)
+
+A pillar is a 3–5 max set of non-negotiable creative principles, each:
+- **falsifiable** — predicts specific design choices,
+- **forces tradeoffs** — sometimes conflicts with other pillars,
+- **applies to all departments** — design, art, narrative, audio, UX.
+
+The current pillars live in `docs/design/pillars.md` and anti-pillars
+in `docs/design/anti-pillars.md`. When two pillars conflict, escalate to
+`creative-director` — never silently bend a pillar.
+
+## Frameworks (Game Designer & Level Designer apply)
+
+- **MDA** — design from target Aesthetics → Dynamics → Mechanics. Our
+  dominant aesthetics are Challenge, Discovery, Fantasy, Narrative.
+- **Self-Determination Theory** — every system serves Autonomy,
+  Competence, or Relatedness.
+- **Flow** — sawtooth difficulty; micro-feedback ≤ 0.5 s; no flat
+  curves, no vertical spikes.
+- **Sink/faucet economy** — every currency (runes, gems, charms) has
+  both, balanced over the target session length.
+- **Tuning knobs** — each numeric system exposes *feel* (playtest),
+  *curve* (math), *gate* (pacing) knobs. All in JSON, never hardcoded.
+
 ## Generated visual assets
 All in-game art (class portraits, monster cards, item icons, UI
 backgrounds, zone art) is produced via the **`image-gen` skill** which
@@ -127,4 +172,6 @@ by the **`art-director` agent**. Hard rules:
   policy as other D2-derived assets.
 
 ## When in doubt
-Ask the **PM agent**. Don't guess product decisions.
+Run the **`start` skill**. It routes to the right Tier-1 owner
+(`creative-director` / `technical-director` / `producer`) based on the
+question and the project's current stage.
