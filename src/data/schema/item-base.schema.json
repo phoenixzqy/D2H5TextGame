@@ -30,6 +30,12 @@
       "type": "number",
       "minimum": 0
     },
+    "weaponType": {
+      "$ref": "#/$defs/weaponType"
+    },
+    "handedness": {
+      "$ref": "#/$defs/handedness"
+    },
     "reqLevel": {
       "type": "integer",
       "minimum": 1
@@ -53,7 +59,36 @@
       "type": "boolean"
     }
   },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "type": { "const": "weapon" } },
+        "required": ["type"]
+      },
+      "then": {
+        "required": ["weaponType", "handedness"],
+        "properties": {
+          "weaponType": { "$ref": "#/$defs/weaponType" },
+          "handedness": { "$ref": "#/$defs/handedness" }
+        }
+      }
+    }
+  ],
   "$defs": {
+    "weaponType": {
+      "type": "string",
+      "enum": [
+        "sword", "axe", "mace", "dagger", "spear", "polearm",
+        "bow", "crossbow", "throwing",
+        "staff", "wand", "scepter", "orb"
+      ],
+      "description": "Weapon class (GD-WEAPONTYPE-SPEC v1)."
+    },
+    "handedness": {
+      "type": "string",
+      "enum": ["oneHanded", "twoHanded"],
+      "description": "Required for type==='weapon'. Drives 2H↔offhand mutex."
+    },
     "damageInfo": {
       "type": "object",
       "required": ["min", "max", "breakdown"],
