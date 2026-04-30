@@ -1,7 +1,7 @@
 [
   {
     "id": "areas/act2-rocky-waste",
-    "name": "Rocky Waste",
+    "name": "maps.area.act2-rocky-waste",
     "actId": "acts/act2",
     "areaLevel": 14,
     "hasBoss": false,
@@ -60,7 +60,7 @@
   },
   {
     "id": "areas/act2-dry-hills",
-    "name": "Dry Hills",
+    "name": "maps.area.act2-dry-hills",
     "actId": "acts/act2",
     "areaLevel": 16,
     "hasBoss": false,
@@ -116,7 +116,7 @@
   },
   {
     "id": "areas/act2-far-oasis",
-    "name": "Far Oasis",
+    "name": "maps.area.act2-far-oasis",
     "actId": "acts/act2",
     "areaLevel": 18,
     "hasBoss": true,
@@ -178,7 +178,7 @@
   },
   {
     "id": "areas/act2-lost-city",
-    "name": "Lost City",
+    "name": "maps.area.act2-lost-city",
     "actId": "acts/act2",
     "areaLevel": 21,
     "hasBoss": false,
@@ -224,7 +224,7 @@
   },
   {
     "id": "areas/act2-arcane-sanctuary",
-    "name": "Arcane Sanctuary",
+    "name": "maps.area.act2-arcane-sanctuary",
     "actId": "acts/act2",
     "areaLevel": 23,
     "hasBoss": true,
@@ -276,7 +276,7 @@
   },
   {
     "id": "areas/act2-tomb-of-tal-rasha",
-    "name": "Tomb of Tal Rasha (Duriel)",
+    "name": "maps.area.act2-tomb-of-tal-rasha",
     "actId": "acts/act2",
     "areaLevel": 25,
     "hasBoss": true,

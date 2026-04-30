@@ -1,7 +1,7 @@
 [
   {
     "id": "monsters/act3.jungle-hunter",
-    "name": "Jungle Hunter",
+    "name": "monsters.jungleHunter",
     "life": [
       100,
       140
@@ -35,7 +35,7 @@
   },
   {
     "id": "monsters/act3.fetish",
-    "name": "Fetish",
+    "name": "monsters.fetish",
     "life": [
       80,
       120
@@ -71,7 +71,7 @@
   },
   {
     "id": "monsters/act3.spider",
-    "name": "Giant Spider",
+    "name": "monsters.spider",
     "life": [
       90,
       130
@@ -107,7 +107,7 @@
   },
   {
     "id": "monsters/act3.flayer",
-    "name": "Flayer",
+    "name": "monsters.flayer",
     "life": [
       110,
       150
@@ -140,7 +140,7 @@
   },
   {
     "id": "monsters/act3.thorned-hulk",
-    "name": "Thorned Hulk",
+    "name": "monsters.thornedHulk",
     "life": [
       200,
       280
@@ -176,7 +176,7 @@
   },
   {
     "id": "monsters/act3.swamp-dweller",
-    "name": "Swamp Dweller",
+    "name": "monsters.swampDweller",
     "life": [
       120,
       160
@@ -212,7 +212,7 @@
   },
   {
     "id": "monsters/act3.doom-ape",
-    "name": "Doom Ape",
+    "name": "monsters.doomApe",
     "life": [
       250,
       350
@@ -252,7 +252,7 @@
   },
   {
     "id": "monsters/act3.infector",
-    "name": "Infector",
+    "name": "monsters.infector",
     "life": [
       180,
       240
@@ -288,7 +288,7 @@
   },
   {
     "id": "monsters/act3.serpent-magus",
-    "name": "Serpent Magus",
+    "name": "monsters.serpentMagus",
     "life": [
       150,
       210
@@ -325,7 +325,7 @@
   },
   {
     "id": "monsters/act3.mephisto",
-    "name": "Mephisto",
+    "name": "monsters.mephisto",
     "life": [
       2000,
       2500

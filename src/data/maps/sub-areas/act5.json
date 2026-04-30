@@ -1,7 +1,7 @@
 [
   {
     "id": "areas/act5-bloody-foothills",
-    "name": "Bloody Foothills",
+    "name": "maps.area.act5-bloody-foothills",
     "actId": "acts/act5",
     "areaLevel": 56,
     "hasBoss": true,
@@ -53,7 +53,7 @@
   },
   {
     "id": "areas/act5-frigid-highlands",
-    "name": "Frigid Highlands",
+    "name": "maps.area.act5-frigid-highlands",
     "actId": "acts/act5",
     "areaLevel": 59,
     "hasBoss": true,
@@ -105,7 +105,7 @@
   },
   {
     "id": "areas/act5-arreat-plateau",
-    "name": "Arreat Plateau",
+    "name": "maps.area.act5-arreat-plateau",
     "actId": "acts/act5",
     "areaLevel": 63,
     "hasBoss": true,
@@ -158,7 +158,7 @@
   },
   {
     "id": "areas/act5-crystalline-passage",
-    "name": "Crystalline Passage",
+    "name": "maps.area.act5-crystalline-passage",
     "actId": "acts/act5",
     "areaLevel": 66,
     "hasBoss": true,
@@ -210,7 +210,7 @@
   },
   {
     "id": "areas/act5-ancients-way",
-    "name": "Ancient's Way",
+    "name": "maps.area.act5-ancients-way",
     "actId": "acts/act5",
     "areaLevel": 70,
     "hasBoss": true,
@@ -268,7 +268,7 @@
   },
   {
     "id": "areas/act5-throne-of-destruction",
-    "name": "Throne of Destruction (Baal)",
+    "name": "maps.area.act5-throne-of-destruction",
     "actId": "acts/act5",
     "areaLevel": 75,
     "hasBoss": true,

@@ -1,7 +1,7 @@
 [
   {
     "id": "monsters/act1.fallen",
-    "name": "Fallen",
+    "name": "monsters.fallen",
     "life": [30, 50],
     "lifeGrowth": [3, 5],
     "skills": ["monster-weak-melee", "monster-panic-flee"],
@@ -15,7 +15,7 @@
   },
   {
     "id": "monsters/act1.zombie",
-    "name": "Zombie",
+    "name": "monsters.zombie",
     "life": [50, 70],
     "lifeGrowth": [5, 7],
     "skills": ["monster-weak-melee"],
@@ -29,7 +29,7 @@
   },
   {
     "id": "monsters/act1.corpsefire",
-    "name": "Corpsefire",
+    "name": "monsters.corpsefire",
     "life": [320, 420],
     "lifeGrowth": [32, 42],
     "skills": ["monster-strong-melee", "monster-fire-breath"],
@@ -42,7 +42,7 @@
   },
   {
     "id": "monsters/act1.quill-rat",
-    "name": "Quill Rat",
+    "name": "monsters.quillRat",
     "life": [20, 40],
     "lifeGrowth": [2, 4],
     "skills": ["monster-weak-melee", "monster-weak-ranged"],
@@ -56,7 +56,7 @@
   },
   {
     "id": "monsters/act1.spike-fiend",
-    "name": "Spike Fiend",
+    "name": "monsters.spikeFiend",
     "life": [35, 55],
     "lifeGrowth": [3, 6],
     "skills": ["monster-weak-melee", "monster-weak-ranged"],
@@ -70,7 +70,7 @@
   },
   {
     "id": "monsters/act1.dark-one",
-    "name": "Dark One",
+    "name": "monsters.darkOne",
     "life": [35, 55],
     "lifeGrowth": [4, 6],
     "skills": ["monster-weak-melee", "monster-panic-flee"],
@@ -84,7 +84,7 @@
   },
   {
     "id": "monsters/act1.carver",
-    "name": "Carver",
+    "name": "monsters.carver",
     "life": [40, 60],
     "lifeGrowth": [4, 6],
     "skills": ["monster-weak-melee"],
@@ -98,7 +98,7 @@
   },
   {
     "id": "monsters/act1.misshapen",
-    "name": "Misshapen",
+    "name": "monsters.misshapen",
     "life": [55, 80],
     "lifeGrowth": [5, 8],
     "skills": ["monster-strong-melee"],
@@ -112,7 +112,7 @@
   },
   {
     "id": "monsters/act1.disfigured",
-    "name": "Disfigured",
+    "name": "monsters.disfigured",
     "life": [70, 95],
     "lifeGrowth": [7, 10],
     "skills": ["monster-strong-melee", "monster-rend"],
@@ -126,7 +126,7 @@
   },
   {
     "id": "monsters/act1.devilkin",
-    "name": "Devilkin",
+    "name": "monsters.devilkin",
     "life": [55, 75],
     "lifeGrowth": [5, 8],
     "skills": ["monster-weak-melee", "monster-panic-flee"],
@@ -140,7 +140,7 @@
   },
   {
     "id": "monsters/act1.fallen-shaman",
-    "name": "Fallen Shaman",
+    "name": "monsters.fallenShaman",
     "life": [60, 90],
     "lifeGrowth": [6, 10],
     "skills": ["monster-fire-bolt", "monster-resurrect-fallen"],
@@ -154,7 +154,7 @@
   },
   {
     "id": "monsters/act1.carver-shaman",
-    "name": "Carver Shaman",
+    "name": "monsters.carverShaman",
     "life": [70, 100],
     "lifeGrowth": [7, 11],
     "skills": ["monster-fire-bolt", "monster-resurrect-fallen"],
@@ -168,7 +168,7 @@
   },
   {
     "id": "monsters/act1.devilkin-shaman",
-    "name": "Devilkin Shaman",
+    "name": "monsters.devilkinShaman",
     "life": [85, 115],
     "lifeGrowth": [8, 12],
     "skills": ["monster-fire-bolt", "monster-resurrect-fallen"],
@@ -182,7 +182,7 @@
   },
   {
     "id": "monsters/act1.bishibosh",
-    "name": "Bishibosh",
+    "name": "monsters.bishibosh",
     "life": [280, 380],
     "lifeGrowth": [28, 38],
     "skills": ["monster-fire-bolt", "monster-fire-ball", "monster-resurrect-fallen"],
@@ -195,7 +195,7 @@
   },
   {
     "id": "monsters/act1.rakanishu",
-    "name": "Rakanishu",
+    "name": "monsters.rakanishu",
     "life": [320, 420],
     "lifeGrowth": [32, 42],
     "skills": ["monster-strong-melee", "monster-lightning-bolt", "monster-charge"],
@@ -208,7 +208,7 @@
   },
   {
     "id": "monsters/act1.tainted",
-    "name": "Tainted",
+    "name": "monsters.tainted",
     "life": [50, 70],
     "lifeGrowth": [5, 7],
     "skills": ["monster-weak-melee", "monster-poison-spit"],
@@ -222,7 +222,7 @@
   },
   {
     "id": "monsters/act1.afflicted",
-    "name": "Afflicted",
+    "name": "monsters.afflicted",
     "life": [70, 95],
     "lifeGrowth": [7, 10],
     "skills": ["monster-strong-melee", "monster-poison-spit"],
@@ -236,7 +236,7 @@
   },
   {
     "id": "monsters/act1.hungry-dead",
-    "name": "Hungry Dead",
+    "name": "monsters.hungryDead",
     "life": [70, 95],
     "lifeGrowth": [6, 9],
     "skills": ["monster-weak-melee"],
@@ -250,7 +250,7 @@
   },
   {
     "id": "monsters/act1.ghoul",
-    "name": "Ghoul",
+    "name": "monsters.ghoul",
     "life": [90, 120],
     "lifeGrowth": [9, 13],
     "skills": ["monster-strong-melee"],
@@ -264,7 +264,7 @@
   },
   {
     "id": "monsters/act1.ghost",
-    "name": "Ghost",
+    "name": "monsters.ghost",
     "life": [60, 90],
     "lifeGrowth": [6, 10],
     "skills": ["monster-weak-melee", "monster-curse"],
@@ -278,7 +278,7 @@
   },
   {
     "id": "monsters/act1.wraith",
-    "name": "Wraith",
+    "name": "monsters.wraith",
     "life": [85, 115],
     "lifeGrowth": [8, 13],
     "skills": ["monster-strong-melee", "monster-mana-rift"],
@@ -292,7 +292,7 @@
   },
   {
     "id": "monsters/act1.dark-archer",
-    "name": "Dark Archer",
+    "name": "monsters.darkArcher",
     "life": [40, 60],
     "lifeGrowth": [4, 6],
     "skills": ["monster-weak-ranged"],
@@ -306,7 +306,7 @@
   },
   {
     "id": "monsters/act1.dark-ranger",
-    "name": "Dark Ranger",
+    "name": "monsters.darkRanger",
     "life": [70, 95],
     "lifeGrowth": [7, 10],
     "skills": ["monster-weak-ranged", "monster-fire-arrow"],
@@ -320,7 +320,7 @@
   },
   {
     "id": "monsters/act1.vile-hunter",
-    "name": "Vile Hunter",
+    "name": "monsters.vileHunter",
     "life": [110, 145],
     "lifeGrowth": [11, 15],
     "skills": ["monster-strong-melee", "monster-charge"],
@@ -334,7 +334,7 @@
   },
   {
     "id": "monsters/act1.dark-stalker",
-    "name": "Dark Stalker",
+    "name": "monsters.darkStalker",
     "life": [100, 150],
     "lifeGrowth": [10, 15],
     "skills": ["monster-strong-melee", "monster-charge"],
@@ -348,7 +348,7 @@
   },
   {
     "id": "monsters/act1.coldcrow",
-    "name": "Coldcrow",
+    "name": "monsters.coldcrow",
     "life": [340, 460],
     "lifeGrowth": [34, 46],
     "skills": ["monster-weak-ranged", "monster-frost-bolt", "monster-frost-nova"],
@@ -361,7 +361,7 @@
   },
   {
     "id": "monsters/act1.brute",
-    "name": "Brute",
+    "name": "monsters.brute",
     "life": [120, 160],
     "lifeGrowth": [12, 16],
     "skills": ["monster-strong-melee", "monster-charge"],
@@ -375,7 +375,7 @@
   },
   {
     "id": "monsters/act1.yeti",
-    "name": "Yeti",
+    "name": "monsters.yeti",
     "life": [160, 210],
     "lifeGrowth": [16, 21],
     "skills": ["monster-strong-melee", "monster-rend"],
@@ -389,7 +389,7 @@
   },
   {
     "id": "monsters/act1.crusher",
-    "name": "Crusher",
+    "name": "monsters.crusher",
     "life": [220, 280],
     "lifeGrowth": [22, 28],
     "skills": ["monster-strong-melee", "monster-leap-attack", "monster-rend"],
@@ -403,7 +403,7 @@
   },
   {
     "id": "monsters/act1.treehead-woodfist",
-    "name": "Treehead Woodfist",
+    "name": "monsters.treeheadWoodfist",
     "life": [620, 780],
     "lifeGrowth": [60, 78],
     "skills": ["monster-strong-melee", "monster-leap-attack", "monster-enrage"],
@@ -416,7 +416,7 @@
   },
   {
     "id": "monsters/act1.pitspawn-fouldog",
-    "name": "Pitspawn Fouldog",
+    "name": "monsters.pitspawnFouldog",
     "life": [520, 680],
     "lifeGrowth": [52, 68],
     "skills": ["monster-strong-melee", "monster-poison-spit", "monster-rend"],
@@ -429,7 +429,7 @@
   },
   {
     "id": "monsters/act1.returned",
-    "name": "Returned",
+    "name": "monsters.returned",
     "life": [85, 115],
     "lifeGrowth": [8, 12],
     "skills": ["monster-strong-melee"],
@@ -443,7 +443,7 @@
   },
   {
     "id": "monsters/act1.bone-warrior",
-    "name": "Bone Warrior",
+    "name": "monsters.boneWarrior",
     "life": [70, 100],
     "lifeGrowth": [7, 10],
     "skills": ["monster-strong-melee"],
@@ -457,7 +457,7 @@
   },
   {
     "id": "monsters/act1.returned-archer",
-    "name": "Returned Archer",
+    "name": "monsters.returnedArcher",
     "life": [80, 110],
     "lifeGrowth": [8, 11],
     "skills": ["monster-weak-ranged"],
@@ -471,7 +471,7 @@
   },
   {
     "id": "monsters/act1.burning-dead-mage",
-    "name": "Burning Dead Mage",
+    "name": "monsters.burningDeadMage",
     "life": [110, 150],
     "lifeGrowth": [11, 15],
     "skills": ["monster-fire-bolt", "monster-bone-spirit"],
@@ -485,7 +485,7 @@
   },
   {
     "id": "monsters/act1.bone-ash",
-    "name": "Bone Ash",
+    "name": "monsters.boneAsh",
     "life": [580, 740],
     "lifeGrowth": [58, 74],
     "skills": ["monster-bone-spirit", "monster-bone-prison", "monster-summon-adds"],
@@ -498,7 +498,7 @@
   },
   {
     "id": "monsters/act1.the-countess",
-    "name": "The Countess",
+    "name": "monsters.theCountess",
     "life": [700, 880],
     "lifeGrowth": [70, 88],
     "skills": ["monster-strong-melee", "monster-fire-bolt", "monster-fire-ball"],
@@ -511,7 +511,7 @@
   },
   {
     "id": "monsters/act1.griswold",
-    "name": "Griswold",
+    "name": "monsters.griswold",
     "life": [760, 920],
     "lifeGrowth": [76, 92],
     "skills": ["monster-strong-melee", "monster-charge", "monster-rend"],
@@ -524,7 +524,7 @@
   },
   {
     "id": "monsters/act1.the-smith",
-    "name": "The Smith",
+    "name": "monsters.theSmith",
     "life": [820, 1000],
     "lifeGrowth": [82, 100],
     "skills": ["monster-strong-melee", "monster-leap-attack", "monster-enrage"],
@@ -537,7 +537,7 @@
   },
   {
     "id": "monsters/act1.blood-raven",
-    "name": "Blood Raven",
+    "name": "monsters.bloodRaven",
     "life": [500, 700],
     "lifeGrowth": [50, 70],
     "skills": ["monster-fire-arrow", "monster-summon-adds"],
@@ -550,7 +550,7 @@
   },
   {
     "id": "monsters/act1.andariel",
-    "name": "Andariel, Maiden of Anguish",
+    "name": "monsters.andariel",
     "life": [2200, 2800],
     "lifeGrowth": [220, 280],
     "skills": ["monster-strong-melee", "monster-poison-spit", "monster-poison-cloud", "monster-charge"],

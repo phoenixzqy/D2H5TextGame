@@ -1,7 +1,7 @@
 [
   {
     "id": "acts/act1",
-    "name": "Act I — Sightless Eye",
+    "name": "maps.act.act1",
     "act": 1,
     "town": "Rogue Encampment",
     "reqLevel": 1,
@@ -16,7 +16,7 @@
   },
   {
     "id": "acts/act2",
-    "name": "Act II — Secret of the Vizjerei",
+    "name": "maps.act.act2",
     "act": 2,
     "town": "Lut Gholein",
     "reqLevel": 14,
@@ -31,7 +31,7 @@
   },
   {
     "id": "acts/act3",
-    "name": "Act III — Infernal Gate",
+    "name": "maps.act.act3",
     "act": 3,
     "town": "Kurast Docks",
     "reqLevel": 26,
@@ -46,7 +46,7 @@
   },
   {
     "id": "acts/act4",
-    "name": "Act IV — Harrowing",
+    "name": "maps.act.act4",
     "act": 4,
     "town": "Pandemonium Fortress",
     "reqLevel": 40,
@@ -60,7 +60,7 @@
   },
   {
     "id": "acts/act5",
-    "name": "Act V — Lord of Destruction",
+    "name": "maps.act.act5",
     "act": 5,
     "town": "Harrogath",
     "reqLevel": 55,

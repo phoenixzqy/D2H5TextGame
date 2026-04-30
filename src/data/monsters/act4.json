@@ -1,7 +1,7 @@
 [
   {
     "id": "monsters/act4.venom-lord",
-    "name": "Venom Lord",
+    "name": "monsters.venomLord",
     "life": [
       300,
       400
@@ -39,7 +39,7 @@
   },
   {
     "id": "monsters/act4.abyss-knight",
-    "name": "Abyss Knight",
+    "name": "monsters.abyssKnight",
     "life": [
       350,
       500
@@ -75,7 +75,7 @@
   },
   {
     "id": "monsters/act4.stygian-doll",
-    "name": "Stygian Doll",
+    "name": "monsters.stygianDoll",
     "life": [
       100,
       150
@@ -109,7 +109,7 @@
   },
   {
     "id": "monsters/act4.damned",
-    "name": "The Damned",
+    "name": "monsters.damned",
     "life": [
       150,
       200
@@ -142,7 +142,7 @@
   },
   {
     "id": "monsters/act4.doom-caster",
-    "name": "Doom Caster",
+    "name": "monsters.doomCaster",
     "life": [
       280,
       380
@@ -179,7 +179,7 @@
   },
   {
     "id": "monsters/act4.oblivion-knight",
-    "name": "Oblivion Knight",
+    "name": "monsters.oblivionKnight",
     "life": [
       320,
       450
@@ -219,7 +219,7 @@
   },
   {
     "id": "monsters/act4.pit-lord",
-    "name": "Pit Lord",
+    "name": "monsters.pitLord",
     "life": [
       400,
       600
@@ -256,7 +256,7 @@
   },
   {
     "id": "monsters/act4.mega-demon",
-    "name": "Mega Demon",
+    "name": "monsters.megaDemon",
     "life": [
       450,
       650
@@ -293,7 +293,7 @@
   },
   {
     "id": "monsters/act4.izual",
-    "name": "Izual",
+    "name": "monsters.izual",
     "life": [
       2500,
       3000
@@ -319,7 +319,7 @@
   },
   {
     "id": "monsters/act4.diablo",
-    "name": "Diablo",
+    "name": "monsters.diablo",
     "life": [
       5000,
       6000

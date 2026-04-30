@@ -1,7 +1,7 @@
 [
   {
     "id": "areas/act3-spider-forest",
-    "name": "Spider Forest",
+    "name": "maps.area.act3-spider-forest",
     "actId": "acts/act3",
     "areaLevel": 27,
     "hasBoss": false,
@@ -42,7 +42,7 @@
   },
   {
     "id": "areas/act3-great-marsh",
-    "name": "Great Marsh",
+    "name": "maps.area.act3-great-marsh",
     "actId": "acts/act3",
     "areaLevel": 29,
     "hasBoss": false,
@@ -83,7 +83,7 @@
   },
   {
     "id": "areas/act3-flayer-jungle",
-    "name": "Flayer Jungle",
+    "name": "maps.area.act3-flayer-jungle",
     "actId": "acts/act3",
     "areaLevel": 32,
     "hasBoss": true,
@@ -136,7 +136,7 @@
   },
   {
     "id": "areas/act3-kurast-bazaar",
-    "name": "Kurast Bazaar",
+    "name": "maps.area.act3-kurast-bazaar",
     "actId": "acts/act3",
     "areaLevel": 35,
     "hasBoss": true,
@@ -189,7 +189,7 @@
   },
   {
     "id": "areas/act3-travincal",
-    "name": "Travincal",
+    "name": "maps.area.act3-travincal",
     "actId": "acts/act3",
     "areaLevel": 38,
     "hasBoss": true,
@@ -240,7 +240,7 @@
   },
   {
     "id": "areas/act3-durance-of-hate",
-    "name": "Durance of Hate (Mephisto)",
+    "name": "maps.area.act3-durance-of-hate",
     "actId": "acts/act3",
     "areaLevel": 40,
     "hasBoss": true,

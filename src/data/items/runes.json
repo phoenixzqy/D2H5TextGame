@@ -1,7 +1,7 @@
 [
   {
     "id": "runes/el",
-    "name": "El",
+    "name": "items.rune.el",
     "tier": 1,
     "weaponEffect": {
       "statMods": {
@@ -21,7 +21,7 @@
   },
   {
     "id": "runes/eld",
-    "name": "Eld",
+    "name": "items.rune.eld",
     "tier": 1,
     "weaponEffect": {},
     "armorEffect": {},
@@ -29,7 +29,7 @@
   },
   {
     "id": "runes/tir",
-    "name": "Tir",
+    "name": "items.rune.tir",
     "tier": 1,
     "weaponEffect": {
       "statMods": {
@@ -49,7 +49,7 @@
   },
   {
     "id": "runes/nef",
-    "name": "Nef",
+    "name": "items.rune.nef",
     "tier": 1,
     "weaponEffect": {},
     "armorEffect": {
@@ -65,7 +65,7 @@
   },
   {
     "id": "runes/eth",
-    "name": "Eth",
+    "name": "items.rune.eth",
     "tier": 1,
     "weaponEffect": {},
     "armorEffect": {
@@ -81,7 +81,7 @@
   },
   {
     "id": "runes/ith",
-    "name": "Ith",
+    "name": "items.rune.ith",
     "tier": 2,
     "weaponEffect": {},
     "armorEffect": {},
@@ -89,7 +89,7 @@
   },
   {
     "id": "runes/tal",
-    "name": "Tal",
+    "name": "items.rune.tal",
     "tier": 2,
     "weaponEffect": {},
     "armorEffect": {
@@ -105,7 +105,7 @@
   },
   {
     "id": "runes/ral",
-    "name": "Ral",
+    "name": "items.rune.ral",
     "tier": 2,
     "weaponEffect": {},
     "armorEffect": {
@@ -121,7 +121,7 @@
   },
   {
     "id": "runes/ort",
-    "name": "Ort",
+    "name": "items.rune.ort",
     "tier": 2,
     "weaponEffect": {},
     "armorEffect": {
@@ -137,7 +137,7 @@
   },
   {
     "id": "runes/thul",
-    "name": "Thul",
+    "name": "items.rune.thul",
     "tier": 2,
     "weaponEffect": {},
     "armorEffect": {
@@ -153,7 +153,7 @@
   },
   {
     "id": "runes/amn",
-    "name": "Amn",
+    "name": "items.rune.amn",
     "tier": 3,
     "weaponEffect": {},
     "armorEffect": {},
@@ -161,7 +161,7 @@
   },
   {
     "id": "runes/sol",
-    "name": "Sol",
+    "name": "items.rune.sol",
     "tier": 3,
     "weaponEffect": {},
     "armorEffect": {},
@@ -169,7 +169,7 @@
   },
   {
     "id": "runes/shael",
-    "name": "Shael",
+    "name": "items.rune.shael",
     "tier": 3,
     "weaponEffect": {
       "statMods": {
@@ -181,7 +181,7 @@
   },
   {
     "id": "runes/dol",
-    "name": "Dol",
+    "name": "items.rune.dol",
     "tier": 3,
     "weaponEffect": {},
     "armorEffect": {},
@@ -189,7 +189,7 @@
   },
   {
     "id": "runes/hel",
-    "name": "Hel",
+    "name": "items.rune.hel",
     "tier": 4,
     "weaponEffect": {},
     "armorEffect": {},
@@ -197,7 +197,7 @@
   },
   {
     "id": "runes/io",
-    "name": "Io",
+    "name": "items.rune.io",
     "tier": 4,
     "weaponEffect": {
       "coreStats": {
@@ -217,7 +217,7 @@
   },
   {
     "id": "runes/lum",
-    "name": "Lum",
+    "name": "items.rune.lum",
     "tier": 4,
     "weaponEffect": {
       "coreStats": {
@@ -237,7 +237,7 @@
   },
   {
     "id": "runes/ko",
-    "name": "Ko",
+    "name": "items.rune.ko",
     "tier": 5,
     "weaponEffect": {
       "coreStats": {
@@ -257,7 +257,7 @@
   },
   {
     "id": "runes/fal",
-    "name": "Fal",
+    "name": "items.rune.fal",
     "tier": 5,
     "weaponEffect": {
       "coreStats": {
@@ -277,7 +277,7 @@
   },
   {
     "id": "runes/lem",
-    "name": "Lem",
+    "name": "items.rune.lem",
     "tier": 5,
     "weaponEffect": {
       "statMods": {
@@ -297,7 +297,7 @@
   },
   {
     "id": "runes/pul",
-    "name": "Pul",
+    "name": "items.rune.pul",
     "tier": 6,
     "weaponEffect": {},
     "armorEffect": {
@@ -313,7 +313,7 @@
   },
   {
     "id": "runes/um",
-    "name": "Um",
+    "name": "items.rune.um",
     "tier": 6,
     "weaponEffect": {},
     "armorEffect": {
@@ -337,7 +337,7 @@
   },
   {
     "id": "runes/mal",
-    "name": "Mal",
+    "name": "items.rune.mal",
     "tier": 7,
     "weaponEffect": {},
     "armorEffect": {},
@@ -345,7 +345,7 @@
   },
   {
     "id": "runes/ist",
-    "name": "Ist",
+    "name": "items.rune.ist",
     "tier": 7,
     "weaponEffect": {
       "statMods": {
@@ -365,7 +365,7 @@
   },
   {
     "id": "runes/gul",
-    "name": "Gul",
+    "name": "items.rune.gul",
     "tier": 8,
     "weaponEffect": {
       "statMods": {
@@ -377,7 +377,7 @@
   },
   {
     "id": "runes/vex",
-    "name": "Vex",
+    "name": "items.rune.vex",
     "tier": 8,
     "weaponEffect": {},
     "armorEffect": {},
@@ -385,7 +385,7 @@
   },
   {
     "id": "runes/ohm",
-    "name": "Ohm",
+    "name": "items.rune.ohm",
     "tier": 9,
     "weaponEffect": {},
     "armorEffect": {},
@@ -393,7 +393,7 @@
   },
   {
     "id": "runes/lo",
-    "name": "Lo",
+    "name": "items.rune.lo",
     "tier": 9,
     "weaponEffect": {},
     "armorEffect": {},
@@ -401,7 +401,7 @@
   },
   {
     "id": "runes/sur",
-    "name": "Sur",
+    "name": "items.rune.sur",
     "tier": 10,
     "weaponEffect": {},
     "armorEffect": {
@@ -417,7 +417,7 @@
   },
   {
     "id": "runes/ber",
-    "name": "Ber",
+    "name": "items.rune.ber",
     "tier": 10,
     "weaponEffect": {},
     "armorEffect": {},
@@ -425,7 +425,7 @@
   },
   {
     "id": "runes/jah",
-    "name": "Jah",
+    "name": "items.rune.jah",
     "tier": 11,
     "weaponEffect": {},
     "armorEffect": {
@@ -441,7 +441,7 @@
   },
   {
     "id": "runes/cham",
-    "name": "Cham",
+    "name": "items.rune.cham",
     "tier": 11,
     "weaponEffect": {},
     "armorEffect": {},
@@ -449,7 +449,7 @@
   },
   {
     "id": "runes/zod",
-    "name": "Zod",
+    "name": "items.rune.zod",
     "tier": 12,
     "weaponEffect": {},
     "armorEffect": {},

@@ -1,7 +1,7 @@
 [
   {
     "id": "monsters/act5.barbarian-savage",
-    "name": "Barbarian Savage",
+    "name": "monsters.barbarianSavage",
     "life": [
       200,
       280
@@ -36,7 +36,7 @@
   },
   {
     "id": "monsters/act5.death-mauler",
-    "name": "Death Mauler",
+    "name": "monsters.deathMauler",
     "life": [
       350,
       500
@@ -72,7 +72,7 @@
   },
   {
     "id": "monsters/act5.overseer",
-    "name": "Overseer",
+    "name": "monsters.overseer",
     "life": [
       300,
       450
@@ -112,7 +112,7 @@
   },
   {
     "id": "monsters/act5.blood-lord",
-    "name": "Blood Lord",
+    "name": "monsters.bloodLord",
     "life": [
       500,
       700
@@ -148,7 +148,7 @@
   },
   {
     "id": "monsters/act5.warped-shaman",
-    "name": "Warped Shaman",
+    "name": "monsters.warpedShaman",
     "life": [
       280,
       400
@@ -184,7 +184,7 @@
   },
   {
     "id": "monsters/act5.succubus",
-    "name": "Succubus",
+    "name": "monsters.succubus",
     "life": [
       320,
       480
@@ -220,7 +220,7 @@
   },
   {
     "id": "monsters/act5.frozen-terror",
-    "name": "Frozen Terror",
+    "name": "monsters.frozenTerror",
     "life": [
       550,
       800
@@ -256,7 +256,7 @@
   },
   {
     "id": "monsters/act5.ancient-barbarian",
-    "name": "Ancient Barbarian",
+    "name": "monsters.ancientBarbarian",
     "life": [
       3000,
       4000
@@ -286,7 +286,7 @@
   },
   {
     "id": "monsters/act5.baal-minion",
-    "name": "Baal's Minion",
+    "name": "monsters.baalMinion",
     "life": [
       600,
       900
@@ -324,7 +324,7 @@
   },
   {
     "id": "monsters/act5.baal",
-    "name": "Baal",
+    "name": "monsters.baal",
     "life": [
       8000,
       10000
