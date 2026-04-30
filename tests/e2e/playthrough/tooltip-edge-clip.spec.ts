@@ -115,7 +115,7 @@ test.describe('Bug #8 — Tooltip viewport clip (mobile)', () => {
 
     // Move away to dismiss the tooltip.
     await page.mouse.move(viewport.width / 2, viewport.height / 2);
-    await page.waitForTimeout(200);
+    await expect(tooltip1).toBeHidden({ timeout: 2_000 });
 
     // Check last card (bottom-right corner).
     await allCards.last().hover();

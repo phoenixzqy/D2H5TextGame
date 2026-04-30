@@ -9,6 +9,7 @@ import { test, expect } from '@playwright/test';
 import {
   clearGameStorage,
   createCharacter,
+  flushSave,
   navTo,
   waitForBattleResolution,
   returnToTownFromCombat,
@@ -69,7 +70,7 @@ test.describe('Save / Load round trip', () => {
       .count();
 
     // Force flush of debounced save (debounce is 500ms) before reload.
-    await page.waitForTimeout(800);
+    await flushSave(page);
 
     // Reload — welcome gate should show "Continue"
     await page.reload();

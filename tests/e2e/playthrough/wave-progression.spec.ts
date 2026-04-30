@@ -66,7 +66,8 @@ test.describe('Bug #5 + #16 — Wave progression and elite/boss tier', () => {
     for (let w = 0; w < 5; w++) {
       const loaded = await waitForBattleLoaded(page, 3_000);
       if (!loaded) {
-        await page.waitForTimeout(500);
+        // Next iteration's waitForBattleLoaded() polls — no extra sleep needed.
+        // (Previously: page.waitForTimeout(500) between retries.)
       } else {
         await drainCurrentWave(page);
         await page.waitForFunction(
