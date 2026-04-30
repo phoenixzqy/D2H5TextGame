@@ -75,9 +75,13 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
   const { t } = useTranslation(['inventory', 'common', 'items', 'rarity']);
   const { t: tAffix } = useTranslation('affixes');
 
-  const showCurrent = props.mode === 'single' || props.current !== null;
+  // Compare mode always shows 3 columns (even when current is null, the
+  // empty-slot placeholder is rendered in the current column) so the
+  // header/data-col contract is stable for E2E and so layout doesn't shift
+  // when the user equips into an empty slot. Single mode is always 2 cols.
+  // showCurrent is always true; kept as a constant for readability.
   const showCandidate = props.mode === 'compare';
-  const colCount = 1 + (showCurrent ? 1 : 0) + (showCandidate ? 1 : 0);
+  const colCount = 2 + (showCandidate ? 1 : 0);
 
   const hasResist = RESIST_KEYS.some((k) => {
     if (props.mode === 'single') return props.resistances[k] !== 0;
@@ -103,7 +107,7 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
       >
         <colgroup>
           <col />
-          {showCurrent && <col className="w-[34%] sm:w-[32%]" />}
+          <col className="w-[34%] sm:w-[32%]" />
           {showCandidate && <col className="w-[40%] sm:w-[36%]" />}
         </colgroup>
         <thead>
@@ -114,27 +118,25 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
             >
               {t('equipFlow.compare.statHeader')}
             </th>
-            {showCurrent && (
-              <th
-                scope="col"
-                className="text-right pb-2 pl-2 font-normal align-bottom"
-                data-col="current"
-                data-testid="current-item-header"
-                data-empty={
-                  ((props.mode === 'single' && (props.emptySlot ?? false)) ||
-                    (props.mode === 'compare' && props.current === null))
-                    ? 'true'
-                    : 'false'
-                }
-              >
-                <HeaderCell
-                  label={t('equipFlow.compare.current')}
-                  item={props.mode === 'single' ? props.item : props.current}
-                  emptyAsSlot={props.mode === 'single' && (props.emptySlot ?? false)}
-                  t={t}
-                />
-              </th>
-            )}
+            <th
+              scope="col"
+              className="text-right pb-2 pl-2 font-normal align-bottom"
+              data-col="current"
+              data-testid="current-item-header"
+              data-empty={
+                ((props.mode === 'single' && (props.emptySlot ?? false)) ||
+                  (props.mode === 'compare' && props.current === null))
+                  ? 'true'
+                  : 'false'
+              }
+            >
+              <HeaderCell
+                label={t('equipFlow.compare.current')}
+                item={props.mode === 'single' ? props.item : props.current}
+                emptyAsSlot={props.mode === 'single' && (props.emptySlot ?? false)}
+                t={t}
+              />
+            </th>
             {props.mode === 'compare' && (
               <th
                 scope="col"
@@ -204,18 +206,20 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
                 )}
               </>
             );
-            const currentCell = showCurrent ? (
+            const currentCell = (
               <span className="text-d2-white/60">
-                {formatStatValue(meta.format, stat.current)}
+                {props.current === null
+                  ? '—'
+                  : formatStatValue(meta.format, stat.current)}
               </span>
-            ) : null;
+            );
             return (
               <StatRow
                 key={key}
                 label={label}
                 currentCell={currentCell}
                 candidateCell={candidateCell}
-                showCurrent={showCurrent}
+                showCurrent
                 showCandidate
               />
             );
@@ -261,16 +265,18 @@ export function StatSheet(props: StatSheetProps): JSX.Element {
                   )}
                 </>
               );
-              const currentCell = showCurrent ? (
-                <span className="text-d2-white/60">{formatResistValue(r.current)}</span>
-              ) : null;
+              const currentCell = (
+                <span className="text-d2-white/60">
+                  {props.current === null ? '—' : formatResistValue(r.current)}
+                </span>
+              );
               return (
                 <StatRow
                   key={key}
                   label={label}
                   currentCell={currentCell}
                   candidateCell={candidateCell}
-                  showCurrent={showCurrent}
+                  showCurrent
                   showCandidate
                 />
               );

@@ -79,7 +79,7 @@ describe('<ItemTooltip> Bug 1 — defenseLine guard', () => {
     // Also: no raw `防御` token should appear in the render output —
     // proving t('tooltip.defense', { value: undefined }) was not called.
     const tooltip = screen.getByTestId('item-tooltip');
-    expect(tooltip.textContent ?? '').not.toMatch(/防御/);
+    expect(tooltip.textContent || "").not.toMatch(/防御/);
   });
 
   it('returns no defense line when item.baseRolls.defense is non-finite', () => {
@@ -88,8 +88,8 @@ describe('<ItemTooltip> Bug 1 — defenseLine guard', () => {
         <ItemTooltip
           item={baseItem('items/base/armor-degenerate', {
             // even with rolls present, base is bad → no line
-            baseRolls: { defense: NaN } as unknown as Item['baseRolls'],
-          })}
+            baseRolls: { defense: NaN } as Item['baseRolls'],
+          } as Partial<Item>)}
         />
       )
     );
@@ -99,7 +99,7 @@ describe('<ItemTooltip> Bug 1 — defenseLine guard', () => {
   it('renders the defense line for well-formed armor', () => {
     render(wrap(<ItemTooltip item={baseItem('items/base/armor-good')} />));
     const def = screen.getByTestId('item-tooltip-defense');
-    expect(def.textContent ?? '').toMatch(/25/);
+    expect(def.textContent || "").toMatch(/25/);
   });
 
   it('does not render defense line for weapons (negative case)', () => {
@@ -108,3 +108,4 @@ describe('<ItemTooltip> Bug 1 — defenseLine guard', () => {
     expect(screen.getByTestId('item-tooltip-damage')).toBeInTheDocument();
   });
 });
+
