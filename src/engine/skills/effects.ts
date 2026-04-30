@@ -9,7 +9,7 @@
  * @module engine/skills/effects
  */
 
-import type { ComboTag, SkillTarget } from '../types/skills';
+import type { ComboTag, SkillTarget, SkillRequirement } from '../types/skills';
 import type { DamageType } from '../types/attributes';
 
 /** Damage primitive. */
@@ -93,4 +93,12 @@ export interface RegisteredSkill {
   readonly summonOnStart?: boolean;
   /** Min level to use. */
   readonly minLevel: number;
+  /**
+   * Equipment gating. When present, the engine's
+   * {@link import('../ai/policy').chooseSkill} skips this skill unless
+   * the unit's `equippedWeapon` satisfies the requirement
+   * (see {@link import('./eligibility').canCastSkill}).
+   * Absent ⇒ always usable.
+   */
+  readonly requires?: SkillRequirement;
 }
