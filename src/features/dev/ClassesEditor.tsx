@@ -1,7 +1,9 @@
 import { NumberField, StringListField } from './DevEditorFields';
 import { DevDataManager } from './DevDataManager';
-import { asNumber, asRecord, getAtPath, type JsonRecord } from './devJson';
+import { DevImageField } from './DevImageField';
+import { asNumber, asRecord, asString, getAtPath, type JsonRecord } from './devJson';
 import { classFiles } from './devPaths';
+import { resolveClassPortrait } from '@/ui/cardAssets';
 
 export function ClassesEditor() {
   return (
@@ -18,8 +20,14 @@ function ClassFields({ entry, onChange }: { readonly entry: JsonRecord; readonly
   const stats = asRecord(entry.startingStats);
   const growth = asRecord(entry.statGrowth);
   const previewLevels = [1, 10, 30];
+  const rawId = asString(entry.id);
+  // Class IDs are `classes/<slug>`; the resolver strips the first segment.
+  const slug = rawId.includes('/') ? rawId.slice(rawId.indexOf('/') + 1) : rawId;
   return (
     <div className="space-y-4">
+      {slug ? (
+        <DevImageField kind="class" entityId={slug} inferredPath={resolveClassPortrait(slug)} />
+      ) : null}
       <div>
         <h2 className="mb-2 font-serif text-lg text-d2-gold">Starting stats</h2>
         <div className="grid gap-3 sm:grid-cols-2">

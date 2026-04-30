@@ -18,7 +18,8 @@ const schemaRules: readonly { readonly pattern: RegExp; readonly schemaFile: str
   { pattern: /^src\/data\/items\/bases\.json$/, schemaFile: 'item-base.schema.json' },
   { pattern: /^src\/data\/items\/uniques\.json$/, schemaFile: 'unique.schema.json' },
   { pattern: /^src\/data\/items\/sets\.json$/, schemaFile: 'set.schema.json' },
-  { pattern: /^src\/data\/maps\/sub-areas\/[a-z0-9-]+\.json$/, schemaFile: 'sub-area.schema.json' }
+  { pattern: /^src\/data\/maps\/sub-areas\/[a-z0-9-]+\.json$/, schemaFile: 'sub-area.schema.json' },
+  { pattern: /^src\/data\/imageOverrides\.json$/, schemaFile: 'image-overrides.schema.json' }
 ];
 
 interface DevWriteBody {

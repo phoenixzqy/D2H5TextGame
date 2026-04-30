@@ -131,3 +131,72 @@ export function NumberPairField({ entry, path, label, onChange }: NumberPairProp
     </fieldset>
   );
 }
+
+
+export interface EnumOption {
+  readonly value: string;
+  readonly label: string;
+}
+
+interface EnumFieldProps {
+  readonly entry: JsonRecord;
+  readonly path: readonly string[];
+  readonly label: string;
+  readonly options: readonly EnumOption[];
+  readonly onChange: (entry: JsonRecord) => void;
+  /** When true, renders a red border + warning hint below the select. */
+  readonly invalid?: boolean;
+  /** Optional warning text shown when invalid is true (already i18n-resolved). */
+  readonly invalidHint?: string;
+  /** Show an empty -- option so the field can be left unset. Default: true. */
+  readonly allowEmpty?: boolean;
+}
+
+/**
+ * Generic enum-as-select dev-tool field. Used for weaponType and
+ * handedness on weapon item bases. Persists the raw string value at
+ * path (or removes the key entirely when set to empty).
+ */
+export function EnumField({ entry, path, label, options, onChange, invalid = false, invalidHint, allowEmpty = true }: EnumFieldProps) {
+  const id = `dev-${path.join('-')}`;
+  const raw = getAtPath(entry, path);
+  const value = typeof raw === 'string' ? raw : '';
+  const baseClass = 'w-full min-h-[40px] rounded border bg-d2-bg px-2 py-1 text-d2-white focus:outline-none';
+  const borderClass = invalid ? 'border-red-500 focus:border-red-400' : 'border-d2-border focus:border-d2-gold';
+  return (
+    <label className="block text-sm text-d2-white/80" htmlFor={id}>
+      <span className="mb-1 block">{label}</span>
+      <select
+        id={id}
+        value={value}
+        onChange={(event) => {
+          const next = event.target.value;
+          if (next === '') {
+            // Remove the key entirely when "unset" is chosen.
+            const head = path[0];
+            if (path.length === 1 && head !== undefined) {
+              const cloned: JsonRecord = { ...entry };
+              // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+              delete cloned[head];
+              onChange(cloned);
+              return;
+            }
+            onChange(setAtPath(entry, path, undefined));
+            return;
+          }
+          onChange(setAtPath(entry, path, next));
+        }}
+        aria-invalid={invalid}
+        className={[baseClass, borderClass].join(' ')}
+      >
+        {allowEmpty ? <option value="">--</option> : null}
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>{option.label}</option>
+        ))}
+      </select>
+      {invalid && invalidHint ? (
+        <span role="alert" className="mt-1 block text-xs text-red-400">{invalidHint}</span>
+      ) : null}
+    </label>
+  );
+}
