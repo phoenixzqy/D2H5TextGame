@@ -548,6 +548,11 @@ function CombatLog({
  * Order the allies list so that each summon appears immediately after its
  * owner. Heroes/non-summons keep their relative spawn order; orphan
  * summons (no matching owner in the team) fall through to the end.
+ *
+ * Dead summons are filtered out entirely — they don't contribute to
+ * combat any more and a greyed-out skeleton card is just visual noise.
+ * Hero/merc cards are kept on death so the player can still read their
+ * final state.
  */
 function orderAlliesWithSummons(team: readonly CombatUnit[]): CombatUnit[] {
   const heroes: CombatUnit[] = [];
@@ -556,6 +561,8 @@ function orderAlliesWithSummons(team: readonly CombatUnit[]): CombatUnit[] {
 
   for (const u of team) {
     if (inferKind(u) === 'summon') {
+      // Skip corpses — summons leave no card behind once they die.
+      if (u.life <= 0) continue;
       const owner = u.summonOwnerId;
       if (owner) {
         const arr = summonsByOwner.get(owner) ?? [];

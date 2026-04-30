@@ -12,7 +12,8 @@
     "test": "vitest",
     "test:e2e": "playwright test",
     "format": "prettier --write \"src/**/*.{ts,tsx,json,css}\" \"*.{json,md}\"",
-    "image-gen": "node .github/skills/image-gen/scripts/image-gen.mjs"
+    "image-gen": "node .github/skills/image-gen/scripts/image-gen.mjs",
+    "sync-asset-maps": "node scripts/sync-asset-maps.mjs"
   },
   "dependencies": {
     "@floating-ui/react": "^0.27.19",
