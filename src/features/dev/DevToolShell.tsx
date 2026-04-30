@@ -17,19 +17,9 @@ export default function DevToolShell() {
   return (
     <div className="min-h-[100dvh] bg-d2-bg text-d2-white md:flex">
       <aside className="border-b border-d2-border bg-d2-panel p-3 md:w-64 md:border-b-0 md:border-r">
-        <div className="mb-4 flex items-start justify-between gap-2">
-          <div>
-            <p className="text-xs uppercase tracking-wide text-d2-white/50">Localhost only</p>
-            <h1 className="font-serif text-2xl text-d2-gold">Dev Tool</h1>
-          </div>
-          <NavLink
-            to="/"
-            className="shrink-0 rounded border border-d2-border px-2 py-1 text-xs text-d2-white/80 hover:border-d2-gold hover:text-d2-gold"
-            data-testid="dev-back-to-game"
-            title="Back to game"
-          >
-            ← Game
-          </NavLink>
+        <div className="mb-4">
+          <p className="text-xs uppercase tracking-wide text-d2-white/50">Localhost only</p>
+          <h1 className="font-serif text-2xl text-d2-gold">Dev Tool</h1>
         </div>
         <nav aria-label="Dev tool">
           <ul className="grid gap-2">

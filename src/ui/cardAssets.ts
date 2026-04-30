@@ -19,56 +19,6 @@ import {
   BASE_ITEM_ICONS,
   ZONE_ART
 } from './generatedAssetMaps';
-import basesJson from '@/data/items/bases.json';
-import uniquesJson from '@/data/items/uniques.json';
-import amazonJson from '@/data/classes/amazon.json';
-import assassinJson from '@/data/classes/assassin.json';
-import barbarianJson from '@/data/classes/barbarian.json';
-import druidJson from '@/data/classes/druid.json';
-import necromancerJson from '@/data/classes/necromancer.json';
-import paladinJson from '@/data/classes/paladin.json';
-import sorceressJson from '@/data/classes/sorceress.json';
-import act1Json from '@/data/monsters/act1.json';
-import act2Json from '@/data/monsters/act2.json';
-import act3Json from '@/data/monsters/act3.json';
-import act4Json from '@/data/monsters/act4.json';
-import act5Json from '@/data/monsters/act5.json';
-
-/**
- * Build a `key → imagePath` override map from a JSON entries array.
- * `key` strips the leading `<category>/` prefix the way `stripPrefix` does.
- */
-interface JsonEntryWithImage { readonly id?: unknown; readonly imagePath?: unknown }
-function collectOverrides(entries: readonly unknown[]): Record<string, string> {
-  const out: Record<string, string> = {};
-  for (const raw of entries) {
-    if (!raw || typeof raw !== 'object') continue;
-    const e = raw as JsonEntryWithImage;
-    const id = typeof e.id === 'string' ? e.id : null;
-    const img = typeof e.imagePath === 'string' && e.imagePath.length > 0 ? e.imagePath : null;
-    if (id && img) {
-      out[id] = img;
-      const slash = id.indexOf('/');
-      if (slash !== -1) out[id.slice(slash + 1)] = img;
-    }
-  }
-  return out;
-}
-
-const CLASS_OVERRIDES = collectOverrides([
-  amazonJson, assassinJson, barbarianJson, druidJson, necromancerJson, paladinJson, sorceressJson
-]);
-const MONSTER_OVERRIDES = collectOverrides([
-  ...(act1Json as readonly unknown[]),
-  ...(act2Json as readonly unknown[]),
-  ...(act3Json as readonly unknown[]),
-  ...(act4Json as readonly unknown[]),
-  ...(act5Json as readonly unknown[])
-]);
-const ITEM_OVERRIDES: Record<string, string> = {
-  ...collectOverrides(basesJson as readonly unknown[]),
-  ...collectOverrides(uniquesJson as readonly unknown[])
-};
 
 /** Prefix-rule table for mercenary archetype proxying. First match wins. */
 const MERC_ARCHETYPE_RULES: readonly (readonly [prefix: string, archetype: string | null])[] = [
@@ -107,8 +57,6 @@ function warnMissing(category: string, key: string): void {
 
 export function resolveClassPortrait(classId: string): string | null {
   const key = stripPrefix(classId);
-  if (classId in CLASS_OVERRIDES) return CLASS_OVERRIDES[classId] ?? null;
-  if (key in CLASS_OVERRIDES) return CLASS_OVERRIDES[key] ?? null;
   if (key in CLASS_PORTRAITS) return CLASS_PORTRAITS[key] ?? null;
   warnMissing('class', key);
   return null;
@@ -116,8 +64,6 @@ export function resolveClassPortrait(classId: string): string | null {
 
 export function resolveMonsterArt(monsterId: string): string | null {
   const key = stripPrefix(monsterId);
-  if (monsterId in MONSTER_OVERRIDES) return MONSTER_OVERRIDES[monsterId] ?? null;
-  if (key in MONSTER_OVERRIDES) return MONSTER_OVERRIDES[key] ?? null;
   if (key in MONSTER_ART) return MONSTER_ART[key] ?? null;
   warnMissing('monster', key);
   return null;
@@ -170,10 +116,6 @@ function inferBaseArchetype(slug: string): string | null {
 export function resolveItemIcon(baseId: string): string | null {
   if (!baseId) return null;
   const key = stripPrefix(baseId);
-
-  // 0) JSON-driven override (devtool `imagePath` field).
-  if (baseId in ITEM_OVERRIDES) return ITEM_OVERRIDES[baseId] ?? null;
-  if (key in ITEM_OVERRIDES) return ITEM_OVERRIDES[key] ?? null;
 
   // 1) Unique items: `unique.<slug>` or `unique/<slug>`
   const uniqueMatch = /^unique[./](.+)$/.exec(key);

@@ -13,7 +13,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { TFunction } from 'i18next';
-import { Button, ItemCompareTooltip, RarityText, StatSheet, resolveItemIcon, tItemName } from '@/ui';
+import { Button, ItemCompareTooltip, ItemTooltip, RarityText, StatSheet, resolveItemIcon, tItemName } from '@/ui';
 import { useInventoryStore, usePlayerStore } from '@/stores';
 import {
   checkEligibility,
@@ -154,7 +154,7 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
                         'w-full flex items-center gap-3 p-3 rounded border text-left',
                         'min-h-[44px] transition-colors',
                         isSelected
-                          ? 'border-d2-gold bg-d2-gold/10 shadow-md shadow-d2-gold/20'
+                          ? 'border-d2-gold bg-d2-gold/10'
                           : 'border-d2-border bg-d2-bg/40 hover:border-d2-gold/60',
                         elig.eligible ? '' : 'opacity-50 cursor-not-allowed'
                       ].join(' ')}
@@ -164,9 +164,8 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
                         <RarityText rarity={it.rarity} className="font-serif truncate block">
                           {tItemName(t, it)}
                         </RarityText>
-                        <div className="text-xs text-d2-white/60 flex flex-wrap gap-x-2">
-                          <span>{t('itemLevel')} {it.level}</span>
-                          <RowStatBadge item={it} />
+                        <div className="text-xs text-d2-white/60">
+                          {t('itemLevel')} {it.level}
                         </div>
                         {!elig.eligible && (
                           <div className="text-xs text-d2-red mt-0.5">
@@ -174,9 +173,6 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
                           </div>
                         )}
                       </div>
-                      {isSelected && (
-                        <span aria-hidden className="shrink-0 text-d2-gold">✓</span>
-                      )}
                     </button>
                   </li>
                 );
@@ -185,20 +181,12 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
           )}
 
           {compare ? (
-            <div
-              className="space-y-3 rounded-lg border border-d2-gold/40 bg-d2-bg/60 p-3"
-              data-testid="equip-picker-compare"
-            >
-              <div className="flex items-center gap-3">
-                <ItemThumb item={compare.candidate} large />
-                <div className="min-w-0 flex-1">
-                  <RarityText rarity={compare.candidate.rarity} className="font-serif text-sm md:text-base font-bold truncate block">
-                    {tItemName(t, compare.candidate)}
-                  </RarityText>
-                  <div className="text-[11px] text-d2-white/60 truncate">
-                    {t('equipFlow.compare.candidate')} · {t('itemLevel')} {compare.candidate.level}
-                  </div>
-                </div>
+            <div className="space-y-3">
+              {/* Show the candidate item's own stat sheet so the user
+                  sees its intrinsic properties (affixes, damage/defense)
+                  alongside the player-stat comparison. */}
+              <div className="flex justify-center">
+                <ItemTooltip item={compare.candidate} />
               </div>
               <ItemCompareTooltip compare={compare} />
             </div>
@@ -230,11 +218,10 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
   );
 }
 
-function ItemThumb({ item, large = false }: { readonly item: Item; readonly large?: boolean }) {
+function ItemThumb({ item }: { readonly item: Item }) {
   const icon = resolveItemIcon(item.baseId);
-  const size = large ? 'w-16 h-16' : 'w-12 h-12';
   return (
-    <div className={`${size} shrink-0 border border-d2-border bg-d2-panel rounded flex items-center justify-center overflow-hidden`}>
+    <div className="w-12 h-12 shrink-0 border border-d2-border bg-d2-panel rounded flex items-center justify-center overflow-hidden">
       {icon ? (
         <img src={icon} alt="" loading="lazy" className="w-full h-full object-contain" />
       ) : (
@@ -242,21 +229,6 @@ function ItemThumb({ item, large = false }: { readonly item: Item; readonly larg
       )}
     </div>
   );
-}
-
-function RowStatBadge({ item }: { readonly item: Item }) {
-  const base = loadItemBases().get(item.baseId);
-  if (!base) return null;
-  if (base.type === 'weapon' && base.baseDamage) {
-    const min = item.baseRolls?.attack ?? base.baseDamage.min;
-    const max = item.baseRolls?.attack ?? base.baseDamage.max;
-    return <span className="text-d2-white/70">⚔ {min}–{max}</span>;
-  }
-  if (base.type === 'armor' && typeof base.baseDefense === 'number' && base.baseDefense > 0) {
-    const v = item.baseRolls?.defense ?? base.baseDefense;
-    return <span className="text-d2-white/70">🛡 {v}</span>;
-  }
-  return null;
 }
 
 function formatReasons(elig: EligibilityResult, t: TFunction): string {

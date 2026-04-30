@@ -79,17 +79,17 @@ export function ItemTooltip({ item, className = '' }: ItemTooltipProps): JSX.Ele
     : null;
 
   // Pre-compute damage/defense lines so JSX doesn't need ?. dance.
-  const damageMin = item.baseRolls?.attack ?? base?.baseDamage?.min;
-  const damageMax = item.baseRolls?.attack ?? base?.baseDamage?.max;
   const damageLine =
-    base?.type === 'weapon' && base.baseDamage && damageMin !== undefined && damageMax !== undefined
-      ? t('tooltip.damage', { min: damageMin, max: damageMax })
+    base?.type === 'weapon' && base.baseDamage
+      ? t('tooltip.damage', {
+          min: item.baseRolls?.attack ?? base.baseDamage.min,
+          max: item.baseRolls?.attack ?? base.baseDamage.max
+        })
       : null;
-  const defenseValue =
+  const defenseLine =
     base?.type === 'armor' && typeof base.baseDefense === 'number' && base.baseDefense > 0
-      ? (item.baseRolls?.defense ?? base.baseDefense)
+      ? t('tooltip.defense', { value: item.baseRolls?.defense ?? base.baseDefense })
       : null;
-  const defenseLine = defenseValue !== null ? t('tooltip.defense', { value: defenseValue }) : null;
 
   const reqRows: string[] = [];
   if (base) {
