@@ -43,6 +43,29 @@ export type ItemBaseType =
   | 'gem'
   | 'material';
 
+/**
+ * Weapon class enumeration (D2-canonical, v1).
+ *
+ * `claw` is intentionally excluded — Assassin is not part of the v1
+ * roster. Drives skill eligibility (e.g. Bow Specialist requires
+ * `bow|crossbow`) and any future weapon-class scaling/affix tables.
+ *
+ * Authoritative spec: GD-WEAPONTYPE-SPEC.
+ */
+export type WeaponType =
+  | 'sword' | 'axe' | 'mace' | 'dagger' | 'spear' | 'polearm'
+  | 'bow' | 'crossbow' | 'throwing'
+  | 'staff' | 'wand' | 'scepter' | 'orb';
+
+/**
+ * One- vs. two-handed weapon classification.
+ *
+ * Drives the equip-slot mutex: a `twoHanded` weapon is mutually
+ * exclusive with the offhand slot. Dual-wield (1H + 1H) is deferred
+ * to a follow-up branch.
+ */
+export type Handedness = 'oneHanded' | 'twoHanded';
+
 export type ItemStatKey =
   | 'attack' | 'life' | 'mana' | 'defense' | 'critChance' | 'critDamage'
   | 'physDodge' | 'magicDodge' | 'fireRes' | 'coldRes' | 'lightningRes'
@@ -62,6 +85,20 @@ export interface ItemBase {
   
   /** Base defense (for armor) */
   readonly baseDefense?: number;
+
+  /**
+   * Weapon class. Required when `type === 'weapon'` (enforced by
+   * `bases.json` JSON Schema). Optional on the interface so non-weapons
+   * are unaffected.
+   */
+  readonly weaponType?: WeaponType;
+
+  /**
+   * One- vs. two-handed. Required when `type === 'weapon'` (enforced by
+   * `bases.json` JSON Schema). Drives the 2H ↔ offhand mutex in
+   * {@link import('../inventory/equipValidator').isTwoHanded}.
+   */
+  readonly handedness?: Handedness;
   
   /** Required level */
   readonly reqLevel: number;

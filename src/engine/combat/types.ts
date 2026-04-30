@@ -9,6 +9,7 @@
 
 import type { DamageType, DerivedStats, Resistances } from '../types/attributes';
 import type { ComboTag } from '../types/skills';
+import type { WeaponType, Handedness } from '../types/items';
 
 /** Tag a unit's "side" in combat. */
 export type CombatSide = 'player' | 'enemy';
@@ -95,6 +96,19 @@ export interface CombatUnit {
   readonly kind?: 'hero' | 'merc' | 'summon' | 'monster';
   /** Owner id of a summon. Set by the engine when summons are spawned. */
   readonly summonOwnerId?: string;
+  /**
+   * Snapshot of the unit's currently equipped weapon, used by
+   * {@link import('../ai/policy').chooseSkill} to gate skills with
+   * {@link import('../types/skills').SkillRequirement}.
+   *
+   * `undefined` ⇒ no weapon information was plumbed through (legacy
+   * factories); skill-eligibility gating is then **disabled** for that
+   * unit. To model an unarmed unit explicitly, pass an empty object.
+   */
+  readonly equippedWeapon?: {
+    readonly weaponType?: WeaponType;
+    readonly handedness?: Handedness;
+  };
 }
 
 /**

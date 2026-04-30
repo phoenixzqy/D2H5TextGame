@@ -4,6 +4,7 @@
  */
 
 import type { DamageType, DamageInfo } from './attributes';
+import type { WeaponType, Handedness } from './items';
 
 /**
  * Skill target type
@@ -110,6 +111,21 @@ export interface SkillCost {
 }
 
 /**
+ * Equipment requirements that gate skill use.
+ *
+ * Each named field is a *whitelist*: when present, the equipped weapon
+ * must satisfy at least one entry. When absent, that dimension is
+ * unconstrained. An empty `requires` object (or no `requires` at all)
+ * means the skill is always usable.
+ *
+ * @see {@link import('../skills/eligibility').canCastSkill}
+ */
+export interface SkillRequirement {
+  readonly weaponType?: readonly WeaponType[];
+  readonly handedness?: readonly Handedness[];
+}
+
+/**
  * Skill definition
  * This is the immutable template for a skill
  */
@@ -170,6 +186,13 @@ export interface SkillDef {
     readonly cooldownPerLevel?: number; // negative = reduces CD
     readonly costPerLevel?: number;
   };
+
+  /**
+   * Equipment gating. When present, the player's currently equipped
+   * weapon must satisfy these requirements for the skill to be usable.
+   * If absent, the skill is always available.
+   */
+  readonly requires?: SkillRequirement;
 }
 
 /**

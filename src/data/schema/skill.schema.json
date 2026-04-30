@@ -125,9 +125,38 @@
         "cooldownPerLevel": { "type": "number" },
         "costPerLevel": { "type": "number" }
       }
+    },
+    "requires": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Equipment gate. The currently equipped weapon must satisfy each provided whitelist for the skill to be usable.",
+      "properties": {
+        "weaponType": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/weaponType" },
+          "minItems": 1
+        },
+        "handedness": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/handedness" },
+          "minItems": 1
+        }
+      }
     }
   },
   "$defs": {
+    "weaponType": {
+      "type": "string",
+      "enum": [
+        "sword", "axe", "mace", "dagger", "spear", "polearm",
+        "bow", "crossbow", "throwing",
+        "staff", "wand", "scepter", "orb"
+      ]
+    },
+    "handedness": {
+      "type": "string",
+      "enum": ["oneHanded", "twoHanded"]
+    },
     "damageType": {
       "type": "string",
       "enum": ["physical", "fire", "cold", "lightning", "arcane", "poison", "thorns"]

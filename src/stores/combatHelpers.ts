@@ -19,7 +19,7 @@ import {
   type WavePlan,
   type WaveSpec
 } from '@/engine/combat';
-import { loadAwardPools } from '@/data/loaders/loot';
+import { loadAwardPools, loadItemBases } from '@/data/loaders/loot';
 import { eliteConfig, monsters as monsterList } from '@/data/index';
 import { resolveSubArea } from './subAreaResolver';
 import { useCombatStore, type CombatLogEntry } from './combatStore';
@@ -32,9 +32,14 @@ import { mercToCombatUnit } from './mercToCombatUnit';
 import { createRng, hashSeed } from '@/engine/rng';
 
 /**
- * Convert a Player to a CombatUnit for battle
+ * Convert a Player to a CombatUnit for battle.
+ *
+ * Derives `equippedWeapon` from the player's equipment list so the AI
+ * skill chooser can apply weapon-type / handedness gates
+ * (see {@link import('@/engine/skills/eligibility').canCastSkill}).
  */
 export function playerToCombatUnit(player: Player): CombatUnit {
+  const equippedWeapon = resolveEquippedWeapon(player.equipment);
   return {
     id: player.id,
     name: player.name,
@@ -50,8 +55,28 @@ export function playerToCombatUnit(player: Player): CombatUnit {
     activeBuffIds: [],
     enraged: false,
     summonedAdds: false,
-    kind: 'hero'
+    kind: 'hero',
+    equippedWeapon
   };
+}
+
+function resolveEquippedWeapon(
+  equipment: readonly Item[]
+): {
+  weaponType?: import('@/engine/types/items').WeaponType;
+  handedness?: import('@/engine/types/items').Handedness;
+} {
+  const weapon = equipment.find((it) => it.equipSlot === 'weapon');
+  if (!weapon) return {};
+  const base = loadItemBases().get(weapon.baseId);
+  if (!base) return {};
+  const out: {
+    weaponType?: import('@/engine/types/items').WeaponType;
+    handedness?: import('@/engine/types/items').Handedness;
+  } = {};
+  if (base.weaponType !== undefined) out.weaponType = base.weaponType;
+  if (base.handedness !== undefined) out.handedness = base.handedness;
+  return out;
 }
 
 // ---------------------------------------------------------------------------
