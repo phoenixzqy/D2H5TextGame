@@ -1,6 +1,6 @@
 {
   "id": "classes/druid",
-  "name": "Druid",
+  "name": "character.classes.druid",
   "startingStats": { "strength": 15, "dexterity": 20, "vitality": 25, "energy": 20 },
   "statGrowth": { "strength": 1.5, "dexterity": 1.5, "vitality": 2.5, "energy": 1.75 },
   "lifePerLevel": 9,

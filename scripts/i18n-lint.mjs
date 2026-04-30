@@ -58,8 +58,11 @@ const USER_FACING_FIELDS = new Set([
   'label'
 ]);
 
-// Skip JSON Schema files — they describe shape, not content.
-const DATA_FILE_IGNORE = [/[\\/]schema[\\/]/];
+// Skip files that are not user-facing:
+//  - JSON Schema files (describe shape, not content)
+//  - src/data/loot/* — treasure-class and mf-curve names/descriptions are
+//    dev-only labels referenced by id, never displayed to the player.
+const DATA_FILE_IGNORE = [/[\\/]schema[\\/]/, /[\\/]data[\\/]loot[\\/]/];
 
 // Slug-like values pass through unflagged in `name`-like fields (e.g.
 // internal tree ids). Heuristic: ≤32 chars, only [a-z0-9_-].
