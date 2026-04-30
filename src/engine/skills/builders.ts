@@ -14,7 +14,7 @@
 
 import type { RegisteredSkill, SkillEffect } from './effects';
 import type { DamageType } from '../types/attributes';
-import type { SkillTarget, ComboTag } from '../types/skills';
+import type { SkillTarget, ComboTag, SkillRequirement } from '../types/skills';
 
 interface BuildSpec {
   readonly id: string;
@@ -30,6 +30,7 @@ interface BuildSpec {
   readonly buff?: { readonly id: string; readonly duration: number };
   readonly summon?: { readonly summonId: string; readonly max: number; readonly onStart?: boolean };
   readonly minLevel?: number;
+  readonly requires?: SkillRequirement;
 }
 
 function build(s: BuildSpec): RegisteredSkill {
@@ -68,7 +69,8 @@ function build(s: BuildSpec): RegisteredSkill {
     effects,
     minLevel: s.minLevel ?? 1,
     ...(s.buff ? { isBuff: true } : {}),
-    ...(s.summon?.onStart ? { summonOnStart: true } : {})
+    ...(s.summon?.onStart ? { summonOnStart: true } : {}),
+    ...(s.requires ? { requires: s.requires } : {})
   };
 }
 
@@ -114,7 +116,7 @@ export const DEFAULT_SKILLS: readonly RegisteredSkill[] = Object.freeze([
   build({ id: 'paladin.meditation', archetype: 'paladin', target: 'self', cooldown: 0, manaCost: 0, buff: { id: 'meditation', duration: -1 } }),
 
   // Amazon
-  build({ id: 'amazon.magic_arrow', archetype: 'amazon', target: 'single-enemy', cooldown: 1, manaCost: 5, damageType: 'arcane', base: [35, 50] }),
+  build({ id: 'amazon.magic_arrow', archetype: 'amazon', target: 'single-enemy', cooldown: 1, manaCost: 5, damageType: 'arcane', base: [35, 50], requires: { weaponType: ['bow', 'crossbow'] } }),
   build({ id: 'amazon.multiple_shot', archetype: 'amazon', target: 'area-enemies', cooldown: 2, manaCost: 15, damageType: 'physical', base: [40, 60] }),
   build({ id: 'amazon.freezing_arrow', archetype: 'amazon', target: 'area-enemies', cooldown: 2, manaCost: 20, damageType: 'cold', base: [50, 70], status: { id: 'chill' } }),
   build({ id: 'amazon.lightning_fury', archetype: 'amazon', target: 'all-enemies', cooldown: 3, manaCost: 30, damageType: 'lightning', base: [60, 90], status: { id: 'paralyze', chance: 0.2 } }),

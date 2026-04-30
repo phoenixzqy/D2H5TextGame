@@ -27,6 +27,9 @@
     ],
     "scaling": {
       "damagePerLevel": 4
+    },
+    "requires": {
+      "weaponType": ["bow", "crossbow"]
     }
   },
   {

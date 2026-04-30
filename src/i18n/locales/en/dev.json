@@ -1,0 +1,45 @@
+{
+  "backToGame": "← Back to game",
+  "imageField": {
+    "label": "Image preview",
+    "lookupKey": "Lookup key",
+    "overridePath": "Override path",
+    "overridePathPlaceholder": "/assets/d2/...",
+    "save": "Save override",
+    "clearOverride": "Clear override",
+    "saved": "Saved",
+    "saveFailed": "Save failed",
+    "loadFailed": "Failed to load overrides",
+    "noPreview": "No image",
+    "altInferred": "{{kind}} {{id}} (inferred art)",
+    "altOverride": "{{kind}} {{id}} (manual override)",
+    "badge": {
+      "override": "Override",
+      "inferred": "Inferred"
+    }
+  },
+  "itemsEditor": {
+    "weaponType": "Weapon type",
+    "handedness": "Handedness",
+    "requiredForWeapon": "Required for weapons"
+  },
+  "weaponType": {
+    "sword": "Sword",
+    "axe": "Axe",
+    "mace": "Mace",
+    "dagger": "Dagger",
+    "spear": "Spear",
+    "polearm": "Polearm",
+    "bow": "Bow",
+    "crossbow": "Crossbow",
+    "throwing": "Throwing",
+    "staff": "Staff",
+    "wand": "Wand",
+    "scepter": "Scepter",
+    "orb": "Orb"
+  },
+  "handedness": {
+    "oneHanded": "One-handed",
+    "twoHanded": "Two-handed"
+  }
+}

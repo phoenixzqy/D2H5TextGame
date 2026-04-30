@@ -80,6 +80,7 @@ type GameBridge = {
       runVictory: boolean;
       runDefeat: boolean;
       log: Array<{ message: string }>;
+      endCombat: () => void;
       resumePlayback: () => void;
       advanceEvent: () => void;
     };

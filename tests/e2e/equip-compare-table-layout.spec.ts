@@ -40,16 +40,18 @@ for (const locale of ['zh-CN', 'en'] as const) {
     const equipTab = page.getByRole('tab', { name: /装备|Equipment/i }).first();
     await equipTab.click();
 
-    // 1. candidate-only mode (slot empty + candidate selected)
+    // 1. compare with empty current slot — now also renders 3 cols (UX v3:
+    //    column structure stays stable; empty-slot placeholder occupies
+    //    the "Current" header so the user can see what's being replaced).
     const slot = page.getByTestId('equip-slot-weapon');
     await slot.click({ position: { x: 24, y: 24 } });
     await expect(page.getByTestId('equip-picker')).toBeVisible();
     await page.getByTestId(`equip-picker-row-${seeded.a}`).click();
     const compareTable = page.getByTestId('stat-compare-table');
     await expect(compareTable).toBeVisible();
-    await expect(compareTable).toHaveAttribute('data-cols', '2');
+    await expect(compareTable).toHaveAttribute('data-cols', '3');
     await page.screenshot({
-      path: path.join(OUTDIR, `candidate-only-${tag}-${locale}.png`),
+      path: path.join(OUTDIR, `candidate-empty-current-${tag}-${locale}.png`),
       fullPage: false
     });
     await page.getByTestId('equip-picker-confirm').click();

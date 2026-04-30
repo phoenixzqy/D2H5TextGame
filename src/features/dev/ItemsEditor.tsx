@@ -1,8 +1,19 @@
 import { useState } from 'react';
-import { CheckboxField, JsonField, NumberField, StringListField, TextField } from './DevEditorFields';
+import { useTranslation } from 'react-i18next';
+import { CheckboxField, EnumField, JsonField, NumberField, StringListField, TextField, type EnumOption } from './DevEditorFields';
 import { DevDataManager } from './DevDataManager';
-import type { JsonRecord } from './devJson';
+import { DevImageField } from './DevImageField';
+import { asString, type JsonRecord } from './devJson';
 import type { DevDataFile } from './devPaths';
+import { resolveItemIcon } from '@/ui/cardAssets';
+
+const WEAPON_TYPES = [
+  'sword', 'axe', 'mace', 'dagger', 'spear', 'polearm',
+  'bow', 'crossbow', 'throwing',
+  'staff', 'wand', 'scepter', 'orb'
+] as const;
+
+const HANDEDNESS_VALUES = ['oneHanded', 'twoHanded'] as const;
 
 const itemTabs = {
   bases: {
@@ -61,15 +72,65 @@ export function ItemsEditor() {
   );
 }
 
-function BaseFields({ entry, onChange }: { readonly entry: JsonRecord; readonly onChange: (entry: JsonRecord) => void }) {
+/**
+ * Compute the post-strip override key for an item entry. Mirrors
+ * `stripPrefix` in `src/ui/cardAssets.ts`: removes everything up to and
+ * including the first `/`. Returns '' when the entry has no usable id.
+ */
+function itemOverrideKey(rawId: string): string {
+  if (!rawId) return '';
+  const slash = rawId.indexOf('/');
+  return slash === -1 ? rawId : rawId.slice(slash + 1);
+}
+
+export function BaseFields({ entry, onChange }: { readonly entry: JsonRecord; readonly onChange: (entry: JsonRecord) => void }) {
+  const { t } = useTranslation('dev');
+  const rawId = asString(entry.id);
+  const key = itemOverrideKey(rawId);
+  const isWeapon = entry.type === 'weapon';
+  const weaponTypeMissing = isWeapon && typeof entry.weaponType !== 'string';
+  const handednessMissing = isWeapon && typeof entry.handedness !== 'string';
+  const weaponTypeOptions: readonly EnumOption[] = WEAPON_TYPES.map((value) => ({
+    value,
+    label: t(`weaponType.${value}`)
+  }));
+  const handednessOptions: readonly EnumOption[] = HANDEDNESS_VALUES.map((value) => ({
+    value,
+    label: t(`handedness.${value}`)
+  }));
   return (
     <div className="space-y-4">
+      {key ? (
+        <DevImageField kind="item" entityId={key} inferredPath={resolveItemIcon(key)} />
+      ) : null}
       <div className="grid gap-3 sm:grid-cols-2">
         <NumberField entry={entry} path={['reqLevel']} label="Required level" onChange={onChange} />
         <NumberField entry={entry} path={['baseDefense']} label="Base defense" onChange={onChange} />
         <NumberField entry={entry} path={['baseDamage', 'min']} label="Base damage min" onChange={onChange} />
         <NumberField entry={entry} path={['baseDamage', 'max']} label="Base damage max" onChange={onChange} />
       </div>
+      {isWeapon ? (
+        <div className="grid gap-3 sm:grid-cols-2" data-testid="weapon-fields">
+          <EnumField
+            entry={entry}
+            path={['weaponType']}
+            label={t('itemsEditor.weaponType')}
+            options={weaponTypeOptions}
+            invalid={weaponTypeMissing}
+            invalidHint={t('itemsEditor.requiredForWeapon')}
+            onChange={onChange}
+          />
+          <EnumField
+            entry={entry}
+            path={['handedness']}
+            label={t('itemsEditor.handedness')}
+            options={handednessOptions}
+            invalid={handednessMissing}
+            invalidHint={t('itemsEditor.requiredForWeapon')}
+            onChange={onChange}
+          />
+        </div>
+      ) : null}
       <CheckboxField entry={entry} path={['canHaveAffixes']} label="Can roll affixes" onChange={onChange} />
       <JsonField entry={entry} path={['baseDamage', 'breakdown']} label="Base damage breakdown JSON" onChange={onChange} />
       <JsonField entry={entry} path={['reqStats']} label="Required stats JSON" onChange={onChange} />
@@ -78,8 +139,13 @@ function BaseFields({ entry, onChange }: { readonly entry: JsonRecord; readonly 
 }
 
 function UniqueFields({ entry, onChange }: { readonly entry: JsonRecord; readonly onChange: (entry: JsonRecord) => void }) {
+  const rawId = asString(entry.id);
+  const key = itemOverrideKey(rawId);
   return (
     <div className="space-y-4">
+      {key ? (
+        <DevImageField kind="item" entityId={key} inferredPath={resolveItemIcon(key)} />
+      ) : null}
       <div className="grid gap-3 sm:grid-cols-2">
         <NumberField entry={entry} path={['reqLevel']} label="Required level" onChange={onChange} />
         <TextField entry={entry} path={['baseId']} label="Base item id" onChange={onChange} />
@@ -91,8 +157,13 @@ function UniqueFields({ entry, onChange }: { readonly entry: JsonRecord; readonl
 }
 
 function SetFields({ entry, onChange }: { readonly entry: JsonRecord; readonly onChange: (entry: JsonRecord) => void }) {
+  const rawId = asString(entry.id);
+  const key = itemOverrideKey(rawId);
   return (
     <div className="space-y-4">
+      {key ? (
+        <DevImageField kind="item" entityId={key} inferredPath={resolveItemIcon(key)} />
+      ) : null}
       <StringListField entry={entry} path={['items']} label="Set item ids (comma-separated)" onChange={onChange} />
       <JsonField entry={entry} path={['bonuses']} label="Piece bonuses JSON" onChange={onChange} />
     </div>

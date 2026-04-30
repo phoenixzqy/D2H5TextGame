@@ -94,6 +94,16 @@
       "candidate": "Candidate",
       "statHeader": "Stat",
       "slotEmpty": "(empty slot)",
+      "sectionTitle": "Compare",
+      "currentHeader": "Current",
+      "candidateHeader": "Candidate",
+      "emptySlot": "— Empty —",
+      "alreadyEquipped": "Equipped",
+      "netUpgrade": "Net upgrade +{{n}}",
+      "netDowngrade": "Net downgrade {{n}}",
+      "deltaUp": "Up {{value}}",
+      "deltaDown": "Down {{value}}",
+      "selectionAnnounce": "Selected {{name}}",
       "stat": {
         "lifeMax": "Life",
         "manaMax": "Mana",
@@ -113,7 +123,11 @@
         "arcane": "Arcane Resist",
         "physical": "Phys Mitigation"
       }
+    },
+    "footer": {
+      "disabledNoSelection": "Select a candidate",
+      "disabledIneligible": "Requirements not met",
+      "disabledAlreadyEquipped": "This item is already equipped"
     }
   }
 }
-

@@ -9,6 +9,7 @@
 import type { CombatUnit } from '../combat/types';
 import { hasStatus } from '../combat/status';
 import { getSkill } from '../skills/registry';
+import { canCastSkill } from '../skills/eligibility';
 
 /**
  * Decide which skill a unit should use this turn.
@@ -37,6 +38,16 @@ export function chooseSkill(
 
     if (skill.isBuff) {
       if (unit.activeBuffIds.includes(skill.id)) continue;
+    }
+
+    // Equipment gate (weapon-type / handedness). Only enforced when the
+    // skill declares `requires` AND the unit's `equippedWeapon` has been
+    // plumbed through. Legacy factories that omit `equippedWeapon` opt
+    // out of gating to preserve back-compat — see `playerToCombatUnit`
+    // for the production path.
+    if (skill.requires && unit.equippedWeapon !== undefined) {
+      const elig = canCastSkill(skill, unit.equippedWeapon);
+      if (!elig.ok) continue;
     }
 
     // Skills that target enemies need at least one alive enemy.

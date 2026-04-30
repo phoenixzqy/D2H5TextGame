@@ -18,7 +18,8 @@ const schemaRules: readonly { readonly pattern: RegExp; readonly schemaFile: str
   { pattern: /^src\/data\/items\/bases\.json$/, schemaFile: 'item-base.schema.json' },
   { pattern: /^src\/data\/items\/uniques\.json$/, schemaFile: 'unique.schema.json' },
   { pattern: /^src\/data\/items\/sets\.json$/, schemaFile: 'set.schema.json' },
-  { pattern: /^src\/data\/maps\/sub-areas\/[a-z0-9-]+\.json$/, schemaFile: 'sub-area.schema.json' }
+  { pattern: /^src\/data\/maps\/sub-areas\/[a-z0-9-]+\.json$/, schemaFile: 'sub-area.schema.json' },
+  { pattern: /^src\/data\/image-overrides\.json$/, schemaFile: 'image-overrides.schema.json' }
 ];
 
 interface DevWriteBody {
@@ -26,40 +27,53 @@ interface DevWriteBody {
   readonly json: unknown;
 }
 
+interface DevDataMiddlewareStack {
+  use(handler: (req: IncomingMessage, res: ServerResponse, next: () => void) => void): void;
+}
+
 function devDataPlugin(): Plugin {
   return {
     name: 'd2h5-dev-data-middleware',
     configureServer(server) {
-      const validators = new Map<string, ValidateFunction>();
-      server.middlewares.use((req, res, next) => {
-        void (async () => {
-          const url = new URL(req.url ?? '/', 'http://localhost');
-          if (url.pathname !== '/__dev/data') {
-            next();
-            return;
-          }
-          if (!isLoopback(req.socket.remoteAddress)) {
-            sendJson(res, 403, { error: 'Dev data endpoint only accepts loopback clients.' });
-            return;
-          }
-          try {
-            if (req.method === 'GET') {
-              handleDevDataGet(url, res);
-              return;
-            }
-            if (req.method === 'POST') {
-              await handleDevDataPost(req, res, validators);
-              server.ws.send({ type: 'full-reload' });
-              return;
-            }
-            sendJson(res, 405, { error: 'Method not allowed.' });
-          } catch (error) {
-            sendJson(res, 400, { error: error instanceof Error ? error.message : 'Dev data request failed.' });
-          }
-        })();
+      installDevDataMiddleware(server.middlewares, () => {
+        server.ws.send({ type: 'full-reload' });
       });
+    },
+    configurePreviewServer(server) {
+      installDevDataMiddleware(server.middlewares);
     }
   };
+}
+
+function installDevDataMiddleware(middlewares: DevDataMiddlewareStack, onWrite?: () => void): void {
+  const validators = new Map<string, ValidateFunction>();
+  middlewares.use((req, res, next) => {
+    void (async () => {
+      const url = new URL(req.url ?? '/', 'http://localhost');
+      if (url.pathname !== '/__dev/data') {
+        next();
+        return;
+      }
+      if (!isLoopback(req.socket.remoteAddress)) {
+        sendJson(res, 403, { error: 'Dev data endpoint only accepts loopback clients.' });
+        return;
+      }
+      try {
+        if (req.method === 'GET') {
+          handleDevDataGet(url, res);
+          return;
+        }
+        if (req.method === 'POST') {
+          await handleDevDataPost(req, res, validators);
+          onWrite?.();
+          return;
+        }
+        sendJson(res, 405, { error: 'Method not allowed.' });
+      } catch (error) {
+        sendJson(res, 400, { error: error instanceof Error ? error.message : 'Dev data request failed.' });
+      }
+    })();
+  });
 }
 
 function handleDevDataGet(url: URL, res: ServerResponse): void {

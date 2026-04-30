@@ -6,6 +6,7 @@
 import { create } from 'zustand';
 import { loadItemBases } from '@/data/loaders/loot';
 import type { EquipmentSlot, Item, ItemBase } from '@/engine/types/items';
+import { isTwoHanded } from '@/engine/inventory/equipValidator';
 import {
   checkEligibility,
   slotCandidates,
@@ -83,13 +84,7 @@ function targetSlotFor(baseSlot: EquipmentSlot, equipped: Record<string, Item | 
 }
 
 function isTwoHandedBase(base: ItemBase | undefined): boolean {
-  if (!base || base.slot !== 'weapon') return false;
-  return (
-    base.id.includes('/wp2h-') ||
-    base.id === 'items/base/weapon-bow' ||
-    base.id === 'items/base/weapon-crossbow' ||
-    base.id === 'items/base/weapon-polearm'
-  );
+  return isTwoHanded(base);
 }
 
 export const useInventoryStore = create<InventoryState>((set, get) => ({

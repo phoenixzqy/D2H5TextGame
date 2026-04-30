@@ -409,7 +409,9 @@
     },
     "reqLevel": 1,
     "sockets": 2,
-    "canHaveAffixes": true
+    "canHaveAffixes": true,
+    "weaponType": "sword",
+    "handedness": "oneHanded"
   },
   {
     "id": "items/base/wp1h-scimitar",
@@ -425,7 +427,9 @@
     },
     "reqLevel": 8,
     "sockets": 2,
-    "canHaveAffixes": true
+    "canHaveAffixes": true,
+    "weaponType": "sword",
+    "handedness": "oneHanded"
   },
   {
     "id": "items/base/wp1h-long-sword",
@@ -441,7 +445,9 @@
     },
     "reqLevel": 22,
     "sockets": 3,
-    "canHaveAffixes": true
+    "canHaveAffixes": true,
+    "weaponType": "sword",
+    "handedness": "oneHanded"
   },
   {
     "id": "items/base/wp1h-war-sword",
@@ -457,7 +463,9 @@
     },
     "reqLevel": 32,
     "sockets": 3,
-    "canHaveAffixes": true
+    "canHaveAffixes": true,
+    "weaponType": "sword",
+    "handedness": "oneHanded"
   },
   {
     "id": "items/base/wp1h-phase-blade",
@@ -473,7 +481,9 @@
     },
     "reqLevel": 50,
     "sockets": 4,
-    "canHaveAffixes": true
+    "canHaveAffixes": true,
+    "weaponType": "sword",
+    "handedness": "oneHanded"
   },
   {
     "id": "items/base/wp1h-legend-sword",
@@ -489,7 +499,9 @@
     },
     "reqLevel": 60,
     "sockets": 6,
-    "canHaveAffixes": true
+    "canHaveAffixes": true,
+    "weaponType": "sword",
+    "handedness": "oneHanded"
   },
   {
     "id": "items/base/wp2h-two-handed-sword",
@@ -505,7 +517,9 @@
     },
     "reqLevel": 1,
     "sockets": 2,
-    "canHaveAffixes": true
+    "canHaveAffixes": true,
+    "weaponType": "sword",
+    "handedness": "twoHanded"
   },
   {
     "id": "items/base/wp2h-great-axe",
@@ -521,7 +535,9 @@
     },
     "reqLevel": 8,
     "sockets": 2,
-    "canHaveAffixes": true
+    "canHaveAffixes": true,
+    "weaponType": "axe",
+    "handedness": "twoHanded"
   },
   {
     "id": "items/base/wp2h-war-pike",
@@ -537,7 +553,9 @@
     },
     "reqLevel": 24,
     "sockets": 3,
-    "canHaveAffixes": true
+    "canHaveAffixes": true,
+    "weaponType": "polearm",
+    "handedness": "twoHanded"
   },
   {
     "id": "items/base/wp2h-giant-thresher",
@@ -553,7 +571,9 @@
     },
     "reqLevel": 35,
     "sockets": 4,
-    "canHaveAffixes": true
+    "canHaveAffixes": true,
+    "weaponType": "polearm",
+    "handedness": "twoHanded"
   },
   {
     "id": "items/base/wp2h-colossus-blade",
@@ -569,7 +589,9 @@
     },
     "reqLevel": 52,
     "sockets": 5,
-    "canHaveAffixes": true
+    "canHaveAffixes": true,
+    "weaponType": "sword",
+    "handedness": "twoHanded"
   },
   {
     "id": "items/base/wp2h-thunder-maul",
@@ -585,7 +607,9 @@
     },
     "reqLevel": 62,
     "sockets": 6,
-    "canHaveAffixes": true
+    "canHaveAffixes": true,
+    "weaponType": "mace",
+    "handedness": "twoHanded"
   },
   {
     "id": "items/base/sh-buckler",
@@ -714,7 +738,9 @@
     "id": "items/base/weapon-bow",
     "slot": "weapon",
     "sockets": 2,
-    "canHaveAffixes": true
+    "canHaveAffixes": true,
+    "weaponType": "bow",
+    "handedness": "twoHanded"
   },
   {
     "name": "items.base.weapon-crossbow",
@@ -723,7 +749,9 @@
     "id": "items/base/weapon-crossbow",
     "slot": "weapon",
     "sockets": 2,
-    "canHaveAffixes": true
+    "canHaveAffixes": true,
+    "weaponType": "crossbow",
+    "handedness": "twoHanded"
   },
   {
     "name": "items.base.weapon-polearm",
@@ -732,7 +760,9 @@
     "id": "items/base/weapon-polearm",
     "slot": "weapon",
     "sockets": 3,
-    "canHaveAffixes": true
+    "canHaveAffixes": true,
+    "weaponType": "polearm",
+    "handedness": "twoHanded"
   },
   {
     "name": "items.base.weapon-wand",
@@ -741,7 +771,9 @@
     "id": "items/base/weapon-wand",
     "slot": "weapon",
     "sockets": 1,
-    "canHaveAffixes": true
+    "canHaveAffixes": true,
+    "weaponType": "wand",
+    "handedness": "oneHanded"
   },
   {
     "name": "items.base.weapon-scepter",
@@ -750,7 +782,9 @@
     "id": "items/base/weapon-scepter",
     "slot": "weapon",
     "sockets": 2,
-    "canHaveAffixes": true
+    "canHaveAffixes": true,
+    "weaponType": "scepter",
+    "handedness": "oneHanded"
   },
   {
     "name": "items.base.weapon-mace",
@@ -759,7 +793,9 @@
     "id": "items/base/weapon-mace",
     "slot": "weapon",
     "sockets": 2,
-    "canHaveAffixes": true
+    "canHaveAffixes": true,
+    "weaponType": "mace",
+    "handedness": "oneHanded"
   },
   {
     "name": "items.base.weapon-axe",
@@ -768,6 +804,8 @@
     "id": "items/base/weapon-axe",
     "slot": "weapon",
     "sockets": 2,
-    "canHaveAffixes": true
+    "canHaveAffixes": true,
+    "weaponType": "axe",
+    "handedness": "oneHanded"
   }
 ]

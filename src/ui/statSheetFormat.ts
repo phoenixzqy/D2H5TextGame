@@ -80,6 +80,34 @@ export function deltaColorClass(delta: number, higherIsBetter: boolean): string 
   return isImprovement ? 'text-emerald-400' : 'text-rose-400';
 }
 
+/**
+ * Trend token for non-color a11y affordance. Used as `data-trend` attr on
+ * the delta cell so screen-readers and CSS can target trend without relying
+ * on color (WCAG 1.4.1).
+ *
+ * - delta === 0 → 'flat'
+ * - improvement → 'up'
+ * - regression  → 'down'
+ *
+ * `higherIsBetter` flips up/down so a "lower-is-better" stat (e.g. cooldown,
+ * if introduced) still maps regression→'down' visually.
+ */
+export function deltaTrend(
+  delta: number,
+  higherIsBetter: boolean
+): 'up' | 'down' | 'flat' {
+  if (delta === 0) return 'flat';
+  const isImprovement = higherIsBetter ? delta > 0 : delta < 0;
+  return isImprovement ? 'up' : 'down';
+}
+
+/** Unicode arrow for the delta cell — paired with `data-trend` for non-color signal. */
+export function deltaArrow(delta: number): string {
+  if (delta > 0) return '↑';
+  if (delta < 0) return '↓';
+  return '';
+}
+
 /** Resistance integer formatting (engine stores resists as whole percent). */
 export function formatResistValue(n: number): string {
   return `${String(Math.round(n))}%`;

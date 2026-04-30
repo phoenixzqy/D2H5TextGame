@@ -122,7 +122,7 @@ describe('<StatSheet>', () => {
     }
   });
 
-  it('compare mode (current=null, first equip) renders a 2-column table', () => {
+  it('compare mode (current=null, first equip) renders a 3-column table with empty-slot placeholder', () => {
     render(
       wrap(
         <StatSheet
@@ -135,13 +135,19 @@ describe('<StatSheet>', () => {
       )
     );
     const table = screen.getByTestId('stat-compare-table');
-    expect(table.getAttribute('data-cols')).toBe('2');
+    // Per UX flow doc: compare mode always renders 3 cols, even with
+    // current=null, so the empty-slot placeholder occupies the "Current"
+    // column and column structure stays stable across re-renders.
+    expect(table.getAttribute('data-cols')).toBe('3');
     const rows = screen.getAllByTestId('stat-row');
     expect(rows.length).toBe(STAT_KEYS.length);
     for (const row of rows) {
       expect(row.querySelectorAll('th').length).toBe(1);
-      expect(row.querySelectorAll('td').length).toBe(1);
+      expect(row.querySelectorAll('td').length).toBe(2);
     }
+    // Current header is marked empty for E2E selectors.
+    const curHeader = screen.getByTestId('current-item-header');
+    expect(curHeader.getAttribute('data-empty')).toBe('true');
   });
 
   it('omits delta when delta=0 (no parens rendered)', () => {
@@ -176,4 +182,69 @@ describe('<StatSheet>', () => {
     const table = screen.getByTestId('stat-compare-table');
     expect(table.className).toMatch(/tabular-nums/);
   });
+
+  it('Bug 2: same-baseId items render distinct headers (rarity badge)', () => {
+    const a = { ...current, baseId: 'items/base/wp1h-short-sword', rarity: 'normal' as const, affixes: [] } as Item;
+    const b = { ...candidate, baseId: 'items/base/wp1h-short-sword', rarity: 'magic' as const, affixes: [{ id: 'x' }, { id: 'y' }] } as unknown as Item;
+    render(
+      wrap(
+        <StatSheet
+          mode="compare"
+          current={a}
+          candidate={b}
+          stats={compareStats()}
+          resistances={compareResists()}
+        />
+      )
+    );
+    const curHeader = screen.getByTestId('current-item-header');
+    const candHeader = screen.getByTestId('candidate-item-header');
+    // Same base name on both columns, distinct badges (rarity + affix count).
+    expect(curHeader.textContent).not.toEqual(candHeader.textContent);
+    // Candidate should expose `+2` affix count badge.
+    expect(candHeader.textContent || "").toMatch(/\+2/);
+  });
+
+  it('compare mode adds data-col attrs and data-trend on non-zero deltas', () => {
+    render(
+      wrap(
+        <StatSheet
+          mode="compare"
+          current={current}
+          candidate={candidate}
+          stats={compareStats()}
+          resistances={compareResists()}
+        />
+      )
+    );
+    const cur = screen.getByTestId('current-item-header');
+    const cand = screen.getByTestId('candidate-item-header');
+    expect(cur.getAttribute('data-col')).toBe('current');
+    expect(cand.getAttribute('data-col')).toBe('candidate');
+    const deltas = screen.getAllByTestId('stat-delta');
+    expect(deltas.length).toBeGreaterThan(0);
+    for (const d of deltas) {
+      const trend = d.getAttribute('data-trend');
+      expect(['up', 'down', 'flat']).toContain(trend);
+      // Arrow glyph or sign present (non-color signal).
+      expect(d.textContent || "").toMatch(/[↑↓]/);
+    }
+  });
+
+  it('empty-slot single mode marks current header data-empty="true"', () => {
+    render(
+      wrap(
+        <StatSheet
+          mode="single"
+          item={null}
+          stats={singleStats()}
+          resistances={singleResists()}
+          emptySlot
+        />
+      )
+    );
+    const h = screen.getByTestId('current-item-header');
+    expect(h.getAttribute('data-empty')).toBe('true');
+  });
 });
+

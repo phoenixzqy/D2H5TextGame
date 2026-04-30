@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/image-overrides.json",
+  "title": "ImageOverridesFile",
+  "description": "Manually-curated map of {kind, id} → asset URL. Override wins over inferred resolver logic in src/ui/cardAssets.ts. Empty maps are valid.",
+  "type": "object",
+  "required": ["version", "overrides"],
+  "additionalProperties": true,
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "type": "integer", "const": 1 },
+    "overrides": {
+      "type": "object",
+      "required": ["class", "monster", "item", "merc"],
+      "additionalProperties": false,
+      "properties": {
+        "class":   { "$ref": "#/$defs/idMap" },
+        "monster": { "$ref": "#/$defs/idMap" },
+        "item":    { "$ref": "#/$defs/idMap" },
+        "merc":    { "$ref": "#/$defs/idMap" }
+      }
+    }
+  },
+  "$defs": {
+    "idMap": {
+      "type": "object",
+      "description": "id → relative asset path (string).",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

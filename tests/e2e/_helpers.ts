@@ -88,15 +88,25 @@ export async function returnToTownFromCombat(page: Page): Promise<void> {
   }
 
   if (!(await page.getByTestId('town-screen').isVisible({ timeout: 1_000 }).catch(() => false))) {
+    await page.evaluate(() => {
+      window.__GAME__?.combat.getState().endCombat();
+    }).catch(() => undefined);
     await page.goto('/town');
   }
 
-  const continueButton = page.getByTestId('home-continue');
-  if (await continueButton.isVisible({ timeout: 1_000 }).catch(() => false)) {
-    await continueButton.click();
-  }
-
-  await expect(page.getByTestId('town-screen')).toBeVisible({ timeout: 10_000 });
+  await expect
+    .poll(
+      async () => {
+        if (await page.getByTestId('town-screen').isVisible().catch(() => false)) return true;
+        const continueButton = page.getByTestId('home-continue');
+        if (await continueButton.isVisible().catch(() => false)) {
+          await continueButton.click().catch(() => undefined);
+        }
+        return page.getByTestId('town-screen').isVisible().catch(() => false);
+      },
+      { timeout: 10_000, intervals: [250, 500, 1_000] }
+    )
+    .toBe(true);
 }
 
 /**
