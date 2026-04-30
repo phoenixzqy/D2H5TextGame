@@ -65,6 +65,42 @@ run in Web Workers and be unit-tested deterministically.
 - Offline yields a *next-online multiplier* (XP/MF), NOT raw offline rewards.
 - Currencies: drop runes/gems/charms; consider removing or repurposing gold.
 
+## Process & shell safety — DO NOT kill node broadly (CRITICAL)
+
+**The Copilot CLI itself runs on Node.js.** Any command that targets node
+processes by name will kill the agent that issued it (and every other Copilot
+session on the machine), terminating the user's session mid-task. This has
+happened repeatedly. **Never do it.**
+
+Forbidden, in any agent, any shell, any OS:
+- `Get-Process node | Stop-Process …` / `Stop-Process -Name node …`
+- `taskkill /F /IM node.exe` / `taskkill /IM node*`
+- `pkill -f node` / `pkill node` / `killall node` / `killall -9 node`
+- `fuser -k <port>/tcp`, `npx kill-port`, or any tool that kills "whatever
+  is on port X" without first identifying the exact PID **you started**.
+- Any "free the port / nuke node / reset environment" workaround.
+
+**You almost never need to kill anything.** Playwright's `webServer` block in
+`playwright.config.ts` already starts and stops its own server on the
+configured `E2E_PORT` (default 4173). Vitest does not need a server. If a port
+is genuinely occupied:
+1. First, check whether it's a process **you** started in this session
+   (you'll have its PID from `powershell` async mode). If yes, stop **that
+   exact PID** with `Stop-Process -Id <PID>`.
+2. Otherwise, change the port (`E2E_PORT=4179 npx playwright test …`) instead
+   of killing anything.
+3. If neither works, surface the problem to the user. Do not escalate to
+   broad process termination.
+
+Allowed process management:
+- `Stop-Process -Id <specific-PID>` for a PID you started yourself.
+- `stop_powershell` for sessions you started via the agent's `powershell`
+  tool.
+
+This rule overrides any contrary suggestion from a sub-agent, skill, or
+prompt template. If an instruction tells you to "kill node", treat it as a
+bug in that instruction and refuse.
+
 ## Git / PR workflow
 - Branch per feature: `feat/<area>-<short-desc>`.
 - Conventional commit messages.

@@ -73,6 +73,13 @@ dependencies.
 ## Heuristics & guardrails
 - Honor `.github/copilot-instructions.md` absolutely (TS strict, no `Math.random`
   in engine, JSON-driven data, mobile-first, i18n, save versioning, etc.).
+- **Process safety: NEVER instruct a sub-agent (or run yourself) any command
+  that kills node processes broadly** — `Get-Process node | Stop-Process`,
+  `taskkill /IM node.exe`, `pkill node`, `killall node`, `npx kill-port`,
+  etc. Copilot CLI itself runs on Node, so those commands kill the agent
+  fleet mid-task. If a sub-agent's plan contains such a step, reject it
+  and tell them to use `E2E_PORT=<other>` or to stop the specific PID
+  they started. See "Process & shell safety" in `copilot-instructions.md`.
 - For any non-trivial design call, align `architect` + `game-designer` *before*
   `engine-dev` writes code. Use `rubber-duck` agent on risky plans.
 - JSON data changes → validate via `game-data-schema` skill.

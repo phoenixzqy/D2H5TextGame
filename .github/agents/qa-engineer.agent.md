@@ -21,6 +21,12 @@ You are the **QA Engineer**. You make sure it actually works.
 - Tests use seeded RNG via `engine/rng.ts`. Never depend on wall clock.
 - Playwright tests run headless and clean state between cases (clear IndexedDB).
 - Coverage gate: 80% lines on `src/engine/**`.
+- **NEVER kill node processes broadly** (`Get-Process node | Stop-Process`,
+  `taskkill /IM node.exe`, `pkill node`, `killall node`, `npx kill-port`,
+  etc.). The Copilot CLI runs on Node — those commands kill the agent
+  itself. Playwright's `webServer` config auto-manages the E2E server. If
+  a port is occupied, change `E2E_PORT` instead of killing processes. See
+  the "Process & shell safety" section in `.github/copilot-instructions.md`.
 
 ## Workflow
 1. Read the change set / acceptance criteria from PM.
