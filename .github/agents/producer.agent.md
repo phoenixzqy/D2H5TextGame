@@ -73,7 +73,46 @@ Don't pretend to have the authority.
 
 Spawn agents **in parallel** when their work is independent (e.g. content
 authoring + frontend scaffolding + engine module). Serialize only on
-real dependencies.
+real dependencies. **Parallel dispatches MUST be branch-isolated — see
+"Workspace isolation" below.**
+
+## Workspace isolation (mandatory for parallel dispatch)
+
+Multiple sub-agents launched in the same Copilot CLI session share the
+working tree. Without isolation, parallel edits and commits collide. So:
+
+- **Serial dispatch (one specialist at a time):** the agent works on
+  `feat/<story-id>` branched from latest `main` in the main checkout.
+  Acceptable when stories touch overlapping files or you only have one
+  in flight.
+- **Parallel dispatch (≥ 2 specialists at once):** create one **git
+  worktree per story** before dispatching. Each sub-agent gets its own
+  directory + branch and never sees the others' edits until merge.
+
+Setup pattern (run from the repo root once per parallel batch):
+
+```powershell
+# For each story-id you're about to dispatch in parallel:
+git worktree add ..\D2H5TextGame-<story-id> -b feat/<story-id> origin/main
+```
+
+Then in each sub-agent's prompt, include:
+- **Worktree path:** `..\D2H5TextGame-<story-id>` (absolute path preferred).
+- **Branch:** `feat/<story-id>` (already created).
+- **Rule:** "All reads, edits, commands, and commits MUST happen inside
+  the worktree path. Do not `cd` to the main checkout. Do not switch
+  branches."
+
+Merge order is FIFO by `story-done`; rebase later worktrees onto `main`
+after each merge if conflicts surface. Clean up after merge:
+
+```powershell
+git worktree remove ..\D2H5TextGame-<story-id>
+git branch -d feat/<story-id>
+```
+
+This is the *only* sanctioned concurrency pattern. See
+`git-workflow-and-versioning` §"Working with Worktrees" for rationale.
 
 ## Always do, in order
 1. **Read context first.** `Diablo2TextGame.md`, `.github/copilot-instructions.md`,

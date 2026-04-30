@@ -10,6 +10,16 @@ description: Execute a single story from `production/stories/`. Reads the story 
 - The story is ready (`story-readiness` would APPROVE — dependencies
   resolved, spec APPROVED, QA cases present).
 
+## Phase 0 — Workspace check (before any reads/edits)
+- Confirm the worktree path you were dispatched into. If `producer` gave
+  you a path like `..\D2H5TextGame-<story-id>`, every subsequent step
+  runs **inside that directory**. Do not edit the main checkout.
+- Confirm you are on `feat/<story-id>` (`git branch --show-current`).
+  If not, stop and ask `producer` — do not switch branches yourself in
+  a shared checkout.
+- If you were dispatched without a worktree (serial mode), branch
+  yourself: `git switch -c feat/<story-id> origin/main`.
+
 ## Phase 1 — Load context
 - Read the story file: `production/stories/<feature>/<NN>-<slug>.md`.
 - Read the linked spec: `docs/design/<system>.md`.
