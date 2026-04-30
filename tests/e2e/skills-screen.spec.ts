@@ -8,7 +8,7 @@ import { clearGameStorage, createCharacter, navTo } from './_helpers';
 const DESKTOP_VIEWPORT = { width: 1280, height: 800 };
 const MOBILE_VIEWPORT = { width: 360, height: 640 };
 
-test.describe('Skills Screen', () => {
+test.describe('Skills Screen @desktop-only', () => {
   test.describe('Desktop viewport', () => {
     test.use({ viewport: DESKTOP_VIEWPORT });
 

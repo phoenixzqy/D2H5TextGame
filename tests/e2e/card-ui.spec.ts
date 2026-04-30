@@ -19,7 +19,7 @@ const CLASS_IDS = [
   'assassin',
 ];
 
-test.describe('Card UI — class-select', () => {
+test.describe('Card UI — class-select @responsive', () => {
   test('7 class cards render with portrait <img>', async ({ page }) => {
     await clearGameStorage(page);
     await page.getByTestId('home-new-game').click();
@@ -48,7 +48,7 @@ test.describe('Card UI — class-select', () => {
   });
 });
 
-test.describe('Card UI — character + inventory', () => {
+test.describe('Card UI — character + inventory @responsive', () => {
   test('hero card portrait + inventory item cards', async ({ page }) => {
     test.setTimeout(60_000);
     await clearGameStorage(page);
@@ -85,7 +85,7 @@ test.describe('Card UI — character + inventory', () => {
   });
 });
 
-test.describe('Card UI — mercs', () => {
+test.describe('Card UI — mercs @responsive', () => {
   test('mercs screen renders (cards optional for fresh save)', async ({ page }) => {
     test.setTimeout(60_000);
     await clearGameStorage(page);

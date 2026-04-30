@@ -184,3 +184,19 @@ export function rectsIntersect(
     a.y + a.height > b.y
   );
 }
+
+/**
+ * Force any pending debounced auto-save to flush via the `__GAME__.flushSave()`
+ * test bridge. Replaces `await page.waitForTimeout(AUTO_SAVE_DEBOUNCE_MS + slack)`
+ * sleeps. Falls back silently if the bridge isn't installed yet — best-effort.
+ */
+export async function flushSave(page: Page): Promise<void> {
+  await page.evaluate(async () => {
+    const bridge = (window as unknown as {
+      __GAME__?: { flushSave?: () => Promise<void> };
+    }).__GAME__;
+    if (typeof bridge?.flushSave === 'function') {
+      await bridge.flushSave();
+    }
+  });
+}

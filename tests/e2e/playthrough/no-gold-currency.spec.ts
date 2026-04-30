@@ -8,7 +8,7 @@
 import { test, expect } from '@playwright/test';
 import { clearGameStorage, createCharacter, enterFirstCombat, skipToResolution, boostPlayer } from './_setup';
 
-test.describe('Bug #12 — No gold currency in loot panel', () => {
+test.describe('Bug #12 — No gold currency in loot panel @desktop-only', () => {
   test('loot panel contains no 金币 or gold string after fight', async ({ page }) => {
     test.setTimeout(90_000);
 

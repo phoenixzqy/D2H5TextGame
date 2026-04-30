@@ -8,12 +8,13 @@ import { test, expect } from '@playwright/test';
 import {
   clearGameStorage,
   createCharacter,
+  flushSave,
   navTo,
   waitForBattleResolution,
   returnToTownFromCombat,
 } from './_helpers';
 
-test.describe('Final acceptance — full loop', () => {
+test.describe('Final acceptance — full loop @desktop-only', () => {
   test.beforeEach(({}, testInfo) => {
     test.skip(
       testInfo.project.name !== 'chromium-desktop',
@@ -167,8 +168,9 @@ test.describe('Final acceptance — full loop', () => {
       .getByRole('button', { name: /^保存$|^Save$/ })
       .first()
       .click();
-    // small settle so IndexedDB write completes before we read it back
-    await page.waitForTimeout(300);
+    // Flush any pending debounced auto-save so the IndexedDB write completes
+    // before export reads it back.
+    await flushSave(page);
 
     const downloadPromise = page.waitForEvent('download', { timeout: 15_000 });
     await page.getByTestId('export-save-button').click();

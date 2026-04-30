@@ -6,7 +6,7 @@
 import { test, expect } from '@playwright/test';
 import * as fs from 'fs';
 import * as path from 'path';
-import { clearGameStorage, returnToTownFromCombat } from './_helpers';
+import { clearGameStorage, flushSave, returnToTownFromCombat } from './_helpers';
 
 // Ensure .screenshots directory exists
 test.beforeAll(() => {
@@ -18,7 +18,7 @@ test.beforeAll(() => {
 
 test.describe.configure({ mode: 'serial' });
 
-test.describe('Full Playthrough', () => {
+test.describe('Full Playthrough @responsive', () => {
   test('complete game flow from home to combat and back', async ({ page }, testInfo) => {
     // Determine viewport prefix (desktop or mobile)
     const isDesktop = testInfo.project.name.includes('desktop');
@@ -51,6 +51,10 @@ test.describe('Full Playthrough', () => {
     
     // 3. Town screen
     await expect(page.getByTestId('town-screen')).toBeVisible({ timeout: 10000 });
+    // Flush the debounced auto-save so any later /town reload (e.g. via the
+    // fallback path in returnToTownFromCombat) finds a save in IDB and goes
+    // to town-screen, not the welcome gate.
+    await flushSave(page);
     await page.screenshot({
       path: `.screenshots/${viewportPrefix}-town.png`,
       fullPage: true
@@ -72,8 +76,34 @@ test.describe('Full Playthrough', () => {
 
     // 5. Combat screen
     await expect(page.getByTestId('combat-screen')).toBeVisible({ timeout: 10000 });
-    // Wait a bit for combat log to populate
-    await page.waitForTimeout(1000);
+    // Wait for combat log to render at least one line before screenshotting.
+    const combatLog = page.getByTestId('combat-log');
+    await expect(combatLog).toBeVisible({ timeout: 5000 });
+    await expect
+      .poll(async () => ((await combatLog.textContent()) ?? '').length, {
+        timeout: 5_000,
+        intervals: [100, 250],
+      })
+      .toBeGreaterThan(0);
+    // Wait until either a Flee button or a return-to-town button is interactive
+    // before we attempt returnToTownFromCombat() — the combat screen renders
+    // the action buttons a tick after mount.
+    await expect
+      .poll(
+        async () => {
+          const ret = await page
+            .getByTestId('return-to-town')
+            .isVisible()
+            .catch(() => false);
+          if (ret) return true;
+          return page
+            .getByRole('button', { name: /逃跑|Flee/i })
+            .isVisible()
+            .catch(() => false);
+        },
+        { timeout: 10_000, intervals: [100, 250, 500] }
+      )
+      .toBe(true);
     await page.screenshot({
       path: `.screenshots/${viewportPrefix}-combat.png`,
       fullPage: true
@@ -159,10 +189,14 @@ test.describe('Full Playthrough', () => {
     const stealthToggle = page.getByTestId('toggle-stealth');
     await stealthToggle.click();
 
-    // Wait a bit for the effect to apply
-    await page.waitForTimeout(100);
-
-    // Verify stealth class is applied
+    // Verify stealth class is applied (poll instead of sleep — class flips
+    // synchronously on settings change in practice).
+    await expect
+      .poll(async () => page.evaluate(() => document.body.className), {
+        timeout: 2_000,
+        intervals: [50, 100, 200],
+      })
+      .toContain('stealth');
     bodyClasses = await page.evaluate(() => document.body.className);
     expect(bodyClasses).toContain('stealth');
 
@@ -173,10 +207,13 @@ test.describe('Full Playthrough', () => {
     // Toggle stealth mode OFF
     await stealthToggle.click();
 
-    // Wait a bit for the effect to remove
-    await page.waitForTimeout(100);
-
     // Verify stealth class is removed
+    await expect
+      .poll(async () => page.evaluate(() => document.body.className), {
+        timeout: 2_000,
+        intervals: [50, 100, 200],
+      })
+      .not.toContain('stealth');
     bodyClasses = await page.evaluate(() => document.body.className);
     expect(bodyClasses).not.toContain('stealth');
 

@@ -56,7 +56,7 @@ async function readDefense(page: Page): Promise<number> {
 }
 
 test.describe('Issue 1 — Character layout', () => {
-  test('desktop puts hero strip + attributes side-by-side', async ({ page }, info) => {
+  test('desktop puts hero strip + attributes side-by-side @desktop-only', async ({ page }, info) => {
     test.skip(!isDesktopProject(info.project.name), 'desktop-only');
     test.setTimeout(60_000);
     await clearGameStorage(page);
@@ -94,7 +94,7 @@ test.describe('Issue 1 — Character layout', () => {
     });
   });
 
-  test('mobile stacks hero strip above attributes', async ({ page }, info) => {
+  test('mobile stacks hero strip above attributes @mobile-only', async ({ page }, info) => {
     test.skip(!isMobileProject(info.project.name), 'mobile-only');
     test.setTimeout(60_000);
     await clearGameStorage(page);
@@ -119,7 +119,7 @@ test.describe('Issue 1 — Character layout', () => {
   });
 });
 
-test.describe('Issue 2 — Equip flow', () => {
+test.describe('Issue 2 — Equip flow @desktop-only', () => {
   test('equip → toast + derived defense increases', async ({ page }, info) => {
     test.skip(!isDesktopProject(info.project.name), 'desktop-only');
     test.setTimeout(60_000);
@@ -183,7 +183,7 @@ async function enterCombat(page: Page): Promise<void> {
   await expect(page.getByTestId('combat-screen')).toBeVisible({ timeout: 10_000 });
 }
 
-test.describe('Issues 3, 4a, 5 — Combat layout', () => {
+test.describe('Issues 3, 4a, 5 — Combat layout @responsive', () => {
   test('cards visible + no page scroll + log scrolls internally', async ({ page }, info) => {
     test.setTimeout(90_000);
     const desktop = isDesktopProject(info.project.name);

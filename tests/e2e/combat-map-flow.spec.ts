@@ -20,7 +20,7 @@ import {
   waitForBattleResolution
 } from './_helpers';
 
-test.describe('Combat <-> Map flow (fix/combat-map-screen-bugs)', () => {
+test.describe('Combat <-> Map flow (fix/combat-map-screen-bugs) @responsive', () => {
   test('clears the first sub-area, gates idle, and shows map identity in combat', async ({ page }) => {
     test.setTimeout(120_000);
 
@@ -52,11 +52,18 @@ test.describe('Combat <-> Map flow (fix/combat-map-screen-bugs)', () => {
 
     // Bonus — combat log skill lines must NOT contain raw `<class>.<id>`
     // skill ids like `barbarian.bash` / `necromancer.bone-spear`.
-    // Wait for at least a couple of log lines to render, then sample.
+    // Wait for the playback to emit a few log lines, then sample.
     const log = page.getByTestId('combat-log');
     await expect(log).toBeVisible();
-    // Give the playback a beat to emit a few skill lines.
-    await page.waitForTimeout(2_000);
+    // Poll the log text until it has emitted enough content to be meaningful.
+    // Replaces a hardcoded `waitForTimeout(2000)` — fast machines no longer pay
+    // the full 2s sleep, slow machines still get correctness.
+    await expect
+      .poll(async () => ((await log.textContent()) ?? '').length, {
+        timeout: 10_000,
+        intervals: [100, 250, 500],
+      })
+      .toBeGreaterThan(20);
     const logText = (await log.textContent()) ?? '';
     // Raw skill ids are dotted lowercase: `barbarian.bash`,
     // `necromancer.skeleton-mastery`, etc. They should never appear

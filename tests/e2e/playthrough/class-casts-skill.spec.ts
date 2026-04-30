@@ -26,7 +26,7 @@ import {
 } from './_setup';
 
 for (const cls of ALL_CLASSES) {
-  test.describe(`Bug #3 — ${cls} casts a named skill`, () => {
+  test.describe(`Bug #3 — ${cls} casts a named skill @desktop-only`, () => {
     test(`${cls}: non-basic-attack skill appears in combat log by wave end`, async ({ page }) => {
       test.setTimeout(90_000);
 

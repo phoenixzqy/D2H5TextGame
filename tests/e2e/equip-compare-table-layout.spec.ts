@@ -15,7 +15,7 @@ import { clearGameStorage, createCharacter, navTo } from './_helpers';
 const OUTDIR = path.resolve(process.cwd(), '.screenshots', 'equip-compare-table-layout');
 
 for (const locale of ['zh-CN', 'en'] as const) {
-  test(`equip-compare panel is a 3-col table (${locale})`, async ({ page, viewport }) => {
+  test(`equip-compare panel is a 3-col table (${locale}) @responsive`, async ({ page, viewport }) => {
     test.setTimeout(60_000);
     const tag = (viewport?.width ?? 0) <= 480 ? 'mobile' : 'desktop';
 

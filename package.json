@@ -5,16 +5,23 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .ts,.tsx --max-warnings=0",
     "typecheck": "tsc --noEmit",
-    "test": "vitest",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:fast": "vitest run --changed",
+    "test:related": "vitest run --related",
+    "test:engine": "vitest run src/engine",
+    "test:ui": "vitest run --exclude src/engine",
+    "test:cov": "vitest run --coverage",
     "test:e2e": "playwright test",
     "format": "prettier --write \"src/**/*.{ts,tsx,json,css}\" \"*.{json,md}\"",
     "image-gen": "node .github/skills/image-gen/scripts/image-gen.mjs",
     "sync-asset-maps": "node scripts/sync-asset-maps.mjs",
-    "lint:i18n": "node scripts/i18n-lint.mjs"
+    "lint:i18n": "node scripts/i18n-lint.mjs",
+    "bench": "node scripts/bench-tests.mjs"
   },
   "dependencies": {
     "@floating-ui/react": "^0.27.19",

@@ -42,7 +42,7 @@ async function openSkillsScreenAsNecro(page: Parameters<typeof createCharacter>[
 
 // ── Desktop tests ──────────────────────────────────────────────────────────
 
-test.describe('No raw i18n keys — desktop', () => {
+test.describe('No raw i18n keys — desktop @desktop-only', () => {
   test.use({ viewport: DESKTOP_VP });
 
   test('Skills screen (Necromancer) has no raw skill key patterns', async ({ page }) => {
@@ -89,12 +89,21 @@ test.describe('No raw i18n keys — desktop', () => {
       }
       // Do a 10× pull
       const pull10 = page.getByTestId('gacha-pull-10');
-      if (await pull10.isEnabled({ timeout: 2_000 }).catch(() => false)) {
+      if (await pull10.isEnabled({ timeout: 5_000 }).catch(() => false)) {
         await pull10.click();
-        // Close the result modal
-        const closeBtn = page.getByRole('button', { name: /close|关闭|×/i });
-        if (await closeBtn.isVisible({ timeout: 2_000 }).catch(() => false)) {
-          await closeBtn.click();
+        // The result Modal closes via backdrop click or Escape (no named
+        // close button). Wait for it to appear, then dismiss with Escape.
+        // Bumped from 2s → 10s because under `vite dev` (P03) the first
+        // transform of the gacha-result chunk can take >2s on cold start;
+        // if we miss the close, the modal blocks subsequent bottom-nav
+        // clicks. The prior `vite preview` baseline rarely surfaced this
+        // because pull10 often stayed disabled in preview, skipping the
+        // whole branch.
+        const dialog = page.locator('[role="dialog"]').first();
+        if (await dialog.isVisible({ timeout: 10_000 }).catch(() => false)) {
+          await page.keyboard.press('Escape');
+          await dialog.waitFor({ state: 'detached', timeout: 5_000 })
+            .catch(() => undefined);
         }
       }
     }
@@ -111,7 +120,7 @@ test.describe('No raw i18n keys — desktop', () => {
 
 // ── Mobile tests ───────────────────────────────────────────────────────────
 
-test.describe('No raw i18n keys — mobile 360×640', () => {
+test.describe('No raw i18n keys — mobile 360×640 @desktop-only', () => {
   test.use({ viewport: MOBILE_VP });
 
   test('Skills screen (Necromancer) has no raw skill key patterns on mobile', async ({ page }) => {

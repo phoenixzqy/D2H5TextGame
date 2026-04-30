@@ -95,7 +95,7 @@ async function seedRolledWeapons(page: Page): Promise<SeedResult> {
 }
 
 for (const locale of ['zh-CN', 'en'] as const) {
-  test(`combat loot + rare affix compare works (${locale})`, async ({ page, viewport }) => {
+  test(`combat loot + rare affix compare works (${locale}) @responsive`, async ({ page, viewport }) => {
     test.setTimeout(180_000);
     const tag = (viewport?.width ?? 0) <= 480 ? 'mobile' : 'desktop';
 

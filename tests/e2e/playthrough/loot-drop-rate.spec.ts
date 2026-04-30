@@ -7,7 +7,7 @@ import {
   skipViaStore,
 } from './_setup';
 
-test.describe('Bug #4 — Loot drop rate > 0', () => {
+test.describe('Bug #4 — Loot drop rate > 0 @desktop-only', () => {
   test.beforeEach(({}, testInfo) => {
     test.skip(
       testInfo.project.name !== 'chromium-desktop',

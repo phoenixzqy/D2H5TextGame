@@ -15,7 +15,7 @@ import {
   boostPlayer,
 } from './_setup';
 
-test.describe('Bug #1 — XP after fight', () => {
+test.describe('Bug #1 — XP after fight @desktop-only', () => {
   test('sorceress XP increases after winning a fight', async ({ page }) => {
     test.setTimeout(90_000);
 

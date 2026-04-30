@@ -12,7 +12,7 @@
 import { test, expect } from '@playwright/test';
 import { clearGameStorage, createCharacter, enterFirstCombat, boostPlayer, waitForBattleLoaded, drainCurrentWave } from './_setup';
 
-test.describe('Bug #6 — Monster pool loaded from data', () => {
+test.describe('Bug #6 — Monster pool loaded from data @desktop-only', () => {
   test('at least one non-Fallen monster encountered', async ({ page }) => {
     test.setTimeout(60_000);
 
