@@ -29,7 +29,7 @@ import {
   resolveItemIcon,
   resolveMercArt
 } from './cardAssets';
-import overridesJson from '../data/imageOverrides.json';
+import overridesJson from '../data/image-overrides.json';
 import overridesSchema from '../data/schema/image-overrides.schema.json';
 
 beforeEach(() => {
@@ -104,7 +104,7 @@ describe('cardAssets — image overrides take precedence', () => {
 });
 
 describe('imageOverrides JSON ↔ schema round-trip', () => {
-  it('the committed imageOverrides.json validates against its schema', () => {
+  it('the committed image-overrides.json validates against its schema', () => {
     const ajv = new Ajv2020({ strict: true, allErrors: true });
     const validate = ajv.compile(overridesSchema);
     const ok = validate(overridesJson);

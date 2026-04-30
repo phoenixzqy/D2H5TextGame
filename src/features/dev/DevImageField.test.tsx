@@ -79,7 +79,7 @@ describe('DevImageField', () => {
     });
     await waitFor(() => { expect(saveSpy).toHaveBeenCalled(); });
     const [path, json] = saveSpy.mock.calls[0] ?? [];
-    expect(path).toBe('src/data/imageOverrides.json');
+    expect(path).toBe('src/data/image-overrides.json');
     const written = json as { overrides: { class: Record<string, string> } };
     expect(written.overrides.class.barbarian).toBeUndefined();
   });

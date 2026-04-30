@@ -3,7 +3,7 @@
  * a specific asset URL to a `{kind, id}` pair, bypassing the inferred
  * resolver logic in {@link ./cardAssets}.
  *
- * The data file lives at `src/data/imageOverrides.json` and is validated
+ * The data file lives at `src/data/image-overrides.json` and is validated
  * at module-load time against `src/data/schema/image-overrides.schema.json`.
  * Validation failures throw loudly during import — there's no recovery.
  *
@@ -17,13 +17,13 @@
  */
 
 import Ajv2020 from 'ajv/dist/2020';
-import overridesJson from '../data/imageOverrides.json';
+import overridesJson from '../data/image-overrides.json';
 import overridesSchema from '../data/schema/image-overrides.schema.json';
 
 /** The four kinds of subject we resolve art for. */
 export type ImageOverrideKind = 'class' | 'monster' | 'item' | 'merc';
 
-/** Shape of `src/data/imageOverrides.json`. */
+/** Shape of `src/data/image-overrides.json`. */
 export interface ImageOverridesFile {
   readonly version: 1;
   readonly overrides: Readonly<Record<ImageOverrideKind, Readonly<Record<string, string>>>>;
@@ -37,7 +37,7 @@ const validate = ajv.compile<ImageOverridesFile>(overridesSchema);
 if (!validate(overridesJson)) {
   // Throw loudly — a malformed override file should never silently degrade.
   throw new Error(
-    `[imageOverrides] src/data/imageOverrides.json failed schema validation: ${JSON.stringify(
+    `[imageOverrides] src/data/image-overrides.json failed schema validation: ${JSON.stringify(
       validate.errors,
       null,
       2

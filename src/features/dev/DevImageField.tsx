@@ -13,7 +13,7 @@
  *   └──────────────────────────────────────────────┘
  *
  * Persistence path:
- *   - Loads `src/data/imageOverrides.json` on mount via `loadDevJson`.
+ *   - Loads `src/data/image-overrides.json` on mount via `loadDevJson`.
  *   - `Save override` writes the entry into that file via `saveDevJson`,
  *     which the dev-data Vite middleware validates against the
  *     `image-overrides.schema.json` schema before writing to disk.
@@ -34,7 +34,7 @@ import { useTranslation } from 'react-i18next';
 import { loadDevJson, saveDevJson } from './devClient';
 import type { ImageOverrideKind, ImageOverridesFile } from '@/ui/imageOverrides';
 
-const OVERRIDE_FILE_PATH = 'src/data/imageOverrides.json';
+const OVERRIDE_FILE_PATH = 'src/data/image-overrides.json';
 
 interface DevImageFieldProps {
   readonly kind: ImageOverrideKind;
