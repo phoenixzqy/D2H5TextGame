@@ -106,6 +106,35 @@ bug in that instruction and refuse.
 - Conventional commit messages.
 - PRs require Reviewer agent approval and green CI before merge.
 
+## Test loop budgets
+
+`npm test` is **non-watch by default** (runs `vitest run`). Agents must
+never invoke a watch-mode test command in non-interactive shells — it
+will hang the agent. Use the tiered scripts below.
+
+| Tier | Command | Budget | When |
+|---|---|---|---|
+| `unit-engine` | `npm run test:engine` | ≤3 s | After any `src/engine/**` edit |
+| `test:fast` | `npm run test:fast` (vitest `--changed`) | ≤8 s | After any meaningful edit |
+| `test:related` | `npm run test:related -- <files>` | ≤5 s | Surgical loop |
+| `test` (unit full) | `npm run test` | ≤15 s | Before handoff |
+| `test:smoke-e2e` | `playwright test --grep @smoke --project=chromium-desktop` | ≤30 s | (added in Wave B P06) |
+| `test:e2e` full local | `npm run test:e2e` | ≤4 min | Pre-PR sanity (rare) |
+
+Defaults for agents:
+- **Inner loop** → `npm run test:fast` (only retests files changed vs HEAD).
+- **Engine work** → `npm run test:engine` after each engine edit.
+- **Before handoff** → `npm run test` (full unit) + `npm run typecheck` + `npm run lint`.
+- **Coverage check** → `npm run test:cov`.
+- **Human-driven watch loop** → `npm run test:watch` (interactive only — never in agent shells).
+
+Notes:
+- `test:engine` currently uses a path filter (`src/engine`). Wave B P05b will
+  replace it with a Vitest workspace project; the script name is forward-compatible.
+- Because `npm test` is now non-watch, the previously required `-- --run`
+  flag is no longer necessary. Passing it (e.g. `npm test -- --run --reporter=basic`)
+  remains harmless but should be simplified to `npm test --reporter=basic` in new code.
+
 ## Studio model & gate verdicts
 
 The team is structured in three tiers (see `AGENTS.md`):
