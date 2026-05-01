@@ -21,7 +21,8 @@
     "image-gen": "node .github/skills/image-gen/scripts/image-gen.mjs",
     "sync-asset-maps": "node scripts/sync-asset-maps.mjs",
     "lint:i18n": "node scripts/i18n-lint.mjs",
-    "bench": "node scripts/bench-tests.mjs"
+    "bench": "node scripts/bench-tests.mjs",
+    "check:test-bridge-shake": "node scripts/check-test-bridge-shaken.mjs"
   },
   "dependencies": {
     "@floating-ui/react": "^0.27.19",
