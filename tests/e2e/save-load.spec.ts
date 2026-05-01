@@ -23,7 +23,7 @@ test.describe('Save / Load round trip @responsive', () => {
     );
   });
 
-  test('reload restores name, level, inventory count, allocated skill points', async ({
+  test('reload restores name, level, inventory count, allocated skill points @smoke', async ({
     page,
   }) => {
     test.setTimeout(120_000);

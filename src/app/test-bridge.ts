@@ -38,8 +38,25 @@ export interface TestBridge {
   seedMerc: (opts?: { defId?: string; field?: boolean }) => string;
   /**
    * Force the pending debounced auto-save to flush immediately.
-   * Resolves once the IndexedDB write completes (or the snapshot is empty).
-   * Replaces `page.waitForTimeout(AUTO_SAVE_DEBOUNCE_MS + slack)` in E2E specs.
+   *
+   * Resolves once the underlying IndexedDB write settles (i.e. after
+   * `saveSave()` has persisted the current snapshot). If no character has
+   * been created yet — `snapshotStores()` returns `null` — there is nothing
+   * to write and the call resolves immediately.
+   *
+   * What it flushes: a {@link SaveCurrent} snapshot built from the live
+   * `playerStore`, `inventoryStore` (backpack / stash / equipped /
+   * currencies), `mercStore` (roster, fielded, equipment, progress),
+   * `mapStore`, and `metaStore` — i.e. every domain store wired into the
+   * persistence layer. The transient `combatStore` is intentionally not
+   * snapshotted (its persistent toggles live in `metaStore.settings`).
+   *
+   * **E2E-only.** This method is exposed on `window.__GAME__` strictly to
+   * replace `page.waitForTimeout(AUTO_SAVE_DEBOUNCE_MS + slack)` sleeps in
+   * Playwright specs. The bridge is gated behind
+   * `import.meta.env.VITE_E2E === 'true'` (also enabled in `DEV` and Vitest
+   * `MODE === 'test'`) and **MUST NOT** be called from production code
+   * paths — production builds do not expose `window.__GAME__` at all.
    */
   flushSave: () => Promise<void>;
 }

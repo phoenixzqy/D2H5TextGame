@@ -17,6 +17,8 @@
     "test:ui": "vitest run --exclude src/engine",
     "test:cov": "vitest run --coverage",
     "test:e2e": "playwright test",
+    "test:smoke-e2e": "playwright test --grep @smoke --project=chromium-desktop",
+    "test:smoke-e2e:mobile": "playwright test --grep @smoke --project=mobile-portrait",
     "format": "prettier --write \"src/**/*.{ts,tsx,json,css}\" \"*.{json,md}\"",
     "image-gen": "node .github/skills/image-gen/scripts/image-gen.mjs",
     "sync-asset-maps": "node scripts/sync-asset-maps.mjs",

@@ -17,7 +17,7 @@ test.beforeAll(() => {
 });
 
 test.describe('Welcome Gate - No Character @responsive', () => {
-  test('settings from welcome shows back button, no bottom nav', async ({ page }, testInfo) => {
+  test('settings from welcome shows back button, no bottom nav @smoke', async ({ page }, testInfo) => {
     // Clear storage to ensure no character exists
     await page.goto('/');
     await page.evaluate(() => {
