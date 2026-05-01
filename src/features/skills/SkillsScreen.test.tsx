@@ -151,22 +151,58 @@ describe('<SkillsScreen> — class fixture renders (mirrors skills-screen.spec.t
     );
   });
 
-  it('uses approved generated skill icons and falls back accessibly for blocked or failed icons', () => {
+  it('masks prerequisite connectors under node hitboxes so Blood Golem has one unambiguous incoming edge', () => {
+    setPlayerOfClass('necromancer');
+    renderScreen();
+
+    const incomingBloodGolem = Array.from(
+      document.querySelectorAll<SVGPathElement>('[data-testid="skill-prerequisite-edge"]')
+    ).filter((edge) => edge.dataset.edgeTo === 'skills-necromancer-blood-golem');
+
+    expect(incomingBloodGolem).toHaveLength(1);
+    const bloodGolemEdge = incomingBloodGolem[0];
+    if (!bloodGolemEdge) throw new Error('Expected Blood Golem to have one incoming prerequisite edge');
+    expect(bloodGolemEdge).toHaveAttribute('data-edge-from', 'skills-necromancer-golem-mastery');
+
+    const edgeLayer = bloodGolemEdge.closest('[data-testid="skill-prerequisite-edge-layer"]');
+    expect(edgeLayer).toHaveAttribute('mask', 'url(#skill-tree-connector-mask-summoning-spells)');
+
+    const bloodGolemMask = Array.from(
+      document.querySelectorAll<SVGRectElement>('[data-testid="skill-connector-mask"]')
+    ).find((mask) => mask.dataset.nodeId === 'skills-necromancer-blood-golem');
+    const bloodGolemNode = screen.getByTestId('skill-node-skills-necromancer-blood-golem');
+    const nodeLeft = Number.parseFloat(bloodGolemNode.style.left);
+    const nodeTop = Number.parseFloat(bloodGolemNode.style.top);
+
+    expect(bloodGolemMask).toBeDefined();
+    expect(bloodGolemMask).toHaveAttribute('x', String(nodeLeft - 6));
+    expect(bloodGolemMask).toHaveAttribute('y', String(nodeTop - 6));
+    expect(bloodGolemMask).toHaveAttribute('width', '92');
+    expect(bloodGolemMask).toHaveAttribute('height', '92');
+  });
+
+  it('uses approved generated skill icons and falls back accessibly for failed icons', () => {
     expect(resolveSkillIconSrc('skills/necromancer/poison-nova.png')).toBe(
-      '/assets/d2/generated/skill-icons/skills.necromancer.poison-nova.png'
+      '/assets/d2/generated/skill-icons/skills.necromancer.poison-nova.v1.png'
     );
-    expect(resolveSkillIconSrc('skills/necromancer/raise-skeleton.png')).toBeNull();
+    expect(resolveSkillIconSrc('skills/necromancer/raise-skeleton.png')).toBe(
+      '/assets/d2/generated/skill-icons/skills.necromancer.raise-skeleton.v3.png'
+    );
+    expect(resolveSkillIconSrc('skills/necromancer/not-a-skill.png')).toBeNull();
 
     setPlayerOfClass('necromancer');
     renderScreen();
 
     const icon = screen.getByTestId('skill-icon-img-skills-necromancer-poison-nova');
-    expect(icon).toHaveAttribute('src', '/assets/d2/generated/skill-icons/skills.necromancer.poison-nova.png');
+    expect(icon).toHaveAttribute('src', '/assets/d2/generated/skill-icons/skills.necromancer.poison-nova.v1.png');
     expect(icon).toHaveAttribute('alt', '');
+    expect(icon.parentElement).toHaveClass('h-[72px]', 'w-[72px]');
 
-    expect(screen.getByTestId('skill-icon-fallback-skills-necromancer-raise-skeleton')).toBeInTheDocument();
     fireEvent.error(icon);
-    expect(screen.getByTestId('skill-icon-fallback-skills-necromancer-poison-nova')).toBeInTheDocument();
+    expect(screen.getByTestId('skill-icon-fallback-skills-necromancer-poison-nova')).toHaveClass(
+      'h-[72px]',
+      'w-[72px]'
+    );
     expect(screen.getByTestId('skill-node-skills-necromancer-poison-nova')).toHaveAccessibleName(
       /毒云术|Poison Nova/
     );
@@ -260,5 +296,15 @@ describe('<SkillsScreen> — class fixture renders (mirrors skills-screen.spec.t
     const boneSpear = screen.getByTestId('skill-node-skills-necromancer-bone-spear');
     fireEvent.focus(boneSpear);
     expect(screen.getByTestId('skill-detail-panel').textContent || '').toMatch(/骨矛|Bone Spear/);
+  });
+
+  it('keeps the skill detail panel at a stable fixed height while allowing overflow', () => {
+    setPlayerOfClass('necromancer');
+    renderScreen();
+
+    const detailPanel = screen.getByTestId('skill-detail-panel');
+    expect(detailPanel).toHaveClass('h-[34rem]');
+    expect(detailPanel).toHaveClass('md:h-[21rem]');
+    expect(detailPanel).toHaveClass('overflow-y-auto');
   });
 });

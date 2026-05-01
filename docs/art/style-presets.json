@@ -6,7 +6,7 @@
     "extraQuery": { "nologo": "true", "private": "true" }
   },
   "globalPreamble": "masterpiece dark fantasy oil painting, gothic Diablo II inspired, painterly brushwork, dramatic chiaroscuro lighting, muted earth tones with deep shadows and warm highlights, cinematic composition, high detail, weathered medieval setting, no modern elements",
-  "globalNegative": "text, watermark, signature, logo, ui, hud, frame, border, modern clothing, modern weapons, sci-fi, neon, anime, chibi, cute, cartoon, low contrast, oversaturated, plastic skin, smooth skin, extra fingers, extra limbs, deformed hands, deformed face, blurry, low quality, jpeg artifacts, out of frame, cropped",
+  "globalNegative": "text, watermark, signature, logo, ui, hud, frame, border, modern clothing, modern weapons, sci-fi, neon, anime, chibi, cute, cartoon, low contrast, oversaturated, plastic skin, smooth skin, extra fingers, extra limbs, deformed hands, deformed face, blurry, low quality, jpeg artifacts, out of frame, cropped, multiple subjects when single requested",
   "categories": {
     "class-portrait": {
       "model": "flux",
@@ -58,8 +58,8 @@
       "width": 512,
       "height": 512,
       "seedBase": 600000,
-      "styleSuffix": "single magical skill icon, floating glyph or emblem, centered, high-readability silhouette, painterly icon style, dark near-black background, no UI frame, no text, no character portrait, no full scene, elemental glow appropriate to the skill, readable at small size",
-      "negativeAdditions": "letters, numbers, readable text, ui frame, border, portrait, full body character, landscape, multiple icons, photoreal, transparent background",
+      "styleSuffix": "single dark-fantasy skill icon, centered floating physical emblem or spell token, close-cropped still-life object on dark near-black painted ground, strong central silhouette filling most of the canvas, thick painterly oil brushwork, gritty bone iron leather stone or blood material, warm key light with cool rim, one muted elemental accent glow, no baked circular frame, no mandala, no UI frame, no text, no character portrait, no full scene, readable at 64px",
+      "negativeAdditions": "letters, numbers, readable text, ui frame, border, baked circular frame, mandala, thin decorative sigil, occult lettering, signature-like strokes, portrait, full body character, landscape, multiple icons, photoreal, transparent background, glossy mobile-game icon, flat vector art",
       "outputDir": "public/assets/d2/generated/skill-icons"
     }
   }
