@@ -1,7 +1,7 @@
 # Engine core-loop fixes
 
-- chore(test): quarantined combat.test.ts "multiple enemies ... suffixes A/B/C" (cold dynamic-import flake; TODO engine-dev root-cause).
-- chore(test): quarantined combatHelpers.test.ts "shares combat victory XP with the fielded merc" (timing-sensitive; TODO engine-dev root-cause).
+- chore(test): relocated combat.test.ts "multiple enemies ... suffixes A/B/C" to src/stores/combatHelpers.test.ts (root cause: cross-workspace dynamic import() of stores/combatHelpers exceeded 5000ms timeout ~20% of cold runs; static import in stores workspace eliminates race; 20/20 green post-fix).
+- chore(test): "shares combat victory XP with the fielded merc" remains quarantined — root-caused to a real engine bug in mercStore.initialProgress() (uses mercXpForLevel(1)=60 regardless of merc level; ~30% repro). See docs/bugs/quarantined-merc-xp-initial-progress.md. Owner: engine-dev.
 
 ## Bugs fixed
 - Bug #12: removed gold from kill rewards and UI summaries; kill currency is now `runeShards`, folded into inventory currency `rune-shard` with rare rune drops.
