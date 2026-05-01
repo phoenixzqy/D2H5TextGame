@@ -88,6 +88,15 @@ const devWebServer = {
 // Locally the default behavior (build + preview) is unchanged.
 const skipBuildForE2E = process.env.SKIP_BUILD_FOR_E2E === '1';
 
+if (skipBuildForE2E && !includeProdBundle) {
+  console.warn(
+    '[playwright.config] SKIP_BUILD_FOR_E2E=1 is set but RUN_PROD_BUNDLE is not. ' +
+    'Dev projects will have no webServer and tests will hang. ' +
+    'This env var is intended for CI-only use (e2e-prod-bundle job). ' +
+    'Unset SKIP_BUILD_FOR_E2E or also set RUN_PROD_BUNDLE=1.'
+  );
+}
+
 const prodWebServer = {
   // Build once, then `vite preview` — exercised by `prod-bundle` project only.
   // Sequenced as a single shell pipeline so Playwright treats it as one server.
@@ -163,6 +172,8 @@ export default defineConfig({
   // When SKIP_BUILD_FOR_E2E=1 (CI prod-bundle job), the run is restricted
   // to the `prod-bundle` project, so spawning the dev webServer is wasted
   // boot time. Emit only the prod webServer in that case.
+  // Env-var contract: SKIP_BUILD_FOR_E2E=1 requires includeProdBundle=true
+  // (CI or RUN_PROD_BUNDLE=1), else dev projects have no server to connect to.
   webServer: skipBuildForE2E
     ? prodWebServer
     : includeProdBundle

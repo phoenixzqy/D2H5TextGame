@@ -39,8 +39,9 @@ The merc's `.experience` is `0` instead of the expected share
 
 The test:
 1. Adds a level-10 merc via `buildMerc({ level: 10 })` and `addMerc(merc)`
-   — this creates the merc but **does not write a `mercProgress[mercId]`
-   entry**.
+   — this creates the merc and **writes a `mercProgress[mercId]` entry using
+   the level-1-hardcoded `initialProgress()` helper** (the same defective
+   root cause described below).
 2. Fields the merc and runs `startSimpleBattle(1, 3)`.
 3. After victory, `advanceWaveOrFinish()` calls
    `useMercStore.getState().shareExperienceWithFielded(xpGained)`
@@ -116,6 +117,12 @@ in the progression system.
 
 Estimated effort: ~1.5 h (code + migration + tests + reviewer cycle).
 Out of scope for the 30-min surgical timebox.
+
+## GitHub issue
+
+File a GitHub issue linking this doc once the fix is prioritized. Tag with
+`bug`, `medium-severity`, `engine-dev`. Add `// TODO: gh-issue-NNN` at
+`mercStore.ts:175` (initialProgress) and `mercStore.ts:281,324` (callsites).
 
 ## Owner
 

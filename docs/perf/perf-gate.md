@@ -48,6 +48,12 @@ The flip to a fail-CI gate happens in a follow-up PR after we have:
   row** (today they are stubs).
 - A documented variance band (p95 of `(deltaPct)` per suite per OS)
   showing the +20 % threshold sits comfortably outside normal noise.
+- **All baseline rows reflect current reality.** No row may have a >10%
+  gap vs current observed median (i.e. no rows inflated by historical
+  failed runs). The pre-flip PR must re-capture `windows::unit-full`
+  (currently 30050ms, real ~17654ms) and any other stale rows.
+  Re-baseline procedure runs the same `bench-tests --runs 3` on a clean
+  CI runner; commit only if all 3 runs are `ok:true`.
 - Sign-off from both `performance-analyst` and `technical-director`.
 
 The flip itself is a one-line change: drop `process.exit(0)` after a
@@ -111,7 +117,13 @@ node scripts/check-bench-vs-baseline.mjs --bench bench-unit-engine.json --baseli
 
 Both commands print a markdown table and exit 0 regardless of outcome.
 
-## 6. Files
+## 6. Known stale baselines
+
+- **`windows::unit-full`** — baseline 30050ms vs current observed median
+  ~17654ms. Inflated by historical failed runs. Must be re-captured
+  before Phase 2 hard-fail flip.
+
+## 7. Files
 
 - `scripts/bench-tests.mjs` — measures wall-clock; PID-tracked; never
   broadly kills node (process-safety binding).

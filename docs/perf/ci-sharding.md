@@ -69,6 +69,18 @@ If the mobile spec count grows past ~50, revisit and bump to 4.
 Playwright's shard hashing is deterministic; the split stays balanced
 as we add specs.
 
+## Mobile shard balance (measured)
+
+Wave C verification (after playthrough split):
+
+| Shard | Spec count | File count |
+| ----- | ---------- | ---------- |
+| 1/2   | 10         | 7          |
+| 2/2   | 9          | 6          |
+
+Imbalance: 5.3% (1 spec difference). Well within acceptable range.
+Re-verify if mobile suite grows past 30 specs.
+
 ## Caching
 
 - Node modules: `actions/setup-node@v4` with `cache: npm` (keyed on
