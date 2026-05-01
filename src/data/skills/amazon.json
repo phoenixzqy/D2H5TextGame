@@ -29,7 +29,10 @@
       "damagePerLevel": 4
     },
     "requires": {
-      "weaponType": ["bow", "crossbow"]
+      "weaponType": [
+        "bow",
+        "crossbow"
+      ]
     }
   },
   {
@@ -73,7 +76,6 @@
     "tree": "Bow and Crossbow Skills",
     "requiredLevel": 30,
     "prerequisites": [
-      "skills-amazon-cold-arrow",
       "skills-amazon-ice-arrow"
     ],
     "trigger": "active",
@@ -112,10 +114,8 @@
     "tree": "Javelin and Spear Skills",
     "requiredLevel": 30,
     "prerequisites": [
-      "skills-amazon-jab",
-      "skills-amazon-power-strike",
-      "skills-amazon-lightning-bolt",
-      "skills-amazon-charged-strike"
+      "skills-amazon-plague-javelin",
+      "skills-amazon-lightning-strike"
     ],
     "trigger": "active",
     "target": "all-enemies",
@@ -195,8 +195,6 @@
     "tree": "Bow and Crossbow Skills",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-amazon-magic-arrow",
-      "skills-amazon-multiple-shot",
       "skills-amazon-guided-arrow"
     ],
     "trigger": "active",
@@ -272,9 +270,8 @@
     "tree": "Passive and Magic Skills",
     "requiredLevel": 30,
     "prerequisites": [
-      "skills-amazon-critical-strike",
-      "skills-amazon-dodge",
-      "skills-amazon-decoy"
+      "skills-amazon-decoy",
+      "skills-amazon-evade"
     ],
     "trigger": "passive",
     "target": "summon",
@@ -392,7 +389,6 @@
     "tree": "Javelin and Spear Skills",
     "requiredLevel": 12,
     "prerequisites": [
-      "skills-amazon-jab",
       "skills-amazon-power-strike"
     ],
     "trigger": "active",
@@ -430,7 +426,6 @@
     "tree": "Javelin and Spear Skills",
     "requiredLevel": 12,
     "prerequisites": [
-      "skills-amazon-jab",
       "skills-amazon-power-strike"
     ],
     "trigger": "active",
@@ -465,8 +460,6 @@
     "tree": "Javelin and Spear Skills",
     "requiredLevel": 18,
     "prerequisites": [
-      "skills-amazon-jab",
-      "skills-amazon-power-strike",
       "skills-amazon-lightning-bolt"
     ],
     "trigger": "active",
@@ -501,8 +494,6 @@
     "tree": "Javelin and Spear Skills",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-amazon-jab",
-      "skills-amazon-power-strike",
       "skills-amazon-impale"
     ],
     "trigger": "active",
@@ -536,9 +527,6 @@
     "tree": "Javelin and Spear Skills",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-amazon-jab",
-      "skills-amazon-power-strike",
-      "skills-amazon-lightning-bolt",
       "skills-amazon-charged-strike"
     ],
     "trigger": "active",
@@ -596,7 +584,7 @@
     "description": "skills.amazon.slow-missiles.desc",
     "icon": "skills/amazon/slow-missiles.png",
     "tree": "Passive and Magic Skills",
-    "requiredLevel": 6,
+    "requiredLevel": 12,
     "prerequisites": [
       "skills-amazon-inner-sight"
     ],
@@ -635,10 +623,9 @@
     "description": "skills.amazon.decoy.desc",
     "icon": "skills/amazon/decoy.png",
     "tree": "Passive and Magic Skills",
-    "requiredLevel": 18,
+    "requiredLevel": 24,
     "prerequisites": [
-      "skills-amazon-inner-sight",
-      "skills-amazon-dodge"
+      "skills-amazon-slow-missiles"
     ],
     "trigger": "active",
     "target": "self",
@@ -657,7 +644,6 @@
     "tree": "Passive and Magic Skills",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-amazon-dodge",
       "skills-amazon-avoid"
     ],
     "passive": true,
@@ -675,7 +661,6 @@
     "tree": "Passive and Magic Skills",
     "requiredLevel": 30,
     "prerequisites": [
-      "skills-amazon-critical-strike",
       "skills-amazon-penetrate"
     ],
     "passive": true,
@@ -796,7 +781,7 @@
     "description": "skills.amazon.ice-arrow.desc",
     "icon": "skills/amazon/ice-arrow.png",
     "tree": "Bow and Crossbow Skills",
-    "requiredLevel": 12,
+    "requiredLevel": 18,
     "prerequisites": [
       "skills-amazon-cold-arrow"
     ],
@@ -836,7 +821,6 @@
     "tree": "Bow and Crossbow Skills",
     "requiredLevel": 18,
     "prerequisites": [
-      "skills-amazon-magic-arrow",
       "skills-amazon-multiple-shot"
     ],
     "trigger": "active",
@@ -870,7 +854,6 @@
     "tree": "Bow and Crossbow Skills",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-amazon-fire-arrow",
       "skills-amazon-exploding-arrow"
     ],
     "trigger": "active",

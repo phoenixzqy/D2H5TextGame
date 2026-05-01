@@ -52,6 +52,15 @@
       "styleSuffix": "cinematic establishing shot of a Diablo II zone, atmospheric perspective, small silhouetted hero figure for scale optional, dramatic sky, matte painting style",
       "negativeAdditions": "text, ui, hud, modern buildings",
       "outputDir": "public/assets/d2/generated/zone-art"
+    },
+    "skill-icon": {
+      "model": "flux",
+      "width": 512,
+      "height": 512,
+      "seedBase": 600000,
+      "styleSuffix": "single magical skill icon, floating glyph or emblem, centered, high-readability silhouette, painterly icon style, dark near-black background, no UI frame, no text, no character portrait, no full scene, elemental glow appropriate to the skill, readable at small size",
+      "negativeAdditions": "letters, numbers, readable text, ui frame, border, portrait, full body character, landscape, multiple icons, photoreal, transparent background",
+      "outputDir": "public/assets/d2/generated/skill-icons"
     }
   }
 }

@@ -79,7 +79,7 @@
     "description": "skills.assassin.blade-fury.desc",
     "icon": "skills/assassin/blade-fury.png",
     "tree": "Traps",
-    "requiredLevel": 24,
+    "requiredLevel": 18,
     "prerequisites": [
       "skills-assassin-blade-sentinel"
     ],
@@ -114,7 +114,6 @@
     "tree": "Shadow Disciplines",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-assassin-psychic-hammer",
       "skills-assassin-cloak-of-shadows"
     ],
     "trigger": "active",
@@ -185,10 +184,7 @@
     "tree": "Martial Arts",
     "requiredLevel": 30,
     "prerequisites": [
-      "skills-assassin-tiger-strike",
       "skills-assassin-cobra-strike",
-      "skills-assassin-fists-of-fire",
-      "skills-assassin-claws-of-thunder",
       "skills-assassin-blades-of-ice"
     ],
     "trigger": "active",
@@ -277,10 +273,9 @@
     "description": "skills.assassin.venom.desc",
     "icon": "skills/assassin/venom.png",
     "tree": "Shadow Disciplines",
-    "requiredLevel": 24,
+    "requiredLevel": 30,
     "prerequisites": [
-      "skills-assassin-psychic-hammer",
-      "skills-assassin-cloak-of-shadows"
+      "skills-assassin-fade"
     ],
     "trigger": "passive",
     "target": "self",
@@ -432,9 +427,8 @@
     "description": "skills.assassin.claws-of-thunder.desc",
     "icon": "skills/assassin/claws-of-thunder.png",
     "tree": "Martial Arts",
-    "requiredLevel": 12,
+    "requiredLevel": 18,
     "prerequisites": [
-      "skills-assassin-tiger-strike",
       "skills-assassin-fists-of-fire"
     ],
     "trigger": "active",
@@ -506,10 +500,8 @@
     "description": "skills.assassin.blades-of-ice.desc",
     "icon": "skills/assassin/blades-of-ice.png",
     "tree": "Martial Arts",
-    "requiredLevel": 18,
+    "requiredLevel": 24,
     "prerequisites": [
-      "skills-assassin-tiger-strike",
-      "skills-assassin-fists-of-fire",
       "skills-assassin-claws-of-thunder"
     ],
     "trigger": "active",
@@ -548,7 +540,6 @@
     "tree": "Martial Arts",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-assassin-dragon-talon",
       "skills-assassin-dragon-tail"
     ],
     "trigger": "active",
@@ -660,8 +651,7 @@
     "tree": "Shadow Disciplines",
     "requiredLevel": 18,
     "prerequisites": [
-      "skills-assassin-claw-mastery",
-      "skills-assassin-burst-of-speed"
+      "skills-assassin-weapon-block"
     ],
     "summon": true,
     "trigger": "active",
@@ -681,8 +671,6 @@
     "tree": "Shadow Disciplines",
     "requiredLevel": 30,
     "prerequisites": [
-      "skills-assassin-claw-mastery",
-      "skills-assassin-burst-of-speed",
       "skills-assassin-shadow-warrior"
     ],
     "summon": true,
@@ -701,9 +689,9 @@
     "description": "skills.assassin.charged-bolt-sentry.desc",
     "icon": "skills/assassin/charged-bolt-sentry.png",
     "tree": "Traps",
-    "requiredLevel": 6,
+    "requiredLevel": 12,
     "prerequisites": [
-      "skills-assassin-fire-blast"
+      "skills-assassin-shock-web"
     ],
     "trigger": "active",
     "target": "all-enemies",
@@ -802,10 +790,8 @@
     "description": "skills.assassin.lightning-sentry.desc",
     "icon": "skills/assassin/lightning-sentry.png",
     "tree": "Traps",
-    "requiredLevel": 18,
+    "requiredLevel": 24,
     "prerequisites": [
-      "skills-assassin-fire-blast",
-      "skills-assassin-shock-web",
       "skills-assassin-charged-bolt-sentry"
     ],
     "trigger": "active",
@@ -838,9 +824,8 @@
     "description": "skills.assassin.wake-of-inferno.desc",
     "icon": "skills/assassin/wake-of-inferno.png",
     "tree": "Traps",
-    "requiredLevel": 18,
+    "requiredLevel": 24,
     "prerequisites": [
-      "skills-assassin-fire-blast",
       "skills-assassin-wake-of-fire"
     ],
     "trigger": "active",
@@ -876,11 +861,8 @@
     "description": "skills.assassin.death-sentry.desc",
     "icon": "skills/assassin/death-sentry.png",
     "tree": "Traps",
-    "requiredLevel": 24,
+    "requiredLevel": 30,
     "prerequisites": [
-      "skills-assassin-fire-blast",
-      "skills-assassin-shock-web",
-      "skills-assassin-charged-bolt-sentry",
       "skills-assassin-lightning-sentry"
     ],
     "trigger": "active",
@@ -918,7 +900,6 @@
     "tree": "Traps",
     "requiredLevel": 30,
     "prerequisites": [
-      "skills-assassin-blade-sentinel",
       "skills-assassin-blade-fury"
     ],
     "trigger": "active",

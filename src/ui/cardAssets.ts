@@ -17,7 +17,8 @@ import {
   MONSTER_ART,
   UNIQUE_ITEM_ICONS,
   BASE_ITEM_ICONS,
-  ZONE_ART
+  ZONE_ART,
+  SKILL_ICONS
 } from './generatedAssetMaps';
 import { getImageOverride } from './imageOverrides';
 
@@ -154,6 +155,35 @@ export function resolveZoneArt(zoneId: string): string | null {
   const key = stripPrefix(zoneId);
   if (key in ZONE_ART) return ZONE_ART[key] ?? null;
   warnMissing('zone', key);
+  return null;
+}
+
+function normalizeSkillIconKey(skillRef: string): string | null {
+  const trimmed = skillRef.trim();
+  if (!trimmed) return null;
+
+  const pathMatch = /^skills\/([a-z0-9-]+)\/([a-z0-9-]+)(?:\.png)?$/i.exec(trimmed);
+  if (pathMatch?.[1] && pathMatch[2]) {
+    return `skills.${pathMatch[1].toLowerCase()}.${pathMatch[2].toLowerCase()}`;
+  }
+
+  const dataIdMatch = /^skills-(amazon|assassin|barbarian|druid|necromancer|paladin|sorceress)-(.+)$/i.exec(trimmed);
+  if (dataIdMatch?.[1] && dataIdMatch[2]) {
+    return `skills.${dataIdMatch[1].toLowerCase()}.${dataIdMatch[2].toLowerCase()}`;
+  }
+
+  const dottedMatch = /^skills\.([a-z0-9-]+)\.([a-z0-9-]+)$/i.exec(trimmed);
+  if (dottedMatch?.[1] && dottedMatch[2]) {
+    return `skills.${dottedMatch[1].toLowerCase()}.${dottedMatch[2].toLowerCase()}`;
+  }
+
+  return null;
+}
+
+export function resolveSkillIcon(skillRef: string): string | null {
+  const key = normalizeSkillIconKey(skillRef);
+  if (!key) return null;
+  if (key in SKILL_ICONS) return SKILL_ICONS[key] ?? null;
   return null;
 }
 

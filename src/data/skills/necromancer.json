@@ -64,9 +64,8 @@
     "description": "skills.necromancer.poison-nova.desc",
     "icon": "skills/necromancer/poison-nova.png",
     "tree": "Poison and Bone Spells",
-    "requiredLevel": 24,
+    "requiredLevel": 30,
     "prerequisites": [
-      "skills-necromancer-poison-dagger",
       "skills-necromancer-poison-explosion"
     ],
     "trigger": "active",
@@ -103,8 +102,7 @@
     "tree": "Poison and Bone Spells",
     "requiredLevel": 18,
     "prerequisites": [
-      "skills-necromancer-teeth",
-      "skills-necromancer-bone-wall"
+      "skills-necromancer-corpse-explosion"
     ],
     "trigger": "active",
     "target": "single-enemy",
@@ -159,9 +157,7 @@
     "tree": "Curses",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-necromancer-amplify-damage",
-      "skills-necromancer-iron-maiden",
-      "skills-necromancer-life-tap"
+      "skills-necromancer-terror"
     ],
     "trigger": "active",
     "target": "all-enemies",
@@ -212,7 +208,7 @@
     "tree": "Summoning Spells",
     "requiredLevel": 18,
     "prerequisites": [
-      "skills-necromancer-clay-golem"
+      "skills-necromancer-golem-mastery"
     ],
     "summon": true,
     "trigger": "passive",
@@ -244,9 +240,6 @@
     "icon": "skills/necromancer/dim-vision.png",
     "tree": "Curses",
     "requiredLevel": 6,
-    "prerequisites": [
-      "skills-necromancer-amplify-damage"
-    ],
     "trigger": "active",
     "target": "all-enemies",
     "cooldown": 3,
@@ -314,7 +307,6 @@
     "tree": "Curses",
     "requiredLevel": 12,
     "prerequisites": [
-      "skills-necromancer-dim-vision",
       "skills-necromancer-weaken"
     ],
     "trigger": "active",
@@ -337,9 +329,7 @@
     "tree": "Curses",
     "requiredLevel": 18,
     "prerequisites": [
-      "skills-necromancer-dim-vision",
-      "skills-necromancer-weaken",
-      "skills-necromancer-terror"
+      "skills-necromancer-dim-vision"
     ],
     "trigger": "active",
     "target": "all-enemies",
@@ -361,7 +351,6 @@
     "tree": "Curses",
     "requiredLevel": 18,
     "prerequisites": [
-      "skills-necromancer-amplify-damage",
       "skills-necromancer-iron-maiden"
     ],
     "trigger": "active",
@@ -384,7 +373,6 @@
     "tree": "Curses",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-necromancer-terror",
       "skills-necromancer-confuse"
     ],
     "trigger": "active",
@@ -407,10 +395,7 @@
     "tree": "Curses",
     "requiredLevel": 30,
     "prerequisites": [
-      "skills-necromancer-amplify-damage",
-      "skills-necromancer-iron-maiden",
-      "skills-necromancer-life-tap",
-      "skills-necromancer-decrepify"
+      "skills-necromancer-life-tap"
     ],
     "trigger": "active",
     "target": "all-enemies",
@@ -498,7 +483,7 @@
     "tree": "Poison and Bone Spells",
     "requiredLevel": 12,
     "prerequisites": [
-      "skills-necromancer-teeth"
+      "skills-necromancer-bone-armor"
     ],
     "trigger": "active",
     "target": "self",
@@ -518,7 +503,7 @@
     "description": "skills.necromancer.poison-explosion.desc",
     "icon": "skills/necromancer/poison-explosion.png",
     "tree": "Poison and Bone Spells",
-    "requiredLevel": 12,
+    "requiredLevel": 18,
     "prerequisites": [
       "skills-necromancer-poison-dagger"
     ],
@@ -556,9 +541,7 @@
     "tree": "Poison and Bone Spells",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-necromancer-teeth",
-      "skills-necromancer-bone-wall",
-      "skills-necromancer-bone-spear"
+      "skills-necromancer-bone-wall"
     ],
     "trigger": "active",
     "target": "all-enemies",
@@ -580,10 +563,7 @@
     "tree": "Poison and Bone Spells",
     "requiredLevel": 30,
     "prerequisites": [
-      "skills-necromancer-teeth",
-      "skills-necromancer-bone-wall",
-      "skills-necromancer-bone-spear",
-      "skills-necromancer-bone-prison"
+      "skills-necromancer-bone-spear"
     ],
     "trigger": "active",
     "target": "single-enemy",
@@ -664,8 +644,7 @@
     "tree": "Summoning Spells",
     "requiredLevel": 12,
     "prerequisites": [
-      "skills-necromancer-raise-skeleton",
-      "skills-necromancer-skeleton-mastery"
+      "skills-necromancer-raise-skeleton"
     ],
     "summon": true,
     "trigger": "active",
@@ -683,10 +662,9 @@
     "description": "skills.necromancer.summon-resist.desc",
     "icon": "skills/necromancer/summon-resist.png",
     "tree": "Summoning Spells",
-    "requiredLevel": 18,
+    "requiredLevel": 24,
     "prerequisites": [
-      "skills-necromancer-skeleton-mastery",
-      "skills-necromancer-clay-golem"
+      "skills-necromancer-golem-mastery"
     ],
     "passive": true,
     "trigger": "passive",
@@ -703,8 +681,6 @@
     "tree": "Summoning Spells",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-necromancer-clay-golem",
-      "skills-necromancer-golem-mastery",
       "skills-necromancer-blood-golem"
     ],
     "summon": true,
@@ -723,11 +699,9 @@
     "description": "skills.necromancer.fire-golem.desc",
     "icon": "skills/necromancer/fire-golem.png",
     "tree": "Summoning Spells",
-    "requiredLevel": 24,
+    "requiredLevel": 30,
     "prerequisites": [
-      "skills-necromancer-clay-golem",
-      "skills-necromancer-golem-mastery",
-      "skills-necromancer-blood-golem"
+      "skills-necromancer-iron-golem"
     ],
     "summon": true,
     "trigger": "active",
@@ -747,8 +721,6 @@
     "tree": "Summoning Spells",
     "requiredLevel": 30,
     "prerequisites": [
-      "skills-necromancer-raise-skeleton",
-      "skills-necromancer-skeleton-mastery",
       "skills-necromancer-raise-skeletal-mage"
     ],
     "summon": true,

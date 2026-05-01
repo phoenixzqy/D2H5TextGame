@@ -12,12 +12,13 @@
 const BASE = '/assets/d2/generated';
 
 import { loadMercPool } from '@/data/loaders/mercs';
-import { resolveMercArt } from './cardAssets';
+import { resolveMercArt, resolveSkillIcon } from './cardAssets';
 import {
   CLASS_PORTRAITS,
   MONSTER_ART,
   BASE_ITEM_ICONS,
-  UNIQUE_ITEM_ICONS
+  UNIQUE_ITEM_ICONS,
+  SKILL_ICONS
 } from './generatedAssetMaps';
 
 /* ------------------------------------------------------------------ */
@@ -168,6 +169,16 @@ export function getItemIconUrl(item: {
   const inferred = inferBaseFromId(item.baseId);
   if (inferred && inferred in BASE_ITEM_ICONS) return BASE_ITEM_ICONS[inferred] ?? null;
   return null;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Skill icons                                                        */
+/* ------------------------------------------------------------------ */
+export function getSkillIconUrl(skillRef: string): string | null {
+  if (!skillRef) return null;
+  const fromResolver = resolveSkillIcon(skillRef);
+  if (fromResolver) return fromResolver;
+  return skillRef in SKILL_ICONS ? SKILL_ICONS[skillRef] ?? null : null;
 }
 
 /* ------------------------------------------------------------------ */

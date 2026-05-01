@@ -75,7 +75,6 @@
     "tree": "Elemental",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-druid-cyclone-armor",
       "skills-druid-twister"
     ],
     "trigger": "active",
@@ -129,8 +128,7 @@
     "tree": "Shape-Shifting",
     "requiredLevel": 12,
     "prerequisites": [
-      "skills-druid-werewolf",
-      "skills-druid-lycanthropy"
+      "skills-druid-werebear"
     ],
     "trigger": "active",
     "target": "single-enemy",
@@ -167,9 +165,6 @@
     "tree": "Elemental",
     "requiredLevel": 30,
     "prerequisites": [
-      "skills-druid-arctic-blast",
-      "skills-druid-cyclone-armor",
-      "skills-druid-twister",
       "skills-druid-tornado"
     ],
     "trigger": "active",
@@ -248,13 +243,10 @@
     "icon": "skills/druid/oak-sage.png",
     "tree": "Summoning",
     "requiredLevel": 6,
-    "prerequisites": [
-      "skills-druid-raven"
-    ],
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
-    "minLevel": 18,
+    "minLevel": 1,
     "maxLevel": 20
   },
   {
@@ -302,7 +294,6 @@
     "tree": "Elemental",
     "requiredLevel": 12,
     "prerequisites": [
-      "skills-druid-firestorm",
       "skills-druid-molten-boulder"
     ],
     "trigger": "active",
@@ -398,8 +389,6 @@
     "tree": "Elemental",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-druid-firestorm",
-      "skills-druid-molten-boulder",
       "skills-druid-fissure"
     ],
     "trigger": "active",
@@ -437,9 +426,6 @@
     "tree": "Elemental",
     "requiredLevel": 30,
     "prerequisites": [
-      "skills-druid-firestorm",
-      "skills-druid-molten-boulder",
-      "skills-druid-fissure",
       "skills-druid-volcano"
     ],
     "trigger": "active",
@@ -516,7 +502,7 @@
     "description": "skills.druid.feral-rage.desc",
     "icon": "skills/druid/feral-rage.png",
     "tree": "Shape-Shifting",
-    "requiredLevel": 6,
+    "requiredLevel": 12,
     "prerequisites": [
       "skills-druid-werewolf"
     ],
@@ -556,9 +542,7 @@
     "tree": "Shape-Shifting",
     "requiredLevel": 18,
     "prerequisites": [
-      "skills-druid-werewolf",
-      "skills-druid-feral-rage",
-      "skills-druid-werewolf-maul"
+      "skills-druid-feral-rage"
     ],
     "trigger": "active",
     "target": "single-enemy",
@@ -594,7 +578,7 @@
     "tree": "Shape-Shifting",
     "requiredLevel": 18,
     "prerequisites": [
-      "skills-druid-werebear",
+      "skills-druid-feral-rage",
       "skills-druid-werewolf-maul"
     ],
     "trigger": "active",
@@ -632,8 +616,6 @@
     "tree": "Shape-Shifting",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-druid-werewolf",
-      "skills-druid-werebear",
       "skills-druid-feral-rage"
     ],
     "trigger": "active",
@@ -671,7 +653,6 @@
     "tree": "Shape-Shifting",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-druid-werebear",
       "skills-druid-werewolf-maul"
     ],
     "trigger": "active",
@@ -708,9 +689,6 @@
     "tree": "Shape-Shifting",
     "requiredLevel": 30,
     "prerequisites": [
-      "skills-druid-werewolf",
-      "skills-druid-feral-rage",
-      "skills-druid-werewolf-maul",
       "skills-druid-rabies"
     ],
     "trigger": "active",
@@ -777,9 +755,6 @@
     "icon": "skills/druid/summon-spirit-wolf.png",
     "tree": "Summoning",
     "requiredLevel": 6,
-    "prerequisites": [
-      "skills-druid-raven"
-    ],
     "summon": true,
     "trigger": "active",
     "target": "summon",
@@ -818,7 +793,6 @@
     "tree": "Summoning",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-druid-poison-creeper",
       "skills-druid-carrion-vine"
     ],
     "summon": true,
@@ -837,9 +811,8 @@
     "description": "skills.druid.spirit-of-barbs.desc",
     "icon": "skills/druid/spirit-of-barbs.png",
     "tree": "Summoning",
-    "requiredLevel": 24,
+    "requiredLevel": 30,
     "prerequisites": [
-      "skills-druid-oak-sage",
       "skills-druid-heart-of-wolverine"
     ],
     "passive": true,
@@ -857,8 +830,6 @@
     "tree": "Summoning",
     "requiredLevel": 30,
     "prerequisites": [
-      "skills-druid-raven",
-      "skills-druid-summon-spirit-wolf",
       "skills-druid-summon-dire-wolf"
     ],
     "summon": true,

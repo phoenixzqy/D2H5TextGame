@@ -515,3 +515,33 @@
 | 1068 | monsters.act2.undead-flayer | Undead Flayer | 0 | auto-allocated |
 | 1069 | monsters.act2.the-summoner | The Summoner | 0 | auto-allocated |
 | 1070 | monsters.act2.duriel | Duriel | 0 | auto-allocated |
+
+## skill-icon (seed-base 600000)
+
+Producer sign-off: approved for a dedicated `skill-icon` category, 2026-05-01. Subject IDs are per skill within this category. Current allocation is a 14-icon pilot batch (two representative skills per playable class) before full 213-skill production.
+
+Planned subjectId ranges for full production:
+- Amazon: 1-99
+- Assassin: 101-199
+- Barbarian: 201-299
+- Druid: 301-399
+- Necromancer: 401-499
+- Paladin: 501-599
+- Sorceress: 601-699
+
+| subjectId | id | subject | accepted variant | notes |
+|----------:|----|---------|------------------|-------|
+| 1 | skills.amazon.magic-arrow | Magic Arrow | 0 | pilot accepted; data id `skills-amazon-magic-arrow` |
+| 10 | skills.amazon.valkyrie | Valkyrie | 0 | pilot accepted; data id `skills-amazon-valkyrie` |
+| 102 | skills.assassin.fire-blast | Fire Blast | 0 | pilot accepted; data id `skills-assassin-fire-blast` |
+| 124 | skills.assassin.charged-bolt-sentry | Charged Bolt Sentry | 1 | pilot; v0 rendered as lightning spear/blade (failed trap subject fidelity); v1 accepted as squat lightning trap totem; data id `skills-assassin-charged-bolt-sentry` |
+| 201 | skills.barbarian.bash | Bash | 0 | pilot accepted; data id `skills-barbarian-bash` |
+| 209 | skills.barbarian.battle-orders | Battle Orders | 0 | pilot accepted; data id `skills-barbarian-battle-orders` |
+| 301 | skills.druid.firestorm | Firestorm | 0 | pilot accepted; data id `skills-druid-firestorm` |
+| 331 | skills.druid.summon-grizzly | Summon Grizzly | blocked | pilot blocked after 3 rejected variants: v0 full bear scene + rune/text-like mark; v1 bear portrait with circular frame + paw mark; v2 full bear body + circular frame + paw mark. Needs preset/descriptors tuning before production; data id `skills-druid-summon-grizzly` |
+| 401 | skills.necromancer.raise-skeleton | Raise Skeleton | blocked | pilot blocked after 3 rejected variants: v0 text-like rune/symbol; v1 baked frame + symbol medallion; v2 signature/text leakage. Needs preset/descriptors tuning before production; data id `skills-necromancer-raise-skeleton` |
+| 403 | skills.necromancer.poison-nova | Poison Nova | 0 | pilot accepted; data id `skills-necromancer-poison-nova` |
+| 501 | skills.paladin.zeal | Zeal | 1 | pilot; v0 signature/text leakage in lower-right and read as plain sword; v1 accepted as clean holy slash-star emblem; data id `skills-paladin-zeal` |
+| 519 | skills.paladin.holy-shock | Holy Shock | 0 | pilot accepted; data id `skills-paladin-holy-shock` |
+| 605 | skills.sorceress.fire-ball | Fire Ball | 0 | pilot accepted; data id `skills-sorceress-fire-ball` |
+| 603 | skills.sorceress.frozen-orb | Frozen Orb | 0 | pilot accepted; data id `skills-sorceress-frozen-orb` |

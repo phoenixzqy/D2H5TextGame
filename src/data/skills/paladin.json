@@ -43,10 +43,6 @@
     "icon": "skills/paladin/holy-bolt.png",
     "tree": "Combat Skills",
     "requiredLevel": 6,
-    "prerequisites": [
-      "skills-paladin-sacrifice",
-      "skills-paladin-smite"
-    ],
     "trigger": "active",
     "target": "single-enemy",
     "cooldown": 1,
@@ -78,7 +74,7 @@
     "tree": "Combat Skills",
     "requiredLevel": 18,
     "prerequisites": [
-      "skills-paladin-might"
+      "skills-paladin-holy-bolt"
     ],
     "trigger": "active",
     "target": "all-enemies",
@@ -111,7 +107,6 @@
     "tree": "Combat Skills",
     "requiredLevel": 18,
     "prerequisites": [
-      "skills-paladin-sacrifice",
       "skills-paladin-zeal"
     ],
     "trigger": "active",
@@ -157,7 +152,6 @@
     "tree": "Combat Skills",
     "requiredLevel": 12,
     "prerequisites": [
-      "skills-paladin-sacrifice",
       "skills-paladin-smite"
     ],
     "trigger": "active",
@@ -194,7 +188,6 @@
     "tree": "Combat Skills",
     "requiredLevel": 30,
     "prerequisites": [
-      "skills-paladin-holy-bolt",
       "skills-paladin-blessed-hammer"
     ],
     "trigger": "active",
@@ -245,9 +238,6 @@
     "icon": "skills/paladin/holy-fire.png",
     "tree": "Offensive Auras",
     "requiredLevel": 6,
-    "prerequisites": [
-      "skills-paladin-might"
-    ],
     "aura": true,
     "trigger": "passive",
     "target": "self",
@@ -267,16 +257,13 @@
     "tree": "Offensive Auras",
     "requiredLevel": 30,
     "prerequisites": [
-      "skills-paladin-might",
-      "skills-paladin-blessed-aim",
-      "skills-paladin-concentration",
-      "skills-paladin-fanaticism"
+      "skills-paladin-sanctuary"
     ],
     "aura": true,
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
-    "minLevel": 24,
+    "minLevel": 1,
     "maxLevel": 20,
     "appliesTags": [
       "amp-damage"
@@ -290,7 +277,6 @@
     "tree": "Defensive Auras",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-paladin-prayer",
       "skills-paladin-cleansing"
     ],
     "aura": true,
@@ -371,7 +357,6 @@
     "tree": "Combat Skills",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-paladin-zeal",
       "skills-paladin-vengeance"
     ],
     "trigger": "active",
@@ -408,7 +393,7 @@
     "tree": "Combat Skills",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-paladin-smite"
+      "skills-paladin-charge"
     ],
     "trigger": "active",
     "target": "self",
@@ -429,9 +414,6 @@
     "icon": "skills/paladin/thorns.png",
     "tree": "Offensive Auras",
     "requiredLevel": 6,
-    "prerequisites": [
-      "skills-paladin-might"
-    ],
     "aura": true,
     "trigger": "passive",
     "target": "self",
@@ -467,7 +449,6 @@
     "tree": "Offensive Auras",
     "requiredLevel": 18,
     "prerequisites": [
-      "skills-paladin-might",
       "skills-paladin-blessed-aim"
     ],
     "aura": true,
@@ -488,7 +469,6 @@
     "tree": "Offensive Auras",
     "requiredLevel": 18,
     "prerequisites": [
-      "skills-paladin-might",
       "skills-paladin-holy-fire"
     ],
     "aura": true,
@@ -510,8 +490,6 @@
     "tree": "Offensive Auras",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-paladin-might",
-      "skills-paladin-holy-fire",
       "skills-paladin-holy-freeze"
     ],
     "aura": true,
@@ -533,8 +511,7 @@
     "tree": "Offensive Auras",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-paladin-might",
-      "skills-paladin-blessed-aim"
+      "skills-paladin-thorns"
     ],
     "aura": true,
     "trigger": "passive",
@@ -552,10 +529,8 @@
     "description": "skills.paladin.fanaticism.desc",
     "icon": "skills/paladin/fanaticism.png",
     "tree": "Offensive Auras",
-    "requiredLevel": 24,
+    "requiredLevel": 30,
     "prerequisites": [
-      "skills-paladin-might",
-      "skills-paladin-blessed-aim",
       "skills-paladin-concentration"
     ],
     "aura": true,
@@ -606,9 +581,6 @@
     "icon": "skills/paladin/defiance.png",
     "tree": "Defensive Auras",
     "requiredLevel": 6,
-    "prerequisites": [
-      "skills-paladin-prayer"
-    ],
     "aura": true,
     "trigger": "passive",
     "target": "self",
@@ -623,9 +595,6 @@
     "icon": "skills/paladin/resist-cold.png",
     "tree": "Defensive Auras",
     "requiredLevel": 6,
-    "prerequisites": [
-      "skills-paladin-resist-fire"
-    ],
     "aura": true,
     "trigger": "passive",
     "target": "self",
@@ -660,10 +629,6 @@
     "icon": "skills/paladin/resist-lightning.png",
     "tree": "Defensive Auras",
     "requiredLevel": 12,
-    "prerequisites": [
-      "skills-paladin-resist-fire",
-      "skills-paladin-resist-cold"
-    ],
     "aura": true,
     "trigger": "passive",
     "target": "self",
@@ -682,7 +647,6 @@
     "tree": "Defensive Auras",
     "requiredLevel": 18,
     "prerequisites": [
-      "skills-paladin-prayer",
       "skills-paladin-defiance",
       "skills-paladin-cleansing"
     ],
@@ -701,8 +665,6 @@
     "tree": "Defensive Auras",
     "requiredLevel": 30,
     "prerequisites": [
-      "skills-paladin-prayer",
-      "skills-paladin-cleansing",
       "skills-paladin-meditation"
     ],
     "aura": true,
@@ -720,8 +682,6 @@
     "tree": "Defensive Auras",
     "requiredLevel": 30,
     "prerequisites": [
-      "skills-paladin-resist-fire",
-      "skills-paladin-resist-cold",
       "skills-paladin-resist-lightning"
     ],
     "aura": true,

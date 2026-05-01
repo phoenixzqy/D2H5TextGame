@@ -21,9 +21,9 @@ import { fireEvent, render, screen, act } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import { MemoryRouter } from 'react-router-dom';
 import i18n from '@/i18n';
-import { buildTreeLayout, SkillsScreen } from './SkillsScreen';
+import { buildPrerequisiteEdges, buildTreeLayout, resolveSkillIconSrc, SkillsScreen } from './SkillsScreen';
 import { usePlayerStore } from '@/stores';
-import { getSkillsForClass } from '@/stores/skillsHelpers';
+import { getSkillsForClass, organizeSkillsByTree } from '@/stores/skillsHelpers';
 import { CHARACTER_CLASSES, createMockPlayer, type CharacterClass } from '@/features/character/createMockPlayer';
 
 function renderScreen() {
@@ -97,6 +97,80 @@ describe('<SkillsScreen> — class fixture renders (mirrors skills-screen.spec.t
       }
     });
   }
+
+  for (const cls of CHARACTER_CLASSES) {
+    it(`keeps rendered node layout constrained to the 3 D2 tree columns for class=${cls}`, () => {
+      const skills = getSkillsForClass(cls);
+      const layout = buildTreeLayout(skills);
+      const columns = new Set(Array.from(layout.values()).map((node) => node.column));
+
+      expect([...columns].sort()).toEqual([0, 1, 2]);
+      for (const node of layout.values()) {
+        expect(node.x).toBe([48, 160, 272][node.column]);
+      }
+    });
+  }
+
+  it('renders the three class trees as responsive columns with 3-column node boards', () => {
+    setPlayerOfClass('necromancer');
+    renderScreen();
+
+    expect(screen.getByTestId('skills-tree-grid')).toHaveClass('lg:grid-cols-3');
+    expect(screen.getByTestId('skills-tree-column-summoning-spells')).toBeInTheDocument();
+    expect(screen.getByTestId('skills-tree-column-poison-and-bone-spells')).toBeInTheDocument();
+    expect(screen.getByTestId('skills-tree-column-curses')).toBeInTheDocument();
+
+    for (const skills of organizeSkillsByTree(getSkillsForClass('necromancer')).values()) {
+      const layout = buildTreeLayout(skills);
+      for (const node of layout.values()) {
+        expect([0, 1, 2]).toContain(node.column);
+      }
+    }
+  });
+
+  it('renders only data-declared prerequisite edges for the active class tree panels', () => {
+    setPlayerOfClass('necromancer');
+    renderScreen();
+
+    const expected = new Set<string>();
+    for (const skills of organizeSkillsByTree(getSkillsForClass('necromancer')).values()) {
+      const layout = buildTreeLayout(skills);
+      for (const edge of buildPrerequisiteEdges(skills, layout)) {
+        expected.add(`${edge.fromSkillId}->${edge.toSkillId}`);
+      }
+    }
+
+    const rendered = new Set(
+      Array.from(document.querySelectorAll<SVGPathElement>('[data-testid="skill-prerequisite-edge"]'))
+        .map((edge) => `${edge.dataset.edgeFrom ?? ''}->${edge.dataset.edgeTo ?? ''}`)
+    );
+
+    expect(rendered).toEqual(expected);
+    expect(rendered).not.toContain(
+      'skills-necromancer-raise-skeleton->skills-necromancer-summon-mastery'
+    );
+  });
+
+  it('uses approved generated skill icons and falls back accessibly for blocked or failed icons', () => {
+    expect(resolveSkillIconSrc('skills/necromancer/poison-nova.png')).toBe(
+      '/assets/d2/generated/skill-icons/skills.necromancer.poison-nova.png'
+    );
+    expect(resolveSkillIconSrc('skills/necromancer/raise-skeleton.png')).toBeNull();
+
+    setPlayerOfClass('necromancer');
+    renderScreen();
+
+    const icon = screen.getByTestId('skill-icon-img-skills-necromancer-poison-nova');
+    expect(icon).toHaveAttribute('src', '/assets/d2/generated/skill-icons/skills.necromancer.poison-nova.png');
+    expect(icon).toHaveAttribute('alt', '');
+
+    expect(screen.getByTestId('skill-icon-fallback-skills-necromancer-raise-skeleton')).toBeInTheDocument();
+    fireEvent.error(icon);
+    expect(screen.getByTestId('skill-icon-fallback-skills-necromancer-poison-nova')).toBeInTheDocument();
+    expect(screen.getByTestId('skill-node-skills-necromancer-poison-nova')).toHaveAccessibleName(
+      /毒云术|Poison Nova/
+    );
+  });
 
   it('Necromancer tree contains Bone Spear and NOT Whirlwind', () => {
     setPlayerOfClass('necromancer');

@@ -79,10 +79,7 @@
     "tree": "Cold Spells",
     "requiredLevel": 30,
     "prerequisites": [
-      "skills-sorceress-ice-bolt",
-      "skills-sorceress-frost-nova",
-      "skills-sorceress-ice-blast",
-      "skills-sorceress-glacial-spike"
+      "skills-sorceress-blizzard"
     ],
     "trigger": "active",
     "target": "area-enemies",
@@ -119,7 +116,6 @@
     "tree": "Lightning Spells",
     "requiredLevel": 18,
     "prerequisites": [
-      "skills-sorceress-charged-bolt",
       "skills-sorceress-lightning"
     ],
     "trigger": "active",
@@ -197,9 +193,8 @@
     "tree": "Fire Spells",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-sorceress-fire-bolt",
-      "skills-sorceress-inferno",
-      "skills-sorceress-fire-ball"
+      "skills-sorceress-fire-ball",
+      "skills-sorceress-fire-wall"
     ],
     "trigger": "active",
     "target": "all-enemies",
@@ -237,12 +232,6 @@
     "icon": "skills/sorceress/cold-mastery.png",
     "tree": "Cold Spells",
     "requiredLevel": 30,
-    "prerequisites": [
-      "skills-sorceress-ice-bolt",
-      "skills-sorceress-frost-nova",
-      "skills-sorceress-ice-blast",
-      "skills-sorceress-glacial-spike"
-    ],
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
@@ -256,11 +245,6 @@
     "icon": "skills/sorceress/lightning-mastery.png",
     "tree": "Lightning Spells",
     "requiredLevel": 30,
-    "prerequisites": [
-      "skills-sorceress-charged-bolt",
-      "skills-sorceress-lightning",
-      "skills-sorceress-chain-lightning"
-    ],
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
@@ -274,12 +258,6 @@
     "icon": "skills/sorceress/fire-mastery.png",
     "tree": "Fire Spells",
     "requiredLevel": 30,
-    "prerequisites": [
-      "skills-sorceress-fire-bolt",
-      "skills-sorceress-inferno",
-      "skills-sorceress-fire-ball",
-      "skills-sorceress-meteor"
-    ],
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
@@ -294,8 +272,7 @@
     "tree": "Lightning Spells",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-sorceress-telekinesis",
-      "skills-sorceress-static-field"
+      "skills-sorceress-teleport"
     ],
     "trigger": "passive",
     "target": "self",
@@ -397,8 +374,6 @@
     "tree": "Cold Spells",
     "requiredLevel": 18,
     "prerequisites": [
-      "skills-sorceress-ice-bolt",
-      "skills-sorceress-frost-nova",
       "skills-sorceress-ice-blast"
     ],
     "trigger": "active",
@@ -437,9 +412,6 @@
     "tree": "Cold Spells",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-sorceress-ice-bolt",
-      "skills-sorceress-frost-nova",
-      "skills-sorceress-ice-blast",
       "skills-sorceress-glacial-spike"
     ],
     "trigger": "active",
@@ -477,7 +449,6 @@
     "tree": "Cold Spells",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-sorceress-frozen-armor",
       "skills-sorceress-shiver-armor"
     ],
     "trigger": "active",
@@ -534,9 +505,6 @@
     "icon": "skills/sorceress/static-field.png",
     "tree": "Lightning Spells",
     "requiredLevel": 6,
-    "prerequisites": [
-      "skills-sorceress-charged-bolt"
-    ],
     "trigger": "active",
     "target": "all-enemies",
     "cooldown": 2,
@@ -561,9 +529,6 @@
     "icon": "skills/sorceress/telekinesis.png",
     "tree": "Lightning Spells",
     "requiredLevel": 6,
-    "prerequisites": [
-      "skills-sorceress-charged-bolt"
-    ],
     "trigger": "active",
     "target": "single-enemy",
     "cooldown": 2,
@@ -587,7 +552,6 @@
     "tree": "Lightning Spells",
     "requiredLevel": 12,
     "prerequisites": [
-      "skills-sorceress-charged-bolt",
       "skills-sorceress-static-field"
     ],
     "trigger": "active",
@@ -675,9 +639,8 @@
     "tree": "Lightning Spells",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-sorceress-charged-bolt",
-      "skills-sorceress-lightning",
-      "skills-sorceress-chain-lightning"
+      "skills-sorceress-chain-lightning",
+      "skills-sorceress-nova"
     ],
     "trigger": "active",
     "target": "all-enemies",
@@ -761,9 +724,6 @@
     "icon": "skills/sorceress/inferno.png",
     "tree": "Fire Spells",
     "requiredLevel": 6,
-    "prerequisites": [
-      "skills-sorceress-fire-bolt"
-    ],
     "trigger": "active",
     "target": "area-enemies",
     "cooldown": 1,
@@ -799,7 +759,6 @@
     "tree": "Fire Spells",
     "requiredLevel": 12,
     "prerequisites": [
-      "skills-sorceress-fire-bolt",
       "skills-sorceress-inferno"
     ],
     "trigger": "active",
@@ -837,8 +796,7 @@
     "tree": "Fire Spells",
     "requiredLevel": 18,
     "prerequisites": [
-      "skills-sorceress-fire-bolt",
-      "skills-sorceress-inferno"
+      "skills-sorceress-blaze"
     ],
     "trigger": "active",
     "target": "all-enemies",
@@ -875,8 +833,7 @@
     "tree": "Fire Spells",
     "requiredLevel": 18,
     "prerequisites": [
-      "skills-sorceress-fire-bolt",
-      "skills-sorceress-warmth"
+      "skills-sorceress-fire-ball"
     ],
     "trigger": "active",
     "target": "self",
@@ -901,9 +858,6 @@
     "tree": "Fire Spells",
     "requiredLevel": 30,
     "prerequisites": [
-      "skills-sorceress-fire-bolt",
-      "skills-sorceress-inferno",
-      "skills-sorceress-fire-ball",
       "skills-sorceress-fire-wall"
     ],
     "trigger": "active",

@@ -35,7 +35,7 @@
     "description": "skills.barbarian.double-swing.desc",
     "icon": "skills/barbarian/double-swing.png",
     "tree": "Combat Skills",
-    "requiredLevel": 1,
+    "requiredLevel": 6,
     "trigger": "active",
     "target": "area-enemies",
     "cooldown": 1,
@@ -57,7 +57,10 @@
     ],
     "scaling": {
       "damagePerLevel": 4
-    }
+    },
+    "prerequisites": [
+      "skills-barbarian-bash"
+    ]
   },
   {
     "id": "skills-barbarian-whirlwind",
@@ -67,9 +70,7 @@
     "tree": "Combat Skills",
     "requiredLevel": 30,
     "prerequisites": [
-      "skills-barbarian-bash",
-      "skills-barbarian-leap",
-      "skills-barbarian-stun",
+      "skills-barbarian-leap-attack",
       "skills-barbarian-concentrate"
     ],
     "trigger": "active",
@@ -107,7 +108,6 @@
     "tree": "Combat Skills",
     "requiredLevel": 18,
     "prerequisites": [
-      "skills-barbarian-bash",
       "skills-barbarian-leap"
     ],
     "trigger": "active",
@@ -144,10 +144,7 @@
     "tree": "Combat Skills",
     "requiredLevel": 30,
     "prerequisites": [
-      "skills-barbarian-bash",
-      "skills-barbarian-stun",
-      "skills-barbarian-concentrate",
-      "skills-barbarian-frenzy"
+      "skills-barbarian-concentrate"
     ],
     "trigger": "active",
     "target": "single-enemy",
@@ -178,12 +175,10 @@
     "description": "skills.barbarian.war-cry.desc",
     "icon": "skills/barbarian/war-cry.png",
     "tree": "Warcries",
-    "requiredLevel": 24,
+    "requiredLevel": 30,
     "prerequisites": [
-      "skills-barbarian-howl",
-      "skills-barbarian-taunt",
-      "skills-barbarian-shout",
-      "skills-barbarian-battle-cry"
+      "skills-barbarian-battle-cry",
+      "skills-barbarian-battle-orders"
     ],
     "trigger": "active",
     "target": "all-enemies",
@@ -217,7 +212,7 @@
     "description": "skills.barbarian.iron-skin.desc",
     "icon": "skills/barbarian/iron-skin.png",
     "tree": "Combat Masteries",
-    "requiredLevel": 12,
+    "requiredLevel": 18,
     "trigger": "passive",
     "target": "self",
     "cooldown": 0,
@@ -230,7 +225,7 @@
     "description": "skills.barbarian.natural-resistance.desc",
     "icon": "skills/barbarian/natural-resistance.png",
     "tree": "Combat Masteries",
-    "requiredLevel": 24,
+    "requiredLevel": 30,
     "prerequisites": [
       "skills-barbarian-iron-skin"
     ],
@@ -246,11 +241,9 @@
     "description": "skills.barbarian.battle-orders.desc",
     "icon": "skills/barbarian/battle-orders.png",
     "tree": "Warcries",
-    "requiredLevel": 18,
+    "requiredLevel": 24,
     "prerequisites": [
-      "skills-barbarian-howl",
-      "skills-barbarian-shout",
-      "skills-barbarian-battle-cry"
+      "skills-barbarian-shout"
     ],
     "trigger": "passive",
     "target": "self",
@@ -378,7 +371,7 @@
     "description": "skills.barbarian.increased-speed.desc",
     "icon": "skills/barbarian/increased-speed.png",
     "tree": "Combat Masteries",
-    "requiredLevel": 18,
+    "requiredLevel": 24,
     "prerequisites": [
       "skills-barbarian-increased-stamina"
     ],
@@ -485,7 +478,6 @@
     "tree": "Combat Skills",
     "requiredLevel": 18,
     "prerequisites": [
-      "skills-barbarian-bash",
       "skills-barbarian-stun"
     ],
     "trigger": "active",
@@ -519,10 +511,7 @@
     "tree": "Combat Skills",
     "requiredLevel": 24,
     "prerequisites": [
-      "skills-barbarian-bash",
-      "skills-barbarian-double-swing",
-      "skills-barbarian-stun",
-      "skills-barbarian-concentrate"
+      "skills-barbarian-double-throw"
     ],
     "trigger": "active",
     "target": "single-enemy",
@@ -629,9 +618,8 @@
     "description": "skills.barbarian.battle-cry.desc",
     "icon": "skills/barbarian/battle-cry.png",
     "tree": "Warcries",
-    "requiredLevel": 12,
+    "requiredLevel": 18,
     "prerequisites": [
-      "skills-barbarian-howl",
       "skills-barbarian-taunt"
     ],
     "trigger": "active",
@@ -655,10 +643,9 @@
     "description": "skills.barbarian.grim-ward.desc",
     "icon": "skills/barbarian/grim-ward.png",
     "tree": "Warcries",
-    "requiredLevel": 18,
+    "requiredLevel": 24,
     "prerequisites": [
-      "skills-barbarian-howl",
-      "skills-barbarian-taunt"
+      "skills-barbarian-find-item"
     ],
     "trigger": "active",
     "target": "all-enemies",
@@ -680,8 +667,7 @@
     "tree": "Warcries",
     "requiredLevel": 30,
     "prerequisites": [
-      "skills-barbarian-battle-orders",
-      "skills-barbarian-battle-cry"
+      "skills-barbarian-battle-orders"
     ],
     "trigger": "active",
     "target": "self",

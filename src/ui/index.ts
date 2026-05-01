@@ -29,6 +29,7 @@ export {
   getMercPortraitUrl,
   getItemIconUrl,
   getBaseItemIconUrl,
+  getSkillIconUrl,
   getNpcPortraitUrl,
   getZoneArtUrl,
   rarityBgClass,
@@ -37,6 +38,7 @@ export {
   resolveClassPortrait,
   resolveMonsterArt,
   resolveItemIcon,
+  resolveSkillIcon,
   resolveZoneArt,
   resolveMercArt
 } from './cardAssets';

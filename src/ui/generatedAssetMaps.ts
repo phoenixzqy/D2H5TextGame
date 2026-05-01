@@ -490,3 +490,19 @@ export const ZONE_ART: Readonly<Record<string, string>> = {
   "act4.pandemonium-fortress": "/assets/d2/generated/zone-art/zones.act4.pandemonium-fortress.png",
   "act5.harrogath": "/assets/d2/generated/zone-art/zones.act5.harrogath.png"
 };
+
+/** Skill icons — keyed by "skills.<class>.<slug>" from accepted art-director variants. */
+export const SKILL_ICONS: Readonly<Record<string, string>> = {
+  "skills.amazon.magic-arrow": "/assets/d2/generated/skill-icons/skills.amazon.magic-arrow.png",
+  "skills.amazon.valkyrie": "/assets/d2/generated/skill-icons/skills.amazon.valkyrie.png",
+  "skills.assassin.charged-bolt-sentry": "/assets/d2/generated/skill-icons/skills.assassin.charged-bolt-sentry.v1.png",
+  "skills.assassin.fire-blast": "/assets/d2/generated/skill-icons/skills.assassin.fire-blast.png",
+  "skills.barbarian.bash": "/assets/d2/generated/skill-icons/skills.barbarian.bash.png",
+  "skills.barbarian.battle-orders": "/assets/d2/generated/skill-icons/skills.barbarian.battle-orders.png",
+  "skills.druid.firestorm": "/assets/d2/generated/skill-icons/skills.druid.firestorm.png",
+  "skills.necromancer.poison-nova": "/assets/d2/generated/skill-icons/skills.necromancer.poison-nova.png",
+  "skills.paladin.holy-shock": "/assets/d2/generated/skill-icons/skills.paladin.holy-shock.png",
+  "skills.paladin.zeal": "/assets/d2/generated/skill-icons/skills.paladin.zeal.v1.png",
+  "skills.sorceress.fire-ball": "/assets/d2/generated/skill-icons/skills.sorceress.fire-ball.png",
+  "skills.sorceress.frozen-orb": "/assets/d2/generated/skill-icons/skills.sorceress.frozen-orb.png"
+};

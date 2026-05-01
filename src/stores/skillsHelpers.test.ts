@@ -50,6 +50,16 @@ describe('skillsHelpers', () => {
   });
 
   describe('organizeSkillsByTree', () => {
+    it('keeps every player class organized into exactly three skill-tree columns', () => {
+      for (const cls of ['amazon', 'assassin', 'barbarian', 'druid', 'necromancer', 'paladin', 'sorceress']) {
+        const skills = getSkillsForClass(cls);
+        const treeMap = organizeSkillsByTree(skills);
+
+        expect([...treeMap.keys()], `${cls} tree columns`).toHaveLength(3);
+        expect([...treeMap.values()].every((treeSkills) => treeSkills.length > 0), `${cls} has no empty tree column`).toBe(true);
+      }
+    });
+
     it('should organize skills by tree field when present', () => {
       const skills = getSkillsForClass('necromancer');
       const treeMap = organizeSkillsByTree(skills);
@@ -101,6 +111,40 @@ describe('skillsHelpers', () => {
       expect(treeMap.has('passive')).toBe(true);
       expect(treeMap.get('combat')?.length).toBe(2);
       expect(treeMap.get('passive')?.length).toBe(1);
+    });
+  });
+
+  describe('player skill data integrity', () => {
+    const playerClasses = ['amazon', 'assassin', 'barbarian', 'druid', 'necromancer', 'paladin', 'sorceress'];
+
+    it('gives every player skill an icon reference under its class skill path', () => {
+      for (const cls of playerClasses) {
+        for (const skill of getSkillsForClass(cls)) {
+          expect(skill.icon, `${skill.id} icon`).toMatch(new RegExp(`^skills/${cls}/[a-z0-9-]+\\.png$`));
+        }
+      }
+    });
+
+    it('uses only valid same-class prerequisite ids', () => {
+      for (const cls of playerClasses) {
+        const ids = new Set(getSkillsForClass(cls).map((skill) => skill.id));
+
+        for (const skill of getSkillsForClass(cls)) {
+          for (const prereqId of skill.prerequisites ?? []) {
+            expect(ids.has(prereqId), `${skill.id} prerequisite ${prereqId}`).toBe(true);
+          }
+        }
+      }
+    });
+
+    it('keeps Necromancer Golem Mastery gated only by Clay Golem and disconnected from Raise Skeletal Mage', () => {
+      const necromancerSkills = getSkillsForClass('necromancer');
+      const golemMastery = necromancerSkills.find((skill) => skill.id === 'skills-necromancer-golem-mastery');
+      const raiseSkeletalMage = necromancerSkills.find((skill) => skill.id === 'skills-necromancer-raise-skeletal-mage');
+
+      expect(golemMastery?.prerequisites).toEqual(['skills-necromancer-clay-golem']);
+      expect(golemMastery?.prerequisites ?? []).not.toContain('skills-necromancer-raise-skeletal-mage');
+      expect(raiseSkeletalMage?.prerequisites ?? []).not.toContain('skills-necromancer-golem-mastery');
     });
   });
 

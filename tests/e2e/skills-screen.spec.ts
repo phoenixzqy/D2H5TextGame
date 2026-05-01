@@ -8,8 +8,37 @@ import { clearGameStorage, createCharacter, navTo } from './_helpers';
 const DESKTOP_VIEWPORT = { width: 1280, height: 800 };
 const MOBILE_VIEWPORT = { width: 360, height: 640 };
 
-test.describe('Skills Screen @desktop-only', () => {
-  test.describe('Desktop viewport', () => {
+test.describe('Skills Screen', () => {
+  test('should render three skill-tree columns without overflow @responsive', async ({ page }) => {
+    await clearGameStorage(page);
+    await createCharacter(page, { class: 'necromancer', name: 'TestNecro' });
+
+    await navTo(page, 'skills');
+    await expect(page.getByTestId('skills-screen')).toBeVisible();
+
+    await expect(page.getByText(/悬停、聚焦|Hover, focus/)).toHaveCount(3);
+    const skillNodes = await page.locator('[data-testid^="skill-node-"]').count();
+    expect(skillNodes).toBeGreaterThanOrEqual(8);
+
+    const scrollWidth = await page.locator('body').evaluate(el => el.scrollWidth);
+    const clientWidth = await page.locator('body').evaluate(el => el.clientWidth);
+    expect(scrollWidth).toBeLessThanOrEqual(clientWidth + 5);
+  });
+
+  test('should show Golem Mastery only depends on Clay Golem @responsive', async ({ page }) => {
+    await clearGameStorage(page);
+    await createCharacter(page, { class: 'necromancer', name: 'TestNecro' });
+
+    await navTo(page, 'skills');
+    await expect(page.getByTestId('skills-screen')).toBeVisible();
+
+    await page.getByTestId('skill-node-skills-necromancer-golem-mastery').click();
+    const detail = page.getByTestId('skill-detail-panel');
+    await expect(detail).toContainText(/黏土石魔|Clay Golem/);
+    await expect(detail).not.toContainText(/骷髅法师|Skeletal Mage|Raise Skeletal Mage/);
+  });
+
+  test.describe('Desktop viewport @desktop-only', () => {
     test.use({ viewport: DESKTOP_VIEWPORT });
 
     test('should display Necromancer skills when Necromancer is selected', async ({ page }) => {
@@ -103,7 +132,7 @@ test.describe('Skills Screen @desktop-only', () => {
     });
   });
 
-  test.describe('Mobile viewport', () => {
+  test.describe('Mobile viewport @mobile-only', () => {
     test.use({ viewport: MOBILE_VIEWPORT });
 
     test('should display Necromancer skills on mobile', async ({ page }) => {

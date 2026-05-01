@@ -17,6 +17,11 @@
  *   item-icons/items.unique.<slug>.png       → uniques[<slug>]
  *   item-icons/items.base.<slug>.png         → bases[<slug>]
  *   zone-art/zones.act<N>.<slug>.png         → zones[act<N>.<slug>]
+ *   skill-icons/skills.<class>.<slug>.png    → skillIcons[skills.<class>.<slug>]
+ *
+ * Skill icons are gated by the art-director seed registry. The directory may
+ * contain rejected pilot variants, so only rows in `docs/art/seed-registry.md`
+ * whose accepted variant is numeric are emitted.
  */
 import { readdirSync, writeFileSync, readFileSync, existsSync, mkdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
@@ -26,6 +31,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const ASSETS_DIR = join(ROOT, 'public', 'assets', 'd2', 'generated');
 const OUTPUT = join(ROOT, 'src', 'ui', 'generatedAssetMaps.ts');
+const SEED_REGISTRY = join(ROOT, 'docs', 'art', 'seed-registry.md');
 
 function listPngs(subdir) {
   const dir = join(ASSETS_DIR, subdir);
@@ -41,6 +47,41 @@ function url(category, file) {
   return `${URL_PREFIX}/${category}/${file}`;
 }
 
+function buildAcceptedSkillIcons() {
+  const files = new Set(listPngs('skill-icons'));
+  if (files.size === 0 || !existsSync(SEED_REGISTRY)) return {};
+
+  const registry = readFileSync(SEED_REGISTRY, 'utf8');
+  const start = registry.indexOf('## skill-icon');
+  if (start === -1) return {};
+
+  const rest = registry.slice(start);
+  const nextHeading = rest.slice('## skill-icon'.length).search(/\n## /);
+  const section = nextHeading === -1
+    ? rest
+    : rest.slice(0, '## skill-icon'.length + nextHeading);
+  const skillIcons = {};
+
+  for (const line of section.split(/\r?\n/)) {
+    const cells = line
+      .split('|')
+      .map((cell) => cell.trim())
+      .filter(Boolean);
+    if (cells.length < 5 || !/^\d+$/.test(cells[0])) continue;
+
+    const [, id, , acceptedVariant] = cells;
+    if (!id?.startsWith('skills.') || !/^\d+$/.test(acceptedVariant)) continue;
+
+    const variant = Number(acceptedVariant);
+    const filename = `${id}${variant > 0 ? `.v${variant}` : ''}.png`;
+    if (files.has(filename)) {
+      skillIcons[id] = url('skill-icons', filename);
+    }
+  }
+
+  return skillIcons;
+}
+
 function buildMaps() {
   const classes = {};
   const npcs = {};
@@ -48,6 +89,7 @@ function buildMaps() {
   const uniques = {};
   const bases = {};
   const zones = {};
+  const skillIcons = buildAcceptedSkillIcons();
 
   for (const f of listPngs('class-portraits')) {
     // classes.<slug>.png   |   npcs.act<N>.<slug>.png
@@ -91,10 +133,10 @@ function buildMaps() {
     }
   }
 
-  return { classes, npcs, monsters, uniques, bases, zones };
+  return { classes, npcs, monsters, uniques, bases, zones, skillIcons };
 }
 
-function emit({ classes, npcs, monsters, uniques, bases, zones }) {
+function emit({ classes, npcs, monsters, uniques, bases, zones, skillIcons }) {
   const ent = (m) =>
     Object.keys(m)
       .sort()
@@ -133,6 +175,11 @@ ${ent(bases)}
 /** Zone art — keyed by "act<N>.<slug>". */
 export const ZONE_ART: Readonly<Record<string, string>> = {
 ${ent(zones)}
+};
+
+/** Skill icons — keyed by "skills.<class>.<slug>" from accepted art-director variants. */
+export const SKILL_ICONS: Readonly<Record<string, string>> = {
+${ent(skillIcons)}
 };
 `;
 }

@@ -1,13 +1,19 @@
 /**
  * SkillsScreen — class skill tree + active skill priority list.
  *
+ * Layout sketch:
+ * - Mobile (360×640): points banner, tabs, one skill-tree panel per row; each
+ *   panel contains a compact 3-column node board and sticky-ish detail panel.
+ * - Desktop (1280×800): the three class trees sit side-by-side; node boards
+ *   keep the same 3-column coordinate system so prerequisite edges stay stable.
+ *
  * The tree tab renders a D2-inspired node board with dependency connectors and
  * a level-aware detail panel. Combat/math display is resolved by pure engine
  * helpers; this component only formats and wires player actions.
  */
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Panel, ScreenShell, Tabs, tDataKey } from '@/ui';
+import { Button, Panel, ScreenShell, Tabs, resolveSkillIcon, tDataKey } from '@/ui';
 import { usePlayerStore } from '@/stores';
 import {
   getSkillRequiredLevel,
@@ -36,6 +42,13 @@ interface SkillNodeLayout {
   readonly row: number;
   readonly x: number;
   readonly y: number;
+}
+
+interface SkillPrerequisiteEdge {
+  readonly fromSkillId: string;
+  readonly toSkillId: string;
+  readonly parent: SkillNodeLayout;
+  readonly child: SkillNodeLayout;
 }
 
 type Translate = ReturnType<typeof useTranslation>['t'];
@@ -148,13 +161,13 @@ export function SkillsScreen() {
 
   const treePanel = (
     <div className="space-y-4" data-testid="skills-tree-panel">
-      <div className="grid gap-4 xl:grid-cols-3">
+      <div className="grid gap-4 lg:grid-cols-3" data-testid="skills-tree-grid">
         {Array.from(skillTrees.entries()).map(([treeName, treeSkills]) => {
           const treeSlug = treeName === 'all' ? 'all' : slugifyTreeName(treeName);
           const treeTitle = t(`tree.${treeSlug}`, { defaultValue: treeName });
           const layout = buildTreeLayout(treeSkills);
           return (
-            <Panel key={treeName} title={treeTitle} className="overflow-hidden">
+            <Panel key={treeName} title={treeTitle} className="overflow-hidden" data-testid={`skills-tree-column-${treeSlug}`}>
               <p className="mb-3 text-xs text-d2-white/70">{t('details.treeSummary')}</p>
               <SkillTreeBoard
                 skills={treeSkills}
@@ -283,6 +296,7 @@ function SkillTreeBoard({
 }) {
   const maxRow = Math.max(0, ...Array.from(layout.values()).map((node) => node.row));
   const height = TREE_TOP * 2 + maxRow * TREE_ROW_HEIGHT + 64;
+  const edges = buildPrerequisiteEdges(skills, layout);
   const orderedSkills = [...skills].sort((a, b) => {
     const aNode = layout.get(a.id);
     const bNode = layout.get(b.id);
@@ -295,30 +309,28 @@ function SkillTreeBoard({
       className="relative mx-auto w-full max-w-[320px] rounded border border-d2-border/70
                  bg-[radial-gradient(circle_at_50%_0%,rgba(210,176,91,0.12),transparent_48%),linear-gradient(135deg,rgba(255,255,255,0.04)_0,transparent_40%)]
                  shadow-inner"
+      data-testid="skill-tree-board"
       style={{ height }}
     >
       <svg className="absolute inset-0 h-full w-full" viewBox={`0 0 ${String(TREE_WIDTH)} ${String(height)}`} aria-hidden="true">
-        {orderedSkills.flatMap((skill) => {
-          const child = layout.get(skill.id);
-          if (!child) return [];
-          return (skill.prerequisites ?? []).map((prereqId) => {
-            const parent = layout.get(prereqId);
-            if (!parent) return null;
-            const learned = (allocatedSkills.get(prereqId) ?? 0) > 0;
-            const midY = parent.y + Math.max(18, (child.y - parent.y) / 2);
-            const d = `M ${String(parent.x)} ${String(parent.y + 28)} V ${String(midY)} H ${String(child.x)} V ${String(child.y - 28)}`;
-            return (
-              <path
-                key={`${prereqId}-${skill.id}`}
-                d={d}
-                fill="none"
-                stroke={learned ? 'rgba(210,176,91,0.85)' : 'rgba(99,79,54,0.75)'}
-                strokeWidth={learned ? 3 : 2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            );
-          });
+        {edges.map((edge) => {
+          const learned = (allocatedSkills.get(edge.fromSkillId) ?? 0) > 0;
+          const midY = edge.parent.y + Math.max(18, (edge.child.y - edge.parent.y) / 2);
+          const d = `M ${String(edge.parent.x)} ${String(edge.parent.y + 28)} V ${String(midY)} H ${String(edge.child.x)} V ${String(edge.child.y - 28)}`;
+          return (
+            <path
+              key={`${edge.fromSkillId}-${edge.toSkillId}`}
+              d={d}
+              fill="none"
+              stroke={learned ? 'rgba(210,176,91,0.85)' : 'rgba(99,79,54,0.75)'}
+              strokeWidth={learned ? 3 : 2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              data-testid="skill-prerequisite-edge"
+              data-edge-from={edge.fromSkillId}
+              data-edge-to={edge.toSkillId}
+            />
+          );
         })}
       </svg>
 
@@ -357,9 +369,7 @@ function SkillTreeBoard({
                         ${nodeStateClass(level, locked, selected || previewed)}`}
             style={{ left: node.x - 28, top: node.y - 28 }}
           >
-            <span className={`flex h-9 w-9 items-center justify-center rounded bg-gradient-to-br ${skillIconClass(skill)} font-serif text-sm font-bold shadow-inner`}>
-              {skillIconGlyph(skill)}
-            </span>
+            <SkillIcon skill={skill} label={name} />
             <span className="sr-only">{name}</span>
             {locked ? <span className="absolute right-0.5 top-0.5 text-[10px]" aria-hidden="true">🔒</span> : null}
             <span className="mt-0.5 leading-none text-d2-white/80">{level}/{skill.maxLevel}</span>
@@ -595,6 +605,49 @@ function RequirementSection({
   );
 }
 
+function SkillIcon({ skill, label }: { readonly skill: SkillTemplate; readonly label: string }) {
+  const [failed, setFailed] = useState(false);
+  const iconSrc = failed ? null : resolveSkillIconSrc(skill.icon, skill.id);
+  const fallback = (
+    <span
+      className={`flex h-9 w-9 items-center justify-center rounded bg-gradient-to-br ${skillIconClass(skill)} font-serif text-sm font-bold shadow-inner`}
+      data-testid={`skill-icon-fallback-${skill.id}`}
+      aria-hidden="true"
+    >
+      <SkillFallbackMark skill={skill} />
+    </span>
+  );
+
+  if (!iconSrc) return fallback;
+
+  return (
+    <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded bg-black shadow-inner">
+      <img
+        src={iconSrc}
+        alt=""
+        aria-hidden="true"
+        draggable={false}
+        className="h-full w-full object-cover"
+        data-testid={`skill-icon-img-${skill.id}`}
+        onError={() => { setFailed(true); }}
+      />
+      <span className="sr-only">{label}</span>
+    </span>
+  );
+}
+
+export function resolveSkillIconSrc(icon: string | undefined, skillId?: string): string | null {
+  for (const ref of [icon, skillId]) {
+    if (!ref) continue;
+    const resolved = resolveSkillIcon(ref);
+    if (resolved) return resolved;
+  }
+
+  const trimmed = icon?.trim();
+  if (!trimmed) return null;
+  return /^(https?:|data:|blob:|\/)/i.test(trimmed) ? trimmed : null;
+}
+
 export function buildTreeLayout(skills: readonly SkillTemplate[]): Map<string, SkillNodeLayout> {
   const sorted = [...skills].sort((a, b) => {
     const levelDelta = getSkillRequiredLevel(a) - getSkillRequiredLevel(b);
@@ -625,6 +678,31 @@ export function buildTreeLayout(skills: readonly SkillTemplate[]): Map<string, S
   }
 
   return layout;
+}
+
+export function buildPrerequisiteEdges(
+  skills: readonly SkillTemplate[],
+  layout: ReadonlyMap<string, SkillNodeLayout>
+): readonly SkillPrerequisiteEdge[] {
+  const edges: SkillPrerequisiteEdge[] = [];
+
+  for (const skill of skills) {
+    const child = layout.get(skill.id);
+    if (!child) continue;
+
+    for (const prereqId of skill.prerequisites ?? []) {
+      const parent = layout.get(prereqId);
+      if (!parent) continue;
+      edges.push({
+        fromSkillId: prereqId,
+        toSkillId: skill.id,
+        parent,
+        child
+      });
+    }
+  }
+
+  return edges;
 }
 
 function findOpenTreeSlot(
@@ -692,18 +770,81 @@ function skillIconClass(skill: SkillTemplate): string {
   }
 }
 
-function skillIconGlyph(skill: SkillTemplate): string {
-  if (skill.summon) return 'S';
-  if (skill.trigger === 'passive') return 'P';
+function SkillFallbackMark({ skill }: { readonly skill: SkillTemplate }) {
+  if (skill.summon) {
+    return (
+      <svg viewBox="0 0 36 36" className="h-7 w-7" aria-hidden="true">
+        <circle cx="18" cy="17" r="9" fill="currentColor" opacity="0.28" />
+        <path d="M12 17c0-5 3-8 6-8s6 3 6 8c0 4-2 6-4 7v3h-4v-3c-2-1-4-3-4-7Z" fill="currentColor" opacity="0.9" />
+        <circle cx="15.2" cy="17.5" r="1.5" fill="black" opacity="0.8" />
+        <circle cx="20.8" cy="17.5" r="1.5" fill="black" opacity="0.8" />
+      </svg>
+    );
+  }
+  if (skill.trigger === 'passive' || skill.trigger === 'aura') {
+    return (
+      <svg viewBox="0 0 36 36" className="h-7 w-7" aria-hidden="true">
+        <path d="M18 5l3.2 9.3H31l-7.8 5.7 3 9.2L18 23.5l-8.2 5.7 3-9.2L5 14.3h9.8L18 5Z" fill="currentColor" opacity="0.9" />
+        <circle cx="18" cy="18" r="12" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.35" />
+      </svg>
+    );
+  }
   switch (skill.damageType) {
-    case 'fire': return 'F';
-    case 'cold': return 'C';
-    case 'lightning': return 'L';
-    case 'arcane': return 'A';
-    case 'poison': return 'T';
-    case 'thorns': return 'R';
-    case 'physical': return 'X';
-    default: return 'I';
+    case 'fire':
+      return (
+        <svg viewBox="0 0 36 36" className="h-7 w-7" aria-hidden="true">
+          <path d="M19 4c2 6-5 7-1 13 1.4-3 4-4.5 5-8 5 5 7 11 2 17-4 5-13 5-17-1-4-7 2-12 7-18-.2 5 2 7 4 9 1-4-1-6 0-12Z" fill="currentColor" />
+        </svg>
+      );
+    case 'cold':
+      return (
+        <svg viewBox="0 0 36 36" className="h-7 w-7" aria-hidden="true">
+          <path d="M18 4v28M6 11l24 14M30 11L6 25" stroke="currentColor" strokeWidth="3" strokeLinecap="round" opacity="0.9" />
+          <path d="M18 8l4 4-4 4-4-4 4-4Zm0 12l4 4-4 4-4-4 4-4Z" fill="currentColor" opacity="0.75" />
+        </svg>
+      );
+    case 'lightning':
+      return (
+        <svg viewBox="0 0 36 36" className="h-7 w-7" aria-hidden="true">
+          <path d="M22 3L9 20h8l-3 13 13-18h-8l3-12Z" fill="currentColor" />
+        </svg>
+      );
+    case 'arcane':
+      return (
+        <svg viewBox="0 0 36 36" className="h-7 w-7" aria-hidden="true">
+          <circle cx="18" cy="18" r="10" fill="none" stroke="currentColor" strokeWidth="3" opacity="0.8" />
+          <circle cx="18" cy="18" r="3" fill="currentColor" />
+          <path d="M18 4v5M18 27v5M4 18h5M27 18h5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      );
+    case 'poison':
+      return (
+        <svg viewBox="0 0 36 36" className="h-7 w-7" aria-hidden="true">
+          <circle cx="15" cy="15" r="7" fill="currentColor" opacity="0.8" />
+          <circle cx="22" cy="20" r="8" fill="currentColor" opacity="0.45" />
+          <circle cx="24" cy="10" r="3" fill="currentColor" opacity="0.9" />
+        </svg>
+      );
+    case 'thorns':
+      return (
+        <svg viewBox="0 0 36 36" className="h-7 w-7" aria-hidden="true">
+          <path d="M18 4l4 11 10 3-10 3-4 11-4-11-10-3 10-3 4-11Z" fill="currentColor" opacity="0.9" />
+          <path d="M7 8l22 20M29 8L7 28" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.45" />
+        </svg>
+      );
+    case 'physical':
+      return (
+        <svg viewBox="0 0 36 36" className="h-7 w-7" aria-hidden="true">
+          <path d="M8 26L26 8l3 3-18 18H8v-3Zm20 2L10 10l2-2 18 18v2h-2Z" fill="currentColor" />
+        </svg>
+      );
+    default:
+      return (
+        <svg viewBox="0 0 36 36" className="h-7 w-7" aria-hidden="true">
+          <circle cx="18" cy="18" r="10" fill="currentColor" opacity="0.75" />
+          <path d="M18 8v20M8 18h20" stroke="black" strokeWidth="3" strokeLinecap="round" opacity="0.45" />
+        </svg>
+      );
   }
 }
 

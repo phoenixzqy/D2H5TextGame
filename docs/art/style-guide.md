@@ -89,6 +89,20 @@ Canonical subjects: Amazon, Assassin, Barbarian, Druid, Necromancer, Paladin, So
 - **Style suffix**: `cinematic establishing shot of a Diablo II zone, atmospheric perspective, small silhouetted hero figure for scale optional, dramatic sky, matte painting style`
 - **Negative additions**: `text, ui, hud, modern buildings`
 
+### 4.6 `skill-icon`
+- **Model**: `flux`
+- **Size**: `512 × 512` (square source; intended UI display at 64 × 64 and smaller)
+- **Seed-base**: `600000`
+- **Reference axis**: dark-fantasy ARPG skill icons, illuminated-manuscript spell emblems, painterly high-contrast fantasy glyphs. Diablo II / D2R skill icons may guide functional readability and class fantasy, but prompts must not copy their specific compositions.
+- **Brushwork & medium**: oil-painted miniature icon, visible brushwork, crisp silhouette, magical glow; never photoreal, never anime, never 3D render.
+- **Palette**: muted soot / parchment / iron base with one elemental accent: ember `#c3411f`, frost `#9aa9d6`, storm `#f08a2a`, venom `#7fa56e`, bone-spirit `#e6dcc4`, blood-shadow `#7a1f1f`.
+- **Lighting direction**: warm internal glow or elemental key light against a dark near-black ground; hard chiaroscuro edge contrast so the icon remains readable at 64 × 64.
+- **Composition rules**: one centered floating glyph, weapon fragment, creature token, aura sigil, or elemental emblem; high-readability silhouette; no UI border/frame baked into the image; no full scene or character portrait.
+- **Subject fidelity musts**: the icon must communicate the skill's game function first — projectile, melee strike, aura, trap, summon, curse, passive mastery, or elemental spell — with class-appropriate motifs.
+- **Style suffix**: `single magical skill icon, floating glyph or emblem, centered, high-readability silhouette, painterly icon style, dark near-black background, no UI frame, no text, no character portrait, no full scene, elemental glow appropriate to the skill, readable at small size`
+- **Negative additions**: `letters, numbers, readable text, ui frame, border, portrait, full body character, landscape, multiple icons, photoreal, transparent background`
+- **Note**: source background is dark, not transparent. UI applies node framing, lock overlays, level badges, and hover states.
+
 ## 5. Subject framing (preset v2, 2026-04-28)
 
 Card UIs across the game crop generated images with `object-fit: cover`
