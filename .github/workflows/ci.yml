@@ -241,6 +241,86 @@ jobs:
           retention-days: 1
           if-no-files-found: error
 
+  # ──────────────────────────────────────────────────────────────────────
+  # Perf gate (Wave C / P12) — WARN-ONLY.
+  #
+  # Runs `bench-tests.mjs` for `unit-full` and `unit-engine` on each OS
+  # in the matrix, then compares medians against the OS-keyed row in
+  # `docs/perf/test-bench.baseline.json` (>20% regression → ⚠️).
+  #
+  # Hard-fail flip is a future PR after ≥10 CI runs of variance
+  # characterization; see `docs/perf/perf-gate.md`. E2E suites are
+  # intentionally excluded — too noisy across cross-OS GitHub runners.
+  #
+  # Runs in parallel with the e2e jobs (NOT in their critical path).
+  # Depends only on `ci` so we don't bench a broken suite.
+  # ──────────────────────────────────────────────────────────────────────
+  test-perf:
+    name: test-perf (warn-only) — ${{ matrix.os }}
+    needs: ci
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Determine OS key
+        id: oskey
+        shell: bash
+        run: |
+          case "${{ runner.os }}" in
+            Linux)   echo "key=ubuntu"  >> "$GITHUB_OUTPUT" ;;
+            Windows) echo "key=windows" >> "$GITHUB_OUTPUT" ;;
+            macOS)   echo "key=macos"   >> "$GITHUB_OUTPUT" ;;
+            *)       echo "key=unknown" >> "$GITHUB_OUTPUT" ;;
+          esac
+      - name: Bench unit-full
+        run: node scripts/bench-tests.mjs --suite unit-full --runs 3 --json bench-unit-full.json
+      - name: Bench unit-engine
+        run: node scripts/bench-tests.mjs --suite unit-engine --runs 3 --json bench-unit-engine.json
+      - name: Perf gate — unit-full vs baseline
+        # Warn-only: the script always exits 0. continue-on-error is
+        # belt-and-suspenders so a script bug can never break CI.
+        continue-on-error: true
+        shell: bash
+        run: |
+          node scripts/check-bench-vs-baseline.mjs \
+            --bench bench-unit-full.json \
+            --baseline docs/perf/test-bench.baseline.json \
+            --os ${{ steps.oskey.outputs.key }} \
+            --threshold-pct 20 \
+            --summary-out "$GITHUB_STEP_SUMMARY"
+      - name: Perf gate — unit-engine vs baseline
+        continue-on-error: true
+        shell: bash
+        run: |
+          node scripts/check-bench-vs-baseline.mjs \
+            --bench bench-unit-engine.json \
+            --baseline docs/perf/test-bench.baseline.json \
+            --os ${{ steps.oskey.outputs.key }} \
+            --threshold-pct 20 \
+            --summary-out "$GITHUB_STEP_SUMMARY"
+      - name: Upload bench artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bench-results-${{ steps.oskey.outputs.key }}
+          path: |
+            bench-unit-full.json
+            bench-unit-engine.json
+          retention-days: 14
+          if-no-files-found: warn
+
   e2e-merge:
     name: e2e — merge reports
     needs: [e2e-shard, e2e-mobile-shard, e2e-prod-bundle]
