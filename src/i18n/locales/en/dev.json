@@ -1,5 +1,38 @@
 {
   "backToGame": "← Back to game",
+  "shell": {
+    "title": "Dev Tool",
+    "localhostOnly": "Localhost only",
+    "navLabel": "Dev tool",
+    "overview": "Overview",
+    "description": "Edit canonical JSON under src/data while Vite dev server is running. Saves are validated by Ajv before writing to disk.",
+    "links": {
+      "classes": {
+        "label": "Classes",
+        "description": "Class stats and starter skills"
+      },
+      "items": {
+        "label": "Items",
+        "description": "Bases, uniques, and sets"
+      },
+      "skills": {
+        "label": "Skills",
+        "description": "Damage, cooldown, and scaling"
+      },
+      "monsters": {
+        "label": "Monsters",
+        "description": "Archetype combat tuning"
+      },
+      "maps": {
+        "label": "Maps",
+        "description": "Sub-area levels and waves"
+      }
+    }
+  },
+  "fields": {
+    "minAria": "{{label}} min",
+    "maxAria": "{{label}} max"
+  },
   "manager": {
     "loading": "Loading...",
     "loaded": "Loaded {{path}}",
@@ -13,7 +46,8 @@
     "selectedEntryJson": "Selected entry JSON",
     "applyEntryJson": "Apply entry JSON",
     "noEntries": "No entries found.",
-    "saveToDisk": "Save to disk"
+    "saveToDisk": "Save to disk",
+    "entryNumber": "Entry {{index}}"
   },
   "imageField": {
     "label": "Image preview",
@@ -73,6 +107,31 @@
       "pieceBonuses": "Piece bonuses JSON"
     }
   },
+  "classesEditor": {
+    "title": "Class Manager",
+    "description": "Edit class stat curves, life/mana growth, and starter skills.",
+    "sections": {
+      "startingStats": "Starting stats",
+      "statGrowth": "Per-level stat growth",
+      "statCurvePreview": "Stat curve preview"
+    },
+    "stats": {
+      "strength": "Strength",
+      "dexterity": "Dexterity",
+      "vitality": "Vitality",
+      "energy": "Energy"
+    },
+    "fields": {
+      "lifePerLevel": "Life per level",
+      "manaPerLevel": "Mana per level",
+      "starterSkills": "Starter skills (comma-separated)"
+    },
+    "preview": {
+      "level": "Level {{level}}",
+      "life": "Life",
+      "mana": "Mana"
+    }
+  },
   "monstersEditor": {
     "title": "Monster Manager",
     "description": "Edit archetype HP, growth, attack cadence, defense, resistances, and skills.",
@@ -83,6 +142,34 @@
       "attackSpeed": "Attack speed",
       "skills": "Skill list (comma-separated)",
       "resistances": "Resistances JSON"
+    }
+  },
+  "mapManager": {
+    "title": "Map Manager",
+    "description": "Edit sub-area level, weighted monster pool, and wave composition.",
+    "fields": {
+      "areaLevel": "Area level",
+      "monsterPool": "Monster pool JSON [{ archetypeId, weight }]",
+      "waves": "Wave composition JSON"
+    },
+    "preview": {
+      "title": "Level modifier preview",
+      "formula": "Formula: M_eff = round(areaLevel + (encounterLevel - baseLevel) * 0.5). Base level: {{baseLevel}}.",
+      "encounterLevel": "Encounter level {{level}}"
+    }
+  },
+  "skillsEditor": {
+    "title": "Skill Manager",
+    "description": "Edit skill damage, cooldown, mana cost, and per-level scaling.",
+    "fields": {
+      "baseDamageMin": "Base damage min",
+      "baseDamageMax": "Base damage max",
+      "cooldown": "Cooldown",
+      "manaCost": "Mana cost",
+      "damagePerLevel": "Damage per skill level",
+      "costPerLevel": "Cost per skill level",
+      "damageBreakdown": "Damage type breakdown JSON",
+      "scaling": "Scaling JSON"
     }
   },
   "weaponType": {

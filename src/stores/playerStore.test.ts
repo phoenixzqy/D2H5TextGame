@@ -4,7 +4,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { usePlayerStore, respecCost } from './playerStore';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
-import { getSkillsForClass } from './skillsHelpers';
+import { canonicalSkillIdFromData, getSkillRequiredLevel, getSkillsForClass } from './skillsHelpers';
 import type { Item } from '@/engine/types/items';
 
 describe('playerStore.allocateSkillPoint', () => {
@@ -36,7 +36,7 @@ describe('playerStore.allocateSkillPoint', () => {
 
   it('blocks allocation when player level is below skill minLevel', () => {
     const skills = getSkillsForClass('sorceress');
-    const high = skills.find((s) => s.minLevel >= 12);
+    const high = skills.find((s) => getSkillRequiredLevel(s) >= 12);
     if (!high) return; // skip if data shape changed
     const p = createMockPlayer('Hero', 'sorceress');
     usePlayerStore.getState().setPlayer({ ...p, skillPoints: 5, level: 1 });
@@ -49,26 +49,65 @@ describe('playerStore.allocateSkillPoint', () => {
     const withPrereq = skills.find((s) => Array.isArray(s.prerequisites) && s.prerequisites.length > 0);
     if (!withPrereq) return; // dataset has no prereqs yet — skip
     const p = createMockPlayer('Hero', 'sorceress');
-    usePlayerStore.getState().setPlayer({ ...p, skillPoints: 5, level: 60 });
+    usePlayerStore.getState().setPlayer({ ...p, skillPoints: 5, level: 60, skillLevels: {} });
     const r = usePlayerStore.getState().allocateSkillPoint(withPrereq.id);
     expect(r).toBe('prereq-missing');
   });
 
   it('allocates a valid skill and decrements skill points', () => {
     const skills = getSkillsForClass('sorceress');
-    const easy = skills.find((s) => s.minLevel <= 1 && (!s.prerequisites || s.prerequisites.length === 0));
+    const easy = skills.find((s) => getSkillRequiredLevel(s) <= 1 && (!s.prerequisites || s.prerequisites.length === 0));
     if (!easy) throw new Error('no easy skill');
     const p = createMockPlayer('Hero', 'sorceress');
-    usePlayerStore.getState().setPlayer({ ...p, skillPoints: 3, level: 1 });
+    usePlayerStore.getState().setPlayer({ ...p, skillPoints: 3, level: 1, skillLevels: {} });
     expect(usePlayerStore.getState().allocateSkillPoint(easy.id)).toBe('ok');
     const np = usePlayerStore.getState().player;
     expect(np?.skillPoints).toBe(2);
-    expect(np?.skillLevels?.[easy.id]).toBe(1);
+    expect(np?.skillLevels?.[canonicalSkillIdFromData(easy.id) ?? easy.id]).toBe(1);
+  });
+
+  it('increments existing canonical skill ids when the UI allocates a data skill id', () => {
+    const p = createMockPlayer('Hero', 'necromancer');
+    usePlayerStore.getState().setPlayer({
+      ...p,
+      level: 12,
+      skillPoints: 1,
+      skillLevels: { 'necromancer.raise_skeleton': 5 }
+    });
+
+    const r = usePlayerStore.getState().allocateSkillPoint('skills-necromancer-raise-skeleton');
+
+    const np = usePlayerStore.getState().player;
+    expect(r).toBe('ok');
+    expect(np?.skillPoints).toBe(0);
+    expect(np?.skillLevels?.['necromancer.raise_skeleton']).toBe(6);
+    expect(np?.skillLevels?.['skills-necromancer-raise-skeleton']).toBeUndefined();
+  });
+
+  it('accepts canonical prerequisite ids for data skill prerequisites', () => {
+    const child = getSkillsForClass('necromancer').find((s) =>
+      s.prerequisites?.includes('skills-necromancer-raise-skeleton')
+    );
+    if (!child) throw new Error('no raise skeleton child skill');
+    const prereqLevels = Object.fromEntries(
+      (child.prerequisites ?? []).map((id) => [canonicalSkillIdFromData(id) ?? id, 1])
+    );
+    const p = createMockPlayer('Hero', 'necromancer');
+    usePlayerStore.getState().setPlayer({
+      ...p,
+      level: 60,
+      skillPoints: 1,
+      skillLevels: prereqLevels
+    });
+
+    const r = usePlayerStore.getState().allocateSkillPoint(child.id);
+
+    expect(r).toBe('ok');
   });
 
   it('caps allocation at maxLevel', () => {
     const skills = getSkillsForClass('sorceress');
-    const easy = skills.find((s) => s.minLevel <= 1 && (!s.prerequisites || s.prerequisites.length === 0));
+    const easy = skills.find((s) => getSkillRequiredLevel(s) <= 1 && (!s.prerequisites || s.prerequisites.length === 0));
     if (!easy) throw new Error('no easy skill');
     const p = createMockPlayer('Hero', 'sorceress');
     const max = easy.maxLevel || 20;

@@ -123,7 +123,18 @@
       "properties": {
         "damagePerLevel": { "type": "number" },
         "cooldownPerLevel": { "type": "number" },
-        "costPerLevel": { "type": "number" }
+        "costPerLevel": { "type": "number" },
+        "summonMaxCount": {
+          "type": "object",
+          "required": ["kind"],
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": ["first-three-then-every-three"]
+            }
+          }
+        }
       }
     },
     "requires": {

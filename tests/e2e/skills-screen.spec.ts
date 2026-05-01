@@ -68,6 +68,19 @@ test.describe('Skills Screen @desktop-only', () => {
       expect(hasLockedSkills).toBe(true);
     });
 
+    test('should update skill details on click with dynamic Raise Skeleton stats', async ({ page }) => {
+      await clearGameStorage(page);
+      await createCharacter(page, { class: 'necromancer', name: 'TestNecro' });
+      await navTo(page, 'skills');
+
+      await page.getByTestId('skill-node-skills-necromancer-raise-skeleton').click();
+      const detail = page.getByTestId('skill-detail-panel');
+      await expect(detail).toBeVisible();
+      await expect(detail).toContainText(/召唤骷髅|Raise Skeleton/);
+      await expect(detail).toContainText(/召唤上限|Summon Cap/);
+      await expect(detail).not.toContainText(/上限 5|max 5/i);
+    });
+
     test('should display active skill priority list', async ({ page }) => {
       await clearGameStorage(page);
       await createCharacter(page, { class: 'necromancer', name: 'TestNecro' });
@@ -114,6 +127,19 @@ test.describe('Skills Screen @desktop-only', () => {
       const scrollWidth = await body.evaluate(el => el.scrollWidth);
       const clientWidth = await body.evaluate(el => el.clientWidth);
       expect(scrollWidth).toBeLessThanOrEqual(clientWidth + 5); // Allow 5px tolerance
+    });
+
+    test('should tap a skill node and keep details usable on mobile', async ({ page }) => {
+      await clearGameStorage(page);
+      await createCharacter(page, { class: 'necromancer', name: 'TestNecro' });
+      await navTo(page, 'skills');
+
+      await page.getByTestId('skill-node-skills-necromancer-raise-skeleton').click();
+      await expect(page.getByTestId('skill-detail-panel')).toContainText(/召唤上限|Summon Cap/);
+
+      const scrollWidth = await page.locator('body').evaluate(el => el.scrollWidth);
+      const clientWidth = await page.locator('body').evaluate(el => el.clientWidth);
+      expect(scrollWidth).toBeLessThanOrEqual(clientWidth + 5);
     });
 
     test('should display Sorceress skills on mobile', async ({ page }) => {

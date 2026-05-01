@@ -37,6 +37,7 @@ import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
 import { chooseSkill, isImmobilized, shouldEnrage } from '../ai/policy';
 import { getSkill } from '../skills/registry';
 import { buildSummon } from '../skills/summons';
+import { resolveSummonMaxCount } from '../skills/scaling';
 import type {
   RegisteredSkill,
   SkillEffect,
@@ -401,10 +402,29 @@ function summonsOf(state: State, ownerId: string): CombatUnit[] {
   return out;
 }
 
+function skillLevelCandidates(skill: RegisteredSkill): readonly string[] {
+  const rest = skill.id.slice(skill.archetype.length + 1);
+  return [
+    skill.id,
+    `skills-${skill.archetype}-${rest.replace(/_/g, '-')}`
+  ];
+}
+
+function effectiveSkillLevel(unit: CombatUnit, skill: RegisteredSkill): number {
+  const levels = unit.skillLevels;
+  if (!levels) return 1;
+  for (const id of skillLevelCandidates(skill)) {
+    const level = levels[id];
+    if (typeof level === 'number' && level > 0) return Math.floor(level);
+  }
+  return 1;
+}
+
 function applyEffect(
   state: State,
   actorId: string,
   effect: SkillEffect,
+  skillLevel: number,
   enemySideAlive: readonly CombatUnit[],
   allySideAlive: readonly CombatUnit[]
 ): void {
@@ -447,7 +467,7 @@ function applyEffect(
       const owner = state.units.get(actorId);
       if (!owner) return;
       const existing = summonsOf(state, actorId).length;
-      const cap = effect.maxCount > 0 ? effect.maxCount : 5;
+      const cap = resolveSummonMaxCount(effect, skillLevel);
       if (existing >= cap) return;
       const summon = buildSummon(owner, effect.summonId);
       if (!summon) {
@@ -521,8 +541,9 @@ function castSkill(state: State, actorId: string, skill: RegisteredSkill): void 
     targetEnemies = enemies.slice(0, 2);
   }
 
+  const skillLevel = effectiveSkillLevel(actor, skill);
   for (const effect of skill.effects) {
-    applyEffect(state, actorId, effect, targetEnemies, allies);
+    applyEffect(state, actorId, effect, skillLevel, targetEnemies, allies);
   }
 }
 

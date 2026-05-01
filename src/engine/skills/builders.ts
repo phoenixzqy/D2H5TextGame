@@ -28,7 +28,12 @@ interface BuildSpec {
   readonly status?: { readonly id: string; readonly chance?: number; readonly stacks?: number; readonly dotPct?: number };
   readonly tags?: readonly ComboTag[];
   readonly buff?: { readonly id: string; readonly duration: number };
-  readonly summon?: { readonly summonId: string; readonly max: number; readonly onStart?: boolean };
+  readonly summon?: {
+    readonly summonId: string;
+    readonly max: number;
+    readonly onStart?: boolean;
+    readonly maxCountScaling?: 'first-three-then-every-three';
+  };
   readonly minLevel?: number;
   readonly requires?: SkillRequirement;
 }
@@ -58,7 +63,12 @@ function build(s: BuildSpec): RegisteredSkill {
     effects.push({ kind: 'buff', id: s.buff.id, duration: s.buff.duration });
   }
   if (s.summon) {
-    effects.push({ kind: 'summon', summonId: s.summon.summonId, maxCount: s.summon.max });
+    effects.push({
+      kind: 'summon',
+      summonId: s.summon.summonId,
+      maxCount: s.summon.max,
+      ...(s.summon.maxCountScaling ? { maxCountScaling: { kind: s.summon.maxCountScaling } } : {})
+    });
   }
   return {
     id: s.id,
@@ -92,7 +102,14 @@ export const DEFAULT_SKILLS: readonly RegisteredSkill[] = Object.freeze([
   build({ id: 'sorceress.energy_shield', archetype: 'sorceress', target: 'self', cooldown: 0, manaCost: 0, buff: { id: 'energy_shield', duration: -1 }, minLevel: 18 }),
 
   // Necromancer
-  build({ id: 'necromancer.raise_skeleton', archetype: 'necromancer', target: 'summon', cooldown: 0, manaCost: 15, summon: { summonId: 'skeleton', max: 5, onStart: true } }),
+  build({
+    id: 'necromancer.raise_skeleton',
+    archetype: 'necromancer',
+    target: 'summon',
+    cooldown: 0,
+    manaCost: 15,
+    summon: { summonId: 'skeleton', max: 1, onStart: true, maxCountScaling: 'first-three-then-every-three' }
+  }),
   build({ id: 'necromancer.corpse_explosion', archetype: 'necromancer', target: 'all-enemies', cooldown: 2, manaCost: 20, damageType: 'fire', base: [50, 80], status: { id: 'ignite', dotPct: 0.1 } }),
   build({ id: 'necromancer.poison_nova', archetype: 'necromancer', target: 'all-enemies', cooldown: 3, manaCost: 25, damageType: 'poison', base: [20, 30], status: { id: 'poison', stacks: 2, dotPct: 0.05 } }),
   build({ id: 'necromancer.bone_spear', archetype: 'necromancer', target: 'single-enemy', cooldown: 1, manaCost: 20, damageType: 'arcane', base: [60, 90] }),

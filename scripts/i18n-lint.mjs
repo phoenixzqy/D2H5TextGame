@@ -22,6 +22,7 @@
  *   node scripts/i18n-lint.mjs           # human report, exit 1 on failures
  *   node scripts/i18n-lint.mjs --json    # machine-readable JSON output
  *   node scripts/i18n-lint.mjs --quiet   # only print summary + failures
+ *   node scripts/i18n-lint.mjs --scope devui
  *
  * No production dependencies; pure Node ≥ 20.
  */
@@ -86,9 +87,15 @@ const KNOWN_NAMESPACES = new Set([
   'maps',
   'rarity',
   'damage-types',
-  'card',
-  'affixes'
+   'card',
+  'affixes',
+  'dev'
 ]);
+
+const DEVUI_DIR = join(SRC, 'features', 'dev');
+const DEVUI_VISIBLE_ATTR_RE = /\b(aria-label|title|placeholder|alt)\s*=\s*(['"])([^'"\n]*[A-Za-z][^'"\n]*)\2/g;
+const DEVUI_VISIBLE_PROP_RE = /\b(label|title|description|placeholder|ariaLabel|emptyText|invalidHint)\s*:\s*(['"`])([^'"`\n]*[A-Za-z][^'"`\n]*)\2/g;
+const DEVUI_JSX_TEXT_RE = />\s*([^<>{}\n]*[A-Za-z][^<>{}\n]*)\s*</g;
 
 function walk(dir, predicate, out = []) {
   for (const entry of readdirSync(dir)) {
@@ -178,6 +185,31 @@ function escapeRe(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+function isDevUiFile(absPath) {
+  return absPath.startsWith(DEVUI_DIR + sep);
+}
+
+function parseScope(argv) {
+  for (let i = 0; i < argv.length; i++) {
+    const arg = argv[i];
+    if (arg === '--scope') return argv[i + 1] ?? 'all';
+    if (arg?.startsWith('--scope=')) return arg.slice('--scope='.length);
+  }
+  return 'all';
+}
+
+function isRawDevUiLiteral(value) {
+  const v = value.replace(/\s+/g, ' ').trim();
+  if (!v) return false;
+  if (!/[A-Za-z]/.test(v)) return false;
+  if (/^[A-Za-z0-9_.:-]+$/.test(v) && !/\s/.test(v) && v.length > 32) return false;
+  if (/^(--|true|false|null|undefined)$/i.test(v)) return false;
+  if (/^https?:\/\//i.test(v)) return false;
+  if (v.startsWith('/')) return false;
+  if (/^[a-z]+:[A-Za-z0-9_.-]+$/.test(v)) return false;
+  return true;
+}
+
 function scanDataFile(absPath, findings) {
   const text = readFileSync(absPath, 'utf8');
   let json;
@@ -224,19 +256,27 @@ function scanDataFile(absPath, findings) {
 
 const TX_CALL_RE = /\bt\(\s*(['"`])([^'"`\n]+?)\1(?=\s*[,)])/g;
 const TDATAKEY_CALL_RE = /\btDataKey\s*\(\s*[a-zA-Z_$][\w$]*\s*,\s*(['"`])([^'"`\n]+?)\1\s*\)/g;
+const USE_TRANSLATION_RE = /\buseTranslation\s*\(\s*(?:(['"`])([^'"`\n]+?)\1|\[\s*(['"`])([^'"`\n]+?)\3)/;
+
+function inferDefaultTranslationNamespace(text) {
+  const m = USE_TRANSLATION_RE.exec(text);
+  const ns = m?.[2] ?? m?.[4];
+  return ns && KNOWN_NAMESPACES.has(ns) ? ns : undefined;
+}
 
 function scanSourceFile(absPath, findings) {
   const text = readFileSync(absPath, 'utf8');
   const lineOf = makeLineLookup(text);
+  const defaultNs = inferDefaultTranslationNamespace(text);
 
   TX_CALL_RE.lastIndex = 0;
   let m;
   while ((m = TX_CALL_RE.exec(text)) !== null) {
     const key = m[2];
-    if (!key.includes(':')) continue; // ns-relative — needs runtime context
     const colon = key.indexOf(':');
-    const ns = key.slice(0, colon);
-    const sub = key.slice(colon + 1);
+    const ns = colon === -1 ? defaultNs : key.slice(0, colon);
+    const sub = colon === -1 ? key : key.slice(colon + 1);
+    if (!ns) continue;
     if (!KNOWN_NAMESPACES.has(ns)) continue;
     if (sub.includes('${') || sub.includes('{{')) continue;
     const line = lineOf(m.index);
@@ -248,7 +288,7 @@ function scanSourceFile(absPath, findings) {
           locale,
           ns,
           key: sub,
-          call: `t('${key}')`
+          call: colon === -1 ? `t('${key}') [default ns: ${ns}]` : `t('${key}')`
         });
       }
     }
@@ -274,15 +314,49 @@ function scanSourceFile(absPath, findings) {
       }
     }
   }
+
+  if (isDevUiFile(absPath)) scanDevUiRawLiterals(absPath, text, lineOf, findings);
 }
 
-function checkParity(findings) {
+function addDevUiLiteralFinding(findings, absPath, line, kind, value) {
+  if (!isRawDevUiLiteral(value)) return;
+  findings.sourceLiteral.push({
+    file: relPath(absPath),
+    line,
+    kind,
+    value: value.replace(/\s+/g, ' ').trim()
+  });
+}
+
+function scanDevUiRawLiterals(absPath, text, lineOf, findings) {
+  if (!absPath.endsWith('.tsx')) return;
+
+  DEVUI_VISIBLE_ATTR_RE.lastIndex = 0;
+  let m;
+  while ((m = DEVUI_VISIBLE_ATTR_RE.exec(text)) !== null) {
+    addDevUiLiteralFinding(findings, absPath, lineOf(m.index), `attr:${m[1]}`, m[3]);
+  }
+
+  DEVUI_VISIBLE_PROP_RE.lastIndex = 0;
+  while ((m = DEVUI_VISIBLE_PROP_RE.exec(text)) !== null) {
+    addDevUiLiteralFinding(findings, absPath, lineOf(m.index), `prop:${m[1]}`, m[3]);
+  }
+
+  DEVUI_JSX_TEXT_RE.lastIndex = 0;
+  while ((m = DEVUI_JSX_TEXT_RE.exec(text)) !== null) {
+    addDevUiLiteralFinding(findings, absPath, lineOf(m.index), 'jsx-text', m[1]);
+  }
+}
+
+function checkParity(findings, nsFilter = undefined) {
   const enKeys = new Map();
   const zhKeys = new Map();
   for (const ns of Object.keys(findings._bundles.en)) {
+    if (nsFilter && !nsFilter.has(ns)) continue;
     enKeys.set(ns, collectKeys(findings._bundles.en[ns]));
   }
   for (const ns of Object.keys(findings._bundles['zh-CN'])) {
+    if (nsFilter && !nsFilter.has(ns)) continue;
     zhKeys.set(ns, collectKeys(findings._bundles['zh-CN'][ns]));
   }
   const allNs = new Set([...enKeys.keys(), ...zhKeys.keys()]);
@@ -303,30 +377,43 @@ function truncate(s, n) {
 }
 
 function main() {
-  const args = new Set(process.argv.slice(2));
+  const argv = process.argv.slice(2);
+  const args = new Set(argv);
   const asJson = args.has('--json');
   const quiet = args.has('--quiet');
+  const scope = parseScope(argv);
+  const devUiOnly = scope === 'devui';
+  if (scope !== 'all' && scope !== 'devui') {
+    process.stderr.write(`Unknown i18n-lint scope "${scope}". Expected "all" or "devui".\n`);
+    process.exit(2);
+  }
 
   const findings = {
     parseErrors: [],
     dataLiteral: [],
     dataMissingKey: [],
     sourceMissingKey: [],
+    sourceLiteral: [],
     parityMissing: [],
     _bundles: {}
   };
 
   for (const locale of LOCALES) findings._bundles[locale] = loadLocaleBundle(locale);
 
-  const dataFiles = walk(DATA_DIR, (p) => p.endsWith('.json') && !DATA_FILE_IGNORE.some((re) => re.test(p)));
-  for (const f of dataFiles) scanDataFile(f, findings);
+  if (!devUiOnly) {
+    const dataFiles = walk(DATA_DIR, (p) => p.endsWith('.json') && !DATA_FILE_IGNORE.some((re) => re.test(p)));
+    for (const f of dataFiles) scanDataFile(f, findings);
+  }
 
   const srcFiles = walk(SRC, (p) =>
-    /\.(ts|tsx)$/.test(p) && !p.endsWith('.d.ts') && !p.includes(`${sep}i18n${sep}`)
+    /\.(ts|tsx)$/.test(p) &&
+      !p.endsWith('.d.ts') &&
+      !p.includes(`${sep}i18n${sep}`) &&
+      (!devUiOnly || isDevUiFile(p))
   );
   for (const f of srcFiles) scanSourceFile(f, findings);
 
-  checkParity(findings);
+  checkParity(findings, devUiOnly ? new Set(['dev']) : undefined);
 
   delete findings._bundles;
 
@@ -335,13 +422,16 @@ function main() {
     dataLiteral: findings.dataLiteral.length,
     dataMissingKey: findings.dataMissingKey.length,
     sourceMissingKey: findings.sourceMissingKey.length,
+    sourceLiteral: findings.sourceLiteral.length,
     parityMissing: findings.parityMissing.length
   };
   const failed =
     totals.parseErrors > 0 ||
     totals.dataLiteral > 0 ||
     totals.dataMissingKey > 0 ||
-    totals.sourceMissingKey > 0;
+    totals.sourceMissingKey > 0 ||
+    totals.sourceLiteral > 0 ||
+    (devUiOnly && totals.parityMissing > 0);
 
   if (asJson) {
     process.stdout.write(JSON.stringify({ totals, failed, ...findings }, null, 2) + '\n');
@@ -355,6 +445,7 @@ function main() {
   out.push(`  data literals (untranslated game data):  ${totals.dataLiteral}`);
   out.push(`  data → missing key in locale bundle:     ${totals.dataMissingKey}`);
   out.push(`  source → missing key in locale bundle:   ${totals.sourceMissingKey}`);
+  out.push(`  source literals (raw DevUI strings):     ${totals.sourceLiteral}`);
   out.push(`  locale parity gaps (en ↔ zh-CN):         ${totals.parityMissing}`);
   out.push('');
 
@@ -384,6 +475,14 @@ function main() {
     out.push('── source references key missing in locale bundle ──');
     for (const x of findings.sourceMissingKey) {
       out.push(`  ${x.file}:${String(x.line)}  [${x.locale}]  ${x.call}`);
+    }
+    out.push('');
+  }
+
+  if (findings.sourceLiteral.length > 0) {
+    out.push('── source literals (raw visible DevUI strings; should use dev namespace keys) ──');
+    for (const x of findings.sourceLiteral) {
+      out.push(`  ${x.file}:${String(x.line)}  [${x.kind}]  "${truncate(x.value, 80)}"`);
     }
     out.push('');
   }

@@ -96,6 +96,15 @@ describe('combatPlayback.applyEventToTeams', () => {
     expect(r2.playerTeam[0]?.activeBuffIds).toEqual(['fortitude']);
   });
 
+  it('keeps status events transient because playback lacks expiry snapshots', () => {
+    const statuses: readonly ActiveStatus[] = [
+      { id: 'poison', stacks: 1, remaining: 2, sourceId: 'p1' }
+    ];
+    const e = [mk('e1', 'enemy', { statuses })];
+    const res = applyEventToTeams([], e, { kind: 'status', target: 'e1', statusId: 'burning' });
+    expect(res.enemyTeam[0]?.statuses).toBe(statuses);
+  });
+
   it('replaying all events ends with same final HP as runBattle', () => {
     const player = mk('p1', 'player', { stats: { ...baseStats, attack: 40, attackSpeed: 20 } });
     const enemy = mk('e1', 'enemy', {

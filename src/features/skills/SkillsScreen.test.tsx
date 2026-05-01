@@ -17,12 +17,13 @@
  */
 import { describe, it, expect, beforeEach } from 'vitest';
 import { Suspense } from 'react';
-import { render, screen, act } from '@testing-library/react';
+import { fireEvent, render, screen, act } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import { MemoryRouter } from 'react-router-dom';
 import i18n from '@/i18n';
-import { SkillsScreen } from './SkillsScreen';
+import { buildTreeLayout, SkillsScreen } from './SkillsScreen';
 import { usePlayerStore } from '@/stores';
+import { getSkillsForClass } from '@/stores/skillsHelpers';
 import { CHARACTER_CLASSES, createMockPlayer, type CharacterClass } from '@/features/character/createMockPlayer';
 
 function renderScreen() {
@@ -76,6 +77,24 @@ describe('<SkillsScreen> — class fixture renders (mirrors skills-screen.spec.t
       expect(screen.getByTestId('skills-screen')).toBeInTheDocument();
       const nodes = document.querySelectorAll('[data-testid^="skill-node-"]');
       expect(nodes.length).toBeGreaterThanOrEqual(8);
+    });
+  }
+
+  for (const cls of CHARACTER_CLASSES) {
+    it(`uses unique tree slots for class=${cls}`, () => {
+      const skills = getSkillsForClass(cls);
+      const layout = buildTreeLayout(skills);
+      const coordinates = new Set(Array.from(layout.values()).map((node) => `${String(node.row)}:${String(node.column)}`));
+      expect(coordinates.size).toBe(layout.size);
+      for (const skill of skills) {
+        const node = layout.get(skill.id);
+        if (!node) throw new Error(`missing layout for ${skill.id}`);
+        for (const prereqId of skill.prerequisites ?? []) {
+          const parent = layout.get(prereqId);
+          if (!parent) continue;
+          expect(node.row).toBeGreaterThan(parent.row);
+        }
+      }
     });
   }
 
@@ -139,5 +158,33 @@ describe('<SkillsScreen> — class fixture renders (mirrors skills-screen.spec.t
     // Mock player starts with skillPoints=1 → "剩余技能点: 1" or "Points remaining".
     const body = document.body.textContent || '';
     expect(body).toMatch(/剩余技能点|Points|Remaining/);
+  });
+
+  it('shows dynamic Raise Skeleton current and next summon caps without stale max-5 copy', () => {
+    const p = createMockPlayer('TestHero', 'necromancer');
+    act(() => {
+      usePlayerStore.getState().setPlayer({
+        ...p,
+        level: 12,
+        skillLevels: { 'necromancer.raise_skeleton': 5 },
+        skillPoints: 2
+      });
+    });
+    renderScreen();
+
+    fireEvent.click(screen.getByTestId('skill-node-skills-necromancer-raise-skeleton'));
+    const body = document.body.textContent || '';
+    expect(body).not.toMatch(/上限 5|max 5/i);
+    expect(body).toMatch(/召唤上限\s*3|Summon Cap\s*3/);
+    expect(body).toMatch(/召唤上限\s*4|Summon Cap\s*4/);
+  });
+
+  it('updates the detail panel on keyboard focus', () => {
+    setPlayerOfClass('necromancer');
+    renderScreen();
+
+    const boneSpear = screen.getByTestId('skill-node-skills-necromancer-bone-spear');
+    fireEvent.focus(boneSpear);
+    expect(screen.getByTestId('skill-detail-panel').textContent || '').toMatch(/骨矛|Bone Spear/);
   });
 });

@@ -56,10 +56,18 @@ export interface DebuffEffect {
 }
 
 /** Summon primitive. */
+export type SummonMaxCountScalingKind = 'first-three-then-every-three';
+
+/** Declarative max-summon-count scaling, evaluated from effective skill level. */
+export interface SummonMaxCountScaling {
+  readonly kind: SummonMaxCountScalingKind;
+}
+
 export interface SummonEffect {
   readonly kind: 'summon';
   readonly summonId: string;
   readonly maxCount: number;
+  readonly maxCountScaling?: SummonMaxCountScaling;
 }
 
 /** Union of effect primitives. */

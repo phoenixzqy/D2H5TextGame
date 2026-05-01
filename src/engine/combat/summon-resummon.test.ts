@@ -4,6 +4,7 @@ import { runBattle, type BattleEvent } from './combat';
 import type { CombatUnit } from './types';
 import type { DerivedStats } from '../types/attributes';
 import { resetSummonCounters } from '../skills/summons';
+import { maxSkeletonsForLevel } from '../skills/scaling';
 
 const baseStats: DerivedStats = {
   life: 200, lifeMax: 200, mana: 200, manaMax: 200, attack: 1, defense: 0,
@@ -23,10 +24,27 @@ function mkUnit(over: Partial<CombatUnit> & Pick<CombatUnit, 'id' | 'side'>): Co
 beforeEach(() => { resetSummonCounters(); });
 
 describe('Bug #3 — re-summon after summon death', () => {
+  it('computes D2-style Raise Skeleton breakpoints', () => {
+    expect(
+      [0, 1, 2, 3, 4, 5, 6, 9, 12].map((level) => [level, maxSkeletonsForLevel(level)])
+    ).toEqual([
+      [0, 0],
+      [1, 1],
+      [2, 2],
+      [3, 3],
+      [4, 3],
+      [5, 3],
+      [6, 4],
+      [9, 5],
+      [12, 6]
+    ]);
+  });
+
   it('necromancer re-casts raise_skeleton after a skeleton dies', () => {
     const necro = mkUnit({
       id: 'necro', side: 'player', kind: 'hero',
       skillOrder: ['necromancer.raise_skeleton'],
+      skillLevels: { 'necromancer.raise_skeleton': 2 },
       stats: { ...baseStats, mana: 200, manaMax: 200 }
     });
     const enemy = mkUnit({
@@ -94,5 +112,47 @@ describe('Bug #3 — re-summon after summon death', () => {
       (u) => u.id.startsWith('necro-summon-skeleton-') && u.life > 0
     );
     expect(liveSkeletons.length).toBeLessThanOrEqual(5);
+  });
+
+  it('uses canonical skillLevels for Raise Skeleton summon cap', () => {
+    const necro = mkUnit({
+      id: 'necro', side: 'player', kind: 'hero',
+      skillOrder: ['necromancer.raise_skeleton'],
+      skillLevels: { 'necromancer.raise_skeleton': 12 },
+      stats: { ...baseStats, mana: 9999, manaMax: 9999, attackSpeed: 200 }, mana: 9999
+    });
+    const enemy = mkUnit({
+      id: 'enemy', side: 'enemy',
+      stats: { ...baseStats, life: 1_000_000, lifeMax: 1_000_000, attack: 0, attackSpeed: 100 },
+      life: 1_000_000
+    });
+    const result = runBattle({
+      seed: 42, playerTeam: [necro], enemyTeam: [enemy]
+    });
+    const liveSkeletons = result.playerTeam.filter(
+      (u) => u.id.startsWith('necro-summon-skeleton-') && u.life > 0
+    );
+    expect(liveSkeletons).toHaveLength(6);
+  });
+
+  it('uses data skill ids for allocated Raise Skeleton summon cap', () => {
+    const necro = mkUnit({
+      id: 'necro', side: 'player', kind: 'hero',
+      skillOrder: ['skills-necromancer-raise-skeleton'],
+      skillLevels: { 'skills-necromancer-raise-skeleton': 6 },
+      stats: { ...baseStats, mana: 9999, manaMax: 9999, attackSpeed: 200 }, mana: 9999
+    });
+    const enemy = mkUnit({
+      id: 'enemy', side: 'enemy',
+      stats: { ...baseStats, life: 1_000_000, lifeMax: 1_000_000, attack: 0, attackSpeed: 100 },
+      life: 1_000_000
+    });
+    const result = runBattle({
+      seed: 43, playerTeam: [necro], enemyTeam: [enemy]
+    });
+    const liveSkeletons = result.playerTeam.filter(
+      (u) => u.id.startsWith('necro-summon-skeleton-') && u.life > 0
+    );
+    expect(liveSkeletons).toHaveLength(4);
   });
 });

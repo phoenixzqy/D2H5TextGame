@@ -1,5 +1,38 @@
 {
   "backToGame": "← 返回游戏",
+  "shell": {
+    "title": "开发工具",
+    "localhostOnly": "仅限本地",
+    "navLabel": "开发工具",
+    "overview": "概览",
+    "description": "在 Vite 开发服务器运行时编辑 src/data 下的规范 JSON。保存前会先通过 Ajv 校验。",
+    "links": {
+      "classes": {
+        "label": "职业",
+        "description": "职业属性与初始技能"
+      },
+      "items": {
+        "label": "物品",
+        "description": "基础、暗金与套装"
+      },
+      "skills": {
+        "label": "技能",
+        "description": "伤害、冷却与成长"
+      },
+      "monsters": {
+        "label": "怪物",
+        "description": "怪物原型战斗调校"
+      },
+      "maps": {
+        "label": "地图",
+        "description": "子区域等级与波次"
+      }
+    }
+  },
+  "fields": {
+    "minAria": "{{label}}最小值",
+    "maxAria": "{{label}}最大值"
+  },
   "manager": {
     "loading": "加载中...",
     "loaded": "已加载 {{path}}",
@@ -13,7 +46,8 @@
     "selectedEntryJson": "当前条目 JSON",
     "applyEntryJson": "应用条目 JSON",
     "noEntries": "未找到条目。",
-    "saveToDisk": "保存到磁盘"
+    "saveToDisk": "保存到磁盘",
+    "entryNumber": "条目 {{index}}"
   },
   "imageField": {
     "label": "贴图预览",
@@ -73,6 +107,31 @@
       "pieceBonuses": "部件加成 JSON"
     }
   },
+  "classesEditor": {
+    "title": "职业管理器",
+    "description": "编辑职业属性曲线、生命/法力成长与初始技能。",
+    "sections": {
+      "startingStats": "初始属性",
+      "statGrowth": "每级属性成长",
+      "statCurvePreview": "属性曲线预览"
+    },
+    "stats": {
+      "strength": "力量",
+      "dexterity": "敏捷",
+      "vitality": "体力",
+      "energy": "精力"
+    },
+    "fields": {
+      "lifePerLevel": "每级生命",
+      "manaPerLevel": "每级法力",
+      "starterSkills": "初始技能（逗号分隔）"
+    },
+    "preview": {
+      "level": "{{level}} 级",
+      "life": "生命",
+      "mana": "法力"
+    }
+  },
   "monstersEditor": {
     "title": "怪物管理器",
     "description": "编辑原型生命、成长、攻击节奏、防御、抗性和技能。",
@@ -83,6 +142,34 @@
       "attackSpeed": "攻击速度",
       "skills": "技能列表（逗号分隔）",
       "resistances": "抗性 JSON"
+    }
+  },
+  "mapManager": {
+    "title": "地图管理器",
+    "description": "编辑子区域等级、加权怪物池与波次构成。",
+    "fields": {
+      "areaLevel": "区域等级",
+      "monsterPool": "怪物池 JSON [{ archetypeId, weight }]",
+      "waves": "波次构成 JSON"
+    },
+    "preview": {
+      "title": "等级修正预览",
+      "formula": "公式：M_eff = round(areaLevel + (encounterLevel - baseLevel) * 0.5)。基础等级：{{baseLevel}}。",
+      "encounterLevel": "遭遇等级 {{level}}"
+    }
+  },
+  "skillsEditor": {
+    "title": "技能管理器",
+    "description": "编辑技能伤害、冷却、法力消耗与每级成长。",
+    "fields": {
+      "baseDamageMin": "基础伤害最小值",
+      "baseDamageMax": "基础伤害最大值",
+      "cooldown": "冷却",
+      "manaCost": "法力消耗",
+      "damagePerLevel": "每技能等级伤害",
+      "costPerLevel": "每技能等级消耗",
+      "damageBreakdown": "伤害类型明细 JSON",
+      "scaling": "成长 JSON"
     }
   },
   "weaponType": {

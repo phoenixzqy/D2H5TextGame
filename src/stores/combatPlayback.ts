@@ -89,6 +89,8 @@ export function applyEventToTeams(
       );
       break;
     }
+    case 'status':
+      break;
     case 'summon': {
       const exists =
         teams.player.some((u) => u.id === ev.unit.id) ||

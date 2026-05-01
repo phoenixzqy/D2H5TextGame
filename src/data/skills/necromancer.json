@@ -14,6 +14,11 @@
     "maxLevel": 20,
     "cost": {
       "mana": 15
+    },
+    "scaling": {
+      "summonMaxCount": {
+        "kind": "first-three-then-every-three"
+      }
     }
   },
   {

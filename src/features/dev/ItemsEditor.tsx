@@ -17,21 +17,15 @@ const HANDEDNESS_VALUES = ['oneHanded', 'twoHanded'] as const;
 
 const itemTabs = {
   bases: {
-    label: 'Bases',
-    files: [{ label: 'Base items', path: 'src/data/items/bases.json' }],
-    description: 'Edit item base requirements, defense, damage, and affix eligibility.'
+    files: [{ path: 'src/data/items/bases.json' }]
   },
   uniques: {
-    label: 'Uniques',
-    files: [{ label: 'Unique items', path: 'src/data/items/uniques.json' }],
-    description: 'Edit unique item requirements and stat modifiers.'
+    files: [{ path: 'src/data/items/uniques.json' }]
   },
   sets: {
-    label: 'Sets',
-    files: [{ label: 'Set items', path: 'src/data/items/sets.json' }],
-    description: 'Edit set composition and piece bonuses.'
+    files: [{ path: 'src/data/items/sets.json' }]
   }
-} satisfies Record<string, { readonly label: string; readonly files: readonly DevDataFile[]; readonly description: string }>;
+} satisfies Record<string, { readonly files: readonly Pick<DevDataFile, 'path'>[] }>;
 
 type ItemTab = keyof typeof itemTabs;
 

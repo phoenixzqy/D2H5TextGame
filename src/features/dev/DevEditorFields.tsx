@@ -1,4 +1,5 @@
 import { asNumber, asStringArray, getAtPath, setAtPath, type JsonRecord } from './devJson';
+import { useTranslation } from 'react-i18next';
 
 interface FieldProps {
   readonly entry: JsonRecord;
@@ -107,6 +108,7 @@ interface NumberPairProps {
 }
 
 export function NumberPairField({ entry, path, label, onChange }: NumberPairProps) {
+  const { t } = useTranslation('dev');
   const raw = getAtPath(entry, path);
   const pair = Array.isArray(raw) ? raw : [0, 0];
   const min = asNumber(pair[0]);
@@ -115,14 +117,14 @@ export function NumberPairField({ entry, path, label, onChange }: NumberPairProp
     <fieldset className="grid grid-cols-2 gap-2 text-sm text-d2-white/80">
       <legend className="col-span-2 mb-1">{label}</legend>
       <input
-        aria-label={`${label} min`}
+        aria-label={t('fields.minAria', { label })}
         type="number"
         value={min}
         onChange={(event) => { onChange(setAtPath(entry, path, [Number(event.target.value), max])); }}
         className="min-h-[40px] rounded border border-d2-border bg-d2-bg px-2 py-1 text-d2-white focus:border-d2-gold focus:outline-none"
       />
       <input
-        aria-label={`${label} max`}
+        aria-label={t('fields.maxAria', { label })}
         type="number"
         value={max}
         onChange={(event) => { onChange(setAtPath(entry, path, [min, Number(event.target.value)])); }}

@@ -2,6 +2,8 @@
  * Skills helpers for loading and organizing skill data by class
  */
 
+import type { DamageType } from '@/engine/types/attributes';
+
 // Define a skill template type that matches what's in JSON (without allocated level)
 export interface SkillTemplate {
   readonly id: string;
@@ -11,6 +13,7 @@ export interface SkillTemplate {
   readonly trigger: 'active' | 'passive' | 'aura';
   readonly target: string;
   readonly cooldown: number;
+  readonly requiredLevel?: number;
   readonly minLevel: number;
   readonly maxLevel: number;
   readonly cost?: {
@@ -22,14 +25,21 @@ export interface SkillTemplate {
     readonly max: number;
     readonly breakdown?: Record<string, number>;
   };
-  readonly damageType?: string;
+  readonly damageType?: DamageType;
   readonly appliesStatus?: readonly string[];
   readonly appliesTags?: readonly string[];
   readonly synergies?: Record<string, number>;
+  readonly requires?: {
+    readonly weaponType?: readonly string[];
+    readonly handedness?: readonly string[];
+  };
   readonly scaling?: {
     readonly damagePerLevel?: number;
     readonly cooldownPerLevel?: number;
     readonly costPerLevel?: number;
+    readonly summonMaxCount?: {
+      readonly kind: 'first-three-then-every-three';
+    };
   };
   // Extended fields for future expansion
   readonly tree?: string;
@@ -102,6 +112,69 @@ export function organizeSkillsByTree(skills: SkillTemplate[]): Map<string, Skill
   return treeMap;
 }
 
+/** Character level required before a skill can receive its first point. */
+export function getSkillRequiredLevel(skill: SkillTemplate): number {
+  return skill.requiredLevel ?? skill.minLevel;
+}
+
+/** Convert a data skill id (`skills-necromancer-raise-skeleton`) to engine canonical form. */
+export function canonicalSkillIdFromData(id: string): string | undefined {
+  const match = /^skills-([a-z]+)-(.+)$/.exec(id);
+  if (!match) return undefined;
+  const cls = match[1];
+  const rest = match[2];
+  if (!cls || !rest) return undefined;
+  return `${cls}.${rest.replace(/-/g, '_')}`;
+}
+
+/** Convert an engine canonical skill id (`necromancer.raise_skeleton`) to data form. */
+export function dataSkillIdFromCanonical(id: string): string | undefined {
+  const match = /^([a-z]+)\.([a-z_]+)$/.exec(id);
+  if (!match) return undefined;
+  const cls = match[1];
+  const rest = match[2];
+  if (!cls || !rest) return undefined;
+  return `skills-${cls}-${rest.replace(/_/g, '-')}`;
+}
+
+/** All known equivalent ids for one skill, preserving the input id first. */
+export function skillIdAliases(id: string): readonly string[] {
+  const aliases = new Set<string>([id]);
+  const canonical = canonicalSkillIdFromData(id);
+  if (canonical) aliases.add(canonical);
+  const dataId = dataSkillIdFromCanonical(canonical ?? id);
+  if (dataId) aliases.add(dataId);
+  return [...aliases];
+}
+
+/** Read an allocated skill level from either canonical or data-form ids. */
+export function getAllocatedSkillLevel(
+  allocatedSkills: Readonly<Record<string, number>> | ReadonlyMap<string, number>,
+  skillId: string
+): number {
+  let level = 0;
+  for (const id of skillIdAliases(skillId)) {
+    const next = readAllocatedSkillLevel(allocatedSkills, id);
+    if (typeof next === 'number') level = Math.max(level, next);
+  }
+  return level;
+}
+
+function readAllocatedSkillLevel(
+  allocatedSkills: Readonly<Record<string, number>> | ReadonlyMap<string, number>,
+  skillId: string
+): number | undefined {
+  if (isSkillLevelMap(allocatedSkills)) return allocatedSkills.get(skillId);
+  const record: Readonly<Record<string, number | undefined>> = allocatedSkills;
+  return record[skillId];
+}
+
+function isSkillLevelMap(
+  allocatedSkills: Readonly<Record<string, number>> | ReadonlyMap<string, number>
+): allocatedSkills is ReadonlyMap<string, number> {
+  return allocatedSkills instanceof Map;
+}
+
 /**
  * Check if a skill is locked based on player level and prerequisites
  * @param skill - The skill definition
@@ -112,17 +185,17 @@ export function organizeSkillsByTree(skills: SkillTemplate[]): Map<string, Skill
 export function isSkillLocked(
   skill: SkillTemplate,
   playerLevel: number,
-  allocatedSkills: Map<string, number>
+  allocatedSkills: ReadonlyMap<string, number>
 ): boolean {
   // Check level requirement
-  if (skill.minLevel && playerLevel < skill.minLevel) {
+  if (playerLevel < getSkillRequiredLevel(skill)) {
     return true;
   }
   
   // Check prerequisites (if present in expanded data)
   if (skill.prerequisites) {
     for (const prereqId of skill.prerequisites) {
-      const prereqLevel = allocatedSkills.get(prereqId) ?? 0;
+      const prereqLevel = getAllocatedSkillLevel(allocatedSkills, prereqId);
       if (prereqLevel === 0) {
         return true; // Prerequisite not allocated
       }

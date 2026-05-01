@@ -22,12 +22,21 @@ import {
 } from '@/stores/combatHelpers';
 import { nextSubAreaInAct } from '@/stores/subAreaResolver';
 import type { CombatLogEntry } from '@/stores/combatStore';
+import type { RecordedBattleEvent } from '@/engine/combat/combat';
 import type { CombatUnit } from '@/engine/combat/types';
 import { inferKind } from '@/engine/combat/types';
 
 const MAX_LOG = 200;
 const SPEED_CYCLE = [1, 2, 4] as const;
 type Speed = (typeof SPEED_CYCLE)[number];
+
+interface UnitEventFx {
+  readonly kind: 'damage' | 'heal' | 'dodge' | 'status' | 'buff' | 'summon' | 'death';
+  readonly damageType?: string;
+  readonly amount?: number;
+  readonly statusId?: string;
+  readonly buffId?: string;
+}
 
 function mapSubAreaNameKey(id: string): string {
   return `map.subArea.${id.replace(/^areas\/act([1-5])-/, 'a$1-')}`;
@@ -137,6 +146,11 @@ export function CombatScreen() {
     }
     return null;
   }, [eventCursor, recordedEvents]);
+
+  const unitFx = useMemo(
+    () => buildUnitEventFx(recordedEvents, eventCursor),
+    [recordedEvents, eventCursor]
+  );
 
   const cycleSpeed = useCallback(() => {
     setSpeed((cur) => {
@@ -321,6 +335,7 @@ export function CombatScreen() {
                   unit={u}
                   size="sm"
                   acting={u.id === actingActorId}
+                  eventFx={unitFx.get(u.id)}
                 />
               ))}
             </div>
@@ -340,6 +355,7 @@ export function CombatScreen() {
                   unit={u}
                   size="sm"
                   acting={u.id === actingActorId}
+                  eventFx={unitFx.get(u.id)}
                 />
               ))}
             </div>
@@ -451,10 +467,12 @@ function UnitCard({
   unit,
   size,
   acting = false,
+  eventFx,
 }: {
   unit: CombatUnit;
   size: 'sm' | 'md';
   acting?: boolean;
+  eventFx?: UnitEventFx | undefined;
 }) {
   const { t } = useTranslation('combat');
   const player = usePlayerStore((s) => s.player);
@@ -514,12 +532,24 @@ function UnitCard({
     : `Lv ${String(unit.level)}${tierLabel}`;
 
   const wrapperCls = isDead ? 'opacity-50 grayscale' : '';
-  const ringCls = acting && !isDead ? 'ring-2 ring-d2-gold' : '';
+  const ringCls = [
+    acting && !isDead ? 'ring-2 ring-d2-gold motion-safe:animate-pulse' : '',
+    eventFx && !isDead ? eventFxRingClass(eventFx) : ''
+  ].filter(Boolean).join(' ');
   const sideTestId = isPlayerSide ? 'combat-ally-card' : 'combat-enemy-card';
+  const chips = [
+    ...unit.activeBuffIds.map((id) => ({ id, label: t(`effect.buff.${id}`, { defaultValue: humanizeEffectId(id) }), kind: 'buff' as const })),
+    ...unit.statuses.map((status) => ({
+      id: status.id,
+      label: t(`effect.status.${status.id}`, { defaultValue: humanizeEffectId(status.id) }),
+      stacks: status.stacks,
+      kind: status.dotPerStack !== undefined || status.id.includes('poison') || status.id.includes('ignite') || status.id.includes('plague') ? 'dot' as const : 'debuff' as const
+    }))
+  ];
 
   return (
     <div
-      className={`${wrapperCls} ${ringCls} rounded-md transition-opacity`}
+      className={`${wrapperCls} ${ringCls} relative rounded-md transition-opacity motion-reduce:transition-none`}
       data-acting={acting || undefined}
       data-dead={isDead || undefined}
       data-kind={kind}
@@ -538,8 +568,171 @@ function UnitCard({
         bars={bars}
         stats={size === 'md' ? [{ label: 'LV', value: unit.level }] : undefined}
       />
+      {eventFx ? (
+        <div
+          className={[
+            'pointer-events-none absolute right-1 top-1 rounded border px-2 py-0.5 text-[10px] font-bold shadow-lg',
+            'motion-safe:animate-bounce motion-reduce:animate-none',
+            eventFxBadgeClass(eventFx)
+          ].join(' ')}
+          aria-live="polite"
+          data-testid="combat-event-fx"
+        >
+          {eventFxLabel(eventFx, t)}
+        </div>
+      ) : null}
+      {chips.length > 0 ? (
+        <div
+          className="mt-1 flex max-w-[11rem] flex-wrap gap-1"
+          aria-label={t('effect.activeEffects')}
+          data-testid="unit-effect-chips"
+        >
+          {chips.slice(0, 4).map((chip) => (
+            <span
+              key={`${chip.kind}-${chip.id}`}
+              className={[
+                'rounded border px-1.5 py-0.5 text-[10px] leading-none',
+                chip.kind === 'buff'
+                  ? 'border-blue-300/50 bg-blue-500/15 text-blue-200'
+                  : chip.kind === 'dot'
+                    ? 'border-emerald-300/50 bg-emerald-500/15 text-emerald-200'
+                    : 'border-purple-300/50 bg-purple-500/15 text-purple-200'
+              ].join(' ')}
+              title={chip.label}
+            >
+              {chip.label}{'stacks' in chip && chip.stacks > 1 ? ` ×${String(chip.stacks)}` : ''}
+            </span>
+          ))}
+          {chips.length > 4 ? (
+            <span className="rounded border border-d2-border px-1.5 py-0.5 text-[10px] leading-none text-d2-white/60">
+              +{chips.length - 4}
+            </span>
+          ) : null}
+        </div>
+      ) : null}
     </div>
   );
+}
+
+function buildUnitEventFx(events: readonly RecordedBattleEvent[], cursor: number): ReadonlyMap<string, UnitEventFx> {
+  const fx = new Map<string, UnitEventFx>();
+  const start = Math.max(0, cursor - 4);
+  for (let i = start; i < cursor; i++) {
+    const ev = events[i];
+    if (!ev) continue;
+    switch (ev.kind) {
+      case 'damage':
+        fx.set(ev.target, ev.dodged
+          ? { kind: 'dodge', damageType: ev.damageType }
+          : { kind: 'damage', damageType: ev.damageType, amount: ev.amount });
+        break;
+      case 'dot':
+        fx.set(ev.target, { kind: 'damage', damageType: 'poison', amount: ev.amount });
+        break;
+      case 'heal':
+        fx.set(ev.target, { kind: 'heal', amount: ev.amount });
+        break;
+      case 'status':
+        fx.set(ev.target, { kind: 'status', statusId: ev.statusId });
+        break;
+      case 'buff':
+        fx.set(ev.target, { kind: 'buff', buffId: ev.buffId });
+        break;
+      case 'summon':
+        fx.set(ev.owner, { kind: 'summon' });
+        fx.set(ev.unit.id, { kind: 'summon' });
+        break;
+      case 'death':
+        fx.set(ev.target, { kind: 'death' });
+        break;
+      default:
+        break;
+    }
+  }
+  return fx;
+}
+
+function eventFxRingClass(fx: UnitEventFx): string {
+  switch (fx.kind) {
+    case 'damage':
+    case 'dodge':
+      return damageTypeRingClass(fx.damageType);
+    case 'heal':
+      return 'ring-2 ring-green-300/70';
+    case 'buff':
+    case 'summon':
+      return 'ring-2 ring-blue-300/70';
+    case 'status':
+      return 'ring-2 ring-purple-300/70';
+    case 'death':
+      return 'ring-2 ring-red-500/80';
+  }
+}
+
+function eventFxBadgeClass(fx: UnitEventFx): string {
+  switch (fx.kind) {
+    case 'damage':
+    case 'dodge':
+      return damageTypeBadgeClass(fx.damageType);
+    case 'heal':
+      return 'border-green-300/70 bg-green-500/25 text-green-100';
+    case 'buff':
+    case 'summon':
+      return 'border-blue-300/70 bg-blue-500/25 text-blue-100';
+    case 'status':
+      return 'border-purple-300/70 bg-purple-500/25 text-purple-100';
+    case 'death':
+      return 'border-red-400/70 bg-red-700/40 text-red-100';
+  }
+}
+
+function damageTypeRingClass(type: string | undefined): string {
+  switch (type) {
+    case 'fire': return 'ring-2 ring-orange-400/80 shadow-[0_0_18px_rgba(251,146,60,0.35)]';
+    case 'cold': return 'ring-2 ring-cyan-300/80 shadow-[0_0_18px_rgba(103,232,249,0.35)]';
+    case 'lightning': return 'ring-2 ring-yellow-300/80 shadow-[0_0_18px_rgba(253,224,71,0.35)]';
+    case 'arcane': return 'ring-2 ring-violet-300/80 shadow-[0_0_18px_rgba(196,181,253,0.35)]';
+    case 'poison': return 'ring-2 ring-emerald-300/80 shadow-[0_0_18px_rgba(110,231,183,0.35)]';
+    case 'thorns': return 'ring-2 ring-lime-300/80 shadow-[0_0_18px_rgba(190,242,100,0.35)]';
+    case 'physical':
+    default: return 'ring-2 ring-red-300/80 shadow-[0_0_18px_rgba(252,165,165,0.3)]';
+  }
+}
+
+function damageTypeBadgeClass(type: string | undefined): string {
+  switch (type) {
+    case 'fire': return 'border-orange-300/70 bg-orange-600/35 text-orange-100';
+    case 'cold': return 'border-cyan-200/70 bg-cyan-600/30 text-cyan-50';
+    case 'lightning': return 'border-yellow-200/70 bg-yellow-500/25 text-yellow-50';
+    case 'arcane': return 'border-violet-200/70 bg-violet-600/35 text-violet-50';
+    case 'poison': return 'border-emerald-200/70 bg-emerald-600/35 text-emerald-50';
+    case 'thorns': return 'border-lime-200/70 bg-lime-600/30 text-lime-50';
+    case 'physical':
+    default: return 'border-red-200/70 bg-red-700/35 text-red-50';
+  }
+}
+
+function eventFxLabel(fx: UnitEventFx, t: ReturnType<typeof useTranslation>['t']): string {
+  switch (fx.kind) {
+    case 'damage':
+      return fx.amount !== undefined ? `-${String(fx.amount)}` : t('effect.hit');
+    case 'heal':
+      return fx.amount !== undefined ? `+${String(fx.amount)}` : t('effect.heal');
+    case 'dodge':
+      return t('effect.dodge');
+    case 'status':
+      return fx.statusId ? t(`effect.status.${fx.statusId}`, { defaultValue: humanizeEffectId(fx.statusId) }) : t('effect.statusApplied');
+    case 'buff':
+      return fx.buffId ? t(`effect.buff.${fx.buffId}`, { defaultValue: humanizeEffectId(fx.buffId) }) : t('effect.buffApplied');
+    case 'summon':
+      return t('effect.summon');
+    case 'death':
+      return t('effect.death');
+  }
+}
+
+function humanizeEffectId(id: string): string {
+  return id.replace(/[-_]/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
 /** Combat log: virtualized-ish (DOM only renders last MAX_LOG via slice in parent),

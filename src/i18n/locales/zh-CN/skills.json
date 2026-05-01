@@ -56,6 +56,48 @@
     "level": "等级 {{current}}/{{max}}",
     "minLevel": "需要等级 {{level}}"
   },
+  "details": {
+    "treeSummary": "悬停、聚焦或点击节点，查看当前与下一级威力。",
+    "nodeAria": "{{skill}}，等级 {{level}} / {{max}}，{{state}}",
+    "level": "等级 {{current}}/{{max}}",
+    "unlearned": "未学习 / {{max}}",
+    "current": "当前",
+    "next": "下一级",
+    "notLearned": "未学习",
+    "learnPreview": "学习后 Lv.1",
+    "currentEmpty": "投入技能点后显示当前属性。",
+    "maxLevel": "已达到最高等级。",
+    "requirements": "需求",
+    "requiredLevel": "角色等级",
+    "levelValue": "等级 {{level}}",
+    "prerequisites": "前置技能",
+    "none": "无",
+    "met": "已满足",
+    "missing": "未满足",
+    "lockedPrereqName": "{{skill}}（未学习）",
+    "weaponRequired": "武器需求",
+    "damageAttack": "{{type}}攻击",
+    "percentRange": "{{min}}% ~ {{max}}%",
+    "totalPower": "总威力",
+    "summonCap": "召唤上限",
+    "manaCost": "法力消耗",
+    "lifeCost": "生命消耗",
+    "cooldown": "冷却",
+    "turns": "{{count}} 回合",
+    "statusEffects": "附加",
+    "noChange": "（无变化）",
+    "descriptionDamage": "{{skill}}：{{type}}攻击 {{min}}% ~ {{max}}%。",
+    "descriptionSummon": "{{skill}}：最多召唤 {{count}} 名随从。",
+    "descriptionUtility": "{{skill}}：{{trigger}}技能。",
+    "stateLocked": "未解锁",
+    "stateMaxed": "已满级",
+    "stateLearned": "已学习",
+    "stateAvailable": "可学习",
+    "maxedButton": "已满级",
+    "lockedLevelButton": "需要等级 {{level}}",
+    "lockedPrereqButton": "需要前置",
+    "noPointsButton": "无技能点"
+  },
   "amazon": {
     "magic-arrow": {
       "name": "魔法箭",
@@ -555,7 +597,7 @@
   "necromancer": {
     "raise-skeleton": {
       "name": "召唤骷髅",
-      "desc": "从尸体中复活骷髅战士为你而战 (上限 5)。"
+      "desc": "从尸体中复活骷髅战士为你而战；召唤上限随技能等级成长。"
     },
     "corpse-explosion": {
       "name": "尸体爆炸",

@@ -10,7 +10,14 @@ import type { Item } from '@/engine/types/items';
 import { aggregateEquipmentMods, applyEquipmentCoreMods, equipmentModsToDerivedModifiers } from '@/engine/progression/equipment-mods';
 import { deriveStats } from '@/engine/progression/stats';
 import { awardXp, xpRequired, xpTotal, LEVEL_CAP } from '@/engine/progression/xp';
-import { getSkillsForClass, type SkillTemplate } from './skillsHelpers';
+import {
+  canonicalSkillIdFromData,
+  getAllocatedSkillLevel,
+  getSkillRequiredLevel,
+  getSkillsForClass,
+  skillIdAliases,
+  type SkillTemplate
+} from './skillsHelpers';
 
 /**
  * Cost in gold to fully respec all skill points.
@@ -179,27 +186,38 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     if (player.skillPoints <= 0) return 'no-points';
 
     const allSkills = getSkillsForClass(player.class);
-    const tmpl: SkillTemplate | undefined = allSkills.find((s) => s.id === skillId);
+    const requestedAliases = skillIdAliases(skillId);
+    const tmpl: SkillTemplate | undefined = allSkills.find((s) => requestedAliases.includes(s.id));
     if (!tmpl) return 'unknown-skill';
 
-    if (tmpl.minLevel && player.level < tmpl.minLevel) return 'level-too-low';
+    if (player.level < getSkillRequiredLevel(tmpl)) return 'level-too-low';
 
     const allocated = player.skillLevels ?? {};
-    const current = allocated[skillId] ?? 0;
+    const current = getAllocatedSkillLevel(allocated, tmpl.id);
     const max = tmpl.maxLevel || 20;
     if (current >= max) return 'maxed';
 
     if (tmpl.prerequisites) {
       for (const prereqId of tmpl.prerequisites) {
-        if ((allocated[prereqId] ?? 0) <= 0) return 'prereq-missing';
+        if (getAllocatedSkillLevel(allocated, prereqId) <= 0) return 'prereq-missing';
       }
     }
+
+    const aliases = skillIdAliases(tmpl.id);
+    const targetSkillId = aliases.find((id) => allocated[id] !== undefined)
+      ?? canonicalSkillIdFromData(tmpl.id)
+      ?? tmpl.id;
+    const aliasSet = new Set<string>(aliases);
+    const nextSkillLevels = Object.fromEntries(
+      Object.entries(allocated).filter(([id]) => id === targetSkillId || !aliasSet.has(id))
+    );
+    nextSkillLevels[targetSkillId] = current + 1;
 
     set({
       player: {
         ...player,
         skillPoints: player.skillPoints - 1,
-        skillLevels: { ...allocated, [skillId]: current + 1 }
+        skillLevels: nextSkillLevels
       }
     });
     return 'ok';

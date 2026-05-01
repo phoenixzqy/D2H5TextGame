@@ -56,6 +56,48 @@
     "level": "Level {{current}}/{{max}}",
     "minLevel": "Requires Level {{level}}"
   },
+  "details": {
+    "treeSummary": "Hover, focus, or tap a node to preview its current and next-level power.",
+    "nodeAria": "{{skill}}, level {{level}} of {{max}}, {{state}}",
+    "level": "Lv. {{current}}/{{max}}",
+    "unlearned": "Unlearned / {{max}}",
+    "current": "Current",
+    "next": "Next Level",
+    "notLearned": "Not Learned",
+    "learnPreview": "Learned at Lv. 1",
+    "currentEmpty": "Spend a point to unlock current stats.",
+    "maxLevel": "Max level reached.",
+    "requirements": "Requirements",
+    "requiredLevel": "Character Level",
+    "levelValue": "Lv. {{level}}",
+    "prerequisites": "Prerequisites",
+    "none": "None",
+    "met": "Met",
+    "missing": "Missing",
+    "lockedPrereqName": "{{skill}} (missing)",
+    "weaponRequired": "Weapon",
+    "damageAttack": "{{type}} attack",
+    "percentRange": "{{min}}% ~ {{max}}%",
+    "totalPower": "Total Power",
+    "summonCap": "Summon Cap",
+    "manaCost": "Mana Cost",
+    "lifeCost": "Life Cost",
+    "cooldown": "Cooldown",
+    "turns": "{{count}} turn(s)",
+    "statusEffects": "Applies",
+    "noChange": "(no change)",
+    "descriptionDamage": "{{skill}}: {{type}} attack {{min}}% ~ {{max}}%.",
+    "descriptionSummon": "{{skill}}: summon up to {{count}} allies.",
+    "descriptionUtility": "{{skill}}: {{trigger}} skill.",
+    "stateLocked": "locked",
+    "stateMaxed": "maxed",
+    "stateLearned": "learned",
+    "stateAvailable": "available",
+    "maxedButton": "Maxed",
+    "lockedLevelButton": "Requires Lv. {{level}}",
+    "lockedPrereqButton": "Need Prereq",
+    "noPointsButton": "No Points"
+  },
   "amazon": {
     "magic-arrow": {
       "name": "Magic Arrow",
@@ -555,7 +597,7 @@
   "necromancer": {
     "raise-skeleton": {
       "name": "Raise Skeleton",
-      "desc": "Raises a skeleton warrior from a corpse to fight for you (max 5)."
+      "desc": "Raises skeleton warriors from corpses. The active summon cap scales with skill level."
     },
     "corpse-explosion": {
       "name": "Corpse Explosion",

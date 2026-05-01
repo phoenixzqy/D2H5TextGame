@@ -78,7 +78,7 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 #### Active Skills (6)
 | ID | Name (EN / ZH) | Element | Target | Base Dmg (L1) | CD | Mana | Status | Notes |
 |---|---|---|---|---|---|---|---|---|
-| `necromancer.raise_skeleton` | Raise Skeleton / 召唤骷髅 | — | Self | — | — | 15 | Summon | Summons 1 skeleton (max 5) |
+| `necromancer.raise_skeleton` | Raise Skeleton / 召唤骷髅 | — | Self | — | — | 15 | Summon | Max skeletons scale by skill level: L1→1, L2→2, L3→3, then +1 every 3 levels (L6→4, L9→5, L12→6). |
 | `necromancer.corpse_explosion` | Corpse Explosion / 尸体爆炸 | Fire | All | 50–80 | 2 | 20 | Burn | Requires corpse (on-kill) |
 | `necromancer.poison_nova` | Poison Nova / 剧毒新星 | Poison | All | 20–30 | 3 | 25 | Poison (2 stacks) | Low base, high stack scaling |
 | `necromancer.bone_spear` | Bone Spear / 白骨之矛 | Arcane | Single | 60–90 | 1 | 20 | — | Ignores armor |
@@ -259,8 +259,9 @@ Monsters use a simplified skill set. Examples:
 
 ### 7.1 Summoning Behavior
 - **Summons spawn at combat start** if skill is slotted.
-- **Max count:** Defined per skill (e.g., 5 skeletons, 3 wolves, 1 golem).
-- **No re-summon mid-combat** unless skill explicitly allows (e.g., "resummon if <max").
+- **Max count:** Defined per skill. Static caps are allowed (e.g., 3 wolves, 1 golem), but D2-style summon skills may declare a level-scaling cap.
+- **Raise Skeleton cap:** `level <= 0 ? 0 : level <= 3 ? level : 3 + floor((level - 3) / 3)`. Soft +skills count toward this effective level once item skill bonuses are wired.
+- **Re-summon mid-combat:** If active summons fall below cap and the skill is available, the caster may re-summon instead of basic-attacking.
 - **Summon stats scale with skill level** (HP, damage, attack speed).
 
 ### 7.2 Summon AI

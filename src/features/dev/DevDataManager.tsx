@@ -159,7 +159,7 @@ function entryLabel(entry: JsonRecord, index: number, t: ReturnType<typeof useTr
     ? entry.name
     : typeof entry.id === 'string'
     ? entry.id
-    : `Entry ${String(index + 1)}`;
+    : t('manager.entryNumber', { index: index + 1 });
   if (raw.includes('.') && !raw.includes('/')) return tDataKey(t, raw);
   return raw;
 }

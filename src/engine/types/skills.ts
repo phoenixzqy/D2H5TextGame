@@ -185,6 +185,9 @@ export interface SkillDef {
     readonly damagePerLevel?: number;
     readonly cooldownPerLevel?: number; // negative = reduces CD
     readonly costPerLevel?: number;
+    readonly summonMaxCount?: {
+      readonly kind: 'first-three-then-every-three';
+    };
   };
 
   /**

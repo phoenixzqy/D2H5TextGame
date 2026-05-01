@@ -70,7 +70,7 @@ If any one of those four fails → **route to the team**.
 - `AGENTS.md` — team charter.
 - The session `plan.md` — current focus, if any.
 - `production/milestones/<current>.md` if present.
-- SQL: `SELECT id, title, status FROM todos ORDER BY status, id;`
+- Backlog / todo state (check `manage_todo_list` or `production/` directory).
 - `git log --oneline -20` — recent activity.
 
 ## Phase 2 — Classify the user's ask
@@ -117,6 +117,34 @@ the work**. Even if individual items look small.
 - **Don't know yet / multi-faceted** → run Phase 3 stage detection AND
   default to `producer`.
 
+### Step 2c — Detect parallelizable tracks (if ≥2 dimensions)
+
+**Critical for fleet mode:** Not all multi-dimensional requests are sequential.
+Check if work can split into **independent parallel tracks** that will
+eventually gate-merge. Examples:
+
+- **Art + Dev parallel track**: `art-director` generates images while
+  `engine-dev` / `frontend-dev` implement core logic without graphics;
+  `frontend-dev` integrates images in Phase 2.
+- **Design + Implementation parallel track**: `game-designer` authors skill
+  spec while `content-designer` and `engine-dev` build system scaffold in
+  parallel; spec review gates merge.
+- **Balance + Content parallel track**: `level-designer` tunes damage/TTK
+  tables while `content-designer` populates monsters/items; both feed into
+  `balance-check` before gate.
+
+**Parallel work indicators:**
+- Task A produces **specifications or assets** that Task B will *integrate*
+  (not block on).
+- Task A and B **share no mutable state** until the gate.
+- Task A and B can **ship intermediate artifacts** (spec review, asset
+  review, code scaffolds) without full interdependency.
+
+If you spot a parallelizable split, **explicitly surface it to producer** so
+they dispatch both tracks immediately (do not queue them sequentially). The
+producer will assign a **Phase-5 gate** (post-implementation merge point) to
+verify integration before merge.
+
 ## Phase 3 — Detect project stage
 
 - **Fresh** — `Diablo2TextGame.md` missing or `src/` empty. Route to
@@ -132,61 +160,71 @@ the work**. Even if individual items look small.
 - **Shipping** — milestone gate-passed. Route to `producer` →
   `milestone-review` → `changelog` / `patch-notes`.
 
-## Phase 4 — Mandatory rubber-duck for any non-trivial work
+## Phase 4 — Verify plan before dispatch (optional rubber-duck)
 
 If the answer to Phase 2 was anything other than "solo, all four conditions
-hold", you **must** call the `rubber-duck` agent on the proposed plan
-*before* dispatching specialists. The producer can do this; if you're routing
-to a single specialist, you do it.
+hold", consider a quick mental rubber-duck check before dispatching:
 
-The rubber-duck pass is non-optional for:
+- **Engine-type / schema / save-format changes** — Have you thought through
+  breaking changes and migrations?
+- **"Improve this UI" / "this looks bad" requests** — Have you identified the
+  root UX problem, or are you guessing?
+- **Bug fixes where root cause is unclear** — Could this be a symptom of a
+  deeper issue?
+- **Any bundle of ≥ 2 items** — Have you identified independence / ordering?
 
-- Engine-type / schema / save-format changes
-- "Improve this UI" / "this looks bad" requests
-- Bug fixes where you haven't identified the root cause yet
-- Any bundle of ≥ 2 items
-
-This is not bureaucracy. It is the cheapest insurance in the studio.
+If uncertain, escalate to `producer` or ask for 5 minutes of thinking time
+from the responsible specialist *before* full dispatch. This is not
+bureaucracy; it is the cheapest insurance in the studio.
 
 ## Phase 5 — Surface next step (concise output)
 
-Tell the user, in ≤ 6 lines:
+Tell the user, in ≤ 8 lines:
 
 - Where the project is (one line).
 - **Which agent or team is being dispatched** (and *why*, if the
   classifier flagged ≥ 2 dimensions).
-- The next 1–3 todos from the SQL list.
-- One question if needed (use `ask_user` with concrete options).
+- If ≥ 2 dimensions AND parallelizable: **explicitly call out the parallel
+  tracks** ("Art and Dev can work in parallel; Phase-5 gate is image
+  integration"). This is not optional — makes the choice auditable and
+  unblocks the producer to dispatch both immediately via `runSubagent`.
+- The next 1–3 backlog items.
+- One question if needed (use `vscode_askQuestions` with concrete options).
 
-Be explicit when going to the team: e.g. "Routing to **producer** → will
-parallel-dispatch `ux-designer` (#4 redesign), `technical-director` (#2
-schema), `game-designer` (#3 weapon-subtype spec), `frontend-dev` (#1
-nav)." This makes the choice auditable.
+Be explicit when going to the team: e.g. "Routing to **producer** →
+**parallel dispatch**: `art-director` (generate UI mockup sprites) and
+`technical-director` (schema for inventory-slot types); both review independently
+while `frontend-dev` scaffolds. Phase-5 gate merges."
+This makes the choice auditable **and enables simultaneous work**.
 
 ## Phase 6 — Hand off
 
-- Invoke the recommended agent via the `agent` tool, OR
-- Pause for user direction if `ask_user` was needed.
+- Invoke the recommended agent via `runSubagent` with the agent name, OR
+- Pause for user direction if `vscode_askQuestions` was needed.
 
 If you dispatched a single Tier-2 specialist and they come back with a
 plan that turns out to span multiple domains, **escalate to producer**.
 Don't quietly absorb the extra work.
 
+**Dispatch syntax:** Use `runSubagent` with `agentName` set to the agent's
+name (e.g., `producer`, `game-designer`, `technical-director`). Pass the
+classified request + parallel-track info in the prompt.
+
 ---
 
 ## Decision examples
 
-| User says… | Boxes ticked | Routes to… |
-|---|---|---|
-| "Let's add a Necromancer skill tree." | 4+ | `producer` → `brainstorm` if no spec, else `create-stories` |
-| "I don't like how combat feels." | 2 (UX, mechanic) | `creative-director` (frame) → `game-designer` |
-| "Pick a state library." | 1 (architecture) | `technical-director` → `architecture-decision` |
-| "Make Andariel's portrait." | 1 (art) | `art-director` (gates `image-gen`) |
-| "What's the next thing to do?" | — | look at SQL todos + plan.md; route by Phase 3 stage |
-| "Build the inventory screen." | 3 (UI, store, UX) | `producer` → `ux-designer` → `frontend-dev` |
-| "It crashes when I refresh." | 1 (bug) | `qa-engineer` → `bug-report` |
-| **"fix and improve: 1. HUD on devtool, 2. devtool image override, 3. weapon subtypes, 4. this UI looks bad <screenshot>"** | **5+** | **`producer` → fleet** (`ux-designer` for #4, `technical-director` for #2 schema, `game-designer` for #3, `frontend-dev` for #1; `qa-engineer` runs Playwright after) |
-| "Rename a CSS class on one button." | 0 | solo (all four conditions hold) |
+| User says… | Boxes ticked | Routes to… | Parallel track? |
+|---|---|---|---|
+| "Let's add a Necromancer skill tree." | 4+ | `producer` → `brainstorm` if no spec, else `create-stories` | Yes: `game-designer` spec + `art-director` portrait ⇒ `frontend-dev` implement |
+| "I don't like how combat feels." | 2 (UX, mechanic) | `creative-director` (frame) → `game-designer` | — |
+| "Pick a state library." | 1 (architecture) | `technical-director` → `architecture-decision` | — |
+| "Make Andariel's portrait." | 1 (art) | `art-director` (gates `image-gen`) | — |
+| "What's the next thing to do?" | — | look at SQL todos + plan.md; route by Phase 3 stage | — |
+| "Build the inventory screen." | 3 (UI, store, UX) | `producer` → `ux-designer` + `technical-director` (schema) in parallel, then `frontend-dev` integrates | Yes: design + schema can spec independently, dev scaffolds while specs review |
+| "It crashes when I refresh." | 1 (bug) | `qa-engineer` → `bug-report` | — |
+| **"Add skill affixes: need UI, new JSON schema, item integration & balance check"** | **5+** | **`producer` → parallel tracks: (1) `ux-designer` mockup + `art-director` icon sprites ⇒ `frontend-dev` implement, (2) `game-designer` + `technical-director` schema + `level-designer` balance ⇒ `content-designer` populate; Phase-5 gate merges both** | **Yes: design/art independent of schema/balance; both gate before merge** |
+| "Rename a CSS class on one button." | 0 | solo (all four conditions hold) | — |
 
 The bolded row is the exact ask that previously caused a solo failure. It must
 route to the team. No exceptions.
@@ -199,11 +237,14 @@ Answer these out loud (in your reply) before writing code:
 
 1. How many Phase 2a boxes did this tick?
 2. Which agents own those dimensions?
-3. Did I run `rubber-duck` on the plan?
-4. If I'm going solo, do all four conditions hold? (If not, stop.)
+3. **Can any of those dimensions work in parallel?** (Phase 2c — check for
+   art/dev splits, design/implementation splits, etc.)
+4. Did I vet the plan briefly? (Phase 4 self-check — unclear root cause,
+   missing dependencies, etc.?)
+5. If I'm going solo, do all four conditions hold? (If not, stop.)
 
-If you cannot answer all four cleanly, you are not ready to implement.
-Route to `producer`.
+If you cannot answer all five cleanly, you are not ready to implement.
+Route to `producer` with explicit parallel-work identification.
 
 ## Owner
 

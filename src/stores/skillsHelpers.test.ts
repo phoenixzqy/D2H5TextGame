@@ -2,7 +2,7 @@
  * Tests for skills helper functions
  */
 import { describe, it, expect } from 'vitest';
-import { getSkillsForClass, organizeSkillsByTree, isSkillLocked, type SkillTemplate } from './skillsHelpers';
+import { getSkillRequiredLevel, getSkillsForClass, organizeSkillsByTree, isSkillLocked, type SkillTemplate } from './skillsHelpers';
 
 describe('skillsHelpers', () => {
   describe('getSkillsForClass', () => {
@@ -159,6 +159,18 @@ describe('skillsHelpers', () => {
       
       const locked = isSkillLocked(skillWithPrereqs, 10, allocatedSkills);
       expect(locked).toBe(false);
+    });
+
+    it('uses requiredLevel before legacy minLevel for unlock checks', () => {
+      const skill: SkillTemplate = {
+        ...baseSkill,
+        minLevel: 1,
+        requiredLevel: 18
+      };
+
+      expect(getSkillRequiredLevel(skill)).toBe(18);
+      expect(isSkillLocked(skill, 17, new Map())).toBe(true);
+      expect(isSkillLocked(skill, 18, new Map())).toBe(false);
     });
   });
 });

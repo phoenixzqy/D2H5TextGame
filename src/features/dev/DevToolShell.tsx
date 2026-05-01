@@ -8,11 +8,11 @@ import { MapManager } from './MapManager';
 import { usePlayerStore } from '@/stores';
 
 const links = [
-  { to: '/dev/classes', label: 'Classes', description: 'Class stats and starter skills' },
-  { to: '/dev/items', label: 'Items', description: 'Bases, uniques, and sets' },
-  { to: '/dev/skills', label: 'Skills', description: 'Damage, cooldown, and scaling' },
-  { to: '/dev/monsters', label: 'Monsters', description: 'Archetype combat tuning' },
-  { to: '/dev/maps', label: 'Maps', description: 'Sub-area levels and waves' }
+  { to: '/dev/classes', key: 'classes' },
+  { to: '/dev/items', key: 'items' },
+  { to: '/dev/skills', key: 'skills' },
+  { to: '/dev/monsters', key: 'monsters' },
+  { to: '/dev/maps', key: 'maps' }
 ] as const;
 
 export default function DevToolShell() {
@@ -36,13 +36,13 @@ export default function DevToolShell() {
           {t('backToGame')}
         </button>
         <div className="mb-4">
-          <p className="text-xs uppercase tracking-wide text-d2-white/50">Localhost only</p>
-          <h1 className="font-serif text-2xl text-d2-gold">Dev Tool</h1>
+          <p className="text-xs uppercase tracking-wide text-d2-white/50">{t('shell.localhostOnly')}</p>
+          <h1 className="font-serif text-2xl text-d2-gold">{t('shell.title')}</h1>
         </div>
-        <nav aria-label="Dev tool">
+        <nav aria-label={t('shell.navLabel')}>
           <ul className="grid gap-2">
-            <li><DevNavLink to="/dev">Overview</DevNavLink></li>
-            {links.map((link) => <li key={link.to}><DevNavLink to={link.to}>{link.label}</DevNavLink></li>)}
+            <li><DevNavLink to="/dev">{t('shell.overview')}</DevNavLink></li>
+            {links.map((link) => <li key={link.to}><DevNavLink to={link.to}>{t(`shell.links.${link.key}.label`)}</DevNavLink></li>)}
           </ul>
         </nav>
       </aside>
@@ -77,19 +77,20 @@ function DevNavLink({ to, children }: { readonly to: string; readonly children: 
 }
 
 function DevIndex() {
+  const { t } = useTranslation('dev');
   return (
     <section className="space-y-4">
       <header>
-        <h1 className="font-serif text-3xl text-d2-gold">Dev Tool</h1>
+        <h1 className="font-serif text-3xl text-d2-gold">{t('shell.title')}</h1>
         <p className="mt-1 max-w-2xl text-sm text-d2-white/70">
-          Edit canonical JSON under src/data while Vite dev server is running. Saves are validated by Ajv before writing to disk.
+          {t('shell.description')}
         </p>
       </header>
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
         {links.map((link) => (
           <NavLink key={link.to} to={link.to} className="rounded border border-d2-border bg-d2-panel p-4 hover:border-d2-gold/70">
-            <h2 className="font-serif text-xl text-d2-gold">{link.label}</h2>
-            <p className="mt-1 text-sm text-d2-white/70">{link.description}</p>
+            <h2 className="font-serif text-xl text-d2-gold">{t(`shell.links.${link.key}.label`)}</h2>
+            <p className="mt-1 text-sm text-d2-white/70">{t(`shell.links.${link.key}.description`)}</p>
           </NavLink>
         ))}
       </div>

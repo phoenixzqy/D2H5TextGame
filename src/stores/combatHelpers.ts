@@ -56,7 +56,8 @@ export function playerToCombatUnit(player: Player): CombatUnit {
     enraged: false,
     summonedAdds: false,
     kind: 'hero',
-    equippedWeapon
+    equippedWeapon,
+    ...(player.skillLevels ? { skillLevels: player.skillLevels } : {})
   };
 }
 

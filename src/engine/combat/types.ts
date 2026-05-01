@@ -66,6 +66,12 @@ export interface CombatUnit {
   readonly cooldowns: Readonly<Record<string, number>>;
   /** Combo skill priority (player) or AI priority (monster). */
   readonly skillOrder: readonly string[];
+  /**
+   * Effective hard/soft skill levels keyed by either canonical engine id
+   * (`necromancer.raise_skeleton`) or data id
+   * (`skills-necromancer-raise-skeleton`). Absent active skills cast at level 1.
+   */
+  readonly skillLevels?: Readonly<Record<string, number>>;
   /** Buffs already applied this combat (don't recast). */
   readonly activeBuffIds: readonly string[];
   /** Boss enrage activated? */
