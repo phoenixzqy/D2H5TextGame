@@ -14,9 +14,10 @@
  *     test should fail before CI does.
  *
  * Strategy:
- *   1. For seeds 1..200, run a representative deterministic engine flow
+ *   1. For seeds 1..50, run a representative deterministic engine flow
  *      (RNG → damage pipeline → drop-roller → rollItem) and capture a
- *      compact fingerprint per seed.
+ *      compact fingerprint per seed — INCLUDING `item.id`, so the
+ *      fingerprint is sensitive to the module-level `itemSeq` counter.
  *   2. Run the SAME loop a second time in the SAME test file (i.e. the
  *      same Vitest worker, the same module graph). Reset only the
  *      documented test escape hatch (`__resetRollItemSeqForTests`).
@@ -25,9 +26,14 @@
  *   4. Assert different seeds produce different fingerprints (no
  *      collapsing to a single value), proving the rng is actually
  *      varied and isn't being clobbered by a leaked singleton.
+ *   5. Assert that omitting the reset between iterations DOES change
+ *      the fingerprint — proving this test would actually catch a
+ *      real isolate:false regression (the previous version excluded
+ *      item.id from the fingerprint and would have passed even if
+ *      module state leaked).
  *
- * Speed: ~200 seeds × 4 cheap calls. Designed to add <100ms to the
- * engine project budget.
+ * Speed: ~50 seeds × 4 cheap calls × 4 cases. Designed to add <200ms
+ * to the engine project budget.
  *
  * @see docs/perf/p05a-engine-state-audit.md
  */
@@ -149,7 +155,17 @@ const DAMAGE_BASE: DamageInput = {
  * harbor leaked state: rng, damage, drop-roller (rarity weighting), and
  * rollItem (module-level itemSeq counter).
  */
-function fingerprintForSeed(seed: number): string {
+/**
+ * Build a fingerprint for one seed.
+ *
+ * @param seed       - rng seed
+ * @param includeId  - when true, includes `item.id`. The id encodes the
+ *   module-level `itemSeq` counter, so any fingerprint that includes it
+ *   becomes sensitive to leaked module state. Tests that want to *prove*
+ *   isolation pass `true`; the order-independence test passes `false`
+ *   because by-design the itemSeq is order-dependent (audit §3).
+ */
+function fingerprintForSeed(seed: number, includeId: boolean): string {
   const rng = createRng(seed);
 
   // 1. damage pipeline — rng drives hit/dodge/crit
@@ -162,9 +178,6 @@ function fingerprintForSeed(seed: number): string {
   // 3. rollItem — touches itemSeq module state via nextItemId
   const item = rollItem({ baseId, rarity, ilvl: 25 }, POOLS, rng);
 
-  // Compact fingerprint. We deliberately do NOT include item.id (it
-  // embeds the cross-test monotonic itemSeq which is order-dependent
-  // by design — see audit §3).
   const affixSig =
     item?.affixes
       ?.map((a) =>
@@ -183,6 +196,11 @@ function fingerprintForSeed(seed: number): string {
     item?.baseRolls?.defense ?? 0,
     item?.affixes?.length ?? 0,
     affixSig,
+    // item.id embeds the module-level itemSeq counter. Including it here
+    // is what makes this test capable of catching a "module state leaked
+    // across iterations" regression — without it, the fingerprint would
+    // be identical whether or not __resetRollItemSeqForTests was called.
+    includeId ? (item?.id ?? '') : '',
   ].join('/');
 }
 
@@ -195,31 +213,32 @@ describe('module-state isolation (P05b / F4 — guards isolate:false safety)', (
   });
 
   it('produces identical fingerprints for the same seed across two passes in one worker', () => {
-    const seeds = Array.from({ length: 200 }, (_, i) => i + 1);
-    const passA = seeds.map((s) => fingerprintForSeed(s));
+    const seeds = Array.from({ length: 50 }, (_, i) => i + 1);
+    const passA = seeds.map((s) => fingerprintForSeed(s, true));
 
     __resetRollItemSeqForTests();
-    const passB = seeds.map((s) => fingerprintForSeed(s));
+    const passB = seeds.map((s) => fingerprintForSeed(s, true));
 
     expect(passB).toEqual(passA);
   });
 
   it('different seeds produce diverse fingerprints (no singleton collapsing them)', () => {
-    const seeds = Array.from({ length: 200 }, (_, i) => i + 1);
-    const unique = new Set(seeds.map((s) => fingerprintForSeed(s)));
+    const seeds = Array.from({ length: 50 }, (_, i) => i + 1);
+    const unique = new Set(seeds.map((s) => fingerprintForSeed(s, true)));
     // Lower bound is conservative; realistic uniqueness is ~95%+. We
     // just need to catch the pathological "everything collapses to one
     // fingerprint" failure mode.
-    expect(unique.size).toBeGreaterThan(50);
+    expect(unique.size).toBeGreaterThan(20);
   });
 
   it('out-of-order seed evaluation matches in-order evaluation (no hidden accumulator)', () => {
     const seeds = Array.from({ length: 50 }, (_, i) => i + 1);
-    const inOrder = seeds.map((s) => fingerprintForSeed(s));
+    // includeId:false because itemSeq is order-dependent by design (audit §3).
+    const inOrder = seeds.map((s) => fingerprintForSeed(s, false));
 
     __resetRollItemSeqForTests();
     const reverseSeeds = [...seeds].reverse();
-    const reverseFingerprints = reverseSeeds.map((s) => fingerprintForSeed(s));
+    const reverseFingerprints = reverseSeeds.map((s) => fingerprintForSeed(s, false));
     const reverseBySeed = new Map<number, string>();
     reverseSeeds.forEach((s, i) => {
       const fp = reverseFingerprints[i];
@@ -228,5 +247,38 @@ describe('module-state isolation (P05b / F4 — guards isolate:false safety)', (
     const reordered = seeds.map((s) => reverseBySeed.get(s));
 
     expect(reordered).toEqual(inOrder);
+  });
+
+  it('without the module-state reset, fingerprints diverge — proving the test would catch a real leak', () => {
+    // Pass A: reset the itemSeq counter before EACH seed → every item
+    // gets id `it-<rng>-1`. This is what a properly-isolated worker
+    // would look like.
+    const seeds = Array.from({ length: 50 }, (_, i) => i + 1);
+    const passA: string[] = [];
+    for (const s of seeds) {
+      __resetRollItemSeqForTests();
+      passA.push(fingerprintForSeed(s, true));
+    }
+
+    // Pass B: same seeds, but DO NOT reset between iterations. itemSeq
+    // accumulates 1, 2, 3, ... so seed N's item.id encodes seq N.
+    // If the production engine ever leaked state across vitest
+    // iterations under `isolate:false`, this is the shape of failure
+    // we'd see — and the assertion below would fail in pass A vs pass B
+    // form.
+    __resetRollItemSeqForTests();
+    const passB = seeds.map((s) => fingerprintForSeed(s, true));
+
+    // Aggregate fingerprints must differ. Stronger: every seed past the
+    // first must differ between the two passes (since rng portion of
+    // item.id is identical for the same seed but the seq suffix is 1
+    // in passA and i+1 in passB).
+    expect(passB.join('|')).not.toEqual(passA.join('|'));
+    const divergences = passA.reduce(
+      (n, fp, i) => (fp === passB[i] ? n : n + 1),
+      0,
+    );
+    // Seed index 0 collides (both have seq=1); the remaining 49 must diverge.
+    expect(divergences).toBe(seeds.length - 1);
   });
 });
