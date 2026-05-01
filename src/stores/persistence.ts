@@ -108,8 +108,22 @@ function scheduleSave(): void {
 }
 
 /**
- * Force the pending debounced save (if any) to flush immediately.
- * Returns the save promise, or `null` if there's nothing to write.
+ * Force the pending debounced auto-save (if any) to flush immediately.
+ *
+ * Cancels the in-flight debounce timer, takes a fresh {@link SaveCurrent}
+ * snapshot via {@link snapshotStores}, and writes it to IndexedDB through
+ * {@link saveSave}.
+ *
+ * Returns:
+ * - the underlying save `Promise<void>` — resolves once the IndexedDB write
+ *   settles. Save errors are caught and logged (private-mode IDB failures
+ *   must not crash the running game), so the returned promise never rejects.
+ * - `null` when there is nothing to write (no character created yet, so
+ *   `snapshotStores()` returns `null`).
+ *
+ * Used by the E2E test bridge (`window.__GAME__.flushSave`) to deterministically
+ * await the debounced save before reload. Also legitimately invoked by the
+ * scheduled debounce timer in {@link scheduleSave}.
  */
 export function flushSave(): Promise<void> | null {
   if (timer) {

@@ -113,10 +113,19 @@ function suiteCommand(name) {
         args: [vitestEntry, 'run', '--reporter=basic', 'src/ui', 'src/components'],
       };
     case 'e2e-smoke':
-      // Prefer the smoke.spec.ts file path — works without tag plumbing (P04).
+      // Wave B / P06: tag-based selection. Runs the chromium-desktop project
+      // only (mobile smoke has its own script: `test:smoke-e2e:mobile`).
+      // Replaces the old "smoke.spec.ts file path" approach now that the
+      // smoke band is spread across ~6 specs by tag.
       return {
         cmd: node,
-        args: [playwrightEntry, 'test', 'tests/e2e/smoke.spec.ts'],
+        args: [
+          playwrightEntry,
+          'test',
+          '--grep',
+          '@smoke',
+          '--project=chromium-desktop',
+        ],
       };
     default:
       console.error(`Unknown suite: ${name}`);

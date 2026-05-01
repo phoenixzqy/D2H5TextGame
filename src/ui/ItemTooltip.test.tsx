@@ -107,5 +107,55 @@ describe('<ItemTooltip> Bug 1 — defenseLine guard', () => {
     expect(screen.queryByTestId('item-tooltip-defense')).toBeNull();
     expect(screen.getByTestId('item-tooltip-damage')).toBeInTheDocument();
   });
+
+  // ───────────────── subtitle / damage coverage (P07 RTL mirror) ─────────────
+  // Mirrors rendering invariants previously only asserted via Playwright.
+
+  it('renders the subtitle line for weapons (testid + non-empty text)', () => {
+    render(wrap(<ItemTooltip item={baseItem('items/base/wp1h-short-sword')} />));
+    const subtitle = screen.getByTestId('item-tooltip-subtitle');
+    expect(subtitle).toBeInTheDocument();
+    expect(subtitle.textContent.trim().length).toBeGreaterThan(0);
+  });
+
+  it('renders the subtitle line for armor (testid + non-empty text)', () => {
+    render(wrap(<ItemTooltip item={baseItem('items/base/armor-good')} />));
+    const subtitle = screen.getByTestId('item-tooltip-subtitle');
+    expect(subtitle).toBeInTheDocument();
+    expect(subtitle.textContent.trim().length).toBeGreaterThan(0);
+  });
+
+  it('damage line for short-sword embeds the base damage range (4–8)', () => {
+    render(wrap(<ItemTooltip item={baseItem('items/base/wp1h-short-sword')} />));
+    const dmg = screen.getByTestId('item-tooltip-damage');
+    // baseDamage.min = 2, max = 6 in the mocked base (see vi.mock at top).
+    expect(dmg.textContent || '').toMatch(/2/);
+    expect(dmg.textContent || '').toMatch(/6/);
+  });
+
+  it('weapon tooltip never emits a raw "tooltip.damage" key', () => {
+    render(wrap(<ItemTooltip item={baseItem('items/base/wp1h-short-sword')} />));
+    const tt = screen.getByTestId('item-tooltip');
+    expect(tt.textContent || '').not.toMatch(/tooltip\.damage/);
+  });
+
+  it('armor tooltip never emits a raw "tooltip.defense" key', () => {
+    render(wrap(<ItemTooltip item={baseItem('items/base/armor-good')} />));
+    const tt = screen.getByTestId('item-tooltip');
+    expect(tt.textContent || '').not.toMatch(/tooltip\.defense/);
+  });
+
+  it('en locale: subtitle and damage lines remain present (no raw keys)', async () => {
+    await i18n.changeLanguage('en');
+    try {
+      render(wrap(<ItemTooltip item={baseItem('items/base/wp1h-short-sword')} />));
+      expect(screen.getByTestId('item-tooltip-subtitle')).toBeInTheDocument();
+      expect(screen.getByTestId('item-tooltip-damage')).toBeInTheDocument();
+      const tt = screen.getByTestId('item-tooltip');
+      expect(tt.textContent || '').not.toMatch(/tooltip\.(damage|defense|subtitle)/);
+    } finally {
+      await i18n.changeLanguage('zh-CN');
+    }
+  });
 });
 

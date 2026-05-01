@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Smoke Test', () => {
-  test('home page loads and displays title', async ({ page }) => {
+  test('home page loads and displays title @smoke', async ({ page }) => {
     await page.goto('/');
 
     // Check page title
@@ -21,7 +21,7 @@ test.describe('Smoke Test', () => {
     await expect(startButton).toBeVisible();
   });
 
-  test('home page is responsive on mobile @mobile-only', async ({ page }) => {
+  test('home page is responsive on mobile @mobile-only @smoke', async ({ page }) => {
     // This test will run in mobile-portrait project (Pixel 5)
     await page.goto('/');
 

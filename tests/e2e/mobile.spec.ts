@@ -19,6 +19,30 @@ const MOBILE_VIEWPORTS: { name: string; width: number; height: number }[] = [
   { name: '412x915 (Pixel 6 Pro)', width: 412, height: 915 },
 ];
 
+// Tiny smoke slice — town has no horizontal overflow at 360×640. Drives its
+// own viewport on the desktop project so it runs once (and fast). Sister to
+// the broader `flow steps 1–5` suite below; intentionally lighter (just
+// home → create → town overflow check) so the @smoke band stays under budget.
+test.describe('Mobile town no-overflow smoke @desktop-only @smoke', () => {
+  test.use({ viewport: { width: 360, height: 640 } });
+  test.beforeEach(({}, testInfo) => {
+    test.skip(
+      testInfo.project.name !== 'chromium-desktop',
+      'desktop project drives its own viewport for the mobile smoke slice'
+    );
+  });
+
+  test('town has no horizontal overflow at 360x640', async ({ page }) => {
+    test.setTimeout(30_000);
+    await clearGameStorage(page);
+    await createCharacter(page, { class: 'amazon', name: 'SmokeTown' });
+    await expect(page.getByTestId('town-screen')).toBeVisible();
+    const scrollWidth = await page.evaluate(() => document.body.scrollWidth);
+    // 2px tolerance for sub-pixel rounding (matches the broader suite).
+    expect(scrollWidth, 'no h-overflow on town @ 360x640').toBeLessThanOrEqual(362);
+  });
+});
+
 test.describe('Mobile responsive flow @desktop-only', () => {
   // Run once on the desktop project; we override viewport per test.
   test.beforeEach(({}, testInfo) => {

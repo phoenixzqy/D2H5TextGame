@@ -56,8 +56,11 @@ jobs:
       - name: Unit tests
         run: npm run test:cov
 
-      - name: Build
-        run: npm run build
+      - name: Build + verify test-bridge tree-shake
+        # Runs `vite build` with VITE_E2E unset, then asserts that no
+        # __GAME__/seedItem/seedMerc/installTestBridge symbols remain in
+        # any emitted JS chunk. See docs/perf/test-bridge-tree-shake.md.
+        run: npm run check:test-bridge-shake
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
