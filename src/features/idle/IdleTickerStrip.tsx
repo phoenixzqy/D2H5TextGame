@@ -8,25 +8,13 @@
  */
 import { useTranslation } from 'react-i18next';
 import { useMetaStore } from '@/stores';
-import { useIdleTicker, useIdleTickerStore, DEFAULT_TICK_SECONDS } from './useIdleTicker';
 
 export function IdleTickerStrip(): JSX.Element {
-  useIdleTicker(DEFAULT_TICK_SECONDS);
   const { t } = useTranslation(['common', 'map']);
-  const reward = useIdleTickerStore((s) => s.lastReward);
-  const lastKillName = useIdleTickerStore((s) => s.lastKillName);
-  const tickSeconds = useIdleTickerStore((s) => s.tickSeconds);
-  const tickCount = useIdleTickerStore((s) => s.tickCount);
   const idleTarget = useMetaStore((s) => s.idleState.idleTarget);
   const setIdleTarget = useMetaStore((s) => s.setIdleTarget);
 
-  const summary = tickCount === 0
-    ? t('idleTicker.idle')
-    : t('idleTicker.summary', {
-        seconds: tickSeconds,
-        xp: reward.xp,
-        drops: reward.runeShards
-      });
+  const summary = idleTarget ? t('idleTicker.active') : t('idleTicker.idle');
 
   return (
     <div
@@ -39,13 +27,8 @@ export function IdleTickerStrip(): JSX.Element {
                  truncate"
       role="status"
       aria-live="polite"
-    >
-      <span className="truncate">{summary}</span>
-      {lastKillName && (
-        <span className="hidden sm:inline truncate text-d2-gold/80 shrink-0">
-          {t('idleTicker.lastKill', { name: lastKillName })}
-        </span>
-      )}
+      >
+        <span className="truncate">{summary}</span>
       {idleTarget && (
         <button
           type="button"

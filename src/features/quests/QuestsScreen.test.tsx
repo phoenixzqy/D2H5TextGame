@@ -43,9 +43,10 @@ describe('QuestsScreen', () => {
     renderScreen();
     const sideTab = screen.getByRole('tab', { name: /支线|side/i });
     fireEvent.click(sideTab);
-    expect(
-      screen.getByTestId('quest-quests/side-act1-charsis-imbue')
-    ).toBeInTheDocument();
+    const quest = screen.getByTestId('quest-quests/side-act1-charsis-imbue');
+    expect(quest).toBeInTheDocument();
+    expect(quest.textContent).toMatch(/查西的灌注|Charsi's Imbue/);
+    expect(quest.textContent).not.toContain('items/imbued_rare_random');
   });
 
   it('reflects in-progress status from useMapStore', () => {
@@ -58,5 +59,26 @@ describe('QuestsScreen', () => {
     renderScreen();
     const card = screen.getByTestId('quest-quests/act1-den-of-evil');
     expect(card.textContent).toMatch(/进行中|in progress/i);
+  });
+
+  it('starts an available quest and shows feedback', () => {
+    renderScreen();
+    const start = screen.getByTestId('quest-start-quests/act1-den-of-evil');
+    fireEvent.click(start);
+    expect(useMapStore.getState().questProgress['quests/act1-den-of-evil']?.status).toBe('inProgress');
+    expect(screen.getByTestId('quest-feedback-quests/act1-den-of-evil')).toHaveTextContent(/任务已加入追踪|Quest added/);
+  });
+
+  it('claims completed quest rewards exactly once', () => {
+    act(() => {
+      useMapStore.getState().completeQuest('quests/side-act1-cains-favor');
+    });
+    renderScreen();
+    fireEvent.click(screen.getByRole('tab', { name: /支线|side/i }));
+    const claim = screen.getByTestId('quest-claim-quests/side-act1-cains-favor');
+    fireEvent.click(claim);
+    expect(useMapStore.getState().questProgress['quests/side-act1-cains-favor']?.rewardClaimed).toBe(true);
+    expect(screen.getByTestId('quest-feedback-quests/side-act1-cains-favor')).toHaveTextContent(/奖励已领取|Rewards claimed/);
+    expect(claim).toBeDisabled();
   });
 });

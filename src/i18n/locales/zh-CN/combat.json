@@ -33,6 +33,13 @@
   "speed": "速度",
   "speedX": "{{x}}x",
   "skip": "跳过",
+  "idleLoop": {
+    "label": "挂机刷图",
+    "running": "正在用真实战斗挂机",
+    "realBattles": "每轮胜利后才结算经验与掉落；离线只提供下次在线加成。",
+    "stop": "停止挂机",
+    "continue": "继续挂机"
+  },
   "acting": "行动中",
   "summon": "召唤物",
   "log_lines": {

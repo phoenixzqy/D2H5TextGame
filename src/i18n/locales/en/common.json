@@ -83,7 +83,8 @@
   },
   "idleTicker": {
     "summary": "every {{seconds}}s: +{{xp}} XP, +{{drops}} drops",
+    "active": "Auto farm started: looping real battles on the combat page",
     "lastKill": "last kill: {{name}}",
-    "idle": "no idle yields yet"
+    "idle": "Choose a cleared map to start auto farming"
   }
 }

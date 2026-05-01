@@ -1,5 +1,20 @@
 {
   "backToGame": "← 返回游戏",
+  "manager": {
+    "loading": "加载中...",
+    "loaded": "已加载 {{path}}",
+    "loadFailed": "加载文件失败",
+    "rawApplied": "已应用到当前条目，保存后写入磁盘。",
+    "invalidJson": "JSON 无效",
+    "saved": "已保存 {{path}}",
+    "saveFailed": "保存失败",
+    "dataFile": "数据文件",
+    "entry": "条目",
+    "selectedEntryJson": "当前条目 JSON",
+    "applyEntryJson": "应用条目 JSON",
+    "noEntries": "未找到条目。",
+    "saveToDisk": "保存到磁盘"
+  },
   "imageField": {
     "label": "贴图预览",
     "lookupKey": "查找键",
@@ -19,9 +34,56 @@
     }
   },
   "itemsEditor": {
+    "tabList": "物品管理器",
+    "tabs": {
+      "bases": {
+        "label": "基础",
+        "title": "基础物品管理器",
+        "fileLabel": "基础物品",
+        "description": "编辑基础物品需求、防御、伤害和词缀资格。"
+      },
+      "uniques": {
+        "label": "暗金",
+        "title": "暗金物品管理器",
+        "fileLabel": "暗金物品",
+        "description": "编辑暗金物品需求和属性修正。"
+      },
+      "sets": {
+        "label": "套装",
+        "title": "套装物品管理器",
+        "fileLabel": "套装物品",
+        "description": "编辑套装组成和部件加成。"
+      }
+    },
     "weaponType": "武器类型",
     "handedness": "持握方式",
-    "requiredForWeapon": "武器必填字段"
+    "requiredForWeapon": "武器必填字段",
+    "fields": {
+      "reqLevel": "需求等级",
+      "baseDefense": "基础防御",
+      "baseDamageMin": "基础伤害最小值",
+      "baseDamageMax": "基础伤害最大值",
+      "canHaveAffixes": "可出现词缀",
+      "baseDamageBreakdown": "基础伤害明细 JSON",
+      "reqStats": "需求属性 JSON",
+      "baseItemId": "基础物品 ID",
+      "statMods": "属性修正 JSON",
+      "fullUniqueStats": "完整暗金属性 JSON",
+      "setItemIds": "套装物品 ID（逗号分隔）",
+      "pieceBonuses": "部件加成 JSON"
+    }
+  },
+  "monstersEditor": {
+    "title": "怪物管理器",
+    "description": "编辑原型生命、成长、攻击节奏、防御、抗性和技能。",
+    "fields": {
+      "life": "基础生命范围",
+      "lifeGrowth": "生命成长范围",
+      "defense": "防御",
+      "attackSpeed": "攻击速度",
+      "skills": "技能列表（逗号分隔）",
+      "resistances": "抗性 JSON"
+    }
   },
   "weaponType": {
     "sword": "剑",

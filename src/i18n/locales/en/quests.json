@@ -10,6 +10,8 @@
   "objectives": "Objectives",
   "rewards": "Rewards",
   "claimReward": "Claim Reward",
+  "startQuest": "Start Quest",
+  "viewProgress": "View Progress",
   "rewardClaimed": "Claimed",
   "empty": "No quests",
   "turnIn": "Turn In",
@@ -51,6 +53,32 @@
       "name": "Bounty: Andariel",
       "desc": "Defeat Andariel in the corrupted Monastery.",
       "obj1": "Defeat Andariel"
+    },
+    "act1-charsis-imbue": {
+      "name": "Charsi's Imbue",
+      "desc": "After recovering the Horadric Malus, Charsi can imbue a single normal item with rare power.",
+      "obj1": "Hand a normal item to Charsi."
+    },
+    "act1-rogue-merc-unlock": {
+      "name": "Kashya's Recruit",
+      "desc": "After avenging the Sisters at the Burial Grounds, Kashya offers a Rogue Scout as a mercenary.",
+      "obj1": "Hire a Rogue Scout from Kashya."
+    },
+    "act1-cains-favor": {
+      "name": "Cain's Gratitude",
+      "desc": "For freeing him from Tristram, Cain will identify your unidentified items free of charge.",
+      "obj1": "Speak with Cain in the Rogue Encampment."
+    },
+    "act1-gheeds-gamble": {
+      "name": "Gheed's Gamble",
+      "desc": "Spend gold at Gheed's gambling stall five times for a guaranteed magical item chance.",
+      "obj1": "Gamble 5 items at Gheed's stall."
+    },
+    "act1-pandemonium-cow-rumor": {
+      "name": "Whispers of the Cow King",
+      "desc": "Transmute Wirt's Leg with a Tome of Town Portal in the Horadric Cube to open a moo-ving portal.",
+      "obj1": "Take Wirt's Leg from Tristram.",
+      "obj2": "Open the Secret Cow Level portal."
     },
     "act2-radaments-lair": {
       "name": "Radament's Lair",
@@ -160,7 +188,29 @@
     "statPoint": "Stat Point",
     "gold": "Gold",
     "rune": "Rune",
-    "xp": "XP"
+    "xp": "XP",
+    "mercenaryUnlock": "Mercenary Unlock"
+  },
+  "rewardValue": {
+    "identify_free": "Free identify service",
+    "imbue_item": "Imbue service",
+    "items_imbued_rare_random": "Random imbued rare item",
+    "items_magic_random_act1": "Random Act I magic item",
+    "areas_secret_cow_level": "Secret Cow Level"
+  },
+  "feedback": {
+    "started": "Quest added to tracking.",
+    "locked": "This quest is still locked.",
+    "available": "This quest can be started.",
+    "inProgress": "Quest in progress. Complete the objectives before claiming rewards.",
+    "completed": "Quest completed. Rewards can be claimed.",
+    "claim": {
+      "ok": "Rewards claimed.",
+      "unknown-quest": "Quest not found.",
+      "not-completed": "Complete the quest before claiming rewards.",
+      "already-claimed": "Rewards were already claimed.",
+      "no-rewards": "This quest has no rewards to claim."
+    }
   },
   "quests": {
     "q": {

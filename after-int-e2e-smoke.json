@@ -1,0 +1,44 @@
+{
+  "schema": "d2h5-bench-tests/v1",
+  "rows": {
+    "windows::e2e-smoke": {
+      "suite": "e2e-smoke",
+      "runs": [
+        39308,
+        21275,
+        19372
+      ],
+      "runDetail": [
+        {
+          "ms": 39308,
+          "ok": true,
+          "code": 0
+        },
+        {
+          "ms": 21275,
+          "ok": true,
+          "code": 0
+        },
+        {
+          "ms": 19372,
+          "ok": true,
+          "code": 0
+        }
+      ],
+      "median": 21275,
+      "min": 19372,
+      "max": 39308,
+      "mean": 26651.666666666668,
+      "stddev": 8983.037063760168,
+      "okCount": 3,
+      "failCount": 0,
+      "os": "windows",
+      "osRelease": "10.0.26200",
+      "arch": "x64",
+      "nodeVersion": "v24.15.0",
+      "gitSha": "ffe4451b7643f3b55e9a3f879f63af693c2b2d75",
+      "timestamp": "2026-05-01T01:00:40.950Z"
+    }
+  },
+  "updatedAt": "2026-05-01T01:00:40.950Z"
+}

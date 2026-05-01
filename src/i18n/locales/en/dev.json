@@ -1,5 +1,20 @@
 {
   "backToGame": "← Back to game",
+  "manager": {
+    "loading": "Loading...",
+    "loaded": "Loaded {{path}}",
+    "loadFailed": "Failed to load file",
+    "rawApplied": "Applied raw JSON to selected entry. Save to persist.",
+    "invalidJson": "Invalid JSON",
+    "saved": "Saved {{path}}",
+    "saveFailed": "Save failed",
+    "dataFile": "Data file",
+    "entry": "Entry",
+    "selectedEntryJson": "Selected entry JSON",
+    "applyEntryJson": "Apply entry JSON",
+    "noEntries": "No entries found.",
+    "saveToDisk": "Save to disk"
+  },
   "imageField": {
     "label": "Image preview",
     "lookupKey": "Lookup key",
@@ -19,9 +34,56 @@
     }
   },
   "itemsEditor": {
+    "tabList": "Item managers",
+    "tabs": {
+      "bases": {
+        "label": "Bases",
+        "title": "Bases Manager",
+        "fileLabel": "Base items",
+        "description": "Edit item base requirements, defense, damage, and affix eligibility."
+      },
+      "uniques": {
+        "label": "Uniques",
+        "title": "Uniques Manager",
+        "fileLabel": "Unique items",
+        "description": "Edit unique item requirements and stat modifiers."
+      },
+      "sets": {
+        "label": "Sets",
+        "title": "Sets Manager",
+        "fileLabel": "Set items",
+        "description": "Edit set composition and piece bonuses."
+      }
+    },
     "weaponType": "Weapon type",
     "handedness": "Handedness",
-    "requiredForWeapon": "Required for weapons"
+    "requiredForWeapon": "Required for weapons",
+    "fields": {
+      "reqLevel": "Required level",
+      "baseDefense": "Base defense",
+      "baseDamageMin": "Base damage min",
+      "baseDamageMax": "Base damage max",
+      "canHaveAffixes": "Can roll affixes",
+      "baseDamageBreakdown": "Base damage breakdown JSON",
+      "reqStats": "Required stats JSON",
+      "baseItemId": "Base item id",
+      "statMods": "Stat mods JSON",
+      "fullUniqueStats": "Full unique stats JSON",
+      "setItemIds": "Set item ids (comma-separated)",
+      "pieceBonuses": "Piece bonuses JSON"
+    }
+  },
+  "monstersEditor": {
+    "title": "Monster Manager",
+    "description": "Edit archetype HP, growth, attack cadence, defense, resistances, and skills.",
+    "fields": {
+      "life": "Base HP range",
+      "lifeGrowth": "HP growth range",
+      "defense": "Defense",
+      "attackSpeed": "Attack speed",
+      "skills": "Skill list (comma-separated)",
+      "resistances": "Resistances JSON"
+    }
   },
   "weaponType": {
     "sword": "Sword",

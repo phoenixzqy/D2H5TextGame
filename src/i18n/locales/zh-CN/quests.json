@@ -6,10 +6,12 @@
   "inProgress": "进行中",
   "completed": "已完成",
   "locked": "未解锁",
-  "available": "可领取",
+  "available": "可接取",
   "objectives": "目标",
   "rewards": "奖励",
   "claimReward": "领取奖励",
+  "startQuest": "开始任务",
+  "viewProgress": "查看进度",
   "rewardClaimed": "已领取",
   "empty": "暂无任务",
   "turnIn": "交付",
@@ -28,6 +30,11 @@
     "act1-forgotten-tower": { "name": "被遗忘的高塔", "desc": "探索石旷野中的被遗忘高塔，击败伯爵。", "obj1": "击败大伯爵" },
     "act1-tools-of-the-trade": { "name": "查西的赋魔", "desc": "将查西的金属之锤交还给她。", "obj1": "找回赋魔之箱" },
     "act1-andariel": { "name": "悬赏：安达利尔", "desc": "击败堕落修女堡的安达利尔。", "obj1": "击败安达利尔" },
+    "act1-charsis-imbue": { "name": "查西的灌注", "desc": "找回赫拉迪姆之锤后，查西可以为一件普通物品注入稀有力量。带给她一件你选择的普通物品。", "obj1": "交给查西一件普通物品。" },
+    "act1-rogue-merc-unlock": { "name": "卡夏的招募", "desc": "在墓地为姐妹们复仇后，卡夏愿意派出一名罗格斥候作为你的佣兵。", "obj1": "从卡夏处雇佣一名罗格斥候。" },
+    "act1-cains-favor": { "name": "凯恩的谢意", "desc": "从崔斯特瑞姆救出凯恩后，他愿意在余下旅途中免费为你鉴定未鉴定物品。", "obj1": "在罗格营地与凯恩交谈。" },
+    "act1-gheeds-gamble": { "name": "基德的赌局", "desc": "商人基德热爱押注。在他的赌博摊消费五次，即有机会获得一件保底魔法物品。", "obj1": "在基德的摊位赌博 5 件物品。" },
+    "act1-pandemonium-cow-rumor": { "name": "奶牛王的低语", "desc": "传闻中存在一个秘密奶牛关。将维特之脚和城镇传送之书放入赫拉迪姆方块转化，打开哞哞传送门。", "obj1": "从崔斯特瑞姆拿到维特之脚。", "obj2": "打开秘密奶牛关传送门。" },
     "act2-radaments-lair": { "name": "拉达门特的巢穴", "desc": "深入下水道击败拉达门特。", "obj1": "击败拉达门特" },
     "act2-horadric-staff": { "name": "霍拉德里克之杖", "desc": "集齐霍拉德里克之杖的零件并合成。", "obj1": "找到杖头", "obj2": "找到琥珀宝石", "obj3": "找到杖身" },
     "act2-tainted-sun": { "name": "被污染的太阳", "desc": "击败爪蝮蛇祭坛的守卫，恢复阳光。", "obj1": "击败爪蝮蛇祭司" },
@@ -54,7 +61,29 @@
     "statPoint": "属性点",
     "gold": "金币",
     "rune": "符文",
-    "xp": "经验"
+    "xp": "经验",
+    "mercenaryUnlock": "解锁佣兵"
+  },
+  "rewardValue": {
+    "identify_free": "免费鉴定服务",
+    "imbue_item": "灌注服务",
+    "items_imbued_rare_random": "随机灌注稀有物品",
+    "items_magic_random_act1": "第一幕随机魔法物品",
+    "areas_secret_cow_level": "秘密奶牛关"
+  },
+  "feedback": {
+    "started": "任务已加入追踪。",
+    "locked": "该任务尚未解锁。",
+    "available": "可以开始该任务。",
+    "inProgress": "任务进行中，请完成目标后回来领取奖励。",
+    "completed": "任务已完成，可以领取奖励。",
+    "claim": {
+      "ok": "奖励已领取。",
+      "unknown-quest": "找不到该任务。",
+      "not-completed": "任务尚未完成，不能领取奖励。",
+      "already-claimed": "奖励已经领取过。",
+      "no-rewards": "该任务没有可领取奖励。"
+    }
   },
   "quests": {
     "q": {

@@ -36,11 +36,16 @@ const itemTabs = {
 type ItemTab = keyof typeof itemTabs;
 
 export function ItemsEditor() {
+  const { t } = useTranslation('dev');
   const [tab, setTab] = useState<ItemTab>('bases');
   const config = itemTabs[tab];
+  const files = config.files.map((file) => ({
+    ...file,
+    label: t(`itemsEditor.tabs.${tab}.fileLabel`)
+  }));
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Item managers">
+      <div className="flex flex-wrap gap-2" role="tablist" aria-label={t('itemsEditor.tabList')}>
         {(Object.keys(itemTabs) as ItemTab[]).map((key) => (
           <button
             key={key}
@@ -53,15 +58,15 @@ export function ItemsEditor() {
               tab === key ? 'border-d2-gold bg-d2-gold/10 text-d2-gold' : 'border-d2-border text-d2-white/80 hover:text-d2-gold'
             ].join(' ')}
           >
-            {itemTabs[key].label}
+            {t(`itemsEditor.tabs.${key}.label`)}
           </button>
         ))}
       </div>
       <DevDataManager
         key={tab}
-        title={`${config.label} Manager`}
-        description={config.description}
-        files={config.files}
+        title={t(`itemsEditor.tabs.${tab}.title`)}
+        description={t(`itemsEditor.tabs.${tab}.description`)}
+        files={files}
         renderFields={(entry, onChange) => {
           if (tab === 'bases') return <BaseFields entry={entry} onChange={onChange} />;
           if (tab === 'uniques') return <UniqueFields entry={entry} onChange={onChange} />;
@@ -101,13 +106,13 @@ export function BaseFields({ entry, onChange }: { readonly entry: JsonRecord; re
   return (
     <div className="space-y-4">
       {key ? (
-        <DevImageField kind="item" entityId={key} inferredPath={resolveItemIcon(key)} />
+        <DevImageField kind="item" entityId={key} inferredPath={resolveItemIcon(rawId)} />
       ) : null}
       <div className="grid gap-3 sm:grid-cols-2">
-        <NumberField entry={entry} path={['reqLevel']} label="Required level" onChange={onChange} />
-        <NumberField entry={entry} path={['baseDefense']} label="Base defense" onChange={onChange} />
-        <NumberField entry={entry} path={['baseDamage', 'min']} label="Base damage min" onChange={onChange} />
-        <NumberField entry={entry} path={['baseDamage', 'max']} label="Base damage max" onChange={onChange} />
+        <NumberField entry={entry} path={['reqLevel']} label={t('itemsEditor.fields.reqLevel')} onChange={onChange} />
+        <NumberField entry={entry} path={['baseDefense']} label={t('itemsEditor.fields.baseDefense')} onChange={onChange} />
+        <NumberField entry={entry} path={['baseDamage', 'min']} label={t('itemsEditor.fields.baseDamageMin')} onChange={onChange} />
+        <NumberField entry={entry} path={['baseDamage', 'max']} label={t('itemsEditor.fields.baseDamageMax')} onChange={onChange} />
       </div>
       {isWeapon ? (
         <div className="grid gap-3 sm:grid-cols-2" data-testid="weapon-fields">
@@ -131,41 +136,43 @@ export function BaseFields({ entry, onChange }: { readonly entry: JsonRecord; re
           />
         </div>
       ) : null}
-      <CheckboxField entry={entry} path={['canHaveAffixes']} label="Can roll affixes" onChange={onChange} />
-      <JsonField entry={entry} path={['baseDamage', 'breakdown']} label="Base damage breakdown JSON" onChange={onChange} />
-      <JsonField entry={entry} path={['reqStats']} label="Required stats JSON" onChange={onChange} />
+      <CheckboxField entry={entry} path={['canHaveAffixes']} label={t('itemsEditor.fields.canHaveAffixes')} onChange={onChange} />
+      <JsonField entry={entry} path={['baseDamage', 'breakdown']} label={t('itemsEditor.fields.baseDamageBreakdown')} onChange={onChange} />
+      <JsonField entry={entry} path={['reqStats']} label={t('itemsEditor.fields.reqStats')} onChange={onChange} />
     </div>
   );
 }
 
 function UniqueFields({ entry, onChange }: { readonly entry: JsonRecord; readonly onChange: (entry: JsonRecord) => void }) {
+  const { t } = useTranslation('dev');
   const rawId = asString(entry.id);
   const key = itemOverrideKey(rawId);
   return (
     <div className="space-y-4">
       {key ? (
-        <DevImageField kind="item" entityId={key} inferredPath={resolveItemIcon(key)} />
+        <DevImageField kind="item" entityId={key} inferredPath={resolveItemIcon(rawId)} />
       ) : null}
       <div className="grid gap-3 sm:grid-cols-2">
-        <NumberField entry={entry} path={['reqLevel']} label="Required level" onChange={onChange} />
-        <TextField entry={entry} path={['baseId']} label="Base item id" onChange={onChange} />
+        <NumberField entry={entry} path={['reqLevel']} label={t('itemsEditor.fields.reqLevel')} onChange={onChange} />
+        <TextField entry={entry} path={['baseId']} label={t('itemsEditor.fields.baseItemId')} onChange={onChange} />
       </div>
-      <JsonField entry={entry} path={['stats', 'statMods']} label="Stat mods JSON" onChange={onChange} />
-      <JsonField entry={entry} path={['stats']} label="Full unique stats JSON" onChange={onChange} />
+      <JsonField entry={entry} path={['stats', 'statMods']} label={t('itemsEditor.fields.statMods')} onChange={onChange} />
+      <JsonField entry={entry} path={['stats']} label={t('itemsEditor.fields.fullUniqueStats')} onChange={onChange} />
     </div>
   );
 }
 
 function SetFields({ entry, onChange }: { readonly entry: JsonRecord; readonly onChange: (entry: JsonRecord) => void }) {
+  const { t } = useTranslation('dev');
   const rawId = asString(entry.id);
   const key = itemOverrideKey(rawId);
   return (
     <div className="space-y-4">
       {key ? (
-        <DevImageField kind="item" entityId={key} inferredPath={resolveItemIcon(key)} />
+        <DevImageField kind="item" entityId={key} inferredPath={resolveItemIcon(rawId)} />
       ) : null}
-      <StringListField entry={entry} path={['items']} label="Set item ids (comma-separated)" onChange={onChange} />
-      <JsonField entry={entry} path={['bonuses']} label="Piece bonuses JSON" onChange={onChange} />
+      <StringListField entry={entry} path={['items']} label={t('itemsEditor.fields.setItemIds')} onChange={onChange} />
+      <JsonField entry={entry} path={['bonuses']} label={t('itemsEditor.fields.pieceBonuses')} onChange={onChange} />
     </div>
   );
 }

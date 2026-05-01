@@ -57,6 +57,21 @@ describe('ItemsEditor BaseFields — weapon fields', () => {
     expect(screen.queryByLabelText(/handedness|持握方式/i)).toBeNull();
   });
 
+  it('previews base item images using the canonical item id', async () => {
+    renderBase({
+      id: 'items/base/helm-cap',
+      name: 'items.base.helm-cap',
+      type: 'armor',
+      slot: 'head',
+      reqLevel: 1,
+      canHaveAffixes: true,
+      baseDefense: 7
+    });
+    const field = await screen.findByTestId('dev-image-field');
+    const img = field.querySelector('img');
+    expect(img?.getAttribute('src')).toMatch(/items\.base\.helm\.png$/);
+  });
+
   it('marks weaponType as invalid when missing on a weapon entry', () => {
     renderBase({
       id: 'items/base/wp1h-broken',

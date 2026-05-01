@@ -59,22 +59,19 @@ export function CharacterScreen() {
 
   return (
     <ScreenShell testId="character-screen" title={t('character:screen.title')}>
-      <div className="max-w-5xl mx-auto space-y-3">
-        {/* Bug #13 row 1: hero card + experience  ·  derived stats */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 items-start" data-testid="char-top-row">
+      <div className="mx-auto grid max-w-5xl grid-cols-1 gap-3 lg:grid-cols-2 lg:items-start">
+        <div className="contents" data-testid="char-top-row">
           <div data-testid="hero-strip">
             <HeroStrip player={player} />
           </div>
           <DerivedStatsPanel player={player} />
         </div>
-        {/* Bug #13 row 2: primary attributes  ·  resistances */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 items-start">
+        <div className="contents">
           <div data-testid="core-attributes-panel">
             <CoreAttributesPanel player={player} />
           </div>
           <ResistancesPanel player={player} />
         </div>
-        {/* Bug #13 row 3: equipment */}
         <EquipmentSummaryPanel
           equipped={equipped}
           onSlotClick={(slot) => { setViewSlot(slot); }}

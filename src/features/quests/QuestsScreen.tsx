@@ -19,7 +19,7 @@ import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Panel, ScreenShell, Tabs } from '@/ui';
 import { useMapStore } from '@/stores';
-import { claimQuestReward, canClaim } from './claimReward';
+import { claimQuestReward, canClaim, type ClaimResult } from './claimReward';
 import {
   loadQuestsByAct,
   questI18nKey,
@@ -125,8 +125,26 @@ function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) 
   const name = t(`byId.${slug}.name`, { defaultValue: quest.name });
   const desc = t(`byId.${slug}.desc`, { defaultValue: quest.description });
   const rewardClaimed = useMapStore((s) => s.questProgress[quest.id]?.rewardClaimed ?? false);
+  const updateQuestProgress = useMapStore((s) => s.updateQuestProgress);
   const [, force] = useState(0);
+  const [feedback, setFeedback] = useState('');
   const claimable = status === 'completed' && !rewardClaimed && canClaim(quest.id);
+  const startQuest = (): void => {
+    if (status !== 'available') {
+      setFeedback(t(`feedback.${status}`));
+      return;
+    }
+    updateQuestProgress(quest.id, {
+      status: 'inProgress',
+      objectives: Object.fromEntries(quest.objectives.map((objective) => [objective.id, false]))
+    });
+    setFeedback(t('feedback.started'));
+  };
+  const claim = (): void => {
+    const result = claimQuestReward(quest.id);
+    setFeedback(t(claimFeedbackKey(result)));
+    if (result === 'ok') force((n) => n + 1);
+  };
 
   return (
     <Panel
@@ -175,21 +193,56 @@ function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) 
                 </li>
               ))}
             </ul>
-            {status === 'completed' && (
+            <div className="flex flex-wrap gap-2">
+              {status === 'available' && (
+                <Button
+                  variant="secondary"
+                  className="min-h-[40px] text-xs"
+                  onClick={startQuest}
+                  data-testid={`quest-start-${quest.id}`}
+                >
+                  {t('startQuest')}
+                </Button>
+              )}
+              {status === 'inProgress' && (
+                <Button
+                  variant="secondary"
+                  className="min-h-[40px] text-xs"
+                  onClick={startQuest}
+                  data-testid={`quest-progress-${quest.id}`}
+                >
+                  {t('viewProgress')}
+                </Button>
+              )}
+              {status === 'locked' && (
+                <Button
+                  variant="secondary"
+                  className="min-h-[40px] text-xs"
+                  disabled
+                  data-testid={`quest-locked-${quest.id}`}
+                >
+                  {t('locked')}
+                </Button>
+              )}
+              {status === 'completed' && (
               <Button
                 variant="primary"
                 className="min-h-[40px] text-xs"
                 disabled={!claimable}
-                onClick={() => {
-                  if (claimQuestReward(quest.id) === 'ok') force((n) => n + 1);
-                }}
+                onClick={claim}
                 data-testid={`quest-claim-${quest.id}`}
               >
                 {rewardClaimed
                   ? t('rewardClaimed')
                   : t('claimReward')}
               </Button>
-            )}
+              )}
+            </div>
+            {feedback ? (
+              <p role="status" className="mt-2 text-xs text-d2-gold/90" data-testid={`quest-feedback-${quest.id}`}>
+                {feedback}
+              </p>
+            ) : null}
           </>
         )}
       </div>
@@ -207,15 +260,33 @@ function formatReward(
   if (k === 'gold' && typeof v === 'number') return `💰 ${String(v)}`;
   if (k === 'skillPoints' && typeof v === 'number')
     return `🎯 +${String(v)} ${t('rewardLabel.skillPoint')}`;
-  if (k === 'mercenaryUnlock' && typeof v === 'string') return `🛡️ ${v}`;
-  if (k === 'service' && typeof v === 'string') return `🏷️ ${v}`;
-  if (k === 'itemDrop' && typeof v === 'string') return `🎁 ${v}`;
-  if (k === 'lootTable' && typeof v === 'string') return `📦 ${v}`;
-  if (k === 'areaUnlock' && typeof v === 'string') return `🗺️ ${v}`;
-  if (k === 'npcUnlock' && typeof v === 'string') return `👤 ${v}`;
+  if (k === 'mercenaryUnlock' && typeof v === 'string') return `🛡️ ${t('rewardLabel.mercenaryUnlock')}: ${formatRewardValue(v, t)}`;
+  if (k === 'service' && typeof v === 'string') return `🏷️ ${formatRewardValue(v, t)}`;
+  if (k === 'itemDrop' && typeof v === 'string') return `🎁 ${formatRewardValue(v, t)}`;
+  if (k === 'lootTable' && typeof v === 'string') return `📦 ${formatRewardValue(v, t)}`;
+  if (k === 'areaUnlock' && typeof v === 'string') return `🗺️ ${formatRewardValue(v, t)}`;
+  if (k === 'npcUnlock' && typeof v === 'string') return `👤 ${formatRewardValue(v, t)}`;
   if (k === 'stat' && typeof v === 'object' && v !== null)
     return `📈 +${JSON.stringify(v)}`;
   return `${k}: ${typeof v === 'object' ? JSON.stringify(v) : String(v)}`;
+}
+
+function formatRewardValue(
+  value: string,
+  t: ReturnType<typeof useTranslation<'quests'>>['t']
+): string {
+  return t(`rewardValue.${value.replace(/[/.]/g, '_')}`, { defaultValue: humanizeRewardId(value) });
+}
+
+function claimFeedbackKey(result: ClaimResult): string {
+  return `feedback.claim.${result}`;
+}
+
+function humanizeRewardId(value: string): string {
+  const lastSegment = value.split('/').pop() ?? value;
+  return lastSegment
+    .replace(/[-_]/g, ' ')
+    .replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
 function StatusBadge({ status }: { status: QuestStatus }) {

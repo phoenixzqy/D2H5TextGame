@@ -13,7 +13,7 @@ import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, Panel, ScreenShell, GameCard, getClassPortraitUrl, getMercPortraitUrl, getMonsterImageUrl, getSummonImageUrl, tDataKey, tItemName } from '@/ui';
-import { useCombatStore, useMapStore, usePlayerStore } from '@/stores';
+import { useCombatStore, useMapStore, useMetaStore, usePlayerStore } from '@/stores';
 import {
   startSubAreaRun,
   advanceWaveOrFinish,
@@ -58,6 +58,8 @@ export function CombatScreen() {
   const togglePause = useCombatStore((s) => s.togglePause);
   const toggleAutoMode = useCombatStore((s) => s.toggleAutoMode);
   const endCombat = useCombatStore((s) => s.endCombat);
+  const idleTarget = useMetaStore((s) => s.idleState.idleTarget);
+  const setIdleTarget = useMetaStore((s) => s.setIdleTarget);
 
   // Recorded-event playback selectors
   const recordedEvents = useCombatStore((s) => s.recordedEvents);
@@ -159,6 +161,7 @@ export function CombatScreen() {
   const handleFlee = () => {
     const wasInRun = hasActiveSubAreaRun() || subAreaRunId !== null;
     abortSubAreaRun();
+    if (wasInRun) setIdleTarget(undefined);
     endCombat();
     navigate(wasInRun ? '/map' : '/town');
   };
@@ -176,13 +179,37 @@ export function CombatScreen() {
   };
 
   const handleReturnToMap = () => {
+    setIdleTarget(undefined);
     endCombat();
     navigate('/map');
   };
 
   const handleReturnToTown = () => {
+    setIdleTarget(undefined);
     endCombat();
     navigate('/town');
+  };
+
+  const isIdleLoop = Boolean(idleTarget && currentSubAreaId && (idleTarget === currentSubAreaId || idleTarget === currentSubAreaId.replace(/^areas\/act([1-5])-/, 'a$1-')));
+
+  useEffect(() => {
+    if (!isIdleLoop) return;
+    if (runDefeat) {
+      setIdleTarget(undefined);
+      return;
+    }
+    if (!runVictory) return;
+    const handle = setTimeout(() => {
+      endCombat();
+    }, 1500);
+    return () => { clearTimeout(handle); };
+  }, [endCombat, isIdleLoop, runDefeat, runVictory, setIdleTarget]);
+
+  const handleStopIdle = () => {
+    setIdleTarget(undefined);
+    abortSubAreaRun();
+    endCombat();
+    navigate('/map');
   };
 
   // Bug #4 — combat-log hover-pause hint is hoisted to the combat header
@@ -201,6 +228,12 @@ export function CombatScreen() {
                 current: currentWave || 1,
                 total: totalWaves || 1,
               })}
+              {isIdleLoop && (
+                <>
+                  {' · '}
+                  <span className="text-d2-set" data-testid="idle-loop-label">{t('idleLoop.label')}</span>
+                </>
+              )}
               {currentSubAreaId && (
                 <>
                   {' · '}
@@ -266,9 +299,9 @@ export function CombatScreen() {
             <Button
               variant="danger"
               className="min-h-[40px] px-3 text-sm"
-              onClick={handleFlee}
+              onClick={isIdleLoop ? handleStopIdle : handleFlee}
             >
-              {t('flee')}
+              {isIdleLoop ? t('idleLoop.stop') : t('flee')}
             </Button>
           </div>
         </div>
@@ -315,6 +348,16 @@ export function CombatScreen() {
       </div>
 
       <div className="max-w-6xl mx-auto mt-3">
+        {isIdleLoop && (
+          <Panel className="mb-3 !p-3" data-testid="idle-loop-panel">
+            <div className="flex flex-wrap items-center gap-2 text-xs text-d2-white/80">
+              <span className="rounded border border-d2-set/60 px-2 py-1 text-d2-set">
+                {t('idleLoop.running')}
+              </span>
+              <span>{t('idleLoop.realBattles')}</span>
+            </div>
+          </Panel>
+        )}
         <CombatLog entries={recentLog} onHoverPausedChange={setLogHoverPaused} />
       </div>
       {nextWaveCountingDown && !runVictory && !runDefeat && (
@@ -368,6 +411,16 @@ export function CombatScreen() {
                   data-testid="continue-next-subarea"
                 >
                   {t('continueToNextSubArea')}
+                </Button>
+              )}
+              {runVictory && isIdleLoop && (
+                <Button
+                  variant="primary"
+                  className="min-h-[40px] text-sm"
+                  onClick={() => { endCombat(); }}
+                  data-testid="idle-loop-next-run"
+                >
+                  {t('idleLoop.continue')}
                 </Button>
               )}
               <Button

@@ -33,6 +33,13 @@
   "speed": "Speed",
   "speedX": "{{x}}x",
   "skip": "Skip",
+  "idleLoop": {
+    "label": "Auto Farm",
+    "running": "Auto-farming with real battles",
+    "realBattles": "XP and drops are committed only after victories; offline time only arms the next-online bonus.",
+    "stop": "Stop Farm",
+    "continue": "Continue Farming"
+  },
   "acting": "Acting",
   "summon": "Summon",
   "log_lines": {

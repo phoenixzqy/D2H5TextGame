@@ -53,19 +53,12 @@ describe('MapScreen — idle gating + stop toggle', () => {
     expect(farm).not.toBeDisabled();
   });
 
-  it('Bug #4 — clicking Farm Here swaps to a Stop Farming control on the row', async () => {
+  it('starts map farming by setting the idle target and navigating to combat', async () => {
     useMapStore.getState().markCleared('areas/act1-blood-moor');
     renderMap();
     const farm = await screen.findByTestId('farm-here-a1-blood-moor');
     act(() => { fireEvent.click(farm); });
-    const stop = await screen.findByTestId('stop-farming-a1-blood-moor');
-    expect(stop).toBeInTheDocument();
     expect(useMetaStore.getState().idleState.idleTarget).toBe('a1-blood-moor');
-
-    // Toggling stop clears the idle target and brings the Farm Here
-    // button back.
-    act(() => { fireEvent.click(stop); });
-    expect(useMetaStore.getState().idleState.idleTarget).toBeUndefined();
-    expect(await screen.findByTestId('farm-here-a1-blood-moor')).toBeInTheDocument();
+    expect(await screen.findByTestId('combat-route')).toBeInTheDocument();
   });
 });

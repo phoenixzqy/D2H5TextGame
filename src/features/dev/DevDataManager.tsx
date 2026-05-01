@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { loadDevJson, saveDevJson } from './devClient';
 import { isRecord, parseJsonRecord, type JsonRecord } from './devJson';
 import type { DevDataFile } from './devPaths';
+import { tDataKey } from '@/ui';
 
 interface DevDataManagerProps {
   readonly title: string;
@@ -18,6 +20,7 @@ function toEntries(json: unknown): { entries: JsonRecord[]; arrayFile: boolean }
 }
 
 export function DevDataManager({ title, description, files, renderFields }: DevDataManagerProps) {
+  const { t } = useTranslation(['dev', 'items', 'monsters', 'common']);
   const [filePath, setFilePath] = useState(files[0]?.path ?? '');
   const [entries, setEntries] = useState<JsonRecord[]>([]);
   const [arrayFile, setArrayFile] = useState(true);
@@ -29,7 +32,7 @@ export function DevDataManager({ title, description, files, renderFields }: DevD
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
-    setStatus('Loading...');
+    setStatus(t('manager.loading'));
     void loadDevJson<unknown>(filePath)
       .then((json) => {
         if (cancelled) return;
@@ -37,18 +40,18 @@ export function DevDataManager({ title, description, files, renderFields }: DevD
         setEntries(next.entries);
         setArrayFile(next.arrayFile);
         setSelectedIndex(0);
-        setStatus(`Loaded ${filePath}`);
+        setStatus(t('manager.loaded', { path: filePath }));
       })
       .catch((error: unknown) => {
         if (cancelled) return;
         setEntries([]);
-        setStatus(error instanceof Error ? error.message : 'Failed to load file');
+        setStatus(error instanceof Error ? error.message : t('manager.loadFailed'));
       })
       .finally(() => {
         if (!cancelled) setLoading(false);
       });
     return () => { cancelled = true; };
-  }, [filePath]);
+  }, [filePath, t]);
 
   const selected = entries[selectedIndex] ?? null;
 
@@ -59,9 +62,9 @@ export function DevDataManager({ title, description, files, renderFields }: DevD
   const entryOptions = useMemo(
     () => entries.map((entry, index) => ({
       index,
-      label: typeof entry.name === 'string' ? entry.name : typeof entry.id === 'string' ? entry.id : `Entry ${String(index + 1)}`
+      label: entryLabel(entry, index, t)
     })),
-    [entries]
+    [entries, t]
   );
 
   const updateSelected = (entry: JsonRecord): void => {
@@ -71,9 +74,9 @@ export function DevDataManager({ title, description, files, renderFields }: DevD
   const applyRawEntry = (): void => {
     try {
       updateSelected(parseJsonRecord(rawEntry));
-      setStatus('Applied raw JSON to selected entry. Save to persist.');
+      setStatus(t('manager.rawApplied'));
     } catch (error) {
-      setStatus(error instanceof Error ? error.message : 'Invalid JSON');
+      setStatus(error instanceof Error ? error.message : t('manager.invalidJson'));
     }
   };
 
@@ -81,9 +84,9 @@ export function DevDataManager({ title, description, files, renderFields }: DevD
     const json: unknown = arrayFile ? entries : entries[0] ?? {};
     try {
       await saveDevJson(filePath, json);
-      setStatus(`Saved ${filePath}`);
+      setStatus(t('manager.saved', { path: filePath }));
     } catch (error) {
-      setStatus(error instanceof Error ? error.message : 'Save failed');
+      setStatus(error instanceof Error ? error.message : t('manager.saveFailed'));
     }
   };
 
@@ -96,7 +99,7 @@ export function DevDataManager({ title, description, files, renderFields }: DevD
 
       <div className="grid gap-3 rounded border border-d2-border bg-d2-panel p-3 md:grid-cols-2">
         <label className="text-sm text-d2-white/80">
-          <span className="mb-1 block">Data file</span>
+          <span className="mb-1 block">{t('manager.dataFile')}</span>
           <select
             value={filePath}
             onChange={(event) => { setFilePath(event.target.value); }}
@@ -106,7 +109,7 @@ export function DevDataManager({ title, description, files, renderFields }: DevD
           </select>
         </label>
         <label className="text-sm text-d2-white/80">
-          <span className="mb-1 block">Entry</span>
+          <span className="mb-1 block">{t('manager.entry')}</span>
           <select
             value={selectedIndex}
             onChange={(event) => { setSelectedIndex(Number(event.target.value)); }}
@@ -124,7 +127,7 @@ export function DevDataManager({ title, description, files, renderFields }: DevD
           </div>
           <aside className="space-y-2 rounded border border-d2-border bg-d2-panel p-3">
             <label className="block text-sm text-d2-white/80">
-              <span className="mb-1 block">Selected entry JSON</span>
+              <span className="mb-1 block">{t('manager.selectedEntryJson')}</span>
               <textarea
                 value={rawEntry}
                 onChange={(event) => { setRawEntry(event.target.value); }}
@@ -133,20 +136,30 @@ export function DevDataManager({ title, description, files, renderFields }: DevD
               />
             </label>
             <button type="button" onClick={applyRawEntry} className="min-h-[40px] rounded border border-d2-border px-3 text-sm text-d2-white hover:text-d2-gold">
-              Apply entry JSON
+              {t('manager.applyEntryJson')}
             </button>
           </aside>
         </div>
       ) : (
-        <p className="rounded border border-d2-border bg-d2-panel p-4 text-d2-white/70">No entries found.</p>
+        <p className="rounded border border-d2-border bg-d2-panel p-4 text-d2-white/70">{t('manager.noEntries')}</p>
       )}
 
       <div className="sticky bottom-2 flex flex-wrap items-center gap-3 rounded border border-d2-gold/40 bg-d2-panel/95 p-3 backdrop-blur">
         <button type="button" onClick={() => { void save(); }} className="min-h-[44px] rounded bg-d2-gold px-4 font-semibold text-black hover:bg-d2-gold/90">
-          Save to disk
+          {t('manager.saveToDisk')}
         </button>
         <p role="status" className="text-sm text-d2-white/70">{status}</p>
       </div>
     </section>
   );
+}
+
+function entryLabel(entry: JsonRecord, index: number, t: ReturnType<typeof useTranslation>['t']): string {
+  const raw = typeof entry.name === 'string'
+    ? entry.name
+    : typeof entry.id === 'string'
+    ? entry.id
+    : `Entry ${String(index + 1)}`;
+  if (raw.includes('.') && !raw.includes('/')) return tDataKey(t, raw);
+  return raw;
 }

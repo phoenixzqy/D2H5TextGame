@@ -102,6 +102,7 @@ export function MapScreen() {
   const farmHere = (act: number, subId: string) => {
     setLocation(act, subId);
     setIdleTarget(subId);
+    navigate('/combat');
   };
   const stopFarming = () => { setIdleTarget(undefined); };
 
