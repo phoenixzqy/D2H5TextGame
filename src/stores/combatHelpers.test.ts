@@ -215,6 +215,20 @@ describe('combatHelpers', () => {
       // Crit damage on trash is the spec 1.5×, not the legacy one-shot 2×.
       expect(enemy.stats.critDamage).toBe(1.5);
     });
+
+    // Relocated from src/engine/combat/combat.test.ts — original cross-
+    // workspace location forced a cold dynamic import() of stores/
+    // combatHelpers that intermittently exceeded the 5000ms test timeout
+    // (~20% flake). Static import in the stores workspace eliminates the
+    // race entirely. See CHANGES.md (Wave C carryover).
+    it('multiple enemies of the same template get suffixes A/B/C', () => {
+      const a = createSimpleEnemy(1, 0);
+      const b = createSimpleEnemy(1, 1);
+      const c = createSimpleEnemy(1, 2);
+      expect(a.name).toMatch(/A$/);
+      expect(b.name).toMatch(/B$/);
+      expect(c.name).toMatch(/C$/);
+    });
   });
 
   describe('startSubAreaRun (Bug #5 / #16)', () => {
@@ -514,10 +528,13 @@ describe('startSimpleBattle — Bug #12', () => {
     expect(useInventoryStore.getState().getCurrency('gold')).toBe(0);
   });
 
-  // Timing-sensitive merc XP accumulation flake (occurs ~1/3 runs on main).
-  // TODO(engine-dev): root-cause and re-enable. Tracking note in CHANGES.md.
-  // Hypothesis: Wave B distribution changes affect test timing/RNG; re-baseline
-  // once engine-dev confirms root cause (likely seed isolation or tick delta).
+  // QUARANTINED — engine bug, not test timing. See
+  // docs/bugs/quarantined-merc-xp-initial-progress.md.
+  // Root cause: mercStore.initialProgress() defaults
+  // experienceToNextLevel to mercXpForLevel(1) = 60 regardless of
+  // merc.level, so a level-10 merc with no progress entry can
+  // spuriously level-up on its first XP share, resetting .experience
+  // to 0 and failing the equality assertion ~30% of seeds.
   it.skip('shares combat victory XP with the fielded merc', () => {
     usePlayerStore.getState().setPlayer(boostedSorceress());
     // Merc at level 10 — large XP-to-next-level so the rolled wave (now
