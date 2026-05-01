@@ -7,10 +7,14 @@ on:
     branches: [main, develop]
 
 jobs:
+  # ──────────────────────────────────────────────────────────────────────
+  # Lint / typecheck / unit / bundle guard. E2E lives in its own jobs
+  # below (Wave C / P11 — sharded matrix + build-once).
+  # ──────────────────────────────────────────────────────────────────────
   ci:
+    name: lint + typecheck + unit
     runs-on: ubuntu-latest
     timeout-minutes: 15
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -19,9 +23,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: npm
 
       - name: Install dependencies
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       - name: Lint
         run: npm run lint
@@ -62,12 +67,6 @@ jobs:
         # any emitted JS chunk. See docs/perf/test-bridge-tree-shake.md.
         run: npm run check:test-bridge-shake
 
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
-
-      - name: E2E tests
-        run: npm run test:e2e
-
       - name: Upload coverage
         uses: codecov/codecov-action@v4
         if: always()
@@ -75,10 +74,281 @@ jobs:
           files: ./coverage/coverage-final.json
           flags: unittests
 
-      - name: Upload Playwright report
+  # ──────────────────────────────────────────────────────────────────────
+  # E2E topology (Wave C / P11):
+  #   e2e-build ─┬─► e2e-prod-bundle ─┐
+  #              │                     │
+  #   e2e-shard (matrix 1..4) ─────────┼─► e2e-merge
+  #   e2e-mobile-shard (matrix 1..2) ──┘
+  #
+  # `chromium-desktop` and `mobile-portrait` projects run against
+  # `vite dev` (no build needed). Only `prod-bundle` consumes the
+  # `prod-dist` artifact, with SKIP_BUILD_FOR_E2E=1 so the Playwright
+  # webServer command does NOT rebuild — see playwright.config.ts.
+  #
+  # Each shard emits a Playwright `blob` report. e2e-merge fans them
+  # back into a single HTML report, uploaded as `playwright-report`.
+  # ──────────────────────────────────────────────────────────────────────
+  e2e-build:
+    name: e2e — build prod bundle (once)
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Build (VITE_E2E=true)
+        env:
+          VITE_E2E: 'true'
+        run: npm run build
+      - name: Upload prod-dist artifact
         uses: actions/upload-artifact@v4
+        with:
+          name: prod-dist
+          path: dist/
+          retention-days: 1
+          if-no-files-found: error
+
+  e2e-shard:
+    name: e2e — chromium-desktop shard ${{ matrix.shard }}/4
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        id: pw-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - name: Install Playwright browsers
+        # When the cache hit is fresh we still need the OS deps; the
+        # browser binaries themselves are restored from cache.
+        run: npx playwright install --with-deps chromium
+      - name: Run Playwright (shard ${{ matrix.shard }}/4)
+        env:
+          E2E_PORT: '4173'
+        run: npx playwright test --project=chromium-desktop --shard=${{ matrix.shard }}/4 --reporter=blob
+      - name: Upload blob report
         if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: blob-report-desktop-${{ matrix.shard }}
+          path: blob-report
+          retention-days: 1
+          if-no-files-found: error
+
+  e2e-mobile-shard:
+    name: e2e — mobile-portrait shard ${{ matrix.shard }}/2
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+      - name: Run Playwright (mobile shard ${{ matrix.shard }}/2)
+        env:
+          E2E_PORT: '4173'
+        run: npx playwright test --project=mobile-portrait --shard=${{ matrix.shard }}/2 --reporter=blob
+      - name: Upload blob report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: blob-report-mobile-${{ matrix.shard }}
+          path: blob-report
+          retention-days: 1
+          if-no-files-found: error
+
+  e2e-prod-bundle:
+    name: e2e — prod-bundle
+    needs: e2e-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Download prod-dist
+        uses: actions/download-artifact@v4
+        with:
+          name: prod-dist
+          path: dist/
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+      - name: Run Playwright (prod-bundle, no rebuild)
+        env:
+          RUN_PROD_BUNDLE: '1'
+          SKIP_BUILD_FOR_E2E: '1'
+          E2E_PORT: '4173'
+          E2E_PROD_PORT: '4273'
+        # `prod-bundle` is the only project gated by RUN_PROD_BUNDLE.
+        # `vite dev` is still spawned for the other projects' webServers
+        # in the config, but Playwright will only boot servers needed by
+        # the projects it runs — and we restrict to prod-bundle here.
+        run: npx playwright test --project=prod-bundle --reporter=blob
+      - name: Upload blob report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: blob-report-prod-bundle
+          path: blob-report
+          retention-days: 1
+          if-no-files-found: error
+
+  # ──────────────────────────────────────────────────────────────────────
+  # Perf gate (Wave C / P12) — WARN-ONLY.
+  #
+  # Runs `bench-tests.mjs` for `unit-full` and `unit-engine` on each OS
+  # in the matrix, then compares medians against the OS-keyed row in
+  # `docs/perf/test-bench.baseline.json` (>20% regression → ⚠️).
+  #
+  # Hard-fail flip is a future PR after ≥10 CI runs of variance
+  # characterization; see `docs/perf/perf-gate.md`. E2E suites are
+  # intentionally excluded — too noisy across cross-OS GitHub runners.
+  #
+  # Runs in parallel with the e2e jobs (NOT in their critical path).
+  # Depends only on `ci` so we don't bench a broken suite.
+  # ──────────────────────────────────────────────────────────────────────
+  test-perf:
+    name: test-perf (warn-only) — ${{ matrix.os }}
+    needs: ci
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Determine OS key
+        id: oskey
+        shell: bash
+        run: |
+          case "${{ runner.os }}" in
+            Linux)   echo "key=ubuntu"  >> "$GITHUB_OUTPUT" ;;
+            Windows) echo "key=windows" >> "$GITHUB_OUTPUT" ;;
+            macOS)   echo "key=macos"   >> "$GITHUB_OUTPUT" ;;
+            *)       echo "key=unknown" >> "$GITHUB_OUTPUT" ;;
+          esac
+      - name: Bench unit-full
+        run: node scripts/bench-tests.mjs --suite unit-full --runs 3 --json bench-unit-full.json
+      - name: Bench unit-engine
+        run: node scripts/bench-tests.mjs --suite unit-engine --runs 3 --json bench-unit-engine.json
+      - name: Perf gate — unit-full vs baseline
+        # Warn-only: the script always exits 0. continue-on-error is
+        # belt-and-suspenders so a script bug can never break CI.
+        continue-on-error: true
+        shell: bash
+        run: |
+          node scripts/check-bench-vs-baseline.mjs \
+            --bench bench-unit-full.json \
+            --baseline docs/perf/test-bench.baseline.json \
+            --os ${{ steps.oskey.outputs.key }} \
+            --threshold-pct 20 \
+            --summary-out "$GITHUB_STEP_SUMMARY"
+      - name: Perf gate — unit-engine vs baseline
+        continue-on-error: true
+        shell: bash
+        run: |
+          node scripts/check-bench-vs-baseline.mjs \
+            --bench bench-unit-engine.json \
+            --baseline docs/perf/test-bench.baseline.json \
+            --os ${{ steps.oskey.outputs.key }} \
+            --threshold-pct 20 \
+            --summary-out "$GITHUB_STEP_SUMMARY"
+      - name: Upload bench artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bench-results-${{ steps.oskey.outputs.key }}
+          path: |
+            bench-unit-full.json
+            bench-unit-engine.json
+          retention-days: 14
+          if-no-files-found: warn
+
+  e2e-merge:
+    name: e2e — merge reports
+    needs: [e2e-shard, e2e-mobile-shard, e2e-prod-bundle]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Download blob reports
+        uses: actions/download-artifact@v4
+        with:
+          path: all-blob-reports
+          pattern: blob-report-*
+          merge-multiple: true
+      - name: Merge reports → HTML
+        run: npx playwright merge-reports --reporter html ./all-blob-reports
+      - name: Upload merged Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
           name: playwright-report
-          path: playwright-report/
+          path: playwright-report
           retention-days: 7

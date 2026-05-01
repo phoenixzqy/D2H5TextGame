@@ -80,11 +80,31 @@ const devWebServer = {
   }
 };
 
+// SKIP_BUILD_FOR_E2E=1 — set in the CI `e2e-prod-bundle` job, where a
+// previous `e2e-build` job has already run `vite build` and shipped
+// `dist/` as an artifact. Skipping the redundant build inside the
+// webServer command is what makes the "build-once + reuse across
+// shards" topology actually pay off (see docs/perf/ci-sharding.md).
+// Locally the default behavior (build + preview) is unchanged.
+const skipBuildForE2E = process.env.SKIP_BUILD_FOR_E2E === '1';
+
+if (skipBuildForE2E && !includeProdBundle) {
+  console.warn(
+    '[playwright.config] SKIP_BUILD_FOR_E2E=1 is set but RUN_PROD_BUNDLE is not. ' +
+    'Dev projects will have no webServer and tests will hang. ' +
+    'This env var is intended for CI-only use (e2e-prod-bundle job). ' +
+    'Unset SKIP_BUILD_FOR_E2E or also set RUN_PROD_BUNDLE=1.'
+  );
+}
+
 const prodWebServer = {
   // Build once, then `vite preview` — exercised by `prod-bundle` project only.
   // Sequenced as a single shell pipeline so Playwright treats it as one server.
-  command:
-    process.platform === 'win32'
+  command: skipBuildForE2E
+    ? process.platform === 'win32'
+      ? `cmd /c "set VITE_E2E=true&& npx vite preview --port ${String(prodBundlePort)} --host 127.0.0.1 --strictPort"`
+      : `VITE_E2E=true npx vite preview --port ${String(prodBundlePort)} --host 127.0.0.1 --strictPort`
+    : process.platform === 'win32'
       ? `cmd /c "set VITE_E2E=true&& npm run build && npx vite preview --port ${String(prodBundlePort)} --host 127.0.0.1 --strictPort"`
       : `VITE_E2E=true npm run build && VITE_E2E=true npx vite preview --port ${String(prodBundlePort)} --host 127.0.0.1 --strictPort`,
   url: prodBaseURL,
@@ -149,5 +169,14 @@ export default defineConfig({
   // Playwright supports an array of webServers. We only spawn the prod one
   // when the prod-bundle project is active, to avoid paying the build cost
   // on local fast-path runs.
-  webServer: includeProdBundle ? [devWebServer, prodWebServer] : devWebServer
+  // When SKIP_BUILD_FOR_E2E=1 (CI prod-bundle job), the run is restricted
+  // to the `prod-bundle` project, so spawning the dev webServer is wasted
+  // boot time. Emit only the prod webServer in that case.
+  // Env-var contract: SKIP_BUILD_FOR_E2E=1 requires includeProdBundle=true
+  // (CI or RUN_PROD_BUNDLE=1), else dev projects have no server to connect to.
+  webServer: skipBuildForE2E
+    ? prodWebServer
+    : includeProdBundle
+      ? [devWebServer, prodWebServer]
+      : devWebServer
 });
