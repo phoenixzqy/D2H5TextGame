@@ -1,9 +1,14 @@
 /**
  * affix-rolls.spec.ts — vertical E2E coverage for per-drop item rolls.
  *
- * Verifies combat still produces loot, each generated drop can roll distinct
- * base/affix values, rare affix lines render in inventory, and equip compare
- * preserves those affix lines alongside stat deltas.
+ * Verifies that each generated drop can roll distinct base/affix values,
+ * rare affix lines render in inventory, and equip compare preserves those
+ * affix lines alongside stat deltas.
+ *
+ * P08: the combat-loot prelude (winFightUntilLootDrops retry-loop) was
+ * removed — that scenario is owned by tests/e2e/playthrough/loot-drop-rate.spec.ts
+ * and the combat/loot engine tests. We now seed items directly via the
+ * __GAME__ test bridge so the spec only exercises the affix-roll surface.
  */
 import { test, expect, type Page } from '@playwright/test';
 import * as fs from 'node:fs';
@@ -13,12 +18,6 @@ import {
   createCharacter,
   navTo,
 } from './_helpers';
-import {
-  boostPlayer,
-  enterFirstCombat,
-  getBackpackCount,
-  skipViaStore,
-} from './playthrough/_setup';
 
 const SHOT_DIR = path.join(process.cwd(), '.screenshots', 'affix-rolls');
 const SHORT_SWORD = 'items/base/wp1h-short-sword';
@@ -46,25 +45,6 @@ type SeedResult = {
 test.beforeAll(() => {
   fs.mkdirSync(SHOT_DIR, { recursive: true });
 });
-
-async function winFightUntilLootDrops(page: Page): Promise<number> {
-  const startingCount = await getBackpackCount(page);
-
-  for (let attempt = 0; attempt < 10; attempt += 1) {
-    await boostPlayer(page);
-    await enterFirstCombat(page);
-    await skipViaStore(page, 60_000);
-    await expect(page.getByTestId('victory-panel')).toBeVisible({ timeout: 10_000 });
-
-    const countAfterFight = await getBackpackCount(page);
-    if (countAfterFight > startingCount) return countAfterFight - startingCount;
-
-    await page.getByTestId('return-to-town').click();
-    await expect(page.getByTestId('town-screen')).toBeVisible({ timeout: 10_000 });
-  }
-
-  return 0;
-}
 
 async function seedRolledWeapons(page: Page): Promise<SeedResult> {
   return page.evaluate((baseId) => {
@@ -95,8 +75,8 @@ async function seedRolledWeapons(page: Page): Promise<SeedResult> {
 }
 
 for (const locale of ['zh-CN', 'en'] as const) {
-  test(`combat loot + rare affix compare works (${locale}) @responsive`, async ({ page, viewport }) => {
-    test.setTimeout(180_000);
+  test(`rare affix tooltip + compare works (${locale}) @responsive`, async ({ page, viewport }) => {
+    test.setTimeout(60_000);
     const tag = (viewport?.width ?? 0) <= 480 ? 'mobile' : 'desktop';
 
     await clearGameStorage(page);
@@ -104,16 +84,6 @@ for (const locale of ['zh-CN', 'en'] as const) {
       try { localStorage.setItem('i18nextLng', loc); } catch { /* noop */ }
     }, locale);
     await createCharacter(page, { class: 'amazon', name: `Affix${tag}` });
-
-    const droppedItems = await winFightUntilLootDrops(page);
-    expect(droppedItems).toBeGreaterThan(0);
-    await page.screenshot({
-      path: path.join(SHOT_DIR, `combat-loot-${tag}-${locale}.png`),
-      fullPage: false,
-    });
-
-    await page.getByTestId('return-to-town').click();
-    await expect(page.getByTestId('town-screen')).toBeVisible({ timeout: 10_000 });
 
     const seeded = await seedRolledWeapons(page);
     expect(seeded.currentId).toMatch(/^seed-/);
