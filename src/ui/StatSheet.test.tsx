@@ -246,5 +246,56 @@ describe('<StatSheet>', () => {
     const h = screen.getByTestId('current-item-header');
     expect(h.getAttribute('data-empty')).toBe('true');
   });
+
+  // ───────────────── data-cols mirror (P07 RTL) ─────────────
+  // Mirrors tests/e2e/equip-compare-table-layout.spec.ts: the StatSheet
+  // is the table its testid asserts on, and `data-cols` is the layout
+  // contract the E2E spec pins. We assert it across the three modes
+  // explicitly in case future refactors break the dynamic value.
+
+  it('data-cols="2" in single mode (with item)', () => {
+    render(
+      wrap(
+        <StatSheet
+          mode="single"
+          item={current}
+          stats={singleStats()}
+          resistances={singleResists()}
+        />
+      )
+    );
+    expect(screen.getByTestId('stat-compare-table').getAttribute('data-cols')).toBe('2');
+  });
+
+  it('data-cols="3" in compare mode regardless of current presence', () => {
+    // current present
+    const a = render(
+      wrap(
+        <StatSheet
+          mode="compare"
+          current={current}
+          candidate={candidate}
+          stats={compareStats()}
+          resistances={compareResists()}
+        />
+      )
+    );
+    expect(a.getByTestId('stat-compare-table').getAttribute('data-cols')).toBe('3');
+    a.unmount();
+
+    // current=null (first equip) — still 3 cols (UX v3 contract).
+    render(
+      wrap(
+        <StatSheet
+          mode="compare"
+          current={null}
+          candidate={candidate}
+          stats={compareStats()}
+          resistances={compareResists()}
+        />
+      )
+    );
+    expect(screen.getByTestId('stat-compare-table').getAttribute('data-cols')).toBe('3');
+  });
 });
 
