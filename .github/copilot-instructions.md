@@ -134,6 +134,18 @@ Notes:
 - Because `npm test` is now non-watch, the previously required `-- --run`
   flag is no longer necessary. Passing it (e.g. `npm test -- --run --reporter=basic`)
   remains harmless but should be simplified to `npm test --reporter=basic` in new code.
+- **E2E port fallback.** Playwright's `webServer` block owns the lifecycle of
+  port `4173` (configured via the `E2E_PORT` env var). If `4173` is occupied
+  by an unrelated process, **set `E2E_PORT=4279`** (or any other free port)
+  and re-run, e.g.:
+  ```
+  $env:E2E_PORT=4279; npx playwright test --project=chromium-desktop
+  ```
+  Do **not** try to "free" the port with `kill-port`, `taskkill /IM node.exe`,
+  `pkill node`, or any `Stop-Process -Name node` variant. Copilot CLI itself
+  runs on Node — those broad-match commands kill the very agent issuing them.
+  See the **"Process & shell safety"** section above for the absolute rule;
+  the `E2E_PORT=4279` fallback is the sanctioned workaround.
 
 ## Studio model & gate verdicts
 
