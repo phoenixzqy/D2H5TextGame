@@ -8,7 +8,7 @@
 import type { Mercenary } from '@/engine/types/entities';
 import type { CoreStats } from '@/engine/types/attributes';
 import { deriveStats } from '@/engine/progression/stats';
-import type { MercDef } from '@/data/loaders/mercs';
+import { resolveMercSkillLoadout, type MercDef } from '@/data/loaders/mercs';
 
 /**
  * Build a fresh Mercenary instance from a static `MercDef`.
@@ -24,6 +24,7 @@ export function createMercFromDef(def: MercDef, instanceSuffix?: string): Mercen
   };
   const derivedStats = deriveStats(coreStats, Math.max(1, def.reqLevel));
   const id = instanceSuffix ? `${def.id}#${instanceSuffix}` : def.id;
+  const comboOrder = resolveMercSkillLoadout(def).filter((skillId) => skillId.trim().length > 0);
   return {
     id,
     name: def.name,
@@ -35,7 +36,7 @@ export function createMercFromDef(def: MercDef, instanceSuffix?: string): Mercen
     statusEffects: [],
     cooldowns: [],
     skills: [],
-    comboOrder: def.comboOrder ?? [],
+    comboOrder,
     alive: true,
     turnOrder: 0,
     archetype: def.archetype,

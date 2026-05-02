@@ -8,7 +8,7 @@
  *
  * Mirrored assertions:
  *   - hideNav={true}  → no nav links to /town, /map, …
- *   - hideNav={false} → all 9 nav-bar entries render with their hrefs.
+ *   - hideNav={false} → all player-facing nav-bar entries render with their hrefs.
  *   - default (omitted) → behaves like false.
  */
 import { describe, it, expect } from 'vitest';
@@ -21,7 +21,7 @@ import { ScreenShell } from './ScreenShell';
 
 const NAV_HREFS = [
   '/town', '/map', '/combat', '/inventory',
-  '/skills', '/mercs', '/gacha', '/quests', '/settings',
+  '/skills', '/mercs', '/quests', '/settings',
 ] as const;
 
 function renderShell(props: { hideNav?: boolean } = {}) {
@@ -42,7 +42,7 @@ function renderShell(props: { hideNav?: boolean } = {}) {
 }
 
 describe('<ScreenShell hideNav /> — BottomNav gate', () => {
-  it('renders BottomNav with all 9 nav-links when hideNav is false', () => {
+  it('renders BottomNav with all player-facing nav-links when hideNav is false', () => {
     renderShell({ hideNav: false });
     for (const href of NAV_HREFS) {
       const link = document.querySelector(`a[href="${href}"]`);

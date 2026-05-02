@@ -80,6 +80,8 @@ export function resolveMonsterArt(monsterId: string): string | null {
  *
  * Examples:
  *   `wp1h-short-sword`  → `sword`
+ *   `wp2h-great-axe`    → `axe`
+ *   `wp2h-war-pike`     → `staff` (generic polearm fallback)
  *   `weapon-axe-large`  → `axe`
  *   `helm-cap`          → `helm`
  *   `armor-leather`     → `armor`
@@ -89,20 +91,24 @@ export function resolveMonsterArt(monsterId: string): string | null {
  *   `belt-light`        → `belt`
  */
 function inferBaseArchetype(slug: string): string | null {
-  if (/^wp1h-|^wp2h-|^weapon-sword/.test(slug)) return 'sword';
+  if (/^wp1h-|^weapon-sword/.test(slug)) return 'sword';
+  if (/^wp2h-(two-handed-sword|colossus-blade)/.test(slug)) return 'sword';
+  if (/^wp2h-(great-axe)/.test(slug)) return 'axe';
+  if (/^wp2h-(thunder-maul)/.test(slug)) return 'mace';
+  if (/^wp2h-(war-pike|giant-thresher)/.test(slug)) return 'staff';
   if (slug.startsWith('weapon-axe')) return 'axe';
   if (slug.startsWith('weapon-mace')) return 'mace';
   if (/^weapon-bow|^weapon-crossbow/.test(slug)) return 'bow';
-  if (/^weapon-staff|^weapon-wand|^weapon-scepter/.test(slug)) return 'staff';
+  if (/^weapon-staff|^weapon-wand|^weapon-scepter|^weapon-polearm/.test(slug)) return 'staff';
   if (/^weapon-dagger|^weapon-knife/.test(slug)) return 'dagger';
   if (slug.startsWith('helm-')) return 'helm';
   if (slug.startsWith('armor-')) return 'armor';
-  if (slug.startsWith('glove-')) return 'gloves';
+  if (slug === 'gloves' || slug.startsWith('glove-')) return 'gloves';
   if (slug.startsWith('boot')) return 'boots';
-  if (slug.startsWith('belt-')) return 'belt';
+  if (slug === 'belt' || slug.startsWith('belt-')) return 'belt';
   if (/^sh-|^shield-/.test(slug)) return 'shield';
   if (slug.startsWith('ring')) return 'ring';
-  if (slug.startsWith('amulet')) return 'amulet';
+  if (slug.startsWith('amulet') || slug.startsWith('amu-')) return 'amulet';
   if (/^potion-(red|health|life)/.test(slug)) return 'potion-health';
   if (/^potion-(blue|mana)/.test(slug)) return 'potion-mana';
   if (slug.startsWith('rune')) return 'rune';

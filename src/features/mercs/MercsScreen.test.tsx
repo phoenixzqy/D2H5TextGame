@@ -55,4 +55,40 @@ describe('MercsScreen', () => {
     fireEvent.click(button);
     expect(useMercStore.getState().fieldedMercId).not.toBeNull();
   });
+
+  it('hires an act-specific merc without opening gacha', () => {
+    renderScreen();
+
+    const hireButton = screen.getAllByRole('button', { name: /招募|hire/i })[0];
+    if (!hireButton) throw new Error('hire button not found');
+    fireEvent.click(hireButton);
+
+    expect(useMercStore.getState().ownedMercs).toHaveLength(1);
+    expect(useMercStore.getState().fieldedMercId).toBe(useMercStore.getState().ownedMercs[0]?.id);
+  });
+
+  it('blocks dismissing a merc that still has equipment', () => {
+    const pool = loadMercPool();
+    const def = pool.pool[0];
+    if (!def) throw new Error('merc pool is empty');
+    act(() => {
+      const merc = createMercFromDef(def);
+      useMercStore.getState().addMerc(merc);
+      useMercStore.setState((s) => ({
+        mercEquipment: {
+          ...s.mercEquipment,
+          [merc.id]: {
+            weapon: { id: 'item-1', baseId: 'items/base/wp1h-short-sword', rarity: 'normal', level: 1, identified: true, equipped: true, affixes: [] },
+          },
+        },
+      }));
+    });
+    renderScreen();
+
+    fireEvent.click(screen.getByTestId(`merc-dismiss-${def.id}`));
+
+    expect(screen.getByText(/先卸下|Unequip every item/i)).toBeInTheDocument();
+    expect(screen.queryByTestId(`merc-dismiss-confirm-${def.id}`)).not.toBeInTheDocument();
+    expect(useMercStore.getState().ownedMercs).toHaveLength(1);
+  });
 });

@@ -8,6 +8,8 @@ import { create } from 'zustand';
 import type { Mercenary } from '@/engine/types/entities';
 import type { EquipmentSlot, Item, ItemBase } from '@/engine/types/items';
 import { loadItemBases } from '@/data/loaders/loot';
+import type { MercDef } from '@/data/loaders/mercs';
+import { createMercFromDef } from './mercFactory';
 
 /**
  * Mercenary XP curve (canonical).
@@ -123,16 +125,17 @@ interface MercState {
   
   // Actions
   addMerc: (merc: Mercenary) => void;
+  hireMerc: (def: MercDef) => { ok: boolean; mercId?: string; reason?: 'already-owned' };
   removeMerc: (mercId: string) => void;
   setFieldedMerc: (mercId: string | null) => void;
   getFieldedMerc: () => Mercenary | null;
   upgradeMerc: (mercId: string) => void;
   /**
-   * Bug #7 — dismiss a merc. Returns every equipped item to the supplied
-   * `returnItem` callback (typically `useInventoryStore.addItem`) and
-   * removes the merc from the roster. No-ops on unknown id.
+   * Dismiss a merc only when all equipment has been removed first. Returns
+   * false when the merc still has gear so UI can show a blocking warning.
    */
-  dismissMerc: (mercId: string, returnItem: (item: Item) => void) => void;
+  dismissMerc: (mercId: string) => boolean;
+  hasEquippedItems: (mercId: string) => boolean;
   /**
    * Bug #8 — equip an item on a merc in the given slot. Returns the
    * displaced item if any (caller is responsible for returning it to the
@@ -191,6 +194,17 @@ export const useMercStore = create<MercState>((set, get) => ({
       mercProgress: { ...state.mercProgress, [merc.id]: state.mercProgress[merc.id] ?? initialProgress() }
     };
   }); },
+
+  hireMerc: (def) => {
+    const state = get();
+    if (state.ownedMercs.some((merc) => merc.id.split('#')[0] === def.id)) {
+      return { ok: false, reason: 'already-owned' };
+    }
+    const merc = createMercFromDef(def);
+    state.addMerc(merc);
+    state.setFieldedMerc(merc.id);
+    return { ok: true, mercId: merc.id };
+  },
   
   removeMerc: (mercId) => { set((state) => {
     const { [mercId]: _eq, ...restEq } = state.mercEquipment;
@@ -227,14 +241,16 @@ export const useMercStore = create<MercState>((set, get) => ({
     };
   }); },
 
-  dismissMerc: (mercId, returnItem) => {
+  dismissMerc: (mercId) => {
     const state = get();
-    const equipped = state.mercEquipment[mercId] ?? {};
-    for (const slot of MERC_EQUIPMENT_SLOTS) {
-      const it = equipped[slot];
-      if (it) returnItem({ ...it, equipped: false });
-    }
+    if (state.hasEquippedItems(mercId)) return false;
     state.removeMerc(mercId);
+    return true;
+  },
+
+  hasEquippedItems: (mercId) => {
+    const equipped = get().mercEquipment[mercId] ?? {};
+    return MERC_EQUIPMENT_SLOTS.some((slot) => equipped[slot] !== undefined && equipped[slot] !== null);
   },
 
   equipOnMerc: (mercId, slot, item) => {

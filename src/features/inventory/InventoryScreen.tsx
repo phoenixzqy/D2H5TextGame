@@ -30,6 +30,7 @@ import { useTranslation } from 'react-i18next';
 import i18n from '@/i18n';
 import {
   Button,
+  EquipmentPanel,
   EquippedItemModal,
   Modal,
   Panel,
@@ -52,19 +53,6 @@ import {
   type CompareResult,
   type PlayerLike
 } from './compareEquip';
-
-const SLOT_ORDER: EquipmentSlot[] = [
-  'head',
-  'amulet',
-  'chest',
-  'gloves',
-  'belt',
-  'boots',
-  'ring-left',
-  'ring-right',
-  'weapon',
-  'offhand',
-];
 
 const MAX_BACKPACK = 100;
 const MAX_STASH = 500;
@@ -537,112 +525,6 @@ function MobileBottomSheet({
   );
 }
 
-/* ────────────────────────────────────────────────────────────────────── */
-/* Equipment tab                                                           */
-/* ────────────────────────────────────────────────────────────────────── */
-
-function EquipmentPanel({
-  equipped,
-  onUnequip,
-  onSlotClick,
-  onViewSlot,
-}: {
-  equipped: Record<string, Item | null>;
-  onUnequip: (slot: EquipmentSlot) => void;
-  onSlotClick: (slot: EquipmentSlot) => void;
-  onViewSlot: (slot: EquipmentSlot) => void;
-}) {
-  const { t } = useTranslation('inventory');
-  return (
-    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-      {SLOT_ORDER.map((slot) => {
-        const item = equipped[slot];
-        return (
-          <li key={slot}>
-            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
-            <div
-              role="button"
-              tabIndex={0}
-              onClick={() => { onSlotClick(slot); }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  onSlotClick(slot);
-                }
-              }}
-              data-testid={`equip-slot-${slot}`}
-              aria-label={t(`slots.${slot}`)}
-              className="w-full border border-d2-border rounded p-3 bg-d2-bg/40 min-h-[64px]
-                         flex items-center justify-between gap-2 text-left cursor-pointer
-                         hover:border-d2-gold/60 focus:outline-none focus:ring-2 focus:ring-d2-gold
-                         transition-colors"
-            >
-              <div className="min-w-0">
-                <div className="text-xs text-d2-white/60">{t(`slots.${slot}`)}</div>
-                {item ? (
-                  <div className={`font-serif truncate ${rarityTextClass(item.rarity)}`}>
-                    {itemDisplayName(item)}
-                  </div>
-                ) : (
-                  <div className="text-sm text-d2-white/40 italic">
-                    {t('empty')}
-                  </div>
-                )}
-              </div>
-              <div className="flex items-center gap-2 shrink-0">
-                {item && (
-                  <Button
-                    variant="secondary"
-                    className="min-h-[40px] text-xs"
-                    aria-label={t('details')}
-                    data-testid={`equip-slot-${slot}-details`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onViewSlot(slot);
-                    }}
-                  >
-                    {t('details')}
-                  </Button>
-                )}
-                {item && (
-                  <Button
-                    variant="secondary"
-                    className="min-h-[40px] text-xs"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onUnequip(slot);
-                    }}
-                  >
-                    {t('unequip')}
-                  </Button>
-                )}
-              </div>
-            </div>
-          </li>
-        );
-      })}
-    </ul>
-  );
-}
-
 function itemDisplayName(item: Item): string {
   return tItemName(i18n.t.bind(i18n), item);
-}
-
-function rarityTextClass(rarity: Item['rarity']): string {
-  switch (rarity) {
-    case 'magic':
-      return 'text-d2-magic';
-    case 'rare':
-      return 'text-d2-rare';
-    case 'unique':
-      return 'text-d2-unique';
-    case 'set':
-      return 'text-d2-set';
-    case 'runeword':
-      return 'text-d2-runeword';
-    case 'normal':
-    default:
-      return 'text-d2-white';
-  }
 }

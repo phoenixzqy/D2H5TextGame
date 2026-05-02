@@ -9,6 +9,7 @@ export { ItemTooltip } from './ItemTooltip';
 export { ItemCompareTooltip } from './ItemCompareTooltip';
 export { StatSheet } from './StatSheet';
 export { EquippedItemModal } from './EquippedItemModal';
+export { EquipmentPanel, EQUIPMENT_SLOT_ORDER } from './EquipmentPanel';
 export { BottomNav } from './BottomNav';
 export { ScreenShell } from './ScreenShell';
 export { CharacterHud } from './CharacterHud';

@@ -96,7 +96,7 @@ export function TownScreen() {
           <Button
             variant="secondary"
             className="min-h-[48px]"
-            onClick={() => { navigate('/gacha'); }}
+            onClick={() => { navigate('/mercs'); }}
           >
             {t('mercenaryRecruiter')}
           </Button>

@@ -6,6 +6,7 @@ import {
   resolveZoneArt,
   resolveMercArt
 } from './cardAssets';
+import { loadItemBases } from '@/data/loaders/loot';
 
 describe('cardAssets resolvers', () => {
   it('resolves class portraits by short id', () => {
@@ -25,8 +26,23 @@ describe('cardAssets resolvers', () => {
     expect(resolveMonsterArt('act1.andariel')).toMatch(/bosses\.act1\.andariel\.png$/);
   });
 
-  it('returns null silently for unmapped item bases', () => {
+  it('returns null silently for unmapped non-base item ids', () => {
     expect(resolveItemIcon('items/normal.crystal-sword')).toBeNull();
+  });
+
+  it('resolves every shipped base item to an icon', () => {
+    const missing: string[] = [];
+    for (const id of loadItemBases().keys()) {
+      if (!resolveItemIcon(id)) missing.push(id);
+    }
+    expect(missing).toEqual([]);
+  });
+
+  it('resolves jewelry and two-handed weapon base archetypes', () => {
+    expect(resolveItemIcon('items/base/amu-tin')).toMatch(/items\.base\.amulet\.png$/);
+    expect(resolveItemIcon('items/base/wp2h-great-axe')).toMatch(/items\.base\.axe\.png$/);
+    expect(resolveItemIcon('items/base/wp2h-thunder-maul')).toMatch(/items\.base\.mace\.png$/);
+    expect(resolveItemIcon('items/base/weapon-polearm')).toMatch(/items\.base\.staff\.png$/);
   });
 
   it('resolves a known unique item', () => {

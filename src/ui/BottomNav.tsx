@@ -20,7 +20,6 @@ const ITEMS: readonly NavItem[] = [
   { to: '/inventory', labelKey: 'nav.inventory', icon: '🎒' },
   { to: '/skills', labelKey: 'nav.skills', icon: '✨' },
   { to: '/mercs', labelKey: 'nav.mercs', icon: '🛡️' },
-  { to: '/gacha', labelKey: 'nav.gacha', icon: '🎲' },
   { to: '/quests', labelKey: 'nav.quests', icon: '📜' },
   { to: '/settings', labelKey: 'nav.settings', icon: '⚙️' },
 ];

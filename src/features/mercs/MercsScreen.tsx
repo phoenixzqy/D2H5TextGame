@@ -16,21 +16,24 @@
  */
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, GameCard, Modal, Panel, ScreenShell, resolveMercArt, tDataKey, tItemName } from '@/ui';
-import { useMercStore, useInventoryStore } from '@/stores';
+import type { TFunction } from 'i18next';
+import { Button, EquipmentPanel, EquippedItemModal, GameCard, Modal, Panel, ScreenShell, resolveMercArt, tDataKey, tItemName } from '@/ui';
+import { useMercStore, useInventoryStore, usePlayerStore } from '@/stores';
 import { MERC_EQUIPMENT_SLOTS, type MercEquipment } from '@/stores/mercStore';
 import type { Mercenary } from '@/engine/types/entities';
-import type { EquipmentSlot, Item } from '@/engine/types/items';
+import type { EquipmentSlot } from '@/engine/types/items';
 import { loadItemBases } from '@/data/loaders/loot';
-import { loadMercPool, type MercDef } from '@/data/loaders/mercs';
+import { loadMercHireRoster, loadMercPool, resolveMercSkillLoadout, type MercDef } from '@/data/loaders/mercs';
 
 const RARITY_TO_TEXT = { R: 'magic', SR: 'rare', SSR: 'unique' } as const;
 
 export function MercsScreen() {
-  const { t } = useTranslation(['mercs', 'common']);
+  const { t } = useTranslation(['mercs', 'common', 'inventory']);
   const ownedMercs = useMercStore((s) => s.ownedMercs);
   const fieldedMercId = useMercStore((s) => s.fieldedMercId);
   const setFielded = useMercStore((s) => s.setFieldedMerc);
+  const hireMerc = useMercStore((s) => s.hireMerc);
+  const playerLevel = usePlayerStore((s) => s.player?.level ?? 1);
 
   const defsById = useMemo(() => {
     const pool = loadMercPool();
@@ -39,9 +42,66 @@ export function MercsScreen() {
     return m;
   }, []);
 
+  const hireActs = useMemo(() => loadMercHireRoster(), []);
+  const ownedBaseIds = useMemo(
+    () => new Set(ownedMercs.map((merc) => merc.id.split('#')[0] ?? merc.id)),
+    [ownedMercs]
+  );
+
   return (
     <ScreenShell testId="mercs-screen" title={t('mercenaries')}>
       <div className="max-w-4xl mx-auto space-y-3">
+        <Panel title={t('hirePanelTitle')}>
+          <div className="space-y-4">
+            <p className="text-sm text-d2-white/70">{t('hirePanelBody')}</p>
+            {hireActs.map((act) => {
+              const locked = playerLevel < act.unlockReqLevel;
+              return (
+                <section key={act.id} className="space-y-2">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <h2 className="font-serif text-d2-gold">{t(act.labelKey)}</h2>
+                    {locked && (
+                      <span className="text-xs text-d2-white/50">
+                        {t('unlockReqLevel', { level: act.unlockReqLevel })}
+                      </span>
+                    )}
+                  </div>
+                  <ul className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                    {act.mercs.map((def) => {
+                      const owned = ownedBaseIds.has(def.id);
+                      return (
+                        <li
+                          key={def.id}
+                          className="rounded border border-d2-border bg-d2-bg/40 p-3"
+                          data-testid={`hire-merc-${def.id}`}
+                        >
+                          <div className="font-serif text-d2-gold">{localizedMercName(t, def)}</div>
+                          <div className="text-xs text-d2-white/60">{t(`type.${def.classRef}`)} · {t('level')} {def.reqLevel}</div>
+                          <div className="mt-2 flex flex-wrap gap-1">
+                            {resolveMercSkillLoadout(def).slice(0, 3).map((skillId) => (
+                              <span key={skillId} className="rounded border border-d2-border/70 bg-black/30 px-2 py-0.5 text-[11px] text-d2-white/75">
+                                {tDataKey(t, `mercs.skillName.${skillId}`)}
+                              </span>
+                            ))}
+                          </div>
+                          <Button
+                            variant={owned ? 'secondary' : 'primary'}
+                            className="mt-3 min-h-[40px] w-full text-sm"
+                            disabled={owned || locked}
+                            onClick={() => { hireMerc(def); }}
+                          >
+                            {owned ? t('owned') : t('hire')}
+                          </Button>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </section>
+              );
+            })}
+          </div>
+        </Panel>
+
         {ownedMercs.length === 0 ? (
           <Panel>
             <p className="text-sm text-d2-white/60 italic text-center py-6">
@@ -88,7 +148,6 @@ function MercCard({
   const dismissMerc = useMercStore((s) => s.dismissMerc);
   const equipment = useMercStore((s) => s.mercEquipment[merc.id]) ?? {};
   const progress = useMercStore((s) => s.mercProgress[merc.id]) ?? { experience: 0, experienceToNextLevel: 50 };
-  const addItem = useInventoryStore((s) => s.addItem);
 
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [equipOpen, setEquipOpen] = useState(false);
@@ -97,7 +156,7 @@ function MercCard({
   const baseId = merc.id.split('#')[0] ?? merc.id;
   const slug = baseId.includes('/') ? baseId.slice(baseId.indexOf('/') + 1) : baseId;
   const portrait = resolveMercArt(slug) ?? (def ? resolveMercArt(def.classRef) : null);
-  const localizedName = t(`byId.${slug}.name`);
+  const localizedName = def ? localizedMercName(t, def) : t(`byId.${slug}.name`, { defaultValue: merc.name });
   const lore = t(`byId.${slug}.lore`);
   const archetype = def?.classRef
     ? t(`type.${def.classRef}`)
@@ -105,10 +164,10 @@ function MercCard({
 
   const xpPct = Math.min(100, Math.floor((progress.experience / Math.max(1, progress.experienceToNextLevel)) * 100));
   const equippedCount = MERC_EQUIPMENT_SLOTS.reduce((n, s) => n + (equipment[s] ? 1 : 0), 0);
+  const equippedSlots = MERC_EQUIPMENT_SLOTS.filter((slot) => equipment[slot]);
 
   const handleConfirmDismiss = () => {
-    dismissMerc(merc.id, (item: Item) => { addItem(item); });
-    setConfirmOpen(false);
+    if (dismissMerc(merc.id)) setConfirmOpen(false);
   };
 
   return (
@@ -196,21 +255,39 @@ function MercCard({
       </div>
 
       <Modal isOpen={confirmOpen} onClose={() => { setConfirmOpen(false); }} title={t('confirmDismissTitle')}>
-        <p className="text-sm text-d2-white/80 mb-4">
-          {t('confirmDismissBody', { name: localizedName })}
-        </p>
+        {equippedCount > 0 ? (
+          <div className="space-y-3 text-sm text-d2-white/80">
+            <p>{t('dismissBlockedBody', { name: localizedName })}</p>
+            <ul className="list-disc pl-5 text-d2-gold/90">
+              {equippedSlots.map((slot) => {
+                const item = equipment[slot];
+                return (
+                  <li key={slot}>
+                    {t(`inventory:slots.${slot}`)}: {item ? tItemName(t, item) : ''}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ) : (
+          <p className="text-sm text-d2-white/80 mb-4">
+            {t('confirmDismissBody', { name: localizedName })}
+          </p>
+        )}
         <div className="flex gap-2 justify-end">
           <Button variant="secondary" onClick={() => { setConfirmOpen(false); }}>
             {t('common:cancel')}
           </Button>
-          <Button
-            variant="primary"
-            onClick={handleConfirmDismiss}
-            data-testid={`merc-dismiss-confirm-${baseId}`}
-            className="border-red-600 text-red-200"
-          >
-            {t('confirmDismiss')}
-          </Button>
+          {equippedCount === 0 && (
+            <Button
+              variant="primary"
+              onClick={handleConfirmDismiss}
+              data-testid={`merc-dismiss-confirm-${baseId}`}
+              className="border-red-600 text-red-200"
+            >
+              {t('confirmDismiss')}
+            </Button>
+          )}
         </div>
       </Modal>
 
@@ -234,6 +311,8 @@ function MercEquipmentEditor({
   const addItem = useInventoryStore((s) => s.addItem);
   const equipOnMerc = useMercStore((s) => s.equipOnMerc);
   const unequipFromMerc = useMercStore((s) => s.unequipFromMerc);
+  const [pickerSlot, setPickerSlot] = useState<EquipmentSlot | null>(null);
+  const [viewSlot, setViewSlot] = useState<EquipmentSlot | null>(null);
 
   const bases = useMemo(() => loadItemBases(), []);
 
@@ -247,53 +326,71 @@ function MercEquipmentEditor({
       return false;
     });
 
+  const candidates = pickerSlot ? candidatesForSlot(pickerSlot) : [];
+
   return (
-    <ul className="space-y-2 max-h-[60vh] overflow-y-auto">
-      {MERC_EQUIPMENT_SLOTS.map((slot) => {
-        const equipped = equipment[slot] ?? null;
-        const candidates = candidatesForSlot(slot);
-        return (
-          <li key={slot} className="flex items-center gap-2 border border-d2-border rounded p-2 bg-d2-bg/40">
-            <span className="w-20 shrink-0 text-xs text-d2-gold/80 uppercase">
-              {t(`inventory:slots.${slot}`)}
-            </span>
-            <span className="flex-1 min-w-0 truncate text-sm text-d2-white/80">
-              {equipped ? tItemName(t, equipped) : <em className="text-d2-white/40">{t('empty')}</em>}
-            </span>
-            {equipped && (
-              <Button
-                variant="secondary"
-                className="text-xs min-h-[36px]"
-                onClick={() => {
-                  const it = unequipFromMerc(mercId, slot);
-                  if (it) addItem(it);
-                }}
-              >
-                {t('inventory:unequip')}
-              </Button>
+    <div className="space-y-3 max-h-[70vh] overflow-y-auto pr-1">
+      <EquipmentPanel
+        equipped={equipment}
+        testIdPrefix="merc-equip-slot"
+        onSlotClick={setPickerSlot}
+        onViewSlot={setViewSlot}
+        onUnequip={(slot) => {
+          const it = unequipFromMerc(mercId, slot);
+          if (it) addItem(it);
+        }}
+      />
+
+      {pickerSlot && (
+        <Panel title={t('inventory:equip')}>
+          <div className="space-y-2">
+            <div className="text-xs text-d2-white/60">
+              {t('selectSlotItem', { slot: t(`inventory:slots.${pickerSlot}`) })}
+            </div>
+            {candidates.length === 0 ? (
+              <p className="text-sm text-d2-white/50 italic">{t('noCompatibleItems')}</p>
+            ) : (
+              <ul className="space-y-2">
+                {candidates.map((item) => (
+                  <li key={item.id} className="flex items-center justify-between gap-2 rounded border border-d2-border bg-black/20 p-2">
+                    <span className="min-w-0 truncate text-sm text-d2-white/85">{tItemName(t, item)}</span>
+                    <Button
+                      variant="primary"
+                      className="min-h-[36px] text-xs"
+                      onClick={() => {
+                        const displaced = equipOnMerc(mercId, pickerSlot, item);
+                        if (displaced) addItem(displaced);
+                        removeItem(item.id);
+                        setPickerSlot(null);
+                      }}
+                    >
+                      {t('inventory:equip')}
+                    </Button>
+                  </li>
+                ))}
+              </ul>
             )}
-            <select
-              className="bg-d2-bg border border-d2-border rounded px-2 py-1 text-xs min-h-[36px] max-w-[40%]"
-              value=""
-              onChange={(e) => {
-                const itemId = e.target.value;
-                if (!itemId) return;
-                const item = backpack.find((it) => it.id === itemId);
-                if (!item) return;
-                const displaced = equipOnMerc(mercId, slot, item);
-                if (displaced) addItem(displaced);
-                removeItem(item.id);
-              }}
-              aria-label={t('inventory:equip')}
-            >
-              <option value="">{t('inventory:equip')}…</option>
-              {candidates.map((it) => (
-                <option key={it.id} value={it.id}>{tItemName(t, it)}</option>
-              ))}
-            </select>
-          </li>
-        );
-      })}
-    </ul>
+          </div>
+        </Panel>
+      )}
+
+      <EquippedItemModal
+        slot={viewSlot}
+        item={viewSlot ? (equipment[viewSlot] ?? null) : null}
+        derivedStats={null}
+        onClose={() => { setViewSlot(null); }}
+      />
+    </div>
   );
 }
+
+function mercSlug(id: string): string {
+  const baseId = id.split('#')[0] ?? id;
+  const idx = baseId.indexOf('/');
+  return idx >= 0 ? baseId.slice(idx + 1) : baseId;
+}
+
+function localizedMercName(t: TFunction, def: MercDef): string {
+  return t(`byId.${mercSlug(def.id)}.name`, { defaultValue: def.name });
+}
+

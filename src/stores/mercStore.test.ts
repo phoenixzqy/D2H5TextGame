@@ -43,7 +43,7 @@ beforeEach(() => {
 });
 
 describe('mercStore — dismissMerc (Bug #7)', () => {
-  it('removes merc and returns equipped items via callback', () => {
+  it('blocks dismissal while any item is equipped', () => {
     const m = makeMerc();
     useMercStore.getState().addMerc(m);
     // Inject equipment directly to avoid needing a real item-base lookup.
@@ -51,19 +51,17 @@ describe('mercStore — dismissMerc (Bug #7)', () => {
     useMercStore.setState((s) => ({
       mercEquipment: { ...s.mercEquipment, [m.id]: { weapon: sword } }
     }));
-    const returned: Item[] = [];
-    useMercStore.getState().dismissMerc(m.id, (it) => returned.push(it));
-    expect(useMercStore.getState().ownedMercs).toHaveLength(0);
-    expect(returned).toHaveLength(1);
-    expect(returned[0]?.baseId).toBe('short-sword');
-    expect(returned[0]?.equipped).toBe(false);
+    const dismissed = useMercStore.getState().dismissMerc(m.id);
+    expect(dismissed).toBe(false);
+    expect(useMercStore.getState().ownedMercs).toHaveLength(1);
+    expect(useMercStore.getState().hasEquippedItems(m.id)).toBe(true);
   });
 
   it('clears progress and equipment maps', () => {
     const m = makeMerc();
     useMercStore.getState().addMerc(m);
     useMercStore.getState().addExperience(m.id, 10);
-    useMercStore.getState().dismissMerc(m.id, () => undefined);
+    expect(useMercStore.getState().dismissMerc(m.id)).toBe(true);
     expect(useMercStore.getState().mercProgress[m.id]).toBeUndefined();
     expect(useMercStore.getState().mercEquipment[m.id]).toBeUndefined();
   });
