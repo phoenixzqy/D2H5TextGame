@@ -148,6 +148,8 @@ function UniqueFields({ entry, onChange }: { readonly entry: JsonRecord; readonl
       ) : null}
       <div className="grid gap-3 sm:grid-cols-2">
         <NumberField entry={entry} path={['reqLevel']} label={t('itemsEditor.fields.reqLevel')} onChange={onChange} />
+        <NumberField entry={entry} path={['qlvl']} label={t('itemsEditor.fields.qlvl')} onChange={onChange} />
+        <NumberField entry={entry} path={['weight']} label={t('itemsEditor.fields.weight')} onChange={onChange} />
         <TextField entry={entry} path={['baseId']} label={t('itemsEditor.fields.baseItemId')} onChange={onChange} />
       </div>
       <JsonField entry={entry} path={['stats', 'statMods']} label={t('itemsEditor.fields.statMods')} onChange={onChange} />
@@ -166,6 +168,7 @@ function SetFields({ entry, onChange }: { readonly entry: JsonRecord; readonly o
         <DevImageField kind="item" entityId={key} inferredPath={resolveItemIcon(rawId)} />
       ) : null}
       <StringListField entry={entry} path={['items']} label={t('itemsEditor.fields.setItemIds')} onChange={onChange} />
+      <JsonField entry={entry} path={['pieces']} label={t('itemsEditor.fields.setPieces')} onChange={onChange} />
       <JsonField entry={entry} path={['bonuses']} label={t('itemsEditor.fields.pieceBonuses')} onChange={onChange} />
     </div>
   );

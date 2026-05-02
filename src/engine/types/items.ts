@@ -131,6 +131,66 @@ export interface RolledAffix { readonly id: string; readonly tier: number; reado
 export interface LegacyAffixRoll { readonly affixId: string; readonly values: ReadonlyMap<string, number> }
 export type AffixRoll = RolledAffix | LegacyAffixRoll
 
+export type ItemStatRollValue =
+  | number
+  | {
+      readonly roll: string;
+      readonly min: number;
+      readonly max: number;
+      readonly step?: number;
+    };
+
+export type ItemDamageType = 'physical' | 'fire' | 'cold' | 'lightning' | 'arcane' | 'poison' | 'thorns';
+
+export interface ItemBonusStats {
+  readonly coreStats?: Partial<Record<keyof CoreStats, ItemStatRollValue>>;
+  readonly resistances?: Partial<Record<'fire' | 'cold' | 'lightning' | 'poison' | 'arcane' | 'physical' | 'all', ItemStatRollValue>>;
+  readonly statMods?: Partial<Record<
+    | 'life'
+    | 'mana'
+    | 'attack'
+    | 'defense'
+    | 'attackSpeed'
+    | 'critChance'
+    | 'critDamage'
+    | 'physDodge'
+    | 'magicDodge'
+    | 'magicFind'
+    | 'goldFind',
+    ItemStatRollValue
+  >>;
+  readonly grantsSkills?: readonly string[];
+  readonly damageBonus?: {
+    readonly min?: ItemStatRollValue;
+    readonly max?: ItemStatRollValue;
+    readonly value?: ItemStatRollValue;
+    readonly breakdown?: Partial<Record<ItemDamageType, ItemStatRollValue>>;
+  };
+}
+
+export interface UniqueItemDef {
+  readonly id: string;
+  readonly name: string;
+  readonly baseId: string;
+  readonly reqLevel: number;
+  readonly qlvl?: number;
+  readonly weight?: number;
+  readonly stats?: ItemBonusStats;
+  readonly flavor?: string;
+}
+
+export interface SetPieceDef {
+  readonly id: string;
+  readonly setId: string;
+  readonly name: string;
+  readonly baseId: string;
+  readonly reqLevel: number;
+  readonly qlvl?: number;
+  readonly weight?: number;
+  readonly stats?: ItemBonusStats;
+  readonly flavor?: string;
+}
+
 /**
  * Item instance
  */
@@ -151,12 +211,18 @@ export interface Item {
   
   /** Set ID (for set items) */
   readonly setId?: string;
+
+  /** Set piece ID (for set items) */
+  readonly setPieceId?: string;
   
   /** Runeword ID (for runeword items) */
   readonly runewordId?: string;
   
   /** Socketed runes (if any) */
   readonly runes?: readonly string[]; // rune IDs
+
+  /** Persisted deterministic rolls for definition-backed stats. */
+  readonly statRolls?: Readonly<Record<string, number>>;
   
   /** Is this item identified? */
   readonly identified: boolean;
@@ -218,9 +284,12 @@ export interface SetDef {
   
   /** Item IDs in this set */
   readonly items: readonly string[];
+
+  /** Concrete set-piece definitions that can drop and be equipped. */
+  readonly pieces?: readonly SetPieceDef[];
   
   /** Set bonuses per pieces equipped */
-  readonly bonuses: ReadonlyMap<number, Partial<Affix>>; // numPieces -> bonus
+  readonly bonuses: Readonly<Record<string, ItemBonusStats>>; // numPieces -> bonus
 }
 
 /**

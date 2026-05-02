@@ -16,7 +16,7 @@
  * @module features/inventory/compareEquip
  */
 
-import { loadItemBases } from '@/data/loaders/loot';
+import { loadItemBases, resolveItemReqLevel } from '@/data/loaders/loot';
 import {
   aggregateEquipmentMods,
   applyEquipmentCoreMods,
@@ -105,8 +105,9 @@ export function checkEligibility(
   if (!base) return { eligible: true, reasons: [] };
 
   const reasons: EligibilityFail[] = [];
-  if (player.level < base.reqLevel) {
-    reasons.push({ kind: 'level', required: base.reqLevel, current: player.level });
+  const reqLevel = resolveItemReqLevel(item, base);
+  if (player.level < reqLevel) {
+    reasons.push({ kind: 'level', required: reqLevel, current: player.level });
   }
   if (base.reqStats) {
     for (const key of Object.keys(base.reqStats) as (keyof CoreStats)[]) {

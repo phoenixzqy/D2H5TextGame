@@ -18,6 +18,7 @@
  * dropdowns all show the same human-readable name.
  */
 import type { TFunction } from 'i18next';
+import { loadSetPieces, loadUniques } from '@/data/loaders/loot';
 import type { Item } from '@/engine/types/items';
 
 /** Namespaces declared in {@link src/i18n/index.ts}. Keep in sync. */
@@ -66,6 +67,20 @@ export function itemBaseSlug(baseId: string): string {
  * Resolve an item to its localized base name (e.g. "短剑" / "Short Sword").
  * Uses the same `items:base.<slug>` key as {@link ItemTooltip}.
  */
-export function tItemName(t: TFunction, item: Pick<Item, 'baseId'>): string {
+export function tItemBaseName(t: TFunction, item: Pick<Item, 'baseId'>): string {
   return t(`items:base.${itemBaseSlug(item.baseId)}`);
+}
+
+export function tItemName(
+  t: TFunction,
+  item: Pick<Item, 'baseId'> & Partial<Pick<Item, 'uniqueId' | 'setPieceId' | 'generatedName'>>
+): string {
+  const unique = item.uniqueId ? loadUniques().find((entry) => entry.id === item.uniqueId) : undefined;
+  if (unique) return tDataKey(t, unique.name);
+  const setPiece = item.setPieceId ? loadSetPieces().find((entry) => entry.id === item.setPieceId) : undefined;
+  if (setPiece) return tDataKey(t, setPiece.name);
+  const baseName = tItemBaseName(t, item);
+  const prefix = item.generatedName?.prefix?.trim();
+  const suffix = item.generatedName?.suffix?.trim();
+  return [prefix, baseName, suffix].filter(Boolean).join(' ');
 }

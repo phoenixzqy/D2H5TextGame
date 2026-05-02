@@ -14,7 +14,7 @@
 import defaultEliteConfigJson from '../../data/elite/elite-config.json';
 import type { Rng } from '../rng';
 import type { EliteConfigDef } from '../types/elite';
-import type { Item } from '../types/items';
+import type { Item, SetPieceDef, UniqueItemDef } from '../types/items';
 import type { MonsterTier } from '../combat/types';
 import { rollDrops, type TreasureClass } from './drop-roller';
 
@@ -25,8 +25,8 @@ import { rollItem, type ItemRollPools } from './rollItem';
 /** Data pools required to award loot. */
 export interface AwardDataPools extends ItemRollPools {
   readonly treasureClasses: ReadonlyMap<string, TreasureClass>;
-  readonly uniques?: readonly unknown[];
-  readonly setPieces?: readonly unknown[];
+  readonly uniques?: readonly UniqueItemDef[];
+  readonly setPieces?: readonly SetPieceDef[];
 }
 
 /** Per-kill input. */

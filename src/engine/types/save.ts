@@ -11,7 +11,7 @@ import type { MapProgress } from './maps';
  * Current save format version. Bump this and add an entry to {@link MIGRATIONS}
  * whenever the on-disk shape changes.
  */
-export const CURRENT_SAVE_VERSION = 5;
+export const CURRENT_SAVE_VERSION = 6;
 
 /**
  * Save file version (most recent).
@@ -181,7 +181,18 @@ export interface SaveV5 {
   readonly meta: MetaSaveData;
 }
 
-export type SaveCurrent = SaveV5;
+/** Save file v6 — persists definition-backed item stat rolls and set-piece ids. */
+export interface SaveV6 {
+  readonly version: 6;
+  readonly timestamp: number;
+  readonly player: Player;
+  readonly inventory: InventorySaveData;
+  readonly mercs: MercSaveData;
+  readonly map: MapSaveData;
+  readonly meta: MetaSaveData;
+}
+
+export type SaveCurrent = SaveV6;
 
 /**
  * Migration function type. Each entry receives the previous version's shape
@@ -297,6 +308,30 @@ export const MIGRATIONS: Record<number, Migration> = {
       mercs: {
         ...v4.mercs,
         mercEquipment: Object.fromEntries(Object.entries(v4.mercs.mercEquipment).map(([mercId, equipment]) => [mercId, Object.fromEntries(Object.entries(equipment).map(([slot, item]) => [slot, migrateItemOrNull(item ?? null)]))]))
+      }
+    };
+  },
+  /** v5 to v6: ensure definition-backed item fields have JSON-safe defaults. */
+  6: (raw: unknown): SaveV6 => {
+    const v5 = raw as SaveV5;
+    const migrateItem = (item: Item): Item => ({
+      ...item,
+      statRolls: item.statRolls ?? {},
+      affixes: item.affixes ?? []
+    });
+    const migrateItemOrNull = (item: Item | null): Item | null => item ? migrateItem(item) : null;
+    return {
+      ...v5,
+      version: 6,
+      inventory: {
+        ...v5.inventory,
+        backpack: v5.inventory.backpack.map(migrateItem),
+        stash: v5.inventory.stash.map(migrateItem),
+        equipped: Object.fromEntries(Object.entries(v5.inventory.equipped).map(([slot, item]) => [slot, migrateItemOrNull(item)]))
+      },
+      mercs: {
+        ...v5.mercs,
+        mercEquipment: Object.fromEntries(Object.entries(v5.mercs.mercEquipment).map(([mercId, equipment]) => [mercId, Object.fromEntries(Object.entries(equipment).map(([slot, item]) => [slot, migrateItemOrNull(item ?? null)]))]))
       }
     };
   }

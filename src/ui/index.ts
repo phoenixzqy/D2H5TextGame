@@ -42,4 +42,6 @@ export {
   resolveZoneArt,
   resolveMercArt
 } from './cardAssets';
-export { tDataKey, tItemName, itemBaseSlug } from './i18nKey';
+export { tDataKey, tItemBaseName, tItemName, itemBaseSlug } from './i18nKey';
+export { resolveItemDisplay, formatDisplayStat } from './itemDisplay';
+export type { DisplaySetBonus, DisplayStatLine, ItemDisplayModel } from './itemDisplay';

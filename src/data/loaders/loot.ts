@@ -7,7 +7,7 @@
  * @module data/loaders/loot
  */
 
-import type { Affix, ItemBase } from '@/engine/types/items';
+import type { Affix, Item, ItemBase, SetDef } from '@/engine/types/items';
 import type { TreasureClass, TcPick } from '@/engine/loot/drop-roller';
 import type { JsonUnique, JsonSetPiece } from '@/engine/loot/item-instance';
 import type { RarityAffixCount, RarityAffixRules } from '@/engine/loot/rollItem';
@@ -38,6 +38,7 @@ let cachedBases: ReadonlyMap<string, ItemBase> | null = null;
 let cachedAffixes: readonly Affix[] | null = null;
 let cachedUniques: readonly JsonUnique[] | null = null;
 let cachedSetPieces: readonly JsonSetPiece[] | null = null;
+let cachedSets: readonly SetDef[] | null = null;
 let cachedTcs: ReadonlyMap<string, TreasureClass> | null = null;
 let cachedRarityRules: RarityAffixRules | null = null;
 
@@ -71,13 +72,17 @@ export function loadUniques(): readonly JsonUnique[] {
 /** Flatten set definitions into per-piece records. */
 export function loadSetPieces(): readonly JsonSetPiece[] {
   if (cachedSetPieces) return cachedSetPieces;
-  // sets.json holds sets with `items` (piece ids). We don't have explicit
-  // piece→base mapping here; without that mapping we cannot reliably
-  // generate set drops, so we expose an empty pool for now. Downstream the
-  // generator will downgrade `set` rolls to `rare` cleanly.
-  void setsJson;
-  cachedSetPieces = [];
+  cachedSetPieces = loadSets().flatMap((set) =>
+    set.pieces ?? []
+  );
   return cachedSetPieces;
+}
+
+/** Set definition pool, including bonuses and any concrete piece records. */
+export function loadSets(): readonly SetDef[] {
+  if (cachedSets) return cachedSets;
+  cachedSets = setsJson as readonly SetDef[];
+  return cachedSets;
 }
 
 /** Treasure class map keyed by id. */
@@ -108,7 +113,29 @@ export function loadRarityAffixRules(): RarityAffixRules {
   return cachedRarityRules;
 }
 
+/** Effective equip level uses the stricter of base and unique/set template requirements. */
+export function resolveItemReqLevel(
+  item: Pick<Item, 'baseId'> & Partial<Pick<Item, 'uniqueId' | 'setPieceId'>>,
+  base: ItemBase | undefined = loadItemBases().get(item.baseId)
+): number {
+  const baseReq = base?.reqLevel ?? 1;
+  const uniqueReq = item.uniqueId
+    ? loadUniques().find((unique) => unique.id === item.uniqueId)?.reqLevel
+    : undefined;
+  const setPieceReq = item.setPieceId
+    ? loadSetPieces().find((piece) => piece.id === item.setPieceId)?.reqLevel
+    : undefined;
+  return Math.max(baseReq, uniqueReq ?? 1, setPieceReq ?? 1);
+}
+
 /** Bundle every loader call into a single award-ready data set. */
 export function loadAwardPools(): AwardDataPools {
-  return { bases: loadItemBases(), affixes: loadAffixPool(), rarityRules: loadRarityAffixRules(), treasureClasses: loadTreasureClasses() };
+  return {
+    bases: loadItemBases(),
+    affixes: loadAffixPool(),
+    rarityRules: loadRarityAffixRules(),
+    treasureClasses: loadTreasureClasses(),
+    uniques: loadUniques(),
+    setPieces: loadSetPieces()
+  };
 }

@@ -154,7 +154,27 @@
     "oculus": "The Oculus",
     "griffons-strike": "Griffon's Strike",
     "stormshield": "Stormshield",
-    "homunculus": "Homunculus"
+    "homunculus": "Homunculus",
+    "pelta-lunata": {
+      "name": "Pelta Lunata",
+      "flavor": "A crescent-moon buckler from the Skovos Isles."
+    },
+    "rixots-keen": {
+      "name": "Rixot's Keen",
+      "flavor": "A simple short sword, kept impossibly sharp."
+    },
+    "biggin-bonnet": {
+      "name": "Biggin's Bonnet",
+      "flavor": "A jester's cap, lucky to a fault."
+    },
+    "face-of-horror": {
+      "name": "The Face of Horror",
+      "flavor": "Carven from a twisted gargoyle's likeness."
+    },
+    "hotspur": {
+      "name": "Hotspur",
+      "flavor": "A rogue's lucky boots. They ward off flames."
+    }
   },
   "set": {
     "tal-rashas-wrappings": "Tal Rasha's Wrappings",
@@ -162,7 +182,16 @@
     "natalyas-odium": "Natalya's Odium",
     "trang-ouls-avatar": "Trang-Oul's Avatar",
     "aldurs-watchtower": "Aldur's Watchtower",
-    "griswolds-legacy": "Griswold's Legacy"
+    "griswolds-legacy": "Griswold's Legacy",
+    "angelic-raiment": "Angelic Raiment"
+  },
+  "setPiece": {
+    "angelic-raiment": {
+      "amulet": "Angelic Wings",
+      "ring": "Angelic Halo",
+      "armor": "Angelic Mantle",
+      "weapon": "Angelic Sickle"
+    }
   },
   "rune": {
     "el": "El",

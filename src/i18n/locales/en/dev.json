@@ -101,9 +101,12 @@
       "baseDamageBreakdown": "Base damage breakdown JSON",
       "reqStats": "Required stats JSON",
       "baseItemId": "Base item id",
+      "qlvl": "Drop level gate",
+      "weight": "Drop selection weight",
       "statMods": "Stat mods JSON",
       "fullUniqueStats": "Full unique stats JSON",
       "setItemIds": "Set item ids (comma-separated)",
+      "setPieces": "Concrete set pieces JSON",
       "pieceBonuses": "Piece bonuses JSON"
     }
   },

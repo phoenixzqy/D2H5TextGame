@@ -70,7 +70,7 @@ describe('useInventoryStore equipItem', () => {
 
   it('swaps the previous item back to backpack when a slot is occupied', () => {
     const firstHelm = item('helm-1', 'items/base/helm-cap');
-    const secondHelm = item('helm-2', 'items/base/helm-skull-cap');
+    const secondHelm = item('helm-2', 'items/base/helm-cap');
     addItems(firstHelm, secondHelm);
 
     expect(useInventoryStore.getState().equipItem(firstHelm)).toEqual({ ok: true });
@@ -141,6 +141,24 @@ describe('useInventoryStore equipItem', () => {
     const after = useInventoryStore.getState();
     expect(after.backpack).toEqual(before.backpack);
     expect(after.equipped).toEqual(before.equipped);
+  });
+
+  it('rejects a unique item when the player does not meet its template level requirement', () => {
+    const uniqueSword: Item = {
+      ...item('rixots', 'items/base/wp1h-short-sword'),
+      rarity: 'unique',
+      uniqueId: 'items/unique/rixots-keen'
+    };
+    addItems(uniqueSword);
+
+    expect(useInventoryStore.getState().equipItem(uniqueSword)).toEqual({
+      ok: false,
+      reason: 'requirements_not_met'
+    });
+
+    const state = useInventoryStore.getState();
+    expect(state.backpack.map((i) => i.id)).toEqual(['rixots']);
+    expect(state.equipped.weapon).toBeUndefined();
   });
 });
 

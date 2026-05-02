@@ -1,10 +1,17 @@
 import type { Rng } from '../rng';
-import type { Affix, AffixRoll, Item, ItemBase, ItemBaseType, ItemStatKey, Rarity } from '../types/items';
+import { rollStatPackage } from '../items/statRolls';
+import type { Affix, AffixRoll, Item, ItemBase, ItemBaseType, ItemStatKey, Rarity, SetPieceDef, UniqueItemDef } from '../types/items';
 export interface RarityAffixRange { readonly min: number; readonly max: number }
 export interface RarityAffixCount { readonly prefix: RarityAffixRange; readonly suffix: RarityAffixRange; readonly total?: RarityAffixRange }
 export type RarityAffixRules = Readonly<Partial<Record<Rarity, RarityAffixCount>>>;
 export interface RollItemInput { readonly baseId: string; readonly rarity: Rarity; readonly ilvl: number }
-export interface ItemRollPools { readonly bases: ReadonlyMap<string, ItemBase>; readonly affixes: readonly Affix[]; readonly rarityRules?: RarityAffixRules }
+export interface ItemRollPools {
+  readonly bases: ReadonlyMap<string, ItemBase>;
+  readonly affixes: readonly Affix[];
+  readonly rarityRules?: RarityAffixRules;
+  readonly uniques?: readonly UniqueItemDef[];
+  readonly setPieces?: readonly SetPieceDef[];
+}
 let itemSeq = 0; export function __resetRollItemSeqForTests(): void { itemSeq = 0; }
 function nextItemId(rng: Rng): string { itemSeq = (itemSeq + 1) >>> 0; return `it-${rng.nextInt(0, 0xffffff).toString(36)}-${itemSeq.toString(36)}`; }
 /**
@@ -34,4 +41,51 @@ function takeAffix(remaining: Affix[], kind: 'prefix' | 'suffix', rarity: Rarity
 function eligibleFor(affix: Affix, rarity: Rarity, ilvl: number): boolean { return (affix.rarityWeights[rarity] ?? 0) > 0 && tierIndexFor(affix, ilvl) !== undefined; }
 function rollCounts(rarity: Rarity, rules: RarityAffixCount, available: { prefix: number; suffix: number }, rng: Rng): { prefix: number; suffix: number } { if (rarity === 'rare') { const totalRule = rules.total ?? { min: 4, max: 6 }; const maxTotal = Math.min(totalRule.max, available.prefix + available.suffix, rules.prefix.max + rules.suffix.max); const minTotal = Math.min(totalRule.min, maxTotal); const feasible: { total: number; minPrefix: number; maxPrefix: number }[] = []; for (let total = minTotal; total <= maxTotal; total += 1) { const minPrefix = Math.max(rules.prefix.min, total - rules.suffix.max, total - available.suffix, 0); const maxPrefix = Math.min(rules.prefix.max, available.prefix, total - rules.suffix.min); if (minPrefix <= maxPrefix) feasible.push({ total, minPrefix, maxPrefix }); } const picked = (feasible.length > 0 ? feasible[rng.nextInt(0, feasible.length - 1)] : undefined) ?? { total: 0, minPrefix: 0, maxPrefix: 0 }; const prefix = rng.nextInt(picked.minPrefix, picked.maxPrefix); return { prefix, suffix: picked.total - prefix }; } return { prefix: rng.nextInt(Math.min(rules.prefix.min, available.prefix), Math.min(rules.prefix.max, available.prefix)), suffix: rng.nextInt(Math.min(rules.suffix.min, available.suffix), Math.min(rules.suffix.max, available.suffix)) }; }
 function rollAffixes(base: ItemBase, rarity: Rarity, ilvl: number, affixes: readonly Affix[], rules: RarityAffixCount, rng: Rng): readonly AffixRoll[] { if (rarity !== 'magic' && rarity !== 'rare') return []; if (!base.canHaveAffixes) return []; const remaining = affixes.filter((affix) => appliesTo(affix, base.type) && eligibleFor(affix, rarity, ilvl)); const available = { prefix: remaining.filter((affix) => affix.kind === 'prefix').length, suffix: remaining.filter((affix) => affix.kind === 'suffix').length }; const counts = rollCounts(rarity, rules, available, rng); const rolled: AffixRoll[] = []; for (let i = 0; i < counts.prefix; i += 1) { const roll = takeAffix(remaining, 'prefix', rarity, ilvl, rng); if (roll) rolled.push(roll); } for (let i = 0; i < counts.suffix; i += 1) { const roll = takeAffix(remaining, 'suffix', rarity, ilvl, rng); if (roll) rolled.push(roll); } return rolled; }
-export function rollItem(input: RollItemInput, pools: ItemRollPools, rng: Rng): Item | undefined { const base = pools.bases.get(input.baseId); if (!base) return undefined; const ilvl = input.ilvl; const affixes = rollAffixes(base, input.rarity, ilvl, pools.affixes, rulesFor(input.rarity, pools.rarityRules), rng); return { id: nextItemId(rng), baseId: base.id, rarity: input.rarity, level: ilvl, ilvl, baseRolls: rollBaseStats(base, rng), affixes, generatedName: {}, identified: input.rarity === 'normal' || input.rarity === 'magic', equipped: false }; }
+function templateWeight(template: { readonly weight?: number }): number { return Math.max(0, template.weight ?? 1); }
+function eligibleUnique(template: UniqueItemDef, baseId: string, ilvl: number): boolean { return template.baseId === baseId && ilvl >= (template.qlvl ?? template.reqLevel); }
+function eligibleSetPiece(template: SetPieceDef, baseId: string, ilvl: number): boolean { return template.baseId === baseId && ilvl >= (template.qlvl ?? template.reqLevel); }
+function pickTemplate<T extends { readonly weight?: number }>(templates: readonly T[], rng: Rng): T | undefined {
+  const total = templates.reduce((sum, template) => sum + templateWeight(template), 0);
+  if (total <= 0) return undefined;
+  let roll = rng.next() * total;
+  for (const template of templates) {
+    roll -= templateWeight(template);
+    if (roll <= 0) return template;
+  }
+  return templates[templates.length - 1];
+}
+function materializeTemplateItem(base: ItemBase, input: RollItemInput, rarity: Extract<Rarity, 'unique' | 'set'>, rng: Rng, template: UniqueItemDef | SetPieceDef): Item {
+  const { statRolls } = rollStatPackage(template.stats, rng);
+  const item: Item = {
+    id: nextItemId(rng),
+    baseId: base.id,
+    rarity,
+    level: Math.max(input.ilvl, template.reqLevel),
+    ilvl: input.ilvl,
+    baseRolls: rollBaseStats(base, rng),
+    affixes: [],
+    statRolls,
+    generatedName: {},
+    identified: true,
+    equipped: false
+  };
+  if (rarity === 'unique') return { ...item, uniqueId: template.id };
+  const piece = template as SetPieceDef;
+  return { ...item, setId: piece.setId, setPieceId: piece.id };
+}
+export function rollItem(input: RollItemInput, pools: ItemRollPools, rng: Rng): Item | undefined {
+  const base = pools.bases.get(input.baseId);
+  if (!base) return undefined;
+  const ilvl = input.ilvl;
+  if (input.rarity === 'unique') {
+    const template = pickTemplate((pools.uniques ?? []).filter((u) => eligibleUnique(u, base.id, ilvl)), rng);
+    if (template) return materializeTemplateItem(base, input, 'unique', rng, template);
+  }
+  if (input.rarity === 'set') {
+    const template = pickTemplate((pools.setPieces ?? []).filter((p) => eligibleSetPiece(p, base.id, ilvl)), rng);
+    if (template) return materializeTemplateItem(base, input, 'set', rng, template);
+  }
+  const rarity = input.rarity === 'unique' || input.rarity === 'set' ? 'rare' : input.rarity;
+  const affixes = rollAffixes(base, rarity, ilvl, pools.affixes, rulesFor(rarity, pools.rarityRules), rng);
+  return { id: nextItemId(rng), baseId: base.id, rarity, level: ilvl, ilvl, baseRolls: rollBaseStats(base, rng), affixes, generatedName: {}, identified: rarity === 'normal' || rarity === 'magic', equipped: false };
+}

@@ -349,6 +349,26 @@ describe('data integrity', () => {
       expect(missing).toEqual([]);
     });
   });
+
+  describe('set piece references', () => {
+    it('every concrete set piece points to its parent set and item base', () => {
+      const missing: { set: string; piece: string; ref: string }[] = [];
+      for (const set of rawSets as readonly { id: string; items: readonly string[]; pieces?: readonly { id: string; setId: string; baseId: string }[] }[]) {
+        for (const piece of set.pieces ?? []) {
+          if (piece.setId !== set.id) {
+            missing.push({ set: set.id, piece: piece.id, ref: piece.setId });
+          }
+          if (!data.itemBases.has(piece.baseId)) {
+            missing.push({ set: set.id, piece: piece.id, ref: piece.baseId });
+          }
+          if (!set.items.includes(piece.id)) {
+            missing.push({ set: set.id, piece: piece.id, ref: 'items[]' });
+          }
+        }
+      }
+      expect(missing).toEqual([]);
+    });
+  });
 });
 
 /**

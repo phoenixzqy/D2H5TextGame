@@ -1,6 +1,6 @@
 import { describe, expect, it, beforeEach } from 'vitest';
 import { createRng } from '../rng';
-import type { Affix, ItemBase } from '../types/items';
+import type { Affix, ItemBase, SetPieceDef, UniqueItemDef } from '../types/items';
 import { __resetRollItemSeqForTests, rollItem, type RarityAffixRules } from './rollItem';
 
 const sword: ItemBase = {
@@ -26,6 +26,21 @@ const rules: RarityAffixRules = {
   rare: { prefix: { min: 1, max: 3 }, suffix: { min: 1, max: 3 }, total: { min: 4, max: 6 } }
 };
 const pools = { bases: new Map([[sword.id, sword]]), affixes, rarityRules: rules };
+const rixots: UniqueItemDef = {
+  id: 'items/unique/rixots-keen',
+  name: 'items.unique.rixots-keen.name',
+  baseId: sword.id,
+  reqLevel: 2,
+  stats: { statMods: { attack: { roll: 'rixots-attack', min: 35, max: 45 } } }
+};
+const angelicSickle: SetPieceDef = {
+  id: 'sets/angelic-raiment/weapon',
+  setId: 'sets/angelic-raiment',
+  name: 'items.setPiece.angelic-raiment.weapon',
+  baseId: sword.id,
+  reqLevel: 12,
+  stats: { statMods: { attack: 12 } }
+};
 
 describe('rollItem', () => {
   beforeEach(() => { __resetRollItemSeqForTests(); });
@@ -65,6 +80,47 @@ describe('rollItem', () => {
       expect(roll.rolledValue).toBeGreaterThanOrEqual(tier?.valueMin ?? 0);
       expect(roll.rolledValue).toBeLessThanOrEqual(tier?.valueMax ?? 0);
     }
+  });
+
+  it('materializes eligible unique templates with identity and stat rolls', () => {
+    const rolled = rollItem(
+      { baseId: sword.id, rarity: 'unique', ilvl: 12 },
+      { ...pools, uniques: [rixots] },
+      createRng(77)
+    );
+    expect(rolled).toMatchObject({
+      rarity: 'unique',
+      uniqueId: rixots.id,
+      affixes: [],
+      identified: true
+    });
+    expect(rolled?.statRolls?.['rixots-attack']).toBeGreaterThanOrEqual(35);
+    expect(rolled?.statRolls?.['rixots-attack']).toBeLessThanOrEqual(45);
+  });
+
+  it('materializes eligible set pieces with set identity', () => {
+    const rolled = rollItem(
+      { baseId: sword.id, rarity: 'set', ilvl: 12 },
+      { ...pools, setPieces: [angelicSickle] },
+      createRng(88)
+    );
+    expect(rolled).toMatchObject({
+      rarity: 'set',
+      setId: angelicSickle.setId,
+      setPieceId: angelicSickle.id,
+      affixes: [],
+      identified: true
+    });
+  });
+
+  it('downgrades invalid unique and set rolls to rare instead of shell items', () => {
+    const unique = rollItem({ baseId: sword.id, rarity: 'unique', ilvl: 1 }, pools, createRng(3));
+    const set = rollItem({ baseId: sword.id, rarity: 'set', ilvl: 1 }, pools, createRng(4));
+    expect(unique?.rarity).toBe('rare');
+    expect(unique?.uniqueId).toBeUndefined();
+    expect(set?.rarity).toBe('rare');
+    expect(set?.setId).toBeUndefined();
+    expect(set?.setPieceId).toBeUndefined();
   });
 });
 

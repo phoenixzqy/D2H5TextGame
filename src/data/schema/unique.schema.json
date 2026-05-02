@@ -23,6 +23,16 @@
       "type": "integer",
       "minimum": 1
     },
+    "qlvl": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Minimum item level for this unique to drop"
+    },
+    "weight": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Relative selection weight among eligible uniques for the same base"
+    },
     "flavor": {
       "type": "string",
       "description": "Flavor text"
@@ -40,39 +50,40 @@
           "type": "object",
           "additionalProperties": false,
           "properties": {
-            "strength": { "type": "integer" },
-            "dexterity": { "type": "integer" },
-            "vitality": { "type": "integer" },
-            "energy": { "type": "integer" }
+            "strength": { "$ref": "#/$defs/statValue" },
+            "dexterity": { "$ref": "#/$defs/statValue" },
+            "vitality": { "$ref": "#/$defs/statValue" },
+            "energy": { "$ref": "#/$defs/statValue" }
           }
         },
         "resistances": {
           "type": "object",
           "additionalProperties": false,
           "properties": {
-            "fire": { "type": "number" },
-            "cold": { "type": "number" },
-            "lightning": { "type": "number" },
-            "poison": { "type": "number" },
-            "arcane": { "type": "number" },
-            "physical": { "type": "number" }
+            "fire": { "$ref": "#/$defs/statValue" },
+            "cold": { "$ref": "#/$defs/statValue" },
+            "lightning": { "$ref": "#/$defs/statValue" },
+            "poison": { "$ref": "#/$defs/statValue" },
+            "arcane": { "$ref": "#/$defs/statValue" },
+            "physical": { "$ref": "#/$defs/statValue" },
+            "all": { "$ref": "#/$defs/statValue" }
           }
         },
         "statMods": {
           "type": "object",
           "additionalProperties": false,
           "properties": {
-            "life": { "type": "number" },
-            "mana": { "type": "number" },
-            "attack": { "type": "number" },
-            "defense": { "type": "number" },
-            "attackSpeed": { "type": "number" },
-            "critChance": { "type": "number" },
-            "critDamage": { "type": "number" },
-            "physDodge": { "type": "number" },
-            "magicDodge": { "type": "number" },
-            "magicFind": { "type": "number" },
-            "goldFind": { "type": "number" }
+            "life": { "$ref": "#/$defs/statValue" },
+            "mana": { "$ref": "#/$defs/statValue" },
+            "attack": { "$ref": "#/$defs/statValue" },
+            "defense": { "$ref": "#/$defs/statValue" },
+            "attackSpeed": { "$ref": "#/$defs/statValue" },
+            "critChance": { "$ref": "#/$defs/statValue" },
+            "critDamage": { "$ref": "#/$defs/statValue" },
+            "physDodge": { "$ref": "#/$defs/statValue" },
+            "magicDodge": { "$ref": "#/$defs/statValue" },
+            "magicFind": { "$ref": "#/$defs/statValue" },
+            "goldFind": { "$ref": "#/$defs/statValue" }
           }
         },
         "grantsSkills": {
@@ -84,24 +95,41 @@
           "required": ["min", "max", "breakdown"],
           "additionalProperties": false,
           "properties": {
-            "min": { "type": "number" },
-            "max": { "type": "number" },
+            "min": { "$ref": "#/$defs/statValue" },
+            "max": { "$ref": "#/$defs/statValue" },
+            "value": { "$ref": "#/$defs/statValue" },
             "breakdown": {
               "type": "object",
               "additionalProperties": false,
               "properties": {
-                "physical": { "type": "number" },
-                "fire": { "type": "number" },
-                "cold": { "type": "number" },
-                "lightning": { "type": "number" },
-                "arcane": { "type": "number" },
-                "poison": { "type": "number" },
-                "thorns": { "type": "number" }
+                "physical": { "$ref": "#/$defs/statValue" },
+                "fire": { "$ref": "#/$defs/statValue" },
+                "cold": { "$ref": "#/$defs/statValue" },
+                "lightning": { "$ref": "#/$defs/statValue" },
+                "arcane": { "$ref": "#/$defs/statValue" },
+                "poison": { "$ref": "#/$defs/statValue" },
+                "thorns": { "$ref": "#/$defs/statValue" }
               }
             }
           }
         }
       }
+    },
+    "statValue": {
+      "oneOf": [
+        { "type": "number" },
+        {
+          "type": "object",
+          "required": ["roll", "min", "max"],
+          "additionalProperties": false,
+          "properties": {
+            "roll": { "type": "string", "minLength": 1 },
+            "min": { "type": "number" },
+            "max": { "type": "number" },
+            "step": { "type": "number", "exclusiveMinimum": 0 }
+          }
+        }
+      ]
     }
   }
 }

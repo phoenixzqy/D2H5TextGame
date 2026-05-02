@@ -19,7 +19,7 @@ interface EquipSuccess {
 }
 interface EquipFailure {
   ok: false;
-  reason: 'no_slot' | 'not_in_backpack';
+  reason: 'no_slot' | 'not_in_backpack' | 'requirements_not_met';
 }
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 type EquipResult = EquipSuccess | EquipFailure;
@@ -130,6 +130,15 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
     const state = get();
     if (!state.backpack.some((i) => i.id === item.id)) {
       return { ok: false, reason: 'not_in_backpack' };
+    }
+    const player = usePlayerStore.getState().player;
+    if (player) {
+      const eligibility = checkEligibility(
+        item,
+        { level: player.level, coreStats: player.coreStats, derivedStats: player.derivedStats },
+        bases
+      );
+      if (!eligibility.eligible) return { ok: false, reason: 'requirements_not_met' };
     }
 
     const targetSlot = targetSlotFor(base.slot, state.equipped);

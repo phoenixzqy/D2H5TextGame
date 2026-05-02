@@ -46,6 +46,16 @@ vi.mock('@/data/loaders/loot', () => {
   return {
     loadItemBases: () => bases,
     loadAffixPool: () => [] as unknown[],
+    loadUniques: () => [{
+      id: 'items/unique/rixots-keen',
+      name: 'items.unique.rixots-keen.name',
+      baseId: 'items/base/wp1h-short-sword',
+      reqLevel: 9,
+      stats: { statMods: { attack: 40 } }
+    }],
+    loadSetPieces: () => [],
+    loadSets: () => [],
+    resolveItemReqLevel: (item: Item, base?: ItemBase) => item.uniqueId === 'items/unique/rixots-keen' ? 9 : base?.reqLevel ?? 1
   };
 });
 
@@ -137,6 +147,14 @@ describe('<ItemTooltip> Bug 1 — defenseLine guard', () => {
     render(wrap(<ItemTooltip item={baseItem('items/base/wp1h-short-sword')} />));
     const tt = screen.getByTestId('item-tooltip');
     expect(tt.textContent || '').not.toMatch(/tooltip\.damage/);
+  });
+
+  it('renders unique item names and definition stats', () => {
+    render(wrap(<ItemTooltip item={baseItem('items/base/wp1h-short-sword', { rarity: 'unique', uniqueId: 'items/unique/rixots-keen' })} />));
+    const tt = screen.getByTestId('item-tooltip');
+    expect(tt.textContent || '').toMatch(/里克撒特/);
+    expect(tt.textContent || '').toMatch(/等级 9/);
+    expect(screen.getByTestId('item-tooltip-definition-stats').textContent || '').toMatch(/攻击/);
   });
 
   it('armor tooltip never emits a raw "tooltip.defense" key', () => {

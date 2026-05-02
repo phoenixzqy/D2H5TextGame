@@ -8,11 +8,12 @@
  * @module engine/progression/equipment-mods
  */
 
-import { loadAffixPool, loadItemBases } from '@/data/loaders/loot';
+import { loadAffixPool, loadItemBases, loadSetPieces, loadSets, loadUniques } from '@/data/loaders/loot';
 import { computeStats } from '@/engine/items/computeStats';
+import { resolveStatPackage } from '@/engine/items/statRolls';
 import type { DerivedModifiers } from './stats';
 import type { CoreStats, Resistances } from '../types/attributes';
-import type { Item } from '../types/items';
+import type { Item, SetDef, SetPieceDef, UniqueItemDef } from '../types/items';
 
 /** Additive stat deltas contributed by equipped gear. */
 export interface EquipmentMods {
@@ -42,6 +43,12 @@ export interface EquipmentMods {
 
 type MutableEquipmentMods = Record<keyof EquipmentMods, number>;
 type MutableDerivedModifiers = { -readonly [K in keyof DerivedModifiers]: DerivedModifiers[K] };
+
+export interface EquipmentDefinitionPools {
+  readonly uniques?: readonly UniqueItemDef[];
+  readonly setPieces?: readonly SetPieceDef[];
+  readonly sets?: readonly SetDef[];
+}
 
 const ZERO_MODS: MutableEquipmentMods = {
   strength: 0,
@@ -77,13 +84,20 @@ const CORE_STAT_KEYS = new Set<keyof CoreStats>(['strength', 'dexterity', 'vital
 const STAT_MOD_KEYS = new Set<keyof EquipmentMods>(['life','mana','attack','defense','attackSpeed','critChance','critDamage','physDodge','magicDodge','magicFind','goldFind']);
 const RESIST_TO_MOD_KEY: Readonly<Record<keyof Resistances | 'all', keyof EquipmentMods>> = { fire: 'fireRes', cold: 'coldRes', lightning: 'lightningRes', poison: 'poisonRes', arcane: 'arcaneRes', physical: 'physicalRes', all: 'allRes' };
 
-function addLegacyAffixValue(mods: MutableEquipmentMods, path: string, value: number): void {
+function addStatPathValue(mods: MutableEquipmentMods, path: string, value: number): void {
   const [group, stat] = path.split('.');
   if (!group || !stat) return;
   if (group === 'coreStats' && CORE_STAT_KEYS.has(stat as keyof CoreStats)) { add(mods, stat as keyof CoreStats, value); return; }
   if (group === 'resistances' && stat in RESIST_TO_MOD_KEY) { add(mods, RESIST_TO_MOD_KEY[stat as keyof Resistances | 'all'], value); return; }
   if (group === 'statMods' && STAT_MOD_KEYS.has(stat as keyof EquipmentMods)) { add(mods, stat as keyof EquipmentMods, value); return; }
-  if (group === 'damageBonus' && stat === 'value') add(mods, 'attack', value);
+  if (group === 'damageBonus' && (stat === 'value' || stat === 'min' || stat === 'max')) add(mods, 'attack', value);
+  if (group === 'damageBonus' && stat === 'breakdown') add(mods, 'attack', value);
+}
+
+function addStatPackage(mods: MutableEquipmentMods, stats: Parameters<typeof resolveStatPackage>[0], statRolls?: Readonly<Record<string, number>>): void {
+  for (const { path, value } of resolveStatPackage(stats, statRolls)) {
+    addStatPathValue(mods, path, value);
+  }
 }
 
 function compact(mods: MutableEquipmentMods): EquipmentMods {
@@ -98,10 +112,17 @@ function compact(mods: MutableEquipmentMods): EquipmentMods {
  * Sum base implicit stats and rolled affix values from equipped items only.
  * Null equipment slots are ignored.
  */
-export function aggregateEquipmentMods(equipped: Readonly<Record<string, Item | null>>): EquipmentMods {
+export function aggregateEquipmentMods(
+  equipped: Readonly<Record<string, Item | null>>,
+  definitionPools: EquipmentDefinitionPools = {}
+): EquipmentMods {
   const mods: MutableEquipmentMods = { ...ZERO_MODS };
   const bases = loadItemBases();
   const affixMap = new Map(loadAffixPool().map((affix) => [affix.id, affix]));
+  const uniqueMap = new Map((definitionPools.uniques ?? loadUniques()).map((unique) => [unique.id, unique]));
+  const setPieceMap = new Map((definitionPools.setPieces ?? loadSetPieces()).map((piece) => [piece.id, piece]));
+  const setMap = new Map((definitionPools.sets ?? loadSets()).map((set) => [set.id, set]));
+  const equippedSetPieces = new Map<string, Set<string>>();
 
   for (const item of Object.values(equipped)) {
     if (!item) continue;
@@ -115,7 +136,29 @@ export function aggregateEquipmentMods(equipped: Readonly<Record<string, Item | 
     add(mods, 'arcaneRes', itemStats.arcaneRes); add(mods, 'physicalRes', itemStats.physicalRes);
     for (const affix of item.affixes ?? []) {
       if (!('values' in affix)) continue;
-      for (const [path, value] of affix.values.entries()) addLegacyAffixValue(mods, path, value);
+      for (const [path, value] of affix.values.entries()) addStatPathValue(mods, path, value);
+    }
+    if (item.uniqueId) {
+      addStatPackage(mods, uniqueMap.get(item.uniqueId)?.stats, item.statRolls);
+    }
+    if (item.setPieceId) {
+      const piece = setPieceMap.get(item.setPieceId);
+      addStatPackage(mods, piece?.stats, item.statRolls);
+      const setId = piece?.setId ?? item.setId;
+      if (setId) {
+        const pieces = equippedSetPieces.get(setId) ?? new Set<string>();
+        pieces.add(item.setPieceId);
+        equippedSetPieces.set(setId, pieces);
+      }
+    }
+  }
+
+  for (const [setId, pieces] of equippedSetPieces.entries()) {
+    const set = setMap.get(setId);
+    if (!set) continue;
+    const count = pieces.size;
+    for (const [threshold, stats] of Object.entries(set.bonuses)) {
+      if (Number(threshold) <= count) addStatPackage(mods, stats);
     }
   }
 

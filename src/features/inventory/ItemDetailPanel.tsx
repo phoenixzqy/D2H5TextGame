@@ -27,7 +27,9 @@ import { Button } from '@/ui/Button';
 import { RarityText } from '@/ui/RarityText';
 import { resolveItemIcon } from '@/ui/cardAssets';
 import { formatAffixRoll } from '@/ui/affixFormat';
-import { loadItemBases } from '@/data/loaders/loot';
+import { resolveItemDisplay } from '@/ui/itemDisplay';
+import { tDataKey } from '@/ui/i18nKey';
+import { loadItemBases, resolveItemReqLevel } from '@/data/loaders/loot';
 import type { CoreStats } from '@/engine/types/attributes';
 import type { Item, ItemBase } from '@/engine/types/items';
 
@@ -43,19 +45,8 @@ export interface ItemDetailPanelProps {
   readonly transferLabel?: string;
   /** Optional label override for the equip button. Hides when undefined. */
   readonly equipLabel?: string;
-}
-
-function baseSlug(baseId: string): string {
-  return baseId.split('/').pop() ?? baseId;
-}
-
-function buildDisplayName(
-  item: Item,
-  baseName: string
-): string {
-  const prefix = item.generatedName?.prefix?.trim();
-  const suffix = item.generatedName?.suffix?.trim();
-  return [prefix, baseName, suffix].filter(Boolean).join(' ');
+  /** Equipped items used to mark set bonuses active/inactive in the detail readout. */
+  readonly equippedItems?: readonly Item[];
 }
 
 export function ItemDetailPanel({
@@ -67,18 +58,19 @@ export function ItemDetailPanel({
   onDiscard,
   onClose,
   transferLabel,
-  equipLabel
+  equipLabel,
+  equippedItems = []
 }: ItemDetailPanelProps): JSX.Element {
   const { t } = useTranslation(['inventory', 'items', 'affixes']);
   const { t: tItems } = useTranslation('items');
   const { t: tAffix } = useTranslation('affixes');
 
   const base: ItemBase | undefined = loadItemBases().get(item.baseId);
-  const slug = baseSlug(item.baseId);
-  const baseName = tItems(`base.${slug}`);
-  const displayName = buildDisplayName(item, baseName);
+  const display = resolveItemDisplay(item, t, equippedItems);
+  const displayName = display.name;
   const icon = resolveItemIcon(item.baseId);
   const ilvl = item.ilvl ?? item.level;
+  const reqLevel = resolveItemReqLevel(item, base);
 
   const typeLabel = base ? tItems(`types.${base.type}`) : '';
   const slotLabel = base?.slot ? tItems(`slots.${base.slot}`) : '';
@@ -91,11 +83,11 @@ export function ItemDetailPanel({
   // Requirements with met-or-not flag for red coloring
   const reqRows: { readonly key: string; readonly label: string; readonly met: boolean }[] = [];
   if (base) {
-    if (base.reqLevel > 1) {
+    if (reqLevel > 1) {
       reqRows.push({
         key: 'level',
-        label: t('detail.reqLevel', { value: base.reqLevel }),
-        met: playerLevel >= base.reqLevel
+        label: t('detail.reqLevel', { value: reqLevel }),
+        met: playerLevel >= reqLevel
       });
     }
     const rs = base.reqStats;
@@ -243,17 +235,51 @@ export function ItemDetailPanel({
       )}
 
       {/* Set / unique flavor */}
-      {item.rarity === 'set' && item.setId && (
-        <section data-testid="inv-detail-set" className="text-xs italic text-d2-set">
+      {display.definitionStatLines.length > 0 && (
+        <section data-testid="inv-detail-definition-stats">
+          <h3 className="text-[10px] uppercase tracking-wide text-d2-white/50 mb-1">
+            {t('detail.specialStats')}
+          </h3>
+          <ul className="space-y-0.5 text-xs">
+            {display.definitionStatLines.map((line) => (
+              <li key={line.key} className={rarityTextClass(item.rarity)}>
+                {line.text}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+      {item.rarity === 'set' && display.set && (
+        <section data-testid="inv-detail-set" className="text-xs text-d2-set">
           <h3 className="text-[10px] uppercase tracking-wide text-d2-white/50 mb-1 not-italic">
             {t('detail.setBonus')}
           </h3>
-          <p>{item.setId}</p>
+          <p className="italic">{t('detail.setName', { name: tDataKey(t, display.set.name) })}</p>
+          <ul className="mt-1 space-y-1">
+            {display.setBonuses.map((bonus) => (
+              <li
+                key={bonus.threshold}
+                data-active={bonus.active}
+                className={bonus.active ? 'text-d2-set' : 'text-d2-white/45'}
+              >
+                <div className="font-semibold">
+                  {t('detail.setBonusThreshold', { count: bonus.threshold })}
+                  {' · '}
+                  {bonus.active ? t('detail.setBonusActive') : t('detail.setBonusInactive')}
+                </div>
+                <ul className="pl-3">
+                  {bonus.lines.map((line) => (
+                    <li key={line.key}>{line.text}</li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
         </section>
       )}
-      {item.rarity === 'unique' && (
+      {item.rarity === 'unique' && (display.flavor ?? !display.unique) && (
         <section data-testid="inv-detail-unique" className="text-xs italic text-d2-unique">
-          <p>{t('detail.uniqueFlavor')}</p>
+          <p>{display.flavor ?? t('detail.uniqueFlavor')}</p>
         </section>
       )}
 

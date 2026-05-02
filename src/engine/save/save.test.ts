@@ -9,7 +9,8 @@ import {
   type SaveCurrent,
   type SaveV1,
   type SaveV2,
-  type SaveV3
+  type SaveV3,
+  type SaveV5
 } from '../types/save';
 
 function fakePlayer(): SaveCurrent['player'] {
@@ -185,9 +186,9 @@ describe('runMigrations', () => {
     expect(out.mercs.mercProgress).toEqual({});
   });
 
-  it('declares v5 as current and registers the v5 migration', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(5);
-    expect(MIGRATIONS[5]).toBeDefined();
+  it('declares v6 as current and registers the v6 migration', () => {
+    expect(CURRENT_SAVE_VERSION).toBe(6);
+    expect(MIGRATIONS[6]).toBeDefined();
   });
 
   it('migrates v2 → v3 by folding currencies.gold into rune-shard', () => {
@@ -265,5 +266,25 @@ describe('runMigrations', () => {
     const out = runMigrations(v1raw, CURRENT_SAVE_VERSION);
     expect(out.inventory.equipped.head).toMatchObject({ id: 'h1', affixes: [], baseRolls: {} });
     expect(out.mercs.fieldedMercId).toBeNull();
+  });
+
+  it('migrates v5 → v6 with JSON-safe item stat rolls', () => {
+    const current = buildSampleSaveCurrent();
+    const v5: SaveV5 = {
+      ...current,
+      version: 5,
+      inventory: {
+        ...current.inventory,
+        backpack: [{ id: 'set1', baseId: 'items/base/ring-iron', rarity: 'set', level: 12, identified: true, equipped: false, setId: 'sets/angelic-raiment', setPieceId: 'sets/angelic-raiment/ring' }],
+        equipped: {
+          weapon: { id: 'u1', baseId: 'items/base/wp1h-short-sword', rarity: 'unique', level: 12, identified: true, equipped: true, uniqueId: 'items/unique/rixots-keen' }
+        }
+      }
+    };
+
+    const out = runMigrations(v5, CURRENT_SAVE_VERSION);
+    expect(out.version).toBe(6);
+    expect(out.inventory.backpack[0]?.statRolls).toEqual({});
+    expect(out.inventory.equipped.weapon?.statRolls).toEqual({});
   });
 });

@@ -37,7 +37,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { TFunction } from 'i18next';
-import { Button, RarityText, StatSheet, resolveItemIcon, tItemName } from '@/ui';
+import { Button, RarityText, StatSheet, resolveItemDisplay, resolveItemIcon, tItemName } from '@/ui';
 import { useInventoryStore, usePlayerStore } from '@/stores';
 import {
   checkEligibility,
@@ -253,13 +253,19 @@ function AlreadyEquippedBadge() {
 function ComparePanel({
   compare,
   isAlreadyEquipped,
-  selectedName
+  selectedName,
+  equippedAfter
 }: {
   readonly compare: CompareResult;
   readonly isAlreadyEquipped: boolean;
   readonly selectedName: string;
+  readonly equippedAfter: readonly Item[];
 }) {
   const { t } = useTranslation('inventory');
+  const candidateDisplay = useMemo(
+    () => resolveItemDisplay(compare.candidate, t, equippedAfter),
+    [compare.candidate, equippedAfter, t]
+  );
   // Net delta = sum of stat deltas (rough but useful upgrade summary).
   const net = useMemo(() => {
     let n = 0;
@@ -308,6 +314,18 @@ function ComparePanel({
               {net > 0
                 ? t('equipFlow.compare.netUpgrade', { n: net })
                 : t('equipFlow.compare.netDowngrade', { n: net })}
+            </div>
+          )}
+          {candidateDisplay.set && candidateDisplay.setBonuses.length > 0 && (
+            <div className="rounded border border-d2-set/40 bg-d2-set/5 p-2 text-xs" data-testid="equip-picker-set-bonuses">
+              <div className="font-serif text-d2-set">{t('detail.setBonus')}</div>
+              {candidateDisplay.setBonuses.map((bonus) => (
+                <div key={bonus.threshold} className={bonus.active ? 'text-d2-set' : 'text-d2-white/45'}>
+                  {t('detail.setBonusThreshold', { count: bonus.threshold })}
+                  {': '}
+                  {bonus.lines.map((line) => line.text).join(', ')}
+                </div>
+              ))}
             </div>
           )}
         </>
@@ -432,6 +450,15 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
     return isSameItem(compare.current, compare.candidate);
   }, [compare]);
 
+  const equippedAfter = useMemo(() => {
+    if (!selected || !compare) return [] as Item[];
+    const currentId = compare.current?.id;
+    return [
+      ...Object.values(equipped).filter((item): item is Item => item !== null && item.id !== currentId),
+      selected
+    ];
+  }, [compare, equipped, selected]);
+
   const handleEquip = (): void => {
     if (!selected) return;
     const result = equipItem(selected);
@@ -509,6 +536,7 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
                   compare={compare}
                   isAlreadyEquipped={sameAsEquipped}
                   selectedName={selectedName}
+                  equippedAfter={equippedAfter}
                 />
               ) : null}
             </div>

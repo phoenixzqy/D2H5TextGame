@@ -1,22 +1,31 @@
 [
   {
     "id": "items/unique/pelta-lunata",
-    "name": "Pelta Lunata",
+    "name": "items.unique.pelta-lunata.name",
     "baseId": "items/base/sh-buckler",
     "reqLevel": 2,
+    "qlvl": 2,
+    "weight": 1,
     "stats": {
       "statMods": {
-        "defense": 20,
+        "defense": {
+          "roll": "pelta-lunata-defense",
+          "min": 20,
+          "max": 30,
+          "step": 1
+        },
         "life": 10
       }
     },
-    "flavor": "A crescent-moon buckler from the Skovos Isles."
+    "flavor": "items.unique.pelta-lunata.flavor"
   },
   {
     "id": "items/unique/rixots-keen",
-    "name": "Rixot's Keen",
+    "name": "items.unique.rixots-keen.name",
     "baseId": "items/base/wp1h-short-sword",
     "reqLevel": 2,
+    "qlvl": 2,
+    "weight": 1,
     "stats": {
       "statMods": {
         "attack": 40
@@ -29,13 +38,15 @@
         }
       }
     },
-    "flavor": "A simple short sword, kept impossibly sharp."
+    "flavor": "items.unique.rixots-keen.flavor"
   },
   {
     "id": "items/unique/biggin-bonnet",
-    "name": "Biggin's Bonnet",
+    "name": "items.unique.biggin-bonnet.name",
     "baseId": "items/base/helm-cap",
     "reqLevel": 3,
+    "qlvl": 3,
+    "weight": 1,
     "stats": {
       "coreStats": {
         "strength": 5
@@ -46,13 +57,15 @@
         "attack": 20
       }
     },
-    "flavor": "A jester's cap, lucky to a fault."
+    "flavor": "items.unique.biggin-bonnet.flavor"
   },
   {
     "id": "items/unique/face-of-horror",
-    "name": "The Face of Horror",
+    "name": "items.unique.face-of-horror.name",
     "baseId": "items/base/helm-cap",
     "reqLevel": 4,
+    "qlvl": 4,
+    "weight": 1,
     "stats": {
       "coreStats": {
         "strength": 10
@@ -68,7 +81,7 @@
         "defense": 15
       }
     },
-    "flavor": "Carven from a twisted gargoyle's likeness."
+    "flavor": "items.unique.face-of-horror.flavor"
   },
   {
     "stats": {
@@ -76,10 +89,12 @@
         "fire": 25
       }
     },
-    "name": "Hotspur",
+    "name": "items.unique.hotspur.name",
     "baseId": "items/base/boots",
-    "flavor": "A rogue's lucky boots. They ward off flames.",
+    "flavor": "items.unique.hotspur.flavor",
     "reqLevel": 5,
+    "qlvl": 5,
+    "weight": 1,
     "id": "items/unique/hotspur"
   },
   {

@@ -18,6 +18,7 @@ import type {
   SkillDef,
   ItemBase,
   Affix,
+  UniqueItemDef,
   Rune,
   RuneWord,
   SetDef,
@@ -245,8 +246,8 @@ export const itemBases = flatten<ItemBase>(
 );
 export const affixes = flatten<Affix>(affixModules as JsonModule<Affix[]>);
 export const runes = flatten<Rune>(runeModules as JsonModule<Rune[]>);
-export const uniques = flatten<{ id: string }>(
-  uniqueModules as JsonModule<{ id: string }[]>
+export const uniques = flatten<UniqueItemDef>(
+  uniqueModules as JsonModule<UniqueItemDef[]>
 );
 export const sets = flatten<SetDef>(setModules as JsonModule<SetDef[]>);
 export const runewords = flatten<RuneWord>(

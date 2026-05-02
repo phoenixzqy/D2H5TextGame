@@ -154,7 +154,27 @@
     "oculus": "灵眼",
     "griffons-strike": "狮鹫之击",
     "stormshield": "风暴之盾",
-    "homunculus": "矮人"
+    "homunculus": "矮人",
+    "pelta-lunata": {
+      "name": "新月小盾",
+      "flavor": "来自斯科沃斯群岛的月弧圆盾。"
+    },
+    "rixots-keen": {
+      "name": "里克撒特的挽歌",
+      "flavor": "一把朴素短剑，却锋利得近乎异常。"
+    },
+    "biggin-bonnet": {
+      "name": "毕金的帽子",
+      "flavor": "小丑帽檐上挂着难以解释的好运。"
+    },
+    "face-of-horror": {
+      "name": "恐惧之面",
+      "flavor": "仿照扭曲石像鬼的面容雕成。"
+    },
+    "hotspur": {
+      "name": "热靴刺",
+      "flavor": "游侠的幸运靴，足以隔绝烈焰。"
+    }
   },
   "set": {
     "tal-rashas-wrappings": "塔拉夏的束缚",
@@ -162,7 +182,16 @@
     "natalyas-odium": "娜塔莉雅的憎恶",
     "trang-ouls-avatar": "唐古的化身",
     "aldurs-watchtower": "奥德的瞭望",
-    "griswolds-legacy": "格里斯沃德的遗产"
+    "griswolds-legacy": "格里斯沃德的遗产",
+    "angelic-raiment": "天使战衣"
+  },
+  "setPiece": {
+    "angelic-raiment": {
+      "amulet": "天使之翼",
+      "ring": "天使光环",
+      "armor": "天使外衣",
+      "weapon": "天使镰刀"
+    }
   },
   "rune": {
     "el": "艾尔符文",

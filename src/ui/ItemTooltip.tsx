@@ -22,7 +22,8 @@ import { useTranslation } from 'react-i18next';
 import { RarityText } from './RarityText';
 import { resolveItemIcon } from './cardAssets';
 import { formatAffixRoll } from './affixFormat';
-import { loadItemBases } from '@/data/loaders/loot';
+import { resolveItemDisplay } from './itemDisplay';
+import { loadItemBases, resolveItemReqLevel } from '@/data/loaders/loot';
 import type { Item, ItemBase, EquipmentSlot } from '@/engine/types/items';
 
 interface ItemTooltipProps {
@@ -52,11 +53,6 @@ const SLOT_KEYS: readonly EquipmentSlot[] = [
   'weapon',
   'offhand'
 ];
-
-/** Pull the trailing slug from `items/base/<slug>` for the items.base lookup. */
-function baseSlug(baseId: string): string {
-  return baseId.split('/').pop() ?? baseId;
-}
 
 /**
  * Build the localized defense line for armor tooltips.
@@ -92,12 +88,14 @@ function buildDefenseLine(
 
 export function ItemTooltip({ item, className = '' }: ItemTooltipProps): JSX.Element {
   const { t } = useTranslation('items');
+  const { t: tInventory } = useTranslation(['inventory', 'items']);
   const { t: tAffix } = useTranslation('affixes');
   const icon = resolveItemIcon(item.baseId);
   const base: ItemBase | undefined = loadItemBases().get(item.baseId);
 
-  const slug = baseSlug(item.baseId);
-  const displayName = t(`base.${slug}`);
+  const display = resolveItemDisplay(item, tInventory);
+  const displayName = display.name;
+  const reqLevel = resolveItemReqLevel(item, base);
 
   const typeLabel = base ? t(`types.${base.type}`) : '';
   const slotLabel =
@@ -122,7 +120,7 @@ export function ItemTooltip({ item, className = '' }: ItemTooltipProps): JSX.Ele
 
   const reqRows: string[] = [];
   if (base) {
-    if (base.reqLevel > 1) reqRows.push(t('tooltip.reqLevel', { value: base.reqLevel }));
+    if (reqLevel > 1) reqRows.push(t('tooltip.reqLevel', { value: reqLevel }));
     const rs = base.reqStats;
     if (rs?.strength) reqRows.push(t('tooltip.reqStr', { value: rs.strength }));
     if (rs?.dexterity) reqRows.push(t('tooltip.reqDex', { value: rs.dexterity }));
@@ -208,7 +206,7 @@ export function ItemTooltip({ item, className = '' }: ItemTooltipProps): JSX.Ele
       )}
 
       {/* (5) Affixes */}
-      {item.affixes && item.affixes.length > 0 ? (
+      {item.affixes && item.affixes.length > 0 && (
         <ul className="space-y-0.5 pt-2 border-t border-d2-border/60 mt-2" data-testid="item-tooltip-affixes">
           {item.affixes.map((affix, idx) => (
             <li key={idx} className="text-d2-magic text-xs" data-testid="item-tooltip-affix">
@@ -216,15 +214,35 @@ export function ItemTooltip({ item, className = '' }: ItemTooltipProps): JSX.Ele
             </li>
           ))}
         </ul>
-      ) : (
-        damageLine === null && defenseLine === null && (
-          <div
-            className="pt-2 border-t border-d2-border/60 mt-2 text-[11px] text-d2-white/50 italic text-center"
-            data-testid="item-tooltip-no-mods"
-          >
-            {t('tooltip.noModifiers', { defaultValue: 'No special modifiers' })}
-          </div>
-        )
+      )}
+      {display.definitionStatLines.length > 0 && (
+        <ul className="space-y-0.5 pt-2 border-t border-d2-border/60 mt-2" data-testid="item-tooltip-definition-stats">
+          {display.definitionStatLines.map((line) => (
+            <li key={line.key} className={item.rarity === 'set' ? 'text-d2-set text-xs' : 'text-d2-unique text-xs'}>
+              {line.text}
+            </li>
+          ))}
+        </ul>
+      )}
+      {display.set && display.setBonuses.length > 0 && (
+        <div className="pt-2 border-t border-d2-border/60 mt-2 text-[11px]" data-testid="item-tooltip-set-bonuses">
+          <div className="text-d2-set text-center font-semibold">{tInventory('detail.setBonus')}</div>
+          {display.setBonuses.map((bonus) => (
+            <div key={bonus.threshold} className={bonus.active ? 'text-d2-set' : 'text-d2-white/45'}>
+              {tInventory('detail.setBonusThreshold', { count: bonus.threshold })}
+              {': '}
+              {bonus.lines.map((line) => line.text).join(', ')}
+            </div>
+          ))}
+        </div>
+      )}
+      {display.definitionStatLines.length === 0 && (!item.affixes || item.affixes.length === 0) && damageLine === null && defenseLine === null && (
+        <div
+          className="pt-2 border-t border-d2-border/60 mt-2 text-[11px] text-d2-white/50 italic text-center"
+          data-testid="item-tooltip-no-mods"
+        >
+          {t('tooltip.noModifiers', { defaultValue: 'No special modifiers' })}
+        </div>
       )}
     </div>
   );

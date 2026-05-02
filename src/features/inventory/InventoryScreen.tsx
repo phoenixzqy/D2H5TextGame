@@ -277,6 +277,10 @@ function BackpackTabContent({
 }: BackpackTabProps): JSX.Element {
   const { t } = useTranslation('inventory');
   const selected = useMemo(() => items.find((i) => i.id === selectedId) ?? null, [items, selectedId]);
+  const equippedItems = useMemo(
+    () => Object.values(equipped).filter((item): item is Item => item !== null),
+    [equipped]
+  );
 
   return (
     <div className="flex flex-col">
@@ -294,6 +298,7 @@ function BackpackTabContent({
             playerCoreStats={player.coreStats}
             equipLabel={t('equip')}
             transferLabel={t('transfer')}
+            equippedItems={equippedItems}
             onEquip={() => { onEquip(selected); }}
             onTransfer={() => { onTransfer(selected); }}
             onDiscard={() => { onDiscardRequest(selected); }}

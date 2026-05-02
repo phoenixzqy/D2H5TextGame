@@ -101,9 +101,12 @@
       "baseDamageBreakdown": "基础伤害明细 JSON",
       "reqStats": "需求属性 JSON",
       "baseItemId": "基础物品 ID",
+      "qlvl": "掉落等级门槛",
+      "weight": "掉落选择权重",
       "statMods": "属性修正 JSON",
       "fullUniqueStats": "完整暗金属性 JSON",
       "setItemIds": "套装物品 ID（逗号分隔）",
+      "setPieces": "具体套装部件 JSON",
       "pieceBonuses": "部件加成 JSON"
     }
   },

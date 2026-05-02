@@ -41,12 +41,84 @@
   },
   {
     "id": "sets/angelic-raiment",
-    "name": "Angelic Raiment",
+    "name": "items.set.angelic-raiment",
     "items": [
       "sets/angelic-raiment/amulet",
       "sets/angelic-raiment/ring",
       "sets/angelic-raiment/armor",
       "sets/angelic-raiment/weapon"
+    ],
+    "pieces": [
+      {
+        "id": "sets/angelic-raiment/amulet",
+        "setId": "sets/angelic-raiment",
+        "name": "items.setPiece.angelic-raiment.amulet",
+        "baseId": "items/base/amu-tin",
+        "reqLevel": 12,
+        "qlvl": 12,
+        "weight": 1,
+        "stats": {
+          "coreStats": {
+            "dexterity": 5
+          },
+          "statMods": {
+            "mana": 20
+          }
+        }
+      },
+      {
+        "id": "sets/angelic-raiment/ring",
+        "setId": "sets/angelic-raiment",
+        "name": "items.setPiece.angelic-raiment.ring",
+        "baseId": "items/base/ring-iron",
+        "reqLevel": 12,
+        "qlvl": 12,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "life": 20,
+            "magicFind": {
+              "roll": "angelic-halo-mf",
+              "min": 15,
+              "max": 30,
+              "step": 1
+            }
+          }
+        }
+      },
+      {
+        "id": "sets/angelic-raiment/armor",
+        "setId": "sets/angelic-raiment",
+        "name": "items.setPiece.angelic-raiment.armor",
+        "baseId": "items/base/armor-chain-mail",
+        "reqLevel": 12,
+        "qlvl": 12,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 40
+          },
+          "resistances": {
+            "fire": 15,
+            "cold": 15
+          }
+        }
+      },
+      {
+        "id": "sets/angelic-raiment/weapon",
+        "setId": "sets/angelic-raiment",
+        "name": "items.setPiece.angelic-raiment.weapon",
+        "baseId": "items/base/wp1h-scimitar",
+        "reqLevel": 12,
+        "qlvl": 12,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 12,
+            "attackSpeed": 10
+          }
+        }
+      }
     ],
     "bonuses": {
       "2": {

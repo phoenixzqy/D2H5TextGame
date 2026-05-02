@@ -11,6 +11,7 @@ import type {
   SkillDef,
   ItemBase,
   Affix,
+  UniqueItemDef,
   Rune,
   RuneWord,
   SetDef,
@@ -80,7 +81,7 @@ export interface GameData {
   readonly skills: ReadonlyMap<string, SkillDef>;
   readonly itemBases: ReadonlyMap<string, ItemBase>;
   readonly affixes: ReadonlyMap<string, Affix>;
-  readonly uniques: ReadonlyMap<string, unknown>; // TODO: type after unique impl
+  readonly uniques: ReadonlyMap<string, UniqueItemDef>;
   readonly sets: ReadonlyMap<string, SetDef>;
   readonly runes: ReadonlyMap<string, Rune>;
   readonly runewords: ReadonlyMap<string, RuneWord>;
@@ -229,7 +230,7 @@ export async function loadGameData(): Promise<GameData> {
     affixSchema.$id,
     'affixes'
   );
-  const uniques = buildDataMap<{ id: string }>(
+  const uniques = buildDataMap<UniqueItemDef>(
     uniqueEntries,
     uniqueSchema.$id,
     'uniques'

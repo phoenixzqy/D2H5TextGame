@@ -64,6 +64,16 @@ describe('checkEligibility', () => {
     expect(result.reasons).toEqual([]);
   });
 
+  it('uses unique template reqLevel when it is higher than the base requirement', () => {
+    const item = mkItem('items/base/wp1h-short-sword', {
+      rarity: 'unique',
+      uniqueId: 'items/unique/rixots-keen'
+    });
+    const result = checkEligibility(item, mkPlayer(1));
+    expect(result.eligible).toBe(false);
+    expect(result.reasons).toContainEqual({ kind: 'level', required: 2, current: 1 });
+  });
+
   it('returns eligible when base is not found in catalog', () => {
     const item = mkItem('items/base/does-not-exist');
     const result = checkEligibility(item, mkPlayer(1));
