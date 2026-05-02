@@ -9,6 +9,7 @@ import type { EquipmentSlot, Item, ItemBase } from '@/engine/types/items';
 import { isTwoHanded } from '@/engine/inventory/equipValidator';
 import {
   checkEligibility,
+  resolveAutoEquipSlot,
   slotCandidates,
   type PlayerLike
 } from '@/features/inventory/compareEquip';
@@ -77,10 +78,7 @@ function withEquippedFlag(item: Item, equipped: boolean): Item {
 }
 
 function targetSlotFor(baseSlot: EquipmentSlot, equipped: Record<string, Item | null>): EquipmentSlot {
-  if (baseSlot !== 'ring-left' && baseSlot !== 'ring-right') return baseSlot;
-  if (!equipped['ring-left']) return 'ring-left';
-  if (!equipped['ring-right']) return 'ring-right';
-  return 'ring-left';
+  return resolveAutoEquipSlot(baseSlot, equipped);
 }
 
 function isTwoHandedBase(base: ItemBase | undefined): boolean {

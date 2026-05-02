@@ -75,6 +75,11 @@ function buildSampleSaveCurrent(): SaveCurrent {
       },
       gachaState: { currency: 0, ownedMercIds: [], pityCounter: 0 }
     },
+    formation: {
+      playerPosition: { row: 1, col: 1 },
+      mercPosition: { row: 0, col: 0 },
+      summonPositions: [{ row: 2, col: 0 }]
+    },
     timestamp: 12345
   });
 }
@@ -186,9 +191,9 @@ describe('runMigrations', () => {
     expect(out.mercs.mercProgress).toEqual({});
   });
 
-  it('declares v6 as current and registers the v6 migration', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(6);
-    expect(MIGRATIONS[6]).toBeDefined();
+  it('declares v7 as current and registers the v7 migration', () => {
+    expect(CURRENT_SAVE_VERSION).toBe(7);
+    expect(MIGRATIONS[7]).toBeDefined();
   });
 
   it('migrates v2 → v3 by folding currencies.gold into rune-shard', () => {
@@ -283,8 +288,9 @@ describe('runMigrations', () => {
     };
 
     const out = runMigrations(v5, CURRENT_SAVE_VERSION);
-    expect(out.version).toBe(6);
+    expect(out.version).toBe(CURRENT_SAVE_VERSION);
     expect(out.inventory.backpack[0]?.statRolls).toEqual({});
     expect(out.inventory.equipped.weapon?.statRolls).toEqual({});
+    expect(out.formation.playerPosition).toEqual({ row: 1, col: 1 });
   });
 });

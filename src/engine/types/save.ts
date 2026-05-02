@@ -6,12 +6,13 @@
 import type { Player, Mercenary } from './entities';
 import type { EquipmentSlot, Inventory, Item } from './items';
 import type { MapProgress } from './maps';
+import type { GridPosition } from '../combat/types';
 
 /**
  * Current save format version. Bump this and add an entry to {@link MIGRATIONS}
  * whenever the on-disk shape changes.
  */
-export const CURRENT_SAVE_VERSION = 6;
+export const CURRENT_SAVE_VERSION = 7;
 
 /**
  * Save file version (most recent).
@@ -192,7 +193,26 @@ export interface SaveV6 {
   readonly meta: MetaSaveData;
 }
 
-export type SaveCurrent = SaveV6;
+/** Persisted player-side battle formation. */
+export interface FormationPreferences {
+  readonly playerPosition: GridPosition;
+  readonly mercPosition: GridPosition;
+  readonly summonPositions: readonly GridPosition[];
+}
+
+/** Save file v7 - persists player-side battle formation preferences. */
+export interface SaveV7 {
+  readonly version: 7;
+  readonly timestamp: number;
+  readonly player: Player;
+  readonly inventory: InventorySaveData;
+  readonly mercs: MercSaveData;
+  readonly map: MapSaveData;
+  readonly meta: MetaSaveData;
+  readonly formation: FormationPreferences;
+}
+
+export type SaveCurrent = SaveV7;
 
 /**
  * Migration function type. Each entry receives the previous version's shape
@@ -332,6 +352,28 @@ export const MIGRATIONS: Record<number, Migration> = {
       mercs: {
         ...v5.mercs,
         mercEquipment: Object.fromEntries(Object.entries(v5.mercs.mercEquipment).map(([mercId, equipment]) => [mercId, Object.fromEntries(Object.entries(equipment).map(([slot, item]) => [slot, migrateItemOrNull(item ?? null)]))]))
+      }
+    };
+  },
+  /** v6 to v7: add persistent player-side battle formation preferences. */
+  7: (raw: unknown): SaveV7 => {
+    const v6 = raw as SaveV6;
+    return {
+      ...v6,
+      version: 7,
+      formation: {
+        playerPosition: { row: 1, col: 1 },
+        mercPosition: { row: 0, col: 0 },
+        summonPositions: [
+          { row: 2, col: 0 },
+          { row: 2, col: 1 },
+          { row: 2, col: 2 },
+          { row: 0, col: 1 },
+          { row: 0, col: 2 },
+          { row: 1, col: 0 },
+          { row: 1, col: 2 },
+          { row: 0, col: 0 }
+        ]
       }
     };
   }

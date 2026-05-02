@@ -60,6 +60,7 @@ export function buildSummon(
     ...unit,
     side: owner.side,
     summonOwnerId: owner.id,
+    summonTemplateId: summonId,
     summon: true,
     kind: 'summon'
   };
@@ -78,7 +79,7 @@ const ZERO_RES = {
   physical: 0
 };
 
-function skeletonStats(): DerivedStats {
+function baseSummonStats(): DerivedStats {
   return {
     life: 80,
     lifeMax: 80,
@@ -97,6 +98,45 @@ function skeletonStats(): DerivedStats {
   };
 }
 
+function skeletonStats(): DerivedStats {
+  return {
+    ...baseSummonStats(),
+    life: 112,
+    lifeMax: 112,
+    attack: 25,
+    defense: 14
+  };
+}
+
+function summonUnit(
+  owner: CombatUnit,
+  summonId: string,
+  name: string,
+  stats: DerivedStats,
+  skillOrder: readonly string[] = []
+): CombatUnit {
+  return {
+    id: nextSummonId(owner.id, summonId),
+    name,
+    side: owner.side,
+    level: owner.level,
+    tier: 'trash',
+    stats,
+    life: stats.lifeMax,
+    mana: stats.manaMax,
+    statuses: [],
+    cooldowns: {},
+    skillOrder,
+    activeBuffIds: [],
+    enraged: false,
+    summonedAdds: false,
+    summon: true,
+    kind: 'summon',
+    summonOwnerId: owner.id,
+    summonTemplateId: summonId
+  };
+}
+
 registerSummon('skeleton', (owner) => ({
   id: nextSummonId(owner.id, 'skeleton'),
   name: 'Skeleton Warrior',
@@ -104,7 +144,7 @@ registerSummon('skeleton', (owner) => ({
   level: owner.level,
   tier: 'trash',
   stats: skeletonStats(),
-  life: 80,
+  life: 112,
   mana: 0,
   statuses: [],
   cooldowns: {},
@@ -117,6 +157,56 @@ registerSummon('skeleton', (owner) => ({
   summonOwnerId: owner.id
 }));
 
+registerSummon('clay_golem', (owner) =>
+  summonUnit(owner, 'clay_golem', 'Clay Golem', {
+    ...baseSummonStats(),
+    life: 220,
+    lifeMax: 220,
+    attack: 24,
+    defense: 34,
+    attackSpeed: 55,
+    physDodge: 0.02,
+    magicDodge: 0.02,
+    resistances: { ...ZERO_RES, physical: 10 }
+  })
+);
+
+registerSummon('blood_golem', (owner) =>
+  summonUnit(owner, 'blood_golem', 'Blood Golem', {
+    ...baseSummonStats(),
+    life: 180,
+    lifeMax: 180,
+    attack: 34,
+    defense: 24,
+    attackSpeed: 70,
+    resistances: { ...ZERO_RES, poison: 20 }
+  })
+);
+
+registerSummon('iron_golem', (owner) =>
+  summonUnit(owner, 'iron_golem', 'Iron Golem', {
+    ...baseSummonStats(),
+    life: 260,
+    lifeMax: 260,
+    attack: 36,
+    defense: 48,
+    attackSpeed: 60,
+    resistances: { ...ZERO_RES, physical: 20, lightning: 20 }
+  })
+);
+
+registerSummon('fire_golem', (owner) =>
+  summonUnit(owner, 'fire_golem', 'Fire Golem', {
+    ...baseSummonStats(),
+    life: 240,
+    lifeMax: 240,
+    attack: 42,
+    defense: 36,
+    attackSpeed: 65,
+    resistances: { ...ZERO_RES, fire: 50 }
+  })
+);
+
 // Placeholder templates for skills that already reference these ids — they
 // keep the engine from silently dropping the summon when those skills fire.
 registerSummon('valkyrie', (owner) => ({
@@ -125,7 +215,7 @@ registerSummon('valkyrie', (owner) => ({
   side: owner.side,
   level: owner.level,
   tier: 'trash',
-  stats: { ...skeletonStats(), life: 200, lifeMax: 200, attack: 40, defense: 20 },
+  stats: { ...baseSummonStats(), life: 200, lifeMax: 200, attack: 40, defense: 20 },
   life: 200,
   mana: 0,
   statuses: [],
@@ -145,7 +235,7 @@ registerSummon('dire_wolf', (owner) => ({
   side: owner.side,
   level: owner.level,
   tier: 'trash',
-  stats: { ...skeletonStats(), life: 100, lifeMax: 100, attack: 25, attackSpeed: 90 },
+  stats: { ...baseSummonStats(), life: 100, lifeMax: 100, attack: 25, attackSpeed: 90 },
   life: 100,
   mana: 0,
   statuses: [],
@@ -165,7 +255,7 @@ registerSummon('minion', (owner) => ({
   side: owner.side,
   level: owner.level,
   tier: 'trash',
-  stats: { ...skeletonStats(), life: 40, lifeMax: 40, attack: 10 },
+  stats: { ...baseSummonStats(), life: 40, lifeMax: 40, attack: 10 },
   life: 40,
   mana: 0,
   statuses: [],

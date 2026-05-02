@@ -41,6 +41,7 @@ import { useInventoryStore } from './inventoryStore';
 import { useMetaStore } from './metaStore';
 import { useMapStore } from './mapStore';
 import { useMercStore } from './mercStore';
+import { useFormationStore } from './formationStore';
 
 function fakePlayer(): NonNullable<ReturnType<typeof usePlayerStore.getState>['player']> {
   return {
@@ -74,6 +75,7 @@ function resetAllStores(): void {
   useMapStore.getState().reset();
   useMercStore.getState().reset();
   useMetaStore.getState().reset();
+  useFormationStore.getState().reset();
 }
 
 describe('persistence', () => {
@@ -97,6 +99,7 @@ describe('persistence', () => {
       expect(snap).not.toBeNull();
       expect(snap?.version).toBe(CURRENT_SAVE_VERSION);
       expect(snap?.player.id).toBe('p1');
+      expect(snap?.formation.playerPosition).toEqual({ row: 1, col: 1 });
     });
   });
 
@@ -195,6 +198,9 @@ describe('persistence', () => {
         mercEquipment: { [merc.id]: { weapon: fakeItem(), offhand: null } },
         mercProgress: { [merc.id]: { experience: 23, experienceToNextLevel: 50 } }
       });
+      useFormationStore.getState().setPlayerPosition({ row: 0, col: 2 });
+      useFormationStore.getState().setMercPosition({ row: 2, col: 2 });
+      useFormationStore.getState().setSummonPosition(0, { row: 1, col: 0 });
 
       // 2. Snapshot + persist.
       const snap = snapshotStores();
@@ -222,6 +228,9 @@ describe('persistence', () => {
       expect(useMercStore.getState().mercEquipment[merc.id]?.weapon).toEqual(fakeItem());
       expect(useMercStore.getState().mercEquipment[merc.id]?.offhand).toBeNull();
       expect(useMercStore.getState().mercProgress[merc.id]).toEqual({ experience: 23, experienceToNextLevel: 50 });
+      expect(useFormationStore.getState().playerPosition).toEqual({ row: 0, col: 2 });
+      expect(useFormationStore.getState().mercPosition).toEqual({ row: 2, col: 2 });
+      expect(useFormationStore.getState().summonPositions[0]).toEqual({ row: 1, col: 0 });
       expect(useHydrationStore.getState().status).toBe('ready');
     });
 

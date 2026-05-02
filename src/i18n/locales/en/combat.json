@@ -35,6 +35,27 @@
   "enemies": "Enemies",
   "noAllies": "No units",
   "noEnemies": "No enemies",
+  "battlefield": {
+    "title": "Battlefield",
+    "wave": "Wave",
+    "clash": "Clash"
+  },
+  "formation": {
+    "edit": "Formation",
+    "title": "Battle Formation",
+    "help": "Select a unit type, then tap a grid cell. Saved formation is reused when the next battle starts; summons spawn into their remembered slots.",
+    "unitSelect": "Unit to place",
+    "grid": "Player-side formation grid",
+    "cell": "R{{row}} C{{col}}",
+    "empty": "Empty",
+    "reset": "Reset",
+    "done": "Done",
+    "role": {
+      "player": "Hero",
+      "merc": "Merc",
+      "summon": "Summon {{index}}"
+    }
+  },
   "hp": "HP",
   "mp": "MP",
   "speed": "Speed",
@@ -49,6 +70,16 @@
   },
   "acting": "Acting",
   "summon": "Summon",
+  "summons": {
+    "skeleton": "Skeleton Warrior",
+    "clay_golem": "Clay Golem",
+    "blood_golem": "Blood Golem",
+    "iron_golem": "Iron Golem",
+    "fire_golem": "Fire Golem",
+    "valkyrie": "Valkyrie",
+    "dire_wolf": "Dire Wolf",
+    "minion": "Minion"
+  },
   "effect": {
     "activeEffects": "Active combat effects",
     "hit": "Hit",

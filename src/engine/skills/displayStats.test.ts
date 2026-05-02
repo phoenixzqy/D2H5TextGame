@@ -30,14 +30,14 @@ describe('skill display stats', () => {
       cooldown: 1,
       maxLevel: 20,
       summon: true,
-      scaling: { summonMaxCount: { kind: 'first-three-then-every-three' as const } },
+      scaling: { summonMaxCount: { kind: 'raise-skeleton-1-6-12-cap-3' as const } },
       cost: { mana: 15 }
     };
 
-    expect(computeSkillDisplayModel(skill, 5).current?.summonCap).toBe(3);
-    expect(computeSkillDisplayModel(skill, 5).next?.summonCap).toBe(4);
-    expect(computeSkillDisplayModel(skill, 12).current?.summonCap).toBe(6);
-    expect(computeSkillDisplayModel(skill, 20).current?.summonCap).toBe(8);
+    expect(computeSkillDisplayModel(skill, 5).current?.summonCap).toBe(1);
+    expect(computeSkillDisplayModel(skill, 5).next?.summonCap).toBe(2);
+    expect(computeSkillDisplayModel(skill, 12).current?.summonCap).toBe(3);
+    expect(computeSkillDisplayModel(skill, 20).current?.summonCap).toBe(3);
     expect(computeSkillDisplayModel(skill, 20).next).toBeUndefined();
   });
 

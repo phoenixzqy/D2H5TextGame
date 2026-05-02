@@ -171,6 +171,7 @@
       "manaCost": "Mana cost",
       "damagePerLevel": "Damage per skill level",
       "costPerLevel": "Cost per skill level",
+      "aoeShape": "AOE grid shape",
       "damageBreakdown": "Damage type breakdown JSON",
       "scaling": "Scaling JSON"
     }

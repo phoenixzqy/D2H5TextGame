@@ -171,6 +171,7 @@
       "manaCost": "法力消耗",
       "damagePerLevel": "每技能等级伤害",
       "costPerLevel": "每技能等级消耗",
+      "aoeShape": "范围形状",
       "damageBreakdown": "伤害类型明细 JSON",
       "scaling": "成长 JSON"
     }

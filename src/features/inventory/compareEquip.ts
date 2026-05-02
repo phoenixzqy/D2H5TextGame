@@ -96,6 +96,16 @@ export function slotCandidates(
   return backpack.filter((it) => slotMatches(bases.get(it.baseId)?.slot ?? null, slot));
 }
 
+export function resolveAutoEquipSlot(
+  baseSlot: EquipmentSlot,
+  equipped: Readonly<Record<string, Item | null>>
+): EquipmentSlot {
+  if (baseSlot !== 'ring-left' && baseSlot !== 'ring-right') return baseSlot;
+  if (!equipped['ring-left']) return 'ring-left';
+  if (!equipped['ring-right']) return 'ring-right';
+  return 'ring-left';
+}
+
 export function checkEligibility(
   item: Item,
   player: PlayerLike,
@@ -206,4 +216,26 @@ export function compareEquip(
   }
 
   return { current, candidate, slot: resolved, stats, resistances };
+}
+
+export function netEquipDelta(compare: CompareResult): number {
+  let total = 0;
+  for (const key of COMPARABLE_KEYS) total += compare.stats[key].delta;
+  for (const key of RESIST_KEYS) total += compare.resistances[key].delta;
+  return Math.round(total);
+}
+
+export function isClearNetUpgrade(compare: CompareResult): boolean {
+  let hasPositive = false;
+  for (const key of COMPARABLE_KEYS) {
+    const delta = compare.stats[key].delta;
+    if (delta < 0) return false;
+    if (delta > 0) hasPositive = true;
+  }
+  for (const key of RESIST_KEYS) {
+    const delta = compare.resistances[key].delta;
+    if (delta < 0) return false;
+    if (delta > 0) hasPositive = true;
+  }
+  return hasPositive;
 }

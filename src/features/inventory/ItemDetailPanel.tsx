@@ -32,6 +32,8 @@ import { tDataKey } from '@/ui/i18nKey';
 import { loadItemBases, resolveItemReqLevel } from '@/data/loaders/loot';
 import type { CoreStats } from '@/engine/types/attributes';
 import type { Item, ItemBase } from '@/engine/types/items';
+import type { CompareResult } from './compareEquip';
+import { ItemComparePanel } from './ItemComparePanel';
 
 export interface ItemDetailPanelProps {
   readonly item: Item;
@@ -47,6 +49,9 @@ export interface ItemDetailPanelProps {
   readonly equipLabel?: string;
   /** Equipped items used to mark set bonuses active/inactive in the detail readout. */
   readonly equippedItems?: readonly Item[];
+  /** Optional equipment comparison for equippable backpack items. */
+  readonly compare?: CompareResult | null;
+  readonly equippedAfterCompare?: readonly Item[];
 }
 
 export function ItemDetailPanel({
@@ -59,7 +64,9 @@ export function ItemDetailPanel({
   onClose,
   transferLabel,
   equipLabel,
-  equippedItems = []
+  equippedItems = [],
+  compare = null,
+  equippedAfterCompare = []
 }: ItemDetailPanelProps): JSX.Element {
   const { t } = useTranslation(['inventory', 'items', 'affixes']);
   const { t: tItems } = useTranslation('items');
@@ -282,6 +289,15 @@ export function ItemDetailPanel({
           <p>{display.flavor ?? t('detail.uniqueFlavor')}</p>
         </section>
       )}
+
+      {compare ? (
+        <ItemComparePanel
+          compare={compare}
+          selectedName={displayName}
+          equippedAfter={equippedAfterCompare}
+          titleId={`inv-detail-compare-title-${item.id}`}
+        />
+      ) : null}
 
       {/* Actions */}
       <div className="flex flex-wrap gap-2 pt-2 border-t border-d2-border/60">

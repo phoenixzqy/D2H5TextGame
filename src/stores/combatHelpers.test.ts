@@ -9,8 +9,10 @@ import {
   startSubAreaRun,
   advanceWaveOrFinish,
   hasActiveSubAreaRun,
+  refreshActivePlayerCombatConfig,
   createSimpleEnemy,
-  buildEnemiesForWave
+  buildEnemiesForWave,
+  resolveMonsterDisplayName
 } from './combatHelpers';
 import { mercToCombatUnit } from './mercToCombatUnit';
 import type { BattleEvent } from '@/engine/combat/combat';
@@ -24,6 +26,7 @@ import { useMapStore } from './mapStore';
 import { createMockPlayer, CHARACTER_CLASSES } from '@/features/character/createMockPlayer';
 import { xpRequired, xpForKill } from '@/engine/progression/xp';
 import { getSkill } from '@/engine/skills/registry';
+import i18n from '@/i18n';
 
 describe('combatHelpers', () => {
   describe('battleEventToLogEntry', () => {
@@ -50,6 +53,34 @@ describe('combatHelpers', () => {
       expect(result?.message).not.toContain('Fallen Lv');
       expect(result?.message).not.toContain('physical');
       expect(result?.message).toContain('物理');
+    });
+
+    it('resolves combat-unit monster names through i18n while preserving instance suffixes', async () => {
+      await i18n.changeLanguage('zh-CN');
+      const unit: CombatUnit = {
+        id: 'enemy-act1.fallen-5-abcd',
+        name: 'monsters.fallen F',
+        side: 'enemy',
+        level: 1,
+        tier: 'trash',
+        stats: {
+          life: 100, lifeMax: 100, mana: 0, manaMax: 0, attack: 10, defense: 0,
+          attackSpeed: 100, critChance: 0, critDamage: 1.5, physDodge: 0, magicDodge: 0,
+          magicFind: 0, goldFind: 0,
+          resistances: { fire: 0, cold: 0, lightning: 0, poison: 0, arcane: 0, physical: 0 }
+        },
+        life: 100,
+        mana: 0,
+        statuses: [],
+        cooldowns: {},
+        skillOrder: [],
+        activeBuffIds: [],
+        enraged: false,
+        summonedAdds: false,
+        kind: 'monster'
+      };
+
+      expect(resolveMonsterDisplayName(unit)).toBe('堕落者 F');
     });
 
     it('should show player name from map instead of ID in action event', () => {
@@ -460,6 +491,29 @@ describe('startSimpleBattle — fielded merc (Bug #2)', () => {
     const team = useCombatStore.getState().playerTeam;
     expect(team.length).toBe(2);
     expect(team.some((u) => u.id === `merc-${merc.id}`)).toBe(true);
+  });
+});
+
+describe('refreshActivePlayerCombatConfig', () => {
+  beforeEach(resetStores);
+
+  it('pushes changed combo order into the active combat player unit without a reload', () => {
+    const player = {
+      ...boostedSorceress(),
+      comboOrder: ['sorceress.ice_bolt'],
+      skillLevels: {
+        'sorceress.ice_bolt': 1,
+        'sorceress.fire_ball': 1
+      }
+    };
+    usePlayerStore.getState().setPlayer(player);
+    startSubAreaRun({ level: 1 });
+    expect(useCombatStore.getState().playerTeam[0]?.skillOrder).toEqual(['sorceress.ice_bolt']);
+
+    usePlayerStore.getState().setComboOrder(['sorceress.fire_ball']);
+    refreshActivePlayerCombatConfig();
+
+    expect(useCombatStore.getState().playerTeam[0]?.skillOrder).toEqual(['sorceress.fire_ball']);
   });
 });
 

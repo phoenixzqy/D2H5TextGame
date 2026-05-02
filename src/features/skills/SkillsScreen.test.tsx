@@ -239,7 +239,7 @@ describe('<SkillsScreen> — class fixture renders (mirrors skills-screen.spec.t
     expect(/🔒|需要等级|Requires Level/.test(body)).toBe(true);
   });
 
-  it('active-skill tab renders 5-slot priority list with up/down arrows', () => {
+  it('active-skill tab renders 9-slot priority list with up/down arrows', () => {
     setPlayerOfClass('necromancer');
     renderScreen();
     // <Tabs> renders only the active tabpanel — click the "active" tab.
@@ -250,7 +250,11 @@ describe('<SkillsScreen> — class fixture renders (mirrors skills-screen.spec.t
     act(() => { activeTabBtn?.click(); });
 
     const selects = document.querySelectorAll('select');
-    expect(selects.length).toBeGreaterThanOrEqual(5);
+    expect(selects.length).toBeGreaterThanOrEqual(9);
+    const firstOptions = Array.from(selects[0]?.querySelectorAll('option') ?? []).map((option) => option.value);
+    expect(firstOptions).toContain('skills-necromancer-raise-skeleton');
+    expect(firstOptions).not.toContain('skills-necromancer-bone-spear');
+    expect(firstOptions).not.toContain('skills-necromancer-skeleton-mastery');
     // Move-up / move-down buttons (▲ / ▼) — one pair per slot.
     const moveUps = Array.from(document.querySelectorAll('button')).filter(
       (b) => b.textContent.includes('▲'),
@@ -258,8 +262,27 @@ describe('<SkillsScreen> — class fixture renders (mirrors skills-screen.spec.t
     const moveDowns = Array.from(document.querySelectorAll('button')).filter(
       (b) => b.textContent.includes('▼'),
     );
-    expect(moveUps.length).toBeGreaterThanOrEqual(5);
-    expect(moveDowns.length).toBeGreaterThanOrEqual(5);
+    expect(moveUps.length).toBeGreaterThanOrEqual(9);
+    expect(moveDowns.length).toBeGreaterThanOrEqual(9);
+  });
+
+  it('hides allocated active skills that current equipment cannot cast', () => {
+    const p = createMockPlayer('TestHero', 'amazon');
+    act(() => {
+      usePlayerStore.getState().setPlayer({
+        ...p,
+        equipment: []
+      });
+    });
+    renderScreen();
+    const activeTabBtn = document.querySelector<HTMLButtonElement>(
+      'button[role="tab"][aria-controls="tabpanel-active"]',
+    );
+    act(() => { activeTabBtn?.click(); });
+
+    const firstSelect = document.querySelector('select');
+    const firstOptions = Array.from(firstSelect?.querySelectorAll('option') ?? []).map((option) => option.value);
+    expect(firstOptions).not.toContain('skills-amazon-magic-arrow');
   });
 
   it('points-remaining banner displays the player skillPoints value', () => {
@@ -270,7 +293,7 @@ describe('<SkillsScreen> — class fixture renders (mirrors skills-screen.spec.t
     expect(body).toMatch(/剩余技能点|Points|Remaining/);
   });
 
-  it('shows dynamic Raise Skeleton current and next summon caps without stale max-5 copy', () => {
+  it('shows dynamic Raise Skeleton current and next summon caps for the 1/6/12 curve', () => {
     const p = createMockPlayer('TestHero', 'necromancer');
     act(() => {
       usePlayerStore.getState().setPlayer({
@@ -285,8 +308,8 @@ describe('<SkillsScreen> — class fixture renders (mirrors skills-screen.spec.t
     fireEvent.click(screen.getByTestId('skill-node-skills-necromancer-raise-skeleton'));
     const body = document.body.textContent || '';
     expect(body).not.toMatch(/上限 5|max 5/i);
-    expect(body).toMatch(/召唤上限\s*3|Summon Cap\s*3/);
-    expect(body).toMatch(/召唤上限\s*4|Summon Cap\s*4/);
+    expect(body).toMatch(/召唤上限\s*1|Summon Cap\s*1/);
+    expect(body).toMatch(/召唤上限\s*2|Summon Cap\s*2/);
   });
 
   it('updates the detail panel on keyboard focus', () => {

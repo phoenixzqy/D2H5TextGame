@@ -9,7 +9,7 @@
  */
 
 import type { DamageType } from '../types/attributes';
-import { maxSkeletonsForLevel } from './scaling';
+import { maxFirstThreeThenEveryThreeForLevel, maxSkeletonsForLevel } from './scaling';
 
 export interface DisplaySkillSource {
   readonly id: string;
@@ -35,7 +35,7 @@ export interface DisplaySkillSource {
     readonly cooldownPerLevel?: number;
     readonly costPerLevel?: number;
     readonly summonMaxCount?: {
-      readonly kind: 'first-three-then-every-three';
+      readonly kind: 'first-three-then-every-three' | 'raise-skeleton-1-6-12-cap-3';
     };
   };
 }
@@ -117,8 +117,11 @@ function damageRows(skill: DisplaySkillSource, rank: number): readonly SkillDama
 }
 
 function summonCap(skill: DisplaySkillSource, rank: number): number | undefined {
-  if (skill.scaling?.summonMaxCount?.kind === 'first-three-then-every-three') {
+  if (skill.scaling?.summonMaxCount?.kind === 'raise-skeleton-1-6-12-cap-3') {
     return maxSkeletonsForLevel(rank);
+  }
+  if (skill.scaling?.summonMaxCount?.kind === 'first-three-then-every-three') {
+    return maxFirstThreeThenEveryThreeForLevel(rank);
   }
   return skill.summon ? 1 : undefined;
 }

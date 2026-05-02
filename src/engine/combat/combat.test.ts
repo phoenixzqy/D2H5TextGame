@@ -85,6 +85,42 @@ describe('runBattle (timeline scheduler)', () => {
     expect(a.winner).toBe(b.winner);
   });
 
+  it('Blizzard hits every enemy inside its 3x3 grid area', () => {
+    const player = mkUnit({
+      id: 'sorc',
+      side: 'player',
+      kind: 'hero',
+      skillOrder: ['sorceress.blizzard'],
+      mana: 9999,
+      level: 30,
+      stats: { ...baseStats, mana: 9999, manaMax: 9999, attackSpeed: 200 }
+    });
+    const enemies = [
+      mkUnit({ id: 'e00', side: 'enemy', gridPosition: { row: 0, col: 0 }, stats: { ...baseStats, life: 9999, lifeMax: 9999 }, life: 9999 }),
+      mkUnit({ id: 'e01', side: 'enemy', gridPosition: { row: 0, col: 1 }, stats: { ...baseStats, life: 9999, lifeMax: 9999 }, life: 9999 }),
+      mkUnit({ id: 'e02', side: 'enemy', gridPosition: { row: 0, col: 2 }, stats: { ...baseStats, life: 9999, lifeMax: 9999 }, life: 9999 }),
+      mkUnit({ id: 'e10', side: 'enemy', gridPosition: { row: 1, col: 0 }, stats: { ...baseStats, life: 9999, lifeMax: 9999 }, life: 9999 }),
+      mkUnit({ id: 'e11', side: 'enemy', gridPosition: { row: 1, col: 1 }, stats: { ...baseStats, life: 9999, lifeMax: 9999 }, life: 9999 }),
+      mkUnit({ id: 'e12', side: 'enemy', gridPosition: { row: 1, col: 2 }, stats: { ...baseStats, life: 9999, lifeMax: 9999 }, life: 9999 }),
+      mkUnit({ id: 'e20', side: 'enemy', gridPosition: { row: 2, col: 0 }, stats: { ...baseStats, life: 9999, lifeMax: 9999 }, life: 9999 }),
+      mkUnit({ id: 'e21', side: 'enemy', gridPosition: { row: 2, col: 1 }, stats: { ...baseStats, life: 9999, lifeMax: 9999 }, life: 9999 }),
+      mkUnit({ id: 'e22', side: 'enemy', gridPosition: { row: 2, col: 2 }, stats: { ...baseStats, life: 9999, lifeMax: 9999 }, life: 9999 })
+    ];
+
+    const result = runBattle({ seed: 2026, playerTeam: [player], enemyTeam: enemies });
+    const firstCastIndex = result.events.findIndex(
+      (event) => event.kind === 'action' && event.actor === 'sorc' && event.skillId === 'sorceress.blizzard'
+    );
+    expect(firstCastIndex).toBeGreaterThanOrEqual(0);
+    const hitIds = result.events
+      .slice(firstCastIndex + 1)
+      .filter((event): event is Extract<BattleEvent, { kind: 'damage' }> => event.kind === 'damage' && event.source === 'sorc')
+      .slice(0, 9)
+      .map((event) => event.target);
+
+    expect(new Set(hitIds)).toEqual(new Set(enemies.map((enemy) => enemy.id)));
+  });
+
   it('summon-on-start spawns a real CombatUnit on round 1', () => {
     const player = mkUnit({
       id: 'p1',
@@ -119,6 +155,47 @@ describe('runBattle (timeline scheduler)', () => {
     expect(first.unit.name).toBe('Skeleton Warrior');
     // playerTeam contains the spawned skeleton
     expect(result.playerTeam.some((u) => u.id === first.unit.id)).toBe(true);
+  });
+
+  it('summons use the first unoccupied preferred formation slot', () => {
+    const player = mkUnit({
+      id: 'p1',
+      side: 'player',
+      skillOrder: ['necromancer.raise_skeleton'],
+      kind: 'hero',
+      level: 10,
+      mana: 999,
+      stats: { ...baseStats, mana: 999, manaMax: 999, attack: 1 },
+      gridPosition: { row: 1, col: 1 },
+      summonGridPositions: [
+        { row: 2, col: 0 },
+        { row: 2, col: 1 }
+      ]
+    });
+    const livingSummon = mkUnit({
+      id: 'player-hero-summon-skeleton-existing',
+      side: 'player',
+      kind: 'summon',
+      summonOwnerId: 'p1',
+      gridPosition: { row: 2, col: 1 }
+    });
+    const enemy = mkUnit({
+      id: 'e1',
+      side: 'enemy',
+      stats: { ...baseStats, life: 5000, lifeMax: 5000, attackSpeed: 1 },
+      life: 5000
+    });
+    const result = runBattle({
+      seed: 101,
+      playerTeam: [player, livingSummon],
+      enemyTeam: [enemy],
+      maxRounds: 4
+    });
+    const summoned = result.events.find(
+      (e): e is Extract<BattleEvent, { kind: 'summon' }> => e.kind === 'summon'
+    );
+
+    expect(summoned?.unit.gridPosition).toEqual({ row: 2, col: 0 });
   });
 
   it('does NOT recast active buffs', () => {

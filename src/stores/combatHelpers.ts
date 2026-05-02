@@ -29,8 +29,10 @@ import { useMapStore } from './mapStore';
 import { usePlayerStore } from './playerStore';
 import { useMercStore } from './mercStore';
 import { mercToCombatUnit } from './mercToCombatUnit';
+import { useFormationStore } from './formationStore';
 import { createRng, hashSeed } from '@/engine/rng';
 import { getIdleEliteMisses, resetIdleEliteMisses, setIdleEliteMisses } from './idleElitePity';
+import { resolveSummonDisplayName } from './summonDisplayName';
 
 const CHALLENGE_ORDINAL_PERIOD = 360360;
 let manualChallengeOrdinal = 0;
@@ -44,6 +46,7 @@ let manualChallengeOrdinal = 0;
  */
 export function playerToCombatUnit(player: Player): CombatUnit {
   const equippedWeapon = resolveEquippedWeapon(player.equipment);
+  const formation = useFormationStore.getState();
   return {
     id: player.id,
     name: player.name,
@@ -61,11 +64,13 @@ export function playerToCombatUnit(player: Player): CombatUnit {
     summonedAdds: false,
     kind: 'hero',
     equippedWeapon,
+    gridPosition: formation.playerPosition,
+    summonGridPositions: formation.summonPositions,
     ...(player.skillLevels ? { skillLevels: player.skillLevels } : {})
   };
 }
 
-function resolveEquippedWeapon(
+export function resolveEquippedWeapon(
   equipment: readonly Item[]
 ): {
   weaponType?: import('@/engine/types/items').WeaponType;
@@ -172,6 +177,13 @@ export function resolveMonsterDisplayName(unit: CombatUnit): string {
     ? unit.name.slice(def.name.length)
     : '';
   return `${localized}${suffix}`;
+}
+
+export function resolveCombatUnitDisplayName(unit: CombatUnit): string {
+  const kind = inferKind(unit);
+  if (kind === 'monster') return resolveMonsterDisplayName(unit);
+  if (kind === 'summon') return resolveSummonDisplayName(unit);
+  return unit.name;
 }
 
 /**
@@ -282,7 +294,7 @@ interface ActiveRun {
   readonly act: 1 | 2 | 3 | 4 | 5;
   readonly seed: number;
   readonly mode: 'manual' | 'idle';
-  readonly playerUnit: CombatUnit;
+  playerUnit: CombatUnit;
   /** Index of the wave currently being played (0-based). */
   waveIdx: number;
   /** Ongoing alive player-side units carried between waves. */
@@ -294,6 +306,45 @@ let activeRun: ActiveRun | null = null;
 /** @returns whether a sub-area run is currently active. */
 export function hasActiveSubAreaRun(): boolean {
   return activeRun !== null;
+}
+
+/**
+ * Push the latest player skill/equipment combat configuration into the active
+ * run and, when requested, replay the current wave so it takes effect now.
+ */
+export function refreshActivePlayerCombatConfig({
+  replayCurrentWave = false
+}: {
+  readonly replayCurrentWave?: boolean;
+} = {}): void {
+  if (!activeRun) return;
+  const player = usePlayerStore.getState().player;
+  if (!player) return;
+
+  const fresh = playerToCombatUnit(player);
+  const mergeConfig = (unit: CombatUnit): CombatUnit =>
+    unit.id === fresh.id
+      ? {
+          ...unit,
+          skillOrder: fresh.skillOrder,
+          ...(fresh.skillLevels ? { skillLevels: fresh.skillLevels } : {}),
+          ...(fresh.equippedWeapon ? { equippedWeapon: fresh.equippedWeapon } : {}),
+          ...(fresh.summonGridPositions ? { summonGridPositions: fresh.summonGridPositions } : {})
+        }
+      : unit;
+
+  activeRun.playerUnit = mergeConfig(activeRun.playerUnit);
+  activeRun.carryPlayerTeam = activeRun.carryPlayerTeam.map(mergeConfig);
+
+  const combat = useCombatStore.getState();
+  if (replayCurrentWave && combat.inCombat) {
+    playWave(activeRun.waveIdx);
+    return;
+  }
+
+  useCombatStore.setState((state) => ({
+    playerTeam: state.playerTeam.map(mergeConfig)
+  }));
 }
 
 /** Reset transient online-idle elite pity when the player stops idle farming. */
@@ -365,10 +416,11 @@ export function startSubAreaRun(opts: {
       );
 
   const seed = planSeed;
+  const formation = useFormationStore.getState();
   const playerUnit = playerToCombatUnit(playerState.player);
   const fieldedMerc = useMercStore.getState().getFieldedMerc();
   const playerTeam: CombatUnit[] = fieldedMerc
-    ? [playerUnit, mercToCombatUnit(fieldedMerc)]
+    ? [playerUnit, mercToCombatUnit(fieldedMerc, formation.mercPosition)]
     : [playerUnit];
 
   activeRun = {
@@ -513,7 +565,7 @@ function playWave(waveIdx: number): void {
 
   const unitMap = new Map<string, string>();
   [...result.playerTeam, ...result.enemyTeam].forEach((unit) => {
-    unitMap.set(unit.id, resolveMonsterDisplayName(unit));
+    unitMap.set(unit.id, resolveCombatUnitDisplayName(unit));
   });
 
   const playbackEvents: readonly RecordedBattleEvent[] = wave.bossIntro

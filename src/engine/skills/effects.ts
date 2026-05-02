@@ -11,6 +11,7 @@
 
 import type { ComboTag, SkillTarget, SkillRequirement } from '../types/skills';
 import type { DamageType } from '../types/attributes';
+import type { AoeShape } from '../combat/grid';
 
 /** Damage primitive. */
 export interface DamageEffect {
@@ -56,7 +57,9 @@ export interface DebuffEffect {
 }
 
 /** Summon primitive. */
-export type SummonMaxCountScalingKind = 'first-three-then-every-three';
+export type SummonMaxCountScalingKind =
+  | 'first-three-then-every-three'
+  | 'raise-skeleton-1-6-12-cap-3';
 
 /** Declarative max-summon-count scaling, evaluated from effective skill level. */
 export interface SummonMaxCountScaling {
@@ -95,6 +98,8 @@ export interface RegisteredSkill {
   readonly cooldown: number;
   readonly manaCost: number;
   readonly effects: readonly SkillEffect[];
+  /** Optional grid shape used when target is `area-enemies`. */
+  readonly aoeShape?: AoeShape;
   /** Buff skills are skipped if the buff is already active. */
   readonly isBuff?: boolean;
   /** Summon-on-start (cast once at combat start). */

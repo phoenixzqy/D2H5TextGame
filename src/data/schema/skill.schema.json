@@ -57,6 +57,11 @@
       "type": "string",
       "enum": ["self", "single-enemy", "all-enemies", "area-enemies", "single-ally", "all-allies", "summon"]
     },
+    "aoeShape": {
+      "type": "string",
+      "enum": ["single", "line-3", "column-3", "cross", "box-3x3", "all-enemies"],
+      "description": "Optional AOE shape on the 3-column battle grid. Does not imply attack range or movement."
+    },
     "cooldown": {
       "type": "number",
       "minimum": 0,
@@ -131,7 +136,7 @@
           "properties": {
             "kind": {
               "type": "string",
-              "enum": ["first-three-then-every-three"]
+              "enum": ["first-three-then-every-three", "raise-skeleton-1-6-12-cap-3"]
             }
           }
         }

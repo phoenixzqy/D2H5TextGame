@@ -77,4 +77,25 @@ describe('combatStore — Bug #1 (reset on second battle)', () => {
     expect(s.totalWaves).toBe(4);
     expect(s.subAreaRunId).toBe('areas/a1-cold-plains');
   });
+
+  it('positions recorded battle initial teams for grid rendering before playback finishes', () => {
+    const player = unit('p1', 'player');
+    const enemies = [unit('e1', 'enemy'), unit('e2', 'enemy'), unit('e3', 'enemy')];
+
+    useCombatStore.getState().setRecordedBattle({
+      initialPlayerTeam: [player],
+      initialEnemyTeam: enemies,
+      events: [],
+      unitNameMap: new Map(),
+      outcome: { winner: null, finalPlayerTeam: [player], finalEnemyTeam: enemies }
+    });
+
+    const state = useCombatStore.getState();
+    expect(state.playerTeam[0]?.gridPosition).toEqual({ row: 1, col: 1 });
+    expect(state.enemyTeam.map((enemy) => enemy.gridPosition)).toEqual([
+      { row: 1, col: 1 },
+      { row: 0, col: 1 },
+      { row: 1, col: 0 }
+    ]);
+  });
 });

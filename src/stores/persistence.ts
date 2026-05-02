@@ -22,6 +22,7 @@ import { useMapStore } from './mapStore';
 import { useMercStore } from './mercStore';
 import { useMetaStore } from './metaStore';
 import { usePlayerStore } from './playerStore';
+import { useFormationStore } from './formationStore';
 
 /** Debounce window for auto-save writes, in milliseconds. */
 export const AUTO_SAVE_DEBOUNCE_MS = 500;
@@ -68,6 +69,7 @@ export function snapshotStores(): SaveCurrent | null {
   const merc = useMercStore.getState();
   const map = useMapStore.getState();
   const meta = useMetaStore.getState();
+  const formation = useFormationStore.getState();
 
   return buildSave({
     player,
@@ -94,6 +96,11 @@ export function snapshotStores(): SaveCurrent | null {
       settings: meta.settings,
       idleState: meta.idleState,
       gachaState: meta.gachaState
+    },
+    formation: {
+      playerPosition: formation.playerPosition,
+      mercPosition: formation.mercPosition,
+      summonPositions: [...formation.summonPositions]
     }
   });
 }
@@ -157,6 +164,7 @@ export function startAutoSave(): void {
   unsubs.push(useMapStore.subscribe(sub));
   unsubs.push(useMercStore.subscribe(sub));
   unsubs.push(useMetaStore.subscribe(sub));
+  unsubs.push(useFormationStore.subscribe(sub));
   // Touch the combat store import so eslint doesn't flag it as unused — we
   // explicitly chose not to subscribe.
   void useCombatStore;
@@ -214,6 +222,7 @@ export async function hydrateFromSave(): Promise<boolean> {
         idleState: data.meta.idleState,
         gachaState: data.meta.gachaState
       });
+      useFormationStore.getState().hydrate(data.formation);
       seedItemSeqFromHydratedSave(data);
     } finally {
       suppressSaves = false;
@@ -276,4 +285,5 @@ export function __resetPersistenceForTests(): void {
   stopAutoSave();
   suppressSaves = false;
   useHydrationStore.setState({ status: 'idle', error: null });
+  useFormationStore.getState().reset();
 }

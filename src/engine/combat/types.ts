@@ -17,6 +17,12 @@ export type CombatSide = 'player' | 'enemy';
 /** Tier of a monster — drives loot/affix/enrage rules. */
 export type MonsterTier = 'trash' | 'elite' | 'champion' | 'rare-elite' | 'rare-minion' | 'boss' | 'chapter-boss';
 
+/** Integer battle-grid position. Used for presentation and AOE targeting only. */
+export interface GridPosition {
+  readonly row: number;
+  readonly col: number;
+}
+
 /** Active status effect on a combat unit. */
 export interface ActiveStatus {
   readonly id: string;
@@ -102,6 +108,8 @@ export interface CombatUnit {
   readonly kind?: 'hero' | 'merc' | 'summon' | 'monster';
   /** Owner id of a summon. Set by the engine when summons are spawned. */
   readonly summonOwnerId?: string;
+  /** Summon template id used for per-template caps and UI localization. */
+  readonly summonTemplateId?: string;
   /**
    * Snapshot of the unit's currently equipped weapon, used by
    * {@link import('../ai/policy').chooseSkill} to gate skills with
@@ -115,6 +123,15 @@ export interface CombatUnit {
     readonly weaponType?: WeaponType;
     readonly handedness?: Handedness;
   };
+  /**
+   * Optional 3-column battle-grid position.
+   *
+   * This is not range or movement. The engine uses it only to resolve
+   * position-aware AOE shapes and the UI uses it to render formation.
+   */
+  readonly gridPosition?: GridPosition;
+  /** Preferred summon spawn positions for this unit's summon skills. */
+  readonly summonGridPositions?: readonly GridPosition[];
 }
 
 /**

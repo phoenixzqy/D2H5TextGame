@@ -35,13 +35,15 @@ export interface BackpackGridProps {
   readonly capacity: number;
   readonly selectedId: string | null;
   readonly onSelect: (id: string | null) => void;
+  readonly upgradeItemIds?: ReadonlySet<string> | undefined;
 }
 
 export function BackpackGrid({
   items,
   capacity,
   selectedId,
-  onSelect
+  onSelect,
+  upgradeItemIds
 }: BackpackGridProps): JSX.Element {
   const { t } = useTranslation('inventory');
 
@@ -63,26 +65,71 @@ export function BackpackGrid({
       {cells.map((it, idx) => (
         <li key={it ? `${it.id}-${String(idx)}` : `empty-${String(idx)}`} className="aspect-square">
           {it ? (
-            <Tooltip content={<ItemTooltip item={it} />}>
-              <GameCard
-                variant="item"
-                size="md"
-                fluid
-                name={tItemName(t, it)}
-                rarity={it.rarity}
-                image={resolveItemIcon(it.baseId) ?? undefined}
-                itemGlyph={glyphForItem(it)}
-                selected={selectedId === it.id}
-                onClick={() => { onSelect(selectedId === it.id ? null : it.id); }}
-                testId={`inv-item-${it.id}`}
-              />
-            </Tooltip>
+            <div className="relative h-full w-full">
+              <Tooltip content={<ItemTooltip item={it} />}>
+                <GameCard
+                  variant="item"
+                  size="md"
+                  fluid
+                  name={tItemName(t, it)}
+                  rarity={it.rarity}
+                  image={resolveItemIcon(it.baseId) ?? undefined}
+                  itemGlyph={glyphForItem(it)}
+                  selected={selectedId === it.id}
+                  onClick={() => { onSelect(selectedId === it.id ? null : it.id); }}
+                  testId={`inv-item-${it.id}`}
+                />
+              </Tooltip>
+              {upgradeItemIds?.has(it.id) ? (
+                <UpgradeChevron label={t('upgradeBadge')} itemId={it.id} />
+              ) : null}
+            </div>
           ) : (
             <EmptySlot index={idx} label={t('emptySlot', { defaultValue: 'Empty slot' })} />
           )}
         </li>
       ))}
     </ul>
+  );
+}
+
+function UpgradeChevron({ label, itemId }: { label: string; itemId: string }): JSX.Element {
+  return (
+    <span
+      role="img"
+      aria-label={label}
+      title={label}
+      className="pointer-events-none absolute right-1 top-1 z-10 flex h-5 w-5 items-center justify-center drop-shadow"
+      data-testid={`inv-upgrade-badge-${itemId}`}
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" className="h-full w-full overflow-visible">
+        <path
+          d="M4 15.5 12 7.5l8 8"
+          fill="none"
+          stroke="rgb(5 10 5)"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="8"
+        />
+        <path
+          d="M4 15.5 12 7.5l8 8"
+          fill="none"
+          stroke="rgb(134 239 172)"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="5"
+        />
+        <path
+          d="M6.5 14.25 12 8.75l5.5 5.5"
+          fill="none"
+          stroke="rgb(220 252 231)"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1.5"
+          opacity="0.85"
+        />
+      </svg>
+    </span>
   );
 }
 

@@ -12,19 +12,21 @@
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button, Panel, ScreenShell, GameCard, getClassPortraitUrl, getMercPortraitUrl, getMonsterImageUrl, getSummonImageUrl, tDataKey, tItemName } from '@/ui';
-import { useCombatStore, useMapStore, useMetaStore, usePlayerStore } from '@/stores';
+import { Button, Modal, Panel, ScreenShell, GameCard, getClassPortraitUrl, getMercPortraitUrl, getMonsterImageUrl, getSummonImageUrl, tDataKey, tItemName } from '@/ui';
+import { useCombatStore, useFormationStore, useMapStore, useMetaStore, usePlayerStore } from '@/stores';
 import {
   startSubAreaRun,
   advanceWaveOrFinish,
   abortSubAreaRun,
   hasActiveSubAreaRun,
-  resetIdleElitePity
+  resetIdleElitePity,
+  resolveMonsterDisplayName
 } from '@/stores/combatHelpers';
+import { resolveSummonDisplayName } from '@/stores/summonDisplayName';
 import { nextSubAreaInAct } from '@/stores/subAreaResolver';
 import type { CombatLogEntry } from '@/stores/combatStore';
 import type { RecordedBattleEvent } from '@/engine/combat/combat';
-import type { CombatUnit } from '@/engine/combat/types';
+import type { CombatUnit, GridPosition } from '@/engine/combat/types';
 import { inferKind } from '@/engine/combat/types';
 
 const MAX_LOG = 200;
@@ -90,6 +92,7 @@ export function CombatScreen() {
 
   const recentLog = useMemo(() => log.slice(-MAX_LOG), [log]);
   const [speed, setSpeed] = useState<Speed>(1);
+  const [formationOpen, setFormationOpen] = useState(false);
   // Inter-wave countdown banner; null = no pending advance.
   const [nextWaveCountingDown, setNextWaveCountingDown] = useState(false);
   const isIdleLoop = Boolean(idleTarget && currentSubAreaId && (idleTarget === currentSubAreaId || idleTarget === currentSubAreaId.replace(/^areas\/act([1-5])-/, 'a$1-')));
@@ -301,6 +304,14 @@ export function CombatScreen() {
             <Button
               variant="secondary"
               className="min-h-[40px] px-3 text-sm"
+              onClick={() => { setFormationOpen(true); }}
+              data-testid="formation-editor-open"
+            >
+              {t('formation.edit')}
+            </Button>
+            <Button
+              variant="secondary"
+              className="min-h-[40px] px-3 text-sm"
               onClick={togglePause}
               aria-pressed={isPaused}
               disabled={playbackComplete}
@@ -346,47 +357,14 @@ export function CombatScreen() {
         </div>
       }
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-6xl mx-auto">
-        <Panel title={t('allies')}>
-          {playerTeam.length === 0 ? (
-            <p className="text-sm text-d2-white/60">
-              {t('noAllies')}
-            </p>
-          ) : (
-            <div className="flex flex-wrap gap-2 content-start" data-testid="allies-list">
-              {orderAlliesWithSummons(playerTeam).map((u) => (
-                <UnitCard
-                  key={u.id}
-                  unit={u}
-                  size="sm"
-                  acting={u.id === actingActorId}
-                  eventFx={unitFx.get(u.id)}
-                />
-              ))}
-            </div>
-          )}
-        </Panel>
-
-        <Panel title={t('enemies')}>
-          {enemyTeam.length === 0 ? (
-            <p className="text-sm text-d2-white/60">
-              {t('noEnemies')}
-            </p>
-          ) : (
-            <div className="flex flex-wrap gap-2 content-start" data-testid="enemies-list">
-              {enemyTeam.map((u) => (
-                <UnitCard
-                  key={u.id}
-                  unit={u}
-                  size="sm"
-                  acting={u.id === actingActorId}
-                  eventFx={unitFx.get(u.id)}
-                />
-              ))}
-            </div>
-          )}
-        </Panel>
-      </div>
+      <Battlefield
+        allies={orderAlliesWithSummons(playerTeam)}
+        enemies={enemyTeam}
+        actingActorId={actingActorId}
+        unitFx={unitFx}
+        currentWave={currentWave}
+        totalWaves={totalWaves}
+      />
 
       <div className="max-w-6xl mx-auto mt-3">
         {isIdleLoop && (
@@ -484,26 +462,151 @@ export function CombatScreen() {
           </Panel>
         </div>
       )}
+      <FormationEditorModal isOpen={formationOpen} onClose={() => { setFormationOpen(false); }} />
     </ScreenShell>
+  );
+}
+
+function Battlefield({
+  allies,
+  enemies,
+  actingActorId,
+  unitFx,
+  currentWave,
+  totalWaves
+}: {
+  readonly allies: readonly CombatUnit[];
+  readonly enemies: readonly CombatUnit[];
+  readonly actingActorId: string | null;
+  readonly unitFx: ReadonlyMap<string, UnitEventFx>;
+  readonly currentWave: number;
+  readonly totalWaves: number;
+}) {
+  const { t } = useTranslation('combat');
+  return (
+    <Panel title={t('battlefield.title')} className="max-w-6xl mx-auto">
+      <div
+        className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] gap-2 sm:gap-4 items-center"
+        data-testid="combat-battlefield"
+      >
+        <BattleSideGrid
+          title={t('allies')}
+          empty={t('noAllies')}
+          units={allies}
+          side="player"
+          actingActorId={actingActorId}
+          unitFx={unitFx}
+        />
+        <div className="flex min-h-[18rem] flex-col items-center justify-center gap-3 text-center">
+          <div className="rounded-full border border-d2-gold/50 bg-black/50 px-3 py-2 shadow-lg shadow-d2-gold/10">
+            <div className="text-[10px] uppercase tracking-[0.2em] text-d2-white/50">{t('battlefield.wave')}</div>
+            <div className="font-serif text-xl text-d2-gold">{currentWave}/{totalWaves}</div>
+          </div>
+          <div className="h-24 w-px bg-gradient-to-b from-transparent via-d2-gold/60 to-transparent" aria-hidden />
+          <div className="rounded border border-red-400/40 bg-red-950/30 px-3 py-1 text-xs uppercase tracking-[0.2em] text-red-200">
+            {t('battlefield.clash')}
+          </div>
+        </div>
+        <BattleSideGrid
+          title={t('enemies')}
+          empty={t('noEnemies')}
+          units={enemies}
+          side="enemy"
+          actingActorId={actingActorId}
+          unitFx={unitFx}
+        />
+      </div>
+    </Panel>
+  );
+}
+
+function BattleSideGrid({
+  title,
+  empty,
+  units,
+  side,
+  actingActorId,
+  unitFx
+}: {
+  readonly title: string;
+  readonly empty: string;
+  readonly units: readonly CombatUnit[];
+  readonly side: 'player' | 'enemy';
+  readonly actingActorId: string | null;
+  readonly unitFx: ReadonlyMap<string, UnitEventFx>;
+}) {
+  const maxRow = Math.max(
+    2,
+    ...units.map((unit) => unit.gridPosition?.row ?? 0)
+  );
+  const cells = Array.from({ length: (maxRow + 1) * 3 }, (_, index) => {
+    const row = Math.floor(index / 3);
+    const col = index % 3;
+    return { row, col };
+  });
+  return (
+    <section aria-label={title} className="min-w-0">
+      <div className="mb-2 text-center text-xs uppercase tracking-[0.18em] text-d2-white/60">{title}</div>
+      <div
+        className="grid grid-cols-3 gap-1.5 sm:gap-2"
+        data-testid={side === 'player' ? 'allies-grid' : 'enemies-grid'}
+      >
+        {cells.map((cell) => {
+          const cellUnits = units.filter((candidate) => sameGridPosition(candidate.gridPosition, cell));
+          const unit = cellUnits[0];
+          return (
+            <div
+              key={`${String(cell.row)}-${String(cell.col)}`}
+              className="min-h-[9rem] sm:min-h-[10.5rem] rounded-lg border border-d2-border/60 bg-black/25 p-1"
+              data-testid={`${side}-grid-cell-${String(cell.row)}-${String(cell.col)}`}
+            >
+              {unit ? (
+                <UnitCard
+                  unit={unit}
+                  size="sm"
+                  compact
+                  acting={unit.id === actingActorId}
+                  eventFx={unitFx.get(unit.id)}
+                  stackCount={cellUnits.length}
+                />
+              ) : (
+                <div className="flex h-full min-h-[8rem] sm:min-h-[9.5rem] items-center justify-center rounded border border-dashed border-d2-border/40 text-[10px] text-d2-white/25">
+                  {empty}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </section>
   );
 }
 
 function UnitCard({
   unit,
   size,
+  compact = false,
   acting = false,
   eventFx,
+  stackCount = 1,
 }: {
   unit: CombatUnit;
   size: 'sm' | 'md';
+  compact?: boolean;
   acting?: boolean;
   eventFx?: UnitEventFx | undefined;
+  stackCount?: number;
 }) {
   const { t } = useTranslation('combat');
   const player = usePlayerStore((s) => s.player);
   const kind = inferKind(unit);
   const isSummon = kind === 'summon';
   const isPlayerSide = unit.side === 'player';
+  const displayName = !isPlayerSide && kind === 'monster'
+    ? resolveMonsterDisplayName(unit)
+    : isPlayerSide && isSummon
+      ? resolveSummonDisplayName(unit)
+    : unit.name;
 
   const isDead = unit.life <= 0;
   const variant: 'character' | 'monster' = isPlayerSide ? 'character' : 'monster';
@@ -516,7 +619,7 @@ function UnitCard({
   //  - enemy                                    → monster image
   let avatarSrc: string | undefined;
   if (isSummon) {
-    avatarSrc = getSummonImageUrl(extractMonsterSlug(unit.name, unit.id));
+    avatarSrc = getSummonImageUrl(unit.summonTemplateId ?? extractMonsterSlug(unit.name, unit.id));
   } else if (isMerc) {
     // Combat unit id is `merc-<mercDefId>`; strip prefix to recover def id.
     const mercDefId = unit.id.startsWith('merc-') ? unit.id.slice('merc-'.length) : unit.id;
@@ -583,16 +686,65 @@ function UnitCard({
     >
       <span className="sr-only" data-testid={sideTestId} />
       {isSummon && <span className="sr-only" data-testid="summon-badge" />}
-      <GameCard
-        variant={variant}
-        size={size}
-        name={unit.name}
-        subtitle={subtitle}
-        rarity={rarity}
-        image={avatarSrc}
-        bars={bars}
-        stats={size === 'md' ? [{ label: 'LV', value: unit.level }] : undefined}
-      />
+      {compact ? (
+        <div
+          className={[
+            'relative flex h-full min-h-[4.5rem] flex-col overflow-hidden rounded border bg-d2-panel text-d2-white',
+            rarity === 'boss'
+              ? 'border-d2-boss'
+              : rarity === 'rareElite'
+                ? 'border-d2-runeword'
+                : rarity === 'champion'
+                  ? 'border-d2-unique'
+                  : isPlayerSide
+                    ? 'border-d2-gold/60'
+                    : 'border-d2-border'
+          ].join(' ')}
+          title={displayName}
+        >
+          <div className="min-h-0 flex-1 overflow-hidden bg-black/30">
+            {avatarSrc ? (
+              <img
+                src={avatarSrc}
+                alt={displayName}
+                className={[
+                  'h-full w-full',
+                  isSummon && unit.summonTemplateId !== 'skeleton'
+                    ? 'object-contain p-2'
+                    : 'object-cover object-top'
+                ].join(' ')}
+              />
+            ) : (
+              <div className="flex h-full items-center justify-center text-xs text-d2-white/40">{displayName.slice(0, 2)}</div>
+            )}
+          </div>
+          <div className="space-y-0.5 bg-black/70 px-1 py-0.5">
+            <div className="truncate text-[10px] leading-tight text-d2-white/80">{displayName}</div>
+            <div className="h-1 rounded bg-black/60">
+              <div
+                className="h-full rounded bg-red-600"
+                style={{ width: `${Math.max(0, Math.min(100, (unit.life / Math.max(1, unit.stats.life)) * 100)).toFixed(2)}%` }}
+              />
+            </div>
+          </div>
+          {stackCount > 1 ? (
+            <div className="absolute left-1 top-1 rounded-full border border-d2-gold/60 bg-black/80 px-1.5 text-[10px] font-bold text-d2-gold">
+              +{stackCount - 1}
+            </div>
+          ) : null}
+        </div>
+      ) : (
+        <GameCard
+          variant={variant}
+          size={size}
+          name={displayName}
+          subtitle={subtitle}
+          rarity={rarity}
+          image={avatarSrc}
+          bars={bars}
+          stats={size === 'md' ? [{ label: 'LV', value: unit.level }] : undefined}
+        />
+      )}
       {eventFx ? (
         <div
           className={[
@@ -606,7 +758,7 @@ function UnitCard({
           {eventFxLabel(eventFx, t)}
         </div>
       ) : null}
-      {chips.length > 0 ? (
+      {!compact && chips.length > 0 ? (
         <div
           className="mt-1 flex max-w-[11rem] flex-wrap gap-1"
           aria-label={t('effect.activeEffects')}
@@ -637,6 +789,125 @@ function UnitCard({
       ) : null}
     </div>
   );
+}
+
+type FormationRole = 'player' | 'merc' | `summon-${number}`;
+
+function FormationEditorModal({ isOpen, onClose }: { readonly isOpen: boolean; readonly onClose: () => void }) {
+  const { t } = useTranslation('combat');
+  const playerPosition = useFormationStore((s) => s.playerPosition);
+  const mercPosition = useFormationStore((s) => s.mercPosition);
+  const summonPositions = useFormationStore((s) => s.summonPositions);
+  const setPlayerPosition = useFormationStore((s) => s.setPlayerPosition);
+  const setMercPosition = useFormationStore((s) => s.setMercPosition);
+  const setSummonPosition = useFormationStore((s) => s.setSummonPosition);
+  const resetFormation = useFormationStore((s) => s.reset);
+  const [selected, setSelected] = useState<FormationRole>('player');
+
+  const roles: readonly FormationRole[] = ['player', 'merc', 'summon-0', 'summon-1', 'summon-2'];
+  const selectedPosition = selected === 'player'
+    ? playerPosition
+    : selected === 'merc'
+      ? mercPosition
+      : summonPositions[Number(selected.split('-')[1] ?? 0)] ?? summonPositions[0];
+
+  const assign = (position: GridPosition): void => {
+    if (selected === 'player') {
+      setPlayerPosition(position);
+    } else if (selected === 'merc') {
+      setMercPosition(position);
+    } else {
+      setSummonPosition(Number(selected.split('-')[1] ?? 0), position);
+    }
+  };
+
+  return (
+    <Modal isOpen={isOpen} onClose={onClose} title={t('formation.title')} className="max-w-lg">
+      <div className="space-y-4">
+        <p className="text-sm text-d2-white/70">{t('formation.help')}</p>
+        <div className="flex flex-wrap gap-2" role="listbox" aria-label={t('formation.unitSelect')}>
+          {roles.map((role) => (
+            <button
+              key={role}
+              type="button"
+              onClick={() => { setSelected(role); }}
+              className={[
+                'min-h-[44px] rounded border px-3 py-2 text-sm',
+                selected === role
+                  ? 'border-d2-gold bg-d2-gold/20 text-d2-gold'
+                  : 'border-d2-border bg-black/30 text-d2-white/80'
+              ].join(' ')}
+              aria-selected={selected === role}
+              role="option"
+            >
+              {formationRoleLabel(role, t)}
+            </button>
+          ))}
+        </div>
+        <div
+          className="grid grid-cols-3 gap-2"
+          role="grid"
+          aria-label={t('formation.grid')}
+          data-testid="formation-editor-grid"
+        >
+          {Array.from({ length: 9 }, (_, index) => {
+            const position = { row: Math.floor(index / 3), col: index % 3 };
+            const occupant = occupantForFormationCell(position, playerPosition, mercPosition, summonPositions, t);
+            const active = sameGridPosition(selectedPosition, position);
+            return (
+              <button
+                key={`${String(position.row)}-${String(position.col)}`}
+                type="button"
+                className={[
+                  'min-h-[64px] rounded-lg border p-2 text-center text-xs transition-colors',
+                  active
+                    ? 'border-d2-gold bg-d2-gold/20 text-d2-gold'
+                    : 'border-d2-border bg-black/40 text-d2-white/70 hover:border-d2-gold/60'
+                ].join(' ')}
+                onClick={() => { assign(position); }}
+                role="gridcell"
+                data-testid={`formation-cell-${String(position.row)}-${String(position.col)}`}
+              >
+                <div className="text-[10px] uppercase tracking-wide text-d2-white/40">
+                  {t('formation.cell', { row: position.row + 1, col: position.col + 1 })}
+                </div>
+                <div className="mt-1 min-h-[1rem] font-semibold">{occupant}</div>
+              </button>
+            );
+          })}
+        </div>
+        <div className="flex flex-wrap justify-end gap-2">
+          <Button variant="secondary" onClick={resetFormation}>{t('formation.reset')}</Button>
+          <Button variant="primary" onClick={onClose}>{t('formation.done')}</Button>
+        </div>
+      </div>
+    </Modal>
+  );
+}
+
+function sameGridPosition(a: GridPosition | undefined, b: GridPosition | undefined): boolean {
+  return a !== undefined && b !== undefined && a.row === b.row && a.col === b.col;
+}
+
+function formationRoleLabel(role: FormationRole, t: ReturnType<typeof useTranslation>['t']): string {
+  if (role === 'player') return t('formation.role.player');
+  if (role === 'merc') return t('formation.role.merc');
+  const index = Number(role.split('-')[1] ?? 0) + 1;
+  return t('formation.role.summon', { index });
+}
+
+function occupantForFormationCell(
+  position: GridPosition,
+  playerPosition: GridPosition,
+  mercPosition: GridPosition,
+  summonPositions: readonly GridPosition[],
+  t: ReturnType<typeof useTranslation>['t']
+): string {
+  if (sameGridPosition(position, playerPosition)) return t('formation.role.player');
+  if (sameGridPosition(position, mercPosition)) return t('formation.role.merc');
+  const summonIndex = summonPositions.findIndex((summonPosition) => sameGridPosition(position, summonPosition));
+  if (summonIndex >= 0) return t('formation.role.summon', { index: summonIndex + 1 });
+  return t('formation.empty');
 }
 
 function buildUnitEventFx(events: readonly RecordedBattleEvent[], cursor: number): ReadonlyMap<string, UnitEventFx> {

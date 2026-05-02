@@ -11,11 +11,14 @@
  * a level-aware detail panel. Combat/math display is resolved by pure engine
  * helpers; this component only formats and wires player actions.
  */
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Panel, ScreenShell, Tabs, resolveSkillIcon, tDataKey } from '@/ui';
 import { usePlayerStore } from '@/stores';
 import {
+  canonicalSkillIdFromData,
+  dataSkillIdFromCanonical,
+  getAllocatedSkillLevel,
   getSkillRequiredLevel,
   getSkillsForClass,
   organizeSkillsByTree,
@@ -23,6 +26,9 @@ import {
   skillIdAliases,
   type SkillTemplate
 } from '@/stores/skillsHelpers';
+import { refreshActivePlayerCombatConfig, resolveEquippedWeapon } from '@/stores/combatHelpers';
+import { getSkill, listSkills } from '@/engine/skills/registry';
+import { canCastSkill } from '@/engine/skills/eligibility';
 import {
   computeSkillDisplayModel,
   type SkillDamageDisplayRow,
@@ -30,7 +36,7 @@ import {
   type SkillRankDisplayStats
 } from '@/engine/skills/displayStats';
 
-const COMBO_SLOTS = 5;
+const COMBO_SLOTS = 9;
 const TREE_WIDTH = 320;
 const TREE_ROW_HEIGHT = 104;
 const TREE_TOP = 48;
@@ -74,6 +80,11 @@ export function SkillsScreen() {
 
   const skillById = useMemo(() => new Map(allSkills.map((skill) => [skill.id, skill])), [allSkills]);
   const skillTrees = useMemo(() => organizeSkillsByTree(allSkills), [allSkills]);
+  const registeredSkillIds = useMemo(() => new Set(listSkills()), []);
+  const equippedWeapon = useMemo(
+    () => resolveEquippedWeapon(player?.equipment ?? []),
+    [player?.equipment]
+  );
 
   const allocatedSkills = useMemo(() => {
     const map = new Map<string, number>();
@@ -117,11 +128,45 @@ export function SkillsScreen() {
       skillPoints > 0
   );
 
+  const configurableActiveSkills = useMemo(
+    () =>
+      allSkills.filter((skill) => {
+        if (skill.trigger !== 'active') return false;
+        if (isSkillLocked(skill, playerLevel, allocatedSkills)) return false;
+        if (getAllocatedSkillLevel(allocatedSkills, skill.id) <= 0) return false;
+        const canonicalId = canonicalSkillIdFromData(skill.id) ?? skill.id;
+        if (!registeredSkillIds.has(canonicalId)) return false;
+        const registeredSkill = getSkill(canonicalId);
+        return registeredSkill ? canCastSkill(registeredSkill, equippedWeapon).ok : false;
+      }),
+    [allSkills, allocatedSkills, equippedWeapon, playerLevel, registeredSkillIds]
+  );
+
+  const sanitizedComboOrder = useMemo<string[]>(() => {
+    const validIds = new Set(configurableActiveSkills.map((skill) => skill.id));
+    return (player?.comboOrder ?? [])
+      .map((id) => dataSkillIdFromCanonical(id) ?? id)
+      .filter((id) => validIds.has(id))
+      .slice(0, COMBO_SLOTS);
+  }, [configurableActiveSkills, player?.comboOrder]);
+
+  const saveComboOrder = useCallback((order: readonly string[]): void => {
+    setComboOrder(order.filter(Boolean));
+    refreshActivePlayerCombatConfig({ replayCurrentWave: true });
+  }, [setComboOrder]);
+
+  useEffect(() => {
+    if (!player) return;
+    if (!sameStringArray(sanitizedComboOrder, player.comboOrder)) {
+      saveComboOrder(sanitizedComboOrder);
+    }
+  }, [player, sanitizedComboOrder, saveComboOrder]);
+
   const combo = useMemo<string[]>(() => {
-    const arr = (player?.comboOrder ?? []).slice(0, COMBO_SLOTS);
+    const arr = sanitizedComboOrder.slice();
     while (arr.length < COMBO_SLOTS) arr.push('');
     return arr;
-  }, [player?.comboOrder]);
+  }, [sanitizedComboOrder]);
 
   const moveCombo = (idx: number, dir: -1 | 1) => {
     const next = [...combo];
@@ -131,13 +176,13 @@ export function SkillsScreen() {
     const b = next[target] ?? '';
     next[idx] = b;
     next[target] = a;
-    setComboOrder(next.filter(Boolean));
+    saveComboOrder(next);
   };
 
   const setComboAt = (idx: number, skillId: string) => {
     const next = [...combo];
     next[idx] = skillId;
-    setComboOrder(next.filter(Boolean));
+    saveComboOrder(next);
   };
 
   const allocateActiveSkill = () => {
@@ -223,7 +268,7 @@ export function SkillsScreen() {
               aria-label={t('slotN', { n: idx + 1 })}
             >
               <option value="">— {t('common:none')} —</option>
-              {allSkills.filter(sk => sk.trigger === 'active').map((sk) => (
+              {configurableActiveSkills.map((sk) => (
                 <option key={sk.id} value={sk.id}>{tDataKey(t, sk.name)}</option>
               ))}
             </select>
@@ -954,6 +999,11 @@ function addAllocatedLevelAlias(map: Map<string, number>, id: string, level: num
   for (const alias of skillIdAliases(id)) {
     map.set(alias, level);
   }
+}
+
+function sameStringArray(a: readonly string[], b: readonly string[]): boolean {
+  if (a.length !== b.length) return false;
+  return a.every((value, index) => value === b[index]);
 }
 
 /** Slugify a free-form skill-tree name into a stable i18n key segment. */

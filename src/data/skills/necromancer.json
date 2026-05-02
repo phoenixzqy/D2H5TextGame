@@ -17,7 +17,7 @@
     },
     "scaling": {
       "summonMaxCount": {
-        "kind": "first-three-then-every-three"
+        "kind": "raise-skeleton-1-6-12-cap-3"
       }
     }
   },
@@ -211,11 +211,14 @@
       "skills-necromancer-golem-mastery"
     ],
     "summon": true,
-    "trigger": "passive",
-    "target": "self",
-    "cooldown": 0,
+    "trigger": "active",
+    "target": "summon",
+    "cooldown": 4,
     "minLevel": 1,
     "maxLevel": 20,
+    "cost": {
+      "mana": 25
+    },
     "appliesTags": [
       "physical"
     ]

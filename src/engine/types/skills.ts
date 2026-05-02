@@ -5,6 +5,7 @@
 
 import type { DamageType, DamageInfo } from './attributes';
 import type { WeaponType, Handedness } from './items';
+import type { AoeShape } from '../combat/grid';
 
 /**
  * Skill target type
@@ -142,6 +143,9 @@ export interface SkillDef {
   
   /** Target type */
   readonly target: SkillTarget;
+
+  /** Optional 3-column battle-grid AOE shape for area skills. */
+  readonly aoeShape?: AoeShape;
   
   /** Cooldown in turns */
   readonly cooldown: number;
@@ -186,7 +190,7 @@ export interface SkillDef {
     readonly cooldownPerLevel?: number; // negative = reduces CD
     readonly costPerLevel?: number;
     readonly summonMaxCount?: {
-      readonly kind: 'first-three-then-every-three';
+      readonly kind: 'first-three-then-every-three' | 'raise-skeleton-1-6-12-cap-3';
     };
   };
 

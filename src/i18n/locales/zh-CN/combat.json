@@ -35,6 +35,27 @@
   "enemies": "敌人",
   "noAllies": "无单位",
   "noEnemies": "没有敌人",
+  "battlefield": {
+    "title": "战场",
+    "wave": "波次",
+    "clash": "交锋"
+  },
+  "formation": {
+    "edit": "布阵",
+    "title": "战斗布阵",
+    "help": "先选择单位类型，再点击格子。保存后的布阵会在下次战斗开始时载入；召唤物会生成在记住的位置。",
+    "unitSelect": "选择要放置的单位",
+    "grid": "我方布阵网格",
+    "cell": "{{row}}行{{col}}列",
+    "empty": "空位",
+    "reset": "重置",
+    "done": "完成",
+    "role": {
+      "player": "英雄",
+      "merc": "佣兵",
+      "summon": "召唤物 {{index}}"
+    }
+  },
   "hp": "生命",
   "mp": "法力",
   "speed": "速度",
@@ -49,6 +70,16 @@
   },
   "acting": "行动中",
   "summon": "召唤物",
+  "summons": {
+    "skeleton": "骷髅战士",
+    "clay_golem": "黏土石魔",
+    "blood_golem": "鲜血石魔",
+    "iron_golem": "钢铁石魔",
+    "fire_golem": "火焰石魔",
+    "valkyrie": "女武神",
+    "dire_wolf": "恐狼",
+    "minion": "仆从"
+  },
   "effect": {
     "activeEffects": "当前战斗效果",
     "hit": "命中",

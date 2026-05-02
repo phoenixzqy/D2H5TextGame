@@ -43,6 +43,15 @@ import { ItemDetailPanel } from './ItemDetailPanel';
 import { BulkDiscardToolbar } from './BulkDiscardToolbar';
 import { BackpackGrid } from './BackpackGrid';
 import type { Item, EquipmentSlot } from '@/engine/types/items';
+import { loadItemBases } from '@/data/loaders/loot';
+import {
+  checkEligibility,
+  compareEquip,
+  isClearNetUpgrade,
+  resolveAutoEquipSlot,
+  type CompareResult,
+  type PlayerLike
+} from './compareEquip';
 
 const SLOT_ORDER: EquipmentSlot[] = [
   'head',
@@ -59,6 +68,19 @@ const SLOT_ORDER: EquipmentSlot[] = [
 
 const MAX_BACKPACK = 100;
 const MAX_STASH = 500;
+
+function compareBackpackItem(
+  item: Item,
+  player: PlayerLike,
+  equipped: Readonly<Record<string, Item | null>>,
+  bases: ReturnType<typeof loadItemBases>
+): CompareResult | null {
+  const slot = bases.get(item.baseId)?.slot;
+  if (!slot) return null;
+  const eligibility = checkEligibility(item, player, bases);
+  if (!eligibility.eligible) return null;
+  return compareEquip(player, item, resolveAutoEquipSlot(slot, equipped), equipped, bases);
+}
 
 type ToastState = { readonly message: string; readonly tone: 'success' | 'error' } | null;
 
@@ -281,6 +303,34 @@ function BackpackTabContent({
     () => Object.values(equipped).filter((item): item is Item => item !== null),
     [equipped]
   );
+  const playerForCompare = useMemo<PlayerLike | null>(() => {
+    if (!player) return null;
+    return { level: player.level, coreStats: player.coreStats, derivedStats: player.derivedStats };
+  }, [player]);
+  const bases = useMemo(() => loadItemBases(), []);
+  const selectedCompare = useMemo(
+    () => selected && playerForCompare
+      ? compareBackpackItem(selected, playerForCompare, equipped, bases)
+      : null,
+    [bases, equipped, playerForCompare, selected]
+  );
+  const selectedEquippedAfter = useMemo(() => {
+    if (!selected || !selectedCompare) return [] as Item[];
+    const currentId = selectedCompare.current?.id;
+    return [
+      ...Object.values(equipped).filter((item): item is Item => item !== null && item.id !== currentId),
+      selected
+    ];
+  }, [equipped, selected, selectedCompare]);
+  const upgradeItemIds = useMemo(() => {
+    if (!playerForCompare) return new Set<string>();
+    const ids = new Set<string>();
+    for (const item of items) {
+      const compare = compareBackpackItem(item, playerForCompare, equipped, bases);
+      if (compare && isClearNetUpgrade(compare)) ids.add(item.id);
+    }
+    return ids;
+  }, [bases, equipped, items, playerForCompare]);
 
   return (
     <div className="flex flex-col">
@@ -291,6 +341,7 @@ function BackpackTabContent({
         emptyKey="emptyBackpack"
         selectedId={selectedId}
         setSelectedId={setSelectedId}
+        upgradeItemIds={upgradeItemIds}
         detailPanel={selected && player ? (
           <ItemDetailPanel
             item={selected}
@@ -299,6 +350,8 @@ function BackpackTabContent({
             equipLabel={t('equip')}
             transferLabel={t('transfer')}
             equippedItems={equippedItems}
+            compare={selectedCompare}
+            equippedAfterCompare={selectedEquippedAfter}
             onEquip={() => { onEquip(selected); }}
             onTransfer={() => { onTransfer(selected); }}
             onDiscard={() => { onDiscardRequest(selected); }}
@@ -366,6 +419,7 @@ interface GridLayoutProps {
   readonly emptyKey: string;
   readonly selectedId: string | null;
   readonly setSelectedId: (id: string | null) => void;
+  readonly upgradeItemIds?: ReadonlySet<string> | undefined;
   /** Already-rendered detail panel; null when nothing is selected. */
   readonly detailPanel: React.ReactNode | null;
 }
@@ -376,6 +430,7 @@ function ItemGridLayout({
   emptyKey,
   selectedId,
   setSelectedId,
+  upgradeItemIds,
   detailPanel
 }: GridLayoutProps): JSX.Element {
   const { t } = useTranslation('inventory');
@@ -409,12 +464,13 @@ function ItemGridLayout({
             {t(emptyKey)}
           </p>
         ) : (
-          <BackpackGrid
-            items={items}
-            capacity={capacity}
-            selectedId={selectedId}
-            onSelect={setSelectedId}
-          />
+            <BackpackGrid
+              items={items}
+              capacity={capacity}
+              selectedId={selectedId}
+              onSelect={setSelectedId}
+              upgradeItemIds={upgradeItemIds}
+            />
         )}
       </div>
 

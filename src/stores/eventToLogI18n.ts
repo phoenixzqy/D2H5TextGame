@@ -13,6 +13,7 @@
 import i18n from '@/i18n';
 import type { BattleEvent, RecordedBattleEvent } from '@/engine/combat/combat';
 import type { CombatLogEntry, UnitNameMap } from './combatStore';
+import { resolveSummonDisplayName } from './summonDisplayName';
 
 type LogPayload = Omit<CombatLogEntry, 'id' | 'timestamp'>;
 
@@ -194,7 +195,7 @@ export function eventToLocalizedLogEntry(
         actorName: ownerName,
         message: tx('combat:event.summon', {
           actor: ownerName,
-          minion: event.unit.name
+          minion: resolveSummonDisplayName(event.unit)
         })
       };
     }

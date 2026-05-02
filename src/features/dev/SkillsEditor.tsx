@@ -1,4 +1,4 @@
-import { JsonField, NumberField } from './DevEditorFields';
+import { EnumField, JsonField, NumberField } from './DevEditorFields';
 import { DevDataManager } from './DevDataManager';
 import type { JsonRecord } from './devJson';
 import { skillFiles } from './devPaths';
@@ -27,6 +27,20 @@ function SkillFields({ entry, onChange }: { readonly entry: JsonRecord; readonly
         <NumberField entry={entry} path={['cost', 'mana']} label={t('skillsEditor.fields.manaCost')} onChange={onChange} />
         <NumberField entry={entry} path={['scaling', 'damagePerLevel']} label={t('skillsEditor.fields.damagePerLevel')} onChange={onChange} />
         <NumberField entry={entry} path={['scaling', 'costPerLevel']} label={t('skillsEditor.fields.costPerLevel')} onChange={onChange} />
+        <EnumField
+          entry={entry}
+          path={['aoeShape']}
+          label={t('skillsEditor.fields.aoeShape')}
+          options={[
+            { value: 'single', label: 'single' },
+            { value: 'line-3', label: 'line-3' },
+            { value: 'column-3', label: 'column-3' },
+            { value: 'cross', label: 'cross' },
+            { value: 'box-3x3', label: 'box-3x3' },
+            { value: 'all-enemies', label: 'all-enemies' }
+          ]}
+          onChange={onChange}
+        />
       </div>
       <JsonField entry={entry} path={['damage', 'breakdown']} label={t('skillsEditor.fields.damageBreakdown')} onChange={onChange} />
       <JsonField entry={entry} path={['scaling']} label={t('skillsEditor.fields.scaling')} onChange={onChange} />

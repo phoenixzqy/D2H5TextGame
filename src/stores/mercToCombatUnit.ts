@@ -18,7 +18,7 @@
  * `aura-*` ids.
  */
 import type { Mercenary } from '@/engine/types/entities';
-import type { CombatUnit } from '@/engine/combat/types';
+import type { CombatUnit, GridPosition } from '@/engine/combat/types';
 
 const ARCHETYPE_SKILLS: Readonly<Record<string, readonly string[]>> = Object.freeze({
   front: ['mskill-bash'],
@@ -27,7 +27,7 @@ const ARCHETYPE_SKILLS: Readonly<Record<string, readonly string[]>> = Object.fre
 const DEFAULT_SKILL_ORDER: readonly string[] = ['mskill-jab'];
 
 /** Build a runtime CombatUnit from an owned Mercenary. */
-export function mercToCombatUnit(merc: Mercenary): CombatUnit {
+export function mercToCombatUnit(merc: Mercenary, gridPosition?: GridPosition): CombatUnit {
   const order: string[] = [];
   const seen = new Set<string>();
   const push = (id: string | undefined): void => {
@@ -58,6 +58,7 @@ export function mercToCombatUnit(merc: Mercenary): CombatUnit {
     activeBuffIds: [],
     enraged: false,
     summonedAdds: false,
-    kind: 'merc'
+    kind: 'merc',
+    ...(gridPosition ? { gridPosition } : {})
   };
 }

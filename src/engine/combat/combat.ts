@@ -21,7 +21,7 @@
 
 import type { Rng } from '../rng';
 import { createRng } from '../rng';
-import type { CombatUnit, CombatSide } from './types';
+import type { CombatUnit, CombatSide, GridPosition } from './types';
 import { inferKind } from './types';
 import { resolveDamage, type DamageInput } from './damage';
 import {
@@ -34,10 +34,12 @@ import {
 } from './status';
 import { comboMultiplier } from './combo';
 import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
-import { chooseSkill, isImmobilized, shouldEnrage } from '../ai/policy';
+import { isImmobilized, shouldEnrage } from '../ai/policy';
+import { canCastSkill } from '../skills/eligibility';
 import { getSkill } from '../skills/registry';
 import { buildSummon } from '../skills/summons';
 import { resolveSummonMaxCount } from '../skills/scaling';
+import { resolveAoeTargets, withDefaultGridPositions } from './grid';
 import type {
   RegisteredSkill,
   SkillEffect,
@@ -394,12 +396,31 @@ function handleDeath(state: State, dead: CombatUnit): void {
   state.nextActionAt.delete(dead.id);
 }
 
-function summonsOf(state: State, ownerId: string): CombatUnit[] {
+function summonsOf(state: State, ownerId: string, summonTemplateId?: string): CombatUnit[] {
   const out: CombatUnit[] = [];
   for (const u of state.units.values()) {
-    if (u.summonOwnerId === ownerId && alive(u)) out.push(u);
+    if (
+      u.summonOwnerId === ownerId &&
+      alive(u) &&
+      (summonTemplateId === undefined || u.summonTemplateId === summonTemplateId)
+    ) {
+      out.push(u);
+    }
   }
   return out;
+}
+
+function gridPositionKey(position: GridPosition | undefined): string | null {
+  return position ? `${String(position.row)}:${String(position.col)}` : null;
+}
+
+function firstOpenSummonPosition(owner: CombatUnit, occupiedUnits: readonly CombatUnit[]): GridPosition | undefined {
+  const occupied = new Set(
+    occupiedUnits
+      .map((unit) => gridPositionKey(unit.gridPosition))
+      .filter((key): key is string => key !== null)
+  );
+  return owner.summonGridPositions?.find((position) => !occupied.has(gridPositionKey(position) ?? ''));
 }
 
 function skillLevelCandidates(skill: RegisteredSkill): readonly string[] {
@@ -418,6 +439,53 @@ function effectiveSkillLevel(unit: CombatUnit, skill: RegisteredSkill): number {
     if (typeof level === 'number' && level > 0) return Math.floor(level);
   }
   return 1;
+}
+
+function hasAvailableEffect(state: State, actorId: string, skill: RegisteredSkill, skillLevel: number): boolean {
+  if (!skill.effects.every((effect) => effect.kind === 'summon')) return true;
+  return skill.effects.some((effect) =>
+    summonsOf(state, actorId, effect.summonId).length < resolveSummonMaxCount(effect, skillLevel)
+  );
+}
+
+function canUseSkillForState(
+  state: State,
+  unit: CombatUnit,
+  skill: RegisteredSkill,
+  skillOrderId: string,
+  hasEnemyTarget: boolean
+): boolean {
+  if ((unit.cooldowns[skill.id] ?? unit.cooldowns[skillOrderId] ?? 0) > 0) return false;
+  if (skill.manaCost > unit.mana) return false;
+  if (unit.level < skill.minLevel) return false;
+  if (skill.isBuff && unit.activeBuffIds.includes(skill.id)) return false;
+  if (skill.requires && unit.equippedWeapon !== undefined) {
+    const elig = canCastSkill(skill, unit.equippedWeapon);
+    if (!elig.ok) return false;
+  }
+  if (
+    (skill.target === 'single-enemy' ||
+      skill.target === 'all-enemies' ||
+      skill.target === 'area-enemies') &&
+    !hasEnemyTarget
+  ) {
+    return false;
+  }
+  return hasAvailableEffect(state, unit.id, skill, effectiveSkillLevel(unit, skill));
+}
+
+function chooseSkillForState(
+  state: State,
+  unit: CombatUnit,
+  hasEnemyTarget: boolean
+): RegisteredSkill | undefined {
+  for (const skillId of unit.skillOrder) {
+    const skill = getSkill(skillId);
+    if (!skill) continue;
+    if (!canUseSkillForState(state, unit, skill, skillId, hasEnemyTarget)) continue;
+    return skill;
+  }
+  return undefined;
 }
 
 function applyEffect(
@@ -466,7 +534,7 @@ function applyEffect(
     case 'summon': {
       const owner = state.units.get(actorId);
       if (!owner) return;
-      const existing = summonsOf(state, actorId).length;
+      const existing = summonsOf(state, actorId, effect.summonId).length;
       const cap = resolveSummonMaxCount(effect, skillLevel);
       if (existing >= cap) return;
       const summon = buildSummon(owner, effect.summonId);
@@ -476,18 +544,26 @@ function applyEffect(
         console.warn(`[combat] unknown summonId: ${effect.summonId}`);
         return;
       }
-      registerUnit(state, summon);
+      const preferredPosition = firstOpenSummonPosition(owner, aliveOf(state, owner.side));
+      const summonWithPreferredPosition = preferredPosition
+        ? { ...summon, gridPosition: preferredPosition }
+        : summon;
+      const positionedSummon = withDefaultGridPositions([
+        ...aliveOf(state, owner.side),
+        summonWithPreferredPosition
+      ]).find((u) => u.id === summon.id) ?? summonWithPreferredPosition;
+      registerUnit(state, positionedSummon);
       state.nextActionAt.set(
-        summon.id,
-        state.simClockMs + actionPeriodMs(summon.stats.attackSpeed)
+        positionedSummon.id,
+        state.simClockMs + actionPeriodMs(positionedSummon.stats.attackSpeed)
       );
-      state.lastDotTickAt.set(summon.id, state.simClockMs);
-      state.cooldownExpiresAt.set(summon.id, new Map());
+      state.lastDotTickAt.set(positionedSummon.id, state.simClockMs);
+      state.cooldownExpiresAt.set(positionedSummon.id, new Map());
       emit(state, {
         kind: 'summon',
         owner: actorId,
         summonId: effect.summonId,
-        unit: summon
+        unit: positionedSummon
       });
       break;
     }
@@ -538,7 +614,7 @@ function castSkill(state: State, actorId: string, skill: RegisteredSkill): void 
     const picked = pickDefender(state, actor, enemiesAliveRaw);
     if (picked) targetEnemies = [picked];
   } else if (skill.target === 'area-enemies') {
-    targetEnemies = enemies.slice(0, 2);
+    targetEnemies = resolveAoeTargets(enemies, skill.aoeShape);
   }
 
   const skillLevel = effectiveSkillLevel(actor, skill);
@@ -609,13 +685,17 @@ function tickUnit(state: State, unitId: string): boolean {
 }
 
 function castSummonsOnStart(state: State, unitId: string): void {
-  const unit = state.units.get(unitId);
+  let unit = state.units.get(unitId);
   if (!unit) return;
+  const enemySide: CombatSide = unit.side === 'player' ? 'enemy' : 'player';
+  const hasEnemy = aliveOf(state, enemySide).length > 0;
   for (const skillId of unit.skillOrder) {
     const skill = getSkill(skillId);
     if (!skill?.summonOnStart) continue;
+    unit = state.units.get(unitId);
+    if (!unit || !alive(unit)) return;
+    if (!canUseSkillForState(state, unit, skill, skillId, hasEnemy)) continue;
     castSkill(state, unitId, skill);
-    break;
   }
 }
 
@@ -630,13 +710,10 @@ function takeAction(state: State, unitId: string): void {
 
   const enemySide: CombatSide = unit.side === 'player' ? 'enemy' : 'player';
   const hasEnemy = aliveOf(state, enemySide).length > 0;
-  const skillId = chooseSkill(unit, hasEnemy);
-  if (skillId) {
-    const skill = getSkill(skillId);
-    if (skill) {
-      castSkill(state, unitId, skill);
-      return;
-    }
+  const skill = chooseSkillForState(state, unit, hasEnemy);
+  if (skill) {
+    castSkill(state, unitId, skill);
+    return;
   }
   basicAttack(state, unitId);
 }
@@ -785,8 +862,8 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     insertionCounter: 0
   };
 
-  for (const u of snapshot.playerTeam) registerUnit(state, u);
-  for (const u of snapshot.enemyTeam) registerUnit(state, u);
+  for (const u of withDefaultGridPositions(snapshot.playerTeam)) registerUnit(state, u);
+  for (const u of withDefaultGridPositions(snapshot.enemyTeam)) registerUnit(state, u);
 
   for (const u of state.units.values()) {
     state.nextActionAt.set(u.id, actionPeriodMs(u.stats.attackSpeed));

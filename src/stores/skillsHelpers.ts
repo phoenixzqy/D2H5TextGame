@@ -38,7 +38,7 @@ export interface SkillTemplate {
     readonly cooldownPerLevel?: number;
     readonly costPerLevel?: number;
     readonly summonMaxCount?: {
-      readonly kind: 'first-three-then-every-three';
+      readonly kind: 'first-three-then-every-three' | 'raise-skeleton-1-6-12-cap-3';
     };
   };
   // Extended fields for future expansion

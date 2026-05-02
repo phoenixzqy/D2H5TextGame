@@ -12,3 +12,4 @@ export { useCombatStore } from './combatStore';
 export { useMapStore } from './mapStore';
 export { useMercStore } from './mercStore';
 export { useMetaStore } from './metaStore';
+export { useFormationStore } from './formationStore';

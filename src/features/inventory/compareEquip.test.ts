@@ -2,6 +2,9 @@ import { describe, expect, it } from 'vitest';
 import {
   checkEligibility,
   compareEquip,
+  isClearNetUpgrade,
+  netEquipDelta,
+  resolveAutoEquipSlot,
   slotCandidates,
   slotMatches,
   type PlayerLike
@@ -46,6 +49,19 @@ describe('slotCandidates', () => {
     const armor = mkItem('items/base/armor-quilted');
     const out = slotCandidates([cap, armor], 'head');
     expect(out.map((i) => i.baseId)).toEqual(['items/base/helm-cap']);
+  });
+});
+
+describe('resolveAutoEquipSlot', () => {
+  it('uses the empty right ring slot before replacing the left ring', () => {
+    const left = mkItem('items/base/ring');
+    expect(resolveAutoEquipSlot('ring-left', { 'ring-left': left })).toBe('ring-right');
+  });
+
+  it('falls back to left ring when both ring slots are occupied', () => {
+    const left = mkItem('items/base/ring');
+    const right = mkItem('items/base/ring');
+    expect(resolveAutoEquipSlot('ring-left', { 'ring-left': left, 'ring-right': right })).toBe('ring-left');
   });
 });
 
@@ -124,5 +140,19 @@ describe('compareEquip', () => {
     const result = compareEquip(player, cap, 'head', equipped, bases);
     expect(result.current).toBeNull();
     expect(result.stats.defense.delta).toBe(7);
+  });
+
+  it('identifies clear net upgrades only when no compared stat regresses', () => {
+    const player = mkPlayer(10);
+    const cap = mkItem('items/base/helm-cap');
+    const skullCap = mkItem('items/base/helm-skull-cap');
+    const equipped: Record<string, Item | null> = { head: cap };
+
+    const upgrade = compareEquip(player, skullCap, 'head', equipped, bases);
+    const downgrade = compareEquip(player, cap, 'head', { head: skullCap }, bases);
+
+    expect(isClearNetUpgrade(upgrade)).toBe(true);
+    expect(netEquipDelta(upgrade)).toBeGreaterThan(0);
+    expect(isClearNetUpgrade(downgrade)).toBe(false);
   });
 });

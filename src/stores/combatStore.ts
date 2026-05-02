@@ -9,8 +9,10 @@ import type { WavePresentation } from '@/engine/combat';
 import type { RecordedBattleEvent } from '@/engine/combat/combat';
 import type { CombatSide } from '@/engine/combat/types';
 import type { KillRewards } from '@/engine/loot/award';
+import { withDefaultGridPositions } from '@/engine/combat/grid';
 import { applyEventToTeams } from './combatPlayback';
 import { eventToLocalizedLogEntry } from './eventToLogI18n';
+import { resolveSummonDisplayName } from './summonDisplayName';
 
 export interface CombatLogEntry {
   id: string;
@@ -156,8 +158,8 @@ export const useCombatStore= create<CombatState>((set, get) => ({
 
   startCombat: (playerTeam, enemyTeam, totalWaves) => { set({
     inCombat: true,
-    playerTeam,
-    enemyTeam,
+    playerTeam: withDefaultGridPositions(playerTeam),
+    enemyTeam: withDefaultGridPositions(enemyTeam),
     totalWaves,
     currentWave: 1,
     currentWavePresentation: null,
@@ -211,7 +213,7 @@ export const useCombatStore= create<CombatState>((set, get) => ({
 
   nextWave: (newEnemies) => { set((state) => ({
     currentWave: state.currentWave + 1,
-    enemyTeam: newEnemies,
+    enemyTeam: withDefaultGridPositions(newEnemies),
     currentWavePresentation: null,
     currentTurn: 0
   })); },
@@ -244,8 +246,8 @@ export const useCombatStore= create<CombatState>((set, get) => ({
   }) => {
     set((state) => ({
       inCombat: true,
-      playerTeam: [...initialPlayerTeam],
-      enemyTeam: [...initialEnemyTeam],
+      playerTeam: withDefaultGridPositions(initialPlayerTeam),
+      enemyTeam: withDefaultGridPositions(initialEnemyTeam),
       recordedEvents: events,
       eventCursor: 0,
       playbackComplete: events.length === 0,
@@ -295,7 +297,7 @@ export const useCombatStore= create<CombatState>((set, get) => ({
     let nameMap = state.unitNameMap;
     if (ev.kind === 'summon' && !nameMap.has(ev.unit.id)) {
       const next = new Map(nameMap);
-      next.set(ev.unit.id, ev.unit.name);
+      next.set(ev.unit.id, resolveSummonDisplayName(ev.unit));
       nameMap = next;
     }
 

@@ -9,6 +9,8 @@
 import { describe, it, expect } from 'vitest';
 import { eventToLocalizedLogEntry } from './eventToLogI18n';
 import type { BattleEvent } from '@/engine/combat/combat';
+import type { CombatUnit } from '@/engine/combat/types';
+import type { DerivedStats } from '@/engine/types/attributes';
 
 describe('eventToLocalizedLogEntry — skill-name i18n', () => {
   it('translates a known skill id to its localized name (zh-CN default)', () => {
@@ -33,5 +35,52 @@ describe('eventToLocalizedLogEntry — skill-name i18n', () => {
     };
     const entry = eventToLocalizedLogEntry(event, new Map([['player-001', 'A']]));
     expect(entry?.message).toContain('definitely.not-a-real-skill');
+  });
+
+  it('localizes summon names in visible summon log lines', () => {
+    const stats: DerivedStats = {
+      life: 1,
+      lifeMax: 1,
+      mana: 0,
+      manaMax: 0,
+      attack: 1,
+      defense: 0,
+      attackSpeed: 1,
+      critChance: 0,
+      critDamage: 1.5,
+      physDodge: 0,
+      magicDodge: 0,
+      magicFind: 0,
+      goldFind: 0,
+      resistances: { fire: 0, cold: 0, lightning: 0, poison: 0, arcane: 0, physical: 0 }
+    };
+    const unit: CombatUnit = {
+      id: 'player-summon-skeleton-1',
+      name: 'Skeleton Warrior',
+      side: 'player',
+      level: 1,
+      tier: 'trash',
+      stats,
+      life: 1,
+      mana: 0,
+      statuses: [],
+      cooldowns: {},
+      skillOrder: [],
+      activeBuffIds: [],
+      enraged: false,
+      kind: 'summon',
+      summonOwnerId: 'player-001',
+      summonTemplateId: 'skeleton'
+    };
+    const event: BattleEvent = {
+      kind: 'summon',
+      owner: 'player-001',
+      summonId: 'skeleton',
+      unit
+    };
+
+    const entry = eventToLocalizedLogEntry(event, new Map([['player-001', '死灵法师']]));
+    expect(entry?.message).toContain('骷髅战士');
+    expect(entry?.message).not.toContain('Skeleton Warrior');
   });
 });

@@ -13,7 +13,8 @@ import {
   type InventorySaveData,
   type MercSaveData,
   type MapSaveData,
-  type MetaSaveData
+  type MetaSaveData,
+  type FormationPreferences
 } from '../types/save';
 import type { Player } from '../types/entities';
 
@@ -24,6 +25,7 @@ export interface BuildSaveInput {
   readonly mercs: MercSaveData;
   readonly map: MapSaveData;
   readonly meta: MetaSaveData;
+  readonly formation: FormationPreferences;
   readonly timestamp?: number;
 }
 
@@ -36,7 +38,8 @@ export function buildSave(input: BuildSaveInput): SaveCurrent {
     inventory: input.inventory,
     mercs: input.mercs,
     map: input.map,
-    meta: input.meta
+    meta: input.meta,
+    formation: input.formation
   };
 }
 

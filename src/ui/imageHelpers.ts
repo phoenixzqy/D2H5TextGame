@@ -70,12 +70,22 @@ export function getMonsterImageUrl(monsterId: string): string {
 /* ------------------------------------------------------------------ */
 /*  Summons (player-side pets / skeletons / golems)                    */
 /* ------------------------------------------------------------------ */
-export function getSummonImageUrl(summonId: string): string {
+export function getSummonImageUrl(summonId: string): string | undefined {
   const slug = toKebab(summonId);
   if (slug === 'skeleton' || slug.includes('skeleton')) {
     return `${BASE}/monsters/monsters.act1.skeleton-warrior-summon.png`;
   }
-  return getMonsterImageUrl(slug);
+  const skillKeyBySummon: Readonly<Record<string, string>> = {
+    'clay-golem': 'skills.necromancer.clay-golem',
+    'blood-golem': 'skills.necromancer.blood-golem',
+    'iron-golem': 'skills.necromancer.iron-golem',
+    'fire-golem': 'skills.necromancer.fire-golem',
+    valkyrie: 'skills.amazon.valkyrie',
+    'dire-wolf': 'skills.druid.summon-dire-wolf'
+  };
+  const skillKey = skillKeyBySummon[slug];
+  if (skillKey) return SKILL_ICONS[skillKey];
+  return undefined;
 }
 
 /* ------------------------------------------------------------------ */
