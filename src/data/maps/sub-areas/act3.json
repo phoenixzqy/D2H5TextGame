@@ -8,37 +8,126 @@
     "lootTable": "loot/trash-act3",
     "flavor": "Mossy boughs draped with web — fetish blowguns and giant arachnids hunt the canopy.",
     "waves": [
-      { "id": "w1", "type": "trash",
-        "encounters": [{ "id": "act3-sf-w1-e1", "level": 27,
-          "monsters": [
-            { "archetypeId": "monsters/act3.spider", "count": 3 },
-            { "archetypeId": "monsters/act3.fetish", "count": 2 }
-          ] }] },
-      { "id": "w2", "type": "trash",
-        "encounters": [{ "id": "act3-sf-w2-e1", "level": 27,
-          "monsters": [
-            { "archetypeId": "monsters/act3.jungle-hunter", "count": 3 },
-            { "archetypeId": "monsters/act3.fetish", "count": 2 }
-          ] }] },
-      { "id": "w3", "type": "trash",
-        "encounters": [{ "id": "act3-sf-w3-e1", "level": 28,
-          "monsters": [
-            { "archetypeId": "monsters/act3.flayer", "count": 3 },
-            { "archetypeId": "monsters/act3.spider", "count": 2 }
-          ] }] },
-      { "id": "w4", "type": "elite",
-        "encounters": [{ "id": "act3-sf-w4-e1", "level": 29,
-          "monsters": [
-            { "archetypeId": "monsters/act3.thorned-hulk", "count": 1, "elite": true },
-            { "archetypeId": "monsters/act3.fetish", "count": 3 }
-          ] }] },
-      { "id": "w5", "type": "trash",
-        "encounters": [{ "id": "act3-sf-w5-e1", "level": 29,
-          "monsters": [
-            { "archetypeId": "monsters/act3.swamp-dweller", "count": 2 },
-            { "archetypeId": "monsters/act3.spider", "count": 3 }
-          ] }] }
-    ]
+      {
+        "id": "w1",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act3-sf-w1-e1",
+            "level": 27,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.spider",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act3.fetish",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w2",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act3-sf-w2-e1",
+            "level": 27,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.jungle-hunter",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act3.fetish",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w3",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act3-sf-w3-e1",
+            "level": 28,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.flayer",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act3.spider",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w4",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act3-sf-w4-e1",
+            "level": 29,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.thorned-hulk",
+                "count": 1,
+                "elite": true
+              },
+              {
+                "archetypeId": "monsters/act3.fetish",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w5",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act3-sf-w5-e1",
+            "level": 29,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.swamp-dweller",
+                "count": 2
+              },
+              {
+                "archetypeId": "monsters/act3.spider",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "challenge": {
+      "rotation": [
+        "trash",
+        "trash",
+        "elite",
+        "trash"
+      ],
+      "manualFinalEliteWaves": 2,
+      "appendChapterBoss": true,
+      "monsterCount": {
+        "min": 8,
+        "max": 20
+      }
+    },
+    "difficulty": {
+      "finaleBand": "none",
+      "monsterLevelBonus": 0
+    }
   },
   {
     "id": "areas/act3-great-marsh",
@@ -49,37 +138,126 @@
     "lootTable": "loot/trash-act3",
     "flavor": "Knee-deep brackish water; swamp dwellers and dark shapes drift between cypress knees.",
     "waves": [
-      { "id": "w1", "type": "trash",
-        "encounters": [{ "id": "act3-gm-w1-e1", "level": 29,
-          "monsters": [
-            { "archetypeId": "monsters/act3.swamp-dweller", "count": 3 },
-            { "archetypeId": "monsters/act3.fetish", "count": 2 }
-          ] }] },
-      { "id": "w2", "type": "trash",
-        "encounters": [{ "id": "act3-gm-w2-e1", "level": 30,
-          "monsters": [
-            { "archetypeId": "monsters/act3.thorned-hulk", "count": 1 },
-            { "archetypeId": "monsters/act3.spider", "count": 3 }
-          ] }] },
-      { "id": "w3", "type": "trash",
-        "encounters": [{ "id": "act3-gm-w3-e1", "level": 30,
-          "monsters": [
-            { "archetypeId": "monsters/act3.doom-ape", "count": 2 },
-            { "archetypeId": "monsters/act3.flayer", "count": 2 }
-          ] }] },
-      { "id": "w4", "type": "elite",
-        "encounters": [{ "id": "act3-gm-w4-e1", "level": 31,
-          "monsters": [
-            { "archetypeId": "monsters/act3.swamp-dweller", "count": 2, "elite": true },
-            { "archetypeId": "monsters/act3.jungle-hunter", "count": 2 }
-          ] }] },
-      { "id": "w5", "type": "trash",
-        "encounters": [{ "id": "act3-gm-w5-e1", "level": 31,
-          "monsters": [
-            { "archetypeId": "monsters/act3.serpent-magus", "count": 2 },
-            { "archetypeId": "monsters/act3.spider", "count": 2 }
-          ] }] }
-    ]
+      {
+        "id": "w1",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act3-gm-w1-e1",
+            "level": 29,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.swamp-dweller",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act3.fetish",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w2",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act3-gm-w2-e1",
+            "level": 30,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.thorned-hulk",
+                "count": 1
+              },
+              {
+                "archetypeId": "monsters/act3.spider",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w3",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act3-gm-w3-e1",
+            "level": 30,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.doom-ape",
+                "count": 2
+              },
+              {
+                "archetypeId": "monsters/act3.flayer",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w4",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act3-gm-w4-e1",
+            "level": 31,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.swamp-dweller",
+                "count": 2,
+                "elite": true
+              },
+              {
+                "archetypeId": "monsters/act3.jungle-hunter",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w5",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act3-gm-w5-e1",
+            "level": 31,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.serpent-magus",
+                "count": 2
+              },
+              {
+                "archetypeId": "monsters/act3.spider",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "challenge": {
+      "rotation": [
+        "trash",
+        "trash",
+        "elite",
+        "trash"
+      ],
+      "manualFinalEliteWaves": 2,
+      "appendChapterBoss": true,
+      "monsterCount": {
+        "min": 8,
+        "max": 20
+      }
+    },
+    "difficulty": {
+      "finaleBand": "none",
+      "monsterLevelBonus": 0
+    }
   },
   {
     "id": "areas/act3-flayer-jungle",
@@ -90,49 +268,159 @@
     "lootTable": "loot/trash-act3",
     "flavor": "Witch Doctor Endugu's hunting ground — flayer cubs swarm anything that moves.",
     "bossEncounter": {
-      "id": "act3-flayer-endugu", "level": 34,
+      "id": "act3-flayer-endugu",
+      "level": 34,
       "monsters": [
-        { "archetypeId": "monsters/act3.fetish", "count": 1, "boss": true },
-        { "archetypeId": "monsters/act3.flayer", "count": 5 }
+        {
+          "archetypeId": "monsters/act3.fetish",
+          "count": 1,
+          "boss": true
+        },
+        {
+          "archetypeId": "monsters/act3.flayer",
+          "count": 5
+        }
       ]
     },
     "waves": [
-      { "id": "w1", "type": "trash",
-        "encounters": [{ "id": "act3-fj-w1-e1", "level": 32,
-          "monsters": [
-            { "archetypeId": "monsters/act3.flayer", "count": 4 },
-            { "archetypeId": "monsters/act3.fetish", "count": 2 }
-          ] }] },
-      { "id": "w2", "type": "trash",
-        "encounters": [{ "id": "act3-fj-w2-e1", "level": 32,
-          "monsters": [
-            { "archetypeId": "monsters/act3.thorned-hulk", "count": 2 },
-            { "archetypeId": "monsters/act3.spider", "count": 2 }
-          ] }] },
-      { "id": "w3", "type": "elite",
-        "encounters": [{ "id": "act3-fj-w3-e1", "level": 33,
-          "monsters": [
-            { "archetypeId": "monsters/act3.fetish", "count": 2, "elite": true },
-            { "archetypeId": "monsters/act3.flayer", "count": 3 }
-          ] }] },
-      { "id": "w4", "type": "trash",
-        "encounters": [{ "id": "act3-fj-w4-e1", "level": 33,
-          "monsters": [
-            { "archetypeId": "monsters/act3.doom-ape", "count": 2 },
-            { "archetypeId": "monsters/act3.serpent-magus", "count": 2 }
-          ] }] },
-      { "id": "w5", "type": "trash",
-        "encounters": [{ "id": "act3-fj-w5-e1", "level": 34,
-          "monsters": [
-            { "archetypeId": "monsters/act3.jungle-hunter", "count": 3 },
-            { "archetypeId": "monsters/act3.swamp-dweller", "count": 2 }
-          ] }] },
-      { "id": "w6", "type": "boss", "lootTable": "loot/mini-act3",
-        "encounters": [{ "id": "act3-fj-w6-e1", "level": 34,
-          "monsters": [
-            { "archetypeId": "monsters/act3.fetish", "count": 1, "boss": true }
-          ] }] }
-    ]
+      {
+        "id": "w1",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act3-fj-w1-e1",
+            "level": 32,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.flayer",
+                "count": 4
+              },
+              {
+                "archetypeId": "monsters/act3.fetish",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w2",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act3-fj-w2-e1",
+            "level": 32,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.thorned-hulk",
+                "count": 2
+              },
+              {
+                "archetypeId": "monsters/act3.spider",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w3",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act3-fj-w3-e1",
+            "level": 33,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.fetish",
+                "count": 2,
+                "elite": true
+              },
+              {
+                "archetypeId": "monsters/act3.flayer",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w4",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act3-fj-w4-e1",
+            "level": 33,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.doom-ape",
+                "count": 2
+              },
+              {
+                "archetypeId": "monsters/act3.serpent-magus",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w5",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act3-fj-w5-e1",
+            "level": 34,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.jungle-hunter",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act3.swamp-dweller",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w6",
+        "type": "boss",
+        "lootTable": "loot/mini-act3",
+        "encounters": [
+          {
+            "id": "act3-fj-w6-e1",
+            "level": 34,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.fetish",
+                "count": 1,
+                "boss": true
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "challenge": {
+      "rotation": [
+        "trash",
+        "trash",
+        "elite",
+        "trash"
+      ],
+      "manualFinalEliteWaves": 2,
+      "appendChapterBoss": true,
+      "monsterCount": {
+        "min": 8,
+        "max": 20
+      }
+    },
+    "difficulty": {
+      "finaleBand": "none",
+      "monsterLevelBonus": 0
+    }
   },
   {
     "id": "areas/act3-kurast-bazaar",
@@ -143,49 +431,160 @@
     "lootTable": "loot/trash-act3",
     "flavor": "Crumbling stalls and overgrown shrines; zealots chant under banners of Mephisto's faithful.",
     "bossEncounter": {
-      "id": "act3-bazaar-sarina", "level": 37,
+      "id": "act3-bazaar-sarina",
+      "level": 37,
       "monsters": [
-        { "archetypeId": "monsters/act3.serpent-magus", "count": 1, "boss": true },
-        { "archetypeId": "monsters/act3.flayer", "count": 4 }
+        {
+          "archetypeId": "monsters/act3.serpent-magus",
+          "count": 1,
+          "boss": true
+        },
+        {
+          "archetypeId": "monsters/act3.flayer",
+          "count": 4
+        }
       ]
     },
     "waves": [
-      { "id": "w1", "type": "trash",
-        "encounters": [{ "id": "act3-kb-w1-e1", "level": 35,
-          "monsters": [
-            { "archetypeId": "monsters/act3.serpent-magus", "count": 2 },
-            { "archetypeId": "monsters/act3.flayer", "count": 3 }
-          ] }] },
-      { "id": "w2", "type": "trash",
-        "encounters": [{ "id": "act3-kb-w2-e1", "level": 35,
-          "monsters": [
-            { "archetypeId": "monsters/act3.infector", "count": 2 },
-            { "archetypeId": "monsters/act3.fetish", "count": 3 }
-          ] }] },
-      { "id": "w3", "type": "elite",
-        "encounters": [{ "id": "act3-kb-w3-e1", "level": 36,
-          "monsters": [
-            { "archetypeId": "monsters/act3.thorned-hulk", "count": 2, "elite": true },
-            { "archetypeId": "monsters/act3.serpent-magus", "count": 2 }
-          ] }] },
-      { "id": "w4", "type": "trash",
-        "encounters": [{ "id": "act3-kb-w4-e1", "level": 36,
-          "monsters": [
-            { "archetypeId": "monsters/act3.doom-ape", "count": 3 },
-            { "archetypeId": "monsters/act3.swamp-dweller", "count": 2 }
-          ] }] },
-      { "id": "w5", "type": "elite",
-        "encounters": [{ "id": "act3-kb-w5-e1", "level": 37,
-          "monsters": [
-            { "archetypeId": "monsters/act3.infector", "count": 2, "elite": true },
-            { "archetypeId": "monsters/act3.flayer", "count": 3 }
-          ] }] },
-      { "id": "w6", "type": "boss", "lootTable": "loot/mini-act3",
-        "encounters": [{ "id": "act3-kb-w6-e1", "level": 37,
-          "monsters": [
-            { "archetypeId": "monsters/act3.serpent-magus", "count": 1, "boss": true }
-          ] }] }
-    ]
+      {
+        "id": "w1",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act3-kb-w1-e1",
+            "level": 35,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.serpent-magus",
+                "count": 2
+              },
+              {
+                "archetypeId": "monsters/act3.flayer",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w2",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act3-kb-w2-e1",
+            "level": 35,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.infector",
+                "count": 2
+              },
+              {
+                "archetypeId": "monsters/act3.fetish",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w3",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act3-kb-w3-e1",
+            "level": 36,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.thorned-hulk",
+                "count": 2,
+                "elite": true
+              },
+              {
+                "archetypeId": "monsters/act3.serpent-magus",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w4",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act3-kb-w4-e1",
+            "level": 36,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.doom-ape",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act3.swamp-dweller",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w5",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act3-kb-w5-e1",
+            "level": 37,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.infector",
+                "count": 2,
+                "elite": true
+              },
+              {
+                "archetypeId": "monsters/act3.flayer",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w6",
+        "type": "boss",
+        "lootTable": "loot/mini-act3",
+        "encounters": [
+          {
+            "id": "act3-kb-w6-e1",
+            "level": 37,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.serpent-magus",
+                "count": 1,
+                "boss": true
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "challenge": {
+      "rotation": [
+        "trash",
+        "trash",
+        "elite",
+        "trash"
+      ],
+      "manualFinalEliteWaves": 2,
+      "appendChapterBoss": true,
+      "monsterCount": {
+        "min": 8,
+        "max": 20
+      }
+    },
+    "difficulty": {
+      "finaleBand": "none",
+      "monsterLevelBonus": 1
+    }
   },
   {
     "id": "areas/act3-travincal",
@@ -196,47 +595,152 @@
     "lootTable": "loot/trash-act3",
     "flavor": "The High Council's marble ziggurat — Geleb, Toorc and Ismail bar the way to Hate.",
     "bossEncounter": {
-      "id": "act3-travincal-council", "level": 40,
+      "id": "act3-travincal-council",
+      "level": 40,
       "monsters": [
-        { "archetypeId": "monsters/act3.infector", "count": 3, "boss": true }
+        {
+          "archetypeId": "monsters/act3.infector",
+          "count": 3,
+          "boss": true
+        }
       ]
     },
     "waves": [
-      { "id": "w1", "type": "trash",
-        "encounters": [{ "id": "act3-tv-w1-e1", "level": 38,
-          "monsters": [
-            { "archetypeId": "monsters/act3.serpent-magus", "count": 3 },
-            { "archetypeId": "monsters/act3.fetish", "count": 2 }
-          ] }] },
-      { "id": "w2", "type": "trash",
-        "encounters": [{ "id": "act3-tv-w2-e1", "level": 38,
-          "monsters": [
-            { "archetypeId": "monsters/act3.infector", "count": 2 },
-            { "archetypeId": "monsters/act3.flayer", "count": 3 }
-          ] }] },
-      { "id": "w3", "type": "elite",
-        "encounters": [{ "id": "act3-tv-w3-e1", "level": 39,
-          "monsters": [
-            { "archetypeId": "monsters/act3.thorned-hulk", "count": 2, "elite": true },
-            { "archetypeId": "monsters/act3.infector", "count": 2 }
-          ] }] },
-      { "id": "w4", "type": "elite",
-        "encounters": [{ "id": "act3-tv-w4-e1", "level": 39,
-          "monsters": [
-            { "archetypeId": "monsters/act3.serpent-magus", "count": 3, "elite": true }
-          ] }] },
-      { "id": "w5", "type": "trash",
-        "encounters": [{ "id": "act3-tv-w5-e1", "level": 40,
-          "monsters": [
-            { "archetypeId": "monsters/act3.doom-ape", "count": 3 },
-            { "archetypeId": "monsters/act3.infector", "count": 2 }
-          ] }] },
-      { "id": "w6", "type": "boss", "lootTable": "loot/mini-act3",
-        "encounters": [{ "id": "act3-tv-w6-e1", "level": 40,
-          "monsters": [
-            { "archetypeId": "monsters/act3.infector", "count": 3, "boss": true }
-          ] }] }
-    ]
+      {
+        "id": "w1",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act3-tv-w1-e1",
+            "level": 38,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.serpent-magus",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act3.fetish",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w2",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act3-tv-w2-e1",
+            "level": 38,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.infector",
+                "count": 2
+              },
+              {
+                "archetypeId": "monsters/act3.flayer",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w3",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act3-tv-w3-e1",
+            "level": 39,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.thorned-hulk",
+                "count": 2,
+                "elite": true
+              },
+              {
+                "archetypeId": "monsters/act3.infector",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w4",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act3-tv-w4-e1",
+            "level": 39,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.serpent-magus",
+                "count": 3,
+                "elite": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w5",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act3-tv-w5-e1",
+            "level": 40,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.doom-ape",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act3.infector",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w6",
+        "type": "boss",
+        "lootTable": "loot/mini-act3",
+        "encounters": [
+          {
+            "id": "act3-tv-w6-e1",
+            "level": 40,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.infector",
+                "count": 3,
+                "boss": true
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "challenge": {
+      "rotation": [
+        "trash",
+        "trash",
+        "elite",
+        "trash"
+      ],
+      "manualFinalEliteWaves": 2,
+      "appendChapterBoss": true,
+      "monsterCount": {
+        "min": 8,
+        "max": 20
+      }
+    },
+    "difficulty": {
+      "finaleBand": "penultimate",
+      "monsterLevelBonus": 1
+    }
   },
   {
     "id": "areas/act3-durance-of-hate",
@@ -247,9 +751,14 @@
     "lootTable": "loot/trash-act3",
     "flavor": "Beneath Travincal — Mephisto's prison, where the Lord of Hatred awaits release.",
     "bossEncounter": {
-      "id": "act3-durance-mephisto", "level": 42,
+      "id": "act3-durance-mephisto",
+      "level": 42,
       "monsters": [
-        { "archetypeId": "monsters/act3.mephisto", "count": 1, "boss": true }
+        {
+          "archetypeId": "monsters/act3.mephisto",
+          "count": 1,
+          "boss": true
+        }
       ]
     },
     "chapterBoss": {
@@ -257,45 +766,150 @@
       "hp": 4200,
       "atk": 300,
       "def": 360,
-      "skills": ["monster-lightning"],
+      "skills": [
+        "monster-lightning"
+      ],
       "dropTable": "loot/act3-boss"
     },
     "waves": [
-      { "id": "w1", "type": "trash",
-        "encounters": [{ "id": "act3-dh-w1-e1", "level": 40,
-          "monsters": [
-            { "archetypeId": "monsters/act3.infector", "count": 3 },
-            { "archetypeId": "monsters/act3.serpent-magus", "count": 2 }
-          ] }] },
-      { "id": "w2", "type": "trash",
-        "encounters": [{ "id": "act3-dh-w2-e1", "level": 41,
-          "monsters": [
-            { "archetypeId": "monsters/act3.thorned-hulk", "count": 2 },
-            { "archetypeId": "monsters/act3.doom-ape", "count": 2 }
-          ] }] },
-      { "id": "w3", "type": "elite",
-        "encounters": [{ "id": "act3-dh-w3-e1", "level": 41,
-          "monsters": [
-            { "archetypeId": "monsters/act3.infector", "count": 2, "elite": true },
-            { "archetypeId": "monsters/act3.serpent-magus", "count": 2 }
-          ] }] },
-      { "id": "w4", "type": "elite",
-        "encounters": [{ "id": "act3-dh-w4-e1", "level": 42,
-          "monsters": [
-            { "archetypeId": "monsters/act3.thorned-hulk", "count": 2, "elite": true },
-            { "archetypeId": "monsters/act3.infector", "count": 2 }
-          ] }] },
-      { "id": "w5", "type": "trash",
-        "encounters": [{ "id": "act3-dh-w5-e1", "level": 42,
-          "monsters": [
-            { "archetypeId": "monsters/act3.serpent-magus", "count": 3 },
-            { "archetypeId": "monsters/act3.doom-ape", "count": 2 }
-          ] }] },
-      { "id": "w6", "type": "boss", "lootTable": "loot/act3-boss",
-        "encounters": [{ "id": "act3-dh-w6-e1", "level": 42,
-          "monsters": [
-            { "archetypeId": "monsters/act3.mephisto", "count": 1, "boss": true }
-          ] }] }
-    ]
+      {
+        "id": "w1",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act3-dh-w1-e1",
+            "level": 40,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.infector",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act3.serpent-magus",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w2",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act3-dh-w2-e1",
+            "level": 41,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.thorned-hulk",
+                "count": 2
+              },
+              {
+                "archetypeId": "monsters/act3.doom-ape",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w3",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act3-dh-w3-e1",
+            "level": 41,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.infector",
+                "count": 2,
+                "elite": true
+              },
+              {
+                "archetypeId": "monsters/act3.serpent-magus",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w4",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act3-dh-w4-e1",
+            "level": 42,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.thorned-hulk",
+                "count": 2,
+                "elite": true
+              },
+              {
+                "archetypeId": "monsters/act3.infector",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w5",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act3-dh-w5-e1",
+            "level": 42,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.serpent-magus",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act3.doom-ape",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w6",
+        "type": "boss",
+        "lootTable": "loot/act3-boss",
+        "encounters": [
+          {
+            "id": "act3-dh-w6-e1",
+            "level": 42,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act3.mephisto",
+                "count": 1,
+                "boss": true
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "challenge": {
+      "rotation": [
+        "trash",
+        "trash",
+        "elite",
+        "trash"
+      ],
+      "manualFinalEliteWaves": 2,
+      "appendChapterBoss": true,
+      "monsterCount": {
+        "min": 8,
+        "max": 20
+      }
+    },
+    "difficulty": {
+      "finaleBand": "final",
+      "monsterLevelBonus": 2
+    }
   }
 ]

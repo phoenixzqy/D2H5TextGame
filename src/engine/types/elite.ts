@@ -17,6 +17,18 @@ export interface EliteStatMultipliers {
   readonly defense: number;
 }
 
+/** Online-idle elite spawn and pity configuration. */
+export interface IdleEliteConfig {
+  readonly enabled: boolean;
+  readonly baseEliteChance: number;
+  readonly championShareOfEliteRoll: number;
+  readonly rareShareOfEliteRoll: number;
+  readonly pityStartMisses: number;
+  readonly pityStep: number;
+  readonly pityChanceCap: number;
+  readonly hardPityMisses: number;
+}
+
 /** Data-driven elite spawn and affix configuration. */
 export interface EliteConfigDef {
   readonly id: 'elite/default';
@@ -30,5 +42,6 @@ export interface EliteConfigDef {
     readonly rareElite: EliteStatMultipliers;
     readonly rareMinion: EliteStatMultipliers;
   };
+  readonly idle: IdleEliteConfig;
   readonly affixes: readonly EliteAffixDef[];
 }

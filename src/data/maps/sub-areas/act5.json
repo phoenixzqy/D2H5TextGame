@@ -8,48 +8,156 @@
     "lootTable": "loot/trash-act5",
     "flavor": "Snow stained crimson — Shenk the Overseer flogs his demon kin against Harrogath's wall.",
     "bossEncounter": {
-      "id": "act5-bf-shenk", "level": 58,
+      "id": "act5-bf-shenk",
+      "level": 58,
       "monsters": [
-        { "archetypeId": "monsters/act5.overseer", "count": 1, "boss": true },
-        { "archetypeId": "monsters/act5.death-mauler", "count": 3 }
+        {
+          "archetypeId": "monsters/act5.overseer",
+          "count": 1,
+          "boss": true
+        },
+        {
+          "archetypeId": "monsters/act5.death-mauler",
+          "count": 3
+        }
       ]
     },
     "waves": [
-      { "id": "w1", "type": "trash",
-        "encounters": [{ "id": "act5-bf-w1-e1", "level": 56,
-          "monsters": [
-            { "archetypeId": "monsters/act5.death-mauler", "count": 3 },
-            { "archetypeId": "monsters/act5.blood-lord", "count": 2 }
-          ] }] },
-      { "id": "w2", "type": "trash",
-        "encounters": [{ "id": "act5-bf-w2-e1", "level": 57,
-          "monsters": [
-            { "archetypeId": "monsters/act5.barbarian-savage", "count": 4 },
-            { "archetypeId": "monsters/act5.warped-shaman", "count": 1 }
-          ] }] },
-      { "id": "w3", "type": "elite",
-        "encounters": [{ "id": "act5-bf-w3-e1", "level": 57,
-          "monsters": [
-            { "archetypeId": "monsters/act5.death-mauler", "count": 2, "elite": true },
-            { "archetypeId": "monsters/act5.blood-lord", "count": 3 }
-          ] }] },
-      { "id": "w4", "type": "trash",
-        "encounters": [{ "id": "act5-bf-w4-e1", "level": 58,
-          "monsters": [
-            { "archetypeId": "monsters/act5.frozen-terror", "count": 2 },
-            { "archetypeId": "monsters/act5.barbarian-savage", "count": 3 }
-          ] }] },
-      { "id": "w5", "type": "elite",
-        "encounters": [{ "id": "act5-bf-w5-e1", "level": 58,
-          "monsters": [
-            { "archetypeId": "monsters/act5.warped-shaman", "count": 2, "elite": true }
-          ] }] },
-      { "id": "w6", "type": "boss", "lootTable": "loot/mini-act5",
-        "encounters": [{ "id": "act5-bf-w6-e1", "level": 58,
-          "monsters": [
-            { "archetypeId": "monsters/act5.overseer", "count": 1, "boss": true }
-          ] }] }
-    ]
+      {
+        "id": "w1",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act5-bf-w1-e1",
+            "level": 56,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.death-mauler",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act5.blood-lord",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w2",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act5-bf-w2-e1",
+            "level": 57,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.barbarian-savage",
+                "count": 4
+              },
+              {
+                "archetypeId": "monsters/act5.warped-shaman",
+                "count": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w3",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act5-bf-w3-e1",
+            "level": 57,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.death-mauler",
+                "count": 2,
+                "elite": true
+              },
+              {
+                "archetypeId": "monsters/act5.blood-lord",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w4",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act5-bf-w4-e1",
+            "level": 58,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.frozen-terror",
+                "count": 2
+              },
+              {
+                "archetypeId": "monsters/act5.barbarian-savage",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w5",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act5-bf-w5-e1",
+            "level": 58,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.warped-shaman",
+                "count": 2,
+                "elite": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w6",
+        "type": "boss",
+        "lootTable": "loot/mini-act5",
+        "encounters": [
+          {
+            "id": "act5-bf-w6-e1",
+            "level": 58,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.overseer",
+                "count": 1,
+                "boss": true
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "challenge": {
+      "rotation": [
+        "trash",
+        "trash",
+        "elite",
+        "trash"
+      ],
+      "manualFinalEliteWaves": 2,
+      "appendChapterBoss": true,
+      "monsterCount": {
+        "min": 8,
+        "max": 20
+      }
+    },
+    "difficulty": {
+      "finaleBand": "none",
+      "monsterLevelBonus": 0
+    }
   },
   {
     "id": "areas/act5-frigid-highlands",
@@ -60,48 +168,156 @@
     "lootTable": "loot/trash-act5",
     "flavor": "Sleet and stone — Eldritch the Rectifier marshals minions of destruction along the ridge.",
     "bossEncounter": {
-      "id": "act5-fh-eldritch", "level": 61,
+      "id": "act5-fh-eldritch",
+      "level": 61,
       "monsters": [
-        { "archetypeId": "monsters/act5.overseer", "count": 1, "boss": true },
-        { "archetypeId": "monsters/act5.frozen-terror", "count": 3 }
+        {
+          "archetypeId": "monsters/act5.overseer",
+          "count": 1,
+          "boss": true
+        },
+        {
+          "archetypeId": "monsters/act5.frozen-terror",
+          "count": 3
+        }
       ]
     },
     "waves": [
-      { "id": "w1", "type": "trash",
-        "encounters": [{ "id": "act5-fh-w1-e1", "level": 59,
-          "monsters": [
-            { "archetypeId": "monsters/act5.overseer", "count": 2 },
-            { "archetypeId": "monsters/act5.death-mauler", "count": 3 }
-          ] }] },
-      { "id": "w2", "type": "trash",
-        "encounters": [{ "id": "act5-fh-w2-e1", "level": 59,
-          "monsters": [
-            { "archetypeId": "monsters/act5.frozen-terror", "count": 3 },
-            { "archetypeId": "monsters/act5.warped-shaman", "count": 2 }
-          ] }] },
-      { "id": "w3", "type": "elite",
-        "encounters": [{ "id": "act5-fh-w3-e1", "level": 60,
-          "monsters": [
-            { "archetypeId": "monsters/act5.blood-lord", "count": 2, "elite": true },
-            { "archetypeId": "monsters/act5.barbarian-savage", "count": 3 }
-          ] }] },
-      { "id": "w4", "type": "trash",
-        "encounters": [{ "id": "act5-fh-w4-e1", "level": 60,
-          "monsters": [
-            { "archetypeId": "monsters/act5.succubus", "count": 2 },
-            { "archetypeId": "monsters/act5.warped-shaman", "count": 2 }
-          ] }] },
-      { "id": "w5", "type": "elite",
-        "encounters": [{ "id": "act5-fh-w5-e1", "level": 61,
-          "monsters": [
-            { "archetypeId": "monsters/act5.frozen-terror", "count": 3, "elite": true }
-          ] }] },
-      { "id": "w6", "type": "boss", "lootTable": "loot/mini-act5",
-        "encounters": [{ "id": "act5-fh-w6-e1", "level": 61,
-          "monsters": [
-            { "archetypeId": "monsters/act5.overseer", "count": 1, "boss": true }
-          ] }] }
-    ]
+      {
+        "id": "w1",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act5-fh-w1-e1",
+            "level": 59,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.overseer",
+                "count": 2
+              },
+              {
+                "archetypeId": "monsters/act5.death-mauler",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w2",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act5-fh-w2-e1",
+            "level": 59,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.frozen-terror",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act5.warped-shaman",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w3",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act5-fh-w3-e1",
+            "level": 60,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.blood-lord",
+                "count": 2,
+                "elite": true
+              },
+              {
+                "archetypeId": "monsters/act5.barbarian-savage",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w4",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act5-fh-w4-e1",
+            "level": 60,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.succubus",
+                "count": 2
+              },
+              {
+                "archetypeId": "monsters/act5.warped-shaman",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w5",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act5-fh-w5-e1",
+            "level": 61,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.frozen-terror",
+                "count": 3,
+                "elite": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w6",
+        "type": "boss",
+        "lootTable": "loot/mini-act5",
+        "encounters": [
+          {
+            "id": "act5-fh-w6-e1",
+            "level": 61,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.overseer",
+                "count": 1,
+                "boss": true
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "challenge": {
+      "rotation": [
+        "trash",
+        "trash",
+        "elite",
+        "trash"
+      ],
+      "manualFinalEliteWaves": 2,
+      "appendChapterBoss": true,
+      "monsterCount": {
+        "min": 8,
+        "max": 20
+      }
+    },
+    "difficulty": {
+      "finaleBand": "none",
+      "monsterLevelBonus": 0
+    }
   },
   {
     "id": "areas/act5-arreat-plateau",
@@ -112,49 +328,160 @@
     "lootTable": "loot/trash-act5",
     "flavor": "Wind-scoured plateau where Thresh Socket hauls his siege engines toward the holy mountain.",
     "bossEncounter": {
-      "id": "act5-ap-thresh", "level": 65,
+      "id": "act5-ap-thresh",
+      "level": 65,
       "monsters": [
-        { "archetypeId": "monsters/act5.death-mauler", "count": 1, "boss": true },
-        { "archetypeId": "monsters/act5.blood-lord", "count": 4 }
+        {
+          "archetypeId": "monsters/act5.death-mauler",
+          "count": 1,
+          "boss": true
+        },
+        {
+          "archetypeId": "monsters/act5.blood-lord",
+          "count": 4
+        }
       ]
     },
     "waves": [
-      { "id": "w1", "type": "trash",
-        "encounters": [{ "id": "act5-ap-w1-e1", "level": 63,
-          "monsters": [
-            { "archetypeId": "monsters/act5.death-mauler", "count": 3 },
-            { "archetypeId": "monsters/act5.barbarian-savage", "count": 2 }
-          ] }] },
-      { "id": "w2", "type": "trash",
-        "encounters": [{ "id": "act5-ap-w2-e1", "level": 63,
-          "monsters": [
-            { "archetypeId": "monsters/act5.blood-lord", "count": 3 },
-            { "archetypeId": "monsters/act5.warped-shaman", "count": 2 }
-          ] }] },
-      { "id": "w3", "type": "elite",
-        "encounters": [{ "id": "act5-ap-w3-e1", "level": 64,
-          "monsters": [
-            { "archetypeId": "monsters/act5.frozen-terror", "count": 2, "elite": true },
-            { "archetypeId": "monsters/act5.death-mauler", "count": 2 }
-          ] }] },
-      { "id": "w4", "type": "trash",
-        "encounters": [{ "id": "act5-ap-w4-e1", "level": 64,
-          "monsters": [
-            { "archetypeId": "monsters/act5.succubus", "count": 3 },
-            { "archetypeId": "monsters/act5.overseer", "count": 1 }
-          ] }] },
-      { "id": "w5", "type": "elite",
-        "encounters": [{ "id": "act5-ap-w5-e1", "level": 65,
-          "monsters": [
-            { "archetypeId": "monsters/act5.warped-shaman", "count": 2, "elite": true },
-            { "archetypeId": "monsters/act5.barbarian-savage", "count": 3 }
-          ] }] },
-      { "id": "w6", "type": "boss", "lootTable": "loot/mini-act5",
-        "encounters": [{ "id": "act5-ap-w6-e1", "level": 65,
-          "monsters": [
-            { "archetypeId": "monsters/act5.death-mauler", "count": 1, "boss": true }
-          ] }] }
-    ]
+      {
+        "id": "w1",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act5-ap-w1-e1",
+            "level": 63,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.death-mauler",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act5.barbarian-savage",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w2",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act5-ap-w2-e1",
+            "level": 63,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.blood-lord",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act5.warped-shaman",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w3",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act5-ap-w3-e1",
+            "level": 64,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.frozen-terror",
+                "count": 2,
+                "elite": true
+              },
+              {
+                "archetypeId": "monsters/act5.death-mauler",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w4",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act5-ap-w4-e1",
+            "level": 64,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.succubus",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act5.overseer",
+                "count": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w5",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act5-ap-w5-e1",
+            "level": 65,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.warped-shaman",
+                "count": 2,
+                "elite": true
+              },
+              {
+                "archetypeId": "monsters/act5.barbarian-savage",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w6",
+        "type": "boss",
+        "lootTable": "loot/mini-act5",
+        "encounters": [
+          {
+            "id": "act5-ap-w6-e1",
+            "level": 65,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.death-mauler",
+                "count": 1,
+                "boss": true
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "challenge": {
+      "rotation": [
+        "trash",
+        "trash",
+        "elite",
+        "trash"
+      ],
+      "manualFinalEliteWaves": 2,
+      "appendChapterBoss": true,
+      "monsterCount": {
+        "min": 8,
+        "max": 20
+      }
+    },
+    "difficulty": {
+      "finaleBand": "none",
+      "monsterLevelBonus": 0
+    }
   },
   {
     "id": "areas/act5-crystalline-passage",
@@ -165,48 +492,156 @@
     "lootTable": "loot/trash-act5",
     "flavor": "Mirror-bright ice tunnels leading to Halls of Vaught — Nihlathak's stolen Relic awaits.",
     "bossEncounter": {
-      "id": "act5-cp-nihlathak", "level": 68,
+      "id": "act5-cp-nihlathak",
+      "level": 68,
       "monsters": [
-        { "archetypeId": "monsters/act5.warped-shaman", "count": 1, "boss": true },
-        { "archetypeId": "monsters/act5.frozen-terror", "count": 4 }
+        {
+          "archetypeId": "monsters/act5.warped-shaman",
+          "count": 1,
+          "boss": true
+        },
+        {
+          "archetypeId": "monsters/act5.frozen-terror",
+          "count": 4
+        }
       ]
     },
     "waves": [
-      { "id": "w1", "type": "trash",
-        "encounters": [{ "id": "act5-cp-w1-e1", "level": 66,
-          "monsters": [
-            { "archetypeId": "monsters/act5.frozen-terror", "count": 3 },
-            { "archetypeId": "monsters/act5.succubus", "count": 2 }
-          ] }] },
-      { "id": "w2", "type": "trash",
-        "encounters": [{ "id": "act5-cp-w2-e1", "level": 66,
-          "monsters": [
-            { "archetypeId": "monsters/act5.warped-shaman", "count": 2 },
-            { "archetypeId": "monsters/act5.blood-lord", "count": 3 }
-          ] }] },
-      { "id": "w3", "type": "elite",
-        "encounters": [{ "id": "act5-cp-w3-e1", "level": 67,
-          "monsters": [
-            { "archetypeId": "monsters/act5.succubus", "count": 3, "elite": true }
-          ] }] },
-      { "id": "w4", "type": "trash",
-        "encounters": [{ "id": "act5-cp-w4-e1", "level": 67,
-          "monsters": [
-            { "archetypeId": "monsters/act5.death-mauler", "count": 2 },
-            { "archetypeId": "monsters/act5.frozen-terror", "count": 3 }
-          ] }] },
-      { "id": "w5", "type": "elite",
-        "encounters": [{ "id": "act5-cp-w5-e1", "level": 68,
-          "monsters": [
-            { "archetypeId": "monsters/act5.warped-shaman", "count": 2, "elite": true },
-            { "archetypeId": "monsters/act5.blood-lord", "count": 2 }
-          ] }] },
-      { "id": "w6", "type": "boss", "lootTable": "loot/mini-act5",
-        "encounters": [{ "id": "act5-cp-w6-e1", "level": 68,
-          "monsters": [
-            { "archetypeId": "monsters/act5.warped-shaman", "count": 1, "boss": true }
-          ] }] }
-    ]
+      {
+        "id": "w1",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act5-cp-w1-e1",
+            "level": 66,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.frozen-terror",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act5.succubus",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w2",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act5-cp-w2-e1",
+            "level": 66,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.warped-shaman",
+                "count": 2
+              },
+              {
+                "archetypeId": "monsters/act5.blood-lord",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w3",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act5-cp-w3-e1",
+            "level": 67,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.succubus",
+                "count": 3,
+                "elite": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w4",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act5-cp-w4-e1",
+            "level": 67,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.death-mauler",
+                "count": 2
+              },
+              {
+                "archetypeId": "monsters/act5.frozen-terror",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w5",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act5-cp-w5-e1",
+            "level": 68,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.warped-shaman",
+                "count": 2,
+                "elite": true
+              },
+              {
+                "archetypeId": "monsters/act5.blood-lord",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w6",
+        "type": "boss",
+        "lootTable": "loot/mini-act5",
+        "encounters": [
+          {
+            "id": "act5-cp-w6-e1",
+            "level": 68,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.warped-shaman",
+                "count": 1,
+                "boss": true
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "challenge": {
+      "rotation": [
+        "trash",
+        "trash",
+        "elite",
+        "trash"
+      ],
+      "manualFinalEliteWaves": 2,
+      "appendChapterBoss": true,
+      "monsterCount": {
+        "min": 8,
+        "max": 20
+      }
+    },
+    "difficulty": {
+      "finaleBand": "none",
+      "monsterLevelBonus": 1
+    }
   },
   {
     "id": "areas/act5-ancients-way",
@@ -217,54 +652,176 @@
     "lootTable": "loot/trash-act5",
     "flavor": "The pilgrim path to Mount Arreat — three Ancient Barbarian spirits bar the summit.",
     "bossEncounter": {
-      "id": "act5-aw-ancients", "level": 72,
+      "id": "act5-aw-ancients",
+      "level": 72,
       "monsters": [
-        { "archetypeId": "monsters/act5.ancient-barbarian", "count": 3, "boss": true }
+        {
+          "archetypeId": "monsters/act5.ancient-barbarian",
+          "count": 3,
+          "boss": true
+        }
       ]
     },
     "waves": [
-      { "id": "w1", "type": "trash",
-        "encounters": [{ "id": "act5-aw-w1-e1", "level": 70,
-          "monsters": [
-            { "archetypeId": "monsters/act5.ancient-barbarian", "count": 2 },
-            { "archetypeId": "monsters/act5.warped-shaman", "count": 2 }
-          ] }] },
-      { "id": "w2", "type": "trash",
-        "encounters": [{ "id": "act5-aw-w2-e1", "level": 70,
-          "monsters": [
-            { "archetypeId": "monsters/act5.death-mauler", "count": 3 },
-            { "archetypeId": "monsters/act5.frozen-terror", "count": 2 }
-          ] }] },
-      { "id": "w3", "type": "elite",
-        "encounters": [{ "id": "act5-aw-w3-e1", "level": 71,
-          "monsters": [
-            { "archetypeId": "monsters/act5.ancient-barbarian", "count": 2, "elite": true },
-            { "archetypeId": "monsters/act5.barbarian-savage", "count": 3 }
-          ] }] },
-      { "id": "w4", "type": "trash",
-        "encounters": [{ "id": "act5-aw-w4-e1", "level": 71,
-          "monsters": [
-            { "archetypeId": "monsters/act5.succubus", "count": 2 },
-            { "archetypeId": "monsters/act5.blood-lord", "count": 2 }
-          ] }] },
-      { "id": "w5", "type": "elite",
-        "encounters": [{ "id": "act5-aw-w5-e1", "level": 72,
-          "monsters": [
-            { "archetypeId": "monsters/act5.frozen-terror", "count": 3, "elite": true },
-            { "archetypeId": "monsters/act5.warped-shaman", "count": 2 }
-          ] }] },
-      { "id": "w6", "type": "trash",
-        "encounters": [{ "id": "act5-aw-w6-e1", "level": 72,
-          "monsters": [
-            { "archetypeId": "monsters/act5.overseer", "count": 1 },
-            { "archetypeId": "monsters/act5.death-mauler", "count": 3 }
-          ] }] },
-      { "id": "w7", "type": "boss", "lootTable": "loot/mini-act5",
-        "encounters": [{ "id": "act5-aw-w7-e1", "level": 72,
-          "monsters": [
-            { "archetypeId": "monsters/act5.ancient-barbarian", "count": 3, "boss": true }
-          ] }] }
-    ]
+      {
+        "id": "w1",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act5-aw-w1-e1",
+            "level": 70,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.ancient-barbarian",
+                "count": 2
+              },
+              {
+                "archetypeId": "monsters/act5.warped-shaman",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w2",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act5-aw-w2-e1",
+            "level": 70,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.death-mauler",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act5.frozen-terror",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w3",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act5-aw-w3-e1",
+            "level": 71,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.ancient-barbarian",
+                "count": 2,
+                "elite": true
+              },
+              {
+                "archetypeId": "monsters/act5.barbarian-savage",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w4",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act5-aw-w4-e1",
+            "level": 71,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.succubus",
+                "count": 2
+              },
+              {
+                "archetypeId": "monsters/act5.blood-lord",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w5",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act5-aw-w5-e1",
+            "level": 72,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.frozen-terror",
+                "count": 3,
+                "elite": true
+              },
+              {
+                "archetypeId": "monsters/act5.warped-shaman",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w6",
+        "type": "trash",
+        "encounters": [
+          {
+            "id": "act5-aw-w6-e1",
+            "level": 72,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.overseer",
+                "count": 1
+              },
+              {
+                "archetypeId": "monsters/act5.death-mauler",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w7",
+        "type": "boss",
+        "lootTable": "loot/mini-act5",
+        "encounters": [
+          {
+            "id": "act5-aw-w7-e1",
+            "level": 72,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.ancient-barbarian",
+                "count": 3,
+                "boss": true
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "challenge": {
+      "rotation": [
+        "trash",
+        "trash",
+        "elite",
+        "trash"
+      ],
+      "manualFinalEliteWaves": 2,
+      "appendChapterBoss": true,
+      "monsterCount": {
+        "min": 8,
+        "max": 20
+      }
+    },
+    "difficulty": {
+      "finaleBand": "penultimate",
+      "monsterLevelBonus": 1
+    }
   },
   {
     "id": "areas/act5-throne-of-destruction",
@@ -275,9 +832,14 @@
     "lootTable": "loot/trash-act5",
     "flavor": "Five waves of Baal's elite minions break against you — then the Lord of Destruction descends.",
     "bossEncounter": {
-      "id": "act5-tod-baal", "level": 78,
+      "id": "act5-tod-baal",
+      "level": 78,
       "monsters": [
-        { "archetypeId": "monsters/act5.baal", "count": 1, "boss": true }
+        {
+          "archetypeId": "monsters/act5.baal",
+          "count": 1,
+          "boss": true
+        }
       ]
     },
     "chapterBoss": {
@@ -285,55 +847,187 @@
       "hp": 7200,
       "atk": 520,
       "def": 560,
-      "skills": ["monster-tentacles"],
+      "skills": [
+        "monster-tentacles"
+      ],
       "dropTable": "loot/act5-boss"
     },
     "waves": [
-      { "id": "w1", "type": "elite",
-        "encounters": [{ "id": "act5-tod-w1-e1", "level": 75,
-          "monsters": [
-            { "archetypeId": "monsters/act5.baal-minion", "count": 4, "elite": true }
-          ] }] },
-      { "id": "w2", "type": "elite",
-        "encounters": [{ "id": "act5-tod-w2-e1", "level": 75,
-          "monsters": [
-            { "archetypeId": "monsters/act5.baal-minion", "count": 4, "elite": true },
-            { "archetypeId": "monsters/act5.frozen-terror", "count": 2 }
-          ] }] },
-      { "id": "w3", "type": "elite",
-        "encounters": [{ "id": "act5-tod-w3-e1", "level": 76,
-          "monsters": [
-            { "archetypeId": "monsters/act5.baal-minion", "count": 3, "elite": true },
-            { "archetypeId": "monsters/act5.warped-shaman", "count": 2 }
-          ] }] },
-      { "id": "w4", "type": "elite",
-        "encounters": [{ "id": "act5-tod-w4-e1", "level": 76,
-          "monsters": [
-            { "archetypeId": "monsters/act5.baal-minion", "count": 4, "elite": true },
-            { "archetypeId": "monsters/act5.death-mauler", "count": 2 }
-          ] }] },
-      { "id": "w5", "type": "elite",
-        "encounters": [{ "id": "act5-tod-w5-e1", "level": 77,
-          "monsters": [
-            { "archetypeId": "monsters/act5.baal-minion", "count": 5, "elite": true }
-          ] }] },
-      { "id": "w6", "type": "elite",
-        "encounters": [{ "id": "act5-tod-w6-e1", "level": 77,
-          "monsters": [
-            { "archetypeId": "monsters/act5.ancient-barbarian", "count": 2, "elite": true },
-            { "archetypeId": "monsters/act5.baal-minion", "count": 3 }
-          ] }] },
-      { "id": "w7", "type": "elite",
-        "encounters": [{ "id": "act5-tod-w7-e1", "level": 78,
-          "monsters": [
-            { "archetypeId": "monsters/act5.overseer", "count": 1, "elite": true },
-            { "archetypeId": "monsters/act5.baal-minion", "count": 4 }
-          ] }] },
-      { "id": "w8", "type": "boss", "lootTable": "loot/act5-boss",
-        "encounters": [{ "id": "act5-tod-w8-e1", "level": 78,
-          "monsters": [
-            { "archetypeId": "monsters/act5.baal", "count": 1, "boss": true }
-          ] }] }
-    ]
+      {
+        "id": "w1",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act5-tod-w1-e1",
+            "level": 75,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.baal-minion",
+                "count": 4,
+                "elite": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w2",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act5-tod-w2-e1",
+            "level": 75,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.baal-minion",
+                "count": 4,
+                "elite": true
+              },
+              {
+                "archetypeId": "monsters/act5.frozen-terror",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w3",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act5-tod-w3-e1",
+            "level": 76,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.baal-minion",
+                "count": 3,
+                "elite": true
+              },
+              {
+                "archetypeId": "monsters/act5.warped-shaman",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w4",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act5-tod-w4-e1",
+            "level": 76,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.baal-minion",
+                "count": 4,
+                "elite": true
+              },
+              {
+                "archetypeId": "monsters/act5.death-mauler",
+                "count": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w5",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act5-tod-w5-e1",
+            "level": 77,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.baal-minion",
+                "count": 5,
+                "elite": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w6",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act5-tod-w6-e1",
+            "level": 77,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.ancient-barbarian",
+                "count": 2,
+                "elite": true
+              },
+              {
+                "archetypeId": "monsters/act5.baal-minion",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w7",
+        "type": "elite",
+        "encounters": [
+          {
+            "id": "act5-tod-w7-e1",
+            "level": 78,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.overseer",
+                "count": 1,
+                "elite": true
+              },
+              {
+                "archetypeId": "monsters/act5.baal-minion",
+                "count": 4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "w8",
+        "type": "boss",
+        "lootTable": "loot/act5-boss",
+        "encounters": [
+          {
+            "id": "act5-tod-w8-e1",
+            "level": 78,
+            "monsters": [
+              {
+                "archetypeId": "monsters/act5.baal",
+                "count": 1,
+                "boss": true
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "challenge": {
+      "rotation": [
+        "trash",
+        "trash",
+        "elite",
+        "trash"
+      ],
+      "manualFinalEliteWaves": 2,
+      "appendChapterBoss": true,
+      "monsterCount": {
+        "min": 8,
+        "max": 20
+      }
+    },
+    "difficulty": {
+      "finaleBand": "final",
+      "monsterLevelBonus": 2
+    }
   }
 ]

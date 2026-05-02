@@ -18,7 +18,8 @@ import {
   startSubAreaRun,
   advanceWaveOrFinish,
   abortSubAreaRun,
-  hasActiveSubAreaRun
+  hasActiveSubAreaRun,
+  resetIdleElitePity
 } from '@/stores/combatHelpers';
 import { nextSubAreaInAct } from '@/stores/subAreaResolver';
 import type { CombatLogEntry } from '@/stores/combatStore';
@@ -62,6 +63,7 @@ export function CombatScreen() {
   const log = useCombatStore((s) => s.log);
   const currentWave = useCombatStore((s) => s.currentWave);
   const totalWaves = useCombatStore((s) => s.totalWaves);
+  const wavePresentation = useCombatStore((s) => s.currentWavePresentation);
   const isPaused = useCombatStore((s) => s.isPaused);
   const autoMode = useCombatStore((s) => s.autoMode);
   const togglePause = useCombatStore((s) => s.togglePause);
@@ -90,13 +92,14 @@ export function CombatScreen() {
   const [speed, setSpeed] = useState<Speed>(1);
   // Inter-wave countdown banner; null = no pending advance.
   const [nextWaveCountingDown, setNextWaveCountingDown] = useState(false);
+  const isIdleLoop = Boolean(idleTarget && currentSubAreaId && (idleTarget === currentSubAreaId || idleTarget === currentSubAreaId.replace(/^areas\/act([1-5])-/, 'a$1-')));
 
   // Auto-start a sub-area run if none is in flight.
   useEffect(() => {
     if (!inCombat && player && !runVictory && !runDefeat) {
-      startSubAreaRun();
+      startSubAreaRun({ mode: isIdleLoop ? 'idle' : 'manual' });
     }
-  }, [inCombat, player, runVictory, runDefeat]);
+  }, [inCombat, isIdleLoop, player, runVictory, runDefeat]);
 
   // Timer-driven playback: schedule the next event after its uiDelayMs
   // (divided by the chosen speed multiplier). Re-runs whenever the cursor,
@@ -175,7 +178,10 @@ export function CombatScreen() {
   const handleFlee = () => {
     const wasInRun = hasActiveSubAreaRun() || subAreaRunId !== null;
     abortSubAreaRun();
-    if (wasInRun) setIdleTarget(undefined);
+    if (wasInRun) {
+      setIdleTarget(undefined);
+      resetIdleElitePity();
+    }
     endCombat();
     navigate(wasInRun ? '/map' : '/town');
   };
@@ -194,22 +200,23 @@ export function CombatScreen() {
 
   const handleReturnToMap = () => {
     setIdleTarget(undefined);
+    resetIdleElitePity();
     endCombat();
     navigate('/map');
   };
 
   const handleReturnToTown = () => {
     setIdleTarget(undefined);
+    resetIdleElitePity();
     endCombat();
     navigate('/town');
   };
-
-  const isIdleLoop = Boolean(idleTarget && currentSubAreaId && (idleTarget === currentSubAreaId || idleTarget === currentSubAreaId.replace(/^areas\/act([1-5])-/, 'a$1-')));
 
   useEffect(() => {
     if (!isIdleLoop) return;
     if (runDefeat) {
       setIdleTarget(undefined);
+      resetIdleElitePity();
       return;
     }
     if (!runVictory) return;
@@ -221,6 +228,7 @@ export function CombatScreen() {
 
   const handleStopIdle = () => {
     setIdleTarget(undefined);
+    resetIdleElitePity();
     abortSubAreaRun();
     endCombat();
     navigate('/map');
@@ -253,6 +261,23 @@ export function CombatScreen() {
                   {' · '}
                   <span data-testid="combat-sub-area-name" className="text-d2-gold">
                     {tDataKey(t, mapSubAreaNameKey(currentSubAreaId))}
+                  </span>
+                </>
+              )}
+              {wavePresentation && (
+                <>
+                  {' · '}
+                  <span
+                    className={
+                      wavePresentation.isActBoss
+                        ? 'text-orange-300'
+                        : wavePresentation.kind === 'elite'
+                          ? 'text-d2-set'
+                          : 'text-d2-white/70'
+                    }
+                    data-testid="wave-kind-label"
+                  >
+                    {t(`waveKind.${wavePresentation.isActBoss ? 'boss' : wavePresentation.kind}`)}
                   </span>
                 </>
               )}

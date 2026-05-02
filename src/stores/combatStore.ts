@@ -5,6 +5,7 @@
 
 import { create } from 'zustand';
 import type { CombatUnit } from '@/engine/combat/types';
+import type { WavePresentation } from '@/engine/combat';
 import type { RecordedBattleEvent } from '@/engine/combat/combat';
 import type { CombatSide } from '@/engine/combat/types';
 import type { KillRewards } from '@/engine/loot/award';
@@ -42,6 +43,7 @@ interface CombatState {
   currentTurn: number;
   currentWave: number;
   totalWaves: number;
+  currentWavePresentation: WavePresentation | null;
   isPaused: boolean;
   autoMode: boolean;
 
@@ -94,6 +96,8 @@ interface CombatState {
     totalWaves?: number;
     /** Sub-area run id (null/undefined for one-off battles). */
     subAreaRunId?: string | null;
+    /** Transient wave metadata for UI badges. */
+    wavePresentation?: WavePresentation;
   }) => void;
   /** Mark the active sub-area run as fully cleared. */
   markRunVictory: () => void;
@@ -124,6 +128,7 @@ const initialState = {
   currentTurn: 0,
   currentWave: 1,
   totalWaves: 1,
+  currentWavePresentation: null as WavePresentation | null,
   isPaused: false,
   autoMode: true,
   recordedEvents: [] as readonly RecordedBattleEvent[],
@@ -155,6 +160,7 @@ export const useCombatStore= create<CombatState>((set, get) => ({
     enemyTeam,
     totalWaves,
     currentWave: 1,
+    currentWavePresentation: null,
     currentTurn: 0,
     log: [],
     isPaused: false,
@@ -173,6 +179,7 @@ export const useCombatStore= create<CombatState>((set, get) => ({
     currentTurn: 0,
     currentWave: 1,
     totalWaves: 1,
+    currentWavePresentation: null,
     isPaused: false,
     recordedEvents: [],
     eventCursor: 0,
@@ -205,6 +212,7 @@ export const useCombatStore= create<CombatState>((set, get) => ({
   nextWave: (newEnemies) => { set((state) => ({
     currentWave: state.currentWave + 1,
     enemyTeam: newEnemies,
+    currentWavePresentation: null,
     currentTurn: 0
   })); },
 
@@ -231,7 +239,8 @@ export const useCombatStore= create<CombatState>((set, get) => ({
     outcome,
     currentWave,
     totalWaves,
-    subAreaRunId
+    subAreaRunId,
+    wavePresentation
   }) => {
     set((state) => ({
       inCombat: true,
@@ -247,6 +256,7 @@ export const useCombatStore= create<CombatState>((set, get) => ({
       outcome,
       currentWave: currentWave ?? state.currentWave,
       totalWaves: totalWaves ?? state.totalWaves,
+      currentWavePresentation: wavePresentation ?? null,
       subAreaRunId: subAreaRunId === undefined ? state.subAreaRunId : subAreaRunId,
       // A new wave clears the per-wave run flags; final flags are set
       // explicitly via markRunVictory / markRunDefeat after playback.

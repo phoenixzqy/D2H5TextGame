@@ -1,6 +1,13 @@
 {
   "title": "Combat",
   "wave": "Wave {{current}} / {{total}}",
+  "waveKind": {
+    "trash": "Normal wave",
+    "elite": "Elite wave",
+    "boss": "Boss fight",
+    "treasure": "Treasure",
+    "shrine": "Shrine"
+  },
   "nextWaveIn": "Next wave in 1.5s…",
   "runVictoryTitle": "Sub-area cleared!",
   "runDefeatTitle": "Defeated",

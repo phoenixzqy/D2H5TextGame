@@ -12,6 +12,7 @@
     "rareEliteResistanceBonus",
     "chapterBossHpMultiplier",
     "multipliers",
+    "idle",
     "affixes"
   ],
   "additionalProperties": false,
@@ -36,6 +37,30 @@
       "type": "array",
       "items": { "$ref": "#/$defs/affix" },
       "minItems": 1
+    },
+    "idle": {
+      "type": "object",
+      "required": [
+        "enabled",
+        "baseEliteChance",
+        "championShareOfEliteRoll",
+        "rareShareOfEliteRoll",
+        "pityStartMisses",
+        "pityStep",
+        "pityChanceCap",
+        "hardPityMisses"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "enabled": { "type": "boolean", "description": "Whether online idle can roll elite encounters." },
+        "baseEliteChance": { "type": "number", "minimum": 0, "maximum": 1 },
+        "championShareOfEliteRoll": { "type": "number", "minimum": 0, "maximum": 1 },
+        "rareShareOfEliteRoll": { "type": "number", "minimum": 0, "maximum": 1 },
+        "pityStartMisses": { "type": "integer", "minimum": 0 },
+        "pityStep": { "type": "number", "minimum": 0, "maximum": 1 },
+        "pityChanceCap": { "type": "number", "minimum": 0, "maximum": 1 },
+        "hardPityMisses": { "type": "integer", "minimum": 1 }
+      }
     }
   },
   "$defs": {

@@ -27,6 +27,10 @@
 
 import type { IdleBonus } from './offline-bonus';
 import { bonusMultiplier, consumeOnlineSession } from './offline-bonus';
+import { createRng, hashSeed } from '../rng';
+import type { MonsterTier } from '../combat/types';
+import type { EliteConfigDef } from '../types/elite';
+import type { SubAreaDef } from '../types/maps';
 
 /** A combat-tick reward summary (per-tick delta, not a running total). */
 export interface TickReward {
@@ -64,6 +68,32 @@ export interface OnlineTickResult {
   readonly bonus: IdleBonus;
 }
 
+export interface ResolveIdleEncounterInput {
+  readonly subArea: SubAreaDef;
+  readonly act: 1 | 2 | 3 | 4 | 5;
+  readonly tickIndex: number;
+  readonly seed: number;
+  readonly playerLevel: number;
+  readonly eliteMisses: number;
+  readonly eliteConfig: EliteConfigDef;
+  readonly fallbackArchetypeId: string;
+}
+
+export interface IdleEncounterFeedback {
+  readonly kind: 'kill' | 'elite-kill' | 'pity-elite-kill';
+}
+
+export interface IdleEncounter {
+  readonly subAreaId: string;
+  readonly tickIndex: number;
+  readonly monsterArchetypeId: string;
+  readonly monsterLevel: number;
+  readonly monsterTier: MonsterTier;
+  readonly treasureClassId: string;
+  readonly nextEliteMisses: number;
+  readonly feedback: IdleEncounterFeedback;
+}
+
 /**
  * Apply a single tick of accumulated reward, multiplied by current idle bonus.
  *
@@ -85,4 +115,69 @@ export function onlineTick(
   };
   const advanced = consumeOnlineSession(config.tickSeconds * 1000, bonus);
   return { reward, bonus: advanced };
+}
+
+/** Resolve one deterministic online-idle encounter without applying rewards. */
+export function resolveIdleEncounter(input: ResolveIdleEncounterInput): IdleEncounter {
+  const rng = createRng(hashSeed(`idle-encounter|${String(input.seed)}|${input.subArea.id}|${String(input.tickIndex)}`));
+  const archetypeIds = idleMonsterPool(input.subArea);
+  const monsterArchetypeId = rng.pick(archetypeIds.length > 0 ? archetypeIds : [input.fallbackArchetypeId]);
+  const elite = resolveIdleEliteRoll(input.eliteMisses, input.eliteConfig, rng);
+  const monsterLevelBonus = input.subArea.difficulty?.monsterLevelBonus ?? 0;
+  const monsterLevel = Math.max(
+    1,
+    input.subArea.areaLevel +
+      monsterLevelBonus +
+      (elite.tier === 'rare-elite' ? 2 : elite.tier === 'champion' ? 1 : 0)
+  );
+
+  return {
+    subAreaId: input.subArea.id,
+    tickIndex: input.tickIndex,
+    monsterArchetypeId,
+    monsterLevel,
+    monsterTier: elite.tier,
+    treasureClassId: input.subArea.lootTable,
+    nextEliteMisses: elite.tier === 'trash' ? input.eliteMisses + 1 : 0,
+    feedback: {
+      kind: elite.hardPity ? 'pity-elite-kill' : elite.tier === 'trash' ? 'kill' : 'elite-kill'
+    }
+  };
+}
+
+function idleMonsterPool(subArea: SubAreaDef): readonly string[] {
+  if (subArea.monsterPool && subArea.monsterPool.length > 0) {
+    return subArea.monsterPool.map((m) => m.archetypeId);
+  }
+  const ids: string[] = [];
+  for (const wave of subArea.waves) {
+    if (wave.type === 'boss') continue;
+    for (const encounter of wave.encounters ?? []) {
+      for (const monster of encounter.monsters) {
+        if (!monster.boss) ids.push(monster.archetypeId);
+      }
+    }
+  }
+  return [...new Set(ids)];
+}
+
+function resolveIdleEliteRoll(
+  eliteMisses: number,
+  eliteConfig: EliteConfigDef,
+  rng: ReturnType<typeof createRng>
+): { readonly tier: 'trash' | 'champion' | 'rare-elite'; readonly hardPity: boolean } {
+  const idle = eliteConfig.idle;
+  if (!idle.enabled) return { tier: 'trash', hardPity: false };
+  if (eliteMisses >= idle.hardPityMisses) return { tier: 'rare-elite', hardPity: true };
+
+  const softPitySteps = Math.max(0, eliteMisses - idle.pityStartMisses);
+  const eliteChance = Math.min(
+    idle.pityChanceCap,
+    idle.baseEliteChance + softPitySteps * idle.pityStep
+  );
+  if (!rng.chance(eliteChance)) return { tier: 'trash', hardPity: false };
+
+  const totalShare = idle.championShareOfEliteRoll + idle.rareShareOfEliteRoll;
+  const rareChance = totalShare > 0 ? idle.rareShareOfEliteRoll / totalShare : 0;
+  return { tier: rng.chance(rareChance) ? 'rare-elite' : 'champion', hardPity: false };
 }

@@ -28,6 +28,9 @@ interface SubArea {
   fallbackName: string;
   recommendedLevel: number;
   bossArchetypeId?: string;
+  challengeMonsterMin: number;
+  challengeMonsterMax: number;
+  difficultyBand: 'none' | 'penultimate' | 'final';
 }
 
 interface Act {
@@ -77,6 +80,9 @@ export function MapScreen() {
         nameKey: `map.subArea.${alias}`,
         fallbackName: sa.name,
         recommendedLevel: sa.areaLevel,
+        challengeMonsterMin: sa.challenge?.monsterCount.min ?? 8,
+        challengeMonsterMax: sa.challenge?.monsterCount.max ?? 20,
+        difficultyBand: sa.difficulty?.finaleBand ?? 'none',
         ...(sa.chapterBoss ? { bossArchetypeId: sa.chapterBoss.archetypeId } : {})
       });
       byAct.set(actNum, list);
@@ -254,6 +260,14 @@ export function MapScreen() {
                                 {t('bossBadge')}
                               </span>
                             )}
+                            {sa.difficultyBand !== 'none' && (
+                              <span
+                                className="text-[10px] uppercase text-red-300 border border-red-400/60 rounded px-1.5 py-0.5"
+                                data-testid={`difficulty-badge-${sa.alias}`}
+                              >
+                                {t(`difficulty.${sa.difficultyBand}`)}
+                              </span>
+                            )}
                             {isIdleHere && (
                               <span className="text-[10px] uppercase text-d2-white/80 border border-d2-white/40 rounded px-1.5 py-0.5">
                                 {t('idleHereShort')}
@@ -262,6 +276,8 @@ export function MapScreen() {
                           </div>
                           <div className="text-xs text-d2-white/60">
                             {t('recommendedLevel', { level: sa.recommendedLevel })}
+                            {' · '}
+                            {t('challengeMonsters', { min: sa.challengeMonsterMin, max: sa.challengeMonsterMax })}
                           </div>
                         </div>
                         {!unlocked ? (

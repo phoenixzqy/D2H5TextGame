@@ -16,8 +16,14 @@
             "id": "act1-blood-moor-w1-e1",
             "level": 2,
             "monsters": [
-              { "archetypeId": "monsters/act1.fallen", "count": 3 },
-              { "archetypeId": "monsters/act1.quill-rat", "count": 1 }
+              {
+                "archetypeId": "monsters/act1.fallen",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act1.quill-rat",
+                "count": 1
+              }
             ]
           }
         ]
@@ -30,9 +36,18 @@
             "id": "act1-blood-moor-w2-e1",
             "level": 2,
             "monsters": [
-              { "archetypeId": "monsters/act1.fallen", "count": 2 },
-              { "archetypeId": "monsters/act1.fallen-shaman", "count": 1 },
-              { "archetypeId": "monsters/act1.zombie", "count": 1 }
+              {
+                "archetypeId": "monsters/act1.fallen",
+                "count": 2
+              },
+              {
+                "archetypeId": "monsters/act1.fallen-shaman",
+                "count": 1
+              },
+              {
+                "archetypeId": "monsters/act1.zombie",
+                "count": 1
+              }
             ]
           }
         ]
@@ -45,13 +60,37 @@
             "id": "act1-blood-moor-w3-e1",
             "level": 3,
             "monsters": [
-              { "archetypeId": "monsters/act1.zombie", "count": 2 },
-              { "archetypeId": "monsters/act1.quill-rat", "count": 2 }
+              {
+                "archetypeId": "monsters/act1.zombie",
+                "count": 2
+              },
+              {
+                "archetypeId": "monsters/act1.quill-rat",
+                "count": 2
+              }
             ]
           }
         ]
       }
-    ]
+    ],
+    "challenge": {
+      "rotation": [
+        "trash",
+        "trash",
+        "elite",
+        "trash"
+      ],
+      "manualFinalEliteWaves": 2,
+      "appendChapterBoss": true,
+      "monsterCount": {
+        "min": 8,
+        "max": 20
+      }
+    },
+    "difficulty": {
+      "finaleBand": "none",
+      "monsterLevelBonus": 0
+    }
   },
   {
     "id": "areas/act1-den-of-evil",
@@ -65,8 +104,15 @@
       "id": "act1-den-of-evil-boss",
       "level": 4,
       "monsters": [
-        { "archetypeId": "monsters/act1.carver", "count": 1, "boss": true },
-        { "archetypeId": "monsters/act1.carver", "count": 2 }
+        {
+          "archetypeId": "monsters/act1.carver",
+          "count": 1,
+          "boss": true
+        },
+        {
+          "archetypeId": "monsters/act1.carver",
+          "count": 2
+        }
       ]
     },
     "waves": [
@@ -78,7 +124,10 @@
             "id": "act1-den-w1-e1",
             "level": 3,
             "monsters": [
-              { "archetypeId": "monsters/act1.fallen", "count": 4 }
+              {
+                "archetypeId": "monsters/act1.fallen",
+                "count": 4
+              }
             ]
           }
         ]
@@ -91,9 +140,18 @@
             "id": "act1-den-w2-e1",
             "level": 3,
             "monsters": [
-              { "archetypeId": "monsters/act1.fallen", "count": 2 },
-              { "archetypeId": "monsters/act1.fallen-shaman", "count": 1 },
-              { "archetypeId": "monsters/act1.tainted", "count": 1 }
+              {
+                "archetypeId": "monsters/act1.fallen",
+                "count": 2
+              },
+              {
+                "archetypeId": "monsters/act1.fallen-shaman",
+                "count": 1
+              },
+              {
+                "archetypeId": "monsters/act1.tainted",
+                "count": 1
+              }
             ]
           }
         ]
@@ -106,8 +164,15 @@
             "id": "act1-den-w3-e1",
             "level": 4,
             "monsters": [
-              { "archetypeId": "monsters/act1.dark-stalker", "count": 2, "elite": true },
-              { "archetypeId": "monsters/act1.fallen", "count": 2 }
+              {
+                "archetypeId": "monsters/act1.dark-stalker",
+                "count": 2,
+                "elite": true
+              },
+              {
+                "archetypeId": "monsters/act1.fallen",
+                "count": 2
+              }
             ]
           }
         ]
@@ -121,12 +186,34 @@
             "id": "act1-den-w4-e1",
             "level": 4,
             "monsters": [
-              { "archetypeId": "monsters/act1.carver", "count": 1, "boss": true }
+              {
+                "archetypeId": "monsters/act1.carver",
+                "count": 1,
+                "boss": true
+              }
             ]
           }
         ]
       }
-    ]
+    ],
+    "challenge": {
+      "rotation": [
+        "trash",
+        "trash",
+        "elite",
+        "trash"
+      ],
+      "manualFinalEliteWaves": 2,
+      "appendChapterBoss": true,
+      "monsterCount": {
+        "min": 8,
+        "max": 20
+      }
+    },
+    "difficulty": {
+      "finaleBand": "none",
+      "monsterLevelBonus": 0
+    }
   },
   {
     "id": "areas/act1-cold-plains",
@@ -145,8 +232,14 @@
             "id": "act1-cp-w1-e1",
             "level": 5,
             "monsters": [
-              { "archetypeId": "monsters/act1.zombie", "count": 3 },
-              { "archetypeId": "monsters/act1.dark-archer", "count": 1 }
+              {
+                "archetypeId": "monsters/act1.zombie",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act1.dark-archer",
+                "count": 1
+              }
             ]
           }
         ]
@@ -159,8 +252,14 @@
             "id": "act1-cp-w2-e1",
             "level": 5,
             "monsters": [
-              { "archetypeId": "monsters/act1.tainted", "count": 2 },
-              { "archetypeId": "monsters/act1.dark-archer", "count": 2 }
+              {
+                "archetypeId": "monsters/act1.tainted",
+                "count": 2
+              },
+              {
+                "archetypeId": "monsters/act1.dark-archer",
+                "count": 2
+              }
             ]
           }
         ]
@@ -173,8 +272,14 @@
             "id": "act1-cp-w3-e1",
             "level": 6,
             "monsters": [
-              { "archetypeId": "monsters/act1.dark-stalker", "count": 2 },
-              { "archetypeId": "monsters/act1.zombie", "count": 2 }
+              {
+                "archetypeId": "monsters/act1.dark-stalker",
+                "count": 2
+              },
+              {
+                "archetypeId": "monsters/act1.zombie",
+                "count": 2
+              }
             ]
           }
         ]
@@ -188,12 +293,34 @@
             "id": "act1-cp-w4-e1",
             "level": 6,
             "monsters": [
-              { "archetypeId": "monsters/act1.fallen", "count": 1, "elite": true }
+              {
+                "archetypeId": "monsters/act1.fallen",
+                "count": 1,
+                "elite": true
+              }
             ]
           }
         ]
       }
-    ]
+    ],
+    "challenge": {
+      "rotation": [
+        "trash",
+        "trash",
+        "elite",
+        "trash"
+      ],
+      "manualFinalEliteWaves": 2,
+      "appendChapterBoss": true,
+      "monsterCount": {
+        "min": 8,
+        "max": 20
+      }
+    },
+    "difficulty": {
+      "finaleBand": "none",
+      "monsterLevelBonus": 0
+    }
   },
   {
     "id": "areas/act1-burial-grounds",
@@ -207,8 +334,15 @@
       "id": "act1-burial-grounds-boss",
       "level": 9,
       "monsters": [
-        { "archetypeId": "monsters/act1.blood-raven", "count": 1, "boss": true },
-        { "archetypeId": "monsters/act1.bone-warrior", "count": 3 }
+        {
+          "archetypeId": "monsters/act1.blood-raven",
+          "count": 1,
+          "boss": true
+        },
+        {
+          "archetypeId": "monsters/act1.bone-warrior",
+          "count": 3
+        }
       ]
     },
     "waves": [
@@ -220,7 +354,10 @@
             "id": "act1-bg-w1-e1",
             "level": 7,
             "monsters": [
-              { "archetypeId": "monsters/act1.zombie", "count": 4 }
+              {
+                "archetypeId": "monsters/act1.zombie",
+                "count": 4
+              }
             ]
           }
         ]
@@ -233,8 +370,14 @@
             "id": "act1-bg-w2-e1",
             "level": 7,
             "monsters": [
-              { "archetypeId": "monsters/act1.bone-warrior", "count": 3 },
-              { "archetypeId": "monsters/act1.dark-archer", "count": 2 }
+              {
+                "archetypeId": "monsters/act1.bone-warrior",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act1.dark-archer",
+                "count": 2
+              }
             ]
           }
         ]
@@ -247,8 +390,15 @@
             "id": "act1-bg-w3-e1",
             "level": 8,
             "monsters": [
-              { "archetypeId": "monsters/act1.bone-warrior", "count": 2, "elite": true },
-              { "archetypeId": "monsters/act1.zombie", "count": 2 }
+              {
+                "archetypeId": "monsters/act1.bone-warrior",
+                "count": 2,
+                "elite": true
+              },
+              {
+                "archetypeId": "monsters/act1.zombie",
+                "count": 2
+              }
             ]
           }
         ]
@@ -262,12 +412,34 @@
             "id": "act1-bg-w4-e1",
             "level": 9,
             "monsters": [
-              { "archetypeId": "monsters/act1.blood-raven", "count": 1, "boss": true }
+              {
+                "archetypeId": "monsters/act1.blood-raven",
+                "count": 1,
+                "boss": true
+              }
             ]
           }
         ]
       }
-    ]
+    ],
+    "challenge": {
+      "rotation": [
+        "trash",
+        "trash",
+        "elite",
+        "trash"
+      ],
+      "manualFinalEliteWaves": 2,
+      "appendChapterBoss": true,
+      "monsterCount": {
+        "min": 8,
+        "max": 20
+      }
+    },
+    "difficulty": {
+      "finaleBand": "none",
+      "monsterLevelBonus": 1
+    }
   },
   {
     "id": "areas/act1-dark-wood",
@@ -286,8 +458,14 @@
             "id": "act1-dw-w1-e1",
             "level": 9,
             "monsters": [
-              { "archetypeId": "monsters/act1.quill-rat", "count": 3 },
-              { "archetypeId": "monsters/act1.dark-archer", "count": 2 }
+              {
+                "archetypeId": "monsters/act1.quill-rat",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act1.dark-archer",
+                "count": 2
+              }
             ]
           }
         ]
@@ -300,8 +478,14 @@
             "id": "act1-dw-w2-e1",
             "level": 9,
             "monsters": [
-              { "archetypeId": "monsters/act1.tainted", "count": 3 },
-              { "archetypeId": "monsters/act1.zombie", "count": 2 }
+              {
+                "archetypeId": "monsters/act1.tainted",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act1.zombie",
+                "count": 2
+              }
             ]
           }
         ]
@@ -314,8 +498,14 @@
             "id": "act1-dw-w3-e1",
             "level": 10,
             "monsters": [
-              { "archetypeId": "monsters/act1.fallen-shaman", "count": 2 },
-              { "archetypeId": "monsters/act1.fallen", "count": 3 }
+              {
+                "archetypeId": "monsters/act1.fallen-shaman",
+                "count": 2
+              },
+              {
+                "archetypeId": "monsters/act1.fallen",
+                "count": 3
+              }
             ]
           }
         ]
@@ -328,8 +518,15 @@
             "id": "act1-dw-w4-e1",
             "level": 10,
             "monsters": [
-              { "archetypeId": "monsters/act1.dark-stalker", "count": 2, "elite": true },
-              { "archetypeId": "monsters/act1.tainted", "count": 2 }
+              {
+                "archetypeId": "monsters/act1.dark-stalker",
+                "count": 2,
+                "elite": true
+              },
+              {
+                "archetypeId": "monsters/act1.tainted",
+                "count": 2
+              }
             ]
           }
         ]
@@ -342,13 +539,37 @@
             "id": "act1-dw-w5-e1",
             "level": 11,
             "monsters": [
-              { "archetypeId": "monsters/act1.bone-warrior", "count": 3 },
-              { "archetypeId": "monsters/act1.dark-archer", "count": 2 }
+              {
+                "archetypeId": "monsters/act1.bone-warrior",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act1.dark-archer",
+                "count": 2
+              }
             ]
           }
         ]
       }
-    ]
+    ],
+    "challenge": {
+      "rotation": [
+        "trash",
+        "trash",
+        "elite",
+        "trash"
+      ],
+      "manualFinalEliteWaves": 2,
+      "appendChapterBoss": true,
+      "monsterCount": {
+        "min": 8,
+        "max": 20
+      }
+    },
+    "difficulty": {
+      "finaleBand": "penultimate",
+      "monsterLevelBonus": 1
+    }
   },
   {
     "id": "areas/act1-catacombs",
@@ -362,8 +583,15 @@
       "id": "act1-catacombs-andariel",
       "level": 14,
       "monsters": [
-        { "archetypeId": "monsters/act1.andariel", "count": 1, "boss": true },
-        { "archetypeId": "monsters/act1.bone-warrior", "count": 4 }
+        {
+          "archetypeId": "monsters/act1.andariel",
+          "count": 1,
+          "boss": true
+        },
+        {
+          "archetypeId": "monsters/act1.bone-warrior",
+          "count": 4
+        }
       ]
     },
     "chapterBoss": {
@@ -371,7 +599,9 @@
       "hp": 2200,
       "atk": 150,
       "def": 200,
-      "skills": ["monster-poison-cloud"],
+      "skills": [
+        "monster-poison-cloud"
+      ],
       "dropTable": "loot/act1-boss"
     },
     "waves": [
@@ -383,8 +613,14 @@
             "id": "act1-cat-w1-e1",
             "level": 12,
             "monsters": [
-              { "archetypeId": "monsters/act1.bone-warrior", "count": 4 },
-              { "archetypeId": "monsters/act1.zombie", "count": 2 }
+              {
+                "archetypeId": "monsters/act1.bone-warrior",
+                "count": 4
+              },
+              {
+                "archetypeId": "monsters/act1.zombie",
+                "count": 2
+              }
             ]
           }
         ]
@@ -397,8 +633,14 @@
             "id": "act1-cat-w2-e1",
             "level": 12,
             "monsters": [
-              { "archetypeId": "monsters/act1.dark-archer", "count": 3 },
-              { "archetypeId": "monsters/act1.bone-warrior", "count": 2 }
+              {
+                "archetypeId": "monsters/act1.dark-archer",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act1.bone-warrior",
+                "count": 2
+              }
             ]
           }
         ]
@@ -411,8 +653,14 @@
             "id": "act1-cat-w3-e1",
             "level": 13,
             "monsters": [
-              { "archetypeId": "monsters/act1.tainted", "count": 3 },
-              { "archetypeId": "monsters/act1.dark-stalker", "count": 2 }
+              {
+                "archetypeId": "monsters/act1.tainted",
+                "count": 3
+              },
+              {
+                "archetypeId": "monsters/act1.dark-stalker",
+                "count": 2
+              }
             ]
           }
         ]
@@ -425,8 +673,15 @@
             "id": "act1-cat-w4-e1",
             "level": 13,
             "monsters": [
-              { "archetypeId": "monsters/act1.fallen-shaman", "count": 2, "elite": true },
-              { "archetypeId": "monsters/act1.bone-warrior", "count": 3 }
+              {
+                "archetypeId": "monsters/act1.fallen-shaman",
+                "count": 2,
+                "elite": true
+              },
+              {
+                "archetypeId": "monsters/act1.bone-warrior",
+                "count": 3
+              }
             ]
           }
         ]
@@ -439,7 +694,11 @@
             "id": "act1-cat-w5-e1",
             "level": 14,
             "monsters": [
-              { "archetypeId": "monsters/act1.dark-stalker", "count": 3, "elite": true }
+              {
+                "archetypeId": "monsters/act1.dark-stalker",
+                "count": 3,
+                "elite": true
+              }
             ]
           }
         ]
@@ -453,11 +712,33 @@
             "id": "act1-cat-w6-e1",
             "level": 14,
             "monsters": [
-              { "archetypeId": "monsters/act1.andariel", "count": 1, "boss": true }
+              {
+                "archetypeId": "monsters/act1.andariel",
+                "count": 1,
+                "boss": true
+              }
             ]
           }
         ]
       }
-    ]
+    ],
+    "challenge": {
+      "rotation": [
+        "trash",
+        "trash",
+        "elite",
+        "trash"
+      ],
+      "manualFinalEliteWaves": 2,
+      "appendChapterBoss": true,
+      "monsterCount": {
+        "min": 8,
+        "max": 20
+      }
+    },
+    "difficulty": {
+      "finaleBand": "final",
+      "monsterLevelBonus": 2
+    }
   }
 ]

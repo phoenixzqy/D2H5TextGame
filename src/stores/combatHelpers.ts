@@ -14,7 +14,7 @@ import { rollKillRewards, type KillRewards } from '@/engine/loot/award';
 import { xpForKill } from '@/engine/progression/xp';
 import {
   buildMonsterUnit,
-  resolveWavePlan,
+  resolveChallengeWavePlan,
   synthDefaultPlan,
   type WavePlan,
   type WaveSpec
@@ -30,6 +30,10 @@ import { usePlayerStore } from './playerStore';
 import { useMercStore } from './mercStore';
 import { mercToCombatUnit } from './mercToCombatUnit';
 import { createRng, hashSeed } from '@/engine/rng';
+import { getIdleEliteMisses, resetIdleEliteMisses, setIdleEliteMisses } from './idleElitePity';
+
+const CHALLENGE_ORDINAL_PERIOD = 360360;
+let manualChallengeOrdinal = 0;
 
 /**
  * Convert a Player to a CombatUnit for battle.
@@ -277,6 +281,7 @@ interface ActiveRun {
   readonly plan: WavePlan;
   readonly act: 1 | 2 | 3 | 4 | 5;
   readonly seed: number;
+  readonly mode: 'manual' | 'idle';
   readonly playerUnit: CombatUnit;
   /** Index of the wave currently being played (0-based). */
   waveIdx: number;
@@ -289,6 +294,11 @@ let activeRun: ActiveRun | null = null;
 /** @returns whether a sub-area run is currently active. */
 export function hasActiveSubAreaRun(): boolean {
   return activeRun !== null;
+}
+
+/** Reset transient online-idle elite pity when the player stops idle farming. */
+export function resetIdleElitePity(): void {
+  resetIdleEliteMisses();
 }
 
 /**
@@ -308,6 +318,7 @@ export function startSubAreaRun(opts: {
   readonly subAreaId?: string | null;
   readonly act?: number;
   readonly level?: number;
+  readonly mode?: 'manual' | 'idle';
 } = {}): { runId: string; totalWaves: number } | null {
   const playerState = usePlayerStore.getState();
   const combat = useCombatStore.getState();
@@ -320,6 +331,7 @@ export function startSubAreaRun(opts: {
   const act = clampAct(opts.act ?? map.currentAct);
   const subAreaId = opts.subAreaId ?? map.currentSubAreaId;
   const subArea = resolveSubArea(act, subAreaId);
+  const mode = opts.mode ?? 'manual';
 
   // Resolve a wave plan, falling back to the synthetic 4-wave default.
   // Run seed is generated up-front and threaded into wave-plan resolution
@@ -329,8 +341,18 @@ export function startSubAreaRun(opts: {
   const planSeed = hashSeed(
     `${subArea?.id ?? synthId}|${String(Date.now())}`
   );
+  const challengeOrdinal = manualChallengeOrdinal;
+  manualChallengeOrdinal = (manualChallengeOrdinal + 1) % CHALLENGE_ORDINAL_PERIOD;
   const plan = subArea
-    ? resolveWavePlan(subArea, fallbackArchetype, subArea.areaLevel, planSeed)
+    ? resolveChallengeWavePlan({
+        subArea,
+        fallbackArchetypeId: fallbackArchetype,
+        fallbackLevel: subArea.areaLevel,
+        seed: planSeed,
+        challengeOrdinal,
+        mode,
+        idleEliteMisses: getIdleEliteMisses()
+      })
     : synthDefaultPlan(
         {
           id: synthId,
@@ -353,6 +375,7 @@ export function startSubAreaRun(opts: {
     plan,
     act,
     seed,
+    mode,
     playerUnit,
     waveIdx: 0,
     carryPlayerTeam: playerTeam
@@ -414,6 +437,14 @@ export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idl
       seed: activeRun.seed ^ 0x9e3779b1 ^ activeRun.waveIdx
     });
     combat.accumulateRunRewards(rewards);
+  }
+
+  const completedWave = activeRun.plan.waves[activeRun.waveIdx];
+  if (
+    activeRun.mode === 'idle' &&
+    completedWave?.presentation?.idleEliteMissesAfterWave !== undefined
+  ) {
+    setIdleEliteMisses(completedWave.presentation.idleEliteMissesAfterWave);
   }
 
   const alivePlayer = outcome.finalPlayerTeam.find(
@@ -510,7 +541,8 @@ function playWave(waveIdx: number): void {
     },
     currentWave: waveIdx + 1,
     totalWaves: activeRun.plan.waves.length,
-    subAreaRunId: activeRun.plan.subAreaId
+    subAreaRunId: activeRun.plan.subAreaId,
+    ...(wave.presentation ? { wavePresentation: wave.presentation } : {})
   });
 }
 

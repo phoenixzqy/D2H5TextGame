@@ -14,16 +14,19 @@ import {
   EMPTY_REWARD,
   NO_BONUS,
   onlineTick,
+  resolveIdleEncounter,
   type IdleBonus,
   type TickReward
 } from '@/engine/idle';
 import { useInventoryStore, useMapStore, useMetaStore, usePlayerStore } from '@/stores';
 import { resolveSubArea } from '@/stores/subAreaResolver';
-import { monsters as monsterList } from '@/data/index';
+import { eliteConfig, monsters as monsterList } from '@/data/index';
 import { loadAwardPools } from '@/data/loaders/loot';
 import { rollKillRewards } from '@/engine/loot/award';
 import { createRng, hashSeed } from '@/engine/rng';
+import { xpForKill } from '@/engine/progression/xp';
 import { deriveMonsterNameKey } from '@/stores/combatHelpers';
+import { getIdleEliteMisses, resetIdleEliteMisses, setIdleEliteMisses } from '@/stores/idleElitePity';
 import i18n from '@/i18n';
 
 /** Default seconds-per-tick (matches engine default). */
@@ -35,12 +38,19 @@ function clampAct(act: number): ActNumber {
   return Math.min(5, Math.max(1, Math.trunc(act))) as ActNumber;
 }
 
+function pickFallbackArchetypeId(act: ActNumber): string {
+  const prefix = `monsters/act${String(act)}.`;
+  return (monsterList.find((m) => m.id.startsWith(prefix)) ?? monsterList[0])?.id ?? 'monsters/act1.fallen';
+}
+
 interface IdleTickerState {
   readonly tickSeconds: number;
   readonly lastReward: TickReward;
   readonly lastKillName: string | null;
+  readonly lastEncounterKind: 'kill' | 'elite-kill' | 'pity-elite-kill' | null;
   readonly bonus: IdleBonus;
   readonly tickCount: number;
+  readonly eliteMisses: number;
   /** Engine entry point — pure call, no side effects on engine. */
   applyTick: () => void;
   reset: () => void;
@@ -48,13 +58,15 @@ interface IdleTickerState {
 
 const initial: Pick<
   IdleTickerState,
-  'tickSeconds' | 'lastReward' | 'lastKillName' | 'bonus' | 'tickCount'
+  'tickSeconds' | 'lastReward' | 'lastKillName' | 'lastEncounterKind' | 'bonus' | 'tickCount' | 'eliteMisses'
 > = {
   tickSeconds: DEFAULT_TICK_SECONDS,
   lastReward: EMPTY_REWARD,
   lastKillName: null,
+  lastEncounterKind: null,
   bonus: NO_BONUS,
-  tickCount: 0
+  tickCount: 0,
+  eliteMisses: 0
 };
 
 export const useIdleTickerStore = create<IdleTickerState>((set, get) => ({
@@ -73,14 +85,27 @@ export const useIdleTickerStore = create<IdleTickerState>((set, get) => ({
     // a "1 kill per tick" approximation so the strip shows movement.
     const act = clampAct(map.currentAct);
     const subArea = resolveSubArea(act, map.currentSubAreaId);
-    const archetypePrefix = `monsters/act${String(act)}.`;
-    const archetypes = monsterList.filter((m) => m.id.startsWith(archetypePrefix));
     const tickCount = get().tickCount;
-    const arch = archetypes[tickCount % Math.max(1, archetypes.length)] ?? archetypes[0];
-    const baseXp = arch?.baseExperience ?? 5;
+    const fallbackArchetypeId = pickFallbackArchetypeId(act);
+    const eliteMisses = getIdleEliteMisses();
+    const encounter = subArea
+      ? resolveIdleEncounter({
+          subArea,
+          act,
+          tickIndex: tickCount,
+          seed: hashSeed(player.id),
+          playerLevel: player.level,
+          eliteMisses,
+          eliteConfig,
+          fallbackArchetypeId
+        })
+      : null;
+    const arch = monsterList.find((m) => m.id === encounter?.monsterArchetypeId) ??
+      monsterList.find((m) => m.id === fallbackArchetypeId);
+    const baseXp = encounter ? xpForKill(encounter.monsterLevel) : arch?.baseExperience ?? 5;
     const raw: TickReward = {
       xp: baseXp,
-      runeShards: 1,
+      runeShards: encounter?.monsterTier === 'rare-elite' ? 3 : encounter?.monsterTier === 'champion' ? 2 : 1,
       effectiveMagicFind: player.derivedStats.magicFind,
       currencies: {}
     };
@@ -99,9 +124,9 @@ export const useIdleTickerStore = create<IdleTickerState>((set, get) => ({
     if (arch) {
       const loot = rollKillRewards(
         {
-          tier: 'trash',
-          monsterLevel: subArea?.areaLevel ?? player.level,
-          treasureClassId: subArea?.lootTable ?? `loot/trash-act${String(act)}`,
+          tier: encounter?.monsterTier ?? 'trash',
+          monsterLevel: encounter?.monsterLevel ?? subArea?.areaLevel ?? player.level,
+          treasureClassId: encounter?.treasureClassId ?? subArea?.lootTable ?? `loot/trash-act${String(act)}`,
           magicFind: reward.effectiveMagicFind,
           goldFind: player.derivedStats.goldFind,
           act,
@@ -125,15 +150,21 @@ export const useIdleTickerStore = create<IdleTickerState>((set, get) => ({
 
     void meta; // placeholder: future hook into metaStore.idleState
 
+    if (encounter) setIdleEliteMisses(encounter.nextEliteMisses);
     set({
       lastReward: reward,
       lastKillName,
+      lastEncounterKind: encounter?.feedback.kind ?? 'kill',
       bonus,
-      tickCount: tickCount + 1
+      tickCount: tickCount + 1,
+      eliteMisses: encounter?.nextEliteMisses ?? eliteMisses
     });
   },
 
-  reset: () => { set({ ...initial }); }
+  reset: () => {
+    resetIdleEliteMisses();
+    set({ ...initial });
+  }
 }));
 
 /**

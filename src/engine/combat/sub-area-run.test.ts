@@ -5,6 +5,7 @@ import { describe, it, expect } from 'vitest';
 import type { SubAreaDef } from '../types/maps';
 import {
   resolveWavePlan,
+  resolveChallengeWavePlan,
   synthDefaultPlan,
   DEFAULT_FALLBACK_PLAN
 } from './sub-area-run';
@@ -191,6 +192,152 @@ describe('resolveWavePlan', () => {
       'elite',
       'boss'
     ]);
+  });
+});
+
+describe('resolveChallengeWavePlan', () => {
+  const THREE_WAVE_CHALLENGE: SubAreaDef = {
+    ...BLOOD_MOOR,
+    challenge: {
+      monsterCount: { min: 8, max: 10 },
+      rotation: ['trash', 'trash', 'elite'],
+      manualFinalEliteWaves: 2
+    },
+    waves: [
+      ...BLOOD_MOOR.waves,
+      {
+        id: 'w3',
+        type: 'trash',
+        encounters: [
+          {
+            id: 'e3',
+            level: 2,
+            monsters: [{ archetypeId: 'monsters/act1.quill-rat', count: 1 }]
+          }
+        ]
+      }
+    ]
+  };
+
+  it('preserves authored wave count and cycles 8-20 monsters per non-boss wave', () => {
+    const first = resolveChallengeWavePlan({
+      subArea: THREE_WAVE_CHALLENGE,
+      fallbackArchetypeId: 'monsters/act1.fallen',
+      fallbackLevel: 2,
+      seed: 123,
+      challengeOrdinal: 0
+    });
+    const second = resolveChallengeWavePlan({
+      subArea: THREE_WAVE_CHALLENGE,
+      fallbackArchetypeId: 'monsters/act1.fallen',
+      fallbackLevel: 2,
+      seed: 123,
+      challengeOrdinal: 1
+    });
+
+    expect(first.waves).toHaveLength(3);
+    expect(first.waves.map((w) => w.spawns.length)).toEqual([8, 9, 10]);
+    expect(second.waves).toHaveLength(3);
+    expect(second.waves.map((w) => w.spawns.length)).toEqual([9, 10, 8]);
+  });
+
+  it('forces the final two non-boss waves to elite guards', () => {
+    const plan = resolveChallengeWavePlan({
+      subArea: THREE_WAVE_CHALLENGE,
+      fallbackArchetypeId: 'monsters/act1.fallen',
+      fallbackLevel: 2,
+      seed: 123,
+      challengeOrdinal: 0
+    });
+    const penultimate = plan.waves[plan.waves.length - 2];
+    const final = plan.waves[plan.waves.length - 1];
+    expect(penultimate?.presentation?.isForcedElite).toBe(true);
+    expect(final?.presentation?.isForcedElite).toBe(true);
+    expect(penultimate?.spawns.every((s) => s.tier === 'champion')).toBe(true);
+    expect(final?.spawns[0]?.tier).toBe('rare-elite');
+    expect(final?.spawns.slice(1).every((s) => s.tier === 'rare-minion')).toBe(true);
+    expect(final?.spawns).toHaveLength(10);
+  });
+
+  it('appends chapter bosses after the two elite guards on act-final maps', () => {
+    const finalMap: SubAreaDef = {
+      ...DEN_OF_EVIL,
+      chapterBoss: {
+        archetypeId: 'monsters/act1.andariel',
+        hp: 2200,
+        atk: 150,
+        def: 200,
+        skills: ['monster-poison-cloud'],
+        dropTable: 'loot/act1-boss'
+      }
+    };
+    const plan = resolveChallengeWavePlan({
+      subArea: finalMap,
+      fallbackArchetypeId: 'monsters/act1.fallen',
+      fallbackLevel: 3,
+      seed: 123,
+      challengeOrdinal: 0
+    });
+    expect(plan.waves).toHaveLength(3);
+    expect(plan.waves[0]?.presentation?.isForcedElite).toBe(true);
+    expect(plan.waves[1]?.presentation?.isForcedElite).toBe(true);
+    expect(plan.waves[2]?.presentation?.isActBoss).toBe(true);
+    expect(plan.waves[2]?.spawns[0]?.tier).toBe('chapter-boss');
+  });
+
+  it('preserves an authored boss wave when no bossEncounter field is present', () => {
+    const { bossEncounter: _bossEncounter, ...withoutBossEncounter } = DEN_OF_EVIL;
+    const authoredBossOnly: SubAreaDef = {
+      ...withoutBossEncounter
+    };
+    const plan = resolveChallengeWavePlan({
+      subArea: authoredBossOnly,
+      fallbackArchetypeId: 'monsters/act1.fallen',
+      fallbackLevel: 3,
+      seed: 123,
+      challengeOrdinal: 0
+    });
+
+    expect(plan.waves).toHaveLength(3);
+    expect(plan.waves[0]?.presentation?.isForcedElite).toBe(true);
+    expect(plan.waves[1]?.presentation?.isForcedElite).toBe(true);
+    expect(plan.waves[2]?.waveTier).toBe('boss');
+    expect(plan.waves[2]?.spawns[0]?.archetypeId).toBe('monsters/act1.carver');
+    expect(plan.waves[2]?.lootTable).toBe('loot/mini-act1');
+  });
+
+  it('uses a small fallback challenge plan instead of expanding the wave count to 8-20', () => {
+    const empty: SubAreaDef = {
+      ...BLOOD_MOOR,
+      id: 'areas/empty-challenge',
+      waves: []
+    };
+    const plan = resolveChallengeWavePlan({
+      subArea: empty,
+      fallbackArchetypeId: 'monsters/act1.fallen',
+      fallbackLevel: 2,
+      seed: 123,
+      challengeOrdinal: 0
+    });
+    expect(plan.waves).toHaveLength(3);
+    expect(plan.waves.every((w) => w.spawns.length >= 8 && w.spawns.length <= 20)).toBe(true);
+  });
+
+  it('threads online-idle pity into real combat-loop waves', () => {
+    const plan = resolveChallengeWavePlan({
+      subArea: THREE_WAVE_CHALLENGE,
+      fallbackArchetypeId: 'monsters/act1.fallen',
+      fallbackLevel: 2,
+      seed: 123,
+      challengeOrdinal: 0,
+      mode: 'idle',
+      idleEliteMisses: 11
+    });
+    const first = plan.waves[0];
+    expect(first?.presentation?.isIdleElite).toBe(true);
+    expect(first?.presentation?.idleEliteMissesAfterWave).toBe(0);
+    expect(first?.spawns[0]?.tier).toBe('rare-elite');
+    expect(first?.spawns).toHaveLength(8);
   });
 });
 

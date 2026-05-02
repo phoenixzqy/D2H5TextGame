@@ -12,8 +12,10 @@
  *     player xp / inventory is a wiring concern documented in Bugs.md.
  */
 import { describe, it, expect } from 'vitest';
-import { onlineTick, EMPTY_REWARD, type TickReward } from './online-tick';
+import { onlineTick, EMPTY_REWARD, resolveIdleEncounter, type TickReward } from './online-tick';
 import { NO_BONUS, accrueOfflineBonus } from './offline-bonus';
+import type { EliteConfigDef } from '../types/elite';
+import type { SubAreaDef } from '../types/maps';
 
 describe('Bug #6 — onlineTick accumulates per-tick deltas', () => {
   it('returns the same xp each tick when raw input is constant (no zeroing)', () => {
@@ -65,5 +67,101 @@ describe('Bug #6 — onlineTick accumulates per-tick deltas', () => {
       baseMagicFind: 0
     });
     expect(r.reward.xp).toBeGreaterThan(100);
+  });
+});
+
+const TEST_SUB_AREA: SubAreaDef = {
+  id: 'areas/act1-blood-moor',
+  name: 'Blood Moor',
+  actId: 'acts/act1',
+  areaLevel: 2,
+  hasBoss: false,
+  lootTable: 'loot/trash-act1',
+  difficulty: { finaleBand: 'none', monsterLevelBonus: 0 },
+  waves: [
+    {
+      id: 'w1',
+      type: 'trash',
+      encounters: [
+        {
+          id: 'e1',
+          level: 2,
+          monsters: [{ archetypeId: 'monsters/act1.fallen', count: 3 }]
+        }
+      ]
+    }
+  ]
+};
+
+const TEST_ELITE_CONFIG: EliteConfigDef = {
+  id: 'elite/default',
+  normalChampionChance: 0.1,
+  normalRareEliteChance: 0.02,
+  rareEliteMagicFindBonus: 50,
+  rareEliteResistanceBonus: 30,
+  chapterBossHpMultiplier: 8,
+  multipliers: {
+    champion: { life: 3, attack: 1.5, defense: 1.3 },
+    rareElite: { life: 4, attack: 2, defense: 1.3 },
+    rareMinion: { life: 2, attack: 1.3, defense: 1.15 }
+  },
+  idle: {
+    enabled: true,
+    baseEliteChance: 0,
+    championShareOfEliteRoll: 0.75,
+    rareShareOfEliteRoll: 0.25,
+    pityStartMisses: 4,
+    pityStep: 0.04,
+    pityChanceCap: 0.4,
+    hardPityMisses: 11
+  },
+  affixes: [
+    {
+      id: 'elite-affix/extra-fire-damage',
+      nameKey: 'combat.eliteAffix.extraFireDamage',
+      skillId: 'monster-fire-ball'
+    }
+  ]
+};
+
+describe('resolveIdleEncounter', () => {
+  it('is deterministic for the same seed and tick', () => {
+    const a = resolveIdleEncounter({
+      subArea: TEST_SUB_AREA,
+      act: 1,
+      tickIndex: 3,
+      seed: 99,
+      playerLevel: 1,
+      eliteMisses: 0,
+      eliteConfig: TEST_ELITE_CONFIG,
+      fallbackArchetypeId: 'monsters/act1.fallen'
+    });
+    const b = resolveIdleEncounter({
+      subArea: TEST_SUB_AREA,
+      act: 1,
+      tickIndex: 3,
+      seed: 99,
+      playerLevel: 1,
+      eliteMisses: 0,
+      eliteConfig: TEST_ELITE_CONFIG,
+      fallbackArchetypeId: 'monsters/act1.fallen'
+    });
+    expect(a).toEqual(b);
+  });
+
+  it('hard pity forces the next eligible idle encounter into a rare elite', () => {
+    const encounter = resolveIdleEncounter({
+      subArea: TEST_SUB_AREA,
+      act: 1,
+      tickIndex: 12,
+      seed: 99,
+      playerLevel: 1,
+      eliteMisses: 11,
+      eliteConfig: TEST_ELITE_CONFIG,
+      fallbackArchetypeId: 'monsters/act1.fallen'
+    });
+    expect(encounter.monsterTier).toBe('rare-elite');
+    expect(encounter.nextEliteMisses).toBe(0);
+    expect(encounter.feedback.kind).toBe('pity-elite-kill');
   });
 });

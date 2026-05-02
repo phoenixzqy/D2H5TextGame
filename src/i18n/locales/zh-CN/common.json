@@ -85,6 +85,9 @@
     "summary": "每 {{seconds}} 秒：+{{xp}} 经验，+{{drops}} 战利品",
     "active": "挂机刷图已启动：正在战斗页循环真实战斗",
     "lastKill": "最近击杀：{{name}}",
+    "kill": "最近击杀：{{name}}",
+    "elite-kill": "邪气凝聚，精英怪 {{name}} 出现并被击败！",
+    "pity-elite-kill": "压抑已久的邪气爆发了……{{name}} 掉落了更多战利品！",
     "idle": "选择已通关地图开始挂机刷图"
   }
 }

@@ -2,6 +2,7 @@
   "worldMap": "World Map",
   "act": "Act {{number}}",
   "recommendedLevel": "Recommended Lv: {{level}}",
+  "challengeMonsters": "Challenge loop: {{min}}–{{max}} monsters/wave",
   "locked": "Locked",
   "unlocked": "Unlocked",
   "farmHere": "Farm Here",
@@ -13,6 +14,10 @@
   "idleHere": "Idling",
   "idleHereShort": "Idling",
   "stopIdle": "Stop idling",
+  "difficulty": {
+    "penultimate": "Build check",
+    "final": "Act finale"
+  },
   "actName": {
     "1": "Rogue Encampment",
     "2": "Lut Gholein",

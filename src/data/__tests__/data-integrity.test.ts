@@ -321,6 +321,41 @@ describe('data integrity', () => {
       }
       expect(missing).toEqual([]);
     });
+
+    it('every sub-area challenge config stays within the 8-20 monsters-per-wave contract', () => {
+      const invalid: { subArea: string; min?: number | undefined; max?: number | undefined }[] = [];
+      for (const subArea of data.subAreas.values()) {
+        const monsterCount = subArea.challenge?.monsterCount;
+        if (!monsterCount || monsterCount.min < 8 || monsterCount.max > 20 || monsterCount.min > monsterCount.max) {
+          invalid.push({ subArea: subArea.id, min: monsterCount?.min, max: monsterCount?.max });
+        }
+      }
+      expect(invalid).toEqual([]);
+    });
+
+    it('each act final sub-area has the canonical chapter boss', () => {
+      const expectedBosses = new Map<number, string>([
+        [1, 'monsters/act1.andariel'],
+        [2, 'monsters/act2.duriel'],
+        [3, 'monsters/act3.mephisto'],
+        [4, 'monsters/act4.diablo'],
+        [5, 'monsters/act5.baal']
+      ]);
+      const invalid: { act: number; subArea?: string | undefined; boss?: string | undefined }[] = [];
+      for (const act of data.acts.values()) {
+        const finalSubAreaId = act.subAreas[act.subAreas.length - 1];
+        const finalSubArea = finalSubAreaId ? data.subAreas.get(finalSubAreaId) : undefined;
+        const expected = expectedBosses.get(act.act);
+        if (!finalSubArea || finalSubArea.chapterBoss?.archetypeId !== expected) {
+          invalid.push({
+            act: act.act,
+            subArea: finalSubAreaId,
+            boss: finalSubArea?.chapterBoss?.archetypeId
+          });
+        }
+      }
+      expect(invalid).toEqual([]);
+    });
   });
 
   describe('runeword recipe references', () => {

@@ -2,6 +2,7 @@
   "worldMap": "世界地图",
   "act": "第 {{number}} 章",
   "recommendedLevel": "推荐等级: {{level}}",
+  "challengeMonsters": "挑战循环：每波 {{min}}–{{max}} 只怪物",
   "locked": "锁定",
   "unlocked": "已解锁",
   "farmHere": "在此挂机",
@@ -13,6 +14,10 @@
   "idleHere": "正在挂机",
   "idleHereShort": "挂机中",
   "stopIdle": "停止挂机",
+  "difficulty": {
+    "penultimate": "构筑检查",
+    "final": "章节决战"
+  },
   "actName": {
     "1": "罗格营地",
     "2": "鲁加丁",

@@ -1,6 +1,13 @@
 {
   "title": "战斗",
   "wave": "第 {{current}} 波 / 共 {{total}} 波",
+  "waveKind": {
+    "trash": "普通波",
+    "elite": "精英波",
+    "boss": "Boss 战",
+    "treasure": "宝藏",
+    "shrine": "祭坛"
+  },
   "nextWaveIn": "下一波 1.5 秒后开始…",
   "runVictoryTitle": "通关本区域！",
   "runDefeatTitle": "战败",

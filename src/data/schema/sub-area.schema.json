@@ -4,7 +4,7 @@
   "title": "Sub-Area Definition",
   "description": "Sub-area (map zone) definition with waves and encounters",
   "type": "object",
-  "required": ["id", "name", "actId", "areaLevel", "waves", "hasBoss", "lootTable"],
+  "required": ["id", "name", "actId", "areaLevel", "waves", "hasBoss", "challenge", "lootTable"],
   "additionalProperties": false,
   "properties": {
     "id": {
@@ -42,6 +42,14 @@
     "chapterBoss": {
       "$ref": "#/$defs/chapterBoss"
     },
+    "challenge": {
+      "$ref": "#/$defs/challenge",
+      "description": "Manual challenge wave-generation rules."
+    },
+    "difficulty": {
+      "$ref": "#/$defs/difficulty",
+      "description": "JSON-driven difficulty tuning for map progression."
+    },
     "lootTable": {
       "type": "string",
       "description": "Loot table ID"
@@ -63,7 +71,7 @@
     },
     "chapterBoss": {
       "type": "object",
-      "description": "Act-ending boss gate that replaces the final wave.",
+      "description": "Act-ending boss gate appended after generated challenge waves.",
       "required": ["archetypeId", "hp", "atk", "def", "skills", "dropTable"],
       "additionalProperties": false,
       "properties": {
@@ -81,6 +89,67 @@
           "minItems": 1
         },
         "dropTable": { "type": "string" }
+      }
+    },
+    "challenge": {
+      "type": "object",
+      "required": ["monsterCount", "rotation", "manualFinalEliteWaves"],
+      "additionalProperties": false,
+      "properties": {
+        "monsterCount": {
+          "type": "object",
+          "required": ["min", "max"],
+          "additionalProperties": false,
+          "properties": {
+            "min": {
+              "type": "integer",
+              "minimum": 8,
+              "maximum": 20,
+              "description": "Minimum monsters in each generated non-boss challenge wave."
+            },
+            "max": {
+              "type": "integer",
+              "minimum": 8,
+              "maximum": 20,
+              "description": "Maximum monsters in each generated non-boss challenge wave."
+            }
+          }
+        },
+        "rotation": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["trash", "elite", "boss", "treasure", "shrine"]
+          },
+          "minItems": 1,
+          "description": "Cyclic wave-kind fallback pattern for synthetic challenge waves."
+        },
+        "manualFinalEliteWaves": {
+          "type": "integer",
+          "const": 2,
+          "description": "Manual challenges force the final two non-boss waves to elites."
+        },
+        "appendChapterBoss": {
+          "type": "boolean",
+          "description": "Append chapterBoss after authored/fallback non-boss waves when present."
+        }
+      }
+    },
+    "difficulty": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "finaleBand": {
+          "type": "string",
+          "enum": ["none", "penultimate", "final"],
+          "description": "Player-facing difficulty band for late-act build checks."
+        },
+        "monsterLevelBonus": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5,
+          "description": "Additional effective monster levels applied by the challenge planner."
+        }
       }
     },
     "wave": {

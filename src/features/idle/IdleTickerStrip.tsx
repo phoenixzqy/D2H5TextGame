@@ -8,13 +8,20 @@
  */
 import { useTranslation } from 'react-i18next';
 import { useMetaStore } from '@/stores';
+import { useIdleTickerStore } from './useIdleTicker';
 
 export function IdleTickerStrip(): JSX.Element {
   const { t } = useTranslation(['common', 'map']);
   const idleTarget = useMetaStore((s) => s.idleState.idleTarget);
   const setIdleTarget = useMetaStore((s) => s.setIdleTarget);
+  const lastKillName = useIdleTickerStore((s) => s.lastKillName);
+  const lastEncounterKind = useIdleTickerStore((s) => s.lastEncounterKind);
 
-  const summary = idleTarget ? t('idleTicker.active') : t('idleTicker.idle');
+  const summary = idleTarget
+    ? lastKillName
+      ? t(`idleTicker.${lastEncounterKind ?? 'kill'}`, { name: lastKillName })
+      : t('idleTicker.active')
+    : t('idleTicker.idle');
 
   return (
     <div

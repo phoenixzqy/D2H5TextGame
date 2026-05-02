@@ -24,7 +24,8 @@
 import type {
   SubAreaDef,
   WaveDef,
-  Encounter
+  Encounter,
+  WaveKind
 } from '../types/maps';
 import defaultEliteConfigJson from '../../data/elite/elite-config.json';
 import type { MonsterTier } from './types';
@@ -33,6 +34,7 @@ import { createRng } from '../rng';
 import { scaleMonsterLevelForArea } from './monster-factory';
 import type { ChapterBossDef } from '../types/maps';
 import type { EliteAffixDef, EliteConfigDef } from '../types/elite';
+import { resolveIdleEncounter } from '../idle/online-tick';
 
 export const DEFAULT_ELITE_CONFIG = defaultEliteConfigJson as EliteConfigDef;
 
@@ -49,6 +51,16 @@ export interface MonsterSpawn {
   readonly chapterBoss?: ChapterBossDef;
 }
 
+export interface WavePresentation {
+  readonly kind: WaveKind;
+  readonly isForcedElite?: boolean;
+  readonly isIdleElite?: boolean;
+  readonly forcedEliteKind?: 'champion' | 'rareElite';
+  readonly idleEliteMissesAfterWave?: number;
+  readonly isActBoss?: boolean;
+  readonly difficultyBand?: 'normal' | 'hard' | 'finale';
+}
+
 /** Resolved spec for a single wave inside a sub-area run. */
 export interface WaveSpec {
   readonly id: string;
@@ -62,6 +74,14 @@ export interface WaveSpec {
   readonly bossIntro?: {
     readonly bossArchetypeId: string;
   };
+  /** Transient UI/debug metadata for the current wave. */
+  readonly presentation?: WavePresentation;
+}
+
+export interface DifficultyContext {
+  readonly areaLevel: number;
+  readonly monsterLevelBonus: number;
+  readonly finaleBand: 'none' | 'penultimate' | 'final';
 }
 
 /** Full ordered wave plan for a sub-area run. */
@@ -70,6 +90,20 @@ export interface WavePlan {
   readonly waves: readonly WaveSpec[];
   /** Sub-area loot table (used when a wave doesn't override it). */
   readonly defaultLootTable: string;
+  readonly mode?: 'manual' | 'idle' | 'legacy' | 'synthetic';
+  readonly seed?: number;
+  readonly difficulty?: DifficultyContext;
+}
+
+export interface ResolveChallengeWavePlanInput {
+  readonly subArea: SubAreaDef;
+  readonly fallbackArchetypeId: string;
+  readonly fallbackLevel: number;
+  readonly seed: number;
+  readonly challengeOrdinal: number;
+  readonly mode?: 'manual' | 'idle';
+  readonly idleEliteMisses?: number;
+  readonly eliteConfig?: EliteConfigDef;
 }
 
 /** Hard global cap for spawn counts per wave (UI/perf safety). */
@@ -90,6 +124,12 @@ export const DEFAULT_FALLBACK_PLAN: readonly {
   { tier: 'elite', countMin: 1, countMax: 3 },
   { tier: 'boss', countMin: 1, countMax: 1 }
 ];
+
+const DEFAULT_CHALLENGE_ROTATION: readonly WaveKind[] = ['trash', 'trash', 'elite', 'trash'];
+const DEFAULT_CHALLENGE_MIN_MONSTERS = 8;
+const DEFAULT_CHALLENGE_MAX_MONSTERS = 20;
+const IDLE_CHALLENGE_TICK_STRIDE = 20;
+const DEFAULT_FINAL_ELITE_WAVES = 2;
 
 /** Default count range for an unspecified per-monster spawn entry. */
 export function defaultCountRange(waveTier: WaveDef['type']): readonly [number, number] {
@@ -179,6 +219,232 @@ export function resolveWavePlan(
   };
 }
 
+/**
+ * Build the manual map-challenge plan requested by the combat redesign.
+ *
+ * Manual challenges preserve the authored map wave structure, cycle each
+ * authored/fallback non-boss wave to 8-20 monsters, force the final two non-boss
+ * waves into elite guards, then append an authored map boss / chapter boss
+ * after those guards when present.
+ */
+export function resolveChallengeWavePlan(input: ResolveChallengeWavePlanInput): WavePlan {
+  const { subArea, fallbackArchetypeId, fallbackLevel, seed } = input;
+  const eliteConfig = input.eliteConfig ?? DEFAULT_ELITE_CONFIG;
+  const rng = createRng(seed >>> 0);
+  const difficulty = resolveDifficultyContext(subArea);
+  const baseLevel = findSubAreaBaseLevel(subArea);
+  const templates = challengeWaveTemplates(subArea, fallbackArchetypeId, fallbackLevel);
+  const out: WaveSpec[] = [];
+  const finalEliteWaves = subArea.challenge?.manualFinalEliteWaves ?? DEFAULT_FINAL_ELITE_WAVES;
+  const mode = input.mode ?? 'manual';
+  let idleEliteMisses = input.idleEliteMisses ?? 0;
+
+  for (let i = 0; i < templates.length; i++) {
+    const template = templates[i];
+    if (!template) continue;
+    const forcedEliteIndex = i >= templates.length - finalEliteWaves;
+    const sourceKind = template.type === 'elite' ? 'elite' : 'trash';
+    const waveKind: WaveKind = forcedEliteIndex ? 'elite' : sourceKind;
+    const targetMonsterCount = resolveChallengeMonsterCount(subArea, input.challengeOrdinal, i);
+    const effectiveAreaLevel = difficulty.areaLevel + waveLevelOffset(i, templates.length);
+    const sourceEncounters = template.encounters ?? [
+      fallbackEncounter(fallbackArchetypeId, fallbackLevel)
+    ];
+    const baseSpawns = encountersToSpawns(
+      sourceEncounters,
+      waveKind,
+      rng,
+      effectiveAreaLevel,
+      baseLevel
+    );
+    const forcedEliteKind = forcedEliteIndex && i === templates.length - 1 ? 'rareElite' : 'champion';
+    let spawns = forcedEliteIndex
+      ? forceElitePack(baseSpawns, rng, eliteConfig, forcedEliteKind, targetMonsterCount)
+      : fitSpawnsToMonsterCount(baseSpawns, targetMonsterCount);
+    let isIdleElite = false;
+    let idleEliteMissesAfterWave: number | undefined;
+    if (mode === 'idle' && !forcedEliteIndex && waveKind === 'trash') {
+      const idleEncounter = resolveIdleEncounter({
+        subArea,
+        act: actNumberFromSubArea(subArea),
+        tickIndex: input.challengeOrdinal * IDLE_CHALLENGE_TICK_STRIDE + i,
+        seed,
+        playerLevel: fallbackLevel,
+        eliteMisses: idleEliteMisses,
+        eliteConfig,
+        fallbackArchetypeId
+      });
+      idleEliteMisses = idleEncounter.nextEliteMisses;
+      idleEliteMissesAfterWave = idleEliteMisses;
+      if (idleEncounter.monsterTier === 'champion' || idleEncounter.monsterTier === 'rare-elite') {
+        isIdleElite = true;
+        spawns = forceElitePack(
+          baseSpawns,
+          rng,
+          eliteConfig,
+          idleEncounter.monsterTier === 'rare-elite' ? 'rareElite' : 'champion',
+          targetMonsterCount
+        );
+      }
+    }
+    if (spawns.length === 0) continue;
+    out.push({
+      id: `${subArea.id}-challenge-w${String(i + 1)}`,
+      waveTier: isIdleElite ? 'elite' : waveKind,
+      spawns,
+      ...(template.lootTable !== undefined ? { lootTable: template.lootTable } : {}),
+      presentation: {
+        kind: isIdleElite ? 'elite' : waveKind,
+        ...(forcedEliteIndex ? { isForcedElite: true, forcedEliteKind } : {}),
+        ...(isIdleElite ? { isIdleElite: true } : {}),
+        ...(idleEliteMissesAfterWave !== undefined ? { idleEliteMissesAfterWave } : {}),
+        difficultyBand: difficultyBandForUi(difficulty.finaleBand)
+      }
+    });
+  }
+
+  if (subArea.bossEncounter && !subArea.chapterBoss) {
+    const bossSpawns = encountersToSpawns(
+      [subArea.bossEncounter],
+      'boss',
+      rng,
+      difficulty.areaLevel + 3,
+      baseLevel
+    );
+    if (bossSpawns.length > 0) {
+      out.push({
+        id: `${subArea.id}-boss`,
+        waveTier: 'boss',
+        spawns: bossSpawns,
+        presentation: {
+          kind: 'boss',
+          difficultyBand: difficultyBandForUi(difficulty.finaleBand)
+        }
+      });
+    }
+  } else if (!subArea.chapterBoss) {
+    const authoredBoss = subArea.waves.find((w) => w.type === 'boss' && (w.encounters?.length ?? 0) > 0);
+    if (authoredBoss?.encounters) {
+      const bossSpawns = encountersToSpawns(
+        authoredBoss.encounters,
+        'boss',
+        rng,
+        difficulty.areaLevel + 3,
+        baseLevel
+      );
+      if (bossSpawns.length > 0) {
+        out.push({
+          id: `${subArea.id}-boss`,
+          waveTier: 'boss',
+          spawns: bossSpawns,
+          ...(authoredBoss.lootTable !== undefined ? { lootTable: authoredBoss.lootTable } : {}),
+          presentation: {
+            kind: 'boss',
+            difficultyBand: difficultyBandForUi(difficulty.finaleBand)
+          }
+        });
+      }
+    }
+  }
+
+  if (subArea.chapterBoss) {
+    out.push(chapterBossWave(
+      subArea.id,
+      subArea.chapterBoss,
+      Math.max(1, subArea.areaLevel + difficulty.monsterLevelBonus + 5),
+      difficultyBandForUi(difficulty.finaleBand)
+    ));
+  }
+
+  if (out.length === 0) {
+    return synthDefaultPlan(subArea, fallbackArchetypeId, fallbackLevel, seed);
+  }
+
+  return {
+    subAreaId: subArea.id,
+    waves: out,
+    defaultLootTable: subArea.lootTable,
+    mode,
+    seed,
+    difficulty
+  };
+}
+
+function actNumberFromSubArea(subArea: SubAreaDef): 1 | 2 | 3 | 4 | 5 {
+  const match = /act([1-5])/.exec(subArea.actId);
+  return (match?.[1] ? Number(match[1]) : 1) as 1 | 2 | 3 | 4 | 5;
+}
+
+function resolveDifficultyContext(subArea: SubAreaDef): DifficultyContext {
+  const finaleBand = subArea.difficulty?.finaleBand ?? 'none';
+  const monsterLevelBonus = subArea.difficulty?.monsterLevelBonus ?? 0;
+  return {
+    areaLevel: subArea.areaLevel + monsterLevelBonus,
+    monsterLevelBonus,
+    finaleBand
+  };
+}
+
+function challengeWaveTemplates(
+  subArea: SubAreaDef,
+  fallbackArchetypeId: string,
+  fallbackLevel: number
+): readonly WaveDef[] {
+  const authored = subArea.waves.filter((w) => w.type !== 'boss' && (w.encounters?.length ?? 0) > 0);
+  if (authored.length > 0) return authored;
+
+  const rotation = resolveChallengeRotation(subArea);
+  const fallbackCount = subArea.hasBoss || subArea.chapterBoss ? 5 : 3;
+  return Array.from({ length: fallbackCount }, (_, i): WaveDef => ({
+    id: `${subArea.id}-fallback-w${String(i + 1)}`,
+    type: rotation[i % rotation.length] === 'elite' ? 'elite' : 'trash',
+    encounters: [fallbackEncounter(fallbackArchetypeId, fallbackLevel)]
+  }));
+}
+
+function resolveChallengeMonsterCount(
+  subArea: SubAreaDef,
+  challengeOrdinal: number,
+  waveIndex: number
+): number {
+  const min = clampMonsterCount(subArea.challenge?.monsterCount.min ?? DEFAULT_CHALLENGE_MIN_MONSTERS);
+  const max = clampMonsterCount(subArea.challenge?.monsterCount.max ?? DEFAULT_CHALLENGE_MAX_MONSTERS);
+  const lo = Math.min(min, max);
+  const hi = Math.max(min, max);
+  const span = hi - lo + 1;
+  return lo + ((Math.max(0, Math.floor(challengeOrdinal)) + waveIndex) % span);
+}
+
+function resolveChallengeRotation(subArea: SubAreaDef): readonly WaveKind[] {
+  const rotation = subArea.challenge?.rotation;
+  if (!rotation || rotation.length === 0) return DEFAULT_CHALLENGE_ROTATION;
+  return rotation;
+}
+
+function clampMonsterCount(n: number): number {
+  if (!Number.isFinite(n)) return DEFAULT_CHALLENGE_MIN_MONSTERS;
+  return Math.min(DEFAULT_CHALLENGE_MAX_MONSTERS, Math.max(DEFAULT_CHALLENGE_MIN_MONSTERS, Math.floor(n)));
+}
+
+function waveLevelOffset(index: number, total: number): number {
+  if (total <= 1) return 0;
+  return Math.floor((3 * index) / (total - 1));
+}
+
+function difficultyBandForUi(finaleBand: DifficultyContext['finaleBand']): NonNullable<WavePresentation['difficultyBand']> {
+  if (finaleBand === 'final') return 'finale';
+  if (finaleBand === 'penultimate') return 'hard';
+  return 'normal';
+}
+
+function fallbackEncounter(archetypeId: string, level: number): Encounter {
+  return {
+    id: 'fallback',
+    level,
+    monsters: [{ archetypeId }]
+  };
+}
+
 function findSubAreaBaseLevel(subArea: SubAreaDef): number {
   const levels: number[] = [];
   for (const wave of subArea.waves) {
@@ -219,10 +485,36 @@ function buildRareElitePack(leader: MonsterSpawn, affix: EliteAffixDef): readonl
   return pack;
 }
 
+function forceElitePack(
+  baseSpawns: readonly MonsterSpawn[],
+  rng: Rng,
+  config: EliteConfigDef,
+  forcedEliteKind: 'champion' | 'rareElite',
+  targetCount: number
+): readonly MonsterSpawn[] {
+  const leader = baseSpawns.find((s) => s.tier === 'trash' || s.tier === 'elite') ?? baseSpawns[0];
+  if (!leader) return baseSpawns;
+  const affix = rng.pick(config.affixes);
+  if (forcedEliteKind === 'rareElite') {
+    const count = clampSpawn(targetCount);
+    const pack: MonsterSpawn[] = [{ ...leader, tier: 'rare-elite', index: 0, eliteAffix: affix }];
+    for (let i = 1; i < count; i++) {
+      const source = baseSpawns[i % baseSpawns.length] ?? leader;
+      pack.push({ ...source, tier: 'rare-minion', index: i, eliteAffix: affix });
+    }
+    return pack;
+  }
+  return fitSpawnsToMonsterCount(
+    baseSpawns.map((spawn) => ({ ...spawn, tier: 'champion' as const, eliteAffix: affix })),
+    targetCount
+  );
+}
+
 function chapterBossWave(
   subAreaId: string,
   boss: ChapterBossDef,
-  fallbackLevel: number
+  fallbackLevel: number,
+  difficultyBand?: WavePresentation['difficultyBand']
 ): WaveSpec {
   const spawn: MonsterSpawn = {
     archetypeId: boss.archetypeId,
@@ -236,7 +528,12 @@ function chapterBossWave(
     waveTier: 'boss',
     spawns: [spawn],
     lootTable: boss.dropTable,
-    bossIntro: { bossArchetypeId: boss.archetypeId }
+    bossIntro: { bossArchetypeId: boss.archetypeId },
+    presentation: {
+      kind: 'boss',
+      isActBoss: true,
+      ...(difficultyBand ? { difficultyBand } : {})
+    }
   };
 }
 
@@ -282,6 +579,26 @@ function clampSpawn(n: number): number {
   if (!Number.isFinite(n) || n < 1) return 1;
   if (n > MAX_SPAWNS_PER_WAVE) return MAX_SPAWNS_PER_WAVE;
   return Math.floor(n);
+}
+
+function fitSpawnsToMonsterCount(
+  spawns: readonly MonsterSpawn[],
+  targetCount: number
+): readonly MonsterSpawn[] {
+  if (spawns.length === 0) return spawns;
+  const count = clampSpawn(targetCount);
+  const out: MonsterSpawn[] = [];
+  const perArchetypeIdx = new Map<string, number>();
+
+  for (let i = 0; i < count; i++) {
+    const source = spawns[i % spawns.length];
+    if (!source) continue;
+    const idx = perArchetypeIdx.get(source.archetypeId) ?? 0;
+    perArchetypeIdx.set(source.archetypeId, idx + 1);
+    out.push({ ...source, index: idx });
+  }
+
+  return out;
 }
 
 /**

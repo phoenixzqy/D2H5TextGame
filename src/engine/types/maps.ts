@@ -46,6 +46,12 @@ export interface SubAreaDef {
 
   /** Chapter-ending act boss gate. Replaces the final wave when present. */
   readonly chapterBoss?: ChapterBossDef;
+
+  /** Manual challenge wave-generation rules. */
+  readonly challenge?: SubAreaChallengeConfig;
+
+  /** Lightweight difficulty tuning for this sub-area. */
+  readonly difficulty?: SubAreaDifficultyProfile;
   
   /** Loot table ID */
   readonly lootTable: string;
@@ -63,6 +69,23 @@ export interface ChapterBossDef {
   readonly dropTable: string;
 }
 
+export type WaveKind = 'trash' | 'elite' | 'boss' | 'treasure' | 'shrine';
+
+export interface SubAreaChallengeConfig {
+  readonly monsterCount: {
+    readonly min: number;
+    readonly max: number;
+  };
+  readonly rotation: readonly WaveKind[];
+  readonly manualFinalEliteWaves: number;
+  readonly appendChapterBoss?: boolean;
+}
+
+export interface SubAreaDifficultyProfile {
+  readonly finaleBand?: 'none' | 'penultimate' | 'final';
+  readonly monsterLevelBonus?: number;
+}
+
 /** Weighted monster-pool entry for a sub-area. */
 export interface MonsterPoolEntry {
   readonly archetypeId: string;
@@ -71,7 +94,7 @@ export interface MonsterPoolEntry {
 
 export interface WaveDef {
   readonly id: string;
-  readonly type: 'trash' | 'elite' | 'boss' | 'treasure' | 'shrine';
+  readonly type: WaveKind;
   
   /** Monster encounters */
   readonly encounters?: readonly Encounter[];
