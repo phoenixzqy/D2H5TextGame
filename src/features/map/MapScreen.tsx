@@ -25,7 +25,6 @@ interface SubArea {
   id: string;
   alias: string;
   nameKey: string;
-  fallbackName: string;
   recommendedLevel: number;
   bossArchetypeId?: string;
   challengeMonsterMin: number;
@@ -36,7 +35,6 @@ interface SubArea {
 interface Act {
   number: number;
   nameKey: string;
-  fallbackName: string;
   subAreas: SubArea[];
 }
 
@@ -77,8 +75,7 @@ export function MapScreen() {
       list.push({
         id: sa.id,
         alias,
-        nameKey: `map.subArea.${alias}`,
-        fallbackName: sa.name,
+        nameKey: sa.name,
         recommendedLevel: sa.areaLevel,
         challengeMonsterMin: sa.challenge?.monsterCount.min ?? 8,
         challengeMonsterMax: sa.challenge?.monsterCount.max ?? 20,
@@ -92,8 +89,7 @@ export function MapScreen() {
         const num = actNumberFromId(a.id);
         return {
           number: num,
-          nameKey: `map.actName.${String(num)}`,
-          fallbackName: a.name,
+          nameKey: a.name,
           subAreas: byAct.get(num) ?? []
         };
       })
@@ -120,11 +116,12 @@ export function MapScreen() {
   const isSubAreaCleared = (sa: SubArea): boolean =>
     clearedSubAreas.includes(sa.id) || clearedSubAreas.includes(sa.alias);
 
-  // Find the alias for the current idle target so the banner can render
-  // a localized name.
-  const idleAreaName = idleTarget
-    ? t(`subArea.${aliasFromId(idleTarget)}`, { defaultValue: t(`subArea.${idleTarget}`, { defaultValue: idleTarget }) })
-    : null;
+  // Find the canonical data entry for the current idle target so the banner
+  // resolves `maps.area.*` via tDataKey instead of rendering raw data keys.
+  const idleSubArea = idleTarget
+    ? subAreaList.find((sa) => sa.id === idleTarget || aliasFromId(sa.id) === idleTarget)
+    : undefined;
+  const idleAreaName = idleSubArea ? tDataKey(t, idleSubArea.name) : null;
 
   const bossDisplayName = (archetypeId: string | undefined, fallback: string): string => {
     if (!archetypeId) return fallback;
@@ -135,7 +132,10 @@ export function MapScreen() {
 
   const gateBossDisplayName = (act: number): string => {
     const gateSubArea = subAreaList.find((sa) => sa.id === ACT_GATE_BOSS_SUB_AREAS[act]);
-    return bossDisplayName(gateSubArea?.chapterBoss?.archetypeId, gateSubArea?.name ?? t('locked'));
+    return bossDisplayName(
+      gateSubArea?.chapterBoss?.archetypeId,
+      gateSubArea ? tDataKey(t, gateSubArea.name) : t('locked')
+    );
   };
 
   return (
@@ -210,6 +210,7 @@ export function MapScreen() {
                     const unlocked = actUnlocked;
                     const cleared = isSubAreaCleared(sa);
                     const isIdleHere = idleTarget === sa.id || idleTarget === sa.alias;
+                    const areaName = tDataKey(t, sa.nameKey);
                     const rowCls = !unlocked
                       ? ''
                       : cleared
@@ -233,7 +234,7 @@ export function MapScreen() {
                         <div className="flex-1 min-w-[140px]">
                           <div className={`text-sm flex items-center gap-2 ${cleared ? 'text-d2-white/70' : 'text-d2-white'}`}>
                             <span className="truncate">
-                              {t(sa.nameKey, { defaultValue: sa.fallbackName })}
+                              {areaName}
                             </span>
                             {unlocked && cleared && (
                               <span
@@ -254,7 +255,7 @@ export function MapScreen() {
                             {sa.bossArchetypeId && (
                               <span
                                 className="text-[10px] uppercase text-orange-300 border border-orange-400/60 rounded px-1.5 py-0.5"
-                                title={bossDisplayName(sa.bossArchetypeId, sa.fallbackName)}
+                                title={bossDisplayName(sa.bossArchetypeId, areaName)}
                                 data-testid={`boss-badge-${sa.alias}`}
                               >
                                 {t('bossBadge')}

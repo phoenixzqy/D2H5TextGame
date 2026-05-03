@@ -3,7 +3,7 @@
  * behind first clear). Tests focus on the gating + toggle states; the
  * end-to-end navigation flow is covered by Playwright.
  */
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeAll, beforeEach } from 'vitest';
 import { Suspense } from 'react';
 import { render, screen, act, fireEvent } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
@@ -11,6 +11,16 @@ import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import i18n from '@/i18n';
 import { MapScreen } from './MapScreen';
 import { useMapStore, useMetaStore } from '@/stores';
+import { tDataKey } from '@/ui';
+
+const RAW_MAP_KEY_PATTERN = /\b(?:maps|map)\.[A-Za-z0-9_.-]+/;
+
+/** Wait for i18next to finish loading all namespaces. */
+beforeAll(async () => {
+  if (!i18n.isInitialized) {
+    await new Promise<void>((resolve) => { i18n.on('initialized', resolve); });
+  }
+});
 
 function renderMap() {
   return render(
@@ -28,7 +38,8 @@ function renderMap() {
 }
 
 describe('MapScreen — idle gating + stop toggle', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
+    await i18n.changeLanguage('zh-CN');
     useMapStore.getState().reset();
     useMetaStore.getState().setIdleTarget(undefined);
   });
@@ -60,5 +71,36 @@ describe('MapScreen — idle gating + stop toggle', () => {
     act(() => { fireEvent.click(farm); });
     expect(useMetaStore.getState().idleState.idleTarget).toBe('a1-blood-moor');
     expect(await screen.findByTestId('combat-route')).toBeInTheDocument();
+  });
+
+  it.each([
+    { lng: 'zh-CN', outerSteppes: '外缘草原' },
+    { lng: 'en', outerSteppes: 'Outer Steppes' }
+  ])('renders localized map data labels without raw keys in $lng', async ({ lng, outerSteppes }) => {
+    await i18n.changeLanguage(lng);
+    const { container } = renderMap();
+    await screen.findByTestId('map-screen');
+
+    const actToggles = Array.from(container.querySelectorAll<HTMLButtonElement>('button[aria-expanded]'));
+    expect(actToggles).toHaveLength(5);
+    expect(container.textContent).not.toMatch(RAW_MAP_KEY_PATTERN);
+
+    for (let index = 1; index < actToggles.length; index += 1) {
+      const toggle = actToggles[index];
+      if (!toggle) throw new Error(`Missing act toggle at index ${String(index)}`);
+      act(() => { fireEvent.click(toggle); });
+      expect(container.textContent).not.toMatch(RAW_MAP_KEY_PATTERN);
+      if (index === 3) {
+        expect(screen.getByText(outerSteppes)).toBeInTheDocument();
+      }
+    }
+  });
+
+  it('resolves the canonical maps.area.act4-outer-steppes key in both locales', async () => {
+    await i18n.changeLanguage('zh-CN');
+    expect(tDataKey(i18n.getFixedT('zh-CN'), 'maps.area.act4-outer-steppes')).toBe('外缘草原');
+
+    await i18n.changeLanguage('en');
+    expect(tDataKey(i18n.getFixedT('en'), 'maps.area.act4-outer-steppes')).toBe('Outer Steppes');
   });
 });
