@@ -21,6 +21,22 @@ export const NPC_PORTRAITS: Readonly<Record<string, string>> = {
   "kashya": "/assets/d2/generated/class-portraits/npcs.act1.kashya.png"
 };
 
+/** Merc portraits — keyed by "act<N>.<slug>" from mercs.act<N>.<slug>.png. */
+export const MERC_PORTRAITS: Readonly<Record<string, string>> = {
+  "act1.rogue-cold": "/assets/d2/generated/class-portraits/mercs.act1.rogue-cold.png",
+  "act1.rogue-fire": "/assets/d2/generated/class-portraits/mercs.act1.rogue-fire.png",
+  "act1.rogue-inner-sight": "/assets/d2/generated/class-portraits/mercs.act1.rogue-inner-sight.png",
+  "act2.holy-freeze": "/assets/d2/generated/class-portraits/mercs.act2.holy-freeze.png",
+  "act2.might": "/assets/d2/generated/class-portraits/mercs.act2.might.v2.png",
+  "act2.prayer": "/assets/d2/generated/class-portraits/mercs.act2.prayer.png",
+  "act3.iron-wolf-cold": "/assets/d2/generated/class-portraits/mercs.act3.iron-wolf-cold.png",
+  "act3.iron-wolf-fire": "/assets/d2/generated/class-portraits/mercs.act3.iron-wolf-fire.v3.png",
+  "act3.iron-wolf-lightning": "/assets/d2/generated/class-portraits/mercs.act3.iron-wolf-lightning.v1.png",
+  "act5.barbarian-battle-orders": "/assets/d2/generated/class-portraits/mercs.act5.barbarian-battle-orders.v1.png",
+  "act5.barbarian-recruit": "/assets/d2/generated/class-portraits/mercs.act5.barbarian-recruit.png",
+  "act5.barbarian-war-cry": "/assets/d2/generated/class-portraits/mercs.act5.barbarian-war-cry.v2.png"
+};
+
 /** Monster art — keyed by "act<N>.<slug>" (matches data/monsters ids minus prefix). */
 export const MONSTER_ART: Readonly<Record<string, string>> = {
   "act1.afflicted": "/assets/d2/generated/monsters/monsters.act1.afflicted.png",

@@ -12,7 +12,8 @@ import {
   refreshActivePlayerCombatConfig,
   createSimpleEnemy,
   buildEnemiesForWave,
-  resolveMonsterDisplayName
+  resolveMonsterDisplayName,
+  resolveCombatUnitDisplayName
 } from './combatHelpers';
 import { mercToCombatUnit } from './mercToCombatUnit';
 import type { BattleEvent } from '@/engine/combat/combat';
@@ -81,6 +82,18 @@ describe('combatHelpers', () => {
       };
 
       expect(resolveMonsterDisplayName(unit)).toBe('堕落者 F');
+    });
+
+    it('resolves combat-unit merc names through i18n', async () => {
+      await i18n.changeLanguage('zh-CN');
+      const unit = mercToCombatUnit(buildMerc({
+        id: 'mercs/act1-rogue-inner-sight',
+        name: 'Rogue Scout — Inner Sight',
+        classId: 'rogue',
+        signatureSkillId: 'mskill-inner-sight'
+      }));
+
+      expect(resolveCombatUnitDisplayName(unit)).toBe('罗格侦察兵 — 内视');
     });
 
     it('should show player name from map instead of ID in action event', () => {

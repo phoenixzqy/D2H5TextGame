@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "service": {
     "name": "pollinations.ai",
     "endpoint": "https://image.pollinations.ai/prompt/",
@@ -13,8 +13,8 @@
       "width": 768,
       "height": 1024,
       "seedBase": 100000,
-      "styleSuffix": "heroic waist-up portrait, single character, centered, three-quarter view, detailed armor, atmospheric background hinting at their homeland, rim lighting, oil painting on aged canvas, ample headroom above subject with safe margin from top edge, head positioned in upper third roughly 25 to 35 percent down from the top, eyes on the upper-third horizon line, torso filling the central safe zone, frame ends at mid-torso or waist, subject survives a center crop at 1:1 and 16:9",
-      "negativeAdditions": "group shot, multiple characters, full landscape, head touching top of frame, head cropped, headroom too tight, forehead clipped, hair clipped at top, subject flush with top edge, low camera angle looking up",
+      "styleSuffix": "heroic waist-up portrait, single character, centered, three-quarter view, detailed armor, atmospheric background hinting at their homeland, rim lighting, oil painting on aged canvas, natural heroic proportions, broad shoulders, substantial powerful frame, not lanky, not willowy, not elongated figure, ample headroom above subject with safe margin from top edge, head positioned in upper third roughly 25 to 35 percent down from the top, eyes on the upper-third horizon line, torso filling the central safe zone, frame ends at mid-torso or waist, subject survives a center crop at 1:1 and 16:9",
+      "negativeAdditions": "group shot, multiple characters, full landscape, head touching top of frame, head cropped, headroom too tight, forehead clipped, hair clipped at top, subject flush with top edge, low camera angle looking up, lanky figure, elongated body, thin narrow shoulders, stick figure proportions, willowy, overly tall figure, stretched proportions",
       "outputDir": "public/assets/d2/generated/class-portraits"
     },
     "monster": {

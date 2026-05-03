@@ -20,9 +20,8 @@ import {
   abortSubAreaRun,
   hasActiveSubAreaRun,
   resetIdleElitePity,
-  resolveMonsterDisplayName
+  resolveCombatUnitDisplayName
 } from '@/stores/combatHelpers';
-import { resolveSummonDisplayName } from '@/stores/summonDisplayName';
 import { nextSubAreaInAct } from '@/stores/subAreaResolver';
 import type { CombatLogEntry } from '@/stores/combatStore';
 import type { RecordedBattleEvent } from '@/engine/combat/combat';
@@ -602,11 +601,7 @@ function UnitCard({
   const kind = inferKind(unit);
   const isSummon = kind === 'summon';
   const isPlayerSide = unit.side === 'player';
-  const displayName = !isPlayerSide && kind === 'monster'
-    ? resolveMonsterDisplayName(unit)
-    : isPlayerSide && isSummon
-      ? resolveSummonDisplayName(unit)
-    : unit.name;
+  const displayName = resolveCombatUnitDisplayName(unit);
 
   const isDead = unit.life <= 0;
   const variant: 'character' | 'monster' = isPlayerSide ? 'character' : 'monster';
@@ -677,7 +672,7 @@ function UnitCard({
 
   return (
     <div
-      className={`${wrapperCls} ${ringCls} relative rounded-md transition-opacity motion-reduce:transition-none`}
+      className={`${wrapperCls} ${ringCls} relative h-full w-full rounded-md transition-opacity motion-reduce:transition-none`}
       data-acting={acting || undefined}
       data-dead={isDead || undefined}
       data-kind={kind}
@@ -689,7 +684,7 @@ function UnitCard({
       {compact ? (
         <div
           className={[
-            'relative flex h-full min-h-[4.5rem] flex-col overflow-hidden rounded border bg-d2-panel text-d2-white',
+            'relative flex h-full min-h-[4.5rem] w-full flex-col overflow-hidden rounded border bg-d2-panel text-d2-white',
             rarity === 'boss'
               ? 'border-d2-boss'
               : rarity === 'rareElite'
@@ -709,9 +704,11 @@ function UnitCard({
                 alt={displayName}
                 className={[
                   'h-full w-full',
-                  isSummon && unit.summonTemplateId !== 'skeleton'
-                    ? 'object-contain p-2'
-                    : 'object-cover object-top'
+                  isSummon
+                    ? 'object-cover object-top'
+                    : isPlayerSide
+                      ? 'object-contain p-2'
+                      : 'object-cover object-top'
                 ].join(' ')}
               />
             ) : (

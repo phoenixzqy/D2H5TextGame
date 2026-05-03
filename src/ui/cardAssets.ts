@@ -14,6 +14,7 @@
 
 import {
   CLASS_PORTRAITS,
+  MERC_PORTRAITS,
   MONSTER_ART,
   UNIQUE_ITEM_ICONS,
   BASE_ITEM_ICONS,
@@ -46,6 +47,13 @@ const MERC_ARCHETYPES: Readonly<Record<string, string | undefined>> = {
 function stripPrefix(id: string): string {
   const slash = id.indexOf('/');
   return slash === -1 ? id : id.slice(slash + 1);
+}
+
+function normalizeMercPortraitKey(key: string): string {
+  const base = key.split('#')[0] ?? key;
+  const match = /^(act[1-5])[-.](.+)$/.exec(base);
+  if (!match?.[1] || !match[2]) return base;
+  return `${match[1]}.${match[2]}`;
 }
 
 /** dev-only warn helper (no-op in production). Vite-native env check. */
@@ -194,25 +202,30 @@ export function resolveSkillIcon(skillRef: string): string | null {
 }
 
 /**
- * Resolve a mercenary's portrait. Today no merc has dedicated art; we
- * proxy via class portraits using the prefix-rule table. Falls back to
- * the closest class portrait based on prefix; null if no rule matches.
+ * Resolve a mercenary's portrait. Dedicated merc portraits win first;
+ * class-portrait proxies are only a fallback for legacy/non-hireable mercs.
  */
 export function resolveMercArt(mercId: string): string | null {
-  const key = stripPrefix(mercId);
+  const stripped = stripPrefix(mercId);
+  const key = stripped.split('#')[0] ?? stripped;
   // 0) Manual override wins over all inferred logic.
   const override = getImageOverride('merc', key);
   if (override) return override;
-  // 1) exact match against canonical archetype keys
+
+  // 1) exact dedicated portrait, e.g. `act1-rogue-fire` → `act1.rogue-fire`.
+  const portraitKey = normalizeMercPortraitKey(key);
+  if (portraitKey in MERC_PORTRAITS) return MERC_PORTRAITS[portraitKey] ?? null;
+
+  // 2) exact match against canonical archetype keys
   if (key in MERC_ARCHETYPES) return MERC_ARCHETYPES[key] ?? null;
-  // 2) prefix-rule walk
+  // 3) prefix-rule walk
   for (const [prefix, archetype] of MERC_ARCHETYPE_RULES) {
     if (key.startsWith(prefix)) {
       if (archetype === null) return null;
       return MERC_ARCHETYPES[archetype] ?? null;
     }
   }
-  // 3) classRef-style fallback (e.g. `barbarian` → class portrait)
+  // 4) classRef-style fallback (e.g. `barbarian` → class portrait)
   const classBase = key.split(/[#-]/)[0] ?? key;
   if (classBase in CLASS_PORTRAITS) return CLASS_PORTRAITS[classBase] ?? null;
   return null;

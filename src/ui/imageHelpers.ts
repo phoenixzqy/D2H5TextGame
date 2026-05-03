@@ -95,12 +95,9 @@ export function getSummonImageUrl(summonId: string): string | undefined {
  * Resolve a mercenary portrait URL from a merc def id (e.g.
  * `mercs/act2-holy-freeze`).
  *
- * Mercenary-specific portraits have not been generated yet, so we proxy
- * through `resolveMercArt` (archetype → class-portrait fallback). This
- * keeps every merc visually distinct from the player's own class — the
- * original goal of Bug #1 — while still rendering an actual image
- * instead of the silhouette placeholder users were seeing for the
- * Barbarian merc.
+ * Dedicated hireable mercenary portraits resolve through `resolveMercArt`
+ * first. Legacy/non-hireable mercs still fall back to class-portrait
+ * archetype proxies so they never render as blank silhouettes.
  */
 export function getMercPortraitUrl(mercId: string): string | null {
   if (!mercId) return null;

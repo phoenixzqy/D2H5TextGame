@@ -26,6 +26,18 @@
 | 51        | npcs.act1.charsi    | Charsi, Rogue blacksmith | 0           | NPC bust |
 | 52        | npcs.act1.gheed     | Gheed, traveling merchant | 0          | NPC bust |
 | 53        | npcs.act1.kashya    | Kashya, captain of the Rogues | 0      | NPC bust |
+| 60        | mercs.act1.rogue-fire        | Act 1 Rogue — Fire Arrow specialist            | 0 | Uses class-portrait preset v3. Seed 100060. Dedicated merc portrait batch 2026-05-02. |
+| 61        | mercs.act1.rogue-cold        | Act 1 Rogue — Cold Arrow specialist            | 0 | Seed 100061. |
+| 62        | mercs.act1.rogue-inner-sight | Act 1 Rogue — Inner Sight specialist           | 0 | Seed 100062. |
+| 63        | mercs.act2.prayer            | Act 2 Desert Mercenary — Prayer aura           | 0 | Seed 100063. |
+| 64        | mercs.act2.might             | Act 2 Desert Mercenary — Might aura            | 2 | v0 had signature mark; v1 too full-body; v2 accepted chest-up portrait. |
+| 65        | mercs.act2.holy-freeze       | Act 2 Desert Mercenary — Holy Freeze aura      | 0 | Seed 100065. |
+| 66        | mercs.act3.iron-wolf-fire    | Act 3 Iron Wolf — Fire magic                   | 3 | v0/v1 too full-body; v2 became wolf-headed; v3 accepted human fire mage bust. |
+| 67        | mercs.act3.iron-wolf-cold    | Act 3 Iron Wolf — Cold magic                   | 0 | Seed 100067. |
+| 68        | mercs.act3.iron-wolf-lightning | Act 3 Iron Wolf — Lightning magic            | 1 | v0 had watermark/signature leak; v1 accepted. |
+| 69        | mercs.act5.barbarian-recruit         | Act 5 Barbarian — Recruit              | 0 | Seed 100069. |
+| 70        | mercs.act5.barbarian-battle-orders   | Act 5 Barbarian — Battle Orders        | 1 | v0 too similar to War Cry with facial artifacts; v1 accepted. |
+| 71        | mercs.act5.barbarian-war-cry         | Act 5 Barbarian — War Cry              | 2 | v0/v1 too full-body or artifact-prone; v2 accepted close portrait. |
 
 ## monster (seed-base 200000)
 
@@ -744,5 +756,4 @@ Planned subjectId ranges for full production:
 | 628 | skills.sorceress.fire-wall | Fire Wall | 0 | allocated for full-production skill-icon recovery; data id `skills-sorceress-fire-wall`; full-production recovery blocked: no accepted production replacement file created before handoff after repeated service timeout/abort; do not expose stale pilot art; data id `skills-sorceress-fire-wall`; continuation accepted 2026-05-01; asset `public/assets/d2/generated/skill-icons/skills.sorceress.fire-wall.png`; data id `skills-sorceress-fire-wall` |
 | 629 | skills.sorceress.enchant | Enchant | 0 | allocated for full-production skill-icon recovery; data id `skills-sorceress-enchant`; full-production recovery blocked: no accepted production replacement file created before handoff after repeated service timeout/abort; do not expose stale pilot art; data id `skills-sorceress-enchant`; continuation accepted 2026-05-01; asset `public/assets/d2/generated/skill-icons/skills.sorceress.enchant.png`; data id `skills-sorceress-enchant` |
 | 630 | skills.sorceress.hydra | Hydra | 0 | allocated for full-production skill-icon recovery; data id `skills-sorceress-hydra`; full-production recovery blocked: no accepted production replacement file created before handoff after repeated service timeout/abort; do not expose stale pilot art; data id `skills-sorceress-hydra`; continuation accepted 2026-05-01; asset `public/assets/d2/generated/skill-icons/skills.sorceress.hydra.png`; data id `skills-sorceress-hydra` |
-
 

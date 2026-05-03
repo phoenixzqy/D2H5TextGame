@@ -17,15 +17,13 @@
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { TFunction } from 'i18next';
-import { Button, EquipmentPanel, EquippedItemModal, GameCard, Modal, Panel, ScreenShell, resolveMercArt, tDataKey, tItemName } from '@/ui';
+import { Button, EquipmentPanel, EquippedItemModal, Modal, Panel, ScreenShell, resolveMercArt, tDataKey, tItemName } from '@/ui';
 import { useMercStore, useInventoryStore, usePlayerStore } from '@/stores';
 import { MERC_EQUIPMENT_SLOTS, type MercEquipment } from '@/stores/mercStore';
 import type { Mercenary } from '@/engine/types/entities';
 import type { EquipmentSlot } from '@/engine/types/items';
 import { loadItemBases } from '@/data/loaders/loot';
 import { loadMercHireRoster, loadMercPool, resolveMercSkillLoadout, type MercDef } from '@/data/loaders/mercs';
-
-const RARITY_TO_TEXT = { R: 'magic', SR: 'rare', SSR: 'unique' } as const;
 
 export function MercsScreen() {
   const { t } = useTranslation(['mercs', 'common', 'inventory']);
@@ -69,13 +67,27 @@ export function MercsScreen() {
                   <ul className="grid grid-cols-1 md:grid-cols-3 gap-2">
                     {act.mercs.map((def) => {
                       const owned = ownedBaseIds.has(def.id);
+                      const mercName = localizedMercName(t, def);
+                      const portraitSrc = resolveMercArt(def.id);
                       return (
                         <li
                           key={def.id}
                           className="rounded border border-d2-border bg-d2-bg/40 p-3"
                           data-testid={`hire-merc-${def.id}`}
                         >
-                          <div className="font-serif text-d2-gold">{localizedMercName(t, def)}</div>
+                          <div className="-mx-3 -mt-3 mb-2 overflow-hidden rounded-t">
+                            {portraitSrc ? (
+                              <img
+                                src={portraitSrc}
+                                alt=""
+                                aria-hidden="true"
+                                className="aspect-[3/4] w-full rounded-t object-cover object-top"
+                              />
+                            ) : (
+                              <div className="aspect-[3/4] w-full rounded-t bg-black/40" aria-hidden="true" />
+                            )}
+                          </div>
+                          <div className="font-serif text-d2-gold">{mercName}</div>
                           <div className="text-xs text-d2-white/60">{t(`type.${def.classRef}`)} · {t('level')} {def.reqLevel}</div>
                           <div className="mt-2 flex flex-wrap gap-1">
                             {resolveMercSkillLoadout(def).slice(0, 3).map((skillId) => (
@@ -109,7 +121,7 @@ export function MercsScreen() {
             </p>
           </Panel>
         ) : (
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <ul className="grid grid-cols-1 gap-3">
             {ownedMercs.map((m) => {
               const baseId = m.id.split('#')[0] ?? m.id;
               const def = defsById.get(baseId);
@@ -152,7 +164,6 @@ function MercCard({
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [equipOpen, setEquipOpen] = useState(false);
 
-  const rt = RARITY_TO_TEXT[merc.rarity];
   const baseId = merc.id.split('#')[0] ?? merc.id;
   const slug = baseId.includes('/') ? baseId.slice(baseId.indexOf('/') + 1) : baseId;
   const portrait = resolveMercArt(slug) ?? (def ? resolveMercArt(def.classRef) : null);
@@ -175,62 +186,86 @@ function MercCard({
       className={isFielded ? 'border-d2-gold' : ''}
       data-testid={`merc-card-${baseId}`}
     >
-      <div className="flex items-start gap-3 mb-2">
-        <GameCard
-          variant="merc"
-          size="md"
-          name={localizedName}
-          subtitle={archetype}
-          rarity={rt}
-          image={portrait ?? undefined}
-          stats={
-            def
-              ? [
-                  { label: 'LVL', value: merc.level },
-                  { label: 'STR', value: def.baseStats.strength },
-                  { label: 'DEX', value: def.baseStats.dexterity },
-                  { label: 'VIT', value: def.baseStats.vitality }
-                ]
-              : [{ label: 'LVL', value: merc.level }]
-          }
-          footer={def?.signatureSkillId ? tDataKey(t, `mercs.skillName.${def.signatureSkillId}`) : undefined}
-        />
-        <div className="min-w-0 flex-1">
-          <div className="text-xs text-d2-white/60 flex flex-wrap gap-x-2">
-            <span>{t(`rarity.${merc.rarity}`)}</span>
-            <span>·</span>
-            <span>{t('level')} {merc.level}</span>
+      <div className="grid gap-3 md:grid-cols-[minmax(240px,0.9fr)_minmax(0,1.6fr)]">
+        <div className="relative min-h-[260px] overflow-hidden rounded-lg border-2 border-d2-gold/60 bg-black shadow-[inset_0_0_24px_rgba(0,0,0,0.75),0_0_24px_rgba(214,176,86,0.12)]">
+          {portrait ? (
+            <img
+              src={portrait}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full object-cover object-top"
+            />
+          ) : (
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(214,176,86,0.22),rgba(0,0,0,0.88)_62%)]" aria-hidden="true" />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/25 to-transparent" aria-hidden="true" />
+          <div className="absolute left-3 top-3 flex items-center gap-2">
+            <span className="h-2.5 w-2.5 rounded-full bg-d2-gold shadow-[0_0_10px_rgba(214,176,86,0.9)]" aria-hidden="true" />
+            <span className="rounded border border-d2-gold/50 bg-black/65 px-2 py-0.5 text-[10px] uppercase tracking-[0.22em] text-d2-gold/90">
+              {t(`rarity.${merc.rarity}`)}
+            </span>
           </div>
-          {def?.signatureSkillId && (
-            <div className="text-xs text-d2-gold/80 mt-1 truncate" title={def.signatureSkillId}>
-              {t('signature')}: {tDataKey(t, `mercs.skillName.${def.signatureSkillId}`)}
-            </div>
+          {isFielded && (
+            <span className="absolute right-3 top-3 rounded border border-d2-gold/70 bg-black/70 px-2 py-1 text-[10px] uppercase tracking-wide text-d2-gold shadow-[0_0_12px_rgba(214,176,86,0.24)]">
+              {t('fielded')}
+            </span>
           )}
-          {lore && (
-            <p className="text-[11px] text-d2-white/50 italic mt-1 line-clamp-3">{lore}</p>
-          )}
-          {/* Bug #12 — XP bar */}
-          <div className="mt-2" data-testid={`merc-xp-${baseId}`}>
-            <div className="flex justify-between text-[10px] text-d2-white/60">
-              <span>{t('xp')}</span>
-              <span>{progress.experience} / {progress.experienceToNextLevel}</span>
-            </div>
-            <div className="h-1.5 bg-d2-bg/60 border border-d2-border rounded overflow-hidden mt-0.5">
-              <div className="h-full bg-d2-gold/70" style={{ width: `${String(xpPct)}%` }} />
+          <div className="absolute inset-x-0 bottom-0 space-y-1 p-3">
+            <h3 className="truncate font-serif text-2xl font-bold leading-tight text-d2-gold drop-shadow-[0_2px_2px_rgba(0,0,0,0.95)]">
+              {localizedName}
+            </h3>
+            <div className="text-xs text-d2-white/75">
+              {archetype} · {t('level')} {merc.level}
             </div>
           </div>
         </div>
-        {isFielded && (
-          <span className="text-[10px] uppercase tracking-wide text-d2-gold border border-d2-gold/60 rounded px-2 py-0.5 whitespace-nowrap">
-            {t('fielded')}
-          </span>
-        )}
+
+        <div className="flex min-w-0 flex-col gap-3">
+          <div className="rounded-lg border border-d2-border/70 bg-black/25 p-3">
+            {def?.signatureSkillId && (
+              <div className="mb-2 text-sm text-d2-gold/90" title={def.signatureSkillId}>
+                <span className="text-d2-white/55">{t('signature')}: </span>
+                {tDataKey(t, `mercs.skillName.${def.signatureSkillId}`)}
+              </div>
+            )}
+            {lore && (
+              <p className="text-sm italic leading-6 text-d2-white/55">{lore}</p>
+            )}
+          </div>
+
+          <div className="grid grid-cols-4 overflow-hidden rounded-lg border border-d2-border/80 bg-d2-bg/45 text-center">
+            <MercStat label="LVL" value={merc.level} />
+            {def ? (
+              <>
+                <MercStat label="STR" value={def.baseStats.strength} />
+                <MercStat label="DEX" value={def.baseStats.dexterity} />
+                <MercStat label="VIT" value={def.baseStats.vitality} />
+              </>
+            ) : (
+              <>
+                <MercStat label="STR" value="-" />
+                <MercStat label="DEX" value="-" />
+                <MercStat label="VIT" value="-" />
+              </>
+            )}
+          </div>
+
+          <div data-testid={`merc-xp-${baseId}`}>
+            <div className="mb-1 flex justify-between text-xs text-d2-white/60">
+              <span>{t('xp')}</span>
+              <span>{progress.experience} / {progress.experienceToNextLevel}</span>
+            </div>
+            <div className="h-2 overflow-hidden rounded-full border border-d2-border bg-black/55">
+              <div className="h-full bg-gradient-to-r from-d2-gold/55 via-d2-gold to-amber-200" style={{ width: `${String(xpPct)}%` }} />
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className="flex flex-wrap gap-2 mt-2">
+      <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-3">
         <Button
           variant={isFielded ? 'secondary' : 'primary'}
-          className="min-h-[40px] flex-1 min-w-[120px] text-sm"
+          className="min-h-[44px] text-sm"
           onClick={onField}
           data-testid={`merc-field-${baseId}`}
         >
@@ -238,7 +273,7 @@ function MercCard({
         </Button>
         <Button
           variant="secondary"
-          className="min-h-[40px] flex-1 min-w-[120px] text-sm"
+          className="min-h-[44px] text-sm"
           onClick={() => { setEquipOpen(true); }}
           data-testid={`merc-equipment-${baseId}`}
         >
@@ -246,7 +281,7 @@ function MercCard({
         </Button>
         <Button
           variant="secondary"
-          className="min-h-[40px] flex-1 min-w-[120px] text-sm border-red-700/60 text-red-300 hover:border-red-500"
+          className="min-h-[44px] text-sm border-red-700/60 text-red-300 hover:border-red-500"
           onClick={() => { setConfirmOpen(true); }}
           data-testid={`merc-dismiss-${baseId}`}
         >
@@ -295,6 +330,15 @@ function MercCard({
         <MercEquipmentEditor mercId={merc.id} equipment={equipment} />
       </Modal>
     </Panel>
+  );
+}
+
+function MercStat({ label, value }: { label: string; value: number | string }) {
+  return (
+    <div className="border-r border-d2-border/70 px-2 py-2 last:border-r-0">
+      <div className="text-[10px] uppercase tracking-[0.18em] text-d2-white/45">{label}</div>
+      <div className="font-serif text-2xl font-bold leading-none text-d2-gold">{value}</div>
+    </div>
   );
 }
 

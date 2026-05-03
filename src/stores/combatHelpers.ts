@@ -33,6 +33,7 @@ import { useFormationStore } from './formationStore';
 import { createRng, hashSeed } from '@/engine/rng';
 import { getIdleEliteMisses, resetIdleEliteMisses, setIdleEliteMisses } from './idleElitePity';
 import { resolveSummonDisplayName } from './summonDisplayName';
+import { loadMercPool } from '@/data/loaders/mercs';
 
 const CHALLENGE_ORDINAL_PERIOD = 360360;
 let manualChallengeOrdinal = 0;
@@ -183,7 +184,18 @@ export function resolveCombatUnitDisplayName(unit: CombatUnit): string {
   const kind = inferKind(unit);
   if (kind === 'monster') return resolveMonsterDisplayName(unit);
   if (kind === 'summon') return resolveSummonDisplayName(unit);
+  if (kind === 'merc') return resolveMercDisplayName(unit);
   return unit.name;
+}
+
+export function resolveMercDisplayName(unit: CombatUnit): string {
+  if (inferKind(unit) !== 'merc') return unit.name;
+  const rawId = unit.id.startsWith('merc-') ? unit.id.slice('merc-'.length) : unit.id;
+  const baseId = rawId.split('#')[0] ?? rawId;
+  const slash = baseId.indexOf('/');
+  const slug = slash >= 0 ? baseId.slice(slash + 1) : baseId;
+  const def = loadMercPool().pool.find((entry) => entry.id === baseId);
+  return i18n.t(`mercs:byId.${slug}.name`, { defaultValue: def?.name ?? unit.name });
 }
 
 /**

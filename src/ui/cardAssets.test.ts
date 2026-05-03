@@ -58,9 +58,16 @@ describe('cardAssets resolvers', () => {
     expect(resolveMercArt('rogue-archer')).toMatch(/classes\.amazon\.png$/);
   });
 
+  it('resolves dedicated merc portraits before archetype proxies', () => {
+    expect(resolveMercArt('mercs/act1-rogue-fire')).toMatch(/mercs\.act1\.rogue-fire\.png$/);
+    expect(resolveMercArt('act3-iron-wolf-lightning')).toMatch(/mercs\.act3\.iron-wolf-lightning\.v1\.png$/);
+    expect(resolveMercArt('mercs/act5-barbarian-war-cry#instance-1')).toMatch(/mercs\.act5\.barbarian-war-cry\.v2\.png$/);
+    expect(resolveMercArt('mercs/act3-iron-wolf-fire')).toMatch(/mercs\.act3\.iron-wolf-fire\.v3\.png$/);
+  });
+
   it('resolves merc art via prefix rule', () => {
     expect(resolveMercArt('mercs/act1-rogue-pierce')).toMatch(/classes\.amazon\.png$/);
-    expect(resolveMercArt('act3-iron-wolf-fire')).toMatch(/classes\.sorceress\.png$/);
+    expect(resolveMercArt('act3-iron-wolf-frozen-armor')).toMatch(/classes\.sorceress\.png$/);
     expect(resolveMercArt('act5-barbarian-cleave')).toMatch(/classes\.barbarian\.png$/);
   });
 

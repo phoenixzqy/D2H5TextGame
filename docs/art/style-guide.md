@@ -55,10 +55,17 @@ appended to the prompt, and category-specific **negative additions**.
 - **Model**: `flux`
 - **Size**: `768 × 1024` (3:4 portrait)
 - **Seed-base**: `100000`
-- **Style suffix**: `heroic waist-up portrait, single character, centered, three-quarter view, detailed armor, atmospheric background hinting at their homeland, rim lighting, oil painting on aged canvas, ample headroom above subject with safe margin from top edge, head positioned in upper third roughly 25 to 35 percent down from the top, eyes on the upper-third horizon line, torso filling the central safe zone, frame ends at mid-torso or waist, subject survives a center crop at 1:1 and 16:9`
-- **Negative additions**: `group shot, multiple characters, full landscape, head touching top of frame, head cropped, headroom too tight, forehead clipped, hair clipped at top, subject flush with top edge, low camera angle looking up`
+- **Style suffix**: `heroic waist-up portrait, single character, centered, three-quarter view, detailed armor, atmospheric background hinting at their homeland, rim lighting, oil painting on aged canvas, natural heroic proportions, broad shoulders, substantial powerful frame, not lanky, not willowy, not elongated figure, ample headroom above subject with safe margin from top edge, head positioned in upper third roughly 25 to 35 percent down from the top, eyes on the upper-third horizon line, torso filling the central safe zone, frame ends at mid-torso or waist, subject survives a center crop at 1:1 and 16:9`
+- **Negative additions**: `group shot, multiple characters, full landscape, head touching top of frame, head cropped, headroom too tight, forehead clipped, hair clipped at top, subject flush with top edge, low camera angle looking up, lanky figure, elongated body, thin narrow shoulders, stick figure proportions, willowy, overly tall figure, stretched proportions`
 
 Canonical subjects: Amazon, Assassin, Barbarian, Druid, Necromancer, Paladin, Sorceress.
+
+**Mercenary portraits also use this category** (no separate preset needed — mercs are
+humanoid characters rendered in the same waist-up format). Their files use the
+`mercs.<act>.<slug>` naming convention (e.g. `mercs.act2.prayer.png`) so
+`sync-asset-maps.mjs` can route them to a dedicated `MERC_PORTRAITS` export
+(see §4.7 wiring note below). The 12 hireable mercs (subjectIds 60–71 in
+seed-registry.md) were approved and batched on 2026-05-xx.
 
 ### 4.2 `monster`
 - **Model**: `flux`
@@ -103,7 +110,19 @@ Canonical subjects: Amazon, Assassin, Barbarian, Druid, Necromancer, Paladin, So
 - **Negative additions**: `letters, numbers, readable text, ui frame, border, baked circular frame, mandala, thin decorative sigil, occult lettering, signature-like strokes, portrait, full body character, landscape, multiple icons, photoreal, transparent background, glossy mobile-game icon, flat vector art`
 - **Note**: source background is dark, not transparent. UI applies node framing, lock overlays, level badges, and hover states.
 
-## 5. Subject framing (preset v2, 2026-04-28)
+### 4.7 Merc-portrait file naming and wiring (housekeeping note)
+Merc portrait files land under `public/assets/d2/generated/class-portraits/`
+(same output dir as classes). Filenames follow `mercs.<act>.<slug>.png`.
+`sync-asset-maps.mjs` must be updated to handle `mercs.act<N>.<slug>.png`
+and emit a `MERC_PORTRAITS: Record<string, string>` export keyed by
+`"act<N>.<slug>"` (e.g. `"act2.prayer"`). `cardAssets.ts` / `imageHelpers.ts`
+must then use `MERC_PORTRAITS` for direct lookups instead of proxying via
+`MERC_ARCHETYPES` → `CLASS_PORTRAITS`. This wiring is frontend-dev work,
+gated on this art batch landing. **No new preset is created; no producer
+sign-off is required for this wiring.** The preset itself (`class-portrait`)
+is unchanged.
+
+## 5. Subject framing and proportions (preset v3, 2026-05-02)
 
 Card UIs across the game crop generated images with `object-fit: cover`
 and `object-position: center` at multiple aspect ratios (square 1:1,
@@ -111,7 +130,7 @@ portrait 3:4, landscape 16:9). A subject framed flush against the top
 edge of the source image gets its head sliced off the moment any of
 those crops shrinks the visible window.
 
-**The rule for every preset that produces a subject (class portraits,
+**The framing rule for every preset that produces a subject (class portraits,
 monsters, named NPCs, mercenaries, bosses):**
 
 1. **Headroom**: the subject's head sits ~25–35% from the **top** of
@@ -128,8 +147,16 @@ monsters, named NPCs, mercenaries, bosses):**
 5. **No low up-shots.** A camera pitched up at the subject pushes the
    head into the top edge — explicitly negatived.
 
+For `class-portrait` specifically, preset **v3** also reinforces
+Diablo II-style heroic body proportions: broad shoulders, substantial
+powerful frames, and natural anatomy. Class portraits must not read as
+lanky, willowy, stick-thin, or vertically stretched figures. These
+proportion constraints target the generated body shape only; the
+`768 × 1024` canvas, waist-up crop, upper-third eye line, and safe
+headroom rules remain unchanged.
+
 These directives are baked into the `class-portrait` and `monster`
-category style suffixes and negative additions. Other categories
+category style suffixes and negative additions where applicable. Other categories
 (`item-icon`, `ui-background`, `zone-art`) are not subject portraits
 and follow their own composition rules.
 

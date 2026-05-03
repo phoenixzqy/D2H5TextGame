@@ -10,8 +10,9 @@
  * unchanged, the file is not rewritten (so this can run safely in CI).
  *
  * Naming conventions (see docs/art/style-presets.json):
- *   class-portraits/classes.<slug>.png       → classes[<slug>]
- *   class-portraits/npcs.act<N>.<slug>.png   → npcs[<slug>]
+ *   class-portraits/classes.<slug>[.v<N>].png      → classes[<slug>]
+ *   class-portraits/npcs.act<N>.<slug>[.v<N>].png  → npcs[<slug>]
+ *   class-portraits/mercs.act<N>.<slug>[.v<N>].png → mercs[act<N>.<slug>]
  *   monsters/monsters.act<N>.<slug>.png      → monsters[act<N>.<slug>]
  *   monsters/bosses.act<N>.<slug>.png        → monsters[act<N>.<slug>]  (bosses are also monsters)
  *   item-icons/items.unique.<slug>.png       → uniques[<slug>]
@@ -19,9 +20,9 @@
  *   zone-art/zones.act<N>.<slug>.png         → zones[act<N>.<slug>]
  *   skill-icons/skills.<class>.<slug>.png    → skillIcons[skills.<class>.<slug>]
  *
- * Skill icons are gated by the art-director seed registry. The directory may
- * contain rejected pilot variants, so only rows in `docs/art/seed-registry.md`
- * whose accepted variant is numeric are emitted.
+ * Class portraits and skill icons are gated by the art-director seed registry.
+ * Their directories may contain rejected variants, so only rows whose accepted
+ * variant is numeric are emitted.
  */
 import { readdirSync, writeFileSync, readFileSync, existsSync, mkdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
@@ -47,35 +48,82 @@ function url(category, file) {
   return `${URL_PREFIX}/${category}/${file}`;
 }
 
-function buildAcceptedSkillIcons() {
-  const files = new Set(listPngs('skill-icons'));
-  if (files.size === 0 || !existsSync(SEED_REGISTRY)) return {};
-
+function getRegistrySection(heading) {
+  if (!existsSync(SEED_REGISTRY)) return null;
   const registry = readFileSync(SEED_REGISTRY, 'utf8');
-  const start = registry.indexOf('## skill-icon');
-  if (start === -1) return {};
+  const start = registry.indexOf(`## ${heading}`);
+  if (start === -1) return null;
 
   const rest = registry.slice(start);
-  const nextHeading = rest.slice('## skill-icon'.length).search(/\n## /);
-  const section = nextHeading === -1
+  const headingLength = `## ${heading}`.length;
+  const nextHeading = rest.slice(headingLength).search(/\n## /);
+  return nextHeading === -1
     ? rest
-    : rest.slice(0, '## skill-icon'.length + nextHeading);
-  const skillIcons = {};
+    : rest.slice(0, headingLength + nextHeading);
+}
+
+function registryRows(heading) {
+  const section = getRegistrySection(heading);
+  if (!section) return [];
+  const rows = [];
 
   for (const line of section.split(/\r?\n/)) {
-    const cells = line
-      .split('|')
-      .map((cell) => cell.trim())
-      .filter(Boolean);
-    if (cells.length < 5 || !/^\d+$/.test(cells[0])) continue;
+    const cells = line.split('|').map((cell) => cell.trim());
+    if (cells[0] === '') cells.shift();
+    if (cells[cells.length - 1] === '') cells.pop();
+    if (cells.length < 4 || !/^\d+$/.test(cells[0])) continue;
 
     const [, id, , acceptedVariant] = cells;
-    if (!id?.startsWith('skills.') || !/^\d+$/.test(acceptedVariant)) continue;
+    if (!id || !/^\d+$/.test(acceptedVariant)) continue;
+    rows.push({ id, acceptedVariant: Number(acceptedVariant) });
+  }
 
-    const variant = Number(acceptedVariant);
-    const filename = `${id}${variant > 0 ? `.v${variant}` : ''}.png`;
+  return rows;
+}
+
+function acceptedFilename(id, variant) {
+  return `${id}${variant > 0 ? `.v${variant}` : ''}.png`;
+}
+
+function buildAcceptedClassPortraits() {
+  const files = new Set(listPngs('class-portraits'));
+  const classes = {};
+  const npcs = {};
+  const mercs = {};
+
+  for (const row of registryRows('class-portrait')) {
+    if (!row.id.startsWith('classes.') && !row.id.startsWith('npcs.') && !row.id.startsWith('mercs.')) {
+      continue;
+    }
+
+    const filename = acceptedFilename(row.id, row.acceptedVariant);
+    if (!files.has(filename)) continue;
+
+    const [, ...rest] = row.id.split('.');
+    if (row.id.startsWith('classes.') && rest.length >= 1) {
+      classes[rest.join('.')] = url('class-portraits', filename);
+    } else if (row.id.startsWith('npcs.') && rest.length >= 2) {
+      npcs[rest[rest.length - 1]] = url('class-portraits', filename);
+    } else if (row.id.startsWith('mercs.') && rest.length >= 2) {
+      const [actSlug, ...slugParts] = rest;
+      mercs[`${actSlug}.${slugParts.join('-')}`] = url('class-portraits', filename);
+    }
+  }
+
+  return { classes, npcs, mercs };
+}
+
+function buildAcceptedSkillIcons() {
+  const files = new Set(listPngs('skill-icons'));
+  if (files.size === 0) return {};
+
+  const skillIcons = {};
+
+  for (const row of registryRows('skill-icon')) {
+    if (!row.id.startsWith('skills.')) continue;
+    const filename = acceptedFilename(row.id, row.acceptedVariant);
     if (files.has(filename)) {
-      skillIcons[id] = url('skill-icons', filename);
+      skillIcons[row.id] = url('skill-icons', filename);
     }
   }
 
@@ -83,24 +131,12 @@ function buildAcceptedSkillIcons() {
 }
 
 function buildMaps() {
-  const classes = {};
-  const npcs = {};
+  const { classes, npcs, mercs } = buildAcceptedClassPortraits();
   const monsters = {};
   const uniques = {};
   const bases = {};
   const zones = {};
   const skillIcons = buildAcceptedSkillIcons();
-
-  for (const f of listPngs('class-portraits')) {
-    // classes.<slug>.png   |   npcs.act<N>.<slug>.png
-    const [prefix, ...rest] = f.replace(/\.png$/, '').split('.');
-    if (prefix === 'classes' && rest.length >= 1) {
-      classes[rest.join('.')] = url('class-portraits', f);
-    } else if (prefix === 'npcs' && rest.length >= 2) {
-      // npcs.<actSlug>.<id>.png – key by id only (act is just a hint)
-      npcs[rest[rest.length - 1]] = url('class-portraits', f);
-    }
-  }
 
   for (const f of listPngs('monsters')) {
     // monsters.act<N>.<slug>.png  |  bosses.act<N>.<slug>.png
@@ -133,10 +169,10 @@ function buildMaps() {
     }
   }
 
-  return { classes, npcs, monsters, uniques, bases, zones, skillIcons };
+  return { classes, npcs, mercs, monsters, uniques, bases, zones, skillIcons };
 }
 
-function emit({ classes, npcs, monsters, uniques, bases, zones, skillIcons }) {
+function emit({ classes, npcs, mercs, monsters, uniques, bases, zones, skillIcons }) {
   const ent = (m) =>
     Object.keys(m)
       .sort()
@@ -155,6 +191,11 @@ ${ent(classes)}
 /** NPC portraits — keyed by NPC id (last dotted segment of filename). */
 export const NPC_PORTRAITS: Readonly<Record<string, string>> = {
 ${ent(npcs)}
+};
+
+/** Merc portraits — keyed by "act<N>.<slug>" from mercs.act<N>.<slug>.png. */
+export const MERC_PORTRAITS: Readonly<Record<string, string>> = {
+${ent(mercs)}
 };
 
 /** Monster art — keyed by "act<N>.<slug>" (matches data/monsters ids minus prefix). */
