@@ -20,8 +20,8 @@ import Ajv2020 from 'ajv/dist/2020';
 import overridesJson from '../data/image-overrides.json';
 import overridesSchema from '../data/schema/image-overrides.schema.json';
 
-/** The four kinds of subject we resolve art for. */
-export type ImageOverrideKind = 'class' | 'monster' | 'item' | 'merc';
+/** The kinds of subject we resolve art for. */
+export type ImageOverrideKind = 'class' | 'monster' | 'item' | 'merc' | 'skill';
 
 /** Shape of `src/data/image-overrides.json`. */
 export interface ImageOverridesFile {
@@ -67,6 +67,8 @@ const FILE: ImageOverridesFile = overridesJson as ImageOverridesFile;
  *               `iron-wolf`, `desert-mercenary`, `barbarian-warrior`) or
  *               the merc id with `mercs/` already stripped (e.g.
  *               `act1-rogue-pierce`).
+ * - `skill`   → normalized generated skill key
+ *               (`skills.<class>.<slug>`), matching `SKILL_ICONS`.
  *
  * @returns the override URL, or `null` if no entry exists.
  */

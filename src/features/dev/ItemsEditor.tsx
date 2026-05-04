@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, type KeyboardEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CheckboxField, EnumField, JsonField, NumberField, StringListField, TextField, type EnumOption } from './DevEditorFields';
 import { DevDataManager } from './DevDataManager';
 import { DevImageField } from './DevImageField';
-import { asString, type JsonRecord } from './devJson';
+import { asString, asStringArray, type JsonRecord } from './devJson';
 import type { DevDataFile } from './devPaths';
 import { resolveItemIcon } from '@/ui/cardAssets';
 
@@ -24,6 +24,12 @@ const itemTabs = {
   },
   sets: {
     files: [{ path: 'src/data/items/sets.json' }]
+  },
+  runes: {
+    files: [{ path: 'src/data/items/runes.json' }]
+  },
+  runewords: {
+    files: [{ path: 'src/data/items/runewords.json' }]
   }
 } satisfies Record<string, { readonly files: readonly Pick<DevDataFile, 'path'>[] }>;
 
@@ -33,22 +39,50 @@ export function ItemsEditor() {
   const { t } = useTranslation('dev');
   const [tab, setTab] = useState<ItemTab>('bases');
   const config = itemTabs[tab];
+  const tabKeys = Object.keys(itemTabs) as ItemTab[];
   const files = config.files.map((file) => ({
     ...file,
     label: t(`itemsEditor.tabs.${tab}.fileLabel`)
   }));
+  const focusTab = (key: ItemTab): void => {
+    window.requestAnimationFrame(() => {
+      document.getElementById(`items-editor-tab-${key}`)?.focus();
+    });
+  };
+  const onTabKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number): void => {
+    let nextIndex: number | null = null;
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+      nextIndex = (index + 1) % tabKeys.length;
+    } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+      nextIndex = (index - 1 + tabKeys.length) % tabKeys.length;
+    } else if (event.key === 'Home') {
+      nextIndex = 0;
+    } else if (event.key === 'End') {
+      nextIndex = tabKeys.length - 1;
+    }
+    if (nextIndex === null) return;
+    event.preventDefault();
+    const nextTab = tabKeys[nextIndex];
+    if (!nextTab) return;
+    setTab(nextTab);
+    focusTab(nextTab);
+  };
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap gap-2" role="tablist" aria-label={t('itemsEditor.tabList')}>
-        {(Object.keys(itemTabs) as ItemTab[]).map((key) => (
+        {tabKeys.map((key, index) => (
           <button
             key={key}
+            id={`items-editor-tab-${key}`}
             type="button"
             role="tab"
             aria-selected={tab === key}
+            aria-controls={`items-editor-panel-${key}`}
+            tabIndex={tab === key ? 0 : -1}
             onClick={() => { setTab(key); }}
+            onKeyDown={(event) => { onTabKeyDown(event, index); }}
             className={[
-              'min-h-[40px] rounded border px-3 text-sm',
+              'min-h-[44px] rounded border px-3 text-sm',
               tab === key ? 'border-d2-gold bg-d2-gold/10 text-d2-gold' : 'border-d2-border text-d2-white/80 hover:text-d2-gold'
             ].join(' ')}
           >
@@ -56,17 +90,25 @@ export function ItemsEditor() {
           </button>
         ))}
       </div>
-      <DevDataManager
+      <div
         key={tab}
-        title={t(`itemsEditor.tabs.${tab}.title`)}
-        description={t(`itemsEditor.tabs.${tab}.description`)}
-        files={files}
-        renderFields={(entry, onChange) => {
-          if (tab === 'bases') return <BaseFields entry={entry} onChange={onChange} />;
-          if (tab === 'uniques') return <UniqueFields entry={entry} onChange={onChange} />;
-          return <SetFields entry={entry} onChange={onChange} />;
-        }}
-      />
+        id={`items-editor-panel-${tab}`}
+        role="tabpanel"
+        aria-labelledby={`items-editor-tab-${tab}`}
+      >
+        <DevDataManager
+          title={t(`itemsEditor.tabs.${tab}.title`)}
+          description={t(`itemsEditor.tabs.${tab}.description`)}
+          files={files}
+          renderFields={(entry, onChange) => {
+            if (tab === 'bases') return <BaseFields entry={entry} onChange={onChange} />;
+            if (tab === 'uniques') return <UniqueFields entry={entry} onChange={onChange} />;
+            if (tab === 'sets') return <SetFields entry={entry} onChange={onChange} />;
+            if (tab === 'runes') return <RuneFields entry={entry} onChange={onChange} />;
+            return <RunewordFields entry={entry} onChange={onChange} />;
+          }}
+        />
+      </div>
     </div>
   );
 }
@@ -141,10 +183,11 @@ function UniqueFields({ entry, onChange }: { readonly entry: JsonRecord; readonl
   const { t } = useTranslation('dev');
   const rawId = asString(entry.id);
   const key = itemOverrideKey(rawId);
+  const baseId = asString(entry.baseId);
   return (
     <div className="space-y-4">
       {key ? (
-        <DevImageField kind="item" entityId={key} inferredPath={resolveItemIcon(rawId)} />
+        <DevImageField kind="item" entityId={key} inferredPath={resolveItemIcon(rawId, { baseId })} />
       ) : null}
       <div className="grid gap-3 sm:grid-cols-2">
         <NumberField entry={entry} path={['reqLevel']} label={t('itemsEditor.fields.reqLevel')} onChange={onChange} />
@@ -162,14 +205,53 @@ function SetFields({ entry, onChange }: { readonly entry: JsonRecord; readonly o
   const { t } = useTranslation('dev');
   const rawId = asString(entry.id);
   const key = itemOverrideKey(rawId);
+  const setItemIds = asStringArray(entry.items);
+  return (
+    <div className="space-y-4">
+      {key ? (
+        <DevImageField kind="item" entityId={key} inferredPath={resolveItemIcon(rawId, { setItemIds })} />
+      ) : null}
+      <StringListField entry={entry} path={['items']} label={t('itemsEditor.fields.setItemIds')} onChange={onChange} />
+      <JsonField entry={entry} path={['pieces']} label={t('itemsEditor.fields.setPieces')} onChange={onChange} />
+      <JsonField entry={entry} path={['bonuses']} label={t('itemsEditor.fields.pieceBonuses')} onChange={onChange} />
+    </div>
+  );
+}
+
+function RuneFields({ entry, onChange }: { readonly entry: JsonRecord; readonly onChange: (entry: JsonRecord) => void }) {
+  const { t } = useTranslation('dev');
+  const rawId = asString(entry.id);
+  const key = itemOverrideKey(rawId);
   return (
     <div className="space-y-4">
       {key ? (
         <DevImageField kind="item" entityId={key} inferredPath={resolveItemIcon(rawId)} />
       ) : null}
-      <StringListField entry={entry} path={['items']} label={t('itemsEditor.fields.setItemIds')} onChange={onChange} />
-      <JsonField entry={entry} path={['pieces']} label={t('itemsEditor.fields.setPieces')} onChange={onChange} />
-      <JsonField entry={entry} path={['bonuses']} label={t('itemsEditor.fields.pieceBonuses')} onChange={onChange} />
+      <NumberField entry={entry} path={['tier']} label={t('itemsEditor.fields.runeTier')} onChange={onChange} />
+      <JsonField entry={entry} path={['weaponEffect']} label={t('itemsEditor.fields.runeWeaponEffect')} onChange={onChange} />
+      <JsonField entry={entry} path={['armorEffect']} label={t('itemsEditor.fields.runeArmorEffect')} onChange={onChange} />
+      <JsonField entry={entry} path={['shieldEffect']} label={t('itemsEditor.fields.runeShieldEffect')} onChange={onChange} />
+    </div>
+  );
+}
+
+function RunewordFields({ entry, onChange }: { readonly entry: JsonRecord; readonly onChange: (entry: JsonRecord) => void }) {
+  const { t } = useTranslation('dev');
+  const rawId = asString(entry.id);
+  const key = itemOverrideKey(rawId);
+  const allowedBases = asStringArray(entry.allowedBases);
+  return (
+    <div className="space-y-4">
+      {key ? (
+        <DevImageField kind="item" entityId={key} inferredPath={resolveItemIcon(rawId, { allowedBases })} />
+      ) : null}
+      <StringListField entry={entry} path={['runes']} label={t('itemsEditor.fields.runewordRunes')} onChange={onChange} />
+      <StringListField entry={entry} path={['allowedBases']} label={t('itemsEditor.fields.runewordAllowedBases')} onChange={onChange} />
+      <div className="grid gap-3 sm:grid-cols-2">
+        <NumberField entry={entry} path={['sockets']} label={t('itemsEditor.fields.sockets')} onChange={onChange} />
+        <NumberField entry={entry} path={['reqLevel']} label={t('itemsEditor.fields.reqLevel')} onChange={onChange} />
+      </div>
+      <JsonField entry={entry} path={['stats']} label={t('itemsEditor.fields.runewordStats')} onChange={onChange} />
     </div>
   );
 }

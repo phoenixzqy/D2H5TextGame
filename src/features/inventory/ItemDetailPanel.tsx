@@ -75,7 +75,13 @@ export function ItemDetailPanel({
   const base: ItemBase | undefined = loadItemBases().get(item.baseId);
   const display = resolveItemDisplay(item, t, equippedItems);
   const displayName = display.name;
-  const icon = resolveItemIcon(item.baseId);
+  const icon = item.uniqueId
+    ? resolveItemIcon(item.uniqueId, { baseId: item.baseId })
+    : item.setPieceId
+      ? resolveItemIcon(item.setPieceId, { baseId: item.baseId })
+      : item.runewordId
+        ? resolveItemIcon(item.runewordId, { baseId: item.baseId })
+        : resolveItemIcon(item.baseId);
   const ilvl = item.ilvl ?? item.level;
   const reqLevel = resolveItemReqLevel(item, base);
 

@@ -123,4 +123,43 @@ describe('award.rollKillRewards', () => {
       expect(it.level).toBe(5);
     }
   });
+
+  it('honors forced unique rarity from materialized treasure classes', () => {
+    const forcedTc: TreasureClass = {
+      id: 'tc_forced_unique',
+      picks: [{ type: 'item', baseId: baseShortSword.id, rarity: 'unique', weight: 1, qlvlMin: 1, qlvlMax: 20 }],
+      numPicks: 1,
+      noDropChance: 0
+    };
+    const r = rollKillRewards(
+      { tier: 'trash', monsterLevel: 5, treasureClassId: forcedTc.id, magicFind: 0, goldFind: 0, act: 1 },
+      { ...pools, treasureClasses: new Map([[forcedTc.id, forcedTc]]) },
+      createRng(5)
+    );
+    expect(r.items[0]).toMatchObject({ rarity: 'unique', uniqueId: 'unique.gnarled-root' });
+  });
+
+  it('adds direct treasure-class rune, gem, wishstone, and gold-as-shard rewards', () => {
+    const rollOnly = (pick: TreasureClass['picks'][number]) => {
+      const directTc: TreasureClass = {
+        id: 'tc_direct',
+        picks: [pick],
+        numPicks: 1,
+        noDropChance: 0
+      };
+      return rollKillRewards(
+        { tier: 'trash', monsterLevel: 5, treasureClassId: directTc.id, magicFind: 0, goldFind: 0, act: 1 },
+        { ...pools, treasureClasses: new Map([[directTc.id, directTc]]) },
+        createRng(1)
+      );
+    };
+    expect(rollOnly({ type: 'rune', itemId: 'runes/tal', weight: 1, qlvlMin: 1, qlvlMax: 20, quantityMin: 2, quantityMax: 2 }).runes)
+      .toBeGreaterThanOrEqual(2);
+    expect(rollOnly({ type: 'gem', weight: 1, qlvlMin: 1, qlvlMax: 20, quantityMin: 3, quantityMax: 3 }).gems)
+      .toBeGreaterThanOrEqual(3);
+    expect(rollOnly({ type: 'currency', itemId: 'currency/wishstone', weight: 1, qlvlMin: 1, qlvlMax: 20, quantityMin: 4, quantityMax: 4 }).wishstones)
+      .toBeGreaterThanOrEqual(4);
+    expect(rollOnly({ type: 'gold', weight: 1, qlvlMin: 1, qlvlMax: 20, quantityMin: 5, quantityMax: 5 }).runeShards)
+      .toBeGreaterThanOrEqual(5);
+  });
 });

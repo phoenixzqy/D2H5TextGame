@@ -7,6 +7,10 @@ import {
   resolveMercArt
 } from './cardAssets';
 import { loadItemBases } from '@/data/loaders/loot';
+import uniquesJson from '@/data/items/uniques.json';
+import setsJson from '@/data/items/sets.json';
+import runesJson from '@/data/items/runes.json';
+import runewordsJson from '@/data/items/runewords.json';
 
 describe('cardAssets resolvers', () => {
   it('resolves class portraits by short id', () => {
@@ -38,6 +42,38 @@ describe('cardAssets resolvers', () => {
     expect(missing).toEqual([]);
   });
 
+  it('resolves every dev item-manager entry to an existing generated icon path', () => {
+    const missing: string[] = [];
+    const assertIcon = (label: string, url: string | null): void => {
+      if (!url) {
+        missing.push(label);
+        return;
+      }
+      expect(url).toMatch(/^\/assets\/d2\/generated\/item-icons\/items\.(?:base|unique)\.[a-z0-9.-]+\.png$/);
+    };
+
+    for (const id of loadItemBases().keys()) {
+      assertIcon(id, resolveItemIcon(id));
+    }
+    for (const unique of uniquesJson) {
+      assertIcon(unique.id, resolveItemIcon(unique.id, { baseId: unique.baseId }));
+    }
+    for (const setDef of setsJson) {
+      assertIcon(setDef.id, resolveItemIcon(setDef.id, { setItemIds: setDef.items }));
+      for (const piece of setDef.pieces) {
+        assertIcon(piece.id, resolveItemIcon(piece.id, { baseId: piece.baseId }));
+      }
+    }
+    for (const rune of runesJson) {
+      assertIcon(rune.id, resolveItemIcon(rune.id));
+    }
+    for (const runeword of runewordsJson) {
+      assertIcon(runeword.id, resolveItemIcon(runeword.id, { allowedBases: runeword.allowedBases }));
+    }
+
+    expect(missing).toEqual([]);
+  });
+
   it('resolves jewelry and two-handed weapon base archetypes', () => {
     expect(resolveItemIcon('items/base/amu-tin')).toMatch(/items\.base\.amulet\.png$/);
     expect(resolveItemIcon('items/base/wp2h-great-axe')).toMatch(/items\.base\.axe\.png$/);
@@ -48,6 +84,13 @@ describe('cardAssets resolvers', () => {
   it('resolves a known unique item', () => {
     expect(resolveItemIcon('unique.shako')).toMatch(/unique\.shako\.png$/);
     expect(resolveItemIcon('items/unique.shako')).toMatch(/unique\.shako\.png$/);
+  });
+
+  it('resolves rune, runeword, and set definition icons without image-gen', () => {
+    expect(resolveItemIcon('runes/el')).toMatch(/items\.base\.rune\.png$/);
+    expect(resolveItemIcon('runewords/steel')).toMatch(/items\.base\.rune\.png$/);
+    expect(resolveItemIcon('sets/angelic-raiment', { setItemIds: ['sets/angelic-raiment/amulet'] })).toMatch(/items\.base\.amulet\.png$/);
+    expect(resolveItemIcon('sets/angelic-raiment/weapon', { baseId: 'items/base/wp1h-scimitar' })).toMatch(/items\.base\.sword\.png$/);
   });
 
   it('resolves zones', () => {

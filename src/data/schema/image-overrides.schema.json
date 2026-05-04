@@ -11,13 +11,14 @@
     "version": { "type": "integer", "const": 1 },
     "overrides": {
       "type": "object",
-      "required": ["class", "monster", "item", "merc"],
+      "required": ["class", "monster", "item", "merc", "skill"],
       "additionalProperties": false,
       "properties": {
         "class":   { "$ref": "#/$defs/idMap" },
         "monster": { "$ref": "#/$defs/idMap" },
         "item":    { "$ref": "#/$defs/idMap" },
-        "merc":    { "$ref": "#/$defs/idMap" }
+        "merc":    { "$ref": "#/$defs/idMap" },
+        "skill":   { "$ref": "#/$defs/idMap" }
       }
     }
   },

@@ -740,7 +740,14 @@
     "sockets": 2,
     "canHaveAffixes": true,
     "weaponType": "bow",
-    "handedness": "twoHanded"
+    "handedness": "twoHanded",
+    "baseDamage": {
+      "min": 10,
+      "max": 24,
+      "breakdown": {
+        "physical": 24
+      }
+    }
   },
   {
     "name": "items.base.weapon-crossbow",
@@ -751,7 +758,14 @@
     "sockets": 2,
     "canHaveAffixes": true,
     "weaponType": "crossbow",
-    "handedness": "twoHanded"
+    "handedness": "twoHanded",
+    "baseDamage": {
+      "min": 16,
+      "max": 34,
+      "breakdown": {
+        "physical": 34
+      }
+    }
   },
   {
     "name": "items.base.weapon-polearm",
@@ -762,7 +776,14 @@
     "sockets": 3,
     "canHaveAffixes": true,
     "weaponType": "polearm",
-    "handedness": "twoHanded"
+    "handedness": "twoHanded",
+    "baseDamage": {
+      "min": 20,
+      "max": 46,
+      "breakdown": {
+        "physical": 46
+      }
+    }
   },
   {
     "name": "items.base.weapon-wand",
@@ -773,7 +794,14 @@
     "sockets": 1,
     "canHaveAffixes": true,
     "weaponType": "wand",
-    "handedness": "oneHanded"
+    "handedness": "oneHanded",
+    "baseDamage": {
+      "min": 5,
+      "max": 11,
+      "breakdown": {
+        "physical": 11
+      }
+    }
   },
   {
     "name": "items.base.weapon-scepter",
@@ -784,7 +812,14 @@
     "sockets": 2,
     "canHaveAffixes": true,
     "weaponType": "scepter",
-    "handedness": "oneHanded"
+    "handedness": "oneHanded",
+    "baseDamage": {
+      "min": 12,
+      "max": 22,
+      "breakdown": {
+        "physical": 22
+      }
+    }
   },
   {
     "name": "items.base.weapon-mace",
@@ -795,7 +830,14 @@
     "sockets": 2,
     "canHaveAffixes": true,
     "weaponType": "mace",
-    "handedness": "oneHanded"
+    "handedness": "oneHanded",
+    "baseDamage": {
+      "min": 10,
+      "max": 20,
+      "breakdown": {
+        "physical": 20
+      }
+    }
   },
   {
     "name": "items.base.weapon-axe",
@@ -806,6 +848,13 @@
     "sockets": 2,
     "canHaveAffixes": true,
     "weaponType": "axe",
-    "handedness": "oneHanded"
+    "handedness": "oneHanded",
+    "baseDamage": {
+      "min": 12,
+      "max": 24,
+      "breakdown": {
+        "physical": 24
+      }
+    }
   }
 ]

@@ -85,6 +85,43 @@ describe('drop-roller', () => {
     // numPicks=1 with noDrop=0 → exactly 1 drop
     expect(drops.length).toBe(1);
     expect(drops[0]?.ilvl).toBe(5);
+    expect(drops[0]?.kind).toBe('item');
+  });
+
+  it('honors forced rarity on treasure-class item picks', () => {
+    const drops = rollDrops(
+      {
+        tc: {
+          id: 'forced',
+          picks: [{ type: 'item', baseId: 'helm_cap', rarity: 'unique', weight: 1, qlvlMin: 1, qlvlMax: 99 }],
+          noDropChance: 0,
+          numPicks: 1
+        },
+        tier: 'trash',
+        monsterLevel: 5,
+        magicFind: 0
+      },
+      createRng(12)
+    );
+    expect(drops[0]).toMatchObject({ kind: 'item', baseId: 'helm_cap', rarity: 'unique' });
+  });
+
+  it('materializes direct rune/gem/currency picks as direct drop results', () => {
+    const rollOnly = (pick: TreasureClass['picks'][number]) => rollDrops(
+      {
+        tc: { id: 'direct', picks: [pick], noDropChance: 0, numPicks: 1 },
+        tier: 'trash',
+        monsterLevel: 5,
+        magicFind: 0
+      },
+      createRng(1)
+    )[0];
+    expect(rollOnly({ type: 'rune', itemId: 'runes/tal', weight: 1, qlvlMin: 1, qlvlMax: 99, quantityMin: 2, quantityMax: 2 }))
+      .toMatchObject({ kind: 'direct', currency: 'runes', quantity: 2 });
+    expect(rollOnly({ type: 'gem', weight: 1, qlvlMin: 1, qlvlMax: 99, quantityMin: 1, quantityMax: 1 }))
+      .toMatchObject({ kind: 'direct', currency: 'gems', quantity: 1 });
+    expect(rollOnly({ type: 'currency', itemId: 'currency/wishstone', weight: 1, qlvlMin: 1, qlvlMax: 99, quantityMin: 3, quantityMax: 3 }))
+      .toMatchObject({ kind: 'direct', currency: 'wishstones', quantity: 3 });
   });
 
   it('determinism: same seed → same drops', () => {

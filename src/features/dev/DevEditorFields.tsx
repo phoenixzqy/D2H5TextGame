@@ -19,7 +19,7 @@ export function NumberField({ entry, path, label, onChange }: FieldProps) {
         type="number"
         value={value}
         onChange={(event) => { onChange(setAtPath(entry, path, Number(event.target.value))); }}
-        className="w-full min-h-[40px] rounded border border-d2-border bg-d2-bg px-2 py-1 text-d2-white focus:border-d2-gold focus:outline-none"
+        className="w-full min-h-[44px] rounded border border-d2-border bg-d2-bg px-2 py-1 text-d2-white focus:border-d2-gold focus:outline-none"
       />
     </label>
   );
@@ -36,7 +36,7 @@ export function TextField({ entry, path, label, onChange }: FieldProps) {
         type="text"
         value={value}
         onChange={(event) => { onChange(setAtPath(entry, path, event.target.value)); }}
-        className="w-full min-h-[40px] rounded border border-d2-border bg-d2-bg px-2 py-1 text-d2-white focus:border-d2-gold focus:outline-none"
+        className="w-full min-h-[44px] rounded border border-d2-border bg-d2-bg px-2 py-1 text-d2-white focus:border-d2-gold focus:outline-none"
       />
     </label>
   );
@@ -45,7 +45,7 @@ export function TextField({ entry, path, label, onChange }: FieldProps) {
 export function CheckboxField({ entry, path, label, onChange }: FieldProps) {
   const value = getAtPath(entry, path) === true;
   return (
-    <label className="flex min-h-[40px] items-center gap-2 text-sm text-d2-white/80">
+    <label className="flex min-h-[44px] items-center gap-2 text-sm text-d2-white/80">
       <input
         type="checkbox"
         checked={value}
@@ -71,7 +71,7 @@ export function StringListField({ entry, path, label, onChange }: FieldProps) {
           const next = event.target.value.split(',').map((item) => item.trim()).filter(Boolean);
           onChange(setAtPath(entry, path, next));
         }}
-        className="w-full min-h-[40px] rounded border border-d2-border bg-d2-bg px-2 py-1 text-d2-white focus:border-d2-gold focus:outline-none"
+        className="w-full min-h-[44px] rounded border border-d2-border bg-d2-bg px-2 py-1 text-d2-white focus:border-d2-gold focus:outline-none"
       />
     </label>
   );
@@ -121,14 +121,14 @@ export function NumberPairField({ entry, path, label, onChange }: NumberPairProp
         type="number"
         value={min}
         onChange={(event) => { onChange(setAtPath(entry, path, [Number(event.target.value), max])); }}
-        className="min-h-[40px] rounded border border-d2-border bg-d2-bg px-2 py-1 text-d2-white focus:border-d2-gold focus:outline-none"
+        className="min-h-[44px] rounded border border-d2-border bg-d2-bg px-2 py-1 text-d2-white focus:border-d2-gold focus:outline-none"
       />
       <input
         aria-label={t('fields.maxAria', { label })}
         type="number"
         value={max}
         onChange={(event) => { onChange(setAtPath(entry, path, [min, Number(event.target.value)])); }}
-        className="min-h-[40px] rounded border border-d2-border bg-d2-bg px-2 py-1 text-d2-white focus:border-d2-gold focus:outline-none"
+        className="min-h-[44px] rounded border border-d2-border bg-d2-bg px-2 py-1 text-d2-white focus:border-d2-gold focus:outline-none"
       />
     </fieldset>
   );
@@ -163,7 +163,7 @@ export function EnumField({ entry, path, label, options, onChange, invalid = fal
   const id = `dev-${path.join('-')}`;
   const raw = getAtPath(entry, path);
   const value = typeof raw === 'string' ? raw : '';
-  const baseClass = 'w-full min-h-[40px] rounded border bg-d2-bg px-2 py-1 text-d2-white focus:outline-none';
+  const baseClass = 'w-full min-h-[44px] rounded border bg-d2-bg px-2 py-1 text-d2-white focus:outline-none';
   const borderClass = invalid ? 'border-red-500 focus:border-red-400' : 'border-d2-border focus:border-d2-gold';
   return (
     <label className="block text-sm text-d2-white/80" htmlFor={id}>

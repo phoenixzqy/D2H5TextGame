@@ -12,12 +12,11 @@
 const BASE = '/assets/d2/generated';
 
 import { loadMercPool } from '@/data/loaders/mercs';
-import { resolveMercArt, resolveSkillIcon } from './cardAssets';
+import { resolveItemIcon, resolveMercArt, resolveSkillIcon } from './cardAssets';
 import {
   CLASS_PORTRAITS,
   MONSTER_ART,
   BASE_ITEM_ICONS,
-  UNIQUE_ITEM_ICONS,
   SKILL_ICONS
 } from './generatedAssetMaps';
 
@@ -165,11 +164,13 @@ export function getItemIconUrl(item: {
   rarity: string;
   equipSlot?: string;
   itemType?: string;
+  uniqueId?: string;
+  setPieceId?: string;
+  runewordId?: string;
 }): string | null {
-  if (item.rarity === 'unique') {
-    const slug = toKebab(item.baseId);
-    if (slug in UNIQUE_ITEM_ICONS) return UNIQUE_ITEM_ICONS[slug] ?? null;
-  }
+  if (item.uniqueId) return resolveItemIcon(item.uniqueId, { baseId: item.baseId });
+  if (item.setPieceId) return resolveItemIcon(item.setPieceId, { baseId: item.baseId });
+  if (item.runewordId) return resolveItemIcon(item.runewordId, { baseId: item.baseId });
   const hint = (item.itemType ?? item.equipSlot ?? '').toString();
   const fromHint = getBaseItemIconUrl(hint);
   if (fromHint) return fromHint;

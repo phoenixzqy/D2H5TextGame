@@ -9,7 +9,8 @@ describe('imageOverrides module', () => {
       'class',
       'item',
       'merc',
-      'monster'
+      'monster',
+      'skill'
     ]);
   });
 

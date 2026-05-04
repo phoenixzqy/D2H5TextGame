@@ -90,7 +90,13 @@ export function ItemTooltip({ item, className = '' }: ItemTooltipProps): JSX.Ele
   const { t } = useTranslation('items');
   const { t: tInventory } = useTranslation(['inventory', 'items']);
   const { t: tAffix } = useTranslation('affixes');
-  const icon = resolveItemIcon(item.baseId);
+  const icon = item.uniqueId
+    ? resolveItemIcon(item.uniqueId, { baseId: item.baseId })
+    : item.setPieceId
+      ? resolveItemIcon(item.setPieceId, { baseId: item.baseId })
+      : item.runewordId
+        ? resolveItemIcon(item.runewordId, { baseId: item.baseId })
+        : resolveItemIcon(item.baseId);
   const base: ItemBase | undefined = loadItemBases().get(item.baseId);
 
   const display = resolveItemDisplay(item, tInventory);

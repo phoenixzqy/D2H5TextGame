@@ -135,7 +135,7 @@ export function DevDataManager({ title, description, files, renderFields }: DevD
                 className="w-full rounded border border-d2-border bg-d2-bg p-2 font-mono text-xs text-d2-white focus:border-d2-gold focus:outline-none"
               />
             </label>
-            <button type="button" onClick={applyRawEntry} className="min-h-[40px] rounded border border-d2-border px-3 text-sm text-d2-white hover:text-d2-gold">
+            <button type="button" onClick={applyRawEntry} className="min-h-[44px] rounded border border-d2-border px-3 text-sm text-d2-white hover:text-d2-gold">
               {t('manager.applyEntryJson')}
             </button>
           </aside>

@@ -49,7 +49,7 @@ interface OverridesState {
 
 const EMPTY_FILE: ImageOverridesFile = {
   version: 1,
-  overrides: { class: {}, monster: {}, item: {}, merc: {} }
+  overrides: { class: {}, monster: {}, item: {}, merc: {}, skill: {} }
 };
 
 function readOverride(file: ImageOverridesFile | null, kind: ImageOverrideKind, id: string): string {
@@ -150,7 +150,7 @@ export function DevImageField({ kind, entityId, inferredPath }: DevImageFieldPro
               loading="lazy"
             />
           ) : (
-            <span className="text-[10px] text-d2-white/50">{t('imageField.noPreview')}</span>
+            <span className="text-[10px] text-d2-white/70">{t('imageField.noPreview')}</span>
           )}
         </div>
 
@@ -163,7 +163,7 @@ export function DevImageField({ kind, entityId, inferredPath }: DevImageFieldPro
                 'rounded border px-2 py-[2px] text-[10px] uppercase tracking-wide',
                 hasOverride
                   ? 'border-d2-gold/70 bg-d2-gold/10 text-d2-gold'
-                  : 'border-d2-border text-d2-white/60'
+                  : 'border-d2-border text-d2-white/70'
               ].join(' ')}
             >
               {hasOverride ? t('imageField.badge.override') : t('imageField.badge.inferred')}
@@ -171,7 +171,7 @@ export function DevImageField({ kind, entityId, inferredPath }: DevImageFieldPro
           </div>
 
           <p className="break-all text-xs text-d2-white/60">
-            <span className="text-d2-white/40">{t('imageField.lookupKey')}:</span>{' '}
+            <span className="text-d2-white/70">{t('imageField.lookupKey')}:</span>{' '}
             <code className="font-mono text-d2-white/80">{entityId}</code>
           </p>
 
@@ -183,7 +183,7 @@ export function DevImageField({ kind, entityId, inferredPath }: DevImageFieldPro
               onChange={(event) => { setDraft(event.target.value); }}
               placeholder={t('imageField.overridePathPlaceholder')}
               spellCheck={false}
-              className="w-full min-h-[36px] rounded border border-d2-border bg-d2-bg px-2 py-1 font-mono text-xs text-d2-white focus:border-d2-gold focus:outline-none"
+              className="w-full min-h-[44px] rounded border border-d2-border bg-d2-bg px-2 py-1 font-mono text-xs text-d2-white focus:border-d2-gold focus:outline-none"
             />
           </label>
 
@@ -192,7 +192,7 @@ export function DevImageField({ kind, entityId, inferredPath }: DevImageFieldPro
               type="button"
               onClick={onSave}
               disabled={saving || !file}
-              className="min-h-[36px] rounded border border-d2-gold/70 bg-d2-gold/10 px-3 text-xs text-d2-gold hover:bg-d2-gold/20 disabled:opacity-50"
+              className="min-h-[44px] rounded border border-d2-gold/70 bg-d2-gold/10 px-3 text-xs text-d2-gold hover:bg-d2-gold/20 disabled:opacity-50"
             >
               {t('imageField.save')}
             </button>
@@ -200,7 +200,7 @@ export function DevImageField({ kind, entityId, inferredPath }: DevImageFieldPro
               type="button"
               onClick={onClear}
               disabled={saving || !hasOverride}
-              className="min-h-[36px] rounded border border-d2-border px-3 text-xs text-d2-white/80 hover:text-d2-gold disabled:opacity-50"
+              className="min-h-[44px] rounded border border-d2-border px-3 text-xs text-d2-white/80 hover:text-d2-gold disabled:opacity-50"
             >
               {t('imageField.clearOverride')}
             </button>
@@ -208,7 +208,7 @@ export function DevImageField({ kind, entityId, inferredPath }: DevImageFieldPro
               <span role="status" className="text-xs text-red-400">{t('imageField.loadFailed')}: {loadError}</span>
             ) : null}
             {status ? (
-              <span role="status" className="text-xs text-d2-white/60">{status}</span>
+              <span role="status" className="text-xs text-d2-white/70">{status}</span>
             ) : null}
           </div>
         </div>

@@ -152,7 +152,7 @@ describe('<ItemTooltip> Bug 1 — defenseLine guard', () => {
   it('renders unique item names and definition stats', () => {
     render(wrap(<ItemTooltip item={baseItem('items/base/wp1h-short-sword', { rarity: 'unique', uniqueId: 'items/unique/rixots-keen' })} />));
     const tt = screen.getByTestId('item-tooltip');
-    expect(tt.textContent || '').toMatch(/里克撒特/);
+    expect(tt.textContent || '').toContain(i18n.t('items:unique.rixots-keen.name'));
     expect(tt.textContent || '').toMatch(/等级 9/);
     expect(screen.getByTestId('item-tooltip-definition-stats').textContent || '').toMatch(/攻击/);
   });

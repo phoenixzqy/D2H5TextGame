@@ -7,7 +7,7 @@
  * @module data/loaders/loot
  */
 
-import type { Affix, Item, ItemBase, SetDef } from '@/engine/types/items';
+import type { Affix, Item, ItemBase, Rarity, SetDef } from '@/engine/types/items';
 import type { TreasureClass, TcPick } from '@/engine/loot/drop-roller';
 import type { JsonUnique, JsonSetPiece } from '@/engine/loot/item-instance';
 import type { RarityAffixCount, RarityAffixRules } from '@/engine/loot/rollItem';
@@ -23,10 +23,14 @@ import rarityRulesJson from '@/data/items/rarity-rules.json';
 
 interface JsonTcEntry {
   readonly type: string;
-  readonly itemBase: string;
+  readonly itemBase?: string;
+  readonly itemId?: string;
+  readonly rarity?: Rarity;
   readonly weight: number;
-  readonly minLevel: number;
-  readonly maxLevel: number;
+  readonly minLevel?: number;
+  readonly maxLevel?: number;
+  readonly quantityMin?: number;
+  readonly quantityMax?: number;
 }
 interface JsonTreasureClass {
   readonly id: string;
@@ -91,13 +95,22 @@ export function loadTreasureClasses(): ReadonlyMap<string, TreasureClass> {
   const map = new Map<string, TreasureClass>();
   for (const raw of treasureClassesJson as readonly JsonTreasureClass[]) {
     const picks: TcPick[] = raw.entries
-      .filter((e) => e.type === 'item')
-      .map((e) => ({
-        baseId: e.itemBase,
-        weight: e.weight,
-        qlvlMin: e.minLevel,
-        qlvlMax: e.maxLevel
-      }));
+      .filter((e) => e.weight > 0)
+      .filter((e) => e.type !== 'item' || typeof e.itemBase === 'string')
+      .map((e) => {
+        const pick: TcPick = {
+          type: e.type as NonNullable<TcPick['type']>,
+          ...(e.itemBase ? { baseId: e.itemBase } : {}),
+          ...(e.itemId ? { itemId: e.itemId } : {}),
+          ...(e.rarity ? { rarity: e.rarity } : {}),
+          weight: e.weight,
+          qlvlMin: e.minLevel ?? 1,
+          qlvlMax: e.maxLevel ?? Number.MAX_SAFE_INTEGER,
+          ...(e.quantityMin !== undefined ? { quantityMin: e.quantityMin } : {}),
+          ...(e.quantityMax !== undefined ? { quantityMax: e.quantityMax } : {})
+        };
+        return pick;
+      });
     map.set(raw.id, { id: raw.id, picks });
   }
   cachedTcs = map;

@@ -6,13 +6,15 @@ interface OverrideStore {
   monster: Record<string, string>;
   item: Record<string, string>;
   merc: Record<string, string>;
+  skill: Record<string, string>;
 }
 
 const overrideStore: OverrideStore = {
   class: {},
   monster: {},
   item: {},
-  merc: {}
+  merc: {},
+  skill: {}
 };
 
 vi.mock('./imageOverrides', () => ({
@@ -27,7 +29,8 @@ import {
   resolveClassPortrait,
   resolveMonsterArt,
   resolveItemIcon,
-  resolveMercArt
+  resolveMercArt,
+  resolveSkillIcon
 } from './cardAssets';
 import overridesJson from '../data/image-overrides.json';
 import overridesSchema from '../data/schema/image-overrides.schema.json';
@@ -37,6 +40,7 @@ beforeEach(() => {
   overrideStore.monster = {};
   overrideStore.item = {};
   overrideStore.merc = {};
+  overrideStore.skill = {};
 });
 
 describe('cardAssets — image overrides take precedence', () => {
@@ -101,6 +105,18 @@ describe('cardAssets — image overrides take precedence', () => {
       expect(resolveMercArt('act1-rogue-pierce')).toMatch(/classes\.amazon\.png$/);
     });
   });
+
+  describe('skill', () => {
+    it('override-hit returns override path for normalized generated skill key', () => {
+      overrideStore.skill['skills.amazon.magic-arrow'] = '/custom/magic-arrow.png';
+      expect(resolveSkillIcon('skills/amazon/magic-arrow.png')).toBe('/custom/magic-arrow.png');
+      expect(resolveSkillIcon('skills.amazon.magic-arrow')).toBe('/custom/magic-arrow.png');
+    });
+
+    it('override-miss falls through to SKILL_ICONS', () => {
+      expect(resolveSkillIcon('skills/amazon/magic-arrow.png')).toMatch(/skills\.amazon\.magic-arrow\.v1\.png$/);
+    });
+  });
 });
 
 describe('imageOverrides JSON ↔ schema round-trip', () => {
@@ -122,13 +138,13 @@ describe('imageOverrides JSON ↔ schema round-trip', () => {
     expect(
       validate({
         version: 2,
-        overrides: { class: {}, monster: {}, item: {}, merc: {} }
+        overrides: { class: {}, monster: {}, item: {}, merc: {}, skill: {} }
       })
     ).toBe(false);
     expect(
       validate({
         version: 1,
-        overrides: { class: {}, monster: {}, item: {}, merc: {}, zone: {} }
+        overrides: { class: {}, monster: {}, item: {}, merc: {}, skill: {}, zone: {} }
       })
     ).toBe(false);
     expect(
@@ -138,7 +154,8 @@ describe('imageOverrides JSON ↔ schema round-trip', () => {
           class: { barbarian: 123 },
           monster: {},
           item: {},
-          merc: {}
+          merc: {},
+          skill: {}
         }
       })
     ).toBe(false);

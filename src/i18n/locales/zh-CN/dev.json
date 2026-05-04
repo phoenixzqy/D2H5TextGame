@@ -13,7 +13,7 @@
       },
       "items": {
         "label": "物品",
-        "description": "基础、暗金与套装"
+        "description": "基础、暗金、套装、符文与符文之语"
       },
       "skills": {
         "label": "技能",
@@ -87,6 +87,18 @@
         "title": "套装物品管理器",
         "fileLabel": "套装物品",
         "description": "编辑套装组成和部件加成。"
+      },
+      "runes": {
+        "label": "符文",
+        "title": "符文管理器",
+        "fileLabel": "符文",
+        "description": "编辑符文阶级与镶嵌效果。"
+      },
+      "runewords": {
+        "label": "符文之语",
+        "title": "符文之语管理器",
+        "fileLabel": "符文之语",
+        "description": "编辑符文顺序、可用底材、孔数与赋予属性。"
       }
     },
     "weaponType": "武器类型",
@@ -107,7 +119,15 @@
       "fullUniqueStats": "完整暗金属性 JSON",
       "setItemIds": "套装物品 ID（逗号分隔）",
       "setPieces": "具体套装部件 JSON",
-      "pieceBonuses": "部件加成 JSON"
+      "pieceBonuses": "部件加成 JSON",
+      "runeTier": "符文阶级",
+      "runeWeaponEffect": "武器镶嵌效果 JSON",
+      "runeArmorEffect": "护甲镶嵌效果 JSON",
+      "runeShieldEffect": "盾牌镶嵌效果 JSON",
+      "runewordRunes": "符文顺序（逗号分隔）",
+      "runewordAllowedBases": "可用底材类型（逗号分隔）",
+      "sockets": "孔数",
+      "runewordStats": "符文之语属性 JSON"
     }
   },
   "classesEditor": {

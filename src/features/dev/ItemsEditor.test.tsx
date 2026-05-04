@@ -12,7 +12,7 @@ import { BaseFields } from './ItemsEditor';
 vi.mock('./devClient', () => ({
   loadDevJson: vi.fn().mockResolvedValue({
     version: 1,
-    overrides: { class: {}, monster: {}, item: {}, merc: {} }
+    overrides: { class: {}, monster: {}, item: {}, merc: {}, skill: {} }
   }),
   saveDevJson: vi.fn().mockResolvedValue(undefined)
 }));

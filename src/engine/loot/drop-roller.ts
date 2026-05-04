@@ -18,14 +18,22 @@ export function effectiveMagicFind(magicFind: number): number {
   return Math.floor((magicFind / (magicFind + 250)) * 600);
 }
 
-/** A single TC pick: an item base id with a weight and qlvl gating. */
+/** Direct non-equipment rewards that can be selected by a treasure class. */
+export type DirectDropCurrency = 'runes' | 'gems' | 'wishstones' | 'runeShards';
+
+/** A single TC pick: an item base or direct reward with weight and level gating. */
 export interface TcPick {
-  readonly baseId: string;
+  readonly type?: 'item' | 'rune' | 'gem' | 'currency' | 'gold';
+  readonly baseId?: string;
+  readonly itemId?: string;
+  readonly rarity?: Rarity;
   readonly weight: number;
   /** Min monster level required for this base. */
   readonly qlvlMin: number;
   /** Max monster level for this base. */
   readonly qlvlMax: number;
+  readonly quantityMin?: number;
+  readonly quantityMax?: number;
 }
 
 /** A treasure class — a list of picks plus how many independent picks to roll. */
@@ -38,12 +46,25 @@ export interface TreasureClass {
   readonly noDropChance?: number;
 }
 
-/** Result of a single drop roll. */
-export interface DropResult {
+/** Result of a single equipment drop roll. */
+export interface ItemDropResult {
+  readonly kind: 'item';
   readonly baseId: string;
   readonly rarity: Rarity;
   readonly ilvl: number;
 }
+
+/** Result of a single direct currency/material drop roll. */
+export interface DirectDropResult {
+  readonly kind: 'direct';
+  readonly currency: DirectDropCurrency;
+  readonly quantity: number;
+  readonly itemId?: string;
+  readonly ilvl: number;
+}
+
+/** Result of a single drop roll. */
+export type DropResult = ItemDropResult | DirectDropResult;
 
 /**
  * Pick one base id from a TC, deterministically using `rng`.
@@ -55,6 +76,15 @@ export function pickTcBase(
   monsterLevel: number,
   rng: Rng
 ): string | undefined {
+  return pickTcPick(tc, monsterLevel, rng)?.baseId;
+}
+
+/** Pick one treasure-class entry, preserving direct rewards and forced rarity. */
+export function pickTcPick(
+  tc: TreasureClass,
+  monsterLevel: number,
+  rng: Rng
+): TcPick | undefined {
   const eligible = tc.picks.filter(
     (p) => monsterLevel >= p.qlvlMin && monsterLevel <= p.qlvlMax
   );
@@ -64,9 +94,9 @@ export function pickTcBase(
   let roll = rng.next() * total;
   for (const p of eligible) {
     roll -= p.weight;
-    if (roll <= 0) return p.baseId;
+    if (roll <= 0) return p;
   }
-  return eligible[eligible.length - 1]?.baseId;
+  return eligible[eligible.length - 1];
 }
 
 /** Per-monster-tier multipliers from drop-tables.md §3. */
@@ -152,7 +182,7 @@ export interface DropContext {
 
 /**
  * Roll all drops for a slain monster: TC picks + rarity per pick.
- * Independent secondary rolls (gold/runes/gems/wishstones) are handled
+ * Independent secondary rolls (rune-shards/runes/gems/wishstones) are handled
  * by {@link import('./orbs-and-currency').rollCurrencyDrops}.
  */
 export function rollDrops(ctx: DropContext, rng: Rng): readonly DropResult[] {
@@ -161,10 +191,33 @@ export function rollDrops(ctx: DropContext, rng: Rng): readonly DropResult[] {
   const results: DropResult[] = [];
   for (let i = 0; i < picks; i++) {
     if (rng.chance(noDrop)) continue;
-    const baseId = pickTcBase(ctx.tc, ctx.monsterLevel, rng);
-    if (!baseId) continue;
-    const rarity = rollRarity(ctx.magicFind, ctx.tier, rng);
-    results.push({ baseId, rarity, ilvl: ctx.monsterLevel });
+    const pick = pickTcPick(ctx.tc, ctx.monsterLevel, rng);
+    if (!pick) continue;
+    if ((pick.type ?? 'item') === 'item') {
+      if (!pick.baseId) continue;
+      const rarity = pick.rarity ?? rollRarity(ctx.magicFind, ctx.tier, rng);
+      results.push({ kind: 'item', baseId: pick.baseId, rarity, ilvl: ctx.monsterLevel });
+      continue;
+    }
+    const quantityMin = Math.max(0, pick.quantityMin ?? 1);
+    const quantityMax = Math.max(quantityMin, pick.quantityMax ?? quantityMin);
+    const quantity = rng.nextInt(quantityMin, quantityMax);
+    const currency =
+      pick.type === 'rune'
+        ? 'runes'
+        : pick.type === 'gem'
+          ? 'gems'
+          : pick.itemId === 'currency/wishstone'
+              ? 'wishstones'
+              : 'runeShards';
+    if (quantity > 0) {
+      const result: DirectDropResult = { kind: 'direct', currency, quantity, ilvl: ctx.monsterLevel };
+      if (pick.itemId) {
+        results.push({ ...result, itemId: pick.itemId });
+      } else {
+        results.push(result);
+      }
+    }
   }
   return results;
 }

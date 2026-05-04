@@ -13,7 +13,7 @@
       },
       "items": {
         "label": "Items",
-        "description": "Bases, uniques, and sets"
+        "description": "Bases, uniques, sets, runes, and runewords"
       },
       "skills": {
         "label": "Skills",
@@ -87,6 +87,18 @@
         "title": "Sets Manager",
         "fileLabel": "Set items",
         "description": "Edit set composition and piece bonuses."
+      },
+      "runes": {
+        "label": "Runes",
+        "title": "Runes Manager",
+        "fileLabel": "Runes",
+        "description": "Edit rune tier and socket effects."
+      },
+      "runewords": {
+        "label": "Runewords",
+        "title": "Runewords Manager",
+        "fileLabel": "Runewords",
+        "description": "Edit rune sequence, allowed bases, sockets, and granted stats."
       }
     },
     "weaponType": "Weapon type",
@@ -107,7 +119,15 @@
       "fullUniqueStats": "Full unique stats JSON",
       "setItemIds": "Set item ids (comma-separated)",
       "setPieces": "Concrete set pieces JSON",
-      "pieceBonuses": "Piece bonuses JSON"
+      "pieceBonuses": "Piece bonuses JSON",
+      "runeTier": "Rune tier",
+      "runeWeaponEffect": "Weapon socket effect JSON",
+      "runeArmorEffect": "Armor socket effect JSON",
+      "runeShieldEffect": "Shield socket effect JSON",
+      "runewordRunes": "Rune sequence (comma-separated)",
+      "runewordAllowedBases": "Allowed base types (comma-separated)",
+      "sockets": "Sockets",
+      "runewordStats": "Runeword stats JSON"
     }
   },
   "classesEditor": {

@@ -23,9 +23,21 @@
     "id": "runes/eld",
     "name": "items.rune.eld",
     "tier": 1,
-    "weaponEffect": {},
-    "armorEffect": {},
-    "shieldEffect": {}
+    "weaponEffect": {
+      "statMods": {
+        "attack": 75
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "physDodge": 2
+      }
+    },
+    "shieldEffect": {
+      "statMods": {
+        "physDodge": 7
+      }
+    }
   },
   {
     "id": "runes/tir",
@@ -51,7 +63,11 @@
     "id": "runes/nef",
     "name": "items.rune.nef",
     "tier": 1,
-    "weaponEffect": {},
+    "weaponEffect": {
+      "statMods": {
+        "attack": 30
+      }
+    },
     "armorEffect": {
       "statMods": {
         "defense": 30
@@ -67,7 +83,11 @@
     "id": "runes/eth",
     "name": "items.rune.eth",
     "tier": 1,
-    "weaponEffect": {},
+    "weaponEffect": {
+      "statMods": {
+        "attack": 40
+      }
+    },
     "armorEffect": {
       "statMods": {
         "mana": 15
@@ -83,15 +103,34 @@
     "id": "runes/ith",
     "name": "items.rune.ith",
     "tier": 2,
-    "weaponEffect": {},
-    "armorEffect": {},
-    "shieldEffect": {}
+    "weaponEffect": {
+      "statMods": {
+        "attack": 9
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "mana": 15
+      }
+    },
+    "shieldEffect": {
+      "statMods": {
+        "mana": 15
+      }
+    }
   },
   {
     "id": "runes/tal",
     "name": "items.rune.tal",
     "tier": 2,
-    "weaponEffect": {},
+    "weaponEffect": {
+      "statMods": {
+        "attack": 15
+      },
+      "resistances": {
+        "poison": 10
+      }
+    },
     "armorEffect": {
       "resistances": {
         "poison": 30
@@ -107,7 +146,14 @@
     "id": "runes/ral",
     "name": "items.rune.ral",
     "tier": 2,
-    "weaponEffect": {},
+    "weaponEffect": {
+      "statMods": {
+        "attack": 18
+      },
+      "resistances": {
+        "fire": 10
+      }
+    },
     "armorEffect": {
       "resistances": {
         "fire": 30
@@ -123,7 +169,14 @@
     "id": "runes/ort",
     "name": "items.rune.ort",
     "tier": 2,
-    "weaponEffect": {},
+    "weaponEffect": {
+      "statMods": {
+        "attack": 20
+      },
+      "resistances": {
+        "lightning": 10
+      }
+    },
     "armorEffect": {
       "resistances": {
         "lightning": 30
@@ -139,7 +192,14 @@
     "id": "runes/thul",
     "name": "items.rune.thul",
     "tier": 2,
-    "weaponEffect": {},
+    "weaponEffect": {
+      "statMods": {
+        "attack": 18
+      },
+      "resistances": {
+        "cold": 10
+      }
+    },
     "armorEffect": {
       "resistances": {
         "cold": 30
@@ -155,17 +215,41 @@
     "id": "runes/amn",
     "name": "items.rune.amn",
     "tier": 3,
-    "weaponEffect": {},
-    "armorEffect": {},
-    "shieldEffect": {}
+    "weaponEffect": {
+      "statMods": {
+        "life": 7
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "life": 20
+      }
+    },
+    "shieldEffect": {
+      "statMods": {
+        "life": 20
+      }
+    }
   },
   {
     "id": "runes/sol",
     "name": "items.rune.sol",
     "tier": 3,
-    "weaponEffect": {},
-    "armorEffect": {},
-    "shieldEffect": {}
+    "weaponEffect": {
+      "statMods": {
+        "attack": 12
+      }
+    },
+    "armorEffect": {
+      "resistances": {
+        "physical": 7
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "physical": 7
+      }
+    }
   },
   {
     "id": "runes/shael",
@@ -176,24 +260,57 @@
         "attackSpeed": 20
       }
     },
-    "armorEffect": {},
-    "shieldEffect": {}
+    "armorEffect": {
+      "statMods": {
+        "attackSpeed": 10
+      }
+    },
+    "shieldEffect": {
+      "statMods": {
+        "physDodge": 10
+      }
+    }
   },
   {
     "id": "runes/dol",
     "name": "items.rune.dol",
     "tier": 3,
-    "weaponEffect": {},
-    "armorEffect": {},
-    "shieldEffect": {}
+    "weaponEffect": {
+      "statMods": {
+        "attack": 35
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "life": 25
+      }
+    },
+    "shieldEffect": {
+      "statMods": {
+        "life": 25
+      }
+    }
   },
   {
     "id": "runes/hel",
     "name": "items.rune.hel",
     "tier": 4,
-    "weaponEffect": {},
-    "armorEffect": {},
-    "shieldEffect": {}
+    "weaponEffect": {
+      "coreStats": {
+        "strength": 5,
+        "dexterity": 5
+      }
+    },
+    "armorEffect": {
+      "coreStats": {
+        "strength": 5
+      }
+    },
+    "shieldEffect": {
+      "coreStats": {
+        "strength": 5
+      }
+    }
   },
   {
     "id": "runes/io",
@@ -299,7 +416,11 @@
     "id": "runes/pul",
     "name": "items.rune.pul",
     "tier": 6,
-    "weaponEffect": {},
+    "weaponEffect": {
+      "statMods": {
+        "attack": 75
+      }
+    },
     "armorEffect": {
       "statMods": {
         "defense": 30
@@ -315,7 +436,11 @@
     "id": "runes/um",
     "name": "items.rune.um",
     "tier": 6,
-    "weaponEffect": {},
+    "weaponEffect": {
+      "statMods": {
+        "critChance": 0.05
+      }
+    },
     "armorEffect": {
       "resistances": {
         "fire": 15,
@@ -339,9 +464,21 @@
     "id": "runes/mal",
     "name": "items.rune.mal",
     "tier": 7,
-    "weaponEffect": {},
-    "armorEffect": {},
-    "shieldEffect": {}
+    "weaponEffect": {
+      "statMods": {
+        "attack": 100
+      }
+    },
+    "armorEffect": {
+      "resistances": {
+        "arcane": 7
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "arcane": 7
+      }
+    }
   },
   {
     "id": "runes/ist",
@@ -372,38 +509,86 @@
         "attack": 20
       }
     },
-    "armorEffect": {},
-    "shieldEffect": {}
+    "armorEffect": {
+      "resistances": {
+        "poison": 15
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "poison": 22
+      }
+    }
   },
   {
     "id": "runes/vex",
     "name": "items.rune.vex",
     "tier": 8,
-    "weaponEffect": {},
-    "armorEffect": {},
-    "shieldEffect": {}
+    "weaponEffect": {
+      "statMods": {
+        "mana": 7
+      }
+    },
+    "armorEffect": {
+      "resistances": {
+        "fire": 15
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "fire": 22
+      }
+    }
   },
   {
     "id": "runes/ohm",
     "name": "items.rune.ohm",
     "tier": 9,
-    "weaponEffect": {},
-    "armorEffect": {},
-    "shieldEffect": {}
+    "weaponEffect": {
+      "statMods": {
+        "attack": 50
+      }
+    },
+    "armorEffect": {
+      "resistances": {
+        "cold": 15
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "cold": 22
+      }
+    }
   },
   {
     "id": "runes/lo",
     "name": "items.rune.lo",
     "tier": 9,
-    "weaponEffect": {},
-    "armorEffect": {},
-    "shieldEffect": {}
+    "weaponEffect": {
+      "statMods": {
+        "critChance": 0.2
+      }
+    },
+    "armorEffect": {
+      "resistances": {
+        "lightning": 15
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "lightning": 22
+      }
+    }
   },
   {
     "id": "runes/sur",
     "name": "items.rune.sur",
     "tier": 10,
-    "weaponEffect": {},
+    "weaponEffect": {
+      "statMods": {
+        "mana": 40
+      }
+    },
     "armorEffect": {
       "statMods": {
         "mana": 50
@@ -419,15 +604,31 @@
     "id": "runes/ber",
     "name": "items.rune.ber",
     "tier": 10,
-    "weaponEffect": {},
-    "armorEffect": {},
-    "shieldEffect": {}
+    "weaponEffect": {
+      "statMods": {
+        "critDamage": 0.2
+      }
+    },
+    "armorEffect": {
+      "resistances": {
+        "physical": 8
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "physical": 8
+      }
+    }
   },
   {
     "id": "runes/jah",
     "name": "items.rune.jah",
     "tier": 11,
-    "weaponEffect": {},
+    "weaponEffect": {
+      "statMods": {
+        "life": 50
+      }
+    },
     "armorEffect": {
       "statMods": {
         "life": 50
@@ -443,16 +644,40 @@
     "id": "runes/cham",
     "name": "items.rune.cham",
     "tier": 11,
-    "weaponEffect": {},
-    "armorEffect": {},
-    "shieldEffect": {}
+    "weaponEffect": {
+      "statMods": {
+        "attack": 120
+      }
+    },
+    "armorEffect": {
+      "resistances": {
+        "cold": 25
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "cold": 25
+      }
+    }
   },
   {
     "id": "runes/zod",
     "name": "items.rune.zod",
     "tier": 12,
-    "weaponEffect": {},
-    "armorEffect": {},
-    "shieldEffect": {}
+    "weaponEffect": {
+      "statMods": {
+        "attack": 150
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "defense": 120
+      }
+    },
+    "shieldEffect": {
+      "statMods": {
+        "defense": 120
+      }
+    }
   }
 ]

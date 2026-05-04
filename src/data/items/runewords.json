@@ -635,7 +635,7 @@
     "allowedBases": [
       "weapon"
     ],
-    "name": "Infinity",
+    "name": "items.runeword.infinity",
     "reqLevel": 63,
     "id": "runewords/infinity",
     "sockets": 4
@@ -662,7 +662,7 @@
     "allowedBases": [
       "weapon"
     ],
-    "name": "Beast",
+    "name": "items.runeword.beast",
     "reqLevel": 63,
     "id": "runewords/beast",
     "sockets": 5
@@ -693,7 +693,7 @@
     "allowedBases": [
       "armor"
     ],
-    "name": "Chains of Honor",
+    "name": "items.runeword.chains-of-honor",
     "reqLevel": 63,
     "id": "runewords/chains-of-honor",
     "sockets": 4
@@ -719,7 +719,7 @@
     "allowedBases": [
       "armor"
     ],
-    "name": "Bramble",
+    "name": "items.runeword.bramble",
     "reqLevel": 61,
     "id": "runewords/bramble",
     "sockets": 4
@@ -748,7 +748,7 @@
     "allowedBases": [
       "weapon"
     ],
-    "name": "Last Wish",
+    "name": "items.runeword.last-wish",
     "reqLevel": 65,
     "id": "runewords/last-wish",
     "sockets": 6
@@ -775,7 +775,7 @@
     "allowedBases": [
       "weapon"
     ],
-    "name": "Phoenix",
+    "name": "items.runeword.phoenix",
     "reqLevel": 65,
     "id": "runewords/phoenix",
     "sockets": 4
@@ -801,7 +801,7 @@
     "allowedBases": [
       "armor"
     ],
-    "name": "Dream",
+    "name": "items.runeword.dream",
     "reqLevel": 65,
     "id": "runewords/dream",
     "sockets": 3
@@ -828,7 +828,7 @@
     "allowedBases": [
       "weapon"
     ],
-    "name": "Hand of Justice",
+    "name": "items.runeword.hand-of-justice",
     "reqLevel": 67,
     "id": "runewords/hand-of-justice",
     "sockets": 4
@@ -860,7 +860,7 @@
     "allowedBases": [
       "weapon"
     ],
-    "name": "Exile",
+    "name": "items.runeword.exile",
     "reqLevel": 57,
     "id": "runewords/exile",
     "sockets": 4
@@ -888,7 +888,7 @@
     "allowedBases": [
       "weapon"
     ],
-    "name": "Death",
+    "name": "items.runeword.death",
     "reqLevel": 55,
     "id": "runewords/death",
     "sockets": 5

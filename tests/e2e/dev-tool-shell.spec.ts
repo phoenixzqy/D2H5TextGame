@@ -72,11 +72,24 @@ test.describe('dev tool — image preview + weapon dropdowns @desktop-only', () 
     await expect(badge).toBeVisible();
   });
 
+  test('skills editor shows generated skill icon preview', async ({ page }) => {
+    await page.goto('/dev/skills');
+    const field = page.getByTestId('dev-image-field').first();
+    await expect(field).toBeVisible();
+    await expect(field).toHaveAttribute('data-kind', 'skill');
+    await expect(field).toHaveAttribute('data-entity-id', /^skills\./);
+    const previewImage = field.locator('img');
+    await expect(previewImage).toBeVisible();
+    await expect(previewImage).toHaveAttribute('src', /\/assets\/d2\/generated\/skill-icons\//);
+  });
+
   test('weapon base reveals weaponType + handedness selects', async ({ page }) => {
     await page.goto('/dev/items');
     const entrySelect = page.locator('select').nth(1);
-    await expect(entrySelect).toContainText('items.base.wp1h-short-sword');
-    await entrySelect.selectOption({ label: 'items.base.wp1h-short-sword' });
+    const shortSwordOption = entrySelect.locator('option').filter({ hasText: /^(短剑|Short Sword|items\.base\.wp1h-short-sword)$/i }).first();
+    const shortSwordValue = await shortSwordOption.getAttribute('value');
+    expect(shortSwordValue).not.toBeNull();
+    await entrySelect.selectOption(shortSwordValue ?? '');
     const weaponFields = page.getByTestId('weapon-fields');
     await expect(weaponFields).toBeVisible();
     await expect(weaponFields.locator('#dev-weaponType')).toBeVisible();
@@ -86,8 +99,10 @@ test.describe('dev tool — image preview + weapon dropdowns @desktop-only', () 
   test('non-weapon base hides weaponType + handedness selects', async ({ page }) => {
     await page.goto('/dev/items');
     const entrySelect = page.locator('select').nth(1);
-    await expect(entrySelect).toContainText('items.base.helm-cap');
-    await entrySelect.selectOption({ label: 'items.base.helm-cap' });
+    const capOption = entrySelect.locator('option').filter({ hasText: /^(帽子|Cap|items\.base\.helm-cap)$/i }).first();
+    const capValue = await capOption.getAttribute('value');
+    expect(capValue).not.toBeNull();
+    await entrySelect.selectOption(capValue ?? '');
     await expect(page.getByTestId('weapon-fields')).toHaveCount(0);
   });
 
@@ -125,8 +140,10 @@ test.describe('dev tool — image preview + weapon dropdowns @desktop-only', () 
 
     // Pick a base item with no current override.
     const entrySelect = page.locator('select').nth(1);
-    await expect(entrySelect).toContainText('items.base.wp1h-short-sword');
-    await entrySelect.selectOption({ label: 'items.base.wp1h-short-sword' });
+    const shortSwordOption = entrySelect.locator('option').filter({ hasText: /^(短剑|Short Sword|items\.base\.wp1h-short-sword)$/i }).first();
+    const shortSwordValue = await shortSwordOption.getAttribute('value');
+    expect(shortSwordValue).not.toBeNull();
+    await entrySelect.selectOption(shortSwordValue ?? '');
 
     const field = page.getByTestId('dev-image-field').first();
     await expect(field).toBeVisible();
@@ -162,5 +179,40 @@ test.describe('dev tool — image preview + weapon dropdowns @desktop-only', () 
     // Diagnostic: no recorded /__dev/data response should have status 400.
     const fourHundreds = devDataResponses.filter((r) => r.status === 400);
     expect(fourHundreds, `No /__dev/data responses should be 400; saw: ${JSON.stringify(fourHundreds)}`).toHaveLength(0);
+  });
+});
+
+test.describe('dev item manager — catalogue display @responsive', () => {
+  test('shows localized item name, image preview, and stat JSON on desktop and mobile', async ({ page }) => {
+    await page.goto('/dev/items');
+
+    const basesTab = page.getByRole('tab', { name: /基础|Bases/i });
+    const uniquesTab = page.getByRole('tab', { name: /暗金|Uniques/i });
+    await expect(basesTab).toHaveAttribute('aria-controls', /items-editor-panel-bases/);
+    await basesTab.focus();
+    await page.keyboard.press('ArrowRight');
+    await expect(uniquesTab).toBeFocused();
+    await expect(uniquesTab).toHaveAttribute('aria-selected', 'true');
+    const tabBox = await uniquesTab.boundingBox();
+    expect(tabBox?.height ?? 0).toBeGreaterThanOrEqual(44);
+    await expect(page.getByRole('heading', { name: /暗金物品管理器|Uniques Manager/i })).toBeVisible();
+
+    const entrySelect = page.getByLabel(/条目|Entry/i);
+    await expect(entrySelect.locator('option:checked')).toHaveText(/月牙小盾|新月小盾|Pelta Lunata/i);
+    await expect(entrySelect.locator('option:checked')).not.toHaveText(/items\.unique\.pelta-lunata/i);
+
+    const imageField = page.getByTestId('dev-image-field').first();
+    await expect(imageField).toBeVisible();
+    const previewImage = imageField.locator('img');
+    await expect(previewImage).toBeVisible();
+    await expect(previewImage).toHaveAttribute('alt', /\S/);
+
+    const statMods = page.getByLabel(/属性修正 JSON|Stat mods JSON/i);
+    await expect(statMods).toBeVisible();
+    await expect(statMods).toHaveValue(/defense|life/);
+
+    const fullStats = page.getByLabel(/完整暗金属性 JSON|Full unique stats JSON/i);
+    await expect(fullStats).toBeVisible();
+    await expect(fullStats).toHaveValue(/statMods/);
   });
 });

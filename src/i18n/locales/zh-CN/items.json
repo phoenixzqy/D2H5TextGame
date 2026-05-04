@@ -115,56 +115,176 @@
     "weapon-axe": "斧"
   },
   "unique": {
-    "shako": "沙克 (小丑王冠)",
-    "andariels-visage": "安达利尔的面容",
-    "crown-of-ages": "永恒王冠",
-    "giant-skull": "巨人头骨",
-    "griffons-eye": "狮鹫之眼",
-    "skin-of-vipermagi": "蝰蛇魔法师之皮",
-    "que-hegan-wisdom": "圭海根的智慧",
-    "tyraels-might": "泰瑞尔的力量",
-    "arkaines-valor": "阿凯尼的英勇",
-    "chains-of-honor-armor": "荣耀之链",
-    "dracs-grasp": "德古拉的掌握",
-    "steelrend": "钢铁碎裂",
-    "lavagout": "熔岩涌动",
-    "magefist": "法师之拳",
-    "war-traveler": "战旅",
-    "gore-riders": "血腥骑士",
-    "silkweave": "丝织",
-    "marrowwalk": "亡者步伐",
-    "string-of-ears": "耳朵串",
-    "arachnids-mesh": "蜘蛛丝带",
-    "thundergods-vigor": "雷神之力",
-    "verdungos-hearty": "维丹格的厚带",
-    "stone-of-jordan": "乔丹之石",
-    "bul-kathos": "布卡索的婚戒",
-    "raven-frost": "寒鸦之霜",
-    "carrion-wind": "腐尸之风",
-    "mara-kaleidoscope": "玛拉之吻",
-    "highlords-wrath": "至高领主之怒",
-    "atmas-scarab": "阿特玛圣甲虫",
-    "seraphs-hymn": "炽天使之颂",
-    "grandfather": "老爷爷",
-    "doombringer": "末日使者",
-    "breath-of-the-dying-uniq": "垂死之息",
-    "windforce": "风之力",
-    "buriza-do-kyanon": "暴风弩炮",
-    "eaglehorn": "鹰角",
-    "oculus": "灵眼",
-    "griffons-strike": "狮鹫之击",
-    "stormshield": "风暴之盾",
-    "homunculus": "矮人",
+    "shako": {
+      "name": "沙克",
+      "flavor": "昔日小丑所戴，铃铛中回荡着他的笑声。"
+    },
+    "andariels-visage": {
+      "name": "安达利尔的面容",
+      "flavor": "痛苦之女的面容，永恒的痛苦扭曲其上。"
+    },
+    "crown-of-ages": {
+      "name": "永恒王冠",
+      "flavor": "承载着无数世纪来王者陨落的重量。"
+    },
+    "giant-skull": {
+      "name": "巨人头骨",
+      "flavor": "被杀巨人的白骨，令人不安的头盔。"
+    },
+    "griffons-eye": {
+      "name": "狮鹫之眼",
+      "flavor": "镶嵌着伟大狮鹫之眼的冠冕。"
+    },
+    "skin-of-vipermagi": {
+      "name": "蝰蛇魔法师之皮",
+      "flavor": "剥自深林巨蛇法师的皮。"
+    },
+    "que-hegan-wisdom": {
+      "name": "圭赫刚的睿见",
+      "flavor": "维兹哲瑞高级贤者的法袍。"
+    },
+    "tyraels-might": {
+      "name": "泰瑞尔的力量",
+      "flavor": "正义大天使亲自在高阶天堂锻造。"
+    },
+    "arkaines-valor": {
+      "name": "阿凯尼的英勇",
+      "flavor": "英雄时代远古勇士的传奇护甲。"
+    },
+    "chains-of-honor-armor": {
+      "name": "荣耀之链",
+      "flavor": "以荣耀缚结，誓言永不破碎。"
+    },
+    "dracs-grasp": {
+      "name": "德古拉的掌握",
+      "flavor": "吸血鬼领主的手，仍渴求鲜血。"
+    },
+    "steelrend": {
+      "name": "钢铁碎裂",
+      "flavor": "像撕破布料一样轻松撕碎钢铁的手套。"
+    },
+    "lavagout": {
+      "name": "熔岩涌动",
+      "flavor": "铁匠自己的手套，永恒燃烧。"
+    },
+    "magefist": {
+      "name": "法师之拳",
+      "flavor": "维兹哲瑞学徒所戴，不惧火焰。"
+    },
+    "war-traveler": {
+      "name": "战旅",
+      "flavor": "这双靴走遍了整个庇护所大陆。"
+    },
+    "gore-riders": {
+      "name": "血腥骑士",
+      "flavor": "被无数敌人的鲜血染成深色的靴子。"
+    },
+    "silkweave": {
+      "name": "丝织",
+      "flavor": "由蜘蛛女王的蛛丝编织而成的靴子。"
+    },
+    "marrowwalk": {
+      "name": "亡者步伐",
+      "flavor": "死灵胫甲，饮用死者的骨髓。"
+    },
+    "string-of-ears": {
+      "name": "耳朵串",
+      "flavor": "串着堕落恶魔耳朵的可怖战利品腰带。"
+    },
+    "arachnids-mesh": {
+      "name": "蜘蛛丝带",
+      "flavor": "由潘迪米尼姆蜘蛛之母的丝所织。"
+    },
+    "thundergods-vigor": {
+      "name": "雷神之力",
+      "flavor": "由斯科沃斯诸天的雷电锻成的腰带。"
+    },
+    "verdungos-hearty": {
+      "name": "维丹格的厚带",
+      "flavor": "一条每次呼吸都能增强佩戴者的腰带。"
+    },
+    "stone-of-jordan": {
+      "name": "乔丹之石",
+      "flavor": "传奇戒指，每个冒险者的梦想。"
+    },
+    "bul-kathos": {
+      "name": "布卡索的婚戒",
+      "flavor": "蛮荒战王亲自佩戴的古老戒指。力与血的低语。"
+    },
+    "raven-frost": {
+      "name": "寒鸦之霜",
+      "flavor": "纯粹寒冰之戒，取自冰风暴之心。"
+    },
+    "carrion-wind": {
+      "name": "腐尸之风",
+      "flavor": "携带着墓地的腐臭。"
+    },
+    "mara-kaleidoscope": {
+      "name": "玛拉之吻",
+      "flavor": "法师最爱，一扇通向所有魔法的小窗。"
+    },
+    "highlords-wrath": {
+      "name": "至高领主之怒",
+      "flavor": "至高领主的印记，闪电在其链中吟唱。"
+    },
+    "atmas-scarab": {
+      "name": "阿特玛圣甲虫",
+      "flavor": "逃离燃烧沙漠城市的酒馆老板所戴。"
+    },
+    "seraphs-hymn": {
+      "name": "炽天使之颂",
+      "flavor": "天使歌颂审判，邪恶者颤栗。"
+    },
+    "grandfather": {
+      "name": "祖父",
+      "flavor": "远古英雄持有的宝剑，光剑身就比大多数人重。"
+    },
+    "doombringer": {
+      "name": "末日使者",
+      "flavor": "一把伴随所有死于其下者临终呐喊的剑。"
+    },
+    "breath-of-the-dying-uniq": {
+      "name": "垂死之息",
+      "flavor": "被杀者的最后一口气从此剑升起。"
+    },
+    "windforce": {
+      "name": "风之力",
+      "flavor": "灌注着绝望平原呼啸风暴的力量。"
+    },
+    "buriza-do-kyanon": {
+      "name": "暴风弩炮",
+      "flavor": "传说中的武器，据说能刺穿天堂。"
+    },
+    "eaglehorn": {
+      "name": "鹰角",
+      "flavor": "远古猎人之弓，据说从不脱靶。"
+    },
+    "oculus": {
+      "name": "灵眼",
+      "flavor": "旋转的水晶球，据说能窥视世界间的面纱。"
+    },
+    "griffons-strike": {
+      "name": "狮鹫之击",
+      "flavor": "充满雷暴之怒的大锤。"
+    },
+    "stormshield": {
+      "name": "风暴之盾",
+      "flavor": "在大风暴之心锻造，挡开最凶猛的打击。"
+    },
+    "homunculus": {
+      "name": "人造人",
+      "flavor": "活物缩影，黑暗艺术低鸣其中。"
+    },
     "pelta-lunata": {
-      "name": "新月小盾",
+      "name": "月牙小盾",
       "flavor": "来自斯科沃斯群岛的月弧圆盾。"
     },
     "rixots-keen": {
-      "name": "里克撒特的挽歌",
+      "name": "里克索特的锐刃",
       "flavor": "一把朴素短剑，却锋利得近乎异常。"
     },
     "biggin-bonnet": {
-      "name": "毕金的帽子",
+      "name": "毕金的便帽",
       "flavor": "小丑帽檐上挂着难以解释的好运。"
     },
     "face-of-horror": {
@@ -174,6 +294,1150 @@
     "hotspur": {
       "name": "热靴刺",
       "flavor": "游侠的幸运靴，足以隔绝烈焰。"
+    },
+    "the-gnasher": {
+      "name": "啃咬者",
+      "flavor": "一把小斧头，但咬合凶狠。"
+    },
+    "hand-of-broc": {
+      "name": "布洛克之手",
+      "flavor": "饮下毒素却无害的粗厚皮革。"
+    },
+    "torch-of-iros": {
+      "name": "艾诺的火炬",
+      "flavor": "一根尖端永燃的魔杖。"
+    },
+    "blood-crescent": {
+      "name": "血月",
+      "flavor": "一把深饮鲜血的弯刃。"
+    },
+    "felloak": {
+      "name": "烧橡",
+      "flavor": "焦黑橡木制成的燃烧木棒。"
+    },
+    "greyform": {
+      "name": "灰衣",
+      "flavor": "抵御寒冷的朴素灰色羊毛。"
+    },
+    "lenymo": {
+      "name": "兰尼摩",
+      "flavor": "编织法力的织法者腰带。"
+    },
+    "pluckeye": {
+      "name": "拔眼弓",
+      "flavor": "眼光敏锐猎人的第一张弓。"
+    },
+    "axe-of-fechmar": {
+      "name": "费查玛之斧",
+      "flavor": "野蛮人制造的冰冷手斧。"
+    },
+    "coif-of-glory": {
+      "name": "荣耀之盔",
+      "flavor": "受久已死去国王祝福的破旧头盔。"
+    },
+    "deathspade": {
+      "name": "死亡之铲",
+      "flavor": "铲头斧，迟钝但沉重。"
+    },
+    "gorefoot": {
+      "name": "血足",
+      "flavor": "加快每一步的血渍靴子。"
+    },
+    "skewer-of-krintiz": {
+      "name": "克林提兹的串刺",
+      "flavor": "一把细长凶恶的刺击刀刃。"
+    },
+    "nagelring": {
+      "name": "纳格戒指",
+      "flavor": "商人的最爱——更多金币意味着更多宝藏。"
+    },
+    "stoutnail": {
+      "name": "铁钉",
+      "flavor": "简单的铁箍木棒。可靠。"
+    },
+    "blinkbat-form": {
+      "name": "闪蝠形态",
+      "flavor": "蝠皮缝制；快速而安静。"
+    },
+    "bloodfist": {
+      "name": "血拳",
+      "flavor": "浸透过往战斗的鲜血。赋予原始生命力。"
+    },
+    "duskdeep": {
+      "name": "暮深",
+      "flavor": "一顶饮入黄昏的头盔。"
+    },
+    "shadowfang": {
+      "name": "暗影之牙",
+      "flavor": "从寒霜之铁雕成的冰冷刀刃。"
+    },
+    "snakecord": {
+      "name": "蛇索",
+      "flavor": "一条被古老魔法驯服的活蛇缠在腰间。"
+    },
+    "gleamscythe": {
+      "name": "耀镰",
+      "flavor": "抛光至月光般光泽的弯刀。"
+    },
+    "witherstring": {
+      "name": "枯弦",
+      "flavor": "它的弦是腱——强韧而酸涩。"
+    },
+    "crushflange": {
+      "name": "碎凸缘",
+      "flavor": "一把能粉碎任何盔甲的凸缘锤。"
+    },
+    "howltusk": {
+      "name": "吼牙",
+      "flavor": "被杀野猪王的獠牙镶嵌在铁中。"
+    },
+    "the-centurion": {
+      "name": "百夫长",
+      "flavor": "一个老兵的锁甲，游历甚广。"
+    },
+    "umbral-disk": {
+      "name": "暗影之盘",
+      "flavor": "影铸之盘——魔法滑开一旁。"
+    },
+    "bloodrise": {
+      "name": "血涌",
+      "flavor": "每次杀戮似乎都变得更重。"
+    },
+    "chance-guards": {
+      "name": "幸运护卫",
+      "flavor": "盗贼的手套——运气就这样沾上。"
+    },
+    "griswold-edge": {
+      "name": "格里斯华尔德之刃",
+      "flavor": "崔斯特瑞姆铁匠的标志性刀刃。"
+    },
+    "manald-heal": {
+      "name": "玛那之疗",
+      "flavor": "从法力神殿偷来的再生戒指。"
+    },
+    "rasperose": {
+      "name": "乌鸦之爪",
+      "flavor": "一只乌鸦爪搭上每支箭。"
+    },
+    "tarnhelm": {
+      "name": "褪色头盔",
+      "flavor": "简陋的帽子，却为佩戴者带来运气。"
+    },
+    "eye-of-etlich": {
+      "name": "埃特利希之眼",
+      "flavor": "一颗从佩戴者胸前注视的苍白宝石。"
+    },
+    "treads-of-cthon": {
+      "name": "克颂之足迹",
+      "flavor": "无论土壤如何，都不留脚印。"
+    },
+    "bloodrise-2": {
+      "name": "血涌 (钉锤)",
+      "flavor": "一根沉重血渍的木棒，用途广泛。"
+    },
+    "nokozan-relic": {
+      "name": "诺克赞的遗物",
+      "flavor": "来自久埋火焰神殿的遗物。"
+    },
+    "twitchthroe": {
+      "name": "颤动胸甲",
+      "flavor": "在战斗中不安动作的铠甲。"
+    },
+    "lance-guard": {
+      "name": "枪兵之盾",
+      "flavor": "一名枪骑兵的大盾。冲锋时极具惩罚性。"
+    },
+    "rusthandle-scepter": {
+      "name": "锈柄权杖",
+      "flavor": "一根神圣权杖，被忽视但仍有力。"
+    },
+    "the-dragon-chang": {
+      "name": "巨龙之戟",
+      "flavor": "一根缠绕着懒散火焰的矛尖。"
+    },
+    "doomslinger": {
+      "name": "末日投射",
+      "flavor": "学徒的第一把弩——惊人的威力。"
+    },
+    "maelstrom": {
+      "name": "大漩涡",
+      "flavor": "一根螺旋形杖，伴有风暴的嗡鸣。"
+    },
+    "hawkmail": {
+      "name": "鹰甲",
+      "flavor": "轻鳞片，快如鹰隼。"
+    },
+    "darkglow": {
+      "name": "暗辉",
+      "flavor": "闪烁着奇异柔和的光芒。"
+    },
+    "nightsmoke": {
+      "name": "夜烟",
+      "flavor": "在黑暗中微弱冒烟。"
+    },
+    "rogue-bow": {
+      "name": "浪人之弓",
+      "flavor": "一名斥候浪人测试良好的长弓。"
+    },
+    "wall-of-eyeless": {
+      "name": "无眼之壁",
+      "flavor": "一面回望的暗镜。"
+    },
+    "stormchaser": {
+      "name": "追风者",
+      "flavor": "闪电从其边缘跃起攻击攻击者。"
+    },
+    "the-general-tan-do-li-ga": {
+      "name": "谭多利加将军",
+      "flavor": "将军的传家宝——游历甚广，染血甚多。"
+    },
+    "the-general-mace": {
+      "name": "将军之连枷",
+      "flavor": "将军的连枷锤，游行抛光。"
+    },
+    "wormskull": {
+      "name": "蠕虫头骨",
+      "flavor": "爬满腐尸魔法。赐予邪恶生命力。"
+    },
+    "goblin-toe": {
+      "name": "哥布林之趾",
+      "flavor": "脚尖压扁的靴子，奇怪的结实。"
+    },
+    "iceblink": {
+      "name": "冰闪",
+      "flavor": "霜冻板甲，麻痹攻击者的握力。"
+    },
+    "soulflay": {
+      "name": "剥魂",
+      "flavor": "它割裂的不仅是血肉。"
+    },
+    "knell-striker-scepter": {
+      "name": "丧钟之击",
+      "flavor": "刻有符文的权杖——打击血肉与信仰。"
+    },
+    "magefist-gauntlet": {
+      "name": "法师拳套",
+      "flavor": "更大的维兹哲瑞学徒手套——缠绕火焰。"
+    },
+    "sparking-mail": {
+      "name": "火花锁甲",
+      "flavor": "每个环节之间都劈啪作响。"
+    },
+    "stormguild": {
+      "name": "风暴公会",
+      "flavor": "公会匠人的印记，充满风暴。"
+    },
+    "jade-tan-do": {
+      "name": "翡翠短刀",
+      "flavor": "一把翡翠边缘的短剑，用于干净安静的杀戮。"
+    },
+    "heavenly-garb": {
+      "name": "天界法衣",
+      "flavor": "由日落布料纺织的长袍。"
+    },
+    "gravenspine": {
+      "name": "墓脊",
+      "flavor": "从久已死去巫妖的脊椎雕成。"
+    },
+    "hellplague": {
+      "name": "地狱瘟疫",
+      "flavor": "一把让每个伤口化脓的刀刃。"
+    },
+    "razor-stitch": {
+      "name": "剃尾长矛",
+      "flavor": "一把带刺长矛——留下永不愈合的伤口。"
+    },
+    "spectral-shard": {
+      "name": "幽灵碎片",
+      "flavor": "一把玻璃质的鬼刃。它穿透结界。"
+    },
+    "stormstrike": {
+      "name": "风暴打击",
+      "flavor": "每支射出的箭都伴随雷鸣劈啪作响。"
+    },
+    "mahim-oak-curio": {
+      "name": "马希姆橡木珍品",
+      "flavor": "从圣橡木上削成的珍品。"
+    },
+    "undead-crown": {
+      "name": "不死王冠",
+      "flavor": "被遗忘地下墓穴的傀儡王所戴。"
+    },
+    "venom-ward": {
+      "name": "毒物守护",
+      "flavor": "被沙漠德鲁伊浸泡在解毒剂中。"
+    },
+    "wizendraw": {
+      "name": "贤者弓",
+      "flavor": "一把远古之弓——它的弦永不变形。"
+    },
+    "black-cleft": {
+      "name": "黑裂",
+      "flavor": "一把冻伤铁制成的锯齿刀刃。"
+    },
+    "goldwrap": {
+      "name": "金缠",
+      "flavor": "商人王子的镀金腰带。"
+    },
+    "hellclap": {
+      "name": "地狱霹雳",
+      "flavor": "每支箭在撞击时爆裂。"
+    },
+    "ichorsting": {
+      "name": "脓液刺",
+      "flavor": "一把带刺斧头——伤口化脓数日。"
+    },
+    "ring-of-the-leech": {
+      "name": "水蛭之戒",
+      "flavor": "用吸血鬼的牙齿制成的戒指。"
+    },
+    "boneflesh": {
+      "name": "骨肉",
+      "flavor": "用腱绑扎的骨板制成的可怖外衣。"
+    },
+    "ironstone": {
+      "name": "铁石",
+      "flavor": "石头，铁箍——原始但致命。"
+    },
+    "peasant-crown": {
+      "name": "农夫王冠",
+      "flavor": "一顶为农奴带来荣耀的简单头环。"
+    },
+    "silks-of-the-victor": {
+      "name": "胜利者之绸",
+      "flavor": "竞技场冠军所穿。"
+    },
+    "the-spirit-shroud": {
+      "name": "灵魂裹衣",
+      "flavor": "一件被过往佩戴者缠绕的薄如耳语的长袍。"
+    },
+    "visceratuant": {
+      "name": "内脏之盾",
+      "flavor": "刻有束缚符文的法术盾牌。"
+    },
+    "frostburn": {
+      "name": "霜烧",
+      "flavor": "冰冻手套，增幅法力和寒意。"
+    },
+    "rattlecage": {
+      "name": "骷髅笼",
+      "flavor": "头骨符咒在你移动时嘎嘎作响。"
+    },
+    "tearhaunch": {
+      "name": "泪腿",
+      "flavor": "朝圣者的破旧靴子——快速而不知疲倦。"
+    },
+    "the-fetid-sprinkler": {
+      "name": "腐秽洒血器",
+      "flavor": "圣职者的秽水杖，已被改作凶器。"
+    },
+    "venom-grip": {
+      "name": "毒蛇之握",
+      "flavor": "滴着毒液的蛇皮手套。"
+    },
+    "whistan-guard": {
+      "name": "威斯坦之守护",
+      "flavor": "圣骑士的守护。以神圣韧性偏转打击。"
+    },
+    "ume-lament": {
+      "name": "乌姆之哀",
+      "flavor": "寡妇的魔杖——它为死者哭泣。"
+    },
+    "culwens-point": {
+      "name": "库文之尖",
+      "flavor": "铁匠的杰作——完美平衡。"
+    },
+    "moser-circle": {
+      "name": "莫瑟的圆盾",
+      "flavor": "刻有保护符文。阻挡一切伤害。"
+    },
+    "ribcracker": {
+      "name": "裂肋",
+      "flavor": "一根在肋骨间隙中寻找的杖。"
+    },
+    "riphook": {
+      "name": "撕钩",
+      "flavor": "钩尖箭，抽出时会撕裂。"
+    },
+    "rockfleece": {
+      "name": "岩绒",
+      "flavor": "花岗岩纤维羊毛。沉重但坚不可摧。"
+    },
+    "rockstopper": {
+      "name": "岩止者",
+      "flavor": "由最坚固的石头锻造。"
+    },
+    "skin-of-flayed-one": {
+      "name": "剥皮者之皮",
+      "flavor": "当附近洒血时仍会抽搐。"
+    },
+    "the-impaler": {
+      "name": "穿刺者",
+      "flavor": "一把刺穿敌人的尖刺长矛。"
+    },
+    "dark-clan-crusher": {
+      "name": "暗黑氏族粉碎者",
+      "flavor": "一把被旧灰烬熏黑的氏族锤。"
+    },
+    "kinemil-awl": {
+      "name": "基尼米尔之锥",
+      "flavor": "一根永不冷却的红热尖端。"
+    },
+    "razortail": {
+      "name": "剃尾",
+      "flavor": "由恶魔脊椎制成。箭矢和弩箭穿透敌人。"
+    },
+    "iron-pelt": {
+      "name": "铁皮",
+      "flavor": "部落酋长的板甲，用冷铁箍住。"
+    },
+    "kelpie-snare": {
+      "name": "水妖之陷",
+      "flavor": "来自冰冷深海的锯齿钩。"
+    },
+    "razor-tine": {
+      "name": "剃刺",
+      "flavor": "一把有着发丝般薄刃的凶恶连须斧。"
+    },
+    "the-nokozan": {
+      "name": "诺克赞",
+      "flavor": "来自被埋葬火焰神殿的遗物。"
+    },
+    "blacktongue": {
+      "name": "黑舌",
+      "flavor": "舌形刀刃，滴着毒液。"
+    },
+    "blade-of-ali-baba": {
+      "name": "阿里巴巴之刃",
+      "flavor": "盗贼之刃——连尘埃都变成金币。"
+    },
+    "blastbark": {
+      "name": "爆皮",
+      "flavor": "一把能粉碎结界的树皮紫杉弓。"
+    },
+    "greaves-of-march": {
+      "name": "行军胫甲",
+      "flavor": "长途行军者的靴子——脚下不知疲倦。"
+    },
+    "langer-briser": {
+      "name": "朗格·布里瑟",
+      "flavor": "一把改造的古老攻城弓。"
+    },
+    "skystrike": {
+      "name": "天击",
+      "flavor": "弓箭手王的弓——召唤闪电降落。"
+    },
+    "stealskull": {
+      "name": "窃颅",
+      "flavor": "盗贼珍视的头盔——运气涌向佩戴者。"
+    },
+    "the-diggler": {
+      "name": "挖掘者",
+      "flavor": "一把镐斧匕首——撬开盔甲。"
+    },
+    "crow-caw": {
+      "name": "乌鸦呱",
+      "flavor": "每次突然移动时黑色羽毛都会展开。"
+    },
+    "gloom-trap": {
+      "name": "阴暗之陷",
+      "flavor": "学者的腰带——知识沉重。"
+    },
+    "goldskin": {
+      "name": "金皮",
+      "flavor": "用贪婪国王的汗水镀金。"
+    },
+    "knell-striker": {
+      "name": "丧钟之击",
+      "flavor": "敲响酸涩回响的钟声。"
+    },
+    "ripsaw": {
+      "name": "撕锯",
+      "flavor": "齿状铁——将血肉撕成碎片。"
+    },
+    "the-meatscraper": {
+      "name": "刮肉刀",
+      "flavor": "屠夫的刀刃——为不公平的战斗而造。"
+    },
+    "coldkill": {
+      "name": "冷杀",
+      "flavor": "永恒冬天的斧头。"
+    },
+    "hone-sundan": {
+      "name": "霍恩·桑丹",
+      "flavor": "骨形长柄武器，看似脆弱但致命。"
+    },
+    "saracen-chance": {
+      "name": "萨拉森的幸运",
+      "flavor": "沙漠流浪者的幸运符。"
+    },
+    "blackleach-staff": {
+      "name": "黑蛭 (杖)",
+      "flavor": "水蛭形状的长柄武器，吸取粗心者。"
+    },
+    "blackleach-blade": {
+      "name": "黑蛭之刃",
+      "flavor": "饮血的水蛭形刀刃。"
+    },
+    "darksight-helm": {
+      "name": "暗视头盔",
+      "flavor": "在佩戴者脸上蒙上诡异的面纱。"
+    },
+    "gravepalm": {
+      "name": "墓掌",
+      "flavor": "死灵手套——你的触碰枯萎生者。"
+    },
+    "shaftstop": {
+      "name": "矢停",
+      "flavor": "像雨滴一样甩开箭矢。"
+    },
+    "the-vile-husk": {
+      "name": "邪恶外壳",
+      "flavor": "一把空心轻盈的刀刃，嗡鸣着毒素。"
+    },
+    "bladebuckle": {
+      "name": "刀扣",
+      "flavor": "锋利如剃刀的扣环——割断抓握的手。"
+    },
+    "butcher-pupil": {
+      "name": "屠夫学徒",
+      "flavor": "崔斯特瑞姆屠夫教授的肉斧。"
+    },
+    "the-meat-scraper-2": {
+      "name": "刮肉刀 (矛)",
+      "flavor": "一把刮净尸体的刀刃长矛。"
+    },
+    "the-patriarch": {
+      "name": "族长",
+      "flavor": "氏族长老之剑，钢铁中的智慧。"
+    },
+    "the-scalper": {
+      "name": "剥头皮者",
+      "flavor": "被无数赏金磨得光滑。"
+    },
+    "spirit-ward": {
+      "name": "灵魂守护",
+      "flavor": "与祖灵绑定。偏转魔法和物理伤害。"
+    },
+    "the-atlantean": {
+      "name": "亚特兰蒂斯",
+      "flavor": "淹没军团之剑。"
+    },
+    "blackhorn-face": {
+      "name": "黑角之面",
+      "flavor": "双生黑角从眉间升起。"
+    },
+    "duriel-shell": {
+      "name": "督瑞尔之壳",
+      "flavor": "由痛苦之王本人的甲壳锻造的盔甲。"
+    },
+    "lidless-wall": {
+      "name": "不眨之壁",
+      "flavor": "女法师的盾牌，永不眨眼。赋予奥术清明。"
+    },
+    "rusthandle": {
+      "name": "锈柄",
+      "flavor": "看似损毁，击打如坠塔。"
+    },
+    "spire-of-honor": {
+      "name": "荣耀之尖",
+      "flavor": "顶端镶有圣骑士印记的长柄武器。"
+    },
+    "vampiregaze": {
+      "name": "吸血鬼凝视",
+      "flavor": "它以痛苦为食，回赠窃取的生命。"
+    },
+    "arreat-face": {
+      "name": "阿瑞亚特之面",
+      "flavor": "阿瑞特山守护者的战争面具。力量与野性的化身。"
+    },
+    "bartuc-cut-throat": {
+      "name": "巴图克的割喉者",
+      "flavor": "恶魔领主的双爪——快如思维。"
+    },
+    "herald-of-zakarum": {
+      "name": "萨卡兰姆的使者",
+      "flavor": "圣骑士的光芒之盾——辐射金光。"
+    },
+    "jalal-mane": {
+      "name": "贾拉尔的鬃毛",
+      "flavor": "狮鬃德鲁伊头盔，凶猛而高贵。"
+    },
+    "lycanders-aim": {
+      "name": "莱坎德的瞄准",
+      "flavor": "亚马逊女王的狩猎弓。"
+    },
+    "lycanders-flank": {
+      "name": "莱坎德的侧翼",
+      "flavor": "亚马逊女王的标志性长矛。"
+    },
+    "steelclash": {
+      "name": "钢冲",
+      "flavor": "被击中时像钟一样鸣响。"
+    },
+    "the-oculus-orb": {
+      "name": "灵眼 (法球)",
+      "flavor": "一颗旋转的水晶球——超越视觉的视界。"
+    },
+    "titan-revenge": {
+      "name": "泰坦的复仇",
+      "flavor": "一支返回持有者手中的标枪。"
+    },
+    "earth-shaker": {
+      "name": "大地震颤",
+      "flavor": "带着雷鸣击打大地。"
+    },
+    "the-collector": {
+      "name": "收藏家",
+      "flavor": "圣物收藏家贵族所戴。"
+    },
+    "gerke-sanctuary": {
+      "name": "格克的庇护",
+      "flavor": "由陨落圣骑士祝福的巨大守护。"
+    },
+    "valkyrie-wing": {
+      "name": "女武神之翼",
+      "flavor": "陨落战女佩戴的翼形头盔。"
+    },
+    "bverrit-keep": {
+      "name": "伯维瑞特要塞",
+      "flavor": "要塞形状的塔盾，经火淬炼。"
+    },
+    "dwarf-star": {
+      "name": "矮星",
+      "flavor": "矮人之手切割的小红宝石。"
+    },
+    "pus-spitter": {
+      "name": "脓液喷射",
+      "flavor": "浸泡在污秽脓液中的弩箭。"
+    },
+    "goldstrike-arch": {
+      "name": "金击拱弓",
+      "flavor": "商人王的弓。将杀戮转化为金币。"
+    },
+    "blackhand-key": {
+      "name": "黑手之钥",
+      "flavor": "嵌入死灵法师图腾中的骷髅钥匙。"
+    },
+    "ghoulhide": {
+      "name": "食尸鬼皮",
+      "flavor": "从食尸鬼王身上剥下。他们仍在饥渴。"
+    },
+    "immortal-king-helm-uniq": {
+      "name": "不朽之王头盔 (复制品)",
+      "flavor": "不朽之王头环的复制品。"
+    },
+    "kuko-shakaku": {
+      "name": "库可沙卡库",
+      "flavor": "一把迅捷的斯科沃斯长弓。"
+    },
+    "soul-drainer": {
+      "name": "吸魂者",
+      "flavor": "每次攻击都吸取敌人的生命和法力，滋养佩戴者。"
+    },
+    "crown-of-thieves": {
+      "name": "盗贼之冠",
+      "flavor": "从一个先偷来王冠的国王那里偷来的王冠。"
+    },
+    "demon-machine": {
+      "name": "恶魔机器",
+      "flavor": "被恶魔灵魂附身的弩。以邪恶速度射击。"
+    },
+    "frostburn-gauntlet": {
+      "name": "霜烧手套",
+      "flavor": "一只霜烧手套——冻结佩戴者的敌人。"
+    },
+    "infernostride": {
+      "name": "地狱步伐",
+      "flavor": "每一步都留下闷烧的余烬。"
+    },
+    "islestrike": {
+      "name": "岛屿打击",
+      "flavor": "一把粉碎岛屿者之斧。"
+    },
+    "spirit-forge": {
+      "name": "灵魂熔炉",
+      "flavor": "在战灵的泪水中淬火。"
+    },
+    "waterwalk": {
+      "name": "水上行走",
+      "flavor": "它们在水上滑行如同在陆地上一样轻松。"
+    },
+    "crainte-vomir": {
+      "name": "克兰特·沃米尔",
+      "flavor": "一把滴着威胁的巴洛克刀刃。"
+    },
+    "crescent-moon": {
+      "name": "新月",
+      "flavor": "弯曲的银，充满雷电。"
+    },
+    "hellplague-greater": {
+      "name": "地狱瘟疫 (强化)",
+      "flavor": "一把用火焰和腐烂化脓伤口的刀刃。"
+    },
+    "homunculus-helm": {
+      "name": "人造人之颅",
+      "flavor": "一个缩小的头颅拜物，奇怪地有意识。"
+    },
+    "pierre-tombale-couant": {
+      "name": "石墓刀",
+      "flavor": "一把墓碑形状的戟。"
+    },
+    "stormeye": {
+      "name": "风暴之眼",
+      "flavor": "一把风暴生成的战锤。"
+    },
+    "atlantean": {
+      "name": "亚特兰蒂斯",
+      "flavor": "来自沉没帝国的盐蚀板甲。"
+    },
+    "cat-eye": {
+      "name": "猫眼",
+      "flavor": "一颗猫科宝石——锐利的眼睛，敏捷的爪子。"
+    },
+    "woestave": {
+      "name": "灾难之杖",
+      "flavor": "层叠诅咒的法杖。"
+    },
+    "nosferatu-coil": {
+      "name": "诺斯费拉图的卷环",
+      "flavor": "吸血鬼领主的腰带——吸取粗心者。"
+    },
+    "black-hades": {
+      "name": "黑冥",
+      "flavor": "在火山冰冷黑色的心脏中锻造。"
+    },
+    "hexfire": {
+      "name": "巫火",
+      "flavor": "一把被诅咒的弯刀——火焰涌过每一道切口。"
+    },
+    "stoneraven": {
+      "name": "石鸦",
+      "flavor": "一把巨人劈出的乌鸦石长柄武器。"
+    },
+    "the-battlebranch": {
+      "name": "战斗树枝",
+      "flavor": "一棵被劈成战矛的年轻橡树。"
+    },
+    "veil-of-steel": {
+      "name": "钢铁面纱",
+      "flavor": "一个不屈的钢铁面具，驱开所有元素。"
+    },
+    "frostwind": {
+      "name": "霜风",
+      "flavor": "一把在挥舞中冻结敌人的冰刃。"
+    },
+    "bing-sz-wang": {
+      "name": "冰之王",
+      "flavor": "霜冻武士刀——其刃永不融化。"
+    },
+    "buriza-do-kyanon-cb": {
+      "name": "暴风弩炮 (弩)",
+      "flavor": "一把毁灭射程的冰箭弩。"
+    },
+    "corpsemourn": {
+      "name": "尸哀",
+      "flavor": "它为带入战斗的死者哭泣。"
+    },
+    "endlesshail": {
+      "name": "无尽冰雹",
+      "flavor": "在冰冻的雨中射出箭矢。"
+    },
+    "gore-burnt-skull": {
+      "name": "血烧头骨",
+      "flavor": "一个被地狱之火灼伤的野蛮人战利品头盔。"
+    },
+    "snowclash": {
+      "name": "雪冲",
+      "flavor": "一条辐射寒意的冰川锻造腰带。"
+    },
+    "string-of-ears-greater": {
+      "name": "耳朵串 (强化)",
+      "flavor": "宏大的可怖战利品——挂着更强大的耳朵。"
+    },
+    "tiamat-rebuke": {
+      "name": "提亚马特的谴责",
+      "flavor": "龙皮拉伸在巨大框架上。"
+    },
+    "blackhorn-face-2": {
+      "name": "黑角之面 (强化)",
+      "flavor": "恐怖面具的更大版本。"
+    },
+    "homunculus-orb": {
+      "name": "人造人之球",
+      "flavor": "一个耳语法术的胎儿形法球。"
+    },
+    "pompe-wrath": {
+      "name": "庞贝之怒",
+      "flavor": "在火山灰中淬火。"
+    },
+    "the-chieftain": {
+      "name": "酋长",
+      "flavor": "一把备受尊敬的氏族领导大斧。"
+    },
+    "steel-driver": {
+      "name": "钢铁驱动者",
+      "flavor": "一把将钢铁锤入大地的大锤柄。"
+    },
+    "bul-kathos-wedding-band": {
+      "name": "布卡索的婚戒",
+      "flavor": "古代战王亲自佩戴。它低语着力量与活力。"
+    },
+    "guardian-naga": {
+      "name": "守护纳迦",
+      "flavor": "蛇刻的柄，毒边。"
+    },
+    "shadow-killer": {
+      "name": "暗影杀手",
+      "flavor": "刺客的标志性刀刃——沉默而确定。"
+    },
+    "spike-thorn": {
+      "name": "尖刺之荆",
+      "flavor": "竖立的铁刺惩罚大胆者。"
+    },
+    "stormlash": {
+      "name": "风暴鞭笞",
+      "flavor": "一条引导风暴之怒的长鞭。"
+    },
+    "athulua-rule": {
+      "name": "阿图鲁亚的统治",
+      "flavor": "远古女王的双手权杖。"
+    },
+    "the-vile-husk-armor": {
+      "name": "骨骸外壳",
+      "flavor": "用腱绑扎的骨板——诡异地轻盈。"
+    },
+    "radament-sphere": {
+      "name": "拉达门特之球",
+      "flavor": "木乃伊圣甲虫法师的葬礼圆盘。"
+    },
+    "suicide-branch": {
+      "name": "自杀之枝",
+      "flavor": "一根恳求被折断的枯萎树枝。"
+    },
+    "the-vile-husk-2": {
+      "name": "腐骸之壳",
+      "flavor": "同一被诅咒血统的第二把刀刃。"
+    },
+    "blackoak-shield": {
+      "name": "黑橡之盾",
+      "flavor": "从被诅咒橡树的心材雕刻而成的德鲁伊盾牌。"
+    },
+    "heaven-light": {
+      "name": "天堂之光",
+      "flavor": "天使祝福的神圣权杖。圣骑士虔诚地挥舞它。"
+    },
+    "hellmouth": {
+      "name": "地狱之口",
+      "flavor": "火舌从每个指尖舔出。"
+    },
+    "vampire-gaze-greater": {
+      "name": "吸血鬼凝视 (强化)",
+      "flavor": "被诅咒凝视的重铸版本。"
+    },
+    "firelizard-talon": {
+      "name": "火蜥之爪",
+      "flavor": "灼烧空气的熔岩蜥蜴爪。"
+    },
+    "steel-shade": {
+      "name": "钢影",
+      "flavor": "由月触钢锻造的阴影头盔。"
+    },
+    "steelshade": {
+      "name": "钢影",
+      "flavor": "一顶淬火影钢头盔。它偏转打击和魔法。"
+    },
+    "the-redeemer": {
+      "name": "救赎者",
+      "flavor": "一根通过火焰救赎邪恶者的神圣权杖。"
+    },
+    "boneshade": {
+      "name": "骨影",
+      "flavor": "从圣人股骨上切下的骨白魔杖。"
+    },
+    "demon-limb": {
+      "name": "恶魔肢体",
+      "flavor": "从陨落深渊领主身上撕下。"
+    },
+    "bonehew": {
+      "name": "砍骨",
+      "flavor": "一把骨柄长柄武器——快速，凶恶。"
+    },
+    "cure-all": {
+      "name": "万灵药",
+      "flavor": "药剂师的头盔——治愈各种疾病。"
+    },
+    "sandstorm-trek": {
+      "name": "沙暴之旅",
+      "flavor": "穿越无数沙漠。赋予耐力和韧性。"
+    },
+    "warlord-trust": {
+      "name": "军阀的信任",
+      "flavor": "值得信赖的副官之奖赏。"
+    },
+    "carin-shard": {
+      "name": "卡林碎片",
+      "flavor": "一根绑定灵魂玻璃的魔杖。"
+    },
+    "djinn-slayer": {
+      "name": "精灵杀手",
+      "flavor": "在精灵之火中淬火的弯刀。"
+    },
+    "leviathan": {
+      "name": "利维坦",
+      "flavor": "海洋泰坦的皮革。赋予近乎免疫元素。"
+    },
+    "steel-carapace": {
+      "name": "钢甲壳",
+      "flavor": "一个重叠钢铁的昆虫板甲。"
+    },
+    "steel-pillar": {
+      "name": "钢柱",
+      "flavor": "与其说是武器，不如说是柱子。"
+    },
+    "rising-sun": {
+      "name": "旭日",
+      "flavor": "一个阳光温暖的吊坠。恶魔在其光芒中燃烧。"
+    },
+    "widowmaker": {
+      "name": "寡妇制造者",
+      "flavor": "一把寡妇弓——不留行走的丈夫。"
+    },
+    "astreon-iron-ward": {
+      "name": "阿斯特雷恩的铁卫",
+      "flavor": "一个传奇战王的锤。它粉碎盔甲和骨头。"
+    },
+    "death-web": {
+      "name": "死亡之网",
+      "flavor": "死灵法师的终极魔杖。毒素流经每个妖术。"
+    },
+    "hellslayer": {
+      "name": "地狱杀手",
+      "flavor": "在燃烧地狱深处锻造的斧头。"
+    },
+    "jade-talon": {
+      "name": "翡翠之爪",
+      "flavor": "一只翡翠边缘的爪——每次切割都是毒。"
+    },
+    "lightsabre": {
+      "name": "光剑",
+      "flavor": "一把纯闪电之剑。每次挥舞都劈啪作响。"
+    },
+    "cerebus-bite": {
+      "name": "刻耳柏洛斯之咬",
+      "flavor": "德鲁伊的三头狼皮。"
+    },
+    "darkforce-spawn": {
+      "name": "暗黑力场",
+      "flavor": "一个恶魔头骨图腾，充满耳语。"
+    },
+    "darkforce-spawn-shield": {
+      "name": "暗黑力场 (盾)",
+      "flavor": "一面骨符盾——死灵法师的骄傲。"
+    },
+    "demonhorn-edge": {
+      "name": "恶魔角之刃",
+      "flavor": "从被杀深渊领主的角雕成。"
+    },
+    "dragonscale": {
+      "name": "龙鳞",
+      "flavor": "从被杀飞龙获取的鳞片盾。"
+    },
+    "kerke-sanctuary": {
+      "name": "克尔克的庇护所",
+      "flavor": "圣骑士制作的巨大守护。"
+    },
+    "nightwing-veil": {
+      "name": "夜翼面纱",
+      "flavor": "编织成术士王冠的暗影丝绸。"
+    },
+    "spellsteel": {
+      "name": "法术钢",
+      "flavor": "敌人接近时柄上符文发光。"
+    },
+    "lacerator": {
+      "name": "撕裂者",
+      "flavor": "一把锯齿斧——每个伤口都流血。"
+    },
+    "nords-tenderizer": {
+      "name": "诺德的碎肉锤",
+      "flavor": "来自冰封北方的连枷肉锤。"
+    },
+    "plague-bearer": {
+      "name": "瘟疫携带者",
+      "flavor": "一把带来枯萎腐烂的剑。"
+    },
+    "blackhand-key-2": {
+      "name": "黑手之钥 (强化)",
+      "flavor": "更大的死灵制钥匙魔杖。"
+    },
+    "earthshifter": {
+      "name": "移地者",
+      "flavor": "一把在脚下粉碎石头的大锤。"
+    },
+    "rune-master": {
+      "name": "符文大师",
+      "flavor": "一把刻有符文的双手剑——切割血肉和法术。"
+    },
+    "thunderstroke": {
+      "name": "雷击",
+      "flavor": "一根来自天界高处的风暴长矛。"
+    },
+    "eschuta-temper": {
+      "name": "艾斯屈塔的脾性",
+      "flavor": "一根易怒的魔杖——脾气和引线一样短。"
+    },
+    "stormrider": {
+      "name": "风暴骑士",
+      "flavor": "由斯科沃斯的风暴骑士挥舞。"
+    },
+    "stormspire": {
+      "name": "风暴之塔",
+      "flavor": "一把从天空召唤闪电的高耸长柄武器。"
+    },
+    "the-grim-reaper": {
+      "name": "死神",
+      "flavor": "一把将灵魂引入遗忘的镰刀。"
+    },
+    "shadow-dancer": {
+      "name": "暗影舞者",
+      "flavor": "刺客的靴子——无声，失重。"
+    },
+    "halaberd-reign": {
+      "name": "哈拉贝德的统治",
+      "flavor": "一顶战王的头盔，从未屈服。"
+    },
+    "death-fathom": {
+      "name": "死亡深渊",
+      "flavor": "一根占卜球魔杖——深入冰冷虚无。"
+    },
+    "the-stone-crusher": {
+      "name": "碎石者",
+      "flavor": "一把劈开巨石的大锤。"
+    },
+    "ondal-wisdom": {
+      "name": "昂达尔的智慧",
+      "flavor": "一位年迈大法师的魔杖——仍是力量源泉。"
+    },
+    "ravenlore": {
+      "name": "乌鸦学识",
+      "flavor": "一顶乌鸦灵头饰，博学而黑暗。"
+    },
+    "templar-might": {
+      "name": "圣殿骑士之力",
+      "flavor": "神圣十字军的胸甲。"
+    },
+    "boneslayer-blade": {
+      "name": "屠骨刀刃",
+      "flavor": "像软木一样雕刻骨头。"
+    },
+    "head-hunter-glory": {
+      "name": "猎头者的荣耀",
+      "flavor": "被杀冠军的战利品头骨装饰其边缘。"
+    },
+    "ormus-robes": {
+      "name": "奥穆斯的长袍",
+      "flavor": "法师奥穆斯自己的工作长袍。"
+    },
+    "spirit-keeper": {
+      "name": "灵魂守护者",
+      "flavor": "持有陨落德鲁伊长老的灵魂。"
+    },
+    "reaper-toll": {
+      "name": "收割者之税",
+      "flavor": "一把从生者吸取生命并交付给持有者的长柄武器。"
+    },
+    "hellrack": {
+      "name": "地狱刑架",
+      "flavor": "一把射出地狱之火的恶魔弩。"
+    },
+    "wisp-projector": {
+      "name": "鬼火投影器",
+      "flavor": "舞动的鬼火在佩戴者周围旋转。"
+    },
+    "alma-negra": {
+      "name": "黑魂",
+      "flavor": "一面与持有者绑定的黑暗灵魂盾牌。"
+    },
+    "kira-guardian": {
+      "name": "基拉的守护",
+      "flavor": "一顶守护灵头盔——为旅行者祝福。"
+    },
+    "arreats-face-uniq": {
+      "name": "阿瑞特之面 (强化)",
+      "flavor": "更强大的战争面具。（最接近的基础映射。）"
+    },
+    "knell-striker-2": {
+      "name": "丧钟之击 (强化)",
+      "flavor": "每次挥舞都敲响丧钟。"
+    },
+    "ondal-almighty": {
+      "name": "昂达尔的全能",
+      "flavor": "一位大法师刻有古老符文的全身甲。"
+    },
+    "boneflame-shield": {
+      "name": "骨焰之盾",
+      "flavor": "边缘的头骨喷出冷火。"
+    },
+    "hand-of-blessed-light": {
+      "name": "祝福之光之手",
+      "flavor": "一把辐射阳光温暖的神圣锤。"
+    },
+    "schaefer-hammer": {
+      "name": "谢弗的铁锤",
+      "flavor": "一把雷鸣战锤。它召唤闪电降落在邪恶者身上。"
+    },
+    "wolfhowl": {
+      "name": "狼嚎",
+      "flavor": "一顶歌颂月亮的德鲁伊皮盔。"
+    },
+    "the-minotaur": {
+      "name": "牛头怪",
+      "flavor": "迷宫领主的斧头。"
+    },
+    "baranar-star": {
+      "name": "巴拉纳尔之星",
+      "flavor": "恶魔自己的锤。它粉碎义者和诅咒者。"
+    },
+    "metalgrid": {
+      "name": "金属格栅",
+      "flavor": "一个铁格子——纯粹的结构和保护。"
+    },
+    "demonhorn-edge-2": {
+      "name": "恶魔角之刃 (强化)",
+      "flavor": "更大制作的恶魔角头盔。"
+    },
+    "halaberd-reign-2": {
+      "name": "哈拉贝德的统治 (强化)",
+      "flavor": "无与伦比血统的野蛮人王冠。"
+    },
+    "messerschmidt-reaver": {
+      "name": "梅瑟施密特的掠夺者",
+      "flavor": "一把令人震惊射程的杰作双手剑。"
+    },
+    "tomb-reaver": {
+      "name": "陵墓掠夺者",
+      "flavor": "从国王墓中挖掘。它赋予无法衡量的力量。"
+    },
+    "azurewrath": {
+      "name": "碧蓝之怒",
+      "flavor": "天界战士之刃。恶魔在其光芒前逃离。"
+    },
+    "ethereal-edge": {
+      "name": "虚无之刃",
+      "flavor": "一半瞥见在这个世界，一半在另一个世界的刀刃。"
+    },
+    "the-gladiator-bane": {
+      "name": "角斗士的灾星",
+      "flavor": "穿入无数竞技场。它的敌人没有一个幸存。"
+    },
+    "the-cranium-basher": {
+      "name": "碎颅者",
+      "flavor": "它做名字所暗示的事。"
+    },
+    "the-cranium-basher-greater": {
+      "name": "碎颅者 (强化)",
+      "flavor": "一把无与伦比粉碎骨头力量的大锤。"
     }
   },
   "set": {
@@ -183,7 +1447,32 @@
     "trang-ouls-avatar": "唐古的化身",
     "aldurs-watchtower": "奥德的瞭望",
     "griswolds-legacy": "格里斯沃德的遗产",
-    "angelic-raiment": "天使战衣"
+    "angelic-raiment": "天使战衣",
+    "arcanna-tricks": "阿卡娜的诡计",
+    "arctic-gear": "极地装备",
+    "berserker-arsenal": "狂战士的武库",
+    "bul-kathos-children": "布卡索之子",
+    "cathan-traps": "卡山的陷阱",
+    "civerb-vestments": "希沃的法衣",
+    "cleglaw-brace": "克力格法的护具",
+    "cow-king-leathers": "牛王的皮甲",
+    "death-disguise": "死亡之伪装",
+    "disciple": "信徒",
+    "heaven-brethren": "天堂兄弟会",
+    "hsarus-defense": "萨拉斯的防御",
+    "hwanin-majesty": "华宁的威严",
+    "infernal-tools": "地狱之器",
+    "iratha-finery": "艾拉撒的华服",
+    "isenhart-armory": "伊森哈特的武备",
+    "mavina-battle-hymn": "玛维娜的战歌",
+    "milabrega-regalia": "米莱布雷加的盛装",
+    "naj-ancient-vestige": "纳杰的远古遗物",
+    "orphan-call": "孤儿的呼唤",
+    "sander-folly": "桑德的愚行",
+    "sazabi-grand-tribute": "萨泽比的盛大贡礼",
+    "sigon-complete-steel": "西贡的完全之钢",
+    "tancred-battlegear": "坦克雷德的战具",
+    "vidala-rig": "维达拉的装备"
   },
   "setPiece": {
     "angelic-raiment": {
@@ -191,6 +1480,192 @@
       "ring": "天使光环",
       "armor": "天使外衣",
       "weapon": "天使镰刀"
+    },
+    "aldurs-watchtower": {
+      "helm": "奥德之环·面目",
+      "armor": "奥德之环·甲胄",
+      "boots": "奥德之环·征途",
+      "weapon": "奥德之环·节奏"
+    },
+    "arcanna-tricks": {
+      "helm": "阿卡娜之头",
+      "weapon": "阿卡娜的法杖",
+      "armor": "阿卡娜之皮",
+      "amulet": "阿卡娜之魂"
+    },
+    "arctic-gear": {
+      "armor": "极地绑甲",
+      "belt": "极地束带",
+      "gloves": "极地拳套",
+      "helm": "极地号角"
+    },
+    "berserker-arsenal": {
+      "helm": "狂战士斧刃",
+      "armor": "狂战士盔甲",
+      "weapon": "狂战士战剑"
+    },
+    "bul-kathos-children": {
+      "weapon1": "布卡索神圣战刃",
+      "weapon2": "布卡索部落守护者"
+    },
+    "cathan-traps": {
+      "ring": "卡山的印记",
+      "amulet": "卡山的法则",
+      "armor": "卡山的铠甲",
+      "helm": "卡山的面罩",
+      "gloves": "卡山的护握"
+    },
+    "civerb-vestments": {
+      "weapon": "希沃之杖",
+      "shield": "希沃之章",
+      "amulet": "希沃之记"
+    },
+    "cleglaw-brace": {
+      "weapon": "克力格法长剑",
+      "shield": "克力格法之爪",
+      "gloves": "克力格法护手"
+    },
+    "cow-king-leathers": {
+      "helm": "牛王之角",
+      "armor": "牛王之躯",
+      "boots": "牛王之蹄"
+    },
+    "death-disguise": {
+      "sash": "死亡腰带",
+      "gloves": "死亡之手",
+      "armor": "死亡之网"
+    },
+    "disciple": {
+      "helm": "信徒之冠",
+      "armor": "信徒之胄",
+      "amulet": "信徒之颈",
+      "ring": "信徒之环",
+      "boots": "信徒之履",
+      "belt": "信徒之索",
+      "gloves": "信徒之掌"
+    },
+    "griswolds-legacy": {
+      "helm": "格里斯华尔德之冠",
+      "armor": "格里斯华尔德之心",
+      "shield": "格里斯华尔德之荣",
+      "weapon": "格里斯华尔德之刃"
+    },
+    "heaven-brethren": {
+      "helm": "天境光辉",
+      "armor": "天境恩赐",
+      "weapon": "天境灵杖",
+      "shield": "天境圣板"
+    },
+    "hsarus-defense": {
+      "belt": "萨拉斯的铁带",
+      "boots": "萨拉斯的行迹",
+      "shield": "萨拉斯的铁拳"
+    },
+    "hwanin-majesty": {
+      "helm": "华宁之辉",
+      "armor": "华宁之壳",
+      "weapon": "华宁之怒",
+      "belt": "华宁之福"
+    },
+    "immortal-king": {
+      "helm": "不朽之王的意志",
+      "armor": "不朽之王的魂之笼",
+      "gloves": "不朽之王的锻石",
+      "belt": "不朽之王的束缚",
+      "boots": "不朽之王的毅行",
+      "weapon": "不朽之王的石块粉碎者"
+    },
+    "infernal-tools": {
+      "helm": "地狱之颅",
+      "weapon": "地狱之握",
+      "gloves": "地狱之爪"
+    },
+    "iratha-finery": {
+      "amulet": "艾拉撒的项链",
+      "weapon": "艾拉撒的巨刃",
+      "gloves": "艾拉撒的铁手",
+      "helm": "艾拉撒的冠冕"
+    },
+    "isenhart-armory": {
+      "armor": "伊森哈特格栅",
+      "helm": "伊森哈特号角",
+      "weapon": "伊森哈特轻剑",
+      "shield": "伊森哈特石盾"
+    },
+    "mavina-battle-hymn": {
+      "helm": "玛维娜真视",
+      "armor": "玛维娜拥抱",
+      "belt": "玛维娜缠索",
+      "gloves": "玛维娜冰握",
+      "weapon": "玛维娜箴言"
+    },
+    "milabrega-regalia": {
+      "weapon": "米莱布雷加之杖",
+      "shield": "米莱布雷加之盾",
+      "armor": "米莱布雷加长袍",
+      "helm": "米莱布雷加冠冕"
+    },
+    "naj-ancient-vestige": {
+      "armor": "纳杰之光板甲",
+      "weapon": "纳杰之疑",
+      "helm": "纳杰之火环"
+    },
+    "natalyas-odium": {
+      "helm": "娜塔莉雅观察",
+      "armor": "娜塔莉雅之影",
+      "boots": "娜塔莉雅魂灵",
+      "weapon": "娜塔莉雅符记"
+    },
+    "orphan-call": {
+      "helm": "孤儿之角",
+      "armor": "孤儿之身",
+      "gloves": "孤儿之手",
+      "weapon": "孤儿之刃"
+    },
+    "sander-folly": {
+      "gloves": "桑德之握",
+      "boots": "桑德之行",
+      "weapon": "桑德之杖"
+    },
+    "sazabi-grand-tribute": {
+      "helm": "萨泽比之鬼面",
+      "armor": "萨泽比之躯壳",
+      "weapon": "萨泽比之瘟毒眼球"
+    },
+    "sigon-complete-steel": {
+      "helm": "西贡之颜面",
+      "armor": "西贡之庇护",
+      "gloves": "西贡之手套",
+      "belt": "西贡之腰带",
+      "boots": "西贡之长靴",
+      "shield": "西贡之盾卫"
+    },
+    "tal-rashas-wrappings": {
+      "amulet": "塔拉夏的辅助",
+      "armor": "塔拉夏的守护",
+      "helm": "塔拉夏的风暴之冠",
+      "belt": "塔拉夏的细腰",
+      "weapon": "塔拉夏的咒语球"
+    },
+    "tancred-battlegear": {
+      "amulet": "坦克雷德的护符",
+      "boots": "坦克雷德之骨",
+      "weapon": "坦克雷德之颅",
+      "armor": "坦克雷德之刺",
+      "helm": "坦克雷德之环"
+    },
+    "trang-ouls-avatar": {
+      "helm": "唐古之引",
+      "armor": "唐古之鳞",
+      "gloves": "唐古之握",
+      "belt": "唐古之裹",
+      "shield": "唐古之翼"
+    },
+    "vidala-rig": {
+      "boots": "维达拉之猛踏",
+      "amulet": "维达拉之环珠",
+      "armor": "维达拉之羽甲",
+      "weapon": "维达拉之捕集"
     }
   },
   "rune": {
@@ -253,6 +1728,16 @@
     "heart-of-the-oak": "橡树之心",
     "enigma": "谜团",
     "breath-of-the-dying": "垂死之息",
-    "grief": "悲伤"
+    "grief": "悲伤",
+    "infinity": "无限",
+    "beast": "野兽",
+    "chains-of-honor": "荣耀之链",
+    "bramble": "荆棘",
+    "last-wish": "最后希望",
+    "phoenix": "凤凰",
+    "dream": "梦境",
+    "hand-of-justice": "正义之手",
+    "exile": "流放",
+    "death": "死亡"
   }
 }

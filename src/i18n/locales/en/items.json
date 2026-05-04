@@ -115,46 +115,166 @@
     "weapon-axe": "Axe"
   },
   "unique": {
-    "shako": "Harlequin Crest",
-    "andariels-visage": "Andariel's Visage",
-    "crown-of-ages": "Crown of Ages",
-    "giant-skull": "Giant Skull",
-    "griffons-eye": "Griffon's Eye",
-    "skin-of-vipermagi": "Skin of the Vipermagi",
-    "que-hegan-wisdom": "Que-Hegan's Wisdom",
-    "tyraels-might": "Tyrael's Might",
-    "arkaines-valor": "Arkaine's Valor",
-    "chains-of-honor-armor": "Chains of Honor",
-    "dracs-grasp": "Dracul's Grasp",
-    "steelrend": "Steelrend",
-    "lavagout": "Lava Gout",
-    "magefist": "Magefist",
-    "war-traveler": "War Traveler",
-    "gore-riders": "Gore Rider",
-    "silkweave": "Silkweave",
-    "marrowwalk": "Marrowwalk",
-    "string-of-ears": "String of Ears",
-    "arachnids-mesh": "Arachnid Mesh",
-    "thundergods-vigor": "Thundergod's Vigor",
-    "verdungos-hearty": "Verdungo's Hearty Cord",
-    "stone-of-jordan": "Stone of Jordan",
-    "bul-kathos": "Bul-Kathos' Wedding Band",
-    "raven-frost": "Raven Frost",
-    "carrion-wind": "Carrion Wind",
-    "mara-kaleidoscope": "Mara's Kaleidoscope",
-    "highlords-wrath": "Highlord's Wrath",
-    "atmas-scarab": "Atma's Scarab",
-    "seraphs-hymn": "Seraph's Hymn",
-    "grandfather": "The Grandfather",
-    "doombringer": "Doombringer",
-    "breath-of-the-dying-uniq": "Breath of the Dying",
-    "windforce": "Windforce",
-    "buriza-do-kyanon": "Buriza-Do Kyanon",
-    "eaglehorn": "Eaglehorn",
-    "oculus": "The Oculus",
-    "griffons-strike": "Griffon's Strike",
-    "stormshield": "Stormshield",
-    "homunculus": "Homunculus",
+    "shako": {
+      "name": "Harlequin Crest",
+      "flavor": "Once worn by a jester whose laughter still echoes in its bells."
+    },
+    "andariels-visage": {
+      "name": "Andariel's Visage",
+      "flavor": "The face of the Maiden of Anguish, twisted in eternal pain."
+    },
+    "crown-of-ages": {
+      "name": "Crown of Ages",
+      "flavor": "The crown bears the weight of centuries of fallen kings."
+    },
+    "giant-skull": {
+      "name": "Giant Skull",
+      "flavor": "The bleached skull of a slain giant, an unsettling helm."
+    },
+    "griffons-eye": {
+      "name": "Griffon's Eye",
+      "flavor": "A diadem set with the eye of a great griffon."
+    },
+    "skin-of-vipermagi": {
+      "name": "Skin of the Vipermagi",
+      "flavor": "Stripped from the great serpent-mages of the deep jungles."
+    },
+    "que-hegan-wisdom": {
+      "name": "Que-Hegan's Wisdom",
+      "flavor": "The robes of a high Vizjerei sage."
+    },
+    "tyraels-might": {
+      "name": "Tyrael's Might",
+      "flavor": "Forged in the High Heavens by the Archangel of Justice himself."
+    },
+    "arkaines-valor": {
+      "name": "Arkaine's Valor",
+      "flavor": "The legendary armor of an ancient hero of the heroes ages."
+    },
+    "chains-of-honor-armor": {
+      "name": "Chains of Honor",
+      "flavor": "Bound in honor, oathsworn never to break."
+    },
+    "dracs-grasp": {
+      "name": "Dracul's Grasp",
+      "flavor": "The hand of a vampire lord, still hungering for blood."
+    },
+    "steelrend": {
+      "name": "Steelrend",
+      "flavor": "Gauntlets that shred steel as easily as cloth."
+    },
+    "lavagout": {
+      "name": "Lava Gout",
+      "flavor": "The Smiths own gauntlets, eternally burning."
+    },
+    "magefist": {
+      "name": "Magefist",
+      "flavor": "Worn by an apprentice of the Vizjerei. It bears no fear of fire."
+    },
+    "war-traveler": {
+      "name": "War Traveler",
+      "flavor": "These boots have walked the lands of every Sanctuary."
+    },
+    "gore-riders": {
+      "name": "Gore Rider",
+      "flavor": "Boots stained dark with the blood of countless foes."
+    },
+    "silkweave": {
+      "name": "Silkweave",
+      "flavor": "Boots woven from the silk of the Spider Queen."
+    },
+    "marrowwalk": {
+      "name": "Marrowwalk",
+      "flavor": "Necromantic greaves that drink the marrow of the slain."
+    },
+    "string-of-ears": {
+      "name": "String of Ears",
+      "flavor": "A grim trophy belt strung with the ears of fallen demons."
+    },
+    "arachnids-mesh": {
+      "name": "Arachnid Mesh",
+      "flavor": "Spun from the silk of the Spider Mother of the Pandemonium."
+    },
+    "thundergods-vigor": {
+      "name": "Thundergod's Vigor",
+      "flavor": "Belt forged from the lightning of the Skovos heavens."
+    },
+    "verdungos-hearty": {
+      "name": "Verdungo's Hearty Cord",
+      "flavor": "A belt that strengthens the bearer with every breath."
+    },
+    "stone-of-jordan": {
+      "name": "Stone of Jordan",
+      "flavor": "A ring of legend, the dream of every adventurer."
+    },
+    "bul-kathos": {
+      "name": "Bul-Kathos' Wedding Band",
+      "flavor": "Worn by the ancient warlord himself. It whispers of strength and vitality."
+    },
+    "raven-frost": {
+      "name": "Raven Frost",
+      "flavor": "A ring of pure cold, hewn from the heart of an icy storm."
+    },
+    "carrion-wind": {
+      "name": "Carrion Wind",
+      "flavor": "It carries the stench of the Burial Grounds."
+    },
+    "mara-kaleidoscope": {
+      "name": "Mara's Kaleidoscope",
+      "flavor": "Beloved of mages, a tiny window onto every magic."
+    },
+    "highlords-wrath": {
+      "name": "Highlord's Wrath",
+      "flavor": "The sigil of the Highlord. Lightning sings in its chains."
+    },
+    "atmas-scarab": {
+      "name": "Atma's Scarab",
+      "flavor": "Worn by a tavern-keeper who fled a burning desert city."
+    },
+    "seraphs-hymn": {
+      "name": "Seraph's Hymn",
+      "flavor": "The angels sing of judgment, and the wicked tremble."
+    },
+    "grandfather": {
+      "name": "The Grandfather",
+      "flavor": "A sword wielded by an ancient hero. The blade alone weighs more than most men."
+    },
+    "doombringer": {
+      "name": "Doombringer",
+      "flavor": "A sword that hums with the death-cries of all who have fallen to it."
+    },
+    "breath-of-the-dying-uniq": {
+      "name": "Breath of the Dying",
+      "flavor": "The last breath of the slain rises from this blade."
+    },
+    "windforce": {
+      "name": "Windforce",
+      "flavor": "Imbued with the howling tempest of the Plains of Despair."
+    },
+    "buriza-do-kyanon": {
+      "name": "Buriza-Do Kyanon",
+      "flavor": "A weapon of legend, said to pierce the heavens."
+    },
+    "eaglehorn": {
+      "name": "Eaglehorn",
+      "flavor": "The bow of an ancient hunter, said to never miss its mark."
+    },
+    "oculus": {
+      "name": "The Oculus",
+      "flavor": "A swirling crystal orb, said to peer beyond the veil between worlds."
+    },
+    "griffons-strike": {
+      "name": "Griffon's Strike",
+      "flavor": "A maul charged with the fury of a thunderstorm."
+    },
+    "stormshield": {
+      "name": "Stormshield",
+      "flavor": "Forged in the heart of a great tempest, this shield turns aside the worst blows."
+    },
+    "homunculus": {
+      "name": "Homunculus",
+      "flavor": "A grotesque doll, unsettlingly aware. The dark arts hum within."
+    },
     "pelta-lunata": {
       "name": "Pelta Lunata",
       "flavor": "A crescent-moon buckler from the Skovos Isles."
@@ -174,6 +294,1150 @@
     "hotspur": {
       "name": "Hotspur",
       "flavor": "A rogue's lucky boots. They ward off flames."
+    },
+    "the-gnasher": {
+      "name": "The Gnasher",
+      "flavor": "A small axe with a vicious bite."
+    },
+    "hand-of-broc": {
+      "name": "The Hand of Broc",
+      "flavor": "Calloused leather that drinks poison harmlessly."
+    },
+    "torch-of-iros": {
+      "name": "Torch of Iro",
+      "flavor": "A wand that always burns at the tip."
+    },
+    "blood-crescent": {
+      "name": "Blood Crescent",
+      "flavor": "A curved blade that drinks deep."
+    },
+    "felloak": {
+      "name": "Felloak",
+      "flavor": "A burning club of charred oak."
+    },
+    "greyform": {
+      "name": "Greyform",
+      "flavor": "Plain grey wool that turns aside the cold."
+    },
+    "lenymo": {
+      "name": "Lenymo",
+      "flavor": "A spellweaver's sash, threaded with mana."
+    },
+    "pluckeye": {
+      "name": "Pluckeye",
+      "flavor": "A keen-eyed hunter's first bow."
+    },
+    "axe-of-fechmar": {
+      "name": "Axe of Fechmar",
+      "flavor": "An icy hand-axe of barbaric make."
+    },
+    "coif-of-glory": {
+      "name": "Coif of Glory",
+      "flavor": "A worn coif blessed by a long-dead king."
+    },
+    "deathspade": {
+      "name": "Deathspade",
+      "flavor": "A spade-headed hatchet, dull but heavy."
+    },
+    "gorefoot": {
+      "name": "Gorefoot",
+      "flavor": "Bloodstained boots that quicken every stride."
+    },
+    "skewer-of-krintiz": {
+      "name": "Skewer of Krintiz",
+      "flavor": "A thin, vicious thrusting blade."
+    },
+    "nagelring": {
+      "name": "Nagelring",
+      "flavor": "The merchant's favorite — more gold means more treasures to find."
+    },
+    "stoutnail": {
+      "name": "Stoutnail",
+      "flavor": "A simple iron-banded club. Reliable."
+    },
+    "blinkbat-form": {
+      "name": "Blinkbat's Form",
+      "flavor": "Stitched of bat-leather; quick and silent."
+    },
+    "bloodfist": {
+      "name": "Bloodfist",
+      "flavor": "Soaked in the blood of past battles. Grants raw vitality."
+    },
+    "duskdeep": {
+      "name": "Duskdeep",
+      "flavor": "A helm that drinks the dusk."
+    },
+    "shadowfang": {
+      "name": "Shadowfang",
+      "flavor": "A cold blade carved from frost-iron."
+    },
+    "snakecord": {
+      "name": "Snakecord",
+      "flavor": "A live serpent draped at the waist — calmed by old magic."
+    },
+    "gleamscythe": {
+      "name": "Gleamscythe",
+      "flavor": "A scimitar polished to a moonlight gleam."
+    },
+    "witherstring": {
+      "name": "Witherstring",
+      "flavor": "Its string is sinew — strong and sour."
+    },
+    "crushflange": {
+      "name": "Crushflange",
+      "flavor": "A flanged mace that pulps any armor."
+    },
+    "howltusk": {
+      "name": "Howltusk",
+      "flavor": "Tusks of a slain boar-king set in iron."
+    },
+    "the-centurion": {
+      "name": "The Centurion",
+      "flavor": "An old soldier's mail, well-traveled."
+    },
+    "umbral-disk": {
+      "name": "Umbral Disk",
+      "flavor": "A shadow-forged disk — magic glances aside."
+    },
+    "bloodrise": {
+      "name": "Bloodrise",
+      "flavor": "It seems to grow heavier with every kill."
+    },
+    "chance-guards": {
+      "name": "Chance Guards",
+      "flavor": "Thieves' gloves — fortune just sticks to them."
+    },
+    "griswold-edge": {
+      "name": "Griswold's Edge",
+      "flavor": "The blacksmith of Tristram's signature blade."
+    },
+    "manald-heal": {
+      "name": "Manald Heal",
+      "flavor": "A ring of regeneration stolen from the temple of Mana."
+    },
+    "rasperose": {
+      "name": "Raven Claw",
+      "flavor": "A raven's claw nocks each arrow."
+    },
+    "tarnhelm": {
+      "name": "Tarnhelm",
+      "flavor": "A humble cap that nevertheless draws fortune to the wearer."
+    },
+    "eye-of-etlich": {
+      "name": "The Eye of Etlich",
+      "flavor": "A pale gem that watches from the wearer's chest."
+    },
+    "treads-of-cthon": {
+      "name": "Treads of Cthon",
+      "flavor": "Leaves no print, no matter the soil."
+    },
+    "bloodrise-2": {
+      "name": "Bloodrise (Mace)",
+      "flavor": "A heavy bloodied club, well-used."
+    },
+    "nokozan-relic": {
+      "name": "Nokozan Relic",
+      "flavor": "A relic from a long-buried fire-temple."
+    },
+    "twitchthroe": {
+      "name": "Twitchthroe",
+      "flavor": "Restless armor that fidgets in battle."
+    },
+    "lance-guard": {
+      "name": "Lance Guard",
+      "flavor": "A lancer's pavise. Punishing to charge."
+    },
+    "rusthandle-scepter": {
+      "name": "Rusty Scepter",
+      "flavor": "A holy scepter, neglected but still potent."
+    },
+    "the-dragon-chang": {
+      "name": "The Dragon Chang",
+      "flavor": "A spear-tip wreathed in lazy flame."
+    },
+    "doomslinger": {
+      "name": "Doomslinger",
+      "flavor": "An apprentice's first crossbow — surprisingly potent."
+    },
+    "maelstrom": {
+      "name": "Maelstrom",
+      "flavor": "A spiraling rod that hums with storm."
+    },
+    "hawkmail": {
+      "name": "Hawkmail",
+      "flavor": "Light scales, swift as a hawk."
+    },
+    "darkglow": {
+      "name": "Darkglow",
+      "flavor": "It glimmers with a strange, soft light."
+    },
+    "nightsmoke": {
+      "name": "Nightsmoke",
+      "flavor": "It smolders faintly in the dark."
+    },
+    "rogue-bow": {
+      "name": "Rogue's Bow",
+      "flavor": "A scout-rogue's well-tested longbow."
+    },
+    "wall-of-eyeless": {
+      "name": "Wall of the Eyeless",
+      "flavor": "A dark mirror that watches back."
+    },
+    "stormchaser": {
+      "name": "Stormchaser",
+      "flavor": "Lightning leaps from its rim to strike attackers."
+    },
+    "the-general-tan-do-li-ga": {
+      "name": "The General's Tan Do Li Ga",
+      "flavor": "A general's heirloom — well-traveled, well-bloodied."
+    },
+    "the-general-mace": {
+      "name": "The Generals' Mace",
+      "flavor": "A general's flail-mace, parade-polished."
+    },
+    "wormskull": {
+      "name": "Wormskull",
+      "flavor": "Crawling with carrion magic. It grants unholy vitality."
+    },
+    "goblin-toe": {
+      "name": "Goblin Toe",
+      "flavor": "Squashed-tip boots, oddly sturdy."
+    },
+    "iceblink": {
+      "name": "Iceblink",
+      "flavor": "Frosted plate that numbs an attacker's grip."
+    },
+    "soulflay": {
+      "name": "Soulflay",
+      "flavor": "It severs more than flesh."
+    },
+    "knell-striker-scepter": {
+      "name": "Striking Sigil",
+      "flavor": "Glyph-engraved scepter — strikes both flesh and faith."
+    },
+    "magefist-gauntlet": {
+      "name": "Magefist Gauntlet",
+      "flavor": "A larger Vizjerei apprentice glove — fire-laced."
+    },
+    "sparking-mail": {
+      "name": "Sparking Mail",
+      "flavor": "Static crackles between every link."
+    },
+    "stormguild": {
+      "name": "Stormguild",
+      "flavor": "A guildsmen's mark, charged with storm."
+    },
+    "jade-tan-do": {
+      "name": "The Jade Tan Do",
+      "flavor": "A jade-edged dirk for clean, quiet kills."
+    },
+    "heavenly-garb": {
+      "name": "Heavenly Garb",
+      "flavor": "A robe spun from sunset cloth."
+    },
+    "gravenspine": {
+      "name": "Gravenspine",
+      "flavor": "Carved from the spine of a long-dead lich."
+    },
+    "hellplague": {
+      "name": "Hellplague",
+      "flavor": "A blade that fester wounds with every cut."
+    },
+    "razor-stitch": {
+      "name": "Razortail Pike",
+      "flavor": "A barbed pike — leaves a wound that never closes."
+    },
+    "spectral-shard": {
+      "name": "Spectral Shard",
+      "flavor": "A glassy ghost-blade. It cuts through wards."
+    },
+    "stormstrike": {
+      "name": "Stormstrike",
+      "flavor": "Each loosed arrow crackles with thunder."
+    },
+    "mahim-oak-curio": {
+      "name": "The Mahim-Oak Curio",
+      "flavor": "A curio whittled from a holy oak."
+    },
+    "undead-crown": {
+      "name": "Undead Crown",
+      "flavor": "Worn by the puppet-king of a forgotten crypt."
+    },
+    "venom-ward": {
+      "name": "Venom Ward",
+      "flavor": "Steeped in antitoxins by a desert druid."
+    },
+    "wizendraw": {
+      "name": "Wizendraw",
+      "flavor": "An ancient bow — its string never warps."
+    },
+    "black-cleft": {
+      "name": "Black Cleft",
+      "flavor": "A jagged blade of frostbitten iron."
+    },
+    "goldwrap": {
+      "name": "Goldwrap",
+      "flavor": "A merchant-prince's gilded sash."
+    },
+    "hellclap": {
+      "name": "Hellclap",
+      "flavor": "Each arrow bursts on impact."
+    },
+    "ichorsting": {
+      "name": "Ichorsting",
+      "flavor": "A barbed axe — wounds fester for days."
+    },
+    "ring-of-the-leech": {
+      "name": "Ring of the Leech",
+      "flavor": "A ring fashioned from a vampire's tooth."
+    },
+    "boneflesh": {
+      "name": "Boneflesh",
+      "flavor": "A grim coat of bone-plates lashed with sinew."
+    },
+    "ironstone": {
+      "name": "Ironstone",
+      "flavor": "Stone-headed, iron-banded — primitive but lethal."
+    },
+    "peasant-crown": {
+      "name": "Peasant Crown",
+      "flavor": "A simple circlet that brought a serf to glory."
+    },
+    "silks-of-the-victor": {
+      "name": "Silks of the Victor",
+      "flavor": "Worn by champions of the arena."
+    },
+    "the-spirit-shroud": {
+      "name": "The Spirit Shroud",
+      "flavor": "A whisper-thin robe haunted by past wearers."
+    },
+    "visceratuant": {
+      "name": "Visceratuant",
+      "flavor": "A spell-shield carved with binding glyphs."
+    },
+    "frostburn": {
+      "name": "Frostburn",
+      "flavor": "Frozen gauntlets that amplify both mana and chill."
+    },
+    "rattlecage": {
+      "name": "Rattlecage",
+      "flavor": "Skull-charms clatter as you move."
+    },
+    "tearhaunch": {
+      "name": "Tearhaunch",
+      "flavor": "A pilgrim's worn boots — quick and tireless."
+    },
+    "the-fetid-sprinkler": {
+      "name": "The Fetid Sprinkler",
+      "flavor": "A clergy's foul-water sprinkler — repurposed."
+    },
+    "venom-grip": {
+      "name": "Venom Grip",
+      "flavor": "Snakeskin gauntlets that drip with venom."
+    },
+    "whistan-guard": {
+      "name": "Whitstan's Guard",
+      "flavor": "A paladin's ward. It deflects blows with holy resilience."
+    },
+    "ume-lament": {
+      "name": "Ume's Lament",
+      "flavor": "A widow's wand — it weeps for the dead."
+    },
+    "culwens-point": {
+      "name": "Culwen's Point",
+      "flavor": "A smith's masterpiece — perfectly balanced."
+    },
+    "moser-circle": {
+      "name": "Moser's Blessed Circle",
+      "flavor": "Engraved with protective runes. It wards off all harm."
+    },
+    "ribcracker": {
+      "name": "Ribcracker",
+      "flavor": "A staff that finds the gaps between ribs."
+    },
+    "riphook": {
+      "name": "Riphook",
+      "flavor": "Hooked-tip arrows that tear on withdrawal."
+    },
+    "rockfleece": {
+      "name": "Rockfleece",
+      "flavor": "Granite-fiber wool. Heavy but indestructible."
+    },
+    "rockstopper": {
+      "name": "Rockstopper",
+      "flavor": "Forged of the sturdiest stone."
+    },
+    "skin-of-flayed-one": {
+      "name": "Skin of the Flayed One",
+      "flavor": "It still twitches when blood is shed near it."
+    },
+    "the-impaler": {
+      "name": "The Impaler",
+      "flavor": "A spiked pike that runs foes through."
+    },
+    "dark-clan-crusher": {
+      "name": "Dark Clan Crusher",
+      "flavor": "A clan-mace blackened with old soot."
+    },
+    "kinemil-awl": {
+      "name": "Kinemil's Awl",
+      "flavor": "A red-hot point that never cools."
+    },
+    "razortail": {
+      "name": "Razortail",
+      "flavor": "Crafted from a demon's spine. Arrows and bolts pierce through foes."
+    },
+    "iron-pelt": {
+      "name": "Iron Pelt",
+      "flavor": "A tribe-chief's plate, banded in cold iron."
+    },
+    "kelpie-snare": {
+      "name": "Kelpie Snare",
+      "flavor": "A jagged hook from the cold deeps."
+    },
+    "razor-tine": {
+      "name": "Razor's Tine",
+      "flavor": "A vicious bearded axe with a hair-thin edge."
+    },
+    "the-nokozan": {
+      "name": "The Nokozan",
+      "flavor": "A relic from a buried fire-temple."
+    },
+    "blacktongue": {
+      "name": "Blacktongue",
+      "flavor": "A tongue-shaped blade, drips with venom."
+    },
+    "blade-of-ali-baba": {
+      "name": "Blade of Ali Baba",
+      "flavor": "A thief's blade — even the dust turns to coin."
+    },
+    "blastbark": {
+      "name": "Blastbark",
+      "flavor": "A bark-yew bow that shatters wards."
+    },
+    "greaves-of-march": {
+      "name": "Greaves of March",
+      "flavor": "A long-marcher's boots — tireless underfoot."
+    },
+    "langer-briser": {
+      "name": "Langer Briser",
+      "flavor": "An old siege-bow, repurposed."
+    },
+    "skystrike": {
+      "name": "Skystrike",
+      "flavor": "An archer-king's bow — calls down lightning."
+    },
+    "stealskull": {
+      "name": "Stealskull",
+      "flavor": "A thief's prized helm — fortune flocks to its wearer."
+    },
+    "the-diggler": {
+      "name": "The Diggler",
+      "flavor": "A pickaxe-dagger — pries armor open."
+    },
+    "crow-caw": {
+      "name": "Crow Caw",
+      "flavor": "Black feathers fan out at every sudden move."
+    },
+    "gloom-trap": {
+      "name": "Gloom's Trap",
+      "flavor": "A scholar's sash — knowledge weighs heavy."
+    },
+    "goldskin": {
+      "name": "Goldskin",
+      "flavor": "Gilded with the sweat of a covetous king."
+    },
+    "knell-striker": {
+      "name": "Knell Striker",
+      "flavor": "Strikes a sour, ringing toll."
+    },
+    "ripsaw": {
+      "name": "Ripsaw",
+      "flavor": "Toothed iron — it tears flesh into ribbons."
+    },
+    "the-meatscraper": {
+      "name": "The Meat Scraper",
+      "flavor": "A butcher's blade — meant for unfair fights."
+    },
+    "coldkill": {
+      "name": "Coldkill",
+      "flavor": "An axe of permanent winter."
+    },
+    "hone-sundan": {
+      "name": "Hone Sundan",
+      "flavor": "A bone-shaped polearm, brittle-looking but deadly."
+    },
+    "saracen-chance": {
+      "name": "Saracen's Chance",
+      "flavor": "A desert wanderer's lucky charm."
+    },
+    "blackleach-staff": {
+      "name": "Blackleach (Staff)",
+      "flavor": "A leech-shaped polearm draining the unwary."
+    },
+    "blackleach-blade": {
+      "name": "Blackleach Blade",
+      "flavor": "A leech-shaped blade that drinks blood."
+    },
+    "darksight-helm": {
+      "name": "Darksight Helm",
+      "flavor": "Casts an eerie veil over the wearer's face."
+    },
+    "gravepalm": {
+      "name": "Gravepalm",
+      "flavor": "Necromantic gloves — your touch withers the living."
+    },
+    "shaftstop": {
+      "name": "Shaftstop",
+      "flavor": "Shrugs off arrows like raindrops."
+    },
+    "the-vile-husk": {
+      "name": "The Vile Husk",
+      "flavor": "A hollow, husk-light blade humming with poison."
+    },
+    "bladebuckle": {
+      "name": "Bladebuckle",
+      "flavor": "Razor-sharp buckle — cuts grasping hands."
+    },
+    "butcher-pupil": {
+      "name": "Butcher's Pupil",
+      "flavor": "A meat-cleaver as taught by the Butcher of Tristram."
+    },
+    "the-meat-scraper-2": {
+      "name": "The Meat Scraper (Pole)",
+      "flavor": "A bladed pole that scrapes corpses clean."
+    },
+    "the-patriarch": {
+      "name": "The Patriarch",
+      "flavor": "A clan-elder's sword, wisdom in steel."
+    },
+    "the-scalper": {
+      "name": "The Scalper",
+      "flavor": "Worn smooth by countless bounties."
+    },
+    "spirit-ward": {
+      "name": "Spirit Ward",
+      "flavor": "Bound with ancestral spirits. It deflects magical and physical harm."
+    },
+    "the-atlantean": {
+      "name": "The Atlantean Sword",
+      "flavor": "A sword of the drowned legions."
+    },
+    "blackhorn-face": {
+      "name": "Blackhorn's Face",
+      "flavor": "Twin black horns rise from the brow."
+    },
+    "duriel-shell": {
+      "name": "Duriel's Shell",
+      "flavor": "Armor forged from the carapace of the Lord of Pain himself."
+    },
+    "lidless-wall": {
+      "name": "Lidless Wall",
+      "flavor": "A sorceress's shield that never blinks. Grants arcane clarity."
+    },
+    "rusthandle": {
+      "name": "Rusthandle",
+      "flavor": "Looks ruined, hits like a falling tower."
+    },
+    "spire-of-honor": {
+      "name": "Spire of Honor",
+      "flavor": "A polearm tipped with a paladin's signet."
+    },
+    "vampiregaze": {
+      "name": "Vampire Gaze",
+      "flavor": "It feeds on suffering and offers stolen life in return."
+    },
+    "arreat-face": {
+      "name": "Arreat's Face",
+      "flavor": "The war-mask of Mount Arreat's guardians. Strength and savagery incarnate."
+    },
+    "bartuc-cut-throat": {
+      "name": "Bartuc's Cut-Throat",
+      "flavor": "A demon-lord's twin claws — quick as thought."
+    },
+    "herald-of-zakarum": {
+      "name": "Herald of Zakarum",
+      "flavor": "A paladin's auric shield — radiant gold."
+    },
+    "jalal-mane": {
+      "name": "Jalal's Mane",
+      "flavor": "Lion-mane druid pelt, fierce and noble."
+    },
+    "lycanders-aim": {
+      "name": "Lycander's Aim",
+      "flavor": "An Amazon-queen's hunting bow."
+    },
+    "lycanders-flank": {
+      "name": "Lycander's Flank",
+      "flavor": "An Amazon-queen's signature pike."
+    },
+    "steelclash": {
+      "name": "Steelclash",
+      "flavor": "Rings like a bell when struck."
+    },
+    "the-oculus-orb": {
+      "name": "The Oculus (Orb)",
+      "flavor": "An orb of swirling crystal — sight beyond sight."
+    },
+    "titan-revenge": {
+      "name": "Titan's Revenge",
+      "flavor": "A javelin that returns to its bearer's hand."
+    },
+    "earth-shaker": {
+      "name": "Earth Shaker",
+      "flavor": "Strikes the earth with a thunderclap."
+    },
+    "the-collector": {
+      "name": "The Collector",
+      "flavor": "Worn by a noble collector of relics."
+    },
+    "gerke-sanctuary": {
+      "name": "Gerke's Sanctuary",
+      "flavor": "A massive ward blessed by a fallen paladin."
+    },
+    "valkyrie-wing": {
+      "name": "Valkyrie Wing",
+      "flavor": "A winged helm worn by a fallen battle-maid."
+    },
+    "bverrit-keep": {
+      "name": "Bverrit Keep",
+      "flavor": "A keep-shaped tower shield, fire-tempered."
+    },
+    "dwarf-star": {
+      "name": "Dwarf Star",
+      "flavor": "A tiny ruby cut by dwarven hands."
+    },
+    "pus-spitter": {
+      "name": "Pus Spitter",
+      "flavor": "Bolts dipped in foul ichor."
+    },
+    "goldstrike-arch": {
+      "name": "Goldstrike Arch",
+      "flavor": "A merchant-king's bow. It turns kills into coins."
+    },
+    "blackhand-key": {
+      "name": "Blackhand Key",
+      "flavor": "A skull-key set into a necromancer's totem."
+    },
+    "ghoulhide": {
+      "name": "Ghoulhide",
+      "flavor": "Stripped from a ghoul-king. They still hunger."
+    },
+    "immortal-king-helm-uniq": {
+      "name": "Immortal King Cap (replica)",
+      "flavor": "A reproduction of an Immortal King's circlet."
+    },
+    "kuko-shakaku": {
+      "name": "Kuko Shakaku",
+      "flavor": "A swift Skovos longbow."
+    },
+    "soul-drainer": {
+      "name": "Soul Drainer",
+      "flavor": "Each strike saps the life and mana of foes, feeding the wearer."
+    },
+    "crown-of-thieves": {
+      "name": "Crown of Thieves",
+      "flavor": "A crown stolen from a king who stole it first."
+    },
+    "demon-machine": {
+      "name": "Demon Machine",
+      "flavor": "A crossbow possessed by a demon's spirit. It fires with unholy speed."
+    },
+    "frostburn-gauntlet": {
+      "name": "Frostburn Gauntlet",
+      "flavor": "A frost-burned gauntlet — chills the wearer's foes."
+    },
+    "infernostride": {
+      "name": "Infernostride",
+      "flavor": "Each step leaves a cinder smoldering."
+    },
+    "islestrike": {
+      "name": "Islestrike",
+      "flavor": "An island-crusher's axe."
+    },
+    "spirit-forge": {
+      "name": "Spirit Forge",
+      "flavor": "Quenched in the tears of a battle-spirit."
+    },
+    "waterwalk": {
+      "name": "Waterwalk",
+      "flavor": "They glide over water as easily as land."
+    },
+    "crainte-vomir": {
+      "name": "Crainte Vomir",
+      "flavor": "A baroque blade dripping with menace."
+    },
+    "crescent-moon": {
+      "name": "Crescent Moon",
+      "flavor": "Curved silver, charged with thunder."
+    },
+    "hellplague-greater": {
+      "name": "Hellplague (Greater)",
+      "flavor": "A blade that festers wounds with fire and rot."
+    },
+    "homunculus-helm": {
+      "name": "Homunculus (Head)",
+      "flavor": "A shrunken-head fetish, oddly aware."
+    },
+    "pierre-tombale-couant": {
+      "name": "Pierre Tombale Couant",
+      "flavor": "A grave-marker-shaped halberd."
+    },
+    "stormeye": {
+      "name": "Stormeye",
+      "flavor": "A storm-spawned warhammer."
+    },
+    "atlantean": {
+      "name": "The Atlantean",
+      "flavor": "Salt-eaten plate from a sunken empire."
+    },
+    "cat-eye": {
+      "name": "The Cat's Eye",
+      "flavor": "A feline gem — sharp eyes, swift paws."
+    },
+    "woestave": {
+      "name": "Woestave",
+      "flavor": "A staff of layered curses."
+    },
+    "nosferatu-coil": {
+      "name": "Nosferatu's Coil",
+      "flavor": "A vampire-lord's belt — drains the unwary."
+    },
+    "black-hades": {
+      "name": "Black Hades",
+      "flavor": "Forged in the cold black heart of a volcano."
+    },
+    "hexfire": {
+      "name": "Hexfire",
+      "flavor": "A cursed scimitar — fire surges through every cut."
+    },
+    "stoneraven": {
+      "name": "Stoneraven",
+      "flavor": "A raven-stone polearm hewn by giants."
+    },
+    "the-battlebranch": {
+      "name": "The Battlebranch",
+      "flavor": "A young oak hewn into a war-pole."
+    },
+    "veil-of-steel": {
+      "name": "Veil of Steel",
+      "flavor": "An indomitable steel mask that turns aside all elements."
+    },
+    "frostwind": {
+      "name": "Frostwind",
+      "flavor": "An icy blade that freezes foes mid-swing."
+    },
+    "bing-sz-wang": {
+      "name": "Bing Sz Wang",
+      "flavor": "Frosted katana — its edge never melts."
+    },
+    "buriza-do-kyanon-cb": {
+      "name": "Buriza-Do Kyanon (Crossbow)",
+      "flavor": "An ice-bolt crossbow of devastating reach."
+    },
+    "corpsemourn": {
+      "name": "Corpsemourn",
+      "flavor": "It weeps for the dead it has carried into battle."
+    },
+    "endlesshail": {
+      "name": "Endlesshail",
+      "flavor": "Looses arrows in a frozen rain."
+    },
+    "gore-burnt-skull": {
+      "name": "Goreburnt Skull",
+      "flavor": "A barbarian's trophy-helm, scarred by hellfire."
+    },
+    "snowclash": {
+      "name": "Snowclash",
+      "flavor": "A glacier-forged belt that radiates a chill."
+    },
+    "string-of-ears-greater": {
+      "name": "String of Ears (Greater)",
+      "flavor": "A grand grim trophy — hung with mightier ears."
+    },
+    "tiamat-rebuke": {
+      "name": "Tiamat's Rebuke",
+      "flavor": "A dragon's hide stretched on a great frame."
+    },
+    "blackhorn-face-2": {
+      "name": "Blackhorn's Face (Greater)",
+      "flavor": "A larger version of the dread mask."
+    },
+    "homunculus-orb": {
+      "name": "Homunculus (Orb)",
+      "flavor": "A fetus-shaped orb that whispers spells."
+    },
+    "pompe-wrath": {
+      "name": "Pompeii's Wrath",
+      "flavor": "Tempered in volcanic ash."
+    },
+    "the-chieftain": {
+      "name": "The Chieftain",
+      "flavor": "A great axe of clan-leadership, well-respected."
+    },
+    "steel-driver": {
+      "name": "Steeldriver",
+      "flavor": "A maul-pole that hammers steel into the earth."
+    },
+    "bul-kathos-wedding-band": {
+      "name": "Bul-Kathos' Wedding Band",
+      "flavor": "Worn by the ancient warlord himself. It whispers of strength and vitality."
+    },
+    "guardian-naga": {
+      "name": "Guardian Naga",
+      "flavor": "Snake-engraved haft, venom-edged."
+    },
+    "shadow-killer": {
+      "name": "Shadow Killer",
+      "flavor": "An assassin's signature blade — silent and certain."
+    },
+    "spike-thorn": {
+      "name": "Spike Thorn",
+      "flavor": "Bristling iron thorns punish the bold."
+    },
+    "stormlash": {
+      "name": "Stormlash",
+      "flavor": "A scourge that channels the fury of storms."
+    },
+    "athulua-rule": {
+      "name": "Athulua's Rule",
+      "flavor": "An ancient queen's two-handed scepter."
+    },
+    "the-vile-husk-armor": {
+      "name": "Husk of Bones",
+      "flavor": "Bone-plates lashed with sinew — eerily light."
+    },
+    "radament-sphere": {
+      "name": "Radament's Sphere",
+      "flavor": "A mummified scarab-mage's funerary disk."
+    },
+    "suicide-branch": {
+      "name": "Suicide Branch",
+      "flavor": "A withered branch that pleads to be broken."
+    },
+    "the-vile-husk-2": {
+      "name": "The Vile Husk II",
+      "flavor": "A second blade of the same accursed lineage."
+    },
+    "blackoak-shield": {
+      "name": "Blackoak Shield",
+      "flavor": "A druidic shield carved from the heartwood of a cursed oak."
+    },
+    "heaven-light": {
+      "name": "Heaven's Light",
+      "flavor": "A holy scepter blessed by angels. Paladins wield it with devotion."
+    },
+    "hellmouth": {
+      "name": "Hellmouth",
+      "flavor": "Tongues of flame lick from every fingertip."
+    },
+    "vampire-gaze-greater": {
+      "name": "Vampire Gaze (Greater)",
+      "flavor": "A reforged version of the cursed gaze."
+    },
+    "firelizard-talon": {
+      "name": "Firelizard's Talons",
+      "flavor": "Lava-lizard claws that scorch the air."
+    },
+    "steel-shade": {
+      "name": "Steel Shade",
+      "flavor": "A shadowy helm forged of moon-touched steel."
+    },
+    "steelshade": {
+      "name": "Steelshade",
+      "flavor": "A helm of tempered shadow-steel. It deflects both blows and magic."
+    },
+    "the-redeemer": {
+      "name": "The Redeemer",
+      "flavor": "A holy scepter that redeems the wicked through fire."
+    },
+    "boneshade": {
+      "name": "Boneshade",
+      "flavor": "A bone-white wand cut from a saint's femur."
+    },
+    "demon-limb": {
+      "name": "Demon Limb",
+      "flavor": "Ripped from a fallen pit lord."
+    },
+    "bonehew": {
+      "name": "Bonehew",
+      "flavor": "A bone-haft polearm — fast, vicious."
+    },
+    "cure-all": {
+      "name": "Cure-All",
+      "flavor": "A potion-maker's helm — heals all manner of ills."
+    },
+    "sandstorm-trek": {
+      "name": "Sandstorm Trek",
+      "flavor": "Worn across countless deserts. Grants stamina and resilience."
+    },
+    "warlord-trust": {
+      "name": "Warlord's Trust",
+      "flavor": "A trusted lieutenant's reward."
+    },
+    "carin-shard": {
+      "name": "Carin Shard",
+      "flavor": "A wand of bound spirit-glass."
+    },
+    "djinn-slayer": {
+      "name": "Djinn Slayer",
+      "flavor": "A scimitar tempered in genie-fire."
+    },
+    "leviathan": {
+      "name": "Leviathan",
+      "flavor": "An oceanic titan's hide. It grants near-immunity to the elements."
+    },
+    "steel-carapace": {
+      "name": "Steel Carapace",
+      "flavor": "An insectoid plate of overlapping steel."
+    },
+    "steel-pillar": {
+      "name": "Steel Pillar",
+      "flavor": "It's less a weapon and more a column."
+    },
+    "rising-sun": {
+      "name": "The Rising Sun",
+      "flavor": "A sun-warm pendant. Demons burn at its glow."
+    },
+    "widowmaker": {
+      "name": "Widowmaker",
+      "flavor": "A widow-bow — leaves no husband walking."
+    },
+    "astreon-iron-ward": {
+      "name": "Astreon's Iron Ward",
+      "flavor": "A legendary warlord's mace. It crushes both armor and bone."
+    },
+    "death-web": {
+      "name": "Death's Web",
+      "flavor": "A necromancer's ultimate wand. Poison courses through every hex."
+    },
+    "hellslayer": {
+      "name": "Hellslayer",
+      "flavor": "An axe forged in the depths of the Burning Hells."
+    },
+    "jade-talon": {
+      "name": "Jade Talon",
+      "flavor": "A jade-edged claw — every cut is venom."
+    },
+    "lightsabre": {
+      "name": "Lightsabre",
+      "flavor": "A sword of pure lightning. It crackles with every swing."
+    },
+    "cerebus-bite": {
+      "name": "Cerebus' Bite",
+      "flavor": "A three-headed wolf-pelt for a druid."
+    },
+    "darkforce-spawn": {
+      "name": "Darkforce Spawn",
+      "flavor": "A demon-skull totem, alive with whispers."
+    },
+    "darkforce-spawn-shield": {
+      "name": "Darkforce Spawn (Shield)",
+      "flavor": "A bone-fetish shield — a necromancer's pride."
+    },
+    "demonhorn-edge": {
+      "name": "Demonhorn's Edge",
+      "flavor": "Carved from the horn of a slain pit lord."
+    },
+    "dragonscale": {
+      "name": "Dragonscale",
+      "flavor": "A scaled shield from a slain wyrm."
+    },
+    "kerke-sanctuary": {
+      "name": "Kerke's Sanctuary",
+      "flavor": "A massive ward of paladin-make."
+    },
+    "nightwing-veil": {
+      "name": "Nightwing's Veil",
+      "flavor": "Shadow-silk woven into a sorcerer's diadem."
+    },
+    "spellsteel": {
+      "name": "Spellsteel",
+      "flavor": "Sigils glow on its haft when foes near."
+    },
+    "lacerator": {
+      "name": "Lacerator",
+      "flavor": "A jagged axe — every wound pours blood."
+    },
+    "nords-tenderizer": {
+      "name": "Nord's Tenderizer",
+      "flavor": "A flailing meat-mallet from the icebound north."
+    },
+    "plague-bearer": {
+      "name": "Plague Bearer",
+      "flavor": "A sword that brings a withering rot."
+    },
+    "blackhand-key-2": {
+      "name": "Blackhand Key (Greater)",
+      "flavor": "A larger key-wand of necromantic make."
+    },
+    "earthshifter": {
+      "name": "Earthshifter",
+      "flavor": "A maul that cracks stone underfoot."
+    },
+    "rune-master": {
+      "name": "Rune Master",
+      "flavor": "A rune-etched two-hander — cuts both flesh and spell."
+    },
+    "thunderstroke": {
+      "name": "Thunderstroke",
+      "flavor": "A storm-spear from the celestial heights."
+    },
+    "eschuta-temper": {
+      "name": "Eschuta's Temper",
+      "flavor": "A volatile wand — temper as short as its fuse."
+    },
+    "stormrider": {
+      "name": "Stormrider",
+      "flavor": "Wielded by a storm-knight of the Skovos."
+    },
+    "stormspire": {
+      "name": "Stormspire",
+      "flavor": "A towering polearm that calls lightning from the sky."
+    },
+    "the-grim-reaper": {
+      "name": "The Grim Reaper",
+      "flavor": "A scythe that ushers souls to oblivion."
+    },
+    "shadow-dancer": {
+      "name": "Shadow Dancer",
+      "flavor": "An assassin's boots — soundless, weightless."
+    },
+    "halaberd-reign": {
+      "name": "Halaberd's Reign",
+      "flavor": "A war-king's helm, never bowed."
+    },
+    "death-fathom": {
+      "name": "Death's Fathom",
+      "flavor": "A scrying-orb wand — sees deep into icy oblivion."
+    },
+    "the-stone-crusher": {
+      "name": "The Stone Crusher",
+      "flavor": "A maul that splits boulders open."
+    },
+    "ondal-wisdom": {
+      "name": "Ondal's Wisdom",
+      "flavor": "An archmage's senile wand — still a fount of power."
+    },
+    "ravenlore": {
+      "name": "Ravenlore",
+      "flavor": "A raven-spirit headdress, learned and dark."
+    },
+    "templar-might": {
+      "name": "Templar's Might",
+      "flavor": "The breastplate of a holy crusader."
+    },
+    "boneslayer-blade": {
+      "name": "Boneslayer Blade",
+      "flavor": "Carves through bone like soft wood."
+    },
+    "head-hunter-glory": {
+      "name": "Head Hunter's Glory",
+      "flavor": "Trophy-skulls of slain champions adorn its rim."
+    },
+    "ormus-robes": {
+      "name": "Ormus' Robes",
+      "flavor": "The mage Ormus' own working-robes."
+    },
+    "spirit-keeper": {
+      "name": "Spirit Keeper",
+      "flavor": "Holds the spirits of fallen druid elders."
+    },
+    "reaper-toll": {
+      "name": "The Reaper's Toll",
+      "flavor": "A polearm that saps life from the living and delivers it to the wielder."
+    },
+    "hellrack": {
+      "name": "Hellrack",
+      "flavor": "A demonic crossbow that fires hellfire."
+    },
+    "wisp-projector": {
+      "name": "Wisp Projector",
+      "flavor": "Dancing wisps swirl around the wearer."
+    },
+    "alma-negra": {
+      "name": "Alma Negra",
+      "flavor": "A dark-soul shield bound to its bearer."
+    },
+    "kira-guardian": {
+      "name": "Kira's Guardian",
+      "flavor": "A guardian-spirit helm — blessed for travelers."
+    },
+    "arreats-face-uniq": {
+      "name": "Arreat's Face (Greater)",
+      "flavor": "A war-mask of greater might. (Closest base mapping.)"
+    },
+    "knell-striker-2": {
+      "name": "Knell Striker (Greater)",
+      "flavor": "Tolls the death-knell with every swing."
+    },
+    "ondal-almighty": {
+      "name": "Ondal's Almighty",
+      "flavor": "An archmage's full-plate, etched with old runes."
+    },
+    "boneflame-shield": {
+      "name": "Boneflame Shield",
+      "flavor": "Skulls along its rim spit cold fire."
+    },
+    "hand-of-blessed-light": {
+      "name": "Hand of Blessed Light",
+      "flavor": "A holy mace radiating sun-warm light."
+    },
+    "schaefer-hammer": {
+      "name": "Schaefer's Hammer",
+      "flavor": "A thunderous warhammer. It calls down lightning on the wicked."
+    },
+    "wolfhowl": {
+      "name": "Wolfhowl",
+      "flavor": "A druid pelt-helm that sings of the moon."
+    },
+    "the-minotaur": {
+      "name": "The Minotaur",
+      "flavor": "An axe of the labyrinth's lord."
+    },
+    "baranar-star": {
+      "name": "Baranar's Star",
+      "flavor": "A devil's own mace. It crushes the righteous and the damned alike."
+    },
+    "metalgrid": {
+      "name": "Metalgrid",
+      "flavor": "An iron lattice — pure structure and protection."
+    },
+    "demonhorn-edge-2": {
+      "name": "Demonhorn's Edge (Greater)",
+      "flavor": "A larger demon-horn helm of greater make."
+    },
+    "halaberd-reign-2": {
+      "name": "Halaberd's Reign (Greater)",
+      "flavor": "A barbarian crown of unmatched lineage."
+    },
+    "messerschmidt-reaver": {
+      "name": "Messerschmidt's Reaver",
+      "flavor": "A masterwork two-hander of staggering reach."
+    },
+    "tomb-reaver": {
+      "name": "Tomb Reaver",
+      "flavor": "Unearthed from a king's tomb. It grants power beyond measure."
+    },
+    "azurewrath": {
+      "name": "Azurewrath",
+      "flavor": "The blade of a celestial warrior. Demons flee before its light."
+    },
+    "ethereal-edge": {
+      "name": "Ethereal Edge",
+      "flavor": "A blade glimpsed half in this world, half in another."
+    },
+    "the-gladiator-bane": {
+      "name": "The Gladiator's Bane",
+      "flavor": "Worn into countless arenas. None of its foes survived."
+    },
+    "the-cranium-basher": {
+      "name": "The Cranium Basher",
+      "flavor": "It does what its name suggests."
+    },
+    "the-cranium-basher-greater": {
+      "name": "The Cranium Basher (Greater)",
+      "flavor": "A maul of unmatched bone-shattering force."
     }
   },
   "set": {
@@ -183,7 +1447,32 @@
     "trang-ouls-avatar": "Trang-Oul's Avatar",
     "aldurs-watchtower": "Aldur's Watchtower",
     "griswolds-legacy": "Griswold's Legacy",
-    "angelic-raiment": "Angelic Raiment"
+    "angelic-raiment": "Angelic Raiment",
+    "arcanna-tricks": "Arcanna's Tricks",
+    "arctic-gear": "Arctic Gear",
+    "berserker-arsenal": "Berserker's Arsenal",
+    "bul-kathos-children": "Bul-Kathos' Children",
+    "cathan-traps": "Cathan's Traps",
+    "civerb-vestments": "Civerb's Vestments",
+    "cleglaw-brace": "Cleglaw's Brace",
+    "cow-king-leathers": "Cow King's Leathers",
+    "death-disguise": "Death's Disguise",
+    "disciple": "Disciple",
+    "heaven-brethren": "Heaven's Brethren",
+    "hsarus-defense": "Hsarus' Defense",
+    "hwanin-majesty": "Hwanin's Majesty",
+    "infernal-tools": "Infernal Tools",
+    "iratha-finery": "Iratha's Finery",
+    "isenhart-armory": "Isenhart's Armory",
+    "mavina-battle-hymn": "M'avina's Battle Hymn",
+    "milabrega-regalia": "Milabrega's Regalia",
+    "naj-ancient-vestige": "Naj's Ancient Vestige",
+    "orphan-call": "Orphan's Call",
+    "sander-folly": "Sander's Folly",
+    "sazabi-grand-tribute": "Sazabi's Grand Tribute",
+    "sigon-complete-steel": "Sigon's Complete Steel",
+    "tancred-battlegear": "Tancred's Battlegear",
+    "vidala-rig": "Vidala's Rig"
   },
   "setPiece": {
     "angelic-raiment": {
@@ -191,6 +1480,192 @@
       "ring": "Angelic Halo",
       "armor": "Angelic Mantle",
       "weapon": "Angelic Sickle"
+    },
+    "aldurs-watchtower": {
+      "helm": "Aldur's Watchtower Helm",
+      "armor": "Aldur's Watchtower Armor",
+      "boots": "Aldur's Watchtower Boots",
+      "weapon": "Aldur's Watchtower Weapon"
+    },
+    "arcanna-tricks": {
+      "helm": "Arcanna's Tricks Helm",
+      "weapon": "Arcanna's Tricks Weapon",
+      "armor": "Arcanna's Tricks Armor",
+      "amulet": "Arcanna's Tricks Amulet"
+    },
+    "arctic-gear": {
+      "armor": "Arctic Gear Armor",
+      "belt": "Arctic Gear Belt",
+      "gloves": "Arctic Gear Gloves",
+      "helm": "Arctic Gear Helm"
+    },
+    "berserker-arsenal": {
+      "helm": "Berserker's Arsenal Helm",
+      "armor": "Berserker's Arsenal Armor",
+      "weapon": "Berserker's Arsenal Weapon"
+    },
+    "bul-kathos-children": {
+      "weapon1": "Bul-Kathos' Children Weapon1",
+      "weapon2": "Bul-Kathos' Children Weapon2"
+    },
+    "cathan-traps": {
+      "ring": "Cathan's Traps Ring",
+      "amulet": "Cathan's Traps Amulet",
+      "armor": "Cathan's Traps Armor",
+      "helm": "Cathan's Traps Helm",
+      "gloves": "Cathan's Traps Gloves"
+    },
+    "civerb-vestments": {
+      "weapon": "Civerb's Vestments Weapon",
+      "shield": "Civerb's Vestments Shield",
+      "amulet": "Civerb's Vestments Amulet"
+    },
+    "cleglaw-brace": {
+      "weapon": "Cleglaw's Brace Weapon",
+      "shield": "Cleglaw's Brace Shield",
+      "gloves": "Cleglaw's Brace Gloves"
+    },
+    "cow-king-leathers": {
+      "helm": "Cow King's Leathers Helm",
+      "armor": "Cow King's Leathers Armor",
+      "boots": "Cow King's Leathers Boots"
+    },
+    "death-disguise": {
+      "sash": "Death's Disguise Sash",
+      "gloves": "Death's Disguise Gloves",
+      "armor": "Death's Disguise Armor"
+    },
+    "disciple": {
+      "helm": "Disciple Helm",
+      "armor": "Disciple Armor",
+      "amulet": "Disciple Amulet",
+      "ring": "Disciple Ring",
+      "boots": "Disciple Boots",
+      "belt": "Disciple Belt",
+      "gloves": "Disciple Gloves"
+    },
+    "griswolds-legacy": {
+      "helm": "Griswold's Legacy Helm",
+      "armor": "Griswold's Legacy Armor",
+      "shield": "Griswold's Legacy Shield",
+      "weapon": "Griswold's Legacy Weapon"
+    },
+    "heaven-brethren": {
+      "helm": "Heaven's Brethren Helm",
+      "armor": "Heaven's Brethren Armor",
+      "weapon": "Heaven's Brethren Weapon",
+      "shield": "Heaven's Brethren Shield"
+    },
+    "hsarus-defense": {
+      "belt": "Hsarus' Defense Belt",
+      "boots": "Hsarus' Defense Boots",
+      "shield": "Hsarus' Defense Shield"
+    },
+    "hwanin-majesty": {
+      "helm": "Hwanin's Majesty Helm",
+      "armor": "Hwanin's Majesty Armor",
+      "weapon": "Hwanin's Majesty Weapon",
+      "belt": "Hwanin's Majesty Belt"
+    },
+    "immortal-king": {
+      "helm": "Immortal King Helm",
+      "armor": "Immortal King Armor",
+      "gloves": "Immortal King Gloves",
+      "belt": "Immortal King Belt",
+      "boots": "Immortal King Boots",
+      "weapon": "Immortal King Weapon"
+    },
+    "infernal-tools": {
+      "helm": "Infernal Tools Helm",
+      "weapon": "Infernal Tools Weapon",
+      "gloves": "Infernal Tools Gloves"
+    },
+    "iratha-finery": {
+      "amulet": "Iratha's Finery Amulet",
+      "weapon": "Iratha's Finery Weapon",
+      "gloves": "Iratha's Finery Gloves",
+      "helm": "Iratha's Finery Helm"
+    },
+    "isenhart-armory": {
+      "armor": "Isenhart's Armory Armor",
+      "helm": "Isenhart's Armory Helm",
+      "weapon": "Isenhart's Armory Weapon",
+      "shield": "Isenhart's Armory Shield"
+    },
+    "mavina-battle-hymn": {
+      "helm": "M'avina's Battle Hymn Helm",
+      "armor": "M'avina's Battle Hymn Armor",
+      "belt": "M'avina's Battle Hymn Belt",
+      "gloves": "M'avina's Battle Hymn Gloves",
+      "weapon": "M'avina's Battle Hymn Weapon"
+    },
+    "milabrega-regalia": {
+      "weapon": "Milabrega's Regalia Weapon",
+      "shield": "Milabrega's Regalia Shield",
+      "armor": "Milabrega's Regalia Armor",
+      "helm": "Milabrega's Regalia Helm"
+    },
+    "naj-ancient-vestige": {
+      "armor": "Naj's Ancient Vestige Armor",
+      "weapon": "Naj's Ancient Vestige Weapon",
+      "helm": "Naj's Ancient Vestige Helm"
+    },
+    "natalyas-odium": {
+      "helm": "Natalya's Odium Helm",
+      "armor": "Natalya's Odium Armor",
+      "boots": "Natalya's Odium Boots",
+      "weapon": "Natalya's Odium Weapon"
+    },
+    "orphan-call": {
+      "helm": "Orphan's Call Helm",
+      "armor": "Orphan's Call Armor",
+      "gloves": "Orphan's Call Gloves",
+      "weapon": "Orphan's Call Weapon"
+    },
+    "sander-folly": {
+      "gloves": "Sander's Folly Gloves",
+      "boots": "Sander's Folly Boots",
+      "weapon": "Sander's Folly Weapon"
+    },
+    "sazabi-grand-tribute": {
+      "helm": "Sazabi's Grand Tribute Helm",
+      "armor": "Sazabi's Grand Tribute Armor",
+      "weapon": "Sazabi's Grand Tribute Weapon"
+    },
+    "sigon-complete-steel": {
+      "helm": "Sigon's Complete Steel Helm",
+      "armor": "Sigon's Complete Steel Armor",
+      "gloves": "Sigon's Complete Steel Gloves",
+      "belt": "Sigon's Complete Steel Belt",
+      "boots": "Sigon's Complete Steel Boots",
+      "shield": "Sigon's Complete Steel Shield"
+    },
+    "tal-rashas-wrappings": {
+      "amulet": "Tal Rasha's Wrappings Amulet",
+      "armor": "Tal Rasha's Wrappings Armor",
+      "helm": "Tal Rasha's Wrappings Helm",
+      "belt": "Tal Rasha's Wrappings Belt",
+      "weapon": "Tal Rasha's Wrappings Weapon"
+    },
+    "tancred-battlegear": {
+      "amulet": "Tancred's Battlegear Amulet",
+      "boots": "Tancred's Battlegear Boots",
+      "weapon": "Tancred's Battlegear Weapon",
+      "armor": "Tancred's Battlegear Armor",
+      "helm": "Tancred's Battlegear Helm"
+    },
+    "trang-ouls-avatar": {
+      "helm": "Trang-Oul's Avatar Helm",
+      "armor": "Trang-Oul's Avatar Armor",
+      "gloves": "Trang-Oul's Avatar Gloves",
+      "belt": "Trang-Oul's Avatar Belt",
+      "shield": "Trang-Oul's Avatar Shield"
+    },
+    "vidala-rig": {
+      "boots": "Vidala's Rig Boots",
+      "amulet": "Vidala's Rig Amulet",
+      "armor": "Vidala's Rig Armor",
+      "weapon": "Vidala's Rig Weapon"
     }
   },
   "rune": {
@@ -253,6 +1728,16 @@
     "heart-of-the-oak": "Heart of the Oak",
     "enigma": "Enigma",
     "breath-of-the-dying": "Breath of the Dying",
-    "grief": "Grief"
+    "grief": "Grief",
+    "infinity": "Infinity",
+    "beast": "Beast",
+    "chains-of-honor": "Chains of Honor",
+    "bramble": "Bramble",
+    "last-wish": "Last Wish",
+    "phoenix": "Phoenix",
+    "dream": "Dream",
+    "hand-of-justice": "Hand of Justice",
+    "exile": "Exile",
+    "death": "Death"
   }
 }

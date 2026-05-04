@@ -85,9 +85,23 @@ export function rollKillRewards(
   );
 
   const items: Item[] = [];
+  let directRuneShards = 0;
+  let directWishstones = 0;
+  let directRunes = 0;
+  let directGems = 0;
   for (const d of drops) {
-    const it = rollItem(d, pools, rng);
-    if (it) items.push(it);
+    if (d.kind === 'item') {
+      const it = rollItem(d, pools, rng);
+      if (it) items.push(it);
+    } else if (d.currency === 'runeShards') {
+      directRuneShards += d.quantity;
+    } else if (d.currency === 'wishstones') {
+      directWishstones += d.quantity;
+    } else if (d.currency === 'runes') {
+      directRunes += d.quantity;
+    } else {
+      directGems += d.quantity;
+    }
   }
 
   const cur = rollCurrencyDrops(
@@ -99,7 +113,13 @@ export function rollKillRewards(
     rng
   );
 
-  return { items, ...cur };
+  return {
+    items,
+    runeShards: cur.runeShards + directRuneShards,
+    wishstones: cur.wishstones + directWishstones,
+    runes: cur.runes + directRunes,
+    gems: cur.gems + directGems
+  };
 }
 
 /**

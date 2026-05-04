@@ -7,4 +7,7 @@ export type JsonUnique = UniqueItemDef;
 export type JsonSetPiece = SetPieceDef;
 export interface ItemDataPools extends ItemRollPools { readonly uniques?: readonly JsonUnique[]; readonly setPieces?: readonly JsonSetPiece[] }
 export function __resetItemSeqForTests(): void { __resetRollItemSeqForTests(); }
-export function generateItem(drop: DropResult, pools: ItemDataPools, rng: Rng): Item | undefined { return rollItem(drop, pools, rng); }
+export function generateItem(drop: DropResult, pools: ItemDataPools, rng: Rng): Item | undefined {
+  if (drop.kind !== 'item') return undefined;
+  return rollItem(drop, pools, rng);
+}

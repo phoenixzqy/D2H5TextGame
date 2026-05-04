@@ -37,7 +37,68 @@
           "defense": 120
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/aldurs-watchtower/helm",
+        "setId": "sets/aldurs-watchtower",
+        "name": "items.setPiece.aldurs-watchtower.helm",
+        "baseId": "items/base/helm-giant-conch",
+        "reqLevel": 55,
+        "qlvl": 55,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 188,
+            "life": 94
+          }
+        }
+      },
+      {
+        "id": "sets/aldurs-watchtower/armor",
+        "setId": "sets/aldurs-watchtower",
+        "name": "items.setPiece.aldurs-watchtower.armor",
+        "baseId": "items/base/armor-archon-plate",
+        "reqLevel": 60,
+        "qlvl": 60,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 204
+          }
+        }
+      },
+      {
+        "id": "sets/aldurs-watchtower/boots",
+        "setId": "sets/aldurs-watchtower",
+        "name": "items.setPiece.aldurs-watchtower.boots",
+        "baseId": "items/base/boot-myrmidon-greaves",
+        "reqLevel": 58,
+        "qlvl": 58,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "physDodge": 0.05,
+            "defense": 99
+          }
+        }
+      },
+      {
+        "id": "sets/aldurs-watchtower/weapon",
+        "setId": "sets/aldurs-watchtower",
+        "name": "items.setPiece.aldurs-watchtower.weapon",
+        "baseId": "items/base/wp1h-phase-blade",
+        "reqLevel": 50,
+        "qlvl": 50,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 255,
+            "attackSpeed": 10
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/angelic-raiment",
@@ -147,7 +208,7 @@
   },
   {
     "id": "sets/arcanna-tricks",
-    "name": "Arcanna's Tricks",
+    "name": "items.set.arcanna-tricks",
     "items": [
       "sets/arcanna-tricks/helm",
       "sets/arcanna-tricks/weapon",
@@ -178,11 +239,74 @@
           "attackSpeed": 20
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/arcanna-tricks/helm",
+        "setId": "sets/arcanna-tricks",
+        "name": "items.setPiece.arcanna-tricks.helm",
+        "baseId": "items/base/helm-skull-cap",
+        "reqLevel": 5,
+        "qlvl": 5,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 18,
+            "life": 15
+          }
+        }
+      },
+      {
+        "id": "sets/arcanna-tricks/weapon",
+        "setId": "sets/arcanna-tricks",
+        "name": "items.setPiece.arcanna-tricks.weapon",
+        "baseId": "items/base/weapon-wand",
+        "reqLevel": 5,
+        "qlvl": 5,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 27,
+            "attackSpeed": 10
+          }
+        }
+      },
+      {
+        "id": "sets/arcanna-tricks/armor",
+        "setId": "sets/arcanna-tricks",
+        "name": "items.setPiece.arcanna-tricks.armor",
+        "baseId": "items/base/armor-leather",
+        "reqLevel": 6,
+        "qlvl": 6,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 20
+          }
+        }
+      },
+      {
+        "id": "sets/arcanna-tricks/amulet",
+        "setId": "sets/arcanna-tricks",
+        "name": "items.setPiece.arcanna-tricks.amulet",
+        "baseId": "items/base/amu-brass",
+        "reqLevel": 10,
+        "qlvl": 10,
+        "weight": 1,
+        "stats": {
+          "coreStats": {
+            "energy": 5
+          },
+          "statMods": {
+            "mana": 34
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/arctic-gear",
-    "name": "Arctic Gear",
+    "name": "items.set.arctic-gear",
     "items": [
       "sets/arctic-gear/armor",
       "sets/arctic-gear/belt",
@@ -212,11 +336,72 @@
           "defense": 150
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/arctic-gear/armor",
+        "setId": "sets/arctic-gear",
+        "name": "items.setPiece.arctic-gear.armor",
+        "baseId": "items/base/armor-leather",
+        "reqLevel": 6,
+        "qlvl": 6,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 20
+          }
+        }
+      },
+      {
+        "id": "sets/arctic-gear/belt",
+        "setId": "sets/arctic-gear",
+        "name": "items.setPiece.arctic-gear.belt",
+        "baseId": "items/base/belt-light",
+        "reqLevel": 7,
+        "qlvl": 7,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "life": 24,
+            "defense": 12
+          }
+        }
+      },
+      {
+        "id": "sets/arctic-gear/gloves",
+        "setId": "sets/arctic-gear",
+        "name": "items.setPiece.arctic-gear.gloves",
+        "baseId": "items/base/glove-heavy",
+        "reqLevel": 7,
+        "qlvl": 7,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attackSpeed": 10,
+            "attack": 15
+          }
+        }
+      },
+      {
+        "id": "sets/arctic-gear/helm",
+        "setId": "sets/arctic-gear",
+        "name": "items.setPiece.arctic-gear.helm",
+        "baseId": "items/base/helm-skull-cap",
+        "reqLevel": 5,
+        "qlvl": 5,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 18,
+            "life": 15
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/berserker-arsenal",
-    "name": "Berserker's Arsenal",
+    "name": "items.set.berserker-arsenal",
     "items": [
       "sets/berserker-arsenal/helm",
       "sets/berserker-arsenal/armor",
@@ -239,11 +424,57 @@
           "defense": 80
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/berserker-arsenal/helm",
+        "setId": "sets/berserker-arsenal",
+        "name": "items.setPiece.berserker-arsenal.helm",
+        "baseId": "items/base/helm-skull-cap",
+        "reqLevel": 5,
+        "qlvl": 5,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 18,
+            "life": 15
+          }
+        }
+      },
+      {
+        "id": "sets/berserker-arsenal/armor",
+        "setId": "sets/berserker-arsenal",
+        "name": "items.setPiece.berserker-arsenal.armor",
+        "baseId": "items/base/armor-leather",
+        "reqLevel": 6,
+        "qlvl": 6,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 20
+          }
+        }
+      },
+      {
+        "id": "sets/berserker-arsenal/weapon",
+        "setId": "sets/berserker-arsenal",
+        "name": "items.setPiece.berserker-arsenal.weapon",
+        "baseId": "items/base/wp1h-scimitar",
+        "reqLevel": 8,
+        "qlvl": 8,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 42,
+            "attackSpeed": 10
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/bul-kathos-children",
-    "name": "Bul-Kathos' Children",
+    "name": "items.set.bul-kathos-children",
     "items": [
       "sets/bul-kathos-children/weapon1",
       "sets/bul-kathos-children/weapon2"
@@ -260,11 +491,43 @@
           "attack": 300
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/bul-kathos-children/weapon1",
+        "setId": "sets/bul-kathos-children",
+        "name": "items.setPiece.bul-kathos-children.weapon1",
+        "baseId": "items/base/wp1h-phase-blade",
+        "reqLevel": 50,
+        "qlvl": 50,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 255,
+            "attackSpeed": 10
+          }
+        }
+      },
+      {
+        "id": "sets/bul-kathos-children/weapon2",
+        "setId": "sets/bul-kathos-children",
+        "name": "items.setPiece.bul-kathos-children.weapon2",
+        "baseId": "items/base/wp1h-legend-sword",
+        "reqLevel": 60,
+        "qlvl": 60,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 306,
+            "attackSpeed": 10
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/cathan-traps",
-    "name": "Cathan's Traps",
+    "name": "items.set.cathan-traps",
     "items": [
       "sets/cathan-traps/ring",
       "sets/cathan-traps/amulet",
@@ -303,11 +566,89 @@
           "magicFind": 50
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/cathan-traps/ring",
+        "setId": "sets/cathan-traps",
+        "name": "items.setPiece.cathan-traps.ring",
+        "baseId": "items/base/ring-silver",
+        "reqLevel": 10,
+        "qlvl": 10,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "life": 34,
+            "attack": 20
+          }
+        }
+      },
+      {
+        "id": "sets/cathan-traps/amulet",
+        "setId": "sets/cathan-traps",
+        "name": "items.setPiece.cathan-traps.amulet",
+        "baseId": "items/base/amu-brass",
+        "reqLevel": 10,
+        "qlvl": 10,
+        "weight": 1,
+        "stats": {
+          "coreStats": {
+            "energy": 5
+          },
+          "statMods": {
+            "mana": 34
+          }
+        }
+      },
+      {
+        "id": "sets/cathan-traps/armor",
+        "setId": "sets/cathan-traps",
+        "name": "items.setPiece.cathan-traps.armor",
+        "baseId": "items/base/armor-leather",
+        "reqLevel": 6,
+        "qlvl": 6,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 20
+          }
+        }
+      },
+      {
+        "id": "sets/cathan-traps/helm",
+        "setId": "sets/cathan-traps",
+        "name": "items.setPiece.cathan-traps.helm",
+        "baseId": "items/base/helm-skull-cap",
+        "reqLevel": 5,
+        "qlvl": 5,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 18,
+            "life": 15
+          }
+        }
+      },
+      {
+        "id": "sets/cathan-traps/gloves",
+        "setId": "sets/cathan-traps",
+        "name": "items.setPiece.cathan-traps.gloves",
+        "baseId": "items/base/glove-heavy",
+        "reqLevel": 7,
+        "qlvl": 7,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attackSpeed": 10,
+            "attack": 15
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/civerb-vestments",
-    "name": "Civerb's Vestments",
+    "name": "items.set.civerb-vestments",
     "items": [
       "sets/civerb-vestments/weapon",
       "sets/civerb-vestments/shield",
@@ -325,11 +666,65 @@
           "magicFind": 25
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/civerb-vestments/weapon",
+        "setId": "sets/civerb-vestments",
+        "name": "items.setPiece.civerb-vestments.weapon",
+        "baseId": "items/base/weapon-scepter",
+        "reqLevel": 15,
+        "qlvl": 15,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 78,
+            "attackSpeed": 10
+          }
+        }
+      },
+      {
+        "id": "sets/civerb-vestments/shield",
+        "setId": "sets/civerb-vestments",
+        "name": "items.setPiece.civerb-vestments.shield",
+        "baseId": "items/base/sh-kite",
+        "reqLevel": 8,
+        "qlvl": 8,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 28
+          },
+          "resistances": {
+            "fire": 10,
+            "cold": 10,
+            "lightning": 10,
+            "poison": 10
+          }
+        }
+      },
+      {
+        "id": "sets/civerb-vestments/amulet",
+        "setId": "sets/civerb-vestments",
+        "name": "items.setPiece.civerb-vestments.amulet",
+        "baseId": "items/base/amu-brass",
+        "reqLevel": 10,
+        "qlvl": 10,
+        "weight": 1,
+        "stats": {
+          "coreStats": {
+            "energy": 5
+          },
+          "statMods": {
+            "mana": 34
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/cleglaw-brace",
-    "name": "Cleglaw's Brace",
+    "name": "items.set.cleglaw-brace",
     "items": [
       "sets/cleglaw-brace/weapon",
       "sets/cleglaw-brace/shield",
@@ -348,11 +743,63 @@
           "attack": 150
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/cleglaw-brace/weapon",
+        "setId": "sets/cleglaw-brace",
+        "name": "items.setPiece.cleglaw-brace.weapon",
+        "baseId": "items/base/wp1h-scimitar",
+        "reqLevel": 8,
+        "qlvl": 8,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 42,
+            "attackSpeed": 10
+          }
+        }
+      },
+      {
+        "id": "sets/cleglaw-brace/shield",
+        "setId": "sets/cleglaw-brace",
+        "name": "items.setPiece.cleglaw-brace.shield",
+        "baseId": "items/base/sh-kite",
+        "reqLevel": 8,
+        "qlvl": 8,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 28
+          },
+          "resistances": {
+            "fire": 10,
+            "cold": 10,
+            "lightning": 10,
+            "poison": 10
+          }
+        }
+      },
+      {
+        "id": "sets/cleglaw-brace/gloves",
+        "setId": "sets/cleglaw-brace",
+        "name": "items.setPiece.cleglaw-brace.gloves",
+        "baseId": "items/base/glove-heavy",
+        "reqLevel": 7,
+        "qlvl": 7,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attackSpeed": 10,
+            "attack": 15
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/cow-king-leathers",
-    "name": "Cow King's Leathers",
+    "name": "items.set.cow-king-leathers",
     "items": [
       "sets/cow-king-leathers/helm",
       "sets/cow-king-leathers/armor",
@@ -374,11 +821,57 @@
           "magicFind": 40
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/cow-king-leathers/helm",
+        "setId": "sets/cow-king-leathers",
+        "name": "items.setPiece.cow-king-leathers.helm",
+        "baseId": "items/base/helm-armet",
+        "reqLevel": 45,
+        "qlvl": 45,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 154,
+            "life": 77
+          }
+        }
+      },
+      {
+        "id": "sets/cow-king-leathers/armor",
+        "setId": "sets/cow-king-leathers",
+        "name": "items.setPiece.cow-king-leathers.armor",
+        "baseId": "items/base/armor-dusk-shroud",
+        "reqLevel": 50,
+        "qlvl": 50,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 170
+          }
+        }
+      },
+      {
+        "id": "sets/cow-king-leathers/boots",
+        "setId": "sets/cow-king-leathers",
+        "name": "items.setPiece.cow-king-leathers.boots",
+        "baseId": "items/base/boot-demonhide",
+        "reqLevel": 48,
+        "qlvl": 48,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "physDodge": 0.05,
+            "defense": 82
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/death-disguise",
-    "name": "Death's Disguise",
+    "name": "items.set.death-disguise",
     "items": [
       "sets/death-disguise/sash",
       "sets/death-disguise/gloves",
@@ -399,11 +892,57 @@
           "defense": 80
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/death-disguise/sash",
+        "setId": "sets/death-disguise",
+        "name": "items.setPiece.death-disguise.sash",
+        "baseId": "items/base/belt-light",
+        "reqLevel": 7,
+        "qlvl": 7,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "life": 24,
+            "defense": 12
+          }
+        }
+      },
+      {
+        "id": "sets/death-disguise/gloves",
+        "setId": "sets/death-disguise",
+        "name": "items.setPiece.death-disguise.gloves",
+        "baseId": "items/base/glove-heavy",
+        "reqLevel": 7,
+        "qlvl": 7,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attackSpeed": 10,
+            "attack": 15
+          }
+        }
+      },
+      {
+        "id": "sets/death-disguise/armor",
+        "setId": "sets/death-disguise",
+        "name": "items.setPiece.death-disguise.armor",
+        "baseId": "items/base/armor-leather",
+        "reqLevel": 6,
+        "qlvl": 6,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 20
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/disciple",
-    "name": "Disciple",
+    "name": "items.set.disciple",
     "items": [
       "sets/disciple/helm",
       "sets/disciple/armor",
@@ -465,7 +1004,115 @@
           "magicFind": 40
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/disciple/helm",
+        "setId": "sets/disciple",
+        "name": "items.setPiece.disciple.helm",
+        "baseId": "items/base/helm-giant-conch",
+        "reqLevel": 55,
+        "qlvl": 55,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 188,
+            "life": 94
+          }
+        }
+      },
+      {
+        "id": "sets/disciple/armor",
+        "setId": "sets/disciple",
+        "name": "items.setPiece.disciple.armor",
+        "baseId": "items/base/armor-archon-plate",
+        "reqLevel": 60,
+        "qlvl": 60,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 204
+          }
+        }
+      },
+      {
+        "id": "sets/disciple/amulet",
+        "setId": "sets/disciple",
+        "name": "items.setPiece.disciple.amulet",
+        "baseId": "items/base/amu-obsidian",
+        "reqLevel": 50,
+        "qlvl": 50,
+        "weight": 1,
+        "stats": {
+          "coreStats": {
+            "energy": 13
+          },
+          "statMods": {
+            "mana": 170
+          }
+        }
+      },
+      {
+        "id": "sets/disciple/ring",
+        "setId": "sets/disciple",
+        "name": "items.setPiece.disciple.ring",
+        "baseId": "items/base/ring-obsidian",
+        "reqLevel": 50,
+        "qlvl": 50,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "life": 170,
+            "attack": 85
+          }
+        }
+      },
+      {
+        "id": "sets/disciple/boots",
+        "setId": "sets/disciple",
+        "name": "items.setPiece.disciple.boots",
+        "baseId": "items/base/boot-myrmidon-greaves",
+        "reqLevel": 58,
+        "qlvl": 58,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "physDodge": 0.05,
+            "defense": 99
+          }
+        }
+      },
+      {
+        "id": "sets/disciple/belt",
+        "setId": "sets/disciple",
+        "name": "items.setPiece.disciple.belt",
+        "baseId": "items/base/belt-mithril-coil",
+        "reqLevel": 58,
+        "qlvl": 58,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "life": 198,
+            "defense": 99
+          }
+        }
+      },
+      {
+        "id": "sets/disciple/gloves",
+        "setId": "sets/disciple",
+        "name": "items.setPiece.disciple.gloves",
+        "baseId": "items/base/glove-bramble-mitts",
+        "reqLevel": 58,
+        "qlvl": 58,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attackSpeed": 10,
+            "attack": 99
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/griswolds-legacy",
@@ -506,11 +1153,77 @@
           "defense": 200
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/griswolds-legacy/helm",
+        "setId": "sets/griswolds-legacy",
+        "name": "items.setPiece.griswolds-legacy.helm",
+        "baseId": "items/base/helm-giant-conch",
+        "reqLevel": 55,
+        "qlvl": 55,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 188,
+            "life": 94
+          }
+        }
+      },
+      {
+        "id": "sets/griswolds-legacy/armor",
+        "setId": "sets/griswolds-legacy",
+        "name": "items.setPiece.griswolds-legacy.armor",
+        "baseId": "items/base/armor-archon-plate",
+        "reqLevel": 60,
+        "qlvl": 60,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 204
+          }
+        }
+      },
+      {
+        "id": "sets/griswolds-legacy/shield",
+        "setId": "sets/griswolds-legacy",
+        "name": "items.setPiece.griswolds-legacy.shield",
+        "baseId": "items/base/sh-sacred-targe",
+        "reqLevel": 60,
+        "qlvl": 60,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 204
+          },
+          "resistances": {
+            "fire": 10,
+            "cold": 10,
+            "lightning": 10,
+            "poison": 10
+          }
+        }
+      },
+      {
+        "id": "sets/griswolds-legacy/weapon",
+        "setId": "sets/griswolds-legacy",
+        "name": "items.setPiece.griswolds-legacy.weapon",
+        "baseId": "items/base/wp1h-phase-blade",
+        "reqLevel": 50,
+        "qlvl": 50,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 255,
+            "attackSpeed": 10
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/heaven-brethren",
-    "name": "Heaven's Brethren",
+    "name": "items.set.heaven-brethren",
     "items": [
       "sets/heaven-brethren/helm",
       "sets/heaven-brethren/armor",
@@ -541,11 +1254,77 @@
           "attack": 200
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/heaven-brethren/helm",
+        "setId": "sets/heaven-brethren",
+        "name": "items.setPiece.heaven-brethren.helm",
+        "baseId": "items/base/helm-giant-conch",
+        "reqLevel": 55,
+        "qlvl": 55,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 188,
+            "life": 94
+          }
+        }
+      },
+      {
+        "id": "sets/heaven-brethren/armor",
+        "setId": "sets/heaven-brethren",
+        "name": "items.setPiece.heaven-brethren.armor",
+        "baseId": "items/base/armor-archon-plate",
+        "reqLevel": 60,
+        "qlvl": 60,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 204
+          }
+        }
+      },
+      {
+        "id": "sets/heaven-brethren/weapon",
+        "setId": "sets/heaven-brethren",
+        "name": "items.setPiece.heaven-brethren.weapon",
+        "baseId": "items/base/wp1h-phase-blade",
+        "reqLevel": 50,
+        "qlvl": 50,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 255,
+            "attackSpeed": 10
+          }
+        }
+      },
+      {
+        "id": "sets/heaven-brethren/shield",
+        "setId": "sets/heaven-brethren",
+        "name": "items.setPiece.heaven-brethren.shield",
+        "baseId": "items/base/sh-sacred-targe",
+        "reqLevel": 60,
+        "qlvl": 60,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 204
+          },
+          "resistances": {
+            "fire": 10,
+            "cold": 10,
+            "lightning": 10,
+            "poison": 10
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/hsarus-defense",
-    "name": "Hsarus' Defense",
+    "name": "items.set.hsarus-defense",
     "items": [
       "sets/hsarus-defense/belt",
       "sets/hsarus-defense/boots",
@@ -566,11 +1345,63 @@
           "defense": 100
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/hsarus-defense/belt",
+        "setId": "sets/hsarus-defense",
+        "name": "items.setPiece.hsarus-defense.belt",
+        "baseId": "items/base/belt-light",
+        "reqLevel": 7,
+        "qlvl": 7,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "life": 24,
+            "defense": 12
+          }
+        }
+      },
+      {
+        "id": "sets/hsarus-defense/boots",
+        "setId": "sets/hsarus-defense",
+        "name": "items.setPiece.hsarus-defense.boots",
+        "baseId": "items/base/boot-heavy",
+        "reqLevel": 7,
+        "qlvl": 7,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "physDodge": 0.05,
+            "defense": 12
+          }
+        }
+      },
+      {
+        "id": "sets/hsarus-defense/shield",
+        "setId": "sets/hsarus-defense",
+        "name": "items.setPiece.hsarus-defense.shield",
+        "baseId": "items/base/sh-kite",
+        "reqLevel": 8,
+        "qlvl": 8,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 28
+          },
+          "resistances": {
+            "fire": 10,
+            "cold": 10,
+            "lightning": 10,
+            "poison": 10
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/hwanin-majesty",
-    "name": "Hwanin's Majesty",
+    "name": "items.set.hwanin-majesty",
     "items": [
       "sets/hwanin-majesty/helm",
       "sets/hwanin-majesty/armor",
@@ -599,7 +1430,68 @@
           "attackSpeed": 40
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/hwanin-majesty/helm",
+        "setId": "sets/hwanin-majesty",
+        "name": "items.setPiece.hwanin-majesty.helm",
+        "baseId": "items/base/helm-giant-conch",
+        "reqLevel": 55,
+        "qlvl": 55,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 188,
+            "life": 94
+          }
+        }
+      },
+      {
+        "id": "sets/hwanin-majesty/armor",
+        "setId": "sets/hwanin-majesty",
+        "name": "items.setPiece.hwanin-majesty.armor",
+        "baseId": "items/base/armor-archon-plate",
+        "reqLevel": 60,
+        "qlvl": 60,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 204
+          }
+        }
+      },
+      {
+        "id": "sets/hwanin-majesty/weapon",
+        "setId": "sets/hwanin-majesty",
+        "name": "items.setPiece.hwanin-majesty.weapon",
+        "baseId": "items/base/weapon-polearm",
+        "reqLevel": 20,
+        "qlvl": 20,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 102,
+            "attackSpeed": 10
+          }
+        }
+      },
+      {
+        "id": "sets/hwanin-majesty/belt",
+        "setId": "sets/hwanin-majesty",
+        "name": "items.setPiece.hwanin-majesty.belt",
+        "baseId": "items/base/belt-mithril-coil",
+        "reqLevel": 58,
+        "qlvl": 58,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "life": 198,
+            "defense": 99
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/immortal-king",
@@ -649,11 +1541,102 @@
           "attack": 300
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/immortal-king/helm",
+        "setId": "sets/immortal-king",
+        "name": "items.setPiece.immortal-king.helm",
+        "baseId": "items/base/helm-giant-conch",
+        "reqLevel": 55,
+        "qlvl": 55,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 188,
+            "life": 94
+          }
+        }
+      },
+      {
+        "id": "sets/immortal-king/armor",
+        "setId": "sets/immortal-king",
+        "name": "items.setPiece.immortal-king.armor",
+        "baseId": "items/base/armor-archon-plate",
+        "reqLevel": 60,
+        "qlvl": 60,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 204
+          }
+        }
+      },
+      {
+        "id": "sets/immortal-king/gloves",
+        "setId": "sets/immortal-king",
+        "name": "items.setPiece.immortal-king.gloves",
+        "baseId": "items/base/glove-bramble-mitts",
+        "reqLevel": 58,
+        "qlvl": 58,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attackSpeed": 10,
+            "attack": 99
+          }
+        }
+      },
+      {
+        "id": "sets/immortal-king/belt",
+        "setId": "sets/immortal-king",
+        "name": "items.setPiece.immortal-king.belt",
+        "baseId": "items/base/belt-mithril-coil",
+        "reqLevel": 58,
+        "qlvl": 58,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "life": 198,
+            "defense": 99
+          }
+        }
+      },
+      {
+        "id": "sets/immortal-king/boots",
+        "setId": "sets/immortal-king",
+        "name": "items.setPiece.immortal-king.boots",
+        "baseId": "items/base/boot-myrmidon-greaves",
+        "reqLevel": 58,
+        "qlvl": 58,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "physDodge": 0.05,
+            "defense": 99
+          }
+        }
+      },
+      {
+        "id": "sets/immortal-king/weapon",
+        "setId": "sets/immortal-king",
+        "name": "items.setPiece.immortal-king.weapon",
+        "baseId": "items/base/wp2h-thunder-maul",
+        "reqLevel": 62,
+        "qlvl": 62,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 315,
+            "attackSpeed": 10
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/infernal-tools",
-    "name": "Infernal Tools",
+    "name": "items.set.infernal-tools",
     "items": [
       "sets/infernal-tools/helm",
       "sets/infernal-tools/weapon",
@@ -674,11 +1657,58 @@
           "attackSpeed": 20
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/infernal-tools/helm",
+        "setId": "sets/infernal-tools",
+        "name": "items.setPiece.infernal-tools.helm",
+        "baseId": "items/base/helm-skull-cap",
+        "reqLevel": 5,
+        "qlvl": 5,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 18,
+            "life": 15
+          }
+        }
+      },
+      {
+        "id": "sets/infernal-tools/weapon",
+        "setId": "sets/infernal-tools",
+        "name": "items.setPiece.infernal-tools.weapon",
+        "baseId": "items/base/weapon-wand",
+        "reqLevel": 5,
+        "qlvl": 5,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 27,
+            "attackSpeed": 10
+          }
+        }
+      },
+      {
+        "id": "sets/infernal-tools/gloves",
+        "setId": "sets/infernal-tools",
+        "name": "items.setPiece.infernal-tools.gloves",
+        "baseId": "items/base/glove-heavy",
+        "reqLevel": 7,
+        "qlvl": 7,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attackSpeed": 10,
+            "attack": 15
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/iratha-finery",
-    "name": "Iratha's Finery",
+    "name": "items.set.iratha-finery",
     "items": [
       "sets/iratha-finery/amulet",
       "sets/iratha-finery/weapon",
@@ -707,11 +1737,75 @@
           "poison": 50
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/iratha-finery/amulet",
+        "setId": "sets/iratha-finery",
+        "name": "items.setPiece.iratha-finery.amulet",
+        "baseId": "items/base/amu-brass",
+        "reqLevel": 10,
+        "qlvl": 10,
+        "weight": 1,
+        "stats": {
+          "coreStats": {
+            "energy": 5
+          },
+          "statMods": {
+            "mana": 34
+          }
+        }
+      },
+      {
+        "id": "sets/iratha-finery/weapon",
+        "setId": "sets/iratha-finery",
+        "name": "items.setPiece.iratha-finery.weapon",
+        "baseId": "items/base/wp1h-scimitar",
+        "reqLevel": 8,
+        "qlvl": 8,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 42,
+            "attackSpeed": 10
+          }
+        }
+      },
+      {
+        "id": "sets/iratha-finery/gloves",
+        "setId": "sets/iratha-finery",
+        "name": "items.setPiece.iratha-finery.gloves",
+        "baseId": "items/base/glove-heavy",
+        "reqLevel": 7,
+        "qlvl": 7,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attackSpeed": 10,
+            "attack": 15
+          }
+        }
+      },
+      {
+        "id": "sets/iratha-finery/helm",
+        "setId": "sets/iratha-finery",
+        "name": "items.setPiece.iratha-finery.helm",
+        "baseId": "items/base/helm-skull-cap",
+        "reqLevel": 5,
+        "qlvl": 5,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 18,
+            "life": 15
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/isenhart-armory",
-    "name": "Isenhart's Armory",
+    "name": "items.set.isenhart-armory",
     "items": [
       "sets/isenhart-armory/armor",
       "sets/isenhart-armory/helm",
@@ -740,11 +1834,77 @@
           "defense": 100
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/isenhart-armory/armor",
+        "setId": "sets/isenhart-armory",
+        "name": "items.setPiece.isenhart-armory.armor",
+        "baseId": "items/base/armor-leather",
+        "reqLevel": 6,
+        "qlvl": 6,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 20
+          }
+        }
+      },
+      {
+        "id": "sets/isenhart-armory/helm",
+        "setId": "sets/isenhart-armory",
+        "name": "items.setPiece.isenhart-armory.helm",
+        "baseId": "items/base/helm-skull-cap",
+        "reqLevel": 5,
+        "qlvl": 5,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 18,
+            "life": 15
+          }
+        }
+      },
+      {
+        "id": "sets/isenhart-armory/weapon",
+        "setId": "sets/isenhart-armory",
+        "name": "items.setPiece.isenhart-armory.weapon",
+        "baseId": "items/base/wp1h-scimitar",
+        "reqLevel": 8,
+        "qlvl": 8,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 42,
+            "attackSpeed": 10
+          }
+        }
+      },
+      {
+        "id": "sets/isenhart-armory/shield",
+        "setId": "sets/isenhart-armory",
+        "name": "items.setPiece.isenhart-armory.shield",
+        "baseId": "items/base/sh-kite",
+        "reqLevel": 8,
+        "qlvl": 8,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 28
+          },
+          "resistances": {
+            "fire": 10,
+            "cold": 10,
+            "lightning": 10,
+            "poison": 10
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/mavina-battle-hymn",
-    "name": "M'avina's Battle Hymn",
+    "name": "items.set.mavina-battle-hymn",
     "items": [
       "sets/mavina-battle-hymn/helm",
       "sets/mavina-battle-hymn/armor",
@@ -780,11 +1940,87 @@
           "magicFind": 50
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/mavina-battle-hymn/helm",
+        "setId": "sets/mavina-battle-hymn",
+        "name": "items.setPiece.mavina-battle-hymn.helm",
+        "baseId": "items/base/helm-giant-conch",
+        "reqLevel": 55,
+        "qlvl": 55,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 188,
+            "life": 94
+          }
+        }
+      },
+      {
+        "id": "sets/mavina-battle-hymn/armor",
+        "setId": "sets/mavina-battle-hymn",
+        "name": "items.setPiece.mavina-battle-hymn.armor",
+        "baseId": "items/base/armor-archon-plate",
+        "reqLevel": 60,
+        "qlvl": 60,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 204
+          }
+        }
+      },
+      {
+        "id": "sets/mavina-battle-hymn/belt",
+        "setId": "sets/mavina-battle-hymn",
+        "name": "items.setPiece.mavina-battle-hymn.belt",
+        "baseId": "items/base/belt-mithril-coil",
+        "reqLevel": 58,
+        "qlvl": 58,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "life": 198,
+            "defense": 99
+          }
+        }
+      },
+      {
+        "id": "sets/mavina-battle-hymn/gloves",
+        "setId": "sets/mavina-battle-hymn",
+        "name": "items.setPiece.mavina-battle-hymn.gloves",
+        "baseId": "items/base/glove-bramble-mitts",
+        "reqLevel": 58,
+        "qlvl": 58,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attackSpeed": 10,
+            "attack": 99
+          }
+        }
+      },
+      {
+        "id": "sets/mavina-battle-hymn/weapon",
+        "setId": "sets/mavina-battle-hymn",
+        "name": "items.setPiece.mavina-battle-hymn.weapon",
+        "baseId": "items/base/weapon-bow",
+        "reqLevel": 10,
+        "qlvl": 10,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 51,
+            "attackSpeed": 10
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/milabrega-regalia",
-    "name": "Milabrega's Regalia",
+    "name": "items.set.milabrega-regalia",
     "items": [
       "sets/milabrega-regalia/weapon",
       "sets/milabrega-regalia/shield",
@@ -813,11 +2049,77 @@
           "attack": 180
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/milabrega-regalia/weapon",
+        "setId": "sets/milabrega-regalia",
+        "name": "items.setPiece.milabrega-regalia.weapon",
+        "baseId": "items/base/weapon-scepter",
+        "reqLevel": 15,
+        "qlvl": 15,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 78,
+            "attackSpeed": 10
+          }
+        }
+      },
+      {
+        "id": "sets/milabrega-regalia/shield",
+        "setId": "sets/milabrega-regalia",
+        "name": "items.setPiece.milabrega-regalia.shield",
+        "baseId": "items/base/sh-kite",
+        "reqLevel": 8,
+        "qlvl": 8,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 28
+          },
+          "resistances": {
+            "fire": 10,
+            "cold": 10,
+            "lightning": 10,
+            "poison": 10
+          }
+        }
+      },
+      {
+        "id": "sets/milabrega-regalia/armor",
+        "setId": "sets/milabrega-regalia",
+        "name": "items.setPiece.milabrega-regalia.armor",
+        "baseId": "items/base/armor-leather",
+        "reqLevel": 6,
+        "qlvl": 6,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 20
+          }
+        }
+      },
+      {
+        "id": "sets/milabrega-regalia/helm",
+        "setId": "sets/milabrega-regalia",
+        "name": "items.setPiece.milabrega-regalia.helm",
+        "baseId": "items/base/helm-skull-cap",
+        "reqLevel": 5,
+        "qlvl": 5,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 18,
+            "life": 15
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/naj-ancient-vestige",
-    "name": "Naj's Ancient Vestige",
+    "name": "items.set.naj-ancient-vestige",
     "items": [
       "sets/naj-ancient-vestige/armor",
       "sets/naj-ancient-vestige/weapon",
@@ -838,7 +2140,53 @@
           "defense": 180
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/naj-ancient-vestige/armor",
+        "setId": "sets/naj-ancient-vestige",
+        "name": "items.setPiece.naj-ancient-vestige.armor",
+        "baseId": "items/base/armor-archon-plate",
+        "reqLevel": 60,
+        "qlvl": 60,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 204
+          }
+        }
+      },
+      {
+        "id": "sets/naj-ancient-vestige/weapon",
+        "setId": "sets/naj-ancient-vestige",
+        "name": "items.setPiece.naj-ancient-vestige.weapon",
+        "baseId": "items/base/weapon-wand",
+        "reqLevel": 5,
+        "qlvl": 5,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 27,
+            "attackSpeed": 10
+          }
+        }
+      },
+      {
+        "id": "sets/naj-ancient-vestige/helm",
+        "setId": "sets/naj-ancient-vestige",
+        "name": "items.setPiece.naj-ancient-vestige.helm",
+        "baseId": "items/base/helm-giant-conch",
+        "reqLevel": 55,
+        "qlvl": 55,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 188,
+            "life": 94
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/natalyas-odium",
@@ -876,11 +2224,72 @@
           "critDamage": 50
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/natalyas-odium/helm",
+        "setId": "sets/natalyas-odium",
+        "name": "items.setPiece.natalyas-odium.helm",
+        "baseId": "items/base/helm-giant-conch",
+        "reqLevel": 55,
+        "qlvl": 55,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 188,
+            "life": 94
+          }
+        }
+      },
+      {
+        "id": "sets/natalyas-odium/armor",
+        "setId": "sets/natalyas-odium",
+        "name": "items.setPiece.natalyas-odium.armor",
+        "baseId": "items/base/armor-archon-plate",
+        "reqLevel": 60,
+        "qlvl": 60,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 204
+          }
+        }
+      },
+      {
+        "id": "sets/natalyas-odium/boots",
+        "setId": "sets/natalyas-odium",
+        "name": "items.setPiece.natalyas-odium.boots",
+        "baseId": "items/base/boot-myrmidon-greaves",
+        "reqLevel": 58,
+        "qlvl": 58,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "physDodge": 0.05,
+            "defense": 99
+          }
+        }
+      },
+      {
+        "id": "sets/natalyas-odium/weapon",
+        "setId": "sets/natalyas-odium",
+        "name": "items.setPiece.natalyas-odium.weapon",
+        "baseId": "items/base/wp1h-phase-blade",
+        "reqLevel": 50,
+        "qlvl": 50,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 255,
+            "attackSpeed": 10
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/orphan-call",
-    "name": "Orphan's Call",
+    "name": "items.set.orphan-call",
     "items": [
       "sets/orphan-call/helm",
       "sets/orphan-call/armor",
@@ -910,11 +2319,72 @@
           "defense": 150
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/orphan-call/helm",
+        "setId": "sets/orphan-call",
+        "name": "items.setPiece.orphan-call.helm",
+        "baseId": "items/base/helm-giant-conch",
+        "reqLevel": 55,
+        "qlvl": 55,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 188,
+            "life": 94
+          }
+        }
+      },
+      {
+        "id": "sets/orphan-call/armor",
+        "setId": "sets/orphan-call",
+        "name": "items.setPiece.orphan-call.armor",
+        "baseId": "items/base/armor-archon-plate",
+        "reqLevel": 60,
+        "qlvl": 60,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 204
+          }
+        }
+      },
+      {
+        "id": "sets/orphan-call/gloves",
+        "setId": "sets/orphan-call",
+        "name": "items.setPiece.orphan-call.gloves",
+        "baseId": "items/base/glove-bramble-mitts",
+        "reqLevel": 58,
+        "qlvl": 58,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attackSpeed": 10,
+            "attack": 99
+          }
+        }
+      },
+      {
+        "id": "sets/orphan-call/weapon",
+        "setId": "sets/orphan-call",
+        "name": "items.setPiece.orphan-call.weapon",
+        "baseId": "items/base/wp1h-phase-blade",
+        "reqLevel": 50,
+        "qlvl": 50,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 255,
+            "attackSpeed": 10
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/sander-folly",
-    "name": "Sander's Folly",
+    "name": "items.set.sander-folly",
     "items": [
       "sets/sander-folly/gloves",
       "sets/sander-folly/boots",
@@ -932,11 +2402,58 @@
           "attackSpeed": 40
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/sander-folly/gloves",
+        "setId": "sets/sander-folly",
+        "name": "items.setPiece.sander-folly.gloves",
+        "baseId": "items/base/glove-heavy",
+        "reqLevel": 7,
+        "qlvl": 7,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attackSpeed": 10,
+            "attack": 15
+          }
+        }
+      },
+      {
+        "id": "sets/sander-folly/boots",
+        "setId": "sets/sander-folly",
+        "name": "items.setPiece.sander-folly.boots",
+        "baseId": "items/base/boot-heavy",
+        "reqLevel": 7,
+        "qlvl": 7,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "physDodge": 0.05,
+            "defense": 12
+          }
+        }
+      },
+      {
+        "id": "sets/sander-folly/weapon",
+        "setId": "sets/sander-folly",
+        "name": "items.setPiece.sander-folly.weapon",
+        "baseId": "items/base/wp1h-scimitar",
+        "reqLevel": 8,
+        "qlvl": 8,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 42,
+            "attackSpeed": 10
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/sazabi-grand-tribute",
-    "name": "Sazabi's Grand Tribute",
+    "name": "items.set.sazabi-grand-tribute",
     "items": [
       "sets/sazabi-grand-tribute/helm",
       "sets/sazabi-grand-tribute/armor",
@@ -958,11 +2475,57 @@
           "defense": 120
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/sazabi-grand-tribute/helm",
+        "setId": "sets/sazabi-grand-tribute",
+        "name": "items.setPiece.sazabi-grand-tribute.helm",
+        "baseId": "items/base/helm-giant-conch",
+        "reqLevel": 55,
+        "qlvl": 55,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 188,
+            "life": 94
+          }
+        }
+      },
+      {
+        "id": "sets/sazabi-grand-tribute/armor",
+        "setId": "sets/sazabi-grand-tribute",
+        "name": "items.setPiece.sazabi-grand-tribute.armor",
+        "baseId": "items/base/armor-archon-plate",
+        "reqLevel": 60,
+        "qlvl": 60,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 204
+          }
+        }
+      },
+      {
+        "id": "sets/sazabi-grand-tribute/weapon",
+        "setId": "sets/sazabi-grand-tribute",
+        "name": "items.setPiece.sazabi-grand-tribute.weapon",
+        "baseId": "items/base/wp1h-phase-blade",
+        "reqLevel": 50,
+        "qlvl": 50,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 255,
+            "attackSpeed": 10
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/sigon-complete-steel",
-    "name": "Sigon's Complete Steel",
+    "name": "items.set.sigon-complete-steel",
     "items": [
       "sets/sigon-complete-steel/helm",
       "sets/sigon-complete-steel/armor",
@@ -1006,7 +2569,103 @@
           "attack": 200
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/sigon-complete-steel/helm",
+        "setId": "sets/sigon-complete-steel",
+        "name": "items.setPiece.sigon-complete-steel.helm",
+        "baseId": "items/base/helm-armet",
+        "reqLevel": 45,
+        "qlvl": 45,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 154,
+            "life": 77
+          }
+        }
+      },
+      {
+        "id": "sets/sigon-complete-steel/armor",
+        "setId": "sets/sigon-complete-steel",
+        "name": "items.setPiece.sigon-complete-steel.armor",
+        "baseId": "items/base/armor-dusk-shroud",
+        "reqLevel": 50,
+        "qlvl": 50,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 170
+          }
+        }
+      },
+      {
+        "id": "sets/sigon-complete-steel/gloves",
+        "setId": "sets/sigon-complete-steel",
+        "name": "items.setPiece.sigon-complete-steel.gloves",
+        "baseId": "items/base/glove-light-gauntlets",
+        "reqLevel": 30,
+        "qlvl": 30,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attackSpeed": 10,
+            "attack": 51
+          }
+        }
+      },
+      {
+        "id": "sets/sigon-complete-steel/belt",
+        "setId": "sets/sigon-complete-steel",
+        "name": "items.setPiece.sigon-complete-steel.belt",
+        "baseId": "items/base/belt-demonhide",
+        "reqLevel": 48,
+        "qlvl": 48,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "life": 164,
+            "defense": 82
+          }
+        }
+      },
+      {
+        "id": "sets/sigon-complete-steel/boots",
+        "setId": "sets/sigon-complete-steel",
+        "name": "items.setPiece.sigon-complete-steel.boots",
+        "baseId": "items/base/boot-demonhide",
+        "reqLevel": 48,
+        "qlvl": 48,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "physDodge": 0.05,
+            "defense": 82
+          }
+        }
+      },
+      {
+        "id": "sets/sigon-complete-steel/shield",
+        "setId": "sets/sigon-complete-steel",
+        "name": "items.setPiece.sigon-complete-steel.shield",
+        "baseId": "items/base/sh-monarch",
+        "reqLevel": 50,
+        "qlvl": 50,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 170
+          },
+          "resistances": {
+            "fire": 10,
+            "cold": 10,
+            "lightning": 10,
+            "poison": 10
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/tal-rashas-wrappings",
@@ -1056,11 +2715,89 @@
           "defense": 120
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/tal-rashas-wrappings/amulet",
+        "setId": "sets/tal-rashas-wrappings",
+        "name": "items.setPiece.tal-rashas-wrappings.amulet",
+        "baseId": "items/base/amu-obsidian",
+        "reqLevel": 50,
+        "qlvl": 50,
+        "weight": 1,
+        "stats": {
+          "coreStats": {
+            "energy": 13
+          },
+          "statMods": {
+            "mana": 170
+          }
+        }
+      },
+      {
+        "id": "sets/tal-rashas-wrappings/armor",
+        "setId": "sets/tal-rashas-wrappings",
+        "name": "items.setPiece.tal-rashas-wrappings.armor",
+        "baseId": "items/base/armor-archon-plate",
+        "reqLevel": 60,
+        "qlvl": 60,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 204
+          }
+        }
+      },
+      {
+        "id": "sets/tal-rashas-wrappings/helm",
+        "setId": "sets/tal-rashas-wrappings",
+        "name": "items.setPiece.tal-rashas-wrappings.helm",
+        "baseId": "items/base/helm-giant-conch",
+        "reqLevel": 55,
+        "qlvl": 55,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 188,
+            "life": 94
+          }
+        }
+      },
+      {
+        "id": "sets/tal-rashas-wrappings/belt",
+        "setId": "sets/tal-rashas-wrappings",
+        "name": "items.setPiece.tal-rashas-wrappings.belt",
+        "baseId": "items/base/belt-mithril-coil",
+        "reqLevel": 58,
+        "qlvl": 58,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "life": 198,
+            "defense": 99
+          }
+        }
+      },
+      {
+        "id": "sets/tal-rashas-wrappings/weapon",
+        "setId": "sets/tal-rashas-wrappings",
+        "name": "items.setPiece.tal-rashas-wrappings.weapon",
+        "baseId": "items/base/wp1h-phase-blade",
+        "reqLevel": 50,
+        "qlvl": 50,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 255,
+            "attackSpeed": 10
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/tancred-battlegear",
-    "name": "Tancred's Battlegear",
+    "name": "items.set.tancred-battlegear",
     "items": [
       "sets/tancred-battlegear/amulet",
       "sets/tancred-battlegear/boots",
@@ -1098,7 +2835,85 @@
           "magicFind": 20
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/tancred-battlegear/amulet",
+        "setId": "sets/tancred-battlegear",
+        "name": "items.setPiece.tancred-battlegear.amulet",
+        "baseId": "items/base/amu-brass",
+        "reqLevel": 10,
+        "qlvl": 10,
+        "weight": 1,
+        "stats": {
+          "coreStats": {
+            "energy": 5
+          },
+          "statMods": {
+            "mana": 34
+          }
+        }
+      },
+      {
+        "id": "sets/tancred-battlegear/boots",
+        "setId": "sets/tancred-battlegear",
+        "name": "items.setPiece.tancred-battlegear.boots",
+        "baseId": "items/base/boot-heavy",
+        "reqLevel": 7,
+        "qlvl": 7,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "physDodge": 0.05,
+            "defense": 12
+          }
+        }
+      },
+      {
+        "id": "sets/tancred-battlegear/weapon",
+        "setId": "sets/tancred-battlegear",
+        "name": "items.setPiece.tancred-battlegear.weapon",
+        "baseId": "items/base/wp1h-scimitar",
+        "reqLevel": 8,
+        "qlvl": 8,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 42,
+            "attackSpeed": 10
+          }
+        }
+      },
+      {
+        "id": "sets/tancred-battlegear/armor",
+        "setId": "sets/tancred-battlegear",
+        "name": "items.setPiece.tancred-battlegear.armor",
+        "baseId": "items/base/armor-leather",
+        "reqLevel": 6,
+        "qlvl": 6,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 20
+          }
+        }
+      },
+      {
+        "id": "sets/tancred-battlegear/helm",
+        "setId": "sets/tancred-battlegear",
+        "name": "items.setPiece.tancred-battlegear.helm",
+        "baseId": "items/base/helm-skull-cap",
+        "reqLevel": 5,
+        "qlvl": 5,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 18,
+            "life": 15
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/trang-ouls-avatar",
@@ -1145,11 +2960,92 @@
           "mana": 150
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/trang-ouls-avatar/helm",
+        "setId": "sets/trang-ouls-avatar",
+        "name": "items.setPiece.trang-ouls-avatar.helm",
+        "baseId": "items/base/helm-giant-conch",
+        "reqLevel": 55,
+        "qlvl": 55,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 188,
+            "life": 94
+          }
+        }
+      },
+      {
+        "id": "sets/trang-ouls-avatar/armor",
+        "setId": "sets/trang-ouls-avatar",
+        "name": "items.setPiece.trang-ouls-avatar.armor",
+        "baseId": "items/base/armor-archon-plate",
+        "reqLevel": 60,
+        "qlvl": 60,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 204
+          }
+        }
+      },
+      {
+        "id": "sets/trang-ouls-avatar/gloves",
+        "setId": "sets/trang-ouls-avatar",
+        "name": "items.setPiece.trang-ouls-avatar.gloves",
+        "baseId": "items/base/glove-bramble-mitts",
+        "reqLevel": 58,
+        "qlvl": 58,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attackSpeed": 10,
+            "attack": 99
+          }
+        }
+      },
+      {
+        "id": "sets/trang-ouls-avatar/belt",
+        "setId": "sets/trang-ouls-avatar",
+        "name": "items.setPiece.trang-ouls-avatar.belt",
+        "baseId": "items/base/belt-mithril-coil",
+        "reqLevel": 58,
+        "qlvl": 58,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "life": 198,
+            "defense": 99
+          }
+        }
+      },
+      {
+        "id": "sets/trang-ouls-avatar/shield",
+        "setId": "sets/trang-ouls-avatar",
+        "name": "items.setPiece.trang-ouls-avatar.shield",
+        "baseId": "items/base/sh-sacred-targe",
+        "reqLevel": 60,
+        "qlvl": 60,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 204
+          },
+          "resistances": {
+            "fire": 10,
+            "cold": 10,
+            "lightning": 10,
+            "poison": 10
+          }
+        }
+      }
+    ]
   },
   {
     "id": "sets/vidala-rig",
-    "name": "Vidala's Rig",
+    "name": "items.set.vidala-rig",
     "items": [
       "sets/vidala-rig/boots",
       "sets/vidala-rig/amulet",
@@ -1177,6 +3073,69 @@
           "attackSpeed": 30
         }
       }
-    }
+    },
+    "pieces": [
+      {
+        "id": "sets/vidala-rig/boots",
+        "setId": "sets/vidala-rig",
+        "name": "items.setPiece.vidala-rig.boots",
+        "baseId": "items/base/boot-heavy",
+        "reqLevel": 7,
+        "qlvl": 7,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "physDodge": 0.05,
+            "defense": 12
+          }
+        }
+      },
+      {
+        "id": "sets/vidala-rig/amulet",
+        "setId": "sets/vidala-rig",
+        "name": "items.setPiece.vidala-rig.amulet",
+        "baseId": "items/base/amu-brass",
+        "reqLevel": 10,
+        "qlvl": 10,
+        "weight": 1,
+        "stats": {
+          "coreStats": {
+            "energy": 5
+          },
+          "statMods": {
+            "mana": 34
+          }
+        }
+      },
+      {
+        "id": "sets/vidala-rig/armor",
+        "setId": "sets/vidala-rig",
+        "name": "items.setPiece.vidala-rig.armor",
+        "baseId": "items/base/armor-leather",
+        "reqLevel": 6,
+        "qlvl": 6,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "defense": 20
+          }
+        }
+      },
+      {
+        "id": "sets/vidala-rig/weapon",
+        "setId": "sets/vidala-rig",
+        "name": "items.setPiece.vidala-rig.weapon",
+        "baseId": "items/base/weapon-bow",
+        "reqLevel": 10,
+        "qlvl": 10,
+        "weight": 1,
+        "stats": {
+          "statMods": {
+            "attack": 51,
+            "attackSpeed": 10
+          }
+        }
+      }
+    ]
   }
 ]

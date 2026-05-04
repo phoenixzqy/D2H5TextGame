@@ -99,7 +99,7 @@
   },
   {
     "id": "items/unique/the-gnasher",
-    "name": "The Gnasher",
+    "name": "items.unique.the-gnasher.name",
     "baseId": "items/base/weapon-axe",
     "reqLevel": 5,
     "stats": {
@@ -115,11 +115,11 @@
         }
       }
     },
-    "flavor": "A small axe with a vicious bite."
+    "flavor": "items.unique.the-gnasher.flavor"
   },
   {
     "id": "items/unique/hand-of-broc",
-    "name": "The Hand of Broc",
+    "name": "items.unique.hand-of-broc.name",
     "baseId": "items/base/glove-leather",
     "reqLevel": 5,
     "stats": {
@@ -132,11 +132,11 @@
         "mana": 10
       }
     },
-    "flavor": "Calloused leather that drinks poison harmlessly."
+    "flavor": "items.unique.hand-of-broc.flavor"
   },
   {
     "id": "items/unique/torch-of-iros",
-    "name": "Torch of Iro",
+    "name": "items.unique.torch-of-iros.name",
     "baseId": "items/base/weapon-wand",
     "reqLevel": 6,
     "stats": {
@@ -155,11 +155,11 @@
         }
       }
     },
-    "flavor": "A wand that always burns at the tip."
+    "flavor": "items.unique.torch-of-iros.flavor"
   },
   {
     "id": "items/unique/blood-crescent",
-    "name": "Blood Crescent",
+    "name": "items.unique.blood-crescent.name",
     "baseId": "items/base/wp1h-short-sword",
     "reqLevel": 7,
     "stats": {
@@ -169,11 +169,11 @@
         "life": 15
       }
     },
-    "flavor": "A curved blade that drinks deep."
+    "flavor": "items.unique.blood-crescent.flavor"
   },
   {
     "id": "items/unique/felloak",
-    "name": "Felloak",
+    "name": "items.unique.felloak.name",
     "baseId": "items/base/weapon-mace",
     "reqLevel": 7,
     "stats": {
@@ -188,11 +188,11 @@
         }
       }
     },
-    "flavor": "A burning club of charred oak."
+    "flavor": "items.unique.felloak.flavor"
   },
   {
     "id": "items/unique/greyform",
-    "name": "Greyform",
+    "name": "items.unique.greyform.name",
     "baseId": "items/base/armor-leather",
     "reqLevel": 7,
     "stats": {
@@ -208,11 +208,11 @@
         "life": 15
       }
     },
-    "flavor": "Plain grey wool that turns aside the cold."
+    "flavor": "items.unique.greyform.flavor"
   },
   {
     "id": "items/unique/lenymo",
-    "name": "Lenymo",
+    "name": "items.unique.lenymo.name",
     "baseId": "items/base/belt-light",
     "reqLevel": 7,
     "stats": {
@@ -224,11 +224,11 @@
         "defense": 10
       }
     },
-    "flavor": "A spellweaver's sash, threaded with mana."
+    "flavor": "items.unique.lenymo.flavor"
   },
   {
     "id": "items/unique/pluckeye",
-    "name": "Pluckeye",
+    "name": "items.unique.pluckeye.name",
     "baseId": "items/base/weapon-bow",
     "reqLevel": 7,
     "stats": {
@@ -244,11 +244,11 @@
         }
       }
     },
-    "flavor": "A keen-eyed hunter's first bow."
+    "flavor": "items.unique.pluckeye.flavor"
   },
   {
     "id": "items/unique/axe-of-fechmar",
-    "name": "Axe of Fechmar",
+    "name": "items.unique.axe-of-fechmar.name",
     "baseId": "items/base/weapon-axe",
     "reqLevel": 8,
     "stats": {
@@ -266,11 +266,11 @@
         }
       }
     },
-    "flavor": "An icy hand-axe of barbaric make."
+    "flavor": "items.unique.axe-of-fechmar.flavor"
   },
   {
     "id": "items/unique/coif-of-glory",
-    "name": "Coif of Glory",
+    "name": "items.unique.coif-of-glory.name",
     "baseId": "items/base/helm-skull-cap",
     "reqLevel": 9,
     "stats": {
@@ -282,11 +282,11 @@
         "life": 10
       }
     },
-    "flavor": "A worn coif blessed by a long-dead king."
+    "flavor": "items.unique.coif-of-glory.flavor"
   },
   {
     "id": "items/unique/deathspade",
-    "name": "Deathspade",
+    "name": "items.unique.deathspade.name",
     "baseId": "items/base/weapon-axe",
     "reqLevel": 9,
     "stats": {
@@ -301,11 +301,11 @@
         }
       }
     },
-    "flavor": "A spade-headed hatchet, dull but heavy."
+    "flavor": "items.unique.deathspade.flavor"
   },
   {
     "id": "items/unique/gorefoot",
-    "name": "Gorefoot",
+    "name": "items.unique.gorefoot.name",
     "baseId": "items/base/boot-heavy",
     "reqLevel": 9,
     "stats": {
@@ -317,11 +317,11 @@
         "attackSpeed": 10
       }
     },
-    "flavor": "Bloodstained boots that quicken every stride."
+    "flavor": "items.unique.gorefoot.flavor"
   },
   {
     "id": "items/unique/skewer-of-krintiz",
-    "name": "Skewer of Krintiz",
+    "name": "items.unique.skewer-of-krintiz.name",
     "baseId": "items/base/wp1h-scimitar",
     "reqLevel": 9,
     "stats": {
@@ -336,7 +336,7 @@
         }
       }
     },
-    "flavor": "A thin, vicious thrusting blade."
+    "flavor": "items.unique.skewer-of-krintiz.flavor"
   },
   {
     "stats": {
@@ -345,15 +345,15 @@
         "magicFind": 30
       }
     },
-    "name": "Nagelring",
+    "name": "items.unique.nagelring.name",
     "baseId": "items/base/ring",
-    "flavor": "The merchant's favorite — more gold means more treasures to find.",
+    "flavor": "items.unique.nagelring.flavor",
     "reqLevel": 10,
     "id": "items/unique/nagelring"
   },
   {
     "id": "items/unique/stoutnail",
-    "name": "Stoutnail",
+    "name": "items.unique.stoutnail.name",
     "baseId": "items/base/weapon-mace",
     "reqLevel": 10,
     "stats": {
@@ -369,11 +369,11 @@
         }
       }
     },
-    "flavor": "A simple iron-banded club. Reliable."
+    "flavor": "items.unique.stoutnail.flavor"
   },
   {
     "id": "items/unique/blinkbat-form",
-    "name": "Blinkbat's Form",
+    "name": "items.unique.blinkbat-form.name",
     "baseId": "items/base/armor-light",
     "reqLevel": 12,
     "stats": {
@@ -385,7 +385,7 @@
         "attackSpeed": 10
       }
     },
-    "flavor": "Stitched of bat-leather; quick and silent."
+    "flavor": "items.unique.blinkbat-form.flavor"
   },
   {
     "stats": {
@@ -397,15 +397,15 @@
         "life": 30
       }
     },
-    "name": "Bloodfist",
+    "name": "items.unique.bloodfist.name",
     "baseId": "items/base/gloves",
-    "flavor": "Soaked in the blood of past battles. Grants raw vitality.",
+    "flavor": "items.unique.bloodfist.flavor",
     "reqLevel": 12,
     "id": "items/unique/bloodfist"
   },
   {
     "id": "items/unique/duskdeep",
-    "name": "Duskdeep",
+    "name": "items.unique.duskdeep.name",
     "baseId": "items/base/helm-skull-cap",
     "reqLevel": 12,
     "stats": {
@@ -418,11 +418,11 @@
         "life": 15
       }
     },
-    "flavor": "A helm that drinks the dusk."
+    "flavor": "items.unique.duskdeep.flavor"
   },
   {
     "id": "items/unique/shadowfang",
-    "name": "Shadowfang",
+    "name": "items.unique.shadowfang.name",
     "baseId": "items/base/wp1h-scimitar",
     "reqLevel": 12,
     "stats": {
@@ -438,11 +438,11 @@
         }
       }
     },
-    "flavor": "A cold blade carved from frost-iron."
+    "flavor": "items.unique.shadowfang.flavor"
   },
   {
     "id": "items/unique/snakecord",
-    "name": "Snakecord",
+    "name": "items.unique.snakecord.name",
     "baseId": "items/base/belt-light",
     "reqLevel": 12,
     "stats": {
@@ -454,11 +454,11 @@
         "life": 15
       }
     },
-    "flavor": "A live serpent draped at the waist — calmed by old magic."
+    "flavor": "items.unique.snakecord.flavor"
   },
   {
     "id": "items/unique/gleamscythe",
-    "name": "Gleamscythe",
+    "name": "items.unique.gleamscythe.name",
     "baseId": "items/base/wp1h-scimitar",
     "reqLevel": 13,
     "stats": {
@@ -467,11 +467,11 @@
         "attackSpeed": 20
       }
     },
-    "flavor": "A scimitar polished to a moonlight gleam."
+    "flavor": "items.unique.gleamscythe.flavor"
   },
   {
     "id": "items/unique/witherstring",
-    "name": "Witherstring",
+    "name": "items.unique.witherstring.name",
     "baseId": "items/base/weapon-bow",
     "reqLevel": 13,
     "stats": {
@@ -486,11 +486,11 @@
         }
       }
     },
-    "flavor": "Its string is sinew — strong and sour."
+    "flavor": "items.unique.witherstring.flavor"
   },
   {
     "id": "items/unique/crushflange",
-    "name": "Crushflange",
+    "name": "items.unique.crushflange.name",
     "baseId": "items/base/weapon-mace",
     "reqLevel": 14,
     "stats": {
@@ -506,11 +506,11 @@
         }
       }
     },
-    "flavor": "A flanged mace that pulps any armor."
+    "flavor": "items.unique.crushflange.flavor"
   },
   {
     "id": "items/unique/howltusk",
-    "name": "Howltusk",
+    "name": "items.unique.howltusk.name",
     "baseId": "items/base/helm-skull-cap",
     "reqLevel": 14,
     "stats": {
@@ -522,11 +522,11 @@
         "attack": 30
       }
     },
-    "flavor": "Tusks of a slain boar-king set in iron."
+    "flavor": "items.unique.howltusk.flavor"
   },
   {
     "id": "items/unique/the-centurion",
-    "name": "The Centurion",
+    "name": "items.unique.the-centurion.name",
     "baseId": "items/base/armor-light",
     "reqLevel": 14,
     "stats": {
@@ -538,11 +538,11 @@
         "defense": 40
       }
     },
-    "flavor": "An old soldier's mail, well-traveled."
+    "flavor": "items.unique.the-centurion.flavor"
   },
   {
     "id": "items/unique/umbral-disk",
-    "name": "Umbral Disk",
+    "name": "items.unique.umbral-disk.name",
     "baseId": "items/base/sh-kite",
     "reqLevel": 14,
     "stats": {
@@ -553,11 +553,11 @@
         "defense": 40
       }
     },
-    "flavor": "A shadow-forged disk — magic glances aside."
+    "flavor": "items.unique.umbral-disk.flavor"
   },
   {
     "id": "items/unique/bloodrise",
-    "name": "Bloodrise",
+    "name": "items.unique.bloodrise.name",
     "baseId": "items/base/weapon-axe",
     "reqLevel": 15,
     "stats": {
@@ -573,11 +573,11 @@
         }
       }
     },
-    "flavor": "It seems to grow heavier with every kill."
+    "flavor": "items.unique.bloodrise.flavor"
   },
   {
     "id": "items/unique/chance-guards",
-    "name": "Chance Guards",
+    "name": "items.unique.chance-guards.name",
     "baseId": "items/base/glove-heavy",
     "reqLevel": 15,
     "stats": {
@@ -587,11 +587,11 @@
         "defense": 20
       }
     },
-    "flavor": "Thieves' gloves — fortune just sticks to them."
+    "flavor": "items.unique.chance-guards.flavor"
   },
   {
     "id": "items/unique/griswold-edge",
-    "name": "Griswold's Edge",
+    "name": "items.unique.griswold-edge.name",
     "baseId": "items/base/wp1h-scimitar",
     "reqLevel": 15,
     "stats": {
@@ -607,7 +607,7 @@
         }
       }
     },
-    "flavor": "The blacksmith of Tristram's signature blade."
+    "flavor": "items.unique.griswold-edge.flavor"
   },
   {
     "stats": {
@@ -616,15 +616,15 @@
         "life": 15
       }
     },
-    "name": "Manald Heal",
+    "name": "items.unique.manald-heal.name",
     "baseId": "items/base/ring",
-    "flavor": "A ring of regeneration stolen from the temple of Mana.",
+    "flavor": "items.unique.manald-heal.flavor",
     "reqLevel": 15,
     "id": "items/unique/manald-heal"
   },
   {
     "id": "items/unique/rasperose",
-    "name": "Raven Claw",
+    "name": "items.unique.rasperose.name",
     "baseId": "items/base/weapon-bow",
     "reqLevel": 15,
     "stats": {
@@ -640,23 +640,28 @@
         }
       }
     },
-    "flavor": "A raven's claw nocks each arrow."
+    "flavor": "items.unique.rasperose.flavor"
   },
   {
     "stats": {
+      "coreStats": {
+        "energy": 5
+      },
       "statMods": {
-        "magicFind": 35
+        "magicFind": 35,
+        "goldFind": 75,
+        "attack": 15
       }
     },
-    "name": "Tarnhelm",
+    "name": "items.unique.tarnhelm.name",
     "baseId": "items/base/helm-skull-cap",
-    "flavor": "A humble cap that nevertheless draws fortune to the wearer.",
+    "flavor": "items.unique.tarnhelm.flavor",
     "reqLevel": 15,
     "id": "items/unique/tarnhelm"
   },
   {
     "id": "items/unique/eye-of-etlich",
-    "name": "The Eye of Etlich",
+    "name": "items.unique.eye-of-etlich.name",
     "baseId": "items/base/amu-brass",
     "reqLevel": 15,
     "stats": {
@@ -668,11 +673,11 @@
         "life": 15
       }
     },
-    "flavor": "A pale gem that watches from the wearer's chest."
+    "flavor": "items.unique.eye-of-etlich.flavor"
   },
   {
     "id": "items/unique/treads-of-cthon",
-    "name": "Treads of Cthon",
+    "name": "items.unique.treads-of-cthon.name",
     "baseId": "items/base/boot-heavy",
     "reqLevel": 15,
     "stats": {
@@ -684,11 +689,11 @@
         "life": 20
       }
     },
-    "flavor": "Leaves no print, no matter the soil."
+    "flavor": "items.unique.treads-of-cthon.flavor"
   },
   {
     "id": "items/unique/bloodrise-2",
-    "name": "Bloodrise (Mace)",
+    "name": "items.unique.bloodrise-2.name",
     "baseId": "items/base/weapon-mace",
     "reqLevel": 16,
     "stats": {
@@ -703,11 +708,11 @@
         }
       }
     },
-    "flavor": "A heavy bloodied club, well-used."
+    "flavor": "items.unique.bloodrise-2.flavor"
   },
   {
     "id": "items/unique/nokozan-relic",
-    "name": "Nokozan Relic",
+    "name": "items.unique.nokozan-relic.name",
     "baseId": "items/base/amu-brass",
     "reqLevel": 16,
     "stats": {
@@ -725,11 +730,11 @@
         }
       }
     },
-    "flavor": "A relic from a long-buried fire-temple."
+    "flavor": "items.unique.nokozan-relic.flavor"
   },
   {
     "id": "items/unique/twitchthroe",
-    "name": "Twitchthroe",
+    "name": "items.unique.twitchthroe.name",
     "baseId": "items/base/armor-light",
     "reqLevel": 16,
     "stats": {
@@ -742,11 +747,11 @@
         "attackSpeed": 20
       }
     },
-    "flavor": "Restless armor that fidgets in battle."
+    "flavor": "items.unique.twitchthroe.flavor"
   },
   {
     "id": "items/unique/lance-guard",
-    "name": "Lance Guard",
+    "name": "items.unique.lance-guard.name",
     "baseId": "items/base/sh-kite",
     "reqLevel": 17,
     "stats": {
@@ -755,11 +760,11 @@
         "attack": 40
       }
     },
-    "flavor": "A lancer's pavise. Punishing to charge."
+    "flavor": "items.unique.lance-guard.flavor"
   },
   {
     "id": "items/unique/rusthandle-scepter",
-    "name": "Rusty Scepter",
+    "name": "items.unique.rusthandle-scepter.name",
     "baseId": "items/base/weapon-scepter",
     "reqLevel": 17,
     "stats": {
@@ -774,11 +779,11 @@
         }
       }
     },
-    "flavor": "A holy scepter, neglected but still potent."
+    "flavor": "items.unique.rusthandle-scepter.flavor"
   },
   {
     "id": "items/unique/the-dragon-chang",
-    "name": "The Dragon Chang",
+    "name": "items.unique.the-dragon-chang.name",
     "baseId": "items/base/weapon-polearm",
     "reqLevel": 17,
     "stats": {
@@ -793,11 +798,11 @@
         }
       }
     },
-    "flavor": "A spear-tip wreathed in lazy flame."
+    "flavor": "items.unique.the-dragon-chang.flavor"
   },
   {
     "id": "items/unique/doomslinger",
-    "name": "Doomslinger",
+    "name": "items.unique.doomslinger.name",
     "baseId": "items/base/weapon-crossbow",
     "reqLevel": 18,
     "stats": {
@@ -812,11 +817,11 @@
         }
       }
     },
-    "flavor": "An apprentice's first crossbow — surprisingly potent."
+    "flavor": "items.unique.doomslinger.flavor"
   },
   {
     "id": "items/unique/maelstrom",
-    "name": "Maelstrom",
+    "name": "items.unique.maelstrom.name",
     "baseId": "items/base/weapon-wand",
     "reqLevel": 18,
     "stats": {
@@ -835,11 +840,11 @@
         }
       }
     },
-    "flavor": "A spiraling rod that hums with storm."
+    "flavor": "items.unique.maelstrom.flavor"
   },
   {
     "id": "items/unique/hawkmail",
-    "name": "Hawkmail",
+    "name": "items.unique.hawkmail.name",
     "baseId": "items/base/armor-light",
     "reqLevel": 19,
     "stats": {
@@ -853,11 +858,11 @@
         "defense": 50
       }
     },
-    "flavor": "Light scales, swift as a hawk."
+    "flavor": "items.unique.hawkmail.flavor"
   },
   {
     "id": "items/unique/darkglow",
-    "name": "Darkglow",
+    "name": "items.unique.darkglow.name",
     "baseId": "items/base/armor-light",
     "reqLevel": 20,
     "stats": {
@@ -872,11 +877,11 @@
         "defense": 60
       }
     },
-    "flavor": "It glimmers with a strange, soft light."
+    "flavor": "items.unique.darkglow.flavor"
   },
   {
     "id": "items/unique/nightsmoke",
-    "name": "Nightsmoke",
+    "name": "items.unique.nightsmoke.name",
     "baseId": "items/base/belt-light",
     "reqLevel": 20,
     "stats": {
@@ -888,11 +893,11 @@
         "mana": 30
       }
     },
-    "flavor": "It smolders faintly in the dark."
+    "flavor": "items.unique.nightsmoke.flavor"
   },
   {
     "id": "items/unique/rogue-bow",
-    "name": "Rogue's Bow",
+    "name": "items.unique.rogue-bow.name",
     "baseId": "items/base/weapon-bow",
     "reqLevel": 20,
     "stats": {
@@ -911,11 +916,11 @@
         }
       }
     },
-    "flavor": "A scout-rogue's well-tested longbow."
+    "flavor": "items.unique.rogue-bow.flavor"
   },
   {
     "id": "items/unique/wall-of-eyeless",
-    "name": "Wall of the Eyeless",
+    "name": "items.unique.wall-of-eyeless.name",
     "baseId": "items/base/sh-kite",
     "reqLevel": 20,
     "stats": {
@@ -927,11 +932,11 @@
         "mana": 30
       }
     },
-    "flavor": "A dark mirror that watches back."
+    "flavor": "items.unique.wall-of-eyeless.flavor"
   },
   {
     "id": "items/unique/stormchaser",
-    "name": "Stormchaser",
+    "name": "items.unique.stormchaser.name",
     "baseId": "items/base/sh-kite",
     "reqLevel": 21,
     "stats": {
@@ -949,11 +954,11 @@
         }
       }
     },
-    "flavor": "Lightning leaps from its rim to strike attackers."
+    "flavor": "items.unique.stormchaser.flavor"
   },
   {
     "id": "items/unique/the-general-tan-do-li-ga",
-    "name": "The General's Tan Do Li Ga",
+    "name": "items.unique.the-general-tan-do-li-ga.name",
     "baseId": "items/base/weapon-axe",
     "reqLevel": 21,
     "stats": {
@@ -971,11 +976,11 @@
         }
       }
     },
-    "flavor": "A general's heirloom — well-traveled, well-bloodied."
+    "flavor": "items.unique.the-general-tan-do-li-ga.flavor"
   },
   {
     "id": "items/unique/the-general-mace",
-    "name": "The Generals' Mace",
+    "name": "items.unique.the-general-mace.name",
     "baseId": "items/base/weapon-mace",
     "reqLevel": 21,
     "stats": {
@@ -993,7 +998,7 @@
         }
       }
     },
-    "flavor": "A general's flail-mace, parade-polished."
+    "flavor": "items.unique.the-general-mace.flavor"
   },
   {
     "stats": {
@@ -1004,15 +1009,15 @@
         "poison": 30
       }
     },
-    "name": "Wormskull",
+    "name": "items.unique.wormskull.name",
     "baseId": "items/base/helm-skull-cap",
-    "flavor": "Crawling with carrion magic. It grants unholy vitality.",
+    "flavor": "items.unique.wormskull.flavor",
     "reqLevel": 21,
     "id": "items/unique/wormskull"
   },
   {
     "id": "items/unique/goblin-toe",
-    "name": "Goblin Toe",
+    "name": "items.unique.goblin-toe.name",
     "baseId": "items/base/boot-heavy",
     "reqLevel": 22,
     "stats": {
@@ -1021,11 +1026,11 @@
         "critChance": 15
       }
     },
-    "flavor": "Squashed-tip boots, oddly sturdy."
+    "flavor": "items.unique.goblin-toe.flavor"
   },
   {
     "id": "items/unique/iceblink",
-    "name": "Iceblink",
+    "name": "items.unique.iceblink.name",
     "baseId": "items/base/armor-light",
     "reqLevel": 22,
     "stats": {
@@ -1036,11 +1041,11 @@
         "defense": 70
       }
     },
-    "flavor": "Frosted plate that numbs an attacker's grip."
+    "flavor": "items.unique.iceblink.flavor"
   },
   {
     "id": "items/unique/soulflay",
-    "name": "Soulflay",
+    "name": "items.unique.soulflay.name",
     "baseId": "items/base/wp1h-long-sword",
     "reqLevel": 22,
     "stats": {
@@ -1055,11 +1060,11 @@
         }
       }
     },
-    "flavor": "It severs more than flesh."
+    "flavor": "items.unique.soulflay.flavor"
   },
   {
     "id": "items/unique/knell-striker-scepter",
-    "name": "Striking Sigil",
+    "name": "items.unique.knell-striker-scepter.name",
     "baseId": "items/base/weapon-scepter",
     "reqLevel": 22,
     "stats": {
@@ -1074,14 +1079,14 @@
         }
       }
     },
-    "flavor": "Glyph-engraved scepter — strikes both flesh and faith."
+    "flavor": "items.unique.knell-striker-scepter.flavor"
   },
   {
     "id": "items/unique/magefist",
-    "name": "items.unique.magefist",
+    "name": "items.unique.magefist.name",
     "baseId": "items/base/glove-light-gauntlets",
     "reqLevel": 23,
-    "flavor": "Worn by an apprentice of the Vizjerei. It bears no fear of fire.",
+    "flavor": "items.unique.magefist.flavor",
     "stats": {
       "damageBonus": {
         "min": 0,
@@ -1094,7 +1099,7 @@
   },
   {
     "id": "items/unique/magefist-gauntlet",
-    "name": "Magefist Gauntlet",
+    "name": "items.unique.magefist-gauntlet.name",
     "baseId": "items/base/glove-heavy",
     "reqLevel": 23,
     "stats": {
@@ -1113,11 +1118,11 @@
         }
       }
     },
-    "flavor": "A larger Vizjerei apprentice glove — fire-laced."
+    "flavor": "items.unique.magefist-gauntlet.flavor"
   },
   {
     "id": "items/unique/sparking-mail",
-    "name": "Sparking Mail",
+    "name": "items.unique.sparking-mail.name",
     "baseId": "items/base/armor-light",
     "reqLevel": 23,
     "stats": {
@@ -1128,11 +1133,11 @@
         "defense": 60
       }
     },
-    "flavor": "Static crackles between every link."
+    "flavor": "items.unique.sparking-mail.flavor"
   },
   {
     "id": "items/unique/stormguild",
-    "name": "Stormguild",
+    "name": "items.unique.stormguild.name",
     "baseId": "items/base/sh-kite",
     "reqLevel": 23,
     "stats": {
@@ -1143,11 +1148,11 @@
         "defense": 60
       }
     },
-    "flavor": "A guildsmen's mark, charged with storm."
+    "flavor": "items.unique.stormguild.flavor"
   },
   {
     "id": "items/unique/jade-tan-do",
-    "name": "The Jade Tan Do",
+    "name": "items.unique.jade-tan-do.name",
     "baseId": "items/base/wp1h-long-sword",
     "reqLevel": 23,
     "stats": {
@@ -1165,11 +1170,11 @@
         }
       }
     },
-    "flavor": "A jade-edged dirk for clean, quiet kills."
+    "flavor": "items.unique.jade-tan-do.flavor"
   },
   {
     "id": "items/unique/heavenly-garb",
-    "name": "Heavenly Garb",
+    "name": "items.unique.heavenly-garb.name",
     "baseId": "items/base/armor-light",
     "reqLevel": 24,
     "stats": {
@@ -1184,11 +1189,11 @@
         "mana": 40
       }
     },
-    "flavor": "A robe spun from sunset cloth."
+    "flavor": "items.unique.heavenly-garb.flavor"
   },
   {
     "id": "items/unique/gravenspine",
-    "name": "Gravenspine",
+    "name": "items.unique.gravenspine.name",
     "baseId": "items/base/weapon-wand",
     "reqLevel": 25,
     "stats": {
@@ -1207,11 +1212,11 @@
         }
       }
     },
-    "flavor": "Carved from the spine of a long-dead lich."
+    "flavor": "items.unique.gravenspine.flavor"
   },
   {
     "id": "items/unique/hellplague",
-    "name": "Hellplague",
+    "name": "items.unique.hellplague.name",
     "baseId": "items/base/wp1h-long-sword",
     "reqLevel": 25,
     "stats": {
@@ -1227,11 +1232,11 @@
         }
       }
     },
-    "flavor": "A blade that fester wounds with every cut."
+    "flavor": "items.unique.hellplague.flavor"
   },
   {
     "id": "items/unique/razor-stitch",
-    "name": "Razortail Pike",
+    "name": "items.unique.razor-stitch.name",
     "baseId": "items/base/weapon-polearm",
     "reqLevel": 25,
     "stats": {
@@ -1249,11 +1254,11 @@
         }
       }
     },
-    "flavor": "A barbed pike — leaves a wound that never closes."
+    "flavor": "items.unique.razor-stitch.flavor"
   },
   {
     "id": "items/unique/spectral-shard",
-    "name": "Spectral Shard",
+    "name": "items.unique.spectral-shard.name",
     "baseId": "items/base/wp1h-long-sword",
     "reqLevel": 25,
     "stats": {
@@ -1272,11 +1277,11 @@
         }
       }
     },
-    "flavor": "A glassy ghost-blade. It cuts through wards."
+    "flavor": "items.unique.spectral-shard.flavor"
   },
   {
     "id": "items/unique/stormstrike",
-    "name": "Stormstrike",
+    "name": "items.unique.stormstrike.name",
     "baseId": "items/base/weapon-bow",
     "reqLevel": 25,
     "stats": {
@@ -1291,11 +1296,11 @@
         }
       }
     },
-    "flavor": "Each loosed arrow crackles with thunder."
+    "flavor": "items.unique.stormstrike.flavor"
   },
   {
     "id": "items/unique/mahim-oak-curio",
-    "name": "The Mahim-Oak Curio",
+    "name": "items.unique.mahim-oak-curio.name",
     "baseId": "items/base/amu-silver",
     "reqLevel": 25,
     "stats": {
@@ -1309,11 +1314,11 @@
         "defense": 20
       }
     },
-    "flavor": "A curio whittled from a holy oak."
+    "flavor": "items.unique.mahim-oak-curio.flavor"
   },
   {
     "id": "items/unique/undead-crown",
-    "name": "Undead Crown",
+    "name": "items.unique.undead-crown.name",
     "baseId": "items/base/helm-war-hat",
     "reqLevel": 26,
     "stats": {
@@ -1328,11 +1333,11 @@
         "defense": 40
       }
     },
-    "flavor": "Worn by the puppet-king of a forgotten crypt."
+    "flavor": "items.unique.undead-crown.flavor"
   },
   {
     "id": "items/unique/venom-ward",
-    "name": "Venom Ward",
+    "name": "items.unique.venom-ward.name",
     "baseId": "items/base/armor-chain-mail",
     "reqLevel": 26,
     "stats": {
@@ -1343,11 +1348,11 @@
         "defense": 70
       }
     },
-    "flavor": "Steeped in antitoxins by a desert druid."
+    "flavor": "items.unique.venom-ward.flavor"
   },
   {
     "id": "items/unique/wizendraw",
-    "name": "Wizendraw",
+    "name": "items.unique.wizendraw.name",
     "baseId": "items/base/weapon-bow",
     "reqLevel": 26,
     "stats": {
@@ -1365,11 +1370,11 @@
         }
       }
     },
-    "flavor": "An ancient bow — its string never warps."
+    "flavor": "items.unique.wizendraw.flavor"
   },
   {
     "id": "items/unique/black-cleft",
-    "name": "Black Cleft",
+    "name": "items.unique.black-cleft.name",
     "baseId": "items/base/wp1h-long-sword",
     "reqLevel": 27,
     "stats": {
@@ -1384,11 +1389,11 @@
         }
       }
     },
-    "flavor": "A jagged blade of frostbitten iron."
+    "flavor": "items.unique.black-cleft.flavor"
   },
   {
     "id": "items/unique/goldwrap",
-    "name": "Goldwrap",
+    "name": "items.unique.goldwrap.name",
     "baseId": "items/base/belt-heavy",
     "reqLevel": 27,
     "stats": {
@@ -1398,11 +1403,11 @@
         "magicFind": 30
       }
     },
-    "flavor": "A merchant-prince's gilded sash."
+    "flavor": "items.unique.goldwrap.flavor"
   },
   {
     "id": "items/unique/hellclap",
-    "name": "Hellclap",
+    "name": "items.unique.hellclap.name",
     "baseId": "items/base/weapon-bow",
     "reqLevel": 27,
     "stats": {
@@ -1418,11 +1423,11 @@
         }
       }
     },
-    "flavor": "Each arrow bursts on impact."
+    "flavor": "items.unique.hellclap.flavor"
   },
   {
     "id": "items/unique/ichorsting",
-    "name": "Ichorsting",
+    "name": "items.unique.ichorsting.name",
     "baseId": "items/base/weapon-axe",
     "reqLevel": 27,
     "stats": {
@@ -1437,11 +1442,11 @@
         }
       }
     },
-    "flavor": "A barbed axe — wounds fester for days."
+    "flavor": "items.unique.ichorsting.flavor"
   },
   {
     "id": "items/unique/ring-of-the-leech",
-    "name": "Ring of the Leech",
+    "name": "items.unique.ring-of-the-leech.name",
     "baseId": "items/base/ring-jade",
     "reqLevel": 27,
     "stats": {
@@ -1450,11 +1455,11 @@
         "mana": 10
       }
     },
-    "flavor": "A ring fashioned from a vampire's tooth."
+    "flavor": "items.unique.ring-of-the-leech.flavor"
   },
   {
     "id": "items/unique/boneflesh",
-    "name": "Boneflesh",
+    "name": "items.unique.boneflesh.name",
     "baseId": "items/base/armor-chain-mail",
     "reqLevel": 28,
     "stats": {
@@ -1466,11 +1471,11 @@
         "life": 30
       }
     },
-    "flavor": "A grim coat of bone-plates lashed with sinew."
+    "flavor": "items.unique.boneflesh.flavor"
   },
   {
     "id": "items/unique/ironstone",
-    "name": "Ironstone",
+    "name": "items.unique.ironstone.name",
     "baseId": "items/base/weapon-mace",
     "reqLevel": 28,
     "stats": {
@@ -1488,11 +1493,11 @@
         }
       }
     },
-    "flavor": "Stone-headed, iron-banded — primitive but lethal."
+    "flavor": "items.unique.ironstone.flavor"
   },
   {
     "id": "items/unique/peasant-crown",
-    "name": "Peasant Crown",
+    "name": "items.unique.peasant-crown.name",
     "baseId": "items/base/helm-casque",
     "reqLevel": 28,
     "stats": {
@@ -1505,11 +1510,11 @@
         "defense": 50
       }
     },
-    "flavor": "A simple circlet that brought a serf to glory."
+    "flavor": "items.unique.peasant-crown.flavor"
   },
   {
     "id": "items/unique/silks-of-the-victor",
-    "name": "Silks of the Victor",
+    "name": "items.unique.silks-of-the-victor.name",
     "baseId": "items/base/armor-chain-mail",
     "reqLevel": 28,
     "stats": {
@@ -1521,11 +1526,11 @@
         "mana": 20
       }
     },
-    "flavor": "Worn by champions of the arena."
+    "flavor": "items.unique.silks-of-the-victor.flavor"
   },
   {
     "id": "items/unique/the-spirit-shroud",
-    "name": "The Spirit Shroud",
+    "name": "items.unique.the-spirit-shroud.name",
     "baseId": "items/base/armor-chain-mail",
     "reqLevel": 28,
     "stats": {
@@ -1537,11 +1542,11 @@
         "mana": 40
       }
     },
-    "flavor": "A whisper-thin robe haunted by past wearers."
+    "flavor": "items.unique.the-spirit-shroud.flavor"
   },
   {
     "id": "items/unique/visceratuant",
-    "name": "Visceratuant",
+    "name": "items.unique.visceratuant.name",
     "baseId": "items/base/sh-aegis",
     "reqLevel": 28,
     "stats": {
@@ -1553,7 +1558,7 @@
         "mana": 40
       }
     },
-    "flavor": "A spell-shield carved with binding glyphs."
+    "flavor": "items.unique.visceratuant.flavor"
   },
   {
     "stats": {
@@ -1564,15 +1569,15 @@
         "mana": 40
       }
     },
-    "name": "Frostburn",
+    "name": "items.unique.frostburn.name",
     "baseId": "items/base/gloves",
-    "flavor": "Frozen gauntlets that amplify both mana and chill.",
+    "flavor": "items.unique.frostburn.flavor",
     "reqLevel": 29,
     "id": "items/unique/frostburn"
   },
   {
     "id": "items/unique/rattlecage",
-    "name": "Rattlecage",
+    "name": "items.unique.rattlecage.name",
     "baseId": "items/base/armor-chain-mail",
     "reqLevel": 29,
     "stats": {
@@ -1584,14 +1589,14 @@
         "attack": 60
       }
     },
-    "flavor": "Skull-charms clatter as you move."
+    "flavor": "items.unique.rattlecage.flavor"
   },
   {
     "id": "items/unique/skin-of-vipermagi",
-    "name": "items.unique.skin-of-vipermagi",
+    "name": "items.unique.skin-of-vipermagi.name",
     "baseId": "items/base/armor-leather",
     "reqLevel": 29,
-    "flavor": "Stripped from the great serpent-mages of the deep jungles.",
+    "flavor": "items.unique.skin-of-vipermagi.flavor",
     "stats": {
       "resistances": {
         "fire": 30,
@@ -1604,10 +1609,10 @@
   },
   {
     "id": "items/unique/stone-of-jordan",
-    "name": "items.unique.stone-of-jordan",
+    "name": "items.unique.stone-of-jordan.name",
     "baseId": "items/base/ring-silver",
     "reqLevel": 29,
-    "flavor": "A ring of legend, the dream of every adventurer.",
+    "flavor": "items.unique.stone-of-jordan.flavor",
     "stats": {
       "statMods": {
         "mana": 20
@@ -1623,10 +1628,10 @@
   },
   {
     "id": "items/unique/string-of-ears",
-    "name": "items.unique.string-of-ears",
+    "name": "items.unique.string-of-ears.name",
     "baseId": "items/base/belt-demonhide",
     "reqLevel": 29,
-    "flavor": "A grim trophy belt strung with the ears of fallen demons.",
+    "flavor": "items.unique.string-of-ears.flavor",
     "stats": {
       "coreStats": {
         "vitality": 15
@@ -1638,7 +1643,7 @@
   },
   {
     "id": "items/unique/tearhaunch",
-    "name": "Tearhaunch",
+    "name": "items.unique.tearhaunch.name",
     "baseId": "items/base/boot-chain",
     "reqLevel": 29,
     "stats": {
@@ -1651,11 +1656,11 @@
         "attackSpeed": 15
       }
     },
-    "flavor": "A pilgrim's worn boots — quick and tireless."
+    "flavor": "items.unique.tearhaunch.flavor"
   },
   {
     "id": "items/unique/the-fetid-sprinkler",
-    "name": "The Fetid Sprinkler",
+    "name": "items.unique.the-fetid-sprinkler.name",
     "baseId": "items/base/weapon-scepter",
     "reqLevel": 29,
     "stats": {
@@ -1673,11 +1678,11 @@
         }
       }
     },
-    "flavor": "A clergy's foul-water sprinkler — repurposed."
+    "flavor": "items.unique.the-fetid-sprinkler.flavor"
   },
   {
     "id": "items/unique/venom-grip",
-    "name": "Venom Grip",
+    "name": "items.unique.venom-grip.name",
     "baseId": "items/base/glove-chain",
     "reqLevel": 29,
     "stats": {
@@ -1689,7 +1694,7 @@
         "life": 20
       }
     },
-    "flavor": "Snakeskin gauntlets that drip with venom."
+    "flavor": "items.unique.venom-grip.flavor"
   },
   {
     "stats": {
@@ -1703,15 +1708,15 @@
         "defense": 80
       }
     },
-    "name": "Whitstan's Guard",
+    "name": "items.unique.whistan-guard.name",
     "baseId": "items/base/sh-dragon-shield",
-    "flavor": "A paladin's ward. It deflects blows with holy resilience.",
+    "flavor": "items.unique.whistan-guard.flavor",
     "reqLevel": 29,
     "id": "items/unique/whistan-guard"
   },
   {
     "id": "items/unique/ume-lament",
-    "name": "Ume's Lament",
+    "name": "items.unique.ume-lament.name",
     "baseId": "items/base/weapon-wand",
     "reqLevel": 30,
     "stats": {
@@ -1730,11 +1735,11 @@
         }
       }
     },
-    "flavor": "A widow's wand — it weeps for the dead."
+    "flavor": "items.unique.ume-lament.flavor"
   },
   {
     "id": "items/unique/culwens-point",
-    "name": "Culwen's Point",
+    "name": "items.unique.culwens-point.name",
     "baseId": "items/base/wp1h-long-sword",
     "reqLevel": 31,
     "stats": {
@@ -1743,7 +1748,7 @@
         "attackSpeed": 20
       }
     },
-    "flavor": "A smith's masterpiece — perfectly balanced."
+    "flavor": "items.unique.culwens-point.flavor"
   },
   {
     "stats": {
@@ -1756,15 +1761,15 @@
         "defense": 100
       }
     },
-    "name": "Moser's Blessed Circle",
+    "name": "items.unique.moser-circle.name",
     "baseId": "items/base/sh-dragon-shield",
-    "flavor": "Engraved with protective runes. It wards off all harm.",
+    "flavor": "items.unique.moser-circle.flavor",
     "reqLevel": 31,
     "id": "items/unique/moser-circle"
   },
   {
     "id": "items/unique/ribcracker",
-    "name": "Ribcracker",
+    "name": "items.unique.ribcracker.name",
     "baseId": "items/base/weapon-polearm",
     "reqLevel": 31,
     "stats": {
@@ -1783,11 +1788,11 @@
         }
       }
     },
-    "flavor": "A staff that finds the gaps between ribs."
+    "flavor": "items.unique.ribcracker.flavor"
   },
   {
     "id": "items/unique/riphook",
-    "name": "Riphook",
+    "name": "items.unique.riphook.name",
     "baseId": "items/base/weapon-bow",
     "reqLevel": 31,
     "stats": {
@@ -1802,11 +1807,11 @@
         }
       }
     },
-    "flavor": "Hooked-tip arrows that tear on withdrawal."
+    "flavor": "items.unique.riphook.flavor"
   },
   {
     "id": "items/unique/rockfleece",
-    "name": "Rockfleece",
+    "name": "items.unique.rockfleece.name",
     "baseId": "items/base/armor-chain-mail",
     "reqLevel": 31,
     "stats": {
@@ -1817,11 +1822,11 @@
         "defense": 120
       }
     },
-    "flavor": "Granite-fiber wool. Heavy but indestructible."
+    "flavor": "items.unique.rockfleece.flavor"
   },
   {
     "id": "items/unique/rockstopper",
-    "name": "Rockstopper",
+    "name": "items.unique.rockstopper.name",
     "baseId": "items/base/helm-casque",
     "reqLevel": 31,
     "stats": {
@@ -1838,11 +1843,11 @@
         "life": 40
       }
     },
-    "flavor": "Forged of the sturdiest stone."
+    "flavor": "items.unique.rockstopper.flavor"
   },
   {
     "id": "items/unique/skin-of-flayed-one",
-    "name": "Skin of the Flayed One",
+    "name": "items.unique.skin-of-flayed-one.name",
     "baseId": "items/base/armor-chain-mail",
     "reqLevel": 31,
     "stats": {
@@ -1854,11 +1859,11 @@
         "life": 50
       }
     },
-    "flavor": "It still twitches when blood is shed near it."
+    "flavor": "items.unique.skin-of-flayed-one.flavor"
   },
   {
     "id": "items/unique/the-impaler",
-    "name": "The Impaler",
+    "name": "items.unique.the-impaler.name",
     "baseId": "items/base/wp2h-war-pike",
     "reqLevel": 31,
     "stats": {
@@ -1873,11 +1878,11 @@
         }
       }
     },
-    "flavor": "A spiked pike that runs foes through."
+    "flavor": "items.unique.the-impaler.flavor"
   },
   {
     "id": "items/unique/dark-clan-crusher",
-    "name": "Dark Clan Crusher",
+    "name": "items.unique.dark-clan-crusher.name",
     "baseId": "items/base/weapon-mace",
     "reqLevel": 32,
     "stats": {
@@ -1892,11 +1897,11 @@
         }
       }
     },
-    "flavor": "A clan-mace blackened with old soot."
+    "flavor": "items.unique.dark-clan-crusher.flavor"
   },
   {
     "id": "items/unique/kinemil-awl",
-    "name": "Kinemil's Awl",
+    "name": "items.unique.kinemil-awl.name",
     "baseId": "items/base/wp1h-war-sword",
     "reqLevel": 32,
     "stats": {
@@ -1911,7 +1916,7 @@
         }
       }
     },
-    "flavor": "A red-hot point that never cools."
+    "flavor": "items.unique.kinemil-awl.flavor"
   },
   {
     "stats": {
@@ -1922,15 +1927,15 @@
         "attack": 30
       }
     },
-    "name": "Razortail",
+    "name": "items.unique.razortail.name",
     "baseId": "items/base/belt-light",
-    "flavor": "Crafted from a demon's spine. Arrows and bolts pierce through foes.",
+    "flavor": "items.unique.razortail.flavor",
     "reqLevel": 32,
     "id": "items/unique/razortail"
   },
   {
     "id": "items/unique/iron-pelt",
-    "name": "Iron Pelt",
+    "name": "items.unique.iron-pelt.name",
     "baseId": "items/base/armor-breast-plate",
     "reqLevel": 33,
     "stats": {
@@ -1941,11 +1946,11 @@
         "defense": 140
       }
     },
-    "flavor": "A tribe-chief's plate, banded in cold iron."
+    "flavor": "items.unique.iron-pelt.flavor"
   },
   {
     "id": "items/unique/kelpie-snare",
-    "name": "Kelpie Snare",
+    "name": "items.unique.kelpie-snare.name",
     "baseId": "items/base/wp2h-war-pike",
     "reqLevel": 33,
     "stats": {
@@ -1963,11 +1968,11 @@
         }
       }
     },
-    "flavor": "A jagged hook from the cold deeps."
+    "flavor": "items.unique.kelpie-snare.flavor"
   },
   {
     "id": "items/unique/razor-tine",
-    "name": "Razor's Tine",
+    "name": "items.unique.razor-tine.name",
     "baseId": "items/base/weapon-axe",
     "reqLevel": 33,
     "stats": {
@@ -1986,11 +1991,11 @@
         }
       }
     },
-    "flavor": "A vicious bearded axe with a hair-thin edge."
+    "flavor": "items.unique.razor-tine.flavor"
   },
   {
     "id": "items/unique/the-nokozan",
-    "name": "The Nokozan",
+    "name": "items.unique.the-nokozan.name",
     "baseId": "items/base/amu-silver",
     "reqLevel": 34,
     "stats": {
@@ -2009,11 +2014,11 @@
         }
       }
     },
-    "flavor": "A relic from a buried fire-temple."
+    "flavor": "items.unique.the-nokozan.flavor"
   },
   {
     "id": "items/unique/blacktongue",
-    "name": "Blacktongue",
+    "name": "items.unique.blacktongue.name",
     "baseId": "items/base/wp1h-war-sword",
     "reqLevel": 35,
     "stats": {
@@ -2028,11 +2033,11 @@
         }
       }
     },
-    "flavor": "A tongue-shaped blade, drips with venom."
+    "flavor": "items.unique.blacktongue.flavor"
   },
   {
     "id": "items/unique/blade-of-ali-baba",
-    "name": "Blade of Ali Baba",
+    "name": "items.unique.blade-of-ali-baba.name",
     "baseId": "items/base/wp1h-war-sword",
     "reqLevel": 35,
     "stats": {
@@ -2042,11 +2047,11 @@
         "goldFind": 200
       }
     },
-    "flavor": "A thief's blade — even the dust turns to coin."
+    "flavor": "items.unique.blade-of-ali-baba.flavor"
   },
   {
     "id": "items/unique/blastbark",
-    "name": "Blastbark",
+    "name": "items.unique.blastbark.name",
     "baseId": "items/base/weapon-bow",
     "reqLevel": 35,
     "stats": {
@@ -2061,11 +2066,11 @@
         }
       }
     },
-    "flavor": "A bark-yew bow that shatters wards."
+    "flavor": "items.unique.blastbark.flavor"
   },
   {
     "id": "items/unique/greaves-of-march",
-    "name": "Greaves of March",
+    "name": "items.unique.greaves-of-march.name",
     "baseId": "items/base/boot-light-plated",
     "reqLevel": 35,
     "stats": {
@@ -2078,11 +2083,11 @@
         "attackSpeed": 15
       }
     },
-    "flavor": "A long-marcher's boots — tireless underfoot."
+    "flavor": "items.unique.greaves-of-march.flavor"
   },
   {
     "id": "items/unique/langer-briser",
-    "name": "Langer Briser",
+    "name": "items.unique.langer-briser.name",
     "baseId": "items/base/weapon-crossbow",
     "reqLevel": 35,
     "stats": {
@@ -2097,11 +2102,11 @@
         }
       }
     },
-    "flavor": "An old siege-bow, repurposed."
+    "flavor": "items.unique.langer-briser.flavor"
   },
   {
     "id": "items/unique/skystrike",
-    "name": "Skystrike",
+    "name": "items.unique.skystrike.name",
     "baseId": "items/base/weapon-bow",
     "reqLevel": 35,
     "stats": {
@@ -2119,11 +2124,11 @@
         }
       }
     },
-    "flavor": "An archer-king's bow — calls down lightning."
+    "flavor": "items.unique.skystrike.flavor"
   },
   {
     "id": "items/unique/stealskull",
-    "name": "Stealskull",
+    "name": "items.unique.stealskull.name",
     "baseId": "items/base/helm-casque",
     "reqLevel": 35,
     "stats": {
@@ -2133,11 +2138,11 @@
         "defense": 50
       }
     },
-    "flavor": "A thief's prized helm — fortune flocks to its wearer."
+    "flavor": "items.unique.stealskull.flavor"
   },
   {
     "id": "items/unique/the-diggler",
-    "name": "The Diggler",
+    "name": "items.unique.the-diggler.name",
     "baseId": "items/base/wp1h-war-sword",
     "reqLevel": 35,
     "stats": {
@@ -2153,11 +2158,11 @@
         }
       }
     },
-    "flavor": "A pickaxe-dagger — pries armor open."
+    "flavor": "items.unique.the-diggler.flavor"
   },
   {
     "id": "items/unique/crow-caw",
-    "name": "Crow Caw",
+    "name": "items.unique.crow-caw.name",
     "baseId": "items/base/armor-breast-plate",
     "reqLevel": 36,
     "stats": {
@@ -2169,11 +2174,11 @@
         "attackSpeed": 20
       }
     },
-    "flavor": "Black feathers fan out at every sudden move."
+    "flavor": "items.unique.crow-caw.flavor"
   },
   {
     "id": "items/unique/gloom-trap",
-    "name": "Gloom's Trap",
+    "name": "items.unique.gloom-trap.name",
     "baseId": "items/base/belt-plated",
     "reqLevel": 36,
     "stats": {
@@ -2185,11 +2190,11 @@
         "defense": 50
       }
     },
-    "flavor": "A scholar's sash — knowledge weighs heavy."
+    "flavor": "items.unique.gloom-trap.flavor"
   },
   {
     "id": "items/unique/goldskin",
-    "name": "Goldskin",
+    "name": "items.unique.goldskin.name",
     "baseId": "items/base/armor-breast-plate",
     "reqLevel": 36,
     "stats": {
@@ -2199,11 +2204,11 @@
         "magicFind": 25
       }
     },
-    "flavor": "Gilded with the sweat of a covetous king."
+    "flavor": "items.unique.goldskin.flavor"
   },
   {
     "id": "items/unique/knell-striker",
-    "name": "Knell Striker",
+    "name": "items.unique.knell-striker.name",
     "baseId": "items/base/weapon-mace",
     "reqLevel": 36,
     "stats": {
@@ -2218,11 +2223,11 @@
         }
       }
     },
-    "flavor": "Strikes a sour, ringing toll."
+    "flavor": "items.unique.knell-striker.flavor"
   },
   {
     "id": "items/unique/ripsaw",
-    "name": "Ripsaw",
+    "name": "items.unique.ripsaw.name",
     "baseId": "items/base/wp1h-war-sword",
     "reqLevel": 36,
     "stats": {
@@ -2238,11 +2243,11 @@
         }
       }
     },
-    "flavor": "Toothed iron — it tears flesh into ribbons."
+    "flavor": "items.unique.ripsaw.flavor"
   },
   {
     "id": "items/unique/the-meatscraper",
-    "name": "The Meat Scraper",
+    "name": "items.unique.the-meatscraper.name",
     "baseId": "items/base/wp2h-giant-thresher",
     "reqLevel": 36,
     "stats": {
@@ -2257,11 +2262,11 @@
         }
       }
     },
-    "flavor": "A butcher's blade — meant for unfair fights."
+    "flavor": "items.unique.the-meatscraper.flavor"
   },
   {
     "id": "items/unique/coldkill",
-    "name": "Coldkill",
+    "name": "items.unique.coldkill.name",
     "baseId": "items/base/weapon-axe",
     "reqLevel": 37,
     "stats": {
@@ -2279,11 +2284,11 @@
         }
       }
     },
-    "flavor": "An axe of permanent winter."
+    "flavor": "items.unique.coldkill.flavor"
   },
   {
     "id": "items/unique/hone-sundan",
-    "name": "Hone Sundan",
+    "name": "items.unique.hone-sundan.name",
     "baseId": "items/base/wp2h-giant-thresher",
     "reqLevel": 37,
     "stats": {
@@ -2299,11 +2304,11 @@
         }
       }
     },
-    "flavor": "A bone-shaped polearm, brittle-looking but deadly."
+    "flavor": "items.unique.hone-sundan.flavor"
   },
   {
     "id": "items/unique/saracen-chance",
-    "name": "Saracen's Chance",
+    "name": "items.unique.saracen-chance.name",
     "baseId": "items/base/amu-jade",
     "reqLevel": 37,
     "stats": {
@@ -2317,11 +2322,11 @@
         "magicFind": 25
       }
     },
-    "flavor": "A desert wanderer's lucky charm."
+    "flavor": "items.unique.saracen-chance.flavor"
   },
   {
     "id": "items/unique/blackleach-staff",
-    "name": "Blackleach (Staff)",
+    "name": "items.unique.blackleach-staff.name",
     "baseId": "items/base/weapon-polearm",
     "reqLevel": 38,
     "stats": {
@@ -2337,11 +2342,11 @@
         }
       }
     },
-    "flavor": "A leech-shaped polearm draining the unwary."
+    "flavor": "items.unique.blackleach-staff.flavor"
   },
   {
     "id": "items/unique/blackleach-blade",
-    "name": "Blackleach Blade",
+    "name": "items.unique.blackleach-blade.name",
     "baseId": "items/base/wp2h-giant-thresher",
     "reqLevel": 38,
     "stats": {
@@ -2357,11 +2362,11 @@
         }
       }
     },
-    "flavor": "A leech-shaped blade that drinks blood."
+    "flavor": "items.unique.blackleach-blade.flavor"
   },
   {
     "id": "items/unique/darksight-helm",
-    "name": "Darksight Helm",
+    "name": "items.unique.darksight-helm.name",
     "baseId": "items/base/helm-casque",
     "reqLevel": 38,
     "stats": {
@@ -2373,11 +2378,11 @@
         "magicDodge": 10
       }
     },
-    "flavor": "Casts an eerie veil over the wearer's face."
+    "flavor": "items.unique.darksight-helm.flavor"
   },
   {
     "id": "items/unique/gravepalm",
-    "name": "Gravepalm",
+    "name": "items.unique.gravepalm.name",
     "baseId": "items/base/glove-light-gauntlets",
     "reqLevel": 38,
     "stats": {
@@ -2389,11 +2394,11 @@
         "attack": 40
       }
     },
-    "flavor": "Necromantic gloves — your touch withers the living."
+    "flavor": "items.unique.gravepalm.flavor"
   },
   {
     "id": "items/unique/shaftstop",
-    "name": "Shaftstop",
+    "name": "items.unique.shaftstop.name",
     "baseId": "items/base/armor-breast-plate",
     "reqLevel": 38,
     "stats": {
@@ -2408,11 +2413,11 @@
         "life": 60
       }
     },
-    "flavor": "Shrugs off arrows like raindrops."
+    "flavor": "items.unique.shaftstop.flavor"
   },
   {
     "id": "items/unique/the-vile-husk",
-    "name": "The Vile Husk",
+    "name": "items.unique.the-vile-husk.name",
     "baseId": "items/base/wp1h-war-sword",
     "reqLevel": 38,
     "stats": {
@@ -2430,11 +2435,11 @@
         }
       }
     },
-    "flavor": "A hollow, husk-light blade humming with poison."
+    "flavor": "items.unique.the-vile-husk.flavor"
   },
   {
     "id": "items/unique/bladebuckle",
-    "name": "Bladebuckle",
+    "name": "items.unique.bladebuckle.name",
     "baseId": "items/base/belt-plated",
     "reqLevel": 39,
     "stats": {
@@ -2446,11 +2451,11 @@
         "attack": 60
       }
     },
-    "flavor": "Razor-sharp buckle — cuts grasping hands."
+    "flavor": "items.unique.bladebuckle.flavor"
   },
   {
     "id": "items/unique/butcher-pupil",
-    "name": "Butcher's Pupil",
+    "name": "items.unique.butcher-pupil.name",
     "baseId": "items/base/weapon-axe",
     "reqLevel": 39,
     "stats": {
@@ -2466,11 +2471,11 @@
         }
       }
     },
-    "flavor": "A meat-cleaver as taught by the Butcher of Tristram."
+    "flavor": "items.unique.butcher-pupil.flavor"
   },
   {
     "id": "items/unique/the-meat-scraper-2",
-    "name": "The Meat Scraper (Pole)",
+    "name": "items.unique.the-meat-scraper-2.name",
     "baseId": "items/base/weapon-polearm",
     "reqLevel": 39,
     "stats": {
@@ -2485,11 +2490,11 @@
         }
       }
     },
-    "flavor": "A bladed pole that scrapes corpses clean."
+    "flavor": "items.unique.the-meat-scraper-2.flavor"
   },
   {
     "id": "items/unique/the-patriarch",
-    "name": "The Patriarch",
+    "name": "items.unique.the-patriarch.name",
     "baseId": "items/base/wp1h-war-sword",
     "reqLevel": 39,
     "stats": {
@@ -2507,11 +2512,11 @@
         }
       }
     },
-    "flavor": "A clan-elder's sword, wisdom in steel."
+    "flavor": "items.unique.the-patriarch.flavor"
   },
   {
     "id": "items/unique/the-scalper",
-    "name": "The Scalper",
+    "name": "items.unique.the-scalper.name",
     "baseId": "items/base/weapon-axe",
     "reqLevel": 39,
     "stats": {
@@ -2527,7 +2532,7 @@
         }
       }
     },
-    "flavor": "Worn smooth by countless bounties."
+    "flavor": "items.unique.the-scalper.flavor"
   },
   {
     "stats": {
@@ -2539,15 +2544,15 @@
         "defense": 90
       }
     },
-    "name": "Spirit Ward",
+    "name": "items.unique.spirit-ward.name",
     "baseId": "items/base/sh-dragon-shield",
-    "flavor": "Bound with ancestral spirits. It deflects magical and physical harm.",
+    "flavor": "items.unique.spirit-ward.flavor",
     "reqLevel": 40,
     "id": "items/unique/spirit-ward"
   },
   {
     "id": "items/unique/the-atlantean",
-    "name": "The Atlantean Sword",
+    "name": "items.unique.the-atlantean.name",
     "baseId": "items/base/wp1h-war-sword",
     "reqLevel": 40,
     "stats": {
@@ -2566,11 +2571,11 @@
         }
       }
     },
-    "flavor": "A sword of the drowned legions."
+    "flavor": "items.unique.the-atlantean.flavor"
   },
   {
     "id": "items/unique/blackhorn-face",
-    "name": "Blackhorn's Face",
+    "name": "items.unique.blackhorn-face.name",
     "baseId": "items/base/helm-casque",
     "reqLevel": 41,
     "stats": {
@@ -2582,7 +2587,7 @@
         "defense": 80
       }
     },
-    "flavor": "Twin black horns rise from the brow."
+    "flavor": "items.unique.blackhorn-face.flavor"
   },
   {
     "stats": {
@@ -2600,9 +2605,9 @@
         "poison": 20
       }
     },
-    "name": "Duriel's Shell",
+    "name": "items.unique.duriel-shell.name",
     "baseId": "items/base/armor-heavy",
-    "flavor": "Armor forged from the carapace of the Lord of Pain himself.",
+    "flavor": "items.unique.duriel-shell.flavor",
     "reqLevel": 41,
     "id": "items/unique/duriel-shell"
   },
@@ -2616,15 +2621,15 @@
         "defense": 40
       }
     },
-    "name": "Lidless Wall",
+    "name": "items.unique.lidless-wall.name",
     "baseId": "items/base/sh-dragon-shield",
-    "flavor": "A sorceress's shield that never blinks. Grants arcane clarity.",
+    "flavor": "items.unique.lidless-wall.flavor",
     "reqLevel": 41,
     "id": "items/unique/lidless-wall"
   },
   {
     "id": "items/unique/rusthandle",
-    "name": "Rusthandle",
+    "name": "items.unique.rusthandle.name",
     "baseId": "items/base/weapon-mace",
     "reqLevel": 41,
     "stats": {
@@ -2639,11 +2644,11 @@
         }
       }
     },
-    "flavor": "Looks ruined, hits like a falling tower."
+    "flavor": "items.unique.rusthandle.flavor"
   },
   {
     "id": "items/unique/spire-of-honor",
-    "name": "Spire of Honor",
+    "name": "items.unique.spire-of-honor.name",
     "baseId": "items/base/wp2h-giant-thresher",
     "reqLevel": 41,
     "stats": {
@@ -2658,7 +2663,7 @@
         }
       }
     },
-    "flavor": "A polearm tipped with a paladin's signet."
+    "flavor": "items.unique.spire-of-honor.flavor"
   },
   {
     "stats": {
@@ -2667,9 +2672,9 @@
         "life": 100
       }
     },
-    "name": "Vampire Gaze",
+    "name": "items.unique.vampiregaze.name",
     "baseId": "items/base/helm-casque",
-    "flavor": "It feeds on suffering and offers stolen life in return.",
+    "flavor": "items.unique.vampiregaze.flavor",
     "reqLevel": 41,
     "id": "items/unique/vampiregaze"
   },
@@ -2683,15 +2688,15 @@
         "life": 80
       }
     },
-    "name": "Arreat's Face",
+    "name": "items.unique.arreat-face.name",
     "baseId": "items/base/helm-armet",
-    "flavor": "The war-mask of Mount Arreat's guardians. Strength and savagery incarnate.",
+    "flavor": "items.unique.arreat-face.flavor",
     "reqLevel": 42,
     "id": "items/unique/arreat-face"
   },
   {
     "id": "items/unique/bartuc-cut-throat",
-    "name": "Bartuc's Cut-Throat",
+    "name": "items.unique.bartuc-cut-throat.name",
     "baseId": "items/base/wp1h-war-sword",
     "reqLevel": 42,
     "stats": {
@@ -2710,11 +2715,11 @@
         }
       }
     },
-    "flavor": "A demon-lord's twin claws — quick as thought."
+    "flavor": "items.unique.bartuc-cut-throat.flavor"
   },
   {
     "id": "items/unique/herald-of-zakarum",
-    "name": "Herald of Zakarum",
+    "name": "items.unique.herald-of-zakarum.name",
     "baseId": "items/base/sh-dragon-shield",
     "reqLevel": 42,
     "stats": {
@@ -2732,11 +2737,11 @@
         "defense": 130
       }
     },
-    "flavor": "A paladin's auric shield — radiant gold."
+    "flavor": "items.unique.herald-of-zakarum.flavor"
   },
   {
     "id": "items/unique/jalal-mane",
-    "name": "Jalal's Mane",
+    "name": "items.unique.jalal-mane.name",
     "baseId": "items/base/helm-casque",
     "reqLevel": 42,
     "stats": {
@@ -2749,14 +2754,14 @@
         "life": 30
       }
     },
-    "flavor": "Lion-mane druid pelt, fierce and noble."
+    "flavor": "items.unique.jalal-mane.flavor"
   },
   {
     "id": "items/unique/lavagout",
-    "name": "items.unique.lavagout",
+    "name": "items.unique.lavagout.name",
     "baseId": "items/base/glove-light-gauntlets",
     "reqLevel": 42,
-    "flavor": "The Smiths own gauntlets, eternally burning.",
+    "flavor": "items.unique.lavagout.flavor",
     "stats": {
       "statMods": {
         "attackSpeed": 20
@@ -2772,7 +2777,7 @@
   },
   {
     "id": "items/unique/lycanders-aim",
-    "name": "Lycander's Aim",
+    "name": "items.unique.lycanders-aim.name",
     "baseId": "items/base/weapon-bow",
     "reqLevel": 42,
     "stats": {
@@ -2791,11 +2796,11 @@
         }
       }
     },
-    "flavor": "An Amazon-queen's hunting bow."
+    "flavor": "items.unique.lycanders-aim.flavor"
   },
   {
     "id": "items/unique/lycanders-flank",
-    "name": "Lycander's Flank",
+    "name": "items.unique.lycanders-flank.name",
     "baseId": "items/base/weapon-polearm",
     "reqLevel": 42,
     "stats": {
@@ -2814,11 +2819,11 @@
         }
       }
     },
-    "flavor": "An Amazon-queen's signature pike."
+    "flavor": "items.unique.lycanders-flank.flavor"
   },
   {
     "id": "items/unique/steelclash",
-    "name": "Steelclash",
+    "name": "items.unique.steelclash.name",
     "baseId": "items/base/sh-dragon-shield",
     "reqLevel": 42,
     "stats": {
@@ -2831,14 +2836,14 @@
         "defense": 120
       }
     },
-    "flavor": "Rings like a bell when struck."
+    "flavor": "items.unique.steelclash.flavor"
   },
   {
     "id": "items/unique/oculus",
-    "name": "items.unique.oculus",
+    "name": "items.unique.oculus.name",
     "baseId": "items/base/wp1h-war-sword",
     "reqLevel": 42,
-    "flavor": "A swirling crystal orb, said to peer beyond the veil between worlds.",
+    "flavor": "items.unique.oculus.flavor",
     "stats": {
       "coreStats": {
         "energy": 15
@@ -2858,7 +2863,7 @@
   },
   {
     "id": "items/unique/the-oculus-orb",
-    "name": "The Oculus (Orb)",
+    "name": "items.unique.the-oculus-orb.name",
     "baseId": "items/base/weapon-wand",
     "reqLevel": 42,
     "stats": {
@@ -2877,11 +2882,11 @@
         }
       }
     },
-    "flavor": "An orb of swirling crystal — sight beyond sight."
+    "flavor": "items.unique.the-oculus-orb.flavor"
   },
   {
     "id": "items/unique/titan-revenge",
-    "name": "Titan's Revenge",
+    "name": "items.unique.titan-revenge.name",
     "baseId": "items/base/weapon-polearm",
     "reqLevel": 42,
     "stats": {
@@ -2900,14 +2905,14 @@
         }
       }
     },
-    "flavor": "A javelin that returns to its bearer's hand."
+    "flavor": "items.unique.titan-revenge.flavor"
   },
   {
     "id": "items/unique/war-traveler",
-    "name": "items.unique.war-traveler",
+    "name": "items.unique.war-traveler.name",
     "baseId": "items/base/boot-light-plated",
     "reqLevel": 42,
-    "flavor": "These boots have walked the lands of every Sanctuary.",
+    "flavor": "items.unique.war-traveler.flavor",
     "stats": {
       "coreStats": {
         "strength": 20,
@@ -2921,7 +2926,7 @@
   },
   {
     "id": "items/unique/earth-shaker",
-    "name": "Earth Shaker",
+    "name": "items.unique.earth-shaker.name",
     "baseId": "items/base/weapon-mace",
     "reqLevel": 43,
     "stats": {
@@ -2940,11 +2945,11 @@
         }
       }
     },
-    "flavor": "Strikes the earth with a thunderclap."
+    "flavor": "items.unique.earth-shaker.flavor"
   },
   {
     "id": "items/unique/the-collector",
-    "name": "The Collector",
+    "name": "items.unique.the-collector.name",
     "baseId": "items/base/amu-jade",
     "reqLevel": 43,
     "stats": {
@@ -2957,7 +2962,7 @@
         "goldFind": 80
       }
     },
-    "flavor": "Worn by a noble collector of relics."
+    "flavor": "items.unique.the-collector.flavor"
   },
   {
     "stats": {
@@ -2971,15 +2976,15 @@
         "defense": 150
       }
     },
-    "name": "Gerke's Sanctuary",
+    "name": "items.unique.gerke-sanctuary.name",
     "baseId": "items/base/sh-dragon-shield",
-    "flavor": "A massive ward blessed by a fallen paladin.",
+    "flavor": "items.unique.gerke-sanctuary.flavor",
     "reqLevel": 44,
     "id": "items/unique/gerke-sanctuary"
   },
   {
     "id": "items/unique/valkyrie-wing",
-    "name": "Valkyrie Wing",
+    "name": "items.unique.valkyrie-wing.name",
     "baseId": "items/base/helm-casque",
     "reqLevel": 44,
     "stats": {
@@ -2992,11 +2997,11 @@
         "mana": 20
       }
     },
-    "flavor": "A winged helm worn by a fallen battle-maid."
+    "flavor": "items.unique.valkyrie-wing.flavor"
   },
   {
     "id": "items/unique/bverrit-keep",
-    "name": "Bverrit Keep",
+    "name": "items.unique.bverrit-keep.name",
     "baseId": "items/base/sh-dragon-shield",
     "reqLevel": 45,
     "stats": {
@@ -3010,11 +3015,11 @@
         "defense": 140
       }
     },
-    "flavor": "A keep-shaped tower shield, fire-tempered."
+    "flavor": "items.unique.bverrit-keep.flavor"
   },
   {
     "id": "items/unique/dwarf-star",
-    "name": "Dwarf Star",
+    "name": "items.unique.dwarf-star.name",
     "baseId": "items/base/ring-amber",
     "reqLevel": 45,
     "stats": {
@@ -3026,11 +3031,11 @@
         "defense": 20
       }
     },
-    "flavor": "A tiny ruby cut by dwarven hands."
+    "flavor": "items.unique.dwarf-star.flavor"
   },
   {
     "id": "items/unique/pus-spitter",
-    "name": "Pus Spitter",
+    "name": "items.unique.pus-spitter.name",
     "baseId": "items/base/weapon-crossbow",
     "reqLevel": 45,
     "stats": {
@@ -3045,14 +3050,14 @@
         }
       }
     },
-    "flavor": "Bolts dipped in foul ichor."
+    "flavor": "items.unique.pus-spitter.flavor"
   },
   {
     "id": "items/unique/raven-frost",
-    "name": "items.unique.raven-frost",
+    "name": "items.unique.raven-frost.name",
     "baseId": "items/base/ring-amber",
     "reqLevel": 45,
-    "flavor": "A ring of pure cold, hewn from the heart of an icy storm.",
+    "flavor": "items.unique.raven-frost.flavor",
     "stats": {
       "coreStats": {
         "dexterity": 17
@@ -3087,15 +3092,15 @@
         "max": 120
       }
     },
-    "name": "Goldstrike Arch",
+    "name": "items.unique.goldstrike-arch.name",
     "baseId": "items/base/weapon-bow",
-    "flavor": "A merchant-king's bow. It turns kills into coins.",
+    "flavor": "items.unique.goldstrike-arch.flavor",
     "reqLevel": 46,
     "id": "items/unique/goldstrike-arch"
   },
   {
     "id": "items/unique/blackhand-key",
-    "name": "Blackhand Key",
+    "name": "items.unique.blackhand-key.name",
     "baseId": "items/base/helm-armet",
     "reqLevel": 47,
     "stats": {
@@ -3106,11 +3111,11 @@
         "mana": 80
       }
     },
-    "flavor": "A skull-key set into a necromancer's totem."
+    "flavor": "items.unique.blackhand-key.flavor"
   },
   {
     "id": "items/unique/ghoulhide",
-    "name": "Ghoulhide",
+    "name": "items.unique.ghoulhide.name",
     "baseId": "items/base/glove-light-gauntlets",
     "reqLevel": 47,
     "stats": {
@@ -3125,14 +3130,14 @@
         "attack": 60
       }
     },
-    "flavor": "Stripped from a ghoul-king. They still hunger."
+    "flavor": "items.unique.ghoulhide.flavor"
   },
   {
     "id": "items/unique/gore-riders",
-    "name": "items.unique.gore-riders",
+    "name": "items.unique.gore-riders.name",
     "baseId": "items/base/boot-demonhide",
     "reqLevel": 47,
-    "flavor": "Boots stained dark with the blood of countless foes.",
+    "flavor": "items.unique.gore-riders.flavor",
     "stats": {
       "statMods": {
         "attackSpeed": 30
@@ -3141,7 +3146,7 @@
   },
   {
     "id": "items/unique/immortal-king-helm-uniq",
-    "name": "Immortal King Cap (replica)",
+    "name": "items.unique.immortal-king-helm-uniq.name",
     "baseId": "items/base/helm-armet",
     "reqLevel": 47,
     "stats": {
@@ -3153,11 +3158,11 @@
         "defense": 110
       }
     },
-    "flavor": "A reproduction of an Immortal King's circlet."
+    "flavor": "items.unique.immortal-king-helm-uniq.flavor"
   },
   {
     "id": "items/unique/kuko-shakaku",
-    "name": "Kuko Shakaku",
+    "name": "items.unique.kuko-shakaku.name",
     "baseId": "items/base/weapon-bow",
     "reqLevel": 47,
     "stats": {
@@ -3176,14 +3181,14 @@
         }
       }
     },
-    "flavor": "A swift Skovos longbow."
+    "flavor": "items.unique.kuko-shakaku.flavor"
   },
   {
     "id": "items/unique/thundergods-vigor",
-    "name": "items.unique.thundergods-vigor",
+    "name": "items.unique.thundergods-vigor.name",
     "baseId": "items/base/belt-plated",
     "reqLevel": 47,
-    "flavor": "Belt forged from the lightning of the Skovos heavens.",
+    "flavor": "items.unique.thundergods-vigor.flavor",
     "stats": {
       "coreStats": {
         "strength": 20,
@@ -3206,15 +3211,15 @@
         "attack": 40
       }
     },
-    "name": "Soul Drainer",
+    "name": "items.unique.soul-drainer.name",
     "baseId": "items/base/gloves",
-    "flavor": "Each strike saps the life and mana of foes, feeding the wearer.",
+    "flavor": "items.unique.soul-drainer.flavor",
     "reqLevel": 48,
     "id": "items/unique/soul-drainer"
   },
   {
     "id": "items/unique/crown-of-thieves",
-    "name": "Crown of Thieves",
+    "name": "items.unique.crown-of-thieves.name",
     "baseId": "items/base/helm-armet",
     "reqLevel": 49,
     "stats": {
@@ -3227,7 +3232,7 @@
         "magicFind": 20
       }
     },
-    "flavor": "A crown stolen from a king who stole it first."
+    "flavor": "items.unique.crown-of-thieves.flavor"
   },
   {
     "stats": {
@@ -3243,15 +3248,15 @@
         "max": 140
       }
     },
-    "name": "Demon Machine",
+    "name": "items.unique.demon-machine.name",
     "baseId": "items/base/weapon-crossbow",
-    "flavor": "A crossbow possessed by a demon's spirit. It fires with unholy speed.",
+    "flavor": "items.unique.demon-machine.flavor",
     "reqLevel": 49,
     "id": "items/unique/demon-machine"
   },
   {
     "id": "items/unique/frostburn-gauntlet",
-    "name": "Frostburn Gauntlet",
+    "name": "items.unique.frostburn-gauntlet.name",
     "baseId": "items/base/glove-vampirebone",
     "reqLevel": 49,
     "stats": {
@@ -3263,11 +3268,11 @@
         "mana": 40
       }
     },
-    "flavor": "A frost-burned gauntlet — chills the wearer's foes."
+    "flavor": "items.unique.frostburn-gauntlet.flavor"
   },
   {
     "id": "items/unique/infernostride",
-    "name": "Infernostride",
+    "name": "items.unique.infernostride.name",
     "baseId": "items/base/boot-demonhide",
     "reqLevel": 49,
     "stats": {
@@ -3279,11 +3284,11 @@
         "life": 20
       }
     },
-    "flavor": "Each step leaves a cinder smoldering."
+    "flavor": "items.unique.infernostride.flavor"
   },
   {
     "id": "items/unique/islestrike",
-    "name": "Islestrike",
+    "name": "items.unique.islestrike.name",
     "baseId": "items/base/weapon-axe",
     "reqLevel": 49,
     "stats": {
@@ -3298,11 +3303,11 @@
         }
       }
     },
-    "flavor": "An island-crusher's axe."
+    "flavor": "items.unique.islestrike.flavor"
   },
   {
     "id": "items/unique/spirit-forge",
-    "name": "Spirit Forge",
+    "name": "items.unique.spirit-forge.name",
     "baseId": "items/base/armor-heavy",
     "reqLevel": 49,
     "stats": {
@@ -3315,11 +3320,11 @@
         "life": 50
       }
     },
-    "flavor": "Quenched in the tears of a battle-spirit."
+    "flavor": "items.unique.spirit-forge.flavor"
   },
   {
     "id": "items/unique/waterwalk",
-    "name": "Waterwalk",
+    "name": "items.unique.waterwalk.name",
     "baseId": "items/base/boot-demonhide",
     "reqLevel": 49,
     "stats": {
@@ -3334,11 +3339,11 @@
         "life": 40
       }
     },
-    "flavor": "They glide over water as easily as land."
+    "flavor": "items.unique.waterwalk.flavor"
   },
   {
     "id": "items/unique/crainte-vomir",
-    "name": "Crainte Vomir",
+    "name": "items.unique.crainte-vomir.name",
     "baseId": "items/base/wp1h-phase-blade",
     "reqLevel": 50,
     "stats": {
@@ -3354,11 +3359,11 @@
         }
       }
     },
-    "flavor": "A baroque blade dripping with menace."
+    "flavor": "items.unique.crainte-vomir.flavor"
   },
   {
     "id": "items/unique/crescent-moon",
-    "name": "Crescent Moon",
+    "name": "items.unique.crescent-moon.name",
     "baseId": "items/base/amu-obsidian",
     "reqLevel": 50,
     "stats": {
@@ -3376,14 +3381,14 @@
         }
       }
     },
-    "flavor": "Curved silver, charged with thunder."
+    "flavor": "items.unique.crescent-moon.flavor"
   },
   {
     "id": "items/unique/shako",
-    "name": "items.unique.shako",
+    "name": "items.unique.shako.name",
     "baseId": "items/base/helm-war-hat",
     "reqLevel": 50,
-    "flavor": "Once worn by a jester whose laughter still echoes in its bells.",
+    "flavor": "items.unique.shako.flavor",
     "stats": {
       "coreStats": {
         "strength": 2,
@@ -3400,7 +3405,7 @@
   },
   {
     "id": "items/unique/hellplague-greater",
-    "name": "Hellplague (Greater)",
+    "name": "items.unique.hellplague-greater.name",
     "baseId": "items/base/wp1h-phase-blade",
     "reqLevel": 50,
     "stats": {
@@ -3416,14 +3421,14 @@
         }
       }
     },
-    "flavor": "A blade that festers wounds with fire and rot."
+    "flavor": "items.unique.hellplague-greater.flavor"
   },
   {
     "id": "items/unique/homunculus",
-    "name": "items.unique.homunculus",
+    "name": "items.unique.homunculus.name",
     "baseId": "items/base/sh-aegis",
     "reqLevel": 50,
-    "flavor": "A grotesque doll, unsettlingly aware. The dark arts hum within.",
+    "flavor": "items.unique.homunculus.flavor",
     "stats": {
       "coreStats": {
         "energy": 15
@@ -3442,7 +3447,7 @@
   },
   {
     "id": "items/unique/homunculus-helm",
-    "name": "Homunculus (Head)",
+    "name": "items.unique.homunculus-helm.name",
     "baseId": "items/base/helm-armet",
     "reqLevel": 50,
     "stats": {
@@ -3454,11 +3459,11 @@
         "mana": 60
       }
     },
-    "flavor": "A shrunken-head fetish, oddly aware."
+    "flavor": "items.unique.homunculus-helm.flavor"
   },
   {
     "id": "items/unique/pierre-tombale-couant",
-    "name": "Pierre Tombale Couant",
+    "name": "items.unique.pierre-tombale-couant.name",
     "baseId": "items/base/weapon-polearm",
     "reqLevel": 50,
     "stats": {
@@ -3473,14 +3478,14 @@
         }
       }
     },
-    "flavor": "A grave-marker-shaped halberd."
+    "flavor": "items.unique.pierre-tombale-couant.flavor"
   },
   {
     "id": "items/unique/silkweave",
-    "name": "items.unique.silkweave",
+    "name": "items.unique.silkweave.name",
     "baseId": "items/base/boot-demonhide",
     "reqLevel": 50,
-    "flavor": "Boots woven from the silk of the Spider Queen.",
+    "flavor": "items.unique.silkweave.flavor",
     "stats": {
       "statMods": {
         "mana": 50,
@@ -3490,7 +3495,7 @@
   },
   {
     "id": "items/unique/stormeye",
-    "name": "Stormeye",
+    "name": "items.unique.stormeye.name",
     "baseId": "items/base/weapon-mace",
     "reqLevel": 50,
     "stats": {
@@ -3505,11 +3510,11 @@
         }
       }
     },
-    "flavor": "A storm-spawned warhammer."
+    "flavor": "items.unique.stormeye.flavor"
   },
   {
     "id": "items/unique/atlantean",
-    "name": "The Atlantean",
+    "name": "items.unique.atlantean.name",
     "baseId": "items/base/sh-monarch",
     "reqLevel": 50,
     "stats": {
@@ -3524,11 +3529,11 @@
         "defense": 160
       }
     },
-    "flavor": "Salt-eaten plate from a sunken empire."
+    "flavor": "items.unique.atlantean.flavor"
   },
   {
     "id": "items/unique/cat-eye",
-    "name": "The Cat's Eye",
+    "name": "items.unique.cat-eye.name",
     "baseId": "items/base/amu-obsidian",
     "reqLevel": 50,
     "stats": {
@@ -3540,11 +3545,11 @@
         "defense": 30
       }
     },
-    "flavor": "A feline gem — sharp eyes, swift paws."
+    "flavor": "items.unique.cat-eye.flavor"
   },
   {
     "id": "items/unique/woestave",
-    "name": "Woestave",
+    "name": "items.unique.woestave.name",
     "baseId": "items/base/wp2h-giant-thresher",
     "reqLevel": 50,
     "stats": {
@@ -3560,11 +3565,11 @@
         }
       }
     },
-    "flavor": "A staff of layered curses."
+    "flavor": "items.unique.woestave.flavor"
   },
   {
     "id": "items/unique/nosferatu-coil",
-    "name": "Nosferatu's Coil",
+    "name": "items.unique.nosferatu-coil.name",
     "baseId": "items/base/belt-demonhide",
     "reqLevel": 51,
     "stats": {
@@ -3577,14 +3582,14 @@
         "life": 20
       }
     },
-    "flavor": "A vampire-lord's belt — drains the unwary."
+    "flavor": "items.unique.nosferatu-coil.flavor"
   },
   {
     "id": "items/unique/que-hegan-wisdom",
-    "name": "items.unique.que-hegan-wisdom",
+    "name": "items.unique.que-hegan-wisdom.name",
     "baseId": "items/base/armor-chain-mail",
     "reqLevel": 51,
-    "flavor": "The robes of a high Vizjerei sage.",
+    "flavor": "items.unique.que-hegan-wisdom.flavor",
     "stats": {
       "coreStats": {
         "energy": 10
@@ -3597,7 +3602,7 @@
   },
   {
     "id": "items/unique/black-hades",
-    "name": "Black Hades",
+    "name": "items.unique.black-hades.name",
     "baseId": "items/base/armor-dusk-shroud",
     "reqLevel": 53,
     "stats": {
@@ -3611,11 +3616,11 @@
         "defense": 200
       }
     },
-    "flavor": "Forged in the cold black heart of a volcano."
+    "flavor": "items.unique.black-hades.flavor"
   },
   {
     "id": "items/unique/hexfire",
-    "name": "Hexfire",
+    "name": "items.unique.hexfire.name",
     "baseId": "items/base/wp1h-phase-blade",
     "reqLevel": 53,
     "stats": {
@@ -3634,11 +3639,11 @@
         }
       }
     },
-    "flavor": "A cursed scimitar — fire surges through every cut."
+    "flavor": "items.unique.hexfire.flavor"
   },
   {
     "id": "items/unique/stoneraven",
-    "name": "Stoneraven",
+    "name": "items.unique.stoneraven.name",
     "baseId": "items/base/weapon-polearm",
     "reqLevel": 53,
     "stats": {
@@ -3653,11 +3658,11 @@
         }
       }
     },
-    "flavor": "A raven-stone polearm hewn by giants."
+    "flavor": "items.unique.stoneraven.flavor"
   },
   {
     "id": "items/unique/the-battlebranch",
-    "name": "The Battlebranch",
+    "name": "items.unique.the-battlebranch.name",
     "baseId": "items/base/wp2h-colossus-blade",
     "reqLevel": 53,
     "stats": {
@@ -3675,11 +3680,11 @@
         }
       }
     },
-    "flavor": "A young oak hewn into a war-pole."
+    "flavor": "items.unique.the-battlebranch.flavor"
   },
   {
     "id": "items/unique/veil-of-steel",
-    "name": "Veil of Steel",
+    "name": "items.unique.veil-of-steel.name",
     "baseId": "items/base/helm-armet",
     "reqLevel": 53,
     "stats": {
@@ -3697,7 +3702,7 @@
         "defense": 120
       }
     },
-    "flavor": "An indomitable steel mask that turns aside all elements."
+    "flavor": "items.unique.veil-of-steel.flavor"
   },
   {
     "stats": {
@@ -3715,15 +3720,15 @@
         "cold": 40
       }
     },
-    "name": "Frostwind",
+    "name": "items.unique.frostwind.name",
     "baseId": "items/base/wp1h-long-sword",
-    "flavor": "An icy blade that freezes foes mid-swing.",
+    "flavor": "items.unique.frostwind.flavor",
     "reqLevel": 54,
     "id": "items/unique/frostwind"
   },
   {
     "id": "items/unique/bing-sz-wang",
-    "name": "Bing Sz Wang",
+    "name": "items.unique.bing-sz-wang.name",
     "baseId": "items/base/wp1h-phase-blade",
     "reqLevel": 55,
     "stats": {
@@ -3741,11 +3746,11 @@
         }
       }
     },
-    "flavor": "Frosted katana — its edge never melts."
+    "flavor": "items.unique.bing-sz-wang.flavor"
   },
   {
     "id": "items/unique/buriza-do-kyanon-cb",
-    "name": "Buriza-Do Kyanon (Crossbow)",
+    "name": "items.unique.buriza-do-kyanon-cb.name",
     "baseId": "items/base/weapon-crossbow",
     "reqLevel": 55,
     "stats": {
@@ -3761,11 +3766,11 @@
         }
       }
     },
-    "flavor": "An ice-bolt crossbow of devastating reach."
+    "flavor": "items.unique.buriza-do-kyanon-cb.flavor"
   },
   {
     "id": "items/unique/corpsemourn",
-    "name": "Corpsemourn",
+    "name": "items.unique.corpsemourn.name",
     "baseId": "items/base/armor-dusk-shroud",
     "reqLevel": 55,
     "stats": {
@@ -3780,11 +3785,11 @@
         "life": 70
       }
     },
-    "flavor": "It weeps for the dead it has carried into battle."
+    "flavor": "items.unique.corpsemourn.flavor"
   },
   {
     "id": "items/unique/endlesshail",
-    "name": "Endlesshail",
+    "name": "items.unique.endlesshail.name",
     "baseId": "items/base/weapon-bow",
     "reqLevel": 55,
     "stats": {
@@ -3800,11 +3805,11 @@
         }
       }
     },
-    "flavor": "Looses arrows in a frozen rain."
+    "flavor": "items.unique.endlesshail.flavor"
   },
   {
     "id": "items/unique/gore-burnt-skull",
-    "name": "Goreburnt Skull",
+    "name": "items.unique.gore-burnt-skull.name",
     "baseId": "items/base/helm-giant-conch",
     "reqLevel": 55,
     "stats": {
@@ -3819,11 +3824,11 @@
         "attack": 60
       }
     },
-    "flavor": "A barbarian's trophy-helm, scarred by hellfire."
+    "flavor": "items.unique.gore-burnt-skull.flavor"
   },
   {
     "id": "items/unique/snowclash",
-    "name": "Snowclash",
+    "name": "items.unique.snowclash.name",
     "baseId": "items/base/belt-demonhide",
     "reqLevel": 55,
     "stats": {
@@ -3837,11 +3842,11 @@
         "defense": 80
       }
     },
-    "flavor": "A glacier-forged belt that radiates a chill."
+    "flavor": "items.unique.snowclash.flavor"
   },
   {
     "id": "items/unique/string-of-ears-greater",
-    "name": "String of Ears (Greater)",
+    "name": "items.unique.string-of-ears-greater.name",
     "baseId": "items/base/belt-demonhide",
     "reqLevel": 55,
     "stats": {
@@ -3856,11 +3861,11 @@
         "life": 40
       }
     },
-    "flavor": "A grand grim trophy — hung with mightier ears."
+    "flavor": "items.unique.string-of-ears-greater.flavor"
   },
   {
     "id": "items/unique/tiamat-rebuke",
-    "name": "Tiamat's Rebuke",
+    "name": "items.unique.tiamat-rebuke.name",
     "baseId": "items/base/sh-monarch",
     "reqLevel": 55,
     "stats": {
@@ -3873,11 +3878,11 @@
         "defense": 160
       }
     },
-    "flavor": "A dragon's hide stretched on a great frame."
+    "flavor": "items.unique.tiamat-rebuke.flavor"
   },
   {
     "id": "items/unique/blackhorn-face-2",
-    "name": "Blackhorn's Face (Greater)",
+    "name": "items.unique.blackhorn-face-2.name",
     "baseId": "items/base/helm-giant-conch",
     "reqLevel": 56,
     "stats": {
@@ -3890,11 +3895,11 @@
         "attack": 80
       }
     },
-    "flavor": "A larger version of the dread mask."
+    "flavor": "items.unique.blackhorn-face-2.flavor"
   },
   {
     "id": "items/unique/homunculus-orb",
-    "name": "Homunculus (Orb)",
+    "name": "items.unique.homunculus-orb.name",
     "baseId": "items/base/weapon-wand",
     "reqLevel": 56,
     "stats": {
@@ -3906,11 +3911,11 @@
         "defense": 40
       }
     },
-    "flavor": "A fetus-shaped orb that whispers spells."
+    "flavor": "items.unique.homunculus-orb.flavor"
   },
   {
     "id": "items/unique/pompe-wrath",
-    "name": "Pompeii's Wrath",
+    "name": "items.unique.pompe-wrath.name",
     "baseId": "items/base/weapon-axe",
     "reqLevel": 56,
     "stats": {
@@ -3928,11 +3933,11 @@
         }
       }
     },
-    "flavor": "Tempered in volcanic ash."
+    "flavor": "items.unique.pompe-wrath.flavor"
   },
   {
     "id": "items/unique/the-chieftain",
-    "name": "The Chieftain",
+    "name": "items.unique.the-chieftain.name",
     "baseId": "items/base/weapon-axe",
     "reqLevel": 56,
     "stats": {
@@ -3950,11 +3955,11 @@
         }
       }
     },
-    "flavor": "A great axe of clan-leadership, well-respected."
+    "flavor": "items.unique.the-chieftain.flavor"
   },
   {
     "id": "items/unique/steel-driver",
-    "name": "Steeldriver",
+    "name": "items.unique.steel-driver.name",
     "baseId": "items/base/wp2h-colossus-blade",
     "reqLevel": 57,
     "stats": {
@@ -3972,7 +3977,7 @@
         }
       }
     },
-    "flavor": "A maul-pole that hammers steel into the earth."
+    "flavor": "items.unique.steel-driver.flavor"
   },
   {
     "stats": {
@@ -3983,15 +3988,15 @@
         "life": 50
       }
     },
-    "name": "Bul-Kathos' Wedding Band",
+    "name": "items.unique.bul-kathos-wedding-band.name",
     "baseId": "items/base/ring",
-    "flavor": "Worn by the ancient warlord himself. It whispers of strength and vitality.",
+    "flavor": "items.unique.bul-kathos-wedding-band.flavor",
     "reqLevel": 58,
     "id": "items/unique/bul-kathos-wedding-band"
   },
   {
     "id": "items/unique/guardian-naga",
-    "name": "Guardian Naga",
+    "name": "items.unique.guardian-naga.name",
     "baseId": "items/base/weapon-axe",
     "reqLevel": 58,
     "stats": {
@@ -4009,11 +4014,11 @@
         }
       }
     },
-    "flavor": "Snake-engraved haft, venom-edged."
+    "flavor": "items.unique.guardian-naga.flavor"
   },
   {
     "id": "items/unique/shadow-killer",
-    "name": "Shadow Killer",
+    "name": "items.unique.shadow-killer.name",
     "baseId": "items/base/wp1h-phase-blade",
     "reqLevel": 58,
     "stats": {
@@ -4032,11 +4037,11 @@
         }
       }
     },
-    "flavor": "An assassin's signature blade — silent and certain."
+    "flavor": "items.unique.shadow-killer.flavor"
   },
   {
     "id": "items/unique/spike-thorn",
-    "name": "Spike Thorn",
+    "name": "items.unique.spike-thorn.name",
     "baseId": "items/base/sh-monarch",
     "reqLevel": 58,
     "stats": {
@@ -4050,7 +4055,7 @@
         "defense": 160
       }
     },
-    "flavor": "Bristling iron thorns punish the bold."
+    "flavor": "items.unique.spike-thorn.flavor"
   },
   {
     "stats": {
@@ -4066,18 +4071,18 @@
         "max": 120
       }
     },
-    "name": "Stormlash",
+    "name": "items.unique.stormlash.name",
     "baseId": "items/base/weapon-mace",
-    "flavor": "A scourge that channels the fury of storms.",
+    "flavor": "items.unique.stormlash.flavor",
     "reqLevel": 59,
     "id": "items/unique/stormlash"
   },
   {
     "id": "items/unique/andariels-visage",
-    "name": "items.unique.andariels-visage",
+    "name": "items.unique.andariels-visage.name",
     "baseId": "items/base/helm-giant-conch",
     "reqLevel": 60,
-    "flavor": "The face of the Maiden of Anguish, twisted in eternal pain.",
+    "flavor": "items.unique.andariels-visage.flavor",
     "stats": {
       "statMods": {
         "attackSpeed": 30,
@@ -4090,7 +4095,7 @@
   },
   {
     "id": "items/unique/athulua-rule",
-    "name": "Athulua's Rule",
+    "name": "items.unique.athulua-rule.name",
     "baseId": "items/base/wp2h-colossus-blade",
     "reqLevel": 60,
     "stats": {
@@ -4105,22 +4110,30 @@
         }
       }
     },
-    "flavor": "An ancient queen's two-handed scepter."
+    "flavor": "items.unique.athulua-rule.flavor"
   },
   {
     "id": "items/unique/atmas-scarab",
-    "name": "items.unique.atmas-scarab",
+    "name": "items.unique.atmas-scarab.name",
     "baseId": "items/base/amu-silver",
     "reqLevel": 60,
-    "flavor": "Worn by a tavern-keeper who fled a burning desert city.",
-    "stats": {}
+    "flavor": "items.unique.atmas-scarab.flavor",
+    "stats": {
+      "resistances": {
+        "poison": 75
+      },
+      "statMods": {
+        "attack": 120,
+        "magicFind": 25
+      }
+    }
   },
   {
     "id": "items/unique/carrion-wind",
-    "name": "items.unique.carrion-wind",
+    "name": "items.unique.carrion-wind.name",
     "baseId": "items/base/ring-obsidian",
     "reqLevel": 60,
-    "flavor": "It carries the stench of the Burial Grounds.",
+    "flavor": "items.unique.carrion-wind.flavor",
     "stats": {
       "statMods": {
         "physDodge": 0.1
@@ -4136,10 +4149,10 @@
   },
   {
     "id": "items/unique/giant-skull",
-    "name": "items.unique.giant-skull",
+    "name": "items.unique.giant-skull.name",
     "baseId": "items/base/helm-giant-conch",
     "reqLevel": 60,
-    "flavor": "The bleached skull of a slain giant, an unsettling helm.",
+    "flavor": "items.unique.giant-skull.flavor",
     "stats": {
       "coreStats": {
         "strength": 50
@@ -4151,7 +4164,7 @@
   },
   {
     "id": "items/unique/the-vile-husk-armor",
-    "name": "Husk of Bones",
+    "name": "items.unique.the-vile-husk-armor.name",
     "baseId": "items/base/armor-archon-plate",
     "reqLevel": 60,
     "stats": {
@@ -4163,11 +4176,11 @@
         "life": 80
       }
     },
-    "flavor": "Bone-plates lashed with sinew — eerily light."
+    "flavor": "items.unique.the-vile-husk-armor.flavor"
   },
   {
     "id": "items/unique/radament-sphere",
-    "name": "Radament's Sphere",
+    "name": "items.unique.radament-sphere.name",
     "baseId": "items/base/sh-sacred-targe",
     "reqLevel": 60,
     "stats": {
@@ -4183,11 +4196,11 @@
         "mana": 60
       }
     },
-    "flavor": "A mummified scarab-mage's funerary disk."
+    "flavor": "items.unique.radament-sphere.flavor"
   },
   {
     "id": "items/unique/suicide-branch",
-    "name": "Suicide Branch",
+    "name": "items.unique.suicide-branch.name",
     "baseId": "items/base/weapon-wand",
     "reqLevel": 60,
     "stats": {
@@ -4205,11 +4218,11 @@
         }
       }
     },
-    "flavor": "A withered branch that pleads to be broken."
+    "flavor": "items.unique.suicide-branch.flavor"
   },
   {
     "id": "items/unique/the-vile-husk-2",
-    "name": "The Vile Husk II",
+    "name": "items.unique.the-vile-husk-2.name",
     "baseId": "items/base/wp1h-legend-sword",
     "reqLevel": 60,
     "stats": {
@@ -4224,7 +4237,7 @@
         }
       }
     },
-    "flavor": "A second blade of the same accursed lineage."
+    "flavor": "items.unique.the-vile-husk-2.flavor"
   },
   {
     "stats": {
@@ -4239,9 +4252,9 @@
         "fire": 20
       }
     },
-    "name": "Blackoak Shield",
+    "name": "items.unique.blackoak-shield.name",
     "baseId": "items/base/sh-dragon-shield",
-    "flavor": "A druidic shield carved from the heartwood of a cursed oak.",
+    "flavor": "items.unique.blackoak-shield.flavor",
     "reqLevel": 61,
     "id": "items/unique/blackoak-shield"
   },
@@ -4262,15 +4275,15 @@
         "max": 120
       }
     },
-    "name": "Heaven's Light",
+    "name": "items.unique.heaven-light.name",
     "baseId": "items/base/weapon-scepter",
-    "flavor": "A holy scepter blessed by angels. Paladins wield it with devotion.",
+    "flavor": "items.unique.heaven-light.flavor",
     "reqLevel": 61,
     "id": "items/unique/heaven-light"
   },
   {
     "id": "items/unique/hellmouth",
-    "name": "Hellmouth",
+    "name": "items.unique.hellmouth.name",
     "baseId": "items/base/glove-bramble-mitts",
     "reqLevel": 61,
     "stats": {
@@ -4292,11 +4305,11 @@
         }
       }
     },
-    "flavor": "Tongues of flame lick from every fingertip."
+    "flavor": "items.unique.hellmouth.flavor"
   },
   {
     "id": "items/unique/vampire-gaze-greater",
-    "name": "Vampire Gaze (Greater)",
+    "name": "items.unique.vampire-gaze-greater.name",
     "baseId": "items/base/helm-giant-conch",
     "reqLevel": 61,
     "stats": {
@@ -4306,11 +4319,11 @@
         "attackSpeed": 10
       }
     },
-    "flavor": "A reforged version of the cursed gaze."
+    "flavor": "items.unique.vampire-gaze-greater.flavor"
   },
   {
     "id": "items/unique/firelizard-talon",
-    "name": "Firelizard's Talons",
+    "name": "items.unique.firelizard-talon.name",
     "baseId": "items/base/wp1h-legend-sword",
     "reqLevel": 62,
     "stats": {
@@ -4329,11 +4342,11 @@
         }
       }
     },
-    "flavor": "Lava-lizard claws that scorch the air."
+    "flavor": "items.unique.firelizard-talon.flavor"
   },
   {
     "id": "items/unique/steel-shade",
-    "name": "Steel Shade",
+    "name": "items.unique.steel-shade.name",
     "baseId": "items/base/helm-giant-conch",
     "reqLevel": 62,
     "stats": {
@@ -4348,7 +4361,7 @@
         "magicDodge": 15
       }
     },
-    "flavor": "A shadowy helm forged of moon-touched steel."
+    "flavor": "items.unique.steel-shade.flavor"
   },
   {
     "stats": {
@@ -4363,15 +4376,15 @@
         "defense": 100
       }
     },
-    "name": "Steelshade",
+    "name": "items.unique.steelshade.name",
     "baseId": "items/base/helm-armet",
-    "flavor": "A helm of tempered shadow-steel. It deflects both blows and magic.",
+    "flavor": "items.unique.steelshade.flavor",
     "reqLevel": 62,
     "id": "items/unique/steelshade"
   },
   {
     "id": "items/unique/the-redeemer",
-    "name": "The Redeemer",
+    "name": "items.unique.the-redeemer.name",
     "baseId": "items/base/weapon-scepter",
     "reqLevel": 62,
     "stats": {
@@ -4390,11 +4403,11 @@
         }
       }
     },
-    "flavor": "A holy scepter that redeems the wicked through fire."
+    "flavor": "items.unique.the-redeemer.flavor"
   },
   {
     "id": "items/unique/boneshade",
-    "name": "Boneshade",
+    "name": "items.unique.boneshade.name",
     "baseId": "items/base/weapon-wand",
     "reqLevel": 63,
     "stats": {
@@ -4413,11 +4426,11 @@
         }
       }
     },
-    "flavor": "A bone-white wand cut from a saint's femur."
+    "flavor": "items.unique.boneshade.flavor"
   },
   {
     "id": "items/unique/demon-limb",
-    "name": "Demon Limb",
+    "name": "items.unique.demon-limb.name",
     "baseId": "items/base/weapon-mace",
     "reqLevel": 63,
     "stats": {
@@ -4435,14 +4448,14 @@
         }
       }
     },
-    "flavor": "Ripped from a fallen pit lord."
+    "flavor": "items.unique.demon-limb.flavor"
   },
   {
     "id": "items/unique/verdungos-hearty",
-    "name": "items.unique.verdungos-hearty",
+    "name": "items.unique.verdungos-hearty.name",
     "baseId": "items/base/belt-mithril-coil",
     "reqLevel": 63,
-    "flavor": "A belt that strengthens the bearer with every breath.",
+    "flavor": "items.unique.verdungos-hearty.flavor",
     "stats": {
       "coreStats": {
         "vitality": 35
@@ -4461,7 +4474,7 @@
   },
   {
     "id": "items/unique/bonehew",
-    "name": "Bonehew",
+    "name": "items.unique.bonehew.name",
     "baseId": "items/base/weapon-polearm",
     "reqLevel": 64,
     "stats": {
@@ -4479,11 +4492,11 @@
         }
       }
     },
-    "flavor": "A bone-haft polearm — fast, vicious."
+    "flavor": "items.unique.bonehew.flavor"
   },
   {
     "id": "items/unique/cure-all",
-    "name": "Cure-All",
+    "name": "items.unique.cure-all.name",
     "baseId": "items/base/helm-giant-conch",
     "reqLevel": 64,
     "stats": {
@@ -4498,7 +4511,7 @@
         "defense": 70
       }
     },
-    "flavor": "A potion-maker's helm — heals all manner of ills."
+    "flavor": "items.unique.cure-all.flavor"
   },
   {
     "stats": {
@@ -4514,15 +4527,15 @@
         "poison": 40
       }
     },
-    "name": "Sandstorm Trek",
+    "name": "items.unique.sandstorm-trek.name",
     "baseId": "items/base/boots",
-    "flavor": "Worn across countless deserts. Grants stamina and resilience.",
+    "flavor": "items.unique.sandstorm-trek.flavor",
     "reqLevel": 64,
     "id": "items/unique/sandstorm-trek"
   },
   {
     "id": "items/unique/warlord-trust",
-    "name": "Warlord's Trust",
+    "name": "items.unique.warlord-trust.name",
     "baseId": "items/base/weapon-axe",
     "reqLevel": 64,
     "stats": {
@@ -4540,22 +4553,25 @@
         }
       }
     },
-    "flavor": "A trusted lieutenant's reward."
+    "flavor": "items.unique.warlord-trust.flavor"
   },
   {
     "id": "items/unique/buriza-do-kyanon",
-    "name": "items.unique.buriza-do-kyanon",
-    "baseId": "items/base/wp2h-giant-thresher",
+    "name": "items.unique.buriza-do-kyanon.name",
+    "baseId": "items/base/weapon-crossbow",
     "reqLevel": 65,
-    "flavor": "A weapon of legend, said to pierce the heavens.",
+    "flavor": "items.unique.buriza-do-kyanon.flavor",
     "stats": {
       "statMods": {
-        "attackSpeed": 50
+        "attack": 175,
+        "attackSpeed": 50,
+        "physDodge": 8
       },
       "damageBonus": {
         "min": 10,
-        "max": 14,
+        "max": 32,
         "breakdown": {
+          "physical": 18,
           "cold": 14
         }
       }
@@ -4563,7 +4579,7 @@
   },
   {
     "id": "items/unique/carin-shard",
-    "name": "Carin Shard",
+    "name": "items.unique.carin-shard.name",
     "baseId": "items/base/weapon-wand",
     "reqLevel": 65,
     "stats": {
@@ -4582,14 +4598,14 @@
         }
       }
     },
-    "flavor": "A wand of bound spirit-glass."
+    "flavor": "items.unique.carin-shard.flavor"
   },
   {
     "id": "items/unique/chains-of-honor-armor",
-    "name": "items.unique.chains-of-honor-armor",
+    "name": "items.unique.chains-of-honor-armor.name",
     "baseId": "items/base/armor-archon-plate",
     "reqLevel": 65,
-    "flavor": "Bound in honor, oathsworn never to break.",
+    "flavor": "items.unique.chains-of-honor-armor.flavor",
     "stats": {
       "coreStats": {
         "strength": 20,
@@ -4609,10 +4625,10 @@
   },
   {
     "id": "items/unique/crown-of-ages",
-    "name": "items.unique.crown-of-ages",
+    "name": "items.unique.crown-of-ages.name",
     "baseId": "items/base/helm-armet",
     "reqLevel": 65,
-    "flavor": "The crown bears the weight of centuries of fallen kings.",
+    "flavor": "items.unique.crown-of-ages.flavor",
     "stats": {
       "statMods": {
         "life": 50
@@ -4628,7 +4644,7 @@
   },
   {
     "id": "items/unique/djinn-slayer",
-    "name": "Djinn Slayer",
+    "name": "items.unique.djinn-slayer.name",
     "baseId": "items/base/wp1h-legend-sword",
     "reqLevel": 65,
     "stats": {
@@ -4644,14 +4660,14 @@
         }
       }
     },
-    "flavor": "A scimitar tempered in genie-fire."
+    "flavor": "items.unique.djinn-slayer.flavor"
   },
   {
     "id": "items/unique/griffons-eye",
-    "name": "items.unique.griffons-eye",
+    "name": "items.unique.griffons-eye.name",
     "baseId": "items/base/helm-armet",
     "reqLevel": 65,
-    "flavor": "A diadem set with the eye of a great griffon.",
+    "flavor": "items.unique.griffons-eye.flavor",
     "stats": {
       "statMods": {
         "attackSpeed": 15
@@ -4667,10 +4683,10 @@
   },
   {
     "id": "items/unique/griffons-strike",
-    "name": "items.unique.griffons-strike",
+    "name": "items.unique.griffons-strike.name",
     "baseId": "items/base/wp2h-thunder-maul",
     "reqLevel": 65,
-    "flavor": "A maul charged with the fury of a thunderstorm.",
+    "flavor": "items.unique.griffons-strike.flavor",
     "stats": {
       "statMods": {
         "attackSpeed": 30
@@ -4679,10 +4695,10 @@
   },
   {
     "id": "items/unique/highlords-wrath",
-    "name": "items.unique.highlords-wrath",
+    "name": "items.unique.highlords-wrath.name",
     "baseId": "items/base/amu-obsidian",
     "reqLevel": 65,
-    "flavor": "The sigil of the Highlord. Lightning sings in its chains.",
+    "flavor": "items.unique.highlords-wrath.flavor",
     "stats": {
       "statMods": {
         "attackSpeed": 20
@@ -4711,18 +4727,18 @@
         "cold": 50
       }
     },
-    "name": "Leviathan",
+    "name": "items.unique.leviathan.name",
     "baseId": "items/base/armor-heavy",
-    "flavor": "An oceanic titan's hide. It grants near-immunity to the elements.",
+    "flavor": "items.unique.leviathan.flavor",
     "reqLevel": 65,
     "id": "items/unique/leviathan"
   },
   {
     "id": "items/unique/seraphs-hymn",
-    "name": "items.unique.seraphs-hymn",
+    "name": "items.unique.seraphs-hymn.name",
     "baseId": "items/base/amu-zircon",
     "reqLevel": 65,
-    "flavor": "The angels sing of judgment, and the wicked tremble.",
+    "flavor": "items.unique.seraphs-hymn.flavor",
     "stats": {
       "statMods": {
         "defense": 50
@@ -4731,7 +4747,7 @@
   },
   {
     "id": "items/unique/steel-carapace",
-    "name": "Steel Carapace",
+    "name": "items.unique.steel-carapace.name",
     "baseId": "items/base/armor-archon-plate",
     "reqLevel": 65,
     "stats": {
@@ -4745,11 +4761,11 @@
         "defense": 220
       }
     },
-    "flavor": "An insectoid plate of overlapping steel."
+    "flavor": "items.unique.steel-carapace.flavor"
   },
   {
     "id": "items/unique/steel-pillar",
-    "name": "Steel Pillar",
+    "name": "items.unique.steel-pillar.name",
     "baseId": "items/base/wp2h-thunder-maul",
     "reqLevel": 65,
     "stats": {
@@ -4767,11 +4783,11 @@
         }
       }
     },
-    "flavor": "It's less a weapon and more a column."
+    "flavor": "items.unique.steel-pillar.flavor"
   },
   {
     "id": "items/unique/rising-sun",
-    "name": "The Rising Sun",
+    "name": "items.unique.rising-sun.name",
     "baseId": "items/base/amu-zircon",
     "reqLevel": 65,
     "stats": {
@@ -4789,11 +4805,11 @@
         }
       }
     },
-    "flavor": "A sun-warm pendant. Demons burn at its glow."
+    "flavor": "items.unique.rising-sun.flavor"
   },
   {
     "id": "items/unique/widowmaker",
-    "name": "Widowmaker",
+    "name": "items.unique.widowmaker.name",
     "baseId": "items/base/weapon-bow",
     "reqLevel": 65,
     "stats": {
@@ -4811,7 +4827,7 @@
         }
       }
     },
-    "flavor": "A widow-bow — leaves no husband walking."
+    "flavor": "items.unique.widowmaker.flavor"
   },
   {
     "stats": {
@@ -4829,9 +4845,9 @@
         "max": 180
       }
     },
-    "name": "Astreon's Iron Ward",
+    "name": "items.unique.astreon-iron-ward.name",
     "baseId": "items/base/weapon-mace",
-    "flavor": "A legendary warlord's mace. It crushes both armor and bone.",
+    "flavor": "items.unique.astreon-iron-ward.flavor",
     "reqLevel": 66,
     "id": "items/unique/astreon-iron-ward"
   },
@@ -4854,9 +4870,9 @@
         "poison": 50
       }
     },
-    "name": "Death's Web",
+    "name": "items.unique.death-web.name",
     "baseId": "items/base/weapon-wand",
-    "flavor": "A necromancer's ultimate wand. Poison courses through every hex.",
+    "flavor": "items.unique.death-web.flavor",
     "reqLevel": 66,
     "id": "items/unique/death-web"
   },
@@ -4876,15 +4892,15 @@
         "max": 180
       }
     },
-    "name": "Hellslayer",
+    "name": "items.unique.hellslayer.name",
     "baseId": "items/base/weapon-axe",
-    "flavor": "An axe forged in the depths of the Burning Hells.",
+    "flavor": "items.unique.hellslayer.flavor",
     "reqLevel": 66,
     "id": "items/unique/hellslayer"
   },
   {
     "id": "items/unique/jade-talon",
-    "name": "Jade Talon",
+    "name": "items.unique.jade-talon.name",
     "baseId": "items/base/wp1h-legend-sword",
     "reqLevel": 66,
     "stats": {
@@ -4903,7 +4919,7 @@
         }
       }
     },
-    "flavor": "A jade-edged claw — every cut is venom."
+    "flavor": "items.unique.jade-talon.flavor"
   },
   {
     "stats": {
@@ -4922,18 +4938,18 @@
         "lightning": 50
       }
     },
-    "name": "Lightsabre",
+    "name": "items.unique.lightsabre.name",
     "baseId": "items/base/wp1h-long-sword",
-    "flavor": "A sword of pure lightning. It crackles with every swing.",
+    "flavor": "items.unique.lightsabre.flavor",
     "reqLevel": 66,
     "id": "items/unique/lightsabre"
   },
   {
     "id": "items/unique/marrowwalk",
-    "name": "items.unique.marrowwalk",
+    "name": "items.unique.marrowwalk.name",
     "baseId": "items/base/boot-myrmidon-greaves",
     "reqLevel": 66,
-    "flavor": "Necromantic greaves that drink the marrow of the slain.",
+    "flavor": "items.unique.marrowwalk.flavor",
     "stats": {
       "coreStats": {
         "strength": 22
@@ -4946,7 +4962,7 @@
   },
   {
     "id": "items/unique/cerebus-bite",
-    "name": "Cerebus' Bite",
+    "name": "items.unique.cerebus-bite.name",
     "baseId": "items/base/helm-giant-conch",
     "reqLevel": 67,
     "stats": {
@@ -4958,11 +4974,11 @@
         "attack": 80
       }
     },
-    "flavor": "A three-headed wolf-pelt for a druid."
+    "flavor": "items.unique.cerebus-bite.flavor"
   },
   {
     "id": "items/unique/darkforce-spawn",
-    "name": "Darkforce Spawn",
+    "name": "items.unique.darkforce-spawn.name",
     "baseId": "items/base/helm-giant-conch",
     "reqLevel": 67,
     "stats": {
@@ -4975,11 +4991,11 @@
         "mana": 60
       }
     },
-    "flavor": "A demon-skull totem, alive with whispers."
+    "flavor": "items.unique.darkforce-spawn.flavor"
   },
   {
     "id": "items/unique/darkforce-spawn-shield",
-    "name": "Darkforce Spawn (Shield)",
+    "name": "items.unique.darkforce-spawn-shield.name",
     "baseId": "items/base/sh-sacred-targe",
     "reqLevel": 67,
     "stats": {
@@ -4991,11 +5007,11 @@
         "mana": 60
       }
     },
-    "flavor": "A bone-fetish shield — a necromancer's pride."
+    "flavor": "items.unique.darkforce-spawn-shield.flavor"
   },
   {
     "id": "items/unique/demonhorn-edge",
-    "name": "Demonhorn's Edge",
+    "name": "items.unique.demonhorn-edge.name",
     "baseId": "items/base/helm-giant-conch",
     "reqLevel": 67,
     "stats": {
@@ -5010,11 +5026,11 @@
         "attack": 80
       }
     },
-    "flavor": "Carved from the horn of a slain pit lord."
+    "flavor": "items.unique.demonhorn-edge.flavor"
   },
   {
     "id": "items/unique/dragonscale",
-    "name": "Dragonscale",
+    "name": "items.unique.dragonscale.name",
     "baseId": "items/base/sh-sacred-targe",
     "reqLevel": 67,
     "stats": {
@@ -5028,11 +5044,11 @@
         "defense": 200
       }
     },
-    "flavor": "A scaled shield from a slain wyrm."
+    "flavor": "items.unique.dragonscale.flavor"
   },
   {
     "id": "items/unique/kerke-sanctuary",
-    "name": "Kerke's Sanctuary",
+    "name": "items.unique.kerke-sanctuary.name",
     "baseId": "items/base/sh-sacred-targe",
     "reqLevel": 67,
     "stats": {
@@ -5047,14 +5063,14 @@
         "magicDodge": 20
       }
     },
-    "flavor": "A massive ward of paladin-make."
+    "flavor": "items.unique.kerke-sanctuary.flavor"
   },
   {
     "id": "items/unique/mara-kaleidoscope",
-    "name": "items.unique.mara-kaleidoscope",
+    "name": "items.unique.mara-kaleidoscope.name",
     "baseId": "items/base/amu-obsidian",
     "reqLevel": 67,
-    "flavor": "Beloved of mages, a tiny window onto every magic.",
+    "flavor": "items.unique.mara-kaleidoscope.flavor",
     "stats": {
       "coreStats": {
         "strength": 5,
@@ -5073,7 +5089,7 @@
   },
   {
     "id": "items/unique/nightwing-veil",
-    "name": "Nightwing's Veil",
+    "name": "items.unique.nightwing-veil.name",
     "baseId": "items/base/helm-giant-conch",
     "reqLevel": 67,
     "stats": {
@@ -5095,11 +5111,11 @@
         }
       }
     },
-    "flavor": "Shadow-silk woven into a sorcerer's diadem."
+    "flavor": "items.unique.nightwing-veil.flavor"
   },
   {
     "id": "items/unique/spellsteel",
-    "name": "Spellsteel",
+    "name": "items.unique.spellsteel.name",
     "baseId": "items/base/weapon-axe",
     "reqLevel": 67,
     "stats": {
@@ -5118,11 +5134,11 @@
         }
       }
     },
-    "flavor": "Sigils glow on its haft when foes near."
+    "flavor": "items.unique.spellsteel.flavor"
   },
   {
     "id": "items/unique/lacerator",
-    "name": "Lacerator",
+    "name": "items.unique.lacerator.name",
     "baseId": "items/base/weapon-axe",
     "reqLevel": 68,
     "stats": {
@@ -5138,11 +5154,11 @@
         }
       }
     },
-    "flavor": "A jagged axe — every wound pours blood."
+    "flavor": "items.unique.lacerator.flavor"
   },
   {
     "id": "items/unique/nords-tenderizer",
-    "name": "Nord's Tenderizer",
+    "name": "items.unique.nords-tenderizer.name",
     "baseId": "items/base/weapon-mace",
     "reqLevel": 68,
     "stats": {
@@ -5160,11 +5176,11 @@
         }
       }
     },
-    "flavor": "A flailing meat-mallet from the icebound north."
+    "flavor": "items.unique.nords-tenderizer.flavor"
   },
   {
     "id": "items/unique/plague-bearer",
-    "name": "Plague Bearer",
+    "name": "items.unique.plague-bearer.name",
     "baseId": "items/base/wp1h-legend-sword",
     "reqLevel": 68,
     "stats": {
@@ -5182,11 +5198,11 @@
         }
       }
     },
-    "flavor": "A sword that brings a withering rot."
+    "flavor": "items.unique.plague-bearer.flavor"
   },
   {
     "id": "items/unique/blackhand-key-2",
-    "name": "Blackhand Key (Greater)",
+    "name": "items.unique.blackhand-key-2.name",
     "baseId": "items/base/weapon-wand",
     "reqLevel": 69,
     "stats": {
@@ -5205,14 +5221,14 @@
         }
       }
     },
-    "flavor": "A larger key-wand of necromantic make."
+    "flavor": "items.unique.blackhand-key-2.flavor"
   },
   {
     "id": "items/unique/breath-of-the-dying-uniq",
-    "name": "items.unique.breath-of-the-dying-uniq",
+    "name": "items.unique.breath-of-the-dying-uniq.name",
     "baseId": "items/base/wp1h-phase-blade",
     "reqLevel": 69,
-    "flavor": "The last breath of the slain rises from this blade.",
+    "flavor": "items.unique.breath-of-the-dying-uniq.flavor",
     "stats": {
       "coreStats": {
         "strength": 12,
@@ -5227,31 +5243,55 @@
   },
   {
     "id": "items/unique/doombringer",
-    "name": "items.unique.doombringer",
+    "name": "items.unique.doombringer.name",
     "baseId": "items/base/wp1h-war-sword",
     "reqLevel": 69,
-    "flavor": "A sword that hums with the death-cries of all who have fallen to it.",
+    "flavor": "items.unique.doombringer.flavor",
     "stats": {
       "coreStats": {
-        "strength": 40
+        "strength": 40,
+        "vitality": 25
+      },
+      "statMods": {
+        "attack": 250,
+        "life": 120
+      },
+      "damageBonus": {
+        "min": 12,
+        "max": 28,
+        "breakdown": {
+          "physical": 28
+        }
       }
     }
   },
   {
     "id": "items/unique/eaglehorn",
-    "name": "items.unique.eaglehorn",
-    "baseId": "items/base/wp2h-war-pike",
+    "name": "items.unique.eaglehorn.name",
+    "baseId": "items/base/weapon-bow",
     "reqLevel": 69,
-    "flavor": "The bow of an ancient hunter, said to never miss its mark.",
+    "flavor": "items.unique.eaglehorn.flavor",
     "stats": {
       "statMods": {
-        "attack": 200
+        "attack": 200,
+        "critChance": 8,
+        "magicDodge": 10
+      },
+      "coreStats": {
+        "dexterity": 25
+      },
+      "damageBonus": {
+        "min": 8,
+        "max": 24,
+        "breakdown": {
+          "physical": 24
+        }
       }
     }
   },
   {
     "id": "items/unique/earthshifter",
-    "name": "Earthshifter",
+    "name": "items.unique.earthshifter.name",
     "baseId": "items/base/weapon-mace",
     "reqLevel": 69,
     "stats": {
@@ -5269,11 +5309,11 @@
         }
       }
     },
-    "flavor": "A maul that cracks stone underfoot."
+    "flavor": "items.unique.earthshifter.flavor"
   },
   {
     "id": "items/unique/rune-master",
-    "name": "Rune Master",
+    "name": "items.unique.rune-master.name",
     "baseId": "items/base/wp2h-thunder-maul",
     "reqLevel": 69,
     "stats": {
@@ -5291,11 +5331,11 @@
         }
       }
     },
-    "flavor": "A rune-etched two-hander — cuts both flesh and spell."
+    "flavor": "items.unique.rune-master.flavor"
   },
   {
     "id": "items/unique/thunderstroke",
-    "name": "Thunderstroke",
+    "name": "items.unique.thunderstroke.name",
     "baseId": "items/base/weapon-polearm",
     "reqLevel": 69,
     "stats": {
@@ -5310,11 +5350,11 @@
         }
       }
     },
-    "flavor": "A storm-spear from the celestial heights."
+    "flavor": "items.unique.thunderstroke.flavor"
   },
   {
     "id": "items/unique/eschuta-temper",
-    "name": "Eschuta's Temper",
+    "name": "items.unique.eschuta-temper.name",
     "baseId": "items/base/weapon-wand",
     "reqLevel": 70,
     "stats": {
@@ -5333,14 +5373,14 @@
         }
       }
     },
-    "flavor": "A volatile wand — temper as short as its fuse."
+    "flavor": "items.unique.eschuta-temper.flavor"
   },
   {
     "id": "items/unique/steelrend",
-    "name": "items.unique.steelrend",
+    "name": "items.unique.steelrend.name",
     "baseId": "items/base/glove-bramble-mitts",
     "reqLevel": 70,
-    "flavor": "Gauntlets that shred steel as easily as cloth.",
+    "flavor": "items.unique.steelrend.flavor",
     "stats": {
       "coreStats": {
         "strength": 25
@@ -5352,7 +5392,7 @@
   },
   {
     "id": "items/unique/stormrider",
-    "name": "Stormrider",
+    "name": "items.unique.stormrider.name",
     "baseId": "items/base/weapon-axe",
     "reqLevel": 70,
     "stats": {
@@ -5367,7 +5407,7 @@
         }
       }
     },
-    "flavor": "Wielded by a storm-knight of the Skovos."
+    "flavor": "items.unique.stormrider.flavor"
   },
   {
     "stats": {
@@ -5385,15 +5425,15 @@
         "max": 150
       }
     },
-    "name": "Stormspire",
+    "name": "items.unique.stormspire.name",
     "baseId": "items/base/weapon-polearm",
-    "flavor": "A towering polearm that calls lightning from the sky.",
+    "flavor": "items.unique.stormspire.flavor",
     "reqLevel": 70,
     "id": "items/unique/stormspire"
   },
   {
     "id": "items/unique/the-grim-reaper",
-    "name": "The Grim Reaper",
+    "name": "items.unique.the-grim-reaper.name",
     "baseId": "items/base/wp2h-thunder-maul",
     "reqLevel": 70,
     "stats": {
@@ -5408,11 +5448,11 @@
         }
       }
     },
-    "flavor": "A scythe that ushers souls to oblivion."
+    "flavor": "items.unique.the-grim-reaper.flavor"
   },
   {
     "id": "items/unique/shadow-dancer",
-    "name": "Shadow Dancer",
+    "name": "items.unique.shadow-dancer.name",
     "baseId": "items/base/boot-myrmidon-greaves",
     "reqLevel": 71,
     "stats": {
@@ -5424,11 +5464,11 @@
         "magicDodge": 15
       }
     },
-    "flavor": "An assassin's boots — soundless, weightless."
+    "flavor": "items.unique.shadow-dancer.flavor"
   },
   {
     "id": "items/unique/halaberd-reign",
-    "name": "Halaberd's Reign",
+    "name": "items.unique.halaberd-reign.name",
     "baseId": "items/base/helm-giant-conch",
     "reqLevel": 72,
     "stats": {
@@ -5444,11 +5484,11 @@
         "defense": 150
       }
     },
-    "flavor": "A war-king's helm, never bowed."
+    "flavor": "items.unique.halaberd-reign.flavor"
   },
   {
     "id": "items/unique/death-fathom",
-    "name": "Death's Fathom",
+    "name": "items.unique.death-fathom.name",
     "baseId": "items/base/weapon-wand",
     "reqLevel": 73,
     "stats": {
@@ -5470,14 +5510,14 @@
         }
       }
     },
-    "flavor": "A scrying-orb wand — sees deep into icy oblivion."
+    "flavor": "items.unique.death-fathom.flavor"
   },
   {
     "id": "items/unique/stormshield",
-    "name": "items.unique.stormshield",
+    "name": "items.unique.stormshield.name",
     "baseId": "items/base/sh-monarch",
     "reqLevel": 73,
-    "flavor": "Forged in the heart of a great tempest, this shield turns aside the worst blows.",
+    "flavor": "items.unique.stormshield.flavor",
     "stats": {
       "coreStats": {
         "strength": 30
@@ -5492,7 +5532,7 @@
   },
   {
     "id": "items/unique/the-stone-crusher",
-    "name": "The Stone Crusher",
+    "name": "items.unique.the-stone-crusher.name",
     "baseId": "items/base/weapon-mace",
     "reqLevel": 73,
     "stats": {
@@ -5511,23 +5551,35 @@
         }
       }
     },
-    "flavor": "A maul that splits boulders open."
+    "flavor": "items.unique.the-stone-crusher.flavor"
   },
   {
     "id": "items/unique/windforce",
-    "name": "items.unique.windforce",
-    "baseId": "items/base/wp2h-thunder-maul",
+    "name": "items.unique.windforce.name",
+    "baseId": "items/base/weapon-bow",
     "reqLevel": 73,
-    "flavor": "Imbued with the howling tempest of the Plains of Despair.",
+    "flavor": "items.unique.windforce.flavor",
     "stats": {
       "statMods": {
-        "attackSpeed": 20
+        "attack": 250,
+        "attackSpeed": 20,
+        "mana": 50
+      },
+      "coreStats": {
+        "dexterity": 35
+      },
+      "damageBonus": {
+        "min": 10,
+        "max": 30,
+        "breakdown": {
+          "physical": 30
+        }
       }
     }
   },
   {
     "id": "items/unique/ondal-wisdom",
-    "name": "Ondal's Wisdom",
+    "name": "items.unique.ondal-wisdom.name",
     "baseId": "items/base/weapon-wand",
     "reqLevel": 74,
     "stats": {
@@ -5545,11 +5597,11 @@
         }
       }
     },
-    "flavor": "An archmage's senile wand — still a fount of power."
+    "flavor": "items.unique.ondal-wisdom.flavor"
   },
   {
     "id": "items/unique/ravenlore",
-    "name": "Ravenlore",
+    "name": "items.unique.ravenlore.name",
     "baseId": "items/base/helm-giant-conch",
     "reqLevel": 74,
     "stats": {
@@ -5561,11 +5613,11 @@
         "mana": 60
       }
     },
-    "flavor": "A raven-spirit headdress, learned and dark."
+    "flavor": "items.unique.ravenlore.flavor"
   },
   {
     "id": "items/unique/templar-might",
-    "name": "Templar's Might",
+    "name": "items.unique.templar-might.name",
     "baseId": "items/base/armor-archon-plate",
     "reqLevel": 74,
     "stats": {
@@ -5578,11 +5630,11 @@
         "attack": 100
       }
     },
-    "flavor": "The breastplate of a holy crusader."
+    "flavor": "items.unique.templar-might.flavor"
   },
   {
     "id": "items/unique/boneslayer-blade",
-    "name": "Boneslayer Blade",
+    "name": "items.unique.boneslayer-blade.name",
     "baseId": "items/base/weapon-axe",
     "reqLevel": 75,
     "stats": {
@@ -5600,11 +5652,11 @@
         }
       }
     },
-    "flavor": "Carves through bone like soft wood."
+    "flavor": "items.unique.boneslayer-blade.flavor"
   },
   {
     "id": "items/unique/head-hunter-glory",
-    "name": "Head Hunter's Glory",
+    "name": "items.unique.head-hunter-glory.name",
     "baseId": "items/base/sh-sacred-targe",
     "reqLevel": 75,
     "stats": {
@@ -5617,11 +5669,11 @@
         "life": 80
       }
     },
-    "flavor": "Trophy-skulls of slain champions adorn its rim."
+    "flavor": "items.unique.head-hunter-glory.flavor"
   },
   {
     "id": "items/unique/ormus-robes",
-    "name": "Ormus' Robes",
+    "name": "items.unique.ormus-robes.name",
     "baseId": "items/base/armor-archon-plate",
     "reqLevel": 75,
     "stats": {
@@ -5636,11 +5688,11 @@
         "mana": 80
       }
     },
-    "flavor": "The mage Ormus' own working-robes."
+    "flavor": "items.unique.ormus-robes.flavor"
   },
   {
     "id": "items/unique/spirit-keeper",
-    "name": "Spirit Keeper",
+    "name": "items.unique.spirit-keeper.name",
     "baseId": "items/base/helm-giant-conch",
     "reqLevel": 75,
     "stats": {
@@ -5653,7 +5705,7 @@
         "mana": 40
       }
     },
-    "flavor": "Holds the spirits of fallen druid elders."
+    "flavor": "items.unique.spirit-keeper.flavor"
   },
   {
     "stats": {
@@ -5668,18 +5720,18 @@
         "max": 200
       }
     },
-    "name": "The Reaper's Toll",
+    "name": "items.unique.reaper-toll.name",
     "baseId": "items/base/weapon-polearm",
-    "flavor": "A polearm that saps life from the living and delivers it to the wielder.",
+    "flavor": "items.unique.reaper-toll.flavor",
     "reqLevel": 75,
     "id": "items/unique/reaper-toll"
   },
   {
     "id": "items/unique/dracs-grasp",
-    "name": "items.unique.dracs-grasp",
+    "name": "items.unique.dracs-grasp.name",
     "baseId": "items/base/glove-vampirebone",
     "reqLevel": 76,
-    "flavor": "The hand of a vampire lord, still hungering for blood.",
+    "flavor": "items.unique.dracs-grasp.flavor",
     "stats": {
       "coreStats": {
         "strength": 20
@@ -5688,7 +5740,7 @@
   },
   {
     "id": "items/unique/hellrack",
-    "name": "Hellrack",
+    "name": "items.unique.hellrack.name",
     "baseId": "items/base/weapon-crossbow",
     "reqLevel": 76,
     "stats": {
@@ -5706,11 +5758,11 @@
         }
       }
     },
-    "flavor": "A demonic crossbow that fires hellfire."
+    "flavor": "items.unique.hellrack.flavor"
   },
   {
     "id": "items/unique/wisp-projector",
-    "name": "Wisp Projector",
+    "name": "items.unique.wisp-projector.name",
     "baseId": "items/base/ring-zircon",
     "reqLevel": 76,
     "stats": {
@@ -5721,11 +5773,11 @@
         "magicFind": 15
       }
     },
-    "flavor": "Dancing wisps swirl around the wearer."
+    "flavor": "items.unique.wisp-projector.flavor"
   },
   {
     "id": "items/unique/alma-negra",
-    "name": "Alma Negra",
+    "name": "items.unique.alma-negra.name",
     "baseId": "items/base/sh-sacred-targe",
     "reqLevel": 77,
     "stats": {
@@ -5737,11 +5789,11 @@
         "defense": 180
       }
     },
-    "flavor": "A dark-soul shield bound to its bearer."
+    "flavor": "items.unique.alma-negra.flavor"
   },
   {
     "id": "items/unique/kira-guardian",
-    "name": "Kira's Guardian",
+    "name": "items.unique.kira-guardian.name",
     "baseId": "items/base/helm-giant-conch",
     "reqLevel": 77,
     "stats": {
@@ -5760,11 +5812,11 @@
         "life": 80
       }
     },
-    "flavor": "A guardian-spirit helm — blessed for travelers."
+    "flavor": "items.unique.kira-guardian.flavor"
   },
   {
     "id": "items/unique/arreats-face-uniq",
-    "name": "Arreat's Face (Greater)",
+    "name": "items.unique.arreats-face-uniq.name",
     "baseId": "items/base/helm-giant-conch",
     "reqLevel": 78,
     "stats": {
@@ -5777,11 +5829,11 @@
         "life": 100
       }
     },
-    "flavor": "A war-mask of greater might. (Closest base mapping.)"
+    "flavor": "items.unique.arreats-face-uniq.flavor"
   },
   {
     "id": "items/unique/knell-striker-2",
-    "name": "Knell Striker (Greater)",
+    "name": "items.unique.knell-striker-2.name",
     "baseId": "items/base/weapon-mace",
     "reqLevel": 78,
     "stats": {
@@ -5796,11 +5848,11 @@
         }
       }
     },
-    "flavor": "Tolls the death-knell with every swing."
+    "flavor": "items.unique.knell-striker-2.flavor"
   },
   {
     "id": "items/unique/ondal-almighty",
-    "name": "Ondal's Almighty",
+    "name": "items.unique.ondal-almighty.name",
     "baseId": "items/base/armor-archon-plate",
     "reqLevel": 78,
     "stats": {
@@ -5813,11 +5865,11 @@
         "mana": 80
       }
     },
-    "flavor": "An archmage's full-plate, etched with old runes."
+    "flavor": "items.unique.ondal-almighty.flavor"
   },
   {
     "id": "items/unique/boneflame-shield",
-    "name": "Boneflame Shield",
+    "name": "items.unique.boneflame-shield.name",
     "baseId": "items/base/sh-sacred-targe",
     "reqLevel": 79,
     "stats": {
@@ -5832,11 +5884,11 @@
         "mana": 80
       }
     },
-    "flavor": "Skulls along its rim spit cold fire."
+    "flavor": "items.unique.boneflame-shield.flavor"
   },
   {
     "id": "items/unique/hand-of-blessed-light",
-    "name": "Hand of Blessed Light",
+    "name": "items.unique.hand-of-blessed-light.name",
     "baseId": "items/base/weapon-scepter",
     "reqLevel": 79,
     "stats": {
@@ -5855,7 +5907,7 @@
         }
       }
     },
-    "flavor": "A holy mace radiating sun-warm light."
+    "flavor": "items.unique.hand-of-blessed-light.flavor"
   },
   {
     "stats": {
@@ -5876,15 +5928,15 @@
         "lightning": 60
       }
     },
-    "name": "Schaefer's Hammer",
+    "name": "items.unique.schaefer-hammer.name",
     "baseId": "items/base/weapon-mace",
-    "flavor": "A thunderous warhammer. It calls down lightning on the wicked.",
+    "flavor": "items.unique.schaefer-hammer.flavor",
     "reqLevel": 79,
     "id": "items/unique/schaefer-hammer"
   },
   {
     "id": "items/unique/wolfhowl",
-    "name": "Wolfhowl",
+    "name": "items.unique.wolfhowl.name",
     "baseId": "items/base/helm-giant-conch",
     "reqLevel": 79,
     "stats": {
@@ -5897,23 +5949,31 @@
         "attack": 100
       }
     },
-    "flavor": "A druid pelt-helm that sings of the moon."
+    "flavor": "items.unique.wolfhowl.flavor"
   },
   {
     "id": "items/unique/arachnids-mesh",
-    "name": "items.unique.arachnids-mesh",
+    "name": "items.unique.arachnids-mesh.name",
     "baseId": "items/base/belt-mithril-coil",
     "reqLevel": 80,
-    "flavor": "Spun from the silk of the Spider Mother of the Pandemonium.",
+    "flavor": "items.unique.arachnids-mesh.flavor",
     "stats": {
       "statMods": {
-        "mana": 25
+        "mana": 25,
+        "attackSpeed": 20,
+        "magicFind": 20
+      },
+      "coreStats": {
+        "energy": 15
+      },
+      "resistances": {
+        "all": 10
       }
     }
   },
   {
     "id": "items/unique/the-minotaur",
-    "name": "The Minotaur",
+    "name": "items.unique.the-minotaur.name",
     "baseId": "items/base/weapon-axe",
     "reqLevel": 80,
     "stats": {
@@ -5932,7 +5992,7 @@
         }
       }
     },
-    "flavor": "An axe of the labyrinth's lord."
+    "flavor": "items.unique.the-minotaur.flavor"
   },
   {
     "stats": {
@@ -5951,15 +6011,15 @@
         "max": 200
       }
     },
-    "name": "Baranar's Star",
+    "name": "items.unique.baranar-star.name",
     "baseId": "items/base/weapon-mace",
-    "flavor": "A devil's own mace. It crushes the righteous and the damned alike.",
+    "flavor": "items.unique.baranar-star.flavor",
     "reqLevel": 81,
     "id": "items/unique/baranar-star"
   },
   {
     "id": "items/unique/metalgrid",
-    "name": "Metalgrid",
+    "name": "items.unique.metalgrid.name",
     "baseId": "items/base/amu-zircon",
     "reqLevel": 81,
     "stats": {
@@ -5974,14 +6034,14 @@
         "attack": 100
       }
     },
-    "flavor": "An iron lattice — pure structure and protection."
+    "flavor": "items.unique.metalgrid.flavor"
   },
   {
     "id": "items/unique/grandfather",
-    "name": "items.unique.grandfather",
+    "name": "items.unique.grandfather.name",
     "baseId": "items/base/wp2h-colossus-blade",
     "reqLevel": 81,
-    "flavor": "A sword wielded by an ancient hero. The blade alone weighs more than most men.",
+    "flavor": "items.unique.grandfather.flavor",
     "stats": {
       "coreStats": {
         "strength": 20,
@@ -6003,7 +6063,7 @@
   },
   {
     "id": "items/unique/demonhorn-edge-2",
-    "name": "Demonhorn's Edge (Greater)",
+    "name": "items.unique.demonhorn-edge-2.name",
     "baseId": "items/base/helm-giant-conch",
     "reqLevel": 82,
     "stats": {
@@ -6015,11 +6075,11 @@
         "attack": 100
       }
     },
-    "flavor": "A larger demon-horn helm of greater make."
+    "flavor": "items.unique.demonhorn-edge-2.flavor"
   },
   {
     "id": "items/unique/halaberd-reign-2",
-    "name": "Halaberd's Reign (Greater)",
+    "name": "items.unique.halaberd-reign-2.name",
     "baseId": "items/base/helm-giant-conch",
     "reqLevel": 84,
     "stats": {
@@ -6030,11 +6090,11 @@
         "defense": 170
       }
     },
-    "flavor": "A barbarian crown of unmatched lineage."
+    "flavor": "items.unique.halaberd-reign-2.flavor"
   },
   {
     "id": "items/unique/messerschmidt-reaver",
-    "name": "Messerschmidt's Reaver",
+    "name": "items.unique.messerschmidt-reaver.name",
     "baseId": "items/base/wp2h-thunder-maul",
     "reqLevel": 84,
     "stats": {
@@ -6052,7 +6112,7 @@
         }
       }
     },
-    "flavor": "A masterwork two-hander of staggering reach."
+    "flavor": "items.unique.messerschmidt-reaver.flavor"
   },
   {
     "stats": {
@@ -6072,18 +6132,18 @@
         "max": 300
       }
     },
-    "name": "Tomb Reaver",
+    "name": "items.unique.tomb-reaver.name",
     "baseId": "items/base/weapon-polearm",
-    "flavor": "Unearthed from a king's tomb. It grants power beyond measure.",
+    "flavor": "items.unique.tomb-reaver.flavor",
     "reqLevel": 84,
     "id": "items/unique/tomb-reaver"
   },
   {
     "id": "items/unique/tyraels-might",
-    "name": "items.unique.tyraels-might",
+    "name": "items.unique.tyraels-might.name",
     "baseId": "items/base/armor-archon-plate",
     "reqLevel": 84,
-    "flavor": "Forged in the High Heavens by the Archangel of Justice himself.",
+    "flavor": "items.unique.tyraels-might.flavor",
     "stats": {
       "coreStats": {
         "strength": 25,
@@ -6098,10 +6158,10 @@
   },
   {
     "id": "items/unique/arkaines-valor",
-    "name": "items.unique.arkaines-valor",
+    "name": "items.unique.arkaines-valor.name",
     "baseId": "items/base/armor-archon-plate",
     "reqLevel": 85,
-    "flavor": "The legendary armor of an ancient hero of the heroes ages.",
+    "flavor": "items.unique.arkaines-valor.flavor",
     "stats": {
       "coreStats": {
         "vitality": 30
@@ -6125,15 +6185,15 @@
         "max": 250
       }
     },
-    "name": "Azurewrath",
+    "name": "items.unique.azurewrath.name",
     "baseId": "items/base/wp1h-long-sword",
-    "flavor": "The blade of a celestial warrior. Demons flee before its light.",
+    "flavor": "items.unique.azurewrath.flavor",
     "reqLevel": 85,
     "id": "items/unique/azurewrath"
   },
   {
     "id": "items/unique/ethereal-edge",
-    "name": "Ethereal Edge",
+    "name": "items.unique.ethereal-edge.name",
     "baseId": "items/base/weapon-axe",
     "reqLevel": 85,
     "stats": {
@@ -6153,11 +6213,11 @@
         }
       }
     },
-    "flavor": "A blade glimpsed half in this world, half in another."
+    "flavor": "items.unique.ethereal-edge.flavor"
   },
   {
     "id": "items/unique/the-gladiator-bane",
-    "name": "The Gladiator's Bane",
+    "name": "items.unique.the-gladiator-bane.name",
     "baseId": "items/base/armor-archon-plate",
     "reqLevel": 85,
     "stats": {
@@ -6171,11 +6231,11 @@
         "magicDodge": 15
       }
     },
-    "flavor": "Worn into countless arenas. None of its foes survived."
+    "flavor": "items.unique.the-gladiator-bane.flavor"
   },
   {
     "id": "items/unique/the-cranium-basher",
-    "name": "The Cranium Basher",
+    "name": "items.unique.the-cranium-basher.name",
     "baseId": "items/base/weapon-mace",
     "reqLevel": 87,
     "stats": {
@@ -6194,11 +6254,11 @@
         }
       }
     },
-    "flavor": "It does what its name suggests."
+    "flavor": "items.unique.the-cranium-basher.flavor"
   },
   {
     "id": "items/unique/the-cranium-basher-greater",
-    "name": "The Cranium Basher (Greater)",
+    "name": "items.unique.the-cranium-basher-greater.name",
     "baseId": "items/base/weapon-mace",
     "reqLevel": 87,
     "stats": {
@@ -6217,6 +6277,6 @@
         }
       }
     },
-    "flavor": "A maul of unmatched bone-shattering force."
+    "flavor": "items.unique.the-cranium-basher-greater.flavor"
   }
 ]

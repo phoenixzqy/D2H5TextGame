@@ -26,7 +26,8 @@ const baseFile = {
     class: { barbarian: '/custom/barb.png' },
     monster: {},
     item: {},
-    merc: {}
+    merc: {},
+    skill: {}
   }
 };
 

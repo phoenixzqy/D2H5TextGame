@@ -56,6 +56,13 @@ function normalizeMercPortraitKey(key: string): string {
   return `${match[1]}.${match[2]}`;
 }
 
+function firstExistingBaseIcon(...candidates: readonly (string | null | undefined)[]): string | null {
+  for (const candidate of candidates) {
+    if (candidate && candidate in BASE_ITEM_ICONS) return BASE_ITEM_ICONS[candidate] ?? null;
+  }
+  return null;
+}
+
 /** dev-only warn helper (no-op in production). Vite-native env check. */
 function warnMissing(category: string, key: string): void {
   // import.meta.env.DEV is statically replaced by Vite in production builds.
@@ -125,17 +132,47 @@ function inferBaseArchetype(slug: string): string | null {
   return null;
 }
 
+function inferSetArchetype(itemIds: readonly string[] | undefined): string | null {
+  for (const itemId of itemIds ?? []) {
+    const leaf = itemId.split('/').pop() ?? '';
+    const inferred = inferBaseArchetype(leaf);
+    if (inferred) return inferred;
+    if (leaf === 'weapon') return 'sword';
+    if (leaf === 'armor') return 'armor';
+    if (leaf === 'helm') return 'helm';
+    if (leaf === 'shield') return 'shield';
+    if (leaf === 'amulet') return 'amulet';
+    if (leaf === 'ring') return 'ring';
+    if (leaf === 'gloves') return 'gloves';
+    if (leaf === 'belt') return 'belt';
+    if (leaf === 'boots') return 'boots';
+  }
+  return null;
+}
+
+export interface ItemIconContext {
+  /** Template base for definition-backed uniques / set pieces. */
+  readonly baseId?: string;
+  /** Runeword allowed base types from `src/data/items/runewords.json`. */
+  readonly allowedBases?: readonly string[];
+  /** Set-definition member ids from `src/data/items/sets.json`. */
+  readonly setItemIds?: readonly string[];
+}
+
 /**
  * Resolve an item-icon URL from a base or unique id. Accepts both
  *   - bare `unique.<slug>`            → unique icon
  *   - prefixed `items/unique/<slug>`  → unique icon
  *   - prefixed `items/base/<slug>`    → base archetype icon (sword/helm/...)
+ *   - `runes/<slug>`                  → generic rune icon
+ *   - `runewords/<slug>`              → generic rune icon
+ *   - `sets/<slug>`                   → inferred first-piece archetype icon
  *
  * Returns `null` for ids we can't classify (caller renders silhouette).
  */
-export function resolveItemIcon(baseId: string): string | null {
-  if (!baseId) return null;
-  const key = stripPrefix(baseId);
+export function resolveItemIcon(itemId: string, context: ItemIconContext = {}): string | null {
+  if (!itemId) return null;
+  const key = stripPrefix(itemId);
 
   // Override takes precedence over inferred archetype lookup.
   const override = getImageOverride('item', key);
@@ -146,7 +183,7 @@ export function resolveItemIcon(baseId: string): string | null {
   if (uniqueMatch?.[1]) {
     const slug = uniqueMatch[1];
     if (slug in UNIQUE_ITEM_ICONS) return UNIQUE_ITEM_ICONS[slug] ?? null;
-    // Many uniques have no dedicated art yet — silent silhouette.
+    if (context.baseId) return resolveItemIcon(context.baseId);
     return null;
   }
 
@@ -159,7 +196,26 @@ export function resolveItemIcon(baseId: string): string | null {
     }
   }
 
-  // 3) Direct archetype id (e.g. `sword`) — used by tests and synthetic callers.
+  // 3) Rune items share the canonical generated rune icon.
+  if (itemId.startsWith('runes/') || /^rune[./-]/.test(key)) {
+    return firstExistingBaseIcon('rune');
+  }
+
+  // 4) Runeword definitions are recipes, not concrete equipped bases.
+  if (itemId.startsWith('runewords/') || /^runeword[./-]/.test(key)) {
+    if (context.baseId) return resolveItemIcon(context.baseId);
+    return firstExistingBaseIcon('rune');
+  }
+
+  // 5) Set definitions/pieces use a concrete base when supplied; otherwise
+  // infer a representative first-piece archetype and fall back to gem.
+  if (itemId.startsWith('sets/') || /^set[./-]/.test(key)) {
+    if (context.baseId) return resolveItemIcon(context.baseId);
+    const inferred = inferSetArchetype(context.setItemIds);
+    return firstExistingBaseIcon(inferred, 'gem');
+  }
+
+  // 6) Direct archetype id (e.g. `sword`) — used by tests and synthetic callers.
   if (key in BASE_ITEM_ICONS) return BASE_ITEM_ICONS[key] ?? null;
 
   return null;
@@ -172,7 +228,7 @@ export function resolveZoneArt(zoneId: string): string | null {
   return null;
 }
 
-function normalizeSkillIconKey(skillRef: string): string | null {
+export function normalizeSkillIconKey(skillRef: string): string | null {
   const trimmed = skillRef.trim();
   if (!trimmed) return null;
 
@@ -197,6 +253,8 @@ function normalizeSkillIconKey(skillRef: string): string | null {
 export function resolveSkillIcon(skillRef: string): string | null {
   const key = normalizeSkillIconKey(skillRef);
   if (!key) return null;
+  const override = getImageOverride('skill', key);
+  if (override) return override;
   if (key in SKILL_ICONS) return SKILL_ICONS[key] ?? null;
   return null;
 }

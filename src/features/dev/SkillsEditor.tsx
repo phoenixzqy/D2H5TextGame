@@ -1,7 +1,9 @@
 import { EnumField, JsonField, NumberField } from './DevEditorFields';
+import { DevImageField } from './DevImageField';
 import { DevDataManager } from './DevDataManager';
-import type { JsonRecord } from './devJson';
+import { asString, type JsonRecord } from './devJson';
 import { skillFiles } from './devPaths';
+import { normalizeSkillIconKey, resolveSkillIcon } from '@/ui/cardAssets';
 import { useTranslation } from 'react-i18next';
 
 export function SkillsEditor() {
@@ -16,10 +18,21 @@ export function SkillsEditor() {
   );
 }
 
-function SkillFields({ entry, onChange }: { readonly entry: JsonRecord; readonly onChange: (entry: JsonRecord) => void }) {
+export function SkillFields({ entry, onChange }: { readonly entry: JsonRecord; readonly onChange: (entry: JsonRecord) => void }) {
   const { t } = useTranslation('dev');
+  const iconRef = asString(entry.icon);
+  const skillId = asString(entry.id);
+  const imageRef = iconRef || skillId;
+  const imageKey = normalizeSkillIconKey(imageRef);
   return (
     <div className="space-y-4">
+      {imageKey && (
+        <DevImageField
+          kind="skill"
+          entityId={imageKey}
+          inferredPath={resolveSkillIcon(imageRef)}
+        />
+      )}
       <div className="grid gap-3 sm:grid-cols-2">
         <NumberField entry={entry} path={['damage', 'min']} label={t('skillsEditor.fields.baseDamageMin')} onChange={onChange} />
         <NumberField entry={entry} path={['damage', 'max']} label={t('skillsEditor.fields.baseDamageMax')} onChange={onChange} />
