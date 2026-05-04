@@ -310,6 +310,10 @@ describe('<SkillsScreen> — class fixture renders (mirrors skills-screen.spec.t
     expect(body).not.toMatch(/上限 5|max 5/i);
     expect(body).toMatch(/召唤上限\s*1|Summon Cap\s*1/);
     expect(body).toMatch(/召唤上限\s*2|Summon Cap\s*2/);
+    expect(body).toMatch(/骷髅战士|Skeleton Warrior/);
+    expect(body).toMatch(/生命\s*152|Life\s*152/);
+    expect(body).toMatch(/攻击\s*33|Attack\s*33/);
+    expect(body).toMatch(/防御\s*18|Defense\s*18/);
   });
 
   it('updates the detail panel on keyboard focus', () => {

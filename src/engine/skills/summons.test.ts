@@ -56,6 +56,23 @@ describe('summon templates', () => {
     expect(skeleton?.life).toBe(112);
   });
 
+  it('applies rank-based skeleton stat scaling', () => {
+    const rankOne = buildSummon(owner, 'skeleton', {
+      skillLevel: 1,
+      statScaling: { lifeMax: 10, attack: 2, defense: 1 }
+    });
+    const rankSix = buildSummon(owner, 'skeleton', {
+      skillLevel: 6,
+      statScaling: { lifeMax: 10, attack: 2, defense: 1 }
+    });
+
+    expect(rankOne?.stats.lifeMax).toBe(112);
+    expect(rankSix?.stats.lifeMax).toBe(162);
+    expect(rankSix?.life).toBe(162);
+    expect(rankSix?.stats.attack).toBe(35);
+    expect(rankSix?.stats.defense).toBe(19);
+  });
+
   it('does not leak skeleton-specific buffs into placeholder summons', () => {
     const minion = buildSummon(owner, 'minion');
 

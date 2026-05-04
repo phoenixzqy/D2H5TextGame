@@ -31,6 +31,7 @@
   },
   "status": {
     "bleed": "流血",
+    "ignite": "点燃",
     "burn": "燃烧",
     "chill": "冰冻减速",
     "freeze": "冰封",

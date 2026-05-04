@@ -38,7 +38,7 @@ import { isImmobilized, shouldEnrage } from '../ai/policy';
 import { canCastSkill } from '../skills/eligibility';
 import { getSkill } from '../skills/registry';
 import { buildSummon } from '../skills/summons';
-import { resolveSummonMaxCount } from '../skills/scaling';
+import { resolveSummonMaxCount, scalePerRank } from '../skills/scaling';
 import { resolveAoeTargets, withDefaultGridPositions } from './grid';
 import type {
   RegisteredSkill,
@@ -236,13 +236,16 @@ function buildDamageInput(
   attacker: CombatUnit,
   defender: CombatUnit,
   effect: DamageEffect,
+  skillLevel = 1,
   baseFlatBonus = 0
 ): DamageInput {
   const combo = comboMultiplier(defender, effect.damageType);
   const stats = attacker.stats;
+  const baseMin = scalePerRank(effect.base[0], effect.perRank?.[0], skillLevel);
+  const baseMax = scalePerRank(effect.base[1], effect.perRank?.[1], skillLevel);
   return {
-    baseMin: effect.base[0],
-    baseMax: effect.base[1],
+    baseMin,
+    baseMax,
     flatBonus: baseFlatBonus,
     increasedPct: 0,
     comboMult: combo,
@@ -264,13 +267,14 @@ function applyDamageToUnit(
   state: State,
   attackerId: string,
   defenderId: string,
-  effect: DamageEffect
+  effect: DamageEffect,
+  skillLevel = 1
 ): void {
   const attacker = state.units.get(attackerId);
   const defender = state.units.get(defenderId);
   if (!attacker || !defender || !alive(defender)) return;
 
-  const input = buildDamageInput(attacker, defender, effect);
+  const input = buildDamageInput(attacker, defender, effect, skillLevel);
   const outcome = resolveDamage(input, state.rng);
   emit(state, {
     kind: 'damage',
@@ -365,9 +369,10 @@ function handleDeath(state: State, dead: CombatUnit): void {
           !!s && s.effects.some((e): e is SummonEffect => e.kind === 'summon')
         );
       if (summonSkill) {
+        const summonSkillLevel = effectiveSkillLevel(owner, summonSkill);
         const refundedMana = Math.min(
           owner.stats.manaMax,
-          owner.mana + summonSkill.manaCost
+          owner.mana + effectiveManaCost(summonSkill, summonSkillLevel)
         );
         state.units.set(owner.id, { ...owner, mana: refundedMana });
         const cdMap = state.cooldownExpiresAt.get(owner.id);
@@ -441,6 +446,15 @@ function effectiveSkillLevel(unit: CombatUnit, skill: RegisteredSkill): number {
   return 1;
 }
 
+function effectiveManaCost(skill: RegisteredSkill, skillLevel: number): number {
+  return Math.max(0, Math.round(skill.manaCost + (skill.manaCostPerRank ?? 0) * Math.max(0, skillLevel - 1)));
+}
+
+function effectiveCooldown(skill: RegisteredSkill, skillLevel: number): number {
+  if (skill.cooldown <= 0) return 0;
+  return Math.max(1, Number((skill.cooldown + (skill.cooldownPerRank ?? 0) * Math.max(0, skillLevel - 1)).toFixed(1)));
+}
+
 function hasAvailableEffect(state: State, actorId: string, skill: RegisteredSkill, skillLevel: number): boolean {
   if (!skill.effects.every((effect) => effect.kind === 'summon')) return true;
   return skill.effects.some((effect) =>
@@ -456,7 +470,8 @@ function canUseSkillForState(
   hasEnemyTarget: boolean
 ): boolean {
   if ((unit.cooldowns[skill.id] ?? unit.cooldowns[skillOrderId] ?? 0) > 0) return false;
-  if (skill.manaCost > unit.mana) return false;
+  const skillLevel = effectiveSkillLevel(unit, skill);
+  if (effectiveManaCost(skill, skillLevel) > unit.mana) return false;
   if (unit.level < skill.minLevel) return false;
   if (skill.isBuff && unit.activeBuffIds.includes(skill.id)) return false;
   if (skill.requires && unit.equippedWeapon !== undefined) {
@@ -471,7 +486,7 @@ function canUseSkillForState(
   ) {
     return false;
   }
-  return hasAvailableEffect(state, unit.id, skill, effectiveSkillLevel(unit, skill));
+  return hasAvailableEffect(state, unit.id, skill, skillLevel);
 }
 
 function chooseSkillForState(
@@ -499,7 +514,7 @@ function applyEffect(
   switch (effect.kind) {
     case 'damage': {
       for (const t of enemySideAlive) {
-        applyDamageToUnit(state, actorId, t.id, effect);
+        applyDamageToUnit(state, actorId, t.id, effect, skillLevel);
       }
       break;
     }
@@ -537,7 +552,10 @@ function applyEffect(
       const existing = summonsOf(state, actorId, effect.summonId).length;
       const cap = resolveSummonMaxCount(effect, skillLevel);
       if (existing >= cap) return;
-      const summon = buildSummon(owner, effect.summonId);
+      const summon = buildSummon(owner, effect.summonId, {
+        skillLevel,
+        statScaling: effect.statScaling
+      });
       if (!summon) {
         // Unknown template — log & no-op.
         // eslint-disable-next-line no-console
@@ -589,17 +607,20 @@ function castSkill(state: State, actorId: string, skill: RegisteredSkill): void 
   const actor = state.units.get(actorId);
   if (!actor) return;
 
-  const newMana = Math.max(0, actor.mana - skill.manaCost);
+  const skillLevel = effectiveSkillLevel(actor, skill);
+  const manaCost = effectiveManaCost(skill, skillLevel);
+  const newMana = Math.max(0, actor.mana - manaCost);
   state.units.set(actorId, { ...actor, mana: newMana });
 
   // Time-based cooldown.
-  if (skill.cooldown > 0) {
+  const cooldown = effectiveCooldown(skill, skillLevel);
+  if (cooldown > 0) {
     let cdMap = state.cooldownExpiresAt.get(actorId);
     if (!cdMap) {
       cdMap = new Map();
       state.cooldownExpiresAt.set(actorId, cdMap);
     }
-    cdMap.set(skill.id, state.simClockMs + skill.cooldown * SECONDS);
+    cdMap.set(skill.id, state.simClockMs + cooldown * SECONDS);
   }
 
   emit(state, { kind: 'action', actor: actorId, skillId: skill.id });
@@ -617,7 +638,6 @@ function castSkill(state: State, actorId: string, skill: RegisteredSkill): void 
     targetEnemies = resolveAoeTargets(enemies, skill.aoeShape);
   }
 
-  const skillLevel = effectiveSkillLevel(actor, skill);
   for (const effect of skill.effects) {
     applyEffect(state, actorId, effect, skillLevel, targetEnemies, allies);
   }

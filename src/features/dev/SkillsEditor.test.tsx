@@ -40,4 +40,25 @@ describe('SkillsEditor SkillFields', () => {
     const img = field.querySelector('img');
     expect(img?.getAttribute('src')).toMatch(/skills\.amazon\.magic-arrow\.v1\.png$/);
   });
+
+  it('exposes summon scaling fields for Raise Skeleton', async () => {
+    renderSkill({
+      id: 'skills-necromancer-raise-skeleton',
+      icon: 'skills/necromancer/raise-skeleton.png',
+      summon: true,
+      summonId: 'skeleton',
+      cooldown: 1,
+      cost: { mana: 15 },
+      scaling: {
+        summonMaxCount: { kind: 'raise-skeleton-1-6-12-cap-3' },
+        summonStatsPerLevel: { lifeMax: 10, attack: 2, defense: 1 }
+      }
+    });
+
+    expect(await screen.findByLabelText(/召唤模板|Summon template/i)).toHaveValue('skeleton');
+    expect(screen.getByLabelText(/每级召唤生命|Summon life per level/i)).toHaveValue(10);
+    expect(screen.getByLabelText(/每级召唤攻击|Summon attack per level/i)).toHaveValue(2);
+    expect(screen.getByLabelText(/每级召唤防御|Summon defense per level/i)).toHaveValue(1);
+    expect(screen.getByLabelText(/召唤上限曲线|Summon cap curve/i)).toHaveValue('raise-skeleton-1-6-12-cap-3');
+  });
 });

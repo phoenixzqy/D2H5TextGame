@@ -45,6 +45,11 @@
       "type": "boolean",
       "description": "True if this skill summons a creature"
     },
+    "summonId": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$",
+      "description": "Registered summon template id spawned by this skill"
+    },
     "icon": {
       "type": "string",
       "description": "Icon asset path"
@@ -85,6 +90,16 @@
       "type": "array",
       "items": { "type": "string" },
       "description": "Status effect IDs applied"
+    },
+    "statusEffect": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Runtime metadata for the first appliesStatus id, such as DoT strength or stack count.",
+      "properties": {
+        "chance": { "type": "number", "minimum": 0, "maximum": 1 },
+        "stacksOnApply": { "type": "integer", "minimum": 1 },
+        "dotPctOfDamage": { "type": "number", "minimum": 0 }
+      }
     },
     "heal": {
       "type": "object",
@@ -138,6 +153,35 @@
               "type": "string",
               "enum": ["first-three-then-every-three", "raise-skeleton-1-6-12-cap-3"]
             }
+          }
+        },
+        "summonStatsPerLevel": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Flat per-skill-rank growth applied to the summoned unit template at runtime and in skill previews.",
+          "properties": {
+            "lifeMax": { "type": "number" },
+            "attack": { "type": "number" },
+            "defense": { "type": "number" },
+            "attackSpeed": { "type": "number" },
+            "physDodge": { "type": "number" },
+            "magicDodge": { "type": "number" }
+          }
+        },
+        "passiveStatsPerLevel": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Visible per-rank passive/utility growth for non-damage skill previews. Runtime hooks may consume these as systems mature.",
+          "properties": {
+            "summonLifePct": { "type": "number" },
+            "summonAttackPct": { "type": "number" },
+            "summonDefensePct": { "type": "number" },
+            "summonResistAllPct": { "type": "number" },
+            "poisonDamagePct": { "type": "number" },
+            "arcaneDamagePct": { "type": "number" },
+            "boneArmorAbsorb": { "type": "number" },
+            "golemLifePct": { "type": "number" },
+            "golemAttackSpeed": { "type": "number" }
           }
         }
       }

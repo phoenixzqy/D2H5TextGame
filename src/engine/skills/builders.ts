@@ -12,7 +12,7 @@
  * @module engine/skills/builders
  */
 
-import type { RegisteredSkill, SkillEffect, SummonMaxCountScalingKind } from './effects';
+import type { RegisteredSkill, SkillEffect, SummonMaxCountScalingKind, SummonStatScaling } from './effects';
 import type { AoeShape } from '../combat/grid';
 import type { DamageType } from '../types/attributes';
 import type { SkillTarget, ComboTag, SkillRequirement } from '../types/skills';
@@ -23,6 +23,8 @@ interface BuildSpec {
   readonly target: SkillTarget;
   readonly cooldown: number;
   readonly manaCost: number;
+  readonly manaCostPerRank?: number;
+  readonly cooldownPerRank?: number;
   readonly damageType?: DamageType;
   readonly base?: readonly [number, number];
   readonly perRank?: readonly [number, number];
@@ -35,6 +37,7 @@ interface BuildSpec {
     readonly max: number;
     readonly onStart?: boolean;
     readonly maxCountScaling?: SummonMaxCountScalingKind;
+    readonly statScaling?: SummonStatScaling;
   };
   readonly minLevel?: number;
   readonly requires?: SkillRequirement;
@@ -69,7 +72,8 @@ function build(s: BuildSpec): RegisteredSkill {
       kind: 'summon',
       summonId: s.summon.summonId,
       maxCount: s.summon.max,
-      ...(s.summon.maxCountScaling ? { maxCountScaling: { kind: s.summon.maxCountScaling } } : {})
+      ...(s.summon.maxCountScaling ? { maxCountScaling: { kind: s.summon.maxCountScaling } } : {}),
+      ...(s.summon.statScaling ? { statScaling: s.summon.statScaling } : {})
     });
   }
   return {
@@ -78,6 +82,8 @@ function build(s: BuildSpec): RegisteredSkill {
     target: s.target,
     cooldown: s.cooldown,
     manaCost: s.manaCost,
+    ...(s.manaCostPerRank !== undefined ? { manaCostPerRank: s.manaCostPerRank } : {}),
+    ...(s.cooldownPerRank !== undefined ? { cooldownPerRank: s.cooldownPerRank } : {}),
     effects,
     minLevel: s.minLevel ?? 1,
     ...(s.aoeShape ? { aoeShape: s.aoeShape } : {}),
@@ -112,17 +118,23 @@ export const DEFAULT_SKILLS: readonly RegisteredSkill[] = Object.freeze([
     target: 'summon',
     cooldown: 0,
     manaCost: 15,
-    summon: { summonId: 'skeleton', max: 3, onStart: true, maxCountScaling: 'raise-skeleton-1-6-12-cap-3' }
+    summon: {
+      summonId: 'skeleton',
+      max: 3,
+      onStart: true,
+      maxCountScaling: 'raise-skeleton-1-6-12-cap-3',
+      statScaling: { lifeMax: 10, attack: 2, defense: 1 }
+    }
   }),
   build({ id: 'necromancer.clay_golem', archetype: 'necromancer', target: 'summon', cooldown: 3, manaCost: 15, summon: { summonId: 'clay_golem', max: 1, onStart: true }, minLevel: 6 }),
   build({ id: 'necromancer.blood_golem', archetype: 'necromancer', target: 'summon', cooldown: 4, manaCost: 25, summon: { summonId: 'blood_golem', max: 1, onStart: true }, minLevel: 18 }),
   build({ id: 'necromancer.iron_golem', archetype: 'necromancer', target: 'summon', cooldown: 4, manaCost: 35, summon: { summonId: 'iron_golem', max: 1, onStart: true }, minLevel: 24 }),
   build({ id: 'necromancer.fire_golem', archetype: 'necromancer', target: 'summon', cooldown: 4, manaCost: 35, summon: { summonId: 'fire_golem', max: 1, onStart: true }, minLevel: 30 }),
-  build({ id: 'necromancer.corpse_explosion', archetype: 'necromancer', target: 'all-enemies', cooldown: 2, manaCost: 20, damageType: 'fire', base: [50, 80], status: { id: 'ignite', dotPct: 0.1 } }),
-  build({ id: 'necromancer.poison_nova', archetype: 'necromancer', target: 'all-enemies', cooldown: 3, manaCost: 25, damageType: 'poison', base: [20, 30], status: { id: 'poison', stacks: 2, dotPct: 0.05 } }),
-  build({ id: 'necromancer.bone_spear', archetype: 'necromancer', target: 'single-enemy', cooldown: 1, manaCost: 20, damageType: 'arcane', base: [60, 90] }),
-  build({ id: 'necromancer.amplify_damage', archetype: 'necromancer', target: 'all-enemies', cooldown: 3, manaCost: 15, damageType: 'arcane', base: [0, 0], status: { id: 'amplify' } }),
-  build({ id: 'necromancer.decrepify', archetype: 'necromancer', target: 'all-enemies', cooldown: 3, manaCost: 20, damageType: 'arcane', base: [0, 0], status: { id: 'decrepify' } }),
+  build({ id: 'necromancer.corpse_explosion', archetype: 'necromancer', target: 'all-enemies', cooldown: 2, manaCost: 20, damageType: 'fire', base: [50, 80], perRank: [5, 5], status: { id: 'ignite', dotPct: 0.1 } }),
+  build({ id: 'necromancer.poison_nova', archetype: 'necromancer', target: 'all-enemies', cooldown: 3, manaCost: 25, damageType: 'poison', base: [20, 30], perRank: [2, 2], status: { id: 'poison', stacks: 2, dotPct: 0.05 } }),
+  build({ id: 'necromancer.bone_spear', archetype: 'necromancer', target: 'single-enemy', cooldown: 1, manaCost: 20, damageType: 'arcane', base: [60, 90], perRank: [6, 6] }),
+  build({ id: 'necromancer.amplify_damage', archetype: 'necromancer', target: 'all-enemies', cooldown: 3, cooldownPerRank: -0.05, manaCost: 15, manaCostPerRank: -0.2, damageType: 'arcane', base: [0, 0], status: { id: 'amplify' } }),
+  build({ id: 'necromancer.decrepify', archetype: 'necromancer', target: 'all-enemies', cooldown: 3, manaCost: 20, manaCostPerRank: -0.3, damageType: 'arcane', base: [0, 0], status: { id: 'decrepify' } }),
   build({ id: 'necromancer.summon_mastery', archetype: 'necromancer', target: 'self', cooldown: 0, manaCost: 0, buff: { id: 'summon_mastery', duration: -1 } }),
   build({ id: 'necromancer.poison_mastery', archetype: 'necromancer', target: 'self', cooldown: 0, manaCost: 0, buff: { id: 'poison_mastery', duration: -1 } }),
   build({ id: 'necromancer.bone_armor', archetype: 'necromancer', target: 'self', cooldown: 0, manaCost: 0, buff: { id: 'bone_armor', duration: -1 } }),

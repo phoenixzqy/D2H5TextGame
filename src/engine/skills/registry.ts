@@ -14,6 +14,7 @@
 import type { RegisteredSkill } from './effects';
 import { DEFAULT_SKILLS } from './builders';
 import { aliasToCanonical, MERC_STUB_SKILLS, MONSTER_STUB_SKILLS } from './aliases';
+import { NECROMANCER_DATA_SKILLS } from './dataCatalog';
 
 const registry = new Map<string, RegisteredSkill>();
 const warned = new Set<string>();
@@ -72,6 +73,9 @@ export function resetRegistry(): void {
  */
 export function loadDefaultSkills(): void {
   for (const s of DEFAULT_SKILLS) {
+    registry.set(s.id, s);
+  }
+  for (const s of NECROMANCER_DATA_SKILLS) {
     registry.set(s.id, s);
   }
   for (const s of MERC_STUB_SKILLS) {

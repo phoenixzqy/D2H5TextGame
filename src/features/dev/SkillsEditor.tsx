@@ -1,4 +1,4 @@
-import { EnumField, JsonField, NumberField } from './DevEditorFields';
+import { EnumField, JsonField, NumberField, TextField } from './DevEditorFields';
 import { DevImageField } from './DevImageField';
 import { DevDataManager } from './DevDataManager';
 import { asString, type JsonRecord } from './devJson';
@@ -38,8 +38,25 @@ export function SkillFields({ entry, onChange }: { readonly entry: JsonRecord; r
         <NumberField entry={entry} path={['damage', 'max']} label={t('skillsEditor.fields.baseDamageMax')} onChange={onChange} />
         <NumberField entry={entry} path={['cooldown']} label={t('skillsEditor.fields.cooldown')} onChange={onChange} />
         <NumberField entry={entry} path={['cost', 'mana']} label={t('skillsEditor.fields.manaCost')} onChange={onChange} />
+        <TextField entry={entry} path={['summonId']} label={t('skillsEditor.fields.summonId')} onChange={onChange} />
         <NumberField entry={entry} path={['scaling', 'damagePerLevel']} label={t('skillsEditor.fields.damagePerLevel')} onChange={onChange} />
         <NumberField entry={entry} path={['scaling', 'costPerLevel']} label={t('skillsEditor.fields.costPerLevel')} onChange={onChange} />
+        <NumberField entry={entry} path={['scaling', 'summonStatsPerLevel', 'lifeMax']} label={t('skillsEditor.fields.summonLifePerLevel')} onChange={onChange} />
+        <NumberField entry={entry} path={['scaling', 'summonStatsPerLevel', 'attack']} label={t('skillsEditor.fields.summonAttackPerLevel')} onChange={onChange} />
+        <NumberField entry={entry} path={['scaling', 'summonStatsPerLevel', 'defense']} label={t('skillsEditor.fields.summonDefensePerLevel')} onChange={onChange} />
+        <NumberField entry={entry} path={['scaling', 'cooldownPerLevel']} label={t('skillsEditor.fields.cooldownPerLevel')} onChange={onChange} />
+        <NumberField entry={entry} path={['scaling', 'passiveStatsPerLevel', 'summonLifePct']} label={t('skillsEditor.fields.passiveSummonLifePct')} onChange={onChange} />
+        <NumberField entry={entry} path={['scaling', 'passiveStatsPerLevel', 'poisonDamagePct']} label={t('skillsEditor.fields.passivePoisonDamagePct')} onChange={onChange} />
+        <EnumField
+          entry={entry}
+          path={['scaling', 'summonMaxCount', 'kind']}
+          label={t('skillsEditor.fields.summonMaxCountKind')}
+          options={[
+            { value: 'first-three-then-every-three', label: 'first-three-then-every-three' },
+            { value: 'raise-skeleton-1-6-12-cap-3', label: 'raise-skeleton-1-6-12-cap-3' }
+          ]}
+          onChange={onChange}
+        />
         <EnumField
           entry={entry}
           path={['aoeShape']}

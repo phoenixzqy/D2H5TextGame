@@ -83,4 +83,59 @@ describe('eventToLocalizedLogEntry — skill-name i18n', () => {
     expect(entry?.message).toContain('骷髅战士');
     expect(entry?.message).not.toContain('Skeleton Warrior');
   });
+
+  it('localizes Necromancer mage and revive summon names in visible summon log lines', () => {
+    const stats: DerivedStats = {
+      life: 1,
+      lifeMax: 1,
+      mana: 0,
+      manaMax: 0,
+      attack: 1,
+      defense: 0,
+      attackSpeed: 1,
+      critChance: 0,
+      critDamage: 1.5,
+      physDodge: 0,
+      magicDodge: 0,
+      magicFind: 0,
+      goldFind: 0,
+      resistances: { fire: 0, cold: 0, lightning: 0, poison: 0, arcane: 0, physical: 0 }
+    };
+    const makeSummon = (summonTemplateId: 'skeletal_mage' | 'revived', name: string): CombatUnit => ({
+      id: `player-summon-${summonTemplateId}-1`,
+      name,
+      side: 'player',
+      level: 1,
+      tier: 'trash',
+      stats,
+      life: 1,
+      mana: 0,
+      statuses: [],
+      cooldowns: {},
+      skillOrder: [],
+      activeBuffIds: [],
+      enraged: false,
+      kind: 'summon',
+      summonOwnerId: 'player-001',
+      summonTemplateId
+    });
+
+    const mageEntry = eventToLocalizedLogEntry({
+      kind: 'summon',
+      owner: 'player-001',
+      summonId: 'skeletal_mage',
+      unit: makeSummon('skeletal_mage', 'Skeletal Mage')
+    }, new Map([['player-001', '死灵法师']]));
+    const revivedEntry = eventToLocalizedLogEntry({
+      kind: 'summon',
+      owner: 'player-001',
+      summonId: 'revived',
+      unit: makeSummon('revived', 'Revived Minion')
+    }, new Map([['player-001', '死灵法师']]));
+
+    expect(mageEntry?.message).toContain('骷髅法师');
+    expect(mageEntry?.message).not.toContain('Skeletal Mage');
+    expect(revivedEntry?.message).toContain('复生仆从');
+    expect(revivedEntry?.message).not.toContain('Revived Minion');
+  });
 });

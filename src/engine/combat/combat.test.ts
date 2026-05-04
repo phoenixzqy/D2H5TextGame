@@ -157,6 +157,65 @@ describe('runBattle (timeline scheduler)', () => {
     expect(result.playerTeam.some((u) => u.id === first.unit.id)).toBe(true);
   });
 
+  it('applies skill per-rank damage at runtime', () => {
+    const rankOne = mkUnit({
+      id: 'rank-one',
+      side: 'player',
+      skillOrder: ['necromancer.bone_spear'],
+      skillLevels: { 'necromancer.bone_spear': 1 },
+      kind: 'hero',
+      level: 18,
+      stats: { ...baseStats, attackSpeed: 200, critChance: 0 }
+    });
+    const rankTwenty = mkUnit({
+      ...rankOne,
+      id: 'rank-twenty',
+      skillLevels: { 'necromancer.bone_spear': 20 }
+    });
+    const enemy = mkUnit({
+      id: 'target',
+      side: 'enemy',
+      stats: { ...baseStats, life: 5000, lifeMax: 5000, defense: 0, physDodge: 0, magicDodge: 0, attack: 0 },
+      life: 5000
+    });
+
+    const low = runBattle({ seed: 88, playerTeam: [rankOne], enemyTeam: [enemy], maxRounds: 1 })
+      .events.find((event) => event.kind === 'damage');
+    const high = runBattle({ seed: 88, playerTeam: [rankTwenty], enemyTeam: [enemy], maxRounds: 1 })
+      .events.find((event) => event.kind === 'damage');
+
+    expect(low?.kind === 'damage' ? low.amount : 0).toBeLessThan(high?.kind === 'damage' ? high.amount : 0);
+  });
+
+  it('applies rank-scaled mana costs for registered utility skills', () => {
+    const rankOne = mkUnit({
+      id: 'rank-one',
+      side: 'player',
+      skillOrder: ['necromancer.amplify_damage'],
+      skillLevels: { 'necromancer.amplify_damage': 1 },
+      kind: 'hero',
+      mana: 15,
+      stats: { ...baseStats, mana: 15, manaMax: 15, attackSpeed: 200 }
+    });
+    const rankTwenty = mkUnit({
+      ...rankOne,
+      id: 'rank-twenty',
+      skillLevels: { 'necromancer.amplify_damage': 20 }
+    });
+    const enemy = mkUnit({
+      id: 'target',
+      side: 'enemy',
+      stats: { ...baseStats, life: 5000, lifeMax: 5000, attack: 0 },
+      life: 5000
+    });
+
+    const low = runBattle({ seed: 89, playerTeam: [rankOne], enemyTeam: [enemy], maxRounds: 1 }).playerTeam[0];
+    const high = runBattle({ seed: 89, playerTeam: [rankTwenty], enemyTeam: [enemy], maxRounds: 1 }).playerTeam[0];
+
+    expect(low?.mana).toBe(0);
+    expect(high?.mana).toBe(4);
+  });
+
   it('summons use the first unoccupied preferred formation slot', () => {
     const player = mkUnit({
       id: 'p1',

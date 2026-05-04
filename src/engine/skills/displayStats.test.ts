@@ -30,12 +30,27 @@ describe('skill display stats', () => {
       cooldown: 1,
       maxLevel: 20,
       summon: true,
-      scaling: { summonMaxCount: { kind: 'raise-skeleton-1-6-12-cap-3' as const } },
+      summonId: 'skeleton',
+      scaling: {
+        summonMaxCount: { kind: 'raise-skeleton-1-6-12-cap-3' as const },
+        summonStatsPerLevel: { lifeMax: 10, attack: 2, defense: 1 }
+      },
       cost: { mana: 15 }
     };
 
+    expect(computeSkillDisplayModel(skill, 1).current?.summonUnit?.stats).toEqual([
+      { id: 'lifeMax', labelKey: 'details.summonStat.lifeMax', value: 112, valueKind: 'flat' },
+      { id: 'attack', labelKey: 'details.summonStat.attack', value: 25, valueKind: 'flat' },
+      { id: 'defense', labelKey: 'details.summonStat.defense', value: 14, valueKind: 'flat' }
+    ]);
+    expect(computeSkillDisplayModel(skill, 1).next?.summonUnit?.stats).toEqual([
+      { id: 'lifeMax', labelKey: 'details.summonStat.lifeMax', value: 122, valueKind: 'flat' },
+      { id: 'attack', labelKey: 'details.summonStat.attack', value: 27, valueKind: 'flat' },
+      { id: 'defense', labelKey: 'details.summonStat.defense', value: 15, valueKind: 'flat' }
+    ]);
     expect(computeSkillDisplayModel(skill, 5).current?.summonCap).toBe(1);
     expect(computeSkillDisplayModel(skill, 5).next?.summonCap).toBe(2);
+    expect(computeSkillDisplayModel(skill, 5).next?.summonUnit?.stats[0]?.value).toBe(162);
     expect(computeSkillDisplayModel(skill, 12).current?.summonCap).toBe(3);
     expect(computeSkillDisplayModel(skill, 20).current?.summonCap).toBe(3);
     expect(computeSkillDisplayModel(skill, 20).next).toBeUndefined();
@@ -62,5 +77,30 @@ describe('skill display stats', () => {
       { type: 'lightning', min: 33, max: 53 }
     ]);
     expect(stats.totalDamage).toEqual({ min: 99, max: 159 });
+  });
+
+  it('exposes passive utility scaling rows for non-damage skills', () => {
+    const model = computeSkillDisplayModel({
+      id: 'skills-necromancer-summon-mastery',
+      trigger: 'passive',
+      target: 'self',
+      cooldown: 0,
+      maxLevel: 20,
+      scaling: {
+        passiveStatsPerLevel: {
+          summonLifePct: 0.05,
+          summonAttackPct: 0.02
+        }
+      }
+    }, 2);
+
+    expect(model.current?.utility).toEqual([
+      { id: 'summonLifePct', labelKey: 'details.passiveStat.summonLifePct', value: 0.1, valueKind: 'percent' },
+      { id: 'summonAttackPct', labelKey: 'details.passiveStat.summonAttackPct', value: 0.04, valueKind: 'percent' }
+    ]);
+    expect(model.next?.utility).toEqual([
+      { id: 'summonLifePct', labelKey: 'details.passiveStat.summonLifePct', value: 0.15, valueKind: 'percent' },
+      { id: 'summonAttackPct', labelKey: 'details.passiveStat.summonAttackPct', value: 0.06, valueKind: 'percent' }
+    ]);
   });
 });

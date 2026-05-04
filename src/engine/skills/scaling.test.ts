@@ -2,7 +2,8 @@ import { describe, expect, it } from 'vitest';
 import {
   maxFirstThreeThenEveryThreeForLevel,
   maxSkeletonsForLevel,
-  resolveSummonMaxCount
+  resolveSummonMaxCount,
+  scaleSummonStats
 } from './scaling';
 import type { SummonEffect } from './effects';
 
@@ -54,5 +55,61 @@ describe('summon max-count scaling', () => {
     expect(resolveSummonMaxCount(effect, 6)).toBe(2);
     expect(resolveSummonMaxCount(effect, 12)).toBe(3);
     expect(resolveSummonMaxCount(effect, 99)).toBe(3);
+  });
+
+  it('scales Raise Skeleton unit stats every rank', () => {
+    const stats = scaleSummonStats(
+      {
+        life: 112,
+        lifeMax: 112,
+        mana: 0,
+        manaMax: 0,
+        attack: 25,
+        defense: 14,
+        attackSpeed: 70,
+        critChance: 0.05,
+        critDamage: 1.5,
+        physDodge: 0.05,
+        magicDodge: 0.05,
+        magicFind: 0,
+        goldFind: 0,
+        resistances: { fire: 0, cold: 0, lightning: 0, poison: 0, arcane: 0, physical: 0 }
+      },
+      { lifeMax: 10, attack: 2, defense: 1 },
+      6
+    );
+
+    expect(stats.lifeMax).toBe(162);
+    expect(stats.life).toBe(162);
+    expect(stats.attack).toBe(35);
+    expect(stats.defense).toBe(19);
+    expect(stats.physDodge).toBe(0.05);
+    expect(stats.magicDodge).toBe(0.05);
+  });
+
+  it('preserves fractional summon dodge scaling', () => {
+    const stats = scaleSummonStats(
+      {
+        life: 112,
+        lifeMax: 112,
+        mana: 0,
+        manaMax: 0,
+        attack: 25,
+        defense: 14,
+        attackSpeed: 70,
+        critChance: 0.05,
+        critDamage: 1.5,
+        physDodge: 0.05,
+        magicDodge: 0.05,
+        magicFind: 0,
+        goldFind: 0,
+        resistances: { fire: 0, cold: 0, lightning: 0, poison: 0, arcane: 0, physical: 0 }
+      },
+      { physDodge: 0.01, magicDodge: 0.015 },
+      6
+    );
+
+    expect(stats.physDodge).toBe(0.1);
+    expect(stats.magicDodge).toBe(0.125);
   });
 });

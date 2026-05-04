@@ -15,6 +15,14 @@ describe('skillsHelpers', () => {
       expect(skills.some(s => s.id === 'skills-barbarian-whirlwind')).toBe(false); // No Barbarian skills
     });
 
+    it('authors visible level-up scaling for every Necromancer skill', () => {
+      const skills = getSkillsForClass('necromancer');
+      const missing = skills.filter((skill) => !skill.scaling).map((skill) => skill.id);
+
+      expect(skills).toHaveLength(32);
+      expect(missing).toEqual([]);
+    });
+
     it('should return Barbarian skills for barbarian class', () => {
       const skills = getSkillsForClass('barbarian');
       

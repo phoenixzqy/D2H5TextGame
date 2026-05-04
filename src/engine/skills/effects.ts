@@ -13,6 +13,11 @@ import type { ComboTag, SkillTarget, SkillRequirement } from '../types/skills';
 import type { DamageType } from '../types/attributes';
 import type { AoeShape } from '../combat/grid';
 
+export type SummonStatScaling = Partial<Record<
+  'lifeMax' | 'attack' | 'defense' | 'attackSpeed' | 'physDodge' | 'magicDodge',
+  number
+>>;
+
 /** Damage primitive. */
 export interface DamageEffect {
   readonly kind: 'damage';
@@ -71,6 +76,7 @@ export interface SummonEffect {
   readonly summonId: string;
   readonly maxCount: number;
   readonly maxCountScaling?: SummonMaxCountScaling;
+  readonly statScaling?: SummonStatScaling;
 }
 
 /** Union of effect primitives. */
@@ -97,6 +103,10 @@ export interface RegisteredSkill {
    */
   readonly cooldown: number;
   readonly manaCost: number;
+  /** Per-rank mana cost growth from rank 1. Negative values reduce cost. */
+  readonly manaCostPerRank?: number;
+  /** Per-rank cooldown growth from rank 1. Negative values reduce cooldown. */
+  readonly cooldownPerRank?: number;
   readonly effects: readonly SkillEffect[];
   /** Optional grid shape used when target is `area-enemies`. */
   readonly aoeShape?: AoeShape;

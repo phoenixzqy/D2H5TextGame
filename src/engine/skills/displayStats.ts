@@ -10,6 +10,7 @@
 
 import type { DamageType } from '../types/attributes';
 import { maxFirstThreeThenEveryThreeForLevel, maxSkeletonsForLevel } from './scaling';
+import { getSummonStats } from './summons';
 
 export interface DisplaySkillSource {
   readonly id: string;
@@ -30,6 +31,7 @@ export interface DisplaySkillSource {
   readonly damageType?: DamageType;
   readonly appliesStatus?: readonly string[];
   readonly appliesTags?: readonly string[];
+  readonly summonId?: string;
   readonly scaling?: {
     readonly damagePerLevel?: number;
     readonly cooldownPerLevel?: number;
@@ -37,13 +39,54 @@ export interface DisplaySkillSource {
     readonly summonMaxCount?: {
       readonly kind: 'first-three-then-every-three' | 'raise-skeleton-1-6-12-cap-3';
     };
+    readonly summonStatsPerLevel?: {
+      readonly lifeMax?: number;
+      readonly attack?: number;
+      readonly defense?: number;
+      readonly attackSpeed?: number;
+      readonly physDodge?: number;
+      readonly magicDodge?: number;
+    };
+    readonly passiveStatsPerLevel?: {
+      readonly summonLifePct?: number;
+      readonly summonAttackPct?: number;
+      readonly summonDefensePct?: number;
+      readonly summonResistAllPct?: number;
+      readonly poisonDamagePct?: number;
+      readonly arcaneDamagePct?: number;
+      readonly boneArmorAbsorb?: number;
+      readonly golemLifePct?: number;
+      readonly golemAttackSpeed?: number;
+    };
   };
 }
+
+type PassiveStatsPerLevel = NonNullable<NonNullable<DisplaySkillSource['scaling']>['passiveStatsPerLevel']>;
 
 export interface SkillDamageDisplayRow {
   readonly type: DamageType;
   readonly min: number;
   readonly max: number;
+}
+
+export interface SkillSummonStatDisplayRow {
+  readonly id: 'lifeMax' | 'attack' | 'defense' | 'attackSpeed' | 'physDodge' | 'magicDodge';
+  readonly labelKey: string;
+  readonly value: number;
+  readonly valueKind: 'flat' | 'percent';
+}
+
+export interface SkillSummonDisplayStats {
+  readonly summonId: string;
+  readonly nameKey: string;
+  readonly stats: readonly SkillSummonStatDisplayRow[];
+}
+
+export interface SkillUtilityDisplayRow {
+  readonly id: string;
+  readonly labelKey: string;
+  readonly value: number;
+  readonly valueKind: 'flat' | 'percent';
 }
 
 export interface SkillRankDisplayStats {
@@ -54,6 +97,8 @@ export interface SkillRankDisplayStats {
     readonly max: number;
   };
   readonly summonCap?: number;
+  readonly summonUnit?: SkillSummonDisplayStats;
+  readonly utility: readonly SkillUtilityDisplayRow[];
   readonly manaCost?: number;
   readonly lifeCost?: number;
   readonly cooldown: number;
@@ -126,6 +171,60 @@ function summonCap(skill: DisplaySkillSource, rank: number): number | undefined 
   return skill.summon ? 1 : undefined;
 }
 
+function inferSummonId(skill: DisplaySkillSource): string | undefined {
+  if (skill.summonId) return skill.summonId;
+  if (skill.id === 'skills-necromancer-raise-skeleton' || skill.id === 'necromancer.raise_skeleton') {
+    return 'skeleton';
+  }
+  return undefined;
+}
+
+function summonUnit(skill: DisplaySkillSource, rank: number): SkillSummonDisplayStats | undefined {
+  const summonId = inferSummonId(skill);
+  if (!summonId) return undefined;
+  const stats = getSummonStats(summonId, {
+    skillLevel: rank,
+    statScaling: skill.scaling?.summonStatsPerLevel
+  });
+  if (!stats) return undefined;
+  return {
+    summonId,
+    nameKey: `details.summonName.${summonId}`,
+    stats: [
+      { id: 'lifeMax', labelKey: 'details.summonStat.lifeMax', value: stats.lifeMax, valueKind: 'flat' },
+      { id: 'attack', labelKey: 'details.summonStat.attack', value: stats.attack, valueKind: 'flat' },
+      { id: 'defense', labelKey: 'details.summonStat.defense', value: stats.defense, valueKind: 'flat' }
+    ]
+  };
+}
+
+function passiveUtilityRows(skill: DisplaySkillSource, rank: number): readonly SkillUtilityDisplayRow[] {
+  const scaling = skill.scaling?.passiveStatsPerLevel;
+  if (!scaling) return [];
+  const multiplier = Math.max(1, rank);
+  const rows: SkillUtilityDisplayRow[] = [];
+  const push = (id: keyof PassiveStatsPerLevel, valueKind: 'flat' | 'percent') => {
+    const perRank = scaling[id];
+    if (perRank === undefined) return;
+    rows.push({
+      id,
+      labelKey: `details.passiveStat.${id}`,
+      value: Number((perRank * multiplier).toFixed(4)),
+      valueKind
+    });
+  };
+  push('summonLifePct', 'percent');
+  push('summonAttackPct', 'percent');
+  push('summonDefensePct', 'percent');
+  push('summonResistAllPct', 'percent');
+  push('poisonDamagePct', 'percent');
+  push('arcaneDamagePct', 'percent');
+  push('boneArmorAbsorb', 'flat');
+  push('golemLifePct', 'percent');
+  push('golemAttackSpeed', 'flat');
+  return rows;
+}
+
 /** Resolve a skill's display rows at one rank. */
 export function computeSkillRankDisplayStats(
   skill: DisplaySkillSource,
@@ -140,6 +239,8 @@ export function computeSkillRankDisplayStats(
       }
     : undefined;
   const resolvedSummonCap = summonCap(skill, safeRank);
+  const resolvedSummonUnit = summonUnit(skill, safeRank);
+  const utility = passiveUtilityRows(skill, safeRank);
   const manaCost = scaleCost(skill.cost?.mana, skill.scaling?.costPerLevel ?? 0, safeRank);
   const lifeCost = scaleCost(skill.cost?.life, skill.scaling?.costPerLevel ?? 0, safeRank);
 
@@ -148,6 +249,8 @@ export function computeSkillRankDisplayStats(
     damage,
     ...(totalDamage ? { totalDamage } : {}),
     ...(resolvedSummonCap !== undefined ? { summonCap: resolvedSummonCap } : {}),
+    ...(resolvedSummonUnit ? { summonUnit: resolvedSummonUnit } : {}),
+    utility,
     ...(manaCost !== undefined ? { manaCost } : {}),
     ...(lifeCost !== undefined ? { lifeCost } : {}),
     cooldown: scaleCooldown(skill, safeRank),

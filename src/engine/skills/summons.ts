@@ -12,6 +12,8 @@
 
 import type { CombatUnit } from '../combat/types';
 import type { DerivedStats } from '../types/attributes';
+import type { SummonStatScaling } from './effects';
+import { scaleSummonStats } from './scaling';
 
 /** Stable per-owner counter for summon ids. */
 const counters = new Map<string, number>();
@@ -19,6 +21,11 @@ const counters = new Map<string, number>();
 /** Reset the per-owner counter (used by tests). */
 export function resetSummonCounters(): void {
   counters.clear();
+}
+
+export interface BuildSummonOptions {
+  readonly skillLevel?: number;
+  readonly statScaling?: SummonStatScaling | undefined;
 }
 
 /** Factory: build a fresh summon for `owner`. */
@@ -50,20 +57,34 @@ function nextSummonId(ownerId: string, summonId: string): string {
  */
 export function buildSummon(
   owner: CombatUnit,
-  summonId: string
+  summonId: string,
+  options: BuildSummonOptions = {}
 ): CombatUnit | undefined {
   const factory = FACTORIES.get(summonId);
   if (!factory) return undefined;
   const unit = factory(owner);
+  const stats = scaleSummonStats(unit.stats, options.statScaling, options.skillLevel ?? 1);
   // Ensure owner-derived fields are correct regardless of factory return.
   return {
     ...unit,
+    stats,
+    life: stats.lifeMax,
+    mana: stats.manaMax,
     side: owner.side,
     summonOwnerId: owner.id,
     summonTemplateId: summonId,
     summon: true,
     kind: 'summon'
   };
+}
+
+/** Resolve a summon template's stats without allocating a runtime summon id. */
+export function getSummonStats(
+  summonId: string,
+  options: BuildSummonOptions = {}
+): DerivedStats | undefined {
+  const base = baseStatsForSummon(summonId);
+  return base ? scaleSummonStats(base, options.statScaling, options.skillLevel ?? 1) : undefined;
 }
 
 // ---------------------------------------------------------------------------
@@ -106,6 +127,82 @@ function skeletonStats(): DerivedStats {
     attack: 25,
     defense: 14
   };
+}
+
+function baseStatsForSummon(summonId: string): DerivedStats | undefined {
+  switch (summonId) {
+    case 'skeleton':
+      return skeletonStats();
+    case 'clay_golem':
+      return {
+        ...baseSummonStats(),
+        life: 220,
+        lifeMax: 220,
+        attack: 24,
+        defense: 34,
+        attackSpeed: 55,
+        physDodge: 0.02,
+        magicDodge: 0.02,
+        resistances: { ...ZERO_RES, physical: 10 }
+      };
+    case 'blood_golem':
+      return {
+        ...baseSummonStats(),
+        life: 180,
+        lifeMax: 180,
+        attack: 34,
+        defense: 24,
+        attackSpeed: 70,
+        resistances: { ...ZERO_RES, poison: 20 }
+      };
+    case 'iron_golem':
+      return {
+        ...baseSummonStats(),
+        life: 260,
+        lifeMax: 260,
+        attack: 36,
+        defense: 48,
+        attackSpeed: 60,
+        resistances: { ...ZERO_RES, physical: 20, lightning: 20 }
+      };
+    case 'fire_golem':
+      return {
+        ...baseSummonStats(),
+        life: 240,
+        lifeMax: 240,
+        attack: 42,
+        defense: 36,
+        attackSpeed: 65,
+        resistances: { ...ZERO_RES, fire: 50 }
+      };
+    case 'skeletal_mage':
+      return {
+        ...baseSummonStats(),
+        life: 88,
+        lifeMax: 88,
+        attack: 30,
+        defense: 10,
+        magicDodge: 0.08,
+        resistances: { ...ZERO_RES, fire: 10, cold: 10, lightning: 10, poison: 10 }
+      };
+    case 'revived':
+      return {
+        ...baseSummonStats(),
+        life: 150,
+        lifeMax: 150,
+        attack: 28,
+        defense: 18,
+        attackSpeed: 65
+      };
+    case 'valkyrie':
+      return { ...baseSummonStats(), life: 200, lifeMax: 200, attack: 40, defense: 20 };
+    case 'dire_wolf':
+      return { ...baseSummonStats(), life: 100, lifeMax: 100, attack: 25, attackSpeed: 90 };
+    case 'minion':
+      return { ...baseSummonStats(), life: 40, lifeMax: 40, attack: 10 };
+    default:
+      return undefined;
+  }
 }
 
 function summonUnit(
@@ -204,6 +301,29 @@ registerSummon('fire_golem', (owner) =>
     defense: 36,
     attackSpeed: 65,
     resistances: { ...ZERO_RES, fire: 50 }
+  })
+);
+
+registerSummon('skeletal_mage', (owner) =>
+  summonUnit(owner, 'skeletal_mage', 'Skeletal Mage', {
+    ...baseSummonStats(),
+    life: 88,
+    lifeMax: 88,
+    attack: 30,
+    defense: 10,
+    magicDodge: 0.08,
+    resistances: { ...ZERO_RES, fire: 10, cold: 10, lightning: 10, poison: 10 }
+  })
+);
+
+registerSummon('revived', (owner) =>
+  summonUnit(owner, 'revived', 'Revived Minion', {
+    ...baseSummonStats(),
+    life: 150,
+    lifeMax: 150,
+    attack: 28,
+    defense: 18,
+    attackSpeed: 65
   })
 );
 

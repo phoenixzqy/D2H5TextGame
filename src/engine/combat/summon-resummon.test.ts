@@ -156,6 +156,32 @@ describe('Bug #3 — re-summon after summon death', () => {
     expect(liveSkeletons).toHaveLength(2);
   });
 
+  it('uses Raise Skeleton skill rank for spawned skeleton stats', () => {
+    const necro = mkUnit({
+      id: 'necro', side: 'player', kind: 'hero',
+      skillOrder: ['necromancer.raise_skeleton'],
+      skillLevels: { 'necromancer.raise_skeleton': 6 },
+      stats: { ...baseStats, mana: 9999, manaMax: 9999, attackSpeed: 200 }, mana: 9999
+    });
+    const enemy = mkUnit({
+      id: 'enemy', side: 'enemy',
+      stats: { ...baseStats, life: 1_000_000, lifeMax: 1_000_000, attack: 0, attackSpeed: 100 },
+      life: 1_000_000
+    });
+
+    const result = runBattle({
+      seed: 46, playerTeam: [necro], enemyTeam: [enemy]
+    });
+    const firstSummon = result.events.find(
+      (e): e is Extract<BattleEvent, { kind: 'summon' }> => e.kind === 'summon'
+    );
+
+    expect(firstSummon?.unit.stats.lifeMax).toBe(162);
+    expect(firstSummon?.unit.life).toBe(162);
+    expect(firstSummon?.unit.stats.attack).toBe(35);
+    expect(firstSummon?.unit.stats.defense).toBe(19);
+  });
+
   it('casts golem summon skills from data ids without skeletons blocking the cap', () => {
     const necro = mkUnit({
       id: 'necro', side: 'player', kind: 'hero', level: 12,

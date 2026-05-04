@@ -80,6 +80,35 @@
     "percentRange": "{{min}}% ~ {{max}}%",
     "totalPower": "Total Power",
     "summonCap": "Summon Cap",
+    "summonedUnit": "Summoned Unit",
+    "summonStat": {
+      "lifeMax": "Life",
+      "attack": "Attack",
+      "defense": "Defense",
+      "attackSpeed": "Attack Speed",
+      "physDodge": "Physical Dodge",
+      "magicDodge": "Magic Dodge"
+    },
+    "summonName": {
+      "skeleton": "Skeleton Warrior",
+      "clay_golem": "Clay Golem",
+      "blood_golem": "Blood Golem",
+      "iron_golem": "Iron Golem",
+      "fire_golem": "Fire Golem",
+      "skeletal_mage": "Skeletal Mage",
+      "revived": "Revived Minion"
+    },
+    "passiveStat": {
+      "summonLifePct": "Summon Life",
+      "summonAttackPct": "Summon Attack",
+      "summonDefensePct": "Summon Defense",
+      "summonResistAllPct": "Summon All Resist",
+      "poisonDamagePct": "Poison Damage",
+      "arcaneDamagePct": "Arcane Damage",
+      "boneArmorAbsorb": "Bone Armor Absorb",
+      "golemLifePct": "Golem Life",
+      "golemAttackSpeed": "Golem Attack Speed"
+    },
     "manaCost": "Mana Cost",
     "lifeCost": "Life Cost",
     "cooldown": "Cooldown",

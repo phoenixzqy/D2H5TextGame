@@ -33,7 +33,9 @@ import {
   computeSkillDisplayModel,
   type SkillDamageDisplayRow,
   type SkillDisplayModel,
-  type SkillRankDisplayStats
+  type SkillRankDisplayStats,
+  type SkillSummonStatDisplayRow,
+  type SkillUtilityDisplayRow
 } from '@/engine/skills/displayStats';
 
 const COMBO_SLOTS = 9;
@@ -592,6 +594,30 @@ function StatSection({
               delta={compare?.summonCap !== undefined ? numberDelta(stats.summonCap, compare.summonCap, t) : null}
             />
           ) : null}
+          {stats.summonUnit ? (
+            <>
+              <StatLine
+                label={t('details.summonedUnit')}
+                value={t(stats.summonUnit.nameKey, { defaultValue: humanizeId(stats.summonUnit.summonId) })}
+              />
+              {stats.summonUnit.stats.map((row) => (
+                <StatLine
+                  key={`summon-${row.id}`}
+                  label={t(row.labelKey)}
+                  value={formatSummonStat(row)}
+                  delta={summonStatDelta(row, compare)}
+                />
+              ))}
+            </>
+          ) : null}
+          {stats.utility.map((row) => (
+            <StatLine
+              key={`utility-${row.id}`}
+              label={t(row.labelKey)}
+              value={formatUtilityStat(row)}
+              delta={utilityDelta(row, compare)}
+            />
+          ))}
           {stats.manaCost !== undefined ? (
             <StatLine label={t('details.manaCost')} value={String(stats.manaCost)} />
           ) : null}
@@ -965,6 +991,34 @@ function numberDelta(next: number, current: number, t: Translate): string | null
   const delta = next - current;
   if (delta === 0) return t('details.noChange');
   return delta > 0 ? `(+${String(delta)})` : `(${String(delta)})`;
+}
+
+function formatSummonStat(row: SkillSummonStatDisplayRow): string {
+  return row.valueKind === 'percent' ? `${String(Math.round(row.value * 100))}%` : String(row.value);
+}
+
+function summonStatDelta(row: SkillSummonStatDisplayRow, compare: SkillRankDisplayStats | undefined): string | null {
+  const old = compare?.summonUnit?.stats.find((candidate) => candidate.id === row.id);
+  if (!old) return null;
+  const delta = row.value - old.value;
+  if (delta === 0) return null;
+  return row.valueKind === 'percent'
+    ? `(+${String(Math.round(delta * 100))}%)`
+    : `(+${String(delta)})`;
+}
+
+function formatUtilityStat(row: SkillUtilityDisplayRow): string {
+  return row.valueKind === 'percent' ? `${String(Math.round(row.value * 100))}%` : String(row.value);
+}
+
+function utilityDelta(row: SkillUtilityDisplayRow, compare: SkillRankDisplayStats | undefined): string | null {
+  const old = compare?.utility.find((candidate) => candidate.id === row.id);
+  if (!old) return null;
+  const delta = row.value - old.value;
+  if (delta === 0) return null;
+  return row.valueKind === 'percent'
+    ? `(+${String(Math.round(delta * 100))}%)`
+    : `(+${String(delta)})`;
 }
 
 function allocationButtonLabel({

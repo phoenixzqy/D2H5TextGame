@@ -161,6 +161,12 @@ export interface SkillDef {
   
   /** Status effects applied by this skill */
   readonly appliesStatus?: readonly string[]; // status IDs
+  /** Runtime metadata for the first applied status, such as DoT strength or stacks. */
+  readonly statusEffect?: {
+    readonly chance?: number;
+    readonly stacksOnApply?: number;
+    readonly dotPctOfDamage?: number;
+  };
   
   /** Healing amount (if any) */
   readonly heal?: {
@@ -171,6 +177,9 @@ export interface SkillDef {
   
   /** Combo tags this skill applies to targets */
   readonly appliesTags?: readonly ComboTag[];
+ 
+  /** Summon template id when this skill spawns a creature. */
+  readonly summonId?: string;
   
   /** Combo tags this skill benefits from (and how much) */
   readonly synergies?: ReadonlyMap<ComboTag, number>; // tag -> damage multiplier
@@ -191,6 +200,25 @@ export interface SkillDef {
     readonly costPerLevel?: number;
     readonly summonMaxCount?: {
       readonly kind: 'first-three-then-every-three' | 'raise-skeleton-1-6-12-cap-3';
+    };
+    readonly summonStatsPerLevel?: {
+      readonly lifeMax?: number;
+      readonly attack?: number;
+      readonly defense?: number;
+      readonly attackSpeed?: number;
+      readonly physDodge?: number;
+      readonly magicDodge?: number;
+    };
+    readonly passiveStatsPerLevel?: {
+      readonly summonLifePct?: number;
+      readonly summonAttackPct?: number;
+      readonly summonDefensePct?: number;
+      readonly summonResistAllPct?: number;
+      readonly poisonDamagePct?: number;
+      readonly arcaneDamagePct?: number;
+      readonly boneArmorAbsorb?: number;
+      readonly golemLifePct?: number;
+      readonly golemAttackSpeed?: number;
     };
   };
 

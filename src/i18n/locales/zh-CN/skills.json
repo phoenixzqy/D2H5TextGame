@@ -80,6 +80,35 @@
     "percentRange": "{{min}}% ~ {{max}}%",
     "totalPower": "总威力",
     "summonCap": "召唤上限",
+    "summonedUnit": "召唤单位",
+    "summonStat": {
+      "lifeMax": "生命",
+      "attack": "攻击",
+      "defense": "防御",
+      "attackSpeed": "攻击速度",
+      "physDodge": "物理闪避",
+      "magicDodge": "魔法闪避"
+    },
+    "summonName": {
+      "skeleton": "骷髅战士",
+      "clay_golem": "黏土石魔",
+      "blood_golem": "血魔像",
+      "iron_golem": "钢铁石魔",
+      "fire_golem": "火焰石魔",
+      "skeletal_mage": "骷髅法师",
+      "revived": "复生仆从"
+    },
+    "passiveStat": {
+      "summonLifePct": "召唤物生命",
+      "summonAttackPct": "召唤物攻击",
+      "summonDefensePct": "召唤物防御",
+      "summonResistAllPct": "召唤物全抗",
+      "poisonDamagePct": "毒素伤害",
+      "arcaneDamagePct": "奥术伤害",
+      "boneArmorAbsorb": "骨甲吸收",
+      "golemLifePct": "石魔生命",
+      "golemAttackSpeed": "石魔攻击速度"
+    },
     "manaCost": "法力消耗",
     "lifeCost": "生命消耗",
     "cooldown": "冷却",

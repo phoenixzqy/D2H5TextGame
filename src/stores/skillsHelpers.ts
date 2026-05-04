@@ -27,7 +27,13 @@ export interface SkillTemplate {
   };
   readonly damageType?: DamageType;
   readonly appliesStatus?: readonly string[];
+  readonly statusEffect?: {
+    readonly chance?: number;
+    readonly stacksOnApply?: number;
+    readonly dotPctOfDamage?: number;
+  };
   readonly appliesTags?: readonly string[];
+  readonly summonId?: string;
   readonly synergies?: Record<string, number>;
   readonly requires?: {
     readonly weaponType?: readonly string[];
@@ -39,6 +45,25 @@ export interface SkillTemplate {
     readonly costPerLevel?: number;
     readonly summonMaxCount?: {
       readonly kind: 'first-three-then-every-three' | 'raise-skeleton-1-6-12-cap-3';
+    };
+    readonly summonStatsPerLevel?: {
+      readonly lifeMax?: number;
+      readonly attack?: number;
+      readonly defense?: number;
+      readonly attackSpeed?: number;
+      readonly physDodge?: number;
+      readonly magicDodge?: number;
+    };
+    readonly passiveStatsPerLevel?: {
+      readonly summonLifePct?: number;
+      readonly summonAttackPct?: number;
+      readonly summonDefensePct?: number;
+      readonly summonResistAllPct?: number;
+      readonly poisonDamagePct?: number;
+      readonly arcaneDamagePct?: number;
+      readonly boneArmorAbsorb?: number;
+      readonly golemLifePct?: number;
+      readonly golemAttackSpeed?: number;
     };
   };
   // Extended fields for future expansion
