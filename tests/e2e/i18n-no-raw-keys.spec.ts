@@ -60,10 +60,7 @@ test.describe('No raw i18n keys — desktop @desktop-only', () => {
     await clearGameStorage(page);
     await createCharacter(page, { class: 'necromancer', name: 'MercKeyTest' });
 
-    // Grant some mercs by adding them directly via store (dev mode).
-    // The simplest way in E2E: navigate to gacha, grant currency, pull until
-    // we get at least one merc, then check the mercs screen.
-    // Fall back to just checking the empty mercs screen (no mercs = no raw keys).
+    // Empty roster still covers the hire panel skill labels.
     await navTo(page, 'mercs');
     await expect(page.getByTestId('mercs-screen')).toBeVisible({ timeout: 10_000 });
 
@@ -72,43 +69,16 @@ test.describe('No raw i18n keys — desktop @desktop-only', () => {
     assertNoRawSkillKeys(bodyText);
   });
 
-  test('Mercs screen with pulled merc has no raw mskill-* ids', async ({ page }) => {
+  test('Mercs screen with owned merc has no raw mskill-* ids', async ({ page }) => {
     await clearGameStorage(page);
     await createCharacter(page, { class: 'necromancer', name: 'PulledMerc' });
 
-    // Navigate to gacha and do pulls to get a merc in the roster.
-    await navTo(page, 'gacha');
-    await expect(page.getByTestId('gacha-screen')).toBeVisible({ timeout: 10_000 });
+    await page.evaluate(() => {
+      const game = (window as unknown as { __GAME__?: { seedMerc: (opts?: { field?: boolean }) => string } }).__GAME__;
+      if (!game) throw new Error('test bridge not installed');
+      game.seedMerc({ field: true });
+    });
 
-    // Grant currency via dev button (only visible in VITE_E2E / DEV builds).
-    const grantBtn = page.getByTestId('gacha-add-currency');
-    if (await grantBtn.isVisible({ timeout: 2_000 }).catch(() => false)) {
-      // Grant enough for 10 pulls (cost varies, click multiple times to be safe).
-      for (let i = 0; i < 5; i++) {
-        await grantBtn.click();
-      }
-      // Do a 10× pull
-      const pull10 = page.getByTestId('gacha-pull-10');
-      if (await pull10.isEnabled({ timeout: 5_000 }).catch(() => false)) {
-        await pull10.click();
-        // The result Modal closes via backdrop click or Escape (no named
-        // close button). Wait for it to appear, then dismiss with Escape.
-        // Bumped from 2s → 10s because under `vite dev` (P03) the first
-        // transform of the gacha-result chunk can take >2s on cold start;
-        // if we miss the close, the modal blocks subsequent bottom-nav
-        // clicks. The prior `vite preview` baseline rarely surfaced this
-        // because pull10 often stayed disabled in preview, skipping the
-        // whole branch.
-        const dialog = page.locator('[role="dialog"]').first();
-        if (await dialog.isVisible({ timeout: 10_000 }).catch(() => false)) {
-          await page.keyboard.press('Escape');
-          await dialog.waitFor({ state: 'detached', timeout: 5_000 })
-            .catch(() => undefined);
-        }
-      }
-    }
-
-    // Navigate to mercs screen and verify no raw keys.
     await navTo(page, 'mercs');
     await expect(page.getByTestId('mercs-screen')).toBeVisible({ timeout: 10_000 });
 

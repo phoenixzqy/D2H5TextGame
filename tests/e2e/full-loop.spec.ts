@@ -22,7 +22,7 @@ test.describe('Final acceptance — full loop @desktop-only', () => {
     );
   });
 
-  test('new character → town → combat → loot → inventory → skills → quests → gacha → export save', async ({
+  test('new character → town → combat → loot → inventory → skills → quests → mercs → export save', async ({
     page,
   }) => {
     test.setTimeout(120_000);
@@ -131,29 +131,11 @@ test.describe('Final acceptance — full loop @desktop-only', () => {
     const firstQuestText = await quests.first().textContent();
     expect(firstQuestText ?? '').not.toMatch(/MOCK/);
 
-    // 7. Gacha — single pull, either succeeds (and reveals a result) or
-    //    is properly disabled when broke. Both branches are valid coverage.
-    await navTo(page, 'gacha');
-    await expect(page.getByTestId('gacha-screen')).toBeVisible();
-    const pullSingle = page.getByTestId('gacha-pull-1');
-    const pullDisabled = await pullSingle.isDisabled();
-    if (pullDisabled) {
-      // Branch A: broke — confirm there's a way to grant currency (dev) and
-      // that the disabled state is intentional. The button itself remains
-      // visible and disabled — that's acceptable coverage.
-      await expect(pullSingle).toBeVisible();
-    } else {
-      // Branch B: enough currency — pull and verify result reveal modal,
-      // then confirm Mercs screen lists owned mercs.
-      await pullSingle.click();
-      await expect(page.getByTestId('gacha-results')).toBeVisible({
-        timeout: 5_000,
-      });
-      // close modal — esc or click outside
-      await page.keyboard.press('Escape');
-      await navTo(page, 'mercs');
-      await expect(page.getByTestId('mercs-screen')).toBeVisible();
-    }
+    // 7. Mercs — the former /gacha route now redirects into the mercenary
+    // hiring/roster screen, so the acceptance loop covers that live surface.
+    await navTo(page, 'mercs');
+    await expect(page.getByTestId('mercs-screen')).toBeVisible();
+    await expect(page.locator('[data-testid^="hire-merc-"]').first()).toBeVisible();
 
     // 8. Settings → Export Save — JSON download fires
     await navTo(page, 'settings');

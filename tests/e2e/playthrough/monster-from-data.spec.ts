@@ -23,7 +23,7 @@ test.describe('Bug #6 — Monster pool loaded from data @desktop-only', () => {
     await enterFirstCombat(page);
 
     // Collect enemy unit names once the enemies panel is populated.
-    const enemiesList = page.getByTestId('enemies-list');
+    const enemiesList = page.getByTestId('enemies-grid');
     await expect(enemiesList).toBeVisible({ timeout: 8_000 });
 
     // Read all unit card text contents from the enemies list.

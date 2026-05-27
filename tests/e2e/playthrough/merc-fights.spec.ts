@@ -31,7 +31,7 @@ test.describe('Bug #2 — Mercenary fights in combat @desktop-only', () => {
     await enterFirstCombat(page);
 
     // 1. Allies panel must contain at least 2 unit cards (hero + merc).
-    const alliesList = page.getByTestId('allies-list');
+    const alliesList = page.getByTestId('allies-grid');
     await expect(alliesList).toBeVisible({ timeout: 5_000 });
 
     // Verify more than 1 ally card exists (hero is always there; merc adds a 2nd).

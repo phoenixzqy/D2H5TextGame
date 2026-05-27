@@ -66,10 +66,9 @@ test.describe('Issue 1 — Character layout', () => {
 
     const top = page.getByTestId('char-top-row');
     await expect(top).toBeVisible();
-    // Container must use 2-col at md+
+    // char-top-row is display: contents; the parent grid owns the desktop columns.
     const className = await top.getAttribute('class');
-    expect(className ?? '').toMatch(/grid-cols-1/);
-    expect(className ?? '').toMatch(/md:grid-cols-2/);
+    expect(className ?? '').toMatch(/contents/);
 
     // Bug #13 reordered rows: char-top-row is now hero + derived stats
     // (core attributes moved to the next row).
