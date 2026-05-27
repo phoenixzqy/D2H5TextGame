@@ -113,6 +113,7 @@
       "skills-druid-summon-spirit-wolf"
     ],
     "summon": true,
+    "summonId": "dire_wolf",
     "trigger": "active",
     "target": "summon",
     "cooldown": 1,
@@ -120,6 +121,17 @@
     "maxLevel": 20,
     "cost": {
       "mana": 20
+    },
+    "scaling": {
+      "costPerLevel": -0.2,
+      "summonMaxCount": {
+        "kind": "first-three-then-every-three"
+      },
+      "summonStatsPerLevel": {
+        "lifeMax": 8,
+        "attack": 2,
+        "defense": 1
+      }
     }
   },
   {
@@ -207,7 +219,13 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "elementalDamagePct": 0.03,
+        "magicDodgePct": 0.005
+      }
+    }
   },
   {
     "id": "skills-druid-lycanthropy",
@@ -220,7 +238,13 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "lifePct": 0.03,
+        "attackSpeedPct": 0.01
+      }
+    }
   },
   {
     "id": "skills-druid-heart-of-wolverine",
@@ -236,7 +260,13 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "attackPct": 0.03,
+        "critChancePct": 0.005
+      }
+    }
   },
   {
     "id": "skills-druid-oak-sage",
@@ -249,7 +279,12 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "lifePct": 0.03
+      }
+    }
   },
   {
     "id": "skills-druid-molten-boulder",
@@ -345,7 +380,15 @@
     },
     "appliesStatus": [
       "cyclone-armor"
-    ]
+    ],
+    "scaling": {
+      "cooldownPerLevel": -0.05,
+      "costPerLevel": -0.2,
+      "passiveStatsPerLevel": {
+        "shieldAbsorbPct": 0.025,
+        "resistAllPct": 0.01
+      }
+    }
   },
   {
     "id": "skills-druid-twister",
@@ -474,7 +517,15 @@
     },
     "appliesStatus": [
       "werewolf"
-    ]
+    ],
+    "scaling": {
+      "cooldownPerLevel": -0.05,
+      "costPerLevel": -0.1,
+      "passiveStatsPerLevel": {
+        "attackSpeedPct": 0.02,
+        "physDodgePct": 0.005
+      }
+    }
   },
   {
     "id": "skills-druid-werebear",
@@ -496,7 +547,15 @@
     },
     "appliesStatus": [
       "werebear"
-    ]
+    ],
+    "scaling": {
+      "cooldownPerLevel": -0.05,
+      "costPerLevel": -0.1,
+      "passiveStatsPerLevel": {
+        "lifePct": 0.025,
+        "defensePct": 0.02
+      }
+    }
   },
   {
     "id": "skills-druid-feral-rage",
@@ -724,6 +783,7 @@
     "tree": "Summoning",
     "requiredLevel": 1,
     "summon": true,
+    "summonId": "raven",
     "trigger": "active",
     "target": "summon",
     "cooldown": 2,
@@ -731,6 +791,17 @@
     "maxLevel": 20,
     "cost": {
       "mana": 6
+    },
+    "scaling": {
+      "costPerLevel": -0.1,
+      "summonMaxCount": {
+        "kind": "first-three-then-every-three"
+      },
+      "summonStatsPerLevel": {
+        "lifeMax": 3,
+        "attack": 1,
+        "defense": 1
+      }
     }
   },
   {
@@ -741,6 +812,7 @@
     "tree": "Summoning",
     "requiredLevel": 1,
     "summon": true,
+    "summonId": "poison_creeper",
     "trigger": "active",
     "target": "summon",
     "cooldown": 2,
@@ -748,6 +820,14 @@
     "maxLevel": 20,
     "cost": {
       "mana": 8
+    },
+    "scaling": {
+      "costPerLevel": -0.1,
+      "summonStatsPerLevel": {
+        "lifeMax": 5,
+        "attack": 1,
+        "defense": 1
+      }
     }
   },
   {
@@ -758,6 +838,7 @@
     "tree": "Summoning",
     "requiredLevel": 6,
     "summon": true,
+    "summonId": "spirit_wolf",
     "trigger": "active",
     "target": "summon",
     "cooldown": 2,
@@ -765,6 +846,17 @@
     "maxLevel": 20,
     "cost": {
       "mana": 14
+    },
+    "scaling": {
+      "costPerLevel": -0.15,
+      "summonMaxCount": {
+        "kind": "first-three-then-every-three"
+      },
+      "summonStatsPerLevel": {
+        "lifeMax": 5,
+        "attack": 2,
+        "defense": 1
+      }
     }
   },
   {
@@ -778,6 +870,7 @@
       "skills-druid-poison-creeper"
     ],
     "summon": true,
+    "summonId": "carrion_vine",
     "trigger": "active",
     "target": "summon",
     "cooldown": 2,
@@ -785,6 +878,14 @@
     "maxLevel": 20,
     "cost": {
       "mana": 14
+    },
+    "scaling": {
+      "costPerLevel": -0.15,
+      "summonStatsPerLevel": {
+        "lifeMax": 6,
+        "attack": 1,
+        "defense": 1
+      }
     }
   },
   {
@@ -798,6 +899,7 @@
       "skills-druid-carrion-vine"
     ],
     "summon": true,
+    "summonId": "solar_creeper",
     "trigger": "active",
     "target": "summon",
     "cooldown": 2,
@@ -805,6 +907,14 @@
     "maxLevel": 20,
     "cost": {
       "mana": 18
+    },
+    "scaling": {
+      "costPerLevel": -0.15,
+      "summonStatsPerLevel": {
+        "lifeMax": 6,
+        "attack": 1,
+        "defense": 1
+      }
     }
   },
   {
@@ -822,7 +932,13 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "thornsPct": 0.04,
+        "summonDefensePct": 0.02
+      }
+    }
   },
   {
     "id": "skills-druid-summon-grizzly",
@@ -835,6 +951,7 @@
       "skills-druid-summon-dire-wolf"
     ],
     "summon": true,
+    "summonId": "grizzly",
     "trigger": "active",
     "target": "summon",
     "cooldown": 4,
@@ -842,6 +959,14 @@
     "maxLevel": 20,
     "cost": {
       "mana": 35
+    },
+    "scaling": {
+      "costPerLevel": -0.25,
+      "summonStatsPerLevel": {
+        "lifeMax": 12,
+        "attack": 3,
+        "defense": 2
+      }
     }
   }
 ]

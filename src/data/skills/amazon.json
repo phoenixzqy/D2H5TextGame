@@ -180,6 +180,10 @@
       "poison",
       "plague"
     ],
+    "statusEffect": {
+      "stacksOnApply": 3,
+      "dotPctOfDamage": 0.05
+    },
     "appliesTags": [
       "poison"
     ],
@@ -234,7 +238,12 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "critChancePct": 0.01
+      }
+    }
   },
   {
     "id": "skills-amazon-penetrate",
@@ -250,7 +259,12 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "attackPct": 0.03
+      }
+    }
   },
   {
     "id": "skills-amazon-dodge",
@@ -263,7 +277,12 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "physDodgePct": 0.01
+      }
+    }
   },
   {
     "id": "skills-amazon-valkyrie",
@@ -276,11 +295,23 @@
       "skills-amazon-decoy",
       "skills-amazon-evade"
     ],
-    "trigger": "passive",
+    "summon": true,
+    "summonId": "valkyrie",
+    "trigger": "active",
     "target": "summon",
-    "cooldown": 0,
+    "cooldown": 2,
     "minLevel": 18,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "cost": {
+      "mana": 25
+    },
+    "scaling": {
+      "summonStatsPerLevel": {
+        "lifeMax": 14,
+        "attack": 3,
+        "defense": 2
+      }
+    }
   },
   {
     "id": "skills-amazon-jab",
@@ -377,6 +408,9 @@
     "appliesStatus": [
       "poison"
     ],
+    "statusEffect": {
+      "dotPctOfDamage": 0.05
+    },
     "appliesTags": [
       "poison"
     ],
@@ -579,7 +613,14 @@
     ],
     "appliesTags": [
       "amp-damage"
-    ]
+    ],
+    "scaling": {
+      "cooldownPerLevel": -0.05,
+      "costPerLevel": -0.05,
+      "passiveStatsPerLevel": {
+        "physicalDamagePct": 0.01
+      }
+    }
   },
   {
     "id": "skills-amazon-slow-missiles",
@@ -601,7 +642,15 @@
     },
     "appliesStatus": [
       "slow-missiles"
-    ]
+    ],
+    "scaling": {
+      "cooldownPerLevel": -0.05,
+      "costPerLevel": -0.1,
+      "passiveStatsPerLevel": {
+        "physDodgePct": 0.005,
+        "magicDodgePct": 0.005
+      }
+    }
   },
   {
     "id": "skills-amazon-avoid",
@@ -618,7 +667,12 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "magicDodgePct": 0.01
+      }
+    }
   },
   {
     "id": "skills-amazon-decoy",
@@ -637,6 +691,16 @@
     "maxLevel": 20,
     "cost": {
       "mana": 15
+    },
+    "appliesStatus": [
+      "decoy"
+    ],
+    "scaling": {
+      "cooldownPerLevel": -0.05,
+      "costPerLevel": -0.1,
+      "passiveStatsPerLevel": {
+        "physDodgePct": 0.005
+      }
     }
   },
   {
@@ -654,7 +718,13 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "physDodgePct": 0.005,
+        "magicDodgePct": 0.005
+      }
+    }
   },
   {
     "id": "skills-amazon-pierce",
@@ -671,7 +741,13 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "physicalDamagePct": 0.02,
+        "attackPct": 0.01
+      }
+    }
   },
   {
     "id": "skills-amazon-fire-arrow",
@@ -699,6 +775,9 @@
     "appliesStatus": [
       "burn"
     ],
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesTags": [
       "fire",
       "burn"
@@ -770,6 +849,9 @@
     "appliesStatus": [
       "burn"
     ],
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesTags": [
       "fire",
       "burn"
@@ -878,6 +960,9 @@
     "appliesStatus": [
       "burn"
     ],
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesTags": [
       "fire",
       "burn"

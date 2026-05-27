@@ -198,7 +198,12 @@
       "summonMaxCountKind": "Summon cap curve",
       "cooldownPerLevel": "Cooldown per skill level",
       "passiveSummonLifePct": "Passive summon life per level",
+      "passiveFireDamagePct": "Passive fire damage per level",
+      "passiveColdDamagePct": "Passive cold damage per level",
+      "passiveLightningDamagePct": "Passive lightning damage per level",
       "passivePoisonDamagePct": "Passive poison damage per level",
+      "passiveManaRegenPct": "Passive mana regeneration per level",
+      "passiveShieldAbsorbPct": "Passive shield absorb per level",
       "aoeShape": "AOE grid shape",
       "damageBreakdown": "Damage type breakdown JSON",
       "scaling": "Scaling JSON"

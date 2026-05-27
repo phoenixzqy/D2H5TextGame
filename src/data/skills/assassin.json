@@ -235,7 +235,13 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "attackPct": 0.025,
+        "critChancePct": 0.005
+      }
+    }
   },
   {
     "id": "skills-assassin-weapon-block",
@@ -251,7 +257,13 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "physDodgePct": 0.01,
+        "magicDodgePct": 0.005
+      }
+    }
   },
   {
     "id": "skills-assassin-fade",
@@ -267,7 +279,13 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "resistAllPct": 0.02,
+        "magicDodgePct": 0.005
+      }
+    }
   },
   {
     "id": "skills-assassin-venom",
@@ -286,7 +304,12 @@
     "maxLevel": 20,
     "appliesTags": [
       "poison"
-    ]
+    ],
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "poisonDamagePct": 0.03
+      }
+    }
   },
   {
     "id": "skills-assassin-tiger-strike",
@@ -620,7 +643,15 @@
     },
     "appliesStatus": [
       "burst-of-speed"
-    ]
+    ],
+    "scaling": {
+      "cooldownPerLevel": -0.05,
+      "costPerLevel": -0.1,
+      "passiveStatsPerLevel": {
+        "attackSpeedPct": 0.02,
+        "physDodgePct": 0.005
+      }
+    }
   },
   {
     "id": "skills-assassin-cloak-of-shadows",
@@ -643,7 +674,15 @@
     "appliesStatus": [
       "cloak-of-shadows",
       "blind"
-    ]
+    ],
+    "scaling": {
+      "cooldownPerLevel": -0.05,
+      "costPerLevel": -0.1,
+      "passiveStatsPerLevel": {
+        "critChancePct": 0.005,
+        "magicDodgePct": 0.005
+      }
+    }
   },
   {
     "id": "skills-assassin-shadow-warrior",
@@ -656,6 +695,7 @@
       "skills-assassin-weapon-block"
     ],
     "summon": true,
+    "summonId": "shadow_warrior",
     "trigger": "active",
     "target": "summon",
     "cooldown": 4,
@@ -663,6 +703,14 @@
     "maxLevel": 20,
     "cost": {
       "mana": 22
+    },
+    "scaling": {
+      "costPerLevel": -0.2,
+      "summonStatsPerLevel": {
+        "lifeMax": 8,
+        "attack": 2,
+        "defense": 1
+      }
     }
   },
   {
@@ -676,6 +724,7 @@
       "skills-assassin-shadow-warrior"
     ],
     "summon": true,
+    "summonId": "shadow_master",
     "trigger": "active",
     "target": "summon",
     "cooldown": 4,
@@ -683,6 +732,15 @@
     "maxLevel": 20,
     "cost": {
       "mana": 35
+    },
+    "scaling": {
+      "costPerLevel": -0.25,
+      "summonStatsPerLevel": {
+        "lifeMax": 10,
+        "attack": 3,
+        "defense": 2,
+        "magicDodge": 0.002
+      }
     }
   },
   {

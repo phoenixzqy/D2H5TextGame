@@ -455,6 +455,7 @@ describe('cooldowns are sim-time (seconds)', () => {
       id: 'player-hero',
       side: 'player',
       kind: 'hero',
+      level: 30,
       mana: 9999,
       skillOrder: ['sorceress.frozen_orb'],
       stats: {

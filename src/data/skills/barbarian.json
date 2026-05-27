@@ -217,7 +217,12 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "defensePct": 0.04
+      }
+    }
   },
   {
     "id": "skills-barbarian-natural-resistance",
@@ -233,7 +238,13 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "resistAllPct": 0.02,
+        "magicDodgePct": 0.005
+      }
+    }
   },
   {
     "id": "skills-barbarian-battle-orders",
@@ -249,7 +260,13 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "lifePct": 0.04,
+        "manaRegenPct": 0.01
+      }
+    }
   },
   {
     "id": "skills-barbarian-shout",
@@ -265,7 +282,12 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "defensePct": 0.03
+      }
+    }
   },
   {
     "id": "skills-barbarian-sword-mastery",
@@ -279,7 +301,13 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "physicalDamagePct": 0.03,
+        "critChancePct": 0.005
+      }
+    }
   },
   {
     "id": "skills-barbarian-axe-mastery",
@@ -293,7 +321,13 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "physicalDamagePct": 0.03,
+        "critChancePct": 0.005
+      }
+    }
   },
   {
     "id": "skills-barbarian-mace-mastery",
@@ -307,7 +341,13 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "physicalDamagePct": 0.03,
+        "critChancePct": 0.005
+      }
+    }
   },
   {
     "id": "skills-barbarian-pole-arm-mastery",
@@ -321,7 +361,13 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "physicalDamagePct": 0.03,
+        "critChancePct": 0.005
+      }
+    }
   },
   {
     "id": "skills-barbarian-throwing-mastery",
@@ -335,7 +381,13 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "physicalDamagePct": 0.025,
+        "attackSpeedPct": 0.01
+      }
+    }
   },
   {
     "id": "skills-barbarian-spear-mastery",
@@ -349,7 +401,13 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "physicalDamagePct": 0.03,
+        "critChancePct": 0.005
+      }
+    }
   },
   {
     "id": "skills-barbarian-increased-stamina",
@@ -363,7 +421,12 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "lifePct": 0.03
+      }
+    }
   },
   {
     "id": "skills-barbarian-increased-speed",
@@ -380,7 +443,13 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "attackSpeedPct": 0.01,
+        "physDodgePct": 0.005
+      }
+    }
   },
   {
     "id": "skills-barbarian-leap",
@@ -399,7 +468,14 @@
     },
     "appliesStatus": [
       "knockback"
-    ]
+    ],
+    "scaling": {
+      "cooldownPerLevel": -0.05,
+      "costPerLevel": -0.1,
+      "passiveStatsPerLevel": {
+        "physicalDamagePct": 0.01
+      }
+    }
   },
   {
     "id": "skills-barbarian-stun",
@@ -553,7 +629,14 @@
     },
     "appliesStatus": [
       "howl"
-    ]
+    ],
+    "scaling": {
+      "cooldownPerLevel": -0.05,
+      "costPerLevel": -0.05,
+      "passiveStatsPerLevel": {
+        "physDodgePct": 0.005
+      }
+    }
   },
   {
     "id": "skills-barbarian-find-potion",
@@ -569,6 +652,15 @@
     "maxLevel": 20,
     "cost": {
       "mana": 2
+    },
+    "appliesStatus": [
+      "find-potion"
+    ],
+    "scaling": {
+      "cooldownPerLevel": -0.05,
+      "passiveStatsPerLevel": {
+        "magicFindPct": 0.01
+      }
     }
   },
   {
@@ -591,7 +683,14 @@
     },
     "appliesStatus": [
       "taunt"
-    ]
+    ],
+    "scaling": {
+      "cooldownPerLevel": -0.05,
+      "costPerLevel": -0.05,
+      "passiveStatsPerLevel": {
+        "attackPct": 0.01
+      }
+    }
   },
   {
     "id": "skills-barbarian-find-item",
@@ -610,6 +709,16 @@
     "maxLevel": 20,
     "cost": {
       "mana": 7
+    },
+    "appliesStatus": [
+      "find-item"
+    ],
+    "scaling": {
+      "cooldownPerLevel": -0.05,
+      "costPerLevel": -0.1,
+      "passiveStatsPerLevel": {
+        "magicFindPct": 0.015
+      }
     }
   },
   {
@@ -635,7 +744,14 @@
     ],
     "appliesTags": [
       "amp-damage"
-    ]
+    ],
+    "scaling": {
+      "cooldownPerLevel": -0.05,
+      "costPerLevel": -0.1,
+      "passiveStatsPerLevel": {
+        "physicalDamagePct": 0.01
+      }
+    }
   },
   {
     "id": "skills-barbarian-grim-ward",
@@ -657,7 +773,15 @@
     },
     "appliesStatus": [
       "grim-ward"
-    ]
+    ],
+    "scaling": {
+      "cooldownPerLevel": -0.05,
+      "costPerLevel": -0.1,
+      "passiveStatsPerLevel": {
+        "physDodgePct": 0.005,
+        "magicFindPct": 0.005
+      }
+    }
   },
   {
     "id": "skills-barbarian-battle-command",
@@ -679,6 +803,14 @@
     },
     "appliesStatus": [
       "battle-command"
-    ]
+    ],
+    "scaling": {
+      "cooldownPerLevel": -0.05,
+      "costPerLevel": -0.1,
+      "passiveStatsPerLevel": {
+        "attackPct": 0.015,
+        "defensePct": 0.015
+      }
+    }
   }
 ]

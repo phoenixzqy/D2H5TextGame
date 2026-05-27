@@ -179,6 +179,9 @@
     "appliesStatus": [
       "burn"
     ],
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesTags": [
       "fire",
       "burn"
@@ -219,6 +222,9 @@
       "burn",
       "armor-melt"
     ],
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesTags": [
       "fire",
       "burn",
@@ -239,7 +245,12 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 12,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "coldDamagePct": 0.04
+      }
+    }
   },
   {
     "id": "skills-sorceress-lightning-mastery",
@@ -252,7 +263,12 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 12,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "lightningDamagePct": 0.04
+      }
+    }
   },
   {
     "id": "skills-sorceress-fire-mastery",
@@ -265,7 +281,12 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 12,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "fireDamagePct": 0.04
+      }
+    }
   },
   {
     "id": "skills-sorceress-energy-shield",
@@ -281,7 +302,13 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 18,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "shieldAbsorbPct": 0.03,
+        "manaRegenPct": 0.02
+      }
+    }
   },
   {
     "id": "skills-sorceress-frozen-armor",
@@ -303,7 +330,14 @@
     ],
     "appliesTags": [
       "cold"
-    ]
+    ],
+    "scaling": {
+      "cooldownPerLevel": -0.05,
+      "costPerLevel": -0.1,
+      "passiveStatsPerLevel": {
+        "defensePct": 0.03
+      }
+    }
   },
   {
     "id": "skills-sorceress-ice-blast",
@@ -367,7 +401,15 @@
     "appliesTags": [
       "cold",
       "chill"
-    ]
+    ],
+    "scaling": {
+      "cooldownPerLevel": -0.05,
+      "costPerLevel": -0.1,
+      "passiveStatsPerLevel": {
+        "defensePct": 0.035,
+        "coldDamagePct": 0.01
+      }
+    }
   },
   {
     "id": "skills-sorceress-glacial-spike",
@@ -469,7 +511,15 @@
     "appliesTags": [
       "cold",
       "chill"
-    ]
+    ],
+    "scaling": {
+      "cooldownPerLevel": -0.05,
+      "costPerLevel": -0.1,
+      "passiveStatsPerLevel": {
+        "defensePct": 0.04,
+        "magicDodgePct": 0.01
+      }
+    }
   },
   {
     "id": "skills-sorceress-charged-bolt",
@@ -524,7 +574,14 @@
       "lightning",
       "shock",
       "amp-damage"
-    ]
+    ],
+    "scaling": {
+      "cooldownPerLevel": -0.05,
+      "costPerLevel": -0.1,
+      "passiveStatsPerLevel": {
+        "lightningDamagePct": 0.01
+      }
+    }
   },
   {
     "id": "skills-sorceress-telekinesis",
@@ -546,7 +603,14 @@
     ],
     "appliesTags": [
       "arcane"
-    ]
+    ],
+    "scaling": {
+      "cooldownPerLevel": -0.05,
+      "costPerLevel": -0.1,
+      "passiveStatsPerLevel": {
+        "arcaneDamagePct": 0.01
+      }
+    }
   },
   {
     "id": "skills-sorceress-nova",
@@ -633,6 +697,16 @@
     "maxLevel": 20,
     "cost": {
       "mana": 20
+    },
+    "appliesStatus": [
+      "teleport"
+    ],
+    "scaling": {
+      "cooldownPerLevel": -0.05,
+      "costPerLevel": -0.2,
+      "passiveStatsPerLevel": {
+        "magicDodgePct": 0.01
+      }
     }
   },
   {
@@ -699,6 +773,9 @@
     "appliesStatus": [
       "burn"
     ],
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesTags": [
       "fire",
       "burn"
@@ -719,7 +796,13 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "manaRegenPct": 0.04,
+        "fireDamagePct": 0.01
+      }
+    }
   },
   {
     "id": "skills-sorceress-inferno",
@@ -747,6 +830,9 @@
     "appliesStatus": [
       "burn"
     ],
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesTags": [
       "fire",
       "burn"
@@ -784,6 +870,9 @@
     "appliesStatus": [
       "burn"
     ],
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesTags": [
       "fire",
       "burn"
@@ -821,6 +910,9 @@
     "appliesStatus": [
       "burn"
     ],
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesTags": [
       "fire",
       "burn"
@@ -852,7 +944,14 @@
     ],
     "appliesTags": [
       "fire"
-    ]
+    ],
+    "scaling": {
+      "cooldownPerLevel": -0.05,
+      "costPerLevel": -0.15,
+      "passiveStatsPerLevel": {
+        "fireDamagePct": 0.02
+      }
+    }
   },
   {
     "id": "skills-sorceress-hydra",
@@ -883,6 +982,9 @@
     "appliesStatus": [
       "burn"
     ],
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesTags": [
       "fire",
       "burn"

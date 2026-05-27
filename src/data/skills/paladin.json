@@ -133,6 +133,9 @@
       "chill",
       "paralyze"
     ],
+    "statusEffect": {
+      "dotPctOfDamage": 0.1
+    },
     "appliesTags": [
       "fire",
       "cold",
@@ -230,7 +233,13 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "physicalDamagePct": 0.03,
+        "attackPct": 0.01
+      }
+    }
   },
   {
     "id": "skills-paladin-holy-fire",
@@ -248,7 +257,12 @@
     "appliesTags": [
       "fire",
       "burn"
-    ]
+    ],
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "fireDamagePct": 0.03
+      }
+    }
   },
   {
     "id": "skills-paladin-conviction",
@@ -268,7 +282,13 @@
     "maxLevel": 20,
     "appliesTags": [
       "amp-damage"
-    ]
+    ],
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "elementalDamagePct": 0.02,
+        "arcaneDamagePct": 0.01
+      }
+    }
   },
   {
     "id": "skills-paladin-meditation",
@@ -285,7 +305,12 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "manaRegenPct": 0.03
+      }
+    }
   },
   {
     "id": "skills-paladin-sacrifice",
@@ -406,7 +431,15 @@
     },
     "appliesStatus": [
       "holy-shield"
-    ]
+    ],
+    "scaling": {
+      "cooldownPerLevel": -0.05,
+      "costPerLevel": -0.2,
+      "passiveStatsPerLevel": {
+        "defensePct": 0.04,
+        "shieldAbsorbPct": 0.02
+      }
+    }
   },
   {
     "id": "skills-paladin-thorns",
@@ -423,7 +456,12 @@
     "maxLevel": 20,
     "appliesTags": [
       "physical"
-    ]
+    ],
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "thornsPct": 0.04
+      }
+    }
   },
   {
     "id": "skills-paladin-blessed-aim",
@@ -440,7 +478,12 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "attackPct": 0.03
+      }
+    }
   },
   {
     "id": "skills-paladin-concentration",
@@ -460,7 +503,12 @@
     "maxLevel": 20,
     "appliesTags": [
       "physical"
-    ]
+    ],
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "physicalDamagePct": 0.035
+      }
+    }
   },
   {
     "id": "skills-paladin-holy-freeze",
@@ -481,7 +529,13 @@
     "appliesTags": [
       "cold",
       "chill"
-    ]
+    ],
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "coldDamagePct": 0.03,
+        "physDodgePct": 0.005
+      }
+    }
   },
   {
     "id": "skills-paladin-holy-shock",
@@ -502,7 +556,12 @@
     "appliesTags": [
       "lightning",
       "shock"
-    ]
+    ],
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "lightningDamagePct": 0.03
+      }
+    }
   },
   {
     "id": "skills-paladin-sanctuary",
@@ -522,7 +581,12 @@
     "maxLevel": 20,
     "appliesTags": [
       "arcane"
-    ]
+    ],
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "arcaneDamagePct": 0.03
+      }
+    }
   },
   {
     "id": "skills-paladin-fanaticism",
@@ -542,7 +606,13 @@
     "maxLevel": 20,
     "appliesTags": [
       "physical"
-    ]
+    ],
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "physicalDamagePct": 0.03,
+        "attackSpeedPct": 0.01
+      }
+    }
   },
   {
     "id": "skills-paladin-prayer",
@@ -556,7 +626,12 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "lifeRegenPct": 0.03
+      }
+    }
   },
   {
     "id": "skills-paladin-resist-fire",
@@ -573,7 +648,13 @@
     "maxLevel": 20,
     "appliesTags": [
       "fire"
-    ]
+    ],
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "resistAllPct": 0.01,
+        "fireDamagePct": 0.01
+      }
+    }
   },
   {
     "id": "skills-paladin-defiance",
@@ -587,7 +668,12 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "defensePct": 0.04
+      }
+    }
   },
   {
     "id": "skills-paladin-resist-cold",
@@ -604,7 +690,13 @@
     "maxLevel": 20,
     "appliesTags": [
       "cold"
-    ]
+    ],
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "resistAllPct": 0.01,
+        "coldDamagePct": 0.01
+      }
+    }
   },
   {
     "id": "skills-paladin-cleansing",
@@ -621,7 +713,13 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "lifeRegenPct": 0.015,
+        "magicDodgePct": 0.005
+      }
+    }
   },
   {
     "id": "skills-paladin-resist-lightning",
@@ -638,7 +736,13 @@
     "maxLevel": 20,
     "appliesTags": [
       "lightning"
-    ]
+    ],
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "resistAllPct": 0.01,
+        "lightningDamagePct": 0.01
+      }
+    }
   },
   {
     "id": "skills-paladin-vigor",
@@ -656,7 +760,13 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "lifePct": 0.02,
+        "attackSpeedPct": 0.005
+      }
+    }
   },
   {
     "id": "skills-paladin-redemption",
@@ -673,7 +783,13 @@
     "target": "self",
     "cooldown": 0,
     "minLevel": 1,
-    "maxLevel": 20
+    "maxLevel": 20,
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "lifeRegenPct": 0.02,
+        "manaRegenPct": 0.02
+      }
+    }
   },
   {
     "id": "skills-paladin-salvation",
@@ -695,6 +811,12 @@
       "fire",
       "cold",
       "lightning"
-    ]
+    ],
+    "scaling": {
+      "passiveStatsPerLevel": {
+        "resistAllPct": 0.02,
+        "elementalDamagePct": 0.01
+      }
+    }
   }
 ]

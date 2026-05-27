@@ -46,7 +46,12 @@ export function SkillFields({ entry, onChange }: { readonly entry: JsonRecord; r
         <NumberField entry={entry} path={['scaling', 'summonStatsPerLevel', 'defense']} label={t('skillsEditor.fields.summonDefensePerLevel')} onChange={onChange} />
         <NumberField entry={entry} path={['scaling', 'cooldownPerLevel']} label={t('skillsEditor.fields.cooldownPerLevel')} onChange={onChange} />
         <NumberField entry={entry} path={['scaling', 'passiveStatsPerLevel', 'summonLifePct']} label={t('skillsEditor.fields.passiveSummonLifePct')} onChange={onChange} />
+        <NumberField entry={entry} path={['scaling', 'passiveStatsPerLevel', 'fireDamagePct']} label={t('skillsEditor.fields.passiveFireDamagePct')} onChange={onChange} />
+        <NumberField entry={entry} path={['scaling', 'passiveStatsPerLevel', 'coldDamagePct']} label={t('skillsEditor.fields.passiveColdDamagePct')} onChange={onChange} />
+        <NumberField entry={entry} path={['scaling', 'passiveStatsPerLevel', 'lightningDamagePct']} label={t('skillsEditor.fields.passiveLightningDamagePct')} onChange={onChange} />
         <NumberField entry={entry} path={['scaling', 'passiveStatsPerLevel', 'poisonDamagePct']} label={t('skillsEditor.fields.passivePoisonDamagePct')} onChange={onChange} />
+        <NumberField entry={entry} path={['scaling', 'passiveStatsPerLevel', 'manaRegenPct']} label={t('skillsEditor.fields.passiveManaRegenPct')} onChange={onChange} />
+        <NumberField entry={entry} path={['scaling', 'passiveStatsPerLevel', 'shieldAbsorbPct']} label={t('skillsEditor.fields.passiveShieldAbsorbPct')} onChange={onChange} />
         <EnumField
           entry={entry}
           path={['scaling', 'summonMaxCount', 'kind']}

@@ -32,6 +32,14 @@ describe('skillsHelpers', () => {
       expect(skills.some(s => s.id === 'skills-necromancer-bone-spear')).toBe(false); // No Necromancer skills
     });
 
+    it('authors visible level-up scaling for every Barbarian skill', () => {
+      const skills = getSkillsForClass('barbarian');
+      const missing = skills.filter((skill) => !skill.scaling).map((skill) => skill.id);
+
+      expect(skills).toHaveLength(30);
+      expect(missing).toEqual([]);
+    });
+
     it('should return Sorceress skills for sorceress class', () => {
       const skills = getSkillsForClass('sorceress');
       
@@ -41,6 +49,14 @@ describe('skillsHelpers', () => {
       expect(skills.some(s => s.id === 'skills-barbarian-whirlwind')).toBe(false); // No Barbarian skills
     });
 
+    it('authors visible level-up scaling for every Sorceress skill', () => {
+      const skills = getSkillsForClass('sorceress');
+      const missing = skills.filter((skill) => !skill.scaling).map((skill) => skill.id);
+
+      expect(skills).toHaveLength(30);
+      expect(missing).toEqual([]);
+    });
+
     it('should handle case-insensitive class names', () => {
       const skills1 = getSkillsForClass('NECROMANCER');
       const skills2 = getSkillsForClass('Necromancer');
@@ -48,6 +64,38 @@ describe('skillsHelpers', () => {
       
       expect(skills1).toEqual(skills2);
       expect(skills2).toEqual(skills3);
+    });
+
+    it('authors visible level-up scaling for every Amazon skill', () => {
+      const skills = getSkillsForClass('amazon');
+      const missing = skills.filter((skill) => !skill.scaling).map((skill) => skill.id);
+
+      expect(skills).toHaveLength(30);
+      expect(missing).toEqual([]);
+    });
+
+    it('authors visible level-up scaling for every Paladin skill', () => {
+      const skills = getSkillsForClass('paladin');
+      const missing = skills.filter((skill) => !skill.scaling).map((skill) => skill.id);
+
+      expect(skills).toHaveLength(30);
+      expect(missing).toEqual([]);
+    });
+
+    it('authors visible level-up scaling for every Druid skill', () => {
+      const skills = getSkillsForClass('druid');
+      const missing = skills.filter((skill) => !skill.scaling).map((skill) => skill.id);
+
+      expect(skills).toHaveLength(31);
+      expect(missing).toEqual([]);
+    });
+
+    it('authors visible level-up scaling for every Assassin skill', () => {
+      const skills = getSkillsForClass('assassin');
+      const missing = skills.filter((skill) => !skill.scaling).map((skill) => skill.id);
+
+      expect(skills).toHaveLength(30);
+      expect(missing).toEqual([]);
     });
 
     it('should return empty array for unknown class', () => {

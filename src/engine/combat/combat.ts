@@ -455,6 +455,12 @@ function effectiveCooldown(skill: RegisteredSkill, skillLevel: number): number {
   return Math.max(1, Number((skill.cooldown + (skill.cooldownPerRank ?? 0) * Math.max(0, skillLevel - 1)).toFixed(1)));
 }
 
+function activeBuffIdsForSkill(skill: RegisteredSkill): readonly string[] {
+  return skill.effects
+    .filter((effect): effect is BuffEffect => effect.kind === 'buff')
+    .map((effect) => effect.id);
+}
+
 function hasAvailableEffect(state: State, actorId: string, skill: RegisteredSkill, skillLevel: number): boolean {
   if (!skill.effects.every((effect) => effect.kind === 'summon')) return true;
   return skill.effects.some((effect) =>
@@ -473,7 +479,10 @@ function canUseSkillForState(
   const skillLevel = effectiveSkillLevel(unit, skill);
   if (effectiveManaCost(skill, skillLevel) > unit.mana) return false;
   if (unit.level < skill.minLevel) return false;
-  if (skill.isBuff && unit.activeBuffIds.includes(skill.id)) return false;
+  if (
+    skill.isBuff &&
+    (unit.activeBuffIds.includes(skill.id) || activeBuffIdsForSkill(skill).some((id) => unit.activeBuffIds.includes(id)))
+  ) return false;
   if (skill.requires && unit.equippedWeapon !== undefined) {
     const elig = canCastSkill(skill, unit.equippedWeapon);
     if (!elig.ok) return false;

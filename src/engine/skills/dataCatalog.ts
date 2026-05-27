@@ -7,11 +7,26 @@
  * @module engine/skills/dataCatalog
  */
 
+import amazonSkills from '../../data/skills/amazon.json';
+import assassinSkills from '../../data/skills/assassin.json';
+import barbarianSkills from '../../data/skills/barbarian.json';
+import druidSkills from '../../data/skills/druid.json';
 import necromancerSkills from '../../data/skills/necromancer.json';
+import paladinSkills from '../../data/skills/paladin.json';
+import sorceressSkills from '../../data/skills/sorceress.json';
 import type { AoeShape } from '../combat/grid';
 import type { DamageType } from '../types/attributes';
-import type { ComboTag, SkillTarget } from '../types/skills';
+import type { ComboTag, SkillRequirement, SkillTarget } from '../types/skills';
 import type { RegisteredSkill, SkillEffect, SummonMaxCountScalingKind, SummonStatScaling } from './effects';
+
+export type PlayableSkillClass =
+  | 'amazon'
+  | 'assassin'
+  | 'barbarian'
+  | 'druid'
+  | 'necromancer'
+  | 'paladin'
+  | 'sorceress';
 
 interface JsonSkill {
   readonly id: string;
@@ -38,6 +53,7 @@ interface JsonSkill {
   readonly summon?: boolean;
   readonly summonId?: string;
   readonly aoeShape?: AoeShape;
+  readonly requires?: SkillRequirement;
   readonly scaling?: {
     readonly damagePerLevel?: number;
     readonly cooldownPerLevel?: number;
@@ -49,10 +65,35 @@ interface JsonSkill {
   };
 }
 
-function canonicalSkillIdFromData(id: string): string {
+export const PLAYABLE_CLASS_SKILL_DATA: Readonly<Record<PlayableSkillClass, readonly JsonSkill[]>> = Object.freeze({
+  amazon: amazonSkills as readonly JsonSkill[],
+  assassin: assassinSkills as readonly JsonSkill[],
+  barbarian: barbarianSkills as readonly JsonSkill[],
+  druid: druidSkills as readonly JsonSkill[],
+  necromancer: necromancerSkills as readonly JsonSkill[],
+  paladin: paladinSkills as readonly JsonSkill[],
+  sorceress: sorceressSkills as readonly JsonSkill[]
+});
+
+export const ENABLED_PLAYABLE_SKILL_CLASSES: readonly PlayableSkillClass[] = Object.freeze([
+  'necromancer',
+  'sorceress',
+  'barbarian',
+  'amazon',
+  'paladin',
+  'druid',
+  'assassin'
+]);
+
+export function canonicalSkillIdFromData(id: string): string {
   const match = /^skills-([a-z]+)-(.+)$/.exec(id);
   if (!match?.[1] || !match[2]) return id;
   return `${match[1]}.${match[2].replace(/-/g, '_')}`;
+}
+
+function archetypeFromSkillId(id: string): string {
+  const match = /^skills-([a-z]+)-/.exec(id);
+  return match?.[1] ?? canonicalSkillIdFromData(id).split('.')[0] ?? 'unknown';
 }
 
 function comboTags(tags: readonly string[] | undefined): readonly ComboTag[] | undefined {
@@ -120,19 +161,38 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
   }
 
   if (!skill.damage && !skill.summon && skill.appliesStatus?.[0]) {
+    if (skill.target === 'self') {
+      effects.push({
+        kind: 'buff',
+        id: skill.appliesStatus[0],
+        duration: -1
+      });
+      return effects;
+    }
     effects.push({
       kind: 'debuff',
       statusId: skill.appliesStatus[0]
     });
   }
 
+  if (effects.length === 0 && (skill.trigger === 'passive' || skill.trigger === 'aura')) {
+    const buffId = canonicalSkillIdFromData(skill.id).split('.')[1];
+    if (buffId) {
+      effects.push({
+        kind: 'buff',
+        id: buffId,
+        duration: -1
+      });
+    }
+  }
+
   return effects;
 }
 
-function registeredSkillFromJson(skill: JsonSkill): RegisteredSkill {
+export function registeredSkillFromJson(skill: JsonSkill): RegisteredSkill {
   return {
     id: canonicalSkillIdFromData(skill.id),
-    archetype: 'necromancer',
+    archetype: archetypeFromSkillId(skill.id),
     target: skill.target,
     cooldown: skill.cooldown,
     manaCost: skill.cost?.mana ?? 0,
@@ -142,10 +202,17 @@ function registeredSkillFromJson(skill: JsonSkill): RegisteredSkill {
     minLevel: skill.requiredLevel ?? skill.minLevel,
     ...(skill.aoeShape ? { aoeShape: skill.aoeShape } : {}),
     ...(skill.target === 'summon' && skill.trigger === 'active' ? { summonOnStart: true } : {}),
-    ...(skill.trigger === 'passive' || skill.trigger === 'aura' ? { isBuff: true } : {})
+    ...(skill.trigger === 'passive' || skill.trigger === 'aura' || (
+      skill.target === 'self' && skill.appliesStatus?.[0] !== undefined
+    ) ? { isBuff: true } : {}),
+    ...(skill.requires ? { requires: skill.requires } : {})
   };
 }
 
-export const NECROMANCER_DATA_SKILLS: readonly RegisteredSkill[] = Object.freeze(
-  (necromancerSkills as readonly JsonSkill[]).map(registeredSkillFromJson)
+export function registeredSkillsForClasses(classes: readonly PlayableSkillClass[]): readonly RegisteredSkill[] {
+  return classes.flatMap((classId) => PLAYABLE_CLASS_SKILL_DATA[classId].map(registeredSkillFromJson));
+}
+
+export const PLAYABLE_CLASS_DATA_SKILLS: readonly RegisteredSkill[] = Object.freeze(
+  registeredSkillsForClasses(ENABLED_PLAYABLE_SKILL_CLASSES)
 );

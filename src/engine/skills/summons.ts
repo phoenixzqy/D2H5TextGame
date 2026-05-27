@@ -196,8 +196,24 @@ function baseStatsForSummon(summonId: string): DerivedStats | undefined {
       };
     case 'valkyrie':
       return { ...baseSummonStats(), life: 200, lifeMax: 200, attack: 40, defense: 20 };
+    case 'raven':
+      return { ...baseSummonStats(), life: 45, lifeMax: 45, attack: 18, attackSpeed: 95, physDodge: 0.15 };
+    case 'spirit_wolf':
+      return { ...baseSummonStats(), life: 80, lifeMax: 80, attack: 20, attackSpeed: 85, physDodge: 0.1 };
     case 'dire_wolf':
       return { ...baseSummonStats(), life: 100, lifeMax: 100, attack: 25, attackSpeed: 90 };
+    case 'grizzly':
+      return { ...baseSummonStats(), life: 260, lifeMax: 260, attack: 45, defense: 35, attackSpeed: 55 };
+    case 'poison_creeper':
+      return { ...baseSummonStats(), life: 90, lifeMax: 90, attack: 16, defense: 18, resistances: { ...ZERO_RES, poison: 35 } };
+    case 'carrion_vine':
+      return { ...baseSummonStats(), life: 110, lifeMax: 110, attack: 12, defense: 22, resistances: { ...ZERO_RES, poison: 25 } };
+    case 'solar_creeper':
+      return { ...baseSummonStats(), life: 120, lifeMax: 120, attack: 12, defense: 24, magicDodge: 0.08, resistances: { ...ZERO_RES, fire: 20, lightning: 20 } };
+    case 'shadow_warrior':
+      return { ...baseSummonStats(), life: 150, lifeMax: 150, attack: 32, defense: 24, attackSpeed: 80, physDodge: 0.1, magicDodge: 0.1 };
+    case 'shadow_master':
+      return { ...baseSummonStats(), life: 210, lifeMax: 210, attack: 40, defense: 32, attackSpeed: 85, physDodge: 0.12, magicDodge: 0.12, resistances: { ...ZERO_RES, fire: 10, cold: 10, lightning: 10, poison: 10, arcane: 10 } };
     case 'minion':
       return { ...baseSummonStats(), life: 40, lifeMax: 40, attack: 10 };
     default:
@@ -234,157 +250,35 @@ function summonUnit(
   };
 }
 
-registerSummon('skeleton', (owner) => ({
-  id: nextSummonId(owner.id, 'skeleton'),
-  name: 'Skeleton Warrior',
-  side: owner.side,
-  level: owner.level,
-  tier: 'trash',
-  stats: skeletonStats(),
-  life: 112,
-  mana: 0,
-  statuses: [],
-  cooldowns: {},
-  skillOrder: [],
-  activeBuffIds: [],
-  enraged: false,
-  summonedAdds: false,
-  summon: true,
-  kind: 'summon',
-  summonOwnerId: owner.id
-}));
+function summonUnitFromTemplate(
+  owner: CombatUnit,
+  summonId: string,
+  name: string,
+  skillOrder: readonly string[] = []
+): CombatUnit {
+  const stats = baseStatsForSummon(summonId);
+  if (!stats) {
+    throw new Error(`No summon template registered for ${summonId}`);
+  }
+  return summonUnit(owner, summonId, name, stats, skillOrder);
+}
 
-registerSummon('clay_golem', (owner) =>
-  summonUnit(owner, 'clay_golem', 'Clay Golem', {
-    ...baseSummonStats(),
-    life: 220,
-    lifeMax: 220,
-    attack: 24,
-    defense: 34,
-    attackSpeed: 55,
-    physDodge: 0.02,
-    magicDodge: 0.02,
-    resistances: { ...ZERO_RES, physical: 10 }
-  })
-);
+registerSummon('skeleton', (owner) => summonUnitFromTemplate(owner, 'skeleton', 'Skeleton Warrior'));
+registerSummon('clay_golem', (owner) => summonUnitFromTemplate(owner, 'clay_golem', 'Clay Golem'));
+registerSummon('blood_golem', (owner) => summonUnitFromTemplate(owner, 'blood_golem', 'Blood Golem'));
+registerSummon('iron_golem', (owner) => summonUnitFromTemplate(owner, 'iron_golem', 'Iron Golem'));
+registerSummon('fire_golem', (owner) => summonUnitFromTemplate(owner, 'fire_golem', 'Fire Golem'));
+registerSummon('skeletal_mage', (owner) => summonUnitFromTemplate(owner, 'skeletal_mage', 'Skeletal Mage'));
+registerSummon('revived', (owner) => summonUnitFromTemplate(owner, 'revived', 'Revived Minion'));
+registerSummon('valkyrie', (owner) => summonUnitFromTemplate(owner, 'valkyrie', 'Valkyrie'));
+registerSummon('raven', (owner) => summonUnitFromTemplate(owner, 'raven', 'Raven'));
+registerSummon('spirit_wolf', (owner) => summonUnitFromTemplate(owner, 'spirit_wolf', 'Spirit Wolf'));
+registerSummon('dire_wolf', (owner) => summonUnitFromTemplate(owner, 'dire_wolf', 'Dire Wolf'));
+registerSummon('grizzly', (owner) => summonUnitFromTemplate(owner, 'grizzly', 'Grizzly'));
+registerSummon('poison_creeper', (owner) => summonUnitFromTemplate(owner, 'poison_creeper', 'Poison Creeper'));
+registerSummon('carrion_vine', (owner) => summonUnitFromTemplate(owner, 'carrion_vine', 'Carrion Vine'));
+registerSummon('solar_creeper', (owner) => summonUnitFromTemplate(owner, 'solar_creeper', 'Solar Creeper'));
+registerSummon('shadow_warrior', (owner) => summonUnitFromTemplate(owner, 'shadow_warrior', 'Shadow Warrior'));
+registerSummon('shadow_master', (owner) => summonUnitFromTemplate(owner, 'shadow_master', 'Shadow Master'));
 
-registerSummon('blood_golem', (owner) =>
-  summonUnit(owner, 'blood_golem', 'Blood Golem', {
-    ...baseSummonStats(),
-    life: 180,
-    lifeMax: 180,
-    attack: 34,
-    defense: 24,
-    attackSpeed: 70,
-    resistances: { ...ZERO_RES, poison: 20 }
-  })
-);
-
-registerSummon('iron_golem', (owner) =>
-  summonUnit(owner, 'iron_golem', 'Iron Golem', {
-    ...baseSummonStats(),
-    life: 260,
-    lifeMax: 260,
-    attack: 36,
-    defense: 48,
-    attackSpeed: 60,
-    resistances: { ...ZERO_RES, physical: 20, lightning: 20 }
-  })
-);
-
-registerSummon('fire_golem', (owner) =>
-  summonUnit(owner, 'fire_golem', 'Fire Golem', {
-    ...baseSummonStats(),
-    life: 240,
-    lifeMax: 240,
-    attack: 42,
-    defense: 36,
-    attackSpeed: 65,
-    resistances: { ...ZERO_RES, fire: 50 }
-  })
-);
-
-registerSummon('skeletal_mage', (owner) =>
-  summonUnit(owner, 'skeletal_mage', 'Skeletal Mage', {
-    ...baseSummonStats(),
-    life: 88,
-    lifeMax: 88,
-    attack: 30,
-    defense: 10,
-    magicDodge: 0.08,
-    resistances: { ...ZERO_RES, fire: 10, cold: 10, lightning: 10, poison: 10 }
-  })
-);
-
-registerSummon('revived', (owner) =>
-  summonUnit(owner, 'revived', 'Revived Minion', {
-    ...baseSummonStats(),
-    life: 150,
-    lifeMax: 150,
-    attack: 28,
-    defense: 18,
-    attackSpeed: 65
-  })
-);
-
-// Placeholder templates for skills that already reference these ids — they
-// keep the engine from silently dropping the summon when those skills fire.
-registerSummon('valkyrie', (owner) => ({
-  id: nextSummonId(owner.id, 'valkyrie'),
-  name: 'Valkyrie',
-  side: owner.side,
-  level: owner.level,
-  tier: 'trash',
-  stats: { ...baseSummonStats(), life: 200, lifeMax: 200, attack: 40, defense: 20 },
-  life: 200,
-  mana: 0,
-  statuses: [],
-  cooldowns: {},
-  skillOrder: [],
-  activeBuffIds: [],
-  enraged: false,
-  summonedAdds: false,
-  summon: true,
-  kind: 'summon',
-  summonOwnerId: owner.id
-}));
-
-registerSummon('dire_wolf', (owner) => ({
-  id: nextSummonId(owner.id, 'dire_wolf'),
-  name: 'Dire Wolf',
-  side: owner.side,
-  level: owner.level,
-  tier: 'trash',
-  stats: { ...baseSummonStats(), life: 100, lifeMax: 100, attack: 25, attackSpeed: 90 },
-  life: 100,
-  mana: 0,
-  statuses: [],
-  cooldowns: {},
-  skillOrder: [],
-  activeBuffIds: [],
-  enraged: false,
-  summonedAdds: false,
-  summon: true,
-  kind: 'summon',
-  summonOwnerId: owner.id
-}));
-
-registerSummon('minion', (owner) => ({
-  id: nextSummonId(owner.id, 'minion'),
-  name: 'Minion',
-  side: owner.side,
-  level: owner.level,
-  tier: 'trash',
-  stats: { ...baseSummonStats(), life: 40, lifeMax: 40, attack: 10 },
-  life: 40,
-  mana: 0,
-  statuses: [],
-  cooldowns: {},
-  skillOrder: [],
-  activeBuffIds: [],
-  enraged: false,
-  summonedAdds: false,
-  summon: true,
-  kind: 'summon',
-  summonOwnerId: owner.id
-}));
+registerSummon('minion', (owner) => summonUnitFromTemplate(owner, 'minion', 'Minion'));

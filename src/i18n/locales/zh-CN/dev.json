@@ -198,7 +198,12 @@
       "summonMaxCountKind": "召唤上限曲线",
       "cooldownPerLevel": "每技能等级冷却",
       "passiveSummonLifePct": "每级被动召唤生命",
+      "passiveFireDamagePct": "每级被动火焰伤害",
+      "passiveColdDamagePct": "每级被动冰冷伤害",
+      "passiveLightningDamagePct": "每级被动闪电伤害",
       "passivePoisonDamagePct": "每级被动毒素伤害",
+      "passiveManaRegenPct": "每级被动法力恢复",
+      "passiveShieldAbsorbPct": "每级被动护盾吸收",
       "aoeShape": "范围形状",
       "damageBreakdown": "伤害类型明细 JSON",
       "scaling": "成长 JSON"
