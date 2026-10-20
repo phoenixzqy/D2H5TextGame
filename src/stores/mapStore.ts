@@ -5,6 +5,7 @@
 
 import { create } from 'zustand';
 import { loadQuests } from '@/data/loaders/quests';
+import { loadTownNpcs } from '@/data/loaders/towns';
 import { isActUnlocked as engineIsActUnlocked, isSubAreaUnlocked as engineIsSubAreaUnlocked } from '@/engine/map/unlock';
 
 interface QuestProgress {
@@ -38,6 +39,8 @@ interface MapState {
   markQuestRewardClaimed: (questId: string) => void;
   /** Record a qualified area clear and advance tracked clear-area objectives atomically. Idempotent. */
   markCleared: (subAreaId: string) => void;
+  /** Advance eligible ordered talk objectives for an exact current-town NPC. Never awards rewards. */
+  recordNpcTalk: (npcId: string) => void;
   isCleared: (subAreaId: string) => boolean;
   /** Convenience selector for the act-unlock engine predicate. */
   isActUnlocked: (actNumber: number) => boolean;
@@ -144,6 +147,34 @@ export const useMapStore = create<MapState>((set, get) => ({
   }); },
 
   isCleared: (subAreaId) => get().clearedSubAreas.includes(subAreaId),
+
+  recordNpcTalk: (npcId) => { set((state) => {
+    if (!loadTownNpcs(state.currentAct).some((npc) => npc.id === npcId)) return state;
+    let questProgress = state.questProgress;
+    for (const quest of loadQuests()) {
+      if (quest.actId !== `acts/act${String(state.currentAct)}`) continue;
+      const progress = state.questProgress[quest.id];
+      if (progress?.status !== 'inProgress' || progress.rewardClaimed) continue;
+      const matching = quest.objectives.filter((objective, index) =>
+        objective.type === 'talk' && objective.npcId === npcId && !progress.objectives[objective.id] &&
+        quest.objectives.slice(0, index).every((previous) => progress.objectives[previous.id])
+      );
+      if (matching.length === 0) continue;
+      const objectives = {
+        ...progress.objectives,
+        ...Object.fromEntries(matching.map((objective) => [objective.id, true]))
+      };
+      questProgress = {
+        ...questProgress,
+        [quest.id]: {
+          ...progress,
+          objectives,
+          status: quest.objectives.every((objective) => objectives[objective.id]) ? 'completed' : 'inProgress'
+        }
+      };
+    }
+    return questProgress === state.questProgress ? state : { questProgress };
+  }); },
   
   isActUnlocked: (actNumber) => {
     const state = get();
