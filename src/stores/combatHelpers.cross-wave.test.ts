@@ -38,7 +38,7 @@ function equipWaveCap(attackSpeedBonus = -63): void {
   expect(useInventoryStore.getState().equipItem(cap)).toEqual({ ok: true });
 }
 
-function start(): void {
+function start(withRecovery = false): void {
   // Real production plan, spawn, targeting, damage, status and playback paths;
   // only skill definitions and hero stats are controlled integration fixtures.
   registerSkill({ id: 'fixture.wave-finisher', archetype: 'fixture', target: 'all-enemies',
@@ -52,12 +52,14 @@ function start(): void {
         applyStatus: { id: 'poison', dotPctOfDamage: 1 } }
     ] });
   const fresh = createMockPlayer('WaveClock', 'sorceress');
-  usePlayerStore.getState().setPlayer({ ...fresh, comboOrder: ['fixture.wave-finisher'] });
+  usePlayerStore.getState().setPlayer({ ...fresh, comboOrder: ['fixture.wave-finisher'],
+    ...(withRecovery ? { coreStats: { ...fresh.coreStats, energy: 20 },
+      skillLevels: { 'skills-sorceress-warmth': 1 } } : {}) });
   equipWaveCap();
   const equipped = usePlayerStore.getState().player;
   if (!equipped) throw new Error('Missing equipped clock fixture');
   usePlayerStore.getState().setPlayer({ ...equipped, derivedStats: {
-    ...equipped.derivedStats, life: 1_000_000, mana: 102
+    ...equipped.derivedStats, life: 1_000_000, mana: withRecovery ? 0 : 102
   } });
   useMapStore.getState().setCurrentLocation(1, AREA);
   expect(startSubAreaRun({ runSeed: 7, challengeOrdinal: 0 })?.totalWaves).toBeGreaterThan(1);
@@ -88,6 +90,117 @@ function drain(): void {
 beforeEach(() => {
   reset();
   vi.spyOn(Date, 'now').mockReturnValue(1792454400000);
+});
+
+describe('production continuous-mana carry between recorded waves', () => {
+  function firstRecoveryWave() {
+    start(true);
+    const first = useCombatStore.getState();
+    const input = first.playerTeam[0];
+    const final = first.outcome?.finalPlayerTeam[0];
+    if (!input || !final) throw new Error('Missing genuine recovery wave');
+    expect(input.manaRegenPerSecond).toBeCloseTo(4.16, 12); // Controlled E20, actual learned Warmth1.
+    expect(input.stats.manaMax).toBe(80); // 50 + 20 × 1.5 at level1.
+    expect(input.mana).toBe(0);
+    expect(input.manaRegenCarry).toBe(0);
+    expect(first.recordedEvents.at(-1)?.simClockMs).toBe(4000);
+    expect(first.recordedEvents.filter(e => e.kind === 'orb' && e.orb.kind === 'mp')).toHaveLength(1);
+    return { first, final };
+  }
+
+  it('carries an actually earned fraction through start → drain → advance and adds it only once next wave', () => {
+    const { final } = firstRecoveryWave();
+    expect.soft(final.manaRegenCarry).toBeCloseTo(0.64, 12);
+    expect.soft(final.mana).toBe(20); // 16 recovered + one actual floor(80 × .05) = 4-MP orb.
+    drain();
+    expect(advanceWaveOrFinish()).toBe('next-wave');
+    const second = useCombatStore.getState();
+    expect(second.recordedEvents.at(-1)?.simClockMs).toBe(6000);
+    expect(second.playerTeam[0]?.stats.manaMax).toBe(84); // Genuine level2 refresh.
+    expect(second.recordedEvents.filter(e => e.kind === 'orb' && e.orb.kind === 'mp')).toHaveLength(9);
+    expect.soft(second.playerTeam[0]?.mana).toBe(final.mana);
+    expect.soft(second.playerTeam[0]?.manaRegenCarry).toBeCloseTo(0.64, 12);
+    expect.soft(second.outcome?.finalPlayerTeam[0]?.manaRegenCarry).toBeCloseTo(0.6, 12);
+    expect.soft(second.outcome?.finalPlayerTeam[0]?.mana).toBe(81); // 20 + 25 recovered + nine 4-MP orbs; below84 cap.
+    expect(second.recordedEvents.some(e => e.kind === 'mana' && e.reason === 'regeneration')).toBe(true);
+  });
+
+  it('plays actual recovered MP before the end event can snap teams to their final state', () => {
+    const { first } = firstRecoveryWave();
+    const outcome = structuredClone(first.outcome);
+    const endIndex = first.recordedEvents.findIndex(e => e.kind === 'end');
+    expect(endIndex).toBeGreaterThan(0);
+    for (let i = 0; i < endIndex; i++) useCombatStore.getState().advanceEvent();
+    const beforeEnd = useCombatStore.getState();
+    expect(beforeEnd.eventCursor).toBe(endIndex);
+    expect(beforeEnd.playbackComplete).toBe(false);
+    expect.soft(beforeEnd.playerTeam[0]?.mana).toBe(20);
+    expect.soft(first.recordedEvents.some(e => e.kind === 'mana' && e.reason === 'regeneration')).toBe(true);
+    expect(beforeEnd.outcome).toEqual(outcome);
+  });
+
+  it('replays original wave input/carry after completed playback without repeated MP or rewards', () => {
+    firstRecoveryWave();
+    drain();
+    expect(advanceWaveOrFinish()).toBe('next-wave');
+    const second = useCombatStore.getState();
+    const before = structuredClone({ team: second.playerTeam, events: second.recordedEvents,
+      outcome: second.outcome, rewards: second.runRewards });
+    expect.soft(second.playerTeam[0]?.manaRegenCarry).toBeCloseTo(0.64, 12);
+    for (let i = 0; i < 2; i++) {
+      drain();
+      expect.soft(useCombatStore.getState().playerTeam[0]?.mana)
+        .toBe(second.outcome?.finalPlayerTeam[0]?.mana);
+      refreshActivePlayerCombatConfig({ replayCurrentWave: true });
+      const replay = useCombatStore.getState();
+      expect({ team: replay.playerTeam, events: replay.recordedEvents,
+        outcome: replay.outcome, rewards: replay.runRewards }).toEqual(before);
+    }
+  });
+
+  it('does not grant pause, UI-delay, or wall-clock time between genuine waves', () => {
+    const { first, final } = firstRecoveryWave();
+    const recording = structuredClone(first.recordedEvents);
+    useCombatStore.getState().pausePlayback();
+    vi.mocked(Date.now).mockReturnValue(1792454400000 + 3_600_000);
+    useCombatStore.getState().advanceEvent();
+    expect(useCombatStore.getState().eventCursor).toBe(0);
+    expect(useCombatStore.getState().playerTeam[0]?.mana).toBe(0);
+    expect(advanceWaveOrFinish()).toBe('idle');
+    expect(useCombatStore.getState().recordedEvents).toEqual(recording);
+    useCombatStore.getState().resumePlayback();
+    drain();
+    expect(advanceWaveOrFinish()).toBe('next-wave');
+    expect.soft(useCombatStore.getState().playerTeam[0]?.mana).toBe(final.mana);
+    expect.soft(useCombatStore.getState().playerTeam[0]?.manaRegenCarry).toBeCloseTo(0.64, 12);
+  });
+
+  it('starts a new run with zero carry instead of importing completed recovery twice', () => {
+    const { final } = firstRecoveryWave();
+    expect.soft(final.manaRegenCarry).toBeCloseTo(0.64, 12);
+    drain();
+    abortSubAreaRun();
+    expect(startSubAreaRun({ runSeed: 7, challengeOrdinal: 0 })).not.toBeNull();
+    const fresh = useCombatStore.getState().playerTeam[0];
+    expect(fresh?.manaRegenCarry).toBe(0);
+    expect(fresh?.manaRegenCompensation).toBe(0);
+  });
+
+  it('uses fresh next-wave allocation while preserving the fraction from the frozen previous recording', () => {
+    const { first } = firstRecoveryWave();
+    const before = structuredClone({ team: first.playerTeam, events: first.recordedEvents, outcome: first.outcome });
+    const player = usePlayerStore.getState().player;
+    if (!player) throw new Error('Missing real player');
+    usePlayerStore.getState().setPlayer({ ...player, skillLevels: {} });
+    expect({ team: useCombatStore.getState().playerTeam, events: useCombatStore.getState().recordedEvents,
+      outcome: useCombatStore.getState().outcome }).toEqual(before);
+    drain();
+    expect(advanceWaveOrFinish()).toBe('next-wave');
+    const second = useCombatStore.getState();
+    expect(second.playerTeam[0]?.manaRegenPerSecond).toBe(4);
+    expect.soft(second.playerTeam[0]?.manaRegenCarry).toBeCloseTo(0.64, 12);
+    expect.soft(second.outcome?.finalPlayerTeam[0]?.manaRegenCarry).toBeCloseTo(0.64, 12);
+  });
 });
 
 afterEach(() => {
