@@ -36,6 +36,9 @@ import { createRng, hashSeed } from '@/engine/rng';
 import { getIdleEliteMisses, resetIdleEliteMisses, setIdleEliteMisses } from './idleElitePity';
 import { resolveSummonDisplayName } from './summonDisplayName';
 import { loadMercPool } from '@/data/loaders/mercs';
+import { aggregateEquipmentMods, applyEquipmentCoreMods, equipmentModsToDerivedModifiers } from '@/engine/progression/equipment-mods';
+import { deriveStats, effectiveStatValue } from '@/engine/progression/stats';
+import { composeHeroRecovery } from '@/engine/progression/warmth';
 
 const CHALLENGE_ORDINAL_PERIOD = 360360;
 let manualChallengeOrdinal = 0;
@@ -49,6 +52,15 @@ let manualChallengeOrdinal = 0;
  */
 export function playerToCombatUnit(player: Player): CombatUnit {
   const equippedWeapon = resolveEquippedWeapon(player.equipment);
+  const mods = aggregateEquipmentMods(useInventoryStore.getState().equipped);
+  const core = applyEquipmentCoreMods(player.coreStats, mods);
+  const freshStats = deriveStats(core, player.level, equipmentModsToDerivedModifiers(mods));
+  const stats = { ...freshStats,
+    life: Math.min(player.derivedStats.life, freshStats.lifeMax),
+    mana: Math.min(player.derivedStats.mana, freshStats.manaMax) };
+  const recovery = composeHeroRecovery({ classId: player.class, level: player.level,
+    effectiveEnergy: effectiveStatValue(core.energy),
+    ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
   const formation = useFormationStore.getState();
   return {
     id: player.id,
@@ -56,12 +68,15 @@ export function playerToCombatUnit(player: Player): CombatUnit {
     side: 'player',
     level: player.level,
     tier: 'trash',
-    stats: player.derivedStats,
-    life: player.derivedStats.life,
-    mana: player.derivedStats.mana,
+    stats,
+    life: stats.life,
+    mana: stats.mana,
+    ...recovery,
+    manaRegenCarry: 0,
+    manaRegenCompensation: 0,
     statuses: [],
     cooldowns: {},
-    skillOrder: player.comboOrder,
+    skillOrder: [...player.comboOrder],
     activeBuffIds: [],
     enraged: false,
     summonedAdds: false,
@@ -69,7 +84,7 @@ export function playerToCombatUnit(player: Player): CombatUnit {
     equippedWeapon,
     gridPosition: formation.playerPosition,
     summonGridPositions: formation.summonPositions,
-    ...(player.skillLevels ? { skillLevels: player.skillLevels } : {})
+    skillLevels: { ...player.skillLevels }
   };
 }
 
@@ -328,42 +343,19 @@ export function hasActiveSubAreaRun(): boolean {
 }
 
 /**
- * Push the latest player skill/equipment combat configuration into the active
- * run and, when requested, replay the current wave so it takes effect now.
+ * Replay the current wave with latest configuration when explicitly requested.
+ * Ordinary changes leave the recording frozen and apply on the next playWave.
  */
 export function refreshActivePlayerCombatConfig({
   replayCurrentWave = false
 }: {
   readonly replayCurrentWave?: boolean;
 } = {}): void {
-  if (!activeRun) return;
-  const player = usePlayerStore.getState().player;
-  if (!player) return;
-
-  const fresh = playerToCombatUnit(player);
-  const mergeConfig = (unit: CombatUnit): CombatUnit =>
-    unit.id === fresh.id
-      ? {
-          ...unit,
-          skillOrder: fresh.skillOrder,
-          ...(fresh.skillLevels ? { skillLevels: fresh.skillLevels } : {}),
-          ...(fresh.equippedWeapon ? { equippedWeapon: fresh.equippedWeapon } : {}),
-          ...(fresh.summonGridPositions ? { summonGridPositions: fresh.summonGridPositions } : {})
-        }
-      : unit;
-
-  activeRun.playerUnit = mergeConfig(activeRun.playerUnit);
-  activeRun.carryPlayerTeam = activeRun.carryPlayerTeam.map(mergeConfig);
-
+  if (!activeRun || !replayCurrentWave) return;
   const combat = useCombatStore.getState();
-  if (replayCurrentWave && combat.inCombat) {
+  if (combat.inCombat) {
     playWave(activeRun.waveIdx);
-    return;
   }
-
-  useCombatStore.setState((state) => ({
-    playerTeam: state.playerTeam.map(mergeConfig)
-  }));
 }
 
 /** Reset transient online-idle elite pity when the player stops idle farming. */
@@ -584,7 +576,25 @@ function playWave(waveIdx: number): void {
 
   const waveSeed = (activeRun.seed ^ ((waveIdx + 1) * 0x9e3779b1)) >>> 0;
   const enemies = buildEnemiesForWave(wave, waveSeed);
-  const playerTeam = activeRun.carryPlayerTeam;
+  // Keep the original/rebased wave-input baseline intact. Repeated replay must
+  // never inherit completed playback resources or a previously clamped replay.
+  const currentPlayer = usePlayerStore.getState().player;
+  const fresh = currentPlayer?.id === activeRun.playerUnit.id
+    ? playerToCombatUnit(currentPlayer) : null;
+  const playerTeam = activeRun.carryPlayerTeam.map(unit => {
+    if (!fresh || unit.id !== fresh.id) return unit;
+    const mana = Math.min(unit.mana, fresh.stats.manaMax);
+    const capped = mana >= fresh.stats.manaMax;
+    return { ...unit, level: fresh.level, stats: fresh.stats,
+      life: Math.min(unit.life, fresh.stats.lifeMax), mana,
+      manaRegenPerSecond: fresh.manaRegenPerSecond ?? 0,
+      increasedDamagePct: fresh.increasedDamagePct ?? { fire: 0 },
+      manaRegenCarry: capped ? 0 : unit.manaRegenCarry ?? 0,
+      manaRegenCompensation: capped ? 0 : unit.manaRegenCompensation ?? 0,
+      skillOrder: fresh.skillOrder, skillLevels: fresh.skillLevels ?? {},
+      equippedWeapon: fresh.equippedWeapon ?? {},
+      summonGridPositions: fresh.summonGridPositions ?? [] };
+  });
 
   const { events, result } = runBattleRecorded({
     seed: waveSeed,

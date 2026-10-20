@@ -4,6 +4,7 @@ import { loadDefaultSkills, registerSkill, resetRegistry } from '@/engine/skills
 import * as combatEngine from '@/engine/combat/combat';
 import { applyStatus } from '@/engine/combat/status';
 import { createRng } from '@/engine/rng';
+import type { Item } from '@/engine/types/items';
 import {
   abortSubAreaRun, advanceWaveOrFinish, hasActiveSubAreaRun,
   refreshActivePlayerCombatConfig, startSubAreaRun
@@ -24,6 +25,19 @@ function reset(): void {
   for (const store of stores) store.getState().reset();
 }
 
+function equipWaveCap(attackSpeedBonus = -63): void {
+  // Imported gear preserves the old controlled timing/stats through actual equip.
+  const cap: Item = { id: `fixture-wave-cap-${String(attackSpeedBonus)}`,
+    baseId: 'items/base/helm-cap', rarity: 'rare', level: 1, identified: true,
+    equipped: false, affixes: [{ affixId: 'fixture-wave-clock', values: new Map([
+      ['statMods.life', 999_880], ['statMods.attack', -21], ['statMods.defense', -27],
+      ['statMods.attackSpeed', attackSpeedBonus], ['statMods.physDodge', -0.1],
+      ['statMods.magicDodge', -0.05]
+    ]) }] };
+  useInventoryStore.getState().addItem(cap);
+  expect(useInventoryStore.getState().equipItem(cap)).toEqual({ ok: true });
+}
+
 function start(): void {
   // Real production plan, spawn, targeting, damage, status and playback paths;
   // only skill definitions and hero stats are controlled integration fixtures.
@@ -38,9 +52,13 @@ function start(): void {
         applyStatus: { id: 'poison', dotPctOfDamage: 1 } }
     ] });
   const fresh = createMockPlayer('WaveClock', 'sorceress');
-  usePlayerStore.getState().setPlayer({ ...fresh, comboOrder: ['fixture.wave-finisher'],
-    derivedStats: { ...fresh.derivedStats, life: 1_000_000, lifeMax: 1_000_000,
-      attack: 1, defense: 0, attackSpeed: 62, physDodge: 0, magicDodge: 0 } });
+  usePlayerStore.getState().setPlayer({ ...fresh, comboOrder: ['fixture.wave-finisher'] });
+  equipWaveCap();
+  const equipped = usePlayerStore.getState().player;
+  if (!equipped) throw new Error('Missing equipped clock fixture');
+  usePlayerStore.getState().setPlayer({ ...equipped, derivedStats: {
+    ...equipped.derivedStats, life: 1_000_000, mana: 102
+  } });
   useMapStore.getState().setCurrentLocation(1, AREA);
   expect(startSubAreaRun({ runSeed: 7, challengeOrdinal: 0 })?.totalWaves).toBeGreaterThan(1);
   expect(useCombatStore.getState().outcome?.winner).toBe('player');
@@ -84,7 +102,11 @@ describe('production cross-wave status clock', () => {
     const { hero, poison, elapsed, second } = next();
     expect(elapsed).toBeGreaterThan(0);
     expect(poison.appliedAtMs).toBeGreaterThan(0);
-    expect(second.playerTeam[0]).toEqual({ ...hero, statuses: hero.statuses.map(s => ({
+    // The real160XP award levels the hero to2. Config refresh changes stats,
+    // while exact actual resource/status/buff/cooldown carry remains required.
+    expect(second.playerTeam[0]).toEqual({ ...hero, level: 2,
+      stats: { ...hero.stats, lifeMax: 1_000_008, manaMax: 106, attack: 3, defense: 3 },
+      statuses: hero.statuses.map(s => ({
       ...s,
       ...(s.appliedAtMs === undefined ? {} : { appliedAtMs: s.appliedAtMs - elapsed }),
       ...(s.expiresAtMs === undefined ? {} : { expiresAtMs: s.expiresAtMs - elapsed })
@@ -172,7 +194,8 @@ describe('production cross-wave status clock', () => {
     if (end?.kind !== 'end' || !outcome || !hero) throw new Error('Missing first-wave outcome');
     drain();
     // Controlled completed-outcome boundary supplements the genuine poison cases.
-    const controlled = applyStatus({ ...hero, stats: { ...hero.stats, attackSpeed: 263 } },
+    equipWaveCap(138); // Authoritative AS125+138=263 reaches the400ms period floor.
+    const controlled = applyStatus(hero,
       { id: 'freeze', sourceId: 'fixture', simClockMs: end.simClockMs, durationMs: 500 }, createRng(7));
     useCombatStore.setState({ outcome: { ...outcome, finalPlayerTeam: [controlled] } });
     expect(advanceWaveOrFinish()).toBe('next-wave');

@@ -527,7 +527,7 @@ describe('startSimpleBattle — fielded merc (Bug #2)', () => {
 describe('refreshActivePlayerCombatConfig', () => {
   beforeEach(resetStores);
 
-  it('pushes changed combo order into the active combat player unit without a reload', () => {
+  it('freezes the recorded team until an explicit current-wave combo replay', () => {
     const player = {
       ...boostedSorceress(),
       comboOrder: ['sorceress.ice_bolt'],
@@ -541,8 +541,11 @@ describe('refreshActivePlayerCombatConfig', () => {
     expect(useCombatStore.getState().playerTeam[0]?.skillOrder).toEqual(['sorceress.ice_bolt']);
 
     usePlayerStore.getState().setComboOrder(['sorceress.fire_ball']);
+    const before = useCombatStore.getState();
     refreshActivePlayerCombatConfig();
-
+    expect(useCombatStore.getState()).toBe(before);
+    expect(useCombatStore.getState().playerTeam[0]?.skillOrder).toEqual(['sorceress.ice_bolt']);
+    refreshActivePlayerCombatConfig({ replayCurrentWave: true });
     expect(useCombatStore.getState().playerTeam[0]?.skillOrder).toEqual(['sorceress.fire_ball']);
   });
 });
