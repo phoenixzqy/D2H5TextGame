@@ -1,0 +1,223 @@
+{
+  "task": "P02b05a",
+  "inputHead": "460c877953c27f017dea7dc4bf523ccec3020e4d",
+  "scope": "three documentation files only; no new runtime/test/gameplay; later executable freeze/RED remains required",
+  "verification": {
+    "task": "P02b05a",
+    "inputHead": "460c877953c27f017dea7dc4bf523ccec3020e4d",
+    "files": {
+      "docs/plans/decisions/D07-D11-first-act-route-v1.md": "3daf0e70f0f1beb9b0d624a621f09754cba39cebf3509a3c235a44b29aa08980",
+      "docs/plans/decisions/D07-active-mode-measurement-v1.md": "7a15af0f02a89aee4da9924d25419e4f2036e27ad62001900f571035ba81be21",
+      "docs/design/maps-spec.md": "2358f641f11262f22a1687c2607210270674fa784495a941625e205cfcf634fa"
+    },
+    "localLinks": [
+      [
+        "docs/plans/decisions/D07-D11-first-act-route-v1.md",
+        "../../design/maps-spec.md#12-map-travel--unlock"
+      ],
+      [
+        "docs/plans/decisions/D07-D11-first-act-route-v1.md",
+        "D11-quest-talk-v1.md"
+      ],
+      [
+        "docs/plans/decisions/D07-D11-first-act-route-v1.md",
+        "D11-quest-claim-safety-v1.md"
+      ],
+      [
+        "docs/plans/decisions/D07-D11-first-act-route-v1.md",
+        "D07-active-mode-measurement-v1.md"
+      ],
+      [
+        "docs/plans/decisions/D07-active-mode-measurement-v1.md",
+        "D07-D11-first-act-route-v1.md"
+      ],
+      [
+        "docs/design/maps-spec.md",
+        "../plans/decisions/D07-D11-first-act-route-v1.md"
+      ]
+    ],
+    "runtimeTestsScriptsPackageConfigChanged": false,
+    "gameplayRuns": 0,
+    "checks": "links/source paths/scopedstatus/gitdiffcheck pass; no new tests/build; P02b04U/T/L historical only"
+  },
+  "commands": [
+    {
+      "command": [
+        "python",
+        "verify-docs.py"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-mode-contract-zagjxkat",
+      "started": "2026-10-20T21:03:47.767533+00:00",
+      "seconds": 0.08,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "python",
+        "verify-docs.py"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-mode-contract-zagjxkat",
+      "started": "2026-10-20T21:03:27.590782+00:00",
+      "seconds": 0.045,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "python",
+        "verify-docs.py"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-mode-contract-zagjxkat",
+      "started": "2026-10-20T21:03:15.832998+00:00",
+      "seconds": 0.037,
+      "exitCode": 1
+    }
+  ],
+  "reviews": {
+    "designTechnicalPlan": "ready;GDAPPROVE/TDAPPROVE",
+    "concreteInitial": "GDAPPROVE/TDCONCERNS property/lifecycleprecision, bothcorrectedbeforecommit",
+    "final": "GDAPPROVE/TDAPPROVE/producerAPPROVE/QAAPPROVE; allreleased"
+  },
+  "archive": {
+    "file": "diagnostics.tar.gz",
+    "bytes": 19023,
+    "sha256": "fb8ec49c47178aa1c2bca15eb80f7837720a6811b95eef7b521517a72475b407",
+    "files": [
+      {
+        "path": "concrete-review-correction.txt",
+        "bytes": 394,
+        "sha256": "63c8e83d6a457973b6585200f0690ba723d8d7e9a7df0328cc2b10157d8d7ed1"
+      },
+      {
+        "path": "design-technical-final-review.txt",
+        "bytes": 325,
+        "sha256": "7272e8007a02faf31431fe0eef28454ad824427f6e552539fb720d6795260842"
+      },
+      {
+        "path": "document-verification-final-02.log",
+        "bytes": 1172,
+        "sha256": "234da3348d0f4541ba9186c21d2a6dc7002d574227464bbf3e405ed37254aa78"
+      },
+      {
+        "path": "document-verification-final-02.meta.json",
+        "bytes": 237,
+        "sha256": "3e2e124529036d70d79a96a2c2cb07a190cf7a5a5d5cac4f2291c498afafccdc"
+      },
+      {
+        "path": "document-verification-final.log",
+        "bytes": 586,
+        "sha256": "713e57a94a0b7abf65bfc6a7ab5a7ae526f4ed802589022f733823b86017c083"
+      },
+      {
+        "path": "document-verification-final.meta.json",
+        "bytes": 238,
+        "sha256": "9815d7759e58ed8d5b9a7b526773491483be9430961205b59dcbb2dd94eed0a7"
+      },
+      {
+        "path": "document-verification.json",
+        "bytes": 1340,
+        "sha256": "7ee41eaa4fb016d441854c2fec3fac5ab2d5c1bc43533390f9140043dbd69750"
+      },
+      {
+        "path": "document-verification.log",
+        "bytes": 457,
+        "sha256": "8605140b1851db7d1830b078969c66b011b186b4626e855075254684ed4c64c0"
+      },
+      {
+        "path": "document-verification.meta.json",
+        "bytes": 238,
+        "sha256": "7d6c86e40c8971e6b23e212c860a71ec17eb12c714f088c7da42554423e7ff6a"
+      },
+      {
+        "path": "documents/docs/design/maps-spec.md",
+        "bytes": 13707,
+        "sha256": "2358f641f11262f22a1687c2607210270674fa784495a941625e205cfcf634fa"
+      },
+      {
+        "path": "documents/docs/plans/decisions/D07-D11-first-act-route-v1.md",
+        "bytes": 5273,
+        "sha256": "3daf0e70f0f1beb9b0d624a621f09754cba39cebf3509a3c235a44b29aa08980"
+      },
+      {
+        "path": "documents/docs/plans/decisions/D07-active-mode-measurement-v1.md",
+        "bytes": 7368,
+        "sha256": "7a15af0f02a89aee4da9924d25419e4f2036e27ad62001900f571035ba81be21"
+      },
+      {
+        "path": "ownership.json",
+        "bytes": 276,
+        "sha256": "68fd73b839fbdff3302bce48679ff08dd8f1d361e8231dac1f9096c8eff1b94a"
+      },
+      {
+        "path": "package-docs.py",
+        "bytes": 2363,
+        "sha256": "4d31e7e50e3e88601b4ae3857d2c1b87b5a56edd808bf1dcd5e9a5028fedaf9c"
+      },
+      {
+        "path": "plan-review.txt",
+        "bytes": 482,
+        "sha256": "847dfaf68eb51c8e86546350ac5aa16fecd7b73a362f88118a15e2b1d768e03f"
+      },
+      {
+        "path": "plan.md",
+        "bytes": 4219,
+        "sha256": "ce3862ad1750367c42748c4ca2528257e37ea5b56e63080992199a5ae44203f1"
+      },
+      {
+        "path": "prior-checkpoint-cleanup.json",
+        "bytes": 861,
+        "sha256": "470516658502342077ddea82c362a2547e9643ff0fde996ebfd7659e22649abe"
+      },
+      {
+        "path": "producer-final-review.txt",
+        "bytes": 578,
+        "sha256": "11ac1ffec0cec5971d6cd2c014d22a33b7b10ded76375b9a380c3dbad8b7a7f1"
+      },
+      {
+        "path": "qa-final-review.txt",
+        "bytes": 592,
+        "sha256": "882dfcb73bdb4d83172ed1a1aa54e0bff63f903f263bdf24a52bcd105b8b3be7"
+      },
+      {
+        "path": "runner.py",
+        "bytes": 584,
+        "sha256": "dd43228274b9a660e28898b9ff196cc394769664fe06502a9d056ef806b5aec9"
+      },
+      {
+        "path": "verification-correction.txt",
+        "bytes": 725,
+        "sha256": "390a325608348d566279f58ca5e131d2d09a3242109702b093584adc2e0c6f4e"
+      },
+      {
+        "path": "verify-docs-glob.py",
+        "bytes": 1638,
+        "sha256": "623fc28a189c175cf51a0ae7cb68a7a64a6ceab3781222b4ca67b414abfe1605"
+      },
+      {
+        "path": "verify-docs-original.py",
+        "bytes": 1577,
+        "sha256": "ae3849dbeae7fba38607290bfc88a21489ea54f5da9f2de11de6dd2eafe7f72b"
+      },
+      {
+        "path": "verify-docs.py",
+        "bytes": 1616,
+        "sha256": "d249acce6b2058ff11ddba93b760804e6e2795e1ce290798e4954ce5f2f7538d"
+      }
+    ]
+  },
+  "cleanup": {
+    "owner": "root",
+    "state": "pendingpacketreview; closingledgerrecordresult",
+    "paths": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-mode-contract-zagjxkat"
+    ],
+    "noNewBuildOrCache": true,
+    "installedTools": "preserved",
+    "overallWorktree": "retainedforactivefullv1"
+  },
+  "limitations": [
+    "HistoricalP02b04U/T/L notnewruntimevalidation",
+    "Documentcheck originalfailedonpreexistingglob thenabsentschemahandofftarget; narrowedsourcepathcheck to newdocs, all3links/scopedstatusstillverified; noauthoringtextorassertionchanged",
+    "No earnedclear/UIidle/Den/Andariel/campaign/pacing/C/G/fullv1acceptance",
+    "No newcode/test/run or executableRED; nextcardmustfreezeownbounds/tests"
+  ]
+}

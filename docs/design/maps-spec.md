@@ -219,6 +219,17 @@ Player level cap stays at 90 (per `progression-curve.md`). Hell-difficulty level
 
 ## 12. Map Travel & Unlock
 
+**Scoped first-act decision (2026-10-20):**
+[D07/D11 v1a](../plans/decisions/D07-D11-first-act-route-v1.md) supersedes the
+sequential subarea rule below for Act I: all authored areas in the unlocked
+first act are accessible. Den retains its quest/skill-point role; its legacy
+Cold Plains unlock metadata adds no access transition. The measured Act II
+gate remains completed Andariel quest OR canonical Catacombs clear, without a
+reward-claim requirement. Later-act detail and full D07/D11 acceptance remain
+open. This resolves a documentation conflict without a runtime/data change.
+Farm Here still requires an actual full-area clear; partial W1/flee is not
+eligible. A restored-state diagnostic does not prove earned idle access.
+
 ```
 - Town has button list of all unlocked sub-areas (filterable by Act).
 - Sub-area unlock requires:
