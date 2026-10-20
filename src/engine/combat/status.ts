@@ -68,9 +68,9 @@ export interface ApplyStatusInput {
   /** Override default duration in turns (legacy callers). */
   readonly duration?: number;
   /**
-   * Override default duration in **milliseconds** (sim-time callers).
-   * If set together with {@link simClockMs}, the engine sets
-   * `expiresAtMs = simClockMs + durationMs`.
+   * Override the base duration in **milliseconds** (sim-time callers), before
+   * any configured boss multiplier. Takes precedence over seconds derived
+   * from {@link duration} or the default when {@link simClockMs} is supplied.
    */
   readonly durationMs?: number;
   /**
@@ -101,7 +101,9 @@ function lookupConfig(id: string, override?: StatusConfig): StatusConfig {
  * Rules:
  *  - Stackable (maxStacks > 1): increment stacks (capped); duration = max(remaining, dur).
  *  - Non-stackable: refresh duration to the new value.
- *  - Boss tier: durations of stun/freeze halved (rounded down, min 1).
+ *  - Boss tiers: configured duration multiplier applies in milliseconds for
+ *    timed callers (positive results floor to at least 1ms); legacy remaining
+ *    retains whole-turn rounding with minimum 1.
  *  - Paralyze: if there's a paralyze applied in the last 5 turns (tracked via a residual
  *    `paralyze-cooldown` status), 50% chance to fail.
  */
@@ -113,10 +115,17 @@ export function applyStatus(
   const cfg = lookupConfig(input.id, input.config);
   const baseDur = input.duration ?? cfg.duration;
   const isBoss = unit.tier === 'boss' || unit.tier === 'chapter-boss';
+  const bossDurationMult = isBoss ? cfg.bossDurationMult : undefined;
   const dur =
-    isBoss && cfg.bossDurationMult !== undefined
-      ? Math.max(1, Math.floor(baseDur * cfg.bossDurationMult))
+    bossDurationMult !== undefined
+      ? Math.max(1, Math.floor(baseDur * bossDurationMult))
       : baseDur;
+  // Timed expiry must not inherit legacy whole-turn rounding.
+  const baseDurationMs = input.durationMs ?? baseDur * 1000;
+  const scaledDurationMs = bossDurationMult === undefined
+    ? baseDurationMs : baseDurationMs * bossDurationMult;
+  const timedDurationMs = bossDurationMult !== undefined && scaledDurationMs > 0
+    ? Math.max(1, Math.floor(scaledDurationMs)) : scaledDurationMs;
 
   // Paralyze diminishing returns
   if (input.id === 'paralyze') {
@@ -130,7 +139,7 @@ export function applyStatus(
   const idx = unit.statuses.findIndex((s) => s.id === input.id);
   const expiresAtMs =
     input.simClockMs !== undefined
-      ? input.simClockMs + (input.durationMs ?? dur * 1000)
+      ? input.simClockMs + timedDurationMs
       : undefined;
   let next: ActiveStatus[];
   const existing = unit.statuses[idx];

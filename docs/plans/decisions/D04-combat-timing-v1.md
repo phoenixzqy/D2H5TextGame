@@ -124,3 +124,41 @@ rebasing (P06c03), seeded ties, scaling/mitigation/aliases/source metadata. Curr
 wave transfer preserves absolute statuses while the next battle resets its clock;
 pending future starts must be supported rather than rejected. This child does
 not claim cross-wave temporal acceptance or complete D04/P06 acceptance.
+
+## D04 v1c — P06c02 boss status duration (accepted scoped child)
+
+Status: accepted control and four-file implementation plan, 2026-10-20; root
+and producer reviewed before implementation. Full D04/P06 remains partial.
+
+With a simulation clock, resolve the unrounded duration in milliseconds as
+`durationMs ?? ((duration ?? config.duration) * 1000)`. For boss and chapter-boss
+tiers only, apply the configured `bossDurationMult` exactly once to that value.
+Quantize a strictly positive scaled result with `max(1, floor(scaledMs))`;
+preserve zero/nonpositive results as immediately inactive fresh applications.
+This keeps positive sub-millisecond control for one millisecond without reviving
+zero/negative duration. There is no new malformed-input validation. Defaults
+remain freeze/stun ×0.5; unrelated statuses gain no new multiplier. Nonboss
+durations and statuses without a multiplier retain fractional milliseconds.
+
+Expiry is application clock plus that millisecond duration: default boss control
+at 1700 expires at 2200; three seconds becomes 1500ms; explicit 1501ms wins over
+a seconds override and becomes 750ms. Activity remains half-open: an action
+inside the interval is controlled, an action at exact expiry is eligible.
+Both damage-on-hit status application and debuff effects use this same rule.
+
+Keep legacy `remaining` rounding and untimed helper lifecycle unchanged. P06c01
+active refresh still retains original start/source/potency, preserves capped
+stacking behavior and keeps maximum absolute finite expiry; existing indefinite
+expiry stays indefinite. A shorter,
+zero or negative new duration cannot shorten active control. Future/expired
+same-ID records are replaced fresh with the scaled duration. Never multiply a
+previous absolute expiry or apply the multiplier a second time on refresh.
+
+Implementation owns status.ts, boss-duration.test.ts, this control and BUG-014.
+Test/reproduction evidence precedes the runtime patch. Verify focused and engine
+regressions, full units, typecheck, lint and build, then independent root and
+producer source/contract review before commit. No combat scheduler, cadence,
+ties, RNG, aliases, content tuning, save, mitigation or scaling changes belong
+to this child. Cross-wave absolute timestamps still require P06c03; seeded ties
+and broader D04 dependencies remain separate. This scoped acceptance does not
+certify campaign balance or complete D04/P06.
