@@ -72,11 +72,9 @@ for (const locale of ['en', 'zh-CN'] as const) {
     expect((await exportBackup(page)).inventory).toEqual(imported.inventory);
     await page.reload();
     await expect(page.getByTestId('settings-screen')).toBeVisible();
-    // Startup currently renders zh-CN despite a saved English preference.
-    // Reapply through the normal control so this inventory proof uses its named locale.
-    await page
-      .getByRole('button', { name: locale === 'en' ? 'English' : '简体中文', exact: true })
-      .click();
+    await expect(
+      page.getByRole('button', { name: locale === 'en' ? 'Save' : '保存', exact: true })
+    ).toBeVisible();
     expect((await exportBackup(page)).inventory).toEqual(imported.inventory);
 
     await navTo(page, 'inventory');

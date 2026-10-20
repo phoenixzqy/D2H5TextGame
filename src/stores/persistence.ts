@@ -12,6 +12,7 @@
  */
 
 import { create } from 'zustand';
+import i18n from '@/i18n';
 import { buildSave, toJsonSafe } from '@/engine/save';
 import { decodeSave } from '@/engine/save/validate';
 import { abortSubAreaRun } from './combatHelpers';
@@ -270,6 +271,8 @@ export async function hydrateFromSave(): Promise<boolean> {
       useHydrationStore.getState().setStatus('ready');
       return false;
     }
+    // Bundled translations must agree with the saved preference before ready.
+    await i18n.changeLanguage(data.meta.settings.locale);
     cancelPendingSave();
     suppressSaves = true;
     try {

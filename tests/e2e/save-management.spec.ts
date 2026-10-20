@@ -59,6 +59,9 @@ for (const locale of ['en', 'zh-CN'] as const) {
     await expect(
       page.getByRole('button', { name: locale === 'en' ? 'English' : '简体中文', exact: true })
     ).toHaveAttribute('aria-pressed', 'true');
+    await expect(
+      page.getByRole('button', { name: locale === 'en' ? 'Save' : '保存', exact: true })
+    ).toBeVisible();
     expect({ ...(await exportViaSettings(page)), timestamp: imported.timestamp }).toEqual(imported);
     await navTo(page, 'town');
     await page.getByTestId('character-hud').click();

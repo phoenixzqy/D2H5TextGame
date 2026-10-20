@@ -7,6 +7,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { CURRENT_SAVE_VERSION, type SaveCurrent } from '@/engine/types/save';
 import type { Mercenary } from '@/engine/types/entities';
 import type { Item } from '@/engine/types/items';
+import i18n from '@/i18n';
 
 const mockSaveStore: { current: SaveCurrent | null } = { current: null };
 const saveSpy = vi.fn((data: SaveCurrent) => {
@@ -178,6 +179,27 @@ describe('persistence', () => {
   });
 
   describe('round-trip via stores', () => {
+    it.each([
+      ['en', 'zh-CN', 'Save'],
+      ['zh-CN', 'en', '保存']
+    ] as const)('restores rendered %s language before hydration is ready', async (locale, initial, label) => {
+      const previous = i18n.language;
+      try {
+        await i18n.changeLanguage(initial);
+        usePlayerStore.getState().setPlayer(fakePlayer());
+        useMetaStore.getState().setLocale(locale);
+        mockSaveStore.current = snapshotStores();
+        resetAllStores();
+        expect(await hydrateFromSave()).toBe(true);
+        expect(useHydrationStore.getState().status).toBe('ready');
+        expect(useMetaStore.getState().settings.locale).toBe(locale);
+        expect(i18n.resolvedLanguage).toBe(locale);
+        expect(i18n.t('settings:saveNow')).toBe(label);
+      } finally {
+        await i18n.changeLanguage(previous);
+      }
+    });
+
     it('save → reset → hydrate restores all slices', async () => {
       // 1. Set up state.
       usePlayerStore.getState().setPlayer(fakePlayer());
