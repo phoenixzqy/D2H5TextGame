@@ -79,7 +79,7 @@ function recording() {
 }
 
 /** Controlled carry boundary; recovery integration itself belongs to stage f. */
-function nextWithCarry(): void {
+function nextWithCarry(exactCarry?: string): void {
   // L4 Energy182 gives335 MP; +30gear→206effective plus34flat→405.
   arrange(182, { level: 4, skillLevels: { [WARMTH]: 1 } });
   equip([['coreStats.energy', 30], ['statMods.life', 56], ['statMods.mana', 34],
@@ -91,7 +91,8 @@ function nextWithCarry(): void {
   if (!outcome) throw new Error('Missing actual winning outcome');
   useCombatStore.setState({ outcome: { ...outcome,
     finalPlayerTeam: outcome.finalPlayerTeam.map(unit => ({ ...unit,
-      life: 190, mana: 400, manaRegenCarry: 0.75, manaRegenCompensation: 0.125 })) } });
+      life: 190, mana: 400, manaRegenCarry: 0.75, manaRegenCompensation: 0.125,
+      ...(exactCarry === undefined ? {} : { manaRegenExactCarry: exactCarry }) })) } });
   expect(advanceWaveOrFinish()).toBe('next-wave');
   expect(player().level).toBe(4);
 }
@@ -217,6 +218,57 @@ describe('frozen recording and automatic next-wave configuration', () => {
 });
 
 describe('original wave-input resources and replay', () => {
+  it('starts a new run with zero exact carry after a run with qualified exact credit', () => {
+    nextWithCarry('0.625');
+    expect(useCombatStore.getState().playerTeam[0]).toHaveProperty('manaRegenExactCarry', '0.625');
+    start();
+    expect(useCombatStore.getState().playerTeam[0]).toMatchObject({
+      manaRegenCarry: 0, manaRegenCompensation: 0, manaRegenExactCarry: '0'
+    });
+  });
+
+  it('clears exact credit on every capped replay and restores only the original uncapped wave input', () => {
+    nextWithCarry('0.625');
+    const before = recording();
+    expect(before.team[0]).toHaveProperty('manaRegenExactCarry', '0.625');
+    expect(useInventoryStore.getState().unequipItem('head')).toEqual({ ok: true });
+    refreshActivePlayerCombatConfig();
+    expect(recording()).toEqual(before);
+    for (let replay = 0; replay < 2; replay++) {
+      refreshActivePlayerCombatConfig({ replayCurrentWave: true });
+      expect.soft(useCombatStore.getState().playerTeam[0]).toMatchObject({
+        mana: 335, manaRegenCarry: 0, manaRegenCompensation: 0, manaRegenExactCarry: '0'
+      });
+    }
+    equip([['coreStats.energy', 30], ['statMods.life', 56], ['statMods.mana', 34],
+      ['statMods.defense', 99_964]], 'fixture-restored-exact-cap');
+    refreshActivePlayerCombatConfig({ replayCurrentWave: true });
+    expect(useCombatStore.getState().playerTeam[0]).toMatchObject({
+      mana: 400, manaRegenCarry: 0.75, manaRegenCompensation: 0.125, manaRegenExactCarry: '0.625'
+    });
+    expect(before.team[0]).toHaveProperty('manaRegenExactCarry', '0.625');
+  });
+
+  it.each([false, true])('preserves qualified exact carry on next wave unless fresh maxima cap resources (%s)', shrink => {
+    nextWithCarry('0.625');
+    drain();
+    const prior = useCombatStore.getState().outcome;
+    if (!prior) throw new Error('Missing real outcome for exact-carry boundary');
+    // Controlled metadata boundary, not evidence that this fraction was earned.
+    useCombatStore.setState({ outcome: { ...prior,
+      finalPlayerTeam: prior.finalPlayerTeam.map(unit => ({ ...unit,
+        mana: 400, manaRegenCarry: 0.75, manaRegenCompensation: 0.125, manaRegenExactCarry: '0.625' })) } });
+    const baseline = structuredClone(useCombatStore.getState().outcome);
+    if (shrink) expect(useInventoryStore.getState().unequipItem('head')).toEqual({ ok: true });
+    expect(advanceWaveOrFinish()).toBe('next-wave');
+    expect(useCombatStore.getState().playerTeam[0]).toMatchObject(shrink ? {
+      mana: 335, manaRegenCarry: 0, manaRegenCompensation: 0, manaRegenExactCarry: '0'
+    } : {
+      mana: 400, manaRegenCarry: 0.75, manaRegenCompensation: 0.125, manaRegenExactCarry: '0.625'
+    });
+    expect(baseline?.finalPlayerTeam[0]).toHaveProperty('manaRegenExactCarry', '0.625');
+  });
+
   it('replays original HP/MP/carry after partial or completed playback without repeated rewards', () => {
     nextWithCarry();
     const initial = recording();

@@ -143,3 +143,51 @@ specifies explicit transient exact decimal state and exact endpoint arithmetic,
 with legacy credit qualification and unchanged death snapshot policy. Producer
 and QA reviewed the representation/normalization. New API tests are authorized
 before further source edits; no runtime acceptance yet.
+
+
+## Exact-carry adapter lifecycle RED
+
+Root's separate two-path adapter child reproduces the new exact-field lifecycle
+contract before source. At root6f6e663, controlled actual next-wave outcomes seed
+exact`0.625` alongside legacy.75/.125; this is metadata boundary evidence, not
+earned recovery. Run `npx vitest run src/stores/warmth-composition.test.ts
+--reporter=verbose`:3failed/14passed/17executed,zero skipped,exit1,3.17s. All13
+pre-existing cases pass. New-run exactzero is absent; both capped replays retain
+stale`0.625`; actual next-wave fresh-max clamp400→335 also retains it. Uncapped
+carry preservation, unchanged no-replay recording and original-input restoration
+controls pass. Raw `/tmp/d2h5-root-warmth-g/adapter-red.log`.
+
+Runtime `src/stores/combatHelpers.ts` is unchanged, SHA256
+`122a3dab19e2b78a4d39f17e82f4358fa2b9164b8e09374e02feb2d5e833b16e`.
+Tests `src/stores/warmth-composition.test.ts` SHA256
+`b3602a8d271eab384b041a051967b0e1425584a4a374d9f5957b2823f23ff5e7`;
+focused ESLint exits0. Root cause: fresh composition and configuration cap reset
+only legacy carry fields. Planned minimal source: initialize exactzero on fresh
+hero composition and clear at cap, retaining original exact input otherwise.
+No source changes before independent RED review. Worker owns engine types and
+helper; root owns only the adapter and its test.
+
+
+## Exact API tests-only checkpoint
+
+Worker exact-API tests patch SHA256
+`f50b60a7d3fdd1b447f56c6ec0dcfbbb7f866275125b08d404c5ffdecc5c01fd`
+adds canonical parser/exponent/2048-bound/generated-long-total, exact endpoint,
+mixed-scale export/reseed, invalid combined credit and actual976+274ms handoff
+controls. Focused129executed:47failed/82passed/zero skipped,exit1,4.03s
+(wall5.487s); helper37F/15P,combat10F/45P,frozen crosswave22P. Seven failures
+specifically lack new Between/export functions; other failures include absent
+exact fields/API shape and must not all be called numeric behavioral regressions.
+Actual numeric RED remains43.68[16,24984]→1091,695+555→8,976+274→8, and invalid
+legacy combined credit producing−1 or1MP instead0. Fractional status boundary
+engine case already passes baseline and is a regression guard, not new RED.
+
+Typecheck exits2 with29 expected missing API/field/argument diagnostics; scoped
+ESLint exits1 with21 cascading missing-type unsafe diagnostics, no suppression.
+Full commands/raw outputs/proof: worker task directory `red-exact-api-*`. Helper
+and combat remain initial provisional source hashes above; types unchanged
+`13d677c3b0751ed9edf94b2bf938f6bc17a7d5555b57831f780e3e3075e4ad41`;
+crosswave remains frozen. Exact helper-test hash
+`ac2340510c3ea3c42a39cab095cf7bb6f8ad434a59a4a867fa28d620f4d80d5a`;
+combat-test hash`f2e8939ae6e71b9c83f3f3e77d5c41121eb02f42c7a0c5d98a06c86b7a518afd`.
+Independent RED review requested; further source correction still pending.
