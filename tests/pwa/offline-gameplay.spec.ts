@@ -55,6 +55,18 @@ async function expectSettings(page: Page, english: boolean): Promise<void> {
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 }
 
+async function expectOfflineArtHelp(page: Page, english: boolean, offline: boolean): Promise<void> {
+  const note = page.getByTestId('offline-art-help');
+  if (offline) {
+    await expect(note).toBeVisible();
+    await expect(note).toHaveText(english
+      ? 'You are offline. Some uncached artwork may be unavailable. Combat and saves remain usable.'
+      : '当前处于离线状态，部分未缓存的美术资源可能无法显示。战斗和存档仍可正常使用。');
+  } else {
+    await expect(note).toHaveCount(0);
+  }
+}
+
 async function currentWave(page: Page): Promise<number> {
   const text = await page.getByTestId('wave-counter').innerText();
   const number = /^\D*(\d+)/.exec(text)?.[1];
@@ -76,6 +88,7 @@ async function reloadOffline(page: Page, expected: SaveCurrent, english: boolean
     expect(response?.ok()).toBe(true);
     expect(response?.fromServiceWorker()).toBe(true);
     await expectSettings(page, english);
+    await expectOfflineArtHelp(page, english, true);
     await expectProduction(page);
     expect(await readStoredSave(page)).toEqual(expected);
     expect(await exportBackup(page)).toEqual(expected);
@@ -107,10 +120,17 @@ for (const locale of ['en', 'zh-CN'] as const) {
     await expectProduction(page);
     // Freeze save/reload time so unrelated timestamp drift cannot mask data loss.
     await page.clock.pauseAt(new Date(Date.now() + 1000));
+    await expectOfflineArtHelp(page, english, false);
     const before = await saveBackup(page, english);
     expect(before.player.name).toBe('Offline hero');
     expect(before.meta.settings.locale).toBe(locale);
+    const documentTimeOrigin = await page.evaluate(() => performance.timeOrigin);
     await context.setOffline(true);
+    await expect.poll(() => page.evaluate(() => navigator.onLine)).toBe(false);
+    await expectOfflineArtHelp(page, english, true);
+    expect(await page.evaluate(() => performance.timeOrigin)).toBe(documentTimeOrigin);
+    expect(await readStoredSave(page)).toEqual(before);
+    expect(await exportBackup(page)).toEqual(before);
     await reloadOffline(page, before, english);
 
     // Town must work offline too; the other four screens are first visited offline.
@@ -142,11 +162,17 @@ for (const locale of ['en', 'zh-CN'] as const) {
     }
     await navTo(page, 'settings');
     await expectSettings(page, english);
+    await expectOfflineArtHelp(page, english, true);
     // Outcome-derived baseline proves persistence; reward math has separate tests.
     const after = await saveBackup(page, english);
     expect(after.player.name).toBe(before.player.name);
     expect(after.meta.settings.locale).toBe(locale);
     await reloadOffline(page, after, english);
+    await context.setOffline(false);
+    await expect.poll(() => page.evaluate(() => navigator.onLine)).toBe(true);
+    await expectOfflineArtHelp(page, english, false);
+    expect(await readStoredSave(page)).toEqual(after);
+    expect(await exportBackup(page)).toEqual(after);
     expect(errors).toEqual([]);
   });
 }

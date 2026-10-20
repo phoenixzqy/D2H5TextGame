@@ -1,7 +1,7 @@
 /**
  * SettingsScreen — locale, stealth mode, audio, save management, BMC, version.
  */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Button, Modal, Panel, ScreenShell } from '@/ui';
@@ -28,6 +28,18 @@ export function SettingsScreen() {
   const toggleStealthMode = useMetaStore((s) => s.toggleStealthMode);
   const toggleSound = useMetaStore((s) => s.toggleSound);
   const toggleMusic = useMetaStore((s) => s.toggleMusic);
+
+  const [offline, setOffline] = useState(() => !navigator.onLine);
+  useEffect(() => {
+    const updateConnectivity = () => { setOffline(!navigator.onLine); };
+    window.addEventListener('online', updateConnectivity);
+    window.addEventListener('offline', updateConnectivity);
+    updateConnectivity();
+    return () => {
+      window.removeEventListener('online', updateConnectivity);
+      window.removeEventListener('offline', updateConnectivity);
+    };
+  }, []);
 
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [importOpen, setImportOpen] = useState(false);
@@ -120,6 +132,13 @@ export function SettingsScreen() {
   return (
     <ScreenShell testId="settings-screen" title={t('settings')} hideNav={!hasCharacter}>
       <div className="max-w-2xl mx-auto space-y-4">
+        {offline && (
+          <Panel>
+            <p role="note" data-testid="offline-art-help" className="text-sm text-d2-white">
+              {t('offlineArtHelp')}
+            </p>
+          </Panel>
+        )}
         {!hasCharacter && (
           <Panel>
             <Button

@@ -1,5 +1,6 @@
 {
   "settings": "Settings",
+  "offlineArtHelp": "You are offline. Some uncached artwork may be unavailable. Combat and saves remain usable.",
   "language": "Language",
   "stealthMode": "Stealth Mode",
   "stealthModeDesc": "Hide icons and colors for workplace discretion",

@@ -1,5 +1,6 @@
 {
   "settings": "设置",
+  "offlineArtHelp": "当前处于离线状态，部分未缓存的美术资源可能无法显示。战斗和存档仍可正常使用。",
   "language": "语言",
   "stealthMode": "摸鱼模式",
   "stealthModeDesc": "隐藏图标和颜色，便于上班时游玩",
