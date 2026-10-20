@@ -494,3 +494,73 @@ agent claimed worktree3 for independent BUG-023 prerequisite: positive XP strips
 equipment stats. Fix the root before actual XP/MF integration; no snapshot-only
 workaround. Reward rounding/MF policy, lifecycle/hidden intervals/PWA and broader
 checkpoint acceptance remain pending.
+
+## Shared bonus UI, XP equipment integrity and lifecycle ownership
+
+Integrated BUG023 `2fdf9e7` (agent `f42fb6e`), P17a04 `2145535` (agent
+`8c2887f`), P17a06 `22e2461`. Root/producer independent final source/test/control
+reviews APPROVE all three. Original main remains untouched; no push/PR/merge/
+deployment. Full v1/C0–C4/G0–G7 remain open.
+
+BUG023 extracts existing equipment stat composition into one private pure helper
+and uses it for recomputeDerived and every positive XP award at the capped target
+level. Authoritative inventory gear is read once at action time; one publication,
+no modifier stacking, source mutation or stale player.equipment authority. Real
+equip→XP RED8fail/5pass1.78s before runtime, GREEN13pass1.68s; repeated/level/
+multilevel/cap/clamps/unequip/noop/entry-order cases. Agent related427pass/1skip
+17.28s, U1208pass/1skip25.91s,T/L/Bpass5.28s at its dependency base. Final combined
+head below includes its13 cases. It is the required root fix before repeated-wave
+XP/MF bonus integration, rather than snapshotting around equipment loss.
+
+P17a04 real mounted UI now reads the common raw-tuple/anchor projection at actual
+render time. Localized banner/chip show current percentage and ceil-minute window,
+no invented original peak. <=30s/short-expiry timer plus visible-return wake never
+publish/reanchor. Old transient helper accrual tests are explicitly superseded by
+real hook/UI/import/timer/StrictMode tests; engine arithmetic tests remain.
+Genuine original RED10/10 then visible extension11/11 preceded runtime. Producer
+found rollback left one-shot duration unchanged and stopped scheduling; actual
+RED1fail/11pass3.60s preceded wake-counter correction, final12pass3.45s. Final
+agent U1227pass/1skip109files37.89s,T/L/forcedlint/Bpass13.27s. Ordinary en/zh×
+desktop/mobile4/4pass24.3s covers import600online seconds→Save/same-clock reload→
+home banner/remount→600seconds→expiry and mounted short replacement. Imported
+fixtures prove wiring, not earned campaign progress. BUG022 retains full evidence.
+
+P17a06 persistence owns one30s interval and visibilitychange hidden/visible+
+pagehide projected checkpoints. stop removes domain/event listeners, interval
+and debounce; already submitted writes may finish. Open hidden/BFCache pages
+remain online and cannot grant fresh bonus. Startup alone resumes away gaps.
+Obsolete App/meta lastClosedAt/markClosed removed after UI integration, without
+stopping cached page-lifetime initialization from App cleanup. No schema/reward
+change. Pagehide IO remains best effort; throttled/terminated callbacks cannot
+guarantee a30s staleness bound. P11 background combat catchup remains open.
+
+BUG024 genuine initial lifecycle RED12fail/4pass2.89s. First source15pass/1fail
+revealed pre-hasSave startup suppression gap; fixed16pass2.78s. Removing only
+queued-replacement flush guard makes real rawHydrate→queuedImport callback case
+fail2writes vs1; exact source restored. Related four persistence suites67pass
+9.59s under concurrent checks. Final combined source through22e2461:
+U1256pass/1existing merc-XP skip111files29.56s; T/L/Bpass, build6.67s. Full15s
+and surgical5s loop budgets remain unmet; existing React act/router, large-chunk,
+stale Browserslist and optional2.57MB art-manifest precache warnings remain.
+
+Final ordinary save-management+bonus browser matrix14/14pass40.2s on4322,
+en/zh-CN at1280×800/360×640. Preserves complete export/import/reload equality,
+malformed-input state, quota/export recovery and all tested viewport controls.
+No runtime source changed after combined checks. These dev-server checks do not
+establish true-close/away, production network-disabled/PWA, earned progression,
+performance or fullP17 acceptance.
+
+All agent task outputs/claims released; root remains claimed worktree2. Verified
+absent after all consumers finished: agent worktree3/4 dist/.vite, exact worker
+browser output paths in BUG022, root dist/node_modules/.vite and
+`/tmp/d2h5-p17a06-browser`. No task processes/cleanup failures/disposable artifacts
+remain. Source/history/installed shared browser/tool caches retained.
+
+Next: design agent owns approved six-file P17a05 actual production-wave rewards
+from2fdf9e7, BUG025; root owns integration/control. Locked math is per-kill XP
+floor before sum with same total for current merc share, and multiplier AFTER
+existing effectiveMF inner floor with no new outer floor/cap (raw300×1.5 gives
+effective490.5). Qualification/playback/winner/live-original-hero precede one
+award-time clock sample. No bonus mutation or extra RNG draws. True-close/reopen
+ordinary browser P17a07 is a separate QA card under review; production/PWA,
+broader P11/P17 and the campaign/class/economy checkpoint gates remain open.
