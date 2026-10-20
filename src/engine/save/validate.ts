@@ -1,7 +1,6 @@
 /** Structural validation at the untrusted save boundary; never mutates input. */
 import Ajv, { type AnySchema } from 'ajv';
-import type { Item } from '../types/items';
-import type { Player, Mercenary } from '../types/entities';
+import { restoreEquipment, restoreItem, restoreUnit } from './restore';
 import { LEVEL_CAP } from '../progression/xp';
 import { CURRENT_SAVE_VERSION, type SaveCurrent } from '../types/save';
 import { runMigrations, type VersionedSave } from './migrate';
@@ -256,7 +255,15 @@ export function decodeSave(value: unknown): SaveCurrent {
   ) {
     throw new Error('Invalid save: version must be a positive integer');
   }
-  const save = validateSave(runMigrations(value as VersionedSave));
+  let input = value as VersionedSave;
+  if (input.version < 8) {
+    input = runMigrations(input, 7);
+    // v7/v8 share their structural shape. Validate before compatibility stats
+    // recomposition can replace corrupt saved derived fields. Revisit this
+    // projection when a later version changes the persisted shape.
+    validateSave({ ...input, version: CURRENT_SAVE_VERSION });
+  }
+  const save = validateSave(runMigrations(input));
   return {
     ...save,
     player: restoreUnit(save.player),
@@ -273,35 +280,5 @@ export function decodeSave(value: unknown): SaveCurrent {
         Object.entries(save.mercs.mercEquipment).map(([id, equip]) => [id, restoreEquipment(equip)])
       )
     }
-  };
-}
-
-/** Restore the two Map fields represented as entry arrays in exported JSON. */
-function restoreNumericMap<K extends string>(value: unknown): ReadonlyMap<K, number> {
-  if (value instanceof Map) return value as ReadonlyMap<K, number>;
-  if (Array.isArray(value)) return new Map(value as [K, number][]);
-  return new Map(Object.entries(value as Record<string, number>) as [K, number][]);
-}
-function restoreItem(item: Item): Item {
-  if (!item.affixes) return item;
-  return {
-    ...item,
-    affixes: item.affixes.map((affix) =>
-      'values' in affix ? { ...affix, values: restoreNumericMap(affix.values) } : affix
-    )
-  };
-}
-function restoreEquipment<T extends Record<string, Item | null | undefined>>(equipment: T): T {
-  return Object.fromEntries(
-    Object.entries(equipment).map(([slot, item]) => [slot, item ? restoreItem(item) : item])
-  ) as T;
-}
-function restoreUnit<T extends Player | Mercenary>(unit: T): T {
-  return {
-    ...unit,
-    equipment: unit.equipment.map(restoreItem),
-    skills: unit.skills.map((skill) =>
-      skill.synergies ? { ...skill, synergies: restoreNumericMap(skill.synergies) } : skill
-    )
   };
 }

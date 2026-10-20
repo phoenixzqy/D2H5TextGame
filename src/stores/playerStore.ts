@@ -5,10 +5,9 @@
 
 import { create } from 'zustand';
 import type { Player } from '@/engine/types/entities';
-import type { CoreStats, DerivedStats } from '@/engine/types/attributes';
+import type { CoreStats } from '@/engine/types/attributes';
 import type { Item } from '@/engine/types/items';
-import { aggregateEquipmentMods, applyEquipmentCoreMods, equipmentModsToDerivedModifiers } from '@/engine/progression/equipment-mods';
-import { deriveStats } from '@/engine/progression/stats';
+import { deriveEquippedPlayerStats } from '@/engine/progression/equipped-stats';
 import { awardXp, xpRequired, xpTotal, LEVEL_CAP } from '@/engine/progression/xp';
 import { useInventoryStore } from './inventoryStore';
 import {
@@ -84,26 +83,6 @@ interface PlayerState {
 const initialState = {
   player: null
 };
-
-/** Shared gear composition; resource pools never heal during recomputation. */
-function deriveEquippedPlayerStats(
-  player: Player,
-  level: number,
-  equipped: Readonly<Record<string, Item | null>>
-): DerivedStats {
-  const equipmentMods = aggregateEquipmentMods(equipped);
-  const coreWithEquipment = applyEquipmentCoreMods(player.coreStats, equipmentMods);
-  const fresh = deriveStats(
-    coreWithEquipment,
-    level,
-    equipmentModsToDerivedModifiers(equipmentMods)
-  );
-  return {
-    ...fresh,
-    life: Math.min(fresh.lifeMax, player.derivedStats.life),
-    mana: Math.min(fresh.manaMax, player.derivedStats.mana)
-  };
-}
 
 export const usePlayerStore = create<PlayerState>((set, get) => ({
   ...initialState,

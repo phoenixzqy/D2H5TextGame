@@ -386,3 +386,53 @@ Root/producer/QA frozen RED independent APPROVE / ADEQUATE. Source unchanged
 from049a65a; actual repair failures distinct from version-only preservation
 mismatches. Later stats/resource/idempotence/publication assertions must pass
 on GREEN. Proceed six-source-file implementation after frozen checkpoint.
+
+### P08a05d source and first GREEN
+
+Frozen checkpoint0f5664c; all3test files unchanged. Six source files implement exact conservative v7→v8 transfer, shared original canonical stats composition, moved original Map restorers, and validated v7 version projection before migration8 recomposition. Type-only imports keep helper/restore cycles absent. Historical signature/base/13 constants intentionally versioned compatibility facts, not runtime class recipes. Other retained items use restored aggregation view only; skipped data only bumps version.
+FirstGREEN106/3,0skip,exit0,runner6.64/wall8.275s. All later canonical13/35, progressed retained gear62/248/17/9, resource clamp0/17/above max, native/entry-array/object affix preservation, merc/domain preservation, unchanged source/repeated decode/import/hydration/export and real failed-write retry/publication assertions execute and pass. Existing engine987/51,0skip,exit0,runner6.91/wall8.23s. Typecheck and scoped lint pass, no source corrections or frozen test changes. Existing timing-budget overrun is recorded, not accepted as meeting budget.
+
+Source SHA256:
+- src/engine/types/save.ts: `60cb41d2f23df03fe8d37a91a12fa5f695b21b27a8c6fa0c4527326bb5fe29e3`.
+- src/engine/save/legacyStarter.ts: `36641a7df1d651d969aae54ddcb55ec7e52647609e3baa4dab0ec5f05a4174e2`.
+- src/engine/save/restore.ts: `7c495ad36e2861b80aafef7272b7af2a0b908fdfc39bf0892b6d33cd15ffd2e4`.
+- src/engine/save/validate.ts: `7b1ea9ad2fe0d4910485c257e18c0ed7404789e94a2b34e07d8373120d3779c4`.
+- src/engine/progression/equipped-stats.ts: `fc1c1a7c37e4960552c83eec90c586aacb8fd04ac71d357e24c69bbf438e81b6`.
+- src/stores/playerStore.ts: `6593fc21996b3941cbdd1baa4544b6546e43fe85fdc8b8c205da4692da038ec7`.
+- compatibility-green: `npx vitest run src/engine/save/save.test.ts src/engine/save/validate.test.ts src/stores/legacy-starter-compatibility.test.tsx --reporter=verbose`; exit0, wall8.275s; log SHA256 `01af39ae6fdf9c2e549e2ae3fa493acba7e0a504782d3a70f4da214a6f8900f1`.
+- compatibility-engine: `npm run test:engine`; exit0, wall8.23s; log SHA256 `755f99e21654604b5c136901d6ead2da32084bf33318bd25bacf210ae0edfad6`.
+- compatibility-typecheck: `npm run typecheck`; exit0, wall13.413s; log SHA256 `53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47`.
+- compatibility-scoped-lint: `npx eslint src/engine/types/save.ts src/engine/save/legacyStarter.ts src/engine/save/restore.ts src/engine/save/validate.ts src/engine/progression/equipped-stats.ts src/stores/playerStore.ts --max-warnings=0`; exit0, wall9.191s; log SHA256 `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`.
+
+Root diff-check found only a trailing blank line in moved validate.ts; removed trailing blank lines in validate.ts/equipped-stats.ts after related/lint/build completed. No semantic changes or test edits. Final full/coverage/typecheck run on whitespace-corrected source; prior build/lint retain identical program behavior. Final source hashes replace the two first-GREEN hashes below.
+
+### P08a05d final combined validation
+
+Root/producer/QA source/focused APPROVE / ADEQUATE. Full and coverage2175/131,0skip,exit0; final corrected-byte typecheck/engine987/51 pass; related711/53,lint/purity51/build pass before whitespace-only correction. No semantic source changes or frozen test edits after firstGREEN. git diff --check0. Existing React/Browserslist/chunk/nonprecached manifest warnings and engine/related/full timing-budget overruns remain; no budget acceptance inferred.
+Actual engine coverage63files: 8099/8582statements, 1883/2098branches, 296/315functions. Unchanged80%gate passes. Migration/restore/validate instrumented locations100%; extracted composition covered by decoder and existing store tests. No canonicalreaders/browser/fullauthority/BUG041/C/G acceptance.
+Final exact source SHA256:
+- src/engine/types/save.ts: `60cb41d2f23df03fe8d37a91a12fa5f695b21b27a8c6fa0c4527326bb5fe29e3`.
+- src/engine/save/legacyStarter.ts: `36641a7df1d651d969aae54ddcb55ec7e52647609e3baa4dab0ec5f05a4174e2`.
+- src/engine/save/restore.ts: `7c495ad36e2861b80aafef7272b7af2a0b908fdfc39bf0892b6d33cd15ffd2e4`.
+- src/engine/save/validate.ts: `66e84230f3faea6a208e8a249567619dfea5bf866e48d86b9452c9239435db42`.
+- src/engine/progression/equipped-stats.ts: `224ad4fd71fee3f3b19554eb2341ab7209f9f560100d271ff4ca89d80987a245`.
+- src/stores/playerStore.ts: `6593fc21996b3941cbdd1baa4544b6546e43fe85fdc8b8c205da4692da038ec7`.
+- compatibility-engine: `npm run test:engine`; exit0, wall8.23s; log SHA256 `755f99e21654604b5c136901d6ead2da32084bf33318bd25bacf210ae0edfad6`.
+- compatibility-final-build: `npm run build`; exit0, wall13.441s; log SHA256 `3633ce144c1aea68141c9233999df478c391f4d6b5a63b6750aa2df61d41850e`.
+- compatibility-final-coverage: `npm run test:cov -- --coverage.reportsDirectory=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-starter-compatibility-hgi5xbjj/coverage`; exit0, wall35.534s; log SHA256 `981844f77b31e6dcb47adb883c3a973381701cc98603417e42e1f8af392fddf6`.
+- compatibility-final-engine: `npm run test:engine`; exit0, wall10.089s; log SHA256 `ce6022fcb73d6b066c1d3a62715d4fa4f3792e6310aedc02710e3dd53d86ca2c`.
+- compatibility-final-full: `npm test`; exit0, wall35.138s; log SHA256 `35e54e3d58c32e542f10d170a5220a701c08bb4655f9192141c7bba41354bf6e`.
+- compatibility-final-lint: `npm run lint`; exit0, wall37.28s; log SHA256 `64ef18bd16f812a048e5d016a57900763eaa6c02c2e7a32bb2a3cbbdaed0531f`.
+- compatibility-final-typecheck: `npm run typecheck`; exit0, wall20.456s; log SHA256 `53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47`.
+- compatibility-green: `npx vitest run src/engine/save/save.test.ts src/engine/save/validate.test.ts src/stores/legacy-starter-compatibility.test.tsx --reporter=verbose`; exit0, wall8.275s; log SHA256 `01af39ae6fdf9c2e549e2ae3fa493acba7e0a504782d3a70f4da214a6f8900f1`.
+- compatibility-related: `npm run test:related -- src/engine/types/save.ts src/engine/save/legacyStarter.ts src/engine/save/restore.ts src/engine/save/validate.ts src/engine/progression/equipped-stats.ts src/stores/playerStore.ts`; exit0, wall26.392s; log SHA256 `d94c52f2b86f624eeebed66d432acf2746ae794dab6a77850bd99215eb91e3a8`.
+- compatibility-scoped-lint: `npx eslint src/engine/types/save.ts src/engine/save/legacyStarter.ts src/engine/save/restore.ts src/engine/save/validate.ts src/engine/progression/equipped-stats.ts src/stores/playerStore.ts --max-warnings=0`; exit0, wall9.191s; log SHA256 `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`.
+- compatibility-typecheck: `npm run typecheck`; exit0, wall13.413s; log SHA256 `53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47`.
+
+coverage-final.json SHA256: `799a91c6d2838571651882231f0253cfe67c4cdd01d9d7d970808e595e22aafc`.
+
+Root/producer/QA final independent APPROVE / ADEQUATE. All11nonRED raw
+command/result/log pairs, six finalsource hashes, three frozen tests and actual
+coverage counters independently verified. Whitespace-only correction validated
+as one trailing newline removed from two files. ALL consumers finished;
+exact task-owned cleanup released. No broader authority acceptance.

@@ -3,6 +3,7 @@
  * @module engine/types/save
  */
 
+import { migrateLegacyStarter } from '../save/legacyStarter';
 import type { Player, Mercenary } from './entities';
 import type { EquipmentSlot, Inventory, Item } from './items';
 import type { MapProgress } from './maps';
@@ -12,7 +13,7 @@ import type { GridPosition } from '../combat/types';
  * Current save format version. Bump this and add an entry to {@link MIGRATIONS}
  * whenever the on-disk shape changes.
  */
-export const CURRENT_SAVE_VERSION = 7;
+export const CURRENT_SAVE_VERSION = 8;
 
 /**
  * Save file version (most recent).
@@ -212,7 +213,12 @@ export interface SaveV7 {
   readonly formation: FormationPreferences;
 }
 
-export type SaveCurrent = SaveV7;
+/** Save file v8 — canonical ownership of the two proven legacy Amazon starters. */
+export interface SaveV8 extends Omit<SaveV7, 'version'> {
+  readonly version: 8;
+}
+
+export type SaveCurrent = SaveV8;
 
 /**
  * Migration function type. Each entry receives the previous version's shape
@@ -376,5 +382,7 @@ export const MIGRATIONS: Record<number, Migration> = {
         ]
       }
     };
-  }
+  },
+  /** v7 to v8: conservatively transfer a proven legacy starter to canonical gear. */
+  8: (raw: unknown): SaveV8 => migrateLegacyStarter(raw as SaveV7)
 };

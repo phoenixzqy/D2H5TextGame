@@ -1304,3 +1304,16 @@ before verified exact recipe scratch/dist/.vite cleanup. Root claim continues.
 C plan revised/approved to reject retained item-ID collisions before mutation;
 next existing-screen genuine RED. Creation/save/readers/balance/browser/
 BUG041/C0–C4/G0–G7 remain unaccepted; continue full staged v1.
+
+P08a05c accepted at03d1fd6 after frozen existing-screen tests52cb433 genuine
+19RED/21controls and root/producer/QA independent approval. New synchronous
+feature action gates hydration/import/existingPlayer/input, prepares before
+mutation, rejects all retained/internal ID collisions, transfers generic kit
+via canonical add/equip and checks results; exact snapshot rollback on refusal/
+throw; no-kit recomputes retained gear; success alone navigates. Focused82/3,
+related40/2,full/coverage2105/130,T/L/purity51/build pass; unchanged80%engine
+coverage7993/8478s1839/2056b291/310f. BUG041 records exact commands/hashes,
+superseded redundant-guard lint and persistence notification boundaries.
+All raw consumers finished before verified exact C scratch/dist/.vite cleanup;
+cleanup ledger049a65a. Source original checkout untouched; root claim continues.
+Migration/readers/comparison/ordinarybrowser/fullauthority/BUG041/C/G remain open.
