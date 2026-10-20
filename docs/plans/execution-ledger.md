@@ -22,6 +22,7 @@ Current implementation evidence lives in `evidence/`.
 | P02b04 | accepted bounded screen evidence | `65f9aaf`; frozen same40 pair, one historical seed/build, two determinism reps each. A loses DenW3, B DenW2; no clear. Full reports/diffs and independent outcome/packet approvals retained. [Evidence](evidence/p02b04-earned-screen.md). Remaining P02/manual-idle/C0 remain open. |
 | P02b05a | accepted scoped documentation contract | `91d756c`; [first-act route](decisions/D07-D11-first-act-route-v1.md) reconciles Act I access without runtime change; [active-mode diagnostic](decisions/D07-active-mode-measurement-v1.md) separates restored test state from earned clear/UI eligibility. GD/TD/producer/QA approve. Executable freeze/RED, full D07/D11/P02 remain open. |
 | P02b05b01 | accepted bounded observer slice | `b2c06a7`; closed synthetic manual/idle adapter, frozen 19 tests, four retained observations/8 primary battles. All W1 win/W2 defeat, zero clears. Independent source and complete packet audits APPROVE. [Evidence](evidence/p02b05b01-mode-adapter.md). Comparator/provenance CLI and earned UI proof remain. |
+| P02b05b02a | accepted pure comparator slice | `e43131f`; seeded actual inputs before outputs, explicit planner divergence/unpaired rows, separate raw/semantic/domain/pity/timing comparisons. Frozen79cases; finalU3249/T/L/build pass. [Evidence](evidence/p02b05b02a-mode-comparison.md). Report/CLI and earned UI remain. |
 | P03a | accepted slice | `6f1dafd` + `76db166`; independent source approval, U/T/L/B and 10 browser cases pass. [Evidence](evidence/P03a-save-integrity.md). Full D12/G1/G6 remain unaccepted. |
 | P03b01 | accepted visibility slice | `90e4a67`; all legacy items remain selectable above grid cap, seven boundary tests, four ordinary-control browser cases. BUG-005. |
 | P03b02 | accepted ingress slice | `a79ef1f`; retain complete earned/returned overflow, actual victory/merc/save integration,16 focused regressions; producer source APPROVE. Shared regular-action guards remain. |
@@ -1990,3 +1991,30 @@ holds hashverified runners and cleanup record; next independently reviewed pure
 comparison slice then before-import report/CLI. No next gameplay run authorized
 by this checkpoint alone. Den/Andariel/campaign/pacing/final balance/C0–C4/G0–G7/
 full private v1 remain open. No push/PR/merge/deployment.
+
+P02b05b02a accepted **e43131f** after independent plan/test/API/RED/source and
+producer/QA full durable APPROVE plus GD/TD APPROVE. Pure136line comparator
+retains complete actors/native wave seed, actual playback logs and explicit
+matched/mismatch/different-inputs/unpaired rows; presentation/pity/full combat,
+raw/Item.id-only semantic rewards, domains/source/timing/full raw remain separate.
+27accepted hashes unchanged. MissingmoduleRED0assertions; throw79fail88matchers;
+inputstage57pass22filtered; firstGREEN79pass439matchers. OriginalT20.729exit2
+strict test types retained; approved requiredAt/Path annotation inverse-exact
+amendment preserves all79cases/assertions. Finalrelated79/43929.284s,full3249
+actualpass159files0other57.455s,T20.658/L56.031inclpurity/buildbridge8.794s
+fourcleanchunks all0; unchanged5s/15s budgets exceeded, warnings unchanged.
+Seven acquisition processes comparator-only28calls/56derivedbattles, all4cases
+W1win/W2defeat, noW3/clear; ordinaryinputs/outputsmatch, hard-pityinputdiverges.
+No new primary screen. [Evidence](evidence/p02b05b02a-mode-comparison.md) packet
+cdf9dccc2c2e65ad49ec6335bcf8472d626cd34d4b8bae2498e8d649638e1e14/archive
+03b9a4eee21b611d31d8bcbac63db90ddaf4a20ac683aa07b4dd27646ebb6d94 retain67regular
+records/20,873,618bytes/14metas/8reports; allbytes/stage-correct24source states/
+494manifest entries/fingerprints independently verified. Final reviews published
+before featurecommit. All consumers released before exact RAW
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-mode-comparison-c0pwfr4g,
+taskdist/.vite cleanup; absenceverified, no signals, tools preserved, original
+checkout untouched/rootclaimcontinues. Next root-owned RAW
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-mode-report-576tb6db
+holds hashverifiedrunners/cleanup/next4file report+CLI plan. GD/TDplanREADY,
+producer/QAplan/concretetest freeze pending; no new run yet. Den/Andariel/
+campaign/pacing/finalbalance/C0–C4/G0–G7/fullv1 remainopen. No remoteactions.
