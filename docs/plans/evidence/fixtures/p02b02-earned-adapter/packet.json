@@ -1,0 +1,1010 @@
+{
+  "task": "P02b02",
+  "inputHead": "cc8dd4d",
+  "dependency": "c7df807",
+  "scope": "isolated fresh earned execution only; P02b03 and C0-C4/G0-G7/fullv1 remain open",
+  "sourceHashes": {
+    "earned-adapter.ts": "48b7d508478aadb8308780c1130b6075d698320d2ea725a18a1d34a86ddc87f7",
+    "earned-adapter.test.ts": "c582c117c0379afc3203b0cfaf7b209b44ad99ddb9a943101834eea25b5829e4",
+    "earned-state.ts": "e49c3cb1ad72f19037e8b6d1aafbe1d57b15af19524906cdd60c28abade9cd19",
+    "earned-playback.ts": "67faebd1c0b83a26de7f2401c48df94d9bff025c5fc694bce74f3e845d8c843d",
+    "README.md": "26c7faef759b96a432943bede4e0bd6f85aa54f191ac9a044ab1665f0e6c0590"
+  },
+  "preservedHashes": {
+    "fixture.ts": "2d7e7fdad0e79ab057d5bdf6bfb28f056aac6c0f286cd5ef913dad5d8f9ec574",
+    "fixture.test.ts": "3f455dfe0d5d0b1717569356e05bf51028fd5eccedf1facb2460c0fdee6a0e3f",
+    "adapter.ts": "713bfc9cb2dfda30429d1aab5915244a3d013723a941c03061b2da2892fb4c3f",
+    "provenance.ts": "83271b46d074dc4cd1f92ec5895bbe1634c26b8b9379e141c1e04ec7068a684c",
+    "measure.test.ts": "71640dccc8e43fe331d38131b0ed8b5f9720a9f57f8de241547ae68bcdf428cb",
+    "earned-fixture.ts": "c29b0b99c8b75bb4f4a856b7935e0f0323172c4bfbc1b9718d0a39b18eade9f5",
+    "earned-fixture.test.ts": "99fb52eda848407cfcdc1089fd71cc1399ab2be770b8050204675959cc1b61d1"
+  },
+  "testFreeze": {
+    "addition": "debebc7bfc63b92b02059681f375f297b01344ea1fa2be1b5eb8e3cc4fdffa0a",
+    "combinedTest": "c582c117c0379afc3203b0cfaf7b209b44ad99ddb9a943101834eea25b5829e4",
+    "pristineAdapter": "48b7d508478aadb8308780c1130b6075d698320d2ea725a18a1d34a86ddc87f7"
+  },
+  "commands": [
+    {
+      "command": [
+        "node",
+        "node_modules/vite-node/vite-node.mjs",
+        "--config",
+        "vitest.config.ts",
+        "--script",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-adapter-jghowem4/capture.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:56:49.381420+00:00",
+      "seconds": 2.922,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:sim:contracts",
+        "--",
+        "tests/sim/production/earned-adapter.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-adapter-jghowem4/first-execution-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:55:09.983108+00:00",
+      "seconds": 7.884,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-adapter-jghowem4/full-final-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:57:01.029888+00:00",
+      "seconds": 56.571,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-adapter.test.ts",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-adapter-jghowem4/gear-focused-green-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:03:25.227181+00:00",
+      "seconds": 7.632,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-adapter-jghowem4/gear-full-final-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:04:03.865810+00:00",
+      "seconds": 56.13,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-adapter.test.ts",
+        "-t",
+        "equips original earned glove",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-adapter-jghowem4/gear-hero-mutation-located-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:03:10.317594+00:00",
+      "seconds": 3.738,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-adapter.test.ts",
+        "-t",
+        "equips original earned glove",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-adapter-jghowem4/gear-hero-mutation-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:02:31.946961+00:00",
+      "seconds": 3.671,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:04:06.251121+00:00",
+      "seconds": 58.87,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-adapter.test.ts",
+        "-t",
+        "equips original earned glove",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-adapter-jghowem4/gear-merc-mutation-located-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:02:59.965356+00:00",
+      "seconds": 3.659,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-adapter.test.ts",
+        "-t",
+        "equips original earned glove",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-adapter-jghowem4/gear-merc-mutation-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:02:44.469897+00:00",
+      "seconds": 3.581,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:related",
+        "--",
+        "tests/sim/production/earned-adapter.ts",
+        "tests/sim/production/earned-playback.ts",
+        "tests/sim/production/earned-state.ts",
+        "tests/sim/production/earned-adapter.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-adapter-jghowem4/gear-related-final-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:03:49.423717+00:00",
+      "seconds": 10.015,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:04:05.091851+00:00",
+      "seconds": 24.454,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:06:36.784375+00:00",
+      "seconds": 9.516,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:57:01.029476+00:00",
+      "seconds": 59.195,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:sim:contracts",
+        "--",
+        "tests/sim/production/earned-adapter.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-adapter-jghowem4/pre-execution-red-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:53:02.245015+00:00",
+      "seconds": 3.642,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:sim:contracts",
+        "--",
+        "tests/sim/production/earned-adapter.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-adapter-jghowem4/red-01-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:47:20.411975+00:00",
+      "seconds": 3.771,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:sim:contracts",
+        "--",
+        "tests/sim/production/earned-adapter.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-adapter-jghowem4/red-02-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:50:25.266810+00:00",
+      "seconds": 3.692,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:sim:contracts",
+        "--",
+        "tests/sim/production/earned-adapter.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-adapter-jghowem4/red-03-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:51:23.325306+00:00",
+      "seconds": 3.753,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:related",
+        "--",
+        "tests/sim/production/earned-adapter.ts",
+        "tests/sim/production/earned-state.ts",
+        "tests/sim/production/earned-playback.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-adapter-jghowem4/related-01-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:55:45.718484+00:00",
+      "seconds": 12.235,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:sim:contracts",
+        "--",
+        "tests/sim/production/earned-adapter.test.ts",
+        "-t",
+        "synthetic",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-adapter-jghowem4/state-selection-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:52:24.997961+00:00",
+      "seconds": 3.801,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:55:45.718274+00:00",
+      "seconds": 14.527,
+      "exitCode": 2
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:57:01.029833+00:00",
+      "seconds": 25.934,
+      "exitCode": 0
+    }
+  ],
+  "testReportCounts": [
+    {
+      "name": "first-execution-report.json",
+      "actualAssertionCounts": {
+        "passed": 28
+      },
+      "aggregatePassed": 28,
+      "aggregateFailed": 0,
+      "testResultEntries": 1
+    },
+    {
+      "name": "full-final-report.json",
+      "actualAssertionCounts": {
+        "passed": 3022
+      },
+      "aggregatePassed": 3022,
+      "aggregateFailed": 0,
+      "testResultEntries": 153
+    },
+    {
+      "name": "gear-focused-green-report.json",
+      "actualAssertionCounts": {
+        "passed": 29
+      },
+      "aggregatePassed": 29,
+      "aggregateFailed": 0,
+      "testResultEntries": 1
+    },
+    {
+      "name": "gear-full-final-report.json",
+      "actualAssertionCounts": {
+        "passed": 3023
+      },
+      "aggregatePassed": 3023,
+      "aggregateFailed": 0,
+      "testResultEntries": 153
+    },
+    {
+      "name": "gear-hero-mutation-located-report.json",
+      "actualAssertionCounts": {
+        "skipped": 28,
+        "failed": 1
+      },
+      "aggregatePassed": 28,
+      "aggregateFailed": 1,
+      "testResultEntries": 1
+    },
+    {
+      "name": "gear-hero-mutation-report.json",
+      "actualAssertionCounts": {
+        "skipped": 28,
+        "failed": 1
+      },
+      "aggregatePassed": 28,
+      "aggregateFailed": 1,
+      "testResultEntries": 1
+    },
+    {
+      "name": "gear-merc-mutation-located-report.json",
+      "actualAssertionCounts": {
+        "skipped": 28,
+        "failed": 1
+      },
+      "aggregatePassed": 28,
+      "aggregateFailed": 1,
+      "testResultEntries": 1
+    },
+    {
+      "name": "gear-merc-mutation-report.json",
+      "actualAssertionCounts": {
+        "skipped": 28,
+        "failed": 1
+      },
+      "aggregatePassed": 28,
+      "aggregateFailed": 1,
+      "testResultEntries": 1
+    },
+    {
+      "name": "gear-related-final-report.json",
+      "actualAssertionCounts": {
+        "passed": 29
+      },
+      "aggregatePassed": 29,
+      "aggregateFailed": 0,
+      "testResultEntries": 1
+    },
+    {
+      "name": "pre-execution-red-report.json",
+      "actualAssertionCounts": {
+        "failed": 16,
+        "passed": 12
+      },
+      "aggregatePassed": 12,
+      "aggregateFailed": 16,
+      "testResultEntries": 1
+    },
+    {
+      "name": "red-01-report.json",
+      "actualAssertionCounts": {},
+      "aggregatePassed": 0,
+      "aggregateFailed": 0,
+      "testResultEntries": 1
+    },
+    {
+      "name": "red-02-report.json",
+      "actualAssertionCounts": {},
+      "aggregatePassed": 0,
+      "aggregateFailed": 0,
+      "testResultEntries": 1
+    },
+    {
+      "name": "red-03-report.json",
+      "actualAssertionCounts": {},
+      "aggregatePassed": 0,
+      "aggregateFailed": 0,
+      "testResultEntries": 1
+    },
+    {
+      "name": "related-01-report.json",
+      "actualAssertionCounts": {
+        "passed": 28
+      },
+      "aggregatePassed": 28,
+      "aggregateFailed": 0,
+      "testResultEntries": 1
+    },
+    {
+      "name": "state-selection-report.json",
+      "actualAssertionCounts": {
+        "skipped": 23,
+        "passed": 5
+      },
+      "aggregatePassed": 28,
+      "aggregateFailed": 0,
+      "testResultEntries": 1
+    }
+  ],
+  "reviews": "Producer P02b02-PRODUCER-SOURCE APPROVE; QA source APPROVE/ADEQUATE; design source/outcome no defects. All independently verified7baseline hashes, strict test freeze and full native reward/carry/flee facts. Positive gear conditional gap identified after actual tiny loot, resolved via separately frozen addition with sole prefreeze merc combat ID source correction. Producer/QA reviewed original prefix exact6cf0502d (27701bytes), approved suffix debebc7, combined c582c117, each owner-specific single-line mutation snapshot/log exactfailure hero512/merc529 and final pristine adapter48b7d508 restored. All29focused passed7.632s. Producer/QA final gear source/outcome APPROVE/ADEQUATE; no remaining material issue. Design confirms numbers and carry, actual statuses/rawCD empty so positive timestamp/nonzeroCD remain unexercised. Consumers released before guarded build (pending). Final U3023 T L pass; exact reports/commands included. No runtime bug discovered or production source changed.\nFinal current-hash/report QA audit APPROVE/ADEQUATE; verified all15report counts and final U3023/T/L exits/timings. All3 agents released consumers; guarded build then exit0/9.516s, four production JS chunks no testbridge symbols; existing >500kB chunk/2.57MBmanifest warnings retained. No active root processes.\n",
+  "archive": {
+    "path": "diagnostics.tar.gz",
+    "bytes": 380069,
+    "sha256": "6dbbb87dd3a1ff3690ac4861cd05cafa8b393fed582d111c5cb24228e18cc22d",
+    "members": [
+      {
+        "path": "build-chunks.json",
+        "bytes": 638,
+        "sha256": "b86b007010fb8d06bbf5b1984ca402cab789fe81f30d1c713ae1c7da3181a293"
+      },
+      {
+        "path": "capture-tiny.log",
+        "bytes": 373,
+        "sha256": "42374237ebec52231a577f6550459813a6a146711e9029e4f13b04e31efee755"
+      },
+      {
+        "path": "capture-tiny.meta.json",
+        "bytes": 413,
+        "sha256": "7d8ad61fdf5128aa6c16adfb9d244558e70356dd952c4a7decaca39d4d71eb07"
+      },
+      {
+        "path": "capture.ts",
+        "bytes": 2371,
+        "sha256": "84526b6043f50bd705cf5c0b060ee79fd9559a996c104117bf83aa9ee563e76d"
+      },
+      {
+        "path": "final-reviews.txt",
+        "bytes": 1304,
+        "sha256": "b9668846e5cb3540e9d4edb54c8b4b7c36140626fe42f5f6d3b2e2983d5b26a2"
+      },
+      {
+        "path": "final-source-hashes.json",
+        "bytes": 454,
+        "sha256": "8450d17d5c8ac5d5514d7e3b5e4d929de5f0fc740876ef45933cce52f615ca9e"
+      },
+      {
+        "path": "first-execution-earned-adapter.ts.txt",
+        "bytes": 11903,
+        "sha256": "78f225ee68727782e2b4a93c71b272eb44770cdfd3fcf668280e6e6e84496b45"
+      },
+      {
+        "path": "first-execution-earned-playback.ts.txt",
+        "bytes": 5288,
+        "sha256": "67faebd1c0b83a26de7f2401c48df94d9bff025c5fc694bce74f3e845d8c843d"
+      },
+      {
+        "path": "first-execution-earned-state.ts.txt",
+        "bytes": 5488,
+        "sha256": "ca7fd14310fd2e3f5de0144ed4f48fded7686edb1b48cb9262ae8d4f150132ee"
+      },
+      {
+        "path": "first-execution-report.json",
+        "bytes": 10018,
+        "sha256": "8cc6905c90570df604f74602052e1ec70680d129f09d2a156709382fb227ef8c"
+      },
+      {
+        "path": "first-execution.log",
+        "bytes": 399,
+        "sha256": "185c10075a86986ab28f3e0ebde863df6cc312dd9010541792b1f12d401048bb"
+      },
+      {
+        "path": "first-execution.meta.json",
+        "bytes": 463,
+        "sha256": "55379fe8ac346a7ea6e08deb21baedca559353548203c35116b158ea3905b832"
+      },
+      {
+        "path": "full-final-report.json",
+        "bytes": 989668,
+        "sha256": "2162ceba4550174093af0208b9c5e76e41d0a70602b25e3716e656b5413e51ea"
+      },
+      {
+        "path": "full-final.log",
+        "bytes": 307,
+        "sha256": "a240ccf56f46b1ee26a36a78e0db808db8da515b106e4df37a3b810875d03238"
+      },
+      {
+        "path": "full-final.meta.json",
+        "bytes": 383,
+        "sha256": "9ca612660c2627590a9bec6659c7d7b654e8309fbdf3f4d42af724fb560cb98b"
+      },
+      {
+        "path": "gear-addendum.md",
+        "bytes": 2463,
+        "sha256": "377ce755eccaba6e2517385444ee89df6252e11383342ac044f84428e73deb35"
+      },
+      {
+        "path": "gear-final-README.md.txt",
+        "bytes": 16291,
+        "sha256": "26c7faef759b96a432943bede4e0bd6f85aa54f191ac9a044ab1665f0e6c0590"
+      },
+      {
+        "path": "gear-final-earned-adapter.test.ts.txt",
+        "bytes": 32580,
+        "sha256": "c582c117c0379afc3203b0cfaf7b209b44ad99ddb9a943101834eea25b5829e4"
+      },
+      {
+        "path": "gear-final-earned-adapter.ts.txt",
+        "bytes": 11970,
+        "sha256": "48b7d508478aadb8308780c1130b6075d698320d2ea725a18a1d34a86ddc87f7"
+      },
+      {
+        "path": "gear-final-earned-playback.ts.txt",
+        "bytes": 5288,
+        "sha256": "67faebd1c0b83a26de7f2401c48df94d9bff025c5fc694bce74f3e845d8c843d"
+      },
+      {
+        "path": "gear-final-earned-state.ts.txt",
+        "bytes": 5461,
+        "sha256": "e49c3cb1ad72f19037e8b6d1aafbe1d57b15af19524906cdd60c28abade9cd19"
+      },
+      {
+        "path": "gear-final-source-hashes.json",
+        "bytes": 454,
+        "sha256": "2e7efa9b7eaac0e90fce5894ebd2d70dc18fa8ba6e7af8a84d54406eacab68aa"
+      },
+      {
+        "path": "gear-focused-green-report.json",
+        "bytes": 10438,
+        "sha256": "b1dc555f601e7c9c4b2617376f2e576e82e5c2428b9c8501fc401f05bda1799f"
+      },
+      {
+        "path": "gear-focused-green.log",
+        "bytes": 5710,
+        "sha256": "c10266606abc7ad1c51cc73c4245f093fba6140c514910d61b2cfea260e91feb"
+      },
+      {
+        "path": "gear-focused-green.meta.json",
+        "bytes": 505,
+        "sha256": "fe75c29163cb54c90b8a2bb1ecf412e4e5e2034aaae2793cd19af90bad3543fb"
+      },
+      {
+        "path": "gear-freeze.json",
+        "bytes": 260,
+        "sha256": "561d8cac9ba245cd11519d951e726dca7f597b337004fff261d4a571721eba5c"
+      },
+      {
+        "path": "gear-full-final-report.json",
+        "bytes": 990155,
+        "sha256": "213f587e5faf1cc5abc3723de305fb5ef2032f325f71230f61b63b409c2023df"
+      },
+      {
+        "path": "gear-full-final.log",
+        "bytes": 317,
+        "sha256": "564c6a481329d60b9706e9bf18356cdf95f43d8f870ef4af9b5dd94d180ec3fd"
+      },
+      {
+        "path": "gear-full-final.meta.json",
+        "bytes": 387,
+        "sha256": "e96658a6359dde45f7fcee8df66cee986d40704bf8911351a18178206c404e4f"
+      },
+      {
+        "path": "gear-hero-mutant.ts.txt",
+        "bytes": 12062,
+        "sha256": "1a983e445e617e7b6e638823dce59fdccc18439ff03733ec99f3db1e30084cf6"
+      },
+      {
+        "path": "gear-hero-mutation-located-report.json",
+        "bytes": 10150,
+        "sha256": "80b885c7adda41f2ab7543b1d50a722dd9851a23ae49e214ba1277cabb243d84"
+      },
+      {
+        "path": "gear-hero-mutation-located.log",
+        "bytes": 1921,
+        "sha256": "e76d2b0473b6ac63fc1e0fc87c767685605cb0426974e59ec11bbad5850ca113"
+      },
+      {
+        "path": "gear-hero-mutation-located.meta.json",
+        "bytes": 559,
+        "sha256": "333ab9ebee421b656dc261e2ef53243d6312d22f4465f7c109bc5ba02ec0fa9c"
+      },
+      {
+        "path": "gear-hero-mutation-report.json",
+        "bytes": 10150,
+        "sha256": "7d66dbb020865100c1ad5307ae3356790c633de17032be0535a57d749ae5e192"
+      },
+      {
+        "path": "gear-hero-mutation.log",
+        "bytes": 423,
+        "sha256": "5178ddfd7e82b69f34d8554c7e3f3fdab75a73d7bbfac4ba57043e1e49a52881"
+      },
+      {
+        "path": "gear-hero-mutation.meta.json",
+        "bytes": 525,
+        "sha256": "fb44260e05383e423cdac9898e3716a0ddad3f7f06fbbec6d503f1213a4c3690"
+      },
+      {
+        "path": "gear-lint-final.log",
+        "bytes": 196,
+        "sha256": "2792de92bfcfcca52d45d7d9554be17142ed714d537e23bbae1b59b7d5a9b80c"
+      },
+      {
+        "path": "gear-lint-final.meta.json",
+        "bytes": 234,
+        "sha256": "34bf31505cd4eb2c44e9d8d09b8ba00382fe075cd4784b021f9aebb42d2e503c"
+      },
+      {
+        "path": "gear-merc-mutant.ts.txt",
+        "bytes": 12062,
+        "sha256": "42fc5fb28ed7fa44f8d3b5e1ee44c1d7711a2f8d723f8bb88b2a60d62602e5f4"
+      },
+      {
+        "path": "gear-merc-mutation-located-report.json",
+        "bytes": 10150,
+        "sha256": "0c0e0b9468ce836215887a3f6d091f464274d00bdac9bc9c148cb5864593f55f"
+      },
+      {
+        "path": "gear-merc-mutation-located.log",
+        "bytes": 1948,
+        "sha256": "1489fb273b43d3a50a7d9ee6fc105a0d20dd9ec185556bbc1559fedf9317db2a"
+      },
+      {
+        "path": "gear-merc-mutation-located.meta.json",
+        "bytes": 559,
+        "sha256": "9f3e5d1b5163fdac12e475c7be72e2d527e6b9cd013c3db8f4214997fd994ce7"
+      },
+      {
+        "path": "gear-merc-mutation-report.json",
+        "bytes": 10150,
+        "sha256": "be5827487580747e17ff30cb736f30f33e1ad3a42ea70f91f7ba0754a76aadfd"
+      },
+      {
+        "path": "gear-merc-mutation.log",
+        "bytes": 423,
+        "sha256": "6a080f2433ebaef007ddcd7c68600e5b297156da76f8bd96bab003628daca3ef"
+      },
+      {
+        "path": "gear-merc-mutation.meta.json",
+        "bytes": 525,
+        "sha256": "8b97308f7419eb5319ac3bc75b369aaee67f65d7384d0b6c477601c4abd6084c"
+      },
+      {
+        "path": "gear-mutation-restoration.json",
+        "bytes": 396,
+        "sha256": "9e7761ae0740505b5803aac6dc92c673e71d8c0d226fd595904549801715aa18"
+      },
+      {
+        "path": "gear-pristine-adapter.ts.txt",
+        "bytes": 11970,
+        "sha256": "48b7d508478aadb8308780c1130b6075d698320d2ea725a18a1d34a86ddc87f7"
+      },
+      {
+        "path": "gear-related-final-report.json",
+        "bytes": 10438,
+        "sha256": "ea9ace5c64426932e19928d43d8d03cd277904fa9d5a967f6da626a29fe5ec23"
+      },
+      {
+        "path": "gear-related-final.log",
+        "bytes": 501,
+        "sha256": "477795e73bc1c086edfc611d5066147abc85a2a557001267bc65e5498443f31a"
+      },
+      {
+        "path": "gear-related-final.meta.json",
+        "bytes": 598,
+        "sha256": "95f3f2717ed1cf7de3e60234b7751e67d2fb012a8d38e5d4f57f25e44f1ae222"
+      },
+      {
+        "path": "gear-review.txt",
+        "bytes": 588,
+        "sha256": "efe57ddb0bc5881e703aebd925e2a91ccaa62b972d0cfe0d7dac8fcbc7e3888d"
+      },
+      {
+        "path": "gear-test-addition.ts.txt",
+        "bytes": 4879,
+        "sha256": "debebc7bfc63b92b02059681f375f297b01344ea1fa2be1b5eb8e3cc4fdffa0a"
+      },
+      {
+        "path": "gear-test-original.ts.txt",
+        "bytes": 4869,
+        "sha256": "23cd16c5951587b162801a0ed4ce69b34f65d0f11d77a4eae334d699cb72dc4a"
+      },
+      {
+        "path": "gear-typecheck-final.log",
+        "bytes": 50,
+        "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+      },
+      {
+        "path": "gear-typecheck-final.meta.json",
+        "bytes": 240,
+        "sha256": "da3d60f1bca16c2c5cff72964988a8316aa9ee367a43c0592cc6c4d227e728a1"
+      },
+      {
+        "path": "guarded-build-final.log",
+        "bytes": 1763,
+        "sha256": "bc588a36f82c87306211e14b37c2e81aa6aa2287a1140c94a08e07670d2a7f59"
+      },
+      {
+        "path": "guarded-build-final.meta.json",
+        "bytes": 253,
+        "sha256": "c3a46b22b1afab309693be98b31b93587d2d8dbb0def80ef97148e6270471a39"
+      },
+      {
+        "path": "lint-final.log",
+        "bytes": 196,
+        "sha256": "2792de92bfcfcca52d45d7d9554be17142ed714d537e23bbae1b59b7d5a9b80c"
+      },
+      {
+        "path": "lint-final.meta.json",
+        "bytes": 235,
+        "sha256": "8d0cb5d73c79edfcc28f15ffc302a8c15129776e6e07305296740062735e7dde"
+      },
+      {
+        "path": "next-raw-path.txt",
+        "bytes": 83,
+        "sha256": "ddcdb5d79cb5d13bdcfc4f80c0c6c5fc4bc89f47dcddcd773d79ae5aa68ed234"
+      },
+      {
+        "path": "ownership.json",
+        "bytes": 517,
+        "sha256": "4b739c02d49b726999375e9397d24403a321621c51667a14b84659e57cd0de72"
+      },
+      {
+        "path": "plan-original.md",
+        "bytes": 9848,
+        "sha256": "e743d497e1afdcc3cbc1997c8e891e56e1143ad0b2740415fa9f93ee8b34f541"
+      },
+      {
+        "path": "plan-review.txt",
+        "bytes": 820,
+        "sha256": "fa1647e2eea36cbd76d52315a1e157ca556cf8a52f7bcbee47f77f245064578e"
+      },
+      {
+        "path": "plan.md",
+        "bytes": 10566,
+        "sha256": "98ffc520049beadd7187da277e9a2e4ad145028677c4b5a41c220379fd1a998f"
+      },
+      {
+        "path": "pre-execution-earned-adapter.ts.txt",
+        "bytes": 266,
+        "sha256": "a10c7aab20514d198eb47d97e8b9a6d9fae1a9363729e47e7cf510a490942fa5"
+      },
+      {
+        "path": "pre-execution-earned-playback.ts.txt",
+        "bytes": 5288,
+        "sha256": "67faebd1c0b83a26de7f2401c48df94d9bff025c5fc694bce74f3e845d8c843d"
+      },
+      {
+        "path": "pre-execution-earned-state.ts.txt",
+        "bytes": 5488,
+        "sha256": "ca7fd14310fd2e3f5de0144ed4f48fded7686edb1b48cb9262ae8d4f150132ee"
+      },
+      {
+        "path": "pre-execution-red-report.json",
+        "bytes": 11483,
+        "sha256": "309361f18923d71d691991b542b340372606ac7b4b1d9fea63f483837d2464f0"
+      },
+      {
+        "path": "pre-execution-red.log",
+        "bytes": 403,
+        "sha256": "d1e7258c835df94c3eb0dd6e96a820064f83ed16818c58a4d417c0fa87e8f9c6"
+      },
+      {
+        "path": "pre-execution-red.meta.json",
+        "bytes": 465,
+        "sha256": "723c8bb18065e30b7a15b1ebb5255c829d772493decec65cd1d13af1204aa934"
+      },
+      {
+        "path": "pre-gear-test.ts.txt",
+        "bytes": 27701,
+        "sha256": "6cf0502d9f63953abd083761912e705bef05d56369936dec672195bdeb45e0f9"
+      },
+      {
+        "path": "preserved-baseline.json",
+        "bytes": 623,
+        "sha256": "33796aa40d4887593ce774fc5732201703aef879b72cf67f9de85292510c7d62"
+      },
+      {
+        "path": "red-01-report.json",
+        "bytes": 702,
+        "sha256": "4866639e18c3d579ade1825ed8fb51dcbb4aa60bef270c71839cfdc529e3ef0f"
+      },
+      {
+        "path": "red-01-test.ts.txt",
+        "bytes": 24105,
+        "sha256": "db1fa1e3803b4a2acb595a307c952ae6f6a840ae6e92b386eb0f1c1fc741caa9"
+      },
+      {
+        "path": "red-01.log",
+        "bytes": 381,
+        "sha256": "79a41ded206ecbe257af7aa05bce882648254a083351b625ffbab3a3697dd44f"
+      },
+      {
+        "path": "red-01.meta.json",
+        "bytes": 454,
+        "sha256": "6f36c748ef4dab6436e20b31fbbc65138973231d3087effe4cb45f22f6dae2c3"
+      },
+      {
+        "path": "red-02-report.json",
+        "bytes": 702,
+        "sha256": "b9733e8ff96033abe5395c309834998fd4f83ba1c7ad4815d6461040e66c1513"
+      },
+      {
+        "path": "red-02-test.ts.txt",
+        "bytes": 27638,
+        "sha256": "cfd0aac87bd8d8d581417ac5315befd059ef51523cf3d0e8495b9c6c4cd12fce"
+      },
+      {
+        "path": "red-02.log",
+        "bytes": 381,
+        "sha256": "cbcae1a8b85ba3c544f760fe1a8764d6ef4ca017940fcceee19be41ae183d827"
+      },
+      {
+        "path": "red-02.meta.json",
+        "bytes": 454,
+        "sha256": "24024cc7acd56067cdbb099a036782fcf71a833ebc00ea5f39e509a1fe21fb97"
+      },
+      {
+        "path": "red-03-report.json",
+        "bytes": 702,
+        "sha256": "be6a48efe3519d67483fc8e4247f94dde8acf59e3f907d2c69fa6c364f88e2c9"
+      },
+      {
+        "path": "red-03-test.ts.txt",
+        "bytes": 27701,
+        "sha256": "6cf0502d9f63953abd083761912e705bef05d56369936dec672195bdeb45e0f9"
+      },
+      {
+        "path": "red-03.log",
+        "bytes": 381,
+        "sha256": "16d1dbb710246cb0a16a2f0034f3bb7ba87eeb36c79c8e2be2f3d807ff2e9af3"
+      },
+      {
+        "path": "red-03.meta.json",
+        "bytes": 454,
+        "sha256": "0b27352fc21d8668628b59880233a1c514482ca44e0e35c0fae6622c6f620433"
+      },
+      {
+        "path": "red-amendments.txt",
+        "bytes": 933,
+        "sha256": "fb781e2cae52131a0bbc3ea03f571d2b85103a6202b1633c5da8de1e2bd74756"
+      },
+      {
+        "path": "related-01-report.json",
+        "bytes": 10018,
+        "sha256": "04ace2a0613de100ece990ed037df9979fc291299ada436df23ec2ee543ac624"
+      },
+      {
+        "path": "related-01.log",
+        "bytes": 441,
+        "sha256": "eccc5873336f2bcebaa51438bdf539ae463e4bbeb2cabef5a77a177b874bd669"
+      },
+      {
+        "path": "related-01.meta.json",
+        "bytes": 539,
+        "sha256": "69e331ef89dff9af86692c2177e211664db6d30206af0828174283ab0fb2b0c8"
+      },
+      {
+        "path": "runner.py",
+        "bytes": 584,
+        "sha256": "dd43228274b9a660e28898b9ff196cc394769664fe06502a9d056ef806b5aec9"
+      },
+      {
+        "path": "state-selection-report.json",
+        "bytes": 9704,
+        "sha256": "2d518baf7d277837978f241c686e897646ec119e6425e4c296823e95f9390449"
+      },
+      {
+        "path": "state-selection.log",
+        "bytes": 412,
+        "sha256": "be0c51ee709676a504d60b457aaee99874c387ccdde8d6a8c05c62672713aaf4"
+      },
+      {
+        "path": "state-selection.meta.json",
+        "bytes": 490,
+        "sha256": "e097cbec64a8e70caafe22d00552283138e70765ebf6d8b0ce3de6f155f291a6"
+      },
+      {
+        "path": "test-report-counts.json",
+        "bytes": 2895,
+        "sha256": "0e7dd1128063965f9f64f5cb6568882ace65a532f06ab3db1d8c5570b0f426d1"
+      },
+      {
+        "path": "tiny-observed.json",
+        "bytes": 1713909,
+        "sha256": "c5eb0b077e77f442d91a43b282ccbcae47b12821f369ad1a63e3cdef152b7593"
+      },
+      {
+        "path": "typecheck-01.log",
+        "bytes": 479,
+        "sha256": "405e961cc739c5a145ebbc2d1089cf6c455da19155edb56ce1e677667dd0f21b"
+      },
+      {
+        "path": "typecheck-01.meta.json",
+        "bytes": 240,
+        "sha256": "1d54a901499a6a4c7511676827e6f4406431b2b65d282161d408dd7d76547c3e"
+      },
+      {
+        "path": "typecheck-final.log",
+        "bytes": 50,
+        "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+      },
+      {
+        "path": "typecheck-final.meta.json",
+        "bytes": 240,
+        "sha256": "2121e47475a47ed0f090e86a19b5213737a2cf4ee32ed5fe1b7c8dd9582c501e"
+      }
+    ]
+  },
+  "cleanup": {
+    "owner": "root",
+    "paths": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-adapter-jghowem4",
+      "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/dist",
+      "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/.vite"
+    ],
+    "state": "pending final packet consumer release",
+    "installedTools": "preserved",
+    "overallWorktree": "retained for active fullv1",
+    "nextRaw": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149"
+  },
+  "limitations": [
+    "No Den clear/campaign/browser/screening/versioned-report claim",
+    "raw diagnostic is full adapter return; not a P02b03 report",
+    "positive timed-status/nonzero-effective-CD unexercised",
+    "unchanged budgets: related10.015s>5,full56.130s>15",
+    "earlier final filenames are pre-equipment checks; final gear-* metadata authoritative",
+    "each owner mutation1failed28filtered; not28passed",
+    "selector5actualpassed23filtered; preexecution12pass16fail includes7generic-throwcontrols",
+    "no runtime bug or src/config/package edit"
+  ]
+}

@@ -225,3 +225,62 @@ path/length/byte protocol, recursively sorted object keys and ordered arrays.
 Tests use real catalogs, isolate invalid bounds/references, preserve v1 controls
 and compare an independently calculated literal fingerprint. Current plan,
 RED/GREEN evidence and acceptance limits live in the execution ledger.
+
+## Fresh earned execution (P02b02)
+
+`runEarnedRecipeOnce(input, { targetSeed, repetition: 1 | 2 })` in
+`earned-adapter.ts` executes one validated v2 attempt in a dedicated Node realm.
+The target seed must occur in the fixture. `completed` means all actions and the
+target attempt finished; inspect the recorded winners and native terminal result
+to determine success. `action-refused` and `preparation-nonwin` stop immediately,
+retain partial observations, and never attempt subsequent actions or the target.
+Malformed inputs, active caller runs, structural errors, source drift and cleanup
+failures throw. Combined action/cleanup/source errors retain their original
+objects in `AggregateError.errors`.
+
+Every attempt snapshots and restores all seven stores (including meta), their
+methods, `Date.now` and idle elite pity. The clock freezes before meta reset, so
+caller offline multipliers cannot enter acquisition. Every cleanup step and the
+final source check is attempted even if an earlier cleanup step fails. Direct
+store imports install no persistence subscribers; use this only in the dedicated
+simulation realm. An active caller run is refused before mutation. Process-global
+item IDs and challenge counters are never reset; explicit ordinals avoid changing
+the default challenge counter.
+
+Actions call ordinary production methods, with the UI's hire-act, learned active
+combo and quest-availability checks around permissive setters. Skill spending
+retains each result and partial success. Attribute allocation does not heal.
+Equipment selection uses displayed `computeStats(...).defense`, an independent
+award-order journal and the actual current backpack object by original earned ID.
+Checkpoint commands only produce independently cloned observations.
+
+Acquisition omits the run seed under the frozen production clock, plays W1's
+complete recording and calls native advancement exactly once. A genuine W1 win
+installs W2 synchronously. Its opening, precomputed outcome and recording are
+retained before native flee; W2 is never played, settled or awarded. Its
+precomputed outcome is not an attempted-wave failure. The target uses the declared
+seed and ordinary native advancement until victory or first defeat/draw.
+
+Results retain complete nonfunction domain state at creation, action boundaries,
+checkpoints, awards, flee, pretarget and terminal state; combat observations retain
+full opening/played/advanced state, timed events, outcomes, presentation, raw
+rewards and actual item/currency/hero/merc XP deltas. Logical simulation time and
+summed UI delay hints exclude abandoned W2; measured wall time is separate.
+Living resources and status clocks carry through native advancement, while each
+battle resets effective cooldown scheduler timers. Raw cooldown fields remain
+observed. Target carry coverage is explicitly `unexercised` when no next target
+wave is reached. Persistent player resources are distinct from combat carry.
+Raw presentation log IDs may use `Math.random` and are not a deterministic replay
+claim.
+
+The frozen tiny self-test uses one preparation at clock1792497600000 and target
+seed1. It exercises prep W1 award/W2 flee and actual Den W1→W2 resource carry, then
+Den W2 defeat. A separately frozen variant appends ordinary hero glove5 and merc
+boot3 equipment from the same earned loot: hero defense28, saved merc defense26
+and next-combat merc defense29, with no refill or win requirement. Pure item
+selection examples are synthetic contracts, not earned gameplay evidence.
+Positive timed-status rebasing and nonzero effective cooldown reset are not
+exercised by these samples; source and existing native tests support those rules.
+P02b03 owns versioned reports, before-import provenance, repeated-run comparison
+and a v2 CLI. This adapter does not establish screening, browser, campaign,
+pacing or full P02/v1 acceptance. The existing v1 harness remains unchanged.
