@@ -573,3 +573,46 @@ Frozen test SHA256: `f9a3d903056d5daa087e67a6f87c91372cb8560256014793d96f3bfefbd
 Independent frozen reviews [P08a05f-FROZEN-RED-PRODUCER] and
 [P08a05f-FROZEN-RED-QA] APPROVE / ADEQUATE; raw commands/hashes and source
 unchanged20e88cb independently verified. Root agrees; source may proceed.
+
+### P08a05f minimal source / GREEN checkpoint
+
+Frozen test checkpointb05545d unchanged. Only compareEquip.ts changes:
+import shared engine isTwoHanded, delete private ID recognizer, use helper
+in both displacement branches.21/1allpass0skip; both later net−1/−7 and
+not-clear-upgrade assertions now execute, all stat/resistance triples and
+purity/actual-action controls pass. TSC/scopedlint0. Root source review
+finds smallest cause fix; independent source/focused review pending.
+
+- compare-green: `npx vitest run --project ui src/features/inventory/compareEquip.test.ts --reporter=verbose`; exit0, wall3.854s; log SHA256 `ec9e09ba292b3411377784f821ca365f6ff549343a4593c3bebc6c02cf775a51`.
+- compare-green-typecheck: `npm run typecheck`; exit0, wall10.414s; log SHA256 `53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47`.
+- compare-green-lint: `npx eslint src/features/inventory/compareEquip.ts src/features/inventory/compareEquip.test.ts --max-warnings=0`; exit0, wall5.958s; log SHA256 `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`.
+
+Source SHA256 compareEquip.ts: `5625853908489a24dd36c3e960501e4ec41c8c9b8eafb8731aa6e00924bedcee`.
+
+Independent source/focused producer [P08a05f-SOURCE-FOCUSED-PRODUCER] and
+QA [P08a05f-SOURCE-FOCUSED-QA] APPROVE / ADEQUATE: exact source/frozen test/
+raw hashes verified, all later assertions GREEN. Root agrees, no material finding.
+
+### P08a05f final combined validation
+
+Related700/54,full+coverage2206/132 pass0skip; TSC/scoped+complete lint,
+purity51/build pass. No engine source change. Unchanged80% engine gate passes;
+comparison/store/UI sources excluded from engine instrumentation. Actual
+63enginefiles: 8102/8582s,1891/2104b,296/315f.
+Existing React act/router warnings, Browserslist age, large bundle and generated
+manifest precache warnings remain. Related/full timing exceeds targets; no
+performance acceptance claimed. Final source/frozen tests unchanged.
+No ordinarybrowser/fullauthority/BUG041/C/G acceptance.
+
+- compare-related: `npm run test:related -- src/features/inventory/compareEquip.ts`; exit0, wall26.296s; log SHA256 `cf2d9f0f071c4edb6d9821edf46bdbb9259dfb88872ec1dee59029666045e8c8`.
+- compare-full: `npm test`; exit0, wall32.024s; log SHA256 `1a691e8cab28061f75d7f0b03fd1a34f5bca04abd913dc79499787d5b3825688`.
+- compare-coverage: `npm run test:cov -- --coverage.reportsDirectory=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-compare-bnmqmnio/coverage`; exit0, wall38.277s; log SHA256 `ac432b11a86fb97ec71110325bcc6ac36e7c3cc735629f9495b43b51b83dabf2`.
+- compare-lint: `npm run lint`; exit0, wall37.121s; log SHA256 `64ef18bd16f812a048e5d016a57900763eaa6c02c2e7a32bb2a3cbbdaed0531f`.
+- compare-build: `npm run build`; exit0, wall12.956s; log SHA256 `c042e0443585b01c49b9ffbb24d7bdf2045571b897ffde74c3d21a888477cc00`.
+
+coverage-final.json SHA256 `923d7afc55ca99eb9322d7a72919e288bb8b64a5ef4c49af73dccf4aaa2135f9`.
+
+Root/producer [P08a05f-FINAL-PRODUCER]/QA [P08a05f-FINAL-QA] final
+APPROVE / ADEQUATE. All8nonRED command/result/log pairs, source/frozen test
+hashes and coverage counters independently verified. No material finding.
+All raw consumers finished; exact task-owned cleanup released.

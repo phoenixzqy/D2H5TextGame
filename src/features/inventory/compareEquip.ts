@@ -23,6 +23,7 @@ import {
   equipmentModsToDerivedModifiers
 } from '@/engine/progression/equipment-mods';
 import { deriveStats } from '@/engine/progression/stats';
+import { isTwoHanded } from '@/engine/inventory/equipValidator';
 import type { CoreStats, DerivedStats, Resistances } from '@/engine/types/attributes';
 import type { EquipmentSlot, Item, ItemBase } from '@/engine/types/items';
 
@@ -145,16 +146,6 @@ function resolveTargetSlot(
   return baseSlot;
 }
 
-function isTwoHandedBase(base: ItemBase | undefined): boolean {
-  if (!base || base.slot !== 'weapon') return false;
-  return (
-    base.id.includes('/wp2h-') ||
-    base.id === 'items/base/weapon-bow' ||
-    base.id === 'items/base/weapon-crossbow' ||
-    base.id === 'items/base/weapon-polearm'
-  );
-}
-
 function simulateEquip(
   equipped: Readonly<Record<string, Item | null>>,
   candidate: Item,
@@ -166,12 +157,12 @@ function simulateEquip(
   const resolved = resolveTargetSlot(slot, targetSlot, equipped);
   const next: Record<string, Item | null> = { ...equipped, [resolved]: candidate };
 
-  if (resolved === 'weapon' && isTwoHandedBase(base)) {
+  if (resolved === 'weapon' && isTwoHanded(base)) {
     next.offhand = null;
   }
   if (resolved === 'offhand') {
     const weapon = next.weapon;
-    if (weapon && isTwoHandedBase(bases.get(weapon.baseId))) {
+    if (weapon && isTwoHanded(bases.get(weapon.baseId))) {
       next.weapon = null;
     }
   }
