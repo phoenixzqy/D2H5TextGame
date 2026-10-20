@@ -85,12 +85,19 @@ describe('qualified current chapter-boss quest settlement', () => {
     expect(xpTotal(player.level) + player.experience).toBe(expectedXP);
     const saved = decodeSave(JSON.parse(required(exportCurrentSave())) as unknown);
     expect(saved.map.questProgress).toEqual(useMapStore.getState().questProgress);
-    const before = snapshotStores();
+    const before = required(snapshotStores());
     useHydrationStore.getState().setStatus('ready');
-    expect(claimQuestReward(QUEST)).toBe('unsupported-rewards');
-    expect(snapshotStores()).toEqual(before);
+    expect(claimQuestReward(QUEST)).toBe('ok');
+    const paid = required(snapshotStores());
+    expect(xpTotal(paid.player.level) + paid.player.experience).toBe(expectedXP + 8000);
+    expect(paid.inventory.backpack.slice(0, before.inventory.backpack.length)).toEqual(before.inventory.backpack);
+    expect(paid.inventory.backpack).toHaveLength(before.inventory.backpack.length + 1);
+    expect(paid.inventory.backpack.at(-1)).toMatchObject({ uniqueId: 'items/unique/coif-of-glory', ilvl: 19 });
+    expect(paid.map.questProgress[QUEST]?.rewardClaimed).toBe(true);
+    expect(claimQuestReward(QUEST)).toBe('already-claimed');
+    expect(snapshotStores()).toEqual(paid);
     expect(advanceWaveOrFinish()).toBe('idle');
-    expect(snapshotStores()).toEqual(before);
+    expect(snapshotStores()).toEqual(paid);
   });
 
   it.each([true, false])('evaluates tracking at settlement, before=%s, without later backfill', before => {

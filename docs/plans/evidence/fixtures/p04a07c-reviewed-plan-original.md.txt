@@ -1,0 +1,26 @@
+# P04a07c authored Andariel unique reward
+
+New approved capability, not an existing runtime bug. Depends on accepted B.
+Root alone writes in claimed worktree human-worktree-2/feat/playable-foundations.
+Own src/data/quests/main.json reward row only, new src/data/__tests__/andariel-reward.test.ts,
+append src/features/quests/claimReward.persistence.test.ts and evidence/decision/ledger.
+Actual ID quests/act1-sisters-to-the-slaughter; sole objective obj-kill-andariel.
+Freeze source-backed RED before JSON edit and obtain producer/QA evidence approval.
+Actual loaded rewards must equal xp8000,skillPoints0,itemDrop uniqueId
+items/unique/coif-of-glory,ilvl19; remove only quest lootTable. Preserve all other
+row metadata/unlocks/rows and normal boss loot/unused TC exact bytes.
+Append real unpatched authored-bundle claim/save test using existing fake IDB IO
+and real stores/constructor/persistence/codec. Synthetic completed actual objective
+is wiring only. Explicit claim yields exact one full unique (seed includes actual
+player.id and quest.id, compare seeded ID draw prefix allowing allocator suffix),
+hero cumulative+8000 with actual progression, merc cumulative+6000 in uncapped
+fixture, no additional skillPoints/currencies/items. Once-only claim, real autosave,
+export/import/hydration exact paid item and flag; repeated settlement pays nothing.
+Tests must genuinely fail missing authored activation before content edit.
+No engine/store/schema/UI/i18n/economy/save-version changes.
+Run scoped tests, related, full unit,typecheck,lint then guarded production build
+after tests exit. No engine edit/coverage claim. Independent final audits, release
+RAW/dist/node_modules/.vite before exact owned cleanup and absence verification.
+Feature/evidence commit and separate closing ledger.
+Browser production desktop/mobile zh/en explicit claim/save proof next card;
+earned Andariel/campaign/C0-C4/G0-G7/fullv1 remain open. No push/PR/merge/deploy.

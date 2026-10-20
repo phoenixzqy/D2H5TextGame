@@ -30,7 +30,7 @@ import { loadMercPool } from '@/data/loaders/mercs';
 import { usePlayerStore } from '@/stores/playerStore';
 import { useInventoryStore } from '@/stores/inventoryStore';
 import { useMapStore } from '@/stores/mapStore';
-import { useMercStore } from '@/stores/mercStore';
+import { useMercStore, mercXpForLevel } from '@/stores/mercStore';
 import { useMetaStore } from '@/stores/metaStore';
 import { useFormationStore } from '@/stores/formationStore';
 import { saveSave, loadSave, exportSave } from '@/stores/save-adapter';
@@ -43,6 +43,8 @@ import { loadAwardPools } from '@/data/loaders/loot';
 import { createRng, hashSeed } from '@/engine/rng';
 import { __resetRollItemSeqForTests, rollItem, rollUniqueItem } from '@/engine/loot/rollItem';
 import { claimQuestReward } from './claimReward';
+import { loadQuests } from '@/data/loaders/quests';
+import { awardXp, xpTotal } from '@/engine/progression/xp';
 
 const DEN = 'quests/act1-den-of-evil';
 const NOW = 1_792_454_400_000;
@@ -323,5 +325,75 @@ describe('unique rollback persistence and pending import', () => {
         gate.release(); await pending; stopAutoSave();
       }
     });
+  });
+});
+
+describe('actual authored Andariel reward at real save boundaries', () => {
+  it('requires an explicit claim and preserves its sole exact unique and fixed XP through every save boundary', async () => {
+    const quest = required(loadQuests().find(row => row.id === 'quests/act1-sisters-to-the-slaughter'));
+    const mercId = required(useMercStore.getState().fieldedMercId);
+    const mercXp = () => {
+      const merc = required(useMercStore.getState().ownedMercs.find(row => row.id === mercId));
+      let total = useMercStore.getState().getMercProgress(mercId).experience;
+      for (let level = 1; level < merc.level; level++) total += mercXpForLevel(level);
+      return total;
+    };
+    const beforeMerc = mercXp();
+    const before = snapshot();
+    useMapStore.getState().updateQuestProgress(quest.id, { status: 'inProgress',
+      objectives: { 'obj-kill-andariel': false } });
+    expect(claimQuestReward(quest.id)).toBe('not-completed');
+    useMapStore.getState().updateQuestProgress(quest.id, { status: 'completed',
+      objectives: { 'obj-kill-andariel': true } });
+    const completed = snapshot();
+    expect(completed.player).toEqual(before.player);
+    expect(completed.inventory).toEqual(before.inventory);
+    expect(completed.mercs).toEqual(before.mercs);
+    expect(completed.map.questProgress[quest.id]?.rewardClaimed).not.toBe(true);
+    startAutoSave();
+    try {
+      expect(claimQuestReward(quest.id)).toBe('ok');
+      const paid = snapshot();
+      const item = required(paid.inventory.backpack[0]);
+      const expected = required(rollUniqueItem(UNIQUE_REWARD, loadAwardPools(), createRng(hashSeed(
+        JSON.stringify(['quest-unique-v1', before.player.id, quest.id, UNIQUE_REWARD.uniqueId, UNIQUE_REWARD.ilvl])
+      ))));
+      expect(item).toEqual({ ...expected, id: item.id });
+      expect(item.id.split('-')[1]).toBe(expected.id.split('-')[1]);
+      expect(paid.inventory.backpack).toHaveLength(1);
+      expect(paid.inventory).toEqual({ ...before.inventory, backpack: [item] });
+      const award = awardXp(xpTotal(before.player.level) + before.player.experience, 8000);
+      expect(xpTotal(paid.player.level) + paid.player.experience).toBe(award.totalXp);
+      expect(paid.player.level).toBe(award.level);
+      expect(paid.player.statPoints).toBe(before.player.statPoints + award.statPointsGranted);
+      expect(paid.player.skillPoints).toBe(before.player.skillPoints + award.skillPointsGranted);
+      expect(mercXp()).toBe(beforeMerc + 6000);
+      expect(paid.map).toEqual({ ...completed.map, questProgress: {
+        ...completed.map.questProgress,
+        [quest.id]: { ...completed.map.questProgress[quest.id], rewardClaimed: true }
+      } });
+      expect(claimQuestReward(quest.id)).toBe('already-claimed');
+      expect(snapshot()).toEqual(paid);
+      expect(disk.state.writes).toHaveLength(0);
+      await vi.advanceTimersByTimeAsync(AUTO_SAVE_DEBOUNCE_MS);
+      expect(disk.state.writes).toHaveLength(1);
+      expect(disk.state.writes[0]?.data).toEqual(flushed(paid));
+      const exported = required(await exportSave());
+      expect(JSON.parse(exported) as unknown).toEqual(toJsonSafe(flushed(paid)));
+      stopAutoSave();
+      for (const restore of [
+        () => importIntoStores(exported), () => hydrateFromSave()
+      ]) {
+        for (const store of [usePlayerStore, useInventoryStore, useMercStore, useMapStore]) store.getState().reset();
+        await restore();
+        const restored = snapshot();
+        expect(restored.player).toEqual(paid.player);
+        expect(restored.inventory).toEqual(paid.inventory);
+        expect(restored.mercs).toEqual(paid.mercs);
+        expect(restored.map).toEqual(paid.map);
+        expect(claimQuestReward(quest.id)).toBe('already-claimed');
+        expect(snapshot()).toEqual(restored);
+      }
+    } finally { stopAutoSave(); }
   });
 });

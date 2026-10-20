@@ -86,7 +86,7 @@
       "objectives": [
         { "id": "obj-kill-andariel", "type": "kill-boss", "targetId": "monsters/act1.andariel", "areaId": "areas/act1-catacombs", "description": "Slay Andariel." }
       ],
-      "rewards": { "xp": 8000, "skillPoints": 0, "lootTable": "loot/andariel-q", "itemDrop": "items/unique_act1_boss" },
+      "rewards": { "xp": 8000, "skillPoints": 0, "itemDrop": { "uniqueId": "items/unique/coif-of-glory", "ilvl": 19 } },
       "unlocks": "acts/act2",
       "order": 6
     },
