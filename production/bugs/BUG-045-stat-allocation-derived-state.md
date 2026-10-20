@@ -164,3 +164,16 @@ were removed and absence verified after all consumers finished. B plan/runner
 remain at /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-stat-draft-t93wb8_t
 for the next slice; root owns their eventual removal. Original checkout clean;
 root worktree claim continues. No push/PR/merge.
+
+## B intake — Missing cancellable native allocation
+
+A runtime810900f and ledger40c535e are accepted. CharacterScreen still exposes
+no allocation control, despite progression-curve§11's cancellable +/- Apply
+requirement. B delivers that missing path in separately reviewed bounded slices:
+atomic bulk mutation/lifecycle fence, localized UI, then earned browser evidence.
+No existing point-loop can promise one publication or whole-draft refusal;
+the B1 diagnostic preserves that source limitation explicitly. No claim that a
+new, absent bulk API already has a lifecycle bug. B's detailed controlling
+contract is appended to the linked decision; same stat/equipment/resource rules
+as A. Runtime, economy, combat and save schema remain unchanged during intake.
+Security check: pass, same local character-state scope without external access.

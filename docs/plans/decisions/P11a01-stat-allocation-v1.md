@@ -47,3 +47,47 @@ Delivery checkpoints:
    cancellable until Apply. Resolve transactional draft semantics before code;
    localized mobile/keyboard controls and ordinary earned/save/reopen browser
    evidence remain required. A store correctness alone does not accept B.
+
+## B v1 — Cancellable draft and atomic Apply
+
+Design and producer staged-plan APPROVE after source review. Input40c535e;
+A runtime810900f remains the one-point compatibility action. B is missing
+feature delivery, not a newly observed combat defect.
+
+B1 adds allocateStatPoints(deltas: CoreStats, expectedPlayer: Player) returning
+deterministic result codes. Refusal precedence: no-player, stale-player,
+invalid-deltas, empty-draft, insufficient-points, stat-cap; otherwise ok.
+Check the fixed four own fields are finite nonnegative safe integers and their
+sum a safe nonnegative integer. Zero total is empty-draft. Positive total must
+fit floor(current statPoints); retain fractional point remainders. Only changed
+attributes must satisfy prospective base+delta≤500, preserving untouched legacy
+overcap attributes. Check every condition before mutation; publish exactly one
+complete canonically equipped player with preserved/clamped current pools.
+No loop of one-point calls, partial spending or in-place mutations.
+
+The feature's applyStatDraft controller first checks hydration ready and
+!isReplacingSave(), returning not-ready otherwise. This protects the pending
+import/delete interval which retains the old player reference. Keep persistence
+imports out of playerStore to avoid introducing a cycle. No save-format changes.
+Five B1 files: playerStore.ts, stat-draft.test.ts, applyStatDraft.ts,
+applyStatDraft.test.ts, BUG045. New API absence is feature RED; the unchanged
+one-point-loop diagnostic also demonstrates why a loop cannot implement Apply.
+Freeze meaningful state/refusal/publication assertions before implementation.
+
+B2 uses four readable rows with44×44 +/- buttons, attribute-specific localized
+accessible names, committed→draft base values and whole points remaining.
+Minus removes only staged additions. Apply/Cancel controls; derived stats stay
+committed until Apply. Draft is local {basis: Player, deltas}; editing, Cancel,
+navigation and unmount publish no domain state. Explicit Save during a draft
+serializes committed state. Any changed player reference immediately renders an
+empty draft and disables Apply, independently of effect cleanup. Announce the
+discarded pending edits accessibly; never silently rebase and apply. The store
+reference guard is the final fence, and refusals use localized status messages.
+Four UI/locale files plus BUG045 form the next independent increment.
+
+B3 requires a later independently reviewed frozen ordinary recipe, exact
+skill/merc/gear/clock choices and literal earned-state oracles before a single
+pilot and then en/zh×desktop/mobile matrix. Prove no publication/committed-save
+changes before Apply, exact atomic allocation, no refill, real Save/read-only
+IndexedDB/export/close/Continue, keyboard/44px/no overflow/browser errors.
+Neither B design approval nor A acceptance certifies a Den win or full v1.
