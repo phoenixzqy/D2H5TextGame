@@ -376,13 +376,29 @@ export function resetIdleElitePity(): void {
  *   - `subAreaId`: explicit id; defaults to `mapStore.currentSubAreaId`.
  *   - `act`: act number; defaults to `mapStore.currentAct`.
  *   - `level`: optional override for monster level (else from JSON).
+ *   - `runSeed`: uint32 replay seed, including zero; defaults to the historical area/time hash.
+ *   - `challengeOrdinal`: integer in [0, 360360); explicit values do not advance the default counter.
+ * @returns the resolved seed/ordinal and run identity, or null without a player.
+ * @throws {RangeError} if a provided replay input is outside its integer range;
+ * validation precedes any store, active-run or counter mutation.
  */
 export function startSubAreaRun(opts: {
   readonly subAreaId?: string | null;
   readonly act?: number;
   readonly level?: number;
   readonly mode?: 'manual' | 'idle';
-} = {}): { runId: string; totalWaves: number } | null {
+  readonly runSeed?: number;
+  readonly challengeOrdinal?: number;
+} = {}): { runId: string; totalWaves: number; runSeed: number; challengeOrdinal: number } | null {
+  if (opts.runSeed !== undefined &&
+    (!Number.isInteger(opts.runSeed) || opts.runSeed < 0 || opts.runSeed > 0xffffffff)) {
+    throw new RangeError('runSeed must be an unsigned 32-bit integer');
+  }
+  if (opts.challengeOrdinal !== undefined &&
+    (!Number.isInteger(opts.challengeOrdinal) || opts.challengeOrdinal < 0 ||
+      opts.challengeOrdinal >= CHALLENGE_ORDINAL_PERIOD)) {
+    throw new RangeError('challengeOrdinal must be an integer in [0, 360360)');
+  }
   const playerState = usePlayerStore.getState();
   const combat = useCombatStore.getState();
   if (!playerState.player) {
@@ -401,11 +417,13 @@ export function startSubAreaRun(opts: {
   // so spawn-count rolls are reproducible per-run (Bug C).
   const fallbackArchetype = pickFallbackArchetypeId(act);
   const synthId = `areas/synth-act${String(act)}`;
-  const planSeed = hashSeed(
+  const planSeed = opts.runSeed ?? hashSeed(
     `${subArea?.id ?? synthId}|${String(Date.now())}`
   );
-  const challengeOrdinal = manualChallengeOrdinal;
-  manualChallengeOrdinal = (manualChallengeOrdinal + 1) % CHALLENGE_ORDINAL_PERIOD;
+  const challengeOrdinal = opts.challengeOrdinal ?? manualChallengeOrdinal;
+  if (opts.challengeOrdinal === undefined) {
+    manualChallengeOrdinal = (manualChallengeOrdinal + 1) % CHALLENGE_ORDINAL_PERIOD;
+  }
   const plan = subArea
     ? resolveChallengeWavePlan({
         subArea,
@@ -452,7 +470,7 @@ export function startSubAreaRun(opts: {
   }
 
   playWave(0);
-  return { runId: plan.subAreaId, totalWaves: plan.waves.length };
+  return { runId: plan.subAreaId, totalWaves: plan.waves.length, runSeed: seed, challengeOrdinal };
 }
 
 /**

@@ -1,4 +1,4 @@
-# Production measurement contracts (P02a01)
+# Production measurement contracts (P02a01–P02a02)
 
 This directory currently validates recipes and measurement provenance. It does
 not run combat or certify balance, pacing, skills, earned progress or campaign
@@ -84,6 +84,39 @@ so dirty source differs even when the commit SHA is unchanged. Data hashing
 must include production data paths and bytes. Exact collection roots/exclusions
 are a runner-card deliverable; a supplied hash is not independent provenance.
 
+## Production run replay boundary
+
+`startSubAreaRun` now accepts independent optional readonly `runSeed` (uint32,
+including zero) and `challengeOrdinal` (integer in [0, 360360)). Successful
+handles return their resolved values alongside `runId` and `totalWaves`:
+
+```ts
+const handle = startSubAreaRun({
+  subAreaId: 'areas/act1-blood-moor',
+  runSeed: 0,
+  challengeOrdinal: 0
+});
+```
+
+Both provided values are validated before any store, active-run or counter
+mutation; invalid values throw `RangeError`. Omitted seeds retain the historical
+resolved-area/time hash. Omitted ordinals consume the existing counter once
+modulo 360360; explicit ordinals leave it untouched. Partial options keep the
+other default independently. Valid no-player calls still return `null`.
+
+The seed feeds the existing plan, wave/combat and reward derivations. See
+[D07 v1a](../../../docs/plans/decisions/D07-run-replay-inputs-v1.md) for exact
+derivations and scope. The fresh fixture schema still permits only ordinal zero.
+Replay also requires unchanged starting stores/data and a stable character
+creation identity. The UI-workspace test `src/stores/combatHelpers.replay.test.ts`
+uses a real fresh production character and compares raw first-wave teams,
+events/timestamps and outcome after changing the run-start wall clock, with no
+private counter resets, stat boosts or proxy battle.
+
+This is an input boundary, not a full-run adapter, reward replay or balance
+result. Raw item identity, manual/idle comparison, the presumed-kill idle ticker
+path and draw/advance/reward discrepancies remain open.
+
 ## Acceptance and next slices
 
 Producer reviewed this five-file child before implementation. Tests cover real
@@ -96,7 +129,7 @@ Security check: pass; local validation/hash tooling only, no new dependency,
 untrusted command execution, network, credentials, permissions or runtime/save
 behavior changes. Current U/T/L evidence and final SHA live in the plan ledger.
 
-Next: expose explicit production run seed/ordinal inputs, then use
+Next: use the explicit production run seed/ordinal boundary with
 `createMockPlayer` → `playerStore.setPlayer` and `startSubAreaRun` → recorded
 playback → `advanceWaveOrFinish`, retaining real reward service outputs. Record
 milliseconds/seconds and per-wave plan/combat/reward RNG derivations. Do not
