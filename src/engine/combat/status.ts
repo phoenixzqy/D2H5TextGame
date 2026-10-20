@@ -218,6 +218,24 @@ export function expireStatuses(unit: CombatUnit, simClockMs: number): CombatUnit
   return { ...unit, statuses: next };
 }
 
+/**
+ * Translate a completed battle's status clocks into the next battle's zero
+ * epoch. Preserve missing clocks and legacy counters; prior starts may become
+ * negative. The caller supplies actual elapsed simulation time exactly once.
+ */
+export function rebaseStatusClock(unit: CombatUnit, elapsedMs: number): CombatUnit {
+  return {
+    ...unit,
+    statuses: unit.statuses
+      .filter(s => s.expiresAtMs === undefined || s.expiresAtMs > elapsedMs)
+      .map(s => ({
+        ...s,
+        ...(s.appliedAtMs === undefined ? {} : { appliedAtMs: s.appliedAtMs - elapsedMs }),
+        ...(s.expiresAtMs === undefined ? {} : { expiresAtMs: s.expiresAtMs - elapsedMs })
+      }))
+  };
+}
+
 /** Reduce all status durations by 1 and remove expired statuses. */
 export function tickStatuses(unit: CombatUnit): CombatUnit {
   const next: ActiveStatus[] = [];

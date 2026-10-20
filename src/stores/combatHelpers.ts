@@ -4,7 +4,8 @@
  */
 
 import i18n from '@/i18n';
-import { runBattleRecorded, type BattleEvent, type RecordedBattleEvent } from '@/engine/combat/combat';
+import { MAX_SIM_MS, runBattleRecorded, type BattleEvent, type RecordedBattleEvent } from '@/engine/combat/combat';
+import { rebaseStatusClock } from '@/engine/combat/status';
 import type { CombatUnit, MonsterTier } from '@/engine/combat/types';
 import { inferKind } from '@/engine/combat/types';
 import type { Player } from '@/engine/types/entities';
@@ -311,6 +312,8 @@ interface ActiveRun {
   waveIdx: number;
   /** Ongoing alive player-side units carried between waves. */
   carryPlayerTeam: CombatUnit[];
+  /** Actual terminal clock of the current recording, before presentation events. */
+  waveElapsedMs: number;
 }
 
 let activeRun: ActiveRun | null = null;
@@ -460,7 +463,8 @@ export function startSubAreaRun(opts: {
     mode,
     playerUnit,
     waveIdx: 0,
-    carryPlayerTeam: playerTeam
+    carryPlayerTeam: playerTeam,
+    waveElapsedMs: 0
   };
 
   // Reset per-run aggregate state. Bug #1 (P0): also clear sticky runVictory/runDefeat/subAreaRunId so a second run after a finished one renders cleanly.
@@ -538,9 +542,6 @@ export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idl
     combat.accumulateRunRewards(rewards);
   }
 
-  activeRun.carryPlayerTeam = outcome.finalPlayerTeam.filter(
-    (u) => inferKind(u) !== 'summon' && u.life > 0
-  );
   const nextIdx = activeRun.waveIdx + 1;
   if (nextIdx >= activeRun.plan.waves.length) {
     // Only a complete sequence of won waves can clear an area or unlock idle.
@@ -549,6 +550,10 @@ export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idl
     activeRun = null;
     return 'victory';
   }
+  const elapsedMs = activeRun.waveElapsedMs;
+  activeRun.carryPlayerTeam = outcome.finalPlayerTeam
+    .filter(u => inferKind(u) !== 'summon' && u.life > 0)
+    .map(u => rebaseStatusClock(u, elapsedMs));
   activeRun.waveIdx = nextIdx;
   playWave(nextIdx);
   return 'next-wave';
@@ -579,6 +584,13 @@ function playWave(waveIdx: number): void {
     playerTeam,
     enemyTeam: enemies
   });
+  const terminal = events.at(-1);
+  if (terminal?.kind !== 'end' || !Number.isFinite(terminal.simClockMs) ||
+    terminal.simClockMs < 0 || terminal.simClockMs > MAX_SIM_MS) {
+    activeRun = null;
+    throw new Error('Recorded battle must end with a valid terminal simulation clock');
+  }
+  activeRun.waveElapsedMs = terminal.simClockMs;
 
   const unitMap = new Map<string, string>();
   [...result.playerTeam, ...result.enemyTeam].forEach((unit) => {

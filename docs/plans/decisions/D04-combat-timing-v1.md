@@ -162,3 +162,56 @@ ties, RNG, aliases, content tuning, save, mitigation or scaling changes belong
 to this child. Cross-wave absolute timestamps still require P06c03; seeded ties
 and broader D04 dependencies remain separate. This scoped acceptance does not
 certify campaign balance or complete D04/P06.
+
+## D04 v1d — P06c03 cross-wave status clocks (accepted scoped child)
+
+Status: root and producer accepted control and six-file plan, 2026-10-20.
+The sixth file is the required BUG-016 reproduction report; separate Node
+engine and jsdom production tests preserve their environment boundaries.
+
+Every battle still starts at simulation time zero. Only at a qualified actual
+next-wave transition, carry living heroes/mercenaries with residual status time:
+drop statuses whose present expiry is at or before the completed wave's elapsed
+time, then subtract that elapsed time from every present start and expiry.
+Negative rebased starts preserve prior age; future starts remain future by their
+remaining delay. Missing timestamps remain missing, indefinite expiry remains
+indefinite, and legacy `remaining` never converts to seconds. Preserve status
+source, stacks, potency, tags and all non-status unit fields. Do not rescale
+duration, advance during playback/pause/wall time, or transfer fractional damage
+carry, which remains battle-local under P06c01.
+
+Capture the last original engine-recorded event before presentation injection.
+It must be `end`, with a finite simulation clock in `[0, MAX_SIM_MS]`; fractional
+milliseconds are allowed. This exact terminal clock includes periodic-only lethal
+boundaries, immediate results, deadline and actual action-cap stops. Never infer
+elapsed time from last action, turn count, UI delays or a fallback zero. If the
+invariant fails, abort the transient active run before throwing and before
+publishing another recorded battle, so older playback cannot finalize stale time.
+Overwrite captured elapsed time on each recording/replay; never accumulate it.
+
+Rebase only after playback completion, player victory, living original hero and
+existence of a next wave are established. Preserve the completed outcome and
+current wave's replay input. Current-wave configuration replay never rebases
+again. Final victory, defeat, draw and abort retain their prior behavior.
+Manual, idle, legacy start and production measurements share the production
+`playWave` / `advanceWaveOrFinish` path. The unused legacy store `nextWave` action
+does not run the engine and is outside this correction. Ordinary/recorded engine
+results retain wave-local status clocks and their existing API; callers can use
+the shared pure rebasing helper with known elapsed time when constructing a new
+snapshot. No result/store/save schema change is needed.
+
+Preserve existing carry policy: living hero/merc resources and buff IDs carry;
+summons are filtered out. Cooldown scheduling is rebuilt per battle; its carried
+unit view can affect startup eligibility and remains existing D06/P09 debt. This
+child neither accepts that broader policy nor changes it. No summon, buff, DoT
+potency, cadence, tie, mitigation, alias or balance tuning belongs to this slice.
+
+Implementation owns status.ts, combatHelpers.ts, focused engine and production
+cross-wave tests, this control and BUG-016. Genuine two-wave production behavioral
+RED evidence precedes the runtime helper and patch. Verify residual/future/expired
+and legacy clocks, exact periodic terminal time, repeated transitions, qualified
+carry, no replay double subtraction, actual status/HP/actions, terminal failure
+paths, determinism and immutable inputs. Run focused tests, E/U/T/L/B, changed
+module coverage and independent root/producer source/contract review before commit.
+Seeded ties and broader D04/D06 dependencies still remain separate; full D04/P06
+and campaign balance acceptance are not claimed.
