@@ -8,6 +8,9 @@
 
 import type { CoreStats, DerivedStats, Resistances } from '../types/attributes';
 
+/** Per-attribute hard cap from progression-curve.md §4.2. */
+export const CORE_STAT_HARD_CAP = 500;
+
 /** Stat-point pool helpers. */
 export interface PointBalance {
   readonly available: number;
@@ -37,7 +40,7 @@ export function totalSkillPoints(level: number, questBonusSkill = 0): number {
 /** Soft-cap a stat past 200 (effective contribution halves). */
 export function effectiveStatValue(raw: number): number {
   if (raw <= 200) return raw;
-  const capped = Math.min(500, raw);
+  const capped = Math.min(CORE_STAT_HARD_CAP, raw);
   return 200 + (capped - 200) * 0.5;
 }
 

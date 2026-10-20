@@ -8,6 +8,7 @@ import type { Player } from '@/engine/types/entities';
 import type { CoreStats } from '@/engine/types/attributes';
 import type { Item } from '@/engine/types/items';
 import { deriveEquippedPlayerStats } from '@/engine/progression/equipped-stats';
+import { CORE_STAT_HARD_CAP } from '@/engine/progression/stats';
 import { awardXp, xpRequired, xpTotal, LEVEL_CAP } from '@/engine/progression/xp';
 import { useInventoryStore } from './inventoryStore';
 import {
@@ -60,6 +61,7 @@ interface PlayerState {
   addXP: (amount: number) => void;
   gainExperience: (amount: number) => GainExperienceResult;
   levelUp: () => void;
+  /** Spend one available point below the base cap, publishing coherent equipped stats without healing. */
   allocateStatPoint: (stat: keyof CoreStats) => void;
   /**
    * Spend one skill point on the given skill. Validates the player level
@@ -163,15 +165,20 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   }); },
   
   allocateStatPoint: (stat) => { set((state) => {
-    if (!state.player || state.player.statPoints <= 0) return state;
+    const player = state.player;
+    if (!player || player.statPoints < 1 || player.coreStats[stat] + 1 > CORE_STAT_HARD_CAP) return state;
+    const nextPlayer: Player = {
+      ...player,
+      statPoints: player.statPoints - 1,
+      coreStats: {
+        ...player.coreStats,
+        [stat]: player.coreStats[stat] + 1
+      }
+    };
     return {
       player: {
-        ...state.player,
-        statPoints: state.player.statPoints - 1,
-        coreStats: {
-          ...state.player.coreStats,
-          [stat]: state.player.coreStats[stat] + 1
-        }
+        ...nextPlayer,
+        derivedStats: deriveEquippedPlayerStats(nextPlayer, nextPlayer.level, useInventoryStore.getState().equipped)
       }
     };
   }); },

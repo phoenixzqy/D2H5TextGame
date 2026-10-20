@@ -134,12 +134,11 @@ describe('authoritative hero Warmth composition', () => {
     expect(playerToCombatUnit(stale)).toEqual(unit);
   });
 
-  it('derives a core allocation even before cached derived stats are recomputed', () => {
+  it('publishes coherent core allocation stats and derives unchanged recovery semantics', () => {
     arrange(199, { statPoints: 1, skillLevels: {} });
-    const before = player().derivedStats;
     usePlayerStore.getState().allocateStatPoint('energy');
     expect(player().coreStats.energy).toBe(200);
-    expect(player().derivedStats).toBe(before);
+    expect(player().derivedStats).toMatchObject({ life: 120, mana: 102, manaMax: 350 });
     const unit = playerToCombatUnit(player());
     expect.soft(unit.stats.manaMax).toBe(350);
     expect.soft(unit.manaRegenPerSecond).toBe(40);
