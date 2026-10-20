@@ -829,3 +829,13 @@ no-target pureheal fallback/noRNG and exactID override. Explicit zero/range/
 mixed-effect semantics and four-file factory/runtime split. Acolyte tavern is
 not currently ordinarily hireable; no earned-acquisition claim. No code dispatched
 yet; shared engine waits Amplify. D05 fullWarmth/recovery contract under review.
+
+D05 Warmth full-passive/recovery control now root/producer/QA approved. Explicit
+new provisional hero0.2×effectiveEnergyMP/s baseline, authoredJSON, Warmth
++.04regen/+.01fire perlearnedrank. Per-wave config freezes: authoritative pull
+every playWave clears removed modifiers/ranks and clamps fresh maxima without
+free healing; current recording unchanged except existing explicit combo replay.
+Continuous recovery settles surviving MP through terminalT after periodicdeath
+phase; cap discards overflow/fractionalbank, carry persists only actual nextwaves.
+Every changed mana path emits silent absolute playbackstate. Seven sequential
+bounded children; code not dispatched and fullWarmth/C1 remains unaccepted.
