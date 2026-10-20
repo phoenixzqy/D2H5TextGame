@@ -263,3 +263,26 @@ Lifecycle/hidden interval ownership, periodic/close writes, browser/PWA restart,
 true-away and earned campaign acceptance remain separate. This child alone does
 not close full D12/P17 or the campaign gate. Functional test results and elapsed
 test-budget acceptance are reported separately in BUG-025.
+
+### P17b01 production offline gameplay acceptance (approved QA contract)
+
+Use a dedicated config/spec under tests/pwa, outside development/bridge-enabled
+E2E discovery. Require a fresh check:test-bridge-shake production build and
+reuseExistingServer:false. Both en/zh-CN run at1280×800 and360×640. Create an
+ordinary character and select locale, await activated service-worker document
+control, freeze save clocks, Save/export and verify complete real IDB data.
+Disable context network, reload, and require successful document and essential
+JavaScript responses from the service worker plus absence of window.__GAME__.
+Complete stored/exported save equality and localized controls must survive.
+
+Visit previously unvisited inventory/skills/merc/map screens offline; enter a
+real map encounter and use its ordinary Skip control. Require actual wave
+counter advancement or a terminal victory/defeat panel. End/flee with ordinary
+controls, Save/export/read-only IDB, then same-clock offline reload with complete
+equality. The outcome-derived save is a persistence baseline, not an independent
+combat/reward arithmetic oracle. No injected stores/storage/lifecycle, bridge,
+forced pointer actions, log-regex resolution or soft balance skips.
+
+Scope is dedicated config, one offline spec, evidence report and this control.
+This accepts one installed-cache/offline gameplay path, not installation UX,
+Lighthouse, optional-art explanation, update safety, earned campaign or fullG6.

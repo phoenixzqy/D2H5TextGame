@@ -1,0 +1,35 @@
+import { defineConfig, devices } from '@playwright/test';
+import { fileURLToPath } from 'node:url';
+
+const port = Number(process.env.PWA_PORT ?? 4326);
+const baseURL = `http://127.0.0.1:${String(port)}`;
+
+/** Dedicated real-production acceptance; never reuse a debug-enabled server. */
+export default defineConfig({
+  testDir: '.',
+  testMatch: 'offline-gameplay.spec.ts',
+  fullyParallel: true,
+  forbidOnly: !!process.env.CI,
+  retries: 0,
+  workers: 2,
+  timeout: 90_000,
+  reporter: 'line',
+  outputDir: '../../test-results/pwa',
+  use: {
+    baseURL,
+    serviceWorkers: 'allow',
+    screenshot: 'only-on-failure',
+    trace: 'retain-on-failure'
+  },
+  projects: [
+    { name: 'pwa-desktop', use: { ...devices['Desktop Chrome'], viewport: { width: 1280, height: 800 } } },
+    { name: 'pwa-mobile', use: { ...devices['Pixel 5'], viewport: { width: 360, height: 640 } } }
+  ],
+  webServer: {
+    cwd: fileURLToPath(new URL('../..', import.meta.url)),
+    command: `npm run check:test-bridge-shake && npx vite preview --port ${String(port)} --host 127.0.0.1 --strictPort`,
+    url: baseURL,
+    reuseExistingServer: false,
+    timeout: 180_000
+  }
+});
