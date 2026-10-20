@@ -306,3 +306,38 @@ spec, BUG026 and this root-owned control. No mirrored implementation unit tests
 are required for this small reversible UI; review listener lifecycle and verify
 the browser matrix, U/T/L/forced-spec lint/production build. Full update safety,
 install/Lighthouse/G6/P17 and earned campaign remain separate.
+
+### P17b03a configured-version worker replacement (approved QA contract)
+
+Use existing VITE_APP_VERSION to build A and B from the same source/schema.
+Each goes through check:test-bridge-shake; copy only passed output into exact
+task-owned temporary bundles and require different worker bytes. Refuse any
+preexisting dist, including dangling symlinks, without deleting that blocker.
+Keep ownership flags for failure/signal cleanup. A loopback-only test server
+serves one bundle at a time, accepts only narrow A/B deployment switches and
+contains static paths with correct MIME, document-only SPA fallback and no-store
+worker responses. No new production endpoint, marker asset or runtime hook.
+
+Dedicated config/spec outside ordinary E2E discovery uses one worker, fresh
+contexts, resetA and no server reuse. Both locales×desktop/mobile create an
+ordinary hero and verify A's Settings version plus activated document control.
+Frozen Save establishes full baselineS. An ordinary sound toggle must export
+exactly S with only that known preference changed while actual disk remainsS.
+Install native controllerchange observation before registration.update; require
+the distinct new controller object reaches activated using host-side polling.
+Live A controls/export retain the pending value and diskS until explicit Save
+commits the expected complete payload. Actual document reload must load B's
+ordinary version text/new JavaScript through the SW and preserve full IDB/export
+equality/locale/no bridge. Then network-disable and repeat B reload/equality.
+
+Scope: update config/server/spec, small evidence report and this control. Stop
+the owned server before deleting verified owned bundles; finally/signal cleanup
+and parent verification cover failed attempts too. On the tested POSIX host,
+build guards run asynchronously in tracked isolated process groups, and cleanup
+signals only that owned group and awaits completion before removing output.
+Playwright explicitly grants SIGTERM shutdown15s; an actual build interruption
+must leave no live owned build group/dist/staging. Forced termination cannot
+guarantee callbacks, so parent exact-path verification remains required.
+This is same-source/same-
+schema configured-version replacement proof, not migration or arbitrary changed
+game-code compatibility, installation, fullG6/P17 or campaign acceptance.
