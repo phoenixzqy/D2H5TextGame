@@ -20,6 +20,7 @@ Current implementation evidence lives in `evidence/`.
 | P02a03 | accepted screening/tooling slice | `3820a19` (agent `994cfd9`); real fresh creation/run/playback/awards, full recordings+hashes, actual source provenance, safe external CLI output. Root+producer APPROVE; evidence below. Full-run/idle/campaign measurement remains. |
 | Remaining P02 | pending dependencies | Expanded production scenarios and diagnosed manual/idle/reward comparison remain. Historical proxy sim stays excluded. |
 | P02b04 | accepted bounded screen evidence | `65f9aaf`; frozen same40 pair, one historical seed/build, two determinism reps each. A loses DenW3, B DenW2; no clear. Full reports/diffs and independent outcome/packet approvals retained. [Evidence](evidence/p02b04-earned-screen.md). Remaining P02/manual-idle/C0 remain open. |
+| P02b05a | accepted scoped documentation contract | `91d756c`; [first-act route](decisions/D07-D11-first-act-route-v1.md) reconciles Act I access without runtime change; [active-mode diagnostic](decisions/D07-active-mode-measurement-v1.md) separates restored test state from earned clear/UI eligibility. GD/TD/producer/QA approve. Executable freeze/RED, full D07/D11/P02 remain open. |
 | P03a | accepted slice | `6f1dafd` + `76db166`; independent source approval, U/T/L/B and 10 browser cases pass. [Evidence](evidence/P03a-save-integrity.md). Full D12/G1/G6 remain unaccepted. |
 | P03b01 | accepted visibility slice | `90e4a67`; all legacy items remain selectable above grid cap, seven boundary tests, four ordinary-control browser cases. BUG-005. |
 | P03b02 | accepted ingress slice | `a79ef1f`; retain complete earned/returned overflow, actual victory/merc/save integration,16 focused regressions; producer source APPROVE. Shared regular-action guards remain. |
@@ -1930,3 +1931,33 @@ separate restoredsynthetic active-mode diagnostic from future genuinely earned
 BloodMoorfullclear/idleeligibility proof. Productionidle uses realcombat;
 dormantticker is not its caller. Den/Andariel/campaign/pacing/finalbalance/
 C0–C4/G0–G7/fullv1 remainopen. No push/PR/merge/deployment.
+
+P02b05a accepted **91d756c** after independent planready/GDAPPROVE/TDAPPROVE,
+concreteGD/TD/producer/QAAPPROVE and full24memberpacketQAAPPROVE. Three-docscope:
+Act1actwideaccess supersedes maps-spec12sequentialrule onlyforfirstact; authority
+is GDD7.3/scopedD11, not sourcealone. Den remainsC1quest/skillpointwork. Preserve
+exactAct2completedAndarielquestORcanonicalCatacombsclear gate, no rewardclaim
+requirement; retain legacyDenColdPlainsmetadata/fullD11openness. No runtime/data/
+config/test/dependency/savechange. Separate active-mode contract labels restored
+synthetictestbaseline/directidleUIeligibilitybypass; strictmanualv1/v2 unchanged,
+noimporter/allocatorreset. Actualbothmodeforcedguards +idleunforcedpromotion/
+plannerRNG/pitybeforequalification/sharedawardtimeXP/MF are observed distinctions,
+not implicitfullidledesignacceptance. ConcreteTDCONCERNS corrected exact
+metaStore.idleState.idleTarget and qualifiedCombatScreenpityreset; map/stripstop
+onlycleartarget. Both correctionssubsequentlyAPPROVED. Next executablecardmust
+freezeclosedbaseline/seed/ordinal/pity/samples/ownership/time+sizebounds and
+actualgenuinecapabilityRED; noRED/gameplayoutcomeclaimedhere. FreshBloodMoor
+3wavefullclear/earnedidleUI/stoprepeat remainlaterproofs. Documentchecks retain
+initialpreexistingglob-literal and absentunchangedmaps.schema.jsonhandofftarget
+failures; final sourcepathcheck scopedtonewdocs, all6relative links/scopeddiff/
+sourceunchangedcheckspass.22acceptedbaselinehashes/36sourcesunchanged confirmed
+byQA; P02b04U/T/Lexplicitlyhistorical. No new test/build/browser/gameplayrun.
+[Packet](evidence/fixtures/p02b05a-mode-contract/packet.json)7ae7ca351f69a5a7e324696d3886b537cbb974b9025ab863a3e761c287f66e13
+and archivefb8ec49c47178aa1c2bca15eb80f7837720a6811b95eef7b521517a72475b407
+preserve24regularrecords/19023compressedbytes/3commandmetas/3document snapshots,
+allbytes/hash/index independentlyverified. Allconsumersreleased before exact
+RAWzagjxkatcleanup; absenceverified, no newcache/build/process, tools preserved,
+rootclaimcontinues. Next root-owned source-onlyRAW=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-mode-adapter-12hxbdcu
+holds transferredrunner/cleanuprecord for P02b05b01 isolatedmodeadapterplan,
+not yet testfreeze/execution. Den/Andariel/campaign/pacing/finalbalance/C0–C4/
+G0–G7/fullv1remainopen. No push/PR/merge/deployment.
