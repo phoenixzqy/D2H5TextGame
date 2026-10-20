@@ -37,7 +37,7 @@ Current implementation evidence lives in `evidence/`.
 | P06c02 | accepted boss-duration slice | `030de58` (agent `53c08fe`); configured boss multiplier once on unrounded milliseconds, legacy lifecycle retained;56 focused cases incl16 real combat cases; root+producer source APPROVE. Cross-wave rebasing remains. |
 | Remaining P06–P10 | pending dependencies | D04–D06/shared effects first. All skills remain behavior-unaccepted. |
 | P08a01 | accepted fire-status-family slice | `11eb6b3` (worker `ca66d0a`); central burn/ignite identity, production ranked Fire Bolt full3s DoT and legacy/combo/refresh/removal. BUG029; root/producer APPROVE/ADEQUATE. Combined1332pass; ordinary skill UI/fullP08/C1 remain open. |
-| P08a02 | in-progress authored curse slice | Approved D04 contract at `bf840d7`; sequential metadata/authored definition/runtime children; actual gameplay RED and combined proof required. |
+| P08a02 | in-progress authored curse slice | Metadata `8b1f497` and authored definition `554a922` accepted; runtime c awaits genuine production RED/BUG031 and combined proof. Approved D04 contract at `bf840d7`. |
 | P11a / P11a02 | accepted finalization slices | `d39fe64` actual-win/living-hero/playback guard and single clear; `d8db75c` truthful draw UI. Six root regressions, six RTL, 4/4 browser locale×viewport cases; independent QA/producer APPROVE. BUG-008. |
 | P11–P15 | pending dependencies | Rewards/idle, eligibility, economy, campaign and pacing. |
 | P13a | accepted progress-default slice | `8e6076e` (agent `6db69b6`); actual-level defaults/getter/award and UI fallback, explicit stored thresholds retained, real combat skip restored. Root/producer APPROVE; full1290pass/no skips. |
@@ -839,3 +839,19 @@ Continuous recovery settles surviving MP through terminalT after periodicdeath
 phase; cap discards overflow/fractionalbank, carry persists only actual nextwaves.
 Every changed mana path emits silent absolute playbackstate. Seven sequential
 bounded children; code not dispatched and fullWarmth/C1 remains unaccepted.
+
+P08a02b integrated554a922 (worker8d6f436), exact5files150insertions: actual
+NecromancerJSON3000ms/50points, exactIDconditional schema requires both using
+existing numeric refs, pure exactone-row immutable scalar definition without
+registry cycle/tuning duplication. Generic optional/zero metadata preserved.
+Genuine acceptance RED07:45:06UTC5fail/17pass22total2.10s beforeJSON/schema;
+focused78pass/3files2.12s,engine560/43files4.90s,related868/66files24.82s,
+full1398/118files29.11s,T/L/B8.89s/diffcheck pass.3/5/15s budgets unmet.
+Definition coverage31/31statements,1/1functions,14/14branches,100%lines;
+strict actual283skills/9JSON corpus and integrity30tests pass. No validate:data
+script exists. Root+producer independent source/evidence APPROVE/ADEQUATE.
+Both consumed artifacts before worker removed exact dist,coverage/p08a02b+
+emptycoverage,.vite/vitest+empty.vite; absence verified,clean/releasedworktree3.
+Actual curse gameplay remains inert; c gets explicit BUG031 ownership and
+must present production/status RED before runtime. Final combined validation
+follows c. Root worktree2 remains claimed; no push/PR/deployment.
