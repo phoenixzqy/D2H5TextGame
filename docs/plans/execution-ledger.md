@@ -40,6 +40,8 @@ Current implementation evidence lives in `evidence/`.
 | P07a01d | accepted fire/passive slice | `5a53d37` (worker `f80b6a9`), separate active-buff fixture `727da6b`; actual composed fire bonus and passive action exclusion. Genuine RED22/38; engine780/full1640/T/L/B/coverage pass, root/QA/producer APPROVE. Timed recovery and browser remain open. |
 | P07a01e | accepted mana transport slice | `dd236eb`, reviewed RED/BUG036 `48e1412` + post-fire RED `35365c3`; exact absolute cast/refund/orb playback and resulting-cap carry cleanup. Focused32/full1661/T/L/B/80%engine coverage pass; producer/QA APPROVE. No timed recovery yet. |
 | P07a01g UI prerequisite | accepted bounded display slice | BUG037; live hero MP strip and true bar maxima. Genuine corrected RED2/12; GREEN12/full1667/T/L/B pass. Ordinary Fire Bolt102→94MP,14/14 viewport/locale geometry and readable en/zh screenshots, independent QA/producer APPROVE. Full earned Warmth proof remains open. |
+| P07a01f | accepted exact recovery slice | `775eab7`; exact decimal MP-ms integration, reviewed genuine RED,893engine/900related/1790full/T/L/build/unchanged80%enginecoverage pass. BUG038 and independent root/producer/QA final APPROVE. Timing and build warnings remain open. |
+| P07a01g earned browser | accepted bounded earned/save proof | Four production cases, en/zh-CN × desktop1280×800/mobile360×640, no retries/skips/page errors. Ordinary learned/upgraded rank, old/fresh wave MP99/101/108/109, old/new fire74/75, complete save/reopen and resumed102→103MP. [Evidence](evidence/p07a01g-earned-warmth.md); root/producer/QA APPROVE/ADEQUATE. |
 | Remaining P06–P10 | pending dependencies | D04–D06/shared effects first. All skills remain behavior-unaccepted. |
 | P08a01 | accepted fire-status-family slice | `11eb6b3` (worker `ca66d0a`); central burn/ignite identity, production ranked Fire Bolt full3s DoT and legacy/combo/refresh/removal. BUG029; root/producer APPROVE/ADEQUATE. Combined1332pass; ordinary skill UI/fullP08/C1 remain open. |
 | P08a01b/c | accepted earned skill and display slices | `0dbbef2` ordinary earned Fire Bolt/save/reload production route; `a150f5b` truthful damage/CD/DoT units in both locales. Independent evidence below; full skill behavior remains open. |
@@ -1200,3 +1202,18 @@ Root/producer/QA final combined APPROVE / ADEQUATE P07a01f functional boundary
 at`775eab7`; all8source/test hashes match. Engine recovery child is accepted,
 with timing/bundle/offline/performance caveats above. Warmth as a whole and
 P07a01g ordinary-earned browser/save proof remain open.
+
+
+P07a01g ordinary earned Warmth browser/save proof accepted after final native
+4/4 GREEN (runner212.159s/wall213.547s), frozen spec `128eb18a` / config
+`ca32c864`, reporter `af1f1ea2`. Root/producer/QA independently decoded all
+four actual DOM attachments and confirmed rank-sensitive boundaries,74/75fire,
+whole-save equality and reopened110→102→103. T9.600/explicitL5.590/fullL25.860s
+pass; production bridge shaken out, empty page warning/error collections.
+Evidence document preserves exact commands/full hashes and caveats. All
+consumers finished; root verified deletion of exact Warmth scratch,dist and
+local .vite cache; ports4387/4388 closed. Original checkout untouched.
+P04a03a is the next producer-ready three-file central quest-schema prerequisite;
+structured BUG039 and reviewed genuine loader-accepts-invalid RED precede
+runtime edits. Direct quest imports/references/reward grant correctness remain
+separate. C0–C4/G0–G7 remain unaccepted; continue full staged v1.

@@ -321,3 +321,16 @@ match. Combined coverage JSON SHA256
 helper/combat counts and unchanged thresholds. Required current-head functional
 checks pass; timing/performance and earned browser/save remain explicitly open.
 No persistence/schema diff, push, PR, merge or deployment.
+
+
+## Ordinary earned production/save continuation (P07a01g)
+
+Root, producer and independent QA APPROVE / ADEQUATE final four-case native
+production matrix at unchanged runtime `775eab7`. Literal old/new wave MP
+99/101/108/109 distinguishes rank0/1/2 recovery; old critical74 versus reopened
+rank2 critical75, full save/close/new-page Continue equality and resumed
+110→102→103MP pass in both locales at desktop/mobile. Exact command, source
+and reporter hashes,213.547s wall result, empty page warnings/errors and
+cleanup are preserved in `docs/plans/evidence/p07a01g-earned-warmth.md`.
+This accepts the bounded earned Warmth path, not whole C/G, balance/performance,
+offline, campaign or broader skills. Timing/build warnings above remain open.
