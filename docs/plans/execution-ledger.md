@@ -31,6 +31,7 @@ Current implementation evidence lives in `evidence/`.
 | P04a03b | accepted synchronous validation prerequisite | One-file strict existing-schema guard validates both full documents per call before collecting/rejecting duplicates. BUG043, reviewed40RED/5controls; frozen45GREEN, focused268/5+integrity30/1, full/coverage2261/134, T/L/build/80%engine gate pass. Root/producer/QA APPROVE/ADEQUATE. [Evidence](evidence/p04a03b-synchronous-quest-validation.md). Reward execution/crossrefs/campaign remain open. |
 | P04a04a | accepted bounded claim safety | Shared claim preflight/global guard/participating rollback plus localized refusals. BUG044; independently reviewed frozen34RED/41controls, source/focused75GREEN. Related720/57, full/coverage2310/136, T/L/purity51/build/bridge pass; root/producer/QA final APPROVE/ADEQUATE. [Evidence](evidence/p04a04a-den-claim-safety.md). Ordinary-earned Den and broader P04/campaign/C/G remain open. |
 | P04a04b | failed discovery; unaccepted | Frozen en/desktop ordinary-earned recipe loses Denwave2 after valid13prep/W1payout. Root/producer/QA independently confirmed native loss, no combat defect established. [Evidence](evidence/p04a04b-earned-den-discovery.md) preserves failed candidate/outcome; no stronger retry/matrix/runtime change. Separate native stat-allocation prerequisite next. |
+| P04a05 | accepted bounded Andariel objective wiring | `47a70c6`; canonical two IDs and ordered tracked kill-boss action with original catalog-backed chapter-boss/current-recording provenance. BUG049; producer/QA final APPROVE/ADEQUATE, frozen34GREEN and full2496/144, T/L/build pass. Imported fixture only; earned boss, rewards, broader P04/C1 remain open. |
 | Remaining P03b/P04 | ready for reproduction | Shared capacity, atomic transactions/recoverable awards and quest event/reward integrity remain. |
 | P05a | accepted slice | `2458ee7`; source-local error state, 13 focused tests and actual-component desktop/mobile proof. [Integrated evidence](evidence/P05a-P06a-foundations.md). D13/F19 remain open. |
 | P05b01 | accepted resolver slice | `0c2d043`; D13 identity/metadata control, 29 new tests (25 red before fix), producer source APPROVE. Full suite + T/L/B pass. BUG-010; surface wiring remains. |
@@ -1590,3 +1591,24 @@ P04a05 scopedD11 qualifiedAndarielkill-boss event/dataIDs, contractreviewbefore
 RED/runtime. NextRAW=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-andariel-objective-vxzoooqx,
 rootowns eventualcleanup. No earnedboss/reload/guaranteedgear/uniquematerialization/
 economy/fullP12a/C0–C4/G0–G7/fullv1 acceptance. No push/PR/merge/deployment.
+
+
+P04a05/BUG049 accepted47a70c6 after independent design/plan/frozenRED and final
+producer/QA APPROVE/ADEQUATE. Canonical Andariel target/area, ordered exact
+tracked/unclaimed kill-boss action, and transient original single catalog-backed
+built boss/current recording qualify only the new final-settlement event.
+Existing playback/playerwin/originalhero/terminal/XP/loot/clear/unlock retained.
+FrozenRED34=15fail19controls includes2unspied real manual wins remaining
+inProgress; unchanged assertions GREEN34. Approved lint-only loop syntax and
+first optional-property type failure retained with source versions. FinalU2496/
+1440pending,T20.944/L48.797/purity52, E1011/52,related429/13 and guarded production
+build8.805 pass; budgets/build warnings unchanged. All19command/report/source
+hashes and failed attempts versioned in BUG049/fixtures. Both consumers released
+before exactRAWvxzoooqx/dist/.vite cleanup; absence verified, no task process,
+original checkout clean, root claim continues. Imported gear/refill actual
+engine win/export equality proves wiring only; earned victory/rewards/reload/
+browser/C1/C0–C4/G0–G7/fullv1 remain open. Next candidate P04a06 reward-local
+itemDrop schema union preserves flat IDs and admits authoritative base/unique
+namespaces only; no content/reward execution change. Next RAW=
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-quest-item-ids-zz5vn9bu,
+root owns cleanup after independent consumers release. No push/PR/merge/deploy.

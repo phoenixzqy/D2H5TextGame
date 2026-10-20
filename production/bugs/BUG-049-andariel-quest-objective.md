@@ -1,6 +1,6 @@
 # BUG-049 — Record the qualified Andariel quest objective
 
-Status: fixed locally; independent producer/QA final APPROVE, evidence ADEQUATE.
+Status: Fixed in `47a70c6`; independent producer/QA final APPROVE, evidence ADEQUATE.
 Severity: High — tracked Andariel quest cannot complete through combat.
 Owner: store/content integration; independent design/producer/QA review.
 
