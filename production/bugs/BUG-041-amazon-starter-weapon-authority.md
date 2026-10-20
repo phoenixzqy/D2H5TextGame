@@ -534,3 +534,42 @@ Comparison/browser/fullauthority/BUG041/C/G remain open; root claim continues.
 P08a05e accepted at8247c81. After all raw consumers finished, root removed
 and verified absence of exact E scratch above, task-owned dist and local .vite.
 No task process/retained raw output remains. Original checkout remains clean main.
+
+## P08a05f comparison child intake
+
+Build20e88cb; Vitest jsdom, locale-independent pure helper, no browser/seed
+required for deterministic fixed item stats. Medium severity: misleading
+equip preview; actual gear displacement is correct, workaround inspect stats
+after equipping. Affected frontend inventory comparison. Reproduce via real
+add/equip sword8+shield6, then compare authored training13; preview currently
+keeps shield. Reverse training→shield preview keeps bow. Expected same
+canonical action and all derived deltas. Root cause private ID-only 2H reader
+duplicates metadata-aware engine helper. Fixed-source action deferred until
+genuine test repro and independent approval; D04 F records exact two-file plan.
+
+F exact owned raw root (retain until all consumers done):
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-compare-bnmqmnio
+
+### P08a05f frozen genuine comparison RED
+
+21tests:2failed/19passed,0skip,runner2.26/wall3.613s,exit1. Existing14
+plus7new real-action cases. TSC/scopedlint pass. Both failures occur in actual
+stat triple assertions after successful real canonical equip and exact slot/
+backpack/attack/defense outcome assertions: incoming training leaves phantom
+shield in prediction; incoming shield leaves phantom training attack. Real
+production item catalogs/actions/aggregation, no mocked helper/store/metadata.
+Stable IDs/explicit legal13/8/4rolls; one-hand and4legacy catalog controls pass.
+Input refs/content/candidate/base-cache purity checks execute before failed
+predictions; later net/clear-upgrade assertions remain for GREEN. Source
+compareEquip.ts unchanged from20e88cb. Root frozen review ADEQUATE; independent
+producer/QA approval required before runtime source.
+
+- compare-red: `npx vitest run --project ui src/features/inventory/compareEquip.test.ts --reporter=verbose`; exit1, wall3.613s; log SHA256 `2ded12b76548eff8568576e74a557967a2471181b2c4c5b67054884756738c1b`.
+- compare-red-typecheck: `npm run typecheck`; exit0, wall10.072s; log SHA256 `53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47`.
+- compare-red-lint: `npx eslint src/features/inventory/compareEquip.test.ts --max-warnings=0`; exit0, wall5.586s; log SHA256 `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`.
+
+Frozen test SHA256: `f9a3d903056d5daa087e67a6f87c91372cb8560256014793d96f3bfefbd01c19`.
+
+Independent frozen reviews [P08a05f-FROZEN-RED-PRODUCER] and
+[P08a05f-FROZEN-RED-QA] APPROVE / ADEQUATE; raw commands/hashes and source
+unchanged20e88cb independently verified. Root agrees; source may proceed.

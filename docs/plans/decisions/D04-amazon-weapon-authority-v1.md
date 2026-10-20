@@ -299,3 +299,38 @@ controlled integration, never ordinary earned/browser/balance acceptance.
 Producer independent E plan-review ready / APPROVE before tests/source.
 Freeze current recording refs/cursor/outcome through automatic normalization;
 explicit edit replay remains required. No material gap or user question.
+
+## P08a05f metadata-aware equipment comparison (proposed for review)
+
+Depends on accepted E8247c81 and cleanup20e88cb. Root owns only
+features/inventory/compareEquip.ts and its existing test for behavior/test
+changes, plus D04/BUG041/ledger evidence. Existing private ID-only 2H test
+misses Training Bow metadata while actual inventory uses engine isTwoHanded.
+Smallest root fix: remove private recognizer; import shared engine helper
+for both incoming-weapon and incoming-offhand displacement. No engine/store/
+content/schema/save/UI copy/layout change. Shared helper retains metadata
+precedence and missing-metadata legacy fallback.
+
+Tests first: real canonical add/equip baseline+candidate with stable IDs,
+authored training13, short sword8, buckler defense6. Canonical action executes
+before prediction assertions so RED proves actual displacement independently.
+Sword+shield→training: attack+5, defense−6, net−1, not clear upgrade.
+Training→shield: attack−13, defense+6, net−7, not clear upgrade.
+Assert prediction every reported stat/resistance triple against actual before/
+after derived maxima, slots, returned backpack ownership/flags and input
+reference/content preservation. No current-life/mana comparison. Capture and
+assert source snapshots before comparison and after actual action. Explicit
+one-hand+sword4→sword8 retains shield control; real catalog 2H prefix and generic
+bow/crossbow/polearm controls retain legacy behavior. Existing engine tests
+already cover missing metadata; avoid modifying cached bases.
+
+Producer plan review then genuine frozen RED/root+producer+QA before source;
+focused/T/L, independent source review, related/full/T/L/build/coverage and
+independent final evidence review. Keep owned scratch until consumers finish,
+then exact cleanup. Ordinary earned browser chain follows separately.
+Security check PASS: local pure comparison helper consolidation only, no
+external/credential/dependency/permissions/validation bypass changes.
+
+Producer [P08a05f-PLAN-PRODUCER] APPROVE / ready after independent actual
+comparison/store/helper inspection. No dependency cycle or material gap.
+Root agrees; proceed genuine frozen RED before runtime source.
