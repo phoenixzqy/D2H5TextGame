@@ -71,6 +71,13 @@ export interface CombatUnit {
   readonly stats: DerivedStats;
   readonly life: number;
   readonly mana: number;
+  /** Continuous battle-time MP recovery; absent means zero (never wall-clock recovery). */
+  readonly manaRegenPerSecond?: number;
+  /** Fractional MP and compensated integration carry across qualified next waves; absent means zero. */
+  readonly manaRegenCarry?: number;
+  readonly manaRegenCompensation?: number;
+  /** Per-type increased direct damage, composed once for a frozen wave; absent means zero. */
+  readonly increasedDamagePct?: Readonly<Partial<Record<DamageType, number>>>;
   readonly statuses: readonly ActiveStatus[];
   /** Cooldowns: skillId → remaining turns. */
   readonly cooldowns: Readonly<Record<string, number>>;
