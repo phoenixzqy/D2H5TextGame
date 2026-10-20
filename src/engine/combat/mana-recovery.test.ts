@@ -35,6 +35,13 @@ describe('compensated cumulative MP-millisecond integration', () => {
     expect(second.wholeGranted - first.wholeGranted).toBe(2);
   });
 
+  it('preserves exactly 1092 MP at 43.68 MP/s across the 16ms and 24984ms product partition', () => {
+    const first = integrateManaRecovery(43.68, 16);
+    const second = integrateManaRecovery(43.68, 24_984, first);
+    expect(second.wholeGranted).toBe(1092);
+    expect(second.total).toBe(1_092_000);
+  });
+
   it('seeds a new battle from fractional MP and signed MP compensation', () => {
     expect(createManaRecoveryIntegral(0.75, -0.125))
       .toEqual({ total: 750, compensation: -125, wholeGranted: 0 });

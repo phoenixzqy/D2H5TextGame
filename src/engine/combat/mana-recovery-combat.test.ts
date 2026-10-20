@@ -171,6 +171,17 @@ describe('continuous mana on actual combat boundaries', () => {
     expect(hero(result).manaRegenCarry).toBeCloseTo(0, 12);
   });
 
+  it('preserves the ninth MP across actual 695ms and 555ms battle carry handoff at 7.2 MP/s', () => {
+    const first = hero(runBattleRecorded(snapshot(695, unit('hero', 'player', { manaRegenPerSecond: 7.2 }))));
+    const second = hero(runBattleRecorded(snapshot(555, unit('hero', 'player', {
+      manaRegenPerSecond: 7.2, manaRegenCarry: first.manaRegenCarry ?? 0,
+      manaRegenCompensation: first.manaRegenCompensation ?? 0 }))));
+    expect(first.mana).toBe(5);
+    expect.soft(second.mana).toBe(4);
+    expect.soft(first.mana + second.mana).toBe(9);
+    expect(second.manaRegenCarry).toBeCloseTo(0, 12);
+  });
+
   it.each([-1, 1, 1.5, NaN, Infinity, -Infinity])('ignores malformed incoming carry %s', carry => {
     const result = runBattleRecorded(snapshot(250, unit('hero', 'player', {
       manaRegenPerSecond: 4, manaRegenCarry: carry })));
