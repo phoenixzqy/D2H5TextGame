@@ -79,8 +79,9 @@ async function expectRank(page: Page, english: boolean, rank: 1 | 2): Promise<vo
   const current = detail.locator('section').filter({
     has: page.getByRole('heading', { name: english ? 'Current' : '当前', exact: true })
   });
-  // Numeric rank display only: the existing percent suffix is not a flat-damage unit claim.
-  await expect(current).toContainText(rank === 1 ? '30% ~ 45%' : '34% ~ 49%');
+  await expect(current).toContainText(rank === 1 ? '30 ~ 45' : '34 ~ 49');
+  await expect(current.getByText(english ? 'Cooldown' : '冷却', { exact: true })
+    .locator('..').getByRole('definition')).toHaveText(english ? '1 s' : '1 秒');
   await expect(detail.getByRole('button', { name: english ? 'No Points' : '无技能点', exact: true })).toBeDisabled();
   await expectProduction(page);
 }

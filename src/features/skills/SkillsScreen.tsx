@@ -576,15 +576,15 @@ function StatSection({
             <StatLine
               key={`damage-${row.type}`}
               label={t('details.damageAttack', { type: t(`damage-types:type.${row.type}`) })}
-              value={t('details.percentRange', { min: row.min, max: row.max })}
-              delta={damageDelta(row, compare)}
+              value={t('details.flatRange', { min: row.min, max: row.max })}
+              delta={damageDelta(row, compare, t)}
             />
           ))}
           {stats.damage.length > 1 && stats.totalDamage ? (
             <StatLine
               label={t('details.totalPower')}
-              value={t('details.percentRange', { min: stats.totalDamage.min, max: stats.totalDamage.max })}
-              delta={compare?.totalDamage ? rangeDelta(stats.totalDamage, compare.totalDamage) : null}
+              value={t('details.flatRange', { min: stats.totalDamage.min, max: stats.totalDamage.max })}
+              delta={compare?.totalDamage ? rangeDelta(stats.totalDamage, compare.totalDamage, t) : null}
             />
           ) : null}
           {stats.summonCap !== undefined ? (
@@ -624,7 +624,7 @@ function StatSection({
           {stats.lifeCost !== undefined ? (
             <StatLine label={t('details.lifeCost')} value={String(stats.lifeCost)} />
           ) : null}
-          <StatLine label={t('details.cooldown')} value={t('details.turns', { count: stats.cooldown })} />
+          <StatLine label={t('details.cooldown')} value={t('details.seconds', { seconds: stats.cooldown })} />
           {stats.statuses.length > 0 ? (
             <StatLine
               label={t('details.statusEffects')}
@@ -971,20 +971,21 @@ function dynamicDescription(
   });
 }
 
-function damageDelta(row: SkillDamageDisplayRow, compare: SkillRankDisplayStats | undefined): string | null {
+function damageDelta(row: SkillDamageDisplayRow, compare: SkillRankDisplayStats | undefined, t: Translate): string | null {
   const old = compare?.damage.find((candidate) => candidate.type === row.type);
   if (!old) return null;
-  return rangeDelta(row, old);
+  return rangeDelta(row, old, t);
 }
 
 function rangeDelta(
   next: { readonly min: number; readonly max: number },
-  current: { readonly min: number; readonly max: number }
+  current: { readonly min: number; readonly max: number },
+  t: Translate
 ): string | null {
   const minDelta = next.min - current.min;
   const maxDelta = next.max - current.max;
   if (minDelta === 0 && maxDelta === 0) return null;
-  return `(+${String(minDelta)}% ~ +${String(maxDelta)}%)`;
+  return t('details.flatRangeDelta', { min: minDelta, max: maxDelta });
 }
 
 function numberDelta(next: number, current: number, t: Translate): string | null {

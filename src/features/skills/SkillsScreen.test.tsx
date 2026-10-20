@@ -17,7 +17,7 @@
  */
 import { describe, it, expect, beforeEach } from 'vitest';
 import { Suspense } from 'react';
-import { fireEvent, render, screen, act } from '@testing-library/react';
+import { fireEvent, render, screen, act, within } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import { MemoryRouter } from 'react-router-dom';
 import i18n from '@/i18n';
@@ -333,5 +333,83 @@ describe('<SkillsScreen> — class fixture renders (mirrors skills-screen.spec.t
     expect(detailPanel).toHaveClass('h-[34rem]');
     expect(detailPanel).toHaveClass('md:h-[21rem]');
     expect(detailPanel).toHaveClass('overflow-y-auto');
+  });
+});
+
+/** Mounted locale coverage: authored display values keep their actual units. */
+describe.each(['en', 'zh-CN'] as const)('<SkillsScreen> truthful units (%s)', (locale) => {
+  const english = locale === 'en';
+
+  beforeEach(async () => {
+    act(() => { usePlayerStore.getState().reset(); });
+    await i18n.changeLanguage(locale);
+  });
+
+  function selectLearnedSkill(cls: CharacterClass, skillId: string, rank: number, level: number) {
+    const player = createMockPlayer('Unit proof', cls);
+    act(() => {
+      usePlayerStore.getState().setPlayer({ ...player, level, skillLevels: { [skillId]: rank } });
+    });
+    renderScreen();
+    fireEvent.click(screen.getByTestId(`skill-node-${skillId}`));
+  }
+
+  function section(name: string): HTMLElement {
+    const panel = screen.getByTestId('skill-detail-panel');
+    const element = within(panel).getByRole('heading', { name }).closest('section');
+    if (!element) throw new Error(`Missing detail section: ${name}`);
+    return element;
+  }
+
+  function value(container: HTMLElement, label: string): HTMLElement {
+    const term = within(container).getByText(label, { selector: 'dt', exact: true });
+    const definition = term.nextElementSibling;
+    if (!(definition instanceof HTMLElement)) throw new Error(`Missing value: ${label}`);
+    return definition;
+  }
+
+  it('renders Fire Bolt current/next flat ranges, flat delta and dynamic description', () => {
+    selectLearnedSkill('sorceress', 'skills-sorceress-fire-bolt', 1, 1);
+    const current = section(english ? 'Current' : '当前');
+    const next = section(english ? 'Next Level' : '下一级');
+    const label = english ? 'Fire attack' : '火焰攻击';
+    expect.soft(value(current, label)).toHaveTextContent(/^30 ~ 45$/);
+    expect.soft(value(next, label)).toHaveTextContent(/^34 ~ 49\(\+4 ~ \+4\)$/);
+    expect.soft(value(next, label).querySelector('span')).toHaveTextContent(/^\(\+4 ~ \+4\)$/);
+    expect.soft(within(screen.getByTestId('skill-detail-panel')).getByText(
+      english ? 'Fire Bolt: 30 ~ 45 Fire damage.' : '火弹：造成 30 ~ 45 点火焰伤害。',
+      { exact: true }
+    )).toBeInTheDocument();
+  });
+
+  it('renders actual Vengeance mixed-type rows and total as flat damage', () => {
+    // paladin.json: rank1 90–150, equal fire/cold/lightning weights50; +9/rank.
+    selectLearnedSkill('paladin', 'skills-paladin-vengeance', 1, 18);
+    const current = section(english ? 'Current' : '当前');
+    const next = section(english ? 'Next Level' : '下一级');
+    for (const label of english ? ['Fire attack', 'Cold attack', 'Lightning attack'] : ['火焰攻击', '冰冷攻击', '闪电攻击']) {
+      expect.soft(value(current, label)).toHaveTextContent(/^30 ~ 50$/);
+      expect.soft(value(next, label)).toHaveTextContent(/^33 ~ 53\(\+3 ~ \+3\)$/);
+    }
+    expect.soft(value(current, english ? 'Total Power' : '总威力')).toHaveTextContent(/^90 ~ 150$/);
+    expect.soft(value(next, english ? 'Total Power' : '总威力')).toHaveTextContent(/^99 ~ 159\(\+9 ~ \+9\)$/);
+  });
+
+  it('preserves the authored Holy Shield fractional cooldown and labels seconds', () => {
+    // paladin.json: cooldown4, cooldownPerLevel-.05; rank3 is3.9 seconds.
+    selectLearnedSkill('paladin', 'skills-paladin-holy-shield', 3, 24);
+    const current = section(english ? 'Current' : '当前');
+    expect(value(current, english ? 'Cooldown' : '冷却')).toHaveTextContent(english ? /^3\.9 s$/ : /^3\.9 秒$/);
+  });
+
+  it('retains genuine Warmth passive percentages and percentage deltas', () => {
+    // sorceress.json: per-rank manaRegenPct.04/fireDamagePct.01; these remain percent.
+    selectLearnedSkill('sorceress', 'skills-sorceress-warmth', 2, 2);
+    const current = section(english ? 'Current' : '当前');
+    const next = section(english ? 'Next Level' : '下一级');
+    expect(value(current, english ? 'Mana Regeneration' : '法力恢复')).toHaveTextContent(/^8%$/);
+    expect(value(next, english ? 'Mana Regeneration' : '法力恢复')).toHaveTextContent(/^12%\(\+4%\)$/);
+    expect(value(current, english ? 'Fire Damage' : '火焰伤害')).toHaveTextContent(/^2%$/);
+    expect(value(next, english ? 'Fire Damage' : '火焰伤害')).toHaveTextContent(/^3%\(\+1%\)$/);
   });
 });
