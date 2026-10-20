@@ -33,6 +33,9 @@
   },
   "capacity": "容量: {{current}}/{{max}}",
   "toast": {
+    "backpackFull": "背包已满，请腾出空间后再转移物品或卸下装备。",
+    "stashFull": "仓库已满，请腾出空间后再转移物品。",
+    "transferFailed": "无法转移该物品，请重新选择后重试。",
     "equipped": "已装备 {{name}}",
     "equipFailed": "无法装备 {{name}}",
     "unequipped": "已卸下 {{name}}",

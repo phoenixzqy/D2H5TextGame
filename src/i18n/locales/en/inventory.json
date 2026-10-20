@@ -33,6 +33,9 @@
   },
   "capacity": "Capacity: {{current}}/{{max}}",
   "toast": {
+    "backpackFull": "Backpack is full. Make room before moving or removing equipment.",
+    "stashFull": "Stash is full. Make room before transferring items.",
+    "transferFailed": "Cannot transfer this item. Select it again and retry.",
     "equipped": "Equipped {{name}}",
     "equipFailed": "Cannot equip {{name}}",
     "unequipped": "Unequipped {{name}}",
