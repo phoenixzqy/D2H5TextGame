@@ -17,14 +17,15 @@ Current implementation evidence lives in `evidence/`.
 | P01 | in-progress | D12 save/import contract recorded. Offline portion, D01–D11/D13–D14 pending; D04/D06 source reconciliation under review. |
 | P02a01 | accepted contract slice | `5adaeec`; strict fresh recipe/provenance/hash contract, 35 discovered self-tests. Producer independent APPROVE. No combat measurement yet. |
 | P02a02 | accepted input slice | `e5428a2` (agent `b35155d`); validated explicit seed/ordinal, preserved defaults/counter, 20 new regressions and independent source APPROVE. Full-run rewards remain open. |
-| P02a03 | in-progress | Actual fresh production adapter/reporting, provenance and executable measurement command; producer reviewed five-file plan ready, technical agent implementing from `d39fe64`. |
-| Remaining P02 | pending dependencies | Production adapter/reporting/CLI and diagnosed manual/idle/reward comparison remain. Historical proxy sim stays excluded. |
+| P02a03 | accepted screening/tooling slice | `3820a19` (agent `994cfd9`); real fresh creation/run/playback/awards, full recordings+hashes, actual source provenance, safe external CLI output. Root+producer APPROVE; evidence below. Full-run/idle/campaign measurement remains. |
+| Remaining P02 | pending dependencies | Expanded production scenarios and diagnosed manual/idle/reward comparison remain. Historical proxy sim stays excluded. |
 | P03a | accepted slice | `6f1dafd` + `76db166`; independent source approval, U/T/L/B and 10 browser cases pass. [Evidence](evidence/P03a-save-integrity.md). Full D12/G1/G6 remain unaccepted. |
 | P03b01 | accepted visibility slice | `90e4a67`; all legacy items remain selectable above grid cap, seven boundary tests, four ordinary-control browser cases. BUG-005. |
-| P04a01 | in-progress | Den canonical clear-objective integration at qualified `markCleared` boundary, depending on P11a. QA owns five-file child; return/talk/claim remain separate. |
+| P04a01 | accepted objective slice | `ac49f52` (agent `d0343c8`); canonical Den area and atomic tracked clear objectives after qualified victory. Ten regressions, independent source APPROVE and integrated four-case browser proof. Return/talk/claim remain separate. |
 | Remaining P03b/P04 | ready for reproduction | Shared capacity, atomic transactions/recoverable awards and quest event/reward integrity remain. |
 | P05a | accepted slice | `2458ee7`; source-local error state, 13 focused tests and actual-component desktop/mobile proof. [Integrated evidence](evidence/P05a-P06a-foundations.md). D13/F19 remain open. |
-| P05b | needs D13 | Resolver precedence, metadata category, cross-surface identity. |
+| P05b01 | accepted resolver slice | `0c2d043`; D13 identity/metadata control, 29 new tests (25 red before fix), producer source APPROVE. Full suite + T/L/B pass. BUG-010; surface wiring remains. |
+| P05b02 | in-progress | QA owns four consumers + browser proof from `3820a19`; shared instance helper and existing GameImage picker fallback. |
 | P06a | accepted slice | `10ce45d`; battle-local summon identity, full A/A and A/B/A replay, live/dead collisions. Independent TD approval. [Evidence](evidence/P05a-P06a-foundations.md). |
 | P06b | accepted deadline slice | `2cd350b`; inclusive 60,000 ms deadline, no overshoot, tied actors and exact/early victory. Five boundary tests, independent parent APPROVE; BUG-006. |
 | Remaining P06–P10 | pending dependencies | D04–D06/shared effects first. All skills remain behavior-unaccepted. |
@@ -156,17 +157,71 @@ UI terminal cases then reproduced both locale draw failures before correction.
 - No engine module changed since P06b; latest E evidence remains 351 passed.
 
 Verified removed `/tmp/d2h5-combat-draw-browser` and scratch
-`/tmp/d2h5-draw-test-draft.txt`. Current task-owned `dist` and `node_modules/.vite`
-are retained only for ongoing validation; root owns removal before handoff.
+`/tmp/d2h5-draw-test-draft.txt`, then task-owned `dist` and `node_modules/.vite`.
 Root worktree remains claimed. Agent P02a02 worktree released cleanly.
 No push, PR or deployment. All C0–C4/full feature/G0–G7 acceptance remains open.
 
 ## P02a03 production adapter
 
-Producer is deriving an implementation-ready production adapter/report split.
-It must use actual creation, run/playback and award APIs. Current discovered
-limitations to report rather than conceal: item allocator global state, idle
-elite pity, and historical draw advancement (corrected by `d39fe64`; the
-diagnostic must still independently detect this mismatch if observed).
-Current UI idle mode runs real combat; separate presumed-kill `useIdleTicker`
-has no production caller. Fresh fixtures cannot inject clears to unlock idle.
+Implemented by `3820a19`, independently reviewed by root and producer. Six-file
+exception approved: export existing `canonicalJson` instead of duplicating the
+serializer. Source/data collected before dynamic gameplay import and after
+restoration; drift rejects output. Includes actual HEAD/tools, working/untracked
+allowlisted bytes, manifest and dirty state. Six stores, idle pity and exact
+Date.now restore in finally; active runs rejected, playback/progression bounded.
+External absolute new-leaf output only, no overwrite or repository output.
+
+Actual command at clean `3820a192ad336f1f5b739313cdd19212689595f2`:
+`SIM_REPORT_PATH=/tmp/d2h5-p02a03-integrated-3820a19.json npm run sim:production -- --reporter=dot`
+passed 1 measurement test, 3.98 s. Default fixture
+`fresh-sorceress-blood-moor-v1`, seed1 twice, ordinal0, fixed clock1792454400000.
+Full raw teams/events/results/rewards preserved with versioned event hashes.
+Root independently parsed report and recalculated every event SHA-256.
+
+- Each repetition wins wave1, loses wave2 of3: defeat, no victory or map clear,
+  diagnostics empty. Retains160 cumulative XP (level2+60), three items and
+  actual currency awards. No boost/injected clear or fake fresh progression.
+- Raw battle recordings equal. Raw rewards/full replay unequal because item
+  IDs differ; semantic rewards equal after omitting only top-level Item.id.
+  Allocator remains process-global/unreset with unobserved initial sequence.
+- Logical duration48.96 s; summed UI-delay hints62.82 s; measured wall time
+  0.114/0.066 s. Hints are not browser time or active campaign time.
+- Source tree `1febfbad994508bb3d3379c1c11cd1594989f58c98d0fe9ec6a358d4c582a1e9`,
+  data `554a37ebe4c901d0ae62a7cf787627cb6e351a780dd330e1e3680e198dd28e41`,
+  fixture `417c23da69d805daaefa8b9169eb55ad7d641b6818d642dd644d5d20a8c7eae6`;
+  401-file manifest, dirty=false. Report SHA-256
+  `5f8b6e1df28c5ed6567f1f530b01a829244cd22fdfc969fddd1bc9220222189f`.
+- Wave event digests:
+  `6c324846b1207d9212b01b1e2c044c980805b1b7537d6a30f18353e00ca69f4b`,
+  `3357e5b7b771c0012bff7eb5531d22f532667a5c07c535197d072f9d90a3236a`.
+
+Full recordings were consumed before disposable report cleanup. No idle
+comparison: fresh fixture is ineligible. Current UI idle uses real combat;
+separate presumed-kill useIdleTicker still has no production caller.
+No campaign/pacing/statistical/whole-P02 acceptance follows from one seed.
+
+## Integrated validation at 3820a19
+
+Includes P04a01, P05b01 and P02a03. Den's authored return objective remains
+false/inProgress/no claim after a real clear; its Chinese return text currently
+falls back to English. That localization gap and NPC interaction remain open.
+
+- U:96 files /939 passed /1 existing merc-XP skip,23.17 s (>15 s budget).
+- T/L/B:pass, including forced lint on normally ignored sim files; production
+  build6.51 s, existing large chunks/unprecached manifest warnings remain.
+- D/M: Den spec4/4 pass,28.4 s, en/zh-CN ×1280×800/360×640. Ordinary import,
+  quest start/map entry/Skip/victory/return/export/save/reload; partial objective
+  and exact player/inventory/map persistence asserted. Imported powerful hero
+  proves event wiring, not earned balance. Exact command:
+  `E2E_PORT=4290 npx playwright test tests/e2e/quest-area-clear.spec.ts --project=chromium-desktop --project=mobile-portrait --workers=2 --reporter=line --output=/tmp/d2h5-den-integrated`.
+- P05b01 focused47 pass, final1.79 s. Source producer APPROVE; no new art.
+  No engine source changed; latest standalone E remains351 passed.
+
+Verified removed root task-owned `dist`, `node_modules/.vite`,
+`/tmp/d2h5-den-integrated`, `/tmp/d2h5-integrated-unit-3820a19.log` and
+`/tmp/d2h5-p02a03-integrated-3820a19.json` after consumption. Agent adapter's
+report also consumed/removed; its worktree released cleanly. Installed
+dependencies/shared browser cache preserved. Root worktree remains claimed.
+P06c shared periodic timeline/death transaction has technical plan approval;
+game-design contract review underway, no runtime edit yet. P04a02 talk/NPC
+contract planning is read-only. No push/PR/deployment. Full v1 remains open.
