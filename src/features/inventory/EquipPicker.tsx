@@ -37,7 +37,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { TFunction } from 'i18next';
-import { Button, RarityText, resolveItemIcon, tItemName } from '@/ui';
+import { Button, GameImage, RarityText, getItemIconUrl, tItemName } from '@/ui';
 import { useInventoryStore, usePlayerStore } from '@/stores';
 import {
   checkEligibility,
@@ -95,17 +95,13 @@ function formatReasons(elig: EligibilityResult, t: TFunction): string {
 /* ------------------------------------------------------------------ */
 
 function ItemThumb({ item }: { readonly item: Item }) {
-  const icon = resolveItemIcon(item.baseId);
   return (
-    <div className="w-12 h-12 shrink-0 border border-d2-border bg-d2-panel rounded flex items-center justify-center overflow-hidden">
-      {icon ? (
-        <img src={icon} alt="" loading="lazy" className="w-full h-full object-contain" />
-      ) : (
-        <span aria-hidden className="font-serif text-d2-border text-xl">
-          ?
-        </span>
-      )}
-    </div>
+    <GameImage
+      src={getItemIconUrl(item)}
+      alt=""
+      fallbackIcon="?"
+      className="!w-12 !h-12 [&_img]:object-contain"
+    />
   );
 }
 

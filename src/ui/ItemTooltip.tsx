@@ -20,7 +20,7 @@
  */
 import { useTranslation } from 'react-i18next';
 import { RarityText } from './RarityText';
-import { resolveItemIcon } from './cardAssets';
+import { getItemIconUrl } from './imageHelpers';
 import { formatAffixRoll } from './affixFormat';
 import { resolveItemDisplay } from './itemDisplay';
 import { loadItemBases, resolveItemReqLevel } from '@/data/loaders/loot';
@@ -90,13 +90,7 @@ export function ItemTooltip({ item, className = '' }: ItemTooltipProps): JSX.Ele
   const { t } = useTranslation('items');
   const { t: tInventory } = useTranslation(['inventory', 'items']);
   const { t: tAffix } = useTranslation('affixes');
-  const icon = item.uniqueId
-    ? resolveItemIcon(item.uniqueId, { baseId: item.baseId })
-    : item.setPieceId
-      ? resolveItemIcon(item.setPieceId, { baseId: item.baseId })
-      : item.runewordId
-        ? resolveItemIcon(item.runewordId, { baseId: item.baseId })
-        : resolveItemIcon(item.baseId);
+  const icon = getItemIconUrl(item);
   const base: ItemBase | undefined = loadItemBases().get(item.baseId);
 
   const display = resolveItemDisplay(item, tInventory);

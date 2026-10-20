@@ -27,7 +27,7 @@
  */
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { GameCard, ItemTooltip, Tooltip, resolveItemIcon, tItemName } from '@/ui';
+import { GameCard, ItemTooltip, Tooltip, getItemIconUrl, tItemName } from '@/ui';
 import { loadItemBases } from '@/data/loaders/loot';
 import type { Item, ItemBase } from '@/engine/types/items';
 
@@ -73,7 +73,7 @@ export function BackpackGrid({
                   fluid
                   name={tItemName(t, it)}
                   rarity={it.rarity}
-                  image={resolveItemIcon(it.baseId) ?? undefined}
+                  image={getItemIconUrl(it) ?? undefined}
                   itemGlyph={glyphForItem(it)}
                   selected={selectedId === it.id}
                   onClick={() => { onSelect(selectedId === it.id ? null : it.id); }}

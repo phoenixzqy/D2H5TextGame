@@ -25,7 +25,7 @@
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/ui/Button';
 import { RarityText } from '@/ui/RarityText';
-import { resolveItemIcon } from '@/ui/cardAssets';
+import { getItemIconUrl } from '@/ui/imageHelpers';
 import { formatAffixRoll } from '@/ui/affixFormat';
 import { resolveItemDisplay } from '@/ui/itemDisplay';
 import { tDataKey } from '@/ui/i18nKey';
@@ -75,13 +75,7 @@ export function ItemDetailPanel({
   const base: ItemBase | undefined = loadItemBases().get(item.baseId);
   const display = resolveItemDisplay(item, t, equippedItems);
   const displayName = display.name;
-  const icon = item.uniqueId
-    ? resolveItemIcon(item.uniqueId, { baseId: item.baseId })
-    : item.setPieceId
-      ? resolveItemIcon(item.setPieceId, { baseId: item.baseId })
-      : item.runewordId
-        ? resolveItemIcon(item.runewordId, { baseId: item.baseId })
-        : resolveItemIcon(item.baseId);
+  const icon = getItemIconUrl(item);
   const ilvl = item.ilvl ?? item.level;
   const reqLevel = resolveItemReqLevel(item, base);
 
