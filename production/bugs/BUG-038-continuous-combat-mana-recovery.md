@@ -65,10 +65,23 @@ exit0. Raw logs and exact commands/timings are in the same task directory.
 
 Production combat source unchanged SHA256
 `439eb1a86e3c4c68fe69978c623af810d64ac4006d26f4db2ad3412be8e15698`;
-new runtime helper absent. Independent RED review underway. Root identified a
-required supplemental check to step actual recovery events strictly before
-`end`, asserting literal MP without the store's final snap; tests remain frozen
-until that evidence amendment is reviewed.
+new runtime helper absent. Final tests-only worker commit `66bad6601df7ca886a9570890cc5bda999ce7fde`
+was integrated as `6f8045e`. The supplemental production playback case advances
+strictly before `end`; cursor=endIndex, playbackComplete=false and unchanged
+outcome controls pass, while live MP is4 instead of literal20 and actual
+regeneration is absent. Final behavior **39failed/29passed/68total**, zero
+skipped, exit1, Vitest2.98s (wall4.331s). Other test hashes and runtime remain
+unchanged; supplemental test lint exits0.
+
+Final patch `red-supplemental-tests.patch` SHA256
+`303f4d36fb642f700084c6b5d07c7ade7f400d2d4ac3375383c5eaa219aed093`;
+cross-wave test SHA256
+`442358b67ab883ebcadfe5acfc9a55f6425823b22017a1f0680f93a7389e0099`.
+Producer and independent QA both APPROVE / ADEQUATE the final frozen RED,
+including exact partitions, lifecycle and actual pre-end playback. Root accepts
+the tests and authorizes only the two planned runtime paths within the existing
+five-file assignment. Runtime correctness and final combined-head validation
+remain open.
 
 ## Minimal source plan and boundaries
 
