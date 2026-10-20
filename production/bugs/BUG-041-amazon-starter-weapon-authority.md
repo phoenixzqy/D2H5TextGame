@@ -180,3 +180,66 @@ historical; current frozen SHA256: `7b4890082b4c0a7e879988d43d49bed5090a38d7c7d8
 
 Root/producer/QA approve genuine RED; QA strengthened freeze ADEQUATE after
 inclusive-bound positives. Four source edits follow frozen-test checkpoint.
+
+### P08a05b bounded source and first GREEN
+
+Frozen checkpoint f0ed731; unchanged test SHA7b4890082b4c0a7e879988d43d49bed5090a38d7c7d83b3db68d1797ece86660.
+Four source files: strict optional recipe schema, Amazon authored13, narrow
+class loader and existing factory helper only. Seven actual class documents
+are available; requested full document and identity are validated with cached
+strict Ajv validator, then actual base/type/slot/level/damage/inclusive roll
+references. Factory explicitly resolves base and uses actual checkEligibility
+with its created level/core/derived stats, clones rolls and adds ilvl1. Existing
+transitional equipped flags/prefix and other factory fields preserved. No
+trainingID/13 in runtime or schema; no new grant/store/RNG/migration/readers.
+
+First GREEN247tests/3files (42factory+10content+195loader),0skip,exit0,
+runner2.83s/wall4.073s. All later actual eligibility/computeStats13, schema
+omission, fresh objects/roll independence and authored immutability assertions
+now execute and pass. Inclusive8/18 and authored12 pass, all invalid cases
+throw contextually. First runtime GREEN passed without a failed behavioral attempt; no frozen
+test changed. Scoped/full lint later failed as recorded below.
+
+Source SHA256:
+- src/data/schema/class.schema.json: `ee7e64189bf05dba4be27320264417ef128a21be47844850174cbcfdf6dcd5c0`.
+- src/data/classes/amazon.json: `a975f126c4bce79a69e0891b05890a40011a4dfe1285e37f2cf50c93bc324818`.
+- src/data/loaders/classes.ts: `d1ca1adc1637af53922c8a911e91b028a3d60b441f0c5165a12e4367b829d8f0`.
+- src/features/character/createMockPlayer.ts: `9555ccb2a9c762d4134cd715cb29e8cfb47bdfe9f1b29abd3c184119162e43e0`.
+
+Scoped/full lint found2restrict-template-expressions errors in numeric range
+message only. Waited for owned lint/build processes, then used explicit String
+conversion without behavior/test change. Final checks rerun on corrected source;
+loader SHA256 supersedes initial hash above: `6b484ca238dd5123d473b9c7bb416be8a26cb7eedaff47866c2a043f992b8d75`.
+
+### P08a05b final combined validation
+
+Root/producer/QA source/focused APPROVE / ADEQUATE including final String-only
+loader correction. Four source files only; frozen tests unchanged. Final full
+and coverage2080/129,0skip,exit0; corrected lint/purity51,typecheck,build pass.
+Related496/32 runner15.39s,full32.33s exceed5/15s budgets; no performance
+acceptance. React act warnings and existing large chunk/2.57MB nonprecached
+manifest/Browserslist warnings remain. Build runner9.97s,756precache entries
+37332.92KiB. Engine-only coverage excludes class loader/factory/schema/JSON;
+actual factory/schema tests establish changed behavior. No engine source changed.
+Coverage60files: statements7993/8478, branches1836/2054, functions291/310; unchanged80% gate passes.
+
+Exact commands/results/log SHA256, including superseded lint failure:
+
+- recipe-green: `npx vitest run --project ui src/features/character/createMockPlayer.test.ts src/data/__tests__/amazon-starter-content.test.ts src/data/loader.test.ts --reporter=verbose`; exit0, wall4.073s; `0d48bab1f47534a38b999ea59f990d8367ecd94647740d537f9dc407c01dea27`.
+- recipe-related: `npm run test:related -- src/data/schema/class.schema.json src/data/classes/amazon.json src/data/loaders/classes.ts src/features/character/createMockPlayer.ts`; exit0, wall16.923s; `62a5f71b70b9fb03ee6d0222513f8b3f47dac86e48c05fb5c066c946f0f19053`.
+- recipe-typecheck: `npm run typecheck`; exit0, wall9.446s; `53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47`.
+- recipe-scoped-lint: `npx eslint src/data/loaders/classes.ts src/features/character/createMockPlayer.ts src/features/character/createMockPlayer.test.ts --max-warnings=0`; exit1, wall5.301s; `60b4ceb70db8a0c3d9fae0345ad93147ee59d2e5e69963f3de5b538c4fe8dcd1`.
+- recipe-lint: `npm run lint`; exit1, wall25.839s; `9fb0bb0aca4cdefd582eb40be7991bc2d6de1c2e8a5b725867e57e4eb3200fa1`.
+- recipe-build: `npm run build`; exit0, wall8.899s; `85de22803dd455dc36baa3b810d2c49dbc286a50cc1e4c4d8fca7e26c3f76639`.
+- recipe-final-full: `npm test`; exit0, wall34.011s; `b359355baf5a2f2de3778e9a84484804291e3cae0657f8856394f02825b5b6f8`.
+- recipe-final-typecheck: `npm run typecheck`; exit0, wall17.831s; `53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47`.
+- recipe-final-lint: `npm run lint`; exit0, wall42.203s; `64ef18bd16f812a048e5d016a57900763eaa6c02c2e7a32bb2a3cbbdaed0531f`.
+- recipe-final-build: `npm run build`; exit0, wall14.876s; `c3b92b76345bfe53e9bc5a6c6a8c88e722646a691a05df0a178bafba3b1e8aeb`.
+- recipe-final-coverage: `npm run test:cov -- --coverage.reportsDirectory=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-amazon-recipe-213lmj1m/coverage`; exit0, wall37.432s; `701be5d3a73279e4f7fde8ef95485d62d00a3f13f10d9cb187e816e3ca8af7a2`.
+
+coverage-final.json SHA256: `3a727d5049a91f69049b3760c3c51fbc2267c2fcb6acce150b9449780e500711`.
+Root/producer/QA final independent APPROVE / ADEQUATE. All11 non-RED
+command/result/log pairs independently checked, including superseded lint
+failures. Current hashes/counters match; all raw consumers finished and
+cleanup released. No creation/save/canonical readers/browser/balance/BUG041
+or C/G acceptance.

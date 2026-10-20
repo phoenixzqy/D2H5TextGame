@@ -5,5 +5,9 @@
   "statGrowth": { "strength": 1.5, "dexterity": 2.5, "vitality": 2, "energy": 1 },
   "lifePerLevel": 8,
   "manaPerLevel": 4,
-  "starterSkills": ["amazon.magic_arrow"]
+  "starterSkills": ["amazon.magic_arrow"],
+  "starterWeapon": {
+    "baseId": "items/base/weapon-bow-training",
+    "baseRolls": { "attack": 13 }
+  }
 }

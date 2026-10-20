@@ -6,6 +6,9 @@ import type { Player } from '@/engine/types/entities';
 import type { CoreStats } from '@/engine/types/attributes';
 import type { Item } from '@/engine/types/items';
 import { deriveStats } from '@/engine/progression/stats';
+import { loadClassStarterWeapon } from '@/data/loaders/classes';
+import { loadItemBases } from '@/data/loaders/loot';
+import { checkEligibility, type PlayerLike } from '@/features/inventory/compareEquip';
 
 export type CharacterClass =
   | 'barbarian'
@@ -59,17 +62,29 @@ const STARTER_COMBO: Record<CharacterClass, readonly string[]> = {
   assassin: ['assassin.shock_web']
 };
 
-function createStarterEquipment(cls: CharacterClass): readonly Item[] {
-  if (cls !== 'amazon') return [];
-  return [{
-    id: `starter-amazon-bow-${String(Date.now())}`,
-    baseId: 'items/base/weapon-bow',
+function createStarterEquipment(cls: CharacterClass, player: PlayerLike): readonly Item[] {
+  const recipe = loadClassStarterWeapon(cls);
+  if (!recipe) return [];
+  const bases = loadItemBases();
+  if (!bases.has(recipe.baseId)) {
+    throw new Error(`classes/${cls}.json starterWeapon.baseId: unknown base ${recipe.baseId}`);
+  }
+  const item: Item = {
+    id: `starter-${cls}-bow-${String(Date.now())}`,
+    baseId: recipe.baseId,
     rarity: 'normal',
     level: 1,
+    ilvl: 1,
+    baseRolls: { ...recipe.baseRolls },
     identified: true,
     equipped: true,
     equipSlot: 'weapon'
-  }];
+  };
+  const eligibility = checkEligibility(item, player, bases);
+  if (!eligibility.eligible) {
+    throw new Error(`classes/${cls}.json starterWeapon: ineligible ${JSON.stringify(eligibility.reasons)}`);
+  }
+  return [item];
 }
 
 export function createMockPlayer(name: string, cls: CharacterClass): Player {
@@ -102,6 +117,6 @@ export function createMockPlayer(name: string, cls: CharacterClass): Player {
     experienceToNextLevel: 100,
     statPoints: 0,
     skillPoints: 1,
-    equipment: createStarterEquipment(cls),
+    equipment: createStarterEquipment(cls, { level: 1, coreStats, derivedStats }),
   };
 }

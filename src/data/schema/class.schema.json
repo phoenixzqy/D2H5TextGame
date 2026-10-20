@@ -25,6 +25,28 @@
       "type": "number",
       "minimum": 0
     },
+    "starterWeapon": {
+      "description": "Optional deterministic weapon recipe prepared for a new level-1 character; omission means no weapon.",
+      "type": "object",
+      "required": ["baseId", "baseRolls"],
+      "additionalProperties": false,
+      "properties": {
+        "baseId": {
+          "description": "Reference to an existing level-1 weapon base.",
+          "type": "string",
+          "pattern": "^items/base/[a-z0-9-]+$"
+        },
+        "baseRolls": {
+          "description": "Persisted attack roll, checked against the referenced base's inclusive damage range.",
+          "type": "object",
+          "required": ["attack"],
+          "additionalProperties": false,
+          "properties": {
+            "attack": { "type": "integer", "minimum": 0 }
+          }
+        }
+      }
+    },
     "starterSkills": {
       "type": "array",
       "items": { "type": "string" },

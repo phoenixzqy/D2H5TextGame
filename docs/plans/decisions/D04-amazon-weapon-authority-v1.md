@@ -130,3 +130,57 @@ factory/schema APIs provide genuine runtime RED; preserve transitional equipped
 flags until canonical transfer. No missing-module RED, runtime training/13
 constant or creation/save/reader acceptance. Security scope remains local
 authored data and pure preparation; no external requests or permissions.
+
+## P08a05c exactly-once canonical creation (revised plan approved)
+
+Read-only design investigation confirms four files: new feature-local
+createCharacter.ts, CharacterCreate.tsx, existing CharacterCreate.test.tsx,
+new characterCreation.test.tsx for actual deferred persistence integration.
+No store/hydration/save grants or reader/migration/comparison edits.
+
+One synchronous action returns a discriminated result. At call time require
+hydration status exactly ready, !isReplacingSave(), and player===null. Validate
+trimmed name1–16 and supported class. Prepare B factory output before mutation,
+with generic kit consumption rather than class-specific grants. Snapshot exact
+previous player and inventory backpack/stash/equipped/currencies data slices.
+Publish candidate with equipment:[], add normalized unequipped kit to backpack,
+then equip via real canonical action and check each result. Recompute even
+no-kit candidates from retained canonical equipment. On returned rejection or
+exception (including recomputeDerived throwing after equip mutated inventory),
+restore snapshots through partial setState, preserving actions/other domains.
+Never clear inventory/stash to force success. Only successful action navigates.
+Repeated calls/revisit see existing player and cannot grant or replace again.
+
+Guarantee is restored state or complete success at synchronous return. Separate
+Zustand stores publish intermediate notifications; no claim of atomic visibility
+to every subscriber. Existing deferred autosave observes final synchronous state;
+prove it with real autosave fake-timer integration and adapter write capture.
+
+Frozen RED starts via existing real CharacterCreate, with no missing-action import:
+readyAmazon singleton canonical13/legacy[]/attack35 and town sees complete state;
+all6otherclasses no grant; retained inventory/stash/currencies preserved; repeat/
+revisit/existing saved player guarded; idle/loading/error cannot create. Actual
+deferred loadSave then saved state wins, actual pending import while statusready
+blocks transient creation, imported state then wins. Real equip returned rejection
+and post-mutation exception each restore exact refs, avoid navigation and permit
+clean retry with one grant. Failed autosave yields no partial player, successful
+saves canonical singleton and empty legacy array. Existing tests explicitly
+reset inventory and set hydration ready, restore test-owned action substitutions.
+
+No canonical combat/Skills eligibility acceptance follows until later readers;
+no browser/campaign/pacing acceptance from RTL. Browser creation/equip/cast/
+save/reopen in both locales/viewports follows complete authority chain.
+Security check PASS for guarded synchronous local state transition; preserve
+save/import state and permissions, no external/dependency/hook changes.
+
+Producer C plan revision: factory IDs still use Date.now and equipItem selects
+first matching backpack ID. Before first mutation reject kit-internal duplicate
+IDs or any kit ID already in backpack/stash/equipped/mercEquipment/ownedMercs'
+legacy equipment. Do not rename/delete retained items or accept equip ok for
+the wrong item. Actual screen tests freeze clock and retained conflicting ID
+in each container, require unchanged state/no navigation, then clean retry.
+No new source file needed. Collision rejection is explicit result, no source
+factory ID redesign or save compatibility change in this child.
+
+Producer revised C plan approved after explicit collision contract; root/design
+ready. Genuine existing-screen RED and independent reviews precede source.
