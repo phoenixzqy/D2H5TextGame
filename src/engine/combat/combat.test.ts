@@ -261,7 +261,7 @@ describe('runBattle (timeline scheduler)', () => {
     const player = mkUnit({
       id: 'p1',
       side: 'player',
-      skillOrder: ['paladin.might'],
+      skillOrder: ['sorceress.frozen_armor'],
       stats: { ...baseStats, attack: 1 }
     });
     const enemy = mkUnit({
@@ -276,7 +276,7 @@ describe('runBattle (timeline scheduler)', () => {
       enemyTeam: [enemy]
     });
     const buffs = result.events.filter(
-      (e) => e.kind === 'buff' && e.buffId === 'might'
+      (e) => e.kind === 'buff' && e.buffId === 'frozen-armor'
     );
     expect(buffs.length).toBe(1);
   });
