@@ -247,3 +247,55 @@ or C/G acceptance.
 P08a05b accepted source/evidence commit 9f00779. After ALL raw consumers
 finished, root removed and verified absence of exact recipe scratch above,
 task-owned dist and local node_modules/.vite. No owned process/retention remains.
+
+## P08a05c pre-fix reproduction
+
+Baseline e9b99d7 existing CharacterCreate sets a newly prepared player directly
+then navigates without canonical kit transfer, persistence readiness/import/
+existing-player guard, rollback or ID collision validation. Source risk and
+producer-reviewed revised plan are recorded in D04. Actual existing-screen
+RED precedes two source edits; tests import no nonexistent action. Expected
+canonical singleton13/legacy[]/attack35, saved state preserved through pending
+load/import, exact rejection/exception rollback, no-kit retained gear stats,
+fixed-clock collision refusal and final-only deferred autosave. SeverityHigh
+for replacement/partial-save risk. No source C change yet. Security check PASS:
+guarded local preparation/commit with retained-data protection, no credentials,
+network/dependency/hook/policy changes.
+
+Task-owned raw root, retain until all independent consumers finish:
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-character-creation-8moncmrs
+
+### P08a05c genuine existing-screen RED
+
+19failed/21passed/40total,2files,0skip. Runtime factories/routes load correctly.
+ReadyAmazon retains legacy kit/no canonical stats; screen overwrites existing
+player and creates in idle/loading/error. Real deferred load/import observes
+a transient new player before resolving saved state; actual autosave writes
+legacy-only starter and writes despite injected equip refusal. Retained
+canonical sword6 is ignored (22 vs28 attack); rollback and fixed-clock collision
+tests observe forbidden player publication; prepared internal duplicates also
+publish. Controls are15existing screen checks plus6no-kit class creations.
+Later assertions after first failures (canonical13/stats35, exact rollback/retry/
+immutability and final persistence state) remain for GREEN. No missing-module
+RED, missing API, skipped tests or RNG/eligibility mock. Normal success paths
+use real equipment actions; explicit refusal/recompute faults and duplicate-kit
+input substitutions exercise failure boundaries.
+
+TSC passes. First scoped lint rejected deferred<void> call type syntax; changed
+only to deferred<undefined> plus explicit resolve(undefined), preserving all
+assertions. Final runtime RED unchanged. Pending actual load/import operations
+are resolved/awaited before assertions, including failed tests; autosave timers
+and action substitutions restored after each test.
+
+- creation-red: `npx vitest run --project ui src/features/character/CharacterCreate.test.tsx src/features/character/characterCreation.test.tsx --reporter=verbose`; exit1, wall7.2s; log SHA256 `f9acbd7f773978fa708691857fd89ff5b998fa87d5c316e9157677c5be31fa60`.
+- creation-red-frozen: `npx vitest run --project ui src/features/character/CharacterCreate.test.tsx src/features/character/characterCreation.test.tsx --reporter=verbose`; exit1, wall6.59s; log SHA256 `92a1875a4a6ec246b7eb876ef20cc626298b9fd0a378f8af84d1cceb193a5187`.
+- creation-red-typecheck: `npm run typecheck`; exit0, wall10.895s; log SHA256 `53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47`.
+- creation-red-lint: `npx eslint src/features/character/CharacterCreate.test.tsx src/features/character/characterCreation.test.tsx --max-warnings=0`; exit1, wall6.663s; log SHA256 `e90903c5e311be7f48c9e9bedd443bf1c5662984bd8fe57a74205a6b5339cbdb`.
+- creation-red-lint-frozen: `npx eslint src/features/character/CharacterCreate.test.tsx src/features/character/characterCreation.test.tsx --max-warnings=0`; exit0, wall5.98s; log SHA256 `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`.
+
+Frozen test SHA256:
+- src/features/character/CharacterCreate.test.tsx: `98d59d567c8abec7cfaff3724c6fd3023b0a4d091a3f17b4c72a5c91451db833`.
+- src/features/character/characterCreation.test.tsx: `f4a168a3e3d2da21ef59774e5d69e3b558140e55ef1c7c9074ed4906b742f1ca`.
+
+Root/producer/QA frozen tests and genuine RED APPROVE / ADEQUATE. Both
+source files remain unchanged/absent until frozen checkpoint below.
