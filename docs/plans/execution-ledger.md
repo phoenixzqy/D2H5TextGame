@@ -15,12 +15,16 @@ Current implementation evidence lives in `evidence/`.
 | P00 | in-progress | Producer F01–F21 mapping and assertion audit below. Expand current-head measurements and strict tests with each fix. |
 | P00b | accepted tooling fix | `test:related` now invokes Vitest's `related --run`; scoped 25 tests pass in 1.45 s, broad 226 pass/1 existing skip in 10.70 s (over budget). Producer approval; BUG-003. |
 | P01 | in-progress | D12 save/import contract recorded. Offline portion, D01–D11/D13–D14 pending; D04/D06 source reconciliation under review. |
-| P02 | pending dependencies | No accepted production harness. Existing sim is outside workspace discovery. Split fixture/schema, adapter, reporting. |
+| P02a01 | accepted contract slice | `5adaeec`; strict fresh recipe/provenance/hash contract, 35 discovered self-tests. Producer independent APPROVE. No combat measurement yet. |
+| P02a02 | in-progress | Explicit seed/ordinal production boundary; independent technical agent. Preserve defaults, atomically reject invalid inputs, expose resolved metadata. |
+| Remaining P02 | pending dependencies | Production adapter/reporting/CLI and diagnosed manual/idle/reward comparison remain. Historical proxy sim stays excluded. |
 | P03a | accepted slice | `6f1dafd` + `76db166`; independent source approval, U/T/L/B and 10 browser cases pass. [Evidence](evidence/P03a-save-integrity.md). Full D12/G1/G6 remain unaccepted. |
-| P03b/P04 | ready for reproduction | Capacity/overflow and quest event/reward integrity; expand small child cards. |
+| P03b01 | accepted visibility slice | `90e4a67`; all legacy items remain selectable above grid cap, seven boundary tests, four ordinary-control browser cases. BUG-005. |
+| Remaining P03b/P04 | ready for reproduction | Shared capacity, atomic transactions/recoverable awards and quest event/reward integrity remain. |
 | P05a | accepted slice | `2458ee7`; source-local error state, 13 focused tests and actual-component desktop/mobile proof. [Integrated evidence](evidence/P05a-P06a-foundations.md). D13/F19 remain open. |
 | P05b | needs D13 | Resolver precedence, metadata category, cross-surface identity. |
 | P06a | accepted slice | `10ce45d`; battle-local summon identity, full A/A and A/B/A replay, live/dead collisions. Independent TD approval. [Evidence](evidence/P05a-P06a-foundations.md). |
+| P06b | accepted deadline slice | `2cd350b`; inclusive 60,000 ms deadline, no overshoot, tied actors and exact/early victory. Five boundary tests, independent parent APPROVE; BUG-006. |
 | Remaining P06–P10 | pending dependencies | D04–D06/shared effects first. All skills remain behavior-unaccepted. |
 | P11–P15 | pending dependencies | Rewards/idle, eligibility, economy, campaign and pacing. |
 | P16–P18 | pending | Critical UI/a11y/performance, offline/PWA, endgame and achievements. |
@@ -93,7 +97,8 @@ actual-component desktop/mobile browser proof. This card does not accept F19.
 
 ## P03b01-legacy-container-visibility
 
-State: in-progress; independent frontend/QA worktree. Producer approved this
+State: accepted visibility slice at `90e4a67`; independent frontend/QA worktree,
+parent source approval and integrated checks. Producer approved this
 child before capacity/award changes. Own `BackpackGrid.tsx`, focused RTL and
 browser specs, BUG-005 and scoped visibility contract (five files).
 
@@ -104,3 +109,38 @@ browser specs, BUG-005 and scoped visibility contract (five files).
 
 Do not lower insertion limits while reward callers ignore rejected `addItem`.
 Shared limits, transaction atomicity and recoverable awards remain later P03b.
+
+## Integrated validation at 22a2d13
+
+P02a01, P06b and P03b01 are integrated. BUG-007 (`22a2d13`) additionally restores
+saved language before startup ready; independent QA APPROVE. Test-first locale
+reproduction: two failures before correction, then 46 related checks pass.
+Inventory browser language reselection workaround was removed.
+
+- U: 89 files / 856 passed / 1 existing merc-XP skip, 24.27 s.
+- E: 38 files / 351 passed, 4.95 s.
+- T/L/B: pass; build still warns about large bundles and unprecached asset
+  manifest. No offline/performance acceptance follows from this build.
+- D/M: all three focused specs (save-management, image-source-recovery,
+  inventory-overflow-recovery), both projects, 16/16 passed, 52.3 s. Ordinary
+  rendered locale/legacy recovery paths now agree after reload.
+
+Exact commands for the integrated browser and U/E counts are in BUG-007.
+Engine/full-unit timings exceed their 3 s/15 s budgets under concurrent checks.
+P02a01 alone: 35 self-tests pass (1.46 s); full discovered suite at that slice
+was 842 pass/1 existing skip (59.89 s). Type/lint pass, including forced lint
+over the new test-tool files (normally ignored by repo lint); no suppressions.
+`test:sim:contracts` is self-test validation, not a balance command.
+
+Verified removed: `/tmp/d2h5-foundations-browser-locale`, task-owned `dist` and
+`node_modules/.vite`. Dependencies and shared browser cache preserved. No push,
+PR or deployment. C0 and every full feature/checkpoint/G0–G7 remain unaccepted.
+
+## P02a03 next production adapter
+
+Producer is deriving an implementation-ready production adapter/report split.
+It must use actual creation, run/playback and award APIs. Current discovered
+limitations to report rather than conceal: item allocator global state, idle
+elite pity, and draw outcomes that currently advance/clear if the hero survives.
+Current UI idle mode runs real combat; separate presumed-kill `useIdleTicker`
+has no production caller. Fresh fixtures cannot inject clears to unlock idle.
