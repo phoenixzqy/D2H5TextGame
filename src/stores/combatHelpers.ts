@@ -455,9 +455,14 @@ export function startSubAreaRun(opts: {
   const seed = planSeed;
   const formation = useFormationStore.getState();
   const playerUnit = playerToCombatUnit(playerState.player);
-  const fieldedMerc = useMercStore.getState().getFieldedMerc();
+  const mercState = useMercStore.getState();
+  const fieldedMerc = mercState.fieldedMercId
+    ? mercState.ownedMercs.find(merc => merc.id === mercState.fieldedMercId)
+    : undefined;
   const playerTeam: CombatUnit[] = fieldedMerc
-    ? [playerUnit, mercToCombatUnit(fieldedMerc, formation.mercPosition)]
+    ? [playerUnit, mercToCombatUnit(
+        fieldedMerc, formation.mercPosition, mercState.mercEquipment[fieldedMerc.id]
+      )]
     : [playerUnit];
 
   activeRun = {

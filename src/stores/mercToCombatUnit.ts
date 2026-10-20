@@ -19,6 +19,8 @@
  */
 import type { Mercenary } from '@/engine/types/entities';
 import type { CombatUnit, GridPosition } from '@/engine/combat/types';
+import type { Item } from '@/engine/types/items';
+import { deriveEquippedMercStats } from '@/engine/progression/merc-equipment-stats';
 
 const ARCHETYPE_SKILLS: Readonly<Record<string, readonly string[]>> = Object.freeze({
   front: ['mskill-bash'],
@@ -26,8 +28,13 @@ const ARCHETYPE_SKILLS: Readonly<Record<string, readonly string[]>> = Object.fre
 });
 const DEFAULT_SKILL_ORDER: readonly string[] = ['mskill-jab'];
 
-/** Build a runtime CombatUnit from an owned Mercenary. */
-export function mercToCombatUnit(merc: Mercenary, gridPosition?: GridPosition): CombatUnit {
+/** Build a fresh runtime unit using the owned merc's canonical equipment map. */
+export function mercToCombatUnit(
+  merc: Mercenary,
+  gridPosition?: GridPosition,
+  equipment: Readonly<Record<string, Item | null>> = {}
+): CombatUnit {
+  const stats = deriveEquippedMercStats(merc, equipment);
   const order: string[] = [];
   const seen = new Set<string>();
   const push = (id: string | undefined): void => {
@@ -49,9 +56,9 @@ export function mercToCombatUnit(merc: Mercenary, gridPosition?: GridPosition): 
     side: 'player',
     level: merc.level,
     tier: 'trash',
-    stats: merc.derivedStats,
-    life: merc.derivedStats.lifeMax,
-    mana: merc.derivedStats.manaMax,
+    stats,
+    life: stats.lifeMax,
+    mana: stats.manaMax,
     statuses: [],
     cooldowns: {},
     skillOrder: order,

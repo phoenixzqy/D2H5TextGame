@@ -18,7 +18,9 @@ describe('P08a03b actual Acolyte factory default-rank recovery (not acquisition 
     const merc = createMercFromDef(definition);
     const factoryBefore = structuredClone(merc);
     const priest = mercToCombatUnit(merc);
-    expect(priest.stats).toBe(merc.derivedStats);
+    expect(priest.stats).toEqual(merc.derivedStats);
+    expect(priest.stats).not.toBe(merc.derivedStats);
+    expect(priest.stats.resistances).not.toBe(merc.derivedStats.resistances);
     expect(priest.stats).toMatchObject({ lifeMax: 164, manaMax: 102, attackSpeed: 114 });
     expect(priest.level).toBe(5);
     expect(priest.skillOrder).toEqual(['mskill-minor-heal']);
