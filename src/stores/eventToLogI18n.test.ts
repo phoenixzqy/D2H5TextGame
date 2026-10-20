@@ -11,6 +11,21 @@ import { eventToLocalizedLogEntry } from './eventToLogI18n';
 import type { BattleEvent } from '@/engine/combat/combat';
 import type { CombatUnit } from '@/engine/combat/types';
 import type { DerivedStats } from '@/engine/types/attributes';
+import i18n from '@/i18n';
+
+describe('silent authoritative mana events', () => {
+  it.each(['zh-CN', 'en'])('does not invent a visible %s resource log entry', async locale => {
+    const previous = i18n.language;
+    try {
+      await i18n.changeLanguage(locale);
+      for (const reason of ['cast', 'regeneration', 'summon-refund', 'orb'] as const) {
+        expect(eventToLocalizedLogEntry({ kind: 'mana', target: 'hero', mana: 0, reason })).toBeNull();
+      }
+    } finally {
+      await i18n.changeLanguage(previous);
+    }
+  });
+});
 
 describe('eventToLocalizedLogEntry — skill-name i18n', () => {
   it('translates a known skill id to its localized name (zh-CN default)', () => {
