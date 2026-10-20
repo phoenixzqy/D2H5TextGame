@@ -1343,3 +1343,15 @@ full/coverage2199/132,T/L/purity51/build pass. Unchanged80%engine gate
 exact commands/hashes and timing/build/unit-warning caveats. All consumers
 finished before verified exact E scratch/dist/.vite cleanup. Comparison child,
 ordinary browser, fullauthority/BUG041/C/G remain open; root claim continues.
+
+
+P08a05f accepted at5565cf6 after frozen2RED/19controls checkpointb05545d
+and independent root/producer/QA source/final APPROVE/ADEQUATE. Comparison
+uses shared metadata-aware isTwoHanded for both displacement directions,
+preserving legacy fallback. Real canonical equip parity verifies all reported
+stat/resistance triples, net/upgrade and immutable source inputs. Focused21/1,
+related700/54,full/coverage2206/132,T/L/purity51/build pass; unchanged80%engine
+gate8102/8582s1891/2104b296/315f excludes comparison source. BUG041 records
+exact commands/hashes and timing/warning limits. All consumers finished before
+verified exact F scratch/dist/.vite cleanup. Ordinary browser/fullauthority/
+BUG041/C/G remain open; continue native production Amazon authority chain.

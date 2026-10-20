@@ -616,3 +616,7 @@ Root/producer [P08a05f-FINAL-PRODUCER]/QA [P08a05f-FINAL-QA] final
 APPROVE / ADEQUATE. All8nonRED command/result/log pairs, source/frozen test
 hashes and coverage counters independently verified. No material finding.
 All raw consumers finished; exact task-owned cleanup released.
+
+P08a05f accepted at5565cf6. All consumers finished before root removed and
+verified exact F scratch above, task-owned dist and local .vite absent.
+No task process/retained raw outputs remain; root claim continues.
