@@ -12,10 +12,12 @@
  */
 
 import { create } from 'zustand';
-import { buildSave } from '@/engine/save';
+import { buildSave, toJsonSafe } from '@/engine/save';
+import { decodeSave } from '@/engine/save/validate';
+import { abortSubAreaRun } from './combatHelpers';
 import { seedItemSeqFromIds } from '@/engine/loot/rollItem';
 import type { SaveCurrent } from '@/engine/types/save';
-import { hasSave, loadSave, saveSave } from './save-adapter';
+import { hasSave, loadSave, saveSave, deleteSave } from './save-adapter';
 import { useCombatStore } from './combatStore';
 import { useInventoryStore } from './inventoryStore';
 import { useMapStore } from './mapStore';
@@ -50,10 +52,22 @@ interface HydrationState {
 export const useHydrationStore = create<HydrationState>((set) => ({
   status: 'idle',
   error: null,
-  setStatus: (status, error = null) => { set({ status, error }); }
+  setStatus: (status, error = null) => {
+    set({ status, error });
+  }
 }));
 
+/** Save errors are observable without disabling gameplay or hiding write failures. */
+export const useSaveStatusStore = create<{ error: string | null }>(() => ({ error: null }));
+
 let suppressSaves = false;
+let writesBlocked = false;
+let replacingSave = false;
+
+/** Whether gameplay rewards must wait for an imported character to be committed. */
+export function isReplacingSave(): boolean {
+  return replacingSave;
+}
 let timer: ReturnType<typeof setTimeout> | null = null;
 const unsubs: (() => void)[] = [];
 
@@ -106,45 +120,102 @@ export function snapshotStores(): SaveCurrent | null {
 }
 
 function scheduleSave(): void {
-  if (suppressSaves) return;
+  if (suppressSaves || writesBlocked || unsubs.length === 0) return;
   if (timer) clearTimeout(timer);
   timer = setTimeout(() => {
     timer = null;
-    void flushSave();
+    void flushSave()?.catch(() => undefined);
   }, AUTO_SAVE_DEBOUNCE_MS);
 }
 
 /**
- * Force the pending debounced auto-save (if any) to flush immediately.
- *
- * Cancels the in-flight debounce timer, takes a fresh {@link SaveCurrent}
- * snapshot via {@link snapshotStores}, and writes it to IndexedDB through
- * {@link saveSave}.
- *
- * Returns:
- * - the underlying save `Promise<void>` — resolves once the IndexedDB write
- *   settles. Save errors are caught and logged (private-mode IDB failures
- *   must not crash the running game), so the returned promise never rejects.
- * - `null` when there is nothing to write (no character created yet, so
- *   `snapshotStores()` returns `null`).
- *
- * Used by the E2E test bridge (`window.__GAME__.flushSave`) to deterministically
- * await the debounced save before reload. Also legitimately invoked by the
- * scheduled debounce timer in {@link scheduleSave}.
+ * Save a fresh snapshot immediately. Rejects on write failure so explicit Save
+ * never reports success for a failed write; background callers handle rejection.
+ * Returns null before character creation or during an import.
  */
 export function flushSave(): Promise<void> | null {
-  if (timer) {
-    clearTimeout(timer);
-    timer = null;
-  }
+  cancelPendingSave();
+  if (suppressSaves) return null;
+  if (writesBlocked) return Promise.reject(new Error('Stored save needs recovery before saving'));
   const snap = snapshotStores();
   if (!snap) return null;
-  return saveSave(snap).catch((err: unknown) => {
-    // Swallow — IndexedDB may be unavailable in private mode etc.
-    // We don't want a write failure to kill the running game.
-    // eslint-disable-next-line no-console
-    console.warn('[persistence] auto-save failed:', err);
-  });
+  return saveSave(snap).then(
+    () => {
+      useSaveStatusStore.setState({ error: null });
+    },
+    (err: unknown) => {
+      useSaveStatusStore.setState({ error: err instanceof Error ? err.message : String(err) });
+      throw err;
+    }
+  );
+}
+
+/** Export the live character, including mutations not yet autosaved. No IO required. */
+export function exportCurrentSave(): string | null {
+  const snap = snapshotStores();
+  return snap ? JSON.stringify(toJsonSafe(snap), null, 2) : null;
+}
+
+function cancelPendingSave(): void {
+  if (timer) clearTimeout(timer);
+  timer = null;
+}
+
+/**
+ * Validate and persist an imported character before replacing runtime state.
+ * Old writes drain in adapter order; no old autosave can be scheduled meanwhile.
+ * Failed storage leaves every live slice intact and resumes ordinary autosave.
+ */
+export async function importIntoStores(json: string): Promise<void> {
+  const data = decodeSave(JSON.parse(json) as unknown);
+  if (replacingSave) throw new Error('Save replacement already in progress');
+  replacingSave = true;
+  suppressSaves = true;
+  cancelPendingSave();
+  try {
+    await saveSave(data);
+    abortSubAreaRun();
+    useCombatStore.getState().reset();
+    applySaveToStores(data);
+    writesBlocked = false;
+    useSaveStatusStore.setState({ error: null });
+    useHydrationStore.getState().setStatus('ready');
+  } catch (err) {
+    useSaveStatusStore.setState({ error: err instanceof Error ? err.message : String(err) });
+    throw err;
+  } finally {
+    suppressSaves = false;
+    replacingSave = false;
+    scheduleSave();
+  }
+}
+
+/** Delete disk progress before clearing all character-specific runtime state. */
+export async function deleteCurrentSave(): Promise<void> {
+  if (replacingSave) throw new Error('Save replacement already in progress');
+  replacingSave = true;
+  suppressSaves = true;
+  cancelPendingSave();
+  try {
+    await deleteSave();
+    abortSubAreaRun();
+    useCombatStore.getState().reset();
+    usePlayerStore.getState().reset();
+    useInventoryStore.getState().reset();
+    useMapStore.getState().reset();
+    useMercStore.getState().reset();
+    useMetaStore.getState().reset();
+    useFormationStore.getState().reset();
+    writesBlocked = false;
+    useSaveStatusStore.setState({ error: null });
+  } catch (err) {
+    useSaveStatusStore.setState({ error: err instanceof Error ? err.message : String(err) });
+    throw err;
+  } finally {
+    suppressSaves = false;
+    replacingSave = false;
+    scheduleSave();
+  }
 }
 
 /**
@@ -158,7 +229,9 @@ export function startAutoSave(): void {
   stopAutoSave();
   // Listener signatures accept `(state, prev) => void`; we only care that
   // *something* changed, so we ignore params.
-  const sub = (): void => { scheduleSave(); };
+  const sub = (): void => {
+    scheduleSave();
+  };
   unsubs.push(usePlayerStore.subscribe(sub));
   unsubs.push(useInventoryStore.subscribe(sub));
   unsubs.push(useMapStore.subscribe(sub));
@@ -189,41 +262,19 @@ export function stopAutoSave(): void {
  */
 export async function hydrateFromSave(): Promise<boolean> {
   useHydrationStore.getState().setStatus('loading');
+  cancelPendingSave();
+  suppressSaves = true;
   try {
     const data = await loadSave();
     if (!data) {
       useHydrationStore.getState().setStatus('ready');
       return false;
     }
+    cancelPendingSave();
     suppressSaves = true;
     try {
-      usePlayerStore.setState({ player: data.player });
-      useInventoryStore.setState({
-        backpack: [...data.inventory.backpack],
-        stash: [...data.inventory.stash],
-        equipped: { ...data.inventory.equipped },
-        currencies: { ...data.inventory.currencies }
-      });
-      useMercStore.setState({
-        ownedMercs: [...data.mercs.ownedMercs],
-        fieldedMercId: data.mercs.fieldedMercId,
-        mercEquipment: { ...data.mercs.mercEquipment },
-        mercProgress: { ...data.mercs.mercProgress }
-      });
-      useMapStore.setState({
-        currentAct: data.map.currentAct,
-        currentSubAreaId: data.map.currentSubAreaId,
-        discoveredAreas: [...data.map.discoveredAreas],
-        clearedSubAreas: [...data.map.clearedSubAreas],
-        questProgress: { ...data.map.questProgress }
-      });
-      useMetaStore.setState({
-        settings: data.meta.settings,
-        idleState: data.meta.idleState,
-        gachaState: data.meta.gachaState
-      });
-      useFormationStore.getState().hydrate(data.formation);
-      seedItemSeqFromHydratedSave(data);
+      applySaveToStores(data);
+      writesBlocked = false;
     } finally {
       suppressSaves = false;
     }
@@ -231,9 +282,44 @@ export async function hydrateFromSave(): Promise<boolean> {
     return true;
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
+    writesBlocked = true;
+    useSaveStatusStore.setState({ error: msg });
     useHydrationStore.getState().setStatus('error', msg);
     return false;
+  } finally {
+    suppressSaves = false;
   }
+}
+
+/** Apply a prevalidated save synchronously while autosave is suppressed. */
+function applySaveToStores(data: SaveCurrent): void {
+  usePlayerStore.setState({ player: data.player });
+  useInventoryStore.setState({
+    backpack: [...data.inventory.backpack],
+    stash: [...data.inventory.stash],
+    equipped: { ...data.inventory.equipped },
+    currencies: { ...data.inventory.currencies }
+  });
+  useMercStore.setState({
+    ownedMercs: [...data.mercs.ownedMercs],
+    fieldedMercId: data.mercs.fieldedMercId,
+    mercEquipment: { ...data.mercs.mercEquipment },
+    mercProgress: { ...data.mercs.mercProgress }
+  });
+  useMapStore.setState({
+    currentAct: data.map.currentAct,
+    currentSubAreaId: data.map.currentSubAreaId,
+    discoveredAreas: [...data.map.discoveredAreas],
+    clearedSubAreas: [...data.map.clearedSubAreas],
+    questProgress: { ...data.map.questProgress }
+  });
+  useMetaStore.setState({
+    settings: data.meta.settings,
+    idleState: data.meta.idleState,
+    gachaState: data.meta.gachaState
+  });
+  useFormationStore.getState().hydrate(data.formation);
+  seedItemSeqFromHydratedSave(data);
 }
 
 /**
@@ -272,6 +358,8 @@ export async function initPersistence(): Promise<void> {
     }
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
+    writesBlocked = true;
+    useSaveStatusStore.setState({ error: msg });
     useHydrationStore.getState().setStatus('error', msg);
   }
   startAutoSave();
@@ -284,6 +372,9 @@ export async function initPersistence(): Promise<void> {
 export function __resetPersistenceForTests(): void {
   stopAutoSave();
   suppressSaves = false;
+  writesBlocked = false;
+  replacingSave = false;
+  useSaveStatusStore.setState({ error: null });
   useHydrationStore.setState({ status: 'idle', error: null });
   useFormationStore.getState().reset();
 }

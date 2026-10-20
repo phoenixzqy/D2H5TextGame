@@ -8,18 +8,15 @@ import { Button, Modal, Panel, ScreenShell } from '@/ui';
 import {
   useMetaStore,
   usePlayerStore,
-  useInventoryStore,
-  useMapStore,
-  useCombatStore,
-  exportSave,
-  importSave,
-  deleteSave,
-  saveSave,
-  loadSave,
+  exportCurrentSave,
+  importIntoStores,
+  flushSave,
+  deleteCurrentSave
 } from '@/stores';
 
 const APP_VERSION =
-  (import.meta as unknown as { env?: { VITE_APP_VERSION?: string } }).env?.VITE_APP_VERSION ?? '0.1.0';
+  (import.meta as unknown as { env?: { VITE_APP_VERSION?: string } }).env?.VITE_APP_VERSION ??
+  '0.1.0';
 
 export function SettingsScreen() {
   const { t, i18n } = useTranslation(['settings', 'common']);
@@ -35,11 +32,14 @@ export function SettingsScreen() {
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [importOpen, setImportOpen] = useState(false);
   const [importText, setImportText] = useState('');
+  const [busy, setBusy] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
 
   const flash = (msg: string) => {
     setToast(msg);
-    setTimeout(() => { setToast(null); }, 2500);
+    setTimeout(() => {
+      setToast(null);
+    }, 2500);
   };
 
   const handleLocale = (loc: 'zh-CN' | 'en') => {
@@ -49,12 +49,12 @@ export function SettingsScreen() {
 
   const handleSave = async () => {
     try {
-      const existing = await loadSave();
-      if (!existing) {
+      const pending = flushSave();
+      if (!pending) {
         flash(t('saveNoData'));
         return;
       }
-      await saveSave({ ...existing, timestamp: Date.now() });
+      await pending;
       flash(t('saveSuccess'));
     } catch {
       flash(t('saveFailed'));
@@ -63,7 +63,7 @@ export function SettingsScreen() {
 
   const handleExport = async () => {
     try {
-      const json = await exportSave();
+      const json = exportCurrentSave();
       if (!json) {
         flash(t('saveNoData'));
         return;
@@ -87,29 +87,33 @@ export function SettingsScreen() {
   };
 
   const handleImport = async () => {
+    if (busy) return;
+    setBusy(true);
     try {
-      await importSave(importText);
+      await importIntoStores(importText);
+      await i18n.changeLanguage(useMetaStore.getState().settings.locale);
       setImportOpen(false);
       setImportText('');
       flash(t('importSuccess'));
     } catch {
       flash(t('importFailed'));
+    } finally {
+      setBusy(false);
     }
   };
 
   const handleDelete = async () => {
+    if (busy) return;
+    setBusy(true);
     try {
-      await deleteSave();
-      // Wipe in-memory state so the user lands on a clean home screen
-      usePlayerStore.getState().reset();
-      useInventoryStore.getState().reset();
-      useMapStore.getState().reset();
-      useCombatStore.getState().reset();
+      await deleteCurrentSave();
       setConfirmDelete(false);
       flash(t('deleteSuccess'));
       navigate('/', { replace: true });
     } catch {
       flash(t('deleteFailed'));
+    } finally {
+      setBusy(false);
     }
   };
 
@@ -121,7 +125,9 @@ export function SettingsScreen() {
             <Button
               variant="secondary"
               className="w-full min-h-[44px]"
-              onClick={() => { navigate('/'); }}
+              onClick={() => {
+                navigate('/');
+              }}
               data-testid="settings-back-home"
             >
               ← {t('common:back')}
@@ -134,14 +140,16 @@ export function SettingsScreen() {
               <button
                 key={loc}
                 type="button"
-                onClick={() => { handleLocale(loc); }}
+                onClick={() => {
+                  handleLocale(loc);
+                }}
                 aria-pressed={settings.locale === loc}
                 className={[
                   'flex-1 min-h-[44px] px-3 py-2 rounded border',
                   'focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold',
                   settings.locale === loc
                     ? 'border-d2-gold bg-d2-gold/10 text-d2-gold'
-                    : 'border-d2-border bg-d2-panel text-d2-white',
+                    : 'border-d2-border bg-d2-panel text-d2-white'
                 ].join(' ')}
               >
                 {/* language self-names — do not translate */}
@@ -166,22 +174,46 @@ export function SettingsScreen() {
         </Panel>
 
         <Panel title={t('saveLoad')}>
-          <div className="grid grid-cols-2 gap-2">
-            <Button variant="secondary" className="min-h-[44px]" onClick={() => { void handleSave(); }}>
+          <div className="grid grid-cols-2 gap-2" aria-busy={busy}>
+            <Button
+              variant="secondary"
+              className="min-h-[44px]"
+              disabled={busy}
+              onClick={() => {
+                void handleSave();
+              }}
+            >
               {t('saveNow')}
             </Button>
             <Button
               variant="secondary"
               className="min-h-[44px]"
-              onClick={() => { void handleExport(); }}
+              onClick={() => {
+                void handleExport();
+              }}
               data-testid="export-save-button"
+              disabled={busy}
             >
               {t('exportSave')}
             </Button>
-            <Button variant="secondary" className="min-h-[44px]" onClick={() => { setImportOpen(true); }}>
+            <Button
+              variant="secondary"
+              className="min-h-[44px]"
+              disabled={busy}
+              onClick={() => {
+                setImportOpen(true);
+              }}
+            >
               {t('importSave')}
             </Button>
-            <Button variant="danger" className="min-h-[44px]" onClick={() => { setConfirmDelete(true); }}>
+            <Button
+              variant="danger"
+              className="min-h-[44px]"
+              disabled={busy}
+              onClick={() => {
+                setConfirmDelete(true);
+              }}
+            >
               {t('deleteSave')}
             </Button>
           </div>
@@ -203,28 +235,52 @@ export function SettingsScreen() {
         </Panel>
       </div>
 
-      <Modal isOpen={confirmDelete} onClose={() => { setConfirmDelete(false); }} title={t('deleteSave')}>
+      <Modal
+        isOpen={confirmDelete}
+        onClose={() => {
+          setConfirmDelete(false);
+        }}
+        title={t('deleteSave')}
+      >
         <p className="mb-4">{t('confirmDelete')}</p>
         <div className="flex gap-2">
           <Button
             variant="secondary"
             className="flex-1 min-h-[44px]"
-            onClick={() => { setConfirmDelete(false); }}
+            onClick={() => {
+              setConfirmDelete(false);
+            }}
           >
             {t('common:cancel')}
           </Button>
-          <Button variant="danger" className="flex-1 min-h-[44px]" onClick={() => { void handleDelete(); }}>
+          <Button
+            variant="danger"
+            className="flex-1 min-h-[44px]"
+            disabled={busy}
+            onClick={() => {
+              void handleDelete();
+            }}
+          >
             {t('deleteSave')}
           </Button>
         </div>
       </Modal>
 
-      <Modal isOpen={importOpen} onClose={() => { setImportOpen(false); }} title={t('importSave')}>
+      <Modal
+        isOpen={importOpen}
+        onClose={() => {
+          setImportOpen(false);
+        }}
+        title={t('importSave')}
+      >
         <textarea
           value={importText}
-          onChange={(e) => { setImportText(e.target.value); }}
+          onChange={(e) => {
+            setImportText(e.target.value);
+          }}
           rows={8}
           placeholder={t('importPlaceholder')}
+          aria-label={t('importSave')}
           className="w-full bg-d2-bg border border-d2-border rounded p-2 text-xs font-mono
                      focus:outline-none focus:border-d2-gold"
         />
@@ -232,15 +288,19 @@ export function SettingsScreen() {
           <Button
             variant="secondary"
             className="flex-1 min-h-[44px]"
-            onClick={() => { setImportOpen(false); }}
+            onClick={() => {
+              setImportOpen(false);
+            }}
           >
             {t('common:cancel')}
           </Button>
           <Button
             variant="primary"
             className="flex-1 min-h-[44px]"
-            disabled={!importText.trim()}
-            onClick={() => { void handleImport(); }}
+            disabled={busy || !importText.trim()}
+            onClick={() => {
+              void handleImport();
+            }}
           >
             {t('importSave')}
           </Button>
@@ -266,7 +326,7 @@ function ToggleRow({
   description,
   checked,
   onChange,
-  testId,
+  testId
 }: {
   label: string;
   description?: string;

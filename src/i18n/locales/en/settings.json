@@ -15,7 +15,7 @@
   "exportFailed": "Export failed",
   "importSave": "Import Save",
   "importSuccess": "Save imported",
-  "importFailed": "Import failed: invalid format",
+  "importFailed": "Import failed. Current progress was kept. Check the backup format and available storage, then retry.",
   "importPlaceholder": "Paste save JSON…",
   "deleteSave": "Delete Save",
   "deleteSuccess": "Save deleted",
@@ -23,5 +23,6 @@
   "confirmDelete": "Delete save? This cannot be undone.",
   "version": "Version",
   "supportDev": "Support Developer",
-  "bmcLink": "Buy me a coffee"
+  "bmcLink": "Buy me a coffee",
+  "storageFailure": "Progress could not be saved. Retry Save or export a backup in Settings. If the stored save is invalid, import a valid backup before saving."
 }

@@ -17,6 +17,7 @@ import { useTranslation } from 'react-i18next';
 import { Button, Panel, getZoneArtUrl } from '@/ui';
 import { hasSave } from '@/stores';
 import { OfflineBonusBanner } from '@/features/idle/OfflineBonusBanner';
+import { SaveFailureNotice } from '@/ui/SaveFailureNotice';
 
 export function HomeScreen() {
   const { t } = useTranslation();
@@ -50,6 +51,7 @@ export function HomeScreen() {
                  bg-gradient-to-b from-d2-bg via-d2-panel to-d2-bg overflow-hidden"
       data-testid="home-screen"
     >
+      <SaveFailureNotice />
       <img
         src={getZoneArtUrl(1)}
         alt=""

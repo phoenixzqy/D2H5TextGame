@@ -15,7 +15,7 @@
   "exportFailed": "导出失败",
   "importSave": "导入存档",
   "importSuccess": "导入成功",
-  "importFailed": "导入失败:格式无效",
+  "importFailed": "导入失败，当前进度已保留。请检查备份格式和可用存储空间后重试。",
   "importPlaceholder": "粘贴存档 JSON…",
   "deleteSave": "删除存档",
   "deleteSuccess": "存档已删除",
@@ -23,5 +23,6 @@
   "confirmDelete": "确认删除存档? 此操作无法撤销。",
   "version": "版本",
   "supportDev": "支持开发者",
-  "bmcLink": "给我买杯咖啡"
+  "bmcLink": "给我买杯咖啡",
+  "storageFailure": "进度未能保存。请重试保存，或在设置中导出备份。若已存档损坏，请先导入有效备份。"
 }

@@ -1,3 +1,4 @@
+import { isReplacingSave } from '@/stores/persistence';
 /**
  * useIdleTicker — drives a periodic UI tick that consumes the engine's
  * pure {@link onlineTick} helper (Bug #19). The engine is intentionally
@@ -73,6 +74,7 @@ export const useIdleTickerStore = create<IdleTickerState>((set, get) => ({
   ...initial,
 
   applyTick: () => {
+    if (isReplacingSave()) return;
     const playerStore = usePlayerStore.getState();
     const player = playerStore.player;
     const map = useMapStore.getState();

@@ -4,6 +4,7 @@
  */
 import type { ReactNode } from 'react';
 import { BottomNav } from './BottomNav';
+import { SaveFailureNotice } from './SaveFailureNotice';
 
 interface ScreenShellProps {
   children: ReactNode;
@@ -25,6 +26,7 @@ export function ScreenShell({ children, testId, title, hideNav = false }: Screen
     >
       {!hideNav && <BottomNav />}
       <div className="flex-1 flex flex-col min-w-0 min-h-0 overflow-hidden">
+        <SaveFailureNotice />
         {title && (
           <header
             className="shrink-0 z-30 bg-d2-panel/95 backdrop-blur border-b border-d2-border
