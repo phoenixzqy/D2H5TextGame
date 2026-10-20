@@ -1823,3 +1823,33 @@ isolation, partial-refusal preservation, UI hire/combo/quest checks, displayed
 selector defense and acquisition-order journal, W1award/W2abandon, actual Den
 carry; freeze independent plan/RED before implementation. P02b03 report and tiny
 separately reviewedscreen follow. No push/PR/merge/deployment.
+
+P02b02 accepted **c0788c5** after independent plan/frozenRED/source/outcome and
+durable producer/QA APPROVE/ADEQUATE. Additive isolated earned adapter snapshots
+all7stores/methods/Date/pity, preserves partial refusals/error identity, ordinary
+actions, award-order original-ID gear selection, once-only W1award/installedW2
+nativeflee, bounded actual target playback and separate logical/UIhint/wall time.
+All5v1+2acceptedparser baseline hashes unchanged; no src/config/package edit.
+Three missing-moduleREDs execute0assertions; all original assertions/amendments
+and initial nullable-slot typecheck failure retained. Selector5actualpass23filtered
+and skeleton12pass16fail (5selectors+7vacuousthrowcontrols) never certify gameplay.
+Tiny clock1792497600000/seed1/prep1 earns160heroXP/120mercXP/5items/75shards,
+abandons unplayedW2; DenW1wins270heroXP/202mercXP thenW2loses0award, no clear.
+Actual HP/MP carry exercised; timedstatus/nonzeroeffectiveCD positivity remains
+unexercised. Natural glove5/boot3 triggered conditional positivegear coverage:
+separately reviewed frozen variant appends both ordinary owner actions without
+changing original27701testbytes. Two owner mutations fail exactly hero512/merc529,
+1fail28filtered each; pristine source restored;29focusedGREEN. Heroarmor28,
+savedmerc26/targetmerc29,120/138HP102/106MP unhealed; no targetwin oracle.
+Finalrelated29/10.015s,U3023actualpass0skip/153results56.130s,T24.454s,L58.870s
+(purity57),guardedB9.516s/fourJS clean all exit0. Unchanged5srelated/15sfull
+budgets exceeded; existing buildwarnings and earlier pregear3022U/T/L retained.
+[Evidence](evidence/p02b02-earned-adapter.md) packet78251f7d10b78a18eb81b2019780a536adae7a3987a3d119bf0a4c440c33964d
+indexes98archivedrecords/22exactcommands/15reports; archive6dbbb87dd3a1ff3690ac4861cd05cafa8b393fed582d111c5cb24228e18cc22d.
+All consumers released before exact RAWjghowem4/dist/.vite cleanup; absence
+verified,no processkilled,installedtools preserved,originalmainclean/rootclaim
+continues. Next root-owned RAW=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149
+holds hashverifiedrunner, independently ready P02b03 plan and draft codec tests;
+no new test/execution yet. P02b03 versionedreport/preimportprovenance/repetitions/
+CLI then separately reviewed screening remain active. Den/Andariel/campaign/
+pacing/finalbalance/C0–C4/G0–G7/fullv1 unaccepted. No push/PR/merge/deployment.
