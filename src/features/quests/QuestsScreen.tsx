@@ -17,7 +17,8 @@
  */
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Panel, ScreenShell, Tabs } from '@/ui';
+import { Button, Panel, ScreenShell, Tabs, tDataKey } from '@/ui';
+import { loadUniques } from '@/data/loaders/loot';
 import { useMapStore } from '@/stores';
 import { claimQuestReward, canClaim, type ClaimResult } from './claimReward';
 import {
@@ -115,7 +116,7 @@ function resolveStatus(
 }
 
 function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) {
-  const { t } = useTranslation(['quests', 'common']);
+  const { t } = useTranslation(['quests', 'common', 'items']);
   const slug = questI18nKey(quest.id);
   // Quest data files ship with English `name`, `description`, and per-objective
   // `description` strings; locale files override by slug. When the slug has no
@@ -263,6 +264,11 @@ function formatReward(
   if (k === 'mercenaryUnlock' && typeof v === 'string') return `🛡️ ${t('rewardLabel.mercenaryUnlock')}: ${formatRewardValue(v, t)}`;
   if (k === 'service' && typeof v === 'string') return `🏷️ ${formatRewardValue(v, t)}`;
   if (k === 'itemDrop' && typeof v === 'string') return `🎁 ${formatRewardValue(v, t)}`;
+  if (k === 'itemDrop' && typeof v === 'object' && v !== null && 'uniqueId' in v) {
+    const matches = loadUniques().filter((unique) => unique.id === v.uniqueId);
+    const template = matches.length === 1 ? matches[0] : undefined;
+    return `🎁 ${template ? tDataKey(t, template.name) : t('rewardLabel.uniqueItem')}`;
+  }
   if (k === 'lootTable' && typeof v === 'string') return `📦 ${formatRewardValue(v, t)}`;
   if (k === 'areaUnlock' && typeof v === 'string') return `🗺️ ${formatRewardValue(v, t)}`;
   if (k === 'npcUnlock' && typeof v === 'string') return `👤 ${formatRewardValue(v, t)}`;

@@ -688,9 +688,35 @@
           "$ref": "#/$defs/statReward"
         },
         "itemDrop": {
-          "type": "string",
-          "pattern": "^(?:items/[a-z0-9][a-z0-9._-]*|items/base/[a-z0-9-]+|items/unique/[a-z0-9-]+)$",
-          "description": "Legacy flat or canonical base/unique item reward identifier; syntax only, template resolution is separate."
+          "description": "Legacy item identifier or one exact unique reward; syntax only, delivery and eligibility are separate.",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^(?:items/[a-z0-9][a-z0-9._-]*|items/base/[a-z0-9-]+|items/unique/[a-z0-9-]+)$",
+              "description": "Legacy flat or canonical base/unique item reward identifier; syntax only, template resolution is separate."
+            },
+            {
+              "type": "object",
+              "description": "One named unique item at an authored positive item level.",
+              "required": [
+                "uniqueId",
+                "ilvl"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "uniqueId": {
+                  "type": "string",
+                  "pattern": "^items/unique/[a-z0-9-]+$",
+                  "description": "Exact canonical unique template identifier."
+                },
+                "ilvl": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "Authored item generation level; no campaign cap."
+                }
+              }
+            }
+          ]
         },
         "lootTable": {
           "type": "string",

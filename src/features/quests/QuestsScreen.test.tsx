@@ -5,7 +5,7 @@
  */
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { Suspense } from 'react';
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render, screen, fireEvent, act, within } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import { MemoryRouter } from 'react-router-dom';
 import i18n from '@/i18n';
@@ -14,6 +14,12 @@ import { useMapStore } from '@/stores';
 import { usePlayerStore } from '@/stores/playerStore';
 import { useInventoryStore } from '@/stores/inventoryStore';
 import { useHydrationStore } from '@/stores/persistence';
+import mainDocument from '@/data/quests/main.json';
+import uniqueItems from '@/data/items/uniques.json';
+import { loadAwardPools } from '@/data/loaders/loot';
+import { createRng } from '@/engine/rng';
+import { __resetRollItemSeqForTests, rollItem } from '@/engine/loot/rollItem';
+import { useMercStore, useCombatStore, useMetaStore, useFormationStore } from '@/stores';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 
 function renderScreen() {
@@ -150,4 +156,68 @@ describe.each(['zh-CN', 'en'] as const)('QuestsScreen %s', locale => {
       expect(i18n.t(key, { ns: 'quests', lng: locale })).not.toContain(key);
     }
   });
+});
+
+
+/** A temporary authored row, with the exact original reward descriptor restored. */
+function withUniquePreview(uniqueId: string, ilvl: number, check: () => void) {
+  const den = mainDocument.quests.find(quest => quest.id === 'quests/act1-den-of-evil');
+  if (!den) throw new Error('Missing actual Den quest');
+  const descriptor = Object.getOwnPropertyDescriptor(den, 'rewards');
+  if (!descriptor) throw new Error('Missing actual Den rewards');
+  try {
+    Object.defineProperty(den, 'rewards', { ...descriptor, value: { itemDrop: { uniqueId, ilvl } } });
+    check();
+  } finally {
+    Object.defineProperty(den, 'rewards', descriptor);
+  }
+}
+
+describe.each(['zh-CN', 'en'] as const)('explicit unique reward preview %s', locale => {
+  beforeEach(async () => { await i18n.changeLanguage(locale); });
+
+  it.each(['known', 'low-level', 'unknown', 'ambiguous'] as const)(
+    'renders one localized gift chip for %s without publishing, allocating or mutating', kind => {
+      const uniqueId = kind === 'unknown' ? 'items/unique/not-in-catalog' : 'items/unique/coif-of-glory';
+      const expected = kind === 'unknown' || kind === 'ambiguous'
+        ? (locale === 'en' ? 'Unique item' : '暗金装备')
+        : (locale === 'en' ? 'Coif of Glory' : '荣耀之盔');
+      const template = uniqueItems.find(item => item.id === uniqueId);
+      if (kind === 'ambiguous' && !template) throw new Error('Missing actual Coif template');
+      // Cached loader points at this same actual JSON array; no favorable catalog mock.
+      if (kind === 'ambiguous' && template) uniqueItems.push(template);
+      try {
+        withUniquePreview(uniqueId, kind === 'low-level' ? 1 : 19, () => {
+          const pools = loadAwardPools();
+          const roll = () => rollItem({ baseId: 'items/base/sh-buckler', rarity: 'normal', ilvl: 19 }, pools, createRng(5047));
+          __resetRollItemSeqForTests();
+          const baseline = roll();
+          expect(baseline).toBeDefined();
+          __resetRollItemSeqForTests();
+          const states = () => [useMapStore.getState(), usePlayerStore.getState(),
+            useInventoryStore.getState(), useMercStore.getState(), useHydrationStore.getState(),
+            useCombatStore.getState(), useMetaStore.getState(), useFormationStore.getState()];
+          const before = states();
+          const bytes = JSON.stringify(before);
+          const catalogBytes = JSON.stringify([mainDocument, uniqueItems]);
+          for (let attempt = 0; attempt < 2; attempt += 1) {
+            const view = renderScreen();
+            try {
+              const card = within(screen.getByTestId('quest-quests/act1-den-of-evil'));
+              const chip = card.getByText(`🎁 ${expected}`);
+              expect(chip.tagName).toBe('LI');
+              expect(chip.parentElement?.children).toHaveLength(1);
+              expect(chip.textContent).not.toMatch(/uniqueId|ilvl|items[/.]|itemDrop|rewardLabel|[{}]/);
+            } finally { view.unmount(); }
+          }
+          states().forEach((state, index) => { expect(state).toBe(before[index]); });
+          expect(JSON.stringify(states())).toBe(bytes);
+          expect(JSON.stringify([mainDocument, uniqueItems])).toBe(catalogBytes);
+          // No reset after either render: an allocation during preview changes this ID.
+          expect(roll()).toEqual(baseline);
+        });
+      } finally {
+        if (kind === 'ambiguous') expect(uniqueItems.pop()).toBe(template);
+      }
+    });
 });

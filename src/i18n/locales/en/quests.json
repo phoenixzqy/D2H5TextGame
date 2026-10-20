@@ -184,6 +184,7 @@
     }
   },
   "rewardLabel": {
+    "uniqueItem": "Unique item",
     "imbue": "Imbue Charge",
     "skillPoint": "Skill Point",
     "statPoint": "Stat Point",

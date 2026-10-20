@@ -262,3 +262,56 @@ describe('quest item reward identifier compatibility (BUG050)', () => {
     }
   }
 });
+
+
+describe('explicit unique reward object syntax (P04a07a)', () => {
+  const valid = [
+    { uniqueId: 'items/unique/coif-of-glory', ilvl: 19 },
+    { uniqueId: 'items/unique/pelta-lunata', ilvl: 3 },
+    { uniqueId: 'items/unique/coif-of-glory', ilvl: 1 },
+    { uniqueId: 'items/unique/not-in-catalog', ilvl: 1000000 },
+    { uniqueId: 'items/unique/-', ilvl: 1 }
+  ];
+  const invalid: unknown[] = [
+    {}, { uniqueId: valid[0]?.uniqueId }, { ilvl: 19 },
+    ...[null, 19, true, [], {}, '', 'items/base/helm-skull-cap', 'items/unique/',
+      'items/unique/Foo', 'items/unique/foo_bar', 'items/unique/foo.bar',
+      'items/unique/foo/bar'].map(uniqueId => ({ uniqueId, ilvl: 19 })),
+    ...[null, '19', true, 0, -1, 1.5, [], {}].map(ilvl => ({ uniqueId: valid[0]?.uniqueId, ilvl })),
+    ...['quantity', 'rarity', 'metadata'].map(key => ({ ...valid[0], [key]: 1 }))
+  ];
+  it('anchors known fixtures in the production unique catalog', () => {
+    for (const entry of valid.slice(0, 2)) expect(uniqueItems.some(item => item.id === entry.uniqueId)).toBe(true);
+  });
+  for (const [caller, load] of callers) {
+    for (const documentName of ['main', 'side'] as const) {
+      it.each(valid)(`${caller} preserves ${documentName} explicit $uniqueId level $ilvl without resolving`, itemDrop => {
+        const row = fixture('explicit-unique', { rewards: { itemDrop, xp: 0 } });
+        withDocuments(envelope(documentName === 'main' ? [row] : []),
+          envelope(documentName === 'side' ? [row] : []), () => {
+            const before = JSON.stringify([mainDocument, sideDocument]);
+            const rows = caller === 'loadQuests' ? loadQuests() : loadQuestsByAct().get('acts/act1');
+            expect(rows).toEqual([row]);
+            expect(rows?.[0]).toBe(row);
+            expect(rows?.[0]?.rewards).toBe(row.rewards);
+            expect(rows?.[0]?.rewards?.itemDrop).toBe(itemDrop);
+            expect(JSON.stringify([mainDocument, sideDocument])).toBe(before);
+          });
+      });
+      it.each(invalid)(`${caller} rejects ${documentName} malformed explicit reward %j without mutation`, itemDrop => {
+        const row = fixture('invalid-unique', { rewards: { itemDrop } });
+        withDocuments(envelope(documentName === 'main' ? [row] : []),
+          envelope(documentName === 'side' ? [row] : []), () => {
+            const before = JSON.stringify([mainDocument, sideDocument]);
+            let failure: unknown;
+            try { load(); } catch (error) { failure = error; }
+            expect(failure).toBeInstanceOf(Error);
+            if (!(failure instanceof Error)) throw new Error('Expected explicit reward rejection');
+            expect(failure.message).toContain(`quests/${documentName}.json`);
+            expect(failure.message).toContain('/quests/0/rewards/itemDrop');
+            expect(JSON.stringify([mainDocument, sideDocument])).toBe(before);
+          });
+      });
+    }
+  }
+});

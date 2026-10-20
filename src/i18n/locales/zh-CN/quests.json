@@ -56,6 +56,7 @@
     "act5-eve-of-destruction": { "name": "毁灭前夕", "desc": "于毁灭王座击败巴尔。", "obj1": "击败巴尔" }
   },
   "rewardLabel": {
+    "uniqueItem": "暗金装备",
     "imbue": "赋魔卷轴",
     "skillPoint": "技能点",
     "statPoint": "属性点",
