@@ -87,6 +87,15 @@ function enqueueRestore<T>(operation: () => Promise<T>): Promise<T> {
  * Returns null when no character exists (skip pre-creation saves).
  */
 export function snapshotStores(): SaveCurrent | null {
+  return buildStoreSnapshot(Date.now(), false);
+}
+
+/** Save/export share a single clock sample and the store's read-only projection. */
+function projectedSnapshot(): SaveCurrent | null {
+  return buildStoreSnapshot(Date.now(), true);
+}
+
+function buildStoreSnapshot(now: number, projectBonus: boolean): SaveCurrent | null {
   const player = usePlayerStore.getState().player;
   if (!player) return null;
 
@@ -97,6 +106,7 @@ export function snapshotStores(): SaveCurrent | null {
   const formation = useFormationStore.getState();
 
   return buildSave({
+    timestamp: now,
     player,
     inventory: {
       backpack: inv.backpack,
@@ -119,7 +129,7 @@ export function snapshotStores(): SaveCurrent | null {
     },
     meta: {
       settings: meta.settings,
-      idleState: meta.idleState,
+      idleState: projectBonus ? meta.readIdleBonus(now) : meta.idleState,
       gachaState: meta.gachaState
     },
     formation: {
@@ -148,7 +158,14 @@ export function flushSave(): Promise<void> | null {
   cancelPendingSave();
   if (suppressSaves) return null;
   if (writesBlocked) return Promise.reject(new Error('Stored save needs recovery before saving'));
-  const snap = snapshotStores();
+  let snap: SaveCurrent | null;
+  try {
+    snap = projectedSnapshot();
+  } catch (err) {
+    const error = err instanceof Error ? err : new Error(String(err));
+    useSaveStatusStore.setState({ error: error.message });
+    return Promise.reject(error);
+  }
   if (!snap) return null;
   return saveSave(snap).then(
     () => {
@@ -163,7 +180,7 @@ export function flushSave(): Promise<void> | null {
 
 /** Export the live character, including mutations not yet autosaved. No IO required. */
 export function exportCurrentSave(): string | null {
-  const snap = snapshotStores();
+  const snap = projectedSnapshot();
   return snap ? JSON.stringify(toJsonSafe(snap), null, 2) : null;
 }
 
@@ -190,7 +207,7 @@ export async function importIntoStores(json: string): Promise<void> {
       await saveSave(data);
       abortSubAreaRun();
       useCombatStore.getState().reset();
-      applySaveToStores(data);
+      applySaveToStores(data, Date.now());
       writesBlocked = false;
       useSaveStatusStore.setState({ error: null });
       useHydrationStore.getState().setStatus('ready');
@@ -294,8 +311,10 @@ async function hydrateSavedCharacter(reconcileOffline: boolean): Promise<boolean
       useHydrationStore.getState().setStatus('ready');
       return false;
     }
+    let reconciledAt: number | undefined;
     if (reconcileOffline) {
       const now = Date.now();
+      reconciledAt = now;
       data = {
         ...data,
         timestamp: now,
@@ -308,7 +327,7 @@ async function hydrateSavedCharacter(reconcileOffline: boolean): Promise<boolean
     cancelPendingSave();
     suppressSaves = true;
     try {
-      applySaveToStores(data);
+      applySaveToStores(data, reconciledAt ?? Date.now());
       writesBlocked = false;
     } finally {
       suppressSaves = false;
@@ -327,7 +346,8 @@ async function hydrateSavedCharacter(reconcileOffline: boolean): Promise<boolean
 }
 
 /** Apply a prevalidated save synchronously while autosave is suppressed. */
-function applySaveToStores(data: SaveCurrent): void {
+function applySaveToStores(data: SaveCurrent, idleBonusAnchor: number): void {
+  if (!Number.isFinite(idleBonusAnchor)) throw new RangeError('Idle bonus arithmetic requires finite numbers');
   usePlayerStore.setState({ player: data.player });
   useInventoryStore.setState({
     backpack: [...data.inventory.backpack],
@@ -351,6 +371,7 @@ function applySaveToStores(data: SaveCurrent): void {
   useMetaStore.setState({
     settings: data.meta.settings,
     idleState: data.meta.idleState,
+    idleBonusAnchor,
     gachaState: data.meta.gachaState
   });
   useFormationStore.getState().hydrate(data.formation);

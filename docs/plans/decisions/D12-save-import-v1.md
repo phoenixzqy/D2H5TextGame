@@ -98,3 +98,51 @@ This startup child addresses persisted returning-player arithmetic and restore
 ordering only. The transient UI hook, actual XP/MF application, periodic/close
 checkpoints, hidden online/offline interval ownership and browser restart/PWA
 acceptance remain pending. No complete D12/P17 or campaign gate is accepted.
+
+### P17a03 shared online projection and save checkpoints
+
+Keep one raw persisted idle tuple and one transient online clock anchor, replaced
+atomically. readIdleBonus(now) projects via checkpointIdleBonus using the anchor
+instead of the raw historical lastOnline; it never publishes or caches a tuple.
+Successful exact import/raw hydration preserves all raw fields and starts online
+consumption at publication time. Startup uses its sampled reconciliation time,
+including time spent awaiting its persistence. Failed restores preserve the
+prior anchor. Reset creates a fresh tuple and anchor at one sampled now.
+
+updateIdleState with explicit finite lastOnline supplies the merged tuple at
+that basis. Partial multiplier/remaining numeric edits without lastOnline first
+project the current tuple to one sampled now, then merge, normalize and store
+both tuple/anchor at now. Target/offlineTime-only edits preserve the raw bonus
+tuple and anchor. setIdleTarget and empty/no-op patches cannot refresh a bonus.
+No-op means the whole patch is identical. In a changed mixed patch, an explicitly
+included numeric field deliberately replaces that projected value; an explicit
+lastOnline deliberately supplies the tuple basis even if equal to raw history.
+Metadata-only callers must omit bonus numeric/basis fields.
+Reject nonfinite arithmetic/patch values before publication.
+
+snapshotStores remains raw. Save and export use a shared projected snapshot
+with one sampled timestamp for both save.timestamp and projected lastOnline.
+They leave source tuple and anchor unchanged on success/failure, so repeated
+saves/exports cannot refresh or double-consume. Projection failure in flushSave
+publishes save error and returns a rejected Promise, maintaining its existing
+Promise-or-null contract for background callers; retry remains possible.
+Export throws to its existing UI handler. No schema bump or duplicate tuple.
+
+This child requires actual stale production save/export behavioral
+RED, partial-update/basis/no-op tests, exact restore timing/failure tests and
+projection/save-error retry coverage. UI/reward/lifecycle consumers, periodic
+and close writes, hidden interval ownership and browser restart/PWA acceptance
+remain separate; full D12/P17 and campaign gates remain open.
+
+Sixth-file scope extension: existing save-management browser assertions must
+include projected clocks and startup accounting. Preserve the original pending
+old-autosave/import cancellation sequence without manual Save before reload.
+Observe the committed checkpoint read-only, require its timestamp within the
+controlled+500..1000ms interval, and verify its complete payload against the
+known imported fixture with only timestamp/lastOnline projected. Derive the
+reload's exact away gap from that verified checkpoint, assert complete restored
+save equality, then require a same-clock second reload to preserve the result.
+Async transport does not guarantee the first callback snapshots at precisely
++500ms in every locale. Freeze the malformed-import test clock so complete save
+equality proves preservation; its existing Escape handling closes the dialog
+when a frozen transient toast covers the mobile pointer target.

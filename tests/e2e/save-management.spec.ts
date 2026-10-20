@@ -1,16 +1,33 @@
 /** Ordinary controls; imported fixtures prove persistence, not earned campaign progression. */
 import { test, expect, type Page } from '@playwright/test';
+import { readFile } from 'node:fs/promises';
 import type { SaveCurrent } from '../../src/engine/types/save';
 import { clearGameStorage, createCharacter, navTo } from './_helpers';
 
 async function exportViaSettings(page: Page): Promise<SaveCurrent> {
   const pending = page.waitForEvent('download');
   await page.getByTestId('export-save-button').click();
-  const stream = await (await pending).createReadStream();
-  if (!stream) throw new Error('Export did not produce a readable backup');
-  const chunks: Buffer[] = [];
-  for await (const chunk of stream) chunks.push(Buffer.from(chunk));
-  return JSON.parse(Buffer.concat(chunks).toString('utf8')) as SaveCurrent;
+  const path = await (await pending).path();
+  return JSON.parse(await readFile(path, 'utf8')) as SaveCurrent;
+}
+
+/** Observe the committed checkpoint without writing storage or game state. */
+async function readStoredSave(page: Page): Promise<SaveCurrent> {
+  return page.evaluate(() => new Promise<SaveCurrent>((resolve, reject) => {
+    const open = indexedDB.open('D2H5TextGame');
+    open.onerror = () => { reject(new Error('Could not open game save')); };
+    open.onsuccess = () => {
+      const db = open.result;
+      const get = db.transaction('saves', 'readonly').objectStore('saves').get('current');
+      get.onerror = () => { db.close(); reject(new Error('Could not read game save')); };
+      get.onsuccess = () => {
+        const record = get.result as { data: SaveCurrent } | undefined;
+        db.close();
+        if (!record) reject(new Error('No committed game save'));
+        else resolve(record.data);
+      };
+    };
+  }));
 }
 
 async function importViaSettings(page: Page, json: string) {
@@ -52,8 +69,17 @@ for (const locale of ['en', 'zh-CN'] as const) {
     await expect(page.getByRole('dialog')).toHaveCount(0);
     await expect(sound).not.toBeChecked();
     const immediatelyExported = await exportViaSettings(page);
-    expect({ ...immediatelyExported, timestamp: imported.timestamp }).toEqual(imported);
+    expect(immediatelyExported).toEqual(imported);
     await page.clock.runFor(1000);
+    await expect.poll(async () => (await readStoredSave(page)).timestamp)
+      .toBeGreaterThanOrEqual(imported.timestamp + 500);
+    const committed = await readStoredSave(page);
+    expect(committed.timestamp).toBeLessThanOrEqual(imported.timestamp + 1000);
+    // Check against the known import before using this observed clock basis.
+    // A stale old-character write must still fail complete save equality.
+    expect(committed).toEqual({ ...imported, timestamp: committed.timestamp,
+      meta: { ...imported.meta, idleState: { ...imported.meta.idleState,
+        lastOnline: committed.timestamp } } });
     await page.reload();
     await expect(page.getByTestId('settings-screen')).toBeVisible();
     await expect(
@@ -62,7 +88,19 @@ for (const locale of ['en', 'zh-CN'] as const) {
     await expect(
       page.getByRole('button', { name: locale === 'en' ? 'Save' : '保存', exact: true })
     ).toBeVisible();
-    expect({ ...(await exportViaSettings(page)), timestamp: imported.timestamp }).toEqual(imported);
+    const restored = await exportViaSettings(page);
+    // Async transport can commit at different clock instants across locales.
+    // Account for exactly the gap after the verified committed checkpoint.
+    // Keep this first reload free of manual Save to detect stale old writes.
+    const awayGap = imported.timestamp + 1000 - Math.max(
+      committed.timestamp, committed.meta.idleState.lastOnline);
+    expect(restored).toEqual({ ...imported, timestamp: imported.timestamp + 1000,
+      meta: { ...imported.meta, idleState: { ...imported.meta.idleState,
+        lastOnline: imported.timestamp + 1000,
+        offlineTime: imported.meta.idleState.offlineTime + awayGap } } });
+    await page.reload();
+    await expect(page.getByTestId('settings-screen')).toBeVisible();
+    expect(await exportViaSettings(page)).toEqual(restored);
     await navTo(page, 'town');
     await page.getByTestId('character-hud').click();
     await expect(page.getByTestId('char-name')).toHaveText('Restored');
@@ -75,14 +113,18 @@ test('malformed import preserves the live and stored character @responsive', asy
   await createCharacter(page, { class: 'amazon', name: 'Preserved' });
   await navTo(page, 'settings');
   await page.getByRole('button', { name: 'English', exact: true }).click();
+  await page.clock.pauseAt(new Date(Date.now() + 1000));
   await page.getByRole('button', { name: 'Save', exact: true }).click();
   const before = await exportViaSettings(page);
   await importViaSettings(page, '{"version":7}');
   await expect(page.getByRole('status')).toContainText('Current progress was kept');
-  await page.getByRole('dialog').getByRole('button', { name: 'Cancel', exact: true }).click();
-  expect({ ...(await exportViaSettings(page)), timestamp: before.timestamp }).toEqual(before);
+  // The frozen transient toast can cover the mobile pointer target. Use the
+  // dialog's ordinary Escape key handling while retaining the frozen clock.
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  expect(await exportViaSettings(page)).toEqual(before);
   await page.reload();
-  expect({ ...(await exportViaSettings(page)), timestamp: before.timestamp }).toEqual(before);
+  expect(await exportViaSettings(page)).toEqual(before);
 });
 
 test('save controls remain reachable at required viewport sizes @responsive', async ({ page }) => {
@@ -95,8 +137,8 @@ test('save controls remain reachable at required viewport sizes @responsive', as
     [640, 360],
     [1280, 800],
     [1920, 1080]
-  ]) {
-    await page.setViewportSize({ width: width!, height: height! });
+  ] as const) {
+    await page.setViewportSize({ width, height });
     await expect(page.getByTestId('export-save-button')).toBeVisible();
     expect(
       await page.evaluate(

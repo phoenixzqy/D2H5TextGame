@@ -10,6 +10,7 @@ import { createRng } from '@/engine/rng';
 import { rollMany, pickFromPool, type GachaRarity } from '@/engine/gacha/roller';
 import { createMercFromDef } from './mercFactory';
 import { useMercStore } from './mercStore';
+import { checkpointIdleBonus } from '@/engine/idle/persisted-bonus';
 
 /** Result of a single gacha pull surfaced to the UI. */
 export interface GachaPullResult {
@@ -22,6 +23,10 @@ export interface GachaPullResult {
 interface MetaState {
   settings: Settings;
   idleState: IdleState;
+  /** Transient clock basis for the sole raw idle tuple; never persisted. */
+  idleBonusAnchor: number;
+  /** Read the current online bonus without publishing or mutating its basis. */
+  readIdleBonus: (now?: number) => IdleState;
   gachaState: GachaState;
   /**
    * Wall-clock timestamp (ms) when the page last became hidden /
@@ -83,6 +88,11 @@ const initialGachaState: GachaState = {
 export const useMetaStore = create<MetaState>((set, get) => ({
   settings: initialSettings,
   idleState: initialIdleState,
+  idleBonusAnchor: initialIdleState.lastOnline,
+  readIdleBonus: (now = Date.now()) => {
+    const state = get();
+    return checkpointIdleBonus({ ...state.idleState, lastOnline: state.idleBonusAnchor }, now);
+  },
   gachaState: initialGachaState,
   lastClosedAt: null,
   
@@ -130,6 +140,7 @@ export const useMetaStore = create<MetaState>((set, get) => ({
 
   /** Persist the player's chosen idle-farming target sub-area. */
   setIdleTarget: (areaId: string | undefined) => { set((state) => {
+    if (state.idleState.idleTarget === areaId) return state;
     const nextIdle: IdleState = areaId === undefined
       ? (() => {
           const { idleTarget: _omit, ...rest } = state.idleState;
@@ -140,12 +151,38 @@ export const useMetaStore = create<MetaState>((set, get) => ({
     return { idleState: nextIdle };
   }); },
   
-  updateIdleState: (idleState) => { set((state) => ({
-    idleState: {
-      ...state.idleState,
-      ...idleState
+  /**
+   * Explicit lastOnline supplies the merged tuple's basis. Partial bonus edits
+   * project before merging; target/counter-only and no-op edits keep the basis.
+   * No-op means the entire patch is identical. Numeric/basis fields included
+   * in a changed mixed patch deliberately replace those values, even when equal
+   * to raw history; metadata-only callers should omit them.
+   * Nonfinite values reject before publication.
+   */
+  updateIdleState: (patch) => { set((state) => {
+    for (const field of ['lastOnline', 'offlineTime', 'activeMultiplier', 'multiplierSecondsRemaining'] as const) {
+      if (field in patch && !Number.isFinite(patch[field])) {
+        throw new RangeError('Idle bonus arithmetic requires finite numbers');
+      }
     }
-  })); },
+    if (Object.entries(patch).every(([key, value]) => state.idleState[key as keyof IdleState] === value)) {
+      return state;
+    }
+    if (patch.lastOnline !== undefined) {
+      return {
+        idleState: checkpointIdleBonus({ ...state.idleState, ...patch }, patch.lastOnline),
+        idleBonusAnchor: patch.lastOnline
+      };
+    }
+    if ('activeMultiplier' in patch || 'multiplierSecondsRemaining' in patch) {
+      const now = Date.now();
+      return {
+        idleState: checkpointIdleBonus({ ...state.readIdleBonus(now), ...patch }, now),
+        idleBonusAnchor: now
+      };
+    }
+    return { idleState: { ...state.idleState, ...patch } };
+  }); },
   
   updateGachaState: (gachaState) => { set((state) => ({
     gachaState: {
@@ -256,10 +293,15 @@ export const useMetaStore = create<MetaState>((set, get) => ({
 
   markClosed: (at) => { set({ lastClosedAt: at ?? Date.now() }); },
 
-  reset: () => { set({
+  reset: () => {
+    const now = Date.now();
+    if (!Number.isFinite(now)) throw new RangeError('Idle bonus arithmetic requires finite numbers');
+    set({
     settings: initialSettings,
-    idleState: initialIdleState,
+    idleState: { ...initialIdleState, lastOnline: now },
+    idleBonusAnchor: now,
     gachaState: initialGachaState,
     lastClosedAt: null
-  }); }
+    });
+  }
 }));
