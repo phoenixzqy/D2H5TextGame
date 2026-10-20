@@ -1534,3 +1534,23 @@ Next B ordinaryearned glove defense/combat/Save/reopen recipe/sourcepilot needs
 review; W1physicaldamage minimum1 masks glove defense, so no false contribution
 claim. BUG047critdisplay remains separate. Den/fullP13/C0–C4/G0–G7/fullv1 open.
 No push/PR/merge/deployment.
+
+
+P13c01B accepted1d409e3 after independent producer/QA final APPROVE/ADEQUATE
+and design SOURCE-ORACLE APPROVE. Native ordinary Druid/freeInnerSight rogue,
+exact5earned firstwave drops/75shards, firstgloveDefense4 canonicaltransfer only,
+fresh defense30 over saved26; source-onlyW1carry165draws+W2draw71–74raw35/
+noncrit proves firstShamanA FireBolt5 versusbare9. Frozenfinalspec393e172d,
+production4/4 en/zh×1280×800/360×640,0skip/retry/flaky/errors,60.353runner/
+61.670wall;56attachments independently verified with fullnativeSave/IDB/export/
+closeContinue equality. Whole42rowprefix/witness39 and Chinese mobilelogPNG
+versioned. Original pre-Equip pickerfailure and approved sole dialogscoping
+reattempt retained; no runtime/UI change. U2445/142/0pending,T20.429/final10.252,
+fullL46.460/purity52/explicitfinalPWAL5.415 and guardedproductionbuild pass;
+existingtiming/buildwarnings preserved. Bothconsumersreleased before exactBRAW/
+dist/.vite cleanup/verifiedabsence;4396closed,originalclean/rootclaimcontinues.
+Next BUG047 localizedcritmultdisplayRED and one-lineunitfix, independent source
+review approves preservedoldbrowser2%→200%correction and fourcase rerun.
+NexttaskRAW6ej81zug retains plan/originalspec/copiedfont; exactpath inBevidence,
+rootownscleanup. Den/W2victory/economy/fullP13/C0–C4/G0–G7/fullv1 remain open.
+No push/PR/merge/deployment.
