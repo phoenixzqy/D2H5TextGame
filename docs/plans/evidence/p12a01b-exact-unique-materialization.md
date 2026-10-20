@@ -1,6 +1,6 @@
 # P12a01b — Exact named unique construction prerequisite
 
-Input `c4aa2f7`, claimed human worktree2, branch `feat/playable-foundations`.
+Feature commit `ed10cfd`. Input `c4aa2f7`, claimed human worktree2, branch `feat/playable-foundations`.
 Linux Node v24.21.0/npm11.19.0. Pure engine/data-loader checks; browser,
 viewport and locale N/A. Deterministic seeds are in the frozen tests.
 

@@ -62,6 +62,7 @@ Current implementation evidence lives in `evidence/`.
 | P11a / P11a02 | accepted finalization slices | `d39fe64` actual-win/living-hero/playback guard and single clear; `d8db75c` truthful draw UI. Six root regressions, six RTL, 4/4 browser locale×viewport cases; independent QA/producer APPROVE. BUG-008. |
 | P11a01A | accepted coherent allocation boundary | `810900f`; BUG045. Full-point/prospective-base-cap guards and one canonical gear-aware derived publication, no refill. Independently reviewed typed RED24fail/24controls→48GREEN; fullcov2341/137,T/L/purity51/build/80%gate pass. Root/producer/QA APPROVE/ADEQUATE. Draft UI/native earned/save/reopen and Den remain open. |
 | P11–P15 | pending dependencies | Rewards/idle, eligibility, economy, campaign and pacing. |
+| P12a01b | accepted pure exact-unique materialization | `ed10cfd`; additive named constructor with refusal-before-RNG/allocation, duplicate/base/ilvl/eligibility guards. Producer/QA final APPROVE/ADEQUATE; frozen43GREEN, fullcov2661/146, T/L/build pass. No grants, quest mapping or earned boss acceptance. |
 | P13a | accepted progress-default slice | `8e6076e` (agent `6db69b6`); actual-level defaults/getter/award and UI fallback, explicit stored thresholds retained, real combat skip restored. Root/producer APPROVE; full1290pass/no skips. |
 | P13b | accepted visible earned-progression slice | `5143a2c`; live owned core stats/unknown definitions, genuine2-case RED, ordinary production obtain/field/three qualified waves/L3→L4/Save/close-reopen,4/4 locale×viewport. [Evidence](evidence/p13b-earned-mercenary.md). Root/producer APPROVE; fullP13/economy open. |
 | P13c01A | accepted bounded fresh-combat gear authority | `0221cd3`; canonical current merc gear projects shared G−B deltas over saved grown baseline, no persistence/accumulation/mid-run refresh. BUG046; independent frozenRED36 + compatibilityRED37 and final source/evidence APPROVE/ADEQUATE. Fullcov2445/142,focused38,related651,T/L/purity52/productionbridgebuild pass. [Evidence](evidence/p13c01a-merc-equipment-combat.md). Ordinary earned gear browser B, Den/fullP13/C/G remain open. |
@@ -1630,3 +1631,25 @@ Next P12a01b adds exact named unique construction as a new capability, not a bug
 in ordinary weighted rollItem; source-backed API/plan review before RED/runtime.
 NextRAW=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-exact-unique-mb9etlig;
 root owns cleanup after final independent releases. No push/PR/merge/deploy.
+
+
+P12a01b accepteded10cfd after source-backed design/plan/frozenRED and final
+producer/QA APPROVE/ADEQUATE. Additive RollUniqueItemInput/rollUniqueItem exact-ID
+construction reuses eligibility/materializer; all previous runtime bodies,
+original7tests/statRolls unchanged. Duplicate/level/base refusal before anyRNG/
+allocation; no weighting/rare fallback, exceptions visible with allocator gaps.
+InitialfeatureRED5=4missingcapability+1control; expandedfrozen43=35missing+8controls
+thenbyte-identical43GREEN, no existingbugclaimed/oraclecorrection. Initial46lint
+missing-exportcascades retained; finalT10.214/L41.102purity53 pass unchangedtests.
+E1043/53,related1174/83,fullcov2661/1460pending/todo,unchanged80%enginegate64modules
+8189/8669s1959/2165b300/319f,newfunction9/9s14/14b1/1f,guardedbuild8.641 pass.
+All10exactcommands/source/report/log/coveragehashes/failedattempts/frozenassertions
+versioned. Bothconsumersreleased before exactRAWmb9etlig(includingcoverage)/dist/
+.vite cleanup;absenceverified,noprocess,originalcheckoutclean/rootclaimcontinues.
+Timing/build warnings unchanged. Pure capability grantsnothing; questcontent/
+Andarielmapping/tablepicks/ilvl/retry/currency/claim/browser/reload/earnedboss/C1/
+C0–C4/G0–G7/fullv1 remain open. Next D11 explicit unique reward contract/schema/
+claim/rollback and localized preview requires independent plan/RED before edits;
+source-only design recommends oneCoif+existing8000XP as NEW bounded design,
+retiring only questlootTable, recorded designer/producer alignment pending.
+No push/PR/merge/deployment.
