@@ -922,13 +922,16 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   for (const id of startOrder) castSummonsOnStart(state, id);
 
   let actionsTaken = 0;
-  while (
-    winnerOf(state) === null &&
-    state.simClockMs < MAX_SIM_MS &&
-    actionsTaken < MAX_ACTIONS
-  ) {
+  while (winnerOf(state) === null && actionsTaken < MAX_ACTIONS) {
     const next = pickNextActor(state);
     if (!next) break;
+    // The deadline includes every actor scheduled exactly there. Inspect the
+    // next timestamp before advancing so a later action cannot overshoot it.
+    if (next.at > MAX_SIM_MS) {
+      state.simClockMs = MAX_SIM_MS;
+      emitTurnBoundaries(state);
+      break;
+    }
     if (next.at > state.simClockMs) state.simClockMs = next.at;
     emitTurnBoundaries(state);
     const died = tickUnit(state, next.id);

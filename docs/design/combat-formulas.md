@@ -63,15 +63,19 @@ All formulas use integer math (floor after each step) unless otherwise noted. Ra
 ## 3. Turn Order & Action Resolution
 
 ### 3.1 Attack Speed → Initiative
-- **Initiative = Attack Speed** (higher goes first).
-- Ties broken by deterministic seed: `hash(combatId + unitId) % 1000`.
-- After each action, unit's next turn = `currentTurn + (1000 / attackSpeed)`.
-- Engine maintains a priority queue; next actor is `min(nextTurn)`.
-
-**Example:**
-- Player AS 150 → acts every ~6.67 time units.
-- Monster AS 75 → acts every ~13.33 time units.
-- Player acts twice before monster acts once.
+- **Controlling scoped decision:** [D04 v1a](../plans/decisions/D04-combat-timing-v1.md).
+- Simulation milliseconds are authoritative; five-second turn markers are presentation.
+- Action period = `clamp(2500 - floor(attackSpeed) * 8, 400, 2000)` milliseconds.
+- First action occurs after one period; subsequent action time = `currentTimeMs + periodMs`.
+- AS150/100/75 therefore act every 1300/1700/1900 ms. This supersedes the former
+  proportional `1000 / attackSpeed` formula; cadence is preserved pending balance review.
+- Ties must be broken by a deterministic seed per GDD §5.1; the current
+  insertion-order implementation remains a separate P06 task.
+- Next actor has the smallest scheduled time. The 60,000 ms deadline is inclusive:
+  all tied actors there remain eligible until victory; no action occurs later.
+  An unresolved timeout ends at exactly 60,000 ms with no winner. Earlier victories
+  retain their actual end time. Periodic integration/death priority remains deferred
+  under D04; this scheduler slice does not certify that behavior.
 
 ### 3.2 Skill vs Basic Attack Decision
 **Priority (per turn, for player & merc):**
