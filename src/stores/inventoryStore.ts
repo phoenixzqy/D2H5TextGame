@@ -37,6 +37,7 @@ interface InventoryState {
   currencies: Record<string, number>;
   
   // Actions
+  /** Retain earned/returned items, including visible recovery overflow. Never rejects by length. */
   addItem: (item: Item, toStash?: boolean) => void;
   removeItem: (itemId: string) => void;
   /**
@@ -90,13 +91,6 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
   
   addItem: (item, toStash = false) => { set((state) => {
     const target = toStash ? 'stash' : 'backpack';
-    const maxCapacity = toStash ? 2000 : 500;
-    
-    if (state[target].length >= maxCapacity) {
-      console.warn(`${target} is full!`);
-      return state;
-    }
-    
     return {
       [target]: [...state[target], item]
     };
