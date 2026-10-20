@@ -21,6 +21,7 @@ Current implementation evidence lives in `evidence/`.
 | Remaining P02 | pending dependencies | Expanded production scenarios and diagnosed manual/idle/reward comparison remain. Historical proxy sim stays excluded. |
 | P02b04 | accepted bounded screen evidence | `65f9aaf`; frozen same40 pair, one historical seed/build, two determinism reps each. A loses DenW3, B DenW2; no clear. Full reports/diffs and independent outcome/packet approvals retained. [Evidence](evidence/p02b04-earned-screen.md). Remaining P02/manual-idle/C0 remain open. |
 | P02b05a | accepted scoped documentation contract | `91d756c`; [first-act route](decisions/D07-D11-first-act-route-v1.md) reconciles Act I access without runtime change; [active-mode diagnostic](decisions/D07-active-mode-measurement-v1.md) separates restored test state from earned clear/UI eligibility. GD/TD/producer/QA approve. Executable freeze/RED, full D07/D11/P02 remain open. |
+| P02b05b01 | accepted bounded observer slice | `b2c06a7`; closed synthetic manual/idle adapter, frozen 19 tests, four retained observations/8 primary battles. All W1 win/W2 defeat, zero clears. Independent source and complete packet audits APPROVE. [Evidence](evidence/p02b05b01-mode-adapter.md). Comparator/provenance CLI and earned UI proof remain. |
 | P03a | accepted slice | `6f1dafd` + `76db166`; independent source approval, U/T/L/B and 10 browser cases pass. [Evidence](evidence/P03a-save-integrity.md). Full D12/G1/G6 remain unaccepted. |
 | P03b01 | accepted visibility slice | `90e4a67`; all legacy items remain selectable above grid cap, seven boundary tests, four ordinary-control browser cases. BUG-005. |
 | P03b02 | accepted ingress slice | `a79ef1f`; retain complete earned/returned overflow, actual victory/merc/save integration,16 focused regressions; producer source APPROVE. Shared regular-action guards remain. |
@@ -1961,3 +1962,31 @@ rootclaimcontinues. Next root-owned source-onlyRAW=/home/felixzhao/.zai/profiles
 holds transferredrunner/cleanuprecord for P02b05b01 isolatedmodeadapterplan,
 not yet testfreeze/execution. Den/Andariel/campaign/pacing/finalbalance/C0–C4/
 G0–G7/fullv1remainopen. No push/PR/merge/deployment.
+
+P02b05b01 accepted **b2c06a7** after independent plan/test/boundary review, frozen
+RED and concrete producer/GD/TD/QA plus full durable packet APPROVE. Additive
+closed restored synthetic manual/idle observer only; strict v1/v2 and 25 preserved
+hashes unchanged. Seven stores/methods/Date/pity restore, original error identity
+and aggregate ordering preserved. Missing module RED 0 assertions; throw boundary
+19 failed/19 reached assertions; frozen GREEN 19 passed/489 matcher calls.
+Four primary cases manual0/idle0/manual11/idle11 all W1 win/W2 defeat, 8 primary
+battles, no W3/clear/earned UI/routing. Hard-pity idle promotion and subsequent
+forced-guard pity retention observed; no runtime defect established. Repeated
+verification totals 94 adapter invocations/77 derived computed battles, not new
+screening. Related19/10.214s and full3170/158files/49.017s pass with unchanged
+5s/15s budget overruns. T12.076s/L28.832s incl purity, production build8.967s and
+bridge build/check8.688s/four clean chunks pass; warnings unchanged.
+[Evidence](evidence/p02b05b01-mode-adapter.md) packet
+25d9b57976dec13791eb205e89d846743f1b379d1822d807fc1e72ba5a6070fc and archive
+16e49a4bda396b166c45a5f4258ed24c5199f4348dff36ff92eef15b8ea20e05 retain64 regular
+records/5,840,325 uncompressed bytes/12 command metas/7 reports; all bytes, eight
+source states and492 manifest entries independently verified. Final reviews
+published before feature commit. All consumers released before exact RAW
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-mode-adapter-12hxbdcu,
+task dist and node_modules/.vite removal; absence verified, no process signaled,
+installed tools preserved. Root claim continues, original checkout untouched.
+Next root-owned RAW=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-mode-comparison-c0pwfr4g
+holds hashverified runners and cleanup record; next independently reviewed pure
+comparison slice then before-import report/CLI. No next gameplay run authorized
+by this checkpoint alone. Den/Andariel/campaign/pacing/final balance/C0–C4/G0–G7/
+full private v1 remain open. No push/PR/merge/deployment.
