@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/recovery.json",
+  "title": "Combat Recovery Configuration",
+  "description": "Provisional hero mana recovery baseline from D05; runtime integration is staged separately.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "heroManaPerEffectiveEnergyPerSecond"],
+  "properties": {
+    "id": { "type": "string", "const": "combat/recovery" },
+    "heroManaPerEffectiveEnergyPerSecond": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Mana per second per effective Energy for heroes before learned Warmth modifiers."
+    }
+  }
+}
