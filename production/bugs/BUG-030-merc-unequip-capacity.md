@@ -1,6 +1,6 @@
 # BUG-030 — Guard manual mercenary unequip at backpack capacity
 
-- Status: fixed/validated bounded P03b05b; root/QA/producer final APPROVE.
+- Status: Fixed in854e88f; validated bounded P03b05b; root/QA/producer final APPROVE.
   Exact checks and limits: docs/plans/evidence/p03b05b-merc-equipment-capacity.md.
 - Severity: Medium; manual merc unequip bypasses the regular100-item capacity
   and has no localized refusal/recovery feedback. No item loss observed.
@@ -37,7 +37,7 @@ localized status nodes. Runtime source unchanged throughout both attempts.
 
 Manual unequip inherited temporary unbounded-return behavior. Its existing
 transaction can preflight before removing any gear; distinguish it from durable
-earned/already-returned addItem ingress, which remains unbounded. The UI ignores
+earned/already-returned addItem ingress, which remains unbounded. The UI ignored
 unequip failure and placed item-only feedback inside a conditional picker.
 The fix guards the authoritative action, retains reasons and renders localized
 status outside that picker. It preserves nongrowing swaps/overflow-reducing equips, full

@@ -766,3 +766,39 @@ P08a02 actual Amplify Damage contract investigation is read-only with design
 agent: status currently inert, duration missing and must be settled before code.
 Root worktree2 remains claimed, original main untouched, no push/PR/deployment.
 Full v1/C0–C4/G0–G7 remain open.
+
+
+## Guarded manual mercenary returns and next authored curse
+
+P03b05b854e88f accepted: authoritative manual unequip refuses at>=100 after
+owner/slot preflight, leaves both stores/references untouched, retains localized
+polite feedback outside picker.99→100 preserves complete normalized payload;
+non-growing swaps and overflow-reducing equips remain legal, durable addItem
+remains unbounded. Existing obsolete500→501 manual-return expectation explicitly
+revised;500-item swap and prior ingress/save/integrity controls preserved.
+
+BUG030 genuine corrected RED7fail/10pass/2files3.93s before runtime; initial RED
+also contained one wrong test-only stash baseline, documented and corrected.
+Focused75pass/6files4.67s; full1349pass/117files/no skips29.37s; lint/build9.63s/
+forced browser lint pass.15s unit budget unmet. Typecheck caught explicitundefined
+optional payload; final required Item|null correction then typecheck/component
+lint and both mounted suites7pass/2files5.61s pass. Full/build/browser preceded
+that absence-only correction; producer reviewed and accepted that evidence limit.
+
+Ordinary imported fixture en/zh×1280×800/360×6404/4pass27.4s,retries0,4336:
+refusal at101/100, legal swaps/equips, explicit discards then retry, Save/reload/
+export all match complete independent wire-safe expected saves, Maps/sentinels
+retained. Imported overflow is labeled, no earned-loot/production/PWA claim.
+Root/QA/producer source and final evidence APPROVE/ADEQUATE. Evidence:
+`evidence/p03b05b-merc-equipment-capacity.md`. After all consumers finished,
+exact root dist/node_modules/.vite and /tmp/d2h5-p03b05b-browser-1 removed/verified
+absent;4336 stopped, downloads deleted, no task processes or cleanup failures.
+
+P08a02 D04 authored Amplify Damage contract now root/producer approved:
+3000ms new design choice/50 percentage points authored once, physical direct-hit
+projection before existing clamp/defense, canonical/legacy identity and first
+active damage read. Three sequential<=5-file slices with independent reviews;
+metadata/definition alone do not fix gameplay. Security PASS. Actual runtime
+RED/BUG031 required before fix. QA investigating narrow Sorceress passive next.
+Root worktree2 remains claimed; original main untouched; no push/PR/deployment.
+Full v1/C0–C4/G0–G7 remain open.
