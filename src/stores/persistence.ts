@@ -31,6 +31,9 @@ import { useFormationStore } from './formationStore';
 /** Debounce window for auto-save writes, in milliseconds. */
 export const AUTO_SAVE_DEBOUNCE_MS = 500;
 
+/** Checkpoint quiet online sessions while browser timer callbacks can run. */
+export const AUTO_SAVE_CHECKPOINT_MS = 30_000;
+
 /**
  * Hydration lifecycle states surfaced to the UI.
  *
@@ -71,6 +74,7 @@ export function isReplacingSave(): boolean {
   return replacingSave;
 }
 let timer: ReturnType<typeof setTimeout> | null = null;
+let checkpointTimer: ReturnType<typeof setInterval> | null = null;
 const unsubs: (() => void)[] = [];
 let initialization: Promise<void> | null = null;
 let restoreTail: Promise<unknown> = Promise.resolve();
@@ -141,7 +145,7 @@ function buildStoreSnapshot(now: number, projectBonus: boolean): SaveCurrent | n
 }
 
 function scheduleSave(): void {
-  if (suppressSaves || writesBlocked || unsubs.length === 0) return;
+  if (suppressSaves || replacingSave || writesBlocked || unsubs.length === 0) return;
   if (timer) clearTimeout(timer);
   timer = setTimeout(() => {
     timer = null;
@@ -156,7 +160,7 @@ function scheduleSave(): void {
  */
 export function flushSave(): Promise<void> | null {
   cancelPendingSave();
-  if (suppressSaves) return null;
+  if (suppressSaves || replacingSave) return null;
   if (writesBlocked) return Promise.reject(new Error('Stored save needs recovery before saving'));
   let snap: SaveCurrent | null;
   try {
@@ -255,7 +259,10 @@ export async function deleteCurrentSave(): Promise<void> {
 }
 
 /**
- * Subscribe to all relevant Zustand stores. Idempotent — calling twice is safe.
+ * Own domain subscriptions, a periodic checkpoint, and page lifecycle listeners.
+ * Idempotent — calling twice is safe. Open hidden/BFCache pages remain online;
+ * these callbacks only project elapsed time, never accrue an away bonus.
+ * Pagehide writes are best effort if the browser terminates before IO completes.
  *
  * The `combatStore` is intentionally **not** subscribed: its persistent toggles
  * (auto-mode) live in `metaStore.settings.autoCombat`; the combat log/turn
@@ -274,19 +281,26 @@ export function startAutoSave(): void {
   unsubs.push(useMercStore.subscribe(sub));
   unsubs.push(useMetaStore.subscribe(sub));
   unsubs.push(useFormationStore.subscribe(sub));
+  const checkpoint = (): void => {
+    void flushSave()?.catch(() => undefined);
+  };
+  checkpointTimer = setInterval(checkpoint, AUTO_SAVE_CHECKPOINT_MS);
+  document.addEventListener('visibilitychange', checkpoint);
+  window.addEventListener('pagehide', checkpoint);
+  unsubs.push(() => { document.removeEventListener('visibilitychange', checkpoint); });
+  unsubs.push(() => { window.removeEventListener('pagehide', checkpoint); });
   // Touch the combat store import so eslint doesn't flag it as unused — we
   // explicitly chose not to subscribe.
   void useCombatStore;
 }
 
-/** Tear down all subscriptions and cancel any pending debounced write. */
+/** Stop owned callbacks/debounce; already submitted adapter writes may finish. */
 export function stopAutoSave(): void {
   for (const u of unsubs) u();
   unsubs.length = 0;
-  if (timer) {
-    clearTimeout(timer);
-    timer = null;
-  }
+  cancelPendingSave();
+  if (checkpointTimer !== null) clearInterval(checkpointTimer);
+  checkpointTimer = null;
 }
 
 /**
@@ -413,6 +427,8 @@ export function initPersistence(): Promise<void> {
 }
 
 async function initializePersistence(): Promise<void> {
+  cancelPendingSave();
+  suppressSaves = true;
   try {
     const exists = await hasSave();
     if (exists) {
@@ -425,6 +441,8 @@ async function initializePersistence(): Promise<void> {
     writesBlocked = true;
     useSaveStatusStore.setState({ error: msg });
     useHydrationStore.getState().setStatus('error', msg);
+  } finally {
+    suppressSaves = false;
   }
   startAutoSave();
 }

@@ -173,3 +173,36 @@ Worker owns hook/banner/test/locales/browser/BUG-022; root owns this control.
 Obsolete App/meta close API cleanup stays with lifecycle. Reward integration,
 hidden interval ownership, periodic/close writes, true-away browser/PWA/full
 P17 acceptance remain open.
+
+Visible-return events reproject actual wall time after throttled timer delivery;
+listener/timer cleanup must survive StrictMode. Clock rollback can leave the
+projected duration unchanged, so each delivered timer wake must rearm even when
+the projection equals the previous render. Historical inactive tuples never
+accrue in UI; this supersedes testing the obsolete transient close API itself.
+
+### P17a06 periodic and lifecycle checkpoints (approved implementation contract)
+
+startAutoSave is the sole owner of domain subscriptions, a30second interval,
+document.visibilitychange (hidden and visible) and window.pagehide. All use the
+existing projected flushSave and catch background Promise rejection. No callback
+publishes the raw tuple/anchor or grants offline accrual; hidden/BFCache pages
+stay online and decay against actual wall time. Startup alone resumes the
+persisted away gap. IndexedDB pagehide completion is best effort, not a guarantee
+after termination. Periodic staleness bounds apply while callbacks can execute.
+
+Guard absent characters, suppression, blocked recovery and the entire queued
+replacement interval, including the gap between raw hydration publication and
+an already queued import/delete. Suppress the startup existence check as well
+as subsequent reads/writes so an already started autosave cannot overwrite it.
+Preserve adapter write ordering and cached page-lifetime initialization. Do not
+stop persistence from App effect cleanup without a matching cached-init restart.
+After P17a04 lands, remove obsolete App/meta lastClosedAt/markClosed ownership.
+
+stopAutoSave removes domain/event listeners, interval and debounce; repeat start,
+stop and restart have one owner. Stopping callbacks does not cancel already
+submitted adapter writes. Tests cover current projected data after quiet time,
+all events, throttled return/expiry without accrual, raw reference preservation,
+cleanup/restart, storage/projection failure+retry, delayed load/import/delete,
+startup recovery and queued replacement callbacks. Scope is persistence.ts,
+metaStore.ts, App.tsx, lifecycle tests, BUG-024 and this control. Actual browser
+close/reopen, PWA and P11 background combat catchup remain separate acceptance.
