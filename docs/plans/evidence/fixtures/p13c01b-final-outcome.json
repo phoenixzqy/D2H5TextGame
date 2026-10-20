@@ -1,0 +1,725 @@
+{
+  "inputHead": "6e7cf7e06188b95a438da7428ece3b82a28b617e",
+  "runtimeCommit": "0221cd3",
+  "specSha256": "393e172d18c5f26ebf6998741e4e30e1aa394d769988051164a759cbccf7083b",
+  "configSha256": "f4ed4f8ed49ec18d6360e60674c0b4688fef41109e4b66a0d576084c01f8bac5",
+  "reportSha256": "f71291acb55bb571446c06f5a444ab372e86dfdd954ce9d191a538668fcf3674",
+  "stats": {
+    "startTime": "2026-10-20T16:16:52.061Z",
+    "duration": 60352.768,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "commands": [
+    {
+      "command": [
+        "env",
+        "FONTCONFIG_FILE=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-merc-gear-browser-nwmmhz9p/fonts.conf",
+        "PWA_PORT=4396",
+        "PLAYWRIGHT_JSON_OUTPUT_NAME=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-merc-gear-browser-nwmmhz9p/discovery-pilot.json",
+        "npx",
+        "playwright",
+        "test",
+        "-c",
+        "tests/pwa/playwright.config.ts",
+        "merc-gear-earned.spec.ts",
+        "--project=pwa-desktop",
+        "--grep",
+        "discovery en$",
+        "--workers=1",
+        "--output=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-merc-gear-browser-nwmmhz9p/discovery-output",
+        "--reporter=json"
+      ],
+      "exit": 1,
+      "seconds": 37.638,
+      "label": "discovery-pilot",
+      "logSha256": "793d11715c549198dfcaa7776f00daf359608fbe6d102f4ed35e0723ea6fc32e"
+    },
+    {
+      "command": [
+        "env",
+        "FONTCONFIG_FILE=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-merc-gear-browser-nwmmhz9p/fonts.conf",
+        "PWA_PORT=4396",
+        "PLAYWRIGHT_JSON_OUTPUT_NAME=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-merc-gear-browser-nwmmhz9p/final-matrix.json",
+        "npx",
+        "playwright",
+        "test",
+        "-c",
+        "tests/pwa/playwright.config.ts",
+        "merc-gear-earned.spec.ts",
+        "--workers=2",
+        "--output=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-merc-gear-browser-nwmmhz9p/final-matrix-output",
+        "--reporter=json"
+      ],
+      "exit": 0,
+      "seconds": 61.67,
+      "label": "final-matrix",
+      "logSha256": "92378a6fa36a2fd56ee7c7abe04150245e44bef79f3e1ac227b606c3a72ccfa0"
+    },
+    {
+      "command": [
+        "npx",
+        "eslint",
+        "--no-ignore",
+        "tests/pwa/merc-gear-earned.spec.ts",
+        "tests/pwa/playwright.config.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 5.415,
+      "label": "final-spec-lint",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 10.252,
+      "label": "final-spec-typecheck",
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "command": [
+        "env",
+        "FONTCONFIG_FILE=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-merc-gear-browser-nwmmhz9p/fonts.conf",
+        "fc-match",
+        "-f",
+        "%{family}\\n%{file}\\n",
+        "sans:charset=4e2d"
+      ],
+      "exit": 0,
+      "seconds": 0.158,
+      "label": "font-glyph-check",
+      "logSha256": "49d66cffac372660e51b61cc669df9dbd2c28970bc2c4e02ef7913fd1a9067b7"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 0,
+      "seconds": 46.46,
+      "label": "pre-pilot-lint",
+      "logSha256": "290646fe97e8078bf27d8734f7036ca6e50994d3ba01e473b96d9223ccd41697"
+    },
+    {
+      "command": [
+        "npx",
+        "eslint",
+        "--no-ignore",
+        "tests/pwa/merc-gear-earned.spec.ts",
+        "tests/pwa/playwright.config.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 10.103,
+      "label": "pre-pilot-spec-lint",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 20.429,
+      "label": "pre-pilot-typecheck",
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-merc-gear-browser-nwmmhz9p/pre-pilot-unit.json"
+      ],
+      "exit": 0,
+      "seconds": 39.64,
+      "label": "pre-pilot-unit",
+      "logSha256": "66576b3b02f885d7dd7757088e7451a5bf39c71c5d43bd59ce4b0409035c5207"
+    },
+    {
+      "command": [
+        "env",
+        "FONTCONFIG_FILE=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-merc-gear-browser-nwmmhz9p/fonts.conf",
+        "PWA_PORT=4396",
+        "PLAYWRIGHT_JSON_OUTPUT_NAME=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-merc-gear-browser-nwmmhz9p/scoped-picker-pilot.json",
+        "npx",
+        "playwright",
+        "test",
+        "-c",
+        "tests/pwa/playwright.config.ts",
+        "merc-gear-earned.spec.ts",
+        "--project=pwa-desktop",
+        "--grep",
+        "discovery en$",
+        "--workers=1",
+        "--output=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-merc-gear-browser-nwmmhz9p/scoped-picker-output",
+        "--reporter=json"
+      ],
+      "exit": 0,
+      "seconds": 34.076,
+      "label": "scoped-picker-pilot",
+      "logSha256": "f1354a3e52f6f1f5e919a569a8f682869341453bdc9c80ccfe6360f3c902526b"
+    },
+    {
+      "command": [
+        "npx",
+        "eslint",
+        "--no-ignore",
+        "tests/pwa/merc-gear-earned.spec.ts",
+        "tests/pwa/playwright.config.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 5.049,
+      "label": "scoped-picker-spec-lint",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 9.825,
+      "label": "spec-typecheck",
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    }
+  ],
+  "cases": [
+    {
+      "case": "pwa-desktop-en",
+      "witness": {
+        "witness": {
+          "index": 39,
+          "action": "Fallen Shaman A casts Fire Bolt.",
+          "damage": "Fallen Shaman A attacks Rogue Scout — Inner Sight for 5 fire damage.",
+          "amount": 5,
+          "critical": false
+        },
+        "prefix": [
+          "Turn 1 begins",
+          "Rogue Scout — Inner Sight casts Basic Arrow.",
+          "Rogue Scout — Inner Sight attacks Fallen A for 2 physical damage.",
+          "Earned Merc Gear casts Firestorm.",
+          "Earned Merc Gear attacks Fallen A for 27 fire damage.",
+          "Fallen A is afflicted with [burn].",
+          "Earned Merc Gear attacks Fallen B for 35 fire damage.",
+          "Fallen B is afflicted with [burn].",
+          "Earned Merc Gear attacks Fallen Shaman A for 9 fire damage.",
+          "Fallen Shaman A is afflicted with [burn].",
+          "Earned Merc Gear attacks Zombie A for 31 fire damage.",
+          "Zombie A is afflicted with [burn].",
+          "Earned Merc Gear attacks Fallen C for 41 fire damage.",
+          "Fallen C is afflicted with [burn].",
+          "Earned Merc Gear attacks Fallen D for 23 fire damage.",
+          "Fallen D is afflicted with [burn].",
+          "Earned Merc Gear attacks Fallen Shaman B for 12 fire damage.",
+          "Fallen Shaman B is afflicted with [burn].",
+          "Earned Merc Gear attacks Zombie B for 38 fire damage.",
+          "Zombie B is afflicted with [burn].",
+          "Earned Merc Gear attacks Fallen E for 43 fire damage.",
+          "Fallen E is afflicted with [burn].",
+          "CRITICAL! Earned Merc Gear hits Fallen F for 83 fire damage!",
+          "Fallen F is afflicted with [burn].",
+          "Fallen E casts Weak Melee.",
+          "Fallen E attacks Earned Merc Gear for 1 physical damage.",
+          "Fallen C casts Weak Melee.",
+          "Rogue Scout — Inner Sight dodges Fallen C's attack!",
+          "Fallen D casts Weak Melee.",
+          "Fallen D attacks Earned Merc Gear for 1 physical damage.",
+          "Fallen F casts Weak Melee.",
+          "CRITICAL! Fallen F hits Earned Merc Gear for 1 physical damage!",
+          "Fallen A casts Weak Melee.",
+          "Fallen A attacks Earned Merc Gear for 1 physical damage.",
+          "Fallen B casts Weak Melee.",
+          "Fallen B attacks Rogue Scout — Inner Sight for 1 physical damage.",
+          "Fallen Shaman B casts Fire Bolt.",
+          "Fallen Shaman B attacks Earned Merc Gear for 5 fire damage.",
+          "Earned Merc Gear is afflicted with [ignite].",
+          "Fallen Shaman A casts Fire Bolt.",
+          "Fallen Shaman A attacks Rogue Scout — Inner Sight for 5 fire damage.",
+          "Rogue Scout — Inner Sight is afflicted with [ignite]."
+        ],
+        "hpStyle": "width: 93.24%;"
+      },
+      "saveEqualsReopened": true,
+      "browserErrors": [],
+      "attachments": [
+        {
+          "name": "01-ordinary-hire.json",
+          "bytes": 4081,
+          "sha256": "091190b4b3be644b3572fa4dbf835d2c97bbd15a3f0df9aba52d36592858f680"
+        },
+        {
+          "name": "02-earned-before-equip.json",
+          "bytes": 5693,
+          "sha256": "951ba112608b1609dd86fd1372ed1eada4080c85a5738ed1e141e7275d61ab9f"
+        },
+        {
+          "name": "03-equipped-item.png",
+          "bytes": 147428,
+          "sha256": "2055a1844aa3edd4fc5bf84aca2e2d545f28143e65d69a4ede194b27c7ae342d"
+        },
+        {
+          "name": "04-canonical-equipped-save.json",
+          "bytes": 5769,
+          "sha256": "07c079c36fc78e6a3cac69780b93f0798812ead464551603867e9822dce8d0c0"
+        },
+        {
+          "name": "05-wave-two-before-resume.json",
+          "bytes": 2,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "name": "06-wave-two-observed-prefix.json",
+          "bytes": 2055,
+          "sha256": "6a2048e740c5dc074e09f1b6aaad46c455ae707f39e07c9a7929467c949b2842"
+        },
+        {
+          "name": "07-first-landed-fire-bolt.json",
+          "bytes": 2463,
+          "sha256": "e2f579500eea3f9298b62bd7713cf978c1ab2cf44aaa04037ac3f2369d4cb6db"
+        },
+        {
+          "name": "08-native-combat-paused.png",
+          "bytes": 525740,
+          "sha256": "0672e0f4421ecbb04119234351a0396bc06daf2dd499346316c5496550f6f16a"
+        },
+        {
+          "name": "08b-native-combat-log.png",
+          "bytes": 100668,
+          "sha256": "b90d7204434ab2e32c610d24a312fef759cbcd1b2425cd5e232d355e7c4136ed"
+        },
+        {
+          "name": "09-after-combat.json",
+          "bytes": 7657,
+          "sha256": "468ca8d797504b8b0a667e4a065b42c56c336074d229ec27177f08a0d0cfe172"
+        },
+        {
+          "name": "10-committed-save.json",
+          "bytes": 7657,
+          "sha256": "468ca8d797504b8b0a667e4a065b42c56c336074d229ec27177f08a0d0cfe172"
+        },
+        {
+          "name": "10b-reopened-full-save.json",
+          "bytes": 7657,
+          "sha256": "468ca8d797504b8b0a667e4a065b42c56c336074d229ec27177f08a0d0cfe172"
+        },
+        {
+          "name": "11-reopened-equipped-item.png",
+          "bytes": 131050,
+          "sha256": "f8305dcb8ac4ea5d4aab77bbbb9377e32a0eda9dba3071c0aae942083a8ec544"
+        },
+        {
+          "name": "12-browser-errors.json",
+          "bytes": 2,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    },
+    {
+      "case": "pwa-desktop-zh",
+      "witness": {
+        "witness": {
+          "index": 39,
+          "action": "堕落者萨满 A 施放了 火弹。",
+          "damage": "堕落者萨满 A 普攻 罗格侦察兵 — 内视，造成 5 点火焰伤害。",
+          "amount": 5,
+          "critical": false
+        },
+        "prefix": [
+          "第 1 回合开始",
+          "罗格侦察兵 — 内视 施放了 基础箭。",
+          "罗格侦察兵 — 内视 普攻 堕落者 A，造成 2 点物理伤害。",
+          "Earned Merc Gear 施放了 火焰风暴。",
+          "Earned Merc Gear 普攻 堕落者 A，造成 27 点火焰伤害。",
+          "堕落者 A 进入【burn】状态。",
+          "Earned Merc Gear 普攻 堕落者 B，造成 35 点火焰伤害。",
+          "堕落者 B 进入【burn】状态。",
+          "Earned Merc Gear 普攻 堕落者萨满 A，造成 9 点火焰伤害。",
+          "堕落者萨满 A 进入【burn】状态。",
+          "Earned Merc Gear 普攻 僵尸 A，造成 31 点火焰伤害。",
+          "僵尸 A 进入【burn】状态。",
+          "Earned Merc Gear 普攻 堕落者 C，造成 41 点火焰伤害。",
+          "堕落者 C 进入【burn】状态。",
+          "Earned Merc Gear 普攻 堕落者 D，造成 23 点火焰伤害。",
+          "堕落者 D 进入【burn】状态。",
+          "Earned Merc Gear 普攻 堕落者萨满 B，造成 12 点火焰伤害。",
+          "堕落者萨满 B 进入【burn】状态。",
+          "Earned Merc Gear 普攻 僵尸 B，造成 38 点火焰伤害。",
+          "僵尸 B 进入【burn】状态。",
+          "Earned Merc Gear 普攻 堕落者 E，造成 43 点火焰伤害。",
+          "堕落者 E 进入【burn】状态。",
+          "暴击！Earned Merc Gear 对 堕落者 F 造成 83 点火焰伤害！",
+          "堕落者 F 进入【burn】状态。",
+          "堕落者 E 施放了 弱近战。",
+          "堕落者 E 普攻 Earned Merc Gear，造成 1 点物理伤害。",
+          "堕落者 C 施放了 弱近战。",
+          "罗格侦察兵 — 内视 闪避了 堕落者 C 的攻击！",
+          "堕落者 D 施放了 弱近战。",
+          "堕落者 D 普攻 Earned Merc Gear，造成 1 点物理伤害。",
+          "堕落者 F 施放了 弱近战。",
+          "暴击！堕落者 F 对 Earned Merc Gear 造成 1 点物理伤害！",
+          "堕落者 A 施放了 弱近战。",
+          "堕落者 A 普攻 Earned Merc Gear，造成 1 点物理伤害。",
+          "堕落者 B 施放了 弱近战。",
+          "堕落者 B 普攻 罗格侦察兵 — 内视，造成 1 点物理伤害。",
+          "堕落者萨满 B 施放了 火弹。",
+          "堕落者萨满 B 普攻 Earned Merc Gear，造成 5 点火焰伤害。",
+          "Earned Merc Gear 进入【ignite】状态。",
+          "堕落者萨满 A 施放了 火弹。",
+          "堕落者萨满 A 普攻 罗格侦察兵 — 内视，造成 5 点火焰伤害。",
+          "罗格侦察兵 — 内视 进入【ignite】状态。"
+        ],
+        "hpStyle": "width: 93.24%;"
+      },
+      "saveEqualsReopened": true,
+      "browserErrors": [],
+      "attachments": [
+        {
+          "name": "01-ordinary-hire.json",
+          "bytes": 4084,
+          "sha256": "02f1722707dc38ac392ce73f5d0da1d2103c6a5c284588a93b438f7493226e79"
+        },
+        {
+          "name": "02-earned-before-equip.json",
+          "bytes": 5696,
+          "sha256": "8a62790cbd67f9ff0f0a84b5e9abfbf5b8592d1dd6e4c4f2142fbf1a5e4857da"
+        },
+        {
+          "name": "03-equipped-item.png",
+          "bytes": 122836,
+          "sha256": "7d57a6c9bff56cc1b055e98500b7d9828ec285e7b40503cf80065fcb1365bddc"
+        },
+        {
+          "name": "04-canonical-equipped-save.json",
+          "bytes": 5772,
+          "sha256": "bfd5f1440f5def30db751218826e734d0777b24cc59694a054022549c7624e1e"
+        },
+        {
+          "name": "05-wave-two-before-resume.json",
+          "bytes": 2,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "name": "06-wave-two-observed-prefix.json",
+          "bytes": 2411,
+          "sha256": "ab984c6c86ab192df915742738427432166f09f93a54e7d257e0d3e9933b8dc9"
+        },
+        {
+          "name": "07-first-landed-fire-bolt.json",
+          "bytes": 2774,
+          "sha256": "0dc25bcee0f092cade538c6e700ca1727efe406da2efea581c4586abeea9d696"
+        },
+        {
+          "name": "08-native-combat-paused.png",
+          "bytes": 541676,
+          "sha256": "e4e1c8b49d70c69cd8c1c7991d91525dc093b988f9c0914cd290cb32f9a1d161"
+        },
+        {
+          "name": "08b-native-combat-log.png",
+          "bytes": 117511,
+          "sha256": "4e11455fb03b97a3d05de55ef200898bb790b5b3db7abbfa234da0532b1c1b88"
+        },
+        {
+          "name": "09-after-combat.json",
+          "bytes": 7660,
+          "sha256": "c30fc3783ff1d65fcad4e2ffad19858325d97654cfe217d5837b53113889bd6a"
+        },
+        {
+          "name": "10-committed-save.json",
+          "bytes": 7660,
+          "sha256": "c30fc3783ff1d65fcad4e2ffad19858325d97654cfe217d5837b53113889bd6a"
+        },
+        {
+          "name": "10b-reopened-full-save.json",
+          "bytes": 7660,
+          "sha256": "c30fc3783ff1d65fcad4e2ffad19858325d97654cfe217d5837b53113889bd6a"
+        },
+        {
+          "name": "11-reopened-equipped-item.png",
+          "bytes": 140458,
+          "sha256": "99b7f92e1ab79671efe4898cacfbc16eb5eb331767d6aca3f2a619e9e0b0bdf9"
+        },
+        {
+          "name": "12-browser-errors.json",
+          "bytes": 2,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    },
+    {
+      "case": "pwa-mobile-en",
+      "witness": {
+        "witness": {
+          "index": 39,
+          "action": "Fallen Shaman A casts Fire Bolt.",
+          "damage": "Fallen Shaman A attacks Rogue Scout — Inner Sight for 5 fire damage.",
+          "amount": 5,
+          "critical": false
+        },
+        "prefix": [
+          "Turn 1 begins",
+          "Rogue Scout — Inner Sight casts Basic Arrow.",
+          "Rogue Scout — Inner Sight attacks Fallen A for 2 physical damage.",
+          "Earned Merc Gear casts Firestorm.",
+          "Earned Merc Gear attacks Fallen A for 27 fire damage.",
+          "Fallen A is afflicted with [burn].",
+          "Earned Merc Gear attacks Fallen B for 35 fire damage.",
+          "Fallen B is afflicted with [burn].",
+          "Earned Merc Gear attacks Fallen Shaman A for 9 fire damage.",
+          "Fallen Shaman A is afflicted with [burn].",
+          "Earned Merc Gear attacks Zombie A for 31 fire damage.",
+          "Zombie A is afflicted with [burn].",
+          "Earned Merc Gear attacks Fallen C for 41 fire damage.",
+          "Fallen C is afflicted with [burn].",
+          "Earned Merc Gear attacks Fallen D for 23 fire damage.",
+          "Fallen D is afflicted with [burn].",
+          "Earned Merc Gear attacks Fallen Shaman B for 12 fire damage.",
+          "Fallen Shaman B is afflicted with [burn].",
+          "Earned Merc Gear attacks Zombie B for 38 fire damage.",
+          "Zombie B is afflicted with [burn].",
+          "Earned Merc Gear attacks Fallen E for 43 fire damage.",
+          "Fallen E is afflicted with [burn].",
+          "CRITICAL! Earned Merc Gear hits Fallen F for 83 fire damage!",
+          "Fallen F is afflicted with [burn].",
+          "Fallen E casts Weak Melee.",
+          "Fallen E attacks Earned Merc Gear for 1 physical damage.",
+          "Fallen C casts Weak Melee.",
+          "Rogue Scout — Inner Sight dodges Fallen C's attack!",
+          "Fallen D casts Weak Melee.",
+          "Fallen D attacks Earned Merc Gear for 1 physical damage.",
+          "Fallen F casts Weak Melee.",
+          "CRITICAL! Fallen F hits Earned Merc Gear for 1 physical damage!",
+          "Fallen A casts Weak Melee.",
+          "Fallen A attacks Earned Merc Gear for 1 physical damage.",
+          "Fallen B casts Weak Melee.",
+          "Fallen B attacks Rogue Scout — Inner Sight for 1 physical damage.",
+          "Fallen Shaman B casts Fire Bolt.",
+          "Fallen Shaman B attacks Earned Merc Gear for 5 fire damage.",
+          "Earned Merc Gear is afflicted with [ignite].",
+          "Fallen Shaman A casts Fire Bolt.",
+          "Fallen Shaman A attacks Rogue Scout — Inner Sight for 5 fire damage.",
+          "Rogue Scout — Inner Sight is afflicted with [ignite]."
+        ],
+        "hpStyle": "width: 93.24%;"
+      },
+      "saveEqualsReopened": true,
+      "browserErrors": [],
+      "attachments": [
+        {
+          "name": "01-ordinary-hire.json",
+          "bytes": 4081,
+          "sha256": "091190b4b3be644b3572fa4dbf835d2c97bbd15a3f0df9aba52d36592858f680"
+        },
+        {
+          "name": "02-earned-before-equip.json",
+          "bytes": 5693,
+          "sha256": "951ba112608b1609dd86fd1372ed1eada4080c85a5738ed1e141e7275d61ab9f"
+        },
+        {
+          "name": "03-equipped-item.png",
+          "bytes": 163067,
+          "sha256": "fdd871442020f1310481db878c303be875bb810bd8c05c41559701d5aba892ef"
+        },
+        {
+          "name": "04-canonical-equipped-save.json",
+          "bytes": 5769,
+          "sha256": "07c079c36fc78e6a3cac69780b93f0798812ead464551603867e9822dce8d0c0"
+        },
+        {
+          "name": "05-wave-two-before-resume.json",
+          "bytes": 2,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "name": "06-wave-two-observed-prefix.json",
+          "bytes": 2055,
+          "sha256": "6a2048e740c5dc074e09f1b6aaad46c455ae707f39e07c9a7929467c949b2842"
+        },
+        {
+          "name": "07-first-landed-fire-bolt.json",
+          "bytes": 2463,
+          "sha256": "e2f579500eea3f9298b62bd7713cf978c1ab2cf44aaa04037ac3f2369d4cb6db"
+        },
+        {
+          "name": "08-native-combat-paused.png",
+          "bytes": 210708,
+          "sha256": "14f4b8f38e22a20925616292f65ac11242238b0b31990ebb98c5bae09a854c3e"
+        },
+        {
+          "name": "08b-native-combat-log.png",
+          "bytes": 98860,
+          "sha256": "a0bb21dec91d0f4a8aa73ec490180db7946e11c311273877b1cbc2833170ca54"
+        },
+        {
+          "name": "09-after-combat.json",
+          "bytes": 7657,
+          "sha256": "468ca8d797504b8b0a667e4a065b42c56c336074d229ec27177f08a0d0cfe172"
+        },
+        {
+          "name": "10-committed-save.json",
+          "bytes": 7657,
+          "sha256": "468ca8d797504b8b0a667e4a065b42c56c336074d229ec27177f08a0d0cfe172"
+        },
+        {
+          "name": "10b-reopened-full-save.json",
+          "bytes": 7657,
+          "sha256": "468ca8d797504b8b0a667e4a065b42c56c336074d229ec27177f08a0d0cfe172"
+        },
+        {
+          "name": "11-reopened-equipped-item.png",
+          "bytes": 163171,
+          "sha256": "acd34b1c9e06da36d0fe09f292a81e5bb32c53b443278cf4afb39a16fe980d7a"
+        },
+        {
+          "name": "12-browser-errors.json",
+          "bytes": 2,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    },
+    {
+      "case": "pwa-mobile-zh",
+      "witness": {
+        "witness": {
+          "index": 39,
+          "action": "堕落者萨满 A 施放了 火弹。",
+          "damage": "堕落者萨满 A 普攻 罗格侦察兵 — 内视，造成 5 点火焰伤害。",
+          "amount": 5,
+          "critical": false
+        },
+        "prefix": [
+          "第 1 回合开始",
+          "罗格侦察兵 — 内视 施放了 基础箭。",
+          "罗格侦察兵 — 内视 普攻 堕落者 A，造成 2 点物理伤害。",
+          "Earned Merc Gear 施放了 火焰风暴。",
+          "Earned Merc Gear 普攻 堕落者 A，造成 27 点火焰伤害。",
+          "堕落者 A 进入【burn】状态。",
+          "Earned Merc Gear 普攻 堕落者 B，造成 35 点火焰伤害。",
+          "堕落者 B 进入【burn】状态。",
+          "Earned Merc Gear 普攻 堕落者萨满 A，造成 9 点火焰伤害。",
+          "堕落者萨满 A 进入【burn】状态。",
+          "Earned Merc Gear 普攻 僵尸 A，造成 31 点火焰伤害。",
+          "僵尸 A 进入【burn】状态。",
+          "Earned Merc Gear 普攻 堕落者 C，造成 41 点火焰伤害。",
+          "堕落者 C 进入【burn】状态。",
+          "Earned Merc Gear 普攻 堕落者 D，造成 23 点火焰伤害。",
+          "堕落者 D 进入【burn】状态。",
+          "Earned Merc Gear 普攻 堕落者萨满 B，造成 12 点火焰伤害。",
+          "堕落者萨满 B 进入【burn】状态。",
+          "Earned Merc Gear 普攻 僵尸 B，造成 38 点火焰伤害。",
+          "僵尸 B 进入【burn】状态。",
+          "Earned Merc Gear 普攻 堕落者 E，造成 43 点火焰伤害。",
+          "堕落者 E 进入【burn】状态。",
+          "暴击！Earned Merc Gear 对 堕落者 F 造成 83 点火焰伤害！",
+          "堕落者 F 进入【burn】状态。",
+          "堕落者 E 施放了 弱近战。",
+          "堕落者 E 普攻 Earned Merc Gear，造成 1 点物理伤害。",
+          "堕落者 C 施放了 弱近战。",
+          "罗格侦察兵 — 内视 闪避了 堕落者 C 的攻击！",
+          "堕落者 D 施放了 弱近战。",
+          "堕落者 D 普攻 Earned Merc Gear，造成 1 点物理伤害。",
+          "堕落者 F 施放了 弱近战。",
+          "暴击！堕落者 F 对 Earned Merc Gear 造成 1 点物理伤害！",
+          "堕落者 A 施放了 弱近战。",
+          "堕落者 A 普攻 Earned Merc Gear，造成 1 点物理伤害。",
+          "堕落者 B 施放了 弱近战。",
+          "堕落者 B 普攻 罗格侦察兵 — 内视，造成 1 点物理伤害。",
+          "堕落者萨满 B 施放了 火弹。",
+          "堕落者萨满 B 普攻 Earned Merc Gear，造成 5 点火焰伤害。",
+          "Earned Merc Gear 进入【ignite】状态。",
+          "堕落者萨满 A 施放了 火弹。",
+          "堕落者萨满 A 普攻 罗格侦察兵 — 内视，造成 5 点火焰伤害。",
+          "罗格侦察兵 — 内视 进入【ignite】状态。"
+        ],
+        "hpStyle": "width: 93.24%;"
+      },
+      "saveEqualsReopened": true,
+      "browserErrors": [],
+      "attachments": [
+        {
+          "name": "01-ordinary-hire.json",
+          "bytes": 4084,
+          "sha256": "02f1722707dc38ac392ce73f5d0da1d2103c6a5c284588a93b438f7493226e79"
+        },
+        {
+          "name": "02-earned-before-equip.json",
+          "bytes": 5696,
+          "sha256": "8a62790cbd67f9ff0f0a84b5e9abfbf5b8592d1dd6e4c4f2142fbf1a5e4857da"
+        },
+        {
+          "name": "03-equipped-item.png",
+          "bytes": 151250,
+          "sha256": "5d38d56de1eb79299c50c0ef2c70cf1a5fd6da16a49862dbf3d0b949f0f51c67"
+        },
+        {
+          "name": "04-canonical-equipped-save.json",
+          "bytes": 5772,
+          "sha256": "bfd5f1440f5def30db751218826e734d0777b24cc59694a054022549c7624e1e"
+        },
+        {
+          "name": "05-wave-two-before-resume.json",
+          "bytes": 2,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "name": "06-wave-two-observed-prefix.json",
+          "bytes": 2411,
+          "sha256": "ab984c6c86ab192df915742738427432166f09f93a54e7d257e0d3e9933b8dc9"
+        },
+        {
+          "name": "07-first-landed-fire-bolt.json",
+          "bytes": 2774,
+          "sha256": "0dc25bcee0f092cade538c6e700ca1727efe406da2efea581c4586abeea9d696"
+        },
+        {
+          "name": "08-native-combat-paused.png",
+          "bytes": 298910,
+          "sha256": "d8dc2186f7a201f85305d62ddb4848e6cb87699615153c55974ca4d944f0b486"
+        },
+        {
+          "name": "08b-native-combat-log.png",
+          "bytes": 128866,
+          "sha256": "00f4f9f93300fdbba9766bbea99cd742d552f22ef7c3849b332b202ee78eeb9f"
+        },
+        {
+          "name": "09-after-combat.json",
+          "bytes": 7660,
+          "sha256": "c30fc3783ff1d65fcad4e2ffad19858325d97654cfe217d5837b53113889bd6a"
+        },
+        {
+          "name": "10-committed-save.json",
+          "bytes": 7660,
+          "sha256": "c30fc3783ff1d65fcad4e2ffad19858325d97654cfe217d5837b53113889bd6a"
+        },
+        {
+          "name": "10b-reopened-full-save.json",
+          "bytes": 7660,
+          "sha256": "c30fc3783ff1d65fcad4e2ffad19858325d97654cfe217d5837b53113889bd6a"
+        },
+        {
+          "name": "11-reopened-equipped-item.png",
+          "bytes": 151250,
+          "sha256": "5d38d56de1eb79299c50c0ef2c70cf1a5fd6da16a49862dbf3d0b949f0f51c67"
+        },
+        {
+          "name": "12-browser-errors.json",
+          "bytes": 2,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    }
+  ]
+}

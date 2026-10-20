@@ -1,0 +1,38 @@
+{
+  "inputHead": "6e7cf7e",
+  "specSHA256": "187d6bd6a143b69b9616cf4155d752f15227f3e6f12edebfd3a1f86960dc3f07",
+  "reportSHA256": "9457a840346ef31639be4bc799a92e070fe3e6b058e23102aa2ffbf877479cf9",
+  "stats": {
+    "startTime": "2026-10-20T16:05:01.176Z",
+    "duration": 36148.99,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "result": [
+    {
+      "status": "failed",
+      "duration": 20825,
+      "errors": [
+        {
+          "location": {
+            "file": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/tests/pwa/merc-gear-earned.spec.ts",
+            "column": 27,
+            "line": 181
+          },
+          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('listitem').filter({ has: getByRole('button', { name: 'Equip', exact: true }) })\nExpected: \u001b[32m3\u001b[39m\nReceived: \u001b[31m4\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('listitem').filter({ has: getByRole('button', { name: 'Equip', exact: true }) })\u001b[22m\n\u001b[2m    9 \u00d7 locator resolved to 4 elements\u001b[22m\n\u001b[2m      - unexpected value \"4\"\u001b[22m\n\n\n  179 |     await page.getByTestId('merc-equip-slot-gloves').getByText(english ? 'Gloves' : '\u624b\u5957', { exact: true }).click();\n  180 |     const choices = page.getByRole('listitem').filter({ has: page.getByRole('button', { name: english ? 'Equip' : '\u88c5\u5907', exact: true }) });\n> 181 |     await expect(choices).toHaveCount(3);\n      |                           ^\n  182 |     await choices.first().getByRole('button', { name: english ? 'Equip' : '\u88c5\u5907', exact: true }).click();\n  183 |     await page.keyboard.press('Escape');\n  184 |     await inspectGlove(page, english, info, '03-equipped-item');\n    at /home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/tests/pwa/merc-gear-earned.spec.ts:181:27"
+        }
+      ]
+    }
+  ],
+  "stage": "before native Equip; no equipped combat/W2 witness sampled",
+  "passedBeforeFailure": [
+    "native creation/hire/field",
+    "eight-enemy W1 victory then pause/flee W2",
+    "exact five authored drops in fixed order and75rune-shards",
+    "heroL2XP60/565/stat5/skill2",
+    "mercL3XP120/304 and unchanged baseline"
+  ],
+  "diagnosis": "Global listitem descendant search includes outer owned-merc li containing nested modal, plus three actual compatible rows. Scope candidate rows to equipment dialog; preserve count3 and first-row selection."
+}

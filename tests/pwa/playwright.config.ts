@@ -7,7 +7,7 @@ const baseURL = `http://127.0.0.1:${String(port)}`;
 /** Dedicated real-production acceptance; never reuse a debug-enabled server. */
 export default defineConfig({
   testDir: '.',
-  testMatch: ['offline-gameplay.spec.ts', 'merc-progression-earned.spec.ts', 'fire-bolt-earned.spec.ts', 'warmth-earned.spec.ts', 'amazon-weapon-authority.spec.ts', 'frost-nova-earned.spec.ts', 'stat-allocation-earned.spec.ts'],
+  testMatch: ['offline-gameplay.spec.ts', 'merc-progression-earned.spec.ts', 'merc-gear-earned.spec.ts', 'fire-bolt-earned.spec.ts', 'warmth-earned.spec.ts', 'amazon-weapon-authority.spec.ts', 'frost-nova-earned.spec.ts', 'stat-allocation-earned.spec.ts'],
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: 0,
