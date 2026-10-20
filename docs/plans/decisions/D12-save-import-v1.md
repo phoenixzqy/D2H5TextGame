@@ -226,3 +226,40 @@ establishes exact1.04/600 before close. ReopenD=C+180s retains the stronger
 Check localized current bonus/no overflow and exact unrelated data throughout.
 Worker owns one new ordinary-browser spec and small evidence document. Pagehide
 durability, production PWA, earned progression and fullP17 remain separate.
+
+### P17a05 production award-time XP and effective MF
+
+After playback completes, an actual player win with the original hero alive and
+at least one slain non-summon samples Date.now and meta.readIdleBonus(now) once,
+before XP/loot effects. Every reward in that wave uses that sampled multiplier.
+Keep the existing baseline xpForKill and sum floor(xpForKill(level)×multiplier)
+per kill. Existing mercenary sharing remains floor(total awarded XP×0.75).
+
+Thread an optional magicFindMultiplier (default1) from KillRewardInput through
+DropContext to rarity selection. Effective MF is
+`effectiveMagicFind(rawPlayerMF + rareEliteBonus50) × multiplier`, after the
+existing floored diminishing-return curve, with no outer floor or new cap.
+MF300 at1.5 gives327×1.5=490.5. Preserve existing RNG draws, shared stream and
+materialization, GF, currency/material quantities, picks/noDrop and first-kill
+rules. Forced rarity and direct TC rewards bypass MF effects. No new RNG fork.
+
+Read-only bonus projection leaves raw idleState and transient anchor unchanged.
+Incomplete/duplicate/loss/draw/dead-original-hero/no-slain outcomes do not sample
+or award a bonus. Preserve existing idle-pity updates, including failed waves;
+this change does not redefine pity policy or the XP baseline.
+
+BUG-025 retains the production XP RED and the tight MF rounding reproduction.
+Regression coverage uses real stores, gear, combat, playback, XP and mercenary
+progression over two waves. An unforced TC fixture at the data-loader boundary
+makes the MF path observable through real award/RNG/item materialization. The
+authored Act I trash table forces normal rarity; a separate real-data control
+preserves its complete loot/currency output while boosting XP. These controlled
+high-power/imported fixtures prove wiring, not earned progression or balance.
+Default1 has a fixed reward/next-RNG oracle. Forced/direct/noDrop/missing-TC
+controls preserve rewards and following RNG state; no arbitrary same-seed
+currency equality is claimed where changed rarity alters materialization draws.
+
+Lifecycle/hidden interval ownership, periodic/close writes, browser/PWA restart,
+true-away and earned campaign acceptance remain separate. This child alone does
+not close full D12/P17 or the campaign gate. Functional test results and elapsed
+test-budget acceptance are reported separately in BUG-025.

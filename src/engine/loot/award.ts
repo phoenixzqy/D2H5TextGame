@@ -36,6 +36,8 @@ export interface KillRewardInput {
   /** Treasure-class id (e.g. `loot/trash-act1`). */
   readonly treasureClassId: string;
   readonly magicFind: number;
+  /** Applied to effective MF after the curve; defaults to one. */
+  readonly magicFindMultiplier?: number;
   readonly goldFind: number;
   readonly act: 1 | 2 | 3 | 4 | 5;
   readonly difficulty?: Difficulty;
@@ -79,7 +81,8 @@ export function rollKillRewards(
       tc,
       tier: input.tier,
       monsterLevel: input.monsterLevel,
-      magicFind: input.magicFind + (input.tier === 'rare-elite' ? RARE_ELITE_MAGIC_FIND_BONUS : 0)
+      magicFind: input.magicFind + (input.tier === 'rare-elite' ? RARE_ELITE_MAGIC_FIND_BONUS : 0),
+      magicFindMultiplier: input.magicFindMultiplier ?? 1
     },
     rng
   );

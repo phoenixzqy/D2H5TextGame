@@ -126,9 +126,10 @@ const BASE_WEIGHTS = {
 export function rollRarity(
   magicFind: number,
   tier: MonsterTier,
-  rng: Rng
+  rng: Rng,
+  magicFindMultiplier = 1
 ): Rarity {
-  const eff = effectiveMagicFind(magicFind);
+  const eff = effectiveMagicFind(magicFind) * magicFindMultiplier;
   const mult = TIER_RARITY_MULT[tier];
 
   const weights = {
@@ -178,6 +179,8 @@ export interface DropContext {
   readonly tier: MonsterTier;
   readonly monsterLevel: number;
   readonly magicFind: number;
+  /** Applied after the MF curve without further flooring; defaults to one. */
+  readonly magicFindMultiplier?: number;
 }
 
 /**
@@ -195,7 +198,7 @@ export function rollDrops(ctx: DropContext, rng: Rng): readonly DropResult[] {
     if (!pick) continue;
     if ((pick.type ?? 'item') === 'item') {
       if (!pick.baseId) continue;
-      const rarity = pick.rarity ?? rollRarity(ctx.magicFind, ctx.tier, rng);
+      const rarity = pick.rarity ?? rollRarity(ctx.magicFind, ctx.tier, rng, ctx.magicFindMultiplier);
       results.push({ kind: 'item', baseId: pick.baseId, rarity, ilvl: ctx.monsterLevel });
       continue;
     }

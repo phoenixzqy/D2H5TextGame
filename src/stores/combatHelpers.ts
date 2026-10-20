@@ -29,6 +29,7 @@ import { useInventoryStore } from './inventoryStore';
 import { useMapStore } from './mapStore';
 import { usePlayerStore } from './playerStore';
 import { useMercStore } from './mercStore';
+import { useMetaStore } from './metaStore';
 import { mercToCombatUnit } from './mercToCombatUnit';
 import { useFormationStore } from './formationStore';
 import { createRng, hashSeed } from '@/engine/rng';
@@ -252,6 +253,8 @@ export function awardLootForVictory(opts: {
   readonly act: 1 | 2 | 3 | 4 | 5;
   readonly treasureClassId: string;
   readonly seed: number;
+  /** Award-time multiplier applied after the MF diminishing-return curve. */
+  readonly magicFindMultiplier?: number;
 }): KillRewards {
   const player = usePlayerStore.getState().player;
   const magicFind = player?.derivedStats.magicFind ?? 0;
@@ -273,6 +276,7 @@ export function awardLootForVictory(opts: {
         monsterLevel: enemy.level,
         treasureClassId: opts.treasureClassId,
         magicFind,
+        magicFindMultiplier: opts.magicFindMultiplier ?? 1,
         goldFind,
         act: opts.act,
         difficulty: 'normal'
@@ -516,8 +520,10 @@ export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idl
     (u) => u.life <= 0 && inferKind(u) !== 'summon'
   );
   if (slain.length > 0) {
+    const now = Date.now();
+    const multiplier = useMetaStore.getState().readIdleBonus(now).activeMultiplier;
     let xpGained = 0;
-    for (const enemy of slain) xpGained += xpForKill(enemy.level);
+    for (const enemy of slain) xpGained += Math.floor(xpForKill(enemy.level) * multiplier);
     if (xpGained > 0) {
       const xpResult = usePlayerStore.getState().gainExperience(xpGained);
       useMercStore.getState().shareExperienceWithFielded(xpGained);
@@ -537,7 +543,8 @@ export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idl
       slainEnemies: slain,
       act: activeRun.act,
       treasureClassId: tcId,
-      seed: activeRun.seed ^ 0x9e3779b1 ^ activeRun.waveIdx
+      seed: activeRun.seed ^ 0x9e3779b1 ^ activeRun.waveIdx,
+      magicFindMultiplier: multiplier
     });
     combat.accumulateRunRewards(rewards);
   }
