@@ -1,6 +1,6 @@
 # D04 — Shatter execution for current authored physical hits
 
-Status: GD/TD contract and producer/QA plan/concrete tests approved before freeze.
+Status: scoped implementation d247f07 validated; GD/TD/producer/QA approve.
 Scope: the existing Freeze→physical execute promised by combo-matrix §4.1;
 no campaign, earned clear, full D04, all-skill or balance acceptance.
 

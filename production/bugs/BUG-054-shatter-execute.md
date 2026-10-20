@@ -1,6 +1,6 @@
 # BUG-054 — Execute active frozen targets below the Shatter threshold
 
-Status: Reproduced before runtime patch.
+Status: Fixed in d247f07; causal regression and independent review pass.
 Severity: High — the advertised Freeze→physical execution never occurs.
 Owner: engine-dev; GD/TD contract and producer/QA frozen tests approved.
 
@@ -47,5 +47,5 @@ The shared direct hit path now applies the existing pre-hit predicate after
 ordinary resolution and adjusts only damage event/HP amount. Status potency,
 RNG, metadata, ordinary overkill and death handling retain their existing paths.
 Frozen29cases and engine1160/fullcov3343 pass; types/lint/build/80%gate pass.
-GD/TD/producer/QA approve source and causal evidence. Commit closure follows
-final durable review; this report remains the before-patch defect record.
+GD/TD/producer/QA approve source and causal evidence. Fix commit d247f07 and `src/engine/combat/shatter.test.ts` close this defect;
+the original before-patch reproduction remains preserved.

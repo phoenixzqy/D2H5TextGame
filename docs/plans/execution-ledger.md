@@ -63,6 +63,7 @@ Current implementation evidence lives in `evidence/`.
 | P08a05g | accepted bounded ordinary authority/save proof | Four native production en/zh × desktop/mobile cases,0skip/retry/flaky/errors;26/12/84 openings,67/76/71MP, full equipment/save/two reopen proof. [Evidence](evidence/p08a05g-amazon-weapon-authority.md); root/producer/QA APPROVE/ADEQUATE. |
 | P08a04a | accepted representation prerequisite | Tests5fe184b; exact-two optional secondary Freeze schema/shared types and general exclusive nonempty readonly on-hit list. Focused195, engine893, related1142/full1998, T/L/build/coverage pass; root/producer/QA APPROVE. No authored/adapter/combat behavior change; B remains open. |
 | P08a04b/c | accepted bounded Frost runtime/browser slices | Runtime13b5378; actual ordered secondary Freeze and ordinary earned rank/save proof. Four native en/zh × desktop/mobile cases,0skip/retry/flaky/errors; root/producer/QA APPROVE/ADEQUATE. [Evidence](evidence/p08a04c-earned-frost-nova.md). Chill slowdown and broader skills/campaign remain open. |
+| P08a06 | accepted scoped Shatter repair | `d247f07`; active pre-hit Freeze→positive landed physical execute strictly below20%, existing death/RNG/status paths. Frozen29cases, E1160/fullcov3343, T/L/build pass; producer/QA/GD/TD approve. [Evidence](evidence/p08a06-shatter-execute.md). No campaign/balance/fullD04 acceptance. |
 | P08a02 | accepted bounded curse slice | Metadata `8b1f497`, authored definition `554a922`, runtime `f3f9086`; BUG031 fixed after genuine RED. Actual Amplify Damage rank/duration/resistance/refresh/replay controls independently approved; full curse families remain open. |
 | P08a03a/b | accepted Minor Heal slices | `091d9b0` actual authored range/registry, `ec0de97` deterministic lowest-relative-HP targeting and true healing. Independent root/QA/producer review and final combined evidence below; broader healing/merc acceptance remains open. |
 | P11a / P11a02 | accepted finalization slices | `d39fe64` actual-win/living-hero/playback guard and single clear; `d8db75c` truthful draw UI. Six root regressions, six RTL, 4/4 browser locale×viewport cases; independent QA/producer APPROVE. BUG-008. |
@@ -2103,3 +2104,34 @@ holds for this bounded path. Generic source-skill provenance remains unresolved
 before future mixed physical/Freeze skills are accepted. No gameplay retry or
 Chill causality inferred from the prior native draw. Den/Andariel/campaign/idle,
 pacing/final balance/C0–C4/G0–G7/full private v1 remain open. No remote actions.
+
+
+P08a06 accepted **d247f07** after independent GD/TD contract, producer/QA exact
+concrete test freeze and source/final durable APPROVE. Unchanged shouldShatter
+now serves the shared direct hit path, evaluating active pre-hit Freeze and
+strict below20% on landed positive physical damage. Event/HP use max(final,life),
+ordinary DoT potency/metadata/overkill/status/RNG/death closure remain intact.
+Genuine RED14failures/15controls2.509s; no post-freeze test change. Final engine
+1160/60files7.740s, fullcov3343/16467.857s, T25.110s, sequentialL28.462s and
+productionbridgebuild8.827s/fourchunks pass. Coverage94.6%lines/statements,
+94.54%functions90.66%branches clears unchanged80%; existing timing targets and
+warnings remain. Complete85-event no-Freeze recording/result unchanged.
+First lint attempt36.267s was interrupted by task monitor coverage-temp-file
+removal race; original evidence/twoexact-ownedTERM identities/no survivors
+preserved, not counted as pass. QA provenance finding resolved by preserving
+original stale ownership167bc11 record and corrected actual179748c metadata;
+no product/test/contract change. [Evidence](evidence/p08a06-shatter-execute.md)
+packet8313f69c6501ad411c5c3e6d28369505905695f2366a180303e16478563425f3/archive
+ec63441513af88ef9e1c726ab6085e100733e030739c853b62df829bd424ecff retains146safe
+regular records/4,737,678raw/564,173compressed bytes/sevencommands. All readers
+released,832PID/birth identities verified nonlive; exact RAWshatter-u75_js3c,
+taskdist760files/.vite1file removed and absence verified; no cleanup signals.
+Tools/shared caches preserved. Hashverifiedrunner and exact cleanup record
+transferred to root-owned nextRAW
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-inner-sight-yv8t2nts.
+Root claim continues/original checkout untouched. Next substantive C1 card is
+starter Rogue Inner Sight actual all-enemy defense reduction; canonical gacha
+spec25%/8s found, GD/TD lifecycle/damage-family contract in progress, no tests,
+experiment or runtime patch yet. Amazon Inner Sight remains separately scoped.
+No stronger earned-Moor/Den retry, prior draw causality or campaign/balance/
+fullD04/C0–C4/G0–G7/private-v1 acceptance follows. No remote actions.
