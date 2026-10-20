@@ -70,3 +70,31 @@ Independent QA source/test review: APPROVE, with no blocking finding. Actual
 first-wave draw and full-run victories use the production planner/engine;
 controlled final-result cases cover preservation/negative boundaries. Browser
 draw wording and controls are the next scoped UI child, not claimed here.
+
+## P11a02 — Preserve draw identity in the terminal panel
+
+Reproduced at `d39fe64`: six real-component RTL cases, both locales and all
+three terminal outcomes, yield two draw failures / four passing controls
+(4.28 s). After the run-boundary correction, null outcomes now correctly fail
+the run, but the panel title still says `Defeated` / `战败` despite a living
+hero and the truthful draw log. Use the existing `combat:event.draw` title for
+a failed run with raw winner null. Keep the existing title for enemy wins and
+player victories. No new timeout claim, translation or state is needed.
+
+Producer reviewed this scoped UI follow-up. Its owned files are CombatScreen,
+the new component test, a focused browser spec and this evidence file.
+
+P11a02 verification: six RTL cases pass (4.90 s). `npm test -- --reporter=dot`:
+92 files / 888 passed / 1 existing merc-XP skip, 28.59 s (over 15 s budget).
+Typecheck, lint/engine purity and production build passed (13.47 s), with the
+same existing warnings described above. Independent producer source/test
+review: APPROVE, no blocking findings.
+
+`E2E_PORT=4288 npx playwright test tests/e2e/combat-draw.spec.ts --project=chromium-desktop --project=mobile-portrait --workers=2 --reporter=line --output=/tmp/d2h5-combat-draw-browser`:
+4/4 passed, 22.4 s. Chromium 147 headless shell / Playwright 1.59.1, desktop
+1280×800 and mobile 360×640, both locales. Imported durable low-damage fixture
+proves actual engine/playback/finalization/UI/save wiring only. Ordinary map
+entry, Skip, return, export, save and reload preserve player/inventory, leave
+clear empty and keep idle locked. Both localized draw headings, controls, no
+success CTA, no horizontal overflow and no page errors asserted. Existing
+Ubuntu browser-platform caveat remains as documented in prior evidence.

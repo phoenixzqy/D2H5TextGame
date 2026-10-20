@@ -77,6 +77,7 @@ export function CombatScreen() {
   const recordedEvents = useCombatStore((s) => s.recordedEvents);
   const eventCursor = useCombatStore((s) => s.eventCursor);
   const playbackComplete = useCombatStore((s) => s.playbackComplete);
+  const outcome = useCombatStore((s) => s.outcome);
   const tick = useCombatStore((s) => s.tick);
 
   // Sub-area run selectors (Bugs #5/#16/#21)
@@ -392,7 +393,7 @@ export function CombatScreen() {
           <Panel
             title={runVictory
               ? t('runVictoryTitle')
-              : t('runDefeatTitle')}
+              : t(outcome?.winner === null ? 'event.draw' : 'runDefeatTitle')}
           >
             {runVictory && (runRewards.items.length > 0 || runRewards.runeShards > 0) && (
               <div className="mb-2" data-testid="loot-summary">
