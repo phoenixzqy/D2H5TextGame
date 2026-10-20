@@ -234,3 +234,31 @@ RED run, then restore exact-source hashes; no further source correction is
 authorized before review. Raw first source patch/proof and128P1F diagnostic
 remain in worker task directory. Adapter producer+QA bounded source approval
 is complete; combined validation and browser proof remain pending.
+
+
+## Near-one compatibility projection review finding
+
+Independent QA source review found that exactfraction`0.99999999999999999`
+exports numericcarry1/compensation1e-17. Exact-aware runtime is correct, but
+numeric-only reseeding rejects carry1 as outside[0,1) and loses credit. Root
+agrees this violates the promised numeric fractional compatibility view. Source
+is held before acceptance. Proposed bounded correction projects only rounded1
+to`0.9999999999999999` (largest representable Number below1), then computes
+existing numeric-minus-exact compensation (−9e-17 here). Exact integral/grants
+and exact-aware authority do not change; no arithmetic epsilon or tuning quantum
+is introduced. Additional tests-first checkpoint and contract review precede
+this projection change.
+
+
+Corrected oracle amendment`bbe1091ef2fe2d87521bf4100a1ac7754497ccf50b8a782c61d141ab94565d52`
+independently APPROVE by root/producer/QA. Exact source control132pass3.23s;
+authorized initial provisional-source rerun50failed/82passed/132executed/zero
+skipped3.26s, with all exact-source bytes restored. New sign/lower guards are
+not fresh exact-source RED.
+
+Near-one tests-only delta`518f48899d49ab6c65ab09d7d3aed5a964d69bf0b31d7644b27fbae9f5a327ab`
+independently APPROVE / ADEQUATE by root/producer/QA:2failed/133passed/135executed,
+zero skips,3.13s. Wrong export1/+1e-17 and numeric-only reseed0/grant0 reproduce;
+exact-aware reseed is a passing control. Source remains frozen db4e/e5fd/7778
+from worker proof. Root now authorizes tests-only commit then the numeric-view
+projection correction, with fresh final source/GREEN and full validation.

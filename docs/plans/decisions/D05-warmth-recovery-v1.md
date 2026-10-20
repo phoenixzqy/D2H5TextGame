@@ -227,7 +227,15 @@ The helper's cumulative state gains explicit signed canonical-decimal
 wholeGranted views. Add optional transient `CombatUnit.manaRegenExactCarry`,
 a canonical decimal MP fraction in[0,1). The exact string is authoritative
 when valid. Existing numeric carry and signed compensation remain compatibility
-views; exported compensation means numericCarry minus exactCarry. Qualified
+views; exported compensation means numericCarry minus exactCarry. The numeric
+carry compatibility view must stay in[0,1). If converting an exact fractional
+remainder rounds to1, project that view to`0.9999999999999999`, the largest
+representable Number below1, and retain the signed residual in compensation.
+For exact`0.99999999999999999`, numericcarry is`0.9999999999999999` and
+compensation−9e-17, so legacy numeric-pair reseeding retains this credit. This
+is only a valid-domain representation bound; exact totals, exact carry, whole
+grants, authored rates and elapsed time are unchanged. No arithmetic epsilon
+or tuning quantum is introduced. Qualified
 next waves/replays retain the exact string. No hidden metadata, BigInt in
 recorded snapshots, persistence fields, save version or migration is introduced.
 
