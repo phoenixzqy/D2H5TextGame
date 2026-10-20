@@ -1574,7 +1574,7 @@
         "rarity": "rare",
         "weight": 120,
         "minLevel": 9,
-        "maxLevel": 14
+        "maxLevel": 19
       },
       {
         "type": "item",
@@ -1582,7 +1582,7 @@
         "rarity": "rare",
         "weight": 120,
         "minLevel": 10,
-        "maxLevel": 14
+        "maxLevel": 19
       },
       {
         "type": "item",
@@ -1590,7 +1590,7 @@
         "rarity": "rare",
         "weight": 120,
         "minLevel": 12,
-        "maxLevel": 14
+        "maxLevel": 19
       },
       {
         "type": "item",
@@ -1598,7 +1598,7 @@
         "rarity": "rare",
         "weight": 80,
         "minLevel": 12,
-        "maxLevel": 14
+        "maxLevel": 19
       },
       {
         "type": "item",
@@ -1606,7 +1606,7 @@
         "rarity": "rare",
         "weight": 100,
         "minLevel": 9,
-        "maxLevel": 14
+        "maxLevel": 19
       },
       {
         "type": "item",
@@ -1614,7 +1614,7 @@
         "rarity": "rare",
         "weight": 80,
         "minLevel": 9,
-        "maxLevel": 14
+        "maxLevel": 19
       },
       {
         "type": "item",
@@ -1622,7 +1622,7 @@
         "rarity": "unique",
         "weight": 30,
         "minLevel": 9,
-        "maxLevel": 14
+        "maxLevel": 19
       },
       {
         "type": "rune",
