@@ -146,3 +146,30 @@ Async transport does not guarantee the first callback snapshots at precisely
 +500ms in every locale. Freeze the malformed-import test clock so complete save
 equality proves preservation; its existing Escape handling closes the dialog
 when a frozen transient toast covers the mobile pointer target.
+
+### P17a04 shared displayed bonus (approved implementation contract)
+
+UI reads the same meta.readIdleBonus(now) projection as save/export, subscribing
+to both raw idleState and transient idleBonusAnchor. Read actual Date.now on
+render, including restores/updates between ticks; no mount-time accrual or
+duplicate tuple. Display active/current multiplier/current percentage and
+remaining seconds only. Remove peakPct/windowSeconds/deriveBonusFromLastClosed
+from the UI interface: v7 cannot recover original peak/window. Explicitly
+supersede the four old UI helper accrual tests; retain engine arithmetic tests.
+
+Reproject at min(30seconds, remaining duration), hide exactly at short expiry,
+clean timers on inactive/unmount/StrictMode, and publish no domain state from
+render/ticks/remounts. Preserve raw tuple/anchor references. Tiny positive
+bonuses remain active even if display rounds to0%. Mounted exact replacements
+display immediately at their current publication basis, including identical raw
+tuples with new anchors. Metadata-only edits cannot refresh. Banner/chip show
+current percentage and ceil-minute countdown; visible units/labels are localized.
+
+Require aged mount/remount, between-tick updates, actual restore/new-anchor,
+inactive/short expiry, no-publication/timer-cleanup tests plus ordinary browser
+import→600online seconds→Save/same-clock reload→600seconds→expiry in en/zh-CN
+at1280×800/360×640. Imported bonuses prove wiring, not earned progression.
+Worker owns hook/banner/test/locales/browser/BUG-022; root owns this control.
+Obsolete App/meta close API cleanup stays with lifecycle. Reward integration,
+hidden interval ownership, periodic/close writes, true-away browser/PWA/full
+P17 acceptance remain open.

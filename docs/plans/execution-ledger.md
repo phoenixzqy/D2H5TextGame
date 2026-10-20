@@ -418,3 +418,79 @@ concurrent engine470pass15.22s and build28.29s predate tie correction and are
 superseded. Test-loop timing budgets remain unmet. Browser follow-up and final
 combined gates remain pending. Agent worktrees cleaned/released; root continues
 claimed. Root `dist`/`.vite` are task-owned, pending cleanup after consumers.
+
+## Persisted startup, capacity, seeded ties and online checkpoints
+
+Integrated P17a02 `6af6893`, P03b04b `b9da90b` (agent `e16c5c5`),
+P06c04 `b97b12e` (agent `a6d87f4`), P17a03 `50bee46`. Root/producer independent
+source/test/control reviews APPROVE each. Full v1/C0–C4/G0–G7 remain open.
+
+P17a02 reconciles startup once per page, persists before publication and orders
+startup/raw restore/import/delete. BUG-019 records behavioral RED3/3, expanded
+original-source10fail/3pass, delayed IO/recovery and exact restore coverage.
+Focused48pass3.94s; pre-capacity/scheduler U1160pass/1existing merc-XP skip,
+107files38.74s; E485pass42files3.93s; T/L/B pass17.42s. No reward/UI/PWA proof.
+
+P03b04b preflights complete hero equipment displacement against max(100,current
+backpack length); legal nongrowing/reducing overflow swaps remain usable.
+Refusals retain exact refs with no publication/recompute and localized feedback,
+including inline picker polite live region. BUG-017 agent RED23cases11fail/
+12pass preceded source; GREEN23pass5.57s/related66pass6.26s/U1107pass1skip,
+104files41.75s/T/L/B pass6.43s. Root integrated equipment/capacity/startup45pass
+6.66s; ordinary en/zh-CN×desktop/mobile capacity4/4pass27.4s on4314. Both later
+browser matrices also capacity4/4pass at final checkpoint runtime source.
+Merc/craft/full P03b remain open.
+
+P06c04 exact scheduled-time ties use fixed per-unit priority from dedicated
+seed fork, including summons, preserving non-scheduler insertion consumers and
+main combat RNG. BUG-020 retains actual prepatch first-actor/freeze failures,
+deadline/unequal-period/collision/inert-boundary/real-summon coverage. Producer
+found initial untied oracle too weak; genuine prepatch stochastic oracle now
+freezes crit200@1300, miss@1700, hit100/victory@2600 and fails a main-RNG-rank
+mutation. Source restored/scratch removed. Agent focused17pass1.18s/E497pass
+7.83s/U1159pass1skip106files30.60s/T/L/B pass. Combat.ts95.57%statements/
+84.16%branches/100%functions,228related tests. No out-of-scope fixture edits;
+broader D04/P06/balance acceptance remains open.
+
+P17a03 one transient anchor accompanies the sole raw idle tuple. Shared read-only
+projection consumes online time; save/export use one sampled timestamp and leave
+tuple/anchor untouched. Exact raw restore/import preserve historical fields and
+anchor at successful publication; startup retains reconciliation sample including
+awaited storage time. Partial bonus edits project before merge; metadata/no-op
+edits preserve basis; explicit timestamp supplies basis. Changed mixed patches
+deliberately replace explicit numeric/basis values even if equal to raw history.
+Projection failure preserves flushSave's rejected-Promise shape/error/retry.
+No schema/duplicate tuple/UI/reward changes. BUG-021 actual stale production
+save/export RED3/3failed2.87s, expanded22/22RED3.28s before source; GREEN22pass
+3.21s/related70pass3.68s. Two mixed-patch contract tests bring total to24.
+
+Final combined source through `50bee46`: U1219pass/1existing merc-XP skip,
+109files27.01s; E497pass42files3.98s; T/L/forcedlint/B pass, build6.98s.
+Full15s/engine3s budgets remain exceeded. Existing React act/router, large-chunk
+and2.57MB manifest precache warnings remain. No PWA/performance acceptance.
+
+Browser regression initially8pass/6fail41.7s: legacy tests expected old idle
+clocks. Approved sixth-file update retains the original old-autosave/import
+durable cancellation oracle. First corrected14case run11pass/3fail1.1m exposed
+invalid fixed500ms checkpoint assumption and frozen mobile toast covering Cancel.
+Final tests observe native IDB read-only, verify complete committed payload
+against known fixture with bounded projected clocks, derive exact startup gap,
+require full restored equality and same-clock second reload. Frozen malformed
+import uses ordinary Escape. Final save-management10/10pass22.4s on4320; all
+capacity cases pass at same runtime source in prior runs. Forced-spec lint and
+diffcheck pass. No runtime changed after U/E/T/L/B, only browser/docs corrections.
+
+Verified absent after all consumers ended: root dist/node_modules/.vite,
+`/tmp/d2h5-b9da90b-capacity-browser`,
+`/tmp/d2h5-b97b12e-checkpoint-browser`,
+`/tmp/d2h5-b97b12e-checkpoint-browser-final`,
+`/tmp/d2h5-b97b12e-save-browser-observed`.
+No root processes remain. Finished claims released; original main untouched.
+No push/PR/merge/deployment performed.
+
+Next approved P17a04 shared displayed bonus, controlled ordinary save/reload/
+countdown proof; D12 records contract. Root worktree2 remains claimed. Design
+agent claimed worktree3 for independent BUG-023 prerequisite: positive XP strips
+equipment stats. Fix the root before actual XP/MF integration; no snapshot-only
+workaround. Reward rounding/MF policy, lifecycle/hidden intervals/PWA and broader
+checkpoint acceptance remain pending.
