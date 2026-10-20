@@ -16,7 +16,7 @@ import paladinSkills from '../../data/skills/paladin.json';
 import sorceressSkills from '../../data/skills/sorceress.json';
 import type { AoeShape } from '../combat/grid';
 import type { DamageType } from '../types/attributes';
-import type { ComboTag, SkillRequirement, SkillStatusEffectMetadata, SkillTarget } from '../types/skills';
+import type { ComboTag, SkillAdditionalStatusEffects, SkillRequirement, SkillStatusEffectMetadata, SkillTarget } from '../types/skills';
 import type { RegisteredSkill, SkillEffect, SummonMaxCountScalingKind, SummonStatScaling } from './effects';
 
 export type PlayableSkillClass =
@@ -45,6 +45,7 @@ interface JsonSkill {
   readonly damageType?: DamageType;
   readonly appliesStatus?: readonly string[];
   readonly statusEffect?: SkillStatusEffectMetadata;
+  readonly additionalStatusEffects?: SkillAdditionalStatusEffects;
   readonly appliesTags?: readonly string[];
   readonly summon?: boolean;
   readonly summonId?: string;

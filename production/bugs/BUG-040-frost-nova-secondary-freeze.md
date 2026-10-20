@@ -83,3 +83,75 @@ Root/producer/QA independently APPROVE / ADEQUATE genuine schema RED before
 representation source edits. Frozen tests remain unchanged for GREEN review.
 
 Final RED log SHA256: `1fb005e06c9d7099c439bafa5a36a6c80b7aabc9b400d6482f41c39aa7b1dc2a`.
+
+
+## P08a04a bounded representation source and GREEN
+
+Tests/docs checkpoint5fe184b; frozen tests unchanged. Only four source files
+changed: skill schema, shared skill types, effect types and dataCatalog import/
+local JsonSkill type. No adapter construction, content or combat change.
+Closed opted-in exact-two schema preserves legacy rows; secondary chance is
+required. General DamageEffect type uses a full ordered readonly nonempty rest
+tuple exclusive with legacy scalar; no-status constructors remain valid.
+
+First GREEN exposed Ajv strictRequired requiring property declarations in the
+conditional branches (94failed/101passed); engine compilation also reported
+the same schema error. Added explicit if property declaration and then damage/
+damageType refs, retaining strict settings and frozen tests. Final focused
+195/195,0skips,runner2.41s/wall3.585s,exit0. Typecheck exits0/wall9.887s, making
+the positive readonly tuple and negative exclusivity/nonempty assertions real
+static evidence. Lint exits0/wall27.396s,purity50files. Broader final checks
+and independent source/final review follow.
+
+Source SHA256 at GREEN:
+
+- src/data/schema/skill.schema.json: `d938a98a4a8468fb856c4fa5102b3da89bb88fc702b03f6376687480f54e8a15`
+- src/engine/types/skills.ts: `cd0be4ef4c2244e9d48dee041712c485d6f277bd5bb80dc8f0074f8313046801`
+- src/engine/skills/effects.ts: `467f0b9977207f4501f7190f767110950d3a6ad82d733598d373fbb80697e7a1`
+- src/engine/skills/dataCatalog.ts: `2372be32736f22127edf43065c5afc020cdcaff930daddac2108040a7982f8b5`
+
+
+## P08a04a final combined validation
+
+Root/producer/QA source/focused APPROVE; all source/frozen test hashes above
+remain unchanged. Complete final checks, each exit0 (no unit skips/failures):
+
+| Label | Test/files; runner / wall seconds |
+| --- | --- |
+| frost-a-green-final | 195/1;2.41/3.585 |
+| frost-a-engine-final | 893/50;4.77/5.798 |
+| frost-a-related | 1142/61;21.89/23.384 |
+| frost-a-full | 1998/127;27.08/28.631 |
+| frost-a-typecheck-final | 18.188 |
+| frost-a-lint-final | 42.447 |
+| frost-a-build-final | 12.572 |
+| frost-a-coverage | 1998/127;35.14/38.793 |
+
+Exact command arrays and real exits/wall are recorded in per-label result JSON
+under the A raw root above. Engine893/50 covers current scalar/legacy registry
+behavior; related1142/61, full1998/127 and coverage1998/127 pass. Final coverage/
+typecheck/lint overlapped; engine/related/full/coverage units were sequential.
+Configured80% engine coverage gate passes; schema/type-only changes add no new
+engine executable behavior. Engine3s/related5s/full15s budgets remain exceeded;
+no performance acceptance. Build7.88s has existing large chunk and2.57MB
+nonprecached manifest warnings;756precache entries37327.57KiB.
+Engine-only coverage 60files: s 7980/8470 (94.21%), b 1808/2031 (89.02%), f 291/310 (93.87%); this does not measure schema validation.
+
+Final log SHA256:
+
+- frost-a-green-final: `420d4b88ebeb5d8e3d5308823151a906532a0b2ce09df44a28f7128e19cc8e74`
+- frost-a-engine-final: `47a488a5b3cd9d06cca0b63d4d6a73f8bf4222bcac6e4e67748e70b9cb9cbafe`
+- frost-a-related: `a740905c6084ca95163c51ff545f3ed96c7057149c63f129bbefdf676c09acf5`
+- frost-a-full: `ad506009ae6eab6ce5ddbc3f91934315f89e3d9b3b98073e94488f6f4e267e46`
+- frost-a-typecheck-final: `53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47`
+- frost-a-lint-final: `f993e44b236baecc1c859ee65eddb3e93dd84768b4b42839e265cb8901074f9e`
+- frost-a-build-final: `ab86e12bb62f6a3c99648b4d671d956b9a1a930cea922e87be48a154f4845e4a`
+- frost-a-coverage: `e583fb60b4a64b3f35686a5f290bb1e7bfd61f34c6dcbd8c5c8496ce2bc4fa78`
+- coverage-final.json: `1415bb2f474900495e62808154ad2c50a5eddcef339fb2dab26b15e2e3dbf36e`
+
+A has no authored opt-in, adapter construction or combat change and no runtime/
+ordinary-browser Freeze acceptance. BUG040 stays open for B. Root/producer/QA final independent
+combined APPROVE / ADEQUATE. All raw consumers finished before root removed
+and verified absence of the exact A scratch, task-owned dist and local .vite.
+Dependencies/shared caches/source/history preserved. No task processes remain.
+A representation is accepted; BUG040 remains open for behavior B.

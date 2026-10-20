@@ -137,6 +137,18 @@ export interface SkillStatusEffectMetadata {
   readonly physicalResistReductionPct?: number;
 }
 
+/** Explicit secondary on-hit metadata; chance is required to avoid implicit procs. */
+export interface SkillSecondaryStatusEffectMetadata {
+  readonly chance: number;
+  readonly stacksOnApply?: number;
+  readonly dotPctOfDamage?: number;
+}
+
+/** Currently supported authored secondary statuses, validated by the skill schema. */
+export interface SkillAdditionalStatusEffects {
+  readonly freeze: SkillSecondaryStatusEffectMetadata;
+}
+
 /**
  * Skill definition
  * This is the immutable template for a skill
@@ -174,6 +186,8 @@ export interface SkillDef {
   readonly appliesStatus?: readonly string[]; // status IDs
   /** Runtime metadata for the first applied status, such as DoT strength or stacks. */
   readonly statusEffect?: SkillStatusEffectMetadata;
+  /** Opt-in metadata for the secondary Freeze after the primary status. */
+  readonly additionalStatusEffects?: SkillAdditionalStatusEffects;
   
   /** Healing amount (if any) */
   readonly heal?: {

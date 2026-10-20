@@ -47,6 +47,7 @@ Current implementation evidence lives in `evidence/`.
 | P08a01 | accepted fire-status-family slice | `11eb6b3` (worker `ca66d0a`); central burn/ignite identity, production ranked Fire Bolt full3s DoT and legacy/combo/refresh/removal. BUG029; root/producer APPROVE/ADEQUATE. Combined1332pass; ordinary skill UI/fullP08/C1 remain open. |
 | P08a01b/c | accepted earned skill and display slices | `0dbbef2` ordinary earned Fire Bolt/save/reload production route; `a150f5b` truthful damage/CD/DoT units in both locales. Independent evidence below; full skill behavior remains open. |
 | P08a01d | accepted bounded cast names | Tests/browser `0df510a`; authored/canonical names, genuine33RED/12controls; focused45, related525/full1939/T/L/build/engine coverage and native8browser pass. Root/producer/QA final APPROVE/ADEQUATE; exact evidence below. |
+| P08a04a | accepted representation prerequisite | Tests5fe184b; exact-two optional secondary Freeze schema/shared types and general exclusive nonempty readonly on-hit list. Focused195, engine893, related1142/full1998, T/L/build/coverage pass; root/producer/QA APPROVE. No authored/adapter/combat behavior change; B remains open. |
 | P08a02 | accepted bounded curse slice | Metadata `8b1f497`, authored definition `554a922`, runtime `f3f9086`; BUG031 fixed after genuine RED. Actual Amplify Damage rank/duration/resistance/refresh/replay controls independently approved; full curse families remain open. |
 | P08a03a/b | accepted Minor Heal slices | `091d9b0` actual authored range/registry, `ec0de97` deterministic lowest-relative-HP targeting and true healing. Independent root/QA/producer review and final combined evidence below; broader healing/merc acceptance remains open. |
 | P11a / P11a02 | accepted finalization slices | `d39fe64` actual-win/living-hero/playback guard and single clear; `d8db75c` truthful draw UI. Six root regressions, six RTL, 4/4 browser locale×viewport cases; independent QA/producer APPROVE. BUG-008. |
@@ -1247,3 +1248,16 @@ timing budgets and existing build warnings remain open. All raw consumers
 finished before root verified exact cast scratch/dist/.vite removal; port4390
 closed. Full status/buff/history/localization/skill/campaign and C0–C4/G0–G7
 remain unaccepted. Continue bounded Frost Nova representation/behavior work.
+
+
+P08a04a accepted after root/producer/QA independently approved genuine11RED/
+184controls, source/frozen195GREEN and complete final validation. Tests5fe184b;
+four source files only, exact-two opt-in metadata schema preserving legacy
+corpus, required secondary chance and general exclusive/nonempty readonly
+engine list. Actual JSON/adapter construction/combat remain unchanged. Final
+engine893/50, related1142/61, full/coverage1998/127, T/L/purity/build pass;
+engine-only94.21/89.02/93.87 coverage excludes schema. Initial fixture and Ajv
+strictRequired repairs documented separately in BUG040, no tests weakened.
+Timing/bundle/offline caveats remain. All raw consumers finished before root
+verified exact A scratch/dist/.vite cleanup. Continue actual Frost B tests-first
+RED; no runtime/ordinary-browser/fullskills/campaign or C0–C4/G0–G7 acceptance.

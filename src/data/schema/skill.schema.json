@@ -6,6 +6,30 @@
   "type": "object",
   "required": ["id", "name", "description", "trigger", "target", "cooldown", "minLevel", "maxLevel"],
   "additionalProperties": false,
+  "allOf": [{
+    "if": {
+      "properties": { "additionalStatusEffects": {} },
+      "required": ["additionalStatusEffects"]
+    },
+    "then": {
+      "required": ["damage", "damageType", "appliesStatus"],
+      "properties": {
+        "damage": { "$ref": "#/$defs/damageInfo" },
+        "damageType": { "$ref": "#/$defs/damageType" },
+        "appliesStatus": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "prefixItems": [
+            { "type": "string", "minLength": 1, "not": { "const": "freeze" } },
+            { "const": "freeze" }
+          ],
+          "items": false
+        }
+      }
+    }
+  }],
   "if": {
     "properties": { "id": { "const": "skills-necromancer-amplify-damage" } },
     "required": ["id"]
@@ -125,6 +149,24 @@
           "type": "number",
           "minimum": 0,
           "description": "Finite physical resistance reduction in percentage points; consumed by the production Amplify Damage debuff."
+        }
+      }
+    },
+    "additionalStatusEffects": {
+      "type": "object",
+      "required": ["freeze"],
+      "additionalProperties": false,
+      "description": "Explicit opt-in secondary metadata. Only primary plus Freeze is currently supported.",
+      "properties": {
+        "freeze": {
+          "type": "object",
+          "required": ["chance"],
+          "additionalProperties": false,
+          "properties": {
+            "chance": { "type": "number", "minimum": 0, "maximum": 1 },
+            "stacksOnApply": { "type": "integer", "minimum": 1 },
+            "dotPctOfDamage": { "type": "number", "minimum": 0 }
+          }
         }
       }
     },

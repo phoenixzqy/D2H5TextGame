@@ -18,8 +18,15 @@ export type SummonStatScaling = Partial<Record<
   number
 >>;
 
-/** Damage primitive. */
-export interface DamageEffect {
+/** One ordered status application after a successful damage hit. */
+export interface OnHitStatus {
+  readonly id: string;
+  readonly chance?: number; // 0..1, default 1
+  readonly stacksOnApply?: number; // default 1
+  readonly dotPctOfDamage?: number; // for DoTs, fraction of dealt damage per tick
+}
+
+interface DamageEffectBase {
   readonly kind: 'damage';
   readonly damageType: DamageType;
   /** [min, max] base at skill rank 1. */
@@ -28,14 +35,13 @@ export interface DamageEffect {
   readonly perRank?: readonly [number, number];
   /** Tags the hit applies (combo synergies). */
   readonly tags?: readonly ComboTag[];
-  /** Status to apply on hit (status-id from combat/status.ts). */
-  readonly applyStatus?: {
-    readonly id: string;
-    readonly chance?: number; // 0..1, default 1
-    readonly stacksOnApply?: number; // default 1
-    readonly dotPctOfDamage?: number; // for DoTs, fraction of dealt damage per tick
-  };
 }
+
+/** Damage primitive with either a legacy scalar status or a full ordered list. */
+export type DamageEffect = DamageEffectBase & (
+  | { readonly applyStatus?: OnHitStatus; readonly applyStatuses?: never }
+  | { readonly applyStatus?: never; readonly applyStatuses: readonly [OnHitStatus, ...OnHitStatus[]] }
+);
 
 /** Heal primitive. */
 export interface HealEffect {
