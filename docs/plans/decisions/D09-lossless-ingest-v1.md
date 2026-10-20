@@ -91,3 +91,16 @@ then explicitly discards only filler-1/filler-2 to equip/unequip through 99/100.
 Exact final inventory/player/map values survive ordinary save/reload/export.
 Durable ingress remains unbounded; mercenary transactions and whole P03b remain
 separate follow-ups. This control does not claim full P03b acceptance.
+
+## D09 v1d — Equipment integrity during XP awards (BUG-023)
+
+Every positive gainExperience award composes stats at its resulting capped level
+from base core stats and the current authoritative inventoryStore.equipped map,
+read once at action time. Share the existing equipment/core/modifier composition
+privately with recomputeDerived. Preserve current life/mana below the fresh caps,
+clamp excess and publish the final player once with its XP/points. Do not mutate
+equipment, core stats or affix Maps, accumulate modifiers or use the stale legacy
+player.equipment array as a fallback. Nonpositive/no-player awards remain no-ops.
+Cross-store access occurs in actions only; verify both module import entry orders.
+This stat-integrity prerequisite changes no reward formulas/schema and accepts
+no P17 reward, lifecycle, browser/PWA or campaign gate.

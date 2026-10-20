@@ -5,11 +5,12 @@
 
 import { create } from 'zustand';
 import type { Player } from '@/engine/types/entities';
-import type { CoreStats } from '@/engine/types/attributes';
+import type { CoreStats, DerivedStats } from '@/engine/types/attributes';
 import type { Item } from '@/engine/types/items';
 import { aggregateEquipmentMods, applyEquipmentCoreMods, equipmentModsToDerivedModifiers } from '@/engine/progression/equipment-mods';
 import { deriveStats } from '@/engine/progression/stats';
 import { awardXp, xpRequired, xpTotal, LEVEL_CAP } from '@/engine/progression/xp';
+import { useInventoryStore } from './inventoryStore';
 import {
   canonicalSkillIdFromData,
   getAllocatedSkillLevel,
@@ -84,6 +85,26 @@ const initialState = {
   player: null
 };
 
+/** Shared gear composition; resource pools never heal during recomputation. */
+function deriveEquippedPlayerStats(
+  player: Player,
+  level: number,
+  equipped: Readonly<Record<string, Item | null>>
+): DerivedStats {
+  const equipmentMods = aggregateEquipmentMods(equipped);
+  const coreWithEquipment = applyEquipmentCoreMods(player.coreStats, equipmentMods);
+  const fresh = deriveStats(
+    coreWithEquipment,
+    level,
+    equipmentModsToDerivedModifiers(equipmentMods)
+  );
+  return {
+    ...fresh,
+    life: Math.min(fresh.lifeMax, player.derivedStats.life),
+    mana: Math.min(fresh.manaMax, player.derivedStats.mana)
+  };
+}
+
 export const usePlayerStore = create<PlayerState>((set, get) => ({
   ...initialState,
   
@@ -126,9 +147,10 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     const cappedLevel = Math.min(LEVEL_CAP, result.level);
     const intoLevel = Math.max(0, result.totalXp - xpTotal(cappedLevel));
     const xpForNext = cappedLevel >= LEVEL_CAP ? Math.max(1, intoLevel) : xpRequired(cappedLevel);
-    const newDerived = deriveStats(player.coreStats, cappedLevel);
-    const preservedLife = Math.min(newDerived.lifeMax, player.derivedStats.life);
-    const preservedMana = Math.min(newDerived.manaMax, player.derivedStats.mana);
+    // Read the authoritative gear only when the action runs, after both stores
+    // initialize. The legacy player.equipment array does not track equip actions.
+    const equipped = useInventoryStore.getState().equipped;
+    const newDerived = deriveEquippedPlayerStats(player, cappedLevel, equipped);
     const levelsGained = cappedLevel - player.level;
     set({
       player: {
@@ -138,11 +160,7 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
         experienceToNextLevel: xpForNext,
         statPoints: player.statPoints + result.statPointsGranted,
         skillPoints: player.skillPoints + result.skillPointsGranted,
-        derivedStats: {
-          ...newDerived,
-          life: preservedLife,
-          mana: preservedMana
-        }
+        derivedStats: newDerived
       }
     });
     return {
@@ -225,25 +243,10 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
 
   recomputeDerived: (equipped) => { set((state) => {
     if (!state.player) return state;
-    const equipmentMods = aggregateEquipmentMods(equipped);
-    const coreWithEquipment = applyEquipmentCoreMods(state.player.coreStats, equipmentMods);
-    const fresh = deriveStats(
-      coreWithEquipment,
-      state.player.level,
-      equipmentModsToDerivedModifiers(equipmentMods)
-    );
-    // Preserve current life/mana pools across recompute (equip / unequip
-    // must not silently full-heal). Clamp down to new caps if the new max
-    // dropped below current (e.g. unequipping a vitality-boosting item).
-    const prev = state.player.derivedStats;
     return {
       player: {
         ...state.player,
-        derivedStats: {
-          ...fresh,
-          life: Math.min(fresh.lifeMax, prev.life),
-          mana: Math.min(fresh.manaMax, prev.mana)
-        }
+        derivedStats: deriveEquippedPlayerStats(state.player, state.player.level, equipped)
       }
     };
   }); },
