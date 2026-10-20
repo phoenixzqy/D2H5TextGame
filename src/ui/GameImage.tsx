@@ -35,7 +35,7 @@ const SIZE_CLASSES: Record<ImageSize, string> = {
   xs: 'w-6 h-6 text-xs',
   sm: 'w-8 h-8 text-sm',
   md: 'w-10 h-10 text-base',
-  lg: 'w-16 h-16 text-xl',
+  lg: 'w-16 h-16 text-xl'
 };
 
 export function GameImage({
@@ -45,11 +45,8 @@ export function GameImage({
   className = '',
   size = 'md',
   inline = false,
-  objectPosition = 'center',
+  objectPosition = 'center'
 }: GameImageProps) {
-  const [errored, setErrored] = useState(false);
-  const showImage = !!src && !errored;
-
   const sizeClass = SIZE_CLASSES[size];
   const Tag = inline ? 'span' : 'div';
   const posClass = objectPosition === 'top' ? 'object-top' : 'object-center';
@@ -62,24 +59,41 @@ export function GameImage({
         'bg-gradient-to-br from-d2-panel to-d2-bg',
         'flex items-center justify-center',
         sizeClass,
-        className,
+        className
       ].join(' ')}
       aria-hidden
     >
-      {showImage ? (
-        <img
-          src={src}
-          alt={alt}
-          className={`w-full h-full object-cover ${posClass}`}
-          loading="lazy"
-          decoding="async"
-          onError={() => { setErrored(true); }}
-        />
-      ) : (
-        <span className="font-serif text-d2-gold select-none leading-none">
-          {fallbackIcon}
-        </span>
-      )}
+      {/* A source change gets its own loading/error state without replacing the wrapper. */}
+      <ImageContent key={src} src={src} alt={alt} fallbackIcon={fallbackIcon} posClass={posClass} />
     </Tag>
+  );
+}
+
+function ImageContent({
+  src,
+  alt,
+  fallbackIcon,
+  posClass
+}: {
+  src: GameImageProps['src'];
+  alt: string;
+  fallbackIcon: string;
+  posClass: string;
+}) {
+  const [errored, setErrored] = useState(false);
+
+  return src && !errored ? (
+    <img
+      src={src}
+      alt={alt}
+      className={`w-full h-full object-cover ${posClass}`}
+      loading="lazy"
+      decoding="async"
+      onError={() => {
+        setErrored(true);
+      }}
+    />
+  ) : (
+    <span className="font-serif text-d2-gold select-none leading-none">{fallbackIcon}</span>
   );
 }

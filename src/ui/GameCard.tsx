@@ -429,7 +429,8 @@ function GameCardImpl({
         <CardBanner name={name} subtitle={subtitle} rarity={rarity} size={size} />
       )}
 
-      <CardArt image={image} name={name} variant={variant} />
+      {/* Error state belongs to this source; keep the card mounted when art changes. */}
+      <CardArt key={image} image={image} name={name} variant={variant} />
 
       {isItemCompact && (
         <span

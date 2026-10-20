@@ -100,11 +100,7 @@ describe('GameCard', () => {
   });
 
   it('falls back to silhouette when image fails to load', () => {
-    render(
-      withI18n(
-        <GameCard variant="monster" name="Ghost" image="/does-not-exist.png" />
-      )
-    );
+    render(withI18n(<GameCard variant="monster" name="Ghost" image="/does-not-exist.png" />));
     const img = screen.getByLabelText(/Ghost/).querySelector('img');
     expect(img).not.toBeNull();
     if (img) fireEvent.error(img);
@@ -127,4 +123,34 @@ describe('GameCard', () => {
     expect(bar).toHaveAttribute('aria-valuenow', '45');
     expect(bar).toHaveAttribute('aria-valuemax', '90');
   });
+
+  it.each(['character', 'item'] as const)(
+    'recovers %s art when its source changes without remounting the card',
+    (variant) => {
+      const { rerender } = render(
+        withI18n(<GameCard variant={variant} name="Recovery" image="/a.png" />)
+      );
+      const card = screen.getByLabelText(/^Recovery ·/u);
+      const first = card.querySelector('img');
+      if (!first) throw new Error('Expected initial card image');
+      fireEvent.error(first);
+      expect(card.querySelector('img')).toBeNull();
+      expect(card.querySelector('svg')).toBeInTheDocument();
+
+      rerender(withI18n(<GameCard variant={variant} name="Recovery" image="/b.png" />));
+      expect(screen.getByLabelText(/^Recovery ·/u)).toBe(card);
+      const recovered = card.querySelector('img');
+      expect(recovered).toHaveAttribute('src', '/b.png');
+      expect(recovered).toHaveClass(variant === 'item' ? 'object-center' : 'object-top');
+      if (!recovered) throw new Error('Expected recovered card image');
+      fireEvent.error(recovered);
+      expect(card.querySelector('svg')).toBeInTheDocument();
+      expect(card.querySelector('img')).toBeNull();
+
+      rerender(withI18n(<GameCard variant={variant} name="Recovery" />));
+      expect(card.querySelector('svg')).toBeInTheDocument();
+      rerender(withI18n(<GameCard variant={variant} name="Recovery" image="/a.png" />));
+      expect(card.querySelector('img')).toHaveAttribute('src', '/a.png');
+    }
+  );
 });
