@@ -13,6 +13,7 @@ Current implementation evidence lives in `evidence/`.
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
 | P00 | in-progress | Producer F01–F21 mapping and assertion audit below. Expand current-head measurements and strict tests with each fix. |
+| P00b | accepted tooling fix | `test:related` now invokes Vitest's `related --run`; scoped 25 tests pass in 1.45 s, broad 226 pass/1 existing skip in 10.70 s (over budget). Producer approval; BUG-003. |
 | P01 | in-progress | D12 save/import contract recorded. Offline portion, D01–D11/D13–D14 pending; D04/D06 source reconciliation under review. |
 | P02 | pending dependencies | No accepted production harness. Existing sim is outside workspace discovery. Split fixture/schema, adapter, reporting. |
 | P03a | accepted slice | `6f1dafd` + `76db166`; independent source approval, U/T/L/B and 10 browser cases pass. [Evidence](evidence/P03a-save-integrity.md). Full D12/G1/G6 remain unaccepted. |
@@ -71,8 +72,9 @@ Strengthen required regressions atomically with their associated fixes.
 - `merc-fights.spec.ts`: require an actual merc action/contribution.
 - `post-victory-cta.spec.ts`: require victory before victory controls.
 - `loot-drop-rate.spec.ts`: boosted fixtures prove transport/eligibility only.
-- `test:related` uses unsupported `vitest run --related` in locked Vitest 1.6.1;
-  use explicit `npx vitest run <paths>` until its tooling card is implemented.
+- Resolved tooling defect: `test:related` now uses `vitest related --run` for
+  locked Vitest 1.6.1. Use `--project=engine` for a surgical engine loop; broad
+  dependency fanout can exceed the related-test budget (BUG-003).
 
 ## P05a-image-source-recovery
 
