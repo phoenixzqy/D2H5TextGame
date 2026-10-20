@@ -12,6 +12,7 @@
 const BASE = '/assets/d2/generated';
 
 import { loadMercPool } from '@/data/loaders/mercs';
+import { loadItemBases } from '@/data/loaders/loot';
 import { resolveItemIcon, resolveMercArt, resolveSkillIcon } from './cardAssets';
 import {
   CLASS_PORTRAITS,
@@ -159,6 +160,7 @@ export function getBaseItemIconUrl(itemType: string): string | null {
   return BASE_ITEM_ICONS[resolved] ?? null;
 }
 
+/** Resolve a concrete instance's identity first, then its authored base before legacy hints. */
 export function getItemIconUrl(item: {
   baseId: string;
   rarity: string;
@@ -168,14 +170,19 @@ export function getItemIconUrl(item: {
   setPieceId?: string;
   runewordId?: string;
 }): string | null {
-  if (item.uniqueId) return resolveItemIcon(item.uniqueId, { baseId: item.baseId });
-  if (item.setPieceId) return resolveItemIcon(item.setPieceId, { baseId: item.baseId });
-  if (item.runewordId) return resolveItemIcon(item.runewordId, { baseId: item.baseId });
+  const identity = [item.uniqueId, item.setPieceId, item.runewordId]
+    .find((id) => id !== undefined && id.length > 0);
+  if (identity) {
+    const resolved = resolveItemIcon(identity, { baseId: item.baseId });
+    if (resolved) return resolved;
+  }
+  const fromBase = resolveItemIcon(item.baseId);
+  if (fromBase !== null || loadItemBases().has(item.baseId)) return fromBase;
+  const inferred = inferBaseFromId(item.baseId);
+  if (inferred && inferred in BASE_ITEM_ICONS) return BASE_ITEM_ICONS[inferred] ?? null;
   const hint = (item.itemType ?? item.equipSlot ?? '').toString();
   const fromHint = getBaseItemIconUrl(hint);
   if (fromHint) return fromHint;
-  const inferred = inferBaseFromId(item.baseId);
-  if (inferred && inferred in BASE_ITEM_ICONS) return BASE_ITEM_ICONS[inferred] ?? null;
   return null;
 }
 

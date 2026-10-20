@@ -22,6 +22,25 @@ import {
   SKILL_ICONS
 } from './generatedAssetMaps';
 import { getImageOverride } from './imageOverrides';
+import { loadItemBases } from '@/data/loaders/loot';
+import type { EquipmentSlot, ItemBase, WeaponType } from '@/engine/types/items';
+
+/** Existing art categories; broader weapon families use explicit interim proxies. */
+const WEAPON_ICONS: Readonly<Record<WeaponType, string>> = {
+  sword: 'sword', axe: 'axe', mace: 'mace', dagger: 'dagger',
+  spear: 'staff', polearm: 'staff', staff: 'staff', wand: 'staff',
+  scepter: 'staff', orb: 'staff', bow: 'bow', crossbow: 'bow', throwing: 'dagger'
+};
+const NONWEAPON_ICONS: Readonly<Partial<Record<EquipmentSlot, string>>> = {
+  head: 'helm', chest: 'armor', gloves: 'gloves', belt: 'belt', boots: 'boots',
+  amulet: 'amulet', 'ring-left': 'ring', 'ring-right': 'ring', offhand: 'shield'
+};
+
+function metadataIcon(base: ItemBase): string | null {
+  if (base.type === 'weapon') return firstExistingBaseIcon(base.weaponType && WEAPON_ICONS[base.weaponType]);
+  if (base.slot) return firstExistingBaseIcon(NONWEAPON_ICONS[base.slot]);
+  return firstExistingBaseIcon(base.type === 'rune' || base.type === 'gem' ? base.type : null);
+}
 
 /** Prefix-rule table for mercenary archetype proxying. First match wins. */
 const MERC_ARCHETYPE_RULES: readonly (readonly [prefix: string, archetype: string | null])[] = [
@@ -177,6 +196,10 @@ export function resolveItemIcon(itemId: string, context: ItemIconContext = {}): 
   // Override takes precedence over inferred archetype lookup.
   const override = getImageOverride('item', key);
   if (override) return override;
+
+  // Authored metadata is authoritative even when a legacy-looking slug disagrees.
+  const base = loadItemBases().get(itemId);
+  if (base) return firstExistingBaseIcon(key, itemId.split('/').pop()) ?? metadataIcon(base);
 
   // 1) Unique items: `unique.<slug>` or `unique/<slug>`
   const uniqueMatch = /^unique[./](.+)$/.exec(key);
