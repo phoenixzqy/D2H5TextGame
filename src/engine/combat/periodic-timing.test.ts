@@ -38,6 +38,34 @@ function register(effects: readonly SkillEffect[], id = 'fixture.periodic'): str
 afterEach(() => { resetRegistry(); loadDefaultSkills(); });
 
 describe('periodic global timing contract', () => {
+  it.each(['burn', 'ignite'])('settles the final fire interval at 4700ms for a new %s application', (id) => {
+    const input = applyStatus(unit('enemy', 'enemy', { life: 9 }), {
+      id, sourceId: 'hero', simClockMs: 1700, dotPerStack: 3, damageType: 'fire'
+    }, createRng(7));
+    const before = structuredClone(input);
+    const result = run(input);
+    expect(dots(result)).toBe(9);
+    expect(result.result.enemyTeam[0]?.life).toBe(0);
+    expect(result.events.at(-1)).toMatchObject({ winner: 'player', simClockMs: 4700 });
+    expect(result.events.filter(e => e.kind === 'dot').map(e => [e.simClockMs, e.amount]))
+      .toEqual([[3400, 5], [4700, 4]]);
+    expect(run(input)).toEqual(result);
+    expect(input).toEqual(before);
+  });
+
+  it('keeps a stored rate-less legacy burn rate-less through refresh and the whole battle', () => {
+    const old = status('burn', { stacks: 2, remaining: 1 });
+    const input = unit('enemy', 'enemy', { statuses: [hold, old] });
+    const refreshed = applyStatus(input, {
+      id: 'ignite', sourceId: 'new', simClockMs: 1700, dotPerStack: 99
+    }, createRng(7));
+    expect(refreshed.statuses).toEqual([hold, { ...old, stacks: 3, remaining: 3 }]);
+    const result = run(refreshed);
+    expect(dots(result)).toBe(0);
+    expect(result.result.enemyTeam[0]?.life).toBe(100_000);
+    expect(input.statuses).toEqual([hold, old]);
+  });
+
   it('settles exactly 10 damage before a 1000ms expiry preceding every action', () => {
     const r = run(unit('enemy', 'enemy', { statuses: [hold,
       status('poison', { dotPerStack: 10, expiresAtMs: 1000 })] }));

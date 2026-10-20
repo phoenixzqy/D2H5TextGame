@@ -87,6 +87,11 @@ export interface ApplyStatusInput {
   readonly config?: StatusConfig;
 }
 
+/** Fire content and legacy snapshots use two names for the same status family. */
+function canonicalStatusId(id: string): string {
+  return id === 'burn' ? 'ignite' : id;
+}
+
 function lookupConfig(id: string, override?: StatusConfig): StatusConfig {
   if (override) return override;
   if (id in STATUS_DEFAULTS) {
@@ -101,6 +106,8 @@ function lookupConfig(id: string, override?: StatusConfig): StatusConfig {
  * Rules:
  *  - Stackable (maxStacks > 1): increment stacks (capped); duration = max(remaining, dur).
  *  - Non-stackable: refresh duration to the new value.
+ *  - Burn/ignite share configuration and first-match identity. Fresh records
+ *    use ignite; active legacy refresh preserves its stored id and payload.
  *  - Boss tiers: configured duration multiplier applies in milliseconds for
  *    timed callers (positive results floor to at least 1ms); legacy remaining
  *    retains whole-turn rounding with minimum 1.
@@ -112,7 +119,8 @@ export function applyStatus(
   input: ApplyStatusInput,
   rng: Rng
 ): CombatUnit {
-  const cfg = lookupConfig(input.id, input.config);
+  const id = canonicalStatusId(input.id);
+  const cfg = lookupConfig(id, input.config);
   const baseDur = input.duration ?? cfg.duration;
   const isBoss = unit.tier === 'boss' || unit.tier === 'chapter-boss';
   const bossDurationMult = isBoss ? cfg.bossDurationMult : undefined;
@@ -136,7 +144,7 @@ export function applyStatus(
     }
   }
 
-  const idx = unit.statuses.findIndex((s) => s.id === input.id);
+  const idx = unit.statuses.findIndex((s) => canonicalStatusId(s.id) === id);
   const expiresAtMs =
     input.simClockMs !== undefined
       ? input.simClockMs + timedDurationMs
@@ -146,7 +154,7 @@ export function applyStatus(
   // A future/expired record is not a refresh. Do not inherit its stacks or rate.
   if (!existing || (input.simClockMs !== undefined && !statusActiveAt(existing, input.simClockMs))) {
     const newStatus: ActiveStatus = {
-      id: input.id,
+      id,
       stacks: 1,
       remaining: dur,
       sourceId: input.sourceId,
@@ -250,19 +258,22 @@ export function tickStatuses(unit: CombatUnit): CombatUnit {
   return { ...unit, statuses: next };
 }
 
-/** Remove a specific status by id. */
+/** Remove a status by id; either fire alias explicitly removes the whole family. */
 export function removeStatus(unit: CombatUnit, id: string): CombatUnit {
-  return { ...unit, statuses: unit.statuses.filter((s) => s.id !== id) };
+  const canonical = canonicalStatusId(id);
+  return { ...unit, statuses: unit.statuses.filter((s) => canonicalStatusId(s.id) !== canonical) };
 }
 
-/** Check if a status is present. */
+/** Check status presence, accepting either fire alias without rewriting records. */
 export function hasStatus(unit: CombatUnit, id: string): boolean {
-  return unit.statuses.some((s) => s.id === id);
+  const canonical = canonicalStatusId(id);
+  return unit.statuses.some((s) => canonicalStatusId(s.id) === canonical);
 }
 
-/** Get current stack count of a status. */
+/** Get the first matching record's stacks, treating burn/ignite as one family. */
 export function getStacks(unit: CombatUnit, id: string): number {
-  return unit.statuses.find((s) => s.id === id)?.stacks ?? 0;
+  const canonical = canonicalStatusId(id);
+  return unit.statuses.find((s) => canonicalStatusId(s.id) === canonical)?.stacks ?? 0;
 }
 
 /**

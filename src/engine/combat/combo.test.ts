@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { createRng } from '../rng';
 import { comboMultiplier, shouldShatter } from './combo';
-import { applyStatus } from './status';
+import { activeStatusView, applyStatus } from './status';
 import type { CombatUnit } from './types';
 
 const rng = createRng(0);
@@ -33,6 +33,24 @@ function mk(over: Partial<CombatUnit> = {}): CombatUnit {
 }
 
 describe('combo matrix', () => {
+  it.each(['burn', 'ignite'])('recognizes legacy %s fire combos without changing the stored status', (id) => {
+    const stored = { id, stacks: 1, remaining: 3, sourceId: 'old', appliedAtMs: 500, expiresAtMs: 3500 };
+    const input = mk({ statuses: [stored] });
+    expect(comboMultiplier(activeStatusView(input, 500), 'physical')).toBe(1.25);
+    expect(comboMultiplier(activeStatusView(input, 500), 'poison')).toBe(1.15);
+    expect(comboMultiplier(input, 'fire')).toBe(1);
+    expect(comboMultiplier(activeStatusView(input, 3500), 'physical')).toBe(1);
+    expect(input.statuses).toEqual([stored]);
+  });
+
+  it('does not multiply fire aliases twice, including boss scaling', () => {
+    const statuses = ['burn', 'ignite'].map(id => ({ id, stacks: 1, remaining: 3, sourceId: 'old' }));
+    expect(comboMultiplier(mk({ statuses }), 'physical')).toBe(1.25);
+    expect(comboMultiplier(mk({ statuses }), 'poison')).toBe(1.15);
+    expect(comboMultiplier(mk({ statuses, tier: 'boss' }), 'physical')).toBe(1.125);
+    expect(comboMultiplier(mk({ statuses, tier: 'boss' }), 'poison')).toBe(1.075);
+  });
+
   it('cold → lightning is ×1.30', () => {
     const u = applyStatus(mk(), { id: 'chill', sourceId: 's' }, rng);
     expect(comboMultiplier(u, 'lightning')).toBeCloseTo(1.3, 5);
