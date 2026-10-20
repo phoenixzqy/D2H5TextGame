@@ -299,3 +299,49 @@ Frozen test SHA256:
 
 Root/producer/QA frozen tests and genuine RED APPROVE / ADEQUATE. Both
 source files remain unchanged/absent until frozen checkpoint below.
+
+### P08a05c source and first GREEN
+
+Frozen checkpoint52cb433; tests unchanged. Two source files only: new feature
+action and screen integration. Action gates ready/!replacement/noPlayer, validates
+name/class and prepares before mutation; rejects kit-internal or retained-ID
+collisions including both merc containers. Snapshots prior player and four
+inventory slices; publishes legacy[], transfers generic kit through real add/
+equip and checks results; no-kit recomputes retained equipment. Refusal/throw
+returns explicit failure/cause and restores exact snapshots. Only successful
+return navigates; localized existing common:error alert marks a failed attempt.
+No store/hydration grants, broad resets, save migration or reader changes.
+
+First GREEN82/3 (40creation+42factory),0skip,exit0,runner5.67/wall7.182s.
+All later canonical13/stats35/legacy[], exact rollback+retry and fresh-clock
+collision retry, unchanged retained refs and deferred saved/imported state/
+final-only autosave assertions now execute and pass. No runtime attempt failed
+or frozen assertion changed. Scoped lint found one redundant !selectedClass
+after canStart already narrows it; removed only redundant condition. Action's
+independent runtime class/input guards remain. Typecheck passes before correction;
+final checks rerun on corrected source.
+
+Final source SHA256:
+- src/features/character/CharacterCreate.tsx: `85d67250e782de35d7e84988ef9e95701de208036196017a2bf909fe7ea2274b`.
+- src/features/character/createCharacter.ts: `f1d38d007f04f529b341a66b45cdc42eaf7df90b88bbcb2bb135a74a09790dbb`.
+
+### P08a05c final combined validation
+
+Root source/focused APPROVE; producer and QA independently APPROVE / ADEQUATE.
+Corrected source full and coverage each2105/130,0skip,exit0. Full runner30.49s/wall32.147s; coverage wall37.051s. Focused corrected related40/2 runner9.08s/wall10.265s. Final typecheck, lint/purity51 and build pass. Tests unchanged from52cb433. Existing unrelated React/Browserslist/large chunk/nonprecached manifest warnings and timing-budget overruns remain; no test/budget acceptance inferred.
+Engine coverage60files:7993/8478statements,1839/2056branches,291/310functions. Gate remains80%. Feature action/screen are outside engine coverage; actual frozen runtime/persistence tests provide their behavioral evidence.
+Superseded scoped lint failure was only redundant selectedClass guard; final whole lint passes. No migration/readers/browser/fullauthority/C/G acceptance.
+
+- creation-final-build: `npm run build`; exit0, wall10.772s; log SHA256 `fe8fe1a3330458b3f37836ae434129f3837ca0f19890cf7d4ef93c8b2103fb8c`.
+- creation-final-coverage: `npm run test:cov -- --coverage.reportsDirectory=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-character-creation-8moncmrs/coverage`; exit0, wall37.051s; log SHA256 `78ad9d5a9a81e4adee60909971ed47a998fc4ff1a6d4fa88ea3edcc1dda7f4d0`.
+- creation-final-full: `npm test`; exit0, wall32.147s; log SHA256 `0d65bea5f9470765e666514fdafeeee43d137c0b1e144ba5166632a314be0e3c`.
+- creation-final-lint: `npm run lint`; exit0, wall27.79s; log SHA256 `64ef18bd16f812a048e5d016a57900763eaa6c02c2e7a32bb2a3cbbdaed0531f`.
+- creation-final-typecheck: `npm run typecheck`; exit0, wall18.459s; log SHA256 `53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47`.
+- creation-green: `npx vitest run --project ui src/features/character/CharacterCreate.test.tsx src/features/character/characterCreation.test.tsx src/features/character/createMockPlayer.test.ts --reporter=verbose`; exit0, wall7.182s; log SHA256 `2afb9045cc0a6b98d294da6758026b0822053782c9de5f9bbd8a6db322b6ce28`.
+- creation-related: `npm run test:related -- src/features/character/CharacterCreate.tsx src/features/character/createCharacter.ts`; exit0, wall10.265s; log SHA256 `76aac17057ab14f5eda66a8129fcf6b472af1d25bcc118ab18997c086d3115e6`.
+- creation-scoped-lint: `npx eslint src/features/character/CharacterCreate.tsx src/features/character/createCharacter.ts src/features/character/CharacterCreate.test.tsx src/features/character/characterCreation.test.tsx --max-warnings=0`; exit1, wall7.061s; log SHA256 `a425ed39ee7519dc5f38cc852e87c3236e1c2df41cbc97d57cd021f2f1049a8f`.
+- creation-typecheck: `npm run typecheck`; exit0, wall11.088s; log SHA256 `53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47`.
+
+coverage-final.json SHA256: `915ee3087eca779357aa81db1795ebda6fdecaa5f09bce4a1aa746e2359a6811`.
+
+Root/producer/QA final independent APPROVE / ADEQUATE. All9 non-RED command/result/log pairs, unchanged source/frozen tests and actual coverage counters independently checked. All C raw consumers finished; exact task-owned cleanup released.

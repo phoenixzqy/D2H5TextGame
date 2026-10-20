@@ -14,21 +14,24 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, GameCard, Panel, resolveClassPortrait } from '@/ui';
 import { usePlayerStore } from '@/stores';
+import { useHydrationStore } from '@/stores/persistence';
+import { createCharacter } from './createCharacter';
 import {
   CHARACTER_CLASSES,
   type CharacterClass,
-  createMockPlayer,
   getStartingStatPreview,
 } from './createMockPlayer';
 
 export function CharacterCreate() {
   const { t } = useTranslation(['character', 'common']);
   const navigate = useNavigate();
-  const setPlayer = usePlayerStore((s) => s.setPlayer);
+  const player = usePlayerStore((s) => s.player);
+  const hydrationReady = useHydrationStore((s) => s.status === 'ready');
 
   const [selectedClass, setSelectedClass] = useState<CharacterClass | null>(null);
   const [name, setName] = useState('');
   const [gender, setGender] = useState<'male' | 'female'>('male');
+  const [startFailed, setStartFailed] = useState(false);
 
   const stats = useMemo(
     () => (selectedClass ? getStartingStatPreview(selectedClass) : null),
@@ -36,13 +39,13 @@ export function CharacterCreate() {
   );
 
   const trimmedName = name.trim();
-  const canStart = !!selectedClass && trimmedName.length >= 1 && trimmedName.length <= 16;
+  const canStart = hydrationReady && !player && !!selectedClass && trimmedName.length >= 1 && trimmedName.length <= 16;
 
   const handleStart = () => {
     if (!canStart) return;
-    const player = createMockPlayer(trimmedName, selectedClass as NonNullable<typeof selectedClass>);
-    setPlayer(player);
-    navigate('/town');
+    const result = createCharacter(trimmedName, selectedClass);
+    setStartFailed(!result.ok);
+    if (result.ok) navigate('/town');
   };
 
   return (
@@ -149,6 +152,7 @@ export function CharacterCreate() {
           </Panel>
         )}
 
+        {startFailed && <p role="alert" className="text-red-400">{t('common:error')}</p>}
         <Button
           variant="primary"
           onClick={handleStart}
