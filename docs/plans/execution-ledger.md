@@ -19,6 +19,7 @@ Current implementation evidence lives in `evidence/`.
 | P02a02 | accepted input slice | `e5428a2` (agent `b35155d`); validated explicit seed/ordinal, preserved defaults/counter, 20 new regressions and independent source APPROVE. Full-run rewards remain open. |
 | P02a03 | accepted screening/tooling slice | `3820a19` (agent `994cfd9`); real fresh creation/run/playback/awards, full recordings+hashes, actual source provenance, safe external CLI output. Root+producer APPROVE; evidence below. Full-run/idle/campaign measurement remains. |
 | Remaining P02 | pending dependencies | Expanded production scenarios and diagnosed manual/idle/reward comparison remain. Historical proxy sim stays excluded. |
+| P02b04 | accepted bounded screen evidence | `65f9aaf`; frozen same40 pair, one historical seed/build, two determinism reps each. A loses DenW3, B DenW2; no clear. Full reports/diffs and independent outcome/packet approvals retained. [Evidence](evidence/p02b04-earned-screen.md). Remaining P02/manual-idle/C0 remain open. |
 | P03a | accepted slice | `6f1dafd` + `76db166`; independent source approval, U/T/L/B and 10 browser cases pass. [Evidence](evidence/P03a-save-integrity.md). Full D12/G1/G6 remain unaccepted. |
 | P03b01 | accepted visibility slice | `90e4a67`; all legacy items remain selectable above grid cap, seven boundary tests, four ordinary-control browser cases. BUG-005. |
 | P03b02 | accepted ingress slice | `a79ef1f`; retain complete earned/returned overflow, actual victory/merc/save integration,16 focused regressions; producer source APPROVE. Shared regular-action guards remain. |
@@ -1892,3 +1893,40 @@ Warmth1, historical seed2223645302,2repetitions each, unchanged30sreportcap;
 source arithmetic is conditional/unmeasured, not injected state or winproof.
 Den/Andariel/campaign/pacing/finalbalance/C0–C4/G0–G7/fullv1 remainopen.
 No push/PR/merge/deployment.
+
+P02b04 accepted **65f9aaf** after independent plan/fixture/expectation reviews,
+producer final APPROVE and QA full-report/prose/packet APPROVE. Exactly two
+reports, A/B sequential, historical seed2223645302/clock1792497600000, two fresh
+reps each. Each earns40prepW1wins/11080heroXP/8310mercXP/344items/5157shards;
+160installedW2unplayed/nativeflee without awards/clears.330actualcomputedbattles
+within336cap. NativeA W1/W2win/W3defeat, B W1win/W2defeat; no runtime defect
+established, emptyclears/Denobjectivesfalse/inProgress. Ready heroL6/core10/25/25/45,
+120/190HP102/137MP/armor43, mercL9/196HP/79MP/saveddef26/projected30. Gear/stats
+never refill; original acquired journal2/3/0equipment retained. A W3physical
+failure and B W2lightningfailure occur with mana available; no general viability,
+win-rate or tuning inference. All22baselines/frozen3/current490manifest entries
+and6seven-field source states/report verified exact. Source/battle/abandoned/
+semanticrewards equal, rawrewards/domain/full false. Full independent diffA39087
+=39082Item.id+3equip-resultitemId+rep/wall;398awardpairs offset398. B38517=
+38512+3+2;348pairs offset348. Globalallocator unreset. Original compensatedsum
+extraction failure/tolerantintermediate/itemIdclassification failure retained;
+final sequential+=recomputes native timingexact; no gameplayrerun.
+FinalU3151actualpasses/157files0other52.281s,T22.254s,L53.848s/purity57engine
+testfiles all0. Unchanged15sfullbudget exceeded; concurrentU/T/L timings not
+performanceacceptance. No fresh build/browser/coverage warranted for static
+fixtures/evidence. Full reports123270009/121497444bytes, CLI12.611/12.560sunder
+unchanged30sdeadline; no timeout/grace/signals. Logical/UIhint separate from
+human duration. [Evidence](evidence/p02b04-earned-screen.md) packetf6f8f66cd79ecda66f9a6fe36751eece85c334663454c6035359fcee83cd79c6
+and archive729d02864c51bac76ef20ab6499b731d96d43b0804c7344f72fbd42a9fcc12ff
+retain96regularrecords/264103971uncompressedbytes/8commandmetas/3reports/36sources;
+allbytes/hashes independently verified. All consumers released before exact
+RAWvacx7uv4 and task.vite cleanup; absence verified, both gameplayPIDs absent,
+no processsignaled, installedtools preserved, rootworktreeclaimcontinues.
+Next root-owned source-only RAW=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-mode-contract-zagjxkat
+holds transferredrunner/cleanuprecord and draft P02b05a route/active-mode
+contract plan under independent GD/TD review; no new gameplay/code/test/build.
+Reconcile firstactaccess vs sequential maps-spec wording without runtimechange;
+separate restoredsynthetic active-mode diagnostic from future genuinely earned
+BloodMoorfullclear/idleeligibility proof. Productionidle uses realcombat;
+dormantticker is not its caller. Den/Andariel/campaign/pacing/finalbalance/
+C0–C4/G0–G7/fullv1 remainopen. No push/PR/merge/deployment.
