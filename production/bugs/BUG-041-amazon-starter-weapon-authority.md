@@ -243,3 +243,7 @@ command/result/log pairs independently checked, including superseded lint
 failures. Current hashes/counters match; all raw consumers finished and
 cleanup released. No creation/save/canonical readers/browser/balance/BUG041
 or C/G acceptance.
+
+P08a05b accepted source/evidence commit 9f00779. After ALL raw consumers
+finished, root removed and verified absence of exact recipe scratch above,
+task-owned dist and local node_modules/.vite. No owned process/retention remains.

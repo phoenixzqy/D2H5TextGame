@@ -1290,3 +1290,17 @@ BUG041 preserves commands/hashes/caveats. Timing/build warnings remain. All
 raw consumers finished before verified exact content scratch/dist/.vite cleanup.
 Creation/save/readers/balance/browser/BUG041 and C0–C4/G0–G7 remain open.
 Continue producer-approved P08a05b recipe-backed factory with genuine RED.
+
+
+P08a05b accepted at9f00779: four-source-file recipe-backed factory, genuine
+24RED/18controls frozenf0ed731 and independent root/producer/QA approval.
+Strict optional authored schema/reference/identity validation, legal fixed13
+Training Bow with ilvl1/cloned rolls and actual eligibility. Other factory
+fields/classes preserved; no grants or canonical mutation. Focused247/3,
+related496/32,full/coverage2080/129,T/L/purity51/build pass; unchanged80%engine
+coverage7993/8478s1836/2054b291/310f. BUG041 records inclusive-bound refinement,
+lint correction, exact hashes/commands/caveats. All raw consumers finished
+before verified exact recipe scratch/dist/.vite cleanup. Root claim continues.
+C plan revised/approved to reject retained item-ID collisions before mutation;
+next existing-screen genuine RED. Creation/save/readers/balance/browser/
+BUG041/C0–C4/G0–G7 remain unaccepted; continue full staged v1.
