@@ -27,7 +27,8 @@ import {
   hasStatus,
   isStunned,
   spreadPlague,
-  activeStatusView
+  activeStatusView,
+  amplifyDamageReduction
 } from './status';
 import { comboMultiplier } from './combo';
 import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
@@ -264,6 +265,11 @@ function buildDamageInput(
   const stats = attacker.stats;
   const baseMin = scalePerRank(effect.base[0], effect.perRank?.[0], skillLevel);
   const baseMax = scalePerRank(effect.base[1], effect.perRank?.[1], skillLevel);
+  // Project the curse before the existing act penalty, resistance clamp and defense.
+  const defenderResistances = effect.damageType === 'physical'
+    ? { ...defender.stats.resistances,
+        physical: defender.stats.resistances.physical - amplifyDamageReduction(defender) }
+    : defender.stats.resistances;
   return {
     baseMin,
     baseMax,
@@ -273,7 +279,7 @@ function buildDamageInput(
     type: effect.damageType,
     critChance: stats.critChance,
     critMult: stats.critDamage,
-    defenderResistances: defender.stats.resistances,
+    defenderResistances,
     defenderArmor: defender.stats.defense,
     defenderMagicResist: defender.stats.defense,
     defenderDodge:
@@ -578,7 +584,10 @@ function applyEffect(
             id: effect.statusId,
             sourceId: actorId,
             simClockMs: state.simClockMs,
-            ...(effect.duration !== undefined ? { duration: effect.duration } : {})
+            ...(effect.duration !== undefined ? { duration: effect.duration } : {}),
+            ...(effect.durationMs !== undefined ? { durationMs: effect.durationMs } : {}),
+            ...(effect.physicalResistReductionPct !== undefined
+              ? { physicalResistReductionPct: effect.physicalResistReductionPct } : {})
           },
           state.rng
         );

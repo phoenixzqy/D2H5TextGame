@@ -42,6 +42,8 @@ export interface ActiveStatus {
   readonly expiresAtMs?: number;
   /** Inclusive simulation-time start; omitted legacy records start at battle entry. */
   readonly appliedAtMs?: number;
+  /** Amplify Damage's physical resistance reduction in percentage points. */
+  readonly physicalResistReductionPct?: number;
   /**
    * Damage per stack per **second** (for DoTs).
    *

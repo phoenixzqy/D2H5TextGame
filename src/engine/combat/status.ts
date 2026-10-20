@@ -21,6 +21,7 @@
 
 import type { Rng } from '../rng';
 import type { ActiveStatus, CombatUnit, MonsterTier } from './types';
+import { AMPLIFY_DAMAGE_DEFINITION } from './amplify-damage-definition';
 
 /** Known status IDs handled with explicit defaults. */
 export type StatusId =
@@ -34,6 +35,7 @@ export type StatusId =
   | 'plague'
   | 'mana-burn'
   | 'armor-melt'
+  | 'amplify-damage'
   | 'shatter';
 
 /** Per-status default config. */
@@ -58,6 +60,7 @@ export const STATUS_DEFAULTS: Readonly<Record<StatusId, StatusConfig>> = Object.
   plague: { duration: 5, maxStacks: 10 },
   'mana-burn': { duration: 3, maxStacks: 1 },
   'armor-melt': { duration: 3, maxStacks: 1 },
+  'amplify-damage': { duration: AMPLIFY_DAMAGE_DEFINITION.durationMs / 1000, maxStacks: 1 },
   shatter: { duration: 0, maxStacks: 1 }
 });
 
@@ -79,6 +82,8 @@ export interface ApplyStatusInput {
    * decremented `remaining`-counter lifecycle.
    */
   readonly simClockMs?: number;
+  /** Amplify Damage's physical resistance reduction in percentage points. */
+  readonly physicalResistReductionPct?: number;
   /** DoT damage per stack per **second** (sim-time). */
   readonly dotPerStack?: number;
   /** Damage type for DoT. */
@@ -87,9 +92,24 @@ export interface ApplyStatusInput {
   readonly config?: StatusConfig;
 }
 
-/** Fire content and legacy snapshots use two names for the same status family. */
+/** Fire and Amplify Damage each accept their legacy status alias. */
 function canonicalStatusId(id: string): string {
-  return id === 'burn' ? 'ignite' : id;
+  if (id === 'burn') return 'ignite';
+  return id === AMPLIFY_DAMAGE_DEFINITION.legacyStatusId
+    ? AMPLIFY_DAMAGE_DEFINITION.canonicalStatusId : id;
+}
+
+/**
+ * Read the first Amplify Damage family's potency without combining duplicates.
+ * The caller must supply an active-only status view at the current simulation
+ * clock. Missing legacy payload uses the authored default; explicit zero stays zero.
+ */
+export function amplifyDamageReduction(unit: CombatUnit): number {
+  const status = unit.statuses.find(
+    s => canonicalStatusId(s.id) === AMPLIFY_DAMAGE_DEFINITION.canonicalStatusId
+  );
+  return status === undefined ? 0
+    : status.physicalResistReductionPct ?? AMPLIFY_DAMAGE_DEFINITION.physicalResistReductionPct;
 }
 
 function lookupConfig(id: string, override?: StatusConfig): StatusConfig {
@@ -106,8 +126,9 @@ function lookupConfig(id: string, override?: StatusConfig): StatusConfig {
  * Rules:
  *  - Stackable (maxStacks > 1): increment stacks (capped); duration = max(remaining, dur).
  *  - Non-stackable: refresh duration to the new value.
- *  - Burn/ignite share configuration and first-match identity. Fresh records
- *    use ignite; active legacy refresh preserves its stored id and payload.
+ *  - Burn/ignite and amplify/amplify-damage share configuration and first-match
+ *    identity. Fresh records use canonical IDs; active refresh preserves the
+ *    stored id and payload.
  *  - Boss tiers: configured duration multiplier applies in milliseconds for
  *    timed callers (positive results floor to at least 1ms); legacy remaining
  *    retains whole-turn rounding with minimum 1.
@@ -160,6 +181,10 @@ export function applyStatus(
       sourceId: input.sourceId,
       ...(input.simClockMs !== undefined ? { appliedAtMs: input.simClockMs } : {}),
       ...(expiresAtMs !== undefined ? { expiresAtMs } : {}),
+      ...(id === AMPLIFY_DAMAGE_DEFINITION.canonicalStatusId ? {
+        physicalResistReductionPct: input.physicalResistReductionPct ??
+          AMPLIFY_DAMAGE_DEFINITION.physicalResistReductionPct
+      } : {}),
       ...(input.dotPerStack !== undefined ? { dotPerStack: input.dotPerStack } : {}),
       ...(input.damageType !== undefined ? { damageType: input.damageType } : {})
     };
@@ -258,19 +283,19 @@ export function tickStatuses(unit: CombatUnit): CombatUnit {
   return { ...unit, statuses: next };
 }
 
-/** Remove a status by id; either fire alias explicitly removes the whole family. */
+/** Remove a status by id; either fire or Amplify alias removes its whole family. */
 export function removeStatus(unit: CombatUnit, id: string): CombatUnit {
   const canonical = canonicalStatusId(id);
   return { ...unit, statuses: unit.statuses.filter((s) => canonicalStatusId(s.id) !== canonical) };
 }
 
-/** Check status presence, accepting either fire alias without rewriting records. */
+/** Check presence, accepting fire and Amplify aliases without rewriting records. */
 export function hasStatus(unit: CombatUnit, id: string): boolean {
   const canonical = canonicalStatusId(id);
   return unit.statuses.some((s) => canonicalStatusId(s.id) === canonical);
 }
 
-/** Get the first matching record's stacks, treating burn/ignite as one family. */
+/** Get the first matching record's stacks within the fire or Amplify alias family. */
 export function getStacks(unit: CombatUnit, id: string): number {
   const canonical = canonicalStatusId(id);
   return unit.statuses.find((s) => canonicalStatusId(s.id) === canonical)?.stacks ?? 0;

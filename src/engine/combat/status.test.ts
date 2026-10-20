@@ -9,9 +9,12 @@ import {
   isStunned,
   dotDamageThisTick,
   spreadPlague,
-  STATUS_DEFAULTS
+  STATUS_DEFAULTS,
+  statusActiveAt,
+  rebaseStatusClock,
+  expireStatuses
 } from './status';
-import type { CombatUnit } from './types';
+import type { ActiveStatus, CombatUnit } from './types';
 
 function mkUnit(over: Partial<CombatUnit> = {}): CombatUnit {
   return {
@@ -40,6 +43,100 @@ function mkUnit(over: Partial<CombatUnit> = {}): CombatUnit {
 }
 
 const rng = createRng(1);
+
+describe('P08a02c Amplify Damage status contract', () => {
+  const record = (overrides: Partial<ActiveStatus & { physicalResistReductionPct: number }> = {}) => ({
+    id: 'amplify', sourceId: 'old', stacks: 1, remaining: 1,
+    appliedAtMs: 0, expiresAtMs: 2000, physicalResistReductionPct: 20, ...overrides
+  });
+
+  it.each(['amplify', 'amplify-damage'])('creates canonical %s with authored defaults and no RNG', (id) => {
+    const input = mkUnit();
+    const random = createRng(1);
+    const result = applyStatus(input, { id, sourceId: 'caster', simClockMs: 400 }, random);
+    expect(result.statuses).toEqual([{
+      id: 'amplify-damage', sourceId: 'caster', stacks: 1, remaining: 3,
+      appliedAtMs: 400, expiresAtMs: 3400, physicalResistReductionPct: 50
+    }]);
+    expect(random.next()).toBe(0.6270739405881613);
+    expect(input.statuses).toEqual([]);
+    expect(hasStatus(result, 'amplify')).toBe(true);
+    expect(getStacks(result, 'amplify-damage')).toBe(1);
+  });
+
+  it.each(['trash', 'boss', 'chapter-boss'] as const)('keeps full duration/potency on %s', (tier) => {
+    const result = applyStatus(mkUnit({ tier }), {
+      id: 'amplify', sourceId: 'caster', simClockMs: 400
+    }, createRng(1));
+    expect(result.statuses[0]).toMatchObject({ remaining: 3, expiresAtMs: 3400, physicalResistReductionPct: 50 });
+    expect(applyStatus(mkUnit({ tier }), { id: 'amplify', sourceId: 'caster' }, createRng(1)).statuses[0])
+      .toMatchObject({ id: 'amplify-damage', remaining: 3, physicalResistReductionPct: 50 });
+  });
+
+  it('preserves explicit zero potency and millisecond duration precedence', () => {
+    const input = { id: 'amplify', sourceId: 'caster', simClockMs: 400,
+      duration: 99, durationMs: 0, physicalResistReductionPct: 0 };
+    const result = applyStatus(mkUnit(), input, createRng(1));
+    expect(result.statuses[0]).toMatchObject({ expiresAtMs: 400, physicalResistReductionPct: 0 });
+    expect(expireStatuses(result, 400).statuses).toEqual([]);
+  });
+
+  it.each(['amplify', 'amplify-damage'])('refreshes the first stored family record via %s without replacing payload', (id) => {
+    const first = record();
+    const second = record({ id: 'amplify-damage', sourceId: 'second', expiresAtMs: 9000,
+      physicalResistReductionPct: 70 });
+    const unrelated = { id: 'poison', sourceId: 'other', stacks: 1, remaining: 2 };
+    const input = mkUnit({ statuses: [first, second, unrelated] });
+    const before = structuredClone(input);
+    const result = applyStatus(input, { id, sourceId: 'new', simClockMs: 1700 }, createRng(1));
+    expect(result.statuses).toEqual([{ ...first, remaining: 3, expiresAtMs: 4700 }, second, unrelated]);
+    expect(result.statuses[1]).toBe(second);
+    expect(getStacks(result, id)).toBe(1);
+    expect(removeStatus(result, id).statuses).toEqual([unrelated]);
+    expect(input).toEqual(before);
+  });
+
+  it('retains longer finite expiry and missing payload/clocks on active refresh', () => {
+    const finite = record({ expiresAtMs: 9000, physicalResistReductionPct: 0 });
+    expect(applyStatus(mkUnit({ statuses: [finite] }), {
+      id: 'amplify-damage', sourceId: 'new', simClockMs: 1700
+    }, createRng(1)).statuses).toEqual([{ ...finite, remaining: 3 }]);
+    const legacy = { id: 'amplify', sourceId: 'legacy', remaining: -1, stacks: 4 };
+    expect(applyStatus(mkUnit({ statuses: [legacy] }), {
+      id: 'amplify-damage', sourceId: 'new', simClockMs: 1700
+    }, createRng(1)).statuses).toEqual([{ ...legacy, remaining: 3 }]);
+  });
+
+  it.each([[0, 1700], [3000, 5000]])('replaces only inactive first family record at %s..%s', (start, end) => {
+    const first = record({ appliedAtMs: start, expiresAtMs: end });
+    const second = record({ id: 'amplify-damage', sourceId: 'second', expiresAtMs: 9000 });
+    const input = mkUnit({ statuses: [first, second] });
+    const result = applyStatus(input, {
+      id: 'amplify', sourceId: 'new', simClockMs: 1700
+    }, createRng(1));
+    expect(result.statuses).toEqual([{
+      id: 'amplify-damage', sourceId: 'new', stacks: 1, remaining: 3,
+      appliedAtMs: 1700, expiresAtMs: 4700, physicalResistReductionPct: 50
+    }, second]);
+    expect(result.statuses[1]).toBe(second);
+    expect(input.statuses).toEqual([first, second]);
+  });
+
+  it('preserves payload and exact activity through clock translation and leaves the tag unrelated', () => {
+    const timed = record({ id: 'amplify-damage', appliedAtMs: 400, expiresAtMs: 3400 });
+    const input = mkUnit({ statuses: [timed] });
+    const rebased = rebaseStatusClock(input, 1000);
+    expect(rebased.statuses).toEqual([{ ...timed, appliedAtMs: -600, expiresAtMs: 2400 }]);
+    const translated = rebased.statuses[0];
+    if (!translated) throw new Error('Missing translated curse');
+    expect(statusActiveAt(translated, 0)).toBe(true);
+    expect(statusActiveAt(translated, 2399)).toBe(true);
+    expect(statusActiveAt(translated, 2400)).toBe(false);
+    expect(expireStatuses(rebased, 2400).statuses).toEqual([]);
+    expect(hasStatus(mkUnit({ statuses: [{ ...timed, id: 'amp-damage' }] }), 'amplify')).toBe(false);
+    expect(input.statuses).toEqual([timed]);
+  });
+});
 
 describe('status engine', () => {
   it.each(['burn', 'ignite'])('uses the fire family defaults for a fresh %s without consuming RNG', (id) => {
