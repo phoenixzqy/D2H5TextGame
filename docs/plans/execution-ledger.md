@@ -1760,3 +1760,33 @@ later cleanup after consumersrelease. Current review compares offense budgets
 and controlling defense/magicResist design precedence before another experiment;
 no new nativepilot authorized by failedoutcome. EarnedDen/Andariel/campaign/
 balance/pacing/C0–C4/G0–G7/fullv1 remainopen. No push/PR/merge/deployment.
+
+
+P06d accepted **0d21276** after accepted D04/ADR003, independently approved plan/RED
+and final producer P06D-SOURCE/P06D-OUTCOME APPROVE plus QA APPROVE/ADEQUATE.
+All actors now use independent cold/lightning/arcane MR; armor retains the other
+four routes. Validated JSON defaults, authored/tier/final monster MR, signed gear
+and nonaccumulating merc projection, summonsMR0, save9 with historical validation
+before recompose/default and localized character row are complete. No new item
+rolls/baseMR/rune/runeword capability. FrozenRED40=31fail9controls, policy module
+absenceRED, all originals/intermediate failures and three exact approved fixture
+amendments retained. Final E1085/1085, related1594/1594, fullcov2867/2867 with
+0pending/todo, unchanged80% engine gate65modules (94.54% lines,94.17% functions,
+90.65% branches), T15.997s/L77.237s/purity57 and guarded B9.798s pass. Dev-browser
+zh/en×6widths2pass with final360px MRrow viewport assertion and readable images;
+production browser acceptance is not claimed. E9.740s/3s, related40.789s/5s and
+full-suite timing overruns/buildwarnings remain disclosed; budgets unchanged.
+Packet e29e1b420db76d96def712b5b3d446d8151e9e87944ce7fb3a5f12602cb23aa6 indexes102 archived records,65sourcehashes,22exactcommands,20reports,
+all approved original/amended assertions, coverage and both images, independently
+verified by producer/QA. All consumers released before exact RAWlknpvtpc/dist/
+.vite cleanup; absence verified, no process killed, original checkout still
+read-only/clean. Next root-owned source-only RAW is
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-measurement-0gjegt_f;
+runner transferred/hashverified, fonts removed, root owns eventual cleanup.
+GD/TD and producer agree next source feasibility then additive P02 fixturev2
+fresh earned acquisition replay; strictv1 stays intact. Legal same40 candidates
+Frost6/Fire1/Warmth0 or Frost5/Fire1/Warmth1; Frost6/Fire1/Warmth1 is unaffordable.
+Freeze schema/action/seed/gear/isolation/repeat contracts and independent RED
+before implementation, then separately reviewed tiny screen; no native retry.
+Den/Andariel/campaign/pacing/finalbalance/C0–C4/G0–G7/fullv1 remain open. Root
+worktree claim continues. No push/PR/merge/deployment.

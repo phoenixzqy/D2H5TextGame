@@ -1512,18 +1512,29 @@
   ],
   "cleanup": {
     "owner": "root",
-    "state": "pending consumer release and diagnostic preservation",
-    "paths": [
+    "state": "complete; exact absence verified",
+    "featureCommit": "0d21276",
+    "allEvidenceConsumersReleased": true,
+    "testConsumers": [],
+    "removed": [
       "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-den-calibration-lknpvtpc",
       "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/dist",
       "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/.vite"
     ],
-    "preserve": [
+    "preserved": [
       "claimed worktree",
       "branch/history/source",
       "installed node_modules",
       "shared caches/tools",
       "durable packet/archive/screenshots"
-    ]
+    ],
+    "transfer": {
+      "from": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-den-calibration-lknpvtpc/runner.py",
+      "to": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-measurement-0gjegt_f/runner.py",
+      "sha256": "dd43228274b9a660e28898b9ff196cc394769664fe06502a9d056ef806b5aec9",
+      "reason": "task command runner for next source/earned-measurement slice",
+      "owner": "root; later cleanup after next consumers release"
+    },
+    "fonts": "Task-only fonts and font cache removed with oldRAW; no fonts retained or needed for next Node measurement."
   }
 }

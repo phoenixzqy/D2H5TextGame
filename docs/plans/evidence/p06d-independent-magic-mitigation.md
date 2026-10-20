@@ -108,15 +108,19 @@ both screenshots; no remaining material finding. QA: source/test quality
 ADEQUATE; all amendments, reports and final row screenshots verified.
 Producer P06D-OUTCOME APPROVE and QA P06D-QA APPROVE / ADEQUATE independently
 verified the durable packet, including all102 archived members and coverage.
-All three agents released their evidence consumers; root records cleanup next.
+All three agents released their evidence consumers. Root verified no active task
+consumer, removed the exact old RAW, dist and node_modules/.vite directories,
+and verified all three absent. Installed node_modules, shared tools/caches,
+source/history and durable evidence remain. The command runner alone transfers
+to root-owned next RAW `d2h5-root-earned-measurement-0gjegt_f`; task fonts were
+removed. Exact paths and transfer hash are recorded in the packet.
 
 [Diagnostics](fixtures/p06d-independent-magic-mitigation/diagnostics.tar.gz)
 retains102 compact source/report/log/plan/amendment/environment records, with
 each member's bytes/hash indexed in the packet. Archive SHA256:
 `e40e39f9bd00212f1f0dafdd4432f435e15d4e5e0a4aa7aaa3f1d7a2bbf425de`.
 Large coverage HTML, duplicate screenshots, fonts and disposable build/cache
-outputs are not deliverables. Root owns exact cleanup after consumers release;
-the packet and closing ledger retain the outcome.
+outputs are not deliverables. The packet and closing ledger retain verified cleanup.
 
 Incoming hostile magic changes too. No earned Den checkpoint, native retry,
 Andariel/campaign/pacing/balance, C0–C4/G0–G7 or full-v1 acceptance follows.
