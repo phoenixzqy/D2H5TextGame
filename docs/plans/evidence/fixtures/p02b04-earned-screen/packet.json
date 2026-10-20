@@ -1,0 +1,2020 @@
+{
+  "task": "P02b04",
+  "inputHead": "e65af7cccbc2d165380d280394e02fd287ed3630",
+  "scope": "frozen two recipes, one historical seed/build, two determinism repetitions each; neither clears Den; no C/G/privatev1 acceptance",
+  "contractFreezes": {
+    "frost6-fire1-same40.json": "503d8f9f5c06c1a5ae768d3171830a331034321816d279eaaa5cf42a26fd18d1",
+    "frost5-fire1-warmth1-same40.json": "edff646e4954ba2fc2c55ee8baab8ce7e94d2396e010d8537ff21fdabde43221",
+    "expectations.md": "71bf7ea007bd9680c14e3464b90c107b2884c80671d9779663b4724165c34c26"
+  },
+  "preservedBaseline": {
+    "package-lock.json": "f6495e520df58ddaf1fceb8d92f1088aa8e4f58b810db28e5e28ff27d3791b5f",
+    "package.json": "0621f952b7e17c1f838b5441f45a6f7ea800721d22f5def3be073118f98ffb27",
+    "tests/sim/production/README.md": "6befcca92a2f0cc1de34ed390f9fbf584c87e40e9efd07b004ad084706e420f5",
+    "tests/sim/production/adapter.test.ts": "38e65bde9d7bbae1800a64bdc5d8b8ca8a1e231da663796e66784747037d1593",
+    "tests/sim/production/adapter.ts": "713bfc9cb2dfda30429d1aab5915244a3d013723a941c03061b2da2892fb4c3f",
+    "tests/sim/production/earned-adapter.test.ts": "c582c117c0379afc3203b0cfaf7b209b44ad99ddb9a943101834eea25b5829e4",
+    "tests/sim/production/earned-adapter.ts": "48b7d508478aadb8308780c1130b6075d698320d2ea725a18a1d34a86ddc87f7",
+    "tests/sim/production/earned-comparison.test.ts": "8ffe7b673653a63030ccae72144175615f61d178cf13492d41a023de3527cfdc",
+    "tests/sim/production/earned-comparison.ts": "adaed49bb4c8feacddaac1a09626950f6323238a2cb2d3a1d68a5959c9027e60",
+    "tests/sim/production/earned-fixture.test.ts": "99fb52eda848407cfcdc1089fd71cc1399ab2be770b8050204675959cc1b61d1",
+    "tests/sim/production/earned-fixture.ts": "c29b0b99c8b75bb4f4a856b7935e0f0323172c4bfbc1b9718d0a39b18eade9f5",
+    "tests/sim/production/earned-measure.test.ts": "51ba4ade962bdcb26fc1a1e978f9bc6b1e005591a8f82c0bdcb39e2fd1166e6a",
+    "tests/sim/production/earned-measurement.test.ts": "82b6951d3651b3139b4dd0527e003fd6eaefbf92ba5f28db55f4f322990daf57",
+    "tests/sim/production/earned-measurement.ts": "7e2898a1c11a91fa2e3738eda6e1aa55748e8bcdf17c41030ed090c15e9d9ed3",
+    "tests/sim/production/earned-playback.ts": "67faebd1c0b83a26de7f2401c48df94d9bff025c5fc694bce74f3e845d8c843d",
+    "tests/sim/production/earned-report.test.ts": "319627fb980c56c93d19de9a2f7a0591035799c9ff2fba11d6fc7d1550c8ed65",
+    "tests/sim/production/earned-report.ts": "c4466331b1a9e80beb40d0cea848dc3670c237c6eb29c3f166b7f715875ec1aa",
+    "tests/sim/production/earned-state.ts": "e49c3cb1ad72f19037e8b6d1aafbe1d57b15af19524906cdd60c28abade9cd19",
+    "tests/sim/production/fixture.test.ts": "3f455dfe0d5d0b1717569356e05bf51028fd5eccedf1facb2460c0fdee6a0e3f",
+    "tests/sim/production/fixture.ts": "2d7e7fdad0e79ab057d5bdf6bfb28f056aac6c0f286cd5ef913dad5d8f9ec574",
+    "tests/sim/production/measure.test.ts": "71640dccc8e43fe331d38131b0ed8b5f9720a9f57f8de241547ae68bcdf428cb",
+    "tests/sim/production/provenance.ts": "83271b46d074dc4cd1f92ec5895bbe1634c26b8b9379e141c1e04ec7068a684c"
+  },
+  "sourceSnapshotHashes": {
+    "package-lock.json": "f6495e520df58ddaf1fceb8d92f1088aa8e4f58b810db28e5e28ff27d3791b5f",
+    "package.json": "0621f952b7e17c1f838b5441f45a6f7ea800721d22f5def3be073118f98ffb27",
+    "src/data/quests/main.json": "1bc63889469663cd58d8c1ca9079a0babc97b80f2aef574f7b87c1020211f11e",
+    "src/data/skills/sorceress.json": "27ac6eda7c44610b932e28ccbad8aa778cd52ef0bee375044a2cb3c41f07e2c6",
+    "src/engine/combat/combat.ts": "9ea3f107e0c7c77358cd81fdfde946b5ed15362688679a292f200c7e5f08cf51",
+    "src/engine/combat/damage.ts": "902b1e21f9c327880ddb0f3a5ca81f8eb6db14dd3e28a241033435e86b44c70e",
+    "src/engine/combat/sub-area-run.ts": "2824bc43ab1671be7187cf688e16a5f5a6f96916b1685f4dc0f6f8460c85d0d3",
+    "src/engine/loot/rollItem.ts": "5c25d863a7e9621cebae703fa5338472563b781196d1abcd1c0fbfc226c09bba",
+    "src/engine/map/unlock.ts": "75862878850738e0ce7ccefdd9b1f37e0034dc162137f30cc62be6ff4e32da7f",
+    "src/engine/progression/equipped-stats.ts": "224ad4fd71fee3f3b19554eb2341ab7209f9f560100d271ff4ca89d80987a245",
+    "src/engine/skills/builders.ts": "83caa54587bd32e9e7be21abe823c177f3322dc5be898cce1d45f4849256d496",
+    "src/features/combat/CombatScreen.tsx": "d708f8d0917f3988eb96339c386060c29ad2a830c5841bdf2548859b695d7b72",
+    "src/features/map/MapScreen.tsx": "2023eb2c4c0fb345339e23f617876c3fa95b30ec8afb4cf503cb7bf483a1a8e7",
+    "src/stores/combatHelpers.ts": "1aea5e14e3010f08907c40d91232d59352b0a46a5371a0f3316babda9fb831e4",
+    "src/stores/mapStore.ts": "6bfbc4eef244bc5b6170a3c1da3b4ddeefe9f5e69e2286ace82c6d92a8822911",
+    "src/stores/mercToCombatUnit.ts": "e44d4127636f51799b143886a5c0502054e4e03cb293d890809aef734f6f29f7",
+    "tests/sim/production/README.md": "6befcca92a2f0cc1de34ed390f9fbf584c87e40e9efd07b004ad084706e420f5",
+    "tests/sim/production/adapter.test.ts": "38e65bde9d7bbae1800a64bdc5d8b8ca8a1e231da663796e66784747037d1593",
+    "tests/sim/production/adapter.ts": "713bfc9cb2dfda30429d1aab5915244a3d013723a941c03061b2da2892fb4c3f",
+    "tests/sim/production/earned-adapter.test.ts": "c582c117c0379afc3203b0cfaf7b209b44ad99ddb9a943101834eea25b5829e4",
+    "tests/sim/production/earned-adapter.ts": "48b7d508478aadb8308780c1130b6075d698320d2ea725a18a1d34a86ddc87f7",
+    "tests/sim/production/earned-comparison.test.ts": "8ffe7b673653a63030ccae72144175615f61d178cf13492d41a023de3527cfdc",
+    "tests/sim/production/earned-comparison.ts": "adaed49bb4c8feacddaac1a09626950f6323238a2cb2d3a1d68a5959c9027e60",
+    "tests/sim/production/earned-fixture.test.ts": "99fb52eda848407cfcdc1089fd71cc1399ab2be770b8050204675959cc1b61d1",
+    "tests/sim/production/earned-fixture.ts": "c29b0b99c8b75bb4f4a856b7935e0f0323172c4bfbc1b9718d0a39b18eade9f5",
+    "tests/sim/production/earned-measure.test.ts": "51ba4ade962bdcb26fc1a1e978f9bc6b1e005591a8f82c0bdcb39e2fd1166e6a",
+    "tests/sim/production/earned-measurement.test.ts": "82b6951d3651b3139b4dd0527e003fd6eaefbf92ba5f28db55f4f322990daf57",
+    "tests/sim/production/earned-measurement.ts": "7e2898a1c11a91fa2e3738eda6e1aa55748e8bcdf17c41030ed090c15e9d9ed3",
+    "tests/sim/production/earned-playback.ts": "67faebd1c0b83a26de7f2401c48df94d9bff025c5fc694bce74f3e845d8c843d",
+    "tests/sim/production/earned-report.test.ts": "319627fb980c56c93d19de9a2f7a0591035799c9ff2fba11d6fc7d1550c8ed65",
+    "tests/sim/production/earned-report.ts": "c4466331b1a9e80beb40d0cea848dc3670c237c6eb29c3f166b7f715875ec1aa",
+    "tests/sim/production/earned-state.ts": "e49c3cb1ad72f19037e8b6d1aafbe1d57b15af19524906cdd60c28abade9cd19",
+    "tests/sim/production/fixture.test.ts": "3f455dfe0d5d0b1717569356e05bf51028fd5eccedf1facb2460c0fdee6a0e3f",
+    "tests/sim/production/fixture.ts": "2d7e7fdad0e79ab057d5bdf6bfb28f056aac6c0f286cd5ef913dad5d8f9ec574",
+    "tests/sim/production/measure.test.ts": "71640dccc8e43fe331d38131b0ed8b5f9720a9f57f8de241547ae68bcdf428cb",
+    "tests/sim/production/provenance.ts": "83271b46d074dc4cd1f92ec5895bbe1634c26b8b9379e141c1e04ec7068a684c"
+  },
+  "observed": {
+    "a": {
+      "reportBytes": 123270009,
+      "provenance": {
+        "dataHash": "7766fb8b85756c788d23119b45afd3e2fba0d596cd288966e2be0ece01ab87bd",
+        "fixtureHash": "e76ce6c4a4fa354ca46e044b9bf5761427acddceb9fb0e8a9d3af0d85811862f",
+        "fixtureVersion": 2,
+        "nodeVersion": "v24.21.0",
+        "sourceSha": "e65af7cccbc2d165380d280394e02fd287ed3630",
+        "sourceTreeHash": "22396e94ffb82d5f9f9600d7ebaef999757192e6fa5e5e0ddfd841c5698ad39a",
+        "vitestVersion": "1.6.1"
+      },
+      "sourceStates": 6,
+      "manifestEntries": 490,
+      "comparisons": [
+        {
+          "fullRawReplayEqual": false,
+          "itemIdentityAssessment": "different",
+          "rawAbandonedRecordingsEqual": true,
+          "rawDomainObservationsEqual": false,
+          "rawRewardsEqual": false,
+          "rawWaveRecordingsEqual": true,
+          "rewardPathCoverage": {
+            "first": "exercised",
+            "second": "exercised"
+          },
+          "semanticRewardsIgnoringOnlyTopLevelItemIdEqual": true,
+          "sourceIdentityEqual": true,
+          "targetSeed": 2223645302
+        }
+      ],
+      "attempts": [
+        {
+          "rep": 1,
+          "status": "completed",
+          "preparations": 40,
+          "prepHeroXp": 11080,
+          "prepMercXp": 8310,
+          "prepItems": 344,
+          "prepShardDelta": 5157,
+          "readyPlayer": {
+            "alive": true,
+            "class": "sorceress",
+            "comboOrder": [
+              "skills-sorceress-frost-nova",
+              "skills-sorceress-fire-bolt"
+            ],
+            "cooldowns": [],
+            "coreStats": {
+              "dexterity": 25,
+              "energy": 45,
+              "strength": 10,
+              "vitality": 25
+            },
+            "derivedStats": {
+              "attack": 32,
+              "attackSpeed": 125,
+              "critChance": 0.05,
+              "critDamage": 2,
+              "defense": 43,
+              "goldFind": 0,
+              "life": 120,
+              "lifeMax": 190,
+              "magicDodge": 0.05,
+              "magicFind": 0,
+              "magicResist": 0,
+              "mana": 102,
+              "manaMax": 137,
+              "physDodge": 0.1,
+              "resistances": {
+                "arcane": 0,
+                "cold": 0,
+                "fire": 0,
+                "lightning": 0,
+                "physical": 0,
+                "poison": 0
+              }
+            },
+            "equipment": [],
+            "experience": 67,
+            "experienceToNextLevel": 8818,
+            "id": "player-1792497600000",
+            "level": 6,
+            "name": "Same40 Earned",
+            "skillLevels": {
+              "sorceress.fire_bolt": 1,
+              "sorceress.frost_nova": 6,
+              "sorceress.ice_bolt": 1
+            },
+            "skillPoints": 0,
+            "skills": [],
+            "statPoints": 0,
+            "statusEffects": [],
+            "team": "player",
+            "turnOrder": 0,
+            "type": "player"
+          },
+          "readyMerc": {
+            "fieldedMercId": "mercs/act1-rogue-inner-sight",
+            "mercEquipment": {
+              "mercs/act1-rogue-inner-sight": {
+                "gloves": {
+                  "affixes": [],
+                  "baseId": "items/base/glove-leather",
+                  "baseRolls": {
+                    "defense": 4
+                  },
+                  "equipSlot": "gloves",
+                  "equipped": true,
+                  "generatedName": {},
+                  "id": "it-8jv2k-1",
+                  "identified": true,
+                  "ilvl": 2,
+                  "level": 2,
+                  "rarity": "normal"
+                }
+              }
+            },
+            "mercProgress": {
+              "mercs/act1-rogue-inner-sight": {
+                "experience": 249,
+                "experienceToNextLevel": 4404
+              }
+            },
+            "ownedMercs": [
+              {
+                "alive": true,
+                "archetype": "back",
+                "classId": "rogue",
+                "comboOrder": [
+                  "mskill-inner-sight",
+                  "mskill-basic-arrow",
+                  "mskill-pierce-arrow"
+                ],
+                "cooldowns": [],
+                "coreStats": {
+                  "dexterity": 40,
+                  "energy": 20,
+                  "strength": 18,
+                  "vitality": 16
+                },
+                "derivedStats": {
+                  "attack": 25,
+                  "attackSpeed": 122,
+                  "critChance": 0.05,
+                  "critDamage": 2,
+                  "defense": 26,
+                  "goldFind": 0,
+                  "life": 196,
+                  "lifeMax": 196,
+                  "magicDodge": 0.05,
+                  "magicFind": 0,
+                  "magicResist": 0,
+                  "mana": 79,
+                  "manaMax": 79,
+                  "physDodge": 0.094,
+                  "resistances": {
+                    "arcane": 0,
+                    "cold": 0,
+                    "fire": 0,
+                    "lightning": 0,
+                    "physical": 0,
+                    "poison": 0
+                  }
+                },
+                "equipment": [],
+                "id": "mercs/act1-rogue-inner-sight",
+                "level": 9,
+                "name": "Rogue Scout \u2014 Inner Sight",
+                "rarity": "R",
+                "signatureSkillId": "mskill-inner-sight",
+                "skills": [],
+                "statusEffects": [],
+                "team": "player",
+                "turnOrder": 0,
+                "type": "mercenary"
+              }
+            ]
+          },
+          "gear": [
+            {
+              "owner": "hero",
+              "slot": "gloves",
+              "id": "it-96fga-3",
+              "journalIndex": 2,
+              "defense": 5
+            },
+            {
+              "owner": "hero",
+              "slot": "boots",
+              "id": "it-5iwwr-4",
+              "journalIndex": 3,
+              "defense": 3
+            },
+            {
+              "owner": "merc",
+              "slot": "gloves",
+              "id": "it-8jv2k-1",
+              "journalIndex": 0,
+              "defense": 4
+            }
+          ],
+          "targetWaves": [
+            {
+              "wave": 1,
+              "winner": "player",
+              "advance": "next-wave",
+              "logicalSeconds": 6.0,
+              "events": 106,
+              "openingResources": [
+                {
+                  "id": "player-1792497600000",
+                  "life": 120,
+                  "mana": 102
+                },
+                {
+                  "id": "merc-mercs/act1-rogue-inner-sight",
+                  "life": 196,
+                  "mana": 79
+                }
+              ],
+              "finalResources": [
+                {
+                  "id": "player-1792497600000",
+                  "life": 134,
+                  "mana": 112
+                },
+                {
+                  "id": "merc-mercs/act1-rogue-inner-sight",
+                  "life": 196,
+                  "mana": 79
+                }
+              ],
+              "enemiesAlive": 0,
+              "enemyLifeRemaining": 0,
+              "actualDelta": {
+                "addedClears": [],
+                "currencies": {
+                  "rune-shard": 133
+                },
+                "mercXp": {
+                  "mercs/act1-rogue-inner-sight": 202
+                },
+                "removedItemIds": [],
+                "xp": 270
+              },
+              "addedItems": 4
+            },
+            {
+              "wave": 2,
+              "winner": "player",
+              "advance": "next-wave",
+              "logicalSeconds": 22.5,
+              "events": 487,
+              "openingResources": [
+                {
+                  "id": "player-1792497600000",
+                  "life": 134,
+                  "mana": 112
+                },
+                {
+                  "id": "merc-mercs/act1-rogue-inner-sight",
+                  "life": 196,
+                  "mana": 79
+                }
+              ],
+              "finalResources": [
+                {
+                  "id": "player-1792497600000",
+                  "life": 99,
+                  "mana": 129
+                },
+                {
+                  "id": "merc-mercs/act1-rogue-inner-sight",
+                  "life": 129,
+                  "mana": 79
+                }
+              ],
+              "enemiesAlive": 0,
+              "enemyLifeRemaining": 0,
+              "actualDelta": {
+                "addedClears": [],
+                "currencies": {
+                  "rune-shard": 826,
+                  "wishstone": 2
+                },
+                "mercXp": {
+                  "mercs/act1-rogue-inner-sight": 300
+                },
+                "removedItemIds": [],
+                "xp": 400
+              },
+              "addedItems": 50
+            },
+            {
+              "wave": 3,
+              "winner": "enemy",
+              "advance": "defeat",
+              "logicalSeconds": 16.94,
+              "events": 403,
+              "openingResources": [
+                {
+                  "id": "player-1792497600000",
+                  "life": 99,
+                  "mana": 129
+                },
+                {
+                  "id": "merc-mercs/act1-rogue-inner-sight",
+                  "life": 129,
+                  "mana": 79
+                }
+              ],
+              "finalResources": [
+                {
+                  "id": "player-1792497600000",
+                  "life": 0,
+                  "mana": 120
+                },
+                {
+                  "id": "merc-mercs/act1-rogue-inner-sight",
+                  "life": 0,
+                  "mana": 79
+                }
+              ],
+              "enemiesAlive": 6,
+              "enemyLifeRemaining": 2189,
+              "actualDelta": {
+                "addedClears": [],
+                "currencies": {
+                  "rune-shard": 0,
+                  "wishstone": 0
+                },
+                "mercXp": {
+                  "mercs/act1-rogue-inner-sight": 0
+                },
+                "removedItemIds": [],
+                "xp": 0
+              },
+              "addedItems": 0
+            }
+          ],
+          "targetAdvance": "defeat",
+          "timings": {
+            "logicalSimSeconds": 1384.8680000000002,
+            "uiDelayHintSeconds": 2377.836999999982,
+            "wallSeconds": 1.776550705
+          },
+          "terminalQuest": {
+            "id": "quests/act1-den-of-evil",
+            "objectives": {
+              "obj-clear-den": false,
+              "obj-return": false
+            },
+            "status": "inProgress"
+          },
+          "terminalClears": []
+        },
+        {
+          "rep": 2,
+          "status": "completed",
+          "preparations": 40,
+          "prepHeroXp": 11080,
+          "prepMercXp": 8310,
+          "prepItems": 344,
+          "prepShardDelta": 5157,
+          "readyPlayer": {
+            "alive": true,
+            "class": "sorceress",
+            "comboOrder": [
+              "skills-sorceress-frost-nova",
+              "skills-sorceress-fire-bolt"
+            ],
+            "cooldowns": [],
+            "coreStats": {
+              "dexterity": 25,
+              "energy": 45,
+              "strength": 10,
+              "vitality": 25
+            },
+            "derivedStats": {
+              "attack": 32,
+              "attackSpeed": 125,
+              "critChance": 0.05,
+              "critDamage": 2,
+              "defense": 43,
+              "goldFind": 0,
+              "life": 120,
+              "lifeMax": 190,
+              "magicDodge": 0.05,
+              "magicFind": 0,
+              "magicResist": 0,
+              "mana": 102,
+              "manaMax": 137,
+              "physDodge": 0.1,
+              "resistances": {
+                "arcane": 0,
+                "cold": 0,
+                "fire": 0,
+                "lightning": 0,
+                "physical": 0,
+                "poison": 0
+              }
+            },
+            "equipment": [],
+            "experience": 67,
+            "experienceToNextLevel": 8818,
+            "id": "player-1792497600000",
+            "level": 6,
+            "name": "Same40 Earned",
+            "skillLevels": {
+              "sorceress.fire_bolt": 1,
+              "sorceress.frost_nova": 6,
+              "sorceress.ice_bolt": 1
+            },
+            "skillPoints": 0,
+            "skills": [],
+            "statPoints": 0,
+            "statusEffects": [],
+            "team": "player",
+            "turnOrder": 0,
+            "type": "player"
+          },
+          "readyMerc": {
+            "fieldedMercId": "mercs/act1-rogue-inner-sight",
+            "mercEquipment": {
+              "mercs/act1-rogue-inner-sight": {
+                "gloves": {
+                  "affixes": [],
+                  "baseId": "items/base/glove-leather",
+                  "baseRolls": {
+                    "defense": 4
+                  },
+                  "equipSlot": "gloves",
+                  "equipped": true,
+                  "generatedName": {},
+                  "id": "it-8jv2k-b3",
+                  "identified": true,
+                  "ilvl": 2,
+                  "level": 2,
+                  "rarity": "normal"
+                }
+              }
+            },
+            "mercProgress": {
+              "mercs/act1-rogue-inner-sight": {
+                "experience": 249,
+                "experienceToNextLevel": 4404
+              }
+            },
+            "ownedMercs": [
+              {
+                "alive": true,
+                "archetype": "back",
+                "classId": "rogue",
+                "comboOrder": [
+                  "mskill-inner-sight",
+                  "mskill-basic-arrow",
+                  "mskill-pierce-arrow"
+                ],
+                "cooldowns": [],
+                "coreStats": {
+                  "dexterity": 40,
+                  "energy": 20,
+                  "strength": 18,
+                  "vitality": 16
+                },
+                "derivedStats": {
+                  "attack": 25,
+                  "attackSpeed": 122,
+                  "critChance": 0.05,
+                  "critDamage": 2,
+                  "defense": 26,
+                  "goldFind": 0,
+                  "life": 196,
+                  "lifeMax": 196,
+                  "magicDodge": 0.05,
+                  "magicFind": 0,
+                  "magicResist": 0,
+                  "mana": 79,
+                  "manaMax": 79,
+                  "physDodge": 0.094,
+                  "resistances": {
+                    "arcane": 0,
+                    "cold": 0,
+                    "fire": 0,
+                    "lightning": 0,
+                    "physical": 0,
+                    "poison": 0
+                  }
+                },
+                "equipment": [],
+                "id": "mercs/act1-rogue-inner-sight",
+                "level": 9,
+                "name": "Rogue Scout \u2014 Inner Sight",
+                "rarity": "R",
+                "signatureSkillId": "mskill-inner-sight",
+                "skills": [],
+                "statusEffects": [],
+                "team": "player",
+                "turnOrder": 0,
+                "type": "mercenary"
+              }
+            ]
+          },
+          "gear": [
+            {
+              "owner": "hero",
+              "slot": "gloves",
+              "id": "it-96fga-b5",
+              "journalIndex": 2,
+              "defense": 5
+            },
+            {
+              "owner": "hero",
+              "slot": "boots",
+              "id": "it-5iwwr-b6",
+              "journalIndex": 3,
+              "defense": 3
+            },
+            {
+              "owner": "merc",
+              "slot": "gloves",
+              "id": "it-8jv2k-b3",
+              "journalIndex": 0,
+              "defense": 4
+            }
+          ],
+          "targetWaves": [
+            {
+              "wave": 1,
+              "winner": "player",
+              "advance": "next-wave",
+              "logicalSeconds": 6.0,
+              "events": 106,
+              "openingResources": [
+                {
+                  "id": "player-1792497600000",
+                  "life": 120,
+                  "mana": 102
+                },
+                {
+                  "id": "merc-mercs/act1-rogue-inner-sight",
+                  "life": 196,
+                  "mana": 79
+                }
+              ],
+              "finalResources": [
+                {
+                  "id": "player-1792497600000",
+                  "life": 134,
+                  "mana": 112
+                },
+                {
+                  "id": "merc-mercs/act1-rogue-inner-sight",
+                  "life": 196,
+                  "mana": 79
+                }
+              ],
+              "enemiesAlive": 0,
+              "enemyLifeRemaining": 0,
+              "actualDelta": {
+                "addedClears": [],
+                "currencies": {
+                  "rune-shard": 133
+                },
+                "mercXp": {
+                  "mercs/act1-rogue-inner-sight": 202
+                },
+                "removedItemIds": [],
+                "xp": 270
+              },
+              "addedItems": 4
+            },
+            {
+              "wave": 2,
+              "winner": "player",
+              "advance": "next-wave",
+              "logicalSeconds": 22.5,
+              "events": 487,
+              "openingResources": [
+                {
+                  "id": "player-1792497600000",
+                  "life": 134,
+                  "mana": 112
+                },
+                {
+                  "id": "merc-mercs/act1-rogue-inner-sight",
+                  "life": 196,
+                  "mana": 79
+                }
+              ],
+              "finalResources": [
+                {
+                  "id": "player-1792497600000",
+                  "life": 99,
+                  "mana": 129
+                },
+                {
+                  "id": "merc-mercs/act1-rogue-inner-sight",
+                  "life": 129,
+                  "mana": 79
+                }
+              ],
+              "enemiesAlive": 0,
+              "enemyLifeRemaining": 0,
+              "actualDelta": {
+                "addedClears": [],
+                "currencies": {
+                  "rune-shard": 826,
+                  "wishstone": 2
+                },
+                "mercXp": {
+                  "mercs/act1-rogue-inner-sight": 300
+                },
+                "removedItemIds": [],
+                "xp": 400
+              },
+              "addedItems": 50
+            },
+            {
+              "wave": 3,
+              "winner": "enemy",
+              "advance": "defeat",
+              "logicalSeconds": 16.94,
+              "events": 403,
+              "openingResources": [
+                {
+                  "id": "player-1792497600000",
+                  "life": 99,
+                  "mana": 129
+                },
+                {
+                  "id": "merc-mercs/act1-rogue-inner-sight",
+                  "life": 129,
+                  "mana": 79
+                }
+              ],
+              "finalResources": [
+                {
+                  "id": "player-1792497600000",
+                  "life": 0,
+                  "mana": 120
+                },
+                {
+                  "id": "merc-mercs/act1-rogue-inner-sight",
+                  "life": 0,
+                  "mana": 79
+                }
+              ],
+              "enemiesAlive": 6,
+              "enemyLifeRemaining": 2189,
+              "actualDelta": {
+                "addedClears": [],
+                "currencies": {
+                  "rune-shard": 0,
+                  "wishstone": 0
+                },
+                "mercXp": {
+                  "mercs/act1-rogue-inner-sight": 0
+                },
+                "removedItemIds": [],
+                "xp": 0
+              },
+              "addedItems": 0
+            }
+          ],
+          "targetAdvance": "defeat",
+          "timings": {
+            "logicalSimSeconds": 1384.8680000000002,
+            "uiDelayHintSeconds": 2377.836999999982,
+            "wallSeconds": 1.3973447770000003
+          },
+          "terminalQuest": {
+            "id": "quests/act1-den-of-evil",
+            "objectives": {
+              "obj-clear-den": false,
+              "obj-return": false
+            },
+            "status": "inProgress"
+          },
+          "terminalClears": []
+        }
+      ],
+      "repeatDifferences": {
+        "total": 39087,
+        "itemIdOccurrences": 39085,
+        "originalItemPairs": 398,
+        "sequenceOffsets": [
+          398
+        ],
+        "otherFields": [
+          "repetition",
+          "wallSeconds"
+        ]
+      }
+    },
+    "b": {
+      "reportBytes": 121497444,
+      "provenance": {
+        "dataHash": "7766fb8b85756c788d23119b45afd3e2fba0d596cd288966e2be0ece01ab87bd",
+        "fixtureHash": "e5a21ed03a42398020bd6f177ba10477220717bcb9a8b721a4dde3297db82979",
+        "fixtureVersion": 2,
+        "nodeVersion": "v24.21.0",
+        "sourceSha": "e65af7cccbc2d165380d280394e02fd287ed3630",
+        "sourceTreeHash": "22396e94ffb82d5f9f9600d7ebaef999757192e6fa5e5e0ddfd841c5698ad39a",
+        "vitestVersion": "1.6.1"
+      },
+      "sourceStates": 6,
+      "manifestEntries": 490,
+      "comparisons": [
+        {
+          "fullRawReplayEqual": false,
+          "itemIdentityAssessment": "different",
+          "rawAbandonedRecordingsEqual": true,
+          "rawDomainObservationsEqual": false,
+          "rawRewardsEqual": false,
+          "rawWaveRecordingsEqual": true,
+          "rewardPathCoverage": {
+            "first": "exercised",
+            "second": "exercised"
+          },
+          "semanticRewardsIgnoringOnlyTopLevelItemIdEqual": true,
+          "sourceIdentityEqual": true,
+          "targetSeed": 2223645302
+        }
+      ],
+      "attempts": [
+        {
+          "rep": 1,
+          "status": "completed",
+          "preparations": 40,
+          "prepHeroXp": 11080,
+          "prepMercXp": 8310,
+          "prepItems": 344,
+          "prepShardDelta": 5157,
+          "readyPlayer": {
+            "alive": true,
+            "class": "sorceress",
+            "comboOrder": [
+              "skills-sorceress-frost-nova",
+              "skills-sorceress-fire-bolt"
+            ],
+            "cooldowns": [],
+            "coreStats": {
+              "dexterity": 25,
+              "energy": 45,
+              "strength": 10,
+              "vitality": 25
+            },
+            "derivedStats": {
+              "attack": 32,
+              "attackSpeed": 125,
+              "critChance": 0.05,
+              "critDamage": 2,
+              "defense": 43,
+              "goldFind": 0,
+              "life": 120,
+              "lifeMax": 190,
+              "magicDodge": 0.05,
+              "magicFind": 0,
+              "magicResist": 0,
+              "mana": 102,
+              "manaMax": 137,
+              "physDodge": 0.1,
+              "resistances": {
+                "arcane": 0,
+                "cold": 0,
+                "fire": 0,
+                "lightning": 0,
+                "physical": 0,
+                "poison": 0
+              }
+            },
+            "equipment": [],
+            "experience": 67,
+            "experienceToNextLevel": 8818,
+            "id": "player-1792497600000",
+            "level": 6,
+            "name": "Same40 Earned",
+            "skillLevels": {
+              "sorceress.fire_bolt": 1,
+              "sorceress.frost_nova": 5,
+              "sorceress.ice_bolt": 1,
+              "sorceress.warmth": 1
+            },
+            "skillPoints": 0,
+            "skills": [],
+            "statPoints": 0,
+            "statusEffects": [],
+            "team": "player",
+            "turnOrder": 0,
+            "type": "player"
+          },
+          "readyMerc": {
+            "fieldedMercId": "mercs/act1-rogue-inner-sight",
+            "mercEquipment": {
+              "mercs/act1-rogue-inner-sight": {
+                "gloves": {
+                  "affixes": [],
+                  "baseId": "items/base/glove-leather",
+                  "baseRolls": {
+                    "defense": 4
+                  },
+                  "equipSlot": "gloves",
+                  "equipped": true,
+                  "generatedName": {},
+                  "id": "it-8jv2k-1",
+                  "identified": true,
+                  "ilvl": 2,
+                  "level": 2,
+                  "rarity": "normal"
+                }
+              }
+            },
+            "mercProgress": {
+              "mercs/act1-rogue-inner-sight": {
+                "experience": 249,
+                "experienceToNextLevel": 4404
+              }
+            },
+            "ownedMercs": [
+              {
+                "alive": true,
+                "archetype": "back",
+                "classId": "rogue",
+                "comboOrder": [
+                  "mskill-inner-sight",
+                  "mskill-basic-arrow",
+                  "mskill-pierce-arrow"
+                ],
+                "cooldowns": [],
+                "coreStats": {
+                  "dexterity": 40,
+                  "energy": 20,
+                  "strength": 18,
+                  "vitality": 16
+                },
+                "derivedStats": {
+                  "attack": 25,
+                  "attackSpeed": 122,
+                  "critChance": 0.05,
+                  "critDamage": 2,
+                  "defense": 26,
+                  "goldFind": 0,
+                  "life": 196,
+                  "lifeMax": 196,
+                  "magicDodge": 0.05,
+                  "magicFind": 0,
+                  "magicResist": 0,
+                  "mana": 79,
+                  "manaMax": 79,
+                  "physDodge": 0.094,
+                  "resistances": {
+                    "arcane": 0,
+                    "cold": 0,
+                    "fire": 0,
+                    "lightning": 0,
+                    "physical": 0,
+                    "poison": 0
+                  }
+                },
+                "equipment": [],
+                "id": "mercs/act1-rogue-inner-sight",
+                "level": 9,
+                "name": "Rogue Scout \u2014 Inner Sight",
+                "rarity": "R",
+                "signatureSkillId": "mskill-inner-sight",
+                "skills": [],
+                "statusEffects": [],
+                "team": "player",
+                "turnOrder": 0,
+                "type": "mercenary"
+              }
+            ]
+          },
+          "gear": [
+            {
+              "owner": "hero",
+              "slot": "gloves",
+              "id": "it-96fga-3",
+              "journalIndex": 2,
+              "defense": 5
+            },
+            {
+              "owner": "hero",
+              "slot": "boots",
+              "id": "it-5iwwr-4",
+              "journalIndex": 3,
+              "defense": 3
+            },
+            {
+              "owner": "merc",
+              "slot": "gloves",
+              "id": "it-8jv2k-1",
+              "journalIndex": 0,
+              "defense": 4
+            }
+          ],
+          "targetWaves": [
+            {
+              "wave": 1,
+              "winner": "player",
+              "advance": "next-wave",
+              "logicalSeconds": 6.0,
+              "events": 105,
+              "openingResources": [
+                {
+                  "id": "player-1792497600000",
+                  "life": 120,
+                  "mana": 102
+                },
+                {
+                  "id": "merc-mercs/act1-rogue-inner-sight",
+                  "life": 196,
+                  "mana": 79
+                }
+              ],
+              "finalResources": [
+                {
+                  "id": "player-1792497600000",
+                  "life": 134,
+                  "mana": 114
+                },
+                {
+                  "id": "merc-mercs/act1-rogue-inner-sight",
+                  "life": 196,
+                  "mana": 79
+                }
+              ],
+              "enemiesAlive": 0,
+              "enemyLifeRemaining": 0,
+              "actualDelta": {
+                "addedClears": [],
+                "currencies": {
+                  "rune-shard": 133
+                },
+                "mercXp": {
+                  "mercs/act1-rogue-inner-sight": 202
+                },
+                "removedItemIds": [],
+                "xp": 270
+              },
+              "addedItems": 4
+            },
+            {
+              "wave": 2,
+              "winner": "enemy",
+              "advance": "defeat",
+              "logicalSeconds": 21.84,
+              "events": 496,
+              "openingResources": [
+                {
+                  "id": "player-1792497600000",
+                  "life": 134,
+                  "mana": 114
+                },
+                {
+                  "id": "merc-mercs/act1-rogue-inner-sight",
+                  "life": 196,
+                  "mana": 79
+                }
+              ],
+              "finalResources": [
+                {
+                  "id": "player-1792497600000",
+                  "life": 0,
+                  "mana": 136
+                },
+                {
+                  "id": "merc-mercs/act1-rogue-inner-sight",
+                  "life": 73,
+                  "mana": 79
+                }
+              ],
+              "enemiesAlive": 4,
+              "enemyLifeRemaining": 136,
+              "actualDelta": {
+                "addedClears": [],
+                "currencies": {
+                  "rune-shard": 0
+                },
+                "mercXp": {
+                  "mercs/act1-rogue-inner-sight": 0
+                },
+                "removedItemIds": [],
+                "xp": 0
+              },
+              "addedItems": 0
+            }
+          ],
+          "targetAdvance": "defeat",
+          "timings": {
+            "logicalSimSeconds": 1367.268,
+            "uiDelayHintSeconds": 2342.360999999982,
+            "wallSeconds": 1.764127282
+          },
+          "terminalQuest": {
+            "id": "quests/act1-den-of-evil",
+            "objectives": {
+              "obj-clear-den": false,
+              "obj-return": false
+            },
+            "status": "inProgress"
+          },
+          "terminalClears": []
+        },
+        {
+          "rep": 2,
+          "status": "completed",
+          "preparations": 40,
+          "prepHeroXp": 11080,
+          "prepMercXp": 8310,
+          "prepItems": 344,
+          "prepShardDelta": 5157,
+          "readyPlayer": {
+            "alive": true,
+            "class": "sorceress",
+            "comboOrder": [
+              "skills-sorceress-frost-nova",
+              "skills-sorceress-fire-bolt"
+            ],
+            "cooldowns": [],
+            "coreStats": {
+              "dexterity": 25,
+              "energy": 45,
+              "strength": 10,
+              "vitality": 25
+            },
+            "derivedStats": {
+              "attack": 32,
+              "attackSpeed": 125,
+              "critChance": 0.05,
+              "critDamage": 2,
+              "defense": 43,
+              "goldFind": 0,
+              "life": 120,
+              "lifeMax": 190,
+              "magicDodge": 0.05,
+              "magicFind": 0,
+              "magicResist": 0,
+              "mana": 102,
+              "manaMax": 137,
+              "physDodge": 0.1,
+              "resistances": {
+                "arcane": 0,
+                "cold": 0,
+                "fire": 0,
+                "lightning": 0,
+                "physical": 0,
+                "poison": 0
+              }
+            },
+            "equipment": [],
+            "experience": 67,
+            "experienceToNextLevel": 8818,
+            "id": "player-1792497600000",
+            "level": 6,
+            "name": "Same40 Earned",
+            "skillLevels": {
+              "sorceress.fire_bolt": 1,
+              "sorceress.frost_nova": 5,
+              "sorceress.ice_bolt": 1,
+              "sorceress.warmth": 1
+            },
+            "skillPoints": 0,
+            "skills": [],
+            "statPoints": 0,
+            "statusEffects": [],
+            "team": "player",
+            "turnOrder": 0,
+            "type": "player"
+          },
+          "readyMerc": {
+            "fieldedMercId": "mercs/act1-rogue-inner-sight",
+            "mercEquipment": {
+              "mercs/act1-rogue-inner-sight": {
+                "gloves": {
+                  "affixes": [],
+                  "baseId": "items/base/glove-leather",
+                  "baseRolls": {
+                    "defense": 4
+                  },
+                  "equipSlot": "gloves",
+                  "equipped": true,
+                  "generatedName": {},
+                  "id": "it-8jv2k-9p",
+                  "identified": true,
+                  "ilvl": 2,
+                  "level": 2,
+                  "rarity": "normal"
+                }
+              }
+            },
+            "mercProgress": {
+              "mercs/act1-rogue-inner-sight": {
+                "experience": 249,
+                "experienceToNextLevel": 4404
+              }
+            },
+            "ownedMercs": [
+              {
+                "alive": true,
+                "archetype": "back",
+                "classId": "rogue",
+                "comboOrder": [
+                  "mskill-inner-sight",
+                  "mskill-basic-arrow",
+                  "mskill-pierce-arrow"
+                ],
+                "cooldowns": [],
+                "coreStats": {
+                  "dexterity": 40,
+                  "energy": 20,
+                  "strength": 18,
+                  "vitality": 16
+                },
+                "derivedStats": {
+                  "attack": 25,
+                  "attackSpeed": 122,
+                  "critChance": 0.05,
+                  "critDamage": 2,
+                  "defense": 26,
+                  "goldFind": 0,
+                  "life": 196,
+                  "lifeMax": 196,
+                  "magicDodge": 0.05,
+                  "magicFind": 0,
+                  "magicResist": 0,
+                  "mana": 79,
+                  "manaMax": 79,
+                  "physDodge": 0.094,
+                  "resistances": {
+                    "arcane": 0,
+                    "cold": 0,
+                    "fire": 0,
+                    "lightning": 0,
+                    "physical": 0,
+                    "poison": 0
+                  }
+                },
+                "equipment": [],
+                "id": "mercs/act1-rogue-inner-sight",
+                "level": 9,
+                "name": "Rogue Scout \u2014 Inner Sight",
+                "rarity": "R",
+                "signatureSkillId": "mskill-inner-sight",
+                "skills": [],
+                "statusEffects": [],
+                "team": "player",
+                "turnOrder": 0,
+                "type": "mercenary"
+              }
+            ]
+          },
+          "gear": [
+            {
+              "owner": "hero",
+              "slot": "gloves",
+              "id": "it-96fga-9r",
+              "journalIndex": 2,
+              "defense": 5
+            },
+            {
+              "owner": "hero",
+              "slot": "boots",
+              "id": "it-5iwwr-9s",
+              "journalIndex": 3,
+              "defense": 3
+            },
+            {
+              "owner": "merc",
+              "slot": "gloves",
+              "id": "it-8jv2k-9p",
+              "journalIndex": 0,
+              "defense": 4
+            }
+          ],
+          "targetWaves": [
+            {
+              "wave": 1,
+              "winner": "player",
+              "advance": "next-wave",
+              "logicalSeconds": 6.0,
+              "events": 105,
+              "openingResources": [
+                {
+                  "id": "player-1792497600000",
+                  "life": 120,
+                  "mana": 102
+                },
+                {
+                  "id": "merc-mercs/act1-rogue-inner-sight",
+                  "life": 196,
+                  "mana": 79
+                }
+              ],
+              "finalResources": [
+                {
+                  "id": "player-1792497600000",
+                  "life": 134,
+                  "mana": 114
+                },
+                {
+                  "id": "merc-mercs/act1-rogue-inner-sight",
+                  "life": 196,
+                  "mana": 79
+                }
+              ],
+              "enemiesAlive": 0,
+              "enemyLifeRemaining": 0,
+              "actualDelta": {
+                "addedClears": [],
+                "currencies": {
+                  "rune-shard": 133
+                },
+                "mercXp": {
+                  "mercs/act1-rogue-inner-sight": 202
+                },
+                "removedItemIds": [],
+                "xp": 270
+              },
+              "addedItems": 4
+            },
+            {
+              "wave": 2,
+              "winner": "enemy",
+              "advance": "defeat",
+              "logicalSeconds": 21.84,
+              "events": 496,
+              "openingResources": [
+                {
+                  "id": "player-1792497600000",
+                  "life": 134,
+                  "mana": 114
+                },
+                {
+                  "id": "merc-mercs/act1-rogue-inner-sight",
+                  "life": 196,
+                  "mana": 79
+                }
+              ],
+              "finalResources": [
+                {
+                  "id": "player-1792497600000",
+                  "life": 0,
+                  "mana": 136
+                },
+                {
+                  "id": "merc-mercs/act1-rogue-inner-sight",
+                  "life": 73,
+                  "mana": 79
+                }
+              ],
+              "enemiesAlive": 4,
+              "enemyLifeRemaining": 136,
+              "actualDelta": {
+                "addedClears": [],
+                "currencies": {
+                  "rune-shard": 0
+                },
+                "mercXp": {
+                  "mercs/act1-rogue-inner-sight": 0
+                },
+                "removedItemIds": [],
+                "xp": 0
+              },
+              "addedItems": 0
+            }
+          ],
+          "targetAdvance": "defeat",
+          "timings": {
+            "logicalSimSeconds": 1367.268,
+            "uiDelayHintSeconds": 2342.360999999982,
+            "wallSeconds": 1.3733116609999998
+          },
+          "terminalQuest": {
+            "id": "quests/act1-den-of-evil",
+            "objectives": {
+              "obj-clear-den": false,
+              "obj-return": false
+            },
+            "status": "inProgress"
+          },
+          "terminalClears": []
+        }
+      ],
+      "repeatDifferences": {
+        "total": 38517,
+        "itemIdOccurrences": 38515,
+        "originalItemPairs": 348,
+        "sequenceOffsets": [
+          348
+        ],
+        "otherFields": [
+          "repetition",
+          "wallSeconds"
+        ]
+      }
+    }
+  },
+  "testCounts": {
+    "screen-a-test-report.json": {
+      "files": 1,
+      "actual": {
+        "passed": 1
+      },
+      "aggregatePassed": 1,
+      "aggregateFailed": 0
+    },
+    "screen-b-test-report.json": {
+      "files": 1,
+      "actual": {
+        "passed": 1
+      },
+      "aggregatePassed": 1,
+      "aggregateFailed": 0
+    },
+    "final-unit-report.json": {
+      "files": 157,
+      "actual": {
+        "passed": 3151
+      },
+      "aggregatePassed": 3151,
+      "aggregateFailed": 0
+    }
+  },
+  "commands": [
+    {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:53:23.952823+00:00",
+      "seconds": 53.848,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:53:22.776105+00:00",
+      "seconds": 22.254,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-screen-vacx7uv4/final-unit-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:53:21.547662+00:00",
+      "seconds": 52.281,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "python",
+        "inspect-screen.py"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-screen-vacx7uv4",
+      "started": "2026-10-20T20:52:46.637439+00:00",
+      "seconds": 2.963,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "python",
+        "inspect-screen.py"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-screen-vacx7uv4",
+      "started": "2026-10-20T20:53:20.409807+00:00",
+      "seconds": 6.75,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "python",
+        "inspect-screen.py"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-screen-vacx7uv4",
+      "started": "2026-10-20T20:57:14.128218+00:00",
+      "seconds": 4.754,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "env",
+        "EARNED_FIXTURE_PATH=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-screen-vacx7uv4/frost6-fire1-same40.json",
+        "EARNED_REPORT_PATH=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-screen-vacx7uv4/screen-a-earned-report.json",
+        "npm",
+        "run",
+        "sim:earned",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-screen-vacx7uv4/screen-a-test-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:47:36.862282+00:00",
+      "pid": 1773455,
+      "pgid": 1773455,
+      "executionDeadlineSeconds": 30,
+      "terminationGraceSeconds": 2,
+      "executionSeconds": 12.611,
+      "teardownSeconds": 0.0,
+      "seconds": 12.611,
+      "exitCode": 0,
+      "timedOut": false,
+      "signals": []
+    },
+    {
+      "command": [
+        "env",
+        "EARNED_FIXTURE_PATH=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-screen-vacx7uv4/frost5-fire1-warmth1-same40.json",
+        "EARNED_REPORT_PATH=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-screen-vacx7uv4/screen-b-earned-report.json",
+        "npm",
+        "run",
+        "sim:earned",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-screen-vacx7uv4/screen-b-test-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:48:06.631884+00:00",
+      "pid": 1773983,
+      "pgid": 1773983,
+      "executionDeadlineSeconds": 30,
+      "terminationGraceSeconds": 2,
+      "executionSeconds": 12.56,
+      "teardownSeconds": 0.0,
+      "seconds": 12.56,
+      "exitCode": 0,
+      "timedOut": false,
+      "signals": []
+    }
+  ],
+  "archive": {
+    "file": "diagnostics.tar.gz",
+    "bytes": 8249523,
+    "sha256": "729d02864c51bac76ef20ab6499b731d96d43b0804c7344f72fbd42a9fcc12ff",
+    "files": [
+      {
+        "path": "contract-freezes-original.json",
+        "bytes": 296,
+        "sha256": "2dc9a2c9c79840900133a0e26642869b0edd0ac21a3170000ca51d355eb6f048"
+      },
+      {
+        "path": "contract-freezes.json",
+        "bytes": 296,
+        "sha256": "c75b68e1278108f4b797fce5d824d3e6972ac11bcf396baf0fcf835b70f39ef4"
+      },
+      {
+        "path": "deadline-runner.py",
+        "bytes": 1779,
+        "sha256": "60fc33d9b5a432638b3d6ab1210c4572839a06f74c41617b8e60a6ba8b2dbc56"
+      },
+      {
+        "path": "design-contract-review.txt",
+        "bytes": 240,
+        "sha256": "9d3969a9f39701b75c611f929b2d401ab6fa7cce975cc120517a7b8493bcc1b1"
+      },
+      {
+        "path": "design-outcome-review.txt",
+        "bytes": 1173,
+        "sha256": "1a71caf260ca3c8f88c4d1f4e6a6c1f178f9e501c71f051c82a34f04e9bce8ef"
+      },
+      {
+        "path": "disk-after-a.json",
+        "bytes": 77,
+        "sha256": "42fb752497bc0cfa4be1926623455c91bf36b25a86e224610ec29845d0e58d04"
+      },
+      {
+        "path": "disk-before.json",
+        "bytes": 77,
+        "sha256": "4a67024c0e5db351b817a00648aafe535970d84213a135b1cc229ef4654cabfc"
+      },
+      {
+        "path": "expectations.md",
+        "bytes": 7774,
+        "sha256": "71bf7ea007bd9680c14e3464b90c107b2884c80671d9779663b4724165c34c26"
+      },
+      {
+        "path": "final-lint.log",
+        "bytes": 196,
+        "sha256": "2792de92bfcfcca52d45d7d9554be17142ed714d537e23bbae1b59b7d5a9b80c"
+      },
+      {
+        "path": "final-lint.meta.json",
+        "bytes": 235,
+        "sha256": "234656990cb161e867e1f319906812d5f84baf94168a1582447efa6d5f6a29a9"
+      },
+      {
+        "path": "final-typecheck.log",
+        "bytes": 50,
+        "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+      },
+      {
+        "path": "final-typecheck.meta.json",
+        "bytes": 240,
+        "sha256": "1c8eb69994aa393e7fbd49338a9f68c333e6bb28ebe9e7d019b62912fdabc928"
+      },
+      {
+        "path": "final-unit-report.json",
+        "bytes": 1033230,
+        "sha256": "eb03aac26de85f344e289efcd9342fb34857371cb8a709ecd67cb5ccd474e845"
+      },
+      {
+        "path": "final-unit.log",
+        "bytes": 305,
+        "sha256": "5d1e9234c9cfd5d992f69ce813768bb073789f7fd7471bb4cbfdf23b377942d3"
+      },
+      {
+        "path": "final-unit.meta.json",
+        "bytes": 382,
+        "sha256": "146eaf7895be2c7d25227d39214aa125bae785694ec7309d6189bd59d030b4ed"
+      },
+      {
+        "path": "fixture-freezes.json",
+        "bytes": 207,
+        "sha256": "b7dd25408b6572383b90ef6b025bac1a0a7292a6a4062f014f63d13fff75239b"
+      },
+      {
+        "path": "freeze-fixtures.py",
+        "bytes": 2155,
+        "sha256": "2f0dd13d5234be41ceff8a0025b2b86b1cbf2892a76cc747ea46a964f28034a5"
+      },
+      {
+        "path": "frost5-fire1-warmth1-same40.json",
+        "bytes": 2564,
+        "sha256": "edff646e4954ba2fc2c55ee8baab8ce7e94d2396e010d8537ff21fdabde43221"
+      },
+      {
+        "path": "frost6-fire1-same40.json",
+        "bytes": 2449,
+        "sha256": "503d8f9f5c06c1a5ae768d3171830a331034321816d279eaaa5cf42a26fd18d1"
+      },
+      {
+        "path": "inspect-screen-original.py",
+        "bytes": 8456,
+        "sha256": "e9f6991bbecb5ff02bbc3007e01cf9f5b4afdd4c5ddea4384284dbf8fe538086"
+      },
+      {
+        "path": "inspect-screen-tolerance.log",
+        "bytes": 703,
+        "sha256": "7b8264d426fad9a632e51f7ddf57a5354e683ba3742f3592d0986b2648f7338c"
+      },
+      {
+        "path": "inspect-screen-tolerance.meta.json",
+        "bytes": 241,
+        "sha256": "cc197e7b1e9db1796184c5df45cfc1f5aea2df6722d38f2bfa41102069abfea0"
+      },
+      {
+        "path": "inspect-screen-tolerance.py",
+        "bytes": 8706,
+        "sha256": "4efed225003b568525752c70c5f5824cbb9539b1d2a2726848df1ae1d73b25a7"
+      },
+      {
+        "path": "inspect-screen-tolerant-final.log",
+        "bytes": 830,
+        "sha256": "0404f37c0a83046150acd3deb4c405e6b0811ad521addd5411d7ed81863fa0b8"
+      },
+      {
+        "path": "inspect-screen-tolerant-final.meta.json",
+        "bytes": 240,
+        "sha256": "1e36c15fa2407a7d791bc692c33fdc0f9b8325e1582f340cbbcc314bcf785964"
+      },
+      {
+        "path": "inspect-screen-tolerant-final.py",
+        "bytes": 8933,
+        "sha256": "26c7c89c94e5698c49237747bf6de65c49d1e522f08d51b32c7d35e68df61d24"
+      },
+      {
+        "path": "inspect-screen.log",
+        "bytes": 886,
+        "sha256": "5ac22af730068ca19c8f503156a31d411cce7adafe036c8531e6d11ff177b129"
+      },
+      {
+        "path": "inspect-screen.meta.json",
+        "bytes": 241,
+        "sha256": "346299aeece869539bdee58cbb1fbb18aa5b2f81532fb705a2836edd97f90892"
+      },
+      {
+        "path": "inspect-screen.py",
+        "bytes": 8882,
+        "sha256": "8e0cf0dd8e1e6094051701e3550ba05ec5cf0ddf04c493b595eb41c779330f94"
+      },
+      {
+        "path": "inspection-corrections.txt",
+        "bytes": 1282,
+        "sha256": "54da3588c8f4efa1093f103c9a0418a41e97d25f4683e0352db836a99818310a"
+      },
+      {
+        "path": "inspection-original-failure.txt",
+        "bytes": 311,
+        "sha256": "e7bf63954cec58d504ff5c115c1ce9dfa9ef9067ed43553ee3768ffb897641f9"
+      },
+      {
+        "path": "ownership.json",
+        "bytes": 574,
+        "sha256": "a2487f29595ff45923e252d827cc982420bf12622d37d19bcb39ff6ec5fdff82"
+      },
+      {
+        "path": "package-evidence.py",
+        "bytes": 3674,
+        "sha256": "dbb84373ad1ef94cab099ae75a21c1dce49bb5f1ad3e20fcf420ddc9f25d3856"
+      },
+      {
+        "path": "plan-original.md",
+        "bytes": 7104,
+        "sha256": "c96c6292e0aebe419ef32c6c427c7a00744c5d360697dc5ea928be19cc90d329"
+      },
+      {
+        "path": "plan.md",
+        "bytes": 7179,
+        "sha256": "dd393fd2734c4beb67d9ff83f5627bd86eab355736be1badc648d40d91ee7665"
+      },
+      {
+        "path": "preserved-baseline.json",
+        "bytes": 2429,
+        "sha256": "8ce77a9194319e6731944825c2203e1f1e1e59600013a18521607683a077b9a9"
+      },
+      {
+        "path": "prior-checkpoint-cleanup.json",
+        "bytes": 755,
+        "sha256": "ee82fdbfb400bd4ff2323e1a67c270bcbca4a09ad5017d65eab1fa738be12831"
+      },
+      {
+        "path": "producer-outcome-review.txt",
+        "bytes": 1174,
+        "sha256": "74b2324477ae1eff8bcfa9e518e92d4b7b6b04e9794ed39f8b76499a4536e9be"
+      },
+      {
+        "path": "producer-plan-review.txt",
+        "bytes": 334,
+        "sha256": "eca2ff260ef86a6403f41dbc9203da8e840829934b3ffa2b74b09c07e9fcb377"
+      },
+      {
+        "path": "qa-contract-review.txt",
+        "bytes": 365,
+        "sha256": "41be99cfcd2417f99fcbff17ee6d9f236711c881295b387358e527baa4ce0fa2"
+      },
+      {
+        "path": "qa-outcome-review.txt",
+        "bytes": 986,
+        "sha256": "3213102bea6b2ed32f1718e34e9af0a4922c2616eb20c3a1338534300fee2700"
+      },
+      {
+        "path": "qa-plan-review.txt",
+        "bytes": 387,
+        "sha256": "2376de1f7fdfb01ebee4ee9140146a340ed81fc8d0b235509837c4ffabd17c99"
+      },
+      {
+        "path": "runner.py",
+        "bytes": 584,
+        "sha256": "dd43228274b9a660e28898b9ff196cc394769664fe06502a9d056ef806b5aec9"
+      },
+      {
+        "path": "screen-a-earned-report.json",
+        "bytes": 123270009,
+        "sha256": "e329997459e32e5d81ffa0fea8483083adcc77bce49516ec366c153ca4749a5b"
+      },
+      {
+        "path": "screen-a-observed-summary.json",
+        "bytes": 18257,
+        "sha256": "f2ca422ab6334aa2c2f6fa7bd160d5e3c1fb2e7525bd30bfb74b4b5402edf5f2"
+      },
+      {
+        "path": "screen-a-repeat-differences.json",
+        "bytes": 8697872,
+        "sha256": "579fe8e23c93af9a08520215cdcb6d94c68b45f5ac64280b75e37e1feb890bbb"
+      },
+      {
+        "path": "screen-a-test-report.json",
+        "bytes": 790,
+        "sha256": "3a53472c55243f37da6c2021949b079ae08f2a7ca73dbee8f64cc312d9aa413d"
+      },
+      {
+        "path": "screen-a.log",
+        "bytes": 385,
+        "sha256": "97a9ed2cce693249b1e3817e9e93a2abdfa0ee318f8f97c1858c73477943dbdd"
+      },
+      {
+        "path": "screen-a.meta.json",
+        "bytes": 880,
+        "sha256": "d54f01395e0115d41d65cbf27134ecaf06801deaf4f266145a37d9277fad03aa"
+      },
+      {
+        "path": "screen-a.started.json",
+        "bytes": 748,
+        "sha256": "568fe4f7494075ab44e59e100d1dcf9273c1bece74fd79ad9628ca8b6b87d35b"
+      },
+      {
+        "path": "screen-b-earned-report.json",
+        "bytes": 121497444,
+        "sha256": "1442c36e075c8b04ea5be21d1ab554bd75cde6957963f726369ba5b1a00c9d0a"
+      },
+      {
+        "path": "screen-b-observed-summary.json",
+        "bytes": 15865,
+        "sha256": "d842449c385c6d19f71f0869f78df96b8137e01d56af4a87106e7496ab027ff1"
+      },
+      {
+        "path": "screen-b-repeat-differences.json",
+        "bytes": 8575581,
+        "sha256": "2c73b0502c988ecd5d5ee8421a9f93fa26d9f503ec3f4490518dc5adacf44f02"
+      },
+      {
+        "path": "screen-b-test-report.json",
+        "bytes": 790,
+        "sha256": "2d7760ea44a05522a626b4450bdf4725db44d429da956003d27b9a22a3c0da1d"
+      },
+      {
+        "path": "screen-b.log",
+        "bytes": 385,
+        "sha256": "1343f08d69879ec054c512fcf49adb24f2d48446fa1b36bb646d204572cf37fd"
+      },
+      {
+        "path": "screen-b.meta.json",
+        "bytes": 886,
+        "sha256": "779ead0a225ecefac1b8512015fef38731d5d9e4238ff75453c72e223df80f21"
+      },
+      {
+        "path": "screen-b.started.json",
+        "bytes": 756,
+        "sha256": "20a84503fd0e56c1db9fdb2ea1720eeb410a236a758c31f579fa6c2ba6cbf2f7"
+      },
+      {
+        "path": "screen-observed-summary.json",
+        "bytes": 36733,
+        "sha256": "9fd202b31ced6ca078bdd16e31d03c8014c49f7a32758f8c60245ec73efeb1d9"
+      },
+      {
+        "path": "source/package-lock.json",
+        "bytes": 395545,
+        "sha256": "f6495e520df58ddaf1fceb8d92f1088aa8e4f58b810db28e5e28ff27d3791b5f"
+      },
+      {
+        "path": "source/package.json",
+        "bytes": 2802,
+        "sha256": "0621f952b7e17c1f838b5441f45a6f7ea800721d22f5def3be073118f98ffb27"
+      },
+      {
+        "path": "source/src/data/quests/main.json",
+        "bytes": 19859,
+        "sha256": "1bc63889469663cd58d8c1ca9079a0babc97b80f2aef574f7b87c1020211f11e"
+      },
+      {
+        "path": "source/src/data/skills/sorceress.json",
+        "bytes": 21239,
+        "sha256": "27ac6eda7c44610b932e28ccbad8aa778cd52ef0bee375044a2cb3c41f07e2c6"
+      },
+      {
+        "path": "source/src/engine/combat/combat.ts",
+        "bytes": 43097,
+        "sha256": "9ea3f107e0c7c77358cd81fdfde946b5ed15362688679a292f200c7e5f08cf51"
+      },
+      {
+        "path": "source/src/engine/combat/damage.ts",
+        "bytes": 5159,
+        "sha256": "902b1e21f9c327880ddb0f3a5ca81f8eb6db14dd3e28a241033435e86b44c70e"
+      },
+      {
+        "path": "source/src/engine/combat/sub-area-run.ts",
+        "bytes": 23173,
+        "sha256": "2824bc43ab1671be7187cf688e16a5f5a6f96916b1685f4dc0f6f8460c85d0d3"
+      },
+      {
+        "path": "source/src/engine/loot/rollItem.ts",
+        "bytes": 10691,
+        "sha256": "5c25d863a7e9621cebae703fa5338472563b781196d1abcd1c0fbfc226c09bba"
+      },
+      {
+        "path": "source/src/engine/map/unlock.ts",
+        "bytes": 3068,
+        "sha256": "75862878850738e0ce7ccefdd9b1f37e0034dc162137f30cc62be6ff4e32da7f"
+      },
+      {
+        "path": "source/src/engine/progression/equipped-stats.ts",
+        "bytes": 1034,
+        "sha256": "224ad4fd71fee3f3b19554eb2341ab7209f9f560100d271ff4ca89d80987a245"
+      },
+      {
+        "path": "source/src/engine/skills/builders.ts",
+        "bytes": 18227,
+        "sha256": "83caa54587bd32e9e7be21abe823c177f3322dc5be898cce1d45f4849256d496"
+      },
+      {
+        "path": "source/src/features/combat/CombatScreen.tsx",
+        "bytes": 46237,
+        "sha256": "d708f8d0917f3988eb96339c386060c29ad2a830c5841bdf2548859b695d7b72"
+      },
+      {
+        "path": "source/src/features/map/MapScreen.tsx",
+        "bytes": 15554,
+        "sha256": "2023eb2c4c0fb345339e23f617876c3fa95b30ec8afb4cf503cb7bf483a1a8e7"
+      },
+      {
+        "path": "source/src/stores/combatHelpers.ts",
+        "bytes": 28378,
+        "sha256": "1aea5e14e3010f08907c40d91232d59352b0a46a5371a0f3316babda9fb831e4"
+      },
+      {
+        "path": "source/src/stores/mapStore.ts",
+        "bytes": 8332,
+        "sha256": "6bfbc4eef244bc5b6170a3c1da3b4ddeefe9f5e69e2286ace82c6d92a8822911"
+      },
+      {
+        "path": "source/src/stores/mercToCombatUnit.ts",
+        "bytes": 2440,
+        "sha256": "e44d4127636f51799b143886a5c0502054e4e03cb293d890809aef734f6f29f7"
+      },
+      {
+        "path": "source/tests/sim/production/README.md",
+        "bytes": 20875,
+        "sha256": "6befcca92a2f0cc1de34ed390f9fbf584c87e40e9efd07b004ad084706e420f5"
+      },
+      {
+        "path": "source/tests/sim/production/adapter.test.ts",
+        "bytes": 16378,
+        "sha256": "38e65bde9d7bbae1800a64bdc5d8b8ca8a1e231da663796e66784747037d1593"
+      },
+      {
+        "path": "source/tests/sim/production/adapter.ts",
+        "bytes": 19523,
+        "sha256": "713bfc9cb2dfda30429d1aab5915244a3d013723a941c03061b2da2892fb4c3f"
+      },
+      {
+        "path": "source/tests/sim/production/earned-adapter.test.ts",
+        "bytes": 32580,
+        "sha256": "c582c117c0379afc3203b0cfaf7b209b44ad99ddb9a943101834eea25b5829e4"
+      },
+      {
+        "path": "source/tests/sim/production/earned-adapter.ts",
+        "bytes": 11970,
+        "sha256": "48b7d508478aadb8308780c1130b6075d698320d2ea725a18a1d34a86ddc87f7"
+      },
+      {
+        "path": "source/tests/sim/production/earned-comparison.test.ts",
+        "bytes": 20118,
+        "sha256": "8ffe7b673653a63030ccae72144175615f61d178cf13492d41a023de3527cfdc"
+      },
+      {
+        "path": "source/tests/sim/production/earned-comparison.ts",
+        "bytes": 6875,
+        "sha256": "adaed49bb4c8feacddaac1a09626950f6323238a2cb2d3a1d68a5959c9027e60"
+      },
+      {
+        "path": "source/tests/sim/production/earned-fixture.test.ts",
+        "bytes": 18508,
+        "sha256": "99fb52eda848407cfcdc1089fd71cc1399ab2be770b8050204675959cc1b61d1"
+      },
+      {
+        "path": "source/tests/sim/production/earned-fixture.ts",
+        "bytes": 9394,
+        "sha256": "c29b0b99c8b75bb4f4a856b7935e0f0323172c4bfbc1b9718d0a39b18eade9f5"
+      },
+      {
+        "path": "source/tests/sim/production/earned-measure.test.ts",
+        "bytes": 3108,
+        "sha256": "51ba4ade962bdcb26fc1a1e978f9bc6b1e005591a8f82c0bdcb39e2fd1166e6a"
+      },
+      {
+        "path": "source/tests/sim/production/earned-measurement.test.ts",
+        "bytes": 10714,
+        "sha256": "82b6951d3651b3139b4dd0527e003fd6eaefbf92ba5f28db55f4f322990daf57"
+      },
+      {
+        "path": "source/tests/sim/production/earned-measurement.ts",
+        "bytes": 3747,
+        "sha256": "7e2898a1c11a91fa2e3738eda6e1aa55748e8bcdf17c41030ed090c15e9d9ed3"
+      },
+      {
+        "path": "source/tests/sim/production/earned-playback.ts",
+        "bytes": 5288,
+        "sha256": "67faebd1c0b83a26de7f2401c48df94d9bff025c5fc694bce74f3e845d8c843d"
+      },
+      {
+        "path": "source/tests/sim/production/earned-report.test.ts",
+        "bytes": 6208,
+        "sha256": "319627fb980c56c93d19de9a2f7a0591035799c9ff2fba11d6fc7d1550c8ed65"
+      },
+      {
+        "path": "source/tests/sim/production/earned-report.ts",
+        "bytes": 5818,
+        "sha256": "c4466331b1a9e80beb40d0cea848dc3670c237c6eb29c3f166b7f715875ec1aa"
+      },
+      {
+        "path": "source/tests/sim/production/earned-state.ts",
+        "bytes": 5461,
+        "sha256": "e49c3cb1ad72f19037e8b6d1aafbe1d57b15af19524906cdd60c28abade9cd19"
+      },
+      {
+        "path": "source/tests/sim/production/fixture.test.ts",
+        "bytes": 6443,
+        "sha256": "3f455dfe0d5d0b1717569356e05bf51028fd5eccedf1facb2460c0fdee6a0e3f"
+      },
+      {
+        "path": "source/tests/sim/production/fixture.ts",
+        "bytes": 6386,
+        "sha256": "2d7e7fdad0e79ab057d5bdf6bfb28f056aac6c0f286cd5ef913dad5d8f9ec574"
+      },
+      {
+        "path": "source/tests/sim/production/measure.test.ts",
+        "bytes": 1965,
+        "sha256": "71640dccc8e43fe331d38131b0ed8b5f9720a9f57f8de241547ae68bcdf428cb"
+      },
+      {
+        "path": "source/tests/sim/production/provenance.ts",
+        "bytes": 7097,
+        "sha256": "83271b46d074dc4cd1f92ec5895bbe1634c26b8b9379e141c1e04ec7068a684c"
+      },
+      {
+        "path": "source-snapshot-hashes.json",
+        "bytes": 3872,
+        "sha256": "1e64b0ceca80c7011587e819f768becc52292e19567ad4fb52caafb3ee393964"
+      },
+      {
+        "path": "test-report-counts.json",
+        "bytes": 446,
+        "sha256": "785786c50d7c34ae9d9ba569c8a2d87bc773a1ff398038dcd359a842b75f7a72"
+      }
+    ]
+  },
+  "cleanup": {
+    "owner": "root",
+    "state": "pending final packet review/release; closing ledger records result",
+    "paths": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-screen-vacx7uv4",
+      "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/.vite"
+    ],
+    "installedTools": "preserved",
+    "overallWorktree": "retained for active fullv1"
+  },
+  "limitations": [
+    "Four attempts are one seed/build, two determinism reps; no build viability or win-rate estimate",
+    "No Den clear, quest completion, idle eligibility, browser/campaign/pacing/finalbalance or C/G acceptance",
+    "No new code, data, dependency/config changes; prior P02b03 build retained as historical only",
+    "Final Python sequential timing accumulation equals native JS exactly; intermediate1e-9tolerance script and original failures retained",
+    "Known Item.id and equip-earned action result.itemId differences retained, never allocator reset",
+    "No runtime defect established; no gameplay rerun or tuning from outcome review"
+  ]
+}

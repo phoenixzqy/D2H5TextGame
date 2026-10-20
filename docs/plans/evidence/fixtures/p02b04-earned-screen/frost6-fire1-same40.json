@@ -1,0 +1,114 @@
+{
+  "fixtureVersion": 2,
+  "id": "p02b04-frost6-fire1-same40",
+  "origin": {
+    "kind": "new-character",
+    "classId": "sorceress",
+    "name": "Same40 Earned",
+    "policy": "production-creation-defaults"
+  },
+  "clockEpochMs": 1792497600000,
+  "seeds": [
+    2223645302
+  ],
+  "acquisitionSeedPolicy": "production-clock",
+  "actions": [
+    {
+      "kind": "hire-merc",
+      "mercId": "mercs/act1-rogue-inner-sight"
+    },
+    {
+      "kind": "allocate-skill",
+      "skillId": "skills-sorceress-fire-bolt",
+      "points": 1
+    },
+    {
+      "kind": "set-combo",
+      "skillIds": [
+        "skills-sorceress-fire-bolt"
+      ]
+    },
+    {
+      "kind": "farm-first-waves",
+      "subAreaId": "areas/act1-blood-moor",
+      "count": 40,
+      "firstChallengeOrdinal": 0
+    },
+    {
+      "kind": "checkpoint",
+      "id": "earned40"
+    },
+    {
+      "kind": "allocate-stats",
+      "deltas": {
+        "strength": 0,
+        "dexterity": 0,
+        "vitality": 15,
+        "energy": 10
+      }
+    },
+    {
+      "kind": "allocate-skill",
+      "skillId": "skills-sorceress-frost-nova",
+      "points": 5
+    },
+    {
+      "kind": "set-combo",
+      "skillIds": [
+        "skills-sorceress-frost-nova",
+        "skills-sorceress-fire-bolt"
+      ]
+    },
+    {
+      "kind": "equip-earned",
+      "owner": "hero",
+      "slot": "gloves",
+      "selector": {
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "defense": 5,
+        "selection": "first-acquired"
+      }
+    },
+    {
+      "kind": "equip-earned",
+      "owner": "hero",
+      "slot": "boots",
+      "selector": {
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "defense": 3,
+        "selection": "first-acquired"
+      }
+    },
+    {
+      "kind": "equip-earned",
+      "owner": "merc",
+      "slot": "gloves",
+      "selector": {
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "defense": 4,
+        "selection": "first-acquired"
+      },
+      "mercId": "mercs/act1-rogue-inner-sight"
+    },
+    {
+      "kind": "accept-quest",
+      "questId": "quests/act1-den-of-evil"
+    },
+    {
+      "kind": "checkpoint",
+      "id": "ready"
+    }
+  ],
+  "scenario": {
+    "act": 1,
+    "subAreaId": "areas/act1-den-of-evil",
+    "mode": "manual",
+    "challengeOrdinal": 40,
+    "idleEliteMisses": 0
+  },
+  "mercPolicy": "recipe-actions",
+  "summonPolicy": "production-default"
+}
