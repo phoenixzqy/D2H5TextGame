@@ -24,6 +24,7 @@ Current implementation evidence lives in `evidence/`.
 | P03b02 | accepted ingress slice | `a79ef1f`; retain complete earned/returned overflow, actual victory/merc/save integration,16 focused regressions; producer source APPROVE. Shared regular-action guards remain. |
 | P04a01 | accepted objective slice | `ac49f52` (agent `d0343c8`); canonical Den area and atomic tracked clear objectives after qualified victory. Ten regressions, independent source APPROVE and integrated four-case browser proof. Return/talk/claim remain separate. |
 | P03b03 | accepted transfer slice | `6d76f64` shared constants/copy (agent `d9f5835`), `36a819d` authoritative100/500 transfer guards and selected refusal/retry. Producer source APPROVE; four ordinary locale/viewport recovery cases. Equipment guards remain. |
+| P03b05a | accepted merc equipment integrity slice | `45d44c3`; current source/owner validation, complete transfer/normalized returns and localized retained refusal. Root/producer APPROVE/ADEQUATE;58focused/1307full and4/4browser. [Evidence](evidence/p03b05a-merc-equipment-integrity.md). Merc capacity remains next. |
 | P04a02 core/locales/UI | accepted talk path slice | `2d60095` ordered exact current-town talk; `392e671` localized roster/greetings; `0a84010` UI (agent `2702b81`). Root+producer source APPROVE; real Den→Akara→explicit claim→save browser matrix. Full town/quest families remain. |
 | Remaining P03b/P04 | ready for reproduction | Shared capacity, atomic transactions/recoverable awards and quest event/reward integrity remain. |
 | P05a | accepted slice | `2458ee7`; source-local error state, 13 focused tests and actual-component desktop/mobile proof. [Integrated evidence](evidence/P05a-P06a-foundations.md). D13/F19 remain open. |
@@ -730,10 +731,21 @@ consumers finished, root verified4332 stopped and removed/verified absent
 worktree2 dist/node_modules/.vite and /tmp/d2h5-p13b-earned-browser-1.
 No task process/disposable artifact remains; shared tools/caches retained.
 
-Next ready investigation P03b05a: authoritative merc equipment transfer integrity,
-followed separately by net-capacity/UI policy. Producer recommends genuine
-stale/missing backpack source and missing/invalid owner reproductions, complete
-payload conservation and refusal atomicity before a result-bearing transaction.
-P01 D04 damage/status C1 contract investigation is read-only with design agent.
+P03b05a45d44c3 now accepted: complete authoritative first-backpack-index transfers,
+owned-merc/current-base preflight, discriminated refusal, complete affix Maps and
+same-ID backpack/stash conservation; returned flags normalized. Paired synchronous
+domain publications promise settled state, not atomic subscriber snapshots.
+BUG028 genuine store8fail and mounted3fail before runtime; focused58pass/4files,
+full1307pass/115files/no skips31.46s (15s budget unmet), T/L/build/forcedlint pass.
+Ordinary imported-integrity fixture en/zh×desktop/mobile4/4pass15.0s retries0:
+equip/swap-back/unequip/Save/reload/export match complete independent saves.
+First4selector failures hit nested Details; corrected label clicks retained all
+oracles/timeouts. Root/producer final APPROVE/ADEQUATE. Exact dist/.vite/browser
+outputs removed and verified absent after consumers;4334 stopped. No earned-loot,
+production/PWA/capacity/equipment-combat/fullP03b acceptance.
+
+Next ready investigation P03b05b: net-capacity/UI policy, read-only with QA.
+P08a01 central burn/ignite alias implementation has independent root/producer
+APPROVE; worker finalizing handoff; combined-head validation remains required.
 Root worktree2 remains claimed, original main untouched, no push/PR/deployment.
 Full v1/C0–C4/G0–G7 remain open.
