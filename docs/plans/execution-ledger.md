@@ -36,6 +36,8 @@ Current implementation evidence lives in `evidence/`.
 | Remaining P06–P10 | pending dependencies | D04–D06/shared effects first. All skills remain behavior-unaccepted. |
 | P11a / P11a02 | accepted finalization slices | `d39fe64` actual-win/living-hero/playback guard and single clear; `d8db75c` truthful draw UI. Six root regressions, six RTL, 4/4 browser locale×viewport cases; independent QA/producer APPROVE. BUG-008. |
 | P11–P15 | pending dependencies | Rewards/idle, eligibility, economy, campaign and pacing. |
+| P13a | implementation dispatched | `d5ca217` approved level-aware new/missing merc progress contract; retain explicit thresholds/share/curve/schema and restore quarantined deterministic combat case. Full earned recruitment/progression/economy separate. |
+| P17a/P17b children | accepted bounded slices | Bonus/save/true close-reopen/offline/art-help/configured-version update evidence recorded below; installation/Lighthouse/fullG6/P17 remain open. |
 | P16–P18 | pending | Critical UI/a11y/performance, offline/PWA, endgame and achievements. |
 | P19 | pending dependencies | Full matrix, actual required CI, independent review/QA, holdout, soak, human playtest. |
 
@@ -629,3 +631,61 @@ BUG026 reserved after genuine missing-note assertion; five worker-owned files
 (Settings, two locale files, existing PWA spec, bug) plus root D12 control above.
 Two-version update safety needs a separately reviewed harness. Broader earned
 campaign/class/skill/economy/crafting/merc/background-idle gates remain open.
+
+## Optional-art explanation and configured-version worker update
+
+P17b02 integrated `c11a7e2` (agent `f2e0afa`): localized Settings note initialized
+from native online status, owned online/offline listeners with immediate
+resampling and cleanup. Honest copy says some uncached art may be unavailable;
+no claim about observed image failure, image/cache/save/schema policy changes.
+Genuine real-network-offline missing-note RED preceded runtime, retained BUG026.
+Production en/zh×desktop/mobile4/4pass56.4s on4328: live offline event without
+reload/same performance.timeOrigin, offline remount and online restoration;
+complete IDB/export equality and prior offline gameplay oracles retained.
+U1275pass/1existing merc-XP skip112files36.52s; T/L/forcedlint/fresh guarded build
+pass. Unit15s budget remains unmet. Worker3 clean/released; exact dist/.vite and
+`/tmp/d2h5-p17b02-red`, `-green` removed/verified, port stopped. Root+producer
+final source/control/evidence APPROVE.
+
+P17b03a `797a878`: five-file harness/control/evidence slice, runtime unchanged.
+Existing VITE_APP_VERSION makes guarded same-source/schema A/B app+SW bytes
+distinct. Dedicated serial config, fresh contexts/resetA and test-only contained
+loopback deployment switch. Ordinary creation/locale/activated controller/Save
+establish whole baselineS. Ordinary sound toggle exports known pending payload
+with only soundEnabled flipped while disk remainsS under paused debounce.
+Preinstalled native controllerchange observer proves a distinct activated
+controller after real registration.update. Live A retains pending state; Save
+commits it. Actual B document/newJS and offline B reload both come from SW and
+retain full IDB/export equality, locale/no bridge/no overflow/no page errors.
+First/final en/zh×1280×800/360×640 matrices each4/4pass1.1m, retries0, on4330.
+Fresh guard builds/scan, node-check, T/L/forced config+spec lint pass. No new
+full unit for this harness-only child; c11a7e2 runtime gate above applies.
+
+Producer review corrected synchronous-build shutdown and failed-launch cleanup.
+Actual Vite-transform interruption of wrapper773572/owned group773580 via
+SIGTERM exited0, no live owned group/dist/exact staging remained. Final config
+grants explicit SIGTERM/15s grace; wrapper asynchronously tracks/signals only
+its owned POSIX group before cleanup. First browser's default forceful teardown
+left logged staging despite server exit; root verified server/port absence and
+removed only that exact directory. Final graceful teardown and parent verified
+staging/dist/.vite absence; both exact browser output directories removed after
+completion. All exact paths, preflight dangling-symlink refusal and limitations
+are in `evidence/p17b03a-worker-update.md`. Root/producer final APPROVE and root
+test-evidence review ADEQUATE for this bounded integration. Uncatchable kills,
+Windows descendants, migrations/arbitrary code compatibility/install/Lighthouse
+are not certified. Existing host/build warnings remain.
+
+Root worktree2 remains claimed, original main untouched, no push/PR/merge/public
+deployment. Full v1/C0–C4/G0–G7 remain open. P13a approved control `d5ca217`
+dispatched to design worker with separate worktree ownership; fixes actual-level
+defaults in three store paths and UI fallback, preserving explicit stored
+thresholds. Restore deterministic actual-combat assertion with share>=60 and
+complete expected L10/residual/6362. Root owns ledger/control. Historical wrong
+explicit thresholds/phantom gains require separate compatibility policy.
+
+QA's next read-only finding: MercCard displays def.baseStats instead of gained
+merc.coreStats. Separate RED/report/UI slice needed before claiming visible stat
+gains. Actual ActI hire is immediate/free and auto-fields reqLevel3 InnerSight;
+this can prove ordinary obtain/field/earned L3→L4/save but not earned-currency
+recruitment. QA is preparing that route without runs/edits/artifacts; economy,
+broader skills/campaign/idle/critical UI/performance gates remain open.
