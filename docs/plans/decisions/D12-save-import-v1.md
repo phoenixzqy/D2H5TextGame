@@ -68,3 +68,33 @@ tick/offline interval ownership, checkpoint persistence, startup versus explicit
 import semantics, and common reward/UI authority. The tuple cannot reconstruct
 original peak/window metadata for a HUD progress bar. Restart, production
 reward, ordinary UI, network-disabled PWA and performance gates remain open.
+
+### P17a02 persisted startup reconciliation
+
+Only page startup reconciles the saved idle tuple via resumeIdleBonus. Sample
+now once after loading, compute before domain/locale mutation, then persist the
+updated idleState and save.timestamp before publishing the character or ready
+status. A quota/read/arithmetic failure preserves the prior disk and all live
+domain references/locale, exposes error and blocks automatic writes. No raw
+rewards or nonidle save fields change. Public raw hydrateFromSave and explicit
+import remain exact restoration, without away accrual.
+
+Cache the complete initialization promise for the page lifetime, including an
+error result. StrictMode/concurrent calls/remounts share it and never reload an
+older snapshot after play. Recovery uses explicit exact import or full reload;
+calling the cached init again is not a same-page retry. Test-only reset clears
+the flight/operation queue only after all consumers finish.
+
+Startup, raw hydrate, import and delete share an invocation-order restore queue;
+the adapter still serializes actual writes. Replacement reserves its existing
+exclusion and cancels/suppresses autosave immediately, then reasserts suppression
+inside its queued job. That job owns flag release and normal autosave resumption
+in finally. The queue recovers internally after rejection while callers retain
+their operation's failure. Settings is usable during startup IO; no delayed
+startup publication/write may override a later import/delete. This ordering
+does not claim all character/gameplay mutations are excluded by route guards.
+
+This startup child addresses persisted returning-player arithmetic and restore
+ordering only. The transient UI hook, actual XP/MF application, periodic/close
+checkpoints, hidden online/offline interval ownership and browser restart/PWA
+acceptance remain pending. No complete D12/P17 or campaign gate is accepted.

@@ -15,6 +15,7 @@ import { create } from 'zustand';
 import i18n from '@/i18n';
 import { buildSave, toJsonSafe } from '@/engine/save';
 import { decodeSave } from '@/engine/save/validate';
+import { resumeIdleBonus } from '@/engine/idle/persisted-bonus';
 import { abortSubAreaRun } from './combatHelpers';
 import { seedItemSeqFromIds } from '@/engine/loot/rollItem';
 import type { SaveCurrent } from '@/engine/types/save';
@@ -71,6 +72,15 @@ export function isReplacingSave(): boolean {
 }
 let timer: ReturnType<typeof setTimeout> | null = null;
 const unsubs: (() => void)[] = [];
+let initialization: Promise<void> | null = null;
+let restoreTail: Promise<unknown> = Promise.resolve();
+
+/** Keep restores/replacements in request order; rejection reaches its caller. */
+function enqueueRestore<T>(operation: () => Promise<T>): Promise<T> {
+  const pending = restoreTail.then(operation);
+  restoreTail = pending.catch(() => undefined);
+  return pending;
+}
 
 /**
  * Build a {@link SaveCurrent} snapshot from current store state.
@@ -173,22 +183,26 @@ export async function importIntoStores(json: string): Promise<void> {
   replacingSave = true;
   suppressSaves = true;
   cancelPendingSave();
-  try {
-    await saveSave(data);
-    abortSubAreaRun();
-    useCombatStore.getState().reset();
-    applySaveToStores(data);
-    writesBlocked = false;
-    useSaveStatusStore.setState({ error: null });
-    useHydrationStore.getState().setStatus('ready');
-  } catch (err) {
-    useSaveStatusStore.setState({ error: err instanceof Error ? err.message : String(err) });
-    throw err;
-  } finally {
-    suppressSaves = false;
-    replacingSave = false;
-    scheduleSave();
-  }
+  return enqueueRestore(async () => {
+    suppressSaves = true;
+    cancelPendingSave();
+    try {
+      await saveSave(data);
+      abortSubAreaRun();
+      useCombatStore.getState().reset();
+      applySaveToStores(data);
+      writesBlocked = false;
+      useSaveStatusStore.setState({ error: null });
+      useHydrationStore.getState().setStatus('ready');
+    } catch (err) {
+      useSaveStatusStore.setState({ error: err instanceof Error ? err.message : String(err) });
+      throw err;
+    } finally {
+      suppressSaves = false;
+      replacingSave = false;
+      scheduleSave();
+    }
+  });
 }
 
 /** Delete disk progress before clearing all character-specific runtime state. */
@@ -197,26 +211,30 @@ export async function deleteCurrentSave(): Promise<void> {
   replacingSave = true;
   suppressSaves = true;
   cancelPendingSave();
-  try {
-    await deleteSave();
-    abortSubAreaRun();
-    useCombatStore.getState().reset();
-    usePlayerStore.getState().reset();
-    useInventoryStore.getState().reset();
-    useMapStore.getState().reset();
-    useMercStore.getState().reset();
-    useMetaStore.getState().reset();
-    useFormationStore.getState().reset();
-    writesBlocked = false;
-    useSaveStatusStore.setState({ error: null });
-  } catch (err) {
-    useSaveStatusStore.setState({ error: err instanceof Error ? err.message : String(err) });
-    throw err;
-  } finally {
-    suppressSaves = false;
-    replacingSave = false;
-    scheduleSave();
-  }
+  return enqueueRestore(async () => {
+    suppressSaves = true;
+    cancelPendingSave();
+    try {
+      await deleteSave();
+      abortSubAreaRun();
+      useCombatStore.getState().reset();
+      usePlayerStore.getState().reset();
+      useInventoryStore.getState().reset();
+      useMapStore.getState().reset();
+      useMercStore.getState().reset();
+      useMetaStore.getState().reset();
+      useFormationStore.getState().reset();
+      writesBlocked = false;
+      useSaveStatusStore.setState({ error: null });
+    } catch (err) {
+      useSaveStatusStore.setState({ error: err instanceof Error ? err.message : String(err) });
+      throw err;
+    } finally {
+      suppressSaves = false;
+      replacingSave = false;
+      scheduleSave();
+    }
+  });
 }
 
 /**
@@ -257,19 +275,33 @@ export function stopAutoSave(): void {
 /**
  * Read a save (if any) and push each slice into its store. Suppresses
  * auto-save events during hydration to prevent a feedback loop.
+ * Ordered with startup/import/delete; restores exactly, without away accrual.
  *
  * Returns true when a save was hydrated, false when no save existed.
  * Sets `useHydrationStore.error` and returns false on failure.
  */
-export async function hydrateFromSave(): Promise<boolean> {
+export function hydrateFromSave(): Promise<boolean> {
+  return enqueueRestore(() => hydrateSavedCharacter(false));
+}
+
+async function hydrateSavedCharacter(reconcileOffline: boolean): Promise<boolean> {
   useHydrationStore.getState().setStatus('loading');
   cancelPendingSave();
   suppressSaves = true;
   try {
-    const data = await loadSave();
+    let data = await loadSave();
     if (!data) {
       useHydrationStore.getState().setStatus('ready');
       return false;
+    }
+    if (reconcileOffline) {
+      const now = Date.now();
+      data = {
+        ...data,
+        timestamp: now,
+        meta: { ...data.meta, idleState: resumeIdleBonus(data.meta.idleState, data.timestamp, now) }
+      };
+      await saveSave(data);
     }
     // Bundled translations must agree with the saved preference before ready.
     await i18n.changeLanguage(data.meta.settings.locale);
@@ -350,12 +382,20 @@ function seedItemSeqFromHydratedSave(data: SaveCurrent): void {
 /**
  * App entry point: hydrate from disk (if a save exists) then start auto-save.
  * Always sets hydration status to a terminal state (`ready` or `error`).
+ * Reconciles/persists offline time before publication, once per page lifetime.
+ * Concurrent calls/remounts share even a failed flight; use import or reload
+ * for recovery. Initialization is ordered with all explicit restore operations.
  */
-export async function initPersistence(): Promise<void> {
+export function initPersistence(): Promise<void> {
+  initialization ??= enqueueRestore(initializePersistence);
+  return initialization;
+}
+
+async function initializePersistence(): Promise<void> {
   try {
     const exists = await hasSave();
     if (exists) {
-      await hydrateFromSave();
+      await hydrateSavedCharacter(true);
     } else {
       useHydrationStore.getState().setStatus('ready');
     }
@@ -370,6 +410,7 @@ export async function initPersistence(): Promise<void> {
 
 /**
  * Test-only: reset internal flags so unit tests can re-init the module.
+ * Call only after every queued restore/initialization consumer has finished.
  * @internal
  */
 export function __resetPersistenceForTests(): void {
@@ -377,6 +418,8 @@ export function __resetPersistenceForTests(): void {
   suppressSaves = false;
   writesBlocked = false;
   replacingSave = false;
+  initialization = null;
+  restoreTail = Promise.resolve();
   useSaveStatusStore.setState({ error: null });
   useHydrationStore.setState({ status: 'idle', error: null });
   useFormationStore.getState().reset();
