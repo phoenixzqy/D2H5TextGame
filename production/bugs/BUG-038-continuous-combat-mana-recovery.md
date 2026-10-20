@@ -191,3 +191,11 @@ crosswave remains frozen. Exact helper-test hash
 `ac2340510c3ea3c42a39cab095cf7bb6f8ad434a59a4a867fa28d620f4d80d5a`;
 combat-test hash`f2e8939ae6e71b9c83f3f3e77d5c41121eb02f42c7a0c5d98a06c86b7a518afd`.
 Independent RED review requested; further source correction still pending.
+
+
+Root, producer and independent QA APPROVE / ADEQUATE exact-API RED at the
+frozen hashes above. Numeric oracles and missing-function/field distinctions
+were independently checked. Root authorizes only helper/combat/types source
+correction after worker tests-only commit. Final fresh GREEN, nonzero export
+compensation sign review and combined-head validation remain open. Adapter
+tests-only root commit`461289f` preserves unchanged source and reviewed RED.
