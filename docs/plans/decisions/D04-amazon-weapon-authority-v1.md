@@ -184,3 +184,60 @@ factory ID redesign or save compatibility change in this child.
 
 Producer revised C plan approved after explicit collision contract; root/design
 ready. Genuine existing-screen RED and independent reviews precede source.
+
+## P08a05d conservative versioned compatibility (proposed for review)
+
+Adopt investigator's singleton-only contract: v7→v8 repairs only Amazon with
+one exact original factory starter or intermediate B factory starter. Original:
+id starter-amazon-bow-<decimal Date.now()>, generic weapon-bow base, normal,
+level1, identified/equipped true, equipSlot weapon, no other own fields.
+Intermediate: same plus training base, ilvl1 and exact baseRolls {attack:13}.
+No character-level/base-stat/XP constraint: stale equipment survives progression.
+Canonical equipped must lack its own weapon key, and offhand be missing/null.
+Explicit null, existing weapon, retained shield, mixed legacy equipment, altered
+signatures/extra fields, nonAmazon, or candidate ID in backpack/stash/any hero
+slot/mercEquipment/ownedMercs equipment skips repair without deleting anything.
+Success keeps instance ID, converts original to training base/ilvl1/attack13,
+transfers to canonical weapon and empties the proven singleton legacy array.
+All skipped data unchanged apart from version bump. Alreadyv8 never grants.
+
+Stats must use canonical composition, not attack+13. Extract exact existing
+playerStore deriveEquippedPlayerStats into pure engine/progression/equipped-stats.ts
+and reuse with original level argument and Math.min resource clamp. Extract
+existing Map restoration helpers from validate.ts to engine/save/restore.ts;
+migration uses restored temporary equipped view solely for aggregation, retaining
+original other item data. Types/registry add SaveV8/current8 and migration8 calling
+pure engine/save/legacyStarter.ts; stores/migrations.ts remains its reexport shim.
+No save-adapter/persistence/hydration grants, broad recompute, or reader changes.
+
+Raw-invalid protection: before migration8 recomposition, decode all older input
+through runMigrations(value,7), then validateSave({...v7,version:8}) as a version-only
+projection using unchanged structural schema, discarding normalized output.
+Only then run migration8, final validate and restore as usual. Current8 follows
+ordinary final validation/restoration. This prevents derivedStats recomposition
+from erasing malformed/missing original stats and admitting corrupt saves; no
+validation dependency imported into registry/helper and no runtime cycle.
+
+Planned source6files: types/save.ts, save/legacyStarter.ts, save/restore.ts,
+save/validate.ts, progression/equipped-stats.ts, stores/playerStore.ts.
+Tests: existing save.test.ts version assertion, validate.test.ts actual decoder
+behavior matrix; new stores/legacy-starter-compatibility.test.tsx exercises real
+adapter/persistence replacing only Dexie IO. Existing store progression tests
+protect extraction; direct engine composition checks may supplement GREEN.
+Before source, freeze meaningful existing-decoder RED and get independent
+producer/QA approval. Both signatures canonical13/attack35; progressed retained
+gear/resources/progression/combo/quests/currencies/formation/merc preservation;
+all skip/collision/near-signature cases; nativeMap and exportedJSON affixes;
+immutable original, repeat decode/hydrate/export/import/reimport; already8 no grant;
+disk load/adapter import/live import normalize before publication; corrupt/future
+and failed writes preserve current state. Actual Skills sanitizer integration
+remains later reader child. Run focused, engine, related/full/T/L/build/coverage,
+independent source/final evidence review, then exact owned cleanup.
+Security check PASS: local versioned untrusted-save validation is strengthened;
+no credentials/network/dependencies/hooks/permissions/external publication changes.
+No migration/readers/browser/fullauthority/C/G acceptance from plan or unit tests.
+
+Design investigator confirms no material flaw: positive-integer check remains first, only <8 enters target7/prevalidation, current/future never migrate backward. Version-only projection explicitly relies on identical v7/v8 structural shapes and must be revisited at a future shape-changing version. decodeSave is the untrusted boundary; bare runMigrations does not promise validation. restore.ts imports types only.
+
+Producer independent plan-review: ready / APPROVE before D tests/source.
+No material gap; proceed actual decoder/adapter RED and independent frozen review.

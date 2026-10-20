@@ -347,3 +347,42 @@ coverage-final.json SHA256: `915ee3087eca779357aa81db1795ebda6fdecaa5f09bce4a1aa
 Root/producer/QA final independent APPROVE / ADEQUATE. All9 non-RED command/result/log pairs, unchanged source/frozen tests and actual coverage counters independently checked. All C raw consumers finished; exact task-owned cleanup released.
 
 P08a05c accepted source/evidence commit03d1fd6. After ALL root/producer/QA consumers finished, removed and verified absent exact creation scratch above, task-owned worktree dist and node_modules/.vite. No owned process/retention remains. Broader authority chain remains open.
+
+## P08a05d pre-fix compatibility reproduction
+
+Baseline049a65a decodeSave leaves proven legacy Amazon starter exclusively in
+player.equipment, with empty canonical weapon and attack22; repeated saved
+state is invisible to canonical inventory stats. Expected conservative v7→v8
+repair per D04: sameID canonical training13/attack35, proven legacy singleton
+removed, retained state preserved; ambiguous/nonfactory/current8 state gets no
+grant. SeverityHigh for lost authored starter when readers become canonical.
+Reproduce through existing decoder and actual adapter/persistence with only
+Dexie IO substituted. Genuine RED and independent evidence review precede
+source. Plan includes corrupt-before-recomposition validation protection,
+JSON/nativeMap compatibility and deterministic repeated import/hydration.
+No D source change yet. Security PASS as D04: local untrusted-save validation
+strengthened, no external/dependency/permission/hook change.
+
+D task-owned raw root (retain until ALL consumers finish):
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-starter-compatibility-hgi5xbjj
+
+### P08a05d frozen genuine decoder/persistence RED
+
+60failed/46passed/106total,3files,0skip,exit1; runner3.17s/wall4.393s. Existing imports resolve and actual decoder/adapters execute. Both original/intermediate positive cases retain legacy singleton instead of canonical transfer. Actual loadSave returns missing canonical ID; adapter/live imports and clean retry retain legacy kit. Version expectations also fail (7 vs8). Skip assertions compare version-only transformed payload, so RED there is expected version mismatch; preservation semantics will be exercised on GREEN. Progressed gear/remaining resource/idempotence assertions after first failing repair assertions are reserved for GREEN.43initial controls grew to46 with added corruption controls; all pass. No missing API/module RED, skips or runtime stats/equipment substitutions. Only Dexie IO is replaced for adapter/persistence integration.
+Before final frozen run, positive decoder assertion order moved legacy-removal ahead of version check; added retained merc state and3corrupt input controls. No assertion weakened. Initial103cases60fail/43pass; frozen106cases60fail/46pass. Frozen typecheck and scoped lint pass. Existing standard warnings only. Sources remain untouched through independent RED approval.
+- compatibility-red-frozen: `npx vitest run src/engine/save/save.test.ts src/engine/save/validate.test.ts src/stores/legacy-starter-compatibility.test.tsx --reporter=verbose`; exit1, wall4.393s; log SHA256 `2a0783683c29778d7b2892d425aa395a104937b4a3986e2f96affae7d9c58f60`.
+- compatibility-red-lint-frozen: `npx eslint src/engine/save/save.test.ts src/engine/save/validate.test.ts src/stores/legacy-starter-compatibility.test.tsx --max-warnings=0`; exit0, wall5.752s; log SHA256 `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`.
+- compatibility-red-lint: `npx eslint src/engine/save/save.test.ts src/engine/save/validate.test.ts src/stores/legacy-starter-compatibility.test.tsx --max-warnings=0`; exit0, wall6.181s; log SHA256 `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`.
+- compatibility-red: `npx vitest run src/engine/save/save.test.ts src/engine/save/validate.test.ts src/stores/legacy-starter-compatibility.test.tsx --reporter=verbose`; exit1, wall5.103s; log SHA256 `f5418df1371d3120f79e3e6daaf4076d74d3b7cffc734afe64de4a17af5b5b5f`.
+- compatibility-red-typecheck-frozen: `npm run typecheck`; exit0, wall9.587s; log SHA256 `53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47`.
+- compatibility-red-typecheck: `npm run typecheck`; exit0, wall10.433s; log SHA256 `53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47`.
+
+Frozen test SHA256:
+- src/engine/save/save.test.ts: `2184e9dcd163821d833793308a441fb91c97f09e73058a256b4b5852140e2a50`.
+- src/engine/save/validate.test.ts: `26009e7115f115c8429ed95f5f7a1cf91666e20f36e235419476e609d285c5f6`.
+- src/stores/legacy-starter-compatibility.test.tsx: `0d0b19dffefcb571b3b6503130dc997e4862d65b8d14f5246c53eda87d2d6f5f`.
+
+Root/producer/QA frozen RED independent APPROVE / ADEQUATE. Source unchanged
+from049a65a; actual repair failures distinct from version-only preservation
+mismatches. Later stats/resource/idempotence/publication assertions must pass
+on GREEN. Proceed six-source-file implementation after frozen checkpoint.

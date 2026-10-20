@@ -191,9 +191,9 @@ describe('runMigrations', () => {
     expect(out.mercs.mercProgress).toEqual({});
   });
 
-  it('declares v7 as current and registers the v7 migration', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(7);
-    expect(MIGRATIONS[7]).toBeDefined();
+  it('declares v8 as current and registers its compatibility migration', () => {
+    expect(CURRENT_SAVE_VERSION).toBe(8);
+    expect(MIGRATIONS[8]).toBeDefined();
   });
 
   it('migrates v2 → v3 by folding currencies.gold into rune-shard', () => {

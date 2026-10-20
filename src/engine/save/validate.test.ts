@@ -1,4 +1,6 @@
-import { describe, expect, it } from 'vitest';
+import { assert, describe, expect, it } from 'vitest';
+import type { Item } from '../types/items';
+import { toJsonSafe } from './serialize';
 import { buildSave } from './serialize';
 import { decodeSave } from './validate';
 import { deriveStats } from '../progression/stats';
@@ -63,7 +65,7 @@ function sampleSave() {
 }
 
 describe('save boundary', () => {
-  it('preserves a valid v7 save and optional legacy fields without mutation', () => {
+  it('preserves a valid current save and optional legacy fields without mutation', () => {
     const save = sampleSave();
     const original = JSON.stringify(save);
     expect(decodeSave(save)).toEqual(save);
@@ -73,7 +75,7 @@ describe('save boundary', () => {
   it('migrates valid v6 formation preferences without mutating the original', () => {
     const { formation: _formation, ...rest } = sampleSave();
     const legacy = { ...rest, version: 6 };
-    expect(decodeSave(legacy).version).toBe(7);
+    expect(decodeSave(legacy).version).toBe(8);
     expect(decodeSave(legacy).formation.playerPosition).toEqual({ row: 1, col: 1 });
     expect(legacy).not.toHaveProperty('formation');
   });
@@ -175,5 +177,224 @@ describe('save boundary', () => {
     ['map', { ...sampleSave().map, questProgress: { quest: { status: 'completed' } } }]
   ])('rejects malformed nested %s before hydration', (field, value) => {
     expect(() => decodeSave({ ...sampleSave(), [field]: value })).toThrow('Invalid save');
+  });
+});
+
+
+const starterId = 'starter-amazon-bow-1792497600123';
+function legacyStarter(intermediate = false): Item {
+  return {
+    id: starterId,
+    baseId: intermediate ? 'items/base/weapon-bow-training' : 'items/base/weapon-bow',
+    rarity: 'normal', level: 1, identified: true, equipped: true, equipSlot: 'weapon',
+    ...(intermediate ? { ilvl: 1, baseRolls: { attack: 13 } } : {})
+  };
+}
+function legacyAmazon(intermediate = false) {
+  const base = sampleSave();
+  const coreStats = { strength: 20, dexterity: 25, vitality: 20, energy: 15 };
+  return {
+    ...base, version: 7,
+    player: {
+      ...base.player, class: 'amazon', coreStats, derivedStats: deriveStats(coreStats, 1),
+      equipment: [legacyStarter(intermediate)], comboOrder: ['amazon.magic_arrow'],
+      skillLevels: { 'amazon.magic_arrow': 1 }
+    }
+  };
+}
+
+/** Repair runs through the existing untrusted-save decoder, never a hypothetical helper. */
+describe('conservative legacy Amazon starter compatibility', () => {
+  it.each([false, true])('transfers proven signature intermediate=%s once, preserving source', (intermediate) => {
+    const input = legacyAmazon(intermediate);
+    const before = structuredClone(input);
+    const output = decodeSave(input);
+    expect(output.player.equipment).toEqual([]);
+    expect(output.version).toBe(8);
+    expect(output.inventory.equipped.weapon).toEqual({
+      ...legacyStarter(true), id: starterId
+    });
+    expect(output.player.derivedStats.attack).toBe(35);
+    expect(output.player.comboOrder).toEqual(['amazon.magic_arrow']);
+    expect(output.player.skillLevels).toEqual({ 'amazon.magic_arrow': 1 });
+    expect(output.player.derivedStats.life).toBe(input.player.derivedStats.life);
+    expect(output.player.derivedStats.mana).toBe(input.player.derivedStats.mana);
+    expect(input).toEqual(before);
+    expect(decodeSave(output)).toEqual(output);
+    expect(decodeSave(toJsonSafe(output))).toEqual(output);
+    expect(decodeSave(input)).toEqual(output);
+  });
+
+  it.each(['native', 'array', 'object'] as const)('recomposes progressed gear with %s legacy affixes without healing or resetting domains', (form) => {
+    const input = legacyAmazon();
+    const values = form === 'native' ? new Map([['coreStats.dexterity', 10], ['statMods.life', 20]])
+      : form === 'array' ? [['coreStats.dexterity', 10], ['statMods.life', 20]]
+      : { 'coreStats.dexterity': 10, 'statMods.life': 20 };
+    const hat = {
+      id: 'retained-hat', baseId: 'items/base/helm-cap', rarity: 'magic', level: 1,
+      equipped: true, identified: true, affixes: [{ affixId: 'legacy', values }]
+    };
+    const progressed = {
+      ...input,
+      player: { ...input.player, level: 12, experience: 43, experienceToNextLevel: 500,
+        statPoints: 3, skillPoints: 4, derivedStats: { ...deriveStats(input.player.coreStats, 12), life: 17, mana: 9 } },
+      inventory: { ...input.inventory, equipped: { head: hat }, currencies: { 'rune-shard': 71 } },
+      map: { ...input.map, clearedSubAreas: ['blood-moor'], questProgress: {
+        quest: { id: 'quest', status: 'completed', objectives: { done: true }, rewardClaimed: true }
+      } },
+      formation: { ...input.formation, playerPosition: { row: 2, col: 2 } },
+      mercs: { ...input.mercs, fieldedMercId: 'retained-merc', ownedMercs: [{
+        ...input.player, id: 'retained-merc', type: 'mercenary', archetype: 'rogue', rarity: 'rare',
+        equipment: [{ ...legacyStarter(true), id: 'merc-legacy-bow' }]
+      }], mercEquipment: { 'retained-merc': { weapon: { ...legacyStarter(true), id: 'merc-bow' } } },
+        mercProgress: { 'retained-merc': { experience: 19, experienceToNextLevel: 200, level: 4 } } }
+
+    };
+    const before = structuredClone(progressed);
+    const output = decodeSave(progressed);
+    expect(output.player.equipment).toEqual([]);
+    // L12: floor(10+22+max(20,25+10)/2+13)=62; retained gear participates.
+    expect(output.player.derivedStats.attack).toBe(62);
+    expect(output.player.derivedStats.lifeMax).toBe(248);
+    expect(output.player.derivedStats.life).toBe(17);
+    expect(output.player.derivedStats.mana).toBe(9);
+    expect({ ...output.player, equipment: input.player.equipment, derivedStats: progressed.player.derivedStats })
+      .toEqual(progressed.player);
+    expect(output.inventory.currencies).toEqual(progressed.inventory.currencies);
+    expect(output.map).toEqual(progressed.map);
+    expect(output.mercs).toEqual(progressed.mercs);
+    expect(output.formation).toEqual(progressed.formation);
+    const affix = output.inventory.equipped.head?.affixes?.[0];
+    expect(affix && 'values' in affix && affix.values).toEqual(new Map([
+      ['coreStats.dexterity', 10], ['statMods.life', 20]
+    ]));
+    expect(progressed).toEqual(before);
+    expect(decodeSave(toJsonSafe(output))).toEqual(output);
+  });
+
+  it.each(['backpack', 'stash', 'hero', 'merc', 'legacy-merc'] as const)('does not guess ownership on a %s ID collision', (container) => {
+    const input = legacyAmazon();
+    const collision = { ...legacyStarter(true), equipped: false };
+    const merc = { ...input.player, id: 'merc', type: 'mercenary', archetype: 'rogue', rarity: 'normal', equipment: [collision] };
+    const conflicted = {
+      ...input,
+      inventory: { ...input.inventory,
+        backpack: container === 'backpack' ? [collision] : [],
+        stash: container === 'stash' ? [collision] : [],
+        equipped: container === 'hero' ? { head: collision } : {} },
+      mercs: { ...input.mercs,
+        ownedMercs: container === 'legacy-merc' ? [merc] : [],
+        mercEquipment: container === 'merc' ? { merc: { head: collision } } : {} }
+    };
+    expect(decodeSave(conflicted)).toEqual({ ...conflicted, version: 8 });
+  });
+
+  it.each([
+    ['null weapon', { weapon: null }],
+    ['retained weapon', { weapon: { ...legacyStarter(true), id: 'current' } }],
+    ['retained offhand', { offhand: { ...legacyStarter(true), id: 'shield', baseId: 'items/base/sh-buckler' } }]
+  ])('preserves %s and all stale data', (_name, equipped) => {
+    const input = legacyAmazon();
+    const skipped = { ...input, inventory: { ...input.inventory, equipped } };
+    expect(decodeSave(skipped)).toEqual({ ...skipped, version: 8 });
+  });
+
+  it('allows an explicitly empty offhand without displacing it', () => {
+    const input = legacyAmazon();
+    const output = decodeSave({ ...input, inventory: { ...input.inventory, equipped: { offhand: null } } });
+    expect(output.inventory.equipped.offhand).toBeNull();
+    expect(output.inventory.equipped.weapon?.id).toBe(starterId);
+    expect(output.player.equipment).toEqual([]);
+  });
+
+  it.each([
+    { id: 'loot-bow' }, { id: 'starter-amazon-bow-1.5' }, { id: 'starter-amazon-bow-1e3' },
+    { id: 'starter-amazon-bow-' }, { baseId: 'items/base/weapon-crossbow' },
+    { rarity: 'magic' }, { level: 2 }, { equipped: false }, { identified: false },
+    { equipSlot: 'offhand' }, { ilvl: 1 }, { baseRolls: {} }, { affixes: [] }, { custom: true }
+  ])('preserves altered original signature %#', (patch) => {
+    const input = legacyAmazon();
+    const skipped = { ...input, player: { ...input.player, equipment: [{ ...legacyStarter(), ...patch }] } };
+    expect(decodeSave(skipped)).toEqual({ ...skipped, version: 8 });
+  });
+
+  it.each([
+    { baseRolls: { attack: 12 } }, { baseRolls: { attack: 13, defense: 0 } },
+    { ilvl: 2 }, { statRolls: {} }, { baseId: 'items/base/weapon-bow' }
+  ])('preserves altered intermediate signature %#', (patch) => {
+    const input = legacyAmazon(true);
+    const skipped = { ...input, player: { ...input.player, equipment: [{ ...legacyStarter(true), ...patch }] } };
+    expect(decodeSave(skipped)).toEqual({ ...skipped, version: 8 });
+  });
+
+  it.each(['barbarian', 'sorceress', 'necromancer', 'paladin', 'druid', 'assassin'])('never grants to %s', (cls) => {
+    const input = legacyAmazon();
+    const skipped = { ...input, player: { ...input.player, class: cls } };
+    expect(decodeSave(skipped)).toEqual({ ...skipped, version: 8 });
+  });
+
+  it('does not infer a starter from mixed/empty legacy arrays or already-v8 input', () => {
+    const input = legacyAmazon();
+    for (const equipment of [[], [legacyStarter(), { ...legacyStarter(), id: 'other' }]]) {
+      const skipped = { ...input, player: { ...input.player, equipment } };
+      expect(decodeSave(skipped)).toEqual({ ...skipped, version: 8 });
+    }
+    const current = { ...input, version: 8 };
+    expect(decodeSave(current)).toEqual(current);
+  });
+
+  it.each(['missing-attack', 'missing-derived', 'bad-core', 'bad-life', 'bad-max', 'bad-resistance', 'bad-native-affix', 'bad-json-affix'] as const)(
+    'rejects corrupt original %s before recomposition can hide it', (kind) => {
+      const input = legacyAmazon();
+      const corrupted = structuredClone(input) as unknown as Record<string, unknown>;
+      const player = corrupted.player as { derivedStats: Record<string, unknown> };
+      if (kind === 'missing-attack') delete player.derivedStats.attack;
+      if (kind === 'missing-derived') delete (corrupted.player as Record<string, unknown>).derivedStats;
+      if (kind === 'bad-core') (corrupted.player as Record<string, unknown>).coreStats = { ...input.player.coreStats, dexterity: 'bad' };
+      if (kind === 'bad-life') player.derivedStats.life = '17';
+      if (kind === 'bad-max') player.derivedStats.lifeMax = Infinity;
+      if (kind === 'bad-resistance') player.derivedStats.resistances = { fire: 'bad' };
+      if (kind === 'bad-native-affix' || kind === 'bad-json-affix') {
+        corrupted.inventory = { ...input.inventory, equipped: { head: {
+          ...legacyStarter(true), id: 'corrupt-hat', affixes: [{ affixId: 'legacy', values: kind === 'bad-native-affix' ? new Map([['statMods.life', Infinity]]) : [['statMods.life', 'bad']] }]
+        } } };
+      }
+      expect(() => decodeSave(corrupted)).toThrow('Invalid save');
+      assert(input.player.derivedStats.attack === 22);
+    }
+  );
+});
+
+
+describe('legacy starter boundary controls', () => {
+  it.each([0, 17, 10000])('preserves or clamps resource pools at %s using ordinary equipment semantics', (pool) => {
+    const input = legacyAmazon();
+    const output = decodeSave({ ...input, player: { ...input.player,
+      derivedStats: { ...input.player.derivedStats, life: pool, mana: pool } } });
+    expect(output.player.equipment).toEqual([]);
+    expect(output.player.derivedStats.life).toBe(Math.min(140, pool));
+    expect(output.player.derivedStats.mana).toBe(Math.min(72, pool));
+  });
+  it('chains genuine v6 formation defaults then starter compatibility', () => {
+    const { formation: _formation, ...input } = legacyAmazon();
+    const output = decodeSave({ ...input, version: 6 });
+    expect(output.version).toBe(8);
+    expect(output.formation.playerPosition).toEqual({ row: 1, col: 1 });
+    expect(output.inventory.equipped.weapon?.id).toBe(starterId);
+    expect(output.player.equipment).toEqual([]);
+    expect(input).not.toHaveProperty('formation');
+  });
+  it.each(['offhand', 'head', 'body', 'hands', 'feet', 'belt', 'amulet', 'ring1', 'ring2'])(
+    'preserves the exact payload when starter ID is retained in hero %s', (slot) => {
+      const input = legacyAmazon();
+      const skipped = { ...input, inventory: { ...input.inventory, equipped: {
+        [slot]: { ...legacyStarter(true), equipped: true }
+      } } };
+      expect(decodeSave(skipped)).toEqual({ ...skipped, version: 8 });
+    }
+  );
+  it('rejects malformed present weapon instead of treating it as missing', () => {
+    const input = legacyAmazon();
+    expect(() => decodeSave({ ...input, inventory: { ...input.inventory, equipped: { weapon: false } } })).toThrow('Invalid save');
   });
 });
