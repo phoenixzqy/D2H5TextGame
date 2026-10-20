@@ -3,11 +3,11 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { validateGameData, GameDataValidationError } from './loader';
+import { validateGameData, loadGameData, GameDataValidationError } from './loader';
 import monsterSchema from './schema/monster.schema.json';
 import skillSchema from './schema/skill.schema.json';
 import necromancerSkills from './skills/necromancer.json';
-import { skills } from './index';
+import { skills, mainQuests, sideQuests } from './index';
 
 describe('data/loader', () => {
   describe('validateGameData', () => {
@@ -246,6 +246,225 @@ describe('data/loader', () => {
           }
         }
       });
+    });
+  });
+});
+
+describe('quest document validation', () => {
+  const schemaId = 'https://d2h5.game/schemas/quest.json';
+  const talk = { id: 'obj-talk', type: 'talk', description: 'Talk.', npcId: 'npc/akara' };
+  const quest = {
+    id: 'quests/schema-fixture', name: 'Schema fixture', type: 'side',
+    actId: 'acts/act1', description: 'Schema fixture.', objectives: [talk]
+  };
+  const document = (entry: object = quest) => ({
+    $schema: '../schema/quest.schema.json', quests: [entry]
+  });
+  const objective = (fields: object) => ({ id: 'obj-fixture', description: 'Fixture.', ...fields });
+  const validate = (value: unknown) => validateGameData(schemaId, value, 'quest-fixture');
+
+  it('validates both complete authored documents and collects every quest in order', async () => {
+    expect(() => validate(mainQuests)).not.toThrow();
+    expect(() => validate(sideQuests)).not.toThrow();
+    const loaded = await loadGameData();
+    expect([...loaded.quests.keys()]).toEqual([...mainQuests.quests, ...sideQuests.quests].map(q => q.id));
+  });
+
+  it('covers every authored objective kind rather than only the talk path', () => {
+    const kinds = [...new Set([...mainQuests.quests, ...sideQuests.quests].flatMap(
+      q => (q as typeof quest).objectives.map(o => o.type)
+    ))].sort();
+    expect(kinds).toEqual([
+      'clear-area', 'collect', 'deliver', 'fetch', 'gamble', 'hire-mercenary',
+      'interact', 'kill', 'kill-boss', 'kill-boss-group', 'rescue', 'survive-waves',
+      'talk', 'transmute', 'use-item'
+    ]);
+  });
+
+  it.each([null, [], {}, { quests: {} }, { quests: [null] }, { quests: [quest], typo: true }].map(value => ({ value })))(
+    'rejects a malformed document envelope: %j', ({ value }) => {
+      expect(() => validate(value)).toThrow(GameDataValidationError);
+    }
+  );
+
+  it.each(['id', 'name', 'type', 'actId', 'description', 'objectives'])(
+    'requires quest field %s', field => {
+      const invalid = { ...quest };
+      Reflect.deleteProperty(invalid, field);
+      expect(() => validate(document(invalid))).toThrow(GameDataValidationError);
+    }
+  );
+
+  it.each([
+    { id: 'bare-quest' }, { name: '' }, { description: '' }, { type: 'daily' },
+    { actId: 'acts/act6' }, { giver: 'monsters/akara' }, { unlocks: 'npc/akara' },
+    { prerequisites: ['areas/act1-den-of-evil'] }, { prerequisites: 'quests/previous' },
+    { order: 0 }, { order: -1 }, { order: 1.5 }, { objectives: [] }, { unknownQuestField: true }
+  ])('rejects malformed quest metadata: %j', fields => {
+    expect(() => validate(document({ ...quest, ...fields }))).toThrow(GameDataValidationError);
+  });
+
+  it('preserves bounty, object givers, null unlocks and namespaced prerequisites', () => {
+    expect(() => validate(document({ ...quest, type: 'bounty', giver: 'objects/moldy_tome',
+      unlocks: null, prerequisites: ['quests/previous'], order: 1
+    }))).not.toThrow();
+  });
+
+  it.each(['areas/act1-den-of-evil', 'services/identify', 'acts/act2', 'difficulty/nightmare'])(
+    'accepts the authored unlock namespace %s', unlocks => {
+      expect(() => validate(document({ ...quest, unlocks }))).not.toThrow();
+    }
+  );
+
+  it.each(['id', 'type', 'description', 'npcId'])(
+    'requires talk objective field %s', field => {
+      const invalid = { ...talk };
+      Reflect.deleteProperty(invalid, field);
+      expect(() => validate(document({ ...quest, objectives: [invalid] }))).toThrow(GameDataValidationError);
+    }
+  );
+
+  it.each([
+    { type: 'unknown' }, { type: 'talk', npcId: 'monsters/akara' },
+    { type: 'talk', npcId: 'npc/akara', targetId: 'npc/akara' },
+    { type: 'clear-area' }, { type: 'collect', itemId: 'quest/gland', areaId: 'areas/cave' },
+    { type: 'fetch', itemId: 'quest/malus' }, { type: 'gamble' },
+    { type: 'hire-mercenary', mercId: 'npc/kashya' },
+    { type: 'kill', targetId: 'npc/akara', areaId: 'areas/cave' },
+    { type: 'kill-boss', targetId: 'monsters/boss' },
+    { type: 'kill-boss-group', targetId: 'monsters/ancients' },
+    { type: 'rescue', targetId: 'npc/prisoner', areaId: 'areas/cave' },
+    { type: 'survive-waves', areaId: 'areas/throne' },
+    { type: 'transmute', recipe: '' }, { type: 'use-item', itemId: 'npc/akara' },
+    { type: 'interact', targetId: 'monsters/boss', areaId: 'areas/cave' },
+    { type: 'interact', targetId: 'objects/altar' },
+    { type: 'interact', targetId: 'objects/altar', itemRequired: 'npc/akara' },
+    { type: 'deliver', npcId: 'npc/charsi' },
+    { type: 'deliver', npcId: 'npc/charsi', itemId: 'quest/malus' },
+    { type: 'deliver', npcId: 'npc/charsi', itemFilter: 'rare' },
+    { type: 'deliver', npcId: 'npc/charsi', itemFilter: 'normal', itemId: 'quest/malus', count: 1 },
+    { type: 'deliver', npcId: 'npc/charsi', itemFilter: 'any', count: 1 }
+  ])('rejects missing, wrong or unrelated kind-specific fields: %j', fields => {
+    expect(() => validate(document({ ...quest, objectives: [objective(fields)] })))
+      .toThrow(GameDataValidationError);
+  });
+
+  it.each([0, -1, 1.5])('rejects nonpositive or fractional counts and waves: %s', value => {
+    for (const fields of [
+      { type: 'collect', itemId: 'quest/gland', areaId: 'areas/cave', count: value },
+      { type: 'deliver', npcId: 'npc/charsi', itemId: 'quest/malus', count: value },
+      { type: 'gamble', count: value },
+      { type: 'kill', targetId: 'monsters/fallen', areaId: 'areas/cave', count: value },
+      { type: 'rescue', targetId: 'npc/prisoner', areaId: 'areas/cave', count: value },
+      { type: 'survive-waves', areaId: 'areas/throne', waves: value }
+    ]) {
+      expect(() => validate(document({ ...quest, objectives: [objective(fields)] })))
+        .toThrow(GameDataValidationError);
+    }
+  });
+
+  it.each([
+    { type: 'deliver', npcId: 'npc/charsi', itemFilter: 'normal' },
+    { type: 'deliver', npcId: 'npc/larzuk', itemFilter: 'any' },
+    { type: 'deliver', npcId: 'npc/meshif', itemId: 'quest/jade_trinket', count: 3 },
+    { type: 'interact', targetId: 'objects/orifice', itemRequired: 'quest/horadric_staff' },
+    { type: 'interact', targetId: 'objects/hellforge', itemRequired: 'items/soulstone_mephisto' },
+    { type: 'interact', targetId: 'objects/altar', areaId: 'areas/cave', itemRequired: 'quest/key' },
+    { type: 'kill', targetId: 'monsters/act1.fallen-shaman', areaId: 'areas/act1-cave', count: 2 }
+  ])('preserves the supported objective variant: %j', fields => {
+    expect(() => validate(document({ ...quest, objectives: [objective(fields)] }))).not.toThrow();
+  });
+
+  const numericRewards = ['xp', 'gold', 'skillPoints', 'statPoints', 'runes', 'runeShards', 'gems', 'wishstones'];
+  it('accepts authored zero rewards and the claim handler’s existing numeric fields', () => {
+    expect(() => validate(document({ ...quest,
+      rewards: Object.fromEntries(numericRewards.map(key => [key, 0]))
+    }))).not.toThrow();
+  });
+
+  it.each(numericRewards)('requires a nonnegative integer %s reward', key => {
+    for (const value of [-1, 0.5, '1', null]) {
+      expect(() => validate(document({ ...quest, rewards: { [key]: value } })))
+        .toThrow(GameDataValidationError);
+    }
+  });
+
+  it.each([
+    [], { unknownReward: 1 }, { stat: { strength: 5 } }, { stat: { life: -1 } },
+    { stat: { attribute_points: 0.5 } }, { stat: [] }, { service: 'unknown_service' },
+    { itemDrop: 'monsters/boss' }, { lootTable: 'items/ring' }, { mercenaryUnlock: 'npc/kashya' },
+    { npcUnlock: 'objects/altar' }, { areaUnlock: 'acts/act2' },
+    { vendorUnlock: 'npc/anya' }, { title: 'bare-title' }
+  ].map(rewards => ({ rewards })))('rejects malformed or unknown rewards: %j', ({ rewards }) => {
+    expect(() => validate(document({ ...quest, rewards }))).toThrow(GameDataValidationError);
+  });
+
+  // Replace only the test worker's bundled document and restore its exact original
+  // properties/references even if an assertion fails; no loader mock hides integration.
+  async function withDocument(file: object, replacement: object, check: () => Promise<void>): Promise<void> {
+    const original = { ...file };
+    const replace = (value: object) => {
+      for (const key of Object.keys(file)) Reflect.deleteProperty(file, key);
+      Object.assign(file, value);
+    };
+    replace(replacement);
+    try { await check(); } finally { replace(original); }
+  }
+
+  async function rejectedDocument(context: string): Promise<unknown[]> {
+    let failure: unknown;
+    try { await loadGameData(); } catch (error) { failure = error; }
+    expect(failure).toBeInstanceOf(GameDataValidationError);
+    if (!(failure instanceof GameDataValidationError)) throw new Error('Expected quest validation failure');
+    expect(failure.filePath).toBe(context);
+    return failure.errors;
+  }
+
+  it.each([
+    ['mainQuests', mainQuests], ['sideQuests', sideQuests]
+  ] as const)('loadGameData rejects a malformed %s objective with document/path context', async (context, file) => {
+    const invalid = { ...quest, objectives: [objective({ type: 'clear-area' })] };
+    await withDocument(file, document(invalid), async () => {
+      const errors = await rejectedDocument(context);
+      expect(errors).toContainEqual(expect.objectContaining({
+        instancePath: '/quests/0/objectives/0', keyword: 'required',
+        params: { missingProperty: 'areaId' }
+      }));
+    });
+  });
+
+  it.each([
+    ['mainQuests', mainQuests], ['sideQuests', sideQuests]
+  ] as const)('loadGameData refuses a missing %s quests envelope', async (context, file) => {
+    await withDocument(file, { $schema: '../schema/quest.schema.json' }, async () => {
+      const errors = await rejectedDocument(context);
+      expect(errors).toContainEqual(expect.objectContaining({
+        instancePath: '', keyword: 'required', params: { missingProperty: 'quests' }
+      }));
+    });
+  });
+
+  for (const [context, file] of [['mainQuests', mainQuests], ['sideQuests', sideQuests]] as const) {
+    it.each([
+      { name: '' }, { type: 'daily' }, { objectives: [] },
+      { objectives: [objective({ type: 'unknown' })] },
+      { rewards: { xp: -1 } }, { rewards: { skillPoints: 0.5 } },
+      { rewards: { statPoints: '1' } }, { typo: true }
+    ])(`loadGameData rejects malformed ${context} row: %j`, async fields => {
+      await withDocument(file, document({ ...quest, ...fields }), async () => {
+        const errors = await rejectedDocument(context);
+        const paths = errors.flatMap(detail => typeof detail === 'object' && detail !== null &&
+          'instancePath' in detail ? [detail.instancePath] : []);
+        expect(paths.some(path => typeof path === 'string' && /^\/quests\/0(?:\/|$)/.test(path))).toBe(true);
+      });
+    });
+  }
+
+  it('preserves cross-document duplicate quest ID rejection', async () => {
+    const first = mainQuests.quests[0];
+    if (!first) throw new Error('Authored main quests are missing');
+    await withDocument(sideQuests, { $schema: '../schema/quest.schema.json', quests: [first] }, async () => {
+      await expect(loadGameData()).rejects.toThrow(`Duplicate quest id "${first.id}" in sideQuests`);
     });
   });
 });
