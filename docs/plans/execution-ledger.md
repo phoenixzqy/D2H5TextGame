@@ -1740,3 +1740,23 @@ C1/C0–C4/G0–G7/fullv1 acceptance. Next one en/desktop native earnedDen disco
 Game/level/technicalREADY; producer/QA independent plan/source freeze pending.
 NextRAW=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-den-discovery-n0stepbb;
 rootownsplan/transferredfonts,no process. No push/PR/merge/deployment.
+
+
+P04a04c failed-discovery evidence acceptedfeadfc7 after independent producer/QA
+APPROVE/ADEQUATE; gameplay checkpoint remains unaccepted. One native en1280×800
+production pilot,40ordinaryBloodMoor W1wins,allprep/gear/merc oracles pass; DenW1
+nativewin+270heroXP/+202mercXP/4items, DenW2native draw stopped exact result
+assertion. LaterW2assertions didnotexecute; noW2award/W3/4/clear/claim/save/reopen.
+No retry/tuning/runtimeedit/injection;442runtimehashes unchanged. Report87fe9dea,
+159.971s0pass1fail0skip/flaky;240s discovery and all testbudgets unchanged.
+All7commands/logs/132decodedattachments/11snapshots/2images/760bundlehashes
+independently verified; original/amended/final sources and failedlint retained.
+Closingpacket03b14e6d includes all3consumer releases and verifiedcleanup of exact
+RAWn0stepbb/dist/two untrackedpilotfiles; .vite alreadyabsent. Conservativecleanup
+falsepositives corrected; no processkilled. Literal frozen error-context whitespace
+preserved; narrative/JSON diffcheckpassed. Originalmainclean, rootclaimcontinues.
+Font copies hashverified in next root-owned source-onlyRAWlknpvtpc; rootowns
+later cleanup after consumersrelease. Current review compares offense budgets
+and controlling defense/magicResist design precedence before another experiment;
+no new nativepilot authorized by failedoutcome. EarnedDen/Andariel/campaign/
+balance/pacing/C0–C4/G0–G7/fullv1 remainopen. No push/PR/merge/deployment.
