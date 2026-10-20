@@ -3,7 +3,8 @@
 Status: root design/technical contract; producer APPROVE; QA lifecycle amendment
 accepted. Authored baseline `a35ef02`, trigger metadata `07e8514`, and pure
 composition `938ed96` and authoritative wave adapter `1860bc6` integrated.
-Fire/recovery runtime, mana playback and browser acceptance remain open.
+Fire/passive runtime `5a53d37` and absolute mana playback `dd236eb` integrated;
+recovery and browser acceptance remain open.
 Design choices below are provisional balance, not measured campaign acceptance.
 Full Warmth requires both authored effects; staged fire-only work stays partial.
 
@@ -175,4 +176,29 @@ change, all43 changed statements covered. See BUG034 for exact commands,
 coverage digest, oracle corrections and performance limits. Runtime pools
 restore from original wave baseline while nested current-pool metadata remains
 fresh; neither rising maxima nor replay replenishes from persistent resources.
-Stage d two-file plan independently approved; source awaits reviewed RED/bug.
+Stage d integrated `5a53d37` (worker `f80b6a9`): two runtime lines plus frozen
+38 regressions. Actual per-type fire bonuses and exact passive exclusion pass
+engine780/full1640, T/L/build/unchanged80% engine coverage. Root/producer/QA
+APPROVE/ADEQUATE; BUG035 records hashes, raw coverage digest and timing misses.
+Stage e reviewed RED and BUG036 precede its source change; recovery/browser
+remain open.
+
+
+P07a01e accepted `dd236eb`: shared candidate-unit MP commit preserves HP and
+legacy optional shape, clears fractional state only at resulting cap, publishes
+absolute cast/refund/orb events in established cue order, and applies exact MP
+during immutable playback with silent localized logs. Reviewed RED13fail/32
+preceded source; one independently approved collateral-orb oracle correction
+retains explicit dead-owner no-refund assertions. Final1661/125files, engine780,
+focused32, T/L/B and unchanged80% engine coverage pass; producer/QA APPROVE.
+All changed engine statements/branches covered. BUG036 records commands, hashes
+and timing misses; no timed recovery yet.
+
+Stage f approved precision requirement: maintain a battle-local cumulative
+compensated MP-millisecond integral and whole-granted counter, rather than
+repeatedly reducing a fractional-MP total. Otherwise7.2MP/s×1250ms partitioned
+into1ms intervals can wrongly yield8 instead of9 whole MP. Seed and export only
+existing fractional carry/compensation across waves; cap paths reset both unit
+fields and local accumulator. Recover current living survivors after complete
+periodic death/orphan/refund/orb settlement and before winner/action checks.
+Exact partition/terminal/cap/production-nextwave tests precede runtime.

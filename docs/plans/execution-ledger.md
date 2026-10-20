@@ -35,10 +35,15 @@ Current implementation evidence lives in `evidence/`.
 | P06b | accepted deadline slice | `2cd350b`; inclusive 60,000 ms deadline, no overshoot, tied actors and exact/early victory. Five boundary tests, independent parent APPROVE; BUG-006. |
 | P06c01 | accepted periodic slice | `6c7f049` (agent `ff3787e`); shared status/lethal/expiry boundaries, fractional carry, simultaneous death/orphan transaction;31 focused regressions, root+producer source APPROVE. Boss milliseconds and cross-wave rebasing remain. |
 | P06c02 | accepted boss-duration slice | `030de58` (agent `53c08fe`); configured boss multiplier once on unrounded milliseconds, legacy lifecycle retained;56 focused cases incl16 real combat cases; root+producer source APPROVE. Cross-wave rebasing remains. |
+| P07a01a/b/c1 | accepted definition/composition slices | `a35ef02` authored validated recovery coefficient, `07e8514` authored trigger identity, `938ed96` pure authoritative Energy/rank composition. Independent review and exact boundary controls recorded below; no timed recovery acceptance. |
 | P07a01c2 | accepted adapter slice | `1860bc6`; authoritative per-wave gear/core/learned config, frozen ordinary recording, original-resource replay/clamp/no refill. Genuine RED13/56; full1602/124/T/L/B pass. Store coverage diagnostic exits1 at77.9%branches; engine-only threshold applicability and changed43/43 statements independently reviewed. Warmth runtime/browser remain open. |
+| P07a01d | accepted fire/passive slice | `5a53d37` (worker `f80b6a9`), separate active-buff fixture `727da6b`; actual composed fire bonus and passive action exclusion. Genuine RED22/38; engine780/full1640/T/L/B/coverage pass, root/QA/producer APPROVE. Timed recovery and browser remain open. |
+| P07a01e | accepted mana transport slice | `dd236eb`, reviewed RED/BUG036 `48e1412` + post-fire RED `35365c3`; exact absolute cast/refund/orb playback and resulting-cap carry cleanup. Focused32/full1661/T/L/B/80%engine coverage pass; producer/QA APPROVE. No timed recovery yet. |
 | Remaining P06–P10 | pending dependencies | D04–D06/shared effects first. All skills remain behavior-unaccepted. |
 | P08a01 | accepted fire-status-family slice | `11eb6b3` (worker `ca66d0a`); central burn/ignite identity, production ranked Fire Bolt full3s DoT and legacy/combo/refresh/removal. BUG029; root/producer APPROVE/ADEQUATE. Combined1332pass; ordinary skill UI/fullP08/C1 remain open. |
-| P08a02 | in-progress authored curse slice | Metadata `8b1f497` and authored definition `554a922` accepted; runtime c awaits genuine production RED/BUG031 and combined proof. Approved D04 contract at `bf840d7`. |
+| P08a01b/c | accepted earned skill and display slices | `0dbbef2` ordinary earned Fire Bolt/save/reload production route; `a150f5b` truthful damage/CD/DoT units in both locales. Independent evidence below; full skill behavior remains open. |
+| P08a02 | accepted bounded curse slice | Metadata `8b1f497`, authored definition `554a922`, runtime `f3f9086`; BUG031 fixed after genuine RED. Actual Amplify Damage rank/duration/resistance/refresh/replay controls independently approved; full curse families remain open. |
+| P08a03a/b | accepted Minor Heal slices | `091d9b0` actual authored range/registry, `ec0de97` deterministic lowest-relative-HP targeting and true healing. Independent root/QA/producer review and final combined evidence below; broader healing/merc acceptance remains open. |
 | P11a / P11a02 | accepted finalization slices | `d39fe64` actual-win/living-hero/playback guard and single clear; `d8db75c` truthful draw UI. Six root regressions, six RTL, 4/4 browser locale×viewport cases; independent QA/producer APPROVE. BUG-008. |
 | P11–P15 | pending dependencies | Rewards/idle, eligibility, economy, campaign and pacing. |
 | P13a | accepted progress-default slice | `8e6076e` (agent `6db69b6`); actual-level defaults/getter/award and UI fallback, explicit stored thresholds retained, real combat skip restored. Root/producer APPROVE; full1290pass/no skips. |
@@ -1110,3 +1115,50 @@ P07a01d source-confirmed two-file fire/passive plan is approved by producer;
 worker awaits root input/reviewed RED and bug record before runtime edit.
 Full Warmth/C0–C4/G0–G7 remain unaccepted; UI true maxima, ordinary earned
 browser/save proof, fire/recovery and absolute mana playback remain open.
+
+
+## Warmth fire/passive runtime integrated
+
+P07a01d accepted at `5a53d37` (worker `f80b6a9`) after structured BUG035 and
+reviewed22-failure RED. Separate fixture prerequisite `727da6b` replaces passive
+Might with active Frozen Armor in the existing non-recast control, preserving
+the original count-one assertion; baseline742engine tests pass. Minimal source
+consumes the attacker's per-type modifier in increasedPct and rejects exactly
+authored trigger:passive at the shared scheduled/start eligibility boundary.
+Actual Fire Bolt rank0/1/2/20, burn original potency/cap5, replay, RNG, other
+damage types, allies, active Frozen Armor and legacy/literal auras are covered.
+
+Final focused38/1.29s, engine780/48files4.42s, related752/20.30s,
+full1640/125files26.78s; T/L/build5.48s/diff-check/unchanged80% engine coverage
+all pass, zero skips/failures. Combat97.17%statements/100%functions/86.98%branches;
+both changed statements/all alternatives covered. Coverage digest and exact
+commands are recorded in BUG035; all raw evidence was independently consumed
+by root, QA and producer before verified worker cleanup/release. Three final
+APPROVE/ADEQUATE verdicts. Engine3s/related5s/full15s budgets remain unmet.
+Build warnings remain; no full Warmth, campaign or performance acceptance.
+
+Stage e strengthened tests and structured BUG036 committed `48e1412`; accepted
+fire head rerun `35365c3` reproduces unchanged13fail/19pass/32total and exactly
+three missing mana-union type diagnostics. First source GREEN31/32 exposed one
+over-broad negative oracle: simultaneous enemy owner/summon death forbids owner
+refunds but legitimately drops seed7 MP orb for the living hero90→95@500ms.
+Root, QA and producer independently approved exact hero orb expectation plus
+explicit no-owner/no-refund checks; no runtime change for that assertion.
+Focused32/32 now pass; remaining combined validation is underway.
+
+
+P07a01e final accepted `dd236eb`: focused32/1.93s, engine780/4.29s,
+related781/57files20.69s, full1661/125files27.48s, final T/L/build5.99s/diff-check
+pass. Configured80% engine coverage passes1661tests35.48s with T/L overlap; all
+34 added statements/12 branch locations exercised. Combat97.25%statements,
+100%functions,87.99%branches; stores intentionally excluded but behaviorally
+reviewed. Exact commands/hashes/oracle correction in BUG036. Independent QA and
+producer final APPROVE/ADEQUATE, all raw evidence consumed before cleanup.
+Timing budgets remain unmet; no recovery/browser/fullWarmth acceptance.
+
+P07a01f dispatched from accepted `dd236eb` with exclusive five-file recovery
+scope and tests-only RED first. Precision plan uses cumulative compensated
+MP-ms plus whole-granted counter; all cap paths reset local and unit carry.
+Root separately owns two-file UI prerequisite: truthful maxima and readable
+full-width hero MP above the battlefield, then ordinary learned/upgrade/save/
+reopen/fire+recovery desktop/mobile×both-locales browser evidence.

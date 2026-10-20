@@ -1,6 +1,6 @@
 # BUG-036 — Record authoritative mana changes during battle playback
 
-- **Status:** Reproduced; P07a01e runtime fix pending.
+- **Status:** Fixed in `dd236eb`; bounded absolute mana transport/cap handling only.
 - **Severity:** High; displayed MP does not track casting or restoration before
   the final battle snap, hiding the resource behavior required by Warmth.
 - **Owner / systems:** engine integrator; `combat.ts`, `combatPlayback.ts` and
@@ -99,3 +99,56 @@ mana-union TS2322 diagnostics. Raw root evidence is
 `-typecheck.log`, retained for independent consumption. The accepted stage-d
 engine780/full1640 evidence and root combined unchanged RED separate the
 missing MP transport from fire/passive behavior before the bounded stage-e fix.
+
+
+## Resolution and accepted validation
+
+Runtime `dd236eb` adds the shared candidate-unit commit and absolute event at
+all three current MP write sites, exact immutable playback, and explicit silent
+log conversion. No timed regeneration, HP-orb playback fix or save migration.
+The actual candidate is retained so orb-updated HP survives, and cap cleanup
+uses resulting MP; ordinary full→below-cap casting preserves carry.
+
+First focused GREEN31/32 exposed an over-broad negative test: the simultaneously
+dead enemy owner legitimately drops ordinary seed7 HP+MP orbs to the living
+hero. Both first main draws (.011704753/.061958258) are below trash chance.25;
+hero90→95@500 is correct. Root, producer and QA independently approved replacing
+all-MP-empty with that exact hero event plus explicit no-owner/no-refund checks,
+retaining owner HP0/MP0 assertions. No runtime change was made for this oracle.
+The original19/13 RED otherwise remains unchanged.
+
+Final commands all exit0: focused32/2files1.93s;
+`npm run test:engine -- --reporter=dot --silent`780/48files4.29s;
+`npm run test:related -- src/engine/combat/combat.ts
+src/stores/combatPlayback.ts src/stores/combatPlayback.test.ts
+src/stores/eventToLogI18n.ts src/stores/eventToLogI18n.test.ts
+--reporter=dot --silent`781/57files20.69s;
+`npm run test -- --reporter=dot --silent`1661/125files27.48s; final
+`npm run typecheck`, `npm run lint`, `npm run build`5.99s and diff-check pass.
+Zero failed/pending/skipped. Engine3s/related5s/full15s budgets remain unmet.
+Existing Browserslist/chunk/unprecached-manifest warnings remain.
+
+`npm run test:cov -- --reporter=dot --silent
+--coverage.reportsDirectory=/tmp/d2h5-root-warmth-e-coverage` passes the unchanged
+80% engine gate;1661/125files35.48s, overlapping final typecheck/lint, so not an
+isolated timing measurement. Global statements/lines94.09%, functions93.6%,
+branches88.67%. Combat statements/lines1098/1129(97.25%), functions45/45(100%),
+branches359/408(87.99%). All34 added instrumented statement locations and12
+added branch locations exercised. Stores are excluded by configured coverage;
+their absolute/zero/stale-max/idempotent/unknown/enemy/silent-locale behavioral
+tests were independently judged adequate, not measured store coverage.
+Raw coverage SHA256
+`fd1fc2b604f9e6b23945c754f003987ef571c651276fd946f9e15c9345762d87`.
+
+Final source SHA256:
+- Combat: `439eb1a86e3c4c68fe69978c623af810d64ac4006d26f4db2ad3412be8e15698`.
+- Playback: `d29e28ea3c70309e935a56815996cadbf10f07fb57e8a121e97d43080d6fc631`.
+- Log: `fbba06f8d9dc55c49dfaa80ead3b623f68822bb932a89dc4dfa00961a510fce0`.
+- Corrected playback test: `1c83bb2c198c59ebe14594f76847d3e59c793bcd52a32c27bb0ef6c0205012e1`.
+- Log test remains the frozen RED hash above.
+
+Independent producer and QA final **APPROVE / ADEQUATE**, complete source/raw
+coverage consumed. Task-owned raw logs/coverage/build/test cache may now be
+removed after evidence preservation. Stage f receives accepted `dd236eb` and
+exclusive five-file recovery scope; stage g still needs ordinary browser proof.
+No full Warmth, campaign, performance or G0–G7 acceptance.

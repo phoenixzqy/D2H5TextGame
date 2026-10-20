@@ -1,6 +1,6 @@
 # BUG-035 — Apply composed fire bonuses and exclude passive actions
 
-- **Status:** Reproduced; P07a01d runtime fix pending.
+- **Status:** Fixed in `5a53d37` (worker `f80b6a9`); bounded fire/passive stage only.
 - **Severity:** High; learned Warmth promises a fire bonus which combat ignores,
   and imported passive combo entries consume an action.
 - **Owner / systems:** engine integrator; direct damage input and shared skill
@@ -78,3 +78,41 @@ baseline before runtime edits: **APPROVE / ADEQUATE**. Existing742tests/47files
 all pass in the expanded engine run; all22 failures are new intended regressions.
 Producer also independently checked cooldownHP158, allyHP188 and legacy burn
 2088DoT/HP7651 arithmetic. Runtime source remains unchanged at this bug record.
+
+
+## Resolution and validation
+
+Integrated `5a53d37` changes only the two approved runtime lines and adds the
+frozen369-line/38-case regression suite. Root-owned prerequisite `727da6b`
+(worker equivalent `7980847`) changes the stale active-buff control from
+authored passive Might to actual active Frozen Armor; the count-one assertion
+and battle inputs remain intact. Root baseline19focused/742engine tests passed
+before the runtime change. No passive exception or assertion weakening.
+
+Final worker commands all exit0: focused38/38 in1.29s;
+`npm run test:engine -- --reporter=dot --silent`780/48files in4.42s;
+`npm run test:related -- src/engine/combat/combat.ts
+src/engine/combat/warmth.test.ts --reporter=dot --silent`752 in20.30s;
+`npm run test -- --reporter=dot --silent`1640/125files in26.78s; typecheck,
+lint, build5.48s and diff-check pass. Zero failed/pending. Existing engine3s,
+related5s and full15s budgets remain unmet. Build retains the Browserslist,
+large-chunk and unprecached2.57MB asset-manifest warnings; no PWA/performance
+acceptance follows.
+
+`npm run test:cov -- --reporter=dot --silent --coverage.reportsDirectory=<task
+evidence>/coverage` passes the unchanged inherited80% engine gate. Combat
+statements/lines1067/1098(97.17%), functions44/44(100%), branches341/392(86.98%);
+global engine statements/lines93.37%, functions92.28%, branches86.14%. Both
+changed statements and all modifier/fallback/passive/nonpassive alternatives
+covered. Raw coverage SHA256
+`07be8d837e60d837a564c87a85bf2328f7eef303a4988eb50a67bfca5f1b63b1`.
+Runtime SHA256`da2672fef8783c67a2dc9c4dd05e165665ba4d0a7f370919f45c4ac5ff9a1ccd`;
+regression test hash unchanged from RED.
+
+Root, producer and independent QA final **APPROVE / ADEQUATE** after consuming
+complete source, raw commands and coverage. Worker verified removal of its
+exact evidence root, dist and task-local Vite test cache after all consumers
+finished; dependencies preserved, Git clean, managed claim released. Root
+combined-head engine780/48files also passes in4.29s during the subsequent
+mana-stage loop. Full Warmth still requires timed recovery and ordinary browser
+proof. No push, PR, merge or deployment.
