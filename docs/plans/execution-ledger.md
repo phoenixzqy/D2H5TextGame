@@ -16,16 +16,19 @@ Current implementation evidence lives in `evidence/`.
 | P00b | accepted tooling fix | `test:related` now invokes Vitest's `related --run`; scoped 25 tests pass in 1.45 s, broad 226 pass/1 existing skip in 10.70 s (over budget). Producer approval; BUG-003. |
 | P01 | in-progress | D12 save/import contract recorded. Offline portion, D01–D11/D13–D14 pending; D04/D06 source reconciliation under review. |
 | P02a01 | accepted contract slice | `5adaeec`; strict fresh recipe/provenance/hash contract, 35 discovered self-tests. Producer independent APPROVE. No combat measurement yet. |
-| P02a02 | in-progress | Explicit seed/ordinal production boundary; independent technical agent. Preserve defaults, atomically reject invalid inputs, expose resolved metadata. |
+| P02a02 | accepted input slice | `e5428a2` (agent `b35155d`); validated explicit seed/ordinal, preserved defaults/counter, 20 new regressions and independent source APPROVE. Full-run rewards remain open. |
+| P02a03 | in-progress | Actual fresh production adapter/reporting, provenance and executable measurement command; producer reviewed five-file plan ready, technical agent implementing from `d39fe64`. |
 | Remaining P02 | pending dependencies | Production adapter/reporting/CLI and diagnosed manual/idle/reward comparison remain. Historical proxy sim stays excluded. |
 | P03a | accepted slice | `6f1dafd` + `76db166`; independent source approval, U/T/L/B and 10 browser cases pass. [Evidence](evidence/P03a-save-integrity.md). Full D12/G1/G6 remain unaccepted. |
 | P03b01 | accepted visibility slice | `90e4a67`; all legacy items remain selectable above grid cap, seven boundary tests, four ordinary-control browser cases. BUG-005. |
+| P04a01 | in-progress | Den canonical clear-objective integration at qualified `markCleared` boundary, depending on P11a. QA owns five-file child; return/talk/claim remain separate. |
 | Remaining P03b/P04 | ready for reproduction | Shared capacity, atomic transactions/recoverable awards and quest event/reward integrity remain. |
 | P05a | accepted slice | `2458ee7`; source-local error state, 13 focused tests and actual-component desktop/mobile proof. [Integrated evidence](evidence/P05a-P06a-foundations.md). D13/F19 remain open. |
 | P05b | needs D13 | Resolver precedence, metadata category, cross-surface identity. |
 | P06a | accepted slice | `10ce45d`; battle-local summon identity, full A/A and A/B/A replay, live/dead collisions. Independent TD approval. [Evidence](evidence/P05a-P06a-foundations.md). |
 | P06b | accepted deadline slice | `2cd350b`; inclusive 60,000 ms deadline, no overshoot, tied actors and exact/early victory. Five boundary tests, independent parent APPROVE; BUG-006. |
 | Remaining P06–P10 | pending dependencies | D04–D06/shared effects first. All skills remain behavior-unaccepted. |
+| P11a / P11a02 | accepted finalization slices | `d39fe64` actual-win/living-hero/playback guard and single clear; `d8db75c` truthful draw UI. Six root regressions, six RTL, 4/4 browser locale×viewport cases; independent QA/producer APPROVE. BUG-008. |
 | P11–P15 | pending dependencies | Rewards/idle, eligibility, economy, campaign and pacing. |
 | P16–P18 | pending | Critical UI/a11y/performance, offline/PWA, endgame and achievements. |
 | P19 | pending dependencies | Full matrix, actual required CI, independent review/QA, holdout, soak, human playtest. |
@@ -136,11 +139,34 @@ Verified removed: `/tmp/d2h5-foundations-browser-locale`, task-owned `dist` and
 `node_modules/.vite`. Dependencies and shared browser cache preserved. No push,
 PR or deployment. C0 and every full feature/checkpoint/G0–G7 remain unaccepted.
 
-## P02a03 next production adapter
+## Integrated validation at d8db75c
+
+Includes P02a02 and qualified finalization plus draw UI. P02a02 test-first:
+20 failures, then focused 46 passed/1 existing skip and 35 sim-contract checks.
+P11a test-first: all six outcome regressions failed before patch. Six focused
+UI terminal cases then reproduced both locale draw failures before correction.
+
+- U: 92 files / 888 passed / 1 existing merc-XP skip, 28.59 s (>15 s budget).
+- T/L/B: pass, including engine purity; build 13.47 s, same large-chunk and
+  unprecached art-manifest warnings. Existing React act/router warnings remain.
+- D/M: `combat-draw.spec.ts`, both projects × locales, 4/4 pass, 22.4 s. Actual
+  import→map entry→Skip→failed run→return→export/save/reload preserves player
+  and inventory, no clear/idle unlock. Imported durable fixture proves wiring,
+  not fresh balance. Exact command/environment: BUG-008.
+- No engine module changed since P06b; latest E evidence remains 351 passed.
+
+Verified removed `/tmp/d2h5-combat-draw-browser` and scratch
+`/tmp/d2h5-draw-test-draft.txt`. Current task-owned `dist` and `node_modules/.vite`
+are retained only for ongoing validation; root owns removal before handoff.
+Root worktree remains claimed. Agent P02a02 worktree released cleanly.
+No push, PR or deployment. All C0–C4/full feature/G0–G7 acceptance remains open.
+
+## P02a03 production adapter
 
 Producer is deriving an implementation-ready production adapter/report split.
 It must use actual creation, run/playback and award APIs. Current discovered
 limitations to report rather than conceal: item allocator global state, idle
-elite pity, and draw outcomes that currently advance/clear if the hero survives.
+elite pity, and historical draw advancement (corrected by `d39fe64`; the
+diagnostic must still independently detect this mismatch if observed).
 Current UI idle mode runs real combat; separate presumed-kill `useIdleTicker`
 has no production caller. Fresh fixtures cannot inject clears to unlock idle.
