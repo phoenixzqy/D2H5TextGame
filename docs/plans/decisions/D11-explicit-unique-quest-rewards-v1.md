@@ -2,8 +2,9 @@
 
 Status: delegated design and technical/producer contract APPROVE; overarching
 [design review](../../design/quest-unique-reward.md) APPROVE. A representation/
-preview passed independent producer/QA APPROVE/ADEQUATE and required checks. B generic transactional claims and C authored
-Andariel activation remain separate prerequisites; no earned boss/campaign or
+preview passed independent producer/QA APPROVE/ADEQUATE and required checks. B generic transactional claims passed67scoped and2823full tests plus independent
+source/evidence APPROVE/ADEQUATE with cleanup verified. C authored Andariel activation remains
+a separate prerequisite; no earned boss/campaign or
 C1/full v1 acceptance is implied.
 
 Preserve legacy itemDrop strings and add a closed object requiring uniqueId

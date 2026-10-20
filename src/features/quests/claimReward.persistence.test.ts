@@ -33,11 +33,15 @@ import { useMapStore } from '@/stores/mapStore';
 import { useMercStore } from '@/stores/mercStore';
 import { useMetaStore } from '@/stores/metaStore';
 import { useFormationStore } from '@/stores/formationStore';
-import { saveSave, loadSave } from '@/stores/save-adapter';
+import { saveSave, loadSave, exportSave } from '@/stores/save-adapter';
 import {
   __resetPersistenceForTests, AUTO_SAVE_DEBOUNCE_MS, snapshotStores, hydrateFromSave,
   importIntoStores, isReplacingSave, startAutoSave, stopAutoSave, useHydrationStore
 } from '@/stores/persistence';
+import mainDocument from '@/data/quests/main.json';
+import { loadAwardPools } from '@/data/loaders/loot';
+import { createRng, hashSeed } from '@/engine/rng';
+import { __resetRollItemSeqForTests, rollItem, rollUniqueItem } from '@/engine/loot/rollItem';
 import { claimQuestReward } from './claimReward';
 
 const DEN = 'quests/act1-den-of-evil';
@@ -184,5 +188,140 @@ describe('claim settlement at real persistence boundaries', () => {
       await pending;
       stopAutoSave();
     }
+  });
+});
+
+
+const UNIQUE_REWARD = { uniqueId: 'items/unique/coif-of-glory', ilvl: 19 };
+async function withUniqueRewards(check: () => Promise<void>): Promise<void> {
+  const den = required(mainDocument.quests.find(quest => quest.id === DEN));
+  const original = required(Object.getOwnPropertyDescriptor(den, 'rewards'));
+  try {
+    Object.defineProperty(den, 'rewards', { ...original,
+      value: { xp: 8000, skillPoints: 0, runeShards: 7, itemDrop: UNIQUE_REWARD } });
+    await check();
+  } finally { Object.defineProperty(den, 'rewards', original); }
+}
+
+describe('explicit unique rewards at real save boundaries', () => {
+  it('debounces a paid item/flag, exports it and preserves exact once-only state through import and hydration', async () => {
+    await withUniqueRewards(async () => {
+      startAutoSave();
+      try {
+        expect(claimQuestReward(DEN)).toBe('ok');
+        const paid = snapshot();
+        expect(paid.inventory.backpack).toHaveLength(1);
+        expect(paid.inventory.backpack[0]).toMatchObject({ uniqueId: UNIQUE_REWARD.uniqueId, ilvl: 19 });
+        expect(paid.map.questProgress[DEN]?.rewardClaimed).toBe(true);
+        expect(disk.state.writes).toHaveLength(0);
+        await vi.advanceTimersByTimeAsync(AUTO_SAVE_DEBOUNCE_MS);
+        expect(disk.state.writes).toHaveLength(1);
+        expect(disk.state.writes[0]?.data).toEqual(flushed(paid));
+        const exported = required(await exportSave());
+        expect(JSON.parse(exported) as unknown).toEqual(toJsonSafe(flushed(paid)));
+        stopAutoSave();
+        useInventoryStore.getState().reset(); useMapStore.getState().reset();
+        await importIntoStores(exported);
+        const imported = snapshot();
+        expect(imported.inventory).toEqual(paid.inventory);
+        expect(imported.player).toEqual(paid.player);
+        expect(imported.mercs).toEqual(paid.mercs);
+        expect(imported.map).toEqual(paid.map);
+        expect(claimQuestReward(DEN)).toBe('already-claimed');
+        expect(snapshot()).toEqual(imported);
+        useInventoryStore.getState().reset(); useMapStore.getState().reset();
+        await hydrateFromSave();
+        const hydrated = snapshot();
+        expect(hydrated.inventory).toEqual(paid.inventory);
+        expect(hydrated.player).toEqual(paid.player);
+        expect(hydrated.mercs).toEqual(paid.mercs);
+        expect(hydrated.map).toEqual(paid.map);
+        expect(claimQuestReward(DEN)).toBe('already-claimed');
+        expect(snapshot()).toEqual(hydrated);
+      } finally { stopAutoSave(); }
+    });
+  });
+});
+
+
+describe('unique rollback persistence and pending import', () => {
+  it.each(['item', 'flag'] as const)('debounces restored payload after real %s mutation then throw', async failAt => {
+    await withUniqueRewards(async () => {
+      const before = snapshot();
+      const add = useInventoryStore.getState().addItem;
+      const mark = useMapStore.getState().markQuestRewardClaimed;
+      useInventoryStore.setState({ addItem: item => {
+        add(item); if (failAt === 'item') throw new Error('Controlled saved item insertion failure');
+      } });
+      useMapStore.setState({ markQuestRewardClaimed: id => {
+        mark(id); if (failAt === 'flag') throw new Error('Controlled saved final flag failure');
+      } });
+      startAutoSave();
+      try {
+        expect(claimQuestReward(DEN)).toBe('grant-failed');
+        expect(snapshot()).toEqual(before);
+        expect(disk.state.writes).toHaveLength(0);
+        await vi.advanceTimersByTimeAsync(AUTO_SAVE_DEBOUNCE_MS);
+        expect(disk.state.writes).toHaveLength(1);
+        expect(disk.state.writes[0]?.data).toEqual(flushed(before));
+        const saved = required(await loadSave());
+        expect(saved.inventory).toEqual(before.inventory);
+        expect(saved.map.questProgress[DEN]?.rewardClaimed).not.toBe(true);
+        expect(saved.inventory.backpack).toEqual([]);
+      } finally {
+        stopAutoSave();
+        useInventoryStore.setState({ addItem: add });
+        useMapStore.setState({ markQuestRewardClaimed: mark });
+      }
+    });
+  });
+
+  it('refuses pending replacement before allocation, then uses only the imported identity seed and saves once', async () => {
+    await withUniqueRewards(async () => {
+      const old = snapshot();
+      await saveSave(old);
+      const incoming: SaveCurrent = { ...old,
+        player: { ...old.player, id: 'incoming-unique-claim', name: 'Imported unique claimant' } };
+      const gate = deferred();
+      disk.put.mockImplementationOnce(async record => { await gate.promise; disk.commit(record); });
+      startAutoSave();
+      const pending = importIntoStores(JSON.stringify(toJsonSafe(incoming)));
+      try {
+        await vi.advanceTimersByTimeAsync(0);
+        expect(isReplacingSave()).toBe(true);
+        expect(useHydrationStore.getState().status).toBe('ready');
+        const ordinary = () => rollItem({ baseId: 'items/base/sh-buckler', rarity: 'normal', ilvl: 19 },
+          loadAwardPools(), createRng(5049));
+        __resetRollItemSeqForTests();
+        const baseline = required(ordinary());
+        __resetRollItemSeqForTests();
+        expect(claimQuestReward(DEN)).toBe('not-ready');
+        expect(snapshot()).toEqual(old);
+        expect(ordinary()).toEqual(baseline); // No reset following pending-import refusal.
+        gate.release(); await pending;
+        expect(isReplacingSave()).toBe(false);
+        expect(snapshot()).toEqual(incoming);
+        expect(claimQuestReward(DEN)).toBe('ok');
+        const paid = snapshot();
+        const item = required(paid.inventory.backpack[0]);
+        const expected = required(rollUniqueItem(UNIQUE_REWARD, loadAwardPools(), createRng(hashSeed(
+          JSON.stringify(['quest-unique-v1', incoming.player.id, DEN, UNIQUE_REWARD.uniqueId, UNIQUE_REWARD.ilvl])
+        ))));
+        expect(item).toEqual({ ...expected, id: item.id });
+        expect(item.id.split('-')[1]).toBe(expected.id.split('-')[1]);
+        expect(paid.player.id).toBe(incoming.player.id);
+        expect(paid.inventory.backpack).toHaveLength(1);
+        expect(paid.map.questProgress[DEN]?.rewardClaimed).toBe(true);
+        expect(claimQuestReward(DEN)).toBe('already-claimed');
+        expect(snapshot()).toEqual(paid);
+        await vi.advanceTimersByTimeAsync(AUTO_SAVE_DEBOUNCE_MS);
+        expect(disk.state.writes).toHaveLength(3);
+        const expectedWrites = [old, incoming, flushed(paid)];
+        disk.state.writes.forEach((record, index) => { expect(record.data).toEqual(expectedWrites[index]); });
+        expect(required(await loadSave())).toEqual(flushed(paid));
+      } finally {
+        gate.release(); await pending; stopAutoSave();
+      }
+    });
   });
 });

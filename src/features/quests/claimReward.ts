@@ -5,6 +5,10 @@ import { useMapStore } from '@/stores/mapStore';
 import { useMercStore } from '@/stores/mercStore';
 import { isReplacingSave, useHydrationStore } from '@/stores/persistence';
 import { loadQuests, type QuestDef } from '@/data/loaders/quests';
+import { loadAwardPools } from '@/data/loaders/loot';
+import { rollUniqueItem, type RollUniqueItemInput } from '@/engine/loot/rollItem';
+import { createRng, hashSeed } from '@/engine/rng';
+import type { Item } from '@/engine/types/items';
 
 export type ClaimResult =
   | 'ok'
@@ -65,14 +69,37 @@ export function claimQuestReward(questId: string): ClaimResult {
     if (!player) return 'no-player';
 
     const grants: { kind: NumericReward; amount: number }[] = [];
+    let uniqueReward: RollUniqueItemInput | undefined;
     for (const [kind, amount] of Object.entries(rewards)) {
       // Gold has no executable economy; authored zero is a harmless no-op.
       if (kind === 'gold' && amount === 0) continue;
+      if (kind === 'itemDrop') {
+        if (typeof amount !== 'object' || amount === null
+          || !('uniqueId' in amount) || typeof amount.uniqueId !== 'string'
+          || !('ilvl' in amount) || typeof amount.ilvl !== 'number'
+          || !Number.isInteger(amount.ilvl) || amount.ilvl < 1) return 'unsupported-rewards';
+        uniqueReward = { uniqueId: amount.uniqueId, ilvl: amount.ilvl };
+        continue;
+      }
       if (!isNumericReward(kind) || typeof amount !== 'number'
         || !Number.isInteger(amount) || amount < 0) return 'unsupported-rewards';
       if (amount > 0) grants.push({ kind, amount });
     }
-    if (grants.length === 0) return 'no-rewards';
+    if (grants.length === 0 && !uniqueReward) return 'no-rewards';
+
+    // Preparation is private: failure here must not publish rollback writes.
+    let item: Item | undefined;
+    if (uniqueReward) {
+      try {
+        const seed = hashSeed(JSON.stringify([
+          'quest-unique-v1', player.id, quest.id, uniqueReward.uniqueId, uniqueReward.ilvl
+        ]));
+        item = rollUniqueItem(uniqueReward, loadAwardPools(), createRng(seed));
+      } catch {
+        return 'grant-failed';
+      }
+      if (!item) return 'unsupported-rewards';
+    }
 
     const changesPlayer = grants.some(({ kind }) =>
       kind === 'xp' || kind === 'skillPoints' || kind === 'statPoints');
@@ -80,7 +107,11 @@ export function claimQuestReward(questId: string): ClaimResult {
     const changesCurrency = grants.some(({ kind }) =>
       kind !== 'xp' && kind !== 'skillPoints' && kind !== 'statPoints');
     const { ownedMercs, mercProgress } = useMercStore.getState();
-    const { currencies } = useInventoryStore.getState();
+    const inventory = useInventoryStore.getState();
+    const inventorySnapshot = {
+      ...(changesCurrency ? { currencies: inventory.currencies } : {}),
+      ...(item ? { backpack: inventory.backpack } : {})
+    };
 
     try {
       for (const { kind, amount } of grants) {
@@ -95,6 +126,7 @@ export function claimQuestReward(questId: string): ClaimResult {
           useInventoryStore.getState().addCurrency(kind, amount);
         }
       }
+      if (item) useInventoryStore.getState().addItem(item);
       useMapStore.getState().markQuestRewardClaimed(questId);
       return 'ok';
     } catch (cause) {
@@ -106,7 +138,7 @@ export function claimQuestReward(questId: string): ClaimResult {
       };
       if (changesPlayer) restore(() => { usePlayerStore.setState({ player }); });
       if (sharesXp) restore(() => { useMercStore.setState({ ownedMercs, mercProgress }); });
-      if (changesCurrency) restore(() => { useInventoryStore.setState({ currencies }); });
+      if (changesCurrency || item) restore(() => { useInventoryStore.setState(inventorySnapshot); });
       restore(() => { useMapStore.setState((state) => ({
         questProgress: { ...state.questProgress, [questId]: progress }
       })); });

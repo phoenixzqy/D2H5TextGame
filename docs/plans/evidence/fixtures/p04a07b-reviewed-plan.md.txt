@@ -1,0 +1,31 @@
+# P04a07b — Generic transactional explicit unique reward claims
+
+Dependency: P04a07a representation/preview c2a2415, closing ledger commit recorded by Git before first test edit. Root owns all mutations/tests in claimed human worktree2. Independent designer/technical plan review before tests, producer+QA frozen genuine new-capability RED before runtime edits, final evidence audit/releases before cleanup and separate closing ledger. New feature, not an existing bug. Existing design/technical D11 approvals authorize B; no content activation or new owner preference needed.
+
+## Owned files and boundaries
+
+src/features/quests/claimReward.ts; append-only test additions to claimReward.test.ts and claimReward.persistence.test.ts (imports/new helpers permitted; preserve every existing test/assertion). Add bounded decision/evidence/fixtures/ledger. Do not edit schema, catalogs, locales, UI, engine constructors, store implementations, save version/migrations, boss TC or authored reward data. Temporary descriptor-restored Den reward fixtures only.
+
+## Contract
+
+Keep global guard through whole-bag preflight/construction/grants/restoration. Capture existing player identity after ready/import guards. Scan all reward entries before materialization or writes. Numeric kinds/gold0 unchanged. Legacy itemDrop string, lootTable, positive gold and other unsupported kinds refuse whole bag regardless key order. Item object must have uniqueId:string, ilvl:positiveinteger under schema-approved shape; item-only counts nonempty. Prefer private type narrowing, no exported parallel reward engine. Full loadAwardPools plus existing rollUniqueItem; fresh createRng(hashSeed(JSON.stringify(['quest-unique-v1', player.id, quest.id, uniqueId, ilvl]))) on each attempt. Exact constructor expected undefined -> unsupported-rewards; construction/RNG thrown -> grant-failed before publication. No weighted/TC/kill/combat/offline call or allocator rewind. Retry properties stable, unpublished instance ID gaps allowed.
+
+Snapshot backpack only iff item, currencies only iff currency participates; restore participating inventory fields together in one partial setState. Keep prior player/merc/progress rollback, all-restores AggregateError and guard semantics. Use existing retained-overflow addItem(item), claimed flag last. Preserve stash/equipped/actions/unrelated inventory data. Existing fixed XP -> fielded merc75%, no multiplier or new caps. One supported object delivers exactly one item; numeric+item and item-only once. Save real snapshot/adapter/autosave/hydration/export equality and later refusal; no migration.
+
+## RED and meaningful oracles
+
+Append tests using actual loader/catalog/constructor/RNG/stores (fault injection may wrap real grants/constructor then throw; no favorable mocked outputs).
+- Mixed fixture8000XP/skillPoints0/Coif19 plus currency and harmless gold0 once; cumulative XP exact8000 and fielded merc6000 before caps, existing level/milestone behavior unchanged. Exact full item from direct real constructor and approved seed as independent expected oracle; baseline allocator reset before claim only. Item-only works without changing player/merc/currencies.
+- Both property orders for item+unsupported lootTable/service/gold1 and legacy string+numeric refuse before publication AND allocation (baseline ordinary roll then reset before refusal, no reset afterwards). Schema-valid unknown unique/low ilvl/duplicatecatalog refuse unchanged too; real engine already separately covers base/level boundaries. Precisely restore catalog changes.
+- Constructor failure (controlled wrapper throws, guard reentry tested while preparation) returns grant-failed, no published state; guard released for retry, allocator gaps allowed.
+- Real addItem and final flag mutate-then-throw restore exact participating references/bytes; inventory backpack+currency restore together, stash/equipped/actions remain intact. Verify nested same/otherquest guard at grant and rollback, every participating field restoration attempted, AggregateError when inventory restore fails then guard releases. Item-only rollback leaves nonparticipating player/merc/currency alone.
+- Retry item after post-insert failure matches complete rolled properties except new instance ID, grants all once, subsequent claim refuses. Full backpack retains append as visible recovery overflow (existing capacity contract), existing items/stash/equipment unchanged.
+- Real pending import with ready hydration refuses before allocation; after import pays incoming identity's seed. Real debounced autosave records only settled paid or restored payload. Save export/import/hydration restores exact item/flag and once-only refusal using actual save codec; only IndexedDB IO fake as existing suite. Existing real helper clocks are handled exactly.
+
+Freeze test files and exact reports before claim handler edit. Some negative controls already pass; count as controls, never manufacture defect claims. On unforeseen source-backed oracle correction preserve initial failure/source and require independent approval before any amendment. Do not edit assertions merely to match implementation.
+
+## Validation/cleanup
+
+Unchanged frozen GREEN, test:related actual claim/schema/persistence deps, full npm test, npm run typecheck and npm run lint; no engine edit so no new engine coverage claim. Guarded npm run check:test-bridge-shake only after tests exit. Preserve exact commands/counts/times/hashes and failed attempts. Timing thresholds unchanged. B structural/integration only; no authored Andariel activation, actual browser/mobile/earned gameplay acceptance claim. Root owns this RAW plus task-created dist/node_modules/.vite initially absent at execution start; track exact processes, no server needed. Independent final producer/QA approve+release before exact RAW/dist/node_modules/.vite cleanup/absence verification. No push/PR/merge/deployment.
+
+Security: local schema-approved named lookup, seeded constructor and store settlement; no network/dependencies/credentials/evaluation/permission or agent-policy changes. Handle unknown content as unsupported; do not bypass loader/schema/save validation or swallow failed restoration.

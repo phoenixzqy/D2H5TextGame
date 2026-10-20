@@ -1,0 +1,2972 @@
+{
+  "task": "P04a07b",
+  "inputCommit": "2302c99",
+  "kind": "new capability: transactional explicit unique quest claim",
+  "environment": {
+    "node": "v24.21.0",
+    "npm": "11.19.0",
+    "browser": "not run; actual production desktop/mobile and earned proof remains later"
+  },
+  "finalSources": {
+    "src/features/quests/claimReward.ts": "2154197be387eff71915b1e582d87ebc0d4e0363b02b0abc405fbf9b5a671e13",
+    "src/features/quests/claimReward.test.ts": "b45a9bed26eca45140332085d48f053b0c3033c9ad5e5263e6ba0b7778502e3d",
+    "src/features/quests/claimReward.persistence.test.ts": "4b1083b6c339d0ca0bc44c1bd5765330d4378f09ace69310ce1179186853e09f"
+  },
+  "originalSources": {
+    "src__features__quests__claimReward.test.ts.original.txt": "70135ad4fbe35561562165061005c512fb6e6b44d392494243259de0161bdb8b",
+    "src__features__quests__claimReward.persistence.test.ts.original.txt": "a0dcfe2f6d43b985cd580ff8168fe8aeca2d675583b4df0e12e21c272bfd067a",
+    "src__features__quests__claimReward.ts.original.txt": "2c21221a8a9163665a8ba2e7ec1146dd846a5472c7bb2ca9645bf3b6fd625706"
+  },
+  "retainedVersions": {
+    "p04a07b-expanded-test.ts.txt": "107ecce2f04eb56094143ed2797b5ed45108b1ea57f8108f95737435c8d3806c",
+    "p04a07b-first-implementation.ts.txt": "2154197be387eff71915b1e582d87ebc0d4e0363b02b0abc405fbf9b5a671e13",
+    "p04a07b-initial-test.ts.txt": "8a15ae1d744acef7016d2529dfe3c5bc63af61853bc57e731b00cd476400f2c1",
+    "p04a07b-rollback-test.ts.txt": "ee6ee9a3c13e80f99064d85949d7cda345d101f19b9cb57ecc4a5892f9938fd0",
+    "p04a07b-src__features__quests__claimReward.persistence.test.ts.frozen.txt": "2ad595d78bf9918915c101090eb31a7534732902d88fb8981ad53651904d8f60",
+    "p04a07b-src__features__quests__claimReward.persistence.test.ts.save-red.txt": "70ef05a71bcb0f636a15a3000cda4ba86369b8e03b1264bd2b0aca6e004bbda7",
+    "p04a07b-src__features__quests__claimReward.persistence.test.ts.strengthened.txt": "4b1083b6c339d0ca0bc44c1bd5765330d4378f09ace69310ce1179186853e09f",
+    "p04a07b-src__features__quests__claimReward.test.ts.frozen.txt": "df2f965a2db62fafa58d260520aa7407dd687edeb83067b804efa947c55e56fe",
+    "p04a07b-src__features__quests__claimReward.test.ts.save-red.txt": "df2f965a2db62fafa58d260520aa7407dd687edeb83067b804efa947c55e56fe",
+    "p04a07b-src__features__quests__claimReward.test.ts.strengthened.txt": "df2f965a2db62fafa58d260520aa7407dd687edeb83067b804efa947c55e56fe",
+    "p04a07b-reviewed-plan.md.txt": "e557f9d3a53a9611daaef4f0a61cfe3be04b21dae586a19672a615c751fd83ca"
+  },
+  "commands": [
+    {
+      "label": "initial-red",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/features/quests/claimReward.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-quest-unique-claim-j6ocbi3_/initial-red.report.json"
+      ],
+      "exit": 1,
+      "seconds": 4.594,
+      "logSha256": "61d9b03f8e825ebe6ec205a0c1a00402a61204077c750f424297b2dcef57a1fa",
+      "reportSha256": "41f053420f52122fea2e824fb524e79d0503a0336e832afdaba08df09c0f68c3",
+      "results": {
+        "numTotalTests": 37,
+        "numPassedTests": 35,
+        "numFailedTests": 2,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 1
+      },
+      "assertions": [
+        {
+          "file": "src/features/quests/claimReward.test.ts",
+          "results": [
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses unknown completed progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses missing progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses locked progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses available progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses inProgress progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses actual Den without a player, fielded merc=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses actual Den without a player, fielded merc=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses the entire actual unsupported bundle quests/side-act1-cains-favor",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses the entire actual unsupported bundle quests/act1-sisters-burial-grounds",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses the entire actual unsupported bundle quests/side-act3-jade-statuette",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses before writes while hydration is idle",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses before writes while hydration is loading",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses before writes while hydration is error",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract grants actual Den exactly once, separating level rewards and the quest point",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract keeps automatic milestone points separate from the extra Den point without a fielded merc",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses synchronous same-quest reentry from the player publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses synchronous same-quest reentry from the merc publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses a different supported quest nested inside Den and permits it after settlement",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled player mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled player mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled merc mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled merc mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled currency mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled currency mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled flag mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled flag mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract attempts remaining restores, reports restoration failure and releases the guard",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract does not consume an empty or all-zero bundle 0",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract does not consume an empty or all-zero bundle 1",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 0",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 1",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 2",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 3",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 4",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preserves executable numeric reward kinds and harmless gold zero",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique quest claim capability (P04a07b) pays a mixed bundle exactly once with the named seeded item and unmultiplied hero/merc XP",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'ok' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique quest claim capability (P04a07b) counts an item-only reward without touching player, merc or currencies",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'ok' // Object.is equality"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "expanded-red",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/features/quests/claimReward.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-quest-unique-claim-j6ocbi3_/expanded-red.report.json"
+      ],
+      "exit": 1,
+      "seconds": 4.655,
+      "logSha256": "feb8f289c1e00ffd0367d0623f4bf5b96524a0c99404f9242ddd66da5e3e0bd5",
+      "reportSha256": "4446f09fb188f2752d396a32f48e1d336e33ac35b42c368cc82145b0400b643b",
+      "results": {
+        "numTotalTests": 50,
+        "numPassedTests": 46,
+        "numFailedTests": 4,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 1
+      },
+      "assertions": [
+        {
+          "file": "src/features/quests/claimReward.test.ts",
+          "results": [
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses unknown completed progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses missing progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses locked progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses available progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses inProgress progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses actual Den without a player, fielded merc=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses actual Den without a player, fielded merc=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses the entire actual unsupported bundle quests/side-act1-cains-favor",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses the entire actual unsupported bundle quests/act1-sisters-burial-grounds",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses the entire actual unsupported bundle quests/side-act3-jade-statuette",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses before writes while hydration is idle",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses before writes while hydration is loading",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses before writes while hydration is error",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract grants actual Den exactly once, separating level rewards and the quest point",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract keeps automatic milestone points separate from the extra Den point without a fielded merc",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses synchronous same-quest reentry from the player publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses synchronous same-quest reentry from the merc publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses a different supported quest nested inside Den and permits it after settlement",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled player mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled player mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled merc mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled merc mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled currency mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled currency mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled flag mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled flag mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract attempts remaining restores, reports restoration failure and releases the guard",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract does not consume an empty or all-zero bundle 0",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract does not consume an empty or all-zero bundle 1",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 0",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 1",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 2",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 3",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 4",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preserves executable numeric reward kinds and harmless gold zero",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique quest claim capability (P04a07b) pays a mixed bundle exactly once with the named seeded item and unmultiplied hero/merc XP",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'ok' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique quest claim capability (P04a07b) counts an item-only reward without touching player, merc or currencies",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'ok' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses lootTable before allocation in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses lootTable before allocation in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses service before allocation in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses service before allocation in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses gold before allocation in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses gold before allocation in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals keeps legacy strings unsupported before grants in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals keeps legacy strings unsupported before grants in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses semantic unknown without allocation/publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses semantic low-level without allocation/publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses semantic duplicate without allocation/publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " unique preparation and retained overflow maps a constructor exception to grant-failed, holds the guard during preparation and permits retry",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " unique preparation and retained overflow retains the reward beyond full backpack capacity and preserves every existing item/stash/equipment",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'ok' // Object.is equality"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "rollback-red",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/features/quests/claimReward.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-quest-unique-claim-j6ocbi3_/rollback-red.report.json"
+      ],
+      "exit": 1,
+      "seconds": 4.636,
+      "logSha256": "fda51343b51b47b10a28157fe2bfeb01909ee10b65977d9df87895c4c045d094",
+      "reportSha256": "ddc07b20ca29abe00ee5325133e633e7d11cabdee41bb0ed4012245a76d56556",
+      "results": {
+        "numTotalTests": 58,
+        "numPassedTests": 46,
+        "numFailedTests": 12,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 1
+      },
+      "assertions": [
+        {
+          "file": "src/features/quests/claimReward.test.ts",
+          "results": [
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses unknown completed progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses missing progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses locked progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses available progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses inProgress progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses actual Den without a player, fielded merc=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses actual Den without a player, fielded merc=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses the entire actual unsupported bundle quests/side-act1-cains-favor",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses the entire actual unsupported bundle quests/act1-sisters-burial-grounds",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses the entire actual unsupported bundle quests/side-act3-jade-statuette",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses before writes while hydration is idle",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses before writes while hydration is loading",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses before writes while hydration is error",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract grants actual Den exactly once, separating level rewards and the quest point",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract keeps automatic milestone points separate from the extra Den point without a fielded merc",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses synchronous same-quest reentry from the player publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses synchronous same-quest reentry from the merc publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses a different supported quest nested inside Den and permits it after settlement",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled player mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled player mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled merc mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled merc mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled currency mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled currency mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled flag mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled flag mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract attempts remaining restores, reports restoration failure and releases the guard",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract does not consume an empty or all-zero bundle 0",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract does not consume an empty or all-zero bundle 1",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 0",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 1",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 2",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 3",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 4",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preserves executable numeric reward kinds and harmless gold zero",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique quest claim capability (P04a07b) pays a mixed bundle exactly once with the named seeded item and unmultiplied hero/merc XP",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'ok' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique quest claim capability (P04a07b) counts an item-only reward without touching player, merc or currencies",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'ok' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses lootTable before allocation in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses lootTable before allocation in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses service before allocation in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses service before allocation in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses gold before allocation in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses gold before allocation in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals keeps legacy strings unsupported before grants in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals keeps legacy strings unsupported before grants in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses semantic unknown without allocation/publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses semantic low-level without allocation/publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses semantic duplicate without allocation/publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " unique preparation and retained overflow maps a constructor exception to grant-failed, holds the guard during preparation and permits retry",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " unique preparation and retained overflow retains the reward beyond full backpack capacity and preserves every existing item/stash/equipment",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'ok' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores item mutation, itemOnly=false, claimed=absent",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores item mutation, itemOnly=false, claimed=false",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores flag mutation, itemOnly=false, claimed=absent",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores flag mutation, itemOnly=false, claimed=false",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores item mutation, itemOnly=true, claimed=absent",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores item mutation, itemOnly=true, claimed=false",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores flag mutation, itemOnly=true, claimed=absent",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores flag mutation, itemOnly=true, claimed=false",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "save-red",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/features/quests/claimReward.test.ts",
+        "src/features/quests/claimReward.persistence.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-quest-unique-claim-j6ocbi3_/save-red.report.json"
+      ],
+      "exit": 1,
+      "seconds": 4.544,
+      "logSha256": "542c218efda47261c13b794da3d21854ec9e3addcda8d28bafcffbf40a590d0b",
+      "reportSha256": "2e4280972eabdcee5ac9657222bdf8efae7cea8d554c4dafa7b7c68b2e599e2f",
+      "results": {
+        "numTotalTests": 64,
+        "numPassedTests": 49,
+        "numFailedTests": 15,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 2
+      },
+      "assertions": [
+        {
+          "file": "src/features/quests/claimReward.persistence.test.ts",
+          "results": [
+            {
+              "fullName": " claim settlement at real persistence boundaries debounces the complete paid Den payload and preserves once-only safety through real hydration",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " claim settlement at real persistence boundaries debounces only restored data after a controlled real merc mutation then throw",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " claim settlement at real persistence boundaries refuses while a real import is pending with ready hydration, then claims only the imported character",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique rewards at real save boundaries debounces a paid item/flag, exports it and preserves exact once-only state through import and hydration",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'ok' // Object.is equality"
+              ]
+            }
+          ]
+        },
+        {
+          "file": "src/features/quests/claimReward.test.ts",
+          "results": [
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses unknown completed progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses missing progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses locked progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses available progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses inProgress progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses actual Den without a player, fielded merc=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses actual Den without a player, fielded merc=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses the entire actual unsupported bundle quests/side-act1-cains-favor",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses the entire actual unsupported bundle quests/act1-sisters-burial-grounds",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses the entire actual unsupported bundle quests/side-act3-jade-statuette",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses before writes while hydration is idle",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses before writes while hydration is loading",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses before writes while hydration is error",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract grants actual Den exactly once, separating level rewards and the quest point",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract keeps automatic milestone points separate from the extra Den point without a fielded merc",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses synchronous same-quest reentry from the player publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses synchronous same-quest reentry from the merc publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses a different supported quest nested inside Den and permits it after settlement",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled player mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled player mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled merc mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled merc mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled currency mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled currency mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled flag mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled flag mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract attempts remaining restores, reports restoration failure and releases the guard",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract does not consume an empty or all-zero bundle 0",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract does not consume an empty or all-zero bundle 1",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 0",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 1",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 2",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 3",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 4",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preserves executable numeric reward kinds and harmless gold zero",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique quest claim capability (P04a07b) pays a mixed bundle exactly once with the named seeded item and unmultiplied hero/merc XP",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'ok' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique quest claim capability (P04a07b) counts an item-only reward without touching player, merc or currencies",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'ok' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses lootTable before allocation in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses lootTable before allocation in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses service before allocation in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses service before allocation in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses gold before allocation in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses gold before allocation in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals keeps legacy strings unsupported before grants in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals keeps legacy strings unsupported before grants in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses semantic unknown without allocation/publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses semantic low-level without allocation/publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses semantic duplicate without allocation/publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " unique preparation and retained overflow maps a constructor exception to grant-failed, holds the guard during preparation and permits retry",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " unique preparation and retained overflow retains the reward beyond full backpack capacity and preserves every existing item/stash/equipment",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'ok' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores item mutation, itemOnly=false, claimed=absent",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores item mutation, itemOnly=false, claimed=false",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores flag mutation, itemOnly=false, claimed=absent",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores flag mutation, itemOnly=false, claimed=false",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores item mutation, itemOnly=true, claimed=absent",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores item mutation, itemOnly=true, claimed=false",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores flag mutation, itemOnly=true, claimed=absent",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores flag mutation, itemOnly=true, claimed=false",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " unique claim exceptional boundaries maps a throwing RNG draw inside real construction to grant-failed without publications",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " unique claim exceptional boundaries attempts all other restores, reports inventory restore failure and releases the guard",
+              "status": "failed",
+              "failureMessages": [
+                "expected undefined to be an instance of AggregateError"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "frozen-red",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/features/quests/claimReward.test.ts",
+        "src/features/quests/claimReward.persistence.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-quest-unique-claim-j6ocbi3_/frozen-red.report.json"
+      ],
+      "exit": 1,
+      "seconds": 4.643,
+      "logSha256": "a0ac274a4b141a8767a8fe944caa085f2681f0282fb1dac20232d2785724fb70",
+      "reportSha256": "542a1378433b6f0ffe3649dc4bcc0ed8b997035614fc86e35ef9df11c242b9be",
+      "results": {
+        "numTotalTests": 67,
+        "numPassedTests": 49,
+        "numFailedTests": 18,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 2
+      },
+      "assertions": [
+        {
+          "file": "src/features/quests/claimReward.persistence.test.ts",
+          "results": [
+            {
+              "fullName": " claim settlement at real persistence boundaries debounces the complete paid Den payload and preserves once-only safety through real hydration",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " claim settlement at real persistence boundaries debounces only restored data after a controlled real merc mutation then throw",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " claim settlement at real persistence boundaries refuses while a real import is pending with ready hydration, then claims only the imported character",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique rewards at real save boundaries debounces a paid item/flag, exports it and preserves exact once-only state through import and hydration",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'ok' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " unique rollback persistence and pending import debounces restored payload after real item mutation then throw",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " unique rollback persistence and pending import debounces restored payload after real flag mutation then throw",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " unique rollback persistence and pending import refuses pending replacement before allocation, then uses only the imported identity seed and saves once",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'ok' // Object.is equality"
+              ]
+            }
+          ]
+        },
+        {
+          "file": "src/features/quests/claimReward.test.ts",
+          "results": [
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses unknown completed progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses missing progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses locked progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses available progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses inProgress progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses actual Den without a player, fielded merc=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses actual Den without a player, fielded merc=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses the entire actual unsupported bundle quests/side-act1-cains-favor",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses the entire actual unsupported bundle quests/act1-sisters-burial-grounds",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses the entire actual unsupported bundle quests/side-act3-jade-statuette",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses before writes while hydration is idle",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses before writes while hydration is loading",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses before writes while hydration is error",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract grants actual Den exactly once, separating level rewards and the quest point",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract keeps automatic milestone points separate from the extra Den point without a fielded merc",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses synchronous same-quest reentry from the player publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses synchronous same-quest reentry from the merc publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses a different supported quest nested inside Den and permits it after settlement",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled player mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled player mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled merc mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled merc mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled currency mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled currency mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled flag mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled flag mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract attempts remaining restores, reports restoration failure and releases the guard",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract does not consume an empty or all-zero bundle 0",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract does not consume an empty or all-zero bundle 1",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 0",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 1",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 2",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 3",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 4",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preserves executable numeric reward kinds and harmless gold zero",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique quest claim capability (P04a07b) pays a mixed bundle exactly once with the named seeded item and unmultiplied hero/merc XP",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'ok' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique quest claim capability (P04a07b) counts an item-only reward without touching player, merc or currencies",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'ok' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses lootTable before allocation in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses lootTable before allocation in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses service before allocation in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses service before allocation in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses gold before allocation in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses gold before allocation in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals keeps legacy strings unsupported before grants in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals keeps legacy strings unsupported before grants in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses semantic unknown without allocation/publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses semantic low-level without allocation/publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses semantic duplicate without allocation/publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " unique preparation and retained overflow maps a constructor exception to grant-failed, holds the guard during preparation and permits retry",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " unique preparation and retained overflow retains the reward beyond full backpack capacity and preserves every existing item/stash/equipment",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'ok' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores item mutation, itemOnly=false, claimed=absent",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores item mutation, itemOnly=false, claimed=false",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores flag mutation, itemOnly=false, claimed=absent",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores flag mutation, itemOnly=false, claimed=false",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores item mutation, itemOnly=true, claimed=absent",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores item mutation, itemOnly=true, claimed=false",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores flag mutation, itemOnly=true, claimed=absent",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores flag mutation, itemOnly=true, claimed=false",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " unique claim exceptional boundaries maps a throwing RNG draw inside real construction to grant-failed without publications",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " unique claim exceptional boundaries attempts all other restores, reports inventory restore failure and releases the guard",
+              "status": "failed",
+              "failureMessages": [
+                "expected undefined to be an instance of AggregateError"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "tests-typecheck",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 10.446,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "label": "tests-lint",
+      "command": [
+        "npx",
+        "eslint",
+        "src/features/quests/claimReward.test.ts",
+        "src/features/quests/claimReward.persistence.test.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 6.508,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "strengthened-red",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/features/quests/claimReward.test.ts",
+        "src/features/quests/claimReward.persistence.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-quest-unique-claim-j6ocbi3_/strengthened-red.report.json"
+      ],
+      "exit": 1,
+      "seconds": 4.659,
+      "logSha256": "77e45f919d237f7aab27d5f9160b655ec16825f9d7c958195dcc3d47b900e0cd",
+      "reportSha256": "bf563a256232b12e6fadb53931f10181239d48fd36ddb49b71b9349e8b36a3f8",
+      "results": {
+        "numTotalTests": 67,
+        "numPassedTests": 49,
+        "numFailedTests": 18,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 2
+      },
+      "assertions": [
+        {
+          "file": "src/features/quests/claimReward.persistence.test.ts",
+          "results": [
+            {
+              "fullName": " claim settlement at real persistence boundaries debounces the complete paid Den payload and preserves once-only safety through real hydration",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " claim settlement at real persistence boundaries debounces only restored data after a controlled real merc mutation then throw",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " claim settlement at real persistence boundaries refuses while a real import is pending with ready hydration, then claims only the imported character",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique rewards at real save boundaries debounces a paid item/flag, exports it and preserves exact once-only state through import and hydration",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'ok' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " unique rollback persistence and pending import debounces restored payload after real item mutation then throw",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " unique rollback persistence and pending import debounces restored payload after real flag mutation then throw",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " unique rollback persistence and pending import refuses pending replacement before allocation, then uses only the imported identity seed and saves once",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'ok' // Object.is equality"
+              ]
+            }
+          ]
+        },
+        {
+          "file": "src/features/quests/claimReward.test.ts",
+          "results": [
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses unknown completed progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses missing progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses locked progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses available progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses inProgress progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses actual Den without a player, fielded merc=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses actual Den without a player, fielded merc=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses the entire actual unsupported bundle quests/side-act1-cains-favor",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses the entire actual unsupported bundle quests/act1-sisters-burial-grounds",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses the entire actual unsupported bundle quests/side-act3-jade-statuette",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses before writes while hydration is idle",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses before writes while hydration is loading",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses before writes while hydration is error",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract grants actual Den exactly once, separating level rewards and the quest point",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract keeps automatic milestone points separate from the extra Den point without a fielded merc",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses synchronous same-quest reentry from the player publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses synchronous same-quest reentry from the merc publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses a different supported quest nested inside Den and permits it after settlement",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled player mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled player mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled merc mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled merc mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled currency mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled currency mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled flag mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled flag mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract attempts remaining restores, reports restoration failure and releases the guard",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract does not consume an empty or all-zero bundle 0",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract does not consume an empty or all-zero bundle 1",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 0",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 1",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 2",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 3",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 4",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preserves executable numeric reward kinds and harmless gold zero",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique quest claim capability (P04a07b) pays a mixed bundle exactly once with the named seeded item and unmultiplied hero/merc XP",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'ok' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique quest claim capability (P04a07b) counts an item-only reward without touching player, merc or currencies",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'ok' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses lootTable before allocation in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses lootTable before allocation in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses service before allocation in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses service before allocation in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses gold before allocation in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses gold before allocation in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals keeps legacy strings unsupported before grants in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals keeps legacy strings unsupported before grants in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses semantic unknown without allocation/publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses semantic low-level without allocation/publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses semantic duplicate without allocation/publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " unique preparation and retained overflow maps a constructor exception to grant-failed, holds the guard during preparation and permits retry",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " unique preparation and retained overflow retains the reward beyond full backpack capacity and preserves every existing item/stash/equipment",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'ok' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores item mutation, itemOnly=false, claimed=absent",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores item mutation, itemOnly=false, claimed=false",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores flag mutation, itemOnly=false, claimed=absent",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores flag mutation, itemOnly=false, claimed=false",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores item mutation, itemOnly=true, claimed=absent",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores item mutation, itemOnly=true, claimed=false",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores flag mutation, itemOnly=true, claimed=absent",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores flag mutation, itemOnly=true, claimed=false",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " unique claim exceptional boundaries maps a throwing RNG draw inside real construction to grant-failed without publications",
+              "status": "failed",
+              "failureMessages": [
+                "expected 'unsupported-rewards' to be 'grant-failed' // Object.is equality"
+              ]
+            },
+            {
+              "fullName": " unique claim exceptional boundaries attempts all other restores, reports inventory restore failure and releases the guard",
+              "status": "failed",
+              "failureMessages": [
+                "expected undefined to be an instance of AggregateError"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "green",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/features/quests/claimReward.test.ts",
+        "src/features/quests/claimReward.persistence.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-quest-unique-claim-j6ocbi3_/green.report.json"
+      ],
+      "exit": 1,
+      "seconds": 4.723,
+      "logSha256": "b217c684cdd2ea183571f80ca40f53e5f663dfd158d911b83e587baf2bcbef1a",
+      "reportSha256": "7c67ed5612f7c0ddd52d7a0398523120b3820ec1b3fa29d8232a09575a90a1b5",
+      "results": {
+        "numTotalTests": 67,
+        "numPassedTests": 66,
+        "numFailedTests": 1,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 2
+      },
+      "assertions": [
+        {
+          "file": "src/features/quests/claimReward.persistence.test.ts",
+          "results": [
+            {
+              "fullName": " claim settlement at real persistence boundaries debounces the complete paid Den payload and preserves once-only safety through real hydration",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " claim settlement at real persistence boundaries debounces only restored data after a controlled real merc mutation then throw",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " claim settlement at real persistence boundaries refuses while a real import is pending with ready hydration, then claims only the imported character",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique rewards at real save boundaries debounces a paid item/flag, exports it and preserves exact once-only state through import and hydration",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " unique rollback persistence and pending import debounces restored payload after real item mutation then throw",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " unique rollback persistence and pending import debounces restored payload after real flag mutation then throw",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " unique rollback persistence and pending import refuses pending replacement before allocation, then uses only the imported identity seed and saves once",
+              "status": "passed",
+              "failureMessages": []
+            }
+          ]
+        },
+        {
+          "file": "src/features/quests/claimReward.test.ts",
+          "results": [
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses unknown completed progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses missing progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses locked progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses available progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses inProgress progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses actual Den without a player, fielded merc=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses actual Den without a player, fielded merc=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses the entire actual unsupported bundle quests/side-act1-cains-favor",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses the entire actual unsupported bundle quests/act1-sisters-burial-grounds",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses the entire actual unsupported bundle quests/side-act3-jade-statuette",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses before writes while hydration is idle",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses before writes while hydration is loading",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses before writes while hydration is error",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract grants actual Den exactly once, separating level rewards and the quest point",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract keeps automatic milestone points separate from the extra Den point without a fielded merc",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses synchronous same-quest reentry from the player publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses synchronous same-quest reentry from the merc publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses a different supported quest nested inside Den and permits it after settlement",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled player mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled player mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled merc mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled merc mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled currency mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled currency mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled flag mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled flag mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract attempts remaining restores, reports restoration failure and releases the guard",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract does not consume an empty or all-zero bundle 0",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract does not consume an empty or all-zero bundle 1",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 0",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 1",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 2",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 3",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 4",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preserves executable numeric reward kinds and harmless gold zero",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique quest claim capability (P04a07b) pays a mixed bundle exactly once with the named seeded item and unmultiplied hero/merc XP",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique quest claim capability (P04a07b) counts an item-only reward without touching player, merc or currencies",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses lootTable before allocation in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses lootTable before allocation in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses service before allocation in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses service before allocation in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses gold before allocation in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses gold before allocation in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals keeps legacy strings unsupported before grants in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals keeps legacy strings unsupported before grants in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses semantic unknown without allocation/publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses semantic low-level without allocation/publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses semantic duplicate without allocation/publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " unique preparation and retained overflow maps a constructor exception to grant-failed, holds the guard during preparation and permits retry",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " unique preparation and retained overflow retains the reward beyond full backpack capacity and preserves every existing item/stash/equipment",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores item mutation, itemOnly=false, claimed=absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores item mutation, itemOnly=false, claimed=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores flag mutation, itemOnly=false, claimed=absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores flag mutation, itemOnly=false, claimed=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores item mutation, itemOnly=true, claimed=absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores item mutation, itemOnly=true, claimed=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores flag mutation, itemOnly=true, claimed=absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores flag mutation, itemOnly=true, claimed=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " unique claim exceptional boundaries maps a throwing RNG draw inside real construction to grant-failed without publications",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " unique claim exceptional boundaries attempts all other restores, reports inventory restore failure and releases the guard",
+              "status": "failed",
+              "failureMessages": [
+                "expected 6216 to be 6000 // Object.is equality"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "corrected-green",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/features/quests/claimReward.test.ts",
+        "src/features/quests/claimReward.persistence.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-quest-unique-claim-j6ocbi3_/corrected-green.report.json"
+      ],
+      "exit": 0,
+      "seconds": 4.782,
+      "logSha256": "a4ec2e03943d3464952ebb9622108389a91a1d531238a8c9a053490297687648",
+      "reportSha256": "bd5a17b8907dc0862e272fa1c756076b1243427d2d5ef38cfdc3014ecd6daf21",
+      "results": {
+        "numTotalTests": 67,
+        "numPassedTests": 67,
+        "numFailedTests": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 2
+      },
+      "assertions": [
+        {
+          "file": "src/features/quests/claimReward.persistence.test.ts",
+          "results": [
+            {
+              "fullName": " claim settlement at real persistence boundaries debounces the complete paid Den payload and preserves once-only safety through real hydration",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " claim settlement at real persistence boundaries debounces only restored data after a controlled real merc mutation then throw",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " claim settlement at real persistence boundaries refuses while a real import is pending with ready hydration, then claims only the imported character",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique rewards at real save boundaries debounces a paid item/flag, exports it and preserves exact once-only state through import and hydration",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " unique rollback persistence and pending import debounces restored payload after real item mutation then throw",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " unique rollback persistence and pending import debounces restored payload after real flag mutation then throw",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " unique rollback persistence and pending import refuses pending replacement before allocation, then uses only the imported identity seed and saves once",
+              "status": "passed",
+              "failureMessages": []
+            }
+          ]
+        },
+        {
+          "file": "src/features/quests/claimReward.test.ts",
+          "results": [
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses unknown completed progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses missing progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses locked progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses available progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses inProgress progress without writes",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses actual Den without a player, fielded merc=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses actual Den without a player, fielded merc=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses the entire actual unsupported bundle quests/side-act1-cains-favor",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses the entire actual unsupported bundle quests/act1-sisters-burial-grounds",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses the entire actual unsupported bundle quests/side-act3-jade-statuette",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses before writes while hydration is idle",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses before writes while hydration is loading",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses before writes while hydration is error",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract grants actual Den exactly once, separating level rewards and the quest point",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract keeps automatic milestone points separate from the extra Den point without a fielded merc",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses synchronous same-quest reentry from the player publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses synchronous same-quest reentry from the merc publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract refuses a different supported quest nested inside Den and permits it after settlement",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled player mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled player mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled merc mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled merc mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled currency mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled currency mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled flag mutation then throw with claimed key absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract restores data after controlled flag mutation then throw with claimed key false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract attempts remaining restores, reports restoration failure and releases the guard",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract does not consume an empty or all-zero bundle 0",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract does not consume an empty or all-zero bundle 1",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 0",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 1",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 2",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 3",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preflights all entries before any grant 4",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " shared quest claim safety and actual Den contract preserves executable numeric reward kinds and harmless gold zero",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique quest claim capability (P04a07b) pays a mixed bundle exactly once with the named seeded item and unmultiplied hero/merc XP",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique quest claim capability (P04a07b) counts an item-only reward without touching player, merc or currencies",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses lootTable before allocation in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses lootTable before allocation in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses service before allocation in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses service before allocation in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses gold before allocation in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses gold before allocation in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals keeps legacy strings unsupported before grants in reverse=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals keeps legacy strings unsupported before grants in reverse=true",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses semantic unknown without allocation/publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses semantic low-level without allocation/publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique whole-bundle refusals refuses semantic duplicate without allocation/publication",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " unique preparation and retained overflow maps a constructor exception to grant-failed, holds the guard during preparation and permits retry",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " unique preparation and retained overflow retains the reward beyond full backpack capacity and preserves every existing item/stash/equipment",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores item mutation, itemOnly=false, claimed=absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores item mutation, itemOnly=false, claimed=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores flag mutation, itemOnly=false, claimed=absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores flag mutation, itemOnly=false, claimed=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores item mutation, itemOnly=true, claimed=absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores item mutation, itemOnly=true, claimed=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores flag mutation, itemOnly=true, claimed=absent",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " explicit unique grant rollback and deterministic retry restores flag mutation, itemOnly=true, claimed=false",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " unique claim exceptional boundaries maps a throwing RNG draw inside real construction to grant-failed without publications",
+              "status": "passed",
+              "failureMessages": []
+            },
+            {
+              "fullName": " unique claim exceptional boundaries attempts all other restores, reports inventory restore failure and releases the guard",
+              "status": "passed",
+              "failureMessages": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "related",
+      "command": [
+        "npm",
+        "run",
+        "test:related",
+        "--",
+        "src/features/quests/claimReward.ts",
+        "src/data/loaders/quests.ts",
+        "src/features/quests/QuestsScreen.tsx",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-quest-unique-claim-j6ocbi3_/related.report.json"
+      ],
+      "exit": 0,
+      "seconds": 31.88,
+      "logSha256": "87b802bb980a53674a1eed328d31272a99b913fcab3d4967cb6bcb067d2ebe99",
+      "reportSha256": "e376a8fea7aef392460f267bf082db9b09f98091b00b9a73cfcac06f0b7d4fad",
+      "results": {
+        "numTotalTests": 1036,
+        "numPassedTests": 1036,
+        "numFailedTests": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 55
+      }
+    },
+    {
+      "label": "final-typecheck",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 18.162,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "label": "final-lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 0,
+      "seconds": 42.098,
+      "logSha256": "fb24eb1bf2fbde4070fc7d5db6fa085ebd1423bee938ab962c65c23e82b9d7db"
+    },
+    {
+      "label": "final-unit",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-quest-unique-claim-j6ocbi3_/final-unit.report.json"
+      ],
+      "exit": 0,
+      "seconds": 43.983,
+      "logSha256": "7ad06af0e7bd6f7851af43ea9808446cd6aee69b8e9499eb202e8b0a8336b7a9",
+      "reportSha256": "c9b6b63f490266021cc6ba2fdb47e4ce50585c470310bab4700e1f1d0ffca78a",
+      "results": {
+        "numTotalTests": 2823,
+        "numPassedTests": 2823,
+        "numFailedTests": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 146
+      }
+    },
+    {
+      "label": "build",
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "exit": 0,
+      "seconds": 9.689,
+      "logSha256": "35354f2892ea20d0b931798040a8cc7d8cd02df772768da2e4fbee161f20bfae"
+    }
+  ],
+  "oracleAmendments": [
+    {
+      "change": "append imported-ID seeded draw prefix equality; only allocator suffix can differ",
+      "approval": "producer and QA APPROVE before runtime; all existing assertions retained",
+      "source": "engine/loot/rollItem.ts item instance ID generation"
+    },
+    {
+      "change": "exception inventory restoration test captures actual starting merc cumulative XP and expects baseline+6000",
+      "approval": "producer and QA independently source-backed APPROVE",
+      "source": "actual rogue reqLevel3; mercFactory level initialization; mercXpForLevel60+156=216",
+      "priorRun": "green was failed67=66pass1oraclefail6216vs6000; no runtime change",
+      "unitCorrectedSha256": "b45a9bed26eca45140332085d48f053b0c3033c9ad5e5263e6ba0b7778502e3d"
+    }
+  ],
+  "reviews": {
+    "designAndPlan": "READY; producer/QA frozen and strengthened RED APPROVE/ADEQUATE before runtime",
+    "source": "producer APPROVE; QA no material findings",
+    "final": "producer APPROVE/ADEQUATE and QA APPROVE/ADEQUATE; both explicitly released retention"
+  },
+  "limitations": [
+    "No authored activation/engine/store/schema/UI/locale/save-version changes",
+    "Actual browser/mobile and earned boss/campaign proof remains open",
+    "C0-C4/G0-G7/fullv1 remain open",
+    "Test timing budgets exceeded; thresholds unchanged",
+    "Existing build warnings retained"
+  ],
+  "artifactOwnership": {
+    "raw": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-quest-unique-claim-j6ocbi3_",
+    "owner": "root",
+    "createdOutputs": [
+      "dist",
+      "node_modules/.vite"
+    ],
+    "initiallyAbsent": true,
+    "cleanup": "root removed exact RAW/dist/node_modules/.vite after both releases; absence verified; no processes",
+    "processes": "all task commands exited before cleanup; no server"
+  }
+}
