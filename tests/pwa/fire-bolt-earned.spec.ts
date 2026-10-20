@@ -171,8 +171,8 @@ for (const locale of ['en', 'zh-CN'] as const) {
     const targetHP = target.locator('.bg-red-600');
     await expect(targetHP).toHaveAttribute('style', 'width: 100%;');
     const log = page.getByTestId('combat-log');
-    // The canonical fallback is observable identity, not proof of localized skill copy.
-    const cast = english ? `${characterName} casts sorceress.fire_bolt.` : `${characterName} 施放了 sorceress.fire_bolt。`;
+    // Pin the authored localized name while retaining the seeded combat oracle.
+    const cast = english ? `${characterName} casts Fire Bolt.` : `${characterName} 施放了 火弹。`;
     await expect(log.getByText(cast, { exact: true })).toBeAttached();
     await page.getByRole('button', { name: english ? 'Pause' : '暂停', exact: true }).click({ timeout: 500 });
     await expect(page.getByRole('button', { name: english ? 'Resume' : '继续', exact: true })).toHaveAttribute('aria-pressed', 'true');

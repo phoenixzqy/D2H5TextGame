@@ -110,8 +110,8 @@ async function opening(page: Page, english: boolean, casts: number): Promise<DOM
     observer.observe(screen, { subtree: true, childList: true, attributes: true, characterData: true });
     return { observer, samples };
   }, english ? 'MP' : '法力');
-  // Canonical fallback is an observed identity; BUG033 still tracks cast-name localization.
-  const cast = english ? `${characterName} casts sorceress.fire_bolt.` : `${characterName} 施放了 sorceress.fire_bolt。`;
+  // Pin localized cast copy without changing the MP/action boundary oracles.
+  const cast = english ? `${characterName} casts Fire Bolt.` : `${characterName} 施放了 火弹。`;
   try {
     await page.getByRole('button', { name: english ? 'Resume' : '继续', exact: true }).click();
     await expect.poll(async () => (await page.getByTestId('combat-log')
@@ -179,7 +179,7 @@ for (const locale of ['en', 'zh-CN'] as const) {
       await page.getByRole('combobox', { name: `${english ? 'Slot' : '槽位'} ${String(slot)}`, exact: true })
         .selectOption(slot === 1 ? fire : '');
     }
-    const cast = english ? `${characterName} casts sorceress.fire_bolt.` : `${characterName} 施放了 sorceress.fire_bolt。`;
+    const cast = english ? `${characterName} casts Fire Bolt.` : `${characterName} 施放了 火弹。`;
     const timelines: Record<string, DOMSample[]> = {};
     for (let ordinal = 0; ordinal < 5; ordinal += 1) {
       await navTo(page, 'map');
@@ -199,9 +199,9 @@ for (const locale of ['en', 'zh-CN'] as const) {
         if (ordinal === 1) {
           // 10780ms, rank0: 98 + floor(7*.280) = 99; rank1 would be100.
           expectBoundary(samples, cast, 7, english ? [
-            'Quill Rat B casts monster.weak_melee.',
+            'Quill Rat B casts Weak Melee.',
             'Quill Rat B attacks Rogue Scout — Inner Sight for 1 physical damage.'
-          ] : ['尖刺鼠 B 施放了 monster.weak_melee。', '尖刺鼠 B 普攻 罗格侦察兵 — 内视，造成 1 点物理伤害。'],
+          ] : ['尖刺鼠 B 施放了 弱近战。', '尖刺鼠 B 普攻 罗格侦察兵 — 内视，造成 1 点物理伤害。'],
           '99', english ? 'Quill Rat B' : '尖刺鼠 B', 7, english, '106', '98');
         } else {
           // Base43 critical against12 defense: rank1=74; rank2 would be75.
@@ -209,8 +209,8 @@ for (const locale of ['en', 'zh-CN'] as const) {
             ? `CRITICAL! ${characterName} hits Fallen A for 74 fire damage!`
             : `暴击！${characterName} 对 堕落者 A 造成 74 点火焰伤害！`))).toBe(true);
           expectBoundary(samples, cast, 4, english ? [
-            'Fallen I casts monster.weak_melee.', "Rogue Scout — Inner Sight dodges Fallen I's attack!"
-          ] : ['堕落者 I 施放了 monster.weak_melee。', '罗格侦察兵 — 内视 闪避了 堕落者 I 的攻击！'],
+            'Fallen I casts Weak Melee.', "Rogue Scout — Inner Sight dodges Fallen I's attack!"
+          ] : ['堕落者 I 施放了 弱近战。', '罗格侦察兵 — 内视 闪避了 堕落者 I 的攻击！'],
           '108', english ? 'Fallen I' : '堕落者 I', 4, english, '110', '102');
         }
       }
@@ -233,8 +233,8 @@ for (const locale of ['en', 'zh-CN'] as const) {
         } else {
           // 5460ms: rank2=109, rank1 would be108. Opening damage14 cannot distinguish ranks.
           expectBoundary(samples, cast, 3, english ? [
-            'Fallen Shaman C casts monster.fire_bolt.', `${characterName} dodges Fallen Shaman C's attack!`
-          ] : ['堕落者萨满 C 施放了 monster.fire_bolt。', `${characterName} 闪避了 堕落者萨满 C 的攻击！`],
+            'Fallen Shaman C casts Fire Bolt.', `${characterName} dodges Fallen Shaman C's attack!`
+          ] : ['堕落者萨满 C 施放了 火弹。', `${characterName} 闪避了 堕落者萨满 C 的攻击！`],
           '109', english ? 'Fallen Shaman C' : '堕落者萨满 C', 3, english, '110', '102');
         }
       }
@@ -295,7 +295,7 @@ for (const locale of ['en', 'zh-CN'] as const) {
     // Cap110 -> cast102 at1500ms -> floor(7.5600000000000005*.240)=1MP at1740ms.
     // This proves resumed recovery exists; the earlier fresh-wave109 distinguishes its bonus rate.
     expectBoundary(afterReopen, cast, 1, [english
-      ? 'Fallen B casts monster.weak_melee.' : '堕落者 B 施放了 monster.weak_melee。'],
+      ? 'Fallen B casts Weak Melee.' : '堕落者 B 施放了 弱近战。'],
     '103', english ? 'Fallen B' : '堕落者 B', 1, english, '110', '102');
     await testInfo.attach('reopened-rank2-dom-timeline', { body: JSON.stringify(afterReopen, null, 2), contentType: 'application/json' });
     await reopened.getByRole('button', { name: english ? 'Flee' : '逃跑', exact: true }).click();

@@ -173,3 +173,58 @@ wording differs). Broader buff/status/history localization is separate.
 This is a source-grounded proposed plan, not an implemented or accepted fix;
 producer plan review, genuine tests-first RED and final browser proof follow.
 No investigator artifacts/processes were created.
+
+
+## P08a01d approved bounded plan before runtime edits
+
+Producer independently reviewed and approved the five-file plan at9a8949d.
+Security-check PASS: existing local catalog lookup/render text only, no network,
+credentials, dependency, hook, event, save or combat-mechanics changes.
+Tests-first desired-copy RED precedes runtime editing, independently reviewed by
+producer/QA. Private index maps exact authored IDs and existing normalized IDs
+to authored name keys, translating per converted event in the current locale.
+Exact authored lookup takes precedence; retain direct skills:<originalId>.name
+compatibility and the exact unknown original ID fallback, plus null/empty basic
+actions. No registry mutation or new shared resolver. Tests pin bilingual literal
+names across seven classes, monsters, mercenary/aura; corpus compatibility is
+supplemental. Real seeded runBattleRecorded playback must retain canonical IDs,
+MP/damage trajectory, teams and outcome. Browser changes replace cast-copy
+literals only, retaining all numeric/progression/timing/save assertions.
+
+
+## P08a01d genuine desired-name RED
+
+Runtime9a8949d unchanged; converter SHA256
+`fbba06f8d9dc55c49dfaa80ead3b623f68822bb932a89dc4dfa00961a510fce0`.
+Frozen converter tests
+`cca80526160525c802cea3a8e21688bfeaba8f312489df9c0ec0499c213a0eb0`;
+combatStore tests
+`c232c05c85c6295c21fc7bd6013d1358ff91c854d2ef2599053638ea4cc644c8`.
+
+```sh
+npx vitest run --project ui src/stores/eventToLogI18n.test.ts src/stores/combatStore.test.ts --reporter=verbose
+npm run typecheck
+npx eslint src/stores/eventToLogI18n.test.ts src/stores/combatStore.test.ts --max-warnings=0
+```
+
+RED exit1,33fail/12pass/45total,0skips,runner2.79s/wall4.172s.28 bilingual
+literal cases fail on raw authored IDs;2 supplemental corpus failures,1 locale
+change and2 actual engine→store playback failures. Real Fire Bolt canonical
+ID, MP42 after8cost, positive fire damage, event-by-event resource transport,
+control result/final teams and unchanged input/recording all pass before the
+final desired-copy assertion fails on raw sorceress.fire_bolt. Direct-key,
+barbarian.bash, exact unknown IDs, null/empty basic-action controls pass.
+No engine/registry mock or mutation. Typecheck exit0/10.083s; lint0/5.707s.
+Initial runtime RED had identical33/12, but TSC rejected6readonly fixture
+assignments. Corrected test fixture construction via immutable composition;
+no source edits, suppression or oracle relaxation. Initial evidence retained.
+
+Raw root:
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-cast-names-wo20mia_`;
+checker records actual command/exit/wall in each result JSON. Final labels
+cast-red-final, cast-red-final-typecheck, cast-red-final-lint.
+RED log SHA256
+`9c666975d0e3fdef49c16be85a0018b995afa95d8dc6221650176d6ec836fe26`.
+Root/producer/QA independently APPROVE/ADEQUATE frozen tests and genuine RED
+before converter edits. Both independent consumers have finished RED review.
+Root owns exact raw cleanup after all consumers finish.
