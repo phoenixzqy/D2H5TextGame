@@ -1,0 +1,1 @@
+Initial urllib request returned HTTP 404 before writing any font. Direct probes subsequently returned 200 for Noto CJK. Noto emoji main raw returned 404; using pinned v2.047 official tag.

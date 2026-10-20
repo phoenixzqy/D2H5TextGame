@@ -198,7 +198,7 @@ function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) 
               {status === 'available' && (
                 <Button
                   variant="secondary"
-                  className="min-h-[40px] text-xs"
+                  className="min-h-[44px] text-xs"
                   onClick={startQuest}
                   data-testid={`quest-start-${quest.id}`}
                 >
@@ -208,7 +208,7 @@ function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) 
               {status === 'inProgress' && (
                 <Button
                   variant="secondary"
-                  className="min-h-[40px] text-xs"
+                  className="min-h-[44px] text-xs"
                   onClick={startQuest}
                   data-testid={`quest-progress-${quest.id}`}
                 >
@@ -218,7 +218,7 @@ function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) 
               {status === 'locked' && (
                 <Button
                   variant="secondary"
-                  className="min-h-[40px] text-xs"
+                  className="min-h-[44px] text-xs"
                   disabled
                   data-testid={`quest-locked-${quest.id}`}
                 >
@@ -228,7 +228,7 @@ function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) 
               {status === 'completed' && (
               <Button
                 variant="primary"
-                className="min-h-[40px] text-xs"
+                className="min-h-[44px] text-xs"
                 disabled={!claimable}
                 onClick={claim}
                 data-testid={`quest-claim-${quest.id}`}

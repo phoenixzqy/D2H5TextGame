@@ -24,6 +24,11 @@
     "5": "Act V Quests"
   },
   "byId": {
+    "act1-sisters-to-the-slaughter": {
+      "name": "Sisters to the Slaughter",
+      "desc": "Andariel, the Maiden of Anguish, has corrupted the Rogue Monastery. Descend through the Catacombs and slay her to free the Sisters and reopen the path east.",
+      "obj1": "Slay Andariel."
+    },
     "act1-den-of-evil": {
       "name": "Den of Evil",
       "desc": "Cleanse the Den of Evil near the Rogue Encampment.",

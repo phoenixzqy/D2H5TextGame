@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
+<fontconfig>
+<include>/etc/fonts/fonts.conf</include>
+<dir>/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-andariel-browser-j0mql7lv/browser-fonts</dir>
+<cachedir>/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-andariel-browser-j0mql7lv/font-cache</cachedir>
+</fontconfig>

@@ -1,0 +1,37 @@
+# P04a07d production browser claim/save wiring
+
+Depends on accepted C and production build. Root owns new
+tests/e2e/quest-unique-reward.spec.ts and evidence only; no runtime change planned.
+Use installed Playwright TS runner (Python Playwright unavailable), task-local
+config in RAW points to repo spec and installed package, own localhost preview
+strict unused port with reuseExistingServerfalse. Build guarded VITE_E2E unset,
+then preview of same exact dist; verify window.__GAME__ absent. No dev server,
+source module injection, direct-store mutation, network remote requests or
+combat/kill seed substitution. New test-only acceptance first run may GREEN;
+no fabricated capability RED when no behavior edit. Actual failures require
+source-backed review, bug report before runtime fixes; retain all attempts.
+
+Ten cases: zh-CN/en at360x640,412x915,640x360,1280x800,1920x1080. Fresh isolated
+browser context per case, create sorceress through UI, change locale through
+Settings, export real save, import same payload with ONLY actual quest progress
+synthetically completed (quests/act1-sisters-to-the-slaughter/obj-kill-andariel).
+No progression/power/item/money injection. This is wiring proof, not earned victory.
+Before claim loaded localized gift chip exactly one named Coif, no raw metadata,
+real exported hero/inventory unchanged by import/completion. Explicit claim
+button enabled, >=44px touch dimensions; claim -> localized feedback/disabled
+claimed button. Export shows+8000cumulative XP and actual progression-only
+points, exactly oneCoif19, other inventory/currencies unchanged, flagtrue,
+no other map changes. Item details localized and fixed unique stats visible.
+Save via Settings button then reload, exact player/inventory/map preserved;
+claim stays disabled, repeated navigation/export pays nothing. Capture quest
+and inventory detail screenshots and per-case machine evidence; no horizontal
+overflow, readable unclipped chip and accessible control. Observe pageerror and
+consoleerror, bridge absence. Inspect screenshots independently.
+
+Retain config/spec/reports/logs/screenshots/versioned browser/runtime evidence.
+Run source typecheck/lint/full unit, production bridge-shake build after tests,
+then test browser on same build. No parallel build+unit/sim fingerprints.
+Root owns RAW and task-created dist/node_modules/.vite, remove exact paths
+after independent consumers release and processes exit. Separate evidence
+commit and closing ledger. C0-C4/G0-G7/fullv1 and earnedboss remain open.
+No push/PR/merge/deployment.
