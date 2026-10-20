@@ -7,9 +7,132 @@ import { validateGameData, loadGameData, GameDataValidationError } from './loade
 import monsterSchema from './schema/monster.schema.json';
 import skillSchema from './schema/skill.schema.json';
 import necromancerSkills from './skills/necromancer.json';
+import sorceressSkills from './skills/sorceress.json';
 import { skills, mainQuests, sideQuests } from './index';
+import type { DamageEffect } from '../engine/skills/effects';
 
 describe('data/loader', () => {
+  describe('opt-in secondary Freeze representation', () => {
+    const authoredFrost = sorceressSkills.find((skill) => skill.id === 'skills-sorceress-frost-nova');
+    if (!authoredFrost) throw new Error('Production Frost Nova definition is missing');
+    // Keep opt-out controls valid after the separately tested behavior child opts in.
+    const frost: Record<string, unknown> = { ...authoredFrost };
+    delete frost.additionalStatusEffects;
+    const optedIn = { ...frost, additionalStatusEffects: { freeze: { chance: 0.1 } } };
+
+    it('accepts adding only reviewed secondary metadata to the valid actual Frost row', () => {
+      expect(() => validateGameData(skillSchema.$id, frost)).not.toThrow();
+      let caught: unknown;
+      try {
+        validateGameData(skillSchema.$id, optedIn);
+      } catch (error) {
+        caught = error;
+      }
+      if (caught instanceof GameDataValidationError) {
+        // Pin the genuine pre-fix cause separately from invalid-fixture controls.
+        expect(caught.errors).toEqual([expect.objectContaining({
+          keyword: 'additionalProperties',
+          instancePath: '',
+          params: { additionalProperty: 'additionalStatusEffects' }
+        })]);
+      }
+      expect(caught).toBeUndefined();
+    });
+
+    it.each([
+      { chance: 0 }, { chance: 0.1 }, { chance: 1 },
+      { chance: 0.1, stacksOnApply: 1 }, { chance: 0.1, stacksOnApply: 3 },
+      { chance: 0.1, dotPctOfDamage: 0 }, { chance: 0.1, dotPctOfDamage: 0.25 }
+    ])('accepts explicit chance boundaries and optional generic on-hit fields: %j', (freeze) => {
+      expect(() => validateGameData(skillSchema.$id, {
+        ...optedIn, additionalStatusEffects: { freeze }
+      })).not.toThrow();
+    });
+
+    it.each(['chill', 'burn', 'fixture-unknown-primary'])(
+      'accepts any nonempty non-Freeze primary without adding a status registry enum: %s', (primary) => {
+        expect(() => validateGameData(skillSchema.$id, {
+          ...optedIn, appliesStatus: [primary, 'freeze']
+        })).not.toThrow();
+      }
+    );
+
+    it.each([
+      {}, null, [], 'freeze', 1,
+      { freeze: {} }, { freeze: null }, { freeze: [] }, { freeze: 0.1 },
+      { freeze: { chance: -0.01 } }, { freeze: { chance: 1.01 } },
+      { freeze: { chance: '0.1' } }, { freeze: { chance: null } },
+      { freeze: { chance: 0.1, stacksOnApply: 0 } },
+      { freeze: { chance: 0.1, stacksOnApply: 1.5 } },
+      { freeze: { chance: 0.1, stacksOnApply: '1' } },
+      { freeze: { chance: 0.1, dotPctOfDamage: -0.01 } },
+      { freeze: { chance: 0.1, dotPctOfDamage: '0.25' } },
+      { burn: { chance: 0.1 } },
+      { freeze: { chance: 0.1 }, burn: { chance: 0.1 } },
+      { freeze: { chance: 0.1, typo: true } },
+      { freeze: { chance: 0.1, durationMs: 1000 } },
+      { freeze: { chance: 0.1, physicalResistReductionPct: 50 } }
+    ].map((additionalStatusEffects) => ({ additionalStatusEffects })))(
+      'rejects malformed, unsupported or misplaced secondary metadata: %j', ({ additionalStatusEffects }) => {
+        expect(() => validateGameData(skillSchema.$id, {
+          ...frost, additionalStatusEffects
+        })).toThrow(GameDataValidationError);
+      }
+    );
+
+    it.each([
+      [], ['chill'], ['freeze'], ['freeze', 'chill'], ['freeze', 'freeze'],
+      ['chill', 'burn'], ['', 'freeze'], [1, 'freeze'],
+      ['chill', 'burn', 'freeze'], ['chill', 'chill', 'freeze'],
+      ['chill', 'freeze', 'freeze'], null, 'chill'
+    ].map((appliesStatus) => ({ appliesStatus })))(
+      'rejects opt-in status lists outside the closed two-entry contract: %j', ({ appliesStatus }) => {
+        expect(() => validateGameData(skillSchema.$id, {
+          ...optedIn, appliesStatus
+        })).toThrow(GameDataValidationError);
+      }
+    );
+
+    it.each(['appliesStatus', 'damage', 'damageType'] as const)(
+      'requires %s only when opting into secondary metadata', (key) => {
+        const missing = Object.fromEntries(Object.entries(optedIn).filter(([name]) => name !== key));
+        expect(() => validateGameData(skillSchema.$id, missing)).toThrow(GameDataValidationError);
+        delete missing.additionalStatusEffects;
+        expect(() => validateGameData(skillSchema.$id, missing)).not.toThrow();
+      }
+    );
+
+    it.each([
+      [], ['freeze'], ['freeze', 'chill'], ['chill', 'chill'],
+      ['chill', 'burn', 'freeze'], ['chill', 'chill', 'freeze'], ['']
+    ].map((appliesStatus) => ({ appliesStatus })))(
+      'preserves the identical legacy opt-out status list: %j', ({ appliesStatus }) => {
+        expect(() => validateGameData(skillSchema.$id, { ...frost, appliesStatus })).not.toThrow();
+      }
+    );
+
+    it('keeps all 283 authored rows and their central loaded definitions unchanged', async () => {
+      const before = JSON.stringify(skills);
+      expect(skills).toHaveLength(283);
+      const loaded = await loadGameData();
+      expect([...loaded.skills.values()]).toEqual(skills);
+      expect(JSON.stringify(skills)).toBe(before);
+    });
+
+    it('types scalar, no-status and readonly nonempty plural damage as exclusive alternatives', () => {
+      const base = { kind: 'damage', damageType: 'cold', base: [25, 35] } as const;
+      const scalar: DamageEffect = { ...base, applyStatus: { id: 'chill' } };
+      const plain: DamageEffect = base;
+      const statuses = [{ id: 'chill' }, { id: 'freeze', chance: 0.1 }] as const;
+      const plural: DamageEffect = { ...base, applyStatuses: statuses };
+      // @ts-expect-error -- scalar and full plural forms must never coexist.
+      const both: DamageEffect = { ...base, applyStatus: { id: 'chill' }, applyStatuses: statuses };
+      // @ts-expect-error -- a plural form must contain at least one status.
+      const empty: DamageEffect = { ...base, applyStatuses: [] };
+      expect([scalar, plain, plural, both, empty]).toHaveLength(5);
+    });
+  });
+
   describe('validateGameData', () => {
     describe('monster validation', () => {
       it('accepts valid monster definition', () => {
