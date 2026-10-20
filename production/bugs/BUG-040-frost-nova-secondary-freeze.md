@@ -1,6 +1,6 @@
 # BUG-040 — Player Frost Nova drops secondary Freeze
 
-Status: fixed within bounded player Frost runtime scope; final independent review approved.
+Status: Fixed in13b5378 within bounded player Frost runtime scope; final independent review approved.
 Severity: Medium; advertised crowd control never reaches production engine.
 Owner: engine-dev/content-designer; independent producer/QA review.
 Card:P08a04, bounded player Frost Nova secondary status only.
@@ -278,3 +278,8 @@ Root/producer/QA final combined APPROVE / ADEQUATE. All independent B raw
 consumers finished; exact root-owned raw/build/cache cleanup follows.
 Existing React unit-test warnings remain; no browser/runtime console claim.
 No fullskill/campaign or C0–C4/G0–G7 gate accepted.
+
+After every raw consumer finished, root removed and verified absent the exact B
+raw directory above, task-owned worktree dist and node_modules/.vite.
+No task process remains. Dependencies/shared caches/source/history preserved;
+original checkout clean. Root worktree remains claimed for continuing v1 work.

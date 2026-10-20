@@ -1261,3 +1261,21 @@ strictRequired repairs documented separately in BUG040, no tests weakened.
 Timing/bundle/offline caveats remain. All raw consumers finished before root
 verified exact A scratch/dist/.vite cleanup. Continue actual Frost B tests-first
 RED; no runtime/ordinary-browser/fullskills/campaign or C0–C4/G0–G7 acceptance.
+
+
+P08a04b accepted at13b5378 after root/producer/QA independently approved frozen
+actual authored22RED/71controls (test checkpoint a936182), minimal3source-file
+fix, focused93GREEN and final combined validation. Player Frost alone opts
+in to Freeze10%; adapter preserves full ordered primary+configured tail and
+legacy scalar/no-status shapes; shared damage loop retains hit gating, RNG
+order, per-target processing and statuses-before-death. No A schema/type/test
+change. Final engine925/51,related1388/74,full/coverage2030/128,T/L/purity/build
+pass; changed instrumented locations fully covered, unchanged80%engine gate
+passes (reporter94.27statements89.33branches93.87functions). BUG040 preserves
+exact command/results/source/test/log hashes, coverage methods and caveats.
+Engine/related/full timing, React test warnings and bundle/manifest/Browserslist
+remain open. All raw consumers finished before root verified exact B scratch/
+dist/local .vite cleanup. Original checkout clean; root worktree remains claimed.
+No ordinary-earned Frost browser/fullskill/campaign or C0–C4/G0–G7 acceptance.
+Continue legal Amazon starter content→class recipe→exactly-once creation→
+versioned conservative repair→canonical weapon readers.
