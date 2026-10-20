@@ -1,6 +1,10 @@
 # D04 v1f / P08a01 — production Fire Bolt fire-status family
 
-Status: root/producer plan review APPROVE. Source investigation by design
+Status: accepted bounded P08a01 slice11eb6b3 (worker ca66d0a), root/producer
+plan/source/final review APPROVE, evidence ADEQUATE. BUG029 records RED/checks.
+Combined head11eb6b3:1332unit/522engine pass, typecheck/lint/build pass;
+34.49s full/7.17s engine exceed budgets. No full skill/C1 acceptance.
+Source investigation by design
 agent at7e5dcf8. This accepts a bounded mechanism, not fullD04/P08/C1/skills.
 
 ## Problem, sources and controlling behavior

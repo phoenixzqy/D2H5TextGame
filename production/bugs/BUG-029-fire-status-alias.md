@@ -1,6 +1,6 @@
 # BUG-029 — Unify Fire Bolt burn with the ignite status family
 
-- **Status:** Fixed, validated and independently approved; ready for root integration.
+- **Status:** Fixed in11eb6b3 (worker ca66d0a), validated and independently approved.
 - **Severity:** Medium — fire hits land, but their burn duration, stacking and combo behavior are incorrect.
 - **Owner / affected systems:** engine-dev; combat status identity, periodic damage and fire combos.
 - **Environment:** Linux, Node/Vitest engine project; no browser, viewport or locale dependency.
@@ -93,8 +93,11 @@ Task-owned `dist`, `coverage/p08a01` (including `coverage-final.json`) and
 task-created `coverage` and `node_modules/.vite` parents were removed. Verified
 `dist`, `coverage`, `node_modules/.vite`, `.vite`, `test-results` and
 `playwright-report` absent; pre-existing `node_modules` preserved. No task
-process or disposable artifact remains. Combined-head integration validation
-remains root-owned.
+process or disposable artifact remains. Root integrated11eb6b3 with P03b05a:
+1332passed/115files/no skips34.49s, engine522passed/42files7.17s,
+typecheck/lint/build pass (build12.49s), started07:23:48UTC. Tests/build/lint
+ran concurrently; timing targets remain unmet. Root removed and verified absent
+its exact task-owned dist/node_modules/.vite after all processes completed.
 
 Firestorm's missing authored rate, curse/recovery effects, scaling/MR/rounding,
 other skill identities and ordinary C1 browser acceptance remain separate.

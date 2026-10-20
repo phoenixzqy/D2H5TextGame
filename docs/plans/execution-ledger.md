@@ -35,6 +35,7 @@ Current implementation evidence lives in `evidence/`.
 | P06c01 | accepted periodic slice | `6c7f049` (agent `ff3787e`); shared status/lethal/expiry boundaries, fractional carry, simultaneous death/orphan transaction;31 focused regressions, root+producer source APPROVE. Boss milliseconds and cross-wave rebasing remain. |
 | P06c02 | accepted boss-duration slice | `030de58` (agent `53c08fe`); configured boss multiplier once on unrounded milliseconds, legacy lifecycle retained;56 focused cases incl16 real combat cases; root+producer source APPROVE. Cross-wave rebasing remains. |
 | Remaining P06–P10 | pending dependencies | D04–D06/shared effects first. All skills remain behavior-unaccepted. |
+| P08a01 | accepted fire-status-family slice | `11eb6b3` (worker `ca66d0a`); central burn/ignite identity, production ranked Fire Bolt full3s DoT and legacy/combo/refresh/removal. BUG029; root/producer APPROVE/ADEQUATE. Combined1332pass; ordinary skill UI/fullP08/C1 remain open. |
 | P11a / P11a02 | accepted finalization slices | `d39fe64` actual-win/living-hero/playback guard and single clear; `d8db75c` truthful draw UI. Six root regressions, six RTL, 4/4 browser locale×viewport cases; independent QA/producer APPROVE. BUG-008. |
 | P11–P15 | pending dependencies | Rewards/idle, eligibility, economy, campaign and pacing. |
 | P13a | accepted progress-default slice | `8e6076e` (agent `6db69b6`); actual-level defaults/getter/award and UI fallback, explicit stored thresholds retained, real combat skip restored. Root/producer APPROVE; full1290pass/no skips. |
@@ -745,7 +746,23 @@ outputs removed and verified absent after consumers;4334 stopped. No earned-loot
 production/PWA/capacity/equipment-combat/fullP03b acceptance.
 
 Next ready investigation P03b05b: net-capacity/UI policy, read-only with QA.
-P08a01 central burn/ignite alias implementation has independent root/producer
-APPROVE; worker finalizing handoff; combined-head validation remains required.
+P08a01 integrated11eb6b3 (worker ca66d0a): central canonical identity handles
+config/application/lookup/stacks/removal, fresh ignite and preserved active
+legacy payload/first-match mixed records. Actual registry Fire Bolt seed7
+rank1hit30+burn9→HP461/rank20hit106+burn30→HP364, exact final4700ms interval;
+mana/CD/miss/weapon-independence/replay/immutable/rate-less controls pass.
+Genuine4file17fail/60pass before runtime; focused77pass; worker engine522,
+related644,full1317/no skips,T/L/build and changed status coverage99.13%lines/
+96.52%branches/100%functions pass. Timing misses remain explicit in BUG029.
+
+Root combined11eb6b3 validation started07:23:48UTC:full1332pass/115files/no skips
+34.49s,engine522pass/42files7.17s,T/L/build pass (build12.49s), concurrent runs.
+Functional passes do not accept3s engine/15s full budgets. Root/producer final
+source/evidence APPROVE/ADEQUATE. Worker clean/released; exact owned build/
+coverage/cache outputs removed/verified. Root combined dist/node_modules/.vite
+also removed/verified after processes finished. No engine browser claim, no
+rate invention for Firestorm, no fullP08/skill/C1 acceptance.
+P08a02 actual Amplify Damage contract investigation is read-only with design
+agent: status currently inert, duration missing and must be settled before code.
 Root worktree2 remains claimed, original main untouched, no push/PR/deployment.
 Full v1/C0–C4/G0–G7 remain open.
