@@ -530,3 +530,7 @@ APPROVE / ADEQUATE. All8nonRED command/result/log pairs, final2source hashes,
 frozen3tests and coverage counters independently verified. No material finding.
 ALL raw consumers DONE; root may remove exact task-owned E scratch/dist/.vite.
 Comparison/browser/fullauthority/BUG041/C/G remain open; root claim continues.
+
+P08a05e accepted at8247c81. After all raw consumers finished, root removed
+and verified absence of exact E scratch above, task-owned dist and local .vite.
+No task process/retained raw output remains. Original checkout remains clean main.

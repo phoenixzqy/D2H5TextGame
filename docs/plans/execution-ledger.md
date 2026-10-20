@@ -1331,3 +1331,15 @@ instrumented files100%. BUG041 records exact evidence/hashes/whitespace-only
 correction and existing warning/timing limitations. All consumers finished
 before verified exact D scratch/dist/.vite cleanup. Canonical readers,
 comparison, ordinary browser and fullauthority/BUG041/C/G remain open.
+
+
+P08a05e accepted at8247c81 after frozen existing-reader21RED/55controls checkpoint1b9de08,
+two-source fix and independent root/producer/QA source/final APPROVE/ADEQUATE.
+Combat and Skills now read canonical weapon metadata; adapter shares equipped
+snapshot with stats, Skills subscribes gear, automatic combo cleanup preserves
+current recording while explicit edits retain replay. Focused76/3,related537/45,
+full/coverage2199/132,T/L/purity51/build pass. Unchanged80%engine gate
+8102/8582s1890/2103b296/315f; UI/store sources excluded. BUG041 preserves
+exact commands/hashes and timing/build/unit-warning caveats. All consumers
+finished before verified exact E scratch/dist/.vite cleanup. Comparison child,
+ordinary browser, fullauthority/BUG041/C/G remain open; root claim continues.
