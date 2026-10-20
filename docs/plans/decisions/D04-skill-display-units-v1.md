@@ -1,7 +1,7 @@
 # D04 v1i / P08a01c — truthful skill detail units
 
-Status: root and producer plan-review APPROVE; source execution waits for the
-reviewed P08a01b browser integration. BUG033 is the confirmed reproduction.
+Status: bounded correction integrated `a150f5b` after root/producer final
+APPROVE/ADEQUATE. BUG033 preserves RED, production browser and limitations.
 This bounded correction does not close full skill, balance or localization gates.
 
 ## Problem and source boundary

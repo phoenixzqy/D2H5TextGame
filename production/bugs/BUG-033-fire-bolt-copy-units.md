@@ -1,6 +1,6 @@
 # BUG-033 — Fire Bolt displays flat damage as a percentage
 
-- Status: Open. Reporting only; no copy or runtime fix in P08a01b.
+- Status: Partially fixed in `a150f5b`: flat damage and seconds presentation corrected; canonical cast-name fallback remains Open.
 - Severity: Low; misleading skill units and an untranslated combat skill name.
 - Affected systems: shared skill detail formatting, skill locale copy, combat-log
   skill-name lookup. Root explicitly delegated this report outside the browser
@@ -113,3 +113,39 @@ presentation fix before implementation. Exact raw JSON was retained for those
 consumers at `/tmp/d2h5-p08a01c-units-red.json`; QA owns cleanup after final
 review. Final fix/combined-head/browser evidence is pending. The canonical
 cast-name fallback remains a separately open issue outside the unit correction.
+
+
+## P08a01c unit correction and evidence
+
+Worker `78cd0c96ccc60232da1a1ab318f60b904f7835e2` integrated as `a150f5b`.
+The shared presentation now uses localized flat ranges/deltas/descriptions and
+cooldown seconds; numeric values and mechanics are unchanged. Mounted tests
+pin Fire Bolt rank1/2, Vengeance mixed/total ranges, Holy Shield rank3 3.9seconds
+and genuine Warmth percentages in both locales. Focused 44 passed in6.76s;
+related60/2files in11.49s; full1453,zero pending,in48.39s. Full preceded removing
+an unsupported test-only RTL exact option; focused44 and typecheck/lint passed
+afterward. Typecheck/lint/forced browser-spec ESLint/build5.43s/diffcheck passed.
+Related/full5/15second budgets remain unmet; ordinary build warnings remain.
+
+Fresh guarded production PWA command:
+
+```sh
+PWA_PORT=4338 npx playwright test --config=tests/pwa/playwright.config.ts fire-bolt-earned.spec.ts --output=/tmp/d2h5-p08a01c-units-browser-2
+```
+
+Passed4/4 in55.9s, desktop1280×800/mobile360×640 × en/zh-CN, native timers,
+fixed Date only,retries0. Original21hit/47→26HP,eight-enemy160XP,earnedrank2,
+whole-save/read-onlyIDB and actual close/newpage/Continue assertions retained.
+No overflow/pageerrors. Initial browser4fail were solely a new test-only
+`dt` accessible-name locator; DOM already showed1s/1秒. Exact visible label
+and its adjacent definition corrected the locator without changing timing,
+mechanics or acceptance. Raw canonical cast-name observation stays in the test.
+
+Root and producer independently reviewed the complete five-file diff, raw
+RED44/38/6, full1453 and browser evidence: APPROVE/ADEQUATE. Both consumers
+finished before QA removed and verified absence of exact RED/full JSON, browser
+attempt1/2 outputs, dist and task-local .vite. Shared node_modules preserved;
+all task processes ended, port4338 free, clean Git and worktree4 released.
+Combined-head validation follows runtime integration and remains separately
+required. BUG033 stays open solely for the separate cast-name identity issue;
+full skill/localization/campaign gates are not accepted.

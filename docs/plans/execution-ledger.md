@@ -951,8 +951,9 @@ retained the same failures plus an uncollected missing-module suite, 1.14 s.
 
 Worker exact focused registry+mapper command passed 71/2 files in 1.07 s;
 `npm run test:engine -- --reporter=dot --silent` passed 631/44 in 4.68 s;
-`npm run test:related -- src/engine/skills/minor-heal.ts
-src/engine/skills/registry.ts --reporter=dot --silent` passed 733/54 in 27.35 s;
+`npm run test:related -- src/engine/skills/effects.ts
+src/engine/skills/minor-heal.ts src/engine/skills/registry.ts --reporter=dot --silent`
+passed 733/54 in 27.35 s (08:14:14 UTC);
 `npm test -- --reporter=dot --silent` passed 1469/119 in 51.19 s. T/L/build8.89 s/
 diff-check pass; 3/5/15 s budgets unmet, usual build warnings. Engine changed
 coverage passed 631/44 in 4.63 s: mapper 48/48 statements, 20/20 branches,
@@ -964,3 +965,30 @@ clean Git and release. Runtime P08a03b next; root combined validation follows
 actual registry/runtime integration. Units P08a01c production browser is running
 on the worker's own worktree, port 4338; root does not own that process/output.
 Original checkout untouched; no push/PR/merge/deployment. Full v1 gates stay open.
+
+
+## Truthful skill units integrated; Minor Heal runtime underway
+
+P08a01c integrated`a150f5b`(worker78cd0c9),fivefiles100+/18−. Flat damage
+ranges/deltas/descriptions and seconds now agree with authored display values;
+real passive percentages preserved. Genuine mounted RED6fail/38pass preceded
+source edits. Final focused44pass6.76s, related60/2files11.49s, full1453/0pending
+48.39s; full preceded a test-only RTL exact-option removal, focused/T/L afterward.
+T/L/build5.43s/forced PWA ESLint/diffcheck pass. Fresh guarded production
+PWA_PORT4338 four-case en/zh-CN desktop/mobile55.9s,retries0,native timers:
+actual first21hit/target26of47,eight-enemy160XP,earnedrank2,whole-save/read-only
+IDB/close-newpageContinue retained. First four browser failures were the added
+dt accessible-name locator only; visible exact label→definition correction
+preserves all mechanics/timing assertions. Root+producer final independent
+APPROVE/ADEQUATE, consumed raw before worker verified exact disposable output
+absence, no processes, clean Git and release4. BUG033 remains partiallyOpen
+for raw canonical cast identity. Combined-head checks follow Minor runtime.
+Related/full budgets and usual build warnings remain; full v1 gates stay open.
+
+P08a03b runtime worker claimed3 from73838c1, exact combat.ts/healing.test.ts/
+skill-resolution.test.ts/stores/merc-healing.test.ts. Actual-registry/factory
+RED must be reviewed and appended to BUG032 before runtime source changes.
+P07a01b metadata worker next froma150f5b, exact effects.ts/dataCatalog.ts/
+registry.test.ts; no overlap. Authored trigger identity only, no automatic
+Warmth bonus/runtime exclusion claim. Root continues authoritative composition
+boundary design in read-only source; no shared source ownership collisions.
