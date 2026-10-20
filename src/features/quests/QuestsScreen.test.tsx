@@ -3,7 +3,7 @@
  * `quests/side.json` are surfaced and that statuses from `useMapStore`
  * override the default.
  */
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { Suspense } from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
@@ -11,6 +11,10 @@ import { MemoryRouter } from 'react-router-dom';
 import i18n from '@/i18n';
 import { QuestsScreen } from './QuestsScreen';
 import { useMapStore } from '@/stores';
+import { usePlayerStore } from '@/stores/playerStore';
+import { useInventoryStore } from '@/stores/inventoryStore';
+import { useHydrationStore } from '@/stores/persistence';
+import { createMockPlayer } from '@/features/character/createMockPlayer';
 
 function renderScreen() {
   return render(
@@ -24,11 +28,22 @@ function renderScreen() {
   );
 }
 
-describe('QuestsScreen', () => {
-  beforeEach(() => {
+describe.each(['zh-CN', 'en'] as const)('QuestsScreen %s', locale => {
+  let hydrationBefore = useHydrationStore.getState();
+  beforeEach(async () => {
+    hydrationBefore = useHydrationStore.getState();
     act(() => {
       useMapStore.getState().reset();
+      useInventoryStore.getState().reset();
+      usePlayerStore.getState().setPlayer(createMockPlayer('Quest visitor', 'sorceress'));
+      useHydrationStore.getState().setStatus('ready');
     });
+    await i18n.changeLanguage(locale);
+  });
+  afterEach(() => {
+    useHydrationStore.setState({ status: hydrationBefore.status, error: hydrationBefore.error });
+    usePlayerStore.getState().reset();
+    useInventoryStore.getState().reset();
   });
 
   it('renders the main quest tab with real Act 1 quests by default', () => {
@@ -69,16 +84,70 @@ describe('QuestsScreen', () => {
     expect(screen.getByTestId('quest-feedback-quests/act1-den-of-evil')).toHaveTextContent(/任务已加入追踪|Quest added/);
   });
 
-  it('claims completed quest rewards exactly once', () => {
-    act(() => {
-      useMapStore.getState().completeQuest('quests/side-act1-cains-favor');
-    });
+  it('keeps an unsupported service unclaimed and displays a localized refusal on every attempt', () => {
+    const id = 'quests/side-act1-cains-favor';
+    act(() => { useMapStore.getState().completeQuest(id); });
     renderScreen();
     fireEvent.click(screen.getByRole('tab', { name: /支线|side/i }));
-    const claim = screen.getByTestId('quest-claim-quests/side-act1-cains-favor');
+    const claim = screen.getByTestId(`quest-claim-${id}`);
+    expect(claim).toBeEnabled();
+    const before = usePlayerStore.getState().player;
     fireEvent.click(claim);
-    expect(useMapStore.getState().questProgress['quests/side-act1-cains-favor']?.rewardClaimed).toBe(true);
-    expect(screen.getByTestId('quest-feedback-quests/side-act1-cains-favor')).toHaveTextContent(/奖励已领取|Rewards claimed/);
+    expect(useMapStore.getState().questProgress[id]?.rewardClaimed).not.toBe(true);
+    expect(usePlayerStore.getState().player).toBe(before);
+    expect(screen.getByTestId(`quest-feedback-${id}`)).toHaveTextContent(locale === 'en'
+      ? 'This reward cannot be delivered yet. Nothing was claimed.'
+      : '该奖励暂时无法发放，尚未领取。');
+    expect(claim).toBeEnabled();
+    fireEvent.click(claim);
+    expect(useMapStore.getState().questProgress[id]?.rewardClaimed).not.toBe(true);
+  });
+
+  it('claims real Den rewards once and disables the settled claim button', () => {
+    const id = 'quests/act1-den-of-evil';
+    act(() => { useMapStore.getState().completeQuest(id); });
+    renderScreen();
+    const claim = screen.getByTestId(`quest-claim-${id}`);
+    fireEvent.click(claim);
+    const hero = usePlayerStore.getState().player;
+    expect(hero?.level).toBe(2);
+    expect(hero?.experience).toBe(400);
+    expect(hero?.skillPoints).toBe(3);
+    expect(hero?.statPoints).toBe(5);
+    expect(useMapStore.getState().questProgress[id]?.rewardClaimed).toBe(true);
+    expect(screen.getByTestId(`quest-feedback-${id}`)).toHaveTextContent(/奖励已领取|Rewards claimed/);
     expect(claim).toBeDisabled();
+    fireEvent.click(claim);
+    expect(usePlayerStore.getState().player).toBe(hero);
+  });
+
+  it('shows not-ready refusal and allows a later retry after hydration finishes', () => {
+    const id = 'quests/act1-den-of-evil';
+    act(() => {
+      useMapStore.getState().completeQuest(id);
+      useHydrationStore.getState().setStatus('loading');
+    });
+    renderScreen();
+    const claim = screen.getByTestId(`quest-claim-${id}`);
+    expect(claim).toBeEnabled();
+    const hero = usePlayerStore.getState().player;
+    fireEvent.click(claim);
+    expect(usePlayerStore.getState().player).toBe(hero);
+    expect(useMapStore.getState().questProgress[id]?.rewardClaimed).not.toBe(true);
+    expect(screen.getByTestId(`quest-feedback-${id}`)).toHaveTextContent(locale === 'en'
+      ? 'Save data is loading or being replaced. Try again when it finishes.'
+      : '存档正在载入或替换，请完成后重试。');
+    act(() => { useHydrationStore.getState().setStatus('ready'); });
+    fireEvent.click(claim);
+    expect(useMapStore.getState().questProgress[id]?.rewardClaimed).toBe(true);
+    expect(claim).toBeDisabled();
+  });
+
+  it('provides localized feedback for every new refusal without raw translation keys', () => {
+    for (const result of ['no-player', 'not-ready', 'unsupported-rewards', 'claim-in-progress', 'grant-failed']) {
+      const key = `feedback.claim.${result}`;
+      expect(i18n.exists(key, { ns: 'quests', lng: locale })).toBe(true);
+      expect(i18n.t(key, { ns: 'quests', lng: locale })).not.toContain(key);
+    }
   });
 });

@@ -82,7 +82,12 @@
       "unknown-quest": "找不到该任务。",
       "not-completed": "任务尚未完成，不能领取奖励。",
       "already-claimed": "奖励已经领取过。",
-      "no-rewards": "该任务没有可领取奖励。"
+      "no-rewards": "该任务没有可领取奖励。",
+      "no-player": "请先创建或载入角色，再领取奖励。",
+      "not-ready": "存档正在载入或替换，请完成后重试。",
+      "unsupported-rewards": "该奖励暂时无法发放，尚未领取。",
+      "claim-in-progress": "正在领取奖励，请完成后重试。",
+      "grant-failed": "奖励发放失败，尚未领取，请重试。"
     }
   },
   "quests": {

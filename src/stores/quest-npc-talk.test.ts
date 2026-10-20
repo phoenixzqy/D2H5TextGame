@@ -13,6 +13,9 @@ import { useCombatStore } from './combatStore';
 import { useFormationStore } from './formationStore';
 import { abortSubAreaRun, advanceWaveOrFinish, startSubAreaRun } from './combatHelpers';
 
+import { useHydrationStore } from './persistence';
+
+let hydrationBefore = useHydrationStore.getState();
 const QUEST = 'quests/act1-den-of-evil';
 const AREA = 'areas/act1-den-of-evil';
 function track(clear = false): void {
@@ -39,8 +42,15 @@ function reset(): void {
   useCombatStore.getState().reset();
   useFormationStore.getState().reset();
 }
-beforeEach(reset);
-afterEach(() => { reset(); vi.restoreAllMocks(); });
+beforeEach(() => {
+  hydrationBefore = useHydrationStore.getState();
+  reset();
+  useHydrationStore.getState().setStatus('ready');
+});
+afterEach(() => {
+  reset(); vi.restoreAllMocks();
+  useHydrationStore.setState({ status: hydrationBefore.status, error: hydrationBefore.error });
+});
 
 describe('ordered current-town quest talk events', () => {
   it('projects the five authored Act-I NPCs without fallback in missing acts', () => {

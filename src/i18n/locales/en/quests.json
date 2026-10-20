@@ -210,7 +210,12 @@
       "unknown-quest": "Quest not found.",
       "not-completed": "Complete the quest before claiming rewards.",
       "already-claimed": "Rewards were already claimed.",
-      "no-rewards": "This quest has no rewards to claim."
+      "no-rewards": "This quest has no rewards to claim.",
+      "no-player": "Create or load a character before claiming rewards.",
+      "not-ready": "Save data is loading or being replaced. Try again when it finishes.",
+      "unsupported-rewards": "This reward cannot be delivered yet. Nothing was claimed.",
+      "claim-in-progress": "A reward claim is already in progress. Try again when it finishes.",
+      "grant-failed": "Rewards could not be delivered. Nothing was claimed. Try again."
     }
   },
   "quests": {

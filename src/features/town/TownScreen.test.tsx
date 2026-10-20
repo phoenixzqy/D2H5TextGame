@@ -7,8 +7,10 @@ import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { claimQuestReward } from '@/features/quests/claimReward';
 import { loadTownNpcs } from '@/data/loaders/towns';
 import { useInventoryStore, useMapStore, usePlayerStore } from '@/stores';
+import { useHydrationStore } from '@/stores/persistence';
 import { TownScreen } from './TownScreen';
 
+let hydrationBefore = useHydrationStore.getState();
 const QUEST = 'quests/act1-den-of-evil';
 const recordNpcTalk = useMapStore.getState().recordNpcTalk;
 const talk = vi.fn(recordNpcTalk);
@@ -36,6 +38,8 @@ function rewards() {
 
 describe.each(['zh-CN', 'en'] as const)('TownScreen %s', (locale) => {
   beforeEach(async () => {
+    hydrationBefore = useHydrationStore.getState();
+    useHydrationStore.getState().setStatus('ready');
     useMapStore.getState().reset();
     usePlayerStore.getState().reset();
     useInventoryStore.getState().reset();
@@ -45,7 +49,10 @@ describe.each(['zh-CN', 'en'] as const)('TownScreen %s', (locale) => {
     await i18n.changeLanguage(locale);
   });
 
-  afterEach(() => { act(() => { useMapStore.setState({ recordNpcTalk }); }); });
+  afterEach(() => { act(() => {
+    useMapStore.setState({ recordNpcTalk });
+    useHydrationStore.setState({ status: hydrationBefore.status, error: hydrationBefore.error });
+  }); });
 
   it('uses all authored NPCs and emits one event only on each opening click', async () => {
     const view = renderTown();

@@ -29,6 +29,7 @@ Current implementation evidence lives in `evidence/`.
 | P04a02 core/locales/UI | accepted talk path slice | `2d60095` ordered exact current-town talk; `392e671` localized roster/greetings; `0a84010` UI (agent `2702b81`). Root+producer source APPROVE; real Den→Akara→explicit claim→save browser matrix. Full town/quest families remain. |
 | P04a03a | accepted central schema prerequisite | `b4d2764` runtime / `74cb889` tests. Central quest document schema and validate-before-collect; BUG039, reviewed genuine20 accepted-invalid RED, frozen tests136 plus unchanged integrity30 pass. Full1904/127, T/L/build and unchanged80%engine coverage pass. Direct imports, crossrefs, quest execution/rewards remain open. |
 | P04a03b | accepted synchronous validation prerequisite | One-file strict existing-schema guard validates both full documents per call before collecting/rejecting duplicates. BUG043, reviewed40RED/5controls; frozen45GREEN, focused268/5+integrity30/1, full/coverage2261/134, T/L/build/80%engine gate pass. Root/producer/QA APPROVE/ADEQUATE. [Evidence](evidence/p04a03b-synchronous-quest-validation.md). Reward execution/crossrefs/campaign remain open. |
+| P04a04a | accepted bounded claim safety | Shared claim preflight/global guard/participating rollback plus localized refusals. BUG044; independently reviewed frozen34RED/41controls, source/focused75GREEN. Related720/57, full/coverage2310/136, T/L/purity51/build/bridge pass; root/producer/QA final APPROVE/ADEQUATE. [Evidence](evidence/p04a04a-den-claim-safety.md). Ordinary-earned Den and broader P04/campaign/C/G remain open. |
 | Remaining P03b/P04 | ready for reproduction | Shared capacity, atomic transactions/recoverable awards and quest event/reward integrity remain. |
 | P05a | accepted slice | `2458ee7`; source-local error state, 13 focused tests and actual-component desktop/mobile proof. [Integrated evidence](evidence/P05a-P06a-foundations.md). D13/F19 remain open. |
 | P05b01 | accepted resolver slice | `0c2d043`; D13 identity/metadata control, 29 new tests (25 red before fix), producer source APPROVE. Full suite + T/L/B pass. BUG-010; surface wiring remains. |
@@ -1415,3 +1416,17 @@ exactsyncquest rawroot/dist/.vite removed/absenceverified, originalclean.
 Rootclaimcontinues. Next P04a04a boundedDen/sharedclaimsafety: preflightunsupported
 rewards/no-player, synchronousreentry and actionreturnrollback via reviewed
 RED before fix. No reward/campaign/browser/C0–C4/G0–G7 acceptance or push.
+
+
+P04a04a accepted after independently reviewed frozen34RED/41controls and source/
+focused75GREEN; BUG044. One shared claim boundary preflights wholebags/player/
+hydration/replacement, refuses nested same/different claims, restores participating
+slices/exact targetentry after mutate-then-throw, attempts allrestore failures and
+explicitly throws on failedrestoration;5localized results, noQuestsScreenruntime.
+Den500XP+progression+1questpoint/375mercXP/gold0 preserved. Related720/57,full/
+coverage2310/136,T/L/purity51/build/bridge pass; unchanged80%enginegate
+8102/8582s1891/2104b296/315f excludesclaim/store/UI. Root/producer/QA final
+APPROVE/ADEQUATE; evidence preserves oraclecorrection/timing/buildwarninglimits.
+All consumers finished before exact raw/dist/.vite cleanup; absence verified.
+Originalcheckout untouched; rootclaimcontinues. Next ordinary-earned Denbrowser;
+fullP04/D11/campaign/C0–C4/G0–G7 remain open. No push.
