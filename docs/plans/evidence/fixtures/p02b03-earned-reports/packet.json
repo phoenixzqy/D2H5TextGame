@@ -1,0 +1,1565 @@
+{
+  "task": "P02b03",
+  "inputHead": "353b69d",
+  "dependencies": [
+    "c0788c5",
+    "353b69d"
+  ],
+  "scope": "versioned earned reports only; separately reviewed screening and P02/C0-C4/G0-G7/fullv1 remain open",
+  "sourceHashes": {
+    "tests/sim/production/earned-comparison.test.ts": "8ffe7b673653a63030ccae72144175615f61d178cf13492d41a023de3527cfdc",
+    "tests/sim/production/earned-comparison.ts": "adaed49bb4c8feacddaac1a09626950f6323238a2cb2d3a1d68a5959c9027e60",
+    "tests/sim/production/earned-measure.test.ts": "51ba4ade962bdcb26fc1a1e978f9bc6b1e005591a8f82c0bdcb39e2fd1166e6a",
+    "tests/sim/production/earned-measurement.test.ts": "82b6951d3651b3139b4dd0527e003fd6eaefbf92ba5f28db55f4f322990daf57",
+    "tests/sim/production/earned-measurement.ts": "7e2898a1c11a91fa2e3738eda6e1aa55748e8bcdf17c41030ed090c15e9d9ed3",
+    "tests/sim/production/earned-report.test.ts": "319627fb980c56c93d19de9a2f7a0591035799c9ff2fba11d6fc7d1550c8ed65",
+    "tests/sim/production/earned-report.ts": "c4466331b1a9e80beb40d0cea848dc3670c237c6eb29c3f166b7f715875ec1aa",
+    "package.json": "0621f952b7e17c1f838b5441f45a6f7ea800721d22f5def3be073118f98ffb27",
+    "tests/sim/production/README.md": "6befcca92a2f0cc1de34ed390f9fbf584c87e40e9efd07b004ad084706e420f5"
+  },
+  "preservedAndFrozen": {
+    "preserved": {
+      "fixture.ts": "2d7e7fdad0e79ab057d5bdf6bfb28f056aac6c0f286cd5ef913dad5d8f9ec574",
+      "fixture.test.ts": "3f455dfe0d5d0b1717569356e05bf51028fd5eccedf1facb2460c0fdee6a0e3f",
+      "adapter.ts": "713bfc9cb2dfda30429d1aab5915244a3d013723a941c03061b2da2892fb4c3f",
+      "provenance.ts": "83271b46d074dc4cd1f92ec5895bbe1634c26b8b9379e141c1e04ec7068a684c",
+      "measure.test.ts": "71640dccc8e43fe331d38131b0ed8b5f9720a9f57f8de241547ae68bcdf428cb",
+      "earned-fixture.ts": "c29b0b99c8b75bb4f4a856b7935e0f0323172c4bfbc1b9718d0a39b18eade9f5",
+      "earned-fixture.test.ts": "99fb52eda848407cfcdc1089fd71cc1399ab2be770b8050204675959cc1b61d1",
+      "earned-adapter.ts": "48b7d508478aadb8308780c1130b6075d698320d2ea725a18a1d34a86ddc87f7",
+      "earned-adapter.test.ts": "c582c117c0379afc3203b0cfaf7b209b44ad99ddb9a943101834eea25b5829e4",
+      "earned-playback.ts": "67faebd1c0b83a26de7f2401c48df94d9bff025c5fc694bce74f3e845d8c843d",
+      "earned-state.ts": "e49c3cb1ad72f19037e8b6d1aafbe1d57b15af19524906cdd60c28abade9cd19"
+    },
+    "frozenTests": {
+      "earned-report.test.ts": "319627fb980c56c93d19de9a2f7a0591035799c9ff2fba11d6fc7d1550c8ed65",
+      "earned-comparison.test.ts": "8ffe7b673653a63030ccae72144175615f61d178cf13492d41a023de3527cfdc",
+      "earned-measurement.test.ts": "82b6951d3651b3139b4dd0527e003fd6eaefbf92ba5f28db55f4f322990daf57",
+      "earned-measure.test.ts": "51ba4ade962bdcb26fc1a1e978f9bc6b1e005591a8f82c0bdcb39e2fd1166e6a"
+    }
+  },
+  "testCounts": {
+    "codec-green-02-report.json": {
+      "files": 1,
+      "actual": {
+        "passed": 32
+      },
+      "aggregatePassed": 32,
+      "aggregateFailed": 0
+    },
+    "codec-green-report.json": {
+      "files": 1,
+      "actual": {
+        "failed": 2,
+        "passed": 26
+      },
+      "aggregatePassed": 26,
+      "aggregateFailed": 2
+    },
+    "codec-red-02-report.json": {
+      "files": 1,
+      "actual": {},
+      "aggregatePassed": 0,
+      "aggregateFailed": 0
+    },
+    "codec-red-03-report.json": {
+      "files": 1,
+      "actual": {
+        "failed": 4,
+        "passed": 28
+      },
+      "aggregatePassed": 28,
+      "aggregateFailed": 4
+    },
+    "codec-red-report.json": {
+      "files": 1,
+      "actual": {},
+      "aggregatePassed": 0,
+      "aggregateFailed": 0
+    },
+    "comparison-green-report.json": {
+      "files": 2,
+      "actual": {
+        "passed": 99
+      },
+      "aggregatePassed": 99,
+      "aggregateFailed": 0
+    },
+    "comparison-red-02-report.json": {
+      "files": 1,
+      "actual": {},
+      "aggregatePassed": 0,
+      "aggregateFailed": 0
+    },
+    "comparison-red-03-report.json": {
+      "files": 1,
+      "actual": {},
+      "aggregatePassed": 0,
+      "aggregateFailed": 0
+    },
+    "comparison-red-report.json": {
+      "files": 1,
+      "actual": {},
+      "aggregatePassed": 0,
+      "aggregateFailed": 0
+    },
+    "comparison-separation-green-report.json": {
+      "files": 2,
+      "actual": {
+        "passed": 108
+      },
+      "aggregatePassed": 108,
+      "aggregateFailed": 0
+    },
+    "comparison-separation-red-02-report.json": {
+      "files": 1,
+      "actual": {
+        "failed": 8,
+        "passed": 68
+      },
+      "aggregatePassed": 68,
+      "aggregateFailed": 8
+    },
+    "comparison-separation-red-report.json": {
+      "files": 1,
+      "actual": {
+        "failed": 8,
+        "passed": 68
+      },
+      "aggregatePassed": 68,
+      "aggregateFailed": 8
+    },
+    "driver-default-output-report.json": {
+      "files": 1,
+      "actual": {
+        "passed": 1
+      },
+      "aggregatePassed": 1,
+      "aggregateFailed": 0
+    },
+    "driver-red-02-report.json": {
+      "files": 1,
+      "actual": {
+        "failed": 1
+      },
+      "aggregatePassed": 0,
+      "aggregateFailed": 1
+    },
+    "driver-red-report.json": {
+      "files": 1,
+      "actual": {
+        "failed": 1
+      },
+      "aggregatePassed": 0,
+      "aggregateFailed": 1
+    },
+    "driver-refusal-output-report.json": {
+      "files": 1,
+      "actual": {
+        "passed": 1
+      },
+      "aggregatePassed": 1,
+      "aggregateFailed": 0
+    },
+    "driver-reject-inrepo-report.json": {
+      "files": 1,
+      "actual": {
+        "failed": 1
+      },
+      "aggregatePassed": 0,
+      "aggregateFailed": 1
+    },
+    "driver-reject-invalid-report.json": {
+      "files": 1,
+      "actual": {
+        "failed": 1
+      },
+      "aggregatePassed": 0,
+      "aggregateFailed": 1
+    },
+    "driver-reject-overwrite-report.json": {
+      "files": 1,
+      "actual": {
+        "failed": 1
+      },
+      "aggregatePassed": 0,
+      "aggregateFailed": 1
+    },
+    "driver-reject-relative-report.json": {
+      "files": 1,
+      "actual": {
+        "failed": 1
+      },
+      "aggregatePassed": 0,
+      "aggregateFailed": 1
+    },
+    "driver-reject-symlink-parent-report.json": {
+      "files": 1,
+      "actual": {
+        "failed": 1
+      },
+      "aggregatePassed": 0,
+      "aggregateFailed": 1
+    },
+    "final-related-report.json": {
+      "files": 4,
+      "actual": {
+        "passed": 128
+      },
+      "aggregatePassed": 128,
+      "aggregateFailed": 0
+    },
+    "full-final-report.json": {
+      "files": 157,
+      "actual": {
+        "passed": 3151
+      },
+      "aggregatePassed": 3151,
+      "aggregateFailed": 0
+    },
+    "measurement-green-report.json": {
+      "files": 2,
+      "actual": {
+        "passed": 20
+      },
+      "aggregatePassed": 20,
+      "aggregateFailed": 0
+    },
+    "measurement-red-02-report.json": {
+      "files": 1,
+      "actual": {},
+      "aggregatePassed": 0,
+      "aggregateFailed": 0
+    },
+    "measurement-red-report.json": {
+      "files": 1,
+      "actual": {},
+      "aggregatePassed": 0,
+      "aggregateFailed": 0
+    }
+  },
+  "cliVerification": {
+    "refusal": {
+      "attempts": 2,
+      "status": "action-refused",
+      "reason": "no-points",
+      "target": null,
+      "rewardCoverage": "unexercised"
+    },
+    "boundaries": {
+      "driver-reject-overwrite": {
+        "exitCode": 1,
+        "seconds": 3.195,
+        "outputAbsentOrSentinelPreserved": true
+      },
+      "driver-reject-inrepo": {
+        "exitCode": 1,
+        "seconds": 3.114,
+        "outputAbsentOrSentinelPreserved": true
+      },
+      "driver-reject-symlink-parent": {
+        "exitCode": 1,
+        "seconds": 3.144,
+        "outputAbsentOrSentinelPreserved": true
+      },
+      "driver-reject-invalid": {
+        "exitCode": 1,
+        "seconds": 4.023,
+        "outputAbsentOrSentinelPreserved": true
+      },
+      "driver-reject-relative": {
+        "exitCode": 1,
+        "seconds": 2.227,
+        "outputAbsentOrSentinelPreserved": true
+      }
+    },
+    "repeatDifferences": {
+      "total": 171,
+      "itemIdOccurrences": 169,
+      "distinctItemPairs": 9,
+      "otherFields": [
+        "repetition",
+        "wallSeconds"
+      ],
+      "source": "src/engine/loot/rollItem.ts:17-18 module itemSeq; nine awards each repetition; allocator is deliberately not reset"
+    },
+    "sentinelPreserved": true
+  },
+  "commands": [
+    {
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/codec-array-diagnostic.mjs"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:13:02.245917+00:00",
+      "seconds": 0.43,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:22:00.031733+00:00",
+      "seconds": 11.032,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-report.test.ts",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/codec-green-02-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:16:34.192714+00:00",
+      "seconds": 1.937,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-report.test.ts",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/codec-green-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:12:22.143188+00:00",
+      "seconds": 2.114,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-report.test.ts",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/codec-red-02-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:11:08.032316+00:00",
+      "seconds": 1.861,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-report.test.ts",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/codec-red-03-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:14:24.380040+00:00",
+      "seconds": 2.324,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-report.test.ts",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/codec-red-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:09:37.931305+00:00",
+      "seconds": 1.791,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-comparison.test.ts",
+        "tests/sim/production/earned-report.test.ts",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/comparison-green-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:21:49.306328+00:00",
+      "seconds": 14.776,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-comparison.test.ts",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/comparison-red-02-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:19:16.374775+00:00",
+      "seconds": 3.359,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-comparison.test.ts",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/comparison-red-03-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:19:36.547233+00:00",
+      "seconds": 3.427,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-comparison.test.ts",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/comparison-red-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:17:56.208394+00:00",
+      "seconds": 3.686,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-comparison.test.ts",
+        "tests/sim/production/earned-report.test.ts",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/comparison-separation-green-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:25:52.690539+00:00",
+      "seconds": 13.322,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-comparison.test.ts",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/comparison-separation-red-02-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:24:44.738210+00:00",
+      "seconds": 15.464,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-comparison.test.ts",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/comparison-separation-red-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:23:30.342135+00:00",
+      "seconds": 15.484,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "env",
+        "EARNED_REPORT_PATH=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/default-earned-report.json",
+        "npm",
+        "run",
+        "sim:earned",
+        "--",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/driver-default-output-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:32:22.965552+00:00",
+      "seconds": 5.159,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-measure.test.ts",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/driver-red-02-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:29:56.706526+00:00",
+      "seconds": 5.433,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-measure.test.ts",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/driver-red-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:28:31.372320+00:00",
+      "seconds": 2.085,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "env",
+        "EARNED_FIXTURE_PATH=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/refusal-fixture.json",
+        "EARNED_REPORT_PATH=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/refusal-earned-report.json",
+        "npm",
+        "run",
+        "sim:earned",
+        "--",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/driver-refusal-output-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:32:55.596989+00:00",
+      "seconds": 5.713,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "env",
+        "EARNED_REPORT_PATH=/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/earned-output-must-not-exist.json",
+        "npm",
+        "run",
+        "sim:earned",
+        "--",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/driver-reject-inrepo-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:32:55.598541+00:00",
+      "seconds": 3.114,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "env",
+        "EARNED_FIXTURE_PATH=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/invalid-fixture.json",
+        "EARNED_REPORT_PATH=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/invalid-must-not-exist.json",
+        "npm",
+        "run",
+        "sim:earned",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/driver-reject-invalid-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:35:04.950322+00:00",
+      "seconds": 4.023,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "env",
+        "EARNED_REPORT_PATH=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/existing-report.json",
+        "npm",
+        "run",
+        "sim:earned",
+        "--",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/driver-reject-overwrite-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:32:55.601161+00:00",
+      "seconds": 3.195,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "env",
+        "EARNED_REPORT_PATH=earned-relative-must-not-exist.json",
+        "npm",
+        "run",
+        "sim:earned",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/driver-reject-relative-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:35:04.947825+00:00",
+      "seconds": 2.227,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "env",
+        "EARNED_REPORT_PATH=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/repo-parent-alias/earned-output-must-not-exist.json",
+        "npm",
+        "run",
+        "sim:earned",
+        "--",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/driver-reject-symlink-parent-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:32:55.603493+00:00",
+      "seconds": 3.144,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "test:related",
+        "--",
+        "tests/sim/production/earned-report.ts",
+        "tests/sim/production/earned-comparison.ts",
+        "tests/sim/production/earned-measurement.ts",
+        "tests/sim/production/earned-measure.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/final-related-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:35:52.734278+00:00",
+      "seconds": 16.646,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/full-final-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:36:14.592948+00:00",
+      "seconds": 54.821,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:38:15.943812+00:00",
+      "seconds": 9.271,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:36:14.596196+00:00",
+      "seconds": 57.571,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-measurement.test.ts",
+        "tests/sim/production/earned-measure.test.ts",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/measurement-green-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:31:09.714185+00:00",
+      "seconds": 6.334,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-measurement.test.ts",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/measurement-red-02-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:29:18.229374+00:00",
+      "seconds": 3.893,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-measurement.test.ts",
+        "--reporter=verbose",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149/measurement-red-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:27:31.568955+00:00",
+      "seconds": 4.222,
+      "exitCode": 1
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:31:20.642352+00:00",
+      "seconds": 11.128,
+      "exitCode": 0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T20:36:14.594633+00:00",
+      "seconds": 21.112,
+      "exitCode": 0
+    }
+  ],
+  "archive": {
+    "path": "diagnostics.tar.gz",
+    "bytes": 643932,
+    "sha256": "e83be79e6e22168c3664c38e2649d530b1481ed3424fbc943c45abb27dde7102",
+    "records": [
+      {
+        "path": "build-chunk-hashes.json",
+        "bytes": 427,
+        "sha256": "ed931a447085ad534141fd7f0008fee1b22a1ffe2d1803a50f63cebb2e428f53"
+      },
+      {
+        "path": "cli-verified.json",
+        "bytes": 1167,
+        "sha256": "9472a50ffc84a75ea29963c5853f111a6177682863fe1337cdf5d084d4ec7a2d"
+      },
+      {
+        "path": "codec-array-correction-proposal.txt",
+        "bytes": 676,
+        "sha256": "7a1212e676234c30d871e76a1145025d50b8700e233de73d817c70efb7177417"
+      },
+      {
+        "path": "codec-array-diagnostic.log",
+        "bytes": 160,
+        "sha256": "c8595e0998f81a82875c00eb1cebd71d0e49bbf42a375e35fab25a7075afc86a"
+      },
+      {
+        "path": "codec-array-diagnostic.meta.json",
+        "bytes": 328,
+        "sha256": "ade0f32d12f976fb800846c4ba3090d7a046a50466d5c74cebd5d7f6bead4497"
+      },
+      {
+        "path": "codec-array-diagnostic.mjs",
+        "bytes": 796,
+        "sha256": "6775dd3e64a6a983f8d65b27f1749794d19d5624b8c22546877ffedf25148fa9"
+      },
+      {
+        "path": "codec-comparison-typecheck.log",
+        "bytes": 50,
+        "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+      },
+      {
+        "path": "codec-comparison-typecheck.meta.json",
+        "bytes": 240,
+        "sha256": "2f8df36dbf6015dcd7ce3fa50aca70a36e2fa7cece38433445ca1d1cdde3d086"
+      },
+      {
+        "path": "codec-first-implementation.ts.txt",
+        "bytes": 5684,
+        "sha256": "4c4ef9cc9a72349bb19728af9f77793768b24ee393a1bbc64afcec7cfe8e0738"
+      },
+      {
+        "path": "codec-green-02-report.json",
+        "bytes": 11055,
+        "sha256": "b6a40d1cf5c839b7f65ac079476c91bbd0a240d821c3215c654698b9be35b524"
+      },
+      {
+        "path": "codec-green-02.log",
+        "bytes": 5988,
+        "sha256": "86ad2723ae23025020126624ae4f7678ba8e62a55f5ac36d581da68800b57864"
+      },
+      {
+        "path": "codec-green-02.meta.json",
+        "bytes": 500,
+        "sha256": "1a6e1618a31c2ec5cd4a52c7b4a96d3f559d3b68968781a07c20422c894256d0"
+      },
+      {
+        "path": "codec-green-report.json",
+        "bytes": 10430,
+        "sha256": "73296a1d9f90b2e1ee71ee045b63de1bd251afab0c7dbd3ef50950323adae6e7"
+      },
+      {
+        "path": "codec-green.log",
+        "bytes": 6496,
+        "sha256": "39e56a3fbb504eca0ee956f658d865ee1a516b10bfb7db87cd7ed840d7fa3c30"
+      },
+      {
+        "path": "codec-green.meta.json",
+        "bytes": 497,
+        "sha256": "99e5c9363c7f9598b54cbe368305dc312a641df20b004bbcaba2d81854c367e3"
+      },
+      {
+        "path": "codec-red-02-report.json",
+        "bytes": 698,
+        "sha256": "5c017443b669a9f223d46af9d7f2fa219f335a8fa4684162ee4003babe6a1f0f"
+      },
+      {
+        "path": "codec-red-02-test.ts.txt",
+        "bytes": 5762,
+        "sha256": "a5febb1fdcf0ff80763c12f0daa3f87c398a0bace449f29e2193435a13ea19e2"
+      },
+      {
+        "path": "codec-red-02.log",
+        "bytes": 1223,
+        "sha256": "8ca701ca0948a4bd8cb8cdca05ef11bfbcc257c9e149a2829502a8f8ff31b543"
+      },
+      {
+        "path": "codec-red-02.meta.json",
+        "bytes": 498,
+        "sha256": "23faba14fc1c2bbc50221ddfa7a38fc9635e6348c7efd0a5d0447be124fc5f1e"
+      },
+      {
+        "path": "codec-red-03-report.json",
+        "bytes": 11356,
+        "sha256": "fb3ac4fcf50bbfb54f8855292d26cbe91b5456e1063c75c027f8501925d29a53"
+      },
+      {
+        "path": "codec-red-03-test.ts.txt",
+        "bytes": 6208,
+        "sha256": "319627fb980c56c93d19de9a2f7a0591035799c9ff2fba11d6fc7d1550c8ed65"
+      },
+      {
+        "path": "codec-red-03.log",
+        "bytes": 7151,
+        "sha256": "ee1b8abb3a1fe3b343248267f3fcc4ed68fdcfa9f290e904f05ce55d20d90277"
+      },
+      {
+        "path": "codec-red-03.meta.json",
+        "bytes": 498,
+        "sha256": "9d96047a843009e3f550246d546b38d0ec996e71b0a7b93ad9149c57fff67acc"
+      },
+      {
+        "path": "codec-red-report.json",
+        "bytes": 698,
+        "sha256": "f2d435872f1cd81601e08931b06568dc18bcd45d2219412399d7f0ba21f6c49b"
+      },
+      {
+        "path": "codec-red-test.ts.txt",
+        "bytes": 4467,
+        "sha256": "c0301d93e8595aea8d3222ded3c8124ed59c1d636b08bef310f997f9fd0c4668"
+      },
+      {
+        "path": "codec-red.log",
+        "bytes": 1217,
+        "sha256": "4dc204943f936223b58fc283b7c716c3c1277dc0ab8e26de42f17b7e31b20000"
+      },
+      {
+        "path": "codec-red.meta.json",
+        "bytes": 495,
+        "sha256": "e3c8042c32a1f63cdb8d43c32e6739b6aaf69649a1eb6b379e4215f642946dea"
+      },
+      {
+        "path": "codec-review.txt",
+        "bytes": 276,
+        "sha256": "a207bb35bbe2e35a86fab4ae91d2adfb2793e1a74b37ce9770f768da38cd9524"
+      },
+      {
+        "path": "codec-tests.ts.txt",
+        "bytes": 4467,
+        "sha256": "c0301d93e8595aea8d3222ded3c8124ed59c1d636b08bef310f997f9fd0c4668"
+      },
+      {
+        "path": "comparison-first-implementation.ts.txt",
+        "bytes": 6093,
+        "sha256": "ff032e049cdef45864e4799d59b65acc48c4aef9ba7ccfbd8b3583ba1ceb986b"
+      },
+      {
+        "path": "comparison-freeze-notes.txt",
+        "bytes": 434,
+        "sha256": "a392dc1b3ebf3baee76836824b59e6e7f0b3005cc822a0bdb9f7bfb925d48baf"
+      },
+      {
+        "path": "comparison-green-report.json",
+        "bytes": 33931,
+        "sha256": "6a5d32d80527a373a982660a9026060f57b48319efdefcab57f7bb0b774ceaad"
+      },
+      {
+        "path": "comparison-green.log",
+        "bytes": 17672,
+        "sha256": "67898b73b39e0f8fc384112f536aa06a668b862ffee558ff0d3dcd49178ec5ed"
+      },
+      {
+        "path": "comparison-green.meta.json",
+        "bytes": 557,
+        "sha256": "2abe8699fc08ea1a77028410ab6a22b0e20b0fe2720780c083ec436dbdb38c47"
+      },
+      {
+        "path": "comparison-red-02-report.json",
+        "bytes": 714,
+        "sha256": "2c00513c276191a35fdc16587f4b16615baafc66d085b190215048a0427570e0"
+      },
+      {
+        "path": "comparison-red-02.log",
+        "bytes": 1259,
+        "sha256": "b9cbbe36e0a20e4953300a92aef52c1de079103422a269c9dde9270f756175b1"
+      },
+      {
+        "path": "comparison-red-02.meta.json",
+        "bytes": 507,
+        "sha256": "6e45b5ee32fa476e7be685e047d895fbf59e1e1a2515345271889682aff1bbb1"
+      },
+      {
+        "path": "comparison-red-03-report.json",
+        "bytes": 714,
+        "sha256": "efd12ce6708ce4980bb6ef37a5a30eba53d8bc2e79a4d8789399dbd7d0267416"
+      },
+      {
+        "path": "comparison-red-03-test.ts.txt",
+        "bytes": 18268,
+        "sha256": "f284e46c4d5068741b82682b76e1e401547722a47db9428b8c734c01b1f93722"
+      },
+      {
+        "path": "comparison-red-03.log",
+        "bytes": 1259,
+        "sha256": "ff53e0b7eb577b3ea61c1ad96acc0344773778dd481cf480b0cf2e0d921f8e63"
+      },
+      {
+        "path": "comparison-red-03.meta.json",
+        "bytes": 507,
+        "sha256": "d2cd0db9fae4caea8501f6d65814efffa5be6f3c2ce6cd001469b890df850dde"
+      },
+      {
+        "path": "comparison-red-report.json",
+        "bytes": 714,
+        "sha256": "c1fc0d40b0c93d0b3c72c24d6c6441067c17a70209fc71792a8403ba49484e29"
+      },
+      {
+        "path": "comparison-red-test.ts.txt",
+        "bytes": 14444,
+        "sha256": "5ed304a6be1fa43a726a2fcc75da3444ede4dd7d3743a558df590d558d76fb61"
+      },
+      {
+        "path": "comparison-red.log",
+        "bytes": 1252,
+        "sha256": "7246c55dcb4125cd3630f53f6c8f5cc9a46ba3151637f0d998d8ad72d35af160"
+      },
+      {
+        "path": "comparison-red.meta.json",
+        "bytes": 504,
+        "sha256": "2fce625c54941996b1727e46b8a9e4d55cf56f5b347969d79e7c04a9a454c8f3"
+      },
+      {
+        "path": "comparison-review-final.txt",
+        "bytes": 441,
+        "sha256": "269c4338c530324c9f86b55223cafc1e9929f85c6bd3be1d61a535d1cb1cf696"
+      },
+      {
+        "path": "comparison-review.txt",
+        "bytes": 566,
+        "sha256": "b8fba3b014e94eb411319c36cb2e3622db01e525f7931ef0db31bdc04d2d080c"
+      },
+      {
+        "path": "comparison-separation-green-report.json",
+        "bytes": 36455,
+        "sha256": "1598bfe4b0f2237dc1ecf69487aadfed81070db003135b805e7d8f21a1af4744"
+      },
+      {
+        "path": "comparison-separation-green.log",
+        "bytes": 18975,
+        "sha256": "e74252973953b2931679c46b6f9ebc475ff91f587d9997e901a96b76fe21d260"
+      },
+      {
+        "path": "comparison-separation-green.meta.json",
+        "bytes": 568,
+        "sha256": "7afd90327e33cff93d46953b649398c631052232a62ee9b9fc89178072930a41"
+      },
+      {
+        "path": "comparison-separation-red-02-report.json",
+        "bytes": 26340,
+        "sha256": "830064e5945b9770ff48b4c78454447447dd15b9fde08da7316d4fe4774e7580"
+      },
+      {
+        "path": "comparison-separation-red-02-test.ts.txt",
+        "bytes": 20118,
+        "sha256": "8ffe7b673653a63030ccae72144175615f61d178cf13492d41a023de3527cfdc"
+      },
+      {
+        "path": "comparison-separation-red-02.log",
+        "bytes": 17271,
+        "sha256": "527775156aab159f5c80b6a31ffc9f5ee48d698e91cdbced88e872f903d3ea94"
+      },
+      {
+        "path": "comparison-separation-red-02.meta.json",
+        "bytes": 519,
+        "sha256": "10c1d8ef35a3aaa61edff028fb50af65b9d07ecf4d7fc694d29857c08d06a7a2"
+      },
+      {
+        "path": "comparison-separation-red-report.json",
+        "bytes": 26371,
+        "sha256": "192bc6ce1fa8fa15783cfa417b9046049997eba4592d37ad060c6fac6f618e96"
+      },
+      {
+        "path": "comparison-separation-red-test.ts.txt",
+        "bytes": 20111,
+        "sha256": "688203afcd087b5fc172d22d44f0d1fd78b9521211f6d8dcfaa658d313d699eb"
+      },
+      {
+        "path": "comparison-separation-red.log",
+        "bytes": 17943,
+        "sha256": "b8f6935d028e19a61a550b692f27fd63d1472a1e94e73051ee9c41b2e32e2917"
+      },
+      {
+        "path": "comparison-separation-red.meta.json",
+        "bytes": 516,
+        "sha256": "b90a0801e72b04f1aa65bdd20ad4bab70d27383b204ce21ea61e16df79f80543"
+      },
+      {
+        "path": "default-earned-report.json",
+        "bytes": 4029728,
+        "sha256": "5fedfcaa45869f03bc76a259dc66bc002b23cb895e2e8beff155f97a28185e9b"
+      },
+      {
+        "path": "default-observed-summary.json",
+        "bytes": 3337,
+        "sha256": "5feef7759cf6bb7fc85040fe1a3be0ba83e458fd0e2aa34c86cdc78babe89aee"
+      },
+      {
+        "path": "default-repeat-difference-summary.json",
+        "bytes": 875,
+        "sha256": "945990ec417705ccadfd474c69687444e841ab8b12812ada9da8a0e57e315c4f"
+      },
+      {
+        "path": "default-repeat-differences.json",
+        "bytes": 32844,
+        "sha256": "881fd581c7af53690f154be150f3f099b252800bb45fa12c22499e41dd24cb48"
+      },
+      {
+        "path": "driver-default-output-report.json",
+        "bytes": 789,
+        "sha256": "809596a130451fa9d36103309e5d25bd2fe5522adb8a40d396ce31f019ebc812"
+      },
+      {
+        "path": "driver-default-output.log",
+        "bytes": 859,
+        "sha256": "b994626a3e2288e6f728116e305426da5b6f5bd377e907f61e6070a78bf3064c"
+      },
+      {
+        "path": "driver-default-output.meta.json",
+        "bytes": 583,
+        "sha256": "116f6a4fd0ea9adae22f3a2984e88517881a78218e8e510e61fb2f48da4f7cc0"
+      },
+      {
+        "path": "driver-red-02-report.json",
+        "bytes": 1053,
+        "sha256": "f15e555bb9e91efc3046035232ba441f2bae768ffb84aa3b7d477ce455aacff4"
+      },
+      {
+        "path": "driver-red-02-test.ts.txt",
+        "bytes": 3108,
+        "sha256": "51ba4ade962bdcb26fc1a1e978f9bc6b1e005591a8f82c0bdcb39e2fd1166e6a"
+      },
+      {
+        "path": "driver-red-02.log",
+        "bytes": 1689,
+        "sha256": "8ee3b3f90ab8cdd467f477103e8c31d604ec7137e03a2cd7843b14c6b14b9589"
+      },
+      {
+        "path": "driver-red-02.meta.json",
+        "bytes": 500,
+        "sha256": "2d9055434cd52beae99e8ed2b321c4afe91bd230c27763c7176f24f820328635"
+      },
+      {
+        "path": "driver-red-report.json",
+        "bytes": 1053,
+        "sha256": "87cc8629e87b4f465877b25b069c7ad97d4341f39b6d55ed0e3732b1bed096f1"
+      },
+      {
+        "path": "driver-red-test.ts.txt",
+        "bytes": 3033,
+        "sha256": "651c2aaa630d294a93db1e6dd38d432ded58fc2f304f27f51fa96cb9b8989dfe"
+      },
+      {
+        "path": "driver-red.log",
+        "bytes": 1682,
+        "sha256": "e18c488bc3bc08f4b6d68422c3f533dcac66506a1a3cc6b1dc02329f1da9a753"
+      },
+      {
+        "path": "driver-red.meta.json",
+        "bytes": 497,
+        "sha256": "8c00fb0c182fe0397f9a2465c60de3e5ee9b316e515ba805e61b3ae68cf911fb"
+      },
+      {
+        "path": "driver-refusal-output-report.json",
+        "bytes": 789,
+        "sha256": "aa1081eddac18dbc58f6f632604344cee7db65a690b0417964179110d11cfaf2"
+      },
+      {
+        "path": "driver-refusal-output.log",
+        "bytes": 860,
+        "sha256": "003488fc327dfb88555ee084b235380af1b123ade5a89810d2e63ca7dc896817"
+      },
+      {
+        "path": "driver-refusal-output.meta.json",
+        "bytes": 714,
+        "sha256": "e3b587f33f73cf743f0fdd7ff4ea22b2d87192df8dbf05b08f557b28f6755ff6"
+      },
+      {
+        "path": "driver-reject-inrepo-report.json",
+        "bytes": 865,
+        "sha256": "07dba93b3640fdd98e7d78d183a1dedff51e5d4f7c0b96a7953255fb33b93d15"
+      },
+      {
+        "path": "driver-reject-inrepo.log",
+        "bytes": 1707,
+        "sha256": "e10e135bbd62f9fa5d1c4a57636af44f23f5b58632eb2b36b60e08ae8036b5d0"
+      },
+      {
+        "path": "driver-reject-inrepo.meta.json",
+        "bytes": 586,
+        "sha256": "5f4782e37c772edd4986d417a05a09b67cc49d95019b1976f508ddf7290c1d9a"
+      },
+      {
+        "path": "driver-reject-invalid-report.json",
+        "bytes": 889,
+        "sha256": "0820ea808aa54bb25743b59d6e78a500c9446c40377c6316980695ca1a79ae67"
+      },
+      {
+        "path": "driver-reject-invalid.log",
+        "bytes": 403,
+        "sha256": "2c87cfeda28ed0362117668988f7a9a517aa7669b554fb148b0bf57e9e34563f"
+      },
+      {
+        "path": "driver-reject-invalid.meta.json",
+        "bytes": 689,
+        "sha256": "de0cfe43c33534216c23858405bbabbff345238589e58834e7fe50977e7a32f3"
+      },
+      {
+        "path": "driver-reject-overwrite-report.json",
+        "bytes": 852,
+        "sha256": "72ee7651a42c7a9a95ec19b9a64db8611d94e0cb6272ebb17883a6b298e47793"
+      },
+      {
+        "path": "driver-reject-overwrite.log",
+        "bytes": 1505,
+        "sha256": "fc6da77585a1f9c4e33d83dd119806cf62364abb5ec49620bc274b12c52617de"
+      },
+      {
+        "path": "driver-reject-overwrite.meta.json",
+        "bytes": 579,
+        "sha256": "5dc4783e675bae11fad6d5fbe006b7fa832fd2ef2a5dd20389e205f658b536a6"
+      },
+      {
+        "path": "driver-reject-relative-report.json",
+        "bytes": 855,
+        "sha256": "48bfb0a5ed7508d74d9a577a08bd2b8d3bc175213e571f7d5a70d8cab0f85d04"
+      },
+      {
+        "path": "driver-reject-relative.log",
+        "bytes": 405,
+        "sha256": "8aa39a4d3732c6d66c57071f6bbedb5eedc072baa3923d88c2aae738dba997e3"
+      },
+      {
+        "path": "driver-reject-relative.meta.json",
+        "bytes": 484,
+        "sha256": "19d9a913e74f65af08c361bbdc1b84c225ddc7cade14100bcab041ad80bd889b"
+      },
+      {
+        "path": "driver-reject-symlink-parent-report.json",
+        "bytes": 865,
+        "sha256": "c8e49fc5021c20e7a4f86822df360547687928d4a918f3e895a30c59bf857a21"
+      },
+      {
+        "path": "driver-reject-symlink-parent.log",
+        "bytes": 1723,
+        "sha256": "0da44ee0d352d9c7b0f6f80d1019d09d75e2b939192eb5333b2d5fe79d23489d"
+      },
+      {
+        "path": "driver-reject-symlink-parent.meta.json",
+        "bytes": 615,
+        "sha256": "2898b2817fa92263d9c852eaf9352d908f40cee937e25a065957d281ecc45db1"
+      },
+      {
+        "path": "existing-report.json",
+        "bytes": 30,
+        "sha256": "5927addba58eb04baad8e2ca620ff5ca60727abdf8c23cc5ba1e0b92272f410a"
+      },
+      {
+        "path": "final-package.json.txt",
+        "bytes": 2802,
+        "sha256": "0621f952b7e17c1f838b5441f45a6f7ea800721d22f5def3be073118f98ffb27"
+      },
+      {
+        "path": "final-related-report.json",
+        "bytes": 43380,
+        "sha256": "e121619060d76c5cca0143fe8a7d9d09e29413a05c86b36fc89747d8d1906ba2"
+      },
+      {
+        "path": "final-related.log",
+        "bytes": 498,
+        "sha256": "d8a59c801025fed8109fc3e561df5089848c201681531e97f7b5534f24cf7f1d"
+      },
+      {
+        "path": "final-related.meta.json",
+        "bytes": 600,
+        "sha256": "18fe255e8303be447210cf539c6b42a25f390b07c6f0148ed45e18c2b016242e"
+      },
+      {
+        "path": "final-tests__sim__production__README.md.txt",
+        "bytes": 20875,
+        "sha256": "6befcca92a2f0cc1de34ed390f9fbf584c87e40e9efd07b004ad084706e420f5"
+      },
+      {
+        "path": "final-tests__sim__production__earned-comparison.test.ts.txt",
+        "bytes": 20118,
+        "sha256": "8ffe7b673653a63030ccae72144175615f61d178cf13492d41a023de3527cfdc"
+      },
+      {
+        "path": "final-tests__sim__production__earned-comparison.ts.txt",
+        "bytes": 6875,
+        "sha256": "adaed49bb4c8feacddaac1a09626950f6323238a2cb2d3a1d68a5959c9027e60"
+      },
+      {
+        "path": "final-tests__sim__production__earned-measure.test.ts.txt",
+        "bytes": 3108,
+        "sha256": "51ba4ade962bdcb26fc1a1e978f9bc6b1e005591a8f82c0bdcb39e2fd1166e6a"
+      },
+      {
+        "path": "final-tests__sim__production__earned-measurement.test.ts.txt",
+        "bytes": 10714,
+        "sha256": "82b6951d3651b3139b4dd0527e003fd6eaefbf92ba5f28db55f4f322990daf57"
+      },
+      {
+        "path": "final-tests__sim__production__earned-measurement.ts.txt",
+        "bytes": 3747,
+        "sha256": "7e2898a1c11a91fa2e3738eda6e1aa55748e8bcdf17c41030ed090c15e9d9ed3"
+      },
+      {
+        "path": "final-tests__sim__production__earned-report.test.ts.txt",
+        "bytes": 6208,
+        "sha256": "319627fb980c56c93d19de9a2f7a0591035799c9ff2fba11d6fc7d1550c8ed65"
+      },
+      {
+        "path": "final-tests__sim__production__earned-report.ts.txt",
+        "bytes": 5818,
+        "sha256": "c4466331b1a9e80beb40d0cea848dc3670c237c6eb29c3f166b7f715875ec1aa"
+      },
+      {
+        "path": "full-final-report.json",
+        "bytes": 1033271,
+        "sha256": "ec599e72fafb3adc643450cf81f59fa4c880e548791158e03204c41d34be7997"
+      },
+      {
+        "path": "full-final.log",
+        "bytes": 307,
+        "sha256": "9666f73be15bd281947296922e222e815bde365eaeab78af6319ff5fd883b07d"
+      },
+      {
+        "path": "full-final.meta.json",
+        "bytes": 383,
+        "sha256": "78ad49854bfe8808db5761df124898879b75d84ca921cf5aabcfac65438c6731"
+      },
+      {
+        "path": "guarded-build-final.log",
+        "bytes": 1763,
+        "sha256": "b83743b116805149aed5158dc235271822fb8fcaf7e9726a092c4b26794e2e5c"
+      },
+      {
+        "path": "guarded-build-final.meta.json",
+        "bytes": 253,
+        "sha256": "ef3a8f99f8969191562c6369ff0fe9990da08cb3e4f5610100bdd398a02bf594"
+      },
+      {
+        "path": "invalid-fixture.json",
+        "bytes": 36,
+        "sha256": "3e2e7b7173016a0f333ceb5b31d1d6360cee729ae6e1aa16ddc989fc475ebb91"
+      },
+      {
+        "path": "lint-final.log",
+        "bytes": 196,
+        "sha256": "2792de92bfcfcca52d45d7d9554be17142ed714d537e23bbae1b59b7d5a9b80c"
+      },
+      {
+        "path": "lint-final.meta.json",
+        "bytes": 235,
+        "sha256": "1bbf378855a6f6911403863d80b54f8f5d9bea0f76dcb5f5ea7f501e463264de"
+      },
+      {
+        "path": "measurement-green-report.json",
+        "bytes": 7169,
+        "sha256": "69a5ceb02c34911b7dc49f2884a037511593b775e5423a521adf1acdd8cbe687"
+      },
+      {
+        "path": "measurement-green.log",
+        "bytes": 4086,
+        "sha256": "1ea76f98c3b451c9c859f1930dc5f62108db364adcabd089258576dcf3d9faef"
+      },
+      {
+        "path": "measurement-green.meta.json",
+        "bytes": 559,
+        "sha256": "0c15edd2bb73f8b5c2d679062ad94c436c3806f5640ec8aac13eaba74722559f"
+      },
+      {
+        "path": "measurement-red-02-report.json",
+        "bytes": 718,
+        "sha256": "e7526005f6a8456d9ae3f6833d57deecb894fd8860087a1c8cd438a4a725a79e"
+      },
+      {
+        "path": "measurement-red-02-test.ts.txt",
+        "bytes": 10714,
+        "sha256": "82b6951d3651b3139b4dd0527e003fd6eaefbf92ba5f28db55f4f322990daf57"
+      },
+      {
+        "path": "measurement-red-02.log",
+        "bytes": 1266,
+        "sha256": "e62b310319ce7ec00de45e5021c7c25196bd724a87762dc22b57b68863ec3181"
+      },
+      {
+        "path": "measurement-red-02.meta.json",
+        "bytes": 509,
+        "sha256": "1e583c9bd8b55799ea0fee5930da5297c0f1c497e83aa7ffaa55c020c14f3cd4"
+      },
+      {
+        "path": "measurement-red-report.json",
+        "bytes": 718,
+        "sha256": "756f22dfd21086a94dd8301aafbfbfc01a48a23cbcb04f8745bf72830c359643"
+      },
+      {
+        "path": "measurement-red-test.ts.txt",
+        "bytes": 9055,
+        "sha256": "a675c1379c2fa83e6d3b05467359ee1dec695aa3e2e219a4149d35919049759f"
+      },
+      {
+        "path": "measurement-red.log",
+        "bytes": 1261,
+        "sha256": "6aed592b9f31c025c0ada4a667df655ac70646c7dff0831b14140c77487caaba"
+      },
+      {
+        "path": "measurement-red.meta.json",
+        "bytes": 506,
+        "sha256": "d360caedd64687725315442b64a908d113dcf4a7735398f075e9eec91190a92c"
+      },
+      {
+        "path": "measurement-review.txt",
+        "bytes": 464,
+        "sha256": "1612d7865ba919ae70e63c7708ebbd0508a06a6df8d4c44ddece0d88254b04ae"
+      },
+      {
+        "path": "measurement-typecheck.log",
+        "bytes": 50,
+        "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+      },
+      {
+        "path": "measurement-typecheck.meta.json",
+        "bytes": 240,
+        "sha256": "2790cd4cecace8453c36718509260b4f15b2b8a08290d76084dc0c914e7166e9"
+      },
+      {
+        "path": "ownership.json",
+        "bytes": 792,
+        "sha256": "342912a5743d7c729b852b564cdeb0650d6850a7ede2c375ef006a6e006070c2"
+      },
+      {
+        "path": "package-evidence.py",
+        "bytes": 2864,
+        "sha256": "4df8db8feed7be5f7f220f28466f2335a44c7c86500fceb048ed2982820f7050"
+      },
+      {
+        "path": "plan-original.md",
+        "bytes": 7827,
+        "sha256": "0209a83cc1b46943640e3855171c2ca777a0bce53948d59dba8b9d81b59f47b9"
+      },
+      {
+        "path": "plan-review.txt",
+        "bytes": 331,
+        "sha256": "27b7c4f8d4b68a5e11d6e5dd4683e149eb574245cdfeb4473af6337bb92b543a"
+      },
+      {
+        "path": "plan.md",
+        "bytes": 7786,
+        "sha256": "1e2c85e0c99edc4db2f4b736a5aefa914140893f6c925850eafb967aef973972"
+      },
+      {
+        "path": "preserved-baseline.json",
+        "bytes": 991,
+        "sha256": "abafe780ff2744451c39f06a79a927ec46c6dd89104f498f8ce6359f819e505e"
+      },
+      {
+        "path": "prior-checkpoint-cleanup.json",
+        "bytes": 603,
+        "sha256": "5df2983672a67100ce8fa293284e148298de40b76826c0d600f2a5dbee3096f9"
+      },
+      {
+        "path": "producer-cli-review.txt",
+        "bytes": 419,
+        "sha256": "2472f354c58e04956b5c44bf85e34df3d87d9acd4f1efdfcf6f6d79a5f10389a"
+      },
+      {
+        "path": "qa-source-outcome-review.txt",
+        "bytes": 802,
+        "sha256": "69836f8296c72600e9d85f0e248f43854b7c927468f21d9325d11214fcb067cb"
+      },
+      {
+        "path": "qa-validation-review.txt",
+        "bytes": 417,
+        "sha256": "13358a96dba9b2a13de231f2e53965c26d5d559f6358ee8715ab405630c2c31a"
+      },
+      {
+        "path": "refusal-earned-report.json",
+        "bytes": 625578,
+        "sha256": "9243dbc3a18c16682cc4c1cb5cece5ce289b7d6c439337c21ff44838770c0c8d"
+      },
+      {
+        "path": "refusal-fixture.json",
+        "bytes": 1488,
+        "sha256": "53e87b057149067923d3badf48b66c1c3b3096a055a5e7f278da1a9f73b80597"
+      },
+      {
+        "path": "runner.py",
+        "bytes": 584,
+        "sha256": "dd43228274b9a660e28898b9ff196cc394769664fe06502a9d056ef806b5aec9"
+      },
+      {
+        "path": "source-hashes.json",
+        "bytes": 1009,
+        "sha256": "a4b37a0e6b837eb1976798bb6bc6f2007e15063fcf5137d12831b87905287603"
+      },
+      {
+        "path": "test-report-counts.json",
+        "bytes": 3860,
+        "sha256": "2fa7cb6edf30734886b91e5c82b4894883f8853142e3547b42222fddc3a00fa6"
+      },
+      {
+        "path": "typecheck-final.log",
+        "bytes": 50,
+        "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+      },
+      {
+        "path": "typecheck-final.meta.json",
+        "bytes": 240,
+        "sha256": "5b616b192668a456d925a439cad409bbd1eb916fb0c7c689737f37755501d64b"
+      },
+      {
+        "path": "verified-freezes.json",
+        "bytes": 1455,
+        "sha256": "c9108871d773bb7de3c72b949982fe12dfcc3b85de051548fc80971820a7f16c"
+      },
+      {
+        "path": "verify-cli.py",
+        "bytes": 2129,
+        "sha256": "a1dadec3858ca78f495f10226017085b2d2f6652b3fc24111b633c020b41052d"
+      }
+    ],
+    "excludedSymlinks": [
+      {
+        "path": "repo-parent-alias",
+        "target": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+        "reason": "test alias to worktree; never follow/archive target"
+      }
+    ]
+  },
+  "buildChunks": {
+    "dist/assets/game-engine-CqIzUXqx.js": "1fa97c84cee8074c2e55d99513c68c552e06b85906d088e0014d0d2f29fe3506",
+    "dist/assets/i18n-Bxr3rY09.js": "cb3cefca3bda4b6da700c1dcd65dae18a27f3a44e5c831c09cacb7652a2505f8",
+    "dist/assets/index-ph9Wm4mC.js": "6306ec8802e3ac1bb840c0a098ea75ce63a8570462118c9401a1e9b16a809df9",
+    "dist/assets/react-vendor-dRBhy6jq.js": "d023b474fbe60dec77510b20d3560e8a8c6b796e6d623cf648bf12800af453fb"
+  },
+  "cleanup": {
+    "owner": "root",
+    "state": "pending final packet review/release; result recorded in closing ledger",
+    "paths": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-reports-79qdh149",
+      "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/dist",
+      "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/.vite"
+    ],
+    "symlink": "unlink exact repo-parent-alias before deleting owned regular files; never follow",
+    "installedTools": "preserved",
+    "overallWorktree": "retained for active fullv1"
+  },
+  "limitations": [
+    "Missing-moduleREDs execute0assertions; dynamicdriverRED1failedtest beforeassertions",
+    "Initial codec26pass2setupfail; approved wrapping then28pass4genuinefail",
+    "First comparator67+32codec99passes did not prove projection isolation; corrected separationRED68pass8genuinefail",
+    "Synthetic sensitivity/mocks are not gameplay evidence",
+    "Default both completed execution with DenW2defeat; no clear/campaign/browser/coverage/screening acceptance",
+    "All169IDdifferences are item IDs in this sample; global allocator deliberately not reset",
+    "Related16.646s>5s and full54.821s>15s unchanged budgets; U/T/L concurrent",
+    "Existing buildwarnings retained; no game/data/config/dependency/lockfile changes",
+    "No push/PR/merge/deployment"
+  ]
+}

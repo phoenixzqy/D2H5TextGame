@@ -284,3 +284,67 @@ exercised by these samples; source and existing native tests support those rules
 P02b03 owns versioned reports, before-import provenance, repeated-run comparison
 and a v2 CLI. This adapter does not establish screening, browser, campaign,
 pacing or full P02/v1 acceptance. The existing v1 harness remains unchanged.
+
+## Earned measurement reports (P02b03)
+
+```bash
+npm run sim:earned
+EARNED_REPORT_PATH=/tmp/earned-tiny-new.json npm run sim:earned
+EARNED_FIXTURE_PATH=/absolute/path/to/recipe.json EARNED_REPORT_PATH=/tmp/earned-custom-new.json npm run sim:earned
+```
+
+Output is optional. A destination must be an absolute, new leaf under an existing
+real parent outside this repository. Existing files and symlinks are refused;
+parent symlinks are resolved before checking repository containment. The writer
+creates exclusively and never overwrites. Invalid input, structural/cleanup
+errors or source drift abort before report emission. A custom fixture is local
+JSON validated against the unchanged v2 schema and actual production catalogs.
+
+The default is exactly the original tiny recipe above: clock1792497600000,
+targetseed1, one preparation, no appended equipment actions. For each declared
+seed, the command executes repetition1 then repetition2, from fresh creation,
+and produces one comparison. No retries, extra farming, seed search, persistence
+initialization or process-global allocator reset occurs. Expected action
+refusals and nonwins remain complete partial attempts. `completed` means recipe
+execution reached a native target terminal result; it does not mean victory.
+The driver currently has a30second execution timeout; this is not a performance
+acceptance threshold or permission to run an unreviewed large screening recipe.
+
+Reports have `reportVersion: 2`, `observationEncoding: d2h5-observation-v1`,
+the whole validated fixture/fingerprint, separate v2 provenance, complete raw
+attempts, full source manifests/dirty metadata and per-seed comparisons. Actual
+disk identity is collected before dynamic gameplay import, before actions,
+after every restored attempt and at final outer verification before writing.
+All checks compare SHA, source/data hashes, Node/Vitest versions, manifest and
+collection policy; dirty-worktree metadata is retained separately.
+
+Ordinary JSON drops Maps and explicit `undefined`. `encodeObservation` in
+`earned-report.ts` preserves them with reserved `$d2h5` tags, as well as `-0`
+and nonfinite numbers. `decodeObservation(JSON.parse(bytes))` recovers values.
+This is a value codec: record key order is canonical, array and Map entry order
+is significant, and reference alias identity is not represented. Unsupported
+objects, cycles, executable/accessor data and reserved-tag collisions throw.
+`observationJson` and `hashObservation` use those same complete encoded bytes.
+
+Comparison fields have deliberately bounded meanings:
+
+| Field | Compared values |
+| --- | --- |
+| `sourceIdentityEqual` | All four before/after source/tool identities; dirty metadata excluded |
+| `rawWaveRecordingsEqual` | Ordered attempted run handles, opening teams/events/outcomes/presentation/name Maps/logs, played final teams/cursor/completion, native advance result and terminal simulation clock |
+| `rawAbandonedRecordingsEqual` | Separately retained installed, unplayed preparation W2 recording and handle |
+| `rawRewardsEqual` | Ordered raw wave/run awards, actual observed deltas and acquisition journal, with original IDs |
+| `semanticRewardsIgnoringOnlyTopLevelItemIdEqual` | Same reward projection, omitting only each known Item's top-level `id`; nested IDs and removed-item IDs stay significant |
+| `rawDomainObservationsEqual` | Status/refusal, action order/results/boundaries, creation/checkpoints/pretarget/terminal and wave award/flee domain states |
+| `fullRawReplayEqual` | Entire attempts except top-level repetition, `timings.wallSeconds` and separately compared source states |
+| `itemIdentityAssessment` | Ordered original ID strings in earned journal and actual target additions; `unexercised` only when both sides have no items |
+| `rewardPathCoverage` | Independent `first`/`second` coverage from observed XP/merc XP/currency/items/clears or raw awards, without inferring rewards from winner flags |
+
+The full report retains all snapshots, including future installed recordings,
+rewards, flee state and played logs omitted from the narrower recording metrics.
+Original allocator IDs or random log IDs may differ across repetitions; exact
+raw equality is an observation, never a prerequisite or a fabricated promise.
+Abandoned recordings do not contribute attempted-wave logical or UI-hint time.
+Logical simulation seconds, event UI-delay hints and adapter execution/restoration
+wall time remain distinct. A tiny report does not establish screening, balance,
+browser behavior, campaign pacing, C0–C4/G0–G7 or complete private-v1 acceptance.
