@@ -564,3 +564,68 @@ effective490.5). Qualification/playback/winner/live-original-hero precede one
 award-time clock sample. No bonus mutation or extra RNG draws. True-close/reopen
 ordinary browser P17a07 is a separate QA card under review; production/PWA,
 broader P11/P17 and the campaign/class/economy checkpoint gates remain open.
+
+## Actual bonus rewards, true close/reopen and production offline gameplay
+
+Integrated P17a05 `e21545c` (agent `56ee222`), P17a07 `6354bd8` (agent
+`a05f85a`) and root P17b01 `f7b6346`. Independent root/producer final
+source/test/control reviews APPROVE each. Full v1/C0–C4/G0–G7 remain open;
+original main is untouched and no push/PR/merge/deployment was performed.
+
+P17a05 samples the shared bonus once after playback/qualified win/live original
+hero/slain non-summon checks, before side effects. XP sums per-kill floors;
+existing merc share uses the boosted total. Effective MF multiplies after the
+existing diminishing-return floor with no new cap/outer floor, default1 and no
+extra RNG draw/fork. Forced/direct rewards, GF/currency quantities, noDrop and
+first-kill semantics remain. BUG025 genuine RED4fail/13pass5.44s preceded source;
+final19pass3.19s includes real two-wave combat/XP/gear/merc path with controlled
+unforced TC only at loader boundary, separate real-data forced-rarity control,
+tight490.5-vs490/raw-MF threshold and complete default reward/next-RNG oracle.
+Imported high-power fixtures establish integration, not earned campaign/balance.
+
+Combined runtime at `e21545c`: U1275pass/1existing merc-XP skip112files34.07s;
+E497pass42files8.43s. Runs were concurrent, exceeding15s/3s loop budgets; these
+are functional results, not performance certification. Subsequent work through
+f7b6346 is tests/docs/config only. Final T/L/forced PWA config+spec lint pass;
+fresh guarded production build runs before each PWA preview and passes. Existing
+React act/router, large-chunk, stale Browserslist and optional2.57MB manifest
+precache warnings persist. Ubuntu26.04 unsupported-host caveat remains.
+
+P17a07 ordinary UI/actual close/new page retains one installed context clock.
+Old app closes before away clock advances. Known inactiveA→B+1h saves1.08/1200
+once; sameB complete equality. Quiet600online seconds require an actual periodic
+IDB timestamp in[B+570s,C] and a complete fixture-derived projected payload before
+manual Save establishes1.04/600. D=C+180s retains stronger bonus, adds exact away
+time; sameD complete equality. Locale/banner/chip/overflow/errors checked for
+en/zh×1280×800/360×640. First browser4/4pass26.9s; worker U1256pass/1skip111files
+38.51s at88189a2,T/L/forcedlintpass. Report
+`docs/plans/evidence/p17a07-close-reopen.md` distinguishes development-page proof
+from pagehide IO durability/PWA/rewards/fullP17.
+
+P17b01 dedicated tests/pwa config avoids existing debug-enabled prod discovery
+and forces a fresh no-bridge guard build with reuseExistingServer:false.
+Ordinary saved character and activated controlling SW precede network disable.
+Both offline reloads require successful SW document+entry/loadedJS responses,
+complete stored/exported equality and bridge absence. Offline town/inventory/
+skills/merc/map render; enter actual map combat, ordinary Skip must advance the
+numeric wave or finish the run. Ordinary flee/end then Save and offline reload
+retain full outcome-derived persistence baseline. No independent balance/reward
+claim from that baseline. First two attempts each4fail from premature ready
+state and overlength test-name assumptions; runtime unchanged. Third4/4pass
+38.1s; final unconditional-town/numeric-wave4/4pass37.4s on4326. Full evidence:
+`docs/plans/evidence/p17b01-production-offline.md`. Update/install/Lighthouse,
+optional-art explanation/fullG6 remain open.
+
+All completed worker claims released. After all consumers/processes finished,
+removed+verified absent worktree3/4 owned dist/.vite, worker
+`/tmp/d2h5-p17a07-browser-1`, root dist/node_modules/.vite and
+`/tmp/d2h5-p17b01-browser-1`, `-2`, `-3`, `-final`. Downloads explicitly deleted.
+No task processes or cleanup failures remain; shared tools/caches preserved.
+Root worktree2 remains claimed for continuing umbrella work.
+
+Next approved P17b02: localized offline capability note in Settings explaining
+possibly unavailable uncached art without claiming observed image failure.
+BUG026 reserved after genuine missing-note assertion; five worker-owned files
+(Settings, two locale files, existing PWA spec, bug) plus root D12 control above.
+Two-version update safety needs a separately reviewed harness. Broader earned
+campaign/class/skill/economy/crafting/merc/background-idle gates remain open.

@@ -286,3 +286,23 @@ forced pointer actions, log-regex resolution or soft balance skips.
 Scope is dedicated config, one offline spec, evidence report and this control.
 This accepts one installed-cache/offline gameplay path, not installation UX,
 Lighthouse, optional-art explanation, update safety, earned campaign or fullG6.
+
+### P17b02 unavailable optional-art explanation (approved small UI contract)
+
+Settings shows a localized note while the browser reports offline: some
+uncached artwork may be unavailable, while combat and saves remain usable.
+This is an offline capability explanation, not a claim that a particular image
+failed. Initialize from navigator.onLine and own online/offline listener setup
+and cleanup in the mounted UI. Preserve image fallback/source recovery, cache
+policy, save data and runtime art mapping; no generation or new asset source.
+
+Extend the existing actual-production en/zh×desktop/mobile matrix: note absent
+online, visible after real context network disable without reload, retained on
+offline reload, absent after restoring online. Preserve existing complete-save,
+no-bridge, offline navigation/recorded-combat/save assertions and no overflow.
+Record the genuine missing-note browser assertion before runtime implementation
+in reserved BUG026. Scope: SettingsScreen, both settings locales, existing PWA
+spec, BUG026 and this root-owned control. No mirrored implementation unit tests
+are required for this small reversible UI; review listener lifecycle and verify
+the browser matrix, U/T/L/forced-spec lint/production build. Full update safety,
+install/Lighthouse/G6/P17 and earned campaign remain separate.
