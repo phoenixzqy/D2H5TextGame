@@ -1,6 +1,7 @@
 # P13a — level-aware missing mercenary progress
 
-Status: producer/root plan review APPROVE before implementation. This bounded
+Status: accepted implementation8e6076e; root/producer plan/source/final review
+APPROVE. Validation and remaining gaps are in execution-ledger.md. This bounded
 P13 child fixes the existing quarantined defect; it does not settle D10/D11 or
 close recruitment/economy/earned-progression acceptance.
 

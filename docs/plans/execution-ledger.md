@@ -36,7 +36,8 @@ Current implementation evidence lives in `evidence/`.
 | Remaining P06–P10 | pending dependencies | D04–D06/shared effects first. All skills remain behavior-unaccepted. |
 | P11a / P11a02 | accepted finalization slices | `d39fe64` actual-win/living-hero/playback guard and single clear; `d8db75c` truthful draw UI. Six root regressions, six RTL, 4/4 browser locale×viewport cases; independent QA/producer APPROVE. BUG-008. |
 | P11–P15 | pending dependencies | Rewards/idle, eligibility, economy, campaign and pacing. |
-| P13a | implementation dispatched | `d5ca217` approved level-aware new/missing merc progress contract; retain explicit thresholds/share/curve/schema and restore quarantined deterministic combat case. Full earned recruitment/progression/economy separate. |
+| P13a | accepted progress-default slice | `8e6076e` (agent `6db69b6`); actual-level defaults/getter/award and UI fallback, explicit stored thresholds retained, real combat skip restored. Root/producer APPROVE; full1290pass/no skips. |
+| P13b | accepted visible earned-progression slice | `5143a2c`; live owned core stats/unknown definitions, genuine2-case RED, ordinary production obtain/field/three qualified waves/L3→L4/Save/close-reopen,4/4 locale×viewport. [Evidence](evidence/p13b-earned-mercenary.md). Root/producer APPROVE; fullP13/economy open. |
 | P17a/P17b children | accepted bounded slices | Bonus/save/true close-reopen/offline/art-help/configured-version update evidence recorded below; installation/Lighthouse/fullG6/P17 remain open. |
 | P16–P18 | pending | Critical UI/a11y/performance, offline/PWA, endgame and achievements. |
 | P19 | pending dependencies | Full matrix, actual required CI, independent review/QA, holdout, soak, human playtest. |
@@ -683,9 +684,56 @@ thresholds. Restore deterministic actual-combat assertion with share>=60 and
 complete expected L10/residual/6362. Root owns ledger/control. Historical wrong
 explicit thresholds/phantom gains require separate compatibility policy.
 
-QA's next read-only finding: MercCard displays def.baseStats instead of gained
+QA's subsequent read-only finding: MercCard displays def.baseStats instead of gained
 merc.coreStats. Separate RED/report/UI slice needed before claiming visible stat
 gains. Actual ActI hire is immediate/free and auto-fields reqLevel3 InnerSight;
 this can prove ordinary obtain/field/earned L3→L4/save but not earned-currency
 recruitment. QA is preparing that route without runs/edits/artifacts; economy,
 broader skills/campaign/idle/critical UI/performance gates remain open.
+
+## Level-aware mercenary defaults and visible earned progression
+
+P13a integrated8e6076e (agent6db69b6): new/missing progress uses owned merc level
+in insertion/getter/positive award. Getter stays pure; UI fallback shares it and
+retains explicit-progress/level subscriptions. Explicit saved thresholds, even50,
+remain authoritative. No gain/share/curve/factory/schema/migration change.
+Canonical L1=60,L3=304,L4=527,L10=6362,L11=9098. Historical explicit incorrect
+thresholds/phantom gains need separate compatibility policy.
+
+Genuine RED12fail/47pass3.25s, focused59pass3.30s, related461pass/39files20.69s;
+full1290pass/112files/no skips26.86s; T/L/build pass. Restored real-combat case
+uses runSeed7/challengeOrdinal0, actual BloodMoor victory/original living hero/
+playback award and literal heroXP160/merc120. Share>=60/<6362 keeps original
+L10 entity unchanged except XP120/6362. Root+producer source/final APPROVE.
+Worker3 clean/released, exact owned dist/.vite removed/verified.
+
+P13b5143a2c: MercCard now binds existing STR/DEX/VIT to owned coreStats. Genuine
+mounted actual-store threshold RED2/2preceded runtime; known definition stayed
+STR12 after realSTR13, unknown definition showed dashes. Both UI suites7pass/
+2files3.97s, full113files1292pass/no skips32.31s, T/L/final forced ESLint/diff
+check pass. Full-unit15s budget unmet in both slices; no performance acceptance.
+
+Ordinary fresh guarded production en/zh-CN×1280×800/360×640 matrix4/4pass1.1m,
+retries0,port4332. Fixed Date only/native timers, ordinary Druid creation,
+InnerSight free hire/unfield/re-field. Three actual won first waves yield
+hero160/180/200 and merc120/135/150; Pause/Flee after numericwave2 bounds grants.
+Complete independently expected merc state and localized live stat/XP checks
+precede whole-save persistence baseline. L3XP0/304→120/304→255/304→L4XP101/527,
+core12/22/16/14→13/25/16/15,life148→156. Save/readonlyIDB/actual page close/new
+page/Continue retain full save, locale/fielded identity and UI, no bridge/
+overflow/page errors. This is earned XP from first-wave victories, not full-area
+clear, paid recruitment, contribution/balance or fullP13/economy acceptance.
+
+Producer source/final evidence APPROVE/ADEQUATE; root review ADEQUATE. Exact
+commands/limits in evidence/p13b-earned-mercenary.md and BUG027. After all
+consumers finished, root verified4332 stopped and removed/verified absent
+worktree2 dist/node_modules/.vite and /tmp/d2h5-p13b-earned-browser-1.
+No task process/disposable artifact remains; shared tools/caches retained.
+
+Next ready investigation P03b05a: authoritative merc equipment transfer integrity,
+followed separately by net-capacity/UI policy. Producer recommends genuine
+stale/missing backpack source and missing/invalid owner reproductions, complete
+payload conservation and refusal atomicity before a result-bearing transaction.
+P01 D04 damage/status C1 contract investigation is read-only with design agent.
+Root worktree2 remains claimed, original main untouched, no push/PR/deployment.
+Full v1/C0–C4/G0–G7 remain open.
