@@ -79,3 +79,24 @@ executed failure. Final generic primitive RED is still pending review. One
 unrelated added recording-delay assertion initially used0 although the existing
 minimum is50ms; worker corrects this test fixture before final RED. Runtime
 source remains untouched. Root reviewed the actual/factory tests before fix.
+
+
+Final pre-runtime RED on2026-10-20 08:26:08UTC:
+
+```sh
+npx vitest run src/engine/combat/healing.test.ts src/engine/combat/skill-resolution.test.ts src/stores/merc-healing.test.ts --reporter=dot --silent
+```
+
+Exit1,32failed/52passed,84tests,threefailedfiles,1.65s. Typecheckpassed.
+Only three test files changed; combat source untouched. Generic31cases cover
+lowest-ratio/insertion ties/self/summon,eligible/capped/fixed/pct/ranged healing,
+pure-heal priority/basic parity with unchanged RNG stream,zero-potential and
+zero-roll distinction,cost/CD,authoritative sequential/buff state,mixed effects,
+stun and periodic death before action. Actual rank1/20 and factory remain pinned.
+Soft actual-registry assertions additionally captured two zero-amount heal events
+(to hero and priest at400ms),no nextInt calls,and untouched seed1 next draw
+.6270739405881613 instead of the expected second draw.002735721180215478;
+hero remains100 instead of143. Added recording assertion now uses existing
+50ms UI minimum. This exposes runtime healing/targeting and availability defects
+beyond the already-corrected registration. Root reviewed all three test files
+and approved final RED; producer review precedes source changes.
