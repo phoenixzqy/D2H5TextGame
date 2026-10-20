@@ -28,8 +28,10 @@ import {
   isStunned,
   spreadPlague,
   activeStatusView,
-  amplifyDamageReduction
+  amplifyDamageReduction,
+  statusActiveAt
 } from './status';
+import { CHILL_DEFINITION } from './chill-definition';
 import { comboMultiplier } from './combo';
 import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
 import {
@@ -133,7 +135,7 @@ interface State {
   /** Registration order for targeting, periodic phases and priority collisions. */
   insertionIdx: Map<string, number>;
   /** time-based scheduler state */
-  nextActionAt: Map<string, number>;
+  actionSchedule: Map<string, { at: number; period: number }>;
   cooldownExpiresAt: Map<string, Map<string, number>>;
   /** Pooled rate-times-ms integral, never persisted or transferred between battles. */
   periodic: Map<string, PeriodicIntegral>;
@@ -160,6 +162,36 @@ interface PeriodicIntegral {
 
 function alive(u: CombatUnit): boolean {
   return u.life > 0;
+}
+
+/** Keep base stats intact; active Chill changes the stat before cadence/clamps. */
+function effectiveActionPeriod(unit: CombatUnit, at: number): number {
+  const chilled = unit.statuses.some(s => s.id === 'chill' && statusActiveAt(s, at));
+  return actionPeriodMs(unit.stats.attackSpeed * (chilled ? CHILL_DEFINITION.attackSpeedMultiplier : 1));
+}
+
+/** All new attempts start one full effective period after the current clock. */
+function scheduleNextAction(state: State, unit: CombatUnit): void {
+  const period = effectiveActionPeriod(unit, state.simClockMs);
+  state.actionSchedule.set(unit.id, { at: state.simClockMs + period, period });
+}
+
+/** Preserve remaining progress at onset/expiry; unchanged refresh never reschedules. */
+function reconcileActionPeriods(state: State): void {
+  for (const [id, scheduled] of state.actionSchedule) {
+    const unit = state.units.get(id);
+    if (!unit || !alive(unit)) {
+      state.actionSchedule.delete(id);
+      continue;
+    }
+    const period = effectiveActionPeriod(unit, state.simClockMs);
+    if (period === scheduled.period) continue;
+    const remaining = Math.max(0, scheduled.at - state.simClockMs);
+    state.actionSchedule.set(id, {
+      at: state.simClockMs + remaining * period / scheduled.period,
+      period
+    });
+  }
 }
 
 function emit(state: State, ev: BattleEvent): void {
@@ -408,7 +440,7 @@ function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void
   for (const u of dead) {
     state.units.set(u.id, { ...u, life: 0 });
     state.deathsHandled.add(u.id);
-    state.nextActionAt.delete(u.id);
+    state.actionSchedule.delete(u.id);
     state.periodic.delete(u.id);
     state.manaRecovery.delete(u.id);
     if (inferKind(u) === 'hero') state.heroDead = true;
@@ -477,7 +509,7 @@ function deathEffects(state: State, dead: CombatUnit): void {
   }
 
   // Remove from action scheduler.
-  state.nextActionAt.delete(dead.id);
+  state.actionSchedule.delete(dead.id);
 }
 
 function summonsOf(state: State, ownerId: string, summonTemplateId?: string): CombatUnit[] {
@@ -690,10 +722,7 @@ function applyEffect(
         summonWithPreferredPosition
       ]).find((u) => u.id === summon.id) ?? summonWithPreferredPosition;
       registerUnit(state, positionedSummon);
-      state.nextActionAt.set(
-        positionedSummon.id,
-        state.simClockMs + actionPeriodMs(positionedSummon.stats.attackSpeed)
-      );
+      scheduleNextAction(state, positionedSummon);
       state.cooldownExpiresAt.set(positionedSummon.id, new Map());
       emit(state, {
         kind: 'summon',
@@ -970,7 +999,7 @@ function pickNextActor(state: State): { id: string; at: number } | null {
   let bestAt = Infinity;
   let bestPriority = -Infinity;
   let bestIdx = Infinity;
-  for (const [id, at] of state.nextActionAt) {
+  for (const [id, { at }] of state.actionSchedule) {
     const u = state.units.get(id);
     if (!u || !alive(u)) continue;
     const idx = state.insertionIdx.get(id) ?? 0;
@@ -1087,7 +1116,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     act: snapshot.act ?? 1,
     simClockMs: 0,
     insertionIdx: new Map(),
-    nextActionAt: new Map(),
+    actionSchedule: new Map(),
     cooldownExpiresAt: new Map(),
     periodic: new Map(),
     manaRecovery: new Map(),
@@ -1102,7 +1131,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   for (const u of withDefaultGridPositions(snapshot.enemyTeam)) registerUnit(state, u);
 
   for (const u of state.units.values()) {
-    state.nextActionAt.set(u.id, actionPeriodMs(u.stats.attackSpeed));
+    scheduleNextAction(state, u);
     state.cooldownExpiresAt.set(u.id, new Map());
   }
   emitTurnBoundaries(state);
@@ -1114,20 +1143,24 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     )
     .map((u) => u.id);
   for (const id of startOrder) castSummonsOnStart(state, id);
+  reconcileActionPeriods(state);
 
   let actionsTaken = 0;
   while (winnerOf(state) === null && actionsTaken < MAX_ACTIONS) {
-    const next = pickNextActor(state);
-    if (!next) break;
+    const candidate = pickNextActor(state);
+    if (!candidate) break;
     // A cap stop never fabricates deadline settlement. Otherwise advance all
     // targets together, even if no action is eligible before the deadline.
-    if (state.simClockMs === MAX_SIM_MS && next.at > MAX_SIM_MS) break;
-    const boundary = nextPeriodicBoundary(state, next.at);
+    if (state.simClockMs === MAX_SIM_MS && candidate.at > MAX_SIM_MS) break;
+    const boundary = nextPeriodicBoundary(state, candidate.at);
     const from = state.simClockMs;
     settlePeriodic(state, boundary);
     settleManaRecovery(state, from, boundary);
     if (winnerOf(state) !== null) break;
-    if (boundary < next.at) continue;
+    reconcileActionPeriods(state);
+    // Status settlement may change the next actor or its pending timestamp.
+    const next = pickNextActor(state);
+    if (!next || next.at > state.simClockMs) continue;
     const actor = state.units.get(next.id);
     if (!actor || !alive(actor)) continue;
     refreshCooldowns(state, next.id);
@@ -1137,13 +1170,11 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     actionsTaken++;
     const after = state.units.get(next.id);
     if (after && alive(after)) {
-      state.nextActionAt.set(
-        next.id,
-        state.simClockMs + actionPeriodMs(after.stats.attackSpeed)
-      );
+      scheduleNextAction(state, after);
     } else {
-      state.nextActionAt.delete(next.id);
+      state.actionSchedule.delete(next.id);
     }
+    reconcileActionPeriods(state);
   }
 
   const winner = winnerOf(state);

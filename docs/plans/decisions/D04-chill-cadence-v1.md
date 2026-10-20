@@ -1,6 +1,7 @@
 # D04 — Chill action progress
 
-Status: GD/TD and producer approved contract; implementation and QA pending.
+Status: scoped implementation and causal tests approved by GD/TD, producer and
+QA; final durable validation is recorded in the linked evidence.
 This scoped child implements the advertised −50% attack-speed stat in combat
 formulas §9.1. It does not attribute the P02b05c native draw to Chill or accept
 campaign balance, ordinary-earned paths, full D04, C0–C4 or G0–G7.
@@ -65,3 +66,12 @@ plus2s exact-owned cleanup.32MiB per output/report,64MiB combined RAW/dist/.vite
 Do not build while fingerprint consumers run. Preserve failures; cleanup exact
 task-owned paths only after readers release. Commit each verified card, then
 separate cleanup/ledger close. No remote actions or new gameplay screen.
+
+## Implementation evidence
+
+Definition prerequisite:84a0388. The private atomic `{at,period}` schedule
+serves initial, spawned and post-attempt actions; changed effective periods
+preserve progress and actor selection is repeated after shared settlement.
+[Causal RED/GREEN and final validation](../evidence/p06e-chill-cadence.md)
+retain both frozen test amendments, tooling interruptions and complete
+unaffected recording. No previous earned-run failure is attributed to Chill.

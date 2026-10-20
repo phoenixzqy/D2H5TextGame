@@ -33,7 +33,7 @@ function snapshot(seed = 5, rank = 1, tier: MonsterTier = 'trash', heroSpeed = 1
   return { seed,
     playerTeam: [{ ...unit('hero', 'player', heroSpeed), skillOrder: [authoredId],
       skillLevels: { [authoredId]: rank }, statuses: [hold(heroAt + 1)] }],
-    enemyTeam: [{ ...unit('target', 'enemy', targetSpeed), tier, statuses: [hold(targetAt + 1)] }]
+    enemyTeam: [{ ...unit('target', 'enemy', targetSpeed), tier, statuses: [hold(Math.max(targetAt + 1, 1801))] }]
   };
 }
 
@@ -92,7 +92,9 @@ describe('P08a04b actual authored Frost Nova through recorded combat', () => {
       expect(recorded.events.filter(e => e.kind === 'status').map(e => [e.simClockMs, e.target, e.statusId]))
         .toEqual([[1300, 'target', 'chill'], [1300, 'target', 'freeze']]);
       expect(recorded.events.filter(e => e.kind === 'action')).toHaveLength(1);
-      expect(recorded.events).toContainEqual(expect.objectContaining({ kind: 'stunned', target: 'target', simClockMs: 1700 }));
+      const firstSuppression = recorded.events.find(e => e.kind === 'stunned' && e.target === 'target');
+      expect(firstSuppression).toMatchObject({ kind: 'stunned', target: 'target' });
+      expect(firstSuppression?.simClockMs).toBeCloseTo(30100 / 17, 8);
       expect(recorded.result.playerTeam[0]?.life).toBe(500);
       expect(recorded.result.enemyTeam[0]?.life).toBe(rank === 1 ? 467 : 410);
       expect(recorded.events.filter(e => e.kind === 'dot')).toEqual([]);
@@ -108,7 +110,9 @@ describe('P08a04b actual authored Frost Nova through recorded combat', () => {
     expect(recorded.events.filter(e => e.kind === 'damage').map(e => [e.source, e.amount, e.dodged]))
       .toEqual([['hero', 25, false], ['target', 10, false]]);
     expect(recorded.events.filter(e => e.kind === 'status').map(e => e.statusId)).toEqual(['chill']);
-    expect(recorded.events).toContainEqual(expect.objectContaining({ kind: 'action', actor: 'target', simClockMs: 1700 }));
+    const targetAction = recorded.events.find(e => e.kind === 'action' && e.actor === 'target');
+    expect(targetAction).toMatchObject({ kind: 'action', actor: 'target', skillId: null });
+    expect(targetAction?.simClockMs).toBeCloseTo(30100 / 17, 8);
     expect(recorded.result.playerTeam[0]?.life).toBe(490);
     expect(recorded.result.playerTeam[0]?.mana).toBe(0);
     assertReplay(input, recorded);
@@ -128,12 +132,14 @@ describe('P08a04b actual authored Frost Nova through recorded combat', () => {
   });
 
   for (const boundary of [
-    { tier: 'trash', heroSpeed: 225, targetSpeed: 100, castAt: 700, actionAt: 1700 },
+    { tier: 'trash', heroSpeed: 250, targetSpeed: 62, castAt: 1000, actionAt: 2000 },
     { tier: 'boss', heroSpeed: 125, targetSpeed: 62, castAt: 1500, actionAt: 2000 },
     { tier: 'chapter-boss', heroSpeed: 125, targetSpeed: 62, castAt: 1500, actionAt: 2000 }
   ] as const) {
     it.each([1, 20])(`rank %s ${boundary.tier} acts at the exclusive ${String(boundary.actionAt - boundary.castAt)}ms Freeze expiry`, rank => {
-      const input = snapshot(5, rank, boundary.tier, boundary.heroSpeed, boundary.targetSpeed);
+      const base = snapshot(5, rank, boundary.tier, boundary.heroSpeed, boundary.targetSpeed);
+      const input = boundary.castAt === 1000
+        ? withHero(base, { statuses: [hold(0, 1000), hold(1001)] }) : base;
       const recorded = record(input);
       expect(recorded.events).toContainEqual(expect.objectContaining({ kind: 'status', statusId: 'freeze',
         target: 'target', simClockMs: boundary.castAt }));
@@ -167,13 +173,18 @@ describe('P08a04b actual authored Frost Nova through recorded combat', () => {
   it('suppresses only the target whose independent AoE Freeze succeeds', () => {
     const base = snapshot();
     const input = { ...base, enemyTeam: ['frozen', 'unfrozen'].map(id => ({
-      ...unit(id, 'enemy'), statuses: [hold(1701)]
+      ...unit(id, 'enemy'), statuses: [hold(1801)]
     })) };
     const recorded = record(input);
     expect(recorded.events.filter(e => e.kind === 'status').map(e => [e.target, e.statusId]))
       .toEqual([['frozen', 'chill'], ['frozen', 'freeze'], ['unfrozen', 'chill']]);
-    expect(recorded.events.filter(e => e.kind === 'action').map(e => [e.actor, e.skillId, e.simClockMs]))
-      .toEqual([['hero', canonicalId, 1300], ['unfrozen', null, 1700]]);
+    const actions = recorded.events.filter(e => e.kind === 'action');
+    expect(actions.map(e => [e.actor, e.skillId])).toEqual([['hero', canonicalId], ['unfrozen', null]]);
+    expect(actions[0]?.simClockMs).toBe(1300);
+    expect(actions[1]?.simClockMs).toBeCloseTo(30100 / 17, 8);
+    const frozenAttempt = recorded.events.find(e => e.kind === 'stunned' && e.target === 'frozen');
+    expect(frozenAttempt).toMatchObject({ kind: 'stunned', target: 'frozen' });
+    expect(frozenAttempt?.simClockMs).toBeCloseTo(30100 / 17, 8);
     expect(recorded.result.playerTeam[0]?.life).toBe(490);
     assertReplay(input, recorded);
   });
