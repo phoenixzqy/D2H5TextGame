@@ -23,6 +23,7 @@ Current implementation evidence lives in `evidence/`.
 | P02b05a | accepted scoped documentation contract | `91d756c`; [first-act route](decisions/D07-D11-first-act-route-v1.md) reconciles Act I access without runtime change; [active-mode diagnostic](decisions/D07-active-mode-measurement-v1.md) separates restored test state from earned clear/UI eligibility. GD/TD/producer/QA approve. Executable freeze/RED, full D07/D11/P02 remain open. |
 | P02b05b01 | accepted bounded observer slice | `b2c06a7`; closed synthetic manual/idle adapter, frozen 19 tests, four retained observations/8 primary battles. All W1 win/W2 defeat, zero clears. Independent source and complete packet audits APPROVE. [Evidence](evidence/p02b05b01-mode-adapter.md). Comparator/provenance CLI and earned UI proof remain. |
 | P02b05b02a | accepted pure comparator slice | `e43131f`; seeded actual inputs before outputs, explicit planner divergence/unpaired rows, separate raw/semantic/domain/pity/timing comparisons. Frozen79cases; finalU3249/T/L/build pass. [Evidence](evidence/p02b05b02a-mode-comparison.md). Report/CLI and earned UI remain. |
+| P02b05b02b | accepted report/CLI slice | `a06d8dd`; closed4case orchestration, before-gameplay-import source identity, lossless external report and safe CLI. Frozen19cases/finalU3268/T/L/build pass; producer/QA durable APPROVE. [Evidence](evidence/p02b05b02b-mode-report.md). Earned clear/UI and full P02 remain open. |
 | P03a | accepted slice | `6f1dafd` + `76db166`; independent source approval, U/T/L/B and 10 browser cases pass. [Evidence](evidence/P03a-save-integrity.md). Full D12/G1/G6 remain unaccepted. |
 | P03b01 | accepted visibility slice | `90e4a67`; all legacy items remain selectable above grid cap, seven boundary tests, four ordinary-control browser cases. BUG-005. |
 | P03b02 | accepted ingress slice | `a79ef1f`; retain complete earned/returned overflow, actual victory/merc/save integration,16 focused regressions; producer source APPROVE. Shared regular-action guards remain. |
@@ -2018,3 +2019,30 @@ checkout untouched/rootclaimcontinues. Next root-owned RAW
 holds hashverifiedrunners/cleanup/next4file report+CLI plan. GD/TDplanREADY,
 producer/QAplan/concretetest freeze pending; no new run yet. Den/Andariel/
 campaign/pacing/finalbalance/C0–C4/G0–G7/fullv1 remainopen. No remoteactions.
+
+P02b05b02b accepted **a06d8dd** after producer/QA/GD/TD plan/concrete/API/source
+APPROVE and independent producer/QA full durable APPROVE. Closed4calls preserve
+refusals/errors/sevenfieldsource checks/pitypairs/protocol+baseline hashes;
+before-import driver and script only, no product/dependency/strictv1/v2change.
+All28preserved hashes unchanged. MissingRED0matchers/native0 (one failed driver
+record+collection failure); typedRED12fail7passingcontrols/32orchmatchers+1driver.
+Sourceincrement15pass3filtered200matchers6.394s;GREEN19pass271orchmatchers7.599s.
+Four negativeCLI checks fail before gameplay, sentinel preserved/alias removed;
+onepositiveCLI4,816,402bytes/8battles/allW1winW2defeat/noW3clear. Native accounting
+newfilesonly21adaptercalls/42derivedbattles;1004syntheticcalls996returns8throws.
+Finalrelated19/10.159s/full3268actualpasses161files0other53.297s/T12.326L29.139/
+postconsumerbuildbridge8.837fourcleanchunks all0; existing5s/15s budgets exceeded,
+warnings unchanged. Exact18stage-correctsource states×497entries independently
+reconstructed. [Evidence](evidence/p02b05b02b-mode-report.md) packet
+09d8c109f14ffa43a6982f03b900661eb2c8afa0f1507ba4b71e0ae03cf5bacf/archive
+081eef28b1b041b86acba5ae661ca9b9cb0d7bffcf72eed123f739a21d7c5795 retain87regular
+records/10,100,597bytes/15metas/11reports, every indexedbyte/hash verified. All
+readers released before featurecommit then exact RAWmode-report-576tb6db,
+taskdist760files/.vite1filecleanup; absence/9ownedPIDsabsent verified/no signals,
+tools preserved/rootclaimcontinues/original checkout untouched. Cleanup record
+and hashverifiedrunners transferred to root-owned nextRAW
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-moor-a10ywiwj.
+Next source-only plan is genuinely earned BloodMoorfullclear/actualidleUI
+repeatstop, with initialpilot before any matrix; no nextgameplayrun/freeze yet.
+Den/Andariel/campaign/pacing/finalbalance/C0–C4/G0–G7/fullv1 remainopen.
+No push/PR/merge/deployment.
