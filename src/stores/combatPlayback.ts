@@ -43,9 +43,9 @@ function patchUnit(
 
 /**
  * Apply a single recorded {@link BattleEvent} to the given teams,
- * returning new arrays (immutable). Only HP / buff-list deltas are
+ * returning new arrays (immutable). Only HP / MP / buff-list changes are
  * tracked — full simulation lives in the engine; this is just enough
- * for the UI to animate progressive depletion of HP bars.
+ * for the UI to animate resources and effects during playback.
  */
 export function applyEventToTeams(
   playerTeam: readonly CombatUnit[],
@@ -55,6 +55,10 @@ export function applyEventToTeams(
   let teams = { player: playerTeam, enemy: enemyTeam };
 
   switch (ev.kind) {
+    case 'mana': {
+      teams = patchUnit(teams, ev.target, (u) => ({ ...u, mana: ev.mana }));
+      break;
+    }
     case 'damage': {
       if (ev.dodged) break;
       teams = patchUnit(teams, ev.target, (u) => ({

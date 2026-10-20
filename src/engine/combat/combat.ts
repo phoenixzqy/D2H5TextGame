@@ -86,6 +86,8 @@ export type BattleEvent =
       readonly unit: CombatUnit;
     }
   | { readonly kind: 'heal'; readonly target: string; readonly amount: number }
+  | { readonly kind: 'mana'; readonly target: string; readonly mana: number;
+      readonly reason: 'cast' | 'regeneration' | 'summon-refund' | 'orb' }
   | { readonly kind: 'death'; readonly target: string }
   | { readonly kind: 'enrage'; readonly target: string }
   | { readonly kind: 'orb'; readonly target: string; readonly orb: Orb }
@@ -158,6 +160,30 @@ function alive(u: CombatUnit): boolean {
 function emit(state: State, ev: BattleEvent): void {
   state.events.push(ev);
   state.simTimes.push(state.simClockMs);
+}
+
+type ManaEvent = Extract<BattleEvent, { kind: 'mana' }>;
+
+/** Commit the whole candidate; callers publish MP after their established action/orb cues. */
+function commitMana(
+  state: State,
+  before: CombatUnit,
+  candidate: CombatUnit,
+  reason: ManaEvent['reason']
+): ManaEvent | undefined {
+  let next = candidate;
+  if (next.mana >= next.stats.manaMax) {
+    if (next.manaRegenCarry !== undefined && next.manaRegenCarry !== 0) {
+      next = { ...next, manaRegenCarry: 0 };
+    }
+    if (next.manaRegenCompensation !== undefined && next.manaRegenCompensation !== 0) {
+      next = { ...next, manaRegenCompensation: 0 };
+    }
+  }
+  state.units.set(next.id, next);
+  return before.mana === next.mana ? undefined : {
+    kind: 'mana', target: next.id, mana: next.mana, reason
+  };
 }
 
 function aliveOf(state: State, side: CombatSide): CombatUnit[] {
@@ -412,7 +438,8 @@ function deathEffects(state: State, dead: CombatUnit): void {
           owner.stats.manaMax,
           owner.mana + effectiveManaCost(summonSkill, summonSkillLevel)
         );
-        state.units.set(owner.id, { ...owner, mana: refundedMana });
+        const manaEvent = commitMana(state, owner, { ...owner, mana: refundedMana }, 'summon-refund');
+        if (manaEvent) emit(state, manaEvent);
         const cdMap = state.cooldownExpiresAt.get(owner.id);
         if (cdMap) cdMap.delete(summonSkill.id);
       }
@@ -423,15 +450,18 @@ function deathEffects(state: State, dead: CombatUnit): void {
     const orbs = rollOrbDrops(dead.tier, state.rng);
     const players = aliveOf(state, 'player');
     if (players.length > 0 && orbs.length > 0) {
+      const manaEvents: ManaEvent[] = [];
       for (const p of players) {
         const updated = applyOrbs(p, orbs);
-        state.units.set(p.id, updated);
+        const manaEvent = commitMana(state, p, updated, 'orb');
+        if (manaEvent) manaEvents.push(manaEvent);
       }
       for (const orb of orbs) {
         for (const p of players) {
           emit(state, { kind: 'orb', target: p.id, orb });
         }
       }
+      for (const manaEvent of manaEvents) emit(state, manaEvent);
     }
   }
 
@@ -688,7 +718,7 @@ function castSkill(state: State, actorId: string, skill: RegisteredSkill): void 
   const skillLevel = effectiveSkillLevel(actor, skill);
   const manaCost = effectiveManaCost(skill, skillLevel);
   const newMana = Math.max(0, actor.mana - manaCost);
-  state.units.set(actorId, { ...actor, mana: newMana });
+  const manaEvent = commitMana(state, actor, { ...actor, mana: newMana }, 'cast');
 
   // Time-based cooldown.
   const cooldown = effectiveCooldown(skill, skillLevel);
@@ -702,6 +732,7 @@ function castSkill(state: State, actorId: string, skill: RegisteredSkill): void 
   }
 
   emit(state, { kind: 'action', actor: actorId, skillId: skill.id });
+  if (manaEvent) emit(state, manaEvent);
 
   const enemySide: CombatSide = actor.side === 'player' ? 'enemy' : 'player';
   const enemiesAliveRaw = aliveOf(state, enemySide);

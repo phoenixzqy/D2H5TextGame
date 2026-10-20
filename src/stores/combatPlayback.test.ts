@@ -288,7 +288,12 @@ describe('authoritative absolute mana recording and playback', () => {
     const recorded = runBattleRecorded(refund(0, true));
     expect(recorded.result.enemyTeam.find(unit => unit.id === 'owner')?.life).toBe(0);
     expect(recorded.result.enemyTeam.find(unit => unit.id === 'owner')?.mana).toBe(0);
-    expect(mpEvents(recorded)).toEqual([]);
+    // The dead enemy owner still drops ordinary seed7 orbs for the living hero.
+    expect(mpEvents(recorded)).toEqual([
+      { kind: 'mana', target: 'hero', mana: 95, reason: 'orb', simClockMs: 500, uiDelayMs: 50 }
+    ]);
+    expect(recorded.events.filter(event => event.kind === 'mana' &&
+      (event.target === 'owner' || event.reason === 'summon-refund'))).toEqual([]);
   });
 
   function orb(mana: number, max = 100): CombatSnapshot {
