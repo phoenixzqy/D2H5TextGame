@@ -15,12 +15,9 @@ import type { DerivedStats } from '../types/attributes';
 import type { SummonStatScaling } from './effects';
 import { scaleSummonStats } from './scaling';
 
-/** Stable per-owner counter for summon ids. */
-const counters = new Map<string, number>();
-
-/** Reset the per-owner counter (used by tests). */
+/** @deprecated Templates are pure; battles now own their summon identity. */
 export function resetSummonCounters(): void {
-  counters.clear();
+  // Compatibility only: there is no process-wide identity state to reset.
 }
 
 export interface BuildSummonOptions {
@@ -43,17 +40,11 @@ export function getSummon(id: string): SummonFactory | undefined {
   return FACTORIES.get(id);
 }
 
-function nextSummonId(ownerId: string, summonId: string): string {
-  const key = `${ownerId}:${summonId}`;
-  const n = (counters.get(key) ?? 0) + 1;
-  counters.set(key, n);
-  return `${ownerId}-summon-${summonId}-${String(n)}`;
-}
-
 /**
  * Build a {@link CombatUnit} for a registered summon template.
  *
  * Returns `undefined` if no template is registered for `summonId`.
+ * The template ID is provisional. Callers own unique runtime registration IDs.
  */
 export function buildSummon(
   owner: CombatUnit,
@@ -229,7 +220,7 @@ function summonUnit(
   skillOrder: readonly string[] = []
 ): CombatUnit {
   return {
-    id: nextSummonId(owner.id, summonId),
+    id: `${owner.id}-summon-${summonId}`,
     name,
     side: owner.side,
     level: owner.level,

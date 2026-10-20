@@ -136,6 +136,8 @@ interface State {
   heroDead: boolean;
   /** spawn counter, monotonically increasing. */
   insertionCounter: number;
+  /** Runtime summon identity belongs to this battle, never a module singleton. */
+  summonSequence: number;
 }
 
 function alive(u: CombatUnit): boolean {
@@ -229,6 +231,14 @@ function registerUnit(state: State, u: CombatUnit): void {
   if (!state.insertionIdx.has(u.id)) {
     state.insertionIdx.set(u.id, state.insertionCounter++);
   }
+}
+
+function nextSummonId(state: State, ownerId: string, templateId: string): string {
+  let id: string;
+  do {
+    id = `${ownerId}-summon-${templateId}-${String(++state.summonSequence)}`;
+  } while (state.units.has(id));
+  return id;
 }
 
 /** Compute damage with combo lookup applied. */
@@ -561,16 +571,17 @@ function applyEffect(
       const existing = summonsOf(state, actorId, effect.summonId).length;
       const cap = resolveSummonMaxCount(effect, skillLevel);
       if (existing >= cap) return;
-      const summon = buildSummon(owner, effect.summonId, {
+      const template = buildSummon(owner, effect.summonId, {
         skillLevel,
         statScaling: effect.statScaling
       });
-      if (!summon) {
+      if (!template) {
         // Unknown template — log & no-op.
         // eslint-disable-next-line no-console
         console.warn(`[combat] unknown summonId: ${effect.summonId}`);
         return;
       }
+      const summon = { ...template, id: nextSummonId(state, actorId, effect.summonId) };
       const preferredPosition = firstOpenSummonPosition(owner, aliveOf(state, owner.side));
       const summonWithPreferredPosition = preferredPosition
         ? { ...summon, gridPosition: preferredPosition }
@@ -888,7 +899,8 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     lastDotTickAt: new Map(),
     turnsEmitted: 0,
     heroDead: false,
-    insertionCounter: 0
+    insertionCounter: 0,
+    summonSequence: 0
   };
 
   for (const u of withDefaultGridPositions(snapshot.playerTeam)) registerUnit(state, u);
