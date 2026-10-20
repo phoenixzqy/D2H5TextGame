@@ -1,6 +1,6 @@
 # BUG-052 — Localize the canonical Andariel quest
 
-Status: Open
+Status: Resolved (ee18ea9)
 Severity: Medium
 Date: 2026-10-20
 Owner: writer / frontend-dev
@@ -42,4 +42,4 @@ English fallback remains readable to English users.
 
 ## Resolution
 
-Pending independently reviewed fix and production rerun.
+Fixed in ee18ea9. Independently approved production10/10 across zh-CN/en×5viewports; all assertions and prior failed attempts preserved in P04a07d outcome. QA and producer final APPROVE / ADEQUATE, exact cleanup verified.

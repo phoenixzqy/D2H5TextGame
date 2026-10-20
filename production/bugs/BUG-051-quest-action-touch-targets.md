@@ -1,6 +1,6 @@
 # BUG-051 — Make quest action targets at least 44px
 
-Status: Open
+Status: Resolved (ee18ea9)
 Severity: Medium
 Date: 2026-10-20
 Owner: frontend-dev / accessibility-specialist
@@ -42,4 +42,4 @@ Pointer input still works; larger desktop does not increase this target.
 
 ## Resolution
 
-Pending independently reviewed fix and production rerun.
+Fixed in ee18ea9. Independently approved production10/10 across zh-CN/en×5viewports; all assertions and prior failed attempts preserved in P04a07d outcome. QA and producer final APPROVE / ADEQUATE, exact cleanup verified.
