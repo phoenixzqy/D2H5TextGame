@@ -149,3 +149,27 @@ all task processes ended, port4338 free, clean Git and worktree4 released.
 Combined-head validation follows runtime integration and remains separately
 required. BUG033 stays open solely for the separate cast-name identity issue;
 full skill/localization/campaign gates are not accepted.
+
+
+## Remaining cast-name source investigation (read-only)
+
+At `16fa6c6`, independent design_contracts traced live playback and legacy
+battleEventToLogEntry to the same eventToLogI18n converter. It directly looks
+up skills:<canonical-ID>.name; authored SkillDef.name already points to the
+correct hyphenated catalog key. All283 authored names resolve in both locales,
+while197canonical direct lookups miss per locale. No catalog additions needed.
+Proposed P08a01d: private authored/canonical name-key index inside the shared
+converter, translate each event in current locale, preserve unknown original-ID
+fallback and existing direct-key compatibility. No engine/event/save change.
+
+Candidate five-file boundary: eventToLogI18n.ts/test, combatStore.test.ts real
+recorded Fire Bolt→advanceEvent integration, and exact localized cast-copy
+substitutions in fire-bolt-earned/warmth-earned production browser specs.
+Keep every existing MP/action-count/timing/damage/progression/save oracle.
+Test literal bilingual names across all seven classes, monster and merc/aura
+families, actual data aliases, unknown/basic action and locale changes.
+Merc name references belong to skills:mercenary, not mercs:skillName (whose
+wording differs). Broader buff/status/history localization is separate.
+This is a source-grounded proposed plan, not an implemented or accepted fix;
+producer plan review, genuine tests-first RED and final browser proof follow.
+No investigator artifacts/processes were created.

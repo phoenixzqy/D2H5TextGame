@@ -4,7 +4,10 @@ Status: root design/technical contract; producer APPROVE; QA lifecycle amendment
 accepted. Authored baseline `a35ef02`, trigger metadata `07e8514`, and pure
 composition `938ed96` and authoritative wave adapter `1860bc6` integrated.
 Fire/passive runtime `5a53d37` and absolute mana playback `dd236eb` integrated;
-recovery and browser acceptance remain open.
+exact recovery `775eab7` and bounded ordinary-earned browser/save proof
+`16fa6c6` are accepted with independent root/producer/QA approval. Exact
+commands, rank-sensitive MP/fire/save oracles and remaining limits are in
+[evidence](../evidence/p07a01g-earned-warmth.md).
 Design choices below are provisional balance, not measured campaign acceptance.
 Full Warmth requires both authored effects; staged fire-only work stays partial.
 
