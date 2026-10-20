@@ -262,3 +262,17 @@ zero skips,3.13s. Wrong export1/+1e-17 and numeric-only reseed0/grant0 reproduce
 exact-aware reseed is a passing control. Source remains frozen db4e/e5fd/7778
 from worker proof. Root now authorizes tests-only commit then the numeric-view
 projection correction, with fresh final source/GREEN and full validation.
+
+
+Reviewed helper-test amendments worker`c9fc210a5b49ea979afade0379435486fe8cbb3b`
+integrated root`47d3494`. Final source snapshot patch SHA256
+`082de6ea2298db05728bc8afcc45de833c3388435ac7fa30fdcaf8e7a90681c8`;
+helper`54d423fb696337a78236a01bd8415eaaf98a6ec29787fc08d3e87450f1d24054`,
+combat`e5fdfc6134f58c8e97665ea446cfd06b782055187b814e00d95f1c1ebcc692c1`,
+types`7778b89f8340c40cbdbcfa33751711c943f7a0d0f7e8cefc6df613be2371778f`.
+Focused135/135pass,zero skips,3.23s/wall4.5. Only final source difference from
+first exact snapshot is numeric compatibility projection/comment. Root source
+review confirms exact decimal arithmetic, canonical boundary validation, signed
+floor/remainder, residual signs, immutable seed, cap/death map reset and
+post-periodic survivor settlement; no RNG/wall-clock/persistence additions.
+Independent final source review and broader/current-head checks remain open.
