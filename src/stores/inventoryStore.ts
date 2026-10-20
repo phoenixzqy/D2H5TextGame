@@ -121,15 +121,16 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
     };
   }); },
   
-  equipItem: (item) => {
+  equipItem: (requestedItem) => {
+    const state = get();
+    const sourceIndex = state.backpack.findIndex((item) => item.id === requestedItem.id);
+    const item = state.backpack[sourceIndex];
+    if (!item) return { ok: false, reason: 'not_in_backpack' };
+
     const bases = loadItemBases();
     const base = bases.get(item.baseId);
     if (!base?.slot) return { ok: false, reason: 'no_slot' };
 
-    const state = get();
-    if (!state.backpack.some((i) => i.id === item.id)) {
-      return { ok: false, reason: 'not_in_backpack' };
-    }
     const player = usePlayerStore.getState().player;
     if (player) {
       const eligibility = checkEligibility(
@@ -142,7 +143,7 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
 
     const targetSlot = targetSlotFor(base.slot, state.equipped);
     const nextEquipped: Record<string, Item | null> = { ...state.equipped };
-    const nextBackpack = state.backpack.filter((i) => i.id !== item.id);
+    const nextBackpack = state.backpack.filter((_, index) => index !== sourceIndex);
     const displaced: Item[] = [];
 
     const existingInTarget = nextEquipped[targetSlot];
