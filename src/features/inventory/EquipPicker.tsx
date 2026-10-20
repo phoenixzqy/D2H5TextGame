@@ -39,6 +39,7 @@ import { useTranslation } from 'react-i18next';
 import type { TFunction } from 'i18next';
 import { Button, GameImage, RarityText, getItemIconUrl, tItemName } from '@/ui';
 import { useInventoryStore, usePlayerStore } from '@/stores';
+import type { EquipFailure } from '@/stores/inventoryStore';
 import {
   checkEligibility,
   compareEquip,
@@ -53,7 +54,7 @@ interface Props {
   readonly slot: EquipmentSlot | null;
   readonly onClose: () => void;
   readonly onEquipped?: (item: Item) => void;
-  readonly onEquipFailed?: (item: Item) => void;
+  readonly onEquipFailed?: (item: Item, reason: EquipFailure['reason']) => void;
 }
 
 /* ------------------------------------------------------------------ */
@@ -237,15 +238,24 @@ function CandidateList({
 function EquipFooter({
   onCancel,
   onEquip,
-  disabledReason
+  disabledReason,
+  failureMessage
 }: {
   readonly onCancel: () => void;
   readonly onEquip: () => void;
   readonly disabledReason: string | null;
+  readonly failureMessage: string | null;
 }) {
   const { t } = useTranslation(['inventory', 'common']);
   return (
     <footer className="border-t border-d2-border bg-d2-bg/40 p-4 space-y-2">
+      <div aria-live="polite" aria-atomic="true">
+        {failureMessage && (
+          <p className="text-sm text-d2-red text-center" data-testid="equip-picker-error">
+            {failureMessage}
+          </p>
+        )}
+      </div>
       {disabledReason && (
         <div
           className="text-xs text-d2-red text-center"
@@ -288,6 +298,9 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
   const equipped = useInventoryStore((s) => s.equipped);
   const equipItem = useInventoryStore((s) => s.equipItem);
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [failureReason, setFailureReason] = useState<EquipFailure['reason'] | null>(null);
+
+  useEffect(() => { setFailureReason(null); }, [slot, selectedId]);
 
   const candidates = useMemo(() => {
     if (!slot) return [] as Item[];
@@ -363,10 +376,12 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
     if (!selected) return;
     const result = equipItem(selected);
     if (result.ok) {
+      setFailureReason(null);
       onEquipped?.(selected);
       onClose();
     } else {
-      onEquipFailed?.(selected);
+      setFailureReason(result.reason);
+      onEquipFailed?.(selected, result.reason);
     }
   };
 
@@ -447,6 +462,8 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
           onCancel={onClose}
           onEquip={handleEquip}
           disabledReason={disabledReason}
+          failureMessage={failureReason === null ? null : failureReason === 'backpack_full'
+            ? t('toast.backpackFull') : t('toast.equipFailed', { name: selectedName })}
         />
       </div>
     </div>

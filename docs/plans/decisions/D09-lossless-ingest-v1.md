@@ -50,3 +50,44 @@ with exact exported state unchanged; discard S500/S499 makes stash499, move B100
 to stash yields B100/S500, discard B99 then return B100 to backpack yields
 B100/S499. Only those three explicitly discarded items disappear; save/export/
 reload preserves everything else. Equipment guards and whole P03b remain later.
+
+## D09 v1c — Guarded hero equipment displacement
+
+Status: accepted P03b04b implementation control, 2026-10-20; root exact
+seven-file exception approved and producer plan READY. Prerequisite P03b04a
+resolves the first authoritative backpack item/index before base/eligibility;
+caller fields never control equipped contents or displacement.
+
+Hero equip checks the complete current displacement, including a two-handed
+weapon returning both the previous weapon and offhand, and an offhand returning
+an equipped two-handed weapon. Let `nextCount = currentCount - 1 + displaced`.
+Allow only `nextCount <= max(BACKPACK_CAPACITY, currentCount)`. Thus 99 can
+become 100, full/overflow one-for-one swaps remain legal, and empty-slot equip
+can reduce overflow. A full/overflow growing swap refuses `backpack_full`.
+Existing `not_in_backpack`, `no_slot`, and `requirements_not_met` checks precede
+capacity. Hero unequip returns `{ok:true}` or
+`{ok:false,reason:'not_found'|'backpack_full'}`; missing gear is checked first,
+and a present item needs current backpack count below 100.
+
+Refusal publishes no inventory/player state, changes no object/reference, and
+does not recompute derived stats. Success retains complete stored/displaced
+items and affix Maps, changes only equipped flags, publishes inventory once,
+then recomputes derived stats once. No global same-ID repair is introduced.
+
+Backpack detail and picker candidates remain selected after refusal. Existing
+localized backpack-full copy explains making room; legal nongrowing swaps stay
+enabled. A persistent polite live region inside the retained picker announces
+its failure, clears on candidate/slot change and success, and translates its
+stored reason using the current locale. Unequip refusal leaves gear visible
+and announces the same capacity feedback. Ordinary discard can make room for
+retry; no automatic discard occurs.
+
+Store/RTL boundaries cover 99/100/101 and both handedness directions, refusal
+identity/publication/recompute invariants, exact retained contents/Maps,
+precedence, bilingual feedback and retry. Browser en/zh-CN × desktop/360×640
+uses ordinary import of 101 backpack items plus equipped weapon/shield; refuses
+growing equip/unequip unchanged, permits overflow one-for-one and reduction,
+then explicitly discards only filler-1/filler-2 to equip/unequip through 99/100.
+Exact final inventory/player/map values survive ordinary save/reload/export.
+Durable ingress remains unbounded; mercenary transactions and whole P03b remain
+separate follow-ups. This control does not claim full P03b acceptance.

@@ -112,6 +112,8 @@ export function InventoryScreen() {
     const result = unequipItem(slot);
     if (item && result.ok) {
       showToast(t('toast.unequipped', { name: itemDisplayName(item) }), 'success');
+    } else if (!result.ok && result.reason === 'backpack_full') {
+      showToast(t('toast.backpackFull'), 'error');
     }
   };
 
@@ -135,7 +137,9 @@ export function InventoryScreen() {
                     showToast(
                       result.ok
                         ? t('toast.equipped', { name: itemDisplayName(it) })
-                        : t('toast.equipFailed', { name: itemDisplayName(it) }),
+                        : result.reason === 'backpack_full'
+                          ? t('toast.backpackFull')
+                          : t('toast.equipFailed', { name: itemDisplayName(it) }),
                       result.ok ? 'success' : 'error'
                     );
                     if (result.ok) setBackpackSelectedId(null);
@@ -212,7 +216,6 @@ export function InventoryScreen() {
         slot={pickerSlot}
         onClose={() => { setPickerSlot(null); }}
         onEquipped={(it) => { showToast(t('toast.equipped', { name: itemDisplayName(it) }), 'success'); }}
-        onEquipFailed={(it) => { showToast(t('toast.equipFailed', { name: itemDisplayName(it) }), 'error'); }}
       />
       <EquippedItemModal
         slot={viewSlot}

@@ -19,15 +19,13 @@ import { BACKPACK_CAPACITY, STASH_CAPACITY } from './inventoryCapacity';
 interface EquipSuccess {
   ok: true;
 }
-interface EquipFailure {
+export interface EquipFailure {
   ok: false;
-  reason: 'no_slot' | 'not_in_backpack' | 'requirements_not_met';
+  reason: 'no_slot' | 'not_in_backpack' | 'requirements_not_met' | 'backpack_full';
 }
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 type EquipResult = EquipSuccess | EquipFailure;
-interface UnequipResult {
-  ok: boolean;
-}
+type UnequipResult = { ok: true } | { ok: false; reason: 'not_found' | 'backpack_full' };
 type TransferResult = { ok: true } | {
   ok: false;
   reason: 'not_found' | 'backpack_full' | 'stash_full';
@@ -164,6 +162,10 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
       }
     }
 
+    if (nextBackpack.length + displaced.length > Math.max(BACKPACK_CAPACITY, state.backpack.length)) {
+      return { ok: false, reason: 'backpack_full' };
+    }
+
     nextEquipped[targetSlot] = withEquippedFlag(item, true);
 
     const equippedAfter = nextEquipped;
@@ -178,7 +180,8 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
   unequipItem: (slot) => {
     const state = get();
     const item = state.equipped[slot];
-    if (!item) return { ok: false };
+    if (!item) return { ok: false, reason: 'not_found' };
+    if (state.backpack.length >= BACKPACK_CAPACITY) return { ok: false, reason: 'backpack_full' };
 
     const equippedAfter = {
       ...state.equipped,
