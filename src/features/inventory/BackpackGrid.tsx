@@ -15,8 +15,9 @@
  *     ragged array of whatever happens to be picked up.
  *
  * Capacity:
- *   The grid renders all `capacity` cells. Items are placed in array order
- *   left-to-right top-to-bottom; trailing slots are placeholders. We do
+ *   Every saved item remains visible, even above `capacity`. Capacity only
+ *   sets the minimum cell count for empty placeholders. Items are placed in
+ *   array order left-to-right top-to-bottom; trailing slots are placeholders. We do
  *   *not* assume a stable per-item index because the engine keeps the
  *   backpack as a flat array; reordering is a future feature.
  *
@@ -47,10 +48,9 @@ export function BackpackGrid({
 }: BackpackGridProps): JSX.Element {
   const { t } = useTranslation('inventory');
 
-  // Pad items array up to `capacity` with `null` placeholders so we can
-  // map a single uniform list and keep the JSX flat.
+  // Preserve legacy over-cap items; capacity controls empty slots only.
   const cells = useMemo<readonly (Item | null)[]>(() => {
-    const out: (Item | null)[] = items.slice(0, capacity);
+    const out: (Item | null)[] = [...items];
     while (out.length < capacity) out.push(null);
     return out;
   }, [items, capacity]);
