@@ -62,6 +62,7 @@ Current implementation evidence lives in `evidence/`.
 | P11–P15 | pending dependencies | Rewards/idle, eligibility, economy, campaign and pacing. |
 | P13a | accepted progress-default slice | `8e6076e` (agent `6db69b6`); actual-level defaults/getter/award and UI fallback, explicit stored thresholds retained, real combat skip restored. Root/producer APPROVE; full1290pass/no skips. |
 | P13b | accepted visible earned-progression slice | `5143a2c`; live owned core stats/unknown definitions, genuine2-case RED, ordinary production obtain/field/three qualified waves/L3→L4/Save/close-reopen,4/4 locale×viewport. [Evidence](evidence/p13b-earned-mercenary.md). Root/producer APPROVE; fullP13/economy open. |
+| P13c01A | accepted bounded fresh-combat gear authority | `0221cd3`; canonical current merc gear projects shared G−B deltas over saved grown baseline, no persistence/accumulation/mid-run refresh. BUG046; independent frozenRED36 + compatibilityRED37 and final source/evidence APPROVE/ADEQUATE. Fullcov2445/142,focused38,related651,T/L/purity52/productionbridgebuild pass. [Evidence](evidence/p13c01a-merc-equipment-combat.md). Ordinary earned gear browser B, Den/fullP13/C/G remain open. |
 | P17a/P17b children | accepted bounded slices | Bonus/save/true close-reopen/offline/art-help/configured-version update evidence recorded below; installation/Lighthouse/fullG6/P17 remain open. |
 | P16–P18 | pending | Critical UI/a11y/performance, offline/PWA, endgame and achievements. |
 | P19 | pending dependencies | Full matrix, actual required CI, independent review/QA, holdout, soak, human playtest. |
@@ -1514,3 +1515,22 @@ unequipped growth baseline, no named-skill scaling or Den-cause inference.
 Plan/runner retained at
 /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-merc-gear-p_il1gto;
 rootowns eventualremoval after reviews. No push.
+
+
+P13c01A accepted0221cd3 after producer/QA final APPROVE/ADEQUATE. Canonical
+current owned fielded merc/map from one snapshot feeds pure sharedG−B gear
+projection over saved grownS; fresh objects, exactzero preservation, changed
+speedfloor/pools, no savedgrowth/schema/newskillgating/midrunrefresh changes.
+Frozen36RED24missinghelper+9genuinefail+3controls approved before runtime.
+Source-review emptyIDcompatibility RED37=1fail36pass approved before guard;
+stale Acolyte identity oracle independently reconciled, all healing numeric/
+timing/loadout checks intact. Focused38/3,related651/53,fullcov2445/142allpass
+0pending;E1011/52,T18.226/L39.037/purity52/buildbridge8.832pass. Unchanged80%
+enginegate64modules8169/8649s1927/2138b299/318f;newhelper100%. Evidence records
+all26commands/17reports/6codehashes/originalattempts and timing/buildwarning
+limits. Both consumers released retention before exactA RAW/dist/.vite cleanup;
+absenceverified,originalcheckoutclean/rootclaimcontinues. No Aserver/browser.
+Next B ordinaryearned glove defense/combat/Save/reopen recipe/sourcepilot needs
+review; W1physicaldamage minimum1 masks glove defense, so no false contribution
+claim. BUG047critdisplay remains separate. Den/fullP13/C0–C4/G0–G7/fullv1 open.
+No push/PR/merge/deployment.
