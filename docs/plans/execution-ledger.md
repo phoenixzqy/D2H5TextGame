@@ -46,6 +46,7 @@ Current implementation evidence lives in `evidence/`.
 | Remaining P06–P10 | pending dependencies | D04–D06/shared effects first. All skills remain behavior-unaccepted. |
 | P08a01 | accepted fire-status-family slice | `11eb6b3` (worker `ca66d0a`); central burn/ignite identity, production ranked Fire Bolt full3s DoT and legacy/combo/refresh/removal. BUG029; root/producer APPROVE/ADEQUATE. Combined1332pass; ordinary skill UI/fullP08/C1 remain open. |
 | P08a01b/c | accepted earned skill and display slices | `0dbbef2` ordinary earned Fire Bolt/save/reload production route; `a150f5b` truthful damage/CD/DoT units in both locales. Independent evidence below; full skill behavior remains open. |
+| P08a01d | accepted bounded cast names | Tests/browser `0df510a`; authored/canonical names, genuine33RED/12controls; focused45, related525/full1939/T/L/build/engine coverage and native8browser pass. Root/producer/QA final APPROVE/ADEQUATE; exact evidence below. |
 | P08a02 | accepted bounded curse slice | Metadata `8b1f497`, authored definition `554a922`, runtime `f3f9086`; BUG031 fixed after genuine RED. Actual Amplify Damage rank/duration/resistance/refresh/replay controls independently approved; full curse families remain open. |
 | P08a03a/b | accepted Minor Heal slices | `091d9b0` actual authored range/registry, `ec0de97` deterministic lowest-relative-HP targeting and true healing. Independent root/QA/producer review and final combined evidence below; broader healing/merc acceptance remains open. |
 | P11a / P11a02 | accepted finalization slices | `d39fe64` actual-win/living-hero/playback guard and single clear; `d8db75c` truthful draw UI. Six root regressions, six RTL, 4/4 browser locale×viewport cases; independent QA/producer APPROVE. BUG-008. |
@@ -1231,3 +1232,18 @@ Root/producer/QA final combined APPROVE/ADEQUATE. All raw consumers finished;
 exact scratch, task-owned dist and local .vite removed and verified. Direct
 quest imports still bypass central validation; crossrefs/objective/reward
 execution, transactions/economy and full C0–C4/G0–G7 remain unaccepted.
+
+
+P08a01d accepted bounded authored/canonical cast-name lookup after genuine
+33RED/12controls and independent root/producer/QA source/final review. Only
+runtime file eventToLogI18n.ts; frozen tests/browser checkpoint0df510a. Focused45,
+related525/44, full/coverage1939/127, T/L/purity/build and explicit browser lint
+pass; engine-only coverage94.21/89.02/93.87 excludes converter. Native en/zh ×
+360/1280 production8/8 passes,0retries/skips/flaky/errors. All12attachments and
+20Warmth MP boundaries independently decoded; numeric/save/progression oracles
+retained. Final evidence preserves exact commands/full hashes and Fire Bolt
+pageerror-only versus Warmth console/pageerror distinction. Related/full/browser
+timing budgets and existing build warnings remain open. All raw consumers
+finished before root verified exact cast scratch/dist/.vite removal; port4390
+closed. Full status/buff/history/localization/skill/campaign and C0–C4/G0–G7
+remain unaccepted. Continue bounded Frost Nova representation/behavior work.

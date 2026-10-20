@@ -11,11 +11,24 @@
  */
 
 import i18n from '@/i18n';
+import { skills } from '@/data';
+import { aliasToCanonical } from '@/engine/skills/aliases';
 import type { BattleEvent, RecordedBattleEvent } from '@/engine/combat/combat';
 import type { CombatLogEntry, UnitNameMap } from './combatStore';
 import { resolveSummonDisplayName } from './summonDisplayName';
 
 type LogPayload = Omit<CombatLogEntry, 'id' | 'timestamp'>;
+
+// Store translation keys, not translated text, so new events follow locale changes.
+const skillNameKeys = new Map<string, string>();
+for (const skill of skills) {
+  const canonical = aliasToCanonical(skill.id);
+  if (canonical) skillNameKeys.set(canonical, skill.name.replace(/^skills\./, 'skills:'));
+}
+// Exact authored IDs take precedence over any generated alias (including mercs/auras).
+for (const skill of skills) {
+  skillNameKeys.set(skill.id, skill.name.replace(/^skills\./, 'skills:'));
+}
 
 function tx(key: string, opts?: Record<string, unknown>): string {
   // i18next is initialized at app startup; in tests it's available too.
@@ -61,14 +74,13 @@ export function eventToLocalizedLogEntry(
     case 'action': {
       const actorName = getName(event.actor);
       if (event.skillId) {
-        // Translate the skill id (e.g. `barbarian.bash`) to its
-        // localized name (e.g. `重击`). Skill names live under the
-        // `skills:` namespace as `<class>.<skill>.name`. Falls back to
-        // the raw id when no translation exists so the engine never
-        // ships an empty log line.
-        const skillName = i18n.t(`skills:${event.skillId}.name`, {
+        const fallbackName = i18n.t(`skills:${event.skillId}.name`, {
           defaultValue: event.skillId
         });
+        const nameKey = skillNameKeys.get(event.skillId);
+        const skillName = nameKey
+          ? i18n.t(nameKey, { defaultValue: fallbackName })
+          : fallbackName;
         return {
           type: 'skill',
           actorId: event.actor,

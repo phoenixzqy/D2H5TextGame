@@ -1,6 +1,6 @@
 # BUG-033 — Fire Bolt displays flat damage as a percentage
 
-- Status: Partially fixed in `a150f5b`: flat damage and seconds presentation corrected; canonical cast-name fallback remains Open.
+- Status: Fixed within the bounded presentation/cast-name scope: units `a150f5b`; cast tests `0df510a` plus accepted runtime/evidence in this commit.
 - Severity: Low; misleading skill units and an untranslated combat skill name.
 - Affected systems: shared skill detail formatting, skill locale copy, combat-log
   skill-name lookup. Root explicitly delegated this report outside the browser
@@ -228,3 +228,46 @@ RED log SHA256
 Root/producer/QA independently APPROVE/ADEQUATE frozen tests and genuine RED
 before converter edits. Both independent consumers have finished RED review.
 Root owns exact raw cleanup after all consumers finish.
+
+
+## P08a01d bounded source and focused GREEN
+
+Reviewed tests/browser checkpoint0df510a; converter source SHA256
+`7ef1cfb95935073c3d818eb7f7bcbd1044701c252e0a811ca27e4a7f3af44aba`.
+Private key index uses normalized keys then exact authored keys for precedence;
+translate each action using current locale, preserving direct-key compatibility
+and exact original unknown ID fallback. No registry/event/data/locale/save or
+combat change. Only runtime file is eventToLogI18n.ts.
+
+Same frozen focused tests now pass45/2files/0skips, runner2.36s/wall3.594s,
+exit0. All literal authored/canonical loops,283-entry supplemental corpus,
+locale transitions and actual engine→store MP/damage/final-state controls pass.
+Root/producer/QA source/focused APPROVE. Browser diffs are only Fire Bolt /
+Weak Melee cast literals and2stale comments; every prior numerical/timing/
+progression/save oracle remains intact. Frozen browser hashes:
+
+- Fire Bolt `1d546fcf3bc1488786748592f988668d47c98ab142a6ed60ccbac3331d79d5b6`
+- Warmth `066bb92db257d38acd9d60af1b81087fb3b2d77d7d50b54b139d8157927639c9`
+- unchanged config `ca32c864e08d64c5eaf1554b98cf00289bffb3b346746b4a2ca68a991bfde837`
+
+Broader final validation/eight-case production browser/combined acceptance
+follow; full buff/status/history/skill/campaign acceptance remains separate.
+
+
+## P08a01d final combined evidence
+
+Full1939/127, related525/44, typecheck/lint/purity/build/forced browser lint and
+unchanged80% engine coverage gate pass; no unit failures/skips. Engine-only
+coverage94.21statements/lines,89.02branches,93.87functions excludes converter.
+Related/full/8browser timing budgets exceeded; existing bundle/manifest warnings
+remain. Native production8/8 passes,260.803runner/262.201wallseconds,0retries/
+skips/flaky/errors. Root decoded all12 attachments and independently verified
+all four actual Warmth cap/spend/literal-tail/cast-count boundaries and reopened
+110→102→103, plus Fire Bolt21fire/localized names. Every prior progression/
+74/75damage/Save/IDB/reopen assertion remains intact. See exact commands/full
+hashes/caveats in [final evidence](../../docs/plans/evidence/p08a01d-authored-cast-names.md).
+Root/producer/QA final combined APPROVE / ADEQUATE; all raw consumers finished.
+Root removed and verified the exact cast scratch, task-owned dist and local
+.vite; no task processes remain. Fire Bolt asserts page errors only; Warmth
+also asserts console warnings/errors on both pages. Timing/build caveats remain.
+Broader status/buff/history localization and full campaign gates remain open.
