@@ -1,6 +1,6 @@
 # BUG-048 — Admit Act I chapter-boss equipment at its actual level
 
-Status: Fixed; independent producer/QA APPROVE / ADEQUATE, implementation commit pending.
+Status: Fixed in `5b13f4f`; independent producer/QA APPROVE / ADEQUATE.
 Severity: High — all equipment rows unavailable in the manual chapter-boss path.
 Owner: content-designer; independent producer/design/QA review.
 
