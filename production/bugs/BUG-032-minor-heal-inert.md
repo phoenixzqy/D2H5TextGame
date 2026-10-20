@@ -53,3 +53,29 @@ commands, timing misses and independent coverage counts are in the ledger.
 Root and producer final source/evidence verdicts were APPROVE / ADEQUATE.
 The worker removed verified task-owned outputs, left clean Git state and
 released worktree-3. Runtime seed-1 reproduction must precede combat changes.
+
+
+## P08a03b observed runtime reproduction before combat edits
+
+Input`73838c1`, with only new/updated test files. On2026-10-20 08:21:45UTC:
+
+```sh
+npx vitest run src/engine/combat/skill-resolution.test.ts src/stores/merc-healing.test.ts --reporter=dot --silent
+```
+
+Exit1,7failed/46passed,53tests,1.80s. Actual production skill at synthetic
+rank1 and20 left hero/priest HP`[100,180]`; expected`[143,180]`. Seed1 first
+inclusive30–50 roll independently gives43. Hero max200/life100 and priest
+max200/life180, priestAS263 firstaction400ms with future hold401; other actors
+held. This deliberately synthetic injury/schedule fixture uses actual registry.
+
+Actual `loadMercPool`→`createMercFromDef`→`mercToCombatUnit` with unchanged
+Acolyte default-rank loadout preserves authored level5,maxHP164,maxMP102,AS114
+and firstaction1588ms. With explicitly synthetic injuries and actor holds only,
+it left hero/priest`[100,150]`, expected`[143,150]`. These are runtime HP
+failures, not acquisition/browser proof. The first hard HP assertion precedes
+other event/RNG assertions; this initial result alone does not establish their
+executed failure. Final generic primitive RED is still pending review. One
+unrelated added recording-delay assertion initially used0 although the existing
+minimum is50ms; worker corrects this test fixture before final RED. Runtime
+source remains untouched. Root reviewed the actual/factory tests before fix.
