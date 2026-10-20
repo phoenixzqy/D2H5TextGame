@@ -131,14 +131,51 @@ describe('compensated cumulative MP-millisecond integration', () => {
     const first = integrateManaRecovery(4.16, 17);
     const carry = exportManaRecoveryCarry(first);
     expect(carry.manaRegenExactCarry).toBe('0.07072');
-    const second = integrateManaRecovery(7.2, Number('129.06666666666667'),
+    const elapsed = Number('129.0666666666667');
+    expect(elapsed.toString()).toBe('129.0666666666667');
+    const second = integrateManaRecovery(7.2, elapsed,
       createManaRecoveryIntegral(carry.manaRegenCarry, carry.manaRegenCompensation, carry.manaRegenExactCarry));
     expect(second.wholeGranted).toBe(1);
-    expect(second.exactTotal).toBe('1000.000000000000024');
-    expect(exportManaRecoveryCarry(second)).toEqual({ manaRegenCarry: 2.4e-17,
-      manaRegenCompensation: 0, manaRegenExactCarry: '0.000000000000000024' });
+    expect(second.exactTotal).toBe('1000.00000000000024');
+    expect(exportManaRecoveryCarry(second)).toEqual({ manaRegenCarry: 2.4e-16,
+      manaRegenCompensation: 0, manaRegenExactCarry: '0.00000000000000024' });
     expect(JSON.parse(JSON.stringify(second))).toEqual(second);
   });
+
+  it('integrates the represented shortest decimal when an input spelling rounds down', () => {
+    const elapsed = Number('129.06666666666667');
+    expect(elapsed.toString()).toBe('129.06666666666666');
+    const second = integrateManaRecovery(7.2, elapsed, createManaRecoveryIntegral(0.07072));
+    expect(second.wholeGranted).toBe(0);
+    expect(second.exactTotal).toBe('999.999999999999952');
+  });
+
+  it.each([
+    ['0.070720000000000000024', -2.4e-20],
+    ['0.070719999999999999976', 2.4e-20]
+  ] as const)('exports numeric minus exact carry rounding for %s', (exactCarry, compensation) => {
+    const carry = exportManaRecoveryCarry(createManaRecoveryIntegral(0, 0, exactCarry));
+    expect(carry).toEqual({ manaRegenCarry: 0.07072,
+      manaRegenCompensation: compensation, manaRegenExactCarry: exactCarry });
+  });
+
+  it('bounds the numeric compatibility carry below one without changing its exact fraction', () => {
+    const carry = exportManaRecoveryCarry(createManaRecoveryIntegral(0, 0, '0.99999999999999999'));
+    expect(carry).toEqual({ manaRegenCarry: 0.9999999999999999,
+      manaRegenCompensation: -9e-17, manaRegenExactCarry: '0.99999999999999999' });
+  });
+
+  it.each([['numeric-only', false], ['exact-aware', true]] as const)(
+    'retains near-one MP through %s export and reseeding', (_mode, withExact) => {
+      const carry = exportManaRecoveryCarry(createManaRecoveryIntegral(0, 0, '0.99999999999999999'));
+      const seed = createManaRecoveryIntegral(carry.manaRegenCarry, carry.manaRegenCompensation,
+        withExact ? carry.manaRegenExactCarry : undefined);
+      expect.soft(seed.exactTotal).toBe('999.99999999999999');
+      const next = integrateManaRecovery(1, 1e-14, seed);
+      expect.soft(next.wholeGranted).toBe(1);
+      expect(next.exactTotal).toBe('1000');
+      expect(exportManaRecoveryCarry(next).manaRegenExactCarry).toBe('0');
+    });
 
   it('integrates exponent-form numeric inputs without quantizing their decimal product', () => {
     const integral = integrateManaRecovery(1e-7, 1e-7);
