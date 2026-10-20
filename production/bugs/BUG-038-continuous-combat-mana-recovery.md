@@ -210,3 +210,27 @@ qualified legacy numeric credit. Frozen17/17pass,zero skips,3.08s, raw
 `53190d4de0dd2e375564a70692ef47881e355edd4d35ce6661d26b131f99b57c`.
 Independent QA APPROVE bounded source/focused GREEN; producer and final
 combined validation pending. No engine-recovery/browser acceptance inferred.
+
+
+## Corrected mixed-scale test oracle before source acceptance
+
+The first exact-source diagnostic is128passed/1failed of129, with unchanged
+reviewed tests. Root/producer/QA review missed that
+`Number('129.06666666666667').toString()` is`129.06666666666666`. Under the
+controlling represented-decimal contract,70.72+7.2×that duration is
+`999.999999999999952`MP-ms, granting0whole, not the test's1. This specific
+oracle approval is withdrawn; source is frozen and no assertion is silently
+weakened. Earlier numeric product/handoff/invalid-credit reproductions remain
+valid. The wrong mixed-scale assertion must not be counted as a source defect.
+
+Authorized tests-only amendment uses representable`129.0666666666667` with an
+explicit toString assertion: total`1000.00000000000024`,1whole, exactcarry
+`0.00000000000000024`/numeric2.4e-16. Retain the original represented-lower
+case as a0whole regression guard and add both export rounding signs around
+exact.07072±.000000000000000000024 (numeric.07072,compensation∓2.4e-20).
+Passing new guards on already-written exact source are not fresh RED. Worker
+may briefly restore verified initial provisional source bytes for an amended
+RED run, then restore exact-source hashes; no further source correction is
+authorized before review. Raw first source patch/proof and128P1F diagnostic
+remain in worker task directory. Adapter producer+QA bounded source approval
+is complete; combined validation and browser proof remain pending.
