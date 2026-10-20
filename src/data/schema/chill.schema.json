@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/chill.json",
+  "title": "Combat Chill Configuration",
+  "description": "Attack-speed stat multiplier while Chill is active; duration remains in the status lifecycle.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "attackSpeedMultiplier"],
+  "properties": {
+    "id": { "type": "string", "const": "combat/chill" },
+    "attackSpeedMultiplier": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 1,
+      "description": "Multiply base attack speed once while Chill is active. One is neutral; zero is not allowed."
+    }
+  }
+}
