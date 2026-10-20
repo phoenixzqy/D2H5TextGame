@@ -66,3 +66,61 @@ mutating input. These tests do not certify periodic status integration.
 Implementation/reproduction: `production/bugs/BUG-006-combat-deadline.md` and
 `src/engine/combat/deadline.test.ts`. Review approval applies only to this
 scoped deadline/cadence decision, not the unfinished D04/P06 workstreams.
+
+
+## D04 v1b — P06c01 periodic boundaries (accepted scoped child)
+
+Status: accepted control and implementation plan, 2026-10-20; root and producer
+reviewed before implementation. This supplements P06b; full D04 remains open.
+
+Statuses are active on `[appliedAtMs, expiresAtMs)`. Combat applications stamp
+both clocks. Missing start means battle entry; missing expiry stays indefinite,
+without converting legacy remaining turns into seconds. Active same-ID refresh
+keeps original start, potency, source and capped aggregate stacks, with maximum
+absolute expiry; an existing indefinite record remains indefinite. Untimed legacy
+API calls preserve any existing absolute lifecycle. A timed application replaces
+an inactive future or expired same-ID record as fresh; it cannot frontload future stacks. Other pending
+records remain stored. Control, combo and death-source views use active statuses.
+
+Advance every living target together at the earliest action, future status start
+or expiry (including control-only effects), integer-ms periodic lethal instant,
+or inclusive 60,000-ms deadline. Integrate only interval overlap before expiry.
+Pool fractional damage across all DoTs per target, retaining it through refresh,
+expiry and gaps until death/end; floor accumulated damage with no minimum tick.
+Carry is battle-local, absent from snapshots/saves. Keep compensated accumulated
+rate-times-milliseconds to avoid losing a whole point when an interval splits.
+For constant rate r, carry c and HP H at time a, start the lethal search at
+`ceil(a + 1000 * (H-c) / r)` and verify candidate and previous millisecond with
+the same integrator used by settlement. No per-millisecond polling or zero loop.
+
+At a shared boundary: compute/write all periodic HP from one frozen before-state;
+emit positive DoT events in insertion order; close owner-death orphan sets and
+mark every death, sticky hero defeat and schedule removal; emit all death events
+in insertion order; then run ordinary death effects in insertion order. Only
+independently periodic-lethal units receive ordinary effects; orphan-only despawns
+retain death-only behavior. Periodic-lethal classification wins overlaps. Refund
+only living owners, and heal/orb only living recipients: simultaneous hero/boss
+lethal cannot rescue the hero. Final-interval poison/plague spreads from the frozen
+source even exactly at expiry, only to living recipients, stamped now with normal
+finite duration and no retrospective damage. An expired recipient same-ID record
+is absent for application, even before the survivor-expiry phase. Expire survivors,
+check winner (hero defeat priority), then allow surviving tied actions.
+
+Preserve P06b cadence, insertion ties, RNG calls, immutable inputs and inclusive
+deadline actions. Settle the deadline even when the next action lies later.
+Boundary-only advances do not consume action budget. The existing action cap is
+a safety stop; reaching it must not invent settlement to 60 seconds.
+
+Implementation owns types.ts, status.ts, combat.ts, periodic-timing.test.ts, this
+control and BUG-011. Tests/reproduction precede runtime changes; run focused and
+engine regressions, full units, typecheck, lint and build; independent root and
+producer source/contract review precedes commit. Exact-value tests cover short
+expiry, application overlap, carry splitting/gaps/pooling, earliest lethal,
+future control/combo inactivity, refresh/replacement, simultaneous death/orphan
+closure and orb order, final-interval spread, deadline, determinism and immutability.
+
+Deferred: boss duration multipliers in milliseconds (P06c02), cross-wave timestamp
+rebasing (P06c03), seeded ties, scaling/mitigation/aliases/source metadata. Current
+wave transfer preserves absolute statuses while the next battle resets its clock;
+pending future starts must be supported rather than rejected. This child does
+not claim cross-wave temporal acceptance or complete D04/P06 acceptance.

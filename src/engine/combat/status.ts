@@ -75,7 +75,7 @@ export interface ApplyStatusInput {
   readonly durationMs?: number;
   /**
    * Current simulation clock in ms. When provided, the produced
-   * {@link ActiveStatus} is given an `expiresAtMs` rather than a
+   * {@link ActiveStatus} is given start/expiry timestamps rather than a
    * decremented `remaining`-counter lifecycle.
    */
   readonly simClockMs?: number;
@@ -120,7 +120,8 @@ export function applyStatus(
 
   // Paralyze diminishing returns
   if (input.id === 'paralyze') {
-    const cdActive = unit.statuses.some((s) => s.id === 'paralyze-cd');
+    const cdActive = unit.statuses.some((s) => s.id === 'paralyze-cd' &&
+      (input.simClockMs === undefined || statusActiveAt(s, input.simClockMs)));
     if (cdActive && !rng.chance(0.5)) {
       return unit; // Failed application
     }
@@ -132,26 +133,29 @@ export function applyStatus(
       ? input.simClockMs + (input.durationMs ?? dur * 1000)
       : undefined;
   let next: ActiveStatus[];
-  if (idx === -1) {
+  const existing = unit.statuses[idx];
+  // A future/expired record is not a refresh. Do not inherit its stacks or rate.
+  if (!existing || (input.simClockMs !== undefined && !statusActiveAt(existing, input.simClockMs))) {
     const newStatus: ActiveStatus = {
       id: input.id,
       stacks: 1,
       remaining: dur,
       sourceId: input.sourceId,
+      ...(input.simClockMs !== undefined ? { appliedAtMs: input.simClockMs } : {}),
       ...(expiresAtMs !== undefined ? { expiresAtMs } : {}),
       ...(input.dotPerStack !== undefined ? { dotPerStack: input.dotPerStack } : {}),
       ...(input.damageType !== undefined ? { damageType: input.damageType } : {})
     };
-    next = [...unit.statuses, newStatus];
+    next = idx === -1 ? [...unit.statuses, newStatus]
+      : unit.statuses.map((s, i) => i === idx ? newStatus : s);
   } else {
     const prev = unit.statuses[idx];
     if (!prev) return unit;
     const stacks =
       cfg.maxStacks > 1 ? Math.min(cfg.maxStacks, prev.stacks + 1) : prev.stacks;
-    const newExpiresAtMs =
-      expiresAtMs !== undefined
-        ? Math.max(prev.expiresAtMs ?? 0, expiresAtMs)
-        : prev.expiresAtMs;
+    // Undefined expiry is indefinite, including legacy combat-entry records.
+    const newExpiresAtMs = prev.expiresAtMs === undefined ? undefined
+      : expiresAtMs === undefined ? prev.expiresAtMs : Math.max(prev.expiresAtMs, expiresAtMs);
     const updated: ActiveStatus = {
       ...prev,
       stacks,
@@ -170,7 +174,7 @@ export function applyStatus(
       remaining: 5,
       sourceId: input.sourceId,
       ...(input.simClockMs !== undefined
-        ? { expiresAtMs: input.simClockMs + 5 * 1000 }
+        ? { appliedAtMs: input.simClockMs, expiresAtMs: input.simClockMs + 5 * 1000 }
         : {})
     };
     next =
@@ -180,6 +184,17 @@ export function applyStatus(
   }
 
   return { ...unit, statuses: next };
+}
+
+/** Whether a stored status is active at an exact simulation boundary. */
+export function statusActiveAt(status: ActiveStatus, simClockMs: number): boolean {
+  return (status.appliedAtMs ?? 0) <= simClockMs &&
+    (status.expiresAtMs === undefined || simClockMs < status.expiresAtMs);
+}
+
+/** Temporary active-only view; pending records stay in the authoritative unit. */
+export function activeStatusView(unit: CombatUnit, simClockMs: number): CombatUnit {
+  return { ...unit, statuses: unit.statuses.filter(s => statusActiveAt(s, simClockMs)) };
 }
 
 /**
@@ -260,7 +275,8 @@ export function spreadPlague(
   source: CombatUnit,
   others: readonly CombatUnit[],
   fraction: number,
-  rng: Rng
+  rng: Rng,
+  simClockMs?: number
 ): readonly CombatUnit[] {
   const stacks = getStacks(source, 'plague') || getStacks(source, 'poison');
   if (stacks <= 0) return others;
@@ -276,6 +292,7 @@ export function spreadPlague(
         {
           id: 'poison',
           sourceId: source.id,
+          ...(simClockMs !== undefined ? { simClockMs } : {}),
           ...(dot?.dotPerStack !== undefined ? { dotPerStack: dot.dotPerStack } : {}),
           damageType: 'poison'
         },

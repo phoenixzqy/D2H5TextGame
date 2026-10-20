@@ -9,12 +9,9 @@
  * slow ones over a given sim-second budget. Statuses, cooldowns and DoTs
  * are all keyed to {@link State.simClockMs} (milliseconds), not rounds.
  *
- * Loop invariant:
- *   1. Find unit with smallest `nextActionAt` (insertion-order tie-break).
- *   2. Advance `simClockMs` to that value (never backward).
- *   3. Expire statuses; apply elapsed-time DoT chunk for that unit.
- *   4. If still alive: take action (skill via {@link chooseSkill} or basic).
- *   5. Reschedule that unit at `simClockMs + actionPeriodMs(speed)`.
+ * Shared boundaries settle every living target before deaths, effects or actions.
+ * Actions retain stable insertion-order ties; periodic lethal instants and status
+ * starts/expiries may advance the clock without consuming action budget.
  *
  * @module engine/combat/combat
  */
@@ -30,7 +27,7 @@ import {
   hasStatus,
   isStunned,
   spreadPlague,
-  dotDamageThisTick
+  activeStatusView
 } from './status';
 import { comboMultiplier } from './combo';
 import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
@@ -129,7 +126,9 @@ interface State {
   /** time-based scheduler state */
   nextActionAt: Map<string, number>;
   cooldownExpiresAt: Map<string, Map<string, number>>;
-  lastDotTickAt: Map<string, number>;
+  /** Pooled rate-times-ms integral, never persisted or transferred between battles. */
+  periodic: Map<string, PeriodicIntegral>;
+  deathsHandled: Set<string>;
   /** highest "turn" emitted (5s boundaries). */
   turnsEmitted: number;
   /** sticky flag — hero death = enemy victory regardless of summons. */
@@ -138,6 +137,14 @@ interface State {
   insertionCounter: number;
   /** Runtime summon identity belongs to this battle, never a module singleton. */
   summonSequence: number;
+}
+
+interface PeriodicIntegral {
+  /** Compensated accumulated damage in HP * milliseconds. */
+  total: number;
+  compensation: number;
+  /** Whole HP already emitted; total/1000 - dealt is the pooled carry. */
+  dealt: number;
 }
 
 function alive(u: CombatUnit): boolean {
@@ -284,7 +291,7 @@ function applyDamageToUnit(
   const defender = state.units.get(defenderId);
   if (!attacker || !defender || !alive(defender)) return;
 
-  const input = buildDamageInput(attacker, defender, effect, skillLevel);
+  const input = buildDamageInput(attacker, activeStatusView(defender, state.simClockMs), effect, skillLevel);
   const outcome = resolveDamage(input, state.rng);
   emit(state, {
     kind: 'damage',
@@ -332,35 +339,46 @@ function applyDamageToUnit(
 
   const after = state.units.get(defenderId);
   if (after && !alive(after)) {
-    emit(state, { kind: 'death', target: defenderId });
-    handleDeath(state, after);
+    finishDeaths(state, [activeStatusView(after, state.simClockMs)]);
   }
 }
 
-function handleDeath(state: State, dead: CombatUnit): void {
-  // Hero death = enemy victory (sticky).
-  if (inferKind(dead) === 'hero') {
-    state.heroDead = true;
+/** Close and mark the whole death set before any spread/refund/orb side effect. */
+function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void {
+  const primary = new Map(primarySources.filter(u => !state.deathsHandled.has(u.id)).map(u => [u.id, u]));
+  const deadIds = new Set(primary.keys());
+  // Ownership can be a graph; orphan-only deaths never get ordinary effects.
+  let grew = true;
+  while (grew) {
+    grew = false;
+    for (const u of state.units.values()) {
+      if (alive(u) && u.summonOwnerId && deadIds.has(u.summonOwnerId) && !deadIds.has(u.id)) {
+        deadIds.add(u.id);
+        grew = true;
+      }
+    }
   }
+  const dead = [...state.units.values()].filter(u => deadIds.has(u.id));
+  for (const u of dead) {
+    state.units.set(u.id, { ...u, life: 0 });
+    state.deathsHandled.add(u.id);
+    state.nextActionAt.delete(u.id);
+    state.periodic.delete(u.id);
+    if (inferKind(u) === 'hero') state.heroDead = true;
+  }
+  for (const u of dead) emit(state, { kind: 'death', target: u.id });
+  for (const u of dead) {
+    const source = primary.get(u.id);
+    if (source) deathEffects(state, source);
+  }
+}
 
-  // Plague spread
+/** Ordinary effects use the frozen final-interval source and current living recipients. */
+function deathEffects(state: State, dead: CombatUnit): void {
   if (hasStatus(dead, 'plague') || hasStatus(dead, 'poison')) {
-    const sameSideAlive = [...state.units.values()].filter(
-      (u) => u.side === dead.side && u.id !== dead.id && alive(u)
-    );
-    const updated = spreadPlague(dead, sameSideAlive, 0.5, state.rng);
-    for (const u of updated) state.units.set(u.id, u);
-  }
-
-  // Despawn summons whose owner just died.
-  if (inferKind(dead) !== 'summon') {
-    const orphans = [...state.units.values()].filter(
-      (u) => u.summonOwnerId === dead.id && alive(u)
-    );
-    for (const o of orphans) {
-      state.units.set(o.id, { ...o, life: 0 });
-      state.nextActionAt.delete(o.id);
-      emit(state, { kind: 'death', target: o.id });
+    const recipients = [...state.units.values()].filter(u => u.side === dead.side && alive(u));
+    for (const u of spreadPlague(dead, recipients, 0.5, state.rng, state.simClockMs)) {
+      state.units.set(u.id, u);
     }
   }
 
@@ -595,7 +613,6 @@ function applyEffect(
         positionedSummon.id,
         state.simClockMs + actionPeriodMs(positionedSummon.stats.attackSpeed)
       );
-      state.lastDotTickAt.set(positionedSummon.id, state.simClockMs);
       state.cooldownExpiresAt.set(positionedSummon.id, new Map());
       emit(state, {
         kind: 'summon',
@@ -681,47 +698,109 @@ function basicAttack(state: State, actorId: string): void {
   applyDamageToUnit(state, actorId, target.id, effect);
 }
 
-/**
- * Tick effects keyed to elapsed sim-time for one unit, just before it acts.
- * Returns true if the unit died from DoT.
- */
-function tickUnit(state: State, unitId: string): boolean {
-  const before = state.units.get(unitId);
-  if (!before || !alive(before)) return true;
+/** Integrate exactly the overlap; compensated HP-ms avoids repeated fractional-HP loss. */
+function integratePeriodic(
+  unit: CombatUnit,
+  from: number,
+  to: number,
+  previous: PeriodicIntegral = { total: 0, compensation: 0, dealt: 0 }
+): PeriodicIntegral {
+  let { total, compensation } = previous;
+  for (const status of unit.statuses) {
+    const elapsed = Math.max(0, Math.min(to, status.expiresAtMs ?? Infinity) -
+      Math.max(from, status.appliedAtMs ?? 0));
+    const rate = (status.dotPerStack ?? 0) * status.stacks;
+    if (elapsed <= 0 || rate <= 0) continue;
+    const adjusted = rate * elapsed - compensation;
+    const next = total + adjusted;
+    compensation = (next - total) - adjusted;
+    total = next;
+  }
+  return { total, compensation, dealt: Math.floor(total / SECONDS) };
+}
 
-  // 1) Refresh effective per-skill cooldown view (chooseSkill reads it).
-  const cdMap = state.cooldownExpiresAt.get(unitId);
+/** Every HP write precedes events/deaths; sources freeze the just-integrated interval. */
+function settlePeriodic(state: State, to: number): void {
+  const from = state.simClockMs;
+  const damages: { unit: CombatUnit; amount: number }[] = [];
+  const dead: CombatUnit[] = [];
+  for (const before of state.units.values()) {
+    if (!alive(before)) continue;
+    const previous = state.periodic.get(before.id);
+    const next = integratePeriodic(before, from, to, previous);
+    const amount = next.dealt - (previous?.dealt ?? 0);
+    state.periodic.set(before.id, next);
+    if (amount <= 0) continue;
+    const after = { ...before, life: Math.max(0, before.life - amount) };
+    state.units.set(before.id, after);
+    damages.push({ unit: after, amount });
+    if (!alive(after)) dead.push(activeStatusView(after, from));
+  }
+  state.simClockMs = to;
+  emitTurnBoundaries(state);
+  for (const { unit, amount } of damages) emit(state, { kind: 'dot', target: unit.id, amount });
+  finishDeaths(state, dead);
+  for (const u of state.units.values()) {
+    if (alive(u)) state.units.set(u.id, expireStatuses(u, to));
+  }
+}
+
+/** Next action/status/deadline boundary; starts include non-DoT pending controls. */
+function nextPeriodicBoundary(state: State, nextActionAt: number): number {
+  let boundary = Math.min(MAX_SIM_MS, nextActionAt);
+  for (const unit of state.units.values()) {
+    if (!alive(unit)) continue;
+    for (const status of unit.statuses) {
+      for (const at of [status.appliedAtMs, status.expiresAtMs]) {
+        if (at !== undefined && at > state.simClockMs) boundary = Math.min(boundary, at);
+      }
+    }
+  }
+  // Rates are stable until the selected boundary. Find each target's earliest
+  // supported integer-ms lethal instant, using the settlement integrator itself.
+  for (const unit of state.units.values()) {
+    if (!alive(unit) || boundary <= state.simClockMs) continue;
+    const rate = activeStatusView(unit, state.simClockMs).statuses.reduce(
+      (sum, status) => sum + Math.max(0, (status.dotPerStack ?? 0) * status.stacks), 0);
+    if (rate <= 0) continue;
+    const previous = state.periodic.get(unit.id);
+    const carry = (previous?.total ?? 0) / SECONDS - (previous?.dealt ?? 0);
+    const minimum = Math.floor(state.simClockMs) + 1;
+    const maximum = Math.floor(boundary);
+    if (minimum > maximum) continue;
+    const lethalAt = (at: number): boolean => integratePeriodic(unit, state.simClockMs, at, previous).dealt -
+      (previous?.dealt ?? 0) >= unit.life;
+    let candidate = Math.max(minimum, Math.min(maximum,
+      Math.ceil(state.simClockMs + SECONDS * (unit.life - carry) / rate)));
+    // Verify both candidate and predecessor; floating arithmetic may put the
+    // analytic estimate on either side. A bounded binary correction never polls.
+    if (!lethalAt(candidate) || (candidate > minimum && lethalAt(candidate - 1))) {
+      if (!lethalAt(maximum)) continue;
+      let low = minimum;
+      let high = maximum;
+      while (low < high) {
+        const mid = Math.floor((low + high) / 2);
+        if (lethalAt(mid)) high = mid;
+        else low = mid + 1;
+      }
+      candidate = low;
+    }
+    if (lethalAt(candidate) && (candidate === minimum || !lethalAt(candidate - 1))) {
+      boundary = Math.min(boundary, candidate);
+    }
+  }
+  return boundary;
+}
+
+/** Refresh the actor's cooldown view without mutating pending status records. */
+function refreshCooldowns(state: State, unitId: string): void {
+  const unit = state.units.get(unitId);
+  if (!unit) return;
   const effectiveCds: Record<string, number> = {};
-  if (cdMap) {
-    for (const [skillId, exp] of cdMap) {
-      if (exp > state.simClockMs) effectiveCds[skillId] = exp - state.simClockMs;
-    }
+  for (const [skillId, exp] of state.cooldownExpiresAt.get(unitId) ?? []) {
+    if (exp > state.simClockMs) effectiveCds[skillId] = exp - state.simClockMs;
   }
-
-  // 2) Expire statuses whose expiresAtMs has passed.
-  let unit = expireStatuses(before, state.simClockMs);
-  unit = { ...unit, cooldowns: effectiveCds };
-
-  // 3) DoT chunk for elapsed time since this unit's last DoT tick.
-  const last = state.lastDotTickAt.get(unitId) ?? state.simClockMs;
-  const elapsedMs = Math.max(0, state.simClockMs - last);
-  const { total: perSec } = dotDamageThisTick(unit);
-  if (perSec > 0 && elapsedMs > 0) {
-    const dmg = Math.max(1, Math.floor((perSec * elapsedMs) / SECONDS));
-    const newLife = Math.max(0, unit.life - dmg);
-    unit = { ...unit, life: newLife };
-    state.units.set(unitId, unit);
-    emit(state, { kind: 'dot', target: unitId, amount: dmg });
-    if (newLife <= 0) {
-      emit(state, { kind: 'death', target: unitId });
-      handleDeath(state, unit);
-      state.lastDotTickAt.set(unitId, state.simClockMs);
-      return true;
-    }
-  }
-  state.lastDotTickAt.set(unitId, state.simClockMs);
-  state.units.set(unitId, unit);
-  return false;
+  state.units.set(unitId, { ...unit, cooldowns: effectiveCds });
 }
 
 function castSummonsOnStart(state: State, unitId: string): void {
@@ -743,7 +822,8 @@ function takeAction(state: State, unitId: string): void {
   const unit = state.units.get(unitId);
   if (!unit || !alive(unit)) return;
 
-  if (isStunned(unit) || isImmobilized(unit)) {
+  const active = activeStatusView(unit, state.simClockMs);
+  if (isStunned(active) || isImmobilized(active)) {
     emit(state, { kind: 'stunned', target: unitId });
     return;
   }
@@ -896,7 +976,8 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     insertionIdx: new Map(),
     nextActionAt: new Map(),
     cooldownExpiresAt: new Map(),
-    lastDotTickAt: new Map(),
+    periodic: new Map(),
+    deathsHandled: new Set(),
     turnsEmitted: 0,
     heroDead: false,
     insertionCounter: 0,
@@ -908,7 +989,6 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
 
   for (const u of state.units.values()) {
     state.nextActionAt.set(u.id, actionPeriodMs(u.stats.attackSpeed));
-    state.lastDotTickAt.set(u.id, 0);
     state.cooldownExpiresAt.set(u.id, new Map());
   }
   emitTurnBoundaries(state);
@@ -925,20 +1005,16 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   while (winnerOf(state) === null && actionsTaken < MAX_ACTIONS) {
     const next = pickNextActor(state);
     if (!next) break;
-    // The deadline includes every actor scheduled exactly there. Inspect the
-    // next timestamp before advancing so a later action cannot overshoot it.
-    if (next.at > MAX_SIM_MS) {
-      state.simClockMs = MAX_SIM_MS;
-      emitTurnBoundaries(state);
-      break;
-    }
-    if (next.at > state.simClockMs) state.simClockMs = next.at;
-    emitTurnBoundaries(state);
-    const died = tickUnit(state, next.id);
-    if (died) {
-      state.nextActionAt.delete(next.id);
-      continue;
-    }
+    // A cap stop never fabricates deadline settlement. Otherwise advance all
+    // targets together, even if no action is eligible before the deadline.
+    if (state.simClockMs === MAX_SIM_MS && next.at > MAX_SIM_MS) break;
+    const boundary = nextPeriodicBoundary(state, next.at);
+    settlePeriodic(state, boundary);
+    if (winnerOf(state) !== null) break;
+    if (boundary < next.at) continue;
+    const actor = state.units.get(next.id);
+    if (!actor || !alive(actor)) continue;
+    refreshCooldowns(state, next.id);
     checkEnrage(state, next.id);
     if (winnerOf(state) !== null) break;
     takeAction(state, next.id);

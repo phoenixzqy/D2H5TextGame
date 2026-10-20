@@ -40,6 +40,8 @@ export interface ActiveStatus {
    * Undefined for legacy turn-based statuses or permanent statuses.
    */
   readonly expiresAtMs?: number;
+  /** Inclusive simulation-time start; omitted legacy records start at battle entry. */
+  readonly appliedAtMs?: number;
   /**
    * Damage per stack per **second** (for DoTs).
    *
