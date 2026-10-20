@@ -23,7 +23,8 @@ Current implementation evidence lives in `evidence/`.
 | P03b01 | accepted visibility slice | `90e4a67`; all legacy items remain selectable above grid cap, seven boundary tests, four ordinary-control browser cases. BUG-005. |
 | P03b02 | accepted ingress slice | `a79ef1f`; retain complete earned/returned overflow, actual victory/merc/save integration,16 focused regressions; producer source APPROVE. Shared regular-action guards remain. |
 | P04a01 | accepted objective slice | `ac49f52` (agent `d0343c8`); canonical Den area and atomic tracked clear objectives after qualified victory. Ten regressions, independent source APPROVE and integrated four-case browser proof. Return/talk/claim remain separate. |
-| P04a02 core/locales | accepted core/copy slices | `2d60095` ordered exact current-town talk action; `392e671` (agent `c2dece8`) localized roster/greetings/Den stages. Producer source APPROVE; UI child in progress, whole talk path not yet accepted. |
+| P03b03 | accepted transfer slice | `6d76f64` shared constants/copy (agent `d9f5835`), `36a819d` authoritative100/500 transfer guards and selected refusal/retry. Producer source APPROVE; four ordinary locale/viewport recovery cases. Equipment guards remain. |
+| P04a02 core/locales/UI | accepted talk path slice | `2d60095` ordered exact current-town talk; `392e671` localized roster/greetings; `0a84010` UI (agent `2702b81`). Root+producer source APPROVE; real Den→Akara→explicit claim→save browser matrix. Full town/quest families remain. |
 | Remaining P03b/P04 | ready for reproduction | Shared capacity, atomic transactions/recoverable awards and quest event/reward integrity remain. |
 | P05a | accepted slice | `2458ee7`; source-local error state, 13 focused tests and actual-component desktop/mobile proof. [Integrated evidence](evidence/P05a-P06a-foundations.md). D13/F19 remain open. |
 | P05b01 | accepted resolver slice | `0c2d043`; D13 identity/metadata control, 29 new tests (25 red before fix), producer source APPROVE. Full suite + T/L/B pass. BUG-010; surface wiring remains. |
@@ -31,6 +32,7 @@ Current implementation evidence lives in `evidence/`.
 | P06a | accepted slice | `10ce45d`; battle-local summon identity, full A/A and A/B/A replay, live/dead collisions. Independent TD approval. [Evidence](evidence/P05a-P06a-foundations.md). |
 | P06b | accepted deadline slice | `2cd350b`; inclusive 60,000 ms deadline, no overshoot, tied actors and exact/early victory. Five boundary tests, independent parent APPROVE; BUG-006. |
 | P06c01 | accepted periodic slice | `6c7f049` (agent `ff3787e`); shared status/lethal/expiry boundaries, fractional carry, simultaneous death/orphan transaction;31 focused regressions, root+producer source APPROVE. Boss milliseconds and cross-wave rebasing remain. |
+| P06c02 | accepted boss-duration slice | `030de58` (agent `53c08fe`); configured boss multiplier once on unrounded milliseconds, legacy lifecycle retained;56 focused cases incl16 real combat cases; root+producer source APPROVE. Cross-wave rebasing remains. |
 | Remaining P06–P10 | pending dependencies | D04–D06/shared effects first. All skills remain behavior-unaccepted. |
 | P11a / P11a02 | accepted finalization slices | `d39fe64` actual-win/living-hero/playback guard and single clear; `d8db75c` truthful draw UI. Six root regressions, six RTL, 4/4 browser locale×viewport cases; independent QA/producer APPROVE. BUG-008. |
 | P11–P15 | pending dependencies | Rewards/idle, eligibility, economy, campaign and pacing. |
@@ -310,3 +312,61 @@ Verified removed root task-owned `dist`, `node_modules/.vite`, exact
 `/tmp/d2h5-p03b02-browser` after every consumer/process ended. Agent periodic
 report/build/coverage cleaned and worktree3 released; root remains claimed.
 No push/PR/deployment. Full v1/C0–C4/G0–G7 acceptance remains open.
+
+## Integrated town dialogue, guarded transfers and boss milliseconds
+
+Current implementation head `030de58` includes town UI `0a84010` (agent
+`2702b81`), capacity/copy prep `6d76f64` (agent `d9f5835`), guarded transfers
+`36a819d`, and boss duration `030de58` (agent `53c08fe`). All scoped source
+reviews independently APPROVE; no feature/checkpoint/global gate is accepted.
+
+Town source-before-patch RTL2locale failures and desktop browser missing-region
+failure preceded runtime edit. Review found mounted act1→2→1 Close targeting a
+detached button; two-locale failing focus regression preceded selected rendered
+button ref fix. Final8 town RTL +13 talk +10 clear =31 pass; root integrated
+3.91s. Agent full960/1skip27.05s,T/L/forced3filelint/B pass5.27s. Agent browser
+initial3/4 had unexpected welcome during combat; unchanged-source rerun4/4 and
+final reviewed-source4/4 pass30.3s. Root integrated town4/4 pass20.7s. Ordinary
+strength-only import→early no-banking→track→real Den waves→wrong NPC no-op→Akara
+completes without grants→explicit500XP+automatic level points+extra1skill→repeat
+disabled→save/export/reload equality. Imported power proves wiring, not balance.
+Town current-act roster, localized live stages, focus/keyboard and44px controls
+covered. Later-act authored dialogue/services and all objective/reward kinds open.
+
+Transfer initial12/12 fail4.46s and desktop browser no-toast failure preceded
+runtime edits. Final12 pass4.24s; preboss full1019/1skip31.45s,T/L/B pass5.65s.
+Review confirmed refusal no publication/state change, missing-source precedence,
+exact one-item transfer and retained selection. Existing browser changed
+deliberately from accepting full targets to refusing both directions at101/501,
+then exact three explicit discards and successful transfers. First4/4pass42.2s;
+forced lint found legacy stream typing, replaced with typed download-file read;
+forced lint and4/4 rerun26.1s pass. Exact commands in BUG-015. Ingress remains
+lossless; equipment/merc/crafting atomic guards remain open. Prep locale140leaf
+parity/unique/nonempty,T/L passes; no behavior claimed for constants/copy alone.
+
+Boss timing initial56 cases29fail/27pass1.05s, including8 actual exact-expiry
+combat failures and8 inside-interval controls. Final56 pass1.01s, agent438engine
+pass3.44s/full1039pass1skip23.63s,T/L/B pass. Explicit milliseconds win before
+one boss multiplier; positive scaled values floor/min1ms, zero/nonpositive fresh
+control inactive. Existing finite/indefinite refresh and legacy lifecycle remain.
+Root+producer reviewed exact four files. Cross-wave clocks/ties/full D04 open.
+
+Root final combined validation at clean implementation `030de58`:
+
+- U102files/1075passed/1 existing merc-XP skip,28.41s (>15s budget).
+- E40files/438passed,4.27s (>3s budget).
+- T/L/B pass, including40 engine-purity files; build7.79s with existing large
+  chunks and2.57MB manifest precache warnings. No PWA/performance acceptance.
+- Browser8/8pass53.7s, two specs×en/zh-CN×1280×800/360×640. Command:
+  `E2E_PORT=4300 npx playwright test tests/e2e/inventory-overflow-recovery.spec.ts tests/e2e/quest-town-return.spec.ts --project=chromium-desktop --project=mobile-portrait --workers=2 --reporter=line --output=/tmp/d2h5-030de58-browser`.
+
+Next: P06c03 exact terminal-clock cross-wave rebasing plan, P03b04a authoritative
+stored equipment before P03b04b net-displacement capacity/UI. BUG-016 reserved
+cross-wave; BUG-017 equipment capacity; BUG-018 stale equipment payload.
+
+Verified removed root `dist`, `node_modules/.vite`, the exact tracked task-owned
+`/tmp/d2h5-town-integrated-*`, `/tmp/d2h5-p03b03-*` and `/tmp/d2h5-030de58-*`
+leaves listed by cleanup after every consumer/process ended. These prefixes
+describe verified individual paths, not wildcard deletion. Agent town/copy/boss
+worktrees cleaned/released. Root remains claimed for the continuing objective.
+No push/PR/deployment; full v1/C0–C4/G0–G7 remain open.
