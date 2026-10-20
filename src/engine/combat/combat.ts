@@ -274,7 +274,7 @@ function buildDamageInput(
     baseMin,
     baseMax,
     flatBonus: baseFlatBonus,
-    increasedPct: 0,
+    increasedPct: attacker.increasedDamagePct?.[effect.damageType] ?? 0,
     comboMult: combo,
     type: effect.damageType,
     critChance: stats.critChance,
@@ -540,6 +540,7 @@ function canUseSkillForState(
   skillOrderId: string,
   hasEnemyTarget: boolean
 ): boolean {
+  if (skill.trigger === 'passive') return false;
   if ((unit.cooldowns[skill.id] ?? unit.cooldowns[skillOrderId] ?? 0) > 0) return false;
   const skillLevel = effectiveSkillLevel(unit, skill);
   if (effectiveManaCost(skill, skillLevel) > unit.mana) return false;
