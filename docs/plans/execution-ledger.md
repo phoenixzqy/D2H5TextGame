@@ -1694,3 +1694,25 @@ activates only actual quests/act1-sisters-to-the-slaughter approved reward bag;
 design/technical planREADY, pending producer/QA plan and frozen genuine RED.
 Next root-owned RAW=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-andariel-reward-3kag9fe5;
 plan-only,no process,generated paths absent after B. No push/PR/merge/deployment.
+
+
+P04a07c accepted32a2aa5 after design/plan/frozenRED and independent producer/QA
+final APPROVE/ADEQUATE. Exact one-row reward replacement for canonical
+quests/act1-sisters-to-the-slaughter:8000XP,0extraSkillPoints,oneCoif19,remove only
+questlootTable; all other mainbytes/normalTC/act1monsters/handler unchanged.
+FrozenRED9=2missingactivation7controls→byte-identical9GREEN. Related1324=1323pass/
+1obsolete explicitclaim unsupported expectation; both reviewers approved narrow
+oldcontract success/XP/item/flag/once-only amendment, automaticcompletion checks
+retained. Original/failure/new frozenassertions retained; no runtimefix. Amended
+related1324/62,full2825/1470pending/todo,T25.184/L56.694purity53/guardedbuild9.191
+pass aftertests;12commands/source/report/loghashes/5snapshots retained. Timing/
+buildwarnings unchanged. Bothconsumersreleased before exactRAW3kag9fe5/dist/
+node_modules/.vite cleanup; absenceverified,noprocess,originalmainclean/rootclaim
+continues. Authored synthetic completion/importedpowercombat is wiring only;
+browser/mobile/earned/C1/C0–C4/G0–G7/fullv1 remain open. Next P04a07d production
+browser zh/en×5viewports explicitclaim/inventory/save/reload; technicalplanREADY
+with initialrunnerconcern retained, dedicated tests/pwa spec/config avoids debug
+bridge. Source predicts40pxclaim/missingcanonicalquestlocale; observe failures,
+structured bug and independent rootcause/RED review before any runtimefix.
+NextRAW=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-andariel-browser-j0mql7lv;
+rootowns,no process,generatedpathsabsent. No push/PR/merge/deployment.
