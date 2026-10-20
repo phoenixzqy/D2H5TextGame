@@ -856,5 +856,23 @@
         "physical": 24
       }
     }
+  },
+  {
+    "id": "items/base/weapon-bow-training",
+    "name": "items.base.weapon-bow-training",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 8,
+      "max": 18,
+      "breakdown": {
+        "physical": 18
+      }
+    },
+    "reqLevel": 1,
+    "sockets": 0,
+    "canHaveAffixes": true,
+    "weaponType": "bow",
+    "handedness": "twoHanded"
   }
 ]

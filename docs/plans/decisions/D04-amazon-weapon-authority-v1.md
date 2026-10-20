@@ -73,3 +73,60 @@ Do not resurrect arbitrary stale gear or remove legacy data by assumption.
 No creation/save/browser/weapon-authority completion follows from P08a05a.
 
 Design and producer plan-review: ready with boundaries above. No art generation.
+
+## P08a05b recipe-backed factory prerequisite (plan approved)
+
+Five source/test files: existing class.schema.json and classes/amazon.json,
+new data/loaders/classes.ts, existing createMockPlayer.ts and its test.
+Author optional starterWeapon:{baseId:trainingID,baseRolls:{attack:13}} only
+in Amazon. Schema rejects null/missing fields/unknown properties, requires
+item-base ID pattern and nonnegative integer attack. No training ID or13
+runtime/schema constant. Omission means empty kit for any class, including
+Amazon; other six class files unchanged.
+
+No current class loader/type/index exists. New narrow data loader imports
+seven actual class documents and class schema, compiles one strict Ajv2020
+validator, validates complete documents and requested class identity, exposes
+a readonly recipe/type. Resolve actual item base at this authoring boundary:
+exists,weapon,slotweapon,reqLevel1,damage present,attack in inclusive range.
+Errors include class-file/field context; malformed data must not become absent
+recipe. No central class subsystem or unrelated factory stats/skills refactor.
+Data layer must not import feature/stores.
+
+Factory's existing private starter helper consumes this recipe, constructs a
+fresh normal identified level1/ilvl1 prepared item and cloned baseRolls per
+call, explicitly resolves its base, and reuses actual checkEligibility against
+the level/core/derived stats being created. Unknown base must throw because
+checkEligibility currently treats unknown as eligible. Preserve other factory
+fields and purity; no RNG/store/grant/canonical mutation. Prepared kit remains
+in Player.equipment temporarily until next shared creation child transfers it
+and publishes an empty legacy array. No canonical/stats/save/authority claim.
+
+Tests start from existing factory/schema APIs, never a missing-module import:
+actualfactory returns training13/ilvl1 and passes actual eligibility/computeStats;
+mock authored recipe12 proves data consumption; omission yields no kit even
+Amazon; all6others unchanged empty. Malformed/null/unknownbase/armor/highlevel/
+out-of-range recipe and impossible actual core-stat requirement reject before
+returning a player. Schema tests supplement realfactory RED, not replace it.
+Fresh item/roll objects and source immutability. Independently review genuine
+RED before4source edits; focused/related/full/T/L/build/80%coverage and final
+source/QA review. No UI/creation/migration/reader change in B.
+
+Subsequent creation operation must require persistence ready, no save replacement
+in progress and no player; nullplayer alone admits overwrite during asynchronous
+hydration. Use one synchronous seven-class operation, prepare before mutations,
+canonical add/equip, check results and rollback only its snapshots on failure.
+Then navigate. Never clear previous inventory/stash to force success.
+Later compatibility must recognize both original generic-bow and intermediate
+recipe-backed factory signatures without resurrecting arbitrary stale items.
+
+Additional source-risk: compareEquip.ts private isTwoHandedBase still uses
+legacy IDs/prefix rather than handedness metadata, so its equipment comparison
+may miss training-bow displacement. Canonical equipValidator already uses
+metadata. Reproduce and fix in a later bounded comparison child; no claim yet.
+
+Producer independently approved B plan before tests/source edits: existing
+factory/schema APIs provide genuine runtime RED; preserve transitional equipped
+flags until canonical transfer. No missing-module RED, runtime training/13
+constant or creation/save/reader acceptance. Security scope remains local
+authored data and pure preparation; no external requests or permissions.

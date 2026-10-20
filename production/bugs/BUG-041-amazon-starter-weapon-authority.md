@@ -1,6 +1,6 @@
 # BUG-041 — Make Amazon starter equipment legal and authoritative
 
-Status: P08a05a actual content/acquisition RED reproduced; full authority defect remains open.
+Status: P08a05a content/acquisition accepted; full authority defect remains open.
 Severity: High — actual starter weapon is absent from canonical inventory,
 while Magic Arrow gates use stale legacy equipment. Full defect remains open.
 Owner: content/engine/store/frontend; independent producer/QA acceptance.
@@ -21,7 +21,7 @@ is not yet reproduced. Source report and contract are linked below.
 Expected: content has a legalL1two-handed bow and real early ActI drop source,
 then subsequent reviewed children materialize it once in canonical creation,
 repair exact legacy signatures conservatively and share authoritative readers.
-Actual source: only genericL10/L15bows exist; factory starter lives only in
+Baseline source before P08a05a: only genericL10/L15bows existed; factory starter lives only in
 player.equipment, stats/equip actions use inventory.equipped and combat/Skills
 weapon gating reads that unsynchronized legacy array. P08a05a actual loader/acquisition runtime RED is recorded below; ordinary creation/
 conflicting-reader browser behavior remains source-risk pending its later child.
@@ -34,7 +34,7 @@ localized names and appended normal trash-act1weight100 monsterLevel1–10 row.
 Four content files+one test. Preserve generic bases/old TC rows/other tables;
 no schema/code/UI/creation/migration/readers edits in this child. Seed167
 predictions training attack15 at1/10, amu-brass at11; seed6L1no items remain
-unexecuted hypotheses. No global RNG/TC/noDrop mocks. Security check PASS.
+baseline hypotheses before execution below. No global RNG/TC/noDrop mocks. Security check PASS.
 Root/design/producer plan ready; reviewed genuine RED precedes source changes.
 
 Evidence raw root (root owns and removes after all consumers finish):
@@ -76,3 +76,54 @@ Root/producer/QA independently APPROVE / ADEQUATE frozen tests and genuine
 actual acquisition RED before source edits. No test change required.
 Design/producer plan ready; no bounded acquisition gap identified. Full balance,
 creation/save/reader/browser and BUG041 authority acceptance remain open.
+
+## P08a05a bounded content source and GREEN
+
+Frozen tests/docs checkpoint9809698. Exactly four source JSON files changed:
+new training base appended, one actual trash-act1pick appended, one name per
+locale. No old base/TCrow/field/order/other table/locale changed, independently
+verified by producer/QA semantic baseline comparisons. No schema/runtime/icon/
+class/create/save/reader change. Frozen test SHA unchanged. First GREEN211/3
+(10new+195loader+6catalog),0skip,exit0,runner2.62s/wall3.92s. All later
+attack15/computeStats15, literal en/zh, actual existing asset, full A/B/A with
+normalized IDs and input/pools/authored-content immutability assertions execute
+and pass; no failed source attempt or test oracle change. Root/producer/QA
+source/focused APPROVE / ADEQUATE. Full balance/creation/authority remain open.
+
+Source SHA256:
+
+- src/data/items/bases.json: `0c1691b0ee06c75164d323acc91ae2db7a98620dccbf27f963def48336c4bf46`.
+- src/data/loot/treasure-classes.json: `227b40353263e7adcc9048c11bbebda578d987eb1cf32b6872391745e8be0f30`.
+- src/i18n/locales/en/items.json: `c207b8e64566f2748ae8868475a77aa844037175445832968be2289eb5b2238a`.
+- src/i18n/locales/zh-CN/items.json: `275b899d513fe60e187adaa9019e869c0a418bd0ebf227e81ec47102810a069e`.
+
+## P08a05a final combined validation
+
+All four source hashes and frozen test hash remain unchanged. All checks
+exit0; no unit failures/skips: focused211/3,related989/67,full2040/129,
+coverage2040/129. T/L/purity51/build pass. Related27.68s/full26.66s runner
+exceed5/15s budgets; no performance acceptance. Build9.24s retains large chunk,
+2.57MB nonprecached manifest and stale Browserslist-data warnings;
+756precache entries37328.18KiB. Existing React unit-test warnings remain.
+Unchanged80%enginecoverage gate passes:60files,7993/8478statement locations
+(reporter94.27%),1836/2054branch arms(89.38%),291/310functions(93.87%).
+Coverage runner33.51s/wall36.994s. Coverage excludes these JSON/data/UI modules and is not proof of their schema/
+acquisition behavior; actual loader/award/schema tests establish that boundary.
+No new engine executable source locations in this child. No browser, pacing,
+power-balance, creation/save/reader or full BUG041/C/G acceptance.
+
+Exact commands, real wall seconds and log SHA256:
+
+- amazon-content-green: `npx vitest run --project ui src/data/__tests__/amazon-starter-content.test.ts src/data/__tests__/item-catalog-integrity.test.ts src/data/loader.test.ts --reporter=verbose`; exit0, wall3.92s; `03f8b6e14282cae06b81297ccddf9cd98d99d64b81d4a4024f5ca83e720e13fd`.
+- amazon-content-related: `npm run test:related -- src/data/items/bases.json src/data/loot/treasure-classes.json src/i18n/locales/en/items.json src/i18n/locales/zh-CN/items.json`; exit0, wall29.142s; `052a2d357a7f40ed0456f66ea054a1270a62d0f6d936716c4fb35fe976d4fe48`.
+- amazon-content-full: `npm test`; exit0, wall28.248s; `5c0f9a01af8c5cb7fd55f374f041319531b3374bfa77c7046f6006285090f433`.
+- amazon-content-typecheck: `npm run typecheck`; exit0, wall9.466s; `53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47`.
+- amazon-content-lint: `npm run lint`; exit0, wall38.699s; `64ef18bd16f812a048e5d016a57900763eaa6c02c2e7a32bb2a3cbbdaed0531f`.
+- amazon-content-build: `npm run build`; exit0, wall14.944s; `407e6e3c1e9f3765adcedc6a992a36123a94dc97d07bbbabeb9dc4ab7709a1a6`.
+- amazon-content-coverage: `npm run test:cov -- --coverage.reportsDirectory=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-amazon-content-aqh7rgjo/coverage`; exit0, wall36.994s; `7b55b9cb3c60a8e6dd4d9740c225898b426f60e57112412b6c423fb860a86183`.
+
+coverage-final.json SHA256: `80762b38be71100b5a4f6e28108b9e67983c9acaaf09554148a952c3c29cdd11`.
+Root/producer/QA final APPROVE / ADEQUATE. Producer independently checked all
+seven final result/log pairs, source/test hashes and coverage counters; QA
+independently approved final evidence. All raw consumers finished and released
+cleanup. Broader authority defect and C/G checkpoints remain open.

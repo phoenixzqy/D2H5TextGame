@@ -146,6 +146,14 @@
         "weight": 40,
         "minLevel": 9,
         "maxLevel": 14
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/weapon-bow-training",
+        "rarity": "normal",
+        "weight": 100,
+        "minLevel": 1,
+        "maxLevel": 10
       }
     ]
   },
