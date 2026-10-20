@@ -21,6 +21,78 @@ import {
   registeredSkillFromJson
 } from './dataCatalog';
 
+describe('P08a04b authored player Frost Nova secondary Freeze', () => {
+  beforeEach(() => { resetRegistry(); loadDefaultSkills(); });
+  afterEach(() => { resetRegistry(); loadDefaultSkills(); });
+
+  function frostRow() {
+    const row = PLAYABLE_CLASS_SKILL_DATA.sorceress.find(skill => skill.id === 'skills-sorceress-frost-nova');
+    if (!row) throw new Error('Actual player Frost Nova is missing');
+    return row;
+  }
+
+  it('opts in only actual player Frost Nova with the reviewed 10 percent chance', () => {
+    const raw = sorceressSkills.find(skill => skill.id === 'skills-sorceress-frost-nova');
+    const validate = new Ajv2020({ strict: true }).compile(skillSchema);
+    expect(validate(raw), JSON.stringify(validate.errors)).toBe(true);
+    expect(raw).toMatchObject({ additionalStatusEffects: { freeze: { chance: 0.1 } } });
+    expect(Object.values(PLAYABLE_CLASS_SKILL_DATA).flat()
+      .filter(row => row.additionalStatusEffects !== undefined).map(row => row.id))
+      .toEqual(['skills-sorceress-frost-nova']);
+  });
+
+  it('registers one damage effect and the complete ordered list through both actual identities', () => {
+    const before = structuredClone(frostRow());
+    expect(getSkill('skills-sorceress-frost-nova')).toBe(getSkill('sorceress.frost_nova'));
+    expect(getSkill('sorceress.frost_nova')).toEqual({
+      id: 'sorceress.frost_nova', archetype: 'sorceress', trigger: 'active',
+      target: 'all-enemies', cooldown: 3, manaCost: 20, minLevel: 6,
+      effects: [{ kind: 'damage', damageType: 'cold', base: [25, 35], perRank: [3, 3],
+        tags: ['cold', 'chill'], applyStatuses: [{ id: 'chill' }, { id: 'freeze', chance: 0.1 }] }]
+    });
+    expect(registeredSkillFromJson(frostRow())).toEqual(getSkill('sorceress.frost_nova'));
+    expect(frostRow()).toEqual(before);
+  });
+
+  it('keeps opt-out damage in the exact old scalar or no-status shape', () => {
+    const { additionalStatusEffects: _secondary, ...legacy } = frostRow();
+    const { appliesStatus: _primary, ...plain } = legacy;
+    const base = { kind: 'damage', damageType: 'cold', base: [25, 35], perRank: [3, 3], tags: ['cold', 'chill'] };
+    expect(registeredSkillFromJson(legacy).effects).toEqual([{ ...base, applyStatus: { id: 'chill' } }]);
+    expect(registeredSkillFromJson(plain).effects).toEqual([base]);
+  });
+
+  it('forwards explicit zeros and optional fields without enabling unconfigured tails', () => {
+    const fixture = { ...frostRow(), id: 'skills-fixture-secondary-fields',
+      statusEffect: { chance: 0, stacksOnApply: 2, dotPctOfDamage: 0 },
+      additionalStatusEffects: { freeze: { chance: 1, stacksOnApply: 3, dotPctOfDamage: 0.25 } }
+    };
+    const before = structuredClone(fixture);
+    expect(registeredSkillFromJson(fixture).effects).toEqual([
+      { kind: 'damage', damageType: 'cold', base: [25, 35], perRank: [3, 3], tags: ['cold', 'chill'],
+        applyStatuses: [
+          { id: 'chill', chance: 0, stacksOnApply: 2, dotPctOfDamage: 0 },
+          { id: 'freeze', chance: 1, stacksOnApply: 3, dotPctOfDamage: 0.25 }
+        ] }
+    ]);
+    expect(fixture).toEqual(before);
+    expect(getSkill('amazon.plague_javelin')?.effects).toEqual([
+      { kind: 'damage', damageType: 'poison', base: [30, 50], perRank: [3, 3], tags: ['poison'],
+        applyStatus: { id: 'poison', stacksOnApply: 3, dotPctOfDamage: 0.05 } }
+    ]);
+    expect(getSkill('sorceress.fire_bolt')?.effects).toEqual([
+      { kind: 'damage', damageType: 'fire', base: [30, 45], perRank: [4, 4], tags: ['fire', 'burn'],
+        applyStatus: { id: 'burn', dotPctOfDamage: 0.1 } }
+    ]);
+    expect(getSkill('necromancer.amplify_damage')?.effects).toEqual([
+      { kind: 'debuff', statusId: 'amplify-damage', durationMs: 3000, physicalResistReductionPct: 50 }
+    ]);
+    expect(listSkills().filter(id => getSkill(id)?.effects.some(effect =>
+      effect.kind === 'damage' && effect.applyStatuses !== undefined)))
+      .toEqual(['sorceress.frost_nova']);
+  });
+});
+
 describe('P07a01b authored trigger metadata (not passive runtime behavior)', () => {
   beforeEach(() => { resetRegistry(); loadDefaultSkills(); });
   afterEach(() => { resetRegistry(); loadDefaultSkills(); });

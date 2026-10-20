@@ -1,6 +1,6 @@
 # BUG-040 — Player Frost Nova drops secondary Freeze
 
-Status: source-confirmed; genuine runtime reproduction pending before fix.
+Status: genuine actual-production-data runtime RED reproduced; behavior fix pending.
 Severity: Medium; advertised crowd control never reaches production engine.
 Owner: engine-dev/content-designer; independent producer/QA review.
 Card:P08a04, bounded player Frost Nova secondary status only.
@@ -155,3 +155,60 @@ combined APPROVE / ADEQUATE. All raw consumers finished before root removed
 and verified absence of the exact A scratch, task-owned dist and local .vite.
 Dependencies/shared caches/source/history preserved. No task processes remain.
 A representation is accepted; BUG040 remains open for behavior B.
+
+
+## P08a04b actual authored/runtime RED before behavior edits
+
+Input ea1d4c3 (accepted representation A). Only two test files changed; actual
+Sorceress JSON/dataCatalog construction/combat and A schema/tests are unchanged.
+Command: npx vitest run --project engine src/engine/combat/frost-nova.test.ts
+src/engine/skills/registry.test.ts --reporter=verbose. Final reviewed RED:
+22failed/71passed/93total,0skips,runner1.69s/wall3.042s,exit1.
+Typecheck0/wall9.951s; scoped test lint0/wall6.257s.
+
+The real Frost row is validated against the accepted strict schema before each
+actual engine case, then loaded unchanged through default production registry,
+never replaced through registerSkill. Six rank1/20 ×trash/boss/chapter cases
+retain literal canonical action1300ms,33/90cold and20mana/zeroMP controls before
+failing exactly on missing secondary Freeze after Chill. Other failures cover
+missing actual10% metadata/list, downstream failed-proc RNG transport, missing
+Freeze at real1000/500ms expiry cases, ordered AoE independent draws, lethal
+status-before-death, A/B/A and general plural primitive handling. No RNG mock.
+
+32 new tests comprise four registry and28engine cases. Scalar/no-status opt-out
+controls, natural seed4 miss-before-second-target, mana19/level5, inside/exact
+CD controls, actual Fire Bolt/Plague Javelin/Amplify controls pass. Synthetic
+ordered-chance0/1/stack/DoT and scalar-vs-one-entry-list probes are labeled and
+never replace actual Frost. Main real input/JSON/registry snapshots are compared
+before/after first execution; repeat/normal-recorded parity is additionally
+asserted in intended GREEN. No ordinary-earned/browser/fullskills acceptance.
+
+Initial run had the same22/71runtime result, but TSC/lint caught a test-only
+incorrect exported result type name, explicit undefined optionals, wrong
+listSkills return assumption and a numeric test-name interpolation. Corrected
+using actual existing signatures, omitted-field construction and String(), no
+source change/suppression/oracle weakening. A later instrumentation-only test
+refinement validates actual JSON before every registry load and checks first
+execution immutability; final22/71 remains unchanged with clean TSC/lint.
+
+Frozen SHA256:
+
+- engine test: `0758b395c67a47e5959760933c31047c9caecccc9ddc20d96c8f85920619c578`
+- registry test: `b0ccd69d511820c395947c35d56e6c25752ac260491b710bee3750a8b8600b36`
+- unchanged A loader tests: `fb9dfc5a63d4f782835cebd307f7c2fd752da6c494927c84dd1fdcb53c32923e`
+- unchanged combat: `e5fdfc6134f58c8e97665ea446cfd06b782055187b814e00d95f1c1ebcc692c1`
+- unchanged adapter: `2372be32736f22127edf43065c5afc020cdcaff930daddac2108040a7982f8b5`
+- unchanged Sorceress JSON: `9c633b4a752cf3c42a914a54289c0e4a77b4d6cbffe292728c5f761f4a0c9e16`
+
+Root raw directory:
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frost-behavior-jssq614n
+Final labels frost-b-red-reviewed, frost-b-red-reviewed-typecheck and
+frost-b-red-reviewed-lint. Initial attempts retained separately for reviewers.
+Reviewed RED log SHA256:
+`fe5f47644a99e1398c90a7ea69828fb7b0fbbe01c84994bfa458da2b767beea5`.
+Independent producer/QA RED review precedes any behavior source edits.
+
+Root/producer/QA independently APPROVE / ADEQUATE frozen B tests and genuine
+actual runtime RED before source edits. QA classified22failures as3registry,
+17actual Frost combat and2explicit synthetic primitive probes;9combat controls
+pass. No test change requested. Later assertions still require real GREEN.
