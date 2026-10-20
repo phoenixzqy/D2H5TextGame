@@ -1853,3 +1853,42 @@ holds hashverifiedrunner, independently ready P02b03 plan and draft codec tests;
 no new test/execution yet. P02b03 versionedreport/preimportprovenance/repetitions/
 CLI then separately reviewed screening remain active. Den/Andariel/campaign/
 pacing/finalbalance/C0–C4/G0–G7/fullv1 unaccepted. No push/PR/merge/deployment.
+
+
+P02b03 accepted **ecd86ad** after independent plan/frozenRED/source/CLI/final
+producer APPROVE and QA APPROVE/ADEQUATE. Additive versioned fresh-earned reports,
+conservative Map/undefined/special-number value codec, explicit attempted/
+abandoned/reward/domain/full projections, original-ID semantic boundary,
+seven-field preimport/perattempt/final provenance and external exclusive-new
+sim:earned CLI are complete. All11accepted v1/parser/adapter hashes unchanged;
+no game/data/config/dependency/lockfile edits. Initial codec26pass2setupfail and
+approved rowwrapping retained; dense-arrayRED28pass4genuinefail→32pass. First
+comparator67+32codec99passes masked broad projections; independently frozen
+isolationRED corrected only emptyW1reward setup to actualW2, then68pass8genuine
+assertionfail→76comparatorpass. All original assertions/failures retained;
+missingmoduleREDs0assertions/dynamicdriverRED1failedtest beforeassertions.
+Synthetic orchestration controls never certify gameplay. Finalrelated128/4files
+16.646s,U3151actualpass/157files0otherstatuses54.821s,T21.112s,L57.571s(purity57
+engine testfiles),guardedB9.271s/fourcleanchunks all0. Unchanged5srelated/15sfull
+budgets exceeded; concurrentU/T/L and existing buildwarnings retained.
+Default originaltiny clock1792497600000/seed1/prep1 executes twice, both lose
+DenW2/no clear. Battle/abandoned/semanticrewards equal; rawrewards/domain/full
+unequal. Independent full diff171=169itemIDoccurrences9awardpairs+repetition+
+wallSeconds; sameRNGprefixes/sequence+9 matches unreset process-global allocator.
+Actual56.208logical/87.168UIhint seconds exclude abandonedW2. Custom20point
+FireBolt request retains native partialspend1 thenno-points, nofarms/target and
+unexercisedcoverage; bothattempts emitted. Five intended negativeCLI failures
+preserve sentinel and leave invalid/inrepo/symlinkalias/relative outputs absent.
+[Evidence](evidence/p02b03-earned-reports.md) packet42778c239407d06e08ac9bee41548cbe787e0977cfacba6d5e5eaf31413f6426
+indexes145regularrecords32commands26reports9sources; archivee83be79e6e22168c3664c38e2649d530b1481ed3424fbc943c45abb27dde7102
+independently fully audited. Final approval covers bounded reporting only.
+All consumers released and commands completed before exactRAW79qdh149/dist/
+.vite cleanup; absence verified. Testalias unlinked without following target;
+no processkilled, installedtools preserved, originalmainclean/rootclaimcontinues.
+Next root-owned source-onlyRAW=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-screen-vacx7uv4
+holds hashverifiedrunner, cleanuprecord and draftP02b04plan; no screen executed.
+Next separately reviewed same40 pair: affordable Frost6/Fire1 orFrost5/Fire1/
+Warmth1, historical seed2223645302,2repetitions each, unchanged30sreportcap;
+source arithmetic is conditional/unmeasured, not injected state or winproof.
+Den/Andariel/campaign/pacing/finalbalance/C0–C4/G0–G7/fullv1 remainopen.
+No push/PR/merge/deployment.
