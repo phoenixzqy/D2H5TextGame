@@ -1,6 +1,6 @@
 {
   "task": "P02b00/P02b01",
-  "status": "accepted-scoped; cleanup pending",
+  "status": "accepted-scoped",
   "inputHead": "1c55248935d1ae4b94c7359fe44581950f9279fa",
   "scope": "Post-MR source feasibility; additive fresh-earned v2 parser and fingerprint only",
   "notAcceptance": [
@@ -859,19 +859,38 @@
     "No src/config/package/v1 implementation edit, acquisition action execution, allocator reset, persistence hook, dependency, push, PR, merge or deployment."
   ],
   "cleanup": {
-    "state": "pending reviewer release",
+    "state": "complete; absence verified",
     "owner": "root",
+    "consumers": "producer/QA released all RAW/archive/source/build consumers before deletion; design owns none",
+    "processes": "all root commands completed; no process killed",
     "paths": [
-      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-measurement-0gjegt_f",
-      "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/dist",
-      "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/.vite"
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-measurement-0gjegt_f",
+        "existed": true,
+        "removedOrAlreadyAbsent": true,
+        "absenceVerified": true
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/dist",
+        "existed": true,
+        "removedOrAlreadyAbsent": true,
+        "absenceVerified": true
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/.vite",
+        "existed": true,
+        "removedOrAlreadyAbsent": true,
+        "absenceVerified": true
+      }
     ],
-    "preserve": [
+    "preserved": [
       "installed node_modules",
+      "shared caches/tools",
       "source/history",
       "durable packet/archive",
       "overall claimed worktree"
-    ]
+    ],
+    "nextTaskRaw": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-adapter-jghowem4"
   },
   "finalReview": {
     "reviewedPacketSha256": "56247b7a392c4c9f972f8a74b7a6de9aefa265f7c91e27f354181ec663ef43b7",
@@ -879,5 +898,6 @@
     "qa": "P02B01-QA-OUTCOME APPROVE / ADEQUATE; same complete audit, literal oracle/approved diff verified; all consumers released",
     "narrativeCorrection": "QA advisory accepted: purity guard scanned57 engine test files; no source/test/archive change",
     "scope": "P02b00 source-only and P02b01 parser/fingerprint; full v1 remains active"
-  }
+  },
+  "featureCommit": "c7df807"
 }
