@@ -32,7 +32,7 @@ import {
   statusActiveAt
 } from './status';
 import { CHILL_DEFINITION } from './chill-definition';
-import { comboMultiplier } from './combo';
+import { comboMultiplier, shouldShatter } from './combo';
 import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
 import {
   createManaRecoveryIntegral, exportManaRecoveryCarry, integrateManaRecoveryBetween, type ManaRecoveryIntegral
@@ -368,20 +368,24 @@ function applyDamageToUnit(
   const defender = state.units.get(defenderId);
   if (!attacker || !defender || !alive(defender)) return;
 
-  const input = buildDamageInput(attacker, activeStatusView(defender, state.simClockMs), effect, skillLevel);
+  const activeDefender = activeStatusView(defender, state.simClockMs);
+  const input = buildDamageInput(attacker, activeDefender, effect, skillLevel);
   const outcome = resolveDamage(input, state.rng);
+  const amount = outcome.hit && outcome.final > 0 && shouldShatter(activeDefender, effect.damageType)
+    ? Math.max(outcome.final, defender.life)
+    : outcome.final;
   emit(state, {
     kind: 'damage',
     source: attackerId,
     target: defenderId,
     damageType: effect.damageType,
-    amount: outcome.final,
+    amount,
     crit: outcome.crit,
     dodged: outcome.dodged
   });
 
   if (outcome.dodged) return;
-  const newLife = Math.max(0, defender.life - outcome.final);
+  const newLife = Math.max(0, defender.life - amount);
   state.units.set(defenderId, { ...defender, life: newLife });
 
   const statuses = effect.applyStatuses ?? (effect.applyStatus ? [effect.applyStatus] : []);

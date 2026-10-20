@@ -1,0 +1,750 @@
+{
+  "checkpoint": "P08a06 Shatter execution",
+  "sourceParent": "179748c2df73ae2154b65271d9300c021bb75386",
+  "scope": "Current authored Freeze\u2192positive direct physical hit execution; no campaign/earned clear/balance/full-v1 acceptance",
+  "sourceHashes": {
+    "src/engine/combat/combat.ts": "cbf1cbee0bb566bae986e8dc63422f75f0040a7cd793c4820a1e6396c6060547",
+    "src/engine/combat/shatter.test.ts": "e88edaa0941322d50b7d0162adc466723ba9334be9e3ca09e28628a51405bcc6",
+    "src/engine/combat/combo.ts": "4e129a14f4d67d16b1b105b1aedeb30f49b811f816d435d90cec60f4be710145",
+    "docs/plans/decisions/D04-shatter-v1.md": "09db948599d6c3ce3cc9d1c0a683bacf11ff46c251eba34bff9c072d7ad5c46c",
+    "production/bugs/BUG-054-shatter-execute.md": "1698b00453bcd0f475995ae353d6497c76601c8fc22496a12ef170867403e063",
+    "docs/plans/evidence/p08a06-shatter-execute.md": "bb8a8ec640096624af385840146f57328bd2e2efb3fc8f80c039581d77a3e456"
+  },
+  "archive": {
+    "path": "raw.tar.gz",
+    "byteLength": 564173,
+    "sha256": "ec63441513af88ef9e1c726ab6085e100733e030739c853b62df829bd424ecff"
+  },
+  "records": [
+    {
+      "path": "bounded_runner.py",
+      "byteLength": 7011,
+      "sha256": "63a6ab8312f400fe16788ce68b1882b22fa5a188cb1d868872640022bf12c3ab"
+    },
+    {
+      "path": "build-final.log",
+      "byteLength": 1763,
+      "sha256": "3266ea1c104b140721e6b6c4be952461e59274adc0e736b5009cfc4098598bd6"
+    },
+    {
+      "path": "build-final.meta.json",
+      "byteLength": 473,
+      "sha256": "a689fb463f4e5d18b5f3a10c85dbb999bd9a2b62794fc918f37bc1429fd28324"
+    },
+    {
+      "path": "build-final.process.json",
+      "byteLength": 105,
+      "sha256": "7563379ca1d145a7294edde82bc698b885379644ec48ab516c670ec8ff4160e8"
+    },
+    {
+      "path": "build-final.processes.json",
+      "byteLength": 1149,
+      "sha256": "97099283e3bdf56e7ec5f5622b1efb4e413f958fca5f3ed966913ae9dc9f78ff"
+    },
+    {
+      "path": "combat-before.ts",
+      "byteLength": 44540,
+      "sha256": "f9aed90b5b9e68fcf235d7064b23048c5bfc8fae400ca217da6fcad260988f9b"
+    },
+    {
+      "path": "combat.after.ts",
+      "byteLength": 44742,
+      "sha256": "cbf1cbee0bb566bae986e8dc63422f75f0040a7cd793c4820a1e6396c6060547"
+    },
+    {
+      "path": "contract.frozen.md",
+      "byteLength": 3236,
+      "sha256": "09db948599d6c3ce3cc9d1c0a683bacf11ff46c251eba34bff9c072d7ad5c46c"
+    },
+    {
+      "path": "coverage/base.css",
+      "byteLength": 5394,
+      "sha256": "3f876e51f0a46864ffa7665b4b7a1f5fb5f6f37fb6a28f014e2b12d82962c852"
+    },
+    {
+      "path": "coverage/block-navigation.js",
+      "byteLength": 2655,
+      "sha256": "cd8db34b1fbeb973354a93f8b4133c7c7eab34cdda9429a0434be91384783b7e"
+    },
+    {
+      "path": "coverage/coverage-final.json",
+      "byteLength": 1203410,
+      "sha256": "2099102f4299cd4af4471dc075a3667399927575c88b3fb999c3a1998f149109"
+    },
+    {
+      "path": "coverage/engine/ai/index.html",
+      "byteLength": 5111,
+      "sha256": "d3096c1e7aa775d62187c4f587786340669e10bdc0ac88dd038eef9222e2fc87"
+    },
+    {
+      "path": "coverage/engine/ai/index.ts.html",
+      "byteLength": 4040,
+      "sha256": "08239a3dbeda8bfcd09c382cb09e6167a34378db1244ade3de6e0a19a4a80af5"
+    },
+    {
+      "path": "coverage/engine/ai/policy.ts.html",
+      "byteLength": 22927,
+      "sha256": "df33094db99c3bed94aef581d7b19fc20757825adb3be8e400b93c92f7829404"
+    },
+    {
+      "path": "coverage/engine/combat/amplify-damage-definition.ts.html",
+      "byteLength": 7430,
+      "sha256": "91a303087c38e8b2784415ed25daea279152be67954e2e8bd00f6f8e8d873c37"
+    },
+    {
+      "path": "coverage/engine/combat/chill-definition.ts.html",
+      "byteLength": 5764,
+      "sha256": "8a22914ed09ebc457b827b3c6011e7145c8d0636ab86a9d42f3d128eb6e9794a"
+    },
+    {
+      "path": "coverage/engine/combat/combat.ts.html",
+      "byteLength": 161786,
+      "sha256": "8a8ce0da6e094b07b58c07d18096638a2c25fede4eace1fa1c5032f20e2ee8c6"
+    },
+    {
+      "path": "coverage/engine/combat/combo.ts.html",
+      "byteLength": 14677,
+      "sha256": "5e6dc04e88c3037e2b1e6479ebf32ca20e223c2e7e3ca3cc32d26709a8eb1ceb"
+    },
+    {
+      "path": "coverage/engine/combat/damage.ts.html",
+      "byteLength": 24084,
+      "sha256": "145fe31dba29b9cc19ca5d619ab30ba098513d6c73063f4f5456d5d02c53b660"
+    },
+    {
+      "path": "coverage/engine/combat/grid.ts.html",
+      "byteLength": 24910,
+      "sha256": "bdc4db8dfa30137ffd7e56fbb6372f171e47441f6c8baa230348c7917b7b19a0"
+    },
+    {
+      "path": "coverage/engine/combat/index.html",
+      "byteLength": 14240,
+      "sha256": "24246e7c99047c9078679b1deb49c4e30c933775d1829ead47e678e751de31b6"
+    },
+    {
+      "path": "coverage/engine/combat/index.ts.html",
+      "byteLength": 4500,
+      "sha256": "e5f9ec9748838e08f3e142288f0ac14d0383362138ec26adae4921bd558b892b"
+    },
+    {
+      "path": "coverage/engine/combat/mana-recovery.ts.html",
+      "byteLength": 20898,
+      "sha256": "cc6b6752d5b3fb415d3be7d932f28db51d3d96cf346232ab830948f48a6b8931"
+    },
+    {
+      "path": "coverage/engine/combat/mitigation-definition.ts.html",
+      "byteLength": 7508,
+      "sha256": "2822d8bbf49b7d78568d19e34838334db4c528baabf4b4ffb4920a8a7570182f"
+    },
+    {
+      "path": "coverage/engine/combat/monster-factory.ts.html",
+      "byteLength": 36609,
+      "sha256": "86431c8dc45e72b27aa6fa78f1a66e66bf929ed52c7cfbf240637a3bb66610c8"
+    },
+    {
+      "path": "coverage/engine/combat/orbs.ts.html",
+      "byteLength": 10054,
+      "sha256": "fb1cd4ad8b86933c997944f71aa624c92a16ce4866fffcafc624a36480fe1c77"
+    },
+    {
+      "path": "coverage/engine/combat/recovery-definition.ts.html",
+      "byteLength": 6117,
+      "sha256": "70880a9590f6b6df648b984002c14c8ee9ab52dc03b9d41da817139e2a24eac5"
+    },
+    {
+      "path": "coverage/engine/combat/status.ts.html",
+      "byteLength": 50035,
+      "sha256": "b0547704685c1ff3a98e0a4b41bd05c116ef13e3373f1252a0b4b1eb747cec56"
+    },
+    {
+      "path": "coverage/engine/combat/sub-area-run.ts.html",
+      "byteLength": 88547,
+      "sha256": "25a7350bf3540181d1defc72b5387a6cb5e92200583fa9e9948db51308b29283"
+    },
+    {
+      "path": "coverage/engine/combat/types.ts.html",
+      "byteLength": 27106,
+      "sha256": "66f58c6bfd4056b5ad7a331eda99242a12b8f1e5d1a90d6608933e5d2c74c17c"
+    },
+    {
+      "path": "coverage/engine/cooldown.ts.html",
+      "byteLength": 15687,
+      "sha256": "2cff6e39d701f1f8adf86b6b8bd49e4a3437edb9db1e198f340143cb62896429"
+    },
+    {
+      "path": "coverage/engine/gacha/index.html",
+      "byteLength": 4456,
+      "sha256": "2587683024c590f26273a57e14f1886fbff73853e44bf75a49b1c9efee5ad7bb"
+    },
+    {
+      "path": "coverage/engine/gacha/roller.ts.html",
+      "byteLength": 13775,
+      "sha256": "9eb1873f32429b8e24f7871d6097808e07b311c27f7a6cc0794a64735a89e841"
+    },
+    {
+      "path": "coverage/engine/idle/index.html",
+      "byteLength": 6551,
+      "sha256": "e5b069349cd9e3e3df75c2a29a87f237865ee8414bd60ffbfedd5fde8acca963"
+    },
+    {
+      "path": "coverage/engine/idle/index.ts.html",
+      "byteLength": 3727,
+      "sha256": "89ad89e067d2617f9cb62057bfd492fcbd97dd8e5345abaa5570c691142b28f4"
+    },
+    {
+      "path": "coverage/engine/idle/offline-bonus.ts.html",
+      "byteLength": 13181,
+      "sha256": "fbc6b37c40aac8d0cd2898b3e08e46d4198bea0d5e5ec483b4a06c10ae80b395"
+    },
+    {
+      "path": "coverage/engine/idle/online-tick.ts.html",
+      "byteLength": 27001,
+      "sha256": "683ee26d76de1bc254308bb2d1f034dce080773b17161a1b634780b77d4f4302"
+    },
+    {
+      "path": "coverage/engine/idle/persisted-bonus.ts.html",
+      "byteLength": 13426,
+      "sha256": "d4b352eb69793f041725554ad6100d6dbfc01389d0841441b99ec191c59896d3"
+    },
+    {
+      "path": "coverage/engine/index.html",
+      "byteLength": 6435,
+      "sha256": "ac66381301a00e980fbaa390bd781917a04616618cd04b978f571e1454ab7f8e"
+    },
+    {
+      "path": "coverage/engine/index.ts.html",
+      "byteLength": 6102,
+      "sha256": "442620fbd14bc2333878de5977b1a2ea614b4f920b0601eecb5f6d1925e47c8d"
+    },
+    {
+      "path": "coverage/engine/inventory/equipValidator.ts.html",
+      "byteLength": 16395,
+      "sha256": "432bd37ad1d19dc315e1d93c18994fe17e7be591527bbf6ed30ab086c7180c33"
+    },
+    {
+      "path": "coverage/engine/inventory/index.html",
+      "byteLength": 4495,
+      "sha256": "ce9642846b099e03caad092a77e758e1536638b5525f933cca3eb51387aba532"
+    },
+    {
+      "path": "coverage/engine/items/computeStats.ts.html",
+      "byteLength": 5289,
+      "sha256": "d77f2f06985524e1fa7c7f6e6c8389efff2ad5f3d45d8c237ccfc658b89f8f26"
+    },
+    {
+      "path": "coverage/engine/items/index.html",
+      "byteLength": 5168,
+      "sha256": "24211b709d0cd625dce0ca7bea373c412ed1eb972dc0f66d0652369c7899a553"
+    },
+    {
+      "path": "coverage/engine/items/statRolls.ts.html",
+      "byteLength": 14212,
+      "sha256": "d1ec13cb050084cacf91ded889ea37bb16684d2431f811359d81ac2d09965d50"
+    },
+    {
+      "path": "coverage/engine/loot/affix-roll.ts.html",
+      "byteLength": 24707,
+      "sha256": "fbc36670159fe4974861e4004057563a60af907546e77c52fdf2d75c84cb9147"
+    },
+    {
+      "path": "coverage/engine/loot/award.ts.html",
+      "byteLength": 20968,
+      "sha256": "d76dc451b25e920c17689ac067ee15a571461141c207375cab4a49b23d50d3c5"
+    },
+    {
+      "path": "coverage/engine/loot/drop-roller.ts.html",
+      "byteLength": 30565,
+      "sha256": "936357bcc5e94771c4d5c5269af69241e6cb2fd7ded0b4ee11a23b4f7550fdd1"
+    },
+    {
+      "path": "coverage/engine/loot/index.html",
+      "byteLength": 9246,
+      "sha256": "e47f4eb72f412181127d5207bc5033ffd957ee7497082d5ab3601d4394a7d0dd"
+    },
+    {
+      "path": "coverage/engine/loot/index.ts.html",
+      "byteLength": 4937,
+      "sha256": "8890bfd5ce401463cd80c4eaab1807d1ca1b881132375d5f3be09457020d4f24"
+    },
+    {
+      "path": "coverage/engine/loot/item-instance.ts.html",
+      "byteLength": 5245,
+      "sha256": "898c147c51fedc549856adec3b911d7d4cf0a2967ffb9f243a70deee3397882e"
+    },
+    {
+      "path": "coverage/engine/loot/orbs-and-currency.ts.html",
+      "byteLength": 15753,
+      "sha256": "6595b78e7882fd762a019d95a0af28405493e9d0c73bd6ba894246ff31e08130"
+    },
+    {
+      "path": "coverage/engine/loot/rollItem.ts.html",
+      "byteLength": 24379,
+      "sha256": "f07be5460d02be96113033ac65baab74f9238ed0d0dbad523b00176110626524"
+    },
+    {
+      "path": "coverage/engine/loot/runeword.ts.html",
+      "byteLength": 14872,
+      "sha256": "7116fb5ebed226dc3a89d6be08fc0291217400440d78cbfdd4bcd72bfa3dad25"
+    },
+    {
+      "path": "coverage/engine/map/generator.ts.html",
+      "byteLength": 15734,
+      "sha256": "41e42b5bc1cf52129f86d937bd8049481f689583d3d1a4115a74fb50759df394"
+    },
+    {
+      "path": "coverage/engine/map/index.html",
+      "byteLength": 5781,
+      "sha256": "5c244d05e2db2efc39ed405726e99a1c433d6183c313606a72a420cb8e8c38d0"
+    },
+    {
+      "path": "coverage/engine/map/index.ts.html",
+      "byteLength": 4225,
+      "sha256": "8ff86ff393d554f7c110f0d67b86f6395fbc7beef7e9c9f6e4db234beb57c61f"
+    },
+    {
+      "path": "coverage/engine/map/unlock.ts.html",
+      "byteLength": 14366,
+      "sha256": "e82269b0667e309bd9f051c7424bd77ca733b5404b5ac4bbff8dd8d8c7ecf0f7"
+    },
+    {
+      "path": "coverage/engine/progression/equipment-mods.ts.html",
+      "byteLength": 30390,
+      "sha256": "345d650c6a0eac6af390109edf6f7854d012c04e2f8ba1eda237c6a01ce20521"
+    },
+    {
+      "path": "coverage/engine/progression/equipped-stats.ts.html",
+      "byteLength": 6412,
+      "sha256": "234b6b7c3665f24348bb710711885e75ea1c320cacb6c90a483755878c5886a5"
+    },
+    {
+      "path": "coverage/engine/progression/index.html",
+      "byteLength": 9231,
+      "sha256": "08ab1c184af834d3415260e3cea9f33ef2b45996dc59bff55392d33fe85f4e14"
+    },
+    {
+      "path": "coverage/engine/progression/index.ts.html",
+      "byteLength": 4417,
+      "sha256": "6bcb5cc96d4294db577e3f12bb412b0e7d55dbe77cd41f3f8f921934e2eae58d"
+    },
+    {
+      "path": "coverage/engine/progression/merc-equipment-stats.ts.html",
+      "byteLength": 11324,
+      "sha256": "ba1fb5fb9b7d6da7aa86121a74a0fcffd936d779d6a3897c90d903e759bf0f28"
+    },
+    {
+      "path": "coverage/engine/progression/skill-tree.ts.html",
+      "byteLength": 19624,
+      "sha256": "265795f3e2d6f4bba00a388bc4794b3128c8c6ca450fbce484ad2b46093d1331"
+    },
+    {
+      "path": "coverage/engine/progression/stats.ts.html",
+      "byteLength": 19199,
+      "sha256": "c88dfa320a30b2b07f203523ecf47580b2e7a63caf80bc701801846e6365056a"
+    },
+    {
+      "path": "coverage/engine/progression/warmth.ts.html",
+      "byteLength": 10373,
+      "sha256": "eca128b4e17e45902a56a51819fd8723aa0bbfab08eaec14bff00714c8777a9d"
+    },
+    {
+      "path": "coverage/engine/progression/xp.ts.html",
+      "byteLength": 16520,
+      "sha256": "892fb7948cb6d590792589dc3798a54b869408275ec62fecec45098ab6abafd7"
+    },
+    {
+      "path": "coverage/engine/rng.ts.html",
+      "byteLength": 14422,
+      "sha256": "c7c05347051239ed8ee70a8c0d49255d9b9a4bf81edaecbac2a0866387b31eb3"
+    },
+    {
+      "path": "coverage/engine/save/index.html",
+      "byteLength": 7883,
+      "sha256": "b025957597e1ac48ff7a3bb04ee569f31927682be4e96a50e5f4dee6d90dac69"
+    },
+    {
+      "path": "coverage/engine/save/index.ts.html",
+      "byteLength": 3726,
+      "sha256": "9dc65ccebb741c790ecbf0c14fc8b77f12baaaba7ba6fec98590ce877fa39b46"
+    },
+    {
+      "path": "coverage/engine/save/legacyStarter.ts.html",
+      "byteLength": 12043,
+      "sha256": "4fc71474b2dd9c72e6d37b75bed4522306c6d7c5ee2922ef02afe72668633413"
+    },
+    {
+      "path": "coverage/engine/save/migrate.ts.html",
+      "byteLength": 8578,
+      "sha256": "e7321a246d21f299941496c7a3beed6b0dc016141183bb21c988efc943db29b4"
+    },
+    {
+      "path": "coverage/engine/save/restore.ts.html",
+      "byteLength": 7781,
+      "sha256": "140a8079382e283ccbf63b4a2702c7c56d52239aa3f8021157b48639a3009824"
+    },
+    {
+      "path": "coverage/engine/save/serialize.ts.html",
+      "byteLength": 10063,
+      "sha256": "7c73918d7d9a4c0702d48c30ef0b0ae71429fc3a8a4132fa68e6ce36fc510e8a"
+    },
+    {
+      "path": "coverage/engine/save/validate.ts.html",
+      "byteLength": 41049,
+      "sha256": "48ae8f6c9c5a2f3486b7e83eade483d73047beb4bf67988308ce965f9682f17b"
+    },
+    {
+      "path": "coverage/engine/skills/aliases.ts.html",
+      "byteLength": 33413,
+      "sha256": "14b400f6f73bce666d854947bbce28e7d6318464f96a3c0cab50f2b6acc5684b"
+    },
+    {
+      "path": "coverage/engine/skills/builders.ts.html",
+      "byteLength": 39874,
+      "sha256": "afdc7be4db06fd2b3a23cce501ba4c7560c0d8da9d4f3ed9cbbe683bce26c53d"
+    },
+    {
+      "path": "coverage/engine/skills/dataCatalog.ts.html",
+      "byteLength": 32051,
+      "sha256": "9aa4124c5cd3ee390011bdb66443901cc70419d1621d1210794320083d115ac2"
+    },
+    {
+      "path": "coverage/engine/skills/displayStats.ts.html",
+      "byteLength": 43263,
+      "sha256": "a0eacf6ea985397423a5e40b5014309b99259c4cfd82ab4b119eadf3a9b77cce"
+    },
+    {
+      "path": "coverage/engine/skills/eligibility.ts.html",
+      "byteLength": 14330,
+      "sha256": "9f1fb61d3a95c4534f57212b3d7b88fb55a4dfdc0944f9acc036682fb66300d3"
+    },
+    {
+      "path": "coverage/engine/skills/index.html",
+      "byteLength": 10651,
+      "sha256": "5ed7f727d35e151a47a834c51f5c0e17275d4a1259d8eac428ae23e5b7a84894"
+    },
+    {
+      "path": "coverage/engine/skills/index.ts.html",
+      "byteLength": 4403,
+      "sha256": "46d0454b7b8bf5ab475033d248f29c04a165ff4482663abef5a662a59d15ebcb"
+    },
+    {
+      "path": "coverage/engine/skills/minor-heal.ts.html",
+      "byteLength": 9139,
+      "sha256": "feb9f48126e6a7b609d445aa8d8af964160ad10a7e24f2428151b2f3c4deb29e"
+    },
+    {
+      "path": "coverage/engine/skills/registry.ts.html",
+      "byteLength": 14003,
+      "sha256": "44509d940579f65d2702b57e83a39db9de3c1954c0a084dfdc557e3e37a27ded"
+    },
+    {
+      "path": "coverage/engine/skills/scaling.ts.html",
+      "byteLength": 12814,
+      "sha256": "b543567bde09327daba501410b0a4ac8da32b99a352bca4e0a2137ae1e38c803"
+    },
+    {
+      "path": "coverage/engine/skills/summons.ts.html",
+      "byteLength": 39869,
+      "sha256": "a1e2634e6027ab2efc6bea89e515f9fc697916c74a5eb04bb1610272a7b65794"
+    },
+    {
+      "path": "coverage/engine/turn-order.ts.html",
+      "byteLength": 16009,
+      "sha256": "4b939aa2ab2ae3f5ee41e3e1a48983427ddeeffe3e5808a0c163d29ae399b859"
+    },
+    {
+      "path": "coverage/engine/types/index.html",
+      "byteLength": 5102,
+      "sha256": "0dc21def42dd0265381771a345f62176c939f29d9886b2343adacde3be542ff3"
+    },
+    {
+      "path": "coverage/engine/types/index.ts.html",
+      "byteLength": 6280,
+      "sha256": "268edde5bd3f73bce497b75eee08f6b7b147b466eab2c9999a048790ae967369"
+    },
+    {
+      "path": "coverage/engine/types/save.ts.html",
+      "byteLength": 53896,
+      "sha256": "e380557433158561369162bd6c7790d7d8851b46424e4448c460ef3be7e46306"
+    },
+    {
+      "path": "coverage/favicon.png",
+      "byteLength": 445,
+      "sha256": "5b0cfd52dc0bfbe544f4e1a9c77aa46b8629b0e0aad6c54f95eef457b86c2a89"
+    },
+    {
+      "path": "coverage/index.html",
+      "byteLength": 12865,
+      "sha256": "edacd758273d3d82f73ff9b5fd166a03bdcdc3a378f80e2e6074b51f8ed9ac61"
+    },
+    {
+      "path": "coverage/prettify.css",
+      "byteLength": 676,
+      "sha256": "ea3fe433f9450698ca8a230271688e7aeec12f99c8a7ef6c94379abb38f27823"
+    },
+    {
+      "path": "coverage/prettify.js",
+      "byteLength": 17590,
+      "sha256": "fa1b1e1b906ddcfa08b46f161c0f924f506e1a31b4f3e09b8caaa2463ef52c18"
+    },
+    {
+      "path": "coverage/sort-arrow-sprite.png",
+      "byteLength": 138,
+      "sha256": "42c895355f9838ede83fdfdca90127d8471aefed5ecf5342374f65ec7c3f10ab"
+    },
+    {
+      "path": "coverage/sorter.js",
+      "byteLength": 6731,
+      "sha256": "f8cc5d157379d844fd695ad567b6c29b3c1f0812964ddf6f95c26327e434bab5"
+    },
+    {
+      "path": "engine-green-report.json",
+      "byteLength": 365201,
+      "sha256": "dbd454d433eaa8a4b53e6ee536dda6dba03d5b2f55d39f3f8c95d9e8271e17fe"
+    },
+    {
+      "path": "engine-green.log",
+      "byteLength": 45945,
+      "sha256": "df52c52a1ab8d64769dd1d0e32d59f16bb338aebaf469e37736da22c231223ef"
+    },
+    {
+      "path": "engine-green.meta.json",
+      "byteLength": 665,
+      "sha256": "7999d6ec3ab7aad8c248d41d77f7cd6109eedc60be232a8fad7b199ea57cd20b"
+    },
+    {
+      "path": "engine-green.process.json",
+      "byteLength": 274,
+      "sha256": "1fa804952e035cafa842ed9a3d7a5a4ecb821cc5240ecea219d03edd1b8cf076"
+    },
+    {
+      "path": "engine-green.processes.json",
+      "byteLength": 25460,
+      "sha256": "2c648f4330a1c441e9867f308e7a7f4be62d52f5229fd60ddaac32bcabed3ce7"
+    },
+    {
+      "path": "environment.json",
+      "byteLength": 99,
+      "sha256": "ac2e1513be882891c759a4364c580423bfe3d5f0e8e7bd5e86d38f6c8fb591c0"
+    },
+    {
+      "path": "final-diff.patch",
+      "byteLength": 1760,
+      "sha256": "0388f76f968de0da6d38098a2bfb87ec96953e1d64efd2dbf88439b6595019e8"
+    },
+    {
+      "path": "final-source/docs/plans/decisions/D04-shatter-v1.md",
+      "byteLength": 3236,
+      "sha256": "09db948599d6c3ce3cc9d1c0a683bacf11ff46c251eba34bff9c072d7ad5c46c"
+    },
+    {
+      "path": "final-source/docs/plans/evidence/p08a06-shatter-execute.md",
+      "byteLength": 5399,
+      "sha256": "bb8a8ec640096624af385840146f57328bd2e2efb3fc8f80c039581d77a3e456"
+    },
+    {
+      "path": "final-source/production/bugs/BUG-054-shatter-execute.md",
+      "byteLength": 2795,
+      "sha256": "1698b00453bcd0f475995ae353d6497c76601c8fc22496a12ef170867403e063"
+    },
+    {
+      "path": "final-source/src/engine/combat/combat.ts",
+      "byteLength": 44742,
+      "sha256": "cbf1cbee0bb566bae986e8dc63422f75f0040a7cd793c4820a1e6396c6060547"
+    },
+    {
+      "path": "final-source/src/engine/combat/combo.ts",
+      "byteLength": 2636,
+      "sha256": "4e129a14f4d67d16b1b105b1aedeb30f49b811f816d435d90cec60f4be710145"
+    },
+    {
+      "path": "final-source/src/engine/combat/shatter.test.ts",
+      "byteLength": 15025,
+      "sha256": "e88edaa0941322d50b7d0162adc466723ba9334be9e3ca09e28628a51405bcc6"
+    },
+    {
+      "path": "final-validation.json",
+      "byteLength": 4989,
+      "sha256": "b7469fa4adb9d977eb92510de5c6146a50489015153739fce6ce1318a4a675d9"
+    },
+    {
+      "path": "focused-red-report.json",
+      "byteLength": 11136,
+      "sha256": "7192d165ebf14ca653f73627916a0e1f0f14db0d5362537135b7ec03d4161955"
+    },
+    {
+      "path": "focused-red.log",
+      "byteLength": 24721,
+      "sha256": "bac73e49d8cb261702f148c5ebfce72948aaa286de5b5ecb70e48e8df8f1905f"
+    },
+    {
+      "path": "focused-red.meta.json",
+      "byteLength": 704,
+      "sha256": "173052483f9781002e70aa17598b3e56636f60237816b3bcae57d6b737533c2d"
+    },
+    {
+      "path": "focused-red.process.json",
+      "byteLength": 310,
+      "sha256": "7a8390334d74153b90292aecd522adf823f94a97797ea272e9bd2e3309af3f0f"
+    },
+    {
+      "path": "focused-red.processes.json",
+      "byteLength": 6848,
+      "sha256": "082608adad9a8f474ff5b484b56f4a9275bd3874b591ae95e9f9e91cf6fce80a"
+    },
+    {
+      "path": "freeze.json",
+      "byteLength": 922,
+      "sha256": "a6e8a1ae151e32d4dd943ca4fe1c1158147d5a5820c2b460d14abf102a08b86b"
+    },
+    {
+      "path": "initial-source.json",
+      "byteLength": 998,
+      "sha256": "7f0aa69f419c192cfdfdc03da8fb6925bdf6732e7f1df30b67a8e35f8cf185db"
+    },
+    {
+      "path": "lint-final-rerun.log",
+      "byteLength": 196,
+      "sha256": "c59216337f3ed959d0cd09d2c27f4eff36fa18416ea4f04b7032e2dc4edc6304"
+    },
+    {
+      "path": "lint-final-rerun.meta.json",
+      "byteLength": 452,
+      "sha256": "d2d3d4364aa3983e67bb9268be2f98a5930d582c5232c7f14d51b43422adc7c3"
+    },
+    {
+      "path": "lint-final-rerun.process.json",
+      "byteLength": 86,
+      "sha256": "94d41449b127c472f52811885bdceb43ef34f6e7250492373a20081c9458845e"
+    },
+    {
+      "path": "lint-final-rerun.processes.json",
+      "byteLength": 534,
+      "sha256": "4f0989b20afb34911f8a175d2b65101687d3c91806e6d640f6f1915221b1563b"
+    },
+    {
+      "path": "lint-final.log",
+      "byteLength": 196,
+      "sha256": "c59216337f3ed959d0cd09d2c27f4eff36fa18416ea4f04b7032e2dc4edc6304"
+    },
+    {
+      "path": "lint-final.meta.json",
+      "byteLength": 912,
+      "sha256": "7b206dfedb28985117e9a4658693a41e93e4308f105be35cb5f7987f4e8f86d3"
+    },
+    {
+      "path": "lint-final.process.json",
+      "byteLength": 86,
+      "sha256": "ead57cd45f050a2d19fb30afe884185022bcaed5d0f30dd924effbc1c0e04285"
+    },
+    {
+      "path": "lint-final.processes.json",
+      "byteLength": 1004,
+      "sha256": "09e410ebff85c478e67b0e371e8b80196633370b59247ad6ea95d1aad92eac82"
+    },
+    {
+      "path": "metadata-correction-review.json",
+      "byteLength": 598,
+      "sha256": "afdf6779ca29563ad488b12b42a8c4db218b8c51d7cde42c088b67ff441ae76d"
+    },
+    {
+      "path": "no-freeze.after.json",
+      "byteLength": 18244,
+      "sha256": "80b2ab2ccbf17e0a14ba0e10fb0c677244abf837d7778f20e6c823403176f257"
+    },
+    {
+      "path": "no-freeze.before.json",
+      "byteLength": 18244,
+      "sha256": "80b2ab2ccbf17e0a14ba0e10fb0c677244abf837d7778f20e6c823403176f257"
+    },
+    {
+      "path": "ownership.json",
+      "byteLength": 475,
+      "sha256": "a5d249581cbf73ed989e54b8470a25b60d8a6af83ae397f1f0db3f8b2cdf0be2"
+    },
+    {
+      "path": "ownership.original.json",
+      "byteLength": 257,
+      "sha256": "a93062693e1cd5b714f9b097e1c33240fe078fb6700766808d1aa627a6357365"
+    },
+    {
+      "path": "plan.json",
+      "byteLength": 2305,
+      "sha256": "0365b39cd026aeafd246dacb246988d3c968122f05925fa7e409776d42cc4f93"
+    },
+    {
+      "path": "prearchive-process-check.json",
+      "byteLength": 52,
+      "sha256": "2e776f8fa661bbf3297d02634943581f3be84948c8a20267c0e830cfb0ab6e0c"
+    },
+    {
+      "path": "prior-checkpoint-cleanup.json",
+      "byteLength": 745,
+      "sha256": "36f2c335d304a45bf9c6bee3b157088707d8ffa654d26263bfd27252b4b4be4a"
+    },
+    {
+      "path": "shatter.draft-original.ts",
+      "byteLength": 14152,
+      "sha256": "4fedb4356d3871bef6948bf76ec179486325bc33602d4c3a5e6fb399fb197542"
+    },
+    {
+      "path": "shatter.frozen.ts",
+      "byteLength": 15025,
+      "sha256": "e88edaa0941322d50b7d0162adc466723ba9334be9e3ca09e28628a51405bcc6"
+    },
+    {
+      "path": "shatter.proposed.ts",
+      "byteLength": 14152,
+      "sha256": "4fedb4356d3871bef6948bf76ec179486325bc33602d4c3a5e6fb399fb197542"
+    },
+    {
+      "path": "source-reviews.json",
+      "byteLength": 1285,
+      "sha256": "6b00aa35363353b5a973da6aa20b4c32e63e0e48c52b857ebc0f3d0125c96508"
+    },
+    {
+      "path": "types-final.log",
+      "byteLength": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "path": "types-final.meta.json",
+      "byteLength": 456,
+      "sha256": "cda9aa02cd18fbdce6db52a8c573580a7e6579635e834e40b164ae5996b72824"
+    },
+    {
+      "path": "types-final.process.json",
+      "byteLength": 91,
+      "sha256": "a73898565ee228b358700a7a938dfd61483bfd9a912e6a20461b58f5fb158dc2"
+    },
+    {
+      "path": "types-final.processes.json",
+      "byteLength": 534,
+      "sha256": "ba0a2c369dfa2fe2931883faa62dd55ca8d2921f33f4745b7d58634f5eaf2f5c"
+    },
+    {
+      "path": "unit-cov-report.json",
+      "byteLength": 1085593,
+      "sha256": "a3dda76e309278ba602370dba8a298c79881be907172b6d60f4e3cf981211041"
+    },
+    {
+      "path": "unit-cov.log",
+      "byteLength": 99067,
+      "sha256": "eadf43211fae33e80109d5aebc6aa1f2782120ed5f36c31418229525bc81e1ee"
+    },
+    {
+      "path": "unit-cov.meta.json",
+      "byteLength": 766,
+      "sha256": "301608cfbef4e478914bba1ffe2574ad4b542a307583d809c65534995321c33c"
+    },
+    {
+      "path": "unit-cov.process.json",
+      "byteLength": 371,
+      "sha256": "e878ad14279863ff613ba9452b42606a61188bd93927d19c47a9a6b99535d4aa"
+    },
+    {
+      "path": "unit-cov.processes.json",
+      "byteLength": 93809,
+      "sha256": "6f929d1362901fd863fcdf82aeaca92150fcfab8e8041a83ec0f098f892c4960"
+    }
+  ]
+}
