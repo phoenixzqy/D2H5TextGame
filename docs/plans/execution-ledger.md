@@ -47,6 +47,9 @@ Current implementation evidence lives in `evidence/`.
 | P08a01 | accepted fire-status-family slice | `11eb6b3` (worker `ca66d0a`); central burn/ignite identity, production ranked Fire Bolt full3s DoT and legacy/combo/refresh/removal. BUG029; root/producer APPROVE/ADEQUATE. Combined1332pass; ordinary skill UI/fullP08/C1 remain open. |
 | P08a01b/c | accepted earned skill and display slices | `0dbbef2` ordinary earned Fire Bolt/save/reload production route; `a150f5b` truthful damage/CD/DoT units in both locales. Independent evidence below; full skill behavior remains open. |
 | P08a01d | accepted bounded cast names | Tests/browser `0df510a`; authored/canonical names, genuine33RED/12controls; focused45, related525/full1939/T/L/build/engine coverage and native8browser pass. Root/producer/QA final APPROVE/ADEQUATE; exact evidence below. |
+| P08a05a–f | accepted Amazon implementation slices | Legal canonical starter/recipe/creation, conservative v7→v8 migration, canonical combat/Skills readers and comparison. See staged commits/evidence below and D04 Amazon. |
+| BUG042 | accepted combat lifecycle prerequisite | `3bd6911`; explicit exits prevent hidden replacement runs while preserving intentional restarts/recordings. |
+| P08a05g | accepted bounded ordinary authority/save proof | Four native production en/zh × desktop/mobile cases,0skip/retry/flaky/errors;26/12/84 openings,67/76/71MP, full equipment/save/two reopen proof. [Evidence](evidence/p08a05g-amazon-weapon-authority.md); root/producer/QA APPROVE/ADEQUATE. |
 | P08a04a | accepted representation prerequisite | Tests5fe184b; exact-two optional secondary Freeze schema/shared types and general exclusive nonempty readonly on-hit list. Focused195, engine893, related1142/full1998, T/L/build/coverage pass; root/producer/QA APPROVE. No authored/adapter/combat behavior change; B remains open. |
 | P08a02 | accepted bounded curse slice | Metadata `8b1f497`, authored definition `554a922`, runtime `f3f9086`; BUG031 fixed after genuine RED. Actual Amplify Damage rank/duration/resistance/refresh/replay controls independently approved; full curse families remain open. |
 | P08a03a/b | accepted Minor Heal slices | `091d9b0` actual authored range/registry, `ec0de97` deterministic lowest-relative-HP targeting and true healing. Independent root/QA/producer review and final combined evidence below; broader healing/merc acceptance remains open. |
@@ -1367,3 +1370,16 @@ confirms .055Fallen0-09f2 and establishes earnedattack8sword route. BUG042 recor
 exact commands/hashes, testoracle/type corrections, timings andwarninglimits.
 SharedGraw/taskdist/.vite retained by root for ongoingG; no premature cleanup.
 Gstage1 independent producer/QA APPROVE for freeze only; fullG/C0–C4/G0–G7 open.
+
+
+P08a05g final accepted by root/producer/QA APPROVE/ADEQUATE: native4/4 at frozen
+f76896f3/config37020ea6,0skip/retry/flaky/errors,69.618runner/70.948wall. Exact
+26/12/84 openings/67/76/71MP, canonical originalbow/earned sword,37→32/−5,
+all9slots, Save/readonlyDB/export/2realreopens/locale/singleoriginal proven.
+TSC9.946/full lint26.339/purity51/explicitPWAlint5.447/build pass; src unchanged
+since3bd6911. [G evidence](evidence/p08a05g-amazon-weapon-authority.md) preserves
+hashes/attempts/limits. BUG041 bounded defect resolved throughA–G; historical
+pending G/fullauthority statements superseded. All consumers finished; exact
+sharedAmazon raw removed/absence verified, port4392 closed. Taskdist/.vite retained
+for activeFrost discovery; root owns removal after consumers finish. Continue
+ordinary-earned Frost; fullskills/C0–C4/G0–G7 remain unaccepted. No push.

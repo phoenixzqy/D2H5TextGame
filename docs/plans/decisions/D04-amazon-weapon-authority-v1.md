@@ -1,7 +1,7 @@
 # D04 — Amazon weapon authority and legal starter
 
-Status: root/design/producer accept bounded P08a05a content contract below;
-creation, compatibility and canonical-reader children remain pending.
+Status: root/producer/QA accept bounded P08a05a–g implementations and
+ordinary production browser authority/persistence proof.
 Input:471c546. Date:2026-10-20. C0–C4/G0–G7 remain unaccepted.
 
 The [read-only investigation](../evidence/stale-weapon-authority-investigation.md)
@@ -334,3 +334,146 @@ external/credential/dependency/permissions/validation bypass changes.
 Producer [P08a05f-PLAN-PRODUCER] APPROVE / ready after independent actual
 comparison/store/helper inspection. No dependency cycle or material gap.
 Root agrees; proceed genuine frozen RED before runtime source.
+
+## P08a05g ordinary production Amazon authority (proposed for review)
+
+Input F5565cf6/cleanup8f54cf0. Root owns one new tests/pwa/amazon-weapon-
+authority.spec.ts plus existing production config testMatch entry, D04/BUG041/
+evidence/ledger. No runtime/data/locale/save-format changes. Use production
+bridge-shaken build and native Playwright/ordinary createCharacter/navTo only;
+no hidden state, imports of game modules, storage writes, injected saves or
+boosts. Fixed Date2026-10-20T12:00Z only; native combat/timers continue. Export
+via UI downloads (delete finally), read-only IndexedDB for persistence oracles.
+
+Stage1 native discovery: fresh Amazon, exact legal training13 canonical item/
+legacyempty/backpackempty/rank1/point1; stats life140,mana72,attack35,defense20.
+Explicit nine-slot sole arrow config. Hire ordinary authored free Inner Sight
+merc. Blood Moor real firstcast: independently derived known first RNG prefix
+with sameDate/speed/merc gives base38−defense12=26arcane, FallenA47→21(44.68%),
+hero72→67mana. Verify literal cast/hit/target/pool and pause; then Resume/Skip,
+actual won/drained wave1, automatic wave2, Pause/Flee before second award.
+Observe exported earned loot, select an exact repeatable earned replacement
+route before freezing final acceptance (may require fixed repeated firstwave
+runs). Discovery is not full acceptance. No conditional candidate/loss fallback.
+
+Stage2 frozen four-case en/zh ×1280×800/360×640 production matrix: exact
+creation/config/cast/earned state; ordinary bow Unequip yields canonicalnull,
+one backpackcopy, attack22+2*(level−1); mounted Skills removes option/combo
+but retains rank/points. Fresh run proves basic hero action without arrow at
+a fixed observed action boundary; Flee before reward. Reequip same original
+item through picker returns option, keeps removed comboempty; explicit select
+again. Fixed earned wrongtype weapon via backpack detail: truthful preview
+attack based on exported roll and level, actual attack matches; starter
+returned once, option/combo removed without rank loss. Save/read-onlyDB/export/
+close/newpage/Continue preserve whole expected state and locale. Reequip original
+bow after reopen, explicitly configure, real fresh arrowcast; final Save/reopen
+preserves restored canonical item and nine-slot config with no duplicate grant.
+Whole payload comparisons use independent expected action deltas; unrelated
+random earned loot is observed baseline, not loot distribution certification.
+
+All cases require activated SW, absent __GAME__, no horizontal overflow and
+no console warning/error/pageerror,0skips/retries. Capture representative
+screenshots and literal opening/earned/save evidence. Producer+QA review plan,
+discovery and frozen spec; actual native matrix then independent final review.
+T/L and explicit ignored-PWA lint, production build/bridge guard; E/F runtime
+full/coverage remains prior integrated source validation. No earned campaign/
+Frost/fullskills/C/G/performance acceptance. Exact owned scratch/build/cache
+cleanup only after consumers finish. Security PASS: local ordinary controls
+and read-only save observation; no external side effects/credential/dependency
+changes or policy bypass.
+
+[P08a05g-PLAN-PRODUCER] and [P08a05g-PLAN-QA] APPROVE / ready for
+Stage1 discovery. Freeze exact earned route/identity/roll/eligible source and
+observed action boundary before final spec review. Attach error observers
+and fixedDate before navigation on both reopened pages; final error aggregate
+and production/SW/overflow rechecks required. No material gap; root agrees.
+
+Stage1 refinement: freezing Date at00 repeats the loot seed on each new run;
+ordinals0–3 all win but yield no replacement. Discovery now retains the
+independent initial00 opening, then sets Date-only to explicit00.055 before
+one additional ordinal1 ordinary run. This fixed timestamp is an existing
+accepted Warmth fixture, not a hidden game-state grant/elapsed-timer advance.
+Native timers remain real; exact route/loot awaits discovery. No conditional
+branch or probabilistic fallback. Final matrix will freeze this two-timestamp
+schedule only if an eligible earned replacement is actually observed.
+
+### G discovery interruption: BUG042 explicit combat exits
+
+Five native discovery passes reproduced oldseed encounters after Date change.
+Routed real-store regression proves four explicit exits can silently start a
+hidden replacement before deferred route unmount; canonical unequip then Enter
+still retains attack35/Arrow. Bounded prerequisite tracked in BUG042, with new
+CombatScreen.lifecycle.test.tsx and only CombatScreen.tsx proposed runtime scope.
+Explicit exit-intent must precede first state mutation and gate auto-start;
+ordinary Skills/Inventory navigation remains frozen, intentional nextarea and
+manual/timed idle restart remain permitted. No generic unmount abort.
+Producer's scope and independent Date-oracle review refinements adopted.
+Frozen exactseed RED5failed/5passed10: four explicit exits and changedDate+gear
+nextEnter fail; five preservation controls pass. Manual third-draw oracle
+.055fallen0-09f2 is independent of ordinal/count. Test-only earlier wrong nextarea
+and unsupported RTL exact options disclosed in BUG042; corrected before freeze.
+No G earnedroute/browser acceptance from discovery. Raw G evidence retained
+until all consumers finish; prerequisite has its own acceptance and source checks.
+
+Gstage1 producer/QA independent APPROVE/ADEQUATE for exact route freeze after
+BUG042accepted3bd6911. Date00firstwin160XP/5items75shards, Date55secondwin180XP/
+3newitems83shards: L2XP240,8backpack158shards. Fixed earned eligible replacement
+it-87zeo-7/wp2h-two-handed-sword/normalL2ilvl2/attack8; catalogreqL1/sword2H.
+Stage2 source adds full ordinary flow and exact wholepayload expected action
+deltas from observed earned baseline. Bow37→unequipped24→restored37→sword32;
+previewexact37/32/delta−5. Independent .055 firsthero basic24−def12=12physical,
+Fallen42→30/71.43%,MP76 after universal recovery; postreopen Arrow
+base48*crit2−12=84arcane,Fallen dead,MP76→71. Earlier draft72/67
+omitted preaction recovery; corrected completepilot confirms both boundaries
+before finalmatrixfreeze. Fullspec review beforepilot; initial literalItem widening
+and unnecessary optional fallback were test-only T/L fixes, not runtime edits.
+All9visible slots verified at each eligibility state and finalreopen, stored
+combo[]/[arrow],rank1/point2 retained. Two actual close/newpage/Continue cycles
+with pre-navigation errorwatch/fixedDate; wholepayload export/read-onlyDB/Save/
+Saved checks, locale and singleoriginalstarter ownership. Root/QA/producer
+must review actualpilot and frozenfinalspec before fourcase matrix. NoG/fullv1
+acceptance yet; allGraw/dist/.vite retained for active consumers.
+
+
+### G complete pilot correction and freeze
+
+Full en/desktop pilot passes1/1 at runtime3bd6911,0skip/retry,
+runner39.054/wall40.308s. Test-only corrections before freeze: strict modal
+name matched two rendered copies, so target StatSheet header; Character route
+has no navigation anchor, so use ordinary character-hud button; sword name
+also appears twice, so target candidate-item-header; Chinese comparison row
+uses actual 攻击力. No runtime source changed. Earlier pilot failures and
+sources remain in raw evidence until all consumers finish.
+
+The draft MP72/basic and67/restored oracles omitted universal recovery.
+Independent source: coefficient0.2*Energy15=3MP/s; speed125 firstaction1500ms
+settles floor4.5=4MP before acting, input72 reaches L2cap76. Basic spends0
+therefore76; rank1 Arrow spends5 therefore71. InitialL1max72 stays67 after
+cost5. Exported player mana72 remains unchanged across abort; combat runtime
+resources are separate. Producer/QA independently verified this arithmetic.
+Corrected fullpilot confirms12physical/42→30/71.43%/MP76 and84arcanecritical/
+Fallen dead/MP71, alongside whole expected payload/Save/DB/export and both
+actual close/newpage/Continue cycles. No assertion weakened or runtime patch.
+Frozen spec fc18930e3c22f857a2d47765003cbf0f5079ad6a97807880fa22563e3ce61d9f;
+config37020ea62dd1716d817bd8b72cd41e48b1e10722f8ec76f13de4ff851dcccf24.
+Independent frozenpilot review and final4case matrix remain required.
+
+
+G firstmatrix at screenshot-onlya90b6474 passed2desktop but2mobile timedout
+at postreopen restore: tilecenter hits nestedDetails. Actual snapshot shows
+sword32details, not picker. Source EquipmentPanel outer slot opens picker;
+Details stops propagation. Test now taps exact visible Weapon/武器 label,
+both restorecalls receive locale; no runtime/oracle change. New frozen spec
+f76896f393b296b793da3c6d869eb24a3de3660fd23a5d6f9d67ea4085bdcc6c.
+Full4case rerun and independent final evidence review remain required.
+
+
+### Final G acceptance
+
+Final frozenf76896f3/spec and37020ea6/config native matrix passed4/4 across
+en/zh-CN desktop/mobile,0skip/retry/flaky/errors,69.618s runner/70.948wall.
+Root/producer/QA independently accept bounded A–G; BUG041's legal-starter/
+canonical-authority defect is resolved. Exact final oracles, commands, hashes,
+review verdicts and cleanup are in [G evidence](../evidence/p08a05g-amazon-weapon-authority.md).
+This supersedes earlier pending matrix/review statements while preserving attempt
+history. No fullskills/Frost/campaign/performance/a11y/C0–C4/G0–G7 acceptance.

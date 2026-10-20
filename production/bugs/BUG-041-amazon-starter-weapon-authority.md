@@ -1,12 +1,12 @@
 # BUG-041 — Make Amazon starter equipment legal and authoritative
 
-Status: P08a05a content/acquisition accepted; full authority defect remains open.
-Severity: High — actual starter weapon is absent from canonical inventory,
-while Magic Arrow gates use stale legacy equipment. Full defect remains open.
+Status: resolved bounded legal-starter/canonical-authority defect through accepted P08a05a–g.
+Original severity: High — starter absent from canonical inventory and stale legacy
+weapon gates. Root/producer/QA accepted the bounded fix and production proof.
 Owner: content/engine/store/frontend; independent producer/QA acceptance.
 Input:471c546, Node24.21.0, isolated root worktree2, feat/playable-foundations.
-Content/loot checks run in Vitest UI project; browser/viewport/locale behavior
-is not yet reproduced. Source report and contract are linked below.
+Historical reproduction and staged implementation evidence follow. Final ordinary
+en/zh × desktop/mobile behavior is verified below; broader v1 gates remain open.
 
 ## Reproduction
 
@@ -620,3 +620,36 @@ All raw consumers finished; exact task-owned cleanup released.
 P08a05f accepted at5565cf6. All consumers finished before root removed and
 verified exact F scratch above, task-owned dist and local .vite absent.
 No task process/retained raw outputs remain; root claim continues.
+
+## P08a05g ordinary browser discovery
+
+Exact task-owned raw root (retain until all consumers done):
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-amazon-browser-iq1z4j5d
+No runtime source changes; production native Stage1 only.
+
+Stage1 initial native en/desktop discovery PASS1/1,0skip/retry,wall26.733s:
+exact fresh payload and firstcast26arcane/47→21/72→67 confirmed, firstwave
+won and only160XP awarded (L2XP60). Firstwave loot contains gloves/boots/
+amulet, no replacement weapon. Extend discovery by exactly3additional
+firstwave-only runs, observing ordinals1–3 without conditional routes/fallback.
+No source changes or full browser acceptance. Initial raw/report retained.
+
+Stage1 fixed00 ordinals0–3 all PASS,1case0skip/retry,wall31.353s;
+160+180+200+220=760XP gives L3XP95.23backpackitems, no replacement weapon.
+This is observed loot, not a failure or economy acceptance. Date00 repeats
+the seed for fresh runs; next discovery uses two explicit Date-only fixtures:
+initial00 opening then00.055 for one additional ordinal1 run, native timers
+unchanged. D04 records schedule refinement; no conditional fallback or grant.
+
+
+## Final P08a05g acceptance
+
+Root/producer/QA APPROVE/ADEQUATE for final frozenf76896f3 native production
+spec:4/4 en/zh×desktop/mobile passed,0skip/retry/flaky/errors. Actual26/12/84
+openings and67/76/71MP, canonical bow/earned sword authority and37→32/−5
+comparison, all9slots, full Save/DB/export and2actual page reopens verified.
+Runtime3bd6911 unchanged; finalTSC/full lint/purity51/explicitPWA lint/build pass.
+[G final evidence](../../docs/plans/evidence/p08a05g-amazon-weapon-authority.md)
+preserves exact commands, hashes, corrected test-oracle/selector attempt history,
+review/cleanup and limitations. This resolves the reported bounded defect;
+no fullskills/campaign/economy/a11y/performance/C0–C4/G0–G7 claim follows.
