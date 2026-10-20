@@ -85,6 +85,81 @@ function directHitSnapshot(statuses: readonly ActiveStatus[], physical = 50): Co
   };
 }
 
+function minorHealSnapshot(rank = 1): CombatSnapshot {
+  return { seed: 1,
+    playerTeam: [mkUnit({ id: 'hero', side: 'player', kind: 'hero', life: 100, statuses: [hold()] }),
+      mkUnit({ id: 'priest', side: 'player', kind: 'merc', life: 180, mana: 0,
+        stats: { ...baseStats, attackSpeed: 263 }, statuses: [hold(401)],
+        skillOrder: ['mskill-minor-heal'], skillLevels: { 'mskill-minor-heal': rank } })],
+    enemyTeam: [mkUnit({ id: 'enemy', side: 'enemy', life: 1000, statuses: [hold()] })]
+  };
+}
+
+describe('P08a03b actual Minor Heal runtime (synthetic rank fixtures)', () => {
+  afterEach(() => { vi.restoreAllMocks(); resetRegistry(); loadDefaultSkills(); });
+
+  it.each([1, 20])('restores exactly 43 HP at rank %s with no damage, replay drift or input mutation', (rank) => {
+    expect(getSkill('mskill-minor-heal')).toEqual({ id: 'mskill-minor-heal', archetype: 'mercenary',
+      target: 'single-ally', cooldown: 4, manaCost: 0, minLevel: 1,
+      effects: [{ kind: 'heal', amountRange: [30, 50], target: 'ally' }] });
+    const input = minorHealSnapshot(rank);
+    const before = structuredClone(input);
+    const recorded = runBattleRecorded(input);
+    expect.soft(recorded.result.playerTeam.map(u => u.life)).toEqual([143, 180]);
+    expect.soft(recorded.events.filter(e => e.kind === 'heal')).toEqual([
+      { kind: 'heal', target: 'hero', amount: 43, simClockMs: 400, uiDelayMs: 50 }
+    ]);
+    expect(recorded.events.filter(e => e.kind === 'action')).toEqual([
+      expect.objectContaining({ actor: 'priest', skillId: 'mskill-minor-heal', simClockMs: 400 })
+    ]);
+    expect(recorded.events.filter(e => ['damage', 'dot', 'buff', 'status'].includes(e.kind))).toEqual([]);
+    expect(recorded.result.playerTeam[1]?.mana).toBe(0);
+    expect(runBattle(input)).toEqual(recorded.result);
+    expect(runBattleRecorded(input)).toEqual(recorded);
+    expect(input).toEqual(before);
+  });
+
+  it('consumes one actual seeded range draw and no targeting, hit or crit draw', () => {
+    const random = rngModule.createRng(1);
+    const range = vi.spyOn(random, 'nextInt');
+    const chance = vi.spyOn(random, 'chance');
+    vi.spyOn(rngModule, 'createRng').mockReturnValue(random);
+    expect.soft(runBattle(minorHealSnapshot()).playerTeam.map(u => u.life)).toEqual([143, 180]);
+    expect.soft(range.mock.calls).toEqual([[30, 50]]);
+    expect(chance).not.toHaveBeenCalled();
+    expect.soft(random.next()).toBe(0.002735721180215478);
+  });
+
+  it.each([1, 20])('recasts rank %s at exact 4400ms cooldown expiry after being held inside it', (rank) => {
+    const input = minorHealSnapshot(rank);
+    const result = runBattleRecorded({ ...input, playerTeam: input.playerTeam.map(u => u.id === 'priest'
+      ? { ...u, statuses: [{ ...hold(401), expiresAtMs: 4400 }, hold(4401)] } : u) });
+    expect(result.events.filter(e => e.kind === 'action')).toEqual([
+      expect.objectContaining({ actor: 'priest', skillId: 'mskill-minor-heal', simClockMs: 400 }),
+      expect.objectContaining({ actor: 'priest', skillId: 'mskill-minor-heal', simClockMs: 4400 })
+    ]);
+    expect(result.events.filter(e => e.kind === 'heal')).toEqual([
+      expect.objectContaining({ target: 'hero', amount: 43, simClockMs: 400 }),
+      expect.objectContaining({ target: 'hero', amount: 30, simClockMs: 4400 })
+    ]);
+    expect(result.result.playerTeam.map(u => u.life)).toEqual([173, 180]);
+  });
+
+  it('uses a basic attack inside the actual cooldown without another heal', () => {
+    const input = minorHealSnapshot();
+    const result = runBattleRecorded({ ...input, playerTeam: input.playerTeam.map(u => u.id === 'priest'
+      ? { ...u, statuses: [{ ...hold(401), expiresAtMs: 4000 }, hold(4001)] } : u) });
+    expect(result.events.filter(e => e.kind === 'action')).toEqual([
+      expect.objectContaining({ skillId: 'mskill-minor-heal', simClockMs: 400 }),
+      expect.objectContaining({ skillId: null, simClockMs: 4000 })
+    ]);
+    expect(result.events.filter(e => e.kind === 'heal')).toEqual([
+      expect.objectContaining({ target: 'hero', amount: 43, simClockMs: 400 })
+    ]);
+    expect(result.result.playerTeam.map(u => u.life)).toEqual([143, 180]);
+  });
+});
+
 describe('P08a02c production Amplify Damage runtime', () => {
   afterEach(() => { vi.restoreAllMocks(); resetRegistry(); loadDefaultSkills(); });
 

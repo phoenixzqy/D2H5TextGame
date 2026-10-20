@@ -499,7 +499,34 @@ function activeBuffIdsForSkill(skill: RegisteredSkill): readonly string[] {
     .map((effect) => effect.id);
 }
 
+/** Potential is deterministic; availability must never consume a healing roll. */
+function healingPotential(effect: HealEffect, target: CombatUnit): number {
+  return effect.amount ?? effect.amountRange?.[1] ??
+    Math.floor(target.stats.lifeMax * (effect.pctOfMaxLife ?? 0));
+}
+
+/** Select fresh, same-side recipients, retaining insertion order for ratio ties. */
+function healingTargets(state: State, actorId: string, effect: HealEffect): CombatUnit[] {
+  const actor = state.units.get(actorId);
+  if (!actor) return [];
+  const candidates = effect.target === 'self' ? [actor] : [...state.units.values()];
+  const eligible = candidates.filter(target => target.side === actor.side &&
+    target.stats.lifeMax > 0 && target.life > 0 && target.life < target.stats.lifeMax &&
+    healingPotential(effect, target) > 0);
+  if (effect.target !== 'ally') return eligible;
+  let selected: CombatUnit | undefined;
+  for (const target of eligible) {
+    if (!selected || target.life / target.stats.lifeMax < selected.life / selected.stats.lifeMax) {
+      selected = target;
+    }
+  }
+  return selected ? [selected] : [];
+}
+
 function hasAvailableEffect(state: State, actorId: string, skill: RegisteredSkill, skillLevel: number): boolean {
+  if (skill.effects.length > 0 && skill.effects.every((effect) => effect.kind === 'heal')) {
+    return skill.effects.some((effect) => healingTargets(state, actorId, effect).length > 0);
+  }
   if (!skill.effects.every((effect) => effect.kind === 'summon')) return true;
   return skill.effects.some((effect) =>
     summonsOf(state, actorId, effect.summonId).length < resolveSummonMaxCount(effect, skillLevel)
@@ -555,8 +582,7 @@ function applyEffect(
   actorId: string,
   effect: SkillEffect,
   skillLevel: number,
-  enemySideAlive: readonly CombatUnit[],
-  allySideAlive: readonly CombatUnit[]
+  enemySideAlive: readonly CombatUnit[]
 ): void {
   switch (effect.kind) {
     case 'damage': {
@@ -637,16 +663,17 @@ function applyEffect(
     }
     case 'heal': {
       const heal: HealEffect = effect;
-      const targets =
-        heal.target === 'self'
-          ? [state.units.get(actorId)].filter((x): x is CombatUnit => !!x)
-          : allySideAlive;
+      const targets = healingTargets(state, actorId, heal);
+      if (targets.length === 0) break;
+      // One lazy inclusive roll per effect, shared by every eligible recipient.
+      const rolledAmount = heal.amount ?? (heal.amountRange
+        ? state.rng.nextInt(heal.amountRange[0], heal.amountRange[1]) : undefined);
       for (const t of targets) {
-        const amt =
-          heal.amount ?? Math.floor(t.stats.lifeMax * (heal.pctOfMaxLife ?? 0));
-        const newLife = Math.min(t.stats.lifeMax, t.life + amt);
-        state.units.set(t.id, { ...t, life: newLife });
-        emit(state, { kind: 'heal', target: t.id, amount: amt });
+        const amount = rolledAmount ?? Math.floor(t.stats.lifeMax * (heal.pctOfMaxLife ?? 0));
+        const restored = Math.min(t.stats.lifeMax - t.life, amount);
+        if (restored <= 0) continue;
+        state.units.set(t.id, { ...t, life: t.life + restored });
+        emit(state, { kind: 'heal', target: t.id, amount: restored });
       }
       break;
     }
@@ -678,7 +705,6 @@ function castSkill(state: State, actorId: string, skill: RegisteredSkill): void 
   const enemySide: CombatSide = actor.side === 'player' ? 'enemy' : 'player';
   const enemiesAliveRaw = aliveOf(state, enemySide);
   const enemies = targetPriority(state, enemiesAliveRaw);
-  const allies = aliveOf(state, actor.side);
 
   let targetEnemies: CombatUnit[] = enemies;
   if (skill.target === 'single-enemy' && enemiesAliveRaw.length > 0) {
@@ -689,7 +715,7 @@ function castSkill(state: State, actorId: string, skill: RegisteredSkill): void 
   }
 
   for (const effect of skill.effects) {
-    applyEffect(state, actorId, effect, skillLevel, targetEnemies, allies);
+    applyEffect(state, actorId, effect, skillLevel, targetEnemies);
   }
 }
 
