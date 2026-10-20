@@ -16,6 +16,7 @@
     "test:engine": "vitest run --project engine",
     "test:ui": "vitest run --project ui",
     "test:sim:contracts": "vitest run --project sim-contracts",
+    "sim:production": "vitest run --project sim-contracts tests/sim/production/measure.test.ts",
     "test:cov": "vitest run --coverage",
     "test:e2e": "playwright test",
     "test:smoke-e2e": "playwright test --grep @smoke --project=chromium-desktop",

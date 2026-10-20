@@ -125,7 +125,8 @@ export function fingerprintFixture(fixture: FreshFixture): string {
   ]);
 }
 
-function canonicalJson(value: unknown): string {
+/** Canonical finite JSON bytes shared by recipe and raw-event fingerprints. */
+export function canonicalJson(value: unknown): string {
   if (value === null || typeof value === 'string' || typeof value === 'boolean')
     return JSON.stringify(value);
   if (typeof value === 'number' && Number.isFinite(value)) return JSON.stringify(value);
