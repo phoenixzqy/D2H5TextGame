@@ -1,89 +1,59 @@
-/**
- * useOfflineBonus — UI-side state hook for the idle offline-bonus
- * window (Bug #20). Pulls `lastClosedAt` off `useMetaStore` (set on
- * `visibilitychange === 'hidden'`) and consumes the engine's pure
- * `accrueOfflineBonus` / `bonusMultiplier` helpers from
- * `engine/idle/offline-bonus.ts`.
- *
- * Returns a stable snapshot recomputed every 30 seconds while the
- * window is active, so the banner can show a live "next Y minutes"
- * countdown without coupling React to engine timers.
- *
- * @module features/idle/useOfflineBonus
- */
-
-import { useEffect, useMemo, useState } from 'react';
-import {
-  accrueOfflineBonus,
-  bonusMultiplier,
-  consumeOnlineSession,
-  NO_BONUS,
-  type IdleBonus
-} from '@/engine/idle/offline-bonus';
+/** Read-only UI projection of the same persisted bonus used by save/export. */
+import { useEffect, useReducer } from 'react';
 import { useMetaStore } from '@/stores';
 
 export interface OfflineBonusSnapshot {
-  /** Whether a bonus window is currently active. */
+  /** Whether a current multiplier and remaining window are active. */
   readonly active: boolean;
-  /** Peak bonus pct (0..0.5), e.g. 0.24 = 24%. */
-  readonly peakPct: number;
-  /** Effective multiplier *now* (1 + remaining pct). */
+  /** Current bonus fraction (0..0.5), not the unavailable original peak. */
+  readonly currentPct: number;
+  /** Current effective multiplier. */
   readonly multiplier: number;
-  /** Seconds remaining in the window. */
+  /** Remaining boosted online seconds. */
   readonly remainingSeconds: number;
-  /** Initial window length in seconds (for progress UI). */
-  readonly windowSeconds: number;
 }
 
 const TICK_MS = 30_000;
 
-export function deriveBonusFromLastClosed(
-  lastClosedAt: number | null,
-  now: number
-): IdleBonus {
-  if (lastClosedAt === null) return NO_BONUS;
-  const elapsedMs = Math.max(0, now - lastClosedAt);
-  return accrueOfflineBonus(elapsedMs);
-}
-
-export function bonusSnapshot(bonus: IdleBonus): OfflineBonusSnapshot {
-  const remainingSeconds = Math.max(
-    0,
-    bonus.windowSeconds - bonus.elapsedSeconds
-  );
-  return {
-    active: remainingSeconds > 0 && bonus.bonusPct > 0,
-    peakPct: bonus.bonusPct,
-    multiplier: bonusMultiplier(bonus),
-    remainingSeconds,
-    windowSeconds: bonus.windowSeconds
-  };
-}
-
 /**
- * Read-only hook returning the current offline-bonus snapshot.
- * Re-renders every 30s while a window is active.
+ * Reproject at render time, on visible return, and at most every 30 seconds
+ * while active. Reads never accrue, publish, or refresh the authoritative tuple.
  */
 export function useOfflineBonus(): OfflineBonusSnapshot {
-  const lastClosedAt = useMetaStore((s) => s.lastClosedAt);
-  const [now, setNow] = useState(() => Date.now());
-  const [anchorAt] = useState(() => Date.now());
+  // Both subscriptions matter: an exact restore may supply the same raw tuple
+  // with a new publication anchor. A projection selector would return new
+  // objects on every store read, so subscribe to the source fields instead.
+  useMetaStore((state) => state.idleState);
+  useMetaStore((state) => state.idleBonusAnchor);
+  const readIdleBonus = useMetaStore((state) => state.readIdleBonus);
+  const [wake, repaint] = useReducer((tick: number) => tick + 1, 0);
+  // Never reuse the prior timer's timestamp for a restore or parent render.
+  const bonus = readIdleBonus(Date.now());
+  const remainingSeconds = bonus.multiplierSecondsRemaining;
+  const active = bonus.activeMultiplier > 1 && remainingSeconds > 0;
 
-  const baseBonus = useMemo(
-    () => deriveBonusFromLastClosed(lastClosedAt, anchorAt),
-    [lastClosedAt, anchorAt]
-  );
+  // A delivered wake must rearm even if rollback still projects the same tuple.
+  useEffect(() => {
+    if (!active) return undefined;
+    // Round up to clock precision so a fractional final millisecond cannot
+    // deliver an early timeout that leaves an otherwise unchanged view active.
+    const delay = Math.max(1, Math.ceil(Math.min(TICK_MS, remainingSeconds * 1000)));
+    const id = window.setTimeout(repaint, delay);
+    return () => { window.clearTimeout(id); };
+  }, [active, remainingSeconds, wake]);
 
   useEffect(() => {
-    if (!baseBonus.windowSeconds) return undefined;
-    const id = window.setInterval(() => { setNow(Date.now()); }, TICK_MS);
-    return () => { window.clearInterval(id); };
-  }, [baseBonus.windowSeconds]);
+    const onVisible = (): void => {
+      if (document.visibilityState === 'visible') repaint();
+    };
+    document.addEventListener('visibilitychange', onVisible);
+    return () => { document.removeEventListener('visibilitychange', onVisible); };
+  }, []);
 
-  const consumed = useMemo(() => {
-    const onlineMs = Math.max(0, now - anchorAt);
-    return consumeOnlineSession(onlineMs, baseBonus);
-  }, [baseBonus, now, anchorAt]);
-
-  return bonusSnapshot(consumed);
+  return {
+    active,
+    currentPct: bonus.activeMultiplier - 1,
+    multiplier: bonus.activeMultiplier,
+    remainingSeconds
+  };
 }

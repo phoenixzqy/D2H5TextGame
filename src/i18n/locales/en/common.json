@@ -77,6 +77,7 @@
   "mercenary.title": "Mercenaries",
   "combat.title": "Combat",
   "offlineBonus": {
+    "chipText": "+{{pct}}% · {{minutes}}m",
     "title": "+{{pct}}% XP boost",
     "remaining": "next {{minutes}} min",
     "chipLabel": "+{{pct}}% XP for {{minutes}} min"

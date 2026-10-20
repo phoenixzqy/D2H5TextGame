@@ -17,7 +17,7 @@ export function OfflineBonusChip(): JSX.Element | null {
   const { t } = useTranslation('common');
   const bonus = useOfflineBonus();
   if (!bonus.active) return null;
-  const pct = Math.round(bonus.peakPct * 100);
+  const pct = Math.round(bonus.currentPct * 100);
   return (
     <span
       data-testid="offline-bonus-chip"
@@ -29,7 +29,7 @@ export function OfflineBonusChip(): JSX.Element | null {
         minutes: formatMinutes(bonus.remainingSeconds)
       })}
     >
-      ⏳ +{pct}% · {formatMinutes(bonus.remainingSeconds)}m
+      ⏳ {t('offlineBonus.chipText', { pct, minutes: formatMinutes(bonus.remainingSeconds) })}
     </span>
   );
 }
@@ -39,7 +39,7 @@ export function OfflineBonusBanner(): JSX.Element | null {
   const { t } = useTranslation('common');
   const bonus = useOfflineBonus();
   if (!bonus.active) return null;
-  const pct = Math.round(bonus.peakPct * 100);
+  const pct = Math.round(bonus.currentPct * 100);
   const minutes = formatMinutes(bonus.remainingSeconds);
   return (
     <Panel

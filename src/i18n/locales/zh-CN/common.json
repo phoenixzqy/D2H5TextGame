@@ -77,6 +77,7 @@
   "mercenary.title": "雇佣兵",
   "combat.title": "战斗",
   "offlineBonus": {
+    "chipText": "+{{pct}}% · {{minutes}}分钟",
     "title": "离线奖励 +{{pct}}% 经验",
     "remaining": "剩余 {{minutes}} 分钟",
     "chipLabel": "+{{pct}}% 经验加成，剩余 {{minutes}} 分钟"
