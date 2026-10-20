@@ -370,3 +370,51 @@ leaves listed by cleanup after every consumer/process ended. These prefixes
 describe verified individual paths, not wildcard deletion. Agent town/copy/boss
 worktrees cleaned/released. Root remains claimed for the continuing objective.
 No push/PR/deployment; full v1/C0–C4/G0–G7 remain open.
+
+## Authoritative equipment, residual status clocks and persisted bonus arithmetic
+
+Integrated source: P03b04a `76c178c` (agent `d0fbeeb`), P17a01 `15da36b`,
+P06c03 `cae5501` (agent `3b3f8d6`). Root and producer independent reviews
+APPROVE each scoped source/contract. Complete checkpoints remain open.
+
+P03b04a resolves the current first matching backpack item before base/eligibility
+checks, uses that complete authoritative payload and removes one source index.
+Nine real-store behavioral RED failures1.78s precede the patch; GREEN9pass1.70s.
+Related347pass/1existing skip19.07s; agent full1084pass/1existing skip,103files,
+57.94s; T/L/forced lint/B pass11.56s. Exact Maps/flags/derived mods, both stale
+handedness/requirement directions, same-ID conservation and no-op refusal
+publications covered. BUG-018 retains evidence; hero capacity remains P03b04b.
+
+P06c03 captures the original finite bounded terminal simulation clock before
+presentation, fails closed before recording publication, and rebases status
+timestamps once at qualified actual next-wave transitions. Genuine production
+two-wave poison RED2/2 preceded runtime changes (BUG-016). Engine13/UI16focused
+pass; agent engine451pass7.78s/full1104pass/1existing skip,104files,58.08s;
+T/L/B pass. Related coverage284pass/1skip: status99.1%statements/96.39%branches/
+100%functions, combined95.62%/83.65%/97.14%. Root integrated cross-wave plus
+outcome qualification35pass3.08s. Periodic-only500ms terminal, residual/future/
+expired clocks, real control actions, replay/pause/no-double-subtraction, merc/
+summon policy and malformed-clock abort covered. Seeded ties and broader
+cooldown/buff carry policy remain open; no campaign balance acceptance.
+
+P17a01 is an uncalled pure three-file foundation, not a runtime offline fix.
+v7 current multiplier/remaining seconds support linear checkpoints and resume
+against max(lastOnline,save.timestamp), retaining stronger/tied windows.
+offlineTime is cumulative informational milliseconds; fresh bonus uses only
+the current gap. Nonfinite inputs/derived overflow reject; rollback reanchors.
+Initial missing-module RED had0collected cases,.937s (no behavioral bug claim).
+Numeric tuple regression1fail31pass1.19s preceded rounded-to-one cleanup.
+Producer found uncapped tie comparison error; added1.16/7 after2h regression
+failed1/34in2.98s, then stored-multiplier comparison fixed it. Final pure34+
+existing8pass1.22s. Lint found unsafe JSON assignment in test; explicit fixture
+cast fixed it without suppression; final T/L pass. Reward/UI authority,
+startup/import/close persistence, hidden interval ownership and PWA remain open.
+
+Root combined equipment+arithmetic full1118pass/1existing skip,104files,29.10s;
+final arithmetic engine472pass,41files,3.98s. These predate P06c03 integration;
+do not present them as final combined timing validation. Current `cae5501`
+build passes6.01s with existing large-chunk/manifest precache warnings. Earlier
+concurrent engine470pass15.22s and build28.29s predate tie correction and are
+superseded. Test-loop timing budgets remain unmet. Browser follow-up and final
+combined gates remain pending. Agent worktrees cleaned/released; root continues
+claimed. Root `dist`/`.vite` are task-owned, pending cleanup after consumers.
