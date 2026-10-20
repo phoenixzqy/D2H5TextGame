@@ -4,6 +4,7 @@
  */
 
 import { create } from 'zustand';
+import { loadQuests } from '@/data/loaders/quests';
 import { isActUnlocked as engineIsActUnlocked, isSubAreaUnlocked as engineIsSubAreaUnlocked } from '@/engine/map/unlock';
 
 interface QuestProgress {
@@ -35,7 +36,7 @@ interface MapState {
   completeQuest: (questId: string) => void;
   /** Bug #9 — flip the rewardClaimed flag for a completed quest. */
   markQuestRewardClaimed: (questId: string) => void;
-  /** Bug #5 — record a sub-area as cleared. Idempotent. */
+  /** Record a qualified area clear and advance tracked clear-area objectives atomically. Idempotent. */
   markCleared: (subAreaId: string) => void;
   isCleared: (subAreaId: string) => boolean;
   /** Convenience selector for the act-unlock engine predicate. */
@@ -111,8 +112,35 @@ export const useMapStore = create<MapState>((set, get) => ({
   }); },
 
   markCleared: (subAreaId) => { set((state) => {
-    if (state.clearedSubAreas.includes(subAreaId)) return state;
-    return { clearedSubAreas: [...state.clearedSubAreas, subAreaId] };
+    const clearedSubAreas = state.clearedSubAreas.includes(subAreaId)
+      ? state.clearedSubAreas
+      : [...state.clearedSubAreas, subAreaId];
+    let questProgress = state.questProgress;
+    for (const quest of loadQuests()) {
+      const progress = state.questProgress[quest.id];
+      if (progress?.status !== 'inProgress') continue;
+      const matching = quest.objectives.filter((objective) =>
+        objective.type === 'clear-area' && objective.areaId === subAreaId &&
+        !progress.objectives[objective.id]
+      );
+      if (matching.length === 0) continue;
+      const objectives = {
+        ...progress.objectives,
+        ...Object.fromEntries(matching.map((objective) => [objective.id, true]))
+      };
+      questProgress = {
+        ...questProgress,
+        [quest.id]: {
+          ...progress,
+          objectives,
+          status: quest.objectives.every((objective) => objectives[objective.id])
+            ? 'completed'
+            : 'inProgress'
+        }
+      };
+    }
+    if (clearedSubAreas === state.clearedSubAreas && questProgress === state.questProgress) return state;
+    return { clearedSubAreas, questProgress };
   }); },
 
   isCleared: (subAreaId) => get().clearedSubAreas.includes(subAreaId),

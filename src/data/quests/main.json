@@ -9,7 +9,7 @@
       "giver": "npc/akara",
       "description": "Akara of the Rogue Encampment asks you to cleanse a nearby cave overrun by demons. Slay every monster within the Den of Evil to restore Akara's faith in her people.",
       "objectives": [
-        { "id": "obj-clear-den", "type": "clear-area", "areaId": "areas/act1_den_of_evil", "description": "Slay all monsters in the Den of Evil." },
+        { "id": "obj-clear-den", "type": "clear-area", "areaId": "areas/act1-den-of-evil", "description": "Slay all monsters in the Den of Evil." },
         { "id": "obj-return", "type": "talk", "npcId": "npc/akara", "description": "Return to Akara." }
       ],
       "rewards": { "xp": 500, "gold": 0, "skillPoints": 1 },
