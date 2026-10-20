@@ -911,3 +911,56 @@ open for the separate cast-name identity issue. Minor Heal registration alone
 will not repair runtime healing. Root worktree-2 remains claimed for continuing
 umbrella work. Original checkout untouched; no push/PR/merge/deployment.
 Full v1 and C0–C4/G0–G7 remain open.
+
+
+## Authored recovery baseline and Minor Heal registration
+
+P07a01a accepted as `a35ef02`: four new files provide a strict draft-2020
+schema, actual JSON singleton `combat/recovery` with the explicit provisional
+0.2 MP per effective Energy per second, pure once-compiled Ajv validator and
+independent frozen definition. No runtime consumer or mana recovery is added.
+Scaffolding RED at 08:11:58 UTC failed to load the missing JSON: one failed
+suite, zero collected tests, 761 ms. This is a missing-feature baseline, not
+a reproduced gameplay defect. Producer independently approved plan, RED,
+source and final evidence; final APPROVE / ADEQUATE, no material findings.
+
+Commands: focused `npx vitest run --project engine
+src/engine/combat/recovery-definition.test.ts --reporter=dot --silent` passed
+21 tests in 887 ms; `npm run test:engine -- --reporter=dot --silent` passed
+628/44 files in 4.50 s; `npm run test:related --
+src/engine/combat/recovery-definition.ts --reporter=dot --silent` passed 21/1
+in 6.87 s; `npm test -- --reporter=dot --silent` passed 1466/119 files with no
+skips in 41.62 s. T/L/build 6.86 s/diff-check pass. Focused coverage included only
+the changed definition and passed 21 in 1.12 s, all metrics 100% (23/23 statements,
+1/1 functions, 3/3 branches). Both consumers inspected raw hash
+`bbbbd73a73e74ac74388bffb4b77093292ed463e48751dcbe958dee9e1f06696` before
+root removed exact dist, coverage/p07a01a and node_modules/.vite plus empty
+created coverage; absence verified, shared node_modules preserved. No task
+process or output remains. Engine/related/full 3/5/15 s budgets remain unmet;
+usual build warnings remain. Full Warmth/recovery acceptance stays open.
+
+P08a03a integrated `091d9b0` (worker `ea37e99`): readonly ranged HealEffect,
+pure exact-row/active/single-ally/ally/integer-range mapper, complete independent
+deep freezing and exact Minor Heal override after merc stubs. Actual factory
+loadout resolves the authored 30–50, CD 4, zero-cost definition; repeated loading
+restores it and all unrelated merc/aura stubs remain. Registration-only, no
+ordinary acquisition or runtime healing acceptance. Root filed BUG032 before
+source implementation. Genuine registry/factory/reload RED at 08:11:28 UTC was
+3 failed / 48 passed in 1.10 s; combined mapper scaffolding RED at 08:12:25
+retained the same failures plus an uncollected missing-module suite, 1.14 s.
+
+Worker exact focused registry+mapper command passed 71/2 files in 1.07 s;
+`npm run test:engine -- --reporter=dot --silent` passed 631/44 in 4.68 s;
+`npm run test:related -- src/engine/skills/minor-heal.ts
+src/engine/skills/registry.ts --reporter=dot --silent` passed 733/54 in 27.35 s;
+`npm test -- --reporter=dot --silent` passed 1469/119 in 51.19 s. T/L/build8.89 s/
+diff-check pass; 3/5/15 s budgets unmet, usual build warnings. Engine changed
+coverage passed 631/44 in 4.63 s: mapper 48/48 statements, 20/20 branches,
+1/1 functions; registry 90/92, 14/14, 5/6. Type-only effects has no executable
+entry. Root/producer independently consumed raw hash
+`290b43717cc483fc55923d311c17129fc91a970e20e9b909932f027868106f91` and gave
+final APPROVE / ADEQUATE. Worker verified exact owned dist/coverage/cache absence,
+clean Git and release. Runtime P08a03b next; root combined validation follows
+actual registry/runtime integration. Units P08a01c production browser is running
+on the worker's own worktree, port 4338; root does not own that process/output.
+Original checkout untouched; no push/PR/merge/deployment. Full v1 gates stay open.

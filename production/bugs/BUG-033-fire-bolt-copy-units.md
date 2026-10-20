@@ -88,3 +88,28 @@ Root/producer completed independent review and declared artifact consumer-done.
 The QA worker deleted and verified absence of its exact owned browser outputs
 and generated `dist`. This report preserves the necessary small text evidence
 independently of those disposable files. BUG-033 remains Open.
+
+
+## P08a01c desired-unit reproduction before presentation edits
+
+The separately approved control is `docs/plans/decisions/D04-skill-display-units-v1.md`.
+At input `a6f5728`, only mounted tests changed before this command:
+
+```sh
+npx vitest run --project ui src/features/skills/SkillsScreen.test.tsx --reporter=dot --silent
+```
+
+On 2026-10-20 the genuine RED exited 1: **6 failed / 38 passed**, 44 tests,
+**5.94 s**. Both locales failed Fire Bolt's flat current/next ranges, flat +4/+4
+delta and dynamic description, actual Vengeance mixed-type rows and totals, and
+authored Holy Shield rank-3 **3.9-second** cooldown. Actual values retained
+percentage suffixes or turn units. Real Warmth rank-2/3 mana/fire percentage
+rows and deltas passed in both locales. No presentation/locale/browser source
+had changed. This is the desired-unit RED; it is distinct from P08a01b's label
+fixture failure.
+
+Root and producer independently reviewed the full test diff and approved the
+presentation fix before implementation. Exact raw JSON was retained for those
+consumers at `/tmp/d2h5-p08a01c-units-red.json`; QA owns cleanup after final
+review. Final fix/combined-head/browser evidence is pending. The canonical
+cast-name fallback remains a separately open issue outside the unit correction.
