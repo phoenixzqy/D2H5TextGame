@@ -148,7 +148,9 @@ Final source SHA256:
 - Log test remains the frozen RED hash above.
 
 Independent producer and QA final **APPROVE / ADEQUATE**, complete source/raw
-coverage consumed. Task-owned raw logs/coverage/build/test cache may now be
-removed after evidence preservation. Stage f receives accepted `dd236eb` and
+coverage consumed. Root verified removal of all23 explicitly enumerated d/e
+raw/fixture files, `/tmp/d2h5-root-warmth-e-coverage`, root `dist/` and
+`node_modules/.vite/` after consumption. Dependencies and source preserved;
+later UI validation recreated its own build/test cache. Stage f receives accepted `dd236eb` and
 exclusive five-file recovery scope; stage g still needs ordinary browser proof.
 No full Warmth, campaign, performance or G0–G7 acceptance.

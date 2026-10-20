@@ -12,7 +12,7 @@
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button, Modal, Panel, ScreenShell, GameCard, getClassPortraitUrl, getMercPortraitUrl, getMonsterImageUrl, getSummonImageUrl, tDataKey, tItemName } from '@/ui';
+import { Button, Modal, Panel, ScreenShell, StatBar, GameCard, getClassPortraitUrl, getMercPortraitUrl, getMonsterImageUrl, getSummonImageUrl, tDataKey, tItemName } from '@/ui';
 import { useCombatStore, useFormationStore, useMapStore, useMetaStore, usePlayerStore } from '@/stores';
 import {
   startSubAreaRun,
@@ -483,8 +483,14 @@ function Battlefield({
   readonly totalWaves: number;
 }) {
   const { t } = useTranslation('combat');
+  const hero = allies.find(unit => unit.side === 'player' && inferKind(unit) === 'hero');
   return (
     <Panel title={t('battlefield.title')} className="max-w-6xl mx-auto">
+      {hero && hero.stats.manaMax > 0 && (
+        <div role="group" aria-label={t('mp')} className="mb-3">
+          <StatBar current={hero.mana} max={hero.stats.manaMax} label={t('mp')} color="mp" />
+        </div>
+      )}
       <div
         className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] gap-2 sm:gap-4 items-center"
         data-testid="combat-battlefield"
@@ -641,10 +647,10 @@ function UnitCard({
           : 'common';
 
   const bars: { kind: 'hp' | 'mp'; current: number; max: number }[] = [
-    { kind: 'hp', current: unit.life, max: Math.max(1, unit.stats.life) },
+    { kind: 'hp', current: unit.life, max: Math.max(1, unit.stats.lifeMax) },
   ];
-  if (size === 'md' && unit.stats.mana > 0) {
-    bars.push({ kind: 'mp', current: unit.mana, max: Math.max(1, unit.stats.mana) });
+  if (size === 'md' && unit.stats.manaMax > 0) {
+    bars.push({ kind: 'mp', current: unit.mana, max: Math.max(1, unit.stats.manaMax) });
   }
 
   const tierKey = unit.tier === 'rare-elite' ? 'rare-elite' : unit.tier;
@@ -721,7 +727,7 @@ function UnitCard({
             <div className="h-1 rounded bg-black/60">
               <div
                 className="h-full rounded bg-red-600"
-                style={{ width: `${Math.max(0, Math.min(100, (unit.life / Math.max(1, unit.stats.life)) * 100)).toFixed(2)}%` }}
+                style={{ width: `${Math.max(0, Math.min(100, (unit.life / Math.max(1, unit.stats.lifeMax)) * 100)).toFixed(2)}%` }}
               />
             </div>
           </div>

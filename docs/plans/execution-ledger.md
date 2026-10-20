@@ -39,6 +39,7 @@ Current implementation evidence lives in `evidence/`.
 | P07a01c2 | accepted adapter slice | `1860bc6`; authoritative per-wave gear/core/learned config, frozen ordinary recording, original-resource replay/clamp/no refill. Genuine RED13/56; full1602/124/T/L/B pass. Store coverage diagnostic exits1 at77.9%branches; engine-only threshold applicability and changed43/43 statements independently reviewed. Warmth runtime/browser remain open. |
 | P07a01d | accepted fire/passive slice | `5a53d37` (worker `f80b6a9`), separate active-buff fixture `727da6b`; actual composed fire bonus and passive action exclusion. Genuine RED22/38; engine780/full1640/T/L/B/coverage pass, root/QA/producer APPROVE. Timed recovery and browser remain open. |
 | P07a01e | accepted mana transport slice | `dd236eb`, reviewed RED/BUG036 `48e1412` + post-fire RED `35365c3`; exact absolute cast/refund/orb playback and resulting-cap carry cleanup. Focused32/full1661/T/L/B/80%engine coverage pass; producer/QA APPROVE. No timed recovery yet. |
+| P07a01g UI prerequisite | accepted bounded display slice | BUG037; live hero MP strip and true bar maxima. Genuine corrected RED2/12; GREEN12/full1667/T/L/B pass. Ordinary Fire Bolt102→94MP,14/14 viewport/locale geometry and readable en/zh screenshots, independent QA/producer APPROVE. Full earned Warmth proof remains open. |
 | Remaining P06–P10 | pending dependencies | D04–D06/shared effects first. All skills remain behavior-unaccepted. |
 | P08a01 | accepted fire-status-family slice | `11eb6b3` (worker `ca66d0a`); central burn/ignite identity, production ranked Fire Bolt full3s DoT and legacy/combo/refresh/removal. BUG029; root/producer APPROVE/ADEQUATE. Combined1332pass; ordinary skill UI/fullP08/C1 remain open. |
 | P08a01b/c | accepted earned skill and display slices | `0dbbef2` ordinary earned Fire Bolt/save/reload production route; `a150f5b` truthful damage/CD/DoT units in both locales. Independent evidence below; full skill behavior remains open. |
@@ -1162,3 +1163,22 @@ MP-ms plus whole-granted counter; all cap paths reset local and unit carry.
 Root separately owns two-file UI prerequisite: truthful maxima and readable
 full-width hero MP above the battlefield, then ordinary learned/upgrade/save/
 reopen/fire+recovery desktop/mobile×both-locales browser evidence.
+
+P07a01g UI prerequisite accepted after BUG037 and independent producer/QA
+RED, source/GREEN and production-browser review. Exact two source/test files:
+truthful lifeMax/manaMax and existing StatBar showing actual hero runtime MP
+above grid. Focused12/full1667/T/L/build pass; related8.09s/full28.11s exceed
+5/15s budgets. Ordinary controls in real production show102→94/max102;
+14geometry checks, en/zh ×320/360/412/640landscape/768/1280/1920, pass without
+horizontal overflow. Both locales360/1280 screenshots independently inspected.
+Temporary Chinese font addressed missing host glyph support; one failed launch
+from XDG browser lookup was preserved and corrected via existing browser path.
+No game-state injection or source change for browser proof. BUG037 preserves
+exact hashes, commands, evidence boundaries and environment diagnostic.
+Full recovery, earned Warmth upgrades/frozen recording/next-wave/save/reopen,
+whole-screen accessibility, narrow-card usability and campaign remain open.
+After reviewer consumption, verified cleanup removed13 exact UI raw files,
+the complete task-owned browser scratch directory including temporary font/
+caches, root `dist/` and `node_modules/.vite/`. Port4386 has no listener;
+dependencies/source/history preserved. Prior d/e cleanup also confirmed in
+BUG036. The original checkout remains clean on main.
