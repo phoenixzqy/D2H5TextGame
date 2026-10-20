@@ -1,8 +1,9 @@
-# Production measurement contracts (P02a01–P02a02)
+# Production measurement (P02a01–P02a03)
 
-This directory currently validates recipes and measurement provenance. It does
-not run combat or certify balance, pacing, skills, earned progress or campaign
-reachability. The historical `../bloodMoor.sim.test.ts` and Phase C script use
+This directory validates recipes/provenance and measures bounded fresh runs
+through production creation, combat, recorded playback and reward APIs. It does
+not certify balance, pacing, skills or campaign reachability. The historical
+`../bloodMoor.sim.test.ts` and Phase C script use
 proxy combat formulas; they remain outside this project's discovery.
 
 Run the non-watch self-tests:
@@ -14,8 +15,22 @@ npm test
 
 The `sim-contracts` Node workspace project discovers only
 `tests/sim/production/**/*.test.ts`, including under ordinary `npm test`.
-There is no simulation results command yet. Existing engine/UI projects and
-engine-purity boundaries are preserved.
+Ordinary tests include one small production measurement. Existing engine/UI
+projects and engine-purity boundaries are preserved.
+
+Run a measurement with the default fresh sorceress/Blood Moor/seed1 recipe:
+
+```sh
+npm run sim:production
+SIM_REPORT_PATH=/tmp/d2h5-production-new-report.json npm run sim:production
+```
+
+`SIM_FIXTURE_PATH` optionally selects a recipe JSON file. Reports require an
+absolute, previously nonexistent leaf outside the repository with an existing
+real parent; no overwrite, directory creation or repository output is allowed.
+The screening adapter permits at most eight seeds, two repetitions each.
+It restores six stores, idle pity and Date.now on success/error, and rejects an
+already active run. No persistence, offline or browser hooks are installed.
 
 ## Fresh recipe v1
 
@@ -76,13 +91,17 @@ preserving array order. The recipe's version, seeds, clock and origin all count.
 
 `parseRunProvenance` requires source commit SHA, source-tree/data/fixture SHA-256
 hashes, fixture version, Node and Vitest versions. Missing/empty/malformed fields
-fail. Schema validation only checks shape: the later runner **must compute**
-actual values from the executed source and fixture. Never substitute fabricated
+fail. Schema validation only checks shape: the runner computes actual values
+from the executed source and fixture. Never substitute fabricated
 values from a test or an empty fingerprint. Source-tree hashing must include
 relevant tracked and task-local untracked source/config/scripts/lockfile bytes,
 so dirty source differs even when the commit SHA is unchanged. Data hashing
 must include production data paths and bytes. Exact collection roots/exclusions
-are a runner-card deliverable; a supplied hash is not independent provenance.
+are recorded in the report. `collectSourceState` includes `src/`, this directory,
+`scripts/`, package/lock files, Vite/Vitest and TypeScript configs; fixed cache
+directories are excluded and symlinks rejected. The driver collects before
+dynamic gameplay import and after cleanup; source/data drift rejects output.
+A supplied hash is not independent provenance.
 
 ## Production run replay boundary
 
@@ -113,9 +132,15 @@ uses a real fresh production character and compares raw first-wave teams,
 events/timestamps and outcome after changing the run-start wall clock, with no
 private counter resets, stat boosts or proxy battle.
 
-This is an input boundary, not a full-run adapter, reward replay or balance
-result. Raw item identity, manual/idle comparison, the presumed-kill idle ticker
-path and draw/advance/reward discrepancies remain open.
+This input boundary is used by `adapter.ts`, which retains full raw initial and
+final teams, recordings, terminal state, per-wave seeds, raw rewards and actual
+inventory/currency/cumulative-XP deltas. Logical simulation duration, summed
+UI-delay hints and measured wall runtime are separate; hints are not browser
+time. Each wave includes event count and SHA-256 of canonical raw event JSON.
+Raw battle equality, raw reward equality and semantic reward equality omitting
+only top-level Item.id are separate assessments. The process-global allocator
+is never reset or hidden. Observed rewards and nonwinning-advance diagnostics
+remain independent of the production victory/clear flags.
 
 ## Acceptance and next slices
 
@@ -129,15 +154,17 @@ Security check: pass; local validation/hash tooling only, no new dependency,
 untrusted command execution, network, credentials, permissions or runtime/save
 behavior changes. Current U/T/L evidence and final SHA live in the plan ledger.
 
-Next: use the explicit production run seed/ordinal boundary with
-`createMockPlayer` → `playerStore.setPlayer` and `startSubAreaRun` → recorded
-playback → `advanceWaveOrFinish`, retaining real reward service outputs. Record
-milliseconds/seconds and per-wave plan/combat/reward RNG derivations. Do not
+The adapter uses `createMockPlayer` → `playerStore.setPlayer` and
+`startSubAreaRun` → recorded playback → `advanceWaveOrFinish`, retaining real
+reward service outputs. Do not
 reset global item allocators to claim exact raw replay, silently strip item
 IDs, or infer a victory from wave advancement. Report raw and semantic reward
 comparison separately until hidden state is resolved.
 
 Current CombatScreen idle mode uses real sub-area combat. The separate
 `useIdleTicker` presumed-kill path has no production caller; diagnose it under
-that label. Fresh fixtures may not inject clears to unlock idle. Reporting/CLI,
-production adapters, manual/idle comparison and all of P02 remain open.
+that label. Fresh fixtures may not inject clears to unlock idle. Manual/idle
+comparison, raw reward identity replay, expanded scenarios and full P02 remain
+open. The default seed1 sample loses wave2 of3 while retaining wave1's actual
+rewards; it proves measurement wiring, not a fresh full clear. Current exact-head
+commands, results, hashes and known limits live in the execution ledger.
