@@ -2,7 +2,8 @@
 
 Status: root design/technical contract; producer APPROVE; QA lifecycle amendment
 accepted. Authored baseline `a35ef02`, trigger metadata `07e8514`, and pure
-composition `938ed96` integrated. Runtime composition/recovery remains open.
+composition `938ed96` and authoritative wave adapter `1860bc6` integrated.
+Fire/recovery runtime, mana playback and browser acceptance remain open.
 Design choices below are provisional balance, not measured campaign acceptance.
 Full Warmth requires both authored effects; staged fire-only work stays partial.
 
@@ -163,3 +164,15 @@ explicitly cleared fields; final whole-contract review still requested.
 
 QA final whole-contract review: ready; existing combatHelpers.cross-wave.test.ts
 identified as stagef fifth file. No source/tests/builds executed by reviewers.
+
+
+P07a01c2 adapter accepted at`1860bc6` after tests-only authoritative fixture
+prerequisite`9ae162e`. Genuine final RED13fail/43pass preceded source. Final full
+1602/124files/zero skips; engine742/47, related464/42, T/L/build/diff-check pass.
+Producer and QA independently APPROVE / ADEQUATE. Store coverage diagnostic
+exited1 at77.9%branches under inherited engine-only80%threshold; no threshold
+change, all43 changed statements covered. See BUG034 for exact commands,
+coverage digest, oracle corrections and performance limits. Runtime pools
+restore from original wave baseline while nested current-pool metadata remains
+fresh; neither rising maxima nor replay replenishes from persistent resources.
+Stage d two-file plan independently approved; source awaits reviewed RED/bug.

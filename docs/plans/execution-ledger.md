@@ -35,6 +35,7 @@ Current implementation evidence lives in `evidence/`.
 | P06b | accepted deadline slice | `2cd350b`; inclusive 60,000 ms deadline, no overshoot, tied actors and exact/early victory. Five boundary tests, independent parent APPROVE; BUG-006. |
 | P06c01 | accepted periodic slice | `6c7f049` (agent `ff3787e`); shared status/lethal/expiry boundaries, fractional carry, simultaneous death/orphan transaction;31 focused regressions, root+producer source APPROVE. Boss milliseconds and cross-wave rebasing remain. |
 | P06c02 | accepted boss-duration slice | `030de58` (agent `53c08fe`); configured boss multiplier once on unrounded milliseconds, legacy lifecycle retained;56 focused cases incl16 real combat cases; root+producer source APPROVE. Cross-wave rebasing remains. |
+| P07a01c2 | accepted adapter slice | `1860bc6`; authoritative per-wave gear/core/learned config, frozen ordinary recording, original-resource replay/clamp/no refill. Genuine RED13/56; full1602/124/T/L/B pass. Store coverage diagnostic exits1 at77.9%branches; engine-only threshold applicability and changed43/43 statements independently reviewed. Warmth runtime/browser remain open. |
 | Remaining P06–P10 | pending dependencies | D04–D06/shared effects first. All skills remain behavior-unaccepted. |
 | P08a01 | accepted fire-status-family slice | `11eb6b3` (worker `ca66d0a`); central burn/ignite identity, production ranked Fire Bolt full3s DoT and legacy/combo/refresh/removal. BUG029; root/producer APPROVE/ADEQUATE. Combined1332pass; ordinary skill UI/fullP08/C1 remain open. |
 | P08a02 | in-progress authored curse slice | Metadata `8b1f497` and authored definition `554a922` accepted; runtime c awaits genuine production RED/BUG031 and combined proof. Approved D04 contract at `bf840d7`. |
@@ -1056,3 +1057,56 @@ runtime controls are included. Engine/related/full 3/5/15 s budgets remain
 unmet; existing stale Browserslist, >500 kB main chunk and optional 2.57 MB
 manifest precache warnings remain. Full v1/C0–C4/G0–G7 stay unaccepted;
 root worktree-2 remains claimed, original checkout untouched, no publication.
+
+
+## Authoritative fixture prerequisite and Warmth wave adapter
+
+Tests-only prerequisite`9ae162e` (worker`644b51f`) migrates four legacy store/
+quest fixtures from boosted derived caches to explicitly imported synthetic
+helm-cap gear through real inventory actions. All236 original assertion lines
+retained in order, genuine60000ms draw retained; exact before/after DerivedStats
+proof independently inspected by root+producer. Focused56/4baseline3.28s→3.08s,
+related56/4 5.44s, full1589/123 25.59s, T/L/build6.81s/diff-check pass. Worker
+verified exact scratch/dist/.vite cleanup, clean Git and release4. This proves
+fixture equivalence, not earned campaign balance or the new adapter.
+
+P07a01c2`1860bc6` changes four files. Source now composes authoritative equipped
+core/gear and effective Energy once; every wave pulls fresh configuration,
+ordinary recordings remain frozen, missing learned levels explicitly clear,
+resources preserve/clamp without refill, cap clears carry/compensation, and
+replay preserves original/rebased baseline without repeated resource loss.
+Missing/replaced persistent hero and actual mercenary remain isolated. Legacy
+weapon authority intentionally remains a separate boundary.
+
+Genuine final pre-source RED at08:46:15UTC:13failed/43passed/0pending56total,
+reviewed independently by producer and QA before source. Initial GREEN54/56
+exposed two provably wrong oracles: L4expandedmana520 rather than524, and fresh
+persistent-pool metadata144/335 after no-heal re-equip while actual replay
+resources restore190/400/.75/.125. Both reviewers approved exact corrected
+whole-recording oracles; original outcome reference immutability remains pinned.
+Typecheck caught readonly mutations in first expected fixture correction; final
+immutable mapped replacement retains the same exact expected values.
+
+Final focused56/56 3.730s, related464/42files23.263s, engine742/47files5.181s,
+full1602/124files31.069s; all zero failed/pending. Final T/L/build5.63s/diff-check
+pass. Full includes final immutable expected-object correction. Engine overlapped
+tail of related/typecheck; no isolated timing acceptance inferred. Budgets
+3/5/15seconds remain unmet. Existing build warnings persist.
+
+Extra store coverage diagnostic full1602pass40.49s **exited1** because77.9%
+branches is below inherited80%. The configured threshold targets engine files,
+explicitly excluding UI/store; the CLI store target is diagnostic, not a new
+applicable gate. No setting/threshold was weakened. Raw658/688statements,
+20/21functions,134/172branches; changed43/43statements and17/24branches hit.
+Unhit added alternatives are defensive defaults on fields the current composer
+always populates. Producer+QA independently consumed raw hash
+`dbb75b64da03598b76811cc729ec27582c00e7fbb701d7de2648cafe98a3d477` and all source/
+JSON evidence: APPROVE / ADEQUATE, diagnostic failure explicitly disclosed.
+Exact commands and remaining limits are in BUG034; disposable paths are removed
+and verified after both consumers finish. Root worktree2 remains claimed for
+continued implementation; original checkout untouched. No publication.
+
+P07a01d source-confirmed two-file fire/passive plan is approved by producer;
+worker awaits root input/reviewed RED and bug record before runtime edit.
+Full Warmth/C0–C4/G0–G7 remain unaccepted; UI true maxima, ordinary earned
+browser/save proof, fire/recovery and absolute mana playback remain open.

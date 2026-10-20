@@ -1,6 +1,6 @@
 # BUG-034 — Compose authoritative hero configuration at wave boundaries
 
-- **Status:** Reproduced; P07a01c2 source fix pending.
+- **Status:** Fixed in `1860bc6` for the bounded adapter/lifecycle contract; recovery, fire and browser acceptance remain open.
 - **Severity:** High; allocated stats/passives and equipped gear do not reliably reach the next battle, and refresh can contradict an existing recording.
 - **Owner / affected systems:** store integrator; combatHelpers hero composition, next-wave configuration and explicit replay input lifecycle.
 - **Input:** `ef0a3b8`, source unchanged; new `src/stores/warmth-composition.test.ts` acceptance tests only.
@@ -84,3 +84,47 @@ incorrectly assumed spending necessarily lowered400; actual kill orbs cap the
 completed result405. Corrected that test-only oracle to405 while replay input
 stays400, with no source change. Prior actual outcome references are retained
 and checked for immutability after repeated replay.
+
+
+## Resolution and reviewed evidence
+
+`1860bc6` composes authoritative equipped/core/derived configuration on every
+wave entry, explicitly clears removed learned state, freezes ordinary current
+recordings and replays from original wave-input resources. Four source/test
+files; independent producer and QA APPROVE / ADEQUATE. Genuine final RED above
+preceded the production change. Two incorrect GREEN expectations were corrected
+with independent review: L4 expanded mana is62+216×1.5+134=520; after unequip and
+re-equip the fresh persistent pool metadata is144/335 while original runtime
+HP190/MP400/carry.75/compensation.125 must be restored. Full recording equality
+still pins all other state and actual retained prior outcomes stay immutable.
+
+Final checks on the accepted source and immutable expected-object correction:
+
+- Focused three suites56/56 (3.730s); final full includes the corrected oracle.
+- `npm run test:related -- src/stores/combatHelpers.ts
+  src/stores/combatHelpers.replay.test.ts
+  src/stores/combatHelpers.idle-bonus.test.ts
+  src/stores/combatHelpers.outcomes.test.ts src/stores/quest-area-clear.test.ts
+  src/stores/quest-npc-talk.test.ts --reporter=json ...`:464/42files,23.263s.
+- Engine742/47files,5.181s; full1602/124files,31.069s; all zero pending/failures.
+  Engine overlapped the tail of related/typecheck; timings do not establish
+  isolated performance. Engine/related/full budgets remain unmet.
+- Final typecheck, lint, production build5.63s and diff-check passed. Existing
+  Browserslist, large chunk and optional manifest precache warnings remain.
+- Extra full-run store coverage diagnostic:1602 tests passed40.49s, but command
+  **exited1**:77.9%branches below inherited80%. Normal configured80%coverage
+  targets engine files and explicitly excludes UI/store; this CLI target
+  override is a diagnostic, not a new store gate. No threshold was changed.
+  combatHelpers658/688 statements,20/21functions,134/172branches; all43 changed
+  statement locations hit,17/24 changed branch locations hit. Unhit new
+  alternatives are defensive defaults for populated current-adapter fields.
+  Raw SHA256`dbb75b64da03598b76811cc729ec27582c00e7fbb701d7de2648cafe98a3d477`
+  independently consumed by both reviewers before cleanup.
+
+Raw command suffixes used JSON output under `/tmp/d2h5-root-warmth-c2-*`.
+Coverage command was `npx vitest run --coverage
+--coverage.include=src/stores/combatHelpers.ts
+--coverage.reportsDirectory=coverage/p07a01c2 --reporter=dot --silent`.
+The diagnostic failure is retained; coverage is not reported green.
+Continuous recovery, passive action exclusion, fire damage, mana event playback,
+earned UI/browser/save proof and true resource-bar maxima remain later stages.
