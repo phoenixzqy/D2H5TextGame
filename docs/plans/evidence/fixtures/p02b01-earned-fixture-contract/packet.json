@@ -1,0 +1,883 @@
+{
+  "task": "P02b00/P02b01",
+  "status": "accepted-scoped; cleanup pending",
+  "inputHead": "1c55248935d1ae4b94c7359fe44581950f9279fa",
+  "scope": "Post-MR source feasibility; additive fresh-earned v2 parser and fingerprint only",
+  "notAcceptance": [
+    "acquisition execution",
+    "Den win",
+    "native browser pilot",
+    "screening",
+    "pacing",
+    "balance",
+    "campaign",
+    "C0-C4",
+    "G0-G7",
+    "full v1"
+  ],
+  "archive": {
+    "path": "diagnostics.tar.gz",
+    "bytes": 240289,
+    "sha256": "5064247e0ad9bbf745fd8f95173ae840d560eeb3747b75970540e09c18b1133e",
+    "entries": [
+      {
+        "path": "after-typeguards-earned-fixture.test.ts.txt",
+        "bytes": 18508,
+        "sha256": "99fb52eda848407cfcdc1089fd71cc1399ab2be770b8050204675959cc1b61d1"
+      },
+      {
+        "path": "after-typeguards-earned-fixture.ts.txt",
+        "bytes": 9394,
+        "sha256": "c29b0b99c8b75bb4f4a856b7935e0f0323172c4bfbc1b9718d0a39b18eade9f5"
+      },
+      {
+        "path": "amended-red.json",
+        "bytes": 11256,
+        "sha256": "615c4deeeb7a3b9256d0981584cb890c5c3dfde4ce4fae2040799d3198f2a6e2"
+      },
+      {
+        "path": "amended-red.log",
+        "bytes": 127,
+        "sha256": "b455ea2b7fabcc953b68947dbf950eac5b2c8cb433cfbba60d71c3a9f81ed81c"
+      },
+      {
+        "path": "amended-red.meta.json",
+        "bytes": 523,
+        "sha256": "076dc27c94b55eb8277a9fe1002015f4c60dd9ef723febf7df211a28ab2afb7f"
+      },
+      {
+        "path": "amended-red.test.ts.txt",
+        "bytes": 16999,
+        "sha256": "8fffbdc852c53ffd095c5b69e80857ab038c695b547b44d1e2f884ea1cf2b720"
+      },
+      {
+        "path": "before-typeguards-earned-fixture.test.ts.txt",
+        "bytes": 18478,
+        "sha256": "702317a4c2fcd508d78c0c6e6701447c24c1f76f7878d3e480aea1da40a9cb5d"
+      },
+      {
+        "path": "before-typeguards-earned-fixture.ts.txt",
+        "bytes": 9393,
+        "sha256": "e1fc537717405a06e009fb7e71e34b4f65faa2aaa5a3a7c0ebc304790feb3144"
+      },
+      {
+        "path": "earned-fixture.test.ts.typeguard.diff",
+        "bytes": 796,
+        "sha256": "baacc20c2885b6168ec68bdaf223a870508e12c3cf2498ba0f1075478aa05b75"
+      },
+      {
+        "path": "earned-fixture.ts.typeguard.diff",
+        "bytes": 508,
+        "sha256": "a4bf08d9808b82b8ffd2630ae9c11f724b8fecdc763442c0fa1280c29bfa5956"
+      },
+      {
+        "path": "final-build.log",
+        "bytes": 1763,
+        "sha256": "dae7ba3f59bc68f7d77ba73d3df91d4c1ce315068060a1cf98e39bbde02676a5"
+      },
+      {
+        "path": "final-build.meta.json",
+        "bytes": 252,
+        "sha256": "a907d0614873f8fa705faa005029bdc33d2edaaef234e104b6396b611e70be70"
+      },
+      {
+        "path": "final-lint.log",
+        "bytes": 196,
+        "sha256": "2792de92bfcfcca52d45d7d9554be17142ed714d537e23bbae1b59b7d5a9b80c"
+      },
+      {
+        "path": "final-lint.meta.json",
+        "bytes": 235,
+        "sha256": "243d8507a626a42762f62dc4118c8475045fb0afce8f956b2e15565b86f95e5f"
+      },
+      {
+        "path": "final-red.json",
+        "bytes": 11256,
+        "sha256": "c2930ec07d98696f39e9515c97d59f15bfc54937069f8d3870c838e66301086a"
+      },
+      {
+        "path": "final-red.log",
+        "bytes": 125,
+        "sha256": "2c6d400477daaa8dc20187f24102cc80820741e29b84b0e874caca160af7d258"
+      },
+      {
+        "path": "final-red.meta.json",
+        "bytes": 521,
+        "sha256": "010169a48be987373a81fe7ad8d5301e4691523745e1f1b3e7f386937a8e48c9"
+      },
+      {
+        "path": "final-red.test.ts.txt",
+        "bytes": 15631,
+        "sha256": "c4b44ec706596aa27b37fe38be27c8466e79ed6533433e44ad9c054890f0664b"
+      },
+      {
+        "path": "final-source-docs__plans__evidence__p02b00-post-mr-den-feasibility.md.txt",
+        "bytes": 9816,
+        "sha256": "46c0cd759bfd627fef19a7a033f406d996e433932761020cfd79c334f5a16013"
+      },
+      {
+        "path": "final-source-identity.json",
+        "bytes": 621,
+        "sha256": "04af8d309a64b997bc9315ddcb8f6cf2b19908d3becfa16a7dc1e3cf811c466f"
+      },
+      {
+        "path": "final-source-tests__sim__production__README.md.txt",
+        "bytes": 12386,
+        "sha256": "2fd35f789ea3f15e52722e871507edce0e05168c8a3d6f592f731fe321da7e78"
+      },
+      {
+        "path": "final-source-tests__sim__production__earned-fixture.test.ts.txt",
+        "bytes": 18508,
+        "sha256": "99fb52eda848407cfcdc1089fd71cc1399ab2be770b8050204675959cc1b61d1"
+      },
+      {
+        "path": "final-source-tests__sim__production__earned-fixture.ts.txt",
+        "bytes": 9394,
+        "sha256": "c29b0b99c8b75bb4f4a856b7935e0f0323172c4bfbc1b9718d0a39b18eade9f5"
+      },
+      {
+        "path": "final-typecheck.log",
+        "bytes": 50,
+        "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+      },
+      {
+        "path": "final-typecheck.meta.json",
+        "bytes": 240,
+        "sha256": "05a77e0a2ca64a686cff66a7a3d837551e0062dd6d4b6042ff6a192a6f8f12f7"
+      },
+      {
+        "path": "final-unit.json",
+        "bytes": 979867,
+        "sha256": "449b988aa7192fc6ccb5b78027c3ed965c1ef8f98a05373a3d5a15adee9e6e16"
+      },
+      {
+        "path": "final-unit.log",
+        "bytes": 301,
+        "sha256": "3c765d24e178faa7280dcd179f8a6e566072375ba4fa57d5cb36ddf1d34b98c8"
+      },
+      {
+        "path": "final-unit.meta.json",
+        "bytes": 380,
+        "sha256": "9b575529d0690f5dc76c9826f32ea3c8d915bbce58bf04147bdb19b84b00dcd2"
+      },
+      {
+        "path": "fingerprint-input.json",
+        "bytes": 2461,
+        "sha256": "983df10d345b28500004315ee5d8df4cfefe5b182d325029f1824c01a253187c"
+      },
+      {
+        "path": "fingerprint-oracle.json",
+        "bytes": 276,
+        "sha256": "c2e85db7bbcb6644e18fddb2bd5068f583da3c45d71c139c6e6bf9ee3e6658f9"
+      },
+      {
+        "path": "focused-green.json",
+        "bytes": 46629,
+        "sha256": "3d159fa8faf881617400efd8555bfddeefa53e0b0f2747dffa67e9d1fea1583b"
+      },
+      {
+        "path": "focused-green.log",
+        "bytes": 129,
+        "sha256": "4d0b3ae3218ed39c34ae6c657ff790ab105e67d8bccd809dcb89f50b57c02824"
+      },
+      {
+        "path": "focused-green.meta.json",
+        "bytes": 525,
+        "sha256": "f0056c9cb6d1ecfcafb46f2f0952a9af82c8b62bac3c783817c7798f2ca3ca7b"
+      },
+      {
+        "path": "frozen-amended-red.json",
+        "bytes": 11256,
+        "sha256": "cce6dbf8bb21a24dcfb13b4e01c5cdb2ec590fb66bd139d5b55fe60710bd3903"
+      },
+      {
+        "path": "frozen-amended-red.log",
+        "bytes": 134,
+        "sha256": "03f9ebcbf12489c39b322bf47936341d2a0585951bb05c2b0eb4f28f1796ea31"
+      },
+      {
+        "path": "frozen-amended-red.meta.json",
+        "bytes": 530,
+        "sha256": "f994c2e99809c34c07ff9489ce8e465f6745065b37ca9de42302bb43a900e1b2"
+      },
+      {
+        "path": "frozen-amended-red.test.ts.txt",
+        "bytes": 18478,
+        "sha256": "702317a4c2fcd508d78c0c6e6701447c24c1f76f7878d3e480aea1da40a9cb5d"
+      },
+      {
+        "path": "frozen-red.json",
+        "bytes": 11256,
+        "sha256": "ee8230f1046baa008ba655d6d78364bce4c073e5e093df4582eafe9f721bcad6"
+      },
+      {
+        "path": "frozen-red.log",
+        "bytes": 126,
+        "sha256": "1d31b9f49881cb85a3c34d6e25c7147e001a1fdf8e1718d6a4a548b254744ea0"
+      },
+      {
+        "path": "frozen-red.meta.json",
+        "bytes": 522,
+        "sha256": "513112e357c2dccb677069d8071d3c7bd1fb46e43ec9096f4a5b80915aec1f16"
+      },
+      {
+        "path": "frozen-red.test.ts.txt",
+        "bytes": 14043,
+        "sha256": "fe7990e4fee84ac77a4a33206ac034083a7ba4e07a027a04e093b512e16cc8d0"
+      },
+      {
+        "path": "full-green.json",
+        "bytes": 979832,
+        "sha256": "f6b5fffc3b0118c18bd145dfa54b6ec6800a0613c97d0693774feba8d9a241bf"
+      },
+      {
+        "path": "full-green.log",
+        "bytes": 301,
+        "sha256": "572a04febce8e025643c2a1feedfcc396da1ddb5f6ede721167ee8b9f025969d"
+      },
+      {
+        "path": "full-green.meta.json",
+        "bytes": 380,
+        "sha256": "d7f8474416ade7327028dc6a1a560e4ffb9d51c58e2122ec881a4168de0d932a"
+      },
+      {
+        "path": "guarded-build-chunks.json",
+        "bytes": 590,
+        "sha256": "399bd3248147629f81b5c1e33a81e02a97c6176b0bd64eed8c8f43e02bb3a24b"
+      },
+      {
+        "path": "initial-red.json",
+        "bytes": 11256,
+        "sha256": "1e379140449ecb9e42f8e18f49ed1d1a1a998b1f4b180ce0928d3d7a8dc7df8a"
+      },
+      {
+        "path": "initial-red.log",
+        "bytes": 127,
+        "sha256": "757d3064624982fddbda050ca5cb135f702c8f6f1aa4b8b86fdc3885a4eeb982"
+      },
+      {
+        "path": "initial-red.meta.json",
+        "bytes": 523,
+        "sha256": "feec7547f62854ddeae5554254ad657496597f227b76599395aca2a60ea636b2"
+      },
+      {
+        "path": "initial-red.test.ts.txt",
+        "bytes": 5898,
+        "sha256": "419439ba44d1f7206c3c6427802c94de97babc337b93b22465f349301e03a1fa"
+      },
+      {
+        "path": "lint-green.log",
+        "bytes": 196,
+        "sha256": "2792de92bfcfcca52d45d7d9554be17142ed714d537e23bbae1b59b7d5a9b80c"
+      },
+      {
+        "path": "lint-green.meta.json",
+        "bytes": 234,
+        "sha256": "988f60aa627ace3ff92160303bfc41cfcc1e72dda0d9baf1ee6c1d59905868af"
+      },
+      {
+        "path": "ownership.json",
+        "bytes": 706,
+        "sha256": "be64aab050ba951e61e1dceff51bb3812fcaeae3606b701696955df58561643b"
+      },
+      {
+        "path": "package_evidence.py",
+        "bytes": 4446,
+        "sha256": "96db7acacbeb92aedf3628098c36b713747b9f5887b6a2ee83fbe0b197df90c3"
+      },
+      {
+        "path": "parser-green.json",
+        "bytes": 46461,
+        "sha256": "e21f2d87be8e6ff39e0767fa80dd33507a1a198b5a859e549bcd6b06ec11770d"
+      },
+      {
+        "path": "parser-green.log",
+        "bytes": 128,
+        "sha256": "423abc4e62e7cec99fe898e06bce02d023230e1cd1e969ff313c309061bf07b5"
+      },
+      {
+        "path": "parser-green.meta.json",
+        "bytes": 595,
+        "sha256": "cc6db86d939b8c60d9024e53b5c2ab6d04dcb6496db8cd0f7c08cef8cf6b34db"
+      },
+      {
+        "path": "parser-stage.ts.txt",
+        "bytes": 8358,
+        "sha256": "c6b36784828b86d591289ab0aaf1df17bd20953b1d30c382aa211d14bd96b566"
+      },
+      {
+        "path": "plan-before-roster-amendment.md",
+        "bytes": 7860,
+        "sha256": "b7499719646bf3e2abb97b4c5a9c7a26530b14bd54992fbdcce4f72516366799"
+      },
+      {
+        "path": "plan-review.json",
+        "bytes": 443,
+        "sha256": "44b856ebc53790833f3a0861f9d1a9ff2fcf47f8bfb2b48258b44c477170e12d"
+      },
+      {
+        "path": "plan.md",
+        "bytes": 8074,
+        "sha256": "945498b51faa6a586d4c7b6d8b6209040c26d3a97aca1468db333bd3a4377269"
+      },
+      {
+        "path": "red-review.json",
+        "bytes": 935,
+        "sha256": "60c8269a9da05b26ff738bce478362f8aba8eeb4eb0a004533e49450b772eeab"
+      },
+      {
+        "path": "related-green.json",
+        "bytes": 50822,
+        "sha256": "6d5551949b472715054e8586af0d126493ca5f7fc6d96ae8e829b18761eabb26"
+      },
+      {
+        "path": "related-green.log",
+        "bytes": 396,
+        "sha256": "c6abe10c008a7bc066d77cf34e05bfa28d1ddc0477a31fc5cda66b58e2fac260"
+      },
+      {
+        "path": "related-green.meta.json",
+        "bytes": 485,
+        "sha256": "781d39d4fd3ae22059fea20338a50d77629d32d50812644a86add3b323827479"
+      },
+      {
+        "path": "reviewed-red.json",
+        "bytes": 11256,
+        "sha256": "752162f0e2152314b62223b72afa9e0870d94e5a02873547e6ec8c99e5bb7c03"
+      },
+      {
+        "path": "reviewed-red.log",
+        "bytes": 128,
+        "sha256": "3904960c13c0b18474d92bc433735d662bd19547fcc9f7a8dee6a6b1e8df4335"
+      },
+      {
+        "path": "reviewed-red.meta.json",
+        "bytes": 524,
+        "sha256": "5e99e34e9a4569fd0130416c7c5ae89b7a66573fae002ba6bf294a918bd73fa0"
+      },
+      {
+        "path": "reviewed-red.test.ts.txt",
+        "bytes": 14485,
+        "sha256": "f244e9cf222ee4b9464dfecee85244a59b475108e0a9989ba7b07f120adc24fc"
+      },
+      {
+        "path": "roster-red.json",
+        "bytes": 11256,
+        "sha256": "708548607b90ebe7daae93096916ff75b16fd4c8e9aed56f824753f79d1ee169"
+      },
+      {
+        "path": "roster-red.log",
+        "bytes": 126,
+        "sha256": "8cf49f0eda53be526e0584e91788ee76d2f6033e3e6fe5c33b51aa9170df3846"
+      },
+      {
+        "path": "roster-red.meta.json",
+        "bytes": 521,
+        "sha256": "c6261dc53c0d3aad7f4fd5ad73d17e83a7868b6eb2dd96d1042a2e5c747494d6"
+      },
+      {
+        "path": "roster-red.test.ts.txt",
+        "bytes": 15162,
+        "sha256": "3dc4b4ad97c8d4c583e5645639f74583c1dc69555241426d19a429bd480fe87d"
+      },
+      {
+        "path": "runner.py",
+        "bytes": 584,
+        "sha256": "dd43228274b9a660e28898b9ff196cc394769664fe06502a9d056ef806b5aec9"
+      },
+      {
+        "path": "source-review.json",
+        "bytes": 575,
+        "sha256": "7335aabe19c72e6ccaefda8586501e08700c556ab088f3532f52871bddb7f30c"
+      },
+      {
+        "path": "typecheck-green.log",
+        "bytes": 350,
+        "sha256": "1b7d38229adf8f2fabb2df1944a4e1f4a8243d485cc1d74789137f678ec47374"
+      },
+      {
+        "path": "typecheck-green.meta.json",
+        "bytes": 239,
+        "sha256": "6c3756b322756792d99803c439cd6c4a81562f3476faed343c3bbdf37aa3881e"
+      },
+      {
+        "path": "typeguard-amendment.json",
+        "bytes": 654,
+        "sha256": "1532dbede101e400c5a50728a1615873ff0b618af642aca9d14576864f198e28"
+      },
+      {
+        "path": "v1-baseline.json",
+        "bytes": 623,
+        "sha256": "732a9338aa865fa0eb06c644f472527edadb0dc0db0b157ad7eeb6c2646a86b0"
+      }
+    ]
+  },
+  "sources": {
+    "tests/sim/production/earned-fixture.ts": {
+      "sha256": "c29b0b99c8b75bb4f4a856b7935e0f0323172c4bfbc1b9718d0a39b18eade9f5",
+      "bytes": 9394
+    },
+    "tests/sim/production/earned-fixture.test.ts": {
+      "sha256": "99fb52eda848407cfcdc1089fd71cc1399ab2be770b8050204675959cc1b61d1",
+      "bytes": 18508
+    },
+    "tests/sim/production/README.md": {
+      "sha256": "2fd35f789ea3f15e52722e871507edce0e05168c8a3d6f592f731fe321da7e78",
+      "bytes": 12386
+    },
+    "docs/plans/evidence/p02b00-post-mr-den-feasibility.md": {
+      "sha256": "46c0cd759bfd627fef19a7a033f406d996e433932761020cfd79c334f5a16013",
+      "bytes": 9816
+    }
+  },
+  "v1Baseline": {
+    "head": "1c55248935d1ae4b94c7359fe44581950f9279fa",
+    "sha256": {
+      "tests/sim/production/fixture.ts": "2d7e7fdad0e79ab057d5bdf6bfb28f056aac6c0f286cd5ef913dad5d8f9ec574",
+      "tests/sim/production/fixture.test.ts": "3f455dfe0d5d0b1717569356e05bf51028fd5eccedf1facb2460c0fdee6a0e3f",
+      "tests/sim/production/adapter.ts": "713bfc9cb2dfda30429d1aab5915244a3d013723a941c03061b2da2892fb4c3f",
+      "tests/sim/production/provenance.ts": "83271b46d074dc4cd1f92ec5895bbe1634c26b8b9379e141c1e04ec7068a684c",
+      "tests/sim/production/measure.test.ts": "71640dccc8e43fe331d38131b0ed8b5f9720a9f57f8de241547ae68bcdf428cb"
+    }
+  },
+  "commands": {
+    "amended-red": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-fixture.test.ts",
+        "tests/sim/production/fixture.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-measurement-0gjegt_f/amended-red.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:29:40.896659+00:00",
+      "seconds": 1.666,
+      "exitCode": 1
+    },
+    "final-build": {
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:35:57.570741+00:00",
+      "seconds": 9.08,
+      "exitCode": 0
+    },
+    "final-lint": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:34:01.320189+00:00",
+      "seconds": 56.263,
+      "exitCode": 0
+    },
+    "final-red": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-fixture.test.ts",
+        "tests/sim/production/fixture.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-measurement-0gjegt_f/final-red.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:29:23.874748+00:00",
+      "seconds": 1.671,
+      "exitCode": 1
+    },
+    "final-typecheck": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:34:01.317359+00:00",
+      "seconds": 24.902,
+      "exitCode": 0
+    },
+    "final-unit": {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-measurement-0gjegt_f/final-unit.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:34:01.316997+00:00",
+      "seconds": 49.832,
+      "exitCode": 0
+    },
+    "focused-green": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-fixture.test.ts",
+        "tests/sim/production/fixture.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-measurement-0gjegt_f/focused-green.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:32:11.423479+00:00",
+      "seconds": 1.764,
+      "exitCode": 0
+    },
+    "frozen-amended-red": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-fixture.test.ts",
+        "tests/sim/production/fixture.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-measurement-0gjegt_f/frozen-amended-red.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:29:52.067834+00:00",
+      "seconds": 1.672,
+      "exitCode": 1
+    },
+    "frozen-red": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-fixture.test.ts",
+        "tests/sim/production/fixture.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-measurement-0gjegt_f/frozen-red.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:25:59.611896+00:00",
+      "seconds": 1.686,
+      "exitCode": 1
+    },
+    "full-green": {
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-measurement-0gjegt_f/full-green.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:32:44.250860+00:00",
+      "seconds": 45.803,
+      "exitCode": 0
+    },
+    "initial-red": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-fixture.test.ts",
+        "tests/sim/production/fixture.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-measurement-0gjegt_f/initial-red.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:25:04.474196+00:00",
+      "seconds": 1.665,
+      "exitCode": 1
+    },
+    "lint-green": {
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:32:45.495555+00:00",
+      "seconds": 51.52,
+      "exitCode": 0
+    },
+    "parser-green": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-fixture.test.ts",
+        "tests/sim/production/fixture.test.ts",
+        "-t",
+        "fresh earned recipe|fresh production fixture boundary",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-measurement-0gjegt_f/parser-green.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:31:33.975827+00:00",
+      "seconds": 1.832,
+      "exitCode": 0
+    },
+    "related-green": {
+      "command": [
+        "npm",
+        "run",
+        "test:related",
+        "--",
+        "tests/sim/production/earned-fixture.ts",
+        "tests/sim/production/fixture.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-measurement-0gjegt_f/related-green.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:32:25.777528+00:00",
+      "seconds": 6.88,
+      "exitCode": 0
+    },
+    "reviewed-red": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-fixture.test.ts",
+        "tests/sim/production/fixture.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-measurement-0gjegt_f/reviewed-red.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:27:38.376863+00:00",
+      "seconds": 1.665,
+      "exitCode": 1
+    },
+    "roster-red": {
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "--project",
+        "sim-contracts",
+        "tests/sim/production/earned-fixture.test.ts",
+        "tests/sim/production/fixture.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-measurement-0gjegt_f/roster-red.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:29:07.438122+00:00",
+      "seconds": 1.67,
+      "exitCode": 1
+    },
+    "typecheck-green": {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-20T19:32:35.247383+00:00",
+      "seconds": 10.58,
+      "exitCode": 2
+    }
+  },
+  "reports": {
+    "amended-red": {
+      "success": false,
+      "actualAssertions": {
+        "passed": 35
+      },
+      "failedSuites": 1,
+      "todo": 0,
+      "aggregateTotal": 35,
+      "aggregatePassed": 35
+    },
+    "final-red": {
+      "success": false,
+      "actualAssertions": {
+        "passed": 35
+      },
+      "failedSuites": 1,
+      "todo": 0,
+      "aggregateTotal": 35,
+      "aggregatePassed": 35
+    },
+    "final-unit": {
+      "success": true,
+      "actualAssertions": {
+        "passed": 2994
+      },
+      "failedSuites": 0,
+      "todo": 0,
+      "aggregateTotal": 2994,
+      "aggregatePassed": 2994
+    },
+    "focused-green": {
+      "success": true,
+      "actualAssertions": {
+        "passed": 162
+      },
+      "failedSuites": 0,
+      "todo": 0,
+      "aggregateTotal": 162,
+      "aggregatePassed": 162
+    },
+    "frozen-amended-red": {
+      "success": false,
+      "actualAssertions": {
+        "passed": 35
+      },
+      "failedSuites": 1,
+      "todo": 0,
+      "aggregateTotal": 35,
+      "aggregatePassed": 35
+    },
+    "frozen-red": {
+      "success": false,
+      "actualAssertions": {
+        "passed": 35
+      },
+      "failedSuites": 1,
+      "todo": 0,
+      "aggregateTotal": 35,
+      "aggregatePassed": 35
+    },
+    "full-green": {
+      "success": true,
+      "actualAssertions": {
+        "passed": 2994
+      },
+      "failedSuites": 0,
+      "todo": 0,
+      "aggregateTotal": 2994,
+      "aggregatePassed": 2994
+    },
+    "initial-red": {
+      "success": false,
+      "actualAssertions": {
+        "passed": 35
+      },
+      "failedSuites": 1,
+      "todo": 0,
+      "aggregateTotal": 35,
+      "aggregatePassed": 35
+    },
+    "parser-green": {
+      "success": true,
+      "actualAssertions": {
+        "passed": 148,
+        "skipped": 14
+      },
+      "failedSuites": 0,
+      "todo": 0,
+      "aggregateTotal": 162,
+      "aggregatePassed": 162
+    },
+    "related-green": {
+      "success": true,
+      "actualAssertions": {
+        "passed": 174
+      },
+      "failedSuites": 0,
+      "todo": 0,
+      "aggregateTotal": 174,
+      "aggregatePassed": 174
+    },
+    "reviewed-red": {
+      "success": false,
+      "actualAssertions": {
+        "passed": 35
+      },
+      "failedSuites": 1,
+      "todo": 0,
+      "aggregateTotal": 35,
+      "aggregatePassed": 35
+    },
+    "roster-red": {
+      "success": false,
+      "actualAssertions": {
+        "passed": 35
+      },
+      "failedSuites": 1,
+      "todo": 0,
+      "aggregateTotal": 35,
+      "aggregatePassed": 35
+    }
+  },
+  "reviews": {
+    "plan-review": {
+      "producer": "ready; four-file additive scope and source-feasibility agree; historical packet SHA independently verified",
+      "qa": "QA-PLAN APPROVE / ready; full boundary and fingerprint cases; endpoints/recursive clone emphasized",
+      "designTechnical": "ready; complete source narrative and parser-only plan faithful; no edits/tests/pilot by reviewers",
+      "planSha256": "b7499719646bf3e2abb97b4c5a9c7a26530b14bd54992fbdcce4f72516366799"
+    },
+    "red-review": {
+      "initialReview": {
+        "producer": "revise: actual hire-roster refs/real nonroster control; real9/10combo; isolated selector-only fingerprint",
+        "qa": "hold/revise: paired farmcount+ordinal bounds; real9/10combo; realforeign catalog memberships; isolated invalidcheckpoint slug"
+      },
+      "amendments": "Only additive assertion/ref fixes, nested cloning and independent fixed hash oracle; no original assertions removed. Snapshots of every RED attempt preserved. Prettier before final freeze.",
+      "frozenTestSha256": "702317a4c2fcd508d78c0c6e6701447c24c1f76f7878d3e480aea1da40a9cb5d",
+      "planSha256": "945498b51faa6a586d4c7b6d8b6209040c26d3a97aca1468db333bd3a4377269",
+      "producer": "ready; final missing-module RED genuine,35oldpass,0newassertions; baseline unchanged; artifact consumers released",
+      "qa": "P02B01-QA-FROZEN-RED APPROVE / ADEQUATE; all requested cases and oracle independently verified; all consumers released"
+    },
+    "typeguard-amendment": {
+      "producer": "P02B01-TYPEGUARD-AMENDMENT APPROVE",
+      "qa": "P02B01-QA-TYPE-GUARD-AMENDMENT-1 APPROVE",
+      "reason": "noUncheckedIndexedAccess compile-only guards; all assertions, nested mutations and throw messages preserved",
+      "sources": {
+        "earned-fixture.ts": {
+          "before": "e1fc537717405a06e009fb7e71e34b4f65faa2aaa5a3a7c0ebc304790feb3144",
+          "after": "c29b0b99c8b75bb4f4a856b7935e0f0323172c4bfbc1b9718d0a39b18eade9f5"
+        },
+        "earned-fixture.test.ts": {
+          "before": "702317a4c2fcd508d78c0c6e6701447c24c1f76f7878d3e480aea1da40a9cb5d",
+          "after": "99fb52eda848407cfcdc1089fd71cc1399ab2be770b8050204675959cc1b61d1"
+        }
+      }
+    },
+    "source-review": {
+      "producer": "P02B01-SOURCE APPROVE; five axes no material findings; consumer released before build",
+      "qa": "P02B01-QA-SOURCE APPROVE / ADEQUATE; security PASS, all four files and current U/T/L independently verified; consumer released before build",
+      "scope": "P02b00 source-feasibility and P02b01 parser/fingerprint only; no earned acquisition/runtime/target/screen/browser/campaign acceptance",
+      "testSha256": "99fb52eda848407cfcdc1089fd71cc1399ab2be770b8050204675959cc1b61d1",
+      "parserSha256": "c29b0b99c8b75bb4f4a856b7935e0f0323172c4bfbc1b9718d0a39b18eade9f5"
+    }
+  },
+  "disclosures": [
+    "All missing-module RED runs execute only 35 old v1 assertions; no new assertion failures are claimed.",
+    "Parser-stage filtered run has 148 actual passed and 14 intentionally skipped assertions; Vitest aggregate incorrectly reports all 162 passed. Final focused and full runs have zero skipped assertions.",
+    "Initial noUncheckedIndexedAccess failure is preserved; independent approval covers only two test-presence guards plus parser optional access. Every original assertion and nested mutation is retained.",
+    "Related 6.880s exceeds unchanged 5s budget; final full 49.832s exceeds unchanged 15s budget. Initial full 45.803s also exceeded it. Final U/T/L were concurrent and no performance-budget acceptance is claimed.",
+    "Guarded production build passes; existing large-chunk and oversized manifest precache warnings remain. No browser evidence required or claimed for this parser-only slice.",
+    "Producer and QA released all source/fingerprint consumers before guarded build; no test/build process remains.",
+    "No src/config/package/v1 implementation edit, acquisition action execution, allocator reset, persistence hook, dependency, push, PR, merge or deployment."
+  ],
+  "cleanup": {
+    "state": "pending reviewer release",
+    "owner": "root",
+    "paths": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-measurement-0gjegt_f",
+      "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/dist",
+      "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/.vite"
+    ],
+    "preserve": [
+      "installed node_modules",
+      "source/history",
+      "durable packet/archive",
+      "overall claimed worktree"
+    ]
+  },
+  "finalReview": {
+    "reviewedPacketSha256": "56247b7a392c4c9f972f8a74b7a6de9aefa265f7c91e27f354181ec663ef43b7",
+    "producer": "P02B01-OUTCOME APPROVE; all78records/4source/5v1/17commands/12reports/4buildchunks independently verified; all consumers released",
+    "qa": "P02B01-QA-OUTCOME APPROVE / ADEQUATE; same complete audit, literal oracle/approved diff verified; all consumers released",
+    "narrativeCorrection": "QA advisory accepted: purity guard scanned57 engine test files; no source/test/archive change",
+    "scope": "P02b00 source-only and P02b01 parser/fingerprint; full v1 remains active"
+  }
+}

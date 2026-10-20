@@ -168,3 +168,60 @@ comparison, raw reward identity replay, expanded scenarios and full P02 remain
 open. The default seed1 sample loses wave2 of3 while retaining wave1's actual
 rewards; it proves measurement wiring, not a fresh full clear. Current exact-head
 commands, results, hashes and known limits live in the execution ledger.
+
+## Fresh earned recipe v2 (P02b01 contract only)
+
+`earned-fixture.ts` adds `parseEarnedFixture(unknown, references)` and
+`fingerprintEarnedFixture(EarnedFixture)`. The existing v1 parser, adapter,
+provenance and CLI remain separate. The v2 parser validates a recipe; it does
+not run acquisition, prove affordability, import a checkpoint or certify a win.
+There is no v2 measurement command yet.
+
+All top-level and nested fields are required and closed. The recipe has
+`fixtureVersion: 2`, a canonical slug `id`, a fresh Sorceress `origin` with
+`kind: 'new-character'`, `classId: 'sorceress'`, a 1–40 character `name` and
+`policy: 'production-creation-defaults'`. `clockEpochMs` is a nonnegative safe
+integer. `seeds` contains 1–8 distinct uint32 target seeds; acquisition uses
+`acquisitionSeedPolicy: 'production-clock'`. The target `scenario` is Act1,
+`areas/act1-den-of-evil`, manual, ordinal1–40 and `idleEliteMisses: 0`.
+`mercPolicy` is `recipe-actions`; `summonPolicy` is `production-default`.
+
+`actions` contains 1–32 ordered commands:
+
+| `kind`             | Required command fields and bounds                                                                          |
+| ------------------ | ----------------------------------------------------------------------------------------------------------- |
+| `hire-merc`        | `mercId` in the actual production hire roster                                                               |
+| `allocate-skill`   | Canonical Sorceress `skillId`, integer `points`1–20                                                         |
+| `set-combo`        | `skillIds`: 0–9 distinct current active Sorceress IDs                                                       |
+| `farm-first-waves` | `subAreaId: 'areas/act1-blood-moor'`, integer `count`1–40, `firstChallengeOrdinal: 0`                       |
+| `allocate-stats`   | `deltas` has all four integer attributes0–25, total1–25                                                     |
+| `equip-earned`     | `owner: 'hero'` or `'merc'`; `mercId` required only for merc; `slot: 'gloves'` or `'boots'`; selector below |
+| `accept-quest`     | `questId: 'quests/act1-den-of-evil'`                                                                        |
+| `checkpoint`       | Unique canonical slug `id`; output observation only                                                         |
+
+Exactly one farm command is required; its count must equal the target ordinal.
+The intended execution settles each acquisition W1 once and flees the already
+installed W2, using explicit ordinals0 through count−1. Count1 supports a later
+tiny adapter self-test; count40 requires its own reviewed screening plan.
+
+An equipment `selector` has exactly `baseId`, `rarity: 'normal'`, integer
+`defense`0–1000 and `selection: 'first-acquired'`. Its current base must fit the
+requested slot. Later execution must select only earned backpack items, retain
+their original IDs and break ties by acquisition order. No supplied item or
+character state is accepted.
+
+References explicitly supply current production `classes`, `areas`, `skills`,
+`mercs`, `bases` and `quests`. Supply mercs from
+`loadMercHireRoster().flatMap(act => act.mercs)`, not the broader gacha pool.
+The parser checks catalog membership, Sorceress skill identity/active combos,
+Act1 area/quest relationships, base-slot compatibility and checkpoint uniqueness.
+Runtime hire eligibility uses the roster act's `unlockReqLevel`; learned skills,
+prerequisites, available points, equipment ownership and quest availability
+remain production execution checks. No coercion, defaulting or removal of
+unknown properties occurs. The returned fixture is an independent clone.
+
+Fingerprinting includes the whole fixture at `fixture.json` using the v1
+path/length/byte protocol, recursively sorted object keys and ordered arrays.
+Tests use real catalogs, isolate invalid bounds/references, preserve v1 controls
+and compare an independently calculated literal fingerprint. Current plan,
+RED/GREEN evidence and acceptance limits live in the execution ledger.
