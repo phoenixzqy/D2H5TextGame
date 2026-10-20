@@ -127,3 +127,8 @@ Root/producer/QA final APPROVE / ADEQUATE. Producer independently checked all
 seven final result/log pairs, source/test hashes and coverage counters; QA
 independently approved final evidence. All raw consumers finished and released
 cleanup. Broader authority defect and C/G checkpoints remain open.
+
+P08a05a source/evidence commit: 502389c (see Git history for authoritative ID).
+After all consumers finished, root removed and verified absence of exact
+content raw root above, task-owned dist and local node_modules/.vite. No
+task-owned process remained; installed dependencies/shared caches preserved.

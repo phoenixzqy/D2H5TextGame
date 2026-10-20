@@ -1279,3 +1279,14 @@ dist/local .vite cleanup. Original checkout clean; root worktree remains claimed
 No ordinary-earned Frost browser/fullskill/campaign or C0–C4/G0–G7 acceptance.
 Continue legal Amazon starter content→class recipe→exactly-once creation→
 versioned conservative repair→canonical weapon readers.
+
+
+P08a05a accepted legal Training Bow content/acquisition after frozen actual
+7RED/3controls checkpoint9809698 and independent root/producer/QA source/final
+APPROVE/ADEQUATE. Four JSON files only; old content preserved. Focused211/3,
+related989/67,full/coverage2040/129,T/L/purity51/build pass; unchanged80%engine
+coverage gate passes (7993/8478statements,1836/2054branches,291/310functions).
+BUG041 preserves commands/hashes/caveats. Timing/build warnings remain. All
+raw consumers finished before verified exact content scratch/dist/.vite cleanup.
+Creation/save/readers/balance/browser/BUG041 and C0–C4/G0–G7 remain open.
+Continue producer-approved P08a05b recipe-backed factory with genuine RED.
