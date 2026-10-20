@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import * as quests from '@/data/loaders/quests';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
+import type { Item } from '@/engine/types/items';
 import { canClaim, claimQuestReward } from '@/features/quests/claimReward';
 import { awardXp, xpTotal } from '@/engine/progression/xp';
 import { loadTownNpcs } from '@/data/loaders/towns';
@@ -50,10 +51,22 @@ describe('ordered current-town quest talk events', () => {
   });
   it('cannot bank return credit before clearing and grants nothing until explicit claim', () => {
     const hero = createMockPlayer('Quest talk', 'sorceress');
-    // Production wiring fixture, not earned combat strength or a balance sample.
-    usePlayerStore.getState().setPlayer({ ...hero, comboOrder: [], derivedStats: {
-      ...hero.derivedStats, attack: 100_000, defense: 100_000,
-      life: 1_000_000, lifeMax: 1_000_000
+    usePlayerStore.getState().setPlayer({ ...hero, comboOrder: [] });
+    // Imported wiring gear, not earned combat strength or a balance sample.
+    // L1 attack floors 22.5 + 99978; defense includes the cap's own 7.
+    const cap: Item = {
+      id: 'talk-fixture-cap', baseId: 'items/base/helm-cap', rarity: 'rare', level: 1,
+      identified: true, equipped: false, affixes: [{ affixId: 'imported-wiring-fixture', values: new Map([
+        ['statMods.attack', 99978], ['statMods.defense', 99973], ['statMods.life', 999880]
+      ]) }]
+    };
+    useInventoryStore.getState().addItem(cap);
+    expect(useInventoryStore.getState().equipItem(cap)).toEqual({ ok: true });
+    const equipped = usePlayerStore.getState().player;
+    if (!equipped) throw new Error('Missing equipped fixture player');
+    // Equip recomputation preserves resources, so restore this fixture's intended HP/MP.
+    usePlayerStore.getState().setPlayer({ ...equipped, derivedStats: {
+      ...equipped.derivedStats, life: 1_000_000, mana: hero.derivedStats.mana
     } });
     track();
     const early = useMapStore.getState();

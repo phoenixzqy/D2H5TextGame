@@ -19,6 +19,7 @@ import { mercToCombatUnit } from './mercToCombatUnit';
 import type { BattleEvent } from '@/engine/combat/combat';
 import type { CombatUnit } from '@/engine/combat/types';
 import type { Mercenary } from '@/engine/types/entities';
+import type { Item } from '@/engine/types/items';
 import { usePlayerStore } from './playerStore';
 import { useMercStore, mercXpForLevel } from './mercStore';
 import { useCombatStore } from './combatStore';
@@ -345,18 +346,13 @@ describe('combatHelpers', () => {
     });
 
     it('Bug #3 — marks the sub-area cleared on run-victory and persists in the snapshot', async () => {
-      // Boost the hero so the deterministic mock barb steamrolls the
-      // 4-wave default plan.
+      // Imported high-power gear fixture, not earned progression or balance evidence.
       const boosted = createMockPlayer('Crusher', 'barbarian');
-      const buffed = {
-        ...boosted,
-        derivedStats: {
-          ...boosted.derivedStats,
-          life: 99999, lifeMax: 99999, mana: 9999, manaMax: 9999,
-          attack: 9999, defense: 9999, attackSpeed: 200
-        }
-      };
-      usePlayerStore.getState().setPlayer(buffed);
+      usePlayerStore.getState().setPlayer(boosted);
+      equipImportedPowerCap('crusher-fixture-cap', new Map([
+        ['statMods.life', 99849], ['statMods.mana', 9934], ['statMods.attack', 9974],
+        ['statMods.defense', 9972], ['statMods.attackSpeed', 80]
+      ]), 99999, 9999);
       useMapStore.getState().setCurrentLocation(1, 'a1-blood-moor');
 
       const handle = startSubAreaRun();
@@ -462,9 +458,30 @@ function buildMerc(overrides: Partial<Mercenary> = {}): Mercenary {
   };
 }
 
+function equipImportedPowerCap(id: string, values: ReadonlyMap<string, number>, life: number, mana: number) {
+  const cap: Item = {
+    id, baseId: 'items/base/helm-cap', rarity: 'rare', level: 1,
+    identified: true, equipped: false, affixes: [{ affixId: 'imported-wiring-fixture', values }]
+  };
+  useInventoryStore.getState().addItem(cap);
+  expect(useInventoryStore.getState().equipItem(cap)).toEqual({ ok: true });
+  const player = usePlayerStore.getState().player;
+  if (!player) throw new Error('Missing equipped fixture player');
+  // Equipping preserves current resources; explicitly refill only this test fixture.
+  const restored = { ...player, derivedStats: { ...player.derivedStats, life, mana } };
+  usePlayerStore.getState().setPlayer(restored);
+  return restored;
+}
+
 function boostedSorceress() {
   const player = createMockPlayer('Nova', 'sorceress');
-  return { ...player, level: 5, derivedStats: { ...player.derivedStats, life: 2000, lifeMax: 2000, mana: 2000, manaMax: 2000, attack: 500, defense: 200, attackSpeed: 200, critChance: 0, physDodge: 0, magicDodge: 0 } };
+  usePlayerStore.getState().setPlayer({ ...player, level: 5 });
+  // Imported gear supplies the old wiring fixture's strength, including the cap's 7 defense.
+  return equipImportedPowerCap('nova-fixture-cap', new Map([
+    ['statMods.life', 1848], ['statMods.mana', 1882], ['statMods.attack', 470],
+    ['statMods.defense', 161], ['statMods.attackSpeed', 75], ['statMods.critChance', -0.05],
+    ['statMods.physDodge', -0.10], ['statMods.magicDodge', -0.05]
+  ]), 2000, 2000);
 }
 
 function slainEnemy(id: string): CombatUnit {
@@ -489,13 +506,13 @@ describe('mercToCombatUnit (Bug #2)', () => {
 describe('startSimpleBattle — fielded merc (Bug #2)', () => {
   beforeEach(resetStores);
   it('uses one player unit when no merc is fielded', () => {
-    usePlayerStore.getState().setPlayer(boostedSorceress());
+    boostedSorceress();
     startSimpleBattle(1, 1);
     expect(useCombatStore.getState().outcome?.winner).toBe('player');
     expect(useCombatStore.getState().playerTeam.length).toBe(1);
   });
   it('adds the fielded merc to playerTeam', () => {
-    usePlayerStore.getState().setPlayer(boostedSorceress());
+    boostedSorceress();
     const merc = buildMerc();
     useMercStore.getState().addMerc(merc);
     useMercStore.getState().setFieldedMerc(merc.id);
@@ -574,7 +591,7 @@ describe('playerStore.gainExperience (Bug #1)', () => {
 describe('startSimpleBattle — XP grant on victory (Bug #1)', () => {
   beforeEach(resetStores);
   it('awards XP for slain monsters after wave playback completes', () => {
-    usePlayerStore.getState().setPlayer(boostedSorceress());
+    boostedSorceress();
     startSimpleBattle(1, 3);
     const slain = useCombatStore.getState().outcome?.finalEnemyTeam.filter((u) => u.life <= 0) ?? [];
     const expectedXp = slain.reduce((total, enemy) => total + xpForKill(enemy.level), 0);
@@ -587,7 +604,7 @@ describe('startSimpleBattle — XP grant on victory (Bug #1)', () => {
 describe('startSimpleBattle — Bug #12', () => {
   beforeEach(resetStores);
   it('never awards gold after victory', () => {
-    usePlayerStore.getState().setPlayer(boostedSorceress());
+    boostedSorceress();
     startSimpleBattle(1, 3);
     expect(useCombatStore.getState().outcome?.winner).toBe('player');
     drainEvents();
@@ -597,7 +614,7 @@ describe('startSimpleBattle — Bug #12', () => {
 
   it('shares combat victory XP with the fielded merc without a phantom level', () => {
     // Controlled high-power fixture proves actual reward wiring, not earned progression.
-    usePlayerStore.getState().setPlayer(boostedSorceress());
+    boostedSorceress();
     const merc = buildMerc({ level: 10 });
     useMercStore.getState().addMerc(merc);
     useMercStore.getState().setFieldedMerc(merc.id);
@@ -626,7 +643,7 @@ describe('startSimpleBattle — Bug #12', () => {
 describe('awardLootForVictory (Bug #12 — no gold)', () => {
   beforeEach(resetStores);
   it('folds rune drops and rune-shards into rune-shard currency without gold', () => {
-    usePlayerStore.getState().setPlayer(boostedSorceress());
+    boostedSorceress();
     const result = awardLootForVictory({ slainEnemies: Array.from({ length: 5 }, (_, i) => slainEnemy(`e${String(i)}`)), act: 1, treasureClassId: 'tc_missing', seed: 123 });
     expect(result.runeShards).toBeGreaterThan(0);
     expect('gold' in result).toBe(false);

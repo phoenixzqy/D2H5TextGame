@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { loadQuests } from '@/data/loaders/quests';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
+import type { Item } from '@/engine/types/items';
 import { canClaim, claimQuestReward } from '@/features/quests/claimReward';
 import { abortSubAreaRun, advanceWaveOrFinish, startSubAreaRun } from './combatHelpers';
 import { useCombatStore } from './combatStore';
@@ -30,14 +31,23 @@ function track(): void {
 
 function start(attack = 100_000): number {
   const player = createMockPlayer('QuestWiring', 'sorceress');
-  // Deliberate wiring fixture, not an earned character or a balance sample.
-  usePlayerStore.getState().setPlayer({
-    ...player, comboOrder: [],
-    derivedStats: {
-      ...player.derivedStats, attack, defense: 100_000,
-      life: 1_000_000, lifeMax: 1_000_000
-    }
-  });
+  usePlayerStore.getState().setPlayer({ ...player, comboOrder: [] });
+  // Imported wiring gear, not an earned character or a balance sample. L1
+  // attack floors 22.5 + this modifier; the cap adds 7 defense itself.
+  const cap: Item = {
+    id: 'clear-fixture-cap', baseId: 'items/base/helm-cap', rarity: 'rare', level: 1,
+    identified: true, equipped: false, affixes: [{ affixId: 'imported-wiring-fixture', values: new Map([
+      ['statMods.attack', attack - 22], ['statMods.defense', 99973], ['statMods.life', 999880]
+    ]) }]
+  };
+  useInventoryStore.getState().addItem(cap);
+  expect(useInventoryStore.getState().equipItem(cap)).toEqual({ ok: true });
+  const equipped = usePlayerStore.getState().player;
+  if (!equipped) throw new Error('Missing equipped fixture player');
+  // Equipping preserves current HP/MP; only this fixture receives the intended refill.
+  usePlayerStore.getState().setPlayer({ ...equipped, derivedStats: {
+    ...equipped.derivedStats, life: 1_000_000, mana: player.derivedStats.mana
+  } });
   const handle = startSubAreaRun({ subAreaId: AREA, act: 1, runSeed: 7, challengeOrdinal: 0 });
   if (!handle) throw new Error('Missing Den run');
   expect(handle.runId).toBe(AREA);

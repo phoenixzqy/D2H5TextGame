@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
+import type { Item } from '@/engine/types/items';
 import {
   abortSubAreaRun, advanceWaveOrFinish, hasActiveSubAreaRun, startSubAreaRun
 } from './combatHelpers';
@@ -23,15 +24,23 @@ function reset(): void {
 
 function start(attack: number): number {
   const fresh = createMockPlayer('OutcomeBoundary', 'sorceress');
-  // Deliberate integration fixture: durable low/high-damage hero, not a balance sample.
-  usePlayerStore.getState().setPlayer({
-    ...fresh,
-    comboOrder: [],
-    derivedStats: {
-      ...fresh.derivedStats, attack, defense: 100_000,
-      life: 1_000_000, lifeMax: 1_000_000
-    }
-  });
+  usePlayerStore.getState().setPlayer({ ...fresh, comboOrder: [] });
+  // Imported integration gear, not earned power or a balance sample. L1 attack
+  // floors 22.5 + this flat modifier; the cap supplies another 7 defense.
+  const cap: Item = {
+    id: 'outcome-fixture-cap', baseId: 'items/base/helm-cap', rarity: 'rare', level: 1,
+    identified: true, equipped: false, affixes: [{ affixId: 'imported-wiring-fixture', values: new Map([
+      ['statMods.attack', attack - 22], ['statMods.defense', 99973], ['statMods.life', 999880]
+    ]) }]
+  };
+  useInventoryStore.getState().addItem(cap);
+  expect(useInventoryStore.getState().equipItem(cap)).toEqual({ ok: true });
+  const equipped = usePlayerStore.getState().player;
+  if (!equipped) throw new Error('Missing equipped fixture player');
+  // Equipping does not heal; restore the fixture's intended starting resources explicitly.
+  usePlayerStore.getState().setPlayer({ ...equipped, derivedStats: {
+    ...equipped.derivedStats, life: 1_000_000, mana: fresh.derivedStats.mana
+  } });
   useMapStore.getState().setCurrentLocation(1, AREA);
   const handle = startSubAreaRun({ runSeed: 7, challengeOrdinal: 0 });
   if (!handle) throw new Error('Missing test run');
