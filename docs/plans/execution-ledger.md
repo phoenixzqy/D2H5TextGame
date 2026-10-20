@@ -1317,3 +1317,17 @@ superseded redundant-guard lint and persistence notification boundaries.
 All raw consumers finished before verified exact C scratch/dist/.vite cleanup;
 cleanup ledger049a65a. Source original checkout untouched; root claim continues.
 Migration/readers/comparison/ordinarybrowser/fullauthority/BUG041/C/G remain open.
+
+P08a05d accepted atbfaffcb after frozen genuine decoder/persistence RED
+0f5664c(60fail/46controls) and independent root/producer/QA approval. Sixsource
+files add conservative v7→v8 singleton-only two-signature starter transfer,
+shared unchanged canonical stats/Map helpers and pre-recomposition validation.
+Own weapon key/null, retained offhand, all ownership collisions, altered/mixed/
+nonAmazon/current8 skip without deletion or grant. Progressed/resources/mercs/
+Map encodings preserved; disk/import/hydration/export/reimport idempotent.
+Focused106/3,engine987/51,related711/53,full/coverage2175/131,T/L/purity51/build
+pass. Unchanged80%gate:63enginefiles8099/8582s1883/2098b296/315f; changed
+instrumented files100%. BUG041 records exact evidence/hashes/whitespace-only
+correction and existing warning/timing limitations. All consumers finished
+before verified exact D scratch/dist/.vite cleanup. Canonical readers,
+comparison, ordinary browser and fullauthority/BUG041/C/G remain open.

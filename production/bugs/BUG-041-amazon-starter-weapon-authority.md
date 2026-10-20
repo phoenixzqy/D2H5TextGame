@@ -436,3 +436,5 @@ command/result/log pairs, six finalsource hashes, three frozen tests and actual
 coverage counters independently verified. Whitespace-only correction validated
 as one trailing newline removed from two files. ALL consumers finished;
 exact task-owned cleanup released. No broader authority acceptance.
+
+P08a05d accepted source/evidence commitbfaffcb. After ALL consumers finished, removed and verified absent exact compatibility scratch above, task-owned worktree dist and node_modules/.vite. No owned process/retention remains. Root worktree claim continues for full staged v1.
