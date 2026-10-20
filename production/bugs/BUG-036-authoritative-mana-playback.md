@@ -86,3 +86,16 @@ unchanged tests after accepted fire-stage integration before source edits.
 
 Security check: **PASS**. Local deterministic resource transport only; no
 network, credentials, dependency, permission or validation-bypass changes.
+
+
+Accepted fire runtime integrated as `5a53d37` (worker `f80b6a9`) on the
+separate active-buff fixture prerequisite `727da6b`. Unchanged stage-e tests
+rerun at09:12:41UTC: **13failed/19passed/32total**, zero pending, exit1
+(wall2.993s including cherry-pick). Same two test hashes; current combat SHA256
+`da2672fef8783c67a2dc9c4dd05e165665ba4d0a7f370919f45c4ac5ff9a1ccd`.
+Post-integration typecheck again exits2 with exactly the same three missing
+mana-union TS2322 diagnostics. Raw root evidence is
+`/tmp/d2h5-root-warmth-e-postd-red.json`, matching `.log` and
+`-typecheck.log`, retained for independent consumption. The accepted stage-d
+engine780/full1640 evidence and root combined unchanged RED separate the
+missing MP transport from fire/passive behavior before the bounded stage-e fix.
