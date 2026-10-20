@@ -1,5 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { createManaRecoveryIntegral, integrateManaRecovery } from './mana-recovery';
+import {
+  createManaRecoveryIntegral, exportManaRecoveryCarry,
+  integrateManaRecovery, integrateManaRecoveryBetween
+} from './mana-recovery';
 
 function intervals(total: number, step: number): number[] {
   return Array.from({ length: Math.ceil(total / step) }, (_, i) => Math.min(step, total - i * step));
@@ -44,9 +47,9 @@ describe('compensated cumulative MP-millisecond integration', () => {
 
   it('seeds a new battle from fractional MP and signed MP compensation', () => {
     expect(createManaRecoveryIntegral(0.75, -0.125))
-      .toEqual({ total: 750, compensation: -125, wholeGranted: 0 });
+      .toEqual({ total: 750, compensation: -125, wholeGranted: 0, exactTotal: '875' });
     expect(integrateManaRecovery(1, 125, createManaRecoveryIntegral(0.75, -0.125)))
-      .toEqual({ total: 1000, compensation: 0, wholeGranted: 1 });
+      .toEqual({ total: 1000, compensation: 0, wholeGranted: 1, exactTotal: '1000' });
   });
 
   it('preserves whole grants across qualified carry handoffs without carrying elapsed time', () => {
@@ -64,12 +67,83 @@ describe('compensated cumulative MP-millisecond integration', () => {
   });
 
   it.each([-1, 1, 1.5, NaN, Infinity, -Infinity])('ignores malformed fractional carry %s', carry => {
-    expect(createManaRecoveryIntegral(carry)).toEqual({ total: 0, compensation: 0, wholeGranted: 0 });
+    expect(createManaRecoveryIntegral(carry)).toEqual({ total: 0, compensation: 0, wholeGranted: 0, exactTotal: '0' });
   });
 
   it.each([NaN, Infinity, -Infinity])('ignores nonfinite compensation %s while retaining valid carry', compensation => {
     expect(createManaRecoveryIntegral(0.25, compensation))
-      .toEqual({ total: 250, compensation: 0, wholeGranted: 0 });
+      .toEqual({ total: 250, compensation: 0, wholeGranted: 0, exactTotal: '250' });
+  });
+
+  it('prefers qualified exact carry over contradictory legacy numeric views', () => {
+    expect(createManaRecoveryIntegral(0.75, -0.125, '0.004'))
+      .toEqual({ total: 4, compensation: 0, wholeGranted: 0, exactTotal: '4' });
+  });
+
+  it('accepts canonical zero exact carry in preference to nonzero numeric credit', () => {
+    expect(createManaRecoveryIntegral(0.75, -0.125, '0'))
+      .toEqual({ total: 0, compensation: 0, wholeGranted: 0, exactTotal: '0' });
+  });
+
+  it.each(['', '.1', '00.1', '0.10', '0.', '+0.1', '-0', '-0.1', '1', '1.1', '1e-3', ' 0.1 '])(
+    'falls back to qualified legacy carry for malformed/noncanonical/out-of-range exact carry %s', exactCarry => {
+      expect(createManaRecoveryIntegral(0.25, 0, exactCarry))
+        .toEqual({ total: 250, compensation: 0, wholeGranted: 0, exactTotal: '250' });
+    });
+
+  it('rejects foreign exact carry beyond the 2048-character parser bound', () => {
+    const exactCarry = `0.${'0'.repeat(2046)}1`;
+    expect(exactCarry.length).toBe(2049);
+    expect(createManaRecoveryIntegral(0.25, 0, exactCarry))
+      .toEqual({ total: 250, compensation: 0, wholeGranted: 0, exactTotal: '250' });
+  });
+
+  it('retains generated exact totals beyond the foreign carry parser bound', () => {
+    const exactCarry = `0.${'0'.repeat(2045)}1`;
+    expect(exactCarry.length).toBe(2048);
+    const first = integrateManaRecovery(1e100, 1e100, createManaRecoveryIntegral(0, 0, exactCarry));
+    const second = integrateManaRecovery(1, 1, first);
+    expect(first.exactTotal).toBe(`1${'0'.repeat(200)}.${'0'.repeat(2042)}1`);
+    expect(second.exactTotal).toBe(`1${'0'.repeat(199)}1.${'0'.repeat(2042)}1`);
+    expect(second.exactTotal.length).toBeGreaterThan(2048);
+  });
+
+  it.each([1, -0.5])('resets combined legacy credit outside [0,1) with compensation %s', compensation => {
+    expect(createManaRecoveryIntegral(0.75, compensation))
+      .toEqual({ total: 0, compensation: 0, wholeGranted: 0, exactTotal: '0' });
+  });
+
+  it('subtracts exact decimal boundary endpoints before multiplying the elapsed interval', () => {
+    const first = integrateManaRecoveryBetween(7.2, 0, 0.1);
+    const second = integrateManaRecoveryBetween(7.2, 0.1, 0.3, first);
+    const third = integrateManaRecoveryBetween(7.2, 0.3, 1250, second);
+    expect(second.exactTotal).toBe('2.16');
+    expect(third).toEqual({ total: 9000, compensation: 0, wholeGranted: 9, exactTotal: '9000' });
+  });
+
+  it.each([[NaN, 1], [0, Infinity], [-Infinity, 1], [1, 1], [2, 1]])(
+    'does not integrate invalid/nonpositive boundary interval %s → %s', (from, to) => {
+      const before = createManaRecoveryIntegral(0.5, -0.001);
+      expect(integrateManaRecoveryBetween(7.2, from, to, before)).toEqual(before);
+    });
+
+  it('preserves an exact mixed-scale remainder across helper export and battle reseeding', () => {
+    const first = integrateManaRecovery(4.16, 17);
+    const carry = exportManaRecoveryCarry(first);
+    expect(carry.manaRegenExactCarry).toBe('0.07072');
+    const second = integrateManaRecovery(7.2, Number('129.06666666666667'),
+      createManaRecoveryIntegral(carry.manaRegenCarry, carry.manaRegenCompensation, carry.manaRegenExactCarry));
+    expect(second.wholeGranted).toBe(1);
+    expect(second.exactTotal).toBe('1000.000000000000024');
+    expect(exportManaRecoveryCarry(second)).toEqual({ manaRegenCarry: 2.4e-17,
+      manaRegenCompensation: 0, manaRegenExactCarry: '0.000000000000000024' });
+    expect(JSON.parse(JSON.stringify(second))).toEqual(second);
+  });
+
+  it('integrates exponent-form numeric inputs without quantizing their decimal product', () => {
+    const integral = integrateManaRecovery(1e-7, 1e-7);
+    expect(integral.exactTotal).toBe('0.00000000000001');
+    expect(exportManaRecoveryCarry(integral).manaRegenExactCarry).toBe('0.00000000000000001');
   });
 
   it.each([0, -1, NaN, Infinity, -Infinity])('does not integrate invalid/nonpositive rate %s', rate => {

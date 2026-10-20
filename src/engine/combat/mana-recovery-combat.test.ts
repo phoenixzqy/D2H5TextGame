@@ -130,6 +130,18 @@ describe('continuous mana on actual combat boundaries', () => {
     expect(hero(result).manaRegenCarry).toBeCloseTo(0, 12);
   });
 
+  it('keeps the ninth MP when fractional status boundaries split 0ms → .1ms → .3ms → 1250ms', () => {
+    const player = unit('hero', 'player', { manaRegenPerSecond: 7.2 });
+    const unsplit = runBattleRecorded(snapshot(1250, player));
+    const split = runBattleRecorded({ ...snapshot(1250, player), enemyTeam: [clock(1250, {
+      statuses: [status('stun'), status('burn', { dotPerStack: 1000, expiresAtMs: 1250 }),
+        status('marker-a', { expiresAtMs: 0.1 }), status('marker-b', { expiresAtMs: 0.3 })]
+    })] });
+    expect(hero(unsplit).mana).toBe(9);
+    expect(hero(split).mana).toBe(9);
+    expect(hero(split).manaRegenCarry).toBeCloseTo(0, 12);
+  });
+
   it('makes earned MP available to an exact boundary cast and emits absolute MP before its action', () => {
     const id = spend(7);
     const result = runBattleRecorded(snapshot(2000, unit('hero', 'player', {
@@ -155,6 +167,7 @@ describe('continuous mana on actual combat boundaries', () => {
       .toEqual([[500, 100], [1250, 93]]);
     expect(hero(result).mana).toBe(93);
     expect(hero(result).manaRegenCarry).toBeCloseTo(0.04, 12);
+    expect(hero(result).manaRegenExactCarry).toBe('0.04');
   });
 
   it('preserves fractional carry when a cast remains below cap', () => {
@@ -182,6 +195,45 @@ describe('continuous mana on actual combat boundaries', () => {
     expect(second.manaRegenCarry).toBeCloseTo(0, 12);
   });
 
+  it('preserves the ninth MP and exact metadata across actual 976ms and 274ms battle handoff', () => {
+    const first = hero(runBattleRecorded(snapshot(976, unit('hero', 'player', { manaRegenPerSecond: 7.2 }))));
+    const second = hero(runBattleRecorded(snapshot(274, unit('hero', 'player', {
+      manaRegenPerSecond: 7.2, manaRegenCarry: first.manaRegenCarry ?? 0,
+      manaRegenCompensation: first.manaRegenCompensation ?? 0,
+      ...(first.manaRegenExactCarry === undefined ? {} : { manaRegenExactCarry: first.manaRegenExactCarry }) }))));
+    expect(first.mana).toBe(7);
+    expect.soft(first.manaRegenExactCarry).toBe('0.0272');
+    expect.soft(second.mana).toBe(2);
+    expect.soft(first.mana + second.mana).toBe(9);
+    expect(second.manaRegenExactCarry).toBe('0');
+  });
+
+  it.each([1, -0.5])('resets invalid combined incoming legacy credit with compensation %s', compensation => {
+    const result = runBattleRecorded(snapshot(100, unit('hero', 'player', {
+      manaRegenPerSecond: 1, manaRegenCarry: 0.75, manaRegenCompensation: compensation })));
+    expect.soft(hero(result).mana).toBe(0);
+    expect.soft(hero(result).manaRegenCarry).toBeCloseTo(0.1, 12);
+    expect(hero(result).manaRegenExactCarry).toBe('0.1');
+  });
+
+  it('prefers qualified exact incoming credit over contradictory legacy carry views', () => {
+    const result = runBattleRecorded(snapshot(996, unit('hero', 'player', {
+      manaRegenPerSecond: 1, manaRegenCarry: 0.75, manaRegenCompensation: -0.125,
+      manaRegenExactCarry: '0.004' })));
+    expect.soft(hero(result).mana).toBe(1);
+    expect.soft(hero(result).manaRegenCarry).toBe(0);
+    expect(hero(result).manaRegenExactCarry).toBe('0');
+  });
+
+  it('falls back to qualified legacy credit for malformed exact incoming credit', () => {
+    const result = runBattleRecorded(snapshot(125, unit('hero', 'player', {
+      manaRegenPerSecond: 1, manaRegenCarry: 0.75, manaRegenCompensation: -0.125,
+      manaRegenExactCarry: '0.10' })));
+    expect(hero(result).mana).toBe(1);
+    expect(hero(result).manaRegenCarry).toBe(0);
+    expect(hero(result).manaRegenExactCarry).toBe('0');
+  });
+
   it.each([-1, 1, 1.5, NaN, Infinity, -Infinity])('ignores malformed incoming carry %s', carry => {
     const result = runBattleRecorded(snapshot(250, unit('hero', 'player', {
       manaRegenPerSecond: 4, manaRegenCarry: carry })));
@@ -204,6 +256,7 @@ describe('continuous mana on actual combat boundaries', () => {
     expect(hero(result).mana).toBe(0);
     expect(hero(result)).not.toHaveProperty('manaRegenCarry');
     expect(hero(result)).not.toHaveProperty('manaRegenCompensation');
+    expect(hero(result)).not.toHaveProperty('manaRegenExactCarry');
   });
 
   it.each([0, -1, NaN, Infinity, -Infinity])('does not recover or add carry fields for invalid manaMax %s', manaMax => {
@@ -213,6 +266,7 @@ describe('continuous mana on actual combat boundaries', () => {
     expect(regen(result)).toEqual([]);
     expect(hero(result).mana).toBe(0);
     expect(hero(result)).not.toHaveProperty('manaRegenCarry');
+    expect(hero(result)).not.toHaveProperty('manaRegenExactCarry');
   });
 
   it('grants no zero-time recovery when a battle already has its winner', () => {
@@ -246,6 +300,31 @@ describe('continuous mana on actual combat boundaries', () => {
 });
 
 describe('death, spawn, cap side effects and determinism', () => {
+  it('clears every existing carry view while MP remains full', () => {
+    const base = unit('hero', 'player');
+    const result = runBattleRecorded(snapshot(100, { ...base, mana: 100, manaRegenPerSecond: 1,
+      manaRegenCarry: 0.75, manaRegenCompensation: -0.125, manaRegenExactCarry: '0.004',
+      stats: { ...base.stats, manaMax: 100 } }));
+    expect(hero(result).mana).toBe(100);
+    expect(hero(result).manaRegenCarry).toBe(0);
+    expect(hero(result).manaRegenCompensation).toBe(0);
+    expect(hero(result).manaRegenExactCarry).toBe('0');
+    expect(regen(result)).toEqual([]);
+  });
+
+  it('retains corpse carry snapshots without crediting the terminal interval', () => {
+    const result = runBattleRecorded(snapshot(100, unit('hero', 'player', {
+      life: 100, manaRegenPerSecond: 1, manaRegenCarry: 0.75,
+      manaRegenCompensation: -0.125, manaRegenExactCarry: '0.004',
+      statuses: [status('stun'), status('burn', { dotPerStack: 1000, expiresAtMs: 100 })] })));
+    expect(hero(result).life).toBe(0);
+    expect(hero(result).mana).toBe(0);
+    expect(hero(result).manaRegenCarry).toBe(0.75);
+    expect(hero(result).manaRegenCompensation).toBe(-0.125);
+    expect(hero(result).manaRegenExactCarry).toBe('0.004');
+    expect(regen(result)).toEqual([]);
+  });
+
   it('settles periodic death/orphan closure before recovery while crediting living survivors through the terminal', () => {
     const doomed = unit('hero', 'player', { life: 1250, manaRegenPerSecond: 7.2,
       statuses: [status('stun'), status('poison', { dotPerStack: 1000, expiresAtMs: 1250 })] });
@@ -286,6 +365,7 @@ describe('death, spawn, cap side effects and determinism', () => {
       reason: 'orb', mana: 100, simClockMs: 750 }));
     expect(hero(result).mana).toBe(92);
     expect(hero(result).manaRegenCarry).toBeCloseTo(0.25, 12);
+    expect(hero(result).manaRegenExactCarry).toBe('0.25');
   });
 
   it('deletes the cumulative integral when a summon refund caps its living owner', () => {
@@ -304,6 +384,7 @@ describe('death, spawn, cap side effects and determinism', () => {
       reason: 'summon-refund', mana: 100, simClockMs: 750 }));
     expect(hero(result).mana).toBe(50);
     expect(hero(result).manaRegenCarry).toBeCloseTo(0.25, 12);
+    expect(hero(result).manaRegenExactCarry).toBe('0.25');
   });
 
   it('starts recovery at an actual summon birth and never inherits the owner rate', () => {
