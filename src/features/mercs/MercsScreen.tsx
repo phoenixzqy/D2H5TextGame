@@ -12,7 +12,7 @@
  *
  * Joins owned-merc runtime entities (`useMercStore`) with their static
  * defs from `gacha/mercenaries.json` to read portrait paths, signature skill,
- * and base stats.
+ * and flavor metadata. Current core stats come from the owned mercenary.
  */
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -237,19 +237,9 @@ function MercCard({
 
           <div className="grid grid-cols-4 overflow-hidden rounded-lg border border-d2-border/80 bg-d2-bg/45 text-center">
             <MercStat label="LVL" value={merc.level} />
-            {def ? (
-              <>
-                <MercStat label="STR" value={def.baseStats.strength} />
-                <MercStat label="DEX" value={def.baseStats.dexterity} />
-                <MercStat label="VIT" value={def.baseStats.vitality} />
-              </>
-            ) : (
-              <>
-                <MercStat label="STR" value="-" />
-                <MercStat label="DEX" value="-" />
-                <MercStat label="VIT" value="-" />
-              </>
-            )}
+            <MercStat label="STR" value={merc.coreStats.strength} />
+            <MercStat label="DEX" value={merc.coreStats.dexterity} />
+            <MercStat label="VIT" value={merc.coreStats.vitality} />
           </div>
 
           <div data-testid={`merc-xp-${baseId}`}>
@@ -439,4 +429,3 @@ function mercSlug(id: string): string {
 function localizedMercName(t: TFunction, def: MercDef): string {
   return t(`byId.${mercSlug(def.id)}.name`, { defaultValue: def.name });
 }
-

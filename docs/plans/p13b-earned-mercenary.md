@@ -1,6 +1,7 @@
 # P13b — ordinary mercenary progression and visible earned stats
 
-Status: producer/root plan review APPROVE, depends on reviewed P13a integration.
+Status: accepted bounded slice; root/producer plan/source/final evidence review
+APPROVE. P13a8e6076e integrated. Evidence: evidence/p13b-earned-mercenary.md.
 Root owns this control,
 runtime/UI regression, dedicated production acceptance spec/config change,
 BUG027 and evidence. Do not edit P13a-owned runtime/tests until its worker has
