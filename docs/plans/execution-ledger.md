@@ -1477,3 +1477,20 @@ and timing/buildwarninglimits. All consumers released before exactB1RAW/dist/
 plan design/producerAPPROVE, next UIRED then implementation; plans/runner retained
 at /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-stat-ui-250vnt4d,
 rootownsremoval. No nativeUI/Save/reopen/Den/fullv1/C/G acceptance or push.
+
+
+P11a01B2 accepted0f7cdc0 after producer/QA final APPROVE/ADEQUATE and design
+source/localization APPROVE. Localized native +/- rows stage/cancel additions;
+exact-reference render fence discards stale edits before effects, B1 Apply commits.
+Frozen22RED70=22failure48controls; zero-total false-discard bug recorded before
+23rdRED71=1failure70controls, reviewed before normalization-to-null rootfix.
+Finalfocused71,related27/2,fullcoverage2408/140 allpass0pending; T11.370/L27.634/
+purity51/buildbridge9.110 pass;80%enginegate unchanged8105/8585s1892/2105b296/315f.
+BUG045 preserves all29commands/hashes/oracle amendments/failed globali18n backlog/
+timing/buildwarnings. New16leaf/locale draftstrings pass scopedparity/placeholders;
+globali18n remainsfailed outside B2diff. Allconsumersreleased before exactB2RAW/
+dist/.vite removal/verifiedabsence; originalclean/rootclaimcontinues. B3plan/runner
+retained at /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-stat-earned-3jkw2_gj,
+rootownsremoval. Next reviewed ordinary-earned browserpilot/matrix incl native
+checkpoint/Cancel/Apply/Save/closeContinue/keyboard/layout. No B3/Den/fullv1/C/G
+acceptance or push.
