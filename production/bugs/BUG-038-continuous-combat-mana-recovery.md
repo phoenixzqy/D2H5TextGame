@@ -199,3 +199,14 @@ were independently checked. Root authorizes only helper/combat/types source
 correction after worker tests-only commit. Final fresh GREEN, nonzero export
 compensation sign review and combined-head validation remain open. Adapter
 tests-only root commit`461289f` preserves unchanged source and reviewed RED.
+
+
+Adapter RED independently APPROVE / ADEQUATE by producer and QA. Minimal
+two-line source now initializes fresh hero exact`0` and overrides exact carry
+only at configuration cap. The immutable spread retains uncapped exact or
+absent legacy shape; defaulting missing exact tozero would incorrectly override
+qualified legacy numeric credit. Frozen17/17pass,zero skips,3.08s, raw
+`/tmp/d2h5-root-warmth-g/adapter-green.log`; source SHA256
+`53190d4de0dd2e375564a70692ef47881e355edd4d35ce6661d26b131f99b57c`.
+Independent QA APPROVE bounded source/focused GREEN; producer and final
+combined validation pending. No engine-recovery/browser acceptance inferred.

@@ -74,6 +74,7 @@ export function playerToCombatUnit(player: Player): CombatUnit {
     ...recovery,
     manaRegenCarry: 0,
     manaRegenCompensation: 0,
+    manaRegenExactCarry: '0',
     statuses: [],
     cooldowns: {},
     skillOrder: [...player.comboOrder],
@@ -591,6 +592,7 @@ function playWave(waveIdx: number): void {
       increasedDamagePct: fresh.increasedDamagePct ?? { fire: 0 },
       manaRegenCarry: capped ? 0 : unit.manaRegenCarry ?? 0,
       manaRegenCompensation: capped ? 0 : unit.manaRegenCompensation ?? 0,
+      ...(capped ? { manaRegenExactCarry: '0' } : {}),
       skillOrder: fresh.skillOrder, skillLevels: fresh.skillLevels ?? {},
       equippedWeapon: fresh.equippedWeapon ?? {},
       summonGridPositions: fresh.summonGridPositions ?? [] };
