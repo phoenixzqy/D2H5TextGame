@@ -1,7 +1,7 @@
 /**
  * mercStore tests — Bug #7 dismiss, Bug #8 equipment slots, Bug #12 XP/level.
  */
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { useMercStore, mercXpForLevel } from './mercStore';
 import { useInventoryStore } from './inventoryStore';
 import { loadMercHireRoster } from '@/data/loaders/mercs';
@@ -72,26 +72,26 @@ describe('mercStore — equipOnMerc / unequipFromMerc (Bug #8)', () => {
   it('rejects items whose base slot does not match', () => {
     const m = makeMerc();
     useMercStore.getState().addMerc(m);
-    const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
     // 'no-such-base' has no entry in item-bases → invalid.
-    const displaced = useMercStore.getState().equipOnMerc(m.id, 'weapon', item('it1', 'no-such-base'));
-    expect(displaced).toBeNull();
+    const source = item('it1', 'no-such-base');
+    useInventoryStore.setState({ backpack: [source] });
+    const result = useMercStore.getState().equipOnMerc(m.id, 'weapon', source);
+    expect(result).toEqual({ ok: false, reason: 'incompatible_slot' });
     expect(useMercStore.getState().getMercEquipment(m.id).weapon ?? null).toBeNull();
-    warn.mockRestore();
+    expect(useInventoryStore.getState().backpack).toEqual([source]);
   });
 
-  it('unequipFromMerc returns previously equipped item or null', () => {
+  it('unequipFromMerc transfers previously equipped item once and distinguishes refusal', () => {
     const m = makeMerc();
     useMercStore.getState().addMerc(m);
     const it = item('it1', 'short-sword');
     useMercStore.setState((s) => ({
       mercEquipment: { ...s.mercEquipment, [m.id]: { weapon: it } }
     }));
-    const removed = useMercStore.getState().unequipFromMerc(m.id, 'weapon');
-    expect(removed?.id).toBe('it1');
-    expect(removed?.equipped).toBe(false);
+    expect(useMercStore.getState().unequipFromMerc(m.id, 'weapon')).toEqual({ ok: true });
+    expect(useInventoryStore.getState().backpack).toEqual([{ ...it, equipped: false }]);
     expect(useMercStore.getState().getMercEquipment(m.id).weapon).toBeNull();
-    expect(useMercStore.getState().unequipFromMerc(m.id, 'weapon')).toBeNull();
+    expect(useMercStore.getState().unequipFromMerc(m.id, 'weapon')).toEqual({ ok: false, reason: 'not_found' });
   });
 });
 

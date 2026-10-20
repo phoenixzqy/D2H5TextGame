@@ -10,6 +10,7 @@ import type { EquipmentSlot, Item, ItemBase } from '@/engine/types/items';
 import { loadItemBases } from '@/data/loaders/loot';
 import type { MercDef } from '@/data/loaders/mercs';
 import { createMercFromDef } from './mercFactory';
+import { useInventoryStore } from './inventoryStore';
 
 /**
  * Mercenary XP curve (canonical).
@@ -115,6 +116,12 @@ export const MERC_EQUIPMENT_SLOTS: readonly EquipmentSlot[] = [
 
 export type MercEquipment = Partial<Record<EquipmentSlot, Item | null>>;
 
+/** Settled transfer result; refusal publishes neither inventory nor merc state. */
+export type MercEquipmentResult = { ok: true } | {
+  ok: false;
+  reason: 'merc_not_owned' | 'not_in_backpack' | 'incompatible_slot' | 'not_found';
+};
+
 interface MercState {
   ownedMercs: Mercenary[];
   fieldedMercId: string | null;
@@ -137,13 +144,13 @@ interface MercState {
   dismissMerc: (mercId: string) => boolean;
   hasEquippedItems: (mercId: string) => boolean;
   /**
-   * Bug #8 — equip an item on a merc in the given slot. Returns the
-   * displaced item if any (caller is responsible for returning it to the
-   * inventory). Validates that the item's base slot matches the target.
+   * Transfer the first current backpack item matching the requested ID to an
+   * owned merc. Validate its stored base/slot and return displaced gear once.
+   * Caller fields never replace stored contents. Callers perform no item moves.
    */
-  equipOnMerc: (mercId: string, slot: EquipmentSlot, item: Item) => Item | null;
-  /** Bug #8 — unequip a merc's slot, returning the item (or null). */
-  unequipFromMerc: (mercId: string, slot: EquipmentSlot) => Item | null;
+  equipOnMerc: (mercId: string, slot: EquipmentSlot, item: Item) => MercEquipmentResult;
+  /** Transfer current owned-merc gear to backpack, clearing equipped metadata. */
+  unequipFromMerc: (mercId: string, slot: EquipmentSlot) => MercEquipmentResult;
   getMercEquipment: (mercId: string) => MercEquipment;
   /**
    * Bug #12 — credit a merc with `amount` XP, levelling up across as
@@ -179,6 +186,11 @@ function isCompatibleSlot(base: ItemBase | undefined, slot: EquipmentSlot): bool
 
 function initialProgress(level: number): MercProgress {
   return { experience: 0, experienceToNextLevel: mercXpForLevel(level) };
+}
+
+function returnedItem(item: Item): Item {
+  const { equipSlot: _equipSlot, ...fields } = item;
+  return { ...fields, equipped: false };
 }
 
 export const useMercStore = create<MercState>((set, get) => ({
@@ -254,35 +266,39 @@ export const useMercStore = create<MercState>((set, get) => ({
     return MERC_EQUIPMENT_SLOTS.some((slot) => equipped[slot] !== undefined && equipped[slot] !== null);
   },
 
-  equipOnMerc: (mercId, slot, item) => {
-    const bases = loadItemBases();
-    const base = bases.get(item.baseId);
-    if (!isCompatibleSlot(base, slot)) {
-      console.warn('Item base not compatible with slot:', item.baseId, slot);
-      return null;
-    }
-    let displaced: Item | null = null;
-    set((state) => {
-      const current = state.mercEquipment[mercId] ?? {};
-      displaced = current[slot] ?? null;
-      const next: MercEquipment = { ...current, [slot]: { ...item, equipped: true, equipSlot: slot } };
-      return { mercEquipment: { ...state.mercEquipment, [mercId]: next } };
-    });
-    return displaced;
+  equipOnMerc: (mercId, slot, requestedItem) => {
+    const state = get();
+    if (!state.ownedMercs.some(merc => merc.id === mercId)) return { ok: false, reason: 'merc_not_owned' };
+    const inventory = useInventoryStore.getState();
+    const sourceIndex = inventory.backpack.findIndex(item => item.id === requestedItem.id);
+    const item = inventory.backpack[sourceIndex];
+    if (!item) return { ok: false, reason: 'not_in_backpack' };
+    if (!isCompatibleSlot(loadItemBases().get(item.baseId), slot)) return { ok: false, reason: 'incompatible_slot' };
+
+    const current = state.mercEquipment[mercId] ?? {};
+    const displaced = current[slot];
+    const backpack = inventory.backpack.filter((_, index) => index !== sourceIndex);
+    if (displaced) backpack.push(returnedItem(displaced));
+    const mercEquipment = { ...state.mercEquipment,
+      [mercId]: { ...current, [slot]: { ...item, equipped: true, equipSlot: slot } } };
+    // Complete preflight precedes both synchronous domain publications.
+    useInventoryStore.setState({ backpack });
+    set({ mercEquipment });
+    return { ok: true };
   },
 
   unequipFromMerc: (mercId, slot) => {
     const state = get();
+    if (!state.ownedMercs.some(merc => merc.id === mercId)) return { ok: false, reason: 'merc_not_owned' };
     const current = state.mercEquipment[mercId] ?? {};
-    const item = current[slot] ?? null;
-    if (!item) return null;
-    set((s) => ({
-      mercEquipment: {
-        ...s.mercEquipment,
-        [mercId]: { ...current, [slot]: null }
-      }
-    }));
-    return { ...item, equipped: false };
+    const item = current[slot];
+    if (!item) return { ok: false, reason: 'not_found' };
+    const inventory = useInventoryStore.getState();
+    const backpack = [...inventory.backpack, returnedItem(item)];
+    const mercEquipment = { ...state.mercEquipment, [mercId]: { ...current, [slot]: null } };
+    useInventoryStore.setState({ backpack });
+    set({ mercEquipment });
+    return { ok: true };
   },
 
   getMercEquipment: (mercId) => get().mercEquipment[mercId] ?? {},
