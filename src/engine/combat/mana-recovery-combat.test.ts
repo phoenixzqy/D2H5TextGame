@@ -14,7 +14,7 @@ function unit(id: string, side: CombatUnit['side'], extra: Partial<CombatUnit> =
   return { id, name: id, side, kind: side === 'player' ? 'hero' : 'summon', level: 30,
     tier: 'trash', life: 100_000, mana: 0,
     stats: { life: 100_000, lifeMax: 100_000, mana: 10_000, manaMax: 10_000,
-      attack: 1, defense: 0, attackSpeed: 100, critChance: 0, critDamage: 1.5,
+      attack: 1, defense: 0, magicResist: 0, attackSpeed: 100, critChance: 0, critDamage: 1.5,
       physDodge: 0, magicDodge: 0, magicFind: 0, goldFind: 0,
       resistances: { fire: 0, cold: 0, lightning: 0, poison: 0, arcane: 0, physical: 0 } },
     statuses: [status('stun')], cooldowns: {}, skillOrder: [], activeBuffIds: [], enraged: false, ...extra };

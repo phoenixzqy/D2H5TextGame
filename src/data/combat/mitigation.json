@@ -1,0 +1,17 @@
+{
+  "id": "combat/mitigation",
+  "friendlyBase": { "player": 0, "mercenary": 0, "summon": 0 },
+  "monster": {
+    "base": 0,
+    "growthPerLevel": 1,
+    "tierMultipliers": {
+      "trash": 1,
+      "elite": 1.5,
+      "champion": 2,
+      "rare-elite": 1.5,
+      "rare-minion": 1,
+      "boss": 3,
+      "chapter-boss": 3
+    }
+  }
+}

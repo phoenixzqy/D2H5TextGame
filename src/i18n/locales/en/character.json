@@ -45,6 +45,7 @@
     "mana": "Mana",
     "magicDodge": "Magic Dodge",
     "defense": "Defense",
+    "magicResist": "Magic Resist",
     "life": "Life",
     "attackRating": "Attack Rating",
     "physDodge": "Physical Dodge"

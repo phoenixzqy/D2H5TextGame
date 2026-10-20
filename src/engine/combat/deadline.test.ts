@@ -18,7 +18,7 @@ function unit(id: string, side: CombatUnit['side'], attackSpeed: number): Combat
       mana: 0,
       manaMax: 0,
       attack: 1,
-      defense: 0,
+      defense: 0, magicResist: 0,
       attackSpeed,
       critChance: 0,
       critDamage: 1.5,

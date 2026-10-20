@@ -5,6 +5,7 @@
 
 import { migrateLegacyStarter } from '../save/legacyStarter';
 import type { Player, Mercenary } from './entities';
+import type { DerivedStats } from './attributes';
 import type { EquipmentSlot, Inventory, Item } from './items';
 import type { MapProgress } from './maps';
 import type { GridPosition } from '../combat/types';
@@ -13,7 +14,7 @@ import type { GridPosition } from '../combat/types';
  * Current save format version. Bump this and add an entry to {@link MIGRATIONS}
  * whenever the on-disk shape changes.
  */
-export const CURRENT_SAVE_VERSION = 8;
+export const CURRENT_SAVE_VERSION = 9;
 
 /**
  * Save file version (most recent).
@@ -76,6 +77,17 @@ export interface QuestProgressData {
   readonly rewardClaimed?: boolean;
 }
 
+/** Historical derived stats permit a validated MR extension but never require it. */
+export type LegacyDerivedStats = Omit<DerivedStats, 'magicResist'> & {
+  readonly magicResist?: number;
+};
+export type LegacyPlayer = Omit<Player, 'derivedStats'> & {
+  readonly derivedStats: LegacyDerivedStats;
+};
+export type LegacyMercenary = Omit<Mercenary, 'derivedStats'> & {
+  readonly derivedStats: LegacyDerivedStats;
+};
+
 /**
  * Save file v1 (legacy — engine-shape, never deployed to users).
  *
@@ -83,9 +95,9 @@ export interface QuestProgressData {
  */
 export interface SaveV1 {
   readonly version: 1;
-  readonly player: Player;
+  readonly player: LegacyPlayer;
   readonly inventory: Inventory;
-  readonly mercenaries: readonly Mercenary[];
+  readonly mercenaries: readonly LegacyMercenary[];
   readonly activeMercId?: string;
   readonly mapProgress: MapProgress;
   readonly idleState: IdleState;
@@ -120,6 +132,11 @@ export interface MercSaveData {
   readonly mercProgress: Readonly<Record<string, MercProgressSaveData>>;
 }
 
+/** Historical roster shape; current entities require the MR field. */
+export interface LegacyMercSaveData extends Omit<MercSaveData, 'ownedMercs'> {
+  readonly ownedMercs: readonly LegacyMercenary[];
+}
+
 /** Persisted map snapshot. */
 export interface MapSaveData {
   readonly currentAct: number;
@@ -143,9 +160,9 @@ export interface MetaSaveData {
 export interface SaveV2 {
   readonly version: 2;
   readonly timestamp: number;
-  readonly player: Player;
+  readonly player: LegacyPlayer;
   readonly inventory: InventorySaveData;
-  readonly mercs: Omit<MercSaveData, 'mercEquipment' | 'mercProgress'>;
+  readonly mercs: Omit<LegacyMercSaveData, 'mercEquipment' | 'mercProgress'>;
   readonly map: Omit<MapSaveData, 'clearedSubAreas'>;
   readonly meta: MetaSaveData;
 }
@@ -154,9 +171,9 @@ export interface SaveV2 {
 export interface SaveV3 {
   readonly version: 3;
   readonly timestamp: number;
-  readonly player: Player;
+  readonly player: LegacyPlayer;
   readonly inventory: InventorySaveData;
-  readonly mercs: Omit<MercSaveData, 'mercEquipment' | 'mercProgress'>;
+  readonly mercs: Omit<LegacyMercSaveData, 'mercEquipment' | 'mercProgress'>;
   readonly map: Omit<MapSaveData, 'clearedSubAreas'>;
   readonly meta: MetaSaveData;
 }
@@ -165,9 +182,9 @@ export interface SaveV3 {
 export interface SaveV4 {
   readonly version: 4;
   readonly timestamp: number;
-  readonly player: Player;
+  readonly player: LegacyPlayer;
   readonly inventory: InventorySaveData;
-  readonly mercs: MercSaveData;
+  readonly mercs: LegacyMercSaveData;
   readonly map: MapSaveData;
   readonly meta: MetaSaveData;
 }
@@ -176,9 +193,9 @@ export interface SaveV4 {
 export interface SaveV5 {
   readonly version: 5;
   readonly timestamp: number;
-  readonly player: Player;
+  readonly player: LegacyPlayer;
   readonly inventory: InventorySaveData;
-  readonly mercs: MercSaveData;
+  readonly mercs: LegacyMercSaveData;
   readonly map: MapSaveData;
   readonly meta: MetaSaveData;
 }
@@ -187,9 +204,9 @@ export interface SaveV5 {
 export interface SaveV6 {
   readonly version: 6;
   readonly timestamp: number;
-  readonly player: Player;
+  readonly player: LegacyPlayer;
   readonly inventory: InventorySaveData;
-  readonly mercs: MercSaveData;
+  readonly mercs: LegacyMercSaveData;
   readonly map: MapSaveData;
   readonly meta: MetaSaveData;
 }
@@ -205,9 +222,9 @@ export interface FormationPreferences {
 export interface SaveV7 {
   readonly version: 7;
   readonly timestamp: number;
-  readonly player: Player;
+  readonly player: LegacyPlayer;
   readonly inventory: InventorySaveData;
-  readonly mercs: MercSaveData;
+  readonly mercs: LegacyMercSaveData;
   readonly map: MapSaveData;
   readonly meta: MetaSaveData;
   readonly formation: FormationPreferences;
@@ -218,7 +235,14 @@ export interface SaveV8 extends Omit<SaveV7, 'version'> {
   readonly version: 8;
 }
 
-export type SaveCurrent = SaveV8;
+/** Save file v9 — explicit independent magical mitigation for every saved actor. */
+export interface SaveV9 extends Omit<SaveV8, 'version' | 'player' | 'mercs'> {
+  readonly version: 9;
+  readonly player: Player;
+  readonly mercs: MercSaveData;
+}
+
+export type SaveCurrent = SaveV9;
 
 /**
  * Migration function type. Each entry receives the previous version's shape
@@ -384,5 +408,19 @@ export const MIGRATIONS: Record<number, Migration> = {
     };
   },
   /** v7 to v8: conservatively transfer a proven legacy starter to canonical gear. */
-  8: (raw: unknown): SaveV8 => migrateLegacyStarter(raw as SaveV7)
+  8: (raw: unknown): SaveV8 => migrateLegacyStarter(raw as SaveV7),
+  /** v8 to v9: add only missing MR; decode validates historical fields first. */
+  9: (raw: unknown): SaveV9 => {
+    const v8 = raw as SaveV8;
+    const addMagicResist = <T extends LegacyPlayer | LegacyMercenary>(unit: T) => ({
+      ...unit,
+      derivedStats: { ...unit.derivedStats, magicResist: unit.derivedStats.magicResist ?? 0 }
+    });
+    return {
+      ...v8,
+      version: 9,
+      player: addMagicResist(v8.player),
+      mercs: { ...v8.mercs, ownedMercs: v8.mercs.ownedMercs.map(addMagicResist) }
+    };
+  }
 };

@@ -7,6 +7,7 @@
 
 import type { Mercenary } from '@/engine/types/entities';
 import type { CoreStats } from '@/engine/types/attributes';
+import { MITIGATION_DEFINITION } from '@/engine/combat/mitigation-definition';
 import { deriveStats } from '@/engine/progression/stats';
 import { resolveMercSkillLoadout, type MercDef } from '@/data/loaders/mercs';
 
@@ -22,7 +23,10 @@ export function createMercFromDef(def: MercDef, instanceSuffix?: string): Mercen
     vitality: def.baseStats.vitality,
     energy: def.baseStats.energy
   };
-  const derivedStats = deriveStats(coreStats, Math.max(1, def.reqLevel));
+  const derivedStats = {
+    ...deriveStats(coreStats, Math.max(1, def.reqLevel)),
+    magicResist: Math.max(0, Math.floor(MITIGATION_DEFINITION.friendlyBase.mercenary))
+  };
   const id = instanceSuffix ? `${def.id}#${instanceSuffix}` : def.id;
   const comboOrder = resolveMercSkillLoadout(def).filter((skillId) => skillId.trim().length > 0);
   return {

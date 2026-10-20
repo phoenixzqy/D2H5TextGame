@@ -316,7 +316,7 @@ function buildDamageInput(
     critMult: stats.critDamage,
     defenderResistances,
     defenderArmor: defender.stats.defense,
-    defenderMagicResist: defender.stats.defense,
+    defenderMagicResist: defender.stats.magicResist,
     defenderDodge:
       effect.damageType === 'physical' || effect.damageType === 'thorns'
         ? defender.stats.physDodge

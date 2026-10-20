@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/mitigation.json",
+  "title": "Independent flat mitigation policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "friendlyBase", "monster"],
+  "properties": {
+    "id": { "const": "combat/mitigation" },
+    "friendlyBase": {
+      "description": "Flat MR baselines without level, rank, core-stat or armor inheritance.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["player", "mercenary", "summon"],
+      "properties": {
+        "player": { "$ref": "#/$defs/nonnegative" },
+        "mercenary": { "$ref": "#/$defs/nonnegative" },
+        "summon": { "$ref": "#/$defs/nonnegative" }
+      }
+    },
+    "monster": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["base", "growthPerLevel", "tierMultipliers"],
+      "properties": {
+        "base": { "$ref": "#/$defs/nonnegative" },
+        "growthPerLevel": { "$ref": "#/$defs/nonnegative" },
+        "tierMultipliers": {
+          "description": "Apply after archetype base and effective-level growth; independent of armor tiers.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["trash", "elite", "champion", "rare-elite", "rare-minion", "boss", "chapter-boss"],
+          "properties": {
+            "trash": { "$ref": "#/$defs/nonnegative" },
+            "elite": { "$ref": "#/$defs/nonnegative" },
+            "champion": { "$ref": "#/$defs/nonnegative" },
+            "rare-elite": { "$ref": "#/$defs/nonnegative" },
+            "rare-minion": { "$ref": "#/$defs/nonnegative" },
+            "boss": { "$ref": "#/$defs/nonnegative" },
+            "chapter-boss": { "$ref": "#/$defs/nonnegative" }
+          }
+        }
+      }
+    }
+  },
+  "$defs": { "nonnegative": { "type": "number", "minimum": 0 } }
+}

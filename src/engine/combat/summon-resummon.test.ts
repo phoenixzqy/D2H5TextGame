@@ -7,7 +7,7 @@ import { resetSummonCounters } from '../skills/summons';
 import { maxSkeletonsForLevel } from '../skills/scaling';
 
 const baseStats: DerivedStats = {
-  life: 200, lifeMax: 200, mana: 200, manaMax: 200, attack: 1, defense: 0,
+  life: 200, lifeMax: 200, mana: 200, manaMax: 200, attack: 1, defense: 0, magicResist: 0,
   attackSpeed: 10, critChance: 0, critDamage: 1.5, physDodge: 0, magicDodge: 0,
   magicFind: 0, goldFind: 0,
   resistances: { fire: 0, cold: 0, lightning: 0, poison: 0, arcane: 0, physical: 0 }

@@ -45,6 +45,7 @@
     "mana": "法力",
     "magicDodge": "魔法闪避",
     "defense": "防御",
+    "magicResist": "魔法防御",
     "life": "生命",
     "attackRating": "攻击等级",
     "physDodge": "物理闪避"

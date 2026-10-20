@@ -67,7 +67,7 @@ export type WeaponType =
 export type Handedness = 'oneHanded' | 'twoHanded';
 
 export type ItemStatKey =
-  | 'attack' | 'life' | 'mana' | 'defense' | 'critChance' | 'critDamage'
+  | 'attack' | 'life' | 'mana' | 'defense' | 'magicResist' | 'critChance' | 'critDamage'
   | 'physDodge' | 'magicDodge' | 'fireRes' | 'coldRes' | 'lightningRes'
   | 'poisonRes' | 'arcaneRes' | 'physicalRes';
 
@@ -150,6 +150,7 @@ export interface ItemBonusStats {
     | 'mana'
     | 'attack'
     | 'defense'
+    | 'magicResist'
     | 'attackSpeed'
     | 'critChance'
     | 'critDamage'

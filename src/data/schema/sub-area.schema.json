@@ -82,6 +82,7 @@
           "description": "Base HP before applying elite-config.chapterBossHpMultiplier."
         },
         "atk":{ "type": "integer", "minimum": 1 },
+        "magicResist": { "type": "number", "minimum": 0, "description": "Exact final independent flat magical mitigation" },
         "def": { "type": "integer", "minimum": 0 },
         "skills": {
           "type": "array",

@@ -19,7 +19,7 @@ function hold(appliedAtMs = 0, expiresAtMs?: number): ActiveStatus {
 function unit(id: string, side: CombatUnit['side'], speed = 100): CombatUnit {
   return { id, name: id, side, kind: side === 'player' ? 'hero' : 'monster', level: 6, tier: 'trash',
     life: 500, mana: 20,
-    stats: { life: 500, lifeMax: 500, mana: 100, manaMax: 100, attack: 10, defense: 0,
+    stats: { life: 500, lifeMax: 500, mana: 100, manaMax: 100, attack: 10, defense: 0, magicResist: 0,
       attackSpeed: speed, critChance: 0, critDamage: 1.5, physDodge: 0, magicDodge: 0,
       magicFind: 0, goldFind: 0,
       resistances: { physical: 0, fire: 0, cold: 0, lightning: 0, arcane: 0, poison: 0 } },

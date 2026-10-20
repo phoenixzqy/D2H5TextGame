@@ -10,6 +10,7 @@
  * @module engine/skills/summons
  */
 
+import { MITIGATION_DEFINITION } from '../combat/mitigation-definition';
 import type { CombatUnit } from '../combat/types';
 import type { DerivedStats } from '../types/attributes';
 import type { SummonStatScaling } from './effects';
@@ -99,6 +100,7 @@ function baseSummonStats(): DerivedStats {
     manaMax: 0,
     attack: 20,
     defense: 10,
+    magicResist: Math.max(0, Math.floor(MITIGATION_DEFINITION.friendlyBase.summon)),
     attackSpeed: 70,
     critChance: 0.05,
     critDamage: 1.5,

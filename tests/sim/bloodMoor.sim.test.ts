@@ -56,7 +56,7 @@ function buildMonster(
     mana: 0,
     manaMax: 0,
     attack: baseAttack,
-    defense: a.defense,
+    defense: a.defense, magicResist: 0,
     attackSpeed: a.attackSpeed,
     critChance: 0.05,
     critDamage: 1.5,
@@ -327,7 +327,7 @@ describe('Blood Moor balance sim (L1, pure auto-attack)', () => {
         mana: 0,
         manaMax: 0,
         attack: 40, // strong-melee avg
-        defense: a.defense,
+        defense: a.defense, magicResist: 0,
         attackSpeed: a.attackSpeed,
         critChance: 0.05,
         critDamage: 1.5,

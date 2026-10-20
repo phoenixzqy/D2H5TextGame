@@ -25,6 +25,7 @@ export interface EquipmentMods {
   readonly mana?: number;
   readonly attack?: number;
   readonly defense?: number;
+  readonly magicResist?: number;
   readonly attackSpeed?: number;
   readonly critChance?: number;
   readonly critDamage?: number;
@@ -59,6 +60,7 @@ const ZERO_MODS: MutableEquipmentMods = {
   mana: 0,
   attack: 0,
   defense: 0,
+  magicResist: 0,
   attackSpeed: 0,
   critChance: 0,
   critDamage: 0,
@@ -81,7 +83,7 @@ function add(mods: MutableEquipmentMods, key: keyof EquipmentMods, value: number
 
 
 const CORE_STAT_KEYS = new Set<keyof CoreStats>(['strength', 'dexterity', 'vitality', 'energy']);
-const STAT_MOD_KEYS = new Set<keyof EquipmentMods>(['life','mana','attack','defense','attackSpeed','critChance','critDamage','physDodge','magicDodge','magicFind','goldFind']);
+const STAT_MOD_KEYS = new Set<keyof EquipmentMods>(['life','mana','attack','defense','magicResist','attackSpeed','critChance','critDamage','physDodge','magicDodge','magicFind','goldFind']);
 const RESIST_TO_MOD_KEY: Readonly<Record<keyof Resistances | 'all', keyof EquipmentMods>> = { fire: 'fireRes', cold: 'coldRes', lightning: 'lightningRes', poison: 'poisonRes', arcane: 'arcaneRes', physical: 'physicalRes', all: 'allRes' };
 
 function addStatPathValue(mods: MutableEquipmentMods, path: string, value: number): void {
@@ -128,6 +130,7 @@ export function aggregateEquipmentMods(
     if (!item) continue;
     const itemStats = computeStats(item, bases.get(item.baseId), affixMap);
     add(mods, 'attack', itemStats.attack); add(mods, 'defense', itemStats.defense);
+    add(mods, 'magicResist', itemStats.magicResist);
     add(mods, 'life', itemStats.life); add(mods, 'mana', itemStats.mana);
     add(mods, 'critChance', itemStats.critChance); add(mods, 'critDamage', itemStats.critDamage);
     add(mods, 'physDodge', itemStats.physDodge); add(mods, 'magicDodge', itemStats.magicDodge);
@@ -181,6 +184,7 @@ export function equipmentModsToDerivedModifiers(mods: EquipmentMods): DerivedMod
   if (mods.mana !== undefined) out.flatMana = mods.mana;
   if (mods.attack !== undefined) out.flatAttack = mods.attack;
   if (mods.defense !== undefined) out.flatDefense = mods.defense;
+  if (mods.magicResist !== undefined) out.flatMagicResist = mods.magicResist;
   if (mods.attackSpeed !== undefined) out.attackSpeedBonus = mods.attackSpeed;
   if (mods.critChance !== undefined) out.critChance = mods.critChance;
   if (mods.critDamage !== undefined) out.critDamage = mods.critDamage;

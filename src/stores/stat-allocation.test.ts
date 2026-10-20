@@ -200,7 +200,7 @@ describe('coherent one-point attribute allocation (BUG-045)', () => {
     usePlayerStore.getState().allocateStatPoint('vitality');
     expect(player().equipment).toBe(before.equipment);
     expect(player().derivedStats).toEqual({ life: 120, lifeMax: 146,
-      mana: 102, manaMax: 114, attack: 28, defense: 29, attackSpeed: 125,
+      mana: 102, manaMax: 114, attack: 28, defense: 29, magicResist: 0, attackSpeed: 125,
       critChance: 0.05, critDamage: 2, physDodge: 0.1, magicDodge: 0.05,
       magicFind: 0, goldFind: 0,
       resistances: { fire: 0, cold: 0, lightning: 0, poison: 0, arcane: 0, physical: 0 } });

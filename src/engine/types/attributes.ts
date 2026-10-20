@@ -54,8 +54,11 @@ export interface DerivedStats {
   /** Attack rating - influences hit chance */
   readonly attack: number;
   
-  /** Defense rating - reduces enemy hit chance */
+  /** Armor - flat mitigation for physical, fire, poison and thorns damage */
   readonly defense: number;
+
+  /** Independent flat mitigation for cold, lightning and arcane damage. */
+  readonly magicResist: number;
   
   /** Attack speed - determines turn order (higher = faster) */
   readonly attackSpeed: number;

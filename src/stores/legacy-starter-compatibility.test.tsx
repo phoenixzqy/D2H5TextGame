@@ -55,7 +55,8 @@ function oldSave(intermediate = false): SaveV7 {
   const save = snapshotStores();
   assert(save);
   usePlayerStore.getState().setPlayer(createMockPlayer('Current', 'sorceress'));
-  return { ...save, version: 7, inventory: { ...save.inventory, currencies: { 'rune-shard': 41 } } };
+  const { magicResist: _mr, ...oldStats } = save.player.derivedStats;
+  return { ...save, version: 7, player: { ...save.player, derivedStats: oldStats }, inventory: { ...save.inventory, currencies: { 'rune-shard': 41 } } };
 }
 function seedDisk(data: SaveV7) {
   disk.state.record = { id: 'current', data: structuredClone(data), version: 7, timestamp: data.timestamp };
@@ -92,7 +93,7 @@ describe('legacy starter actual persistence paths', () => {
     expect(decoded?.inventory.equipped.weapon?.id).toBe(id);
     expect(decoded?.player.equipment).toEqual([]);
     expect(decoded?.player.derivedStats.attack).toBe(35);
-    expect(decoded?.version).toBe(8);
+    expect(decoded?.version).toBe(9);
     // Raw disk export deliberately remains diagnostic, until an ordinary save writes normalized data.
     expect(JSON.parse((await exportSave()) ?? 'null')).toEqual(legacy);
     const publications: unknown[] = [];
@@ -107,7 +108,7 @@ describe('legacy starter actual persistence paths', () => {
       expect(await hydrateFromSave()).toBe(true);
       assertLiveCanonical();
       await flushSave();
-      expect((await loadSave())?.version).toBe(8);
+      expect((await loadSave())?.version).toBe(9);
       expect((await loadSave())?.inventory.equipped.weapon?.id).toBe(id);
       expect(legacy).toEqual(original);
     } finally { stop(); }
@@ -117,7 +118,7 @@ describe('legacy starter actual persistence paths', () => {
     const legacy = oldSave(intermediate);
     const json = JSON.stringify(legacy);
     await importSave(json);
-    expect(disk.state.record?.version).toBe(8);
+    expect(disk.state.record?.version).toBe(9);
     expect((await loadSave())?.player.equipment).toEqual([]);
     expect((await loadSave())?.inventory.equipped.weapon?.id).toBe(id);
     await importIntoStores(json);
@@ -130,7 +131,7 @@ describe('legacy starter actual persistence paths', () => {
       const save = snapshotStores();
       assert(save);
       expect(Object.values(save.inventory.equipped).filter(Boolean)).toHaveLength(1);
-      expect(save.version).toBe(8);
+      expect(save.version).toBe(9);
       expect((await loadSave())?.inventory.equipped.weapon?.id).toBe(id);
     }
   });

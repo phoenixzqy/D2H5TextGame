@@ -1,9 +1,24 @@
 import { assert, describe, expect, it } from 'vitest';
+import type { DerivedStats } from '../types/attributes';
+import type { LegacyDerivedStats } from '../types/save';
 import type { Item } from '../types/items';
 import { toJsonSafe } from './serialize';
 import { buildSave } from './serialize';
 import { decodeSave } from './validate';
 import { deriveStats } from '../progression/stats';
+
+function historicalStats(stats: DerivedStats): LegacyDerivedStats {
+  const { magicResist: _mr, ...old } = stats;
+  return old;
+}
+
+/** Expected current shape keeps every prior field and adds the new actor field. */
+function expectedCurrent<T extends { player: { derivedStats: LegacyDerivedStats }; mercs: { ownedMercs: readonly { derivedStats: LegacyDerivedStats }[] } }>(save: T) {
+  return { ...save, version: 9,
+    player: { ...save.player, derivedStats: { ...save.player.derivedStats, magicResist: 0 } },
+    mercs: { ...save.mercs, ownedMercs: save.mercs.ownedMercs.map(merc => ({ ...merc,
+      derivedStats: { ...merc.derivedStats, magicResist: 0 } })) } };
+}
 
 const coreStats = { strength: 10, dexterity: 25, vitality: 10, energy: 35 };
 function sampleSave() {
@@ -74,8 +89,8 @@ describe('save boundary', () => {
 
   it('migrates valid v6 formation preferences without mutating the original', () => {
     const { formation: _formation, ...rest } = sampleSave();
-    const legacy = { ...rest, version: 6 };
-    expect(decodeSave(legacy).version).toBe(8);
+    const legacy = { ...rest, version: 6, player: { ...rest.player, derivedStats: historicalStats(rest.player.derivedStats) } };
+    expect(decodeSave(legacy).version).toBe(9);
     expect(decodeSave(legacy).formation.playerPosition).toEqual({ row: 1, col: 1 });
     expect(legacy).not.toHaveProperty('formation');
   });
@@ -196,7 +211,7 @@ function legacyAmazon(intermediate = false) {
   return {
     ...base, version: 7,
     player: {
-      ...base.player, class: 'amazon', coreStats, derivedStats: deriveStats(coreStats, 1),
+      ...base.player, class: 'amazon', coreStats, derivedStats: historicalStats(deriveStats(coreStats, 1)),
       equipment: [legacyStarter(intermediate)], comboOrder: ['amazon.magic_arrow'],
       skillLevels: { 'amazon.magic_arrow': 1 }
     }
@@ -210,7 +225,7 @@ describe('conservative legacy Amazon starter compatibility', () => {
     const before = structuredClone(input);
     const output = decodeSave(input);
     expect(output.player.equipment).toEqual([]);
-    expect(output.version).toBe(8);
+    expect(output.version).toBe(9);
     expect(output.inventory.equipped.weapon).toEqual({
       ...legacyStarter(true), id: starterId
     });
@@ -237,7 +252,7 @@ describe('conservative legacy Amazon starter compatibility', () => {
     const progressed = {
       ...input,
       player: { ...input.player, level: 12, experience: 43, experienceToNextLevel: 500,
-        statPoints: 3, skillPoints: 4, derivedStats: { ...deriveStats(input.player.coreStats, 12), life: 17, mana: 9 } },
+        statPoints: 3, skillPoints: 4, derivedStats: { ...historicalStats(deriveStats(input.player.coreStats, 12)), life: 17, mana: 9 } },
       inventory: { ...input.inventory, equipped: { head: hat }, currencies: { 'rune-shard': 71 } },
       map: { ...input.map, clearedSubAreas: ['blood-moor'], questProgress: {
         quest: { id: 'quest', status: 'completed', objectives: { done: true }, rewardClaimed: true }
@@ -262,7 +277,7 @@ describe('conservative legacy Amazon starter compatibility', () => {
       .toEqual(progressed.player);
     expect(output.inventory.currencies).toEqual(progressed.inventory.currencies);
     expect(output.map).toEqual(progressed.map);
-    expect(output.mercs).toEqual(progressed.mercs);
+    expect(output.mercs).toEqual(expectedCurrent(progressed).mercs);
     expect(output.formation).toEqual(progressed.formation);
     const affix = output.inventory.equipped.head?.affixes?.[0];
     expect(affix && 'values' in affix && affix.values).toEqual(new Map([
@@ -286,7 +301,7 @@ describe('conservative legacy Amazon starter compatibility', () => {
         ownedMercs: container === 'legacy-merc' ? [merc] : [],
         mercEquipment: container === 'merc' ? { merc: { head: collision } } : {} }
     };
-    expect(decodeSave(conflicted)).toEqual({ ...conflicted, version: 8 });
+    expect(decodeSave(conflicted)).toEqual(expectedCurrent(conflicted));
   });
 
   it.each([
@@ -296,7 +311,7 @@ describe('conservative legacy Amazon starter compatibility', () => {
   ])('preserves %s and all stale data', (_name, equipped) => {
     const input = legacyAmazon();
     const skipped = { ...input, inventory: { ...input.inventory, equipped } };
-    expect(decodeSave(skipped)).toEqual({ ...skipped, version: 8 });
+    expect(decodeSave(skipped)).toEqual(expectedCurrent(skipped));
   });
 
   it('allows an explicitly empty offhand without displacing it', () => {
@@ -315,7 +330,7 @@ describe('conservative legacy Amazon starter compatibility', () => {
   ])('preserves altered original signature %#', (patch) => {
     const input = legacyAmazon();
     const skipped = { ...input, player: { ...input.player, equipment: [{ ...legacyStarter(), ...patch }] } };
-    expect(decodeSave(skipped)).toEqual({ ...skipped, version: 8 });
+    expect(decodeSave(skipped)).toEqual(expectedCurrent(skipped));
   });
 
   it.each([
@@ -324,23 +339,23 @@ describe('conservative legacy Amazon starter compatibility', () => {
   ])('preserves altered intermediate signature %#', (patch) => {
     const input = legacyAmazon(true);
     const skipped = { ...input, player: { ...input.player, equipment: [{ ...legacyStarter(true), ...patch }] } };
-    expect(decodeSave(skipped)).toEqual({ ...skipped, version: 8 });
+    expect(decodeSave(skipped)).toEqual(expectedCurrent(skipped));
   });
 
   it.each(['barbarian', 'sorceress', 'necromancer', 'paladin', 'druid', 'assassin'])('never grants to %s', (cls) => {
     const input = legacyAmazon();
     const skipped = { ...input, player: { ...input.player, class: cls } };
-    expect(decodeSave(skipped)).toEqual({ ...skipped, version: 8 });
+    expect(decodeSave(skipped)).toEqual(expectedCurrent(skipped));
   });
 
   it('does not infer a starter from mixed/empty legacy arrays or already-v8 input', () => {
     const input = legacyAmazon();
     for (const equipment of [[], [legacyStarter(), { ...legacyStarter(), id: 'other' }]]) {
       const skipped = { ...input, player: { ...input.player, equipment } };
-      expect(decodeSave(skipped)).toEqual({ ...skipped, version: 8 });
+      expect(decodeSave(skipped)).toEqual(expectedCurrent(skipped));
     }
     const current = { ...input, version: 8 };
-    expect(decodeSave(current)).toEqual(current);
+    expect(decodeSave(current)).toEqual(expectedCurrent(current));
   });
 
   it.each(['missing-attack', 'missing-derived', 'bad-core', 'bad-life', 'bad-max', 'bad-resistance', 'bad-native-affix', 'bad-json-affix'] as const)(
@@ -378,7 +393,7 @@ describe('legacy starter boundary controls', () => {
   it('chains genuine v6 formation defaults then starter compatibility', () => {
     const { formation: _formation, ...input } = legacyAmazon();
     const output = decodeSave({ ...input, version: 6 });
-    expect(output.version).toBe(8);
+    expect(output.version).toBe(9);
     expect(output.formation.playerPosition).toEqual({ row: 1, col: 1 });
     expect(output.inventory.equipped.weapon?.id).toBe(starterId);
     expect(output.player.equipment).toEqual([]);
@@ -390,7 +405,7 @@ describe('legacy starter boundary controls', () => {
       const skipped = { ...input, inventory: { ...input.inventory, equipped: {
         [slot]: { ...legacyStarter(true), equipped: true }
       } } };
-      expect(decodeSave(skipped)).toEqual({ ...skipped, version: 8 });
+      expect(decodeSave(skipped)).toEqual(expectedCurrent(skipped));
     }
   );
   it('rejects malformed present weapon instead of treating it as missing', () => {

@@ -39,6 +39,8 @@
       "minimum": 0,
       "description": "Base attack speed"
     },
+    "magicResist": { "type": "number", "minimum": 0, "description": "Base independent flat magical mitigation" },
+    "magicResistGrowth": { "type": "number", "minimum": 0, "description": "Independent flat magical mitigation growth per level" },
     "defense": {
       "type": "number",
       "minimum": 0,

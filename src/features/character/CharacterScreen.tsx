@@ -252,6 +252,7 @@ function DerivedStatsPanel({ player }: { player: Player }) {
       <ul className="grid grid-cols-2 gap-2 mt-3 text-sm">
         <KvRow label={t('common:stats.attackRating')} value={ds.attack} />
         <KvRow label={t('common:stats.defense')} value={ds.defense} />
+        <KvRow label={t('character:derived.magicResist')} value={ds.magicResist} />
         <KvRow label={t('common:stats.attackSpeed')} value={ds.attackSpeed} />
         <KvRow
           label={t('common:stats.critChance')}

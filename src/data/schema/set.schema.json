@@ -87,6 +87,7 @@
             "mana": { "$ref": "#/$defs/statValue" },
             "attack": { "$ref": "#/$defs/statValue" },
             "defense": { "$ref": "#/$defs/statValue" },
+            "magicResist": { "$ref": "#/$defs/statValue" },
             "attackSpeed": { "$ref": "#/$defs/statValue" },
             "critChance": { "$ref": "#/$defs/statValue" },
             "critDamage": { "$ref": "#/$defs/statValue" },

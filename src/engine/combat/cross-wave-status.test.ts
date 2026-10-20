@@ -13,7 +13,7 @@ function unit(id: string, side: CombatUnit['side'], statuses: readonly ActiveSta
     life: 100_000, mana: 7,
     stats: {
       life: 100_000, lifeMax: 100_000, mana: 100, manaMax: 100,
-      attack: 10, defense: 0, attackSpeed: 100, critChance: 0, critDamage: 1.5,
+      attack: 10, defense: 0, magicResist: 0, attackSpeed: 100, critChance: 0, critDamage: 1.5,
       physDodge: 0, magicDodge: 0, magicFind: 0, goldFind: 0,
       resistances: { fire: 0, cold: 0, lightning: 0, poison: 0, arcane: 0, physical: 0 }
     },

@@ -2,7 +2,7 @@
 import Ajv, { type AnySchema } from 'ajv';
 import { restoreEquipment, restoreItem, restoreUnit } from './restore';
 import { LEVEL_CAP } from '../progression/xp';
-import { CURRENT_SAVE_VERSION, type SaveCurrent } from '../types/save';
+import { CURRENT_SAVE_VERSION, type SaveCurrent, type SaveV7, type SaveV8 } from '../types/save';
 import { runMigrations, type VersionedSave } from './migrate';
 
 const number = { type: 'number' };
@@ -124,6 +124,13 @@ const skill = object(
     )
   }
 );
+const magicResist = { type: 'number', minimum: 0 };
+const derivedStatProperties = {
+  ...numbers(
+    'life lifeMax mana manaMax attack defense attackSpeed critChance critDamage physDodge magicDodge magicFind goldFind'
+  ),
+  resistances: object(numbers('fire cold lightning poison arcane physical'))
+};
 const unitProperties = {
   id: text,
   name: text,
@@ -131,12 +138,7 @@ const unitProperties = {
   team: text,
   level: positiveInteger,
   coreStats: object(numbers('strength dexterity vitality energy')),
-  derivedStats: object({
-    ...numbers(
-      'life lifeMax mana manaMax attack defense attackSpeed critChance critDamage physDodge magicDodge magicFind goldFind'
-    ),
-    resistances: object(numbers('fire cold lightning poison arcane physical'))
-  }),
+  derivedStats: object({ ...derivedStatProperties, magicResist }),
   statusEffects: array(status),
   cooldowns: array(object({ skillId: text, remaining: number, total: number })),
   skills: array(skill),
@@ -149,12 +151,12 @@ const position = object({
   row: { type: 'integer', minimum: 0, maximum: 2 },
   col: { type: 'integer', minimum: 0, maximum: 2 }
 });
-const schema = object({
-  version: { const: CURRENT_SAVE_VERSION },
+const saveSchema = (version: AnySchema, actorProperties: Record<string, AnySchema>): AnySchema => object({
+  version,
   timestamp: number,
   player: object(
     {
-      ...unitProperties,
+      ...actorProperties,
       type: { const: 'player' },
       team: { const: 'player' },
       class: text,
@@ -172,7 +174,7 @@ const schema = object({
   mercs: object({
     ownedMercs: array(
       object(
-        { ...unitProperties, type: { const: 'mercenary' }, archetype: text, rarity: text },
+        { ...actorProperties, type: { const: 'mercenary' }, archetype: text, rarity: text },
         { classId: text, signatureSkillId: text }
       )
     ),
@@ -223,11 +225,45 @@ const schema = object({
   })
 });
 const ajv = new Ajv({ strictNumbers: true });
-const validate = ajv.compile<SaveCurrent>(schema);
+const validate = ajv.compile<SaveCurrent>(saveSchema({ const: CURRENT_SAVE_VERSION }, unitProperties));
+const validateHistorical = ajv.compile<SaveV7 | SaveV8>(saveSchema({ enum: [7, 8] }, {
+  ...unitProperties,
+  derivedStats: object(derivedStatProperties, { magicResist })
+}));
+
+function record(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
+/** Ajv treats optional undefined as absent; an explicitly present MR is not absent. */
+function rejectUndefinedMagicResist(value: unknown): void {
+  if (!record(value)) return;
+  const actors = [value.player];
+  if (record(value.mercs) && Array.isArray(value.mercs.ownedMercs)) {
+    const ownedMercs: readonly unknown[] = value.mercs.ownedMercs;
+    actors.push(...ownedMercs);
+  }
+  for (const actor of actors) {
+    if (record(actor) && record(actor.derivedStats) &&
+      Object.hasOwn(actor.derivedStats, 'magicResist') && actor.derivedStats.magicResist === undefined) {
+      throw new Error('Invalid save: present magicResist must be a finite nonnegative number');
+    }
+  }
+}
+
+/** Frozen v7/v8 requirements, checked before compatibility can replace fields. */
+function validateHistoricalSave(value: unknown): void {
+  const normalized = normalizeMaps(value);
+  rejectUndefinedMagicResist(normalized);
+  if (!validateHistorical(normalized)) {
+    throw new Error(`Invalid save: ${ajv.errorsText(validateHistorical.errors)}`);
+  }
+}
 
 /** Validate a migrated save before any IO or store mutation. Preserves optional fields. */
 export function validateSave(value: unknown): SaveCurrent {
   const normalized = normalizeMaps(value);
+  rejectUndefinedMagicResist(normalized);
   if (!validate(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(validate.errors)}`);
   return normalized as SaveCurrent;
 }
@@ -258,11 +294,8 @@ export function decodeSave(value: unknown): SaveCurrent {
   let input = value as VersionedSave;
   if (input.version < 8) {
     input = runMigrations(input, 7);
-    // v7/v8 share their structural shape. Validate before compatibility stats
-    // recomposition can replace corrupt saved derived fields. Revisit this
-    // projection when a later version changes the persisted shape.
-    validateSave({ ...input, version: CURRENT_SAVE_VERSION });
   }
+  if (input.version === 7 || input.version === 8) validateHistoricalSave(input);
   const save = validateSave(runMigrations(input));
   return {
     ...save,

@@ -25,6 +25,9 @@ export interface MonsterDef {
   
   /** Base defense */
   readonly defense?: number;
+  /** Independent flat magical mitigation before level growth and tier scaling. */
+  readonly magicResist?: number;
+  readonly magicResistGrowth?: number;
   
   /** Base resistances */
   readonly resistances?: {

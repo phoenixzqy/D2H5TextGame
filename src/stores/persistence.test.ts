@@ -58,7 +58,7 @@ function fakeMerc(): Mercenary {
   return {
     id: 'merc-persist-1', name: 'Kashya', type: 'mercenary', team: 'player', level: 2,
     coreStats: { strength: 20, dexterity: 25, vitality: 20, energy: 10 },
-    derivedStats: { life: 80, lifeMax: 80, mana: 20, manaMax: 20, attack: 30, defense: 5, attackSpeed: 30, critChance: 0.05, critDamage: 1.5, physDodge: 0.05, magicDodge: 0.05, magicFind: 0, goldFind: 0, resistances: { fire: 0, cold: 0, lightning: 0, poison: 0, arcane: 0, physical: 0 } },
+    derivedStats: { life: 80, lifeMax: 80, mana: 20, manaMax: 20, attack: 30, defense: 5, magicResist: 0, attackSpeed: 30, critChance: 0.05, critDamage: 1.5, physDodge: 0.05, magicDodge: 0.05, magicFind: 0, goldFind: 0, resistances: { fire: 0, cold: 0, lightning: 0, poison: 0, arcane: 0, physical: 0 } },
     statusEffects: [], cooldowns: [], skills: [], comboOrder: ['mskill-basic-arrow'], alive: true, turnOrder: 0, archetype: 'back', rarity: 'R', equipment: []
   };
 }

@@ -45,12 +45,21 @@ export function migrateLegacyStarter(save: SaveV7): SaveV8 {
     ...starter, baseId: 'items/base/weapon-bow-training', ilvl: 1, baseRolls: { attack: 13 }
   };
   const equipped = { ...inventory.equipped, weapon };
+  // Current composition needs total stats, but v8 must retain the historical MR
+  // shape/value. The v9 migration alone introduces an absent field.
+  const { magicResist: _computedMR, ...recomposed } = deriveEquippedPlayerStats(
+    { ...player, derivedStats: { ...player.derivedStats, magicResist: player.derivedStats.magicResist ?? 0 } },
+    player.level,
+    restoreEquipment(equipped)
+  );
+  const derivedStats = player.derivedStats.magicResist === undefined
+    ? recomposed : { ...recomposed, magicResist: player.derivedStats.magicResist };
   return {
     ...upgraded,
     player: {
       ...player, equipment: [],
       // Restore only an aggregation view; retained payloads keep their values.
-      derivedStats: deriveEquippedPlayerStats(player, player.level, restoreEquipment(equipped))
+      derivedStats
     },
     inventory: { ...inventory, equipped }
   };

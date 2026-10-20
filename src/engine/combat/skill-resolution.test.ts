@@ -18,7 +18,7 @@ import * as rngModule from '../rng';
 import { applyStatus } from './status';
 
 const baseStats: DerivedStats = {
-  life: 200, lifeMax: 200, mana: 200, manaMax: 200, attack: 1, defense: 0,
+  life: 200, lifeMax: 200, mana: 200, manaMax: 200, attack: 1, defense: 0, magicResist: 0,
   attackSpeed: 100, critChance: 0, critDamage: 1.5, physDodge: 0, magicDodge: 0,
   magicFind: 0, goldFind: 0,
   resistances: { fire: 0, cold: 0, lightning: 0, poison: 0, arcane: 0, physical: 0 }
@@ -70,7 +70,7 @@ function amplifySnapshot(rank = 1, allyHoldAt = 3401): CombatSnapshot {
     })],
     enemyTeam: [mkUnit({
       id: 'target', side: 'enemy', life: 500, statuses: [hold()],
-      stats: { ...baseStats, life: 500, lifeMax: 500, defense: 10,
+      stats: { ...baseStats, life: 500, lifeMax: 500, defense: 10, magicResist: 10,
         resistances: { fire: 50, cold: 50, lightning: 50, poison: 50, arcane: 50, physical: 50 } }
     })]
   };

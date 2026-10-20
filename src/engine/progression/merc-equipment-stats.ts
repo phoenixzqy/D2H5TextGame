@@ -43,6 +43,8 @@ export function deriveEquippedMercStats(
     manaMax,
     attack: scalar('attack'),
     defense: scalar('defense'),
+    // Apply the signed gear value before clamping; deriveStats clamps negatives.
+    magicResist: Math.max(0, Math.floor(saved.magicResist + (mods.magicResist ?? 0))),
     attackSpeed: geared.attackSpeed === bare.attackSpeed
       ? saved.attackSpeed
       : Math.max(1, scalar('attackSpeed')),

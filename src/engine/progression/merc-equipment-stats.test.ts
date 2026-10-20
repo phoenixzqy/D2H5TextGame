@@ -14,7 +14,7 @@ async function compose(merc: Mercenary, gear: Gear): Promise<DerivedStats> {
   return actual.deriveEquippedMercStats(merc, gear);
 }
 function baseline(): DerivedStats {
-  return { life: 160, lifeMax: 172, mana: 60, manaMax: 79, attack: 25, defense: 26,
+  return { life: 160, lifeMax: 172, mana: 60, manaMax: 79, attack: 25, defense: 26, magicResist: 0,
     attackSpeed: 122, critChance: 0.05, critDamage: 2, physDodge: 0.094,
     magicDodge: 0.05, magicFind: 0, goldFind: 0,
     resistances: { fire: 0, cold: 0, lightning: 0, poison: 0, arcane: 0, physical: 0 } };

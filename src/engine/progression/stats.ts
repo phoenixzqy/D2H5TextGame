@@ -6,6 +6,7 @@
  * @module engine/progression/stats
  */
 
+import { MITIGATION_DEFINITION } from '../combat/mitigation-definition';
 import type { CoreStats, DerivedStats, Resistances } from '../types/attributes';
 
 /** Per-attribute hard cap from progression-curve.md §4.2. */
@@ -50,6 +51,7 @@ export interface DerivedModifiers {
   readonly flatMana?: number;
   readonly flatAttack?: number;
   readonly flatDefense?: number;
+  readonly flatMagicResist?: number;
   readonly attackSpeedBonus?: number;
   readonly critChance?: number;
   readonly critDamage?: number;
@@ -116,6 +118,7 @@ export function deriveStats(
     manaMax,
     attack,
     defense,
+    magicResist: Math.max(0, Math.floor(MITIGATION_DEFINITION.friendlyBase.player + (mods.flatMagicResist ?? 0))),
     attackSpeed,
     critChance: 0.05 + (mods.critChance ?? 0),
     critDamage: 2 + (mods.critDamage ?? 0),

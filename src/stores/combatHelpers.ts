@@ -255,7 +255,10 @@ export function buildEnemiesForWave(wave: WaveSpec, seed: number): CombatUnit[] 
               statOverrides: {
                 lifeMax: spawn.chapterBoss.hp * eliteConfig.chapterBossHpMultiplier,
                 attack: spawn.chapterBoss.atk,
-                defense: spawn.chapterBoss.def
+                defense: spawn.chapterBoss.def,
+                ...(spawn.chapterBoss.magicResist !== undefined
+                  ? { magicResist: spawn.chapterBoss.magicResist }
+                  : {})
               }
             }
           : {})

@@ -66,7 +66,7 @@ describe('combatHelpers', () => {
         level: 1,
         tier: 'trash',
         stats: {
-          life: 100, lifeMax: 100, mana: 0, manaMax: 0, attack: 10, defense: 0,
+          life: 100, lifeMax: 100, mana: 0, manaMax: 0, attack: 10, defense: 0, magicResist: 0,
           attackSpeed: 100, critChance: 0, critDamage: 1.5, physDodge: 0, magicDodge: 0,
           magicFind: 0, goldFind: 0,
           resistances: { fire: 0, cold: 0, lightning: 0, poison: 0, arcane: 0, physical: 0 }
@@ -453,7 +453,7 @@ function buildMerc(overrides: Partial<Mercenary> = {}): Mercenary {
   return {
     id: 'merc-test-1', name: 'Kashya the Rogue', type: 'mercenary', team: 'player', level: 3,
     coreStats: { strength: 20, dexterity: 25, vitality: 20, energy: 10 },
-    derivedStats: { life: 80, lifeMax: 80, mana: 20, manaMax: 20, attack: 30, defense: 5, attackSpeed: 30, critChance: 0.05, critDamage: 1.5, physDodge: 0.05, magicDodge: 0.05, magicFind: 0, goldFind: 0, resistances: { fire: 0, cold: 0, lightning: 0, poison: 0, arcane: 0, physical: 0 } },
+    derivedStats: { life: 80, lifeMax: 80, mana: 20, manaMax: 20, attack: 30, defense: 5, magicResist: 0, attackSpeed: 30, critChance: 0.05, critDamage: 1.5, physDodge: 0.05, magicDodge: 0.05, magicFind: 0, goldFind: 0, resistances: { fire: 0, cold: 0, lightning: 0, poison: 0, arcane: 0, physical: 0 } },
     statusEffects: [], cooldowns: [], skills: [], comboOrder: ['mskill-basic-arrow'], alive: true, turnOrder: 0, archetype: 'back', rarity: 'R', equipment: [], ...overrides
   };
 }
@@ -487,7 +487,7 @@ function boostedSorceress() {
 function slainEnemy(id: string): CombatUnit {
   return {
     id, name: id, side: 'enemy', level: 1, tier: 'trash',
-    stats: { life: 0, lifeMax: 10, mana: 0, manaMax: 0, attack: 1, defense: 0, attackSpeed: 10, critChance: 0, critDamage: 1.5, physDodge: 0, magicDodge: 0, magicFind: 0, goldFind: 0, resistances: { fire: 0, cold: 0, lightning: 0, poison: 0, arcane: 0, physical: 0 } },
+    stats: { life: 0, lifeMax: 10, mana: 0, manaMax: 0, attack: 1, defense: 0, magicResist: 0, attackSpeed: 10, critChance: 0, critDamage: 1.5, physDodge: 0, magicDodge: 0, magicFind: 0, goldFind: 0, resistances: { fire: 0, cold: 0, lightning: 0, poison: 0, arcane: 0, physical: 0 } },
     life: 0, mana: 0, statuses: [], cooldowns: {}, skillOrder: [], activeBuffIds: [], enraged: false, summonedAdds: false, kind: 'monster'
   };
 }

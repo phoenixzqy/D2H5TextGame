@@ -46,6 +46,7 @@
         "life",
         "mana",
         "defense",
+        "magicResist",
         "critChance",
         "critDamage",
         "physDodge",

@@ -65,6 +65,8 @@ export interface ChapterBossDef {
   readonly hp: number;
   readonly atk: number;
   readonly def: number;
+  /** Exact final magical mitigation; omission uses archetype and effective level. */
+  readonly magicResist?: number;
   readonly skills: readonly string[];
   readonly dropTable: string;
 }

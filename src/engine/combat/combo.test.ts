@@ -15,7 +15,7 @@ function mk(over: Partial<CombatUnit> = {}): CombatUnit {
     tier: 'trash',
     stats: {
       life: 100, lifeMax: 100, mana: 0, manaMax: 0,
-      attack: 10, defense: 0, attackSpeed: 100,
+      attack: 10, defense: 0, magicResist: 0, attackSpeed: 100,
       critChance: 0, critDamage: 2,
       physDodge: 0, magicDodge: 0,
       magicFind: 0, goldFind: 0,

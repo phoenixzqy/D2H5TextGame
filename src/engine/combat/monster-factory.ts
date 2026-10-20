@@ -21,6 +21,7 @@
  * @module engine/combat/monster-factory
  */
 
+import { MITIGATION_DEFINITION } from './mitigation-definition';
 import defaultEliteConfigJson from '../../data/elite/elite-config.json';
 import type { Rng } from '../rng';
 import type { EliteConfigDef } from '../types/elite';
@@ -101,6 +102,7 @@ export interface BuildMonsterOpts {
     readonly lifeMax?: number;
     readonly attack?: number;
     readonly defense?: number;
+    readonly magicResist?: number;
   };
   /** Additive resistance bonus applied after the monster JSON resistances. */
   readonly resistanceBonus?: number;
@@ -150,6 +152,12 @@ export function buildMonsterUnit(opts: BuildMonsterOpts): CombatUnit {
   const baseDef = def.defense ?? BASE_DEF;
   const rawDef = baseDef + Math.max(0, level - 1) * GROWTH_DEF;
   const defense = opts.statOverrides?.defense ?? Math.round(rawDef * TIER_MULTIPLIERS[tier].defense);
+
+  const mr = MITIGATION_DEFINITION.monster;
+  const magicResist = opts.statOverrides?.magicResist ?? Math.round(
+    ((def.magicResist ?? mr.base) + Math.max(0, level - 1) *
+      (def.magicResistGrowth ?? mr.growthPerLevel)) * mr.tierMultipliers[tier]
+  );
 
   // 4. Resistances — fill missing slots with zero so DerivedStats is total.
   const r = def.resistances ?? {};
@@ -205,6 +213,7 @@ export function buildMonsterUnit(opts: BuildMonsterOpts): CombatUnit {
       manaMax: 0,
       attack,
       defense,
+      magicResist,
       attackSpeed: def.attackSpeed ?? 95,
       critChance,
       critDamage,

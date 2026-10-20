@@ -126,7 +126,7 @@ describe('authoritative hero Warmth composition', () => {
     expect.soft(unit.manaRegenPerSecond).toBeCloseTo(43.68, 12);
     expect.soft(unit.increasedDamagePct).toEqual({ fire: 0.01 });
     expect.soft(unit.stats).toEqual({ life: 77, lifeMax: 200, mana: 81, manaMax: 405,
-      attack: 22, defense: 27, attackSpeed: 125, critChance: 0.05, critDamage: 2,
+      attack: 22, defense: 27, magicResist: 0, attackSpeed: 125, critChance: 0.05, critDamage: 2,
       physDodge: 0.1, magicDodge: 0.05, magicFind: 0, goldFind: 0,
       resistances: { fire: 0, cold: 0, lightning: 0, poison: 0, arcane: 0, physical: 0 } });
     expect.soft([unit.life, unit.mana, unit.manaRegenCarry, unit.manaRegenCompensation]).toEqual([77, 81, 0, 0]);
