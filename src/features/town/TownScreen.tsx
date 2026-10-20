@@ -3,36 +3,34 @@
  *
  * Layout:
  *   [ Header: 第 N 章 营地 ]
- *   [ NPC tile grid (mocked) ]
+ *   [ Authored NPC tile grid / inline conversation ]
  *   [ Action buttons: Stash / Mercenary / Market ]
  *   [ Set Out (primary) ]
  */
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, Panel, ScreenShell, GameImage, getZoneArtUrl, getNpcPortraitUrl } from '@/ui';
 import { useMapStore, usePlayerStore } from '@/stores';
-
-interface NPC {
-  id: string;
-  emoji: string;
-  nameKey: string;
-}
-
-const NPCS_BY_ACT: Record<number, NPC[]> = {
-  1: [
-    { id: 'akara', emoji: '🧙‍♀️', nameKey: 'town.npc.akara' },
-    { id: 'charsi', emoji: '⚒️', nameKey: 'town.npc.charsi' },
-    { id: 'gheed', emoji: '💰', nameKey: 'town.npc.gheed' },
-    { id: 'kashya', emoji: '🏹', nameKey: 'town.npc.kashya' },
-  ],
-};
+import { loadTownNpcs } from '@/data/loaders/towns';
 
 export function TownScreen() {
   const { t } = useTranslation(['town', 'common']);
   const navigate = useNavigate();
   const player = usePlayerStore((s) => s.player);
-  const currentAct = useMapStore((s) => s.currentAct) || 1;
-  const npcs = NPCS_BY_ACT[currentAct] ?? NPCS_BY_ACT[1] ?? [];
+  const currentAct = useMapStore((s) => s.currentAct);
+  const recordNpcTalk = useMapStore((s) => s.recordNpcTalk);
+  const den = useMapStore((s) => s.questProgress['quests/act1-den-of-evil']);
+  const npcs = loadTownNpcs(currentAct);
+  const [selection, setSelection] = useState<{ act: number; npcId: string } | null>(null);
+  const conversationTrigger = useRef<HTMLButtonElement | null>(null);
+  // Town can stay mounted while the current act changes. Never retain another act's NPC.
+  const selectedNpc = selection?.act === currentAct
+    ? npcs.find((npc) => npc.id === selection.npcId)
+    : undefined;
+  const denCopy = den?.rewardClaimed ? 'claimed'
+    : den?.status === 'completed' ? 'readyToClaim'
+      : den?.status === 'inProgress' ? 'preclear' : 'untracked';
 
   return (
     <ScreenShell
@@ -65,15 +63,24 @@ export function TownScreen() {
               <li key={npc.id}>
                 <button
                   type="button"
+                  ref={selectedNpc?.id === npc.id ? conversationTrigger : undefined}
                   className="w-full min-h-[80px] flex flex-col items-center justify-center gap-1
                              border border-d2-border rounded bg-d2-bg/40 hover:border-d2-gold/60
                              focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold p-2"
                   aria-label={t(npc.nameKey)}
+                  aria-expanded={selectedNpc?.id === npc.id}
+                  aria-controls={selectedNpc?.id === npc.id ? 'town-conversation' : undefined}
+                  data-testid={`town-npc-${npc.portraitId}`}
+                  onClick={(event) => {
+                    recordNpcTalk(npc.id);
+                    setSelection({ act: currentAct, npcId: npc.id });
+                    event.currentTarget.focus();
+                  }}
                 >
                   <GameImage
-                    src={getNpcPortraitUrl(npc.id, currentAct)}
+                    src={getNpcPortraitUrl(npc.portraitId, currentAct)}
                     alt={t(npc.nameKey)}
-                    fallbackIcon={npc.emoji}
+                    fallbackIcon="💬"
                     size="md"
                   />
                   <span className="text-xs text-d2-white/80 truncate max-w-full">
@@ -83,7 +90,46 @@ export function TownScreen() {
               </li>
             ))}
           </ul>
+          {npcs.length === 0 && <p className="text-sm text-d2-white/70">{t('noNpcs')}</p>}
         </Panel>
+
+        {selectedNpc && (
+          <section
+            id="town-conversation"
+            data-testid="town-conversation"
+            aria-labelledby="town-conversation-title"
+            className="rounded border border-d2-border bg-d2-panel p-4 space-y-3"
+          >
+            <h3 id="town-conversation-title" className="text-d2-gold font-semibold">
+              {t(selectedNpc.nameKey)}
+            </h3>
+            <div role="status" aria-live="polite" className="space-y-2 text-sm text-d2-white/90">
+              <p>{t(`dialogue.greetings.${selectedNpc.portraitId}`)}</p>
+              {selectedNpc.id === 'npc/akara' && <p>{t(`dialogue.den.${denCopy}`)}</p>}
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <Button
+                variant="secondary"
+                className="min-h-[44px] min-w-[44px]"
+                data-testid="town-conversation-quests"
+                onClick={() => { navigate('/quests'); }}
+              >
+                {t('quests')}
+              </Button>
+              <Button
+                variant="secondary"
+                className="min-h-[44px] min-w-[44px]"
+                data-testid="town-conversation-close"
+                onClick={() => {
+                  setSelection(null);
+                  conversationTrigger.current?.focus();
+                }}
+              >
+                {t('close')}
+              </Button>
+            </div>
+          </section>
+        )}
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
           <Button
