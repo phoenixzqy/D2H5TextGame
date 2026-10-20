@@ -2,13 +2,14 @@
  * Quest loader — reads `quests/main.json` + `quests/side.json` and surfaces a
  * typed view consumed by `QuestsScreen` and other UI/engine code.
  *
- * No JSON Schema is registered for quest documents yet (see
- * `src/data/schema/`). Until one ships, we trust the bundled JSON shape and
- * narrow it via the interfaces below.
+ * Validates both complete bundled documents before collecting any rows.
+ * Structural validation does not promise gameplay support for every reward.
  *
  * @module data/loaders/quests
  */
 
+import Ajv2020 from 'ajv/dist/2020';
+import questSchema from '../schema/quest.schema.json';
 import mainQuestsJson from '../quests/main.json';
 import sideQuestsJson from '../quests/side.json';
 
@@ -47,11 +48,30 @@ interface QuestFile {
   readonly quests: readonly QuestDef[];
 }
 
-/** Load every quest (main + side) as a flat list. */
+const ajv = new Ajv2020({ strict: true, allErrors: true });
+const validateQuests = ajv.compile<QuestFile>(questSchema);
+
+function validateDocument(document: unknown, context: string): QuestFile {
+  if (!validateQuests(document)) {
+    throw new Error(`${context}: ${ajv.errorsText(validateQuests.errors, { dataVar: context })}`);
+  }
+  return document;
+}
+
+/** Load main + side in authored order; reject malformed documents or duplicate IDs. */
 export function loadQuests(): readonly QuestDef[] {
-  const main = (mainQuestsJson as QuestFile).quests;
-  const side = (sideQuestsJson as QuestFile).quests;
-  return Object.freeze([...main, ...side]);
+  const main = validateDocument(mainQuestsJson, 'quests/main.json');
+  const side = validateDocument(sideQuestsJson, 'quests/side.json');
+  const ids = new Set<string>();
+  const quests: QuestDef[] = [];
+  for (const [document, context] of [[main, 'quests/main.json'], [side, 'quests/side.json']] as const) {
+    for (const quest of document.quests) {
+      if (ids.has(quest.id)) throw new Error(`Duplicate quest id "${quest.id}" in ${context}`);
+      ids.add(quest.id);
+      quests.push(quest);
+    }
+  }
+  return Object.freeze(quests);
 }
 
 /** Group quests by act id (e.g. `"acts/act1"`). Stable order:

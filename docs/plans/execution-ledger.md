@@ -28,6 +28,7 @@ Current implementation evidence lives in `evidence/`.
 | P03b05b | accepted manual merc capacity slice | `854e88f`; refuse manual return at>=100 before publication; preserve non-growing swaps/equips and unbounded durable ingress; persistent localized recovery. Root/QA/producer APPROVE/ADEQUATE;75focused/1349full and4/4browser. [Evidence](evidence/p03b05b-merc-equipment-capacity.md). |
 | P04a02 core/locales/UI | accepted talk path slice | `2d60095` ordered exact current-town talk; `392e671` localized roster/greetings; `0a84010` UI (agent `2702b81`). Root+producer source APPROVE; real Den→Akara→explicit claim→save browser matrix. Full town/quest families remain. |
 | P04a03a | accepted central schema prerequisite | `b4d2764` runtime / `74cb889` tests. Central quest document schema and validate-before-collect; BUG039, reviewed genuine20 accepted-invalid RED, frozen tests136 plus unchanged integrity30 pass. Full1904/127, T/L/build and unchanged80%engine coverage pass. Direct imports, crossrefs, quest execution/rewards remain open. |
+| P04a03b | accepted synchronous validation prerequisite | One-file strict existing-schema guard validates both full documents per call before collecting/rejecting duplicates. BUG043, reviewed40RED/5controls; frozen45GREEN, focused268/5+integrity30/1, full/coverage2261/134, T/L/build/80%engine gate pass. Root/producer/QA APPROVE/ADEQUATE. [Evidence](evidence/p04a03b-synchronous-quest-validation.md). Reward execution/crossrefs/campaign remain open. |
 | Remaining P03b/P04 | ready for reproduction | Shared capacity, atomic transactions/recoverable awards and quest event/reward integrity remain. |
 | P05a | accepted slice | `2458ee7`; source-local error state, 13 focused tests and actual-component desktop/mobile proof. [Integrated evidence](evidence/P05a-P06a-foundations.md). D13/F19 remain open. |
 | P05b01 | accepted resolver slice | `0c2d043`; D13 identity/metadata control, 29 new tests (25 red before fix), producer source APPROVE. Full suite + T/L/B pass. BUG-010; surface wiring remains. |
@@ -1399,3 +1400,18 @@ Both independent consumers finished; exactFrost rawroot/dist/.vite removed
 and absence verified, port4393closed, originalcheckout clean. Root claim
 continues; P04a03b synchronous quest schema guard next. Chill slowdown,
 BUG037/P16UX, fullskills/campaign andC0–C4/G0–G7 remain unaccepted. No push.
+
+P04a03b accepted after independent root/producer/QA reviewed genuine frozen
+RED40fail/5controls before the one-file runtime guard; tests/schema unchanged.
+Both completeunknown questenvelopes validateeverycall before collection;
+within/across duplicateIDs reject; originalrows/freshfrozenarray/syncAPIs
+and optional/zero/unsupportedauthoredshapes preserved. Frozen45GREEN,
+focused268/5+correctintegrity30/1; related595/48; full+coverage2261/134.
+T9.882/L25.493purity51/productionbuildshake17.853 allpass. Configured80%engine
+gateunchanged; observed63files8102/8582s1891/2104b296/315f. Evidence includes
+exactcommands/logSHA, typo-filtercorrection and timing/warninglimitations.
+Independent finalcombined APPROVE/ADEQUATE and allrawconsumersfinished;
+exactsyncquest rawroot/dist/.vite removed/absenceverified, originalclean.
+Rootclaimcontinues. Next P04a04a boundedDen/sharedclaimsafety: preflightunsupported
+rewards/no-player, synchronousreentry and actionreturnrollback via reviewed
+RED before fix. No reward/campaign/browser/C0–C4/G0–G7 acceptance or push.
