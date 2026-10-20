@@ -1,6 +1,6 @@
 # BUG-039 — Reject malformed bundled quest documents
 
-Status: reproduced; root/producer/QA APPROVE revised frozen RED; implementation next.
+Status: fixed; root/producer/QA final combined APPROVE / ADEQUATE.
 Severity: Medium (content validation bypass; no current authored save corruption demonstrated).
 Owner: content-designer / engine-dev; producer and independent QA review.
 Card: P04a03a, central-loader schema prerequisite only.
@@ -109,3 +109,69 @@ RED. Unchanged loader SHA256:
 `e6ed10d4c4c52ed678a6b6fc5b76e2b5f181480242ffbdf7b32a266827c3387a`.
 Both independent consumers have finished initial/revised RED evidence. Runtime
 implementation is authorized within the reviewed three-file boundary.
+
+
+## Source implementation and first GREEN
+
+Register the new document-root quest schema; validate both complete main/side
+wrappers before collecting either document's entries; remove optional-envelope
+fallback and redundant post-validation id check. Keep duplicate quest-ID
+rejection and the existing opaque read-only map contract. No data/save changes.
+
+Initial focused attempt exit1/113fail23pass/166total,3.05s runner/4.342s wall:
+Ajv strictRequired rejected areaId required only in a nested interact anyOf
+schema. Corrected the schema to explicit closed area-only/item-only/both
+interaction variants, preserving the exact accepted behavior. No validator
+setting or test was weakened; the approved test hash remains unchanged.
+Final focused command passes166/2files (loader136 + unchanged integrity30),
+runner2.60s/wall3.792s,exit0,0skips. Raw first failure and corrected GREEN are
+retained under quest-green-focused and quest-green-focused-final labels.
+
+Source hashes: loader
+`ec38dbc5087df916f08a52d8b747d10bbb8b60289c7a918a9644b0c4d0780717`;
+schema
+`e250814c1459a1c9f5fcf388dc73cc8623f7bff442627eac4dc89aee560fb132`.
+Root/producer/QA independently APPROVE source and focused evidence. Final
+combined validation is complete; independent combined review follows below.
+
+
+## Final combined validation
+
+Frozen source/test hashes above remain unchanged. Exact commands and true exit
+results are preserved in the task evidence root, one log/result pair per label.
+All final commands exit0, with no failed/skipped unit cases:
+
+| Label | Command | Result / wall seconds |
+| --- | --- | --- |
+| quest-green-focused-final | `npx vitest run --project ui src/data/loader.test.ts src/data/__tests__/data-integrity.test.ts --reporter=verbose` | 166 tests / 2 files; runner2.60 / wall3.792 |
+| quest-related | `npm run test:related -- src/data/loader.ts src/data/schema/quest.schema.json src/data/loader.test.ts` | 166 / 2; runner5.26 / wall6.378 |
+| quest-full | `npm test -- --reporter=dot` | 1904 / 127; runner26.27 / wall27.674 |
+| quest-final-typecheck | `npm run typecheck` | wall10.732 |
+| quest-final-lint | `npm run lint` | wall25.683; purity50 engine test files |
+| quest-final-build | `npm run build` | build6.31 / wall9.883 |
+| quest-final-coverage | `npm run test:cov -- --coverage.reportsDirectory=<task-evidence-root>/coverage --reporter=dot` | 1904 / 127; runner32.16 / wall35.892 |
+
+Unchanged80% engine coverage gate passes:94.21%statements/lines,
+89.01%branches,93.87%functions. Coverage targets engine, not the changed loader;
+no engine source was edited. Related/full5/15second budgets remain exceeded.
+Existing >500KB chunk and2.57MB manifest-not-precached warnings remain; build
+reports756precache entries/37327.60KiB. No browser/campaign/quest-execution
+acceptance is claimed by this structural prerequisite.
+
+SHA256 of exact final logs:
+
+- focused: `1f7fc516ea48697fc2d2a9dc1e5dbe65648f11a46ab75183154ffc54ccc35db3`
+- related: `44e4741fa259f05599242fab44cfe1d593b594c5d13b1f2d291b7c3285d05203`
+- full: `abed5f94a84e8da43fbb3c9ab4261ec8842006b1d0980288e4e8d3078d9bbefa`
+- typecheck: `53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47`
+- lint: `f993e44b236baecc1c859ee65eddb3e93dd84768b4b42839e265cb8901074f9e`
+- build: `380444f8778d8b95c33f9b1b363265aa1476156203f7109742f66c9872ba728b`
+- coverage: `48fa4741c2e4aa4a5ffbb052486ad9535590d1af69946292b024127c87c3514e`
+- coverage-final.json: `aead85196f7f18ca0adaf6c8bf32c4a239623cb6a8fd39dd9c50240c92b39b1c`
+
+Root/producer/QA final combined APPROVE / ADEQUATE. Both independent reviewers
+consumed every needed RED/failed attempt/GREEN/final log and coverage record.
+After all consumers finished, root removed and verified absence of the exact
+quest scratch root above, task-owned root dist and local node_modules/.vite.
+Dependencies/shared caches/source/history preserved. No test process remains.
+Only the bounded central-loader structural prerequisite is accepted.

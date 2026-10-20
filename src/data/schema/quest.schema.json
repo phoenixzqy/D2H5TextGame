@@ -1,0 +1,913 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/quest.json",
+  "title": "Quest Document",
+  "type": "object",
+  "description": "Bundled quest document validated before the central loader collects entries.",
+  "required": [
+    "quests"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Optional authoring schema reference."
+    },
+    "quests": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/quest"
+      },
+      "description": "Complete main or side quest document."
+    }
+  },
+  "$defs": {
+    "areaId": {
+      "type": "string",
+      "pattern": "^areas/[a-z0-9][a-z0-9._-]*$",
+      "description": "Area identifier; existence is a separate content contract."
+    },
+    "itemId": {
+      "type": "string",
+      "pattern": "^(quest|items)/[a-z0-9][a-z0-9._-]*$",
+      "description": "Quest or inventory item identifier."
+    },
+    "npcId": {
+      "type": "string",
+      "pattern": "^npc/[a-z0-9][a-z0-9._-]*$",
+      "description": "Canonical NPC identifier."
+    },
+    "monsterId": {
+      "type": "string",
+      "pattern": "^monsters/[a-z0-9][a-z0-9._-]*$",
+      "description": "Monster identifier; existence is a separate content contract."
+    },
+    "objectId": {
+      "type": "string",
+      "pattern": "^objects/[a-z0-9][a-z0-9._-]*$",
+      "description": "Interactable object identifier."
+    },
+    "mercId": {
+      "type": "string",
+      "pattern": "^mercs/[a-z0-9][a-z0-9._-]*$",
+      "description": "Mercenary identifier."
+    },
+    "questId": {
+      "type": "string",
+      "pattern": "^quests/[a-z0-9][a-z0-9._-]*$",
+      "description": "Quest identifier."
+    },
+    "positiveInteger": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Positive count, wave count or authored ordering index."
+    },
+    "nonnegativeInteger": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Nonnegative reward amount; zero is authored and valid."
+    },
+    "itemFilter": {
+      "type": "string",
+      "enum": [
+        "normal",
+        "any"
+      ],
+      "description": "Accepted delivery item category."
+    },
+    "recipe": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]*$",
+      "description": "Authored recipe token (not a namespaced item ID)."
+    },
+    "objective": {
+      "description": "Closed payloads for the fifteen currently authored objective kinds. Shape validation does not implement the objective.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/clearAreaObjective"
+        },
+        {
+          "$ref": "#/$defs/collectObjective"
+        },
+        {
+          "$ref": "#/$defs/deliverFilteredObjective"
+        },
+        {
+          "$ref": "#/$defs/deliverCountedObjective"
+        },
+        {
+          "$ref": "#/$defs/fetchObjective"
+        },
+        {
+          "$ref": "#/$defs/gambleObjective"
+        },
+        {
+          "$ref": "#/$defs/hireMercenaryObjective"
+        },
+        {
+          "$ref": "#/$defs/interactObjective"
+        },
+        {
+          "$ref": "#/$defs/killObjective"
+        },
+        {
+          "$ref": "#/$defs/killBossObjective"
+        },
+        {
+          "$ref": "#/$defs/killBossGroupObjective"
+        },
+        {
+          "$ref": "#/$defs/rescueObjective"
+        },
+        {
+          "$ref": "#/$defs/surviveWavesObjective"
+        },
+        {
+          "$ref": "#/$defs/talkObjective"
+        },
+        {
+          "$ref": "#/$defs/transmuteObjective"
+        },
+        {
+          "$ref": "#/$defs/useItemObjective"
+        }
+      ]
+    },
+    "clearAreaObjective": {
+      "type": "object",
+      "description": "clear-area objective payload.",
+      "required": [
+        "id",
+        "type",
+        "description",
+        "areaId"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Objective identifier, scoped to its quest."
+        },
+        "type": {
+          "const": "clear-area"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Authored objective description."
+        },
+        "areaId": {
+          "$ref": "#/$defs/areaId"
+        }
+      }
+    },
+    "collectObjective": {
+      "type": "object",
+      "description": "collect objective payload.",
+      "required": [
+        "id",
+        "type",
+        "description",
+        "itemId",
+        "count",
+        "areaId"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Objective identifier, scoped to its quest."
+        },
+        "type": {
+          "const": "collect"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Authored objective description."
+        },
+        "itemId": {
+          "$ref": "#/$defs/itemId"
+        },
+        "count": {
+          "$ref": "#/$defs/positiveInteger"
+        },
+        "areaId": {
+          "$ref": "#/$defs/areaId"
+        }
+      }
+    },
+    "deliverFilteredObjective": {
+      "type": "object",
+      "description": "deliver objective payload.",
+      "required": [
+        "id",
+        "type",
+        "description",
+        "npcId",
+        "itemFilter"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Objective identifier, scoped to its quest."
+        },
+        "type": {
+          "const": "deliver"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Authored objective description."
+        },
+        "npcId": {
+          "$ref": "#/$defs/npcId"
+        },
+        "itemFilter": {
+          "$ref": "#/$defs/itemFilter"
+        }
+      }
+    },
+    "deliverCountedObjective": {
+      "type": "object",
+      "description": "deliver objective payload.",
+      "required": [
+        "id",
+        "type",
+        "description",
+        "npcId",
+        "itemId",
+        "count"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Objective identifier, scoped to its quest."
+        },
+        "type": {
+          "const": "deliver"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Authored objective description."
+        },
+        "npcId": {
+          "$ref": "#/$defs/npcId"
+        },
+        "itemId": {
+          "$ref": "#/$defs/itemId"
+        },
+        "count": {
+          "$ref": "#/$defs/positiveInteger"
+        }
+      }
+    },
+    "fetchObjective": {
+      "type": "object",
+      "description": "fetch objective payload.",
+      "required": [
+        "id",
+        "type",
+        "description",
+        "itemId",
+        "areaId"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Objective identifier, scoped to its quest."
+        },
+        "type": {
+          "const": "fetch"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Authored objective description."
+        },
+        "itemId": {
+          "$ref": "#/$defs/itemId"
+        },
+        "areaId": {
+          "$ref": "#/$defs/areaId"
+        }
+      }
+    },
+    "gambleObjective": {
+      "type": "object",
+      "description": "gamble objective payload.",
+      "required": [
+        "id",
+        "type",
+        "description",
+        "count"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Objective identifier, scoped to its quest."
+        },
+        "type": {
+          "const": "gamble"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Authored objective description."
+        },
+        "count": {
+          "$ref": "#/$defs/positiveInteger"
+        }
+      }
+    },
+    "hireMercenaryObjective": {
+      "type": "object",
+      "description": "hire-mercenary objective payload.",
+      "required": [
+        "id",
+        "type",
+        "description",
+        "mercId"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Objective identifier, scoped to its quest."
+        },
+        "type": {
+          "const": "hire-mercenary"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Authored objective description."
+        },
+        "mercId": {
+          "$ref": "#/$defs/mercId"
+        }
+      }
+    },
+    "interactObjective": {
+      "description": "Interaction at an area, using a required item, or both. Each closed variant is explicit for strict Ajv validation.",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/interactAreaObjective"
+        },
+        {
+          "$ref": "#/$defs/interactItemObjective"
+        },
+        {
+          "$ref": "#/$defs/interactAreaAndItemObjective"
+        }
+      ]
+    },
+    "killObjective": {
+      "type": "object",
+      "description": "kill objective payload.",
+      "required": [
+        "id",
+        "type",
+        "description",
+        "targetId",
+        "areaId"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Objective identifier, scoped to its quest."
+        },
+        "type": {
+          "const": "kill"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Authored objective description."
+        },
+        "targetId": {
+          "$ref": "#/$defs/monsterId"
+        },
+        "areaId": {
+          "$ref": "#/$defs/areaId"
+        },
+        "count": {
+          "$ref": "#/$defs/positiveInteger"
+        }
+      }
+    },
+    "killBossObjective": {
+      "type": "object",
+      "description": "kill-boss objective payload.",
+      "required": [
+        "id",
+        "type",
+        "description",
+        "targetId",
+        "areaId"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Objective identifier, scoped to its quest."
+        },
+        "type": {
+          "const": "kill-boss"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Authored objective description."
+        },
+        "targetId": {
+          "$ref": "#/$defs/monsterId"
+        },
+        "areaId": {
+          "$ref": "#/$defs/areaId"
+        }
+      }
+    },
+    "killBossGroupObjective": {
+      "type": "object",
+      "description": "kill-boss-group objective payload.",
+      "required": [
+        "id",
+        "type",
+        "description",
+        "targetId",
+        "areaId"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Objective identifier, scoped to its quest."
+        },
+        "type": {
+          "const": "kill-boss-group"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Authored objective description."
+        },
+        "targetId": {
+          "$ref": "#/$defs/monsterId"
+        },
+        "areaId": {
+          "$ref": "#/$defs/areaId"
+        }
+      }
+    },
+    "rescueObjective": {
+      "type": "object",
+      "description": "rescue objective payload.",
+      "required": [
+        "id",
+        "type",
+        "description",
+        "targetId",
+        "count",
+        "areaId"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Objective identifier, scoped to its quest."
+        },
+        "type": {
+          "const": "rescue"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Authored objective description."
+        },
+        "targetId": {
+          "$ref": "#/$defs/npcId"
+        },
+        "count": {
+          "$ref": "#/$defs/positiveInteger"
+        },
+        "areaId": {
+          "$ref": "#/$defs/areaId"
+        }
+      }
+    },
+    "surviveWavesObjective": {
+      "type": "object",
+      "description": "survive-waves objective payload.",
+      "required": [
+        "id",
+        "type",
+        "description",
+        "areaId",
+        "waves"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Objective identifier, scoped to its quest."
+        },
+        "type": {
+          "const": "survive-waves"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Authored objective description."
+        },
+        "areaId": {
+          "$ref": "#/$defs/areaId"
+        },
+        "waves": {
+          "$ref": "#/$defs/positiveInteger"
+        }
+      }
+    },
+    "talkObjective": {
+      "type": "object",
+      "description": "talk objective payload.",
+      "required": [
+        "id",
+        "type",
+        "description",
+        "npcId"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Objective identifier, scoped to its quest."
+        },
+        "type": {
+          "const": "talk"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Authored objective description."
+        },
+        "npcId": {
+          "$ref": "#/$defs/npcId"
+        }
+      }
+    },
+    "transmuteObjective": {
+      "type": "object",
+      "description": "transmute objective payload.",
+      "required": [
+        "id",
+        "type",
+        "description",
+        "recipe"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Objective identifier, scoped to its quest."
+        },
+        "type": {
+          "const": "transmute"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Authored objective description."
+        },
+        "recipe": {
+          "$ref": "#/$defs/recipe"
+        }
+      }
+    },
+    "useItemObjective": {
+      "type": "object",
+      "description": "use-item objective payload.",
+      "required": [
+        "id",
+        "type",
+        "description",
+        "itemId"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Objective identifier, scoped to its quest."
+        },
+        "type": {
+          "const": "use-item"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Authored objective description."
+        },
+        "itemId": {
+          "$ref": "#/$defs/itemId"
+        }
+      }
+    },
+    "statReward": {
+      "type": "object",
+      "description": "Authored permanent stat reward fields; delivery is a separate gameplay contract.",
+      "required": [],
+      "additionalProperties": false,
+      "properties": {
+        "life": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "attribute_points": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "all_resist": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "vitality": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        }
+      }
+    },
+    "rewards": {
+      "type": "object",
+      "description": "Supported authored and declared reward shapes; acceptance does not promise delivery.",
+      "required": [],
+      "additionalProperties": false,
+      "properties": {
+        "xp": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "gold": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "skillPoints": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "statPoints": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "runes": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "runeShards": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "gems": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "wishstones": {
+          "$ref": "#/$defs/nonnegativeInteger"
+        },
+        "stat": {
+          "$ref": "#/$defs/statReward"
+        },
+        "itemDrop": {
+          "type": "string",
+          "pattern": "^items/[a-z0-9][a-z0-9._-]*$",
+          "description": "Authored item reward identifier."
+        },
+        "lootTable": {
+          "type": "string",
+          "pattern": "^loot/[a-z0-9][a-z0-9._-]*$",
+          "description": "Loot table identifier."
+        },
+        "mercenaryUnlock": {
+          "$ref": "#/$defs/mercId"
+        },
+        "npcUnlock": {
+          "$ref": "#/$defs/npcId"
+        },
+        "service": {
+          "type": "string",
+          "enum": [
+            "identify_free",
+            "imbue_item",
+            "socket_item",
+            "personalize_item",
+            "repair_discount",
+            "socket_armor"
+          ],
+          "description": "Currently authored service reward token."
+        },
+        "areaUnlock": {
+          "$ref": "#/$defs/areaId"
+        },
+        "vendorUnlock": {
+          "type": "string",
+          "pattern": "^vendors/[a-z0-9][a-z0-9._-]*$",
+          "description": "Vendor identifier."
+        },
+        "title": {
+          "type": "string",
+          "pattern": "^titles/[a-z0-9][a-z0-9._-]*$",
+          "description": "Title identifier."
+        }
+      }
+    },
+    "quest": {
+      "type": "object",
+      "description": "A structurally valid quest. Cross-reference and gameplay execution contracts remain separate.",
+      "required": [
+        "id",
+        "name",
+        "type",
+        "actId",
+        "description",
+        "objectives"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/questId"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Existing authored quest name; localization remains a separate consumer concern."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "main",
+            "side",
+            "bounty"
+          ],
+          "description": "Quest family."
+        },
+        "actId": {
+          "type": "string",
+          "pattern": "^acts/act[1-5]$",
+          "description": "Owning campaign act."
+        },
+        "giver": {
+          "type": "string",
+          "pattern": "^(npc|objects)/[a-z0-9][a-z0-9._-]*$",
+          "description": "NPC or object that offers the quest."
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Existing authored quest description."
+        },
+        "objectives": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/objective"
+          },
+          "description": "Ordered objective payloads, with IDs scoped per quest."
+        },
+        "rewards": {
+          "$ref": "#/$defs/rewards"
+        },
+        "unlocks": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^(areas|services|acts|difficulty)/[a-z0-9][a-z0-9._-]*$",
+          "description": "Optional authored progression reference; null means none."
+        },
+        "prerequisites": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/questId"
+          },
+          "description": "Prerequisite quest identifiers; resolution/cycles are separate content checks."
+        },
+        "order": {
+          "$ref": "#/$defs/positiveInteger"
+        }
+      }
+    },
+    "interactAreaObjective": {
+      "type": "object",
+      "description": "interact objective payload.",
+      "required": [
+        "id",
+        "type",
+        "description",
+        "targetId",
+        "areaId"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Objective identifier, scoped to its quest."
+        },
+        "type": {
+          "const": "interact"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Authored objective description."
+        },
+        "targetId": {
+          "$ref": "#/$defs/objectId"
+        },
+        "areaId": {
+          "$ref": "#/$defs/areaId"
+        }
+      }
+    },
+    "interactItemObjective": {
+      "type": "object",
+      "description": "interact objective payload.",
+      "required": [
+        "id",
+        "type",
+        "description",
+        "targetId",
+        "itemRequired"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Objective identifier, scoped to its quest."
+        },
+        "type": {
+          "const": "interact"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Authored objective description."
+        },
+        "targetId": {
+          "$ref": "#/$defs/objectId"
+        },
+        "itemRequired": {
+          "$ref": "#/$defs/itemId"
+        }
+      }
+    },
+    "interactAreaAndItemObjective": {
+      "type": "object",
+      "description": "interact objective payload.",
+      "required": [
+        "id",
+        "type",
+        "description",
+        "targetId",
+        "areaId",
+        "itemRequired"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Objective identifier, scoped to its quest."
+        },
+        "type": {
+          "const": "interact"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Authored objective description."
+        },
+        "targetId": {
+          "$ref": "#/$defs/objectId"
+        },
+        "areaId": {
+          "$ref": "#/$defs/areaId"
+        },
+        "itemRequired": {
+          "$ref": "#/$defs/itemId"
+        }
+      }
+    }
+  }
+}

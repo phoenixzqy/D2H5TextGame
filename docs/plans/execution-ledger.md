@@ -27,6 +27,7 @@ Current implementation evidence lives in `evidence/`.
 | P03b05a | accepted merc equipment integrity slice | `45d44c3`; current source/owner validation, complete transfer/normalized returns and localized retained refusal. Root/producer APPROVE/ADEQUATE;58focused/1307full and4/4browser. [Evidence](evidence/p03b05a-merc-equipment-integrity.md). Manual capacity accepted below; combat/stat integration remains. |
 | P03b05b | accepted manual merc capacity slice | `854e88f`; refuse manual return at>=100 before publication; preserve non-growing swaps/equips and unbounded durable ingress; persistent localized recovery. Root/QA/producer APPROVE/ADEQUATE;75focused/1349full and4/4browser. [Evidence](evidence/p03b05b-merc-equipment-capacity.md). |
 | P04a02 core/locales/UI | accepted talk path slice | `2d60095` ordered exact current-town talk; `392e671` localized roster/greetings; `0a84010` UI (agent `2702b81`). Root+producer source APPROVE; real Den→Akara→explicit claim→save browser matrix. Full town/quest families remain. |
+| P04a03a | accepted central schema prerequisite | Central quest document schema and validate-before-collect; BUG039, reviewed genuine20 accepted-invalid RED, frozen tests136 plus unchanged integrity30 pass. Full1904/127, T/L/build and unchanged80%engine coverage pass. Direct imports, crossrefs, quest execution/rewards remain open. |
 | Remaining P03b/P04 | ready for reproduction | Shared capacity, atomic transactions/recoverable awards and quest event/reward integrity remain. |
 | P05a | accepted slice | `2458ee7`; source-local error state, 13 focused tests and actual-component desktop/mobile proof. [Integrated evidence](evidence/P05a-P06a-foundations.md). D13/F19 remain open. |
 | P05b01 | accepted resolver slice | `0c2d043`; D13 identity/metadata control, 29 new tests (25 red before fix), producer source APPROVE. Full suite + T/L/B pass. BUG-010; surface wiring remains. |
@@ -1217,3 +1218,16 @@ P04a03a is the next producer-ready three-file central quest-schema prerequisite;
 structured BUG039 and reviewed genuine loader-accepts-invalid RED precede
 runtime edits. Direct quest imports/references/reward grant correctness remain
 separate. C0–C4/G0–G7 remain unaccepted; continue full staged v1.
+
+
+P04a03a central quest-schema source/focused APPROVE from root/producer/QA;
+tests checkpoint74cb889. Final combined runs pass focused166/2files,
+related166/2, full1904/127, typecheck/lint/purity/build and unchanged80%engine
+coverage gate (94.21statements/lines,89.01branches,93.87functions). BUG039
+preserves exact commands/source/test/log hashes and failure corrections.
+Related6.378/full27.674wallseconds exceed5/15budgets; existing bundle/manifest
+warnings remain. Engine-only coverage does not measure the changed loader.
+Root/producer/QA final combined APPROVE/ADEQUATE. All raw consumers finished;
+exact scratch, task-owned dist and local .vite removed and verified. Direct
+quest imports still bypass central validation; crossrefs/objective/reward
+execution, transactions/economy and full C0–C4/G0–G7 remain unaccepted.

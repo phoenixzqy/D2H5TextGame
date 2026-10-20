@@ -36,6 +36,7 @@ import dropTableSchema from './schema/drop-table.schema.json';
 import dialogueSchema from './schema/dialogue.schema.json';
 import rarityRulesSchema from './schema/rarity-rules.schema.json';
 import eliteConfigSchema from './schema/elite-config.schema.json';
+import questSchema from './schema/quest.schema.json';
 
 // Eagerly-loaded JSON datasets (see ./index.ts)
 import {
@@ -102,6 +103,10 @@ export interface GameData {
   readonly quests: ReadonlyMap<string, Readonly<Record<string, unknown>>>;
 }
 
+interface QuestDocument {
+  readonly quests: readonly (Readonly<Record<string, unknown>> & { readonly id: string })[];
+}
+
 /**
  * Create and configure Ajv validator
  */
@@ -132,6 +137,7 @@ function createValidator(): Ajv2020 {
   ajv.addSchema(dialogueSchema);
   ajv.addSchema(rarityRulesSchema);
   ajv.addSchema(eliteConfigSchema);
+  ajv.addSchema(questSchema);
 
   return ajv;
 }
@@ -264,27 +270,23 @@ export async function loadGameData(): Promise<GameData> {
     'dialogues'
   );
 
-  // Singletons + quests — no per-entry schema validation yet (no schemas
-  // committed for these documents). They are surfaced as opaque records
-  // so call-sites can reference them while content stabilises.
+  // Validate both complete envelopes before collecting any quest entries.
+  const validatedMainQuests = validateData<QuestDocument>(questSchema.$id, mainQuests, 'mainQuests');
+  const validatedSideQuests = validateData<QuestDocument>(questSchema.$id, sideQuests, 'sideQuests');
   const quests = new Map<string, Readonly<Record<string, unknown>>>();
   const collectQuests = (
-    file: { quests?: { id: string }[] },
+    file: QuestDocument,
     context: string
   ): void => {
-    const list = file.quests ?? [];
-    list.forEach((q, idx) => {
-      if (typeof q.id !== 'string') {
-        throw new Error(`Quest at ${context}[${String(idx)}] is missing string id`);
-      }
+    file.quests.forEach(q => {
       if (quests.has(q.id)) {
         throw new Error(`Duplicate quest id "${q.id}" in ${context}`);
       }
-      quests.set(q.id, q as Readonly<Record<string, unknown>>);
+      quests.set(q.id, q);
     });
   };
-  collectQuests(mainQuests, 'mainQuests');
-  collectQuests(sideQuests, 'sideQuests');
+  collectQuests(validatedMainQuests, 'mainQuests');
+  collectQuests(validatedSideQuests, 'sideQuests');
 
   // Freeze all data for immutability
   const gameData: GameData = Object.freeze({
