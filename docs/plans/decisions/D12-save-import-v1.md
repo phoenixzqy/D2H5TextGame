@@ -206,3 +206,23 @@ cleanup/restart, storage/projection failure+retry, delayed load/import/delete,
 startup recovery and queued replacement callbacks. Scope is persistence.ts,
 metaStore.ts, App.tsx, lifecycle tests, BUG-024 and this control. Actual browser
 close/reopen, PWA and P11 background combat catchup remain separate acceptance.
+
+### P17a07 ordinary close/reopen acceptance (approved QA contract)
+
+Use ordinary character/import/export/Save controls in en/zh-CN at1280×800 and
+360×640. Close actual pages, retain context/origin IDB and reopen with controlled
+away clocks. Playwright clock is context-wide: install/pause once, close the old
+app before changing away time on a new blank page, then navigate. Collect errors
+on every page; no game bridge, direct store/storage writes, forced clicks or
+injected lifecycle events.
+
+Known inactive Save atA→reopenB=A+1h gives1.08/1200 and cumulative away+1h;
+sameB reopen preserves entire expected save. Advance online600seconds toC, then
+read-only IDB must show a periodic checkpoint in[B+570s,C]. Verify its complete
+payload against the knownBfixture with explicit decay at that bounded timestamp,
+never adopt arbitrary observed data as baseline. Ordinary Save at frozenC
+establishes exact1.04/600 before close. ReopenD=C+180s retains the stronger
+1.04/600 and adds180000away ms; sameD reopen preserves entire expected save.
+Check localized current bonus/no overflow and exact unrelated data throughout.
+Worker owns one new ordinary-browser spec and small evidence document. Pagehide
+durability, production PWA, earned progression and fullP17 remain separate.
