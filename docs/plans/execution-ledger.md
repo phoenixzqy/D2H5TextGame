@@ -24,7 +24,8 @@ Current implementation evidence lives in `evidence/`.
 | P03b02 | accepted ingress slice | `a79ef1f`; retain complete earned/returned overflow, actual victory/merc/save integration,16 focused regressions; producer source APPROVE. Shared regular-action guards remain. |
 | P04a01 | accepted objective slice | `ac49f52` (agent `d0343c8`); canonical Den area and atomic tracked clear objectives after qualified victory. Ten regressions, independent source APPROVE and integrated four-case browser proof. Return/talk/claim remain separate. |
 | P03b03 | accepted transfer slice | `6d76f64` shared constants/copy (agent `d9f5835`), `36a819d` authoritative100/500 transfer guards and selected refusal/retry. Producer source APPROVE; four ordinary locale/viewport recovery cases. Equipment guards remain. |
-| P03b05a | accepted merc equipment integrity slice | `45d44c3`; current source/owner validation, complete transfer/normalized returns and localized retained refusal. Root/producer APPROVE/ADEQUATE;58focused/1307full and4/4browser. [Evidence](evidence/p03b05a-merc-equipment-integrity.md). Merc capacity remains next. |
+| P03b05a | accepted merc equipment integrity slice | `45d44c3`; current source/owner validation, complete transfer/normalized returns and localized retained refusal. Root/producer APPROVE/ADEQUATE;58focused/1307full and4/4browser. [Evidence](evidence/p03b05a-merc-equipment-integrity.md). Manual capacity accepted below; combat/stat integration remains. |
+| P03b05b | accepted manual merc capacity slice | `854e88f`; refuse manual return at>=100 before publication; preserve non-growing swaps/equips and unbounded durable ingress; persistent localized recovery. Root/QA/producer APPROVE/ADEQUATE;75focused/1349full and4/4browser. [Evidence](evidence/p03b05b-merc-equipment-capacity.md). |
 | P04a02 core/locales/UI | accepted talk path slice | `2d60095` ordered exact current-town talk; `392e671` localized roster/greetings; `0a84010` UI (agent `2702b81`). Root+producer source APPROVE; real Den→Akara→explicit claim→save browser matrix. Full town/quest families remain. |
 | Remaining P03b/P04 | ready for reproduction | Shared capacity, atomic transactions/recoverable awards and quest event/reward integrity remain. |
 | P05a | accepted slice | `2458ee7`; source-local error state, 13 focused tests and actual-component desktop/mobile proof. [Integrated evidence](evidence/P05a-P06a-foundations.md). D13/F19 remain open. |
@@ -36,6 +37,7 @@ Current implementation evidence lives in `evidence/`.
 | P06c02 | accepted boss-duration slice | `030de58` (agent `53c08fe`); configured boss multiplier once on unrounded milliseconds, legacy lifecycle retained;56 focused cases incl16 real combat cases; root+producer source APPROVE. Cross-wave rebasing remains. |
 | Remaining P06–P10 | pending dependencies | D04–D06/shared effects first. All skills remain behavior-unaccepted. |
 | P08a01 | accepted fire-status-family slice | `11eb6b3` (worker `ca66d0a`); central burn/ignite identity, production ranked Fire Bolt full3s DoT and legacy/combo/refresh/removal. BUG029; root/producer APPROVE/ADEQUATE. Combined1332pass; ordinary skill UI/fullP08/C1 remain open. |
+| P08a02 | in-progress authored curse slice | Approved D04 contract at `bf840d7`; sequential metadata/authored definition/runtime children; actual gameplay RED and combined proof required. |
 | P11a / P11a02 | accepted finalization slices | `d39fe64` actual-win/living-hero/playback guard and single clear; `d8db75c` truthful draw UI. Six root regressions, six RTL, 4/4 browser locale×viewport cases; independent QA/producer APPROVE. BUG-008. |
 | P11–P15 | pending dependencies | Rewards/idle, eligibility, economy, campaign and pacing. |
 | P13a | accepted progress-default slice | `8e6076e` (agent `6db69b6`); actual-level defaults/getter/award and UI fallback, explicit stored thresholds retained, real combat skip restored. Root/producer APPROVE; full1290pass/no skips. |
@@ -802,3 +804,28 @@ metadata/definition alone do not fix gameplay. Security PASS. Actual runtime
 RED/BUG031 required before fix. QA investigating narrow Sorceress passive next.
 Root worktree2 remains claimed; original main untouched; no push/PR/deployment.
 Full v1/C0–C4/G0–G7 remain open.
+
+
+P08a02a integrated8b1f497 (workerff06347,parentbf840d7), exact5files: shared
+readonly status metadata, finite nonnegative optional schema fields, exact
+rawAmplifyID/canonicalfirststatus adapter forwarding with explicit0/omissions.
+No actual JSON/runtime change, curse still inert. Genuine acceptance-gap RED
+19fail/28pass07:38:17UTC; focused47pass, engine551/42files4.46s, related674/53
+21.20s, full1378/117files30.65s; T/L/B/diffcheck pass.3/5/15s budgets unmet.
+Changed dataCatalog100%stmt/line/functions,93.54%branches (87/93); producer
+independently consumed coverage, root reviewed complete corrected diff. Generic
+optional schema fixture and stable production subset permit later exactID
+required metadata without weakening strict adapter assertions. No validate:data
+script exists; strict Ajv tests+actual corpus loader/integrity run in fullunit.
+Root/producer final APPROVE/ADEQUATE; worker clean/released. Exact worktree3
+dist,coverage/p08a02a+emptycoverage,.vite/vitest+empty.vite removed/verified.
+B authored-definition five-file child dispatched from8b1f497; c runtime/BUG031
+waits review. Final combined validation follows actual runtime integration.
+
+P08a03 MinorHeal future contract approved after root/QA/producer source review:
+actual30–50/rank1=20/CD4/zero cost, one lowest-ratio living injured same-side
+patient including self/summons, actualpositivecapped healing/currentstate,
+no-target pureheal fallback/noRNG and exactID override. Explicit zero/range/
+mixed-effect semantics and four-file factory/runtime split. Acolyte tavern is
+not currently ordinarily hireable; no earned-acquisition claim. No code dispatched
+yet; shared engine waits Amplify. D05 fullWarmth/recovery contract under review.
