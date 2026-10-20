@@ -21,6 +21,7 @@ Current implementation evidence lives in `evidence/`.
 | Remaining P02 | pending dependencies | Expanded production scenarios and diagnosed manual/idle/reward comparison remain. Historical proxy sim stays excluded. |
 | P03a | accepted slice | `6f1dafd` + `76db166`; independent source approval, U/T/L/B and 10 browser cases pass. [Evidence](evidence/P03a-save-integrity.md). Full D12/G1/G6 remain unaccepted. |
 | P03b01 | accepted visibility slice | `90e4a67`; all legacy items remain selectable above grid cap, seven boundary tests, four ordinary-control browser cases. BUG-005. |
+| P03b02 | accepted ingress slice | `a79ef1f`; retain complete earned/returned overflow, actual victory/merc/save integration,16 focused regressions; producer source APPROVE. Shared regular-action guards remain. |
 | P04a01 | accepted objective slice | `ac49f52` (agent `d0343c8`); canonical Den area and atomic tracked clear objectives after qualified victory. Ten regressions, independent source APPROVE and integrated four-case browser proof. Return/talk/claim remain separate. |
 | P04a02 core/locales | accepted core/copy slices | `2d60095` ordered exact current-town talk action; `392e671` (agent `c2dece8`) localized roster/greetings/Den stages. Producer source APPROVE; UI child in progress, whole talk path not yet accepted. |
 | Remaining P03b/P04 | ready for reproduction | Shared capacity, atomic transactions/recoverable awards and quest event/reward integrity remain. |
@@ -29,6 +30,7 @@ Current implementation evidence lives in `evidence/`.
 | P05b02 | accepted surface slice | `96eb70c` (agent `060cb4f`); all four consumers share instance identity, picker GameImage fallback; root source APPROVE and integrated four-case locale/viewport browser proof. |
 | P06a | accepted slice | `10ce45d`; battle-local summon identity, full A/A and A/B/A replay, live/dead collisions. Independent TD approval. [Evidence](evidence/P05a-P06a-foundations.md). |
 | P06b | accepted deadline slice | `2cd350b`; inclusive 60,000 ms deadline, no overshoot, tied actors and exact/early victory. Five boundary tests, independent parent APPROVE; BUG-006. |
+| P06c01 | accepted periodic slice | `6c7f049` (agent `ff3787e`); shared status/lethal/expiry boundaries, fractional carry, simultaneous death/orphan transaction;31 focused regressions, root+producer source APPROVE. Boss milliseconds and cross-wave rebasing remain. |
 | Remaining P06–P10 | pending dependencies | D04–D06/shared effects first. All skills remain behavior-unaccepted. |
 | P11a / P11a02 | accepted finalization slices | `d39fe64` actual-win/living-hero/playback guard and single clear; `d8db75c` truthful draw UI. Six root regressions, six RTL, 4/4 browser locale×viewport cases; independent QA/producer APPROVE. BUG-008. |
 | P11–P15 | pending dependencies | Rewards/idle, eligibility, economy, campaign and pacing. |
@@ -256,3 +258,55 @@ Verified removed `/tmp/d2h5-p04a02-unit.log`, `/tmp/d2h5-p04a02-browser`, root
 agent also cleaned/released worktree4; root remains claimed. No push/PR/deploy.
 P06c01 periodic timeline/death transaction implementation is in progress in
 worktree3 after23-test RED evidence. C0–C4 and full feature/G0–G7 remain open.
+
+## P06c01 periodic timing and P03b02 lossless ingress
+
+P06c01 integrated as `6c7f049` (agent `ff3787e`), six-file bug-report exception
+approved; root and producer independently APPROVE. Initial23 periodic cases:
+21failed/2passed before patch; final31 pass. Shared simulation boundaries now
+settle living units together through inclusive60000ms, pooled fractional damage,
+earliest integer-ms lethal boundaries and half-open status intervals. Deaths
+close transitive orphan sets before ordinary effects; simultaneous hero lethal
+cannot be rescued by boss orbs. Legacy/future status and refresh semantics are
+explicit in D04. Boss milliseconds/cross-wave rebasing/seeded ties remain open.
+
+Clean exact agent `ff3787e` production screening independently consumed and every
+event hash recalculated by root. Report SHA256
+`bcd2e2f630974715f2198e3280f0e0a09fc929ee34121dbb3ac7888567a30398`, source tree
+`9f15f36a5c90376faffb39733f39a1862e5e2cac857c90fc76566d9785a1499f`, unchanged
+data/fixture hashes from P02a03. Fresh seed1 twice still wins wave1 then loses
+wave2/3:160XP,3items,80rune-shards,1gem,no clear,empty diagnostics.48.96 logical
+seconds/62.82 UI hints are not active/browser time. Raw recordings/semantic rewards
+equal; raw reward IDs/full replay differ. Scenario emits zero DoT events, so it
+does not accept periodic behavior. Event wave0 count297/hash
+`21df75abe7e9f9a412dcaaff2123f05a2be15fe607da904e0f15435435e57351`; wave1 count63/
+hash `3357e5b7b771c0012bff7eb5531d22f532667a5c07c535197d072f9d90a3236a`.
+Earlier wave0 digest differs; cause is unproven because old raw report was
+already removed. Report was consumed before agent cleanup/release.
+
+P03b02 `a79ef1f` removes only silent ingress rejection.16focused pass3.83s
+(initial final baseline8failed/8passed); real stock-TC seed7 awards3nonzero items,
+rendered merc unequip/swap conserves all owned IDs, public serialization/import/
+reload preserves overflow and affix Maps. Producer independent source APPROVE.
+Regular100/500 transfer/equipment guards and whole P03b remain open. BUG-013
+contains exact reproduction and command evidence; no save-shape change.
+
+Root combined validation at `6c7f049` plus final four-file ingress patch:
+
+- U99 files/999passed/1 existing merc-XP skip,27.01s (>15s budget).
+- E39 files/382passed,5.77s (>3s budget); agent E3.18s. Agent periodic-focused
+  coverage combat95.52%lines/83.92%branches, status99.02%lines/93.61%branches.
+- T/L/B pass; lint-only redundant test condition fixed and focused/T/L rerun.
+  Build10.95s with existing chunk/2.57MB manifest precache warnings.
+- Existing overflow browser4/4pass26.4s,en/zh-CN×1280×800/360×640; actual award/
+  merc ingress remains integrated RTL/store proof. Command in BUG-013.
+
+Town UI child P04a02c final review APPROVE after mounted act roundtrip focus
+regression correction; agent final gates active, not yet integrated. P06c02
+boss-duration plan under independent review; no runtime change yet.
+
+Verified removed root task-owned `dist`, `node_modules/.vite`, exact
+`/tmp/d2h5-p03b02-{focused,related,unit,build,browser}.log` leaves and
+`/tmp/d2h5-p03b02-browser` after every consumer/process ended. Agent periodic
+report/build/coverage cleaned and worktree3 released; root remains claimed.
+No push/PR/deployment. Full v1/C0–C4/G0–G7 acceptance remains open.
