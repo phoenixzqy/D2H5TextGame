@@ -150,6 +150,7 @@ interface MercState {
    * many thresholds as the XP covers. Stat/HP gains apply per level.
    */
   addExperience: (mercId: string, amount: number) => { levelsGained: number; newLevel: number };
+  /** Read saved progress or a level-aware default without publishing state. */
   getMercProgress: (mercId: string) => MercProgress;
   /**
    * Bug #12 — share `amount` XP with the currently fielded merc using
@@ -176,8 +177,8 @@ function isCompatibleSlot(base: ItemBase | undefined, slot: EquipmentSlot): bool
   return false;
 }
 
-function initialProgress(): MercProgress {
-  return { experience: 0, experienceToNextLevel: mercXpForLevel(1) };
+function initialProgress(level: number): MercProgress {
+  return { experience: 0, experienceToNextLevel: mercXpForLevel(level) };
 }
 
 export const useMercStore = create<MercState>((set, get) => ({
@@ -191,7 +192,7 @@ export const useMercStore = create<MercState>((set, get) => ({
     return {
       ownedMercs: [...state.ownedMercs, merc],
       mercEquipment: { ...state.mercEquipment, [merc.id]: state.mercEquipment[merc.id] ?? {} },
-      mercProgress: { ...state.mercProgress, [merc.id]: state.mercProgress[merc.id] ?? initialProgress() }
+      mercProgress: { ...state.mercProgress, [merc.id]: state.mercProgress[merc.id] ?? initialProgress(merc.level) }
     };
   }); },
 
@@ -294,7 +295,7 @@ export const useMercStore = create<MercState>((set, get) => ({
     const state = get();
     const merc = state.ownedMercs.find((m) => m.id === mercId);
     if (!merc) return { levelsGained: 0, newLevel: 1 };
-    let progress = state.mercProgress[mercId] ?? initialProgress();
+    let progress = state.mercProgress[mercId] ?? initialProgress(merc.level);
     let level = merc.level;
     let levelsGained = 0;
     let xpRemaining = progress.experience + amount;
@@ -337,7 +338,12 @@ export const useMercStore = create<MercState>((set, get) => ({
     return { levelsGained, newLevel: level };
   },
 
-  getMercProgress: (mercId) => get().mercProgress[mercId] ?? initialProgress(),
+  getMercProgress: (mercId) => {
+    const state = get();
+    return state.mercProgress[mercId] ?? initialProgress(
+      state.ownedMercs.find((merc) => merc.id === mercId)?.level ?? 1
+    );
+  },
 
   shareExperienceWithFielded: (amount) => {
     const state = get();

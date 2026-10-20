@@ -10,6 +10,7 @@ import { MemoryRouter } from 'react-router-dom';
 import i18n from '@/i18n';
 import { MercsScreen } from './MercsScreen';
 import { useMercStore } from '@/stores';
+import { mercXpForLevel } from '@/stores/mercStore';
 import { createMercFromDef } from '@/stores/mercFactory';
 import { loadMercPool } from '@/data/loaders/mercs';
 
@@ -65,6 +66,27 @@ describe('MercsScreen', () => {
 
     expect(useMercStore.getState().ownedMercs).toHaveLength(1);
     expect(useMercStore.getState().fieldedMercId).toBe(useMercStore.getState().ownedMercs[0]?.id);
+  });
+
+  it('shows missing progress at the owned level, follows level updates, then explicit progress updates', () => {
+    const def = loadMercPool().pool.find((entry) => entry.reqLevel === 3);
+    if (!def) throw new Error('Missing level-three merc definition');
+    const merc = createMercFromDef(def);
+    useMercStore.setState({ ownedMercs: [merc] });
+    const missing = useMercStore.getState().mercProgress;
+    renderScreen();
+    const xp = screen.getByTestId(`merc-xp-${def.id}`);
+    expect(xp).toHaveTextContent('0 / 304');
+    expect(useMercStore.getState().mercProgress).toBe(missing);
+    act(() => { useMercStore.getState().upgradeMerc(merc.id); });
+    expect(xp).toHaveTextContent(`0 / ${String(mercXpForLevel(4))}`);
+    expect(useMercStore.getState().mercProgress).toBe(missing);
+    act(() => {
+      useMercStore.setState({ mercProgress: { [merc.id]: { experience: 17, experienceToNextLevel: 50 } } });
+    });
+    expect(xp).toHaveTextContent('17 / 50');
+    act(() => { useMercStore.getState().addExperience(merc.id, 5); });
+    expect(xp).toHaveTextContent('22 / 50');
   });
 
   it('blocks dismissing a merc that still has equipment', () => {

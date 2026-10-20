@@ -159,7 +159,9 @@ function MercCard({
   const { t } = useTranslation(['mercs', 'common']);
   const dismissMerc = useMercStore((s) => s.dismissMerc);
   const equipment = useMercStore((s) => s.mercEquipment[merc.id]) ?? {};
-  const progress = useMercStore((s) => s.mercProgress[merc.id]) ?? { experience: 0, experienceToNextLevel: 50 };
+  const savedProgress = useMercStore((s) => s.mercProgress[merc.id]);
+  const getMercProgress = useMercStore((s) => s.getMercProgress);
+  const progress = savedProgress ?? getMercProgress(merc.id);
 
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [equipOpen, setEquipOpen] = useState(false);

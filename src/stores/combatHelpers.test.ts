@@ -20,7 +20,7 @@ import type { BattleEvent } from '@/engine/combat/combat';
 import type { CombatUnit } from '@/engine/combat/types';
 import type { Mercenary } from '@/engine/types/entities';
 import { usePlayerStore } from './playerStore';
-import { useMercStore } from './mercStore';
+import { useMercStore, mercXpForLevel } from './mercStore';
 import { useCombatStore } from './combatStore';
 import { useInventoryStore } from './inventoryStore';
 import { useMapStore } from './mapStore';
@@ -595,27 +595,31 @@ describe('startSimpleBattle — Bug #12', () => {
     expect(useInventoryStore.getState().getCurrency('gold')).toBe(0);
   });
 
-  // QUARANTINED — engine bug, not test timing. See
-  // docs/bugs/quarantined-merc-xp-initial-progress.md.
-  // Root cause: mercStore.initialProgress() defaults
-  // experienceToNextLevel to mercXpForLevel(1) = 60 regardless of
-  // merc.level, so a level-10 merc with no progress entry can
-  // spuriously level-up on its first XP share, resetting .experience
-  // to 0 and failing the equality assertion ~30% of seeds.
-  it.skip('shares combat victory XP with the fielded merc', () => {
+  it('shares combat victory XP with the fielded merc without a phantom level', () => {
+    // Controlled high-power fixture proves actual reward wiring, not earned progression.
     usePlayerStore.getState().setPlayer(boostedSorceress());
-    // Merc at level 10 — large XP-to-next-level so the rolled wave (now
-    // 3-8 enemies post Bug C) cannot accidentally level up the merc and
-    // wipe progress.experience to a leftover.
     const merc = buildMerc({ level: 10 });
     useMercStore.getState().addMerc(merc);
     useMercStore.getState().setFieldedMerc(merc.id);
-    startSimpleBattle(1, 3);
-    const slain = useCombatStore.getState().outcome?.finalEnemyTeam.filter((u) => u.life <= 0) ?? [];
+    startSubAreaRun({ subAreaId: 'areas/act1-blood-moor', runSeed: 7, challengeOrdinal: 0 });
+    const outcome = useCombatStore.getState().outcome;
+    if (!outcome) throw new Error('Missing deterministic combat outcome');
+    expect(outcome.winner).toBe('player');
+    expect(outcome.finalPlayerTeam.find((unit) => unit.id === usePlayerStore.getState().player?.id)?.life).toBeGreaterThan(0);
+    const slain = outcome.finalEnemyTeam.filter((unit) => unit.life <= 0 && unit.kind !== 'summon');
     const expectedXp = slain.reduce((total, enemy) => total + xpForKill(enemy.level), 0);
+    const share = Math.floor(expectedXp * 0.75);
+    expect(expectedXp).toBe(160);
+    expect(share).toBe(120);
+    expect(share).toBeGreaterThanOrEqual(60);
+    expect(share).toBeLessThan(6362);
     drainEvents();
-    advanceWaveOrFinish();
-    expect(useMercStore.getState().getMercProgress(merc.id).experience).toBe(Math.floor(expectedXp * 0.75));
+    expect(advanceWaveOrFinish()).toBe('next-wave');
+    expect(useMercStore.getState().getFieldedMerc()).toBe(merc);
+    expect(useMercStore.getState().getMercProgress(merc.id)).toEqual({
+      experience: share, experienceToNextLevel: mercXpForLevel(10)
+    });
+    expect(useMercStore.getState().getFieldedMerc()?.level).toBe(10);
   });
 });
 

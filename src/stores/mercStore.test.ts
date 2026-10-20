@@ -4,6 +4,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { useMercStore, mercXpForLevel } from './mercStore';
 import { useInventoryStore } from './inventoryStore';
+import { loadMercHireRoster } from '@/data/loaders/mercs';
 import { deriveStats } from '@/engine/progression/stats';
 import type { CoreStats } from '@/engine/types/attributes';
 import type { Mercenary } from '@/engine/types/entities';
@@ -220,5 +221,94 @@ describe('mercStore — XP curve sanity (Bug #12)', () => {
     expect(mercXpForLevel(1)).toBe(60);
     // floor(60 * 10 * 1.30^9) — keep as a regression anchor.
     expect(mercXpForLevel(10)).toBe(Math.floor(60 * 10 * Math.pow(1.30, 9)));
+  });
+});
+
+
+describe('mercStore — level-aware new and missing progress (P13a)', () => {
+  it.each([1, 3, 10])('initializes new level-%s mercs at their actual threshold', (level) => {
+    const merc = { ...makeMerc(), level };
+    useMercStore.getState().addMerc(merc);
+    expect(useMercStore.getState().mercProgress[merc.id]).toEqual({
+      experience: 0, experienceToNextLevel: mercXpForLevel(level)
+    });
+  });
+
+  it.each([false, true])('keeps L10 stats and all 60XP without a phantom level (missing=%s)', (missing) => {
+    const merc = { ...makeMerc(), level: 10 };
+    if (missing) useMercStore.setState({ ownedMercs: [merc] });
+    else useMercStore.getState().addMerc(merc);
+    expect(useMercStore.getState().addExperience(merc.id, 60)).toEqual({ levelsGained: 0, newLevel: 10 });
+    expect(useMercStore.getState().ownedMercs[0]).toBe(merc);
+    expect(useMercStore.getState().getMercProgress(merc.id)).toEqual({ experience: 60, experienceToNextLevel: 6362 });
+  });
+
+  it('projects missing progress from the current owned level without publishing state', () => {
+    const merc = { ...makeMerc(), level: 10 };
+    useMercStore.setState({ ownedMercs: [merc] });
+    const before = useMercStore.getState();
+    expect(before.getMercProgress(merc.id)).toEqual({ experience: 0, experienceToNextLevel: 6362 });
+    expect(useMercStore.getState()).toBe(before);
+    expect(before.mercProgress).toEqual({});
+    useMercStore.getState().upgradeMerc(merc.id);
+    const updated = useMercStore.getState();
+    expect(updated.getMercProgress(merc.id)).toEqual({ experience: 0, experienceToNextLevel: mercXpForLevel(11) });
+    expect(useMercStore.getState()).toBe(updated);
+    expect(updated.mercProgress).toBe(before.mercProgress);
+  });
+
+  it.each([
+    { amount: 6361, levels: 0, remainder: 6361 },
+    { amount: 6362, levels: 1, remainder: 0 },
+    { amount: 6362 + 7, levels: 1, remainder: 7 },
+    { amount: 6362 + mercXpForLevel(11) + 9, levels: 2, remainder: 9 }
+  ])('preserves exact L10 thresholds and gains for $amount XP', ({ amount, levels, remainder }) => {
+    const merc = { ...makeMerc(), level: 10 };
+    useMercStore.getState().addMerc(merc);
+    expect(useMercStore.getState().addExperience(merc.id, amount)).toEqual({ levelsGained: levels, newLevel: 10 + levels });
+    expect(useMercStore.getState().getMercProgress(merc.id)).toEqual({
+      experience: remainder, experienceToNextLevel: mercXpForLevel(10 + levels)
+    });
+    expect(useMercStore.getState().ownedMercs[0]).toEqual({
+      ...merc, level: 10 + levels,
+      coreStats: { ...merc.coreStats, strength: merc.coreStats.strength + levels,
+        dexterity: merc.coreStats.dexterity + 3 * levels, energy: merc.coreStats.energy + levels },
+      derivedStats: { ...merc.derivedStats, life: merc.derivedStats.life + 8 * levels,
+        lifeMax: merc.derivedStats.lifeMax + 8 * levels }
+    });
+  });
+
+  it('initializes an actual authored hire at reqLevel3 and its 304XP threshold', () => {
+    const def = loadMercHireRoster().flatMap((act) => act.mercs).find((entry) => entry.reqLevel === 3);
+    if (!def) throw new Error('Missing authored level-three hire');
+    expect(useMercStore.getState().hireMerc(def)).toEqual({ ok: true, mercId: def.id });
+    expect(useMercStore.getState().getFieldedMerc()?.level).toBe(3);
+    expect(useMercStore.getState().getMercProgress(def.id)).toEqual({ experience: 0, experienceToNextLevel: 304 });
+  });
+
+  it('preserves explicit saved custom thresholds through add/read/award', () => {
+    const merc = { ...makeMerc(), level: 10 };
+    const explicit = { experience: 17, experienceToNextLevel: 50 };
+    useMercStore.setState({ mercProgress: { [merc.id]: explicit } });
+    useMercStore.getState().addMerc(merc);
+    expect(useMercStore.getState().getMercProgress(merc.id)).toBe(explicit);
+    expect(useMercStore.getState().addExperience(merc.id, 32)).toEqual({ levelsGained: 0, newLevel: 10 });
+    expect(useMercStore.getState().getMercProgress(merc.id)).toEqual({ experience: 49, experienceToNextLevel: 50 });
+    expect(explicit).toEqual({ experience: 17, experienceToNextLevel: 50 });
+    expect(useMercStore.getState().addExperience(merc.id, 1)).toEqual({ levelsGained: 1, newLevel: 11 });
+    expect(useMercStore.getState().getMercProgress(merc.id)).toEqual({ experience: 0, experienceToNextLevel: mercXpForLevel(11) });
+  });
+
+  it('keeps unknown reads and awards harmless and missing progress nonpositive awards unchanged', () => {
+    const merc = { ...makeMerc(), level: 10 };
+    useMercStore.setState({ ownedMercs: [merc] });
+    const before = useMercStore.getState();
+    expect(before.getMercProgress('unknown')).toEqual({ experience: 0, experienceToNextLevel: 60 });
+    expect(before.addExperience('unknown', 100)).toEqual({ levelsGained: 0, newLevel: 1 });
+    expect(before.addExperience(merc.id, 0)).toEqual({ levelsGained: 0, newLevel: 10 });
+    expect(before.addExperience(merc.id, -1)).toEqual({ levelsGained: 0, newLevel: 10 });
+    before.shareExperienceWithFielded(100);
+    expect(useMercStore.getState()).toBe(before);
+    expect(before.mercProgress).toEqual({});
   });
 });
