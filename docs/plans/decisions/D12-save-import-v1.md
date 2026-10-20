@@ -37,3 +37,34 @@ checkpoints/close, reconcile legacy v7 against save.timestamp, clamp rollback,
 and preserve stronger remaining bonuses without reload refresh. Hidden-page
 online farming and offline accrual cannot both reward the same elapsed time.
 This portion needs production reward integration and restart tests before acceptance.
+
+### P17a01 pure arithmetic foundation
+
+The existing v7 tuple is sufficient for current multiplier and remaining online
+seconds, without a migration. `checkpointIdleBonus(state, now)` consumes only
+online elapsed time since lastOnline with linear decay. `resumeIdleBonus(state,
+savedAt, now)` accrues only the gap from max(lastOnline, savedAt), avoiding
+already-saved legacy online time. It never consumes old bonus duration during
+the away gap. Fresh accrual replaces the old tuple only when strictly stronger;
+ties preserve the remaining window. Repeating a persisted same-clock resume
+does not refresh the bonus. No default wall clock or reward side effects exist.
+
+offlineTime means cumulative informational away milliseconds, following its
+existing TSDoc. Include each reconciled gap once, including sub-minute gaps;
+derive the bonus from the current gap alone. Online checkpoints preserve it.
+Preserve idleTarget and optional-field presence. For legacy finite values clamp
+offlineTime to zero minimum, multiplier to 1..1.5, seconds to 0..7200; normalize
+an inactive multiplier/window pair to 1/0. Reject nonfinite inputs, elapsed
+subtraction or cumulative addition rather than producing an invalid future save.
+Negative finite timestamps remain supported. Rollback clamps the gap to zero
+and reanchors lastOnline to now; this is local-clock recovery, not a high-watermark
+or clock-abuse defense. Serial online checkpoints preserve the decay slope,
+subject to normal floating point rounding, including clearing a rounded-to-one
+multiplier's residual duration.
+
+This three-file foundation has no production consumer. It fixes no hook/restart
+defect yet and does not accept P17. Lifecycle integration must establish hidden
+tick/offline interval ownership, checkpoint persistence, startup versus explicit
+import semantics, and common reward/UI authority. The tuple cannot reconstruct
+original peak/window metadata for a HUD progress bar. Restart, production
+reward, ordinary UI, network-disabled PWA and performance gates remain open.
