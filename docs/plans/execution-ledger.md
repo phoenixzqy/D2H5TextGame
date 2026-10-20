@@ -46,6 +46,7 @@ Current implementation evidence lives in `evidence/`.
 | P06b | accepted deadline slice | `2cd350b`; inclusive 60,000 ms deadline, no overshoot, tied actors and exact/early victory. Five boundary tests, independent parent APPROVE; BUG-006. |
 | P06c01 | accepted periodic slice | `6c7f049` (agent `ff3787e`); shared status/lethal/expiry boundaries, fractional carry, simultaneous death/orphan transaction;31 focused regressions, root+producer source APPROVE. Boss milliseconds and cross-wave rebasing remain. |
 | P06c02 | accepted boss-duration slice | `030de58` (agent `53c08fe`); configured boss multiplier once on unrounded milliseconds, legacy lifecycle retained;56 focused cases incl16 real combat cases; root+producer source APPROVE. Cross-wave rebasing remains. |
+| P06e | accepted scoped Chill cadence repair | `84a0388` definition and `167bc11` runtime; causal authored-skill RED, 23 timing cases and unchanged complete no-Chill recording. Final U/coverage3314, T/L/build pass; producer/QA/GD/TD approve. [Evidence](evidence/p06e-chill-cadence.md). No earned-clear or balance acceptance. |
 | P07a01a/b/c1 | accepted definition/composition slices | `a35ef02` authored validated recovery coefficient, `07e8514` authored trigger identity, `938ed96` pure authoritative Energy/rank composition. Independent review and exact boundary controls recorded below; no timed recovery acceptance. |
 | P07a01c2 | accepted adapter slice | `1860bc6`; authoritative per-wave gear/core/learned config, frozen ordinary recording, original-resource replay/clamp/no refill. Genuine RED13/56; full1602/124/T/L/B pass. Store coverage diagnostic exits1 at77.9%branches; engine-only threshold applicability and changed43/43 statements independently reviewed. Warmth runtime/browser remain open. |
 | P07a01d | accepted fire/passive slice | `5a53d37` (worker `f80b6a9`), separate active-buff fixture `727da6b`; actual composed fire bonus and passive action exclusion. Genuine RED22/38; engine780/full1640/T/L/B/coverage pass, root/QA/producer APPROVE. Timed recovery and browser remain open. |
@@ -2070,3 +2071,35 @@ advertised Chill slowdown with JSON tuning, explicit D04 phase contract,
 independent test freeze/causalRED/bug report before runtime patch. No further
 screening implied. Den/Andariel/campaign/idle/pacing/finalbalance/C0–C4/G0–G7/full
 private v1 remain open. No push/PR/merge/deployment.
+
+
+P06e accepted **167bc11** after definition prerequisite **84a0388**, independent
+GD/TD contract and producer/QA test/source/final durable APPROVE. Battle-local
+atomic action schedules preserve progress under authored Chill and reselect
+actors after settlement. Original and independently corrected RED both retain
+20 failures/3 controls; final 23 timing cases and 28 Frost cases pass. Complete
+154-event no-Chill recording/result unchanged. Type/lint-only frozen amendments
+were independently approved; initial failed checks retained. Final E1131/59
+files/9.275 s, U+coverage3314/163/62.703 s, T20.938 s, L56.504 s and production
+build/bridge8.640 s/four clean chunks pass. Existing engine/full timing targets
+remain exceeded; warnings unchanged. Engine coverage94.6% lines/statements,
+94.54% functions and90.65% branches clears unchanged80% thresholds.
+[Evidence](evidence/p06e-chill-cadence.md) packet
+98390f1b424b996c4b61fb935cdd807f39642b2070295c5f9dd933bf9d712da5/archive
+8a5f98f34b3427c8c5ac3c27da4ccbd5064e848db61c457866a824c0ef8f8b7e retains125
+records/7,636,918 raw bytes/2,632,957 compressed bytes/20 commands. Bridge size
+monitor race and coverage artifact-cap interruption are preserved, with exact
+owned TERM identities/no survivors and successful bounded retries; neither is
+counted as a pass. All readers released,2,732 PID/birth identities verified
+absent/nonlive, then exact RAW d2h5-root-chill-e47f2p8r, task dist760 files and
+.vite1 file removed; absence verified. Tools/shared caches preserved, no cleanup
+signals. Hash-verified bounded runner/cleanup record transferred to next RAW
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-shatter-u75_js3c.
+Root claim remains active/original checkout untouched. Next substantive card:
+current authored Freeze→physical Shatter execute, with GD/TD approved pre-hit
+threshold/hit/death/RNG contract; producer/QA plan/concrete-test review pending.
+Current authored physical skills do not apply Freeze, so the no-self-combo rule
+holds for this bounded path. Generic source-skill provenance remains unresolved
+before future mixed physical/Freeze skills are accepted. No gameplay retry or
+Chill causality inferred from the prior native draw. Den/Andariel/campaign/idle,
+pacing/final balance/C0–C4/G0–G7/full private v1 remain open. No remote actions.

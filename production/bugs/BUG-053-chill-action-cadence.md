@@ -1,6 +1,6 @@
 # BUG-053 — Apply active Chill to action cadence
 
-Status: fixed; causal regression and independent source review pass.
+Status: Fixed in167bc11; causal regression and independent source review pass.
 Severity: High — the advertised attack-speed debuff has no scheduling effect.
 Owner: engine-dev; GD/TD timing contract approved, independent QA reviewing.
 
