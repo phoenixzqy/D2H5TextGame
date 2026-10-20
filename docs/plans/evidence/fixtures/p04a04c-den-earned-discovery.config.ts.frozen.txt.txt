@@ -1,0 +1,18 @@
+import { defineConfig, devices } from '@playwright/test';
+import production from './playwright.config';
+
+const outputDir = process.env.DEN_DISCOVERY_OUTPUT_DIR;
+if (!outputDir) throw new Error('DEN_DISCOVERY_OUTPUT_DIR must be task-isolated');
+
+/** One bounded real-production discovery; no retries or performance acceptance. */
+export default defineConfig({
+  ...production,
+  testMatch: ['den-earned-discovery.spec.ts'],
+  fullyParallel: false,
+  workers: 1,
+  retries: 0,
+  timeout: 240_000,
+  outputDir,
+  reporter: [['line'], ['json']],
+  projects: [{ name: 'den-discovery-desktop', use: { ...devices['Desktop Chrome'], viewport: { width: 1280, height: 800 } } }]
+});

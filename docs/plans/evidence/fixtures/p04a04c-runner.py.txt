@@ -1,0 +1,11 @@
+import json,sys,time,subprocess,hashlib,os
+from pathlib import Path
+r=Path(__file__).parent;label=sys.argv[1];argv=sys.argv[2:];start=time.monotonic();env=os.environ.copy()
+if label=='discovery':env.update({'FONTCONFIG_FILE':str(r/'fonts.conf'),'DEN_DISCOVERY_OUTPUT_DIR':str(r/'discovery-output'),'PLAYWRIGHT_JSON_OUTPUT_NAME':str(r/'discovery.report.json'),'PWA_PORT':'4598'})
+with (r/(label+'.log')).open('w') as log:result=subprocess.run(argv,stdout=log,stderr=subprocess.STDOUT,env=env)
+meta={'label':label,'command':argv,'exit':result.returncode,'seconds':round(time.monotonic()-start,3),'logSha256':hashlib.sha256((r/(label+'.log')).read_bytes()).hexdigest()}
+report=r/(label+'.report.json')
+if report.exists():
+ meta['reportSha256']=hashlib.sha256(report.read_bytes()).hexdigest();meta['results']=json.loads(report.read_text()).get('stats',{})
+meta['environment']={k:env[k] for k in ['FONTCONFIG_FILE','DEN_DISCOVERY_OUTPUT_DIR','PLAYWRIGHT_JSON_OUTPUT_NAME','PWA_PORT'] if k in env}
+(r/(label+'.meta.json')).write_text(json.dumps(meta,indent=2)+'\n');print(json.dumps(meta));print((r/(label+'.log')).read_text()[-2500:])

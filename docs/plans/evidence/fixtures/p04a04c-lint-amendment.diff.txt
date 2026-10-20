@@ -1,0 +1,11 @@
+--- ff57127c
++++ final
+@@ -102,7 +102,7 @@
+ async function terminalDOM(page: Page) {
+   return page.evaluate(() => {
+     const hero = document.querySelector('[data-testid="unit-card-player-1792497600000"]');
+-    const log = Array.from(document.querySelectorAll('[data-testid="combat-log"] > div > span:last-child'), node => node.textContent ?? '');
++    const log = Array.from(document.querySelectorAll('[data-testid="combat-log"] > div > span:last-child'), node => node.textContent);
+     return {
+       waveText: document.querySelector('[data-testid="wave-counter"]')?.textContent,
+       waveKind: document.querySelector('[data-testid="wave-kind-label"]')?.textContent,

@@ -1,0 +1,565 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: den-earned-discovery.spec.ts >> bounded native earned Den discovery en
+- Location: tests/pwa/den-earned-discovery.spec.ts:192:1
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: "Victory! All enemies are defeated."
+Received: "The battle ends in a draw."
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - navigation "Main navigation" [ref=e4]:
+    - list [ref=e5]:
+      - listitem [ref=e6]:
+        - link "Town" [ref=e7] [cursor=pointer]:
+          - /url: /town
+          - generic [ref=e8]: 🏰
+          - generic [ref=e9]: Town
+      - listitem [ref=e10]:
+        - link "Map" [ref=e11] [cursor=pointer]:
+          - /url: /map
+          - generic [ref=e12]: 🗺️
+          - generic [ref=e13]: Map
+      - listitem [ref=e14]:
+        - link "Combat" [ref=e15] [cursor=pointer]:
+          - /url: /combat
+          - generic [ref=e16]: ⚔️
+          - generic [ref=e17]: Combat
+      - listitem [ref=e18]:
+        - link "Inventory" [ref=e19] [cursor=pointer]:
+          - /url: /inventory
+          - generic [ref=e20]: 🎒
+          - generic [ref=e21]: Inventory
+      - listitem [ref=e22]:
+        - link "Skills" [ref=e23] [cursor=pointer]:
+          - /url: /skills
+          - generic [ref=e24]: ✨
+          - generic [ref=e25]: Skills
+      - listitem [ref=e26]:
+        - link "Mercs" [ref=e27] [cursor=pointer]:
+          - /url: /mercs
+          - generic [ref=e28]: 🛡️
+          - generic [ref=e29]: Mercs
+      - listitem [ref=e30]:
+        - link "Quests" [ref=e31] [cursor=pointer]:
+          - /url: /quests
+          - generic [ref=e32]: 📜
+          - generic [ref=e33]: Quests
+      - listitem [ref=e34]:
+        - link "Settings" [ref=e35] [cursor=pointer]:
+          - /url: /settings
+          - generic [ref=e36]: ⚙️
+          - generic [ref=e37]: Settings
+  - generic [ref=e38]:
+    - banner [ref=e39]:
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - generic [ref=e43]: Wave 2 / 4 · Den of Evil · Elite wave
+          - generic [ref=e44]: Act 1 · Rogue Encampment
+        - generic [ref=e45]:
+          - button "Formation" [ref=e46] [cursor=pointer]
+          - button "Pause" [disabled] [ref=e47]
+          - button "Speed" [disabled] [ref=e48]: 1x
+          - button "Skip" [disabled] [ref=e49]
+          - generic [ref=e50] [cursor=pointer]:
+            - checkbox "Auto" [checked] [ref=e51]
+            - text: Auto
+          - button "Flee" [ref=e52] [cursor=pointer]
+    - main [ref=e53]:
+      - generic [ref=e54]:
+        - heading "Battlefield" [level=2] [ref=e55]
+        - group "MP" [ref=e56]:
+          - generic [ref=e57]:
+            - generic [ref=e58]:
+              - generic [ref=e59]: MP
+              - generic [ref=e60]: 123 / 137
+            - progressbar [ref=e62]
+        - generic [ref=e63]:
+          - region "Allies" [ref=e64]:
+            - generic [ref=e65]: Allies
+            - generic [ref=e66]:
+              - generic "Rogue Scout — Inner Sight" [ref=e70]:
+                - img "Rogue Scout — Inner Sight" [ref=e72]
+                - generic [ref=e74]: Rogue Scout — Inner Sight
+              - generic [ref=e77]: No units
+              - generic [ref=e79]: No units
+              - generic [ref=e81]: No units
+              - generic "Earned Den" [ref=e85]:
+                - img "Earned Den" [ref=e87]
+                - generic [ref=e89]: Earned Den
+              - generic [ref=e93]: No units
+              - generic [ref=e95]: No units
+              - generic [ref=e97]: No units
+              - generic [ref=e99]: No units
+          - generic [ref=e100]:
+            - generic [ref=e101]:
+              - generic [ref=e102]: Wave
+              - generic [ref=e103]: 2/4
+            - generic [ref=e105]: Clash
+          - region "Enemies" [ref=e106]:
+            - generic [ref=e107]: Enemies
+            - generic [ref=e108]:
+              - generic "Fallen D" [ref=e112]:
+                - img "Fallen D" [ref=e114]
+                - generic [ref=e116]: Fallen D
+              - generic "Fallen B" [ref=e121]:
+                - img "Fallen B" [ref=e123]
+                - generic [ref=e125]: Fallen B
+              - generic "Fallen Shaman B" [ref=e130]:
+                - img "Fallen Shaman B" [ref=e132]
+                - generic [ref=e134]: Fallen Shaman B
+              - generic [ref=e138]:
+                - generic "Fallen Shaman A" [ref=e140]:
+                  - img "Fallen Shaman A" [ref=e142]
+                  - generic [ref=e144]: Fallen Shaman A
+                - generic: Burn
+              - generic "Fallen A" [ref=e150]:
+                - img "Fallen A" [ref=e152]
+                - generic [ref=e154]: Fallen A
+              - generic "Tainted A" [ref=e159]:
+                - img "Tainted A" [ref=e161]
+                - generic [ref=e163]: Tainted A
+              - generic "Tainted B" [ref=e169]:
+                - img "Tainted B" [ref=e171]
+                - generic [ref=e173]: Tainted B
+              - generic "Fallen C" [ref=e179]:
+                - img "Fallen C" [ref=e181]
+                - generic [ref=e183]: Fallen C
+              - generic "Fallen E" [ref=e188]:
+                - img "Fallen E" [ref=e190]
+                - generic [ref=e192]: Fallen E
+              - generic "Fallen F" [ref=e197]:
+                - img "Fallen F" [ref=e199]
+                - generic [ref=e201]: Fallen F
+              - generic [ref=e204]: No enemies
+              - generic [ref=e206]: No enemies
+      - generic [ref=e208]:
+        - heading "Combat Log" [level=2] [ref=e209]
+        - log [ref=e210]:
+          - generic [ref=e211]: 12:00:00Fallen Shaman A takes 1 damage over time.
+          - generic [ref=e212]: 12:00:00Rogue Scout — Inner Sight casts Basic Arrow.
+          - generic [ref=e213]: 12:00:00Rogue Scout — Inner Sight attacks Fallen Shaman A for 1 physical damage.
+          - generic [ref=e214]: 12:00:00Fallen E casts Weak Melee.
+          - generic [ref=e215]: 12:00:00Fallen E attacks Earned Den for 1 physical damage.
+          - generic [ref=e216]: 12:00:00Fallen Shaman B casts Lightning.
+          - generic [ref=e217]: 12:00:00Fallen Shaman B attacks Rogue Scout — Inner Sight for 25 lightning damage.
+          - generic [ref=e218]: 12:00:00Fallen Shaman A casts Fire Bolt.
+          - generic [ref=e219]: 12:00:00Fallen Shaman A attacks Rogue Scout — Inner Sight for 4 fire damage.
+          - generic [ref=e220]: 12:00:00Rogue Scout — Inner Sight is afflicted with [ignite].
+          - generic [ref=e221]: 12:00:00Fallen Shaman A takes 1 damage over time.
+          - generic [ref=e222]: 12:00:00Earned Den casts Fire Bolt.
+          - generic [ref=e223]: 12:00:00Earned Den attacks Fallen Shaman A for 2 fire damage.
+          - generic [ref=e224]: 12:00:00Fallen Shaman A is afflicted with [burn].
+          - generic [ref=e225]: 12:00:00Rogue Scout — Inner Sight casts Basic Arrow.
+          - generic [ref=e226]: 12:00:00Rogue Scout — Inner Sight attacks Fallen Shaman A for 1 physical damage.
+          - generic [ref=e227]: 12:00:00Tainted B casts Weak Melee.
+          - generic [ref=e228]: 12:00:00Earned Den dodges Tainted B's attack!
+          - generic [ref=e229]: 12:00:00Tainted A casts Weak Melee.
+          - generic [ref=e230]: 12:00:00Rogue Scout — Inner Sight dodges Tainted A's attack!
+          - generic [ref=e231]: 12:00:00Fallen Shaman A takes 1 damage over time.
+          - generic [ref=e232]: 12:00:00Fallen E casts Weak Melee.
+          - generic [ref=e233]: 12:00:00Earned Den dodges Fallen E's attack!
+          - generic [ref=e234]: 12:00:00Earned Den casts Frost Nova.
+          - generic [ref=e235]: 12:00:00Earned Den attacks Fallen Shaman A for 3 cold damage.
+          - generic [ref=e236]: 12:00:00Fallen Shaman A is afflicted with [chill].
+          - generic [ref=e237]: 12:00:00Fallen Shaman A is afflicted with [freeze].
+          - generic [ref=e238]: 12:00:00Earned Den attacks Tainted A for 3 cold damage.
+          - generic [ref=e239]: 12:00:00Tainted A is afflicted with [chill].
+          - generic [ref=e240]: 12:00:00Earned Den attacks Fallen Shaman B for 1 cold damage.
+          - generic [ref=e241]: 12:00:00Fallen Shaman B is afflicted with [chill].
+          - generic [ref=e242]: 12:00:00Earned Den attacks Tainted B for 12 cold damage.
+          - generic [ref=e243]: 12:00:00Tainted B is afflicted with [chill].
+          - generic [ref=e244]: 12:00:00Earned Den attacks Fallen E for 18 cold damage.
+          - generic [ref=e245]: 12:00:00Fallen E is afflicted with [chill].
+          - generic [ref=e246]: 12:00:00Fallen E is afflicted with [freeze].
+          - generic [ref=e247]: 12:00:00Fallen Shaman B casts Fire Bolt.
+          - generic [ref=e248]: 12:00:00Fallen Shaman B attacks Earned Den for 1 fire damage.
+          - generic [ref=e249]: 12:00:00Earned Den is afflicted with [ignite].
+          - generic [ref=e250]: 12:00:00Fallen Shaman A is stunned and cannot act.
+          - generic [ref=e251]: 12:00:00Fallen Shaman A takes 1 damage over time.
+          - generic [ref=e252]: 12:00:00Rogue Scout — Inner Sight casts Basic Arrow.
+          - generic [ref=e253]: 12:00:00Fallen Shaman A dodges Rogue Scout — Inner Sight's attack!
+          - generic [ref=e254]: 12:00:00Tainted B casts Weak Melee.
+          - generic [ref=e255]: 12:00:00Tainted B attacks Rogue Scout — Inner Sight for 1 physical damage.
+          - generic [ref=e256]: 12:00:00Tainted A casts Weak Melee.
+          - generic [ref=e257]: 12:00:00Tainted A attacks Rogue Scout — Inner Sight for 1 physical damage.
+          - generic [ref=e258]: 12:00:00Turn 10 begins
+          - generic [ref=e259]: 12:00:00Fallen Shaman A takes 1 damage over time.
+          - generic [ref=e260]: 12:00:00Earned Den casts Fire Bolt.
+          - generic [ref=e261]: 12:00:00Earned Den attacks Fallen Shaman A for 7 fire damage.
+          - generic [ref=e262]: 12:00:00Fallen Shaman A is afflicted with [burn].
+          - generic [ref=e263]: 12:00:00Fallen E casts Weak Melee.
+          - generic [ref=e264]: 12:00:00Rogue Scout — Inner Sight dodges Fallen E's attack!
+          - generic [ref=e265]: 12:00:00Fallen Shaman B casts Lightning.
+          - generic [ref=e266]: 12:00:00Earned Den dodges Fallen Shaman B's attack!
+          - generic [ref=e267]: 12:00:00Fallen Shaman A casts Fire Bolt.
+          - generic [ref=e268]: 12:00:00Fallen Shaman A attacks Earned Den for 1 fire damage.
+          - generic [ref=e269]: 12:00:00Earned Den is afflicted with [ignite].
+          - generic [ref=e270]: 12:00:00Rogue Scout — Inner Sight casts Basic Arrow.
+          - generic [ref=e271]: 12:00:00Rogue Scout — Inner Sight attacks Fallen Shaman A for 1 physical damage.
+          - generic [ref=e272]: 12:00:00Fallen Shaman A takes 1 damage over time.
+          - generic [ref=e273]: 12:00:00Tainted B casts Weak Melee.
+          - generic [ref=e274]: 12:00:00Tainted B attacks Earned Den for 1 physical damage.
+          - generic [ref=e275]: 12:00:00Tainted A casts Weak Melee.
+          - generic [ref=e276]: 12:00:00Rogue Scout — Inner Sight dodges Tainted A's attack!
+          - generic [ref=e277]: 12:00:00Earned Den casts Frost Nova.
+          - generic [ref=e278]: 12:00:00Earned Den attacks Fallen Shaman A for 1 cold damage.
+          - generic [ref=e279]: 12:00:00Fallen Shaman A is afflicted with [chill].
+          - generic [ref=e280]: 12:00:00Earned Den attacks Tainted A for 13 cold damage.
+          - generic [ref=e281]: 12:00:00Tainted A is afflicted with [chill].
+          - generic [ref=e282]: 12:00:00Earned Den attacks Fallen Shaman B for 6 cold damage.
+          - generic [ref=e283]: 12:00:00Fallen Shaman B is afflicted with [chill].
+          - generic [ref=e284]: 12:00:00Fallen Shaman B is afflicted with [freeze].
+          - generic [ref=e285]: 12:00:00Earned Den attacks Tainted B for 11 cold damage.
+          - generic [ref=e286]: 12:00:00Tainted B is afflicted with [chill].
+          - generic [ref=e287]: 12:00:00CRITICAL! Earned Den hits Fallen E for 37 cold damage!
+          - generic [ref=e288]: 12:00:00Fallen E is afflicted with [chill].
+          - generic [ref=e289]: 12:00:00Fallen E falls.
+          - generic [ref=e290]: 12:00:00Fallen Shaman A takes 1 damage over time.
+          - generic [ref=e291]: 12:00:00Rogue Scout — Inner Sight casts Basic Arrow.
+          - generic [ref=e292]: 12:00:00Rogue Scout — Inner Sight attacks Fallen Shaman A for 1 physical damage.
+          - generic [ref=e293]: 12:00:00Fallen Shaman B is stunned and cannot act.
+          - generic [ref=e294]: 12:00:00Fallen Shaman A casts Lightning.
+          - generic [ref=e295]: 12:00:00Fallen Shaman A attacks Rogue Scout — Inner Sight for 14 lightning damage.
+          - generic [ref=e296]: 12:00:00Rogue Scout — Inner Sight falls.
+          - generic [ref=e297]: 12:00:00Fallen Shaman A takes 1 damage over time.
+          - generic [ref=e298]: 12:00:00Earned Den casts Fire Bolt.
+          - generic [ref=e299]: 12:00:00Fallen Shaman A dodges Earned Den's attack!
+          - generic [ref=e300]: 12:00:00Tainted B casts Weak Melee.
+          - generic [ref=e301]: 12:00:00Earned Den dodges Tainted B's attack!
+          - generic [ref=e302]: 12:00:00Tainted A casts Weak Melee.
+          - generic [ref=e303]: 12:00:00Tainted A attacks Earned Den for 1 physical damage.
+          - generic [ref=e304]: 12:00:00Fallen Shaman B casts Fire Bolt.
+          - generic [ref=e305]: 12:00:00Fallen Shaman B attacks Earned Den for 1 fire damage.
+          - generic [ref=e306]: 12:00:00Earned Den is afflicted with [ignite].
+          - generic [ref=e307]: 12:00:00Fallen Shaman A casts Fire Bolt.
+          - generic [ref=e308]: 12:00:00Fallen Shaman A attacks Earned Den for 1 fire damage.
+          - generic [ref=e309]: 12:00:00Earned Den is afflicted with [ignite].
+          - generic [ref=e310]: 12:00:00Earned Den casts Frost Nova.
+          - generic [ref=e311]: 12:00:00Earned Den attacks Fallen Shaman A for 1 cold damage.
+          - generic [ref=e312]: 12:00:00Fallen Shaman A is afflicted with [chill].
+          - generic [ref=e313]: 12:00:00Tainted A dodges Earned Den's attack!
+          - generic [ref=e314]: 12:00:00Earned Den attacks Fallen Shaman B for 1 cold damage.
+          - generic [ref=e315]: 12:00:00Fallen Shaman B is afflicted with [chill].
+          - generic [ref=e316]: 12:00:00Tainted B dodges Earned Den's attack!
+          - generic [ref=e317]: 12:00:00Tainted B casts Weak Melee.
+          - generic [ref=e318]: 12:00:00Tainted B attacks Earned Den for 1 physical damage.
+          - generic [ref=e319]: 12:00:00Tainted A casts Weak Melee.
+          - generic [ref=e320]: 12:00:00Tainted A attacks Earned Den for 1 physical damage.
+          - generic [ref=e321]: 12:00:00Turn 11 begins
+          - generic [ref=e322]: 12:00:00Fallen Shaman B casts Lightning.
+          - generic [ref=e323]: 12:00:00Earned Den dodges Fallen Shaman B's attack!
+          - generic [ref=e324]: 12:00:00Fallen Shaman A casts Lightning.
+          - generic [ref=e325]: 12:00:00Earned Den dodges Fallen Shaman A's attack!
+          - generic [ref=e326]: 12:00:00Earned Den casts Fire Bolt.
+          - generic [ref=e327]: 12:00:00Earned Den attacks Fallen Shaman A for 10 fire damage.
+          - generic [ref=e328]: 12:00:00Fallen Shaman A is afflicted with [burn].
+          - generic [ref=e329]: 12:00:00Tainted B casts Weak Melee.
+          - generic [ref=e330]: 12:00:00Tainted B attacks Earned Den for 1 physical damage.
+          - generic [ref=e331]: 12:00:00Tainted A casts Weak Melee.
+          - generic [ref=e332]: 12:00:00Tainted A attacks Earned Den for 1 physical damage.
+          - generic [ref=e333]: 12:00:00Fallen Shaman A takes 1 damage over time.
+          - generic [ref=e334]: 12:00:00Earned Den casts Frost Nova.
+          - generic [ref=e335]: 12:00:00Earned Den attacks Fallen Shaman A for 1 cold damage.
+          - generic [ref=e336]: 12:00:00Fallen Shaman A is afflicted with [chill].
+          - generic [ref=e337]: 12:00:00Earned Den attacks Tainted A for 3 cold damage.
+          - generic [ref=e338]: 12:00:00Tainted A is afflicted with [chill].
+          - generic [ref=e339]: 12:00:00Earned Den attacks Fallen Shaman B for 2 cold damage.
+          - generic [ref=e340]: 12:00:00Fallen Shaman B is afflicted with [chill].
+          - generic [ref=e341]: 12:00:00Earned Den attacks Tainted B for 4 cold damage.
+          - generic [ref=e342]: 12:00:00Tainted B is afflicted with [chill].
+          - generic [ref=e343]: 12:00:00Fallen Shaman B casts Fire Bolt.
+          - generic [ref=e344]: 12:00:00Fallen Shaman B attacks Earned Den for 1 fire damage.
+          - generic [ref=e345]: 12:00:00Earned Den is afflicted with [ignite].
+          - generic [ref=e346]: 12:00:00Fallen Shaman A casts Fire Bolt.
+          - generic [ref=e347]: 12:00:00Fallen Shaman A attacks Earned Den for 1 fire damage.
+          - generic [ref=e348]: 12:00:00Earned Den is afflicted with [ignite].
+          - generic [ref=e349]: 12:00:00Fallen Shaman A takes 1 damage over time.
+          - generic [ref=e350]: 12:00:00Tainted B casts Weak Melee.
+          - generic [ref=e351]: 12:00:00Tainted B attacks Earned Den for 1 physical damage.
+          - generic [ref=e352]: 12:00:00Tainted A casts Weak Melee.
+          - generic [ref=e353]: 12:00:00Tainted A attacks Earned Den for 1 physical damage.
+          - generic [ref=e354]: 12:00:00Fallen Shaman A takes 1 damage over time.
+          - generic [ref=e355]: 12:00:00Earned Den casts Fire Bolt.
+          - generic [ref=e356]: 12:00:00Earned Den attacks Fallen Shaman A for 7 fire damage.
+          - generic [ref=e357]: 12:00:00Fallen Shaman A is afflicted with [burn].
+          - generic [ref=e358]: 12:00:00Fallen Shaman B casts Lightning.
+          - generic [ref=e359]: 12:00:00Earned Den dodges Fallen Shaman B's attack!
+          - generic [ref=e360]: 12:00:00Fallen Shaman A casts Lightning.
+          - generic [ref=e361]: 12:00:00Fallen Shaman A attacks Earned Den for 13 lightning damage.
+          - generic [ref=e362]: 12:00:00Turn 12 begins
+          - generic [ref=e363]: 12:00:00Fallen Shaman A takes 1 damage over time.
+          - generic [ref=e364]: 12:00:00Tainted B casts Weak Melee.
+          - generic [ref=e365]: 12:00:00Tainted B attacks Earned Den for 1 physical damage.
+          - generic [ref=e366]: 12:00:00Tainted A casts Weak Melee.
+          - generic [ref=e367]: 12:00:00Tainted A attacks Earned Den for 1 physical damage.
+          - generic [ref=e368]: 12:00:00Earned Den casts Frost Nova.
+          - generic [ref=e369]: 12:00:00Earned Den attacks Fallen Shaman A for 1 cold damage.
+          - generic [ref=e370]: 12:00:00Fallen Shaman A is afflicted with [chill].
+          - generic [ref=e371]: 12:00:00Earned Den attacks Tainted A for 10 cold damage.
+          - generic [ref=e372]: 12:00:00Tainted A is afflicted with [chill].
+          - generic [ref=e373]: 12:00:00Earned Den attacks Fallen Shaman B for 1 cold damage.
+          - generic [ref=e374]: 12:00:00Fallen Shaman B is afflicted with [chill].
+          - generic [ref=e375]: 12:00:00Earned Den attacks Tainted B for 12 cold damage.
+          - generic [ref=e376]: 12:00:00Tainted B is afflicted with [chill].
+          - generic [ref=e377]: 12:00:00Tainted B is afflicted with [freeze].
+          - generic [ref=e378]: 12:00:00Fallen Shaman A takes 1 damage over time.
+          - generic [ref=e379]: 12:00:00Fallen Shaman B casts Fire Bolt.
+          - generic [ref=e380]: 12:00:00Earned Den dodges Fallen Shaman B's attack!
+          - generic [ref=e381]: 12:00:00Fallen Shaman A casts Fire Bolt.
+          - generic [ref=e382]: 12:00:00Fallen Shaman A attacks Earned Den for 1 fire damage.
+          - generic [ref=e383]: 12:00:00Earned Den is afflicted with [ignite].
+          - generic [ref=e384]: 12:00:00Tainted B casts Weak Melee.
+          - generic [ref=e385]: 12:00:00Earned Den dodges Tainted B's attack!
+          - generic [ref=e386]: 12:00:00Tainted A casts Weak Melee.
+          - generic [ref=e387]: 12:00:00Earned Den dodges Tainted A's attack!
+          - generic [ref=e388]: 12:00:00Fallen Shaman A takes 1 damage over time.
+          - generic [ref=e389]: 12:00:00Earned Den casts Fire Bolt.
+          - generic [ref=e390]: 12:00:00Fallen Shaman A dodges Earned Den's attack!
+          - generic [ref=e391]: 12:00:00Fallen Shaman B casts Lightning.
+          - generic [ref=e392]: 12:00:00Fallen Shaman B attacks Earned Den for 1 lightning damage.
+          - generic [ref=e393]: 12:00:00Fallen Shaman A casts Lightning.
+          - generic [ref=e394]: 12:00:00Fallen Shaman A attacks Earned Den for 7 lightning damage.
+          - generic [ref=e395]: 12:00:00Earned Den casts Frost Nova.
+          - generic [ref=e396]: 12:00:00Fallen Shaman A dodges Earned Den's attack!
+          - generic [ref=e397]: 12:00:00Tainted A dodges Earned Den's attack!
+          - generic [ref=e398]: 12:00:00Earned Den attacks Fallen Shaman B for 1 cold damage.
+          - generic [ref=e399]: 12:00:00Fallen Shaman B is afflicted with [chill].
+          - generic [ref=e400]: 12:00:00Earned Den attacks Tainted B for 5 cold damage.
+          - generic [ref=e401]: 12:00:00Tainted B is afflicted with [chill].
+          - generic [ref=e402]: 12:00:00Tainted B casts Weak Melee.
+          - generic [ref=e403]: 12:00:00Tainted B attacks Earned Den for 1 physical damage.
+          - generic [ref=e404]: 12:00:00Tainted A casts Weak Melee.
+          - generic [ref=e405]: 12:00:00Earned Den dodges Tainted A's attack!
+          - generic [ref=e406]: 12:00:00Turn 13 begins
+          - generic [ref=e407]: 12:00:00Earned Den casts Fire Bolt.
+          - generic [ref=e408]: 12:00:00Earned Den attacks Fallen Shaman A for 1 fire damage.
+          - generic [ref=e409]: 12:00:00Fallen Shaman A is afflicted with [burn].
+          - generic [ref=e410]: 12:00:00The battle ends in a draw.
+      - generic [ref=e412]:
+        - heading "The battle ends in a draw." [level=2] [ref=e413]
+        - generic [ref=e414]:
+          - button "Return to map" [ref=e415] [cursor=pointer]
+          - button "Return to town" [ref=e416] [cursor=pointer]
+```
+
+# Test source
+
+```ts
+  24  |   const pending = page.waitForEvent('download');
+  25  |   await page.getByTestId('export-save-button').click();
+  26  |   const download = await pending;
+  27  |   try { return JSON.parse(await readFile(await download.path(), 'utf8')) as SaveCurrent; }
+  28  |   finally { await download.delete(); }
+  29  | }
+  30  | async function stored(page: Page): Promise<SaveCurrent> {
+  31  |   return page.evaluate(() => new Promise<SaveCurrent>((resolve, reject) => {
+  32  |     const open = indexedDB.open('D2H5TextGame');
+  33  |     open.onerror = () => { reject(new Error('Could not open saved character')); };
+  34  |     open.onsuccess = () => {
+  35  |       const db = open.result;
+  36  |       const get = db.transaction('saves', 'readonly').objectStore('saves').get('current');
+  37  |       get.onerror = () => { db.close(); reject(new Error('Could not read saved character')); };
+  38  |       get.onsuccess = () => {
+  39  |         const record = get.result as { data: SaveCurrent } | undefined;
+  40  |         db.close();
+  41  |         if (!record) reject(new Error('No committed character'));
+  42  |         else resolve(record.data);
+  43  |       };
+  44  |     };
+  45  |   }));
+  46  | }
+  47  | async function production(page: Page) {
+  48  |   expect(await page.evaluate(() => '__GAME__' in window)).toBe(false);
+  49  |   expect(await page.evaluate(() => navigator.serviceWorker.controller?.state)).toBe('activated');
+  50  |   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  51  | }
+  52  | async function tree(page: Page, skill: string) {
+  53  |   await navTo(page, 'skills');
+  54  |   await page.locator('[role="tab"][aria-controls="tabpanel-tree"]').click();
+  55  |   await page.getByTestId(`skill-node-${skill}`).click();
+  56  |   return page.getByTestId('skill-detail-panel');
+  57  | }
+  58  | async function slots(page: Page, english: boolean, selected: readonly string[]) {
+  59  |   await navTo(page, 'skills');
+  60  |   await page.locator('[role="tab"][aria-controls="tabpanel-active"]').click();
+  61  |   for (let slot = 1; slot <= 9; slot += 1) {
+  62  |     const select = page.getByRole('combobox', { name: `${english ? 'Slot' : '槽位'} ${String(slot)}`, exact: true });
+  63  |     await select.selectOption(selected[slot - 1] ?? '');
+  64  |     await expect(select).toHaveValue(selected[slot - 1] ?? '');
+  65  |   }
+  66  |   await production(page);
+  67  | }
+  68  | async function countMonsters(cards: Locator) {
+  69  |   let count = 0;
+  70  |   for (const card of await cards.all()) {
+  71  |     const badge = card.locator(':scope > div:first-of-type > div').filter({ hasText: /^\+\d+$/ });
+  72  |     expect(await badge.count()).toBeLessThanOrEqual(1);
+  73  |     count += 1 + (await badge.count() ? Number((await badge.innerText()).slice(1)) : 0);
+  74  |   }
+  75  |   return count;
+  76  | }
+  77  | async function enter(page: Page, english: boolean, area = 'a1-blood-moor') {
+  78  |   await navTo(page, 'map');
+  79  |   await page.getByTestId(`sub-area-row-${area}`)
+  80  |     .getByRole('button', { name: english ? 'Enter' : '进入', exact: true }).click();
+  81  |   await expect(page.getByTestId('combat-screen')).toBeVisible();
+  82  |   expect(await wave(page)).toBe(1);
+  83  | }
+  84  | async function wave(page: Page) {
+  85  |   const value = /^\D*(\d+)/.exec(await page.getByTestId('wave-counter').innerText())?.[1];
+  86  |   if (!value) throw new Error('Missing numeric wave');
+  87  |   return Number(value);
+  88  | }
+  89  | async function pause(page: Page, english: boolean) {
+  90  |   await page.getByRole('button', { name: english ? 'Pause' : '暂停', exact: true }).click({ timeout: 500 });
+  91  |   await expect(page.getByRole('button', { name: english ? 'Resume' : '继续', exact: true }))
+  92  |     .toHaveAttribute('aria-pressed', 'true');
+  93  | }
+  94  | async function flee(page: Page, english: boolean) {
+  95  |   await page.getByRole('button', { name: english ? 'Flee' : '逃跑', exact: true }).click();
+  96  |   await expect(page.getByTestId('map-screen')).toBeVisible();
+  97  | }
+  98  | async function attach(info: TestInfo, label: string, value: unknown) {
+  99  |   await info.attach(label, { body: JSON.stringify(value), contentType: 'application/json' });
+  100 | }
+  101 | /** One readonly DOM observation before native inter-wave navigation can replace it. */
+  102 | async function terminalDOM(page: Page) {
+  103 |   return page.evaluate(() => {
+  104 |     const hero = document.querySelector('[data-testid="unit-card-player-1792497600000"]');
+  105 |     const log = Array.from(document.querySelectorAll('[data-testid="combat-log"] > div > span:last-child'), node => node.textContent);
+  106 |     return {
+  107 |       waveText: document.querySelector('[data-testid="wave-counter"]')?.textContent,
+  108 |       waveKind: document.querySelector('[data-testid="wave-kind-label"]')?.textContent,
+  109 |       heroPresent: hero !== null,
+  110 |       heroDead: hero?.getAttribute('data-dead') ?? null,
+  111 |       liveEnemies: document.querySelectorAll('[data-testid="enemies-grid"] [data-testid^="unit-card-"]:not([data-dead="true"])').length,
+  112 |       defeatPanels: document.querySelectorAll('[data-testid="defeat-panel"]').length,
+  113 |       deadMerc: document.querySelectorAll('[data-testid="allies-grid"] [data-kind="merc"][data-dead="true"]').length,
+  114 |       skipDisabled: document.querySelector<HTMLButtonElement>('[data-testid="skip-button"]')?.disabled,
+  115 |       log,
+  116 |       allies: document.querySelector('[data-testid="allies-grid"]')?.textContent,
+  117 |       enemies: document.querySelector('[data-testid="enemies-grid"]')?.textContent
+  118 |     };
+  119 |   });
+  120 | }
+  121 | function expectTerminal(result: Awaited<ReturnType<typeof terminalDOM>>, expectedWave: number) {
+  122 |   expect(Number(/^\D*(\d+)/.exec(result.waveText ?? '')?.[1])).toBe(expectedWave);
+  123 |   expect(result.skipDisabled).toBe(true);
+> 124 |   expect(result.log.at(-1)).toBe('Victory! All enemies are defeated.');
+      |                             ^ Error: expect(received).toBe(expected) // Object.is equality
+  125 |   expect(result.defeatPanels).toBe(0);
+  126 |   expect(result.liveEnemies).toBe(0);
+  127 |   expect(result.heroPresent).toBe(true);
+  128 |   expect(result.heroDead).not.toBe('true');
+  129 | }
+  130 | function expectPlayer(actual: SaveCurrent, configured: SaveCurrent, totalXP: number, fireRank: number, spent: number, questPoints = 0) {
+  131 |   const level = totalXP >= 11013 ? 6 : totalXP >= 5423 ? 5 : totalXP >= 2223 ? 4 : totalXP >= 665 ? 3 : totalXP >= 100 ? 2 : 1;
+  132 |   expect(actual.player).toEqual({ ...configured.player, level, experience: totalXP - (reachXP[level] ?? -1),
+  133 |     experienceToNextLevel: nextXP[level], statPoints: (level - 1) * 5,
+  134 |     skillPoints: level - 1 - spent + questPoints,
+  135 |     skillLevels: { ...ranks, 'sorceress.fire_bolt': fireRank },
+  136 |     derivedStats: { ...configured.player.derivedStats, lifeMax: 120 + 8 * (level - 1),
+  137 |       manaMax: 102 + 4 * (level - 1), attack: 22 + 2 * (level - 1), defense: 20 + 3 * (level - 1) } });
+  138 | }
+  139 | function expectMerc(actual: SaveCurrent, hired: SaveCurrent, earnedXP: number, equipment = hired.mercs.mercEquipment) {
+  140 |   const initial = hired.mercs.ownedMercs[0];
+  141 |   if (!initial) throw new Error('Missing normally hired mercenary');
+  142 |   let level = 3;
+  143 |   let xp = earnedXP;
+  144 |   const threshold = (rank: number) => Math.floor(60 * rank * 1.3 ** (rank - 1));
+  145 |   while (xp >= threshold(level)) { xp -= threshold(level); level += 1; }
+  146 |   const gains = level - 3;
+  147 |   expect(actual.mercs).toEqual({ ...hired.mercs, mercEquipment: equipment, ownedMercs: [{ ...initial, level,
+  148 |     coreStats: { ...initial.coreStats, strength: initial.coreStats.strength + gains,
+  149 |       dexterity: initial.coreStats.dexterity + 3 * gains, energy: initial.coreStats.energy + gains },
+  150 |     derivedStats: { ...initial.derivedStats, life: initial.derivedStats.life + 8 * gains,
+  151 |       lifeMax: initial.derivedStats.lifeMax + 8 * gains } }],
+  152 |     mercProgress: { [merc]: { experience: xp, experienceToNextLevel: threshold(level) } } });
+  153 | }
+  154 | async function talk(page: Page, english: boolean, npc: 'akara' | 'charsi', copy?: string, info?: TestInfo) {
+  155 |   await navTo(page, 'town');
+  156 |   const trigger = page.getByTestId(`town-npc-${npc}`);
+  157 |   const box = await trigger.boundingBox();
+  158 |   expect(box?.width).toBeGreaterThanOrEqual(44);
+  159 |   expect(box?.height).toBeGreaterThanOrEqual(44);
+  160 |   await trigger.focus();
+  161 |   await trigger.press('Enter');
+  162 |   await expect(trigger).toBeFocused();
+  163 |   await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+  164 |   const conversation = page.getByTestId('town-conversation');
+  165 |   await expect(conversation).toBeVisible();
+  166 |   if (copy) await expect(conversation.getByRole('status')).toContainText(copy);
+  167 |   await production(page);
+  168 |   if (info) await info.attach('den-completed-akara', { body: await page.screenshot({ animations: 'disabled' }), contentType: 'image/png' });
+  169 |   await page.getByTestId('town-conversation-close').click();
+  170 |   await expect(conversation).toHaveCount(0);
+  171 |   await expect(trigger).toBeFocused();
+  172 |   // Both locales use the same native NPC and focus path.
+  173 |   await expect(trigger).toHaveAccessibleName(npc === 'akara' ? english ? 'Akara' : '阿卡拉' : english ? 'Charsi' : '查西');
+  174 | }
+  175 | async function noRepeat(page: Page, english: boolean, expected: SaveCurrent) {
+  176 |   await talk(page, english, 'akara', english
+  177 |     ? 'The darkness in the Den of Evil has lifted. May your new strength guard the camp.'
+  178 |     : '邪恶巢穴的黑暗已经消散。愿你的新力量守护营地。');
+  179 |   expect(await backup(page)).toEqual(expected);
+  180 |   await navTo(page, 'quests');
+  181 |   await expect(page.getByTestId(`quest-claim-${quest}`)).toBeDisabled();
+  182 |   await expect(page.getByTestId(`quest-claim-${quest}`)).toHaveText(english ? 'Claimed' : '已领取');
+  183 |   expect(await backup(page)).toEqual(expected);
+  184 | }
+  185 | 
+  186 | 
+  187 | // Independently frozen literals from accepted merc-gear-earned.spec.ts; no item injection.
+  188 | const mercGlove: Item = { id: 'it-8jv2k-1', baseId: 'items/base/glove-leather', rarity: 'normal', level: 2, ilvl: 2, baseRolls: { defense: 4 }, affixes: [], generatedName: {}, identified: true, equipped: false };
+  189 | const heroGlove: Item = { id: 'it-96fga-3', baseId: 'items/base/glove-leather', rarity: 'normal', level: 2, ilvl: 2, baseRolls: { defense: 5 }, affixes: [], generatedName: {}, identified: true, equipped: false };
+  190 | const heroBoots: Item = { id: 'it-5iwwr-4', baseId: 'items/base/boot-leather', rarity: 'normal', level: 2, ilvl: 2, baseRolls: { defense: 3 }, affixes: [], generatedName: {}, identified: true, equipped: false };
+  191 | 
+  192 | test('bounded native earned Den discovery en', async ({ page, context }, info) => {
+  193 |   const english = true;
+  194 |   const errors: string[] = [];
+  195 |   const watch = (watched: Page) => {
+  196 |     watched.on('pageerror', error => errors.push(error.message));
+  197 |     watched.on('console', message => { if (['warning', 'error'].includes(message.type())) errors.push(message.text()); });
+  198 |   };
+  199 |   watch(page);
+  200 |   try {
+  201 |     await page.clock.setFixedTime(fixedTime); // Date only; timers remain native.
+  202 |     await page.goto('/');
+  203 |     await createCharacter(page, { class: 'sorceress', name });
+  204 |     await navTo(page, 'settings');
+  205 |     await page.getByRole('button', { name: 'English', exact: true }).click();
+  206 |     await expect.poll(() => page.evaluate(() => navigator.serviceWorker.controller?.state), { timeout: 60_000 }).toBe('activated');
+  207 |     const fresh = await backup(page);
+  208 |     await attach(info, 'fresh', fresh);
+  209 |     expect(fresh.player).toMatchObject({ level: 1, experience: 0, statPoints: 0, skillPoints: 1, skillLevels: ranks });
+  210 |     expect(fresh.inventory.backpack).toEqual([]);
+  211 |     expect(fresh.inventory.equipped).toEqual({});
+  212 |     const locked = await tree(page, frost);
+  213 |     await expect(locked.getByRole('button', { name: 'Requires Lv. 6', exact: true })).toBeDisabled();
+  214 |     expect(await backup(page)).toEqual({ ...fresh, player: { ...fresh.player, comboOrder: [ice] } });
+  215 |     await navTo(page, 'mercs');
+  216 |     await page.getByTestId(`hire-merc-${merc}`).getByRole('button', { name: 'Hire', exact: true }).click();
+  217 |     const hired = await backup(page);
+  218 |     await attach(info, 'hired', hired);
+  219 |     expect(hired.inventory).toEqual(fresh.inventory);
+  220 |     expect(hired.mercs.fieldedMercId).toBe(merc);
+  221 |     expect(hired.mercs.ownedMercs).toHaveLength(1);
+  222 |     expect(hired.mercs.ownedMercs[0]?.level).toBe(3);
+  223 |     expect(hired.mercs.mercProgress).toEqual({ [merc]: { experience: 0, experienceToNextLevel: 304 } });
+  224 |     await tree(page, fire);
+```
