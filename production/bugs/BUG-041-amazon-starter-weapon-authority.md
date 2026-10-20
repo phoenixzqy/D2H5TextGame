@@ -478,3 +478,55 @@ Both verified all three frozen test hashes, unchanged source at d1aeaaa,
 21 genuine assertion failures / 55 passing controls and successful TSC/lint.
 Actual cast and recording reset failures are independent. Root agrees;
 two-file source implementation may proceed. Later assertions require GREEN.
+
+### P08a05e two-source GREEN checkpoint
+
+Only combatHelpers.ts and SkillsScreen.tsx changed after frozen1b9de08.
+The adapter captures canonical equipped once for metadata and aggregation;
+resolver reads weapon slot without legacy/flag fallback and returns explicit {}
+for absent/null/unknown. Skills subscribes equipped and uses shared resolver.
+Automatic normalization/sanitization persists via setComboOrder only; explicit
+slot/reorder edits retain replay. All frozen76 assertions now pass, including
+actual casts/mana/arcane damage, resource preservation, immutable current recording,
+real next wave, mounted gear/import/hydration and preserved ranks. No tests changed.
+Root source review finds minimal cause fix; independent source/focused reviews pending.
+
+- readers-green: `npx vitest run --project ui src/stores/weapon-authority.test.tsx src/features/skills/SkillsScreen.test.tsx src/stores/legacy-starter-compatibility.test.tsx --reporter=verbose`; exit0, wall8.241s; log SHA256 `97f298f3154bbb66175f18eae3597eca5d7552e0a618436c2de8bbde1fa90fc9`.
+- readers-green-typecheck: `npm run typecheck`; exit0, wall11.299s; log SHA256 `53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47`.
+- readers-green-lint: `npx eslint src/stores/combatHelpers.ts src/features/skills/SkillsScreen.tsx src/stores/weapon-authority.test.tsx src/features/skills/SkillsScreen.test.tsx src/stores/legacy-starter-compatibility.test.tsx --max-warnings=0`; exit0, wall8.058s; log SHA256 `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`.
+
+Source SHA256:
+- src/stores/combatHelpers.ts: `32f9877413a53b033e5146cf34017165194d24ffde8851720fcfcaf58c4b1664`.
+- src/features/skills/SkillsScreen.tsx: `797995205700ed3a8a7cccb68fc44d880cc8ce2a63fb55a2f3b7580eaa04e186`.
+
+Independent source/focused reviews: producer [P08a05e-SOURCE-FOCUSED-PRODUCER]
+and QA [P08a05e-SOURCE-FOCUSED-QA] both APPROVE / ADEQUATE. Both verified
+source/test/log hashes and all76 GREEN assertions, with no material finding.
+QA evidence wording correction adopted: these76 prove resource preservation;
+specific clamp boundaries remain in D suites rather than new E boundary tests.
+
+### P08a05e final combined validation
+
+Final unchanged two-source bytes and frozen tests: related537/45, full2199/132,
+coverage2199/132 all pass,0skip. TSC/scopedlint and complete lint pass; purity51
+engine test files. Build passes. No engine source changed. Unchanged80% engine
+coverage gate passes; UI/store changes are outside coverage instrumentation.
+Actual coverage 63 engine files: 8102/8582s, 1890/2103b, 296/315f.
+Related/full timing exceed repository targets; concurrent commands and actual
+wall times are recorded, not a performance acceptance. Existing React act/router
+unit warnings, Browserslist age, >500kB bundle and generated manifest precache
+warning remain. No comparison/browser/fullauthority/BUG041/C/G acceptance.
+
+- readers-related: `npm run test:related -- src/stores/combatHelpers.ts src/features/skills/SkillsScreen.tsx`; exit0, wall24.728s; log SHA256 `d1b57607fbedcba822c4c8361131757d997e07f57a35a4acf1003b98f2ab5ddd`.
+- readers-full: `npm test`; exit0, wall31.8s; log SHA256 `dce5a3e91dc639fc53c032f662ac90d39ab7a3a5b601e9b0a2cacdd6e2d9fd00`.
+- readers-coverage: `npm run test:cov -- --coverage.reportsDirectory=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-weapon-readers-6wc2dv_t/coverage`; exit0, wall36.998s; log SHA256 `6f35eb7a0c3b32350e7452d9dbeffd25b8a6b825fb5de8f671c2490fff978156`.
+- readers-lint: `npm run lint`; exit0, wall35.928s; log SHA256 `64ef18bd16f812a048e5d016a57900763eaa6c02c2e7a32bb2a3cbbdaed0531f`.
+- readers-build: `npm run build`; exit0, wall13.597s; log SHA256 `253a9c79d368eec6d3908f8a6547a75208d0c12bcdfe9289056042429a0d061c`.
+
+coverage-final.json SHA256 `04819d68c3e6d7cacba951b889668d48bd9ac97adffec598349499cb010eb263`.
+
+Root, producer [P08a05e-FINAL-PRODUCER] and QA [P08a05e-FINAL-QA] final
+APPROVE / ADEQUATE. All8nonRED command/result/log pairs, final2source hashes,
+frozen3tests and coverage counters independently verified. No material finding.
+ALL raw consumers DONE; root may remove exact task-owned E scratch/dist/.vite.
+Comparison/browser/fullauthority/BUG041/C/G remain open; root claim continues.

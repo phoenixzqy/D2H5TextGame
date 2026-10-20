@@ -46,13 +46,15 @@ let manualChallengeOrdinal = 0;
 /**
  * Convert a Player to a CombatUnit for battle.
  *
- * Derives `equippedWeapon` from the player's equipment list so the AI
+ * Derives weapon metadata and stats from the same canonical equipment snapshot
+ * so the AI
  * skill chooser can apply weapon-type / handedness gates
  * (see {@link import('@/engine/skills/eligibility').canCastSkill}).
  */
 export function playerToCombatUnit(player: Player): CombatUnit {
-  const equippedWeapon = resolveEquippedWeapon(player.equipment);
-  const mods = aggregateEquipmentMods(useInventoryStore.getState().equipped);
+  const equipped = useInventoryStore.getState().equipped;
+  const equippedWeapon = resolveEquippedWeapon(equipped);
+  const mods = aggregateEquipmentMods(equipped);
   const core = applyEquipmentCoreMods(player.coreStats, mods);
   const freshStats = deriveStats(core, player.level, equipmentModsToDerivedModifiers(mods));
   const stats = { ...freshStats,
@@ -89,13 +91,18 @@ export function playerToCombatUnit(player: Player): CombatUnit {
   };
 }
 
+/**
+ * Resolve weapon eligibility metadata from the canonical weapon slot.
+ * Missing items or unknown bases are explicitly unarmed; item flags and legacy
+ * player equipment do not participate in this read.
+ */
 export function resolveEquippedWeapon(
-  equipment: readonly Item[]
+  equipped: Readonly<Record<string, Item | null>>
 ): {
   weaponType?: import('@/engine/types/items').WeaponType;
   handedness?: import('@/engine/types/items').Handedness;
 } {
-  const weapon = equipment.find((it) => it.equipSlot === 'weapon');
+  const weapon = equipped.weapon;
   if (!weapon) return {};
   const base = loadItemBases().get(weapon.baseId);
   if (!base) return {};

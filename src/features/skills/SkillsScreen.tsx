@@ -15,6 +15,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Panel, ScreenShell, Tabs, resolveSkillIcon, tDataKey } from '@/ui';
 import { usePlayerStore } from '@/stores';
+import { useInventoryStore } from '@/stores/inventoryStore';
 import {
   canonicalSkillIdFromData,
   dataSkillIdFromCanonical,
@@ -66,6 +67,7 @@ type Translate = ReturnType<typeof useTranslation>['t'];
 export function SkillsScreen() {
   const { t } = useTranslation(['skills', 'common', 'damage-types']);
   const player = usePlayerStore((s) => s.player);
+  const equipped = useInventoryStore((s) => s.equipped);
   const setComboOrder = usePlayerStore((s) => s.setComboOrder);
   const allocateSkillPoint = usePlayerStore((s) => s.allocateSkillPoint);
   const [selectedSkillId, setSelectedSkillId] = useState('');
@@ -84,8 +86,8 @@ export function SkillsScreen() {
   const skillTrees = useMemo(() => organizeSkillsByTree(allSkills), [allSkills]);
   const registeredSkillIds = useMemo(() => new Set(listSkills()), []);
   const equippedWeapon = useMemo(
-    () => resolveEquippedWeapon(player?.equipment ?? []),
-    [player?.equipment]
+    () => resolveEquippedWeapon(equipped),
+    [equipped]
   );
 
   const allocatedSkills = useMemo(() => {
@@ -160,9 +162,9 @@ export function SkillsScreen() {
   useEffect(() => {
     if (!player) return;
     if (!sameStringArray(sanitizedComboOrder, player.comboOrder)) {
-      saveComboOrder(sanitizedComboOrder);
+      setComboOrder(sanitizedComboOrder);
     }
-  }, [player, sanitizedComboOrder, saveComboOrder]);
+  }, [player, sanitizedComboOrder, setComboOrder]);
 
   const combo = useMemo<string[]>(() => {
     const arr = sanitizedComboOrder.slice();
