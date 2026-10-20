@@ -128,7 +128,7 @@ async function expectDerived(page: Page, english: boolean, applied: boolean): Pr
   for (const [en, zh, value] of [
     ['Attack Rating', '命中率', applied ? '25' : '24'], ['Defense', '防御', '23'],
     ['Attack Speed', '攻击速度', applied ? '126' : '125'], ['Crit Chance', '暴击率', '5%'],
-    ['Crit Damage', '暴击伤害', '2%'], ['Physical Dodge', '物理闪避', '10%'],
+    ['Crit Damage', '暴击伤害', '200%'], ['Physical Dodge', '物理闪避', '10%'],
     ['Magical Dodge', '魔法闪避', '5%'], ['Magic Find', '魔法寻物 (MF)', '0%'],
     ['Gold Find', '金币寻物', '0%']
   ] as const) {
@@ -380,6 +380,7 @@ for (const locale of ['en', 'zh-CN'] as const) {
     await expect(reopened.getByTestId('char-draft-energy')).toHaveText('37');
     await expectDerived(reopened, english, true);
     await layout(reopened, info, 'reopened');
+    await info.attach('derived-reopened', { body: await reopened.getByTestId('char-derived-stats').locator('..').screenshot(), contentType: 'image/png' });
     // One bounded geometry sweep reuses the earned character; no extra combat or acceptance skips.
     if (english && info.project.name === 'pwa-desktop') {
       for (const [width, height] of [[320,640],[360,640],[375,667],[393,851],[412,915],[640,360],

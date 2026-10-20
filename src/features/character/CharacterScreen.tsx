@@ -259,7 +259,7 @@ function DerivedStatsPanel({ player }: { player: Player }) {
         />
         <KvRow
           label={t('common:stats.critDamage')}
-          value={`${String(Math.round(ds.critDamage))}%`}
+          value={`${String(Math.round(ds.critDamage * 100))}%`}
         />
         <KvRow
           label={t('common:stats.physicalDodge')}

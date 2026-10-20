@@ -4,7 +4,7 @@
  */
 import { describe, it, expect, beforeEach } from 'vitest';
 import { Suspense } from 'react';
-import { render, screen, act } from '@testing-library/react';
+import { render, screen, act, within } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import { MemoryRouter } from 'react-router-dom';
 import i18n from '@/i18n';
@@ -64,6 +64,35 @@ describe('CharacterScreen', () => {
     expect(screen.getByTestId('char-derived-stats')).toBeInTheDocument();
     expect(screen.getByTestId('char-resistances')).toBeInTheDocument();
   });
+
+  for (const locale of ['en', 'zh-CN'] as const) {
+    it.each([
+      [2, '200%'], [1.5, '150%'], [1, '100%'], [2.375, '238%'], [0, '0%'],
+    ] as const)(`shows total critical damage for multiplier %s in ${locale}`, async (multiplier, display) => {
+      const originalLocale = i18n.language;
+      try {
+        await act(async () => { await i18n.changeLanguage(locale); });
+        const fresh = createMockPlayer('Critical display', 'barbarian');
+        const player = { ...fresh, derivedStats: { ...fresh.derivedStats, critDamage: multiplier } };
+        act(() => { usePlayerStore.getState().setPlayer(player); });
+        const before = structuredClone(player);
+
+        renderScreen();
+
+        const damageRow = screen.getByText(locale === 'en' ? 'Crit Damage' : '暴击伤害', { exact: true }).closest('li');
+        const chanceRow = screen.getByText(locale === 'en' ? 'Crit Chance' : '暴击率', { exact: true }).closest('li');
+        if (!damageRow || !chanceRow) throw new Error('Missing critical stat rows');
+        expect(within(damageRow).getByText(display, { exact: true })).toBeInTheDocument();
+        expect(within(chanceRow).getByText('5%', { exact: true })).toBeInTheDocument();
+        expect(usePlayerStore.getState().player).toBe(player);
+        expect(usePlayerStore.getState().player?.derivedStats).toBe(player.derivedStats);
+        expect(usePlayerStore.getState().player?.derivedStats.critDamage).toBe(multiplier);
+        expect(usePlayerStore.getState().player).toEqual(before);
+      } finally {
+        await act(async () => { await i18n.changeLanguage(originalLocale); });
+      }
+    });
+  }
 
   it('shows equipped items with rarity colors when inventory has them', () => {
     const player = createMockPlayer('Bul Kathos', 'barbarian');
