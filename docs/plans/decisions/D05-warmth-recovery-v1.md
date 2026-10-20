@@ -202,3 +202,59 @@ existing fractional carry/compensation across waves; cap paths reset both unit
 fields and local accumulator. Recover current living survivors after complete
 periodic death/orphan/refund/orb settlement and before winner/action checks.
 Exact partition/terminal/cap/production-nextwave tests precede runtime.
+
+
+## Stage f precision amendment — controlling implementation contract
+
+Initial cumulative binary addition compensation is insufficient: actual7.2MP/s
+battles split695ms/555ms grant8 instead of9 after carry projection; pure43.68MP/s
+split16ms/24984ms grants1091 instead of1092 due product rounding. Root, producer
+and independent QA accept both supplemental RED controls. Initial GREEN is
+provisional and is not runtime acceptance. Subtract-first projection alone is
+also insufficient for other partitions, including976ms/274ms.
+
+Interpret each finite numeric rate/timestamp by its shortest decimal
+`Number.toString()` value, including exponent notation. Do not round authored
+rates to a tuning quantum. Compute decimal products, timestamp differences,
+sums, whole MP and remainders exactly using local BigInt coefficients/scales.
+In combat derive each interval from exact decimal `from` and `to` timestamps,
+not the already rounded binary `to - from`. Fractional status boundaries are
+legal; preserve their represented timestamps. No epsilon or artificial recovery
+scheduler is permitted.
+
+The helper's cumulative state gains explicit signed canonical-decimal
+`exactTotal` in MP-milliseconds, alongside existing numeric total/compensation/
+wholeGranted views. Add optional transient `CombatUnit.manaRegenExactCarry`,
+a canonical decimal MP fraction in[0,1). The exact string is authoritative
+when valid. Existing numeric carry and signed compensation remain compatibility
+views; exported compensation means numericCarry minus exactCarry. Qualified
+next waves/replays retain the exact string. No hidden metadata, BigInt in
+recorded snapshots, persistence fields, save version or migration is introduced.
+
+When exact carry is absent/invalid, qualify the existing numeric fractional
+carry and finite signed compensation, then use their exact-decimal difference.
+The combined credit must itself lie in[0,1); otherwise reset the entire seed
+to zero. This forbids negative regeneration or unearned whole carried MP.
+Accepted carry.75/compensation−.125 still seeds.875MP. Invalid combined seeds
+.75/+1 and.75/−.5 seedzero and at1MP/s for100ms produce0whole/.1fraction.
+A valid exact carry takes precedence over contradictory legacy views. Validate
+foreign exact carry as canonical, finite, fractional and at most2048 characters;
+this bounds foreign input independently of tuning precision. Do not reject an
+internally generated exact total merely because it has an additional integer
+part. Mathematical floor/remainder semantics must hold for signed arithmetic.
+
+At cap reset the local integral and all existing numeric/exact optional carry
+fields. A new run startszero. Configuration clamping to cap also clears exact
+carry; original input/replay and noncapped next waves retain it. Death deletes
+the local map entry and retains existing dead-unit carry snapshots, matching
+the prior policy: alive guards forbid further recovery and nextwave filters
+exclude dead units. No new death-time resource writes or revival are added.
+
+Bounded precision child owns five paths: mana-recovery.ts/test, combat.ts,
+mana-recovery-combat.test.ts and combat/types.ts. The production cross-wave
+test stays frozen/read-only. Root owns a separate two-path adapter-cap child
+(combatHelpers.ts and warmth-composition.test.ts), with its own RED before
+source. New API/parser/exponent/mixed-scale/invalid-credit/handoff tests precede
+runtime; literal existing assertions remain, with exact-field expectations
+added for the explicit API amendment. Independent RED/source/GREEN review and
+combined-head U/E/T/L/B/coverage/browser validation remain required.

@@ -130,3 +130,16 @@ two-battle and pure-helper RED controls before any source correction. No epsilon
 weakened assertion or campaign tuning is authorized. A reasoned numeric contract
 amendment and independently reviewed supplemental RED precede further runtime.
 Initial GREEN remains provisional, not acceptance.
+
+
+Precision supplemental tests-only worker`9aa93c67d1872c48b0e7703d5c0595e23be13a18`
+integrated`e5613fb`. Root/producer/QA APPROVE the two-test RED:2failed/93passed/
+95executed,zero skipped,2.99s. Tests patch SHA256
+`8fe45d5672e2ed280d0790892a027915cd2c06510ebc929d549851c2aa3d32d2`.
+Initial source helper`1abb82e168e352843c94e7304bd9aa746879d634e76e0c56f9b932641b80823c`
+and combat`26758890f9bd900f2404e79ab501df1d79b2010b78ac55e40dab942a3b9ca103`
+remain uncorrected/unintegrated. D05's controlling precision amendment now
+specifies explicit transient exact decimal state and exact endpoint arithmetic,
+with legacy credit qualification and unchanged death snapshot policy. Producer
+and QA reviewed the representation/normalization. New API tests are authorized
+before further source edits; no runtime acceptance yet.
