@@ -17,7 +17,7 @@ import sorceressSkills from '../../data/skills/sorceress.json';
 import type { AoeShape } from '../combat/grid';
 import type { DamageType } from '../types/attributes';
 import type { ComboTag, SkillAdditionalStatusEffects, SkillRequirement, SkillStatusEffectMetadata, SkillTarget } from '../types/skills';
-import type { RegisteredSkill, SkillEffect, SummonMaxCountScalingKind, SummonStatScaling } from './effects';
+import type { OnHitStatus, RegisteredSkill, SkillEffect, SummonMaxCountScalingKind, SummonStatScaling } from './effects';
 
 export type PlayableSkillClass =
   | 'amazon'
@@ -121,6 +121,22 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
   if (skill.damage && skill.damageType) {
     const tags = comboTags(skill.appliesTags);
     const statusId = skill.appliesStatus?.[0];
+    const primaryStatus: OnHitStatus | undefined = statusId
+      ? {
+          id: statusId,
+          ...(skill.statusEffect?.chance !== undefined ? { chance: skill.statusEffect.chance } : {}),
+          ...(skill.statusEffect?.stacksOnApply !== undefined
+            ? { stacksOnApply: skill.statusEffect.stacksOnApply }
+            : {}),
+          ...(skill.statusEffect?.dotPctOfDamage !== undefined
+            ? { dotPctOfDamage: skill.statusEffect.dotPctOfDamage }
+            : {})
+        }
+      : undefined;
+    const secondaryStatuses = (skill.appliesStatus?.slice(1) ?? []).flatMap((id): OnHitStatus[] => {
+      const metadata = id === 'freeze' ? skill.additionalStatusEffects?.freeze : undefined;
+      return metadata ? [{ id, ...metadata }] : [];
+    });
     effects.push({
       kind: 'damage',
       damageType: skill.damageType,
@@ -129,19 +145,10 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
         ? { perRank: [skill.scaling.damagePerLevel, skill.scaling.damagePerLevel] }
         : {}),
       ...(tags && tags.length > 0 ? { tags } : {}),
-      ...(statusId
-        ? {
-            applyStatus: {
-              id: statusId,
-              ...(skill.statusEffect?.chance !== undefined ? { chance: skill.statusEffect.chance } : {}),
-              ...(skill.statusEffect?.stacksOnApply !== undefined
-                ? { stacksOnApply: skill.statusEffect.stacksOnApply }
-                : {}),
-              ...(skill.statusEffect?.dotPctOfDamage !== undefined
-                ? { dotPctOfDamage: skill.statusEffect.dotPctOfDamage }
-                : {})
-            }
-          }
+      ...(primaryStatus
+        ? secondaryStatuses.length > 0
+          ? { applyStatuses: [primaryStatus, ...secondaryStatuses] as const }
+          : { applyStatus: primaryStatus }
         : {})
     });
   }

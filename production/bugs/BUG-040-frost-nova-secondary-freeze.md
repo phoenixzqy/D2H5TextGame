@@ -1,6 +1,6 @@
 # BUG-040 — Player Frost Nova drops secondary Freeze
 
-Status: genuine actual-production-data runtime RED reproduced; behavior fix pending.
+Status: fixed within bounded player Frost runtime scope; final independent review approved.
 Severity: Medium; advertised crowd control never reaches production engine.
 Owner: engine-dev/content-designer; independent producer/QA review.
 Card:P08a04, bounded player Frost Nova secondary status only.
@@ -11,17 +11,17 @@ Expected: actual player Frost Nova retains current Chill and applies documented
 10% Freeze to each successful hit; no proc on a miss. Preserve one damage result
 per target, current exact duration/rank/resource/targeting rules.
 
-Observed source: authored sorceress.json row includes [chill,freeze], but
+Observed baseline source: authored sorceress.json row includes [chill,freeze], but
 `src/engine/skills/dataCatalog.ts` effectsForSkill selects appliesStatus[0] only;
-DamageEffect supports only singular applyStatus. Registry loads JSON after
+the baseline DamageEffect supports only singular applyStatus. Registry loads JSON after
 legacy builders, so the builder cannot restore the missing production tail.
-No runtime test or browser outcome has yet been claimed by this investigation.
+The initial investigation claimed no runtime outcome; subsequent A/B evidence follows below.
 
 ## Reproduction plan and environment
 
-Isolated root worktree2, branch feat/playable-foundations; input includes
-quest b4d2764, cast-name tests0df510a and frozen converter7ef1cfb9 awaiting final
-browser acceptance. Node24.21.0, Vitest pure-engine project; locale/viewport
+Isolated root worktree2, branch feat/playable-foundations; representation input
+9f2eb48 includes accepted quest b4d2764 and authored cast-name/browser fix9f2eb48.
+Behavior input ea1d4c3 includes accepted representation A. Node24.21.0, Vitest pure-engine project; locale/viewport
 are not relevant to runtime status transport. Use actual JSON→schema→adapter→
 registry→runBattleRecorded, no substitute registered Frost definition. Record
 actual input SHA and genuine raw RED before source changes.
@@ -212,3 +212,69 @@ Root/producer/QA independently APPROVE / ADEQUATE frozen B tests and genuine
 actual runtime RED before source edits. QA classified22failures as3registry,
 17actual Frost combat and2explicit synthetic primitive probes;9combat controls
 pass. No test change requested. Later assertions still require real GREEN.
+
+## P08a04b bounded behavior source and focused GREEN
+
+Tests/docs checkpoint a936182. Exactly three source files changed: player
+Sorceress JSON adds Freeze chance0.1, adapter emits complete ordered opted-in
+primary+secondary or unchanged legacy scalar/no-status, combat normalizes both
+forms into one loop after hit gating and before existing death finalization.
+No A schema/types/tests, status lifecycle, scheduler, RNG or target-order change.
+Frozen tests remain unchanged. First GREEN93/93 across2files,0skips,exit0,
+runner1.36s/wall2.577s. No failed behavior-fix attempt or oracle modification.
+All previously unreachable assertions now pass, including rank1/20×three-tier
+real suppression, exact1000/500ms expiry, independent AoE rolls, lethal order,
+CD/resources, replay/A-B-A/input immutability and scalar compatibility.
+Root/producer/QA source/focused APPROVE / ADEQUATE; final combined pending.
+
+Source SHA256:
+
+- Sorceress JSON: `27ac6eda7c44610b932e28ccbad8aa778cd52ef0bee375044a2cb3c41f07e2c6`
+- dataCatalog: `9f78ab8da6ccd9dea2c28ba515f29f5f79e2bd13e42bc143f873421268567194`
+- combat: `6c4429e485a812c6ce3616962ace0ade3a1b4f3118a7359956705933ef5d5b43`
+
+Focused GREEN log SHA256:
+`8450771d185ca843da3cae8ca4b9a921b2c1cb53b4b6e939645fde148d95642a`.
+
+## P08a04b final combined validation
+
+All source and frozen test hashes above remain unchanged. Every check exits0;
+no unit skips/failures. Final engine925/51files, related1388/74,
+full2030/128 and coverage2030/128 pass. Typecheck, lint/purity51files and build
+pass. Engine5.32s/related25.99s/full28.86s runner durations exceed3/5/15s
+budgets; those are open performance caveats, not performance acceptance.
+Build8.61s has existing large-chunk and2.57MB nonprecached-manifest warnings;
+756precache entries37327.78KiB and stale Browserslist-data warning. Coverage
+runner31.12s/wall34.622s. No UI/browser/ordinary-earned gate is inferred.
+
+Configured80% engine coverage gate remains unchanged. Coverage60files:
+statements7993/8478(reporter94.27%; mathematical ratio94.2793%),
+branches1834/2053(reporter89.33%),functions291/310(reporter93.87%).
+Whole dataCatalog229/229statements,100/105branches,7/7functions;
+whole combat1136/1167statements,395/440branches,46/46functions.
+Changed-added-line selection (git diff --unified=0 versus a936182):
+select statements whose statementMap.start.line is an added line, and branches
+whose branchMap.line is an added line, counting every arm of each selected
+branch. Adapter21/21statements23/23arms; combat8/8statements8/8arms.
+QA independently selected branches by any location overlapping the added lines:
+adapter25/25arms,combat13/13arms. Both selections are fully covered; their
+different counts reflect location-selection methods, not contradictory results.
+Coverage is engine-only; schema/content validity is established by loader/tests,
+not coverage. These changed-location counts do not imply full-module100%.
+
+Exact commands, checker wall seconds and log SHA256:
+
+- frost-b-green: `npx vitest run --project engine src/engine/combat/frost-nova.test.ts src/engine/skills/registry.test.ts --reporter=verbose`; exit0, wall2.577s; `8450771d185ca843da3cae8ca4b9a921b2c1cb53b4b6e939645fde148d95642a`.
+- frost-b-engine: `npm run test:engine`; exit0, wall6.425s; `cb0490aeb1a89a5c83d256a1d64f6898f20b968727da17d3cc24be01861e99cc`.
+- frost-b-related: `npm run test:related -- src/data/skills/sorceress.json src/engine/skills/dataCatalog.ts src/engine/combat/combat.ts`; exit0, wall27.645s; `b9367089aef619426c767bbd7ee1d92aa0cefdfae3d1da03980256567492c242`.
+- frost-b-full: `npm test`; exit0, wall30.36s; `8ab195d32f96ac66f1768a9fbcc576bda56624b3576bbb0bfd1a518867114a9d`.
+- frost-b-typecheck: `npm run typecheck`; exit0, wall11.616s; `53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47`.
+- frost-b-lint: `npm run lint`; exit0, wall37.962s; `64ef18bd16f812a048e5d016a57900763eaa6c02c2e7a32bb2a3cbbdaed0531f`.
+- frost-b-build: `npm run build`; exit0, wall13.9s; `487227ca44b5739b3c34e0fe89d6f74348b7fcfcf99f9c6dc225a997c5248536`.
+- frost-b-coverage: `npm run test:cov -- --coverage.reportsDirectory=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frost-behavior-jssq614n/coverage`; exit0, wall34.622s; `9388d02b4aded7e00f04fcf577ad41dc718c28a72490c065d8c13cb28c5bdc6f`.
+
+coverage-final.json SHA256: `d9a88aecceff6201472cb5e1d7da61baa4c4d084ff63377fd5253faac05a6cd9`.
+Root/producer/QA final combined APPROVE / ADEQUATE. All independent B raw
+consumers finished; exact root-owned raw/build/cache cleanup follows.
+Existing React unit-test warnings remain; no browser/runtime console claim.
+No fullskill/campaign or C0–C4/G0–G7 gate accepted.

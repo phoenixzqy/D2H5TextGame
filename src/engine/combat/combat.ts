@@ -352,13 +352,14 @@ function applyDamageToUnit(
   const newLife = Math.max(0, defender.life - outcome.final);
   state.units.set(defenderId, { ...defender, life: newLife });
 
-  if (effect.applyStatus) {
-    const chance = effect.applyStatus.chance ?? 1;
+  const statuses = effect.applyStatuses ?? (effect.applyStatus ? [effect.applyStatus] : []);
+  for (const status of statuses) {
+    const chance = status.chance ?? 1;
     if (state.rng.chance(chance)) {
-      const stacks = effect.applyStatus.stacksOnApply ?? 1;
+      const stacks = status.stacksOnApply ?? 1;
       const dotPerStack =
-        effect.applyStatus.dotPctOfDamage !== undefined
-          ? Math.max(1, Math.floor(outcome.final * effect.applyStatus.dotPctOfDamage))
+        status.dotPctOfDamage !== undefined
+          ? Math.max(1, Math.floor(outcome.final * status.dotPctOfDamage))
           : undefined;
       const cur = state.units.get(defenderId);
       if (cur) {
@@ -367,7 +368,7 @@ function applyDamageToUnit(
           updated = applyStatus(
             updated,
             {
-              id: effect.applyStatus.id,
+              id: status.id,
               sourceId: attackerId,
               simClockMs: state.simClockMs,
               ...(dotPerStack !== undefined ? { dotPerStack } : {}),
@@ -377,7 +378,7 @@ function applyDamageToUnit(
           );
         }
         state.units.set(defenderId, updated);
-        emit(state, { kind: 'status', target: defenderId, statusId: effect.applyStatus.id });
+        emit(state, { kind: 'status', target: defenderId, statusId: status.id });
       }
     }
   }

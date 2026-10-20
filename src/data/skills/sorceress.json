@@ -63,6 +63,11 @@
       "chill",
       "freeze"
     ],
+    "additionalStatusEffects": {
+      "freeze": {
+        "chance": 0.1
+      }
+    },
     "appliesTags": [
       "cold",
       "chill"
