@@ -1,6 +1,7 @@
 # BUG-038 — Settle continuous mana recovery at actual combat boundaries
 
-- **Status:** Reproduced; P07a01f tests-only review, runtime not implemented.
+- **Status:** Fixed; combined-head functional acceptance complete.
+  Ordinary earned browser/save acceptance remains separate and pending.
 - **Severity:** High; learned Warmth advertises mana recovery but grants none.
 - **Owner / systems:** engine developer; pure recovery integral and battle
   settlement, with production cross-wave integration tests.
@@ -276,3 +277,47 @@ review confirms exact decimal arithmetic, canonical boundary validation, signed
 floor/remainder, residual signs, immutable seed, cap/death map reset and
 post-periodic survivor settlement; no RNG/wall-clock/persistence additions.
 Independent final source review and broader/current-head checks remain open.
+
+
+## Integrated final runtime and combined-head validation
+
+Worker source `a793b730953013c3ba8a2f8e6983e645c2a7fb40` integrated as
+`775eab7`, preserving all final source/test hashes above. Root, producer and QA
+independently APPROVE / ADEQUATE final source, focused135pass and worker broad
+functional evidence. Worker broad engine893/50files, related890/57, full1780/127,
+T/L/purity/build and unchanged80% engine coverage pass, zero skips. Raw coverage
+SHA256 `967d7f291b28301fb9a4d45cde9dbc86375bd61f75202a965ae7f9974b9cda11`: engine
+7921/8469 statements,289/312 functions,1662/1918 branches; helper133/133 statements,
+12/12 functions,50/53 branches. Three unhit private/defensive alternatives are
+negative-floor adjustment/evaluation and nonfinite numeric-high; universal extreme
+numeric-view/wholecounter overflow is not claimed. Added combat37/37 statements
+and19/19 branch locations covered. Raw report truncates engine percentages to
+93.52/92.62; the summary rounds to93.53/92.63 from the same counts.
+
+Fresh combined root `775eab7` includes the separately approved exact-carry store
+adapter. Engine893/50files4.91s (wall6.048), related900/57files20.52s (wall22.046),
+full1790/127files28.48s (wall29.911), typecheck wall12.615, lint/purity wall28.380,
+build5.69s (wall8.790), unchanged80% engine coverage893tests wall8.461 all pass.
+Engine/related/full were sequential; T/L/coverage overlapped separately. Zero
+skips/failures, no threshold or configuration weakened. Commands/logs/results:
+`/tmp/d2h5-root-warmth-g/combined-{engine,related,full,typecheck,lint,build,coverage}`
+with `.log` and `-result.json`; coverage JSON/report under that owned root.
+Engine3s/related5s/full15s budgets remain unmet. Build retains >500KB main chunk
+and2.57MB manifest-not-precached warnings; bundle/offline/performance acceptance
+remains open. Producer/QA combined-head review and g/browser/save still pending.
+
+After all three consumers finished worker evidence, worker verified removal of
+its exact task-owned artifact root (268files/40directories/0symlinks), and its
+dist/taskcache. Worktree3 is released; source/branch/history/dependencies remain.
+Historical raw paths earlier in this report are no longer retained. Durable
+commands, observations, hashes, corrections and verdicts remain here and in Git.
+Root scratch/build retained only for combined review and native production proof.
+
+
+Root, producer and QA independently APPROVE / ADEQUATE combined `775eab7`
+functional/coverage evidence. All8 reviewed runtime/test hashes including adapter
+match. Combined coverage JSON SHA256
+`85d3c9c055de0fa177461a2db2c05617992cb28bc86def62aa7c8971316b9ed4`; same
+helper/combat counts and unchanged thresholds. Required current-head functional
+checks pass; timing/performance and earned browser/save remain explicitly open.
+No persistence/schema diff, push, PR, merge or deployment.

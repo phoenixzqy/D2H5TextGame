@@ -1182,3 +1182,21 @@ the complete task-owned browser scratch directory including temporary font/
 caches, root `dist/` and `node_modules/.vite/`. Port4386 has no listener;
 dependencies/source/history preserved. Prior d/e cleanup also confirmed in
 BUG036. The original checkout remains clean on main.
+
+
+P07a01f final source worker`a793b73` integrated root`775eab7` after independent
+root/producer/QA functional approval. BUG038 preserves the exact-number contract,
+wrong-oracle correction, genuine near-one RED and final approved source hashes.
+Combined source with adapter passes893engine/900related/1790full, T/L/purity/build
+and unchanged80% enginecoverage. Engine4.91/related20.52/full28.48seconds exceed
+3/5/15 budgets; existing build warnings remain. Coverage helper100%statements/
+functions,94.34%branches; changedcombat37/37statements19/19branches. Combined
+review and earned browser/save proof remain pending; no checkpoint/G acceptance.
+Worker exact artifacts removed after all consumers finished; managed worktree3
+released with history preserved. Root claimed worktree2 and task scratch remain
+for continued authorized implementation and production browser validation.
+
+Root/producer/QA final combined APPROVE / ADEQUATE P07a01f functional boundary
+at`775eab7`; all8source/test hashes match. Engine recovery child is accepted,
+with timing/bundle/offline/performance caveats above. Warmth as a whole and
+P07a01g ordinary-earned browser/save proof remain open.
