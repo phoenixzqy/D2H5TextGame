@@ -195,6 +195,7 @@ export function registeredSkillFromJson(skill: JsonSkill): RegisteredSkill {
   return {
     id: canonicalSkillIdFromData(skill.id),
     archetype: archetypeFromSkillId(skill.id),
+    trigger: skill.trigger,
     target: skill.target,
     cooldown: skill.cooldown,
     manaCost: skill.cost?.mana ?? 0,

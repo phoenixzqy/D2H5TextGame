@@ -97,6 +97,7 @@ export type SkillEffect =
 export interface RegisteredSkill {
   readonly id: string;
   readonly archetype: string;
+  readonly trigger?: 'active' | 'passive' | 'aura';
   readonly target: SkillTarget;
   /**
    * Cooldown in **seconds** (sim-time). The combat engine multiplies this by

@@ -12,6 +12,7 @@ import mercenarySkills from '../../data/skills/mercenary.json';
 import { loadMercPool } from '../../data/loaders/mercs';
 import { createMercFromDef } from '../../stores/mercFactory';
 import { MERC_STUB_SKILLS } from './aliases';
+import type { RegisteredSkill } from './effects';
 import { getSkill, listSkills, loadDefaultSkills, registerSkill, resetRegistry } from './registry';
 import {
   canonicalSkillIdFromData,
@@ -19,6 +20,115 @@ import {
   PLAYABLE_CLASS_SKILL_DATA,
   registeredSkillFromJson
 } from './dataCatalog';
+
+describe('P07a01b authored trigger metadata (not passive runtime behavior)', () => {
+  beforeEach(() => { resetRegistry(); loadDefaultSkills(); });
+  afterEach(() => { resetRegistry(); loadDefaultSkills(); });
+
+  function authoredSkill(id: string) {
+    const skill = Object.values(PLAYABLE_CLASS_SKILL_DATA).flat().find(row => row.id === id);
+    if (!skill) throw new Error(`Missing authored skill: ${id}`);
+    return skill;
+  }
+
+  it('preserves actual Warmth passive classification through both identities', () => {
+    const row = authoredSkill('skills-sorceress-warmth');
+    expect(row.trigger).toBe('passive');
+    expect(getSkill(row.id)).toBe(getSkill('sorceress.warmth'));
+    expect(getSkill(row.id)).toMatchObject({
+      id: 'sorceress.warmth', trigger: 'passive', target: 'self', cooldown: 0,
+      manaCost: 0, isBuff: true, effects: [{ kind: 'buff', id: 'warmth', duration: -1 }]
+    });
+  });
+
+  it('keeps actual Fire Bolt active with its existing damage effect', () => {
+    const row = authoredSkill('skills-sorceress-fire-bolt');
+    expect(row.trigger).toBe('active');
+    expect(getSkill(row.id)).toBe(getSkill('sorceress.fire_bolt'));
+    expect(getSkill(row.id)).not.toHaveProperty('isBuff');
+    expect(getSkill(row.id)).toMatchObject({
+      trigger: 'active', effects: [{ kind: 'damage', damageType: 'fire', base: [30, 45],
+        perRank: [4, 4], tags: ['fire', 'burn'], applyStatus: { id: 'burn', dotPctOfDamage: 0.1 } }]
+    });
+  });
+
+  it('keeps actual Frozen Armor active despite passiveStatsPerLevel and isBuff', () => {
+    const row = sorceressSkills.find(skill => skill.id === 'skills-sorceress-frozen-armor');
+    expect(row).toMatchObject({ trigger: 'active', scaling: { passiveStatsPerLevel: { defensePct: 0.03 } } });
+    expect(getSkill('skills-sorceress-frozen-armor')).toBe(getSkill('sorceress.frozen_armor'));
+    expect(getSkill('sorceress.frozen_armor')).toMatchObject({
+      trigger: 'active', isBuff: true, effects: [{ kind: 'buff', id: 'frozen-armor', duration: -1 }]
+    });
+  });
+
+  it.each(['might', 'prayer'])('keeps actual Paladin %s aura authored as passive without changing its buff', name => {
+    const dataId = `skills-paladin-${name}`;
+    expect(paladinSkills.find(skill => skill.id === dataId)).toMatchObject({ aura: true, trigger: 'passive' });
+    expect(getSkill(dataId)).toBe(getSkill(`paladin.${name}`));
+    expect(getSkill(dataId)).toMatchObject({
+      trigger: 'passive', isBuff: true, effects: [{ kind: 'buff', id: name, duration: -1 }]
+    });
+  });
+
+  it('forwards literal aura metadata from an explicitly synthetic adapter fixture', () => {
+    // No current playable row authors trigger:aura; this tests the supported adapter subset only.
+    const fixture = { ...authoredSkill('skills-paladin-might'), id: 'skills-fixture-aura-trigger', trigger: 'aura' as const };
+    const before = structuredClone(fixture);
+    const registered = registeredSkillFromJson(fixture);
+    expect(fixture).toEqual(before);
+    expect(registered).toMatchObject({
+      id: 'fixture.aura_trigger', trigger: 'aura', isBuff: true,
+      effects: [{ kind: 'buff', id: 'aura_trigger', duration: -1 }]
+    });
+  });
+
+  it('preserves every playable authored trigger in the adapter and canonical/data aliases', () => {
+    const rows = Object.values(PLAYABLE_CLASS_SKILL_DATA).flat();
+    expect(rows).toHaveLength(213);
+    for (const row of rows) {
+      const canonical = getSkill(canonicalSkillIdFromData(row.id));
+      expect(getSkill(row.id), row.id).toBe(canonical);
+      expect(canonical, row.id).toHaveProperty('trigger', row.trigger);
+      expect(registeredSkillFromJson(row), row.id).toHaveProperty('trigger', row.trigger);
+    }
+  });
+
+  it('adapts the entire playable corpus without mutating authored inputs', () => {
+    const before = structuredClone(PLAYABLE_CLASS_SKILL_DATA);
+    for (const row of Object.values(PLAYABLE_CLASS_SKILL_DATA).flat()) registeredSkillFromJson(row);
+    expect(PLAYABLE_CLASS_SKILL_DATA).toEqual(before);
+  });
+
+  it('restores authored trigger metadata after overrides and repeated default reloads', () => {
+    const ids = [...listSkills()].sort();
+    for (let i = 0; i < 3; i++) {
+      for (const id of ['sorceress.warmth', 'sorceress.frozen_armor']) {
+        registerSkill({ id, archetype: 'fixture', target: 'self', cooldown: 9, manaCost: 999, minLevel: 99, effects: [] });
+        expect(getSkill(id)).not.toHaveProperty('trigger');
+      }
+      loadDefaultSkills();
+      expect(getSkill('skills-sorceress-warmth')).toHaveProperty('trigger', 'passive');
+      expect(getSkill('skills-sorceress-frozen-armor')).toHaveProperty('trigger', 'active');
+      expect([...listSkills()].sort()).toEqual(ids);
+    }
+  });
+
+  it('leaves a manually registered legacy buff without trigger metadata and preserves unrelated stubs', () => {
+    const legacy: RegisteredSkill = {
+      id: 'fixture.legacy_buff', archetype: 'fixture', target: 'self', cooldown: 0,
+      manaCost: 0, minLevel: 1, isBuff: true, effects: [{ kind: 'buff', id: 'legacy', duration: -1 }]
+    };
+    const before = structuredClone(legacy);
+    registerSkill(legacy);
+    expect(getSkill(legacy.id)).toBe(legacy);
+    expect(getSkill(legacy.id)).not.toHaveProperty('trigger');
+    expect(legacy).toEqual(before);
+    for (const stub of MERC_STUB_SKILLS.filter(skill => skill.id !== 'mskill-minor-heal')) {
+      expect(getSkill(stub.id)).toBe(stub);
+      expect(getSkill(stub.id)).not.toHaveProperty('trigger');
+    }
+  });
+});
 
 describe('P08a03a authored Minor Heal registration', () => {
   const productionId = 'mskill-minor-heal';
