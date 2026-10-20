@@ -1355,3 +1355,15 @@ gate8102/8582s1891/2104b296/315f excludes comparison source. BUG041 records
 exact commands/hashes and timing/warning limits. All consumers finished before
 verified exact F scratch/dist/.vite cleanup. Ordinary browser/fullauthority/
 BUG041/C/G remain open; continue native production Amazon authority chain.
+
+BUG042 discovered during G ordinary production route. Frozen routed REDca99f7b
+5fail/5controls proved deferred navigation starts a hidden oldseed/bow run across
+four explicit exits. Single-source synchronous exit intent fixes auto-start;
+no unmount abort, preserving Skills/Inventory recording and three intentional
+restart controls. Root/producer/QA independent source and final APPROVE/ADEQUATE.
+Focused41/3,related22/2,fullcov2216/133,T/L/purity51 pass; unchanged80%enginegate
+8102/8582s1892/2105b296/315f, UI source excluded. Native en/desktop1pass0skip/retry
+confirms .055Fallen0-09f2 and establishes earnedattack8sword route. BUG042 records
+exact commands/hashes, testoracle/type corrections, timings andwarninglimits.
+SharedGraw/taskdist/.vite retained by root for ongoingG; no premature cleanup.
+Gstage1 independent producer/QA APPROVE for freeze only; fullG/C0–C4/G0–G7 open.

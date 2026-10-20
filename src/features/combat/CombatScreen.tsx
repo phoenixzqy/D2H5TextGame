@@ -97,9 +97,12 @@ export function CombatScreen() {
   const [nextWaveCountingDown, setNextWaveCountingDown] = useState(false);
   const isIdleLoop = Boolean(idleTarget && currentSubAreaId && (idleTarget === currentSubAreaId || idleTarget === currentSubAreaId.replace(/^areas\/act([1-5])-/, 'a$1-')));
 
+  // Explicit exits reset the store before deferred router navigation unmounts us.
+  const exiting = useRef(false);
+
   // Auto-start a sub-area run if none is in flight.
   useEffect(() => {
-    if (!inCombat && player && !runVictory && !runDefeat) {
+    if (!exiting.current && !inCombat && player && !runVictory && !runDefeat) {
       startSubAreaRun({ mode: isIdleLoop ? 'idle' : 'manual' });
     }
   }, [inCombat, isIdleLoop, player, runVictory, runDefeat]);
@@ -179,6 +182,7 @@ export function CombatScreen() {
   // Mid-run flee: a sub-area run is in flight → bail to the world map (#21).
   // Synthetic / no-run battles fall through to the town hub as before.
   const handleFlee = () => {
+    exiting.current = true;
     const wasInRun = hasActiveSubAreaRun() || subAreaRunId !== null;
     abortSubAreaRun();
     if (wasInRun) {
@@ -202,6 +206,7 @@ export function CombatScreen() {
   };
 
   const handleReturnToMap = () => {
+    exiting.current = true;
     setIdleTarget(undefined);
     resetIdleElitePity();
     endCombat();
@@ -209,6 +214,7 @@ export function CombatScreen() {
   };
 
   const handleReturnToTown = () => {
+    exiting.current = true;
     setIdleTarget(undefined);
     resetIdleElitePity();
     endCombat();
@@ -230,6 +236,7 @@ export function CombatScreen() {
   }, [endCombat, isIdleLoop, runDefeat, runVictory, setIdleTarget]);
 
   const handleStopIdle = () => {
+    exiting.current = true;
     setIdleTarget(undefined);
     resetIdleElitePity();
     abortSubAreaRun();
