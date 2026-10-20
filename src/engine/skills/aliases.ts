@@ -152,7 +152,6 @@ export const MERC_STUB_SKILLS: readonly RegisteredSkill[] = Object.freeze([
   stub({ id: 'mskill-minor-heal', target: 'self', cooldown: 4, manaCost: 0, buffId: 'minor_heal' }),
   stub({ id: 'mskill-frozen-armor', target: 'self', cooldown: 0, manaCost: 0, buffId: 'frozen_armor' }),
   stub({ id: 'mskill-telekinesis', target: 'single-enemy', cooldown: 2, manaCost: 0, damageType: 'arcane', base: [20, 30] }),
-  stub({ id: 'mskill-inner-sight', target: 'self', cooldown: 0, manaCost: 0, buffId: 'inner_sight' }),
 
   // Auras (always-on self buffs).
   stub({ id: 'aura-holy-freeze', target: 'self', cooldown: 0, manaCost: 0, buffId: 'holy_freeze' }),

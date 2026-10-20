@@ -131,10 +131,12 @@ export interface SkillStatusEffectMetadata {
   readonly chance?: number;
   readonly stacksOnApply?: number;
   readonly dotPctOfDamage?: number;
-  /** Base duration in simulation milliseconds; production Amplify Damage only. */
+  /** Base duration in simulation milliseconds for authored timed debuffs. */
   readonly durationMs?: number;
   /** Nonnegative percentage-point reduction; production Amplify Damage only. */
   readonly physicalResistReductionPct?: number;
+  /** Ordinary-defense reduction percent in [0,100]; mercenary Inner Sight only. */
+  readonly defenseReductionPct?: number;
 }
 
 /** Explicit secondary on-hit metadata; chance is required to avoid implicit procs. */

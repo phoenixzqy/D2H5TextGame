@@ -1,0 +1,2623 @@
+{
+  "classification": "interrupted before free hire/combat; no completed gameplay result",
+  "sourceParent": "6b9950444a2ff7839d2a6cfaf794da95d42005e2",
+  "reason": "unchanged64MiB cap; no cap or test change",
+  "archive": {
+    "file": "interrupted-pilot.tar.gz",
+    "bytes": 1032376,
+    "sha256": "beb54cd4888420160ff36988e9d345fcbe2095a88bad7d637b8138f55cba40ba"
+  },
+  "files": [
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/23c9f67a5d77771b744b-9522d0532aade9e7257d.network",
+      "bytes": 494048,
+      "sha256": "736ef67d92e2bde2faed7bcae80fd94bb7da0b6c329b0889b202f0b061e5a655",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/23c9f67a5d77771b744b-9522d0532aade9e7257d.network"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/23c9f67a5d77771b744b-9522d0532aade9e7257d.trace",
+      "bytes": 122754,
+      "sha256": "be77ab1a4673530a5b73948daf5978edfd0f7e4d9a1812bcf8cdee0bccd1dd86",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/23c9f67a5d77771b744b-9522d0532aade9e7257d.trace"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/0125f121eca4747733bb6655d7a43238c3cb2547.png",
+      "bytes": 42488,
+      "sha256": "c3124944b44de66ab7b9f7bc86ef539542a271e754104982827284db54c3dd13",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.spirit-of-barbs.png",
+        "gitBlob": "a097745626f86be92ace1b5a45bf958a140249a2"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/01ccdbb11efb39b9d2dfade902978b8dab822a8b.png",
+      "bytes": 61708,
+      "sha256": "e7099cb0f9b9693e598143f3df04fbbd186ec5b9daf5460b9dd4f864eb27bee9",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.bone-armor.png",
+        "gitBlob": "e92b625f5769fdf9b9ca2ed0e2a03f46dbfc53e1"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/01fd5459a81ea5f153c310839294391d96dd92c6.png",
+      "bytes": 34201,
+      "sha256": "94a94f49f6d91d85993784e89b8cef7aed2b22f82802bbcd0388cc3ddbaa941c",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.skeleton-mastery.png",
+        "gitBlob": "fc5efbeb14741ba7aea747884bc0493d6399eb2f"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/0207cdcfc90d77ba157f913a7c0349ef88b8b48b.png",
+      "bytes": 71031,
+      "sha256": "9ef32d35299475fc8fe02dcd6922850b1ce4300527f0b5f2d9cca8e7316461c4",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/zone-art/zones.act5.harrogath.png",
+        "gitBlob": "4035cb06c110a25f2c0069768a557087829a2fc3"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/02e25e4e919b0df990eabeec36b28230de6df623.png",
+      "bytes": 41744,
+      "sha256": "c9a3c2ba1ad997a5ee6aec28edb9fe00ee213e77f1d10ee92b8b30ef2a9a0616",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.burst-of-speed.png",
+        "gitBlob": "f2d6adbfb3942df3f2d8ee08f4065a5989c70a44"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/06044e47d908b0037455a82ac4d6ca2682c1a5de.png",
+      "bytes": 48368,
+      "sha256": "6ea41e744031121eaa2d3e76ba70efd3c1301a234e6902eeacabcf447c7b04da",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.holy-shock.v1.png",
+        "gitBlob": "a2e0a19d8f6c94879ba7386ab40af7ec9198d56b"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/0653bc09423114fbc202a1f2f9b03d06d657e56d.png",
+      "bytes": 53692,
+      "sha256": "c8eca1d06876c1c87bbbea196108fd7f52f51c8b6e2742861bfe65d97c8ec369",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.golem-mastery.png",
+        "gitBlob": "cc19a2b80b34697c1bd89d420415fb0d49b9135f"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/09345808e7ee725d670eed65e6af2a4e699a104c.png",
+      "bytes": 64451,
+      "sha256": "46a9c4d44362a459a32d58e4c47a061075cd3f8f88f6e8574cfa071a47c63398",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.bone-wall.png",
+        "gitBlob": "6879ca707af46520d798be41e56bbab13e95727e"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/09714d4aeb793c61322699c98640300122b33ab4.png",
+      "bytes": 45664,
+      "sha256": "173257896b8205683111a75e9427e74400068b5e5aba5ab168b54c63ff915730",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.summon-grizzly.v3.png",
+        "gitBlob": "d316690ec3c8e52ad34d5bfd9579e06f96030596"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/09b90d58bccf91b12f802d08f9898ae00ff7fa15.png",
+      "bytes": 43915,
+      "sha256": "871da56922e10ef2eaa08c863155769491e0e33e0a3ed62d64fb4f394c3bfc5a",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.amazon.inner-sight.png",
+        "gitBlob": "f150747f76a237ae80cd84536a705b39835c49e2"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/0a5cd55ada5a55a72e3f489591166e5927933656.png",
+      "bytes": 53609,
+      "sha256": "914cd493311ecb7769caeaadb523499d7a9cf99ab9787c50d65a8896233ea83e",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.tornado.png",
+        "gitBlob": "40fbf56c9707301d2e1a3be3b8b26e533f7ab55d"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/0bc5436914ac6bef753f3bb5f1a25adfdca209ea.png",
+      "bytes": 44750,
+      "sha256": "5e9578cf449a11cd4bc8d9a3cccb04f4796b893f8a975215ab48e8586552aad3",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.firestorm.png",
+        "gitBlob": "b97e2d28e6c20bd7fdb7f335e0f2af1fbd6eff44"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/0cac564626b65cf5bdb08c4ef16b00773ae4f292.png",
+      "bytes": 47648,
+      "sha256": "30448b886936e840ab1d4d89125f27a667ef13584111416fc0f2d69ed71623c8",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.confuse.png",
+        "gitBlob": "b19315fdfb641c115130f809a1089710c5cbd1a3"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/0d68d69fab1440555d14624248abc7d6b1c57323.png",
+      "bytes": 39514,
+      "sha256": "1e22762d432589998896bfac2560e0707cd1d8bf46106d4801131703546af21a",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.summon-grizzly.png",
+        "gitBlob": "eeeb78c5c27a47a5e832596fc6c756b53d917e13"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/0e115d87e63f9fba26dfe89d88d2a174e0a00f80.png",
+      "bytes": 35227,
+      "sha256": "363deff43c3f50b4242481056367876765fdf3c8f9253732eb93a336c9eb6333",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.sword-mastery.png",
+        "gitBlob": "b0dd6665d5d3a68264248af908d3e718efddaac6"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/0f67fd57440d18cefc0cf0f7bcb1ed84df0934a5.png",
+      "bytes": 43156,
+      "sha256": "816e03191fdacc30b2b2b074aa00814682c3c0b036ff33181b2b80a1d41121d0",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.resist-fire.png",
+        "gitBlob": "db6425a2f858ab79dd9f2c2a3251a6c362d56927"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/11e4e8cc40f0c5ab1ca6c60cc5c197f5c7426173.png",
+      "bytes": 62282,
+      "sha256": "0aa0bb295da3fb867544302f0d7101c3cc68eefc264faff2b4d687669cd258c2",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.amazon.valkyrie.v1.png",
+        "gitBlob": "21abd5654a4ef6eb19dc3847fedfeb9d09a1499a"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/12b3a58f1ed24cdff0e9bf629990618c729e93c9.png",
+      "bytes": 45209,
+      "sha256": "2566a0afd9fae95eb0c04d8423eab1fb46d04a6d353c0361aa032f288f93d5b2",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.charge.png",
+        "gitBlob": "1ed56fcbf38662c789c6770c98a79c967bd82dec"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/1485bde99ddd405d3bb15f92d5f2ddf3eb608f44.png",
+      "bytes": 56313,
+      "sha256": "7eecf4dcb91a0a20873c90ee078be41402c6ef369c724fb2209e0f2cfdbd5632",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.might.png",
+        "gitBlob": "dbb5a7e4bb88744a21e2a053a5f5cf1887c6ede7"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/15f317cc0fe3edea0a827ed33e962fb941b3caeb.png",
+      "bytes": 29334,
+      "sha256": "fcbb5e829831c67cd6f9193824d67bdddb980a2f202de61247cc8a2cd397cd37",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.glacial-spike.png",
+        "gitBlob": "6e8814243fb2fa9b02e0142af79fcd2a0d0814b7"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/169fc5b1e266a435dccd1724243c40d20a633c8c.png",
+      "bytes": 84208,
+      "sha256": "cf8d402616691de4851d6bd36bb0cab1e3ad718591ad0faf65e06d7263962959",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/class-portraits/npcs.act1.kashya.png",
+        "gitBlob": "930b69e073dbdae1c5a7851c83990a904101c9a5"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/1783bbe96513d5ecca2c3f4cc1a2417fdf248b07.png",
+      "bytes": 56314,
+      "sha256": "4a5c9952de7057cef91b0ca7348001e9755a5bdff17c2b0604eb943eadfef5d7",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.find-item.png",
+        "gitBlob": "0ba2339208c4542a266b2f47e9e02508c7cf40a9"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/1a0ccbfdb626db4f991a4272554b39be8132d8b8.png",
+      "bytes": 52250,
+      "sha256": "77d2de8d1e95b64c8388f1afd54559f7b126669cef3346ff9e1519c0db88f792",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.blade-fury.png",
+        "gitBlob": "cf1a6eed193676ead4bcc7b6c58adcc831edf384"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/1ed40b69595c407307f88ffe076cbdeb5cd0fb5e.png",
+      "bytes": 71717,
+      "sha256": "639400330816219067a11d52f8244e2692c3c7bf2ce57c3e6871b1cdf2ee6362",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/class-portraits/npcs.act1.gheed.png",
+        "gitBlob": "61d02167c3a9ef901e40780ef864210299a4b0ce"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/1f25a1ed5dfa89e4fc60fdd2cc650c5d3341c04b.png",
+      "bytes": 55428,
+      "sha256": "c078510de21034661f49886834300e4603dca5edb35218f08a25717ca8a43008",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.bash.png",
+        "gitBlob": "07faa6069f197aad4c77fe171fd97178ae4eabfa"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/2157eb85ecb2964d38ddd8cc4e95ccf1fab5ec2a.png",
+      "bytes": 79138,
+      "sha256": "b5cb914a6423097173a1945f006d035267942b5319eee9d2f13186ff7318e09f",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/class-portraits/classes.necromancer.png",
+        "gitBlob": "19dc28af72c1f22e74dbd26eee0085d928f880f5"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/2246697d1b00a9a23832c24bd511045eeac3153e.png",
+      "bytes": 41020,
+      "sha256": "e331341862899600980e038d47b128b0952be64c61fe55d695a39bc65b6158c6",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.volcano.png",
+        "gitBlob": "a395fa8f6782baafc8fb97ac6ff1f0e68daadb9b"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/224741dc6b6ea11ed5c2ba5b6f6ccd452658ea7c.png",
+      "bytes": 53113,
+      "sha256": "e8b1f50dedf96fb36e3679448104951657404443ac8919049796c737cbc7b628",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.raven.png",
+        "gitBlob": "180c5469c295e40e80212ff3d4931dfe09aa334f"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/227192ec42fe2e9813ab1f4b3ca70e0c81fbb73d.png",
+      "bytes": 48245,
+      "sha256": "90f287fc45b1eec6f3c8238f5dcc7f25728e98565c743afe50a621f1f7c7606b",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.poison-mastery.png",
+        "gitBlob": "5aed367c112be6f6c50fba8cc2cc53c0a7d083e4"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/2464cdb45f1f3cb44a9322d92f4700e7add82801.png",
+      "bytes": 37381,
+      "sha256": "2096cbee396393937a78f4b4dc32558ec7a0f756c06453596100b433a50454f5",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.poison-nova.png",
+        "gitBlob": "65a6337314e29903c6964ed9f7bcc40db3930a25"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/249876bb6630b10774830d0e4a69e19d9277020f.png",
+      "bytes": 37174,
+      "sha256": "0777446d2d7adb0f79eb1073807da1de213052efc85825c8a6d2f055a6938b5e",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.shadow-master.png",
+        "gitBlob": "762d3d7ff08059cdb206d79738e357f08d9adca0"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/255dfa5bedeb37a67871e114886b61fc9d8b05b9.png",
+      "bytes": 50248,
+      "sha256": "906d49ed899c3a85e8324507b299c073837c0de8a0cd2ec020d8a32acb6ecf22",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.charged-bolt-sentry.v2.png",
+        "gitBlob": "de09be1505626a2bf52eecb42dc2070dc2ec230f"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/266b5b4c2bf30bceedb9959a839a4796a2ae1bbb.png",
+      "bytes": 47470,
+      "sha256": "cd8b7a325fcfdde7877e5fb05affc3d277b4bd4bc1eac7ad0fb663fad53ac0a8",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.blood-golem.v1.png",
+        "gitBlob": "4d59378568477e3955538ae593f1c92b88c178fe"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/26ac473a21fbaaa1a380971a52194b60aa09fc5b.png",
+      "bytes": 64093,
+      "sha256": "3e550a84055a1e0312d8e4624f29db2b29f28733d593d48a7404ef44cc4b9a05",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.shock-wave.png",
+        "gitBlob": "718f68b898d3499e15776bb9a82bf8d7e1f38f00"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/294aec81b5e0d9b6945903f4aaca85b2977dad1a.png",
+      "bytes": 29994,
+      "sha256": "f35234d2457a19fc7ecf8593277bc6a4673d21ed8ae6fef04d4df836545106ad",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.zeal.v1.png",
+        "gitBlob": "a50b0ac17588484ea205fba660d221f490831b86"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/29b0db815a295048fe6390ebdaf073515e57de15.dat",
+      "bytes": 21434,
+      "sha256": "046096e76e8c6584babb03f8d76fa963d0ccfa195f0b7de847276fa0eaf92eda",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/29b0db815a295048fe6390ebdaf073515e57de15.dat"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/29fb2f987fc96a07cdf62c41f8ebbfe19418fd02.png",
+      "bytes": 45571,
+      "sha256": "82e31aa319ec8be063bf39407143f8e81ba736d12c156ef28e8b6ca524f75ecc",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.meteor.png",
+        "gitBlob": "c942cd643d8898fbe7e4f073abe3989a5e5c57e8"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/2a40cbeaad43210d232475d68e6a4797d8b66ed1.png",
+      "bytes": 56898,
+      "sha256": "b234977bb0ee75957020dd1f151b1cb628b1d7e4fb7e9673dfbf46a947c2e766",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.lower-resist.v1.png",
+        "gitBlob": "b3aacc5366cc6801b51a0770324998d39819d677"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/2a97e8b45fabb4aec5015406b9905951614c8480.png",
+      "bytes": 56045,
+      "sha256": "0b99b3c768b7200e5f3d899ce2a9817e1660d6a4ad200a3ca16e50d28ca3a68d",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.rabies.png",
+        "gitBlob": "2b2523b3735663b4574b12ed0506f4dc2be344fc"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/2e0d3bec45d51d02c4bf6d6c716103ff10d950a4.png",
+      "bytes": 58937,
+      "sha256": "cfe15f2e2c995d97a4a7055ae8ca75a8102d85d1faef2c7915ca68dc6d20de2c",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.nova.png",
+        "gitBlob": "03e1e41ecd9cb63650f5855bee82cd66ec7bea75"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/2ed30832c6741b24b87ec5ce7b436b34114adbb3.png",
+      "bytes": 33023,
+      "sha256": "db7a69fdde5139ef82546b5b9b55da958fe7c5c2c67c3af086afff71518023c6",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.shout.png",
+        "gitBlob": "69372948d266d42ed53b6a794dae3e926210eed5"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/30ac99af45a1cd038f553ec2e6c9842d67beaf7e.png",
+      "bytes": 55350,
+      "sha256": "e9f88133077def741ca8ebf6e48591fba10aada0b6d6af5affefa63352cf8581",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.thorns.png",
+        "gitBlob": "719fbaa12c278562b3a74ff18b42b51158996553"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/31798d90b444b434c74408325cdd0512fb795c2a.png",
+      "bytes": 48071,
+      "sha256": "c2ac001b33ac0f45287d55e4d1f4e7575505af3d5335040d6520a44787c82f6f",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.summon-grizzly.v1.png",
+        "gitBlob": "f7849833a5f5d25afb7009a2d53bb8bea84d05bd"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/31ac09afd84c6ae2d5c84393edb4ed3cb2f2bcd1.png",
+      "bytes": 37569,
+      "sha256": "5fcce3963baa6604f2c059c698f865581ddd8130c352965ff730f90221ebb3c3",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.raise-skeletal-mage.v2.png",
+        "gitBlob": "105b57fcd31e06caa35f5a4bee940abc283098f8"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/321fb017bd6e8c1c0f077d3c6d0692b8d77304b7.png",
+      "bytes": 46066,
+      "sha256": "493934ddc5d42153556a5535490979e9ee2bd8a5a1a6117e29c5556fc14fe7f7",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.armageddon.png",
+        "gitBlob": "f044c7dd514c0725ba2af6d6dd85aafafe2b9de5"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/32e7426a5ec5123e57966470d154c330bc986608.png",
+      "bytes": 43713,
+      "sha256": "8fa9b522f4e469d4fcfd1a98d0d55fc560a7af28b7e053c084ab77de8d3be9eb",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.blood-golem.png",
+        "gitBlob": "1af1a3988963252c37642072d2d6726b21c461ea"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/3319cb57b4e15220c40af24dec7d9fe7edccc0d3.png",
+      "bytes": 46807,
+      "sha256": "bd4a47257c76b6bea3606e343feb2eeaeebde6a2aa0d46d9c98ea1e07b975b33",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.conversion.png",
+        "gitBlob": "eebd356d64ad893cb91be37d5a500b267de0a5d2"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/334a04b452de52d03a8cc595e01798c0f530050c.png",
+      "bytes": 47899,
+      "sha256": "f7bb1be180414c4f2cd27eca121950c94f87b64c58acda1380d8511a8d5d4d94",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.bash.v1.png",
+        "gitBlob": "e52f6ca561fb78d075530786cac122963b05f7d8"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/33a95d177ab09e5b88178d73e08ff675e9a82307.png",
+      "bytes": 36503,
+      "sha256": "3fcffca0c26697e2f205fb60cfd9a9d73724d85440409c9c4f1018b59d499903",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.fire-bolt.png",
+        "gitBlob": "8a65789d832c71114b4f04eefd329384c80224be"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/341d74de51d34bf8558fd1dd89d78033205cba91.png",
+      "bytes": 55245,
+      "sha256": "6fd2342b5e6f4ae877dadd2632bef00bc8cc5c1e8aaea1bc6fd9addcebe24330",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.raise-skeletal-mage.v1.png",
+        "gitBlob": "7c1bed264b85ea0774ece87dade1f55789acce80"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/35136519cd54d8b1dca615a955cf87d8aca6e9ab.png",
+      "bytes": 62885,
+      "sha256": "8141d5bc0fc5d6bc75f3e75a0d4a0198a4a220751a1ada17d41c7fcd9b323da3",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.amazon.multiple-shot.png",
+        "gitBlob": "e78557f9905e45dc289098d3b1033cb5fa3d0eb2"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/3541b96434dd04cc6a7840e8510e5bcabfaa0fda.png",
+      "bytes": 57673,
+      "sha256": "e461839f68958daed3c12be3ef6c4a62179cc7582b09092dcab5e0d768407790",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.amazon.power-strike.png",
+        "gitBlob": "11d1aa8ed95ae6535102c850dcc11d3642d3c1d8"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/3629b9185f5be6ea73900bb96405a0261b03c0a1.png",
+      "bytes": 48812,
+      "sha256": "92d6765951bfce0b6f815b35b0eba0dd5f8db142c5759a73c223cb136c20b8ca",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.thunder-storm.png",
+        "gitBlob": "560b60e8a605dc262cd13842e829b2336aaed2bb"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/36da6a16fee4e9726751ac28306676b0ab7874a6.png",
+      "bytes": 45500,
+      "sha256": "8b90acb75cc95e6cfcdac865327d126cc9b6fe0a38419b10d71be0e5609340f3",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.throwing-mastery.png",
+        "gitBlob": "e34ede90b30ed782d93ce7130a3eb3b6a8a59202"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/3980c88907e6e1c64ae824a31a897e8d40369b0b.png",
+      "bytes": 45212,
+      "sha256": "66958307bf12aa53700f03f037050a55bedad38fef652a9750a70007291e4dba",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.concentration.png",
+        "gitBlob": "ce85f75a306a9e610edcb045aee67c618a069fe0"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/399715a2d80126b7870ad2c918685cd76ab15437.png",
+      "bytes": 45563,
+      "sha256": "5259b0716b19f01e06a008c0ce6b04bdfca435cdc3fdc24d43aae13b8bf938f9",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.poison-creeper.png",
+        "gitBlob": "bf0a1325db0fa8efa7c08af13f96e571d6fa9644"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/39a3dd0d74e1bedc1f8fd01bec22c9728e693558.png",
+      "bytes": 54495,
+      "sha256": "7572c47da004a99330912f765faa44d6a2238201d56c8b2bdb57dc9d203323b7",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.hurricane.png",
+        "gitBlob": "da0d34d29d54e608174c49ecff0e5718e42ee914"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/3d95b279ee20e3c9380ba367bec69ae0027e6b7f.png",
+      "bytes": 42104,
+      "sha256": "fc31b7dafe9226855dde1ef8d6e8fe03eb63a04d065b2d79a9419d7f1fca6196",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.heart-of-wolverine.png",
+        "gitBlob": "543d68ab32d6d39f657238e714700ce5a93b1eaf"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/3e2963d78febcfbb3f0c6d092571ac9753ceb2fc.png",
+      "bytes": 46280,
+      "sha256": "243f31727fd2fc76c7f23956f6d34e64a71c1ef72857747a37eedb36e98deef5",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.amplify-damage.png",
+        "gitBlob": "a27cdfc6c97ae9dd1b281721c946e6a369d07395"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/3f5f277be8f4a4c68d7d66529d1eb8528cd04a41.png",
+      "bytes": 51005,
+      "sha256": "7093446d259d9f11635db88ed058b59d4a9d9c0fd299ec4ae66ffb3ec8387b1c",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.fire-mastery.png",
+        "gitBlob": "02e4f9882bd7bafc3932b0d7514e3514865bb405"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/3f7b7bf1d09c9dd178f0472c74205ba98da89495.png",
+      "bytes": 50147,
+      "sha256": "6ffca204c4ebab3b88cfed2faed06e7303d16ad01ae144a8dd0d6c28b91bc455",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.frozen-orb.v1.png",
+        "gitBlob": "60096ab8b906163ea91f949f64d160ba82b75e9d"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/3f86ebb7afcc1c8d86b121552dbd8d0599123226.png",
+      "bytes": 46934,
+      "sha256": "7095ff3d24be1573cb7e52e07c8188b0398d12ea9af8f81d42c941e4302233b4",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.corpse-explosion.png",
+        "gitBlob": "3cd92ae38ba35fa41252c89fffe136d6b22e31f9"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/40a65b50cc0fcfbe7a8bb0856d6ba970cb396bb2.png",
+      "bytes": 55282,
+      "sha256": "010df8152f88d11148183777d1ec56f5ba24d30e0b2e567c49cde084df014ba8",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.werewolf-maul.png",
+        "gitBlob": "94c47f6c3e85a614d402f6a2091c2600c921d4af"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/413d2f4b7cd269862fbb961c4cdc6c0171d9a172.png",
+      "bytes": 46247,
+      "sha256": "7bd49ff1b29383c454d51cad621155aca78078c3c2891b790c0237153d91295c",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.tornado.v1.png",
+        "gitBlob": "6ad8ccb2f478cc3dab16a4090b0734e515bcb912"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/41608769821ada8641183d00a3ebd62d7991a88c.png",
+      "bytes": 43391,
+      "sha256": "48d461e4585ce4d7e23198ddc4440b7be71fe623b487f34d162271735f7f2c21",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.lightning-mastery.png",
+        "gitBlob": "811e7ee57af596cbb577303c3e26143f3e17d6a0"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/42313872772d7525b6fa511c8a652f837d94adbd.png",
+      "bytes": 48149,
+      "sha256": "4b77fff079472f18c1bcea081763a64f53d20823c06380804800447c6356ed5b",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.summon-mastery.png",
+        "gitBlob": "0c49172a30addbe451ab224c5fab04a5cde95bb1"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/42f9fca8bc15d3083583a58958d9bc51856e9d3e.png",
+      "bytes": 53776,
+      "sha256": "b0c1ff9f8e4aa43950df182fbe6e86e1e0b30c11fd51d325e4d1531102cb620a",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.poison-nova.v1.png",
+        "gitBlob": "990a99b93f70a05b17d70215f00d38df8de2fc3f"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/44c64ee50625737c5a8aa99e75d81347fb31a0bb.png",
+      "bytes": 40345,
+      "sha256": "6e7354b619b8461f606aae2bf28a4bfbff356945aa035d2367399ce2150f7b73",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.firestorm.v1.png",
+        "gitBlob": "64c5d9c248fa80b96000beb8dd59785b4e433db3"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/44d5749454f10b097a7bf607b326ad2eec693ff2.png",
+      "bytes": 58508,
+      "sha256": "6d78901055c0757bdfcb1bb71540afbf100494cc0b6b59a862374587fab73165",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.iron-golem.png",
+        "gitBlob": "d9ff31d0ac31114527ad3b00ea4c1201e96dd6d8"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/45a45442a0c8b7b824efb1925006923fffc4f124.png",
+      "bytes": 78423,
+      "sha256": "cad6ae24ca50aa55336c93fa4b2e60d3bb2efd634cf43cce26b73325aa855429",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/zone-art/zones.act2.lut-gholein.png",
+        "gitBlob": "cfeacb53e33243ca4805946f9bae771c41fb1656"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/45d8daf58356ca82957c44b565a02fac112b165d.png",
+      "bytes": 41049,
+      "sha256": "8eefcba570eae9ccadf047b93c0c664c42a6e730213a5b52bbffff0c60cf625b",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.tiger-strike.png",
+        "gitBlob": "1ea28a8c6263ebd5325caf7f98da81d1ee97d566"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/46eca86fd605749ee9e36f806d5d8e321f8cfd66.png",
+      "bytes": 45892,
+      "sha256": "f69fec88fd64fc8c91d43acf22f841514498e4476701e614d0170c5ce419ce64",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.fire-claws.png",
+        "gitBlob": "fefb0771891f6a18cf494ef04dc85c258c50adf7"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/47c4888c75168d03bacabe10dc541dfbea9c145b.png",
+      "bytes": 48189,
+      "sha256": "4ed1f329668676acaeba20dce0f3607663c9c707a7499ce9e027bbfa23880e00",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.vigor.png",
+        "gitBlob": "7170d53367458138fddf2f1b5449694e8c33078e"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/47fa21333343c049989fe1049bbf062dc86cce5b.png",
+      "bytes": 34748,
+      "sha256": "d538b792c8ed2c085e5e34e3f08251c76e5d23a13fd039c03aab8d4ccedc3c83",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.raise-skeleton.v3.png",
+        "gitBlob": "5bff55d010287ce3e7fcdf2b0cfcab6b525dc049"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/48078ed48658bf8618ce4bb167281f3e0775fd8d.png",
+      "bytes": 45943,
+      "sha256": "41e54f869ef7e0cfabd62937fddece8936815f41e310971590ebc4bc9f587e2d",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.lightning-sentry.png",
+        "gitBlob": "aba5517285db7083c51722cc03064d33e55eaba1"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/4851905df2d8ca07446107cd14b6835d0fcdd195.png",
+      "bytes": 51898,
+      "sha256": "9674a1dff801af8ccfc5754b8160f42d120a2efe1beed67ac1d25e1ceaf54cf2",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.blizzard.png",
+        "gitBlob": "2610a86ba76e87948a322181da816b8354619a9f"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/48c59f694557eedb01afe55e5c548c19dffa243e.png",
+      "bytes": 39310,
+      "sha256": "3082eb74d47d55c4a80bd73b881a974079f4dea5b6e861058b1361800b1e2bb7",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.charged-bolt-sentry.v1.png",
+        "gitBlob": "e6039bdb2a20d79b09ee10e0ab2ff61c7fe3a54a"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/498894835526500d3017aec882d3ec9b97875088.png",
+      "bytes": 67057,
+      "sha256": "5aa98389753aa399fb6eb5855ad06970e11255314c1e58d63c0f060dd06eb03d",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/class-portraits/npcs.act1.akara.png",
+        "gitBlob": "df22cd5d5f234322839cdc674a40c86e511aac35"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/4a811879c67e62e7b07086c628cf1c009bb2cff2.png",
+      "bytes": 49691,
+      "sha256": "035d45e1cf13a9c26ab9baf6181345feecb22779a5d4a4573e7472f6b9b9ea7d",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.decrepify.png",
+        "gitBlob": "505770bb908dba8eb79d8f93d70d0592bebac087"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/4bb03769977ce4a85ea21c919499e67d45bbbe64.png",
+      "bytes": 53407,
+      "sha256": "ffb35336f2ff27d50ccca8660ceb4e5a03304dabc26bee654dc6e127860ee269",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.elemental-mastery.png",
+        "gitBlob": "ca53264291de61e42a2996e24dbe2fab7e70ef3d"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/4e3f6006c2951772fe8d06d4651a8414510f4986.png",
+      "bytes": 49038,
+      "sha256": "ba4162cbe79e72cd4c9fc040e459e32d74af33f5fe67e9a304d8c4c6669bff89",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.energy-shield.png",
+        "gitBlob": "ec863975dec828f93a657bb95d4ba69e3bb51a5c"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/4edff0c37eee03df7119ab13ad80c88711b64e53.png",
+      "bytes": 53534,
+      "sha256": "c524a58637b9b9158bb67514b1abc1f4cdf0d5f12382c3646cf6acbd6950a183",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.amazon.ice-arrow.png",
+        "gitBlob": "53b04b098d2673fcbf2129d34644df8be8aa67a6"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/4f5a67fa98a6694eaa7ae251e5b3e1cc8f29d190.png",
+      "bytes": 53353,
+      "sha256": "b9e9eecf5fc49575626542e635eeb30e6c60aba02a0d69057ae778da78e73b64",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.carrion-vine.png",
+        "gitBlob": "8a8d58d530d8b4e9ba8ece0c1699b1d10515060d"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/4f655973eb4eda9a54d6aa9e6aee1dc13459f116.png",
+      "bytes": 32057,
+      "sha256": "28197f3d2c3563452267fba653232bef5f565a288eaddecf6277de5e254c7002",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.war-cry.png",
+        "gitBlob": "04ca3eabc2f944fac0851e105d08a1d0c4acf8f2"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/50dc975451c21b70e6841b567d69722f47679d94.png",
+      "bytes": 50631,
+      "sha256": "22faa66f38dbbd22f217540540256bea14a19dd8787eb2af3f4b6ce6ca15f89f",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.werewolf.png",
+        "gitBlob": "76d8a1f6959cdc31ea713fef188eb21ad218cdac"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/51e624b9a4e18ee721fa3570ff4a6f7e19709b4d.png",
+      "bytes": 42916,
+      "sha256": "aba652bfeb70f0995294d88e9df20294d7c7aa4709bebc51d8960ff1a1cf3129",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.blaze.png",
+        "gitBlob": "d205694c9b38561fe706d55faf170136534be68b"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/5251994c3d2c982758d7d931ace98422a507b2b3.png",
+      "bytes": 65831,
+      "sha256": "55b864750037c9a0c8948b5703b43e6b01b7e0e976aa93922291ebaa7b145d91",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.twister.png",
+        "gitBlob": "453d4af290e0b6c602f9e13759b8f635cb3914ad"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/52782c3d5572676b6c95ff72bf8fde2a3360490e.png",
+      "bytes": 68247,
+      "sha256": "58490985c78f5b8e4c04aeb81c8a127d94bc7730b6f6584984b7474bde72987e",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.amazon.penetrate.png",
+        "gitBlob": "481b37663087d76843b0cf320fc4d689694e9f77"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/53d16eaa13ed2c3bfe72992f2cbd02d4b5f8f547.png",
+      "bytes": 49215,
+      "sha256": "388459736dd45908eabcd0708d25c408ad2a584e59ddaedaca3c3f6fff890362",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.resist-lightning.png",
+        "gitBlob": "abb5221b2fd39770153884e1f1872b62f9f10f58"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/53e40cac3f17accf70743e3ac17d4bb04b5543e2.png",
+      "bytes": 68419,
+      "sha256": "92f31a87732947535bd98e4e67892fcc1efda4dce3ec206e2b53e2b5228fe8ad",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.fissure.png",
+        "gitBlob": "b227f17dae548ec4ffa298eed6de6694443f3035"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/5447f9f701e9308591ecf81b33c2f8e724f5e44f.png",
+      "bytes": 36015,
+      "sha256": "adcff3debbf513b34147c015549dbbf12bbe013b4b190d25089ba2eba9cfb3cf",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.claw-mastery.png",
+        "gitBlob": "c750464ee82198db5f7a29f330ab781e3b4f5cb8"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/55364a71ed58532affd3c2a1f4240b311d024f32.png",
+      "bytes": 44071,
+      "sha256": "d0a7b553313358ecd1d0da5d4789c8eae089d6a508eb173448d2df9e1d45789e",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.fade.png",
+        "gitBlob": "3a85e947ce8df3b9be45e5e02eaa4728ffb37d5f"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/5739381fd507fb6d9d84c06a04909060606095e4.png",
+      "bytes": 54243,
+      "sha256": "4a206f7dbb6c6469d26b019b43f7827511851ad445ab471edb2d7ee740443493",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.ice-blast.png",
+        "gitBlob": "b79e705826f8015ae1a54e017cf4c09407c17381"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/57f4d5b272000fd1088e0835db1c8ce8f877ee78.png",
+      "bytes": 66428,
+      "sha256": "b9c1be2ff63c3ad598154b202dbf563eab55edeb42b7abd5a9150570b5716b02",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/class-portraits/classes.druid.png",
+        "gitBlob": "bd98d244c278a3e7059aa081527034a677dcf0c0"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/583b81f7cbef2a6e4c511c98be64f48343f6960f.png",
+      "bytes": 64931,
+      "sha256": "485033c922d8c4bf3c959828d5eb9e66afcb30e9d57ef2b5c11304d2e21d5dfd",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.werebear.png",
+        "gitBlob": "aeb64c74aa53624e56cbae88771bacf019c85d4b"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/58ce8b5486fbedcf9ca16691e44e1c104f55c14a.png",
+      "bytes": 49674,
+      "sha256": "8b33e2c08a49f2de98e8750bd777e913d105b6b58d65885a6c1005e3df16420b",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.conviction.png",
+        "gitBlob": "32a020622743f44b57b2d4762c87988a2ad0a4c2"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/58d048c9217b877dcbe78c0a14a9e1110ad9a696.png",
+      "bytes": 54362,
+      "sha256": "db3fd6ef776bb59fb50cd61e60a05a761b5c3920fdfdd97d549da11fd7c01c03",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.iron-maiden.png",
+        "gitBlob": "4c7d6cea9268a341d7e35af6eab43844fbc0a30e"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/58f313c5e59f4c34ff962cf01071314cb07ee1bd.png",
+      "bytes": 53488,
+      "sha256": "d007ec91998dc9519cdefe2e5a42eb41722757c3abb9f72f4648363d8a7043fc",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.fire-wall.png",
+        "gitBlob": "856dc785536f568edbbc5cae55c645d223f0cfff"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/5b7e69d46bd47932072beedb22851b5ef56b5fd0.png",
+      "bytes": 38405,
+      "sha256": "266cc7dd5a1848f0e2ec52db66e4edf238bd3d8b4d93a14b3cbe45faded42589",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.frost-nova.png",
+        "gitBlob": "bedd1f910ce44d2ce3271ec0d2589f63235452a7"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/5b7eb8ddc0a9240990e279da2323e562dd0cec4a.png",
+      "bytes": 40891,
+      "sha256": "f05a64eb91d02b5a22c218ef32cb0b0b943d488f8fd03377036ff797c4e8e69b",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.amazon.plague-javelin.png",
+        "gitBlob": "45e0a846e389044270eef88df34827970ca8a4bb"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/5be2050472f84e299141886f153b1b6a367e97da.png",
+      "bytes": 51710,
+      "sha256": "cdb16bd586266453452ee12d1b54d2263dd03aedfb339068f0403eaa4d2c01d7",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.summon-grizzly.v2.png",
+        "gitBlob": "4f3fc457d05248ba05e9fc9c1b9e5387f800d938"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/5c9725969bf1f598d1ab0ac60e196fe19c4e198e.png",
+      "bytes": 53339,
+      "sha256": "e8632a4772ebec10787d4103bd475922066ab84cefe81fced47b650f3eadac6e",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.claws-of-thunder.png",
+        "gitBlob": "c74565cb81b3d578033d6bf43d53357edfc657b3"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/5ca48a2a176dcd07dadfd91cf916e1140ccf2704.png",
+      "bytes": 75280,
+      "sha256": "dcfe61f5f5f3fba5d8dc25b0b25836642eaa6bed57276916c5fd48d507760ff0",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.defiance.png",
+        "gitBlob": "3f0487dd08227594fbf0c36d9f3502b691ebd918"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/5d99b9c26ff58773811198fe92bd96d674c6918f.png",
+      "bytes": 48873,
+      "sha256": "0042a4698c00a86cd7ba803867ff71834d53a11cd5c37ba48d050da789743b07",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.leap-attack.png",
+        "gitBlob": "5d45002d5bf3db5ac27fda7798dd4163f2e3be4a"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/5de78d4e243d2bfca19364f130b7a5a9c936b62b.png",
+      "bytes": 40448,
+      "sha256": "a00db8f3f3433172ae70787ae86cc2a3677a87d78171256c01adf238934e8fdc",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.mace-mastery.png",
+        "gitBlob": "3691f0794d5d30439cd122004ee6e7e30ab37ed8"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/5e7b55f28e796a0b2af7b7d5634505bd8377cf62.png",
+      "bytes": 41859,
+      "sha256": "16ed4c5bb3a8f3ca5b16aea9875b0c16f21cfe75b49523b63d751fb5b7e73b51",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.howl.png",
+        "gitBlob": "b3442fa371168c0e841a2a189c31bd95fd0900a1"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/5ede0f2b8329e4643fd676add2da66b7f3b2f75d.png",
+      "bytes": 55357,
+      "sha256": "4b2f8d99f4598ad098c714bea4d2dd5e9acd4574b59547b5aab233ce6b860fb5",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.bone-prison.png",
+        "gitBlob": "3e3c42d426bb2da0ae3f061f3af5b41143847c07"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/600fdcb684fe8e5608bed58ff14e86fde7126a84.png",
+      "bytes": 38351,
+      "sha256": "2badf1793c3e970d943994f48ac1d8e2f9d18964520edae2cd5118096cfedf36",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.fanaticism.png",
+        "gitBlob": "1107a02b4164696c7d9ffcdbebe55818bd356104"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/60bc507cc5e38d5561c03d2379384f5a4257c6e1.png",
+      "bytes": 43329,
+      "sha256": "a42ea4e247ce614b31ac20572ea7ffea0c8c7f254386d65cc018120ee1d63355",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.concentrate.png",
+        "gitBlob": "70308efcc307bef5e0f2709b0e94161f553de719"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/60f4606608aedcef69a503d48086957a126a9488.png",
+      "bytes": 46752,
+      "sha256": "176912f0167b34d1424bc5a4ddbc23ac58283b8bbad30dc1ba992a7bc2ff698b",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.salvation.png",
+        "gitBlob": "17171d5224ccaeb505eb11b8a83542d07a2f0115"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/61b0e54a7c97735c0355974d82c6470b7a2e91be.png",
+      "bytes": 45869,
+      "sha256": "de76a05b64b2cd53bc83fd74378eda6ddaf343ddf11eacad389d28863acfc862",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.summon-spirit-wolf.png",
+        "gitBlob": "c1455052c56b3038c4c3278d129ebfcbfba46f66"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/61c293ecc1d289c44612adfcdb957ca7fde2dc5b.png",
+      "bytes": 55786,
+      "sha256": "909ee8170017075b283b399cf43545bc7e93e173116dd18e55243ab634773b8e",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.grim-ward.png",
+        "gitBlob": "1c0791569fc22d43e70cadfcc0b364f251b923b2"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/65619a365999be67092ba444dd50005917e30962.png",
+      "bytes": 57398,
+      "sha256": "8f26e4a467d0a8d83886a4a3452846289e228bc77ec908b56c97c608aed01198",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.teeth.v1.png",
+        "gitBlob": "44658301297d875774fa38cfd5716cf38af43c50"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/65846f9e0992b2e4780be2f75105d0d8e3efa67d.png",
+      "bytes": 35174,
+      "sha256": "18fe916a44cd2cd61c66a80d868b43a4d9869bd2a30b64d9a9558255e83e1474",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.battle-orders.v1.png",
+        "gitBlob": "7638ee7bccfdd79d5cefe91bf3d653f4814c3402"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/66502f4c5c8ba1922313964bca415c27aaa032db.png",
+      "bytes": 49812,
+      "sha256": "840af3384dfbef3cb2f2d2043298429c8c848672ab7c13420f59c8140acc27f3",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.shadow-warrior.png",
+        "gitBlob": "6976633b91312dc1512926030ac55e0c37e5262d"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/67297c9ebaa2962be54193f4f1458da37a35e923.png",
+      "bytes": 36757,
+      "sha256": "c5dab3d12e3b5e489139963a9b9f3728e1fb98f3e7df22bc587c064612849976",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.teleport.png",
+        "gitBlob": "0aa3ff93883ea3530a106e5e6184d7ba9ca0cb73"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/6747539500d49d2f06ff2d1352b6872db844435e.png",
+      "bytes": 49510,
+      "sha256": "71ed39b9762e5be2abc6ded9bc4c381b70966d7e6588a62569046800c034c3d9",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.ice-bolt.png",
+        "gitBlob": "2f7ba4a0dc39ea57ff420f14de1a8c341ad34bf6"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/68346aeddec530182a7358aeba998837def5de61.png",
+      "bytes": 28969,
+      "sha256": "32ef9aa0d7a393cb04858a5eef387d339772e5adb5cf6acfa05935aecae6ea76",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.meditation.png",
+        "gitBlob": "2baf8504e008e61b86d8851cf288b5e025e51e01"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/696688a183b4aa3b43601421a87fde8e16f9f9bc.png",
+      "bytes": 45876,
+      "sha256": "f9a3a5d9fda3b32b183f1008fc9304422543f8981852cca76d302f8d62c55ae0",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.frenzy.png",
+        "gitBlob": "20f1045d3daa3cbb145ca31740de7eec2a16dcdf"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/6aa30d794be4e1ca74566366895ed9b965ff93d8.png",
+      "bytes": 48220,
+      "sha256": "85f80c1dbdf8c64a6f8a07c64de63cc75e86f55e2b79b7e83c5803e6bbb96793",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.zeal.v2.png",
+        "gitBlob": "5a715c53a3ba39ec19f9ecca2010927892d3ac5f"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/6bad6d5f52b2fb4e0ef743b15634e95a17e29e6d.png",
+      "bytes": 31421,
+      "sha256": "625b49947ec2289d1d5d92ffb05b0cb824307767405a1ff9dece5b56501ba873",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.fire-ball.png",
+        "gitBlob": "899d03e3a56c7aac85dce8d3d1f5bfacadcc8546"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/6bddb327983510f0e4655583c1eea64522dc10ba.png",
+      "bytes": 49890,
+      "sha256": "adaa68da749c3127149bc33dd1a5f9f79dbd426828b61e57c88b035fc7d9142d",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.bone-spear.png",
+        "gitBlob": "c720cb69cfdaa409652fa2473ea7aab185dbbaf0"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/6bf69ae4518ce687d93c6264eb0c67e96f840253.png",
+      "bytes": 45355,
+      "sha256": "38d5d7557bb8fa9a7700a6877a839b1fede70bf3b02bd08b3608526823452560",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.prayer.png",
+        "gitBlob": "0e01ae80099947e74c2c391d6d4564e54605c93a"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/6d434a97d348b0c889a9e55e45e0a6b0c43c7821.png",
+      "bytes": 51787,
+      "sha256": "376b6728792667a9acf51365feeaa080265b0de71532065efd5e0cc815b88e0e",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.amazon.jab.png",
+        "gitBlob": "a6c5f9e05a1f1dff2254fc7071cae006c8eda690"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/6d589af3252f3320858b7a228c8528116f633732.png",
+      "bytes": 49635,
+      "sha256": "0f2eb3fb732485ebd43467e0ba0769872f8bc1593af4ec5d5d92a62b11bd572f",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.increased-speed.png",
+        "gitBlob": "d28cba28d7f525c2966a131084d72920ddbb3b53"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/703e415cf2b5d12d52c4492ce18bff3c81e4a814.png",
+      "bytes": 47953,
+      "sha256": "94237a07c2afb8f2d29ffa830c092a370e8b8a51057f543fda5b05ca486137f7",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.golem-mastery.v1.png",
+        "gitBlob": "6c91f4b84f921cfa2d683a036bafacc903545477"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/705fe11530ac099bf891561a37c1e2fe1d14364f.png",
+      "bytes": 39887,
+      "sha256": "392085ad96ea435d145d1455475ed8c5ebe9f513559b6d5026fbb403c2d64032",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.lightning.png",
+        "gitBlob": "dfa6ebd7cabf6d5bda038ce2dcd3f1fc67c56f64"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/7069fa0e50dcfd111e2b5740143d5a750af89a3b.png",
+      "bytes": 405,
+      "sha256": "484cbe08e934e697c22edfb8106542dc25326ef6647f065e79090a3b0a63b685",
+      "trackedDuplicate": {
+        "path": "public/icons/icon-192.png",
+        "gitBlob": "f8809c8c53da558120df2e6fdf10b0d00044e7de"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/7069fa0e50dcfd111e2b5740143d5a750af89a3b.svg",
+      "bytes": 405,
+      "sha256": "484cbe08e934e697c22edfb8106542dc25326ef6647f065e79090a3b0a63b685",
+      "trackedDuplicate": {
+        "path": "public/icons/icon-192.png",
+        "gitBlob": "f8809c8c53da558120df2e6fdf10b0d00044e7de"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/716eed11901439596d5ca88b09cf27617aaeaff4.png",
+      "bytes": 37554,
+      "sha256": "08209bfa39cc336f3ff3e95e9fa82c518371969f215a9e9c7d6bbe017d41648b",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.amazon.slow-missiles.png",
+        "gitBlob": "8d2455893b961a726760a89f4bb04a599ae55cc0"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/73abdd3392791a16d6d7c240324be1b8f333d770.png",
+      "bytes": 59337,
+      "sha256": "b3d3d22250c477e6d3dbb47f15fb7f7d4583ac41f052e6e3eadd415bb2166db4",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.skeleton-mastery.v1.png",
+        "gitBlob": "3f7ddbfa269ea1ef1af1f581a86a7c22faabe7fd"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/74a4b99ff09c5f65bc968c2b4ad2410de3f5fa49.png",
+      "bytes": 47546,
+      "sha256": "226314b9d58f04ae11fa081eb0d264396e79745fe7a2b0448df6cd02c14e267b",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.holy-shock.png",
+        "gitBlob": "58b05436c1639947bbade7a558ac6f20c820cca1"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/76c6fe6d4af035c60c3b746ec6a23a9c31d340b7.png",
+      "bytes": 55584,
+      "sha256": "8a6ade85b0f30ab1efb5baa4a5a8fc40ad2f21a6119cc3cdb05b923cb906e3d2",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.dragon-claw.png",
+        "gitBlob": "6fc0e68e2fbd42274fa57dd60f895d76448a84d7"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/779e3de03c8355455a2a5d54ab3e5c5b0076f5be.png",
+      "bytes": 31612,
+      "sha256": "497d1ac6ae802f6789cf36f00ce11e877ea57d1d2e5fa03b39da3b1291d4f316",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.zeal.png",
+        "gitBlob": "b2b3e96aa038e3c2587f33c2704c3d61acba230b"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/78039ceb119e4d0b14f592792b8d169aff93f159.png",
+      "bytes": 36172,
+      "sha256": "18fd9a402a80578a8e5c16dd9df5372911d1d32a4a89420d2b96265f5ce34950",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.blessed-hammer.png",
+        "gitBlob": "3e749a651a417c879922e839e5789971c6308fbe"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/79de298d6f465668940525174d341a3d1e97a2fa.png",
+      "bytes": 51931,
+      "sha256": "aa008714c65752bcc5360fa95422f6f4c07783030abb85ffc6dbef23e0699508",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.terror.png",
+        "gitBlob": "985b35978aaab36567972ce24083c58faa711dd0"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/7a3e0f6ecc8dcfe6ef79d869542952c7c6ba966b.png",
+      "bytes": 38130,
+      "sha256": "4c60f8a7e01c54f803827fe2dced8bbcaae4e7b9933cfe746f9ac91be2f0e0be",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.redemption.png",
+        "gitBlob": "3e6374804ab2be54fa9705b2687817079c414e0f"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/7b3867b39c78861eca10a4d03c591109f27636b3.png",
+      "bytes": 54416,
+      "sha256": "f934fa15f78a2ccad1fab896feea1150c94eb5a5bcee2e18ae81c767b878b19f",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.amazon.freezing-arrow.png",
+        "gitBlob": "e0b8de31838a417e103cff0334d75c9644fc4814"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/7b743b8a5164278c72cbe2fb5018a537be1f79ea.png",
+      "bytes": 73526,
+      "sha256": "726856b4e990f31bf5dd6caaf94a349b9f945168d2fe09069e87daee36ff51ab",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.resist-cold.png",
+        "gitBlob": "2b98f6263cfad44af1432792929a02c19981279d"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/7c34f849791773fe661aa6587f4dddf6e1107bfa.png",
+      "bytes": 35695,
+      "sha256": "460640b43fe0eebae0f0de3469806e58f87070512c9fd13d0237d997e709f7bf",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.enchant.png",
+        "gitBlob": "bdba283fae314fdca08dc57fd0fa2eeaf45d543f"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/809832fde61e043e2b45b7d046161261f7dd459d.png",
+      "bytes": 25762,
+      "sha256": "1bb3b55f2ae8c57bb7f937b9b50863f0f8f6bbf0f47b72f4749e99c4de91a3f2",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.battle-command.png",
+        "gitBlob": "1ed6baa5c6a014eca3ba7c6fb31ea473cddec3be"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/811298a04281aa8130bc23663b01bb156f7ffcfa.png",
+      "bytes": 35934,
+      "sha256": "89c0458d672ebcb2e5996266cc3ae06227583171908059fcbdb5a6f605e7fcc9",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.life-tap.png",
+        "gitBlob": "795ec6e2a9cde0d9fd27be8a6db6cc41a8763723"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/81b5c2af55590154eca9fcb56a1fe8b192eb3569.png",
+      "bytes": 58461,
+      "sha256": "623f8c19d523bdb19f62457096d1b9f2f7e3892bfbc40907e6127591f5770904",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.smite.png",
+        "gitBlob": "d4cc6acd74ba2e5139cf4fd26c45827fe3899ae0"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/8316359d9134dd3710e0061f3431b98f6dbb46a4.html",
+      "bytes": 143,
+      "sha256": "cc5299259d91cd0e3f8e5135271dfc7ba0f4909ba00d0bf591fa747a24acedc6",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/8316359d9134dd3710e0061f3431b98f6dbb46a4.html"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/852e3627ea4b832c9dc10caa60e527cf466aa8de.png",
+      "bytes": 70826,
+      "sha256": "049b21451196be62f0278859a89ea765935ff926d8a551f2dd322a418c112681",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/class-portraits/classes.assassin.png",
+        "gitBlob": "2996d6c7ef6b0c73eca88726071f7125161c516b"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/8728bfdae4f6ebd7ee54eba7586b80e6c3a59bb7.png",
+      "bytes": 41285,
+      "sha256": "2d0abaad0e72123ca735e2282a94e5dc0e261b7d10567ff6183d3f502d866278",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.charged-bolt.png",
+        "gitBlob": "450831d22e4fddb80e50027f2b9f96be82f05352"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/8a4c4c13d5989aabb7464a222ba625c8b5bb63dc.png",
+      "bytes": 61120,
+      "sha256": "02fee0a21a9d68825c9f892f5def28be4ef63ba832a3203b997132c8709c8632",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.dragon-talon.png",
+        "gitBlob": "8dcab8f03ad415d142cffcf5d51df70eb545612f"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/8aade6b8b4ed75a65cf904dd5cddd10ffa27c307.png",
+      "bytes": 41908,
+      "sha256": "0e5b18e8d35e705dbe7d9fc155bda7f673393b12b1666515df819a1e87ea09c1",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.fist-of-heavens.png",
+        "gitBlob": "84764949d87d4b4ff102f895130e7fb8548d9415"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/8baa27a5107ab0dc0a45017c5ee95a769d51b5c0.png",
+      "bytes": 39162,
+      "sha256": "7bf64942a8489a7dd77a9f92a2c97fea2edefa9fa3a641a8978915e91978e8d4",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.amazon.magic-arrow.png",
+        "gitBlob": "197d7c279d30ebbeb45c8304a121afff05d5498a"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/8c41bc6af2e773d2f92e670675241190710dc551.png",
+      "bytes": 40869,
+      "sha256": "ac81a58f169deb9d18d025a0b6f9d0c767706f06d3c555191ddffdd1d63a1c7c",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.inferno.png",
+        "gitBlob": "1ffadaad28da091207787246b1e7aad42a16ed69"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/8c901b4e8acdd3b1d53cf9a383d312eb2764c8b7.png",
+      "bytes": 60060,
+      "sha256": "384200d3901c32557be34872abbd7f8047028e1db0c752dc448555763a4485c4",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.summon-resist.png",
+        "gitBlob": "88292aa350f2a437408c8e492b9b44773a568124"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/8d17fc879ac235a4d6cb3e6497513d15a4b87e08.png",
+      "bytes": 39376,
+      "sha256": "e0192f53f4aff0d913855cfffe9770ce6319a55af71b96a064e5b1a3e556f99a",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.confuse.v1.png",
+        "gitBlob": "097663ccfef240622e90fa6da55dee4a198648e3"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/8e14096f5074ac7e92d5673282e0e6c44d4621f5.png",
+      "bytes": 43741,
+      "sha256": "624e2e7f01e5a71adf1a3ae9f8cb033e6bff9d3a8d4a7400b6ea33271b363dd3",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.venom.png",
+        "gitBlob": "0e6df69cd1d73c30797263907c4b7676526132cc"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/8ef8d36065ed7837c07120a69f8fa0bc01cc4cdc.png",
+      "bytes": 50847,
+      "sha256": "ba8a1d7951886e0edcbfb165a28a067cad615e6183d55ee11af8f0a12938bab6",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.fury.png",
+        "gitBlob": "bc1be0651745c4f80d627b07158890a1b10e49bf"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/8faeffa6d2060b07275cdd7707413dbeb10d88d8.png",
+      "bytes": 49387,
+      "sha256": "508e58b9e69fa72d1af742a8ff8ceb7fae784b2e5de7197e58dcc886cc275d3f",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.blade-sentinel.png",
+        "gitBlob": "201899badcedd8c7b9cd4f3957e8a6f4ed5c5114"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/8ff4e8e08f863a2c6dbb22dc02335d38fe692508.png",
+      "bytes": 33173,
+      "sha256": "6a45214cc6107461e0af7ea29fe39495eb238dc637a2baf17a86269a4579366a",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.fire-blast.png",
+        "gitBlob": "45e6f7fc94c33131b361cc4caf5a37432ae71108"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/910bb3d1d67303749f5a85decf32ae2712e145c0.png",
+      "bytes": 34238,
+      "sha256": "f8042a50ccdb0dcf914a9ba426cf99f49a38f025f8786661896a96f7baa6890b",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.berserk.png",
+        "gitBlob": "59ad84f509637251b17fee8c5d84d4d8c356fa37"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/9200c7dec5d5b14110ec70500560ddec78277f8d.png",
+      "bytes": 44527,
+      "sha256": "e23367758a628afb42d4fa1d10083740a27a20cbcddc082a864cfde49e1b0d29",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.amazon.valkyrie.png",
+        "gitBlob": "59e9386e0b5de0a3e07770b59423b7f29affd1fd"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/928b8e0224ba7a9133b208be557611391bebdd9d.png",
+      "bytes": 41294,
+      "sha256": "f4709a17f9d8f1996325b8d25c88590ac3aed4ae37f066dca5abb50823030373",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.battle-cry.png",
+        "gitBlob": "913c816d45db6074de61f2df8c6e56ffe9f85724"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/92a03ca5d1da8bfaee68e4933ab62cbf65fc8076.png",
+      "bytes": 53546,
+      "sha256": "2accdd052d8e9cbd20e4ba7aeff95ad54aac9cb583c1418cb0bb99a5504d3da0",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.summon-dire-wolf.png",
+        "gitBlob": "e858208d3f2cab18fac314ed13b8eaca74a3aed0"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/935e2d9ddfcc61e38bae02ad96b68e7dc46fee61.png",
+      "bytes": 48811,
+      "sha256": "714f4fcdafd1d29b8fee4b719bfea6476fbd005843f4b7022823a3427a5ce471",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.blood-golem.v3.png",
+        "gitBlob": "dc6140e1fbba918ed16f6e371a5c0302841e7522"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/94d91b33b4c2f3b2087f8e5cc6189d86ee34ce29.png",
+      "bytes": 46776,
+      "sha256": "bb9f0f206e21f70ab1798822313a95fbe351787e7a537709e8c08fd1985973a7",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.revive.png",
+        "gitBlob": "78ad1bc86c6a1da53b55835c1ca76d75fd3c6eb5"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/950a710ad491e73c90026260fdcc645c6124e7ef.png",
+      "bytes": 42836,
+      "sha256": "970b158aa758adf37766a0b1ebf1becd531e72f5e7aead442affacbffd8e1c9f",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.lower-resist.png",
+        "gitBlob": "97eb4ed86d5640b465b44abdcd337248906f56d0"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/958e5aae047d260beb8fa5690ecab2aec7726726.png",
+      "bytes": 69544,
+      "sha256": "273fb126cf469fcec7c7e9409b667e7aa077d8145399426682ab8b1ff532048e",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.holy-freeze.png",
+        "gitBlob": "06808e84f6c64370985b5235851ad6056e10c1b1"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/95c5b03645fba287655d922bf14180ca33bd02a0.png",
+      "bytes": 43273,
+      "sha256": "677516d21729f68168db19a7aeac5147fc15d53097f9de0b809019a1eb645b49",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.feral-rage.png",
+        "gitBlob": "8cd4e47adc50f2f8dae9d74a241bac60ea275989"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/95cadca5470c0c616660abbe35c2c523405420f6.png",
+      "bytes": 51978,
+      "sha256": "7b2b9e0b7afcbd74c2f2f4ab88a07b18604d3d6fba7069f1de40d35f15040552",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.axe-mastery.png",
+        "gitBlob": "35e97b45d9fde5b1ff1dc1c315ae9754f0acc6d3"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/965cba9aef4e3f95d3b43a884d659f9d4d3577f4.png",
+      "bytes": 52383,
+      "sha256": "3cf73b4c61a37a8102f420e9b9e5507fccbfae3c960cf20241fe8644b65b9c9c",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.raise-skeletal-mage.png",
+        "gitBlob": "a0aee29e63ac5c0a85904303ed2c13464b6faee2"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/96c523df23a0c4bd59bbfce014fa1011c148b7b2.png",
+      "bytes": 35715,
+      "sha256": "2cad17e037623c0e2b613db3a4df7de04b8549d5e81c5566ef55d2f518690240",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.holy-bolt.png",
+        "gitBlob": "c97cd0dab7ef0e048f3dfbd4fd21abf1acca8085"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/97517dd870484a49a64f42013fa23ab517a1100f.png",
+      "bytes": 37223,
+      "sha256": "04e0947ccae4f75af0cf609fbe61158226993631669ea401b9b491f235bd82e6",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.holy-shield.png",
+        "gitBlob": "107b0da1ed092ade028209449334e7625f32516b"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/97f87dae947fb52cd01652c8e4142aea423c9ea2.png",
+      "bytes": 42998,
+      "sha256": "dff01a9f13bb6769f93815de8c56898c1d61952394ea8a86482ef94fe8023c1e",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.raise-skeleton.png",
+        "gitBlob": "e8e55e7f0b21e12652b04e291ebf17d41460be1b"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/9e2ee3a19753cbb13928dc51114f326526794988.png",
+      "bytes": 50032,
+      "sha256": "c8217bec89ec99b091139d51bfe71550cf0bd8ef88628974f4d4ae017f1a5d83",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.teeth.png",
+        "gitBlob": "66677fec33558d5afbe03d163a84ef4421fd4301"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/9e6626942a272327c1ad5ee36e33cc016cb3c897.css",
+      "bytes": 54242,
+      "sha256": "7dd186a2457529002d47dd170b45b7aef6dedeae00cdb7671ebba0397dd44011",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/9e6626942a272327c1ad5ee36e33cc016cb3c897.css"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/9e678cf275be357b51a101c82068edfccf0bb171.png",
+      "bytes": 54568,
+      "sha256": "4b9a0b877656e3bfbbfeaeca98b340715433db3d5c0552b84308d5c2f0c9cdcc",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.bone-spirit.png",
+        "gitBlob": "29f5eee3543a566c39bc6734731b18a2e78be987"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/9f47ac0c3ed03f96f1d8d4722156040b84efac80.png",
+      "bytes": 52409,
+      "sha256": "c197e31526a954aeaff6b6cbaadbe5a7f8653830a5f3f928c24aab79f33dcdb5",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.oak-sage.png",
+        "gitBlob": "49e6d27795c0dc1be0dabb2cc82ca9639cf2556b"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/9fe0ed4887cc7c08a45558ad10bcb1808fdafe2a.html",
+      "bytes": 984,
+      "sha256": "989722dbc4459c7ff143ce6cd1a45d13a24f00c5fac1707e41c4ab26178b8551",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/9fe0ed4887cc7c08a45558ad10bcb1808fdafe2a.html"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/a000a321721dfae8e95ef1e3e119eff2fc5870b6.png",
+      "bytes": 71623,
+      "sha256": "88adcb0ae131eb0ca2db1db58afc7d708057fadb961e4ba8f931877760e0ece2",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.phoenix-strike.png",
+        "gitBlob": "601aa91fbcff972d695d5349b2288777c3f31231"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/a1baa9145359f8f3efa6acaa9908ede5bda39889.png",
+      "bytes": 52622,
+      "sha256": "28e6a8f5382a6bf8a3d9f61a1c455f855dd1ab947c64a8cf606bb972ccf632d1",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.clay-golem.png",
+        "gitBlob": "9361c3a02c26230327c0e314bef6db9013049919"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/a229a3211a68376a74f65a8edba78c3e106a7930.png",
+      "bytes": 47459,
+      "sha256": "e2fa15986516559e7bad8b59ef1addcc06170bb05795884d248f0633925fc0fa",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.amazon.lightning-strike.png",
+        "gitBlob": "c1c33b0e268ebe1984fae6e456ad79ccb5f8a37b"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/a2c02e0b4c7c0f1495bf2c2daf5270daaa1f9b71.png",
+      "bytes": 415,
+      "sha256": "cb31051dd6da6071a7b808f78da945e6cdb4faffbc53ef45d4452b0062c0ff14",
+      "trackedDuplicate": {
+        "path": "public/icons/icon-512.png",
+        "gitBlob": "c0f9ead8625c69528822bbc6a1cf5bea8ea6dd61"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/a2c02e0b4c7c0f1495bf2c2daf5270daaa1f9b71.svg",
+      "bytes": 415,
+      "sha256": "cb31051dd6da6071a7b808f78da945e6cdb4faffbc53ef45d4452b0062c0ff14",
+      "trackedDuplicate": {
+        "path": "public/icons/icon-512.png",
+        "gitBlob": "c0f9ead8625c69528822bbc6a1cf5bea8ea6dd61"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/a304631ebf8a2dcb411e4875e9c600bc9356b449.png",
+      "bytes": 50189,
+      "sha256": "8124026533746cc338ff231c2f3807a94e69e540d7956cebd6753b8998cb6504",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.clay-golem.v1.png",
+        "gitBlob": "89465491df80084a8f27b93ada220bd051dd8cc5"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/a3e6847dcb544a540a7deac861ec689799823900.png",
+      "bytes": 37890,
+      "sha256": "12e783eb4fc75bab4490be0e64ededaf775c4797ba3dd2e224233225a4ef0e9e",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.charged-bolt-sentry.png",
+        "gitBlob": "451f4bc373698a2305158e6f1f1638291efd56f5"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/a41e2ccab846e8854de742ffd22146f875528f80.dat",
+      "bytes": 60804,
+      "sha256": "cb3cefca3bda4b6da700c1dcd65dae18a27f3a44e5c831c09cacb7652a2505f8",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/a41e2ccab846e8854de742ffd22146f875528f80.dat"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/a43339b03264d857f580f37ea65685de40352c3b.png",
+      "bytes": 65925,
+      "sha256": "53fd72725b61e0c05f85bead9ea36b40f5394a81dc5c6106d9a6209a19937b57",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.chilling-armor.png",
+        "gitBlob": "d6bcd5485a076019a7d0d2d7e02ff50bb89a7ff5"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/a46132c5997919b0be600b60f43ac049e50c9e62.png",
+      "bytes": 44654,
+      "sha256": "716808807982a638472dffbc00d401c0aaf0db048f18f3093893b866d58014ea",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.telekinesis.png",
+        "gitBlob": "b2cc970eeed2328fe4f37f44c647bc20271ccbe7"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/a4e932a3da7ae0ae30347763027ce086154203ff.png",
+      "bytes": 38730,
+      "sha256": "a13a182a71ac77d1209da6ba5fd091b84d0d209252e8f80a781472ac7ef76da7",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.golem-mastery.v2.png",
+        "gitBlob": "15f166f0499197a1f5ff836c31f594bcc91ea222"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/a5de4ec1fbf3896b4920649dc728aac626f89373.png",
+      "bytes": 66537,
+      "sha256": "52654d8e1713dd3b74100e667d5a453792f7708b9f9def3170bd5ce8ee819086",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/zone-art/zones.act1.rogue-encampment.png",
+        "gitBlob": "f427baf1e9261808a3988de28941cbb5cb064086"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/a6d5e05b14e0a80340b17536514e379c599b4ad9.png",
+      "bytes": 53414,
+      "sha256": "4751669a6b62242143d315b4b5910334584b99ed445eda8a58d6aba71b50c605",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.sacrifice.png",
+        "gitBlob": "42f0e73c01de9bc96d2ad1c37c3a34cc0abc5fda"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/a7cb0d1521bb07e0aa766565732a8393b26c4463.png",
+      "bytes": 34297,
+      "sha256": "86b10cffe7ef691ab5049a9a0f144b6f414a6b166f1cb003a4a2b0f67dedbaee",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.raise-skeletal-mage.v3.png",
+        "gitBlob": "4025c5523aee00808c853b5e2b70bde02bf98c1b"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/a82ebcfa28469832ce30b21895c84e3c217a03d3.png",
+      "bytes": 44230,
+      "sha256": "4406bd484eee1ead01cba36ace0ad4d6c5afdd816813c611c9239ffdbf54689b",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.amazon.impale.png",
+        "gitBlob": "92283b628ad295793aa733c1b8ac9268c8027119"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/ab4c297318d2f5862f5c85d5a5d9cd3af6c0c1c7.css",
+      "bytes": 54229,
+      "sha256": "70ebb49f815d50a0cd389be3a41b2b0ff9259735d3caff046b2e50cd08f72ab5",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/ab4c297318d2f5862f5c85d5a5d9cd3af6c0c1c7.css"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/ac97e91203dbe4149ced05e96c778443b43226cc.png",
+      "bytes": 58829,
+      "sha256": "cdcf5fd3bb8dbafc50e04867994bb036a0f082bd3c7324964e3e9590371fb687",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.bone-spirit.v1.png",
+        "gitBlob": "03fb2a4df7d31161bfb8f33f40433ae0b8a9af65"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/add6d9dff55de872bc9784dabaec7ea7a1864450.png",
+      "bytes": 40792,
+      "sha256": "2a0a384f5f57ddb1f255eee6ec5f9f19cc999e5c6f5c6ea6bd9bd7c9075ba6a2",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.amazon.pierce.png",
+        "gitBlob": "dbc37d782687f5da20336c14d03cb05cc91b3ba5"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/ae6f1aad3a4e56d58061e1221a087d6de666ef7c.png",
+      "bytes": 49490,
+      "sha256": "b18b11c545a8a93034a42e2f008874af3bebab3170e2235b63d1a01929e97023",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.blessed-aim.png",
+        "gitBlob": "52a66227f24617fa7050b1b21835e27ea1de6c56"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/b0684c5ff06f49df85a145195fac6957dd4e7698.png",
+      "bytes": 48409,
+      "sha256": "b8cae691728e883e0162a529803ab20e5989b39afadcf0380ebe558b3d028e87",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.leap.png",
+        "gitBlob": "e937754e65690bf050668d1c19f421e3ad0f2cf2"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/b14c5d860a9faba2fcf53d604774e92b73e8e89e.png",
+      "bytes": 78605,
+      "sha256": "e75794fc4a3311bcfd8d6deb08ac4b064ac89495b75cc53cd201c75513317e39",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/class-portraits/classes.amazon.png",
+        "gitBlob": "acb6b2e4080e5eeb396f91ec970f556a314b3eaa"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/b1ca394a67b8625ec672d39c11a0ad7d121db17e.png",
+      "bytes": 41022,
+      "sha256": "ee61947ac047d2e64230394bffcff48837c2a2bc35dfe427376f7f43a815beea",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.molten-boulder.png",
+        "gitBlob": "9f8197730c1c73615081ca8c9897ce3b1b971007"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/b2e9ba42206c936a217aab206faf1fe44c0f4c8a.png",
+      "bytes": 46364,
+      "sha256": "7d673ebfa4f13309460e5b2f0eaf0e73ccdc48ebd6da66cd6fba004919b9c91d",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.iron-skin.png",
+        "gitBlob": "20e59574b7da7a821b02462c9101973769094c87"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/b41785e5de5681cf205b5347541cb09d7b50937b.png",
+      "bytes": 57105,
+      "sha256": "4cfae9540fda1ac20b20e3be352b268a3a1fbd6c6a644026ce3bef2d7b301ffd",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.blade-shield.png",
+        "gitBlob": "3e8f87c61d35229210b61ac08cb354c38558504c"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/b41b9a671a643c0679493bb7f315458afa9edf43.png",
+      "bytes": 48285,
+      "sha256": "22add5d771478fda0f60e110aeeb0bd3e531bbf0adaeb5d3c58f2916aa6a5cf2",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.arctic-blast.png",
+        "gitBlob": "efaa154feb129e6e3da5eeb3e3403c5ec9bd6fcb"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/b438a0a44608c18dedbe4749278a9adf206b9ebd.png",
+      "bytes": 40443,
+      "sha256": "c7abe272f9543f3b1ba00894e42ac895d08506b4754eb6ea5e78436bb8a0889b",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.wake-of-fire.png",
+        "gitBlob": "a53532c696c1cce8b51e6da59ffcb215218904f9"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/b49f9de35093261b06379d68a9b053a42112afa4.png",
+      "bytes": 43131,
+      "sha256": "d032faec07554663a6f36a8457102fbed5c1db153ae6f2f439eb6c8110e74370",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.weaken.png",
+        "gitBlob": "693bd7792e5259231893ee5c719cf0ba99165991"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/b5b31ea69645a6bdb94f770b21b34baf51646e2b.png",
+      "bytes": 59366,
+      "sha256": "50c9f2193edf455d94f8aff3e185133cac43dd9e4b2e6748dadc636995985a97",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.terror.v1.png",
+        "gitBlob": "1803e4ab8d70f7e24494a59ac077228c2ca37ea9"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/b5baa23eb618d25cd63776d572a298646669ad09.png",
+      "bytes": 50115,
+      "sha256": "6aa19896aa1d634639b36629eeb15d249ef4010fc08c6780b1b38a71ac6f5888",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.amazon.lightning-fury.png",
+        "gitBlob": "c7278a7f2536a9d3b2e0a407fe8d0316e67a9298"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/b6e1d8cd61780379cf6109a5f4eda21ab5556ef0.png",
+      "bytes": 60044,
+      "sha256": "2f3282cc8d1bc1165a61988bc946f22f656601be2c414b1dcc113d01fa271006",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.wake-of-inferno.png",
+        "gitBlob": "7aaf7ddd68e85857cf617c2536b9ae9ceca4e66b"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/b83dfcba8d2c57ca8837324bf395f34748033a50.dat",
+      "bytes": 134,
+      "sha256": "9742073ef7fc795e7673d98f272992843298426a0ffd8cb3507784df5143608b",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/b83dfcba8d2c57ca8837324bf395f34748033a50.dat"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/b842b1966ce0b33c23b05e0ae0d574457a14b7b5.png",
+      "bytes": 31341,
+      "sha256": "d69e1b6f993c64123abb8be6530ee4311fba4701b77405b6805fdfecccd34ba2",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.holy-fire.png",
+        "gitBlob": "5ee5e39cdf28f55fa8e03d615241d3dfdcf8e52e"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/bb5536cb401bdf0b30c3ab78de89b2d3d25382c9.png",
+      "bytes": 49044,
+      "sha256": "9073be2afc9bf1aa49f70fbac33881828f968a57c9b14022dcd1497088731de2",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.blades-of-ice.png",
+        "gitBlob": "787df9ed07380001275350bf650f12c0f346ef70"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/bba8d771cb9bbf4f1c92b090a21917f5177e8563.png",
+      "bytes": 44941,
+      "sha256": "fa0d3663a68b5efe6b2829749abf1f6b9d09588968552c51e5aaab8301679c87",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.whirlwind.png",
+        "gitBlob": "05b3299c364cefa23f1a06033a415d54891f404f"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/bcaff7c6b73b7f3ae2f700cb02c734ba2484ef7a.png",
+      "bytes": 44947,
+      "sha256": "a8a60dbd8b4b96dcb9441039b4b354f83f381c02130695e2edd1fa3a2a760d65",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.spear-mastery.png",
+        "gitBlob": "3c4ac51d480d43f3414c3bce4641868209570957"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/be9e2b8f0ee2a095a0ca68583eacb8091c5622fa.png",
+      "bytes": 46335,
+      "sha256": "2d970ff21c93a627025a000da199a4c3b23bd17414be09b698a714f073d8ad6f",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.amazon.guided-arrow.png",
+        "gitBlob": "9dfb232fab9e0962d450c6ca4cec4c6ad1aea04c"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/bebd4555bffeab599d8052750a0016b038ad1db5.png",
+      "bytes": 69562,
+      "sha256": "ec092ba9b59a06ca661314d216824f294177fe15846ebad8c158160f07b1113e",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/zone-art/zones.act4.pandemonium-fortress.png",
+        "gitBlob": "c4fe1c2659592bafc129e8766d24b9e553635f35"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/bf75205d8ef49ff8cbab3a5e462c4807a6f0fa6b.png",
+      "bytes": 32772,
+      "sha256": "652bc3c74e3ba9206fec695616686925facf046945a3a13d9733cffa838de2d2",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.attract.png",
+        "gitBlob": "3c620fd68c0eab79c0ce6608db0411dc06594e2e"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/c04845b0af5f4f5d9bbf591ed0ecb838a19f7a20.png",
+      "bytes": 50073,
+      "sha256": "1e73c606dad4795c1d58384c67190da316547484640391e852f12c573f3766a1",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.solar-creeper.png",
+        "gitBlob": "352a38145ba7fdcb623d68f857ba1d3273ca1bfc"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/c0869aea0c4cf14a8df8776c3352d83946825cae.png",
+      "bytes": 90320,
+      "sha256": "66a390c26c310acfcd966df381ba73a2a8f4f139d8c863a78181464bb318f75b",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/class-portraits/classes.paladin.png",
+        "gitBlob": "8fd958fbcaff8e45caf86cd434c6849aea5b88cb"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/c0f99ad51706aee259b5435b5d0f256529695222.png",
+      "bytes": 47308,
+      "sha256": "62e34b06758b269a3435835b65ee5e193047d1eb17a27f128dcb5125b5a296c7",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.amazon.immolation-arrow.png",
+        "gitBlob": "6aa2ee2679d384e90bf3840fd9801ef2a9598486"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/c2956339e5667fed11c7d5923a4270d3f4f27db1.png",
+      "bytes": 42820,
+      "sha256": "407ed825d5f443476be74c2ef3fbe2283d3cfd6fea564d93bbe11263d09e8c62",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.weapon-block.png",
+        "gitBlob": "91914e1fd7a92833e46e139f12c2924295ef9204"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/c2ad68de19dbe1826a4524502de4185120449614.png",
+      "bytes": 47552,
+      "sha256": "55a709b846f7639f81821e6a2096be2181a6ab958272cb180e120c74bd622be0",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.fire-golem.png",
+        "gitBlob": "b6e26eb67a86e4dbbe2d1a3716673455127458e0"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/c33ac4693b7fa2586f12d51cb3d60004bdd14c53.png",
+      "bytes": 58553,
+      "sha256": "08665a37d7ded0ef79e2a45cb43870f9a639a664e6609b651191933a03d619cd",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.frozen-orb.png",
+        "gitBlob": "da4e063b8baa1f3680fde52f04539577e3528e19"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/c36ddd5b75b27fbf9b3fca4e706b87420d7d5b0a.png",
+      "bytes": 46359,
+      "sha256": "b1ce2fbe789857152050deba2b34cc98f4fcd0538b5d23132422c05e7d747d09",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.dragon-tail.png",
+        "gitBlob": "ff033b69338f18ae3a0c6a9b580619dee18e3914"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/c3db422ba517ce37494c57397f144f52730c1044.png",
+      "bytes": 53960,
+      "sha256": "5c132440f5f798e649ab32b4457bfa8d0a9a2e2a1948294c9b68d06552f89e25",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.battle-orders.png",
+        "gitBlob": "c1b140fc32580936f108100364948375b61e7e6b"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/c4d9dedcf9e2fa41cf42d943f51543e7ecfa0b3c.png",
+      "bytes": 47650,
+      "sha256": "10cf46dedf95e6d42f8cfc0c22b2d4554e871165b93bca946023a57d4ec6c1f2",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.stun.png",
+        "gitBlob": "8929ebcb34441c03b18d52e78344c7453f2f389e"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/c844c6aedfc651875aa9855d769e5b9a884700e6.png",
+      "bytes": 39834,
+      "sha256": "62dcdade15ea8c5708311abfa33d0dc90bd728033ab8e16ab3d4b77e6f785917",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.find-potion.png",
+        "gitBlob": "35f4db58af053c15d3e14d6148023a5dca877d08"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/c942c2a65b94af1b97dae9983141eaa771239368.png",
+      "bytes": 43471,
+      "sha256": "c9a7108ed4b3812ea8fc7b6c023c02bb8954d434505bc9eccec5b667bbf6a5e2",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.golem-mastery.v3.png",
+        "gitBlob": "25e7eeb9228c01b3f9580945d0e70b8756ff6760"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/d6a1ce90d5a27800c928a399cf8c2cb60022d2dc.png",
+      "bytes": 39599,
+      "sha256": "2d23d2e53574232fa4157b997b8e78cda7226a06e4b726d94be3835a117abd58",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.fire-blast.v1.png",
+        "gitBlob": "8a5768740da2981a090c70438cd2257a83bbd680"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/d83cc62d63ebe73bbdd1096015d9e217bcf1b134.png",
+      "bytes": 40384,
+      "sha256": "6990bc836b4fb9ef3af3910cb3d493789c019a1aab1dc6fb431b9170f30e1113",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.taunt.png",
+        "gitBlob": "9dfabd90c74afa8715f54de418218c086c85645e"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/d9ec7a18bf757117657b43b329136c47402facf1.png",
+      "bytes": 49827,
+      "sha256": "37c2d86c01e4d1c99fd780b09b8f0f5092bef78283d10341dfea4ccd328dc655",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.double-swing.png",
+        "gitBlob": "53210a0f9d24996a371ec98e180914df12ff8eb3"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/da39a3ee5e6b4b0d3255bfef95601890afd80709.html",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/da39a3ee5e6b4b0d3255bfef95601890afd80709.html"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/da402883212420a9d11e0ac12861b6a9db7b48e6.png",
+      "bytes": 67574,
+      "sha256": "c6ae1a1de5e23bb48a37aa4bfd5881e1286cd907997abd2e49b76649d9fb10be",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.shiver-armor.png",
+        "gitBlob": "e482404da54e81408d7086d89b14fa1d9977d278"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/db491a6cd2878f1c3872910daa431d88d064e219.png",
+      "bytes": 41256,
+      "sha256": "54a046e8b52891a6b6b6eb2198612b08ef5e360f03fea512c75052f06b3e61e4",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.warmth.png",
+        "gitBlob": "ca67ec49c41d231cd68ced14a92563ca46f7d75a"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/db675ba73e445f3576d66d9ce6a959e7f983133d.dat",
+      "bytes": 1259088,
+      "sha256": "4a89af0236f052e413c243beb2072c7ef32d393338ce2a86a40bc4a87f785bcf",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/db675ba73e445f3576d66d9ce6a959e7f983133d.dat"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/dd74948bcff39efa869d43c210848d1a56ed3f8b.png",
+      "bytes": 69558,
+      "sha256": "032034ce01b30de5bdf77d1d0e7e4e4a23753f5a1de167603b3973438ec8321f",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.frozen-armor.png",
+        "gitBlob": "41920a4a333a47d310000d725c0c8cb863adfd63"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/dee7be0d7e3a8ae1fae9da4dc2f366609520896e.png",
+      "bytes": 37487,
+      "sha256": "161073c7de7072dcbc38272e2c5fe5b4ec5b9892086e3ea46ddc19072be1a96f",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.cloak-of-shadows.png",
+        "gitBlob": "940e4f46690921a5b87d77624759bd0b8122dbd9"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/df5476c9090d231dd92a9eb80e6b32a6756a9764.png",
+      "bytes": 45352,
+      "sha256": "d55873701e462c10c498b91b7fd0de52d9e50b301c6f8d37a548fd7f2086a469",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.amazon.lightning-bolt.png",
+        "gitBlob": "9044e01300bd7eaa87e19c6d1530bc6a26d67a12"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/e07f030bd724ed3aa022075324afc58f402f0677.png",
+      "bytes": 52665,
+      "sha256": "3634901802c8b14387115b0094ee801ba4c494cb1dbd5ae69c59be920ad9c91f",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.static-field.png",
+        "gitBlob": "d8503bd86871abe80e540c6a2869eedae0f6766e"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/e0fb4227cadea49599518a9007f1ddad22feb3e0.png",
+      "bytes": 48589,
+      "sha256": "59c2fb9b8d9cd94478d038daeb5b71b16d8b916c660fe43e2d9700e1dd4835f6",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.pole-arm-mastery.png",
+        "gitBlob": "a358c963ea4e432f6175ff5930470f2cb9e0d75a"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/e4872397a1497b07118d493f11dbdf7c4c637798.png",
+      "bytes": 42143,
+      "sha256": "e2f973817e9550f5417d48d26ce73a5c0663c37f3297204b8338374516fafd5f",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.amazon.strafe.png",
+        "gitBlob": "d5cf6c951a6da16e2704a1a57546d87ca52ed7c4"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/e4df7ba32e1ae38808203365cae9f16b29bc2b3c.png",
+      "bytes": 68173,
+      "sha256": "db805d9756ca395d0628ca82326be1060baa4e01499b987161fdc47c970ab7bd",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.cobra-strike.png",
+        "gitBlob": "de184366b988879ad8eb7156864ce4d651399081"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/e51b8438a40b1a793075e0aa07ee9652e55d9425.png",
+      "bytes": 31952,
+      "sha256": "641a31dbce0905373cdee86dacafd541c4d2b21d148d87b15d8231adf07dc3d5",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.mind-blast.png",
+        "gitBlob": "92f1f8f03afd049e009b700cce216c00efc36303"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/e55de42194cf543319a619bb7651c3437fae09b0.png",
+      "bytes": 43645,
+      "sha256": "ccb42aaf6496c8a37cec8b894c1715ec90c8c96120f9b458c02c4231942034d6",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.cyclone-armor.png",
+        "gitBlob": "45558a7e1649fa94394d24c7b86d65b53ee6ac92"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/e823ade1c807dab35af6c3f0d2c1ce78f60de658.png",
+      "bytes": 46077,
+      "sha256": "59e79186907eed3f5c2e76c02d77ec41370d1e07c917d467b2b5cc06efd02ff5",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.death-sentry.png",
+        "gitBlob": "a07cf4724ae685fcb667994fb9257912e122eb5d"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/e87adb6ac18bc0ca49254f42d7b2b3384ff97d47.png",
+      "bytes": 41431,
+      "sha256": "ac19f40e3f765e446414a912be77fe289bafe52e113692dd155c36af09a15b8e",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.poison-dagger.png",
+        "gitBlob": "140fb4ab42d944adb069e5d21760be7b82f7bf21"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/e91e6f176cd6cc9df1e1db2c492562d51f146d78.dat",
+      "bytes": 99977,
+      "sha256": "1fa97c84cee8074c2e55d99513c68c552e06b85906d088e0014d0d2f29fe3506",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/e91e6f176cd6cc9df1e1db2c492562d51f146d78.dat"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/ea1a1c34f235536bf815e854f384bab205f473fa.png",
+      "bytes": 64676,
+      "sha256": "8bf8c9a27d79b09ed47d8bff3361f5041e97de70e77de648b3b165bbd9b65781",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.vengeance.png",
+        "gitBlob": "eb88babbf7ff88f597e34e8c3f7346904fb49e25"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/ec64fe47a79dfe051bf8d1410644b9de76ba9b83.png",
+      "bytes": 43519,
+      "sha256": "2b36d8e54fee00029e77c836a64dda5ddaeda849326e81e2c616aafb583e2ebe",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.fists-of-fire.png",
+        "gitBlob": "ce03a7c199fdf0d02403120229d0cf460ca7018c"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/ed5a5ec25518d7f2cf9b30d55345b254b858eb2e.png",
+      "bytes": 52500,
+      "sha256": "bb6e373bb0f27f69a01b7e350c25d94ae5b6427f1d83a96d01e468c2b1cead3f",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.attract.v1.png",
+        "gitBlob": "69d3347e2335e89f623d93b22caa2c1e5374e262"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/ee0f81396ca05aa9ba645485f6c835153b79bfac.png",
+      "bytes": 59243,
+      "sha256": "ae31f234e8cbca1c0a2d5fc8d61f92fabfae56707e3a2e9d53ab0a089d0fa0dd",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.dragon-flight.png",
+        "gitBlob": "070436b12345703fcd2d7424ad729b09ac5432d2"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/ee8712e44a5e637e26f77adf8874e8b2b03b7ba8.png",
+      "bytes": 56622,
+      "sha256": "9a17731363f884e829afa94177a146f52c12bda952325a3026c23f4a108ed50f",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.double-throw.png",
+        "gitBlob": "3f6fb6bf3f4036ee003b18649f6ede8337c72d77"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/eed06cd9997fdd588a1d99d211f97d31fd80589a.png",
+      "bytes": 48972,
+      "sha256": "6612d24fcaa4abab7792a0ac8b32816a2d491bda741bb8a5676167e4961d4b27",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.lycanthropy.png",
+        "gitBlob": "2126dcf87bfcc10e64208a1f392e95907583b536"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/f09eefc8fddf92dcef7cebafbfbfe7c5c409fd21.png",
+      "bytes": 38715,
+      "sha256": "54663405e238d7932a8d6e69804a8bb0a40436f59c2ac1d74d64f4f47b2e8d8a",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.raise-skeleton.v2.png",
+        "gitBlob": "0621e42fa11363fcb351edec92a59f94a472d75d"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/f0dbb01b2e4e9b91ced4052a6eb88472e000730b.png",
+      "bytes": 37689,
+      "sha256": "25bc637a7e237b43aeefb408ace5221bcbf927c21bb63b8811cd51d3ea6ae06e",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.cleansing.png",
+        "gitBlob": "3ab1cc0f33b2e51a49a41b2e0e15e8febd075e80"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/f0e9bce517214f02ebd3c23d8de9576cfea243e4.png",
+      "bytes": 47330,
+      "sha256": "02b3256b55b33c00ed75275e06d9bd582e993a734d8578ef64cd2cf0a540eae1",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.blood-golem.v2.png",
+        "gitBlob": "f4d85d94fc5c2a32fed2f58e27fd6f01980ee9c1"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/f112ae17c3b23d0b509773d87ea47b67f0dee9a3.png",
+      "bytes": 46225,
+      "sha256": "231d06fc43653f627b1e0b0fbd16c3be3f574795e5cb772fa6b4374477de54ff",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.amazon.poison-javelin.png",
+        "gitBlob": "ceb2e9c76d2298015f0aac6c3043d15792c60bb1"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/f153b7969cf5f0c99c0a9b31d5cc2868dca164b1.png",
+      "bytes": 59609,
+      "sha256": "bcd57a9dbf0494c7e8c86e57698be3a17b64cb8e09b8509e64805bffb7757ef2",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.chain-lightning.png",
+        "gitBlob": "80bceb3b089daaf601179e5bad3e45a300549f31"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/f2826c4dcde19d84f416e71dcb8aa4aab4be626b.png",
+      "bytes": 46383,
+      "sha256": "2fc0038b6e381044a22fbb25e6c0ff852c6a5a0eab0de8ed2cbcee2b9ffd9837",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.cold-mastery.png",
+        "gitBlob": "e426627df18bc03bb7c2986b17e72e29d62af7e3"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/f30f92575b089ea0ac080f802895b12aa84765b1.png",
+      "bytes": 55469,
+      "sha256": "f8e2ae6d3989a7a0debba9e3029c29c1cae5676db20682cd8544b219afe42a7b",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.dim-vision.png",
+        "gitBlob": "78735300e267bc2d03b9e03aff5d9e6a828c9241"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/f321e485c8f939cafb852919f49abdb5f4cc36ce.png",
+      "bytes": 94715,
+      "sha256": "9a48787e57c1af41080e7c7efab265e7ecbff87bf6997893d80edb34e8a794d1",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/class-portraits/classes.barbarian.png",
+        "gitBlob": "966108189821145ef0d548d6831d5e5e9d96ec51"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/f447c5e62e9e5273aa9c268388572fc009377bda.png",
+      "bytes": 85229,
+      "sha256": "f09472eb31d095395106571b10bb1536b3995a610d19c5aa0b9bc5b4413bb808",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/zone-art/zones.act3.kurast-docks.png",
+        "gitBlob": "9ec5876aacd83ded0e247842818ac7bdfbeac188"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/f4e629feb9a447fb470cd3601f5dbaa219b05374.png",
+      "bytes": 48315,
+      "sha256": "d455fbe4824947e37aa5b2e2cdd04edbe0739f102a602dbe0f11ed0ad977ec23",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.natural-resistance.png",
+        "gitBlob": "509bd7e9961c57a7e25d603500cbb538ede7d0e8"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/f75e0cb13bb406311a149db79e1bfd105e6c2770.png",
+      "bytes": 78093,
+      "sha256": "aad40b531f6e70d36f88cd50910add5ee7da5a0a62ff48d93857583c97beab59",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/class-portraits/npcs.act1.charsi.png",
+        "gitBlob": "55436dc52767b0fafa06e03273660a4e889b91cc"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/f76fa0c14fdd9dcecff3653d7e78fb9709e61c82.png",
+      "bytes": 45113,
+      "sha256": "50b6443923ae86f5407f2e6b6813798e1538567cfc7f902411903b584c0da155",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.paladin.sanctuary.png",
+        "gitBlob": "1624cbd2f1e17ad79c0af3a459aab88b58550317"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/f784499ae5ee2dc156f85fd3286cb1188ff5e39a.png",
+      "bytes": 31223,
+      "sha256": "aebad4f0ed9495810a03c5c498003b0d1b61923869fd4361e4ad7045d1894335",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.psychic-hammer.png",
+        "gitBlob": "7280040ef8d7756d5c3c2ff6fc2f108424225910"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/f810270e74b2cc91346f39c05d7f020a39cb12e1.dat",
+      "bytes": 163933,
+      "sha256": "d023b474fbe60dec77510b20d3560e8a8c6b796e6d623cf648bf12800af453fb",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/f810270e74b2cc91346f39c05d7f020a39cb12e1.dat"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/f8508eb7a6db0ff6b3374a95895dcdba7971d30a.png",
+      "bytes": 45172,
+      "sha256": "117f8b064241ee341bf32ab399778b07c25e846e1c6ed79e5bec349f79961932",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.poison-explosion.png",
+        "gitBlob": "2b5cdbb1e4486415be799244bdefed00f1c08f85"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/f8a895a7583c25bce8437dc6cf1e901be275fe1c.png",
+      "bytes": 42538,
+      "sha256": "21d283a0213f809cb67e279a92fcd3782eb60adde866d28a7ca5bc7768d175c8",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.barbarian.increased-stamina.png",
+        "gitBlob": "77061ed997c64224d61d431206e5572f01f555b6"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/f8ae3bc5cb989dea4b0abd6df3b299de372f58ed.png",
+      "bytes": 46727,
+      "sha256": "a4c7ba5502b967160a6db0c9197bc64b485be4b814aa7bfd7b4d8040b2000c1a",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.hydra.png",
+        "gitBlob": "481b2b392156e79fc6356ab1d708cfcf058fc148"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/fa6f05207d25b439d4649a514293fd7ecf999ca9.png",
+      "bytes": 52400,
+      "sha256": "631998f7e37941945ea6c2b07a135a0d39f936a2ed06364d09c08122b7c702d6",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.poison-explosion.v1.png",
+        "gitBlob": "7031552499daa820c53240a8b11575f5c77623ef"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/fad739141779bce236ed38eee663ef30086b4075.png",
+      "bytes": 47701,
+      "sha256": "31c9c74bcc719f557b9f6f1e86d0660bf1d9c71066bcaef5cf0bd1406ad27716",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.amazon.magic-arrow.v1.png",
+        "gitBlob": "2db6da3493b019d4d0b251ceeef19a42f1206257"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/fb495047fbbb6c3992d61258b2714c8f92a3743d.png",
+      "bytes": 55835,
+      "sha256": "ab06cc419865b35c734f9385714047f7053041c4ba7c91ec1fbe1beab745c7aa",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.druid.hunger.png",
+        "gitBlob": "f836e4f90bccc891b5e7c1aca484c84e5903ea02"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/fbf4125c7cfef9eb6ca949a83b3eaeaaa0b6a4a6.png",
+      "bytes": 46304,
+      "sha256": "52079455289f724514c1215c3872fffecd284f990859b37a6cbc51e651b4cdae",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.assassin.shock-web.png",
+        "gitBlob": "c7060db7187c7455bee176d17dfce77d3d6ca622"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/fc0369ec7f600817938f8efde15094d05147c8ad.png",
+      "bytes": 37779,
+      "sha256": "d495bb84e6376e8d5eb240c437e02a2926c75989ed97459868e1adef7182e84f",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.sorceress.fire-ball.v1.png",
+        "gitBlob": "b764fc1fa1adbf8f40fc2b634c50ad9e7d19d726"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/fcffe326d58449a4e952a3c5aeac26a438174211.png",
+      "bytes": 58988,
+      "sha256": "00254a688d6576347cb0a0eebc1733de8dc32793fb2dfdeb1f7c502b3653b615",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/class-portraits/classes.sorceress.png",
+        "gitBlob": "1cc9e4d3b5cb644d19f90a5fc69b1017c02e267d"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/fdb49b6dd2eb45474c8618014cc1a666bc35ac8b.png",
+      "bytes": 53249,
+      "sha256": "37dcdeea6f1984186b094738869fd667cf810ba6c5b278d34916950fb27b1f84",
+      "trackedDuplicate": {
+        "path": "public/assets/d2/generated/skill-icons/skills.necromancer.raise-skeleton.v1.png",
+        "gitBlob": "42c9509f617c45e1912d215e5fd1f752d66847a3"
+      }
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539948351.jpeg",
+      "bytes": 2684,
+      "sha256": "e629341910f73497e6d4bb6f9a9d5436f479f49ab43fc1162ce67aec4893c00c",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539948351.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539948401.jpeg",
+      "bytes": 2684,
+      "sha256": "9fc7f6606af455618a6c9f32fa0373d0e523f91a0437162ac1a940df97dba9cc",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539948401.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949063.jpeg",
+      "bytes": 12175,
+      "sha256": "fb3a285b3069f247d8b2f4a4025ddee1d1a4410497e306c6ee09bba06d588979",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949063.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949083.jpeg",
+      "bytes": 12175,
+      "sha256": "fb3a285b3069f247d8b2f4a4025ddee1d1a4410497e306c6ee09bba06d588979",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949083.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949100.jpeg",
+      "bytes": 24895,
+      "sha256": "390a52e1e1cc5469e105a91a783945d77f0829b5436ea12b57e51e7abd9eaaf8",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949100.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949142.jpeg",
+      "bytes": 24895,
+      "sha256": "390a52e1e1cc5469e105a91a783945d77f0829b5436ea12b57e51e7abd9eaaf8",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949142.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949194.jpeg",
+      "bytes": 35163,
+      "sha256": "0552bf8829ba6b2b7ade02d6c9e86d01fe7a7ff01b2ac27edc2dae572b0d7e45",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949194.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949261.jpeg",
+      "bytes": 35163,
+      "sha256": "0552bf8829ba6b2b7ade02d6c9e86d01fe7a7ff01b2ac27edc2dae572b0d7e45",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949261.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949281.jpeg",
+      "bytes": 43255,
+      "sha256": "dcfc57f39cd2dbf592ec55ea2b4755a81088390a3f4c830322a187f956dbee1b",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949281.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949298.jpeg",
+      "bytes": 43246,
+      "sha256": "cfbb0257ad95224696a35745d314a71839a2e51a707c73d590ac9eba0099e69b",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949298.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949329.jpeg",
+      "bytes": 44745,
+      "sha256": "8e7c9e262ffb0acdaaf25c3d51c995f5f85f657440dc78d40c2f8c799f993f96",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949329.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949345.jpeg",
+      "bytes": 48931,
+      "sha256": "0246294417b204747a1e9511b45fcd8c9de15f668323b0e6e29290db2020eb50",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949345.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949361.jpeg",
+      "bytes": 48898,
+      "sha256": "f96a7242dd100d28802b45e1054d601834f0775611a5ed0200292858c3ecadff",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949361.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949372.jpeg",
+      "bytes": 50120,
+      "sha256": "22345c92180e252b6ebaa27d7ed11bf55923f3a25c83b2f1a893dd63b32c027b",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949372.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949387.jpeg",
+      "bytes": 50130,
+      "sha256": "7d73905a2477f9c006385d63486aaec6bd8b1ba48ac9a01187ab3c37a8004f1e",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949387.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949402.jpeg",
+      "bytes": 50054,
+      "sha256": "b4327a2d74e6aea890d030637ba45084fef0422692faca0184a234c9e48f889b",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949402.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949424.jpeg",
+      "bytes": 50134,
+      "sha256": "18119fbfea37cfb25e171ddad592d55136b5100be734f14d944c0b4444157176",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949424.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949435.jpeg",
+      "bytes": 27929,
+      "sha256": "aaf24cc30590b109198d4833fceeb85cb8dfc5646d08d2914313240030b7deb9",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949435.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949458.jpeg",
+      "bytes": 27938,
+      "sha256": "c6009ff68dd46eb588df169a5d9dc59d81f5cb403b382bff6fc1de6b9865f789",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949458.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949497.jpeg",
+      "bytes": 21911,
+      "sha256": "d969847f3896144e56e1aec46bb9884c499926454f33f699520f68ffd18cc5c2",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949497.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949519.jpeg",
+      "bytes": 21911,
+      "sha256": "d969847f3896144e56e1aec46bb9884c499926454f33f699520f68ffd18cc5c2",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949519.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949537.jpeg",
+      "bytes": 21911,
+      "sha256": "d969847f3896144e56e1aec46bb9884c499926454f33f699520f68ffd18cc5c2",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949537.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949558.jpeg",
+      "bytes": 22565,
+      "sha256": "7a657423597931ff7d07e863d6f60896dfb9e1b7945713dd9853b96f38d649ee",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949558.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949589.jpeg",
+      "bytes": 22737,
+      "sha256": "65f79d3610bece0fa5497308cf962c73b66993c3271ff0abbbc717514eb39709",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949589.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949607.jpeg",
+      "bytes": 26571,
+      "sha256": "1eebd7535d2252e9038d05fb09a14f1b37d79742cc58e6aa2fc9f6cfcd4f40bc",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949607.jpeg"
+    },
+    {
+      "path": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949653.jpeg",
+      "bytes": 33403,
+      "sha256": "93c2637bc58218b39192729fb24d8f8193b95bddc54dfa5d8a6d18a6581e041a",
+      "archiveMember": "attachments/pilot/.playwright-artifacts-0/traces/resources/page@319bf4ce0485a9bbab4ffe6c2dc32bd4-1792539949653.jpeg"
+    },
+    {
+      "path": "attachments/pilot/inner-sight-intro-ordinary-471ff-ht-intro-and-save-reopen-en-pwa-desktop/error-context.md",
+      "bytes": 468,
+      "sha256": "e6d86186c06453fdd5b53306bbdf0dbdbcb9a9806464a3e74099bfaf27a5b3bc",
+      "archiveMember": "attachments/pilot/inner-sight-intro-ordinary-471ff-ht-intro-and-save-reopen-en-pwa-desktop/error-context.md"
+    },
+    {
+      "path": "attachments/pilot/inner-sight-intro-ordinary-471ff-ht-intro-and-save-reopen-en-pwa-desktop/trace.zip",
+      "bytes": 10584,
+      "sha256": "6d41a30ab30e1d91c6805ec8512cbd8dffd7d43da0f07554a690596ef4c7ece4",
+      "archiveMember": "attachments/pilot/inner-sight-intro-ordinary-471ff-ht-intro-and-save-reopen-en-pwa-desktop/trace.zip"
+    }
+  ],
+  "counts": {
+    "files": 303,
+    "retained": 41,
+    "trackedDuplicates": 262
+  },
+  "rawBytes": 15912762,
+  "cleanup": "pending independent verification/readers released"
+}

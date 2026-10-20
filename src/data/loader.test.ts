@@ -12,6 +12,82 @@ import { skills, mainQuests, sideQuests } from './index';
 import type { DamageEffect } from '../engine/skills/effects';
 
 describe('data/loader', () => {
+  describe('exact mercenary Inner Sight contract', () => {
+    const row = {
+      id: 'mskill-inner-sight', name: 'fixture.name', description: 'fixture.desc',
+      trigger: 'active', target: 'all-enemies', cooldown: 5, minLevel: 1, maxLevel: 20,
+      cost: { mana: 0 }, appliesStatus: ['merc-inner-sight'],
+      statusEffect: { defenseReductionPct: 25, durationMs: 8000 }
+    };
+
+    it('accepts the complete nondamaging production contract', () => {
+      expect(() => validateGameData(skillSchema.$id, row)).not.toThrow();
+    });
+
+    it.each(['cost', 'appliesStatus', 'statusEffect'])('requires exact row field %s', field => {
+      const candidate = { ...row };
+      Reflect.deleteProperty(candidate, field);
+      expect(() => validateGameData(skillSchema.$id, candidate)).toThrow(GameDataValidationError);
+    });
+
+    it.each([
+      { cooldown: 0 }, { cost: {} }, { statusEffect: {} }, { statusEffect: { durationMs: 8000 } },
+      { trigger: 'passive' }, { target: 'self' }, { appliesStatus: [] },
+      { appliesStatus: ['inner-sight'] }, { appliesStatus: ['merc-inner-sight', 'freeze'] },
+      { appliesTags: ['amp-damage'] }, { damage: { min: 1, max: 2 }, damageType: 'physical' }
+    ])('rejects incomplete or incompatible exact row %j', fields => {
+      expect(() => validateGameData(skillSchema.$id, { ...row, ...fields })).toThrow(GameDataValidationError);
+    });
+
+    it('does not impose mercenary metadata on the distinct Amazon identity', () => {
+      const candidate = { ...row, id: 'skills-amazon-inner-sight' };
+      Reflect.deleteProperty(candidate, 'statusEffect');
+      Reflect.deleteProperty(candidate, 'cost');
+      expect(() => validateGameData(skillSchema.$id, candidate)).not.toThrow();
+    });
+  });
+
+  describe('optional defense reduction metadata', () => {
+    const candidate = (statusEffect: unknown) => ({
+      id: 'skills-fixture-defense-reduction', name: 'fixture.name', description: 'fixture.desc',
+      trigger: 'active', target: 'all-enemies', cooldown: 5, minLevel: 1, maxLevel: 20, statusEffect
+    });
+
+    it.each([0, 25, 100, 12.5])('accepts a finite defense reduction percent %s with positive duration', defenseReductionPct => {
+      expect(() => validateGameData(skillSchema.$id,
+        candidate({ defenseReductionPct, durationMs: 8000 }))).not.toThrow();
+    });
+
+    it('keeps fractional positive duration without introducing integer rounding', () => {
+      expect(() => validateGameData(skillSchema.$id,
+        candidate({ defenseReductionPct: 25, durationMs: 0.5 }))).not.toThrow();
+    });
+
+    it.each([-0.01, 100.01, NaN, Infinity, -Infinity, '25', null, {}, []])(
+      'rejects invalid defense reduction percent %j', defenseReductionPct => {
+        expect(() => validateGameData(skillSchema.$id,
+          candidate({ defenseReductionPct, durationMs: 8000 }))).toThrow(GameDataValidationError);
+      });
+
+    it.each([undefined, 0, -1, NaN, Infinity, -Infinity, '8000', null])(
+      'requires positive finite duration when defense reduction is supplied: %j', durationMs => {
+        expect(() => validateGameData(skillSchema.$id,
+          candidate({ defenseReductionPct: 25, ...(durationMs === undefined ? {} : { durationMs }) })))
+          .toThrow(GameDataValidationError);
+      });
+
+    it('retains the closed metadata object', () => {
+      expect(() => validateGameData(skillSchema.$id,
+        candidate({ defenseReductionPct: 25, durationMs: 8000, defenseReducitonPct: 90 })))
+        .toThrow(GameDataValidationError);
+    });
+
+    it.each([undefined, {}, { durationMs: 0 }, { durationMs: 3000 }])(
+      'keeps other skills metadata optional without defense reduction: %j', statusEffect => {
+        expect(() => validateGameData(skillSchema.$id, candidate(statusEffect))).not.toThrow();
+      });
+  });
+
   describe('opt-in secondary Freeze representation', () => {
     const authoredFrost = sorceressSkills.find((skill) => skill.id === 'skills-sorceress-frost-nova');
     if (!authoredFrost) throw new Error('Production Frost Nova definition is missing');

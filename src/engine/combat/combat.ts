@@ -32,6 +32,7 @@ import {
   statusActiveAt
 } from './status';
 import { CHILL_DEFINITION } from './chill-definition';
+import { MERC_INNER_SIGHT_DEFINITION } from '../skills/inner-sight';
 import { comboMultiplier, shouldShatter } from './combo';
 import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
 import {
@@ -347,7 +348,9 @@ function buildDamageInput(
     critChance: stats.critChance,
     critMult: stats.critDamage,
     defenderResistances,
-    defenderArmor: defender.stats.defense,
+    defenderArmor: defender.statuses.some(s => s.id === MERC_INNER_SIGHT_DEFINITION.statusId)
+      ? Math.max(0, defender.stats.defense * (1 - MERC_INNER_SIGHT_DEFINITION.defenseReductionPct / 100))
+      : defender.stats.defense,
     defenderMagicResist: defender.stats.magicResist,
     defenderDodge:
       effect.damageType === 'physical' || effect.damageType === 'thorns'

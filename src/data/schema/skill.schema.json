@@ -29,6 +29,36 @@
         }
       }
     }
+  }, {
+    "if": {
+      "properties": { "id": { "const": "mskill-inner-sight" } },
+      "required": ["id"]
+    },
+    "then": {
+      "required": ["cost", "appliesStatus", "statusEffect"],
+      "properties": {
+        "trigger": { "const": "active" },
+        "target": { "const": "all-enemies" },
+        "cooldown": { "type": "number", "exclusiveMinimum": 0 },
+        "cost": {
+          "type": "object",
+          "required": ["mana"],
+          "properties": { "mana": { "$ref": "#/properties/cost/properties/mana" } }
+        },
+        "appliesStatus": { "const": ["merc-inner-sight"] },
+        "statusEffect": {
+          "type": "object",
+          "required": ["defenseReductionPct", "durationMs"],
+          "properties": {
+            "defenseReductionPct": { "$ref": "#/properties/statusEffect/properties/defenseReductionPct" },
+            "durationMs": { "$ref": "#/properties/statusEffect/properties/durationMs" }
+          }
+        },
+        "damage": false,
+        "damageType": false,
+        "appliesTags": false
+      }
+    }
   }],
   "if": {
     "properties": { "id": { "const": "skills-necromancer-amplify-damage" } },
@@ -136,6 +166,14 @@
       "type": "object",
       "additionalProperties": false,
       "description": "Runtime metadata for the first appliesStatus id, such as DoT strength or stack count.",
+      "dependentSchemas": {
+        "defenseReductionPct": {
+          "required": ["durationMs"],
+          "properties": {
+            "durationMs": { "type": "number", "exclusiveMinimum": 0 }
+          }
+        }
+      },
       "properties": {
         "chance": { "type": "number", "minimum": 0, "maximum": 1 },
         "stacksOnApply": { "type": "integer", "minimum": 1 },
@@ -149,6 +187,12 @@
           "type": "number",
           "minimum": 0,
           "description": "Finite physical resistance reduction in percentage points; consumed by the production Amplify Damage debuff."
+        },
+        "defenseReductionPct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Finite ordinary-defense reduction percent; consumed by mercenary Inner Sight with positive durationMs."
         }
       }
     },

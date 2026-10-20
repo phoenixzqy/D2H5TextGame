@@ -164,13 +164,15 @@ export function eventToLocalizedLogEntry(
     }
     case 'status': {
       const targetName = getName(event.target);
+      const statusName = event.statusId === 'merc-inner-sight'
+        ? tx('combat:effect.status.merc-inner-sight') : event.statusId;
       return {
         type: 'debuff',
         actorId: event.target,
         actorName: targetName,
         message: tx('combat:event.statusApplied', {
           target: targetName,
-          status: event.statusId,
+          status: statusName,
           defaultValue: `${targetName} is afflicted with ${event.statusId}`
         })
       };

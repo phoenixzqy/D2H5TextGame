@@ -16,6 +16,7 @@ import { DEFAULT_SKILLS } from './builders';
 import { aliasToCanonical, MERC_STUB_SKILLS, MONSTER_STUB_SKILLS } from './aliases';
 import { PLAYABLE_CLASS_DATA_SKILLS } from './dataCatalog';
 import { MINOR_HEAL_SKILL } from './minor-heal';
+import { MERC_INNER_SIGHT_SKILL } from './inner-sight';
 
 const registry = new Map<string, RegisteredSkill>();
 const warned = new Set<string>();
@@ -83,6 +84,7 @@ export function loadDefaultSkills(): void {
     registry.set(s.id, s);
   }
   registry.set(MINOR_HEAL_SKILL.id, MINOR_HEAL_SKILL);
+  registry.set(MERC_INNER_SIGHT_SKILL.id, MERC_INNER_SIGHT_SKILL);
   for (const s of MONSTER_STUB_SKILLS) {
     registry.set(s.id, s);
   }

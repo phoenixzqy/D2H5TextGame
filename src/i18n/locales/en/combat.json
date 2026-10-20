@@ -92,6 +92,7 @@
     "summon": "Summon",
     "death": "Down",
     "status": {
+      "merc-inner-sight": "Inner Sight",
       "chill": "Chill",
       "freeze": "Freeze",
       "paralyze": "Paralyze",

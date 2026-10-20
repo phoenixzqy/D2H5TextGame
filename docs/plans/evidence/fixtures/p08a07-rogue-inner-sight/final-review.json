@@ -1,0 +1,10 @@
+{
+  "card": "P08a07",
+  "reviewedPacketSha256": "d986c3245c4c19006b78d955fb4085621944caff41eadf565e6a5994d08f87a4",
+  "producer": "APPROVE: full final source, controls, checks, five completed browser cases, all 248 archive records and 3019 process identities independently verified; all readers released",
+  "qa": "APPROVE: final source/evidence/packet, unit/engine/coverage/type/lint/build, browser pilot and matrix verified; all readers released",
+  "design": "GD/TD APPROVE corrected exact-row contract and source; readers released",
+  "scope": "Functional Inner Sight integration and persistence. No campaign, balance, full mobile readability, CJK glyph, visual quality or accessibility acceptance.",
+  "postArchive": true,
+  "recordedAt": "2026-10-20T23:58:23.579786+00:00"
+}

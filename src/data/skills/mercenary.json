@@ -211,7 +211,9 @@
     "cooldown": 5,
     "minLevel": 1,
     "maxLevel": 20,
-    "appliesTags": ["amp-damage"]
+    "cost": { "mana": 0 },
+    "appliesStatus": ["merc-inner-sight"],
+    "statusEffect": { "defenseReductionPct": 25, "durationMs": 8000 }
   },
   {
     "id": "mskill-fire-ball",

@@ -15,6 +15,29 @@ import i18n from '@/i18n';
 import { skills } from '@/data';
 import { aliasToCanonical } from '@/engine/skills/aliases';
 
+describe.each(['en', 'zh-CN'])('Rogue Inner Sight status feedback %s', locale => {
+  it('localizes the exact mercenary status and effect label with literal copy oracles', async () => {
+    const previous = i18n.language;
+    try {
+      await i18n.changeLanguage(locale);
+      const english = locale === 'en';
+      const names = new Map([['rogue', english ? 'Rogue Scout — Inner Sight' : '罗格侦察兵 — 内视'], ['enemy', 'Target']]);
+      expect(eventToLocalizedLogEntry({ kind: 'status', target: 'enemy', statusId: 'merc-inner-sight' }, names))
+        .toEqual({ type: 'debuff', actorId: 'enemy', actorName: 'Target',
+          message: english ? 'Target is afflicted with [Inner Sight].' : 'Target 进入【心眼】状态。' });
+      expect(i18n.t('combat:effect.status.merc-inner-sight')).toBe(english ? 'Inner Sight' : '心眼');
+      expect(eventToLocalizedLogEntry({ kind: 'action', actor: 'rogue', skillId: 'mskill-inner-sight' }, names)?.message)
+        .toBe(english ? 'Rogue Scout — Inner Sight casts Inner Sight.' : '罗格侦察兵 — 内视 施放了 心眼。');
+      for (const statusId of ['inner-sight', 'inner_sight', 'poison', 'fixture-unknown-status']) {
+        expect(eventToLocalizedLogEntry({ kind: 'status', target: 'enemy', statusId }, names)?.message)
+          .toBe(english ? `Target is afflicted with [${statusId}].` : `Target 进入【${statusId}】状态。`);
+      }
+    } finally {
+      await i18n.changeLanguage(previous);
+    }
+  });
+});
+
 describe('silent authoritative mana events', () => {
   it.each(['zh-CN', 'en'])('does not invent a visible %s resource log entry', async locale => {
     const previous = i18n.language;
