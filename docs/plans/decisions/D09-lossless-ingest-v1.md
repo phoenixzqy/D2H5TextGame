@@ -23,3 +23,30 @@ public export/decode/import/reset/hydrate retains values, Maps and IDs with only
 IndexedDB IO replaced. Existing ordinary overflow browser checks remain valid
 until the later guarded transfer child deliberately revises their full-target
 expectations. No item/currency is invented during restore.
+
+## D09 v1b — Guarded manual transfers
+
+Status: accepted P03b03 implementation control,2026-10-20; producer plan READY,
+six-file exception for required control/bug evidence. Full D09 remains open.
+
+Shared nominal capacities are backpack100/stash500. Player transfer actions
+return `{ok:true}` or `{ok:false,reason:'not_found'|'backpack_full'|'stash_full'}`.
+Resolve the source and destination from current authoritative store state;
+missing source is checked first. Refusal publishes no Zustand update and leaves
+both array references, equipped gear, currencies and player untouched. Successful
+transfer removes the source item and appends that complete item exactly once in
+one publication, retaining IDs/affix Maps/flags. Overflow sources remain legal
+when destination has room. Durable award/return ingress remains unbounded.
+
+The screen imports the same capacity constants, clears selection only after
+success, and otherwise keeps the selected detail and announces the returned
+reason in localized feedback. Existing over-cap entries remain visible. Ordinary
+discard can make room, then retry succeeds; no automatic discard/compensation.
+
+Store/RTL tests cover destination99/100/101 and499/500/501, missing sources,
+publication counts, exact contents and unchanged references on refusal, both
+locales and selected retry. Browser legacy101/501 first refuses both directions
+with exact exported state unchanged; discard S500/S499 makes stash499, move B100
+to stash yields B100/S500, discard B99 then return B100 to backpack yields
+B100/S499. Only those three explicitly discarded items disappear; save/export/
+reload preserves everything else. Equipment guards and whole P03b remain later.

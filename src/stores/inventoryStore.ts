@@ -14,6 +14,7 @@ import {
   type PlayerLike
 } from '@/features/inventory/compareEquip';
 import { usePlayerStore } from './playerStore';
+import { BACKPACK_CAPACITY, STASH_CAPACITY } from './inventoryCapacity';
 
 interface EquipSuccess {
   ok: true;
@@ -27,6 +28,10 @@ type EquipResult = EquipSuccess | EquipFailure;
 interface UnequipResult {
   ok: boolean;
 }
+type TransferResult = { ok: true } | {
+  ok: false;
+  reason: 'not_found' | 'backpack_full' | 'stash_full';
+};
 
 interface InventoryState {
   backpack: Item[];
@@ -52,8 +57,10 @@ interface InventoryState {
   bulkDiscard: (itemIds: readonly string[]) => void;
   equipItem: (item: Item) => EquipResult;
   unequipItem: (slot: string) => UnequipResult;
-  moveToStash: (itemId: string) => void;
-  moveToBackpack: (itemId: string) => void;
+  /** Move one backpack item if stash has room; refusal leaves all state unchanged. */
+  moveToStash: (itemId: string) => TransferResult;
+  /** Move one stash item if backpack has room; overflow sources can still recover. */
+  moveToBackpack: (itemId: string) => TransferResult;
   /**
    * Backpack items whose base matches `slot` AND whose `reqLevel`/`reqStats`
    * the supplied player meets. Drives the `<EquipPicker>` modal's enabled
@@ -184,25 +191,31 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
     return { ok: true };
   },
   
-  moveToStash: (itemId) => { set((state) => {
-    const item = state.backpack.find((i) => i.id === itemId);
-    if (!item || state.stash.length >= 2000) return state;
-    
-    return {
-      backpack: state.backpack.filter((i) => i.id !== itemId),
+  moveToStash: (itemId) => {
+    const state = get();
+    const index = state.backpack.findIndex((item) => item.id === itemId);
+    const item = state.backpack[index];
+    if (!item) return { ok: false, reason: 'not_found' };
+    if (state.stash.length >= STASH_CAPACITY) return { ok: false, reason: 'stash_full' };
+    set({
+      backpack: state.backpack.filter((_, i) => i !== index),
       stash: [...state.stash, item]
-    };
-  }); },
+    });
+    return { ok: true };
+  },
   
-  moveToBackpack: (itemId) => { set((state) => {
-    const item = state.stash.find((i) => i.id === itemId);
-    if (!item || state.backpack.length >= 500) return state;
-    
-    return {
-      stash: state.stash.filter((i) => i.id !== itemId),
+  moveToBackpack: (itemId) => {
+    const state = get();
+    const index = state.stash.findIndex((item) => item.id === itemId);
+    const item = state.stash[index];
+    if (!item) return { ok: false, reason: 'not_found' };
+    if (state.backpack.length >= BACKPACK_CAPACITY) return { ok: false, reason: 'backpack_full' };
+    set({
+      stash: state.stash.filter((_, i) => i !== index),
       backpack: [...state.backpack, item]
-    };
-  }); },
+    });
+    return { ok: true };
+  },
   
   eligibleForSlot: (slot, player) => {
     const bases = loadItemBases();

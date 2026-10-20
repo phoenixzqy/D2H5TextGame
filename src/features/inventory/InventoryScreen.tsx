@@ -39,6 +39,7 @@ import {
   tItemName
 } from '@/ui';
 import { useInventoryStore, usePlayerStore } from '@/stores';
+import { BACKPACK_CAPACITY, STASH_CAPACITY } from '@/stores/inventoryCapacity';
 import { EquipPicker } from './EquipPicker';
 import { ItemDetailPanel } from './ItemDetailPanel';
 import { BulkDiscardToolbar } from './BulkDiscardToolbar';
@@ -53,9 +54,6 @@ import {
   type CompareResult,
   type PlayerLike
 } from './compareEquip';
-
-const MAX_BACKPACK = 100;
-const MAX_STASH = 500;
 
 function compareBackpackItem(
   item: Item,
@@ -124,7 +122,7 @@ export function InventoryScreen() {
           tabs={[
             {
               id: 'backpack',
-              label: `${t('backpack')} (${String(backpack.length)}/${String(MAX_BACKPACK)})`,
+              label: `${t('backpack')} (${String(backpack.length)}/${String(BACKPACK_CAPACITY)})`,
               content: (
                 <BackpackTabContent
                   items={backpack}
@@ -142,7 +140,11 @@ export function InventoryScreen() {
                     );
                     if (result.ok) setBackpackSelectedId(null);
                   }}
-                  onTransfer={(it) => { moveToStash(it.id); setBackpackSelectedId(null); }}
+                  onTransfer={(it) => {
+                    const result = moveToStash(it.id);
+                    if (result.ok) setBackpackSelectedId(null);
+                    else showToast(t(result.reason === 'stash_full' ? 'toast.stashFull' : 'toast.transferFailed'), 'error');
+                  }}
                   onDiscardRequest={(it) => { setDiscardConfirm({ kind: 'single', item: it, source: 'backpack' }); }}
                   onBulkDiscard={(ids) => {
                     bulkDiscard(ids);
@@ -154,14 +156,18 @@ export function InventoryScreen() {
             },
             {
               id: 'stash',
-              label: `${t('stash')} (${String(stash.length)}/${String(MAX_STASH)})`,
+              label: `${t('stash')} (${String(stash.length)}/${String(STASH_CAPACITY)})`,
               content: (
                 <StashTabContent
                   items={stash}
                   selectedId={stashSelectedId}
                   setSelectedId={setStashSelectedId}
                   player={player}
-                  onTransfer={(it) => { moveToBackpack(it.id); setStashSelectedId(null); }}
+                  onTransfer={(it) => {
+                    const result = moveToBackpack(it.id);
+                    if (result.ok) setStashSelectedId(null);
+                    else showToast(t(result.reason === 'backpack_full' ? 'toast.backpackFull' : 'toast.transferFailed'), 'error');
+                  }}
                   onDiscardRequest={(it) => { setDiscardConfirm({ kind: 'single', item: it, source: 'stash' }); }}
                 />
               ),
@@ -325,7 +331,7 @@ function BackpackTabContent({
       <BulkDiscardToolbar backpack={items} equipped={equipped} onDiscard={onBulkDiscard} />
       <ItemGridLayout
         items={items}
-        capacity={MAX_BACKPACK}
+        capacity={BACKPACK_CAPACITY}
         emptyKey="emptyBackpack"
         selectedId={selectedId}
         setSelectedId={setSelectedId}
@@ -378,7 +384,7 @@ function StashTabContent({
   return (
     <ItemGridLayout
       items={items}
-      capacity={Math.min(MAX_STASH, Math.max(60, items.length + 20))}
+      capacity={Math.min(STASH_CAPACITY, Math.max(60, items.length + 20))}
       emptyKey="emptyStash"
       selectedId={selectedId}
       setSelectedId={setSelectedId}
