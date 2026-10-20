@@ -6,6 +6,23 @@
   "type": "object",
   "required": ["id", "name", "description", "trigger", "target", "cooldown", "minLevel", "maxLevel"],
   "additionalProperties": false,
+  "if": {
+    "properties": { "id": { "const": "skills-necromancer-amplify-damage" } },
+    "required": ["id"]
+  },
+  "then": {
+    "required": ["statusEffect"],
+    "properties": {
+      "statusEffect": {
+        "type": "object",
+        "required": ["durationMs", "physicalResistReductionPct"],
+        "properties": {
+          "durationMs": { "$ref": "#/properties/statusEffect/properties/durationMs" },
+          "physicalResistReductionPct": { "$ref": "#/properties/statusEffect/properties/physicalResistReductionPct" }
+        }
+      }
+    }
+  },
   "properties": {
     "id": {
       "type": "string",

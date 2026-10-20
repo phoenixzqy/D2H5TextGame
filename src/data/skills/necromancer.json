@@ -158,6 +158,10 @@
     "appliesStatus": [
       "amplify-damage"
     ],
+    "statusEffect": {
+      "durationMs": 3000,
+      "physicalResistReductionPct": 50
+    },
     "appliesTags": [
       "amp-damage"
     ],

@@ -6,6 +6,8 @@ import { describe, it, expect } from 'vitest';
 import { validateGameData, GameDataValidationError } from './loader';
 import monsterSchema from './schema/monster.schema.json';
 import skillSchema from './schema/skill.schema.json';
+import necromancerSkills from './skills/necromancer.json';
+import { skills } from './index';
 
 describe('data/loader', () => {
   describe('validateGameData', () => {
@@ -109,6 +111,43 @@ describe('data/loader', () => {
     });
 
     describe('skill validation', () => {
+      const amplify = necromancerSkills.find((skill) => skill.id === 'skills-necromancer-amplify-damage');
+      if (!amplify) throw new Error('Production Amplify Damage definition is missing');
+
+      it('authors the reviewed Amplify Damage defaults in the actual production row', () => {
+        expect(amplify).toMatchObject({
+          statusEffect: { durationMs: 3000, physicalResistReductionPct: 50 }
+        });
+      });
+
+      it.each([undefined, {}, { durationMs: 3000 }, { physicalResistReductionPct: 50 }])(
+        'requires complete metadata for the exact production Amplify Damage row: %j', (statusEffect) => {
+          expect(() => validateGameData(skillSchema.$id, { ...amplify, statusEffect }))
+            .toThrow(GameDataValidationError);
+        }
+      );
+
+      it('accepts explicit zero metadata on Amplify Damage', () => {
+        expect(() => validateGameData(skillSchema.$id, {
+          ...amplify, statusEffect: { durationMs: 0, physicalResistReductionPct: 0 }
+        })).not.toThrow();
+      });
+
+      it.each([undefined, {}, { durationMs: 3000 }, { physicalResistReductionPct: 50 }])(
+        'keeps metadata optional for another skill ID: %j', (statusEffect) => {
+          expect(() => validateGameData(skillSchema.$id, {
+            ...amplify, id: 'skills-fixture-status-metadata', statusEffect
+          })).not.toThrow();
+        }
+      );
+
+      it('validates every actual skill row against the updated schema', () => {
+        expect(skills.length).toBeGreaterThan(0);
+        for (const skill of skills) {
+          expect(() => validateGameData(skillSchema.$id, skill, skill.id)).not.toThrow();
+        }
+      });
+
       it('accepts valid skill definition', () => {
         const validSkill = {
           id: 'fireball',
