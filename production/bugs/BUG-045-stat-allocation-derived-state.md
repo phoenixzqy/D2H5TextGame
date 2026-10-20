@@ -278,3 +278,123 @@ verified. B2 plans/runner copied byte-for-byte before cleanup to
 root owns removal after B2 consumers finish. Design/producer B2 detailed plan
 APPROVE, UI RED/source/browser acceptance still pending. Original checkout clean;
 claimed worktree continues. No push/PR/merge.
+
+
+## B2 implementation review — empty draft lifecycle
+
+Input0e23bfc; B2 plan and frozen22 UI cases independently approved before source.
+Initial implementation passes70focused cases. Root source review finds one
+uncovered local-state case: increase Energy, decrease it to zero additions,
+then real gainExperience(1). The retained zero-delta draft still has old basis;
+current implementation announces pending changes discarded even though all edits
+were removed. Expected: empty draft is absent, Apply remains disabled and no
+false discard notice/domain mutation. Environment same deterministic UI fixture;
+severity low (misleading status only), no saved stat corruption. Add a genuine
+regression while retaining the22 frozen cases, review RED before minimal fix:
+normalize a zero-total edited draft to null at the editor boundary. No engine,
+balance, save or existing controller changes.
+
+
+## B2 localized Character editor — implementation and evidence
+
+Input0e23bfc. Independently approved B2 plan precedes source. Four readable
+44px native +/- rows stage additions locally; minus removes additions only.
+Committed base→preview, whole remaining points, Apply/Cancel and all ten result
+messages use matched localized keys. Exact player-reference render fence disables
+stale Apply before passive cleanup; cleanup prevents old-reference resurrection.
+Apply calls the B1 lifecycle controller; current resources never refill. Existing
+single-point/bulk/controller/engine/schema behavior unchanged. Security: local
+character UI only; no external access or new persistence surface.
+
+Initial RED2/10/15 UI absence failures progressively expanded to22; four existing
+screen and44 B1 controls remain. Initial literal attack25 corrected to23 before
+freeze: stats.ts:103 floor(10+(1-1)*2+max(10,26)*0.5)=23. Original attempt retained.
+Producer/QA source-reviewed correction. Review amendments: exactOptionalPropertyTypes
+wrapper prop explicitly permits undefined; derived snapshot takes the non-null
+whole parent Panel (not just HP/MP child); lint removes unnecessary null fallback
+while retaining missing-parent throw. All earlier test versions preserved until
+consumer release. Final reviewed22-case SHAaddad041a230c24bb2303d8ffcab0ca3a5b5a604ceef5ac5a791dc38d69fa66a;
+RED reportd614f166f95613a265fb8cd509172e8a9386a444ecc500e209eb5aecefb445fe,
+70actual statuses=22failed/48passed/0pending, exit1/8.622s. Independent producer/QA
+approved frozen RED before runtime. First source passed70/70; lint rejected
+Object.values(CoreStats) reduction typing. Fixed-key reductions replace it.
+
+Root review found the zero-total local draft lifecycle issue documented above.
+Added23rd case without changing original22 assertions; genuine RED71=1false
+notice failure/70controls/0pending, report0e0715778254a199e704eb556bf249f38d627382b82804faeb666f5a87d9228c.
+Producer/QA approved RED and minimal root fix before source: edit returns null
+when every delta is zero. Final test SHA90bd24d73da1cab2fcc98c7988ff31b1011a6cf22720fc96b2c04164df6035d8;
+focused71/71,0failed/pending, reportef88e64ffd414c57bbdbd0ec87ea74efb58cba74d0f96efe028f1dc623b15400.
+Tests use real component/controller/stores/i18n/export, full immutable domain
+snapshots, callback publication snapshots, mixed literal stats/noheal, both locales,
+fractional budgets/caps/gear, XP/equip/equal-ID invalidation before passive effects,
+old-reference return, unmount and real hydration refusal/retry. JSDOM is not browser
+or native Save evidence.
+
+Final CharacterScreen SHA27e3134e1c3116be54a5571b26d809d683aa82a61fdd7aeb89f17d777d1c3158;
+en localecbe5a0da29bf80933951428c4722963bef97b347389e24f5612418a8e269df45;
+zh locale986d33996ec46f4a40e25be41f854872d52311ed058c9ac0118148e440b85b57.
+Producer/QA source+focused APPROVE, design source/localization APPROVE.
+Scoped i18n:16nonempty leaves each/all10codes/equal placeholders and paths;
+all existing translations unchanged. Global audit exit1:270data literals,
+2missing inventory.title at unchanged InventoryScreen.tsx:121 (both locales),
+8unchanged SkillsEditor.tsx:60–75 raw strings;0parse/data-missing/parity gaps.
+This preserves global backlog, not a claim of global i18n acceptance.
+
+RAW=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-stat-ui-250vnt4d.
+Exact argv/exit/wall and log hashes below; only RAW prefix abbreviated as $RAW.
+
+| Label | Command | Exit | Seconds | Log SHA256 |
+| --- | --- | --- | --- | --- |
+| red-initial | `npx vitest run src/features/character/CharacterStatDraft.test.tsx src/features/character/CharacterScreen.test.tsx --reporter=json --outputFile=$RAW/red-initial.json` | 1 | 5.168 | a3c770189f6adccf8554959b857830d36646976ca1627c64b5a2473a30616587 |
+| red-expanded | `npx vitest run src/features/character/CharacterStatDraft.test.tsx src/features/character/CharacterScreen.test.tsx --reporter=json --outputFile=$RAW/red-expanded.json` | 1 | 6.206 | bad1375c69bb75c9ddb30b2c67bf98b4b7f47377e0b53b81ee7ce47ffc3dbe62 |
+| red-stale | `npx vitest run src/features/character/CharacterStatDraft.test.tsx src/features/character/CharacterScreen.test.tsx --reporter=json --outputFile=$RAW/red-stale.json` | 1 | 7.061 | 108d961388bd2ca27d705e16e09d6155d036360ae4e6c98d43ca0e7238653107 |
+| red-final | `npx vitest run src/features/character/CharacterStatDraft.test.tsx src/features/character/CharacterScreen.test.tsx src/stores/stat-draft.test.ts src/features/character/applyStatDraft.test.ts --reporter=json --outputFile=$RAW/red-final.json` | 1 | 8.207 | bb4cb74e2254d4c347e08654f2652876c963d281a8e88d03ee31da393376077a |
+| red-lint | `npx eslint src/features/character/CharacterStatDraft.test.tsx --max-warnings=0` | 0 | 5.488 | e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 |
+| red-typecheck | `npm run typecheck` | 2 | 10.011 | 13123f75315dc37e4d5082555f3f1f74a476102e6250c9a31310440c882feabd |
+| red-typed | `npx vitest run src/features/character/CharacterStatDraft.test.tsx src/features/character/CharacterScreen.test.tsx src/stores/stat-draft.test.ts src/features/character/applyStatDraft.test.ts --reporter=json --outputFile=$RAW/red-typed.json` | 1 | 8.243 | 7217728e17649ed741a7bb17c4be4931f509ad92480066f746ac799dcee7fb99 |
+| red-typed-lint | `npx eslint src/features/character/CharacterStatDraft.test.tsx --max-warnings=0` | 0 | 5.427 | e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 |
+| red-typed-typecheck | `npm run typecheck` | 0 | 10.172 | 53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47 |
+| red-panel | `npx vitest run src/features/character/CharacterStatDraft.test.tsx src/features/character/CharacterScreen.test.tsx src/stores/stat-draft.test.ts src/features/character/applyStatDraft.test.ts --reporter=json --outputFile=$RAW/red-panel.json` | 1 | 8.347 | 761912897c5a3997d50e4b18d50598a90e916649e10419d927f35a9fe6a61bd0 |
+| red-panel-lint | `npx eslint src/features/character/CharacterStatDraft.test.tsx --max-warnings=0` | 1 | 5.459 | ad3df4b82faef3e96e34386d53b5618480cf626e656c49007468b79d68ad3461 |
+| red-panel-typecheck | `npm run typecheck` | 0 | 10.202 | 53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47 |
+| red-reviewed | `npx vitest run src/features/character/CharacterStatDraft.test.tsx src/features/character/CharacterScreen.test.tsx src/stores/stat-draft.test.ts src/features/character/applyStatDraft.test.ts --reporter=json --outputFile=$RAW/red-reviewed.json` | 1 | 8.622 | e0c9bfd365035f9eb025e5c69b7898ae074eb2591dac85b40f90d8b83e082a60 |
+| red-reviewed-lint | `npx eslint src/features/character/CharacterStatDraft.test.tsx --max-warnings=0` | 0 | 5.411 | e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 |
+| red-reviewed-typecheck | `npm run typecheck` | 0 | 10.34 | 53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47 |
+| green-focused | `npx vitest run src/features/character/CharacterStatDraft.test.tsx src/features/character/CharacterScreen.test.tsx src/stores/stat-draft.test.ts src/features/character/applyStatDraft.test.ts --reporter=json --outputFile=$RAW/green-focused.json` | 0 | 6.312 | 417bee9e070905b7fa1d69e1c251e5406f28e7dd57921693b82b0c098bfbd109 |
+| green-typecheck | `npm run typecheck` | 0 | 10.012 | 53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47 |
+| green-lint | `npm run lint` | 1 | 27.225 | 9363fb2048998e3c3fe568398b9c0c7218487ac611c0d27ed0505638a41ba86f |
+| red-empty-lifecycle | `npx vitest run src/features/character/CharacterStatDraft.test.tsx src/features/character/CharacterScreen.test.tsx src/stores/stat-draft.test.ts src/features/character/applyStatDraft.test.ts --reporter=json --outputFile=$RAW/red-empty-lifecycle.json` | 1 | 6.583 | 6d586c00037b3cd33dec321ae01d26f22d1d6bdbf1872dd253986fa584bf8307 |
+| red-empty-test-lint | `npx eslint src/features/character/CharacterStatDraft.test.tsx --max-warnings=0` | 0 | 5.48 | e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 |
+| red-empty-typecheck | `npm run typecheck` | 0 | 10.138 | 53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47 |
+| i18n-audit | `npm run lint:i18n` | 1 | 0.361 | 126ed22c92a21bb00d7ebdaac697a35bc7e7d92185d6347bab6464b113ef8652 |
+| green-final-focused | `npx vitest run src/features/character/CharacterStatDraft.test.tsx src/features/character/CharacterScreen.test.tsx src/stores/stat-draft.test.ts src/features/character/applyStatDraft.test.ts --reporter=json --outputFile=$RAW/green-final-focused.json` | 0 | 6.595 | 47362c50ea0cd8ecef8179f24f3acea1f54132d5d8d42eb73e04e65953fb89fc |
+| final-related | `npm run test:related -- src/features/character/CharacterScreen.tsx --reporter=json --outputFile=$RAW/final-related.json` | 0 | 10.023 | 35247816348c4d394c9353507b69bdcd4972e9e860c8a515d29bd8cd00077b58 |
+| final-typecheck | `npm run typecheck` | 0 | 11.37 | 53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47 |
+| scoped-i18n | `python3 $RAW/check-draft-i18n.py` | 0 | 0.044 | 5fe242a438caf9ffe8614001b44cb6add46c27c3eb3ba11fbac753aad3fd6f72 |
+| final-lint | `npm run lint` | 0 | 27.634 | 64ef18bd16f812a048e5d016a57900763eaa6c02c2e7a32bb2a3cbbdaed0531f |
+| final-full-coverage | `npm run test:cov -- --reporter=json --outputFile=$RAW/final-full-coverage.json --coverage.reportsDirectory=$RAW/coverage` | 0 | 41.257 | 826703f43a78503cdedeb114d9b3dd354cf2eca60b609335892d654a315f6b8b |
+| final-bridge-build | `npm run check:test-bridge-shake` | 0 | 9.11 | d8803582d962369d4ba643e2d5a232b968c95b6040afd35ab6da3e73bd8b275d |
+
+Final related27/2,0failed/pending, report95da76b359da025b9603e2b932cbafcfb647d54a89be55e2e31b47c91b633c1a.
+Final complete full-unit coverage2408/140,0failed/skipped/pending,
+report6628f57ff6c36186025b79bc30248ddd9e58f1f842634d4c98006d2976232190,
+exit0/41.257s. Configured80%engine gate unchanged;63files8105/8585statements,
+1892/2105branches,296/315functions. TSC11.370/lint27.634/purity51/buildbridge9.110
+pass. Related10.023>5s/full41.257>15s exceed loop budgets; concurrent validation
+walltimes are not a serial performance benchmark. Production build ran after
+source-fingerprint tests finished, with existing Browserslist-age, >500KB chunk
+and optional2.57MB manifest-precache warnings. No engine edits require a separate
+engine rerun; full coverage includes engine cases. No thresholds weakened.
+
+Final broad-evidence review/consumer release pending. RAW and task dist/.vite
+retained for reviewers; root owns removal. B3 ordinary-earned browser/native
+Save/read-onlyDB/closeContinue/keyboard/targetsize/overflow remain unaccepted,
+as do Den/fullv1/C0–C4/G0–G7. No push/PR/merge.
+
+Final independent producer/QA APPROVE/ADEQUATE; design source APPROVE.
+All consumers released B2 RAW retention before exact RAW/dist/node_modules/.vite
+removal; absence verified. Original checkout remains read-only; claim continues.
+B3 runner/plan independently prepared in
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-stat-earned-3jkw2_gj;
+root owns eventual cleanup. B2 accepted only; B3/native/fullv1 remain open.

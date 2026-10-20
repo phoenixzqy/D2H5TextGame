@@ -55,5 +55,25 @@
     "fire": "火焰抗性",
     "light": "闪电抗性"
   },
-  "equipped": "已装备"
+  "equipped": "已装备",
+  "draft": {
+    "instructions": "先预览加点，再点击应用。当前生命与法力不会回复。",
+    "increase": "增加{{attribute}}",
+    "decrease": "减少{{attribute}}",
+    "remaining": "待分配点数",
+    "apply": "应用属性",
+    "cancel": "取消修改",
+    "results": {
+      "ok": "属性已应用。",
+      "cancelled": "已取消修改。",
+      "discarded": "角色状态已改变，待应用的修改已丢弃。",
+      "not-ready": "请等待存档加载或更换完成。",
+      "no-player": "请先创建角色。",
+      "stale-player": "角色已更换，请重新分配属性。",
+      "invalid-deltas": "属性修改无效，请取消后重试。",
+      "empty-draft": "请先分配属性点。",
+      "insufficient-points": "可用属性点不足，请调整修改。",
+      "stat-cap": "属性将超出上限，请调整修改。"
+    }
+  }
 }

@@ -1,5 +1,5 @@
 /**
- * CharacterScreen — read-only character sheet.
+ * CharacterScreen — character sheet with cancellable attribute allocation.
  *
  * Layout (mobile, 360w, vertical scroll):
  *   [ Header strip: portrait · name · class · level · XP bar ]
@@ -8,16 +8,17 @@
  *   [ Panel: Resistances ]
  *   [ Panel: Equipped items ]
  *
- * Reads-only: pulls from `usePlayerStore` and `useInventoryStore`.
- * No allocation buttons here — that flow lives elsewhere.
+ * Attribute previews stay local until the shared Apply controller commits them.
  */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { EquippedItemModal, GameCard, Panel, ScreenShell, StatBar, RarityText, resolveClassPortrait, tItemName } from '@/ui';
 import { useInventoryStore, usePlayerStore } from '@/stores';
 import type { Player } from '@/engine/types/entities';
 import type { EquipmentSlot, Item } from '@/engine/types/items';
-import type { DamageType } from '@/engine/types/attributes';
+import type { CoreStats, DamageType } from '@/engine/types/attributes';
+import { CORE_STAT_HARD_CAP } from '@/engine/progression/stats';
+import { applyStatDraft, type ApplyStatDraftResult } from './applyStatDraft';
 
 const RESIST_KEYS: readonly Exclude<DamageType, 'thorns'>[] = [
   'fire',
@@ -140,48 +141,87 @@ function HeroStrip({ player }: { player: Player }) {
   );
 }
 
+const EMPTY_STAT_DRAFT: CoreStats = { strength: 0, dexterity: 0, vitality: 0, energy: 0 };
+const ATTRIBUTE_KEYS = ['strength', 'dexterity', 'vitality', 'energy'] as const;
+type DraftFeedback = ApplyStatDraftResult | 'cancelled' | 'discarded';
+
 function CoreAttributesPanel({ player }: { player: Player }) {
   const { t } = useTranslation(['common', 'character']);
-  const cs = player.coreStats;
-  const rows: { key: string; label: string; value: number }[] = [
-    { key: 'strength', label: t('common:stats.strength'), value: cs.strength },
-    { key: 'dexterity', label: t('common:stats.dexterity'), value: cs.dexterity },
-    { key: 'vitality', label: t('common:stats.vitality'), value: cs.vitality },
-    { key: 'energy', label: t('common:stats.energy'), value: cs.energy },
-  ];
+  const [draft, setDraft] = useState<{ basis: Player; deltas: CoreStats } | null>(null);
+  const [feedback, setFeedback] = useState<DraftFeedback | null>(null);
+  const stale = draft !== null && draft.basis !== player;
+  // Render fencing precedes effect cleanup: interrupted edits are never rebased.
+  const deltas = !stale && draft ? draft.deltas : EMPTY_STAT_DRAFT;
+  const total = ATTRIBUTE_KEYS.reduce((sum, stat) => sum + deltas[stat], 0);
+  const remaining = Math.max(0, Math.floor(player.statPoints)) - total;
+  const message = stale ? 'discarded' : feedback;
+  useEffect(() => {
+    if (stale) { setDraft(null); setFeedback('discarded'); }
+  }, [stale]);
+
+  const edit = (stat: keyof CoreStats, amount: 1 | -1) => {
+    setDraft(current => {
+      const pending = current?.basis === player ? current.deltas : EMPTY_STAT_DRAFT;
+      const available = Math.max(0, Math.floor(player.statPoints))
+        - ATTRIBUTE_KEYS.reduce((sum, key) => sum + pending[key], 0);
+      if (amount < 0 && pending[stat] === 0) return current;
+      if (amount > 0 && (available < 1
+        || player.coreStats[stat] + pending[stat] + 1 > CORE_STAT_HARD_CAP)) return current;
+      const next = { ...pending, [stat]: pending[stat] + amount };
+      return ATTRIBUTE_KEYS.every(key => next[key] === 0) ? null : { basis: player, deltas: next };
+    });
+    setFeedback(null);
+  };
+  const commit = () => {
+    if (!draft || stale) return;
+    const result = applyStatDraft(draft.deltas, draft.basis);
+    setFeedback(result);
+    if (result === 'ok') setDraft(null);
+  };
+  const buttonClass = 'min-h-[44px] min-w-[44px] rounded border border-d2-border bg-d2-bg/60 text-d2-gold focus:outline-none focus:ring-2 focus:ring-d2-gold hover:border-d2-gold disabled:opacity-40 disabled:cursor-not-allowed';
   return (
-    <Panel
-      title={t('common:stats.title')}
-      className="!p-3"
-    >
+    <Panel title={t('common:stats.title')} className="!p-3">
       <div data-testid="char-core-stats">
-        <ul className="grid grid-cols-2 gap-2">
-          {rows.map((r) => (
-            <li
-              key={r.key}
-              className="flex items-center justify-between border border-d2-border/60 rounded px-3 py-2 bg-d2-bg/40"
-            >
-              <span className="text-sm text-d2-white/80">{r.label}</span>
-              <span className="text-sm font-serif text-d2-gold">{r.value}</span>
+        <p className="mb-3 text-sm text-d2-white/80">{t('character:draft.instructions')}</p>
+        <ul className="grid grid-cols-1 gap-2">
+          {ATTRIBUTE_KEYS.map(stat => (
+            <li key={stat} className="flex items-center gap-2 rounded border border-d2-border/60 px-3 py-2 bg-d2-bg/40">
+              <div className="min-w-0 flex-1">
+                <span className="block text-sm text-d2-white/80">{t(`common:stats.${stat}`)}</span>
+                <span className="text-sm font-serif text-d2-gold" data-testid={`char-draft-${stat}`}>
+                  {player.coreStats[stat]}{deltas[stat] > 0 && ` → ${String(player.coreStats[stat] + deltas[stat])}`}
+                </span>
+              </div>
+              <button type="button" className={buttonClass} disabled={deltas[stat] === 0}
+                aria-label={t('character:draft.decrease', { attribute: t(`common:stats.${stat}`) })}
+                onClick={() => { edit(stat, -1); }}>−</button>
+              <button type="button" className={buttonClass}
+                disabled={remaining < 1 || player.coreStats[stat] + deltas[stat] + 1 > CORE_STAT_HARD_CAP}
+                aria-label={t('character:draft.increase', { attribute: t(`common:stats.${stat}`) })}
+                onClick={() => { edit(stat, 1); }}>+</button>
             </li>
           ))}
         </ul>
-        <div className="flex flex-wrap gap-3 mt-3 text-xs text-d2-white/70">
-          <span>
-            {t('character:screen.statPoints')}
-            {': '}
-            <span className="text-d2-gold font-bold" data-testid="char-stat-points">
-              {player.statPoints}
-            </span>
+        <div className="flex flex-wrap gap-3 mt-3 text-sm text-d2-white/80">
+          <span>{t('character:screen.statPoints')}{': '}
+            <span className="text-d2-gold font-bold" data-testid="char-stat-points">{player.statPoints}</span>
           </span>
-          <span>
-            {t('character:screen.skillPoints')}
-            {': '}
-            <span className="text-d2-gold font-bold" data-testid="char-skill-points">
-              {player.skillPoints}
-            </span>
+          <span>{t('character:screen.skillPoints')}{': '}
+            <span className="text-d2-gold font-bold" data-testid="char-skill-points">{player.skillPoints}</span>
           </span>
         </div>
+        <p className="mt-3 text-sm text-d2-white/80">{t('character:draft.remaining')}{': '}
+          <span className="font-bold text-d2-gold" data-testid="char-draft-remaining">{remaining}</span>
+        </p>
+        <div className="mt-3 flex flex-wrap gap-2">
+          <button type="button" className={`${buttonClass} flex-1 px-3 text-sm`} disabled={total === 0}
+            onClick={commit}>{t('character:draft.apply')}</button>
+          <button type="button" className={`${buttonClass} flex-1 px-3 text-sm`} disabled={total === 0}
+            onClick={() => { setDraft(null); setFeedback('cancelled'); }}>{t('character:draft.cancel')}</button>
+        </div>
+        <p role="status" className="mt-2 min-h-5 text-sm text-d2-white/80">
+          {message ? t(`character:draft.results.${message}`) : ''}
+        </p>
       </div>
     </Panel>
   );

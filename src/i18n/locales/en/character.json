@@ -55,5 +55,25 @@
     "fire": "Fire Resistance",
     "light": "Lightning Resistance"
   },
-  "equipped": "Equipped"
+  "equipped": "Equipped",
+  "draft": {
+    "instructions": "Preview additions, then Apply. Current life and mana do not refill.",
+    "increase": "Increase {{attribute}}",
+    "decrease": "Decrease {{attribute}}",
+    "remaining": "Points left to assign",
+    "apply": "Apply attributes",
+    "cancel": "Cancel changes",
+    "results": {
+      "ok": "Attributes applied.",
+      "cancelled": "Changes cancelled.",
+      "discarded": "Character changed. Pending changes discarded.",
+      "not-ready": "Wait for the save to finish loading or changing.",
+      "no-player": "Create a character first.",
+      "stale-player": "Character changed. Assign your attributes again.",
+      "invalid-deltas": "Invalid attribute changes. Cancel and try again.",
+      "empty-draft": "Assign an attribute point first.",
+      "insufficient-points": "Not enough attribute points. Adjust your changes.",
+      "stat-cap": "An attribute would exceed its cap. Adjust your changes."
+    }
+  }
 }
