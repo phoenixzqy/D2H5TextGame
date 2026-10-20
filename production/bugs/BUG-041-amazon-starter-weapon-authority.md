@@ -132,3 +132,51 @@ P08a05a source/evidence commit: 502389c (see Git history for authoritative ID).
 After all consumers finished, root removed and verified absence of exact
 content raw root above, task-owned dist and local node_modules/.vite. No
 task-owned process remained; installed dependencies/shared caches preserved.
+
+## P08a05b pre-fix reproduction and acceptance
+
+At e527b16, existing factory still hardcodes generic weapon-bow (reqLevel10),
+equipped atlevel1 without ilvl/baseRolls; it ignores authored class documents.
+Reproduction: call actual createMockPlayer('Archer','amazon'); inspect actual
+checkEligibility/computeStats and factory response to substituted class JSON.
+Expected: schema-validated optional class recipe supplies legal Training Bow13,
+ilvl1, fresh cloned rolls; omission yields empty kit even for Amazon. Invalid
+full documents/identity/recipes/base references/ranges/actual stat requirements
+throw contextually before returning a player. Preserve existing progression,
+combo/stats and transitional equipped flags; no grants/stores/creation/save/
+reader changes. Proposed four source files/five including existing test are
+root/design/producer approved. Tests import existing factory/schema APIs; JSON
+substitutions exercise authoring edge, no missing-loader import or eligibility
+mock. Security check PASS: local validation/preparation, no external network,
+permissions, credentials, dependencies, hooks or destructive data changes.
+
+Raw root (root owns; retain until independent consumers finish):
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-amazon-recipe-213lmj1m
+
+### P08a05b genuine RED before source changes
+
+Existing actual factory/schema API run:22failed/18passed/40total,1file,0skip.
+Factory returns weapon-bow without rolls/ilvl, ignores authored12 and omission,
+and never rejects14recipe cases/full invalid document/identity/core requirement.
+Schema correctly rejects malformed recipes but also rejects desired valid new
+field. These failures are observed behavior, not missing module/harness failure.
+First scoped lint found4non-null warnings; replaced only with assert narrowing,
+then reran same runtime assertions. No source change or weakened oracle.
+
+- recipe-red: `npx vitest run --project ui src/features/character/createMockPlayer.test.ts --reporter=verbose`; exit1, wall3.506s; log SHA256 `50f613593d8b9fcaf98a0515d27e196d0ce1afc92ee8eded357c5034cad18efc`.
+- recipe-red-frozen: `npx vitest run --project ui src/features/character/createMockPlayer.test.ts --reporter=verbose`; exit1, wall3.053s; log SHA256 `d7790ef3cc83f75f54abfe96ba1b3f25e319efbb2b0f3d105b3785065284a3fa`.
+- recipe-red-typecheck: `npm run typecheck`; exit0, wall10.249s; log SHA256 `53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47`.
+- recipe-red-lint: `npx eslint src/features/character/createMockPlayer.test.ts --max-warnings=0`; exit1, wall5.721s; log SHA256 `7e97cc8310f3c6c6134b4f440c72bdf20dfaeba4cef7dcb9b31b2adbb6a8f5a3`.
+- recipe-red-lint-frozen: `npx eslint src/features/character/createMockPlayer.test.ts --max-warnings=0`; exit0, wall5.054s; log SHA256 `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`.
+
+Frozen test SHA256: `cfdd67307ded70368e4331c761536468f97a2b3ad4e95d38a503e542bd8e7e7d`.
+
+QA requested inclusive bounds positives before source. Parameterized authored
+attack substitution [12,8,18]; no existing assertion weakened. Strengthened
+actual factory RED24failed/18passed/42total,0skip. Prior cfdd hash above is
+historical; current frozen SHA256: `7b4890082b4c0a7e879988d43d49bed5090a38d7c7d83b3db68d1797ece86660`.
+- recipe-red-bounds: `npx vitest run --project ui src/features/character/createMockPlayer.test.ts --reporter=verbose`; exit1, wall3.228s; log SHA256 `b17dffc03b58fb99f577b3085762521dbcb8d3678a1c89dc97ead06c6e867c3a`.
+- recipe-red-bounds-lint: `npx eslint src/features/character/createMockPlayer.test.ts --max-warnings=0`; exit0, wall5.372s; log SHA256 `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`.
+
+Root/producer/QA approve genuine RED; QA strengthened freeze ADEQUATE after
+inclusive-bound positives. Four source edits follow frozen-test checkpoint.
