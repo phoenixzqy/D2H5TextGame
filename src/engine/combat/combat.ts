@@ -32,6 +32,9 @@ import {
 } from './status';
 import { comboMultiplier } from './combo';
 import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
+import {
+  createManaRecoveryIntegral, exportManaRecoveryCarry, integrateManaRecoveryBetween, type ManaRecoveryIntegral
+} from './mana-recovery';
 import { isImmobilized, shouldEnrage } from '../ai/policy';
 import { canCastSkill } from '../skills/eligibility';
 import { getSkill } from '../skills/registry';
@@ -134,6 +137,8 @@ interface State {
   cooldownExpiresAt: Map<string, Map<string, number>>;
   /** Pooled rate-times-ms integral, never persisted or transferred between battles. */
   periodic: Map<string, PeriodicIntegral>;
+  /** Cumulative recovery integral; only fractional MP transfers between battles. */
+  manaRecovery: Map<string, ManaRecoveryIntegral>;
   deathsHandled: Set<string>;
   /** highest "turn" emitted (5s boundaries). */
   turnsEmitted: number;
@@ -173,11 +178,15 @@ function commitMana(
 ): ManaEvent | undefined {
   let next = candidate;
   if (next.mana >= next.stats.manaMax) {
+    state.manaRecovery.delete(next.id);
     if (next.manaRegenCarry !== undefined && next.manaRegenCarry !== 0) {
       next = { ...next, manaRegenCarry: 0 };
     }
     if (next.manaRegenCompensation !== undefined && next.manaRegenCompensation !== 0) {
       next = { ...next, manaRegenCompensation: 0 };
+    }
+    if (next.manaRegenExactCarry !== undefined && next.manaRegenExactCarry !== '0') {
+      next = { ...next, manaRegenExactCarry: '0' };
     }
   }
   state.units.set(next.id, next);
@@ -400,6 +409,7 @@ function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void
     state.deathsHandled.add(u.id);
     state.nextActionAt.delete(u.id);
     state.periodic.delete(u.id);
+    state.manaRecovery.delete(u.id);
     if (inferKind(u) === 'hero') state.heroDead = true;
   }
   for (const u of dead) emit(state, { kind: 'death', target: u.id });
@@ -816,6 +826,30 @@ function settlePeriodic(state: State, to: number): void {
   }
 }
 
+/** Periodic deaths and cap side effects settle before living units recover. */
+function settleManaRecovery(state: State, fromMs: number, toMs: number): void {
+  if (!Number.isFinite(fromMs) || !Number.isFinite(toMs) || toMs <= fromMs) return;
+  for (const unit of state.units.values()) {
+    const rate = unit.manaRegenPerSecond;
+    if (!alive(unit) || rate === undefined || !Number.isFinite(rate) || rate <= 0 ||
+      !Number.isFinite(unit.stats.manaMax) || unit.stats.manaMax <= 0) continue;
+    if (unit.mana >= unit.stats.manaMax) {
+      commitMana(state, unit, unit, 'regeneration');
+      continue;
+    }
+    const previous = state.manaRecovery.get(unit.id) ??
+      createManaRecoveryIntegral(unit.manaRegenCarry, unit.manaRegenCompensation, unit.manaRegenExactCarry);
+    const next = integrateManaRecoveryBetween(rate, fromMs, toMs, previous);
+    state.manaRecovery.set(unit.id, next);
+    const manaEvent = commitMana(state, unit, {
+      ...unit,
+      mana: Math.min(unit.stats.manaMax, unit.mana + next.wholeGranted - previous.wholeGranted),
+      ...exportManaRecoveryCarry(next)
+    }, 'regeneration');
+    if (manaEvent) emit(state, manaEvent);
+  }
+}
+
 /** Next action/status/deadline boundary; starts include non-DoT pending controls. */
 function nextPeriodicBoundary(state: State, nextActionAt: number): number {
   let boundary = Math.min(MAX_SIM_MS, nextActionAt);
@@ -1055,6 +1089,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     nextActionAt: new Map(),
     cooldownExpiresAt: new Map(),
     periodic: new Map(),
+    manaRecovery: new Map(),
     deathsHandled: new Set(),
     turnsEmitted: 0,
     heroDead: false,
@@ -1087,7 +1122,9 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     // targets together, even if no action is eligible before the deadline.
     if (state.simClockMs === MAX_SIM_MS && next.at > MAX_SIM_MS) break;
     const boundary = nextPeriodicBoundary(state, next.at);
+    const from = state.simClockMs;
     settlePeriodic(state, boundary);
+    settleManaRecovery(state, from, boundary);
     if (winnerOf(state) !== null) break;
     if (boundary < next.at) continue;
     const actor = state.units.get(next.id);

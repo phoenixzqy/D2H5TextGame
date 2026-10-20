@@ -76,6 +76,8 @@ export interface CombatUnit {
   /** Fractional MP and compensated integration carry across qualified next waves; absent means zero. */
   readonly manaRegenCarry?: number;
   readonly manaRegenCompensation?: number;
+  /** Canonical decimal fractional MP in [0,1); authoritative over legacy numeric carry views. */
+  readonly manaRegenExactCarry?: string;
   /** Per-type increased direct damage, composed once for a frozen wave; absent means zero. */
   readonly increasedDamagePct?: Readonly<Partial<Record<DamageType, number>>>;
   readonly statuses: readonly ActiveStatus[];
