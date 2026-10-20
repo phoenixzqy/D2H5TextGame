@@ -110,3 +110,23 @@ credentials, dependency, permission or validation-bypass changes.
 
 Artifacts retained for root/producer/QA consumption. Worker owns precise
 cleanup and managed worktree release after integration/handoff; no publication.
+
+
+## Source-review precision amendment (not accepted runtime)
+
+Worker's initial minimal implementation passes the original93 focused cases
+and851 engine cases, but source review found two missing exact-partition
+controls before integration. The first implementation exports
+`total / 1000 - wholeGranted`: at7.2MP/s,695ms gives5004MP-ms,5whole and
+carry0.0039999999999995595. Reseeding a555ms second battle loses one MP,
+granting8 rather than literal9 across1250ms. Subtracting whole MP-ms before
+division fixes that example but does not establish all handoff partitions.
+
+Independent QA also identified multiplication rounding:43.68MP/s split into
+16ms and24984ms can sum to1091999.9999999998MP-ms, granting1091 rather than
+literal1092. Addition compensation alone does not correct this product error.
+Root's bounded arithmetic diagnostic reproduced both; worker is adding actual
+two-battle and pure-helper RED controls before any source correction. No epsilon,
+weakened assertion or campaign tuning is authorized. A reasoned numeric contract
+amendment and independently reviewed supplemental RED precede further runtime.
+Initial GREEN remains provisional, not acceptance.
