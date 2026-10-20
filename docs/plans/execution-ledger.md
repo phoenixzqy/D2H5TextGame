@@ -1674,3 +1674,23 @@ claim/persistence (no authored activation), technical/design plan READY; freeze
 capabilityRED and producer/QA approve before handler edit. Next root-owned RAW=
 /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-quest-unique-claim-j6ocbi3_;
 plan-only, no process. No push/PR/merge/deployment.
+
+
+P04a07b accepted3fa3eb8 after design/plan/frozenRED and independent final
+producer/QA APPROVE/ADEQUATE. Generic whole-bag preflight/exact seeded unique
+preparation, retained-overflow addItem before final flag, one conditional partial
+backpack/currency restore; global guard/numeric/attempt-all/AggregateError stay.
+Old35unit+3persistence assertions preserved; frozen/strengthened67=18missingfail/
+49controls→firstimpl66pass1oraclefail→corrected67GREEN. Only approved additive
+imported RNG-ID prefix equality and level3merc baseline216+6000 correction; all
+prior sources/assertions/failed firstimpl retained, runtime unchanged. Related
+1036/55,full2823/1460pending/todo,T18.162/L42.098purity53/guardedbuild9.689pass after
+tests. All15commands/source/report/loghashes/11snapshots retained. Timing/build
+warnings unchanged. Both consumers released before exactRAWj6ocbi3_/dist/
+node_modules/.vite cleanup; absenceverified,noprocess,originalcheckoutclean on
+main/rootclaimcontinues. No content/engine/store/schema/UI/economy/save changes.
+Authored/browser/mobile/earned/C1/C0–C4/G0–G7/fullv1 remain open. Next P04a07c
+activates only actual quests/act1-sisters-to-the-slaughter approved reward bag;
+design/technical planREADY, pending producer/QA plan and frozen genuine RED.
+Next root-owned RAW=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-andariel-reward-3kag9fe5;
+plan-only,no process,generated paths absent after B. No push/PR/merge/deployment.
