@@ -40,8 +40,10 @@ export interface DamageEffect {
 /** Heal primitive. */
 export interface HealEffect {
   readonly kind: 'heal';
-  /** Flat amount or % max (one of). */
+  /** Flat amount; takes precedence over amountRange and pctOfMaxLife. */
   readonly amount?: number;
+  /** Inclusive seeded integer range; takes precedence over pctOfMaxLife. */
+  readonly amountRange?: readonly [number, number];
   readonly pctOfMaxLife?: number;
   readonly target: 'self' | 'ally' | 'all-allies';
 }

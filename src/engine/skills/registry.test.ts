@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import Ajv2020 from 'ajv/dist/2020';
 import skillSchema from '../../data/schema/skill.schema.json';
 import amazonSkills from '../../data/skills/amazon.json';
@@ -8,13 +8,71 @@ import druidSkills from '../../data/skills/druid.json';
 import necromancerSkills from '../../data/skills/necromancer.json';
 import paladinSkills from '../../data/skills/paladin.json';
 import sorceressSkills from '../../data/skills/sorceress.json';
-import { getSkill, listSkills } from './registry';
+import mercenarySkills from '../../data/skills/mercenary.json';
+import { loadMercPool } from '../../data/loaders/mercs';
+import { createMercFromDef } from '../../stores/mercFactory';
+import { MERC_STUB_SKILLS } from './aliases';
+import { getSkill, listSkills, loadDefaultSkills, registerSkill, resetRegistry } from './registry';
 import {
   canonicalSkillIdFromData,
   ENABLED_PLAYABLE_SKILL_CLASSES,
   PLAYABLE_CLASS_SKILL_DATA,
   registeredSkillFromJson
 } from './dataCatalog';
+
+describe('P08a03a authored Minor Heal registration', () => {
+  const productionId = 'mskill-minor-heal';
+  const expected = {
+    id: productionId, archetype: 'mercenary', target: 'single-ally',
+    cooldown: 4, manaCost: 0, minLevel: 1,
+    effects: [{ kind: 'heal', amountRange: [30, 50], target: 'ally' }]
+  };
+  beforeEach(() => { resetRegistry(); loadDefaultSkills(); });
+  afterEach(() => { resetRegistry(); loadDefaultSkills(); });
+
+  it('replaces the actual production self-buff stub with its authored ranged ally heal', () => {
+    const rows = mercenarySkills.filter(skill => skill.id === productionId);
+    expect(rows).toHaveLength(1);
+    expect(rows[0]).toMatchObject({ trigger: 'active', target: 'single-ally',
+      cooldown: 4, minLevel: 1, maxLevel: 20, heal: { min: 30, max: 50, target: 'ally' } });
+    expect(getSkill(productionId)).toEqual(expected);
+    expect(getSkill(productionId)).not.toHaveProperty('isBuff');
+    expect(getSkill(productionId)).not.toHaveProperty('manaCostPerRank');
+    expect(getSkill(productionId)).not.toHaveProperty('cooldownPerRank');
+  });
+
+  it('resolves the actual Acolyte factory loadout without claiming ordinary recruitment', () => {
+    const definition = loadMercPool().pool.find(merc => merc.id === 'mercs/tavern-acolyte-priestess');
+    if (!definition) throw new Error('Actual Acolyte Priestess definition is missing');
+    const before = structuredClone(definition);
+    const merc = createMercFromDef(definition);
+    expect(merc.signatureSkillId).toBe(productionId);
+    expect(merc.comboOrder).toEqual([productionId]);
+    expect(merc.comboOrder.map(getSkill)).toEqual([expected]);
+    expect(definition).toEqual(before);
+  });
+
+  it('restores the authored override after repeated default loads without duplicate IDs', () => {
+    const ids = [...listSkills()].sort();
+    registerSkill({ id: productionId, archetype: 'fixture', target: 'self',
+      cooldown: 0, manaCost: 999, minLevel: 99, effects: [], isBuff: true });
+    for (let i = 0; i < 3; i++) {
+      loadDefaultSkills();
+      expect(getSkill(productionId)).toEqual(expected);
+      expect([...listSkills()].sort()).toEqual(ids);
+      expect(listSkills().filter(id => id === productionId)).toHaveLength(1);
+    }
+  });
+
+  it('preserves every unrelated merc/aura stub and adds no alternative Minor Heal identity', () => {
+    for (const stub of MERC_STUB_SKILLS.filter(skill => skill.id !== productionId)) {
+      expect(getSkill(stub.id)).toBe(stub);
+    }
+    expect(listSkills()).not.toContain('mskill.minor_heal');
+    expect(listSkills()).not.toContain('mskill_minor_heal');
+    expect(listSkills()).not.toContain('mercenary.minor_heal');
+  });
+});
 
 describe('P08a02a Amplify Damage metadata boundary', () => {
   const validateSkill = new Ajv2020({ strict: true, allErrors: true }).compile(skillSchema);

@@ -15,6 +15,7 @@ import type { RegisteredSkill } from './effects';
 import { DEFAULT_SKILLS } from './builders';
 import { aliasToCanonical, MERC_STUB_SKILLS, MONSTER_STUB_SKILLS } from './aliases';
 import { PLAYABLE_CLASS_DATA_SKILLS } from './dataCatalog';
+import { MINOR_HEAL_SKILL } from './minor-heal';
 
 const registry = new Map<string, RegisteredSkill>();
 const warned = new Set<string>();
@@ -81,6 +82,7 @@ export function loadDefaultSkills(): void {
   for (const s of MERC_STUB_SKILLS) {
     registry.set(s.id, s);
   }
+  registry.set(MINOR_HEAL_SKILL.id, MINOR_HEAL_SKILL);
   for (const s of MONSTER_STUB_SKILLS) {
     registry.set(s.id, s);
   }
