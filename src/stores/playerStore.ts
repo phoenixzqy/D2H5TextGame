@@ -42,6 +42,12 @@ export type AllocateSkillResult =
   | 'prereq-missing'
   | 'maxed';
 
+/** Whole-draft refusal codes, checked before any player publication. */
+export type AllocateStatsResult = 'ok' | 'no-player' | 'stale-player' | 'invalid-deltas'
+  | 'empty-draft' | 'insufficient-points' | 'stat-cap';
+
+const CORE_STAT_KEYS = ['strength', 'dexterity', 'vitality', 'energy'] as const;
+
 /** Result codes returned by {@link PlayerState.respec}. */
 export type RespecResult = 'ok' | 'no-player' | 'no-allocations' | 'insufficient-gold';
 
@@ -63,6 +69,8 @@ interface PlayerState {
   levelUp: () => void;
   /** Spend one available point below the base cap, publishing coherent equipped stats without healing. */
   allocateStatPoint: (stat: keyof CoreStats) => void;
+  /** Commit a validated whole draft against its exact player basis in one publication, without healing. */
+  allocateStatPoints: (deltas: CoreStats, expectedPlayer: Player) => AllocateStatsResult;
   /**
    * Spend one skill point on the given skill. Validates the player level
    * meets `minLevel`, every prerequisite has ≥1 allocated point, and the
@@ -183,6 +191,32 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     };
   }); },
   
+  allocateStatPoints: (deltas, expectedPlayer) => {
+    const player = get().player;
+    if (!player) return 'no-player';
+    if (player !== expectedPlayer) return 'stale-player';
+    const input: unknown = deltas;
+    if (input === null || typeof input !== 'object') return 'invalid-deltas';
+    let total = 0;
+    for (const stat of CORE_STAT_KEYS) {
+      if (!Object.prototype.hasOwnProperty.call(deltas, stat)
+        || !Number.isSafeInteger(deltas[stat]) || deltas[stat] < 0) return 'invalid-deltas';
+      total += deltas[stat];
+    }
+    if (!Number.isSafeInteger(total)) return 'invalid-deltas';
+    if (total === 0) return 'empty-draft';
+    if (total > Math.floor(player.statPoints)) return 'insufficient-points';
+    if (CORE_STAT_KEYS.some(stat => deltas[stat] > 0
+      && player.coreStats[stat] + deltas[stat] > CORE_STAT_HARD_CAP)) return 'stat-cap';
+    const coreStats = { ...player.coreStats };
+    for (const stat of CORE_STAT_KEYS) coreStats[stat] += deltas[stat];
+    const nextPlayer = { ...player, coreStats, statPoints: player.statPoints - total };
+    set({ player: { ...nextPlayer,
+      derivedStats: deriveEquippedPlayerStats(nextPlayer, nextPlayer.level, useInventoryStore.getState().equipped)
+    } });
+    return 'ok';
+  },
+
   allocateSkillPoint: (skillId) => {
     const state = get();
     const player = state.player;
