@@ -63,3 +63,24 @@ campaign balance, mana recovery runtime or ordinary browser acceptance.
 
 Security check: **PASS**. Trusted deterministic local stats/resources; no new
 network, credentials, dependencies, permissions, save format or validation bypass.
+
+## Final pre-source acceptance baseline
+
+After tests-only fixture prerequisite `9ae162e`, final RED at
+**2026-10-20 08:46:15 UTC** ran the new suite plus existing main/cross-wave
+suites: **56 total, 13 failed, 43 passed, zero pending**, real4.48s, exit1.
+New suite13:10fail/3pass; cross-wave16:2fail; main27:1fail. Typecheck passed.
+Actual adapter source remained unchanged. Producer and QA independently read
+all three test diffs and raw JSON: APPROVE / ADEQUATE before implementation.
+Ordinary learn/upgrade/Energy/equip/unequip/absent-level/respec paths advance
+without a manual refresh. Separate tests pin default-refresh frozen state and
+explicit replay. Cross-wave tests retain whole-unit L2 stats/resource/status/
+cooldown/buff comparisons and real geared AS263 action400/800ms controls.
+
+L4 imported carry fixture pins original MP400/max405/carry.75, shrink335/carry0,
+expand405→original400/carry.75. Carry injection is a labeled adapter boundary;
+continuous recovery is still stagef. The initial completed-MP expectation
+incorrectly assumed spending necessarily lowered400; actual kill orbs cap the
+completed result405. Corrected that test-only oracle to405 while replay input
+stays400, with no source change. Prior actual outcome references are retained
+and checked for immutability after repeated replay.
