@@ -1,6 +1,6 @@
 # BUG-047 — Display critical damage multiplier with the correct percent unit
 
-Status: Fixed; independent producer/QA APPROVE / ADEQUATE, implementation commit pending.
+Status: Fixed in `4c64f60`; independent producer/QA APPROVE / ADEQUATE.
 Severity: Medium — Character sheet misstates critical damage by100×.
 Owner: frontend-dev; producer triages, independent QA reviews.
 

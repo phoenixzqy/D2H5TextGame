@@ -1554,3 +1554,21 @@ review approves preservedoldbrowser2%→200%correction and fourcase rerun.
 NexttaskRAW6ej81zug retains plan/originalspec/copiedfont; exactpath inBevidence,
 rootownscleanup. Den/W2victory/economy/fullP13/C0–C4/G0–G7/fullv1 remain open.
 No push/PR/merge/deployment.
+
+
+BUG047 accepted4c64f60 after producer/QA final APPROVE/ADEQUATE and independent
+source-oracle review. CharacterScreen multiplies saved critDamage by100 for
+wholepercent display; numeric2 remains2, visible200%, surroundingcritChance5%.
+FrozenRED14=8genuinefail/6controls,focused63/4,fullunit2455/142/0pending pass;
+T/L/purity52/PWAlint and guardedproductionbuild pass. Finalnative4case
+en/zh×desktop/mobile4/4,0skip/retry/flaky/errors,93.726runner94.976wall;
+all86attachments/saveequality/numeric2 and fourreadablederivedPNGs independently
+verified. BUG047/outcome retains command/report/sourcehashes,originalwrong2%
+oracle,firstpasssource and evidence-only capture amendment; no history rewritten.
+Bothconsumers released before exactRAW6ej81zug/dist/.vite removal; absence
+verified,4397closed,originalclean/rootclaimcontinues. Timing/buildwarnings
+unchanged. Next reviewed P12a01a D08 sevengearmax14→19 correction with real
+manualCatacombsL19→award(seed1)→inventory/export structural proof; no earnedboss
+or economyclaim. NextRAW=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-act1-boss-loot-vhq5v4id,
+rootowns eventualcleanup afterreviews. Den/C0–C4/G0–G7/fullv1 remain open.
+No push/PR/merge/deployment.
