@@ -1,7 +1,8 @@
 # D05 v1a / P07a01 — automatic Warmth and combat mana recovery
 
 Status: root design/technical contract; producer APPROVE; QA lifecycle amendment
-accepted, final whole-contract ready. Input3927345; source work waits shared engine.
+accepted. Authored baseline `a35ef02`, trigger metadata `07e8514`, and pure
+composition `938ed96` integrated. Runtime composition/recovery remains open.
 Design choices below are provisional balance, not measured campaign acceptance.
 Full Warmth requires both authored effects; staged fire-only work stays partial.
 
@@ -104,8 +105,11 @@ Paths below under src/, stage lists are proposals requiring source confirmation.
    (3). Metadata only: carry passive trigger identity without claiming runtime
    exclusion yet. Stage d implements/tests the selection guard for learned or
    forged Warmth combo. Keep active FrozenArmor and aura behavior explicit.
-3. P07a01c pure composition: new engine/progression/warmth.ts/test, combat/types.ts,
-   stores/combatHelpers.ts and new stores/warmth-composition.test.ts(5). Resolve
+3. P07a01c split: c1 pure composition in engine/progression/warmth.ts/test and
+   combat/types.ts (3), integrated `938ed96`; c2 production adapter in
+   stores/combatHelpers.ts and new stores/warmth-composition.test.ts, plus bounded
+   existing lifecycle tests after a separate fixture-authority prerequisite.
+   Final c2 ownership requires source-confirmed review before dispatch. Resolve
    actual authored class/rank fields and authoritative gear/effectiveEnergy,
    transient per-type damage/rate/carry; refresh clear and authoritative next-wave
    pull semantics. Include real ordinary mutation→advanceWaveOrFinish tests, not

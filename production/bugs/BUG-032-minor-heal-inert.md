@@ -1,11 +1,11 @@
 # BUG-032 — Connect authored Minor Heal to actual ally healing
 
-- **Status:** Open. Authored registration corrected in `091d9b0`; runtime proof and fix pending.
+- **Status:** Runtime fixed in `ec0de97`; registration fixed in `091d9b0`. Ordinary recruitment/browser acceptance remains separate and open.
 - **Severity:** High; the intended mercenary healing feature has no healing effect.
 - **Owner / affected systems:** engine-dev; skill registry, ranged healing, combat targeting and actual-heal events.
 - **Reproduction input:** `a6f572818c1f0af8e4690eaaea1130838384310e`.
 - **Environment:** Linux, Node 24.21.0, Vitest engine project. Browser, viewport and locale are not applicable to this registry/factory reproduction.
-- **Seed:** No combat or RNG is used by this registration reproduction. The separate planned seed-1 runtime oracle is not executed evidence yet.
+- **Seed:** Registration uses no RNG. The runtime and actual-factory reproductions below use seed 1.
 - **Controlling contract:** `docs/plans/decisions/D04-minor-heal-v1.md`.
 
 ## Reproduction
@@ -100,3 +100,42 @@ hero remains100 instead of143. Added recording assertion now uses existing
 50ms UI minimum. This exposes runtime healing/targeting and availability defects
 beyond the already-corrected registration. Root reviewed all three test files
 and approved final RED; producer review precedes source changes.
+
+## Runtime resolution and combined validation
+
+Worker `89f7b048751d9da0a16380312c68ae3e63a6a07a` integrated as
+`ec0de97`. Positive-potential targeting now chooses one lowest-ratio living
+injured ally, including self/merc/summon, with insertion-order ties. Pure-heal
+skills without a useful patient fall back without cost, cooldown or healing RNG.
+Fixed amount (including zero) precedes range, then percentage. Each ranged
+effect draws once lazily and shares the roll across eligible recipients;
+events report only actual positive capped restoration. Sequential effects read
+the authoritative state, preserving earlier healing, buffs and mana writes.
+
+An additional zero-potential candidate regression extended the approved RED
+to 33 failed / 52 passed, 85 tests, at 08:27:29 UTC (3.20 s). Final focused
+85 tests passed in 1.68 s at 08:28:38. The actual production rank-1/rank-20
+seed-1 fixture now heals the hero 100 → 143, leaves priest 180, and pins the
+400 ms first action, 4400 ms exact cooldown recast and inside-CD fallback.
+Actual Acolyte factory composition retains level 5, HP 164, MP 102, AS 114,
+default rank 1 and first action 1588 ms; with explicitly synthetic injuries
+and actor holds only, hero 100 → 143 and priest 150 stays unchanged.
+
+Seven generic expectations initially assumed the existing equal-bound basic
+damage path drew `nextInt`; corrected to its actual no-range-draw contract,
+retaining exact chance-stream, HP, event and cooldown assertions. No production
+RNG behavior or tuning was changed to satisfy those fixtures.
+
+Worker engine 690/46 files (4.49 s), related 800/58 (21.63 s), full 1529/122
+(31.44 s, no skips), typecheck, lint, build (6.46 s) and diff-check passed.
+Changed combat coverage: 1066/1097 statements/lines, 44/44 functions,
+337/388 branches; raw SHA-256
+`679f057ce8748048455ece4d509a0f2096cdaaf7488e43d5c7257ea16226f156`.
+Root and producer independently reviewed source, assertions and raw evidence:
+APPROVE / ADEQUATE. Both consumers finished before worker cleaned and verified
+exact outputs, clean Git and worktree-3 release.
+
+Root combined-head validation at `ec0de97` passed all 1589 tests/123 files
+(27.70 s; real 29.22 s) and standalone engine 742/47 (4.47 s; real 5.58 s),
+plus typecheck, lint and build (5.47 s). Timing budgets remain unmet. No ordinary
+recruitment, browser healing or full mercenary acceptance is claimed.

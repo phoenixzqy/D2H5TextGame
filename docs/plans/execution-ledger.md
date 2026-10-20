@@ -992,3 +992,67 @@ P07a01b metadata worker next froma150f5b, exact effects.ts/dataCatalog.ts/
 registry.test.ts; no overlap. Authored trigger identity only, no automatic
 Warmth bonus/runtime exclusion claim. Root continues authoritative composition
 boundary design in read-only source; no shared source ownership collisions.
+
+## Trigger metadata, pure Warmth composition, and Minor Heal runtime
+
+P07a01b integrated `07e8514` (worker `ca1e8f2`): three files carry the
+authored active/passive/aura trigger through RegisteredSkill/dataCatalog.
+Actual Might/Prayer author `trigger: passive` with `aura: true`; those facts
+remain distinct. Literal aura is tested by a labeled synthetic adapter row;
+active Frozen Armor retains its active classification despite passive-stat
+metadata. No passive action guard or automatic effect is implemented here.
+Genuine registry RED: 8 failed / 53 passed, 61 total. Focused 61 (1.09 s),
+engine 662/45 (4.68 s), related 731/53 (22.58 s), full 1508/120 (real 35.37 s,
+no pending), typecheck, lint, build (7.48 s) and diff-check passed. Related:
+`npm run test:related -- src/engine/skills/dataCatalog.ts
+src/engine/skills/effects.ts --reporter=dot --silent`. Changed dataCatalog
+coverage 221/221 statements, 7/7 functions, 88/93 branches. Root/producer
+independently consumed raw evidence; APPROVE / ADEQUATE. Worker verified exact
+output cleanup, clean Git and worktree-4 release.
+
+P07a01c1 integrated `938ed96`: pure immutable JSON-driven recovery/fire
+composition and additive optional transient CombatUnit fields. Energy input is
+already effective; learned canonical/data aliases use MAX once, finite positive
+integer ranks clamp 20, absent/invalid/wrong-class/ineligible ranks give zero
+Warmth. Baseline remains authored 0.2 × Energy; rank adds .04 regen/.01 fire.
+Explicit zero fire clears removed allocations. No runtime consumer yet.
+Scaffolding RED 08:25:40 UTC was a missing-module failed suite with zero
+collected tests (690 ms), not a gameplay repro. Focused 42 passed; final engine
+694/46 at 08:31:44 (5.43 s). Related 704/52 (20.83 s), full 1540/121 at
+08:30:41 (34.29 s, zero skips), build 10.45 s preceded the final equivalent
+optional-guard syntax correction; final engine, typecheck, lint and coverage
+followed it. Producer accepted this disclosed ordering pending combined-head
+checks. Coverage 47/51 statements, 1/1 functions, 13/15 branches; uncovered
+import-time missing-definition/coefficient throws. Raw SHA-256
+`a8d598770d0683739e3b188009b23b08b276e039240f2bcdee14672ff3badb21` consumed
+before exact dist/coverage/p07a01c1/.vite cleanup and verified absence.
+Producer independently reviewed plan, scaffolding RED, source and evidence:
+APPROVE / ADEQUATE. c2 fixture-authority/lifecycle split is under investigation.
+
+P08a03b integrated `ec0de97` (worker `89f7b04`): positive-potential no-RNG
+target selection, pure-heal availability, fixed/range/percentage precedence,
+one lazy shared roll per ranged effect, actual capped healing and authoritative
+sequential state. Actual production seed-1 rank-1/20 and unchanged Acolyte
+factory regressions pass; details and REDs are in BUG032, now bounded runtime
+Fixed. Final focused 85/3 (1.68 s), engine 690/46 (4.49 s), related 800/58
+(21.63 s), full 1529/122 (31.44 s, no skips), T/L/build 6.46 s/diff-check pass.
+Related command: `npm run test:related -- src/engine/combat/combat.ts
+src/engine/combat/healing.test.ts src/engine/combat/skill-resolution.test.ts
+src/stores/merc-healing.test.ts src/stores/mercFactory.ts
+src/stores/mercToCombatUnit.ts --reporter=dot --silent`.
+Changed combat coverage 1066/1097 statements/lines, 44/44 functions,
+337/388 branches. Root/producer independently reviewed full source/test diff
+and consumed raw SHA-256
+`679f057ce8748048455ece4d509a0f2096cdaaf7488e43d5c7257ea16226f156`:
+APPROVE / ADEQUATE. Worker verified exact dist/coverage/p08a03b/.vite cleanup,
+clean Git and worktree-3 release. Acquisition/browser acceptance remains open.
+
+Root combined-source validation at `ec0de97` on 2026-10-20 passed:
+`npm test -- --reporter=dot --silent` 1589/123 files, no skips, 08:34:46 UTC,
+27.70 s (real 29.22); `npm run test:engine -- --reporter=dot --silent`
+742/47 files, 08:35:19 UTC, 4.47 s (real 5.58); `npm run typecheck`,
+`npm run lint`, `npm run build` (5.47 s). The actual corpus, factory and
+runtime controls are included. Engine/related/full 3/5/15 s budgets remain
+unmet; existing stale Browserslist, >500 kB main chunk and optional 2.57 MB
+manifest precache warnings remain. Full v1/C0–C4/G0–G7 stay unaccepted;
+root worktree-2 remains claimed, original checkout untouched, no publication.
