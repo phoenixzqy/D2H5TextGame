@@ -370,7 +370,7 @@ export function resetIdleElitePity(): void {
  * Reads the requested sub-area definition from JSON (or falls back to a
  * synthetic 4-wave plan), then plays the first wave. Subsequent waves
  * are advanced via {@link advanceWaveOrFinish}, called by the UI when
- * playback of the current wave completes and the player team is alive.
+ * playback of the current wave completes and the original hero has won alive.
  *
  * @param opts - sub-area run options
  *   - `subAreaId`: explicit id; defaults to `mapStore.currentSubAreaId`.
@@ -481,20 +481,37 @@ export function startSubAreaRun(opts: {
  * @returns the new state after the call:
  *   - `'next-wave'` — a new wave's recorded battle has been installed.
  *   - `'victory'`   — the run is fully cleared.
- *   - `'defeat'`    — the player team died on the just-finished wave.
- *   - `'idle'`      — no active run.
+ *   - `'defeat'`    — the wave was not won, or the original hero died.
+ *   - `'idle'`      — no active run or current playback is incomplete.
  */
 export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idle' {
   if (!activeRun) return 'idle';
   const combat = useCombatStore.getState();
   const outcome = combat.outcome;
 
-  if (!outcome) return 'idle';
+  if (!outcome || !combat.playbackComplete) return 'idle';
+
+  const completedWave = activeRun.plan.waves[activeRun.waveIdx];
+  if (
+    activeRun.mode === 'idle' &&
+    completedWave?.presentation?.idleEliteMissesAfterWave !== undefined
+  ) {
+    setIdleEliteMisses(completedWave.presentation.idleEliteMissesAfterWave);
+  }
+
+  const alivePlayer = outcome.finalPlayerTeam.find(
+    (u) => u.id === activeRun?.playerUnit.id && u.life > 0
+  );
+  if (outcome.winner !== 'player' || !alivePlayer) {
+    combat.markRunDefeat();
+    activeRun = null;
+    return 'defeat';
+  }
 
   const slain = outcome.finalEnemyTeam.filter(
     (u) => u.life <= 0 && inferKind(u) !== 'summon'
   );
-  if (outcome.winner === 'player' && slain.length > 0) {
+  if (slain.length > 0) {
     let xpGained = 0;
     for (const enemy of slain) xpGained += xpForKill(enemy.level);
     if (xpGained > 0) {
@@ -521,44 +538,14 @@ export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idl
     combat.accumulateRunRewards(rewards);
   }
 
-  const completedWave = activeRun.plan.waves[activeRun.waveIdx];
-  if (
-    activeRun.mode === 'idle' &&
-    completedWave?.presentation?.idleEliteMissesAfterWave !== undefined
-  ) {
-    setIdleEliteMisses(completedWave.presentation.idleEliteMissesAfterWave);
-  }
-
-  const alivePlayer = outcome.finalPlayerTeam.find(
-    (u) => u.id === activeRun?.playerUnit.id && u.life > 0
-  );
-
-  if (!alivePlayer) {
-    combat.markRunDefeat();
-    activeRun = null;
-    return 'defeat';
-  }
-
   activeRun.carryPlayerTeam = outcome.finalPlayerTeam.filter(
     (u) => inferKind(u) !== 'summon' && u.life > 0
   );
   const nextIdx = activeRun.waveIdx + 1;
   if (nextIdx >= activeRun.plan.waves.length) {
-    // Bug B — mark the sub-area cleared on engine-side so any caller
-    // benefits (idempotent in mapStore). Persistence is handled by the
-    // existing zustand-persist subscription on mapStore.
-    const clearedId = activeRun.plan.subAreaId;
-    try {
-      useMapStore.getState().markCleared(clearedId);
-    } catch {
-      // mapStore unavailable in some test harnesses; best-effort.
-    }
-    combat.markRunVictory();
-    // Bug #3 — record the cleared sub-area so MapScreen flips its
-    // badge and idle farming unlocks. Idempotent on the store side.
-    // If engine-dev (fix/engine-skills-encounter) later moves this
-    // call into markRunVictory itself, drop this line on merge.
+    // Only a complete sequence of won waves can clear an area or unlock idle.
     useMapStore.getState().markCleared(activeRun.plan.subAreaId);
+    combat.markRunVictory();
     activeRun = null;
     return 'victory';
   }

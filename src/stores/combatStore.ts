@@ -62,9 +62,9 @@ interface CombatState {
    * "Continue to next sub-area" CTA on full-run victory.
    */
   subAreaRunId: string | null;
-  /** True when every wave in the active run has resolved with the player alive. */
+  /** True when every wave was won with the original hero alive. */
   runVictory: boolean;
-  /** True when the player team died at any point in the run. */
+  /** True when a wave was not won or the original hero died, including draws. */
   runDefeat: boolean;
   /** Accumulated rewards summary across every wave in the active run. */
   runRewards: KillRewards;
@@ -103,7 +103,7 @@ interface CombatState {
   }) => void;
   /** Mark the active sub-area run as fully cleared. */
   markRunVictory: () => void;
-  /** Mark the active sub-area run as failed (player team wiped). */
+  /** Mark the active sub-area run as failed; the raw engine winner is retained. */
   markRunDefeat: () => void;
   /** Add the most recent wave's rewards into the run-aggregate counter. */
   accumulateRunRewards: (rewards: KillRewards) => void;
