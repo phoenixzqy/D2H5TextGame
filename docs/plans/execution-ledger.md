@@ -2046,3 +2046,27 @@ Next source-only plan is genuinely earned BloodMoorfullclear/actualidleUI
 repeatstop, with initialpilot before any matrix; no nextgameplayrun/freeze yet.
 Den/Andariel/campaign/pacing/finalbalance/C0–C4/G0–G7/fullv1 remainopen.
 No push/PR/merge/deployment.
+
+P02b05c **failed discovery preserved b00a014** after frozen producer/GD/TD/QA
+readiness and independent complete producer/QA durable-packet approval. One
+ordinary fresh en/1280×800 production pilot:40 earned prepW1wins, native manual
+W1/W2wins, W3draw with original hero87.37%alive and one living ZombieA. No retry,
+refill, alternative build or product patch. Counts41starts/83computations/
+43Skips/42observedsettlements are lower-bound qualified; W3settlement, fullclear,
+FarmHere/idle/repeat/Stop/reopen remain unreached. No draw defect or Chill cause
+inferred. U3268passes/161files57.296s/T18.545/L52.895/list1/buildbridge8.971pass;
+pilot1failure106.118case/108.755process; no time/size stop/signals/survivors.
+[Evidence](evidence/p02b05c-earned-moor-idle.md) corrected packet
+caa2536d95007df66655afb8849499a7c191338af9dc386454a5aca0540596d4/archive
+3b5f41f3bf081ed663039a70fe0812a2b8220b3a5332e0644230bfb6726542d0 retain57records/
+4687687bytes/731166compressed. QA log-limit wording corrected; frozen source
+unchanged. All readers released,648PID/birth identities absent/nonlive verified,
+then exact task RAWearned-moor-a10ywiwj/dist760files/.vite1file removed and
+absence verified. Installed tools/shared caches preserved; cleanup record and
+hashverifiedrunners transferred to root-owned nextRAW
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-chill-e47f2p8r.
+Root claim continues/original checkout untouched. Next substantive slice is
+advertised Chill slowdown with JSON tuning, explicit D04 phase contract,
+independent test freeze/causalRED/bug report before runtime patch. No further
+screening implied. Den/Andariel/campaign/idle/pacing/finalbalance/C0–C4/G0–G7/full
+private v1 remain open. No push/PR/merge/deployment.
