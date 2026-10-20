@@ -19,7 +19,7 @@ import { useTranslation } from 'react-i18next';
 import type { TFunction } from 'i18next';
 import { Button, EquipmentPanel, EquippedItemModal, Modal, Panel, ScreenShell, resolveMercArt, tDataKey, tItemName } from '@/ui';
 import { useMercStore, useInventoryStore, usePlayerStore } from '@/stores';
-import { MERC_EQUIPMENT_SLOTS, type MercEquipment } from '@/stores/mercStore';
+import { MERC_EQUIPMENT_SLOTS, type MercEquipment, type MercEquipmentResult } from '@/stores/mercStore';
 import type { Mercenary } from '@/engine/types/entities';
 import type { EquipmentSlot, Item } from '@/engine/types/items';
 import { loadItemBases } from '@/data/loaders/loot';
@@ -347,7 +347,9 @@ function MercEquipmentEditor({
   const unequipFromMerc = useMercStore((s) => s.unequipFromMerc);
   const [pickerSlot, setPickerSlot] = useState<EquipmentSlot | null>(null);
   const [viewSlot, setViewSlot] = useState<EquipmentSlot | null>(null);
-  const [equipError, setEquipError] = useState<Item | null>(null);
+  const [equipmentError, setEquipmentError] = useState<
+    (Extract<MercEquipmentResult, { ok: false }> & { item: Item | null }) | null
+  >(null);
 
   const bases = useMemo(() => loadItemBases(), []);
 
@@ -368,19 +370,25 @@ function MercEquipmentEditor({
       <EquipmentPanel
         equipped={equipment}
         testIdPrefix="merc-equip-slot"
-        onSlotClick={(slot) => { setPickerSlot(slot); setEquipError(null); }}
+        onSlotClick={(slot) => { setPickerSlot(slot); setEquipmentError(null); }}
         onViewSlot={setViewSlot}
         onUnequip={(slot) => {
-          if (unequipFromMerc(mercId, slot).ok) setEquipError(null);
+          const result = unequipFromMerc(mercId, slot);
+          setEquipmentError(result.ok ? null : { ...result, item: equipment[slot] ?? null });
         }}
       />
+
+      {equipmentError && <p role="status" aria-live="polite" className="text-sm text-d2-white/80">
+        {equipmentError.reason === 'backpack_full'
+          ? t('inventory:toast.backpackFull')
+          : t('inventory:toast.equipFailed', {
+            name: equipmentError.item ? tItemName(t, equipmentError.item) : t('inventory:equipment')
+          })}
+      </p>}
 
       {pickerSlot && (
         <Panel title={t('inventory:equip')}>
           <div className="space-y-2">
-            {equipError && <p role="status" aria-live="polite" className="text-sm text-d2-white/80">
-              {t('inventory:toast.equipFailed', { name: tItemName(t, equipError) })}
-            </p>}
             <div className="text-xs text-d2-white/60">
               {t('selectSlotItem', { slot: t(`inventory:slots.${pickerSlot}`) })}
             </div>
@@ -396,8 +404,8 @@ function MercEquipmentEditor({
                       className="min-h-[36px] text-xs"
                       onClick={() => {
                         const result = equipOnMerc(mercId, pickerSlot, item);
-                        if (result.ok) { setPickerSlot(null); setEquipError(null); }
-                        else setEquipError(item);
+                        if (result.ok) { setPickerSlot(null); setEquipmentError(null); }
+                        else setEquipmentError({ ...result, item });
                       }}
                     >
                       {t('inventory:equip')}

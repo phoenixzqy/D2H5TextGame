@@ -118,7 +118,7 @@ function ownedIds(): string[] {
 }
 
 describe('ordinary merc equipment return at the old backpack limit', () => {
-  it('unequips to the visible backpack without losing the returned item', () => {
+  it('retains manual merc gear at the legacy overflow limit and explains making room', () => {
     const gear: Item = { id: 'merc-cap', baseId: 'items/base/helm-cap', rarity: 'magic', level: 1,
       identified: true, equipped: true,
       affixes: [{ affixId: 'test', values: new Map([['coreStats.vitality', 3]]) }] };
@@ -126,9 +126,9 @@ describe('ordinary merc equipment return at the old backpack limit', () => {
     const mercId = showEquippedMerc(gear);
     const before = ownedIds();
     fireEvent.click(within(screen.getByTestId('merc-equip-slot-head')).getByRole('button', { name: 'Unequip' }));
-    expect(useMercStore.getState().getMercEquipment(mercId).head).toBeNull();
-    expect(useInventoryStore.getState().backpack).toHaveLength(501);
-    expect(useInventoryStore.getState().backpack.at(-1)).toEqual({ ...gear, equipped: false });
+    expect(useMercStore.getState().getMercEquipment(mercId).head).toBe(gear);
+    expect(useInventoryStore.getState().backpack).toHaveLength(500);
+    expect(screen.getByRole('status')).toHaveTextContent('Backpack is full. Make room before moving or removing equipment.');
     expect(ownedIds()).toEqual(before);
   });
 

@@ -11,6 +11,7 @@ import { loadItemBases } from '@/data/loaders/loot';
 import type { MercDef } from '@/data/loaders/mercs';
 import { createMercFromDef } from './mercFactory';
 import { useInventoryStore } from './inventoryStore';
+import { BACKPACK_CAPACITY } from './inventoryCapacity';
 
 /**
  * Mercenary XP curve (canonical).
@@ -119,7 +120,7 @@ export type MercEquipment = Partial<Record<EquipmentSlot, Item | null>>;
 /** Settled transfer result; refusal publishes neither inventory nor merc state. */
 export type MercEquipmentResult = { ok: true } | {
   ok: false;
-  reason: 'merc_not_owned' | 'not_in_backpack' | 'incompatible_slot' | 'not_found';
+  reason: 'merc_not_owned' | 'not_in_backpack' | 'incompatible_slot' | 'not_found' | 'backpack_full';
 };
 
 interface MercState {
@@ -149,7 +150,7 @@ interface MercState {
    * Caller fields never replace stored contents. Callers perform no item moves.
    */
   equipOnMerc: (mercId: string, slot: EquipmentSlot, item: Item) => MercEquipmentResult;
-  /** Transfer current owned-merc gear to backpack, clearing equipped metadata. */
+  /** Transfer current owned-merc gear if backpack has room, clearing equipped metadata. */
   unequipFromMerc: (mercId: string, slot: EquipmentSlot) => MercEquipmentResult;
   getMercEquipment: (mercId: string) => MercEquipment;
   /**
@@ -294,6 +295,7 @@ export const useMercStore = create<MercState>((set, get) => ({
     const item = current[slot];
     if (!item) return { ok: false, reason: 'not_found' };
     const inventory = useInventoryStore.getState();
+    if (inventory.backpack.length >= BACKPACK_CAPACITY) return { ok: false, reason: 'backpack_full' };
     const backpack = [...inventory.backpack, returnedItem(item)];
     const mercEquipment = { ...state.mercEquipment, [mercId]: { ...current, [slot]: null } };
     useInventoryStore.setState({ backpack });
