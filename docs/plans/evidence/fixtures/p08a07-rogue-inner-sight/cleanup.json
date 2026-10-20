@@ -1,0 +1,31 @@
+{
+  "completed": "P08a07 45cd527",
+  "readers": "producer/QA/GD/TD all released",
+  "packetSha256": "d986c3245c4c19006b78d955fb4085621944caff41eadf565e6a5994d08f87a4",
+  "archiveSha256": "717a274fe41e6d8bbc1cb7f93397f0ad2b33a389ae2f3431e05be2385a4a9acd",
+  "processIdentitiesVerifiedNonlive": 3019,
+  "signals": [],
+  "removed": [
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-inner-sight-yv8t2nts",
+      "files": 248,
+      "bytes": 15350985,
+      "absenceVerified": true
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/dist",
+      "files": 760,
+      "bytes": 40929443,
+      "absenceVerified": true
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/.vite",
+      "files": 1,
+      "bytes": 13344,
+      "absenceVerified": true
+    }
+  ],
+  "toolsAndSharedCaches": "preserved",
+  "nextRaw": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-combat-readable-5nscfev_",
+  "owner": "root"
+}

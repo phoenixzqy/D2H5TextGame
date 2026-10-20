@@ -12,6 +12,8 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| P08a07 | accepted starter Rogue slice | `45cd527`; exact authored Inner Sight25%/8s/CD5, immutable resolver/schema/status localization and shared fractional armor projection. Genuine runtime RED12/13controls; finalengine1224/full3452/T/L/build and5browser cases pass; producer/QA/GD/TD APPROVE. [Evidence](evidence/p08a07-rogue-inner-sight.md). Full campaign/balance/readability gates remain open. |
+| P16a01 | contract/test design | Responsive combat readability: stack teams below1024px, retain formation/desktop/combat behavior; geometry and native browser RED before presentation patch. Host CJK fonts are separate. |
 | P00 | in-progress | Producer F01–F21 mapping and assertion audit below. Expand current-head measurements and strict tests with each fix. |
 | P00b | accepted tooling fix | `test:related` now invokes Vitest's `related --run`; scoped 25 tests pass in 1.45 s, broad 226 pass/1 existing skip in 10.70 s (over budget). Producer approval; BUG-003. |
 | P01 | in-progress | D12 save/import contract recorded. Offline portion, D01–D11/D13–D14 pending; D04/D06 source reconciliation under review. |
@@ -2135,3 +2137,30 @@ spec25%/8s found, GD/TD lifecycle/damage-family contract in progress, no tests,
 experiment or runtime patch yet. Amazon Inner Sight remains separately scoped.
 No stronger earned-Moor/Den retry, prior draw causality or campaign/balance/
 fullD04/C0–C4/G0–G7/private-v1 acceptance follows. No remote actions.
+
+## P08a07 starter Rogue Inner Sight closure
+
+Accepted `45cd527` after independent corrected-contract/source and complete
+producer/QA evidence/packet APPROVE. Canonical25% defense reduction/8seconds
+uses the exact mercenary JSON row, CD5/mana0, flat ranks1–20, all living enemies,
+no RNG draws, max-expiry nonstacking refresh/first source retention. Native
+armor projection preserves fractions/authoritative stats; magicResist paths
+and no-status complete recording remain unchanged. BUG-055 resolved.
+
+All pre-fix/failed/amended checks preserved. Genuine runtimeRED12fail/13controls;
+finalengine1224/full3452 tests, types/lint/productionbuild pass; coverage gate
+passes with only reviewed lint corrections later. Browser pilot plus4locale/
+viewport cases pass native freehire/field/W1/status/physical-HP/Pause/Flee/save/
+reopen. Interrupted trace attempt fully reconstructable; no clear, balance,
+CJK glyph, full mobile readability or accessibility acceptance. Existing speed
+budget excess/build warnings disclosed. Full C0–C4/G0–G7/privatev1 remain open.
+
+After every reader released, all248raw/archive records verified and3019process
+identities nonlive; exact RAW248files/taskdist760files/.vite1file removed with
+absence verification, no cleanup signals. Pre-existing emptycoverage, tools and
+sharedcaches preserved. [Cleanup](evidence/fixtures/p08a07-rogue-inner-sight/cleanup.json).
+Original checkout untouched/rootclaim continues. Hashverifiedrunners/cleanup
+transferred to root-owned nextRAW
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-combat-readable-5nscfev_`.
+Next is P16a01 scoped mobile combat readability; reviewed/frozen geometry test
+and genuine browser RED precede BUG/presentation patch. No remote action.

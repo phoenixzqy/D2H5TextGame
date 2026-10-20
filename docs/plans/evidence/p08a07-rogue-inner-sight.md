@@ -166,3 +166,8 @@ approve the corrected contract/source. All readers are released.
 [Final review record](fixtures/p08a07-rogue-inner-sight/final-review.json) is
 explicitly post-archive. Functional browser/persistence approval retains every
 mobile-readability/CJK/visual/a11y limitation above. No remote action.
+
+Implemented in `45cd527`. Exact [cleanup record](fixtures/p08a07-rogue-inner-sight/cleanup.json)
+verifies removal of task RAW/dist/.vite after archive verification and reader
+release. Pre-existing empty coverage, installed tools and shared caches remain.
+The umbrella worktree claim continues for P16a01; original checkout untouched.

@@ -1,6 +1,6 @@
 # BUG-055 — Apply the Rogue's authored Inner Sight to enemy defense
 
-Status: Reproduced before runtime patch.
+Status: Fixed in `45cd527`; independent producer/QA/GD/TD approval.
 Severity: High — the starter Rogue's advertised enemy-defense reduction is absent.
 Owner: engine-dev; root implements, producer/QA independently review.
 
@@ -60,3 +60,13 @@ table. Frozen amended tests produce exactly2 rejection assertion failures and
 representation evidence, not a new gameplay reproduction. Authored cooldown5
 and generic zero-cooldown acceptance remain unchanged. Original frozen tests,
 failed typecheck and approved equivalent type-narrowing correction are retained.
+
+## Resolution
+
+`45cd527` implements the exact JSON-derived enemy status and shared active
+pre-hit armor projection. Final engine1224/full3452 tests, typecheck, lint,
+production build and five completed native-browser cases pass. Coverage gate
+passes; its later lint-only correction and all original failures remain
+explicit in [evidence](../../docs/plans/evidence/p08a07-rogue-inner-sight.md).
+All 248 records are preserved and independently verified before exact cleanup;
+3019 process identities are nonlive. No campaign/balance/mobile-readability claim.
