@@ -1494,3 +1494,23 @@ retained at /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-stat-earn
 rootownsremoval. Next reviewed ordinary-earned browserpilot/matrix incl native
 checkpoint/Cancel/Apply/Save/closeContinue/keyboard/layout. No B3/Den/fullv1/C/G
 acceptance or push.
+
+
+P11a01B3 accepted a94ef2b after independent root/producer/QA final
+APPROVE/ADEQUATE. Ordinary Sorceress earns5points from first BloodMoor wave;
+native mixed draft/checkpoint/Cancel/unmount/Apply/SaveDBexport/closeContinue,
+keyboard/full derived/no-refill/payload equality pass en/zh×1280×800/360×640.
+Final frozen4case matrix4/4,0skips/flaky/retries/errors,93.154runner94.443wall;
+82attachments independently verified. Firstpilot name-cap failure and firstmatrix
+Chinese tofu retained in versioned evidence; task-local pinnedNoto font repaired
+browser environment only, finalChinesePNGs readable. U2408/140/0pending,T10.597,
+L43.598/purity51/PWAlint5.814/nativeproductionbuild pass. Evidence records all20
+commands/hashes, original assertions/failedattempts and timing/buildwarnings.
+Shortlandscape overlay/global320nav40px/critDamage2→2%/globali18n/Den/fullv1/C/G
+remain open. Allconsumers released before exactRAW/dist/.vite cleanup; absence
+verified,port4395closed,originalclean. Rootclaimcontinues. Next P13c01A
+fresh-combat merc gear authority: source-confirmed current map omitted; preserve
+unequipped growth baseline, no named-skill scaling or Den-cause inference.
+Plan/runner retained at
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-merc-gear-p_il1gto;
+rootowns eventualremoval after reviews. No push.
