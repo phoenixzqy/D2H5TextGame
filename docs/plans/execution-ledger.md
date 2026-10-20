@@ -1653,3 +1653,24 @@ claim/rollback and localized preview requires independent plan/RED before edits;
 source-only design recommends oneCoif+existing8000XP as NEW bounded design,
 retiring only questlootTable, recorded designer/producer alignment pending.
 No push/PR/merge/deployment.
+
+
+P04a07a acceptedc2a2415 after independent design/plan/frozenRED/intermediate and
+final producer/QA APPROVE/ADEQUATE. Reward-local union preserves exact legacy
+string grammar and adds closed uniqueId/positiveintegerilvl object. Preview
+exact-one template name via tDataKey/items namespace, zh/en generic fallback for
+unknown/ambiguous IDs, no eligibility/allocation/store writes. All old174loader/
+16UI assertions retained. Initial323=20schemafail+8fixturebaselinefail/295pass;
+sole independently approved catalog correction shield-buckler→sh-buckler retained
+with prior source; frozen323=28schemafail295controls→schema-only299loader+16UIpass/
+8genuine-rendererfail→byte-identical323GREEN. Related1327/65,U2794/1460pending/todo,
+T22.945/L52.011purity53/guardedbuild9.873pass aftertests. All9commands/source/report/
+loghashes and4checkpoint assertions retained. Timing/buildwarnings unchanged.
+Bothreviewersreleased before exactRAW77_knp7a/dist/node_modules/.vite cleanup;
+absenceverified,noprocess,originalcheckoutclean/rootclaimcontinues. No engine/
+claim/content/economy/save changes or actual browser/mobile/earned acceptance.
+C0–C4/G0–G7/fullv1 remain open. Next P04a07b generic transactional explicit unique
+claim/persistence (no authored activation), technical/design plan READY; freeze
+capabilityRED and producer/QA approve before handler edit. Next root-owned RAW=
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-quest-unique-claim-j6ocbi3_;
+plan-only, no process. No push/PR/merge/deployment.
