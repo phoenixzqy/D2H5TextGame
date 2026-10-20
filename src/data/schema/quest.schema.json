@@ -689,8 +689,8 @@
         },
         "itemDrop": {
           "type": "string",
-          "pattern": "^items/[a-z0-9][a-z0-9._-]*$",
-          "description": "Authored item reward identifier."
+          "pattern": "^(?:items/[a-z0-9][a-z0-9._-]*|items/base/[a-z0-9-]+|items/unique/[a-z0-9-]+)$",
+          "description": "Legacy flat or canonical base/unique item reward identifier; syntax only, template resolution is separate."
         },
         "lootTable": {
           "type": "string",

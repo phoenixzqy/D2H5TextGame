@@ -1,0 +1,13 @@
+const { createRequire } = require('node:module');
+const requireRepo = createRequire('/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/package.json');
+const Ajv2020 = requireRepo('ajv/dist/2020').default;
+const schema = requireRepo('./src/data/schema/quest.schema.json');
+const validate = new Ajv2020({strict:true,allErrors:true}).compile(schema);
+let failed = false;
+for (const itemDrop of ['items/base/helm-skull-cap','items/unique/coif-of-glory','items/unique_act1_boss']) {
+ const document={quests:[{id:'quests/reward-id-repro',name:'Repro',type:'side',actId:'acts/act1',description:'Repro',objectives:[{id:'clear',type:'clear-area',description:'Clear',areaId:'areas/cave'}],rewards:{itemDrop}}]};
+ const accepted=validate(document);
+ console.log(JSON.stringify({itemDrop,accepted,errors:validate.errors}));
+ if(itemDrop.includes('/base/')||itemDrop.includes('/unique/')) failed ||= !accepted;
+}
+process.exitCode=failed?1:0;

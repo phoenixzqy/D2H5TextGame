@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import mainDocument from '../quests/main.json';
 import sideDocument from '../quests/side.json';
+import itemBases from '../items/bases.json';
+import uniqueItems from '../items/uniques.json';
 import {
   actNumber, loadQuests, loadQuestsByAct, questI18nKey, questSlug
 } from './quests';
@@ -35,6 +37,16 @@ function withDocuments(main: object, side: object, check: () => void) {
 }
 
 const callers = [['loadQuests', loadQuests], ['loadQuestsByAct', loadQuestsByAct]] as const;
+const catalogRewardIds = ['items/base/helm-skull-cap', 'items/unique/coif-of-glory'];
+// Syntax-only examples: nonexistent references and the authoritative leading-hyphen boundary.
+const syntaxRewardIds = ['items/base/not-in-catalog', 'items/unique/not-in-catalog',
+  'items/base/-', 'items/unique/-'];
+const legacyRewardIds = ['items/unique_act1_boss', 'items/quest-token', 'items/base',
+  'items/unique', 'items/sets', 'items/legacy.name_with-dash'];
+const invalidRewardIds: unknown[] = ['', null, 0, true, {}, [], 'items/base/', 'items/unique/',
+  'items/unknown/foo', 'items/sets/foo', 'items/unique/foo/bar', 'items/unique/Foo',
+  'items/unique/foo_bar', 'items/unique/foo.bar', 'items/base/Foo', 'items/base/foo_bar',
+  'items/base/foo.bar', 'items//foo', '../items/unique/foo', 'unique/foo'];
 const invalidDocuments = [
   { label: 'missing quests envelope', document: { $schema: '../schema/quest.schema.json' }, field: 'quests' },
   { label: 'missing clear-area areaId', document: envelope([fixture('invalid', {
@@ -190,4 +202,63 @@ describe('synchronous quest consumer validation', () => {
     expect(actNumber('acts/act5')).toBe('5');
     expect(actNumber('unknown')).toBe('unknown');
   });
+});
+
+describe('quest item reward identifier compatibility (BUG050)', () => {
+  it('uses actual base and unique catalog IDs for the authored reward fixtures', () => {
+    expect(itemBases.some(item => item.id === catalogRewardIds[0])).toBe(true);
+    expect(uniqueItems.some(item => item.id === catalogRewardIds[1])).toBe(true);
+    expect(syntaxRewardIds.every(id => !itemBases.some(item => item.id === id) &&
+      !uniqueItems.some(item => item.id === id))).toBe(true);
+  });
+
+  for (const [caller] of callers) {
+    for (const documentName of ['main', 'side'] as const) {
+      it.each(catalogRewardIds)(`${caller} accepts ${documentName} canonical itemDrop %s unchanged`, itemDrop => {
+        const row = fixture('canonical-reward', { rewards: { itemDrop, xp: 0 } });
+        const main = envelope(documentName === 'main' ? [row] : []);
+        const side = envelope(documentName === 'side' ? [row] : []);
+        withDocuments(main, side, () => {
+          const before = JSON.stringify([mainDocument, sideDocument]);
+          const rows = caller === 'loadQuests' ? loadQuests() : loadQuestsByAct().get('acts/act1');
+          expect(rows).toEqual([row]);
+          expect(rows?.[0]).toBe(row);
+          expect(rows?.[0]?.rewards).toBe(row.rewards);
+          expect(JSON.stringify([mainDocument, sideDocument])).toBe(before);
+        });
+      });
+
+      it.each([...syntaxRewardIds, ...legacyRewardIds])(
+        `${caller} preserves ${documentName} syntax-only/legacy itemDrop %s without resolution`, itemDrop => {
+          const row = fixture('syntax-reward', { rewards: { itemDrop } });
+          const main = envelope(documentName === 'main' ? [row] : []);
+          const side = envelope(documentName === 'side' ? [row] : []);
+          withDocuments(main, side, () => {
+            const before = JSON.stringify([mainDocument, sideDocument]);
+            const rows = caller === 'loadQuests' ? loadQuests() : loadQuestsByAct().get('acts/act1');
+            expect(rows).toEqual([row]);
+            expect(rows?.[0]).toBe(row);
+            expect(rows?.[0]?.rewards).toBe(row.rewards);
+            expect(JSON.stringify([mainDocument, sideDocument])).toBe(before);
+          });
+        });
+
+      it.each(invalidRewardIds)(`${caller} rejects ${documentName} malformed itemDrop %j with context`, itemDrop => {
+        const row = fixture('invalid-reward', { rewards: { itemDrop } });
+        const main = envelope(documentName === 'main' ? [row] : []);
+        const side = envelope(documentName === 'side' ? [row] : []);
+        withDocuments(main, side, () => {
+          const before = JSON.stringify([mainDocument, sideDocument]);
+          let failure: unknown;
+          try { (caller === 'loadQuests' ? loadQuests : loadQuestsByAct)(); }
+          catch (error) { failure = error; }
+          expect(failure).toBeInstanceOf(Error);
+          if (!(failure instanceof Error)) throw new Error('Expected malformed reward rejection');
+          expect(failure.message).toContain(`quests/${documentName}.json`);
+          expect(failure.message).toContain('/quests/0/rewards/itemDrop');
+          expect(JSON.stringify([mainDocument, sideDocument])).toBe(before);
+        });
+      });
+    }
+  }
 });

@@ -1,0 +1,2333 @@
+{
+  "task": "P04a06/BUG050",
+  "inputCommit": "528c220",
+  "scope": "Reward-local canonical base/unique identifier syntax; no content/reference resolution/reward execution",
+  "environment": {
+    "node": "v24.21.0",
+    "npm": "11.19.0",
+    "browser": "N/A structural schema card"
+  },
+  "originalFrozenSources": {
+    "src/data/schema/quest.schema.json": "e250814c1459a1c9f5fcf388dc73cc8623f7bff442627eac4dc89aee560fb132",
+    "src/data/loaders/quests.test.ts": "ff94667f0468b53291746d2d2a0629f000c11fa77914bb16e8b482dc19c23fea"
+  },
+  "finalSources": {
+    "src/data/schema/quest.schema.json": "10a578fd106f80b89ae9e9fa4d97862eae41d8bbd38fc6e9b74dc66b2cf8829b",
+    "src/data/loaders/quests.test.ts": "ff94667f0468b53291746d2d2a0629f000c11fa77914bb16e8b482dc19c23fea"
+  },
+  "planSha256": "e305b4a18a4969dd975079b899e8ceb6ba1d282ef740826b26e0ded8019a27cd",
+  "retainedVersions": {
+    "catalog-red-test.ts.txt": "a6a0ec7b863eae2099d7305088c5b97d7e5d937c50b171e7b11b6bb53ecd5527",
+    "frozen-red-test.ts.txt": "ff94667f0468b53291746d2d2a0629f000c11fa77914bb16e8b482dc19c23fea",
+    "discovery.cjs": "b631938ba9427bb824df92ffc7f980863c5ff0c47aadbd06f0be7f75e5c1ca01"
+  },
+  "exactSchemaDiff": [
+    [
+      "/$defs/rewards/properties/itemDrop/pattern",
+      "^items/[a-z0-9][a-z0-9._-]*$",
+      "^(?:items/[a-z0-9][a-z0-9._-]*|items/base/[a-z0-9-]+|items/unique/[a-z0-9-]+)$"
+    ],
+    [
+      "/$defs/rewards/properties/itemDrop/description",
+      "Authored item reward identifier.",
+      "Legacy flat or canonical base/unique item reward identifier; syntax only, template resolution is separate."
+    ]
+  ],
+  "commands": [
+    {
+      "label": "discovery",
+      "command": [
+        "node",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-quest-item-ids-zz5vn9bu/discovery.cjs"
+      ],
+      "exit": 1,
+      "seconds": 0.219,
+      "logSha256": "e74abb4e14f6d897bdb26c98f277cae4205bfa8b21109954db1bebbaf9ef763d",
+      "log": "{\"itemDrop\":\"items/base/helm-skull-cap\",\"accepted\":false,\"errors\":[{\"instancePath\":\"/quests/0/rewards/itemDrop\",\"schemaPath\":\"#/properties/itemDrop/pattern\",\"keyword\":\"pattern\",\"params\":{\"pattern\":\"^items/[a-z0-9][a-z0-9._-]*$\"},\"message\":\"must match pattern \\\"^items/[a-z0-9][a-z0-9._-]*$\\\"\"}]}\n{\"itemDrop\":\"items/unique/coif-of-glory\",\"accepted\":false,\"errors\":[{\"instancePath\":\"/quests/0/rewards/itemDrop\",\"schemaPath\":\"#/properties/itemDrop/pattern\",\"keyword\":\"pattern\",\"params\":{\"pattern\":\"^items/[a-z0-9][a-z0-9._-]*$\"},\"message\":\"must match pattern \\\"^items/[a-z0-9][a-z0-9._-]*$\\\"\"}]}\n{\"itemDrop\":\"items/unique_act1_boss\",\"accepted\":true,\"errors\":null}\n"
+    },
+    {
+      "label": "catalog-red",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/data/loaders/quests.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-quest-item-ids-zz5vn9bu/catalog-red.report.json"
+      ],
+      "exit": 1,
+      "seconds": 3.03,
+      "logSha256": "256e4209427fd81dc93b615b8f357390302f60d62fd7b7b4e6fd2fb6b85ea710",
+      "reportSha256": "106de238fb1ebcd876b535542f2019d9cd56fea48030946c8fdd6a41f9dac414",
+      "results": {
+        "numTotalTests": 54,
+        "numPassedTests": 46,
+        "numFailedTests": 8,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 1
+      },
+      "assertions": [
+        {
+          "fullName": " synchronous quest consumer validation accepts empty documents and optional envelope metadata without inventing quests",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation preserves optional fields, zero rewards and structurally valid gameplay content unchanged",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation returns all 46 authored rows by identity in main/side order without mutating the documents",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects main: 'missing quests envelope' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects main: 'missing clear-area areaId' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects main: 'unsupported objective kind' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects main: 'negative XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects main: 'fractional XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects main: 'string XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects main: 'unknown quest field' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects duplicate IDs within main",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests revalidates main on valid/invalid/valid calls",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects side: 'missing quests envelope' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects side: 'missing clear-area areaId' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects side: 'unsupported objective kind' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects side: 'negative XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects side: 'fractional XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects side: 'string XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects side: 'unknown quest field' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects duplicate IDs within side",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests revalidates side on valid/invalid/valid calls",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects duplicate IDs across main and side",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests validates the side envelope before collecting duplicate main entries",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects main: 'missing quests envelope' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects main: 'missing clear-area areaId' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects main: 'unsupported objective kind' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects main: 'negative XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects main: 'fractional XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects main: 'string XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects main: 'unknown quest field' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects duplicate IDs within main",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct revalidates main on valid/invalid/valid calls",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects side: 'missing quests envelope' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects side: 'missing clear-area areaId' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects side: 'unsupported objective kind' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects side: 'negative XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects side: 'fractional XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects side: 'string XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects side: 'unknown quest field' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects duplicate IDs within side",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct revalidates side on valid/invalid/valid calls",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects duplicate IDs across main and side",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct validates the side envelope before collecting duplicate main entries",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation preserves act grouping, main-first order, optional order and ID tie sorting",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation preserves the existing slug, localization key and act helpers",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) uses actual base and unique catalog IDs for the authored reward fixtures",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests accepts main canonical itemDrop items/base/helm-skull-cap unchanged",
+          "status": "failed",
+          "failureMessages": [
+            "quests/main.json: quests/main.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests accepts main canonical itemDrop items/unique/coif-of-glory unchanged",
+          "status": "failed",
+          "failureMessages": [
+            "quests/main.json: quests/main.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests accepts side canonical itemDrop items/base/helm-skull-cap unchanged",
+          "status": "failed",
+          "failureMessages": [
+            "quests/side.json: quests/side.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests accepts side canonical itemDrop items/unique/coif-of-glory unchanged",
+          "status": "failed",
+          "failureMessages": [
+            "quests/side.json: quests/side.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct accepts main canonical itemDrop items/base/helm-skull-cap unchanged",
+          "status": "failed",
+          "failureMessages": [
+            "quests/main.json: quests/main.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct accepts main canonical itemDrop items/unique/coif-of-glory unchanged",
+          "status": "failed",
+          "failureMessages": [
+            "quests/main.json: quests/main.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct accepts side canonical itemDrop items/base/helm-skull-cap unchanged",
+          "status": "failed",
+          "failureMessages": [
+            "quests/side.json: quests/side.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct accepts side canonical itemDrop items/unique/coif-of-glory unchanged",
+          "status": "failed",
+          "failureMessages": [
+            "quests/side.json: quests/side.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        }
+      ]
+    },
+    {
+      "label": "frozen-red",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/data/loaders/quests.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-quest-item-ids-zz5vn9bu/frozen-red.report.json"
+      ],
+      "exit": 1,
+      "seconds": 2.906,
+      "logSha256": "813013bf84057893630a5bafbea847002f0f94a50abce498b340c7ec052b7829",
+      "reportSha256": "2befa36974b41cce7817bb220e53ad37fe11cdab7eeb0af9a8e5071878a72707",
+      "results": {
+        "numTotalTests": 174,
+        "numPassedTests": 150,
+        "numFailedTests": 24,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 1
+      },
+      "assertions": [
+        {
+          "fullName": " synchronous quest consumer validation accepts empty documents and optional envelope metadata without inventing quests",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation preserves optional fields, zero rewards and structurally valid gameplay content unchanged",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation returns all 46 authored rows by identity in main/side order without mutating the documents",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects main: 'missing quests envelope' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects main: 'missing clear-area areaId' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects main: 'unsupported objective kind' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects main: 'negative XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects main: 'fractional XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects main: 'string XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects main: 'unknown quest field' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects duplicate IDs within main",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests revalidates main on valid/invalid/valid calls",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects side: 'missing quests envelope' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects side: 'missing clear-area areaId' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects side: 'unsupported objective kind' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects side: 'negative XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects side: 'fractional XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects side: 'string XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects side: 'unknown quest field' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects duplicate IDs within side",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests revalidates side on valid/invalid/valid calls",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects duplicate IDs across main and side",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests validates the side envelope before collecting duplicate main entries",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects main: 'missing quests envelope' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects main: 'missing clear-area areaId' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects main: 'unsupported objective kind' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects main: 'negative XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects main: 'fractional XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects main: 'string XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects main: 'unknown quest field' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects duplicate IDs within main",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct revalidates main on valid/invalid/valid calls",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects side: 'missing quests envelope' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects side: 'missing clear-area areaId' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects side: 'unsupported objective kind' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects side: 'negative XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects side: 'fractional XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects side: 'string XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects side: 'unknown quest field' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects duplicate IDs within side",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct revalidates side on valid/invalid/valid calls",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects duplicate IDs across main and side",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct validates the side envelope before collecting duplicate main entries",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation preserves act grouping, main-first order, optional order and ID tie sorting",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation preserves the existing slug, localization key and act helpers",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) uses actual base and unique catalog IDs for the authored reward fixtures",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests accepts main canonical itemDrop items/base/helm-skull-cap unchanged",
+          "status": "failed",
+          "failureMessages": [
+            "quests/main.json: quests/main.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests accepts main canonical itemDrop items/unique/coif-of-glory unchanged",
+          "status": "failed",
+          "failureMessages": [
+            "quests/main.json: quests/main.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves main syntax-only/legacy itemDrop items/base/not-in-catalog without resolution",
+          "status": "failed",
+          "failureMessages": [
+            "quests/main.json: quests/main.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves main syntax-only/legacy itemDrop items/unique/not-in-catalog without resolution",
+          "status": "failed",
+          "failureMessages": [
+            "quests/main.json: quests/main.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves main syntax-only/legacy itemDrop items/base/- without resolution",
+          "status": "failed",
+          "failureMessages": [
+            "quests/main.json: quests/main.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves main syntax-only/legacy itemDrop items/unique/- without resolution",
+          "status": "failed",
+          "failureMessages": [
+            "quests/main.json: quests/main.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves main syntax-only/legacy itemDrop items/unique_act1_boss without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves main syntax-only/legacy itemDrop items/quest-token without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves main syntax-only/legacy itemDrop items/base without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves main syntax-only/legacy itemDrop items/unique without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves main syntax-only/legacy itemDrop items/sets without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves main syntax-only/legacy itemDrop items/legacy.name_with-dash without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop null with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop 0 with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop true with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop {} with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop %j with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"items/base/\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"items/unique/\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"items/unknown/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"items/sets/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"items/unique/foo/bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"items/unique/Foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"items/unique/foo_bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"items/unique/foo.bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"items/base/Foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"items/base/foo_bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"items/base/foo.bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"items//foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"../items/unique/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"unique/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests accepts side canonical itemDrop items/base/helm-skull-cap unchanged",
+          "status": "failed",
+          "failureMessages": [
+            "quests/side.json: quests/side.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests accepts side canonical itemDrop items/unique/coif-of-glory unchanged",
+          "status": "failed",
+          "failureMessages": [
+            "quests/side.json: quests/side.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves side syntax-only/legacy itemDrop items/base/not-in-catalog without resolution",
+          "status": "failed",
+          "failureMessages": [
+            "quests/side.json: quests/side.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves side syntax-only/legacy itemDrop items/unique/not-in-catalog without resolution",
+          "status": "failed",
+          "failureMessages": [
+            "quests/side.json: quests/side.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves side syntax-only/legacy itemDrop items/base/- without resolution",
+          "status": "failed",
+          "failureMessages": [
+            "quests/side.json: quests/side.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves side syntax-only/legacy itemDrop items/unique/- without resolution",
+          "status": "failed",
+          "failureMessages": [
+            "quests/side.json: quests/side.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves side syntax-only/legacy itemDrop items/unique_act1_boss without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves side syntax-only/legacy itemDrop items/quest-token without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves side syntax-only/legacy itemDrop items/base without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves side syntax-only/legacy itemDrop items/unique without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves side syntax-only/legacy itemDrop items/sets without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves side syntax-only/legacy itemDrop items/legacy.name_with-dash without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop null with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop 0 with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop true with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop {} with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop %j with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"items/base/\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"items/unique/\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"items/unknown/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"items/sets/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"items/unique/foo/bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"items/unique/Foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"items/unique/foo_bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"items/unique/foo.bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"items/base/Foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"items/base/foo_bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"items/base/foo.bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"items//foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"../items/unique/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"unique/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct accepts main canonical itemDrop items/base/helm-skull-cap unchanged",
+          "status": "failed",
+          "failureMessages": [
+            "quests/main.json: quests/main.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct accepts main canonical itemDrop items/unique/coif-of-glory unchanged",
+          "status": "failed",
+          "failureMessages": [
+            "quests/main.json: quests/main.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves main syntax-only/legacy itemDrop items/base/not-in-catalog without resolution",
+          "status": "failed",
+          "failureMessages": [
+            "quests/main.json: quests/main.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves main syntax-only/legacy itemDrop items/unique/not-in-catalog without resolution",
+          "status": "failed",
+          "failureMessages": [
+            "quests/main.json: quests/main.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves main syntax-only/legacy itemDrop items/base/- without resolution",
+          "status": "failed",
+          "failureMessages": [
+            "quests/main.json: quests/main.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves main syntax-only/legacy itemDrop items/unique/- without resolution",
+          "status": "failed",
+          "failureMessages": [
+            "quests/main.json: quests/main.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves main syntax-only/legacy itemDrop items/unique_act1_boss without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves main syntax-only/legacy itemDrop items/quest-token without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves main syntax-only/legacy itemDrop items/base without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves main syntax-only/legacy itemDrop items/unique without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves main syntax-only/legacy itemDrop items/sets without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves main syntax-only/legacy itemDrop items/legacy.name_with-dash without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop null with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop 0 with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop true with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop {} with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop %j with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"items/base/\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"items/unique/\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"items/unknown/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"items/sets/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"items/unique/foo/bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"items/unique/Foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"items/unique/foo_bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"items/unique/foo.bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"items/base/Foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"items/base/foo_bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"items/base/foo.bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"items//foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"../items/unique/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"unique/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct accepts side canonical itemDrop items/base/helm-skull-cap unchanged",
+          "status": "failed",
+          "failureMessages": [
+            "quests/side.json: quests/side.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct accepts side canonical itemDrop items/unique/coif-of-glory unchanged",
+          "status": "failed",
+          "failureMessages": [
+            "quests/side.json: quests/side.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves side syntax-only/legacy itemDrop items/base/not-in-catalog without resolution",
+          "status": "failed",
+          "failureMessages": [
+            "quests/side.json: quests/side.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves side syntax-only/legacy itemDrop items/unique/not-in-catalog without resolution",
+          "status": "failed",
+          "failureMessages": [
+            "quests/side.json: quests/side.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves side syntax-only/legacy itemDrop items/base/- without resolution",
+          "status": "failed",
+          "failureMessages": [
+            "quests/side.json: quests/side.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves side syntax-only/legacy itemDrop items/unique/- without resolution",
+          "status": "failed",
+          "failureMessages": [
+            "quests/side.json: quests/side.json/quests/0/rewards/itemDrop must match pattern \"^items/[a-z0-9][a-z0-9._-]*$\""
+          ]
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves side syntax-only/legacy itemDrop items/unique_act1_boss without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves side syntax-only/legacy itemDrop items/quest-token without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves side syntax-only/legacy itemDrop items/base without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves side syntax-only/legacy itemDrop items/unique without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves side syntax-only/legacy itemDrop items/sets without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves side syntax-only/legacy itemDrop items/legacy.name_with-dash without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop null with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop 0 with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop true with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop {} with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop %j with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"items/base/\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"items/unique/\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"items/unknown/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"items/sets/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"items/unique/foo/bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"items/unique/Foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"items/unique/foo_bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"items/unique/foo.bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"items/base/Foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"items/base/foo_bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"items/base/foo.bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"items//foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"../items/unique/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"unique/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        }
+      ]
+    },
+    {
+      "label": "red-typecheck",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 10.358,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "log": "\n> d2h5-text-game@0.1.0 typecheck\n> tsc --noEmit\n\n"
+    },
+    {
+      "label": "red-test-lint",
+      "command": [
+        "npx",
+        "eslint",
+        "src/data/loaders/quests.test.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 0,
+      "seconds": 6.093,
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log": ""
+    },
+    {
+      "label": "frozen-green",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/data/loaders/quests.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-quest-item-ids-zz5vn9bu/frozen-green.report.json"
+      ],
+      "exit": 0,
+      "seconds": 3.133,
+      "logSha256": "54acd7a3f801ed072b69476d463e735abffec34b08a2fae16fe9811ad4cb3eab",
+      "reportSha256": "e1a886301e271752564a7bbeed8440dc28dddd12cbe59f5832a5a85f83e4e3b4",
+      "results": {
+        "numTotalTests": 174,
+        "numPassedTests": 174,
+        "numFailedTests": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 1
+      },
+      "assertions": [
+        {
+          "fullName": " synchronous quest consumer validation accepts empty documents and optional envelope metadata without inventing quests",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation preserves optional fields, zero rewards and structurally valid gameplay content unchanged",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation returns all 46 authored rows by identity in main/side order without mutating the documents",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects main: 'missing quests envelope' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects main: 'missing clear-area areaId' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects main: 'unsupported objective kind' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects main: 'negative XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects main: 'fractional XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects main: 'string XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects main: 'unknown quest field' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects duplicate IDs within main",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests revalidates main on valid/invalid/valid calls",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects side: 'missing quests envelope' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects side: 'missing clear-area areaId' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects side: 'unsupported objective kind' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects side: 'negative XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects side: 'fractional XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects side: 'string XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects side: 'unknown quest field' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects duplicate IDs within side",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests revalidates side on valid/invalid/valid calls",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests rejects duplicate IDs across main and side",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuests validates the side envelope before collecting duplicate main entries",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects main: 'missing quests envelope' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects main: 'missing clear-area areaId' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects main: 'unsupported objective kind' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects main: 'negative XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects main: 'fractional XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects main: 'string XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects main: 'unknown quest field' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects duplicate IDs within main",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct revalidates main on valid/invalid/valid calls",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects side: 'missing quests envelope' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects side: 'missing clear-area areaId' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects side: 'unsupported objective kind' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects side: 'negative XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects side: 'fractional XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects side: 'string XP' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects side: 'unknown quest field' with document/field context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects duplicate IDs within side",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct revalidates side on valid/invalid/valid calls",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct rejects duplicate IDs across main and side",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation loadQuestsByAct validates the side envelope before collecting duplicate main entries",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation preserves act grouping, main-first order, optional order and ID tie sorting",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " synchronous quest consumer validation preserves the existing slug, localization key and act helpers",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) uses actual base and unique catalog IDs for the authored reward fixtures",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests accepts main canonical itemDrop items/base/helm-skull-cap unchanged",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests accepts main canonical itemDrop items/unique/coif-of-glory unchanged",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves main syntax-only/legacy itemDrop items/base/not-in-catalog without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves main syntax-only/legacy itemDrop items/unique/not-in-catalog without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves main syntax-only/legacy itemDrop items/base/- without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves main syntax-only/legacy itemDrop items/unique/- without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves main syntax-only/legacy itemDrop items/unique_act1_boss without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves main syntax-only/legacy itemDrop items/quest-token without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves main syntax-only/legacy itemDrop items/base without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves main syntax-only/legacy itemDrop items/unique without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves main syntax-only/legacy itemDrop items/sets without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves main syntax-only/legacy itemDrop items/legacy.name_with-dash without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop null with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop 0 with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop true with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop {} with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop %j with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"items/base/\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"items/unique/\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"items/unknown/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"items/sets/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"items/unique/foo/bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"items/unique/Foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"items/unique/foo_bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"items/unique/foo.bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"items/base/Foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"items/base/foo_bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"items/base/foo.bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"items//foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"../items/unique/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects main malformed itemDrop \"unique/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests accepts side canonical itemDrop items/base/helm-skull-cap unchanged",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests accepts side canonical itemDrop items/unique/coif-of-glory unchanged",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves side syntax-only/legacy itemDrop items/base/not-in-catalog without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves side syntax-only/legacy itemDrop items/unique/not-in-catalog without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves side syntax-only/legacy itemDrop items/base/- without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves side syntax-only/legacy itemDrop items/unique/- without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves side syntax-only/legacy itemDrop items/unique_act1_boss without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves side syntax-only/legacy itemDrop items/quest-token without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves side syntax-only/legacy itemDrop items/base without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves side syntax-only/legacy itemDrop items/unique without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves side syntax-only/legacy itemDrop items/sets without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests preserves side syntax-only/legacy itemDrop items/legacy.name_with-dash without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop null with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop 0 with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop true with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop {} with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop %j with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"items/base/\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"items/unique/\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"items/unknown/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"items/sets/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"items/unique/foo/bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"items/unique/Foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"items/unique/foo_bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"items/unique/foo.bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"items/base/Foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"items/base/foo_bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"items/base/foo.bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"items//foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"../items/unique/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuests rejects side malformed itemDrop \"unique/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct accepts main canonical itemDrop items/base/helm-skull-cap unchanged",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct accepts main canonical itemDrop items/unique/coif-of-glory unchanged",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves main syntax-only/legacy itemDrop items/base/not-in-catalog without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves main syntax-only/legacy itemDrop items/unique/not-in-catalog without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves main syntax-only/legacy itemDrop items/base/- without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves main syntax-only/legacy itemDrop items/unique/- without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves main syntax-only/legacy itemDrop items/unique_act1_boss without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves main syntax-only/legacy itemDrop items/quest-token without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves main syntax-only/legacy itemDrop items/base without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves main syntax-only/legacy itemDrop items/unique without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves main syntax-only/legacy itemDrop items/sets without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves main syntax-only/legacy itemDrop items/legacy.name_with-dash without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop null with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop 0 with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop true with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop {} with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop %j with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"items/base/\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"items/unique/\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"items/unknown/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"items/sets/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"items/unique/foo/bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"items/unique/Foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"items/unique/foo_bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"items/unique/foo.bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"items/base/Foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"items/base/foo_bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"items/base/foo.bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"items//foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"../items/unique/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects main malformed itemDrop \"unique/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct accepts side canonical itemDrop items/base/helm-skull-cap unchanged",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct accepts side canonical itemDrop items/unique/coif-of-glory unchanged",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves side syntax-only/legacy itemDrop items/base/not-in-catalog without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves side syntax-only/legacy itemDrop items/unique/not-in-catalog without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves side syntax-only/legacy itemDrop items/base/- without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves side syntax-only/legacy itemDrop items/unique/- without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves side syntax-only/legacy itemDrop items/unique_act1_boss without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves side syntax-only/legacy itemDrop items/quest-token without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves side syntax-only/legacy itemDrop items/base without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves side syntax-only/legacy itemDrop items/unique without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves side syntax-only/legacy itemDrop items/sets without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct preserves side syntax-only/legacy itemDrop items/legacy.name_with-dash without resolution",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop null with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop 0 with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop true with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop {} with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop %j with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"items/base/\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"items/unique/\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"items/unknown/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"items/sets/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"items/unique/foo/bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"items/unique/Foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"items/unique/foo_bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"items/unique/foo.bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"items/base/Foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"items/base/foo_bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"items/base/foo.bar\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"items//foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"../items/unique/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " quest item reward identifier compatibility (BUG050) loadQuestsByAct rejects side malformed itemDrop \"unique/foo\" with context",
+          "status": "passed",
+          "failureMessages": []
+        }
+      ]
+    },
+    {
+      "label": "related",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/data/loader.test.ts",
+        "src/data/__tests__/data-integrity.test.ts",
+        "src/data/__tests__/item-catalog-integrity.test.ts",
+        "src/features/quests/claimReward.test.ts",
+        "src/features/quests/claimReward.persistence.test.ts",
+        "src/stores/mapStore.test.ts",
+        "src/stores/combatHelpers.quest-objectives.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-quest-item-ids-zz5vn9bu/related.report.json"
+      ],
+      "exit": 0,
+      "seconds": 7.223,
+      "logSha256": "6443bd85fecd64851254100d287e410a625259194df5ff0b596c0e8e084b1886",
+      "reportSha256": "47346c54e61e8438006d0e50c14704b1062fee42497500a506e601ca24037fd0",
+      "results": {
+        "numTotalTests": 303,
+        "numPassedTests": 303,
+        "numFailedTests": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 7
+      }
+    },
+    {
+      "label": "typecheck",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 12.826,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "log": "\n> d2h5-text-game@0.1.0 typecheck\n> tsc --noEmit\n\n"
+    },
+    {
+      "label": "lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 0,
+      "seconds": 52.703,
+      "logSha256": "290646fe97e8078bf27d8734f7036ca6e50994d3ba01e473b96d9223ccd41697",
+      "log": "\n> d2h5-text-game@0.1.0 lint\n> node scripts/check-engine-purity.mjs && eslint . --ext .ts,.tsx --max-warnings=0\n\n[check-engine-purity] OK — 52 engine test file(s) scanned, no forbidden imports.\n"
+    },
+    {
+      "label": "unit",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-quest-item-ids-zz5vn9bu/unit.report.json"
+      ],
+      "exit": 0,
+      "seconds": 41.795,
+      "logSha256": "45974e4459f95ae4689b9d5b6910c71a419bed121bdd575d8e794a2db96e9433",
+      "reportSha256": "d943bd0c752763d508940b49e9c1477ebd3b48b31cff8ccb8db920c36c045e79",
+      "results": {
+        "numTotalTests": 2625,
+        "numPassedTests": 2625,
+        "numFailedTests": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 144
+      }
+    },
+    {
+      "label": "build-guard",
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "exit": 0,
+      "seconds": 9.645,
+      "logSha256": "5e07a39a1a4fcc900cae5090cc9b29e7d81c65eb507870c66696787d8c00b7b4",
+      "log": "\n> d2h5-text-game@0.1.0 check:test-bridge-shake\n> node scripts/check-test-bridge-shaken.mjs\n\n[check:test-bridge-shake] Running production `vite build` (VITE_E2E unset)…\n\n> d2h5-text-game@0.1.0 build\n> vite build\n\nvite v5.4.21 building for production...\ntransforming...\nBrowserslist: browsers data (caniuse-lite) is 6 months old. Please run:\n  npx update-browserslist-db@latest\n  Why you should do it regularly: https://github.com/browserslist/update-db#readme\n✓ 580 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/registerSW.js                        0.13 kB\ndist/manifest.webmanifest                 0.42 kB\ndist/index.html                           0.96 kB │ gzip:   0.53 kB\ndist/assets/index-C7n1A6wx.css           54.22 kB │ gzip:  10.65 kB\ndist/assets/i18n-Bxr3rY09.js             60.80 kB │ gzip:  18.72 kB\ndist/assets/game-engine-CqIzUXqx.js      99.98 kB │ gzip:  33.93 kB\ndist/assets/react-vendor-dRBhy6jq.js    163.93 kB │ gzip:  53.51 kB\ndist/assets/index-BXEbNG7g.js         1,201.92 kB │ gzip: 313.28 kB\n\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n✓ built in 6.17s\n\nPWA v0.19.8\nmode      generateSW\nprecache  756 entries (37357.08 KiB)\nfiles generated\n  dist/sw.js\n  dist/workbox-dcde9eb3.js\nwarnings\n  assets/d2/generated/manifest.json is 2.57 MB, and won't be precached. Configure maximumFileSizeToCacheInBytes to change this limit.\n\n[check:test-bridge-shake] PASS — 4 chunk(s) scanned, no test-bridge symbols present.\n"
+    }
+  ],
+  "acceptance": {
+    "plan": "producer/QA READY; source-backed design contract",
+    "frozenRed": "producer/QA APPROVE before schema edit;8real+16syntactic failures,150controls",
+    "frozenAssertionsUnchanged": true,
+    "original45TestsUnchanged": true,
+    "oracleCorrections": "none",
+    "finalReview": "producer BUG050-PRODUCER-FINAL APPROVE/ADEQUATE; QA BUG050-QA-FINAL APPROVE/ADEQUATE; no material findings; both released retention"
+  },
+  "limitations": [
+    "Syntax only: nonexistent canonical IDs can pass",
+    "No reward or quest content change; shared objective item ID grammar unchanged",
+    "Unsupported whole reward bundles still refuse; Andariel mapping/table parameters unresolved",
+    "No earned boss, browser/reload, reward, C1/C0-C4/G0-G7/full v1 acceptance",
+    "Full unit time budget exceeded; thresholds unchanged",
+    "No validate:data script exists; strict Ajv loader/schema/integrity tests used",
+    "Existing build warnings retained in full build log"
+  ],
+  "artifactOwnership": {
+    "raw": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-quest-item-ids-zz5vn9bu",
+    "owner": "root",
+    "cleanup": "exact task-owned RAW/dist/node_modules/.vite removed after both independent consumers released; absence verified",
+    "processes": "all validation done; no task server"
+  }
+}
