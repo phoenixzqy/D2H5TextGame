@@ -1,6 +1,6 @@
 # BUG-031 — Apply authored Amplify Damage resistance reduction
 
-- **Status:** Runtime fixed and validated locally; reviewed integration pending.
+- **Status:** Fixed; independently reviewed and integrated as `f3f9086`.
 - **Severity:** High — the production physical-resistance curse spends mana but has no resistance effect.
 - **Owner / affected systems:** engine-dev; combat debuff metadata, status identity and direct physical damage.
 - **Reproduction head:** `f3892e9d04032c4cdbf650893ee4af56cc6a7477` on `feat/amplify-runtime-p08a02c`.
@@ -79,6 +79,6 @@ The 3 s engine, 5 s related and 15 s full-suite budgets remain unmet; successful
 
 Final independent verdicts: root **`[P08a02c-FINAL-REVIEW]: APPROVE / ADEQUATE`**; producer **`[P08a02c-FINAL-REVIEW]: APPROVE`**. Both reviewed source, tests, evidence and raw coverage with no material finding, and both confirmed coverage consumption finished. They accepted this bounded runtime slice; performance budgets and browser/full-checkpoint acceptance remain unfulfilled as described above.
 
-The raw coverage SHA256 was `cd18b6b139532c9adc4498477ea9917a7ff4a2300d82d80408b29f4e740ab020`. Independent raw figures were status 367/370 statements, 121/125 branches and 15/15 functions; combat 1026/1071 statements, 296/348 branches and 42/42 functions. The durable evidence is this report and the committed regression tests; no remote publication is authorized. Root will record the exact integrated fix SHA after the reviewed selective commit is integrated.
+The raw coverage SHA256 was `cd18b6b139532c9adc4498477ea9917a7ff4a2300d82d80408b29f4e740ab020`. Independent raw figures were status 367/370 statements, 121/125 branches and 15/15 functions; combat 1026/1071 statements, 296/348 branches and 42/42 functions. The durable evidence is this report and the committed regression tests; no remote publication is authorized. Worker fix `e0447b973011496cd9588255224fa650c63ef536` was integrated as `f3f9086`. Root combined-head validation at `0dbbef2` passed 1445 full tests and 607 engine tests; exact timing and static/build results are recorded in the execution ledger.
 
 After both consumers finished, the implementing worker verified exact task-owned paths were real directories resolving inside the claimed worktree, then removed `dist`, `coverage/p08a02c` and `node_modules/.vite/vitest` with portable filesystem APIs. Empty task-created `coverage` and `node_modules/.vite` parents were removed. Final verification found `dist`, `coverage`, `node_modules/.vite`, `.vite`, `test-results` and `playwright-report` absent. Pre-existing `node_modules` was preserved. No task processes, disposable outputs or cleanup failures remain. The selective source/test/report commit and worktree release are the final local handoff steps.

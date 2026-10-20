@@ -855,3 +855,59 @@ emptycoverage,.vite/vitest+empty.vite; absence verified,clean/releasedworktree3.
 Actual curse gameplay remains inert; c gets explicit BUG031 ownership and
 must present production/status RED before runtime. Final combined validation
 follows c. Root worktree2 remains claimed; no push/PR/deployment.
+
+
+## Amplify runtime, ordinary earned Fire Bolt, and combined validation
+
+P08a02c integrated `f3f9086` (worker `e0447b9`): defined milliseconds and
+potency reach fresh canonical statuses; alias family defaults come from JSON.
+Direct physical hits use the first active curse and subtract once before the
+existing act penalty, clamp and defense. Aggregate first-stored refresh keeps
+source/start/potency and indefinite lifetime. Explicit zero, duplicate/pending/
+expired aliases and elemental/thorns/physical-periodic controls are covered.
+Production ranks 1 and 20 now give target HP 500 → 410 → 370, with hits 90 at
+1700 ms and 40 at exact expiry 3400 ms. RNG/replay/immutability remain pinned.
+
+BUG031 final pre-runtime RED was 31 failed / 48 passed at 08:00:37 UTC,
+1.22 s. Worker focused 79, engine 607, related 698 and full 1445 passed;
+T/L/build and changed coverage passed. The first related run correctly rejected
+source changes during measurement; frozen-source rerun passed. Root and producer
+independently reviewed source/tests/report and consumed raw coverage before
+cleanup: status 367/370 statements, 121/125 branches, 15/15 functions;
+combat 1026/1071, 296/348, 42/42. Both APPROVE / ADEQUATE. Timing budgets remain
+unmet. Exact evidence and limitations are in BUG031. Worker verified task-owned
+dist/coverage/cache absence, clean status and worktree-3 release; no task process
+or cleanup failure remains.
+
+P08a01b integrated `0dbbef2` (worker `41e0acf`): ordinary fresh Sorceress/free
+Inner Sight hire, real Fire Bolt learning and sole-combo setup, literal first
+21-damage hit leaving target 26/47, first-wave victory and 160 earned XP, then
+real rank-2 point allocation and full-save close/new-page/Continue equality.
+Guarded production PWA en/zh-CN × desktop 1280×800/mobile 360×640 passed 4/4,
+1.3 minutes, native timers, retries zero. An initial four fixture failures
+omitted the label's Active suffix; corrected exact labels and actor filtering
+preserve all numeric acceptance. Persistent battle resources, unrelated loot,
+rank-2 browser damage and full-campaign acceptance are explicitly unclaimed.
+Root/producer final independent source/evidence APPROVE / ADEQUATE. Exact browser
+outputs and owned dist removed/verified; worker-4 clean and released. BUG033
+records real misleading percentage/turn copy and canonical cast-name fallback.
+
+Root validated the combined source at `0dbbef2` on 2026-10-20: full 1445/118
+files passed with no skips in 27.26 s (08:07:54), then standalone engine 607/43
+files passed in 3.79 s (08:08:28). Typecheck, lint and build passed; build phase
+6.51 s. Actual schema/corpus/integrity, registry and runtime controls are included
+in full unit. These results do not accept the 15 s full or 3 s engine budgets.
+Existing stale Browserslist, >500 kB chunk and 2.57 MB optional generated manifest
+precache warnings remain. No new browser run is needed to certify Amplify's
+engine-only scope; the Fire Bolt worker production proof remains bounded above.
+Root removed and verified exact task-owned dist and node_modules/.vite after all
+processes finished; shared node_modules retained. No disposable outputs or task
+processes remain.
+
+Next approved cards are P08a03a authored Minor Heal registration and P08a01c
+truthful flat-damage/seconds presentation in disjoint files. The units control is
+D04-skill-display-units-v1.md, reviewed by root and producer; BUG033 stays partly
+open for the separate cast-name identity issue. Minor Heal registration alone
+will not repair runtime healing. Root worktree-2 remains claimed for continuing
+umbrella work. Original checkout untouched; no push/PR/merge/deployment.
+Full v1 and C0–C4/G0–G7 remain open.
