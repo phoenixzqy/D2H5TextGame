@@ -4,11 +4,9 @@
  */
 
 import Dexie, { type Table } from 'dexie';
-import {
-  CURRENT_SAVE_VERSION,
-  type SaveCurrent
-} from '@/engine/types/save';
-import { runMigrations, type VersionedSave } from '@/engine/save';
+import { type SaveCurrent } from '@/engine/types/save';
+import { type VersionedSave } from '@/engine/save';
+import { decodeSave } from '@/engine/save/validate';
 
 export interface SaveRecord {
   id: string; // Always "current" for single-player
@@ -37,23 +35,31 @@ const db = new SaveDatabase();
 export async function loadSave(): Promise<SaveCurrent | null> {
   const record = await db.saves.get('current');
   if (!record) return null;
-  const raw = record.data as VersionedSave;
-  if (raw.version === CURRENT_SAVE_VERSION) {
-    return raw as SaveCurrent;
-  }
-  // Migrate up. Caller (persistence layer) decides whether to write back.
-  return runMigrations(raw, CURRENT_SAVE_VERSION);
+  return decodeSave(record.data);
 }
 
 /**
  * Save the current state
  */
-export async function saveSave(data: SaveCurrent): Promise<void> {
-  await db.saves.put({
-    id: 'current',
-    version: data.version,
-    data,
-    timestamp: Date.now()
+let writes: Promise<void> = Promise.resolve();
+
+/** Serialize mutations so an older delayed write cannot replace a newer save. */
+function enqueueWrite(write: () => Promise<void>): Promise<void> {
+  const pending = writes.then(write);
+  // Keep the queue usable after failure; the caller still receives rejection.
+  writes = pending.catch(() => undefined);
+  return pending;
+}
+
+export function saveSave(data: SaveCurrent): Promise<void> {
+  const snapshot = structuredClone(data);
+  return enqueueWrite(async () => {
+    await db.saves.put({
+      id: 'current',
+      version: snapshot.version,
+      data: snapshot,
+      timestamp: Date.now()
+    });
   });
 }
 
@@ -70,29 +76,22 @@ export async function exportSave(): Promise<string | null> {
  * Import save from JSON string. Runs migrations to current version.
  */
 export async function importSave(json: string): Promise<void> {
-  const raw = JSON.parse(json) as VersionedSave;
-  if (typeof raw.version !== 'number') {
-    throw new Error('Invalid save: missing version field');
-  }
-  const migrated = runMigrations(raw, CURRENT_SAVE_VERSION);
-  await saveSave(migrated);
+  await saveSave(decodeSave(JSON.parse(json) as unknown));
 }
 
 /**
  * Delete the current save
  */
 export async function deleteSave(): Promise<void> {
-  await db.saves.delete('current');
+  await enqueueWrite(async () => {
+    await db.saves.delete('current');
+  });
 }
 
 /**
  * Check if a save exists
  */
 export async function hasSave(): Promise<boolean> {
-  try {
-    const record = await db.saves.get('current');
-    return !!record;
-  } catch {
-    return false;
-  }
+  const record = await db.saves.get('current');
+  return !!record;
 }
