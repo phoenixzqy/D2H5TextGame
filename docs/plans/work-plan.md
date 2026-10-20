@@ -1,7 +1,8 @@
 # Work plan and execution ledger
 
 Owner objective: full v1, staged checkpoints, **30–50 active hours** for a
-fresh first clear of Acts I–V. This ledger starts with no implementation done.
+fresh first clear of Acts I–V. The task table below is the original planning
+baseline; current state and evidence live in [execution-ledger.md](execution-ledger.md).
 `ready` means dependencies permit work; it does not mean accepted or shipped.
 Update each task with branch/commit, evidence and review link as it progresses.
 
