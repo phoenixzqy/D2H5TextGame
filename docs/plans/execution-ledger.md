@@ -30,6 +30,7 @@ Current implementation evidence lives in `evidence/`.
 | P04a03a | accepted central schema prerequisite | `b4d2764` runtime / `74cb889` tests. Central quest document schema and validate-before-collect; BUG039, reviewed genuine20 accepted-invalid RED, frozen tests136 plus unchanged integrity30 pass. Full1904/127, T/L/build and unchanged80%engine coverage pass. Direct imports, crossrefs, quest execution/rewards remain open. |
 | P04a03b | accepted synchronous validation prerequisite | One-file strict existing-schema guard validates both full documents per call before collecting/rejecting duplicates. BUG043, reviewed40RED/5controls; frozen45GREEN, focused268/5+integrity30/1, full/coverage2261/134, T/L/build/80%engine gate pass. Root/producer/QA APPROVE/ADEQUATE. [Evidence](evidence/p04a03b-synchronous-quest-validation.md). Reward execution/crossrefs/campaign remain open. |
 | P04a04a | accepted bounded claim safety | Shared claim preflight/global guard/participating rollback plus localized refusals. BUG044; independently reviewed frozen34RED/41controls, source/focused75GREEN. Related720/57, full/coverage2310/136, T/L/purity51/build/bridge pass; root/producer/QA final APPROVE/ADEQUATE. [Evidence](evidence/p04a04a-den-claim-safety.md). Ordinary-earned Den and broader P04/campaign/C/G remain open. |
+| P04a04b | failed discovery; unaccepted | Frozen en/desktop ordinary-earned recipe loses Denwave2 after valid13prep/W1payout. Root/producer/QA independently confirmed native loss, no combat defect established. [Evidence](evidence/p04a04b-earned-den-discovery.md) preserves failed candidate/outcome; no stronger retry/matrix/runtime change. Separate native stat-allocation prerequisite next. |
 | Remaining P03b/P04 | ready for reproduction | Shared capacity, atomic transactions/recoverable awards and quest event/reward integrity remain. |
 | P05a | accepted slice | `2458ee7`; source-local error state, 13 focused tests and actual-component desktop/mobile proof. [Integrated evidence](evidence/P05a-P06a-foundations.md). D13/F19 remain open. |
 | P05b01 | accepted resolver slice | `0c2d043`; D13 identity/metadata control, 29 new tests (25 red before fix), producer source APPROVE. Full suite + T/L/B pass. BUG-010; surface wiring remains. |
@@ -1430,3 +1431,16 @@ APPROVE/ADEQUATE; evidence preserves oraclecorrection/timing/buildwarninglimits.
 All consumers finished before exact raw/dist/.vite cleanup; absence verified.
 Originalcheckout untouched; rootclaimcontinues. Next ordinary-earned Denbrowser;
 fullP04/D11/campaign/C0–C4/G0–G7 remain open. No push.
+
+
+P04a04b stopped after genuine single en/desktop Denwave2 defeat. No browser
+acceptance or source defect inferred; no fallback/strongerretry/affixtuning.
+Independent root/producer/QA audit prep182kills3640XP/113items1694shards,
+W1+240hero/180merc/+4items118shards, W2bothalliesdead/7enemiesremain/errors[].
+Failed candidate/config and native outcome preserved as nondiscovered evidence;
+only taskcandidate/whitelistaddition removed after archivebyteverification and
+producertriageapproval. Acceptedrunner/runtimeunchanged. Producer/QA/design archive APPROVE/ADEQUATE;
+allconsumers released retention before exact rawroot/dist/.vite cleanup and
+verifiedabsence; port4394closed, originalcheckoutclean.
+Next bounded P11native statallocation design/RED: no UIcaller and storeaction
+leaves derivedstatsstale. No Denwin promised; fullv1/C/G remain open.
