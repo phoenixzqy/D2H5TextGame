@@ -51,6 +51,7 @@ Current implementation evidence lives in `evidence/`.
 | BUG042 | accepted combat lifecycle prerequisite | `3bd6911`; explicit exits prevent hidden replacement runs while preserving intentional restarts/recordings. |
 | P08a05g | accepted bounded ordinary authority/save proof | Four native production en/zh × desktop/mobile cases,0skip/retry/flaky/errors;26/12/84 openings,67/76/71MP, full equipment/save/two reopen proof. [Evidence](evidence/p08a05g-amazon-weapon-authority.md); root/producer/QA APPROVE/ADEQUATE. |
 | P08a04a | accepted representation prerequisite | Tests5fe184b; exact-two optional secondary Freeze schema/shared types and general exclusive nonempty readonly on-hit list. Focused195, engine893, related1142/full1998, T/L/build/coverage pass; root/producer/QA APPROVE. No authored/adapter/combat behavior change; B remains open. |
+| P08a04b/c | accepted bounded Frost runtime/browser slices | Runtime13b5378; actual ordered secondary Freeze and ordinary earned rank/save proof. Four native en/zh × desktop/mobile cases,0skip/retry/flaky/errors; root/producer/QA APPROVE/ADEQUATE. [Evidence](evidence/p08a04c-earned-frost-nova.md). Chill slowdown and broader skills/campaign remain open. |
 | P08a02 | accepted bounded curse slice | Metadata `8b1f497`, authored definition `554a922`, runtime `f3f9086`; BUG031 fixed after genuine RED. Actual Amplify Damage rank/duration/resistance/refresh/replay controls independently approved; full curse families remain open. |
 | P08a03a/b | accepted Minor Heal slices | `091d9b0` actual authored range/registry, `ec0de97` deterministic lowest-relative-HP targeting and true healing. Independent root/QA/producer review and final combined evidence below; broader healing/merc acceptance remains open. |
 | P11a / P11a02 | accepted finalization slices | `d39fe64` actual-win/living-hero/playback guard and single clear; `d8db75c` truthful draw UI. Six root regressions, six RTL, 4/4 browser locale×viewport cases; independent QA/producer APPROVE. BUG-008. |
@@ -1383,3 +1384,18 @@ pending G/fullauthority statements superseded. All consumers finished; exact
 sharedAmazon raw removed/absence verified, port4392 closed. Taskdist/.vite retained
 for activeFrost discovery; root owns removal after consumers finish. Continue
 ordinary-earned Frost; fullskills/C0–C4/G0–G7 remain unaccepted. No push.
+
+P08a04c accepted on2026-10-20 after root/producer/QA final APPROVE/ADEQUATE.
+Frozen spec c6ead538/config015418b, production4/4 en/zh×desktop/mobile,
+0skip/retry/unexpected/flaky/errors; runner245.820/wall247.222s (over4min).
+All184attachments and160earned records independently verified: each554kills/
+11080XP/344items/5157shards, L6; rank1/2 livingC Freeze suppression/recovery,
+unfrozenBcontrol, MP112→92 debit, actualSave/read-onlyDB/export/close/Continue.
+Exact earned→saved delta only mercunfield/soleFrost/rank1→2/points5→4.
+CSSOM61.70→61.7 test-oracle correction preserves failedpilot evidence/hash.
+CurrentT11.494/fullL27.994/purity51/explicitPWAL6.816 and nativebuild pass;
+no runtime diff vs297550a. Versioned evidence includes exact commands/hashes.
+Both independent consumers finished; exactFrost rawroot/dist/.vite removed
+and absence verified, port4393closed, originalcheckout clean. Root claim
+continues; P04a03b synchronous quest schema guard next. Chill slowdown,
+BUG037/P16UX, fullskills/campaign andC0–C4/G0–G7 remain unaccepted. No push.

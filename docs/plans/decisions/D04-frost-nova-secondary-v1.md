@@ -1,7 +1,7 @@
 # D04 — Player Frost Nova secondary Freeze
 
-Status: accepted bounded P08a04 contract/plan by root and producer;
-representation/runtime evidence still pending.
+Status: root/producer/QA accepted bounded A/B representation/runtime at13b5378;
+ordinary-earned browser child C accepted by root/producer/QA on2026-10-20.
 Date:2026-10-20. Full D04/P08/skill/campaign gates remain open.
 
 ## Source and intent
@@ -118,3 +118,46 @@ before RED. Installed Ajv strictTuples rejects a variadic prefixItems tuple;
 use a closed two-entry tuple inside the opt-in conditional, without changing
 validator settings. Tests reject opt-in [chill,burn,freeze] and accept the
 identical opt-out list; no primary registry enum is added.
+
+
+## P08a04c ordinary-earned browser discovery — approved plan
+
+Root/producer/QA permit bounded native Stage1 discovery after accepted A/B at
+13b5378. Representation/runtime acceptance does not accept this browser child.
+Use fresh Sorceress at Date2026-10-20T12:00:00.000Z; native timers, no save
+injection/grants/debug bridge/runtime imports. Verify Frost1 preowned but locked
+below6, disabled allocation, absent from all9 options and sanitized combo.
+Ordinarily learn FireBolt1 with the initial point and hire free InnerSight;
+explicit soleFire in all9 slots. No stat/Warmth/gear allocation. Fire direct
+30–45 equals Ice; cost8 versus10 and guaranteed Burn adds damage. Both are
+sustainable: Energy35 gives7MP/s, action interval1.5s recovers10.5 between casts.
+No assumption that either survives40 waves; fail at the first native loss.
+
+Exactly40 manually entered BloodMoor first-wave wins at fixedDate, ordinals0–39,
+observe all enemies dead/hero alive then wave2/Pause/Flee before more reward.
+Source expected counts8+(ordinal mod13),554kills×20=11080XP. At39wins10920
+remainsL5;40 producesL6XP67,next8818/statPoints25/skillPoints5 afterFire1.
+Preserve all ordinary loot overflow, no conditional disposal or loss fallback.
+Record every earned snapshot; freeze actual route only after native verification.
+Unfield merc ordinarily before Frost witnesses; replace all9 slots with soleFrost.
+Rank1 then ordinary allocation2 leaves4points; full Save/DB/export/actual page
+close/newPage/Continue, followed by genuine rank2cast with newpageordinal0.
+Mana oracles include universal7MP/s recovery; freeze exact Date/ordinal/target
+oracles independently. No runtime/data/locale edits planned.
+
+Same identified living target must show ordered hit→Chill→Freeze→stunned skip
+and later normal action, with living unfrozen control. Capture phased native
+logs before200-row rollover; status playback does not populate badges and emits
+no expiry UI event. Browser proves ordered suppression/recovery only; accepted
+engine tests own exact1000/500ms, exclusive boundary and10%probability.
+Missing Chill slowdown stays deferred. Final en/zh×desktop/mobile, all9slots,
+full unrelated payload/locale/gear/merc preservation, SW/noBridge/no page errors;
+measure40wave runtime before choosing bounded timeout. No C/G/fullskills grant.
+
+Final C acceptance: all four native production en/zh-CN × desktop/mobile cases
+pass without skip/retry/flaky/errors at frozen spec c6ead538/config015418b.
+Independent root/producer/QA verified all184 attachments, earned progression,
+living Freeze suppression/recovery, MP112→92 and full Save/close/Continue.
+[Evidence and limitations](../evidence/p08a04c-earned-frost-nova.md).
+Exact status timing/probability remains engine evidence; Chill slowdown,
+broader skills/campaign, UX/performance and C0–C4/G0–G7 remain unaccepted.
