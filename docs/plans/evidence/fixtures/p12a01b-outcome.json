@@ -1,0 +1,1469 @@
+{
+  "task": "P12a01b",
+  "inputCommit": "c4aa2f7",
+  "kind": "new exact unique materialization capability, not a bug in ordinary rollItem",
+  "environment": {
+    "node": "v24.21.0",
+    "npm": "11.19.0",
+    "browser": "N/A pure API not wired to user flow"
+  },
+  "originalRuntimeSha256": "78696b532431cb5bb473b87a286d5e10b3d3b069c20cc3a7bc8c198996a08f0a",
+  "finalSources": {
+    "src/engine/loot/rollItem.ts": "5c25d863a7e9621cebae703fa5338472563b781196d1abcd1c0fbfc226c09bba",
+    "src/engine/loot/rollUniqueItem.test.ts": "4c63cdfe78a831394bb9a1c758847c3073f7ac74046d45dbe661f2942019f294",
+    "src/data/__tests__/unique-materialization.test.ts": "107f6980beaf585186e421a36af72ab5a811db50254a22554daa23f39dfbc17f"
+  },
+  "planSha256": "1708b36697e4754d51091ebd0b21c64219a9f898829eada9b6a7a3e6e1785c99",
+  "retainedVersions": {
+    "p12a01b-initial-red-test.ts.txt": "f7d84dd3b49a2d776cc32ac66838f0b1edcf96460143814ee23f0c0358188b6b",
+    "p12a01b-frozen-engine-test.ts.txt": "4c63cdfe78a831394bb9a1c758847c3073f7ac74046d45dbe661f2942019f294",
+    "p12a01b-frozen-data-test.ts.txt": "107f6980beaf585186e421a36af72ab5a811db50254a22554daa23f39dfbc17f",
+    "p12a01b-reviewed-plan.md.txt": "1708b36697e4754d51091ebd0b21c64219a9f898829eada9b6a7a3e6e1785c99"
+  },
+  "commands": [
+    {
+      "label": "initial-red",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/loot/rollUniqueItem.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-exact-unique-mb9etlig/initial-red.report.json"
+      ],
+      "exit": 1,
+      "seconds": 2.133,
+      "logSha256": "e190f348cabc651a3cd40088952a53194a2132eda6dc1d995d4cbb90dd64a34f",
+      "reportSha256": "a9312963dfc2356aac1b36d65bf1fa3aec9bdd08ff02f475c11e67e74fcb4cb3",
+      "results": {
+        "numTotalTests": 5,
+        "numPassedTests": 1,
+        "numFailedTests": 4,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 1
+      },
+      "log": "JSON report written to /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-exact-unique-mb9etlig/initial-red.report.json\n",
+      "assertions": [
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction exposes the new named materialization capability",
+          "status": "failed",
+          "failureMessages": [
+            "expected 'undefined' to be 'function' // Object.is equality"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction chooses the exact ID despite competing weights and reverse=false",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction chooses the exact ID despite competing weights and reverse=true",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction uses shared ranged stats then ID then base damage with no selection draw",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction preserves ordinary unique-to-rare fallback when no template is eligible",
+          "status": "passed",
+          "failureMessages": []
+        }
+      ]
+    },
+    {
+      "label": "frozen-red",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/loot/rollUniqueItem.test.ts",
+        "src/data/__tests__/unique-materialization.test.ts",
+        "src/engine/loot/rollItem.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-exact-unique-mb9etlig/frozen-red.report.json"
+      ],
+      "exit": 1,
+      "seconds": 3.061,
+      "logSha256": "a50c0b6433a385e40e12970d3f1be77a76b07a582789a521adf710a4800e20f0",
+      "reportSha256": "9a2c0f1e3dcb8b2eee70220c7b04641755a7cc258be597ce72193b8db6169f91",
+      "results": {
+        "numTotalTests": 43,
+        "numPassedTests": 8,
+        "numFailedTests": 35,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 3
+      },
+      "log": "JSON report written to /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-exact-unique-mb9etlig/frozen-red.report.json\n",
+      "assertions": [
+        {
+          "file": "src/engine/loot/rollItem.test.ts",
+          "fullName": " rollItem is deterministic and snapshots the same seed",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollItem.test.ts",
+          "fullName": " rollItem rolls base attack inside base range",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollItem.test.ts",
+          "fullName": " rollItem respects rarity affix count ranges",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollItem.test.ts",
+          "fullName": " rollItem never rolls invalid tiers or values for ilvl",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollItem.test.ts",
+          "fullName": " rollItem materializes eligible unique templates with identity and stat rolls",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollItem.test.ts",
+          "fullName": " rollItem materializes eligible set pieces with set identity",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollItem.test.ts",
+          "fullName": " rollItem downgrades invalid unique and set rolls to rare instead of shell items",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction exposes the new named materialization capability",
+          "status": "failed",
+          "failureMessages": [
+            "expected 'undefined' to be 'function' // Object.is equality"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction chooses the exact ID despite competing weights and reverse=false",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction chooses the exact ID despite competing weights and reverse=true",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction uses shared ranged stats then ID then base damage with no selection draw",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction preserves ordinary unique-to-rare fallback when no template is eligible",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'ilvl 0' without RNG or allocator consumption",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'ilvl -1' without RNG or allocator consumption",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'ilvl 1.5' without RNG or allocator consumption",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'ilvl NaN' without RNG or allocator consumption",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'ilvl Infinity' without RNG or allocator consumption",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'ilvl -Infinity' without RNG or allocator consumption",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'missing catalog' without RNG or allocator consumption",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'empty catalog' without RNG or allocator consumption",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'exact ID items/unique/missing' without RNG or allocator consumption",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'exact ID ' without RNG or allocator consumption",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'exact ID requested' without RNG or allocator consumption",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'exact ID items/unique/Requested' without RNG or allocator consumption",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'exact ID  items/unique/requested' without RNG or allocator consumption",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'below qlvl' without RNG or allocator consumption",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'below reqLevel fallback' without RNG or allocator consumption",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'duplicate matching IDs including one …' without RNG or allocator consumption",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'missing template base' without RNG or allocator consumption",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'base map key disagrees with base iden…' without RNG or allocator consumption",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction retains qlvl precedence over template/base requirements at ilvl 4",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction retains qlvl precedence over template/base requirements at ilvl 8",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction retains qlvl precedence over template/base requirements at ilvl 1000",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction uses reqLevel when qlvl is absent, including the exact boundary",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction ignores zero selection weight for an exact request (typed engine edge only)",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction reproduces a full item with the same seed and allocator state",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction allocates fresh items with distinct IDs while preserving input and catalog bytes",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction propagates malformed stat range constructor errors",
+          "status": "failed",
+          "failureMessages": [
+            "expected [Function] to throw error including 'Invalid range: min (20) > max (10)' but got 'rollUniqueItem …'"
+          ]
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction propagates RNG exceptions and preserves consumed allocation gaps",
+          "status": "failed",
+          "failureMessages": [
+            "expected error to have message: owned RNG failure"
+          ]
+        },
+        {
+          "file": "src/data/__tests__/unique-materialization.test.ts",
+          "fullName": " exact unique materialization from the complete production catalog materializes exact 'items/unique/pelta-lunata' and resolves its authored bonuses",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/data/__tests__/unique-materialization.test.ts",
+          "fullName": " exact unique materialization from the complete production catalog materializes exact 'items/unique/coif-of-glory' and resolves its authored bonuses",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/data/__tests__/unique-materialization.test.ts",
+          "fullName": " exact unique materialization from the complete production catalog refuses 'items/unique/pelta-lunata' just below its actual eligibility boundary",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        },
+        {
+          "file": "src/data/__tests__/unique-materialization.test.ts",
+          "fullName": " exact unique materialization from the complete production catalog refuses 'items/unique/coif-of-glory' just below its actual eligibility boundary",
+          "status": "failed",
+          "failureMessages": [
+            "rollUniqueItem is not a function"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "red-test-lint",
+      "command": [
+        "npx",
+        "eslint",
+        "src/engine/loot/rollUniqueItem.test.ts",
+        "src/data/__tests__/unique-materialization.test.ts",
+        "--max-warnings=0"
+      ],
+      "exit": 1,
+      "seconds": 5.125,
+      "logSha256": "24c949be08bef16cdd78699b4928baf358e5d9c2cfb292b6c7aee22c166158e9",
+      "log": "\n/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/src/data/__tests__/unique-materialization.test.ts\n  18:11  error  Unsafe assignment of an error typed value                                                         @typescript-eslint/no-unsafe-assignment\n  18:18  error  Unsafe call of an `error` type typed value                                                        @typescript-eslint/no-unsafe-call\n  23:18  error  Unsafe member access .id on an `error` typed value                                                @typescript-eslint/no-unsafe-member-access\n  24:18  error  Unsafe member access .baseRolls on an `error` typed value                                         @typescript-eslint/no-unsafe-member-access\n  25:18  error  Unsafe member access .baseRolls on an `error` typed value                                         @typescript-eslint/no-unsafe-member-access\n  26:59  error  Unsafe argument of type `any` assigned to a parameter of type `Readonly<Record<string, number>>`  @typescript-eslint/no-unsafe-argument\n  26:65  error  Unsafe member access .statRolls on an `error` typed value                                         @typescript-eslint/no-unsafe-member-access\n  29:20  error  Unsafe member access .statRolls on an `error` typed value                                         @typescript-eslint/no-unsafe-member-access\n  30:20  error  Unsafe member access .statRolls on an `error` typed value                                         @typescript-eslint/no-unsafe-member-access\n  32:37  error  Unsafe assignment of an error typed value                                                         @typescript-eslint/no-unsafe-assignment\n  32:50  error  Unsafe member access .statRolls on an `error` typed value                                         @typescript-eslint/no-unsafe-member-access\n  37:20  error  Unsafe member access .statRolls on an `error` typed value                                         @typescript-eslint/no-unsafe-member-access\n  51:12  error  Unsafe call of an `error` type typed value                                                        @typescript-eslint/no-unsafe-call\n\n/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/src/engine/loot/rollUniqueItem.test.ts\n   42:11  error  Unsafe assignment of an error typed value                      @typescript-eslint/no-unsafe-assignment\n   42:18  error  Unsafe call of an `error` type typed value                     @typescript-eslint/no-unsafe-call\n   48:11  error  Unsafe assignment of an error typed value                      @typescript-eslint/no-unsafe-assignment\n   48:18  error  Unsafe call of an `error` type typed value                     @typescript-eslint/no-unsafe-call\n   90:11  error  Unsafe assignment of an error typed value                      @typescript-eslint/no-unsafe-assignment\n   90:20  error  Unsafe call of an `error` type typed value                     @typescript-eslint/no-unsafe-call\n  101:12  error  Unsafe call of an `error` type typed value                     @typescript-eslint/no-unsafe-call\n  108:12  error  Unsafe call of an `error` type typed value                     @typescript-eslint/no-unsafe-call\n  115:12  error  Unsafe call of an `error` type typed value                     @typescript-eslint/no-unsafe-call\n  120:11  error  Unsafe assignment of an error typed value                      @typescript-eslint/no-unsafe-assignment\n  120:19  error  Unsafe call of an `error` type typed value                     @typescript-eslint/no-unsafe-call\n  122:11  error  Unsafe assignment of an error typed value                      @typescript-eslint/no-unsafe-assignment\n  122:20  error  Unsafe call of an `error` type typed value                     @typescript-eslint/no-unsafe-call\n  130:11  error  Unsafe assignment of an error typed value                      @typescript-eslint/no-unsafe-assignment\n  130:19  error  Unsafe call of an `error` type typed value                     @typescript-eslint/no-unsafe-call\n  131:11  error  Unsafe assignment of an error typed value                      @typescript-eslint/no-unsafe-assignment\n  131:20  error  Unsafe call of an `error` type typed value                     @typescript-eslint/no-unsafe-call\n  134:20  error  Unsafe member access .id on an `error` typed value             @typescript-eslint/no-unsafe-member-access\n  134:40  error  Unsafe member access .id on an `error` typed value             @typescript-eslint/no-unsafe-member-access\n  135:40  error  Unsafe assignment of an error typed value                      @typescript-eslint/no-unsafe-assignment\n  135:52  error  Unsafe member access .id on an `error` typed value             @typescript-eslint/no-unsafe-member-access\n  137:20  error  Unsafe member access .statRolls on an `error` typed value      @typescript-eslint/no-unsafe-member-access\n  137:47  error  Unsafe member access .statRolls on an `error` typed value      @typescript-eslint/no-unsafe-member-access\n  138:20  error  Unsafe member access .baseRolls on an `error` typed value      @typescript-eslint/no-unsafe-member-access\n  138:47  error  Unsafe member access .baseRolls on an `error` typed value      @typescript-eslint/no-unsafe-member-access\n  139:20  error  Unsafe member access .affixes on an `error` typed value        @typescript-eslint/no-unsafe-member-access\n  139:45  error  Unsafe member access .affixes on an `error` typed value        @typescript-eslint/no-unsafe-member-access\n  140:20  error  Unsafe member access .generatedName on an `error` typed value  @typescript-eslint/no-unsafe-member-access\n  140:51  error  Unsafe member access .generatedName on an `error` typed value  @typescript-eslint/no-unsafe-member-access\n  149:18  error  Unsafe return of an error typed value                          @typescript-eslint/no-unsafe-return\n  149:18  error  Unsafe call of an `error` type typed value                     @typescript-eslint/no-unsafe-call\n  161:18  error  Unsafe return of an error typed value                          @typescript-eslint/no-unsafe-return\n  161:18  error  Unsafe call of an `error` type typed value                     @typescript-eslint/no-unsafe-call\n\n✖ 46 problems (46 errors, 0 warnings)\n\n"
+    },
+    {
+      "label": "frozen-green",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/engine/loot/rollUniqueItem.test.ts",
+        "src/data/__tests__/unique-materialization.test.ts",
+        "src/engine/loot/rollItem.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-exact-unique-mb9etlig/frozen-green.report.json"
+      ],
+      "exit": 0,
+      "seconds": 2.8,
+      "logSha256": "800b8600df333bb6a85fa0d7d3c44da324391f19e0bf69e4f7852e8b112141a1",
+      "reportSha256": "58f57c79395a88e6640b52ab2cc5e4d165e52921eb7f6fbd5e7340bfebfaf3cc",
+      "results": {
+        "numTotalTests": 43,
+        "numPassedTests": 43,
+        "numFailedTests": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 3
+      },
+      "log": "JSON report written to /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-exact-unique-mb9etlig/frozen-green.report.json\n",
+      "assertions": [
+        {
+          "file": "src/engine/loot/rollItem.test.ts",
+          "fullName": " rollItem is deterministic and snapshots the same seed",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollItem.test.ts",
+          "fullName": " rollItem rolls base attack inside base range",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollItem.test.ts",
+          "fullName": " rollItem respects rarity affix count ranges",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollItem.test.ts",
+          "fullName": " rollItem never rolls invalid tiers or values for ilvl",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollItem.test.ts",
+          "fullName": " rollItem materializes eligible unique templates with identity and stat rolls",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollItem.test.ts",
+          "fullName": " rollItem materializes eligible set pieces with set identity",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollItem.test.ts",
+          "fullName": " rollItem downgrades invalid unique and set rolls to rare instead of shell items",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction exposes the new named materialization capability",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction chooses the exact ID despite competing weights and reverse=false",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction chooses the exact ID despite competing weights and reverse=true",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction uses shared ranged stats then ID then base damage with no selection draw",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction preserves ordinary unique-to-rare fallback when no template is eligible",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'ilvl 0' without RNG or allocator consumption",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'ilvl -1' without RNG or allocator consumption",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'ilvl 1.5' without RNG or allocator consumption",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'ilvl NaN' without RNG or allocator consumption",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'ilvl Infinity' without RNG or allocator consumption",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'ilvl -Infinity' without RNG or allocator consumption",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'missing catalog' without RNG or allocator consumption",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'empty catalog' without RNG or allocator consumption",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'exact ID items/unique/missing' without RNG or allocator consumption",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'exact ID ' without RNG or allocator consumption",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'exact ID requested' without RNG or allocator consumption",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'exact ID items/unique/Requested' without RNG or allocator consumption",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'exact ID  items/unique/requested' without RNG or allocator consumption",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'below qlvl' without RNG or allocator consumption",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'below reqLevel fallback' without RNG or allocator consumption",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'duplicate matching IDs including one …' without RNG or allocator consumption",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'missing template base' without RNG or allocator consumption",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction refuses 'base map key disagrees with base iden…' without RNG or allocator consumption",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction retains qlvl precedence over template/base requirements at ilvl 4",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction retains qlvl precedence over template/base requirements at ilvl 8",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction retains qlvl precedence over template/base requirements at ilvl 1000",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction uses reqLevel when qlvl is absent, including the exact boundary",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction ignores zero selection weight for an exact request (typed engine edge only)",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction reproduces a full item with the same seed and allocator state",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction allocates fresh items with distinct IDs while preserving input and catalog bytes",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction propagates malformed stat range constructor errors",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/engine/loot/rollUniqueItem.test.ts",
+          "fullName": " rollUniqueItem exact named construction propagates RNG exceptions and preserves consumed allocation gaps",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/data/__tests__/unique-materialization.test.ts",
+          "fullName": " exact unique materialization from the complete production catalog materializes exact 'items/unique/pelta-lunata' and resolves its authored bonuses",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/data/__tests__/unique-materialization.test.ts",
+          "fullName": " exact unique materialization from the complete production catalog materializes exact 'items/unique/coif-of-glory' and resolves its authored bonuses",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/data/__tests__/unique-materialization.test.ts",
+          "fullName": " exact unique materialization from the complete production catalog refuses 'items/unique/pelta-lunata' just below its actual eligibility boundary",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "file": "src/data/__tests__/unique-materialization.test.ts",
+          "fullName": " exact unique materialization from the complete production catalog refuses 'items/unique/coif-of-glory' just below its actual eligibility boundary",
+          "status": "passed",
+          "failureMessages": []
+        }
+      ]
+    },
+    {
+      "label": "engine",
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-exact-unique-mb9etlig/engine.report.json"
+      ],
+      "exit": 0,
+      "seconds": 6.131,
+      "logSha256": "875f2b4cc858e5d915a3bbcae42911d5aee66c846b25aa3127ceaa601ae4d303",
+      "reportSha256": "9f96218150cac77e2f72bd1140a9dc781106e63c2e0f30e2771559452b8a265c",
+      "results": {
+        "numTotalTests": 1043,
+        "numPassedTests": 1043,
+        "numFailedTests": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 53
+      },
+      "log": "\n> d2h5-text-game@0.1.0 test:engine\n> vitest run --project engine --reporter=json --outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-exact-unique-mb9etlig/engine.report.json\n\nJSON report written to /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-exact-unique-mb9etlig/engine.report.json\n"
+    },
+    {
+      "label": "typecheck",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 10.214,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "log": "\n> d2h5-text-game@0.1.0 typecheck\n> tsc --noEmit\n\n"
+    },
+    {
+      "label": "lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 0,
+      "seconds": 41.102,
+      "logSha256": "fb24eb1bf2fbde4070fc7d5db6fa085ebd1423bee938ab962c65c23e82b9d7db",
+      "log": "\n> d2h5-text-game@0.1.0 lint\n> node scripts/check-engine-purity.mjs && eslint . --ext .ts,.tsx --max-warnings=0\n\n[check-engine-purity] OK — 53 engine test file(s) scanned, no forbidden imports.\n"
+    },
+    {
+      "label": "related",
+      "command": [
+        "npm",
+        "run",
+        "test:related",
+        "--",
+        "src/engine/loot/rollItem.ts",
+        "src/data/loaders/loot.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-exact-unique-mb9etlig/related.report.json"
+      ],
+      "exit": 0,
+      "seconds": 34.792,
+      "logSha256": "e462bacd968c046f831a26bb2385a994bca7eabe1f1536e684d8b741e06a5eb3",
+      "reportSha256": "f439c294cde68f0917410259e9c168fe00c37176ff12b477656d153f86e689f6",
+      "results": {
+        "numTotalTests": 1174,
+        "numPassedTests": 1174,
+        "numFailedTests": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 83
+      },
+      "log": "\n> d2h5-text-game@0.1.0 test:related\n> vitest related --run src/engine/loot/rollItem.ts src/data/loaders/loot.ts --reporter=json --outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-exact-unique-mb9etlig/related.report.json\n\nJSON report written to /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-exact-unique-mb9etlig/related.report.json\n"
+    },
+    {
+      "label": "fullcov",
+      "command": [
+        "npm",
+        "run",
+        "test:cov",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-exact-unique-mb9etlig/fullcov.report.json",
+        "--coverage.reportsDirectory=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-exact-unique-mb9etlig/coverage"
+      ],
+      "exit": 0,
+      "seconds": 45.031,
+      "logSha256": "f836b9493dcf2d71b57f8176a15cd5e49ce22a35f1d854493aed1a6cb3183168",
+      "reportSha256": "d015e61a36dc1f8bf56e32090c470e6fda85ad9f340ac5b680bb404d7229f0f8",
+      "results": {
+        "numTotalTests": 2661,
+        "numPassedTests": 2661,
+        "numFailedTests": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 146
+      },
+      "log": "\n> d2h5-text-game@0.1.0 test:cov\n> vitest run --coverage --reporter=json --outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-exact-unique-mb9etlig/fullcov.report.json --coverage.reportsDirectory=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-exact-unique-mb9etlig/coverage\n\nJSON report written to /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-exact-unique-mb9etlig/fullcov.report.json\n % Coverage report from v8\n-------------------|---------|----------|---------|---------|-------------------\nFile               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s \n-------------------|---------|----------|---------|---------|-------------------\nAll files          |   94.46 |    90.48 |   94.04 |   94.46 |                   \n engine            |   94.46 |    96.61 |      95 |   94.46 |                   \n  cooldown.ts      |     100 |      100 |     100 |     100 |                   \n  index.ts         |       0 |        0 |       0 |       0 | 1-17              \n  rng.ts           |   97.93 |    95.65 |     100 |   97.93 | 79-80             \n  turn-order.ts    |     100 |      100 |     100 |     100 |                   \n engine/ai         |   69.93 |    61.53 |      60 |   69.93 |                   \n  index.ts         |       0 |        0 |       0 |       0 | 1-5               \n  policy.ts        |   72.46 |    66.66 |      75 |   72.46 | 29-66             \n engine/combat     |   97.91 |    89.95 |   99.15 |   97.91 |                   \n  ...definition.ts |     100 |      100 |     100 |     100 |                   \n  combat.ts        |    97.6 |    90.51 |     100 |    97.6 | ...-953,1145-1146 \n  combo.ts         |   92.55 |       84 |     100 |   92.55 | 46-47,56-58,69-70 \n  damage.ts        |     100 |      100 |     100 |     100 |                   \n  grid.ts          |   90.53 |    84.74 |     100 |   90.53 | ...96,108,128-129 \n  index.ts         |     100 |      100 |     100 |     100 |                   \n  mana-recovery.ts |     100 |    94.54 |     100 |     100 | 56,60             \n  ...er-factory.ts |     100 |    86.95 |     100 |     100 | ...50,172,178,208 \n  orbs.ts          |     100 |      100 |     100 |     100 |                   \n  ...definition.ts |     100 |      100 |     100 |     100 |                   \n  status.ts        |   99.18 |     96.8 |     100 |   99.18 | 277-279           \n  sub-area-run.ts  |   99.11 |     83.7 |     100 |   99.11 | ...60-361,421-422 \n  types.ts         |   94.47 |    78.57 |      50 |   94.47 | 172-181           \n engine/gacha      |     100 |      100 |     100 |     100 |                   \n  roller.ts        |     100 |      100 |     100 |     100 |                   \n engine/idle       |   98.87 |    81.53 |     100 |   98.87 |                   \n  index.ts         |     100 |      100 |     100 |     100 |                   \n  offline-bonus.ts |     100 |      100 |     100 |     100 |                   \n  online-tick.ts   |   97.81 |    58.62 |     100 |   97.81 | 150-151,179-180   \n  ...sted-bonus.ts |     100 |      100 |     100 |     100 |                   \n engine/inventory  |     100 |    96.15 |     100 |     100 |                   \n  ...pValidator.ts |     100 |    96.15 |     100 |     100 | 103               \n engine/items      |   89.79 |    95.91 |     100 |   89.79 |                   \n  computeStats.ts  |     100 |      100 |     100 |     100 |                   \n  statRolls.ts     |   88.09 |    94.28 |     100 |   88.09 | 56-65             \n engine/loot       |   82.71 |    91.81 |   88.57 |   82.71 |                   \n  affix-roll.ts    |       0 |        0 |       0 |       0 | 1-119             \n  award.ts         |     100 |    95.65 |     100 |     100 | 137               \n  drop-roller.ts   |   99.11 |    90.56 |     100 |   99.11 | 99-100            \n  index.ts         |       0 |        0 |       0 |       0 | 1-10              \n  item-instance.ts |   76.92 |      100 |      50 |   76.92 | 11-13             \n  ...d-currency.ts |     100 |    94.44 |     100 |     100 | 95                \n  rollItem.ts      |   98.19 |    91.66 |     100 |   98.19 | 57-58             \n  runeword.ts      |      91 |      100 |      50 |      91 | 92-100            \n engine/map        |   96.03 |       80 |   85.71 |   96.03 |                   \n  generator.ts     |     100 |       75 |     100 |     100 | 50,74,79,83-84,89 \n  index.ts         |       0 |        0 |       0 |       0 | 1-6               \n  unlock.ts        |   97.84 |    93.33 |     100 |   97.84 | 62-63             \n ...ne/progression |   83.98 |    92.94 |   83.33 |   83.98 |                   \n  ...pment-mods.ts |     100 |     92.2 |     100 |     100 | 89,93-94,147,158  \n  ...pped-stats.ts |     100 |      100 |     100 |     100 |                   \n  index.ts         |       0 |        0 |       0 |       0 | 1-7               \n  ...ment-stats.ts |     100 |      100 |     100 |     100 |                   \n  skill-tree.ts    |       0 |        0 |       0 |       0 | 1-91              \n  stats.ts         |   93.75 |      100 |      50 |   93.75 | 25-26,33-38       \n  warmth.ts        |   92.15 |    86.66 |     100 |   92.15 | 8-9,13-14         \n  xp.ts            |     100 |    96.87 |     100 |     100 | 70                \n engine/save       |     100 |    97.91 |     100 |     100 |                   \n  index.ts         |     100 |      100 |     100 |     100 |                   \n  legacyStarter.ts |     100 |      100 |     100 |     100 |                   \n  migrate.ts       |     100 |      100 |     100 |     100 |                   \n  restore.ts       |     100 |      100 |     100 |     100 |                   \n  serialize.ts     |     100 |       75 |     100 |     100 | 36,56             \n  validate.ts      |     100 |      100 |     100 |     100 |                   \n engine/skills     |   96.58 |    88.97 |      90 |   96.58 |                   \n  aliases.ts       |   98.01 |    84.61 |      50 |   98.01 | 35-36,40-41       \n  builders.ts      |     100 |    97.05 |     100 |     100 | 54                \n  dataCatalog.ts   |     100 |    95.23 |     100 |     100 | 93,97,147,163,213 \n  displayStats.ts  |   98.74 |     86.9 |     100 |   98.74 | 187-188,195-196   \n  eligibility.ts   |   97.82 |    92.85 |     100 |   97.82 | 72,84             \n  index.ts         |       0 |        0 |       0 |       0 | 1-7               \n  minor-heal.ts    |     100 |      100 |     100 |     100 |                   \n  registry.ts      |   97.82 |      100 |   83.33 |   97.82 | 58-59             \n  scaling.ts       |   97.33 |    94.11 |     100 |   97.33 | 33-34             \n  summons.ts       |   88.36 |    56.41 |      90 |   88.36 | ...07,211,252-253 \n engine/types      |   95.56 |    96.29 |   91.66 |   95.56 |                   \n  index.ts         |       0 |        0 |       0 |       0 | 1-18              \n  save.ts          |     100 |      100 |     100 |     100 |                   \n-------------------|---------|----------|---------|---------|-------------------\n"
+    },
+    {
+      "label": "build-guard",
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "exit": 0,
+      "seconds": 8.641,
+      "logSha256": "d00e76c8fccf5cc814be92c4f1399882922765eec2922f748ad027fad3949de3",
+      "log": "\n> d2h5-text-game@0.1.0 check:test-bridge-shake\n> node scripts/check-test-bridge-shaken.mjs\n\n[check:test-bridge-shake] Running production `vite build` (VITE_E2E unset)…\n\n> d2h5-text-game@0.1.0 build\n> vite build\n\nvite v5.4.21 building for production...\ntransforming...\nBrowserslist: browsers data (caniuse-lite) is 6 months old. Please run:\n  npx update-browserslist-db@latest\n  Why you should do it regularly: https://github.com/browserslist/update-db#readme\n✓ 580 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/registerSW.js                        0.13 kB\ndist/manifest.webmanifest                 0.42 kB\ndist/index.html                           0.96 kB │ gzip:   0.53 kB\ndist/assets/index-C7n1A6wx.css           54.22 kB │ gzip:  10.65 kB\ndist/assets/i18n-Bxr3rY09.js             60.80 kB │ gzip:  18.72 kB\ndist/assets/game-engine-CqIzUXqx.js      99.98 kB │ gzip:  33.93 kB\ndist/assets/react-vendor-dRBhy6jq.js    163.93 kB │ gzip:  53.51 kB\ndist/assets/index-BXEbNG7g.js         1,201.92 kB │ gzip: 313.28 kB\n\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n✓ built in 5.43s\n\nPWA v0.19.8\nmode      generateSW\nprecache  756 entries (37357.08 KiB)\nfiles generated\n  dist/sw.js\n  dist/workbox-dcde9eb3.js\nwarnings\n  assets/d2/generated/manifest.json is 2.57 MB, and won't be precached. Configure maximumFileSizeToCacheInBytes to change this limit.\n\n[check:test-bridge-shake] PASS — 4 chunk(s) scanned, no test-bridge symbols present.\n"
+    }
+  ],
+  "coverage": {
+    "reportSha256": "1e97fb782df08a002a9e1a00e43d37b1a90ea8a98f62e3f9536a6de56d5c676e",
+    "modules": 64,
+    "globalCoveredTotal": {
+      "s": [
+        8189,
+        8669
+      ],
+      "b": [
+        1959,
+        2165
+      ],
+      "f": [
+        300,
+        319
+      ]
+    },
+    "rollItemFileCoveredTotal": {
+      "s": [
+        109,
+        111
+      ],
+      "b": [
+        110,
+        120
+      ],
+      "f": [
+        20,
+        20
+      ]
+    },
+    "newFunction": {
+      "s": {
+        "covered": 9,
+        "total": 9,
+        "entries": {
+          "86": {
+            "start": {
+              "line": 87,
+              "column": 0
+            },
+            "end": {
+              "line": 87,
+              "column": 110
+            }
+          },
+          "87": {
+            "start": {
+              "line": 88,
+              "column": 0
+            },
+            "end": {
+              "line": 88,
+              "column": 73
+            }
+          },
+          "88": {
+            "start": {
+              "line": 89,
+              "column": 0
+            },
+            "end": {
+              "line": 89,
+              "column": 93
+            }
+          },
+          "89": {
+            "start": {
+              "line": 90,
+              "column": 0
+            },
+            "end": {
+              "line": 90,
+              "column": 30
+            }
+          },
+          "90": {
+            "start": {
+              "line": 91,
+              "column": 0
+            },
+            "end": {
+              "line": 91,
+              "column": 58
+            }
+          },
+          "91": {
+            "start": {
+              "line": 92,
+              "column": 0
+            },
+            "end": {
+              "line": 92,
+              "column": 48
+            }
+          },
+          "92": {
+            "start": {
+              "line": 93,
+              "column": 0
+            },
+            "end": {
+              "line": 93,
+              "column": 111
+            }
+          },
+          "93": {
+            "start": {
+              "line": 94,
+              "column": 0
+            },
+            "end": {
+              "line": 94,
+              "column": 121
+            }
+          },
+          "94": {
+            "start": {
+              "line": 95,
+              "column": 0
+            },
+            "end": {
+              "line": 95,
+              "column": 1
+            }
+          }
+        },
+        "counts": {
+          "86": 3,
+          "87": 36,
+          "88": 36,
+          "89": 36,
+          "90": 36,
+          "91": 22,
+          "92": 36,
+          "93": 16,
+          "94": 16
+        }
+      },
+      "b": {
+        "covered": 14,
+        "total": 14,
+        "entries": {
+          "79": {
+            "type": "branch",
+            "line": 87,
+            "loc": {
+              "start": {
+                "line": 87,
+                "column": 7
+              },
+              "end": {
+                "line": 95,
+                "column": 1
+              }
+            },
+            "locations": [
+              {
+                "start": {
+                  "line": 87,
+                  "column": 7
+                },
+                "end": {
+                  "line": 95,
+                  "column": 1
+                }
+              }
+            ]
+          },
+          "80": {
+            "type": "branch",
+            "line": 88,
+            "loc": {
+              "start": {
+                "line": 88,
+                "column": 34
+              },
+              "end": {
+                "line": 88,
+                "column": 56
+              }
+            },
+            "locations": [
+              {
+                "start": {
+                  "line": 88,
+                  "column": 34
+                },
+                "end": {
+                  "line": 88,
+                  "column": 56
+                }
+              }
+            ]
+          },
+          "81": {
+            "type": "branch",
+            "line": 88,
+            "loc": {
+              "start": {
+                "line": 88,
+                "column": 56
+              },
+              "end": {
+                "line": 88,
+                "column": 73
+              }
+            },
+            "locations": [
+              {
+                "start": {
+                  "line": 88,
+                  "column": 56
+                },
+                "end": {
+                  "line": 88,
+                  "column": 73
+                }
+              }
+            ]
+          },
+          "82": {
+            "type": "branch",
+            "line": 88,
+            "loc": {
+              "start": {
+                "line": 88,
+                "column": 63
+              },
+              "end": {
+                "line": 89,
+                "column": 36
+              }
+            },
+            "locations": [
+              {
+                "start": {
+                  "line": 88,
+                  "column": 63
+                },
+                "end": {
+                  "line": 89,
+                  "column": 36
+                }
+              }
+            ]
+          },
+          "83": {
+            "type": "branch",
+            "line": 89,
+            "loc": {
+              "start": {
+                "line": 89,
+                "column": 25
+              },
+              "end": {
+                "line": 89,
+                "column": 40
+              }
+            },
+            "locations": [
+              {
+                "start": {
+                  "line": 89,
+                  "column": 25
+                },
+                "end": {
+                  "line": 89,
+                  "column": 40
+                }
+              }
+            ]
+          },
+          "84": {
+            "type": "branch",
+            "line": 91,
+            "loc": {
+              "start": {
+                "line": 91,
+                "column": 25
+              },
+              "end": {
+                "line": 91,
+                "column": 41
+              }
+            },
+            "locations": [
+              {
+                "start": {
+                  "line": 91,
+                  "column": 25
+                },
+                "end": {
+                  "line": 91,
+                  "column": 41
+                }
+              }
+            ]
+          },
+          "85": {
+            "type": "branch",
+            "line": 91,
+            "loc": {
+              "start": {
+                "line": 91,
+                "column": 41
+              },
+              "end": {
+                "line": 91,
+                "column": 58
+              }
+            },
+            "locations": [
+              {
+                "start": {
+                  "line": 91,
+                  "column": 41
+                },
+                "end": {
+                  "line": 91,
+                  "column": 58
+                }
+              }
+            ]
+          },
+          "86": {
+            "type": "branch",
+            "line": 91,
+            "loc": {
+              "start": {
+                "line": 91,
+                "column": 48
+              },
+              "end": {
+                "line": 93,
+                "column": 15
+              }
+            },
+            "locations": [
+              {
+                "start": {
+                  "line": 91,
+                  "column": 48
+                },
+                "end": {
+                  "line": 93,
+                  "column": 15
+                }
+              }
+            ]
+          },
+          "87": {
+            "type": "branch",
+            "line": 93,
+            "loc": {
+              "start": {
+                "line": 93,
+                "column": 7
+              },
+              "end": {
+                "line": 93,
+                "column": 46
+              }
+            },
+            "locations": [
+              {
+                "start": {
+                  "line": 93,
+                  "column": 7
+                },
+                "end": {
+                  "line": 93,
+                  "column": 46
+                }
+              }
+            ]
+          },
+          "88": {
+            "type": "branch",
+            "line": 93,
+            "loc": {
+              "start": {
+                "line": 93,
+                "column": 36
+              },
+              "end": {
+                "line": 93,
+                "column": 94
+              }
+            },
+            "locations": [
+              {
+                "start": {
+                  "line": 93,
+                  "column": 36
+                },
+                "end": {
+                  "line": 93,
+                  "column": 94
+                }
+              }
+            ]
+          },
+          "89": {
+            "type": "branch",
+            "line": 93,
+            "loc": {
+              "start": {
+                "line": 93,
+                "column": 94
+              },
+              "end": {
+                "line": 93,
+                "column": 111
+              }
+            },
+            "locations": [
+              {
+                "start": {
+                  "line": 93,
+                  "column": 94
+                },
+                "end": {
+                  "line": 93,
+                  "column": 111
+                }
+              }
+            ]
+          },
+          "90": {
+            "type": "branch",
+            "line": 93,
+            "loc": {
+              "start": {
+                "line": 93,
+                "column": 101
+              },
+              "end": {
+                "line": 95,
+                "column": 1
+              }
+            },
+            "locations": [
+              {
+                "start": {
+                  "line": 93,
+                  "column": 101
+                },
+                "end": {
+                  "line": 95,
+                  "column": 1
+                }
+              }
+            ]
+          },
+          "91": {
+            "type": "branch",
+            "line": 89,
+            "loc": {
+              "start": {
+                "line": 89,
+                "column": 47
+              },
+              "end": {
+                "line": 89,
+                "column": 91
+              }
+            },
+            "locations": [
+              {
+                "start": {
+                  "line": 89,
+                  "column": 47
+                },
+                "end": {
+                  "line": 89,
+                  "column": 91
+                }
+              }
+            ]
+          },
+          "119": {
+            "type": "branch",
+            "line": 93,
+            "loc": {
+              "start": {
+                "line": 93,
+                "column": 94
+              },
+              "end": {
+                "line": 95,
+                "column": 1
+              }
+            },
+            "locations": [
+              {
+                "start": {
+                  "line": 93,
+                  "column": 94
+                },
+                "end": {
+                  "line": 95,
+                  "column": 1
+                }
+              }
+            ]
+          }
+        },
+        "counts": {
+          "79": [
+            36
+          ],
+          "80": [
+            32
+          ],
+          "81": [
+            6
+          ],
+          "82": [
+            30
+          ],
+          "83": [
+            1
+          ],
+          "84": [
+            22
+          ],
+          "85": [
+            8
+          ],
+          "86": [
+            22
+          ],
+          "87": [
+            21
+          ],
+          "88": [
+            20
+          ],
+          "89": [
+            6
+          ],
+          "90": [
+            16
+          ],
+          "91": [
+            1365
+          ],
+          "119": [
+            34
+          ]
+        }
+      },
+      "f": {
+        "covered": 1,
+        "total": 1,
+        "entries": {
+          "18": {
+            "name": "rollUniqueItem",
+            "decl": {
+              "start": {
+                "line": 87,
+                "column": 7
+              },
+              "end": {
+                "line": 95,
+                "column": 1
+              }
+            },
+            "loc": {
+              "start": {
+                "line": 87,
+                "column": 7
+              },
+              "end": {
+                "line": 95,
+                "column": 1
+              }
+            },
+            "line": 87
+          }
+        },
+        "counts": {
+          "18": 36
+        }
+      }
+    },
+    "unchangedThresholds": "80% engine lines/functions/branches/statements; pass"
+  },
+  "acceptance": {
+    "plan": "design/producer/QA READY",
+    "frozenRed": "producer/QA APPROVE before runtime addition; missing-capability failure faithfully labeled",
+    "frozenAssertionsUnchanged": true,
+    "existingTestsAndRuntimeBodiesUnchanged": true,
+    "oracleCorrections": "none",
+    "finalReview": "producer P12a01b-PRODUCER-FINAL APPROVE/ADEQUATE; QA P12a01b-QA-FINAL APPROVE/ADEQUATE; no material findings; both released retention"
+  },
+  "limitations": [
+    "Pure construction only; no grants/store/save/schema/content/claim wiring",
+    "No named Andariel mapping, table relationship/picks/ilvl, currency/retry design acceptance",
+    "No earned boss/browser/reload/reward/C1/C0-C4/G0-G7/full v1 acceptance",
+    "Initial lint failed due to missing capability export; unchanged tests pass full final lint",
+    "Engine/related/full-unit timing budgets exceeded; thresholds unchanged",
+    "Build retains existing Browserslist/chunk/large manifest precache warnings",
+    "Constructor exceptions may consume RNG and item allocator; no rewind"
+  ],
+  "artifactOwnership": {
+    "owner": "root",
+    "raw": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-exact-unique-mb9etlig",
+    "cleanup": "exact task-owned RAW (including coverage)/dist/node_modules/.vite removed after both consumers released; absence verified",
+    "generatedAbsentAtStart": true,
+    "processes": "all commands finished; no task server"
+  }
+}

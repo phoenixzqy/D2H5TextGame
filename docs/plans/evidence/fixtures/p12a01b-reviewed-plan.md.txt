@@ -1,0 +1,28 @@
+# P12a01b — Exact named unique materialization prerequisite
+
+Root owns all writes in the claimed human worktree. Producer and QA independently review plan, genuine capability RED and final source/evidence read-only; design owns source contract. No bug is alleged: existing rollItem promises ordinary weighted selection and rare fallback, not named selection.
+
+## Contract
+
+Add RollUniqueItemInput { readonly uniqueId:string; readonly ilvl:number } and rollUniqueItem(input,pools:ItemRollPools,rng:Rng):Item|undefined in src/engine/loot/rollItem.ts. Reuse existing eligibleUnique and materializeTemplateItem; no singleton-pool wrapper, duplicate constructor or ordinary rollItem edit.
+
+Require Number.isInteger(ilvl) && ilvl>0, with no campaign cap. Exact unique ID with no normalization/alias. Missing uniques/unknown ID or multiple matching definitions refuses. Resolve the selected template base from pools.bases; missing base or map-key/base.id mismatch refuses. Eligibility is ilvl >= (template.qlvl ?? template.reqLevel), preserving existing source behavior even when qlvl is below reqLevel or base.reqLevel is higher. All these expected refusals return undefined before RNG or allocator consumption. A requested template's weight (including zero) does not control exact named materialization; no weighted selection, unrelated template or rare fallback.
+
+Definitions are typed caller inputs with schema-valid stat/base shapes. Weight0 is an engine-only typed edge fixture (authored unique schema requires positive weight); no schema relaxation. Do not add comprehensive schema validation or swallow constructor/RNG errors. Such exceptions propagate and may consume RNG or allocator gaps; do not rewind. Success returns one fresh unique Item with exact requested uniqueId, base.id, unchanged ilvl, level=max(ilvl,template.reqLevel), existing ranged stat/base rolls, empty affixes/generatedName, identified true/equipped false. Fixed-only stats legitimately produce statRolls {}. Inputs/catalogs remain unchanged. Reuse existing constructor RNG order: ranged stats, instance ID, base attack/defense; no additional selection draw. Seed determines rolled properties; full ID equality additionally needs same allocator state. Separate successful calls allocate distinct IDs.
+
+## Files and sequencing
+
+1. Review this plan before tests/runtime changes.
+2. New src/engine/loot/rollUniqueItem.test.ts: typed fixtures, new export capability RED and existing fallback control. New src/data/__tests__/unique-materialization.test.ts: real loaded Pelta Lunata and Coif of Glory, actual canonical bases and fixed stats, boundary refusals/nonmutation. Engine tests must remain Node/pure; data integration may use existing production loaders but runtime engine imports no catalogs/React/DOM.
+3. Run focused RED and freeze test copies/source hashes. Missing new export is honest feature RED, not a fabricated preexisting behavioral bug. Independent review RED/oracles before implementation. Preserve all failed attempts and independently approve source-backed oracle amendments.
+4. Add minimal public input type, TSDoc and function only in existing engine module. Expected lookup/refusal before reuse of constructor; no changes to existing APIs, selection/fallback or allocator semantics.
+5. Run unchanged focused GREEN, mandatory test:engine after runtime edit, scoped relevant data/loot/claim regressions, typecheck/lint, full unit and guarded production build (after all tests exit). Coverage if changed engine branch risk demands it. No browser claim for unintegrated pure API. No thresholds/hooks/CI changes.
+6. Independent final audit/release, version exact commands/exits/results/hashes and frozen source. Exact owned RAW/dist/.vite cleanup only after consumers release, verify absence/original checkout clean. Commit feature/evidence then separate closing ledger.
+
+## Test obligations
+
+Exact identity amid competing same-base templates/order/weights; level boundaries (qlvl and reqLevel fallback, qlvl<reqLevel, high base requirement, ilvl>campaign cap); invalid 0/negative/fraction/NaN/infinities; missing/empty/unknown catalog, normalized aliases, duplicate ID including one ineligible, absent/mismatched base. Each refusal: undefined, zero RNG calls and allocator unchanged proved by next successful deterministic allocation. Ranged/fixed/shared stat rolls, base attack/defense values, flags, fresh object identity and catalog/input nonmutation. Same seed+allocator reset reproduces full item; repeated successes distinct. Traced success no weighted next() call. Constructor exceptions remain visible. Existing ordinary rollItem unique-to-rare fallback control remains.
+
+## Boundaries and security
+
+Local pure construction only; no grants, stores, saves/migrations, quest content, Andariel unique mapping, table picks/ilvl, retries/seeds, currency or claim wiring. Do not infer earned boss/reward/campaign/C0-C4/G0-G7/full-v1 acceptance. Local IDs are exact map/catalog lookups, never filesystem/network input. No external instruction, credential, dependency, permission or policy changes. RAW/dist/.vite created by root only; no task server. Continue root claim across staged overall work; no push/PR/merge/deployment.

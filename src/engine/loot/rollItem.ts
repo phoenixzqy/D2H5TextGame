@@ -5,6 +5,8 @@ export interface RarityAffixRange { readonly min: number; readonly max: number }
 export interface RarityAffixCount { readonly prefix: RarityAffixRange; readonly suffix: RarityAffixRange; readonly total?: RarityAffixRange }
 export type RarityAffixRules = Readonly<Partial<Record<Rarity, RarityAffixCount>>>;
 export interface RollItemInput { readonly baseId: string; readonly rarity: Rarity; readonly ilvl: number }
+/** Exact unique template and positive integer item level to materialize. */
+export interface RollUniqueItemInput { readonly uniqueId: string; readonly ilvl: number }
 export interface ItemRollPools {
   readonly bases: ReadonlyMap<string, ItemBase>;
   readonly affixes: readonly Affix[];
@@ -72,6 +74,24 @@ function materializeTemplateItem(base: ItemBase, input: RollItemInput, rarity: E
   if (rarity === 'unique') return { ...item, uniqueId: template.id };
   const piece = template as SetPieceDef;
   return { ...item, setId: piece.setId, setPieceId: piece.id };
+}
+/**
+ * Construct one exact unique without weighted selection or rare fallback.
+ * Invalid level, missing/duplicate template, missing/mismatched base or unmet
+ * qlvl (falling back to reqLevel) returns undefined without RNG or allocation.
+ * Template weight and base equip requirements do not affect eligibility.
+ * Uses existing stat → ID → base rolls; reproducing IDs also requires matching
+ * allocator state. Typed definitions are caller-owned; constructor/RNG errors
+ * propagate and may consume randomness or leave allocation gaps.
+ */
+export function rollUniqueItem(input: RollUniqueItemInput, pools: ItemRollPools, rng: Rng): Item | undefined {
+  if (!Number.isInteger(input.ilvl) || input.ilvl <= 0) return undefined;
+  const matches = (pools.uniques ?? []).filter((template) => template.id === input.uniqueId);
+  const template = matches[0];
+  if (matches.length !== 1 || !template) return undefined;
+  const base = pools.bases.get(template.baseId);
+  if (!base || base.id !== template.baseId || !eligibleUnique(template, base.id, input.ilvl)) return undefined;
+  return materializeTemplateItem(base, { baseId: base.id, rarity: 'unique', ilvl: input.ilvl }, 'unique', rng, template);
 }
 export function rollItem(input: RollItemInput, pools: ItemRollPools, rng: Rng): Item | undefined {
   const base = pools.bases.get(input.baseId);

@@ -1,0 +1,63 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { createRng, type Rng } from '../rng';
+import type { ItemBase, UniqueItemDef } from '../types/items';
+import { __resetRollItemSeqForTests, rollItem, rollUniqueItem, type ItemRollPools } from './rollItem';
+
+const sword: ItemBase = {
+  id: 'items/base/test-sword', name: 'Test sword', type: 'weapon', slot: 'weapon',
+  reqLevel: 40, canHaveAffixes: true,
+  baseDamage: { min: 4, max: 8, breakdown: { physical: 8 } }
+};
+const named: UniqueItemDef = {
+  id: 'items/unique/requested', name: 'test.requested', baseId: sword.id,
+  reqLevel: 8, qlvl: 4, weight: 1,
+  stats: { statMods: {
+    life: { roll: 'shared', min: 10, max: 20, step: 2 },
+    mana: { roll: 'shared', min: 10, max: 20, step: 2 }, attack: 3
+  } }
+};
+const competitor: UniqueItemDef = { ...named, id: 'items/unique/other', weight: 999 };
+const pools: ItemRollPools = {
+  bases: new Map([[sword.id, sword]]), affixes: [], uniques: [competitor, named]
+};
+
+function traceRng() {
+  const unexpected = vi.fn((): never => { throw new Error('Unexpected selection RNG'); });
+  const nextInt = vi.fn((min: number, _max: number) => min);
+  const rng: Rng = {
+    next: unexpected, nextInt, pick: unexpected, chance: unexpected, fork: unexpected
+  };
+  return { rng, nextInt, unexpected };
+}
+
+describe('rollUniqueItem exact named construction', () => {
+  beforeEach(() => { __resetRollItemSeqForTests(); });
+
+  it('exposes the new named materialization capability', () => {
+    expect(typeof rollUniqueItem).toBe('function');
+  });
+
+  it.each([false, true])('chooses the exact ID despite competing weights and reverse=%s', (reverse) => {
+    const uniques = reverse ? [named, competitor] : [competitor, named];
+    const item = rollUniqueItem({ uniqueId: named.id, ilvl: 4 }, { ...pools, uniques }, createRng(19));
+    expect(item).toMatchObject({ uniqueId: named.id, baseId: sword.id, rarity: 'unique' });
+  });
+
+  it('uses shared ranged stats then ID then base damage with no selection draw', () => {
+    const { rng, nextInt, unexpected } = traceRng();
+    const item = rollUniqueItem({ uniqueId: named.id, ilvl: 4 }, pools, rng);
+    expect(item).toEqual({
+      id: 'it-0-1', baseId: sword.id, uniqueId: named.id, rarity: 'unique',
+      ilvl: 4, level: 8, baseRolls: { attack: 4 }, statRolls: { shared: 10 },
+      affixes: [], generatedName: {}, identified: true, equipped: false
+    });
+    expect(nextInt.mock.calls).toEqual([[5, 10], [0, 0xffffff], [4, 8]]);
+    expect(unexpected).not.toHaveBeenCalled();
+  });
+
+  it('preserves ordinary unique-to-rare fallback when no template is eligible', () => {
+    const item = rollItem({ baseId: sword.id, rarity: 'unique', ilvl: 1 }, pools, createRng(3));
+    expect(item).toMatchObject({ baseId: sword.id, rarity: 'rare', ilvl: 1 });
+    expect(item?.uniqueId).toBeUndefined();
+  });
+});
