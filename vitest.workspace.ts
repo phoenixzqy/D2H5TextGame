@@ -1,14 +1,15 @@
 /**
- * Vitest workspace — splits the unit suite into two cleanly-bounded projects:
+ * Vitest workspace — splits the suite into three bounded projects:
  *
  *   - `engine`: pure TypeScript, runs in Node, no DOM/RTL/setup. Honors the
  *     P05a audit verdict (`docs/perf/p05a-engine-state-audit.md` §5):
  *     `isolate: false` is empirically safe for `src/engine/**`.
  *   - `ui`:     React/JSX, jsdom + RTL setup, isolated workers.
+ *   - `sim-contracts`: Node self-tests for production measurement contracts.
  *
  * Coverage thresholds and `coverage.include` (rooted at `src/engine/**`)
  * stay on the root `vitest.config.ts` so `npm run test:cov` reports a single
- * unified coverage view across both projects.
+ * unified coverage view across the workspace.
  *
  * @see docs/perf/p05a-engine-state-audit.md
  */
@@ -21,6 +22,17 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const srcAlias = { '@': path.resolve(__dirname, './src') };
 
 export default defineWorkspace([
+  {
+    // Contract self-tests only; historical proxy simulations stay undiscovered.
+    resolve: { alias: srcAlias },
+    test: {
+      name: 'sim-contracts',
+      environment: 'node',
+      include: ['tests/sim/production/**/*.test.ts'],
+      pool: 'threads',
+      isolate: true
+    }
+  },
   {
     // ---- Engine project --------------------------------------------------
     // Pure engine code under src/engine/**: deterministic, no DOM, no React.
