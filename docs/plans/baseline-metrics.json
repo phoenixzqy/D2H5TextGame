@@ -1,0 +1,154 @@
+{
+  "schema": "d2h5-playability-baseline/v1",
+  "date": "2026-10-20",
+  "source_commit": "44f9c1b79739fd85744cd6ff0b863f7d392f18c1",
+  "repo": "phoenixzqy/D2H5TextGame",
+  "evidence_kind": "static-census-and-local-validation",
+  "environment": {
+    "os": "Linux / Ubuntu 26.04",
+    "node": "v24.21.0",
+    "npm": "11.19.0",
+    "ci_node": "20"
+  },
+  "skills": {
+    "total": 213,
+    "by_class": {
+      "amazon": {
+        "total": 30,
+        "triggers": {
+          "active": 24,
+          "passive": 6
+        },
+        "adapter_routes": {
+          "damage": 20,
+          "buff": 7,
+          "summon": 1,
+          "debuff": 2
+        }
+      },
+      "assassin": {
+        "total": 30,
+        "triggers": {
+          "active": 26,
+          "passive": 4
+        },
+        "adapter_routes": {
+          "damage": 22,
+          "buff": 5,
+          "debuff": 1,
+          "summon": 2
+        }
+      },
+      "barbarian": {
+        "total": 30,
+        "triggers": {
+          "active": 18,
+          "passive": 12
+        },
+        "adapter_routes": {
+          "damage": 10,
+          "buff": 15,
+          "debuff": 5
+        }
+      },
+      "druid": {
+        "total": 31,
+        "triggers": {
+          "active": 26,
+          "passive": 5
+        },
+        "adapter_routes": {
+          "damage": 16,
+          "summon": 7,
+          "buff": 8
+        }
+      },
+      "necromancer": {
+        "total": 32,
+        "triggers": {
+          "active": 26,
+          "passive": 6
+        },
+        "adapter_routes": {
+          "summon": 7,
+          "damage": 7,
+          "debuff": 11,
+          "buff": 7
+        }
+      },
+      "paladin": {
+        "total": 30,
+        "triggers": {
+          "active": 10,
+          "passive": 20
+        },
+        "adapter_routes": {
+          "damage": 9,
+          "buff": 21
+        }
+      },
+      "sorceress": {
+        "total": 30,
+        "triggers": {
+          "active": 25,
+          "passive": 5
+        },
+        "adapter_routes": {
+          "damage": 18,
+          "buff": 10,
+          "debuff": 2
+        }
+      }
+    },
+    "behaviorally_certified": null,
+    "note": "Adapter routing is not mechanical completion; every CSV behavior cell is unverified."
+  },
+  "campaign": {
+    "acts": 5,
+    "subareas_by_act": [6, 6, 6, 5, 6],
+    "monsters_by_act": [41, 38, 10, 10, 10],
+    "fresh_first_clear_active_hours": null,
+    "win_rate_by_class_and_act": null,
+    "xp_per_hour": null,
+    "useful_upgrades_per_hour": null
+  },
+  "owner_targets": {
+    "delivery": "full-game-through-staged-checkpoints",
+    "fresh_five_act_first_clear_active_hours": [30, 50]
+  },
+  "local_checks": {
+    "unit": {
+      "command": "npm test -- --reporter=dot",
+      "exit_code": 0,
+      "files_passed": 83,
+      "tests_passed": 750,
+      "tests_skipped": 1,
+      "duration_seconds": 21.54
+    },
+    "typecheck": {
+      "command": "npm run typecheck",
+      "exit_code": 0
+    },
+    "lint": {
+      "command": "npm run lint",
+      "exit_code": 0
+    },
+    "build": {
+      "command": "npm run build",
+      "exit_code": 0,
+      "warnings": [
+        "main JS chunk 1138.33 kB minified / 294.53 kB gzip",
+        "756 precache entries / 37293.34 KiB",
+        "generated asset manifest 2.57 MB excluded from precache"
+      ]
+    },
+    "smoke": {
+      "command": "E2E_PORT=4289 npx playwright test --grep @smoke --project=chromium-desktop --project=mobile-portrait --workers=2 --reporter=line",
+      "exit_code": 1,
+      "launch_failures": 9,
+      "skipped": 1,
+      "gameplay_result": null,
+      "reason": "required chromium_headless_shell-1217 executable missing; install chromium --only-shell rejects ubuntu26.04-x64 as unsupported"
+    }
+  }
+}
