@@ -69,8 +69,9 @@ All formulas use integer math (floor after each step) unless otherwise noted. Ra
 - First action occurs after one period; subsequent action time = `currentTimeMs + periodMs`.
 - AS150/100/75 therefore act every 1300/1700/1900 ms. This supersedes the former
   proportional `1000 / attackSpeed` formula; cadence is preserved pending balance review.
-- Ties must be broken by a deterministic seed per GDD §5.1; the current
-  insertion-order implementation remains a separate P06 task.
+- Exact scheduled-time ties use fixed battle-local seeded priorities per
+  [D04 v1e](../plans/decisions/D04-combat-timing-v1.md), including unequal attack
+  speeds. Higher priority acts first; exact priority collisions use insertion order.
 - Next actor has the smallest scheduled time. The 60,000 ms deadline is inclusive:
   all tied actors there remain eligible until victory; no action occurs later.
   An unresolved timeout ends at exactly 60,000 ms with no winner. Earlier victories

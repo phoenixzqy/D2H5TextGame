@@ -10,7 +10,7 @@
  * are all keyed to {@link State.simClockMs} (milliseconds), not rounds.
  *
  * Shared boundaries settle every living target before deaths, effects or actions.
- * Actions retain stable insertion-order ties; periodic lethal instants and status
+ * Actions use fixed seeded priorities for ties; periodic lethal instants and status
  * starts/expiries may advance the clock without consuming action budget.
  *
  * @module engine/combat/combat
@@ -119,9 +119,12 @@ interface State {
   /** parallel array: simClockMs at the moment events[i] was emitted. */
   simTimes: number[];
   rng: Rng;
+  /** Independent stream for fixed per-unit scheduler priorities. */
+  tieRng: Rng;
+  tiePriority: Map<string, number>;
   act: 1 | 2 | 3 | 4 | 5;
   simClockMs: number;
-  /** insertion order index per unit (stable scheduler tie-break) */
+  /** Registration order for targeting, periodic phases and priority collisions. */
   insertionIdx: Map<string, number>;
   /** time-based scheduler state */
   nextActionAt: Map<string, number>;
@@ -237,6 +240,7 @@ function registerUnit(state: State, u: CombatUnit): void {
   state.units.set(u.id, u);
   if (!state.insertionIdx.has(u.id)) {
     state.insertionIdx.set(u.id, state.insertionCounter++);
+    state.tiePriority.set(u.id, state.tieRng.next());
   }
 }
 
@@ -858,17 +862,21 @@ function winnerOf(state: State): CombatSide | null {
   return null;
 }
 
-/** Pick next actor — smallest nextActionAt, insertion-order tiebreak. */
+/** Pick earliest actor, then highest fixed seed priority, then registration order. */
 function pickNextActor(state: State): { id: string; at: number } | null {
   let bestId: string | null = null;
   let bestAt = Infinity;
+  let bestPriority = -Infinity;
   let bestIdx = Infinity;
   for (const [id, at] of state.nextActionAt) {
     const u = state.units.get(id);
     if (!u || !alive(u)) continue;
     const idx = state.insertionIdx.get(id) ?? 0;
-    if (at < bestAt || (at === bestAt && idx < bestIdx)) {
+    const priority = state.tiePriority.get(id) ?? 0;
+    if (at < bestAt || (at === bestAt &&
+      (priority > bestPriority || (priority === bestPriority && idx < bestIdx)))) {
       bestAt = at;
+      bestPriority = priority;
       bestIdx = idx;
       bestId = id;
     }
@@ -966,11 +974,14 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   simTimes: number[];
   result: CombatResult;
 } {
+  const rng = createRng(snapshot.seed);
   const state: State = {
     units: new Map(),
     events: [],
     simTimes: [],
-    rng: createRng(snapshot.seed),
+    rng,
+    tieRng: rng.fork('scheduler-ties'),
+    tiePriority: new Map(),
     act: snapshot.act ?? 1,
     simClockMs: 0,
     insertionIdx: new Map(),

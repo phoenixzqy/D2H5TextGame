@@ -215,3 +215,42 @@ paths, determinism and immutable inputs. Run focused tests, E/U/T/L/B, changed
 module coverage and independent root/producer source/contract review before commit.
 Seeded ties and broader D04/D06 dependencies still remain separate; full D04/P06
 and campaign balance acceptance are not claimed.
+
+## D04 v1e — P06c04 seeded scheduler ties (accepted scoped child)
+
+Status: root and producer accepted fixed battle-local priorities and five-file
+plan, 2026-10-20. This supersedes earlier insertion-tie preservation only;
+all other accepted cadence, deadline, periodic and status contracts remain.
+
+Choose the smallest scheduled `nextActionAt` first. For exact timestamp ties,
+use a fixed per-unit seeded priority, higher first, without a secondary raw
+attack-speed comparison. This includes equal/clamped periods and coincident
+timestamps from distinct periods. Attack speed still determines action cadence.
+
+Create one battle-local `rng.fork('scheduler-ties')`. Existing fork derivation is
+`hashSeed(label) ^ originalBattleSeed`; creating/using it consumes no main combat
+RNG draws. Assign one `next()` priority at the first registration of each unit ID
+and retain it throughout that battle. Initial units and actual spawned summons
+use the same registration path. Re-registering an ID retains its priority.
+An exact numerical priority collision falls back to stable insertion order.
+Do not reroll per tie, scheduler query, periodic start/expiry or lethal boundary.
+Same snapshot and seed reproduce complete results and events; changing seed can
+change ties. No roster-permutation invariance or per-battle fairness guarantee
+is introduced by fixed priorities.
+
+Keep insertion order for targeting, periodic DoT/death/effect emission, startup
+summon casts, final team ordering and priority-collision fallback. Startup
+`summonOnStart` remains outside regular scheduled-action arbitration. Do not
+change summon/cooldown policies, cadence, action cap, rewards, status arithmetic,
+balance, API or save shape. The unused `calculateTurnOrder` helper is outside
+this child: its attack-speed-first sort is not this timestamp-first contract.
+
+Own combat.ts, existing deadline.test.ts, this control, combat-formulas §3.1
+and BUG-020. Before the runtime patch, record genuine production behavioral RED:
+seed-dependent first actors and an enemy-first freeze that suppresses the hero's
+same-time action. Freeze an untied prepatch event oracle to protect combat RNG.
+Verify repeated and unequal-speed ties, inclusive deadline/victory stopping,
+inert periodic boundaries, spawned units, replay determinism and immutable inputs.
+Run focused/E/U/T/L/B, changed-module coverage and independent root/producer
+review. Stop and report legitimate out-of-scope old-order fixture failures before
+changing them. No broader D04/P06 or campaign-balance acceptance is claimed.
