@@ -438,3 +438,43 @@ as one trailing newline removed from two files. ALL consumers finished;
 exact task-owned cleanup released. No broader authority acceptance.
 
 P08a05d accepted source/evidence commitbfaffcb. After ALL consumers finished, removed and verified absent exact compatibility scratch above, task-owned worktree dist and node_modules/.vite. No owned process/retention remains. Root worktree claim continues for full staged v1.
+
+## P08a05e pre-fix canonical reader reproduction
+
+Inputd1aeaaa includes accepted creation+v8compatibility. Actual combat adapter
+and Skills still read player.equipment: canonical bow/empty legacy denies
+Magic Arrow, while canonical sword/null/stale bow permits it. Real equip/unequip
+never synchronizes legacy array. Expected canonical equipped.weapon authority
+and live Skills subscription, explicit unarmed unknown/missing slot, frozen
+current recording through automatic sanitizer. SeverityHigh: stale gating can
+remove authored combo or permit wrong-weapon casting. Reproduce actual existing
+screen/adapter/recorded runtime before two-source-file fix, per D04 reviewed
+contract; no synthetic restricted skill/missing-API RED. Structured report and
+security PASS before source. Comparison and ordinarybrowser remain separate.
+
+E task-owned raw root, retain until ALLconsumers finish:
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-weapon-readers-6wc2dv_t
+
+### P08a05e frozen genuine existing-reader RED
+
+Frozen runtime21failed/55passed/76total,3files,0skip,exit1,runner5.71/wall6.999s. TSC0 and scopedlint0. Existing actual adapter/screen/plan/registry/engine load. Dedicated direct recording cases prove canonicalbow+emptyLegacy emits zero MagicArrow casts and canonicalsword+staleBow emits forbidden real casts, independently of metadata failures. Shared reader returns stale metadata or unarmed for bow; current wave/replay/real won+drained nextwave keep wrong metadata. Mounted Skills actual replacements/import/hydration expose stale option/combo. Dedicated otherwise-aligned canonical+legacybow case proves automatic canonical→data ID cleanup replays team/events and resets cursor, before equipment changes. No missing API, new resolver import, synthetic restricted skill or runtime equipment/eligibility mock. Only fixed clock and DexieIO substituted; test-owned defensive gear stabilizes real production plan/battle, not earned/balance acceptance.
+Initial73cases18fail/55pass. Before final frozen run, added2independent actual-cast RED cases and1automatic-normalization recording RED; strengthened recording oracle with an immutable cloned snapshot alongside exact team/events/outcome references. No assertion weakened. Later mana/arcane/resource/combo/replay/immutability assertions following first failures remain for GREEN. Sources unchanged fromd1aeaaa until independent frozen approval.
+
+- readers-red-frozen: `npx vitest run --project ui src/stores/weapon-authority.test.tsx src/features/skills/SkillsScreen.test.tsx src/stores/legacy-starter-compatibility.test.tsx --reporter=verbose`; exit1, wall6.999s; log SHA256 `a1af9a6e5897edce18abdefb369faafd2980b4d3621f2d53e7877c3273f8477d`.
+- readers-red-lint-frozen: `npx eslint src/stores/weapon-authority.test.tsx src/features/skills/SkillsScreen.test.tsx src/stores/legacy-starter-compatibility.test.tsx --max-warnings=0`; exit0, wall5.648s; log SHA256 `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`.
+- readers-red-lint: `npx eslint src/stores/weapon-authority.test.tsx src/features/skills/SkillsScreen.test.tsx src/stores/legacy-starter-compatibility.test.tsx --max-warnings=0`; exit0, wall6.909s; log SHA256 `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`.
+- readers-red: `npx vitest run --project ui src/stores/weapon-authority.test.tsx src/features/skills/SkillsScreen.test.tsx src/stores/legacy-starter-compatibility.test.tsx --reporter=verbose`; exit1, wall8.088s; log SHA256 `a25937830225ac20fde5a352f700b4e827a9e1ae5c71bb806cc4bdeed1991645`.
+- readers-red-typecheck-frozen: `npm run typecheck`; exit0, wall9.606s; log SHA256 `53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47`.
+- readers-red-typecheck: `npm run typecheck`; exit0, wall10.896s; log SHA256 `53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47`.
+
+Frozen test SHA256:
+- src/features/skills/SkillsScreen.test.tsx: `d2157ec03a66f44e7c9cf76c16215ef40e5c134f2fa55e237984266f6ce0fc19`.
+- src/stores/weapon-authority.test.tsx: `ec2eb42556624f4266295821191f659b9c5b56248f0768b08976d40000faf81f`.
+- src/stores/legacy-starter-compatibility.test.tsx: `fb8b4291786609c5c4fde4369b5fb94595b497356d4bc5a4e702c4eea9e33a53`.
+
+Independent frozen RED reviews: producer [P08a05e-FROZEN-RED-PRODUCER]
+APPROVE / ADEQUATE and QA [P08a05e-FROZEN-RED-QA] APPROVE / ADEQUATE.
+Both verified all three frozen test hashes, unchanged source at d1aeaaa,
+21 genuine assertion failures / 55 passing controls and successful TSC/lint.
+Actual cast and recording reset failures are independent. Root agrees;
+two-file source implementation may proceed. Later assertions require GREEN.

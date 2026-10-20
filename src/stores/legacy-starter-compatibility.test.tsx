@@ -1,5 +1,10 @@
 /** Real adapter/decoder/persistence. Only Dexie storage IO is substituted. */
 import { afterEach, assert, beforeEach, describe, expect, it, vi } from 'vitest';
+import { act, cleanup, fireEvent, render } from '@testing-library/react';
+import { I18nextProvider } from 'react-i18next';
+import { MemoryRouter } from 'react-router-dom';
+import { SkillsScreen } from '@/features/skills/SkillsScreen';
+import i18n from '@/i18n';
 import type { SaveRecord } from './save-adapter';
 import type { SaveV7 } from '@/engine/types/save';
 
@@ -76,7 +81,7 @@ beforeEach(() => {
   disk.put.mockClear();
   useHydrationStore.getState().setStatus('ready');
 });
-afterEach(() => { __resetPersistenceForTests(); });
+afterEach(() => { cleanup(); __resetPersistenceForTests(); });
 
 describe('legacy starter actual persistence paths', () => {
   it.each([false, true])('decodes disk signature intermediate=%s before live hydration and keeps raw diagnostic export', async (intermediate) => {
@@ -172,5 +177,70 @@ describe('legacy starter actual persistence paths', () => {
     await importIntoStores(JSON.stringify(input));
     assertLiveCanonical();
     expect((await loadSave())?.player.equipment).toEqual([]);
+  });
+});
+
+
+function mountSkills() {
+  render(<I18nextProvider i18n={i18n}>
+    <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><SkillsScreen /></MemoryRouter>
+  </I18nextProvider>);
+  const active = document.querySelector<HTMLButtonElement>('button[role="tab"][aria-controls="tabpanel-active"]');
+  assert(active);
+  fireEvent.click(active);
+}
+function arrowOptionPresent() {
+  const first = document.querySelector<HTMLSelectElement>('select');
+  assert(first);
+  return Array.from(first.options).some((option) => option.value === 'skills-amazon-magic-arrow');
+}
+
+describe('canonical weapon authority through mounted save replacement', () => {
+  it.each(['load', 'import'] as const)('repairs v7 before mounted Skills sanitizes during %s', async (path) => {
+    const legacy = oldSave();
+    mountSkills();
+    if (path === 'load') {
+      seedDisk(legacy);
+      await act(async () => { expect(await hydrateFromSave()).toBe(true); });
+    } else {
+      await act(async () => { await importIntoStores(JSON.stringify(legacy)); });
+    }
+    assertLiveCanonical();
+    expect(arrowOptionPresent()).toBe(true);
+    expect(usePlayerStore.getState().player?.comboOrder).toEqual(['skills-amazon-magic-arrow']);
+    expect(usePlayerStore.getState().player?.skillLevels).toEqual({ 'amazon.magic_arrow': 1 });
+    const exported = exportCurrentSave();
+    assert(exported);
+    await act(async () => { await importIntoStores(exported); });
+    expect(arrowOptionPresent()).toBe(true);
+    expect(usePlayerStore.getState().player?.comboOrder).toEqual(['skills-amazon-magic-arrow']);
+    expect(useInventoryStore.getState().equipped.weapon?.id).toBe(id);
+  });
+
+  it.each(['bow', 'sword', 'null'] as const)('current canonical %s wins contradictory saved legacy across import/export/hydration', async (kind) => {
+    const legacy = oldSave();
+    const weapon = kind === 'null' ? null : {
+      ...legacy.player.equipment[0], id: 'current-weapon',
+      baseId: kind === 'bow' ? 'items/base/weapon-bow-training' : 'items/base/wp1h-short-sword',
+      baseRolls: { attack: kind === 'bow' ? 13 : 8 }
+    };
+    const input = {
+      ...legacy, version: 8,
+      player: { ...legacy.player, equipment: kind === 'bow' ? [] : legacy.player.equipment },
+      inventory: { ...legacy.inventory, equipped: { weapon } }
+    };
+    mountSkills();
+    await act(async () => { await importIntoStores(JSON.stringify(input)); });
+    expect(arrowOptionPresent()).toBe(kind === 'bow');
+    expect(usePlayerStore.getState().player?.comboOrder).toEqual(kind === 'bow' ? ['skills-amazon-magic-arrow'] : []);
+    expect(usePlayerStore.getState().player?.equipment).toEqual(input.player.equipment);
+    expect(usePlayerStore.getState().player?.skillLevels).toEqual({ 'amazon.magic_arrow': 1 });
+    const exported = exportCurrentSave();
+    assert(exported);
+    await act(async () => { await importIntoStores(exported); });
+    await act(async () => { expect(await hydrateFromSave()).toBe(true); });
+    expect(arrowOptionPresent()).toBe(kind === 'bow');
+    expect(usePlayerStore.getState().player?.comboOrder).toEqual(kind === 'bow' ? ['skills-amazon-magic-arrow'] : []);
+    expect(useInventoryStore.getState().equipped.weapon).toEqual(weapon);
   });
 });

@@ -241,3 +241,61 @@ Design investigator confirms no material flaw: positive-integer check remains fi
 
 Producer independent plan-review: ready / APPROVE before D tests/source.
 No material gap; proceed actual decoder/adapter RED and independent frozen review.
+
+## P08a05e canonical combat/Skills readers (proposed for review)
+
+Dependencies A–D accepted throughbfaffcb; inputd1aeaaa. Investigator confirms
+two-source-file boundary: stores/combatHelpers.ts and features/skills/SkillsScreen.tsx.
+Change existing shared resolveEquippedWeapon to accept readonly canonical
+slot record and resolve equipped.weapon directly, ignoring optional per-item
+slot/equipped flags. Missing/null/unknown base yields explicit unarmed {},
+never undefined or legacy fallback. playerToCombatUnit captures inventory
+map once and uses same snapshot for metadata and existing stat composition.
+Skills subscribes equipped map and uses same resolver. No registry/eligibility/
+inventory/factory/migration/store-grant changes. No new UI/copy/layout.
+
+Recording trap: existing automatic Skills combo sanitizer calls saveComboOrder,
+which always replays current wave. Canonical unequip must sanitize persisted
+combo without rebuilding current team/events/outcome/cursor. Automatic effect
+calls setComboOrder only, including canonical→data ID normalization on mount;
+explicit player slot/reorder changes keep existing replay behavior. Default
+refresh is still no-op; explicit replay and genuine next wave refresh canonical
+metadata via existing adapter. Reequip restores option, not removed combo/ranks.
+
+Frozen RED uses existing playerToCombatUnit/startSubAreaRun/SkillsScreen and
+actual authored registered amazon.magic_arrow, not a new helper signature.
+Canonical training/crossbow with empty/conflicting legacy enables actual cast,
+mana event and positive arcane damage. Sword/null/missing/unknown plus stalebow
+produces ordinary hero attacks without arrow. Slot placement wins over absent/
+contradictory item flags; other slot/backpack bow does not grant eligibility.
+Mounted Skills real add/equip/unequip/sword/shield displacement/re-equip changes
+option/combo; capacity/level refusal preserves eligibility/recording. Current
+recording frozen including mounted sanitizer, default refresh no-op; explicit
+replay and genuinely won/drained next wave pull current gear/casts. Test-owned
+defensive gear may stabilize adapter boundary; no synthetic gated skill or
+campaign/balance claim. Test teardown aborts owned run/resets relevant stores.
+
+Tests planned: existing SkillsScreen.test.tsx (isolation reset plus dynamicUI),
+new stores/weapon-authority.test.tsx (actual adapter/recording + mounted sanitizer),
+existing stores/legacy-starter-compatibility.test.tsx (actual migration/disk/import/
+hydration with mountedSkills; only DexieIO substituted). Include already-current
+canonical bow/empty legacy and sword/null/stale legacy, plus v7 proven repaired
+before sanitizer, export/reimport stability. Mount during replacement to catch
+cross-store ordering errors; no atomic-Zustand-notification claim.
+Independent producer plan review, actual frozen RED/root+producer+QA approval
+before source. Focused/source review then related/full/T/L/build/coverage final
+review and exact owned cleanup. Comparison metadata remains separate child.
+Ordinary browser freshAmazon/equip/configure/cast/save/reopen/en+zh/mobile+desktop
+follows integrated reader/comparison chain. No browser/fullauthority/C/G acceptance
+from unit tests. Security PASS: local canonical reads and persisted combo cleanup,
+no external requests/credentials/dependencies/hooks/permissions changes.
+
+E investigator's integration warning explicitly adopted: automatic sanitizer
+must not call replaying saveComboOrder, while explicit player edits retain it.
+Use test-owned defensive gear only for deterministic real engine boundary,
+with actual registered Magic Arrow and production wave plan; report it as
+controlled integration, never ordinary earned/browser/balance acceptance.
+
+Producer independent E plan-review ready / APPROVE before tests/source.
+Freeze current recording refs/cursor/outcome through automatic normalization;
+explicit edit replay remains required. No material gap or user question.

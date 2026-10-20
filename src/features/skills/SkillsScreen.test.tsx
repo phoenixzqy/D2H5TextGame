@@ -15,7 +15,7 @@
  * What stays Playwright-only (documented for P08):
  *   - Mobile-viewport horizontal-scroll measurement (browser layout).
  */
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { Suspense } from 'react';
 import { fireEvent, render, screen, act, within } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
@@ -23,6 +23,9 @@ import { MemoryRouter } from 'react-router-dom';
 import i18n from '@/i18n';
 import { buildPrerequisiteEdges, buildTreeLayout, resolveSkillIconSrc, SkillsScreen } from './SkillsScreen';
 import { usePlayerStore } from '@/stores';
+import { useInventoryStore } from '@/stores/inventoryStore';
+import { useCombatStore } from '@/stores/combatStore';
+import { abortSubAreaRun } from '@/stores/combatHelpers';
 import { getSkillsForClass, organizeSkillsByTree } from '@/stores/skillsHelpers';
 import { CHARACTER_CLASSES, createMockPlayer, type CharacterClass } from '@/features/character/createMockPlayer';
 
@@ -57,9 +60,16 @@ const CANONICAL: Record<CharacterClass, RegExp> = {
   assassin:    /震击网|Shock Web|刀刃|Blade/,
 };
 
+afterEach(() => { abortSubAreaRun(); });
+
 describe('<SkillsScreen> — class fixture renders (mirrors skills-screen.spec.ts)', () => {
   beforeEach(async () => {
-    act(() => { usePlayerStore.getState().reset(); });
+    act(() => {
+      abortSubAreaRun();
+      useCombatStore.getState().reset();
+      useInventoryStore.getState().reset();
+      usePlayerStore.getState().reset();
+    });
     if (i18n.language !== 'zh-CN') await i18n.changeLanguage('zh-CN');
   });
 
@@ -341,7 +351,12 @@ describe.each(['en', 'zh-CN'] as const)('<SkillsScreen> truthful units (%s)', (l
   const english = locale === 'en';
 
   beforeEach(async () => {
-    act(() => { usePlayerStore.getState().reset(); });
+    act(() => {
+      abortSubAreaRun();
+      useCombatStore.getState().reset();
+      useInventoryStore.getState().reset();
+      usePlayerStore.getState().reset();
+    });
     await i18n.changeLanguage(locale);
   });
 
