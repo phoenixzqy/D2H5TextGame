@@ -5,8 +5,27 @@
   "mercenaryRecruiter": "雇佣兵招募",
   "market": "市场",
   "npcs": "NPC",
+  "close": "关闭",
+  "quests": "任务",
+  "noNpcs": "此地暂无可交谈的人。",
   "town.npc.akara": "阿卡拉",
   "town.npc.charsi": "查西",
   "town.npc.gheed": "吉德",
-  "town.npc.kashya": "卡夏"
+  "town.npc.kashya": "卡夏",
+  "town.npc.warriv": "瓦瑞夫",
+  "dialogue": {
+    "greetings": {
+      "akara": "我是阿卡拉。黑暗逼近营地，我们需要你的帮助。",
+      "charsi": "我是查西，营地的铁匠。锤声还在，希望就还在。",
+      "gheed": "吉德，幸会。眼光准的人，总能发现别人错过的宝贝。",
+      "kashya": "我是卡夏，罗格弓箭手的队长。黑暗夺走了许多姐妹，我们仍守着营地。",
+      "warriv": "我是瓦瑞夫，商队的领队。道路危机四伏，我们暂且在此扎营。"
+    },
+    "den": {
+      "untracked": "营地附近的邪恶巢穴里盘踞着恶魔。请到任务中追踪邪恶巢穴，清除其中的怪物。",
+      "preclear": "邪恶巢穴的恶魔还没有清除。消灭每一只怪物，再回来找我。",
+      "readyToClaim": "你已净化邪恶巢穴，营地重获一线安宁。请到任务中领取应得的奖励。",
+      "claimed": "邪恶巢穴的黑暗已经消散。愿你的新力量守护营地。"
+    }
+  }
 }

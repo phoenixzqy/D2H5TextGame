@@ -27,7 +27,8 @@
     "act1-den-of-evil": {
       "name": "Den of Evil",
       "desc": "Cleanse the Den of Evil near the Rogue Encampment.",
-      "obj1": "Slay all monsters in the Den"
+      "obj1": "Slay all monsters in the Den",
+      "obj2": "Return to Akara."
     },
     "act1-sisters-burial": {
       "name": "Sisters' Burial Grounds",

@@ -19,7 +19,9 @@ async function expectPartialQuest(page: Page, locale: 'en' | 'zh-CN'): Promise<v
   await expect(card).toContainText(locale === 'en' ? 'In Progress' : '进行中');
   const clear = card.getByText(locale === 'en' ? 'Slay all monsters in the Den' : '击杀巢穴中所有怪物', { exact: true });
   await expect(clear).toHaveClass(/line-through/);
-  await expect(card.getByText('Return to Akara.', { exact: true })).not.toHaveClass(/line-through/);
+  const returnToAkara = card.getByText(locale === 'en' ? 'Return to Akara.' : '返回营地与阿卡拉交谈。', { exact: true });
+  await expect(returnToAkara).toBeVisible();
+  await expect(returnToAkara).not.toHaveClass(/line-through/);
   await expect(page.getByTestId(`quest-claim-${QUEST}`)).toHaveCount(0);
 }
 

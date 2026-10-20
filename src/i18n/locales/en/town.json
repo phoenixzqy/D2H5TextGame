@@ -5,8 +5,27 @@
   "mercenaryRecruiter": "Mercenary Recruiter",
   "market": "Market",
   "npcs": "NPCs",
+  "close": "Close",
+  "quests": "Quests",
+  "noNpcs": "There is no one to speak with here.",
   "town.npc.akara": "Akara",
   "town.npc.charsi": "Charsi",
   "town.npc.gheed": "Gheed",
-  "town.npc.kashya": "Kashya"
+  "town.npc.kashya": "Kashya",
+  "town.npc.warriv": "Warriv",
+  "dialogue": {
+    "greetings": {
+      "akara": "I am Akara. Darkness presses on the camp, and we need your help.",
+      "charsi": "I'm Charsi, the camp's blacksmith. While the hammer rings, hope holds.",
+      "gheed": "Gheed, at your service. A sharp eye finds treasures others overlook.",
+      "kashya": "I am Kashya, captain of the Rogue archers. Darkness has taken many sisters, but we still hold this camp.",
+      "warriv": "I am Warriv, leader of this caravan. The roads are dangerous, so we remain here for now."
+    },
+    "den": {
+      "untracked": "Demons infest the Den of Evil near camp. Track the Den of Evil in Quests, then clear the cave.",
+      "preclear": "Demons remain in the Den of Evil. Slay them all, then return to me.",
+      "readyToClaim": "You have cleansed the Den of Evil and given the camp some peace. Claim your reward in Quests.",
+      "claimed": "The darkness in the Den of Evil has lifted. May your new strength guard the camp."
+    }
+  }
 }
