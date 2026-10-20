@@ -58,6 +58,7 @@ Current implementation evidence lives in `evidence/`.
 | P08a02 | accepted bounded curse slice | Metadata `8b1f497`, authored definition `554a922`, runtime `f3f9086`; BUG031 fixed after genuine RED. Actual Amplify Damage rank/duration/resistance/refresh/replay controls independently approved; full curse families remain open. |
 | P08a03a/b | accepted Minor Heal slices | `091d9b0` actual authored range/registry, `ec0de97` deterministic lowest-relative-HP targeting and true healing. Independent root/QA/producer review and final combined evidence below; broader healing/merc acceptance remains open. |
 | P11a / P11a02 | accepted finalization slices | `d39fe64` actual-win/living-hero/playback guard and single clear; `d8db75c` truthful draw UI. Six root regressions, six RTL, 4/4 browser locale×viewport cases; independent QA/producer APPROVE. BUG-008. |
+| P11a01A | accepted coherent allocation boundary | `810900f`; BUG045. Full-point/prospective-base-cap guards and one canonical gear-aware derived publication, no refill. Independently reviewed typed RED24fail/24controls→48GREEN; fullcov2341/137,T/L/purity51/build/80%gate pass. Root/producer/QA APPROVE/ADEQUATE. Draft UI/native earned/save/reopen and Den remain open. |
 | P11–P15 | pending dependencies | Rewards/idle, eligibility, economy, campaign and pacing. |
 | P13a | accepted progress-default slice | `8e6076e` (agent `6db69b6`); actual-level defaults/getter/award and UI fallback, explicit stored thresholds retained, real combat skip restored. Root/producer APPROVE; full1290pass/no skips. |
 | P13b | accepted visible earned-progression slice | `5143a2c`; live owned core stats/unknown definitions, genuine2-case RED, ordinary production obtain/field/three qualified waves/L3→L4/Save/close-reopen,4/4 locale×viewport. [Evidence](evidence/p13b-earned-mercenary.md). Root/producer APPROVE; fullP13/economy open. |
@@ -1444,3 +1445,19 @@ allconsumers released retention before exact rawroot/dist/.vite cleanup and
 verifiedabsence; port4394closed, originalcheckoutclean.
 Next bounded P11native statallocation design/RED: no UIcaller and storeaction
 leaves derivedstatsstale. No Denwin promised; fullv1/C/G remain open.
+
+
+P11a01A accepted810900f after independent producer/QA final APPROVE/ADEQUATE.
+Source-root statspend correction recomposes current inventory gear once before
+one full publication, fullpoint/prospectivebase500 guards preserve fractional
+remainders/legacyovercap, pools preserved/clamped withoutrefill. Genuine frozen
+RED24fail24controls; source-backed Warmth staleidentity oracle reconciled;
+callback snapshot/IEEE/linttype amendments preserved in BUG045 with hashes.
+Focused48/2,engine987/51,related954/62,finalfullcoverage2341/137 allpass;
+T19.374/L47.873/purity51/bridgebuild17.869pass. Unchanged80%enginegate
+63files8105/8585s1893/2106b296/315f; timingoverruns/buildwarnings documented.
+Allconsumers released retention before exactAraw/dist/.vite cleanup/absence
+verification; originalclean. Rootclaimcontinues, B plan/runner retained at
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-stat-draft-t93wb8_t
+for active nextdraftslice, rootowns eventualremoval. Next cancellable+/-Apply
+bulkboundary/UI/earnedbrowser, no Denwinpromise. Fullv1/C/G unaccepted. No push.
