@@ -1,0 +1,1339 @@
+{
+  "task": "P04a05/BUG049",
+  "inputCommit": "928edff",
+  "scope": "Qualified Andariel quest objective via real manual combat with explicit imported wiring gear, not earned victory or reward support",
+  "environment": {
+    "node": "v24.21.0",
+    "npm": "11.19.0",
+    "browser": "N/A for reviewed structural store event card"
+  },
+  "originalFrozenSources": {
+    "src/stores/mapStore.test.ts": "0f506a3fbc67ab38a516938559a27a08903d67c9fef16b8eb3db384a73e11a00",
+    "src/stores/combatHelpers.quest-objectives.test.ts": "ab065e15ae2e762eeb6d80113a58b5a7f7a92e3c0cf457237390c818546424f3",
+    "src/data/quests/main.json": "2937d8724b96c98079fa7f3c4f3683457e2d143ce0491d4fa4dfdd11a81d92d5",
+    "src/stores/mapStore.ts": "24dba4f08c90b926c9fd331bfb47c3b36cb332bac8b4a3f0c62c396e27ed6d59",
+    "src/stores/combatHelpers.ts": "e32016214adaae76ce8216f711667e80b594d7b90176f6d70d6ee4012fcf0308"
+  },
+  "finalSources": {
+    "src/data/quests/main.json": "6a3a41c9f6aa2e42a962f431b100fcdccfe63893a6039f421f3fc9193c8be010",
+    "src/stores/mapStore.ts": "6bfbc4eef244bc5b6170a3c1da3b4ddeefe9f5e69e2286ace82c6d92a8822911",
+    "src/stores/combatHelpers.ts": "68246bcff93be0ac4292348b6ae95f9497a4fa12d86c3f54e2d05dee960071f6",
+    "src/stores/mapStore.test.ts": "0f506a3fbc67ab38a516938559a27a08903d67c9fef16b8eb3db384a73e11a00",
+    "src/stores/combatHelpers.quest-objectives.test.ts": "a69a4c56672a0f4bac7316a2d177ab7edca409738345e20ea0f9a8192fd5278d"
+  },
+  "reviewedPlanSha256": "2db1c529cc3229861268fa0fc4ebfbc68e701ae502a8f28012c9d43191450681",
+  "retainedSourceVersions": {
+    "frozen-red-mapStore.test.ts.txt": "0f506a3fbc67ab38a516938559a27a08903d67c9fef16b8eb3db384a73e11a00",
+    "frozen-red-combatHelpers.quest-objectives.test.ts.txt": "ab065e15ae2e762eeb6d80113a58b5a7f7a92e3c0cf457237390c818546424f3",
+    "first-lint-amended-test.ts.txt": "3787b5c707fb006b6579511780222497adec6d8eed043c1ff19b2a077054009e",
+    "first-green-typecheck-failure-combatHelpers.ts.txt": "ed2935dc96081ab344e3e124f5c39da3876582e09e4420ba6e53e9bff1c6ece6"
+  },
+  "commands": [
+    {
+      "label": "map-red",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "src/stores/mapStore.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-andariel-objective-vxzoooqx/map-red.report.json"
+      ],
+      "exit": 1,
+      "seconds": 3.193,
+      "logSha256": "7f0d97b583f429d03c43901ec4b1ea4081b9c7471945070c89ed76a572643d9f",
+      "reportSha256": "fae7d7bdb7ce710dc98c28f55de23038c057cd8bef2190cc5965e6d029537c9b",
+      "results": {
+        "numTotalTests": 15,
+        "numPassedTests": 3,
+        "numFailedTests": 12,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 1
+      },
+      "assertions": [
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) uses the canonical Catacombs and Andariel objective IDs",
+          "status": "failed",
+          "failureMessages": [
+            "expected [ { id: 'obj-kill-andariel', \u2026(4) } ] to deeply equal [ { id: 'obj-kill-andariel', \u2026(4) } ]"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) completes only the matching objective, preserves fields, and follows existing unlock policy",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for missing progress",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for available progress",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for locked progress",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for completed progress",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for claimed progress",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for already-met progress",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) rejects mismatched context {\"actId\":\"acts/act2\"}",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) rejects mismatched context {\"areaId\":\"areas/act1-den-of-evil\"}",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) rejects mismatched context {\"bossArchetypeId\":\"monsters/act1.blood-raven\"}",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) requires an earlier authored objective before a later boss kill without cascading",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " mapStore \u2014 clearedSubAreas (Bug #5) markCleared makes isCleared return true once",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " mapStore \u2014 markQuestRewardClaimed (Bug #9) adds rewardClaimed flag onto questProgress entry",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " mapStore \u2014 markQuestRewardClaimed (Bug #9) no-ops when quest progress entry is missing",
+          "status": "passed",
+          "failureMessages": []
+        }
+      ]
+    },
+    {
+      "label": "positive-red",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "src/stores/mapStore.test.ts",
+        "src/stores/combatHelpers.quest-objectives.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-andariel-objective-vxzoooqx/positive-red.report.json"
+      ],
+      "exit": 1,
+      "seconds": 4.114,
+      "logSha256": "bfe23b8fb9c218e85c831237a6372f81897a706059149d8db753ed49adadd9ab",
+      "reportSha256": "f01039d396033e2bdd29a193fd30f7891063ff600ffae32011af3e851450d6e5",
+      "results": {
+        "numTotalTests": 16,
+        "numPassedTests": 3,
+        "numFailedTests": 13,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 2
+      },
+      "assertions": [
+        {
+          "fullName": " qualified current chapter-boss quest settlement completes a tracked objective only at final playback settlement, without extra quest rewards",
+          "status": "failed",
+          "failureMessages": [
+            "expected { \u2026(4) } to deeply equal { \u2026(4) }"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) uses the canonical Catacombs and Andariel objective IDs",
+          "status": "failed",
+          "failureMessages": [
+            "expected [ { id: 'obj-kill-andariel', \u2026(4) } ] to deeply equal [ { id: 'obj-kill-andariel', \u2026(4) } ]"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) completes only the matching objective, preserves fields, and follows existing unlock policy",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for missing progress",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for available progress",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for locked progress",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for completed progress",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for claimed progress",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for already-met progress",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) rejects mismatched context {\"actId\":\"acts/act2\"}",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) rejects mismatched context {\"areaId\":\"areas/act1-den-of-evil\"}",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) rejects mismatched context {\"bossArchetypeId\":\"monsters/act1.blood-raven\"}",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) requires an earlier authored objective before a later boss kill without cascading",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " mapStore \u2014 clearedSubAreas (Bug #5) markCleared makes isCleared return true once",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " mapStore \u2014 markQuestRewardClaimed (Bug #9) adds rewardClaimed flag onto questProgress entry",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " mapStore \u2014 markQuestRewardClaimed (Bug #9) no-ops when quest progress entry is missing",
+          "status": "passed",
+          "failureMessages": []
+        }
+      ]
+    },
+    {
+      "label": "boundary-red",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "src/stores/mapStore.test.ts",
+        "src/stores/combatHelpers.quest-objectives.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-andariel-objective-vxzoooqx/boundary-red.report.json"
+      ],
+      "exit": 1,
+      "seconds": 4.802,
+      "logSha256": "3b275ff0a9f53cea2461fcd0604e9e782ed64a322436af6c124678f78132e144",
+      "reportSha256": "c54439224f069314debfebd4d7c21beab386786731c0752df35c4dc100868dee",
+      "results": {
+        "numTotalTests": 27,
+        "numPassedTests": 12,
+        "numFailedTests": 15,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 2
+      },
+      "assertions": [
+        {
+          "fullName": " qualified current chapter-boss quest settlement completes a tracked objective only at final playback settlement, without extra quest rewards",
+          "status": "failed",
+          "failureMessages": [
+            "expected { \u2026(4) } to deeply equal { \u2026(4) }"
+          ]
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement evaluates tracking at settlement, before=true, without later backfill",
+          "status": "failed",
+          "failureMessages": [
+            "expected 'inProgress' to be 'completed' // Object.is equality"
+          ]
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement evaluates tracking at settlement, before=false, without later backfill",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement does not emit against mismatched recording metadata {\"currentWave\":0}",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement does not emit against mismatched recording metadata {\"totalWaves\":0}",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement does not emit against mismatched recording metadata {\"subAreaRunId\":\"areas/act1-den-of-evil\"}",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects clone-outcome references even when the boss IDs and seed match",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects clone-events references even when the boss IDs and seed match",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects prior-run references even when the boss IDs and seed match",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects pre-replay references even when the boss IDs and seed match",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement does not turn an ordinary area boss into the chapter-boss objective",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) uses the canonical Catacombs and Andariel objective IDs",
+          "status": "failed",
+          "failureMessages": [
+            "expected [ { id: 'obj-kill-andariel', \u2026(4) } ] to deeply equal [ { id: 'obj-kill-andariel', \u2026(4) } ]"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) completes only the matching objective, preserves fields, and follows existing unlock policy",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for missing progress",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for available progress",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for locked progress",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for completed progress",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for claimed progress",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for already-met progress",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) rejects mismatched context {\"actId\":\"acts/act2\"}",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) rejects mismatched context {\"areaId\":\"areas/act1-den-of-evil\"}",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) rejects mismatched context {\"bossArchetypeId\":\"monsters/act1.blood-raven\"}",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) requires an earlier authored objective before a later boss kill without cascading",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) does not reinterpret an ordinary kill objective as kill-boss",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " mapStore \u2014 clearedSubAreas (Bug #5) markCleared makes isCleared return true once",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " mapStore \u2014 markQuestRewardClaimed (Bug #9) adds rewardClaimed flag onto questProgress entry",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " mapStore \u2014 markQuestRewardClaimed (Bug #9) no-ops when quest progress entry is missing",
+          "status": "passed",
+          "failureMessages": []
+        }
+      ]
+    },
+    {
+      "label": "frozen-red",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "src/stores/mapStore.test.ts",
+        "src/stores/combatHelpers.quest-objectives.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-andariel-objective-vxzoooqx/frozen-red.report.json"
+      ],
+      "exit": 1,
+      "seconds": 5.507,
+      "logSha256": "e75f27b6f4d5741aabaa16c6a8eada4df246cc824bdecfa955f4338d4fadb851",
+      "reportSha256": "40a2029c0f9e2820c7cce30aed52fd106664dab507d40b3cb76d0b7a90c36999",
+      "results": {
+        "numTotalTests": 34,
+        "numPassedTests": 19,
+        "numFailedTests": 15,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 2
+      },
+      "assertions": [
+        {
+          "fullName": " qualified current chapter-boss quest settlement completes a tracked objective only at final playback settlement, without extra quest rewards",
+          "status": "failed",
+          "failureMessages": [
+            "expected { \u2026(4) } to deeply equal { \u2026(4) }"
+          ]
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement evaluates tracking at settlement, before=true, without later backfill",
+          "status": "failed",
+          "failureMessages": [
+            "expected 'inProgress' to be 'completed' // Object.is equality"
+          ]
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement evaluates tracking at settlement, before=false, without later backfill",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement does not emit against mismatched recording metadata {\"currentWave\":0}",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement does not emit against mismatched recording metadata {\"totalWaves\":0}",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement does not emit against mismatched recording metadata {\"subAreaRunId\":\"areas/act1-den-of-evil\"}",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects clone-outcome references even when the boss IDs and seed match",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects clone-events references even when the boss IDs and seed match",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects prior-run references even when the boss IDs and seed match",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects pre-replay references even when the boss IDs and seed match",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement does not turn an ordinary area boss into the chapter-boss objective",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects a prior wave recording despite current final-wave metadata",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects controlled malformed final boss result missing with current recording references",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects controlled malformed final boss result alive with current recording references",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects controlled malformed final boss result wrong-side with current recording references",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects controlled malformed final boss result wrong-kind with current recording references",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects controlled malformed final boss result wrong-tier with current recording references",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects controlled malformed final boss result wrong-id with current recording references",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) uses the canonical Catacombs and Andariel objective IDs",
+          "status": "failed",
+          "failureMessages": [
+            "expected [ { id: 'obj-kill-andariel', \u2026(4) } ] to deeply equal [ { id: 'obj-kill-andariel', \u2026(4) } ]"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) completes only the matching objective, preserves fields, and follows existing unlock policy",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for missing progress",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for available progress",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for locked progress",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for completed progress",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for claimed progress",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for already-met progress",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) rejects mismatched context {\"actId\":\"acts/act2\"}",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) rejects mismatched context {\"areaId\":\"areas/act1-den-of-evil\"}",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) rejects mismatched context {\"bossArchetypeId\":\"monsters/act1.blood-raven\"}",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) requires an earlier authored objective before a later boss kill without cascading",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) does not reinterpret an ordinary kill objective as kill-boss",
+          "status": "failed",
+          "failureMessages": [
+            "before.recordBossKill is not a function"
+          ]
+        },
+        {
+          "fullName": " mapStore \u2014 clearedSubAreas (Bug #5) markCleared makes isCleared return true once",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " mapStore \u2014 markQuestRewardClaimed (Bug #9) adds rewardClaimed flag onto questProgress entry",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " mapStore \u2014 markQuestRewardClaimed (Bug #9) no-ops when quest progress entry is missing",
+          "status": "passed",
+          "failureMessages": []
+        }
+      ]
+    },
+    {
+      "label": "map-green",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/mapStore.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-andariel-objective-vxzoooqx/map-green.report.json"
+      ],
+      "exit": 0,
+      "seconds": 3.241,
+      "logSha256": "59f8d43c48b96081bbc49db5a33d9e8033cf2d596a7a1eb1d57f0c66bf123e0c",
+      "reportSha256": "c29dd2d163e0f7577607068e5ce126182b3fc253fd876b292ae8b038cb1247d6",
+      "results": {
+        "numTotalTests": 16,
+        "numPassedTests": 16,
+        "numFailedTests": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 1
+      }
+    },
+    {
+      "label": "frozen-green",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/mapStore.test.ts",
+        "src/stores/combatHelpers.quest-objectives.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-andariel-objective-vxzoooqx/frozen-green.report.json"
+      ],
+      "exit": 0,
+      "seconds": 5.259,
+      "logSha256": "528b6fe40003d8dad975a35a43305b17872c8e8f9779e9aaaac987fad3e2f0b8",
+      "reportSha256": "6a4f20479bb3c01d1b8779881223fa3765510c6ab2d277101134a41c840f6166",
+      "results": {
+        "numTotalTests": 34,
+        "numPassedTests": 34,
+        "numFailedTests": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 2
+      },
+      "assertions": [
+        {
+          "fullName": " qualified current chapter-boss quest settlement completes a tracked objective only at final playback settlement, without extra quest rewards",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement evaluates tracking at settlement, before=true, without later backfill",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement evaluates tracking at settlement, before=false, without later backfill",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement does not emit against mismatched recording metadata {\"currentWave\":0}",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement does not emit against mismatched recording metadata {\"totalWaves\":0}",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement does not emit against mismatched recording metadata {\"subAreaRunId\":\"areas/act1-den-of-evil\"}",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects clone-outcome references even when the boss IDs and seed match",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects clone-events references even when the boss IDs and seed match",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects prior-run references even when the boss IDs and seed match",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects pre-replay references even when the boss IDs and seed match",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement does not turn an ordinary area boss into the chapter-boss objective",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects a prior wave recording despite current final-wave metadata",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects controlled malformed final boss result missing with current recording references",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects controlled malformed final boss result alive with current recording references",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects controlled malformed final boss result wrong-side with current recording references",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects controlled malformed final boss result wrong-kind with current recording references",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects controlled malformed final boss result wrong-tier with current recording references",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects controlled malformed final boss result wrong-id with current recording references",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) uses the canonical Catacombs and Andariel objective IDs",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) completes only the matching objective, preserves fields, and follows existing unlock policy",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for missing progress",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for available progress",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for locked progress",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for completed progress",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for claimed progress",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for already-met progress",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) rejects mismatched context {\"actId\":\"acts/act2\"}",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) rejects mismatched context {\"areaId\":\"areas/act1-den-of-evil\"}",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) rejects mismatched context {\"bossArchetypeId\":\"monsters/act1.blood-raven\"}",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) requires an earlier authored objective before a later boss kill without cascading",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) does not reinterpret an ordinary kill objective as kill-boss",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " mapStore \u2014 clearedSubAreas (Bug #5) markCleared makes isCleared return true once",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " mapStore \u2014 markQuestRewardClaimed (Bug #9) adds rewardClaimed flag onto questProgress entry",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " mapStore \u2014 markQuestRewardClaimed (Bug #9) no-ops when quest progress entry is missing",
+          "status": "passed",
+          "failureMessages": []
+        }
+      ]
+    },
+    {
+      "label": "related",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/quest-npc-talk.test.ts",
+        "src/stores/quest-area-clear.test.ts",
+        "src/stores/combatHelpers.outcomes.test.ts",
+        "src/stores/combatHelpers.replay.test.ts",
+        "src/stores/combatHelpers.cross-wave.test.ts",
+        "src/stores/combatHelpers.act1-boss-loot.test.ts",
+        "src/stores/combatPlayback.test.ts",
+        "src/stores/persistence.test.ts",
+        "src/features/quests/claimReward.test.ts",
+        "src/features/quests/claimReward.persistence.test.ts",
+        "src/data/loaders/quests.test.ts",
+        "src/data/loader.test.ts",
+        "src/data/__tests__/data-integrity.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-andariel-objective-vxzoooqx/related.report.json"
+      ],
+      "exit": 0,
+      "seconds": 7.293,
+      "logSha256": "519952e8d596ff30c09a1083510b37f426fe4550b2f37f4f96869da3d8174716",
+      "reportSha256": "f00bd53c9444bafb875c63f1efe43a181d0370cac179e0c62c4cfefff3d7812d",
+      "results": {
+        "numTotalTests": 429,
+        "numPassedTests": 429,
+        "numFailedTests": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 13
+      }
+    },
+    {
+      "label": "typecheck",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 2,
+      "seconds": 12.987,
+      "logSha256": "b4aa61c8b4575197860c61cc1fd109fe78bbe54e937bac224719ec7cdd6f1ee3",
+      "log": "\n> d2h5-text-game@0.1.0 typecheck\n> tsc --noEmit\n\nsrc/stores/combatHelpers.ts(677,3): error TS2375: Type '{ outcome: RecordedBattleOutcome; events: readonly RecordedBattleEvent[]; chapterBoss: { unitId: string; archetypeId: string; } | undefined; }' is not assignable to type '{ readonly outcome: RecordedBattleOutcome; readonly events: readonly RecordedBattleEvent[]; readonly chapterBoss?: { readonly unitId: string; readonly archetypeId: string; }; }' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.\n  Types of property 'chapterBoss' are incompatible.\n    Type '{ unitId: string; archetypeId: string; } | undefined' is not assignable to type '{ readonly unitId: string; readonly archetypeId: string; }'.\n      Type 'undefined' is not assignable to type '{ readonly unitId: string; readonly archetypeId: string; }'.\n"
+    },
+    {
+      "label": "lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 1,
+      "seconds": 30.227,
+      "logSha256": "2a0e09e189e6c9a31343c3a4c003730039993f00a6777cc071b3b9cd187b6c32",
+      "log": "\n> d2h5-text-game@0.1.0 lint\n> node scripts/check-engine-purity.mjs && eslint . --ext .ts,.tsx --max-warnings=0\n\n[check-engine-purity] OK \u2014 52 engine test file(s) scanned, no forbidden imports.\n\n/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/src/stores/combatHelpers.quest-objectives.test.ts\n  56:3  error  Expected a `for-of` loop instead of a `for` loop with this simple iteration  @typescript-eslint/prefer-for-of\n\n\u2716 1 problem (1 error, 0 warnings)\n\n"
+    },
+    {
+      "label": "typecheck-final",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 10.153,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "label": "engine",
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-andariel-objective-vxzoooqx/engine.report.json"
+      ],
+      "exit": 0,
+      "seconds": 6.312,
+      "logSha256": "dcff0d2814ddd36e73282ef83289396835f8688cb3848714a696e9a8bb989677",
+      "reportSha256": "fd5655662677112b5bab435db1d938e54bf4a56803e653003e011aba00886369",
+      "results": {
+        "numTotalTests": 1011,
+        "numPassedTests": 1011,
+        "numFailedTests": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 52
+      }
+    },
+    {
+      "label": "amended-frozen-green",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "src/stores/mapStore.test.ts",
+        "src/stores/combatHelpers.quest-objectives.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-andariel-objective-vxzoooqx/amended-frozen-green.report.json"
+      ],
+      "exit": 0,
+      "seconds": 5.381,
+      "logSha256": "a60cddccf795cb27683daf13ab4559328f711f869c5cd75f00c3e933e4df16e0",
+      "reportSha256": "1ae59cecacac0ed905f334aeb3621a0aa1ec33416bd8b1f6223cff91e98cc8f5",
+      "results": {
+        "numTotalTests": 34,
+        "numPassedTests": 34,
+        "numFailedTests": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 2
+      },
+      "assertions": [
+        {
+          "fullName": " qualified current chapter-boss quest settlement completes a tracked objective only at final playback settlement, without extra quest rewards",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement evaluates tracking at settlement, before=true, without later backfill",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement evaluates tracking at settlement, before=false, without later backfill",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement does not emit against mismatched recording metadata {\"currentWave\":0}",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement does not emit against mismatched recording metadata {\"totalWaves\":0}",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement does not emit against mismatched recording metadata {\"subAreaRunId\":\"areas/act1-den-of-evil\"}",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects clone-outcome references even when the boss IDs and seed match",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects clone-events references even when the boss IDs and seed match",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects prior-run references even when the boss IDs and seed match",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects pre-replay references even when the boss IDs and seed match",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement does not turn an ordinary area boss into the chapter-boss objective",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects a prior wave recording despite current final-wave metadata",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects controlled malformed final boss result missing with current recording references",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects controlled malformed final boss result alive with current recording references",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects controlled malformed final boss result wrong-side with current recording references",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects controlled malformed final boss result wrong-kind with current recording references",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects controlled malformed final boss result wrong-tier with current recording references",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified current chapter-boss quest settlement rejects controlled malformed final boss result wrong-id with current recording references",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) uses the canonical Catacombs and Andariel objective IDs",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) completes only the matching objective, preserves fields, and follows existing unlock policy",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for missing progress",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for available progress",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for locked progress",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for completed progress",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for claimed progress",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) preserves the entire state for already-met progress",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) rejects mismatched context {\"actId\":\"acts/act2\"}",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) rejects mismatched context {\"areaId\":\"areas/act1-den-of-evil\"}",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) rejects mismatched context {\"bossArchetypeId\":\"monsters/act1.blood-raven\"}",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) requires an earlier authored objective before a later boss kill without cascading",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " qualified kill-boss quest events (BUG049) does not reinterpret an ordinary kill objective as kill-boss",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " mapStore \u2014 clearedSubAreas (Bug #5) markCleared makes isCleared return true once",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " mapStore \u2014 markQuestRewardClaimed (Bug #9) adds rewardClaimed flag onto questProgress entry",
+          "status": "passed",
+          "failureMessages": []
+        },
+        {
+          "fullName": " mapStore \u2014 markQuestRewardClaimed (Bug #9) no-ops when quest progress entry is missing",
+          "status": "passed",
+          "failureMessages": []
+        }
+      ]
+    },
+    {
+      "label": "lint-final",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 1,
+      "seconds": 39.08,
+      "logSha256": "61a8ddcb1fe8b053841fac6d3e87788a1aa9d7a47f3259047f2314fb51be0af4",
+      "log": "\n> d2h5-text-game@0.1.0 lint\n> node scripts/check-engine-purity.mjs && eslint . --ext .ts,.tsx --max-warnings=0\n\n[check-engine-purity] OK \u2014 52 engine test file(s) scanned, no forbidden imports.\n\n/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/src/stores/combatHelpers.quest-objectives.test.ts\n  56:24  error  Returning a void expression from an arrow function shorthand is forbidden. Please add braces to the arrow function  @typescript-eslint/no-confusing-void-expression\n\n\u2716 1 problem (1 error, 0 warnings)\n  1 error and 0 warnings potentially fixable with the `--fix` option.\n\n"
+    },
+    {
+      "label": "unit",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-andariel-objective-vxzoooqx/unit.report.json"
+      ],
+      "exit": 0,
+      "seconds": 38.429,
+      "logSha256": "af9397083b1fe74d18e1f43ee492377670e4d32e5a88b0430bdf3b52dff53074",
+      "reportSha256": "5a8c8fc0b3c5871c4825bd5273203bc4ac52db222ce61eae36b854f9cc3d2a1b",
+      "results": {
+        "numTotalTests": 2496,
+        "numPassedTests": 2496,
+        "numFailedTests": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 144
+      }
+    },
+    {
+      "label": "typecheck-amended",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 20.815,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "label": "unit-final",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-andariel-objective-vxzoooqx/unit-final.report.json"
+      ],
+      "exit": 0,
+      "seconds": 41.38,
+      "logSha256": "2b54c85e532a914387a25f5eb2800adb6fb5e9ac05b29cfc774c0060a9069d62",
+      "reportSha256": "211f74432df8b517eb696ffaa18e8edfc5aa7c8fb872f00e77eb12a8079841ac",
+      "results": {
+        "numTotalTests": 2496,
+        "numPassedTests": 2496,
+        "numFailedTests": 0,
+        "numPendingTests": 0,
+        "numTodoTests": 0,
+        "files": 144
+      }
+    },
+    {
+      "label": "typecheck-final-braces",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 20.944,
+      "logSha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "label": "lint-final-braces",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exit": 0,
+      "seconds": 48.797,
+      "logSha256": "290646fe97e8078bf27d8734f7036ca6e50994d3ba01e473b96d9223ccd41697",
+      "log": "\n> d2h5-text-game@0.1.0 lint\n> node scripts/check-engine-purity.mjs && eslint . --ext .ts,.tsx --max-warnings=0\n\n[check-engine-purity] OK \u2014 52 engine test file(s) scanned, no forbidden imports.\n"
+    },
+    {
+      "label": "build-guard",
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "exit": 0,
+      "seconds": 8.805,
+      "logSha256": "5499c75d55296b5644bf6300be75e43b4d59b5488ad90ccdba0bdd548ef33d68",
+      "log": "\n> d2h5-text-game@0.1.0 check:test-bridge-shake\n> node scripts/check-test-bridge-shaken.mjs\n\n[check:test-bridge-shake] Running production `vite build` (VITE_E2E unset)\u2026\n\n> d2h5-text-game@0.1.0 build\n> vite build\n\nvite v5.4.21 building for production...\ntransforming...\nBrowserslist: browsers data (caniuse-lite) is 6 months old. Please run:\n  npx update-browserslist-db@latest\n  Why you should do it regularly: https://github.com/browserslist/update-db#readme\n\u2713 580 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/registerSW.js                        0.13 kB\ndist/manifest.webmanifest                 0.42 kB\ndist/index.html                           0.96 kB \u2502 gzip:   0.53 kB\ndist/assets/index-C7n1A6wx.css           54.22 kB \u2502 gzip:  10.65 kB\ndist/assets/i18n-Bxr3rY09.js             60.80 kB \u2502 gzip:  18.72 kB\ndist/assets/game-engine-CqIzUXqx.js      99.98 kB \u2502 gzip:  33.93 kB\ndist/assets/react-vendor-dRBhy6jq.js    163.93 kB \u2502 gzip:  53.51 kB\ndist/assets/index-v0zmei5o.js         1,201.79 kB \u2502 gzip: 313.22 kB\n\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n\u2713 built in 5.62s\n\nPWA v0.19.8\nmode      generateSW\nprecache  756 entries (37356.96 KiB)\nfiles generated\n  dist/sw.js\n  dist/workbox-dcde9eb3.js\nwarnings\n  assets/d2/generated/manifest.json is 2.57 MB, and won't be precached. Configure maximumFileSizeToCacheInBytes to change this limit.\n\n[check:test-bridge-shake] PASS \u2014 4 chunk(s) scanned, no test-bridge symbols present.\n"
+    }
+  ],
+  "amendments": [
+    "First GREEN runtime assigned explicit chapterBoss undefined, rejected by exactOptionalPropertyTypes. Conditional spread fixes construction; first source and failing typecheck retained. No assertion change.",
+    "Frozen indexed drain loop lint prefer-for-of: QA independently approved synchronous forEach amendment before edit. First amendment hit no-confusing-void-expression; QA approved braced callback before edit. All assertions/fixtures/oracles unchanged. Both failed lints and intermediate source retained."
+  ],
+  "acceptance": {
+    "frozenRed": "producer/QA APPROVE before runtime/data edits; 2 existing-path failures, 1 canonical ID failure, 12 missing-action failures, 19 passing controls",
+    "implementationReview": "producer APPROVE, no material findings",
+    "finalReview": "producer and QA independently APPROVE / evidence ADEQUATE; all retention holds released"
+  },
+  "limitations": [
+    "Imported power/refill fixture is not earned survival or balance evidence",
+    "No browser or reload acceptance on this card; public export equality only",
+    "Andariel reward bundle remains unsupported and grants no quest XP/item/claim flag",
+    "Existing completed-quest OR Catacombs-clear ActII unlock policy preserved",
+    "Other quests/campaign, C0-C4/G0-G7/full v1 remain open",
+    "Engine/full-unit time budgets exceeded; thresholds unchanged",
+    "Production build warnings are recorded in build log"
+  ],
+  "artifactOwnership": {
+    "raw": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-andariel-objective-vxzoooqx",
+    "owner": "root",
+    "cleanup": "Exact RAW, dist and node_modules/.vite removed after both releases; absence verified. No active task process/server; original checkout clean verified separately."
+  }
+}

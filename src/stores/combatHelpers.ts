@@ -23,7 +23,7 @@ import {
 import { loadAwardPools, loadItemBases } from '@/data/loaders/loot';
 import { eliteConfig, monsters as monsterList } from '@/data/index';
 import { resolveSubArea } from './subAreaResolver';
-import { useCombatStore, type CombatLogEntry } from './combatStore';
+import { useCombatStore, type CombatLogEntry, type RecordedBattleOutcome } from './combatStore';
 import { eventToLocalizedLogEntry } from './eventToLogI18n';
 import { useInventoryStore } from './inventoryStore';
 import { useMapStore } from './mapStore';
@@ -341,6 +341,12 @@ interface ActiveRun {
   carryPlayerTeam: CombatUnit[];
   /** Actual terminal clock of the current recording, before presentation events. */
   waveElapsedMs: number;
+  /** Exact installed recording and original authored boss identity; never persisted. */
+  recording?: {
+    readonly outcome: RecordedBattleOutcome;
+    readonly events: readonly RecordedBattleEvent[];
+    readonly chapterBoss?: { readonly unitId: string; readonly archetypeId: string };
+  };
 }
 
 let activeRun: ActiveRun | null = null;
@@ -556,6 +562,19 @@ export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idl
 
   const nextIdx = activeRun.waveIdx + 1;
   if (nextIdx >= activeRun.plan.waves.length) {
+    const recording = activeRun.recording;
+    const boss = recording?.chapterBoss;
+    if (boss && outcome === recording.outcome && combat.recordedEvents === recording.events &&
+      combat.subAreaRunId === activeRun.plan.subAreaId &&
+      combat.currentWave === activeRun.waveIdx + 1 && combat.totalWaves === activeRun.plan.waves.length &&
+      outcome.finalEnemyTeam.some(enemy => enemy.id === boss.unitId && enemy.side === 'enemy' &&
+        enemy.kind === 'monster' && enemy.tier === 'chapter-boss' && enemy.life <= 0)) {
+      useMapStore.getState().recordBossKill({
+        actId: `acts/act${String(activeRun.act)}`,
+        areaId: activeRun.plan.subAreaId,
+        bossArchetypeId: boss.archetypeId
+      });
+    }
     // Only a complete sequence of won waves can clear an area or unlock idle.
     useMapStore.getState().markCleared(activeRun.plan.subAreaId);
     combat.markRunVictory();
@@ -589,6 +608,15 @@ function playWave(waveIdx: number): void {
 
   const waveSeed = (activeRun.seed ^ ((waveIdx + 1) * 0x9e3779b1)) >>> 0;
   const enemies = buildEnemiesForWave(wave, waveSeed);
+  const spawn = wave.spawns.length === 1 ? wave.spawns[0] : undefined;
+  const builtBoss = enemies.length === 1 ? enemies[0] : undefined;
+  // Only the canonical single chapter-boss spawn has an unambiguous identity.
+  // In particular, buildEnemiesForWave's fallback catalog lookup cannot qualify.
+  const chapterBoss = spawn?.chapterBoss && spawn.tier === 'chapter-boss' &&
+    spawn.archetypeId === spawn.chapterBoss.archetypeId && getMonsterIndex().has(spawn.archetypeId) &&
+    builtBoss?.side === 'enemy' && builtBoss.kind === 'monster' && builtBoss.tier === 'chapter-boss'
+    ? { unitId: builtBoss.id, archetypeId: spawn.archetypeId }
+    : undefined;
   // Keep the original/rebased wave-input baseline intact. Repeated replay must
   // never inherit completed playback resources or a previously clamped replay.
   const currentPlayer = usePlayerStore.getState().player;
@@ -641,16 +669,18 @@ function playWave(waveIdx: number): void {
       ]
     : events;
 
+  const outcome: RecordedBattleOutcome = {
+    winner: result.winner,
+    finalPlayerTeam: result.playerTeam,
+    finalEnemyTeam: result.enemyTeam
+  };
+  activeRun.recording = { outcome, events: playbackEvents, ...(chapterBoss ? { chapterBoss } : {}) };
   combat.setRecordedBattle({
     initialPlayerTeam: playerTeam,
     initialEnemyTeam: enemies,
     events: playbackEvents,
     unitNameMap: unitMap,
-    outcome: {
-      winner: result.winner,
-      finalPlayerTeam: result.playerTeam,
-      finalEnemyTeam: result.enemyTeam
-    },
+    outcome,
     currentWave: waveIdx + 1,
     totalWaves: activeRun.plan.waves.length,
     subAreaRunId: activeRun.plan.subAreaId,

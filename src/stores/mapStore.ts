@@ -41,6 +41,12 @@ interface MapState {
   markCleared: (subAreaId: string) => void;
   /** Advance eligible ordered talk objectives for an exact current-town NPC. Never awards rewards. */
   recordNpcTalk: (npcId: string) => void;
+  /** Advance tracked, unclaimed, ordered boss objectives for an exact qualified kill. Never awards rewards. */
+  recordBossKill: (event: {
+    readonly actId: string;
+    readonly areaId: string;
+    readonly bossArchetypeId: string;
+  }) => void;
   isCleared: (subAreaId: string) => boolean;
   /** Convenience selector for the act-unlock engine predicate. */
   isActUnlocked: (actNumber: number) => boolean;
@@ -176,6 +182,34 @@ export const useMapStore = create<MapState>((set, get) => ({
     return questProgress === state.questProgress ? state : { questProgress };
   }); },
   
+  recordBossKill: (event) => { set((state) => {
+    let questProgress = state.questProgress;
+    for (const quest of loadQuests()) {
+      if (quest.actId !== event.actId) continue;
+      const progress = state.questProgress[quest.id];
+      if (progress?.status !== 'inProgress' || progress.rewardClaimed) continue;
+      const matching = quest.objectives.filter((objective, index) =>
+        objective.type === 'kill-boss' && objective.areaId === event.areaId &&
+        objective.targetId === event.bossArchetypeId && !progress.objectives[objective.id] &&
+        quest.objectives.slice(0, index).every((previous) => progress.objectives[previous.id])
+      );
+      if (matching.length === 0) continue;
+      const objectives = {
+        ...progress.objectives,
+        ...Object.fromEntries(matching.map((objective) => [objective.id, true]))
+      };
+      questProgress = {
+        ...questProgress,
+        [quest.id]: {
+          ...progress,
+          objectives,
+          status: quest.objectives.every((objective) => objectives[objective.id]) ? 'completed' : 'inProgress'
+        }
+      };
+    }
+    return questProgress === state.questProgress ? state : { questProgress };
+  }); },
+
   isActUnlocked: (actNumber) => {
     const state = get();
     const completed = new Set<string>();
