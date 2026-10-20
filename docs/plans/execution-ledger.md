@@ -32,6 +32,7 @@ Current implementation evidence lives in `evidence/`.
 | P04a04a | accepted bounded claim safety | Shared claim preflight/global guard/participating rollback plus localized refusals. BUG044; independently reviewed frozen34RED/41controls, source/focused75GREEN. Related720/57, full/coverage2310/136, T/L/purity51/build/bridge pass; root/producer/QA final APPROVE/ADEQUATE. [Evidence](evidence/p04a04a-den-claim-safety.md). Ordinary-earned Den and broader P04/campaign/C/G remain open. |
 | P04a04b | failed discovery; unaccepted | Frozen en/desktop ordinary-earned recipe loses Denwave2 after valid13prep/W1payout. Root/producer/QA independently confirmed native loss, no combat defect established. [Evidence](evidence/p04a04b-earned-den-discovery.md) preserves failed candidate/outcome; no stronger retry/matrix/runtime change. Separate native stat-allocation prerequisite next. |
 | P04a05 | accepted bounded Andariel objective wiring | `47a70c6`; canonical two IDs and ordered tracked kill-boss action with original catalog-backed chapter-boss/current-recording provenance. BUG049; producer/QA final APPROVE/ADEQUATE, frozen34GREEN and full2496/144, T/L/build pass. Imported fixture only; earned boss, rewards, broader P04/C1 remain open. |
+| P04a06 | accepted reward-local identifier prerequisite | `5b1578e`; exact legacy flat plus canonical base/unique schema branches; BUG050. Frozen174GREEN,related303/7,U2625/144,T/L/purity52/build pass; independent producer/QA APPROVE/ADEQUATE. Syntax only; no template resolution/reward/content change. |
 | Remaining P03b/P04 | ready for reproduction | Shared capacity, atomic transactions/recoverable awards and quest event/reward integrity remain. |
 | P05a | accepted slice | `2458ee7`; source-local error state, 13 focused tests and actual-component desktop/mobile proof. [Integrated evidence](evidence/P05a-P06a-foundations.md). D13/F19 remain open. |
 | P05b01 | accepted resolver slice | `0c2d043`; D13 identity/metadata control, 29 new tests (25 red before fix), producer source APPROVE. Full suite + T/L/B pass. BUG-010; surface wiring remains. |
@@ -1612,3 +1613,20 @@ itemDrop schema union preserves flat IDs and admits authoritative base/unique
 namespaces only; no content/reward execution change. Next RAW=
 /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-quest-item-ids-zz5vn9bu,
 root owns cleanup after independent consumers release. No push/PR/merge/deploy.
+
+
+P04a06/BUG050 accepted5b1578e after independent design/plan/frozenRED and final
+producer/QA APPROVE/ADEQUATE. Exactly reward-local itemDrop pattern+description
+preserve legacy flat and admit canonical base/unique grammars; all other schema,
+shared objective IDs/content/reward/save untouched. Real-catalog RED54=8fail46;
+expanded frozenRED174=24fail150controls→byte-identical GREEN174. Existing45tests
+preserved. Related303/7,U2625/1440pending,T12.826/L52.703purity52/guardedbuild9.645
+pass. All11commands/source/report/loghashes/discovery/catalog/frozenassertions
+retained; no oracle corrections. Timing/build warnings unchanged. Both consumers
+released before exactRAWzz5vn9bu/dist/.vite removal; absenceverified,no process,
+originalcheckoutclean/rootclaimcontinues. Syntax only; mapping/materialization/
+quest reward/earned boss/browser/reload/C1/C0–C4/G0–G7/fullv1 remain open.
+Next P12a01b adds exact named unique construction as a new capability, not a bug
+in ordinary weighted rollItem; source-backed API/plan review before RED/runtime.
+NextRAW=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-exact-unique-mb9etlig;
+root owns cleanup after final independent releases. No push/PR/merge/deploy.

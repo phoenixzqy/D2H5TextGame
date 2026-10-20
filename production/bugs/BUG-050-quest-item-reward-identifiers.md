@@ -1,6 +1,6 @@
 # BUG-050 — Accept canonical base and unique quest item reward IDs
 
-Status: verified fixed; independent producer/QA final APPROVE/ADEQUATE; commit pending.
+Status: Fixed in `5b1578e`; independent producer/QA final APPROVE/ADEQUATE.
 Severity: High — canonical item reward authorship cannot pass quest validation.
 Owner: content/schema integration; independent producer/design/QA review.
 
