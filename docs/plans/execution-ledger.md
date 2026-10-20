@@ -18,9 +18,10 @@ Current implementation evidence lives in `evidence/`.
 | P02 | pending dependencies | No accepted production harness. Existing sim is outside workspace discovery. Split fixture/schema, adapter, reporting. |
 | P03a | accepted slice | `6f1dafd` + `76db166`; independent source approval, U/T/L/B and 10 browser cases pass. [Evidence](evidence/P03a-save-integrity.md). Full D12/G1/G6 remain unaccepted. |
 | P03b/P04 | ready for reproduction | Capacity/overflow and quest event/reward integrity; expand small child cards. |
-| P05a | in-progress | Independent frontend/QA worktree; mounted image source recovery. |
+| P05a | accepted slice | `2458ee7`; source-local error state, 13 focused tests and actual-component desktop/mobile proof. [Integrated evidence](evidence/P05a-P06a-foundations.md). D13/F19 remain open. |
 | P05b | needs D13 | Resolver precedence, metadata category, cross-surface identity. |
-| P06–P10 | pending dependencies | D04–D06/shared effects first. All skills remain behavior-unaccepted. |
+| P06a | accepted slice | `10ce45d`; battle-local summon identity, full A/A and A/B/A replay, live/dead collisions. Independent TD approval. [Evidence](evidence/P05a-P06a-foundations.md). |
+| Remaining P06–P10 | pending dependencies | D04–D06/shared effects first. All skills remain behavior-unaccepted. |
 | P11–P15 | pending dependencies | Rewards/idle, eligibility, economy, campaign and pacing. |
 | P16–P18 | pending | Critical UI/a11y/performance, offline/PWA, endgame and achievements. |
 | P19 | pending dependencies | Full matrix, actual required CI, independent review/QA, holdout, soak, human playtest. |
@@ -78,7 +79,8 @@ Strengthen required regressions atomically with their associated fixes.
 
 ## P05a-image-source-recovery
 
-State: in-progress; independent frontend/QA agent, root integrates.
+State: accepted slice at `2458ee7`; independent frontend/QA implementation,
+parent source review and integrated U/T/L/B plus D/M validation.
 Own: `ui/GameImage.tsx`, `ui/GameCard.tsx`, their tests, focused browser spec,
 and BUG-002. Depends on existing contracts; D13 resolver policy is separate.
 
@@ -88,3 +90,17 @@ and BUG-002. Depends on existing contracts; D13 resolver policy is separate.
 
 Reproduce/report before patch, related RTL, integrated U/T/L/B and focused
 actual-component desktop/mobile browser proof. This card does not accept F19.
+
+## P03b01-legacy-container-visibility
+
+State: in-progress; independent frontend/QA worktree. Producer approved this
+child before capacity/award changes. Own `BackpackGrid.tsx`, focused RTL and
+browser specs, BUG-005 and scoped visibility contract (five files).
+
+1. Every saved item remains visible/selectable above the display capacity.
+2. Capacity controls empty placeholders only; 99/100/101 and 499/500/501 covered.
+3. Ordinary import can recover the final over-cap item using existing actions
+   on desktop/mobile; preserve unrelated items and persist recovery.
+
+Do not lower insertion limits while reward callers ignore rejected `addItem`.
+Shared limits, transaction atomicity and recoverable awards remain later P03b.
