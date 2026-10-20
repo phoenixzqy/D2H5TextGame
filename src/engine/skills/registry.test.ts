@@ -1,4 +1,6 @@
 import { describe, expect, it } from 'vitest';
+import Ajv2020 from 'ajv/dist/2020';
+import skillSchema from '../../data/schema/skill.schema.json';
 import amazonSkills from '../../data/skills/amazon.json';
 import assassinSkills from '../../data/skills/assassin.json';
 import barbarianSkills from '../../data/skills/barbarian.json';
@@ -13,6 +15,98 @@ import {
   PLAYABLE_CLASS_SKILL_DATA,
   registeredSkillFromJson
 } from './dataCatalog';
+
+describe('P08a02a Amplify Damage metadata boundary', () => {
+  const validateSkill = new Ajv2020({ strict: true, allErrors: true }).compile(skillSchema);
+  const productionId = 'skills-necromancer-amplify-damage';
+  const productionJson = necromancerSkills.find((skill) => skill.id === productionId);
+  const productionSkill = PLAYABLE_CLASS_SKILL_DATA.necromancer.find((skill) => skill.id === productionId);
+  if (!productionJson || !productionSkill) throw new Error('Production Amplify Damage definition is missing');
+  const schemaFixture = { ...productionJson, id: 'skills-fixture-status-metadata' };
+
+  function adapterFixture(metadata: { durationMs?: number; physicalResistReductionPct?: number }) {
+    if (!productionSkill) throw new Error('Production Amplify Damage definition is missing');
+    return { ...productionSkill, statusEffect: { chance: 1, ...metadata } };
+  }
+
+  it.each([
+    { durationMs: 3000, physicalResistReductionPct: 50 },
+    { durationMs: 0, physicalResistReductionPct: 0 },
+    { durationMs: 0.5, physicalResistReductionPct: 12.5 },
+    { durationMs: 3000 },
+    { physicalResistReductionPct: 50 },
+    {}
+  ])('validates optional finite nonnegative metadata %j', (metadata) => {
+    expect(validateSkill({ ...schemaFixture, statusEffect: metadata })).toBe(true);
+  });
+
+  it.each(['durationMs', 'physicalResistReductionPct'])('rejects negative %s at its schema boundary', (field) => {
+    expect(validateSkill({ ...schemaFixture, statusEffect: { [field]: -1 } })).toBe(false);
+    expect(validateSkill.errors).toContainEqual(expect.objectContaining({
+      instancePath: `/statusEffect/${field}`, keyword: 'minimum'
+    }));
+  });
+
+  it.each([
+    ['durationMs', Infinity], ['durationMs', -Infinity], ['durationMs', NaN], ['durationMs', '3000'],
+    ['physicalResistReductionPct', Infinity], ['physicalResistReductionPct', -Infinity],
+    ['physicalResistReductionPct', NaN], ['physicalResistReductionPct', '50']
+  ])('rejects nonfinite or nonnumeric %s=%s', (field, value) => {
+    expect(validateSkill({ ...schemaFixture, statusEffect: { [field]: value } })).toBe(false);
+    expect(validateSkill.errors).toContainEqual(expect.objectContaining({
+      instancePath: `/statusEffect/${field}`, keyword: 'type'
+    }));
+  });
+
+  it('continues rejecting unknown status metadata keys', () => {
+    expect(validateSkill({ ...schemaFixture, statusEffect: { unknownModifier: 50 } })).toBe(false);
+    expect(validateSkill.errors).toContainEqual(expect.objectContaining({ keyword: 'additionalProperties' }));
+  });
+
+  it.each([
+    { durationMs: 3000, physicalResistReductionPct: 50 },
+    { durationMs: 0, physicalResistReductionPct: 0 },
+    { durationMs: 3000 },
+    { physicalResistReductionPct: 50 },
+    {}
+  ])('preserves supplied Amplify debuff metadata without inventing omitted fields %j', (metadata) => {
+    const fixture = adapterFixture(metadata);
+    const before = structuredClone(fixture);
+    expect(registeredSkillFromJson(fixture).effects).toEqual([
+      { kind: 'debuff', statusId: 'amplify-damage', ...metadata }
+    ]);
+    expect(fixture).toEqual(before);
+  });
+
+  it.each([
+    { id: 'skills-necromancer-decrepify', statusId: 'decrepify' },
+    { id: 'skills-necromancer-decrepify', statusId: 'amplify-damage' },
+    { id: 'necromancer.amplify_damage', statusId: 'amplify-damage' },
+    { id: productionId, statusId: 'amplify' },
+    { id: productionId, statusId: 'amp-damage' }
+  ])('does not forward Amplify metadata for $id / $statusId', ({ id, statusId }) => {
+    expect(registeredSkillFromJson({
+      ...adapterFixture({ durationMs: 3000, physicalResistReductionPct: 50 }), id, appliesStatus: [statusId]
+    }).effects).toEqual([{ kind: 'debuff', statusId }]);
+  });
+
+  it('leaves damage and self-buff branches outside the new metadata path', () => {
+    const fixture = adapterFixture({ durationMs: 3000, physicalResistReductionPct: 50 });
+    expect(registeredSkillFromJson({ ...fixture, damage: { min: 10, max: 10 }, damageType: 'physical' }).effects)
+      .toEqual([{ kind: 'damage', damageType: 'physical', base: [10, 10], tags: ['amp-damage'],
+        applyStatus: { id: 'amplify-damage', chance: 1 } }]);
+    expect(registeredSkillFromJson({ ...fixture, target: 'self' }).effects)
+      .toEqual([{ kind: 'buff', id: 'amplify-damage', duration: -1 }]);
+  });
+
+  it('preserves the actual production curse identity and resource scaling', () => {
+    expect(getSkill(productionId)).toMatchObject({
+      id: 'necromancer.amplify_damage', manaCost: 15, cooldown: 3,
+      manaCostPerRank: -0.2, cooldownPerRank: -0.05,
+      effects: [{ kind: 'debuff', statusId: 'amplify-damage' }]
+    });
+  });
+});
 
 describe('skill registry JSON catalog', () => {
   it('registers every active Necromancer JSON skill for combat use', () => {

@@ -98,7 +98,17 @@
       "properties": {
         "chance": { "type": "number", "minimum": 0, "maximum": 1 },
         "stacksOnApply": { "type": "integer", "minimum": 1 },
-        "dotPctOfDamage": { "type": "number", "minimum": 0 }
+        "dotPctOfDamage": { "type": "number", "minimum": 0 },
+        "durationMs": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Finite base duration in simulation milliseconds; consumed by the production Amplify Damage debuff."
+        },
+        "physicalResistReductionPct": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Finite physical resistance reduction in percentage points; consumed by the production Amplify Damage debuff."
+        }
       }
     },
     "heal": {

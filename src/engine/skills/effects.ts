@@ -59,6 +59,10 @@ export interface DebuffEffect {
   readonly kind: 'debuff';
   readonly statusId: string;
   readonly duration?: number;
+  /** Base simulation milliseconds; takes precedence over legacy duration when consumed. */
+  readonly durationMs?: number;
+  /** Nonnegative physical resistance reduction in percentage points. */
+  readonly physicalResistReductionPct?: number;
 }
 
 /** Summon primitive. */

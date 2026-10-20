@@ -16,7 +16,7 @@ import paladinSkills from '../../data/skills/paladin.json';
 import sorceressSkills from '../../data/skills/sorceress.json';
 import type { AoeShape } from '../combat/grid';
 import type { DamageType } from '../types/attributes';
-import type { ComboTag, SkillRequirement, SkillTarget } from '../types/skills';
+import type { ComboTag, SkillRequirement, SkillStatusEffectMetadata, SkillTarget } from '../types/skills';
 import type { RegisteredSkill, SkillEffect, SummonMaxCountScalingKind, SummonStatScaling } from './effects';
 
 export type PlayableSkillClass =
@@ -44,11 +44,7 @@ interface JsonSkill {
   };
   readonly damageType?: DamageType;
   readonly appliesStatus?: readonly string[];
-  readonly statusEffect?: {
-    readonly chance?: number;
-    readonly stacksOnApply?: number;
-    readonly dotPctOfDamage?: number;
-  };
+  readonly statusEffect?: SkillStatusEffectMetadata;
   readonly appliesTags?: readonly string[];
   readonly summon?: boolean;
   readonly summonId?: string;
@@ -169,9 +165,15 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
       });
       return effects;
     }
+    const amplifyMetadata = skill.id === 'skills-necromancer-amplify-damage' &&
+      skill.appliesStatus[0] === 'amplify-damage' ? skill.statusEffect : undefined;
     effects.push({
       kind: 'debuff',
-      statusId: skill.appliesStatus[0]
+      statusId: skill.appliesStatus[0],
+      ...(amplifyMetadata?.durationMs !== undefined ? { durationMs: amplifyMetadata.durationMs } : {}),
+      ...(amplifyMetadata?.physicalResistReductionPct !== undefined
+        ? { physicalResistReductionPct: amplifyMetadata.physicalResistReductionPct }
+        : {})
     });
   }
 

@@ -126,6 +126,17 @@ export interface SkillRequirement {
   readonly handedness?: readonly Handedness[];
 }
 
+/** JSON-authored runtime metadata for the first applied status. */
+export interface SkillStatusEffectMetadata {
+  readonly chance?: number;
+  readonly stacksOnApply?: number;
+  readonly dotPctOfDamage?: number;
+  /** Base duration in simulation milliseconds; production Amplify Damage only. */
+  readonly durationMs?: number;
+  /** Nonnegative percentage-point reduction; production Amplify Damage only. */
+  readonly physicalResistReductionPct?: number;
+}
+
 /**
  * Skill definition
  * This is the immutable template for a skill
@@ -162,11 +173,7 @@ export interface SkillDef {
   /** Status effects applied by this skill */
   readonly appliesStatus?: readonly string[]; // status IDs
   /** Runtime metadata for the first applied status, such as DoT strength or stacks. */
-  readonly statusEffect?: {
-    readonly chance?: number;
-    readonly stacksOnApply?: number;
-    readonly dotPctOfDamage?: number;
-  };
+  readonly statusEffect?: SkillStatusEffectMetadata;
   
   /** Healing amount (if any) */
   readonly heal?: {
