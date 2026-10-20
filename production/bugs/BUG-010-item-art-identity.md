@@ -1,8 +1,8 @@
 # BUG-010 — Preserve item identity and authored base category in art
 
 Severity: Medium (inconsistent item recognition; inspection is a workaround).
-Status: P05b01 resolver corrected and independently reviewed, 2026-10-20;
-P05b02 consumer integration remains open. Integration SHA is in the ledger.
+Status: P05b01 resolver and P05b02 consumers corrected and independently
+reviewed, 2026-10-20. Integration SHAs are in the ledger.
 Reproduction base: `0ee36ae`. Owner: frontend-dev / art-director / QA.
 Environment: Node 24.21.0, Vitest 1.6.1 UI/jsdom. Both locales share the
 resolver; no strings, RNG, browser viewport or engine seed involved here.
@@ -59,3 +59,21 @@ Final focused rerun: 47 passed, 1.79 s; no suppressions or weakened checks.
 Producer independently reviewed all five files: **APPROVE**, no blocking
 finding. Scope is the shared resolver only. Existing surface mismatch remains
 until P05b02; no F19/offline/performance/whole-D13 acceptance follows here.
+
+## Surface verification
+
+P05b02 integrated at `96eb70c` (agent `060cb4f`): backpack, equipment picker,
+item detail and tooltip use the shared instance helper; picker uses GameImage
+for the existing stable fallback. Browser first reproduced Biggin's unique
+identity rendered as a generic base cap. Final four cases passed (19.3 s),
+en/zh-CN × desktop/mobile. Root independently reviewed source: APPROVE.
+Ordinary import/transfer/stash-return/detail/picker/equip/equipped inspection/
+export/save/reload retains exact unique/base identities; a forced unique-image
+failure shows fallback and reopening recovers. Desktop hover and equipped
+Details tooltip are checked; mobile uses actual tap/detail interactions.
+
+Root integrated item-art and Den specs with P04a02 core:
+`E2E_PORT=4487 PLAYWRIGHT_HTML_OPEN=never npx playwright test tests/e2e/item-art-identity.spec.ts tests/e2e/quest-area-clear.spec.ts --reporter=line --output=/tmp/d2h5-p04a02-browser --workers=2`
+passed 8/8, 40.5 s. Root U952/1 existing skip, typecheck/lint/explicit browser
+lint/build pass. Disposable browser output, build and Vite cache were removed
+after consumption. No new image generation; F19/offline/performance remain open.

@@ -22,10 +22,11 @@ Current implementation evidence lives in `evidence/`.
 | P03a | accepted slice | `6f1dafd` + `76db166`; independent source approval, U/T/L/B and 10 browser cases pass. [Evidence](evidence/P03a-save-integrity.md). Full D12/G1/G6 remain unaccepted. |
 | P03b01 | accepted visibility slice | `90e4a67`; all legacy items remain selectable above grid cap, seven boundary tests, four ordinary-control browser cases. BUG-005. |
 | P04a01 | accepted objective slice | `ac49f52` (agent `d0343c8`); canonical Den area and atomic tracked clear objectives after qualified victory. Ten regressions, independent source APPROVE and integrated four-case browser proof. Return/talk/claim remain separate. |
+| P04a02 core/locales | accepted core/copy slices | `2d60095` ordered exact current-town talk action; `392e671` (agent `c2dece8`) localized roster/greetings/Den stages. Producer source APPROVE; UI child in progress, whole talk path not yet accepted. |
 | Remaining P03b/P04 | ready for reproduction | Shared capacity, atomic transactions/recoverable awards and quest event/reward integrity remain. |
 | P05a | accepted slice | `2458ee7`; source-local error state, 13 focused tests and actual-component desktop/mobile proof. [Integrated evidence](evidence/P05a-P06a-foundations.md). D13/F19 remain open. |
 | P05b01 | accepted resolver slice | `0c2d043`; D13 identity/metadata control, 29 new tests (25 red before fix), producer source APPROVE. Full suite + T/L/B pass. BUG-010; surface wiring remains. |
-| P05b02 | in-progress | QA owns four consumers + browser proof from `3820a19`; shared instance helper and existing GameImage picker fallback. |
+| P05b02 | accepted surface slice | `96eb70c` (agent `060cb4f`); all four consumers share instance identity, picker GameImage fallback; root source APPROVE and integrated four-case locale/viewport browser proof. |
 | P06a | accepted slice | `10ce45d`; battle-local summon identity, full A/A and A/B/A replay, live/dead collisions. Independent TD approval. [Evidence](evidence/P05a-P06a-foundations.md). |
 | P06b | accepted deadline slice | `2cd350b`; inclusive 60,000 ms deadline, no overshoot, tied actors and exact/early victory. Five boundary tests, independent parent APPROVE; BUG-006. |
 | Remaining P06–P10 | pending dependencies | D04–D06/shared effects first. All skills remain behavior-unaccepted. |
@@ -225,3 +226,33 @@ dependencies/shared browser cache preserved. Root worktree remains claimed.
 P06c shared periodic timeline/death transaction has technical plan approval;
 game-design contract review underway, no runtime edit yet. P04a02 talk/NPC
 contract planning is read-only. No push/PR/deployment. Full v1 remains open.
+
+## Integrated item surfaces and quest talk core
+
+At `96eb70c` plus P04a02 core (committed `2d60095`), root validation:
+
+- U:97 files /952 passed /1 existing merc-XP skip,25.75 s (>15 s budget).
+- Focused core:13 talk +10 clear =23 passed,2.66 s then2.53 s. Before patch
+  12 missing-API failures; BUG-012 filed before runtime changes.
+- T/L/B pass, including explicit ignored-E2E lint. Build5.02 s; existing
+  large chunk and2.57 MB manifest precache warnings remain. No engine source
+  changed; latest standalone E remains351 passed.
+- D/M: item-art+prior Den specs8/8 pass,40.5 s, en/zh-CN×1280×800/360×640.
+  Command is in BUG-010. Shared art is verified through ordinary inventory
+  controls, including identity-specific failure/recovery. Den spec here still
+  proves only clear objective and persistence, not NPC hand-in.
+- Core API validates current-act canonical roster, tracked/unclaimed/current-
+  act quest and pre-event predecessors. Actual seed7/ordinal0 Den clear,
+  separate talk, separate explicit claim and exact XP/level/quest-point budgets
+  pass. Strong hero proves wiring only. No automatic rewards/new map unlock.
+- Producer independently APPROVE of the five-file core and five-file locale
+  child. Locale `392e671` adds all5 authored ActI NPC names/greetings and honest
+  Akara states, corrects Den return objective in both locales. Agent JSON leaf
+  parity town23/quests155,15 focused tests,U939/1skip,T/L/B,4 Den browser cases
+  pass. Combined NPC UI/claim/save validation follows in P04a02c.
+
+Verified removed `/tmp/d2h5-p04a02-unit.log`, `/tmp/d2h5-p04a02-browser`, root
+`dist` and `node_modules/.vite` after every consumer/process completed. Locale
+agent also cleaned/released worktree4; root remains claimed. No push/PR/deploy.
+P06c01 periodic timeline/death transaction implementation is in progress in
+worktree3 after23-test RED evidence. C0–C4 and full feature/G0–G7 remain open.
