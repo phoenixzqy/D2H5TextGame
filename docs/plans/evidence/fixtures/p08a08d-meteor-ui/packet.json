@@ -870,8 +870,17 @@
   },
   "scope": "bounded presentation/finite Chromium CSS/same-context save; no native cast/earned progression/balance/performance/full accessibility/full private-v1 acceptance",
   "rawCleanup": {
-    "status": "pending independent archive review and commit",
-    "retainedEmptyRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-meteor-ui-68uhit_n"
+    "status": "complete",
+    "owner": "root",
+    "archiveCommit": "d70b01b78e993ad92bfe9da1d188cf2288b7a91b",
+    "verifiedUtc": "2026-10-21T11:49:22.687302+00:00",
+    "freshChecks": "committedarchive/allmembers/exactliveRAWset/17sources/968processbirths/761outputs/originalcheckout/readersreleased",
+    "removedFiles": 149,
+    "removedBytes": 7550936,
+    "removedEmptyChildDirectories": 6,
+    "remainingFiles": 0,
+    "retainedEmptyRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-meteor-ui-68uhit_n",
+    "failures": []
   },
   "createdUtc": "2026-10-21T11:47:25.557854+00:00",
   "independentDurableReview": {
@@ -880,5 +889,12 @@
     "verified": "all149safe regularmembers/livebytes/exactset/6childdirs;17closurefingerprints/live+6e39e4d;12records/968absentbirths;761outputs/10dirs absent;originalcheckoutclean;failures/drafts/33browserattachments18PNGs preserved",
     "readersReleased": true,
     "cleanupScope": "only149manifestfiles and6empty childdirectories after commit/reverification; retain root/sharedparents"
+  },
+  "independentCleanupReceiptReview": {
+    "kind": "root transcription of QA review",
+    "verdict": "APPROVE",
+    "verified": "committedd70b01barchive/all149members;onlyrawCleanupchanged;17sources/968absentbirths/761outputs10dirsabsent;realemptyMeteorRAWroot;separateAmplifyRAWintact;originalcheckoutclean",
+    "readersReleased": true,
+    "artifactsOrProcessesCreated": false
   }
 }

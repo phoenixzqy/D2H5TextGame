@@ -2906,3 +2906,8 @@ Claimcontinues,noremote; fullD04/P08/C1/private-v1/C0–C4/G0–G7 remainopen.
 ## P08a08D durable packet prepared
 
 [Packet](evidence/fixtures/p08a08d-meteor-ui/packet.json) binds 149lossless members/7,550,936B, staged final fingerprints and original failures/drafts/reviews/browser evidence. Root byte-roundtrip verified; all12records/968births/761outputs absent. Independent archive review and commit precede exact RAW cleanup; retain empty root/shared parents/source/history/fonts/tools. Umbrella claim continues; fullv1 open, no remote action.
+
+
+## P08a08D exact RAW cleanup
+
+Committed archive `d70b01b` verified again before exact149files/7,550,936B/6emptychilddirs removal, zerofailures/remainingfiles. [Packet receipt](evidence/fixtures/p08a08d-meteor-ui/packet.json) records17sources/968absentbirths/761outputs and empty retainedRAWroot/sharedparents/fonts/tools/source/history. Meteor bounded closure complete; umbrella claim continues into Amplify Damage UI, fullv1 open, no remote action.

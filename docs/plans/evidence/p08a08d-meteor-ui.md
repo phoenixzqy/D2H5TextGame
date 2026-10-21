@@ -108,3 +108,8 @@ installed fonts/browsers/tools/dependencies and all source/history. No remote ac
 ## Durable packet
 
 [Packet](fixtures/p08a08d-meteor-ui/packet.json) and adjacent lossless archive preserve 149 regular files/7,550,936B. Root verified every member against live RAW. Final closure fingerprints explicitly distinguish the two intentionally changed control/report documents from the historical browser freeze. All12 command records/968 process births and761 removed outputs freshly absent. Independent durable review and archive commit precede exact RAW cleanup; root retains ownership until its receipt.
+
+
+## Exact RAW cleanup receipt
+
+Archive commit `d70b01b` precedes fresh committed-byte/member/source/process/output checks and exact149files/7,550,936B/6emptychilddirectories removal. Zero failures or remaining files; real empty RAW root retained. Shared parents/dependencies/fonts/browser tools/source/history/original checkout preserved. Independent archive approval is recorded in packet; final receipt review follows. Umbrella continues into Amplify Damage UI; fullv1 remains open.
