@@ -194,3 +194,91 @@ describe('P07b03A shared Meditation class and level eligibility', () => {
     expect(resolveMeditationRank(player.skillLevels, definition)).toBe(2);
   });
 });
+
+
+import { activeMeditationAura, composeMeditationAura } from './meditation';
+import type { CombatUnit } from '../combat/types';
+function encounterUnit(id: string, side: CombatUnit['side']): CombatUnit {
+  return { id, name: id, side, kind: side === 'player' ? 'hero' : 'monster', level: 24, tier: 'trash',
+    life: 100, mana: 50,
+    stats: { life: 100, lifeMax: 100, mana: 100, manaMax: 100, attack: 100, defense: 0, magicResist: 0,
+      attackSpeed: 100, critChance: 0, critDamage: 2, physDodge: 0, magicDodge: 0,
+      magicFind: 0, goldFind: 0,
+      resistances: { physical: 0, fire: 0, cold: 0, lightning: 0, arcane: 0, poison: 0 } },
+    statuses: [], cooldowns: {}, skillOrder: [], activeBuffIds: [], enraged: false };
+}
+
+const selectedSource = () => ({ id: 'hero', class: 'paladin' as const, level: 24,
+  selectedAuraId: 'paladin.meditation' as const, skillLevels: { 'paladin.meditation': 11 } });
+const meditationProjection = () => ({ selectedAuraId: 'paladin.meditation' as const,
+  sourceHeroId: 'hero', fieldedMercCombatId: 'merc', rank: 11, maxRank: 20,
+  sourceBaselinePerSecond: 4, manaRegenPctPerRank: 0.03 });
+function encounter() {
+  return new Map<string, CombatUnit>([['hero', encounterUnit('hero', 'player')],
+    ['merc', { ...encounterUnit('merc', 'player'), kind: 'merc' }],
+    ['bench', { ...encounterUnit('bench', 'player'), kind: 'merc' }],
+    ['enemy', encounterUnit('enemy', 'enemy')],
+    ['summon', { ...encounterUnit('summon', 'player'), kind: 'summon', summon: true }]]);
+}
+function requiredEncounterUnit(units: ReadonlyMap<string, CombatUnit>, id: string): CombatUnit {
+  const unit = units.get(id);
+  if (!unit) throw new Error(`Missing test unit ${id}`);
+  return unit;
+}
+describe('immutable exact-factor Meditation wave projection and encounter eligibility', () => {
+  it('copies authored factors and numeric adapter authority without computing a rate', () => {
+    const source = selectedSource(); const original = structuredClone(source);
+    const tuning = { requiredLevel: 24, maxRank: 31, manaRegenPctPerRank: 0.125 };
+    const aura = composeMeditationAura(source, 1.4000000000000001, 'merc', tuning);
+    expect(aura).toEqual({ ...meditationProjection(), maxRank: 31,
+      sourceBaselinePerSecond: 1.4000000000000001, manaRegenPctPerRank: 0.125 });
+    expect(Object.isFrozen(aura)).toBe(true); expect(source).toEqual(original);
+    source.skillLevels['paladin.meditation'] = 20; tuning.manaRegenPctPerRank = 9;
+    expect(aura?.rank).toBe(11); expect(aura?.manaRegenPctPerRank).toBe(0.125);
+    expect(Object.keys(aura ?? {}).sort()).toEqual(['selectedAuraId', 'sourceHeroId', 'fieldedMercCombatId',
+      'rank', 'maxRank', 'sourceBaselinePerSecond', 'manaRegenPctPerRank'].sort());
+  });
+  it.each([undefined, 'hero', ''])('omits absent/self/empty mercenary identity%s', mercId => {
+    expect(composeMeditationAura(selectedSource(), 4, mercId)).not.toHaveProperty('fieldedMercCombatId');
+  });
+  it('never projects an absent selection or Might selection', () => {
+    const { selectedAuraId: _selection, ...none } = selectedSource();
+    expect(composeMeditationAura(none, 4)).toBeUndefined();
+    expect(composeMeditationAura({ ...selectedSource(), selectedAuraId: 'paladin.might' }, 4)).toBeUndefined();
+  });
+  it.each([{ class: 'sorceress' as const }, { level: 23 }, { skillLevels: {} }])('independent ineligibility%j suppresses projection', patch => {
+    expect(composeMeditationAura({ ...selectedSource(), ...patch }, 4)).toBeUndefined();
+  });
+  it('qualifies only source hero and original fielded merc, without letting CC suppress either', () => {
+    const units = encounter(); const aura = meditationProjection();
+    for (const id of ['hero', 'merc']) {
+      units.set(id, { ...requiredEncounterUnit(units, id), statuses: [{ id: 'stun', sourceId: 'enemy', stacks: 1, remaining: -1 }] });
+      expect(activeMeditationAura(aura, id, units)).toBe(aura);
+    }
+    for (const id of ['bench', 'enemy', 'summon', 'missing']) expect(activeMeditationAura(aura, id, units)).toBeUndefined();
+  });
+  it.each([{ life: 0 }, { life: NaN }, { side: 'enemy' as const }, { kind: 'merc' as const },
+    { id: 'other' }, { summon: true }, { ownerId: 'other' }, { summonOwnerId: 'other' }])(
+    'invalid source%j suppresses every recipient', patch => {
+      const units = encounter(); units.set('hero', { ...requiredEncounterUnit(units, 'hero'), ...patch });
+      for (const id of ['hero', 'merc']) expect(activeMeditationAura(meditationProjection(), id, units)).toBeUndefined();
+    });
+  it.each([{ life: 0 }, { life: Infinity }, { side: 'enemy' as const }, { kind: 'hero' as const },
+    { id: 'replacement' }, { summon: true }, { ownerId: 'hero' }, { summonOwnerId: 'hero' }])(
+    'invalid merc recipient%j does not suppress the source hero', patch => {
+      const units = encounter(); units.set('merc', { ...requiredEncounterUnit(units, 'merc'), ...patch });
+      const aura = meditationProjection();
+      expect(activeMeditationAura(aura, 'merc', units)).toBeUndefined();
+      expect(activeMeditationAura(aura, 'hero', units)).toBe(aura);
+    });
+  it.each([{ rank: 0 }, { rank: 1.5 }, { rank: 21 }, { rank: NaN }, { maxRank: 0 },
+    { sourceBaselinePerSecond: -1 }, { sourceBaselinePerSecond: Infinity }, { sourceBaselinePerSecond: NaN },
+    { manaRegenPctPerRank: -1 }, { manaRegenPctPerRank: Infinity }, { manaRegenPctPerRank: NaN }])(
+    'refuses malformed projection%j', patch => {
+      expect(activeMeditationAura({ ...meditationProjection(), ...patch }, 'hero', encounter())).toBeUndefined();
+    });
+  it.each([{ sourceBaselinePerSecond: 0 }, { manaRegenPctPerRank: 0 }])('accepts inactive zero tuning%j without fallback', patch => {
+    const aura = { ...meditationProjection(), ...patch };
+    expect(activeMeditationAura(aura, 'hero', encounter())).toBe(aura);
+  });
+});

@@ -193,3 +193,75 @@ describe('compensated cumulative MP-millisecond integration', () => {
     expect(integrateManaRecovery(4.16, elapsed, before)).toEqual(before);
   });
 });
+
+
+import { integrateManaRecoveryWithContributionBetween } from './mana-recovery';
+
+describe('one pooled integral for independently qualified baseline and scaled contribution', () => {
+  const contribution = (baseline: number, rank: number, coefficient = 0.03) =>
+    ({ sourceBaselinePerSecond: baseline, factors: [coefficient, rank] as const });
+  it.each([[36.4, 20, 1456, 546], [4, 11, 133, 33]])(
+    'integrates literal source%s rank%s without binary multiplication or addition', (baseline, rank, heroWhole, mercWhole) => {
+      for (const rate of [baseline, 0]) {
+        const expected = rate === 0 ? mercWhole : heroWhole;
+        for (const endpoints of [[0, 25000], [0, 0.1, 0.3, 16, 17, 149, 1000.25, 25000]]) {
+          let value = createManaRecoveryIntegral(); let granted = 0;
+          for (let i = 1; i < endpoints.length; i++) {
+            const prior = structuredClone(value);
+            const from = endpoints[i - 1]; const to = endpoints[i];
+            if (from === undefined || to === undefined) throw new Error('Missing test endpoint');
+            const next = integrateManaRecoveryWithContributionBetween(rate, contribution(baseline, rank), from, to, value);
+            granted += next.wholeGranted - value.wholeGranted;
+            expect(value).toEqual(prior); value = next;
+          }
+          expect(granted).toBe(expected); expect(value.wholeGranted).toBe(expected);
+          expect(value.exactTotal).toBe(String(expected * 1000));
+          expect(exportManaRecoveryCarry(value)).toEqual({ manaRegenCarry: 0, manaRegenCompensation: 0, manaRegenExactCarry: '0' });
+        }
+        let seed = createManaRecoveryIntegral(); let acrossWaves = 0;
+        for (const [from, to] of [[0, 0.1], [0.1, 17], [17, 1000.25], [1000.25, 25000]] as const) {
+          const value = integrateManaRecoveryWithContributionBetween(rate, contribution(baseline, rank), from, to, seed);
+          acrossWaves += value.wholeGranted;
+          const carry = exportManaRecoveryCarry(value);
+          seed = createManaRecoveryIntegral(carry.manaRegenCarry, carry.manaRegenCompensation, carry.manaRegenExactCarry);
+        }
+        expect(acrossWaves).toBe(expected); expect(seed.exactTotal).toBe('0');
+      }
+    });
+  it('honors numeric baseline authority, exact separate factors and a single mixed carry', () => {
+    const bonus = integrateManaRecoveryWithContributionBetween(0, contribution(1.4000000000000001, 1), 0, 1000);
+    expect(bonus.exactTotal).toBe('42.000000000000003');
+    expect(exportManaRecoveryCarry(bonus).manaRegenExactCarry).toBe('0.042000000000000003');
+    const hero = integrateManaRecoveryWithContributionBetween(1.4000000000000001, contribution(1.4000000000000001, 1), 0, 1000);
+    expect(hero.wholeGranted).toBe(1);
+    expect(exportManaRecoveryCarry(hero).manaRegenExactCarry).toBe('0.442000000000000103');
+  });
+  it('pools fractional baseline and bonus before one whole-MP decision', () => {
+    const value = integrateManaRecoveryWithContributionBetween(0.6, contribution(20, 1), 0, 1000);
+    expect(value.wholeGranted).toBe(1); expect(exportManaRecoveryCarry(value).manaRegenExactCarry).toBe('0.2');
+  });
+  it.each([0, -1, NaN, Infinity, -Infinity])('invalid/inactive recipient baseline%s leaves valid contribution intact', rate => {
+    const value = integrateManaRecoveryWithContributionBetween(rate, contribution(4, 11), 0, 25000);
+    expect(value.wholeGranted).toBe(33); expect(exportManaRecoveryCarry(value).manaRegenExactCarry).toBe('0');
+  });
+  it.each([contribution(0, 1), contribution(-1, 1), contribution(NaN, 1), contribution(Infinity, 1),
+    contribution(4, 0), contribution(4, -1), contribution(4, 1.5), contribution(4, NaN), contribution(4, Infinity),
+    contribution(4, 1, 0), contribution(4, 1, -1), contribution(4, 1, NaN), contribution(4, 1, Infinity)])(
+    'invalid/inactive contribution%j leaves valid baseline intact', bonus => {
+      expect(integrateManaRecoveryWithContributionBetween(4, bonus, 0, 25000))
+        .toEqual(integrateManaRecoveryBetween(4, 0, 25000));
+    });
+  it.each([[NaN, 1], [0, Infinity], [-Infinity, 1], [1, 1], [2, 1]])('preserves prior integral for invalid endpoints%s→%s', (from, to) => {
+    const prior = createManaRecoveryIntegral(0.5);
+    expect(integrateManaRecoveryWithContributionBetween(4, contribution(4, 20), from, to, prior)).toBe(prior);
+  });
+  it('preserves an inactive prior integral and never mutates or retains contribution tuning', () => {
+    const prior = createManaRecoveryIntegral(0.5);
+    expect(integrateManaRecoveryWithContributionBetween(NaN, undefined, 0, 1000, prior)).toBe(prior);
+    const bonus = Object.freeze({ sourceBaselinePerSecond: 4, factors: Object.freeze([0.03, 11] as const) });
+    const before = structuredClone(bonus);
+    const value = integrateManaRecoveryWithContributionBetween(4, bonus, 0, 25000, prior);
+    expect(value.wholeGranted).toBe(133); expect(exportManaRecoveryCarry(value).manaRegenExactCarry).toBe('0.5');
+    expect(bonus).toEqual(before); expect(prior.exactTotal).toBe('500');
+  });
+});

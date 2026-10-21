@@ -131,3 +131,33 @@ export function exportManaRecoveryCarry(value: ManaRecoveryIntegral): {
     manaRegenExactCarry: text(carry)
   };
 }
+
+
+/** Extra recovery expressed as independent decimal factors, never a binary numeric rate. */
+export interface ManaRecoveryContribution {
+  readonly sourceBaselinePerSecond: number;
+  readonly factors: readonly [coefficient: number, rank: number];
+}
+
+/** Pool qualified baseline and scaled recovery before one cumulative integral/whole-MP result. */
+export function integrateManaRecoveryWithContributionBetween(
+  ratePerSecond: number,
+  contribution: ManaRecoveryContribution | undefined,
+  fromMs: number,
+  toMs: number,
+  previous: ManaRecoveryIntegral = createManaRecoveryIntegral()
+): ManaRecoveryIntegral {
+  if (!Number.isFinite(fromMs) || !Number.isFinite(toMs) || toMs <= fromMs) return previous;
+  let rate = Number.isFinite(ratePerSecond) && ratePerSecond > 0 ? decimal(ratePerSecond.toString()) : decimal('0');
+  if (contribution) {
+    const { sourceBaselinePerSecond, factors: [coefficient, rank] } = contribution;
+    if (Number.isFinite(sourceBaselinePerSecond) && sourceBaselinePerSecond > 0 &&
+      Number.isFinite(coefficient) && coefficient > 0 && Number.isInteger(rank) && rank > 0) {
+      rate = add(rate, multiply(multiply(decimal(sourceBaselinePerSecond.toString()),
+        decimal(coefficient.toString())), decimal(rank.toString())));
+    }
+  }
+  if (rate.coefficient === 0n) return previous;
+  const elapsed = add(decimal(toMs.toString()), decimal(fromMs.toString()), -1n);
+  return integral(add(decimal(previous.exactTotal), multiply(rate, elapsed)));
+}
