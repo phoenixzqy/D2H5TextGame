@@ -2628,3 +2628,24 @@ dirs/dist root; all absent, zero failures. Shared cache parents retained. RAW
 remains root-owned for later durable packet/exact cleanup. Original checkout
 untouched; umbrella claim continues; no remote action. Bilingual UI/browser and
 full private-v1/C0–C4/G0–G7 remain open.
+
+## P07a05D Skeleton Mastery bilingual detail
+
+`1cf6981` changes exactly five paths: exact allocated-rank resolution and immutable
+prose interpolation in SkillsScreen,20 bilingual cases, both locale descriptions,
+and only the obsolete Skeleton Mastery spec row. BUG067 source-only prerequisite
+`b826f7b` precedes edits. New-warrior/mage creation only; life4/Attack2/ordinary
+Defense1 percent per allocated rank, cap20 totals80/40/20, unlock1, established
+支配骷髅 preserved. No runtime/shared-display/tuning/save change.
+
+Actual reviewed UI RED20=12fail/eight controls, production hashes unchanged.
+GREEN52/3 then lint1 unnecessary optional-chain token; preserved. Reviewed v3
+removes only token, expectations unchanged. Finalserial related52/3,types,full
+5082/196,lint/purity,freshproductionbridgebuild pass. Zero pending/todo/stops/
+signals; timing target/build warnings remain. GD/TD source and QA/producer whole
+review APPROVE; readers released. [Evidence](evidence/p07a05-skeleton-mastery.md).
+Exact761 outputs40,970,728B/920absent birth identities retained for immediate E
+browser consumption at claimed worktree dist and task Vitest result; root owns
+exact cleanup after E readers/fresh checks. RAW retained for durable packet.
+Original checkout preserved, umbrella claim continues, no remote action. E and
+full private-v1/C0–C4/G0–G7 remain open.

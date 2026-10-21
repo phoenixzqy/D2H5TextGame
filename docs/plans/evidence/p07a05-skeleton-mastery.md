@@ -261,3 +261,59 @@ caches, tools, source/history and the original checkout are preserved. The
 umbrella worktree claim continues; no push/PR/merge/deployment occurred. Truthful
 bilingual UI and production-browser acceptance remain D/E; full private-v1,
 C0–C4 and G0–G7 remain open.
+
+## P07a05D — truthful bilingual Skeleton Mastery detail
+
+BUG-067 was source-reproduced and committed separately as `b826f7b` before the
+five-path UI increment. The UI increment touches only SkillsScreen, its new
+Skeleton Mastery test, both locale files and the obsolete passive spec row.
+It reuses the immutable authored definition and exact allocation resolver;
+existing shared summon-stat display support needs no change. The established
+支配骷髅 name is preserved. Both descriptions state newly created skeleton
+warriors/mages, maximum life4%/Attack2%/ordinary Defense1% per allocated rank,
+unlock1, cap20 and totals80%/40%/20%. No old-summon refill/retrofit is promised.
+The obsolete summon_mastery/+50% row alone is reconciled to D05.
+
+GD/TD approved the five-path plan; GD/TD/QA independently approved frozen testv2
+and copyv1 before actual execution. Draftv1's expected space before the delta
+was corrected before execution because StatLine uses adjacent text plus CSS
+margin. The unexecuted v1 is retained. Actual unchanged-production RED20:
+12 failed/eight passed, six failures per locale: missing authored prose,
+legacy-only rank inference, insertion-order19→1, displayed99/20 though numeric
+potency already capped, fractional rank treated learned, and near-miss identity
+normalized as allocated. Reverse insertion order, NaN+validalias, real L1 point
+allocation and whole current recording/resource preservation already pass.
+All three rank1/rank2 rows/deltas and level1 requirement passed before prose
+failure; capped80/40/20 and disabled action passed before99header failure.
+Hard-failed tails were not executed in RED; later GREEN executes them. Four
+production baseline hashes are unchanged around RED. Preserve complete reports
+and `stage-d-red-classification.json`.
+
+First GREEN52/3 passed against the minimal UI change. Lint then rejected one
+unnecessary optional chain in the test helper at71:29. The original log/meta and
+source freeze remain. GD/TD/QA approved v3 deleting only the optional-chain token
+before installation; exact expected strings, ranks and assertions are unchanged.
+Final testv3 is8707 bytes, SHA256
+8b8f5c95c918909ef988cf375ef5113ab71909f3bc93ee7ac94a2d9e28f176cf.
+No gameplay/runtime/shared-display/save/tuning changes are made. Imported ranks
+and the level24 real-wave UI fixture are explicit scaffolding, not earned
+progression. Actual production-browser/disk/reload acceptance remains Stage E.
+
+Final v3 serial gates: related52/3 (5.759s Vitest/6.857s wrapper), types12.075s,
+full5082/196 (84.662/86.108s), lint/purity31.726s and fresh production
+bridge/build9.445s all pass. Source freezes B/C/D match throughout final gates;
+historical UI RED uses baseline production, v2 GREEN/lint1 use the retained
+v2 freeze. No pending/todo/stops/signals. See stage-d-final-gates.json. Existing full15s
+budget and Browserslist/chunk/large-manifest precache warnings remain.
+
+GD/TD installed-source review and exact v3 correction review APPROVE; QA and
+producer independently APPROVE whole final evidence and retained-output handoff.
+All D readers released. Source commit `1cf6981` contains exactly the five paths. Inventory has761 files,
+40,970,728 bytes and920 absent process birth identities. Exact task outputs are
+retained for immediate Stage E production-browser acceptance: worktree dist and
+node_modules/.vite/vitest/results.json, listed in stage-d-output-inventory.json.
+Root owns them and will remove exact manifest paths after E consumers release
+and fresh source/output/process checks. RAW is root-owned until durable packet
+verification and exact cleanup. No remote action; original checkout preserved;
+umbrella worktree continues. Native/UI unit evidence does not certify production
+browser, campaign, performance, balance, coverage or full private-v1/C0–C4/G0–G7.

@@ -1,6 +1,6 @@
 # BUG-067 — Align Skeleton Mastery details with fresh summon bonuses
 
-- **Status:** Open; source discrepancy reproduced, reviewed UI execution pending.
+- **Status:** Fixed in `1cf6981` for source/UI unit behavior; production-browser acceptance pending.
 - **Severity:** Medium — misleading skill description and legacy/alias rank display.
 - **Owner / affected systems:** frontend-dev, writer, qa-engineer; skill detail, bilingual copy and passive spec row.
 - **Build:** runtime `7740f2e`; UI source unchanged through `6036d3a` and Stage C.
@@ -47,3 +47,14 @@ reconcile only the obsolete Skeleton Mastery row. Preserve the name 支配骷髅
 
 Consult D05; actual allocated Mastery is already applied at summon creation.
 Source/UI and production-browser acceptance remain pending validation.
+
+## Actual reproduction and resolution
+
+Actual unchanged-production UI RED20 has12 failures/eight passing controls,
+classified in stage-d-red-classification.json. Both locales fail missing prose,
+legacy-only rank, alias order, displayed99/20, fractional rank and near-miss IDs.
+Passing controls and hard-failure limits remain in full reports. Final source
+reuses exact resolver/definition; all20 new UI cases and related52/3 pass, full
+5082/196, types/lint/production build pass. A test-only lint optional-chain
+correction is preserved separately. See linked Skeleton evidence; browser E
+remains separate and no combat/save/balance defect is inferred from UI failures.
