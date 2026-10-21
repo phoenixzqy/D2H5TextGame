@@ -2811,3 +2811,20 @@ verify exact761file40,975,412B cleanup plus9childdirs/distroot,allabsent/zerofai
 exact originals removed. RAW retainedrootowned for durable archive/exactcleanup;
 shared caches/tools/source/history/original preserved. Claimcontinues,noremote.
 UI/browser,BUG068 and full-v1 remainopen.
+
+
+## P07b03G Meditation UI and bilingual copy
+
+`10c051f` changes4paths: native exclusive None/Might/Meditation, independent
+eligibility/allocated aliases, retained unavailable selection/physical None clearing
+and truthful denominator/rank/cap/unlock/earned-credit copy.
+[Evidence](evidence/p07b03-meditation.md). ActualRED19=14behavioral+5controls;
+missing-radio/group failures do not independently prove downstream assertions.
+Preinstallation draft corrections remain unexecuted, outcomes unchanged after RED.
+GREEN81/3,types/lint,full5424/200,productionbridgebuild pass;6serialrecords,
+no engine edit/run(E attribution retained),no pending/todo/stops/signals. Timing
+misses/warnings remain without performance acceptance. GD/TD and QA/producer
+APPROVE/readersreleased. Sourcecommit then fresh hashes/901absentbirths verify
+exact761files40,978,522B cleanup plus9childdirs/distroot,allabsent/zerofailures.
+RAW retainedrootowned for durable archive/exactcleanup; shared caches/tools/source/
+history/original preserved. Claimcontinues,noremote. Spec/browser/BUG068/fullv1 open.

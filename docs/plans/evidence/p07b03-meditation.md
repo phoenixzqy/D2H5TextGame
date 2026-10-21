@@ -290,3 +290,36 @@ absent and gzip/manifest/small diagnostics preserved. No report bytes lost. Root
 remaining RAW for final durable verification/exact cleanup; shared caches/tools/
 source/history/original checkout preserved. Claim continues,no remote action.
 UI/browser,BUG068 and full private-v1/C0–C4/G0–G7 remain open.
+
+
+## Stage G — exclusive native UI and truthful bilingual copy
+
+Source commit `10c051f` changes exactly SkillsScreen.tsx, new Meditation UI tests
+and both skills locales. Native None/Might/Meditation radios use canonical store
+actions, independent eligibility and retained unavailable selection. None checks
+physical absence; normalized allocated aliases use maximum finite integral rank
+and cap. Learning, focus and combo edits never select. The current native complete
+recording remains frozen. Description, Aura label, rank3%/next6%(+3%), source
+baseline denominator, cap20/60%, unlock24 and earned surviving-merc credit match D05.
+
+Installed tests12190B SHA256
+`44776fa1552ca6129bd579dc90890498bbd7cf3eb3e5e5c8f33cd5c6914bc944`; source48646B
+`a3d34b44258ed8c02678b249884e1c4f727d0834b01f978f490749a28f8d7e8f`. Retained
+unexecuted draft corrections: tests inspect all option values and use empty
+legacy allocation for fallback; source None uses Object.hasOwn. No expected
+outcomes changed after RED. Actual unchanged-production RED19=14behavioral failures
++5passing controls(7.426s). Some tests stop at missing radio/group before later
+fallback/clearing assertions, which are not individually RED-proven. Actual
+mixed-alias/fractional display and obsolete copy failures are recorded.
+
+Six serial records in RAW stage-g-final-verification.json: focusedGREEN81/3files
+7.398s, types12.902s, lint/purity32.877s, full5424/5424 in200files87.397s and fresh
+productionbridgebuild9.225s4chunks pass. No engine edits/run; E engine evidence
+remains attributed to E. No pending/todo/stops/signals/surviving descendants.
+Existing timing misses/build warnings remain without performance acceptance.
+GD/TD source and QA/producer whole-evidence reviews APPROVE; all readers released.
+After sourcecommit, fresh hashes/901absentbirths verify exact761files40,978,522B
+cleanup plus9childdirs/distroot; all exactfiles absent,zero failures. Shared
+caches/dependencies/fonts/tools/source/history/original preserved. RAW remains
+root-owned for durable verification/exact cleanup. Claim continues,no remoteaction.
+Spec reconciliation/browser,BUG068 and full private-v1/C0–C4/G0–G7 remain open.
