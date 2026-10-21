@@ -2684,3 +2684,35 @@ packet. After durablecommit `e6f8b9d` and fresharchive/member/source/process/
 disposablechecks, exactcleanup removes331RAWfiles19,896,406B/oneemptychilddir;
 zero remainingfiles/failures; emptyRAWroot retained. Source/history/sharedcaches/
 fonts/tools/originalcheckout preserved. Full-v1 umbrella remains open; Meditation next.
+
+
+## P07b03A Meditation definition and schema
+
+`3ba7ad4` changes exactly four paths: the controlling D05 contract, exact authored
+Meditation schema, immutable JSON-derived definition and rank/eligibility tests.
+Unlock24/Cleansing learning prerequisite/cap20/.03 tuning stay authored. Rank uses
+the maximum exact data/canonical alias once; eligibility checks exact Paladin and
+finite level without selection or a new runtime prerequisite requirement.
+[Evidence](evidence/p07b03-meditation.md).
+
+Actual unchanged-schema RED75=35 behavioral failures+40 passing controls becomes
+75GREEN; loader322 passes. Missing helper produces zero collected tests/one failed
+suite, classified as capability evidence. Helper183 passes. Initial full5265 and
+types pass, then lint genuinely fails one redundant test guard operator. Reviewed
+V3 deletes only that operator. Final serial focused183, engine2732(12.603s),
+types12.333s, full5265/197files(82.485s), lint32.458s and clean production bridge/
+build9.310s pass; no pending/todo/stops/signals. Existing3s/15s timing targets and
+three build warnings remain; no performance acceptance. GD/TD source and QA/producer
+whole-evidence APPROVE; all readers released.
+
+After source commit, fresh source/761 output hashes and2398 absent process births
+validate exact cleanup:40,971,628B/761files, nine childdirs and fresh dist root removed,
+all absent, zero failures. Shared cache parents/dependencies/fonts/tools/source/
+history/original checkout preserved. RAW remains root-owned at
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-meditation-k9g_jrtv`
+for later durable packet/independent verification; root removes exact evidence files
+after archive acceptance and reader release. Umbrella claim continues; no remote action.
+Producer audit omits unnecessary save-test preparation: only selected-aura.test.ts
+needs current-output changes and belongs to the atomic five-path v11 cutover next.
+Meditation save/selection/recovery/UI/browser, BUG068 closure and full private-v1/
+C0–C4/G0–G7 remain open.
