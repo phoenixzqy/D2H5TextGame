@@ -4666,3 +4666,39 @@ Further UI2/boundary/basic and simulation-adapter readiness prerequisites,
 production wave/caller guards, exact receipt/conflict/publication/settlement/replay
 integration and bilingual Iron UI/browser acceptance remain pending.
 FullD06/P09/P10/private-v1 remain open.
+
+
+## D06 v1s explicit readiness fixtures for passive and summon detail UI
+
+UI1 readiness fixtures received independent QA, TD/five-axis and producer APPROVE
+and committed as `a4cc290`. Exact readiness-ui1 cleanup removed857files/
+42,724,247bytes and14 empty directories with zero failures/remaining targets;
+recorded command identities were dead. Diagnostic evidence remains retained.
+
+TD approved this five-path UI2 plan. Iron Skin, Amplify Damage, Skeleton Mastery
+and paid summon preparation screen suites import the hydration leaf, become ready
+at the end of existing outer setup, then idle after existing cleanup/abort. Inner
+locale hooks/remount loops, helpers, registry order, genuine configuration/learning/
+combat actions, copy, recordings and all assertions/declarations stay unchanged.
+No global fixture, production default, readiness guard or helper fallback changes.
+No behavioral RED or new tests for fixture state alone.
+
+Serial focused134/4files12.493s, types14.840s, lint39.870s including85 engine purity
+files, full6493/220files111.831s and production build9.740s passed. No browser run
+or new visual acceptance is claimed for test-only changes. Related5s/full15s
+budgets and existing React act, fixture fallback, stale Browserslist, chunk and
+precache diagnostics remain open. SaveCurrent11 unchanged. Security check passes
+for hook-local prerequisites with no production bypass, ownership write or save
+payload change.
+
+Five paths, readiness-ui2 command/source/output identities, prior cleanup and exact
+owned dist/tmp inventory are frozen in readiness-ui2-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review remains before commit; disposable outputs
+await exact cleanup. Diagnostics retained; root is sole
+writer/executor; umbrella worktree claim continues; no remote action or server.
+Further boundary/basic and simulation-adapter readiness prerequisites, production
+wave/caller guards, exact receipt/conflict/publication/settlement/replay integration
+and bilingual Iron UI/browser acceptance remain pending.
+FullD06/P09/P10/private-v1 remain open.
