@@ -39,6 +39,7 @@ import { loadMercPool } from '@/data/loaders/mercs';
 import { aggregateEquipmentMods, applyEquipmentCoreMods, equipmentModsToDerivedModifiers } from '@/engine/progression/equipment-mods';
 import { deriveStats, effectiveStatValue } from '@/engine/progression/stats';
 import { composeHeroRecovery } from '@/engine/progression/warmth';
+import { resolveFrozenArmorRank } from '@/engine/skills/frozen-armor';
 
 const CHALLENGE_ORDINAL_PERIOD = 360360;
 let manualChallengeOrdinal = 0;
@@ -629,7 +630,7 @@ function playWave(waveIdx: number): void {
     if (!fresh || unit.id !== fresh.id) return unit;
     const mana = Math.min(unit.mana, fresh.stats.manaMax);
     const capped = mana >= fresh.stats.manaMax;
-    return { ...unit, level: fresh.level, stats: fresh.stats,
+    const refreshed = { ...unit, level: fresh.level, stats: fresh.stats,
       life: Math.min(unit.life, fresh.stats.lifeMax), mana,
       manaRegenPerSecond: fresh.manaRegenPerSecond ?? 0,
       increasedDamagePct: fresh.increasedDamagePct ?? { fire: 0 },
@@ -639,6 +640,12 @@ function playWave(waveIdx: number): void {
       skillOrder: fresh.skillOrder, skillLevels: fresh.skillLevels ?? {},
       equippedWeapon: fresh.equippedWeapon ?? {},
       summonGridPositions: fresh.summonGridPositions ?? [] };
+    if (resolveFrozenArmorRank(fresh.skillLevels) > 0) return refreshed;
+    // Invalidate only this new input; replay retains the original paid baseline.
+    const { frozenArmor, ...unarmored } = refreshed;
+    void frozenArmor;
+    return { ...unarmored, activeBuffIds: refreshed.activeBuffIds.filter(id =>
+      id !== 'skills-sorceress-frozen-armor' && id !== 'sorceress.frozen_armor' && id !== 'frozen-armor') };
   });
 
   const { events, result } = runBattleRecorded({
