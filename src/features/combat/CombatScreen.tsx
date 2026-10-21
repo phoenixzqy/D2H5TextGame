@@ -1,13 +1,13 @@
 /**
  * CombatScreen — main combat UI.
  *
- * Layout @ md+:
+ * Layout @ lg+:
  *   [ Header: act / sub-area / wave / pause / auto / flee ]
  *   [ Top row: Allies (left) | Enemies (right) ]
  *   [ Combat log (fixed bottom, scrollable) ]
  *
- * Card sizes are kept compact ('sm') so 4-5 ally cards fit in one
- * column at typical desktop heights without scrolling.
+ * Below lg, each team keeps three formation columns and teams stack
+ * vertically so complete names remain readable in the scrolling main.
  */
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -253,7 +253,7 @@ export function CombatScreen() {
     <ScreenShell
       testId="combat-screen"
       title={
-        <div className="flex items-center justify-between gap-2 w-full">
+        <div className="flex w-full flex-col items-stretch gap-2 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex flex-col leading-tight min-w-0">
             <span aria-live="polite" data-testid="wave-counter" className="truncate">
               {t('wave', {
@@ -298,7 +298,7 @@ export function CombatScreen() {
               {tDataKey(t, `map.actName.${String(currentAct)}`)}
             </span>
           </div>
-          <div className="flex items-center gap-2 flex-wrap justify-end">
+          <div className="flex flex-wrap items-center justify-start gap-2 lg:justify-end">
             {logHoverPaused && (
               <span
                 className="text-[10px] uppercase tracking-wide text-d2-gold/90 border border-d2-gold/50 rounded px-2 py-0.5 bg-black/30"
@@ -310,7 +310,7 @@ export function CombatScreen() {
             )}
             <Button
               variant="secondary"
-              className="min-h-[40px] px-3 text-sm"
+              className="min-h-11 min-w-11 px-3 text-sm"
               onClick={() => { setFormationOpen(true); }}
               data-testid="formation-editor-open"
             >
@@ -318,7 +318,7 @@ export function CombatScreen() {
             </Button>
             <Button
               variant="secondary"
-              className="min-h-[40px] px-3 text-sm"
+              className="min-h-11 min-w-11 px-3 text-sm"
               onClick={togglePause}
               aria-pressed={isPaused}
               disabled={playbackComplete}
@@ -327,7 +327,7 @@ export function CombatScreen() {
             </Button>
             <Button
               variant="secondary"
-              className="min-h-[40px] px-2 text-sm tabular-nums"
+              className="min-h-11 min-w-11 px-2 text-sm tabular-nums"
               onClick={cycleSpeed}
               aria-label={t('speed')}
               title={t('speed')}
@@ -337,14 +337,14 @@ export function CombatScreen() {
             </Button>
             <Button
               variant="secondary"
-              className="min-h-[40px] px-3 text-sm"
+              className="min-h-11 min-w-11 px-3 text-sm"
               onClick={handleSkip}
               disabled={playbackComplete}
               data-testid="skip-button"
             >
               {t('skip')}
             </Button>
-            <label className="flex items-center gap-1 text-xs cursor-pointer min-h-[40px]">
+            <label className="flex min-h-11 min-w-11 cursor-pointer items-center gap-1 text-xs">
               <input
                 type="checkbox"
                 checked={autoMode}
@@ -355,7 +355,7 @@ export function CombatScreen() {
             </label>
             <Button
               variant="danger"
-              className="min-h-[40px] px-3 text-sm"
+              className="min-h-11 min-w-11 px-3 text-sm"
               onClick={isIdleLoop ? handleStopIdle : handleFlee}
             >
               {isIdleLoop ? t('idleLoop.stop') : t('flee')}
@@ -499,7 +499,7 @@ function Battlefield({
         </div>
       )}
       <div
-        className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] gap-2 sm:gap-4 items-center"
+        className="grid grid-cols-1 items-center gap-2 sm:gap-4 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]"
         data-testid="combat-battlefield"
       >
         <BattleSideGrid
@@ -510,12 +510,12 @@ function Battlefield({
           actingActorId={actingActorId}
           unitFx={unitFx}
         />
-        <div className="flex min-h-[18rem] flex-col items-center justify-center gap-3 text-center">
-          <div className="rounded-full border border-d2-gold/50 bg-black/50 px-3 py-2 shadow-lg shadow-d2-gold/10">
+        <div className="flex h-12 items-center justify-center gap-3 text-center lg:h-auto lg:min-h-[18rem] lg:flex-col">
+          <div className="flex items-center gap-2 rounded-full border border-d2-gold/50 bg-black/50 px-3 py-1 shadow-lg shadow-d2-gold/10 lg:block lg:py-2">
             <div className="text-[10px] uppercase tracking-[0.2em] text-d2-white/50">{t('battlefield.wave')}</div>
-            <div className="font-serif text-xl text-d2-gold">{currentWave}/{totalWaves}</div>
+            <div className="font-serif text-lg text-d2-gold lg:text-xl">{currentWave}/{totalWaves}</div>
           </div>
-          <div className="h-24 w-px bg-gradient-to-b from-transparent via-d2-gold/60 to-transparent" aria-hidden />
+          <div className="hidden h-24 w-px bg-gradient-to-b from-transparent via-d2-gold/60 to-transparent lg:block" aria-hidden />
           <div className="rounded border border-red-400/40 bg-red-950/30 px-3 py-1 text-xs uppercase tracking-[0.2em] text-red-200">
             {t('battlefield.clash')}
           </div>
@@ -570,7 +570,7 @@ function BattleSideGrid({
           return (
             <div
               key={`${String(cell.row)}-${String(cell.col)}`}
-              className="min-h-[9rem] sm:min-h-[10.5rem] rounded-lg border border-d2-border/60 bg-black/25 p-1"
+              className="min-h-28 rounded-lg border border-d2-border/60 bg-black/25 p-1 lg:min-h-[10.5rem]"
               data-testid={`${side}-grid-cell-${String(cell.row)}-${String(cell.col)}`}
             >
               {unit ? (
@@ -583,7 +583,7 @@ function BattleSideGrid({
                   stackCount={cellUnits.length}
                 />
               ) : (
-                <div className="flex h-full min-h-[8rem] sm:min-h-[9.5rem] items-center justify-center rounded border border-dashed border-d2-border/40 text-[10px] text-d2-white/25">
+                <div className="flex h-full min-h-0 items-center justify-center rounded border border-dashed border-d2-border/40 text-[10px] text-d2-white/25 lg:min-h-[9.5rem]">
                   {empty}
                 </div>
               )}
@@ -711,7 +711,7 @@ function UnitCard({
           ].join(' ')}
           title={displayName}
         >
-          <div className="min-h-0 flex-1 overflow-hidden bg-black/30">
+          <div className="h-16 shrink-0 overflow-hidden bg-black/30 lg:h-auto lg:min-h-0 lg:flex-1">
             {avatarSrc ? (
               <img
                 src={avatarSrc}
@@ -730,8 +730,8 @@ function UnitCard({
             )}
           </div>
           <div className="space-y-0.5 bg-black/70 px-1 py-0.5">
-            <div className="truncate text-[10px] leading-tight text-d2-white/80">{displayName}</div>
-            <div className="h-1 rounded bg-black/60">
+            <div className="break-words text-sm leading-5 text-d2-white/80 [overflow-wrap:anywhere] lg:truncate lg:text-[10px] lg:leading-tight">{displayName}</div>
+            <div className="h-1.5 rounded bg-black/60 lg:h-1">
               <div
                 className="h-full rounded bg-red-600"
                 style={{ width: `${Math.max(0, Math.min(100, (unit.life / Math.max(1, unit.stats.lifeMax)) * 100)).toFixed(2)}%` }}
@@ -759,8 +759,8 @@ function UnitCard({
       {eventFx ? (
         <div
           className={[
-            'pointer-events-none absolute right-1 top-1 rounded border px-2 py-0.5 text-[10px] font-bold shadow-lg',
-            'motion-safe:animate-bounce motion-reduce:animate-none',
+            'pointer-events-none absolute right-1 top-1 max-w-[calc(100%-0.5rem)] break-words rounded border px-2 py-0.5 text-[10px] font-bold shadow-lg',
+            'motion-safe:animate-pulse motion-reduce:animate-none',
             eventFxBadgeClass(eventFx)
           ].join(' ')}
           aria-live="polite"

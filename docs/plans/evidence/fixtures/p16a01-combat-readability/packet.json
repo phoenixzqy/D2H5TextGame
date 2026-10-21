@@ -1,0 +1,918 @@
+{
+  "card": "P16a01",
+  "parent": "28be484144a919faec271aa546f33003d9ac3558",
+  "rawPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-combat-readable-5nscfev_",
+  "archive": {
+    "path": "raw.tar.gz",
+    "bytes": 8669458,
+    "sha256": "53b9715a911f36de70c79a9a2eda86890758e0f367f17d857b6f1b998e687cce"
+  },
+  "fileCount": 111,
+  "rawBytes": 17352171,
+  "directories": [
+    "attachments",
+    "attachments/matrix",
+    "attachments/matrix/combat-readability-native-toolbar-and-terminal-return-en-combat-layout",
+    "attachments/matrix/combat-readability-native-toolbar-and-terminal-return-zh-CN-combat-layout",
+    "attachments/matrix/combat-readability-paused--161f8--geometry-and-W1-Flee-zh-CN-combat-layout",
+    "attachments/matrix/combat-readability-paused-responsive-geometry-and-W1-Flee-en-combat-layout",
+    "attachments/pilot-green",
+    "attachments/pilot-green/combat-readability-paused--161f8--geometry-and-W1-Flee-zh-CN-combat-layout",
+    "attachments/pilot-green/combat-readability-paused-responsive-geometry-and-W1-Flee-en-combat-layout",
+    "attachments/pilot-red",
+    "attachments/pilot-red/combat-readability-paused-responsive-geometry-and-W1-Flee-en-combat-layout",
+    "final-source",
+    "final-source/docs",
+    "final-source/docs/plans",
+    "final-source/docs/plans/evidence",
+    "final-source/production",
+    "final-source/production/bugs",
+    "final-source/src",
+    "final-source/src/features",
+    "final-source/src/features/combat",
+    "final-source/tests",
+    "final-source/tests/pwa",
+    "frozen",
+    "frozen/docs",
+    "frozen/docs/plans",
+    "frozen/src",
+    "frozen/src/features",
+    "frozen/src/features/combat",
+    "frozen/tests",
+    "frozen/tests/pwa",
+    "host-font",
+    "host-font/package",
+    "host-font/package/etc",
+    "host-font/package/etc/fonts",
+    "host-font/package/etc/fonts/conf.d",
+    "host-font/package/usr",
+    "host-font/package/usr/share",
+    "host-font/package/usr/share/doc",
+    "host-font/package/usr/share/doc/fonts-wqy-microhei",
+    "host-font/package/usr/share/fontconfig",
+    "host-font/package/usr/share/fontconfig/conf.avail",
+    "host-font/package/usr/share/fonts",
+    "host-font/package/usr/share/fonts/truetype",
+    "host-font/package/usr/share/fonts/truetype/wqy",
+    "initial-review",
+    "initial-review/docs",
+    "initial-review/docs/plans",
+    "initial-review/src",
+    "initial-review/src/features",
+    "initial-review/src/features/combat",
+    "initial-review/tests",
+    "initial-review/tests/pwa",
+    "matrix-selected"
+  ],
+  "records": [
+    {
+      "path": "archive_packet.py",
+      "bytes": 3090,
+      "sha256": "63cdf44a114e740dbc644a2e105110037564cbf71355e59eca81eea8248af344"
+    },
+    {
+      "path": "attachments/matrix/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    {
+      "path": "attachments/pilot-green/.last-run.json",
+      "bytes": 145,
+      "sha256": "ade8f5608bd967972ad185b02863a4e8de37aa872179f100bf983146d8a9c0a3"
+    },
+    {
+      "path": "attachments/pilot-green/combat-readability-paused--161f8--geometry-and-W1-Flee-zh-CN-combat-layout/error-context.md",
+      "bytes": 21407,
+      "sha256": "d065fc96fb4ee54d986b9e91d468aee22232a0f0fd1c0bf19c989b4ca0c13695"
+    },
+    {
+      "path": "attachments/pilot-green/combat-readability-paused--161f8--geometry-and-W1-Flee-zh-CN-combat-layout/test-failed-1.png",
+      "bytes": 173179,
+      "sha256": "7b3480bc00c1aba53d46797d50b5ddbc8fda9adc42cb5551f7b138f151bf1b65"
+    },
+    {
+      "path": "attachments/pilot-green/combat-readability-paused-responsive-geometry-and-W1-Flee-en-combat-layout/error-context.md",
+      "bytes": 21522,
+      "sha256": "0da599c173c6a5bdccb7e1e2a68da8188761edf98356309e630028b3affb4941"
+    },
+    {
+      "path": "attachments/pilot-green/combat-readability-paused-responsive-geometry-and-W1-Flee-en-combat-layout/test-failed-1.png",
+      "bytes": 174965,
+      "sha256": "4a8386d544353e443b6e6005038028a9ff3fcbc0dac714296f1fb8d15f3ae7b4"
+    },
+    {
+      "path": "attachments/pilot-red/.last-run.json",
+      "bytes": 96,
+      "sha256": "d98530a63ee49ab784fe380c0897df67d2da7938091f23f8684757e171deced7"
+    },
+    {
+      "path": "attachments/pilot-red/combat-readability-paused-responsive-geometry-and-W1-Flee-en-combat-layout/error-context.md",
+      "bytes": 80342,
+      "sha256": "50b7028f5a1d90122f6661a6a7b93d2efa92b08c9c98df5c4a666974597823ef"
+    },
+    {
+      "path": "attachments/pilot-red/combat-readability-paused-responsive-geometry-and-W1-Flee-en-combat-layout/test-failed-1.png",
+      "bytes": 144145,
+      "sha256": "1cf8830264cc5f4389337e5107bf6b7acb47eea5e91a4b7af0fa2764adeb9f3d"
+    },
+    {
+      "path": "bounded_runner.py",
+      "bytes": 7011,
+      "sha256": "63a6ab8312f400fe16788ce68b1882b22fa5a188cb1d868872640022bf12c3ab"
+    },
+    {
+      "path": "browser_runner.py",
+      "bytes": 6966,
+      "sha256": "d0834bb066e862206bea8d3f6a462c27db73372983fd32b87aeb843557335e85"
+    },
+    {
+      "path": "clean_dist.py",
+      "bytes": 1145,
+      "sha256": "43290f1154b40d47fccdb81bcd062bfadf7b0860b2ae25814a5635680da157be"
+    },
+    {
+      "path": "dist-before-green.json",
+      "bytes": 149005,
+      "sha256": "c5414745a365c009980612559ed51fc2b97abb6241869314e255ded92bc11e93"
+    },
+    {
+      "path": "dist-before-matrix.json",
+      "bytes": 149005,
+      "sha256": "1a1c417485c4c7c6ce7687207b6363e1489d5dd46914864aa7e1936670e98e5e"
+    },
+    {
+      "path": "final-geometry-summary.json",
+      "bytes": 4122,
+      "sha256": "d1cfb60b204548e5209b8dac25e043072ca83709681d1053e0040ae5bc213c3e"
+    },
+    {
+      "path": "final-source/docs/plans/evidence/p16a01-combat-readability.md",
+      "bytes": 6190,
+      "sha256": "13e661fcee9e1c15fda330a1ca50182a75f62a90f74886e4a9c85d1a090929d0"
+    },
+    {
+      "path": "final-source/docs/plans/p16a01-combat-readability.md",
+      "bytes": 6342,
+      "sha256": "b2bcf14381763a11c0341a01ad8ad6f1ded270464ca7dc4b696406695a16eb76"
+    },
+    {
+      "path": "final-source/production/bugs/BUG-056-mobile-combat-readability.md",
+      "bytes": 4023,
+      "sha256": "da74c527867298d5895c769d953c513936b503adfdeb009a0e497d617fb6315f"
+    },
+    {
+      "path": "final-source/src/features/combat/CombatScreen.test.tsx",
+      "bytes": 8776,
+      "sha256": "4292093309cca09b7bf314a989e9e866fa6333781bc7296048d2528ceaed18bc"
+    },
+    {
+      "path": "final-source/src/features/combat/CombatScreen.tsx",
+      "bytes": 46577,
+      "sha256": "0c859f356eac0c03d9a6ad6248dd204b2b5c0ab242dc659951a5631a782a2fb8"
+    },
+    {
+      "path": "final-source/tests/pwa/combat-readability.config.ts",
+      "bytes": 476,
+      "sha256": "61d07f0d4957a432762b685a421f57a538165863d888ed5946961e4dc35cc619"
+    },
+    {
+      "path": "final-source/tests/pwa/combat-readability.spec.ts",
+      "bytes": 17106,
+      "sha256": "c7bfb76ef6e5a54a94cb8e66e2bc206ef53c9f55041f4f82651e6f354286930f"
+    },
+    {
+      "path": "final-source.diff",
+      "bytes": 10686,
+      "sha256": "07b20ef6188dc22c6f6785a4e6c7440ddd547c6bada284f0e29439fbd32f9bed"
+    },
+    {
+      "path": "final-source.json",
+      "bytes": 1314,
+      "sha256": "bbafb9395c85711cee3f4ee526bda618b4471179851f4d2d2b92fc66ec68ccc4"
+    },
+    {
+      "path": "focused-presentation-report.json",
+      "bytes": 4281,
+      "sha256": "d7af7c9b1001982384fc946d1bd9bf0c82c55b7fc8f8aa00d20666ac129ef667"
+    },
+    {
+      "path": "focused-presentation.log",
+      "bytes": 495,
+      "sha256": "ac3a9cdc0d99e67c0d50dc27101bfeb903777d72cc82a36867f95ce3dde5cdeb"
+    },
+    {
+      "path": "focused-presentation.meta.json",
+      "bytes": 729,
+      "sha256": "1299c9dd5dde4d18e1e662f5bfce22bd31af62f40e08b28ba5faacfaf064fed7"
+    },
+    {
+      "path": "focused-presentation.process.json",
+      "bytes": 331,
+      "sha256": "4c63876d173d517b43bd9e623cac66b328cf0055793abe32a3e5e7e4c106c8f6"
+    },
+    {
+      "path": "focused-presentation.processes.json",
+      "bytes": 5306,
+      "sha256": "b15895913fb1b4fda9a40ec461b0abd9372b237a32cab18ae027a88d1971f0eb"
+    },
+    {
+      "path": "focused-preservation-report.json",
+      "bytes": 4281,
+      "sha256": "fe6b1e923f378a841bb471d716dcf435eb7fd6bad972429132c6949ecd874a0a"
+    },
+    {
+      "path": "focused-preservation.log",
+      "bytes": 494,
+      "sha256": "42af09ade5aa440976f4f916f024f4de4d25e3affc84d5e9bbf649e7236588ee"
+    },
+    {
+      "path": "focused-preservation.meta.json",
+      "bytes": 723,
+      "sha256": "330eb84029210a4c99c167befdb9104bcad23ef376689489bf966c68fe1d74d0"
+    },
+    {
+      "path": "focused-preservation.process.json",
+      "bytes": 331,
+      "sha256": "b8237695e7cbd23f7b5ffd6d986a0707de628083bb65e33ddfcbb6d3524767a2"
+    },
+    {
+      "path": "focused-preservation.processes.json",
+      "bytes": 2382,
+      "sha256": "8bc0b6a186b7ff7b5df0aaf832d17eec610cc7554819112b4a68fd2ad2c6df11"
+    },
+    {
+      "path": "font-environment.json",
+      "bytes": 978,
+      "sha256": "f5a110147cbf19f88711bef3eaebdec0766a26a13668e2b3bb5b1f8e7e9b19e9"
+    },
+    {
+      "path": "font-staging-symlink-cleanup.json",
+      "bytes": 360,
+      "sha256": "7a98587a7ae14166e9dd193a1fa7b9e238ae8016d43dc3e24ed9523034bb81f1"
+    },
+    {
+      "path": "freeze.json",
+      "bytes": 1555,
+      "sha256": "f23f665393cf34e4512c6151fd66d6da07b10c560bfd6656cae97c99ad85fd41"
+    },
+    {
+      "path": "frozen/docs/plans/p16a01-combat-readability.md",
+      "bytes": 6200,
+      "sha256": "ebfadd3e73045630f132a5e42141f50d2d83d0aced6e9c7c32aaa64d90eb0df1"
+    },
+    {
+      "path": "frozen/src/features/combat/CombatScreen.test.tsx",
+      "bytes": 8776,
+      "sha256": "4292093309cca09b7bf314a989e9e866fa6333781bc7296048d2528ceaed18bc"
+    },
+    {
+      "path": "frozen/src/features/combat/CombatScreen.tsx",
+      "bytes": 46237,
+      "sha256": "d708f8d0917f3988eb96339c386060c29ad2a830c5841bdf2548859b695d7b72"
+    },
+    {
+      "path": "frozen/tests/pwa/combat-readability.config.ts",
+      "bytes": 476,
+      "sha256": "61d07f0d4957a432762b685a421f57a538165863d888ed5946961e4dc35cc619"
+    },
+    {
+      "path": "frozen/tests/pwa/combat-readability.spec.ts",
+      "bytes": 17106,
+      "sha256": "c7bfb76ef6e5a54a94cb8e66e2bc206ef53c9f55041f4f82651e6f354286930f"
+    },
+    {
+      "path": "green-en-360.png",
+      "bytes": 40045,
+      "sha256": "e226ba4bff85397a008c4b776b6b7c0b3b2942b0c63c0ac524589bab71a75cb8"
+    },
+    {
+      "path": "green-zh-360.png",
+      "bytes": 39460,
+      "sha256": "95ff30429196ca94effe1a1a7c9c5e1fa3625cfc460a03caaa9d00b2b5e92fc4"
+    },
+    {
+      "path": "host-font/font.deb",
+      "bytes": 1752830,
+      "sha256": "608b93d1acca135f422dca8efed4960a381de0142fd6b81f8a33aa37180e59f1"
+    },
+    {
+      "path": "host-font/fonts.conf",
+      "bytes": 423,
+      "sha256": "dace2a8e0c58b03f524a77b3fcac0088e38e18ed2b4f73e6b0453b4b2adc60dd"
+    },
+    {
+      "path": "host-font/package/usr/share/doc/fonts-wqy-microhei/AUTHORS.txt.gz",
+      "bytes": 45781,
+      "sha256": "350ed0160b909049e5e18cfffcf1bcbd01874330a93645fce01f0961154f0c6f"
+    },
+    {
+      "path": "host-font/package/usr/share/doc/fonts-wqy-microhei/README.txt.gz",
+      "bytes": 6261,
+      "sha256": "31cb0f3c435c2efaf9da6a0a315f638d6821cf7436801067ab333b6a4a90989c"
+    },
+    {
+      "path": "host-font/package/usr/share/doc/fonts-wqy-microhei/changelog.Debian.gz",
+      "bytes": 2361,
+      "sha256": "179e186d4b67e3a57938871480c32ca7a99d5ce730909a41d8fc9a263b86276e"
+    },
+    {
+      "path": "host-font/package/usr/share/doc/fonts-wqy-microhei/copyright",
+      "bytes": 4276,
+      "sha256": "aee4111b1e01dd3d36514ee7d1e5b144f45e72f4dba83045bb9ff6e47fa4e680"
+    },
+    {
+      "path": "host-font/package/usr/share/fontconfig/conf.avail/65-wqy-microhei.conf",
+      "bytes": 1504,
+      "sha256": "0e69fa87cc102d6a49ac1c1388b56bb27ccaefa549f388d1c52c492bfb37d37c"
+    },
+    {
+      "path": "host-font/package/usr/share/fonts/truetype/wqy/wqy-microhei.ttc",
+      "bytes": 5177387,
+      "sha256": "2420e8078af796b19a3f6ef13de527a1a91c1e7171eea115926c614ced1009b3"
+    },
+    {
+      "path": "initial-review/docs/plans/p16a01-combat-readability.md",
+      "bytes": 5624,
+      "sha256": "b2938eb9d8ccbd1904b40b1c2398145157f48c3a8af1fab30a4d120af71dba55"
+    },
+    {
+      "path": "initial-review/src/features/combat/CombatScreen.test.tsx",
+      "bytes": 8776,
+      "sha256": "4292093309cca09b7bf314a989e9e866fa6333781bc7296048d2528ceaed18bc"
+    },
+    {
+      "path": "initial-review/tests/pwa/combat-readability.config.ts",
+      "bytes": 476,
+      "sha256": "61d07f0d4957a432762b685a421f57a538165863d888ed5946961e4dc35cc619"
+    },
+    {
+      "path": "initial-review/tests/pwa/combat-readability.spec.ts",
+      "bytes": 14245,
+      "sha256": "8b5fed75179886ab74c9caa71e84c9cbbcf58c9019744a5af31ae89acadde0df"
+    },
+    {
+      "path": "initial-review.json",
+      "bytes": 756,
+      "sha256": "23156714b7cb5272eb5318b80bad4b550879482d925dd76d6af60f975ab7fe24"
+    },
+    {
+      "path": "inner-sight-cleanup.json",
+      "bytes": 1068,
+      "sha256": "9ffc780e25d1c21569c72d6dcba970414f14e431da400e2ccf6dabe4e0dfb9fc"
+    },
+    {
+      "path": "lint-current.log",
+      "bytes": 196,
+      "sha256": "e9fe87b4386058042a609155b08739386357dc09357b46054e6cc313523c831b"
+    },
+    {
+      "path": "lint-current.meta.json",
+      "bytes": 458,
+      "sha256": "81c8d67e2e88bb68dcd4e4a682d7b56a0a37571970eeeb559cfbfba50aa93233"
+    },
+    {
+      "path": "lint-current.process.json",
+      "bytes": 86,
+      "sha256": "ca02bf48761cac322a3590c5b6abffca85240d89bb4259781e3679b7abdf02b1"
+    },
+    {
+      "path": "lint-current.processes.json",
+      "bytes": 534,
+      "sha256": "145a1b9637069deb41bc9acbd6a58a74399c55d29e6d4ddeb4e313eaf230b8d2"
+    },
+    {
+      "path": "lint-final.log",
+      "bytes": 196,
+      "sha256": "e9fe87b4386058042a609155b08739386357dc09357b46054e6cc313523c831b"
+    },
+    {
+      "path": "lint-final.meta.json",
+      "bytes": 458,
+      "sha256": "e50934685929f33cbccfa1afa4090c0c5d6ddd877be25401807e75ead0d1ab34"
+    },
+    {
+      "path": "lint-final.process.json",
+      "bytes": 86,
+      "sha256": "2943eb9ef2c18b400accdbad0920967dadaf2ebdbd4d32ff2d535467478a7434"
+    },
+    {
+      "path": "lint-final.processes.json",
+      "bytes": 534,
+      "sha256": "d560b3de663caa7961db431e930c4bf17a3363ce096c88b7233b24e9c37c4c57"
+    },
+    {
+      "path": "matrix-report.json",
+      "bytes": 1783338,
+      "sha256": "569b522e53de6d3ae5bb0f2f35c8c7b7cce7699e68c18c945848046c171c240a"
+    },
+    {
+      "path": "matrix-selected/decoded.json",
+      "bytes": 451198,
+      "sha256": "8bdde6e11f6580fc145cde2107c81061ab17b0ea4acde0fd14809810b323ed5f"
+    },
+    {
+      "path": "matrix-selected/en-layout-1280.png",
+      "bytes": 444734,
+      "sha256": "181cd5fd32ef72954abc8c49f1e7cba22043c11e933e5a63c783e95805f72265"
+    },
+    {
+      "path": "matrix-selected/en-layout-360.png",
+      "bytes": 40169,
+      "sha256": "d8e5f4458769543c34d5941b42038f64ae0233004cc784d4906615cf3aae4e81"
+    },
+    {
+      "path": "matrix-selected/zh-CN-layout-1280.png",
+      "bytes": 452997,
+      "sha256": "a6bf83086a3342422dc9658ffb006a0614bbac623fcc7a84f672108e11d2958d"
+    },
+    {
+      "path": "matrix-selected/zh-CN-layout-360.png",
+      "bytes": 39678,
+      "sha256": "947f6bde384a7dedfd740c4853da92ae824b6d94fb76a05beb198adc0665ba3a"
+    },
+    {
+      "path": "matrix.log",
+      "bytes": 2831,
+      "sha256": "328a8d738bf879f5aaece158a1ba76d513b35db01fa8a44c4f64f536e8ef6ce5"
+    },
+    {
+      "path": "matrix.meta.json",
+      "bytes": 713,
+      "sha256": "65bd67d75ee0fe7b015431d47ee3a8b8e448d311b782462c76919f05e23c3ea1"
+    },
+    {
+      "path": "matrix.process.json",
+      "bytes": 313,
+      "sha256": "0fecb7fbceb9895002035e689fd26c6b6657c56de022b7095815d794b4611670"
+    },
+    {
+      "path": "matrix.processes.json",
+      "bytes": 4865,
+      "sha256": "17d9cbd0124649c5651f1dece21dae6720b9933be61911a5bdb2c9e0c0d601a0"
+    },
+    {
+      "path": "motion-correction.json",
+      "bytes": 394,
+      "sha256": "88391b3215a11ed82657d6698fb9914755741e1bf2e1bf3e7b5ce1be514d865e"
+    },
+    {
+      "path": "ownership.json",
+      "bytes": 362,
+      "sha256": "2e1d654295a1f9da7f3e1aa5cfee7ebad04b1b4e625a127ff87d92fede65e174"
+    },
+    {
+      "path": "pilot-green-report.json",
+      "bytes": 1780079,
+      "sha256": "3a2ec421ebb1333989a971d3e789c4ee16fedae3ebeb6c4f2d59bbb527e2bcd5"
+    },
+    {
+      "path": "pilot-green.log",
+      "bytes": 17223,
+      "sha256": "c4cb5395f3f8d0a54112dc8f929883b1e21cdcb90477c380d7e371483a740849"
+    },
+    {
+      "path": "pilot-green.meta.json",
+      "bytes": 778,
+      "sha256": "895f90d882d6c3ebb7e747b5fe0c5b1772532df36a07d8606d2847f38b17d32b"
+    },
+    {
+      "path": "pilot-green.process.json",
+      "bytes": 370,
+      "sha256": "32317b0e694e58490c39c85c4638a337a91693d65ee5d6b4b98662e8a785e67f"
+    },
+    {
+      "path": "pilot-green.processes.json",
+      "bytes": 4554,
+      "sha256": "314b40439d2f98641e7375f1eae5d3c8d6cb950f3dad718796d8a92d14d899a5"
+    },
+    {
+      "path": "pilot-red-report.json",
+      "bytes": 1654188,
+      "sha256": "005a21a47b73d8e1269df3c129b9dde4468f76fffd94e33ab976b48f2a195711"
+    },
+    {
+      "path": "pilot-red.log",
+      "bytes": 481083,
+      "sha256": "d0b826709da06c33825c4626ffa83b8b03f00ec193fe8b6758b1ffd5055a8177"
+    },
+    {
+      "path": "pilot-red.meta.json",
+      "bytes": 782,
+      "sha256": "5cecc1878403401b963d80382443853d4f1a4e28eb92311bd7f0f1180c142ab0"
+    },
+    {
+      "path": "pilot-red.process.json",
+      "bytes": 372,
+      "sha256": "ba1aae60714654341fe7f86d6bade4ab4e3367cdac0b5767dcab187399d238ed"
+    },
+    {
+      "path": "pilot-red.processes.json",
+      "bytes": 3470,
+      "sha256": "68fb2ca56536d106e459c84a357a780ad95b02b329b3a0956deab7e5e64da943"
+    },
+    {
+      "path": "pre-motion-correction.tsx",
+      "bytes": 46578,
+      "sha256": "ead876435dc7f0245d26a36722c45ccd0209717faee0ceb4a85d7b935468f83f"
+    },
+    {
+      "path": "process-audit.json",
+      "bytes": 174069,
+      "sha256": "7c0120cdcc296d5e4de1a653c1e220f990935c146b3155568461b352cdd48572"
+    },
+    {
+      "path": "red-360.png",
+      "bytes": 60687,
+      "sha256": "00b360c468cbf5439b143827a5355c4e12e7a02ae98b4a2107f6fa338023708c"
+    },
+    {
+      "path": "red-geometry-summary.json",
+      "bytes": 194070,
+      "sha256": "499c861039e74cd7e62485a20c02ac5de5973b4ff7b69e6d06900ef7078d334a"
+    },
+    {
+      "path": "reviews-before-packet.json",
+      "bytes": 671,
+      "sha256": "b922aad729d088eae2529f537655bd540f4994ec680edc49def9ab32a9a3facd"
+    },
+    {
+      "path": "types-current.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "path": "types-current.meta.json",
+      "bytes": 462,
+      "sha256": "ca2e81bbed5b4ee1986b0dc04528890e0400c85e25fd495d552509c7a97333be"
+    },
+    {
+      "path": "types-current.process.json",
+      "bytes": 91,
+      "sha256": "c6f2e1af15656d889c076d839c2967bbb68179b7150957233b1e7ff839399475"
+    },
+    {
+      "path": "types-current.processes.json",
+      "bytes": 534,
+      "sha256": "150f0652424d3fe29ebc0e9d563cbd23619bcbb7aa20a9da1adfc734919c01bc"
+    },
+    {
+      "path": "types-final.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "path": "types-final.meta.json",
+      "bytes": 462,
+      "sha256": "de2d802190b713bb34c50e71a73edc669281531838b5c00906ed1e010950cb38"
+    },
+    {
+      "path": "types-final.process.json",
+      "bytes": 91,
+      "sha256": "17d725d5ca7a9e647d34b929d2769a5d18f7e4889cbedff5e979d02d399afb89"
+    },
+    {
+      "path": "types-final.processes.json",
+      "bytes": 534,
+      "sha256": "6ee515117143c4cf3aba400856801d50e412494ed503b3320bcdbcce3b5211d4"
+    },
+    {
+      "path": "unit-current.log",
+      "bytes": 94625,
+      "sha256": "069c5d4dd5501685e96dfa4f3e28a89d06e071a68eb32b20cb39848ff740c324"
+    },
+    {
+      "path": "unit-current.meta.json",
+      "bytes": 482,
+      "sha256": "b7ca21db41d7155ff679816f4cfb1f6b0925611b53acbe5803f2bfd0641c9bd5"
+    },
+    {
+      "path": "unit-current.process.json",
+      "bytes": 103,
+      "sha256": "ddb0005a930e2b685c63dbf03ccb426a00e856694894cae8dd839a2a83a69562"
+    },
+    {
+      "path": "unit-current.processes.json",
+      "bytes": 75693,
+      "sha256": "24bc02773934ab4f7852d95985e86eb1c6cda44c7ae1997be7c5e7c47b1dc142"
+    },
+    {
+      "path": "unit-final-report.json",
+      "bytes": 1123947,
+      "sha256": "6be3f3e1e30b370e2bf3824b794309f5bf942d12f012bc35a4e22a67192c13fe"
+    },
+    {
+      "path": "unit-final.log",
+      "bytes": 94699,
+      "sha256": "c1af23cc09d76ba8cde7c206fd3f84ee0d8e97ff00b928a1b683be358f45d3a8"
+    },
+    {
+      "path": "unit-final.meta.json",
+      "bytes": 650,
+      "sha256": "827bd6af74013e5048f2fbd58ff098433bfc5c0a40f9c7e6c0c658b799d9cecb"
+    },
+    {
+      "path": "unit-final.process.json",
+      "bytes": 257,
+      "sha256": "2a1361cb96d1315252363f4682362d201bc44cd86e0f651a334b36d48782f879"
+    },
+    {
+      "path": "unit-final.processes.json",
+      "bytes": 76333,
+      "sha256": "f4958e72dc5e01142ddc9e4926455e41507ceb80baaade0c1a87497dcb9448c3"
+    }
+  ],
+  "commands": [
+    {
+      "path": "focused-presentation.meta.json",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/features/combat/CombatScreen.test.tsx",
+        "--reporter=default",
+        "--reporter=json",
+        "--outputFile.json=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-combat-readable-5nscfev_/focused-presentation-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T00:10:56.595724+00:00",
+      "seconds": 5.776,
+      "exitCode": 0,
+      "pid": 1936381,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 495,
+        "report": 4281,
+        "attachments": 224583,
+        "totalTaskArtifacts": 50684950
+      }
+    },
+    {
+      "path": "focused-preservation.meta.json",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--project",
+        "ui",
+        "src/features/combat/CombatScreen.test.tsx",
+        "--reporter=default",
+        "--reporter=json",
+        "--outputFile.json=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-combat-readable-5nscfev_/focused-preservation-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T00:08:24.725075+00:00",
+      "seconds": 5.597,
+      "exitCode": 0,
+      "pid": 1935109,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 494,
+        "report": 4281,
+        "attachments": 0,
+        "totalTaskArtifacts": 7125395
+      }
+    },
+    {
+      "path": "lint-current.meta.json",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T00:19:02.610224+00:00",
+      "seconds": 28.774,
+      "exitCode": 0,
+      "pid": 1947432,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 196,
+        "report": 0,
+        "attachments": 615846,
+        "totalTaskArtifacts": 58016671
+      }
+    },
+    {
+      "path": "lint-final.meta.json",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T00:12:52.525090+00:00",
+      "seconds": 28.341,
+      "exitCode": 0,
+      "pid": 1940947,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 196,
+        "report": 0,
+        "attachments": 224583,
+        "totalTaskArtifacts": 51996749
+      }
+    },
+    {
+      "path": "matrix.meta.json",
+      "command": [
+        "npx",
+        "playwright",
+        "test",
+        "--config=tests/pwa/combat-readability.config.ts",
+        "--workers=2",
+        "--trace=off",
+        "--reporter=line,json",
+        "--output=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-combat-readable-5nscfev_/attachments/matrix"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T00:15:47.711529+00:00",
+      "seconds": 43.643,
+      "exitCode": 0,
+      "pid": 1942232,
+      "deadlineSeconds": 210,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 2831,
+        "report": 1783338,
+        "attachments": 615846,
+        "totalTaskArtifacts": 56409854
+      }
+    },
+    {
+      "path": "pilot-green.meta.json",
+      "command": [
+        "npx",
+        "playwright",
+        "test",
+        "--config=tests/pwa/combat-readability.config.ts",
+        "--grep",
+        "paused responsive geometry and W1 Flee",
+        "--workers=1",
+        "--trace=off",
+        "--reporter=line,json",
+        "--output=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-combat-readable-5nscfev_/attachments/pilot-green"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T00:13:57.122758+00:00",
+      "seconds": 39.33,
+      "exitCode": 1,
+      "pid": 1941371,
+      "deadlineSeconds": 150,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 17223,
+        "report": 1780079,
+        "attachments": 615801,
+        "totalTaskArtifacts": 54341904
+      }
+    },
+    {
+      "path": "pilot-red.meta.json",
+      "command": [
+        "npx",
+        "playwright",
+        "test",
+        "--config=tests/pwa/combat-readability.config.ts",
+        "--grep",
+        "paused responsive geometry and W1 Flee en$",
+        "--workers=1",
+        "--trace=off",
+        "--reporter=line,json",
+        "--output=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-combat-readable-5nscfev_/attachments/pilot-red"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T00:08:37.549350+00:00",
+      "seconds": 26.072,
+      "exitCode": 1,
+      "pid": 1935445,
+      "deadlineSeconds": 150,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 481083,
+        "report": 1654188,
+        "attachments": 224583,
+        "totalTaskArtifacts": 50418998
+      }
+    },
+    {
+      "path": "types-current.meta.json",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T00:18:39.179177+00:00",
+      "seconds": 11.211,
+      "exitCode": 0,
+      "pid": 1947267,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 50,
+        "report": 0,
+        "attachments": 615846,
+        "totalTaskArtifacts": 58010919
+      }
+    },
+    {
+      "path": "types-final.meta.json",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T00:12:34.354459+00:00",
+      "seconds": 11.436,
+      "exitCode": 0,
+      "pid": 1940851,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 50,
+        "report": 0,
+        "attachments": 224583,
+        "totalTaskArtifacts": 51995471
+      }
+    },
+    {
+      "path": "unit-current.meta.json",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=dot"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T00:17:37.939905+00:00",
+      "seconds": 54.907,
+      "exitCode": 0,
+      "pid": 1943329,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 94625,
+        "report": 0,
+        "attachments": 615846,
+        "totalTaskArtifacts": 56580986
+      }
+    },
+    {
+      "path": "unit-final.meta.json",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "--reporter=default",
+        "--reporter=json",
+        "--outputFile.json=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-combat-readable-5nscfev_/unit-final-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T00:11:33.978718+00:00",
+      "seconds": 54.847,
+      "exitCode": 0,
+      "pid": 1936969,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 94699,
+        "report": 1123947,
+        "attachments": 224583,
+        "totalTaskArtifacts": 51994146
+      }
+    }
+  ],
+  "processIdentityCount": 1125,
+  "archiveRawHashesVerified": true,
+  "scope": "scoped mobile combat readability; no full private-v1 acceptance",
+  "cleanupOwner": "root after final independent packet review and reader release"
+}

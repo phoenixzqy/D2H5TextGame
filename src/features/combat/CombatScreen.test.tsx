@@ -131,6 +131,30 @@ describe('live combat resource display', () => {
       expect(usePlayerStore.getState().player?.derivedStats.mana).toBe(102);
     });
 
+    it('preserves extra-row cell identity and first stacked representative in ' + locale, async () => {
+      await i18n.changeLanguage(locale);
+      const hero = fixture();
+      const merc: CombatUnit = { ...hero, id: 'stack-merc', kind: 'merc', gridPosition: { row: 0, col: 0 } };
+      const first: CombatUnit = { ...hero, id: 'stack-first', name: 'First Summon', kind: 'summon',
+        summonOwnerId: hero.id, gridPosition: { row: 3, col: 2 } };
+      const second: CombatUnit = { ...first, id: 'stack-second', name: 'Second Summon' };
+      const team = [merc, first, second, hero];
+      const before = structuredClone(team);
+      renderTeams(team);
+      const grid = screen.getByTestId('allies-grid');
+      expect(grid.children).toHaveLength(12);
+      expect(screen.getByTestId('enemies-grid').children).toHaveLength(9);
+      expect(within(screen.getByTestId('player-grid-cell-1-1')).getByTestId('unit-card-visible-hero')).toBeVisible();
+      expect(within(screen.getByTestId('player-grid-cell-0-0')).getByTestId('unit-card-stack-merc')).toBeVisible();
+      const stack = screen.getByTestId('player-grid-cell-3-2');
+      expect(grid.children[11]).toBe(stack);
+      expect(within(stack).getByTestId('unit-card-stack-first')).toBeVisible();
+      expect(within(stack).queryByTestId('unit-card-stack-second')).not.toBeInTheDocument();
+      expect(within(stack).getByText('+1', { exact: true })).toBeVisible();
+      expect(useCombatStore.getState().playerTeam).toEqual(before);
+      expect(team).toEqual(before);
+    });
+
     it('omits hero MP without a hero in ' + locale, async () => {
       await i18n.changeLanguage(locale);
       const hero = fixture();
