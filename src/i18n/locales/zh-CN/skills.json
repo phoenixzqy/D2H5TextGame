@@ -927,7 +927,7 @@
     },
     "meteor": {
       "name": "流星术",
-      "desc": "召唤燃烧陨石，造成大范围火焰伤害并熔毁护甲。"
+      "desc": "召唤陨石，造成{{min}}–{{max}}点范围{{type}}伤害。命中后依次施加{{burn}}与{{melt}}；{{melt}}使普通防御降低{{reduction}}%，持续{{duration}}，各技能等级相同。"
     },
     "cold-mastery": {
       "name": "冰冷精通",

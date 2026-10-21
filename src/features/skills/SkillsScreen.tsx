@@ -31,6 +31,7 @@ import {
 import { refreshActivePlayerCombatConfig, resolveEquippedWeapon } from '@/stores/combatHelpers';
 import { getSkill, listSkills } from '@/engine/skills/registry';
 import { canCastSkill } from '@/engine/skills/eligibility';
+import { METEOR_ARMOR_MELT_DEFINITION } from '@/engine/skills/armor-melt';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
 import { SKELETON_MASTERY_DEFINITION, resolveSkeletonMasteryRank } from '@/engine/skills/skeleton-mastery';
 import { LIGHTNING_MASTERY_DEFINITION, resolveLightningMasteryRank } from '@/engine/skills/lightning-mastery';
@@ -1092,6 +1093,17 @@ function dynamicDescription(
       maxDefense: Math.round(defense * maxRank * 100), cap: maxRank, level: requiredLevel });
   }
   const firstDamage = stats?.damage[0];
+  if (skill.id === 'skills-sorceress-meteor' && firstDamage) {
+    const { statusId, defenseReductionPct, durationMs } = METEOR_ARMOR_MELT_DEFINITION;
+    return t('sorceress.meteor.desc', {
+      min: firstDamage.min, max: firstDamage.max,
+      type: t(`damage-types:type.${firstDamage.type}`),
+      burn: t('damage-types:status.burn'),
+      melt: t(`damage-types:status.${statusId}`),
+      reduction: defenseReductionPct,
+      duration: t('details.seconds', { seconds: durationMs / 1000 })
+    });
+  }
   if (firstDamage) {
     return t('details.descriptionDamage', {
       skill: skillName,

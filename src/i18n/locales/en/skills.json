@@ -927,7 +927,7 @@
     },
     "meteor": {
       "name": "Meteor",
-      "desc": "Calls down a flaming meteor, dealing massive AOE fire damage and melting armor."
+      "desc": "A meteor deals {{min}}–{{max}} {{type}} damage over an area. On a successful hit, applies {{burn}} then {{melt}}. {{melt}} reduces ordinary Defense by {{reduction}}% for {{duration}} at every skill rank."
     },
     "cold-mastery": {
       "name": "Cold Mastery",
