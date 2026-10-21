@@ -35,11 +35,12 @@ import { CHILL_DEFINITION } from './chill-definition';
 import { MERC_INNER_SIGHT_DEFINITION } from '../skills/inner-sight';
 import { METEOR_ARMOR_MELT_DEFINITION } from '../skills/armor-melt';
 import { activeMightAura, type MightAuraProjection } from '../skills/might';
+import { activeMeditationAura, type MeditationAuraProjection } from '../skills/meditation';
 import { FROZEN_ARMOR_DEFINITION, resolveFrozenArmorRank } from '../skills/frozen-armor';
 import { comboMultiplier, shouldShatter } from './combo';
 import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
 import {
-  createManaRecoveryIntegral, exportManaRecoveryCarry, integrateManaRecoveryBetween, type ManaRecoveryIntegral
+  createManaRecoveryIntegral, exportManaRecoveryCarry, integrateManaRecoveryWithContributionBetween, type ManaRecoveryIntegral
 } from './mana-recovery';
 import { isImmobilized, shouldEnrage } from '../ai/policy';
 import { canCastSkill } from '../skills/eligibility';
@@ -114,6 +115,8 @@ export interface CombatSnapshot {
   readonly maxRounds?: number;
   /** Frozen explicit player Might selection for this wave, active from simulation entry. */
   readonly mightAura?: MightAuraProjection;
+  /** Frozen explicit Meditation selection; eligibility is captured at each interval start. */
+  readonly meditationAura?: MeditationAuraProjection;
   /** Eligible player Mastery copied at wave entry; applies only at fresh summon creation. */
   readonly skeletonMastery?: SkeletonMasteryProjection;
 }
@@ -132,6 +135,7 @@ export interface CombatResult {
 
 interface State {
   readonly mightAura?: MightAuraProjection;
+  readonly meditationAura?: MeditationAuraProjection;
   readonly skeletonMastery?: SkeletonMasteryProjection;
   units: Map<string, CombatUnit>;
   events: BattleEvent[];
@@ -923,20 +927,40 @@ function settlePeriodic(state: State, to: number): void {
   }
 }
 
+/** Capture earned interval eligibility before periodic deaths change the source. */
+function captureMeditationRecipients(state: State): ReadonlyMap<string, MeditationAuraProjection> {
+  const recipients = new Map<string, MeditationAuraProjection>();
+  for (const unit of state.units.values()) {
+    const aura = activeMeditationAura(state.meditationAura, unit.id, state.units);
+    if (aura) recipients.set(unit.id, aura);
+  }
+  return recipients;
+}
+
 /** Periodic deaths and cap side effects settle before living units recover. */
-function settleManaRecovery(state: State, fromMs: number, toMs: number): void {
+function settleManaRecovery(state: State, fromMs: number, toMs: number,
+  intervalAuras: ReadonlyMap<string, MeditationAuraProjection>): void {
   if (!Number.isFinite(fromMs) || !Number.isFinite(toMs) || toMs <= fromMs) return;
   for (const unit of state.units.values()) {
-    const rate = unit.manaRegenPerSecond;
-    if (!alive(unit) || rate === undefined || !Number.isFinite(rate) || rate <= 0 ||
-      !Number.isFinite(unit.stats.manaMax) || unit.stats.manaMax <= 0) continue;
+    const rate = unit.manaRegenPerSecond ?? 0;
+    if (!alive(unit) || !Number.isFinite(unit.stats.manaMax) || unit.stats.manaMax <= 0) continue;
+    const aura = intervalAuras.get(unit.id);
+    // Recheck only the recipient: a source that died at this endpoint still earned the interval.
+    const contribution = aura && Number.isFinite(unit.life) && unit.side === 'player' &&
+      unit.summon !== true && unit.ownerId === undefined && unit.summonOwnerId === undefined &&
+      ((unit.id === aura.sourceHeroId && inferKind(unit) === 'hero') ||
+        (unit.id === aura.fieldedMercCombatId && inferKind(unit) === 'merc')) &&
+      aura.sourceBaselinePerSecond > 0 && aura.manaRegenPctPerRank > 0
+      ? { sourceBaselinePerSecond: aura.sourceBaselinePerSecond,
+        factors: [aura.manaRegenPctPerRank, aura.rank] as const } : undefined;
+    if ((!Number.isFinite(rate) || rate <= 0) && !contribution) continue;
     if (unit.mana >= unit.stats.manaMax) {
       commitMana(state, unit, unit, 'regeneration');
       continue;
     }
     const previous = state.manaRecovery.get(unit.id) ??
       createManaRecoveryIntegral(unit.manaRegenCarry, unit.manaRegenCompensation, unit.manaRegenExactCarry);
-    const next = integrateManaRecoveryBetween(rate, fromMs, toMs, previous);
+    const next = integrateManaRecoveryWithContributionBetween(rate, contribution, fromMs, toMs, previous);
     state.manaRecovery.set(unit.id, next);
     const manaEvent = commitMana(state, unit, {
       ...unit,
@@ -1172,10 +1196,18 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   simTimes: number[];
   result: CombatResult;
 } {
+  if (snapshot.mightAura !== undefined && snapshot.meditationAura !== undefined) {
+    throw new Error('Only one player aura projection');
+  }
   const rng = createRng(snapshot.seed);
   const aura = snapshot.mightAura;
+  const meditation = snapshot.meditationAura;
   const mastery = snapshot.skeletonMastery;
   const state: State = {
+    ...(meditation ? { meditationAura: Object.freeze({ selectedAuraId: meditation.selectedAuraId,
+      sourceHeroId: meditation.sourceHeroId, rank: meditation.rank, maxRank: meditation.maxRank,
+      sourceBaselinePerSecond: meditation.sourceBaselinePerSecond, manaRegenPctPerRank: meditation.manaRegenPctPerRank,
+      ...(meditation.fieldedMercCombatId !== undefined ? { fieldedMercCombatId: meditation.fieldedMercCombatId } : {}) }) } : {}),
     ...(mastery ? { skeletonMastery: Object.freeze({ sourceHeroId: mastery.sourceHeroId, rank: mastery.rank,
       maxRank: mastery.maxRank, summonLifePct: mastery.summonLifePct,
       summonAttackPct: mastery.summonAttackPct, summonDefensePct: mastery.summonDefensePct }) } : {}),
@@ -1229,8 +1261,9 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     if (state.simClockMs === MAX_SIM_MS && candidate.at > MAX_SIM_MS) break;
     const boundary = nextPeriodicBoundary(state, candidate.at);
     const from = state.simClockMs;
+    const meditationRecipients = captureMeditationRecipients(state);
     settlePeriodic(state, boundary);
-    settleManaRecovery(state, from, boundary);
+    settleManaRecovery(state, from, boundary, meditationRecipients);
     if (winnerOf(state) !== null) break;
     reconcileActionPeriods(state);
     // Status settlement may change the next actor or its pending timestamp.
