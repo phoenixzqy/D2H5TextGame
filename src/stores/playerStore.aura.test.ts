@@ -123,3 +123,87 @@ describe('explicit single player aura selection', () => {
     } finally { observed.unsubscribe(); }
   });
 });
+
+
+describe('exclusive Meditation store selection', () => {
+  it.each(['paladin.meditation', 'skills-paladin-meditation'])('selects allocated %s and replaces/clears atomically without resource changes', id => {
+    const input = player({ level: 24, selectedAuraId: 'paladin.might',
+      skillLevels: { 'paladin.might': 2, [id]: 11 } });
+    const original = structuredClone(input);
+    usePlayerStore.getState().setPlayer(input); const observed = observe();
+    try {
+      expect(usePlayerStore.getState().selectAura('paladin.meditation')).toBe('ok');
+      const selected = usePlayerStore.getState().player;
+      expect(selected).toEqual({ ...input, selectedAuraId: 'paladin.meditation' });
+      expect(selected?.derivedStats).toBe(input.derivedStats);
+      expect(selected?.skillLevels).toBe(input.skillLevels);
+      expect(selected?.cooldowns).toBe(input.cooldowns);
+      expect(observed.publications).toEqual([selected]);
+      expect(usePlayerStore.getState().selectAura('paladin.meditation')).toBe('ok');
+      expect(usePlayerStore.getState().player).toBe(selected);
+      expect(observed.publications).toHaveLength(1);
+      expect(usePlayerStore.getState().selectAura('paladin.might')).toBe('ok');
+      expect(usePlayerStore.getState().player).toEqual(input);
+      expect(usePlayerStore.getState().selectAura(null)).toBe('ok');
+      const { selectedAuraId: _selection, ...none } = input;
+      expect(usePlayerStore.getState().player).toEqual(none);
+      expect(Object.hasOwn(usePlayerStore.getState().player ?? {}, 'selectedAuraId')).toBe(false);
+      const cleared = usePlayerStore.getState().player;
+      expect(usePlayerStore.getState().selectAura(null)).toBe('ok');
+      expect(usePlayerStore.getState().player).toBe(cleared);
+      expect(observed.publications).toHaveLength(3); expect(input).toEqual(original);
+    } finally { observed.unsubscribe(); }
+  });
+  it.each<Partial<Player>>([{ class: 'sorceress' }, { level: 23 }, { level: NaN }, { level: Infinity },
+    { skillLevels: { 'paladin.might': 20 } }, { skillLevels: { 'paladin.meditation': 0 } },
+    { skillLevels: { 'paladin.meditation': 1.5 } }, { skillLevels: { 'aura-meditation': 20 } }])(
+    'refuses independently ineligible Meditation %# even when already selected', patch => {
+      const input = player({ level: 24, skillLevels: { 'paladin.meditation': 1 },
+        selectedAuraId: 'paladin.meditation', ...patch });
+      usePlayerStore.getState().setPlayer(input); const basis = usePlayerStore.getState(); const observed = observe();
+      try {
+        expect(basis.selectAura('paladin.meditation')).toBe('ineligible');
+        expect(usePlayerStore.getState()).toBe(basis); expect(observed.publications).toEqual([]);
+        expect(basis.selectAura(null)).toBe('ok');
+        expect(Object.hasOwn(usePlayerStore.getState().player ?? {}, 'selectedAuraId')).toBe(false);
+      } finally { observed.unsubscribe(); }
+    });
+  it('refuses aliases and malformed requests without publishing or replacing Might', () => {
+    const input = player({ level: 24, selectedAuraId: 'paladin.might', skillLevels: { 'paladin.meditation': 20 } });
+    usePlayerStore.getState().setPlayer(input); const basis = usePlayerStore.getState(); const observed = observe();
+    try {
+      for (const request of ['skills-paladin-meditation', 'aura-meditation', 'paladin.Meditation', undefined, {}, 1]) {
+        expect(basis.selectAura(request)).toBe('unsupported-aura'); expect(usePlayerStore.getState()).toBe(basis);
+      }
+      expect(observed.publications).toEqual([]);
+    } finally { observed.unsubscribe(); }
+  });
+  it('learning and combo never select Meditation; upgrading preserves explicit selection', () => {
+    usePlayerStore.getState().setPlayer(player({ level: 24, skillLevels: { 'paladin.cleansing': 1 }, skillPoints: 2 }));
+    expect(usePlayerStore.getState().allocateSkillPoint('skills-paladin-meditation')).toBe('ok');
+    expect(Object.hasOwn(usePlayerStore.getState().player ?? {}, 'selectedAuraId')).toBe(false);
+    usePlayerStore.getState().setComboOrder(['paladin.meditation']);
+    expect(Object.hasOwn(usePlayerStore.getState().player ?? {}, 'selectedAuraId')).toBe(false);
+    expect(usePlayerStore.getState().selectAura('paladin.meditation')).toBe('ok');
+    expect(usePlayerStore.getState().allocateSkillPoint('skills-paladin-meditation')).toBe('ok');
+    expect(usePlayerStore.getState().player?.selectedAuraId).toBe('paladin.meditation');
+    expect(usePlayerStore.getState().player?.skillLevels?.['paladin.meditation']).toBe(2);
+  });
+  it.each(['paid', 'no-allocations', 'insufficient-gold', 'spend-refused'] as const)('respec %s clears only on success and publishes once', reason => {
+    const input = player({ level: 24, selectedAuraId: 'paladin.meditation',
+      skillLevels: reason === 'no-allocations' ? {} : { 'paladin.meditation': 2 } });
+    usePlayerStore.getState().setPlayer(input); const basis = usePlayerStore.getState(); const observed = observe();
+    const spent: number[] = [];
+    try {
+      expect(basis.respec({ getGold: () => reason === 'insufficient-gold' ? 0 : 100000,
+        spendGold: cost => { spent.push(cost); return reason !== 'spend-refused'; } }))
+        .toBe(reason === 'paid' ? 'ok' : reason === 'no-allocations' ? reason : 'insufficient-gold');
+      if (reason === 'paid') {
+        const { selectedAuraId: _selected, ...none } = input;
+        expect(usePlayerStore.getState().player).toEqual({ ...none, skillLevels: {}, skillPoints: 6 });
+        expect(Object.hasOwn(usePlayerStore.getState().player ?? {}, 'selectedAuraId')).toBe(false);
+        expect(spent).toEqual([24000]); expect(observed.publications).toHaveLength(1);
+      } else { expect(usePlayerStore.getState()).toBe(basis); expect(observed.publications).toEqual([]); }
+    } finally { observed.unsubscribe(); }
+  });
+});

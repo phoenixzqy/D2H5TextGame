@@ -10,6 +10,7 @@ import type { Item } from '@/engine/types/items';
 import { deriveEquippedPlayerStats } from '@/engine/progression/equipped-stats';
 import { CORE_STAT_HARD_CAP } from '@/engine/progression/stats';
 import { resolveEligibleMightRank } from '@/engine/skills/might';
+import { resolveEligibleMeditationRank } from '@/engine/skills/meditation';
 import { awardXp, xpRequired, xpTotal, LEVEL_CAP } from '@/engine/progression/xp';
 import { useInventoryStore } from './inventoryStore';
 import {
@@ -82,7 +83,7 @@ interface PlayerState {
    * throwing so the UI can render a tooltip.
    */
   allocateSkillPoint: (skillId: string) => AllocateSkillResult;
-  /** Select canonical eligible Might or null for None. Clearing omits the saved property. */
+  /** Select canonical eligible Might/Meditation or null for None. Clearing omits the saved property. */
   selectAura: (request: unknown) => SelectAuraResult;
   /** Recompute derived player stats from base stats and equipped item mods. */
   recomputeDerived: (equipped: Record<string, Item | null>) => void;
@@ -270,14 +271,15 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   selectAura: (request) => {
     const player = get().player;
     if (!player) return 'no-player';
-    if (request !== null && request !== 'paladin.might') return 'unsupported-aura';
+    if (request !== null && request !== 'paladin.might' && request !== 'paladin.meditation') return 'unsupported-aura';
     if (request === null) {
       if (!Object.hasOwn(player, 'selectedAuraId')) return 'ok';
       const { selectedAuraId: _selected, ...withoutAura } = player;
       set({ player: withoutAura });
       return 'ok';
     }
-    if (resolveEligibleMightRank(player) === 0) return 'ineligible';
+    const rank = request === 'paladin.might' ? resolveEligibleMightRank(player) : resolveEligibleMeditationRank(player);
+    if (rank === 0) return 'ineligible';
     if (player.selectedAuraId !== request) set({ player: { ...player, selectedAuraId: request } });
     return 'ok';
   },
