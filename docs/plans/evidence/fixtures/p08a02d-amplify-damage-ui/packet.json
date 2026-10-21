@@ -792,8 +792,17 @@
   },
   "scope": "bounded presentation/finite Chromium CSS/same-context save; no native cast/earned progression/balance/performance/full accessibility/full private-v1 acceptance",
   "rawCleanup": {
-    "status": "pending independent archive review and commit before exact deletion",
-    "owner": "root"
+    "status": "complete",
+    "owner": "root",
+    "archiveCommit": "d8df46fa53d46f6c9c866712b5e53c1aa1baba04",
+    "verifiedUtc": "2026-10-21T12:14:00.159514+00:00",
+    "freshChecks": "committedarchive/allmembers/exactliveRAWset/17sources/932processbirths/761outputs/originalcheckout/readersreleased",
+    "removedFiles": 133,
+    "removedBytes": 6498162,
+    "removedEmptyChildDirectories": 6,
+    "remainingFiles": 0,
+    "retainedEmptyRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-amplify-ui-0bebeotd",
+    "failures": []
   },
   "createdUtc": "2026-10-21T12:12:21.395770+00:00",
   "independentDurableReview": {
@@ -802,6 +811,13 @@
     "verified": "all133 safe unique regularmembers/livebytes/exactset/6childdirs;17closurefingerprints/currenta45592c;9records/932absentbirths;761outputs/10dirsabsent;originalcheckoutclean;RED14/12 GREEN26 full5470 drafts/reviews/33attachments18originalPNGs match embedded report",
     "readersReleased": true,
     "cleanupScope": "exact133manifestfiles+6emptychilddirectories after committedbyte checks; retain root/sharedparents/source/history/tools/fonts",
+    "artifactsOrProcessesCreated": false
+  },
+  "independentCleanupReceiptReview": {
+    "kind": "root transcription of QA review",
+    "verdict": "APPROVE",
+    "verified": "committed d8df46f archive/all133members;onlyrawCleanupchanged;17sources/932absentbirths/761outputs10dirsabsent;realemptyAmplifyRAWroot;separateexactD06RAW13filesintact;sharedVitestparents/font/browsercache;originalcheckoutclean",
+    "readersReleased": true,
     "artifactsOrProcessesCreated": false
   }
 }

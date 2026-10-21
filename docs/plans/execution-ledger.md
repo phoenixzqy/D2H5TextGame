@@ -2944,3 +2944,13 @@ browser evidence. Root verified every archived byte; all nine records / 932 proc
 births / 761 outputs absent. Independent archive review and commit precede exact
 RAW cleanup. Retain empty root/shared parents/source/history/fonts/tools; umbrella
 claim continues, full v1 open, no remote action.
+
+
+## P08a02D exact RAW cleanup
+
+Committed archive `d8df46f` verified again before exact 133 files / 6,498,162 bytes /
+six empty child directories removed, zero failures or remaining files. [Packet
+receipt](evidence/fixtures/p08a02d-amplify-damage-ui/packet.json) records 17 sources,
+932 absent process births, 761 absent outputs and retained empty RAW root/shared
+parents/fonts/tools/source/history. Amplify bounded closure complete; umbrella claim
+continues into D06 preparation policy, full v1 open, no remote action.

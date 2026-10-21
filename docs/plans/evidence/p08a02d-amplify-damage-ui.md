@@ -113,3 +113,13 @@ against live RAW. Final closure fingerprints distinguish the two deliberately ch
 control/report documents from the historical browser freeze. All nine command records /
 932 process births and 761 removed outputs are freshly absent. Independent durable
 review and archive commit precede exact RAW cleanup; root owns that cleanup receipt.
+
+
+## Exact RAW cleanup receipt
+
+Archive commit `d8df46f` precedes fresh committed-byte/member/source/process/output
+checks and exact removal of 133 files / 6,498,162 bytes and six empty child directories.
+Zero failures or remaining files; the real empty RAW root is retained. Shared parents,
+dependencies, fonts, browser tools, source/history and original checkout are preserved.
+The packet records independent archive approval; final receipt review follows.
+Amplify's bounded closure is complete; D06 and the full umbrella remain open.
