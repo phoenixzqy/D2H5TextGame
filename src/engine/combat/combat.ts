@@ -34,6 +34,7 @@ import {
 import { CHILL_DEFINITION } from './chill-definition';
 import { MERC_INNER_SIGHT_DEFINITION } from '../skills/inner-sight';
 import { METEOR_ARMOR_MELT_DEFINITION } from '../skills/armor-melt';
+import { FROZEN_ARMOR_DEFINITION, resolveFrozenArmorRank } from '../skills/frozen-armor';
 import { comboMultiplier, shouldShatter } from './combo';
 import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
 import {
@@ -322,6 +323,16 @@ function nextSummonId(state: State, ownerId: string, templateId: string): string
   return id;
 }
 
+/** A bare marker never establishes paid potency. */
+function hasPaidFrozenArmor(unit: CombatUnit): unit is CombatUnit & {
+  readonly frozenArmor: NonNullable<CombatUnit['frozenArmor']>;
+} {
+  const snapshot = unit.frozenArmor;
+  return snapshot !== undefined && Number.isInteger(snapshot.rank) &&
+    snapshot.rank > 0 && snapshot.rank <= FROZEN_ARMOR_DEFINITION.maxRank &&
+    Number.isFinite(snapshot.defensePct) && snapshot.defensePct >= 0;
+}
+
 /** Compute damage with combo lookup applied. */
 function buildDamageInput(
   attacker: CombatUnit,
@@ -343,6 +354,7 @@ function buildDamageInput(
     ? 1 - METEOR_ARMOR_MELT_DEFINITION.defenseReductionPct / 100 : 1;
   const innerSightFactor = hasStatus(defender, MERC_INNER_SIGHT_DEFINITION.statusId)
     ? 1 - MERC_INNER_SIGHT_DEFINITION.defenseReductionPct / 100 : 1;
+  const armorBonus = hasPaidFrozenArmor(defender) ? defender.frozenArmor.defensePct : 0;
   return {
     baseMin,
     baseMax,
@@ -353,7 +365,7 @@ function buildDamageInput(
     critChance: stats.critChance,
     critMult: stats.critDamage,
     defenderResistances,
-    defenderArmor: Math.max(0, defender.stats.defense * meltFactor * innerSightFactor),
+    defenderArmor: Math.max(0, defender.stats.defense * (1 + armorBonus) * meltFactor * innerSightFactor),
     defenderMagicResist: defender.stats.magicResist,
     defenderDodge:
       effect.damageType === 'physical' || effect.damageType === 'thorns'
@@ -375,6 +387,7 @@ function applyDamageToUnit(
   if (!attacker || !defender || !alive(defender)) return;
 
   const activeDefender = activeStatusView(defender, state.simClockMs);
+  const retaliates = hasPaidFrozenArmor(activeDefender);
   const input = buildDamageInput(attacker, activeDefender, effect, skillLevel);
   const outcome = resolveDamage(input, state.rng);
   const amount = outcome.hit && outcome.final > 0 && shouldShatter(activeDefender, effect.damageType)
@@ -424,6 +437,14 @@ function applyDamageToUnit(
         emit(state, { kind: 'status', target: defenderId, statusId: status.id });
       }
     }
+  }
+
+  const survivingAttacker = state.units.get(attackerId);
+  if (retaliates && outcome.hit && amount > 0 && survivingAttacker && alive(survivingAttacker)) {
+    state.units.set(attackerId, applyStatus(survivingAttacker, {
+      id: 'chill', sourceId: defenderId, simClockMs: state.simClockMs
+    }, state.rng));
+    emit(state, { kind: 'status', target: attackerId, statusId: 'chill' });
   }
 
   const after = state.units.get(defenderId);
@@ -559,6 +580,7 @@ function skillLevelCandidates(skill: RegisteredSkill): readonly string[] {
 }
 
 function effectiveSkillLevel(unit: CombatUnit, skill: RegisteredSkill): number {
+  if (skill.id === 'sorceress.frozen_armor') return resolveFrozenArmorRank(unit.skillLevels);
   const levels = unit.skillLevels;
   if (!levels) return 1;
   for (const id of skillLevelCandidates(skill)) {
@@ -581,6 +603,12 @@ function activeBuffIdsForSkill(skill: RegisteredSkill): readonly string[] {
   return skill.effects
     .filter((effect): effect is BuffEffect => effect.kind === 'buff')
     .map((effect) => effect.id);
+}
+
+function isPaidFrozenArmorSkill(skill: RegisteredSkill): boolean {
+  return skill.id === 'sorceress.frozen_armor' && skill.trigger === 'active' &&
+    skill.target === 'self' && skill.effects.some(effect => effect.kind === 'buff' &&
+      effect.id === 'frozen-armor' && effect.frozenArmor === true);
 }
 
 /** Potential is deterministic; availability must never consume a healing roll. */
@@ -627,9 +655,12 @@ function canUseSkillForState(
   if (skill.trigger === 'passive') return false;
   if ((unit.cooldowns[skill.id] ?? unit.cooldowns[skillOrderId] ?? 0) > 0) return false;
   const skillLevel = effectiveSkillLevel(unit, skill);
+  if (skill.id === 'sorceress.frozen_armor' && skillLevel === 0) return false;
   if (effectiveManaCost(skill, skillLevel) > unit.mana) return false;
   if (unit.level < skill.minLevel) return false;
-  if (
+  if (isPaidFrozenArmorSkill(skill)) {
+    if (hasPaidFrozenArmor(unit)) return false;
+  } else if (
     skill.isBuff &&
     (unit.activeBuffIds.includes(skill.id) || activeBuffIdsForSkill(skill).some((id) => unit.activeBuffIds.includes(id)))
   ) return false;
@@ -665,6 +696,7 @@ function chooseSkillForState(
 function applyEffect(
   state: State,
   actorId: string,
+  skill: RegisteredSkill,
   effect: SkillEffect,
   skillLevel: number,
   enemySideAlive: readonly CombatUnit[]
@@ -679,6 +711,18 @@ function applyEffect(
     case 'buff': {
       const actor = state.units.get(actorId);
       if (!actor) return;
+      if (isPaidFrozenArmorSkill(skill) && effect.frozenArmor === true && effect.id === 'frozen-armor') {
+        if (skillLevel === 0 || hasPaidFrozenArmor(actor)) return;
+        const exactMarkers = ['frozen-armor', 'skills-sorceress-frozen-armor', 'sorceress.frozen_armor'];
+        state.units.set(actorId, {
+          ...actor,
+          frozenArmor: Object.freeze({ rank: skillLevel,
+            defensePct: skillLevel * FROZEN_ARMOR_DEFINITION.defensePctPerRank }),
+          activeBuffIds: [...actor.activeBuffIds.filter(id => !exactMarkers.includes(id)), effect.id]
+        });
+        emit(state, { kind: 'buff', target: actorId, buffId: effect.id });
+        break;
+      }
       if (actor.activeBuffIds.includes(effect.id)) return;
       state.units.set(actorId, {
         ...actor,
@@ -798,7 +842,7 @@ function castSkill(state: State, actorId: string, skill: RegisteredSkill): void 
   }
 
   for (const effect of skill.effects) {
-    applyEffect(state, actorId, effect, skillLevel, targetEnemies);
+    applyEffect(state, actorId, skill, effect, skillLevel, targetEnemies);
   }
 }
 

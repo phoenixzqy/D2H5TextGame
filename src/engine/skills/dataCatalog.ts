@@ -175,7 +175,10 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
       effects.push({
         kind: 'buff',
         id: skill.appliesStatus[0],
-        duration: -1
+        duration: -1,
+        ...(skill.id === 'skills-sorceress-frozen-armor' && skill.trigger === 'active' &&
+          skill.appliesStatus.length === 1 && skill.appliesStatus[0] === 'frozen-armor'
+          ? { frozenArmor: true as const } : {})
       });
       return effects;
     }

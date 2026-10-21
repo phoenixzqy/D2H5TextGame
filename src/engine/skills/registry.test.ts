@@ -139,6 +139,24 @@ describe('P07a01b authored trigger metadata (not passive runtime behavior)', () 
     });
   });
 
+
+  it('opts only exact active self Frozen Armor into paid snapshot metadata', () => {
+    const row = PLAYABLE_CLASS_SKILL_DATA.sorceress.find(skill => skill.id === 'skills-sorceress-frozen-armor');
+    if (!row) throw new Error('Missing actual Frozen Armor');
+    expect(getSkill(row.id)?.effects).toEqual([
+      { kind: 'buff', id: 'frozen-armor', duration: -1, frozenArmor: true }
+    ]);
+    expect(registeredSkillFromJson(row)).toEqual(getSkill(row.id));
+    for (const fields of [{ id: 'mskill-frozen-armor' }, { id: 'skills-sorceress-other-armor' },
+      { trigger: 'passive' as const }, { target: 'single-enemy' as const },
+      { appliesStatus: ['other-armor'] }, { appliesStatus: ['frozen-armor', 'chill'] }]) {
+      expect(registeredSkillFromJson({ ...row, ...fields }).effects.some(effect =>
+        effect.kind === 'buff' && effect.frozenArmor === true)).toBe(false);
+    }
+    expect(listSkills().filter(id => getSkill(id)?.effects.some(effect =>
+      effect.kind === 'buff' && effect.frozenArmor === true))).toEqual(['sorceress.frozen_armor']);
+  });
+
   it('keeps actual Frozen Armor active despite passiveStatsPerLevel and isBuff', () => {
     const row = sorceressSkills.find(skill => skill.id === 'skills-sorceress-frozen-armor');
     expect(row).toMatchObject({ trigger: 'active', scaling: { passiveStatsPerLevel: { defensePct: 0.03 } } });
@@ -527,7 +545,8 @@ describe('skill registry JSON catalog', () => {
       {
         kind: 'buff',
         id: 'frozen-armor',
-        duration: -1
+        duration: -1,
+        frozenArmor: true
       }
     ]);
   });

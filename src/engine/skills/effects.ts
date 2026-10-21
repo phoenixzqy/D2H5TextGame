@@ -62,6 +62,8 @@ export interface BuffEffect {
   readonly id: string;
   readonly duration: number;
   readonly statMods?: Record<string, number>;
+  /** Exact player Frozen Armor opts into an independently tuned paid combat snapshot. */
+  readonly frozenArmor?: true;
 }
 
 /** Debuff primitive (applies a status to enemies, no damage). */
