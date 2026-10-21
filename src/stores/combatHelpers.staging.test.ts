@@ -1,3 +1,4 @@
+import { useHydrationStore } from './hydrationStore';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import * as combatEngine from '@/engine/combat/combat';
 import * as wavePlans from '@/engine/combat';
@@ -32,12 +33,14 @@ beforeEach(() => {
   for (const store of stores) store.getState().reset();
   useIronGolemSelectionStore.setState({ selection: null });
   usePlayerStore.getState().setPlayer(createMockPlayer('Staging', 'sorceress'));
+  useHydrationStore.getState().setStatus('ready');
 });
 
 afterEach(() => {
   vi.restoreAllMocks();
   abortSubAreaRun();
   useIronGolemSelectionStore.setState({ selection: null });
+  useHydrationStore.getState().setStatus('idle');
 });
 
 const faults = ['engine', 'normalization', 'empty-plan', 'missing-end', 'non-end',

@@ -1,3 +1,4 @@
+import { useHydrationStore } from './hydrationStore';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { abortSubAreaRun, advanceWaveOrFinish, hasActiveSubAreaRun, refreshActivePlayerCombatConfig, startSubAreaRun } from './combatHelpers';
@@ -32,8 +33,9 @@ beforeEach(() => {
   abortSubAreaRun();
   for (const store of [usePlayerStore, useCombatStore, ...persistent]) store.getState().reset();
   usePlayerStore.getState().setPlayer({ ...createMockPlayer('Lifecycle', 'sorceress'), statPoints: 2 });
+  useHydrationStore.getState().setStatus('ready');
 });
-afterEach(() => { abortSubAreaRun(); });
+afterEach(() => { abortSubAreaRun(); useHydrationStore.getState().setStatus('idle'); });
 
 describe('public hero lifecycle', () => {
   it.each([

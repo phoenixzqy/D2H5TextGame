@@ -34,6 +34,7 @@ import {
   beginWaveTransition, endWaveTransition, reserveWaveRestore, releaseWaveRestore, WaveGuardError
 } from './waveTransitionGuard';
 import * as persistence from './persistence';
+import { useHydrationStore } from './hydrationStore';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { createCharacter } from '@/features/character/createCharacter';
 import { replacePlayerAfterRestore, usePlayerStore } from './playerStore';
@@ -45,7 +46,7 @@ import { useFormationStore } from './formationStore';
 import {
   __resetPersistenceForTests, initPersistence, importIntoStores,
   deleteCurrentSave, hydrateFromSave, snapshotStores, flushSave,
-  useHydrationStore, useSaveStatusStore, isReplacingSave
+  useSaveStatusStore, isReplacingSave
 } from './persistence';
 
 const HOUR = 3_600_000;
@@ -665,6 +666,7 @@ describe('successful restore transient combat cleanup', () => {
 
   function startTransientCombat() {
     usePlayerStore.getState().setPlayer(createMockPlayer('Live hero', 'sorceress'));
+    useHydrationStore.getState().setStatus('ready');
     const run = startSubAreaRun({ runSeed: 123, challengeOrdinal: 0 });
     expect(run).not.toBeNull();
     expect(hasActiveSubAreaRun()).toBe(true);

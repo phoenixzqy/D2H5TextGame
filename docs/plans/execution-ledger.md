@@ -4476,3 +4476,43 @@ executor; umbrella claim continues; no remote action or persistent server.
 Explicit readiness fixtures, actual wave/readiness guards and receipt/conflict/
 publication/settlement/replay integration remain pending, as do bilingual Iron
 controls and browser acceptance. FullD06/P09/P10/private-v1 remain open.
+
+
+## D06 v1n explicit readiness fixtures for lifecycle and restore
+
+Hydration extraction received independent QA, TD/five-axis and producer APPROVE
+and committed as `a9b9530`. Exact hydration-leaf cleanup removed857files/
+42,724,271bytes and14 empty directories with zero failures/remaining targets;
+all recorded command identities were dead. Diagnostics remain retained.
+
+TD approved this five-path fixture cohort before production readiness activation.
+Staging, public hero lifecycle and CombatScreen lifecycle tests now explicitly
+set the same hydration leaf singleton ready in successful-combat setup and return
+it to idle after their existing cleanup. Persistence offline imports the leaf
+directly and sets ready only inside startTransientCombat before starting its live
+run. Its global idle reset, initial/loading/error/queued-restore controls and
+existing local readiness scenarios remain unchanged. All358 assertion/declaration
+lines are unchanged (45staging/29hero/66screen/218persistence). No global test
+setup, production default, guard activation or fallback is added. No new mirrored
+tests or behavioral RED are warranted for explicit existing fixture prerequisites.
+
+Focused113/4files8.341s, types15.060s, lint64.653s including85 engine purity files,
+full6493/220files124.409s and production build9.907s passed. Full regression began
+before the lint process finished; those commands briefly overlapped against
+unchanged source. Both completed successfully; subsequent commands were serial.
+No additional browser run or new visual acceptance is claimed for test-only edits.
+Related5s/full15s budgets and existing React act, fixture fallback, stale
+Browserslist, chunk/precache diagnostics remain open. SaveCurrent11 unchanged.
+Security check passes for explicit suite-local prerequisite state without a
+production bypass, payload change, item mutation or privileged action.
+
+Five paths, readiness-core command/source/output identities, prior cleanup and
+exact owned dist/tmp inventory are frozen in readiness-core-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review remains before commit. Disposable outputs
+remain until readers release; diagnostics retained. Root is sole writer/
+executor; umbrella claim continues; no remote action or persistent server.
+Further bounded readiness cohorts, actual wave/readiness guards, receipt/conflict/
+publication/settlement/replay integration, bilingual Iron controls and browser
+acceptance remain pending. FullD06/P09/P10/private-v1 remain open.

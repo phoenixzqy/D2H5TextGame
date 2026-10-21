@@ -1,4 +1,5 @@
 /** Real router transitions, canonical inventory and production recording lifecycle. */
+import { useHydrationStore } from '@/stores/hydrationStore';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { Suspense } from 'react';
 import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
@@ -24,8 +25,8 @@ function reset() {
   for (const store of [useCombatStore, useFormationStore, useInventoryStore,
     useMapStore, useMercStore, useMetaStore, usePlayerStore]) store.getState().reset();
 }
-beforeEach(async () => { reset(); await i18n.changeLanguage('en'); });
-afterEach(() => { cleanup(); reset(); vi.restoreAllMocks(); vi.useRealTimers(); });
+beforeEach(async () => { reset(); useHydrationStore.getState().setStatus('ready'); await i18n.changeLanguage('en'); });
+afterEach(() => { cleanup(); reset(); useHydrationStore.getState().setStatus('idle'); vi.restoreAllMocks(); vi.useRealTimers(); });
 
 function arrange(idle: boolean) {
   const clock = vi.spyOn(Date, 'now').mockReturnValue(1792497600000);
