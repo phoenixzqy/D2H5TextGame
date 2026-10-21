@@ -3093,3 +3093,37 @@ acceptance. Evidence and parked runtime bytes remain root-owned in the recorded
 v1c temporary directory for review, exact restoration and later durable retention/
 cleanup. Next: restore identical runtime bytes, rerun combined validation and
 review the five-path runtime increment. Copy/browser/full private-v1 remain open.
+
+
+## D06 v1c runtime committed; Mastery display gap reproduced
+
+Separately reviewed Meditation prerequisite `d541db8` precedes exact-five-path
+runtime `c80a7bb`. Skeleton/Mage/Revive now prepare once per wave with one paid
+missing batch; strict authored cap curves, eligibility and no retry/replacement/
+refund rules are retained. Shared cooldown initialization preserves valid carried
+keys/milliseconds for all initial units. [BUG072](../../production/bugs/BUG-072-carried-cooldowns.md)
+records the RED root fix and separate fixture prerequisite. Frozen final checks
+pass serially: focused212/4files6.62s, engine3101/83files13.63s,
+full5981/209files95.44s (96.723s wrapper), types13.517s, lint35.211s and
+production build9.680s. QA, GD/TD and producer approve bounded engine/store runtime.
+Independent Fraction replay bookkeeping justifies820MP/.7carry; historical752/.5
+failure is preserved. Engine3s/full15s remain missed; main chunk1255.81kB and
+2.57MB generated manifest excluded from precache remain warnings. No performance
+or full-game acceptance, no remote action.
+
+Production-only ordinary DOM/import reproduction at360×640 in both locales found
+[BUG073](../../production/bugs/BUG-073-summon-mastery-detail.md): current/next
+Skeleton/Mage details ignore allocated Mastery, while Revive is correctly unchanged.
+Both default and font-corrected two-case diagnostics reproduce; they assert actual
+defective values and do not certify acceptance. First Chinese tofu and task-only
+font-cache recovery are retained; CDP proves actual Noto125glyphs and root viewed
+original screenshots. No bridge, console errors or product mutation. ImportedL30/
+ranks scaffold is not earned progression. GD/TD recommends a separate pure display
+foundation, then UI context/formatting plus truthful bilingual copy, each≤5paths.
+
+Root owns all logs/freezes/parks/reports/original PNGs and registered build/browser/
+font-cache outputs in the recorded v1c temporary directory until final consumers
+release and reviewed durable retention/exact cleanup. Runtime build760files/
+40,968,505B is diagnostic evidence input, not a requested deliverable. FullD06/P09/
+P10, corpse consumers, selected-itemIron, browser acceptance and private-v1 remain
+open; umbrella claim continues.
