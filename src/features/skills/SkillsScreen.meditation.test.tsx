@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { useHydrationStore } from '@/stores/hydrationStore';
 import { Suspense } from 'react';
 import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
@@ -72,8 +73,9 @@ function recording() {
 beforeEach(async () => {
   abortSubAreaRun(); for (const store of stores) store.getState().reset();
   await i18n.changeLanguage('en');
+  useHydrationStore.getState().setStatus('ready');
 });
-afterEach(() => { cleanup(); abortSubAreaRun(); });
+afterEach(() => { cleanup(); abortSubAreaRun(); useHydrationStore.getState().setStatus('idle'); });
 
 for (const locale of ['en', 'zh-CN'] as const) {
   describe(`exclusive Meditation UI (${locale})`, () => {
