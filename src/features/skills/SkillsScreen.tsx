@@ -30,6 +30,7 @@ import {
 import { refreshActivePlayerCombatConfig, resolveEquippedWeapon } from '@/stores/combatHelpers';
 import { getSkill, listSkills } from '@/engine/skills/registry';
 import { canCastSkill } from '@/engine/skills/eligibility';
+import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
 import { LIGHTNING_MASTERY_DEFINITION, resolveLightningMasteryRank } from '@/engine/skills/lightning-mastery';
 import { MIGHT_DEFINITION, resolveEligibleMightRank, resolveMightRank } from '@/engine/skills/might';
 import {
@@ -116,6 +117,11 @@ export function SkillsScreen() {
     const lightningRank = resolveLightningMasteryRank(levels);
     for (const alias of ['sorceress.lightning_mastery', 'skills-sorceress-lightning-mastery']) {
       if (lightningRank > 0) map.set(alias, lightningRank);
+      else map.delete(alias);
+    }
+    const ironSkinRank = resolveIronSkinRank(levels);
+    for (const alias of ['barbarian.iron_skin', 'skills-barbarian-iron-skin']) {
+      if (ironSkinRank > 0) map.set(alias, ironSkinRank);
       else map.delete(alias);
     }
     return map;
@@ -1025,6 +1031,11 @@ function dynamicDescription(
     const { lightningDamagePctPerRank, maxRank, requiredLevel } = LIGHTNING_MASTERY_DEFINITION;
     return t('sorceress.lightning-mastery.desc', { bonus: Math.round(lightningDamagePctPerRank * 100),
       maxBonus: Math.round(lightningDamagePctPerRank * maxRank * 100), cap: maxRank, level: requiredLevel });
+  }
+  if (skill.id === 'skills-barbarian-iron-skin') {
+    const { defensePctPerRank, maxRank, requiredLevel } = IRON_SKIN_DEFINITION;
+    return t('barbarian.iron-skin.desc', { bonus: Math.round(defensePctPerRank * 100),
+      maxBonus: Math.round(defensePctPerRank * maxRank * 100), cap: maxRank, level: requiredLevel });
   }
   const firstDamage = stats?.damage[0];
   if (firstDamage) {

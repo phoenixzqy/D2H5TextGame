@@ -154,7 +154,7 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 #### Passive Skills (4)
 | ID | Name (EN / ZH) | Effect | Notes |
 |---|---|---|---|
-| `barbarian.iron_skin` | Iron Skin / 钢铁皮肤 | +100% defense | |
+| `barbarian.iron_skin` | Iron Skin / 钢铁之肤 | +4% ordinary defense per allocated rank; cap20/+80% | L18; [D05 controlling contract](../plans/decisions/D05-iron-skin-v1.md) |
 | `barbarian.natural_resistance` | Natural Resistance / 自然抗性 | +30% all resists | |
 | `barbarian.battle_orders` | Battle Orders / 战斗体制 | +50% max HP/mana at combat start | Buff |
 | `barbarian.shout` | Shout / 大叫 | +50% defense to self+merc | Buff, 5 turns |

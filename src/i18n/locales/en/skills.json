@@ -427,7 +427,7 @@
     },
     "iron-skin": {
       "name": "Iron Skin",
-      "desc": "Increases defense by 100%."
+      "desc": "Passive: +{{bonus}}% ordinary defense per allocated skill rank (up to +{{maxBonus}}% at rank {{cap}}). Unlocks at character level {{level}}."
     },
     "natural-resistance": {
       "name": "Natural Resistance",

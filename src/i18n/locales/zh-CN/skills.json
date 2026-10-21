@@ -427,7 +427,7 @@
     },
     "iron-skin": {
       "name": "钢铁之肤",
-      "desc": "防御 +100%。"
+      "desc": "被动：每投入1点技能点，普通防御+{{bonus}}%（最多{{cap}}点，合计+{{maxBonus}}%）。角色{{level}}级解锁。"
     },
     "natural-resistance": {
       "name": "自然抗性",
