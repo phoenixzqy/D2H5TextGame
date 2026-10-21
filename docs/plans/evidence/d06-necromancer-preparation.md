@@ -162,3 +162,25 @@ ports/outputs and clean original checkout. It unlinks only exact verified files
 and removes exact empty child directories, preserving empty RAW root/shared
 parents, fonts/tools/dependencies, source/history and the umbrella worktree.
 Packet cleanup is pending until its actual receipt is recorded. No remote action.
+
+## Committed retention and completed RAW cleanup
+
+QA and GD/TD approved the original packet; producer approved the final65,239-byte
+packet SHA256 `e13c48561ead100ae69c87262ee3f80ab813d4e1a425d27813cb40f0751a4ccb`
+after attributed review metadata and the disclosed historical severity wording
+correction. Exact five-path commit `e49db50` preserves archive/closure before
+cleanup. The archive contains239regular members/10,535,568original bytes;
+compressed4,997,573bytes, SHA256
+`55424edccfb100cc86d1f8876b1997cef49b1a3b29d4b330e544d00e2c3a4adc`.
+
+With all readers released, guarded `--verify-raw` passed without mutation, then
+`--raw` repeated the full committed-byte/live-member/source/process/port/output/
+original-checkout guards. At2026-10-21T16:50:17.272464+00:00 it removed exactly
+239files/10,535,568bytes and22empty child directories. Zero failures, zero
+remaining files/directories under RAW; the empty root is retained. No process
+was killed; shared parents/fonts/tools/dependencies/source/history remain. The
+packet records the actual receipt and original review identities. Its original
+closure fingerprints stay historical; receipt-document hashes identify only the
+subsequent status updates. Archive bytes remain unchanged. This completes the
+bounded slice and BUG073 evidence hygiene; the full-v1 umbrella continues into
+the separate Iron Golem contract, with all broader limits above preserved.

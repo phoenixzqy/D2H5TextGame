@@ -1,8 +1,10 @@
 # D06 v1c — Necromancer battle-start preparation
 
-Status: GD/TD approved the bounded contract; implementation and player-facing
-acceptance remain pending. This card covers startup behavior for three skills, not full
-skill, corpse-economy, P09 or private-v1 acceptance.
+Status: accepted bounded engine/store, bilingual UI and production-browser
+implementation; independent QA, GD/TD and producer approved. This card covers
+startup behavior for three skills, not full skill, corpse-economy, P09 or private-v1
+acceptance. [Delivery and retained evidence](../evidence/d06-necromancer-preparation.md)
+records source commits, BUG072/073, original failures, provenance and scope limits.
 
 ## Overview and controlling sources
 
@@ -165,3 +167,19 @@ makes no earned-progression, TTK or affordability claim.
 No runtime acceptance is granted by approving this contract. Full D06/P09/P10,
 all other corpse consumers, selected-item Iron Golem, earned campaign/balance and
 private-v1 checkpoints/gates remain open.
+
+
+## Bounded delivery record
+
+Runtime `c80a7bb`, display foundation `0feb781`, screen/copy `3408045` and
+browser `4cc41f0` implement this scoped contract. Independent final reviews accept
+6031unit tests, types/lint/clean production bridge-build, eight Necromancer
+browser cases and two unchanged Raven regressions on the same production bytes.
+Archive/closure `e49db50` preceded verified exact RAW cleanup; the linked packet
+retains every original failure/report/PNG, fingerprint and actual cleanup receipt.
+Imported fixtures establish functional behavior, not earned progression/balance.
+Finite mobile/desktop Chromium layouts and readable CJK do not establish complete
+glyph/a11y/platform acceptance; mobile numeric framing/navigation pictograph
+limitations and unresolved time/build warnings remain disclosed. FullD06/P09/P10,
+other corpse consumers, selected-item Iron Golem, Mage elemental identity and
+private-v1 remain open. No remote publication occurred; umbrella work continues.

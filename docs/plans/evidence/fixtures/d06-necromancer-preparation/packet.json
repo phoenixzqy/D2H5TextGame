@@ -1679,9 +1679,533 @@
   "scope": "Bounded three-skill preparation, shared cooldown correction, Mastery display and truthful bilingual copy/browser/save. Imported scaffolds are not earned progression/balance. FullD06/P09/P10, other corpse consumers, selected-itemIron, Mage elemental identity, private-v1/C0-C4/G0-G7 remain open. Engine3s/full15s and existing build warnings remain unresolved.",
   "preserved": "Lossless all remaining RAW files: original RED/failing/successful logs and command metadata, source snapshots and parks, reports with base64 attachments, decoded original PNGs, error contexts, reviews, inventories, scripts, ownership and verified output-cleanup receipts. Original v1b packet untouched.",
   "rawCleanup": {
-    "status": "pending",
+    "status": "complete",
     "owner": "root",
-    "requires": "Independent reviewed five-path archive/closure commit, readers released, guarded committed packet/archive and exact live/member/source/process/port/output/original checks. Exact files/empty children only; retain empty RAW root and shared parents/fonts/tools/source/history."
+    "archiveCommit": "e49db5060afb7d2dccf8a764d71ce4305be50dee",
+    "verifiedUtc": "2026-10-21T16:50:17.272464+00:00",
+    "processAudit": {
+      "verifiedUtc": "2026-10-21T16:50:17.080370+00:00",
+      "records": [
+        {
+          "record": "canonical-boundaries-red.json",
+          "pid": 2717832,
+          "startUtc": "2026-10-21T15:20:56.369819+00:00"
+        },
+        {
+          "record": "canonical-combined-red.json",
+          "pid": 2719604,
+          "startUtc": "2026-10-21T15:24:21.185630+00:00"
+        },
+        {
+          "record": "canonical-cooldown-green-native-trace.json",
+          "pid": 2725795,
+          "startUtc": "2026-10-21T15:33:42.009999+00:00"
+        },
+        {
+          "record": "canonical-corrected-engine.json",
+          "pid": 2726141,
+          "startUtc": "2026-10-21T15:33:54.906710+00:00"
+        },
+        {
+          "record": "canonical-death-red.json",
+          "pid": 2717230,
+          "startUtc": "2026-10-21T15:20:10.884663+00:00"
+        },
+        {
+          "record": "canonical-engine-native-red.json",
+          "pid": 2718258,
+          "startUtc": "2026-10-21T15:21:42.401660+00:00"
+        },
+        {
+          "record": "canonical-engine.json",
+          "pid": 2721895,
+          "startUtc": "2026-10-21T15:28:34.858157+00:00"
+        },
+        {
+          "record": "canonical-focused-green.json",
+          "pid": 2728351,
+          "startUtc": "2026-10-21T15:35:57.820327+00:00"
+        },
+        {
+          "record": "canonical-full.json",
+          "pid": 2728832,
+          "startUtc": "2026-10-21T15:36:12.709804+00:00"
+        },
+        {
+          "record": "canonical-green-attempt.json",
+          "pid": 2721582,
+          "startUtc": "2026-10-21T15:28:21.571923+00:00"
+        },
+        {
+          "record": "canonical-primary-red.json",
+          "pid": 2716624,
+          "startUtc": "2026-10-21T15:19:19.565446+00:00"
+        },
+        {
+          "record": "canonical-red-freeze.json",
+          "pid": 2719604,
+          "startUtc": "2026-10-21T15:24:21.185630+00:00"
+        },
+        {
+          "record": "canonical-red-freeze.json",
+          "pid": 2720025,
+          "startUtc": "2026-10-21T15:24:33.022665+00:00"
+        },
+        {
+          "record": "canonical-red-types.json",
+          "pid": 2720025,
+          "startUtc": "2026-10-21T15:24:33.022665+00:00"
+        },
+        {
+          "record": "cooldown-control-red-native-trace.json",
+          "pid": 2724264,
+          "startUtc": "2026-10-21T15:30:45.687278+00:00"
+        },
+        {
+          "record": "cooldown-red-freeze.json",
+          "pid": 2724264,
+          "startUtc": "2026-10-21T15:30:45.687278+00:00"
+        },
+        {
+          "record": "engine-relocation-commands.json",
+          "pid": 2687457,
+          "startUtc": "2026-10-21T14:54:17.858349+00:00"
+        },
+        {
+          "record": "engine-relocation-commands.json",
+          "pid": 2689124,
+          "startUtc": "2026-10-21T14:54:33.993158+00:00"
+        },
+        {
+          "record": "engine-relocation-commands.json",
+          "pid": 2693843,
+          "startUtc": "2026-10-21T14:56:11.332338+00:00"
+        },
+        {
+          "record": "engine-relocation-commands.json",
+          "pid": 2693921,
+          "startUtc": "2026-10-21T14:56:25.065258+00:00"
+        },
+        {
+          "record": "engine-relocation-freeze.json",
+          "pid": 2687457,
+          "startUtc": "2026-10-21T14:54:17.858349+00:00"
+        },
+        {
+          "record": "engine-relocation-freeze.json",
+          "pid": 2689124,
+          "startUtc": "2026-10-21T14:54:33.993158+00:00"
+        },
+        {
+          "record": "engine-relocation-freeze.json",
+          "pid": 2693843,
+          "startUtc": "2026-10-21T14:56:11.332338+00:00"
+        },
+        {
+          "record": "engine-relocation-freeze.json",
+          "pid": 2693921,
+          "startUtc": "2026-10-21T14:56:25.065258+00:00"
+        },
+        {
+          "record": "mastery-browser-repro-font.json",
+          "pid": 2751911,
+          "startUtc": "2026-10-21T15:57:26.776527+00:00"
+        },
+        {
+          "record": "mastery-browser-repro.json",
+          "pid": 2751179,
+          "startUtc": "2026-10-21T15:56:18.869180+00:00"
+        },
+        {
+          "record": "mastery-foundation-build.json",
+          "pid": 2768470,
+          "startUtc": "2026-10-21T16:09:34.393109+00:00"
+        },
+        {
+          "record": "mastery-foundation-engine-final.json",
+          "pid": 2762275,
+          "startUtc": "2026-10-21T16:07:44.226413+00:00"
+        },
+        {
+          "record": "mastery-foundation-engine.json",
+          "pid": 2755104,
+          "startUtc": "2026-10-21T16:04:15.176235+00:00"
+        },
+        {
+          "record": "mastery-foundation-focused.json",
+          "pid": 2754782,
+          "startUtc": "2026-10-21T16:04:04.658696+00:00"
+        },
+        {
+          "record": "mastery-foundation-full-final.json",
+          "pid": 2763845,
+          "startUtc": "2026-10-21T16:07:58.678110+00:00"
+        },
+        {
+          "record": "mastery-foundation-full.json",
+          "pid": 2756878,
+          "startUtc": "2026-10-21T16:04:34.525705+00:00"
+        },
+        {
+          "record": "mastery-foundation-lint.json",
+          "pid": 2761914,
+          "startUtc": "2026-10-21T16:07:08.900133+00:00"
+        },
+        {
+          "record": "mastery-foundation-red.json",
+          "pid": 2754364,
+          "startUtc": "2026-10-21T16:03:33.921197+00:00"
+        },
+        {
+          "record": "mastery-foundation-types-final.json",
+          "pid": 2761887,
+          "startUtc": "2026-10-21T16:06:55.394454+00:00"
+        },
+        {
+          "record": "mastery-foundation-types.json",
+          "pid": 2761634,
+          "startUtc": "2026-10-21T16:06:32.308494+00:00"
+        },
+        {
+          "record": "mastery-ui-bridge-build.json",
+          "pid": 2777146,
+          "startUtc": "2026-10-21T16:18:25.350509+00:00"
+        },
+        {
+          "record": "mastery-ui-corrected-red.json",
+          "pid": 2770828,
+          "startUtc": "2026-10-21T16:14:14.702012+00:00"
+        },
+        {
+          "record": "mastery-ui-focused.json",
+          "pid": 2771415,
+          "startUtc": "2026-10-21T16:15:04.083168+00:00"
+        },
+        {
+          "record": "mastery-ui-full.json",
+          "pid": 2772461,
+          "startUtc": "2026-10-21T16:16:49.683276+00:00"
+        },
+        {
+          "record": "mastery-ui-lint.json",
+          "pid": 2772220,
+          "startUtc": "2026-10-21T16:16:15.483986+00:00"
+        },
+        {
+          "record": "mastery-ui-red.json",
+          "pid": 2770380,
+          "startUtc": "2026-10-21T16:13:46.502309+00:00"
+        },
+        {
+          "record": "mastery-ui-types-final.json",
+          "pid": 2772125,
+          "startUtc": "2026-10-21T16:16:02.120139+00:00"
+        },
+        {
+          "record": "mastery-ui-types.json",
+          "pid": 2771802,
+          "startUtc": "2026-10-21T16:15:26.367711+00:00"
+        },
+        {
+          "record": "meditation-fixture-focused.json",
+          "pid": 2734946,
+          "startUtc": "2026-10-21T15:41:15.651943+00:00"
+        },
+        {
+          "record": "meditation-fixture-freeze.json",
+          "pid": 2734946,
+          "startUtc": "2026-10-21T15:41:15.651943+00:00"
+        },
+        {
+          "record": "meditation-fixture-freeze.json",
+          "pid": 2735275,
+          "startUtc": "2026-10-21T15:41:29.696120+00:00"
+        },
+        {
+          "record": "meditation-fixture-freeze.json",
+          "pid": 2740092,
+          "startUtc": "2026-10-21T15:43:24.400654+00:00"
+        },
+        {
+          "record": "meditation-fixture-freeze.json",
+          "pid": 2740220,
+          "startUtc": "2026-10-21T15:43:47.401058+00:00"
+        },
+        {
+          "record": "meditation-fixture-full.json",
+          "pid": 2735275,
+          "startUtc": "2026-10-21T15:41:29.696120+00:00"
+        },
+        {
+          "record": "meditation-fixture-lint.json",
+          "pid": 2740220,
+          "startUtc": "2026-10-21T15:43:47.401058+00:00"
+        },
+        {
+          "record": "meditation-fixture-types.json",
+          "pid": 2740092,
+          "startUtc": "2026-10-21T15:43:24.400654+00:00"
+        },
+        {
+          "record": "necromancer-browser-final.json",
+          "pid": 2784694,
+          "startUtc": "2026-10-21T16:30:17.412020+00:00"
+        },
+        {
+          "record": "necromancer-browser-lint-final.json",
+          "pid": 2783422,
+          "startUtc": "2026-10-21T16:29:32.932752+00:00"
+        },
+        {
+          "record": "necromancer-browser-lint.json",
+          "pid": 2781997,
+          "startUtc": "2026-10-21T16:26:23.966481+00:00"
+        },
+        {
+          "record": "necromancer-browser-types-final.json",
+          "pid": 2783331,
+          "startUtc": "2026-10-21T16:29:13.168457+00:00"
+        },
+        {
+          "record": "necromancer-browser-types.json",
+          "pid": 2781881,
+          "startUtc": "2026-10-21T16:26:00.390583+00:00"
+        },
+        {
+          "record": "necromancer-browser.json",
+          "pid": 2782352,
+          "startUtc": "2026-10-21T16:27:10.498314+00:00"
+        },
+        {
+          "record": "playback-prerequisite-focused.json",
+          "pid": 2709624,
+          "startUtc": "2026-10-21T15:12:56.672353+00:00"
+        },
+        {
+          "record": "playback-prerequisite-freeze.json",
+          "pid": 2709624,
+          "startUtc": "2026-10-21T15:12:56.672353+00:00"
+        },
+        {
+          "record": "playback-prerequisite-freeze.json",
+          "pid": 2709915,
+          "startUtc": "2026-10-21T15:13:00.491548+00:00"
+        },
+        {
+          "record": "playback-prerequisite-freeze.json",
+          "pid": 2714735,
+          "startUtc": "2026-10-21T15:14:37.996905+00:00"
+        },
+        {
+          "record": "playback-prerequisite-freeze.json",
+          "pid": 2714890,
+          "startUtc": "2026-10-21T15:14:51.251992+00:00"
+        },
+        {
+          "record": "playback-prerequisite-full.json",
+          "pid": 2709915,
+          "startUtc": "2026-10-21T15:13:00.491548+00:00"
+        },
+        {
+          "record": "playback-prerequisite-lint.json",
+          "pid": 2714890,
+          "startUtc": "2026-10-21T15:14:51.251992+00:00"
+        },
+        {
+          "record": "playback-prerequisite-types.json",
+          "pid": 2714735,
+          "startUtc": "2026-10-21T15:14:37.996905+00:00"
+        },
+        {
+          "record": "raven-final-browser.json",
+          "pid": 2785546,
+          "startUtc": "2026-10-21T16:31:43.036662+00:00"
+        },
+        {
+          "record": "runtime-final-build.json",
+          "pid": 2748608,
+          "startUtc": "2026-10-21T15:49:38.440237+00:00"
+        },
+        {
+          "record": "runtime-final-engine.json",
+          "pid": 2741690,
+          "startUtc": "2026-10-21T15:46:27.314961+00:00"
+        },
+        {
+          "record": "runtime-final-focused.json",
+          "pid": 2741252,
+          "startUtc": "2026-10-21T15:46:15.457492+00:00"
+        },
+        {
+          "record": "runtime-final-freeze.json",
+          "pid": 2741252,
+          "startUtc": "2026-10-21T15:46:15.457492+00:00"
+        },
+        {
+          "record": "runtime-final-freeze.json",
+          "pid": 2741690,
+          "startUtc": "2026-10-21T15:46:27.314961+00:00"
+        },
+        {
+          "record": "runtime-final-freeze.json",
+          "pid": 2743324,
+          "startUtc": "2026-10-21T15:46:52.623043+00:00"
+        },
+        {
+          "record": "runtime-final-freeze.json",
+          "pid": 2748188,
+          "startUtc": "2026-10-21T15:48:33.493856+00:00"
+        },
+        {
+          "record": "runtime-final-freeze.json",
+          "pid": 2748329,
+          "startUtc": "2026-10-21T15:48:56.480904+00:00"
+        },
+        {
+          "record": "runtime-final-freeze.json",
+          "pid": 2748608,
+          "startUtc": "2026-10-21T15:49:38.440237+00:00"
+        },
+        {
+          "record": "runtime-final-full.json",
+          "pid": 2743324,
+          "startUtc": "2026-10-21T15:46:52.623043+00:00"
+        },
+        {
+          "record": "runtime-final-lint.json",
+          "pid": 2748329,
+          "startUtc": "2026-10-21T15:48:56.480904+00:00"
+        },
+        {
+          "record": "runtime-final-types.json",
+          "pid": 2748188,
+          "startUtc": "2026-10-21T15:48:33.493856+00:00"
+        },
+        {
+          "record": "store-relocation-focused.json",
+          "pid": 2696076,
+          "startUtc": "2026-10-21T15:01:19.870221+00:00"
+        },
+        {
+          "record": "store-relocation-freeze.json",
+          "pid": 2696076,
+          "startUtc": "2026-10-21T15:01:19.870221+00:00"
+        },
+        {
+          "record": "store-relocation-freeze.json",
+          "pid": 2696593,
+          "startUtc": "2026-10-21T15:01:35.191302+00:00"
+        },
+        {
+          "record": "store-relocation-freeze.json",
+          "pid": 2701319,
+          "startUtc": "2026-10-21T15:03:15.535529+00:00"
+        },
+        {
+          "record": "store-relocation-freeze.json",
+          "pid": 2701385,
+          "startUtc": "2026-10-21T15:03:32.841336+00:00"
+        },
+        {
+          "record": "store-relocation-full.json",
+          "pid": 2696593,
+          "startUtc": "2026-10-21T15:01:35.191302+00:00"
+        },
+        {
+          "record": "store-relocation-lint.json",
+          "pid": 2701385,
+          "startUtc": "2026-10-21T15:03:32.841336+00:00"
+        },
+        {
+          "record": "store-relocation-types.json",
+          "pid": 2701319,
+          "startUtc": "2026-10-21T15:03:15.535529+00:00"
+        },
+        {
+          "record": "ui-relocation-focused.json",
+          "pid": 2703299,
+          "startUtc": "2026-10-21T15:08:02.149225+00:00"
+        },
+        {
+          "record": "ui-relocation-freeze.json",
+          "pid": 2703299,
+          "startUtc": "2026-10-21T15:08:02.149225+00:00"
+        },
+        {
+          "record": "ui-relocation-freeze.json",
+          "pid": 2703656,
+          "startUtc": "2026-10-21T15:08:18.724684+00:00"
+        },
+        {
+          "record": "ui-relocation-freeze.json",
+          "pid": 2708522,
+          "startUtc": "2026-10-21T15:09:57.686831+00:00"
+        },
+        {
+          "record": "ui-relocation-freeze.json",
+          "pid": 2708626,
+          "startUtc": "2026-10-21T15:10:16.051293+00:00"
+        },
+        {
+          "record": "ui-relocation-full.json",
+          "pid": 2703656,
+          "startUtc": "2026-10-21T15:08:18.724684+00:00"
+        },
+        {
+          "record": "ui-relocation-lint.json",
+          "pid": 2708626,
+          "startUtc": "2026-10-21T15:10:16.051293+00:00"
+        },
+        {
+          "record": "ui-relocation-types.json",
+          "pid": 2708522,
+          "startUtc": "2026-10-21T15:09:57.686831+00:00"
+        }
+      ],
+      "uniqueCommandPids": 66,
+      "remainingObservedPids": [],
+      "remainingTaskNodeChromiumConsumers": [],
+      "closedPorts": [
+        4375,
+        4376
+      ],
+      "limitation": "Original wrappers record PID/startUtc, not historical startTicks or all descendant births. Every observed PID is absent including zombies; no reused identity was inferred. Live executable/cwd/argv scan is a current-state consumer check."
+    },
+    "removedFiles": 239,
+    "removedBytes": 10535568,
+    "removedEmptyChildDirectories": 22,
+    "remainingPaths": [],
+    "retainedEmptyRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-necromancer-preparation-edsqysz8",
+    "failures": [],
+    "guards": "Committed packet/archive, all archive/live bytes and exact sets, all current fingerprints, absent observed PIDs/task consumers/ports/outputs, clean original checkout, readers released",
+    "producerArchiveReview": {
+      "verdict": "APPROVE",
+      "gate": "PRODUCER-D06-DURABLE-ARCHIVE",
+      "reviewer": "producer",
+      "reviewedPacketBytes": 65239,
+      "reviewedPacketSha256": "e13c48561ead100ae69c87262ee3f80ab813d4e1a425d27813cb40f0751a4ccb",
+      "summary": "All five final sizes/hashes and28 fingerprints verified; QA exhaustive retention checks accurately attributed. Actual archived/live cleanup script identical and safe. Bounded BUG073 closure/provenance/limits accepted. Approves exact five-path commit then guarded verify/removal and separate receipt. All readers released, no edits/artifacts/processes.",
+      "attribution": "Root transcription of final independent producer review before archive commit."
+    },
+    "receiptDocumentFingerprints": {
+      "docs/plans/evidence/d06-necromancer-preparation.md": {
+        "bytes": 12355,
+        "sha256": "31e6091c9730c67acc643bfd939b7b0d91a7f563d8be31bc404f5e44e6de151a"
+      },
+      "docs/plans/decisions/D06-summon-corpses-v1.md": {
+        "bytes": 11522,
+        "sha256": "3d33a0fe3aaf9b9de301948df10d0d851ea2e46a93a175f4e9f0d296d248eb3d"
+      },
+      "docs/plans/design-decisions.md": {
+        "bytes": 10221,
+        "sha256": "e30e7658bc8e597b76714a150aaf42b7fddcd03ac4f602dcf2b343196a2ab7f0"
+      },
+      "docs/plans/execution-ledger.md": {
+        "bytes": 240669,
+        "sha256": "9f2257741e49c6d2d3ceb3666907ef3a0aa749ff133d298a69031681ae5e049f"
+      }
+    },
+    "fingerprintNote": "finalClosureVerification remains the reviewed historical archive/closure snapshot. Four receipt/status documents changed afterward; receiptDocumentFingerprints bind these updates. Runtime/tests/archive remain byte-identical."
   },
   "independentDurableReview": {
     "verdict": "APPROVE",

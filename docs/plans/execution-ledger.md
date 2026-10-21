@@ -3243,3 +3243,24 @@ private-v1/C0–C4/G0–G7 remain open. Existing unit time/bundle/precache warni
 remain. Umbrella claim continues, no remote action. After durable cleanup, next
 bounded dependency is a GD/TD-reviewed selected-item Iron Golem transaction
 contract, at most three documentation paths before any runtime implementation.
+
+
+## D06 v1c archive committed and exact RAW cleanup complete
+
+QA/GD/TD/producer approved exact five-path retention/BUG073 closure; commit
+`e49db50` preserves239safe regular archive members/10,535,568original bytes
+(compressed4,997,573bytes). The [packet receipt](evidence/fixtures/d06-necromancer-preparation/packet.json)
+records final producer-reviewed packet identity, all guard results and actual
+2026-10-21T16:50:17.272464+00:00 cleanup:239files/10,535,568bytes/22empty
+childdirs removed, zero failures or remaining paths. Empty RAW root retained;
+all66 observed command PIDs absent, current task consumers absent, ports4375/4376
+closed and all five disposable roots absent. Original checkout stayed clean;
+no process kill or shared cache/font/tool/source/history cleanup. Archive unchanged.
+
+[Delivery](evidence/d06-necromancer-preparation.md), D06 contract status and
+decision register now reflect accepted bounded runtime/UI/browser delivery.
+The original per-step fingerprints/provenance remain historical; only receipt
+documents receive fresh hashes. FullD06/P09/P10 and all previously disclosed
+limits remain open. Continue with selected-item Iron Golem contract (new decision,
+skills-spec reconciliation and decision register), GD/TD review before runtime.
+Umbrella claim remains active; no push/PR/merge/deploy.
