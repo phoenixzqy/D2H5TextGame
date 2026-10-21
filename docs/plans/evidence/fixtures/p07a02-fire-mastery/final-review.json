@@ -1,0 +1,31 @@
+{
+  "card": "P07a02",
+  "date": "2026-10-21",
+  "sourceHead": "482662fdf9e07ff83a8ead397369472d762909fa",
+  "packetSha256": "1a87fd4b2b02b8cc61d58e2e7b0885b7f8605acbe75dd003c7bdd93fc03b6ffb",
+  "archiveSha256": "585f9c544bba613651a44b9cfac30bccbe30a163113d2bdb65b652d9b87904e6",
+  "reviews": [
+    {
+      "reviewer": "/root/producer",
+      "gate": "P07A02-WHOLE-CARD-PACKET",
+      "verdict": "APPROVE",
+      "findings": [],
+      "security": "PASS",
+      "evidence": "All333records17969355bytes,45commands/hashes/history/serial gates/inherited engine+build,599sources,36browser attachments468079bytes match.6839PIDbirth identities absent; exact761output inventory matches. Honest limitations retained.",
+      "readersReleased": true
+    },
+    {
+      "reviewer": "/root/qa_save_review",
+      "gate": "P07A02-WHOLE-CARD-QA",
+      "verdict": "APPROVE",
+      "testEvidence": "ADEQUATE",
+      "cleanup": "APPROVE",
+      "findings": [],
+      "evidence": "All333RAW/archive files exact,45commands/final serial gates,599source fingerprints match both current andHEAD482662f,allaccepted freezes exact;36attachments match468079bytes. Eight actual diskroundtrips/openings inherited approved unchanged.6839identities absent/no reuse. Final whole-card-owned-output.json matches760dist+14111byte finalcache c67fe9ccc78b8e47e041958aee4f37c0af19ba24b051321e826cb9cedcee15ea. Historical copy cache drift explicitly not used for deletion.",
+      "readersReleased": true
+    }
+  ],
+  "allReadersReleased": true,
+  "cleanupStatus": "pending root execution; no reviewer performed deletion",
+  "scope": "Source/native mechanics and imported eligibility production UI only; no earned campaign, balance, newcoverage, fullmobile/a11y/CJKglyph/fullv1 acceptance."
+}

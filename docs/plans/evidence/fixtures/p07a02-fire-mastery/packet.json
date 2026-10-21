@@ -1,0 +1,2853 @@
+{
+  "card": "P07a02",
+  "status": "validated authored/runtime/copy/native/browser; independent whole-packet review pending",
+  "implementation": {
+    "authored": "2fe7f4e",
+    "runtime": "5d70cdb",
+    "copy": "4c3de39",
+    "browser": "482662f"
+  },
+  "rawPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr",
+  "owner": "root",
+  "records": [
+    {
+      "path": "attachments/browser-fire-mastery/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    {
+      "path": "before-src__data__schema__skill.schema.json",
+      "bytes": 15266,
+      "sha256": "ab2eed88b69580579c123399242b79bcc7f5feb571766d7f40aa1850cd440c53"
+    },
+    {
+      "path": "before-src__data__skills__sorceress.json",
+      "bytes": 21392,
+      "sha256": "8afeb772787021bf68c43571d1e6a400c1a0f24bc1859eb228f4c4d1dc78532d"
+    },
+    {
+      "path": "before-src__engine__progression__warmth.ts",
+      "bytes": 2421,
+      "sha256": "862c6309f5bdbd525c57b3c8c31b0f3226cea3dc0aa02b4b429f0bdc5011ccbb"
+    },
+    {
+      "path": "bounded_runner.py",
+      "bytes": 7320,
+      "sha256": "358f8e249fd7a8f8018a978b9746e8ffde7e530298b21c47cbeb35ad6ef6fdb5"
+    },
+    {
+      "path": "browser-actual-qa-review.json",
+      "bytes": 703,
+      "sha256": "562c4d77763824d81501f7ac1889feb658e9c554c51f1ba26b2ba803b051d095"
+    },
+    {
+      "path": "browser-draft-freeze.json",
+      "bytes": 328,
+      "sha256": "d3ebdf01731f793c6801ee2152459cae36b253d973c2be4754f4e61a659c9507"
+    },
+    {
+      "path": "browser-draft-producer-review.json",
+      "bytes": 555,
+      "sha256": "f59be64e25afe55b0a9fcd21bfef8604a21c9d105b25e33bf45a7a98ed901418"
+    },
+    {
+      "path": "browser-draft-qa-review.json",
+      "bytes": 701,
+      "sha256": "7f9a976d7980d9804fe0bbff1a1267b83aed9cbfa96c1b08fc983cdfbd832142"
+    },
+    {
+      "path": "browser-execution-paths.json",
+      "bytes": 546,
+      "sha256": "596c68f2c03da09466fabbb8bb0eaa9b93dc07618cbc5b06ee8fe28130fdc66b"
+    },
+    {
+      "path": "browser-final-gates.json",
+      "bytes": 3009,
+      "sha256": "150a72682e46d34aae03a9851f1526afdac0e3fb5d9add3f18c10e994b06e7a5"
+    },
+    {
+      "path": "browser-final-producer-review.json",
+      "bytes": 769,
+      "sha256": "18836d97354597967067bab494475d3b35c35c3c2f2410bea017c2c097f02189"
+    },
+    {
+      "path": "browser-final-qa-review.json",
+      "bytes": 560,
+      "sha256": "71b371a9b1447c3312ce551f831396c4ca4a8837aefbc976ed9c4b0e29f1587f"
+    },
+    {
+      "path": "browser-fire-mastery-report.json",
+      "bytes": 638048,
+      "sha256": "618808970d109910b8687616cf4d3aca886ab905c653857411f575e86a1978e7"
+    },
+    {
+      "path": "browser-fire-mastery.log",
+      "bytes": 1501,
+      "sha256": "40c84655cfbccb03fb7bbf5a5572efe0b2b59b142e08be010e22df0c0786ac10"
+    },
+    {
+      "path": "browser-fire-mastery.meta.json",
+      "bytes": 544,
+      "sha256": "65f98c262f46c2a94f39e030ae6c86b7d99ed5c9117f3b6026bd206cc655a97d"
+    },
+    {
+      "path": "browser-fire-mastery.process.json",
+      "bytes": 165,
+      "sha256": "53bd3a81dd757830f1b2ae04f8334021dd225e9cc1199f22a5f2941d5436d915"
+    },
+    {
+      "path": "browser-fire-mastery.processes.json",
+      "bytes": 4394,
+      "sha256": "2b583941eed0bc485a64c20814baa0cbb97327726ad1e4500848eb6318012f20"
+    },
+    {
+      "path": "browser-mastery-desktop-en-01-fresh-locked-control.json",
+      "bytes": 2596,
+      "sha256": "34b058e912494b7c5467709cbc7224a5a84312d34b21f42118ac20e4011e4990"
+    },
+    {
+      "path": "browser-mastery-desktop-en-02-normalized-import.json",
+      "bytes": 2566,
+      "sha256": "8e808603cc26f99ffb377e72dca6758eb12120b9a43fa2e8ca9ad0491700fd9c"
+    },
+    {
+      "path": "browser-mastery-desktop-en-03-rank1-detail.png",
+      "bytes": 27712,
+      "sha256": "390a5e468192f42ef3c74f4ef10cc1f7c487f334689df83ca172a19905576635"
+    },
+    {
+      "path": "browser-mastery-desktop-en-03-rank2-detail.png",
+      "bytes": 27480,
+      "sha256": "43b547ce96abcab7bf7833e58a78c122676307e01c9d41635a4af3d35557e473"
+    },
+    {
+      "path": "browser-mastery-desktop-en-04-rank1-disk-reload.json",
+      "bytes": 5799,
+      "sha256": "8fabf98eb31032c90d7e2c4b8a8000219f8539b513446c06d28503310e3eef5c"
+    },
+    {
+      "path": "browser-mastery-desktop-en-04-rank2-disk-reload.json",
+      "bytes": 5821,
+      "sha256": "25886fbde09c7ffb49ddc26e31f6095978fccb369f7388b1d5d295491f383399"
+    },
+    {
+      "path": "browser-mastery-desktop-en-05-rank1-opening.json",
+      "bytes": 7293,
+      "sha256": "5ee03f21d9547c6f8c5e73ec7827f04d1e79451c12a5adf62a4567665c7549a9"
+    },
+    {
+      "path": "browser-mastery-desktop-en-05-rank2-opening.json",
+      "bytes": 7751,
+      "sha256": "b407dd1aec37ee0625561e7d2d9c324b8104749ead8533a615f20a2f14aee504"
+    },
+    {
+      "path": "browser-mastery-desktop-en-06-browser-errors.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "browser-mastery-desktop-zh-CN-01-fresh-locked-control.json",
+      "bytes": 2599,
+      "sha256": "92e84c88dd0937c7dee413ed25170adc1320ad742fb943d8591af4f40b416a69"
+    },
+    {
+      "path": "browser-mastery-desktop-zh-CN-02-normalized-import.json",
+      "bytes": 2569,
+      "sha256": "2cd80422a29f7d76515422fa05947a8b752c09d52e1369b099ec744ff7d58fe0"
+    },
+    {
+      "path": "browser-mastery-desktop-zh-CN-03-rank1-detail.png",
+      "bytes": 13090,
+      "sha256": "159c485cd109d9af8c91f9045701d7083f005205326ddc18c86a21a3aa1ae939"
+    },
+    {
+      "path": "browser-mastery-desktop-zh-CN-03-rank2-detail.png",
+      "bytes": 12843,
+      "sha256": "47cd61dff2009dd16af798afe0757746ccadb20f482d6ec951adbe716667281d"
+    },
+    {
+      "path": "browser-mastery-desktop-zh-CN-04-rank1-disk-reload.json",
+      "bytes": 5805,
+      "sha256": "e48c9584650f75ffae71910dba800e099546d7b61ab15236598f3da7dddf56fd"
+    },
+    {
+      "path": "browser-mastery-desktop-zh-CN-04-rank2-disk-reload.json",
+      "bytes": 5827,
+      "sha256": "ac77f4462a252e3c9bf897d5a64ab445ae08fbec12dacb234b7ec9314ba4d841"
+    },
+    {
+      "path": "browser-mastery-desktop-zh-CN-05-rank1-opening.json",
+      "bytes": 7552,
+      "sha256": "00f820cd112d0b2d7d166614404cad936e76bf73608c3ecb07966d5ffbc500d3"
+    },
+    {
+      "path": "browser-mastery-desktop-zh-CN-05-rank2-opening.json",
+      "bytes": 8618,
+      "sha256": "211bba6f95f6614c5080204d64428598765191c122a3c05582f1e9956bcd37f6"
+    },
+    {
+      "path": "browser-mastery-desktop-zh-CN-06-browser-errors.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "browser-mastery-mobile-en-01-fresh-locked-control.json",
+      "bytes": 2596,
+      "sha256": "34b058e912494b7c5467709cbc7224a5a84312d34b21f42118ac20e4011e4990"
+    },
+    {
+      "path": "browser-mastery-mobile-en-02-normalized-import.json",
+      "bytes": 2566,
+      "sha256": "8e808603cc26f99ffb377e72dca6758eb12120b9a43fa2e8ca9ad0491700fd9c"
+    },
+    {
+      "path": "browser-mastery-mobile-en-03-rank1-detail.png",
+      "bytes": 92703,
+      "sha256": "2d7ff5ad6b53f74408c4df5832f07e4a7bd0cb622dac4474dc18d8b98148694c"
+    },
+    {
+      "path": "browser-mastery-mobile-en-03-rank2-detail.png",
+      "bytes": 90548,
+      "sha256": "bc4b1d7ff83543a4eff9a28b1be57f23646a5bbbcb0e72affc96faba817f4986"
+    },
+    {
+      "path": "browser-mastery-mobile-en-04-rank1-disk-reload.json",
+      "bytes": 5799,
+      "sha256": "8fabf98eb31032c90d7e2c4b8a8000219f8539b513446c06d28503310e3eef5c"
+    },
+    {
+      "path": "browser-mastery-mobile-en-04-rank2-disk-reload.json",
+      "bytes": 5821,
+      "sha256": "25886fbde09c7ffb49ddc26e31f6095978fccb369f7388b1d5d295491f383399"
+    },
+    {
+      "path": "browser-mastery-mobile-en-05-rank1-opening.json",
+      "bytes": 7293,
+      "sha256": "5ee03f21d9547c6f8c5e73ec7827f04d1e79451c12a5adf62a4567665c7549a9"
+    },
+    {
+      "path": "browser-mastery-mobile-en-05-rank2-opening.json",
+      "bytes": 7293,
+      "sha256": "d4b299daba5d7ec3c545982bf97aad89dabf3e2eb8ed5a05dbf99f910f7c09d2"
+    },
+    {
+      "path": "browser-mastery-mobile-en-06-browser-errors.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "browser-mastery-mobile-zh-CN-01-fresh-locked-control.json",
+      "bytes": 2599,
+      "sha256": "92e84c88dd0937c7dee413ed25170adc1320ad742fb943d8591af4f40b416a69"
+    },
+    {
+      "path": "browser-mastery-mobile-zh-CN-02-normalized-import.json",
+      "bytes": 2569,
+      "sha256": "2cd80422a29f7d76515422fa05947a8b752c09d52e1369b099ec744ff7d58fe0"
+    },
+    {
+      "path": "browser-mastery-mobile-zh-CN-03-rank1-detail.png",
+      "bytes": 38444,
+      "sha256": "2aaca10603e1e1662a1705bb635349744dcd125f130ccba72e19cf261020908e"
+    },
+    {
+      "path": "browser-mastery-mobile-zh-CN-03-rank2-detail.png",
+      "bytes": 36643,
+      "sha256": "226a2c6bc537db78fb3f56883d6a1eaf4e049827f52a18c12b54817fdfdd673c"
+    },
+    {
+      "path": "browser-mastery-mobile-zh-CN-04-rank1-disk-reload.json",
+      "bytes": 5805,
+      "sha256": "e48c9584650f75ffae71910dba800e099546d7b61ab15236598f3da7dddf56fd"
+    },
+    {
+      "path": "browser-mastery-mobile-zh-CN-04-rank2-disk-reload.json",
+      "bytes": 5827,
+      "sha256": "ac77f4462a252e3c9bf897d5a64ab445ae08fbec12dacb234b7ec9314ba4d841"
+    },
+    {
+      "path": "browser-mastery-mobile-zh-CN-05-rank1-opening.json",
+      "bytes": 7552,
+      "sha256": "00f820cd112d0b2d7d166614404cad936e76bf73608c3ecb07966d5ffbc500d3"
+    },
+    {
+      "path": "browser-mastery-mobile-zh-CN-05-rank2-opening.json",
+      "bytes": 8092,
+      "sha256": "dcc7740689bb14d5005f5d09445987196340b8a227fb8903061318dfe2e2c6fd"
+    },
+    {
+      "path": "browser-mastery-mobile-zh-CN-06-browser-errors.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "browser-native-capture-freeze.json",
+      "bytes": 214,
+      "sha256": "d016b1bde35dbc45dfc486f637d27ff4fad41d30a7a905cfe157a8e8f3bf988e"
+    },
+    {
+      "path": "browser-native-capture.json",
+      "bytes": 687051,
+      "sha256": "eed1e9d25ff46edd41d0672623a3b1e9b539a39f46e08454ebdde86bf31be14a"
+    },
+    {
+      "path": "browser-native-oracle-review.json",
+      "bytes": 786,
+      "sha256": "8fc3b632474964fd15ac4cbbd6ed9b275a90dd8694ee208524ce56052de6824e"
+    },
+    {
+      "path": "browser-native-preflight-review.json",
+      "bytes": 675,
+      "sha256": "4d8c05a76a4b4467fca903800c0b28941322ccbceecfa4f60486cd7131ef80ab"
+    },
+    {
+      "path": "browser-plan.json",
+      "bytes": 1504,
+      "sha256": "e415f25b5dae6bce0d386915f53b7d97337b78cdc4be295dc09151528eeb4867"
+    },
+    {
+      "path": "browser-small-summary.json",
+      "bytes": 9719,
+      "sha256": "b1c455aee78e9a4caa25c09d936db2e8bdde145f7e2d50ff8bd9c322708b26b0"
+    },
+    {
+      "path": "browser-source-freeze.json",
+      "bytes": 255,
+      "sha256": "8a7ae9cad23c9352b4dc950c2302baa35d32dc17d43d15d7bfa2b6ac5c9dd0b6"
+    },
+    {
+      "path": "browser-temp-cleanup.json",
+      "bytes": 2020,
+      "sha256": "bb85ac0d0c9e04ebd79cc3c38b227f1bd58c621b7f2558b44fdab69dd6e71dae"
+    },
+    {
+      "path": "browser-temp-inventory.json",
+      "bytes": 2022,
+      "sha256": "3a65332dce7544e7d48b3f0ca8b3bb64f1e0ba351295706348f4f9864043d8f7"
+    },
+    {
+      "path": "browser-visual-inspection.json",
+      "bytes": 742,
+      "sha256": "740fc612073a759b67b8509f3bc4f6619ad8197cd03a90cd7ebbe528077fd7f4"
+    },
+    {
+      "path": "build-accepted.log",
+      "bytes": 1763,
+      "sha256": "4c049aff1c4a941c7b5052852aa468f0450ab2861ab7ab216c2b500afe244e25"
+    },
+    {
+      "path": "build-accepted.meta.json",
+      "bytes": 473,
+      "sha256": "ed86f60f4007a8cb004e328ee7f5ae5017c4a0b1658ca065407ab44b51731e39"
+    },
+    {
+      "path": "build-accepted.process.json",
+      "bytes": 105,
+      "sha256": "e76c444f0f83b31023eec8be36c04f8057cec66ada56b92b32f3f5cee4a0e279"
+    },
+    {
+      "path": "build-accepted.processes.json",
+      "bytes": 1148,
+      "sha256": "1e7a43e2f3a3453718bae132336a1b86cfe9c2058ab2e346e3e528197f4b16ce"
+    },
+    {
+      "path": "build-copy.log",
+      "bytes": 1763,
+      "sha256": "d5c0d0798b8ac7e6130b8f746c6ff852684858bb1bf276f4d091f5cc805aec79"
+    },
+    {
+      "path": "build-copy.meta.json",
+      "bytes": 473,
+      "sha256": "1e45dd2a098ec0aa353b2b2307a7f1d232968b74c3c1943dc4fc5e1c9e21295b"
+    },
+    {
+      "path": "build-copy.process.json",
+      "bytes": 105,
+      "sha256": "48f523aaafff0c5e18d0bf17f15c68525bac4f9f16cc0611aae8e6dd91b08316"
+    },
+    {
+      "path": "build-copy.processes.json",
+      "bytes": 1149,
+      "sha256": "12b95092f078ffe038f4532ff56643906d26eb9aea324b6b6d6bc13c168ee86b"
+    },
+    {
+      "path": "build-runtime-accepted.log",
+      "bytes": 1763,
+      "sha256": "096085a801c04c96e5afd2da29f80cd012ab1fee0fc91c6f25c747f75342eab7"
+    },
+    {
+      "path": "build-runtime-accepted.meta.json",
+      "bytes": 473,
+      "sha256": "4b6cc65dbc96d35a65ffd58aa46b8fbb4016c95487f6182d9209d470e617dcf2"
+    },
+    {
+      "path": "build-runtime-accepted.process.json",
+      "bytes": 105,
+      "sha256": "fc39378b8129d95f792191b416ad27a859a3ab47579e84b3be717e553d183bde"
+    },
+    {
+      "path": "build-runtime-accepted.processes.json",
+      "bytes": 1148,
+      "sha256": "c3fa8ffadf08401a3e124b4189516131e2ab1836ad1bc2a9848f39a0d3ad882d"
+    },
+    {
+      "path": "capture-browser-opening.ts",
+      "bytes": 5560,
+      "sha256": "9de6c615d6c3b21c93a6f10d491600e3657e31da4695c5b9fd2838e496f0c81b"
+    },
+    {
+      "path": "capture-unaffected.ts",
+      "bytes": 2942,
+      "sha256": "9c363f523325a85d3aa15d81748d3b67f4c3f756db40e576382c8e4cd17d5b51"
+    },
+    {
+      "path": "cleanup_frozen_armor.py",
+      "bytes": 3627,
+      "sha256": "11d8a8e6a130a2cc89410b04afc9c9af492601201ba9d036a82b137893b5746f"
+    },
+    {
+      "path": "copy-design-review.json",
+      "bytes": 357,
+      "sha256": "6c158e60066ef2dc6ee9476dc89282037dffd74937914d28879dc7b01712145e"
+    },
+    {
+      "path": "copy-final-gates.json",
+      "bytes": 3460,
+      "sha256": "b0bcc5e93375777fec7dc93bd9206ae8d069e9c32c2f753971a070c9694c37ef"
+    },
+    {
+      "path": "copy-owned-output.json",
+      "bytes": 152917,
+      "sha256": "49a9ec909ec6ae87f45420467e2228ad869c2e7f7122eb8d86ac87649618b34a"
+    },
+    {
+      "path": "copy-plan-reviewed.json",
+      "bytes": 1170,
+      "sha256": "23c010e2487ee67723b709a147951e47cba68fb67079acc2d9aa211d016c803a"
+    },
+    {
+      "path": "copy-plan.json",
+      "bytes": 960,
+      "sha256": "a195e2e11a0cdfc20ea4d062cc23413f3427c029f2a95c2bd17c46ce3a6c5671"
+    },
+    {
+      "path": "copy-source-freeze.json",
+      "bytes": 360,
+      "sha256": "083b5d6294df814a13f4745f80448ccd2f21492a9b5056ff6648f4c3cfc17c74"
+    },
+    {
+      "path": "definition-freeze.json",
+      "bytes": 406,
+      "sha256": "9ab267092d6cba78b2f2da75bd7baebf52d5e4043f62d8b1fa56500596b79a71"
+    },
+    {
+      "path": "definition-tests.ts",
+      "bytes": 4766,
+      "sha256": "820d761d32c71857d48b4230bc603b0f058eb71140a4f50e21cf2a25fdccbdd1"
+    },
+    {
+      "path": "engine-accepted-report.json",
+      "bytes": 509490,
+      "sha256": "1f11009326aeb37658b42e704074760946682d46f28dad9a0d9331adefab678f"
+    },
+    {
+      "path": "engine-accepted.log",
+      "bytes": 337,
+      "sha256": "f356c3f93919523903a17baeedcb4dafb389b723c3515cf2cfbd871a5092e73f"
+    },
+    {
+      "path": "engine-accepted.meta.json",
+      "bytes": 624,
+      "sha256": "3c9a3df5fcdf21e8c6b5938a245a91376fc0ddacc2c0e1db3fbcf7f6a5e3179b"
+    },
+    {
+      "path": "engine-accepted.process.json",
+      "bytes": 243,
+      "sha256": "d4dfe8e3049b7008ee2e35a74415cf9fdcf768121654157d36bd237ff073f34b"
+    },
+    {
+      "path": "engine-accepted.processes.json",
+      "bytes": 24536,
+      "sha256": "65ec5cff6d4b9856abf64113d5215b9226884428813bc37000bfd4a037bd4d9f"
+    },
+    {
+      "path": "engine-final-report.json",
+      "bytes": 509475,
+      "sha256": "0a56ccf3074385f0d358cf14abe6d1662caf0937b465666c155f301ab031dc0c"
+    },
+    {
+      "path": "engine-final.log",
+      "bytes": 331,
+      "sha256": "5fe9279f1fd133cf283ec21884270d9fa669d2abf9d84c7571fc7ee94bfa70c5"
+    },
+    {
+      "path": "engine-final.meta.json",
+      "bytes": 623,
+      "sha256": "8b6fd0d1100756ff79a97ad66877c9fbf49c98ce403617a63dc6f822e6119d32"
+    },
+    {
+      "path": "engine-final.process.json",
+      "bytes": 240,
+      "sha256": "38c72087e917d865165363ec041dd10943296c30458a72b86b97d633d0aed5d4"
+    },
+    {
+      "path": "engine-final.processes.json",
+      "bytes": 27467,
+      "sha256": "69ae37ad48e774289a509a0de2af8932a996f868b3d78bbe9d605ec5cb1a21cd"
+    },
+    {
+      "path": "engine-green-report.json",
+      "bytes": 509466,
+      "sha256": "e134b2e330bd8e5a79b452f20e41242c2526963bc5580193d4a43660a73d43cc"
+    },
+    {
+      "path": "engine-green.log",
+      "bytes": 331,
+      "sha256": "3879ed6f5f6cea9eba79b5c6947422a4a7e41d7c73c2ff422a101556a57c6826"
+    },
+    {
+      "path": "engine-green.meta.json",
+      "bytes": 622,
+      "sha256": "049279e57fd34b8b628bc32c5b036a056a1dac9f570c80af0e8b4a5ef0b99260"
+    },
+    {
+      "path": "engine-green.process.json",
+      "bytes": 240,
+      "sha256": "ce2cde8944c73fbc6403555b537c676747a24c5c6f4ef773df445e86db4ba77c"
+    },
+    {
+      "path": "engine-green.processes.json",
+      "bytes": 23317,
+      "sha256": "27ba13a1ceb3d79dace272c122bb2d99639ff0ac777fa36af36bd32cc03926bb"
+    },
+    {
+      "path": "engine-runtime-final-report.json",
+      "bytes": 531195,
+      "sha256": "b7743e591c8d9520bf5dc69767315b2916976224ff3fa8d6568644beaff15410"
+    },
+    {
+      "path": "engine-runtime-final.log",
+      "bytes": 347,
+      "sha256": "75b3a7bbb5e98ca6c0bdf59b1c3b429dcd90dff2123f996df61166e685aca714"
+    },
+    {
+      "path": "engine-runtime-final.meta.json",
+      "bytes": 632,
+      "sha256": "ccf34f793b234caee731331e5cd1ac41cfcdff79d3d14699e9a7894268ce0d4a"
+    },
+    {
+      "path": "engine-runtime-final.process.json",
+      "bytes": 248,
+      "sha256": "3c680d4f43bd23f094e82f65c16fb1b813293b0896951f668463c621816217dc"
+    },
+    {
+      "path": "engine-runtime-final.processes.json",
+      "bytes": 20075,
+      "sha256": "3c363f3aa0eda34893dc45bcc3744bc7193a392a926dc5b225d7e581180cc68d"
+    },
+    {
+      "path": "engine-runtime-report.json",
+      "bytes": 531188,
+      "sha256": "dd75fd2bf7f6c6b1f6de3fddf7ded44bffca20d167ab051a26dd1a30183d0a90"
+    },
+    {
+      "path": "engine-runtime.log",
+      "bytes": 335,
+      "sha256": "0a017bf72091fd9e2b7c7d3be521d857fad6e17a312ffad5941ab2363526d6e0"
+    },
+    {
+      "path": "engine-runtime.meta.json",
+      "bytes": 626,
+      "sha256": "eb192efcedb8c5ba2b6b4566b94afa0321234c7d7c06b56eebe94b38cf387722"
+    },
+    {
+      "path": "engine-runtime.process.json",
+      "bytes": 242,
+      "sha256": "76561dd7107bcb002b7773414930fb0505251b627facb7cbdd991b4c027192b2"
+    },
+    {
+      "path": "engine-runtime.processes.json",
+      "bytes": 21300,
+      "sha256": "515872d4fe9e6f861a764521c14312a09cdbc6e87c1de5a864ad1562807a68e3"
+    },
+    {
+      "path": "final-src__engine__skills__fire-mastery.ts",
+      "bytes": 2244,
+      "sha256": "92ceaeae8514b8427cf1836eb4caa18612c83201f81bd25c87f7c9a1dabf2820"
+    },
+    {
+      "path": "fire-mastery.config.draft.ts",
+      "bytes": 1237,
+      "sha256": "ea1f37805f42a8c11ab4598f8828f90e0207ddcb9045da1ac1099b0dff6754c2"
+    },
+    {
+      "path": "fire-mastery.spec.draft.ts",
+      "bytes": 12372,
+      "sha256": "0436bb80d8e8089ce09e4b663d6092006ff9c59c0dddd4fe967e4515b46a3be2"
+    },
+    {
+      "path": "focused-browser-capture.log",
+      "bytes": 6560,
+      "sha256": "58233342e72a4af4d890df6738198f8f18b1a63d4a6a3641b105724e2ef4d143"
+    },
+    {
+      "path": "focused-browser-capture.meta.json",
+      "bytes": 588,
+      "sha256": "f18822c512f9835cafe1e01f781bbccad5653b34cf8645b0ec382c249d771d3b"
+    },
+    {
+      "path": "focused-browser-capture.process.json",
+      "bytes": 223,
+      "sha256": "6f01ecab690f182fc78cb123102c90e5f17b73179ddc8b7344fb01602fec159c"
+    },
+    {
+      "path": "focused-browser-capture.processes.json",
+      "bytes": 380,
+      "sha256": "695c1a407fe37975071110d4519785325dbc2bb4a72ce1827fccacde378f1a2a"
+    },
+    {
+      "path": "focused-capability-red-report.json",
+      "bytes": 688,
+      "sha256": "7b6200e4a71beb0684dce2650ba24170e04131649fef21f1e31e422f446cbc12"
+    },
+    {
+      "path": "focused-capability-red.log",
+      "bytes": 139,
+      "sha256": "afe37dc71c3f4e82ddb0d6e68eff66862cd00620e3bca8cc40e6410aacc97df1"
+    },
+    {
+      "path": "focused-capability-red.meta.json",
+      "bytes": 715,
+      "sha256": "57d8e5be9ce2655ab4e59f2beaf834e0cff8f98b7b23b0feed30244d7fe3d6c3"
+    },
+    {
+      "path": "focused-capability-red.process.json",
+      "bytes": 329,
+      "sha256": "26443cab4aad5164fca4a92ddb9bdfeaf7c72d85e98f91b183069040ed7bdbb2"
+    },
+    {
+      "path": "focused-capability-red.processes.json",
+      "bytes": 5759,
+      "sha256": "8578f98ad3821319374926101b74747eac646978051c4b253822c789c8da1b03"
+    },
+    {
+      "path": "focused-copy-report.json",
+      "bytes": 22057,
+      "sha256": "f9a16970215f4384289c8bd47c38eb88417adfd52694af9da3895a8e5b1863ee"
+    },
+    {
+      "path": "focused-copy.log",
+      "bytes": 129,
+      "sha256": "a71979b690556d001032a56bf4165a0c7331f98f9e6872396d5ff6aeda2f3b1d"
+    },
+    {
+      "path": "focused-copy.meta.json",
+      "bytes": 734,
+      "sha256": "8bd0e50fe273e543797ae6b25e8c3d378e63343b06a83a368cc2980de19fa66a"
+    },
+    {
+      "path": "focused-copy.process.json",
+      "bytes": 348,
+      "sha256": "7a16fe432d7eae37868ae3f24f216c5390ce5e99c4a3ba20294910b60bac53d2"
+    },
+    {
+      "path": "focused-copy.processes.json",
+      "bytes": 2689,
+      "sha256": "ba20c50004de0446568030a125943a2f30ddf0639763e9eb4b0f035800489e00"
+    },
+    {
+      "path": "focused-data-report.json",
+      "bytes": 178111,
+      "sha256": "04202280c4ab6d82e9fb3a1df368e4c647db66b34a38635ea7ea1a187931478e"
+    },
+    {
+      "path": "focused-data.log",
+      "bytes": 129,
+      "sha256": "fb4116eadd85442b850f6b11f04ae87e2c0b0b38019f5b57a1c917bf4dfa5dc1"
+    },
+    {
+      "path": "focused-data.meta.json",
+      "bytes": 755,
+      "sha256": "2c09c8610bfba296cbee017da39ec4d90a744bbd51848e6a35f3411d81f6afe7"
+    },
+    {
+      "path": "focused-data.process.json",
+      "bytes": 365,
+      "sha256": "20432ee8ae4b628f419123b5f7e5fcd72fcf2af48b3c798f97d1d6deddd8363d"
+    },
+    {
+      "path": "focused-data.processes.json",
+      "bytes": 6078,
+      "sha256": "9d9ff0dacbe21bd6ae2a39e619bf94e18ef42bb9b6eff662a657220f25c2b1a0"
+    },
+    {
+      "path": "focused-final-report.json",
+      "bytes": 178109,
+      "sha256": "0eb1d61f3741076d60b418460448885277cdb9affea349b7ed6336bf0b5ebb07"
+    },
+    {
+      "path": "focused-final.log",
+      "bytes": 130,
+      "sha256": "cfa38b15d5c2f22c6737b7ba31cc5546301fccfb6b0eda44b5122a7625d18c82"
+    },
+    {
+      "path": "focused-final.meta.json",
+      "bytes": 756,
+      "sha256": "5ca4c1534e9c46b5627d7236d8310de3810c8e1222aac9b0d15612df9f451ce1"
+    },
+    {
+      "path": "focused-final.process.json",
+      "bytes": 366,
+      "sha256": "993188d713d56652af084912dd0f6a9b5bb740e3a63218420aa43fa26349d293"
+    },
+    {
+      "path": "focused-final.processes.json",
+      "bytes": 6223,
+      "sha256": "748a38e1a95244c705abc8521971261e25612da4ab13c2738e5820dac71194b6"
+    },
+    {
+      "path": "focused-green-report.json",
+      "bytes": 73993,
+      "sha256": "fe019fc6a792103722f8234ebe4ec4e00aba9a170e3020fc198add1807319ade"
+    },
+    {
+      "path": "focused-green.log",
+      "bytes": 130,
+      "sha256": "2c4177e01bcedf27796e9129896c3ad848dab844357e376a6192f4009a4b5306"
+    },
+    {
+      "path": "focused-green.meta.json",
+      "bytes": 785,
+      "sha256": "f19247b722d6d00bae8e19167029d1e6bca5ec93b634d47c427480cb28bdfdb6"
+    },
+    {
+      "path": "focused-green.process.json",
+      "bytes": 389,
+      "sha256": "b7a064a51fd0490e1ff9a84d675cda89bb08b2cfef72ba971c4e020f1c383120"
+    },
+    {
+      "path": "focused-green.processes.json",
+      "bytes": 3768,
+      "sha256": "19102045b060d5b5247a3f98ca53b00cc4ad97dccc7672c8a8c4d7816c2064b3"
+    },
+    {
+      "path": "focused-lint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "focused-lint.meta.json",
+      "bytes": 579,
+      "sha256": "6bd76b68d66b98fca54568664ee1ed6aa8299d56ca85ae360b00604df38a3188"
+    },
+    {
+      "path": "focused-lint.process.json",
+      "bytes": 208,
+      "sha256": "520be1ce7b840f05cb92825ceb50f5ef7acea79421d08847fe3e52bfad139daa"
+    },
+    {
+      "path": "focused-lint.processes.json",
+      "bytes": 226,
+      "sha256": "fde60948a64f5e44f76e43d0357f9f246980e3494ff88fab2e2ab0699e7b7a8e"
+    },
+    {
+      "path": "focused-runtime-final-report.json",
+      "bytes": 24337,
+      "sha256": "8cd5217ddcb19ab2ee561a83773811b7b90d4ea1bd1102ec6476d7a29235d621"
+    },
+    {
+      "path": "focused-runtime-final.log",
+      "bytes": 138,
+      "sha256": "38af9c8a8d503ff9d7901362db223263a5a61e3a08ecc5d35dc0433d8a4125d8"
+    },
+    {
+      "path": "focused-runtime-final.meta.json",
+      "bytes": 783,
+      "sha256": "a0fc80bf78a0ecaef6c608a32a47a769af90b1cc2d3d2d496a65a35df4ecb8cd"
+    },
+    {
+      "path": "focused-runtime-final.process.json",
+      "bytes": 397,
+      "sha256": "fa5b2f786d182ae8f8feb0e5b654a347b98134e2158c437255cbc0cfa8a55e91"
+    },
+    {
+      "path": "focused-runtime-final.processes.json",
+      "bytes": 4846,
+      "sha256": "b1ad1d88cbd42d8f554a2e72b559f70f815697327ef9be7742a9a37ab5772190"
+    },
+    {
+      "path": "focused-runtime-full-red-report.json",
+      "bytes": 29098,
+      "sha256": "bef2d5169e8395a2dfbb8389aea2bc4e60a734fa904109929d6277947d22ad94"
+    },
+    {
+      "path": "focused-runtime-full-red.log",
+      "bytes": 141,
+      "sha256": "5482569f633c2102ded5a2cc2b5c80b86c25c00e4f89acdaac41c51e536c39a3"
+    },
+    {
+      "path": "focused-runtime-full-red.meta.json",
+      "bytes": 786,
+      "sha256": "02337e917950e20a65568fa453f79491676a1913099c9d2f67deda5043eed80a"
+    },
+    {
+      "path": "focused-runtime-full-red.process.json",
+      "bytes": 400,
+      "sha256": "d83ea1e774edf800d2cbb3ca3a76f683737c227ebf04e944503c878ed3632adb"
+    },
+    {
+      "path": "focused-runtime-full-red.processes.json",
+      "bytes": 3922,
+      "sha256": "753dd0960b1ee221235e0b4997d35e5c2fd9b8ddf9865ab0b96eed21ddcba4c6"
+    },
+    {
+      "path": "focused-runtime-green-report.json",
+      "bytes": 24338,
+      "sha256": "7ba7d6c0f033d02c36e46e60602596f34b09177cf3c077a8b499427cfb7657e1"
+    },
+    {
+      "path": "focused-runtime-green.log",
+      "bytes": 138,
+      "sha256": "4411acfa408012f39763834e96cec7066e3500421f85bced6fa8c814c9fd6b5e"
+    },
+    {
+      "path": "focused-runtime-green.meta.json",
+      "bytes": 783,
+      "sha256": "06b244f727439c261edeab06813f96d65999f2e1897094b3dfe9ad9820b8eb88"
+    },
+    {
+      "path": "focused-runtime-green.process.json",
+      "bytes": 397,
+      "sha256": "93580b03a60da098b05cacc8518801713ddc48818e1eae67aab6a093f10bd006"
+    },
+    {
+      "path": "focused-runtime-green.processes.json",
+      "bytes": 4384,
+      "sha256": "536d9b8b5fde4f7939618a8dd324103fc190ef4c965d0529d6902526d09090a7"
+    },
+    {
+      "path": "focused-runtime-native-final-report.json",
+      "bytes": 2604,
+      "sha256": "68dd0a70b0dcebd72cd85833a155c0104be18ef0825a163efd185aa49e69d82b"
+    },
+    {
+      "path": "focused-runtime-native-final.log",
+      "bytes": 145,
+      "sha256": "20240814099c59ac857d05e56ad873ac1ff342de91fcf4ec25322515ecc9e15f"
+    },
+    {
+      "path": "focused-runtime-native-final.meta.json",
+      "bytes": 680,
+      "sha256": "1f15d9cafeef710afeb63fa1ab86208b967c593e356a6e0a7df1c34a5b6bd1d9"
+    },
+    {
+      "path": "focused-runtime-native-final.process.json",
+      "bytes": 303,
+      "sha256": "6402f12140381525b2a4c4995431ff02074422caeb3c50b0ab3672b699658050"
+    },
+    {
+      "path": "focused-runtime-native-final.processes.json",
+      "bytes": 4844,
+      "sha256": "5886867c2f04d22b2ba4014dc742dad510b2a293b04093648bb4ebf5df18bc42"
+    },
+    {
+      "path": "focused-runtime-pure-red-report.json",
+      "bytes": 16352,
+      "sha256": "8c3abdc6c5d58458a12657af2b0f9717219e9e75cdbc5eecb88b789135775323"
+    },
+    {
+      "path": "focused-runtime-pure-red.log",
+      "bytes": 141,
+      "sha256": "0d40279f7b6d7324fa73709605d5d09e0e4e423f74fe6e13d5819b450d0ad2b9"
+    },
+    {
+      "path": "focused-runtime-pure-red.meta.json",
+      "bytes": 689,
+      "sha256": "54deecc53ce7c04835fbc87a5566fc512019fe8ce23207164109f6cb1c417ef8"
+    },
+    {
+      "path": "focused-runtime-pure-red.process.json",
+      "bytes": 311,
+      "sha256": "7c8ff36f82c33feda767522d9b82055d7720572bd7815c7af719650a04319918"
+    },
+    {
+      "path": "focused-runtime-pure-red.processes.json",
+      "bytes": 2687,
+      "sha256": "78163980b21c79c18e57f595db8a35849fc5f667ebc7e4f980594c5b0ed9a9a9"
+    },
+    {
+      "path": "focused-runtime-unaffected-capture.log",
+      "bytes": 11478,
+      "sha256": "0a6c53176ff4184cc99bc676d785c2695ce45138ed09e033460265a1c683a054"
+    },
+    {
+      "path": "focused-runtime-unaffected-capture.meta.json",
+      "bytes": 586,
+      "sha256": "e9402309a1bbbf5a64ce6cd263583417037ba4b34b05604ce4daea5a841f879a"
+    },
+    {
+      "path": "focused-runtime-unaffected-capture.process.json",
+      "bytes": 218,
+      "sha256": "be80444a3cbe66696412db7eadcfaddf76c3954098b26014e17451d73d2472d4"
+    },
+    {
+      "path": "focused-runtime-unaffected-capture.processes.json",
+      "bytes": 380,
+      "sha256": "5e94aacbf85d96b7742ff2150ff09e95e9412e224058a6f1e5c449b1155aa1fc"
+    },
+    {
+      "path": "focused-schema-red-report.json",
+      "bytes": 25967,
+      "sha256": "1b5b351d054d3f8243bb764dfaeb10894d0a0c90ab0c97889f834d295c672e33"
+    },
+    {
+      "path": "focused-schema-red.log",
+      "bytes": 135,
+      "sha256": "bbfc67ef3cb1f58e484dfa1c13a82cdb3f5094b4044157916a8750515ad560d3"
+    },
+    {
+      "path": "focused-schema-red.meta.json",
+      "bytes": 713,
+      "sha256": "1f65d90700a5868815a5fcec151b50e9b9da3e99465d2b54bedb7c929f297fe0"
+    },
+    {
+      "path": "focused-schema-red.process.json",
+      "bytes": 325,
+      "sha256": "74ca2cb9d2ce9c4bd5f97a2d2eb48c59fa0e5ac02a3a50269f0fbf6a2810ef7c"
+    },
+    {
+      "path": "focused-schema-red.processes.json",
+      "bytes": 7458,
+      "sha256": "d1af65d72125e85fa7703b01281b7f87eaa6adca5b65022e04e4542723181b90"
+    },
+    {
+      "path": "frozen-armor-cleanup.json",
+      "bytes": 234347,
+      "sha256": "28a6e883472ac7e035e737453d40a35c0452cd6dea32aa2d40e2643ed15e63fe"
+    },
+    {
+      "path": "green-docs__plans__decisions__D05-fire-mastery-v1.md",
+      "bytes": 4507,
+      "sha256": "d690b515a6d1fe0f2f21a3f945cdc375428e05a7a23fc6d3842381fd353840e1"
+    },
+    {
+      "path": "green-src__data__schema__skill.schema.json",
+      "bytes": 16711,
+      "sha256": "d353b35ad8fde754bfa3decd29051f1604ae00182f71c6fc18f3c0d34b42d06c"
+    },
+    {
+      "path": "green-src__engine__skills__fire-mastery.test.ts",
+      "bytes": 8761,
+      "sha256": "4a62fc2f10d6c48252e7c23903ce7990bae39049bb1783655ab088f59b619932"
+    },
+    {
+      "path": "green-src__engine__skills__fire-mastery.ts",
+      "bytes": 2207,
+      "sha256": "29c0aa6376b49c4baddf49851a8053e509eaaf2190f182354bedc82314045cdb"
+    },
+    {
+      "path": "lint-accepted.log",
+      "bytes": 196,
+      "sha256": "2c7fc0722cff963b4f5d6d434495fb9cba43b16a7ece77ee271fcc8de0e6a585"
+    },
+    {
+      "path": "lint-accepted.meta.json",
+      "bytes": 452,
+      "sha256": "ca2e0bddd746f6121fbdf9bb81c8e8b2b29b65c753c6943a11e9d2faf080c816"
+    },
+    {
+      "path": "lint-accepted.process.json",
+      "bytes": 86,
+      "sha256": "a5196fdd42acc970e195c26ebc5339b00e91940c8e6c21e184a6c4406cba0a43"
+    },
+    {
+      "path": "lint-accepted.processes.json",
+      "bytes": 686,
+      "sha256": "3be27ec15141b1dc6ab55504203419cefca8cc86b19e19d0283f78e249bf2944"
+    },
+    {
+      "path": "lint-browser.log",
+      "bytes": 196,
+      "sha256": "e7b9471f1a30addabea4fc788a3623f1c98d70d5c6108d2fc4f18424d1cd3f9e"
+    },
+    {
+      "path": "lint-browser.meta.json",
+      "bytes": 453,
+      "sha256": "d923af3a24849398e8bf883445f23b28bb2d6e35ff351a95513b1c49e877d147"
+    },
+    {
+      "path": "lint-browser.process.json",
+      "bytes": 86,
+      "sha256": "56bbc68a73bb60ef552cd9de1767deba346ccb57787878542ee1e70b7edb43d1"
+    },
+    {
+      "path": "lint-browser.processes.json",
+      "bytes": 534,
+      "sha256": "a31a8b709f2a1c5d1b24e2a4ba5aa5835aaca05977f8c42521522bb1eaef8be0"
+    },
+    {
+      "path": "lint-copy.log",
+      "bytes": 196,
+      "sha256": "e7b9471f1a30addabea4fc788a3623f1c98d70d5c6108d2fc4f18424d1cd3f9e"
+    },
+    {
+      "path": "lint-copy.meta.json",
+      "bytes": 452,
+      "sha256": "e7907b7936cadee73e6b1ba4417d77ba95578dc00a3a8a65be52dec22750ee65"
+    },
+    {
+      "path": "lint-copy.process.json",
+      "bytes": 86,
+      "sha256": "586f446ce04ef90c5548d41d386d51294c34610e5a068446dd2dff3fd6b351d3"
+    },
+    {
+      "path": "lint-copy.processes.json",
+      "bytes": 534,
+      "sha256": "42d1c0b263d1da35843a2289728f4fad14867207e4a676fdb0e3c943d69598f0"
+    },
+    {
+      "path": "lint-corrected-src__engine__skills__fire-mastery.ts",
+      "bytes": 2199,
+      "sha256": "f3e2274c03a658a1ad7820d08693886736f01007a18019dc0db1fcea0dbec20f"
+    },
+    {
+      "path": "lint-correction.json",
+      "bytes": 374,
+      "sha256": "b2c6e3d4452af39085a0e678371c13ee2d111281118fe8838f0a66e03843ea98"
+    },
+    {
+      "path": "lint-final.log",
+      "bytes": 460,
+      "sha256": "4d6e18e15443e484bf522f0883929262f794670d24fcaa83576f853c80982632"
+    },
+    {
+      "path": "lint-final.meta.json",
+      "bytes": 452,
+      "sha256": "1c0690d571fddd2641da2aac5d7702b74727d107ecf800576f0d3834952ac9f2"
+    },
+    {
+      "path": "lint-final.process.json",
+      "bytes": 86,
+      "sha256": "0cc6963ff481716add5e841fc0a54d2bf7b919fb0ace27867e8d8fff49280381"
+    },
+    {
+      "path": "lint-final.processes.json",
+      "bytes": 686,
+      "sha256": "52d9771f17dac392597889418af2807cd5ae6f3b90e798382160d9358026d23c"
+    },
+    {
+      "path": "lint-runtime-accepted.log",
+      "bytes": 196,
+      "sha256": "e7b9471f1a30addabea4fc788a3623f1c98d70d5c6108d2fc4f18424d1cd3f9e"
+    },
+    {
+      "path": "lint-runtime-accepted.meta.json",
+      "bytes": 453,
+      "sha256": "ce313738816ac8c0d97a0cd1115e91eb1f69cb4eefe29aebcb252a74c0c7c053"
+    },
+    {
+      "path": "lint-runtime-accepted.process.json",
+      "bytes": 86,
+      "sha256": "19d04ad09f71ed9b6f4f5affd592e60f6399d3fc4ea5e1ee1117207b38699292"
+    },
+    {
+      "path": "lint-runtime-accepted.processes.json",
+      "bytes": 534,
+      "sha256": "747f58bb471bef94adef4b26f6c055a1147190ada56b329aacbeb4ab577f4352"
+    },
+    {
+      "path": "lint-runtime-final.log",
+      "bytes": 455,
+      "sha256": "06e8b16447ecb2526ed641a1fc3e726c4bf7a4bd30c19130ac5e7337bae0c218"
+    },
+    {
+      "path": "lint-runtime-final.meta.json",
+      "bytes": 453,
+      "sha256": "330c32bba635663760c1c41535361c8ad920022a028b467ce172c9bf18f4ede8"
+    },
+    {
+      "path": "lint-runtime-final.process.json",
+      "bytes": 86,
+      "sha256": "57ba4e1170e1295201166139e37aee8b42e1284746e0bd033b0b78ee4ae223a2"
+    },
+    {
+      "path": "lint-runtime-final.processes.json",
+      "bytes": 534,
+      "sha256": "f1787bb50e1e95e66b10cba7456c2004adc2ddfde03662d7b30f5672e4fa1c23"
+    },
+    {
+      "path": "peer-verdicts-stage-a-and-runtime-preflight.json",
+      "bytes": 1053,
+      "sha256": "1177715ab9fc2f513d3c4207edf47a7b16465b5484351b5388d3519297dff748"
+    },
+    {
+      "path": "plan-review.json",
+      "bytes": 265,
+      "sha256": "d855992836ceac1b8c9c7ec9d77d78040fa4c92731fea8d5f9b436990981bfb6"
+    },
+    {
+      "path": "plan.md",
+      "bytes": 3947,
+      "sha256": "1bd1dc834a68615f5ac802306d3bd4ea9e5af3be5e1093dd350c5a1046780697"
+    },
+    {
+      "path": "proposal.json",
+      "bytes": 2084,
+      "sha256": "947ff280e0f9539b6b123aa9afface950349a7fd6cb5b8f07729268179e0f27b"
+    },
+    {
+      "path": "runtime-accepted-source/production/bugs/BUG-059-fire-mastery.md",
+      "bytes": 4940,
+      "sha256": "34bb902e1c4c8fc356fc81508e070006c10a1a1bacaddea3cf5b49f6e0f5eca3"
+    },
+    {
+      "path": "runtime-accepted-source/src/engine/combat/fire-mastery.test.ts",
+      "bytes": 22916,
+      "sha256": "f8df36329713bad4553629ee6c4f17d9a480fc63ccd45ba410e7d1a7de8f001e"
+    },
+    {
+      "path": "runtime-accepted-source/src/engine/progression/fire-mastery-composition.test.ts",
+      "bytes": 4963,
+      "sha256": "4001253cc88a4bcb2c9376e7ad8ea336c4c772191624e42a1366ff6bc1df0795"
+    },
+    {
+      "path": "runtime-accepted-source/src/engine/progression/warmth.ts",
+      "bytes": 2786,
+      "sha256": "fb3c3826599e221af363735d81dbfa604eb445b48767f1df98c6b56747c73577"
+    },
+    {
+      "path": "runtime-accepted-source/src/stores/fire-mastery-composition.test.ts",
+      "bytes": 9954,
+      "sha256": "a288fc5cf007c85b8a5db950cad79932115a8e44f839fb7ba98a13b6270658e3"
+    },
+    {
+      "path": "runtime-accepted-source-freeze.json",
+      "bytes": 740,
+      "sha256": "41d03df58216ae11dcc929b8bce6fe334b5b3d5a52fd028e1d85e3c8ec1deeb4"
+    },
+    {
+      "path": "runtime-before-warmth.ts",
+      "bytes": 2421,
+      "sha256": "862c6309f5bdbd525c57b3c8c31b0f3226cea3dc0aa02b4b429f0bdc5011ccbb"
+    },
+    {
+      "path": "runtime-capture-freeze.json",
+      "bytes": 568,
+      "sha256": "af6bb7d6796eab53dc17feb7dbc855a82aeac9c7d451404a98ad35e39920b7aa"
+    },
+    {
+      "path": "runtime-combat-frozen-tests.ts",
+      "bytes": 22916,
+      "sha256": "f8df36329713bad4553629ee6c4f17d9a480fc63ccd45ba410e7d1a7de8f001e"
+    },
+    {
+      "path": "runtime-combat-tests.ts",
+      "bytes": 11016,
+      "sha256": "f3811a95b552b561b70e40b8cf33bdbc551a646d4d49c0d4f16dcf9020a2f4a5"
+    },
+    {
+      "path": "runtime-final-gates.json",
+      "bytes": 5234,
+      "sha256": "4d7fb24e26c0d0e649b27f7b5f09f9585029cb73ed706f09b5a2b8141692bbd3"
+    },
+    {
+      "path": "runtime-final-producer-review.json",
+      "bytes": 688,
+      "sha256": "848870244c274374527447843ea57e0086c17593084b49d6f81ad5b34650ac99"
+    },
+    {
+      "path": "runtime-final-qa-review.json",
+      "bytes": 782,
+      "sha256": "d76fc26e6e493f4dcd31228296223518bf1695a78a1f55123cd30297dada4bfc"
+    },
+    {
+      "path": "runtime-final-source-freeze.json",
+      "bytes": 801,
+      "sha256": "68acdd857ae2934f78e821c7d55dce991132634c7e5c16bf8f29673359bd6456"
+    },
+    {
+      "path": "runtime-gate-order-correction.json",
+      "bytes": 472,
+      "sha256": "e718b4424ec1de14079c206cf78992b16fce9f8997316e92c6ea6f672516e38c"
+    },
+    {
+      "path": "runtime-green-source-freeze.json",
+      "bytes": 714,
+      "sha256": "80d75d7e48b13659ccff812e771ae68b46ca9928bf794b31c728b02ba576fe1d"
+    },
+    {
+      "path": "runtime-lint-corrected-source-freeze.json",
+      "bytes": 1136,
+      "sha256": "2bdfcd3a671b7722445444adc9e3e96ca5e0f116b4449f05ba261c0dab7712a2"
+    },
+    {
+      "path": "runtime-native-lint-corrected-tests.ts",
+      "bytes": 9954,
+      "sha256": "a288fc5cf007c85b8a5db950cad79932115a8e44f839fb7ba98a13b6270658e3"
+    },
+    {
+      "path": "runtime-native-lint-correction.json",
+      "bytes": 673,
+      "sha256": "902c40d1b2d28f8ca7fff5d6cf24dbe5f6347f6cba8d27eb538036136669a0da"
+    },
+    {
+      "path": "runtime-native-tests.ts",
+      "bytes": 9943,
+      "sha256": "1747e146156a5756503683010e26808491f82a6d9fd528b5f4c496ce0ea7807c"
+    },
+    {
+      "path": "runtime-peer-source-reviews.json",
+      "bytes": 1529,
+      "sha256": "068d52bd5d6bb145e26592d244df09cdb05ce628a997c27110c9550b08b26c81"
+    },
+    {
+      "path": "runtime-plan.md",
+      "bytes": 3939,
+      "sha256": "5a4d3ee16f278086cb3dd1ba55d0f96a95a14211be4e7e72cdb668cda3f8447c"
+    },
+    {
+      "path": "runtime-proposed-warmth.ts",
+      "bytes": 2786,
+      "sha256": "fb3c3826599e221af363735d81dbfa604eb445b48767f1df98c6b56747c73577"
+    },
+    {
+      "path": "runtime-pure-tests.ts",
+      "bytes": 4921,
+      "sha256": "64274af4fe3329132fe6c8bd523d8d6e8697bbf3e10613c3a78955805465b90c"
+    },
+    {
+      "path": "runtime-pure-type-corrected-tests.ts",
+      "bytes": 4963,
+      "sha256": "4001253cc88a4bcb2c9376e7ad8ea336c4c772191624e42a1366ff6bc1df0795"
+    },
+    {
+      "path": "runtime-pure-type-correction.json",
+      "bytes": 646,
+      "sha256": "7b9b237671e77b77d995ce8cbb7f54a070f78119c35c3c5c7e42c8ee8ea0e63a"
+    },
+    {
+      "path": "runtime-red-source-freeze.json",
+      "bytes": 632,
+      "sha256": "1b7f05f508111f40fe4037df597297989751920e94050bb12cf8d2754cb1ca0b"
+    },
+    {
+      "path": "runtime-source-preflight-review.json",
+      "bytes": 685,
+      "sha256": "e4f3483242a95da207fe287fa2f1a67c4e071e4b500b9731e762a16172d14400"
+    },
+    {
+      "path": "runtime-type-correction-review.json",
+      "bytes": 517,
+      "sha256": "9a7cafcfdb5a752a3bc55b0e42fddb117cde6bd21a50e5e113776028bd42992a"
+    },
+    {
+      "path": "schema-freeze.json",
+      "bytes": 489,
+      "sha256": "9db2662063ee510dbcc697567b09da87347bf19401afd32f657c78802405b81b"
+    },
+    {
+      "path": "schema-tests.ts",
+      "bytes": 3995,
+      "sha256": "dfa629ec4008ca4cf7ae413887e672edb663f37fb2170cd38535aa0a722a6868"
+    },
+    {
+      "path": "source-fingerprints-final.json",
+      "bytes": 100795,
+      "sha256": "e9023c1c867ce8ca1e5c41f2a7458cd7cc20efde1863066dae5a922b24660bce"
+    },
+    {
+      "path": "stage-a-final-gates.json",
+      "bytes": 3855,
+      "sha256": "b3e449fa47fe07d7d0e678efe1549018c1e1674df31323a728f66cb601627355"
+    },
+    {
+      "path": "stage-a-final-sources.json",
+      "bytes": 651,
+      "sha256": "f31cd02f1917a16e60bf7460ec07d4f02696a6f66c4f45c1e7e1b6b60ac49cfa"
+    },
+    {
+      "path": "stage-a-lint-corrected-sources.json",
+      "bytes": 651,
+      "sha256": "d1b756c5a6cf272f742a7f711be3fb854bf9d3f710a95f67bc916af93b2e6a82"
+    },
+    {
+      "path": "stage-a-owned-output.json",
+      "bytes": 156830,
+      "sha256": "e73d64cef3a002cf37a998018acd1e564629c342bcfc8facf05e4d2e13a39b0d"
+    },
+    {
+      "path": "stage-a-sources.json",
+      "bytes": 651,
+      "sha256": "f66a3fa7136107c3753a91ff3763c384908030b5a69edd9b17896227dadb9760"
+    },
+    {
+      "path": "type-correction-proposal.json",
+      "bytes": 440,
+      "sha256": "d65dd4cfb4548ad7cbbade83bfc6096e0e8ff50a3981d606855dd5d4a4115e9a"
+    },
+    {
+      "path": "type-correction-review.json",
+      "bytes": 294,
+      "sha256": "214f918f793786e30b394ddbd52b6ea1d489b716188e96e2e26e10aa22e33b03"
+    },
+    {
+      "path": "types-accepted.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "path": "types-accepted.meta.json",
+      "bytes": 456,
+      "sha256": "497068114b0905c39ae7be04cd795c5bba8c80a57d3d6dbaedc4ec3b76118474"
+    },
+    {
+      "path": "types-accepted.process.json",
+      "bytes": 91,
+      "sha256": "963c1fd8dc768217286c9758d41c2ad835ef78d3be93372502d625bffe0317e1"
+    },
+    {
+      "path": "types-accepted.processes.json",
+      "bytes": 534,
+      "sha256": "3919f655109c0abb59f6eed22764fac25e934d6381ad77a8fe6d55033682ff20"
+    },
+    {
+      "path": "types-browser.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "path": "types-browser.meta.json",
+      "bytes": 457,
+      "sha256": "e15c50e3e470e56248b4dfbb9d94506e882fef05714083f60e40cd67d01999c5"
+    },
+    {
+      "path": "types-browser.process.json",
+      "bytes": 91,
+      "sha256": "2c611664127d30d9e4f4e7a149f3fbe2f7ffacac405114a16766fc7e1d8f1e2a"
+    },
+    {
+      "path": "types-browser.processes.json",
+      "bytes": 534,
+      "sha256": "1f0ecda2b0561ae48ac93e3b5ef7f1d5f9f86528706846c92236d7d371699943"
+    },
+    {
+      "path": "types-copy.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "path": "types-copy.meta.json",
+      "bytes": 457,
+      "sha256": "b1d5d2c383953f71be841d31fa1f55c46f76618014ad2a9c1955014dc88c089e"
+    },
+    {
+      "path": "types-copy.process.json",
+      "bytes": 91,
+      "sha256": "d44aa7b30b3c38d4a729a4f52ded16f3a8e717469a7d682a1a7067ab8934ddc9"
+    },
+    {
+      "path": "types-copy.processes.json",
+      "bytes": 534,
+      "sha256": "ed8179832eef8a3565599bfd8ae3cf31103e580370e28f664a802548792ea86f"
+    },
+    {
+      "path": "types-corrected.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "path": "types-corrected.meta.json",
+      "bytes": 456,
+      "sha256": "aab1b4e4c8897bc5a8c10e12de1a7ced0847756f38c35d2f639c7eae99bd7ae9"
+    },
+    {
+      "path": "types-corrected.process.json",
+      "bytes": 91,
+      "sha256": "85b5e9fcb43468e7969132d507392680d47f7456fbf494ecbce05e656878f0ab"
+    },
+    {
+      "path": "types-corrected.processes.json",
+      "bytes": 534,
+      "sha256": "98211d04ea4937641e1d0135f45887a019e8a1166927849f83c1b4e13514c220"
+    },
+    {
+      "path": "types-final.log",
+      "bytes": 282,
+      "sha256": "3c013def754b5d96aac447bb8e5cbd3ae2b2bf96c018b728a8e507151e08e442"
+    },
+    {
+      "path": "types-final.meta.json",
+      "bytes": 457,
+      "sha256": "ceb61d4203beb49b7b39daec19e935ca94539a0de3f6a5f0a9297bfe5ba6bf11"
+    },
+    {
+      "path": "types-final.process.json",
+      "bytes": 91,
+      "sha256": "18cf91fe6378d8a863da1b249547dcc8c81eddc6bb00d37633708628cfd1f54a"
+    },
+    {
+      "path": "types-final.processes.json",
+      "bytes": 534,
+      "sha256": "2a1978f7ae35eb7e09de4461ef34b202f4801e92f85b2a871fab04d690bcf7e3"
+    },
+    {
+      "path": "types-runtime-accepted.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "path": "types-runtime-accepted.meta.json",
+      "bytes": 457,
+      "sha256": "d2563e985b933cadcb6eec4789957409e61f239a9a95961e5d9bb1774d815eff"
+    },
+    {
+      "path": "types-runtime-accepted.process.json",
+      "bytes": 91,
+      "sha256": "958c3cd04fba93010b15875e0a61347a660835bc4f00bade8c4c194a9ef3b785"
+    },
+    {
+      "path": "types-runtime-accepted.processes.json",
+      "bytes": 534,
+      "sha256": "653de85bb3b8494cb347672cf5fe665e07735d1ba0fc89713c3fdc8feda6cdf8"
+    },
+    {
+      "path": "types-runtime-final.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "path": "types-runtime-final.meta.json",
+      "bytes": 457,
+      "sha256": "af585b9069e5ed00a8de7f2feee0ff84d831f0d03900cb1723829c1a58734a0b"
+    },
+    {
+      "path": "types-runtime-final.process.json",
+      "bytes": 91,
+      "sha256": "9123bf0def99f69b0d9dc95b699c30961b07719449172eb73ba3ef5285d03c78"
+    },
+    {
+      "path": "types-runtime-final.processes.json",
+      "bytes": 534,
+      "sha256": "e82d845c137f6df79bbbf90fe0339d60194f00eda7397c180ec3c65893e303b9"
+    },
+    {
+      "path": "types-runtime.log",
+      "bytes": 690,
+      "sha256": "6f4d124bef114a7bb7e2856a38212533e53a48eb6d95dbf0ea81f7c0030494aa"
+    },
+    {
+      "path": "types-runtime.meta.json",
+      "bytes": 458,
+      "sha256": "6b1d64e213140a3e8697f5d573564a95502eb0b653de9016c9a3694b8aadf9b5"
+    },
+    {
+      "path": "types-runtime.process.json",
+      "bytes": 91,
+      "sha256": "399b2cbc7da15f80b12d7cc9a4c91354c7b43a7746fd7f43b047e8a3d0936f87"
+    },
+    {
+      "path": "types-runtime.processes.json",
+      "bytes": 534,
+      "sha256": "68560db3263ab5f85d5eb0cb3887e8e937b54e77c4376b4fb28538b4700dc9c0"
+    },
+    {
+      "path": "unaffected-recording.json",
+      "bytes": 11478,
+      "sha256": "0a6c53176ff4184cc99bc676d785c2695ce45138ed09e033460265a1c683a054"
+    },
+    {
+      "path": "unit-accepted-report.json",
+      "bytes": 1275560,
+      "sha256": "cd190bba7beec789a2419cdb1bed9540b5dd3c9bbf65ae175a6c5a406abb0c97"
+    },
+    {
+      "path": "unit-accepted.log",
+      "bytes": 309,
+      "sha256": "d15caaea135fe72674924be2bd14889569e643a4befbdbd1282eb1e26acb41c0"
+    },
+    {
+      "path": "unit-accepted.meta.json",
+      "bytes": 608,
+      "sha256": "699cfe58ab6ff5cd6eeffd86df7fe6cdfcdf923d2bc8ca0f3b943e1ced5baa30"
+    },
+    {
+      "path": "unit-accepted.process.json",
+      "bytes": 227,
+      "sha256": "5f70d95eabeef6c2d8d3f40639808f643b4d19ef5edccd811f3dc71ac953e19d"
+    },
+    {
+      "path": "unit-accepted.processes.json",
+      "bytes": 117056,
+      "sha256": "68f04a77bd45921c69ad9d739675f175a819a96f1196ec66935521680076e6df"
+    },
+    {
+      "path": "unit-browser-final-report.json",
+      "bytes": 1299688,
+      "sha256": "aa416b6460bfae48007fddcfc601bb9131bda068aa4a4bec192655f9bb2f501a"
+    },
+    {
+      "path": "unit-browser-final.log",
+      "bytes": 135,
+      "sha256": "aa397a9b678478956a196653450bde7d6b13e10fee13abae1589fb100a0c2d15"
+    },
+    {
+      "path": "unit-browser-final.meta.json",
+      "bytes": 643,
+      "sha256": "1741519ebb30512dd9409b298c3c6d25c3e300508d1ffb40f173660bb132951b"
+    },
+    {
+      "path": "unit-browser-final.process.json",
+      "bytes": 260,
+      "sha256": "2218210b420194224c3bfe24fa9605b404506677dc7532a87943f536e8a55bbe"
+    },
+    {
+      "path": "unit-browser-final.processes.json",
+      "bytes": 101760,
+      "sha256": "390f846bf7ed2012a88d213aead141adaf3fcce1e65fec71352c3dd1e68b6ba5"
+    },
+    {
+      "path": "unit-copy-report.json",
+      "bytes": 1299701,
+      "sha256": "b1da0f4210987be81ead1937aaf1c5d1c40dfac4cb475096411f9a6d13e4d6d2"
+    },
+    {
+      "path": "unit-copy.log",
+      "bytes": 126,
+      "sha256": "3964aa78ce8697407b4e680ba5816f62b0c1be6e79a1dd7605ea7dc19532955a"
+    },
+    {
+      "path": "unit-copy.meta.json",
+      "bytes": 633,
+      "sha256": "1e2fcb04bf6447a9cc5ec5e7635a63ed273dbad3b864200dcdade3bd65fe2304"
+    },
+    {
+      "path": "unit-copy.process.json",
+      "bytes": 251,
+      "sha256": "50f976d38c69a0e81a80e1ea7f8609a33561641e0f332c6c84b0b99edd9256c2"
+    },
+    {
+      "path": "unit-copy.processes.json",
+      "bytes": 103926,
+      "sha256": "b1ebcaa1f168f2b6dd9157239a754a6cadfeb02cb59e87513ccbd6d64b80288a"
+    },
+    {
+      "path": "unit-corrected-report.json",
+      "bytes": 1275601,
+      "sha256": "617c567ba6a79c99fa9d8fe61553d34bdd3a4893127402a44b2423dda2e47c84"
+    },
+    {
+      "path": "unit-corrected.log",
+      "bytes": 311,
+      "sha256": "866f9c96e41bd304bff9a1e317b9d71fe63e1accf516977c5b5a9546734d5e8a"
+    },
+    {
+      "path": "unit-corrected.meta.json",
+      "bytes": 609,
+      "sha256": "34cd5493dd02972fc6035941086484e7ab80ddddb40fd2edae036a524adf230b"
+    },
+    {
+      "path": "unit-corrected.process.json",
+      "bytes": 228,
+      "sha256": "88ed5e9f850d04e94eb4de8bde38fd7791c8855a54fd363e3402717e9198cc21"
+    },
+    {
+      "path": "unit-corrected.processes.json",
+      "bytes": 116462,
+      "sha256": "9973b3510867b060fd7dce9f17bc0fb52f59beaa64f7e057d5fcdf1f66728c39"
+    },
+    {
+      "path": "unit-final-report.json",
+      "bytes": 1275618,
+      "sha256": "0e196a9a53ce8df0f3f0654a01d1dd8cb4312647471c4677387df525b0b656ff"
+    },
+    {
+      "path": "unit-final.log",
+      "bytes": 303,
+      "sha256": "cfc37c70d7bfbbda2ad999afd3ceb374a95550654772d321d0bb0c3515df898b"
+    },
+    {
+      "path": "unit-final.meta.json",
+      "bytes": 605,
+      "sha256": "dcdfa8bdec9f0c5a53afee181dda8a84c6ae75e1a2e70af018ca4fc9e7992260"
+    },
+    {
+      "path": "unit-final.process.json",
+      "bytes": 224,
+      "sha256": "afd449170164a52cc2275af2eeb038c0d5e198f4cfc804094fa895cabfc94f50"
+    },
+    {
+      "path": "unit-final.processes.json",
+      "bytes": 123603,
+      "sha256": "7ad4f0165eed18a9c7ef9457484bb14ced3fc0d3ffbdb48dbab922a4264505a1"
+    },
+    {
+      "path": "unit-runtime-accepted-report.json",
+      "bytes": 1299651,
+      "sha256": "d30bcaba8d26a17da2585d1bc6282a64274a1dbf2aa2c7494da311aa6d3f79ce"
+    },
+    {
+      "path": "unit-runtime-accepted.log",
+      "bytes": 325,
+      "sha256": "6ce165581209843296716a0cb887345b068c12c8ccc461e4f7ef635709180e60"
+    },
+    {
+      "path": "unit-runtime-accepted.meta.json",
+      "bytes": 617,
+      "sha256": "dcfdcfb7379968c177c0e58b1b1c639340439c750960982e583c09b3eba78ff0"
+    },
+    {
+      "path": "unit-runtime-accepted.process.json",
+      "bytes": 235,
+      "sha256": "6c07d6a4bfa2fd552976deff99292cd7b5a1365592c3fa6586c9d5f685185d79"
+    },
+    {
+      "path": "unit-runtime-accepted.processes.json",
+      "bytes": 104869,
+      "sha256": "a7dcd5d50ec521541b2eca8a613ff335038d2a1ba98b30db5b2ad72a98069740"
+    },
+    {
+      "path": "unit-runtime-final-report.json",
+      "bytes": 1299690,
+      "sha256": "d0ff8e4b8f71c735938c740d96ae7a0c417c0333421dbf80559394e0aea88371"
+    },
+    {
+      "path": "unit-runtime-final.log",
+      "bytes": 319,
+      "sha256": "c189df5788ec6609227640c25c047bb2a2740102c1f6a86b8c55bfe17acea8bb"
+    },
+    {
+      "path": "unit-runtime-final.meta.json",
+      "bytes": 614,
+      "sha256": "1cc1c03300750404bd87b125dc0610a240737daeaf58d085f221c6d2e91fb5e5"
+    },
+    {
+      "path": "unit-runtime-final.process.json",
+      "bytes": 232,
+      "sha256": "aef19e7a7cf044d2d60a369d99e2fba19e1bc0bc68e9c12171685073862ccf0f"
+    },
+    {
+      "path": "unit-runtime-final.processes.json",
+      "bytes": 105017,
+      "sha256": "56f4b1a5bf23aaa570d57a14706830a1a390262cf0e9e7df8175389ee6ed4d43"
+    },
+    {
+      "path": "unit-runtime-report.json",
+      "bytes": 1299638,
+      "sha256": "16017f4f222dd39dadfe6b3f65fb02c888ceef022d3f9f0845dcfc3ca71e51ba"
+    },
+    {
+      "path": "unit-runtime.log",
+      "bytes": 307,
+      "sha256": "0e3c9170767e6dcc400fe1bf9ede4519ba500e45caa210662fcb38ec61075ac7"
+    },
+    {
+      "path": "unit-runtime.meta.json",
+      "bytes": 608,
+      "sha256": "62818db062e12d9331bed3bcfeb450493138b7cae7b845610d10f32d6d80cf99"
+    },
+    {
+      "path": "unit-runtime.process.json",
+      "bytes": 226,
+      "sha256": "042d8935b55658fd6fd826371765c58fcc146eb4e6e014c881519a4c8759723c"
+    },
+    {
+      "path": "unit-runtime.processes.json",
+      "bytes": 102060,
+      "sha256": "bbc435a33142dee806f434a89bfbf1c8d674e8afb38f9da3f2eb27eaf7f51c2e"
+    },
+    {
+      "path": "whole-card-output-inventory-correction.json",
+      "bytes": 322,
+      "sha256": "846d63ec979495361931bc685fcba9f41e976ac18f0b91c301d583129224a740"
+    },
+    {
+      "path": "whole-card-owned-output-initial.json",
+      "bytes": 152772,
+      "sha256": "0a24b601fd84192f030a1024010afde354cde36a3975b8219d27adaa4c5c088e"
+    },
+    {
+      "path": "whole-card-owned-output.json",
+      "bytes": 152946,
+      "sha256": "9d1e556b5b8e0f1fd8471e0a9e07e6436400818d417f0be2d76830f4f3629538"
+    },
+    {
+      "path": "whole-card-process-audit.json",
+      "bytes": 294224,
+      "sha256": "2108434be0ca2e255499c7faab4f7084ce6613c55a328f4087753d4c236a4c66"
+    }
+  ],
+  "rawBytes": 17969355,
+  "archive": {
+    "path": "raw.tar.gz",
+    "bytes": 2218830,
+    "sha256": "585f9c544bba613651a44b9cfac30bccbe30a163113d2bdb65b652d9b87904e6"
+  },
+  "commands": [
+    {
+      "name": "browser-fire-mastery",
+      "metaSha256": "65f98c262f46c2a94f39e030ae6c86b7d99ed5c9117f3b6026bd206cc655a97d",
+      "command": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "--config=tests/pwa/fire-mastery.config.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T03:16:32.843839+00:00",
+      "seconds": 56.317,
+      "exitCode": 0,
+      "pid": 2109714,
+      "deadlineSeconds": 240,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 1501,
+        "report": 638048,
+        "attachments": 45,
+        "totalTaskArtifacts": 56467535
+      }
+    },
+    {
+      "name": "build-accepted",
+      "metaSha256": "ed86f60f4007a8cb004e328ee7f5ae5017c4a0b1658ca065407ab44b51731e39",
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:46:20.386005+00:00",
+      "seconds": 9.001,
+      "exitCode": 0,
+      "pid": 2078160,
+      "deadlineSeconds": 210,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 1763,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 47610013
+      }
+    },
+    {
+      "name": "build-copy",
+      "metaSha256": "1e45dd2a098ec0aa353b2b2307a7f1d232968b74c3c1943dc4fc5e1c9e21295b",
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T03:10:48.108896+00:00",
+      "seconds": 9.377,
+      "exitCode": 0,
+      "pid": 2106991,
+      "deadlineSeconds": 210,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 1763,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 54813299
+      }
+    },
+    {
+      "name": "build-runtime-accepted",
+      "metaSha256": "4b6cc65dbc96d35a65ffd58aa46b8fbb4016c95487f6182d9209d470e617dcf2",
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T03:02:03.643836+00:00",
+      "seconds": 8.986,
+      "exitCode": 0,
+      "pid": 2099313,
+      "deadlineSeconds": 210,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 1763,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 53313613
+      }
+    },
+    {
+      "name": "engine-accepted",
+      "metaSha256": "3c9a3df5fcdf21e8c6b5938a245a91376fc0ddacc2c0e1db3fbcf7f6a5e3179b",
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/engine-accepted-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:42:32.018484+00:00",
+      "seconds": 9.2,
+      "exitCode": 0,
+      "pid": 2071884,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 337,
+        "report": 509490,
+        "attachments": 0,
+        "totalTaskArtifacts": 5247161
+      }
+    },
+    {
+      "name": "engine-final",
+      "metaSha256": "8b6fd0d1100756ff79a97ad66877c9fbf49c98ce403617a63dc6f822e6119d32",
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/engine-final-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:39:21.742750+00:00",
+      "seconds": 9.236,
+      "exitCode": 0,
+      "pid": 2065958,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 331,
+        "report": 509475,
+        "attachments": 0,
+        "totalTaskArtifacts": 3307737
+      }
+    },
+    {
+      "name": "engine-green",
+      "metaSha256": "049279e57fd34b8b628bc32c5b036a056a1dac9f570c80af0e8b4a5ef0b99260",
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/engine-green-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:35:53.457784+00:00",
+      "seconds": 9.751,
+      "exitCode": 0,
+      "pid": 2059095,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 331,
+        "report": 509466,
+        "attachments": 0,
+        "totalTaskArtifacts": 960390
+      }
+    },
+    {
+      "name": "engine-runtime-final",
+      "metaSha256": "ccf34f793b234caee731331e5cd1ac41cfcdff79d3d14699e9a7894268ce0d4a",
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/engine-runtime-final-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:57:13.698166+00:00",
+      "seconds": 9.109,
+      "exitCode": 0,
+      "pid": 2088767,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 347,
+        "report": 531195,
+        "attachments": 0,
+        "totalTaskArtifacts": 50463544
+      }
+    },
+    {
+      "name": "engine-runtime",
+      "metaSha256": "eb192efcedb8c5ba2b6b4566b94afa0321234c7d7c06b56eebe94b38cf387722",
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/engine-runtime-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:54:19.457647+00:00",
+      "seconds": 9.758,
+      "exitCode": 0,
+      "pid": 2082446,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 335,
+        "report": 531188,
+        "attachments": 0,
+        "totalTaskArtifacts": 48468544
+      }
+    },
+    {
+      "name": "focused-browser-capture",
+      "metaSha256": "f18822c512f9835cafe1e01f781bbccad5653b34cf8645b0ec382c249d771d3b",
+      "command": [
+        "node",
+        "node_modules/vite-node/vite-node.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/capture-browser-opening.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T03:11:10.046654+00:00",
+      "seconds": 2.5,
+      "exitCode": 0,
+      "pid": 2107151,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 6560,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 55511446
+      }
+    },
+    {
+      "name": "focused-capability-red",
+      "metaSha256": "57d8e5be9ce2655ab4e59f2beaf834e0cff8f98b7b23b0feed30244d7fe3d6c3",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--project",
+        "engine",
+        "src/engine/skills/fire-mastery.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/focused-capability-red-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:35:04.177786+00:00",
+      "seconds": 1.604,
+      "exitCode": 1,
+      "pid": 2058245,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 139,
+        "report": 688,
+        "attachments": 0,
+        "totalTaskArtifacts": 341948
+      }
+    },
+    {
+      "name": "focused-copy",
+      "metaSha256": "8bd0e50fe273e543797ae6b25e8c3d378e63343b06a83a368cc2980de19fa66a",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/features/skills/i18n-no-raw-keys.test.tsx",
+        "src/features/skills/SkillsScreen.test.tsx",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/focused-copy-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T03:07:40.618995+00:00",
+      "seconds": 6.667,
+      "exitCode": 0,
+      "pid": 2101593,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 129,
+        "report": 22057,
+        "attachments": 0,
+        "totalTaskArtifacts": 53380285
+      }
+    },
+    {
+      "name": "focused-data",
+      "metaSha256": "2c09c8610bfba296cbee017da39ec4d90a744bbd51848e6a35f3411d81f6afe7",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/skills/fire-mastery.test.ts",
+        "src/engine/skills/frozen-armor.test.ts",
+        "src/data/loader.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/focused-data-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:36:25.800931+00:00",
+      "seconds": 3.536,
+      "exitCode": 0,
+      "pid": 2060562,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 129,
+        "report": 178111,
+        "attachments": 0,
+        "totalTaskArtifacts": 1140533
+      }
+    },
+    {
+      "name": "focused-final",
+      "metaSha256": "5ca4c1534e9c46b5627d7236d8310de3810c8e1222aac9b0d15612df9f451ce1",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "src/engine/skills/fire-mastery.test.ts",
+        "src/engine/skills/frozen-armor.test.ts",
+        "src/data/loader.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/focused-final-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:39:18.034593+00:00",
+      "seconds": 3.632,
+      "exitCode": 0,
+      "pid": 2065653,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 130,
+        "report": 178109,
+        "attachments": 0,
+        "totalTaskArtifacts": 2764299
+      }
+    },
+    {
+      "name": "focused-green",
+      "metaSha256": "f19247b722d6d00bae8e19167029d1e6bca5ec93b634d47c427480cb28bdfdb6",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--project",
+        "engine",
+        "src/engine/skills/fire-mastery.test.ts",
+        "src/engine/skills/frozen-armor.test.ts",
+        "src/data/loader.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/focused-green-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:35:40.935136+00:00",
+      "seconds": 1.883,
+      "exitCode": 0,
+      "pid": 2058771,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 130,
+        "report": 73993,
+        "attachments": 0,
+        "totalTaskArtifacts": 421026
+      }
+    },
+    {
+      "name": "focused-lint",
+      "metaSha256": "6bd76b68d66b98fca54568664ee1ed6aa8299d56ca85ae360b00604df38a3188",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "src/engine/skills/fire-mastery.ts",
+        "src/engine/skills/fire-mastery.test.ts",
+        "--max-warnings=0"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:41:45.732004+00:00",
+      "seconds": 4.629,
+      "exitCode": 0,
+      "pid": 2071548,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 0,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 4716470
+      }
+    },
+    {
+      "name": "focused-runtime-final",
+      "metaSha256": "a0fc80bf78a0ecaef6c608a32a47a769af90b1cc2d3d2d496a65a35df4ecb8cd",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/progression/fire-mastery-composition.test.ts",
+        "src/engine/combat/fire-mastery.test.ts",
+        "src/stores/fire-mastery-composition.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/focused-runtime-final-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:57:09.114681+00:00",
+      "seconds": 4.511,
+      "exitCode": 0,
+      "pid": 2088452,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 138,
+        "report": 24337,
+        "attachments": 0,
+        "totalTaskArtifacts": 49905593
+      }
+    },
+    {
+      "name": "focused-runtime-full-red",
+      "metaSha256": "02337e917950e20a65568fa453f79491676a1913099c9d2f67deda5043eed80a",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/progression/fire-mastery-composition.test.ts",
+        "src/engine/combat/fire-mastery.test.ts",
+        "src/stores/fire-mastery-composition.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/focused-runtime-full-red-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:53:43.637798+00:00",
+      "seconds": 4.397,
+      "exitCode": 1,
+      "pid": 2081661,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 141,
+        "report": 29098,
+        "attachments": 0,
+        "totalTaskArtifacts": 47876209
+      }
+    },
+    {
+      "name": "focused-runtime-green",
+      "metaSha256": "06b244f727439c261edeab06813f96d65999f2e1897094b3dfe9ad9820b8eb88",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/progression/fire-mastery-composition.test.ts",
+        "src/engine/combat/fire-mastery.test.ts",
+        "src/stores/fire-mastery-composition.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/focused-runtime-green-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:54:07.382746+00:00",
+      "seconds": 4.543,
+      "exitCode": 0,
+      "pid": 2082080,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 138,
+        "report": 24338,
+        "attachments": 0,
+        "totalTaskArtifacts": 47909390
+      }
+    },
+    {
+      "name": "focused-runtime-native-final",
+      "metaSha256": "1f15d9cafeef710afeb63fa1ab86208b967c593e356a6e0a7df1c34a5b6bd1d9",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/fire-mastery-composition.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/focused-runtime-native-final-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T03:00:12.266059+00:00",
+      "seconds": 4.436,
+      "exitCode": 0,
+      "pid": 2094799,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 145,
+        "report": 2604,
+        "attachments": 0,
+        "totalTaskArtifacts": 51886885
+      }
+    },
+    {
+      "name": "focused-runtime-pure-red",
+      "metaSha256": "54deecc53ce7c04835fbc87a5566fc512019fe8ce23207164109f6cb1c417ef8",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/progression/fire-mastery-composition.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/focused-runtime-pure-red-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:52:59.414068+00:00",
+      "seconds": 1.782,
+      "exitCode": 1,
+      "pid": 2081194,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 141,
+        "report": 16352,
+        "attachments": 0,
+        "totalTaskArtifacts": 47841165
+      }
+    },
+    {
+      "name": "focused-runtime-unaffected-capture",
+      "metaSha256": "e9402309a1bbbf5a64ce6cd263583417037ba4b34b05604ce4daea5a841f879a",
+      "command": [
+        "node",
+        "node_modules/vite-node/vite-node.mjs",
+        "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/capture-unaffected.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:50:30.448024+00:00",
+      "seconds": 1.538,
+      "exitCode": 0,
+      "pid": 2079964,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 11478,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 47793190
+      }
+    },
+    {
+      "name": "focused-schema-red",
+      "metaSha256": "1f65d90700a5868815a5fcec151b50e9b9da3e99465d2b54bedb7c929f297fe0",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--project",
+        "engine",
+        "src/engine/skills/fire-mastery.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/focused-schema-red-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:34:47.214169+00:00",
+      "seconds": 1.867,
+      "exitCode": 1,
+      "pid": 2057906,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 135,
+        "report": 25967,
+        "attachments": 0,
+        "totalTaskArtifacts": 333915
+      }
+    },
+    {
+      "name": "lint-accepted",
+      "metaSha256": "ca2e0bddd746f6121fbdf9bb81c8e8b2b29b65c753c6943a11e9d2faf080c816",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:45:32.805227+00:00",
+      "seconds": 28.648,
+      "exitCode": 0,
+      "pid": 2077878,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 196,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 6666117
+      }
+    },
+    {
+      "name": "lint-browser",
+      "metaSha256": "d923af3a24849398e8bf883445f23b28bb2d6e35ff351a95513b1c49e877d147",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T03:15:49.211306+00:00",
+      "seconds": 29.459,
+      "exitCode": 0,
+      "pid": 2109367,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 196,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 55683893
+      }
+    },
+    {
+      "name": "lint-copy",
+      "metaSha256": "e7907b7936cadee73e6b1ba4417d77ba95578dc00a3a8a65be52dec22750ee65",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T03:10:06.907673+00:00",
+      "seconds": 28.67,
+      "exitCode": 0,
+      "pid": 2106560,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 196,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 54808933
+      }
+    },
+    {
+      "name": "lint-final",
+      "metaSha256": "1c0690d571fddd2641da2aac5d7702b74727d107ecf800576f0d3834952ac9f2",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:40:51.333050+00:00",
+      "seconds": 29.248,
+      "exitCode": 1,
+      "pid": 2071252,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 460,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 4712360
+      }
+    },
+    {
+      "name": "lint-runtime-accepted",
+      "metaSha256": "ce313738816ac8c0d97a0cd1115e91eb1f69cb4eefe29aebcb252a74c0c7c053",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T03:01:34.630839+00:00",
+      "seconds": 28.948,
+      "exitCode": 0,
+      "pid": 2099083,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 196,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 53309211
+      }
+    },
+    {
+      "name": "lint-runtime-final",
+      "metaSha256": "330c32bba635663760c1c41535361c8ad920022a028b467ce172c9bf18f4ede8",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:58:43.985391+00:00",
+      "seconds": 29.279,
+      "exitCode": 1,
+      "pid": 2094300,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 455,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 51880767
+      }
+    },
+    {
+      "name": "types-accepted",
+      "metaSha256": "497068114b0905c39ae7be04cd795c5bba8c80a57d3d6dbaedc4ec3b76118474",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:44:26.103681+00:00",
+      "seconds": 11.387,
+      "exitCode": 0,
+      "pid": 2077495,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 50,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 6655569
+      }
+    },
+    {
+      "name": "types-browser",
+      "metaSha256": "e15c50e3e470e56248b4dfbb9d94506e882fef05714083f60e40cd67d01999c5",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T03:15:31.985245+00:00",
+      "seconds": 11.301,
+      "exitCode": 0,
+      "pid": 2109276,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 50,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 55682074
+      }
+    },
+    {
+      "name": "types-copy",
+      "metaSha256": "b1d5d2c383953f71be841d31fa1f55c46f76618014ad2a9c1955014dc88c089e",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T03:09:49.238428+00:00",
+      "seconds": 11.216,
+      "exitCode": 0,
+      "pid": 2106443,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 50,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 54807303
+      }
+    },
+    {
+      "name": "types-corrected",
+      "metaSha256": "aab1b4e4c8897bc5a8c10e12de1a7ced0847756f38c35d2f639c7eae99bd7ae9",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:40:39.935130+00:00",
+      "seconds": 11.306,
+      "exitCode": 0,
+      "pid": 2071208,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 50,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 4710672
+      }
+    },
+    {
+      "name": "types-final",
+      "metaSha256": "ceb61d4203beb49b7b39daec19e935ca94539a0de3f6a5f0a9297bfe5ba6bf11",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:38:09.666573+00:00",
+      "seconds": 12.513,
+      "exitCode": 2,
+      "pid": 2065013,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 282,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 2588987
+      }
+    },
+    {
+      "name": "types-runtime-accepted",
+      "metaSha256": "d2563e985b933cadcb6eec4789957409e61f239a9a95961e5d9bb1774d815eff",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T03:01:23.193551+00:00",
+      "seconds": 11.366,
+      "exitCode": 0,
+      "pid": 2099038,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 50,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 53307938
+      }
+    },
+    {
+      "name": "types-runtime-final",
+      "metaSha256": "af585b9069e5ed00a8de7f2feee0ff84d831f0d03900cb1723829c1a58734a0b",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:58:32.559159+00:00",
+      "seconds": 11.347,
+      "exitCode": 0,
+      "pid": 2094133,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 50,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 51879235
+      }
+    },
+    {
+      "name": "types-runtime",
+      "metaSha256": "6b1d64e213140a3e8697f5d573564a95502eb0b653de9016c9a3694b8aadf9b5",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:55:22.658531+00:00",
+      "seconds": 13.593,
+      "exitCode": 2,
+      "pid": 2087351,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 690,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 48470889
+      }
+    },
+    {
+      "name": "unit-accepted",
+      "metaSha256": "699cfe58ab6ff5cd6eeffd86df7fe6cdfcdf923d2bc8ca0f3b943e1ced5baa30",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/unit-accepted-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:43:18.018309+00:00",
+      "seconds": 67.267,
+      "exitCode": 0,
+      "pid": 2073347,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 309,
+        "report": 1275560,
+        "attachments": 0,
+        "totalTaskArtifacts": 6654286
+      }
+    },
+    {
+      "name": "unit-browser-final",
+      "metaSha256": "1741519ebb30512dd9409b298c3c6d25c3e300508d1ffb40f173660bb132951b",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/unit-browser-final-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T03:17:52.421454+00:00",
+      "seconds": 67.712,
+      "exitCode": 0,
+      "pid": 2110632,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 135,
+        "report": 1299688,
+        "attachments": 45,
+        "totalTaskArtifacts": 58348466
+      }
+    },
+    {
+      "name": "unit-copy",
+      "metaSha256": "1e2fcb04bf6447a9cc5ec5e7635a63ed273dbad3b864200dcdade3bd65fe2304",
+      "command": [
+        "node",
+        "node_modules/vitest/vitest.mjs",
+        "run",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/unit-copy-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T03:08:04.502314+00:00",
+      "seconds": 66.994,
+      "exitCode": 0,
+      "pid": 2102075,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 126,
+        "report": 1299701,
+        "attachments": 0,
+        "totalTaskArtifacts": 54798931
+      }
+    },
+    {
+      "name": "unit-corrected",
+      "metaSha256": "34cd5493dd02972fc6035941086484e7ab80ddddb40fd2edae036a524adf230b",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/unit-corrected-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:39:31.050919+00:00",
+      "seconds": 68.806,
+      "exitCode": 0,
+      "pid": 2067240,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 311,
+        "report": 1275601,
+        "attachments": 0,
+        "totalTaskArtifacts": 4709388
+      }
+    },
+    {
+      "name": "unit-final",
+      "metaSha256": "dcdfa8bdec9f0c5a53afee181dda8a84c6ae75e1a2e70af018ca4fc9e7992260",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/unit-final-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:36:40.211176+00:00",
+      "seconds": 74.955,
+      "exitCode": 0,
+      "pid": 2060894,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 303,
+        "report": 1275618,
+        "attachments": 0,
+        "totalTaskArtifacts": 2587475
+      }
+    },
+    {
+      "name": "unit-runtime-accepted",
+      "metaSha256": "dcfdcfb7379968c177c0e58b1b1c639340439c750960982e583c09b3eba78ff0",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/unit-runtime-accepted-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T03:00:16.767979+00:00",
+      "seconds": 66.344,
+      "exitCode": 0,
+      "pid": 2095099,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 325,
+        "report": 1299651,
+        "attachments": 0,
+        "totalTaskArtifacts": 53306646
+      }
+    },
+    {
+      "name": "unit-runtime-final",
+      "metaSha256": "1cc1c03300750404bd87b125dc0610a240737daeaf58d085f221c6d2e91fb5e5",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/unit-runtime-final-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:57:22.873021+00:00",
+      "seconds": 69.611,
+      "exitCode": 0,
+      "pid": 2090123,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 319,
+        "report": 1299690,
+        "attachments": 0,
+        "totalTaskArtifacts": 51877946
+      }
+    },
+    {
+      "name": "unit-runtime",
+      "metaSha256": "62818db062e12d9331bed3bcfeb450493138b7cae7b845610d10f32d6d80cf99",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr/unit-runtime-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:54:29.587748+00:00",
+      "seconds": 68.423,
+      "exitCode": 0,
+      "pid": 2083835,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 307,
+        "report": 1299638,
+        "attachments": 0,
+        "totalTaskArtifacts": 49881685
+      }
+    }
+  ],
+  "processIdentityCount": 6839,
+  "sourceFingerprintCount": 599,
+  "ownedOutputCount": 761,
+  "prearchiveAggregateBytes": 58920215,
+  "scope": "Automatic Fire Mastery source/native behavior and imported eligibility production en/zh desktop/mobile UI4cases. No earned campaign, balance, coverage, CJK glyph readability, full mobile/a11y or full-v1 acceptance."
+}
