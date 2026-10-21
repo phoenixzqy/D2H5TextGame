@@ -394,7 +394,7 @@ describe('D06 v1c corpse-summon adapter boundary', () => {
       'fixture.summon', 'druid.firestorm'];
     const before = structuredClone({ ...p, skillLevels, comboOrder: order });
     const result = playerToCombatUnit(before);
-    expect(result.skillOrder).toEqual(['necromancer.iron_golem', 'fixture.summon', 'druid.firestorm']);
+    expect(result.skillOrder).toEqual(['fixture.summon', 'druid.firestorm']);
     expect(result.skillLevels).toEqual(skillLevels);
     expect(before.skillLevels).toEqual(skillLevels);
     expect(before.comboOrder).toEqual(order);

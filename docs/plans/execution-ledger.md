@@ -3713,3 +3713,62 @@ evidence is retained. Full Iron/D06/P09/P10, receipt/caller/replay/persistence/U
 earned supply/balance, performance/platform/PWA/a11y and private-v1/C0–C4/G0–G7
 remain open. Umbrella claim continues; root remains sole writer/executor; no
 remote action.
+
+
+## D06 v1d authoritative Player Iron qualification
+
+Explicit item-input engine preparation received QA, TD/five-axis and producer
+APPROVE and committed as `86034c5`. Its publication manifest preserves the
+status-only ledger correction requested by producer; the original source-review
+manifest remains immutable. After all readers released, root verified and removed
+exact857 disposable files/42,722,440bytes and14 empty directories, zero failures
+or remaining targets; `iron-engine-cleanup.json` retains the actual result.
+
+TD plan-review returned `ready` for this four-path slice: `combatHelpers.ts`, new
+`iron-golem-configuration.test.ts`, one obsolete foreign-class expectation in
+`summon-preparation-corpses-native.test.ts` and this ledger. The existing scoped
+Player filter now includes canonical/authored Iron through the existing identity
+helper. It reuses authored class catalog, integer level/unlock, explicit valid
+rank and direct prerequisite checks and canonical rank normalization. No extra
+projection, class field, compatibility mode or qualification implementation was
+introduced. This closes the engine slice's authoritative Player boundary even
+when no item is selected or a full preload is present.
+
+50 new cases cover both slot identities, ranks1/6/20, caller immutability,
+unselected learned allocation, foreign class, unlock/integer/finite level,
+unlearned/zero/negative/fractional/over-max/nonfinite Iron rank and missing or
+invalid direct Blood rank. Real converted snapshots prove35MP attested creation
+with literal rank6 Short Sword340/54/63 through either alias, and no creation,
+payment or attestation for foreign class even with complete input and mana.
+Full poisoned preloads with no item distinguish authority itself: valid qualified
+configuration suppresses refund while foreign/unlearned/low-level/missing-Blood/
+unslotted configurations retain the unrelated synthetic slot's literal7MP refund.
+The negative control keeps that synthetic slot deliberately, per TD plan-review,
+so absence of refunds cannot merely reflect an empty skill order. Existing corpse,
+Mastery and unrelated configuration controls remain intact.
+
+TDD source-before-fix evidence is behavioral: initial39failed/1passed; native
+extension44failed/65passed; complete source/test scope46failed/65passed. Minimal
+filter extension then passes111/2files (50new+61existing,5.601s wrapper).
+Final unchanged code/test gates: types14.415s,lint39.728s including85 engine purity
+files,full unit6345/217files (114.779s),normal production build9.966s. No engine
+source changed; full unit includes engine regressions. Related5s and full15s
+budgets remain unmet; existing stale Browserslist, >500kB chunk and2.57MB
+manifest-precache warnings remain open.
+
+Security check passes for this typed authoritative adapter correction. Supplied
+item input in tests is engine scaffolding, not production item resolution or
+payment authorization. No production selected-item input, selection consumption,
+inventory/receipt/publication recovery, replay lock, persistence or UI integration
+is enabled here. Engine-only no-input Iron suppression remains active from the
+previous increment. No browser Iron acceptance or complete D06 closure is claimed.
+
+Frozen source/command/output/disposable identities are in `iron-config-review.json`
+under `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les`.
+Independent QA and TD/five-axis reviews APPROVED the frozen source scope; all
+readers released. Only producer publication scope review remains pending before
+commit.
+Exact owned dist/tmp disposables stay until all readers release; diagnostics stay
+retained. Full Iron/D06/P09/P10, earned supply/balance, performance/platform/PWA/
+a11y and private-v1/C0–C4/G0–G7 remain open. Umbrella claim continues; root remains
+sole writer/executor; no remote action.

@@ -45,13 +45,14 @@ import { composeMeditationAura } from '@/engine/skills/meditation';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
 import { composeSkeletonMastery } from '@/engine/skills/skeleton-mastery';
 import { isPreparationSummonSkill } from '@/engine/skills/summon-preparation';
+import { isIronGolemSkill } from '@/engine/skills/iron-golem';
 import { canonicalSkillIdFromData, getSkillRequiredLevel, getSkillsForClass,
   skillIdAliases, type SkillTemplate } from './skillsHelpers';
 
 const CHALLENGE_ORDINAL_PERIOD = 360360;
 let manualChallengeOrdinal = 0;
 
-/** Validate scoped player allocations before the engine's standalone rank-one fallback. */
+/** Validate class, level and allocations before scoped summon slots enter the engine. */
 function scopedSummonConfiguration(player: Player): Pick<CombatUnit, 'skillOrder' | 'skillLevels'> {
   const skillLevels = { ...player.skillLevels };
   const catalog = getSkillsForClass(player.class);
@@ -69,7 +70,7 @@ function scopedSummonConfiguration(player: Player): Pick<CombatUnit, 'skillOrder
   };
   const skillOrder = player.comboOrder.filter(id => {
     const canonical = canonicalSkillIdFromData(id) ?? id;
-    if (!isPreparationSummonSkill({ id: canonical })) return true;
+    if (!isPreparationSummonSkill({ id: canonical }) && !isIronGolemSkill({ id: canonical })) return true;
     if (!Number.isInteger(player.level) || player.level < 1) return false;
     const source = byCanonical.get(canonical);
     if (!source) return false;
