@@ -31,6 +31,7 @@ import {
 import { refreshActivePlayerCombatConfig, resolveEquippedWeapon } from '@/stores/combatHelpers';
 import { getSkill, listSkills } from '@/engine/skills/registry';
 import { canCastSkill } from '@/engine/skills/eligibility';
+import { AMPLIFY_DAMAGE_DEFINITION } from '@/engine/combat/amplify-damage-definition';
 import { METEOR_ARMOR_MELT_DEFINITION } from '@/engine/skills/armor-melt';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
 import { SKELETON_MASTERY_DEFINITION, resolveSkeletonMasteryRank } from '@/engine/skills/skeleton-mastery';
@@ -739,7 +740,10 @@ function StatSection({
           {stats.statuses.length > 0 ? (
             <StatLine
               label={t('details.statusEffects')}
-              value={stats.statuses.map((id) => t(`damage-types:status.${id}`, { defaultValue: humanizeId(id) })).join(', ')}
+              value={stats.statuses.map((id) =>
+                id === AMPLIFY_DAMAGE_DEFINITION.canonicalStatusId || id === AMPLIFY_DAMAGE_DEFINITION.legacyStatusId
+                  ? t('necromancer.amplify-damage.name')
+                  : t(`damage-types:status.${id}`, { defaultValue: humanizeId(id) })).join(', ')}
             />
           ) : null}
         </dl>
@@ -1064,6 +1068,13 @@ function dynamicDescription(
   stats: SkillRankDisplayStats | undefined,
   t: Translate
 ): string {
+  if (skill.id === 'skills-necromancer-amplify-damage') {
+    const { physicalResistReductionPct, durationMs } = AMPLIFY_DAMAGE_DEFINITION;
+    return t('necromancer.amplify-damage.desc', {
+      reduction: physicalResistReductionPct,
+      duration: t('details.seconds', { seconds: durationMs / 1000 })
+    });
+  }
   if (skill.id === 'skills-paladin-might') {
     const { physicalDamagePctPerRank: physical, attackPctPerRank: attack, maxRank } = MIGHT_DEFINITION;
     return t('paladin.might.desc', { physical: Math.round(physical * 100), attack: Math.round(attack * 100),

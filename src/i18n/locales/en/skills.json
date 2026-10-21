@@ -671,7 +671,7 @@
     },
     "amplify-damage": {
       "name": "Amplify Damage",
-      "desc": "Curses all enemies, reducing their physical resistance by 50% for several turns."
+      "desc": "Curses all living enemies, reducing physical resistance by {{reduction}} percentage points for {{duration}} at every skill rank."
     },
     "decrepify": {
       "name": "Decrepify",

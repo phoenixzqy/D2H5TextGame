@@ -671,7 +671,7 @@
     },
     "amplify-damage": {
       "name": "加强伤害",
-      "desc": "诅咒所有敌人，使其物理抗性 -50% 持续数回合。"
+      "desc": "诅咒所有存活敌人，使物理抗性降低{{reduction}}个百分点，持续{{duration}}，各技能等级相同。"
     },
     "decrepify": {
       "name": "衰老术",
