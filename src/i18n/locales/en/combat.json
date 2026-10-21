@@ -80,7 +80,15 @@
     "revived": "Revived Minion",
     "valkyrie": "Valkyrie",
     "dire_wolf": "Dire Wolf",
-    "minion": "Minion"
+    "minion": "Minion",
+    "raven": "Raven",
+    "spirit_wolf": "Spirit Wolf",
+    "grizzly": "Grizzly",
+    "poison_creeper": "Poison Creeper",
+    "carrion_vine": "Carrion Vine",
+    "solar_creeper": "Solar Creeper",
+    "shadow_warrior": "Shadow Warrior",
+    "shadow_master": "Shadow Master"
   },
   "effect": {
     "activeEffects": "Active combat effects",

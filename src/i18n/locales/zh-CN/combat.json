@@ -80,7 +80,15 @@
     "revived": "复生仆从",
     "valkyrie": "女武神",
     "dire_wolf": "恐狼",
-    "minion": "仆从"
+    "minion": "仆从",
+    "raven": "乌鸦",
+    "spirit_wolf": "灵狼",
+    "grizzly": "灰熊",
+    "poison_creeper": "剧毒藤蔓",
+    "carrion_vine": "食腐藤蔓",
+    "solar_creeper": "太阳藤蔓",
+    "shadow_warrior": "影子战士",
+    "shadow_master": "影子大师"
   },
   "effect": {
     "activeEffects": "当前战斗效果",
