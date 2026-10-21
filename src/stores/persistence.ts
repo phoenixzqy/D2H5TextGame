@@ -25,10 +25,11 @@ import { useInventoryStore } from './inventoryStore';
 import { useMapStore } from './mapStore';
 import { useMercStore } from './mercStore';
 import { useMetaStore } from './metaStore';
-import { usePlayerStore } from './playerStore';
+import { replacePlayerAfterRestore, usePlayerStore } from './playerStore';
 import { useFormationStore } from './formationStore';
 import {
-  assertWaveSnapshotAllowed, deferWaveSaveIfBusy, releaseWaveRestore, reserveWaveRestore
+  assertWaveSnapshotAllowed, deferWaveSaveIfBusy, releaseWaveRestore, reserveWaveRestore,
+  type WaveRestoreLease
 } from './waveTransitionGuard';
 
 /** Debounce window for auto-save writes, in milliseconds. */
@@ -83,9 +84,9 @@ let initialization: Promise<void> | null = null;
 let restoreTail: Promise<unknown> = Promise.resolve();
 
 /** Reserve before queueing; keep request ownership through installation/failure cleanup. */
-function enqueueRestore<T>(operation: () => Promise<T>, resumeSaves = false): Promise<T> {
+function enqueueRestore<T>(operation: (lease: WaveRestoreLease) => Promise<T>, resumeSaves = false): Promise<T> {
   const lease = reserveWaveRestore();
-  const pending = restoreTail.then(operation).finally(() => {
+  const pending = restoreTail.then(() => operation(lease)).finally(() => {
     releaseWaveRestore(lease);
     if (resumeSaves) scheduleSave();
   });
@@ -221,14 +222,14 @@ function cancelPendingSave(): void {
 export async function importIntoStores(json: string): Promise<void> {
   const data = decodeSave(JSON.parse(json) as unknown);
   if (replacingSave) throw new Error('Save replacement already in progress');
-  const pending = enqueueRestore(async () => {
+  const pending = enqueueRestore(async lease => {
     suppressSaves = true;
     cancelPendingSave();
     try {
       await saveSave(data);
       abortSubAreaRun();
       useCombatStore.getState().reset();
-      applySaveToStores(data, Date.now());
+      applySaveToStores(data, Date.now(), lease);
       writesBlocked = false;
       useSaveStatusStore.setState({ error: null });
       useHydrationStore.getState().setStatus('ready');
@@ -249,14 +250,14 @@ export async function importIntoStores(json: string): Promise<void> {
 /** Delete then clear runtime data; rejects WaveGuardError before queueing during a wave transition. */
 export async function deleteCurrentSave(): Promise<void> {
   if (replacingSave) throw new Error('Save replacement already in progress');
-  const pending = enqueueRestore(async () => {
+  const pending = enqueueRestore(async lease => {
     suppressSaves = true;
     cancelPendingSave();
     try {
       await deleteSave();
       abortSubAreaRun();
       useCombatStore.getState().reset();
-      usePlayerStore.getState().reset();
+      replacePlayerAfterRestore(null, lease);
       useInventoryStore.getState().reset();
       useMapStore.getState().reset();
       useMercStore.getState().reset();
@@ -333,10 +334,10 @@ export function stopAutoSave(): void {
  * Throws WaveGuardError before queueing during a synchronous wave transition.
  */
 export function hydrateFromSave(): Promise<boolean> {
-  return enqueueRestore(() => hydrateSavedCharacter(false));
+  return enqueueRestore(lease => hydrateSavedCharacter(false, lease));
 }
 
-async function hydrateSavedCharacter(reconcileOffline: boolean): Promise<boolean> {
+async function hydrateSavedCharacter(reconcileOffline: boolean, lease: WaveRestoreLease): Promise<boolean> {
   useHydrationStore.getState().setStatus('loading');
   cancelPendingSave();
   suppressSaves = true;
@@ -362,7 +363,7 @@ async function hydrateSavedCharacter(reconcileOffline: boolean): Promise<boolean
     cancelPendingSave();
     suppressSaves = true;
     try {
-      applySaveToStores(data, reconciledAt ?? Date.now());
+      applySaveToStores(data, reconciledAt ?? Date.now(), lease);
       writesBlocked = false;
     } finally {
       suppressSaves = false;
@@ -381,9 +382,9 @@ async function hydrateSavedCharacter(reconcileOffline: boolean): Promise<boolean
 }
 
 /** Apply a prevalidated save synchronously while autosave is suppressed. */
-function applySaveToStores(data: SaveCurrent, idleBonusAnchor: number): void {
+function applySaveToStores(data: SaveCurrent, idleBonusAnchor: number, lease: WaveRestoreLease): void {
   if (!Number.isFinite(idleBonusAnchor)) throw new RangeError('Idle bonus arithmetic requires finite numbers');
-  usePlayerStore.setState({ player: data.player });
+  replacePlayerAfterRestore(data.player, lease);
   useInventoryStore.setState({
     backpack: [...data.inventory.backpack],
     stash: [...data.inventory.stash],
@@ -448,13 +449,13 @@ export function initPersistence(): Promise<void> {
   return initialization;
 }
 
-async function initializePersistence(): Promise<void> {
+async function initializePersistence(lease: WaveRestoreLease): Promise<void> {
   cancelPendingSave();
   suppressSaves = true;
   try {
     const exists = await hasSave();
     if (exists) {
-      await hydrateSavedCharacter(true);
+      await hydrateSavedCharacter(true, lease);
     } else {
       useHydrationStore.getState().setStatus('ready');
     }

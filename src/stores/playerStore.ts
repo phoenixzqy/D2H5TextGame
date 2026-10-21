@@ -13,6 +13,7 @@ import { resolveEligibleMightRank } from '@/engine/skills/might';
 import { resolveEligibleMeditationRank } from '@/engine/skills/meditation';
 import { awardXp, xpRequired, xpTotal, LEVEL_CAP } from '@/engine/progression/xp';
 import { useInventoryStore } from './inventoryStore';
+import { assertWaveRestoreOwner, assertWaveSnapshotAllowed, type WaveRestoreLease } from './waveTransitionGuard';
 import {
   canonicalSkillIdFromData,
   getAllocatedSkillLevel,
@@ -67,6 +68,7 @@ interface PlayerState {
   player: Player | null;
   
   // Actions
+  /** Replace the hero; throws WaveGuardError before publication while a wave/restore owns state. */
   setPlayer: (player: Player) => void;
   updateStats: (stats: Partial<CoreStats>) => void;
   addXP: (amount: number) => void;
@@ -94,6 +96,7 @@ interface PlayerState {
    */
   respec: (deps: { getGold: () => number; spendGold: (amount: number) => boolean }) => RespecResult;
   setComboOrder: (order: string[]) => void;
+  /** Clear the hero; throws WaveGuardError before publication while a wave/restore owns state. */
   reset: () => void;
 }
 
@@ -104,7 +107,7 @@ const initialState = {
 export const usePlayerStore = create<PlayerState>((set, get) => ({
   ...initialState,
   
-  setPlayer: (player) => { set({ player }); },
+  setPlayer: (player) => { assertWaveSnapshotAllowed(); set({ player }); },
   
   updateStats: (stats) => { set((state) => {
     if (!state.player) return state;
@@ -327,5 +330,11 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     };
   }); },
   
-  reset: () => { set(initialState); }
+  reset: () => { assertWaveSnapshotAllowed(); set(initialState); }
 }));
+
+/** Restore-only hero replacement; validate the exact live reservation before publication. */
+export function replacePlayerAfterRestore(player: Player | null, lease: WaveRestoreLease): void {
+  assertWaveRestoreOwner(lease);
+  usePlayerStore.setState({ player });
+}

@@ -4,7 +4,7 @@ import { usePlayerStore } from '@/stores/playerStore';
 import { useInventoryStore } from '@/stores/inventoryStore';
 import { useMercStore } from '@/stores/mercStore';
 import { isReplacingSave, useHydrationStore } from '@/stores/persistence';
-import { assertIronGolemOwnershipMutationAllowed } from '@/stores/waveTransitionGuard';
+import { assertIronGolemOwnershipMutationAllowed, assertWaveSnapshotAllowed } from '@/stores/waveTransitionGuard';
 import { CHARACTER_CLASSES, createMockPlayer, type CharacterClass } from './createMockPlayer';
 
 /** Refusals leave the prior player and inventory data intact. */
@@ -20,10 +20,12 @@ export type CreateCharacterResult =
  * Create once after hydration, preserving retained inventory and save imports.
  * Complete synchronously before navigation; restore exact data on equip failure.
  * Ordinary debounced autosave observes the completed or restored state.
- * Throws WaveGuardError before reads, preparation or rollback during an exact Iron debit.
+ * Throws WaveGuardError before reads, preparation or rollback during an exact Iron debit,
+ * wave transition or pending restore.
  */
 export function createCharacter(name: string, cls: CharacterClass): CreateCharacterResult {
   assertIronGolemOwnershipMutationAllowed();
+  assertWaveSnapshotAllowed();
   if (useHydrationStore.getState().status !== 'ready' || isReplacingSave()) {
     return { ok: false, reason: 'not-ready' };
   }

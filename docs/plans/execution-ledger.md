@@ -4087,3 +4087,60 @@ and the suspended guard patch are retained;
 disposable outputs stay until all readers release. The hero guard increment
 resumes afterward. No production wave/debit caller is enabled; full Iron/D06,
 P09/P10 and private-v1 remain open. Root is sole writer/executor; no remote action.
+
+
+## D06 v1f hero replacement ownership guards
+
+Character-screen prerequisite received QA, TD/five-axis and producer APPROVE and
+committed as `58ca245`. Exact cleanup removed859files/43,227,747bytes and14 empty
+directories, zero failures/remaining targets (hero-ui-cleanup.json). Diagnostic
+scripts, command evidence and suspended guard patch remain retained outside repo.
+
+TD approved the amended five-path hero guard plan, including the outer creation
+entry guard to avoid entering rollback after a lower-level refusal. Public
+player setPlayer/reset now assert wave/restore exclusion as their first statement.
+Creation preserves its exact-debit guard first, then asserts wave/restore
+exclusion before readiness, input reads, preparation, snapshots or catches.
+The restore-only replacePlayerAfterRestore helper validates its exact live lease
+before direct hero publication, including null deletion. Persistence passes each
+accepted reservation through enqueueRestore, hydration/startup/import/delete and
+common save installation; queue ownership/timing, cleanup and save scheduling
+are preserved. No transient lifecycle cleanup is claimed in this increment.
+
+Ten initial RED cases failed before implementation. Eight public set/reset cases
+cover hero present/absent across wave ownership and a real adapter read delayed
+after synchronous restore reservation. Two no-player creation cases prove early
+refusal before name reads/rollback, both before queue execution while hydration
+still says ready and during IO; real creation succeeds after release. Three
+helper controls cover exact live lease replacement/clear, stale/fabricated
+identity refusal, exact unchanged other domain roots, notification counts and
+normal public continuation after release. Tests release subscriptions, gates,
+promises and leases in finally. Existing persistence/store/creation assertions
+remain intact. The first green run found two overlength post-release name
+fixtures; their names were corrected without changing character rules. Broad
+related then found the screen integration gap resolved by the prerequisite.
+After exact hash-verified patch reapplication on58ca245, lint found six test void
+arrow expressions; explicit braces resolved them. All historical failures remain
+captured with their source/output identities, distinct from final validation.
+
+Final focused176/7files11.488s wrapper, types14.903s, lint38.292s including85 engine
+purity files, full6453/219files113.230s and production build9.613s passed. Related5s
+and full15s budgets remain unmet. Existing React act, stale Browserslist, chunk
+size and precache diagnostics remain open. No engine source changed and no new
+browser acceptance is claimed; prerequisite browser coverage/typography limits
+are recorded above. SaveCurrent11 remains unchanged.
+
+Security check passes for local typed entry refusals and exact restore leases.
+No production wave/debit caller is enabled. Successful-restore and public hero
+replacement transient cleanup, guarded abort/UI ordering, exact receipt/conflict,
+publication recovery, settlement, locked replay and bilingual Iron UI/browser
+acceptance remain pending. Full Iron/D06/P09/P10 and private-v1 remain open.
+
+The five repository paths, all hero-guard command/output identities and exact
+owned dist/tmp inventory are frozen in hero-guard-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review remains before commit. Disposable outputs
+remain until all readers release; diagnostics are retained. Umbrella claim
+continues; root is sole writer/executor; no remote action or persistent
+browser/server.

@@ -29,10 +29,13 @@ import i18n from '@/i18n';
 import { toJsonSafe } from '@/engine/save';
 import { useCombatStore } from './combatStore';
 import { armIronGolemSelection, useIronGolemSelectionStore } from './ironGolemSelectionStore';
-import { beginWaveTransition, endWaveTransition, WaveGuardError } from './waveTransitionGuard';
+import {
+  beginWaveTransition, endWaveTransition, reserveWaveRestore, releaseWaveRestore, WaveGuardError
+} from './waveTransitionGuard';
 import * as persistence from './persistence';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
-import { usePlayerStore } from './playerStore';
+import { createCharacter } from '@/features/character/createCharacter';
+import { replacePlayerAfterRestore, usePlayerStore } from './playerStore';
 import { useInventoryStore } from './inventoryStore';
 import { useMapStore } from './mapStore';
 import { useMercStore } from './mercStore';
@@ -513,6 +516,134 @@ describe('persistence at wave transition boundaries', () => {
     expect(useIronGolemSelectionStore.getState().selection).toBe(selection);
     expect(useCombatStore.getState()).toBe(recording);
     domains.forEach((store, index) => { expect(store.getState()).toBe(before[index]); });
+  });
+
+
+  it.each([
+    { action: 'set', present: true, owner: 'wave' }, { action: 'reset', present: true, owner: 'wave' },
+    { action: 'set', present: false, owner: 'wave' }, { action: 'reset', present: false, owner: 'wave' },
+    { action: 'set', present: true, owner: 'restore' }, { action: 'reset', present: true, owner: 'restore' },
+    { action: 'set', present: false, owner: 'restore' }, { action: 'reset', present: false, owner: 'restore' }
+  ] as const)('refuses public hero $action with player=$present during $owner ownership', async ({ action, present, owner }) => {
+    if (!present) usePlayerStore.getState().reset();
+    const before = domains.map(store => store.getState());
+    const notified = vi.fn();
+    const stops = domains.map(store => store.subscribe(notified));
+    const read = vi.fn(() => { throw new Error('Player argument must not be read'); });
+    const player = createMockPlayer('Replacement', 'amazon');
+    Object.defineProperty(player, 'id', { get: read });
+    const wait = gate();
+    disk.get.mockImplementationOnce(async () => { await wait.promise; return undefined; });
+    const lease = owner === 'wave' ? beginWaveTransition(true) : undefined;
+    const pending = owner === 'restore' ? persistence.hydrateFromSave() : undefined;
+    const check = () => {
+      const run = () => {
+        if (action === 'set') usePlayerStore.getState().setPlayer(player);
+        else usePlayerStore.getState().reset();
+      };
+      expect(run).toThrow(WaveGuardError);
+      expect(run).toThrow(owner === 'wave' ? 'waveBusy' : 'restorePending');
+      domains.forEach((store, index) => { expect(store.getState()).toBe(before[index]); });
+      expect(read).not.toHaveBeenCalled();
+      expect(notified).not.toHaveBeenCalled();
+    };
+    try {
+      check(); // Restore is reserved before hydration's loading publication.
+      await vi.advanceTimersByTimeAsync(0);
+      check();
+    } finally {
+      stops.forEach(stop => { stop(); });
+      if (lease) endWaveTransition(lease);
+      wait.release(); await pending;
+    }
+    if (action === 'set') {
+      const next = createMockPlayer('Accepted replacement', 'amazon');
+      usePlayerStore.getState().setPlayer(next);
+      expect(usePlayerStore.getState().player).toBe(next);
+    } else {
+      usePlayerStore.getState().reset();
+      expect(usePlayerStore.getState().player).toBeNull();
+    }
+  });
+
+  it.each(['wave', 'restore'] as const)('refuses no-player creation before preparation during %s ownership', async owner => {
+    usePlayerStore.getState().reset();
+    const before = domains.map(store => store.getState());
+    const notified = vi.fn();
+    const stops = domains.map(store => store.subscribe(notified));
+    const read = vi.fn(() => { throw new Error('Creation name must not be read'); });
+    const name = { trim: read } as unknown as string;
+    const wait = gate();
+    disk.get.mockImplementationOnce(async () => { await wait.promise; return undefined; });
+    const lease = owner === 'wave' ? beginWaveTransition(true) : undefined;
+    const pending = owner === 'restore' ? persistence.hydrateFromSave() : undefined;
+    const check = () => {
+      expect(() => createCharacter('Rejected creation', 'amazon')).toThrow(WaveGuardError);
+      expect(() => createCharacter(name, 'amazon')).toThrow(owner === 'wave' ? 'waveBusy' : 'restorePending');
+      expect(read).not.toHaveBeenCalled();
+      domains.forEach((store, index) => { expect(store.getState()).toBe(before[index]); });
+      expect(notified).not.toHaveBeenCalled();
+    };
+    try {
+      expect(useHydrationStore.getState().status).toBe('ready');
+      check();
+      await vi.advanceTimersByTimeAsync(0);
+      check();
+    } finally {
+      stops.forEach(stop => { stop(); });
+      if (lease) endWaveTransition(lease);
+      wait.release(); await pending;
+    }
+    expect(createCharacter('Accepted hero', 'amazon')).toMatchObject({ ok: true });
+    expect(usePlayerStore.getState().player?.name).toBe('Accepted hero');
+  });
+
+  it('permits exact restore-owned hero replacement and clearing without publishing other domains', () => {
+    const before = domains.map(store => store.getState());
+    const notified = vi.fn();
+    const stop = usePlayerStore.subscribe(notified);
+    const lease = reserveWaveRestore();
+    const player = createMockPlayer('Restored hero', 'amazon');
+    try {
+      replacePlayerAfterRestore(player, lease);
+      expect(usePlayerStore.getState().player).toBe(player);
+      expect(notified).toHaveBeenCalledTimes(1);
+      replacePlayerAfterRestore(null, lease);
+      expect(usePlayerStore.getState().player).toBeNull();
+      expect(notified).toHaveBeenCalledTimes(2);
+      domains.slice(1).forEach((store, index) => { expect(store.getState()).toBe(before[index + 1]); });
+      expect(() => { usePlayerStore.getState().setPlayer(player); }).toThrow('restorePending');
+      expect(notified).toHaveBeenCalledTimes(2);
+    } finally { stop(); releaseWaveRestore(lease); }
+    usePlayerStore.getState().setPlayer(player);
+    expect(usePlayerStore.getState().player).toBe(player);
+    usePlayerStore.getState().reset();
+    expect(usePlayerStore.getState().player).toBeNull();
+  });
+
+  it.each(['stale', 'fabricated'] as const)('refuses a %s restore lease before any hero publication', kind => {
+    const expired = reserveWaveRestore();
+    releaseWaveRestore(expired);
+    const owner = reserveWaveRestore();
+    const refused = kind === 'stale' ? expired : { ...owner };
+    const before = domains.map(store => store.getState());
+    const notified = vi.fn();
+    const stops = domains.map(store => store.subscribe(notified));
+    try {
+      for (const player of [createMockPlayer('Refused restore', 'amazon'), null]) {
+        expect(() => { replacePlayerAfterRestore(player, refused); }).toThrow(WaveGuardError);
+        expect(() => { replacePlayerAfterRestore(player, refused); }).toThrow('invalidLease');
+      }
+      domains.forEach((store, index) => { expect(store.getState()).toBe(before[index]); });
+      expect(notified).not.toHaveBeenCalled();
+      expect(() => { usePlayerStore.getState().reset(); }).toThrow('restorePending');
+      replacePlayerAfterRestore(null, owner);
+      expect(usePlayerStore.getState().player).toBeNull();
+      expect(notified).toHaveBeenCalledTimes(1);
+    } finally { stops.forEach(stop => { stop(); }); releaseWaveRestore(owner); }
+    const player = createMockPlayer('After release', 'amazon');
+    usePlayerStore.getState().setPlayer(player);
+    expect(usePlayerStore.getState().player).toBe(player);
   });
 
 });
