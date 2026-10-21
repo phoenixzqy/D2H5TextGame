@@ -3183,3 +3183,36 @@ logs and inventories remain. Receipt: superseded-build-cleanup.json. Current
 browser work will use the existing task-only CJK font cache. Engine/full time
 budgets and existing chunk/precache warnings remain unresolved; no earned/balance,
 fullD06/P09/P10 or private-v1 acceptance. Umbrella claim continues; no remote action.
+
+
+## D06 v1c production browser verification
+
+UI/copy committed as `3408045`. New preview-only Necromancer spec/config add eight
+production cases: six native keyboard allocation/combo/startup/save-close-newpage-
+Continue flows and two bilingual Mastery20 rank6/7 display corrections with
+Revive excluded. Rank2 unit literals and single-batch mana285/278/255 are independent
+oracles. All eight pass75.421s (76.385s wrapper), followed serially by unchanged
+Raven two-locale regressions24.024s (25.210s wrapper) on the same approved dist.
+Final types14.148s and lint38.069s pass. No runtime/unit source changed; accepted
+6031-test UI gate and approved engine gate remain the production source evidence.
+No rebuild or test bridge was used; both reports have zero retry/flaky/failure,
+console/page errors arrays are empty, and explicit full SaveCurrent reload matches.
+
+Initial browser1fail/7not-run was a fixture name exceeding native maxlength16;
+original report/log/source/config and captured correct285MP/full-health Skeleton
+are retained. QA approved short explicit names and a fresh-exported-name guard;
+all payment/event/value assertions remain. Earlier initial types/lint also pass.
+Root viewed all20 original360/1280 PNGs. Chinese Noto glyph counts137/149/175 are
+recorded. Each native flow covers nine finite layouts with44px controls/hit grids,
+14px prose and no horizontal overflow. Long panels scroll vertically; not every
+row appears in every screenshot. Navigation pictograph boxes remain an observed
+Linux font/rendering limitation; complete glyph/full-a11y/platform acceptance is
+not claimed. Imported L30/Mastery/prerequisite/gear/resources are functional
+scaffolds, not earned progression or balance.
+
+The three-path browser increment is frozen for independent acceptance review;
+BUG073 remains open until that proof is accepted and recorded separately. Root
+owns registered logs/reports/original PNGs/build/browser/font outputs until
+reviewed durable retention and exact cleanup. Full D06/P09/P10, other corpse
+consumers, selected-item Iron, performance and private-v1 remain open. No remote
+action; umbrella worktree claim continues.
