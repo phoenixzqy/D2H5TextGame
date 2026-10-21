@@ -2883,3 +2883,21 @@ Archivecommit `b55367a` precedes fresh guardedverification and exact496files/
 26sources/process11089/outputabsence evidence. EmptyRAWroot/sharedparents/
 source/history/fonts/tools preserved. Meditation boundedclosure complete; umbrella
 claim continues into MeteorUI preparation, fullv1/C0–C4/G0–G7 remainopen,noremote.
+
+
+## P08a08D Meteor truthful Skills detail — bounded acceptance
+
+Source `6af9f39`; productionbrowser `a3bc6bb`; [evidence](evidence/p08a08d-meteor-ui.md).
+Exact4sourcepaths then2browserpaths, each independently reviewed/committed. Actual
+RED10missingprose+10controls; final20focused/5444full(201files)/types/lint/build pass.
+ActualV3lintfailure corrected without oraclechange; drafts/failures retained.
+Bothlocales2browserpasses23.114s wrapper/21.962542s report; QA personally18PNG,
+14px/Noto54glyph/80×48minimumcontrols/nooverflow/486clearhits/console[]. ImportedL24/
+prereqs scaffold only; native0→1→2 point/rankonly changes, pausedDOM/resources/combo
+preserved, nativecomboedits and entireSaveCurrent/meta reload accepted. Fullhidden
+recording/eventidentity is unittestproof, no nativeMeteorcast/earned/balance claim.
+GD/TD/QA/producer APPROVE boundedBUG069/control closure, allreadersreleased;12command
+records/968uniqueprocessbirths freshlyabsent,0signals. Exact761disposablefiles/
+40,979,191B/10distdirectories removed; sharedcacheparents/font/tools preserved.
+Durablepacket/archive and exactRAWcleanup pending separate increments; rootownsRAW.
+Claimcontinues,noremote; fullD04/P08/C1/private-v1/C0–C4/G0–G7 remainopen.

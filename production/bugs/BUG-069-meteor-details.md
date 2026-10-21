@@ -1,6 +1,6 @@
 # BUG-069 — Expose Meteor Armor Melt details
 
-- **Status:** Source-reproduced; bounded UI correction and browser proof pending.
+- **Status:** Fixed — bounded bilingual UI/browser acceptance; broader D04/P08/C1 remain open.
 - **Severity:** Medium — combat works, but the skill detail omits its documented status strength/duration.
 - **Owner / affected systems:** frontend-dev, writer, qa-engineer; Skills dynamic description and both locales.
 - **Build:** `d50f124`; existing Meteor combat acceptance is P08a08/D04.
@@ -46,3 +46,21 @@ No fullD04/P08/C1/private-v1 acceptance is claimed.
 
 Read the accepted D04 contract for status magnitude/duration. Current damage and
 status-name rows do not replace the missing explanation in the detail prose.
+
+
+## Bounded resolution — 2026-10-21
+
+Source `6af9f39` fixes the formatter/locales; browser `a3bc6bb` verifies bothlocales.
+Actual unchangedUI RED10missingprose/10passingcontrols is followed by final20focused
+and5444fulltests/201files, types/lint/cleanbridgebuild, then2productionbrowser passes.
+QA personally reviewed all18originalscreenshots. Native learn0→1→2 changes only
+rank/points; paused DOM/resources/combo stay equal, combo editing works, and entire
+SaveCurrent/meta survives explicit Save→Saved→close/newPage→Continue. ImportedL24/
+prerequisites are scaffold, not earned progression. Existing decorative glyph boxes,
+small/landscape scrolling, build/Node warnings and finite acceptance limits remain.
+
+[Full evidence](../../docs/plans/evidence/p08a08d-meteor-ui.md) preserves actualRED,
+actualV3lintfailure, all preexecution corrections and independent approvals. Exact
+761disposablefiles/40,979,191B/10distdirectories removed after readers released.
+RAW remains root-owned pending lossless durable packet verification, then exact
+cleanup; sharedfonts/tools/dependencies/source/history preserved. No remote action.
