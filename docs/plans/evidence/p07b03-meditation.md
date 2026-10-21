@@ -167,3 +167,50 @@ zero failures; shared cache parents/dependencies/fonts/tools/source/history/orig
 checkout preserved. RAW ownership/retention remains as above. No remote actions;
 umbrella claim continues. Projection/recovery/combat/native adapter/UI/browser and
 BUG068/full-v1 acceptance remain pending.
+
+
+## Stage D — immutable projection and pooled exact recovery primitives
+
+Source commit `f4bcb8a` changes exactly four paths: Meditation source/tests and
+mana-recovery source/tests. Selection composes a frozen primitive-only projection
+with separate numeric source baseline, authored coefficient and allocated rank.
+Encounter qualification independently checks original living player-side hero/
+mercenary identities. The narrow contribution API multiplies shortest-decimal
+factors and pools independently qualified recipient baseline before one cumulative
+integral/whole-MP result. Combat scheduling/native/UI wiring remains subsequent work.
+
+Installed approved v2 drafts: projection17850B SHA256
+`3333698a67f0f4d2520772537ea5f07d1ff72b21794c8fa773555ee23c05b4ca`,
+recovery14791B SHA256
+`009e101ff5e9261feeebac57337cd9205aeff7d64958e174483cc5532eb32af0`.
+Unexecuted v1 draft non-null/own-undefined corrections are retained, not described
+as executed failures. Actual unchanged-production capability run307=66missing-
+export errors+241passing controls(2.562s): capability evidence, not behavioral RED.
+Initial source passed focused307,engine2817/80,types and full5366/197, but actual
+lint failed at meditation.ts98(no-unnecessary-condition,32.914s). Fullunit had
+already started and passed83.722s; no build ran for that revision. Source v2 only
+adds an unknown-accepting runtime discriminator predicate and uses it in compose/
+active, independently reviewed; the other three paths and tuning are unchanged.
+
+Corrected frozen v2 serial gates:
+
+| Gate | Actual result | Seconds |
+| --- | --- | --- |
+| Focused projection/recovery |307/307,2files|2.471|
+| Engine |2817/2817,80files|12.660|
+| Types |pass|12.824|
+| Lint/purity |pass|32.239|
+| Full unit |5366/5366,197files|85.207|
+| Fresh production build/bridge scan |pass;4chunks|8.952|
+
+All12 original/corrected command records remain in RAW
+`stage-d-final-verification.json`, with both source freezes and original failures.
+No pending/todo/stops/signals/surviving descendants. Existing engine3s/full15s target
+misses and build warnings remain; no performance acceptance. GD/TD source and
+independent QA/producer whole-evidence reviews APPROVE; all readers released.
+After source commit, fresh source/output hashes and2174absent process births verify
+exact761file/40,972,922B cleanup plus ninechilddirs/distroot. Every exact file is
+absent; zero failures. Shared caches/dependencies/fonts/tools/source/history/original
+checkout preserved. RAW retained root-owned at the path above for durable archive
+verification then exact cleanup. Umbrella claim continues; no remote actions.
+Combat/native/UI/browser, BUG068 and full private-v1/C0–C4/G0–G7 remain open.

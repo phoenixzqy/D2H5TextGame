@@ -2757,3 +2757,22 @@ ninechilddirs/distroot; all absent, zero failures. RAW retained root-owned for
 durable verification/exact cleanup; shared parents/tools/source/history/original
 preserved. Umbrella claim continues, no remote action. Runtime/UI/browser, BUG068
 and private-v1/C0–C4/G0–G7 remain open.
+
+
+## P07b03D Meditation projection and exact contribution primitives
+
+`f4bcb8a` changes exactly4paths. Frozen primitive projection keeps source baseline,
+coefficient and rank separate; encounter qualification checks original living hero/
+merc identities. A narrow decimal contribution helper pools recipient baseline and
+bonus before one integral/whole-MP decision. [Evidence](evidence/p07b03-meditation.md).
+Actual capability307=66missing-export errors+241controls is not behavioral RED.
+Unexecuted draft corrections remain separate. Real initial lint failure at98 is
+preserved; corrected discriminator predicate independently approved. All six v2
+serial gates pass:focused307,engine2817/80,types/lint,full5366/197,productionbridgebuild.
+All12original/corrected records retained; no pending/todo/stops/signals. Timing
+misses/warnings remain without performance acceptance. GD/TD and QA/producer
+APPROVE; readers released. After sourcecommit, fresh hashes/2174absentbirths verify
+exact761file/40,972,922B cleanup and9childdirs/distroot; all absent,zero failures.
+RAW retained root-owned for durable verification/exact cleanup; shared caches/tools/
+source/history/original preserved. Claim continues; no remote action. Combat/native/
+UI/browser,BUG068 and full private-v1/C0–C4/G0–G7 remain open.
