@@ -110,7 +110,7 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 #### Passive Skills (Auras, only 1 active at a time)
 | ID | Name (EN / ZH) | Effect | Notes |
 |---|---|---|---|
-| `paladin.might` | Might / 力量 | +50% physical damage | Self + merc |
+| `paladin.might` | Might / 力量 | Per allocated rank: +3% physical damage and +1% Attack; cap20 (+60% / +20%) | Explicit selection; living self + fielded living merc, any position; unlock L1 |
 | `paladin.holy_fire` | Holy Fire / 圣火 | 20 fire damage/turn to all enemies | AOE burn aura |
 | `paladin.conviction` | Conviction / 救赎 | -25% enemy all resists | Unlocks L24 |
 | `paladin.meditation` | Meditation / 冥想 | +5 mana/turn | Self + merc |
@@ -249,9 +249,27 @@ Monsters use a simplified skill set. Examples:
 - **Stacking:** Buffs with same ID do NOT stack. Different buffs (e.g., *Battle Orders* + *Shout*) do stack.
 
 ### 6.2 Aura Skills (Paladin-specific)
-- **Only 1 aura active at a time** per character.
-- **Switching aura:** Costs 0 mana, 0 CD, but happens at turn start (not instant).
-- **Affects self + mercenary** (if in range).
+The implemented player selection currently supports **None or Might**. Other
+advertised aura rows above remain separate implementation contracts; this does
+not establish multi-aura switching or Meditation acceptance.
+
+- **Might selection:** One saved canonical `paladin.might` slot. Requires Paladin,
+  character level at least1 and a positive allocated rank. Learning, inspecting and combo
+  editing do not select it; respec clears it. Old/new characters default to None.
+- **Strength:** Each allocated rank supplies separate additive physical increased
+  damage (+3%) and Attack (+1%), capped at rank20. Basic Attack100 therefore gives
+  104/192 at ranks1/20; fixed physical100 gives103/160, without new weapon scaling.
+- **Timing:** Freeze selection, rank and both strengths at wave input, active from
+  simulation0ms. Selection, upgrades and respec affect the next wave. Explicit
+  replay recomposes current eligibility over immutable original resource/carry
+  inputs, preserving recorded history; there is no action, mana payment or CD.
+- **Recipients:** The exact source hero and exact living fielded mercenary at any
+  position. Summons, enemies and unfielded mercs receive no player Might effect.
+- **Suppression:** Current encounter source absence/death suppresses immediately;
+  source stun/freeze does not. No permanent stat mutation, stacking or refill.
+
+See [D05 selected Might](../plans/decisions/D05-selected-might-aura-v1.md) for the
+controlling authored, save, selection and runtime contract.
 
 ---
 

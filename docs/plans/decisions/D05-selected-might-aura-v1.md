@@ -1,8 +1,10 @@
 # D05 / P07b02 — selected player Might aura
 
-Status: GD/TD approve this narrowed contract. Stage A supplies authored schema,
-immutable definition and allocation-only rank; selection/save/runtime/native/UI
-and production acceptance remain open. Full private-v1/C0–C4/G0–G7 remain open.
+Status: GD/TD approve this narrowed contract. Authored definition/rank, v10 save
+validation/migration, explicit store selection, pure runtime and native waves are
+implemented. The selector and bilingual rank copy have passing automated gates;
+production browser evidence and exact UI commit are recorded in the companion
+[acceptance evidence](../evidence/p07b02-selected-might.md). UI commit `c159e5b`. Full P07b, private-v1/C0–C4/G0–G7 remain open.
 
 ## Controlling authored contract
 
@@ -36,7 +38,7 @@ One canonical `selectedAuraId` slot belongs to Player, defaulting to none for
 old/new characters. None/Might are the initial supported choices. Selection of
 Might requires Paladin, finite level at least the copied unlock and positive
 allocation. Unsupported/invalid requests refuse without state mutation. Imported
-invalid selection grants nothing; detail focus, learning and combo never select
+canonical but ineligible selection grants nothing; detail focus, learning and combo never select
 an aura. Respec clears selection. Selection replaces one value, never stacking
 all learned auras; switching between multiple implemented auras remains future
 acceptance. A version9→10 save migration and validation are required before
@@ -44,7 +46,7 @@ persisting this new player field; preserve historical save shapes and resources.
 
 ## Required runtime and native integration after Stage A
 
-At each playWave input, freeze eligible selection, source hero ID, rank and both
+At each playWave input, freeze eligible selection, source hero ID, rank, copied maxRank and both
 potencies in a narrow transient player-Might projection. Apply to the source hero
 and one fielded living merc, irrespective of grid position; exclude summons,
 enemies and unfielded mercs. At every affected calculation, consult current
@@ -55,9 +57,9 @@ replacement/removal is idempotent and never repeatedly multiplies carry state.
 No passive cast/action/payment/cooldown/buff marker or extra RNG is introduced.
 
 Activation begins at simulation0ms before actions. Ordinary selection/upgrade/
-respec queues for the next playWave. This deliberately supersedes legacy aura
-switching at turn start; reconcile skills-spec§6.2 and both player descriptions
-before complete acceptance. Explicit replay recomposes current valid eligibility,
+respec queues for the next playWave. This supersedes legacy aura switching at
+turn start and range restrictions for player Might; skills-spec§6.2 and both
+player descriptions now follow this narrow contract. Explicit replay recomposes current valid eligibility,
 selection and rank over immutable original wave-input resources/carry. Replace
 current recording coherently while preserving baseline/history. Completed or
 previously clamped replay output never becomes input. Preserve distinct merc
@@ -75,9 +77,10 @@ build sequentially with bounded runner. Missing validate:data script is not
 invented; use actual schema/loader Vitest suites. Preserve all failures,
 corrections, source freezes, process identities and exact artifact inventories.
 
-Later stages require separate bounded save migration/validation, store selection,
-engine projection/consumption, native and UI/copy increments. Genuine behavioral
-RED and structured bug report precede runtime. Freeze both coefficients,
+Separate bounded save migration/validation, store selection, engine projection/
+consumption, native and UI/copy increments implement this contract. Historical
+stage plans and genuine REDs are preserved in the acceptance evidence; BUG-060
+was filed before runtime and updated before native/UI fixes. Freeze both coefficients,
 rank1/cap, physical/nonphysical, hero/merc/nonrecipient and source-death/CC cases,
 complete unaffected recording, no stacking/refill, actual migrated save roundtrip
 and qualified ordinary production en/zh desktop/mobile proof. Definition GREEN
@@ -129,7 +132,31 @@ Successful respec omits the field in its existing one publication; failed respec
 retains state. Learning, upgrading, combo edits and hydration never infer a
 selection. Allocation upgrades preserve an existing explicit selection.
 
-This store prerequisite does not activate an aura in combat. Native composition
-will check the saved canonical slot and shared eligibility at each wave input,
-then freeze source/rank/both potencies. Encounter source death is checked during
-each affected calculation; current store changes never alter an in-flight wave.
+The store prerequisite alone does not activate an aura in combat. Pure runtime
+`3e4f159` and native integration `53e2dc6` now compose the saved canonical slot
+and shared eligibility at each wave input, freezing source/rank/both potencies.
+The constructed fielded mercenary identity is captured at run start, without
+roster rediscovery or original-player fallback. Encounter source absence/death
+is checked during each affected calculation; current store changes never alter
+an in-flight wave. Explicit replay preserves original resource pools and all three recovery-carry
+fields as immutable input baselines. Each replay applies existing resource
+clamps and cap-related carry normalization to its fresh input; those results
+never replace the originals.
+
+## Player controls and evidence limits
+
+A native radio group above the skill tabs shows the saved next-wave selection.
+None remains enabled, including for clearing an unavailable imported selection;
+Might is disabled with a visible reason when ineligible. Selection calls only
+`selectAura`, leaving focus, allocation, combo and complete recording unchanged.
+Both languages explain timing, recipients, suppression and separate rank bonuses.
+The two exact Might display aliases use allocation-only rank resolution, avoiding
+legacy marker fallback and insertion-order overrides.
+
+Unit/native tests establish source suppression, recipients, actual damage,
+no stacking/refill and replay baselines. Production browser checks separately
+exercise ordinary fresh L1 allocation, explicit selection, keyboard operation,
+layout and explicitly confirmed Settings Save/reload. That is explicit-save
+persistence evidence, not autosave or an earned campaign/balance certification.
+Other auras, replacement between implemented auras, Meditation, full accessibility,
+coverage/performance certification and full private-v1 acceptance remain open.

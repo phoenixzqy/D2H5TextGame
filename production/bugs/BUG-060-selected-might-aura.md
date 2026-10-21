@@ -1,6 +1,6 @@
 # BUG-060 — Apply explicitly selected player Might in combat
 
-- **Status:** Pure-engine runtime fixed in `3e4f159`; native wave integration fixed in `53e2dc6`; player selector UI reproduced and fix in progress.
+- **Status:** Narrow selected-Might path fixed: pure runtime `3e4f159`, native waves `53e2dc6`, selector UI `c159e5b`; broader aura/card acceptance remains open.
 - **Severity:** High — selected Might has no combat effect.
 - **Owner / affected systems:** engine-dev (root integrator), selected aura combat projection; native combat adapter follows separately.
 - **Build:** `e1c976d1feca247200bcca1d0135826b54a88863` with reviewed regression tests installed; production engine unchanged.
@@ -86,3 +86,28 @@ Override only the two exact Might display aliases using the shared allocated
 rank resolver; neither legacy `player.skills` nor alias insertion order may
 invent an allocated rank. Browser layout, keyboard and focus remain separate
 validation; this bug report does not close the complete Might card.
+
+## Narrow fix validation
+
+The final selector regression suite reaches all18 new cases, including exact
+complete real native recording preservation during selection/clearing; combined
+SkillsScreen suites pass62/2files. Engine1908/72files and full4279/181files pass,
+with typecheck, lint and production bridge/build exit0. The first broad lint
+attempt failed on a test nonnull assertion; the independently reviewed explicit
+missing-slot guard correction preserves interaction and assertions. All failed
+and pre-execution draft evidence remains preserved.
+
+Final production-browser v5 passes18cases and both locales' explicit-save cycles in14.654s, with readable Chinese and actual Noto font evidence:
+ordinary fresh L1 Paladin allocation (learning alone does not select), saved
+radio choices, real Tab/arrows and focus outline, both languages and nine sizes
+per language. Exports preserve canonical selection and omit it after clearing;
+Settings Save confirmation precedes reload, proving explicit save, not autosave.
+The host font prerequisite and failed earlier screenshots remain disclosed;
+readable Chinese requires the final fresh-cache run, not DOM text alone.
+
+This closes only the reproduced selected-Might behavior. Multi-aura replacement,
+Meditation, earned campaign/balance, coverage, performance and full accessibility
+certification are separate open acceptance. Existing engine/unit timing budgets
+are missed and existing build warnings remain; no validation threshold changed.
+
+[Accepted behavior and evidence](../../docs/plans/evidence/p07b02-selected-might.md).
