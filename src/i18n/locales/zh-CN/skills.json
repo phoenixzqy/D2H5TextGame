@@ -935,7 +935,7 @@
     },
     "lightning-mastery": {
       "name": "闪电精通",
-      "desc": "造成的闪电伤害 +30%。"
+      "desc": "被动：每投入1点技能点，直接闪电伤害+{{bonus}}%（最多{{cap}}点，合计+{{maxBonus}}%）。角色{{level}}级解锁，麻痹效果不变。"
     },
     "fire-mastery": {
       "name": "火焰精通",

@@ -30,6 +30,7 @@ import {
 import { refreshActivePlayerCombatConfig, resolveEquippedWeapon } from '@/stores/combatHelpers';
 import { getSkill, listSkills } from '@/engine/skills/registry';
 import { canCastSkill } from '@/engine/skills/eligibility';
+import { LIGHTNING_MASTERY_DEFINITION, resolveLightningMasteryRank } from '@/engine/skills/lightning-mastery';
 import { MIGHT_DEFINITION, resolveEligibleMightRank, resolveMightRank } from '@/engine/skills/might';
 import {
   computeSkillDisplayModel,
@@ -110,6 +111,11 @@ export function SkillsScreen() {
     const mightRank = resolveMightRank(levels);
     for (const alias of ['paladin.might', 'skills-paladin-might']) {
       if (mightRank > 0) map.set(alias, mightRank);
+      else map.delete(alias);
+    }
+    const lightningRank = resolveLightningMasteryRank(levels);
+    for (const alias of ['sorceress.lightning_mastery', 'skills-sorceress-lightning-mastery']) {
+      if (lightningRank > 0) map.set(alias, lightningRank);
       else map.delete(alias);
     }
     return map;
@@ -1014,6 +1020,11 @@ function dynamicDescription(
     const { physicalDamagePctPerRank: physical, attackPctPerRank: attack, maxRank } = MIGHT_DEFINITION;
     return t('paladin.might.desc', { physical: Math.round(physical * 100), attack: Math.round(attack * 100),
       maxPhysical: Math.round(physical * maxRank * 100), maxAttack: Math.round(attack * maxRank * 100), cap: maxRank });
+  }
+  if (skill.id === 'skills-sorceress-lightning-mastery') {
+    const { lightningDamagePctPerRank, maxRank, requiredLevel } = LIGHTNING_MASTERY_DEFINITION;
+    return t('sorceress.lightning-mastery.desc', { bonus: Math.round(lightningDamagePctPerRank * 100),
+      maxBonus: Math.round(lightningDamagePctPerRank * maxRank * 100), cap: maxRank, level: requiredLevel });
   }
   const firstDamage = stats?.damage[0];
   if (firstDamage) {
