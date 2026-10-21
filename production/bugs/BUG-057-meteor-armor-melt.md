@@ -1,6 +1,6 @@
 # BUG-057 — Apply Meteor Armor Melt after its triggering hit
 
-Status: Reproduced; runtime fix pending.
+Status: Fixed in `4ab0c14`; independent producer/QA/GD/TD approval.
 Severity: High — the advertised Meteor defense debuff is absent.
 Owner: engine-dev; root implements, producer/QA independently review.
 
@@ -33,7 +33,7 @@ is ignored in the hit loop, yielding4700 instead of2934 expiry.
 ## Evidence and root cause
 
 Final prepatch test SHA `a457e24500fee382a986c983f1f9e4664b9244652973875b41c91c5b026f2276`.
-Corrected prepatch RED:27 failed/75 passed,102 reached assertions, exit1,
+Corrected prepatch RED:27 failed/75 passed,102 tests, exit1,
 2.346s, no deadline/cap stop, signals or survivors. Original RED28/74 is retained;
 three tests had fixture assumptions about default grid order or the legacy
 remaining counter. Independent producer/QA approved explicit cells and canonical
@@ -57,3 +57,11 @@ independently multiplies the overlapping fire branches. Fix those origins as one
 coherent runtime slice and reuse canonical status timing/refresh/death handling.
 No workaround provides the advertised effect. No status subsystem, save, global
 balance, gameplay pilot or prior Moor-draw causality change is established.
+
+## Resolution
+
+`4ab0c14` fixes the exact adapter, duration transport, shared fractional armor
+projection and single physical fire-combo branch. Frozen regression tests pass;
+engine1298/full3582/type/lint/clean production bridge/build pass. All original
+failures and build interruption remain in the [evidence](../../docs/plans/evidence/p08a08-meteor-armor-melt.md).
+No browser/earned-campaign/balance or previous-draw explanation is claimed.

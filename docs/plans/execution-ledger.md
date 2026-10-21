@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| P08a08 | accepted engine slice | `4ab0c14`; exact Meteor Burn→Melt3000ms/30%, active fractional armor projection and one fire→physical combo. Corrected runtimeRED27/75controls; E1298/U3582/T/L/cleanB pass; source producer/QA/GD/TD APPROVE. [Evidence](evidence/p08a08-meteor-armor-melt.md). No campaign/balance/browser acceptance. |
 | P08a07 | accepted starter Rogue slice | `45cd527`; exact authored Inner Sight25%/8s/CD5, immutable resolver/schema/status localization and shared fractional armor projection. Genuine runtime RED12/13controls; finalengine1224/full3452/T/L/build and5browser cases pass; producer/QA/GD/TD APPROVE. [Evidence](evidence/p08a07-rogue-inner-sight.md). Full campaign/balance/readability gates remain open. |
 | P16a01 | accepted scoped mobile combat repair | `2768502`; stacked teams below1024px, wrapped names/6pxHP/44pxcontrols/contained feedback. Genuine577RED and first failedGREEN preserved; final3454U/T/L and4production cases/eight sizes pass. Independent producer/QA/UX/TD APPROVE. [Evidence](evidence/p16a01-combat-readability.md). FullP16/a11y/performance remain open. |
 | P02b05d | failed discovery; evidence approved | One unchanged same40 A current-head pilot: 40prep wins/manualW1–2 victories, W3 native draw/Zombie A alive. No clear/idle/save acceptance or cause established. Producer/QA/GD/TD approve bounded evidence. [Evidence](evidence/p02b05d-current-moor-idle.md). No retry/stronger prep. |
@@ -2213,3 +2214,33 @@ Full private-v1/C0–C4/G0–G7 remains open. Next source-reviewed P08a08 addres
 Meteor Armor Melt transport/defense/combo, unrelated to this draw; Frozen Armor
 is separately recommended afterward. Root owns next source-only RAW
 `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-armor-melt-jcabtz3k`.
+
+## P08a08 Meteor Armor Melt implementation
+
+Representation8dd0653, authored independent definition0353da5, structured
+BUG057 prerequisiteb148812, coherent runtime4ab0c14. Exact player Meteor now
+applies Burn then timed30%/3000msMelt after its unchanged hit; active pre-hit
+defense composes fractionally with InnerSight, physical fire combo applies once.
+No status/save/migration/global tuning change. Producer/QA/GD/TD source APPROVE.
+
+OriginalCRED28/74 retains three fixture-affected tests; reviewed explicit grid
+cells and canonical legacy remaining3/no-expiry assertions yield genuine
+correctedRED27/75 before runtime. Full2517byte controlSHA bc410c62608c3265818f4f00473705edca576549f4fc6321574ac5e7c05d3484
+is frozen prepatch and unchanged GREEN. Finalfrozen combatSHAa457e24500fee382a986c983f1f9e4664b9244652973875b41c91c5b026f2276.
+Focused431/E1298/64files8.272s/U3582/168files64.575s/T10.821s/L27.927s and
+clean productionbridgebuild8.925s pass. Existing3s/15s targets/warnings remain;
+no new coverage/browser/earned route/campaign/balance/Moor-draw causality claim.
+InitialCbuild monitor stat race during bridge-guard olddist removal before Vite
+launch interrupts0.292s,
+2exact-ownedTERM/no survivors retained; exact493file cleanup then unchanged
+clean retry passes. All original source/failures/freezes retained.
+
+[Packet](evidence/fixtures/p08a08-meteor-armor-melt/packet.json)
+b4c5b263083aaccc263e6f8f5b1f741a31cc77ab95fee289b0d2cbdce4fccb42/archive
+fc48f4fd6b8ae550b6eba6ff1ecc75a20d0f32c656fc989bd25a5ccc1471e842 preserves
+153records/24commands/467source fingerprints/2535nonlivePIDbirthidentities.
+Whole-packet independent producer/QA APPROVE; all readers released. Exact cleanup pending. Root owns exactRAW
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-armor-melt-jcabtz3k`,
+760distfiles and1.vitefile until readers release. Original checkout clean,
+umbrella worktree claim continues; full private-v1/C0–C4/G0–G7 remain open.
+Next substantive contract: player Frozen Armor actual cast-owned defense/Chill.
