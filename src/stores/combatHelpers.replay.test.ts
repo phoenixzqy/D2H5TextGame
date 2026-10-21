@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { useHydrationStore } from './hydrationStore';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { hashSeed } from '@/engine/rng';
 import {
@@ -51,6 +52,7 @@ function firstWave() {
 
 beforeEach(() => {
   resetStores();
+  useHydrationStore.getState().setStatus('ready');
   vi.spyOn(Date, 'now').mockReturnValue(EPOCH);
   usePlayerStore.getState().setPlayer(createMockPlayer('ReplaySorceress', 'sorceress'));
   useMapStore.getState().setCurrentLocation(1, AREA);
@@ -58,6 +60,7 @@ beforeEach(() => {
 
 afterEach(() => {
   resetStores();
+  useHydrationStore.getState().setStatus('idle');
   vi.restoreAllMocks();
 });
 

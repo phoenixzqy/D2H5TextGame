@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { useHydrationStore } from './hydrationStore';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import type { Item } from '@/engine/types/items';
 import {
@@ -65,11 +66,13 @@ function progressSnapshot() {
 
 beforeEach(() => {
   reset();
+  useHydrationStore.getState().setStatus('ready');
   vi.spyOn(Date, 'now').mockReturnValue(1792454400000);
 });
 
 afterEach(() => {
   reset();
+  useHydrationStore.getState().setStatus('idle');
   vi.restoreAllMocks();
 });
 

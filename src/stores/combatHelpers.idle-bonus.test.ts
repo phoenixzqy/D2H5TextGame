@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { useHydrationStore } from './hydrationStore';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { loadAwardPools } from '@/data/loaders/loot';
 import * as lootData from '@/data/loaders/loot';
@@ -93,11 +94,12 @@ function rewardsSnapshot() {
 beforeEach(() => {
   vi.spyOn(Date, 'now').mockReturnValue(ANCHOR);
   reset();
+  useHydrationStore.getState().setStatus('ready');
   useMetaStore.getState().updateIdleState({
     lastOnline: ANCHOR, activeMultiplier: 1.5, multiplierSecondsRemaining: 1000
   });
 });
-afterEach(() => { vi.restoreAllMocks(); reset(); });
+afterEach(() => { vi.restoreAllMocks(); reset(); useHydrationStore.getState().setStatus('idle'); });
 
 describe('production award-time idle XP/MF bonus (BUG-025)', () => {
   it('samples one decaying multiplier per won wave, floors XP per kill and shares boosted XP with mercs', () => {

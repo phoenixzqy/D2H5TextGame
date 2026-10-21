@@ -4516,3 +4516,38 @@ executor; umbrella claim continues; no remote action or persistent server.
 Further bounded readiness cohorts, actual wave/readiness guards, receipt/conflict/
 publication/settlement/replay integration, bilingual Iron controls and browser
 acceptance remain pending. FullD06/P09/P10/private-v1 remain open.
+
+
+## D06 v1o explicit readiness fixtures for wave completion and replay
+
+Lifecycle/restore readiness fixtures received QA, TD/five-axis and producer
+APPROVE and committed as `569a915`. Exact readiness-core cleanup removed857files/
+42,724,271bytes and14 empty directories, zero failures/remaining targets; recorded
+command identities were dead. Original overlap and diagnostics remain retained.
+
+TD approved this five-path cohort. Outcome, replay, cross-wave and idle-bonus
+suites import the same hydration leaf and set ready only after existing setup
+resets, then idle after existing teardown run/store cleanup. All242 assertion/
+declaration lines remain unchanged (49outcomes/41replay/97cross-wave/55idle-bonus),
+as do clock/registry/mock ordering and public-action coverage. Replay's no-player
+case remains ready with no player, preserving its distinct null-return/ordinal
+control. No global setup, production default, readiness helper fallback or actual
+guard activation changes. No new tests or behavioral RED for fixture state alone.
+
+Serial focused67/4files5.880s, types14.907s, lint39.741s including85 engine purity
+files, full6493/220files114.899s and production build10.147s passed. No new browser
+run or visual acceptance is claimed for these test-only changes. Related5s/full15s
+budgets and existing React act, fixture fallback, stale Browserslist, chunk and
+precache diagnostics remain open. SaveCurrent11 unchanged. Security check passes
+for local test prerequisites with no production bypass, item write or payload change.
+
+Five paths, readiness-waves command/source/output identities, prior cleanup and
+exact owned dist/tmp inventory are frozen in readiness-waves-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review remains before commit. Disposable outputs
+remain until readers release; diagnostics retained. Root is sole writer/
+executor; umbrella claim continues; no remote action or persistent server.
+Further readiness cohorts, production wave/readiness/caller guards, receipt/conflict/
+publication/settlement/replay integration and bilingual Iron controls/browser
+acceptance remain pending. FullD06/P09/P10/private-v1 remain open.

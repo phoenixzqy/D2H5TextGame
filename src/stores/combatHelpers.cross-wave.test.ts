@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { useHydrationStore } from './hydrationStore';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { loadDefaultSkills, registerSkill, resetRegistry } from '@/engine/skills/registry';
 import * as combatEngine from '@/engine/combat/combat';
@@ -89,6 +90,7 @@ function drain(): void {
 
 beforeEach(() => {
   reset();
+  useHydrationStore.getState().setStatus('ready');
   vi.spyOn(Date, 'now').mockReturnValue(1792454400000);
 });
 
@@ -206,6 +208,7 @@ describe('production continuous-mana carry between recorded waves', () => {
 
 afterEach(() => {
   reset();
+  useHydrationStore.getState().setStatus('idle');
   resetRegistry();
   loadDefaultSkills();
   vi.restoreAllMocks();
