@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { useHydrationStore } from './hydrationStore';
 // Only disk I/O is faked; real store allocation, equipment, serialization/import and waves run.
 vi.mock('./save-adapter', () => ({ hasSave: vi.fn(), loadSave: vi.fn(),
   saveSave: vi.fn(() => Promise.resolve(undefined)), deleteSave: vi.fn() }));
@@ -80,9 +81,9 @@ function finalHero() {
 }
 const pools = (hero: ReturnType<typeof currentHero>) => [hero.life, hero.mana,
   hero.manaRegenCarry, hero.manaRegenCompensation, hero.manaRegenExactCarry];
-beforeEach(() => { reset(); resetRegistry(); loadDefaultSkills();
+beforeEach(() => { reset(); useHydrationStore.getState().setStatus('ready'); resetRegistry(); loadDefaultSkills();
   vi.spyOn(Date, 'now').mockReturnValue(1792454400000); });
-afterEach(() => { reset(); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });
+afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });
 
 describe('P07a04C native Iron Skin wave/replay/save boundaries', () => {
   it('applies real allocate/upgrade on next waves without rewriting recording or resource carry', () => {

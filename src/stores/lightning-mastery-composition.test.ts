@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { useHydrationStore } from './hydrationStore';
 // Only the disk write boundary is faked; real stores/save validation/import/restore run.
 vi.mock('./save-adapter', () => ({ hasSave: vi.fn(), loadSave: vi.fn(),
   saveSave: vi.fn(() => Promise.resolve(undefined)), deleteSave: vi.fn() }));
@@ -86,8 +87,8 @@ function finalHero() {
 const pools = (hero: ReturnType<typeof currentHero>) => [hero.life, hero.mana,
   hero.manaRegenCarry, hero.manaRegenCompensation, hero.manaRegenExactCarry];
 
-beforeEach(() => { reset(); vi.spyOn(Date, 'now').mockReturnValue(1792454400000); });
-afterEach(() => { reset(); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });
+beforeEach(() => { reset(); useHydrationStore.getState().setStatus('ready'); vi.spyOn(Date, 'now').mockReturnValue(1792454400000); });
+afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });
 
 describe('P07a03C native automatic Mastery composition at existing boundaries', () => {
   it('pulls actual L30 allocate/upgrade into next real waves while freezing current recording/resources', () => {
