@@ -317,3 +317,57 @@ and fresh source/output/process checks. RAW is root-owned until durable packet
 verification and exact cleanup. No remote action; original checkout preserved;
 umbrella worktree continues. Native/UI unit evidence does not certify production
 browser, campaign, performance, balance, coverage or full private-v1/C0–C4/G0–G7.
+
+## P07a05E — production browser and durable rank acceptance
+
+The test-only increment adds exactly tests/pwa/skeleton-mastery.spec.ts and its
+config; all application/unit sources and retained D build hashes remain unchanged.
+GD/TD/QA approved final testv2/configv1 before installation. TD found v1's possibly
+undefined indexed coefficient during pre-execution review; v2 uses readonly
+label/coefficient tuples with the same4/2/1 mapping and assertions. V1 never ran;
+no failed typecheck is claimed. Installed-source GD/TD review APPROVE.
+
+Serial types12.286s and lint/purity31.754s pass. The retained production D build
+runs through plain vite preview with no bridge, one Chromium worker, retries0.
+Actual two cases pass (en13.328s, zh-CN12.766s; report28.423811s, wrapper29.559s),
+with zero skips/unexpected/flaky/report errors/stops/signals. D's full5082/196 and
+fresh bridge/build9.445s apply to unchanged application/unit sources; E did not
+rerun Vitest or rebuild. Original reports, source freezes and all attachments
+remain in the durable RAW packet. See stage-e-final-gates.json.
+
+Real new level1 Necromancer confirms enabled Mastery and authored prose. A real
+Settings validated import adds an explicit second unearned level1 point; this
+is scaffolding, not earned progression. Four native keyboard traces use32 Tabs
+then Enter to allocate ranks1/2 in both locales. All current/next life/Attack/
+ordinary-Defense values and deltas agree; Mastery is absent from all nine combo
+slots. The existing first-visit sanitizer normalizes starter Raise Skeleton.
+
+All18 measured layouts cover360×640,412×915,640×360,375×667,393×851,768×1024,
+1280×800,1920×1080 and915×412 in both locales. They have no horizontal overflow,
+120×48 action,14px prose and nine clear hit samples each for heading/action.
+Chinese360 rendering uses51 actual Noto Sans CJK SC glyphs (plus27 DejaVu glyphs).
+QA inspected all18 original screenshot bytes. Constrained viewports require
+scrolling; the evidence does not claim every row is simultaneously visible.
+Existing navigation icon glyph boxes remain visible and are outside this slice.
+
+Four real Settings Save→Saved→page close/newPage→Continue sequences preserve
+whole player/inventory/merc/map/formation/settings; points1/0 and canonical ranks
+1/2 persist, hero derivedStats stay unchanged and transient summon/projection/
+carry fields are absent. Both browser warning/error arrays are empty. Node's
+NO_COLOR/FORCE_COLOR runner notices are separate from browser-console evidence.
+This is finite Chromium CSS-viewport and same-context disk acceptance, not native
+mobile, touch, all-browser, offline, broad accessibility/performance, earned
+campaign, balance, coverage or full private-v1/C0–C4/G0–G7 certification.
+
+QA and producer independently APPROVE the whole evidence; all readers released.
+Source commit 11e5744 contains only the two E test files. After that commit,
+fresh B/C/D/E source hashes, exact D/E output hashes and D/E absent birth identities
+were rechecked. Exact cleanup removes the retained761 build/Vitest files,
+40,970,728 bytes, nine empty child directories and dist root. Separately27 task
+font-cache/duplicate screenshot/browser metadata files,2,004,584 bytes, and their
+three exact roots are removed after review. Original screenshots remain encoded
+in the retained report. All owned disposable paths are absent with zero failures;
+shared caches/parent directories, installed fonts/tools/dependencies, source/history
+and original checkout are preserved. See stage-e-output-cleanup.json and
+stage-e-disposable-cleanup.json. RAW remains root-owned pending durable archive
+verification and exact cleanup; umbrella worktree claim continues, no remote action.

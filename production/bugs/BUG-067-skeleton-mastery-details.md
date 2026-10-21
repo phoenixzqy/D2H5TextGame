@@ -1,10 +1,10 @@
 # BUG-067 — Align Skeleton Mastery details with fresh summon bonuses
 
-- **Status:** Fixed in `1cf6981` for source/UI unit behavior; production-browser acceptance pending.
+- **Status:** Fixed in `1cf6981`; bounded production-browser acceptance in `11e5744`.
 - **Severity:** Medium — misleading skill description and legacy/alias rank display.
 - **Owner / affected systems:** frontend-dev, writer, qa-engineer; skill detail, bilingual copy and passive spec row.
 - **Build:** runtime `7740f2e`; UI source unchanged through `6036d3a` and Stage C.
-- **Environment:** Linux source inspection; planned Vitest/jsdom UI reproduction. No browser viewport measured yet.
+- **Environment:** Linux source/Vitest-jsdom reproduction; production Chromium, both locales and nine finite CSS viewport sizes.
 - **Locales:** zh-CN and en.
 - **Seed:** Not applicable to static copy; seed7 planned for recording-preservation control.
 
@@ -46,7 +46,7 @@ reconcile only the obsolete Skeleton Mastery row. Preserve the name 支配骷髅
 ## Workaround
 
 Consult D05; actual allocated Mastery is already applied at summon creation.
-Source/UI and production-browser acceptance remain pending validation.
+Source/UI and bounded production-browser acceptance passed; broader campaign/device acceptance remains open.
 
 ## Actual reproduction and resolution
 
@@ -56,5 +56,14 @@ legacy-only rank, alias order, displayed99/20, fractional rank and near-miss IDs
 Passing controls and hard-failure limits remain in full reports. Final source
 reuses exact resolver/definition; all20 new UI cases and related52/3 pass, full
 5082/196, types/lint/production build pass. A test-only lint optional-chain
-correction is preserved separately. See linked Skeleton evidence; browser E
-remains separate and no combat/save/balance defect is inferred from UI failures.
+correction is preserved separately. See linked Skeleton evidence; no combat/save/balance defect is inferred from UI failures.
+
+Production E (`11e5744`) passes both en/zh-CN cases on the retained D build.
+All18 screenshots reviewed independently; current/next bonuses, native keyboard
+allocation, passive combo exclusion, actual Noto glyph use and four real Settings
+Save→newPage→Continue durable-state comparisons pass. Imported extra level1 point
+is explicit scaffolding. No page console warnings/errors. Finite Chromium CSS
+viewports and same-context disk acceptance do not certify earned progression,
+native devices, offline, broad accessibility/performance or full-v1 completion.
+Task-owned build/cache/duplicate images cleaned exactly after reader release;
+original screenshot bytes and reports remain in RAW pending durable packet verification.
