@@ -2357,3 +2357,37 @@ committed packet; new root-owned Lightning RAW is separate at
 Next bounded P07a03A LightningMastery definition/schema/rank contract GD/TD
 approved: authoredL30/cap20/+4%lightning perallocatedrank; separate runtime/native/
 copy/browser stages remain. No implementation or completion claimed for it yet.
+
+## P07a03A Lightning Mastery authored prerequisite
+
+Accepted `993e305`: exactly four paths add the strict Lightning-only schema,
+independent frozen JSON-derived definition, exact-alias allocated rank resolver
+and controlling [D05](decisions/D05-lightning-mastery-v1.md). Current authored
+unlock30/cap20/+4% per rank is preserved; no runtime/native/UI/save/data tuning.
+Definition-only GREEN grants no combat effect or player-facing acceptance.
+
+GD/TD/QA approve the frozen v2 oracles and minimal source; original drafts are
+preserved with the sole requested fire→lightning coefficient-title correction.
+Actual schema RED70=32behavioral failures/38controls, unchanged production schema;
+schema GREEN70/70. Separate missing-helper capability failure collects0 tests.
+Finalfocused153/engine2061(73files9.946s)/full4432(182files73.923s), typecheck11.958s,
+lint30.556s and productionbridge/build8.836s pass strictly sequentially without
+stops/signals/skips. Existing engine3s/full15s speed targets and build warnings
+remain; no coverage/performance/campaign/balance/private-v1 certification.
+
+Producer/QA independently verify exact4source hashes, execution and1100 absent
+PID/birthidentities. After commit and allreadersrelease, root rechecks every
+761output hash and process identity, removes exact760dist+1task.vite files
+40961126B and verifies absence; no cleanup failures. RAW source/oracles/failures/
+reports/reviews/cleanup remain root-owned while Lightning work continues at
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-lightning-mastery-6siwydfd`.
+Root will archive it durably and remove exact disposable files after consumers
+finish. Source/history/shared caches/Noto preserved; original checkout untouched,
+umbrella worktree claim continues. No remote action. Runtime, native, copy/browser
+and broader P07a/private-v1/C0–C4/G0–G7 remain open.
+
+GD/TD approve a separate≤5path test-only compatibility preparation before the
+four-path runtime increment: old fire-only assertions may accept an absent or
+own exact-zero Lightning field, preserving all other keys and raw constructors.
+The complete historical recording literal remains unchanged. New Lightning
+oracles must require an own explicit zero plus positive/cross-passive controls.
