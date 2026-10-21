@@ -1,7 +1,7 @@
 # P07a04 Iron Skin — incremental evidence
 
 Status: authored prerequisite delivered in `b73e858`; runtime adapter delivered
-in `e234dad`; native fixture acceptance in `a4548e2`. Bilingual UI and production-browser acceptance remain open. Broader P07a/private-v1,
+in `e234dad`; native fixture acceptance in `a4548e2`; bilingual details in `edaa2b2`. Production-browser acceptance remains open. Broader P07a/private-v1,
 C0–C4 and G0–G7 remain incomplete.
 
 [D05](../decisions/D05-iron-skin-v1.md) controls the authored contract: Barbarian
@@ -171,3 +171,56 @@ stage-c-installed-source-freeze.json, stage-c-final-gates.json,
 stage-c-process-union.json, stage-c-output-inventory.json and
 stage-c-output-cleanup.json. UI/spec/locales and production-browser acceptance
 are next; full private-v1/C0–C4/G0–G7 remain incomplete.
+
+
+## Bilingual skill details / Stage D
+
+`edaa2b2` normalizes the two exact allocated aliases once using the same
+immutable rank resolver, interpolates the JSON-derived definition in both
+locales, and corrects only the Iron Skin spec row. The existing name 钢铁之肤
+remains. No combat-runtime or data tuning changes, or generalized passive composition, are included.
+
+[BUG-065](../../../production/bugs/BUG-065-iron-skin-details.md) was recorded
+before patching. Actual unchanged-production UI RED20=12 failed/8 passed: each
+locale fails authored prose, legacy fallback, alias-order rank19→1, uncapped
+rank99/20 label, fractional allocation and near-miss normalization. Reverse
+order, NaN+valid alias, real learning at18 and recording/resource controls already
+pass; numeric4/8 and level18 were existing controls. Hard failures prevented
+later assertions in their cases; the full original JSON and classification stay
+preserved. Four production hashes were verified unchanged around RED execution.
+
+| Final gate | Result | Duration |
+|---|---|---|
+| Focused Iron Skin/Lightning/Might/main Skills | 100 cases, 4 files | 5.803 s Vitest / 7.043 s wrapper |
+| Type checking | pass | 11.852 s |
+| Full unit | 4,749 cases, 191 files | 78.921 s / 80.294 s |
+| Lint + engine purity | pass | 30.554 s |
+| Fresh production build + bridge exclusion | pass | 9.107 s |
+
+All six commands including intended RED run serially with no stops/signals or
+pending/todo cases. Five final gates pass; full15s timing target and known build
+warnings remain. Locale validation confirms the same bonus/maxBonus/cap/level
+placeholders and complete exact bilingual expected prose. UI fixtures import
+level18 and do not establish earned progression. GD/TD exact source and QA/
+producer whole evidence approve; root-transcribed reviews remain in RAW.
+
+Root retains the exact761 outputs40,965,478B for the immediate Stage E production
+browser consumer: claimed-worktree `dist/` (760 files) and
+`node_modules/.vite/vitest/results.json` (one file), enumerated with hashes in
+stage-d-ui-output-inventory.json. Owner root; reason fresh bridge-free preview;
+remove after browser and all reviewer readers finish, with fresh source, process
+and output hash checks. They are not yet removed. All910 StageD PID/birth
+identities are absent. Browser acceptance, broader mobile/a11y/performance,
+campaign/balance/coverage and full private-v1 remain open. Source/history/font/
+shared caches and original checkout are preserved; umbrella claim continues,
+no remote action. RAW remains at the exact Iron path above until its independently
+verified durable packet and exact cleanup. Key records: stage-d-ui-draft-freeze-v1,
+baseline-freeze, red-classification, source-freeze, locale-validation, final-gates,
+process-union and output-inventory JSON files.
+
+Four completed historical StageA/B/C full-unit reports are preserved losslessly
+as .json.gz after prior reader release:6,297,541B→470,018B. Root verified exact
+roundtrips before unlinking original task-owned JSON copies;
+`historical-report-compression.json` binds original/decompressed and compressed
+lengths/hashes. The current StageD report remains unchanged. Required failures,
+source/oracles and diagnostics remain preserved.

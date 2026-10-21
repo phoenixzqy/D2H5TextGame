@@ -1,6 +1,6 @@
 # BUG-065 — Align Iron Skin details with allocated defense
 
-- **Status:** Open; source and unchanged-production UI reproduction confirmed before patch. Browser pending.
+- **Status:** Fixed in `edaa2b2`; production-browser acceptance pending.
 - **Severity:** Medium — incorrect skill information and legacy/alias rank display.
 - **Owner / affected systems:** frontend-dev, writer, qa-engineer; Skills detail and bilingual copy/spec.
 - **Build:** `f1ef33f` (runtime `e234dad`, native `a4548e2`).
@@ -61,4 +61,14 @@ in their cases from executing. Retain full JSON, not only these summaries.
 
 RAW records: `focused-iron-ui-red-report.json`, its log/meta/process records,
 `stage-d-ui-baseline-freeze.json` and `stage-d-ui-red-classification.json`.
-The independently approved source/copy correction has not yet been applied.
+At that reproduction, the independently approved source/copy correction had not yet been applied.
+
+
+## Resolution
+
+`edaa2b2` uses the existing exact allocation resolver and immutable definition in
+SkillsScreen, replaces both stale locale entries and reconciles the spec row.
+Regression: `src/features/skills/SkillsScreen.iron-skin.test.tsx`,20 bilingual
+cases. Final focused100/full4749, types/lint/freshproductionbridgebuild pass.
+The original RED/classification stay preserved. Source/UI unit acceptance is
+complete; real production-browser acceptance remains separate.

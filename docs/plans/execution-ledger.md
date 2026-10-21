@@ -2494,3 +2494,28 @@ verifies allabsent/no failures. RAW retained at Iron evidence path for later
 durablepacket/cleanup by root; sharedcaches/parents/Noto/source/history preserved.
 Originalcheckout untouched, umbrellaclaim continues, no remoteaction. Next bounded
 UI/spec/locales, then real productionbrowser; full privatev1/C0–C4/G0–G7 stay open.
+
+
+## P07a04D Iron Skin bilingual details
+
+`edaa2b2` changes exactly five paths: SkillsScreen/exactrank UI regression,
+both locale entries and the single spec row. Authored L18/+4% ordinary defense
+perallocatedrank/cap20+80% and existing 钢铁之肤 name are truthful; no tuning or
+combat-runtime changes. BUG065 was recorded beforepatch and preserves actualRED20=
+12fail/8controls (six intended categories perlocale), source hashes unchanged.
+Finalserialfocused100/4files5.803Vitest7.043wrapper, T11.852, full4749/191files
+78.921/80.294, L30.554, productionbridgebuild9.107 pass; no skips/todos/stops/
+signals. Full15starget/buildwarnings remain. GD/TD exactsource and QA/producer
+wholeevidence APPROVE; allreadersreleased. No earnedcampaign/browser/fullmobile/
+a11y/performance/balance/coverage certification; privatev1/C0–C4/G0–G7 stay open.
+
+Root retains exact761 outputs40,965,478B, enumerated in
+stage-d-ui-output-inventory.json: claimedWT2 dist/760files and
+node_modules/.vite/vitest/results.json/onefile, for StageE preview of this fresh
+bridgefree productionbuild without rebuild. Cleanup pending until Ebrowser/all
+consumersfinish and freshsource/hash/PIDchecks; all910 Didentities already absent.
+RAW remains rootowned at Iron path. Four completed historical fullreports are
+losslesslygzipped6,297,541→470,018B with exactroundtrip mapping, StageDreport
+unchanged. Root owns later durablepacketverification/exactcleanup. Sharedcaches/
+parents/Noto/source/history preserved, originalcheckout untouched, umbrellaclaim
+continues, no remoteaction. Next separatelyreviewed2path productionbrowsertests.
