@@ -44,9 +44,49 @@ import { composeMightAura } from '@/engine/skills/might';
 import { composeMeditationAura } from '@/engine/skills/meditation';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
 import { composeSkeletonMastery } from '@/engine/skills/skeleton-mastery';
+import { isPreparationSummonSkill } from '@/engine/skills/summon-preparation';
+import { canonicalSkillIdFromData, getSkillRequiredLevel, getSkillsForClass,
+  skillIdAliases, type SkillTemplate } from './skillsHelpers';
 
 const CHALLENGE_ORDINAL_PERIOD = 360360;
 let manualChallengeOrdinal = 0;
+
+/** Validate scoped player allocations before the engine's standalone rank-one fallback. */
+function scopedSummonConfiguration(player: Player): Pick<CombatUnit, 'skillOrder' | 'skillLevels'> {
+  const skillLevels = { ...player.skillLevels };
+  const catalog = getSkillsForClass(player.class);
+  const byCanonical = new Map(catalog.map(skill => [canonicalSkillIdFromData(skill.id), skill]));
+  const rank = (skill: SkillTemplate): number => {
+    if (!Number.isInteger(skill.maxLevel) || skill.maxLevel < 1) return 0;
+    let highest = 0;
+    for (const alias of skillIdAliases(skill.id)) {
+      const value = player.skillLevels?.[alias];
+      if (typeof value === 'number' && Number.isInteger(value) && value >= 1 && value <= skill.maxLevel) {
+        highest = Math.max(highest, value);
+      }
+    }
+    return highest;
+  };
+  const skillOrder = player.comboOrder.filter(id => {
+    const canonical = canonicalSkillIdFromData(id) ?? id;
+    if (!isPreparationSummonSkill({ id: canonical })) return true;
+    if (!Number.isInteger(player.level) || player.level < 1) return false;
+    const source = byCanonical.get(canonical);
+    if (!source) return false;
+    const requiredLevel = getSkillRequiredLevel(source);
+    if (!Number.isInteger(requiredLevel) || requiredLevel < 1 || player.level < requiredLevel) return false;
+    const allocated = rank(source);
+    if (allocated === 0) return false;
+    if (source.prerequisites?.some(prerequisiteId => {
+      const prerequisite = byCanonical.get(canonicalSkillIdFromData(prerequisiteId) ?? prerequisiteId);
+      return !prerequisite || rank(prerequisite) === 0;
+    })) return false;
+    for (const alias of skillIdAliases(source.id)) Reflect.deleteProperty(skillLevels, alias);
+    skillLevels[canonical] = allocated;
+    return true;
+  });
+  return { skillOrder, skillLevels };
+}
 
 /**
  * Convert a Player to a CombatUnit for battle.
@@ -87,15 +127,14 @@ export function playerToCombatUnit(player: Player): CombatUnit {
     manaRegenExactCarry: '0',
     statuses: [],
     cooldowns: {},
-    skillOrder: [...player.comboOrder],
+    ...scopedSummonConfiguration(player),
     activeBuffIds: [],
     enraged: false,
     summonedAdds: false,
     kind: 'hero',
     equippedWeapon,
     gridPosition: formation.playerPosition,
-    summonGridPositions: formation.summonPositions,
-    skillLevels: { ...player.skillLevels }
+    summonGridPositions: formation.summonPositions
   };
 }
 
