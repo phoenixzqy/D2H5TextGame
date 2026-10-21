@@ -21,6 +21,14 @@ import { useMercStore } from './mercStore';
 import { useFormationStore } from './formationStore';
 import { useMetaStore } from './metaStore';
 
+/** Compare legacy fire output while permitting only an own, exact-zero Lightning projection. */
+function fireDamageProjection(actual: Readonly<Partial<Record<string, number>>> | undefined) {
+  if (!actual || !Object.prototype.hasOwnProperty.call(actual, 'lightning')) return actual;
+  expect(actual.lightning).toBe(0);
+  const { lightning: _zero, ...remaining } = actual;
+  return remaining;
+}
+
 const MASTERY = 'sorceress.fire_mastery';
 const AUTHORED = 'skills-sorceress-fire-mastery';
 const WARMTH = 'sorceress.warmth';
@@ -90,14 +98,14 @@ afterEach(() => { reset(); resetRegistry(); loadDefaultSkills(); vi.restoreAllMo
 describe('P07a02B native automatic Mastery composition at existing boundaries', () => {
   it('pulls actual L30 allocate/upgrade into next real waves while freezing current recording/resources', () => {
     arrange(); start();
-    expect(currentHero().increasedDamagePct).toEqual({ fire: 0.01 });
+    expect(fireDamageProjection(currentHero().increasedDamagePct)).toEqual({ fire: 0.01 });
     const before = recording(); const firstFinal = structuredClone(finalHero());
     expect(usePlayerStore.getState().allocateSkillPoint(AUTHORED)).toBe('ok');
     expect(player().skillPoints).toBe(1);
     expect(player().skillLevels).toMatchObject({ [MASTERY]: 1, [WARMTH]: 1 });
     expect(recording()).toEqual(before);
     drain(); expect(advanceWaveOrFinish()).toBe('next-wave');
-    expect.soft(currentHero().increasedDamagePct).toEqual({ fire: 0.05 });
+    expect.soft(fireDamageProjection(currentHero().increasedDamagePct)).toEqual({ fire: 0.05 });
     expect(currentHero().manaRegenPerSecond).toBeCloseTo(4.16, 12);
     expect(pools(currentHero())).toEqual(pools(firstFinal));
     const second = recording(); const secondFinal = structuredClone(finalHero());
@@ -114,7 +122,7 @@ describe('P07a02B native automatic Mastery composition at existing boundaries', 
   it('rejects store allocation at L29 and keeps only Warmth from an ineligible imported Mastery', () => {
     arrange({ [MASTERY]: 20, [WARMTH]: 1 }); configure({ level: 29 });
     expect(usePlayerStore.getState().allocateSkillPoint(MASTERY)).toBe('level-too-low');
-    expect(playerToCombatUnit(player()).increasedDamagePct).toEqual({ fire: 0.01 });
+    expect(fireDamageProjection(playerToCombatUnit(player()).increasedDamagePct)).toEqual({ fire: 0.01 });
     configure({ level: 30 });
     expect.soft(playerToCombatUnit(player()).increasedDamagePct?.fire).toBeCloseTo(0.81, 12);
     configure({ class: 'amazon' });
@@ -123,12 +131,12 @@ describe('P07a02B native automatic Mastery composition at existing boundaries', 
 
   it('clears only removed Mastery on next wave without changing existing Warmth or resource carry', () => {
     arrange({ [AUTHORED]: 20, [MASTERY]: 2, [WARMTH]: 20 }); start();
-    expect.soft(currentHero().increasedDamagePct).toEqual({ fire: 1 });
+    expect.soft(fireDamageProjection(currentHero().increasedDamagePct)).toEqual({ fire: 1 });
     const before = recording(); const final = structuredClone(finalHero());
     configure({ skillLevels: { [WARMTH]: 20 } });
     expect(recording()).toEqual(before);
     drain(); expect(advanceWaveOrFinish()).toBe('next-wave');
-    expect(currentHero().increasedDamagePct).toEqual({ fire: 0.2 });
+    expect(fireDamageProjection(currentHero().increasedDamagePct)).toEqual({ fire: 0.2 });
     expect(currentHero().manaRegenPerSecond).toBeCloseTo(7.2, 12);
     expect(currentHero().skillLevels).toEqual({ [WARMTH]: 20 });
     expect(pools(currentHero())).toEqual(pools(final));
@@ -145,7 +153,7 @@ describe('P07a02B native automatic Mastery composition at existing boundaries', 
       refreshActivePlayerCombatConfig();
       expect(recording()).toEqual(before);
       refreshActivePlayerCombatConfig({ replayCurrentWave: true });
-      expect(currentHero().increasedDamagePct).toEqual({ fire: 0.01 });
+      expect(fireDamageProjection(currentHero().increasedDamagePct)).toEqual({ fire: 0.01 });
       expect(pools(currentHero())).toEqual(baseline);
       drain();
       configure({ skillLevels: { [MASTERY]: 20, [WARMTH]: 1 } });
@@ -171,7 +179,7 @@ describe('P07a02B native automatic Mastery composition at existing boundaries', 
     expect(useCombatStore.getState().playerTeam).toEqual([]);
     expect(player()).toEqual(before);
     const fresh = playerToCombatUnit(player());
-    expect.soft(fresh.increasedDamagePct).toEqual({ fire: 1 });
+    expect.soft(fireDamageProjection(fresh.increasedDamagePct)).toEqual({ fire: 1 });
     expect(fresh.manaRegenPerSecond).toBeCloseTo(7.2, 12);
     expect(pools(fresh).slice(2)).toEqual([0, 0, '0']);
     expect(fresh.activeBuffIds).toEqual([]);

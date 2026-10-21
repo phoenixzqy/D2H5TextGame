@@ -18,6 +18,14 @@ import { useMercStore } from './mercStore';
 import { useFormationStore } from './formationStore';
 
 const AREA = 'areas/act1-blood-moor';
+/** Compare legacy fire output while permitting only an own, exact-zero Lightning projection. */
+function fireDamageProjection(actual: Readonly<Partial<Record<string, number>>> | undefined) {
+  if (!actual || !Object.prototype.hasOwnProperty.call(actual, 'lightning')) return actual;
+  expect(actual.lightning).toBe(0);
+  const { lightning: _zero, ...remaining } = actual;
+  return remaining;
+}
+
 const WARMTH = 'sorceress.warmth';
 const FINISHER = 'fixture.warmth-finisher';
 const stores = [useCombatStore, usePlayerStore, useInventoryStore,
@@ -124,7 +132,7 @@ describe('authoritative hero Warmth composition', () => {
     const unit = playerToCombatUnit(stale);
     // 190 + 30 = 220 raw → 210 effective Energy; 0.2 × 210 × 1.04.
     expect.soft(unit.manaRegenPerSecond).toBeCloseTo(43.68, 12);
-    expect.soft(unit.increasedDamagePct).toEqual({ fire: 0.01 });
+    expect.soft(fireDamageProjection(unit.increasedDamagePct)).toEqual({ fire: 0.01 });
     expect.soft(unit.stats).toEqual({ life: 77, lifeMax: 200, mana: 81, manaMax: 405,
       attack: 22, defense: 27, magicResist: 0, attackSpeed: 125, critChance: 0.05, critDamage: 2,
       physDodge: 0.1, magicDodge: 0.05, magicFind: 0, goldFind: 0,
@@ -142,7 +150,7 @@ describe('authoritative hero Warmth composition', () => {
     const unit = playerToCombatUnit(player());
     expect.soft(unit.stats.manaMax).toBe(350);
     expect.soft(unit.manaRegenPerSecond).toBe(40);
-    expect.soft(unit.increasedDamagePct).toEqual({ fire: 0 });
+    expect.soft(fireDamageProjection(unit.increasedDamagePct)).toEqual({ fire: 0 });
   });
 });
 
@@ -172,7 +180,7 @@ describe('frozen recording and automatic next-wave configuration', () => {
     expect.soft(second?.stats.manaMax).toBe(416);
     expect.soft(second?.stats.lifeMax).toBe(1_000_008);
     expect.soft(second?.manaRegenPerSecond).toBeCloseTo(46.44, 12);
-    expect.soft(second?.increasedDamagePct).toEqual({ fire: 0.02 });
+    expect.soft(fireDamageProjection(second?.increasedDamagePct)).toEqual({ fire: 0.02 });
     expect.soft(second?.skillLevels).toEqual({ [WARMTH]: 2 });
     expect.soft([second?.life, second?.mana]).toEqual([result.life, result.mana]);
 
@@ -212,7 +220,7 @@ describe('frozen recording and automatic next-wave configuration', () => {
     const second = useCombatStore.getState().playerTeam[0];
     expect.soft(second?.skillLevels).toEqual({});
     expect.soft(second?.manaRegenPerSecond).toBe(7);
-    expect.soft(second?.increasedDamagePct).toEqual({ fire: 0 });
+    expect.soft(fireDamageProjection(second?.increasedDamagePct)).toEqual({ fire: 0 });
   });
 });
 
@@ -385,13 +393,13 @@ describe('original wave-input resources and replay', () => {
     const expected = mercToCombatUnit(merc, useFormationStore.getState().mercPosition);
     start();
     const team = useCombatStore.getState().playerTeam;
-    expect.soft(team[0]?.increasedDamagePct).toEqual({ fire: 0.2 });
+    expect.soft(fireDamageProjection(team[0]?.increasedDamagePct)).toEqual({ fire: 0.2 });
     expect(team[1]).toEqual(expected);
     const before = recording();
     usePlayerStore.getState().setPlayer({ ...player(), skillLevels: {} });
     refreshActivePlayerCombatConfig({ replayCurrentWave: true });
     expect(useCombatStore.getState().playerTeam[1]).toEqual(expected);
-    expect.soft(useCombatStore.getState().playerTeam[0]?.increasedDamagePct).toEqual({ fire: 0 });
+    expect.soft(fireDamageProjection(useCombatStore.getState().playerTeam[0]?.increasedDamagePct)).toEqual({ fire: 0 });
     expect(before.team[1]).toEqual(expected);
   });
 

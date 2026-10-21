@@ -3,6 +3,17 @@ import sorceressSkills from '../../data/skills/sorceress.json';
 import recovery from '../../data/combat/recovery.json';
 import { composeHeroRecovery } from './warmth';
 
+/** Compare legacy fire output while permitting only an own, exact-zero Lightning projection. */
+function fireDamageProjection(actual: Readonly<Partial<Record<string, number>>> | undefined) {
+  if (!actual || !Object.prototype.hasOwnProperty.call(actual, 'lightning')) return actual;
+  expect(actual.lightning).toBe(0);
+  const { lightning: _zero, ...remaining } = actual;
+  return remaining;
+}
+function fireRecoveryProjection(actual: ReturnType<typeof composeHeroRecovery>) {
+  return { ...actual, increasedDamagePct: fireDamageProjection(actual.increasedDamagePct) };
+}
+
 const DATA_ID = 'skills-sorceress-warmth';
 const CANONICAL_ID = 'sorceress.warmth';
 
@@ -24,11 +35,11 @@ describe('P07a01c1 pure authored hero recovery composition (no runtime consumpti
   ])('composes E20 rank%s once as %s MP/s and %s increased fire', (rank, manaRate, fire) => {
     const result = compose({ [DATA_ID]: rank });
     expect(result.manaRegenPerSecond).toBeCloseTo(manaRate, 12);
-    expect(result.increasedDamagePct).toEqual({ fire });
+    expect(fireDamageProjection(result.increasedDamagePct)).toEqual({ fire });
   });
 
   it.each([DATA_ID, CANONICAL_ID])('uses learned rank from actual alias %s', alias => {
-    expect(compose({ [alias]: 2 })).toEqual({ manaRegenPerSecond: 4.32, increasedDamagePct: { fire: 0.02 } });
+    expect(fireRecoveryProjection(compose({ [alias]: 2 }))).toEqual({ manaRegenPerSecond: 4.32, increasedDamagePct: { fire: 0.02 } });
   });
 
   it('uses the maximum valid alias rank once without adding duplicate aliases', () => {
@@ -59,7 +70,7 @@ describe('P07a01c1 pure authored hero recovery composition (no runtime consumpti
 
   it.each(['amazon', 'assassin', 'barbarian', 'druid', 'necromancer', 'paladin', 'unknown'])(
     'retains hero Energy baseline for class%s without inheriting Sorceress Warmth', classId => {
-    expect(composeHeroRecovery({ classId, level: 50, effectiveEnergy: 20, skillLevels: { [DATA_ID]: 20 } }))
+    expect(fireRecoveryProjection(composeHeroRecovery({ classId, level: 50, effectiveEnergy: 20, skillLevels: { [DATA_ID]: 20 } })))
       .toEqual({ manaRegenPerSecond: 4, increasedDamagePct: { fire: 0 } });
   });
 
@@ -75,8 +86,8 @@ describe('P07a01c1 pure authored hero recovery composition (no runtime consumpti
   });
 
   it.each([0, -1, NaN, Infinity, -Infinity])('normalizes invalid or zero effective Energy%s without losing learned fire', effectiveEnergy => {
-    expect(composeHeroRecovery({ classId: 'sorceress', level: 1, effectiveEnergy,
-      skillLevels: { [DATA_ID]: 2 } })).toEqual({ manaRegenPerSecond: 0, increasedDamagePct: { fire: 0.02 } });
+    expect(fireRecoveryProjection(composeHeroRecovery({ classId: 'sorceress', level: 1, effectiveEnergy,
+      skillLevels: { [DATA_ID]: 2 } }))).toEqual({ manaRegenPerSecond: 0, increasedDamagePct: { fire: 0.02 } });
   });
 
   it('returns independent frozen snapshots without mutating inputs or accumulating repeated composition', () => {
@@ -95,6 +106,6 @@ describe('P07a01c1 pure authored hero recovery composition (no runtime consumpti
     }
     expect(input).toEqual(before);
     expect(sorceressSkills).toEqual(jsonBefore);
-    expect(compose()).toEqual({ manaRegenPerSecond: 4, increasedDamagePct: { fire: 0 } });
+    expect(fireRecoveryProjection(compose())).toEqual({ manaRegenPerSecond: 4, increasedDamagePct: { fire: 0 } });
   });
 });
