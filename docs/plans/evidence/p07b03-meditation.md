@@ -426,3 +426,24 @@ Closure is documentation-only after accepted executable gates; no extra runtime
 rerun claimed. Broader P07b/balance/private-v1/C0–C4/G0–G7 remain open; next producer
 priority is existing P08a08 Meteor truthful bilingual detail, separately bounded.
 No remote action; root keeps umbrella worktree claim.
+
+
+## Durable Meditation packet
+
+Closure source `0063eec` and browser `72731b0` are bound by the
+[packet](fixtures/p07b03-meditation/packet.json) and lossless
+[archive](fixtures/p07b03-meditation/raw.tar.gz). All496members/22,200,320B roundtrip
+verify; archive10,660,975B SHA256
+`ac6c42aa33d3fba88712481076c52d60938f2aff20c4698ffcda915855efb650`.
+The26current fingerprints include unchanged authoredPaladinJSON. All72original
+process records/11,089unique births are absent with zero signals. Original actual
+failures, unexecuted drafts, corrected freezes, failed browser screenshots/bodies,
+source/evidence reviews, cleanup receipts and both lossless report-compression
+manifests remain recoverable. Historical original report names resolve through
+verified gzip manifests; no report bytes were lost.
+
+Independent durable verification and committed archive precede exact RAW removal.
+Root owns only496manifest files and derived empty childdirs for that cleanup;
+retain the empty RAWroot, sharedparents/source/history/fonts/tools. The packet
+records final review/receipt; this paragraph does not claim removal before it runs.
+Full private-v1/C0–C4/G0–G7 remain open; umbrella worktree claim continues.
