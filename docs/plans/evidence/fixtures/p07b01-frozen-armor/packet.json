@@ -1,0 +1,3174 @@
+{
+  "card": "P07b01",
+  "status": "validated source/native/browser; independent whole-packet review pending",
+  "implementation": {
+    "representation": "7a95868",
+    "positiveFixturePrerequisite": "9bdfdbc",
+    "engine": "ed05766",
+    "native": "93022ee",
+    "browser": "562da72"
+  },
+  "rawPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx",
+  "owner": "root",
+  "records": [
+    {
+      "path": "attachments/browser-c/.last-run.json",
+      "bytes": 96,
+      "sha256": "a962ac9dce4e52befb42bb20cb470117e27425d13a2019cf4f6bb1e7654ccb14"
+    },
+    {
+      "path": "attachments/browser-c/.playwright-artifacts-0/67005c18ad327657ba89631a577c821c.png",
+      "bytes": 139280,
+      "sha256": "1045c3eb5d2cb2a565f39d52d0c3b6b990542eb97ba53205ce467714ed1990aa"
+    },
+    {
+      "path": "attachments/browser-c/frozen-armor-paid-Frozen-Armor-ordinary-UI-and-reload-zh-CN-armor-desktop/error-context.md",
+      "bytes": 19694,
+      "sha256": "33ff1ab4ff3f15d18b1f578a9fe797c7aeada98e75c21b4de1401a716f70bb64"
+    },
+    {
+      "path": "attachments/browser-c/frozen-armor-paid-Frozen-Armor-ordinary-UI-and-reload-zh-CN-armor-desktop/test-failed-1.png",
+      "bytes": 363090,
+      "sha256": "2499b8418c02262477fb1500c2b2c71079d51db3ebad7c806603346bf9d78436"
+    },
+    {
+      "path": "attachments/browser-c-corrected/frozen-armor-paid-Frozen-Armor-ordinary-UI-and-reload-en-armor-desktop/error-context.md",
+      "bytes": 882,
+      "sha256": "c0bc66607f4773183b226df615715833d0ff8beee6c65920609d665b3f0d3077"
+    },
+    {
+      "path": "attachments/browser-c-monitored/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    {
+      "path": "before-src__data__schema__skill.schema.json",
+      "bytes": 13940,
+      "sha256": "de4d328aeb20d7b51ea77b0a0d0379c186e84dfef487c645a33bf62a6eeff268"
+    },
+    {
+      "path": "before-src__engine__combat__combat.test.ts",
+      "bytes": 20291,
+      "sha256": "47b027d79249c0b8785e1dd01446e1817bdee7734a90cf30a8df79bb69b0a7e0"
+    },
+    {
+      "path": "before-src__engine__combat__types.ts",
+      "bytes": 7485,
+      "sha256": "7778b89f8340c40cbdbcfa33751711c943f7a0d0f7e8cefc6df613be2371778f"
+    },
+    {
+      "path": "before-src__engine__combat__warmth.test.ts",
+      "bytes": 20873,
+      "sha256": "23dbfeb8ea24b9645e54aaba1b440a5e680bb411b03af615699b5982e1c589e5"
+    },
+    {
+      "path": "bounded_runner.py",
+      "bytes": 7011,
+      "sha256": "63a6ab8312f400fe16788ce68b1882b22fa5a188cb1d868872640022bf12c3ab"
+    },
+    {
+      "path": "browser-c-corrected.log",
+      "bytes": 720,
+      "sha256": "89ff597ab0e9c51873cece1f028f194fa58051e6cadffee715ed44fe0649e0bf"
+    },
+    {
+      "path": "browser-c-corrected.meta.json",
+      "bytes": 2254,
+      "sha256": "13b2ec743fe31976c14a4bb9da7e72b11e2aad9d0c1a89aa6e40608151aca1c7"
+    },
+    {
+      "path": "browser-c-corrected.process.json",
+      "bytes": 146,
+      "sha256": "cf462a510351e8079d414418c4751e4e9e7f77bfe24abcad5911b835faa27b0c"
+    },
+    {
+      "path": "browser-c-corrected.processes.json",
+      "bytes": 3338,
+      "sha256": "5b1031019a3525165d68159bed0ab0493835ed8a7364f500592464fbdad3cff6"
+    },
+    {
+      "path": "browser-c-monitored-armor-desktop-en-02-cast-debit-hit-chill.json",
+      "bytes": 11053,
+      "sha256": "ec360dae77e556d605de0abecfffdbb2935236af148ca2fc241f1d37ef0b8145"
+    },
+    {
+      "path": "browser-c-monitored-armor-desktop-en-03-paid-armor-viewport.png",
+      "bytes": 405752,
+      "sha256": "ac9296dd80b23b0fc53080763aa4ae39ccef5a961f473b484bdea813bf44bf21"
+    },
+    {
+      "path": "browser-c-monitored-armor-desktop-en-05-stop-save-reload.json",
+      "bytes": 67045,
+      "sha256": "d996bf303d3c67ae2076311a986c70f5bffe792758712b88bd37531db18b53fd"
+    },
+    {
+      "path": "browser-c-monitored-armor-desktop-en-06-browser-errors.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "browser-c-monitored-armor-desktop-zh-CN-02-cast-debit-hit-chill.json",
+      "bytes": 9113,
+      "sha256": "f26c082bb75f5f39667485a0ab99c6d3ecccbf331efdfc9d38220fc5e1dc7c93"
+    },
+    {
+      "path": "browser-c-monitored-armor-desktop-zh-CN-03-paid-armor-viewport.png",
+      "bytes": 387805,
+      "sha256": "821f0ad2f2099b59e1778c11d4d6ed029e1a035cec2d35ff98cef85d14a2a9c4"
+    },
+    {
+      "path": "browser-c-monitored-armor-desktop-zh-CN-05-stop-save-reload.json",
+      "bytes": 67051,
+      "sha256": "39780d6a5f724b10ae0c9eda6eb4aade015fdd06cc5c3023caf3f5be2792addc"
+    },
+    {
+      "path": "browser-c-monitored-armor-desktop-zh-CN-06-browser-errors.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "browser-c-monitored-armor-mobile-en-02-cast-debit-hit-chill.json",
+      "bytes": 11053,
+      "sha256": "ec360dae77e556d605de0abecfffdbb2935236af148ca2fc241f1d37ef0b8145"
+    },
+    {
+      "path": "browser-c-monitored-armor-mobile-en-03-paid-armor-viewport.png",
+      "bytes": 139067,
+      "sha256": "b7f23c6fe3f14317a43d3a03d508734d3b6b842b3062975ca70eeead27b427b8"
+    },
+    {
+      "path": "browser-c-monitored-armor-mobile-en-05-stop-save-reload.json",
+      "bytes": 67045,
+      "sha256": "d996bf303d3c67ae2076311a986c70f5bffe792758712b88bd37531db18b53fd"
+    },
+    {
+      "path": "browser-c-monitored-armor-mobile-en-06-browser-errors.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "browser-c-monitored-armor-mobile-zh-CN-02-cast-debit-hit-chill.json",
+      "bytes": 9113,
+      "sha256": "f26c082bb75f5f39667485a0ab99c6d3ecccbf331efdfc9d38220fc5e1dc7c93"
+    },
+    {
+      "path": "browser-c-monitored-armor-mobile-zh-CN-03-paid-armor-viewport.png",
+      "bytes": 84758,
+      "sha256": "8660b42312f97469906ca4f9dec38aafc44a69650c756d7e0a05576d716ceb41"
+    },
+    {
+      "path": "browser-c-monitored-armor-mobile-zh-CN-05-stop-save-reload.json",
+      "bytes": 67051,
+      "sha256": "39780d6a5f724b10ae0c9eda6eb4aade015fdd06cc5c3023caf3f5be2792addc"
+    },
+    {
+      "path": "browser-c-monitored-armor-mobile-zh-CN-06-browser-errors.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "browser-c-monitored-report.json",
+      "bytes": 1799773,
+      "sha256": "c3dffe079d5b00f5a675517fcb03fdf245ce120163fd45fed9fe5fd0ed544738"
+    },
+    {
+      "path": "browser-c-monitored-small-summary.json",
+      "bytes": 8914,
+      "sha256": "63c585787c062bd442e144e1b626e723f1b4c85a6bc520304c1e381fdfbff380"
+    },
+    {
+      "path": "browser-c-monitored.log",
+      "bytes": 1456,
+      "sha256": "8090f5ac1a7bf19c7c12052436b521077b5d500897ebd04a74788a1e68b749ce"
+    },
+    {
+      "path": "browser-c-monitored.meta.json",
+      "bytes": 530,
+      "sha256": "625a290b9ed1fdf07ce95deedce8ef11f6b7ed09e479f38a7fb4291bc9b36f96"
+    },
+    {
+      "path": "browser-c-monitored.process.json",
+      "bytes": 146,
+      "sha256": "929f54dabed0cb83fb67cfe990650e829b42d405841032b43530a754535287cf"
+    },
+    {
+      "path": "browser-c-monitored.processes.json",
+      "bytes": 3161,
+      "sha256": "55fad825b28c9153e6f0057c18d63ece2c7cc5ac40cd2299b432599953554491"
+    },
+    {
+      "path": "browser-c-report.json",
+      "bytes": 662775,
+      "sha256": "c7d92900b9e8bd63081d10ca68f98a7702d1be986fb1d390325eb26e54ed401e"
+    },
+    {
+      "path": "browser-c-small-summary.json",
+      "bytes": 2624,
+      "sha256": "1c41d280f8d4ca89128dcc4bc3ccfd5b9ef0ddd173ed83d2f376c236b8b0e072"
+    },
+    {
+      "path": "browser-c.log",
+      "bytes": 3365,
+      "sha256": "5c4cb71a4935e138de293b1f3f217f8ea0b5d4cd0632b7c538e5e425c05a8c96"
+    },
+    {
+      "path": "browser-c.meta.json",
+      "bytes": 529,
+      "sha256": "7a0f6d18678b003141f04c51186a2deccd00669b3e81c81e0a00037fcec5a6e6"
+    },
+    {
+      "path": "browser-c.process.json",
+      "bytes": 146,
+      "sha256": "0227d959ce573e779450f84199ccdadc79586684dc1a22e1d707c8c4f01315fc"
+    },
+    {
+      "path": "browser-c.processes.json",
+      "bytes": 1919,
+      "sha256": "8296ca884dc75db4a92dc1ed8567d95a7f5e285162fcecde2f5352c56fcb54bd"
+    },
+    {
+      "path": "browser-temp-cleanup.json",
+      "bytes": 1912,
+      "sha256": "e8f216e276119a4ec7697bbd93c7aa61d9cc5e8a23f0d7ba36ee99c2d21a7224"
+    },
+    {
+      "path": "build-a.log",
+      "bytes": 1763,
+      "sha256": "7e172fcbde3db674677e47516f8d0e674bf6227384d23aec4b32b8b96d5d63e3"
+    },
+    {
+      "path": "build-a.meta.json",
+      "bytes": 473,
+      "sha256": "1ba3e991cdb54a375b05181ee832db2d02cce9bcad78935cf354670a4dabdf6f"
+    },
+    {
+      "path": "build-a.process.json",
+      "bytes": 105,
+      "sha256": "d19550143663de9919ebb144b22697313e42628efc8bc23d2a6be835e32379b5"
+    },
+    {
+      "path": "build-a.processes.json",
+      "bytes": 1148,
+      "sha256": "dc7ddf49487319bbf9c939d2b32714124144367235b2f4b1b5df7bfe7b2978b2"
+    },
+    {
+      "path": "build-b-validated.log",
+      "bytes": 1763,
+      "sha256": "89209675d2af3f1dfbad8325a0939bceb37a3384f1d33a521874738f24af02cf"
+    },
+    {
+      "path": "build-b-validated.meta.json",
+      "bytes": 473,
+      "sha256": "83860b0b7d13966f777a1ac2f3e88742763759ae763ad22a063b9eb3c115f636"
+    },
+    {
+      "path": "build-b-validated.process.json",
+      "bytes": 105,
+      "sha256": "5e07f0d4c25aa940566a38642a96605cc2906ee57db47cbbda2f70188248e993"
+    },
+    {
+      "path": "build-b-validated.processes.json",
+      "bytes": 1150,
+      "sha256": "04dc502170e1fb6b3a857d66549a3b7e90a5e82eb52d65593b1e7095fcff990f"
+    },
+    {
+      "path": "build-c.log",
+      "bytes": 1763,
+      "sha256": "2546d4489596cca1d9ddf4f23dfff70b403a15ae489c2a8f75b6f28bf40a5def"
+    },
+    {
+      "path": "build-c.meta.json",
+      "bytes": 472,
+      "sha256": "dfe4ea141a1912cee1e928f667bf35687a49881fef7477c9648d77d4766f16b4"
+    },
+    {
+      "path": "build-c.process.json",
+      "bytes": 105,
+      "sha256": "56a2e983cd70dc0c42ba218bc1ce3ef2b9cf1197c32e4aa301bdd2ab2fe82ca1"
+    },
+    {
+      "path": "build-c.processes.json",
+      "bytes": 1148,
+      "sha256": "7594d6cf403af80dcbf76b53eae9f425468700bfd2b0dc76e0a210c1d436a9e5"
+    },
+    {
+      "path": "build-fixture.log",
+      "bytes": 1763,
+      "sha256": "eee42b4bd39a34fc3de703488eff25adcb60396a84943a5931c08a8cfbcb2f56"
+    },
+    {
+      "path": "build-fixture.meta.json",
+      "bytes": 473,
+      "sha256": "b8e311ebcae60e6ad49b865b770db274a3b5852cbd0467097715076cf2bf75c1"
+    },
+    {
+      "path": "build-fixture.process.json",
+      "bytes": 105,
+      "sha256": "0708321565621d27c23290636b8bc0af160944967cfe8cf516411213ebc2d6c4"
+    },
+    {
+      "path": "build-fixture.processes.json",
+      "bytes": 1148,
+      "sha256": "a27ebce4021a7272fb7025b75fa998b8c1e86149d769d94c12988ce6af932818"
+    },
+    {
+      "path": "cleanup_frozen_armor.py",
+      "bytes": 3627,
+      "sha256": "11d8a8e6a130a2cc89410b04afc9c9af492601201ba9d036a82b137893b5746f"
+    },
+    {
+      "path": "cleanup_meteor.py",
+      "bytes": 3331,
+      "sha256": "766a5a2999c460afd7bfe56d47f4be6d945bb76c7441059a7ba5d8db3c6027e5"
+    },
+    {
+      "path": "contract-draft.md",
+      "bytes": 5294,
+      "sha256": "64bab1535dc753d78a8ed79f5e8def7ed437c737d455e65ecd12e177fdda1e27"
+    },
+    {
+      "path": "design-review-stage-a.json",
+      "bytes": 277,
+      "sha256": "cb400a4bbf57f4811d6e242da67f034f6580666161783625fe23875a085bc067"
+    },
+    {
+      "path": "engine-a-report.json",
+      "bytes": 438064,
+      "sha256": "974934e72d918c5029dfe5810a40be7b3ff3fd99abd115177ed3a24cb55bbb7a"
+    },
+    {
+      "path": "engine-a.log",
+      "bytes": 323,
+      "sha256": "724f679123235b4c06d72c62e07b894e1301b81c07e7e18a460a72e7f7a3dbe6"
+    },
+    {
+      "path": "engine-a.meta.json",
+      "bytes": 619,
+      "sha256": "023e6ef98250c2182f8215095aa5c2b803b5a0205dc3496dda954b753c238c81"
+    },
+    {
+      "path": "engine-a.process.json",
+      "bytes": 236,
+      "sha256": "d5cfb5ebfcbc66103989d1741d9bdf4ea1de48c25f11f54974214c8ea490a995"
+    },
+    {
+      "path": "engine-a.processes.json",
+      "bytes": 23907,
+      "sha256": "27e3db7f2c8d04667c1bc216a1576c784f84b0c084ab2411cafa1c7741b695cc"
+    },
+    {
+      "path": "engine-b-report.json",
+      "bytes": 456226,
+      "sha256": "ddf24d553f3105cfbb4d65bfbe025939e2bbca9b7fcde631a024899fe8b4fdb8"
+    },
+    {
+      "path": "engine-b-validated-report.json",
+      "bytes": 456250,
+      "sha256": "8d59ca471ab3c2f402d0ae5828dc1935535660403abb42db95e473e8de74c671"
+    },
+    {
+      "path": "engine-b-validated.log",
+      "bytes": 343,
+      "sha256": "eaa18abeb96465fc4107f4f83670480cfaa14b1caf5b52c0659fbcf53e74a420"
+    },
+    {
+      "path": "engine-b-validated.meta.json",
+      "bytes": 630,
+      "sha256": "208e0ad77b14ba23cb83a48aab4a5966b05fb0665485b7aac0ac468857a9a46a"
+    },
+    {
+      "path": "engine-b-validated.process.json",
+      "bytes": 246,
+      "sha256": "b62933f3ecae21a1959fdfe54bd7afb3481f99fa5fdbe18050bb24dc30f38198"
+    },
+    {
+      "path": "engine-b-validated.processes.json",
+      "bytes": 16068,
+      "sha256": "2514f273c331a3ad675212f5af81bef5af778e5220312b5bf3901272bbab09b2"
+    },
+    {
+      "path": "engine-b.log",
+      "bytes": 323,
+      "sha256": "5db6ac814d4a9f40e0f8d8ead58e57dd4170d87a8bd7b6f088e2451da1d4b289"
+    },
+    {
+      "path": "engine-b.meta.json",
+      "bytes": 620,
+      "sha256": "ba77a68aa1d0414e939c27fb6c8cd232de6c13627b0ab8a7aa19022e1953df77"
+    },
+    {
+      "path": "engine-b.process.json",
+      "bytes": 236,
+      "sha256": "95f336f0d81f21db735b9378340acbf404f106cc7b31ca6bf930cef60e8de881"
+    },
+    {
+      "path": "engine-b.processes.json",
+      "bytes": 13606,
+      "sha256": "21681ec8ccbede88b31a7ff370275dc06585d472cf8f1106983684f80c90464b"
+    },
+    {
+      "path": "engine-c-report.json",
+      "bytes": 456239,
+      "sha256": "a9dd12d001b0c39189dd89a27c62d89ab86a8d027762ef95b48c28ed0a5165e3"
+    },
+    {
+      "path": "engine-c.log",
+      "bytes": 323,
+      "sha256": "c69e400c76de0e3c2965fcfc8efaf143a544e66a2422642282bb6f7040b86da0"
+    },
+    {
+      "path": "engine-c.meta.json",
+      "bytes": 620,
+      "sha256": "ad3d3be5cf27362a62d5cdd0518a3d3917b9bcdb81d0971f4e8b8ae72146c040"
+    },
+    {
+      "path": "engine-c.process.json",
+      "bytes": 236,
+      "sha256": "972ffab755c2cbb45b2390ffe562624f6a9e39c7875add069d04633a5bc9fd3e"
+    },
+    {
+      "path": "engine-c.processes.json",
+      "bytes": 15618,
+      "sha256": "ea75be97546ae0aa69055265182800b95f83b0a3d9cfdf25d1e6a43c17178e14"
+    },
+    {
+      "path": "engine-fixture-report.json",
+      "bytes": 438071,
+      "sha256": "6be94de57c61dd07cde12738001b8850410f41e2d365b486fec4e0e05d0977db"
+    },
+    {
+      "path": "engine-fixture.log",
+      "bytes": 335,
+      "sha256": "0746256c69be1c18951e5b24770c57b0689bad9f189893a3e9a27425846b5eb3"
+    },
+    {
+      "path": "engine-fixture.meta.json",
+      "bytes": 625,
+      "sha256": "fa5454b0884b83fa413f8945105e23ffd788fc233d0598f1e7d1a642949702ee"
+    },
+    {
+      "path": "engine-fixture.process.json",
+      "bytes": 242,
+      "sha256": "282405a1147c905598794d7228210280d50bce0ca0c8a3c6db4362e5f974627a"
+    },
+    {
+      "path": "engine-fixture.processes.json",
+      "bytes": 24690,
+      "sha256": "aa7a58d9c9d41fe6941b21d86a2a2568b5a5bbf460dee0e10fcaf3234fd0c1e7"
+    },
+    {
+      "path": "final-owned-output.json",
+      "bytes": 156830,
+      "sha256": "9da251d5a67431a25c0b486414125625b3079e8b84f2ba9424dc9405c4dda23b"
+    },
+    {
+      "path": "final-process-audit.json",
+      "bytes": 368446,
+      "sha256": "ccde1a9e703174dbd130fd5c4ee509ac0fafdb3d6266c026af6241db703c66ef"
+    },
+    {
+      "path": "final-product-source-fingerprints.json",
+      "bytes": 61009,
+      "sha256": "449849cd5cc5c0287eebee3a17e3499589ff2a92c52598e28d41b15da01989b5"
+    },
+    {
+      "path": "fixture-dist-cleanup.json",
+      "bytes": 213534,
+      "sha256": "80c016174fd0c1b1ac6c4f45dbb138e7323dc6af869fc351b62da7c122dc7483"
+    },
+    {
+      "path": "fixture-final-reviews.json",
+      "bytes": 575,
+      "sha256": "8d7b83fa0ad0da9b910535b5ce914ebd5708ccde1104c4f66d11a0e2d4948f4c"
+    },
+    {
+      "path": "fixture-freeze-review.json",
+      "bytes": 490,
+      "sha256": "86b092f7f45c54938d925cea84c3d4a3ef9585eb3bdc8cf1b708d862ef2dd886"
+    },
+    {
+      "path": "fixture-proposed-combat.test.ts",
+      "bytes": 20343,
+      "sha256": "d8b8557aa4cc5935b9d8434815d71c57799735a8eb9d650032f9072c1d53fc99"
+    },
+    {
+      "path": "fixture-proposed-warmth.test.ts",
+      "bytes": 20971,
+      "sha256": "8944bd2de6eefd45245d7af32457a76fee2d1a73d1cb1ba488268e37ca9c4e48"
+    },
+    {
+      "path": "focused-a-green-report.json",
+      "bytes": 1000,
+      "sha256": "45394904aca69a81b9d660bb1ee598543884eb36f835700742820128e14194fa"
+    },
+    {
+      "path": "focused-a-green-retry-report.json",
+      "bytes": 147262,
+      "sha256": "daa0ff423164a578bbfe209c808116eafee484be7cf95259161d92edbc2f1049"
+    },
+    {
+      "path": "focused-a-green-retry.log",
+      "bytes": 138,
+      "sha256": "9a64dfe00b438c27c0bae88028ee95912780e5efe53efb069ddc96be1ec6dfae"
+    },
+    {
+      "path": "focused-a-green-retry.meta.json",
+      "bytes": 741,
+      "sha256": "cea2825c8373005181cb441cf6d1a65972da73578c781cb50fc0f7dec7cd9bbc"
+    },
+    {
+      "path": "focused-a-green-retry.process.json",
+      "bytes": 356,
+      "sha256": "c1385c3ee8ce52ceaa76bc2a4451241036cf14f60234824fbc365b6057b30f7f"
+    },
+    {
+      "path": "focused-a-green-retry.processes.json",
+      "bytes": 4071,
+      "sha256": "103fa0aef5cfddb0e6bc9f43b1f8e49a197fca24dc2864a23b2e4333a16c6e2f"
+    },
+    {
+      "path": "focused-a-green.log",
+      "bytes": 132,
+      "sha256": "2fe88cf31f571ac97b5aa1892a89760533a66dd3834de73642315ece36a45f90"
+    },
+    {
+      "path": "focused-a-green.meta.json",
+      "bytes": 739,
+      "sha256": "6ee57abb51a7b583db0fd452052f194c4e5689ef174c91498c1888d9b238f6c6"
+    },
+    {
+      "path": "focused-a-green.process.json",
+      "bytes": 356,
+      "sha256": "6b2ff165c163609e9ad0397a9a25e428f3943011d7309cb4997ceb2659dd780c"
+    },
+    {
+      "path": "focused-a-green.processes.json",
+      "bytes": 5615,
+      "sha256": "abea85ba9a60aba0bae49d6190fe38d05eec7336ad67cb6ff87d103c9bfe0350"
+    },
+    {
+      "path": "focused-a-missing-module-report.json",
+      "bytes": 688,
+      "sha256": "1f0e610977244063142199989168b7da813205c67bde45d77d9806be1e9fdb46"
+    },
+    {
+      "path": "focused-a-missing-module.log",
+      "bytes": 141,
+      "sha256": "89b5075bb5fe85ea0d9bfffac132b20d7180bfcce2842a90f5430e27477e24d7"
+    },
+    {
+      "path": "focused-a-missing-module.meta.json",
+      "bytes": 668,
+      "sha256": "8c41a464c51c3fb1aac7c6468cf5be619eba13ac5245fc5dbff2240f4c92bc17"
+    },
+    {
+      "path": "focused-a-missing-module.process.json",
+      "bytes": 294,
+      "sha256": "81803f774f14073d4e4f3e02ead3136193556be0a5f3460997b98510178b76a1"
+    },
+    {
+      "path": "focused-a-missing-module.processes.json",
+      "bytes": 3299,
+      "sha256": "03b1fad7424153425efae1c1b9b4c371b12016b338ba2541a9d574e712a53832"
+    },
+    {
+      "path": "focused-a-schema-red-report.json",
+      "bytes": 15509,
+      "sha256": "39b455fbcb4aac8736d078a8eb481a35c06d2aef4e9dca55f271c53fbc7d8bf6"
+    },
+    {
+      "path": "focused-a-schema-red.log",
+      "bytes": 137,
+      "sha256": "8d71773d590aa75868020a4c37f7ac90bd36ddde6462a2c50281926ee58c8050"
+    },
+    {
+      "path": "focused-a-schema-red.meta.json",
+      "bytes": 666,
+      "sha256": "6d2e7e4fa48bf121f1bab8fe92d4c188a5d165c0e71d01d7233b82fd2837f761"
+    },
+    {
+      "path": "focused-a-schema-red.process.json",
+      "bytes": 290,
+      "sha256": "637aa56e127310731601932835e2f54dd831bb3ebd58a223b67dbcb3a9b21005"
+    },
+    {
+      "path": "focused-a-schema-red.processes.json",
+      "bytes": 3458,
+      "sha256": "aa47b2df7c05fe230b7e3c282a4f45d3bf76ee0e376f76609364f2fc9b74c88e"
+    },
+    {
+      "path": "focused-b-corrected-green-report.json",
+      "bytes": 81725,
+      "sha256": "47b37ed6b51527c5aac19d2143e484a3a7830e6a4f151a32236a22c6c559249f"
+    },
+    {
+      "path": "focused-b-corrected-green.log",
+      "bytes": 142,
+      "sha256": "ac1c0b32f3febdd674d7bed6c9b99f8008ef7bc0941c40d0ed7fda68e496d920"
+    },
+    {
+      "path": "focused-b-corrected-green.meta.json",
+      "bytes": 841,
+      "sha256": "4a7ad564fc89db00a271ef539ac53befda0ef0eb1013ec014251c5f5f40ad538"
+    },
+    {
+      "path": "focused-b-corrected-green.process.json",
+      "bytes": 447,
+      "sha256": "3da37cfabe8f605cb114ea533d20d379617cb9f73925dbf7559427fea9bde8ca"
+    },
+    {
+      "path": "focused-b-corrected-green.processes.json",
+      "bytes": 2690,
+      "sha256": "feec33f2850ad9a3f781c3b25e8a5a5b1a6be6633259ccd96fbe3216a3f2f73b"
+    },
+    {
+      "path": "focused-b-corrected-red-report.json",
+      "bytes": 45026,
+      "sha256": "449271042551837c718382f5db83f85721d7d2c39f8d591e13245b78b4270451"
+    },
+    {
+      "path": "focused-b-corrected-red.log",
+      "bytes": 140,
+      "sha256": "4d6cb8f89a97bbbf7d743eb5e3a15fae328a935f99d16f4912e22d60dba12bbe"
+    },
+    {
+      "path": "focused-b-corrected-red.meta.json",
+      "bytes": 713,
+      "sha256": "c0eb4780fb762d7027a4d3e9d1638d1e1a40966c519fe0535479d4cea75c1148"
+    },
+    {
+      "path": "focused-b-corrected-red.process.json",
+      "bytes": 331,
+      "sha256": "6c73fd413f26f905a78373a4fab8f24a058e2dc0060a5eb18e7744073ff45a34"
+    },
+    {
+      "path": "focused-b-corrected-red.processes.json",
+      "bytes": 3306,
+      "sha256": "d02f858b129d41313888b9ab019652d3059c8dccec55bfcae82e188f2b0f3766"
+    },
+    {
+      "path": "focused-b-green-report.json",
+      "bytes": 81828,
+      "sha256": "463709c065d21318a689c34f9de8b9b094f58805d5f4dec08d48e8788455d27e"
+    },
+    {
+      "path": "focused-b-green.log",
+      "bytes": 132,
+      "sha256": "03f7b6e8964df9f818fa49a890623d938800fb76236ba04185d840a42820b1d8"
+    },
+    {
+      "path": "focused-b-green.meta.json",
+      "bytes": 831,
+      "sha256": "3a429fba979f682e795411fadd82019377f033ce42916cec6582a5b5ad4a70f6"
+    },
+    {
+      "path": "focused-b-green.process.json",
+      "bytes": 437,
+      "sha256": "edbbbcf2a85eb7cf1cd0c11646836cbdf10b9c962aca473cb4b9951c6d43df06"
+    },
+    {
+      "path": "focused-b-green.processes.json",
+      "bytes": 5616,
+      "sha256": "79b564a9f1a8eeec11416a1ef9f5a8b4696f65541f56c207fe3d599659b5feac"
+    },
+    {
+      "path": "focused-b-parity-before-report.json",
+      "bytes": 17440,
+      "sha256": "fec1898e8e47dd61a9f7b7aa432f08376df818a3ba6cfd8f375fece1f1ade984"
+    },
+    {
+      "path": "focused-b-parity-before.log",
+      "bytes": 140,
+      "sha256": "e42e64391a42320074588fecaa723de3a209e77b5818e34c85895d9e33e03e76"
+    },
+    {
+      "path": "focused-b-parity-before.meta.json",
+      "bytes": 763,
+      "sha256": "8e5f25b2daf619bd975504c6dcc744381be524e6d9223f868cd8607d38086590"
+    },
+    {
+      "path": "focused-b-parity-before.process.json",
+      "bytes": 381,
+      "sha256": "2cf67cdf04f5bf34febcf616a02f2b9db1d2b969209445a57817843e17506f9c"
+    },
+    {
+      "path": "focused-b-parity-before.processes.json",
+      "bytes": 3301,
+      "sha256": "734381e9c4063bf800aedc19f47c1474252ab034b1e1bb100019a63a9a8378f4"
+    },
+    {
+      "path": "focused-b-red-report.json",
+      "bytes": 45045,
+      "sha256": "794e5b51adf58ff454c554f3493b8154dcd6767f28d8160b4e9a6d5f0a6d115a"
+    },
+    {
+      "path": "focused-b-red.log",
+      "bytes": 2657,
+      "sha256": "ec256b2d65b4677f5ac6e460ef0162bf93fa5d9ddf2aef53316bb4740d7cd54a"
+    },
+    {
+      "path": "focused-b-red.meta.json",
+      "bytes": 704,
+      "sha256": "9451ff49bba39a5baabfa87eb0b905819362a9a876ec5f2d23d5447ebfbe49e1"
+    },
+    {
+      "path": "focused-b-red.process.json",
+      "bytes": 321,
+      "sha256": "e3b8f2f2a5ad61a78c4ca3c98dda701c6581e3d3ff1e49db490f513035af8bd9"
+    },
+    {
+      "path": "focused-b-red.processes.json",
+      "bytes": 4689,
+      "sha256": "7315f76b99ba64f073ccdf9aad28dcdae5b47cb8f3c28c27707372d1ab79adcc"
+    },
+    {
+      "path": "focused-b-rng-isolated-report.json",
+      "bytes": 17547,
+      "sha256": "cdac1883c2e8e4fbfa44468584da26d472b5dad7ffc1674b7870ea0c44da3e2b"
+    },
+    {
+      "path": "focused-b-rng-isolated.log",
+      "bytes": 139,
+      "sha256": "951a20769f0b99583811c118ec13cef114976155cd4bdd9e8baede55791c3fb9"
+    },
+    {
+      "path": "focused-b-rng-isolated.meta.json",
+      "bytes": 770,
+      "sha256": "85f3794b76cba2d6aa580281197f584e3c961a017b79a3487bdc07259dd29b80"
+    },
+    {
+      "path": "focused-b-rng-isolated.process.json",
+      "bytes": 388,
+      "sha256": "5c4a7f499b89f18b1dfbc8595ee4d89ef7642813a91be01c0c9a3bf42651e591"
+    },
+    {
+      "path": "focused-b-rng-isolated.processes.json",
+      "bytes": 3610,
+      "sha256": "e9cce997389d269a0820c55de4b134262dd3dd9c53cd333fb1d674a17ffb9e7b"
+    },
+    {
+      "path": "focused-b-validated-report.json",
+      "bytes": 81723,
+      "sha256": "d1f030db22a3e08452dc10ae8fd4a24e9371c705153801fc130d283f5e8a1684"
+    },
+    {
+      "path": "focused-b-validated.log",
+      "bytes": 136,
+      "sha256": "067ddc4aa9d645cead4aa63d4ab491c0d51e20abc78444daab19c95e4ad970fd"
+    },
+    {
+      "path": "focused-b-validated.meta.json",
+      "bytes": 835,
+      "sha256": "942c33027fd7032ac1236e1991b79c9e90f71ef72412b4d7646ed3a2f22dd3d4"
+    },
+    {
+      "path": "focused-b-validated.process.json",
+      "bytes": 441,
+      "sha256": "676e71fa73fbfad4d5f232a824fd6fd521cad42496c12c9cd1f248809703a827"
+    },
+    {
+      "path": "focused-b-validated.processes.json",
+      "bytes": 4993,
+      "sha256": "ab7fe01d78bc48300fa7b26e08afca8032f76ef16c00c6969e73ca1aaf6faa0a"
+    },
+    {
+      "path": "focused-c-green-report.json",
+      "bytes": 30089,
+      "sha256": "9e2ff0d32e21ef54f725608762bb1423a810b2028507901ed0beb6b4e44e4e31"
+    },
+    {
+      "path": "focused-c-green.log",
+      "bytes": 132,
+      "sha256": "3e79a982d614adecd5f3b6a2c1fa1c68cc261301837644ced7b10e85c6ca9f23"
+    },
+    {
+      "path": "focused-c-green.meta.json",
+      "bytes": 813,
+      "sha256": "49e9a80d448f94695a1878635d2a64ba82cd3bcd47ab4c5d9556916a80cceadc"
+    },
+    {
+      "path": "focused-c-green.process.json",
+      "bytes": 423,
+      "sha256": "77de21fb24ce2ea7be98ead647715c1f1b931847ee509ec1b3d1864ed7daf4f7"
+    },
+    {
+      "path": "focused-c-green.processes.json",
+      "bytes": 5610,
+      "sha256": "9fc8fd5ca237c8e71147016f9d8ed8777c858e0c2ea853e8b86a86d62a9cf62b"
+    },
+    {
+      "path": "focused-c-red-report.json",
+      "bytes": 9810,
+      "sha256": "f3693bfa54dfb28919049a6c55aa10b51bdedaf009f6d12b3cebeddd87de2781"
+    },
+    {
+      "path": "focused-c-red.log",
+      "bytes": 130,
+      "sha256": "f0fa75373a428ad52626c8e22c257b92ccc25d116f9e041ca5f6037c46c1b1cf"
+    },
+    {
+      "path": "focused-c-red.meta.json",
+      "bytes": 667,
+      "sha256": "1843c70070e59f1d7901bf07403c732dfd11a588abc3858aac46d702d78190b0"
+    },
+    {
+      "path": "focused-c-red.process.json",
+      "bytes": 290,
+      "sha256": "2ea3be6e17a923fc6e2162341e52a6035dbf28f6c8e36f50f78f842a7d7932dd"
+    },
+    {
+      "path": "focused-c-red.processes.json",
+      "bytes": 4384,
+      "sha256": "d0d970a46c3ff5cf4d39120c47af75f7a79f1668792edd6ad0d395efc32e75bb"
+    },
+    {
+      "path": "focused-fixture-report.json",
+      "bytes": 20658,
+      "sha256": "0f34b1d8f00816529a5c5bb57f671e38dddca4fd8e142dca2a85137ba4011b88"
+    },
+    {
+      "path": "focused-fixture.log",
+      "bytes": 132,
+      "sha256": "175f12d44741b543f061ee9b6019a945da3358ee3bfb68ba20aa643880f55b6d"
+    },
+    {
+      "path": "focused-fixture.meta.json",
+      "bytes": 696,
+      "sha256": "e41e1c04f9022dc05432e7659e9fe9fdefafb9f0d2224780136b96a5b675e4b7"
+    },
+    {
+      "path": "focused-fixture.process.json",
+      "bytes": 315,
+      "sha256": "0eadafa810b689812226ad441d5d518b877a31db16eb45000ea089b39d62e577"
+    },
+    {
+      "path": "focused-fixture.processes.json",
+      "bytes": 4538,
+      "sha256": "a63d392ea535229f098e00afcba2c3dfb33ecb35750ba455a6c4c357574508d4"
+    },
+    {
+      "path": "initial-source-fingerprints.json",
+      "bytes": 77850,
+      "sha256": "99ef83642ece87e17ed59d8cd6e43a94deb84b336a9cdf72446c1b0677726523"
+    },
+    {
+      "path": "lint-a.log",
+      "bytes": 196,
+      "sha256": "54f2253a9318af2f0c7b3552533a09dda996c97e2bb8f6879846233c4331bacf"
+    },
+    {
+      "path": "lint-a.meta.json",
+      "bytes": 452,
+      "sha256": "23cbc30ab7f8405ba3827c54b47450476b6250abe51a014e29353357f15c9678"
+    },
+    {
+      "path": "lint-a.process.json",
+      "bytes": 86,
+      "sha256": "17d3fa2b98d2ae3cda95895f3c5b4c5a38e17e17b967a38392d32ea742ac4e98"
+    },
+    {
+      "path": "lint-a.processes.json",
+      "bytes": 688,
+      "sha256": "b3335e1a3d37e73248f01e9e4eb24d9c25eea7484ab33356e1fd5bafce1b768d"
+    },
+    {
+      "path": "lint-b-final.log",
+      "bytes": 780,
+      "sha256": "cbe4a00a284d46ead96ae1a125faa384ea1c906cd7b6920221eb00ee4f86632c"
+    },
+    {
+      "path": "lint-b-final.meta.json",
+      "bytes": 453,
+      "sha256": "52a35175634f05b435f8fcedb3fb430ab65c7085ccd1d49b2e6903c7d567780d"
+    },
+    {
+      "path": "lint-b-final.process.json",
+      "bytes": 86,
+      "sha256": "158e2035f3b6ef026c74a6bf81842ae0b7167135110ec460315a91613edb899b"
+    },
+    {
+      "path": "lint-b-final.processes.json",
+      "bytes": 534,
+      "sha256": "0098e46a9a0b1232c9d91d7097ad5eeb06a3077150fd2c9156f9fe278ba99215"
+    },
+    {
+      "path": "lint-b-validated.log",
+      "bytes": 196,
+      "sha256": "24352d1e7dc02f04becc2a46bc1469acf7be5ac1c673aa4a13c565cc82ae100b"
+    },
+    {
+      "path": "lint-b-validated.meta.json",
+      "bytes": 453,
+      "sha256": "87d01242d3b87e48e73dc78a8307809a93a1cbf898ab77f48a843be3759b24f5"
+    },
+    {
+      "path": "lint-b-validated.process.json",
+      "bytes": 86,
+      "sha256": "4446156e392f7a86ea4beea3605e1c624489b5a2fa6c7d8540c4647dd0550f1d"
+    },
+    {
+      "path": "lint-b-validated.processes.json",
+      "bytes": 534,
+      "sha256": "c42e06b3fa6d4c93d7fd6f86604bdfe9d540f3c6c4e6fc452220ca99eb035a37"
+    },
+    {
+      "path": "lint-browser-c.log",
+      "bytes": 196,
+      "sha256": "24352d1e7dc02f04becc2a46bc1469acf7be5ac1c673aa4a13c565cc82ae100b"
+    },
+    {
+      "path": "lint-browser-c.meta.json",
+      "bytes": 453,
+      "sha256": "8f4fc3c8ea55330564df5347de74e98365b961ab93b59762b36b5d2e2c38dfcc"
+    },
+    {
+      "path": "lint-browser-c.process.json",
+      "bytes": 86,
+      "sha256": "6458ff03d6b8e27d3539c53be08a57f46f62b387c457417de27e5a385b0f1fb6"
+    },
+    {
+      "path": "lint-browser-c.processes.json",
+      "bytes": 687,
+      "sha256": "547060966be9352f4d89480818d3faebb45eab6c428c94dc736a043ef6c89822"
+    },
+    {
+      "path": "lint-c-browser-final.log",
+      "bytes": 196,
+      "sha256": "24352d1e7dc02f04becc2a46bc1469acf7be5ac1c673aa4a13c565cc82ae100b"
+    },
+    {
+      "path": "lint-c-browser-final.meta.json",
+      "bytes": 458,
+      "sha256": "128c195c43db977a587c8ec6b97fd7a6b1e534c703caaecb184e70aad9cb9d14"
+    },
+    {
+      "path": "lint-c-browser-final.process.json",
+      "bytes": 86,
+      "sha256": "b5ea8c60b90191a4b8409e5764f61e1ef9beb2d87534c1223a464fae8b690718"
+    },
+    {
+      "path": "lint-c-browser-final.processes.json",
+      "bytes": 534,
+      "sha256": "d2748063e0d8b3b39dec2376d8271a021253e841ec39ec2eb3bf7a97ecc99b8f"
+    },
+    {
+      "path": "lint-c.log",
+      "bytes": 196,
+      "sha256": "24352d1e7dc02f04becc2a46bc1469acf7be5ac1c673aa4a13c565cc82ae100b"
+    },
+    {
+      "path": "lint-c.meta.json",
+      "bytes": 453,
+      "sha256": "0eaed4dc7fde92413caf2964d345a71469e20cae267bdbcd160a375aae124b9d"
+    },
+    {
+      "path": "lint-c.process.json",
+      "bytes": 86,
+      "sha256": "3ca884087a91da63891ccfe546f4d204cfa4c3636b1e720b76294597b0b68d49"
+    },
+    {
+      "path": "lint-c.processes.json",
+      "bytes": 686,
+      "sha256": "474318d54e5f23d3961d4535a95d1ba42afa2d78530b25f5ebec3d0e9108da95"
+    },
+    {
+      "path": "lint-fixture.log",
+      "bytes": 196,
+      "sha256": "54f2253a9318af2f0c7b3552533a09dda996c97e2bb8f6879846233c4331bacf"
+    },
+    {
+      "path": "lint-fixture.meta.json",
+      "bytes": 452,
+      "sha256": "645eb259e4816d28e006914db776c13ff4d3e9419c60ab694ecb92cf51a3bd6b"
+    },
+    {
+      "path": "lint-fixture.process.json",
+      "bytes": 86,
+      "sha256": "9015f421f7aec526089ab308971bf35d680c166a47d6719f01bd7a0f6f550ea2"
+    },
+    {
+      "path": "lint-fixture.processes.json",
+      "bytes": 688,
+      "sha256": "bfed8a267b5048fc81680cc5e752271331d6aae7e86da0c61d5fe2ff9d836e28"
+    },
+    {
+      "path": "meteor-cleanup.json",
+      "bytes": 192870,
+      "sha256": "c5bfb80e51efae679a04e3e6d0154f1684fa4b680b77a07fb036dd92da9e074c"
+    },
+    {
+      "path": "next-task-ownership.json",
+      "bytes": 389,
+      "sha256": "c3598eff3b8a4b5eff2391f481b41174f167bb6e2d407421e84029a9c208506c"
+    },
+    {
+      "path": "ownership-current.json",
+      "bytes": 563,
+      "sha256": "a72ca3a2d2782548921ff61c870dbcde7304db75dfca518436fefeae9c0b9bf2"
+    },
+    {
+      "path": "ownership.json",
+      "bytes": 484,
+      "sha256": "d2e1cbcdc6fc0f09e37861bff834aa4ac482e7670c557ab5f917cef1cac37dc1"
+    },
+    {
+      "path": "plan-and-test-reviews.json",
+      "bytes": 682,
+      "sha256": "fa96c227e5f809b92bbf89ca7182e664a02a735bf99e9d7a86bc94cd9552f572"
+    },
+    {
+      "path": "security-review-revised.json",
+      "bytes": 441,
+      "sha256": "6dce80fd02bb9d7545c1285f2b478bc638e433a8620a454d89099d9d11493b5a"
+    },
+    {
+      "path": "security-review.json",
+      "bytes": 1048,
+      "sha256": "d02db7dd03796e1dfc9ef416b8b8465e7404205416420f381ed957b7856c3ff0"
+    },
+    {
+      "path": "stage-a-complete-frozen.test.ts",
+      "bytes": 7172,
+      "sha256": "593b5cf38b602d43337bae789a437f06f25bfadfbe4ad0a057fc070631ee40a8"
+    },
+    {
+      "path": "stage-a-definition-append.test.ts",
+      "bytes": 4374,
+      "sha256": "03499459e6fe59c7f2ec36a22e3cae5644e63dbe14555f17eb65ffb6b0ff9cd4"
+    },
+    {
+      "path": "stage-a-dist-cleanup.json",
+      "bytes": 213500,
+      "sha256": "623294e42036c2e5dd0de7a95b9e9afdcdb8b8a4e11daff916b91e726f6776ed"
+    },
+    {
+      "path": "stage-a-final-docs__plans__decisions__D05-frozen-armor-v1.md",
+      "bytes": 5160,
+      "sha256": "c2e77b7d0fd62a69e7e3a34c5b3e1b238b7b269773d9134c18d0504c04311c7c"
+    },
+    {
+      "path": "stage-a-final-source-fingerprints.json",
+      "bytes": 546,
+      "sha256": "3c457bf0e52a2358087b9e618f9c67b8852d6cccb34506fa40755fa05836022d"
+    },
+    {
+      "path": "stage-a-final-src__data__schema__skill.schema.json",
+      "bytes": 15266,
+      "sha256": "ab2eed88b69580579c123399242b79bcc7f5feb571766d7f40aa1850cd440c53"
+    },
+    {
+      "path": "stage-a-final-src__engine__combat__types.ts",
+      "bytes": 7754,
+      "sha256": "e2e19d00fbf8cbfea8cafef2285deebb29bb3ccc62c86509e9776b3062b81d62"
+    },
+    {
+      "path": "stage-a-final-src__engine__skills__frozen-armor.test.ts",
+      "bytes": 7172,
+      "sha256": "593b5cf38b602d43337bae789a437f06f25bfadfbe4ad0a057fc070631ee40a8"
+    },
+    {
+      "path": "stage-a-final-src__engine__skills__frozen-armor.ts",
+      "bytes": 2085,
+      "sha256": "088822c394f66f4716946563814dc60dff0fe85aa08bd3426b290ce3637ed137"
+    },
+    {
+      "path": "stage-a-schema-only.test.ts",
+      "bytes": 2798,
+      "sha256": "1ab1516477e9db1a92d727a97d330b3f10f3f04e234ee3860a78a944c31614fb"
+    },
+    {
+      "path": "stage-a-schema-original.test.ts",
+      "bytes": 2676,
+      "sha256": "7f84b32af7004285a5e411ff6691fd11389b15e2847020a99e7bfb22701ab893"
+    },
+    {
+      "path": "stage-a-source-reviews.json",
+      "bytes": 1084,
+      "sha256": "5f531f9027321080705e8948f0d95595d1b97e6a727ed7da85a7183eead4c3b0"
+    },
+    {
+      "path": "stage-b-before-fingerprints.json",
+      "bytes": 548,
+      "sha256": "16e963d79fc7c18ab9410b384f1fb8926c7c9762cfbeba76e99621dbb73da92d"
+    },
+    {
+      "path": "stage-b-before-src__engine__combat__combat.ts",
+      "bytes": 45322,
+      "sha256": "fd4d7c81a5429104b6f4bca5b7ff41a271a59a5435a64b7920653405cac44e9d"
+    },
+    {
+      "path": "stage-b-before-src__engine__skills__dataCatalog.ts",
+      "bytes": 8679,
+      "sha256": "90e0b188aea63c802f7dac8c4a36f7eefbdf98712d9c48745249f89547518ea4"
+    },
+    {
+      "path": "stage-b-before-src__engine__skills__effects.ts",
+      "bytes": 5049,
+      "sha256": "20821a9329f138f821fae3fb9c89c96a5d42a74853ce037e4bcce4a1687d15a3"
+    },
+    {
+      "path": "stage-b-before-src__engine__skills__registry.test.ts",
+      "bytes": 27757,
+      "sha256": "b5f47275e6eab505a5d5b457ae2e474c6e90e6971e9910d00432300fb46a5e34"
+    },
+    {
+      "path": "stage-b-combat-corrected-frozen.test.ts",
+      "bytes": 22533,
+      "sha256": "6f7059aee013678d96a1c56095965b8d5cbc540fede398591f9228b485018106"
+    },
+    {
+      "path": "stage-b-combat-draft.test.ts",
+      "bytes": 22423,
+      "sha256": "f20b431cee68e923227f8436119b3bf2def4cf625d023af1e3f3b0e24cfef0cf"
+    },
+    {
+      "path": "stage-b-combat-frozen-final.test.ts",
+      "bytes": 22383,
+      "sha256": "32de49c75f60e3d0c4788230c33b22aa1342638b0130a56d84060ab3f0e4d18c"
+    },
+    {
+      "path": "stage-b-combat-frozen-red.test.ts",
+      "bytes": 22423,
+      "sha256": "f20b431cee68e923227f8436119b3bf2def4cf625d023af1e3f3b0e24cfef0cf"
+    },
+    {
+      "path": "stage-b-combat-lint-candidate.test.ts",
+      "bytes": 22713,
+      "sha256": "84b1b5901452a502ef0dd5e1a53bcbf59cac09c5edb499bb1582259e8f428675"
+    },
+    {
+      "path": "stage-b-combat-original-draft.test.ts",
+      "bytes": 18937,
+      "sha256": "f998f436fc02a514fd1791859d5671a22db17ff90ec62c950f18186804377914"
+    },
+    {
+      "path": "stage-b-combat-parity-candidate.test.ts",
+      "bytes": 22383,
+      "sha256": "32de49c75f60e3d0c4788230c33b22aa1342638b0130a56d84060ab3f0e4d18c"
+    },
+    {
+      "path": "stage-b-combat-review-1.test.ts",
+      "bytes": 19635,
+      "sha256": "feb12035e94a52db892d03c15b30d7efaad9a2cc97da958ea984dcae9657b5cf"
+    },
+    {
+      "path": "stage-b-combat-review-2.test.ts",
+      "bytes": 21379,
+      "sha256": "89afe3bcbe58e7645d386fb5e6a7ce9693930007ca6b042f05ae9bff1f7329c4"
+    },
+    {
+      "path": "stage-b-combat-type-candidate.test.ts",
+      "bytes": 22614,
+      "sha256": "0962274af618e9297092cc16e6a222c994cda40ac07920193aa6b49f1e956932"
+    },
+    {
+      "path": "stage-b-current-source-fingerprints.json",
+      "bytes": 790,
+      "sha256": "d6fb148c42863fc35339c458f00ee3ea4b8f3371ba872e225a08fb8f6954144a"
+    },
+    {
+      "path": "stage-b-current-src__engine__combat__combat.ts",
+      "bytes": 47626,
+      "sha256": "ee1ece81f5e486e3e335bc875eab1afc86deab2f22fbfeb9c88258ef046c6f95"
+    },
+    {
+      "path": "stage-b-current-src__engine__combat__frozen-armor.test.ts",
+      "bytes": 22614,
+      "sha256": "0962274af618e9297092cc16e6a222c994cda40ac07920193aa6b49f1e956932"
+    },
+    {
+      "path": "stage-b-current-src__engine__skills__dataCatalog.ts",
+      "bytes": 8907,
+      "sha256": "6bd86af9cd6393f688e48439a3a8279329818ae23970bbf8807ec8b947fa0322"
+    },
+    {
+      "path": "stage-b-current-src__engine__skills__effects.ts",
+      "bytes": 5170,
+      "sha256": "20d5fc3f28e038586ef1f5ed9bd8de413407a2868fcd53046a07576478f6d5f3"
+    },
+    {
+      "path": "stage-b-current-src__engine__skills__registry.test.ts",
+      "bytes": 28856,
+      "sha256": "d97d66df2cfbcc388a9c6a3c70e31e249ae3a9e020f5389e3f8167083872ca06"
+    },
+    {
+      "path": "stage-b-dist-cleanup.json",
+      "bytes": 213512,
+      "sha256": "0d51efc5d0cab103ef95d9370c54b21cad5d35b07f07ba68d8591a0ede717ba6"
+    },
+    {
+      "path": "stage-b-final-process-audit.json",
+      "bytes": 780,
+      "sha256": "35e80bba8fa9b177283e7af86484458163fdf48c97002ff7eb9a9e50abe71315"
+    },
+    {
+      "path": "stage-b-final-reviews.json",
+      "bytes": 304,
+      "sha256": "2699f42ba994def4b4c52a056a053db5e150c8657107370a34f282d2ee62e428"
+    },
+    {
+      "path": "stage-b-final-source-fingerprints.json",
+      "bytes": 790,
+      "sha256": "cb47377779bc76d59f6e42979f775a9d175be771fb58206369705e1b0e47c20d"
+    },
+    {
+      "path": "stage-b-final-src__engine__combat__combat.ts",
+      "bytes": 47626,
+      "sha256": "ee1ece81f5e486e3e335bc875eab1afc86deab2f22fbfeb9c88258ef046c6f95"
+    },
+    {
+      "path": "stage-b-final-src__engine__combat__frozen-armor.test.ts",
+      "bytes": 22533,
+      "sha256": "6f7059aee013678d96a1c56095965b8d5cbc540fede398591f9228b485018106"
+    },
+    {
+      "path": "stage-b-final-src__engine__skills__dataCatalog.ts",
+      "bytes": 8907,
+      "sha256": "6bd86af9cd6393f688e48439a3a8279329818ae23970bbf8807ec8b947fa0322"
+    },
+    {
+      "path": "stage-b-final-src__engine__skills__effects.ts",
+      "bytes": 5170,
+      "sha256": "20d5fc3f28e038586ef1f5ed9bd8de413407a2868fcd53046a07576478f6d5f3"
+    },
+    {
+      "path": "stage-b-final-src__engine__skills__registry.test.ts",
+      "bytes": 28836,
+      "sha256": "f26fa48d8c8b99bd79b067c0122f44718bec5a12ec1c7a70ef63e386d27a90cb"
+    },
+    {
+      "path": "stage-b-lint-diagnosis.json",
+      "bytes": 526,
+      "sha256": "0b893e728ff009517c281c2050960ee9453e53be8877e423b2a81057c7ac3b63"
+    },
+    {
+      "path": "stage-b-parity-freeze-review.json",
+      "bytes": 423,
+      "sha256": "73157f92097b18be047c4a02a756e8ad471b6e9918fae806d6c6263e35bbf8c7"
+    },
+    {
+      "path": "stage-b-patched-runtime-fingerprints.json",
+      "bytes": 408,
+      "sha256": "0030214657fbfd58edf8247572bc5fb9374bac871810ca4f149a9d86fcfa6f5a"
+    },
+    {
+      "path": "stage-b-patched-src__engine__combat__combat.ts",
+      "bytes": 47626,
+      "sha256": "ee1ece81f5e486e3e335bc875eab1afc86deab2f22fbfeb9c88258ef046c6f95"
+    },
+    {
+      "path": "stage-b-patched-src__engine__skills__dataCatalog.ts",
+      "bytes": 8907,
+      "sha256": "6bd86af9cd6393f688e48439a3a8279329818ae23970bbf8807ec8b947fa0322"
+    },
+    {
+      "path": "stage-b-patched-src__engine__skills__effects.ts",
+      "bytes": 5170,
+      "sha256": "20d5fc3f28e038586ef1f5ed9bd8de413407a2868fcd53046a07576478f6d5f3"
+    },
+    {
+      "path": "stage-b-plan-reviews.json",
+      "bytes": 1103,
+      "sha256": "d75705c09577e403dab5c816681e09af273cef2fb4fbf8d79911e5c2dab9f448"
+    },
+    {
+      "path": "stage-b-registry-append.test.ts",
+      "bytes": 1051,
+      "sha256": "25082f3b6ecd1f654afc3e93ad559374394dca6deada2c4e28e4eb9056c5b986"
+    },
+    {
+      "path": "stage-b-registry-draft.test.ts",
+      "bytes": 28836,
+      "sha256": "f26fa48d8c8b99bd79b067c0122f44718bec5a12ec1c7a70ef63e386d27a90cb"
+    },
+    {
+      "path": "stage-b-registry-frozen-red.test.ts",
+      "bytes": 28836,
+      "sha256": "f26fa48d8c8b99bd79b067c0122f44718bec5a12ec1c7a70ef63e386d27a90cb"
+    },
+    {
+      "path": "stage-b-registry-review-1.test.ts",
+      "bytes": 28809,
+      "sha256": "f20890cf203653a6029e3b4eb1cebd660fec281bae051b575e7aa825cfbdfff1"
+    },
+    {
+      "path": "stage-b-registry-type-candidate.test.ts",
+      "bytes": 28856,
+      "sha256": "d97d66df2cfbcc388a9c6a3c70e31e249ae3a9e020f5389e3f8167083872ca06"
+    },
+    {
+      "path": "stage-b-rng-diagnosis.json",
+      "bytes": 807,
+      "sha256": "7c62523e093a7968094c1c417d65bac9d970c86d5c18a81735f9076afed33012"
+    },
+    {
+      "path": "stage-b-rng-oracle-candidate.test.ts",
+      "bytes": 22533,
+      "sha256": "6f7059aee013678d96a1c56095965b8d5cbc540fede398591f9228b485018106"
+    },
+    {
+      "path": "stage-b-runtime-lint-candidate.ts",
+      "bytes": 47706,
+      "sha256": "b3bd8562427da45a5a092835cb8464cfda30dd7d1ac8d2ee482f47bb753e4a1d"
+    },
+    {
+      "path": "stage-b-source-reviews.json",
+      "bytes": 182,
+      "sha256": "68f7e5310db8e2d8a2ba7f3af31b048fdc4641a65a1ca9c37f24a81d3505298c"
+    },
+    {
+      "path": "stage-b-types-diagnosis.json",
+      "bytes": 889,
+      "sha256": "b7d061d11ae4dc4d49f7ef47a215c4a94d40a02ac484a1ad809bafd312d8717c"
+    },
+    {
+      "path": "stage-b-unaffected-prepatch-recording.json",
+      "bytes": 2499,
+      "sha256": "23ca5a31bfe151ae9341da59dbc36a1fc433709ee6505ac2017d6d92d1b4db42"
+    },
+    {
+      "path": "stage-b-unaffected-prepatch-sha256.txt",
+      "bytes": 65,
+      "sha256": "898bf179aa2d566008536d94e9687f2c7e04858aa59b54addbf97e20a1911bf5"
+    },
+    {
+      "path": "stage-b-validated-source-fingerprints.json",
+      "bytes": 790,
+      "sha256": "28c766e08e1ab6e2f4c874757ffed5533cc038c384621499bea8ad51283ae290"
+    },
+    {
+      "path": "stage-b-validated-src__engine__combat__combat.ts",
+      "bytes": 47706,
+      "sha256": "b3bd8562427da45a5a092835cb8464cfda30dd7d1ac8d2ee482f47bb753e4a1d"
+    },
+    {
+      "path": "stage-b-validated-src__engine__combat__frozen-armor.test.ts",
+      "bytes": 22713,
+      "sha256": "84b1b5901452a502ef0dd5e1a53bcbf59cac09c5edb499bb1582259e8f428675"
+    },
+    {
+      "path": "stage-b-validated-src__engine__skills__dataCatalog.ts",
+      "bytes": 8907,
+      "sha256": "6bd86af9cd6393f688e48439a3a8279329818ae23970bbf8807ec8b947fa0322"
+    },
+    {
+      "path": "stage-b-validated-src__engine__skills__effects.ts",
+      "bytes": 5170,
+      "sha256": "20d5fc3f28e038586ef1f5ed9bd8de413407a2868fcd53046a07576478f6d5f3"
+    },
+    {
+      "path": "stage-b-validated-src__engine__skills__registry.test.ts",
+      "bytes": 28856,
+      "sha256": "d97d66df2cfbcc388a9c6a3c70e31e249ae3a9e020f5389e3f8167083872ca06"
+    },
+    {
+      "path": "stage-c-before-fingerprints.json",
+      "bytes": 304,
+      "sha256": "5366ccc41cd5f9e64e7d6d69c6acb55a68796ec7374984a64d06697d7161f0de"
+    },
+    {
+      "path": "stage-c-before-src__stores__combatHelpers.ts",
+      "bytes": 28378,
+      "sha256": "1aea5e14e3010f08907c40d91232d59352b0a46a5371a0f3316babda9fb831e4"
+    },
+    {
+      "path": "stage-c-browser-candidate2.spec.ts",
+      "bytes": 12022,
+      "sha256": "e29ecd3ce465c96f59432b9af84521d62d410fa2499b7147bd0d8c847f5225a7"
+    },
+    {
+      "path": "stage-c-browser-candidate3.spec.ts",
+      "bytes": 12019,
+      "sha256": "b448966407a0a553101e059c121c7404264ee53cd8c251d44804ca2f5bf883e2"
+    },
+    {
+      "path": "stage-c-browser-corrected-freeze.json",
+      "bytes": 705,
+      "sha256": "90961efaf0606ebc6e3a3c8599f5fe001c5c74fd155caf9febb0541b3acbf4e3"
+    },
+    {
+      "path": "stage-c-browser-draft.config.ts",
+      "bytes": 1233,
+      "sha256": "a584fd201eb8f9f515a7550f6ea3a50076f6ec15450f24605dc90c0dd7281a31"
+    },
+    {
+      "path": "stage-c-browser-draft.spec.ts",
+      "bytes": 12158,
+      "sha256": "c2696582b3b913719832349665e46e8b2fee5e944bda004d38f421bcbf0e6858"
+    },
+    {
+      "path": "stage-c-browser-final-reviews.json",
+      "bytes": 2347,
+      "sha256": "d56194e84afdab3991387dd0c8fa03714d46c94b088b3a57e73824f23a26d2ae"
+    },
+    {
+      "path": "stage-c-browser-first-failure-review.json",
+      "bytes": 1025,
+      "sha256": "dcd1591c55310c52e995270c8a64309f993488b8d3cb1ba18fb6e1c0f1955e22"
+    },
+    {
+      "path": "stage-c-browser-installed-freeze.json",
+      "bytes": 583,
+      "sha256": "7d4a5150133566343483af1e901fd50894aa59b653e9d5679c30d19546eff611"
+    },
+    {
+      "path": "stage-c-browser-monitor-correction-review.json",
+      "bytes": 774,
+      "sha256": "65df9588f6b285fd63f6819ffa1ca6c39308e7e8c3c82f28fd9defaa71232f65"
+    },
+    {
+      "path": "stage-c-browser-monitor-failure.json",
+      "bytes": 2857,
+      "sha256": "ba3f93cc576db4b5187a9cefe598979ad1101fb7357f8227c18c46febc0e21ac"
+    },
+    {
+      "path": "stage-c-browser-plan.md",
+      "bytes": 3890,
+      "sha256": "02e3646eb3d7b0e2de0248b5554de2cdac620f38d25fcf9f443fd79bf5defd29"
+    },
+    {
+      "path": "stage-c-browser-pre-execution-candidate2.json",
+      "bytes": 1744,
+      "sha256": "4c40658d836b41fd0d35f5c581aa28964171c3572317017f6002ffb449b88ccc"
+    },
+    {
+      "path": "stage-c-browser-runner-candidate.py",
+      "bytes": 7025,
+      "sha256": "20a633f5fc5b66afd6f651e4015ef443ede0937afbf7eed2ad275651434ada80"
+    },
+    {
+      "path": "stage-c-browser-runner-candidate2.py",
+      "bytes": 7320,
+      "sha256": "358f8e249fd7a8f8018a978b9746e8ffde7e530298b21c47cbeb35ad6ef6fdb5"
+    },
+    {
+      "path": "stage-c-browser-runner-size-check.json",
+      "bytes": 560,
+      "sha256": "67cc943e5d8387b75fdf6c8389b6983d6113fcf0aa5fc3c6a1c5cd8d4dfef4fc"
+    },
+    {
+      "path": "stage-c-browser-runner-size-check.py",
+      "bytes": 2265,
+      "sha256": "3e46baaf764c2bf64e41e329dbf90a83686058b61e06ef16ac2aefcaa4205bff"
+    },
+    {
+      "path": "stage-c-final-process-audit.json",
+      "bytes": 5466,
+      "sha256": "bc3506e2e3fb18c0c6a84c8fe6dd5ee397a12548d30ede318d92eeb1b06f42e6"
+    },
+    {
+      "path": "stage-c-final-reviews.json",
+      "bytes": 936,
+      "sha256": "3c48a9b2d2df4ed3956ac5eaa75001aaa063d1737ae023f75e13a9a86a787dc1"
+    },
+    {
+      "path": "stage-c-final-source-fingerprints.json",
+      "bytes": 327,
+      "sha256": "aee469211252c453985e0d94a71c1823ed3617262c1a8fe5eb385874caf090f6"
+    },
+    {
+      "path": "stage-c-final-src__stores__combatHelpers.frozen-armor.test.ts",
+      "bytes": 18730,
+      "sha256": "18f6f807efe67384a2147e496cf3202dc42c81ab30873262633c6e196b4ae1ed"
+    },
+    {
+      "path": "stage-c-final-src__stores__combatHelpers.ts",
+      "bytes": 28878,
+      "sha256": "4679d8e1a59fd22e00dae100462944a9ea419e812f194251ef99cbdc25886177"
+    },
+    {
+      "path": "stage-c-frozen-native.test.ts",
+      "bytes": 18730,
+      "sha256": "18f6f807efe67384a2147e496cf3202dc42c81ab30873262633c6e196b4ae1ed"
+    },
+    {
+      "path": "stage-c-native-candidate-2.test.ts",
+      "bytes": 17421,
+      "sha256": "05e6b51afe023d1996f9d8c18b22c353f3326bb1c57a9ec313fca7e07ee34403"
+    },
+    {
+      "path": "stage-c-native-candidate-3.test.ts",
+      "bytes": 18730,
+      "sha256": "18f6f807efe67384a2147e496cf3202dc42c81ab30873262633c6e196b4ae1ed"
+    },
+    {
+      "path": "stage-c-native-draft.test.ts",
+      "bytes": 16474,
+      "sha256": "b423080460c189beb5960118972f556f3713d4d3ba7dd0def26c5f36ba603ad0"
+    },
+    {
+      "path": "stage-c-qa-plan.md",
+      "bytes": 2574,
+      "sha256": "0f04f8a55352ea7738e9da4b908a7554181401130bb573c05e28dbf3bdb48af1"
+    },
+    {
+      "path": "stage-c-test-freeze-review.json",
+      "bytes": 421,
+      "sha256": "aae9605e2ea200dc1c6a20f1704c9de8c167b52355f5f7992782c0514cdc0e0a"
+    },
+    {
+      "path": "types-a-sequential.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "path": "types-a-sequential.meta.json",
+      "bytes": 456,
+      "sha256": "a46b3f625c7124c706fafc51bfe29f009fec703afa7076ccecdf7412b0f1f747"
+    },
+    {
+      "path": "types-a-sequential.process.json",
+      "bytes": 91,
+      "sha256": "c8012e05f70b9b15c7a8975e6bf5df0bf5b04872acf386fcb80827fcbb894b02"
+    },
+    {
+      "path": "types-a-sequential.processes.json",
+      "bytes": 532,
+      "sha256": "7691cfb0c876bb350e72656d55b59706d27a9586969d0a45e4c2a2c3fce12638"
+    },
+    {
+      "path": "types-a.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "path": "types-a.meta.json",
+      "bytes": 456,
+      "sha256": "f88087f8b90143838ccd43fa6d5c0c4442f90ee2d4b4d51423da975fadf26d9d"
+    },
+    {
+      "path": "types-a.process.json",
+      "bytes": 91,
+      "sha256": "6b73f4e92e428c70518272e5f8c6ad25bbb9145070f4a30df0e65ac40bda36c9"
+    },
+    {
+      "path": "types-a.processes.json",
+      "bytes": 532,
+      "sha256": "bac0dded7a50aeaf7ea2d4565b11bc4f03bcb76505071d6a251a13e4f9613fa6"
+    },
+    {
+      "path": "types-b-final.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "path": "types-b-final.meta.json",
+      "bytes": 457,
+      "sha256": "6fca5bbc328159569886977a733b805617400b67ff8dab4afda772cc20c4c950"
+    },
+    {
+      "path": "types-b-final.process.json",
+      "bytes": 91,
+      "sha256": "736c091c8aeb9c9cfdeb354666f71be61e641996383d845a3078375ff757e4d4"
+    },
+    {
+      "path": "types-b-final.processes.json",
+      "bytes": 534,
+      "sha256": "c0ea401937aafe3b3ecd069400209035639de6beee9ce7d0bd0ea8d6b87bdb5e"
+    },
+    {
+      "path": "types-b-validated.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "path": "types-b-validated.meta.json",
+      "bytes": 457,
+      "sha256": "ae446d6f1ce1f9b4e26f75e3274ea3d7f9288271d3cd452ad6aa69d901ecc02f"
+    },
+    {
+      "path": "types-b-validated.process.json",
+      "bytes": 91,
+      "sha256": "ba76d2d25af6a4730adcce8aac147fe2bdeaeabbc524a8ee7f42aa36b7f91253"
+    },
+    {
+      "path": "types-b-validated.processes.json",
+      "bytes": 534,
+      "sha256": "4a1cfff2f2c078ab158e4d71871b6f0fba5a64772c4bb46097f5587824d0a434"
+    },
+    {
+      "path": "types-b.log",
+      "bytes": 3055,
+      "sha256": "3187e879a1b0d799a355165fe2a666114d6475048bc815f3ca7d6f5e5ddbeed5"
+    },
+    {
+      "path": "types-b.meta.json",
+      "bytes": 459,
+      "sha256": "cd31eb05a664743f68c60115bf7d2effd449d143fcb3f21b067174a83ff4725e"
+    },
+    {
+      "path": "types-b.process.json",
+      "bytes": 91,
+      "sha256": "10066d34e38229af51dda6f531572d4565bc65390d0ffe6463dc1b353560fa7a"
+    },
+    {
+      "path": "types-b.processes.json",
+      "bytes": 534,
+      "sha256": "53db50f665de6dfe8a9fb896df092e3c370f4bc050c930dc7f171700876956c5"
+    },
+    {
+      "path": "types-browser-c.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "path": "types-browser-c.meta.json",
+      "bytes": 457,
+      "sha256": "9fd376f7c73adbe9b7707659861be234b90f1c1034ea71f96cb97f549b4bdf26"
+    },
+    {
+      "path": "types-browser-c.process.json",
+      "bytes": 91,
+      "sha256": "a03e651d4ff913be320ac2d45ab9eafb2e456ed81fa2b4a83652628535cbd990"
+    },
+    {
+      "path": "types-browser-c.processes.json",
+      "bytes": 534,
+      "sha256": "a0e62638a7addf5c88bc9a2beb8cbe97c5c477d889dd463f0b1b6607e2d10522"
+    },
+    {
+      "path": "types-c-browser-final.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "path": "types-c-browser-final.meta.json",
+      "bytes": 462,
+      "sha256": "c628c04d677c9cdc5840d115773e40717d1ae004bde22c87e1da2eb33686d112"
+    },
+    {
+      "path": "types-c-browser-final.process.json",
+      "bytes": 91,
+      "sha256": "d5a28e3ce5eaf4edb0b7aa351a6647ea27c73ee6b9fcd892956ffe87c483817e"
+    },
+    {
+      "path": "types-c-browser-final.processes.json",
+      "bytes": 534,
+      "sha256": "72682efc31d55b0df3fbffc155b71d84c7b885b44c3979defb7a65ecdf629491"
+    },
+    {
+      "path": "types-c.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "path": "types-c.meta.json",
+      "bytes": 457,
+      "sha256": "cc392531b54141bdee31d8b1ac186979ce1cf14c94c05a7850e5a94539cfe876"
+    },
+    {
+      "path": "types-c.process.json",
+      "bytes": 91,
+      "sha256": "1829f6716cab341aaa5b7ec0b7bedbffaee5bfa7afe109bdec7c12ed0b1af8f1"
+    },
+    {
+      "path": "types-c.processes.json",
+      "bytes": 534,
+      "sha256": "82fabcbaa996e9b80eb9fc2c20541041668ac4e05acd2acef260a33f7c0e5d87"
+    },
+    {
+      "path": "types-fixture.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "path": "types-fixture.meta.json",
+      "bytes": 456,
+      "sha256": "5c756754b570fa821ae7bde7a3ba9863bfc260b7580e62f42c71c05d95adb4db"
+    },
+    {
+      "path": "types-fixture.process.json",
+      "bytes": 91,
+      "sha256": "fff462757d0bfa68b98b2c9e1fa417c5ac2900296291c18983f0d7d7ff048aa0"
+    },
+    {
+      "path": "types-fixture.processes.json",
+      "bytes": 532,
+      "sha256": "d2c07b88cd91ecb1e62c25e5935316363fd3f18b6406b3285e240c5ff4179415"
+    },
+    {
+      "path": "unit-a-report.json",
+      "bytes": 1195793,
+      "sha256": "70fc06a8813f0063bc63df625e4597424dbc0447b936638c1786f62d6131480d"
+    },
+    {
+      "path": "unit-a-sequential-report.json",
+      "bytes": 1195767,
+      "sha256": "0da4445439e6d4e9d0840774a2714994eaff47947714b2bebe9cea4a4cefefbf"
+    },
+    {
+      "path": "unit-a-sequential.log",
+      "bytes": 317,
+      "sha256": "52605d246459a06e3e5507cdce5b92638127acdc45f727d08913af9746f62603"
+    },
+    {
+      "path": "unit-a-sequential.meta.json",
+      "bytes": 612,
+      "sha256": "75e2addfb507ffd2c0c8075f6e0b4c28a03f18077aafdc00219f71ec80c12475"
+    },
+    {
+      "path": "unit-a-sequential.process.json",
+      "bytes": 231,
+      "sha256": "a6673a3fb02e159318b71084b511a74b67251b57d1f433e787d8ca98b75371b3"
+    },
+    {
+      "path": "unit-a-sequential.processes.json",
+      "bytes": 110134,
+      "sha256": "20152ab5170b8c52813a57260d6b4766dc0e7d708489ce3162d601e18a8748ce"
+    },
+    {
+      "path": "unit-a.log",
+      "bytes": 295,
+      "sha256": "bb54dcf173b8b33f0672f677c7a06bb1bd87c943328c13053e170e93877daaff"
+    },
+    {
+      "path": "unit-a.meta.json",
+      "bytes": 601,
+      "sha256": "10032e1a592630a78a13fb0604d6da15be6cae82ec233d61a7bd3fea4d855a81"
+    },
+    {
+      "path": "unit-a.process.json",
+      "bytes": 220,
+      "sha256": "0b942ad8c88a1f272a04d0ca694291b2bedbb1cfacd784ab47a15f51fd0578a7"
+    },
+    {
+      "path": "unit-a.processes.json",
+      "bytes": 102550,
+      "sha256": "31d4c94c0e4b8652fcb4c93d537c6eca9a376383a8ea29eb4388b8dfbefef241"
+    },
+    {
+      "path": "unit-b-report.json",
+      "bytes": 1213963,
+      "sha256": "5c45c5b7549abbf42c2ce5702562f6f7033cf09f664bda2b1809f96dd7bea089"
+    },
+    {
+      "path": "unit-b-validated-report.json",
+      "bytes": 1213963,
+      "sha256": "6c3472455eb2743c16ea6ce1e3356d5cc3b9b453040fc6dc5d42ef245031361b"
+    },
+    {
+      "path": "unit-b-validated.log",
+      "bytes": 315,
+      "sha256": "3ec56f24ccc57ca3fdfda38a4012654b2188eb3355b256ea581e60b6b2ee41af"
+    },
+    {
+      "path": "unit-b-validated.meta.json",
+      "bytes": 612,
+      "sha256": "6d6c69230fa1b12178cee7747597dfdfd10d893c2cd654bf0c399c20797cc118"
+    },
+    {
+      "path": "unit-b-validated.process.json",
+      "bytes": 230,
+      "sha256": "307ded94c54d7c5faa2b2e509a29bd96e76dde45f361e23e8d8354a3c1bde1e2"
+    },
+    {
+      "path": "unit-b-validated.processes.json",
+      "bytes": 96826,
+      "sha256": "f42983b77671e95de33e31eb6d3a406bce2eebdb0abaf78d4862021eec18ef12"
+    },
+    {
+      "path": "unit-b.log",
+      "bytes": 295,
+      "sha256": "ab15733867860829e61296f7354357b3b25360d5f24997aefdefad7714f42796"
+    },
+    {
+      "path": "unit-b.meta.json",
+      "bytes": 602,
+      "sha256": "4383849b24120edee984a4cf8ec0dddabe7ef36347328574dcce8db30a2a5ce2"
+    },
+    {
+      "path": "unit-b.process.json",
+      "bytes": 220,
+      "sha256": "16b7730403af07c08476bbca498e066ecd609e9c2a6e425567668f0bc13c8c4a"
+    },
+    {
+      "path": "unit-b.processes.json",
+      "bytes": 97415,
+      "sha256": "13bcb4a50c59a713a5b6e07ba63f3d0ccf64d94b1d886d934972d5685c63a12e"
+    },
+    {
+      "path": "unit-c-browser-final-report.json",
+      "bytes": 1222367,
+      "sha256": "4f973bccd8a7a3e4966322cd4ed3232db8e88dd303038e108df8c3fd34652ee7"
+    },
+    {
+      "path": "unit-c-browser-final.log",
+      "bytes": 323,
+      "sha256": "1d2c843b0144fcad30fa944444f8f6eaf833632dccb645add2094f3a1e5cf721"
+    },
+    {
+      "path": "unit-c-browser-final.meta.json",
+      "bytes": 621,
+      "sha256": "6ff2f72aad7ac667407f0604777241543f1091fc5b7cb8e248755a6e14bf21e2"
+    },
+    {
+      "path": "unit-c-browser-final.process.json",
+      "bytes": 234,
+      "sha256": "a4f853245cef44bf445e0b152d71f7e78f0c636e8b8d85c7eefc15e99d646fde"
+    },
+    {
+      "path": "unit-c-browser-final.processes.json",
+      "bytes": 100110,
+      "sha256": "c24893851f4406be7c9ea9ff4cb67341d51038a078517e2d410bc6d9ce892c2f"
+    },
+    {
+      "path": "unit-c-report.json",
+      "bytes": 1222290,
+      "sha256": "f07a6eea860cdcb77c271ce91ab5ced47e87f3869a0607f0e3c2ab01eab76f97"
+    },
+    {
+      "path": "unit-c.log",
+      "bytes": 295,
+      "sha256": "5d4645b9efb52b652ee1f5ae88cbb473c8b5f428a0dc79199dc319648314f536"
+    },
+    {
+      "path": "unit-c.meta.json",
+      "bytes": 602,
+      "sha256": "9c343c1afab6aa7e747eaab942aff2dd66ac2952b29774d04087aa0c38e2a362"
+    },
+    {
+      "path": "unit-c.process.json",
+      "bytes": 220,
+      "sha256": "e6197c234beb11f4408c5c839ad8d66d0cdf34e496ddc5efc2d39ac53708b815"
+    },
+    {
+      "path": "unit-c.processes.json",
+      "bytes": 104711,
+      "sha256": "327403ce550f9630467cd556f2e1cee298326253637f652e65fc46d30c354415"
+    },
+    {
+      "path": "unit-fixture-report.json",
+      "bytes": 1195765,
+      "sha256": "8850b8835e7d39fdc9bada17ff1c80fda0b799845a42f1a901cd98ab5879f5fb"
+    },
+    {
+      "path": "unit-fixture.log",
+      "bytes": 307,
+      "sha256": "f5a2c01bd1a0325010c75fae18c75e48e51229f5678cda3361537f1232ab8246"
+    },
+    {
+      "path": "unit-fixture.meta.json",
+      "bytes": 606,
+      "sha256": "60d8b3c92d3be93482e15ae0be57678502e4f0756cb7336ad82f989204d52d89"
+    },
+    {
+      "path": "unit-fixture.process.json",
+      "bytes": 226,
+      "sha256": "232d233cb2d261a51f90082baa70242f34c8941b201c61716aca7884aaaa8c47"
+    },
+    {
+      "path": "unit-fixture.processes.json",
+      "bytes": 107920,
+      "sha256": "5c0a0301c6e8bfe8b7ada84b902ca1f3580ec01a497b8f60125527298c9d4cd1"
+    },
+    {
+      "path": "validation-overlap.json",
+      "bytes": 367,
+      "sha256": "c98cc40cf5442c67c76063521fa736156eeae4c621db71f44eb97a7791c3289d"
+    }
+  ],
+  "rawBytes": 19397746,
+  "archive": {
+    "path": "raw.tar.gz",
+    "bytes": 4567779,
+    "sha256": "b233504c32b0c5fb3b00e7ff83dbb4d525931b41ce00004c267d60fcf5ee7f9b"
+  },
+  "commands": [
+    {
+      "name": "browser-c-corrected",
+      "command": [
+        "node_modules/.bin/playwright",
+        "test",
+        "-c",
+        "tests/pwa/frozen-armor.config.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:16:10.753628+00:00",
+      "seconds": 4.36,
+      "exitCode": -15,
+      "pid": 2044426,
+      "deadlineSeconds": 240,
+      "cleanupGraceSeconds": 2,
+      "stopReason": "[Errno 2] No such file or directory: '/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/browser-tmp/.org.chromium.Chromium.HQp5uO'",
+      "signals": [
+        {
+          "signal": "SIGTERM",
+          "pid": 2044426,
+          "state": "S",
+          "ppid": 2044424,
+          "pgid": 2044426,
+          "startTicks": 46287845
+        },
+        {
+          "signal": "SIGTERM",
+          "pid": 2044451,
+          "state": "S",
+          "ppid": 2044426,
+          "pgid": 2044451,
+          "startTicks": 46287934
+        },
+        {
+          "signal": "SIGTERM",
+          "pid": 2044452,
+          "state": "R",
+          "ppid": 2044424,
+          "pgid": 2044451,
+          "startTicks": 46287935
+        },
+        {
+          "signal": "SIGTERM",
+          "pid": 2044460,
+          "state": "S",
+          "ppid": 2044452,
+          "pgid": 2044451,
+          "startTicks": 46287952
+        },
+        {
+          "signal": "SIGTERM",
+          "pid": 2044479,
+          "state": "R",
+          "ppid": 2044426,
+          "pgid": 2044426,
+          "startTicks": 46288023
+        },
+        {
+          "signal": "SIGTERM",
+          "pid": 2044498,
+          "state": "R",
+          "ppid": 2044479,
+          "pgid": 2044498,
+          "startTicks": 46288098
+        },
+        {
+          "signal": "SIGTERM",
+          "pid": 2044500,
+          "state": "S",
+          "ppid": 2044498,
+          "pgid": 2044498,
+          "startTicks": 46288103
+        },
+        {
+          "signal": "SIGTERM",
+          "pid": 2044501,
+          "state": "S",
+          "ppid": 2044498,
+          "pgid": 2044498,
+          "startTicks": 46288103
+        },
+        {
+          "signal": "SIGTERM",
+          "pid": 2044516,
+          "state": "S",
+          "ppid": 2044424,
+          "pgid": 2044498,
+          "startTicks": 46288107
+        },
+        {
+          "signal": "SIGTERM",
+          "pid": 2044518,
+          "state": "R",
+          "ppid": 2044498,
+          "pgid": 2044498,
+          "startTicks": 46288108
+        }
+      ],
+      "sizes": {
+        "log": 720,
+        "report": 0,
+        "attachments": 523042,
+        "totalTaskArtifacts": 55407943
+      }
+    },
+    {
+      "name": "browser-c-monitored",
+      "command": [
+        "node_modules/.bin/playwright",
+        "test",
+        "-c",
+        "tests/pwa/frozen-armor.config.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:19:29.553737+00:00",
+      "seconds": 81.294,
+      "exitCode": 0,
+      "pid": 2045646,
+      "deadlineSeconds": 240,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 1456,
+        "report": 1799773,
+        "attachments": 523087,
+        "totalTaskArtifacts": 57228554
+      }
+    },
+    {
+      "name": "browser-c",
+      "command": [
+        "node_modules/.bin/playwright",
+        "test",
+        "-c",
+        "tests/pwa/frozen-armor.config.ts"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:14:06.789249+00:00",
+      "seconds": 29.032,
+      "exitCode": 1,
+      "pid": 2043333,
+      "deadlineSeconds": 240,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 3365,
+        "report": 662775,
+        "attachments": 522160,
+        "totalTaskArtifacts": 55385965
+      }
+    },
+    {
+      "name": "build-a",
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:21:56.437011+00:00",
+      "seconds": 8.726,
+      "exitCode": 0,
+      "pid": 1998944,
+      "deadlineSeconds": 210,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 1763,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 44619234
+      }
+    },
+    {
+      "name": "build-b-validated",
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:49:46.220732+00:00",
+      "seconds": 8.943,
+      "exitCode": 0,
+      "pid": 2027505,
+      "deadlineSeconds": 210,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 1763,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 51786455
+      }
+    },
+    {
+      "name": "build-c",
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:06:08.548786+00:00",
+      "seconds": 9.15,
+      "exitCode": 0,
+      "pid": 2039648,
+      "deadlineSeconds": 210,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 1763,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 54026831
+      }
+    },
+    {
+      "name": "build-fixture",
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:27:13.053975+00:00",
+      "seconds": 8.701,
+      "exitCode": 0,
+      "pid": 2006245,
+      "deadlineSeconds": 210,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 1763,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 46691370
+      }
+    },
+    {
+      "name": "engine-a",
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/engine-a-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:18:40.471670+00:00",
+      "seconds": 8.476,
+      "exitCode": 0,
+      "pid": 1989437,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 323,
+        "report": 438064,
+        "attachments": 0,
+        "totalTaskArtifacts": 1022801
+      }
+    },
+    {
+      "name": "engine-b-validated",
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/engine-b-validated-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:47:17.277748+00:00",
+      "seconds": 8.671,
+      "exitCode": 0,
+      "pid": 2021732,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 343,
+        "report": 456250,
+        "attachments": 0,
+        "totalTaskArtifacts": 50244400
+      }
+    },
+    {
+      "name": "engine-b",
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/engine-b-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:39:19.343333+00:00",
+      "seconds": 8.764,
+      "exitCode": 0,
+      "pid": 2012743,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 323,
+        "report": 456226,
+        "attachments": 0,
+        "totalTaskArtifacts": 47895450
+      }
+    },
+    {
+      "name": "engine-c",
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/engine-c-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:03:44.739826+00:00",
+      "seconds": 8.587,
+      "exitCode": 0,
+      "pid": 2034168,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 323,
+        "report": 456239,
+        "attachments": 0,
+        "totalTaskArtifacts": 11738186
+      }
+    },
+    {
+      "name": "engine-fixture",
+      "command": [
+        "npm",
+        "run",
+        "test:engine",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/engine-fixture-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:25:20.313431+00:00",
+      "seconds": 8.613,
+      "exitCode": 0,
+      "pid": 2000726,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 335,
+        "report": 438071,
+        "attachments": 0,
+        "totalTaskArtifacts": 4435372
+      }
+    },
+    {
+      "name": "focused-a-green-retry",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/skills/frozen-armor.test.ts",
+        "src/data/loader.test.ts",
+        "src/engine/skills/registry.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/focused-a-green-retry-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:18:30.629733+00:00",
+      "seconds": 3.386,
+      "exitCode": 0,
+      "pid": 1989140,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 138,
+        "report": 147262,
+        "attachments": 0,
+        "totalTaskArtifacts": 554532
+      }
+    },
+    {
+      "name": "focused-a-green",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/skills/frozen-armor.test.ts",
+        "src/engine/dataLoader.test.ts",
+        "src/engine/skills/registry.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/focused-a-green-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:18:02.548232+00:00",
+      "seconds": 1.875,
+      "exitCode": 1,
+      "pid": 1988697,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 132,
+        "report": 1000,
+        "attachments": 0,
+        "totalTaskArtifacts": 401898
+      }
+    },
+    {
+      "name": "focused-a-missing-module",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/skills/frozen-armor.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/focused-a-missing-module-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:17:02.366277+00:00",
+      "seconds": 1.544,
+      "exitCode": 1,
+      "pid": 1988104,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 141,
+        "report": 688,
+        "attachments": 0,
+        "totalTaskArtifacts": 394052
+      }
+    },
+    {
+      "name": "focused-a-schema-red",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/skills/frozen-armor.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/focused-a-schema-red-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:16:47.450230+00:00",
+      "seconds": 1.703,
+      "exitCode": 1,
+      "pid": 1987681,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 137,
+        "report": 15509,
+        "attachments": 0,
+        "totalTaskArtifacts": 381793
+      }
+    },
+    {
+      "name": "focused-b-corrected-green",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/frozen-armor.test.ts",
+        "src/engine/skills/registry.test.ts",
+        "src/engine/skills/frozen-armor.test.ts",
+        "src/engine/combat/combat.test.ts",
+        "src/engine/combat/warmth.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/focused-b-corrected-green-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:39:08.603660+00:00",
+      "seconds": 2.497,
+      "exitCode": 0,
+      "pid": 2012416,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 142,
+        "report": 81725,
+        "attachments": 0,
+        "totalTaskArtifacts": 47419307
+      }
+    },
+    {
+      "name": "focused-b-corrected-red",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/frozen-armor.test.ts",
+        "src/engine/skills/registry.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/focused-b-corrected-red-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:38:56.883467+00:00",
+      "seconds": 2.559,
+      "exitCode": 1,
+      "pid": 2012112,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 140,
+        "report": 45026,
+        "attachments": 0,
+        "totalTaskArtifacts": 47333356
+      }
+    },
+    {
+      "name": "focused-b-green",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/frozen-armor.test.ts",
+        "src/engine/skills/registry.test.ts",
+        "src/engine/skills/frozen-armor.test.ts",
+        "src/engine/combat/combat.test.ts",
+        "src/engine/combat/warmth.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/focused-b-green-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:36:36.072525+00:00",
+      "seconds": 2.721,
+      "exitCode": 1,
+      "pid": 2010381,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 132,
+        "report": 81828,
+        "attachments": 0,
+        "totalTaskArtifacts": 47153335
+      }
+    },
+    {
+      "name": "focused-b-parity-before",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/frozen-armor.test.ts",
+        "--testNamePattern=preserves the complete unaffected prepatch recording byte for byte",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/focused-b-parity-before-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:35:44.859819+00:00",
+      "seconds": 2.237,
+      "exitCode": 0,
+      "pid": 2009818,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 140,
+        "report": 17440,
+        "attachments": 0,
+        "totalTaskArtifacts": 47064249
+      }
+    },
+    {
+      "name": "focused-b-red",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/frozen-armor.test.ts",
+        "src/engine/skills/registry.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/focused-b-red-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:34:12.881525+00:00",
+      "seconds": 2.434,
+      "exitCode": 1,
+      "pid": 2008915,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 2657,
+        "report": 45045,
+        "attachments": 0,
+        "totalTaskArtifacts": 46994607
+      }
+    },
+    {
+      "name": "focused-b-rng-isolated",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/frozen-armor.test.ts",
+        "--testNamePattern=consumes no additional RNG draw beyond the direct hit and offensive status",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/focused-b-rng-isolated-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:37:10.822196+00:00",
+      "seconds": 2.177,
+      "exitCode": 1,
+      "pid": 2010899,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 139,
+        "report": 17547,
+        "attachments": 0,
+        "totalTaskArtifacts": 47198072
+      }
+    },
+    {
+      "name": "focused-b-validated",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/frozen-armor.test.ts",
+        "src/engine/skills/registry.test.ts",
+        "src/engine/skills/frozen-armor.test.ts",
+        "src/engine/combat/combat.test.ts",
+        "src/engine/combat/warmth.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/focused-b-validated-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:47:01.289888+00:00",
+      "seconds": 2.452,
+      "exitCode": 0,
+      "pid": 2021399,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 136,
+        "report": 81723,
+        "attachments": 0,
+        "totalTaskArtifacts": 49765743
+      }
+    },
+    {
+      "name": "focused-c-green",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/combatHelpers.frozen-armor.test.ts",
+        "src/stores/combatHelpers.cross-wave.test.ts",
+        "src/stores/combatHelpers.replay.test.ts",
+        "src/stores/warmth-composition.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/focused-c-green-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:01:45.446064+00:00",
+      "seconds": 4.322,
+      "exitCode": 0,
+      "pid": 2032776,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 132,
+        "report": 30089,
+        "attachments": 0,
+        "totalTaskArtifacts": 11209489
+      }
+    },
+    {
+      "name": "focused-c-red",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/stores/combatHelpers.frozen-armor.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/focused-c-red-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:01:02.739745+00:00",
+      "seconds": 4.395,
+      "exitCode": 1,
+      "pid": 2032214,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 130,
+        "report": 9810,
+        "attachments": 0,
+        "totalTaskArtifacts": 11172328
+      }
+    },
+    {
+      "name": "focused-fixture",
+      "command": [
+        "node_modules/.bin/vitest",
+        "run",
+        "src/engine/combat/combat.test.ts",
+        "src/engine/combat/warmth.test.ts",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/focused-fixture-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:25:17.976477+00:00",
+      "seconds": 2.298,
+      "exitCode": 0,
+      "pid": 2000453,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 132,
+        "report": 20658,
+        "attachments": 0,
+        "totalTaskArtifacts": 3966264
+      }
+    },
+    {
+      "name": "lint-a",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:21:28.382667+00:00",
+      "seconds": 28.013,
+      "exitCode": 0,
+      "pid": 1998801,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 196,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 3683184
+      }
+    },
+    {
+      "name": "lint-b-final",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:43:21.886288+00:00",
+      "seconds": 28.351,
+      "exitCode": 1,
+      "pid": 2019164,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 780,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 49503765
+      }
+    },
+    {
+      "name": "lint-b-validated",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:46:06.854168+00:00",
+      "seconds": 28.418,
+      "exitCode": 0,
+      "pid": 2021012,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 196,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 49691253
+      }
+    },
+    {
+      "name": "lint-browser-c",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:13:30.026982+00:00",
+      "seconds": 28.195,
+      "exitCode": 0,
+      "pid": 2043026,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 196,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 54057250
+      }
+    },
+    {
+      "name": "lint-c-browser-final",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:22:49.673832+00:00",
+      "seconds": 28.957,
+      "exitCode": 0,
+      "pid": 2050796,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 196,
+        "report": 0,
+        "attachments": 523087,
+        "totalTaskArtifacts": 59889521
+      }
+    },
+    {
+      "name": "lint-c",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:02:30.623313+00:00",
+      "seconds": 28.946,
+      "exitCode": 0,
+      "pid": 2033474,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 196,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 11260337
+      }
+    },
+    {
+      "name": "lint-fixture",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:26:45.446307+00:00",
+      "seconds": 27.568,
+      "exitCode": 0,
+      "pid": 2006038,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 196,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 5755320
+      }
+    },
+    {
+      "name": "types-a-sequential",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:21:17.045071+00:00",
+      "seconds": 11.295,
+      "exitCode": 0,
+      "pid": 1998747,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 50,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 3681758
+      }
+    },
+    {
+      "name": "types-a",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:19:47.937711+00:00",
+      "seconds": 11.392,
+      "exitCode": 0,
+      "pid": 1994606,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 50,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 2373205
+      }
+    },
+    {
+      "name": "types-b-final",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:42:54.947141+00:00",
+      "seconds": 11.411,
+      "exitCode": 0,
+      "pid": 2019040,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 50,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 49387945
+      }
+    },
+    {
+      "name": "types-b-validated",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:45:11.327954+00:00",
+      "seconds": 11.006,
+      "exitCode": 0,
+      "pid": 2020658,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 50,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 49689980
+      }
+    },
+    {
+      "name": "types-b",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:40:58.433490+00:00",
+      "seconds": 11.182,
+      "exitCode": 2,
+      "pid": 2018149,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 3055,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 49334452
+      }
+    },
+    {
+      "name": "types-browser-c",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:13:13.570819+00:00",
+      "seconds": 11.398,
+      "exitCode": 0,
+      "pid": 2042913,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 50,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 54055824
+      }
+    },
+    {
+      "name": "types-c-browser-final",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:22:10.748644+00:00",
+      "seconds": 11.326,
+      "exitCode": 0,
+      "pid": 2050624,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 50,
+        "report": 0,
+        "attachments": 523087,
+        "totalTaskArtifacts": 59888243
+      }
+    },
+    {
+      "name": "types-c",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:02:13.696048+00:00",
+      "seconds": 10.965,
+      "exitCode": 0,
+      "pid": 2033374,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 50,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 11258912
+      }
+    },
+    {
+      "name": "types-fixture",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:26:34.273161+00:00",
+      "seconds": 11.133,
+      "exitCode": 0,
+      "pid": 2006017,
+      "deadlineSeconds": 90,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 50,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 5749832
+      }
+    },
+    {
+      "name": "unit-a-sequential",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/unit-a-sequential-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:20:14.412542+00:00",
+      "seconds": 62.584,
+      "exitCode": 0,
+      "pid": 1994890,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 317,
+        "report": 1195767,
+        "attachments": 0,
+        "totalTaskArtifacts": 3680473
+      }
+    },
+    {
+      "name": "unit-a",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/unit-a-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:18:49.016250+00:00",
+      "seconds": 63.893,
+      "exitCode": 0,
+      "pid": 1990756,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 295,
+        "report": 1195793,
+        "attachments": 0,
+        "totalTaskArtifacts": 2372072
+      }
+    },
+    {
+      "name": "unit-b-validated",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/unit-b-validated-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:47:55.975459+00:00",
+      "seconds": 66.568,
+      "exitCode": 0,
+      "pid": 2023256,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 315,
+        "report": 1213963,
+        "attachments": 0,
+        "totalTaskArtifacts": 51567278
+      }
+    },
+    {
+      "name": "unit-b",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/unit-b-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:39:42.464697+00:00",
+      "seconds": 64.933,
+      "exitCode": 0,
+      "pid": 2014197,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 295,
+        "report": 1213963,
+        "attachments": 0,
+        "totalTaskArtifacts": 49330170
+      }
+    },
+    {
+      "name": "unit-c-browser-final",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/unit-c-browser-final-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:20:57.089058+00:00",
+      "seconds": 66.851,
+      "exitCode": 0,
+      "pid": 2046509,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 323,
+        "report": 1222367,
+        "attachments": 523087,
+        "totalTaskArtifacts": 59886947
+      }
+    },
+    {
+      "name": "unit-c",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/unit-c-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T02:04:37.478290+00:00",
+      "seconds": 64.507,
+      "exitCode": 0,
+      "pid": 2035618,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 295,
+        "report": 1222290,
+        "attachments": 0,
+        "totalTaskArtifacts": 13074747
+      }
+    },
+    {
+      "name": "unit-fixture",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--reporter=json",
+        "--outputFile=/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx/unit-fixture-report.json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T01:25:28.963151+00:00",
+      "seconds": 65.26,
+      "exitCode": 0,
+      "pid": 2002070,
+      "deadlineSeconds": 120,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 307,
+        "report": 1195765,
+        "attachments": 0,
+        "totalTaskArtifacts": 5748553
+      }
+    }
+  ],
+  "processIdentityCount": 5755,
+  "sourceFingerprintCount": 569,
+  "scope": "Paid Armor engine/native behavior and imported-fixture production UI4cases; no earned campaign/balance/newcoverage/fullv1/CJKglyph/mobilefullreadability/a11y acceptance",
+  "nextRaw": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr"
+}

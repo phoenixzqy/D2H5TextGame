@@ -1,8 +1,11 @@
 # D05 / P07b01 — paid player Frozen Armor
 
-Status: GD/TD, producer and QA approve the bounded contract and Stage A tests.
-Stage A adds representation only. Runtime and native-boundary acceptance await B/C.
-This does not close full private v1, C0–C4 or G0–G7.
+Status: GD/TD approve the contract and engine source; producer/QA approve the
+engine, native boundaries and qualified imported-fixture production browser
+evidence. Implementations: engine `ed05766`, native `93022ee`, browser tests
+`562da72`. [Evidence](../evidence/p07b01-frozen-armor.md) records exact limits;
+whole-packet review/cleanup is separate. This does not close full private v1,
+C0–C4 or G0–G7.
 
 The exact authored `skills-sorceress-frozen-armor` / canonical
 `sorceress.frozen_armor` pair is an active self buff. Learning it, importing its

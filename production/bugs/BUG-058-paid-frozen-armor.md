@@ -1,6 +1,8 @@
 # BUG-058 — Grant paid Frozen Armor defense and retaliatory Chill
 
-Status: Reproduced; runtime fix pending.
+Status: Fixed in engine `ed05766` and native boundaries `93022ee`; independent
+producer/QA source/native/qualified browser acceptance complete. Durable packet
+review and exact cleanup are separate.
 Severity: High — the active player buff spends mana without its advertised effects.
 Owner: engine-dev; root implements, producer/QA independently review.
 
@@ -100,3 +102,27 @@ stats/skills but does not invalidate the carried armor when allocation resolves
 to zero. Fix that boundary on the newly constructed input only; never mutate
 the carry baseline. Owner: engine/store developer; producer/QA review read-only.
 No gameplay retry, campaign, balance, browser or reload acceptance is claimed.
+
+
+## Resolution and qualified browser evidence
+
+The engine fix captures paid potency, uses the shared rank resolver and composes
+ordinary defense at direct-hit projection. Canonical retaliatory Chill consumes
+no extra RNG. The native fix strips only the newly constructed unlearned wave
+input, preserving stored replay/carry history. Frozen native tests pass unchanged.
+
+Final exact product/test bytes pass3717unit tests/171files in66.851s,
+typecheck11.326s and lint28.957s. Unchanged engine/native runtime also passes
+1413engine tests and production bridge/build. Four actual production-browser
+English/Chinese desktop/mobile cases pass in81.294s using explicit imported
+rank/gear/cleared-area fixtures; they cover paid MP102→97, rendered cast/buff,
+positive hit→Chill on a living attacker, combo-off negative, native repeat,
+stop and real save/reload. These fixtures establish functional integration;
+they do not establish earned campaign/balance, CJK glyph rendering, full mobile
+readability or accessibility. Existing test timing misses/build warnings remain.
+
+[Durable evidence](../../docs/plans/evidence/p07b01-frozen-armor.md) and its packet
+preserve both genuine REDs, all failed attempts and reviewed corrections, exact
+source/recording controls, final gates and browser artifacts. Historical RAW
+paths above describe reproduction ownership; exact removal follows whole-packet
+review and is recorded separately. Full private-v1/C0–C4/G0–G7 remain open.
