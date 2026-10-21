@@ -2934,3 +2934,13 @@ shared cache parents, fonts, tools, dependencies and source/history preserved.
 Durable packet/archive and exact RAW cleanup follow separately; root owns RAW.
 Umbrella claim continues into D06 preparation policy; no remote action. Full D04/
 P08/C1/private-v1/C0–C4/G0–G7 and native cast/earned/balance/full browser remain open.
+
+
+## P08a02D durable packet prepared
+
+[Packet](evidence/fixtures/p08a02d-amplify-damage-ui/packet.json) binds 133 lossless
+members / 6,498,162 bytes, final fingerprints and original RED/drafts/reviews/
+browser evidence. Root verified every archived byte; all nine records / 932 process
+births / 761 outputs absent. Independent archive review and commit precede exact
+RAW cleanup. Retain empty root/shared parents/source/history/fonts/tools; umbrella
+claim continues, full v1 open, no remote action.

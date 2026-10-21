@@ -103,3 +103,13 @@ No outputs remain and no cleanup failed. Shared Vitest cache parents are retaine
 verification must precede exact RAW cleanup. Preserve empty RAW root, shared cache
 parents/dependencies/fonts/browsers/tools/source/history. FullD04/P08/C1/private-v1/
 C0–C4/G0–G7 remain open. No remote action.
+
+
+## Durable packet
+
+[Packet](fixtures/p08a02d-amplify-damage-ui/packet.json) and adjacent lossless archive
+preserve 133 regular files / 6,498,162 bytes. Root verified every member
+against live RAW. Final closure fingerprints distinguish the two deliberately changed
+control/report documents from the historical browser freeze. All nine command records /
+932 process births and 761 removed outputs are freshly absent. Independent durable
+review and archive commit precede exact RAW cleanup; root owns that cleanup receipt.
