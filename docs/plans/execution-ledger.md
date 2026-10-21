@@ -3006,3 +3006,22 @@ outputs. Empty RAW root, shared parents/fonts/tools/dependencies, source/history
 are preserved. No runtime rerun for this documentation-only receipt. Full D06/P09
 and private-v1 remain open; next is the separately reviewed corpse-summon contract.
 Umbrella claim continues, no remote action.
+
+
+## D06 v1c contract and engine-test prerequisite
+
+Contract `db861b0` has GD/TD, QA and producer approval: canonical paid startup
+for Skeleton/Mage/Revive without a corpse ledger. Runtime/copy and full-skill
+acceptance remain pending. The engine prerequisite relocates three real
+canonical Mastery pacing cases unchanged to `summon-preparation-corpses.test.ts`.
+Generic replacement/refund/terminal controls use explicitly cloned synthetic
+identities; the original Mastery PREPATCH literal is unchanged, with only exact
+skill identity adapted for its synthetic replay. Existing canonical cap/stat/alias
+coverage remains. No runtime/adapter/UI/data change. Focused209/209, engine2982/
+83files, full5805/208files, types/lint pass serially. Engine14.94s/full96.01s exceed
+ordinary3s/15s targets; no performance acceptance. A duplicated word in a test
+title was corrected afterward; all209 focused cases rerun against final bytes.
+Root owns temporary evidence at
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-necromancer-preparation-edsqysz8`
+through later v1c review/archive/cleanup. Next: store then UI test prerequisites,
+then the five-path RED/GREEN runtime switch. Full private-v1 remains open.

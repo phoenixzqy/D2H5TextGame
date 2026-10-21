@@ -1,10 +1,11 @@
-/** Bug #3 (P0) — necromancer re-summons skeleton after death. */
-import { describe, it, expect, beforeEach } from 'vitest';
+/** Legacy generic replacement/refund controls; canonical caps/stats stay real. */
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { runBattle, type BattleEvent } from './combat';
 import type { CombatUnit } from './types';
 import type { DerivedStats } from '../types/attributes';
 import { resetSummonCounters } from '../skills/summons';
 import { maxSkeletonsForLevel } from '../skills/scaling';
+import { getSkill, loadDefaultSkills, registerSkill, resetRegistry } from '../skills/registry';
 
 const baseStats: DerivedStats = {
   life: 200, lifeMax: 200, mana: 200, manaMax: 200, attack: 1, defense: 0, magicResist: 0,
@@ -21,7 +22,13 @@ function mkUnit(over: Partial<CombatUnit> & Pick<CombatUnit, 'id' | 'side'>): Co
   };
 }
 
-beforeEach(() => { resetSummonCounters(); });
+beforeEach(() => {
+  resetSummonCounters(); resetRegistry(); loadDefaultSkills();
+  const source = getSkill('necromancer.raise_skeleton');
+  if (!source) throw new Error('Missing actual Skeleton source');
+  registerSkill({ ...source, id: 'fixture.legacy_skeleton', archetype: 'fixture' });
+});
+afterEach(() => { resetRegistry(); loadDefaultSkills(); });
 
 describe('Bug #3 — re-summon after summon death', () => {
   it('computes D2-style Raise Skeleton breakpoints', () => {
@@ -39,11 +46,11 @@ describe('Bug #3 — re-summon after summon death', () => {
     ]);
   });
 
-  it('necromancer re-casts raise_skeleton after a skeleton dies', () => {
+  it('synthetic summoner re-casts after a skeleton dies', () => {
     const necro = mkUnit({
       id: 'necro', side: 'player', kind: 'hero',
-      skillOrder: ['necromancer.raise_skeleton'],
-      skillLevels: { 'necromancer.raise_skeleton': 2 },
+      skillOrder: ['fixture.legacy_skeleton'],
+      skillLevels: { 'fixture.legacy_skeleton': 2 },
       stats: { ...baseStats, life: 1000, lifeMax: 1000, mana: 200, manaMax: 200 },
       life: 1000
     });
@@ -76,10 +83,10 @@ describe('Bug #3 — re-summon after summon death', () => {
     expect(summonAfterDeath).toBeGreaterThan(firstDeathIdx);
   });
 
-  it('refunds mana when a summon dies so a mana-tight necro can re-cast', () => {
+  it('refunds mana when a summon dies so a mana-tight synthetic summoner can re-cast', () => {
     const necro = mkUnit({
       id: 'necro', side: 'player', kind: 'hero',
-      skillOrder: ['necromancer.raise_skeleton'],
+      skillOrder: ['fixture.legacy_skeleton'],
       stats: { ...baseStats, mana: 15, manaMax: 15 }, mana: 15
     });
     const enemy = mkUnit({

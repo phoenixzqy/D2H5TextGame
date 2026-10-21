@@ -75,7 +75,12 @@ function mana(events: readonly RecordedBattleEvent[], reason = 'cast') {
   return events.filter((e): e is Extract<RecordedBattleEvent, { kind: 'mana' }> =>
     e.kind === 'mana' && e.reason === reason);
 }
-beforeEach(() => { resetRegistry(); loadDefaultSkills(); });
+beforeEach(() => {
+  resetRegistry(); loadDefaultSkills();
+  const skeleton = getSkill('necromancer.raise_skeleton');
+  if (!skeleton) throw new Error('Missing actual Skeleton source');
+  registerSkill({ ...skeleton, id: 'fixture.legacy_skeleton', archetype: 'fixture' });
+});
 afterEach(() => { resetRegistry(); loadDefaultSkills(); });
 
 describe('D06 paid preparation batches', () => {
@@ -189,8 +194,8 @@ describe('D06 paid preparation batches', () => {
     const snapshot = input('druid.raven', 6);
     const hero = { ...required(snapshot.playerTeam[0]), statuses: [],
       stats: { ...required(snapshot.playerTeam[0]).stats, attack: 10_000_000 },
-      cooldowns: { 'druid.raven': 90000, 'necromancer.raise_skeleton': 90000 },
-      skillOrder: ['skills-druid-raven', 'necromancer.raise_skeleton'] };
+      cooldowns: { 'druid.raven': 90000, 'fixture.legacy_skeleton': 90000 },
+      skillOrder: ['skills-druid-raven', 'fixture.legacy_skeleton'] };
     const out = runBattleRecorded({ ...snapshot, playerTeam: [hero] });
     expect(summons(out.events).filter(e => e.simClockMs === 0).map(e => e.summonId)).toEqual(['raven', 'raven', 'raven', 'raven']);
     expect(casts(out.events).filter(e => e.simClockMs === 0).map(e => e.skillId)).toEqual(['druid.raven']);
@@ -376,13 +381,13 @@ describe('D06 authoritative owner/template deaths and legacy controls', () => {
     expect(summons(out.events).some(e => e.owner === 'hero')).toBe(false);
   });
   it('preserves another template refund and cooldown reset on the SAME enabled owner', () => {
-    const skeleton = source('necromancer.raise_skeleton');
+    const skeleton = source('fixture.legacy_skeleton');
     // A long legacy cooldown makes the death-triggered reset observable at the
-    // 60s boundary. Only this excluded source is changed; restore via afterEach.
+    // 60s boundary. Only this synthetic source is changed; restore via afterEach.
     registerSkill({ ...skeleton, cooldown: 120 });
     const hero = { ...unit('hero'), mana: 100,
-      skillOrder: ['necromancer.raise_skeleton', 'druid.raven'],
-      skillLevels: { 'necromancer.raise_skeleton': 6, 'druid.raven': 1 } };
+      skillOrder: ['fixture.legacy_skeleton', 'druid.raven'],
+      skillLevels: { 'fixture.legacy_skeleton': 6, 'druid.raven': 1 } };
     const poison = [{ id: 'poison', sourceId: 'fixture', stacks: 1, remaining: 2,
       dotPerStack: 1, damageType: 'poison' as const }];
     const oldSkeleton = { ...preload(hero, 'old-skeleton', 'skeleton'), life: 1, statuses: poison };
@@ -390,7 +395,7 @@ describe('D06 authoritative owner/template deaths and legacy controls', () => {
     const snapshot = { ...input(), playerTeam: [hero, oldSkeleton, oldRaven] };
     const out = runBattleRecorded(snapshot);
     expect(casts(out.events).map(e => [e.skillId, e.simClockMs]))
-      .toEqual([['necromancer.raise_skeleton', 0]]);
+      .toEqual([['fixture.legacy_skeleton', 0]]);
     expect(mana(out.events).map(e => e.mana)).toEqual([85]);
     expect(out.events.filter(e => e.kind === 'death').map(e => e.target))
       .toEqual(['old-skeleton', 'old-raven']);
@@ -398,19 +403,19 @@ describe('D06 authoritative owner/template deaths and legacy controls', () => {
     // enabled Raven pair is suppressed; no matching-template refund redesign.
     expect(mana(out.events, 'summon-refund').map(e => [e.target, e.mana])).toEqual([['hero', 100]]);
     expect(out.result.playerTeam.find(u => u.id === 'hero')?.cooldowns)
-      .not.toHaveProperty('necromancer.raise_skeleton');
+      .not.toHaveProperty('fixture.legacy_skeleton');
     const control = runBattleRecorded({ ...snapshot, playerTeam: [
-      { ...hero, skillOrder: ['necromancer.raise_skeleton'] }, oldSkeleton, oldRaven
+      { ...hero, skillOrder: ['fixture.legacy_skeleton'] }, oldSkeleton, oldRaven
     ] });
     expect(mana(control.events).map(e => e.mana)).toEqual([85]);
     expect(mana(control.events, 'summon-refund').map(e => [e.target, e.mana]))
       .toEqual([['hero', 100], ['hero', 115]]);
     expect(control.result.playerTeam.find(u => u.id === 'hero')?.cooldowns)
-      .not.toHaveProperty('necromancer.raise_skeleton');
+      .not.toHaveProperty('fixture.legacy_skeleton');
   });
 
-  it('retains excluded Skeleton replacement/refund behavior', () => {
-    const snapshot = input('necromancer.raise_skeleton', 2);
+  it('retains synthetic Skeleton replacement/refund behavior', () => {
+    const snapshot = input('fixture.legacy_skeleton', 2);
     const hero = { ...required(snapshot.playerTeam[0]), mana: 15, statuses: [] };
     const enemy = { ...required(snapshot.enemyTeam[0]), statuses: [], stats: { ...required(snapshot.enemyTeam[0]).stats, attack: 10000 } };
     const out = runBattleRecorded({ ...snapshot, playerTeam: [hero], enemyTeam: [enemy] });
@@ -433,9 +438,9 @@ describe('D06 terminal and replay boundaries', () => {
   it('skips scoped startup in initially terminal battles while preserving synthetic/excluded startup', () => {
     registerSkill({ ...source(), id: 'fixture.raven', archetype: 'fixture' });
     const snapshot = input();
-    const hero = { ...required(snapshot.playerTeam[0]), skillOrder: ['druid.raven', 'fixture.raven', 'necromancer.raise_skeleton'] };
+    const hero = { ...required(snapshot.playerTeam[0]), skillOrder: ['druid.raven', 'fixture.raven', 'fixture.legacy_skeleton'] };
     const out = runBattleRecorded({ ...snapshot, playerTeam: [hero], enemyTeam: [] });
-    expect(casts(out.events).map(e => e.skillId)).toEqual(['fixture.raven', 'necromancer.raise_skeleton']);
+    expect(casts(out.events).map(e => e.skillId)).toEqual(['fixture.raven', 'fixture.legacy_skeleton']);
     expect(summons(out.events).map(e => e.summonId)).toEqual(['raven', 'skeleton']);
     expect(mana(out.events).map(e => e.mana)).toEqual([994, 979]);
   });
