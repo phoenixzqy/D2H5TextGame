@@ -3877,3 +3877,60 @@ evidence is retained.
 Full Iron/D06/P09/P10, earned supply/balance, performance/platform/PWA/a11y and
 private-v1/C0–C4/G0–G7 remain open. Umbrella claim continues; root remains sole
 writer/executor; no remote action.
+
+
+## D06 v1d stage complete waves before run mutation
+
+Inventory/merc ownership guards received QA, TD/five-axis and producer APPROVE
+and committed as `3ed6651`. All readers released; exact manifest cleanup removed
+857files/42,722,697bytes and14 empty directories with zero failures or remaining
+targets. Actual evidence is `ownership-guard-cleanup.json`; diagnostics remain.
+
+TD plan-review returned ready for the staging prerequisite and its five-path
+amendment: combat helpers, new staging tests, cross-wave tests, earned-adapter
+fault injection and this ledger. New-run construction remains local until wave
+planning, simulation, terminal validation and complete publication normalization
+succeed. Missing/empty waves fail before installation. Success installs the
+captured candidate, metadata and captured next default ordinal once, then the
+captured complete publication once. Explicit ordinals never advance the default
+counter. Fresh run rewards and sticky completion flags now publish atomically
+with the recording. Current-wave staging failure retains the prior active run,
+recording and terminal clock rather than clearing the run.
+
+20 staging cases cover nine failures with default/explicit ordinals: engine and
+normalization throws, empty plans, missing/non-end terminal and NaN/Infinity/
+negative/over-limit clocks. They assert exact prior state across seven stores,
+no notifications, retained reward/selection references, replay from the old run's
+seed/team, and unchanged next default ordinal. Success controls assert one
+recording/reward-reset notification and explicit-ordinal behavior. Six prior
+invalid-terminal replay cases now prove the old completed recording can advance.
+Initial RED25failed/17passed preceded source changes; focused113/6files passed.
+
+The first full suite found6414passed/2failed: earned-adapter missing-outcome/end
+fault tests still spied setRecordedBattle, bypassed by the intentional staged
+publisher path. TD approved the fifth-path amendment. Faults now spy the actual
+publishStagedRecordedBattle boundary and its recordedEvents field; each asserts
+one injected call while retaining structural refusal/restoration checks. No
+production compatibility workaround was added. Final unchanged code/test gates:
+focused142/7files14.634s wrapper, types13.844s, lint37.984s including85 engine
+purity files, full unit6416/219files110.750s, production build9.602s. Earlier
+failures and superseded checks retain separate source/command/output identities.
+Related5s/full15s budgets remain unmet. Existing stale Browserslist, >500kB chunk
+and2.57MB manifest-precache warnings remain open. No engine source or browser
+Iron acceptance changed here.
+
+Security check passes for the typed local staging boundary. Publisher failure,
+reentrant transitions, next-wave settlement/staging recovery, receipt/item debit,
+selection consumption, actual locked replay and persistence coordination remain
+pending. No selected item input or production debit caller is enabled. Canonical
+engine no-input Iron suppression remains active. SaveCurrent11 is unchanged.
+
+The exact five files, ten command/output identities and owned dist/tmp inventory
+are frozen in `wave-staging-review.json` under
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les`.
+Independent QA and TD/five-axis reviews APPROVED the frozen source scope; all
+readers released. Only producer publication scope review remains pending before
+commit. Disposable outputs remain until all readers release; diagnostics are retained.
+Full Iron/D06/P09/P10, earned supply/balance, performance/platform/PWA/a11y and
+private-v1/C0–C4/G0–G7 remain open. Umbrella claim continues; root remains sole
+writer/executor; no remote action.

@@ -431,16 +431,19 @@ describe('isolated fresh earned production adapter', () => {
       if (fault === 'stalled-cursor') vi.spyOn(useCombatStore.getState(), 'advanceEvent')
         .mockImplementation(() => undefined);
       if (fault === 'missing-outcome' || fault === 'missing-end') {
-        const install = useCombatStore.getState().setRecordedBattle;
-        vi.spyOn(useCombatStore.getState(), 'setRecordedBattle').mockImplementation(input => {
+        const install = useCombatStore.getState().publishStagedRecordedBattle;
+        vi.spyOn(useCombatStore.getState(), 'publishStagedRecordedBattle').mockImplementation(input => {
           install(input);
           if (fault === 'missing-outcome') useCombatStore.setState({ outcome: null });
-          else useCombatStore.setState({ recordedEvents: input.events.slice(0, -1) });
+          else useCombatStore.setState({ recordedEvents: input.recordedEvents.slice(0, -1) });
         });
       }
       const before = callerState();
       const now = Date.now;
       expect(() => runEarnedRecipeOnce(tiny, options)).toThrow();
+      if (fault === 'missing-outcome' || fault === 'missing-end') {
+        expect(useCombatStore.getState().publishStagedRecordedBattle).toHaveBeenCalledTimes(1);
+      }
       expect(callerState()).toEqual(before);
       expect(Date.now).toBe(now);
       expect(production.hasActiveSubAreaRun()).toBe(false);

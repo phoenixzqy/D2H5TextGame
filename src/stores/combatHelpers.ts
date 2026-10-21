@@ -24,6 +24,7 @@ import { loadAwardPools, loadItemBases } from '@/data/loaders/loot';
 import { eliteConfig, monsters as monsterList } from '@/data/index';
 import { resolveSubArea } from './subAreaResolver';
 import { useCombatStore, type CombatLogEntry, type RecordedBattleOutcome } from './combatStore';
+import { stageRecordedBattle, type RecordedBattlePublication } from './recordedBattlePublication';
 import { eventToLocalizedLogEntry } from './eventToLogI18n';
 import { useInventoryStore } from './inventoryStore';
 import { useMapStore } from './mapStore';
@@ -412,6 +413,7 @@ export function hasActiveSubAreaRun(): boolean {
 /**
  * Replay the current wave with latest configuration when explicitly requested.
  * Ordinary changes leave the recording frozen and apply on the next playWave.
+ * Staging errors preserve the prior run, recording and terminal clock.
  */
 export function refreshActivePlayerCombatConfig({
   replayCurrentWave = false
@@ -447,6 +449,9 @@ export function resetIdleElitePity(): void {
  * @returns the resolved seed/ordinal and run identity, or null without a player.
  * @throws {RangeError} if a provided replay input is outside its integer range;
  * validation precedes any store, active-run or counter mutation.
+ * @throws If wave planning, simulation, terminal validation or normalization fails;
+ * the previous run, recording, ordinal and rewards remain unchanged.
+ * Publisher failures after successful staging still require receipt integration.
  */
 export function startSubAreaRun(opts: {
   readonly subAreaId?: string | null;
@@ -466,7 +471,6 @@ export function startSubAreaRun(opts: {
     throw new RangeError('challengeOrdinal must be an integer in [0, 360360)');
   }
   const playerState = usePlayerStore.getState();
-  const combat = useCombatStore.getState();
   if (!playerState.player) {
     console.warn('[startSubAreaRun] no player; abort');
     return null;
@@ -487,9 +491,6 @@ export function startSubAreaRun(opts: {
     `${subArea?.id ?? synthId}|${String(Date.now())}`
   );
   const challengeOrdinal = opts.challengeOrdinal ?? manualChallengeOrdinal;
-  if (opts.challengeOrdinal === undefined) {
-    manualChallengeOrdinal = (manualChallengeOrdinal + 1) % CHALLENGE_ORDINAL_PERIOD;
-  }
   const plan = subArea
     ? resolveChallengeWavePlan({
         subArea,
@@ -525,7 +526,7 @@ export function startSubAreaRun(opts: {
     : undefined;
   const playerTeam: CombatUnit[] = mercUnit ? [playerUnit, mercUnit] : [playerUnit];
 
-  activeRun = {
+  const candidate: ActiveRun = {
     plan,
     act,
     seed,
@@ -537,13 +538,12 @@ export function startSubAreaRun(opts: {
     waveElapsedMs: 0
   };
 
-  // Reset per-run aggregate state. Bug #1 (P0): also clear sticky runVictory/runDefeat/subAreaRunId so a second run after a finished one renders cleanly.
-  combat.resetRunRewards();
-  if (combat.runVictory || combat.runDefeat || combat.subAreaRunId !== null) {
-    useCombatStore.setState({ runVictory: false, runDefeat: false, subAreaRunId: null });
+  const staged = stageWave(candidate, 0, true);
+  activeRun = candidate;
+  if (opts.challengeOrdinal === undefined) {
+    manualChallengeOrdinal = (challengeOrdinal + 1) % CHALLENGE_ORDINAL_PERIOD;
   }
-
-  playWave(0);
+  installStagedWave(candidate, staged);
   return { runId: plan.subAreaId, totalWaves: plan.waves.length, runSeed: seed, challengeOrdinal };
 }
 
@@ -657,11 +657,24 @@ export function abortSubAreaRun(): void {
  */
 function playWave(waveIdx: number): void {
   if (!activeRun) return;
-  const wave = activeRun.plan.waves[waveIdx];
-  if (!wave) return;
+  const run = activeRun;
+  installStagedWave(run, stageWave(run, waveIdx));
+}
+
+interface StagedWave {
+  readonly waveIdx: number;
+  readonly elapsedMs: number;
+  readonly recording: NonNullable<ActiveRun['recording']>;
+  readonly publication: RecordedBattlePublication;
+}
+
+/** Build the whole recording before changing any run metadata or combat state. */
+function stageWave(run: ActiveRun, waveIdx: number, resetRunRewards = false): StagedWave {
+  const wave = run.plan.waves[waveIdx];
+  if (!wave) throw new Error('Wave index does not exist in run plan');
   const combat = useCombatStore.getState();
 
-  const waveSeed = (activeRun.seed ^ ((waveIdx + 1) * 0x9e3779b1)) >>> 0;
+  const waveSeed = (run.seed ^ ((waveIdx + 1) * 0x9e3779b1)) >>> 0;
   const enemies = buildEnemiesForWave(wave, waveSeed);
   const spawn = wave.spawns.length === 1 ? wave.spawns[0] : undefined;
   const builtBoss = enemies.length === 1 ? enemies[0] : undefined;
@@ -675,15 +688,15 @@ function playWave(waveIdx: number): void {
   // Keep the original/rebased wave-input baseline intact. Repeated replay must
   // never inherit completed playback resources or a previously clamped replay.
   const currentPlayer = usePlayerStore.getState().player;
-  const fresh = currentPlayer?.id === activeRun.playerUnit.id
+  const fresh = currentPlayer?.id === run.playerUnit.id
     ? playerToCombatUnit(currentPlayer) : null;
-  const mightAura = currentPlayer?.id === activeRun.playerUnit.id
-    ? composeMightAura(currentPlayer, activeRun.fieldedMercCombatId) : undefined;
-  const meditationAura = fresh && currentPlayer?.id === activeRun.playerUnit.id
-    ? composeMeditationAura(currentPlayer, fresh.manaRegenPerSecond ?? 0, activeRun.fieldedMercCombatId) : undefined;
-  const skeletonMastery = currentPlayer?.id === activeRun.playerUnit.id
+  const mightAura = currentPlayer?.id === run.playerUnit.id
+    ? composeMightAura(currentPlayer, run.fieldedMercCombatId) : undefined;
+  const meditationAura = fresh && currentPlayer?.id === run.playerUnit.id
+    ? composeMeditationAura(currentPlayer, fresh.manaRegenPerSecond ?? 0, run.fieldedMercCombatId) : undefined;
+  const skeletonMastery = currentPlayer?.id === run.playerUnit.id
     ? composeSkeletonMastery(currentPlayer) : undefined;
-  const playerTeam = activeRun.carryPlayerTeam.map(unit => {
+  const playerTeam = run.carryPlayerTeam.map(unit => {
     if (!fresh || unit.id !== fresh.id) return unit;
     const mana = Math.min(unit.mana, fresh.stats.manaMax);
     const capped = mana >= fresh.stats.manaMax;
@@ -716,10 +729,8 @@ function playWave(waveIdx: number): void {
   const terminal = events.at(-1);
   if (terminal?.kind !== 'end' || !Number.isFinite(terminal.simClockMs) ||
     terminal.simClockMs < 0 || terminal.simClockMs > MAX_SIM_MS) {
-    activeRun = null;
     throw new Error('Recorded battle must end with a valid terminal simulation clock');
   }
-  activeRun.waveElapsedMs = terminal.simClockMs;
 
   const unitMap = new Map<string, string>();
   [...result.playerTeam, ...result.enemyTeam].forEach((unit) => {
@@ -744,18 +755,28 @@ function playWave(waveIdx: number): void {
     finalPlayerTeam: result.playerTeam,
     finalEnemyTeam: result.enemyTeam
   };
-  activeRun.recording = { outcome, events: playbackEvents, ...(chapterBoss ? { chapterBoss } : {}) };
-  combat.setRecordedBattle({
+  const publication = stageRecordedBattle({
     initialPlayerTeam: playerTeam,
     initialEnemyTeam: enemies,
     events: playbackEvents,
     unitNameMap: unitMap,
     outcome,
     currentWave: waveIdx + 1,
-    totalWaves: activeRun.plan.waves.length,
-    subAreaRunId: activeRun.plan.subAreaId,
+    totalWaves: run.plan.waves.length,
+    subAreaRunId: run.plan.subAreaId,
+    resetRunRewards,
     ...(wave.presentation ? { wavePresentation: wave.presentation } : {})
-  });
+  }, combat);
+  return Object.freeze({ waveIdx, elapsedMs: terminal.simClockMs, publication,
+    recording: Object.freeze({ outcome, events: playbackEvents, ...(chapterBoss ? { chapterBoss } : {}) }) });
+}
+
+/** Install captured run metadata once, then publish the complete captured value once. */
+function installStagedWave(run: ActiveRun, staged: StagedWave): void {
+  run.waveIdx = staged.waveIdx;
+  run.waveElapsedMs = staged.elapsedMs;
+  run.recording = staged.recording;
+  useCombatStore.getState().publishStagedRecordedBattle(staged.publication);
 }
 
 function clampAct(n: number): 1 | 2 | 3 | 4 | 5 {

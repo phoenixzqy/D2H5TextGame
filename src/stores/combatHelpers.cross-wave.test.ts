@@ -342,7 +342,7 @@ describe('production cross-wave status clock', () => {
 
 describe('trusted terminal clock capture', () => {
   it.each(['missing', 'not-end', NaN, Infinity, -1, combatEngine.MAX_SIM_MS + 1] as const)(
-    'aborts a run before publishing a recording with invalid terminal %s', terminal => {
+    'retains the prior run and recording when replay staging has invalid terminal %s', terminal => {
       start();
       drain();
       const before = useCombatStore.getState();
@@ -355,9 +355,8 @@ describe('trusted terminal clock capture', () => {
       vi.spyOn(combatEngine, 'runBattleRecorded').mockReturnValueOnce({ ...actual, events });
       expect(() => { refreshActivePlayerCombatConfig({ replayCurrentWave: true }); }).toThrow('valid terminal simulation clock');
       expect(useCombatStore.getState()).toBe(before);
-      expect(hasActiveSubAreaRun()).toBe(false);
-      expect(advanceWaveOrFinish()).toBe('idle');
-      expect(useCombatStore.getState()).toBe(before);
+      expect(hasActiveSubAreaRun()).toBe(true);
+      expect(advanceWaveOrFinish()).toBe('next-wave');
     });
 
   it.each([0, 0.5, combatEngine.MAX_SIM_MS])('accepts a terminal boundary of %sms without rounding', simClockMs => {
