@@ -1,9 +1,10 @@
 # D05 / P07b03 — selected Meditation mana restoration
 
-Status: approved bounded implementation contract after independent GD/TD and QA
-review; definition, save11, selection, exact combat/native recovery and bilingual UI
-implemented through source `10c051f`. Production-browser acceptance and BUG068
-closure remain pending. Provisional strength, not campaign balance.
+Status: bounded implementation and production-browser acceptance approved by
+independent GD/TD, QA and producer. Definition/save11/selection/exact recovery/native
+and bilingual UI are implemented through `10c051f`; browser tests `72731b0`
+verify the finite acceptance below. BUG068 is fixed within that scope. Provisional
+strength, not campaign balance.
 Skeleton Mastery closure `a188810` precedes this source increment. Full P07b,
 private-v1/C0–C4/G0–G7 remain open.
 
@@ -11,9 +12,9 @@ private-v1/C0–C4/G0–G7 remain open.
 
 `skills-paladin-meditation` / canonical `paladin.meditation` authors unlock24,
 Cleansing prerequisite, aura:true/passive/self/cooldown0, cap20 and
-manaRegenPct0.03 per allocated rank. Both old locale descriptions and the passive
-spec instead promise5mana/turn. The current selector/save/runtime supports only
-Might; native mercenaries have no baseline regeneration. BUG068 records this
+manaRegenPct0.03 per allocated rank. At source-reproduction baseline `a188810`, both locale descriptions and the passive
+spec instead promised5mana/turn, and the selector/save/runtime supported only
+Might. Native mercenaries have no baseline regeneration. BUG068 records that
 source-only discrepancy before correction. Neither percent-maxMana nor fixed
 per-turn recovery follows from the coefficient; D04 turn markers are presentation.
 
@@ -192,3 +193,26 @@ Validate untrusted historical/current saves before acceptance; no validation
 bypass/network/credentials/permissions/dependencies/CI changes. Full aura catalog,
 merc baseline,otherpassives,earnedcampaign,balance,coverage,allbrowser/native/
 offline/accessibility/performance and private-v1 acceptance remain separate.
+
+
+## Accepted bounded evidence — 2026-10-21
+
+Source commits: definition/schema `3ba7ad4`, save11 `8a79356`, selection `c65b663`,
+exact primitives `f4bcb8a`, combat intervals `b478a56`, native/replay `c09cbe8`,
+UI/locales `10c051f`, spec `f575986`, production browser `72731b0`.
+[Evidence and regression mapping](../evidence/p07b03-meditation.md) retain actual
+RED/capability distinctions, failures, corrections, frozen inputs and command results.
+
+Final full unit5424/200files, types, lint and production-browser2/2 pass. The clean
+production bridge/build belongs to unchanged app source under the V4 browser test;
+V5 only corrects the authored Chinese cast literal and preserves failure samples.
+No engine edit/rerun is claimed for UI/browser stages. All36screenshots across
+9CSSsizes×2locales reviewed; small/landscape screens require scrolling. Actual
+Noto glyphs, native radio keyboard selection, full Save→Saved→close/newPage→Continue
+equality and hero None6→12/basic versus Meditation6→15/HolyBolt→0 are verified.
+ImportedL24/prerequisites/ranks/stats are scaffolding, not earned progression.
+Browser mercenary contribution, native touch/allbrowser/fulla11y/performance/
+campaign balance/full P07b/private-v1 remain outside this acceptance.
+
+Raw evidence is root-owned until the linked durable packet is independently
+verified and exact cleanup is receipted. No push/PR/merge/deployment authorized.

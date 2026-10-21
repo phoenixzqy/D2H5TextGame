@@ -1,14 +1,15 @@
 # BUG-068 — Implement selected Meditation mana restoration
 
-- **Status:** Source-reproduced; contract and regression tests pending.
+- **Status:** Fixed — bounded D05 selected-Meditation path; independent GD/TD/QA/producer acceptance.
 - **Severity:** High — the advertised Meditation recovery path cannot be selected.
 - **Owner / affected systems:** engine-dev, frontend-dev, writer, qa-engineer; authored skill contract, aura selection/save, exact combat recovery and bilingual detail.
-- **Build:** `a188810`.
+- **Reproduction baseline:** `a188810`; retained historical source-only report below.
+- **Fix sources:** definition `3ba7ad4`, save11 `8a79356`, selection `c65b663`, exact primitives `f4bcb8a`, combat `b478a56`, native `c09cbe8`, UI `10c051f`, spec `f575986`, browser `72731b0`.
 - **Environment:** Linux read-only source inspection; no browser viewport or runtime scenario executed for this report.
 - **Locales:** zh-CN and en.
 - **Seed:** Not applicable to this static reproduction; later deterministic combat tests must record their actual seed.
 
-## Reproduction
+## Historical reproduction at a188810
 
 1. Inspect `src/data/skills/paladin.json:294`: exact player Meditation is an aura/passive/self skill, unlock24 with Cleansing prerequisite, cap20 and manaRegenPct0.03 per rank.
 2. Compare `docs/design/skills-spec.md:116` and both locale descriptions: they promise5mana/turn for self and mercenary.
@@ -32,3 +33,26 @@ Source baseline/fingerprints and independent GD/TD/producer audit are retained a
 ## Workaround
 
 None restores Meditation. Keep the existing None/Might choices; this does not satisfy the missing recovery feature. No full P07b, balance, earned campaign or private-v1 acceptance is claimed.
+
+
+## Resolution and regression coverage — 2026-10-21
+
+[D05](../../docs/plans/decisions/D05-meditation-v1.md) defines the source-baseline
+denominator and exact interval settlement. One explicit None/Might/Meditation
+slot survives validated save11; learning never selects, and replacement never
+stacks or refills. Hero and original living fielded merc receive the source bonus
+with independently retained recipient baseline. Bilingual copy replaces5mana/turn.
+
+[Evidence](../../docs/plans/evidence/p07b03-meditation.md) maps definition/schema,
+historical/current save, store, precision/death/cap combat, native/replay and UI
+regressions. `tests/pwa/meditation.spec.ts` verifies native learning/keyboard/
+selection, all9CSSsizes in each locale, explicit save/newPage equality and real
+rendered hero mana/cast consequence. Final units5424/200files/types/lint and
+production browser2/2 pass;36screenshots independently reviewed. Earlier actual
+font-environment and incorrect-test-literal failures remain in the evidence;
+imported eligibility/ranks/stats are explicit scaffolding.
+
+This fixes this advertised path; full P07b, browser mercenary behavior, earned
+campaign, allbrowser/touch/fulla11y/performance and balance/private-v1 remain open.
+The historical workaround above describes the pre-fix baseline only. RAW remains
+root-owned until durable packet verification and exact cleanup receipt.

@@ -340,3 +340,89 @@ stage-h-validation.json pass; no runtime edit, gate rerun or disposable output i
 claimed. All readers released. RAW drafts/check/review records remain root-owned
 for durable archive/exact cleanup. Claim continues; no remote action. Browser,
 BUG068, provisional balance and full private-v1/C0–C4/G0–G7 remain open.
+
+
+## Stage I — production browser acceptance
+
+Source `72731b0` changes exactly the Meditation Playwright config/spec. Approved
+V5 spec18555B SHA256 `fb529c5c9597fc468af7e91b86472be45e2b7f53960d14ef6d5c74fc37b93a70`
+and config1107B `92c1d026a52f1835d125a4b0cf23ac8190d014e667a0de18bb4c83e445212413`
+match freezev2. V1→V4 fresh paired page/module, cast-debit wait, native fresh Might
+and full-save oracle corrections were reviewed before execution, not actual RED.
+
+Actual attempt1:27.727s exit1, enpass/zhfontfailure, DejaVu89glyphs and missing
+Chinese glyphs. Same V4 source/config retried with isolated fontconfig and task
+cache using installed Noto; font discovery/environment attribution is confirmed,
+exact shared-cache compatibility mechanism remains diagnosis. Actual attempt2:
+52.476s exit1, enpass/zhselectedcastwaitfailure after Noto79+DejaVu10. Test expected
+wrong Chinese name圣光弹; authored/event name is神圣箭. Its missing selected-zh
+samples are not inferred. Reviewed V5 changes only both authored-name literals and
+attach-on-error diagnostics; every numeric/cost/order assertion remains unchanged.
+All original failed reports/logs/screenshots are retained.
+
+Final serial types12.603s, lint/purity33.455s, browser2/2pass42.232s(wrapper;
+40.920266sreport; en19.393s/zh19.511s), full5424/5424 in200files87.576s. Original
+V4 types12.969/lint32.660/full5424/20086.008 and cleanproductionbridgebuild8.983s
+4chunks remain correctly attributed; unchanged production app was not rebuilt for
+test-only V5. No engine edit/rerun claimed. RAW stage-i-final-verification.json
+binds all10serialrecords and both freezes; no pending/todo/stops/signals/overlaps
+or surviving descendants. Existing timing misses/build warnings remain; no
+performance acceptance. A cumulative housekeeping record briefly raised combined
+artifacts to67,490,069B after gates ended, above67,108,864B; its lossless compact
+identity representation restored66,990,711B. No original evidence was removed;
+exact observation/correction is retained in stage-i-housekeeping-cap.json.
+
+Actual native browser assertions in both locales:
+
+- FreshL1Might1 allocation retains physical None/resources; Meditation independently
+  locked. ImportedL24/prerequisites/points/stats are explicit scaffolding. Native
+  Meditation1→2 never selects implicitly; current3→6%/next6→9% and truthful prose.
+- Keyboard None→Meditation→Might→None is exclusive, preserves whole player and
+  clears physically. Meditation absent from all9active slots.
+- Save→Saved→close/newPage→Continue exactly preserves completeSaveCurrent/meta,
+  canonical selection/rank2/points0; no transient projection/rate/carry fields.
+- Fresh-module paired inputs differ only selection, same fixedDate/visibleencounter.
+  At first hero action1540ms, baseline4MP/s and initial6 yield None12/basic versus
+  selectedrank20 rate6.4 yielding15/HolyBoltcast/payment0. MutationObserver reads
+  rendered output only; no gamebridge/hiddenstate/actioninjection/timermutation.
+- Both console-warning/error arrays empty; actual Noto79Chineseglyphs confirmed.
+
+QA viewed all36byteverifiedPNG attachments across9CSSsizes×2locales×aura/detail.
+All18layouts have14pxprose,54radiolabels≥44px(min188×44),9clearpoints per label and
+clear headings/no horizontal overflow. Controls/status/copy/ranks readable and
+contained; short/mobile/landscape viewports require scrolling. Existing decorative
+nav/skill-node glyph boxes outside Meditation remain visible. Producer independently
+verifies image bytes/dimensions/metrics and accepts QA visual review; does not claim
+personal viewing. GD/TD exactsource and QA/producer wholeevidence APPROVE; readers
+released. This is finite Chromium CSS/same-context explicit disk-save proof, not
+native touch/allbrowser/fulla11y/earnedprogression/browsermerc/campaignbalance/v1.
+
+After sourcecommit, fresh hashes/1541absentbirths verify exact761files40,978,521B
+cleanup plus9childdirs/distroot; all absent, zero failures. Separate fresh exact
+cleanup45files3,843,583B removes task-local fontcache and extractedinspection/
+diagnostic duplicates; original3reports/base64bodies/allfailureattachments,
+fontconfig/environment and installedfonts/sharedcaches preserved. RAW retained
+root-owned for independent durable verification then exactcleanup.
+
+## Stage J — BUG068 bounded closure and regression mapping
+
+[D05](../decisions/D05-meditation-v1.md) and
+[BUG068](../../../production/bugs/BUG-068-meditation-restoration.md) close only the
+approved path, retaining historical static baselinea188810 and all sourcecommits.
+Regression-suite report mode maps the existing tests below; no global suite/
+coverage/release claim or new broad manifest is created.
+
+| Regression path | Covered contract |
+| --- | --- |
+| `src/data/loader.test.ts`, `src/engine/skills/meditation.test.ts` | Exact authored schema, immutable definition/rank/eligibility/projection |
+| `src/engine/save/selected-aura.test.ts` | Frozen historicalv10 beforemigration11, canonicalcurrent11/physicalabsence/refusals |
+| `src/stores/playerStore.aura.test.ts` | Independent eligibility/exclusive replacement/no implicit selection/resources/respec |
+| `src/engine/combat/mana-recovery.test.ts`, `src/engine/combat/meditation.test.ts` | Pooled precision/partition/carry/cap, intervaldeath/recipient/source/RNG/nonstacking |
+| `src/stores/combatHelpers.meditation.test.ts` | Real nextwave/replay/original pools/all3carry/merc/save/rewards |
+| `src/features/skills/SkillsScreen.meditation.test.tsx` | Native selector, current/next/cap, unavailable retained selection and bilingual copy |
+| `tests/pwa/meditation.spec.ts` | Production keyboard/learning/save/layout and paired actual hero cast consequence |
+
+Closure is documentation-only after accepted executable gates; no extra runtime
+rerun claimed. Broader P07b/balance/private-v1/C0–C4/G0–G7 remain open; next producer
+priority is existing P08a08 Meteor truthful bilingual detail, separately bounded.
+No remote action; root keeps umbrella worktree claim.
