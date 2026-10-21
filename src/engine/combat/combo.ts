@@ -38,13 +38,9 @@ export function comboMultiplier(
   }
 
   // Fire debuffs
-  if (hasStatus(target, 'ignite')) {
-    if (incoming === 'physical') mult *= 1.25;
-    else if (incoming === 'poison') mult *= 1.15;
-  }
-  if (hasStatus(target, 'armor-melt')) {
-    if (incoming === 'physical') mult *= 1.25;
-  }
+  const burning = hasStatus(target, 'ignite');
+  if (incoming === 'physical' && (burning || hasStatus(target, 'armor-melt'))) mult *= 1.25;
+  if (incoming === 'poison' && burning) mult *= 1.15;
 
   // Lightning debuffs
   if (hasStatus(target, 'paralyze')) {

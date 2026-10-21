@@ -33,6 +33,7 @@ import {
 } from './status';
 import { CHILL_DEFINITION } from './chill-definition';
 import { MERC_INNER_SIGHT_DEFINITION } from '../skills/inner-sight';
+import { METEOR_ARMOR_MELT_DEFINITION } from '../skills/armor-melt';
 import { comboMultiplier, shouldShatter } from './combo';
 import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
 import {
@@ -338,6 +339,10 @@ function buildDamageInput(
     ? { ...defender.stats.resistances,
         physical: defender.stats.resistances.physical - amplifyDamageReduction(defender) }
     : defender.stats.resistances;
+  const meltFactor = hasStatus(defender, METEOR_ARMOR_MELT_DEFINITION.statusId)
+    ? 1 - METEOR_ARMOR_MELT_DEFINITION.defenseReductionPct / 100 : 1;
+  const innerSightFactor = hasStatus(defender, MERC_INNER_SIGHT_DEFINITION.statusId)
+    ? 1 - MERC_INNER_SIGHT_DEFINITION.defenseReductionPct / 100 : 1;
   return {
     baseMin,
     baseMax,
@@ -348,9 +353,7 @@ function buildDamageInput(
     critChance: stats.critChance,
     critMult: stats.critDamage,
     defenderResistances,
-    defenderArmor: defender.statuses.some(s => s.id === MERC_INNER_SIGHT_DEFINITION.statusId)
-      ? Math.max(0, defender.stats.defense * (1 - MERC_INNER_SIGHT_DEFINITION.defenseReductionPct / 100))
-      : defender.stats.defense,
+    defenderArmor: Math.max(0, defender.stats.defense * meltFactor * innerSightFactor),
     defenderMagicResist: defender.stats.magicResist,
     defenderDodge:
       effect.damageType === 'physical' || effect.damageType === 'thorns'
@@ -410,6 +413,7 @@ function applyDamageToUnit(
               id: status.id,
               sourceId: attackerId,
               simClockMs: state.simClockMs,
+              ...(status.durationMs !== undefined ? { durationMs: status.durationMs } : {}),
               ...(dotPerStack !== undefined ? { dotPerStack } : {}),
               damageType: effect.damageType
             },

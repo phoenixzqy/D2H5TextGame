@@ -135,7 +135,13 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
       : undefined;
     const secondaryStatuses = (skill.appliesStatus?.slice(1) ?? []).flatMap((id): OnHitStatus[] => {
       const metadata = id === 'freeze' ? skill.additionalStatusEffects?.freeze : undefined;
-      return metadata ? [{ id, ...metadata }] : [];
+      if (metadata) return [{ id, ...metadata }];
+      const melt = skill.additionalStatusEffects?.['armor-melt'];
+      if (melt && skill.id === 'skills-sorceress-meteor' && skill.damageType === 'fire' &&
+        skill.appliesStatus?.length === 2 && skill.appliesStatus[0] === 'burn' && id === 'armor-melt') {
+        return [{ id, chance: melt.chance, durationMs: melt.durationMs }];
+      }
+      return [];
     });
     effects.push({
       kind: 'damage',

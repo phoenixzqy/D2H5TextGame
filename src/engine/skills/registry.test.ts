@@ -104,7 +104,7 @@ describe('P08a04b authored player Frost Nova secondary Freeze', () => {
     ]);
     expect(listSkills().filter(id => getSkill(id)?.effects.some(effect =>
       effect.kind === 'damage' && effect.applyStatuses !== undefined)))
-      .toEqual(['sorceress.frost_nova']);
+      .toEqual(['sorceress.frost_nova', 'sorceress.meteor']);
   });
 });
 
