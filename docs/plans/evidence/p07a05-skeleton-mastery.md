@@ -178,3 +178,86 @@ verification/exact cleanup. Shared caches/tools/font/source/history and original
 checkout preserved; umbrella worktree claim continues, no push/PR/merge/deploy.
 StageC native allocation/respec/nextwave/replay/resources/all3carry/save and
 truthful bilingual UI/browser remain; full private-v1/C0–C4/G0–G7 stays open.
+
+## P07a05C — native allocation, replay and save boundaries
+
+This increment adds only `src/stores/skeleton-mastery-native.test.ts`. Production
+remains the five unchanged B sources; no runtime correction was necessary. The
+six acceptance cases passed on their first execution. There is no manufactured
+RED phase for this test-only increment.
+
+Before acceptance execution, GD/TD/QA/producer approved the capture v2 and the
+final six-case v2 test. The capture passed one test and retained two complete
+engine inputs/store recordings in `stage-c-native-prepatch-literal.json`
+(117,031 bytes, SHA256
+f6e0fddd5ee47b32fc88d8a62c44b5cf80c2ec0f5fef45fdfd2f84eee344049b).
+The first executed v2 source is 14,006 bytes, SHA256
+27ce26c3eef240126e63b61f761aedc504c69fa14c502271a52b44f02578a90f.
+Its native6, related313/5, full5062/195 and types checks passed, but lint failed
+at93:9: no-unnecessary-condition rejects the event-kind guard after filter already
+narrows to summon. This is a test-only lint defect, not a gameplay failure. The
+original log, metadata, freeze and draft remain. GD/TD/QA independently approved
+v3 deleting only that redundant guard before installation and final reruns.
+Final v3 is 13,930 bytes, SHA256
+13c195eb0eb359521515c1ce9f9586d3ede5b838e136d1a35e4ee4d9001826db;
+all assertions and oracle values remain unchanged.
+An unused constant/fallback in unexecuted capture v1 was replaced by a presence
+guard before capture execution; both drafts remain. Reviews are root
+transcriptions, not verbatim transcripts.
+
+The real allocation actions consume two points through rank 0→1→2, including the
+authored level-one unlock; the passive never becomes an active combo entry.
+Current recordings remain completely unchanged. New next-wave skeletons use
+rank6 base life/Attack/Defense 162/35/19, then 168.48/35.7/19.19 and
+174.96/36.4/19.38. Hero life/mana and all three regeneration carry fields pass
+unchanged from the preceding final state into the next wave.
+
+Paid level24 respec charges 24,000 gold (26,000→2,000), refunds two unspent plus
+six active plus two Mastery points to ten, and removes both active and passive
+allocations. The next-wave fallback Raise Skeleton rank1 produces 112/25/14;
+it is not the rank6 baseline. Real unequip clamps the next hero to
+314 life/179 mana/89 Defense and clears all three carry fields while fresh
+Mastery20 skeletons retain 291.6/49/22.8.
+
+Two rank0↔20 and equipment clamp/restore replay cycles preserve the original
+wave3 hero pools [1,000,000,752,0.5,0,"0.5"], complete recordings and rewards,
+without duplicate XP/currency. The baseline comes from the captured second
+wave's final state, not an invented third capture. Compensation is legitimately
+zero; the two fractional representations are nonzero. Restored equipment may
+leave the stats.life/mana mirrors at 314/179, explicitly accounted for as in the
+existing Iron Skin test. Fresh summon evidence uses empty initial summons and
+actual full-life summon events; battle-local IDs can repeat and do not alone
+prove freshness.
+
+Real snapshotStores→toJsonSafe→validated import preserves whole player/inventory,
+ranks/points and equipment, clears active combat, excludes transient projection,
+summons and carry fields, and produces boosted fresh summons in a new run. Only
+disk I/O is mocked. Imported level24, gear, skill ranks, seed7, fixed clock and
+finisher are explicit scaffolding, not earned progression. Production browser
+disk/reload acceptance remains Stage E.
+
+Final v3 gates ran serially against `stage-c-source-freeze-v3.json`, with all
+five B production hashes unchanged. Related: 313/5 files (3.684s Vitest,
+4.790s wrapper); types: 12.080s; full: 5062/195 files (80.253/81.610s);
+lint/purity: 31.883s; fresh production bridge/build: 9.327s, bridge absent.
+All test runs have zero pending/todo; all C runs have zero stops/signals. The
+historical v2 lint exit1 is preserved, not counted as passing. Existing full15s
+target and Browserslist/chunk/large-manifest precache warnings remain. No broad
+performance, coverage, balance, campaign or full private-v1 acceptance is claimed.
+
+GD/TD reviewed the exact installed original v2 and approved the sole v3 guard
+deletion; QA approved the same exact correction before installation. QA and
+producer independently approved the whole final C evidence; all C source/output
+readers released. Review records are root transcriptions, not verbatim transcripts.
+Source commit `6b32287` contains exactly the one native test path.
+
+After that commit and reader release, fresh source hashes, all761 output hashes
+and all1761 absent process birth identities were rechecked. Exact manifest cleanup
+removed761 files (40,969,679 bytes), nine empty child directories and the fresh
+dist root. All owned outputs are absent, with zero failures. Shared .vite/vitest
+and .vite parent directories remain. See stage-c-output-cleanup.json. RAW remains
+root-owned until later durable packet verification and exact cleanup. Shared
+caches, tools, source/history and the original checkout are preserved. The
+umbrella worktree claim continues; no push/PR/merge/deployment occurred. Truthful
+bilingual UI and production-browser acceptance remain D/E; full private-v1,
+C0–C4 and G0–G7 remain open.

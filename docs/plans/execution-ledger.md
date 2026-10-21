@@ -2607,3 +2607,24 @@ failures,sharedcacheparents preserved. SkeletonRAW retained rootowned for later
 durablepacket/exactcleanup; originalcheckout untouched,umbrellaWTclaim continues,
 no remoteaction. Next test-only StageC native allocation/nextwave/respec/replay/
 all3carry/save, then truthfulbilingualUI/browser; fullprivatev1/C0–C4/G0–G7 open.
+
+## P07a05C Skeleton Mastery native boundaries
+
+`6b32287` adds one native-store test file: real allocation at level1, next-wave
+summons, paid respec including active-rank removal, equipment clamps, two replay
+cycles using all three original carry fields, and serialization/validated import
+with a fresh run. No runtime change. Imported level24/gear/ranks/clock/finisher
+are explicit scaffolding. Captured second-final pools supply wave3; no third
+capture claimed. [Evidence](evidence/p07a05-skeleton-mastery.md).
+
+Initial six cases passed first execution; v2 related313/5, full5062/195 and types
+passed, lint failed one redundant narrowed-event guard. Failure retained. GD/TD/QA
+approved v3 deleting only that guard. Final serial related313/5, types, full
+5062/195, lint/purity and fresh bridge/build pass; zero pending/todo/stops/signals.
+Existing full15s target/build warnings remain. QA/producer whole-evidence APPROVE;
+all C readers released. After source commit, fresh hashes/1761 absent birth
+identities validated exact761-file/40,969,679-byte output cleanup plus nine child
+dirs/dist root; all absent, zero failures. Shared cache parents retained. RAW
+remains root-owned for later durable packet/exact cleanup. Original checkout
+untouched; umbrella claim continues; no remote action. Bilingual UI/browser and
+full private-v1/C0–C4/G0–G7 remain open.
