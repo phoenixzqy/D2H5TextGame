@@ -230,6 +230,13 @@
     "statusEffect": {
       "dotPctOfDamage": 0.1
     },
+    "additionalStatusEffects": {
+      "armor-melt": {
+        "chance": 1,
+        "defenseReductionPct": 30,
+        "durationMs": 3000
+      }
+    },
     "appliesTags": [
       "fire",
       "burn",

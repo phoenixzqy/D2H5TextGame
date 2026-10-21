@@ -21,6 +21,21 @@ import {
   registeredSkillFromJson
 } from './dataCatalog';
 
+describe('P08a08 authored player Meteor Armor Melt', () => {
+  it('authors only the reviewed secondary while preserving Meteor and Burn tuning', () => {
+    const raw = sorceressSkills.find(row => row.id === 'skills-sorceress-meteor');
+    const validate = new Ajv2020({ strict: true }).compile(skillSchema);
+    expect(validate(raw), JSON.stringify(validate.errors)).toBe(true);
+    expect(raw).toMatchObject({
+      requiredLevel: 24, target: 'area-enemies', aoeShape: 'box-3x3', cooldown: 4,
+      cost: { mana: 50 }, damageType: 'fire', damage: { min: 100, max: 150 },
+      appliesStatus: ['burn', 'armor-melt'], statusEffect: { dotPctOfDamage: 0.1 },
+      scaling: { damagePerLevel: 10 },
+      additionalStatusEffects: { 'armor-melt': { chance: 1, defenseReductionPct: 30, durationMs: 3000 } }
+    });
+  });
+});
+
 describe('P08a04b authored player Frost Nova secondary Freeze', () => {
   beforeEach(() => { resetRegistry(); loadDefaultSkills(); });
   afterEach(() => { resetRegistry(); loadDefaultSkills(); });
@@ -31,14 +46,14 @@ describe('P08a04b authored player Frost Nova secondary Freeze', () => {
     return row;
   }
 
-  it('opts in only actual player Frost Nova with the reviewed 10 percent chance', () => {
+  it('opts in actual Frost Nova with 10 percent chance alongside reviewed Meteor', () => {
     const raw = sorceressSkills.find(skill => skill.id === 'skills-sorceress-frost-nova');
     const validate = new Ajv2020({ strict: true }).compile(skillSchema);
     expect(validate(raw), JSON.stringify(validate.errors)).toBe(true);
     expect(raw).toMatchObject({ additionalStatusEffects: { freeze: { chance: 0.1 } } });
     expect(Object.values(PLAYABLE_CLASS_SKILL_DATA).flat()
       .filter(row => row.additionalStatusEffects !== undefined).map(row => row.id))
-      .toEqual(['skills-sorceress-frost-nova']);
+      .toEqual(['skills-sorceress-frost-nova', 'skills-sorceress-meteor']);
   });
 
   it('registers one damage effect and the complete ordered list through both actual identities', () => {
