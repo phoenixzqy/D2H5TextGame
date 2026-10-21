@@ -29,12 +29,13 @@ function input(): RecordedBattleInput {
   };
 }
 
-const defaults = { currentWave: 3, totalWaves: 7, subAreaRunId: 'old-run' };
+const defaults = { currentWave: 3, totalWaves: 7, subAreaRunId: 'old-run',
+  runRewards: { items: [], runeShards: 3, runes: 2, gems: 1, wishstones: 4 } };
 
 describe('recorded battle publication staging', () => {
   beforeEach(() => { useCombatStore.getState().reset(); });
 
-  it('stages all existing playback resets and captured defaults without changing the store', () => {
+  it('stages complete playback resets, reward baseline and unlocked defaults without changing the store', () => {
     const before = useCombatStore.getState();
     const source = input();
     const staged = stageRecordedBattle(source, defaults);
@@ -45,7 +46,8 @@ describe('recorded battle publication staging', () => {
       recordedEvents: source.events, eventCursor: 0, playbackComplete: false,
       log: [], currentTurn: 0, isPaused: false, unitNameMap: source.unitNameMap,
       outcome: source.outcome, currentWave: 3, totalWaves: 7,
-      currentWavePresentation: null, subAreaRunId: 'old-run', runVictory: false, runDefeat: false
+      currentWavePresentation: null, subAreaRunId: 'old-run', runVictory: false, runDefeat: false,
+      ironGolemReplayLocked: false, runRewards: defaults.runRewards
     });
     expect(useCombatStore.getState()).toBe(before);
   });
@@ -119,7 +121,7 @@ describe('recorded battle publication staging', () => {
       expect(state.totalWaves).toBe(7);
       expect(state.subAreaRunId).toBe('old-run');
       expect(state.autoMode).toBe(false);
-      expect(state.runRewards).toBe(rewards);
+      expect(state.runRewards).toBe(defaults.runRewards);
     } finally { release(); }
   });
 
@@ -147,10 +149,11 @@ describe('recorded battle publication staging', () => {
 
   it('leaves the exact old store untouched if team normalization throws', () => {
     const failure = new Error('normalization failed');
-    const source = input();
+    const source = { ...input(), ironGolemReplayLocked: true, resetRunRewards: true };
     const enemy = source.initialEnemyTeam[0];
     if (!enemy) throw new Error('fixture missing enemy');
     Object.defineProperty(enemy, 'gridPosition', { get() { throw failure; } });
+    useCombatStore.setState({ ironGolemReplayLocked: true, runRewards: defaults.runRewards });
     const before = useCombatStore.getState();
     let notifications = 0;
     const release = useCombatStore.subscribe(() => { notifications++; });
@@ -162,7 +165,7 @@ describe('recorded battle publication staging', () => {
   });
 
   it('retains an installed payload when a synchronous observer throws', () => {
-    const staged = stageRecordedBattle(input(), defaults);
+    const staged = stageRecordedBattle({ ...input(), ironGolemReplayLocked: true, resetRunRewards: true }, defaults);
     const failure = new Error('observer failed after installation');
     const release = useCombatStore.subscribe(() => { throw failure; });
     try {
@@ -173,6 +176,58 @@ describe('recorded battle publication staging', () => {
       expect(state.enemyTeam).toBe(staged.enemyTeam);
       expect(state.recordedEvents).toBe(staged.recordedEvents);
       expect(state.outcome).toBe(staged.outcome);
+      expect(state.ironGolemReplayLocked).toBe(true);
+      expect(state.runRewards).toBe(staged.runRewards);
     } finally { release(); }
+  });
+
+  it.each([undefined, false, true])('captures explicit or omitted replay lock %s', ironGolemReplayLocked => {
+    const staged = stageRecordedBattle({ ...input(),
+      resetRunRewards: false, ...(ironGolemReplayLocked === undefined ? {} : { ironGolemReplayLocked }) }, defaults);
+    expect(staged.ironGolemReplayLocked).toBe(ironGolemReplayLocked === true);
+    expect(staged.runRewards).toBe(defaults.runRewards);
+    expect(Object.isFrozen(defaults.runRewards)).toBe(false);
+  });
+
+  it('stages a fresh zero reward value once without mutating caller rewards', () => {
+    const before = structuredClone(defaults.runRewards);
+    const source = { ...input(), resetRunRewards: true };
+    const staged = stageRecordedBattle(source, defaults), second = stageRecordedBattle(source, defaults);
+    expect(staged.runRewards).toEqual({ items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0 });
+    expect(staged.runRewards).not.toBe(defaults.runRewards);
+    expect(staged.runRewards).not.toBe(second.runRewards);
+    expect(staged.runRewards.items).not.toBe(defaults.runRewards.items);
+    expect(defaults.runRewards).toEqual(before);
+    expect(useCombatStore.getState().inCombat).toBe(false);
+  });
+
+  it('publishes recording, lock and new-run reward reset in one notification after live rewards change', () => {
+    const staged = stageRecordedBattle({ ...input(), currentWave: 1, subAreaRunId: 'new-run',
+      ironGolemReplayLocked: true, resetRunRewards: true }, defaults);
+    useCombatStore.setState({ runRewards: defaults.runRewards, ironGolemReplayLocked: false });
+    const observations: ReturnType<typeof useCombatStore.getState>[] = [];
+    const release = useCombatStore.subscribe(state => { observations.push(state); });
+    try {
+      useCombatStore.getState().publishStagedRecordedBattle(staged);
+      const state = useCombatStore.getState();
+      expect(observations).toEqual([state]);
+      expect(state.recordedEvents).toBe(staged.recordedEvents);
+      expect(state.outcome).toBe(staged.outcome);
+      expect(state.subAreaRunId).toBe('new-run');
+      expect(state.ironGolemReplayLocked).toBe(true);
+      expect(state.runRewards).toBe(staged.runRewards);
+      expect(state.runRewards).toEqual({ items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0 });
+    } finally { release(); }
+  });
+
+  it.each(['start', 'end', 'reset', 'next', 'replace'] as const)('clears the transient lock for ordinary %s', action => {
+    useCombatStore.setState({ ironGolemReplayLocked: true });
+    const state = useCombatStore.getState();
+    if (action === 'start') state.startCombat([], [], 1);
+    else if (action === 'end') state.endCombat();
+    else if (action === 'reset') state.reset();
+    else if (action === 'next') state.nextWave([]);
+    else state.setRecordedBattle(input());
+    expect(useCombatStore.getState().ironGolemReplayLocked).toBe(false);
   });
 });

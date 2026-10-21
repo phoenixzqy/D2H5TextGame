@@ -2,6 +2,7 @@ import type { WavePresentation } from '@/engine/combat';
 import type { RecordedBattleEvent } from '@/engine/combat/combat';
 import { withDefaultGridPositions } from '@/engine/combat/grid';
 import type { CombatUnit } from '@/engine/combat/types';
+import type { KillRewards } from '@/engine/loot/award';
 import type { CombatLogEntry, RecordedBattleOutcome, UnitNameMap } from './combatStore';
 
 /** Existing recorded-battle input; omitted wave/run values retain captured defaults. */
@@ -18,6 +19,10 @@ export interface RecordedBattleInput {
   /** Omission retains the current run; explicit null clears it. */
   readonly subAreaRunId?: string | null;
   readonly wavePresentation?: WavePresentation;
+  /** Captured once for this recording; omission starts an unlocked recording. */
+  readonly ironGolemReplayLocked?: boolean;
+  /** Stage new empty run rewards for the same atomic recording publication. */
+  readonly resetRunRewards?: boolean;
 }
 
 /** The only existing state values consulted when staging a recording. */
@@ -25,14 +30,15 @@ export interface RecordedBattleDefaults {
   readonly currentWave: number;
   readonly totalWaves: number;
   readonly subAreaRunId: string | null;
+  readonly runRewards: KillRewards;
 }
 
 /**
- * Exact existing publication fields, ready for one store update without allocation.
+ * Complete publication fields, ready for one store update without allocation.
  * Owned team/log arrays follow the store's immutable-update convention. Caller
  * units, events, names and outcome are shared, never frozen or mutated by staging.
- * This is not yet an Iron receipt payload: replay lock and atomic new-run reward
- * reset must be added before complete receipt recovery can use this boundary.
+ * Lock and reward baseline are captured here; receipt/run ownership and stale
+ * publication prevention remain the installer's caller obligations.
  */
 export interface RecordedBattlePublication {
   readonly inCombat: true;
@@ -52,6 +58,8 @@ export interface RecordedBattlePublication {
   readonly subAreaRunId: string | null;
   readonly runVictory: false;
   readonly runDefeat: false;
+  readonly ironGolemReplayLocked: boolean;
+  readonly runRewards: KillRewards;
 }
 
 /**
@@ -80,6 +88,10 @@ export function stageRecordedBattle(
     currentWavePresentation: input.wavePresentation ?? null,
     subAreaRunId: input.subAreaRunId === undefined ? defaults.subAreaRunId : input.subAreaRunId,
     runVictory: false,
-    runDefeat: false
+    runDefeat: false,
+    ironGolemReplayLocked: input.ironGolemReplayLocked ?? false,
+    runRewards: input.resetRunRewards
+      ? { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0 }
+      : defaults.runRewards
   });
 }

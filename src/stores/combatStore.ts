@@ -56,6 +56,8 @@ interface CombatState {
   playbackComplete: boolean;
   unitNameMap: UnitNameMap;
   outcome: RecordedBattleOutcome | null;
+  /** Transient recording-level Iron lock; never included in saved game data. */
+  ironGolemReplayLocked: boolean;
 
   /**
    * Identifier of the active sub-area run, or null when the combat
@@ -130,6 +132,7 @@ const initialState = {
   playbackComplete: false,
   unitNameMap: new Map() as UnitNameMap,
   outcome: null as RecordedBattleOutcome | null,
+  ironGolemReplayLocked: false,
   subAreaRunId: null as string | null,
   runVictory: false,
   runDefeat: false,
@@ -161,7 +164,8 @@ export const useCombatStore= create<CombatState>((set, get) => ({
     recordedEvents: [],
     eventCursor: 0,
     playbackComplete: false,
-    outcome: null
+    outcome: null,
+    ironGolemReplayLocked: false
   }); },
 
     // Bug #1 (P0) - reset all run state on endCombat
@@ -180,6 +184,7 @@ export const useCombatStore= create<CombatState>((set, get) => ({
     playbackComplete: false,
     unitNameMap: new Map(),
     outcome: null,
+    ironGolemReplayLocked: false,
     subAreaRunId: null,
     runVictory: false,
     runDefeat: false,
@@ -207,7 +212,8 @@ export const useCombatStore= create<CombatState>((set, get) => ({
     currentWave: state.currentWave + 1,
     enemyTeam: withDefaultGridPositions(newEnemies),
     currentWavePresentation: null,
-    currentTurn: 0
+    currentTurn: 0,
+    ironGolemReplayLocked: false
   })); },
 
   updateUnit: (unitId, updater) => { set((state) => ({

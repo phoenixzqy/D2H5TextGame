@@ -3772,3 +3772,50 @@ Exact owned dist/tmp disposables stay until all readers release; diagnostics sta
 retained. Full Iron/D06/P09/P10, earned supply/balance, performance/platform/PWA/
 a11y and private-v1/C0–C4/G0–G7 remain open. Umbrella claim continues; root remains
 sole writer/executor; no remote action.
+
+
+## D06 v1d complete staged recording publication
+
+Authoritative Player Iron qualification received QA, TD/five-axis and producer
+APPROVE and committed as `03dc076`. After all readers released, exact manifest
+cleanup removed1300 disposable files/43,815,993bytes and14 empty directories,
+zero failures or remaining targets; actual evidence is `iron-config-cleanup.json`.
+
+TD plan-review returned `ready` for this four-path slice: recorded publication
+module and tests, combat store and this ledger. The complete19-field publication
+now captures the transient Iron replay-lock boolean and concrete run-reward
+reference. An omitted lock defaults false. Explicit reward reset allocates fresh
+zero rewards once during staging; otherwise staging retains the exact captured
+baseline. Immediate setRecordedBattle preserves current rewards unless reset was
+requested. Deferred publication intentionally installs its captured baseline even
+if live rewards changed after staging. Lock/reset flags are translated into store
+values, with one exact-reference publication and notification. Ordinary start,
+end, reset, next-wave and replacement recording clear the transient lock.
+
+The staging suite grew from11 to21 cases. It verifies complete values, explicit
+and omitted lock/reset, captured reward identity, fresh empty values, caller
+immutability, atomic recording/lock/reward-reset notification, normalization
+failure retaining the exact old state, observer failure after exact installation
+and ordinary lifecycle clearing. RED13failed/14passed preceded the implementation;
+final focused27/2files passed (4.680s wrapper). No code/test bytes changed afterward.
+Serial gates: types14.680s,lint40.004s including85 engine purity files,full
+unit6355/217files (109.165s),normal production build9.987s. Full15s budget remains
+unmet; existing stale Browserslist, >500kB chunk and2.57MB manifest-precache
+warnings remain open. No engine source changed and no browser acceptance ran.
+
+Security check passes for this typed publication boundary. No production caller
+yet supplies true/reset; receipt ownership, stale-publication prevention and
+actual locked replay remain pending. No selection, item debit, save shape or
+migration changes occur here. Engine no-input Iron suppression remains active
+from the prior engine increment. This is not complete Iron/D06 acceptance.
+
+Four source/ledger paths plus command/output/disposable identities are frozen in
+`iron-payload-review.json` under
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les`.
+Independent QA and TD/five-axis reviews APPROVED the frozen source scope; all
+readers released. Only producer publication scope review remains pending before
+commit. Exact owned dist/tmp disposables stay until all readers release;
+diagnostics remain retained.
+Full Iron/D06/P09/P10, receipt/caller/replay/persistence/UI, earned supply/balance,
+performance/platform/PWA/a11y and private-v1/C0–C4/G0–G7 remain open. Umbrella
+claim continues; root is sole writer/executor; no remote action.
