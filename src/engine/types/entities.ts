@@ -80,6 +80,9 @@ export interface Player extends Unit {
    * incremented. Absent entries are treated as level 0 (unallocated).
    */
   readonly skillLevels?: Readonly<Record<string, number>>;
+
+  /** Explicit canonical player aura selection. Absence means None; learning never selects. */
+  readonly selectedAuraId?: 'paladin.might';
   
   /** Equipped items */
   readonly equipment: readonly Item[];

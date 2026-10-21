@@ -2,7 +2,7 @@
 import Ajv, { type AnySchema } from 'ajv';
 import { restoreEquipment, restoreItem, restoreUnit } from './restore';
 import { LEVEL_CAP } from '../progression/xp';
-import { CURRENT_SAVE_VERSION, type SaveCurrent, type SaveV7, type SaveV8 } from '../types/save';
+import { CURRENT_SAVE_VERSION, type SaveCurrent, type SaveV7, type SaveV8, type SaveV9 } from '../types/save';
 import { runMigrations, type VersionedSave } from './migrate';
 
 const number = { type: 'number' };
@@ -151,7 +151,11 @@ const position = object({
   row: { type: 'integer', minimum: 0, maximum: 2 },
   col: { type: 'integer', minimum: 0, maximum: 2 }
 });
-const saveSchema = (version: AnySchema, actorProperties: Record<string, AnySchema>): AnySchema => object({
+const saveSchema = (
+  version: AnySchema,
+  actorProperties: Record<string, AnySchema>,
+  playerOptional: Record<string, AnySchema> = {}
+): AnySchema => object({
   version,
   timestamp: number,
   player: object(
@@ -163,7 +167,7 @@ const saveSchema = (version: AnySchema, actorProperties: Record<string, AnySchem
       level: { type: 'integer', minimum: 1, maximum: LEVEL_CAP },
       ...numbers('experience experienceToNextLevel statPoints skillPoints')
     },
-    { skillLevels: dict(number) }
+    { skillLevels: dict(number), ...playerOptional }
   ),
   inventory: object({
     backpack: array(item),
@@ -225,7 +229,10 @@ const saveSchema = (version: AnySchema, actorProperties: Record<string, AnySchem
   })
 });
 const ajv = new Ajv({ strictNumbers: true });
-const validate = ajv.compile<SaveCurrent>(saveSchema({ const: CURRENT_SAVE_VERSION }, unitProperties));
+const validate = ajv.compile<SaveCurrent>(saveSchema({ const: CURRENT_SAVE_VERSION }, unitProperties, {
+  selectedAuraId: { const: 'paladin.might' }
+}));
+const validateV9 = ajv.compile<SaveV9>(saveSchema({ const: 9 }, unitProperties));
 const validateHistorical = ajv.compile<SaveV7 | SaveV8>(saveSchema({ enum: [7, 8] }, {
   ...unitProperties,
   derivedStats: object(derivedStatProperties, { magicResist })
@@ -260,10 +267,24 @@ function validateHistoricalSave(value: unknown): void {
   }
 }
 
+/** Frozen v9 actor requirements precede the v10 selection migration. */
+function validateV9Save(value: unknown): void {
+  const normalized = normalizeMaps(value);
+  rejectUndefinedMagicResist(normalized);
+  if (!validateV9(normalized)) {
+    throw new Error(`Invalid save: ${ajv.errorsText(validateV9.errors)}`);
+  }
+}
+
 /** Validate a migrated save before any IO or store mutation. Preserves optional fields. */
 export function validateSave(value: unknown): SaveCurrent {
   const normalized = normalizeMaps(value);
   rejectUndefinedMagicResist(normalized);
+  // Ajv treats optional undefined as absent; native IndexedDB can preserve this own property.
+  if (record(normalized) && record(normalized.player) &&
+    Object.hasOwn(normalized.player, 'selectedAuraId') && normalized.player.selectedAuraId === undefined) {
+    throw new Error('Invalid save: present selectedAuraId must be paladin.might');
+  }
   if (!validate(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(validate.errors)}`);
   return normalized as SaveCurrent;
 }
@@ -296,6 +317,8 @@ export function decodeSave(value: unknown): SaveCurrent {
     input = runMigrations(input, 7);
   }
   if (input.version === 7 || input.version === 8) validateHistoricalSave(input);
+  if (input.version < 9) input = runMigrations(input, 9);
+  if (input.version === 9) validateV9Save(input);
   const save = validateSave(runMigrations(input));
   return {
     ...save,

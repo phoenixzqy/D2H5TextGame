@@ -14,7 +14,7 @@ import type { GridPosition } from '../combat/types';
  * Current save format version. Bump this and add an entry to {@link MIGRATIONS}
  * whenever the on-disk shape changes.
  */
-export const CURRENT_SAVE_VERSION = 9;
+export const CURRENT_SAVE_VERSION = 10;
 
 /**
  * Save file version (most recent).
@@ -242,7 +242,13 @@ export interface SaveV9 extends Omit<SaveV8, 'version' | 'player' | 'mercs'> {
   readonly mercs: MercSaveData;
 }
 
-export type SaveCurrent = SaveV9;
+/** Save file v10 — optional explicit canonical player aura selection; absent means None. */
+export interface SaveV10 extends Omit<SaveV9, 'version' | 'player'> {
+  readonly version: 10;
+  readonly player: Player;
+}
+
+export type SaveCurrent = SaveV10;
 
 /**
  * Migration function type. Each entry receives the previous version's shape
@@ -422,5 +428,7 @@ export const MIGRATIONS: Record<number, Migration> = {
       player: addMagicResist(v8.player),
       mercs: { ...v8.mercs, ownedMercs: v8.mercs.ownedMercs.map(addMagicResist) }
     };
-  }
+  },
+  /** v9 to v10: preserve all data; absent selection remains None. Decode validates both versions. */
+  10: (raw: unknown): SaveV10 => ({ ...(raw as SaveV9), version: 10 })
 };

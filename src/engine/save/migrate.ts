@@ -7,7 +7,7 @@
  * @module engine/save/migrate
  */
 
-import { CURRENT_SAVE_VERSION, MIGRATIONS, type SaveCurrent, type SaveV7, type SaveV8 } from '../types/save';
+import { CURRENT_SAVE_VERSION, MIGRATIONS, type SaveCurrent, type SaveV7, type SaveV8, type SaveV9 } from '../types/save';
 
 /** A save in any past or current version. */
 export interface VersionedSave {
@@ -21,6 +21,7 @@ export interface VersionedSave {
 export function runMigrations(save: VersionedSave, targetVersion?: typeof CURRENT_SAVE_VERSION): SaveCurrent;
 export function runMigrations(save: VersionedSave, targetVersion: 7): SaveV7;
 export function runMigrations(save: VersionedSave, targetVersion: 8): SaveV8;
+export function runMigrations(save: VersionedSave, targetVersion: 9): SaveV9;
 export function runMigrations(save: VersionedSave, targetVersion: number): VersionedSave;
 export function runMigrations(
   save: VersionedSave,
