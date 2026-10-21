@@ -132,3 +132,16 @@ Producer and QA independently verify all153records,467current source hashes,
 packet and qualified engine acceptance. All source/RAW/archive/dist readers
 are released. Exact root-owned cleanup follows; this review does not itself
 claim deletion.
+
+## Exact cleanup closure
+
+After every independent reader releases, root revalidates153RAW/archive records
+and2535nonlive identities, then removes exactly153RAW files,760dist files and
+one.vite file. Absence is verified; no cleanup signals.
+[Cleanup record](fixtures/p08a08-meteor-armor-melt/cleanup.json) preserves the
+exact inventories. FormerRAW no longer exists. Pre-existing emptycoverage,
+installed tools/dependencies/shared caches/source/history remain. Root transfers
+the hash-verified bounded runner and cleanup evidence to next source-only RAW
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx`,
+owned by root until its contract/tests/implementation/evidence review completes.
+The umbrella worktree claim continues; original checkout remains untouched.

@@ -1,0 +1,24 @@
+{
+  "card": "P08a08",
+  "implementation": "4ab0c14",
+  "evidenceCommit": "0699e241b0b5f94439310e769958c242cca03b19",
+  "producer": "APPROVE",
+  "QA": "APPROVE",
+  "GD": "APPROVE",
+  "TD": "APPROVE",
+  "allReadersReleased": true,
+  "allRecordsVerified": 153,
+  "sourceFingerprintsVerified": 467,
+  "commandsVerified": 24,
+  "nonliveIdentitiesVerified": 2535,
+  "packetSha256": "b4c5b263083aaccc263e6f8f5b1f741a31cc77ab95fee289b0d2cbdce4fccb42",
+  "archiveSha256": "fc48f4fd6b8ae550b6eba6ff1ecc75a20d0f32c656fc989bd25a5ccc1471e842",
+  "postArchiveClarifications": [
+    "102 tests not102assertions",
+    "Bridgeguard removes olddist before Vite launch; originalRAW older wording remains immutable"
+  ],
+  "scope": "Engine-only exact Meteor Armor Melt; no browser/earned campaign/balance/coverage/draw causality acceptance",
+  "cleanupOwner": "root",
+  "cleanupPending": false,
+  "cleanupRecord": "cleanup.json"
+}
