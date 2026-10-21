@@ -41,6 +41,7 @@ import { deriveStats, effectiveStatValue } from '@/engine/progression/stats';
 import { composeHeroRecovery } from '@/engine/progression/warmth';
 import { resolveFrozenArmorRank } from '@/engine/skills/frozen-armor';
 import { composeMightAura } from '@/engine/skills/might';
+import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
 
 const CHALLENGE_ORDINAL_PERIOD = 360360;
 let manualChallengeOrdinal = 0;
@@ -59,7 +60,10 @@ export function playerToCombatUnit(player: Player): CombatUnit {
   const mods = aggregateEquipmentMods(equipped);
   const core = applyEquipmentCoreMods(player.coreStats, mods);
   const freshStats = deriveStats(core, player.level, equipmentModsToDerivedModifiers(mods));
+  const ironSkinRank = player.class === 'barbarian' && Number.isFinite(player.level) &&
+    player.level >= IRON_SKIN_DEFINITION.requiredLevel ? resolveIronSkinRank(player.skillLevels) : 0;
   const stats = { ...freshStats,
+    defense: freshStats.defense * (1 + IRON_SKIN_DEFINITION.defensePctPerRank * ironSkinRank),
     life: Math.min(player.derivedStats.life, freshStats.lifeMax),
     mana: Math.min(player.derivedStats.mana, freshStats.manaMax) };
   const recovery = composeHeroRecovery({ classId: player.class, level: player.level,
