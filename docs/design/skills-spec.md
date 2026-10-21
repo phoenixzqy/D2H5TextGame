@@ -68,7 +68,7 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 |---|---|---|---|
 | `sorceress.cold_mastery` | Cold Mastery / 冰系精通 | -15% enemy cold resist | Unlocks at L12 |
 | `sorceress.lightning_mastery` | Lightning Mastery / 雷系精通 | +30% lightning damage | Unlocks at L12 |
-| `sorceress.fire_mastery` | Fire Mastery / 火系精通 | +30% fire damage | Unlocks at L12 |
+| `sorceress.fire_mastery` | Fire Mastery / 火焰精通 | +4% fire damage per allocated skill rank (cap 20: +80%); additive with Warmth | Unlocks at L30; automatic passive, no combo/MP/CD |
 | `sorceress.energy_shield` | Energy Shield / 能量护盾 | 30% damage → mana instead of HP | Unlocks at L18 |
 
 ---

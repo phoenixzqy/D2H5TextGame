@@ -939,7 +939,7 @@
     },
     "fire-mastery": {
       "name": "Fire Mastery",
-      "desc": "Increases fire damage dealt by 30%."
+      "desc": "Passive: +4% fire damage per allocated skill rank (up to +80% at rank 20). Unlocks at character level 30 and adds to Warmth’s fire bonus."
     },
     "energy-shield": {
       "name": "Energy Shield",
