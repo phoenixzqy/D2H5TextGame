@@ -4011,7 +4011,21 @@
     "provisionalVerifiedSubsetOfFinal": true,
     "provisionalAbsent": true,
     "browserTemporaryAbsent": true,
-    "rawRemoval": "approved after packet commit; all producer/QA/GD/TD readers released",
+    "rawRemoval": {
+      "time": "2026-10-21T05:18:23.444044+00:00",
+      "archive": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/p07b02-selected-might/raw.tar.gz",
+      "archiveSha256": "58a84b5aca1d5e0378db34e2dc92138052885c373da1b0c531b8f17f461fbb8d",
+      "removedManifestFiles": 731,
+      "removedBytes": 15151788,
+      "removedEmptyChildDirectories": 4,
+      "processIdentitiesRecheckedAbsent": 9738,
+      "allFilesAbsent": true,
+      "retainedEmptyRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-might-w1jtf6hl",
+      "rootReason": "preserve RAW root and shared parents per approved cleanup scope",
+      "fontPreserved": "/home/felixzhao/.local/share/fonts/NotoSansCJKsc-Regular.otf",
+      "readersReleased": "producer/QA/GD/TD release recorded in committed packet",
+      "failures": []
+    },
     "rawOwner": "root",
     "installedNotoPreserved": true
   },

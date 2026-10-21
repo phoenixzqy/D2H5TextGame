@@ -74,9 +74,9 @@ at `/home/felixzhao/.local/share/fonts/NotoSansCJKsc-Regular.otf`, SHA256
 
 [Durable packet](fixtures/p07b02-selected-might/packet.json) and its verified
 731-record archive preserve all RAW bytes, including failed reports, frozen
-oracles, screenshots and exact output cleanup. Root owns retained RAW at
+oracles, screenshots and exact output cleanup. The former RAW location is
 `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-might-w1jtf6hl`
-until durable preservation and independent consumers release. Core records:
+and is now empty after verified cleanup. Core archived records:
 `ui-corrected-final-gates.json`, `ui-final-browser-audit.json`,
 `browser-ui-production-v5-report.json`, source freezes, all failed reports and
 review summaries. Eighteen completed older engine/full reports are losslessly
@@ -87,8 +87,11 @@ all18 screenshots and final browser/audit. Cumulative9738 PID/birth identities
 are absent, no wrapper signals, browser temporary subtree absent. Verified761
 build/cache files40960214bytes were removed after reviewed preservation; exact
 absence is verified. The provisional archive was verified against the final
-archive and removed. Producer and QA approve the whole packet and exact RAW removal after this
-preservation commit; all consumers have released their readers.
+archive and removed. Producer and QA approved the whole packet and exact RAW removal; all consumers
+released their readers. After archive/manifest and all9738 process identities were
+rechecked, root unlinked exactly731 files (15151788B) and4 empty child directories.
+Absence is verified with no cleanup failures. The empty RAW root is retained to
+preserve the approved root/shared-parent boundary; installed Noto remains.
 Original checkout is clean; the root umbrella worktree claim continues. No remote
 action. Broader aura replacement/Meditation, earned campaign/balance, full browser
 coverage, full accessibility and private-v1 acceptance remain open.

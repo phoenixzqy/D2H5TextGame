@@ -2346,10 +2346,14 @@ campaign/balance/newcoverage/fullaccessibility/performance/privatev1 certificati
 Exact761outputfiles40960214B removed after preserved evidence/reviewerrelease;
 9738cumulative PID/birthidentities absent/no wrappersignals, browsertemp absent.
 Installed officialNoto retained; sharedcachepurge not used. Originalcheckout
-untouched; umbrella worktreeclaim continues, no remote action. RAW root-owned at
-`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-might-w1jtf6hl`
-until exactcleanup after acceptedpacketcommit; producer/QA wholepacket APPROVE,
-allreadersreleased. Provisionalarchive verified and removed.
+untouched; umbrella worktreeclaim continues, no remote action. After producer/QA wholepacket APPROVE and allreadersrelease, root reverified
+the archive/731manifest hashes and9738absentPID/birthidentities, then removed
+exact731RAWfiles15151788B and4emptychilddirectories. Absence verified; no
+cleanup failures. Empty RAW root retained to preserve approved cleanup boundary:
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-might-w1jtf6hl`.
+Provisionalarchive verified and removed. Cleanup evidence now lives in the
+committed packet; new root-owned Lightning RAW is separate at
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-lightning-mastery-6siwydfd`.
 Next bounded P07a03A LightningMastery definition/schema/rank contract GD/TD
 approved: authoredL30/cap20/+4%lightning perallocatedrank; separate runtime/native/
 copy/browser stages remain. No implementation or completion claimed for it yet.
