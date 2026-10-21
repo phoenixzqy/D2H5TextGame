@@ -3539,3 +3539,59 @@ Exact task-owned `dist`/`tmp` outputs stay until all readers release; original
 diagnostics await durable retention. Full Iron/D06/P09/P10, earned supply/balance,
 performance/platform/PWA/a11y and private-v1/C0–C4/G0–G7 remain open. Umbrella
 claim continues; no remote action.
+
+
+## D06 v1d inactive exact-debit intent and observation foundation
+
+Acknowledged-selection lifecycle received producer APPROVE and committed as
+`cd0743e`. After all readers released, root verified and removed its exact857
+task disposable files/42,719,784bytes and14 empty directories, zero failures.
+Actual `lifecycle-cleanup.json` remains beside retained diagnostics.
+
+TD plan-review returned `ready` for this three-path subincrement: new pure
+`ironGolemDebit.ts`,30 focused cases and this ledger. Capture delegates the
+existing complete ownership resolver, retaining its refusal precedence. It binds
+the exact selection, Item/index and original four ownership-container references,
+and constructs one new expected backpack by that index, preserving remaining Item
+references/order. Only owned descriptor/view/expected array are frozen; caller
+containers, selection and Item objects are never frozen or mutated here.
+
+Observation validates original selected-index/reference sequence, expected one-index
+shape and unchanged stash/equipment/all-merc root references. Only the exact original
+backpack reports original; only the exact captured expected array reports committed.
+Every third array or changed other root reports conflict, including equal copies and
+an unrelated remove-by-ID array. Item absence never proves commitment. Repeated
+observation is read-only. Supported ownership updates must remain immutable; this
+helper does not claim exhaustive arbitrary raw Item/gear-object field detection.
+
+Initial RED was missing-module collection/no tests. Backpack-reference-only
+observation then exposed8fail/22pass for other roots and raw original-array changes.
+Full reference/shape checks pass30. First lint caught three unexpected newlines in
+parameterized test calls; moving call parentheses changed no assertions. Original
+failures/pre-correction successes and exact source/output identities are retained.
+Final serial gates on unchanged module/test bytes: focused58/2files (30 debit+28
+ownership,7.413s wrapper);types14.972s;lint38.572s including engine purity;
+full unit6219/214files (113.703s wrapper);normal production build10.284s.
+No engine source changed; full unit includes engine regressions. Related5s and
+full15s budgets remain unmet. Existing stale Browserslist, >500kB chunk and2.57MB
+generated-manifest precache warnings remain open.
+
+Security check passes for this pure typed observational boundary. Capture is
+neither item eligibility nor engine-success/payment authorization. No live write,
+refund/rollback, mana, guard acquisition, receipt phase, selection mutation,
+run/cursor/reward/publication/replay/save/UI effect or production consumer exists.
+The eventual caller must stage and validate the engine attestation/full payload,
+revalidate exact run/hero/wave/selection/ownership immediately pre-write, install
+intent before writing, hold the debit guard and inspect after notifications,
+including setter throws. The frozen expected array must be the actual installed
+reference; copying it for a write cannot prove commitment. Complete receipt and
+caller integration remain pending; there is no browser/runtime acceptance.
+
+Independent QA and TD/five-axis source reviews APPROVED all three frozen paths
+and10 receipt/source/output identities; all readers released. Status-only
+publication awaits producer scope review; root remains sole writer/executor. Evidence stays under
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les`.
+Exact `dist`/`tmp` disposables stay until all readers release; original diagnostic
+receipts await durable retention. Full Iron/D06/P09/P10, earned supply/balance,
+performance/platform/PWA/a11y and private-v1/C0–C4/G0–G7 remain open. Umbrella
+claim continues; no remote action.
