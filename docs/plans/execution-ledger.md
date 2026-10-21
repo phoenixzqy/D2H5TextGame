@@ -2519,3 +2519,31 @@ losslesslygzipped6,297,541→470,018B with exactroundtrip mapping, StageDreport
 unchanged. Root owns later durablepacketverification/exactcleanup. Sharedcaches/
 parents/Noto/source/history preserved, originalcheckout untouched, umbrellaclaim
 continues, no remoteaction. Next separatelyreviewed2path productionbrowsertests.
+
+
+## P07a04E Iron Skin production acceptance and BUG066
+
+`9e3dcdd` completes the bounded browser path and minimal native Tab fix.
+BUG066 records two genuine en100-Tab failures (zh not run), repeated locked
+Natural Resistance→BODY→Iron Skin enabled trace, six new unit RED/20 controls,
+unexecuted zh-name correction and actual three-option RTL type failure. Exact
+v3 final serial focused106/4, full4755/191, types/lint/fresh production bridge
+build and2 browser cases pass; zero skips/todos/flaky/stops/signals. Browser
+reaches Allocate in3 native Tabs in all4rank/locale paths; native Enter learns1/2.
+Eighteen CSSviewport samples,4 actual explicit Save/newpage/Continue cycles,
+truthful bilingual prose/current/next,9passive-free combo slots,≥44px targets/
+14px prose/324clear sampled hits/NotoCJK30glyphs/empty console are accepted.
+[Evidence](evidence/p07a04-iron-skin.md) retains limits: explicit importedL18,
+desktopChromium CSSresize/samecontext save, belowfoldscroll/existingiconglyphboxes;
+no earnedcampaign/realtouch/processrestart/autosave/fullaccessibility/balance/
+performance/full privatev1 claim. Existing15s full target/buildwarnings remain.
+TD/UX exact source and QA/producer whole evidence APPROVE; all readers released.
+
+Root freshly checks6125 absent birthidentities/source+output hashes aftercommit,
+removes761 outputs40,965,732B plus16 browser/fontcache827,806B and verifies all777
+files/three roots absent/no failures. Packet/archive preserve all retained RAW
+bytes with19 current fingerprints; independent durable verification and exact
+RAW manifest cleanup remain pending. Root owns that cleanup at the Iron RAW
+path. Sharedcaches/parents/Noto/source/history preserved, original checkout
+untouched, umbrella worktree claim continues, no remote action. Next approved
+contract candidate P07a05SkeletonMastery; privatev1/C0–C4/G0–G7 remain open.

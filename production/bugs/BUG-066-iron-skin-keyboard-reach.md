@@ -1,6 +1,6 @@
 # BUG-066 — Diagnose Iron Skin forward-keyboard allocation failure
 
-- **Status:** Fix validated locally — commit pending; production-browser regression now passes.
+- **Status:** Fixed in `9e3dcdd` — production-browser regression passes.
 - **Severity:** Medium — forward keyboard allocation skips the selected eligible skill; pointer allocation was covered previously.
 - **Owner / affected systems:** frontend-dev, accessibility-specialist, qa-engineer; Skills focus/preview and browser harness.
 - **Build:** `a1ab9c1`, product UI `edaa2b2`, exact approved uncommitted browser v1.
@@ -143,3 +143,16 @@ keyboard-final-source-freeze-v3.json and iron-all-process-union.json. All6125
 cumulative Iron Skin PID/birth identities are absent. All761 fresh output hashes
 match after browser; outputs await reader release and exact cleanup. Independent
 final browser/evidence review remains pending at this document freeze.
+
+## Closure
+
+QA and producer independently approve whole final evidence and all18 screenshots;
+TD/UX approve the minimal source. Review records are root transcriptions.
+After commit/all reader release, root freshly checks source hashes and6125 absent
+PID/birth identities, removes exactly761 outputs40,965,732B and16 task-local
+browser/font-cache files827,806B, and verifies all777 files/three owned roots
+absent with no failures. Shared cache parents and installed fonts remain.
+[Durable packet](../../docs/plans/evidence/fixtures/p07a04-iron-skin/packet.json)
+preserves actual failures, drafts/corrections, reports, hashes and review records.
+RAW evidence remains root-owned until independent archive verification and exact
+cleanup; that final cleanup outcome is recorded in the packet/evidence ledger.

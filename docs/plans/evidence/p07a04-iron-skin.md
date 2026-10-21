@@ -1,7 +1,7 @@
 # P07a04 Iron Skin — incremental evidence
 
 Status: authored prerequisite delivered in `b73e858`; runtime adapter delivered
-in `e234dad`; native fixture acceptance in `a4548e2`; bilingual details in `edaa2b2`. Production-browser acceptance remains open. Broader P07a/private-v1,
+in `e234dad`; native fixture acceptance in `a4548e2`; bilingual details in `edaa2b2`. Production-browser acceptance and the native Tab fix are delivered in `9e3dcdd`. Broader P07a/private-v1,
 C0–C4 and G0–G7 remain incomplete.
 
 [D05](../decisions/D05-iron-skin-v1.md) controls the authored contract: Barbarian
@@ -224,3 +224,81 @@ roundtrips before unlinking original task-owned JSON copies;
 `historical-report-compression.json` binds original/decompressed and compressed
 lengths/hashes. The current StageD report remains unchanged. Required failures,
 source/oracles and diagnostics remain preserved.
+
+## Production keyboard defect and Stage E acceptance
+
+BUG066 preserves two genuine en production-browser failures before any allocation;
+zh-CN did not run under maxFailures1. The approved diagnostic changes only
+read-only Tab snapshots and pre-close failure capture. It repeats the native
+100-Tab failure against unchanged StageD source/output. At steps2/43/84, locked
+Natural Resistance has a disabled detail action; Tab skips to BODY, then blur
+restores eligible Iron Skin too late. This is a product focus/preview timing bug.
+The original failure had no retained PNG because its finally closed the page;
+the diagnostic PNG shows the tree viewport, not layout acceptance.
+
+The minimal reviewed correction flushes preview clearing synchronously on node
+Tab keydown before native focus navigation. It preserves default Tab/Shift+Tab,
+selection, pointer/focus previews, native activation and disabled semantics.
+The six new bilingual regressions observe DOM at document keydown before default,
+cover both directions and non-Tab/committed-locked controls, and retain Player
+state. Actual RED26=6fail/20pass precedes production edits; assertions after hard
+failures are not claimed. Focused GREEN106 follows. An unexecuted zh heading
+expectation was corrected to authored 自然抗性. The actual subsequent typecheck
+fails on three unsupported RTL exact options; removing only those ignored
+properties preserves exact string-name matching. All drafts/failures survive.
+
+| Final exact v3 gate | Result | Vitest/Playwright / wrapper seconds |
+| --- | --- | --- |
+| Focused Skills controls |106 passed /4 files|6.283 /7.371|
+| Typecheck |pass|11.538 wrapper|
+| Full unit |4755 passed /191 files, zero pending/todo|78.193 /79.402|
+| Lint |pass|31.476 wrapper|
+| Fresh production bridge/build |pass; bridge absent|9.062 wrapper|
+| Production browser |2 passed, zero skipped/flaky/retries|22.797621 /23.773|
+
+The original fatal100-Tab oracle now reaches Allocate in3 native Tabs for each
+rank/locale. Native Enter learns1/2, freshL1 remains locked, and importedL18/two
+points is explicit scaffolding. Both locales show truthful prose, current4/8%
+and next8/12%(+4%); all9 combo slots exclude the passive. Eighteen samples cover
+360×640,412×915,640×360,375×667,393×851,768×1024,1280×800,1920×1080,915×412.
+All sampled heading/action hit points are clear in separate scrolled states;
+action minimum120×48px, prose14px and no document horizontal overflow. Actual
+CDP reports Noto Sans CJK SC30 glyphs and DejaVu Sans12; app console arrays empty.
+Root views all18 exact PNGs via3 contact sheets plus full-size zh360/en915.
+Below-fold rows require scrolling; existing icon glyph boxes remain.
+
+Four actual Settings Save/confirmed Saved→page close→newpage→Continue cycles
+compare full player/inventory/mercs/map/formation/meta.settings. This proves
+explicit disk persistence within one browser context; whole-meta, idle/gacha/
+timestamps, autosave and browser-process restart are outside this assertion.
+No test bridge/internal state injection is used. Desktop Chromium CSS resizing
+does not certify touch devices, all-browser/full accessibility, earned campaign,
+balance, coverage, performance or full private-v1/C0–C4/G0–G7. The15s full-test
+target and existing Browserslist/chunk/manifest-precache warnings remain.
+
+Independent source TD/UX review and QA/producer final evidence review precede
+commit. Review records are root transcriptions, not verbatim transcripts.
+
+## Durable packet and disposable cleanup
+
+[Packet](fixtures/p07a04-iron-skin/packet.json) and its verified
+[archive](fixtures/p07a04-iron-skin/raw.tar.gz) preserve all retained task evidence,
+including failed runs, unexecuted drafts/corrections, exact source freezes,
+reports/attachments and root-transcribed independent reviews. Four historical
+full reports are losslessly compressed with original hash/length mapping.
+The archive has 390 regular members/15,125,880 original bytes; gzip4,778,161B SHA256 `d822fa5287839f8b47aeac420a7e2089512ea887e296ca4f98b7d6ee1f5604ea`. Current-source fingerprints cover19 paths.
+
+After source/browser commit and all readers release, root freshly verifies6125
+absent PID/birth identities and exact hashes, removes761 final output files
+40,965,732B plus16 task-local browser/font-cache files827,806B, verifies all777
+files/three owned roots absent with no failures. The earlier760 StageD dist
+files40,950,025B were likewise removed after diagnostic consumers finished; the
+old Vitest cache was explicitly superseded by RED after pre-run hash checks.
+Shared cache parents/installed Noto/source/history remain; original checkout
+untouched, umbrella claim continues, no remote action.
+
+RAW remains root-owned at the path above pending independent packet/archive
+verification and exact manifest cleanup. Root will remove only verified manifest
+files/empty child directories after all consumers finish; the packet and this
+ledger will record the actual result. Next ready substantive slice is P07a05
+Skeleton Mastery; full private-v1/C0–C4/G0–G7 remain incomplete.
