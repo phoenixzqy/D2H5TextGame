@@ -1,6 +1,6 @@
 # BUG-060 — Apply explicitly selected player Might in combat
 
-- **Status:** Pure-engine runtime fixed in `3e4f159`; native wave integration reproduced and fix in progress.
+- **Status:** Pure-engine runtime fixed in `3e4f159`; native wave integration fixed in `53e2dc6`; player selector UI reproduced and fix in progress.
 - **Severity:** High — selected Might has no combat effect.
 - **Owner / affected systems:** engine-dev (root integrator), selected aura combat projection; native combat adapter follows separately.
 - **Build:** `e1c976d1feca247200bcca1d0135826b54a88863` with reviewed regression tests installed; production engine unchanged.
@@ -61,3 +61,28 @@ Native fix: capture the constructed fielded merc's exact combat identity once
 at run start; compose eligible selection from the current matching player at
 each wave; pass the immutable projection separately from unchanged unit/carry
 resources. No roster rediscovery or original-player selection fallback.
+
+## UI reproduction after native integration
+
+At `53e2dc6`, the independently reviewed v3
+`src/features/skills/SkillsScreen.might.test.tsx` reproduces 12 failures out of
+18 tests (6 passing controls, no skips; 8.619s). Eight failures stop at the
+missing native aura fieldset; two reach and fail the missing exact Might
+selection prose; two demonstrate alias-order / invalid allocated-rank display.
+Later assertions within each failed test are not claimed as reached. The
+whole-recording test establishes a real native recording before failing its
+missing-selector lookup; recording preservation by UI selection remains unproven
+until GREEN. Production UI and locale hashes match `ui-prepatch-freeze.json`.
+
+Evidence: `ui-proposal.v3.json`, `ui-v3-preexecution-reviews.txt`,
+`focused-ui-red-report.json`, matching metadata and `ui-red-summary.json` at
+the retained evidence root. Earlier fixture drafts and all three independently
+reviewed pre-execution corrections are preserved.
+
+Bounded UI fix: a saved-choice native radio fieldset above tabs, shared Might
+eligibility, explicit `selectAura` only, visible next-wave timing and unavailable
+reasons, exact authored separate physical/Attack descriptions and rank previews.
+Override only the two exact Might display aliases using the shared allocated
+rank resolver; neither legacy `player.skills` nor alias insertion order may
+invent an allocated rank. Browser layout, keyboard and focus remain separate
+validation; this bug report does not close the complete Might card.

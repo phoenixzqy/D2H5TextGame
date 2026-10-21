@@ -30,6 +30,7 @@ import {
 import { refreshActivePlayerCombatConfig, resolveEquippedWeapon } from '@/stores/combatHelpers';
 import { getSkill, listSkills } from '@/engine/skills/registry';
 import { canCastSkill } from '@/engine/skills/eligibility';
+import { MIGHT_DEFINITION, resolveEligibleMightRank, resolveMightRank } from '@/engine/skills/might';
 import {
   computeSkillDisplayModel,
   type SkillDamageDisplayRow,
@@ -70,12 +71,14 @@ export function SkillsScreen() {
   const equipped = useInventoryStore((s) => s.equipped);
   const setComboOrder = usePlayerStore((s) => s.setComboOrder);
   const allocateSkillPoint = usePlayerStore((s) => s.allocateSkillPoint);
+  const selectAura = usePlayerStore((s) => s.selectAura);
   const [selectedSkillId, setSelectedSkillId] = useState('');
   const [previewSkillId, setPreviewSkillId] = useState<string | null>(null);
 
   const skillPoints = player?.skillPoints ?? 0;
   const playerLevel = player?.level ?? 1;
   const playerClass = player?.class ?? '';
+  const eligibleMightRank = player ? resolveEligibleMightRank(player) : 0;
 
   const allSkills = useMemo(() => {
     if (!playerClass) return [];
@@ -103,6 +106,11 @@ export function SkillsScreen() {
         const level = 'level' in skill && typeof skill.level === 'number' ? skill.level : 1;
         addAllocatedLevelAlias(map, skill.id, level);
       });
+    }
+    const mightRank = resolveMightRank(levels);
+    for (const alias of ['paladin.might', 'skills-paladin-might']) {
+      if (mightRank > 0) map.set(alias, mightRank);
+      else map.delete(alias);
     }
     return map;
   }, [player?.skillLevels, player?.skills]);
@@ -314,6 +322,50 @@ export function SkillsScreen() {
           </span>
         </Panel>
 
+        {player.class === 'paladin' || player.selectedAuraId === 'paladin.might' ? (
+          <Panel>
+            <fieldset className="min-w-0 space-y-3" aria-describedby="aura-selection-timing">
+              <legend className="font-serif text-lg text-d2-gold">{t('auraSelection.legend')}</legend>
+              <div className="grid gap-2 sm:grid-cols-2">
+                <label className="flex min-h-[44px] cursor-pointer items-center gap-3 rounded border border-d2-border bg-d2-bg/40 px-3 py-2 text-base">
+                  <input type="radio" name="selected-player-aura" value="none"
+                    checked={player.selectedAuraId !== 'paladin.might'}
+                    onChange={() => { selectAura(null); }}
+                    aria-describedby="aura-selection-timing"
+                    className="h-5 w-5 accent-d2-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-d2-gold" />
+                  <span>{t('auraSelection.none')}</span>
+                </label>
+                <label className="flex min-h-[44px] items-center gap-3 rounded border border-d2-border bg-d2-bg/40 px-3 py-2 text-base">
+                  <input type="radio" name="selected-player-aura" value="paladin.might"
+                    checked={player.selectedAuraId === 'paladin.might'}
+                    disabled={eligibleMightRank === 0}
+                    onChange={() => { selectAura('paladin.might'); }}
+                    aria-describedby="aura-selection-timing aura-selection-eligibility"
+                    className="h-5 w-5 accent-d2-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-d2-gold" />
+                  <span>{t('auraSelection.might')}</span>
+                </label>
+              </div>
+              <p role="status" aria-live="polite" className="text-d2-gold">
+                {player.selectedAuraId === 'paladin.might' && eligibleMightRank === 0
+                  ? t('auraSelection.unavailableSelected')
+                  : t('auraSelection.selected', { aura: t(player.selectedAuraId === 'paladin.might' ? 'auraSelection.might' : 'auraSelection.none') })}
+              </p>
+              <p id="aura-selection-eligibility" className="text-sm text-d2-white/90">
+                {eligibleMightRank > 0 ? null : player.class !== 'paladin'
+                  ? t('auraSelection.needsClass')
+                  : !Number.isFinite(player.level) || player.level < MIGHT_DEFINITION.requiredLevel
+                    ? t('auraSelection.needsLevel', { level: MIGHT_DEFINITION.requiredLevel })
+                    : t('auraSelection.needsRank')}
+              </p>
+              <div className="space-y-1 text-sm text-d2-white/90">
+                <p id="aura-selection-timing">{t('auraSelection.timing')}</p>
+                <p>{t('auraSelection.recipients')}</p>
+                <p>{t('auraSelection.source')}</p>
+              </div>
+            </fieldset>
+          </Panel>
+        ) : null}
+
         <Tabs
           tabs={[
             { id: 'tree', label: t('tab.tree'), content: treePanel },
@@ -510,7 +562,7 @@ function SkillDetailPanel({
                 ? t('details.level', { current: model.allocatedLevel, max: model.maxLevel })
                 : t('details.unlearned', { max: model.maxLevel })}
               {' · '}
-              {t(`trigger.${skill.trigger}`, { defaultValue: skill.trigger })}
+              {t(`trigger.${skill.id === 'skills-paladin-might' ? 'aura' : skill.trigger}`, { defaultValue: skill.trigger })}
             </p>
           </div>
           <Button
@@ -527,6 +579,9 @@ function SkillDetailPanel({
         <p className="rounded border border-d2-border/70 bg-black/30 px-3 py-2 text-sm text-d2-white/80">
           {dynamicDescription(name, skill, primaryStats, t)}
         </p>
+        {skill.id === 'skills-paladin-might' ? (
+          <p className="text-sm text-d2-white/90">{t('auraSelection.rankBonuses')}</p>
+        ) : null}
 
         <div className="grid gap-3 md:grid-cols-3">
           <StatSection
@@ -955,6 +1010,11 @@ function dynamicDescription(
   stats: SkillRankDisplayStats | undefined,
   t: Translate
 ): string {
+  if (skill.id === 'skills-paladin-might') {
+    const { physicalDamagePctPerRank: physical, attackPctPerRank: attack, maxRank } = MIGHT_DEFINITION;
+    return t('paladin.might.desc', { physical: Math.round(physical * 100), attack: Math.round(attack * 100),
+      maxPhysical: Math.round(physical * maxRank * 100), maxAttack: Math.round(attack * maxRank * 100), cap: maxRank });
+  }
   const firstDamage = stats?.damage[0];
   if (firstDamage) {
     return t('details.descriptionDamage', {

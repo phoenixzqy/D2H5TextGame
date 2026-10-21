@@ -809,7 +809,7 @@
     },
     "might": {
       "name": "Might",
-      "desc": "Aura: increases physical damage of self and mercenary by 50%."
+      "desc": "When selected, each rank grants you and your living fielded mercenary +{{physical}}% physical damage and +{{attack}}% Attack, up to +{{maxPhysical}}% and +{{maxAttack}}% at rank {{cap}}. Changes apply from the next wave."
     },
     "holy-fire": {
       "name": "Holy Fire",
@@ -1326,5 +1326,19 @@
       "name": "Critical Strike",
       "desc": "Passive: chance to deal double damage on hit."
     }
+  },
+  "auraSelection": {
+    "legend": "Aura for next wave",
+    "none": "None",
+    "might": "Might",
+    "selected": "Selected: {{aura}}",
+    "unavailableSelected": "Selected: Might — unavailable",
+    "needsClass": "Requires Paladin.",
+    "needsLevel": "Requires character level {{level}}.",
+    "needsRank": "Spend a skill point on Might first.",
+    "timing": "Selection and rank changes apply from the next wave. Replaying the current wave uses the latest selection and rank.",
+    "recipients": "Affects you and your living fielded mercenary at any position.",
+    "source": "Stops when you fall. Stun and freeze do not cancel the aura.",
+    "rankBonuses": "These rank bonuses require selecting Might."
   }
 }
