@@ -2581,3 +2581,29 @@ retains reports/failures/drafts/decisiveevidence until durablepacketverification
 exactcleanup. Originalcheckout untouched,umbrellaWTclaim continues,no remoteaction.
 Next GD/TD-approved v3 StageB creation-onlyruntimeplan5paths; exactoracles/source
 review pending. Broadnative/replay/carry/saveStageC and UI/browser remain open.
+
+
+## P07a05B Skeleton Mastery fresh summon runtime
+
+`7740f2e` changes exact5paths: authoritative eligible Player composition, independently
+copied/frozen wave primitives and one post-build/pre-ID skeleton/mage decorator,
+plus native/composition tests. Preserve existing summon rank rounding/floor, all
+fractions, full freshlife, all unrelated fields and damaged preloaded summons.
+No authoreddata/sharedtypes/save/UI edit. GD/TD source and QA/producer wholeevidence
+APPROVE/allreadersreleased. [Evidence](evidence/p07a05-skeleton-mastery.md).
+
+Actual prepatch fullrecord capture1pass; nativev6 RED57=8fail49pass includes one
+CD0oracleerror (registry overrides stub with authoredCD1), preserved honestly.
+Frozen/re-reviewed v7 correctedunchangedproductionRED57=7intendedfail50controls.
+Separatecomposer55=54missingfunctionfail1sorccontrolpass, not behavioralRED/collection.
+Unexecuted nonnull/draworacle corrections retained. Finalserialfocused301/3,
+engine2549/79(11.839/13.043s),types12.158,full5056/194(83.788/85.104s),lint32.360,
+freshproductionbridgebuild9.338 pass; noBpending/todo/stops/signals. Existing3s/
+15stargets/buildwarnings remain; no broadperformance/balance/coverage/campaign/fullv1.
+
+After sourcecommit and readerrelease root freshsource/761outputhash/1202absentbirth
+checks removes40,969,612B/761files,nineemptychilddirs+freshdistroot; allabsent/zero
+failures,sharedcacheparents preserved. SkeletonRAW retained rootowned for later
+durablepacket/exactcleanup; originalcheckout untouched,umbrellaWTclaim continues,
+no remoteaction. Next test-only StageC native allocation/nextwave/respec/replay/
+all3carry/save, then truthfulbilingualUI/browser; fullprivatev1/C0–C4/G0–G7 open.
