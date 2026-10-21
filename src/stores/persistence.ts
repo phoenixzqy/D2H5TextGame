@@ -16,7 +16,7 @@ import i18n from '@/i18n';
 import { buildSave, toJsonSafe } from '@/engine/save';
 import { decodeSave } from '@/engine/save/validate';
 import { resumeIdleBonus } from '@/engine/idle/persisted-bonus';
-import { abortSubAreaRun } from './combatHelpers';
+import { clearCombatAfterRestore } from './combatHelpers';
 import { seedItemSeqFromIds } from '@/engine/loot/rollItem';
 import type { SaveCurrent } from '@/engine/types/save';
 import { hasSave, loadSave, saveSave, deleteSave } from './save-adapter';
@@ -227,8 +227,6 @@ export async function importIntoStores(json: string): Promise<void> {
     cancelPendingSave();
     try {
       await saveSave(data);
-      abortSubAreaRun();
-      useCombatStore.getState().reset();
       applySaveToStores(data, Date.now(), lease);
       writesBlocked = false;
       useSaveStatusStore.setState({ error: null });
@@ -255,8 +253,7 @@ export async function deleteCurrentSave(): Promise<void> {
     cancelPendingSave();
     try {
       await deleteSave();
-      abortSubAreaRun();
-      useCombatStore.getState().reset();
+      clearCombatAfterRestore(lease);
       replacePlayerAfterRestore(null, lease);
       useInventoryStore.getState().reset();
       useMapStore.getState().reset();
@@ -384,6 +381,7 @@ async function hydrateSavedCharacter(reconcileOffline: boolean, lease: WaveResto
 /** Apply a prevalidated save synchronously while autosave is suppressed. */
 function applySaveToStores(data: SaveCurrent, idleBonusAnchor: number, lease: WaveRestoreLease): void {
   if (!Number.isFinite(idleBonusAnchor)) throw new RangeError('Idle bonus arithmetic requires finite numbers');
+  clearCombatAfterRestore(lease);
   replacePlayerAfterRestore(data.player, lease);
   useInventoryStore.setState({
     backpack: [...data.inventory.backpack],

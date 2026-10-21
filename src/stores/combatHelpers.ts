@@ -47,6 +47,8 @@ import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-
 import { composeSkeletonMastery } from '@/engine/skills/skeleton-mastery';
 import { isPreparationSummonSkill } from '@/engine/skills/summon-preparation';
 import { isIronGolemSkill } from '@/engine/skills/iron-golem';
+import { clearIronGolemSelectionAfterRestore } from './ironGolemSelectionStore';
+import { assertWaveRestoreOwner, type WaveRestoreLease } from './waveTransitionGuard';
 import { canonicalSkillIdFromData, getSkillRequiredLevel, getSkillsForClass,
   skillIdAliases, type SkillTemplate } from './skillsHelpers';
 
@@ -643,6 +645,18 @@ export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idl
   activeRun.waveIdx = nextIdx;
   playWave(nextIdx);
   return 'next-wave';
+}
+
+/**
+ * Abandon process-local combat only after a validated restore/deletion succeeds.
+ * The caller retains its restore reservation throughout installation. An invalid
+ * or released lease throws WaveGuardError before any transient state changes.
+ */
+export function clearCombatAfterRestore(lease: WaveRestoreLease): void {
+  assertWaveRestoreOwner(lease);
+  activeRun = null;
+  useCombatStore.getState().reset();
+  clearIronGolemSelectionAfterRestore(lease);
 }
 
 /** Tear down the active run without touching combat state. */

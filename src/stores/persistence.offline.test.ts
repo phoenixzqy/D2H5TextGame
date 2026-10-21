@@ -28,6 +28,7 @@ vi.mock('dexie', () => ({
 import i18n from '@/i18n';
 import { toJsonSafe } from '@/engine/save';
 import { useCombatStore } from './combatStore';
+import { abortSubAreaRun, clearCombatAfterRestore, hasActiveSubAreaRun, startSubAreaRun } from './combatHelpers';
 import { armIronGolemSelection, useIronGolemSelectionStore } from './ironGolemSelectionStore';
 import {
   beginWaveTransition, endWaveTransition, reserveWaveRestore, releaseWaveRestore, WaveGuardError
@@ -644,6 +645,157 @@ describe('persistence at wave transition boundaries', () => {
     const player = createMockPlayer('After release', 'amazon');
     usePlayerStore.getState().setPlayer(player);
     expect(usePlayerStore.getState().player).toBe(player);
+  });
+
+});
+
+
+describe('successful restore transient combat cleanup', () => {
+  beforeEach(() => {
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'setInterval', 'clearInterval'] });
+    abortSubAreaRun();
+    useCombatStore.getState().reset();
+    useIronGolemSelectionStore.setState({ selection: null });
+  });
+  afterEach(() => {
+    abortSubAreaRun();
+    useCombatStore.getState().reset();
+    useIronGolemSelectionStore.setState({ selection: null });
+  });
+
+  function startTransientCombat() {
+    usePlayerStore.getState().setPlayer(createMockPlayer('Live hero', 'sorceress'));
+    const run = startSubAreaRun({ runSeed: 123, challengeOrdinal: 0 });
+    expect(run).not.toBeNull();
+    expect(hasActiveSubAreaRun()).toBe(true);
+    expect(useCombatStore.getState().recordedEvents.length).toBeGreaterThan(0);
+    const selection = armIronGolemSelection(required(usePlayerStore.getState().player).id, 'chosen-metal', true);
+    return { recording: useCombatStore.getState(), selection };
+  }
+
+  it.each(restores)('clears run, recording and selection only after successful %s IO', async kind => {
+    const data = fixture();
+    const emptyCombat = useCombatStore.getState();
+    const transient = startTransientCombat();
+    const before = domains.map(store => store.getState());
+    const wait = gate();
+    if (kind === 'hydrate' || kind === 'init') {
+      disk.get.mockImplementationOnce(async () => { await wait.promise; return disk.state.record; });
+    } else if (kind === 'import') {
+      disk.put.mockImplementationOnce(async record => { await wait.promise; disk.state.record = structuredClone(record); });
+    } else {
+      disk.delete.mockImplementationOnce(async () => { await wait.promise; disk.state.record = undefined; });
+    }
+    persistence.startAutoSave();
+    const notified = vi.fn();
+    const stops = [useCombatStore.subscribe(notified), useIronGolemSelectionStore.subscribe(notified)];
+    const pending = request(kind, JSON.stringify(toJsonSafe(data)));
+    try {
+      expectRestoreReserved();
+      await vi.advanceTimersByTimeAsync(0);
+      expect(hasActiveSubAreaRun()).toBe(true);
+      expect(useCombatStore.getState()).toBe(transient.recording);
+      expect(useIronGolemSelectionStore.getState().selection).toBe(transient.selection);
+      domains.forEach((store, index) => { expect(store.getState()).toBe(before[index]); });
+      expect(notified).not.toHaveBeenCalled();
+    } finally {
+      wait.release();
+      try { await pending; }
+      finally { stops.forEach(stop => { stop(); }); }
+    }
+    expect(hasActiveSubAreaRun()).toBe(false);
+    expect(useCombatStore.getState()).toEqual(emptyCombat);
+    expect(useIronGolemSelectionStore.getState().selection).toBeNull();
+    expect(usePlayerStore.getState().player?.name ?? null).toBe(kind === 'delete' ? null : 'Saved');
+    expectReleased();
+    if (kind === 'hydrate' || kind === 'init') {
+      await vi.advanceTimersByTimeAsync(persistence.AUTO_SAVE_DEBOUNCE_MS);
+      expect(disk.put).toHaveBeenCalledTimes(kind === 'init' ? 1 : 0);
+    }
+    startTransientCombat(); // New wave/selection work normally after the reservation releases.
+  });
+
+  it.each(['hydrate', 'init'] as const)('retains transients when %s finds no save', async kind => {
+    const transient = startTransientCombat();
+    const before = domains.map(store => store.getState());
+    await request(kind, '');
+    expect(hasActiveSubAreaRun()).toBe(true);
+    expect(useCombatStore.getState()).toBe(transient.recording);
+    expect(useIronGolemSelectionStore.getState().selection).toBe(transient.selection);
+    domains.forEach((store, index) => { expect(store.getState()).toBe(before[index]); });
+    expect(disk.put).not.toHaveBeenCalled();
+    expectReleased();
+  });
+
+  it.each(['hydrate-read', 'hydrate-validation', 'init-read', 'init-write', 'import-validation', 'import-write', 'delete'] as const)(
+    'retains exact transient and domain references after %s failure', async failure => {
+      const data = fixture();
+      const transient = startTransientCombat();
+      const before = domains.map(store => store.getState());
+      const originalDisk = disk.state.record;
+      const notified = vi.fn();
+      const stops = [useCombatStore.subscribe(notified), useIronGolemSelectionStore.subscribe(notified)];
+      if (failure.endsWith('-read')) disk.get.mockRejectedValueOnce(new Error('Read unavailable'));
+      if (failure.endsWith('-write')) disk.put.mockRejectedValueOnce(new Error('Write unavailable'));
+      if (failure === 'delete') disk.delete.mockRejectedValueOnce(new Error('Delete unavailable'));
+      if (failure === 'hydrate-validation') {
+        disk.state.record = { ...required(originalDisk), data: { ...data, player: { ...data.player, level: -1 } } };
+      }
+      try {
+        const kind = failure.split('-')[0] as Restore;
+        const json = failure === 'import-validation' ? '{}' : JSON.stringify(toJsonSafe(data));
+        const result = await request(kind, json).then(() => null, error => error as unknown);
+        if (kind === 'import' || kind === 'delete') expect(result).toBeInstanceOf(Error);
+        else expect(useHydrationStore.getState().status).toBe('error');
+        expect(hasActiveSubAreaRun()).toBe(true);
+        expect(useCombatStore.getState()).toBe(transient.recording);
+        expect(useIronGolemSelectionStore.getState().selection).toBe(transient.selection);
+        domains.forEach((store, index) => { expect(store.getState()).toBe(before[index]); });
+        expect(notified).not.toHaveBeenCalled();
+        if (failure !== 'hydrate-validation') expect(disk.state.record).toBe(originalDisk);
+        expectReleased();
+      } finally { stops.forEach(stop => { stop(); }); }
+      // A real retry installs the save and cleans up after the failure releases ownership.
+      await importIntoStores(JSON.stringify(toJsonSafe(data)));
+      expect(hasActiveSubAreaRun()).toBe(false);
+      expect(useIronGolemSelectionStore.getState().selection).toBeNull();
+      expect(useCombatStore.getState().recordedEvents).toEqual([]);
+    }
+  );
+
+
+  it.each(['released', 'copied'] as const)('refuses a %s lease without changing transients or the live owner', kind => {
+    const transient = startTransientCombat();
+    const before = domains.map(store => store.getState());
+    const old = reserveWaveRestore();
+    releaseWaveRestore(old);
+    const owner = reserveWaveRestore();
+    const invalid = kind === 'released' ? old : { ...owner };
+    const notified = vi.fn();
+    const stops = [useCombatStore.subscribe(notified), useIronGolemSelectionStore.subscribe(notified)];
+    try {
+      expect(() => { clearCombatAfterRestore(invalid); }).toThrow(WaveGuardError);
+      expect(() => { clearCombatAfterRestore(invalid); }).toThrow('invalidLease');
+      expect(hasActiveSubAreaRun()).toBe(true);
+      expect(useCombatStore.getState()).toBe(transient.recording);
+      expect(useIronGolemSelectionStore.getState().selection).toBe(transient.selection);
+      expect(notified).not.toHaveBeenCalled();
+      expectRestoreReserved();
+      clearCombatAfterRestore(owner);
+      expect(hasActiveSubAreaRun()).toBe(false);
+      expect(useCombatStore.getState()).toMatchObject({
+        inCombat: false, recordedEvents: [], outcome: null, subAreaRunId: null,
+        ironGolemReplayLocked: false, runVictory: false, runDefeat: false
+      });
+      expect(useIronGolemSelectionStore.getState().selection).toBeNull();
+      domains.forEach((store, index) => { expect(store.getState()).toBe(before[index]); });
+      expectRestoreReserved(); // Cleanup does not release another caller's ownership.
+    } finally {
+      stops.forEach(stop => { stop(); });
+      releaseWaveRestore(owner);
+    }
+    expectReleased();
+    startTransientCombat();
   });
 
 });

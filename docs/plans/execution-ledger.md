@@ -4144,3 +4144,57 @@ released. Producer publication review remains before commit. Disposable outputs
 remain until all readers release; diagnostics are retained. Umbrella claim
 continues; root is sole writer/executor; no remote action or persistent
 browser/server.
+
+
+## D06 v1g successful-restore transient cleanup
+
+Hero replacement guards received QA, TD/five-axis and producer APPROVE and
+committed as `1785e01`. Exact cleanup removed857files/42,723,472bytes and14 empty
+directories, zero failures/remaining targets (hero-guard-cleanup.json). Retained
+diagnostics remain outside the repository; the umbrella worktree claim continues.
+
+TD approved this four-path restore-only slice separately from guarded public
+abort/UI ordering. clearCombatAfterRestore validates the exact live reservation
+before clearing the module-level active run, resetting combat recording and
+clearing the acknowledged selection. Common save installation invokes it after
+validation/IO and before hero installation; successful deletion invokes it after
+storage deletion. Import no longer duplicates abort/reset. Hydration/startup now
+also discard the old transient recording when installing a save. No-save paths
+and validation/storage failures retain existing transients. Public abort remains
+unchanged in this slice; no receipt exists yet and no receipt cleanup is claimed.
+Subscriber-throw atomicity is outside this increment's guarantee.
+
+Four initial RED cases reproduced retained run on hydrate/init and retained
+selection on import/delete. Fifteen new real-store/adapter tests cover delayed
+success for all four paths, unchanged pending roots/selection/recording and no
+notifications, hydration's no-feedback behavior, two no-save paths, seven
+read/validation/reconciliation-write/import-write/delete failures with exact
+retention and real successful retry, and stale/copied lease refusal with a still
+usable current owner. Successful cleanup resets the full combat state; new
+run/selection work after release. Invalid lease tests also verify unchanged
+persistent roots. Gates, promises, subscriptions, leases and timers are cleaned
+up. Initial typecheck found a deliberately invalid null Player fixture; a typed
+negative-level fixture now tests actual save validation. Lint found two void
+arrow assertions; braces resolved them. Those failures remain retained and
+separate from final validation. The success test's subscription cleanup also
+runs if the pending operation unexpectedly rejects.
+
+Final focused177/8files6.616s wrapper, types14.346s, lint37.888s including85 engine
+purity files, full6468/219files106.048s and production build9.552s passed. Related5s
+and full15s budgets remain unmet. Existing React act, stale Browserslist, chunk
+size and precache diagnostics remain open. No engine source or UI changed; no
+new browser acceptance is claimed. SaveCurrent11 remains unchanged.
+
+Security check passes for local restore lease validation and transient cleanup.
+No production wave/debit caller is enabled. Public hero replacement cleanup,
+guarded abort/UI ordering, exact receipt/conflict/publication recovery, settlement,
+locked replay and bilingual Iron UI/browser acceptance remain pending. Full
+Iron/D06/P09/P10 and private-v1 remain open.
+
+The four repository paths, all restore-cleanup command/output identities and
+exact owned dist/tmp inventory are frozen in restore-cleanup-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review remains before commit. Disposable outputs
+remain until all readers release; diagnostics are retained. Root is sole
+writer/executor; no remote action or persistent browser/server.
