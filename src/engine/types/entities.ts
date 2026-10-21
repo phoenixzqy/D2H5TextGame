@@ -82,7 +82,7 @@ export interface Player extends Unit {
   readonly skillLevels?: Readonly<Record<string, number>>;
 
   /** Explicit canonical player aura selection. Absence means None; learning never selects. */
-  readonly selectedAuraId?: 'paladin.might';
+  readonly selectedAuraId?: 'paladin.might' | 'paladin.meditation';
   
   /** Equipped items */
   readonly equipment: readonly Item[];

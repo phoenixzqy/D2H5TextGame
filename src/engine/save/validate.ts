@@ -2,7 +2,7 @@
 import Ajv, { type AnySchema } from 'ajv';
 import { restoreEquipment, restoreItem, restoreUnit } from './restore';
 import { LEVEL_CAP } from '../progression/xp';
-import { CURRENT_SAVE_VERSION, type SaveCurrent, type SaveV7, type SaveV8, type SaveV9 } from '../types/save';
+import { CURRENT_SAVE_VERSION, type SaveCurrent, type SaveV7, type SaveV8, type SaveV9, type SaveV10 } from '../types/save';
 import { runMigrations, type VersionedSave } from './migrate';
 
 const number = { type: 'number' };
@@ -230,6 +230,9 @@ const saveSchema = (
 });
 const ajv = new Ajv({ strictNumbers: true });
 const validate = ajv.compile<SaveCurrent>(saveSchema({ const: CURRENT_SAVE_VERSION }, unitProperties, {
+  selectedAuraId: { enum: ['paladin.might', 'paladin.meditation'] }
+}));
+const validateV10 = ajv.compile<SaveV10>(saveSchema({ const: 10 }, unitProperties, {
   selectedAuraId: { const: 'paladin.might' }
 }));
 const validateV9 = ajv.compile<SaveV9>(saveSchema({ const: 9 }, unitProperties));
@@ -276,15 +279,29 @@ function validateV9Save(value: unknown): void {
   }
 }
 
+/** Ajv treats optional undefined as absent; native IndexedDB preserves own undefined. */
+function rejectUndefinedSelection(normalized: unknown): void {
+  if (record(normalized) && record(normalized.player) &&
+    Object.hasOwn(normalized.player, 'selectedAuraId') && normalized.player.selectedAuraId === undefined) {
+    throw new Error('Invalid save: present selectedAuraId must be a canonical aura');
+  }
+}
+
+/** Frozen v10 requirements precede widening selection in v11. */
+function validateV10Save(value: unknown): void {
+  const normalized = normalizeMaps(value);
+  rejectUndefinedMagicResist(normalized);
+  rejectUndefinedSelection(normalized);
+  if (!validateV10(normalized)) {
+    throw new Error(`Invalid save: ${ajv.errorsText(validateV10.errors)}`);
+  }
+}
+
 /** Validate a migrated save before any IO or store mutation. Preserves optional fields. */
 export function validateSave(value: unknown): SaveCurrent {
   const normalized = normalizeMaps(value);
   rejectUndefinedMagicResist(normalized);
-  // Ajv treats optional undefined as absent; native IndexedDB can preserve this own property.
-  if (record(normalized) && record(normalized.player) &&
-    Object.hasOwn(normalized.player, 'selectedAuraId') && normalized.player.selectedAuraId === undefined) {
-    throw new Error('Invalid save: present selectedAuraId must be paladin.might');
-  }
+  rejectUndefinedSelection(normalized);
   if (!validate(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(validate.errors)}`);
   return normalized as SaveCurrent;
 }
@@ -319,6 +336,8 @@ export function decodeSave(value: unknown): SaveCurrent {
   if (input.version === 7 || input.version === 8) validateHistoricalSave(input);
   if (input.version < 9) input = runMigrations(input, 9);
   if (input.version === 9) validateV9Save(input);
+  if (input.version < 10) input = runMigrations(input, 10);
+  if (input.version === 10) validateV10Save(input);
   const save = validateSave(runMigrations(input));
   return {
     ...save,

@@ -14,7 +14,7 @@ import type { GridPosition } from '../combat/types';
  * Current save format version. Bump this and add an entry to {@link MIGRATIONS}
  * whenever the on-disk shape changes.
  */
-export const CURRENT_SAVE_VERSION = 10;
+export const CURRENT_SAVE_VERSION = 11;
 
 /**
  * Save file version (most recent).
@@ -242,13 +242,24 @@ export interface SaveV9 extends Omit<SaveV8, 'version' | 'player' | 'mercs'> {
   readonly mercs: MercSaveData;
 }
 
+/** Frozen v10 selection: widening live Player must never widen historical saves. */
+export type SaveV10Player = Omit<Player, 'selectedAuraId'> & {
+  readonly selectedAuraId?: 'paladin.might';
+};
+
 /** Save file v10 — optional explicit canonical player aura selection; absent means None. */
 export interface SaveV10 extends Omit<SaveV9, 'version' | 'player'> {
   readonly version: 10;
+  readonly player: SaveV10Player;
+}
+
+/** Save file v11 — exclusive canonical Might or Meditation selection; absent means None. */
+export interface SaveV11 extends Omit<SaveV10, 'version' | 'player'> {
+  readonly version: 11;
   readonly player: Player;
 }
 
-export type SaveCurrent = SaveV10;
+export type SaveCurrent = SaveV11;
 
 /**
  * Migration function type. Each entry receives the previous version's shape
@@ -430,5 +441,7 @@ export const MIGRATIONS: Record<number, Migration> = {
     };
   },
   /** v9 to v10: preserve all data; absent selection remains None. Decode validates both versions. */
-  10: (raw: unknown): SaveV10 => ({ ...(raw as SaveV9), version: 10 })
+  10: (raw: unknown): SaveV10 => ({ ...(raw as SaveV9), version: 10 }),
+  /** v10 to v11: widen selection only; frozen v10 is validated before this migration. */
+  11: (raw: unknown): SaveV11 => ({ ...(raw as SaveV10), version: 11 })
 };
