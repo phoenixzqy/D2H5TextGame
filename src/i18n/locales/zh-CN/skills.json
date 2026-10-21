@@ -821,7 +821,7 @@
     },
     "meditation": {
       "name": "冥想",
-      "desc": "光环：自身与佣兵每回合恢复 5 点法力。"
+      "desc": "选择此光环后：每投入1点技能点，每秒为自身与存活的上阵佣兵额外恢复相当于角色自身正常法力恢复速度{{bonus}}%的法力（最多{{cap}}点，合计{{maxBonus}}%）。各自原有的正常恢复仍然生效。角色{{level}}级解锁。"
     },
     "sacrifice": {
       "name": "牺牲",
@@ -1338,7 +1338,14 @@
     "needsRank": "请先为力量投入技能点。",
     "timing": "选择与技能等级的变更从下一波开始生效；重播当前波次会使用最新选择与等级。",
     "recipients": "对自身与存活的上阵佣兵生效，不受站位限制。",
-    "source": "角色倒下时停止生效；眩晕和冰冻不会关闭光环。",
-    "rankBonuses": "以下技能等级加成需要选择力量光环才会生效。"
+    "source": "角色倒下后不再产生新的光环加成；眩晕和冰冻不会关闭光环。",
+    "rankBonuses": "以下技能等级加成需要选择力量光环才会生效。",
+    "meditation": "冥想",
+    "meditationUnavailableSelected": "已选择：冥想（当前不可用）",
+    "meditationNeedsClass": "冥想需要圣骑士。",
+    "meditationNeedsLevel": "冥想需要角色等级{{level}}。",
+    "meditationNeedsRank": "请先为冥想投入技能点。",
+    "meditationRankBonuses": "以下技能等级加成需要选择冥想光环才会生效。",
+    "meditationEarned": "角色倒下前已获得的冥想恢复仍会计入存活的佣兵。"
   }
 }

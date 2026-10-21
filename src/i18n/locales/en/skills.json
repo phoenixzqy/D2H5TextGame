@@ -821,7 +821,7 @@
     },
     "meditation": {
       "name": "Meditation",
-      "desc": "Aura: regenerates 5 mana per turn for self and mercenary."
+      "desc": "Selected aura: adds {{bonus}}% of your normal mana regeneration per second per allocated rank to you and your living fielded mercenary (up to {{maxBonus}}% at rank {{cap}}). Each recipient retains their own normal recovery. Unlocks at character level {{level}}."
     },
     "sacrifice": {
       "name": "Sacrifice",
@@ -1338,7 +1338,14 @@
     "needsRank": "Spend a skill point on Might first.",
     "timing": "Selection and rank changes apply from the next wave. Replaying the current wave uses the latest selection and rank.",
     "recipients": "Affects you and your living fielded mercenary at any position.",
-    "source": "Stops when you fall. Stun and freeze do not cancel the aura.",
-    "rankBonuses": "These rank bonuses require selecting Might."
+    "source": "Future aura bonuses stop when you fall. Stun and freeze do not cancel the aura.",
+    "rankBonuses": "These rank bonuses require selecting Might.",
+    "meditation": "Meditation",
+    "meditationUnavailableSelected": "Selected: Meditation — unavailable",
+    "meditationNeedsClass": "Meditation requires Paladin.",
+    "meditationNeedsLevel": "Meditation requires character level {{level}}.",
+    "meditationNeedsRank": "Spend a skill point on Meditation first.",
+    "meditationRankBonuses": "These rank bonuses require selecting Meditation.",
+    "meditationEarned": "A surviving mercenary keeps Meditation recovery earned before you fell."
   }
 }

@@ -35,6 +35,7 @@ import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-
 import { SKELETON_MASTERY_DEFINITION, resolveSkeletonMasteryRank } from '@/engine/skills/skeleton-mastery';
 import { LIGHTNING_MASTERY_DEFINITION, resolveLightningMasteryRank } from '@/engine/skills/lightning-mastery';
 import { MIGHT_DEFINITION, resolveEligibleMightRank, resolveMightRank } from '@/engine/skills/might';
+import { MEDITATION_DEFINITION, resolveEligibleMeditationRank, resolveMeditationRank } from '@/engine/skills/meditation';
 import {
   computeSkillDisplayModel,
   type SkillDamageDisplayRow,
@@ -83,6 +84,7 @@ export function SkillsScreen() {
   const playerLevel = player?.level ?? 1;
   const playerClass = player?.class ?? '';
   const eligibleMightRank = player ? resolveEligibleMightRank(player) : 0;
+  const eligibleMeditationRank = player ? resolveEligibleMeditationRank(player) : 0;
 
   const allSkills = useMemo(() => {
     if (!playerClass) return [];
@@ -114,6 +116,11 @@ export function SkillsScreen() {
     const mightRank = resolveMightRank(levels);
     for (const alias of ['paladin.might', 'skills-paladin-might']) {
       if (mightRank > 0) map.set(alias, mightRank);
+      else map.delete(alias);
+    }
+    const meditationRank = resolveMeditationRank(levels);
+    for (const alias of ['paladin.meditation', 'skills-paladin-meditation']) {
+      if (meditationRank > 0) map.set(alias, meditationRank);
       else map.delete(alias);
     }
     const lightningRank = resolveLightningMasteryRank(levels);
@@ -341,14 +348,14 @@ export function SkillsScreen() {
           </span>
         </Panel>
 
-        {player.class === 'paladin' || player.selectedAuraId === 'paladin.might' ? (
+        {player.class === 'paladin' || player.selectedAuraId === 'paladin.might' || player.selectedAuraId === 'paladin.meditation' ? (
           <Panel>
             <fieldset className="min-w-0 space-y-3" aria-describedby="aura-selection-timing">
               <legend className="font-serif text-lg text-d2-gold">{t('auraSelection.legend')}</legend>
-              <div className="grid gap-2 sm:grid-cols-2">
+              <div className="grid gap-2 sm:grid-cols-3">
                 <label className="flex min-h-[44px] cursor-pointer items-center gap-3 rounded border border-d2-border bg-d2-bg/40 px-3 py-2 text-base">
                   <input type="radio" name="selected-player-aura" value="none"
-                    checked={player.selectedAuraId !== 'paladin.might'}
+                    checked={!Object.hasOwn(player, 'selectedAuraId')}
                     onChange={() => { selectAura(null); }}
                     aria-describedby="aura-selection-timing"
                     className="h-5 w-5 accent-d2-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-d2-gold" />
@@ -363,10 +370,22 @@ export function SkillsScreen() {
                     className="h-5 w-5 accent-d2-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-d2-gold" />
                   <span>{t('auraSelection.might')}</span>
                 </label>
+                <label className="flex min-h-[44px] items-center gap-3 rounded border border-d2-border bg-d2-bg/40 px-3 py-2 text-base">
+                  <input type="radio" name="selected-player-aura" value="paladin.meditation"
+                    checked={player.selectedAuraId === 'paladin.meditation'}
+                    disabled={eligibleMeditationRank === 0}
+                    onChange={() => { selectAura('paladin.meditation'); }}
+                    aria-describedby="aura-selection-timing meditation-selection-eligibility"
+                    className="h-5 w-5 accent-d2-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-d2-gold" />
+                  <span>{t('auraSelection.meditation')}</span>
+                </label>
               </div>
               <p role="status" aria-live="polite" className="text-d2-gold">
-                {player.selectedAuraId === 'paladin.might' && eligibleMightRank === 0
-                  ? t('auraSelection.unavailableSelected')
+                {player.selectedAuraId === 'paladin.meditation'
+                  ? eligibleMeditationRank === 0 ? t('auraSelection.meditationUnavailableSelected')
+                    : t('auraSelection.selected', { aura: t('auraSelection.meditation') })
+                  : player.selectedAuraId === 'paladin.might' && eligibleMightRank === 0
+                    ? t('auraSelection.unavailableSelected')
                   : t('auraSelection.selected', { aura: t(player.selectedAuraId === 'paladin.might' ? 'auraSelection.might' : 'auraSelection.none') })}
               </p>
               <p id="aura-selection-eligibility" className="text-sm text-d2-white/90">
@@ -376,10 +395,18 @@ export function SkillsScreen() {
                     ? t('auraSelection.needsLevel', { level: MIGHT_DEFINITION.requiredLevel })
                     : t('auraSelection.needsRank')}
               </p>
+              <p id="meditation-selection-eligibility" className="text-sm text-d2-white/90">
+                {eligibleMeditationRank > 0 ? null : player.class !== 'paladin'
+                  ? t('auraSelection.meditationNeedsClass')
+                  : !Number.isFinite(player.level) || player.level < MEDITATION_DEFINITION.requiredLevel
+                    ? t('auraSelection.meditationNeedsLevel', { level: MEDITATION_DEFINITION.requiredLevel })
+                    : t('auraSelection.meditationNeedsRank')}
+              </p>
               <div className="space-y-1 text-sm text-d2-white/90">
                 <p id="aura-selection-timing">{t('auraSelection.timing')}</p>
                 <p>{t('auraSelection.recipients')}</p>
                 <p>{t('auraSelection.source')}</p>
+                <p>{t('auraSelection.meditationEarned')}</p>
               </div>
             </fieldset>
           </Panel>
@@ -585,7 +612,7 @@ function SkillDetailPanel({
                 ? t('details.level', { current: model.allocatedLevel, max: model.maxLevel })
                 : t('details.unlearned', { max: model.maxLevel })}
               {' · '}
-              {t(`trigger.${skill.id === 'skills-paladin-might' ? 'aura' : skill.trigger}`, { defaultValue: skill.trigger })}
+              {t(`trigger.${skill.id === 'skills-paladin-might' || skill.id === 'skills-paladin-meditation' ? 'aura' : skill.trigger}`, { defaultValue: skill.trigger })}
             </p>
           </div>
           <Button
@@ -602,6 +629,9 @@ function SkillDetailPanel({
         <p className="rounded border border-d2-border/70 bg-black/30 px-3 py-2 text-sm text-d2-white/80">
           {dynamicDescription(name, skill, primaryStats, t)}
         </p>
+        {skill.id === 'skills-paladin-meditation' ? (
+          <p className="text-sm text-d2-white/90">{t('auraSelection.meditationRankBonuses')}</p>
+        ) : null}
         {skill.id === 'skills-paladin-might' ? (
           <p className="text-sm text-d2-white/90">{t('auraSelection.rankBonuses')}</p>
         ) : null}
@@ -1037,6 +1067,11 @@ function dynamicDescription(
     const { physicalDamagePctPerRank: physical, attackPctPerRank: attack, maxRank } = MIGHT_DEFINITION;
     return t('paladin.might.desc', { physical: Math.round(physical * 100), attack: Math.round(attack * 100),
       maxPhysical: Math.round(physical * maxRank * 100), maxAttack: Math.round(attack * maxRank * 100), cap: maxRank });
+  }
+  if (skill.id === 'skills-paladin-meditation') {
+    const { manaRegenPctPerRank, maxRank, requiredLevel } = MEDITATION_DEFINITION;
+    return t('paladin.meditation.desc', { bonus: Math.round(manaRegenPctPerRank * 100),
+      maxBonus: Math.round(manaRegenPctPerRank * maxRank * 100), cap: maxRank, level: requiredLevel });
   }
   if (skill.id === 'skills-sorceress-lightning-mastery') {
     const { lightningDamagePctPerRank, maxRank, requiredLevel } = LIGHTNING_MASTERY_DEFINITION;
