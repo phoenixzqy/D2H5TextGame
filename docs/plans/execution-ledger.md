@@ -3441,3 +3441,53 @@ Selection state, transition/restore guards, receipt, engine and store integratio
 native bilingual/browser flows and earned supply/balance remain pending. No
 runtime acceptance or fullD06/P09/P10/private-v1 completion is inferred. Umbrella
 claim continues; no remote action.
+
+
+## D06 v1d inactive wave/restore ownership guard foundation
+
+Ownership resolver received producer APPROVE and committed as `da05a28`.
+Root then verified and removed its exact1300 task disposable files/43,813,228bytes
+and14 empty directories, zero failures; actual `selection-cleanup.json` remains
+in the Iron evidence root. Diagnostics/source receipts remain intact.
+
+TD plan-review returned `ready` for this three-path subincrement: new
+`waveTransitionGuard.ts`,13 focused cases and this ledger. Opaque exact leases
+own one synchronous transition and each queued/inflight restore. Reserve restore
+before caller queue/await; wave entry requires ready hydration and no restore.
+Stale leases/nesting/failed outer release preserve ownership and deferred saves.
+The owned exact-debit subset refuses supported inventory/merc ownership actions;
+its finally release remains caller-owned. Busy snapshots refuse. Save requests
+coalesce during the synchronous transition; release clears ownership before
+returning one normal debounce wake flag, without callbacks or DB flush semantics.
+
+Initial RED was missing-module collection/no tests. The transition-only baseline
+then exposed3fail/5pass for missing reciprocal restore exclusion; corrected code
+passed8. Added debit APIs initially failed4/12 due to absent functions, not a
+claim of an independently reached debit assertion. Final13 cases include debit,
+stale/nested/premature release, held async restore failure cleanup, snapshot and
+save-wake boundaries. First lint found23 void-shorthand test callbacks; adding
+block bodies changed no expectations. All failed and pre-correction successful
+source/output receipts are retained.
+
+Final serial gates bind unchanged module/final test bytes: focused41/2files
+(13 guard +28 prior ownership);types14.310s;lint39.477s including engine purity;
+full unit6170/212files (119.053s wrapper);normal production build9.988s.
+No engine source changed; full unit includes engine regressions. The15s unit
+budget remains unmet; stale Browserslist, large chunk and2.57MB generated-manifest
+precache warnings remain. This unused module has no browser/runtime acceptance.
+
+No runtime store imports, production consumer, selection lifecycle, receipt
+phase/payload/ownership verification, inventory write, run/cursor/reward mutation,
+replay or save serialization is added. Stable pending-publication/settlementFailed
+versus conflict gates belong to the future receipt integration; guard release
+alone does not promise those semantics. Selection lifecycle/receipt foundations
+and actual engine/store/persistence/bilingual/browser integration remain pending.
+
+Security check passes within this local typed lease boundary. Independent QA
+and TD/five-axis source reviews APPROVED the frozen three-path foundation and
+all12 receipt/source/output identities; all readers released. Status-only
+publication awaits producer scope review; root remains sole executor. Evidence stays in the existing Iron root, with exact
+`dist`/`tmp` disposables retained until all readers release and original diagnostics
+awaiting durable retention. FullD06/P09/P10, earned supply/balance, disclosed
+performance/platform/PWA/a11y and private-v1 gates stay open. Umbrella claim
+continues; no remote action.
