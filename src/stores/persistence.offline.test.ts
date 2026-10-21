@@ -26,6 +26,11 @@ vi.mock('dexie', () => ({
 }));
 
 import i18n from '@/i18n';
+import { toJsonSafe } from '@/engine/save';
+import { useCombatStore } from './combatStore';
+import { armIronGolemSelection, useIronGolemSelectionStore } from './ironGolemSelectionStore';
+import { beginWaveTransition, endWaveTransition, WaveGuardError } from './waveTransitionGuard';
+import * as persistence from './persistence';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { usePlayerStore } from './playerStore';
 import { useInventoryStore } from './inventoryStore';
@@ -91,6 +96,7 @@ beforeEach(async () => {
 
 afterEach(() => {
   __resetPersistenceForTests();
+  vi.useRealTimers();
   vi.restoreAllMocks();
 });
 
@@ -241,7 +247,7 @@ describe('startup and explicit restore ordering', () => {
         ? importIntoStores(JSON.stringify(imported)) : deleteCurrentSave();
       expect(isReplacingSave()).toBe(true);
       // Explicit save remains excluded while the user operation is queued.
-      expect(flushSave()).toBeNull();
+      await expect(flushSave()).rejects.toMatchObject({ code: 'restorePending' });
     } finally {
       gate.resolve(undefined);
       await startup;
@@ -287,4 +293,226 @@ describe('startup and explicit restore ordering', () => {
     expect(disk.state.record).toBeUndefined();
     expect(usePlayerStore.getState().player).toBeNull();
   });
+});
+
+
+const restores = ['hydrate', 'init', 'import', 'delete'] as const;
+type Restore = typeof restores[number];
+function payload(): string { return JSON.stringify(toJsonSafe(required(persistence.snapshotStores()))); }
+function request(kind: Restore, json: string): Promise<unknown> {
+  if (kind === 'hydrate') return persistence.hydrateFromSave();
+  if (kind === 'init') return persistence.initPersistence();
+  if (kind === 'import') return persistence.importIntoStores(json);
+  return persistence.deleteCurrentSave();
+}
+function gate() {
+  let done: (() => void) | undefined;
+  const promise = new Promise<void>(resolve => { done = resolve; });
+  return { promise, release: () => { required(done)(); } };
+}
+function expectRestoreReserved(): void {
+  let lease: ReturnType<typeof beginWaveTransition> | undefined;
+  let failure: unknown;
+  try { lease = beginWaveTransition(true); } catch (error) { failure = error; }
+  finally { if (lease) endWaveTransition(lease); }
+  expect(failure).toBeInstanceOf(WaveGuardError);
+  expect(failure).toMatchObject({ code: 'restorePending' });
+}
+function expectReleased(): void {
+  const lease = beginWaveTransition(true);
+  expect(endWaveTransition(lease)).toBe(false);
+}
+describe('persistence at wave transition boundaries', () => {
+  beforeEach(() => {
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'setInterval', 'clearInterval'] });
+    useCombatStore.getState().reset();
+    useIronGolemSelectionStore.setState({ selection: null });
+    usePlayerStore.getState().setPlayer(createMockPlayer('Wave persistence', 'sorceress'));
+    useHydrationStore.getState().setStatus('ready');
+  });
+  afterEach(() => { useIronGolemSelectionStore.setState({ selection: null }); });
+  it.each(['snapshot', 'export', 'flush', ...restores] as const)(
+    'refuses %s before IO, flags, timers or domain publications', async kind => {
+      const json = payload();
+      persistence.startAutoSave();
+      useInventoryStore.getState().addCurrency('wishstone', 1);
+      const before = domains.map(store => store.getState());
+      const hydration = persistence.useHydrationStore.getState();
+      const status = persistence.useSaveStatusStore.getState();
+      const notified = vi.fn();
+      const stops = domains.map(store => store.subscribe(notified));
+      const lease = beginWaveTransition(true);
+      let failure: unknown;
+      try {
+        try {
+          if (kind === 'snapshot') persistence.snapshotStores();
+          else if (kind === 'export') persistence.exportCurrentSave();
+          else if (kind === 'flush') await persistence.flushSave();
+          else await request(kind, json);
+        } catch (error) { failure = error; }
+        expect(failure).toBeInstanceOf(WaveGuardError);
+        expect(failure).toMatchObject({ code: 'waveBusy' });
+        domains.forEach((store, index) => { expect(store.getState()).toBe(before[index]); });
+        expect(persistence.useHydrationStore.getState()).toBe(hydration);
+        expect(persistence.useSaveStatusStore.getState()).toBe(status);
+        expect(persistence.isReplacingSave()).toBe(false);
+        expect(notified).not.toHaveBeenCalled();
+        for (const spy of [disk.get, disk.put, disk.delete]) expect(spy).not.toHaveBeenCalled();
+      } finally { stops.forEach(stop => { stop(); }); endWaveTransition(lease); }
+      // Refused explicit operations must not cancel the pre-existing autosave.
+      await vi.advanceTimersByTimeAsync(persistence.AUTO_SAVE_DEBOUNCE_MS);
+      expect(disk.put).toHaveBeenCalledTimes(1);
+    });
+
+  it.each(restores)('reserves %s synchronously before its first queued await', async kind => {
+    const json = payload();
+    const wait = gate();
+    if (kind === 'hydrate' || kind === 'init') disk.get.mockImplementationOnce(async () => { await wait.promise; return undefined; });
+    if (kind === 'import') disk.put.mockImplementationOnce(() => wait.promise);
+    if (kind === 'delete') disk.delete.mockImplementationOnce(() => wait.promise);
+    const pending = request(kind, json);
+    try {
+      expectRestoreReserved();
+      for (const spy of [disk.get, disk.put, disk.delete]) expect(spy).not.toHaveBeenCalled();
+      await vi.advanceTimersByTimeAsync(0);
+      expectRestoreReserved();
+      expect(() => persistence.snapshotStores()).toThrow(WaveGuardError);
+      expect(() => persistence.exportCurrentSave()).toThrow(WaveGuardError);
+      await expect(persistence.flushSave()).rejects.toMatchObject({ code: 'restorePending' });
+    } finally { wait.release(); await pending; }
+    expectReleased();
+  });
+
+  it('retains a separate reservation through each queued restore, including the queue handoff', async () => {
+    const first = gate();
+    const second = gate();
+    disk.get.mockImplementationOnce(async () => { await first.promise; return undefined; })
+      .mockImplementationOnce(async () => { await second.promise; return undefined; });
+    const one = persistence.hydrateFromSave();
+    const two = persistence.hydrateFromSave();
+    try {
+      expectRestoreReserved();
+      await vi.advanceTimersByTimeAsync(0);
+      expect(disk.get).toHaveBeenCalledTimes(1);
+      first.release();
+      await one;
+      expectRestoreReserved();
+      expect(() => persistence.snapshotStores()).toThrow(WaveGuardError);
+      await vi.advanceTimersByTimeAsync(0);
+      expect(disk.get).toHaveBeenCalledTimes(2);
+      expectRestoreReserved();
+    } finally {
+      first.release(); second.release();
+      await Promise.all([one, two]);
+    }
+    expectReleased();
+    expect(persistence.snapshotStores()).not.toBeNull();
+  });
+
+  it('releases a failed import only after error cleanup and retains selection and recording', async () => {
+    const json = payload();
+    const selection = armIronGolemSelection(required(usePlayerStore.getState().player).id, 'chosen-metal', true);
+    const recording = useCombatStore.getState();
+    const before = domains.map(store => store.getState());
+    const wait = gate();
+    disk.put.mockImplementationOnce(async () => { await wait.promise; throw new Error('Controlled import IO failure'); });
+    const pending = persistence.importIntoStores(json);
+    const rejected = expect(pending).rejects.toThrow('Controlled import IO failure');
+    try {
+      expectRestoreReserved();
+      await vi.advanceTimersByTimeAsync(0);
+      expectRestoreReserved();
+      expect(persistence.isReplacingSave()).toBe(true);
+    } finally { wait.release(); await rejected; }
+    expectReleased();
+    expect(persistence.isReplacingSave()).toBe(false);
+    expect(persistence.useSaveStatusStore.getState().error).toBe('Controlled import IO failure');
+    domains.forEach((store, index) => { expect(store.getState()).toBe(before[index]); });
+    expect(useCombatStore.getState()).toBe(recording);
+    expect(useIronGolemSelectionStore.getState().selection).toBe(selection);
+    expect(disk.state.record).toBeUndefined();
+    await persistence.importIntoStores(json);
+    expectReleased();
+    expect(disk.state.record).toBeDefined();
+  });
+
+  it('retries initialization after busy refusal and shares the accepted concurrent flight', async () => {
+    const lease = beginWaveTransition(true);
+    try { expect(() => persistence.initPersistence()).toThrow(WaveGuardError); }
+    finally { endWaveTransition(lease); }
+    const wait = gate();
+    disk.get.mockImplementationOnce(async () => { await wait.promise; return undefined; });
+    const one = persistence.initPersistence();
+    const two = persistence.initPersistence();
+    try {
+      expect(two).toBe(one);
+      expectRestoreReserved();
+      await vi.advanceTimersByTimeAsync(0);
+      expect(disk.get).toHaveBeenCalledTimes(1);
+    } finally { wait.release(); await one; }
+    expectReleased();
+    expect(persistence.useHydrationStore.getState().status).toBe('ready');
+    expect(persistence.initPersistence()).toBe(one);
+  });
+
+  it('refuses every snapshot boundary before the no-player short circuit', async () => {
+    usePlayerStore.getState().reset();
+    const before = domains.map(store => store.getState());
+    const lease = beginWaveTransition(true);
+    try {
+      expect(() => persistence.snapshotStores()).toThrow(WaveGuardError);
+      expect(() => persistence.exportCurrentSave()).toThrow(WaveGuardError);
+      await expect(persistence.flushSave()).rejects.toMatchObject({ code: 'waveBusy' });
+      domains.forEach((store, index) => { expect(store.getState()).toBe(before[index]); });
+      expect(disk.put).not.toHaveBeenCalled();
+    } finally { endWaveTransition(lease); }
+    expect(persistence.snapshotStores()).toBeNull();
+    expect(persistence.exportCurrentSave()).toBeNull();
+    expect(persistence.flushSave()).toBeNull();
+  });
+
+  it('coalesces wave mutations into one normal debounce after the owning transition unwinds', async () => {
+    persistence.startAutoSave();
+    const lease = beginWaveTransition(true);
+    let wake = false;
+    try {
+      useInventoryStore.getState().addCurrency('wishstone', 1);
+      useInventoryStore.getState().addCurrency('wishstone', 2);
+      useMetaStore.getState().setLocale('en');
+      await vi.advanceTimersByTimeAsync(persistence.AUTO_SAVE_DEBOUNCE_MS * 2);
+      expect(disk.put).not.toHaveBeenCalled();
+    } finally { wake = endWaveTransition(lease); }
+    expect(wake).toBe(true);
+    persistence.resumeWaveDeferredSave();
+    await vi.advanceTimersByTimeAsync(persistence.AUTO_SAVE_DEBOUNCE_MS - 1);
+    expect(disk.put).not.toHaveBeenCalled();
+    await vi.advanceTimersByTimeAsync(1);
+    expect(disk.put).toHaveBeenCalledTimes(1);
+    expect(savedData().inventory.currencies.wishstone).toBe(3);
+    expect(savedData().meta.settings.locale).toBe('en');
+    await vi.advanceTimersByTimeAsync(persistence.AUTO_SAVE_DEBOUNCE_MS);
+    expect(disk.put).toHaveBeenCalledTimes(1);
+    expectReleased();
+    useInventoryStore.getState().addCurrency('wishstone', 4);
+    await vi.advanceTimersByTimeAsync(persistence.AUTO_SAVE_DEBOUNCE_MS);
+    expect(disk.put).toHaveBeenCalledTimes(2);
+    expect(savedData().inventory.currencies.wishstone).toBe(7);
+  });
+
+  it('saves and exports persistent fields without touching or serializing transient slices', async () => {
+    const selection = armIronGolemSelection(required(usePlayerStore.getState().player).id, 'chosen-metal', true);
+    useCombatStore.setState({ currentWave: 7, ironGolemReplayLocked: true });
+    useMetaStore.getState().updateIdleState({ lastOnline: NOW });
+    const recording = useCombatStore.getState();
+    const before = domains.map(store => store.getState());
+    const expected = required(persistence.snapshotStores());
+    const exported = JSON.parse(required(persistence.exportCurrentSave())) as unknown;
+    expect(exported).toEqual(toJsonSafe(expected));
+    await persistence.flushSave();
+    expect(savedData()).toEqual(expected);
+    expect(useIronGolemSelectionStore.getState().selection).toBe(selection);
+    expect(useCombatStore.getState()).toBe(recording);
+    domains.forEach((store, index) => { expect(store.getState()).toBe(before[index]); });
+  });
+
 });

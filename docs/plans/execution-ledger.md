@@ -3934,3 +3934,60 @@ commit. Disposable outputs remain until all readers release; diagnostics are ret
 Full Iron/D06/P09/P10, earned supply/balance, performance/platform/PWA/a11y and
 private-v1/C0–C4/G0–G7 remain open. Umbrella claim continues; root remains sole
 writer/executor; no remote action.
+
+
+## D06 v1d persistence wave/restore guards
+
+Complete-wave staging received QA, TD/five-axis and producer APPROVE and committed
+as `e5a861a`. All readers released; exact manifest cleanup removed
+857files/42,722,811bytes and14 empty directories with zero failures or remaining
+targets. Actual evidence is `wave-staging-cleanup.json`; diagnostics remain.
+
+TD plan-review returned ready for this five-path persistence boundary increment.
+Every accepted hydration/startup/import/delete request reserves restore ownership
+synchronously before promise queueing and retains it through installation or
+failure cleanup. Each queued request releases only its own lease. Busy refusals
+leave initialization uncached and import/delete flags and timers unchanged.
+Snapshot/export/flush reject with typed WaveGuardError before domain reads or
+save side effects, including when no player exists. Flush refuses before timer
+cancellation or save-error publication. Autosave scheduling coalesces while a
+wave transition owns the guard; the future owner calls resumeWaveDeferredSave
+after release. Import/delete resume their normal debounce after lease release;
+ordinary hydrate/startup retain the existing no-feedback-save behavior.
+
+17 real-adapter boundary cases are consolidated in persistence.offline.test.ts,
+covering all seven busy entries, all four immediate/delayed restore reservations,
+queued handoff, failed-import release and exact domain/selection/combat retention,
+refused-init retry/shared accepted promise, no-player refusals, deferred-save
+coalescing and transient-free save/export without runtime mutation. Existing
+pending-import/delete stat-draft/quest tests now assert typed snapshot refusal
+and exact direct domain references, retaining final save, ordering, allocation
+and once-only checks. The temporary separate test file was removed only after
+its captured RED source was verified retained. No production workaround was
+added for old snapshot expectations.
+
+Initial RED11 failed preceded implementation. The first green attempt passed the
+new cases but found ten stale snapshot/flush expectations and four unhandled
+rejections in existing suites; all were corrected to the guarded contract.
+Consolidation then found one new control comparing an unprojected lastOnline
+against projected export; its fixture now pins the clock tuple. Lint found a
+void-parameter test helper and unknown rejection typing; both were corrected.
+Original failures and superseded checks remain captured separately. Final focused
+128/7files10.177s wrapper, types13.573s, lint37.462s including85 engine purity
+files, full unit6433/219files106.769s and production build10.686s passed. Related5s/full15s budgets remain unmet. Existing
+Browserslist, chunk-size and precache warnings remain open; no browser Iron
+acceptance is claimed.
+
+Security check passes for this local typed persistence boundary. No production
+wave owner/debit caller is enabled. Successful-restore transient cleanup, outer
+quest/creation/hero guards, exact receipt/conflict and publication recovery,
+settlement, locked replay and bilingual UI/browser acceptance remain pending.
+SaveCurrent11 is unchanged. Full Iron/D06/P09/P10 and private-v1 remain open.
+
+The final five paths, all increment command/output identities and exact owned
+dist/tmp inventory are frozen in `persistence-guard-review.json` under
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les`.
+Independent QA and TD/five-axis reviews APPROVED the frozen source scope; all
+readers released. Only producer publication scope review remains pending before
+commit. Disposable outputs remain until all readers release; diagnostics are retained.
+Umbrella claim continues; root remains sole writer/executor; no remote action.

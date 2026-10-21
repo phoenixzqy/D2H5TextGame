@@ -43,6 +43,7 @@ import { loadAwardPools } from '@/data/loaders/loot';
 import { createRng, hashSeed } from '@/engine/rng';
 import { __resetRollItemSeqForTests, rollItem, rollUniqueItem } from '@/engine/loot/rollItem';
 import { claimQuestReward } from './claimReward';
+import { WaveGuardError } from '@/stores/waveTransitionGuard';
 import { loadQuests } from '@/data/loaders/quests';
 import { awardXp, xpTotal } from '@/engine/progression/xp';
 
@@ -58,6 +59,12 @@ function deferred() {
   return { promise, release: () => { required(done)(); } };
 }
 function snapshot(): SaveCurrent { return required(snapshotStores()); }
+const domains = [usePlayerStore, useInventoryStore, useMapStore, useMercStore,
+  useMetaStore, useFormationStore] as const;
+function expectPendingReferences(before: unknown[]): void {
+  expect(() => snapshotStores()).toThrow(WaveGuardError);
+  domains.forEach((store, index) => { expect(store.getState()).toBe(before[index]); });
+}
 // Zero-bonus fixture: autosave projects both clocks at the flush boundary.
 function flushed(save: SaveCurrent): SaveCurrent {
   const at = NOW + AUTO_SAVE_DEBOUNCE_MS;
@@ -160,13 +167,14 @@ describe('claim settlement at real persistence boundaries', () => {
       disk.commit(record);
     });
     startAutoSave();
+    const references = domains.map(store => store.getState());
     const pending = importIntoStores(JSON.stringify(toJsonSafe(incoming)));
     try {
       await vi.advanceTimersByTimeAsync(0);
       expect(isReplacingSave()).toBe(true);
       expect(useHydrationStore.getState().status).toBe('ready');
       expect(claimQuestReward(DEN)).toBe('not-ready');
-      expect(snapshot()).toEqual(old);
+      expectPendingReferences(references);
       expect(disk.state.writes).toHaveLength(1);
       expect(disk.state.writes[0]?.data).toEqual(old);
       gate.release();
@@ -287,6 +295,7 @@ describe('unique rollback persistence and pending import', () => {
       const gate = deferred();
       disk.put.mockImplementationOnce(async record => { await gate.promise; disk.commit(record); });
       startAutoSave();
+      const references = domains.map(store => store.getState());
       const pending = importIntoStores(JSON.stringify(toJsonSafe(incoming)));
       try {
         await vi.advanceTimersByTimeAsync(0);
@@ -298,7 +307,7 @@ describe('unique rollback persistence and pending import', () => {
         const baseline = required(ordinary());
         __resetRollItemSeqForTests();
         expect(claimQuestReward(DEN)).toBe('not-ready');
-        expect(snapshot()).toEqual(old);
+        expectPendingReferences(references);
         expect(ordinary()).toEqual(baseline); // No reset following pending-import refusal.
         gate.release(); await pending;
         expect(isReplacingSave()).toBe(false);

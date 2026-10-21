@@ -27,6 +27,9 @@ import { useMercStore } from './mercStore';
 import { useMetaStore } from './metaStore';
 import { usePlayerStore } from './playerStore';
 import { useFormationStore } from './formationStore';
+import {
+  assertWaveSnapshotAllowed, deferWaveSaveIfBusy, releaseWaveRestore, reserveWaveRestore
+} from './waveTransitionGuard';
 
 /** Debounce window for auto-save writes, in milliseconds. */
 export const AUTO_SAVE_DEBOUNCE_MS = 500;
@@ -79,9 +82,13 @@ const unsubs: (() => void)[] = [];
 let initialization: Promise<void> | null = null;
 let restoreTail: Promise<unknown> = Promise.resolve();
 
-/** Keep restores/replacements in request order; rejection reaches its caller. */
-function enqueueRestore<T>(operation: () => Promise<T>): Promise<T> {
-  const pending = restoreTail.then(operation);
+/** Reserve before queueing; keep request ownership through installation/failure cleanup. */
+function enqueueRestore<T>(operation: () => Promise<T>, resumeSaves = false): Promise<T> {
+  const lease = reserveWaveRestore();
+  const pending = restoreTail.then(operation).finally(() => {
+    releaseWaveRestore(lease);
+    if (resumeSaves) scheduleSave();
+  });
   restoreTail = pending.catch(() => undefined);
   return pending;
 }
@@ -89,6 +96,7 @@ function enqueueRestore<T>(operation: () => Promise<T>): Promise<T> {
 /**
  * Build a {@link SaveCurrent} snapshot from current store state.
  * Returns null when no character exists (skip pre-creation saves).
+ * Throws WaveGuardError during a synchronous wave transition or pending restore.
  */
 export function snapshotStores(): SaveCurrent | null {
   return buildStoreSnapshot(Date.now(), false);
@@ -100,6 +108,7 @@ function projectedSnapshot(): SaveCurrent | null {
 }
 
 function buildStoreSnapshot(now: number, projectBonus: boolean): SaveCurrent | null {
+  assertWaveSnapshotAllowed();
   const player = usePlayerStore.getState().player;
   if (!player) return null;
 
@@ -146,6 +155,7 @@ function buildStoreSnapshot(now: number, projectBonus: boolean): SaveCurrent | n
 
 function scheduleSave(): void {
   if (suppressSaves || replacingSave || writesBlocked || unsubs.length === 0) return;
+  if (deferWaveSaveIfBusy()) return;
   if (timer) clearTimeout(timer);
   timer = setTimeout(() => {
     timer = null;
@@ -153,12 +163,21 @@ function scheduleSave(): void {
   }, AUTO_SAVE_DEBOUNCE_MS);
 }
 
+/** Resume normal debounce after endWaveTransition reports a deferred save, after unwind. */
+export function resumeWaveDeferredSave(): void {
+  scheduleSave();
+}
+
 /**
  * Save a fresh snapshot immediately. Rejects on write failure so explicit Save
  * never reports success for a failed write; background callers handle rejection.
- * Returns null before character creation or during an import.
+ * Returns null before character creation. Pending restores reject before projection.
+ * Rejects with WaveGuardError before cancelling timers when wave/restore ownership is held.
  */
 export function flushSave(): Promise<void> | null {
+  try { assertWaveSnapshotAllowed(); } catch (error) {
+    return Promise.reject(error instanceof Error ? error : new Error(String(error)));
+  }
   cancelPendingSave();
   if (suppressSaves || replacingSave) return null;
   if (writesBlocked) return Promise.reject(new Error('Stored save needs recovery before saving'));
@@ -182,7 +201,7 @@ export function flushSave(): Promise<void> | null {
   );
 }
 
-/** Export the live character, including mutations not yet autosaved. No IO required. */
+/** Export live data without IO; throws WaveGuardError during wave/restore ownership. */
 export function exportCurrentSave(): string | null {
   const snap = projectedSnapshot();
   return snap ? JSON.stringify(toJsonSafe(snap), null, 2) : null;
@@ -197,14 +216,12 @@ function cancelPendingSave(): void {
  * Validate and persist an imported character before replacing runtime state.
  * Old writes drain in adapter order; no old autosave can be scheduled meanwhile.
  * Failed storage leaves every live slice intact and resumes ordinary autosave.
+ * Rejects with WaveGuardError during a synchronous wave transition, before queueing.
  */
 export async function importIntoStores(json: string): Promise<void> {
   const data = decodeSave(JSON.parse(json) as unknown);
   if (replacingSave) throw new Error('Save replacement already in progress');
-  replacingSave = true;
-  suppressSaves = true;
-  cancelPendingSave();
-  return enqueueRestore(async () => {
+  const pending = enqueueRestore(async () => {
     suppressSaves = true;
     cancelPendingSave();
     try {
@@ -221,18 +238,18 @@ export async function importIntoStores(json: string): Promise<void> {
     } finally {
       suppressSaves = false;
       replacingSave = false;
-      scheduleSave();
     }
-  });
-}
-
-/** Delete disk progress before clearing all character-specific runtime state. */
-export async function deleteCurrentSave(): Promise<void> {
-  if (replacingSave) throw new Error('Save replacement already in progress');
+  }, true);
   replacingSave = true;
   suppressSaves = true;
   cancelPendingSave();
-  return enqueueRestore(async () => {
+  return pending;
+}
+
+/** Delete then clear runtime data; rejects WaveGuardError before queueing during a wave transition. */
+export async function deleteCurrentSave(): Promise<void> {
+  if (replacingSave) throw new Error('Save replacement already in progress');
+  const pending = enqueueRestore(async () => {
     suppressSaves = true;
     cancelPendingSave();
     try {
@@ -253,9 +270,12 @@ export async function deleteCurrentSave(): Promise<void> {
     } finally {
       suppressSaves = false;
       replacingSave = false;
-      scheduleSave();
     }
-  });
+  }, true);
+  replacingSave = true;
+  suppressSaves = true;
+  cancelPendingSave();
+  return pending;
 }
 
 /**
@@ -310,6 +330,7 @@ export function stopAutoSave(): void {
  *
  * Returns true when a save was hydrated, false when no save existed.
  * Sets `useHydrationStore.error` and returns false on failure.
+ * Throws WaveGuardError before queueing during a synchronous wave transition.
  */
 export function hydrateFromSave(): Promise<boolean> {
   return enqueueRestore(() => hydrateSavedCharacter(false));
@@ -420,6 +441,7 @@ function seedItemSeqFromHydratedSave(data: SaveCurrent): void {
  * Reconciles/persists offline time before publication, once per page lifetime.
  * Concurrent calls/remounts share even a failed flight; use import or reload
  * for recovery. Initialization is ordered with all explicit restore operations.
+ * WaveGuardError before queueing leaves initialization unset for a later retry.
  */
 export function initPersistence(): Promise<void> {
   initialization ??= enqueueRestore(initializePersistence);

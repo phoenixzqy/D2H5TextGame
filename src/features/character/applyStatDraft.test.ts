@@ -3,6 +3,7 @@ import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vite
 import type { Player } from '@/engine/types/entities';
 import type { CoreStats } from '@/engine/types/attributes';
 import { toJsonSafe } from '@/engine/save';
+import { WaveGuardError } from '@/stores/waveTransitionGuard';
 import type { SaveRecord } from '@/stores/save-adapter';
 const disk = vi.hoisted(() => ({
   get: vi.fn(() => Promise.resolve(undefined)),
@@ -65,12 +66,18 @@ function deferred() {
 
 function expectRefusal(basis: Player, code: string, deltas = { ...empty, energy: 1 }): void {
   const before = usePlayerStore.getState();
-  const snapshot = structuredClone(snapshotStores());
+  const domains = [usePlayerStore, useInventoryStore, useMapStore, useMercStore,
+    useMetaStore, useFormationStore] as const;
+  const states = domains.map(store => store.getState());
+  const snapshot = isReplacingSave() ? null : structuredClone(snapshotStores());
+  if (isReplacingSave()) expect(() => snapshotStores()).toThrow(WaveGuardError);
   const published: unknown[] = [];
   const stop = usePlayerStore.subscribe(state => { published.push(structuredClone(state.player)); });
   try { expect(apply(deltas, basis)).toBe(code); } finally { stop(); }
   expect(usePlayerStore.getState()).toBe(before);
-  expect(snapshotStores()).toEqual(snapshot);
+  domains.forEach((store, index) => { expect(store.getState()).toBe(states[index]); });
+  if (isReplacingSave()) expect(() => snapshotStores()).toThrow(WaveGuardError);
+  else expect(snapshotStores()).toEqual(snapshot);
   expect(published).toEqual([]);
 }
 
@@ -139,6 +146,9 @@ describe('attribute draft Apply lifecycle', () => {
   ] as const)('fences pending real %s with IO failure=%s, then resumes', async (operation, fails) => {
     const basis = player();
     const old = structuredClone(snapshotStores());
+    const domains = [usePlayerStore, useInventoryStore, useMapStore, useMercStore,
+      useMetaStore, useFormationStore] as const;
+    const states = domains.map(store => store.getState());
     if (!old) throw new Error('Missing import payload');
     const incoming = { ...old, player: { ...old.player, name: 'Incoming draft', id: 'incoming-draft' } };
     const gate = deferred();
@@ -155,7 +165,8 @@ describe('attribute draft Apply lifecycle', () => {
       expect(isReplacingSave()).toBe(true);
       expect(useHydrationStore.getState().status).toBe('ready');
       expect(player()).toBe(basis);
-      expect(snapshotStores()).toEqual(old);
+      expect(() => snapshotStores()).toThrow(WaveGuardError);
+      domains.forEach((store, index) => { expect(store.getState()).toBe(states[index]); });
       expectRefusal(basis, 'not-ready', null as unknown as CoreStats);
       expectRefusal(basis, 'not-ready');
       gate.release();
