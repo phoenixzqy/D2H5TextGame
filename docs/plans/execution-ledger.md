@@ -2417,3 +2417,31 @@ Final serial focused75, full4527/186files (79.28s Vitest/80.52s wrapper), types1
 After all readers release, root rechecks1,727PID/birthidentities absent and761output hashes, removes exactly40,962,824B build/task-test-cache output and verifies absence. Source/history/Noto/shared caches and preexisting cache parents retained. RAW/failure/screenshots remain until independently verified durable packet/archive cleanup; exact ownership in evidence. Original checkout untouched; umbrella worktree claim continues, no remote action. Next: separately GD/TD-approved Iron Skin authored schema/immutable definition/rank/decision prerequisite; runtime/native/UI/browser and full private-v1/C0–C4/G0–G7 remain open.
 
 BUG063 durable packet committed `6d8fdc1`:307safe regular records23,299,404B archived17,792,029B SHA256 b6b7c4728ffc643d32bfab6be34211be2a603fe0c18624c742d97c4574290438. QA/producer independently streamverify allrecords/liveRAW,7sourcefingerprints,5gziproundtrips/failures/74attachments/gates/outputcleanup/processunion and approve exactcleanup; allreadersreleased. Root rechecks durablecommit/archive/manifest/source/all1727identities, then removes exact307RAWfiles+69emptychilddirs; allabsent/no cleanupfailures. Emptyrootretained at `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-skills-header-q2dbs3kf`. Durableevidence/source/history/Noto/sharedcaches preserved, originalcheckoutuntouched, umbrellaclaimcontinues/no remoteaction.
+
+
+## P07a04A Iron Skin authored prerequisite
+
+Committed `b73e858`: exact Iron Skin schema, independent immutable JSON-derived
+unlock/cap/defense definition, two-alias allocation-only rank resolver and
+controlling [D05](decisions/D05-iron-skin-v1.md). Authored level18/cap20/+4% per
+rank remains unchanged; stale fixed+100% copy is superseded but copy edits and
+runtime/native/UI/browser acceptance remain separate. No combat effect yet.
+
+[Evidence](evidence/p07a04-iron-skin.md) records independently approved frozen
+oracles and actual schema RED71=32 behavioral failures/39 controls with production
+schema unchanged, then GREEN71. Missing-helper0-assertion collection failure is
+separate. Final focused308/engine2288/full4682, types/lint/production bridge-build
+pass serially without stops/signals/skips. Engine9.963s/full77.899s Vitest miss
+existing3s/15s targets; build warnings remain. No campaign/balance/coverage or
+private-v1 certification.
+
+After GD/TD exact-source and QA/producer whole-evidence approval, commit and all
+reader release, root freshly verifies1,183 absent PID/birth identities and761
+output hashes, removes exactly40,963,684B task output and verifies absence with
+no cleanup failures. RAW retained for Iron continuation at
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-skin-c7fexii5`;
+root owns later verified durable archive and exact cleanup. Shared caches/font,
+source/history/preexisting parents preserved, original checkout untouched,
+umbrella worktree claim continues, no remote action. Next GD/TD-approved narrow
+runtime increment applies eligible Iron Skin once to fresh combat-adapter defense;
+full P07a/private-v1/C0–C4/G0–G7 remain open.
