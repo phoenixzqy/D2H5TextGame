@@ -34,6 +34,7 @@ import {
 import { CHILL_DEFINITION } from './chill-definition';
 import { MERC_INNER_SIGHT_DEFINITION } from '../skills/inner-sight';
 import { METEOR_ARMOR_MELT_DEFINITION } from '../skills/armor-melt';
+import { activeMightAura, type MightAuraProjection } from '../skills/might';
 import { FROZEN_ARMOR_DEFINITION, resolveFrozenArmorRank } from '../skills/frozen-armor';
 import { comboMultiplier, shouldShatter } from './combo';
 import { rollOrbDrops, applyOrbs, type Orb } from './orbs';
@@ -110,6 +111,8 @@ export interface CombatSnapshot {
   readonly enemyTeam: readonly CombatUnit[];
   readonly act?: 1 | 2 | 3 | 4 | 5;
   readonly maxRounds?: number;
+  /** Frozen explicit player Might selection for this wave, active from simulation entry. */
+  readonly mightAura?: MightAuraProjection;
 }
 
 /** Final combat result. */
@@ -125,6 +128,7 @@ export interface CombatResult {
 }
 
 interface State {
+  readonly mightAura?: MightAuraProjection;
   units: Map<string, CombatUnit>;
   events: BattleEvent[];
   /** parallel array: simClockMs at the moment events[i] was emitted. */
@@ -335,6 +339,7 @@ function hasPaidFrozenArmor(unit: CombatUnit): unit is CombatUnit & {
 
 /** Compute damage with combo lookup applied. */
 function buildDamageInput(
+  state: State,
   attacker: CombatUnit,
   defender: CombatUnit,
   effect: DamageEffect,
@@ -359,7 +364,8 @@ function buildDamageInput(
     baseMin,
     baseMax,
     flatBonus: baseFlatBonus,
-    increasedPct: attacker.increasedDamagePct?.[effect.damageType] ?? 0,
+    increasedPct: (attacker.increasedDamagePct?.[effect.damageType] ?? 0) +
+      (effect.damageType === 'physical' ? activeMightAura(state.mightAura, attacker.id, state.units)?.physicalDamagePct ?? 0 : 0),
     comboMult: combo,
     type: effect.damageType,
     critChance: stats.critChance,
@@ -388,7 +394,7 @@ function applyDamageToUnit(
 
   const activeDefender = activeStatusView(defender, state.simClockMs);
   const retaliates = hasPaidFrozenArmor(activeDefender);
-  const input = buildDamageInput(attacker, activeDefender, effect, skillLevel);
+  const input = buildDamageInput(state, attacker, activeDefender, effect, skillLevel);
   const outcome = resolveDamage(input, state.rng);
   const amount = outcome.hit && outcome.final > 0 && shouldShatter(activeDefender, effect.damageType)
     ? Math.max(outcome.final, defender.life)
@@ -855,7 +861,8 @@ function basicAttack(state: State, actorId: string): void {
   if (!target) return;
 
   emit(state, { kind: 'action', actor: actorId, skillId: null });
-  const baseAttack = Math.max(1, Math.floor(actor.stats.attack));
+  const attackPct = activeMightAura(state.mightAura, actorId, state.units)?.attackPct ?? 0;
+  const baseAttack = Math.max(1, Math.floor(actor.stats.attack * (1 + attackPct)));
   const effect: DamageEffect = {
     kind: 'damage',
     damageType: 'physical',
@@ -1161,7 +1168,11 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   result: CombatResult;
 } {
   const rng = createRng(snapshot.seed);
+  const aura = snapshot.mightAura;
   const state: State = {
+    ...(aura ? { mightAura: Object.freeze({ selectedAuraId: aura.selectedAuraId, sourceHeroId: aura.sourceHeroId,
+      rank: aura.rank, maxRank: aura.maxRank, physicalDamagePct: aura.physicalDamagePct, attackPct: aura.attackPct,
+      ...(aura.fieldedMercCombatId !== undefined ? { fieldedMercCombatId: aura.fieldedMercCombatId } : {}) }) } : {}),
     units: new Map(),
     events: [],
     simTimes: [],

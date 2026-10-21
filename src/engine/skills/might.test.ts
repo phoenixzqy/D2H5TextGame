@@ -191,3 +191,117 @@ describe('shared player Might eligibility independent of selection', () => {
     expect(resolveMightRank(player.skillLevels, definition)).toBe(2);
   });
 });
+
+import { composeMightAura, activeMightAura, type MightAuraProjection } from './might';
+import type { CombatUnit } from '../combat/types';
+
+const selectedHero = { id: 'hero', class: 'paladin' as const, level: 1,
+  selectedAuraId: 'paladin.might' as const, skillLevels: { 'paladin.might': 20 } };
+function auraUnit(id: string, kind: NonNullable<CombatUnit['kind']> = 'hero'): CombatUnit {
+  return { id, name: id, side: 'player', kind, level: 1, tier: 'trash', life: 1, mana: 0,
+    stats: { life: 1, lifeMax: 1, mana: 0, manaMax: 0, attack: 100, defense: 0, magicResist: 0,
+      attackSpeed: 100, critChance: 0, critDamage: 2, physDodge: 0, magicDodge: 0,
+      magicFind: 0, goldFind: 0,
+      resistances: { physical: 0, fire: 0, cold: 0, lightning: 0, arcane: 0, poison: 0 } },
+    statuses: [], cooldowns: {}, skillOrder: [], activeBuffIds: [], enraged: false };
+}
+function composed(): MightAuraProjection {
+  const result = composeMightAura(selectedHero, 'merc-fielded');
+  if (!result) throw new Error('Missing selected fixture aura');
+  return result;
+}
+describe('Might frozen wave composition and live recipient lookup', () => {
+  it('copies only immutable primitives and both independent authored potencies', () => {
+    const levels = { 'paladin.might': 20 }; const input = { ...selectedHero, skillLevels: levels };
+    const original = structuredClone(input); const result = composeMightAura(input, 'merc-fielded');
+    expect(result).toEqual({ selectedAuraId: 'paladin.might', sourceHeroId: 'hero', fieldedMercCombatId: 'merc-fielded',
+      rank: 20, maxRank: 20, physicalDamagePct: 0.6, attackPct: 0.2 });
+    expect(Object.isFrozen(result)).toBe(true); expect(input).toEqual(original);
+    levels['paladin.might'] = 1;
+    expect(result?.rank).toBe(20); expect(result?.physicalDamagePct).toBe(0.6); expect(result?.attackPct).toBe(0.2);
+  });
+  it('requires explicit canonical selection independently of eligibility and allocation', () => {
+    const { selectedAuraId: _selection, ...none } = selectedHero;
+    expect(composeMightAura(none)).toBeUndefined();
+    expect(composeMightAura({ ...selectedHero, class: 'sorceress' })).toBeUndefined();
+    expect(composeMightAura({ ...selectedHero, level: 0 })).toBeUndefined();
+    expect(composeMightAura({ ...selectedHero, skillLevels: {} })).toBeUndefined();
+    expect(composeMightAura({ ...selectedHero, skillLevels: { 'aura-might': 20 } })).toBeUndefined();
+  });
+  it('uses max exact allocated aliases and copied definition coefficients without retaining maps', () => {
+    const definition = { requiredLevel: 7, maxRank: 3, physicalDamagePctPerRank: .125, attackPctPerRank: .5 };
+    const input = { ...selectedHero, level: 7, skillLevels: { 'skills-paladin-might': 9, 'paladin.might': 2 } };
+    expect(composeMightAura(input, undefined, definition)).toEqual({ selectedAuraId: 'paladin.might', sourceHeroId: 'hero',
+      rank: 3, maxRank: 3, physicalDamagePct: .375, attackPct: 1.5 });
+    expect(composeMightAura({ ...input, level: 6 }, undefined, definition)).toBeUndefined();
+  });
+  it.each([undefined, '', 'hero'])('never infers an explicit fielded merc for %s', mercId => {
+    expect(composeMightAura(selectedHero, mercId)).not.toHaveProperty('fieldedMercCombatId');
+  });
+  it('resolves CURRENT source and recipient identities on every lookup without mutating maps or units', () => {
+    const aura = composed(); const hero = auraUnit('hero'); const merc = auraUnit('merc-fielded', 'merc');
+    const units = new Map([[hero.id, hero], [merc.id, merc]]); const before = structuredClone(units);
+    expect(activeMightAura(aura, 'hero', units)).toBe(aura);
+    expect(activeMightAura(aura, merc.id, units)).toBe(aura); expect(units).toEqual(before);
+    // Replacing an immutable encounter unit must immediately suppress the frozen potency.
+    units.set(hero.id, { ...hero, life: 0 });
+    expect(activeMightAura(aura, merc.id, units)).toBeUndefined();
+    units.set(hero.id, { ...hero, life: -1 });
+    expect(activeMightAura(aura, merc.id, units)).toBeUndefined();
+    units.delete(hero.id); expect(activeMightAura(aura, merc.id, units)).toBeUndefined();
+    units.set(hero.id, hero); expect(activeMightAura(aura, merc.id, units)).toBe(aura);
+    units.set(merc.id, { ...merc, life: 0 }); expect(activeMightAura(aura, merc.id, units)).toBeUndefined();
+    units.delete(merc.id); expect(activeMightAura(aura, merc.id, units)).toBeUndefined();
+  });
+  it.each(['stun', 'freeze'])('ignores source %s and never reads encounter skill levels for frozen potency', id => {
+    const aura = composed(); const hero = { ...auraUnit('hero'), skillLevels: { 'paladin.might': 0 },
+      statuses: [{ id, sourceId: 'fixture', stacks: 1, remaining: -1 }] };
+    expect(activeMightAura(aura, 'merc-fielded', new Map([['hero', hero], ['merc-fielded', auraUnit('merc-fielded', 'merc')]])))
+      .toBe(aura);
+  });
+  const excluded: readonly Partial<CombatUnit>[] = [
+    { side: 'enemy' }, { kind: 'summon' }, { kind: 'monster' }, { summon: true },
+    { ownerId: 'hero' }, { summonOwnerId: 'hero' }, { life: 0 }, { life: -1 }
+  ];
+  it.each(excluded)('excludes malformed/wrong-side/dead source %#', patch => {
+    const aura = composed(); const hero = { ...auraUnit('hero'), ...patch };
+    expect(activeMightAura(aura, 'merc-fielded', new Map([['hero', hero], ['merc-fielded', auraUnit('merc-fielded', 'merc')]])))
+      .toBeUndefined();
+  });
+  it.each(excluded)('excludes malformed/wrong-side/dead explicit merc recipient %#', patch => {
+    const aura = composed(); const merc = { ...auraUnit('merc-fielded', 'merc'), ...patch };
+    expect(activeMightAura(aura, merc.id, new Map([['hero', auraUnit('hero')], [merc.id, merc]]))).toBeUndefined();
+  });
+  it('excludes unlisted mercs, hero-shaped non-source recipients and missing projections', () => {
+    const aura = composed(); const units = new Map([['hero', auraUnit('hero')],
+      ['bench', auraUnit('bench', 'merc')], ['other-hero', auraUnit('other-hero')], ['merc-fielded', auraUnit('merc-fielded')]]);
+    for (const id of ['bench', 'other-hero', 'merc-fielded', 'missing']) expect(activeMightAura(aura, id, units)).toBeUndefined();
+    expect(activeMightAura(undefined, 'hero', units)).toBeUndefined();
+  });
+  it.each([{ rank: 0 }, { rank: 1.5 }, { rank: 21 }, { rank: Infinity },
+    { physicalDamagePct: -1 }, { physicalDamagePct: NaN }, { physicalDamagePct: Infinity },
+    { attackPct: -1 }, { attackPct: NaN }, { attackPct: Infinity }])('suppresses invalid frozen potency %#', patch => {
+    const aura = composed();
+    expect(activeMightAura({ ...aura, ...patch }, 'hero', new Map([['hero', auraUnit('hero')]]))).toBeUndefined();
+  });
+  it('keeps a valid alternate authored cap31/rank31 active and checks the copied cap', () => {
+    const definition = { ...MIGHT_DEFINITION, maxRank: 31 };
+    const aura = composeMightAura({ ...selectedHero, skillLevels: { 'paladin.might': 31 } }, undefined, definition);
+    expect(aura).toMatchObject({ rank: 31, maxRank: 31, physicalDamagePct: .9299999999999999, attackPct: .31 });
+    const units = new Map([['hero', auraUnit('hero')]]);
+    expect(activeMightAura(aura, 'hero', units)).toBe(aura);
+    if (!aura) throw new Error('Missing alternate-cap aura');
+    expect(activeMightAura({ ...aura, rank: 32 }, 'hero', units)).toBeUndefined();
+    expect(activeMightAura({ ...aura, maxRank: 30 }, 'hero', units)).toBeUndefined();
+  });
+  it.each([0, -1, 1.5, NaN, Infinity, -Infinity])('suppresses malformed copied cap %s', maxRank => {
+    expect(activeMightAura({ ...composed(), maxRank }, 'hero', new Map([['hero', auraUnit('hero')]]))).toBeUndefined();
+  });
+  it('accepts finite nonnegative authored potency without inventing a tuning ceiling', () => {
+    const aura = composed(); const units = new Map([['hero', auraUnit('hero')]]);
+    for (const value of [0, 3]) {
+      const alternate = { ...aura, physicalDamagePct: value, attackPct: value };
+      expect(activeMightAura(alternate, 'hero', units)).toBe(alternate);
+    }
+  });
+});
