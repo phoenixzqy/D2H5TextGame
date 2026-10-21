@@ -2472,3 +2472,25 @@ build/task-test-cache output and verifies absence with no failures. Shared cache
 preexisting parents/Noto/source/history remain; original checkout untouched,
 umbrella claim continues, no remote action. RAW retained at the Iron evidence
 path for later verified durable packet and exact cleanup by root.
+
+
+## P07a04C Iron Skin native boundaries
+
+Test-only `a4548e2` adds six real-store seed7 allocation/upgrade, eligibility,
+paidrespec, gear/nextwave, explicitreplay and serialization/import cases.
+All pass first execution, with no nativeRED/runtime edit. ImportedL18/points,
+extremegear/registeredfinisher, mocked disk module and fixed Date.now remain scaffolding; no earned
+campaign/browserdisk/UI/balance acceptance. Full expected recording comparisons
+retain original pools/all3carry baselines, rank-only exact restoration and the
+reviewed two-mirror gear-clamp expectation. All unexecuted draft corrections are
+preserved in [evidence](evidence/p07a04-iron-skin.md).
+
+Final serial T11.855s/focused57 in4files3.732Vitest4.889wrapper/full4729 in190files
+76.694/78.137/L32.136/productionbridgebuild9.097 pass with no stops/signals/skips/
+todos. Existing15s full target and build warnings remain. GD/TD exactsource and
+QA/producer wholeevidence APPROVE. After commit/allreaderrelease root freshly
+checks896 absent PID/birthidentities and761outputhashes, removes40,964,848B,
+verifies allabsent/no failures. RAW retained at Iron evidence path for later
+durablepacket/cleanup by root; sharedcaches/parents/Noto/source/history preserved.
+Originalcheckout untouched, umbrellaclaim continues, no remoteaction. Next bounded
+UI/spec/locales, then real productionbrowser; full privatev1/C0–C4/G0–G7 stay open.

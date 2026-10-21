@@ -1,7 +1,7 @@
 # P07a04 Iron Skin — incremental evidence
 
 Status: authored prerequisite delivered in `b73e858`; runtime adapter delivered
-in `e234dad`. Native, bilingual UI and production-browser acceptance remain open. Broader P07a/private-v1,
+in `e234dad`; native fixture acceptance in `a4548e2`. Bilingual UI and production-browser acceptance remain open. Broader P07a/private-v1,
 C0–C4 and G0–G7 remain incomplete.
 
 [D05](../decisions/D05-iron-skin-v1.md) controls the authored contract: Barbarian
@@ -124,3 +124,50 @@ stage-b-source-freeze-v2.json, stage-b-final-gates.json, stage-b-output-inventor
 and stage-b-output-cleanup.json. Root owns eventual durable packet verification
 and exact disposable cleanup after downstream readers finish. Unexecuted native
 draft corrections are retained separately; no native result is claimed yet.
+
+
+## Native boundaries / Stage C
+
+Test-only `a4548e2` adds six native cases using real stores, allocation, equipment,
+seed7 waves, explicit replay and serialization/validated import. They verify
+next-wave rank1/rank2 defense104000/108000 from base100000; level17/other-class
+suppression; paid18000-gold respec without refill; rank20 naked defense127.8;
+original resource pools/all three carry baselines and no repeated multiplication,
+recording/reward drift; allocation-only persistence without combat overlays.
+
+Imported level18/points/extreme gear and a registered finisher are explicit
+scaffolding. The disk adapter is the sole mocked module; Date.now is fixed for
+fixture time. This establishes native
+boundaries, not earned progression, browser disk/reload, campaign or balance.
+All six cases passed their first execution; there is no manufactured native RED
+and no runtime edit. Preserved unexecuted draft corrections fix regen4→2, the
+fresh redundant stats.life/mana mirrors after a gear clamp, and clearing ranks
+before naked-defense71. The expected gear-replay record changes only those two
+mirror fields; the complete actual recording stays unnormalized and compared.
+Rank-only replay first restores the complete original recording.
+
+| Final gate | Result | Duration |
+|---|---|---|
+| Type checking | pass | 11.855 s |
+| Native/adapter + Lightning native/Frozen Armor controls | 57 cases, 4 files | 3.732 s Vitest / 4.889 s wrapper |
+| Full unit | 4,729 cases, 190 files | 76.694 s / 78.137 s |
+| Lint + engine purity | pass | 32.136 s |
+| Fresh production build + bridge exclusion | pass | 9.097 s |
+
+All five commands ran serially, exit0, no stops/signals/skips/todos. The full15s
+target remains missed; existing build warnings remain. No new engine source
+changed. GD/TD approve exact installed v4 SHA256
+`68faf4daf76248e1a49dd2f3f118565e4a7c888110db71d7c2db0f8b32e4a0d1`.
+QA and producer independently verify the source/drafts/corrections, reports,
+logs, serial metadata,896 absent PID/birth identities and761 exact outputs.
+Review records are root transcriptions. After commit and all reader release,
+root rechecks source, processes and output hashes, removes exactly40,964,848B
+(760 build files+one regenerated Vitest result), and verifies absence without
+cleanup failures. RAW/source/history/Noto/shared caches/preexisting parents remain.
+The original checkout is untouched; umbrella worktree claim continues; no remote
+action. RAW remains at the path above pending root's independently verified
+durable packet and exact cleanup. Key records: stage-c-draft-freeze-v3.json,
+stage-c-installed-source-freeze.json, stage-c-final-gates.json,
+stage-c-process-union.json, stage-c-output-inventory.json and
+stage-c-output-cleanup.json. UI/spec/locales and production-browser acceptance
+are next; full private-v1/C0–C4/G0–G7 remain incomplete.
