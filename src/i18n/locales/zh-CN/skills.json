@@ -719,7 +719,7 @@
     },
     "skeleton-mastery": {
       "name": "支配骷髅",
-      "desc": "增强骷髅战士和法师的力量。"
+      "desc": "被动：每投入1点技能点，新召唤的骷髅战士和骷髅法师最大生命+{{life}}%、攻击+{{attack}}%、普通防御+{{defense}}%（最多{{cap}}点，合计+{{maxLife}}%/+{{maxAttack}}%/+{{maxDefense}}%）。角色{{level}}级解锁。"
     },
     "clay-golem": {
       "name": "黏土石魔",

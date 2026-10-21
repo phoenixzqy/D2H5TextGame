@@ -719,7 +719,7 @@
     },
     "skeleton-mastery": {
       "name": "Skeleton Mastery",
-      "desc": "Increases the power of skeleton warriors and mages."
+      "desc": "Passive: Newly created skeleton warriors and mages gain +{{life}}% maximum life, +{{attack}}% Attack and +{{defense}}% ordinary Defense per allocated skill rank (up to +{{maxLife}}%/+{{maxAttack}}%/+{{maxDefense}}% at rank {{cap}}). Unlocks at character level {{level}}."
     },
     "clay-golem": {
       "name": "Clay Golem",
