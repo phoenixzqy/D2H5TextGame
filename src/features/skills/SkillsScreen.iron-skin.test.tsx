@@ -133,6 +133,49 @@ for (const locale of ['en', 'zh-CN'] as const) {
       expect(player().skillLevels?.[CANONICAL]).toBe(2); expect(player().skillPoints).toBe(0);
       expect(rowValue(section(panel, copy[locale].current), copy[locale].defense)).toHaveTextContent(/^8%$/);
     });
+    it.each([false, true])('restores selected detail before native Tab default (shift=%s)', (shiftKey) => {
+      arrange(); mount(); const panel = detail();
+      const locked = screen.getByTestId('skill-node-skills-barbarian-natural-resistance');
+      act(() => { locked.focus(); });
+      const lockedName = locale === 'en' ? 'Natural Resistance' : '自然抗性';
+      expect(within(panel).getByRole('heading', { name: lockedName })).toBeVisible();
+      expect(within(panel).getByRole('button')).toBeDisabled();
+      fireEvent.keyDown(locked, { key: 'ArrowRight' });
+      expect(within(panel).getByRole('button')).toBeDisabled();
+      const before = structuredClone(player());
+      // React's delegated handler runs before document/default navigation. Observe
+      // the real DOM here; assertions after fireEvent alone miss batched updates.
+      let atDefault: unknown;
+      const observe = (event: KeyboardEvent): void => {
+        const action = within(panel).getByRole<HTMLButtonElement>('button');
+        atDefault = { heading: panel.querySelector('h2')?.textContent,
+          disabled: action.disabled, prevented: event.defaultPrevented,
+          originStillFocused: document.activeElement === locked };
+      };
+      document.addEventListener('keydown', observe, { once: true });
+      try { fireEvent.keyDown(locked, { key: 'Tab', shiftKey }); }
+      finally { document.removeEventListener('keydown', observe); }
+      expect(atDefault).toEqual({ heading: locale === 'en' ? 'Iron Skin' : '钢铁之肤',
+        disabled: false, prevented: false, originStillFocused: true });
+      expect(player()).toEqual(before);
+      fireEvent.blur(locked);
+      expect(within(panel).getByRole('heading', {
+        name: locale === 'en' ? 'Iron Skin' : '钢铁之肤' })).toBeVisible();
+    });
+    it('keeps a committed locked selection disabled when Tab clears another preview', () => {
+      arrange(); mount();
+      const locked = screen.getByTestId('skill-node-skills-barbarian-natural-resistance');
+      fireEvent.click(locked);
+      const skin = screen.getByTestId(`skill-node-${AUTHORED}`);
+      act(() => { skin.focus(); });
+      const panel = screen.getByTestId('skill-detail-panel');
+      expect(within(panel).getByRole('button')).toBeEnabled();
+      fireEvent.keyDown(skin, { key: 'Tab' });
+      expect(within(panel).getByRole('heading', {
+        name: locale === 'en' ? 'Natural Resistance' : '自然抗性' })).toBeVisible();
+      expect(within(panel).getByRole('button')).toBeDisabled();
+      expect(player().skillPoints).toBe(2);
+    });
     it('learning during a real recorded wave preserves every current recording/resource field', () => {
       arrange({ skillLevels: {} }); useMapStore.getState().setCurrentLocation(1, 'areas/act1-blood-moor');
       expect(startSubAreaRun({ runSeed: 7, challengeOrdinal: 0 })).not.toBeNull();

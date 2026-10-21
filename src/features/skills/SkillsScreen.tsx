@@ -12,6 +12,7 @@
  * helpers; this component only formats and wires player actions.
  */
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { flushSync } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, Panel, ScreenShell, Tabs, resolveSkillIcon, tDataKey } from '@/ui';
 import { usePlayerStore } from '@/stores';
@@ -500,6 +501,10 @@ function SkillTreeBoard({
             }}
             onMouseEnter={() => { onPreview(skill.id); }}
             onMouseLeave={() => { onPreview(null); }}
+            onKeyDown={(event) => {
+              // Restore the committed action before native Tab chooses its target.
+              if (event.key === 'Tab') flushSync(() => { onPreview(null); });
+            }}
             onFocus={() => { onPreview(skill.id); }}
             onBlur={() => { onPreview(null); }}
             className={`absolute flex h-20 w-20 items-center justify-center rounded border-2

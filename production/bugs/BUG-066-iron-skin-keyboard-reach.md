@@ -1,6 +1,6 @@
 # BUG-066 — Diagnose Iron Skin forward-keyboard allocation failure
 
-- **Status:** Open — production focus/preview timing defect confirmed.
+- **Status:** Fix validated locally — commit pending; production-browser regression now passes.
 - **Severity:** Medium — forward keyboard allocation skips the selected eligible skill; pointer allocation was covered previously.
 - **Owner / affected systems:** frontend-dev, accessibility-specialist, qa-engineer; Skills focus/preview and browser harness.
 - **Build:** `a1ab9c1`, product UI `edaa2b2`, exact approved uncommitted browser v1.
@@ -80,3 +80,66 @@ observe committed detail/action at document keydown before default, with
 non-Tab and committed-locked controls. Then rerun the original browser oracle.
 The unexecuted regression draft's zh heading was corrected from 自然抵抗 to
 authored 自然抗性 before install; both drafts/freezes remain preserved.
+
+## Actual focused regression RED
+
+Exact reviewed regression v2 (11044B, SHA256
+ae35f2a3953c87fc8b136c821d1c5c4fae391c96855adaad37d9fe26ef6afdb6)
+runs against unchanged UI source02998918. Actual26 cases:6fail/20pass,
+6.894s wrapper, exit1/no stop reason/signals. Four before-default assertions
+(two Tab directions × two locales) observe locked Natural Resistance instead of
+committed Iron Skin; the two committed-locked controls still show Iron Skin
+after Tab rather than restoring the locked selection. Failures stop subsequent
+assertions in each case. Existing20 controls pass.
+
+Evidence: RAW focused-keyboard-red report/log/meta/processes and
+keyboard-red-classification.json. No production change preceded this RED.
+
+## Test-only type correction
+
+Focused GREEN passes106 across4 files (7.294s wrapper). The following type gate
+fails TS2769 at three new RTL getByRole options: exact is unsupported. The serial
+chain stops before full unit/lint/build. Remove only those ignored options;
+string role-name matching is exact by default, so assertions/fixtures and source
+fix remain unchanged. V2, actual RED/GREEN and failing type log are preserved;
+v3 is separately fingerprinted in keyboard-types-correction.json.
+
+## Validated correction and production acceptance
+
+SkillsScreen now flushes transient-preview clearing synchronously on a tree
+node's Tab keydown. It preserves native default focus movement, Shift+Tab,
+Enter/Space, pointer previews, committed selection and native disabled semantics.
+The minimal source adds one import and four handler lines; no allocation/combat
+logic changes. Regression path: src/features/skills/SkillsScreen.iron-skin.test.tsx.
+
+Final v3 serial gates: focused106/4 files (6.283s Vitest/7.371s wrapper), types
+11.538s, full4755/191 (78.193/79.402s), lint31.476s and fresh production
+bridge/build9.062s all pass with no skipped/todo tests, stops or signals.
+Existing15s full-test target and build warnings remain; no performance signoff.
+
+Unchanged fatal100-Tab browser oracle plus reviewed diagnostic snapshots now
+passes en and zh-CN:2/2,22.797621s Playwright/23.773s wrapper, no retries,
+skips/flaky results, stop reason or signals. Each of four rank/locale traversals
+reaches enabled Allocate in3 native Tabs, with the exact selected Iron Skin
+heading; native Enter learns ranks1/2. The final locked Natural Resistance node
+now leads directly to Allocate rather than BODY. FreshL1 locked controls,
+explicit importedL18/two-point eligibility,4/8% current and8/12%(+4%) next,
+all9 combo-slot passive exclusions,18 viewport samples and four actual Settings
+Save/newpage/Continue cycles pass. Save equality covers full player, inventory,
+mercs, map, formation and meta.settings; it does not assert whole-meta equality.
+
+Root visually reviewed18 exact screenshots through3 contact sheets plus full-size
+zh-CN360×640/en915×412. Allocate/heading hit tests use9 sampled points in separate
+scrolled states; action bounds≥44px, prose≥14px and no horizontal page overflow.
+CDP records Noto Sans CJK SC30 prose glyphs and DejaVu Sans12. Both app console
+arrays are empty. Below-fold rows still require scrolling and existing icon
+glyph boxes remain. This is desktop Chromium with CSS viewport resizing, not
+real touch devices, all-browser/full accessibility, earned campaign, browser
+process restart, autosave, balance or private-v1 acceptance.
+
+RAW final records: keyboard-final-gates.json, keyboard-browser-final-evidence.json,
+keyboard-contact-sheets.json, browser-iron-keyboard-fixed report/log/meta/processes,
+keyboard-final-source-freeze-v3.json and iron-all-process-union.json. All6125
+cumulative Iron Skin PID/birth identities are absent. All761 fresh output hashes
+match after browser; outputs await reader release and exact cleanup. Independent
+final browser/evidence review remains pending at this document freeze.
