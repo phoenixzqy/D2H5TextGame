@@ -4257,3 +4257,41 @@ reviews APPROVED the frozen scope; all readers released. Producer publication
 review remains before commit. Disposable outputs remain until all readers
 release; diagnostics are retained. Root is sole writer/executor; umbrella claim
 continues; no remote action or persistent server.
+
+
+## D06 v1i synthetic configuration fixture prerequisite
+
+Guarded combat exits received QA, TD/five-axis and producer APPROVE and committed
+as `2d49d8d`. Exact cleanup removed860files/43,213,107bytes and15 empty directories,
+zero failures/remaining targets (abort-ui-v2-cleanup.json). Historical v1 concern,
+mutation proof and revised approval evidence remain retained outside the repo.
+
+Producer and TD approved this four-test-plus-ledger prerequisite to public hero
+lifecycle cleanup. Might/Meditation configure helpers, their absent/different-ID
+resolver controls, Frozen Armor allocation/slot projection and one cross-wave
+allocation projection now use documented test-local raw player fixture writes.
+These controlled synthetic states deliberately retain the original run/recording;
+they do not establish supported public replacement semantics. Initial public
+setPlayer setup, real skill allocation, aura, combo, equipment and import actions
+and every existing assertion are preserved. No product API, bypass or behavior
+changes, new tests or browser acceptance are claimed. RED is not applicable to
+this fixture-only adaptation; the following slice must test real public actions.
+
+Focused74/4files10.267s wrapper, types14.696s, lint37.376s including85 engine purity
+files, full6481/219files110.875s and build9.741s passed. Related5s/full15s budgets
+remain unmet; existing React act, fixture skill fallback, stale Browserslist,
+chunk and precache diagnostics remain open. SaveCurrent11 remains unchanged.
+
+Security check passes for scoped test-only fixture writes without production
+exceptions. Approved next lifecycle slice owns combatRunLifecycle, combatHelpers,
+playerStore, focused lifecycle tests and ledger. Actual public hero cleanup,
+receipt/recovery/settlement/replay, caller refusal handling and bilingual Iron
+UI/browser acceptance remain pending. FullD06/P09/P10/private-v1 remain open.
+
+Five repository paths, all hero-fixtures command/source/output identities, prior
+cleanup and exact owned dist/tmp inventory are frozen in hero-fixtures-review.json
+under /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review remains before commit. Disposable outputs
+remain until readers release; diagnostics retained. Root is sole writer;
+umbrella claim continues; no remote action or persistent browser/server.

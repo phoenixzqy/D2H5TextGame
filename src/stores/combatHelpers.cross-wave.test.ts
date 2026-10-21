@@ -191,7 +191,8 @@ describe('production continuous-mana carry between recorded waves', () => {
     const before = structuredClone({ team: first.playerTeam, events: first.recordedEvents, outcome: first.outcome });
     const player = usePlayerStore.getState().player;
     if (!player) throw new Error('Missing real player');
-    usePlayerStore.getState().setPlayer({ ...player, skillLevels: {} });
+    // Synthetic allocation projection retains this recording; not public hero replacement.
+    usePlayerStore.setState({ player: { ...player, skillLevels: {} } });
     expect({ team: useCombatStore.getState().playerTeam, events: useCombatStore.getState().recordedEvents,
       outcome: useCombatStore.getState().outcome }).toEqual(before);
     drain();

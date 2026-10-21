@@ -50,11 +50,12 @@ function equip(defense = 0, expanded = true): void {
   expect(useInventoryStore.getState().equipItem(cap)).toEqual({ ok: true });
 }
 
+/** Synthetic allocation/slot projection retains paid carry; not public hero replacement. */
 function configure(skillLevels: Player['skillLevels'], comboOrder = [FINISHER]): void {
   const { skillLevels: prior, ...rest } = player();
   void prior;
-  usePlayerStore.getState().setPlayer({ ...rest, comboOrder,
-    ...(skillLevels === undefined ? {} : { skillLevels }) });
+  usePlayerStore.setState({ player: { ...rest, comboOrder,
+    ...(skillLevels === undefined ? {} : { skillLevels }) } });
 }
 
 function arrange(): void {

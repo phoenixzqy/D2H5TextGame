@@ -39,7 +39,8 @@ function player(): Player {
   if (!value) throw new Error('Missing native Meditation fixture player');
   return value;
 }
-function configure(patch: Partial<Player>): void { usePlayerStore.getState().setPlayer({ ...player(), ...patch }); }
+/** Synthetic configuration projection retains the run; public hero replacement clears it. */
+function configure(patch: Partial<Player>): void { usePlayerStore.setState({ player: { ...player(), ...patch } }); }
 function gear(mana = 100, attackSpeed = 0, energy = 0): void {
   const cap: Item = { id: `fixture-meditation-cap-${String(++gearSequence)}`, baseId: 'items/base/helm-cap',
     rarity: 'rare', level: 1, identified: true, equipped: false, affixes: [{ affixId: 'fixture-imported',
@@ -242,10 +243,11 @@ describe('native selected Meditation wave composition', () => {
   });
   it('does not reuse the original saved selector if current player is absent or has another identity', () => {
     selected(20); start(); const saved = player(); const before = recording();
+    // Synthetic resolver inputs deliberately retain the original run; not public replacement.
     usePlayerStore.setState({ player: null }); replay(); expect(latest().meditationAura).toBeUndefined();
-    usePlayerStore.getState().setPlayer({ ...saved, id: 'different-hero' }); replay();
+    usePlayerStore.setState({ player: { ...saved, id: 'different-hero' } }); replay();
     expect(latest().meditationAura).toBeUndefined(); expect(before.events.length).toBeGreaterThan(0);
-    usePlayerStore.getState().setPlayer(saved); replay(); aura(20); assertActualEffect();
+    usePlayerStore.setState({ player: saved }); replay(); aura(20); assertActualEffect();
   });
   it('keeps the original explicitly fielded merc across roster changes; bench cannot receive the projection', () => {
     selected(20); const first = merc('fielded-a'); const bench = merc('bench-b');
