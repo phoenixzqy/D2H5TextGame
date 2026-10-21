@@ -3991,3 +3991,50 @@ Independent QA and TD/five-axis reviews APPROVED the frozen source scope; all
 readers released. Only producer publication scope review remains pending before
 commit. Disposable outputs remain until all readers release; diagnostics are retained.
 Umbrella claim continues; root remains sole writer/executor; no remote action.
+
+
+## D06 v1d outer grant/rollback ownership guards
+
+Persistence guards received QA, TD/five-axis and producer APPROVE and committed
+as `c4f4817`. All readers released; exact manifest cleanup removed
+857files/42,723,281bytes and14 empty directories with zero failures or remaining
+targets. Actual evidence is `persistence-guard-cleanup.json`; diagnostics remain.
+
+TD plan-review returned ready for this four-path increment. Quest claim and new
+character creation now assert the existing exact-debit ownership guard as their
+first statement, before their latch, readiness/input reads, allocation, grants or
+rollback snapshots/catches. Typed refusal propagates directly; it cannot be
+misclassified as a grant/equip failure and enter compensating ownership writes.
+Read-only canClaim and normal success/rollback behavior remain unchanged. Public
+TSDoc documents refusal. No broader transaction or generic action guard was added.
+
+Six RED cases failed before the two production entry guards; the prior41 guard
+cases passed. The new entry controls assert no caller-input reads, no domain
+notifications and exact prior domain references. Caught/uncaught real inventory
+subscriber cases assert the sole frozen expected backpack reference, unchanged
+other ownership/domain references and exactly one inventory publication. After
+subscription/debit/wave release, actual authored Andariel reward claims and actual
+Amazon starter transfer succeed, proving normal continuation and no stranded
+claim latch. Explicit finally blocks release owned subscriptions and both leases.
+Existing claim/creation suites retain allocation, rollback, persistence and UI
+checks; no compatibility workaround or weakened assertion was introduced.
+
+Final focused179/6files12.326s wrapper, types14.200s, lint37.812s including85 engine
+purity files, full unit6439/219files109.120s and production build9.879s passed. Related5s/full15s budgets remain unmet. Existing
+React act diagnostics, stale Browserslist, chunk-size and precache warnings remain
+open. No engine source changed; no browser Iron acceptance is claimed.
+
+Security check passes for local typed action refusals before side effects. No
+production wave/debit caller is enabled. Hero replacement during an entire wave
+transition, successful-restore transient cleanup, exact receipt/conflict and
+publication recovery, settlement, locked replay and bilingual UI/browser
+acceptance remain pending. SaveCurrent11 is unchanged. Full Iron/D06/P09/P10 and
+private-v1 remain open.
+
+The final four paths, all increment command/output identities and exact owned
+dist/tmp inventory are frozen in `outer-guard-review.json` under
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les`.
+Independent QA and TD/five-axis reviews APPROVED the frozen source scope; all
+readers released. Only producer publication scope review remains pending before
+commit. Disposable outputs remain until all readers release; diagnostics are retained.
+Umbrella claim continues; root remains sole writer/executor; no remote action.

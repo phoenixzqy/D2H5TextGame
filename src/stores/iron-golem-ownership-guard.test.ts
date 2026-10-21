@@ -6,6 +6,12 @@ import { useInventoryStore } from './inventoryStore';
 import { createMercFromDef } from './mercFactory';
 import { useMercStore } from './mercStore';
 import { usePlayerStore } from './playerStore';
+import { useMapStore } from './mapStore';
+import { useCombatStore } from './combatStore';
+import { useHydrationStore } from './persistence';
+import { createMockPlayer } from '@/features/character/createMockPlayer';
+import { createCharacter } from '@/features/character/createCharacter';
+import { claimQuestReward } from '@/features/quests/claimReward';
 import {
   beginIronGolemDebit, beginWaveTransition, endIronGolemDebit, endWaveTransition,
   WaveGuardError
@@ -190,5 +196,110 @@ describe('supported ownership actions during an exact Iron debit', () => {
       const after = ownership();
       for (const key of Object.keys(before) as (keyof typeof before)[]) expect(after[key]).toBe(before[key]);
     } finally { endIronGolemDebit(lease); endWaveTransition(lease); }
+  });
+});
+
+
+const ANDARIEL = 'quests/act1-sisters-to-the-slaughter';
+const outerActions = ['claim', 'creation'] as const;
+type OuterAction = typeof outerActions[number];
+function prepareOuterAction(action: OuterAction): void {
+  useMapStore.getState().reset();
+  useHydrationStore.getState().setStatus('ready');
+  if (action === 'claim') {
+    usePlayerStore.getState().setPlayer(createMockPlayer('Claimant', 'sorceress'));
+    useMapStore.getState().updateQuestProgress(ANDARIEL, { status: 'completed',
+      objectives: { 'obj-kill-andariel': true } });
+  } else usePlayerStore.getState().reset();
+}
+function runOuterAction(action: OuterAction): unknown {
+  return action === 'claim' ? claimQuestReward(ANDARIEL) : createCharacter('Guarded hero', 'amazon');
+}
+function expectOuterSuccess(action: OuterAction): void {
+  if (action === 'claim') {
+    expect(runOuterAction(action)).toBe('ok');
+    expect(useMapStore.getState().questProgress[ANDARIEL]?.rewardClaimed).toBe(true);
+    expect(useInventoryStore.getState().backpack.some(item => item.uniqueId === 'items/unique/coif-of-glory')).toBe(true);
+  } else {
+    expect(runOuterAction(action)).toMatchObject({ ok: true, player: { name: 'Guarded hero', class: 'amazon' } });
+    expect(useInventoryStore.getState().equipped.weapon?.baseId).toBe('items/base/weapon-bow-training');
+  }
+}
+
+describe('outer grant and rollback actions during an exact Iron debit', () => {
+  it.each(outerActions)('refuses %s before readiness, input reads or domain publications', action => {
+    seed();
+    prepareOuterAction(action);
+    const stores = [useInventoryStore, useMercStore, usePlayerStore, useMapStore, useCombatStore] as const;
+    const states = stores.map(store => store.getState());
+    const notified = vi.fn();
+    const stops = stores.map(store => store.subscribe(notified));
+    const read = vi.fn(() => { throw new Error('Outer caller input must not be read'); });
+    const name = { trim: read } as unknown as string;
+    const quest = { [Symbol.toPrimitive]: read } as unknown as string;
+    const hydration = useHydrationStore.getState();
+    const lease = beginWaveTransition(true);
+    beginIronGolemDebit(lease);
+    try {
+      expectDebitRefusal(() => runOuterAction(action));
+      expectDebitRefusal(() => action === 'claim'
+        ? claimQuestReward(quest) : createCharacter(name, 'amazon'));
+      expect(read).not.toHaveBeenCalled();
+      stores.forEach((store, index) => { expect(store.getState()).toBe(states[index]); });
+      expect(useHydrationStore.getState()).toBe(hydration);
+      expect(notified).not.toHaveBeenCalled();
+    } finally {
+      stops.forEach(stop => { stop(); });
+      endIronGolemDebit(lease); endWaveTransition(lease);
+    }
+    expectOuterSuccess(action);
+  });
+
+  it.each([
+    { action: 'claim', caught: true }, { action: 'claim', caught: false },
+    { action: 'creation', caught: true }, { action: 'creation', caught: false }
+  ] as const)('preserves sole debit when outer $action observer refusal is caught=$caught', ({ action, caught }) => {
+    seed();
+    prepareOuterAction(action);
+    const before = ownership();
+    const expectedBackpack = before.backpack.filter(item => item.id !== 'sacrifice');
+    Object.freeze(expectedBackpack);
+    const inventory = useInventoryStore.getState();
+    const otherStores = [useMercStore, usePlayerStore, useMapStore, useCombatStore] as const;
+    const states = otherStores.map(store => store.getState());
+    const notified = vi.fn();
+    const stops = otherStores.map(store => store.subscribe(notified));
+    const errors: unknown[] = [];
+    let notifications = 0;
+    const stopInventory = useInventoryStore.subscribe(() => {
+      notifications++;
+      if (caught) {
+        try { runOuterAction(action); } catch (error) { errors.push(error); }
+      } else runOuterAction(action);
+    });
+    const lease = beginWaveTransition(true);
+    beginIronGolemDebit(lease);
+    try {
+      const publish = () => { useInventoryStore.setState({ backpack: expectedBackpack }); };
+      if (caught) {
+        expect(publish).not.toThrow();
+        expect(errors).toHaveLength(1);
+        expect(errors[0]).toBeInstanceOf(WaveGuardError);
+        expect(errors[0]).toMatchObject({ code: 'itemDebitBusy' });
+      } else expectDebitRefusal(publish);
+      expect(notifications).toBe(1);
+      expect(useInventoryStore.getState()).toEqual({ ...inventory, backpack: expectedBackpack });
+      expect(useInventoryStore.getState().backpack).toBe(expectedBackpack);
+      const after = ownership();
+      expect(after.stash).toBe(before.stash);
+      expect(after.equipped).toBe(before.equipped);
+      expect(after.mercEquipment).toBe(before.mercEquipment);
+      otherStores.forEach((store, index) => { expect(store.getState()).toBe(states[index]); });
+      expect(notified).not.toHaveBeenCalled();
+    } finally {
+      stopInventory(); stops.forEach(stop => { stop(); });
+      endIronGolemDebit(lease); endWaveTransition(lease);
+    }
+    expectOuterSuccess(action);
   });
 });

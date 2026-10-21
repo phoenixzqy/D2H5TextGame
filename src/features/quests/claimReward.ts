@@ -9,6 +9,7 @@ import { loadAwardPools } from '@/data/loaders/loot';
 import { rollUniqueItem, type RollUniqueItemInput } from '@/engine/loot/rollItem';
 import { createRng, hashSeed } from '@/engine/rng';
 import type { Item } from '@/engine/types/items';
+import { assertIronGolemOwnershipMutationAllowed } from '@/stores/waveTransitionGuard';
 
 export type ClaimResult =
   | 'ok'
@@ -52,8 +53,10 @@ let claimInProgress = false;
  * Synchronous grant failures restore participating data before returning. Stores
  * may publish intermediate states; this is not observer-wide or crash atomicity.
  * Failed restoration throws explicitly instead of reporting unchanged data.
+ * Throws WaveGuardError before reads or claim ownership during an exact Iron debit.
  */
 export function claimQuestReward(questId: string): ClaimResult {
+  assertIronGolemOwnershipMutationAllowed();
   if (claimInProgress) return 'claim-in-progress';
   claimInProgress = true;
   try {
