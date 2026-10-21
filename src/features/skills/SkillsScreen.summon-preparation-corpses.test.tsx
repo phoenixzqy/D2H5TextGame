@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { Suspense } from 'react';
-import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import { MemoryRouter } from 'react-router-dom';
 import i18n from '@/i18n';
@@ -19,8 +19,14 @@ import { SkillsScreen } from './SkillsScreen';
 const stores = [usePlayerStore, useInventoryStore, useCombatStore, useMapStore,
   useMercStore, useFormationStore, useMetaStore] as const;
 const copy = {
-  en: { generic: (name: string, count: number) => `${name}: summon up to ${String(count)} allies.` },
-  'zh-CN': { generic: (name: string, count: number) => `${name}：最多召唤 ${String(count)} 名随从。` }
+  en: { current: 'Current', next: 'Next Level', unlearned: 'Not Learned', preview: 'Learned at Lv. 1',
+    cap: 'Summon Cap', mana: 'Mana Cost', cooldown: 'Cooldown', maxed: 'Max level reached.', life: 'Life', attack: 'Attack',
+    prose: (name: string, count: number, mana: number) => `${name}: once at each wave start, if learned, unlocked and in your combo, fill missing living summons up to ${String(count)} for one payment of ${String(mana)} MP for the whole batch. Already full: no cost. Not enough mana: no summons or payment, and no retry that wave. This skill uses no ordinary action; fallen summons are not replaced and return no mana. Each new wave starts with fresh summons, paid from your carried mana.`,
+    generic: (name: string, count: number) => `${name}: summon up to ${String(count)} allies.` },
+  'zh-CN': { current: '当前', next: '下一级', unlearned: '未学习', preview: '学习后 Lv.1',
+    cap: '召唤上限', mana: '法力消耗', cooldown: '冷却', maxed: '已达到最高等级。', life: '生命', attack: '攻击',
+    prose: (name: string, count: number, mana: number) => `${name}：已学习、已解锁并编入连招时，每波开始仅准备一次，以整批共 ${String(mana)} 点法力补足存活召唤物，最多 ${String(count)} 名。已满员不消耗法力；法力不足则不召唤、不扣费，本波不再重试。此技能不占常规行动，召唤物阵亡不补召、不返还法力。新一波召唤物重新生成，从继承的法力中重新付费。`,
+    generic: (name: string, count: number) => `${name}：最多召唤 ${String(count)} 名随从。` }
 } as const;
 function arrange(cls: CharacterClass = 'druid', levels: Record<string, number> = { 'druid.raven': 2 }): void {
   act(() => { usePlayerStore.getState().setPlayer({ ...createMockPlayer('Summon UI', cls),
@@ -41,19 +47,49 @@ beforeEach(() => {
   resetRegistry(); loadDefaultSkills();
 });
 afterEach(() => { cleanup(); abortSubAreaRun(); });
-// Canonical corpse-summon cases relocated unchanged before the D06 v1c switch.
+// Independent v1c display literals; imported ranks/points are not earned progression.
+const CASES = [
+  { slug: 'raise-skeleton', en: 'Raise Skeleton', zh: '召唤骷髅', cost: 15, cd: 1,
+    caps: [1, 1, 1, 2, 2, 3, 3], next: [1, 1, 2, 2, 3, 3, 3] },
+  { slug: 'raise-skeletal-mage', en: 'Raise Skeletal Mage', zh: '召唤骷髅法师', cost: 22, cd: 1,
+    caps: [1, 2, 3, 4, 5, 6, 8], next: [2, 3, 4, 4, 6, 6, 8] },
+  { slug: 'revive', en: 'Revive', zh: '复生', cost: 45, cd: 4,
+    caps: [1, 2, 3, 4, 5, 6, 8], next: [2, 3, 4, 4, 6, 6, 8] }
+] as const;
+function section(panel: HTMLElement, title: string): HTMLElement {
+  const value = within(panel).getByRole('heading', { name: title, level: 3 }).closest('section');
+  if (!value) throw new Error('Missing corpse-summon stat section');
+  return value;
+}
+function stat(panel: HTMLElement, label: string, expected: string): void {
+  const value = within(panel).getByText(label, { selector: 'dt' }).nextElementSibling;
+  expect(value?.childNodes[0]?.textContent).toBe(expected);
+}
 for (const locale of ['en', 'zh-CN'] as const) {
   describe(`D06 corpse-summon preparation detail (${locale})`, () => {
     beforeEach(async () => { await i18n.changeLanguage(locale); });
-    it.each([
-      ['raise-skeleton', 'Raise Skeleton', '召唤骷髅', 1],
-      ['raise-skeletal-mage', 'Raise Skeletal Mage', '召唤骷髅法师', 2],
-      ['revive', 'Revive', '复生', 2]
-    ] as const)('keeps the excluded %s generic summon description', (slug, en, zh, cap) => {
-      arrange('necromancer', { [`necromancer.${slug.replace(/-/g, '_')}`]: 2 }); mount();
-      const panel = detail(`skills-necromancer-${slug}`);
-      expect(panel).toHaveTextContent(copy[locale].generic(locale === 'en' ? en : zh, cap));
-      expect(panel).not.toHaveTextContent(locale === 'en' ? 'once at each wave start' : '每波开始仅准备一次');
+    it.each(CASES)('$slug explains one paid preparation and exact current/next rank boundaries', item => {
+      const text = copy[locale], name = locale === 'en' ? item.en : item.zh;
+      for (const [index, rank] of [1, 2, 5, 6, 11, 12, 20].entries()) {
+        const cap = item.caps[index];
+        if (cap === undefined) throw new Error('Missing literal cap');
+        arrange('necromancer', { [`necromancer.${item.slug.replace(/-/g, '_')}`]: rank }); mount();
+        const panel = detail(`skills-necromancer-${item.slug}`);
+        expect(panel).toHaveTextContent(text.prose(name, cap, item.cost));
+        expect(panel.textContent).not.toMatch(/\{\{|descriptionSummonPreparation|skills\./);
+        const current = section(panel, text.current), next = section(panel, text.next);
+        stat(current, text.cap, String(cap)); stat(current, text.mana, String(item.cost));
+        stat(current, text.cooldown, `${String(item.cd)} ${locale === 'en' ? 's' : '秒'}`);
+        if (rank === 20) expect(next).toHaveTextContent(text.maxed);
+        else { stat(next, text.cap, String(item.next[index])); stat(next, text.mana, String(item.cost)); }
+        cleanup();
+      }
+    });
+    it.each(CASES)('$slug accepts an authored rank alias with identical preparation prose', item => {
+      const id = `skills-necromancer-${item.slug}`;
+      arrange('necromancer', { [id]: 6 }); mount();
+      expect(detail(id)).toHaveTextContent(copy[locale].prose(locale === 'en' ? item.en : item.zh,
+        item.slug === 'raise-skeleton' ? 2 : 4, item.cost));
     });
   });
 }

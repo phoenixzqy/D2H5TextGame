@@ -1,4 +1,4 @@
-/** D06 v1b policy membership; numeric tuning remains in authored skill data. */
+/** D06 v1b/v1c policy membership; numeric tuning remains in authored skill data. */
 import type { RegisteredSkill } from './effects';
 
 /** Exact external-input-free canonical skills and their existing summon templates. */
@@ -15,7 +15,10 @@ export const SUMMON_PREPARATION_TEMPLATES: Readonly<Record<string, string>> = Ob
   'druid.summon_grizzly': 'grizzly',
   'necromancer.blood_golem': 'blood_golem',
   'necromancer.clay_golem': 'clay_golem',
-  'necromancer.fire_golem': 'fire_golem'
+  'necromancer.fire_golem': 'fire_golem',
+  'necromancer.raise_skeleton': 'skeleton',
+  'necromancer.raise_skeletal_mage': 'skeletal_mage',
+  'necromancer.revive': 'revived'
 });
 
 /** Check scoped canonical identity; callers separately validate source and eligibility. */

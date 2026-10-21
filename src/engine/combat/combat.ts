@@ -1052,8 +1052,11 @@ function preparationEffect(skill: RegisteredSkill): SummonEffect | undefined {
     !Number.isFinite(skill.manaCostPerRank ?? 0) || !Number.isFinite(skill.cooldownPerRank ?? 0) ||
     !Number.isInteger(effect.maxCount) || effect.maxCount <= 0 ||
     !Object.values(effect.statScaling ?? {}).every(Number.isFinite)) return undefined;
-  const multi = effect.summonId === 'raven' || effect.summonId === 'dire_wolf' || effect.summonId === 'spirit_wolf';
-  if (multi ? effect.maxCount !== 8 || effect.maxCountScaling?.kind !== 'first-three-then-every-three'
+  const skeleton = effect.summonId === 'skeleton';
+  const multi = effect.summonId === 'raven' || effect.summonId === 'dire_wolf' || effect.summonId === 'spirit_wolf' ||
+    effect.summonId === 'skeletal_mage' || effect.summonId === 'revived';
+  if (skeleton ? effect.maxCount !== 3 || effect.maxCountScaling?.kind !== 'raise-skeleton-1-6-12-cap-3'
+    : multi ? effect.maxCount !== 8 || effect.maxCountScaling?.kind !== 'first-three-then-every-three'
     : effect.maxCount !== 1 || effect.maxCountScaling !== undefined) return undefined;
   return effect;
 }
@@ -1319,7 +1322,9 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
 
   for (const u of state.units.values()) {
     scheduleNextAction(state, u);
-    state.cooldownExpiresAt.set(u.id, new Map());
+    // At time zero, carried remaining milliseconds are their expiry timestamps.
+    state.cooldownExpiresAt.set(u.id, new Map(Object.entries(u.cooldowns)
+      .filter(([, remaining]) => Number.isFinite(remaining) && remaining > 0)));
   }
   emitTurnBoundaries(state);
 

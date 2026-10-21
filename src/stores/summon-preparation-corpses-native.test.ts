@@ -89,7 +89,16 @@ const pools = (hero: ReturnType<typeof currentHero>) => [hero.life, hero.mana,
 function expectFreshSummons(life: number, attack: number, defense: number): void {
   expect(useCombatStore.getState().playerTeam.filter(u => u.kind === 'summon' || u.summon)).toEqual([]);
   const created = useCombatStore.getState().recordedEvents.filter(e => e.kind === 'summon');
-  expect(created.length).toBeGreaterThan(0);
+  expect(created).toHaveLength(2);
+  expect(created.every(event => event.simClockMs === 0)).toBe(true);
+  const casts = useCombatStore.getState().recordedEvents.filter(e =>
+    e.kind === 'action' && e.actor === currentHero().id && e.skillId === ACTIVE);
+  expect(casts).toEqual([expect.objectContaining({ simClockMs: 0 })]);
+  expect(useCombatStore.getState().recordedEvents.filter(e =>
+    e.kind === 'mana' && e.target === currentHero().id && e.reason === 'cast' && e.simClockMs === 0))
+    .toEqual([expect.objectContaining({ mana: currentHero().mana - 15 })]);
+  expect(useCombatStore.getState().recordedEvents.filter(e =>
+    e.kind === 'mana' && e.reason === 'summon-refund')).toEqual([]);
   for (const event of created) {
     expect(event.summonId).toBe('skeleton');
     expect.soft(event.unit.life).toBeCloseTo(life, 12);
@@ -152,8 +161,8 @@ afterEach(() => { reset(); resetRegistry(); loadDefaultSkills(); vi.restoreAllMo
     expect(player().skillPoints).toBe(10); expect(player().skillLevels).toEqual({});
     refreshActivePlayerCombatConfig(); expect(recording()).toEqual(before);
     drain(); expect(advanceWaveOrFinish()).toBe('next-wave');
-    // Respec also removed Raise Skeleton6. Existing unallocated-active fallback is rank1.
-    expectFreshSummons(112, 25, 14);
+    // Respec removes learned preparation eligibility; no rank-one fallback is granted.
+    expect(useCombatStore.getState().recordedEvents.filter(e => e.kind === 'summon')).toEqual([]);
     expect(pools(currentHero())).toEqual(pools(final));
     expect(currentHero().manaRegenPerSecond).toBe(5);
   });
@@ -178,9 +187,10 @@ afterEach(() => { reset(); resetRegistry(); loadDefaultSkills(); vi.restoreAllMo
     const progress = structuredClone({ experience: player().experience,
       currencies: useInventoryStore.getState().currencies, rewards: useCombatStore.getState().runRewards });
     expectFreshSummons(291.6, 49, 22.8);
-    // Approved two-wave capture: second final feeds this third-wave original baseline.
-    // Compensation legitimately stays zero; both fractional carry representations are nonzero.
-    expect(pools(baseline)).toEqual([1000000, 752, .5, 0, '0.5']);
+    // Independently reviewed native trace:300−2×15−3×8+floor(5×4.94)+11×50=820.
+    // No mana cap contact/refunds; natural fractional credit .7, compensation0.
+    // The original 752/.5 failure remains in the retained RED/diagnostic evidence.
+    expect(pools(baseline)).toEqual([1000000, 820, .7, 0, '0.7']);
     expect(baseline.manaRegenCarry).toBeGreaterThan(0);
     expect(baseline.manaRegenExactCarry).not.toBe('0');
     const expectedWithFreshMirrors = (life: number, mana: number) => {
@@ -235,6 +245,14 @@ afterEach(() => { reset(); resetRegistry(); loadDefaultSkills(); vi.restoreAllMo
   });
 });
 
+const CORPSE_CASES = [
+  { name: 'raise_skeleton', template: 'skeleton', unlock: 1, prerequisite: null,
+    cap: 2, cost: 15, stats: [168.48, 35.7, 19.19], unboosted: 162 },
+  { name: 'raise_skeletal_mage', template: 'skeletal_mage', unlock: 12, prerequisite: 'raise_skeleton',
+    cap: 4, cost: 22, stats: [127.92, 45.9, 10.1], unboosted: 123 },
+  { name: 'revive', template: 'revived', unlock: 30, prerequisite: 'raise_skeletal_mage',
+    cap: 4, cost: 45, stats: [210, 38, 23], unboosted: 210 }
+] as const;
 interface ProjectedSnapshot extends CombatSnapshot {
   readonly skeletonMastery?: NonNullable<ReturnType<typeof composeSkeletonMastery>>;
 }
@@ -250,15 +268,18 @@ function resetComposition(): void {
 describe('P07a05B actual native store wave wiring', () => {
   beforeEach(resetComposition);
   afterEach(() => { resetComposition(); vi.restoreAllMocks(); });
-  it.each(['necromancer', 'sorceress'] as const)('passes authoritative eligibility for%s into real combat', classId => {
+  it.each(CORPSE_CASES.flatMap(row => (['necromancer', 'sorceress'] as const).map(classId => ({ ...row, classId }))))(
+    'passes authoritative $classId eligibility for $name through real waves', row => {
+    const { classId } = row, active = `necromancer.${row.name}`;
     const snapshots: ProjectedSnapshot[] = [];
     const original = combatEngine.runBattleRecorded;
     vi.spyOn(combatEngine, 'runBattleRecorded').mockImplementation(input => {
       snapshots.push(input); return original(input);
     });
-    // Imported L24/gear and registered finisher are explicit integration scaffolding, not earned progress.
-    const hero = compositionPlayer({ class: classId, comboOrder: ['necromancer.raise_skeleton', 'fixture.mastery-finisher'],
-      skillLevels: { [CANONICAL]: 1, 'necromancer.raise_skeleton': 6 } });
+    // Imported L30/gear and registered finisher are explicit integration scaffolding, not earned progress.
+    const hero = compositionPlayer({ class: classId, level: 30, comboOrder: [active, 'fixture.mastery-finisher'],
+      skillLevels: { [CANONICAL]: 1,
+        ...(row.prerequisite ? { [`necromancer.${row.prerequisite}`]: 1 } : {}), [active]: 6 } });
     usePlayerStore.getState().setPlayer(hero);
     const cap: Item = { id: 'fixture-skeleton-cap', baseId: 'items/base/helm-cap', rarity: 'rare',
       level: 1, identified: true, equipped: false, affixes: [{ affixId: 'fixture-imported',
@@ -278,23 +299,41 @@ describe('P07a05B actual native store wave wiring', () => {
     const eligible = classId === 'necromancer';
     expect(input.skeletonMastery).toEqual(eligible ? composeSkeletonMastery(hero) : undefined);
     if (eligible) expect(Object.isFrozen(input.skeletonMastery)).toBe(true);
-    const spawned = useCombatStore.getState().recordedEvents.find(e => e.kind === 'summon');
-    if (spawned?.kind !== 'summon') throw new Error('Missing native summon event');
-    expect(spawned.unit.stats.lifeMax).toBeCloseTo(eligible ? 168.48 : 162, 12);
-    expect(spawned.unit.stats.attack).toBeCloseTo(eligible ? 35.7 : 35, 12);
-    expect(spawned.unit.stats.defense).toBeCloseTo(eligible ? 19.19 : 19, 12);
+    const spawned = useCombatStore.getState().recordedEvents.filter(e => e.kind === 'summon');
     expect(useCombatStore.getState().outcome?.winner).toBe('player');
     const { skeletonMastery: _projection, ...none } = input;
-    const unboosted = original(none).events.find(e => e.kind === 'summon');
-    if (unboosted?.kind !== 'summon') throw new Error('Missing actual unprojected control summon');
-    expect(unboosted.unit.stats.lifeMax).toBe(162);
+    const unboosted = original(none).events.filter(e => e.kind === 'summon');
+    if (eligible) {
+      expect(spawned).toHaveLength(row.cap); expect(unboosted).toHaveLength(row.cap);
+      for (const event of spawned) {
+        expect(event.unit.stats.lifeMax).toBeCloseTo(row.stats[0], 12);
+        expect(event.unit.stats.attack).toBeCloseTo(row.stats[1], 12);
+        expect(event.unit.stats.defense).toBeCloseTo(row.stats[2], 12);
+        expect(event.simClockMs).toBe(0);
+      }
+      expect(unboosted.map(e => e.unit.stats.lifeMax)).toEqual(Array.from({ length: row.cap }, () => row.unboosted));
+    } else {
+      expect(spawned).toEqual([]); expect(unboosted).toEqual([]);
+    }
     expect(input.playerTeam.find(u => u.id === hero.id)).not.toHaveProperty('skeletonMastery');
     expect(usePlayerStore.getState().player).not.toHaveProperty('skeletonMastery');
-    // This bounded pair proves wiring; next-wave/respec/replay/carry/save belong Stage C.
+    const firstFinal = structuredClone(finalHero());
+    drain(); expect(advanceWaveOrFinish()).toBe('next-wave');
+    expect(pools(currentHero())).toEqual(pools(firstFinal));
+    const events = useCombatStore.getState().recordedEvents;
+    const nextSummons = events.filter(e => e.kind === 'summon');
+    expect(nextSummons).toHaveLength(eligible ? row.cap : 0);
+    expect(nextSummons.every(e => e.simClockMs === 0 && e.summonId === row.template)).toBe(true);
+    expect(events.filter(e => e.kind === 'action' && e.skillId === active))
+      .toEqual(eligible ? [expect.objectContaining({ simClockMs: 0 })] : []);
+    expect(events.filter(e => e.kind === 'mana' && e.reason === 'cast' && e.simClockMs === 0))
+      .toEqual(eligible ? [expect.objectContaining({ mana: currentHero().mana - row.cost })] : []);
+    expect(events.filter(e => e.kind === 'mana' && e.reason === 'summon-refund')).toEqual([]);
+    // Allocation/respec/replay/save coverage above remains on the actual Skeleton path.
   });
 });
 
-describe('D06 corpse-summon adapter boundary before policy switch', () => {
+describe('D06 v1c corpse-summon adapter boundary', () => {
   function eligible(cls: 'druid' | 'necromancer', name: string): Player {
     const canonical = `${cls}.${name}`;
     const fresh = createMockPlayer('ImportedPreparation', cls);
@@ -310,6 +349,42 @@ describe('D06 corpse-summon adapter boundary before policy switch', () => {
     useInventoryStore.getState().reset();
     useFormationStore.getState().reset();
   });
+  it.each(CORPSE_CASES)('$name normalizes both aliases without mutating selection or ranks', row => {
+    const p = eligible('necromancer', row.name), canonical = `necromancer.${row.name}`;
+    const authored = `skills-necromancer-${row.name.replace(/_/g, '-')}`;
+    const input = { ...p, comboOrder: [authored, 'fixture.unrelated', canonical],
+      skillLevels: { ...p.skillLevels, [canonical]: 2, [authored]: 6 } };
+    const before = structuredClone(input), out = playerToCombatUnit(input);
+    const levels = { ...input.skillLevels, [canonical]: 6 }; Reflect.deleteProperty(levels, authored);
+    expect(out.skillOrder).toEqual(input.comboOrder); expect(out.skillOrder).not.toBe(input.comboOrder);
+    expect(out.skillLevels).toEqual(levels); expect(out.skillLevels).not.toBe(input.skillLevels);
+    expect(input).toEqual(before);
+  });
+  it.each(CORPSE_CASES.flatMap(row => ['unlearned', 'unslotted', 'foreign', 'below-unlock', 'fractional-level',
+    'nonfinite-level', 'zero-rank', 'fractional-rank', 'over-max', 'nonfinite-rank'].map(mode => ({ ...row, mode }))))(
+    '$name excludes $mode imported configurations without rank-one fallback', row => {
+      const p = eligible('necromancer', row.name), canonical = `necromancer.${row.name}`;
+      const authored = `skills-necromancer-${row.name.replace(/_/g, '-')}`;
+      const levels = { ...p.skillLevels }; Reflect.deleteProperty(levels, canonical); Reflect.deleteProperty(levels, authored);
+      const invalidRank = row.mode === 'zero-rank' ? 0 : row.mode === 'fractional-rank' ? 1.5
+        : row.mode === 'over-max' ? 21 : row.mode === 'nonfinite-rank' ? NaN : 6;
+      if (row.mode !== 'unlearned') levels[canonical] = invalidRank;
+      const out = playerToCombatUnit({ ...p, skillLevels: levels,
+        class: row.mode === 'foreign' ? 'sorceress' : 'necromancer',
+        level: row.mode === 'below-unlock' ? row.unlock - 1 : row.mode === 'fractional-level' ? 30.5
+          : row.mode === 'nonfinite-level' ? NaN : 30,
+        comboOrder: row.mode === 'unslotted' ? ['fixture.unrelated'] : [authored, canonical, 'fixture.unrelated'] });
+      expect(out.skillOrder).toEqual(['fixture.unrelated']);
+    });
+  it.each(CORPSE_CASES.filter(row => row.prerequisite !== null).flatMap(row =>
+    [undefined, 0, -1, 1.5, 21, NaN, Infinity].map(rank => ({ ...row, rank }))))(
+    '$name rejects direct prerequisite rank $rank', row => {
+      const p = eligible('necromancer', row.name), levels = { ...p.skillLevels };
+      const prerequisite = `necromancer.${row.prerequisite}`;
+      Reflect.deleteProperty(levels, `skills-necromancer-${String(row.prerequisite).replace(/_/g, '-')}`);
+      if (row.rank !== undefined) levels[prerequisite] = row.rank;
+      expect(playerToCombatUnit({ ...p, skillLevels: levels }).skillOrder).toEqual([]);
+    });
   it('excludes scoped foreign-class skills while preserving every unrelated/excluded slot and rank', () => {
     const p = eligible('druid', 'raven');
     const skillLevels = { ...p.skillLevels, 'amazon.valkyrie': 20,
@@ -319,7 +394,7 @@ describe('D06 corpse-summon adapter boundary before policy switch', () => {
       'fixture.summon', 'druid.firestorm'];
     const before = structuredClone({ ...p, skillLevels, comboOrder: order });
     const result = playerToCombatUnit(before);
-    expect(result.skillOrder).toEqual(order.slice(2));
+    expect(result.skillOrder).toEqual(['necromancer.iron_golem', 'fixture.summon', 'druid.firestorm']);
     expect(result.skillLevels).toEqual(skillLevels);
     expect(before.skillLevels).toEqual(skillLevels);
     expect(before.comboOrder).toEqual(order);
@@ -329,7 +404,7 @@ describe('D06 corpse-summon adapter boundary before policy switch', () => {
     const { skillLevels: _levels, ...rest } = eligible('necromancer', 'clay_golem');
     const result = playerToCombatUnit({ ...rest, comboOrder: ['necromancer.clay_golem',
       'necromancer.raise_skeleton', 'fixture.unrelated'] });
-    expect(result.skillOrder).toEqual(['necromancer.raise_skeleton', 'fixture.unrelated']);
+    expect(result.skillOrder).toEqual(['fixture.unrelated']);
     expect(result.skillLevels).toEqual({});
   });
 });
