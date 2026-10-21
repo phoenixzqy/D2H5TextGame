@@ -2278,3 +2278,48 @@ Next root-owned source-only RAW is
 `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr`.
 Next P07a02A Fire Mastery definition/schema/rank prerequisite follows independent
 concrete plan/test review. Full private-v1/C0–C4/G0–G7 remain open.
+
+## P07a02 automatic Fire Mastery closure
+
+Authored2fe7f4e/runtime5d70cdb/copy4c3de39/browser482662f/evidence24b2fa4.
+Eligible Sorceress receives authored4%fire/rank, cap20/unlock30, additive with
+Warmth. Seven additions/two replacements in existing hero composition supply
+direct fire and once-derived Burn, with no combat/store/save runtime change.
+Native refresh/replay/remove/no-refill and real serialization contracts pass;
+no save field/version/migration. Spec and player zh/en copy reconciled; distinct
+mercenary copy unchanged. Producer/QA/GD/TD approve their respective increments.
+
+SchemaRED32/38, capability failure, pureRED14/25 and completeRED30/34 retained;
+GREEN64/64 keeps behavioral oracles and actual89-event prepatch recording exact.
+All helper/type/lint corrections and historical overlapping attempts preserved.
+FinalE1625/69files9.109s, native5/4.436s, U3934/175files67.712s,
+T11.301s/L29.459s and clean bridge/build9.377s pass; final browser4/55.204s
+report56.317swrapper. Accepted commands serial, all exit0/no stops/signals/survivors.
+Existing3s/15s timing misses and build warnings remain; no new coverage claim.
+
+Four ordinary production en/zh desktop/mobile routes use disclosed imported
+level30 eligibility, actual UI allocation rank1→2, passive exclusion, eight
+disk save/close/new-page/Continue roundtrips and eight literal MP/hit openings.
+No bridge/internal browser state injection/speedup/seed search. All36attachments
+match original468079bytes. Native disk-adapter mock is separately disclosed.
+Host CJK glyph limitations and mobile detail crop/overlay remain; no earned
+campaign, balance, full mobile/readability/a11y or full private-v1 acceptance.
+
+[Evidence](evidence/p07a02-fire-mastery.md) indexes333records/45commands/
+599source fingerprints. Packet1a87fd4b2b02b8cc61d58e2e7b0885b7f8605acbe75dd003c7bdd93fc03b6ffb;
+archive585f9c544bba613651a44b9cfac30bccbe30a163113d2bdb65b652d9b87904e6.
+Producer/QA whole-packet/cleanup APPROVE, all readers released. Root rechecks
+333RAW/archive records,599source hashes,6839absentPID/birthidentities and exact
+761output hashes. Exact333RAW/760dist/1task.vite files removed; absence verified,
+no cleanup signals. Earlier8browser temp files absent. Source/history/durable
+evidence/shared caches/pre-existing directories preserved; original checkout
+untouched and umbrella worktree claim continues. No remote action.
+
+Next root-owned source-only RAW:
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-might-w1jtf6hl`.
+It holds hashverified bounded runner and cleanup record. Producer recommends
+P07b02A selected player Paladin Might aura: reconcile authored rank/scope,
+selector/persistence/suppression and advertised behavior with GD/TD before
+concrete plan/test review or runtime changes. Optional Lightning Mastery
+contract preparation is approved but not implemented; no completion claim.
+Full private-v1/C0–C4/G0–G7 remain open.

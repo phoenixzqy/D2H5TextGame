@@ -1,6 +1,6 @@
 # BUG-059 — Apply learned Fire Mastery to hero fire damage
 
-Status: Runtime fixed in this increment; copy and browser acceptance pending.
+Status: Fixed; authored/runtime/copy/native/production-browser acceptance complete.
 Severity: High — allocated Fire Mastery has no advertised damage effect.
 Owner: engine-dev; root implements, producer/QA independently review.
 
@@ -61,7 +61,7 @@ missing Mastery in pure composition, actual Fire Bolt/Burn and native fresh
 wave/save reconstruction. Full unaffected recording, invalid/eligibility,
 nonfire, passive exclusion, replay/resource and existing Warmth controls pass.
 
-## Runtime resolution
+## Runtime resolution (historical runtime checkpoint)
 
 The minimal fix adds independently eligible Mastery in hero composition, using
 the immutable authored definition and shared allocation resolver. Warmth and
@@ -81,3 +81,25 @@ TS2379 and require-await failures remain distinct historical evidence. No stop,
 cleanup signals or survivors occurred. Existing engine3s/unit15s targets are
 still missed; Browserslist, large-chunk and precache warnings remain. No new
 coverage or browser/earned campaign/balance acceptance follows runtime GREEN.
+
+## Final acceptance and cleanup
+
+Authored `2fe7f4e`, runtime `5d70cdb`, copy `4c3de39`, browser `482662f` and
+durable evidence `24b2fa4` complete this narrowed contract. Four production
+en/zh desktop/mobile cases prove real UI allocation/upgrade and eight actual
+save→close-page→new-page→Continue roundtrips plus eight literal MP/hit openings.
+Imported level30 eligibility is disclosed; this does not establish earned
+campaign progression, balance, full mobile/a11y, CJK glyph quality or coverage.
+Final unit3934/175files67.712s, types11.301s and lint29.459s pass serially with
+browser4pass; unchanged engine1625 and clean production build9.377s inherit
+their accepted evidence. Existing timing misses and build warnings remain.
+
+[Evidence](../../docs/plans/evidence/p07a02-fire-mastery.md) and its adjacent
+packet/archive preserve every original failure, approved correction, freeze and
+report. Producer/QA independently approve the whole packet and exact cleanup;
+all readers release. Root rechecks333RAW/archive records,599source fingerprints,
+6839absent process birth identities and761owned output hashes, then removes
+exact333RAW/760dist/1task-cache files and verifies absence. The historical RAW
+path above is removed; archived records remain durable. No cleanup signal or
+remote action; the continuing umbrella worktree, source/history and shared
+caches are preserved. Full private-v1/C0–C4/G0–G7 remain open.

@@ -1,9 +1,9 @@
 # D05 / P07a02 — automatic player Fire Mastery
 
-Status: GD/TD approve this narrowed contract; producer plan review is ready and
-QA approves concrete Stage A tests. Stage A adds schema/definition/rank only;
-combat composition, native boundaries, copy reconciliation and browser acceptance
-remain open. Full private-v1/C0–C4/G0–G7 remain open.
+Status: Accepted and implemented. GD/TD approve this narrowed contract;
+producer/QA approve authored definition, runtime/native integration, copy,
+production-browser acceptance and the complete durable packet. Exact cleanup
+is complete. Full private-v1/C0–C4/G0–G7 remain open.
 
 ## Controlling source and behavior
 
@@ -32,7 +32,7 @@ rank1 fallback, combo/marker inference or alias summation. Later authoritative
 hero composition checks Sorceress and finite level at least the copied unlock;
 CombatUnit has no class field and gains no kind/class eligibility gate.
 
-## Required runtime integration after Stage A
+## Accepted runtime integration after Stage A
 
 Add Fire Mastery once alongside Warmth in existing hero fire increasedPct:
 `.04 × masteryRank + .01 × warmthRank` with current tuning. Both cap20 yield+100%.
@@ -71,3 +71,22 @@ Security check: PASS. Local deterministic schema/JSON/typed allocation only;
 no new network, credentials, dependencies, permissions, CI or save format changes,
 external publication or validation bypass. Root retains exact-owned process and
 artifact cleanup discipline. No remote action authorized by this decision.
+
+## Final acceptance
+
+Authored `2fe7f4e`, runtime `5d70cdb`, copy `4c3de39`, production-browser tests
+`482662f`, evidence `24b2fa4`. [Evidence](../evidence/p07a02-fire-mastery.md)
+retains schema32/38 and complete runtime30/34 behavioral RED, unchanged GREEN
+oracles, actual89-event control, all historical corrections and serial gates.
+Runtime engine1625, final unit3934/175files, types/lint and clean production
+bridge/build pass. Four en/zh desktop/mobile cases prove ordinary Allocate,
+rank1→rank2 upgrades, passive combo exclusion, eight actual disk roundtrips and
+eight literal opening-damage/MP observations with disclosed imported level30
+eligibility. No save field/version/migration is added.
+
+Producer/QA approve333RAW/archive records/45commands/599source fingerprints;
+6839process identities are absent. All readers release; root verifies exact
+cleanup and absence of333RAW/760dist/1task-cache files. Historical RAW records
+remain in the durable archive. Existing test-speed misses/build warnings and
+host CJK/mobile crop/overlay limits remain. Earned progression, campaign,
+numerical balance, new coverage and full mobile/readability/a11y are unproved.

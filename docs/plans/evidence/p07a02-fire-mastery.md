@@ -134,12 +134,22 @@ Packet SHA256:
 Archive SHA256:
 `585f9c544bba613651a44b9cfac30bccbe30a163113d2bdb65b652d9b87904e6`.
 
-Independent whole-packet review and exact cleanup are pending. Root retains
-`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr`
-until all consumers release, then removes only hash-verified333 RAW files,
-760 dist files and `node_modules/.vite/vitest/results.json`. The initial archival
+Producer and QA independently approve the complete packet and exact cleanup.
+[Final review](fixtures/p07a02-fire-mastery/final-review.json) records verdicts
+and all readers released. Evidence commit `24b2fa4` preserves the reviewed
+packet/archive. [Cleanup](fixtures/p07a02-fire-mastery/cleanup.json) rechecks
+333 RAW/archive records,599 source fingerprints,6839 absent process identities
+and761 output hashes, then removes exactly333 RAW files,760 dist files and
+`node_modules/.vite/vitest/results.json`. Absence of the old RAW/dist/task-cache
+roots is verified; no cleanup signal is sent. The initial archival
 inventory omitted that actual cache location; its retained correction adds the
 final unit result before any cleanup. Eight browser temporary cache files were
 already exactly inventoried, removed and verified absent. Shared caches,
 pre-existing directories, source, history and durable evidence are preserved.
 The umbrella worktree claim and full private-v1/C0–C4/G0–G7 objective continue.
+Next root-owned source-only RAW is
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-might-w1jtf6hl`,
+holding the hash-verified bounded runner and cleanup record. Root archives and
+removes it after next-card consumers release. The next selected Paladin Might
+aura slice begins with GD/TD contract reconciliation and independent concrete
+plan/test review; no aura runtime change is implied by this closure.
