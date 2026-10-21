@@ -1,6 +1,6 @@
 # BUG-064 — Correct existing-behavior oracles in Iron Skin controls
 
-- **Status:** Open; test-oracle defect reproduced before the production adapter change.
+- **Status:** Fixed in `e234dad`; original oracle/type failures remain preserved.
 - **Severity:** Low — internal QA false failures; no gameplay defect established.
 - **Owner / affected systems:** qa-engineer/reviewer; Iron Skin engine control fixtures.
 - **Build:** `0653d66` plus reviewed uncommitted Stage B v4 tests; production adapter unchanged.
@@ -78,3 +78,15 @@ binds the unchanged production adapter. Original drafts remain preserved.
 
 Use source-correct, independently reviewed expectations. No product workaround
 or engine change is needed for this test-oracle defect.
+
+
+## Resolution
+
+`e234dad` corrects only the test expectations and fixture record annotations
+identified above, alongside the separately intended Iron Skin adapter integration.
+The unchanged-production corrected baseline has 41 cases: 16 failed adapter cases
+with 27 solely intended defense mismatches, 10 passing adapter controls and 15 passing
+consumer controls. The formerly unreachable preservation tail executes. Final
+focused 374 / engine 2,303 / full 4,723, type checking, lint and production bridge/build
+pass. Original failures, drafts and classification corrections remain in the
+linked evidence; no product combo, orb, RNG or magic-resistance formula was changed.

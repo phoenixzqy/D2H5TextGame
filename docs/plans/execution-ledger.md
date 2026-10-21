@@ -2445,3 +2445,30 @@ source/history/preexisting parents preserved, original checkout untouched,
 umbrella worktree claim continues, no remote action. Next GD/TD-approved narrow
 runtime increment applies eligible Iron Skin once to fresh combat-adapter defense;
 full P07a/private-v1/C0–C4/G0–G7 remain open.
+
+
+## P07a04B Iron Skin fresh combat defense
+
+Committed `e234dad`: four paths add the eligible allocated Iron Skin overlay once
+in playerToCombatUnit, adapter/consumer tests and BUG-064. Fresh defense retains
+fractions after existing equipment derivation floor; authoritative/save stats,
+paid Armor/Melt/Sight factors and unrelated combat behavior remain. Native wave,
+replay/save, bilingual UI and production-browser acceptance stay open.
+
+[Evidence](evidence/p07a04-iron-skin.md) preserves initial adapter 26 = 16 failed / 10 passed
+with 27 defense failures+1 unrelated magicResist oracle failure, two consumer 14
+runs each 3 failed / 11 passed from combo/orb oracle defects, and the later TS2379 fixture
+cast failure. Corrections were frozen/re-reviewed before installation. Corrected
+unchanged-production baseline 41 = 16 adapter failures / 25 passes, all 27 failed
+assertion messages solely intended defense; formerly blocked preservation checks
+now execute. No retroactive clean RED or consumer product-defect claim.
+
+Final serial focused 374 / engine 2,303 / full 4,723, types, lint and fresh production bridge/build
+pass with no stops, signals, skips or todos. Vitest engine 10.195 s/full 76.763 s still miss
+existing 3 s / 15 s targets; known build warnings remain. GD/TD exact source and QA/
+producer whole evidence approve. After commit and all reader release root freshly checks
+2,187 absent PID/birth identities and 761 output hashes, removes exactly 40,964,763 bytes
+build/task-test-cache output and verifies absence with no failures. Shared caches,
+preexisting parents/Noto/source/history remain; original checkout untouched,
+umbrella claim continues, no remote action. RAW retained at the Iron evidence
+path for later verified durable packet and exact cleanup by root.

@@ -1,7 +1,7 @@
 # P07a04 Iron Skin — incremental evidence
 
-Status: authored prerequisite delivered in `b73e858`. Runtime, native, bilingual
-UI and production-browser acceptance remain open. Broader P07a/private-v1,
+Status: authored prerequisite delivered in `b73e858`; runtime adapter delivered
+in `e234dad`. Native, bilingual UI and production-browser acceptance remain open. Broader P07a/private-v1,
 C0–C4 and G0–G7 remain incomplete.
 
 [D05](../decisions/D05-iron-skin-v1.md) controls the authored contract: Barbarian
@@ -59,3 +59,68 @@ while Iron Skin continues. Key records: `stage-a-drafts-freeze-v3.json`,
 `stage-a-final-gates.json`, `stage-a-output-inventory.json` and
 `stage-a-output-cleanup.json`. Root will preserve a verified durable packet and
 remove exact disposable RAW files after downstream readers finish.
+
+
+## Combat adapter / Stage B
+
+`e234dad` applies eligible Barbarian allocation once to fresh equipment-derived
+combat defense. It preserves the existing derivation floor and subsequent
+fractional defense, with no authoritative/save mutation. Existing Frozen Armor,
+Melt, Inner Sight, damage-type routing, periodic potency and passive execution
+controls remain intact. Native wave/replay/save acceptance is still separate.
+
+The original adapter RED had 26 cases:16 failed/10 passed. Its28 failed assertion
+messages include 27 intended missing-defense mismatches and one incorrect
+magicResist 31 expectation (actual 11). Fifteen failed cases are solely behavioral;
+one is mixed. The hard magic-resistance error prevented later full-unit,
+resources/carry and nonmutation assertions in that case from executing.
+Two consumer runs each had 14 cases: 3 failed/11 passed. Those failures were
+incorrect existing-behavior expectations: omitted Armor Melt physical ×1.25 and
+two monster-death orb rolls. [BUG-064](../../../production/bugs/BUG-064-iron-skin-control-oracles.md)
+was filed before correction; these consumer failures establish no product defect.
+
+GD/TD, QA and producer re-reviewed exact corrected drafts. With production still
+unchanged, the corrected baseline has 41 cases: adapter 26 = 16 failed/10 passed,
+all 27 failed assertion messages solely missing defense; consumer 15 all pass.
+The previously blocked preservation tail now executes. Original drafts, reports,
+classification and corrective addendum remain preserved, without retroactive
+claims of a clean original RED.
+
+After integration, focused, engine and full tests passed. Type checking then
+failed two TS2379 errors: optional Player.skillLevels casts admitted undefined
+in present fixture fields. The subsequent serial lint passed before correction;
+no source was edited during any command. BUG-064 records the failure before the
+reviewed annotation-only NonNullable correction. Product source was unchanged.
+
+| Final gate | Result | Duration |
+|---|---|---|
+| Focused Iron Skin + existing Lightning/Frozen Armor controls | 374 cases, 6 files | 3.612 s Vitest / 4.738 s wrapper |
+| Engine | 2,303 cases, 77 files | 10.195 s / 11.413 s |
+| Full unit | 4,723 cases, 189 files | 76.763 s / 78.088 s |
+| Type checking | pass | 12.046 s |
+| Lint + engine purity | pass | 31.492 s |
+| Fresh production build + bridge exclusion | pass | 9.155 s |
+
+All 15 commands, including preserved failures, ran serially with no wrapper stops
+or signals. Final tests have no pending/todo cases. Existing engine 3 s / full 15 s
+speed targets remain missed; existing Browserslist/chunk-size/manifest-precache
+warnings remain. No coverage, performance, balance, campaign, native, UI or browser
+certification is implied by this runtime increment.
+
+GD/TD approve exact installed source. QA and producer independently verify all
+four source fingerprints, drafts, failures/corrections, reports/logs/metadata,
+serial order, all 2,187 PID/birth identities absent and output ownership. Review
+records are root transcriptions. After commit and all reader release, root
+freshly verifies source, process absence and every output hash, then removes
+exactly 761 files (760 build outputs and one regenerated Vitest result), 40,964,763 bytes.
+Absence is verified with no cleanup failures; preexisting cache parents/shared
+caches/font/source/history remain. The original checkout is untouched and the
+umbrella worktree claim continues; no remote action was performed.
+
+RAW remains root-owned at the path above while Iron Skin continues. Key Stage B
+records: stage-b-drafts-freeze-v6.json, stage-b-adapter-red-classification-correction.json,
+stage-b-corrected-baseline-classification.json, stage-b-type-correction-freeze.json,
+stage-b-source-freeze-v2.json, stage-b-final-gates.json, stage-b-output-inventory.json
+and stage-b-output-cleanup.json. Root owns eventual durable packet verification
+and exact disposable cleanup after downstream readers finish. Unexecuted native
+draft corrections are retained separately; no native result is claimed yet.
