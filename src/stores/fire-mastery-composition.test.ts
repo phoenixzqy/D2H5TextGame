@@ -44,8 +44,9 @@ function player(): Player {
   if (!current) throw new Error('Missing Mastery integration fixture player');
   return current;
 }
+/** Synthetic configuration/resource projection retains the run; not public hero replacement. */
 function configure(fields: Partial<Player>): void {
-  usePlayerStore.getState().setPlayer({ ...player(), ...fields });
+  usePlayerStore.setState({ player: { ...player(), ...fields } });
 }
 /** ImportedL30/points/gear and registered finisher are explicit native integration scaffolding. */
 function arrange(ranks: Readonly<Record<string, number>> = { [WARMTH]: 1 }): void {

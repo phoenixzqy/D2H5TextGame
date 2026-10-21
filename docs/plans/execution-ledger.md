@@ -4295,3 +4295,45 @@ Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
 released. Producer publication review remains before commit. Disposable outputs
 remain until readers release; diagnostics retained. Root is sole writer;
 umbrella claim continues; no remote action or persistent browser/server.
+
+
+## D06 v1j passive fixture prerequisites after lifecycle validation
+
+Synthetic configuration fixtures committed as `2fb2bf8`; exact hero-fixtures
+cleanup removed857files/42,723,829bytes and14 empty directories, with zero
+failures/remaining targets. The subsequent four-path public hero lifecycle
+implementation passed focused113, types and lint, but full validation failed11
+of6493tests across five older fixture suites. No build or approval was claimed.
+Exact source bytes and base hashes were preserved externally in
+hero-lifecycle-suspended-v1.json (SHA256
+999271f984bc5d9bf40f84b1e83ce748561527cb1a138daea06f07e3b5e3f37d)
+and its patch; only those four task-owned paths were restored to `2fb2bf8`.
+hero-lifecycle-attempt-v1-cleanup.json records exact disposable cleanup, dead
+command processes and zero failures/remaining; failed outputs remain retained.
+
+TD approved serial resequencing: four passive suites plus ledger, corpses suite
+plus ledger, then hash-verified lifecycle reapplication and fresh validation.
+Warmth's resource/absent-allocation/resolver controls and Fire Mastery, Lightning
+Mastery and Iron Skin configure helpers now use documented test-local raw player
+writes to retain their synthetic midrun context. Initial public setup, genuine
+allocation/respec/equipment actions and all280 assertion/test-declaration lines
+remain unchanged. No production API or behavior changes; no new tests or browser
+acceptance claimed. RED is inapplicable to this fixture-only prerequisite.
+
+Focused33/4files11.410s, types15.608s, lint41.273s including85 engine purity files,
+full6481/219files118.245s and build11.179s passed. Related5s/full15s budgets remain
+unmet. Existing React act, fixture fallback, stale Browserslist, large chunk and
+precache diagnostics remain open. SaveCurrent11 remains unchanged. Security
+check passes for scoped test-only writes without a production bypass.
+
+Five repository paths, passive-fixtures command/source/output identities, prior
+failed-attempt cleanup and exact owned dist/tmp inventory are frozen in
+passive-fixtures-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review remains before commit. Disposable outputs
+remain until readers release; diagnostics and suspended source retained.
+Root is sole writer/executor; umbrella claim continues; no remote action or
+persistent browser/server. Corpses prerequisite, public hero lifecycle, receipt,
+recovery, settlement, replay and bilingual Iron UI/browser acceptance remain
+pending. FullD06/P09/P10/private-v1 remain open.

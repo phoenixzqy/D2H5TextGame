@@ -51,10 +51,11 @@ function equip(values: readonly (readonly [string, number])[], id = 'fixture-war
   return item;
 }
 
+/** Controlled persistent resource fixture retains the run; not public hero replacement. */
 function setResources(life: number, mana: number): void {
   const current = player();
-  usePlayerStore.getState().setPlayer({ ...current,
-    derivedStats: { ...current.derivedStats, life, mana } });
+  usePlayerStore.setState({ player: { ...current,
+    derivedStats: { ...current.derivedStats, life, mana } } });
 }
 
 function arrange(energy = 35, extra: Partial<Player> = {}): void {
@@ -208,7 +209,8 @@ describe('frozen recording and automatic next-wave configuration', () => {
     if (removal === 'absent') {
       const { skillLevels, ...withoutLevels } = player();
       expect(skillLevels).toBeDefined();
-      usePlayerStore.getState().setPlayer(withoutLevels);
+      // Synthetic absent-property input retains the recorded wave.
+      usePlayerStore.setState({ player: withoutLevels });
     } else {
       // Store-level respec only; no ordinary respec UI or economy acceptance.
       expect(usePlayerStore.getState().respec({ getGold: () => 10_000,
@@ -396,7 +398,8 @@ describe('original wave-input resources and replay', () => {
     expect.soft(fireDamageProjection(team[0]?.increasedDamagePct)).toEqual({ fire: 0.2 });
     expect(team[1]).toEqual(expected);
     const before = recording();
-    usePlayerStore.getState().setPlayer({ ...player(), skillLevels: {} });
+    // Synthetic allocation projection retains the run for the resolver check.
+    usePlayerStore.setState({ player: { ...player(), skillLevels: {} } });
     refreshActivePlayerCombatConfig({ replayCurrentWave: true });
     expect(useCombatStore.getState().playerTeam[1]).toEqual(expected);
     expect.soft(fireDamageProjection(useCombatStore.getState().playerTeam[0]?.increasedDamagePct)).toEqual({ fire: 0 });
@@ -406,8 +409,9 @@ describe('original wave-input resources and replay', () => {
   it.each(['missing', 'different'] as const)('retains the current hero when the persistent player is %s', replacement => {
     nextWithCarry();
     const before = recording();
-    if (replacement === 'missing') usePlayerStore.getState().reset();
-    else usePlayerStore.getState().setPlayer({ ...player(), id: 'replacement-hero' });
+    // Synthetic resolver inputs retain the original run; public reset/replacement clears it.
+    if (replacement === 'missing') usePlayerStore.setState({ player: null });
+    else usePlayerStore.setState({ player: { ...player(), id: 'replacement-hero' } });
     refreshActivePlayerCombatConfig({ replayCurrentWave: true });
     expect(recording()).toEqual(before);
   });

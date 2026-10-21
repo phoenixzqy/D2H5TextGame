@@ -32,8 +32,9 @@ function player(): Player {
   if (!current) throw new Error('Missing Iron Skin native fixture player');
   return current;
 }
+/** Synthetic configuration/resource projection retains the run; not public hero replacement. */
 function configure(fields: Partial<Player>): void {
-  usePlayerStore.getState().setPlayer({ ...player(), ...fields });
+  usePlayerStore.setState({ player: { ...player(), ...fields } });
 }
 /** ImportedL18/points/gear and registered finisher are scaffolding, not earned progression. */
 function arrange(ranks: NonNullable<Player['skillLevels']> = {}): Item {
