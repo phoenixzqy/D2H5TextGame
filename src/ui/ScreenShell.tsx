@@ -4,6 +4,7 @@
  */
 import type { ReactNode } from 'react';
 import { BottomNav } from './BottomNav';
+import { CharacterHud } from './CharacterHud';
 import { SaveFailureNotice } from './SaveFailureNotice';
 
 interface ScreenShellProps {
@@ -27,14 +28,18 @@ export function ScreenShell({ children, testId, title, hideNav = false }: Screen
       {!hideNav && <BottomNav />}
       <div className="flex-1 flex flex-col min-w-0 min-h-0 overflow-hidden">
         <SaveFailureNotice />
-        {title && (
-          <header
-            className="shrink-0 z-30 bg-d2-panel/95 backdrop-blur border-b border-d2-border
-                       px-4 py-3 pt-[max(0.75rem,env(safe-area-inset-top))]"
-          >
-            <div className="text-d2-gold font-serif text-lg">{title}</div>
-          </header>
-        )}
+        <header
+          className="shrink-0 z-30 bg-d2-panel/95 backdrop-blur border-b border-d2-border
+                     flex flex-wrap items-center gap-x-3 gap-y-2 empty:hidden
+                     px-4 py-3 pt-[max(0.75rem,env(safe-area-inset-top))]"
+        >
+          {title && (
+            <div className="flex-1 basis-40 min-w-0 break-words text-d2-gold font-serif text-lg">
+              {title}
+            </div>
+          )}
+          <CharacterHud />
+        </header>
         <main
           className={[
             'flex-1 min-w-0 min-h-0 overflow-y-auto px-3 py-3 md:px-6 md:py-4',

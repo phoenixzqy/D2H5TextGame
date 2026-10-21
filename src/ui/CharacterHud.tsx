@@ -1,5 +1,5 @@
 /**
- * CharacterHud — persistent floating widget showing the player's
+ * CharacterHud — shared header widget showing the player's
  * portrait/avatar, name, level, and HP/MP/EXP bars.
  *
  * Layout @ 360×640 (compact mode, the only mobile mode):
@@ -9,9 +9,9 @@
  *   │ │  │  ▓▓▓▓▓░░ MP         │
  *   │ └──┘  ▓░░░░░░ XP         │
  *   └──────────────────────────┘
- *   Fixed top-right, ~168×64.
+ *   Normal header flow reserves the widget and bonus chip height.
  *
- * @ md+: Slightly more generous (180×72) — name shown on its own row.
+ * @ md+: Slightly more generous width; long names truncate inside the button.
  *
  * Visibility decision: hidden on `/`, `/character/new`, `/character`
  * (already on the stats screen), and `/combat` (the combat header
@@ -50,69 +50,62 @@ export function CharacterHud() {
   };
 
   return (
-    <>
-    <button
-      type="button"
-      onClick={handleClick}
-      data-testid="character-hud"
-      aria-label={t('hud.aria', {
-        name: player.name,
-        level: player.level,
-      })}
-      className="
-        fixed z-40 right-1 md:right-2
-        top-[max(0.25rem,env(safe-area-inset-top))]
-        flex items-center gap-2
-        bg-d2-panel/90 backdrop-blur
-        border border-d2-border rounded-lg
-        shadow-lg
-        px-2 py-1.5
-        min-h-[56px] min-w-[160px] md:min-w-[200px]
-        text-left
-        focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold
-        hover:border-d2-gold/70 active:scale-[0.98] transition-transform
-      "
-    >
-      <Avatar player={player} />
-      <div className="flex-1 min-w-0 flex flex-col gap-0.5">
-        <div className="flex items-baseline justify-between gap-1 leading-none">
-          <span className="font-serif text-d2-gold text-xs md:text-sm truncate">
-            {player.name}
-          </span>
-          <span className="text-[10px] md:text-xs text-d2-white/70 shrink-0">
-            {t('common:level')} {player.level}
-          </span>
+    <div className="ml-auto w-52 md:w-60 max-w-full shrink-0 flex flex-col items-end gap-1">
+      <button
+        type="button"
+        onClick={handleClick}
+        data-testid="character-hud"
+        aria-label={t('hud.aria', {
+          name: player.name,
+          level: player.level,
+        })}
+        className="
+          w-full min-w-0 flex items-center gap-2
+          bg-d2-panel/90 backdrop-blur
+          border border-d2-border rounded-lg
+          shadow-lg
+          px-2 py-1.5
+          min-h-[56px]
+          text-left
+          focus:outline-none focus-visible:ring-2 focus-visible:ring-d2-gold
+          hover:border-d2-gold/70 active:scale-[0.98] transition-transform
+        "
+      >
+        <Avatar player={player} />
+        <div className="flex-1 min-w-0 flex flex-col gap-0.5">
+          <div className="flex items-baseline justify-between gap-1 leading-none">
+            <span className="font-serif text-d2-gold text-xs md:text-sm truncate">
+              {player.name}
+            </span>
+            <span className="text-[10px] md:text-xs text-d2-white/70 shrink-0">
+              {t('common:level')} {player.level}
+            </span>
+          </div>
+          <MiniBar
+            label="HP"
+            current={player.derivedStats.life}
+            max={player.derivedStats.lifeMax}
+            colorClass="bg-red-600"
+            testId="hud-hp"
+          />
+          <MiniBar
+            label="MP"
+            current={player.derivedStats.mana}
+            max={player.derivedStats.manaMax}
+            colorClass="bg-blue-600"
+            testId="hud-mp"
+          />
+          <MiniBar
+            label="XP"
+            current={player.experience}
+            max={Math.max(1, player.experienceToNextLevel)}
+            colorClass="bg-d2-gold"
+            testId="hud-xp"
+          />
         </div>
-        <MiniBar
-          label="HP"
-          current={player.derivedStats.life}
-          max={player.derivedStats.lifeMax}
-          colorClass="bg-red-600"
-          testId="hud-hp"
-        />
-        <MiniBar
-          label="MP"
-          current={player.derivedStats.mana}
-          max={player.derivedStats.manaMax}
-          colorClass="bg-blue-600"
-          testId="hud-mp"
-        />
-        <MiniBar
-          label="XP"
-          current={player.experience}
-          max={Math.max(1, player.experienceToNextLevel)}
-          colorClass="bg-d2-gold"
-          testId="hud-xp"
-        />
-      </div>
-    </button>
-    <div
-      className="fixed z-40 right-1 md:right-2
-                 top-[calc(64px+max(0.25rem,env(safe-area-inset-top)))]"
-    >
+      </button>
       <OfflineBonusChip />
     </div>
-    </>
   );
 }
 

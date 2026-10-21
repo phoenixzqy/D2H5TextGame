@@ -556,7 +556,7 @@ function SkillDetailPanel({
 
   return (
     <Panel
-      className="h-[34rem] overflow-y-auto border-d2-gold/70 bg-d2-panel/95 shadow-[0_0_28px_rgba(210,176,91,0.16)] backdrop-blur md:sticky md:bottom-2 md:z-10 md:h-[21rem]"
+      className="h-[34rem] overflow-y-auto border-d2-gold/70 bg-d2-panel/95 shadow-[0_0_28px_rgba(210,176,91,0.16)] backdrop-blur md:h-[21rem]"
       data-testid="skill-detail-panel"
     >
       <div id="skill-detail-panel" aria-live="polite" className="space-y-3">

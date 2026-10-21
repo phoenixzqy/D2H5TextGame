@@ -29,3 +29,13 @@ At 375×667 the header partially covers the panel heading/action; at 915×412 it
 ## Suspected cause and workaround
 
 The fixed character header can cover scrolled screen content; this is an observation, not a proved layout root cause. Scroll to a different position or use native keyboard traversal. No product fix is included in the Lightning browser increment. Producer identifies CharacterHud.tsx:56 (fixed z40 HUD) as the first source to inspect. A later surgical fix requires ordinary pointer and native keyboard access to unobscured heading/action at both cited sizes, both locales and a360×640 baseline, with no overflow or recording change. Do not bypass the overlay with force-click or pointer-events changes.
+
+## Root-cause investigation
+
+The production regression in `tests/pwa/skills-header-layout.spec.ts` (test preparation commit `fdeb743`) measures actual edge/center hit owners, header containment, main placement and overflow, with ordinary pointer allocation followed by native Tab/Enter allocation. It covers both locales, a valid 16-character name, bonus absent/present, and nine viewports including 360×640, 375×667 and 915×412. The new baseline reproduces obstruction at 915×412; it does not newly reproduce the older 375×667 visual collision.
+
+Two independent layout causes are proved. First, the fixed HUD and separately positioned bonus chip reserve no space in the shared shell. The baseline records HUD/chip obstruction at the Allocate edges and overlapping HUD/chip bounds. Moving both into the normal-flow shared header fixes their containment and reserves their actual height above main.
+
+The partial repair remains RED at 915×412: the detail panel's `md:sticky md:bottom-2` positioning lifts its 336px height above main's available 317px (no bonus) or 285px (bonus). Its heading starts at y70 while main starts at y95/y127; hit owners are the header, HUD and bonus chip. All four locale/bonus cases fail the unchanged heading/action/native-target hit checks. Remove only the three desktop sticky/positioning classes, keeping both existing panel heights, internal overflow and ordinary scrolling. Technical/UX review accepts the resulting unpinned desktop preview.
+
+The failed baseline, partial-repair reports, screenshots, exact source freezes and review records remain in the task evidence pending a durable acceptance index. No product acceptance is claimed until a fresh production build passes the unchanged browser regression and final gates.

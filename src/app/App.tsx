@@ -3,7 +3,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { Providers } from './providers';
 import { AppRoutes } from './routes';
 import { useStealthMode } from './useStealthMode';
-import { CharacterHud } from '@/ui';
 import { initPersistence, useMetaStore } from '@/stores';
 
 function App() {
@@ -20,7 +19,6 @@ function App() {
         future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
       >
         <AppRoutes />
-        <CharacterHud />
         {stealthOn && (
           <span
             data-testid="stealth-indicator"
