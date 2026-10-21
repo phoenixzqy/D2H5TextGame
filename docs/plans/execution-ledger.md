@@ -3647,3 +3647,69 @@ Exact `dist`/`tmp` disposables stay until all readers release; diagnostics await
 durable retention. Full Iron/D06/P09/P10, earned supply/balance, performance/
 platform/PWA/a11y and private-v1/C0–C4/G0–G7 remain open. Umbrella claim continues;
 root remains sole writer/executor; no remote action.
+
+
+## D06 v1d explicit selected-item Iron engine preparation
+
+Recorded-publication staging received producer APPROVE and committed as
+`33ea051`. After all readers released, root verified and removed its exact857
+task disposable files/42,719,820bytes and14 empty directories, zero failures;
+`publication-cleanup.json` retains the actual cleanup result.
+
+TD plan-review returned `ready` for this four-path slice: new pure
+`iron-golem.ts`,65 preparation cases, `combat.ts` and this ledger. No separate
+class projection is added: CombatUnit carries slot/rank/prerequisite evidence;
+the authoritative Player composer must filter invalid class/configuration slots
+in the subsequent store slice, including no-item and full-preload attempts.
+Authored Iron/Blood rows are schema-validated and qualification primitives copied
+at module initialization. Engine source qualification requires the exact canonical
+registry identity/archetype/level, living player hero provenance, explicit integral
+Iron rank and learned direct Blood prerequisite. Canonical and authored Iron
+identities are suppressed in generic startup and ordinary casting, even when
+malformed. This immediately disables the canonical free/no-input fallback in
+existing production calls; selected-item store payment is not integrated yet.
+
+The optional snapshot input copies hero/item identity and finite nonnegative
+isolated life/attack/defense at entry. Valid source establishes exact owner/template
+death authority before item/mana/candidate success; full and overcap living preload
+needs no item and causes no payment, factory call or replacement. Missing spawn
+uses the same validated explicit rank for scaling, cost and cooldown, adds only
+the three item scalars after scaling, and validates the complete candidate before
+payment/identity allocation. Only actual registered success emits the copied
+attestation with actual unit ID and paid MP; it survives summon death. Explicitly
+synthetic template users retain their previous behavior. No inventory/store write,
+selection consumption, replay lock, save field or compatibility mode is added.
+
+Literal cases cover ranks1/6/20, Short Sword attack8, Chain Mail defense53,
+fractional bonuses, duplicate authored/canonical slots,35MP/34MP, stale cooldown,
+no delayed retry, full/overcap, invalid sources/inputs, string identities, candidate
+overflow, unchanged RNG/identity recording for rejected attempts, stable earlier
+Blood resource ordering, copied input against a mutating factory, death authority
+independent of successful creation and retained success proof after death.
+Initial behavioral RED was38failed/18passed. Type checking caught prerequisites
+absent from SkillDef; a private authored-source type preserves that schema-backed
+boundary. Self-review then found startup's cached hasEnemy allowed Iron after an
+earlier startup skill killed the last opponent: RED1failed/64passed. Iron now
+checks current living opponents; both initial-terminal and became-terminal cases
+pass. Other preparation policies remain unchanged. Failures and superseded gates
+are retained with their actual source identities, never claimed for final bytes.
+
+Final serial gates on unchanged engine/test bytes: focused65 (7.320s wrapper),
+engine3280/85files (17.563s),types14.576s,lint39.667s including85 purity files,
+full unit6295/216files (114.085s),normal production build10.202s. Engine3s,
+related5s and full15s budgets remain unmet. Existing stale Browserslist, >500kB
+chunk and2.57MB generated-manifest precache warnings remain open. No browser Iron
+acceptance is claimed. Security check passes for this pure typed boundary; it
+cannot authenticate arbitrary forged snapshots or authorize an inventory debit.
+
+Four paths and command/source/output identities are frozen in
+`iron-engine-review.json` under
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les`.
+Independent QA and TD/five-axis reviews APPROVED the frozen engine scope; all
+readers released. Only producer publication scope review remains pending before
+commit.
+Exact owned dist/tmp disposables stay until readers release; original diagnostic
+evidence is retained. Full Iron/D06/P09/P10, receipt/caller/replay/persistence/UI,
+earned supply/balance, performance/platform/PWA/a11y and private-v1/C0–C4/G0–G7
+remain open. Umbrella claim continues; root remains sole writer/executor; no
+remote action.

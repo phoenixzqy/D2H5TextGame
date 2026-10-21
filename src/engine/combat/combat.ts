@@ -48,6 +48,8 @@ import { getSkill } from '../skills/registry';
 import { buildSummon, getSummon } from '../skills/summons';
 import { isPreparationSummonSkill, SUMMON_PREPARATION_TEMPLATES } from '../skills/summon-preparation';
 import { empowerSkeletonSummon, type SkeletonMasteryProjection } from '../skills/skeleton-mastery';
+import { IRON_GOLEM_SKILL_ID, isIronGolemSkill, qualifyIronGolemSource,
+  type IronGolemInput, type IronGolemPreparationAttestation } from '../skills/iron-golem';
 import { resolveSummonMaxCount, scalePerRank } from '../skills/scaling';
 import { resolveAoeTargets, withDefaultGridPositions } from './grid';
 import type {
@@ -120,6 +122,8 @@ export interface CombatSnapshot {
   readonly meditationAura?: MeditationAuraProjection;
   /** Eligible player Mastery copied at wave entry; applies only at fresh summon creation. */
   readonly skeletonMastery?: SkeletonMasteryProjection;
+  /** Explicit isolated item bonuses for a selected-item Iron startup attempt. */
+  readonly ironGolem?: IronGolemInput;
 }
 
 /** Final combat result. */
@@ -132,9 +136,13 @@ export interface CombatResult {
   readonly enemyTeam: readonly CombatUnit[];
   /** Number of "turns" emitted (5-second sim-time boundaries crossed). */
   readonly rounds: number;
+  /** Present only after successful registration; survives that summon's later death. */
+  readonly ironGolemPreparation?: IronGolemPreparationAttestation;
 }
 
 interface State {
+  readonly ironGolem?: IronGolemInput;
+  ironGolemPreparation?: IronGolemPreparationAttestation;
   readonly mightAura?: MightAuraProjection;
   readonly meditationAura?: MeditationAuraProjection;
   readonly skeletonMastery?: SkeletonMasteryProjection;
@@ -704,7 +712,7 @@ function chooseSkillForState(
 ): RegisteredSkill | undefined {
   for (const skillId of unit.skillOrder) {
     const skill = getSkill(skillId);
-    if (!skill || isPreparationSummonSkill(skill)) continue;
+    if (!skill || isPreparationSummonSkill(skill) || isIronGolemSkill(skill)) continue;
     if (!canUseSkillForState(state, unit, skill, skillId, hasEnemyTarget)) continue;
     return skill;
   }
@@ -809,7 +817,7 @@ function applyEffect(
 }
 
 /** Registration is the commit boundary; candidate building never allocates battle identity. */
-function registerSpawnedSummon(state: State, owner: CombatUnit, templateId: string, template: CombatUnit): void {
+function registerSpawnedSummon(state: State, owner: CombatUnit, templateId: string, template: CombatUnit): CombatUnit {
   const summon = { ...template, id: nextSummonId(state, owner.id, templateId) };
   const preferredPosition = firstOpenSummonPosition(owner, aliveOf(state, owner.side));
   const summonWithPreferredPosition = preferredPosition
@@ -823,16 +831,17 @@ function registerSpawnedSummon(state: State, owner: CombatUnit, templateId: stri
   scheduleNextAction(state, positionedSummon);
   state.cooldownExpiresAt.set(positionedSummon.id, new Map());
   emit(state, { kind: 'summon', owner: owner.id, summonId: templateId, unit: positionedSummon });
+  return positionedSummon;
 }
 
 function castSkill(
   state: State, actorId: string, skill: RegisteredSkill,
-  prepared?: { readonly summonId: string; readonly units: readonly CombatUnit[] }
-): void {
+  prepared?: { readonly summonId: string; readonly units: readonly CombatUnit[]; readonly skillLevel?: number }
+): readonly CombatUnit[] | undefined {
   const actor = state.units.get(actorId);
   if (!actor) return;
 
-  const skillLevel = effectiveSkillLevel(actor, skill);
+  const skillLevel = prepared?.skillLevel ?? effectiveSkillLevel(actor, skill);
   const manaCost = effectiveManaCost(skill, skillLevel);
   const newMana = Math.max(0, actor.mana - manaCost);
   const manaEvent = commitMana(state, actor, { ...actor, mana: newMana }, 'cast');
@@ -851,8 +860,7 @@ function castSkill(
   emit(state, { kind: 'action', actor: actorId, skillId: skill.id });
   if (manaEvent) emit(state, manaEvent);
   if (prepared) {
-    for (const candidate of prepared.units) registerSpawnedSummon(state, actor, prepared.summonId, candidate);
-    return;
+    return prepared.units.map(candidate => registerSpawnedSummon(state, actor, prepared.summonId, candidate));
   }
 
   const enemySide: CombatSide = actor.side === 'player' ? 'enemy' : 'player';
@@ -870,6 +878,7 @@ function castSkill(
   for (const effect of skill.effects) {
     applyEffect(state, actorId, skill, effect, skillLevel, targetEnemies);
   }
+  return undefined;
 }
 
 function basicAttack(state: State, actorId: string): void {
@@ -1041,11 +1050,13 @@ function refreshCooldowns(state: State, unitId: string): void {
 }
 
 /** Reject malformed scoped source data before cap/resource decisions establish authority. */
-function preparationEffect(skill: RegisteredSkill): SummonEffect | undefined {
+function preparationEffect(
+  skill: RegisteredSkill, expectedTemplate: string | undefined = SUMMON_PREPARATION_TEMPLATES[skill.id]
+): SummonEffect | undefined {
   const effect = skill.effects[0];
   if (skill.trigger !== 'active' || skill.target !== 'summon' || skill.summonOnStart !== true ||
     skill.effects.length !== 1 || effect?.kind !== 'summon' ||
-    effect.summonId !== SUMMON_PREPARATION_TEMPLATES[skill.id] || !getSummon(effect.summonId) ||
+    effect.summonId !== expectedTemplate || !getSummon(effect.summonId) ||
     !Number.isInteger(skill.minLevel) || skill.minLevel <= 0 ||
     !Number.isFinite(skill.manaCost) || skill.manaCost < 0 ||
     !Number.isFinite(skill.cooldown) || skill.cooldown < 0 ||
@@ -1102,6 +1113,35 @@ function prepareSummons(state: State, owner: CombatUnit, skill: RegisteredSkill)
   castSkill(state, owner.id, skill, { summonId: effect.summonId, units: candidates });
 }
 
+/** Qualify authority first; a fully staged singleton is the only path to payment. */
+function prepareIronGolem(state: State, owner: CombatUnit, skill: RegisteredSkill): void {
+  const rank = qualifyIronGolemSource(owner, skill);
+  const effect = preparationEffect(skill, 'iron_golem');
+  if (rank === 0 || !effect) return;
+  if (skill.requires && owner.equippedWeapon !== undefined && !canCastSkill(skill, owner.equippedWeapon).ok) return;
+  const cost = effectiveManaCost(skill, rank);
+  const cooldown = effectiveCooldown(skill, rank);
+  if (!Number.isFinite(cost) || !Number.isFinite(cooldown * SECONDS)) return;
+  let templates = state.preparationTemplates.get(owner.id);
+  if (!templates) { templates = new Set(); state.preparationTemplates.set(owner.id, templates); }
+  templates.add('iron_golem');
+  if (summonsOf(state, owner.id, 'iron_golem').length >= 1) return;
+  const input = state.ironGolem;
+  if (!input || input.sourceHeroId !== owner.id || typeof input.sourceItemId !== 'string' || input.sourceItemId.length === 0 ||
+    ![input.life, input.attack, input.defense].every(value => Number.isFinite(value) && value >= 0) ||
+    !Number.isFinite(owner.mana) || owner.mana < cost) return;
+  const template = buildSummon(owner, 'iron_golem', { skillLevel: rank, statScaling: effect.statScaling });
+  if (!template) return;
+  const stats = { ...template.stats, life: template.stats.lifeMax + input.life,
+    lifeMax: template.stats.lifeMax + input.life, attack: template.stats.attack + input.attack,
+    defense: template.stats.defense + input.defense };
+  const candidate = { ...template, stats, life: stats.lifeMax };
+  if (!validPreparationCandidate(candidate)) return;
+  const spawned = castSkill(state, owner.id, skill, { summonId: 'iron_golem', units: [candidate], skillLevel: rank })?.[0];
+  if (spawned) state.ironGolemPreparation = Object.freeze({ sourceHeroId: owner.id, sourceItemId: input.sourceItemId,
+    skillId: IRON_GOLEM_SKILL_ID, spawnedUnitId: spawned.id, paidMp: cost });
+}
+
 function castSummonsOnStart(state: State, unitId: string): void {
   let unit = state.units.get(unitId);
   if (!unit) return;
@@ -1113,6 +1153,13 @@ function castSummonsOnStart(state: State, unitId: string): void {
     if (!skill) continue;
     unit = state.units.get(unitId);
     if (!unit || !alive(unit)) return;
+    if (isIronGolemSkill(skill)) {
+      if (aliveOf(state, enemySide).length > 0 && !state.heroDead && !prepared.has(IRON_GOLEM_SKILL_ID)) {
+        prepared.add(IRON_GOLEM_SKILL_ID);
+        prepareIronGolem(state, unit, skill);
+      }
+      continue;
+    }
     if (isPreparationSummonSkill(skill)) {
       if (hasEnemy && !state.heroDead && !prepared.has(skill.id)) {
         prepared.add(skill.id);
@@ -1285,7 +1332,10 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   const aura = snapshot.mightAura;
   const meditation = snapshot.meditationAura;
   const mastery = snapshot.skeletonMastery;
+  const iron = snapshot.ironGolem;
   const state: State = {
+    ...(iron ? { ironGolem: Object.freeze({ sourceHeroId: iron.sourceHeroId, sourceItemId: iron.sourceItemId,
+      life: iron.life, attack: iron.attack, defense: iron.defense }) } : {}),
     ...(meditation ? { meditationAura: Object.freeze({ selectedAuraId: meditation.selectedAuraId,
       sourceHeroId: meditation.sourceHeroId, rank: meditation.rank, maxRank: meditation.maxRank,
       sourceBaselinePerSecond: meditation.sourceBaselinePerSecond, manaRegenPctPerRank: meditation.manaRegenPctPerRank,
@@ -1385,7 +1435,8 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     winner,
     playerTeam,
     enemyTeam,
-    rounds: state.turnsEmitted
+    rounds: state.turnsEmitted,
+    ...(state.ironGolemPreparation ? { ironGolemPreparation: state.ironGolemPreparation } : {})
   };
   return { events: state.events, simTimes: state.simTimes, result };
 }
