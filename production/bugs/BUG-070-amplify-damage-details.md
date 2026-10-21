@@ -1,6 +1,6 @@
 # BUG-070 — Expose Amplify Damage resistance points and duration
 
-- **Status:** Open — bounded presentation correction; runtime BUG031 already fixed.
+- **Status:** Fixed — bounded bilingual presentation accepted; runtime BUG031 already fixed.
 - **Severity:** Medium — gameplay works; exact curse meaning is hidden from the player.
 - **Owner / affected systems:** frontend-dev, writer, qa-engineer; Skills detail and bilingual copy.
 - **Build:** `6e39e4d` (Meteor archive-only follow-up does not alter app).
@@ -37,3 +37,18 @@ Read [D04](../../docs/plans/decisions/D04-amplify-damage-v1.md) for exact mechan
 Root-owned RAW `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-amplify-ui-0bebeotd`
 retains baseline-source-freeze.json and exact original UI/locales. Archive and verify
 all evidence before exact cleanup. No fullP08/C1/private-v1 acceptance.
+
+## Bounded resolution
+
+Source `857164c` adds the immutable authored curse formatter and canonical/legacy
+localized labels. Actual frozen V4 RED14failed/12controls became26passed; full5470
+units/202files, types/lint/productionbuild pass. The separate two-path production
+browser increment `67034d6` passed both locales on its first attempt; QA personally viewed
+all18originalPNGs. Native0→1→2 point/rank-only changes, pausedDOM/resources/combo,
+combo edits and explicit wholeSaveCurrent/meta close/reopen equality are verified.
+Imported eligibility is scaffolding; full hidden recording identity is unit proof.
+See [evidence](../../docs/plans/evidence/p08a02d-amplify-damage-ui.md) for exact
+validation, finite nine-size Chromium scope, durable disposition and cleanup.
+GD/TD/QA/producer approval applies only to BUG070/P08a02D. Ordinary15s unit target
+miss and existing build warnings remain; nativecasting/earnedcampaign/balance/
+performance/allbrowser/touch/fulla11y/fullD04/P08/C1/private-v1 remain open.

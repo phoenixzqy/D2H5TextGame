@@ -2911,3 +2911,26 @@ Claimcontinues,noremote; fullD04/P08/C1/private-v1/C0–C4/G0–G7 remainopen.
 ## P08a08D exact RAW cleanup
 
 Committed archive `d70b01b` verified again before exact149files/7,550,936B/6emptychilddirs removal, zerofailures/remainingfiles. [Packet receipt](evidence/fixtures/p08a08d-meteor-ui/packet.json) records17sources/968absentbirths/761outputs and empty retainedRAWroot/sharedparents/fonts/tools/source/history. Meteor bounded closure complete; umbrella claim continues into Amplify Damage UI, fullv1 open, no remote action.
+
+
+## P08a02D Amplify Damage truthful Skills detail — bounded acceptance
+
+Source `857164c`; browser `67034d6`; [evidence](evidence/p08a02d-amplify-damage-ui.md).
+Four source paths then two browser paths, independently reviewed and committed.
+Actual unchanged-production frozen V4 RED: 14 missing-prose/status failures and 12
+passing controls; same test GREEN 26/26. Types/lint/full 5470 units in 202 files/
+clean production bridge-build pass. Full units 91.598s exceeds ordinary 15s target
+but passes reviewed 120s bound; existing build warnings retained, no perf acceptance.
+Both locales passed first actual Chromium attempt; QA personally viewed 18 original
+PNGs across nine sizes each, 14px prose, Noto 33 CJK glyphs, minimum 80×48 controls,
+486 clear hits, no overflow, page console arrays empty. Imported L1/ranks/points
+are scaffolding. Native allocation 0→1→2 changes only points/ranks; paused finite
+DOM/resources/combo, native combo edits and whole SaveCurrent/meta close/reopen
+equality pass. Full hidden recording and event identity are unit proof only.
+GD/TD/QA/producer approve bounded BUG070/control closure, readers released. Nine
+serial command records / 932 process births freshly absent, no signals/errors.
+Exact 761 disposable files / 40,979,677 bytes and ten dist directories removed;
+shared cache parents, fonts, tools, dependencies and source/history preserved.
+Durable packet/archive and exact RAW cleanup follow separately; root owns RAW.
+Umbrella claim continues into D06 preparation policy; no remote action. Full D04/
+P08/C1/private-v1/C0–C4/G0–G7 and native cast/earned/balance/full browser remain open.

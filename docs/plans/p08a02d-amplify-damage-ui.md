@@ -46,3 +46,15 @@ Map canonical amplify-damage and legacy amplify status labels locally to the exi
 
 FullD04/P08/C1/private-v1/C0–C4/G0–G7 remainopen. D06 summon preparation needs a
 separate approved policy before runtime; this copy fix authorizes no new Moor sample.
+
+## Bounded accepted outcome
+
+Source `857164c` and browser `67034d6` implement this presentation
+contract. FrozenV4 actual RED14failed/12controls→26passed; full5470/202files,
+types/lint/cleanproductionbuild pass. Browser en/zh-CN2/2 first attempt, eighteen
+original screenshots independently viewed; exact wholeplayer allocation and
+SaveCurrent/meta equality, finite pausedDOM and combo checks pass. Full hidden
+recording identity is unit-only. [Evidence](evidence/p08a02d-amplify-damage-ui.md)
+records actual durations, warnings, provenance, scope and exact output disposition.
+Independent GD/TD/QA/producer approve bounded closure; archive byte verification
+and exact RAW cleanup follow separately. Full umbrella remains active, no remote action.
