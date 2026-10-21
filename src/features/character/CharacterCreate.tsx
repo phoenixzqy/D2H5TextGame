@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next';
 import { Button, GameCard, Panel, resolveClassPortrait } from '@/ui';
 import { usePlayerStore } from '@/stores';
 import { useHydrationStore } from '@/stores/persistence';
+import { WaveGuardError } from '@/stores/waveTransitionGuard';
 import { createCharacter } from './createCharacter';
 import {
   CHARACTER_CLASSES,
@@ -43,7 +44,14 @@ export function CharacterCreate() {
 
   const handleStart = () => {
     if (!canStart) return;
-    const result = createCharacter(trimmedName, selectedClass);
+    let result: ReturnType<typeof createCharacter>;
+    try {
+      result = createCharacter(trimmedName, selectedClass);
+    } catch (error) {
+      if (!(error instanceof WaveGuardError)) throw error;
+      setStartFailed(true);
+      return;
+    }
     setStartFailed(!result.ok);
     if (result.ok) navigate('/town');
   };

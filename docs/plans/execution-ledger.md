@@ -4038,3 +4038,52 @@ Independent QA and TD/five-axis reviews APPROVED the frozen source scope; all
 readers released. Only producer publication scope review remains pending before
 commit. Disposable outputs remain until all readers release; diagnostics are retained.
 Umbrella claim continues; root remains sole writer/executor; no remote action.
+
+
+## D06 v1e character-screen typed refusal prerequisite
+
+Outer grant guards committed as `419f0ef` after QA, TD/five-axis and producer
+APPROVE. All readers released; outer-guard-cleanup.json records857 files,
+42,723,265bytes and14 empty directories removed, zero failures/remaining targets.
+
+The planned hero-replacement increment reproduced10 RED refusals, then its broad
+related run passed1901 tests but failed on one uncaught restorePending error in
+the actual-import character-screen test. The screen called createCharacter while
+hydration remained ready and did not handle the typed refusal. TD plan-review
+approved a three-path prerequisite split. The exact four-path hero guard patch
+and final-byte hashes are preserved outside the repository in
+hero-guard-suspended.patch/json; only those owned changes were reversed to HEAD.
+The original failure output/source identities remain under commands/hero-guard-*.
+
+CharacterCreate now catches only WaveGuardError from the creation call, uses its
+existing common:error alert and returns before navigation. Unexpected errors
+propagate. A real existing exact-debit regression first failed with missing
+feedback and an uncaught itemDebitBusy error, then passed with visible localized
+feedback, no navigation/storage calls/domain notifications, exact persistent
+roots, and real successful creation after both owners release. Explicit finally
+cleanup releases subscriptions and leases. The new assertion uses the existing
+common:error key; no new copy, gameplay or layout was added.
+
+Final focused5/1file11.158s wrapper, types15.216s, lint39.545s including85 engine
+purity files, full6440/219files121.703s and production build10.450s passed. Related5s
+and full15s budgets remain unmet; existing React act, stale Browserslist, chunk
+and precache diagnostics remain open. Chromium against the production bundle
+passed actual Amazon creation via keyboard at320/360/768/1024/1280/1440 widths,
+with no horizontal overflow, console warnings/errors or page errors (11.329s).
+360/1280 screenshots were inspected; the environment renders Chinese glyphs as
+boxes, so this is interaction/geometry evidence, not complete typography/locale
+visual signoff. Guard-refusal feedback is verified by the real-store component
+regression, not injected into the production browser. The exact owned preview
+Node process exited and all browser contexts/browser closed; server metadata is
+retained with the command. No persistent browser/server remains.
+
+Security check passes for narrow local typed UI error handling. The three
+repository paths and two task-only browser scripts, command/output identities
+and disposable dist/tmp inventory are frozen in hero-ui-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication scope review remains before commit. Diagnostics
+and the suspended guard patch are retained;
+disposable outputs stay until all readers release. The hero guard increment
+resumes afterward. No production wave/debit caller is enabled; full Iron/D06,
+P09/P10 and private-v1 remain open. Root is sole writer/executor; no remote action.

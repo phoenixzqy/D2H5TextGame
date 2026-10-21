@@ -33,6 +33,7 @@ import { useInventoryStore } from '@/stores/inventoryStore';
 import { useMercStore } from '@/stores/mercStore';
 import { useMapStore } from '@/stores/mapStore';
 import { useMetaStore } from '@/stores/metaStore';
+import { beginIronGolemDebit, beginWaveTransition, endIronGolemDebit, endWaveTransition } from '@/stores/waveTransitionGuard';
 import {
   AUTO_SAVE_DEBOUNCE_MS, __resetPersistenceForTests, exportCurrentSave,
   hydrateFromSave, importIntoStores, isReplacingSave, snapshotStores,
@@ -91,6 +92,32 @@ afterEach(() => {
 });
 
 describe('character creation persistence boundaries', () => {
+  it('shows creation refusal during an exact debit and permits retry after release', () => {
+    showValidCreation();
+    const stores = [usePlayerStore, useInventoryStore, useMercStore, useMapStore, useMetaStore] as const;
+    const before = stores.map(store => store.getState());
+    const notified = vi.fn();
+    const stops = stores.map(store => store.subscribe(notified));
+    const lease = beginWaveTransition(true);
+    beginIronGolemDebit(lease);
+    try {
+      fireEvent.click(screen.getByTestId('character-start-btn'));
+      expect(screen.getByRole('alert')).toHaveTextContent(i18n.t('common:error'));
+      expect(screen.queryByTestId('town-route')).not.toBeInTheDocument();
+      stores.forEach((store, index) => { expect(store.getState()).toBe(before[index]); });
+      expect(notified).not.toHaveBeenCalled();
+      expect(disk.save).not.toHaveBeenCalled();
+      expect(disk.load).not.toHaveBeenCalled();
+    } finally {
+      stops.forEach(stop => { stop(); });
+      endIronGolemDebit(lease);
+      endWaveTransition(lease);
+    }
+    fireEvent.click(screen.getByTestId('character-start-btn'));
+    expect(screen.getByTestId('town-route')).toBeVisible();
+    expect(usePlayerStore.getState().player?.name).toBe('Transient');
+  });
+
   it('does not transiently create while the actual saved character is loading', async () => {
     const { save } = savedCharacter();
     const read = deferred<SaveCurrent | null>();
