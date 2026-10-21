@@ -4053,7 +4053,23 @@
         "failures": []
       }
     },
-    "rawRemoval": "pending wholepacket review/commit/readersrelease; exact manifest plan archived",
+    "rawRemoval": {
+      "time": "2026-10-21T06:25:34.766002+00:00",
+      "archive": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/p07a03-lightning-mastery/raw.tar.gz",
+      "archiveSHA256": "b554459ee63e1477cfddcd65048c387372c1574a7fc4ddec0d8a4d0942c08197",
+      "removedManifestFiles": 476,
+      "removedBytes": 11102994,
+      "removedEmptyChildDirectories": 10,
+      "sourceFingerprintsRechecked": 24,
+      "processIdentitiesRecheckedAbsent": 7626,
+      "verifiedAllAbsent": true,
+      "retainedEmptyRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-lightning-mastery-6siwydfd",
+      "rootReason": "preserve approved RAW-root/shared-parent boundary",
+      "readersReleased": "QA/producer whole-packet APPROVE and explicit releases recorded in previous packet commit",
+      "fontPreserved": "/home/felixzhao/.local/share/fonts/NotoSansCJKsc-Regular.otf",
+      "sourceHistoryArchiveSharedCachesPreserved": true,
+      "failures": []
+    },
     "rawOwner": "root",
     "installedNotoPreserved": true
   },
