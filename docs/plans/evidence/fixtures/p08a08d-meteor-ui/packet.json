@@ -1,0 +1,884 @@
+{
+  "task": "P08a08D Meteor truthful UI + BUG069",
+  "sourceHead": "6e39e4d8ad66d1aa4b3194298c47bd7edec3b897",
+  "sourceCommit": "6af9f39",
+  "browserCommit": "a3bc6bb",
+  "baseline": "d50f124",
+  "rawRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-meteor-ui-68uhit_n",
+  "owner": "root",
+  "archive": {
+    "path": "raw.tar.gz",
+    "bytes": 3190170,
+    "sha256": "0338a7c67330bc8b85213e6e831ba1b746a72ceb012fa5768867727f1769a522",
+    "files": 149,
+    "originalBytes": 7550936,
+    "roundtripVerified": true
+  },
+  "rawManifest": [
+    {
+      "path": "SkillsScreen.meteor.test.v1.draft.tsx",
+      "bytes": 10264,
+      "sha256": "7da2dc61631aec444b2b232898e7fd0d8d7417f864efd197d5a0f98bd63f3765"
+    },
+    {
+      "path": "SkillsScreen.meteor.test.v2.draft.tsx",
+      "bytes": 11083,
+      "sha256": "2ee210e20d6e611a3fe6ec88d4f561f0819ef1f10a11a041ebf3de2c1e498749"
+    },
+    {
+      "path": "SkillsScreen.meteor.test.v3.draft.tsx",
+      "bytes": 11117,
+      "sha256": "e3608f5616c58eb2943d1857d6f2ab2a2481b1e6e5927b4afe527e8cf7c89618"
+    },
+    {
+      "path": "SkillsScreen.meteor.test.v4.draft.tsx",
+      "bytes": 11109,
+      "sha256": "f2148e7f10c02197fd5368a492992982a588ef3cbe26e96dcd4a15562a7c5d45"
+    },
+    {
+      "path": "SkillsScreen.source.v1.draft.tsx",
+      "bytes": 49230,
+      "sha256": "af544a4f4e8e5cd4680f5b2de5eac0e6dcf6c60c645fd49543c6cec1deb8e898"
+    },
+    {
+      "path": "attachments/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    {
+      "path": "baseline-source-freeze.json",
+      "bytes": 1187,
+      "sha256": "fd7a73dd0e1a55f0069f41ed8267793ce4b390f67462a05f6c4ded3877e6439d"
+    },
+    {
+      "path": "baseline-src__features__skills__SkillsScreen.tsx",
+      "bytes": 48646,
+      "sha256": "a3d34b44258ed8c02678b249884e1c4f727d0834b01f978f490749a28f8d7e8f"
+    },
+    {
+      "path": "baseline-src__i18n__locales__en__skills.json",
+      "bytes": 43299,
+      "sha256": "739ebca9cf10bfc1197541c5025e78faa784d04763a3214008bee06515238729"
+    },
+    {
+      "path": "baseline-src__i18n__locales__zh-CN__skills.json",
+      "bytes": 40376,
+      "sha256": "cd70c65ff16899511154c1b86da4eaccf8633f546cab065a950474d12b5565c5"
+    },
+    {
+      "path": "bounded_runner.py",
+      "bytes": 7320,
+      "sha256": "358f8e249fd7a8f8018a978b9746e8ffde7e530298b21c47cbeb35ad6ef6fdb5"
+    },
+    {
+      "path": "browser-environment.txt",
+      "bytes": 550,
+      "sha256": "236f887d5d265dd45e82ec428acac102c691985d853ac157feee4cbd03ae1379"
+    },
+    {
+      "path": "browser-final-review.txt",
+      "bytes": 605,
+      "sha256": "8d0f5035dce3a5811743a817a6a63beda4be72f365a30eb9654c2ef2745b1b92"
+    },
+    {
+      "path": "browser-meteor-v2-report.json",
+      "bytes": 2009296,
+      "sha256": "ea05bb2e759a19731e322790c03c42326d06f17bb37d1a80800b763bf0a2296a"
+    },
+    {
+      "path": "browser-meteor-v2.log",
+      "bytes": 896,
+      "sha256": "6d6d7289a80a616d5dc385fabe12564f903a4c10ae9382cdbcd681081bf20743"
+    },
+    {
+      "path": "browser-meteor-v2.meta.json",
+      "bytes": 1075,
+      "sha256": "722ea3cd3d4f91c4422018876a74ad9212eae3785cf6f887e046c61487567625"
+    },
+    {
+      "path": "browser-meteor-v2.process.json",
+      "bytes": 672,
+      "sha256": "c6b8731531698aef87fbe2ec0eff1bc3f9d475e3562270703ad9a27fc97f723e"
+    },
+    {
+      "path": "browser-meteor-v2.processes.json",
+      "bytes": 2231,
+      "sha256": "c75b53f4f2a4c370596ec7c1e946f5f8f1ef83539bc07507c383b8d86116c15f"
+    },
+    {
+      "path": "browser-preinstall-review.txt",
+      "bytes": 313,
+      "sha256": "d9f15b954ad46fa013582854367b100fd1b68247bda7d0f07a33225e7338a75e"
+    },
+    {
+      "path": "browser-process-source-verification.json",
+      "bytes": 649,
+      "sha256": "ddaeb16a97baebb36b381f29be0f76b82b9f6d14105cbdded9db4b16c709cfdd"
+    },
+    {
+      "path": "browser-producer-final-review.txt",
+      "bytes": 283,
+      "sha256": "ff7d95e1324c52d72928c8d0d7db5a6e97b2f3df7e2f3b9cd8798d8f6fedf802"
+    },
+    {
+      "path": "browser-review/en-01-imported-eligibility.json",
+      "bytes": 5854,
+      "sha256": "cbe3d3f659cd13955f6104cbcb61e605cf39b2dc8f374aea3e49164962abf710"
+    },
+    {
+      "path": "browser-review/en-02-native-paused-wave-before-allocation.json",
+      "bytes": 282,
+      "sha256": "2eab8a9b0b5aa10e4d99f2a5a959153275e975e4bed27c66c089c8ef8d5e0497"
+    },
+    {
+      "path": "browser-review/en-03-native-allocation-1.json",
+      "bytes": 3315,
+      "sha256": "36804ecdd52a90f04303b6c6ef215797728840ceadf7055a935a5e30e7226823"
+    },
+    {
+      "path": "browser-review/en-03-native-allocation-2.json",
+      "bytes": 3315,
+      "sha256": "739fdebada5744225f1187c9e1618529952fd50dae5ea522fc0c24139d954c8b"
+    },
+    {
+      "path": "browser-review/en-04-finite-layout-metrics.json",
+      "bytes": 25755,
+      "sha256": "4782d4f8913d46bec639c36f9057dd867668a25dda0a0a11c9d4bd65a1fa77d8"
+    },
+    {
+      "path": "browser-review/en-05-save-saved-close-newpage-continue.json",
+      "bytes": 6017,
+      "sha256": "1919d6c51d1c0d0d4cea5c2c67e51f2b8d14134877c395b8167ef57db5d4881a"
+    },
+    {
+      "path": "browser-review/en-06-console-errors.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "browser-review/en-detail-1280x800.png",
+      "bytes": 129254,
+      "sha256": "1fe959398e54228c4eb9d6ccb3c1299c514b024cfca5313f3a353bd606066b25"
+    },
+    {
+      "path": "browser-review/en-detail-1920x1080.png",
+      "bytes": 174634,
+      "sha256": "5ceffec9d75b6aa45bacfda18117a6f52dd9e27fa99021d8efe00e7026a02622"
+    },
+    {
+      "path": "browser-review/en-detail-360x640.png",
+      "bytes": 40983,
+      "sha256": "805e0fa50985b95b6e273758acd6af2aee899c7377d0a44396857d4cc841da9c"
+    },
+    {
+      "path": "browser-review/en-detail-375x667.png",
+      "bytes": 43782,
+      "sha256": "0c289b40354400b9f1dcf586dd843f03b3818b4d2b7eda6ebf646c890b7ac99f"
+    },
+    {
+      "path": "browser-review/en-detail-393x851.png",
+      "bytes": 48612,
+      "sha256": "2554f95fa1fa32981fd692857be8c8ca3bed81944bfe1f89a0782e9e84b96616"
+    },
+    {
+      "path": "browser-review/en-detail-412x915.png",
+      "bytes": 55268,
+      "sha256": "38c1c4e6dbdfa987dfbb396e8dd00ea5cc302f7611d6b0490fc138347ea7ea89"
+    },
+    {
+      "path": "browser-review/en-detail-640x360.png",
+      "bytes": 28120,
+      "sha256": "18fc5305989ff230ec8bc9ebc69be3490926a9bf9335ae1bcdba3ab8c6b0c984"
+    },
+    {
+      "path": "browser-review/en-detail-768x1024.png",
+      "bytes": 94509,
+      "sha256": "929cf3b20c7d47a2c4873fb91cdc49ee8a2a646c8463fd10ede79b770c6b18c8"
+    },
+    {
+      "path": "browser-review/en-detail-915x412.png",
+      "bytes": 37253,
+      "sha256": "cc051d1fe77a65c1dba24f0da7a13cc7ee1f55a26e6811c1fc467eddb5f4dd17"
+    },
+    {
+      "path": "browser-review/zh-CN-01-imported-eligibility.json",
+      "bytes": 5860,
+      "sha256": "a1bf92e30f09b34ebc0706d388e97abb0b8b442ea3672de142961ee534a883b3"
+    },
+    {
+      "path": "browser-review/zh-CN-02-native-paused-wave-before-allocation.json",
+      "bytes": 303,
+      "sha256": "648ac8fba9715e897c07c295eae8bfd7d21e38f50a17ab709459e3cdf5040c0b"
+    },
+    {
+      "path": "browser-review/zh-CN-03-native-allocation-1.json",
+      "bytes": 3339,
+      "sha256": "95755fb8403e1b2c1a6bb20209b1dbfed4d6b2b7c4ee1f415a1f1a8211340680"
+    },
+    {
+      "path": "browser-review/zh-CN-03-native-allocation-2.json",
+      "bytes": 3339,
+      "sha256": "ca50ac7c123498d57ae62ae1e448bb56f8c7dbd404898765e981ef2b31295cea"
+    },
+    {
+      "path": "browser-review/zh-CN-04-actual-Chinese-fonts.json",
+      "bytes": 311,
+      "sha256": "6c323c1c9b00c0bb575b43b3fa2b3ff1d9460820e0a9888b1eda476ae0be266c"
+    },
+    {
+      "path": "browser-review/zh-CN-04-finite-layout-metrics.json",
+      "bytes": 25755,
+      "sha256": "93cc19e62d83e9e0c487bb6a36d2ba0a9b5b0816ea924be32f9cd6a2b7ab03a3"
+    },
+    {
+      "path": "browser-review/zh-CN-05-save-saved-close-newpage-continue.json",
+      "bytes": 6023,
+      "sha256": "df54ad168af82d16cc1ecf38d7cdb216aef3a79ef76f81c801c8bac7755a1a46"
+    },
+    {
+      "path": "browser-review/zh-CN-06-console-errors.json",
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "path": "browser-review/zh-CN-detail-1280x800.png",
+      "bytes": 141723,
+      "sha256": "9af7cb5e63c1571f2218d43705f59e4e89f282263739f1a487dead05d494e1e0"
+    },
+    {
+      "path": "browser-review/zh-CN-detail-1920x1080.png",
+      "bytes": 187585,
+      "sha256": "1d03b5e914bdf984b8d69cb1c66d28e3cfe891339e1a78f696276d7d0df365e0"
+    },
+    {
+      "path": "browser-review/zh-CN-detail-360x640.png",
+      "bytes": 52332,
+      "sha256": "acabda75cc6f3d9f71f6d64c95c0f0761f95dce9cfd78d65f7d0b2af7965115b"
+    },
+    {
+      "path": "browser-review/zh-CN-detail-375x667.png",
+      "bytes": 55003,
+      "sha256": "a4aa0c935e5eb1d7d68dfe1e021f3ba75c23b8544489e9d313e5198bd59ecada"
+    },
+    {
+      "path": "browser-review/zh-CN-detail-393x851.png",
+      "bytes": 62272,
+      "sha256": "804eb381a7c1433bfc24833b5903754d6f9354f93d482ec6eca03d49aae449a7"
+    },
+    {
+      "path": "browser-review/zh-CN-detail-412x915.png",
+      "bytes": 69604,
+      "sha256": "c02e107d24aedd45c68212994c71f2ec2ba33da13afbc8b9ba55eaa24a4af457"
+    },
+    {
+      "path": "browser-review/zh-CN-detail-640x360.png",
+      "bytes": 36365,
+      "sha256": "5370789a291f7c96187646d1ff61ac473b1bf43d38b7058bed02b0d61e8dadbf"
+    },
+    {
+      "path": "browser-review/zh-CN-detail-768x1024.png",
+      "bytes": 105224,
+      "sha256": "9b8b872a2537314f4aea0791ae0787ca6f679b2062ce9751b46ef5a9ff1ce177"
+    },
+    {
+      "path": "browser-review/zh-CN-detail-915x412.png",
+      "bytes": 47055,
+      "sha256": "2ae675a0a56ed1c4ee783fa54c9368b0b74aa9484af386612b8a4df4510f31a6"
+    },
+    {
+      "path": "browser-review-extraction.json",
+      "bytes": 5067,
+      "sha256": "df4a8315e71b8f3436d56d852cba0247c64f42cc6e60a5ce1e2bb03dc0fbe0c1"
+    },
+    {
+      "path": "browser-v2-freeze.json",
+      "bytes": 2736,
+      "sha256": "24324687a1f8823af839cb243f384b1ec842260ba51d43901e0788e42ab99456"
+    },
+    {
+      "path": "build-meteor-v4.log",
+      "bytes": 1670,
+      "sha256": "3efa13dce20beea97c89a35f80c3a81e094262c7725dd17bc4d6f23778db6dd5"
+    },
+    {
+      "path": "build-meteor-v4.meta.json",
+      "bytes": 476,
+      "sha256": "4f7e1017191df3e608e81997d55244178c77cc84e15a6f74c62e2ee2855fee98"
+    },
+    {
+      "path": "build-meteor-v4.process.json",
+      "bytes": 112,
+      "sha256": "b410962ce36205f19ca1d2e33fd3b7e48b87107a2123ce081383309d20c00732"
+    },
+    {
+      "path": "build-meteor-v4.processes.json",
+      "bytes": 842,
+      "sha256": "f3e71429acf8a7b9043af855919d2506132378368ca97166ebb3f78ebdec912f"
+    },
+    {
+      "path": "closure-BUG069.v1.md",
+      "bytes": 4012,
+      "sha256": "5ce0e34f0ee02444f833eb59daf71eaebfbae274f509bb9f26846dd18d29f59e"
+    },
+    {
+      "path": "closure-control.v1.md",
+      "bytes": 5047,
+      "sha256": "18195d9e167c99aed098d7c00c32df32aa517ee321640136e3a4237d604e6ea3"
+    },
+    {
+      "path": "closure-doc-review.txt",
+      "bytes": 375,
+      "sha256": "699ac02981602b580cb324b8e105f05faffc4d1b16e7160a0c7ea74d3df40fc0"
+    },
+    {
+      "path": "closure-ledger.v1.md",
+      "bytes": 217112,
+      "sha256": "c49753ba63610593f3c9c0d18d5aa9876e163510921f6408ec88d6945e0e6641"
+    },
+    {
+      "path": "disposable-cleanup-receipt.json",
+      "bytes": 424,
+      "sha256": "d6cc7cad13db0989332b484c3eb7f9443628f9d76d58de8f9ed6c6e0c20d3e39"
+    },
+    {
+      "path": "disposable-output-manifest.json",
+      "bytes": 153282,
+      "sha256": "cd130c93495c27bd3298dbc7daea4cc176448eecf87badf7f589a6d5fada4655"
+    },
+    {
+      "path": "final-closure-verification.json",
+      "bytes": 3042,
+      "sha256": "e4258348aa093d939c3b0f17ba0e4e31146a2a8d6a05d3091665dbdfefcf489b"
+    },
+    {
+      "path": "focused-meteor-green-v3-report.json",
+      "bytes": 6516,
+      "sha256": "9fb338b70090950f9869442ab9edd33e933888f1d1fe8a3fa363981b6e3d4268"
+    },
+    {
+      "path": "focused-meteor-green-v3.log",
+      "bytes": 385,
+      "sha256": "264dd3ebd5a3e7e044fa0d4f815911f64d7aa130549cd32bd94def04baa25ad4"
+    },
+    {
+      "path": "focused-meteor-green-v3.meta.json",
+      "bytes": 692,
+      "sha256": "ac0fa1637d78c8c8abd1c1de2d0874ad187cc37757da58119dda2139d166d66b"
+    },
+    {
+      "path": "focused-meteor-green-v3.process.json",
+      "bytes": 305,
+      "sha256": "895ee59195d33c17d822f42fafbdcc42a2701e4f7f629bda0e6993c70886939c"
+    },
+    {
+      "path": "focused-meteor-green-v3.processes.json",
+      "bytes": 4064,
+      "sha256": "e12487a7b850214b93dba967a26df866d141562d3d307f8b848457c21fb586d2"
+    },
+    {
+      "path": "focused-meteor-green-v4-report.json",
+      "bytes": 6516,
+      "sha256": "3c985fa42dcb069d216f05da12890f3dfa7e98dd8eba4767e4430108d5da909c"
+    },
+    {
+      "path": "focused-meteor-green-v4.log",
+      "bytes": 385,
+      "sha256": "5ae850cabf76abfef64f89ec7f8afd891dc26832c1fcce63f27ff535a023350f"
+    },
+    {
+      "path": "focused-meteor-green-v4.meta.json",
+      "bytes": 692,
+      "sha256": "9e83d4f202682e1a495e2e5640370f492f0c1930bd5ecd154d30492e26dac76d"
+    },
+    {
+      "path": "focused-meteor-green-v4.process.json",
+      "bytes": 305,
+      "sha256": "a85db2a5253d046b6ae04f7aa7355ecddcc97836a4b50c43fc2223af4f6d1047"
+    },
+    {
+      "path": "focused-meteor-green-v4.processes.json",
+      "bytes": 4531,
+      "sha256": "0c26062b5b2c4cfdd7ce3ac4102aed995350f033451f15e9ff1809fecc51f3f2"
+    },
+    {
+      "path": "focused-meteor-red-v3-report.json",
+      "bytes": 12468,
+      "sha256": "f32930938dadf1cb9dd22fe5c6aab57cef3b5a60c0aec5a4f38bc4e0f2ed3c89"
+    },
+    {
+      "path": "focused-meteor-red-v3.log",
+      "bytes": 381,
+      "sha256": "a4db078dc18803c40c8dbd33d694e6c5284262da99fe00fb6513002cc716b190"
+    },
+    {
+      "path": "focused-meteor-red-v3.meta.json",
+      "bytes": 691,
+      "sha256": "3ab15a3ba505d5293d2af3947c60b2163f9f8ceddd81b20ccd107234df5c34c0"
+    },
+    {
+      "path": "focused-meteor-red-v3.process.json",
+      "bytes": 303,
+      "sha256": "fc24864affacb849b243409ab771dcddc5421742aae2fa2c0ab911311b6253e0"
+    },
+    {
+      "path": "focused-meteor-red-v3.processes.json",
+      "bytes": 4535,
+      "sha256": "df5824840a5cedf9ac47afb481645fab6d1150362c4a70b23496414d3dcc2deb"
+    },
+    {
+      "path": "font-cache/2300eef321c393bfd76478a5c0e95b23-le64.cache-11",
+      "bytes": 393872,
+      "sha256": "8861cc36cc5953cc12ccbee20eb3b0e6fbcfa990e85b5cd10b2ff76a5b6b0277"
+    },
+    {
+      "path": "font-cache/2300eef321c393bfd76478a5c0e95b23-le64.cache-9",
+      "bytes": 382728,
+      "sha256": "122848541dc5ab4339995c4877e22dc7e7b4feb9b2c1fd41788ebde8c33237c8"
+    },
+    {
+      "path": "font-cache/3830d5c3ddfd5cd38a049b759396e72e-le64.cache-11",
+      "bytes": 152,
+      "sha256": "b968bea71ccee883f558ca26e09f5dc231bf15deaadfdb6b370f9eaa7e4622cc"
+    },
+    {
+      "path": "font-cache/3830d5c3ddfd5cd38a049b759396e72e-le64.cache-9",
+      "bytes": 144,
+      "sha256": "c6d83f8d247664c7af2b020f04956649b1611af2bfae2d932d5a8cdd48b641ec"
+    },
+    {
+      "path": "font-cache/4c599c202bc5c08e2d34565a40eac3b2-le64.cache-11",
+      "bytes": 112,
+      "sha256": "fe46a022ec1a1ff92eab961448a82538687fa7721f558aaee00c3eac7396a1e0"
+    },
+    {
+      "path": "font-cache/4c599c202bc5c08e2d34565a40eac3b2-le64.cache-9",
+      "bytes": 104,
+      "sha256": "3094e470b4326d531a559219d768eb1c6b09818dc268044287ce79566d281f27"
+    },
+    {
+      "path": "font-cache/7ef2298fde41cc6eeb7af42e48b7d293-le64.cache-11",
+      "bytes": 216,
+      "sha256": "288954084182115fa019f18607b4ffd245edbb3e6a7f3adfdbb27e6dabed962b"
+    },
+    {
+      "path": "font-cache/7ef2298fde41cc6eeb7af42e48b7d293-le64.cache-9",
+      "bytes": 208,
+      "sha256": "ec22cb2c3529c6983d5430532a990d049985683fa130fd59a603f269b5945361"
+    },
+    {
+      "path": "font-cache/86afad68834e5c2577402b158f4f8b5b-le64.cache-11",
+      "bytes": 192856,
+      "sha256": "89509f6c604f10d9c125da84acdc5ee59dd4292c2f8e23919b9743c2c742f63b"
+    },
+    {
+      "path": "font-cache/86afad68834e5c2577402b158f4f8b5b-le64.cache-9",
+      "bytes": 188240,
+      "sha256": "eebf05b48684fcff7b1a8d05fd4c19edc4a5b47c4f39407850f5121fe28fb736"
+    },
+    {
+      "path": "font-cache/d589a48862398ed80a3d6066f4f56f4c-le64.cache-11",
+      "bytes": 21472,
+      "sha256": "766c3accc95afbac360d414fb1e5dc3e0ede1a01b0eefa98673f42967642fdd0"
+    },
+    {
+      "path": "font-cache/d589a48862398ed80a3d6066f4f56f4c-le64.cache-9",
+      "bytes": 21080,
+      "sha256": "8392cd47564146bf6d75bee8aa1d743fb8f843141a8b58a8b84a9cdc0889fb25"
+    },
+    {
+      "path": "font-cache/e391955f17239bb212308aad2dd21a7a-le64.cache-11",
+      "bytes": 13616,
+      "sha256": "91b2ad804f9e335e99671d280388e7f846b77430971f817e8f58d15cc4998504"
+    },
+    {
+      "path": "font-cache/e391955f17239bb212308aad2dd21a7a-le64.cache-9",
+      "bytes": 13560,
+      "sha256": "9a759335b0f23a9444d0c9da15068bd5c909cad4c14df9cbb1c938e4e78b3088"
+    },
+    {
+      "path": "fonts.conf",
+      "bytes": 380,
+      "sha256": "1fe0c25e9612442d54c7d8a3dbccdf535b811ad2691d98f60c7c6eb81eb95d7f"
+    },
+    {
+      "path": "lint-meteor-browser-v2.log",
+      "bytes": 196,
+      "sha256": "71ca09fe41441a5522c973ac21ceb661ee9717b9d6c9a6954e790f55cbd9c84d"
+    },
+    {
+      "path": "lint-meteor-browser-v2.meta.json",
+      "bytes": 452,
+      "sha256": "c1724bdf47f9bb98f611201fa8a819bc705120e8aebde648452fa4164610ea09"
+    },
+    {
+      "path": "lint-meteor-browser-v2.process.json",
+      "bytes": 86,
+      "sha256": "fe07a82f2e7904a4e768bfc941dde3f2ffc6d8aafbc335bd1860c1d406f573d1"
+    },
+    {
+      "path": "lint-meteor-browser-v2.processes.json",
+      "bytes": 534,
+      "sha256": "31741eb8dfbd835a158d7c5d7138c57b4cd73c0590ca9486b9da30a0ef06af50"
+    },
+    {
+      "path": "lint-meteor-v3.log",
+      "bytes": 524,
+      "sha256": "c28c6439f224a2900aa046ac568aae16430ccde8a71d77b89ec302337803bbef"
+    },
+    {
+      "path": "lint-meteor-v3.meta.json",
+      "bytes": 451,
+      "sha256": "eed1521f3ec3fff545f08a4f97d2a34c939a8b97eef3f5a4cc335469c26463ac"
+    },
+    {
+      "path": "lint-meteor-v3.process.json",
+      "bytes": 86,
+      "sha256": "6bd08e47ea2c7380c0f9ae9a9a96eddcb1ab8b03f11bb7ba6f3881e6d401256f"
+    },
+    {
+      "path": "lint-meteor-v3.processes.json",
+      "bytes": 687,
+      "sha256": "dd51e83d743804cf34c71aa71af5758f0d4db653fb0a087057c49450ce12c2c8"
+    },
+    {
+      "path": "lint-meteor-v4.log",
+      "bytes": 196,
+      "sha256": "71ca09fe41441a5522c973ac21ceb661ee9717b9d6c9a6954e790f55cbd9c84d"
+    },
+    {
+      "path": "lint-meteor-v4.meta.json",
+      "bytes": 451,
+      "sha256": "48c0109f4cd49d070c4ab245d31bfa3e1d95226ce34a2eee09f16ca21b354390"
+    },
+    {
+      "path": "lint-meteor-v4.process.json",
+      "bytes": 86,
+      "sha256": "b154f7ee68ac8c8075747c4983a0c36e03d552759ef2f187bd8a2c2a9e707cdb"
+    },
+    {
+      "path": "lint-meteor-v4.processes.json",
+      "bytes": 688,
+      "sha256": "e8328a7e19011fb7fd007127fd4821c6c8dc58efcee60819f17d649605efa609"
+    },
+    {
+      "path": "lint-v3-diagnosis.txt",
+      "bytes": 334,
+      "sha256": "60184c02e5da56978296b2b39533009fbc9486d3c56fed74a223eda220d6a280"
+    },
+    {
+      "path": "meteor-browser-contract.v1.md",
+      "bytes": 1766,
+      "sha256": "b41c155f0f1d5b8e5dc3e4e6ea9c0f7f0c88643eb61d9f7d3491c2fc69d9a35d"
+    },
+    {
+      "path": "meteor-browser-contract.v2.md",
+      "bytes": 1794,
+      "sha256": "dc89b3ab453129b84b1bb47d7c14dbf79f3e318d3faab54cca98e7f657c762ec"
+    },
+    {
+      "path": "meteor-evidence.v1.draft.md",
+      "bytes": 6283,
+      "sha256": "2952ec0abfecc2afe5d70e25d12b42fb063be89f62897643c06086cb31a15a14"
+    },
+    {
+      "path": "meteor-evidence.v2.draft.md",
+      "bytes": 6515,
+      "sha256": "73dfbcd922f11d1c96e980b07b39a209a33eb70c4f96e1e74628d65584cf2b38"
+    },
+    {
+      "path": "meteor-evidence.v3.draft.md",
+      "bytes": 6677,
+      "sha256": "cad39b88f958abab376380c140ae4e93cba60d11db704523b29b1c7bfb7ed39f"
+    },
+    {
+      "path": "meteor-ui-plan.v1.draft.md",
+      "bytes": 4052,
+      "sha256": "ec9a47b8c36795965f22f951d750b51c23bcc179ce48c0501cd91529ec4fddc8"
+    },
+    {
+      "path": "meteor-ui-plan.v2.approved.md",
+      "bytes": 4098,
+      "sha256": "0f415b37bd3842c58b4d0c556e756e4a074ef655491774b83b40e47623f521a2"
+    },
+    {
+      "path": "meteor.config.v1.draft.ts",
+      "bytes": 1083,
+      "sha256": "b71a09a15cf1907d78ecbf0710a2c833e448a80a9a6921da98a10a3d53311873"
+    },
+    {
+      "path": "meteor.spec.v1.draft.ts",
+      "bytes": 13119,
+      "sha256": "1d6a4dfe00593ed9be1afb5b6f265d731e8c366e8f74f084ac716e144347ace5"
+    },
+    {
+      "path": "meteor.spec.v2.draft.ts",
+      "bytes": 13418,
+      "sha256": "65e11246f4f45a8fe81032e8d402b2910aeff3ac6100659f3c69d93aa5b38d14"
+    },
+    {
+      "path": "plan-reviews.txt",
+      "bytes": 482,
+      "sha256": "c90ec8d144831dc145c9d07c56c37fbae1a895d9d0824b12e4df8480e6b55663"
+    },
+    {
+      "path": "security-check.txt",
+      "bytes": 352,
+      "sha256": "dc02ce0d56c96169beab19ada3a7a165e0339c03aa3bd1cd46d9ed4ac4692597"
+    },
+    {
+      "path": "skills.en.v1.draft.json",
+      "bytes": 43425,
+      "sha256": "ef5bb001c46a4a60d0cfc83c593b08729163524a60aac804358e9ecbaa8f8111"
+    },
+    {
+      "path": "skills.zh-CN.v1.draft.json",
+      "bytes": 40508,
+      "sha256": "3cd27fd8740c1e88c29b76d5a8a82ce9fcd643b5df3fd7432573502ce7a9d652"
+    },
+    {
+      "path": "source-draft.v1.fingerprints.json",
+      "bytes": 306,
+      "sha256": "9467529276bebe0a8d2e08e7dd806b80fc9e0d181980e75fef98613b37d92dcf"
+    },
+    {
+      "path": "source-gates-root-verification.json",
+      "bytes": 261,
+      "sha256": "bf994d744246a94a64f0a68a35c3a12b96c0c017f9ef431aaca4df70260e3563"
+    },
+    {
+      "path": "source-producer-final-review.txt",
+      "bytes": 343,
+      "sha256": "f70f74c51ebf6aabd956fbbc9562bf47d409858da0edc7db604dc75b56a2c49e"
+    },
+    {
+      "path": "source-qa-final-review.txt",
+      "bytes": 640,
+      "sha256": "b3949794684fdf696b7126268b87af8283e4b26f5f6691be0dd17dbcc894371f"
+    },
+    {
+      "path": "source-v4-freeze.json",
+      "bytes": 2363,
+      "sha256": "962639ac82462f75b4ce31eee12f3d51f0581803674969f0015f626033120a86"
+    },
+    {
+      "path": "source-v4.diff",
+      "bytes": 2916,
+      "sha256": "a7b3f6bcdf6c168a4e3e7b46819c23a4470bbd9e7a810ad6f8157000926911c8"
+    },
+    {
+      "path": "task-ownership.json",
+      "bytes": 530,
+      "sha256": "e26dbe7c2492f1da18a986c306dc41e7fa6cca46a51b9bc951e6730f9a4e5ff6"
+    },
+    {
+      "path": "test-preinstallation-review.txt",
+      "bytes": 732,
+      "sha256": "51b156e938a89555f95b37ebc05c40b9ccc2d1b932a685c2ccd9b236f7326931"
+    },
+    {
+      "path": "types-meteor-browser-v2.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "path": "types-meteor-browser-v2.meta.json",
+      "bytes": 457,
+      "sha256": "ecf65fab66911309a1f8d27efda17c32fd8571c2136c5567dc6ab736350d0b40"
+    },
+    {
+      "path": "types-meteor-browser-v2.process.json",
+      "bytes": 91,
+      "sha256": "fb8beaa54ccd6de6cc7120e0b4eba63ecf78b4dc015bf8e16880f4d3c87632c7"
+    },
+    {
+      "path": "types-meteor-browser-v2.processes.json",
+      "bytes": 534,
+      "sha256": "4cab44ceab6aabb682a7e3f2e709a9bbffc9d8a50a7979f799d65cd4124583ea"
+    },
+    {
+      "path": "types-meteor-v3.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "path": "types-meteor-v3.meta.json",
+      "bytes": 454,
+      "sha256": "766aeeea252a2fbe56ce4e37806717290de63140639162ce8d5c97778d83f6a5"
+    },
+    {
+      "path": "types-meteor-v3.process.json",
+      "bytes": 91,
+      "sha256": "022ddc4a048245af783177b5a859b82598b92cdcfe125f6e8ab32b81c0066cf3"
+    },
+    {
+      "path": "types-meteor-v3.processes.json",
+      "bytes": 534,
+      "sha256": "437eca500f0085aa76f46ec022d9660fdaf3cfe9efca16e4030ef93416c9ba4f"
+    },
+    {
+      "path": "types-meteor-v4.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    {
+      "path": "types-meteor-v4.meta.json",
+      "bytes": 455,
+      "sha256": "8c4241db9e3bd099a9354fa9a10f429d6bc818a2fb810dacbcbf65601aaf6772"
+    },
+    {
+      "path": "types-meteor-v4.process.json",
+      "bytes": 91,
+      "sha256": "c418dbd06c08c967c0a4532da9e03d5fa3912a8ce8618d070fc513db9d9a45ac"
+    },
+    {
+      "path": "types-meteor-v4.processes.json",
+      "bytes": 534,
+      "sha256": "cf3ab47a897a4f2ab0c4323fccd819f930c4b7fc2276e31dd50f119bf1575065"
+    },
+    {
+      "path": "unit-meteor-v4-report.json",
+      "bytes": 1844070,
+      "sha256": "3247e6fc13fa26235a085f20ca49846da0d98ad9a23d9dd0433daaa8be5e2f7f"
+    },
+    {
+      "path": "unit-meteor-v4.log",
+      "bytes": 305,
+      "sha256": "bef081ed2fd189988db8c635696af51f7a9d9ae96e7c118cf4d6d2c92afc19a5"
+    },
+    {
+      "path": "unit-meteor-v4.meta.json",
+      "bytes": 606,
+      "sha256": "3c422e331a7df88132b62fa0f0e1a471bd2a5d88af6f36966629bf03b34250c7"
+    },
+    {
+      "path": "unit-meteor-v4.process.json",
+      "bytes": 225,
+      "sha256": "efd0dc63189d5ad06e8a5386a0dd853275f95e671ef546b87c4466e4e5e15543"
+    },
+    {
+      "path": "unit-meteor-v4.processes.json",
+      "bytes": 130903,
+      "sha256": "b07fd636442690babf29feec3b807b9f20814785759dfd1d4c6342d2da707e74"
+    }
+  ],
+  "rawDirectories": [
+    "attachments",
+    "attachments/meteor-Meteor-native-alloc-51bcb--disk-reload-and-layouts-en-meteor-production",
+    "attachments/meteor-Meteor-native-alloc-95369-sk-reload-and-layouts-zh-CN-meteor-production",
+    "browser-cache",
+    "browser-review",
+    "font-cache"
+  ],
+  "finalClosureVerification": {
+    "stage": "after bounded closure commit; evidence/ledger/artifact self references excluded",
+    "head": "6e39e4d8ad66d1aa4b3194298c47bd7edec3b897",
+    "files": {
+      "src/features/skills/SkillsScreen.tsx": {
+        "bytes": 49230,
+        "sha256": "af544a4f4e8e5cd4680f5b2de5eac0e6dcf6c60c645fd49543c6cec1deb8e898"
+      },
+      "src/features/skills/SkillsScreen.meteor.test.tsx": {
+        "bytes": 11109,
+        "sha256": "f2148e7f10c02197fd5368a492992982a588ef3cbe26e96dcd4a15562a7c5d45"
+      },
+      "src/i18n/locales/en/skills.json": {
+        "bytes": 43425,
+        "sha256": "ef5bb001c46a4a60d0cfc83c593b08729163524a60aac804358e9ecbaa8f8111"
+      },
+      "src/i18n/locales/zh-CN/skills.json": {
+        "bytes": 40508,
+        "sha256": "3cd27fd8740c1e88c29b76d5a8a82ce9fcd643b5df3fd7432573502ce7a9d652"
+      },
+      "src/engine/skills/armor-melt.ts": {
+        "bytes": 1535,
+        "sha256": "5510acb3ccea6c985a6c22cae42ba845497a38a4cb218f22654e79d8f0918ca4"
+      },
+      "src/data/skills/sorceress.json": {
+        "bytes": 21392,
+        "sha256": "8afeb772787021bf68c43571d1e6a400c1a0f24bc1859eb228f4c4d1dc78532d"
+      },
+      "src/engine/skills/registry.ts": {
+        "bytes": 2929,
+        "sha256": "f1be910bca5e0a7262c1b8e48d9c7390b725a127e6e5415832486857ad5ec204"
+      },
+      "src/engine/skills/dataCatalog.ts": {
+        "bytes": 8907,
+        "sha256": "6bd86af9cd6393f688e48439a3a8279329818ae23970bbf8807ec8b947fa0322"
+      },
+      "src/stores/playerStore.ts": {
+        "bytes": 11811,
+        "sha256": "54527cf48e8f849425f80cef5dddabc9db02ba820291e383acbc6f4eaa365faa"
+      },
+      "src/stores/combatHelpers.ts": {
+        "bytes": 30318,
+        "sha256": "83b713ddd9db48303a44877098a31b1df5d67ea744ebcb420b95392835af5532"
+      },
+      "src/stores/combatStore.ts": {
+        "bytes": 10955,
+        "sha256": "754c5e1235c30987b8ae875912e68bf435a9643cc42b27d8453480f108cba73b"
+      },
+      "src/engine/skills/displayStats.ts": {
+        "bytes": 11270,
+        "sha256": "f2d243165f0e3a0133ff372fa87920638c7cd00022cb4cb8c53524f6556fb05e"
+      },
+      "docs/plans/decisions/D04-armor-melt-v1.md": {
+        "bytes": 4782,
+        "sha256": "331a99630e9c692ee95ae5f37648e7300d51953bfd49ae59f2768d751fa005b5"
+      },
+      "docs/plans/p08a08d-meteor-ui.md": {
+        "bytes": 5047,
+        "sha256": "18195d9e167c99aed098d7c00c32df32aa517ee321640136e3a4237d604e6ea3"
+      },
+      "production/bugs/BUG-069-meteor-details.md": {
+        "bytes": 4012,
+        "sha256": "5ce0e34f0ee02444f833eb59daf71eaebfbae274f509bb9f26846dd18d29f59e"
+      },
+      "tests/pwa/meteor.config.ts": {
+        "bytes": 1083,
+        "sha256": "b71a09a15cf1907d78ecbf0710a2c833e448a80a9a6921da98a10a3d53311873"
+      },
+      "tests/pwa/meteor.spec.ts": {
+        "bytes": 13418,
+        "sha256": "65e11246f4f45a8fe81032e8d402b2910aeff3ac6100659f3c69d93aa5b38d14"
+      }
+    },
+    "changedFromBrowserFreeze": [
+      "docs/plans/p08a08d-meteor-ui.md",
+      "production/bugs/BUG-069-meteor-details.md"
+    ],
+    "processRecords": 12,
+    "uniqueAbsentBirths": 968,
+    "signals": [],
+    "outputsAbsent": 761,
+    "utc": "2026-10-21T11:47:25.557854+00:00"
+  },
+  "historicalFreeze": "browser-v2-freeze.json retains preclosure stage; only control and BUG report deliberately changed at closure",
+  "preserved": "actual RED, lint failure, unexecuted drafts/corrections, reviews, all logs/reports/browser attachments/screenshots/source fingerprints/process births/output receipts and task-local caches",
+  "validation": {
+    "focused": 20,
+    "unitPassed": 5444,
+    "unitFiles": 201,
+    "browserPassed": 2,
+    "screenshots": 18,
+    "locales": [
+      "en",
+      "zh-CN"
+    ],
+    "fullUnitsSeconds": 88.431,
+    "unitBoundSeconds": 120,
+    "ordinaryUnitTargetSeconds": 15
+  },
+  "scope": "bounded presentation/finite Chromium CSS/same-context save; no native cast/earned progression/balance/performance/full accessibility/full private-v1 acceptance",
+  "rawCleanup": {
+    "status": "pending independent archive review and commit",
+    "retainedEmptyRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-meteor-ui-68uhit_n"
+  },
+  "createdUtc": "2026-10-21T11:47:25.557854+00:00",
+  "independentDurableReview": {
+    "kind": "root transcription of QA review",
+    "verdict": "APPROVE",
+    "verified": "all149safe regularmembers/livebytes/exactset/6childdirs;17closurefingerprints/live+6e39e4d;12records/968absentbirths;761outputs/10dirs absent;originalcheckoutclean;failures/drafts/33browserattachments18PNGs preserved",
+    "readersReleased": true,
+    "cleanupScope": "only149manifestfiles and6empty childdirectories after commit/reverification; retain root/sharedparents"
+  }
+}

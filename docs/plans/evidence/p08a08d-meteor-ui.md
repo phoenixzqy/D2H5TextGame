@@ -103,3 +103,8 @@ After commit `a3bc6bb` and all readers released, root removed exactly761files/
 remaining outputs/failures. Shared Vitest cache parents are retained. Durable
 packet/archive verification and exact RAW cleanup remain pending; preserve the empty RAW root, shared parents,
 installed fonts/browsers/tools/dependencies and all source/history. No remote action.
+
+
+## Durable packet
+
+[Packet](fixtures/p08a08d-meteor-ui/packet.json) and adjacent lossless archive preserve 149 regular files/7,550,936B. Root verified every member against live RAW. Final closure fingerprints explicitly distinguish the two intentionally changed control/report documents from the historical browser freeze. All12 command records/968 process births and761 removed outputs freshly absent. Independent durable review and archive commit precede exact RAW cleanup; root retains ownership until its receipt.

@@ -2901,3 +2901,8 @@ records/968uniqueprocessbirths freshlyabsent,0signals. Exact761disposablefiles/
 40,979,191B/10distdirectories removed; sharedcacheparents/font/tools preserved.
 Durablepacket/archive and exactRAWcleanup pending separate increments; rootownsRAW.
 Claimcontinues,noremote; fullD04/P08/C1/private-v1/C0–C4/G0–G7 remainopen.
+
+
+## P08a08D durable packet prepared
+
+[Packet](evidence/fixtures/p08a08d-meteor-ui/packet.json) binds 149lossless members/7,550,936B, staged final fingerprints and original failures/drafts/reviews/browser evidence. Root byte-roundtrip verified; all12records/968births/761outputs absent. Independent archive review and commit precede exact RAW cleanup; retain empty root/shared parents/source/history/fonts/tools. Umbrella claim continues; fullv1 open, no remote action.
