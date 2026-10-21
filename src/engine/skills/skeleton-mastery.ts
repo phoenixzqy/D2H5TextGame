@@ -3,6 +3,7 @@ import necromancerSkills from '../../data/skills/necromancer.json';
 import skillSchema from '../../data/schema/skill.schema.json';
 import type { SkillDef } from '../types/skills';
 import type { Player } from '../types/entities';
+import type { DerivedStats } from '../types/attributes';
 import { inferKind, type CombatUnit } from '../combat/types';
 
 /** Independent authored unlock and potency for player Skeleton Mastery. */
@@ -77,6 +78,29 @@ export function composeSkeletonMastery(
     summonDefensePct: rank * definition.summonDefensePctPerRank });
 }
 
+function isValidProjection(projection: SkeletonMasteryProjection | undefined): projection is SkeletonMasteryProjection {
+  return !!projection && Number.isInteger(projection.rank) && projection.rank > 0 &&
+    Number.isInteger(projection.maxRank) && projection.maxRank > 0 && projection.rank <= projection.maxRank &&
+    Number.isFinite(projection.summonLifePct) && projection.summonLifePct >= 0 &&
+    Number.isFinite(projection.summonAttackPct) && projection.summonAttackPct >= 0 &&
+    Number.isFinite(projection.summonDefensePct) && projection.summonDefensePct >= 0;
+}
+
+/**
+ * Copy the three Mastery-scaled stats without rounding or changing current life.
+ * Callers establish skill/template eligibility; runtime callers also establish owner provenance.
+ * An absent or malformed projection leaves the input unchanged.
+ */
+export function applySkeletonMasteryStats<T extends Pick<DerivedStats, 'lifeMax' | 'attack' | 'defense'>>(
+  stats: T,
+  projection: SkeletonMasteryProjection | undefined
+): T {
+  if (!isValidProjection(projection)) return stats;
+  return { ...stats, lifeMax: stats.lifeMax * (1 + projection.summonLifePct),
+    attack: stats.attack * (1 + projection.summonAttackPct),
+    defense: stats.defense * (1 + projection.summonDefensePct) };
+}
+
 /**
  * Decorate only a freshly built skeleton/mage, once, before runtime identity allocation.
  * The engine supplies its current encounter owner. This validates provenance within
@@ -88,11 +112,7 @@ export function empowerSkeletonSummon(
   currentOwner: CombatUnit,
   freshSummon: CombatUnit
 ): CombatUnit {
-  if (!projection || !Number.isInteger(projection.rank) || projection.rank <= 0 ||
-    !Number.isInteger(projection.maxRank) || projection.maxRank <= 0 || projection.rank > projection.maxRank ||
-    !Number.isFinite(projection.summonLifePct) || projection.summonLifePct < 0 ||
-    !Number.isFinite(projection.summonAttackPct) || projection.summonAttackPct < 0 ||
-    !Number.isFinite(projection.summonDefensePct) || projection.summonDefensePct < 0 ||
+  if (!isValidProjection(projection) ||
     currentOwner.id !== projection.sourceHeroId || currentOwner.side !== 'player' ||
     inferKind(currentOwner) !== 'hero' || !Number.isFinite(currentOwner.life) || currentOwner.life <= 0 ||
     currentOwner.summon === true || currentOwner.ownerId !== undefined || currentOwner.summonOwnerId !== undefined ||
@@ -102,8 +122,6 @@ export function empowerSkeletonSummon(
     (freshSummon.summonTemplateId !== 'skeleton' && freshSummon.summonTemplateId !== 'skeletal_mage')) {
     return freshSummon;
   }
-  const lifeMax = freshSummon.stats.lifeMax * (1 + projection.summonLifePct);
-  return { ...freshSummon, life: lifeMax, stats: { ...freshSummon.stats, lifeMax, life: lifeMax,
-    attack: freshSummon.stats.attack * (1 + projection.summonAttackPct),
-    defense: freshSummon.stats.defense * (1 + projection.summonDefensePct) } };
+  const stats = applySkeletonMasteryStats(freshSummon.stats, projection);
+  return { ...freshSummon, life: stats.lifeMax, stats: { ...stats, life: stats.lifeMax } };
 }

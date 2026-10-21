@@ -53,3 +53,25 @@ through current/next/unlearned preview; exclude Revive and unrelated/synthetic
 identities. UI formats fractional values and deltas without floating residue,
 while engine fractions stay unchanged. Bilingual identity copy is separate
 presentation work; full-skill/earned/balance acceptance remains open.
+
+
+## Pure display foundation (screen correction still pending)
+
+The optional typed current-Mastery input now reaches both pure current/next
+resolvers. Exact authored/canonical Skeleton and Mage identities also require
+matching explicit templates. Absent/malformed context, Revive and lookalikes keep
+their base rows. Shared three-stat multiplication preserves engine fractions;
+existing runtime projection/owner/template guards and fresh life assignment stay
+in place. Inputs remain unchanged. SkillsScreen wiring, display formatting,
+bilingual identity copy and production-browser acceptance remain pending, so this
+bug remains open.
+
+Regression tests first reproduced ten incorrect base-stat previews (34 controls
+passed); 40 new cases cover aliases, Mastery1/10/20/capping, current/next/unlearned
+rank1, cap boundaries, malformed context and exclusions. Focused355/3files passed.
+Final serial checks: engine3141/83files13.22s, full6021/209files94.36s,
+typecheck13.460s, lint35.286s and isolated production build9.537s (wrapper timings
+where no Vitest duration is given). Original initial typecheck failure came from
+an absent-template test using explicit undefined under exactOptionalPropertyTypes;
+the fixture now removes the property. Final checks pass; no contract was weakened.
+The engine3s/full15s targets and existing bundle/precache warnings remain unmet.

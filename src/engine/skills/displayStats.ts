@@ -11,6 +11,7 @@
 import type { DamageType } from '../types/attributes';
 import { maxFirstThreeThenEveryThreeForLevel, maxSkeletonsForLevel } from './scaling';
 import { getSummonStats } from './summons';
+import { applySkeletonMasteryStats, type SkeletonMasteryProjection } from './skeleton-mastery';
 
 export interface DisplaySkillSource {
   readonly id: string;
@@ -197,14 +198,23 @@ function inferSummonId(skill: DisplaySkillSource): string | undefined {
   return undefined;
 }
 
-function summonUnit(skill: DisplaySkillSource, rank: number): SkillSummonDisplayStats | undefined {
+function summonUnit(
+  skill: DisplaySkillSource,
+  rank: number,
+  mastery: SkeletonMasteryProjection | undefined
+): SkillSummonDisplayStats | undefined {
   const summonId = inferSummonId(skill);
   if (!summonId) return undefined;
-  const stats = getSummonStats(summonId, {
+  const baseStats = getSummonStats(summonId, {
     skillLevel: rank,
     statScaling: skill.scaling?.summonStatsPerLevel
   });
-  if (!stats) return undefined;
+  if (!baseStats) return undefined;
+  const receivesMastery = (skill.summonId === 'skeleton' &&
+    (skill.id === 'skills-necromancer-raise-skeleton' || skill.id === 'necromancer.raise_skeleton')) ||
+    (skill.summonId === 'skeletal_mage' &&
+      (skill.id === 'skills-necromancer-raise-skeletal-mage' || skill.id === 'necromancer.raise_skeletal_mage'));
+  const stats = receivesMastery ? applySkeletonMasteryStats(baseStats, mastery) : baseStats;
   return {
     summonId,
     nameKey: `details.summonName.${summonId}`,
@@ -261,10 +271,11 @@ function passiveUtilityRows(skill: DisplaySkillSource, rank: number): readonly S
   return rows;
 }
 
-/** Resolve a skill's display rows at one rank. */
+/** Resolve one rank's rows with the eligible current Mastery from composeSkeletonMastery, when supplied. */
 export function computeSkillRankDisplayStats(
   skill: DisplaySkillSource,
-  rank: number
+  rank: number,
+  mastery?: SkeletonMasteryProjection
 ): SkillRankDisplayStats {
   const safeRank = clampRank(rank, skill.maxLevel);
   const damage = damageRows(skill, safeRank);
@@ -275,7 +286,7 @@ export function computeSkillRankDisplayStats(
       }
     : undefined;
   const resolvedSummonCap = summonCap(skill, safeRank);
-  const resolvedSummonUnit = summonUnit(skill, safeRank);
+  const resolvedSummonUnit = summonUnit(skill, safeRank, mastery);
   const utility = passiveUtilityRows(skill, safeRank);
   const manaCost = scaleCost(skill.cost?.mana, skill.scaling?.costPerLevel ?? 0, safeRank);
   const lifeCost = scaleCost(skill.cost?.life, skill.scaling?.costPerLevel ?? 0, safeRank);
@@ -295,10 +306,11 @@ export function computeSkillRankDisplayStats(
   };
 }
 
-/** Resolve current and next-level display state for a skill allocation. */
+/** Resolve current and next skill ranks using the same eligible current allocated Mastery projection. */
 export function computeSkillDisplayModel(
   skill: DisplaySkillSource,
-  allocatedLevel: number
+  allocatedLevel: number,
+  mastery?: SkeletonMasteryProjection
 ): SkillDisplayModel {
   const maxLevel = Math.max(1, Math.floor(skill.maxLevel));
   const allocated = Math.max(0, Math.floor(allocatedLevel));
@@ -311,8 +323,8 @@ export function computeSkillDisplayModel(
     maxLevel,
     displayRank,
     ...(nextRank !== undefined ? { nextRank } : {}),
-    ...(allocated > 0 ? { current: computeSkillRankDisplayStats(skill, displayRank) } : {}),
-    ...(nextRank !== undefined ? { next: computeSkillRankDisplayStats(skill, nextRank) } : {}),
+    ...(allocated > 0 ? { current: computeSkillRankDisplayStats(skill, displayRank, mastery) } : {}),
+    ...(nextRank !== undefined ? { next: computeSkillRankDisplayStats(skill, nextRank, mastery) } : {}),
     maxed
   };
 }

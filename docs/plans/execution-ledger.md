@@ -3127,3 +3127,27 @@ release and reviewed durable retention/exact cleanup. Runtime build760files/
 40,968,505B is diagnostic evidence input, not a requested deliverable. FullD06/P09/
 P10, corpse consumers, selected-itemIron, browser acceptance and private-v1 remain
 open; umbrella claim continues.
+
+
+## BUG073 pure display foundation
+
+Following bug-publication commit `151b329`, optional typed eligible current
+Skeleton Mastery context now feeds both pure current/next summon display ranks.
+Shared three-stat arithmetic retains fractions and all runtime provenance guards;
+fresh life assignment remains runtime-owned. Only exact canonical/authored
+Skeleton/Mage plus matching explicit templates receive bonuses. Revive,
+lookalikes, mismatched/absent templates and malformed/absent projections preserve
+base rows. Ten genuine RED mismatches preceded the fix; 40 new regression cases
+cover aliases, Mastery/rank bounds, unlearned preview, immutability and exclusions.
+Focused355/3files passes. Final serial gates: engine3141/83files13.22s,
+full6021/209files94.36s (95.665s wrapper), typecheck13.460s, lint35.286s,
+production build9.537s. The initial test-fixture optional-property type failure
+and first full run remain in root's registered evidence. Final freeze records the
+five-path increment and build inventory. Engine3s/full15s and existing bundle/
+precache limits remain unmet; no performance claim.
+
+This foundation is not wired to SkillsScreen yet. BUG073 remains open pending
+UI/context/fraction formatting, truthful zh-CN/en descriptions and production
+browser checks. Full D06/P09/P10, earned progression/balance and private-v1 remain
+open. Root owns registered temporary artifacts until durable evidence/cleanup;
+the umbrella worktree claim continues, with no remote publication.
