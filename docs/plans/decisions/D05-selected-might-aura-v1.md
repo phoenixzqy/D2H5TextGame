@@ -89,3 +89,47 @@ save-shape changes retain versioning/validation/migration. No new network,
 credentials, permissions, dependencies, CI, remote action or validation bypass.
 Root removes exact task-owned disposables only after durable preservation,
 independent review and all consumers release; shared caches/source/history stay.
+
+## Save contract preparation and v10 cutover
+
+Use optional `Player.selectedAuraId?: 'paladin.might'`; absence means None.
+Clearing selection/respec omits the property, never stores present undefined.
+Historical LegacyPlayer omits this field and SaveV9 freezes its player shape
+before the current Player gains it. Preparation leaves CURRENT_SAVE_VERSION9
+and runtime unchanged; existing decode expectations follow CURRENT_SAVE_VERSION
+while explicit v9 inputs and migration8/9 evidence stay fixed.
+
+The following atomic five-path cutover adds Player selection, SaveV10/current10,
+version-only migration10, typed migration target9 and untrusted-save validation.
+Decode preserves the sequence: migrate earlier saves to7; validate frozen7/8;
+migrate to9; validate frozen9 with required finite nonnegative MR; migrate10;
+validate current selection. Historical schemas remain open to extensions and
+do not impose selector rules. Preserve a canonical historical extension; reject
+its malformed value at the current boundary rather than normalize or clear it.
+
+Current optional selection accepts only exact canonical paladin.might. Reject
+unknown/alias/empty strings, nonstrings, null and own undefined, including native
+IndexedDB inputs. Keep canonical wrong-class/unlearned/underlevel selections in
+persistence; eligibility is a later runtime/store concern. Preserve resources,
+all other slices, native Maps and source immutability; cover JSON/native round
+trips. Existing buildSave already preserves Player, so no adapter edit is needed.
+Each increment remains at most five paths and compiles before the next begins.
+
+## Explicit store selection increment
+
+Shared resolveEligibleMightRank checks exact Paladin class, finite character
+level at the copied unlock, then existing allocation-only rank. Selection and
+source alive checks remain outside. Store selectAura accepts unknown and returns
+ok/no-player/unsupported-aura/ineligible. Only null (None) and exact paladin.might
+are supported. Refusals publish nothing and preserve identity. Check eligibility
+before an already-selected Might no-op. Eligible same selection or absent None
+returns ok without publication. Selection changes only its slot; None physically
+omits the property, including when clearing an ineligible imported selection.
+Successful respec omits the field in its existing one publication; failed respec
+retains state. Learning, upgrading, combo edits and hydration never infer a
+selection. Allocation upgrades preserve an existing explicit selection.
+
+This store prerequisite does not activate an aura in combat. Native composition
+will check the saved canonical slot and shared eligibility at each wave input,
+then freeze source/rank/both potencies. Encounter source death is checked during
+each affected calculation; current store changes never alter an in-flight wave.

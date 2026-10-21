@@ -2,6 +2,7 @@ import Ajv2020 from 'ajv/dist/2020';
 import paladinSkills from '../../data/skills/paladin.json';
 import skillSchema from '../../data/schema/skill.schema.json';
 import type { SkillDef } from '../types/skills';
+import type { Player } from '../types/entities';
 
 /** Independent authored unlock and both player Might aura coefficients. */
 export interface MightDefinition {
@@ -46,4 +47,15 @@ export function resolveMightRank(
     }
   }
   return rank;
+}
+
+/** Eligible allocated rank; callers separately check explicit selection and encounter source life. */
+export function resolveEligibleMightRank(
+  player: Pick<Player, 'class' | 'level' | 'skillLevels'>,
+  definition: MightDefinition = MIGHT_DEFINITION
+): number {
+  if (player.class !== 'paladin' || !Number.isFinite(player.level) || player.level < definition.requiredLevel) {
+    return 0;
+  }
+  return resolveMightRank(player.skillLevels, definition);
 }

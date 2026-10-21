@@ -9,6 +9,7 @@ import type { CoreStats } from '@/engine/types/attributes';
 import type { Item } from '@/engine/types/items';
 import { deriveEquippedPlayerStats } from '@/engine/progression/equipped-stats';
 import { CORE_STAT_HARD_CAP } from '@/engine/progression/stats';
+import { resolveEligibleMightRank } from '@/engine/skills/might';
 import { awardXp, xpRequired, xpTotal, LEVEL_CAP } from '@/engine/progression/xp';
 import { useInventoryStore } from './inventoryStore';
 import {
@@ -51,6 +52,9 @@ const CORE_STAT_KEYS = ['strength', 'dexterity', 'vitality', 'energy'] as const;
 /** Result codes returned by {@link PlayerState.respec}. */
 export type RespecResult = 'ok' | 'no-player' | 'no-allocations' | 'insufficient-gold';
 
+/** Result of an explicit aura selection request; refusals never publish player state. */
+export type SelectAuraResult = 'ok' | 'no-player' | 'unsupported-aura' | 'ineligible';
+
 export interface GainExperienceResult {
   readonly levelsGained: number;
   readonly newLevel: number;
@@ -78,6 +82,8 @@ interface PlayerState {
    * throwing so the UI can render a tooltip.
    */
   allocateSkillPoint: (skillId: string) => AllocateSkillResult;
+  /** Select canonical eligible Might or null for None. Clearing omits the saved property. */
+  selectAura: (request: unknown) => SelectAuraResult;
   /** Recompute derived player stats from base stats and equipped item mods. */
   recomputeDerived: (equipped: Record<string, Item | null>) => void;
   /**
@@ -261,6 +267,21 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     return 'ok';
   },
 
+  selectAura: (request) => {
+    const player = get().player;
+    if (!player) return 'no-player';
+    if (request !== null && request !== 'paladin.might') return 'unsupported-aura';
+    if (request === null) {
+      if (!Object.hasOwn(player, 'selectedAuraId')) return 'ok';
+      const { selectedAuraId: _selected, ...withoutAura } = player;
+      set({ player: withoutAura });
+      return 'ok';
+    }
+    if (resolveEligibleMightRank(player) === 0) return 'ineligible';
+    if (player.selectedAuraId !== request) set({ player: { ...player, selectedAuraId: request } });
+    return 'ok';
+  },
+
   recomputeDerived: (equipped) => { set((state) => {
     if (!state.player) return state;
     return {
@@ -283,9 +304,10 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     if (deps.getGold() < cost) return 'insufficient-gold';
     if (!deps.spendGold(cost)) return 'insufficient-gold';
 
+    const { selectedAuraId: _selected, ...withoutAura } = player;
     set({
       player: {
-        ...player,
+        ...withoutAura,
         skillPoints: player.skillPoints + totalPoints,
         skillLevels: {}
       }

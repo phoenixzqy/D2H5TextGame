@@ -77,7 +77,7 @@ describe('P07b02A exact player Might schema', () => {
   });
 });
 
-import { MIGHT_DEFINITION, resolveMightDefinition, resolveMightRank } from './might';
+import { MIGHT_DEFINITION, resolveMightDefinition, resolveMightRank, resolveEligibleMightRank } from './might';
 
 describe('P07b02A independent immutable player Might definition', () => {
   it('copies authored two-coefficient tuning and leaves the full source unchanged', () => {
@@ -159,5 +159,35 @@ describe('P07b02A allocation-only Might rank independent of selection and eligib
     expect(resolveMightRank({})).toBe(0);
     expect(resolveMightRank({ 'paladin-might': 20, 'skills-paladin.might': 20,
       'aura-might': 20, 'might': 20, 'selectedAuraId': 20, 'skills-paladin-holy-fire': 20 })).toBe(0);
+  });
+});
+
+
+describe('shared player Might eligibility independent of selection', () => {
+  const player = { class: 'paladin', level: 1, skillLevels: { 'paladin.might': 2 } };
+  it.each(['sorceress', 'amazon', 'necromancer', 'barbarian', 'druid', 'assassin', 'Paladin', ''])('rejects exact wrong class %s', cls => {
+    expect(resolveEligibleMightRank({ ...player, class: cls })).toBe(0);
+  });
+  it.each([NaN, Infinity, -Infinity, -1, 0])('rejects nonfinite or below-unlock level %s', level => {
+    expect(resolveEligibleMightRank({ ...player, level })).toBe(0);
+  });
+  it('requires allocated rank independently of class and marker ownership', () => {
+    expect(resolveEligibleMightRank({ class: 'paladin', level: 30 })).toBe(0);
+    expect(resolveEligibleMightRank({ ...player, skillLevels: {} })).toBe(0);
+    for (const rank of [0, -1, 1.5, NaN, Infinity]) {
+      expect(resolveEligibleMightRank({ ...player, skillLevels: { 'paladin.might': rank } })).toBe(0);
+    }
+    expect(resolveEligibleMightRank({ ...player, skillLevels: { 'aura-might': 20 } })).toBe(0);
+  });
+  it.each(['paladin.might', 'skills-paladin-might'])('accepts allocation alias %s at unlock and clamps cap', id => {
+    expect(resolveEligibleMightRank({ ...player, skillLevels: { [id]: 1 } })).toBe(1);
+    expect(resolveEligibleMightRank({ ...player, skillLevels: { [id]: 99 } })).toBe(20);
+  });
+  it('uses copied authored unlock/cap without changing the allocation-only resolver', () => {
+    const definition = resolveMightDefinition([{ ...authored(), requiredLevel: 7, maxLevel: 3 }]);
+    expect(resolveEligibleMightRank({ ...player, level: 6 }, definition)).toBe(0);
+    expect(resolveEligibleMightRank({ ...player, level: 7,
+      skillLevels: { 'paladin.might': 9, 'skills-paladin-might': 1 } }, definition)).toBe(3);
+    expect(resolveMightRank(player.skillLevels, definition)).toBe(2);
   });
 });
