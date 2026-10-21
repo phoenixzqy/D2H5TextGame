@@ -2992,3 +2992,17 @@ until then, preserve emptyroot/sharedparents/source/history/fonts/tools. Full D0
 P09/corpse3/selected-itemIron/earned/balance/private-v1/C0–C4/G0–G7 remain open.
 Next substantive card: separately reviewed D06 corpse-summon contract, no runtime
 change before that decision. Umbrella claim continues; no remote action.
+
+
+## D06 v1b committed archive and exact RAW cleanup
+
+Producer approved the final packet and five-path archive increment; `a167a1d`
+committed it before all-reader-release cleanup. Guarded removal verified the
+committed archive and exact live inventory, then removed 531 files / 22,257,641 B
+and 19 empty child directories, zero failures or remaining files. The
+[packet receipt](evidence/fixtures/d06-summon-preparation/packet.json) records
+28 fingerprints, 6,429 absent process births including zombies and 771 absent
+outputs. Empty RAW root, shared parents/fonts/tools/dependencies, source/history
+are preserved. No runtime rerun for this documentation-only receipt. Full D06/P09
+and private-v1 remain open; next is the separately reviewed corpse-summon contract.
+Umbrella claim continues, no remote action.

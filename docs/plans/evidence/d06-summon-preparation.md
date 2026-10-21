@@ -189,3 +189,22 @@ exact 531 manifest files and 19 empty child directories. Root retains the empty
 RAW root, shared parents/fonts/tools/dependencies, source and history. The packet
 will record the actual cleanup receipt; removal is not claimed at preparation.
 Umbrella claim continues; full D06/P09/private-v1 remains open.
+
+
+## Committed archive and verified RAW cleanup
+
+Producer approved the final 263,099-byte packet
+(`c1ec0c47afe2d2b2b264863dc07fc638cdd4ad076998cfb7b195ffa9f72b2dda`)
+and exact five-path archive increment. Commit `a167a1d` preserves the packet and
+lossless archive; all readers released before cleanup. The guarded script then
+revalidated the committed archive, all 531 live members, 28 source/document
+fingerprints, 6,429 absent process births including zombies, 771 absent outputs
+and the clean original checkout before removing exactly 531 files / 22,257,641
+bytes and 19 empty child directories. Zero failures and zero remaining files.
+
+The packet's `rawCleanup` records the actual receipt at
+2026-10-21T14:40:40.008404+00:00. The empty RAW root is retained; shared parents,
+fonts, installed tools/dependencies, source and Git history are preserved.
+The archive remains the durable source of original reports and attachments.
+Cleanup changed no runtime or tests; bounded acceptance and outstanding full-v1
+gates remain as stated above. Umbrella work continues into the corpse contract.

@@ -5193,9 +5193,39 @@
   "preserved": "All actual RED/failed/aborted/successful attempts, unexecuted drafts and corrections, source/evidence reviews, coverage, original browser base64 attachments and extracted copies, font-environment diagnostics and task-only cache, freezes, process observations and cleanup receipts",
   "scope": "Thirteen-skill paid preparation plus supported-name fix, imported-scaffold native browser/save/finite Chromium layouts; fullD06/P09,corpse3,selected-itemIron,earnedcampaign,balance,fulla11y,offline,performance,private-v1/C0-C4/G0-G7 open",
   "rawCleanup": {
-    "status": "pending",
+    "status": "complete",
     "owner": "root",
-    "requires": "Independent durable review and committed archive, exact manifest/live bytes/final source/output/process/original checks; remove only exact manifest files and empty childdirs, retain empty RAWroot/sharedparents/source/history/fonts/tools"
+    "archiveCommit": "a167a1dc93ad014faa8b819c41f49ddb4491ebf0",
+    "verifiedUtc": "2026-10-21T14:40:40.008404+00:00",
+    "freshChecks": "committedarchive/allmembers/exactliveRAWset/finalsources/processbirthsincludingZ/outputabsence/originalcheckout/readersreleased",
+    "removedFiles": 531,
+    "removedBytes": 22257641,
+    "removedEmptyChildDirectories": 19,
+    "remainingFiles": 0,
+    "retainedEmptyRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-summon-preparation-cijxqtry",
+    "failures": [],
+    "producerArchiveReview": {
+      "verdict": "APPROVE",
+      "packetBytes": 263099,
+      "packetSha256": "c1ec0c47afe2d2b2b264863dc07fc638cdd4ad076998cfb7b195ffa9f72b2dda",
+      "readersReleased": true,
+      "scope": "Exact five paths, archive/live bytes, all 28 fingerprints, original command metadata, absent task births/outputs, guarded cleanup after archive commit"
+    },
+    "receiptDocumentFingerprints": {
+      "docs/plans/d06-summon-combat-names.md": {
+        "bytes": 3515,
+        "sha256": "76fbf0d7f8f13403cc52cf3a25ec29283265702b28afe94e9689963beddf80bf"
+      },
+      "docs/plans/evidence/d06-summon-preparation.md": {
+        "bytes": 13757,
+        "sha256": "6b425bb8d7ebc7de1de6e6b6fd570ba3c61c481a71fe2763ec24834c6d00dbec"
+      },
+      "docs/plans/execution-ledger.md": {
+        "bytes": 224226,
+        "sha256": "a4aae1dc859ba3c142e9f278ff3d229a75aaffb1952082959ef09cd157f50b52"
+      }
+    },
+    "fingerprintNote": "finalClosureVerification files remain the historical pre-cleanup/archive snapshot; receiptDocumentFingerprints identify the three status/receipt documents changed after cleanup. Runtime/test fingerprints are unchanged."
   },
   "createdUtc": "2026-10-21T14:31:56.687974+00:00",
   "independentDurableReview": {

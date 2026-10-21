@@ -6,7 +6,7 @@ Locale fix `0e7a8ed`; original reviewed V3 browser pair `bff2a70`.
 failed browser/font attempts, environment-only recovery, final both-locale pass,
 reviews and cleanup. Full D06/P09/external inputs/earned/balance remain open.
 
-## Original execution plan (implementation/browser complete; archive pending)
+## Original execution plan (implementation/browser complete; evidence archived and RAW cleaned)
 
 Root sole writer/executor in the already claimed umbrella worktree. No remote
 action. Confirmed first browser flow en passes; zh fails exact summon-name oracle,
