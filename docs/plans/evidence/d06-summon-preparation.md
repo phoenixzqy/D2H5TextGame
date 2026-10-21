@@ -167,3 +167,25 @@ before root removes them. Preserve installed tools/dependencies/fonts, shared ca
 parents, source/history and empty RAW root. Umbrella worktree claim continues;
 no remote publication is authorized. Next external-input design/runtime work
 must receive its own reviewed contract; this closure does not accept those skills.
+
+## Durable evidence packet
+
+Closure `3ae3191` and browser `bff2a70` are preserved by the
+[packet](fixtures/d06-summon-preparation/packet.json) and lossless
+[archive](fixtures/d06-summon-preparation/raw.tar.gz). Root verified all 531 safe
+regular members / 22,257,641 original bytes byte-for-byte against live RAW.
+Archive: 2,922,593 bytes, SHA256
+`3eb3e6845acd498c62c418f3ccbf040d1a34374e9f7552453378eaa1fdac8609`.
+The packet binds 28 current source/document fingerprints, 64 original command
+records and all 6,429 observed task births absent including zombies. Historical
+B2 overlap/abort signals remain explicit; this is not an all-serial-history claim.
+Actual failures, drafts, corrections, all browser report bodies and four final
+screenshots, coverage, font/cache diagnostics, reviews and cleanup receipts remain
+recoverable. The skill specification's stale runtime-pending clauses are now
+reconciled without a policy/runtime change.
+
+Independent durable review and committed archive must precede removal of the
+exact 531 manifest files and 19 empty child directories. Root retains the empty
+RAW root, shared parents/fonts/tools/dependencies, source and history. The packet
+will record the actual cleanup receipt; removal is not claimed at preparation.
+Umbrella claim continues; full D06/P09/private-v1 remains open.

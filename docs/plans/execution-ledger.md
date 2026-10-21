@@ -2954,3 +2954,41 @@ receipt](evidence/fixtures/p08a02d-amplify-damage-ui/packet.json) records 17 sou
 932 absent process births, 761 absent outputs and retained empty RAW root/shared
 parents/fonts/tools/source/history. Amplify bounded closure complete; umbrella claim
 continues into D06 preparation policy, full v1 open, no remote action.
+
+
+## D06 v1b paid preparation — bounded implementation and browser acceptance
+
+Contract `5dbe443`, eligibility `52d8cf8`, runtime `51a82f9`, store proof `3538184`,
+UI `b8fa9e9`, locale fix `0e7a8ed`, browser `bff2a70`, closure `3ae3191`.
+[Evidence](evidence/d06-summon-preparation.md) records thirteen external-input-free
+skills, atomic paid missing-cap startup batches, authoritative eligibility/ranks,
+no scoped ordinary replacement/matching death refund, carry/mastery/identity and
+synthetic/excluded controls. Original A66fail/14controls→80pass; B69fail/74controls,
+first142pass/1positionfailure→reviewed143pass; C54fail/14controls→68pass; names16fail/
+24controls→40pass. B2's four post-runtime tests cover native allocation/current
+recording identity, wave resources and replay, not respec/save. Actual type/lint
+failures, corrected position oracles and historical0.201356s B2 overlap/exact-PID
+abort remain retained; affected checks reran serially. No blanket serial-history
+claim. Final full5805/207files98.268s, types/lint/clean production bridge/build pass;
+engine2982 and unchanged-threshold coverage94.63%lines/93.85%functions/91.29%branches
+remain attributed to runtime. Ordinary time targets/build warnings remain open.
+
+Both locales pass production browser2/2,24.377s wrapper, original exactV3 assertions.
+Native0→1→2 player rank/points-only and pausedDOM stability, explicit combo,
+300→294MP/two distinct100%life cards/onecast/twosummon logs, wholeSaveCurrent
+Save/close/newPage/Continue equality, nine finite layouts perlocale,14px/44px/hits/
+console[] verified. Names/font failures and environment-only taskfontcache recovery
+are preserved; actual Noto123glyphs, QA personally four original final PNGs. Imported
+L6/gear/points/resources are scaffold, not earned/balance proof. GD/TD/QA/producer
+approve bounded BUG071/D06 preparation closure; all readers released. Actual
+post-browser guarded cleanup removed exact760files40,968,144B/10distdirs;
+6429births absent includingZ, no cleanup failures. Shared cache parents retained.
+
+[Durable packet](evidence/fixtures/d06-summon-preparation/packet.json) prepared:
+531losslessmembers22,257,641B/archive2,922,593B,28fingerprints/64originalcommandrecords,
+all6429births absent. Skill-spec status reconciled only. Independent durable review
+and archive commit precede exact531file/19emptychilddir RAW cleanup; root owns RAW
+until then, preserve emptyroot/sharedparents/source/history/fonts/tools. Full D06/
+P09/corpse3/selected-itemIron/earned/balance/private-v1/C0–C4/G0–G7 remain open.
+Next substantive card: separately reviewed D06 corpse-summon contract, no runtime
+change before that decision. Umbrella claim continues; no remote action.

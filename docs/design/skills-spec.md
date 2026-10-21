@@ -306,11 +306,12 @@ authored, save, selection, exact interval and runtime contracts.
 ### 7.1 Summoning Behavior
 
 [D06 v1b](../plans/decisions/D06-summon-preparation-v1.md) is the scoped policy
-contract for thirteen summon skills without corpse/item inputs. Runtime validation
-is still pending; this specification does not claim the current engine already
-implements preparation batches.
+contract for thirteen summon skills without corpse/item inputs. The bounded
+runtime/store/bilingual production-browser path is accepted; see the
+[evidence and regression mapping](../plans/evidence/d06-summon-preparation.md).
+Full D06/P09, external inputs and earned campaign/balance remain open.
 
-- **Startup:** learned, unlocked, prerequisite-eligible and slotted scoped skills prepare once at time0 of each battle/wave, in stable owner/skill order; canonical/authored alias duplicates count once. Require living opposing sides; initially terminal battles skip scoped preparation (a new policy, not a claim about current startup). Fill only missing living owner/template units, preserving preloaded units and existing positions/identity.
+- **Startup:** learned, unlocked, prerequisite-eligible and slotted scoped skills prepare once at time0 of each battle/wave, in stable owner/skill order; canonical/authored alias duplicates count once. Require living opposing sides; initially terminal battles skip scoped preparation (implemented for this scope). Fill only missing living owner/template units, preserving preloaded units and existing positions/identity.
 - **Payment:** one existing rank-adjusted mana cost per missing-count batch; zero missing costs nothing. Insufficient mana or invalid template/input spawns nothing, spends nothing and receives no later retry. No ordinary action is consumed. Ignore only the scoped skill's stale carried cooldown for startup; set its normal resulting cooldown once, without clearing unrelated cooldowns.
 - **Replacement/death:** scoped skills never cast during ordinary actions. Preparation-enabled owner/template pairs govern matching new/preloaded deaths without mana refunds or cooldown resets; template identity alone does not suppress synthetic legacy behavior. Excluded/synthetic prior behavior remains unaccepted, unchanged until its own reviewed slice; do not globally delete the old replacement/refund branch.
 - **Caps:** use current authored per-skill curves, without tuning. Raise Skeleton remains ranks1–5→1,6–11→2,12–20→3 (its external-input behavior is deferred). Dire Wolf/Raven/Spirit Wolf use the existing first-three-then-every-three curve: ranks1/2/3/6/20→1/2/3/4/8. Singleton templates remain1. Preserve owner/exacttemplate coexistence; no new shared family exclusivity or total-unit cap.
