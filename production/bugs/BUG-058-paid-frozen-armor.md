@@ -68,3 +68,35 @@ Chill. Fix those origins together, reusing canonical status handling. Native
 wave configuration invalidation remains a separate required Stage C increment.
 No workaround provides the advertised effects. No save migration, general buff
 framework, campaign, balance or coverage claim is part of this report.
+
+## Native wave-boundary reproduction (Stage C)
+
+Stage B engine behavior is fixed in `ed05766`; native allocation invalidation
+remains reproduced before its patch. In Node24.21.0/Linux, run the dedicated
+`src/stores/combatHelpers.frozen-armor.test.ts` against that commit. Its exact
+prepatch frozen SHA256 is
+`18f6f807efe67384a2147e496cf3202dc42c81ab30873262633c6e196b4ae1ed`.
+Browser/viewport/locale do not apply to these native integration fixtures.
+
+Use real Blood Moor, seed7/challenge ordinal0, production paid rank20 Armor,
+explicit equipped fixture gear and a registered finisher. Start, drain actual
+events, then advance or explicitly replay after removing allocation. No paid
+snapshot or winning outcome is fabricated. A labelled marker-representation
+supplement adds aliases only to an already genuinely paid result.
+
+Expected: at every playWave boundary, zero/missing allocation strips the paid
+snapshot and exactly the authored/canonical/hyphen markers from new hero input.
+Unrelated and actual mercenary markers, stored replay baseline, prior recording
+and original resource carry remain intact. Restoring positive allocation during
+replay restores the original paid baseline, without resource/reward duplication.
+Actual: spread-based fresh configuration retains the old snapshot and markers
+regardless of the new allocation. The first failing assertions confirm that
+retention; positive-rank, equipment and genuine lifecycle controls pass.
+
+Genuine RED:10 failed/10 passed,20 tests, exit1 in4.395s. No deadline/cap stop,
+cleanup signal or survivor. Evidence: `focused-c-red` log, JSON report and
+command/process metadata in the root-owned RAW above. `playWave` refreshes
+stats/skills but does not invalidate the carried armor when allocation resolves
+to zero. Fix that boundary on the newly constructed input only; never mutate
+the carry baseline. Owner: engine/store developer; producer/QA review read-only.
+No gameplay retry, campaign, balance, browser or reload acceptance is claimed.
