@@ -2323,3 +2323,33 @@ selector/persistence/suppression and advertised behavior with GD/TD before
 concrete plan/test review or runtime changes. Optional Lightning Mastery
 contract preparation is approved but not implemented; no completion claim.
 Full private-v1/C0–C4/G0–G7 remain open.
+
+
+## P07b02 selected player Might delivery
+
+Authoredfb9a1f5/saveprepb10561f/v10ccee350/storee1c976d/runtime3e4f159/
+native53e2dc6/UIc159e5b/docs57d85bb. Narrow None/Might selection now reaches
+actual hero/exact fieldedmerc damage with both authored coefficients, frozen
+wave/replay inputs and source-death suppression. No global aura framework or
+permanent stat/resource mutation. Full P07b/C0–C4/G0–G7 remain open.
+
+[Evidence](evidence/p07b02-selected-might.md) and
+[packet](evidence/fixtures/p07b02-selected-might/packet.json) preserve731records,
+all failures/draft corrections/complete controls; historical completed reports
+compressed losslessly. Finalfocused62/E1908/U4279/T/L/productionbridgebuild pass.
+Browser18cases (2locales×9sizes), realnativekeyboard and both explicitSettings
+Save/reload cycles pass; actualNoto/readableChinese resolved by tasklocalfontcache
+after diagnosing bundledFontconfig/newersharedcache mismatch. No autosave claim.
+Engine/full timingtargets missed and existingwarnings preserved; no earned
+campaign/balance/newcoverage/fullaccessibility/performance/privatev1 certification.
+
+Exact761outputfiles40960214B removed after preserved evidence/reviewerrelease;
+9738cumulative PID/birthidentities absent/no wrappersignals, browsertemp absent.
+Installed officialNoto retained; sharedcachepurge not used. Originalcheckout
+untouched; umbrella worktreeclaim continues, no remote action. RAW root-owned at
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-might-w1jtf6hl`
+until exactcleanup after acceptedpacketcommit; producer/QA wholepacket APPROVE,
+allreadersreleased. Provisionalarchive verified and removed.
+Next bounded P07a03A LightningMastery definition/schema/rank contract GD/TD
+approved: authoredL30/cap20/+4%lightning perallocatedrank; separate runtime/native/
+copy/browser stages remain. No implementation or completion claimed for it yet.
