@@ -1,7 +1,9 @@
 # D05 / P07b03 — selected Meditation mana restoration
 
 Status: approved bounded implementation contract after independent GD/TD and QA
-review; implementation and browser acceptance pending. Provisional strength, not campaign balance.
+review; definition, save11, selection, exact combat/native recovery and bilingual UI
+implemented through source `10c051f`. Production-browser acceptance and BUG068
+closure remain pending. Provisional strength, not campaign balance.
 Skeleton Mastery closure `a188810` precedes this source increment. Full P07b,
 private-v1/C0–C4/G0–G7 remain open.
 

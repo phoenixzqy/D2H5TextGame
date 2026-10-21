@@ -113,7 +113,7 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 | `paladin.might` | Might / 力量 | Per allocated rank: +3% physical damage and +1% Attack; cap20 (+60% / +20%) | Explicit selection; living self + fielded living merc, any position; unlock L1 |
 | `paladin.holy_fire` | Holy Fire / 圣火 | 20 fire damage/turn to all enemies | AOE burn aura |
 | `paladin.conviction` | Conviction / 救赎 | -25% enemy all resists | Unlocks L24 |
-| `paladin.meditation` | Meditation / 冥想 | +5 mana/turn | Self + merc |
+| `paladin.meditation` | Meditation / 冥想 | Per allocated rank: adds 3% of source hero normal mana regeneration per second; cap20 (+60%) | Explicit selection; living self + original living fielded merc, each retains own baseline; unlock L24 |
 
 ---
 
@@ -249,27 +249,55 @@ Monsters use a simplified skill set. Examples:
 - **Stacking:** Buffs with same ID do NOT stack. Different buffs (e.g., *Battle Orders* + *Shout*) do stack.
 
 ### 6.2 Aura Skills (Paladin-specific)
-The implemented player selection currently supports **None or Might**. Other
-advertised aura rows above remain separate implementation contracts; this does
-not establish multi-aura switching or Meditation acceptance.
+The implemented player selection supports **None, Might or Meditation** in one
+exclusive saved canonical slot. Other advertised aura rows above remain separate
+implementation contracts; full aura-catalog acceptance remains open. Meditation
+production-browser acceptance is pending under D05.
 
-- **Might selection:** One saved canonical `paladin.might` slot. Requires Paladin,
-  character level at least1 and a positive allocated rank. Learning, inspecting and combo
-  editing do not select it; respec clears it. Old/new characters default to None.
-- **Strength:** Each allocated rank supplies separate additive physical increased
-  damage (+3%) and Attack (+1%), capped at rank20. Basic Attack100 therefore gives
-  104/192 at ranks1/20; fixed physical100 gives103/160, without new weapon scaling.
-- **Timing:** Freeze selection, rank and both strengths at wave input, active from
-  simulation0ms. Selection, upgrades and respec affect the next wave. Explicit
-  replay recomposes current eligibility over immutable original resource/carry
+- **Selection:** None is physical absence of `selectedAuraId`; the other values are
+  `paladin.might` and `paladin.meditation`. Each requires Paladin, its own unlock
+  level (Might1, Meditation24) and a positive allocated rank. Learning, inspecting
+  and combo editing do not select an aura; successful paid respec clears it.
+  Old/new characters default to None. Retained but unavailable imported selection
+  grants no effect and remains clearable through None.
+- **Might strength:** Each allocated rank supplies separate additive physical
+  increased damage (+3%) and Attack (+1%), capped at rank20. Basic Attack100
+  therefore gives104/192 at ranks1/20; fixed physical100 gives103/160, without new
+  weapon scaling.
+- **Timing:** Freeze selection, rank and authored strengths at wave input, active
+  from simulation0ms. Meditation also freezes the source's authoritative fresh
+  `playerToCombatUnit` numeric `manaRegenPerSecond` baseline; equipment and
+  effective Energy have already been applied once. Selection, upgrades, equipment
+  changes and respec affect the next wave. Explicit replay recomposes current
+  eligibility over immutable original resource and all three recovery-carry
   inputs, preserving recorded history; there is no action, mana payment or CD.
-- **Recipients:** The exact source hero and exact living fielded mercenary at any
-  position. Summons, enemies and unfielded mercs receive no player Might effect.
-- **Suppression:** Current encounter source absence/death suppresses immediately;
-  source stun/freeze does not. No permanent stat mutation, stacking or refill.
+- **Recipients:** The exact source hero and exact original living fielded
+  mercenary at any position. Summons, enemies and unfielded/replaced mercs receive
+  no player aura effect. Existing baseline recovery eligibility remains independent.
+- **Meditation strength:** Each allocated rank adds3% of the source hero's normal
+  mana-regeneration baseline per second to each recipient, capped at rank20/60%.
+  Each recipient retains its own existing baseline. Source baseline4 therefore
+  gives hero4.12/6.4 and native merc0.12/2.4 MP/s at ranks1/20; a merc with no own
+  baseline still receives its eligible additional recovery. This is continuous
+  recovery, not percent maximum mana or fixed mana per turn. Cleansing remains a
+  learning prerequisite, with no new runtime imported-allocation prerequisite.
+- **Exact recovery:** Integrate the recipient's independently qualified baseline
+  plus source baseline × authored coefficient × allocated rank in one exact
+  decimal MP-millisecond integral. Make one whole-MP/carry/capped commit; do not
+  round individual contributions or form a binary rate sum/product first. Existing
+  cap reset discards overflow and recovery carry. Switching preserves earned MP
+  and carry; it never refills resources or stacks aura effects.
+- **Suppression:** Current encounter source absence/death suppresses future
+  bonuses; source stun/freeze does not. Might checks current source life for its
+  contribution. Meditation captures source/recipient eligibility at interval
+  start, then settles periodic effects and rechecks each recipient at the end.
+  A surviving merc retains elapsed credit if the source dies at that endpoint;
+  a dead recipient receives none. No recovery is added after termination, between
+  waves, offline or from playback wallclock. There is no permanent stat mutation.
 
-See [D05 selected Might](../plans/decisions/D05-selected-might-aura-v1.md) for the
-controlling authored, save, selection and runtime contract.
+See [D05 selected Might](../plans/decisions/D05-selected-might-aura-v1.md) and
+[D05 Meditation](../plans/decisions/D05-meditation-v1.md) for the controlling
+authored, save, selection, exact interval and runtime contracts.
 
 ---
 
