@@ -1,6 +1,6 @@
 # BUG-062 — Display allocated Lightning Mastery rank and truthful passive details
 
-- **Status:** Reproduced; bounded UI fix pending. Browser layout/persistence remain separate.
+- **Status:** Fixed in `cf8e9fc`; bounded production-browser verification `b1bfab6` accepted, with separate open shared-layout BUG-063.
 - **Severity:** Medium — misleading learned rank and incomplete passive description; actual store allocation remains available.
 - **Owner / affected systems:** frontend-dev; Skills screen rank projection and bilingual copy.
 - **Build:** `1818c22`, approved tests installed; SkillsScreen and locales unchanged.
@@ -32,4 +32,8 @@ Generic allocated map merges legacy skills and aliases in iteration order withou
 
 ## Closure
 
-Record UI commit and regression gates after implementation. Explicit importedL30 fixtures are not earned campaign evidence; production browser layout and real disk persistence remain separately required.
+Fixed `cf8e9fc`. Regression: `src/features/skills/SkillsScreen.lightning-mastery.test.tsx`,18 cases. Final focused62/2files and full4527/186 pass; types/lint/production bridge-build pass serially. The first broad lint failure required only a block body around a void `act` callback; all inputs/assertions stayed unchanged. Historical prepatch prose/rank/order/cap/invalid-allocation RED remains intact.
+
+Separate browser `b1bfab6` passes two bilingual cases with18 viewport samples and four explicit Settings Save/confirmed Saved → page close → new page → Continue cycles, using ordinary UI/native Tab+Enter and exact saved slices. CDP proves actual Noto Chinese prose glyphs; screenshot review preserves the existing fixed-header overlap in [BUG-063](BUG-063-skills-header-overlap.md). Bounding-box and visibility assertions do not prove absence of occlusion. Initial browser failures were corrected harness oracles/locators, not additional product RED.
+
+[Acceptance/evidence index](../../docs/plans/evidence/p07a03-lightning-mastery.md) records exact scope, corrections and durable evidence. Explicit importedL30 eligibility is not earned campaign evidence. No autosave, browser-process restart, real-device, full mobile/readability/accessibility/performance or private-v1 acceptance is claimed.

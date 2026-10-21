@@ -1,6 +1,6 @@
 # BUG-061 — Apply allocated player Lightning Mastery to direct lightning damage
 
-- **Status:** Reproduced; bounded pure-runtime fix pending. Native wave/replay and UI acceptance remain separate.
+- **Status:** Fixed in `e5dc08d`; native verification `1818c22`, UI `cf8e9fc` and bounded production-browser tests `b1bfab6` accepted.
 - **Severity:** High — an allocated passive has no combat effect.
 - **Owner / affected systems:** engine-dev (root integrator); hero passive composition and combat consumer.
 - **Build:** `2002326`, approved pure-composition regression tests installed; production `warmth.ts` unchanged.
@@ -36,4 +36,8 @@ Root-owned retained task evidence: `/home/felixzhao/.zai/profiles/anonymous/zai-
 
 ## Closure
 
-Record the runtime commit and regression gates after implementation. Native wave freezing/replay recomposition and accurate bilingual UI remain separate open acceptance; this report does not close the full Lightning Mastery card.
+Fixed `e5dc08d` at the shared composer; the existing direct-damage consumer needed no rewrite. Regression paths: `src/engine/progression/lightning-mastery-composition.test.ts` and `src/engine/combat/lightning-mastery.test.ts`. Actual combat RED24 had9 failures/15 controls; final focused233/8files, engine2133/75, full4504/184, types/lint/production bridge-build pass serially. Real Thunder Storm205/213/287/369 at Mastery0/1/10/20; fixed100→104/180. No passive action/payment/cooldown/marker/extra RNG or Paralyze change.
+
+Native `1818c22` adds five immediately GREEN tests for allocation/upgrade, wave freezing, class/level suppression, removal, replay and serialization/import/restoration with only disk-write mocked; no native RED is claimed. UI `cf8e9fc` fixes truthful allocation-only rank and paired copy; `b1bfab6` separately verifies ordinary production UI and four actual explicit Settings Save/new-page/Continue cycles.
+
+[Acceptance/evidence index](../../docs/plans/evidence/p07a03-lightning-mastery.md) preserves all failures/corrections and final4527-unit/type/lint/build evidence. [BUG-063](BUG-063-skills-header-overlap.md) remains open for observed shared-header overlap. This fix does not establish earned campaign/balance, full mobile/accessibility/performance, autosave/process-restart persistence or full private-v1 acceptance. Historical RAW filenames above resolve through the durable packet once archived; old completed reports may be losslessly gzipped with exact hash mapping.

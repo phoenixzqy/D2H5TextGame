@@ -2391,3 +2391,16 @@ four-path runtime increment: old fire-only assertions may accept an absent or
 own exact-zero Lightning field, preserving all other keys and raw constructors.
 The complete historical recording literal remains unchanged. New Lightning
 oracles must require an own explicit zero plus positive/cross-passive controls.
+
+
+## P07a03 Lightning Mastery bounded delivery
+
+Compatibility-only `2002326` preserves all historical Fire controls and the complete recording literal while allowing absent/exact-zero lightning. Runtime `e5dc08d` composes independently eligible allocated Lightning once, preserving Fire/Warmth/recovery; existing damage consumer already works. Native verification `1818c22`, bilingual UI `cf8e9fc`, production-browser tests `b1bfab6`, observed overlay report `71695a4`. Authored tuning remainsL30/+4%directlightning perallocatedrank/cap20+80%; Paralyze unchanged. The Lightning spec row is reconciled to D05; no merc/data tuning.
+
+Actual runtime pureRED48/48; combatRED24=9fail/15controls; native immediatelyGREEN5(no nativeREDclaim); UIRED18=10fail/8controls. Full neutral87event prepatch recording retained. Final runtimefocused233/E2133/U4504, nativefocused27/U4509, UIfocused62/U4527, types/lint/productionbridgebuild pass serially. Final UI full72.832s/186files. Existing3sengine/15sfull targets missed; warnings remain. All failed reports, frozen oracles, independently approved corrections and limits remain in [evidence](evidence/p07a03-lightning-mastery.md).
+
+Browser actualattempt1 freshcombo oracle failure and attempt2 namedlocator timeout are preserved. Reviewed v5 passes2 bilingualcases/18CSSsamples/four explicitSettingsSave-newpage-Continue cycles23.579s, finaltypes11.734/lint30.055. ActualNoto39Chineseglyphs and all18PNGs reviewed; no bridge/internalinjection. ImportedL30eligibility, not earnedcampaign; no autosave/processrestart/nativebrowserdamage claim. Existing headeroverlap at375×667/915×412 is open [BUG-063](../../production/bugs/BUG-063-skills-header-overlap.md), prioritized next as boundedP16collision work before furthermobileacceptance. No fullmobile/readability/a11y/performance/balance/coverage/privatev1 certification; C0–C4/G0–G7 remain open.
+
+QA/producer approve exactbrowserbytes and release allreaders. Root rechecks7626 cumulativePID/birthidentities absent/no signals, exact761outputhashes40963097B, then unlinks only verified files and emptyderiveddirs; absence verified/no cleanupfailures. All3browsertemp subtrees absent.11completedhistoricalreports losslesslygzipped12477269→939544B with exactroundtrip mapping. Root retains RAW for independent durablepacket review at `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-lightning-mastery-6siwydfd`; exactcleanup follows archiveverification/readersrelease. InstalledNoto/sharedcaches/source/history preserved, originalcheckout untouched, umbrellaworktreeclaim continues, no remoteaction.
+
+After collision closure, producer's next feature recommendation is the separately GD/TD-approved Iron Skin authored prerequisite (exactschema/immutabledefinition/rank/decision only). Its contract consultation is retained; no Iron Skin implementation or campaign-balance acceptance is claimed.
