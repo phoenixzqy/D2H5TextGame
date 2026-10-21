@@ -1,6 +1,6 @@
 # BUG-065 — Align Iron Skin details with allocated defense
 
-- **Status:** Open; source reproduction confirmed before patch. Browser reproduction pending.
+- **Status:** Open; source and unchanged-production UI reproduction confirmed before patch. Browser pending.
 - **Severity:** Medium — incorrect skill information and legacy/alias rank display.
 - **Owner / affected systems:** frontend-dev, writer, qa-engineer; Skills detail and bilingual copy/spec.
 - **Build:** `f1ef33f` (runtime `e234dad`, native `a4548e2`).
@@ -44,3 +44,21 @@ existing 钢铁之肤 name. No runtime tuning or generic passive refactor is nee
 
 Consult D05; actual allocated Iron Skin defense works in combat. UI/copy and
 production-browser acceptance remain open until the bounded fix is validated.
+
+
+## Actual unchanged-production UI reproduction
+
+On `f80dd94`, the exact reviewed 20-case bilingual draft executes in jsdom:
+12 failed/8 passed, exit1, no stops/signals/pending/todos. All four production
+source/copy/spec hashes remain at the frozen baseline. Each locale fails six
+cases: missing authored prose; legacy rank inference; order-dependent alias
+rank19→1; displayed rank99/20 despite capped80% potency; fractional rank treated
+as learned; near-miss identifiers normalized into allocation. Reverse alias
+order, invalidNaN+validalias, real17→18 allocation and recording/resource controls
+already pass. Existing generic numeric current/next4/8 and level18 are controls;
+there is no claim every assertion failed. Hard failures prevent later assertions
+in their cases from executing. Retain full JSON, not only these summaries.
+
+RAW records: `focused-iron-ui-red-report.json`, its log/meta/process records,
+`stage-d-ui-baseline-freeze.json` and `stage-d-ui-red-classification.json`.
+The independently approved source/copy correction has not yet been applied.
