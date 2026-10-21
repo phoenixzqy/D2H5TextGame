@@ -109,7 +109,14 @@ Archived draft documents precede this paragraph/final review/cleanup notes.
 Independent producer/QA final whole-packet APPROVE verifies all36records,580source
 hashes,137attachments and19nonlive identities. GD/TD approve the bounded failed
 outcome. All readers release; [review](fixtures/p02b05d-current-moor-idle/final-review.json)
-records this evidence-only acceptance. Exact task-owned cleanup follows.
+records this evidence-only acceptance. Exact cleanup rechecks all36records/archive and19nonlive identities, removes
+the36RAW files and760taskdist files, and verifies absence. Task .vite was
+already absent. [Cleanup](fixtures/p02b05d-current-moor-idle/cleanup.json)
+records exact paths; pre-existing emptycoverage/dependencies/tools/sharedcaches
+and source/history/durable evidence remain. Root retains the umbrella worktree
+claim and owns next source-only RAW
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-armor-melt-jcabtz3k`
+until its consumers finish.
 No additional pilot or stronger preparation is authorized by this failed card.
 Select the next substantive implementation card from reviewed plan/source gaps;
 full private-v1 remains the objective.

@@ -2205,7 +2205,10 @@ Producer/QA independently verify36safe records/580source hashes/137attachments/
 19nonlive PID-birth identities and approve the failed evidence; GD/TD concur.
 Packet799aa7c595d8997220277a4db29cd55c29764690534fbb283cdc557f1a821803/
 archivea4ed215e614e0044279e3fa8567316bd44507f47258c98a67d4b8eb74914888d.
-All readers released. Exact task-owned cleanup follows before next experiment.
+All readers released,36RAW/archive records and19nonlive identities reverified;
+exact36RAW/760dist files removed, absence verified, task.vite already absent.
+Pre-existing emptycoverage/tools/sharedcaches preserved; no cleanup signals.
+Original checkout remains untouched; rootclaim continues.
 Full private-v1/C0–C4/G0–G7 remains open. Next source-reviewed P08a08 addresses
 Meteor Armor Melt transport/defense/combo, unrelated to this draw; Frozen Armor
 is separately recommended afterward. Root owns next source-only RAW
