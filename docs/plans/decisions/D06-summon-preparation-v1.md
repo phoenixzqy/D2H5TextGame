@@ -1,20 +1,22 @@
 # D06 v1b — Preparation-only summons without external inputs
 
-Status: accepted bounded policy; independent GD/TD and producer approved V2.
-Runtime representation, tests, implementation and acceptance remain pending.
-This card follows accepted battle-local identity in D06-summon-identity-v1; it does
-not approve corpse handling, item-bound Iron Golem, fullD06/P09 or balance/campaign.
-Root writes and executes in claimed umbrella worktree; every increment≤5paths,
-commit before next; no remote publication. This first increment is contract-only.
+Status: accepted bounded implementation and bilingual production-browser evidence.
+Independent GD/TD, QA and producer approved the integrated thirteen-skill path;
+[evidence and regression mapping](../evidence/d06-summon-preparation.md) records
+source commits, original failures/corrections and acceptance limits. This card
+follows accepted battle-local identity in D06-summon-identity-v1. Corpse handling,
+item-bound Iron Golem, full D06/P09 and earned campaign/balance remain open.
+Root writes and executes in the claimed umbrella worktree; every increment≤5paths,
+commit before next; no remote publication. Original contract commit: `5dbe443`.
 
 ## Authority and explicit decisions
 
 Canonical Diablo2TextGame.md §5.2 requires summons fill their cap once at battle
-start, without consuming ordinary actions or repeated summoning. Current skills-spec
-§7.1 permits replacements, and combat.ts only creates one per startup cast and
-later refills after deaths. deathEffects refunds the first summoning skill rather
-than the deceased template/proven payment, also clearing its cooldown. These are
-observed conflicts, not acceptance of a new resource economy.
+start, without consuming ordinary actions or repeated summoning. Before this change, skills-spec
+§7.1 permitted replacements, and combat.ts created one per startup cast and later
+refilled after deaths. deathEffects refunded the first summoning skill rather
+than the deceased template/proven payment, also clearing its cooldown. These
+observed conflicts motivated the scoped policy below.
 
 Adopt the canonical start-only intent for the thirteen authored skills below.
 Choose **one paid batch per skill per battle/wave**, using its existing actual
@@ -71,9 +73,8 @@ Do not silently broaden preparation to every learned unslotted skill.
 One phase at simulation time0 per engine battle/wave, in stable existing owner then
 skill order. Resolve authored/canonical aliases to one canonical skill, process
 once even if duplicate slots use aliases. Dead owners do not prepare. Scoped preparation requires living units on both opposing sides and skips an
-initially terminal battle. This is a new scoped policy: existing startup precedes
-the winner loop and summon targets do not require an enemy. Preserve excluded and
-synthetic startup behavior; do not claim the new terminal guard already exists.
+initially terminal battle. This scoped guard is implemented before preparation;
+excluded and synthetic startup behavior remains unchanged.
 For each eligible scoped skill, compute missing living count. Zero missing means
 no cast, spawn, payment, resource event or cooldown change. Validate every required
 template/input first; unknown template or invalid source produces no batch/debit.
@@ -95,8 +96,9 @@ die. Choose the next usable active skill, then basic attack as existing rules sa
 An authoritative preparation-enabled owner/template pair governs death behavior:
 its matching new and preloaded summon deaths refund no mana and clear no cooldown.
 Template identity alone is insufficient. A synthetic owner using the same template
-without explicit preparation opt-in retains legacy refund behavior. The precise
-representation needs later TD review before runtime edits. Do not remove the existing refund path globally
+without explicit preparation opt-in retains legacy refund behavior. The reviewed battle-local `Map<ownerId, Set<templateId>>` is populated only
+after scoped source/batch validation, including valid already-full/poor batches.
+It is transient and never persisted. Do not remove the existing refund path globally
 before its remaining excluded/synthetic callers receive their own reviewed change.
 Keep death/orphan/status/orb ordering, recorded/unrecorded replay and input
 immutability intact; do not suppress refund/replacement tests to reach green.
@@ -115,12 +117,14 @@ predicate, inherited stats, transaction timing, inventory loss/refund/death/save
 ownership; replay must not consume inventory twice. Until those are accepted,
 fullD06/P09/G2 and the excluded skills remain open.
 
-## Ordered implementation and proof required later
+## Implementation order and required proof
 
-This3doc contract increment changes only newcard, skills-spec §7/stalecaprows and
-D06 design-decisions status. Freeze reviewed runtime/data/adapter/tests in later
-≤5path increments before changes. Metadata/skill-policy representation needs TD
-review; preserve data-authored tuning and avoid a new generic summon framework.
+The original three-document contract increment was followed by separately reviewed
+eligibility, runtime, store integration, bilingual detail, localization and browser
+increments. Runtime policy and battle-local authority received TD review before
+edits. The linked evidence records the completed bounded proof below, source
+fingerprints and retained failures; data-authored tuning was preserved without
+introducing a generic summon framework. External-input follow-ups remain separate.
 
 First freeze independent literal counts/time0/exactrankedMP for singleton and
 multi-cap rank1/2/3/6/20, missingpartialpreload and zeromissing; both owners/templates,

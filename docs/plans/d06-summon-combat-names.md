@@ -1,5 +1,13 @@
 # D06 browser follow-up — BUG071 supported summon names
 
+Status: bounded BUG-071 and D06 preparation browser follow-up accepted.
+Locale fix `0e7a8ed`; original reviewed V3 browser pair `bff2a70`.
+[Evidence](evidence/d06-summon-preparation.md) preserves actual RED/GREEN,
+failed browser/font attempts, environment-only recovery, final both-locale pass,
+reviews and cleanup. Full D06/P09/external inputs/earned/balance remain open.
+
+## Original execution plan (implementation/browser complete; archive pending)
+
 Root sole writer/executor in the already claimed umbrella worktree. No remote
 action. Confirmed first browser flow en passes; zh fails exact summon-name oracle,
 then same failure with observer evidence retained confirms two `召唤了 Raven` lines.

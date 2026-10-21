@@ -1,6 +1,6 @@
 # BUG-071 — Localize supported summons in combat cards and logs
 
-Status: confirmed; fix pending.
+Status: fixed in `0e7a8ed`; bounded production-browser regression accepted at `bff2a70`.
 Severity: Medium — mixed-language names; combat itself continues.
 Owner: frontend/localization; root integrator, independent QA/GD/TD review.
 
@@ -42,9 +42,22 @@ Workaround: use English; no gameplay workaround required.
 
 ## Resolution and regression
 
-Pending: complete the two existing combat summon dictionaries with the eight
-existing bilingual names. Freeze literal tests for all18 supported template names,
-explicit and legacy IDs, both display/log consumers and unknown fallback; execute
-actual unchanged-source RED before adding locale entries. Keep existing blood-golem
-combat wording and all other translations, unknown fallback, runtime/save unchanged.
-Production Chinese Raven startup and both complete locale/browser flows must pass.
+`0e7a8ed` completes exactly eight missing names per existing combat dictionary.
+Literal all18-template/both-locale tests cover explicit/legacy identity, card/log
+consumers and unknown fallback. Actual unchanged-locale RED16failed/24controls
+became identical-test GREEN40/40. Existing Blood Golem combat wording 鲜血石魔,
+all other translations, resolver, runtime and saves are preserved.
+
+Final production browser V6 passes both complete locale flows without retries,
+24.377s runner; Chinese has one exact 乌鸦 cast and two 乌鸦 summon messages,
+300→294MP and two distinct full-relative-life Raven cards. Native rank allocation,
+explicit combo, whole-save reload and nine finite layouts per locale pass. QA
+personally viewed all four final mobile/desktop screenshots. After the name fix,
+separate font-environment failures were diagnosed and resolved with task-local
+fontconfig/cache only; original assertions, source/CSS and shared fonts/caches
+were unchanged. Original failed reports remain retained, not relabeled as passes.
+
+[Complete evidence and regression mapping](../../docs/plans/evidence/d06-summon-preparation.md)
+records exact source/build/environment freezes and limits. Imported L6/gear/points
+are scaffolding, not earned/balance proof. This closes the supported-name defect;
+full D06/P09, external-input summons and broader release gates remain open.
