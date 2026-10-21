@@ -261,7 +261,7 @@ describe('P07a01d actual Fire Bolt with automatically composed Warmth', () => {
     expect.soft(result.events.filter(e => e.kind === 'damage').map(e => e.amount)).toEqual([127, 1, 130]);
     expect.soft(result.result.enemyTeam[0]?.life).toBe(158);
     expect(result.result.playerTeam[0]?.mana).toBe(0);
-    expect(result.result.playerTeam[0]?.increasedDamagePct).toEqual({ fire: 0.2 });
+    expect(result.result.playerTeam[0]?.increasedDamagePct).toEqual({ fire: 0.2, lightning: 0 });
   });
 });
 
