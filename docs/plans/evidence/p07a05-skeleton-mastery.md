@@ -371,3 +371,22 @@ shared caches/parent directories, installed fonts/tools/dependencies, source/his
 and original checkout are preserved. See stage-e-output-cleanup.json and
 stage-e-disposable-cleanup.json. RAW remains root-owned pending durable archive
 verification and exact cleanup; umbrella worktree claim continues, no remote action.
+
+
+## Durable Skeleton evidence
+
+[Packet](fixtures/p07a05-skeleton-mastery/packet.json) and
+[archive](fixtures/p07a05-skeleton-mastery/raw.tar.gz) preserve331 RAW files,
+19,896,406 uncompressed bytes, including original failed/corrected reports,
+drafts, full native recordings, reviews, process observations and browser bodies.
+Archive size2,854,658 bytes; SHA256
+`aa007603a0759972f7cd4a26862601279eb0641ac03dbe5bc9eafc39b2f6acfc`.
+Root verified every archived member against its length/hash manifest,18 current
+source fingerprints and5965 absent process birth identities across43 commands.
+Historical freezes intentionally record earlier sources and unexecuted drafts;
+they do not all describe the final head. QA and producer independently verified all archive/live members, source hashes,
+process identities, disposable absence and truthful historical evidence: APPROVE.
+All readers released; their root-transcribed verdict is recorded in the packet.
+Exact RAW cleanup remains pending the durable commit and fresh verification;
+root owns the retained RAW until that finishes.
+The full private-v1/C0–C4/G0–G7 umbrella remains open.

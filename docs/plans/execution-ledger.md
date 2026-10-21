@@ -2671,3 +2671,14 @@ RAW remains rootowned for durable archive verification/exactcleanup; shared cach
 installed fonts/tools/source/history/originalcheckout preserved. No remoteaction;
 umbrellaWTclaim continues. Next durableSkeletonclosure then P07b Meditation
 contract audit/runtime/UI/browser. Fullprivatev1/C0–C4/G0–G7 remain open.
+
+
+## P07a05 durable evidence packet
+
+[Packet](evidence/fixtures/p07a05-skeleton-mastery/packet.json)/archive preserve
+331 RAW files19,896,406B as2,854,658B gzip, SHA256
+`aa007603a0759972f7cd4a26862601279eb0641ac03dbe5bc9eafc39b2f6acfc`.
+Root roundtrip-checked every member,18 current sources and5965 absent births
+from43 command reports. Independent QA/producer durable review APPROVE/allreadersreleased; verdict in
+packet. Exact RAW cleanup pending durablecommit/freshverification; root retains
+RAW. Full-v1 umbrella remains open; Meditation next.
