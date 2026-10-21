@@ -4372,3 +4372,67 @@ persistent browser/server. Next verify/reapply the exact lifecycle source, then
 validate freshly; no expected6493-test pass is claimed yet. Receipt/recovery,
 settlement/replay/caller guards and bilingual Iron UI/browser acceptance remain
 pending. FullD06/P09/P10/private-v1 remain open.
+
+
+## D06 v1l public hero lifecycle cleanup
+
+The corpse prerequisite received QA, TD/five-axis and producer APPROVE and
+committed as `41292d4`. Exact corpses-fixtures cleanup removed857files/
+42,723,885bytes and14 empty directories with zero failures/remaining targets;
+all recorded command identities were dead. Both prerequisite commits retain all
+assertions and genuine public-action coverage. Suspended lifecycle manifest
+SHA256999271f984bc5d9bf40f84b1e83ce748561527cb1a138daea06f07e3b5e3f37d,
+every saved content hash/size and current production base hash were verified
+before restoring the exact four preserved files; new target paths were absent.
+No older suspended hero-guard patch was applied. Original failed evidence remains.
+
+Public playerStore.setPlayer/reset now discard the active run, complete combat
+recording and armed selection before publishing the replacement hero. Same-ID,
+same-reference and null-player reset follow the same lifecycle. Their existing
+first ownership guards remain before any cleanup. The internal ActiveRun type
+and one authoritative holder move to combatRunLifecycle, with type-only engine
+contracts and a narrow cleanup helper, avoiding a runtime playerStore/combatHelpers
+cycle. combatHelpers uses that one holder mechanically. Privileged successful
+restore cleanup remains exact-lease gated; abort still retains recording for its
+caller; ordinary configuration changes retain the existing frozen recording.
+Subscriber-throw atomicity is not promised. Wave/debit consumer activation and
+receipt/recovery/settlement/replay/caller guards remain separate pending work.
+
+Twelve genuine lifecycle tests cover four set/reset x wave/restore refusal cases
+with exact roots/no notifications and successful release/retry; new/same-ID/
+same-reference/reset cleanup before player notification with persistent roots
+retained, idle old advance and usable replacement; three dangling recordings/
+selections without a run, including null-player reset; and real stat/skill/combo/
+recompute/no-replay configuration retaining exact combat/selection/run. Full
+combat cleanup compares the store's complete initial state. Historical RED8,
+expandedRED11/1 and failed full11/6493 remain retained; no original build passed.
+
+Fresh final focused113/4files13.082s, types14.839s, lint41.480s including85 engine
+purity files, full6493/220files118.175s and production build10.167s passed. This
+establishes the previously expected final count after the fixture prerequisites.
+Related5s/full15s budgets remain unmet. Existing React act, fixture fallback,
+stale Browserslist, chunk-size and precache diagnostics remain open. SaveCurrent11
+and persistent slices are unchanged. Security check passes for local lifecycle
+cleanup without item writes, remote behavior or production guard bypasses.
+
+Production Chromium6.543s exercised fresh Amazon creation, map/combat entry,
+keyboard Flee, re-entry and click Flee at360x640 and1280x800. No horizontal
+overflow, alerts, console warning/error or page errors; Flee target68.8125x48.
+Inspected screenshots confirm geometry; Chinese glyphs render boxes, so typography
+acceptance is limited. This validates normal module initialization/creation/exits,
+not injected browser replacement/refusal or full Iron acceptance. Browser contexts
+closed; only runner-owned preview PID3219369 was terminated/waited and metadata
+records liveAfterCleanup=false. Scripts/server metadata/log are bound below.
+
+Five repository paths, browser scripts/server receipts, historical and final
+hero-lifecycle command/source/output identities, prior cleanup and exact owned
+dist/tmp inventory are frozen in hero-lifecycle-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review remains before commit. Disposable outputs
+remain until readers release; diagnostics and suspended source retained.
+Root is sole writer/executor; umbrella claim continues; no remote action or
+persistent server. Exact receipt/conflict/publication recovery, settlement,
+locked replay, production operation guards and bilingual selection/acknowledgement/
+preview/refusal/lock UI/browser acceptance remain pending. FullD06/P09/P10 and
+private-v1 remain open.

@@ -17,7 +17,6 @@ import {
   buildMonsterUnit,
   resolveChallengeWavePlan,
   synthDefaultPlan,
-  type WavePlan,
   type WaveSpec
 } from '@/engine/combat';
 import { loadAwardPools, loadItemBases } from '@/data/loaders/loot';
@@ -25,6 +24,7 @@ import { eliteConfig, monsters as monsterList } from '@/data/index';
 import { resolveSubArea } from './subAreaResolver';
 import { useCombatStore, type CombatLogEntry, type RecordedBattleOutcome } from './combatStore';
 import { stageRecordedBattle, type RecordedBattlePublication } from './recordedBattlePublication';
+import { combatRunLifecycle, type ActiveRun } from './combatRunLifecycle';
 import { eventToLocalizedLogEntry } from './eventToLogI18n';
 import { useInventoryStore } from './inventoryStore';
 import { useMapStore } from './mapStore';
@@ -380,36 +380,12 @@ export function awardLootForVictory(opts: {
 }
 
 // ---------------------------------------------------------------------------
-// Sub-area run state (mid-flight; not persisted to save)
+// Sub-area run helpers (mid-flight state lives in combatRunLifecycle)
 // ---------------------------------------------------------------------------
-
-interface ActiveRun {
-  readonly plan: WavePlan;
-  readonly act: 1 | 2 | 3 | 4 | 5;
-  readonly seed: number;
-  readonly mode: 'manual' | 'idle';
-  /** Exact merc unit constructed at run start; roster changes never retarget this run. */
-  readonly fieldedMercCombatId?: string;
-  playerUnit: CombatUnit;
-  /** Index of the wave currently being played (0-based). */
-  waveIdx: number;
-  /** Ongoing alive player-side units carried between waves. */
-  carryPlayerTeam: CombatUnit[];
-  /** Actual terminal clock of the current recording, before presentation events. */
-  waveElapsedMs: number;
-  /** Exact installed recording and original authored boss identity; never persisted. */
-  recording?: {
-    readonly outcome: RecordedBattleOutcome;
-    readonly events: readonly RecordedBattleEvent[];
-    readonly chapterBoss?: { readonly unitId: string; readonly archetypeId: string };
-  };
-}
-
-let activeRun: ActiveRun | null = null;
 
 /** @returns whether a sub-area run is currently active. */
 export function hasActiveSubAreaRun(): boolean {
-  return activeRun !== null;
+  return combatRunLifecycle.activeRun !== null;
 }
 
 /**
@@ -422,10 +398,10 @@ export function refreshActivePlayerCombatConfig({
 }: {
   readonly replayCurrentWave?: boolean;
 } = {}): void {
-  if (!activeRun || !replayCurrentWave) return;
+  if (!combatRunLifecycle.activeRun || !replayCurrentWave) return;
   const combat = useCombatStore.getState();
   if (combat.inCombat) {
-    playWave(activeRun.waveIdx);
+    playWave(combatRunLifecycle.activeRun.waveIdx);
   }
 }
 
@@ -541,7 +517,7 @@ export function startSubAreaRun(opts: {
   };
 
   const staged = stageWave(candidate, 0, true);
-  activeRun = candidate;
+  combatRunLifecycle.activeRun = candidate;
   if (opts.challengeOrdinal === undefined) {
     manualChallengeOrdinal = (challengeOrdinal + 1) % CHALLENGE_ORDINAL_PERIOD;
   }
@@ -561,26 +537,26 @@ export function startSubAreaRun(opts: {
  *   - `'idle'`      — no active run or current playback is incomplete.
  */
 export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idle' {
-  if (!activeRun) return 'idle';
+  if (!combatRunLifecycle.activeRun) return 'idle';
   const combat = useCombatStore.getState();
   const outcome = combat.outcome;
 
   if (!outcome || !combat.playbackComplete) return 'idle';
 
-  const completedWave = activeRun.plan.waves[activeRun.waveIdx];
+  const completedWave = combatRunLifecycle.activeRun.plan.waves[combatRunLifecycle.activeRun.waveIdx];
   if (
-    activeRun.mode === 'idle' &&
+    combatRunLifecycle.activeRun.mode === 'idle' &&
     completedWave?.presentation?.idleEliteMissesAfterWave !== undefined
   ) {
     setIdleEliteMisses(completedWave.presentation.idleEliteMissesAfterWave);
   }
 
   const alivePlayer = outcome.finalPlayerTeam.find(
-    (u) => u.id === activeRun?.playerUnit.id && u.life > 0
+    (u) => u.id === combatRunLifecycle.activeRun?.playerUnit.id && u.life > 0
   );
   if (outcome.winner !== 'player' || !alivePlayer) {
     combat.markRunDefeat();
-    activeRun = null;
+    combatRunLifecycle.activeRun = null;
     return 'defeat';
   }
 
@@ -605,44 +581,44 @@ export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idl
       }
     }
 
-    const wave = activeRun.plan.waves[activeRun.waveIdx];
-    const tcId = wave?.lootTable ?? activeRun.plan.defaultLootTable;
+    const wave = combatRunLifecycle.activeRun.plan.waves[combatRunLifecycle.activeRun.waveIdx];
+    const tcId = wave?.lootTable ?? combatRunLifecycle.activeRun.plan.defaultLootTable;
     const rewards = awardLootForVictory({
       slainEnemies: slain,
-      act: activeRun.act,
+      act: combatRunLifecycle.activeRun.act,
       treasureClassId: tcId,
-      seed: activeRun.seed ^ 0x9e3779b1 ^ activeRun.waveIdx,
+      seed: combatRunLifecycle.activeRun.seed ^ 0x9e3779b1 ^ combatRunLifecycle.activeRun.waveIdx,
       magicFindMultiplier: multiplier
     });
     combat.accumulateRunRewards(rewards);
   }
 
-  const nextIdx = activeRun.waveIdx + 1;
-  if (nextIdx >= activeRun.plan.waves.length) {
-    const recording = activeRun.recording;
+  const nextIdx = combatRunLifecycle.activeRun.waveIdx + 1;
+  if (nextIdx >= combatRunLifecycle.activeRun.plan.waves.length) {
+    const recording = combatRunLifecycle.activeRun.recording;
     const boss = recording?.chapterBoss;
     if (boss && outcome === recording.outcome && combat.recordedEvents === recording.events &&
-      combat.subAreaRunId === activeRun.plan.subAreaId &&
-      combat.currentWave === activeRun.waveIdx + 1 && combat.totalWaves === activeRun.plan.waves.length &&
+      combat.subAreaRunId === combatRunLifecycle.activeRun.plan.subAreaId &&
+      combat.currentWave === combatRunLifecycle.activeRun.waveIdx + 1 && combat.totalWaves === combatRunLifecycle.activeRun.plan.waves.length &&
       outcome.finalEnemyTeam.some(enemy => enemy.id === boss.unitId && enemy.side === 'enemy' &&
         enemy.kind === 'monster' && enemy.tier === 'chapter-boss' && enemy.life <= 0)) {
       useMapStore.getState().recordBossKill({
-        actId: `acts/act${String(activeRun.act)}`,
-        areaId: activeRun.plan.subAreaId,
+        actId: `acts/act${String(combatRunLifecycle.activeRun.act)}`,
+        areaId: combatRunLifecycle.activeRun.plan.subAreaId,
         bossArchetypeId: boss.archetypeId
       });
     }
     // Only a complete sequence of won waves can clear an area or unlock idle.
-    useMapStore.getState().markCleared(activeRun.plan.subAreaId);
+    useMapStore.getState().markCleared(combatRunLifecycle.activeRun.plan.subAreaId);
     combat.markRunVictory();
-    activeRun = null;
+    combatRunLifecycle.activeRun = null;
     return 'victory';
   }
-  const elapsedMs = activeRun.waveElapsedMs;
-  activeRun.carryPlayerTeam = outcome.finalPlayerTeam
+  const elapsedMs = combatRunLifecycle.activeRun.waveElapsedMs;
+  combatRunLifecycle.activeRun.carryPlayerTeam = outcome.finalPlayerTeam
     .filter(u => inferKind(u) !== 'summon' && u.life > 0)
     .map(u => rebaseStatusClock(u, elapsedMs));
-  activeRun.waveIdx = nextIdx;
+  combatRunLifecycle.activeRun.waveIdx = nextIdx;
   playWave(nextIdx);
   return 'next-wave';
 }
@@ -654,7 +630,7 @@ export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idl
  */
 export function clearCombatAfterRestore(lease: WaveRestoreLease): void {
   assertWaveRestoreOwner(lease);
-  activeRun = null;
+  combatRunLifecycle.activeRun = null;
   useCombatStore.getState().reset();
   clearIronGolemSelectionAfterRestore(lease);
 }
@@ -665,7 +641,7 @@ export function clearCombatAfterRestore(lease: WaveRestoreLease): void {
  */
 export function abortSubAreaRun(): void {
   assertWaveSnapshotAllowed();
-  activeRun = null;
+  combatRunLifecycle.activeRun = null;
   clearIronGolemSelection();
 }
 
@@ -675,8 +651,8 @@ export function abortSubAreaRun(): void {
  * and {@link advanceWaveOrFinish} share one code path.
  */
 function playWave(waveIdx: number): void {
-  if (!activeRun) return;
-  const run = activeRun;
+  if (!combatRunLifecycle.activeRun) return;
+  const run = combatRunLifecycle.activeRun;
   installStagedWave(run, stageWave(run, waveIdx));
 }
 

@@ -13,6 +13,7 @@ import { resolveEligibleMightRank } from '@/engine/skills/might';
 import { resolveEligibleMeditationRank } from '@/engine/skills/meditation';
 import { awardXp, xpRequired, xpTotal, LEVEL_CAP } from '@/engine/progression/xp';
 import { useInventoryStore } from './inventoryStore';
+import { clearCombatForHeroReplacement } from './combatRunLifecycle';
 import { assertWaveRestoreOwner, assertWaveSnapshotAllowed, type WaveRestoreLease } from './waveTransitionGuard';
 import {
   canonicalSkillIdFromData,
@@ -68,7 +69,7 @@ interface PlayerState {
   player: Player | null;
   
   // Actions
-  /** Replace the hero; throws WaveGuardError before publication while a wave/restore owns state. */
+  /** Replace the hero and discard run/recording/selection; throws WaveGuardError before changes while owned. */
   setPlayer: (player: Player) => void;
   updateStats: (stats: Partial<CoreStats>) => void;
   addXP: (amount: number) => void;
@@ -96,7 +97,7 @@ interface PlayerState {
    */
   respec: (deps: { getGold: () => number; spendGold: (amount: number) => boolean }) => RespecResult;
   setComboOrder: (order: string[]) => void;
-  /** Clear the hero; throws WaveGuardError before publication while a wave/restore owns state. */
+  /** Clear hero and run/recording/selection, even without a hero; throws WaveGuardError before changes while owned. */
   reset: () => void;
 }
 
@@ -107,7 +108,11 @@ const initialState = {
 export const usePlayerStore = create<PlayerState>((set, get) => ({
   ...initialState,
   
-  setPlayer: (player) => { assertWaveSnapshotAllowed(); set({ player }); },
+  setPlayer: (player) => {
+    assertWaveSnapshotAllowed();
+    clearCombatForHeroReplacement();
+    set({ player });
+  },
   
   updateStats: (stats) => { set((state) => {
     if (!state.player) return state;
@@ -330,7 +335,11 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     };
   }); },
   
-  reset: () => { assertWaveSnapshotAllowed(); set(initialState); }
+  reset: () => {
+    assertWaveSnapshotAllowed();
+    clearCombatForHeroReplacement();
+    set(initialState);
+  }
 }));
 
 /** Restore-only hero replacement; validate the exact live reservation before publication. */
