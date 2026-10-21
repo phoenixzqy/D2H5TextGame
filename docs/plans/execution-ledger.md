@@ -3264,3 +3264,53 @@ documents receive fresh hashes. FullD06/P09/P10 and all previously disclosed
 limits remain open. Continue with selected-item Iron Golem contract (new decision,
 skills-spec reconciliation and decision register), GD/TD review before runtime.
 Umbrella claim remains active; no push/PR/merge/deploy.
+
+
+## D06 v1d selected-item Iron mechanic and transaction ADR accepted
+
+Receipt/status commit `259ff9d` records the verified v1c cleanup; archive and
+runtime bytes stayed unchanged. Mechanic commit `1c66f3c` adds the
+[selected-item Iron contract](decisions/D06-iron-golem-v1.md) and reconciles
+skills/register status. QA requested explicit valid-source death authority
+independent of item/mana success; corrected rule12 and literal preload-death
+controls then received QA/GD/TD APPROVE. Producer reconstructed the exact
+19,481-byte approved mechanic hash from publication bytes and APPROVED the
+three-path contract/status commit. No runtime acceptance or source edits inferred.
+
+The chosen mechanic uses explicit one-shot hero/item selection for one new wave,
+31 default-deny metal bases, five supported rarities through the isolated existing
+resolver, only life/attack/defense100% inheritance and35MP startup. Installed
+runes/runewords remain ineligible. Locked complete Iron recordings prevent
+repeat item debit/retry; current configuration applies next wave. No new save
+shape, persistent golem or durable combat mana. Earned supply/balance remain open.
+
+Root applied architecture-decision and plan-review to the next bounded two-path
+[transaction/metadata ADR](../decisions/ADR-004-selected-item-summon-commit.md).
+Independent TD plan verdict `ready` incorporates prepared/verified-commit/
+publication/conflict states; exact-payload recovery; busy versus stable-pending
+save boundaries; old-recording identity checks before all completion effects;
+once-only prior settlement, carry and ordinal ownership; honest failed-reward
+abandonment with actual gains retained. QA approved the initial proposed bytes;
+TD requested one explicit reciprocal restore guard: reserve ownership before
+queue/await, refuse wave work during pending hydration/import and preserve the
+original transient state after failed import. ADR and literal failure oracles now
+state that boundary. Independent QA and TD then APPROVED the same revised
+18,278-byte ADR (`1ac74d2a337f45327d3dc3f68e98691397756480f1b620991d1f880c883827cb`)
+and released all readers. Accepted publication changes status/attribution only;
+producer publication/scope review precedes the two-path commit. Source/runtime
+acceptance remains pending. Runtime slices stay≤5paths,
+serial checks/reviews and commits before next; root remains sole executor.
+
+Security check: pass for the owner-authorized local plan implementation and this
+bounded data/transaction design. No credentials, external code/commands, policy
+bypasses or remote actions are requested. Selected in-game item loss requires
+explicit product selection/acknowledgement; actual live ownership/identity is
+validated and no broad inventory deletion is permitted.
+
+No temporary files, outputs, builds, tests, caches or processes were created for
+the contract/ADR documentation work. Scope/link/source-fact/whitespace checks are
+the relevant documentation validation; existing runtime gates are historical
+source evidence, not a claim that pending Iron code was tested. Umbrella claim
+continues. FullD06/P09/P10, all remaining plan checkpoints/gates, other corpse
+consumers, Mage elemental identity, earned campaign/balance and disclosed
+performance/platform/PWA/a11y limits remain open. No push/PR/merge/deploy.
