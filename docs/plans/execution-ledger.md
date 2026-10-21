@@ -3352,3 +3352,52 @@ Next dependency is an inactive pure selected-item projection
 with refusal/stat/definition tests, then transient guards and engine/store
 integration. All fullD06/P09/P10, browser, earned supply/balance, performance and
 private-v1 gates remain open. Umbrella claim continues; no remote action.
+
+
+## D06 v1d inactive isolated-item projection foundation
+
+Metadata publication received producer APPROVE and committed as `a7c1668`.
+After all readers released, root verified and removed its exact task-owned
+1300 disposable files/43,813,662bytes and14 empty directories, zero failures.
+The immutable `metadata-cleanup.json` receipt remains in the Iron evidence root;
+`tmp` was then recreated for this projection slice. Command/source/failure
+evidence, shared caches/tools/dependencies and the earlier RAW root remain intact.
+
+TD plan-review returned `ready` for this exactly-three-path increment: inactive
+`projectIronGolemItem`,74 literal refusal/stat/definition tests and this ledger.
+It uses the equipment aggregator's same production base/affix catalogs and
+shared unique/piece pools, isolates one item and forces `sets: []`. Only finite
+nonnegative life/attack/defense leave the helper. No hero/core-derived stats,
+thresholds, rerolls, wearing requirements, selection, live-container ownership,
+inventory debit, combat input, save shape or UI promise is enabled here.
+Modern affixes and legacy resolved Maps remain distinct. Unknown/contradictory
+definition identities, invalid contributing rolls, installed runes and runewords
+are refused; absent definition rolls retain deterministic minimum fallback.
+
+Original missing-module REDs are retained as collection failures, not failed
+assertion counts. The next behavioral RED had17 failures/43 passes before
+roll validation. A type gate caught three new exact-optional fixture mistakes;
+the absent-roll fixture and deliberate malformed-value casts were corrected
+without changing expectations. Lint then caught seven typed conditional/style
+issues; those were simplified without changing supported Item behavior.
+All original failed commands/sources/output identities remain retained.
+
+Final serial gates pass on unchanged helper/test bytes:85 focused tests across
+projection/gear aggregation/item generation;3215 engine tests/84 files
+(16.554s wrapper);6129 full unit tests/210 files (103.653s);types15.220s;
+lint36.819s including engine purity;normal production build10.389s. Existing
+engine/full-unit budgets remain unmet. Stale Browserslist, large chunk and2.57MB
+generated-manifest precache warnings remain. The helper has no production
+consumer, so this slice claims no browser or selected-item runtime acceptance.
+
+Evidence stays under
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les`.
+Only exact task-owned `dist`/`tmp` disposables will be removed after all review
+readers release; original diagnostics await durable retention. Independent QA
+and TD/five-axis source reviews APPROVED the frozen three-path foundation and
+all21 receipt/source/output identities; all readers released. This status-only
+publication awaits producer scope review. Root remains sole writer/executor.
+Next bounded work is transient ownership/selection/transition foundations before
+engine and store integration. Full Iron/D06/P09/P10, native bilingual/browser
+flows, earned supply/balance, remaining performance/platform/PWA/a11y and
+private-v1/C0–C4/G0–G7 remain open. Umbrella claim continues; no remote action.
