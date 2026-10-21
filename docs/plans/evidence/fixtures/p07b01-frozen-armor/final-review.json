@@ -1,0 +1,25 @@
+{
+  "card": "P07b01",
+  "producer": "APPROVE",
+  "QA": "APPROVE",
+  "allReadersReleased": true,
+  "packetSHA256": "f60271297e77288b91c8dae9a1d49889dbfa5ca32cc810abb5a8e5c2d36b0ab5",
+  "archiveSHA256": "b233504c32b0c5fb3b00e7ff83dbb4d525931b41ce00004c267d60fcf5ee7f9b",
+  "evidenceCommit": "a7254c3",
+  "runtimeCommits": [
+    "ed05766",
+    "93022ee"
+  ],
+  "browserTestCommit": "562da72",
+  "reviewers": [
+    "/root/producer",
+    "/root/qa_save_review"
+  ],
+  "verdicts": [
+    "P07B01-WHOLE-PACKET: APPROVE",
+    "P07B01-EXACT-CLEANUP-PLAN: APPROVE"
+  ],
+  "scope": "All 371 RAW/archive records, 49 commands, 569 source fingerprints, final gates, qualified browser claims and exact cleanup plan; full private v1 remains open.",
+  "nextRawDisclosure": "Seven source-only preparatory files before cleanup; frozen packet and RAW unchanged.",
+  "at": "2026-10-21T02:31:54.961618+00:00"
+}

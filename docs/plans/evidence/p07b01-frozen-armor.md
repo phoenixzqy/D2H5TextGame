@@ -2,7 +2,7 @@
 
 Status: engine/native and qualified imported-fixture browser acceptance approved
 by producer/QA. GD/TD approve the contract and engine source. Durable whole-packet
-review and exact cleanup follow separately. Full private-v1/C0–C4/G0–G7 remain open.
+review and exact cleanup are complete; see linked closure records. Full private-v1/C0–C4/G0–G7 remain open.
 
 A real paid Frozen Armor cast now grants captured ordinary defense and direct-hit
 retaliatory Chill. Learning the skill or supplying its marker grants no power.
@@ -151,18 +151,22 @@ Packet SHA256:
 Archive SHA256:
 `b233504c32b0c5fb3b00e7ff83dbb4d525931b41ce00004c267d60fcf5ee7f9b`.
 
-After all browser readers/processes release,8 exact browser-temp files are
-inventoried/deleted and absence verified. Root still owns exactRAW
-`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx`,
-760dist files and1.vite file until final packet readers release. The frozen
-cleanup script revalidates every archive/RAW/output hash and process identity
-before deletion. Pre-existing emptycoverage, tools/dependencies/shared caches,
-source/history/evidence and the umbrella worktree are preserved. Original
-checkout remains untouched. No remote publication or deployment.
+Producer and QA independently approve the complete packet and exact cleanup.
+[Final review](fixtures/p07b01-frozen-armor/final-review.json) records both
+verdicts and all readers released. [Cleanup](fixtures/p07b01-frozen-armor/cleanup.json)
+reverifies all 371 RAW/archive records, every owned output hash and all 5755
+process birth identities before removing exactly 371 RAW files, 760 dist files
+and one .vite file. Absence is verified; no cleanup signal is sent. Eight earlier
+browser-temp files were likewise inventoried, removed and verified absent.
+Pre-existing empty coverage, tools/dependencies/shared caches, source/history,
+durable evidence and the umbrella worktree are preserved. Original checkout
+remains untouched. No remote publication or deployment.
 
-Next source-only RAW:
+Next source-only root-owned RAW:
 `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr`.
-Root owns its reviewed runner, next-card proposal and frozen cleanup script;
-no next-card product commands/source changes yet. P07a02A Fire Mastery needs
-concrete plan/test review before implementation; later runtime/copy/browser
-acceptance remains open. The complete private-v1 objective continues.
+It retains the reviewed runner/proposal/cleanup script, draft plan, three source
+snapshots and cleanup record. No next-card repository edits/product commands
+preceded closure. P07a02A Fire Mastery needs concrete plan/test review before
+implementation; later runtime/copy/browser acceptance remains open. Root will
+archive and remove its exact task-owned artifacts after consumers release.
+The complete private-v1 objective continues.

@@ -2253,3 +2253,28 @@ untouched/rootclaim continues. Next source-only root-ownedRAW
 `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-frozen-armor-wtwinptx`
 holds hashverified runner, cleanup record and GD/TD-approved proposed FrozenArmor
 contract; independent plan/test review precedes any code. No remote action.
+
+
+## P07b01 paid Frozen Armor closure
+
+Accepted engine ed05766/native 93022ee/browser tests 562da72; evidence a7254c3.
+Paid immutable potency supplies capped rank-based ordinary defense and canonical
+zero-extra-RNG direct-hit Chill; native boundaries invalidate unlearned new
+inputs without mutating replay history. Four production en/zh desktop/mobile
+cases pass using disclosed imported fixtures; full earned progression, campaign,
+balance, CJK glyph quality, mobile readability/a11y and coverage remain unproved.
+Final U3717/171files66.851s, T11.326s, L28.957s pass sequentially; engine1413,
+native79 and production bridge/build pass. Existing speed misses/warnings remain.
+
+[Evidence](evidence/p07b01-frozen-armor.md) preserves all failures and reviewed
+corrections. Producer/QA whole-packet and exact-cleanup APPROVE, all readers
+released. Packet f60271297e77288b91c8dae9a1d49889dbfa5ca32cc810abb5a8e5c2d36b0ab5
+indexes371records/49commands/569source fingerprints. All5755PID/birth identities
+nonlive reverified, exact371RAW/760dist/1.vite files deleted and absence verified;
+no cleanup signals. Earlier8browser-temp files removed. Pre-existing empty
+coverage/tools/shared caches/source/history/durable evidence preserved. Original
+checkout untouched, root umbrella claim continues; no remote action.
+Next root-owned source-only RAW is
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-fire-mastery-3c7zf7mr`.
+Next P07a02A Fire Mastery definition/schema/rank prerequisite follows independent
+concrete plan/test review. Full private-v1/C0–C4/G0–G7 remain open.

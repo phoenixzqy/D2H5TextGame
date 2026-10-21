@@ -4,7 +4,7 @@ Status: GD/TD approve the contract and engine source; producer/QA approve the
 engine, native boundaries and qualified imported-fixture production browser
 evidence. Implementations: engine `ed05766`, native `93022ee`, browser tests
 `562da72`. [Evidence](../evidence/p07b01-frozen-armor.md) records exact limits;
-whole-packet review/cleanup is separate. This does not close full private v1,
+whole-packet review and exact cleanup are complete with producer/QA approval. This does not close full private v1,
 C0–C4 or G0–G7.
 
 The exact authored `skills-sorceress-frozen-armor` / canonical
