@@ -123,9 +123,7 @@ for (const locale of ['en', 'zh-CN'] as const) {
       expect(player()).toEqual(before);
     });
     it.each([
-      ['raise-skeleton', 'Raise Skeleton', '召唤骷髅', 1],
-      ['raise-skeletal-mage', 'Raise Skeletal Mage', '召唤骷髅法师', 2],
-      ['revive', 'Revive', '复生', 2], ['iron-golem', 'Iron Golem', '钢铁石魔', 1]
+      ['iron-golem', 'Iron Golem', '钢铁石魔', 1]
     ] as const)('keeps the excluded %s generic summon description', (slug, en, zh, cap) => {
       arrange('necromancer', { [`necromancer.${slug.replace(/-/g, '_')}`]: 2 }); mount();
       const panel = detail(`skills-necromancer-${slug}`);

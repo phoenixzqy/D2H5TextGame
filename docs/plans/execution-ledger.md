@@ -3046,3 +3046,19 @@ reviewed durable retention and cleanup. UI staging follows; the impact audit
 also found a legacy playback refund helper, approved for a separate synthetic
 clone prerequisite while preserving the canonical initial-spend test. The
 five-path runtime switch and full private-v1 acceptance remain pending.
+
+
+## D06 v1c UI-test prerequisite
+
+Store staging committed as `1a0ec35` after QA/producer approval. Six bilingual
+Skeleton/Mage/Revive generic-description cases move unchanged into
+`SkillsScreen.summon-preparation-corpses.test.tsx`; minimal original arrange,
+mount, reset and locale contexts are copied, with required detail ID explicit.
+Iron and synthetic controls stay in the original suite. Focused68/2files9.83s,
+full5805/209files93.35s (94.652s wrapper), types13.237s and lint34.548s pass
+serially, diff-check clean. No production/copy/data change; cases still assert
+the old policy and will change only in genuine RED-first runtime work. The
+ordinary full15s target is missed. Evidence remains root-owned in the recorded
+v1c directory through reviewed durable retention/cleanup. Next: separately
+approved playback legacy-refund prerequisite, then canonical runtime oracles.
+Full D06/P09/P10/private-v1 and performance acceptance remain open.
