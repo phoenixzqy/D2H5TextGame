@@ -248,3 +248,45 @@ fresh source/output hashes and1102absent process births verify exact761files/
 Shared caches/dependencies/fonts/tools/source/history/original checkout preserved.
 RAW remains root-owned for durable verification/exact cleanup. Umbrella claim
 continues; no remote action. Native/UI/browser,BUG068 and full-v1 remain open.
+
+
+## Stage F — native wave, replay and persistence integration
+
+Source commit `c09cbe8` changes exactly combatHelpers.ts and new focused native
+tests. Four production lines compose the optional projection from matching current
+hero's fresh authoritative adapter baseline and original fielded merc ID, then pass
+it to the real recorder. Existing resource/carry/replay/reward handling is unchanged.
+Only disk is mocked; the capture spy invokes actual combat. Imported L30/ranks/
+prerequisites/gear and registered paid actions are scaffolding, not earned campaign.
+
+Actual unchanged-native RED17=11missing-projection behavioral assertions+6controls
+(5.422s). FirstGREEN genuinely15pass2fixturefail(5.319s), confirmed by retained
+verbose diagnostic5.453s: replay fixture overwrote Prayer/Cleansing allocation keys,
+and unsupported statMods.energy kept baseline4 instead36.4. QA-reviewed v3 changes
+only the fixture affix path to coreStats.energy and merges existing skillLevels in
+rank overrides. Every expected value/full-outcome assertion remains. V1/v2 drafts
+and actual failed reports/diagnostic are retained; earlier unexecuted v1→v2 change
+uses final wholeMP+exactcarry because rank1 need not cross the first whole boundary.
+Installed21720B SHA256
+`f454e09ea0095d04d455376bace126fd3037d1c2dc77019937aea3d10dbe8552`.
+
+Corrected focused32/32 in2files(Meditation+Might)5.538s; types12.565s,
+lint/purity32.051s,full5405/5405 in199files85.555s and fresh productionbridgebuild
+9.264s4chunks pass. Tests cover36.4/equipment/effective61.2/represented1.4000000000000001,
+actual merc paid action without baseline, original merc/death, nextwave/rank/respec,
+None/Might replacement, original all3carry/clamp/restoration/replay/no rewards and
+validated v9None/v11selection import. No engine source edit; E engine2839 remains
+attributed to E. RAW stage-f-final-verification.json links8serialrecords; no pending/
+todo/stops/signals. Existing timing misses/build warnings remain without performance
+acceptance. GD/TD source and QA/producer whole-evidence reviews APPROVE; readers
+released. After sourcecommit, fresh hashes/941absentbirths verify exact761files/
+40,975,412B cleanup plus9childdirs/distroot; all exactfiles absent,zero failures.
+
+To bound later gates,13completed A–E reports were independently byte-verified by QA
+against deterministic gzip copies and their manifest, then only exact originals
+were removed. RAW completed-report-compression.v1.json binds18,289,854B originals
+to1,276,334B compressed bytes/decompressed hashes; its receipt verifies all13originals
+absent and gzip/manifest/small diagnostics preserved. No report bytes lost. Root owns
+remaining RAW for final durable verification/exact cleanup; shared caches/tools/
+source/history/original checkout preserved. Claim continues,no remote action.
+UI/browser,BUG068 and full private-v1/C0–C4/G0–G7 remain open.

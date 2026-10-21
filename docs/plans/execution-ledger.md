@@ -2793,3 +2793,21 @@ and QA/producer APPROVE; readers released. Sourcecommit followed by fresh hashes
 all absent,zero failures. RAW retained root-owned; shared caches/tools/source/history/
 original preserved. Claim continues,no remote action. Native/UI/browser,BUG068 and
 full private-v1/C0–C4/G0–G7 remain open.
+
+
+## P07b03F Meditation native composition
+
+`c09cbe8` changes2paths/fourproductionlines: shared playWave composes fresh
+adapter baseline under original hero/merc identities; resource/carry/replay/reward
+flow unchanged. [Evidence](evidence/p07b03-meditation.md). Imported scaffolding only.
+RED17=11behavioral+6controls; firstGREEN15pass2fixturefail/diagnostic retained;
+QA-approved affix-path/prerequisite-preservation corrections keep all assertions.
+Corrected focused32/2,types/lint,full5405/199,productionbridgebuild pass. Eight serial
+records; no engine edit/run (E engine evidence retained), no pending/todo/stops/
+signals. Warnings/timing misses remain without performance acceptance. GD/TD and
+QA/producer APPROVE/readersreleased; after sourcecommit fresh hashes/941absentbirths
+verify exact761file40,975,412B cleanup plus9childdirs/distroot,allabsent/zerofailures.
+13completed A–E large reports preserved byteexact in verified gzip+manifest before
+exact originals removed. RAW retainedrootowned for durable archive/exactcleanup;
+shared caches/tools/source/history/original preserved. Claimcontinues,noremote.
+UI/browser,BUG068 and full-v1 remainopen.
