@@ -45,7 +45,8 @@ import {
 import { isImmobilized, shouldEnrage } from '../ai/policy';
 import { canCastSkill } from '../skills/eligibility';
 import { getSkill } from '../skills/registry';
-import { buildSummon } from '../skills/summons';
+import { buildSummon, getSummon } from '../skills/summons';
+import { isPreparationSummonSkill, SUMMON_PREPARATION_TEMPLATES } from '../skills/summon-preparation';
 import { empowerSkeletonSummon, type SkeletonMasteryProjection } from '../skills/skeleton-mastery';
 import { resolveSummonMaxCount, scalePerRank } from '../skills/scaling';
 import { resolveAoeTargets, withDefaultGridPositions } from './grid';
@@ -165,6 +166,8 @@ interface State {
   insertionCounter: number;
   /** Runtime summon identity belongs to this battle, never a module singleton. */
   summonSequence: number;
+  /** Valid startup sources authorize only their own exact template deaths. */
+  preparationTemplates: Map<string, Set<string>>;
 }
 
 interface PeriodicIntegral {
@@ -513,7 +516,8 @@ function deathEffects(state: State, dead: CombatUnit): void {
   // (mana cost 15, no cooldown, no in-combat regen) hits a hard mana wall
   // at 5 lifetime summons; once their mana drains, dead skeletons are
   // never replaced.
-  if (inferKind(dead) === 'summon' && dead.summonOwnerId) {
+  if (inferKind(dead) === 'summon' && dead.summonOwnerId &&
+    !(dead.summonTemplateId && state.preparationTemplates.get(dead.summonOwnerId)?.has(dead.summonTemplateId))) {
     const owner = state.units.get(dead.summonOwnerId);
     if (owner && alive(owner)) {
       const summonSkill = owner.skillOrder
@@ -700,7 +704,7 @@ function chooseSkillForState(
 ): RegisteredSkill | undefined {
   for (const skillId of unit.skillOrder) {
     const skill = getSkill(skillId);
-    if (!skill) continue;
+    if (!skill || isPreparationSummonSkill(skill)) continue;
     if (!canUseSkillForState(state, unit, skill, skillId, hasEnemyTarget)) continue;
     return skill;
   }
@@ -782,24 +786,7 @@ function applyEffect(
         return;
       }
       const empowered = empowerSkeletonSummon(state.skeletonMastery, owner, template);
-      const summon = { ...empowered, id: nextSummonId(state, actorId, effect.summonId) };
-      const preferredPosition = firstOpenSummonPosition(owner, aliveOf(state, owner.side));
-      const summonWithPreferredPosition = preferredPosition
-        ? { ...summon, gridPosition: preferredPosition }
-        : summon;
-      const positionedSummon = withDefaultGridPositions([
-        ...aliveOf(state, owner.side),
-        summonWithPreferredPosition
-      ]).find((u) => u.id === summon.id) ?? summonWithPreferredPosition;
-      registerUnit(state, positionedSummon);
-      scheduleNextAction(state, positionedSummon);
-      state.cooldownExpiresAt.set(positionedSummon.id, new Map());
-      emit(state, {
-        kind: 'summon',
-        owner: actorId,
-        summonId: effect.summonId,
-        unit: positionedSummon
-      });
+      registerSpawnedSummon(state, owner, effect.summonId, empowered);
       break;
     }
     case 'heal': {
@@ -821,7 +808,27 @@ function applyEffect(
   }
 }
 
-function castSkill(state: State, actorId: string, skill: RegisteredSkill): void {
+/** Registration is the commit boundary; candidate building never allocates battle identity. */
+function registerSpawnedSummon(state: State, owner: CombatUnit, templateId: string, template: CombatUnit): void {
+  const summon = { ...template, id: nextSummonId(state, owner.id, templateId) };
+  const preferredPosition = firstOpenSummonPosition(owner, aliveOf(state, owner.side));
+  const summonWithPreferredPosition = preferredPosition
+    ? { ...summon, gridPosition: preferredPosition }
+    : summon;
+  const positionedSummon = withDefaultGridPositions([
+    ...aliveOf(state, owner.side),
+    summonWithPreferredPosition
+  ]).find((u) => u.id === summon.id) ?? summonWithPreferredPosition;
+  registerUnit(state, positionedSummon);
+  scheduleNextAction(state, positionedSummon);
+  state.cooldownExpiresAt.set(positionedSummon.id, new Map());
+  emit(state, { kind: 'summon', owner: owner.id, summonId: templateId, unit: positionedSummon });
+}
+
+function castSkill(
+  state: State, actorId: string, skill: RegisteredSkill,
+  prepared?: { readonly summonId: string; readonly units: readonly CombatUnit[] }
+): void {
   const actor = state.units.get(actorId);
   if (!actor) return;
 
@@ -843,6 +850,10 @@ function castSkill(state: State, actorId: string, skill: RegisteredSkill): void 
 
   emit(state, { kind: 'action', actor: actorId, skillId: skill.id });
   if (manaEvent) emit(state, manaEvent);
+  if (prepared) {
+    for (const candidate of prepared.units) registerSpawnedSummon(state, actor, prepared.summonId, candidate);
+    return;
+  }
 
   const enemySide: CombatSide = actor.side === 'player' ? 'enemy' : 'player';
   const enemiesAliveRaw = aliveOf(state, enemySide);
@@ -1029,16 +1040,84 @@ function refreshCooldowns(state: State, unitId: string): void {
   state.units.set(unitId, { ...unit, cooldowns: effectiveCds });
 }
 
+/** Reject malformed scoped source data before cap/resource decisions establish authority. */
+function preparationEffect(skill: RegisteredSkill): SummonEffect | undefined {
+  const effect = skill.effects[0];
+  if (skill.trigger !== 'active' || skill.target !== 'summon' || skill.summonOnStart !== true ||
+    skill.effects.length !== 1 || effect?.kind !== 'summon' ||
+    effect.summonId !== SUMMON_PREPARATION_TEMPLATES[skill.id] || !getSummon(effect.summonId) ||
+    !Number.isInteger(skill.minLevel) || skill.minLevel <= 0 ||
+    !Number.isFinite(skill.manaCost) || skill.manaCost < 0 ||
+    !Number.isFinite(skill.cooldown) || skill.cooldown < 0 ||
+    !Number.isFinite(skill.manaCostPerRank ?? 0) || !Number.isFinite(skill.cooldownPerRank ?? 0) ||
+    !Number.isInteger(effect.maxCount) || effect.maxCount <= 0 ||
+    !Object.values(effect.statScaling ?? {}).every(Number.isFinite)) return undefined;
+  const multi = effect.summonId === 'raven' || effect.summonId === 'dire_wolf' || effect.summonId === 'spirit_wolf';
+  if (multi ? effect.maxCount !== 8 || effect.maxCountScaling?.kind !== 'first-three-then-every-three'
+    : effect.maxCount !== 1 || effect.maxCountScaling !== undefined) return undefined;
+  return effect;
+}
+
+function validPreparationCandidate(unit: CombatUnit): boolean {
+  const stats = unit.stats;
+  return stats.lifeMax > 0 && [unit.life, unit.mana, stats.life, stats.lifeMax, stats.mana, stats.manaMax,
+    stats.attack, stats.defense, stats.magicResist, stats.attackSpeed, stats.critChance, stats.critDamage,
+    stats.physDodge, stats.magicDodge, stats.magicFind, stats.goldFind]
+    .every(value => Number.isFinite(value) && value >= 0) &&
+    [stats.resistances.physical, stats.resistances.fire, stats.resistances.cold,
+      stats.resistances.lightning, stats.resistances.arcane, stats.resistances.poison].every(Number.isFinite);
+}
+
+/** Stage the complete missing batch before payment, IDs, scheduler or RNG can change. */
+function prepareSummons(state: State, owner: CombatUnit, skill: RegisteredSkill): void {
+  const effect = preparationEffect(skill);
+  if (!effect || !Number.isFinite(owner.level) || owner.level < skill.minLevel ||
+    !Number.isFinite(owner.mana) || owner.mana < 0) return;
+  if (skill.requires && owner.equippedWeapon !== undefined && !canCastSkill(skill, owner.equippedWeapon).ok) return;
+  const rank = effectiveSkillLevel(owner, skill);
+  const cap = resolveSummonMaxCount(effect, rank);
+  const cost = effectiveManaCost(skill, rank);
+  const cooldown = effectiveCooldown(skill, rank);
+  if (!Number.isInteger(rank) || rank <= 0 || !Number.isInteger(cap) || cap <= 0 || cap > effect.maxCount ||
+    !Number.isFinite(cost) || !Number.isFinite(cooldown * SECONDS)) return;
+  const missing = Math.max(0, cap - summonsOf(state, owner.id, effect.summonId).length);
+  const candidates: CombatUnit[] = [];
+  for (let i = 0; i < missing; i++) {
+    const template = buildSummon(owner, effect.summonId, { skillLevel: rank, statScaling: effect.statScaling });
+    if (!template) return;
+    const candidate = empowerSkeletonSummon(state.skeletonMastery, owner, template);
+    if (!validPreparationCandidate(candidate)) return;
+    candidates.push(candidate);
+  }
+  let templates = state.preparationTemplates.get(owner.id);
+  if (!templates) {
+    templates = new Set();
+    state.preparationTemplates.set(owner.id, templates);
+  }
+  templates.add(effect.summonId);
+  if (missing === 0 || cost > owner.mana) return;
+  castSkill(state, owner.id, skill, { summonId: effect.summonId, units: candidates });
+}
+
 function castSummonsOnStart(state: State, unitId: string): void {
   let unit = state.units.get(unitId);
   if (!unit) return;
   const enemySide: CombatSide = unit.side === 'player' ? 'enemy' : 'player';
   const hasEnemy = aliveOf(state, enemySide).length > 0;
+  const prepared = new Set<string>();
   for (const skillId of unit.skillOrder) {
     const skill = getSkill(skillId);
-    if (!skill?.summonOnStart) continue;
+    if (!skill) continue;
     unit = state.units.get(unitId);
     if (!unit || !alive(unit)) return;
+    if (isPreparationSummonSkill(skill)) {
+      if (hasEnemy && !state.heroDead && !prepared.has(skill.id)) {
+        prepared.add(skill.id);
+        prepareSummons(state, unit, skill);
+      }
+      continue;
+    }
+    if (!skill.summonOnStart) continue;
     if (!canUseSkillForState(state, unit, skill, skillId, hasEnemy)) continue;
     castSkill(state, unitId, skill);
   }
@@ -1231,7 +1310,8 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     turnsEmitted: 0,
     heroDead: false,
     insertionCounter: 0,
-    summonSequence: 0
+    summonSequence: 0,
+    preparationTemplates: new Map()
   };
 
   for (const u of withDefaultGridPositions(snapshot.playerTeam)) registerUnit(state, u);
