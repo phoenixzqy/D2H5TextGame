@@ -1,6 +1,6 @@
 # BUG-060 — Apply explicitly selected player Might in combat
 
-- **Status:** Reproduced; pure-engine runtime fix in progress. Native wave integration remains open.
+- **Status:** Pure-engine runtime fixed in `3e4f159`; native wave integration reproduced and fix in progress.
 - **Severity:** High — selected Might has no combat effect.
 - **Owner / affected systems:** engine-dev (root integrator), selected aura combat projection; native combat adapter follows separately.
 - **Build:** `e1c976d1feca247200bcca1d0135826b54a88863` with reviewed regression tests installed; production engine unchanged.
@@ -40,3 +40,24 @@ The snapshot/state has no selected Might projection. Basic attack reads only aut
 ## Workaround / closure
 
 No player workaround. Pure-engine tests do not establish native playable activation. Record the runtime commit, native integration, regression evidence and final closure in the subsequent card evidence before marking the complete selected-aura path fixed.
+
+## Native reproduction after pure-engine fix
+
+At `3e4f159e8de12cf7fad3850af5da016fdcf6a2eb`, run
+`node node_modules/vitest/vitest.mjs run src/stores/combatHelpers.might.test.ts`
+with the reviewed v5 native regression suite. Production native adapter SHA256
+`4679d8e1a59fd22e00dae100462944a9ea419e812f194251ef99cbdc25886177`
+remains unchanged. The real `startSubAreaRun` / next-wave / replay path supplies
+no `mightAura` input:15tests,9missing-projection failures,6passing controls,
+no skips,4.806s. Selected rank1/20, exact fielded merc and validated import
+all remain disconnected from pure runtime support. The actual seed7 fragile
+mercenary death and won-wave carry assertions passed before the projection
+failure; the nonzero-carry assertion is not reached in this RED.
+
+Evidence: `focused-native-red-report.json`, matching metadata,
+`native-prepatch-freeze.json`, `native-red-summary.json`; all prior unexecuted
+v1–v4 fixture drafts and independent corrections remain at the evidence root.
+Native fix: capture the constructed fielded merc's exact combat identity once
+at run start; compose eligible selection from the current matching player at
+each wave; pass the immutable projection separately from unchanged unit/carry
+resources. No roster rediscovery or original-player selection fallback.

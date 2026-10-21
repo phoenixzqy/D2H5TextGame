@@ -40,6 +40,7 @@ import { aggregateEquipmentMods, applyEquipmentCoreMods, equipmentModsToDerivedM
 import { deriveStats, effectiveStatValue } from '@/engine/progression/stats';
 import { composeHeroRecovery } from '@/engine/progression/warmth';
 import { resolveFrozenArmorRank } from '@/engine/skills/frozen-armor';
+import { composeMightAura } from '@/engine/skills/might';
 
 const CHALLENGE_ORDINAL_PERIOD = 360360;
 let manualChallengeOrdinal = 0;
@@ -338,6 +339,8 @@ interface ActiveRun {
   readonly act: 1 | 2 | 3 | 4 | 5;
   readonly seed: number;
   readonly mode: 'manual' | 'idle';
+  /** Exact merc unit constructed at run start; roster changes never retarget this run. */
+  readonly fieldedMercCombatId?: string;
   playerUnit: CombatUnit;
   /** Index of the wave currently being played (0-based). */
   waveIdx: number;
@@ -469,17 +472,19 @@ export function startSubAreaRun(opts: {
   const fieldedMerc = mercState.fieldedMercId
     ? mercState.ownedMercs.find(merc => merc.id === mercState.fieldedMercId)
     : undefined;
-  const playerTeam: CombatUnit[] = fieldedMerc
-    ? [playerUnit, mercToCombatUnit(
+  const mercUnit = fieldedMerc
+    ? mercToCombatUnit(
         fieldedMerc, formation.mercPosition, mercState.mercEquipment[fieldedMerc.id]
-      )]
-    : [playerUnit];
+      )
+    : undefined;
+  const playerTeam: CombatUnit[] = mercUnit ? [playerUnit, mercUnit] : [playerUnit];
 
   activeRun = {
     plan,
     act,
     seed,
     mode,
+    ...(mercUnit ? { fieldedMercCombatId: mercUnit.id } : {}),
     playerUnit,
     waveIdx: 0,
     carryPlayerTeam: playerTeam,
@@ -626,6 +631,8 @@ function playWave(waveIdx: number): void {
   const currentPlayer = usePlayerStore.getState().player;
   const fresh = currentPlayer?.id === activeRun.playerUnit.id
     ? playerToCombatUnit(currentPlayer) : null;
+  const mightAura = currentPlayer?.id === activeRun.playerUnit.id
+    ? composeMightAura(currentPlayer, activeRun.fieldedMercCombatId) : undefined;
   const playerTeam = activeRun.carryPlayerTeam.map(unit => {
     if (!fresh || unit.id !== fresh.id) return unit;
     const mana = Math.min(unit.mana, fresh.stats.manaMax);
@@ -651,7 +658,8 @@ function playWave(waveIdx: number): void {
   const { events, result } = runBattleRecorded({
     seed: waveSeed,
     playerTeam,
-    enemyTeam: enemies
+    enemyTeam: enemies,
+    ...(mightAura ? { mightAura } : {})
   });
   const terminal = events.at(-1);
   if (terminal?.kind !== 'end' || !Number.isFinite(terminal.simClockMs) ||
