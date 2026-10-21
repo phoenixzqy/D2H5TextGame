@@ -1,7 +1,7 @@
 # BUG-056 — Make mobile combat cards and names readable
 
 Status: Resolved by the independently reviewed P16a01 presentation repair;
-implementation commit recorded in the closing evidence update.
+implementation commit `2768502`.
 Severity: Medium — desktop/scrolling workarounds exist, mobile readability is poor.
 Owner: frontend-dev; root implements, independent producer/QA/UX/TD review.
 Affected systems: combat presentation only; no engine, formation or save change.

@@ -126,3 +126,12 @@ browser constraints; producer independently reconciles all16 geometry samples,
 commit/cleanup. [Final review](fixtures/p16a01-combat-readability/final-review.json)
 is explicitly post-archive. Exact disposable cleanup follows the local commit;
 no full P16/accessibility/campaign/balance/private-v1 acceptance is inferred.
+
+Implemented in `2768502`. [Cleanup](fixtures/p16a01-combat-readability/cleanup.json)
+verifies exact deletion of111task RAW files,760dist files and one.vite file,
+after all readers released and1125process identities were rechecked nonlive.
+The host font staging is included in that deleted RAW; its bytes/provenance
+remain archived. Pre-existing emptycoverage, installed tools and shared caches
+remain. No cleanup signals. Root claim continues for P02b05d; original checkout
+is clean. Next RAW is
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-moor-current-5ex61d2z`.

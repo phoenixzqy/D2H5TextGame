@@ -13,7 +13,8 @@ Current implementation evidence lives in `evidence/`.
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
 | P08a07 | accepted starter Rogue slice | `45cd527`; exact authored Inner Sight25%/8s/CD5, immutable resolver/schema/status localization and shared fractional armor projection. Genuine runtime RED12/13controls; finalengine1224/full3452/T/L/build and5browser cases pass; producer/QA/GD/TD APPROVE. [Evidence](evidence/p08a07-rogue-inner-sight.md). Full campaign/balance/readability gates remain open. |
-| P16a01 | contract/test design | Responsive combat readability: stack teams below1024px, retain formation/desktop/combat behavior; geometry and native browser RED before presentation patch. Host CJK fonts are separate. |
+| P16a01 | accepted scoped mobile combat repair | `2768502`; stacked teams below1024px, wrapped names/6pxHP/44pxcontrols/contained feedback. Genuine577RED and first failedGREEN preserved; final3454U/T/L and4production cases/eight sizes pass. Independent producer/QA/UX/TD APPROVE. [Evidence](evidence/p16a01-combat-readability.md). FullP16/a11y/performance remain open. |
+| P02b05d | plan/concrete review | One current-head same40 A ordinary-earned Moor→idle pilot after authored mechanics repairs. Unchanged recipe/assertions; one en/desktop attempt; no stronger prep/fallback. No new execution yet. |
 | P00 | in-progress | Producer F01–F21 mapping and assertion audit below. Expand current-head measurements and strict tests with each fix. |
 | P00b | accepted tooling fix | `test:related` now invokes Vitest's `related --run`; scoped 25 tests pass in 1.45 s, broad 226 pass/1 existing skip in 10.70 s (over budget). Producer approval; BUG-003. |
 | P01 | in-progress | D12 save/import contract recorded. Offline portion, D01–D11/D13–D14 pending; D04/D06 source reconciliation under review. |
@@ -2164,3 +2165,29 @@ transferred to root-owned nextRAW
 `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-combat-readable-5nscfev_`.
 Next is P16a01 scoped mobile combat readability; reviewed/frozen geometry test
 and genuine browser RED precede BUG/presentation patch. No remote action.
+
+## P16a01 mobile combat readability closure
+
+Accepted `2768502`; BUG-056 resolved after independent producer/QA/UX/TD source
+and wholepacket APPROVE. Presentation classes preserve formation/DOM/tab order/
+handlers/resources/state/save. Genuine577geometryRED and failed firstGREEN
+9en/7zh badge-top failures remain; reviewed pulse correction passes unchanged
+frozen tests. Four production en/zh cases/all8sizes pass43.643s; cards86px at360,
+103.328px at412, names14px/20px, HP6px, separator48px; landscape main187/296px.
+CDP proves4Chinese glyphs via temporary host font; no product dependency.
+Full3454U/166files54.907s,T11.211s,L28.774s pass final runtime bytes. Existing
+unit speed-budget excess/build warnings remain; no new coverage claim.
+
+[Evidence](evidence/p16a01-combat-readability.md) packet226470f73846b6b99207c167f4aafa7b29b6a8611e24853a6a522124cb1e34fa/
+archive53b9715a911f36de70c79a9a2eda86890758e0f367f17d857b6f1b998e687cce
+retains111safe records/17,352,171raw/8,669,458archive bytes/11commands. All readers
+released,1125PID/birth identities nonlive reverified, then exact RAW111files,
+taskdist760files/.vite1file removed and absence verified; no cleanup signals.
+Temporary host font removed; archived provenance/bytes preserved. Pre-existing
+emptycoverage/tools/sharedcaches remain. Original checkout clean/rootclaim
+continues. NextRAW `d2h5-root-moor-current-5ex61d2z` holds next reviewed bounded
+pilot runner/draft and cleanup evidence; root owns removal after next review.
+Next P02b05d is one same40 A current-head Moor→idle production pilot after
+independent plan/concrete freeze. No stronger prep/fallback, causality for old
+draw, Den, balance, fullaccessibility/performance/P16/C0–C4/G0–G7/private-v1
+acceptance or remote action follows this scoped repair.
