@@ -31,6 +31,7 @@ import {
 import { refreshActivePlayerCombatConfig, resolveEquippedWeapon } from '@/stores/combatHelpers';
 import { getSkill, listSkills } from '@/engine/skills/registry';
 import { canCastSkill } from '@/engine/skills/eligibility';
+import { isPreparationSummonSkill } from '@/engine/skills/summon-preparation';
 import { AMPLIFY_DAMAGE_DEFINITION } from '@/engine/combat/amplify-damage-definition';
 import { METEOR_ARMOR_MELT_DEFINITION } from '@/engine/skills/armor-melt';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
@@ -1124,6 +1125,12 @@ function dynamicDescription(
     });
   }
   if (stats?.summonCap !== undefined) {
+    const canonicalId = canonicalSkillIdFromData(skill.id) ?? skill.id;
+    if (isPreparationSummonSkill({ id: canonicalId })) {
+      return t('details.descriptionSummonPreparation', {
+        skill: skillName, count: stats.summonCap, mana: stats.manaCost
+      });
+    }
     return t('details.descriptionSummon', { skill: skillName, count: stats.summonCap });
   }
   return t('details.descriptionUtility', {

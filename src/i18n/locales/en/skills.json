@@ -146,6 +146,7 @@
     "noChange": "(no change)",
     "descriptionDamage": "{{skill}}: {{min}} ~ {{max}} {{type}} damage.",
     "descriptionSummon": "{{skill}}: summon up to {{count}} allies.",
+    "descriptionSummonPreparation": "{{skill}}: once at each wave start, if learned, unlocked and in your combo, fill missing living summons up to {{count}} for one payment of {{mana}} MP for the whole batch. Already full: no cost. Not enough mana: no summons or payment, and no retry that wave. This skill uses no ordinary action; fallen summons are not replaced and return no mana. Each new wave starts with fresh summons, paid from your carried mana.",
     "descriptionUtility": "{{skill}}: {{trigger}} skill.",
     "stateLocked": "locked",
     "stateMaxed": "maxed",

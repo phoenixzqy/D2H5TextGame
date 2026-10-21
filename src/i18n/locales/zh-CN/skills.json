@@ -146,6 +146,7 @@
     "noChange": "（无变化）",
     "descriptionDamage": "{{skill}}：造成 {{min}} ~ {{max}} 点{{type}}伤害。",
     "descriptionSummon": "{{skill}}：最多召唤 {{count}} 名随从。",
+    "descriptionSummonPreparation": "{{skill}}：已学习、已解锁并编入连招时，每波开始仅准备一次，以整批共 {{mana}} 点法力补足存活召唤物，最多 {{count}} 名。已满员不消耗法力；法力不足则不召唤、不扣费，本波不再重试。此技能不占常规行动，召唤物阵亡不补召、不返还法力。新一波召唤物重新生成，从继承的法力中重新付费。",
     "descriptionUtility": "{{skill}}：{{trigger}}技能。",
     "stateLocked": "未解锁",
     "stateMaxed": "已满级",
