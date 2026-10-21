@@ -244,6 +244,93 @@
     }
   }, {
     "if": {
+      "properties": {
+        "id": {
+          "const": "skills-necromancer-skeleton-mastery"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "then": {
+      "required": [
+        "requiredLevel",
+        "scaling"
+      ],
+      "properties": {
+        "requiredLevel": {
+          "$ref": "#/properties/requiredLevel"
+        },
+        "trigger": {
+          "const": "passive"
+        },
+        "target": {
+          "const": "self"
+        },
+        "cooldown": {
+          "const": 0
+        },
+        "passive": {
+          "const": true
+        },
+        "aura": {
+          "const": false
+        },
+        "summon": {
+          "const": false
+        },
+        "scaling": {
+          "type": "object",
+          "required": [
+            "passiveStatsPerLevel"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "passiveStatsPerLevel": {
+              "type": "object",
+              "required": [
+                "summonLifePct",
+                "summonAttackPct",
+                "summonDefensePct"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "summonLifePct": {
+                  "type": "number",
+                  "minimum": 0,
+                  "description": "Finite nonnegative summon-life fraction per allocated Skeleton Mastery rank."
+                },
+                "summonAttackPct": {
+                  "type": "number",
+                  "minimum": 0,
+                  "description": "Finite nonnegative summon-Attack fraction per allocated Skeleton Mastery rank."
+                },
+                "summonDefensePct": {
+                  "type": "number",
+                  "minimum": 0,
+                  "description": "Finite nonnegative summon ordinary-defense fraction per allocated Skeleton Mastery rank."
+                }
+              }
+            }
+          }
+        },
+        "cost": false,
+        "damage": false,
+        "damageType": false,
+        "appliesStatus": false,
+        "statusEffect": false,
+        "additionalStatusEffects": false,
+        "appliesTags": false,
+        "synergies": false,
+        "heal": false,
+        "summonId": false,
+        "aoeShape": false,
+        "requires": false
+      }
+    }
+  }, {
+    "if": {
       "properties": { "id": { "const": "skills-paladin-might" } },
       "required": ["id"]
     },
