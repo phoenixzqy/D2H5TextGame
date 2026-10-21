@@ -10,6 +10,7 @@ import { useMercStore, mercXpForLevel } from '@/stores/mercStore';
 import { useFormationStore } from '@/stores/formationStore';
 import { useCombatStore } from '@/stores/combatStore';
 import { useMetaStore } from '@/stores/metaStore';
+import { useHydrationStore } from '@/stores/hydrationStore';
 import type { EarnedItemSelector } from './earned-fixture';
 
 type Data<S> = { [K in keyof S as S[K] extends (...args: never[]) => unknown ? never : K]: S[K] };
@@ -41,7 +42,7 @@ function restoreStore<S extends object>(store: Pick<StoreApi<S>, 'getState' | 's
 export function captureEarnedRestorers(): (() => void)[] {
   return [restoreStore(usePlayerStore), restoreStore(useInventoryStore),
     restoreStore(useMapStore), restoreStore(useMercStore), restoreStore(useFormationStore),
-    restoreStore(useCombatStore), restoreStore(useMetaStore)];
+    restoreStore(useCombatStore), restoreStore(useMetaStore), restoreStore(useHydrationStore)];
 }
 
 /** Production reset only. The caller must freeze its clock before resetting meta. */

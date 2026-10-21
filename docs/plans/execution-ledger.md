@@ -4829,3 +4829,45 @@ remote action or server. Earned/mode adapter prerequisites, production wave/
 caller guards, exact receipt/conflict/publication/settlement/replay integration
 and bilingual Iron UI/browser acceptance remain pending.
 FullD06/P09/P10/private-v1 remain open.
+
+
+## D06 v1w earned simulation readiness with exact caller restoration
+
+Fresh readiness received independent QA, TD/five-axis and producer APPROVE and
+committed as `fcfc098`. Exact readiness-fresh cleanup removed857files/
+42,724,279bytes and14 empty directories with zero failures/remaining targets;
+recorded command identities were dead. Diagnostics remain retained.
+
+TD approved this four-path earned adapter plan. Shared earned restorers capture
+hydration last without changing earned domain observations. Earned execution sets
+ready inside its existing try after domain resets, before the recipe, then restores
+the exact caller status/error/actions. No persistence initialization, report/schema,
+production default/guard or mode execution change. Invalid-input/active-run refusal
+still precede mutation; the active-caller fixture becomes ready only for its own
+real start. Teardown returns idle; no suite-wide ready.
+
+Preimplementation behavioral RED3failed/27passed12.974s showed loading/error at
+real playback/action boundaries. Final serial focused earned plus mode/measurement
+consumers68/3files16.077s, types15.373s, lint40.472s including85 purity files,
+full6496/220files113.611s and build9.730s passed. Real success restores a distinctive
+loading caller. Action failure retains original error identity; earlier map-restorer
+failure still restores hydration and retains exact original/cleanup error order.
+Source verification observes restored hydration. Invalid/active callers retain
+hydration object identity. Existing domain/pity/clock/method assertions remain.
+
+Build603modules/index-BDxWwAA8.js1261.37kB observed; prior build variance remains
+unresolved. No browser acceptance claimed. Related5s/full15s budgets and existing
+React act, fixture fallback, stale Browserslist, chunk/precache diagnostics remain
+open. SaveCurrent11 unchanged. Security check passes for local adapter readiness/
+restoration without production bypass, new ownership authority or save change.
+
+Four paths, readiness-earned command/source/output identities, expected RED, prior
+cleanup and exact owned dist/tmp inventory are frozen in readiness-earned-review.json
+under /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review remains before commit; disposable outputs
+await exact cleanup. Diagnostics retained; root
+is sole writer/executor; umbrella worktree claim continues; no remote action or
+server. Mode prerequisites, production wave/caller guards, exact receipt/conflict/
+publication/settlement/replay integration and bilingual Iron UI/browser acceptance
+remain pending. FullD06/P09/P10/private-v1 remain open.

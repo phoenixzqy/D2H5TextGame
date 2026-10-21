@@ -12,6 +12,7 @@ import { useMercStore } from '@/stores/mercStore';
 import { useMetaStore } from '@/stores/metaStore';
 import { useFormationStore } from '@/stores/formationStore';
 import { useCombatStore } from '@/stores/combatStore';
+import { useHydrationStore } from '@/stores/hydrationStore';
 import * as production from '@/stores/combatHelpers';
 import { getIdleEliteMisses, setIdleEliteMisses } from '@/stores/idleElitePity';
 import * as identity from './provenance';
@@ -98,9 +99,25 @@ afterEach(() => {
   production.abortSubAreaRun();
   for (const store of stores) store.getState().reset();
   setIdleEliteMisses(0);
+  useHydrationStore.getState().setStatus('idle');
 });
 
 describe('isolated fresh earned production adapter', () => {
+  it('temporarily becomes ready for a real recipe and restores its loading caller', () => {
+    useHydrationStore.getState().setStatus('loading', 'earned-loading-marker');
+    const hydration = useHydrationStore.getState();
+    const observed = new Set<string>();
+    const advance = useCombatStore.getState().advanceEvent;
+    vi.spyOn(useCombatStore.getState(), 'advanceEvent').mockImplementation(() => {
+      observed.add(useHydrationStore.getState().status);
+      advance();
+    });
+    const result = runEarnedRecipeOnce(tiny, options);
+    expect(result.status).toBe('completed');
+    expect(observed).toEqual(new Set(['ready']));
+    expect(useHydrationStore.getState()).toEqual(hydration);
+  });
+
   it('earns one real W1 award, abandons installed W2 and attempts only the fixed Den seed', () => {
     const original = structuredClone(tiny);
     // Caller sentinels prove isolation only; they must never enter earned gameplay.
@@ -251,22 +268,29 @@ describe('isolated fresh earned production adapter', () => {
     { title: 'invalid repetition', input: tiny, opts: { targetSeed: 1, repetition: 3 as 1 } },
     { title: 'malformed fixture', input: { ...tiny, state: {} }, opts: options }
   ])('rejects $title before any store mutation', ({ input, opts }) => {
+    useHydrationStore.getState().setStatus('error', 'earned-invalid-marker');
+    const hydration = useHydrationStore.getState();
     const before = callerState();
     const now = Date.now;
     expect(() => runEarnedRecipeOnce(input, opts)).toThrow();
+    expect(useHydrationStore.getState()).toBe(hydration);
     expect(callerState()).toEqual(before);
     expect(Date.now).toBe(now);
   });
 
   it('rejects an active caller run without aborting, advancing or resetting it', () => {
     usePlayerStore.getState().setPlayer(createMockPlayer('Active caller', 'sorceress'));
+    useHydrationStore.getState().setStatus('ready');
     production.startSubAreaRun({ subAreaId: 'areas/act1-blood-moor', runSeed: 6, challengeOrdinal: 0 });
+    useHydrationStore.getState().setStatus('error', 'earned-active-marker');
+    const hydration = useHydrationStore.getState();
     const before = callerState();
     const abort = vi.spyOn(production, 'abortSubAreaRun');
     expect(() => runEarnedRecipeOnce(tiny, options)).toThrow(/active/i);
     expect(callerState()).toEqual(before);
     expect(production.hasActiveSubAreaRun()).toBe(true);
     expect(abort).not.toHaveBeenCalled();
+    expect(useHydrationStore.getState()).toBe(hydration);
   });
 
   it('preserves one spent point when the next skill point refuses and never farms', () => {
@@ -319,12 +343,22 @@ describe('isolated fresh earned production adapter', () => {
 
   it('restores all seven stores, pity and Date after a thrown real action boundary', () => {
     const failure = new Error('action sentinel');
-    vi.spyOn(usePlayerStore.getState(), 'allocateSkillPoint').mockImplementation(() => { throw failure; });
+    useHydrationStore.getState().setStatus('error', 'earned-action-marker');
+    const hydration = useHydrationStore.getState();
+    let observedStatus: string | undefined;
+    vi.spyOn(usePlayerStore.getState(), 'allocateSkillPoint').mockImplementation(() => {
+      observedStatus = useHydrationStore.getState().status;
+      throw failure;
+    });
     useMetaStore.getState().updateGachaState({ currency: 432 });
     setIdleEliteMisses(9);
     const before = callerState();
     const now = Date.now;
-    expect(() => runEarnedRecipeOnce(tiny, options)).toThrow(failure);
+    let caught: unknown;
+    try { runEarnedRecipeOnce(tiny, options); } catch (error) { caught = error; }
+    expect(caught).toBe(failure);
+    expect(observedStatus).toBe('ready');
+    expect(useHydrationStore.getState()).toEqual(hydration);
     expect(callerState()).toEqual(before);
     expect(getIdleEliteMisses()).toBe(9);
     expect(Date.now).toBe(now);
@@ -334,7 +368,13 @@ describe('isolated fresh earned production adapter', () => {
   it('keeps the original error and attempts later cleanup after one restore fails', () => {
     const original = new Error('original action failure');
     const cleanup = new Error('map restore failure');
-    vi.spyOn(usePlayerStore.getState(), 'allocateSkillPoint').mockImplementation(() => { throw original; });
+    useHydrationStore.getState().setStatus('error', 'earned-cleanup-marker');
+    const hydration = useHydrationStore.getState();
+    let observedStatus: string | undefined;
+    vi.spyOn(usePlayerStore.getState(), 'allocateSkillPoint').mockImplementation(() => {
+      observedStatus = useHydrationStore.getState().status;
+      throw original;
+    });
     useMetaStore.getState().updateGachaState({ currency: 765 });
     useFormationStore.getState().setPlayerPosition({ row: 2, col: 2 });
     const beforeMeta = data(useMetaStore.getState());
@@ -351,6 +391,7 @@ describe('isolated fresh earned production adapter', () => {
     vi.spyOn(identity, 'collectSourceState').mockImplementation(root => {
       if (collections++ > 0) {
         expect(Date.now).toBe(now);
+        expect(useHydrationStore.getState()).toEqual(hydration);
         expect(getIdleEliteMisses()).toBe(23);
         expect(data(useMetaStore.getState())).toEqual(beforeMeta);
         expect(data(useFormationStore.getState())).toEqual(beforeFormation);
@@ -364,6 +405,10 @@ describe('isolated fresh earned production adapter', () => {
     expect((caught as AggregateError).errors).toContain(original);
     expect((caught as AggregateError).errors).toContain(cleanup);
     expect((caught as AggregateError).errors).toHaveLength(2);
+    expect((caught as AggregateError).errors[0]).toBe(original);
+    expect((caught as AggregateError).errors[1]).toBe(cleanup);
+    expect(observedStatus).toBe('ready');
+    expect(useHydrationStore.getState()).toEqual(hydration);
     expect(collections).toBe(2);
     expect(data(useMetaStore.getState())).toEqual(beforeMeta);
     expect(data(useFormationStore.getState())).toEqual(beforeFormation);

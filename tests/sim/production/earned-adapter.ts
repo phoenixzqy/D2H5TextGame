@@ -13,6 +13,7 @@ import { getIdleEliteMisses, setIdleEliteMisses } from '@/stores/idleElitePity';
 import { getAllocatedSkillLevel, getSkillRequiredLevel, getSkillsForClass,
   skillIdAliases } from '@/stores/skillsHelpers';
 import { parseEarnedFixture, type EarnedAction, type EarnedFixture } from './earned-fixture';
+import { useHydrationStore } from '@/stores/hydrationStore';
 import { captureEarnedRestorers, observeEarnedState, resetEarnedStores,
   selectEarnedBackpackItem, type EarnedState } from './earned-state';
 import { abandonEarnedNextWave, playEarnedTarget, playEarnedWave, startEarnedRun,
@@ -172,6 +173,7 @@ function executeRecipe(fixture: EarnedFixture, targetSeed: number) {
  * Execute exactly one bounded recipe in a dedicated Node simulation realm.
  * Expected action refusals retain partial evidence; structural/source/cleanup
  * errors throw. Caller stores/methods, clock and pity are always restored.
+ * Temporarily declares readiness and restores the caller's exact hydration state.
  * This does not initialize persistence or reset process-global identity counters.
  */
 export function runEarnedRecipeOnce(input: unknown, options: { targetSeed: number; repetition: 1 | 2 }) {
@@ -196,6 +198,7 @@ export function runEarnedRecipeOnce(input: unknown, options: { targetSeed: numbe
     Date.now = () => fixture.clockEpochMs;
     resetEarnedStores(); // Includes meta; anchor is now the frozen production clock.
     setIdleEliteMisses(0);
+    useHydrationStore.getState().setStatus('ready');
     attempt = executeRecipe(fixture, options.targetSeed);
   } catch (error) { failed = true; failure = error; }
   finally {
