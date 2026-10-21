@@ -2,6 +2,8 @@ import Ajv2020 from 'ajv/dist/2020';
 import necromancerSkills from '../../data/skills/necromancer.json';
 import skillSchema from '../../data/schema/skill.schema.json';
 import type { SkillDef } from '../types/skills';
+import type { Player } from '../types/entities';
+import { inferKind, type CombatUnit } from '../combat/types';
 
 /** Independent authored unlock and potency for player Skeleton Mastery. */
 export interface SkeletonMasteryDefinition {
@@ -48,4 +50,60 @@ export function resolveSkeletonMasteryRank(
     }
   }
   return rank;
+}
+
+/** Copied wave tuning; authoritative Player composition establishes class and level eligibility. */
+export interface SkeletonMasteryProjection {
+  readonly sourceHeroId: string;
+  readonly rank: number;
+  readonly maxRank: number;
+  readonly summonLifePct: number;
+  readonly summonAttackPct: number;
+  readonly summonDefensePct: number;
+}
+
+/** Copy eligible allocated Mastery into immutable primitives without retaining Player/definition references. */
+export function composeSkeletonMastery(
+  player: Pick<Player, 'id' | 'class' | 'level' | 'skillLevels'>,
+  definition: SkeletonMasteryDefinition = SKELETON_MASTERY_DEFINITION
+): SkeletonMasteryProjection | undefined {
+  if (player.class !== 'necromancer' || !Number.isFinite(player.level) ||
+    player.level < definition.requiredLevel) return undefined;
+  const rank = resolveSkeletonMasteryRank(player.skillLevels, definition);
+  if (rank <= 0) return undefined;
+  return Object.freeze({ sourceHeroId: player.id, rank, maxRank: definition.maxRank,
+    summonLifePct: rank * definition.summonLifePctPerRank,
+    summonAttackPct: rank * definition.summonAttackPctPerRank,
+    summonDefensePct: rank * definition.summonDefensePctPerRank });
+}
+
+/**
+ * Decorate only a freshly built skeleton/mage, once, before runtime identity allocation.
+ * The engine supplies its current encounter owner. This validates provenance within
+ * that typed snapshot; it cannot authenticate an arbitrarily forged entire snapshot.
+ * Never call on preloaded/damaged or already decorated units.
+ */
+export function empowerSkeletonSummon(
+  projection: SkeletonMasteryProjection | undefined,
+  currentOwner: CombatUnit,
+  freshSummon: CombatUnit
+): CombatUnit {
+  if (!projection || !Number.isInteger(projection.rank) || projection.rank <= 0 ||
+    !Number.isInteger(projection.maxRank) || projection.maxRank <= 0 || projection.rank > projection.maxRank ||
+    !Number.isFinite(projection.summonLifePct) || projection.summonLifePct < 0 ||
+    !Number.isFinite(projection.summonAttackPct) || projection.summonAttackPct < 0 ||
+    !Number.isFinite(projection.summonDefensePct) || projection.summonDefensePct < 0 ||
+    currentOwner.id !== projection.sourceHeroId || currentOwner.side !== 'player' ||
+    inferKind(currentOwner) !== 'hero' || !Number.isFinite(currentOwner.life) || currentOwner.life <= 0 ||
+    currentOwner.summon === true || currentOwner.ownerId !== undefined || currentOwner.summonOwnerId !== undefined ||
+    freshSummon.side !== 'player' || freshSummon.kind !== 'summon' || freshSummon.summon !== true ||
+    freshSummon.summonOwnerId !== currentOwner.id ||
+    (freshSummon.ownerId !== undefined && freshSummon.ownerId !== currentOwner.id) ||
+    (freshSummon.summonTemplateId !== 'skeleton' && freshSummon.summonTemplateId !== 'skeletal_mage')) {
+    return freshSummon;
+  }
+  const lifeMax = freshSummon.stats.lifeMax * (1 + projection.summonLifePct);
+  return { ...freshSummon, life: lifeMax, stats: { ...freshSummon.stats, lifeMax, life: lifeMax,
+    attack: freshSummon.stats.attack * (1 + projection.summonAttackPct),
+    defense: freshSummon.stats.defense * (1 + projection.summonDefensePct) } };
 }

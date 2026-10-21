@@ -42,6 +42,7 @@ import { composeHeroRecovery } from '@/engine/progression/warmth';
 import { resolveFrozenArmorRank } from '@/engine/skills/frozen-armor';
 import { composeMightAura } from '@/engine/skills/might';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
+import { composeSkeletonMastery } from '@/engine/skills/skeleton-mastery';
 
 const CHALLENGE_ORDINAL_PERIOD = 360360;
 let manualChallengeOrdinal = 0;
@@ -637,6 +638,8 @@ function playWave(waveIdx: number): void {
     ? playerToCombatUnit(currentPlayer) : null;
   const mightAura = currentPlayer?.id === activeRun.playerUnit.id
     ? composeMightAura(currentPlayer, activeRun.fieldedMercCombatId) : undefined;
+  const skeletonMastery = currentPlayer?.id === activeRun.playerUnit.id
+    ? composeSkeletonMastery(currentPlayer) : undefined;
   const playerTeam = activeRun.carryPlayerTeam.map(unit => {
     if (!fresh || unit.id !== fresh.id) return unit;
     const mana = Math.min(unit.mana, fresh.stats.manaMax);
@@ -663,7 +666,8 @@ function playWave(waveIdx: number): void {
     seed: waveSeed,
     playerTeam,
     enemyTeam: enemies,
-    ...(mightAura ? { mightAura } : {})
+    ...(mightAura ? { mightAura } : {}),
+    ...(skeletonMastery ? { skeletonMastery } : {})
   });
   const terminal = events.at(-1);
   if (terminal?.kind !== 'end' || !Number.isFinite(terminal.simClockMs) ||

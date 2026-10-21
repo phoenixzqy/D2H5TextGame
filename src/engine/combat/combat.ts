@@ -45,6 +45,7 @@ import { isImmobilized, shouldEnrage } from '../ai/policy';
 import { canCastSkill } from '../skills/eligibility';
 import { getSkill } from '../skills/registry';
 import { buildSummon } from '../skills/summons';
+import { empowerSkeletonSummon, type SkeletonMasteryProjection } from '../skills/skeleton-mastery';
 import { resolveSummonMaxCount, scalePerRank } from '../skills/scaling';
 import { resolveAoeTargets, withDefaultGridPositions } from './grid';
 import type {
@@ -113,6 +114,8 @@ export interface CombatSnapshot {
   readonly maxRounds?: number;
   /** Frozen explicit player Might selection for this wave, active from simulation entry. */
   readonly mightAura?: MightAuraProjection;
+  /** Eligible player Mastery copied at wave entry; applies only at fresh summon creation. */
+  readonly skeletonMastery?: SkeletonMasteryProjection;
 }
 
 /** Final combat result. */
@@ -129,6 +132,7 @@ export interface CombatResult {
 
 interface State {
   readonly mightAura?: MightAuraProjection;
+  readonly skeletonMastery?: SkeletonMasteryProjection;
   units: Map<string, CombatUnit>;
   events: BattleEvent[];
   /** parallel array: simClockMs at the moment events[i] was emitted. */
@@ -773,7 +777,8 @@ function applyEffect(
         console.warn(`[combat] unknown summonId: ${effect.summonId}`);
         return;
       }
-      const summon = { ...template, id: nextSummonId(state, actorId, effect.summonId) };
+      const empowered = empowerSkeletonSummon(state.skeletonMastery, owner, template);
+      const summon = { ...empowered, id: nextSummonId(state, actorId, effect.summonId) };
       const preferredPosition = firstOpenSummonPosition(owner, aliveOf(state, owner.side));
       const summonWithPreferredPosition = preferredPosition
         ? { ...summon, gridPosition: preferredPosition }
@@ -1169,7 +1174,11 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
 } {
   const rng = createRng(snapshot.seed);
   const aura = snapshot.mightAura;
+  const mastery = snapshot.skeletonMastery;
   const state: State = {
+    ...(mastery ? { skeletonMastery: Object.freeze({ sourceHeroId: mastery.sourceHeroId, rank: mastery.rank,
+      maxRank: mastery.maxRank, summonLifePct: mastery.summonLifePct,
+      summonAttackPct: mastery.summonAttackPct, summonDefensePct: mastery.summonDefensePct }) } : {}),
     ...(aura ? { mightAura: Object.freeze({ selectedAuraId: aura.selectedAuraId, sourceHeroId: aura.sourceHeroId,
       rank: aura.rank, maxRank: aura.maxRank, physicalDamagePct: aura.physicalDamagePct, attackPct: aura.attackPct,
       ...(aura.fieldedMercCombatId !== undefined ? { fieldedMercCombatId: aura.fieldedMercCombatId } : {}) }) } : {}),
