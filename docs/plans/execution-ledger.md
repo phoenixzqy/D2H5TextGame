@@ -3151,3 +3151,35 @@ UI/context/fraction formatting, truthful zh-CN/en descriptions and production
 browser checks. Full D06/P09/P10, earned progression/balance and private-v1 remain
 open. Root owns registered temporary artifacts until durable evidence/cleanup;
 the umbrella worktree claim continues, with no remote publication.
+
+
+## BUG073 screen wiring and truthful Necromancer copy
+
+Pure foundation `0feb781` now feeds current eligible `composeSkeletonMastery`
+context from SkillsScreen. Summon flat values/deltas format to at most4decimal
+places for presentation only, suppressing rounded-zero deltas; model/engine
+fractions remain untouched. For only the three exact D06 v1c preparations,
+translated identity descriptions precede the shared preparation paragraph.
+Skeleton has no corpse requirement; Mage discloses physical basic attacks;
+Revive names generic rank-scaled minions and death/summoner/wave lifetime.
+Earlier thirteen preparation descriptions and Iron/synthetic controls stay covered.
+
+Original UI RED14fail/8pass contained two unlearned-heading selector mistakes;
+a selector-only correction before production edits produced genuine RED14fail/
+8pass. Identical corrected tests pass after wiring/copy. Ten new bilingual cases
+exercise independent rank6/7 Mastery20 literals/deltas, both allocation aliases,
+Mastery1 fractions/live changes and absent/unlearned/Revive controls. Focused104/
+3files10.63s. Final serial types13.321s, lint34.144s, full6031/209files94.26s
+(95.607s wrapper) and clean production bridge/build9.567s pass; four JS chunks
+contain no bridge identifiers. Initial optional-description TS failure was fixed
+with the existing shared-prose fallback, retaining the optional interface.
+No engine source changed after its accepted foundation checks.
+
+BUG073 remains open for production-browser correction proof. The new preview
+build is registered root-owned dist; exact inventory accompanies the freeze.
+After all prior readers released, root verified inventories and removed the two
+superseded diagnostic builds exactly (1,520files;80+MB); original reports, PNGs,
+logs and inventories remain. Receipt: superseded-build-cleanup.json. Current
+browser work will use the existing task-only CJK font cache. Engine/full time
+budgets and existing chunk/precache warnings remain unresolved; no earned/balance,
+fullD06/P09/P10 or private-v1 acceptance. Umbrella claim continues; no remote action.

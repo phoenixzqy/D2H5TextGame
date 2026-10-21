@@ -656,7 +656,7 @@
   "necromancer": {
     "raise-skeleton": {
       "name": "Raise Skeleton",
-      "desc": "Raises skeleton warriors from corpses. The active summon cap scales with skill level."
+      "desc": "Prepare skeleton warriors; no corpse is required."
     },
     "corpse-explosion": {
       "name": "Corpse Explosion",
@@ -732,7 +732,7 @@
     },
     "raise-skeletal-mage": {
       "name": "Raise Skeletal Mage",
-      "desc": "Raises a skeleton mage that casts elemental spells."
+      "desc": "Prepare skeletal mages that fight with physical basic attacks; no corpse is required."
     },
     "summon-resist": {
       "name": "Summon Resist",
@@ -748,7 +748,7 @@
     },
     "revive": {
       "name": "Revive",
-      "desc": "Temporarily reanimates fallen enemies to fight for you."
+      "desc": "Prepare Revived Minions whose strength grows with skill rank. No corpse or fallen enemy is required. They last until they or their summoner die, or the wave ends."
     },
     "dim-vision": {
       "name": "Dim Vision",

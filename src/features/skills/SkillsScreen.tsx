@@ -35,7 +35,7 @@ import { isPreparationSummonSkill } from '@/engine/skills/summon-preparation';
 import { AMPLIFY_DAMAGE_DEFINITION } from '@/engine/combat/amplify-damage-definition';
 import { METEOR_ARMOR_MELT_DEFINITION } from '@/engine/skills/armor-melt';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
-import { SKELETON_MASTERY_DEFINITION, resolveSkeletonMasteryRank } from '@/engine/skills/skeleton-mastery';
+import { SKELETON_MASTERY_DEFINITION, composeSkeletonMastery, resolveSkeletonMasteryRank } from '@/engine/skills/skeleton-mastery';
 import { LIGHTNING_MASTERY_DEFINITION, resolveLightningMasteryRank } from '@/engine/skills/lightning-mastery';
 import { MIGHT_DEFINITION, resolveEligibleMightRank, resolveMightRank } from '@/engine/skills/might';
 import { MEDITATION_DEFINITION, resolveEligibleMeditationRank, resolveMeditationRank } from '@/engine/skills/meditation';
@@ -158,7 +158,8 @@ export function SkillsScreen() {
   const activeSkillId = previewSkillId ?? (selectedSkillId || defaultSkillId);
   const activeSkill = skillById.get(activeSkillId) ?? allSkills[0];
   const activeModel = activeSkill
-    ? computeSkillDisplayModel(activeSkill, allocatedSkills.get(activeSkill.id) ?? 0)
+    ? computeSkillDisplayModel(activeSkill, allocatedSkills.get(activeSkill.id) ?? 0,
+      player ? composeSkeletonMastery(player) : undefined)
     : null;
   const activeLocked = activeSkill ? isSkillLocked(activeSkill, playerLevel, allocatedSkills) : false;
   const activeCanAllocate = Boolean(
@@ -1127,9 +1128,13 @@ function dynamicDescription(
   if (stats?.summonCap !== undefined) {
     const canonicalId = canonicalSkillIdFromData(skill.id) ?? skill.id;
     if (isPreparationSummonSkill({ id: canonicalId })) {
-      return t('details.descriptionSummonPreparation', {
+      const preparation = t('details.descriptionSummonPreparation', {
         skill: skillName, count: stats.summonCap, mana: stats.manaCost
       });
+      if (['necromancer.raise_skeleton', 'necromancer.raise_skeletal_mage', 'necromancer.revive'].includes(canonicalId) && skill.description) {
+        return `${tDataKey(t, skill.description)} ${preparation}`;
+      }
+      return preparation;
     }
     return t('details.descriptionSummon', { skill: skillName, count: stats.summonCap });
   }
@@ -1163,13 +1168,13 @@ function numberDelta(next: number, current: number, t: Translate): string | null
 }
 
 function formatSummonStat(row: SkillSummonStatDisplayRow): string {
-  return row.valueKind === 'percent' ? `${String(Math.round(row.value * 100))}%` : String(row.value);
+  return row.valueKind === 'percent' ? `${String(Math.round(row.value * 100))}%` : String(Number(row.value.toFixed(4)));
 }
 
 function summonStatDelta(row: SkillSummonStatDisplayRow, compare: SkillRankDisplayStats | undefined): string | null {
   const old = compare?.summonUnit?.stats.find((candidate) => candidate.id === row.id);
   if (!old) return null;
-  const delta = row.value - old.value;
+  const delta = Number((row.value - old.value).toFixed(4));
   if (delta === 0) return null;
   return row.valueKind === 'percent'
     ? `(+${String(Math.round(delta * 100))}%)`
