@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import {
@@ -33,6 +33,7 @@ import { useMapStore } from '@/stores/mapStore';
 import { useMercStore } from '@/stores/mercStore';
 import { useFormationStore } from '@/stores/formationStore';
 import { useCombatStore } from '@/stores/combatStore';
+import { useHydrationStore } from '@/stores/hydrationStore';
 import { abortSubAreaRun, hasActiveSubAreaRun, startSubAreaRun } from '@/stores/combatHelpers';
 import { getIdleEliteMisses, setIdleEliteMisses } from '@/stores/idleElitePity';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
@@ -79,11 +80,31 @@ const scratch: string[] = [];
 afterEach(() => {
   abortSubAreaRun();
   for (const store of stores) store.getState().reset();
+  useHydrationStore.getState().setStatus('idle');
   setIdleEliteMisses(0);
   for (const dir of scratch.splice(0)) rmSync(dir, { recursive: true });
 });
 
 describe('fresh production adapter', () => {
+  it('temporarily becomes ready for real playback and restores the non-ready caller', () => {
+    useHydrationStore.getState().setStatus('loading', 'caller-loading-marker');
+    const before = useHydrationStore.getState();
+    const observed = new Set<string>();
+    const advance = useCombatStore.getState().advanceEvent;
+    useCombatStore.setState({ advanceEvent: () => {
+      observed.add(useHydrationStore.getState().status);
+      advance();
+    } });
+    try {
+      const report = runFreshMeasurement(recipe);
+      expect(report.runs).toHaveLength(2);
+      expect(observed).toEqual(new Set(['ready']));
+      expect(useHydrationStore.getState()).toEqual(before);
+    } finally {
+      useCombatStore.setState({ advanceEvent: advance });
+    }
+  });
+
   it('retains real complete recordings, build, timings and distinct repeat assessments', () => {
     const before = data();
     const clock = Date.now;
@@ -167,16 +188,25 @@ describe('fresh production adapter', () => {
 
   it('restores every store, pity and exact clock after injected playback failure', () => {
     const original = useCombatStore.getState().advanceEvent;
+    const failure = new Error('injected playback failure');
+    let observedStatus: string | undefined;
+    useHydrationStore.getState().setStatus('error', 'caller-load-failed');
+    const hydration = useHydrationStore.getState();
     useCombatStore.setState({
       advanceEvent: () => {
-        throw new Error('injected playback failure');
+        observedStatus = useHydrationStore.getState().status;
+        throw failure;
       }
     });
     const before = data();
     const clock = Date.now;
     setIdleEliteMisses(9);
     try {
-      expect(() => runFreshMeasurement(recipe)).toThrow('injected playback failure');
+      let caught: unknown;
+      try { runFreshMeasurement(recipe); } catch (error) { caught = error; }
+      expect(caught).toBe(failure);
+      expect(observedStatus).toBe('ready');
+      expect(useHydrationStore.getState()).toEqual(hydration);
       expect(data()).toEqual(before);
       expect(Date.now).toBe(clock);
       expect(getIdleEliteMisses()).toBe(9);
@@ -186,24 +216,64 @@ describe('fresh production adapter', () => {
     }
   });
 
+  it('restores hydration after an earlier restorer fails and retains error order', () => {
+    const original = new Error('primary playback failure');
+    const cleanup = new Error('inventory restore failure');
+    const advance = useCombatStore.getState().advanceEvent;
+    const clock = Date.now;
+    let observedStatus: string | undefined;
+    useHydrationStore.getState().setStatus('error', 'caller-cleanup-marker');
+    const hydration = useHydrationStore.getState();
+    useCombatStore.setState({ advanceEvent: () => {
+      observedStatus = useHydrationStore.getState().status;
+      throw original;
+    } });
+    const restore = vi.spyOn(useInventoryStore, 'setState').mockImplementationOnce(() => {
+      throw cleanup;
+    });
+    try {
+      let caught: unknown;
+      try { runFreshMeasurement(recipe); } catch (error) { caught = error; }
+      expect(caught).toBeInstanceOf(AggregateError);
+      if (!(caught instanceof AggregateError)) throw new Error('Missing cleanup aggregate');
+      expect(caught.errors).toEqual([original, cleanup]);
+      expect(caught.errors[0]).toBe(original);
+      expect(caught.errors[1]).toBe(cleanup);
+      expect(observedStatus).toBe('ready');
+      expect(useHydrationStore.getState()).toEqual(hydration);
+      expect(Date.now).toBe(clock);
+      expect(hasActiveSubAreaRun()).toBe(false);
+    } finally {
+      restore.mockRestore();
+      useCombatStore.setState({ advanceEvent: advance });
+    }
+  });
+
   it('rejects an active production run atomically', () => {
     usePlayerStore.getState().setPlayer(createMockPlayer('Existing', 'sorceress'));
+    useHydrationStore.getState().setStatus('ready');
     startSubAreaRun({ runSeed: 13, challengeOrdinal: 0 });
+    useHydrationStore.getState().setStatus('error', 'active-caller-marker');
+    const hydration = useHydrationStore.getState();
     const before = data();
     const clock = Date.now;
     expect(() => runFreshMeasurement(recipe)).toThrow(/active/u);
     expect(data()).toEqual(before);
     expect(Date.now).toBe(clock);
     expect(hasActiveSubAreaRun()).toBe(true);
+    expect(useHydrationStore.getState()).toBe(hydration);
   });
 
   it('validates actual class references and bounded screening seed count', () => {
+    useHydrationStore.getState().setStatus('error', 'invalid-caller-marker');
+    const hydration = useHydrationStore.getState();
     expect(() =>
       runFreshMeasurement({ ...recipe, origin: { ...recipe.origin, classId: 'invented' } })
     ).toThrow(/class/u);
     expect(() =>
       runFreshMeasurement({ ...recipe, seeds: Array.from({ length: 9 }, (_, i) => i) })
     ).toThrow(/8/u);
+    expect(useHydrationStore.getState()).toBe(hydration);
   });
 
   it('diagnoses historical nonwinning progression without assigning an end reason', () => {

@@ -17,6 +17,7 @@ import { useMapStore } from '@/stores/mapStore';
 import { useMercStore } from '@/stores/mercStore';
 import { useFormationStore } from '@/stores/formationStore';
 import { useCombatStore, type RecordedBattleOutcome } from '@/stores/combatStore';
+import { useHydrationStore } from '@/stores/hydrationStore';
 import {
   abortSubAreaRun,
   advanceWaveOrFinish,
@@ -415,7 +416,11 @@ function replayContent(run: MeasuredRun): Omit<MeasuredRun, 'wallSeconds' | 'rep
   return content;
 }
 
-/** Run exactly two fresh, unmodified production creations for each bounded recipe seed. */
+/**
+ * Run exactly two fresh, unmodified production creations for each bounded recipe seed.
+ * Temporarily declares adapter readiness without initializing persistence, then
+ * restores the caller's exact hydration state alongside its gameplay domains.
+ */
 export function runFreshMeasurement(input: unknown): FreshMeasurementReport {
   if (hasActiveSubAreaRun())
     throw new Error('Cannot measure with an active production sub-area run');
@@ -429,7 +434,8 @@ export function runFreshMeasurement(input: unknown): FreshMeasurementReport {
     snapshotStore(useMapStore),
     snapshotStore(useMercStore),
     snapshotStore(useFormationStore),
-    snapshotStore(useCombatStore)
+    snapshotStore(useCombatStore),
+    snapshotStore(useHydrationStore)
   ];
   const originalPity = getIdleEliteMisses();
   const originalNow = Date.now;
@@ -440,6 +446,7 @@ export function runFreshMeasurement(input: unknown): FreshMeasurementReport {
   let failed = false;
   let failure: unknown;
   try {
+    useHydrationStore.getState().setStatus('ready');
     Date.now = () => fixture.clockEpochMs;
     for (const seed of fixture.seeds) {
       const first = measureOnce(fixture, seed, 0);

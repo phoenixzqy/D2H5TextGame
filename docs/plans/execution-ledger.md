@@ -4787,3 +4787,45 @@ writer/executor; umbrella worktree claim continues; no remote action or server.
 Simulation-adapter readiness prerequisites, production wave/caller guards, exact
 receipt/conflict/publication/settlement/replay integration and bilingual Iron
 UI/browser acceptance remain pending. FullD06/P09/P10/private-v1 remain open.
+
+
+## D06 v1v fresh simulation readiness with exact caller restoration
+
+Basic readiness fixtures received independent QA, TD/five-axis and producer
+APPROVE and committed as `8524a38`. Exact readiness-basic cleanup removed858files/
+42,806,526bytes and15 empty directories with zero failures/remaining targets;
+recorded command identities were dead. Diagnostics remain retained, including
+the unresolved build-output variance described above.
+
+TD approved the serial adapter plan. Fresh measurement captures hydration last,
+temporarily sets ready inside its existing try before measurement, and restores
+the caller's exact status/error/actions even when an earlier restorer throws.
+Input validation and active-run refusal still precede mutation. No persistence
+initialization, production default/guard change or report/schema change.
+
+Behavioral RED before adapter implementation failed the three readiness cases
+as expected (3failed/10passed,6.219s). Final serial focused13/1file5.990s,
+types14.793s, lint39.860s including85 engine purity files, full6495/220files
+113.055s and build9.706s passed. Success and injected playback failure observe
+ready then restore distinctive loading/error callers; original error identity,
+cleanup aggregate order/identities and attempt-after-failure restoration are
+asserted. Invalid-input and active-run controls preserve hydration object identity.
+No suite-wide ready. Build reported603modules/index-BDxWwAA8.js1261.37kB; earlier
+unresolved variance is not declared resolved. No browser acceptance claimed.
+Related5s/full15s budgets and existing React act, fixture fallback, stale
+Browserslist, chunk/precache diagnostics remain open. SaveCurrent11 unchanged.
+Security check passes for local adapter readiness/restoration with no production
+bypass, new ownership authority or save payload change.
+
+Three paths, readiness-fresh command/source/output identities, expected RED,
+prior cleanup and exact owned dist/tmp inventory are frozen in
+readiness-fresh-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review remains before commit; disposable outputs
+await exact cleanup. Diagnostics
+retained; root is sole writer/executor; umbrella worktree claim continues; no
+remote action or server. Earned/mode adapter prerequisites, production wave/
+caller guards, exact receipt/conflict/publication/settlement/replay integration
+and bilingual Iron UI/browser acceptance remain pending.
+FullD06/P09/P10/private-v1 remain open.
