@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { useHydrationStore } from './hydrationStore';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { loadDefaultSkills, registerSkill, resetRegistry } from '@/engine/skills/registry';
 import type { Player } from '@/engine/types/entities';
@@ -150,11 +151,13 @@ function nextPaidWave(withMarkerRepresentations = false) {
 
 beforeEach(() => {
   reset();
+  useHydrationStore.getState().setStatus('ready');
   vi.spyOn(Date, 'now').mockReturnValue(1792454400000);
 });
 
 afterEach(() => {
   reset();
+  useHydrationStore.getState().setStatus('idle');
   resetRegistry();
   loadDefaultSkills();
   vi.restoreAllMocks();

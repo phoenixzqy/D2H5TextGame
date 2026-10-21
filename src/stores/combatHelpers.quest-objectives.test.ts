@@ -12,7 +12,8 @@ import { useInventoryStore } from './inventoryStore';
 import { useMapStore } from './mapStore';
 import { useMercStore } from './mercStore';
 import { useMetaStore } from './metaStore';
-import { __resetPersistenceForTests, exportCurrentSave, snapshotStores, useHydrationStore } from './persistence';
+import { __resetPersistenceForTests, exportCurrentSave, snapshotStores } from './persistence';
+import { useHydrationStore } from './hydrationStore';
 import { usePlayerStore } from './playerStore';
 
 const QUEST = 'quests/act1-sisters-to-the-slaughter';
@@ -26,8 +27,8 @@ function reset(): void {
   for (const store of [useCombatStore, useFormationStore, useInventoryStore,
     useMapStore, useMercStore, useMetaStore, usePlayerStore]) store.getState().reset();
 }
-beforeEach(() => { reset(); vi.spyOn(Date, 'now').mockReturnValue(1792454400000); });
-afterEach(() => { reset(); vi.restoreAllMocks(); });
+beforeEach(() => { reset(); useHydrationStore.getState().setStatus('ready'); vi.spyOn(Date, 'now').mockReturnValue(1792454400000); });
+afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); vi.restoreAllMocks(); });
 function track(): void {
   useMapStore.getState().updateQuestProgress(QUEST, {
     status: 'inProgress', objectives: { 'obj-kill-andariel': false }, rewardClaimed: false

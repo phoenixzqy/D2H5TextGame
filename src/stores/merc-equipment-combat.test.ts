@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { useHydrationStore } from './hydrationStore';
 import { loadMercPool } from '@/data/loaders/mercs';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import type { Item } from '@/engine/types/items';
@@ -50,8 +51,8 @@ function item(id: string, baseId: string, baseRolls: NonNullable<Item['baseRolls
     equipped: false, affixes: [], baseRolls };
 }
 
-beforeEach(() => { reset(); resetRegistry(); loadDefaultSkills(); });
-afterEach(() => { reset(); resetRegistry(); loadDefaultSkills(); });
+beforeEach(() => { reset(); resetRegistry(); loadDefaultSkills(); useHydrationStore.getState().setStatus('ready'); });
+afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); resetRegistry(); loadDefaultSkills(); });
 
 describe('canonical merc equipment reaches fresh production combat', () => {
   it('retains the grown unequipped baseline without re-deriving current core', () => {
