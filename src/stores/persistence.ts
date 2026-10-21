@@ -27,44 +27,19 @@ import { useMercStore } from './mercStore';
 import { useMetaStore } from './metaStore';
 import { replacePlayerAfterRestore, usePlayerStore } from './playerStore';
 import { useFormationStore } from './formationStore';
+import { useHydrationStore } from './hydrationStore';
 import {
   assertWaveSnapshotAllowed, deferWaveSaveIfBusy, releaseWaveRestore, reserveWaveRestore,
   type WaveRestoreLease
 } from './waveTransitionGuard';
+
+export { useHydrationStore, type HydrationStatus } from './hydrationStore';
 
 /** Debounce window for auto-save writes, in milliseconds. */
 export const AUTO_SAVE_DEBOUNCE_MS = 500;
 
 /** Checkpoint quiet online sessions while browser timer callbacks can run. */
 export const AUTO_SAVE_CHECKPOINT_MS = 30_000;
-
-/**
- * Hydration lifecycle states surfaced to the UI.
- *
- * - `idle`    — persistence not yet initialized.
- * - `loading` — IndexedDB read in flight.
- * - `ready`   — hydration finished (or no save existed).
- * - `error`   — load/migration failed; payload available in `error`.
- */
-export type HydrationStatus = 'idle' | 'loading' | 'ready' | 'error';
-
-interface HydrationState {
-  status: HydrationStatus;
-  error: string | null;
-  setStatus: (status: HydrationStatus, error?: string | null) => void;
-}
-
-/**
- * Tiny store exposing hydration status. UI can show a loader / "save corrupted"
- * banner without crashing the tree.
- */
-export const useHydrationStore = create<HydrationState>((set) => ({
-  status: 'idle',
-  error: null,
-  setStatus: (status, error = null) => {
-    set({ status, error });
-  }
-}));
 
 /** Save errors are observable without disabling gameplay or hiding write failures. */
 export const useSaveStatusStore = create<{ error: string | null }>(() => ({ error: null }));

@@ -4436,3 +4436,43 @@ persistent server. Exact receipt/conflict/publication recovery, settlement,
 locked replay, production operation guards and bilingual selection/acknowledgement/
 preview/refusal/lock UI/browser acceptance remain pending. FullD06/P09/P10 and
 private-v1 remain open.
+
+
+## D06 v1m hydration store leaf prerequisite
+
+Public hero lifecycle received independent QA, TD/five-axis and producer APPROVE
+and committed as `7c08a27`. Exact hero-lifecycle cleanup removed859files/
+43,131,346bytes and14 empty directories with zero failures/remaining targets;
+command identities and the owned preview server were dead. Historical failures,
+suspended sources, validation outputs and browser scripts/metadata remain retained.
+
+TD approved this three-path extraction before production wave/readiness consumers.
+The existing hydration types/store move byte-for-byte to hydrationStore.ts,
+adding only its zustand import. Persistence imports that same singleton and
+compatibility-re-exports useHydrationStore and HydrationStatus. Initial idle/null,
+setter behavior, persistence reset behavior and all existing consumer import
+paths remain unchanged. SaveStatusStore stays in persistence. No readiness
+fallback, new guard, new API behavior, test bypass or receipt consumer is enabled.
+No new mirrored tests or behavioral RED were added for this mechanical move;
+existing relevant persistence/UI suites and full regression verify compatibility.
+
+Focused112/3files8.363s, types15.234s, lint40.652s including85 engine purity files,
+full6493/220files139.592s and production build10.652s passed. The focused command
+also named nonexistent persistence.observer.test.ts; Vitest ran the three real
+selected suites only, and no fourth-suite coverage is claimed. Full regression
+includes all four actual persistence suites. No additional browser run or new
+visual acceptance is claimed. Related5s/full15s budgets and existing React act,
+fixture fallback, stale Browserslist, chunk/precache diagnostics remain open.
+SaveCurrent11 unchanged. Security check passes for unchanged local singleton
+semantics with no new persistence payload or privileged action.
+
+Three paths, hydration-leaf command/source/output identities, prior cleanup and
+exact owned dist/tmp inventory are frozen in hydration-leaf-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review remains before commit. Disposable outputs
+remain until readers release; diagnostics retained. Root is sole writer/
+executor; umbrella claim continues; no remote action or persistent server.
+Explicit readiness fixtures, actual wave/readiness guards and receipt/conflict/
+publication/settlement/replay integration remain pending, as do bilingual Iron
+controls and browser acceptance. FullD06/P09/P10/private-v1 remain open.
