@@ -3077,3 +3077,19 @@ Full15s target remains missed. Root retains the recorded v1c temporary evidence
 until reviewed durable retention and cleanup. Next: independently frozen v1c
 canonical literals and genuine RED, followed by the five-path runtime switch;
 copy/browser and full private-v1 remain pending. No remote action.
+
+
+## D06 v1c Meditation fixture prerequisite
+
+The carried-cooldown root fix exposed a stale synthetic Meditation setup: its
+100-second merc spend cooldown outlasts the next wave, while its test requires
+real spending and aura-only recovery in both waves. QA approved changing only
+that fixture cooldown to 1 second, preserving every assertion and production
+carry behavior. The exact five runtime files were parked with SHA-256 checks,
+then restored individually to HEAD before this separate prerequisite. Focused17/
+1file4.41s, full5805/209files92.12s (93.402s wrapper), types13.691s and
+lint35.552s pass serially; diff-check clean. Full15s remains missed; no performance
+acceptance. Evidence and parked runtime bytes remain root-owned in the recorded
+v1c temporary directory for review, exact restoration and later durable retention/
+cleanup. Next: restore identical runtime bytes, rerun combined validation and
+review the five-path runtime increment. Copy/browser/full private-v1 remain open.

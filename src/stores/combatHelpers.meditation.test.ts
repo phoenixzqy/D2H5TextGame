@@ -54,7 +54,7 @@ function arrange(rank = 1): void {
     coreStats: { ...fresh.coreStats, energy: 20 }, comboOrder: [FINISHER],
     skillLevels: { 'skills-paladin-prayer': 1, 'skills-paladin-cleansing': 1, ...(rank > 0 ? { [AURA]: rank } : {}) } });
   registerSkill({ id: 'fixture.meditation-merc-spend', archetype: 'fixture', target: 'self', minLevel: 1,
-    cooldown: 100, manaCost: 8, effects: [{ kind: 'buff', id: 'fixture-merc-paid', duration: -1 }] });
+    cooldown: 1, manaCost: 8, effects: [{ kind: 'buff', id: 'fixture-merc-paid', duration: -1 }] });
   gear(); configure({ derivedStats: { ...player().derivedStats, life: 1_000_000, mana: 50 } });
   useMapStore.getState().setCurrentLocation(1, 'areas/act1-blood-moor');
   registerSkill({ id: FINISHER, archetype: 'fixture', target: 'all-enemies', minLevel: 1,
