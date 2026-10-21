@@ -41,6 +41,7 @@ import { deriveStats, effectiveStatValue } from '@/engine/progression/stats';
 import { composeHeroRecovery } from '@/engine/progression/warmth';
 import { resolveFrozenArmorRank } from '@/engine/skills/frozen-armor';
 import { composeMightAura } from '@/engine/skills/might';
+import { composeMeditationAura } from '@/engine/skills/meditation';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
 import { composeSkeletonMastery } from '@/engine/skills/skeleton-mastery';
 
@@ -638,6 +639,8 @@ function playWave(waveIdx: number): void {
     ? playerToCombatUnit(currentPlayer) : null;
   const mightAura = currentPlayer?.id === activeRun.playerUnit.id
     ? composeMightAura(currentPlayer, activeRun.fieldedMercCombatId) : undefined;
+  const meditationAura = fresh && currentPlayer?.id === activeRun.playerUnit.id
+    ? composeMeditationAura(currentPlayer, fresh.manaRegenPerSecond ?? 0, activeRun.fieldedMercCombatId) : undefined;
   const skeletonMastery = currentPlayer?.id === activeRun.playerUnit.id
     ? composeSkeletonMastery(currentPlayer) : undefined;
   const playerTeam = activeRun.carryPlayerTeam.map(unit => {
@@ -667,6 +670,7 @@ function playWave(waveIdx: number): void {
     playerTeam,
     enemyTeam: enemies,
     ...(mightAura ? { mightAura } : {}),
+    ...(meditationAura ? { meditationAura } : {}),
     ...(skeletonMastery ? { skeletonMastery } : {})
   });
   const terminal = events.at(-1);
