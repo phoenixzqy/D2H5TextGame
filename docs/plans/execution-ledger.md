@@ -3216,3 +3216,30 @@ owns registered logs/reports/original PNGs/build/browser/font outputs until
 reviewed durable retention and exact cleanup. Full D06/P09/P10, other corpse
 consumers, selected-item Iron, performance and private-v1 remain open. No remote
 action; umbrella worktree claim continues.
+
+
+## D06 v1c durable closure prepared; BUG073 fixed
+
+Browser `4cc41f0` received QA/GD/TD/producer APPROVE with all readers released.
+BUG073 now closes on accepted pure foundation `0feb781`, screen/copy `3408045`
+and eight production Necromancer cases plus two unchanged Raven regressions.
+[Evidence](evidence/d06-necromancer-preparation.md) maps BUG072/073 regressions
+and preserves original RED/failures/corrections, source provenance, twenty exact
+original PNGs, independent browser values, save equality and finite layout limits.
+Foundation RED source reconstruction is explicitly distinguished from actual
+corrected UI RED capture. Initial name-limit16 fixture failure remains retained.
+
+Root verified/removed accepted dist and task-only font/browser-temp outputs:
+787files/42,013,832bytes, zero failures; all66 observed command PIDs absent, no
+current task Node/Chromium consumers and ports4375/4376 closed. No historical
+startTicks/all-descendant telemetry is claimed. Lossless archive/packet bind every
+remaining RAW regular file and current fingerprints; independent archive review
+and exact-five-path commit precede guarded exact RAW removal and actual receipt.
+Original v1b packet, shared parents/fonts/tools/dependencies/source/history remain.
+
+FullD06/P09/P10, selected-item Iron Golem, other corpse consumers, Mage elemental
+identity, earned progression/balance, full glyph/a11y/platform/performance and
+private-v1/C0–C4/G0–G7 remain open. Existing unit time/bundle/precache warnings
+remain. Umbrella claim continues, no remote action. After durable cleanup, next
+bounded dependency is a GD/TD-reviewed selected-item Iron Golem transaction
+contract, at most three documentation paths before any runtime implementation.

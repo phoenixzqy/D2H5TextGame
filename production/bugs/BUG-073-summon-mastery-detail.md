@@ -1,7 +1,7 @@
 # BUG-073 — Show Mastery-adjusted summon detail values
 
-- **Status:** Reproduced; correction pending.
-- **Severity:** Medium — incorrect preview values; combat remains functional and the player can calculate the documented Mastery bonuses. Producer triage pending.
+- **Status:** Fixed — accepted bounded foundation, screen and production-browser correction.
+- **Severity at reproduction:** Medium — incorrect preview values; combat remained functional and the player could calculate the documented Mastery bonuses. Bounded correction accepted by producer.
 - **Owner / affected systems:** frontend-dev / engine-dev; SkillsScreen and pure skill display model.
 - **Build:** `c80a7bb` (production runtime bytes frozen before commit at parent `d541db8`).
 - **Environment:** bundled Playwright Chromium, Linux, 360×640, en and zh-CN. Display-only reproduction; no RNG/seed or combat advancement.
@@ -41,7 +41,7 @@ roots/rules with task-only `FONTCONFIG_FILE`/cache, no source/CSS/font/shared-ca
 change. CDP confirms Noto Sans CJK SC125glyphs; corrected Chinese PNG is readable.
 All original evidence remains retained.
 
-## Root cause and proposed correction
+## Root cause and chosen correction (historical proposal)
 
 SkillsScreen calls `computeSkillDisplayModel` with only skill/rank; its
 `summonUnit` reads rank-scaled template stats without current Mastery context.
@@ -55,7 +55,7 @@ while engine fractions stay unchanged. Bilingual identity copy is separate
 presentation work; full-skill/earned/balance acceptance remains open.
 
 
-## Pure display foundation (screen correction still pending)
+## Pure display foundation at `0feb781` (historical checkpoint)
 
 The optional typed current-Mastery input now reaches both pure current/next
 resolvers. Exact authored/canonical Skeleton and Mage identities also require
@@ -75,3 +75,33 @@ where no Vitest duration is given). Original initial typecheck failure came from
 an absent-template test using explicit undefined under exactOptionalPropertyTypes;
 the fixture now removes the property. Final checks pass; no contract was weakened.
 The engine3s/full15s targets and existing bundle/precache warnings remain unmet.
+
+## Accepted resolution
+
+Pure foundation `0feb781`, screen/copy `3408045` and production browser
+`4cc41f0` correct current/next/unlearned Skeleton/Mage details using current
+eligible allocated Mastery. Matching explicit template identity is required;
+Revive and unrelated/malformed inputs remain excluded. Display formatting
+preserves readable fractions/deltas without rounding engine values. Truthful
+bilingual preparation descriptions replace unsupported promises. QA, GD/TD and
+producer approve the bounded correction and eight production Necromancer cases;
+two unchanged Raven regressions also pass. Full screen gate6031/209files, types,
+lint and clean bridge/build pass; final browser-only types/lint also pass.
+
+Existing regressions in `displayStats.test.ts`,
+`SkillsScreen.summon-preparation-corpses.test.tsx` and
+`tests/pwa/necromancer-preparation.spec.ts` guard independent current/next values,
+clean deltas, aliases, current allocation and exclusions in both locales.
+[Durable evidence](../../docs/plans/evidence/d06-necromancer-preparation.md)
+records exact commits, checks, original failures/PNG attachments and limits;
+its packet/archive replaces temporary-path dependence after verified cleanup.
+The foundation RED source was reconstructed later; corrected UI RED was actually
+captured and identical to GREEN. The initial native name-limit fixture failure
+and approved narrow correction are preserved.
+
+Imported L30/Mastery/gear/resources are diagnostic scaffolding, not earned
+progression/balance. Incomplete mobile numeric framing and Linux navigation
+pictograph boxes are disclosed; exact DOM assertions cover all numeric rows.
+Full glyph/a11y/platform/performance, Mage elemental identity, fullD06/P09/P10
+and private-v1 remain open. Engine/full time budgets and build warnings remain
+unresolved. Closing this display bug grants none of those wider acceptances.

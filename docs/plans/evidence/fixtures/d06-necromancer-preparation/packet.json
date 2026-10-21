@@ -1,0 +1,1709 @@
+{
+  "task": "D06 v1c Necromancer prepared retinues, BUG072 cooldown initialization and BUG073 display",
+  "sourceHead": "4cc41f0167f99835f1aff89e1483f9acc92ce8f6",
+  "sourceCommits": [
+    "faaee6da96e4539b8935c1a3d660dbd34a6f5816",
+    "1a0ec35f8c2ff27565b5c7aeba77e29923ad1019",
+    "22d406d9040bbdc699fc8779bc792159ebe46777",
+    "f630d2643aa7801f8224a40e2d4fb0dc5ce75a5e",
+    "d541db811cfa1641b603c1b32952c3eaab972fa1",
+    "c80a7bba3d7c2500e57f06aaa3fffcac4545e06a",
+    "151b3295f916294736bae8d825708e1bb5324ff3",
+    "0feb781bf8fb5dce228bbcdbeb1e14782ba6ca49",
+    "34080451adb1e31eb357b5c9a58ebb61dae891c4",
+    "4cc41f0167f99835f1aff89e1483f9acc92ce8f6"
+  ],
+  "rawRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-necromancer-preparation-edsqysz8",
+  "owner": "root",
+  "createdUtc": "2026-10-21T16:44:52.802651+00:00",
+  "archive": {
+    "path": "raw.tar.gz",
+    "bytes": 4997573,
+    "sha256": "55424edccfb100cc86d1f8876b1997cef49b1a3b29d4b330e544d00e2c3a4adc",
+    "files": 239,
+    "originalBytes": 10535568,
+    "roundtripVerified": true
+  },
+  "rawManifest": {
+    "BUG-072-carried-cooldowns.md": {
+      "bytes": 2329,
+      "sha256": "104fd737a0453a06751a502b71e2f74ce328f5aed096e06dd5b769b0d1b356fc"
+    },
+    "browser-evidence-summary.json": {
+      "bytes": 757634,
+      "sha256": "7782867d63a0135d02de9f70d700be20a03b783e2701186ac0d4d1f792e24b56"
+    },
+    "browser-original-images/necromancer-browser-final-report-00-05.png": {
+      "bytes": 53011,
+      "sha256": "47c9ebc1ddddddec8c2584bec0aac30dba98e65f10912e3fbacea4516152bc42"
+    },
+    "browser-original-images/necromancer-browser-final-report-00-06.png": {
+      "bytes": 151687,
+      "sha256": "32e092a3604d0c0430c138962000d59dafd4c64043ae75d489fca031fe8a7482"
+    },
+    "browser-original-images/necromancer-browser-final-report-01-06.png": {
+      "bytes": 57169,
+      "sha256": "784c4537291b2ae8304e644ec9c5284dc8260e476f9a05820d31986d576675f3"
+    },
+    "browser-original-images/necromancer-browser-final-report-01-07.png": {
+      "bytes": 151275,
+      "sha256": "8e7d41226261d4fdc686ef7ad84e315f9968ab93ebed1bf8d230dfd7e870066e"
+    },
+    "browser-original-images/necromancer-browser-final-report-02-05.png": {
+      "bytes": 56646,
+      "sha256": "ad660a436c0522e7730aa0acf2f378eedf420a68e7c036f0d8ae5ad3ff34cef5"
+    },
+    "browser-original-images/necromancer-browser-final-report-02-06.png": {
+      "bytes": 159977,
+      "sha256": "230078cec074e589603dafbe0968075320a8160c2975582ba587edce82a1e43a"
+    },
+    "browser-original-images/necromancer-browser-final-report-03-06.png": {
+      "bytes": 61112,
+      "sha256": "efd3d1f430c19ff082b7fd9258ac4f683d801497b9705dd79eae83f69cc1d071"
+    },
+    "browser-original-images/necromancer-browser-final-report-03-07.png": {
+      "bytes": 157912,
+      "sha256": "34b21efa5a38ff3df9c85176d2faded418b04f58370a551cfa821ad8ba299895"
+    },
+    "browser-original-images/necromancer-browser-final-report-04-05.png": {
+      "bytes": 57244,
+      "sha256": "5ac1fb620c74f4139ef101b0a1ee0f34f5e203306d49cd970ab3acb870a8bb97"
+    },
+    "browser-original-images/necromancer-browser-final-report-04-06.png": {
+      "bytes": 166553,
+      "sha256": "10acc8889c1d8e1755cb876455a85bebf30616d013a3b79e634505d3f03c5446"
+    },
+    "browser-original-images/necromancer-browser-final-report-05-06.png": {
+      "bytes": 61696,
+      "sha256": "02ce723fa9816da32288327361f9fc4641ff964b48761147dfb516647b4bc66e"
+    },
+    "browser-original-images/necromancer-browser-final-report-05-07.png": {
+      "bytes": 172584,
+      "sha256": "5903c3cab4318771fa2aea9bdb31228ac04d20780866efe126371dfef7e94a14"
+    },
+    "browser-original-images/necromancer-browser-final-report-06-00.png": {
+      "bytes": 51773,
+      "sha256": "9e050185f67c3236cd65bee38dca983fca01b109d19fa7970b6f1ff0b7faa0d4"
+    },
+    "browser-original-images/necromancer-browser-final-report-06-01.png": {
+      "bytes": 158959,
+      "sha256": "fc8e00ec3b93ba1e4e491174fd898fe711273ab978dc84ea13a1d0266103a746"
+    },
+    "browser-original-images/necromancer-browser-final-report-07-00.png": {
+      "bytes": 54599,
+      "sha256": "40925e0efc8aa00f4baadb46df0c9aa4afe5a94ab2d1ba08581da83cae9cfa13"
+    },
+    "browser-original-images/necromancer-browser-final-report-07-01.png": {
+      "bytes": 158284,
+      "sha256": "f5408bb7939fb475589d66f47f44f5afb01f325ec9667885a0fc4a64cc52cda8"
+    },
+    "browser-original-images/raven-final-browser-report-00-05.png": {
+      "bytes": 47544,
+      "sha256": "8ba2f600f0c36ebca9210964bfd2650ab85aa0432d8e360247fc33dee8ba419d"
+    },
+    "browser-original-images/raven-final-browser-report-00-06.png": {
+      "bytes": 126595,
+      "sha256": "9d214374c54a55178b1291a8a91acf6f48f39c4c010a572f3f3b3e98d0b81541"
+    },
+    "browser-original-images/raven-final-browser-report-01-06.png": {
+      "bytes": 53028,
+      "sha256": "0e94b76e58aaccd1dc2da6773c80a304339fd615f54f467d007bc76e9bfd0c12"
+    },
+    "browser-original-images/raven-final-browser-report-01-07.png": {
+      "bytes": 126647,
+      "sha256": "860efae424dd890cd0922c5d1b04e5030f2b22d187d68d7dddf59b1a5cffde60"
+    },
+    "browser-output-inventory.json": {
+      "bytes": 4057,
+      "sha256": "a5fce089373d7016d26dfb061e52d7d82923cb0ae5feb85605498d666016690e"
+    },
+    "browser-visual-review.md": {
+      "bytes": 1590,
+      "sha256": "9148d7d5dd9dc64388f419224f5cc9c50cdbb42421ab7d7ab5d34cffdb26d97e"
+    },
+    "bug-publication-freeze.json": {
+      "bytes": 540,
+      "sha256": "e80346402182a7ab778d252aef9f7e768e4dbd58fc63d5f536ec401de193ef17"
+    },
+    "bug-publication-reviews.txt": {
+      "bytes": 1318,
+      "sha256": "4a1b4231caf85cc6f05f8c030d1b73c19ae1b20e646e8770dfab58f3b8b665e7"
+    },
+    "canonical-boundaries-red.json": {
+      "bytes": 316,
+      "sha256": "8b30ae837ea80900ea150c045d5698345191a38dc5d4770deb7e1fba244c2fb8"
+    },
+    "canonical-boundaries-red.log": {
+      "bytes": 184977,
+      "sha256": "565686f989ac4bf1e9751fb8b08da9fe8dc7709e50d21b96453408ee02b0908e"
+    },
+    "canonical-combined-red.json": {
+      "bytes": 451,
+      "sha256": "ad757d4c2a649d916f6dc3a37673358b0ae62ba6a8d5daf4e2a37443bb7b165f"
+    },
+    "canonical-combined-red.log": {
+      "bytes": 273260,
+      "sha256": "dc9e7f5d81a8b98e5973201219b196220cbb103ffa9e3d0cbad60f6f7afee2bd"
+    },
+    "canonical-cooldown-green-native-trace.json": {
+      "bytes": 465,
+      "sha256": "bd53b3e57499daa81b76722b9cec2448aad1c82c50564d0a7c01be1486afc2b8"
+    },
+    "canonical-cooldown-green-native-trace.log": {
+      "bytes": 70703,
+      "sha256": "97b12adcae3290ed9b3ae21f7215c03ce63c7c7f62a35a4b2ac2e4ae9acd11f7"
+    },
+    "canonical-corrected-engine.json": {
+      "bytes": 274,
+      "sha256": "48af8838f77f312efc53a265e5071b6ceb5196ab30a290f07b78651e9192b6fe"
+    },
+    "canonical-corrected-engine.log": {
+      "bytes": 50296,
+      "sha256": "c4ffce4647d46b5e67c24d5d2b2b399f550f9eadb5bc6a2e3c0851ef4497f5b8"
+    },
+    "canonical-death-red.json": {
+      "bytes": 312,
+      "sha256": "4004dc1160277738bea70310eeb94c2085a5c4e08f507da21158b596502d4ef9"
+    },
+    "canonical-death-red.log": {
+      "bytes": 72288,
+      "sha256": "305f92ca9f1b130e0c38369c733e3d0dd78cd113dffaadf893116d45413475f5"
+    },
+    "canonical-engine-native-red.json": {
+      "bytes": 379,
+      "sha256": "fff4f996e976837a18131ecf78e3d6067eb6fa5b061915ccd11f0c2886228c63"
+    },
+    "canonical-engine-native-red.log": {
+      "bytes": 202733,
+      "sha256": "830f0815b3d4d4ad26c574e2e2f7b9824c92f28ed3b9dbe7fe145c369ead182a"
+    },
+    "canonical-engine.json": {
+      "bytes": 264,
+      "sha256": "d38497a5181b72699594e6273666b6684b64e361eccf69179b36be0345e53b17"
+    },
+    "canonical-engine.log": {
+      "bytes": 52961,
+      "sha256": "a38a1c85b409c36cd48c1627a431097c95ef65a436f5aad5291d0025e0aeed07"
+    },
+    "canonical-focused-green.json": {
+      "bytes": 450,
+      "sha256": "55772e6ce8da4148961969befc9794008e2fba75e179c5852158d2d0fa9ffbe2"
+    },
+    "canonical-focused-green.log": {
+      "bytes": 552,
+      "sha256": "f5fc5a5d9e1277a4bc4f5aff54a56d06aa4de7c8453cde2b87acc72e78a114ed"
+    },
+    "canonical-full.json": {
+      "bytes": 243,
+      "sha256": "b5dde433f23582b4fdfb65fac3bf9641d751101aba1310a10220c023bea11458"
+    },
+    "canonical-full.log": {
+      "bytes": 161149,
+      "sha256": "0c9d7e0b60288cc7abc4bb312a18f2cbfaec2bceb6cc07dabd4b7d92be8a5482"
+    },
+    "canonical-green-attempt.json": {
+      "bytes": 450,
+      "sha256": "485b0ca6a81a3e762b5cd54b7c10351df4e78c24ff55f10ca3336ae28a95b7c8"
+    },
+    "canonical-green-attempt.log": {
+      "bytes": 4609,
+      "sha256": "dfe64c8021d8fecebe7deec36af9291dd541add9113187950b9ec81c19b7fa4b"
+    },
+    "canonical-primary-red.json": {
+      "bytes": 314,
+      "sha256": "37c1322629084f5a7fae0e8a888948f5bb18080573b50341e99825ba882f8137"
+    },
+    "canonical-primary-red.log": {
+      "bytes": 30560,
+      "sha256": "38685a65890700c2cc7f7c3656650cd709ff834f7096aa07a550afd5e0d59cf8"
+    },
+    "canonical-red-freeze.json": {
+      "bytes": 2929,
+      "sha256": "16917ca3a37ba45b9444ea83bb67774f1a82c02581611cd5d613cdddcc274902"
+    },
+    "canonical-red-types.json": {
+      "bytes": 212,
+      "sha256": "e4c62f591ae1010832b88b23a78b1edf700da1bd6a47e9a81e41da2646e960e6"
+    },
+    "canonical-red-types.log": {
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "cleanup-durable.py": {
+      "bytes": 8737,
+      "sha256": "c766bab5929685f750a9cccc0eaf3cd3b0686e87f87922aa83e5e8a135a0780b"
+    },
+    "collect-browser-evidence.py": {
+      "bytes": 3294,
+      "sha256": "157be2196aecc9d9e52244fb27991f1e5e826f94dd8097fc19b731a12d50568a"
+    },
+    "cooldown-control-red-native-trace.json": {
+      "bytes": 385,
+      "sha256": "536e3c78f5fd088a7b231b8fecfeb4c39ad63c30d11bdabeb23cfc08f1260d32"
+    },
+    "cooldown-control-red-native-trace.log": {
+      "bytes": 75068,
+      "sha256": "2322f81c2defcb850aead6206d8710a007fcaa56aa2bf763099a2a11deb9a80b"
+    },
+    "cooldown-red-freeze.json": {
+      "bytes": 2217,
+      "sha256": "6539ada50eee549672b7a7b296c2944634fae69cb51f321659573525c46bac8e"
+    },
+    "copy-plan.md": {
+      "bytes": 3016,
+      "sha256": "db1241ad23946e87c4f1f86ee021e810a53fd76124aad3de7bd212b96a17c64a"
+    },
+    "disposable-cleanup-receipt.json": {
+      "bytes": 171769,
+      "sha256": "a730ced75c20b370e6d470a9b6e28a161b99891ae45204855b39505879f10d0c"
+    },
+    "durable-plan-review.txt": {
+      "bytes": 1052,
+      "sha256": "be05b685ccee98e3b393229983778c81a0a0c4381631a3b2476c77ec1a80bb90"
+    },
+    "durable-plan.md": {
+      "bytes": 2507,
+      "sha256": "25722a85b7dbb5789a15eab57db0458e368b1e68fd717fcbe82262298857cdbb"
+    },
+    "engine-relocation-commands.json": {
+      "bytes": 1214,
+      "sha256": "c91bcadabc3e1ba62f573afb2a67248415a5b6702ddd6f78e12de1d652117ccf"
+    },
+    "engine-relocation-engine.log": {
+      "bytes": 50292,
+      "sha256": "f6e4d027782cc8c27c404d9f58dcbc261ec613a1fcd113b9480075630ecafcab"
+    },
+    "engine-relocation-focused-final.log": {
+      "bytes": 591,
+      "sha256": "6843ccb35c4dcfeb23a0f57a311991145798b2ae131cad04873fcfcf08b4ae70"
+    },
+    "engine-relocation-focused.log": {
+      "bytes": 591,
+      "sha256": "83013d77699060eabfde80ee17861abf1abfa4d1c675583c2bec32f4f76703b2"
+    },
+    "engine-relocation-freeze.json": {
+      "bytes": 4874,
+      "sha256": "392b2fdb52a68df3d3082b4ba401db054bd53d95d01caf6a01ce3d8802e7e047"
+    },
+    "engine-relocation-full.log": {
+      "bytes": 141886,
+      "sha256": "6e3a02fad615f0271cfe9e8999bebd4879ab6764f057bfefe463ce4b5f746109"
+    },
+    "engine-relocation-lint.log": {
+      "bytes": 196,
+      "sha256": "3b9d87ec89ea6f06388f391f74305d205a0fc52b3edfe2b646c147de9d32cedb"
+    },
+    "engine-relocation-types.log": {
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "fontconfig.xml": {
+      "bytes": 410,
+      "sha256": "e1d1ced372b93b4249f8bc631a92272c48a679137b8bf0137aafbe3034a15225"
+    },
+    "mastery-browser-repro-font.json": {
+      "bytes": 371,
+      "sha256": "a3e0d8ec77df81954bc89e9974c537520b26a0c9fc0a282303901891883a63bc"
+    },
+    "mastery-browser-repro-font.log": {
+      "bytes": 937,
+      "sha256": "3275fd69322f324c4933a444ae4f92c6bb043d60527317855c94bab06957f80a"
+    },
+    "mastery-browser-repro.json": {
+      "bytes": 361,
+      "sha256": "c9da7db9289010d71cdd97a00a33e4bd1f3f08055bdfe33126d65f22d0bdfbf3"
+    },
+    "mastery-browser-repro.log": {
+      "bytes": 937,
+      "sha256": "9ded319cff8da5004a1e1361e53f814bf34d6dedb5c5e2fab2be752561726705"
+    },
+    "mastery-foundation-build-inventory.json": {
+      "bytes": 138296,
+      "sha256": "15f579407741645eeca2c02656eca670a86dbbbc1fe05840001e96a08233f01b"
+    },
+    "mastery-foundation-build.json": {
+      "bytes": 362,
+      "sha256": "179fefe842fe9daa21f7cc6f1b6b0299b1a7152c58296fd22669deb4a3c33e98"
+    },
+    "mastery-foundation-build.log": {
+      "bytes": 2624,
+      "sha256": "e5eb9cc6652242ad0c9f363c9ace905c8d53cd69669568ecc8961a14d57578ac"
+    },
+    "mastery-foundation-design-review.txt": {
+      "bytes": 1154,
+      "sha256": "20a100ac0d45d20579ed0e98239b3085e1eceec10b236bc30121255ab5f69214"
+    },
+    "mastery-foundation-engine-final.json": {
+      "bytes": 257,
+      "sha256": "9f112f7c4fa0ea6fa3747474359c8b36c7306420a8f091fc9d2adce0ba1e683a"
+    },
+    "mastery-foundation-engine-final.log": {
+      "bytes": 50278,
+      "sha256": "1ca66b9e30d8808cb836c7a448f47591eee0f2928838cb6c42c868ebfdf2e55b"
+    },
+    "mastery-foundation-engine.json": {
+      "bytes": 250,
+      "sha256": "eac4a20efc4bb75a80ca3c2b0ce1a0bb5a7121213b2f95f474ae2d61dd9c4d63"
+    },
+    "mastery-foundation-engine.log": {
+      "bytes": 50280,
+      "sha256": "61f1981a86f6fa5885e019f5d5a4749d38d75f5bc0fef5f21ee5fbd208f609e2"
+    },
+    "mastery-foundation-focused.json": {
+      "bytes": 393,
+      "sha256": "68dcdd8d9d03b2b4eeb936b6b3a295d27a6b12be49095d6d6fbd4cf8d72d9fe3"
+    },
+    "mastery-foundation-focused.log": {
+      "bytes": 514,
+      "sha256": "3b1aad7b46f460dfc2b9f5f063482a00a5860ab31b192997f53d90e180ea9312"
+    },
+    "mastery-foundation-freeze.json": {
+      "bytes": 708,
+      "sha256": "296fb4ac0cc4e21deedce27bab6c527719775123a1342ecf9de2e378c4d5b17f"
+    },
+    "mastery-foundation-full-final.json": {
+      "bytes": 236,
+      "sha256": "a6498fcfb98a521a71e975d3ec8fe6980c876c29505536cc4d69105d47e30b0a"
+    },
+    "mastery-foundation-full-final.log": {
+      "bytes": 141981,
+      "sha256": "8cbaee3b93421e06b3edeb1f55a693d4a89c42d5e396f4ec3c412357bcf73d46"
+    },
+    "mastery-foundation-full.json": {
+      "bytes": 231,
+      "sha256": "10990039a3a0a38a7e736999f0962258b9e0a32544758b595fae909e30130ea7"
+    },
+    "mastery-foundation-full.log": {
+      "bytes": 141997,
+      "sha256": "338ab329b370a68dc65be5830d83316fde8b96df5bc04529adaf729b5e28e1ce"
+    },
+    "mastery-foundation-lint.json": {
+      "bytes": 211,
+      "sha256": "75d95b5598bc47bfe543a12581576d5bd5dc59fb3c1425e692f1e188505acc45"
+    },
+    "mastery-foundation-lint.log": {
+      "bytes": 196,
+      "sha256": "3b9d87ec89ea6f06388f391f74305d205a0fc52b3edfe2b646c147de9d32cedb"
+    },
+    "mastery-foundation-producer-review.txt": {
+      "bytes": 1127,
+      "sha256": "4bd7153b5aca1f00db661288527618801ef998678f37250ffdb84f4c3def50e6"
+    },
+    "mastery-foundation-qa-review.txt": {
+      "bytes": 1124,
+      "sha256": "90f2051497ad0a462a2a01f0054e4bc14bb7857a3d8602492b0ad1500087eaa0"
+    },
+    "mastery-foundation-red.json": {
+      "bytes": 279,
+      "sha256": "e1a45d9a6f7359905a67f012200e70a6aaf27bc7082e6157febd17f31d2a6cc6"
+    },
+    "mastery-foundation-red.log": {
+      "bytes": 9628,
+      "sha256": "895b3d1c4eab76ac09acee42b69d51f51c09f996bc8e30854996e64c7b77855f"
+    },
+    "mastery-foundation-red.original-test.ts": {
+      "bytes": 10832,
+      "sha256": "6c3ca0cf28e5e339ee1f6e2cc19d729521fe7e1f8da0d92836ef3807bc397683"
+    },
+    "mastery-foundation-types-final.json": {
+      "bytes": 223,
+      "sha256": "3c8fb37adaffaf5a1dc041dd74ebbdfc7c237ddcc77de5f14b9c38e99e8e1229"
+    },
+    "mastery-foundation-types-final.log": {
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "mastery-foundation-types.json": {
+      "bytes": 217,
+      "sha256": "8fc5d97fca857cf798a493f0dd306406dc90d786a70de514e6710ca76c267153"
+    },
+    "mastery-foundation-types.log": {
+      "bytes": 1876,
+      "sha256": "e9581d7c6ed789c47f8c5b69edf271ec6904b27485710c7c6cefd7c1f2b97eb8"
+    },
+    "mastery-repro-default.spec.source": {
+      "bytes": 3787,
+      "sha256": "0b8c5f16d201798f8857a77e06649d5ef49027fe8e1d738c21b0abd6b4c43016"
+    },
+    "mastery-repro-en.png": {
+      "bytes": 49532,
+      "sha256": "b8f1737fa08feefbbb457de10daafa20eae6f702eb4e3f221fdb582983db7a33"
+    },
+    "mastery-repro-font-en.png": {
+      "bytes": 49532,
+      "sha256": "b8f1737fa08feefbbb457de10daafa20eae6f702eb4e3f221fdb582983db7a33"
+    },
+    "mastery-repro-font-inventory.json": {
+      "bytes": 4189,
+      "sha256": "806b11fc0691de87135bf8f92dc323597da27e496cbfde8b771f88fc3134d4ed"
+    },
+    "mastery-repro-font-output/.last-run.json": {
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "mastery-repro-font-report.json": {
+      "bytes": 147017,
+      "sha256": "9f9312eec3b6a55fd78303d525c278c6f316a4e34c428f092bb7a4e0f373d21e"
+    },
+    "mastery-repro-font-zh.png": {
+      "bytes": 54021,
+      "sha256": "a25297c95d0b9be2e32554472ffc32733ce36002dbf05978ffd59b20a34f703e"
+    },
+    "mastery-repro-font.config.ts": {
+      "bytes": 1181,
+      "sha256": "717526cc3452b61bfac61a9ac55aab1b7256dea4233fb458518733aeb9f81af0"
+    },
+    "mastery-repro-inventory.json": {
+      "bytes": 1432,
+      "sha256": "e22edda4bd217cc1ee4045260b9a5541dd873e97695dbeedbcb68f0bc2002503"
+    },
+    "mastery-repro-output/.last-run.json": {
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "mastery-repro-report.json": {
+      "bytes": 98905,
+      "sha256": "7bb55fc473b87d40a81cc501acd6de67929f4fe0367ef4da8ee982f2010961e2"
+    },
+    "mastery-repro-zh.png": {
+      "bytes": 18307,
+      "sha256": "a39f636977363406f9ca7c2ce955ccb42b5735417a6955ba88828b5c31b8d0d7"
+    },
+    "mastery-repro.config.ts": {
+      "bytes": 1171,
+      "sha256": "82b24649a979fd38ad8b4d2de7a830346c7a1a81289d5bf481e241e939417547"
+    },
+    "mastery-repro.spec.ts": {
+      "bytes": 4476,
+      "sha256": "53a1a99def39ddd2a15d4322e468e3fa4949479a7a732119164b26459dad77fa"
+    },
+    "mastery-ui-bridge-build.json": {
+      "bytes": 228,
+      "sha256": "6a4d3105b4be00f2dab7ba69fee356613577805105b56e9f877c899f55fa9cce"
+    },
+    "mastery-ui-bridge-build.log": {
+      "bytes": 1763,
+      "sha256": "d6ce5adcaead2e8813dc9b90771b2fe5eef1a90cd14e334385b9c95b397ebf9e"
+    },
+    "mastery-ui-corrected-red.json": {
+      "bytes": 310,
+      "sha256": "63cb1418249260af0b8c31a28090e30ac5bb79c30f6aadc2563fdc2775108dfe"
+    },
+    "mastery-ui-corrected-red.log": {
+      "bytes": 28810,
+      "sha256": "8fc953d8033bfb1176e9bf7d0c25c05696e803501d5322329b4f7c5aef188c97"
+    },
+    "mastery-ui-design-review.txt": {
+      "bytes": 1190,
+      "sha256": "e3560adfa1f58ff7158dba2f2237499ea53c34fcfded7d703dc1b494d787fd95"
+    },
+    "mastery-ui-dist-inventory.json": {
+      "bytes": 138559,
+      "sha256": "f55f4caf77e2cfd4e8aecd8d882b10c1a220192cddc325f5749a6d09079db1a7"
+    },
+    "mastery-ui-focused.json": {
+      "bytes": 439,
+      "sha256": "b09d8f74ec5429401b9dd5762e5529a54d380a9e3768d44187ad0f0369e0842c"
+    },
+    "mastery-ui-focused.log": {
+      "bytes": 566,
+      "sha256": "91d07846192391a1765dd29bf25a50f13c326dff3cca56397bc40ba0e3e81f6f"
+    },
+    "mastery-ui-freeze.json": {
+      "bytes": 720,
+      "sha256": "b7273b124f07d1fc17e477a65855b5df96b72dc8e9053409618a74c7bf9e4f76"
+    },
+    "mastery-ui-full.json": {
+      "bytes": 222,
+      "sha256": "b6f8131759ae0ecb306fcdd096c37ff40e41ac1297a26e8373860aff324d8df9"
+    },
+    "mastery-ui-full.log": {
+      "bytes": 141988,
+      "sha256": "87df25c845c7752f05d4c62a522e12c4be3e2dc00ecd08fae0958e29b3362261"
+    },
+    "mastery-ui-lint.json": {
+      "bytes": 203,
+      "sha256": "77077fc7c66b31feeceb817124e993ec00c3e707cd5c67231cb5b1b3f9a1efe3"
+    },
+    "mastery-ui-lint.log": {
+      "bytes": 196,
+      "sha256": "3b9d87ec89ea6f06388f391f74305d205a0fc52b3edfe2b646c147de9d32cedb"
+    },
+    "mastery-ui-producer-review.txt": {
+      "bytes": 1417,
+      "sha256": "659a25dfd563c01784ed5b9f1c74ad6f7d2f4d268e8a213c3145822be73623b5"
+    },
+    "mastery-ui-qa-review.txt": {
+      "bytes": 1409,
+      "sha256": "dce1c25efca19b1a2e395d14af38dff6a0cbb844acfaaa6646ffc140b344f6e0"
+    },
+    "mastery-ui-red-freeze.json": {
+      "bytes": 748,
+      "sha256": "09f641b6c3799160a8258719f1f595246cd36ac18eef93c688df6abadf3c5152"
+    },
+    "mastery-ui-red.corrected-test.tsx": {
+      "bytes": 10845,
+      "sha256": "5ba5bf5fc972a94a8c6a0fb6859fa062839083060de0983fe3cc80c5a1493114"
+    },
+    "mastery-ui-red.json": {
+      "bytes": 300,
+      "sha256": "6099c1ef2df8f53ae4301e051596616df05279e00b9545e372b94c2ae06be88b"
+    },
+    "mastery-ui-red.log": {
+      "bytes": 74572,
+      "sha256": "3e76290f196f63d6a12630278cc0dcc13e2540857c68da6705c9bbc4b68f8578"
+    },
+    "mastery-ui-red.original-test.tsx": {
+      "bytes": 10857,
+      "sha256": "fefd9d66a187c364398b57f02e745e3a239f90ca80aeb2a0f8e21ae3a485431b"
+    },
+    "mastery-ui-types-final.json": {
+      "bytes": 215,
+      "sha256": "9dc9d60695fe3a14cad62ebdbacd4699aabd25ef3e73f71d8dffd4109586cc51"
+    },
+    "mastery-ui-types-final.log": {
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "mastery-ui-types.json": {
+      "bytes": 209,
+      "sha256": "a3e55aa178be5356ac5c5f99d34888a34b823f47a0b27af9cd2532344f1947b1"
+    },
+    "mastery-ui-types.log": {
+      "bytes": 253,
+      "sha256": "88b45d4090d635c69506c6dd04df5afc6e7fe10343bca9a08f41fe5c47421a10"
+    },
+    "meditation-fixture-focused.json": {
+      "bytes": 284,
+      "sha256": "596be0d21b3bf3814238ab5bdf877409b01ca8b7bd48aed79d5f8d4113cb2414"
+    },
+    "meditation-fixture-focused.log": {
+      "bytes": 457,
+      "sha256": "534e852800af720a41958a419988d84ebea34f2fe1f25e322fd3cfb1c84a1435"
+    },
+    "meditation-fixture-freeze.json": {
+      "bytes": 1627,
+      "sha256": "ab2692057ede4a611b0525bf4d0571fefec00e8afa67a216210dd8e9f2d341f6"
+    },
+    "meditation-fixture-full.json": {
+      "bytes": 230,
+      "sha256": "7b1b48730c34b40a3e0bf052314180c376260eb55715e10b3f944a9ac87f0093"
+    },
+    "meditation-fixture-full.log": {
+      "bytes": 141976,
+      "sha256": "ee031156842e6c4ba4cbff003f9bbffd41ebe450d209765351748e17a7f4b8fc"
+    },
+    "meditation-fixture-lint.json": {
+      "bytes": 210,
+      "sha256": "f85da503d5a3040fb6b5009d17c33a58c217e45a3b2ed8f471b4a9da9361cce3"
+    },
+    "meditation-fixture-lint.log": {
+      "bytes": 196,
+      "sha256": "3b9d87ec89ea6f06388f391f74305d205a0fc52b3edfe2b646c147de9d32cedb"
+    },
+    "meditation-fixture-producer-review.txt": {
+      "bytes": 357,
+      "sha256": "ca2c882dafbe439a86590041644874b9c6df2f7c98f5ebe13b65fdf96acfe028"
+    },
+    "meditation-fixture-qa-review.txt": {
+      "bytes": 380,
+      "sha256": "ef55cb97b38495c9db2332f9e4d43ee62554fc540367b4c148bd369681fd0bda"
+    },
+    "meditation-fixture-types.json": {
+      "bytes": 217,
+      "sha256": "c78515b7445b56a11f4bdebeb31910390a4825491d4dfa1b5dd0f49418735201"
+    },
+    "meditation-fixture-types.log": {
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "native-corrected-arithmetic.json": {
+      "bytes": 6237,
+      "sha256": "c35f02e4a3f5fefa5ed4d26f8f1ade10fb4281554e013d832c51aeb99438d60a"
+    },
+    "native-corrected-trace.json": {
+      "bytes": 146042,
+      "sha256": "a2108d96db4cc3004a42fcc8e628d66aad0e9027c9ec41a74ced74fabe39fba7"
+    },
+    "necromancer-browser-design-review.txt": {
+      "bytes": 1328,
+      "sha256": "86e1fbdb516e948c26382e16d5003541083532d52541de4e7660e249f0039678"
+    },
+    "necromancer-browser-final-output/.last-run.json": {
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "necromancer-browser-final-report.json": {
+      "bytes": 2729675,
+      "sha256": "9521acc6e0781b6b0f0c397f095e5b0548941fe225a5e96296289bcbab13ad13"
+    },
+    "necromancer-browser-final.json": {
+      "bytes": 884,
+      "sha256": "31ac4cc0bb7d52f4e5815c696a43f1d769dec704d30ec46e67cb177b128c543c"
+    },
+    "necromancer-browser-final.log": {
+      "bytes": 2074,
+      "sha256": "0bf9184318cc0c18be08ddd72a72876af327d4b629c5c160e4affc52f09eaff8"
+    },
+    "necromancer-browser-freeze.json": {
+      "bytes": 816,
+      "sha256": "4d81731777b3f0d4900de4727eae3d665b7e4182820822cc4cc48a00b6277f30"
+    },
+    "necromancer-browser-initial-config.ts.txt": {
+      "bytes": 1161,
+      "sha256": "eaabe1988b7370be25ab6cde24f6cdce80e2f72369ebd0231eaeb49914296bf0"
+    },
+    "necromancer-browser-initial-source.ts.txt": {
+      "bytes": 21065,
+      "sha256": "2df66fe6d22ddc81fd82ffb500443cb05c7c82fd729d990d8e7ce49d7046f0ab"
+    },
+    "necromancer-browser-install-freeze.json": {
+      "bytes": 397,
+      "sha256": "529f375f3c9b11ca3120a11dbea8eb1ce9908e755e0f17ae63c66ba7195bb030"
+    },
+    "necromancer-browser-lint-final.json": {
+      "bytes": 218,
+      "sha256": "1dd01142000816012821ec4b3ce2a8c8d218c00944acb17b532320e31b50c077"
+    },
+    "necromancer-browser-lint-final.log": {
+      "bytes": 196,
+      "sha256": "3b9d87ec89ea6f06388f391f74305d205a0fc52b3edfe2b646c147de9d32cedb"
+    },
+    "necromancer-browser-lint.json": {
+      "bytes": 212,
+      "sha256": "810c11a95d72812f9ef00792426437bd31da9f90f408f200fabb1653a7a46d5c"
+    },
+    "necromancer-browser-lint.log": {
+      "bytes": 196,
+      "sha256": "3b9d87ec89ea6f06388f391f74305d205a0fc52b3edfe2b646c147de9d32cedb"
+    },
+    "necromancer-browser-name-diagnosis.md": {
+      "bytes": 1234,
+      "sha256": "04201dae6e2271ee7518f7c67a50f0c23b67b7f81a3c8c5ce0dd57d74c85b940"
+    },
+    "necromancer-browser-name-fix-review.txt": {
+      "bytes": 1098,
+      "sha256": "aeff49a766db7ccc3d059842df446fb70a430da38507c27af27509469083c1e7"
+    },
+    "necromancer-browser-name-fixed-freeze.json": {
+      "bytes": 241,
+      "sha256": "801c1da8988df8001a830f21908f41391effc912aa9e597dbd9d75884a9c6719"
+    },
+    "necromancer-browser-name-fixed.spec.ts.txt": {
+      "bytes": 21144,
+      "sha256": "450d14c0d80651d1d6e47b0f8d301cb234e95ae5c1bfed3604d2f5de672d6d5e"
+    },
+    "necromancer-browser-output/.last-run.json": {
+      "bytes": 96,
+      "sha256": "387fbad30bca89365dcd1eb2ee37e5da2747af2f96cf295e1dc7d525ade1e348"
+    },
+    "necromancer-browser-output/necromancer-preparation-pa-f998a--disk-reload-and-layouts-en-necromancer-preparation-production/error-context.md": {
+      "bytes": 17726,
+      "sha256": "1c8b90db2d2456fd191fa628e9c58864f4e3d714760ef17d11c4b64ca2888064"
+    },
+    "necromancer-browser-plan-review.txt": {
+      "bytes": 1329,
+      "sha256": "3e756378b864f9165f755dc74a4f8b9a3e979422fd76e10455216da092db4c2a"
+    },
+    "necromancer-browser-plan.md": {
+      "bytes": 2000,
+      "sha256": "1bc760b19b76892b8d12a14b160df6290e7510aa0aebcaa08fd580846e9e47f0"
+    },
+    "necromancer-browser-producer-review.txt": {
+      "bytes": 1499,
+      "sha256": "b790c29c961dbb731ecd2141c16c6d9c83126dfa318c9f39bbdf286befb2957c"
+    },
+    "necromancer-browser-qa-review.txt": {
+      "bytes": 565,
+      "sha256": "6caeb1682856b82363834bf06ca16e6f91f8bae5e649392d19b301887d36c524"
+    },
+    "necromancer-browser-report.json": {
+      "bytes": 34497,
+      "sha256": "2fcb5a86a6825fd5b81d5e6acded65b6aba504e8b3b9f80d8a8712e9792384ef"
+    },
+    "necromancer-browser-types-final.json": {
+      "bytes": 223,
+      "sha256": "dfbd4d54587b1fcba0e7ac211289d1ac5dc209fc3a7b8c11f96c6a204afd493e"
+    },
+    "necromancer-browser-types-final.log": {
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "necromancer-browser-types.json": {
+      "bytes": 218,
+      "sha256": "32bc5ccda79462ccd855f660c7732576b1062a206e856d9d308119066d32638a"
+    },
+    "necromancer-browser-types.log": {
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "necromancer-browser.json": {
+      "bytes": 865,
+      "sha256": "9ecc193191b8e170317516738adfd6b3af2f8d58e3f1a7e7617c4cec152d5f34"
+    },
+    "necromancer-browser.log": {
+      "bytes": 2711,
+      "sha256": "d4351ec744ec176ad025a1a2bf349a75f72342c749a1bd5da1158cc5d9397639"
+    },
+    "necromancer-preparation.draft.spec.ts": {
+      "bytes": 21065,
+      "sha256": "2df66fe6d22ddc81fd82ffb500443cb05c7c82fd729d990d8e7ce49d7046f0ab"
+    },
+    "ownership.json": {
+      "bytes": 10682,
+      "sha256": "2b929e6acd308e8701b8dc461c5a385590fb395aece1eee035267abf856ac68c"
+    },
+    "playback-prerequisite-focused.json": {
+      "bytes": 303,
+      "sha256": "4fb469f654efac77006ce2c9a0bbdb61efdd6ff4f6a105ac69dbf7b77e5b7144"
+    },
+    "playback-prerequisite-focused.log": {
+      "bytes": 345,
+      "sha256": "fd466945bd99bfd3baf98ff75a7b03dc54e4c8bcc5cbf2123685c889c8e3ff2c"
+    },
+    "playback-prerequisite-freeze.json": {
+      "bytes": 3935,
+      "sha256": "4628155df82d58a4e4d6800c27a414a531d2b10fc0a4e2ee11c1013c042d6b1a"
+    },
+    "playback-prerequisite-full.json": {
+      "bytes": 255,
+      "sha256": "f57e51d8149edc911c93f21c24580f2f01c2430ca7c70523616ab8566890b02d"
+    },
+    "playback-prerequisite-full.log": {
+      "bytes": 141995,
+      "sha256": "c10d03552ce3d3afe34f4a0bea0e79e9bca0b338930e2768a130ab003a3d74b1"
+    },
+    "playback-prerequisite-lint.json": {
+      "bytes": 213,
+      "sha256": "4898770bb15f6dacdff6ca69488663f7116dee074240f3403dd86de865872046"
+    },
+    "playback-prerequisite-lint.log": {
+      "bytes": 196,
+      "sha256": "3b9d87ec89ea6f06388f391f74305d205a0fc52b3edfe2b646c147de9d32cedb"
+    },
+    "playback-prerequisite-types.json": {
+      "bytes": 219,
+      "sha256": "359166689b3e19b045a1d278d46ec228928a6e9831f614659a425627673ed4ef"
+    },
+    "playback-prerequisite-types.log": {
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "prepare-durable.py": {
+      "bytes": 7009,
+      "sha256": "24ce4779604480b84d939d24d4572ba197429e897a874968669efbb2f0a2dd82"
+    },
+    "raven-final-browser-output/.last-run.json": {
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+    },
+    "raven-final-browser-report.json": {
+      "bytes": 611020,
+      "sha256": "9f287d21595010eff111a3da25bdaebb88197a038f61f85204f0dd0c43cbe0fd"
+    },
+    "raven-final-browser.json": {
+      "bytes": 852,
+      "sha256": "856fc7e3714fe11b54f914ed87e399c24b32eb1a12a8648ef7499485578542f2"
+    },
+    "raven-final-browser.log": {
+      "bytes": 956,
+      "sha256": "609fc57ea0361f632145370b25f5102cd1aeaae10ae5edec6bf8c225b5ce2415"
+    },
+    "run-check.py": {
+      "bytes": 943,
+      "sha256": "3406e574c86e68a1c8fa9d0a101e286a2d941000c29280162d1ac45dd06ea93a"
+    },
+    "runtime-build-inventory.json": {
+      "bytes": 138571,
+      "sha256": "bc641032051e63e64c4693ccbe842e0ed5c40ec10fa1a853c85fe7d2d6b252e5"
+    },
+    "runtime-final-build.json": {
+      "bytes": 346,
+      "sha256": "984c36e3ecb34ba8fdcda9d0a7efb74af3f2599d230b9ea7e848759f639d0aaf"
+    },
+    "runtime-final-build.log": {
+      "bytes": 2492,
+      "sha256": "e3c6becd3244214c636b03e31818cca7f72ae622f07af7f3e85ad1d929c765f4"
+    },
+    "runtime-final-design-review.txt": {
+      "bytes": 1139,
+      "sha256": "006149d781d45eeecaba390d2dba855e3ed3c5efafe7a36f8a5ba4f466d5a71d"
+    },
+    "runtime-final-engine.json": {
+      "bytes": 246,
+      "sha256": "941f4cc7683cbd677dc43b4064f5633304d715299893e203f7b4567e3360c137"
+    },
+    "runtime-final-engine.log": {
+      "bytes": 50284,
+      "sha256": "a9b548e7e183d21ff4e013d5dd536ff4872a379c2f74417f5af474a82ca126ce"
+    },
+    "runtime-final-focused.json": {
+      "bytes": 476,
+      "sha256": "0752f339dadbe5f71ed185747d8e4710745c71eece71fd62605e0837b53f8e79"
+    },
+    "runtime-final-focused.log": {
+      "bytes": 900,
+      "sha256": "6d93cb5483044b61b36317b63d6c8637895b727b2a4ea5479f6e90a033b3c42e"
+    },
+    "runtime-final-freeze.json": {
+      "bytes": 3623,
+      "sha256": "f776c0cef607c3df29d41eb19b10ee60b01ed4936acfeefa050842c2bd827fbf"
+    },
+    "runtime-final-full.json": {
+      "bytes": 225,
+      "sha256": "32b14c0bea82e871aa0cefa5a727812d11567dc2edb1041aa5765e16b665ca5f"
+    },
+    "runtime-final-full.log": {
+      "bytes": 141989,
+      "sha256": "9c6b1691baaba3ee18f1ffab13516248f08bdf1d6d8b719ad8551744229a2ab6"
+    },
+    "runtime-final-lint.json": {
+      "bytes": 206,
+      "sha256": "5b99c485d2ccbd9032a36d86429a02f0d9169f92eb8af5d7b24dd99b62fd1fa2"
+    },
+    "runtime-final-lint.log": {
+      "bytes": 196,
+      "sha256": "3b9d87ec89ea6f06388f391f74305d205a0fc52b3edfe2b646c147de9d32cedb"
+    },
+    "runtime-final-producer-review.txt": {
+      "bytes": 700,
+      "sha256": "c2c786ed38a3e2c4e1b7a9f4c1a301ffa7a8c96e5aead2a9d3cc2160eaa00a38"
+    },
+    "runtime-final-qa-review.txt": {
+      "bytes": 1046,
+      "sha256": "861ab1cb66e0a8ae462b78ab59ff2dce29f6dc2e0ec2c5ec0ee32b25676e5b04"
+    },
+    "runtime-final-types.json": {
+      "bytes": 212,
+      "sha256": "a52e3cbd64d8649f3773f3f0f549f171d4af76a0f94c81e0b9aa2405c11bafa7"
+    },
+    "runtime-final-types.log": {
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "runtime-park-0.bin": {
+      "bytes": 1251,
+      "sha256": "4977e62f7fd0d803cd29bea473b43fa70a755020c32bea8a805cb74a442ccf54"
+    },
+    "runtime-park-1.bin": {
+      "bytes": 56726,
+      "sha256": "dd2165d53a830b48852b6ca9775982eb3a1104239b5a4ca75a831935aaf5e270"
+    },
+    "runtime-park-2.bin": {
+      "bytes": 22914,
+      "sha256": "7cb1192dca8c1566e8adffd8f5e1b4496c143fbbec1c642effc1853e374524c3"
+    },
+    "runtime-park-3.bin": {
+      "bytes": 25500,
+      "sha256": "cec2cf0d74c493a643440279e67f9116a98cadafaa26053a143bc0a24a142b45"
+    },
+    "runtime-park-4.bin": {
+      "bytes": 6438,
+      "sha256": "dd57e3ab1ce3f0f7ba6475ea82d15df2afeeb685c6ad4b78c61a96231f0f53c4"
+    },
+    "runtime-park-manifest.json": {
+      "bytes": 1502,
+      "sha256": "7ad0eb8e8cdea7958f7ddd0f5ee530ce3d4f7dca9e31a4afd9c36436ca9b05b2"
+    },
+    "store-relocation-focused.json": {
+      "bytes": 431,
+      "sha256": "22ac7be3d90e10fa1f08b85ad5b2e7f8b487a9ebde58ea2dab12894f8398f4a9"
+    },
+    "store-relocation-focused.log": {
+      "bytes": 522,
+      "sha256": "d713545d8b7b92f4057ec5cb92a0b25d9329c79febc8085e1c0d71179951c769"
+    },
+    "store-relocation-freeze.json": {
+      "bytes": 4731,
+      "sha256": "81afddc38375b3aa308134dbb354fcce62c564d51d73d1c40c5c495331ad9f17"
+    },
+    "store-relocation-full.json": {
+      "bytes": 250,
+      "sha256": "f7792de31a317085e2f9a8c7d14f1a3a18e42bd918d67c22f5709d67e1b643fc"
+    },
+    "store-relocation-full.log": {
+      "bytes": 141900,
+      "sha256": "328261733445bd3ef34a9ecdea038dc80081c7e749d97a9c45891ef3a95dee35"
+    },
+    "store-relocation-lint.json": {
+      "bytes": 208,
+      "sha256": "4ff53e961aec32e3da6f02c1735150506c7f48af52bb0b98617c0b33714616cb"
+    },
+    "store-relocation-lint.log": {
+      "bytes": 196,
+      "sha256": "3b9d87ec89ea6f06388f391f74305d205a0fc52b3edfe2b646c147de9d32cedb"
+    },
+    "store-relocation-types.json": {
+      "bytes": 215,
+      "sha256": "3fa3962852ad734da29fd521a08269731fff31646a3027a1afa6e335ceeef5b4"
+    },
+    "store-relocation-types.log": {
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    },
+    "superseded-build-cleanup.json": {
+      "bytes": 1202,
+      "sha256": "206c51e726620f919e565f3dae07785efc2e58aaa17c3c43f1455b94813090d6"
+    },
+    "ui-relocation-focused.json": {
+      "bytes": 397,
+      "sha256": "afb56d8f6d1c074c549cbb49e212ebb409d6da9eb4eaa0a434821b37e1a533a2"
+    },
+    "ui-relocation-focused.log": {
+      "bytes": 471,
+      "sha256": "42a372a8dd13098f51247957df55bb0192cbc7e1775ffd91f52964ed295ef1f3"
+    },
+    "ui-relocation-freeze.json": {
+      "bytes": 4154,
+      "sha256": "c76e906bad3df448e6a258c60b4b899ef82a1510875cfecd20c5aa650b6b55bc"
+    },
+    "ui-relocation-full.json": {
+      "bytes": 247,
+      "sha256": "ce76d8e772ac4fa05479cdfb342064f383b90224f33bd010c2a4e4ceb3ed9307"
+    },
+    "ui-relocation-full.log": {
+      "bytes": 141991,
+      "sha256": "5fb8993c660c3dba5c1a320c3f3b9b823a0366ae545b16fbe075c09dfba9899f"
+    },
+    "ui-relocation-lint.json": {
+      "bytes": 206,
+      "sha256": "d5ecafd31eb827966658974514b1de9b4f1359b864716231f4935c64c9626452"
+    },
+    "ui-relocation-lint.log": {
+      "bytes": 196,
+      "sha256": "3b9d87ec89ea6f06388f391f74305d205a0fc52b3edfe2b646c147de9d32cedb"
+    },
+    "ui-relocation-types.json": {
+      "bytes": 212,
+      "sha256": "140ea6ca8e14e55cfdb91a154b719642d50f6750d743c494eb447c3c84f176cb"
+    },
+    "ui-relocation-types.log": {
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47"
+    }
+  },
+  "rawDirectories": [
+    "browser-original-images",
+    "mastery-repro-font-output",
+    "mastery-repro-font-output/mastery-repro-reproduce-mi-066de-derived-summon-detail-zh-CN",
+    "mastery-repro-font-output/mastery-repro-reproduce-mi-0edeb-ry-derived-summon-detail-en",
+    "mastery-repro-output",
+    "mastery-repro-output/mastery-repro-reproduce-mi-066de-derived-summon-detail-zh-CN",
+    "mastery-repro-output/mastery-repro-reproduce-mi-0edeb-ry-derived-summon-detail-en",
+    "necromancer-browser-final-output",
+    "necromancer-browser-final-output/necromancer-preparation-Ma-5e9e7--with-Revive-excluded-zh-CN-necromancer-preparation-production",
+    "necromancer-browser-final-output/necromancer-preparation-Ma-d10ec-ils-with-Revive-excluded-en-necromancer-preparation-production",
+    "necromancer-browser-final-output/necromancer-preparation-pa-354d6-sk-reload-and-layouts-zh-CN-necromancer-preparation-production",
+    "necromancer-browser-final-output/necromancer-preparation-pa-58774-sk-reload-and-layouts-zh-CN-necromancer-preparation-production",
+    "necromancer-browser-final-output/necromancer-preparation-pa-87bce-sk-reload-and-layouts-zh-CN-necromancer-preparation-production",
+    "necromancer-browser-final-output/necromancer-preparation-pa-e7584--disk-reload-and-layouts-en-necromancer-preparation-production",
+    "necromancer-browser-final-output/necromancer-preparation-pa-eacbf--disk-reload-and-layouts-en-necromancer-preparation-production",
+    "necromancer-browser-final-output/necromancer-preparation-pa-f998a--disk-reload-and-layouts-en-necromancer-preparation-production",
+    "necromancer-browser-output",
+    "necromancer-browser-output/.playwright-artifacts-0",
+    "necromancer-browser-output/necromancer-preparation-pa-f998a--disk-reload-and-layouts-en-necromancer-preparation-production",
+    "raven-final-browser-output",
+    "raven-final-browser-output/summon-preparation-paid-Ra-63808-sk-reload-and-layouts-zh-CN-summon-preparation-production",
+    "raven-final-browser-output/summon-preparation-paid-Ra-7b118--disk-reload-and-layouts-en-summon-preparation-production"
+  ],
+  "finalClosureVerification": {
+    "files": {
+      "docs/design/skills-spec.md": {
+        "bytes": 23219,
+        "sha256": "feb842483854eb0b226510deeda6f5d3b53d578a6b2b77768616505215845e11"
+      },
+      "docs/plans/decisions/D06-summon-corpses-v1.md": {
+        "bytes": 10341,
+        "sha256": "c51a2d6acbef0bc209a45107281f4ed5c9230eb4d38b09c0a6268da1184f1e7d"
+      },
+      "docs/plans/decisions/D06-summon-preparation-v1.md": {
+        "bytes": 9401,
+        "sha256": "2de44c258620684ad5f9325753b84eecbf9037208ba1fe993c6590699616f7c2"
+      },
+      "docs/plans/evidence/d06-necromancer-preparation.md": {
+        "bytes": 10944,
+        "sha256": "a71d11b39ed181d9abe4fbfa7396dd9d0e6e6b21cf53219b128c5fd3c9f00387"
+      },
+      "docs/plans/execution-ledger.md": {
+        "bytes": 239344,
+        "sha256": "e84a9ddf676da647d05bf8202a401ce040a1970f5dd267b8868be6ac6a0ca3d5"
+      },
+      "production/bugs/BUG-072-carried-cooldowns.md": {
+        "bytes": 3500,
+        "sha256": "ef98afe45c3c9f714d17b85299d7b3f277d1a4915a8be4acfa4866837e7442a0"
+      },
+      "production/bugs/BUG-073-summon-mastery-detail.md": {
+        "bytes": 6684,
+        "sha256": "8b2be5f6bc23f374942dd84c538dd4e0e57c73652a105006c0f5fb242ace09b3"
+      },
+      "src/engine/combat/combat.ts": {
+        "bytes": 56726,
+        "sha256": "dd2165d53a830b48852b6ca9775982eb3a1104239b5a4ca75a831935aaf5e270"
+      },
+      "src/engine/combat/skeleton-mastery.test.ts": {
+        "bytes": 29843,
+        "sha256": "f330bc697ae048a44e6b9aba978f8aed70b31cce42add12bf279de7a790d8cd9"
+      },
+      "src/engine/combat/summon-preparation-corpses.test.ts": {
+        "bytes": 22914,
+        "sha256": "7cb1192dca8c1566e8adffd8f5e1b4496c143fbbec1c642effc1853e374524c3"
+      },
+      "src/engine/combat/summon-preparation.test.ts": {
+        "bytes": 28327,
+        "sha256": "6d9817e56d07718dacea9a383d3aa21f985bee5260c742fa223ece7cf25e3a9a"
+      },
+      "src/engine/combat/summon-resummon.test.ts": {
+        "bytes": 9448,
+        "sha256": "8b5a4b27e3f906f565ca235cdd2ef5bd4bca518406dd6dc9fe0f502626ad7c55"
+      },
+      "src/engine/skills/displayStats.test.ts": {
+        "bytes": 10911,
+        "sha256": "aff06863a66c1bc73212733d9ed9796c443af3db3d3832031fd8cd0d3393a562"
+      },
+      "src/engine/skills/displayStats.ts": {
+        "bytes": 12037,
+        "sha256": "93da615950feca00476de4e4d8fd30271692f9d02dc969831391aa126dcd1bd6"
+      },
+      "src/engine/skills/skeleton-mastery.ts": {
+        "bytes": 6553,
+        "sha256": "74f91630aa454993886ab37b203b0f8fa1dfd53f002eb3b813cafe59b307ce21"
+      },
+      "src/engine/skills/summon-preparation.ts": {
+        "bytes": 1251,
+        "sha256": "4977e62f7fd0d803cd29bea473b43fa70a755020c32bea8a805cb74a442ccf54"
+      },
+      "src/features/skills/SkillsScreen.summon-preparation-corpses.test.tsx": {
+        "bytes": 10845,
+        "sha256": "5ba5bf5fc972a94a8c6a0fb6859fa062839083060de0983fe3cc80c5a1493114"
+      },
+      "src/features/skills/SkillsScreen.summon-preparation.test.tsx": {
+        "bytes": 11528,
+        "sha256": "7638f8267195be5479122c0054d0fee8de3bdd29ae91f823a8daf1204c134e3d"
+      },
+      "src/features/skills/SkillsScreen.tsx": {
+        "bytes": 50561,
+        "sha256": "e517ad8442b3aae10f4b6d9b58be41d4dd75faf6313ab6d562707197adcab77d"
+      },
+      "src/i18n/locales/en/skills.json": {
+        "bytes": 44034,
+        "sha256": "40101d19e9dbe507da2334dff238f5367dde926c390c9ef98880c551ad5deeb2"
+      },
+      "src/i18n/locales/zh-CN/skills.json": {
+        "bytes": 41092,
+        "sha256": "3b6a11c07680e6ede4f837576aa9f72cf8dac3884078ed14e73e89054cba7e53"
+      },
+      "src/stores/combatHelpers.meditation.test.ts": {
+        "bytes": 21718,
+        "sha256": "a68c3047bae6a86526bb34667340f8acdc941837b3ba0007fec2d2dc7c77e060"
+      },
+      "src/stores/combatHelpers.summon-eligibility.test.ts": {
+        "bytes": 6939,
+        "sha256": "26f016cf30073a19a30e7a66c3c1a0cf85babe95776ef92047e8d9d1351a4716"
+      },
+      "src/stores/combatPlayback.test.ts": {
+        "bytes": 17666,
+        "sha256": "52a18de1f781af9de3884f97ccfa601e0522a47db209bf640196dbb09554d593"
+      },
+      "src/stores/skeleton-mastery-composition.test.ts": {
+        "bytes": 9180,
+        "sha256": "8b4602213582c9df8ed7ca8018d23e6d73b498e2b280343abc26a2b75c5d7b8c"
+      },
+      "src/stores/summon-preparation-corpses-native.test.ts": {
+        "bytes": 25500,
+        "sha256": "cec2cf0d74c493a643440279e67f9116a98cadafaa26053a143bc0a24a142b45"
+      },
+      "tests/pwa/necromancer-preparation.config.ts": {
+        "bytes": 1161,
+        "sha256": "eaabe1988b7370be25ab6cde24f6cdce80e2f72369ebd0231eaeb49914296bf0"
+      },
+      "tests/pwa/necromancer-preparation.spec.ts": {
+        "bytes": 21144,
+        "sha256": "450d14c0d80651d1d6e47b0f8d301cb234e95ae5c1bfed3604d2f5de672d6d5e"
+      }
+    },
+    "note": "Current final source/document bytes before archive/closure commit. Original per-step freezes remain historical and are not relabeled as current."
+  },
+  "processAudit": {
+    "verifiedUtc": "2026-10-21T16:44:52.134688+00:00",
+    "records": [
+      {
+        "record": "canonical-boundaries-red.json",
+        "pid": 2717832,
+        "startUtc": "2026-10-21T15:20:56.369819+00:00"
+      },
+      {
+        "record": "canonical-combined-red.json",
+        "pid": 2719604,
+        "startUtc": "2026-10-21T15:24:21.185630+00:00"
+      },
+      {
+        "record": "canonical-cooldown-green-native-trace.json",
+        "pid": 2725795,
+        "startUtc": "2026-10-21T15:33:42.009999+00:00"
+      },
+      {
+        "record": "canonical-corrected-engine.json",
+        "pid": 2726141,
+        "startUtc": "2026-10-21T15:33:54.906710+00:00"
+      },
+      {
+        "record": "canonical-death-red.json",
+        "pid": 2717230,
+        "startUtc": "2026-10-21T15:20:10.884663+00:00"
+      },
+      {
+        "record": "canonical-engine-native-red.json",
+        "pid": 2718258,
+        "startUtc": "2026-10-21T15:21:42.401660+00:00"
+      },
+      {
+        "record": "canonical-engine.json",
+        "pid": 2721895,
+        "startUtc": "2026-10-21T15:28:34.858157+00:00"
+      },
+      {
+        "record": "canonical-focused-green.json",
+        "pid": 2728351,
+        "startUtc": "2026-10-21T15:35:57.820327+00:00"
+      },
+      {
+        "record": "canonical-full.json",
+        "pid": 2728832,
+        "startUtc": "2026-10-21T15:36:12.709804+00:00"
+      },
+      {
+        "record": "canonical-green-attempt.json",
+        "pid": 2721582,
+        "startUtc": "2026-10-21T15:28:21.571923+00:00"
+      },
+      {
+        "record": "canonical-primary-red.json",
+        "pid": 2716624,
+        "startUtc": "2026-10-21T15:19:19.565446+00:00"
+      },
+      {
+        "record": "canonical-red-freeze.json",
+        "pid": 2719604,
+        "startUtc": "2026-10-21T15:24:21.185630+00:00"
+      },
+      {
+        "record": "canonical-red-freeze.json",
+        "pid": 2720025,
+        "startUtc": "2026-10-21T15:24:33.022665+00:00"
+      },
+      {
+        "record": "canonical-red-types.json",
+        "pid": 2720025,
+        "startUtc": "2026-10-21T15:24:33.022665+00:00"
+      },
+      {
+        "record": "cooldown-control-red-native-trace.json",
+        "pid": 2724264,
+        "startUtc": "2026-10-21T15:30:45.687278+00:00"
+      },
+      {
+        "record": "cooldown-red-freeze.json",
+        "pid": 2724264,
+        "startUtc": "2026-10-21T15:30:45.687278+00:00"
+      },
+      {
+        "record": "engine-relocation-commands.json",
+        "pid": 2687457,
+        "startUtc": "2026-10-21T14:54:17.858349+00:00"
+      },
+      {
+        "record": "engine-relocation-commands.json",
+        "pid": 2689124,
+        "startUtc": "2026-10-21T14:54:33.993158+00:00"
+      },
+      {
+        "record": "engine-relocation-commands.json",
+        "pid": 2693843,
+        "startUtc": "2026-10-21T14:56:11.332338+00:00"
+      },
+      {
+        "record": "engine-relocation-commands.json",
+        "pid": 2693921,
+        "startUtc": "2026-10-21T14:56:25.065258+00:00"
+      },
+      {
+        "record": "engine-relocation-freeze.json",
+        "pid": 2687457,
+        "startUtc": "2026-10-21T14:54:17.858349+00:00"
+      },
+      {
+        "record": "engine-relocation-freeze.json",
+        "pid": 2689124,
+        "startUtc": "2026-10-21T14:54:33.993158+00:00"
+      },
+      {
+        "record": "engine-relocation-freeze.json",
+        "pid": 2693843,
+        "startUtc": "2026-10-21T14:56:11.332338+00:00"
+      },
+      {
+        "record": "engine-relocation-freeze.json",
+        "pid": 2693921,
+        "startUtc": "2026-10-21T14:56:25.065258+00:00"
+      },
+      {
+        "record": "mastery-browser-repro-font.json",
+        "pid": 2751911,
+        "startUtc": "2026-10-21T15:57:26.776527+00:00"
+      },
+      {
+        "record": "mastery-browser-repro.json",
+        "pid": 2751179,
+        "startUtc": "2026-10-21T15:56:18.869180+00:00"
+      },
+      {
+        "record": "mastery-foundation-build.json",
+        "pid": 2768470,
+        "startUtc": "2026-10-21T16:09:34.393109+00:00"
+      },
+      {
+        "record": "mastery-foundation-engine-final.json",
+        "pid": 2762275,
+        "startUtc": "2026-10-21T16:07:44.226413+00:00"
+      },
+      {
+        "record": "mastery-foundation-engine.json",
+        "pid": 2755104,
+        "startUtc": "2026-10-21T16:04:15.176235+00:00"
+      },
+      {
+        "record": "mastery-foundation-focused.json",
+        "pid": 2754782,
+        "startUtc": "2026-10-21T16:04:04.658696+00:00"
+      },
+      {
+        "record": "mastery-foundation-full-final.json",
+        "pid": 2763845,
+        "startUtc": "2026-10-21T16:07:58.678110+00:00"
+      },
+      {
+        "record": "mastery-foundation-full.json",
+        "pid": 2756878,
+        "startUtc": "2026-10-21T16:04:34.525705+00:00"
+      },
+      {
+        "record": "mastery-foundation-lint.json",
+        "pid": 2761914,
+        "startUtc": "2026-10-21T16:07:08.900133+00:00"
+      },
+      {
+        "record": "mastery-foundation-red.json",
+        "pid": 2754364,
+        "startUtc": "2026-10-21T16:03:33.921197+00:00"
+      },
+      {
+        "record": "mastery-foundation-types-final.json",
+        "pid": 2761887,
+        "startUtc": "2026-10-21T16:06:55.394454+00:00"
+      },
+      {
+        "record": "mastery-foundation-types.json",
+        "pid": 2761634,
+        "startUtc": "2026-10-21T16:06:32.308494+00:00"
+      },
+      {
+        "record": "mastery-ui-bridge-build.json",
+        "pid": 2777146,
+        "startUtc": "2026-10-21T16:18:25.350509+00:00"
+      },
+      {
+        "record": "mastery-ui-corrected-red.json",
+        "pid": 2770828,
+        "startUtc": "2026-10-21T16:14:14.702012+00:00"
+      },
+      {
+        "record": "mastery-ui-focused.json",
+        "pid": 2771415,
+        "startUtc": "2026-10-21T16:15:04.083168+00:00"
+      },
+      {
+        "record": "mastery-ui-full.json",
+        "pid": 2772461,
+        "startUtc": "2026-10-21T16:16:49.683276+00:00"
+      },
+      {
+        "record": "mastery-ui-lint.json",
+        "pid": 2772220,
+        "startUtc": "2026-10-21T16:16:15.483986+00:00"
+      },
+      {
+        "record": "mastery-ui-red.json",
+        "pid": 2770380,
+        "startUtc": "2026-10-21T16:13:46.502309+00:00"
+      },
+      {
+        "record": "mastery-ui-types-final.json",
+        "pid": 2772125,
+        "startUtc": "2026-10-21T16:16:02.120139+00:00"
+      },
+      {
+        "record": "mastery-ui-types.json",
+        "pid": 2771802,
+        "startUtc": "2026-10-21T16:15:26.367711+00:00"
+      },
+      {
+        "record": "meditation-fixture-focused.json",
+        "pid": 2734946,
+        "startUtc": "2026-10-21T15:41:15.651943+00:00"
+      },
+      {
+        "record": "meditation-fixture-freeze.json",
+        "pid": 2734946,
+        "startUtc": "2026-10-21T15:41:15.651943+00:00"
+      },
+      {
+        "record": "meditation-fixture-freeze.json",
+        "pid": 2735275,
+        "startUtc": "2026-10-21T15:41:29.696120+00:00"
+      },
+      {
+        "record": "meditation-fixture-freeze.json",
+        "pid": 2740092,
+        "startUtc": "2026-10-21T15:43:24.400654+00:00"
+      },
+      {
+        "record": "meditation-fixture-freeze.json",
+        "pid": 2740220,
+        "startUtc": "2026-10-21T15:43:47.401058+00:00"
+      },
+      {
+        "record": "meditation-fixture-full.json",
+        "pid": 2735275,
+        "startUtc": "2026-10-21T15:41:29.696120+00:00"
+      },
+      {
+        "record": "meditation-fixture-lint.json",
+        "pid": 2740220,
+        "startUtc": "2026-10-21T15:43:47.401058+00:00"
+      },
+      {
+        "record": "meditation-fixture-types.json",
+        "pid": 2740092,
+        "startUtc": "2026-10-21T15:43:24.400654+00:00"
+      },
+      {
+        "record": "necromancer-browser-final.json",
+        "pid": 2784694,
+        "startUtc": "2026-10-21T16:30:17.412020+00:00"
+      },
+      {
+        "record": "necromancer-browser-lint-final.json",
+        "pid": 2783422,
+        "startUtc": "2026-10-21T16:29:32.932752+00:00"
+      },
+      {
+        "record": "necromancer-browser-lint.json",
+        "pid": 2781997,
+        "startUtc": "2026-10-21T16:26:23.966481+00:00"
+      },
+      {
+        "record": "necromancer-browser-types-final.json",
+        "pid": 2783331,
+        "startUtc": "2026-10-21T16:29:13.168457+00:00"
+      },
+      {
+        "record": "necromancer-browser-types.json",
+        "pid": 2781881,
+        "startUtc": "2026-10-21T16:26:00.390583+00:00"
+      },
+      {
+        "record": "necromancer-browser.json",
+        "pid": 2782352,
+        "startUtc": "2026-10-21T16:27:10.498314+00:00"
+      },
+      {
+        "record": "playback-prerequisite-focused.json",
+        "pid": 2709624,
+        "startUtc": "2026-10-21T15:12:56.672353+00:00"
+      },
+      {
+        "record": "playback-prerequisite-freeze.json",
+        "pid": 2709624,
+        "startUtc": "2026-10-21T15:12:56.672353+00:00"
+      },
+      {
+        "record": "playback-prerequisite-freeze.json",
+        "pid": 2709915,
+        "startUtc": "2026-10-21T15:13:00.491548+00:00"
+      },
+      {
+        "record": "playback-prerequisite-freeze.json",
+        "pid": 2714735,
+        "startUtc": "2026-10-21T15:14:37.996905+00:00"
+      },
+      {
+        "record": "playback-prerequisite-freeze.json",
+        "pid": 2714890,
+        "startUtc": "2026-10-21T15:14:51.251992+00:00"
+      },
+      {
+        "record": "playback-prerequisite-full.json",
+        "pid": 2709915,
+        "startUtc": "2026-10-21T15:13:00.491548+00:00"
+      },
+      {
+        "record": "playback-prerequisite-lint.json",
+        "pid": 2714890,
+        "startUtc": "2026-10-21T15:14:51.251992+00:00"
+      },
+      {
+        "record": "playback-prerequisite-types.json",
+        "pid": 2714735,
+        "startUtc": "2026-10-21T15:14:37.996905+00:00"
+      },
+      {
+        "record": "raven-final-browser.json",
+        "pid": 2785546,
+        "startUtc": "2026-10-21T16:31:43.036662+00:00"
+      },
+      {
+        "record": "runtime-final-build.json",
+        "pid": 2748608,
+        "startUtc": "2026-10-21T15:49:38.440237+00:00"
+      },
+      {
+        "record": "runtime-final-engine.json",
+        "pid": 2741690,
+        "startUtc": "2026-10-21T15:46:27.314961+00:00"
+      },
+      {
+        "record": "runtime-final-focused.json",
+        "pid": 2741252,
+        "startUtc": "2026-10-21T15:46:15.457492+00:00"
+      },
+      {
+        "record": "runtime-final-freeze.json",
+        "pid": 2741252,
+        "startUtc": "2026-10-21T15:46:15.457492+00:00"
+      },
+      {
+        "record": "runtime-final-freeze.json",
+        "pid": 2741690,
+        "startUtc": "2026-10-21T15:46:27.314961+00:00"
+      },
+      {
+        "record": "runtime-final-freeze.json",
+        "pid": 2743324,
+        "startUtc": "2026-10-21T15:46:52.623043+00:00"
+      },
+      {
+        "record": "runtime-final-freeze.json",
+        "pid": 2748188,
+        "startUtc": "2026-10-21T15:48:33.493856+00:00"
+      },
+      {
+        "record": "runtime-final-freeze.json",
+        "pid": 2748329,
+        "startUtc": "2026-10-21T15:48:56.480904+00:00"
+      },
+      {
+        "record": "runtime-final-freeze.json",
+        "pid": 2748608,
+        "startUtc": "2026-10-21T15:49:38.440237+00:00"
+      },
+      {
+        "record": "runtime-final-full.json",
+        "pid": 2743324,
+        "startUtc": "2026-10-21T15:46:52.623043+00:00"
+      },
+      {
+        "record": "runtime-final-lint.json",
+        "pid": 2748329,
+        "startUtc": "2026-10-21T15:48:56.480904+00:00"
+      },
+      {
+        "record": "runtime-final-types.json",
+        "pid": 2748188,
+        "startUtc": "2026-10-21T15:48:33.493856+00:00"
+      },
+      {
+        "record": "store-relocation-focused.json",
+        "pid": 2696076,
+        "startUtc": "2026-10-21T15:01:19.870221+00:00"
+      },
+      {
+        "record": "store-relocation-freeze.json",
+        "pid": 2696076,
+        "startUtc": "2026-10-21T15:01:19.870221+00:00"
+      },
+      {
+        "record": "store-relocation-freeze.json",
+        "pid": 2696593,
+        "startUtc": "2026-10-21T15:01:35.191302+00:00"
+      },
+      {
+        "record": "store-relocation-freeze.json",
+        "pid": 2701319,
+        "startUtc": "2026-10-21T15:03:15.535529+00:00"
+      },
+      {
+        "record": "store-relocation-freeze.json",
+        "pid": 2701385,
+        "startUtc": "2026-10-21T15:03:32.841336+00:00"
+      },
+      {
+        "record": "store-relocation-full.json",
+        "pid": 2696593,
+        "startUtc": "2026-10-21T15:01:35.191302+00:00"
+      },
+      {
+        "record": "store-relocation-lint.json",
+        "pid": 2701385,
+        "startUtc": "2026-10-21T15:03:32.841336+00:00"
+      },
+      {
+        "record": "store-relocation-types.json",
+        "pid": 2701319,
+        "startUtc": "2026-10-21T15:03:15.535529+00:00"
+      },
+      {
+        "record": "ui-relocation-focused.json",
+        "pid": 2703299,
+        "startUtc": "2026-10-21T15:08:02.149225+00:00"
+      },
+      {
+        "record": "ui-relocation-freeze.json",
+        "pid": 2703299,
+        "startUtc": "2026-10-21T15:08:02.149225+00:00"
+      },
+      {
+        "record": "ui-relocation-freeze.json",
+        "pid": 2703656,
+        "startUtc": "2026-10-21T15:08:18.724684+00:00"
+      },
+      {
+        "record": "ui-relocation-freeze.json",
+        "pid": 2708522,
+        "startUtc": "2026-10-21T15:09:57.686831+00:00"
+      },
+      {
+        "record": "ui-relocation-freeze.json",
+        "pid": 2708626,
+        "startUtc": "2026-10-21T15:10:16.051293+00:00"
+      },
+      {
+        "record": "ui-relocation-full.json",
+        "pid": 2703656,
+        "startUtc": "2026-10-21T15:08:18.724684+00:00"
+      },
+      {
+        "record": "ui-relocation-lint.json",
+        "pid": 2708626,
+        "startUtc": "2026-10-21T15:10:16.051293+00:00"
+      },
+      {
+        "record": "ui-relocation-types.json",
+        "pid": 2708522,
+        "startUtc": "2026-10-21T15:09:57.686831+00:00"
+      }
+    ],
+    "uniqueCommandPids": 66,
+    "remainingObservedPids": [],
+    "remainingTaskNodeChromiumConsumers": [],
+    "closedPorts": [
+      4375,
+      4376
+    ],
+    "limitation": "Original wrappers record PID/startUtc, not historical startTicks or all descendant births. Every observed PID is absent including zombies; no reused identity was inferred. Live executable/cwd/argv scan is a current-state consumer check."
+  },
+  "disposableOutputsAbsent": [
+    "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/dist",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-necromancer-preparation-edsqysz8/runtime-build",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-necromancer-preparation-edsqysz8/mastery-foundation-build",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-necromancer-preparation-edsqysz8/fontconfig-cache",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-necromancer-preparation-edsqysz8/browser-tmp"
+  ],
+  "validation": {
+    "runtime": {
+      "focused": 212,
+      "engine": 3101,
+      "full": 5981,
+      "fullFiles": 209,
+      "fullSeconds": 95.44,
+      "typesSeconds": 13.517,
+      "lintSeconds": 35.211,
+      "buildSeconds": 9.68
+    },
+    "foundation": {
+      "focused": 355,
+      "engine": 3141,
+      "full": 6021,
+      "fullFiles": 209,
+      "fullSeconds": 94.36,
+      "typesSeconds": 13.46,
+      "lintSeconds": 35.286,
+      "buildSeconds": 9.537
+    },
+    "screen": {
+      "focused": 104,
+      "full": 6031,
+      "fullFiles": 209,
+      "fullSeconds": 94.26,
+      "typesSeconds": 13.321,
+      "lintSeconds": 34.144,
+      "buildSeconds": 9.567
+    },
+    "browser": {
+      "necromancerPassed": 8,
+      "necromancerReportSeconds": 75.421,
+      "necromancerWrapperSeconds": 76.385,
+      "unchangedRavenPassed": 2,
+      "ravenReportSeconds": 24.024,
+      "ravenWrapperSeconds": 25.21,
+      "typesSeconds": 14.148,
+      "lintSeconds": 38.069,
+      "originalPngsViewedByRoot": 20,
+      "layoutsPerNativeFlow": 9,
+      "retries": 0,
+      "errors": [],
+      "sourceBasis": "Exact same accepted screen production build and app/unit bytes. No rebuild/full-unit rerun for browser-only increment."
+    }
+  },
+  "provenanceLimits": [
+    "Foundation RED original-test snapshot was reconstructed later by inverse of two fixture corrections; not captured at RED execution. Actual corrected UI RED snapshot captured and identical to GREEN.",
+    "Initial browser failure was a native maxlength16 fixture name; original 19-character name/source/config/report/error context retained. Correct startup itself observed. Narrow QA-approved short names and exported-name guard preserve numerical oracles.",
+    "Original reproduction default-font tofu and task-only CJK cache recovery are retained; installed fonts/shared caches/CSS unchanged.",
+    "Historical command wrappers lack startTicks/all-descendant observations; current absent-PID and consumer checks are not comprehensive historical birth telemetry.",
+    "Original failures, failed full/type attempts, controls and corrections remain distinct; no all-passing-history claim."
+  ],
+  "visualLimits": [
+    "All20 original PNGs viewed by root; incomplete mobile numeric framing, exact DOM assertions separately cover values.",
+    "Navigation pictograph boxes observed in this Linux environment, including unchanged Raven; cross-platform cause/impact unproven.",
+    "Finite Chromium layouts/CJK checks do not establish all-glyph/platform/native-touch/a11y acceptance."
+  ],
+  "scope": "Bounded three-skill preparation, shared cooldown correction, Mastery display and truthful bilingual copy/browser/save. Imported scaffolds are not earned progression/balance. FullD06/P09/P10, other corpse consumers, selected-itemIron, Mage elemental identity, private-v1/C0-C4/G0-G7 remain open. Engine3s/full15s and existing build warnings remain unresolved.",
+  "preserved": "Lossless all remaining RAW files: original RED/failing/successful logs and command metadata, source snapshots and parks, reports with base64 attachments, decoded original PNGs, error contexts, reviews, inventories, scripts, ownership and verified output-cleanup receipts. Original v1b packet untouched.",
+  "rawCleanup": {
+    "status": "pending",
+    "owner": "root",
+    "requires": "Independent reviewed five-path archive/closure commit, readers released, guarded committed packet/archive and exact live/member/source/process/port/output/original checks. Exact files/empty children only; retain empty RAW root and shared parents/fonts/tools/source/history."
+  },
+  "independentDurableReview": {
+    "verdict": "APPROVE",
+    "reviewer": "qa_save_review",
+    "gate": "QA-D06-DURABLE-ARCHIVE",
+    "reviewedPacketBytes": 63394,
+    "reviewedPacketSha256": "9d76bc49a35799755d71cb0f34b8dccf888c1e55743e2b79413b406339e07d60",
+    "reviewedArchiveSha256": "55424edccfb100cc86d1f8876b1997cef49b1a3b29d4b330e544d00e2c3a4adc",
+    "summary": "All five hashes, all239 archive/live members and22 childdirs,28 fingerprints,20 original PNG hashes,787 output removal receipt,66 absentPIDs/current consumers/ports, BUG073 closure/provenance/regressions and exact guarded cleanup independently verified. Original v1b unchanged. No deletion claimed. All readers released; no artifacts or processes created.",
+    "attribution": "Root transcription of independent review. Later changes only this attribution, GD/TD attribution and the disclosed bug severity wording/fingerprint; final producer reviews exact resulting bytes."
+  },
+  "independentDesignReview": {
+    "verdict": "APPROVE",
+    "reviewer": "design_contracts",
+    "gates": [
+      "GD-DESIGN-REVIEW",
+      "TD-ARCH-REVIEW"
+    ],
+    "reviewedPacketBytes": 63394,
+    "reviewedPacketSha256": "9d76bc49a35799755d71cb0f34b8dccf888c1e55743e2b79413b406339e07d60",
+    "summary": "All supplied five-path hashes and byte sizes match. Bounded BUG073 correction, original failures, reconstructed foundation RED versus captured UI RED and acceptance/visual/performance limits are accurate. Relies on QA exhaustive member/live/PNG verification. Guarded exact cleanup follows committed archive. All readers released; no artifacts/processes created.",
+    "nonBlockingCorrectionApplied": "Replace stale Producer triage pending severity wording with historical severity and accepted bounded correction; only bug document and its current packet fingerprint changed. Accurate review attribution/final refresh authorized.",
+    "attribution": "Root transcription of independent GD/TD review."
+  }
+}
