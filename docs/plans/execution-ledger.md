@@ -3062,3 +3062,18 @@ ordinary full15s target is missed. Evidence remains root-owned in the recorded
 v1c directory through reviewed durable retention/cleanup. Next: separately
 approved playback legacy-refund prerequisite, then canonical runtime oracles.
 Full D06/P09/P10/private-v1 and performance acceptance remain open.
+
+
+## D06 v1c playback-test prerequisite
+
+UI staging committed as `22d406d` after QA/producer approval. The separately
+approved impact-audit prerequisite clones the actual loaded Skeleton source as
+`fixture.legacy-refund-skeleton` only in the playback refund helper. Every
+resource/event/time/carry/replay assertion and the actual canonical initial-spend
+case remain unchanged; describe-scoped registry resets retain cleanup. Focused26/
+1file2.45s, full5805/209files96.09s (97.453s wrapper), types13.212s and
+lint34.711s pass serially; diff-check clean. No production/data/display change.
+Full15s target remains missed. Root retains the recorded v1c temporary evidence
+until reviewed durable retention and cleanup. Next: independently frozen v1c
+canonical literals and genuine RED, followed by the five-path runtime switch;
+copy/browser and full private-v1 remain pending. No remote action.

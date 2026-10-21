@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, it, expect } from 'vitest';
 import { applyEventToTeams } from './combatPlayback';
 import { runBattle, runBattleRecorded, type BattleEvent, type CombatSnapshot } from '@/engine/combat/combat';
-import { loadDefaultSkills, registerSkill, resetRegistry } from '@/engine/skills/registry';
+import { getSkill, loadDefaultSkills, registerSkill, resetRegistry } from '@/engine/skills/registry';
 import type { CombatUnit, ActiveStatus } from '@/engine/combat/types';
 import type { DerivedStats } from '@/engine/types/attributes';
 
@@ -251,7 +251,11 @@ describe('authoritative absolute mana recording and playback', () => {
   });
 
   function refund(mana: number, deadOwner = false, carry = false): CombatSnapshot {
-    const owner = held('owner', 'enemy', { mana, skillOrder: ['necromancer.raise_skeleton'],
+    // Explicit legacy control: canonical Skeleton preparation has no death refund.
+    const skeleton = getSkill('necromancer.raise_skeleton');
+    if (!skeleton) throw new Error('Missing actual Skeleton source');
+    registerSkill({ ...skeleton, id: 'fixture.legacy-refund-skeleton', archetype: 'fixture' });
+    const owner = held('owner', 'enemy', { mana, skillOrder: ['fixture.legacy-refund-skeleton'],
       ...(carry ? { manaRegenCarry: 0.75, manaRegenCompensation: 0.125 } : {}),
       ...(deadOwner ? { life: 1, statuses: [hold(), bleed(2)] } : {}) });
     return { seed: 7, playerTeam: [held('hero', 'player', { life: 1, statuses: [hold(), bleed(1)] })],
