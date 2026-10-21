@@ -191,10 +191,15 @@ describe('runMigrations', () => {
     expect(out.mercs.mercProgress).toEqual({});
   });
 
-  it('declares v9 as current and retains both compatibility migrations', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(9);
+  it('retains the fixed v8/v9 compatibility migrations', () => {
     expect(MIGRATIONS[8]).toBeDefined();
     expect(MIGRATIONS[9]).toBeDefined();
+  });
+
+  it('retains an explicit v9 target without applying later migrations', () => {
+    const v9 = { ...buildSampleSaveCurrent(), version: 9 as const };
+    expect(runMigrations(v9, 9)).toBe(v9);
+    expect(runMigrations(v9, 9).version).toBe(9);
   });
 
   it('migrates v2 → v3 by folding currencies.gold into rune-shard', () => {

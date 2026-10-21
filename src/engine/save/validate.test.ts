@@ -1,6 +1,6 @@
 import { assert, describe, expect, it } from 'vitest';
 import type { DerivedStats } from '../types/attributes';
-import type { LegacyDerivedStats } from '../types/save';
+import { CURRENT_SAVE_VERSION, type LegacyDerivedStats } from '../types/save';
 import type { Item } from '../types/items';
 import { toJsonSafe } from './serialize';
 import { buildSave } from './serialize';
@@ -14,7 +14,7 @@ function historicalStats(stats: DerivedStats): LegacyDerivedStats {
 
 /** Expected current shape keeps every prior field and adds the new actor field. */
 function expectedCurrent<T extends { player: { derivedStats: LegacyDerivedStats }; mercs: { ownedMercs: readonly { derivedStats: LegacyDerivedStats }[] } }>(save: T) {
-  return { ...save, version: 9,
+  return { ...save, version: CURRENT_SAVE_VERSION,
     player: { ...save.player, derivedStats: { ...save.player.derivedStats, magicResist: 0 } },
     mercs: { ...save.mercs, ownedMercs: save.mercs.ownedMercs.map(merc => ({ ...merc,
       derivedStats: { ...merc.derivedStats, magicResist: 0 } })) } };
@@ -90,7 +90,7 @@ describe('save boundary', () => {
   it('migrates valid v6 formation preferences without mutating the original', () => {
     const { formation: _formation, ...rest } = sampleSave();
     const legacy = { ...rest, version: 6, player: { ...rest.player, derivedStats: historicalStats(rest.player.derivedStats) } };
-    expect(decodeSave(legacy).version).toBe(9);
+    expect(decodeSave(legacy).version).toBe(CURRENT_SAVE_VERSION);
     expect(decodeSave(legacy).formation.playerPosition).toEqual({ row: 1, col: 1 });
     expect(legacy).not.toHaveProperty('formation');
   });
@@ -225,7 +225,7 @@ describe('conservative legacy Amazon starter compatibility', () => {
     const before = structuredClone(input);
     const output = decodeSave(input);
     expect(output.player.equipment).toEqual([]);
-    expect(output.version).toBe(9);
+    expect(output.version).toBe(CURRENT_SAVE_VERSION);
     expect(output.inventory.equipped.weapon).toEqual({
       ...legacyStarter(true), id: starterId
     });
@@ -393,7 +393,7 @@ describe('legacy starter boundary controls', () => {
   it('chains genuine v6 formation defaults then starter compatibility', () => {
     const { formation: _formation, ...input } = legacyAmazon();
     const output = decodeSave({ ...input, version: 6 });
-    expect(output.version).toBe(9);
+    expect(output.version).toBe(CURRENT_SAVE_VERSION);
     expect(output.formation.playerPosition).toEqual({ row: 1, col: 1 });
     expect(output.inventory.equipped.weapon?.id).toBe(starterId);
     expect(output.player.equipment).toEqual([]);

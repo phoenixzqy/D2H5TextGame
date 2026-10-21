@@ -5,6 +5,7 @@ import type { Player, Mercenary } from '../types/entities';
 import { CURRENT_SAVE_VERSION } from '../types/save';
 import { buildSave, toJsonSafe } from './serialize';
 import { decodeSave } from './validate';
+import { runMigrations } from './migrate';
 
 const core = { strength: 10, dexterity: 25, vitality: 10, energy: 35 };
 function currentSave() {
@@ -45,7 +46,7 @@ describe('D04 v9 magic mitigation save boundary', () => {
     const output = decodeSave(input);
     expect(input.player.derivedStats).not.toHaveProperty('magicResist');
     expect(input.mercs.ownedMercs.every(m => !Object.hasOwn(m.derivedStats, 'magicResist'))).toBe(true);
-    expect(output).toEqual({ ...input, version: 9,
+    expect(output).toEqual({ ...input, version: CURRENT_SAVE_VERSION,
       formation: version === 6 ? {
         playerPosition: { row: 1, col: 1 }, mercPosition: { row: 0, col: 0 },
         summonPositions: [
@@ -61,15 +62,16 @@ describe('D04 v9 magic mitigation save boundary', () => {
     expect(input).toEqual(original);
   });
 
-  it('roundtrips current v9 nonzero MR for player, fielded and unfielded mercs without refill', () => {
+  it('decodes frozen v9 nonzero MR to current for player, fielded and unfielded mercs without refill', () => {
     const base = currentSave();
     const input = { ...base, version: 9, player: { ...base.player,
       derivedStats: { ...base.player.derivedStats, magicResist: 11 } },
       mercs: { ...base.mercs, ownedMercs: base.mercs.ownedMercs.map((m, i) => ({ ...m,
         derivedStats: { ...m.derivedStats, magicResist: 20 + i } })) } };
-    expect(decodeSave(input)).toEqual(input);
-    expect(decodeSave(toJsonSafe(decodeSave(input)))).toEqual(input);
-    expect(CURRENT_SAVE_VERSION).toBe(9);
+    expect(runMigrations(input, 9)).toBe(input);
+    const expected = { ...input, version: CURRENT_SAVE_VERSION };
+    expect(decodeSave(input)).toEqual(expected);
+    expect(decodeSave(toJsonSafe(decodeSave(input)))).toEqual(expected);
   });
 
   it.each([7, 8])('preserves valid historical MR extensions in v%s', version => {
@@ -78,7 +80,7 @@ describe('D04 v9 magic mitigation save boundary', () => {
       derivedStats: { ...input.player.derivedStats, magicResist: 17 } },
       mercs: { ...input.mercs, ownedMercs: input.mercs.ownedMercs.map(m => ({ ...m,
         derivedStats: { ...m.derivedStats, magicResist: 23 } })) } };
-    expect(decodeSave(withMR)).toEqual({ ...withMR, version: 9 });
+    expect(decodeSave(withMR)).toEqual({ ...withMR, version: CURRENT_SAVE_VERSION });
   });
 
   it.each([7, 8])('rejects malformed historical MR before any v%s compatibility recomposition', version => {

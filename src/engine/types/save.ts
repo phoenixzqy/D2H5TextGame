@@ -81,7 +81,7 @@ export interface QuestProgressData {
 export type LegacyDerivedStats = Omit<DerivedStats, 'magicResist'> & {
   readonly magicResist?: number;
 };
-export type LegacyPlayer = Omit<Player, 'derivedStats'> & {
+export type LegacyPlayer = Omit<Player, 'derivedStats' | 'selectedAuraId'> & {
   readonly derivedStats: LegacyDerivedStats;
 };
 export type LegacyMercenary = Omit<Mercenary, 'derivedStats'> & {
@@ -238,7 +238,7 @@ export interface SaveV8 extends Omit<SaveV7, 'version'> {
 /** Save file v9 — explicit independent magical mitigation for every saved actor. */
 export interface SaveV9 extends Omit<SaveV8, 'version' | 'player' | 'mercs'> {
   readonly version: 9;
-  readonly player: Player;
+  readonly player: Omit<Player, 'selectedAuraId'>;
   readonly mercs: MercSaveData;
 }
 

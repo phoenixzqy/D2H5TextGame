@@ -6,7 +6,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { SkillsScreen } from '@/features/skills/SkillsScreen';
 import i18n from '@/i18n';
 import type { SaveRecord } from './save-adapter';
-import type { SaveV7 } from '@/engine/types/save';
+import { CURRENT_SAVE_VERSION, type SaveV7 } from '@/engine/types/save';
 
 const disk = vi.hoisted(() => {
   const state: { record: SaveRecord | undefined } = { record: undefined };
@@ -93,7 +93,7 @@ describe('legacy starter actual persistence paths', () => {
     expect(decoded?.inventory.equipped.weapon?.id).toBe(id);
     expect(decoded?.player.equipment).toEqual([]);
     expect(decoded?.player.derivedStats.attack).toBe(35);
-    expect(decoded?.version).toBe(9);
+    expect(decoded?.version).toBe(CURRENT_SAVE_VERSION);
     // Raw disk export deliberately remains diagnostic, until an ordinary save writes normalized data.
     expect(JSON.parse((await exportSave()) ?? 'null')).toEqual(legacy);
     const publications: unknown[] = [];
@@ -108,7 +108,7 @@ describe('legacy starter actual persistence paths', () => {
       expect(await hydrateFromSave()).toBe(true);
       assertLiveCanonical();
       await flushSave();
-      expect((await loadSave())?.version).toBe(9);
+      expect((await loadSave())?.version).toBe(CURRENT_SAVE_VERSION);
       expect((await loadSave())?.inventory.equipped.weapon?.id).toBe(id);
       expect(legacy).toEqual(original);
     } finally { stop(); }
@@ -118,7 +118,7 @@ describe('legacy starter actual persistence paths', () => {
     const legacy = oldSave(intermediate);
     const json = JSON.stringify(legacy);
     await importSave(json);
-    expect(disk.state.record?.version).toBe(9);
+    expect(disk.state.record?.version).toBe(CURRENT_SAVE_VERSION);
     expect((await loadSave())?.player.equipment).toEqual([]);
     expect((await loadSave())?.inventory.equipped.weapon?.id).toBe(id);
     await importIntoStores(json);
@@ -131,7 +131,7 @@ describe('legacy starter actual persistence paths', () => {
       const save = snapshotStores();
       assert(save);
       expect(Object.values(save.inventory.equipped).filter(Boolean)).toHaveLength(1);
-      expect(save.version).toBe(9);
+      expect(save.version).toBe(CURRENT_SAVE_VERSION);
       expect((await loadSave())?.inventory.equipped.weapon?.id).toBe(id);
     }
   });
