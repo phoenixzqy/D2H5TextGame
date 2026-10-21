@@ -1,0 +1,285 @@
+{
+  "card": "P02b05d",
+  "sourceParent": "bff6ce1c6f32ff318fb3063fa62cb03c33f36c82",
+  "scope": "one failed same40A current-head production Moor pilot; no clear/idle acceptance",
+  "rawPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-moor-current-5ex61d2z",
+  "archive": {
+    "path": "raw.tar.gz",
+    "bytes": 729215,
+    "sha256": "a4ed215e614e0044279e3fa8567316bd44507f47258c98a67d4b8eb74914888d"
+  },
+  "records": [
+    {
+      "path": "archive_packet.py",
+      "bytes": 2871,
+      "sha256": "801e39336fcd229400b9cb29379d37fd17362d8b6df435fe9fd71a30e9aeea66"
+    },
+    {
+      "path": "attachments/.last-run.json",
+      "bytes": 96,
+      "sha256": "d620ef29bc6c91daf0a23980b403d86e1b5ec965462ebe045a9796936e608187"
+    },
+    {
+      "path": "attachments/blood-moor-earned-idle-fre-c123f-peats-stops-and-persists-en-desktop-en-pilot/error-context.md",
+      "bytes": 36037,
+      "sha256": "d21f480ae39ff4b94ab7a6a091232b12ff9b25fd359705da3216d0eb544ed66e"
+    },
+    {
+      "path": "attachments/blood-moor-earned-idle-fre-c123f-peats-stops-and-persists-en-desktop-en-pilot/test-failed-1.png",
+      "bytes": 383185,
+      "sha256": "0dd8c0d3e8ac0267a7eadfde021afa20506e14208687a9a77b050259d306b466"
+    },
+    {
+      "path": "bounded_runner.py",
+      "bytes": 7371,
+      "sha256": "cb3fd15fe4da515d265480ef493fe8e4f368c7300dedc6bdf2f119712f41993e"
+    },
+    {
+      "path": "build.log",
+      "bytes": 1763,
+      "sha256": "f7e4bf98feb61d85ce7db996a96b197d776a2dc9ba749e86fb032cd5346c0a1f"
+    },
+    {
+      "path": "build.meta.json",
+      "bytes": 473,
+      "sha256": "103a4de45ecdeb05e88121cb2fdcdea705cb53f33c0d67e22ae3e81c95ec3d48"
+    },
+    {
+      "path": "build.process.json",
+      "bytes": 105,
+      "sha256": "11180e18dbd4e08d20820e7f44c4ecc65f86196763559a44071201a3e4a7d6e6"
+    },
+    {
+      "path": "build.processes.json",
+      "bytes": 1150,
+      "sha256": "ed56ada5821083e0550e021a6612a6a83ef9b3957e0737c319b213a216b9e3e7"
+    },
+    {
+      "path": "candidate.json",
+      "bytes": 762,
+      "sha256": "530d8cc5b0b64f7976196fb6fc62bdc5be1767c4f63bec71649abf639215264f"
+    },
+    {
+      "path": "cleanup_p16.py",
+      "bytes": 3150,
+      "sha256": "ffe3b7c9aeb039831acd1b18ba2fcdf26d5c965e17449d16c3d17a5298e62d15"
+    },
+    {
+      "path": "commands.md",
+      "bytes": 1713,
+      "sha256": "b2fa7a4ee93546d9aff0f3070013030b563a9f2d170f9eda89d8a434316278e5"
+    },
+    {
+      "path": "concrete/tests/pwa/blood-moor-earned-idle.config.ts",
+      "bytes": 1931,
+      "sha256": "96e56e6ddc08989516de52f0e1a978e5ce557da9ab3a64a2486d3b1a0925a660"
+    },
+    {
+      "path": "concrete/tests/pwa/blood-moor-earned-idle.spec.ts",
+      "bytes": 27755,
+      "sha256": "4427499f64ab2f2cc9145da308f3937158be8b6246ca618a570f440df661cf34"
+    },
+    {
+      "path": "final-documents/docs/plans/evidence/p02b05d-current-moor-idle.md",
+      "bytes": 6090,
+      "sha256": "13139b4585e83faedd8f11c3c147dcfdb6bd261f08ccb2ae521334ad6ae05f3a"
+    },
+    {
+      "path": "final-documents/docs/plans/p02b05d-current-moor-idle.md",
+      "bytes": 4114,
+      "sha256": "516cdc4664497cbbc89c845480bb2023035318e45d7268e9205ac7a7e3b220b1"
+    },
+    {
+      "path": "freeze.json",
+      "bytes": 2162,
+      "sha256": "00a2a1ed37126f97cbd3ad19f0df17531bfbc415d4adaeed96e0fad151636d9d"
+    },
+    {
+      "path": "historical-bounded-runner.py",
+      "bytes": 7370,
+      "sha256": "9ef10e98d75e84005612f814be8a00cac8722f17e8a041e8aeebe720308a2f00"
+    },
+    {
+      "path": "list.log",
+      "bytes": 181,
+      "sha256": "f8c7e30615c2203672ca76aed89a7e3d82dd2479bf3e4844e032696d20765e1b"
+    },
+    {
+      "path": "list.meta.json",
+      "bytes": 544,
+      "sha256": "615ca69c8f6e678063454911769bf4857d8c8eb6b80a1745defcf44371803c03"
+    },
+    {
+      "path": "list.process.json",
+      "bytes": 172,
+      "sha256": "a814d6c8ae57e5c4ced99e79b589fa6962e765a6c06f625b9b71a3a9a2bfa2d2"
+    },
+    {
+      "path": "list.processes.json",
+      "bytes": 226,
+      "sha256": "834643eaffea8048513c10795e0f7aef94523591ead0a3a79fe9942647b571b9"
+    },
+    {
+      "path": "outcome-summary.json",
+      "bytes": 1932,
+      "sha256": "fa2f5427d923a84fe8d4b18d371d8a2a16b0920cad57a86447bce1b324912bb4"
+    },
+    {
+      "path": "ownership.json",
+      "bytes": 724,
+      "sha256": "2ece8ccb2c5e050da7b55748f3bd2287834df26af30e0e5f15107b1b9cbe8af5"
+    },
+    {
+      "path": "p16-cleanup.json",
+      "bytes": 186389,
+      "sha256": "8436ce218f849f18fa2d5a658cda36522f28c3c9934d256d7ad6e39d0611e444"
+    },
+    {
+      "path": "pilot-report.json",
+      "bytes": 2919225,
+      "sha256": "e56230e5888ae478296173e6d7c9f90be9317bcb902f52ca7f4e218ee4b532c8"
+    },
+    {
+      "path": "pilot.log",
+      "bytes": 3107,
+      "sha256": "8bf98a415513f141c49182859f502a41b72f2e845be4ad7009b349b9afbd9493"
+    },
+    {
+      "path": "pilot.meta.json",
+      "bytes": 575,
+      "sha256": "113ee28400a9d1f839ee5d7dd8f068c2645dad6f01a48b115f63470bf621fa05"
+    },
+    {
+      "path": "pilot.process.json",
+      "bytes": 186,
+      "sha256": "f7f38a4fcab1c2c72ddefda43519c218c77d8e19be8b656dcfca3de64d50e3ea"
+    },
+    {
+      "path": "pilot.processes.json",
+      "bytes": 1766,
+      "sha256": "553a1f964da70cffc61e2984a561102698896918ffe11b21b49407da7978120f"
+    },
+    {
+      "path": "plan-draft.md",
+      "bytes": 3968,
+      "sha256": "5a7c3a5f92ce923a48adf93d8435f254e55e5d0d8cdebd985dfc01c0c7403743"
+    },
+    {
+      "path": "port-preflight.json",
+      "bytes": 121,
+      "sha256": "650c4b82219dfb11713943900cd397ddcf6ce8349c04969a012fa904b746044a"
+    },
+    {
+      "path": "post-run-source-check.json",
+      "bytes": 311,
+      "sha256": "f6f5eb66547bbe48784d11f837133520dc98a9165e63e5ae17b2c73060857980"
+    },
+    {
+      "path": "process-audit.json",
+      "bytes": 3038,
+      "sha256": "bd2187aaa2143bc2097d780e85484b70e6709abc0177343ad8f197b7d7a37a1e"
+    },
+    {
+      "path": "source-expectation-audit-v2.json",
+      "bytes": 101761,
+      "sha256": "d6bd1e1d1d8e446ed79770e0e76caecbaa2d9a96f030eb798d38d3bf9471ecc5"
+    },
+    {
+      "path": "source-expectation-audit.json",
+      "bytes": 100855,
+      "sha256": "9ec0a1d4a6c960a073ab3b174292c2628a2608af68257264867a225ec302a90b"
+    }
+  ],
+  "directories": [
+    "attachments",
+    "attachments/blood-moor-earned-idle-fre-c123f-peats-stops-and-persists-en-desktop-en-pilot",
+    "concrete",
+    "concrete/tests",
+    "concrete/tests/pwa",
+    "final-documents",
+    "final-documents/docs",
+    "final-documents/docs/plans",
+    "final-documents/docs/plans/evidence"
+  ],
+  "fileCount": 36,
+  "rawBytes": 3813179,
+  "commands": [
+    {
+      "path": "build.meta.json",
+      "command": [
+        "npm",
+        "run",
+        "check:test-bridge-shake"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T00:29:08.163306+00:00",
+      "seconds": 9.301,
+      "exitCode": 0,
+      "pid": 1951700,
+      "deadlineSeconds": 210,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 1763,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 41380232
+      }
+    },
+    {
+      "path": "list.meta.json",
+      "command": [
+        "node_modules/.bin/playwright",
+        "test",
+        "--config",
+        "tests/pwa/blood-moor-earned-idle.config.ts",
+        "--list"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T00:29:02.984218+00:00",
+      "seconds": 0.918,
+      "exitCode": 0,
+      "pid": 1951685,
+      "deadlineSeconds": 30,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 181,
+        "report": 0,
+        "attachments": 0,
+        "totalTaskArtifacts": 446611
+      }
+    },
+    {
+      "path": "pilot.meta.json",
+      "command": [
+        "node_modules/.bin/playwright",
+        "test",
+        "--config",
+        "tests/pwa/blood-moor-earned-idle.config.ts",
+        "--reporter=line,json"
+      ],
+      "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+      "started": "2026-10-21T00:29:22.279477+00:00",
+      "seconds": 108.497,
+      "exitCode": 1,
+      "pid": 1951984,
+      "deadlineSeconds": 240,
+      "cleanupGraceSeconds": 2,
+      "stopReason": null,
+      "signals": [],
+      "sizes": {
+        "log": 3107,
+        "report": 2919225,
+        "attachments": 419318,
+        "totalTaskArtifacts": 44724307
+      }
+    }
+  ],
+  "processIdentityCount": 19,
+  "rawArchiveVerified": true,
+  "inheritedUTL": "P16a01 packet/current unchanged source/test bytes; no new U/T/L run",
+  "cleanupOwner": "root after independent final packet review and all reader release"
+}

@@ -14,7 +14,7 @@ Current implementation evidence lives in `evidence/`.
 | --- | --- | --- |
 | P08a07 | accepted starter Rogue slice | `45cd527`; exact authored Inner Sight25%/8s/CD5, immutable resolver/schema/status localization and shared fractional armor projection. Genuine runtime RED12/13controls; finalengine1224/full3452/T/L/build and5browser cases pass; producer/QA/GD/TD APPROVE. [Evidence](evidence/p08a07-rogue-inner-sight.md). Full campaign/balance/readability gates remain open. |
 | P16a01 | accepted scoped mobile combat repair | `2768502`; stacked teams below1024px, wrapped names/6pxHP/44pxcontrols/contained feedback. Genuine577RED and first failedGREEN preserved; final3454U/T/L and4production cases/eight sizes pass. Independent producer/QA/UX/TD APPROVE. [Evidence](evidence/p16a01-combat-readability.md). FullP16/a11y/performance remain open. |
-| P02b05d | plan/concrete review | One current-head same40 A ordinary-earned Moor→idle pilot after authored mechanics repairs. Unchanged recipe/assertions; one en/desktop attempt; no stronger prep/fallback. No new execution yet. |
+| P02b05d | failed discovery; evidence approved | One unchanged same40 A current-head pilot: 40prep wins/manualW1–2 victories, W3 native draw/Zombie A alive. No clear/idle/save acceptance or cause established. Producer/QA/GD/TD approve bounded evidence. [Evidence](evidence/p02b05d-current-moor-idle.md). No retry/stronger prep. |
 | P00 | in-progress | Producer F01–F21 mapping and assertion audit below. Expand current-head measurements and strict tests with each fix. |
 | P00b | accepted tooling fix | `test:related` now invokes Vitest's `related --run`; scoped 25 tests pass in 1.45 s, broad 226 pass/1 existing skip in 10.70 s (over budget). Producer approval; BUG-003. |
 | P01 | in-progress | D12 save/import contract recorded. Offline portion, D01–D11/D13–D14 pending; D04/D06 source reconciliation under review. |
@@ -2191,3 +2191,22 @@ Next P02b05d is one same40 A current-head Moor→idle production pilot after
 independent plan/concrete freeze. No stronger prep/fallback, causality for old
 draw, Den, balance, fullaccessibility/performance/P16/C0–C4/G0–G7/private-v1
 acceptance or remote action follows this scoped repair.
+
+## P02b05d current-head Moor pilot closure
+
+One frozen same40 A production attempt fails honestly at manualW3 native draw.
+All40 strict prep journals and manualW1–2 pass; W3 Zombie A survives, hero/merc
+alive. Terminal observation precedes settlement; no W3 award/finalization, clear,
+idle/repeat/Stop/no-late-award or saved close/Continue claim. No gameplay defect
+or draw cause established. No source/test change, retry, alternate recipe or tuning.
+Inherited P16 U3454/T/L remains applicable to identical source/test bytes; list1
+and clean production bridge guard pass. Existing timing/build warnings remain.
+Producer/QA independently verify36safe records/580source hashes/137attachments/
+19nonlive PID-birth identities and approve the failed evidence; GD/TD concur.
+Packet799aa7c595d8997220277a4db29cd55c29764690534fbb283cdc557f1a821803/
+archivea4ed215e614e0044279e3fa8567316bd44507f47258c98a67d4b8eb74914888d.
+All readers released. Exact task-owned cleanup follows before next experiment.
+Full private-v1/C0–C4/G0–G7 remains open. Next source-reviewed P08a08 addresses
+Meteor Armor Melt transport/defense/combo, unrelated to this draw; Frozen Armor
+is separately recommended afterward. Root owns next source-only RAW
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-armor-melt-jcabtz3k`.

@@ -1,0 +1,17 @@
+{
+  "card": "P02b05d",
+  "packetSha256": "799aa7c595d8997220277a4db29cd55c29764690534fbb283cdc557f1a821803",
+  "archiveSha256": "a4ed215e614e0044279e3fa8567316bd44507f47258c98a67d4b8eb74914888d",
+  "producer": "P02B05D-FINAL-WHOLE-PACKET: APPROVE",
+  "qa": "P02b05d-FINAL-QA: APPROVE",
+  "gdTd": "failed outcome accurately bounded; APPROVE",
+  "independentlyVerified": {
+    "rawArchiveRecords": 36,
+    "sourceRecords": 580,
+    "nonliveProcessIdentities": 19,
+    "reportAttachments": 137
+  },
+  "acceptance": "evidence of failed discovery only; clear/idle/save acceptance open",
+  "allReadersReleased": true,
+  "additionalPilotAuthorized": false
+}
