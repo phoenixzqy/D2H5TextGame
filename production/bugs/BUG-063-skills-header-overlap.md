@@ -1,6 +1,6 @@
 # BUG-063 — Keep the fixed character header clear of Skills detail controls
 
-- **Status:** Reproduced in production-browser screenshots; open follow-up.
+- **Status:** Fixed in `5e4a038`; bounded production-browser collision acceptance approved on 2026-10-21.
 - **Severity:** Medium — partial visual obstruction; native keyboard allocation succeeds.
 - **Owner / affected systems:** frontend-dev; shared fixed character header and scrollable Skills detail layout. Producer prioritizes a bounded P16 collision fix after Lightning evidence closure, before further mobile acceptance.
 - **Build:** `cf8e9fc`, production output from passing `check:test-bridge-shake`; no test bridge.
@@ -39,3 +39,7 @@ Two independent layout causes are proved. First, the fixed HUD and separately po
 The partial repair remains RED at 915×412: the detail panel's `md:sticky md:bottom-2` positioning lifts its 336px height above main's available 317px (no bonus) or 285px (bonus). Its heading starts at y70 while main starts at y95/y127; hit owners are the header, HUD and bonus chip. All four locale/bonus cases fail the unchanged heading/action/native-target hit checks. Remove only the three desktop sticky/positioning classes, keeping both existing panel heights, internal overflow and ordinary scrolling. Technical/UX review accepts the resulting unpinned desktop preview.
 
 The failed baseline, partial-repair reports, screenshots, exact source freezes and review records remain in the task evidence pending a durable acceptance index. No product acceptance is claimed until a fresh production build passes the unchanged browser regression and final gates.
+
+## Resolution and acceptance
+
+Source commit `5e4a038` fixes both proved layout causes; regression commit `fdeb743` retains the genuine RED preparation. [Acceptance evidence](../../docs/plans/evidence/p16-skills-header.md) preserves original RED, partial-repair RED, final GREEN and all independently reviewed corrections. Final serial gates pass: focused75, full4527/186files, typecheck, lint and fresh production bridge/build; four browser scenarios cover36 viewport samples, both locales and both bonus states. All648 heading/action hit points,54 modal-header points and36 Cancel points pass, with ordinary pointer rank1 and native Tab/Enter rank2 allocation. QA/producer approve bounded closure; technical/UX review accepts the unpinned desktop preview. The full-unit15s target remains missed (79.28s Vitest); imported eligibility and Chromium samples do not certify earned progression, all-device mobile/readability/accessibility, performance, balance or private-v1 completion. Existing icon glyph boxes remain outside scope.
