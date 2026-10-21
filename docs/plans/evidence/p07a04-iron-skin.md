@@ -297,8 +297,9 @@ old Vitest cache was explicitly superseded by RED after pre-run hash checks.
 Shared cache parents/installed Noto/source/history remain; original checkout
 untouched, umbrella claim continues, no remote action.
 
-RAW remains root-owned at the path above pending independent packet/archive
-verification and exact manifest cleanup. Root will remove only verified manifest
-files/empty child directories after all consumers finish; the packet and this
-ledger will record the actual result. Next ready substantive slice is P07a05
+QA and producer independently APPROVE the exact five-path durable packet and
+cleanup (root-transcribed verdicts in packet). After archive commit `aead8f6`,
+all readers release and fresh archive/member/source/process/live-set checks,
+root unlinks exactly390 manifest files/15,125,880B and removes9 verified empty
+child directories. RAW root remains empty, with zero remaining files/failures. Next ready substantive slice is P07a05
 Skeleton Mastery; full private-v1/C0–C4/G0–G7 remain incomplete.

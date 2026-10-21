@@ -2084,10 +2084,24 @@
   "historicalFullReportCompression": "historical-report-compression.json maps four gzipped reports to their verified original hashes/lengths",
   "independentReview": "TD/UX source and QA/producer whole final evidence APPROVE; root transcriptions retained in archive",
   "rawCleanup": {
-    "status": "pending independent durable packet/archive verification and all readers release",
+    "status": "complete",
     "owner": "root",
-    "plan": "revalidate archive/member/source hashes and exact process identities, unlink only exact manifest files then verified empty child directories; retain empty RAW root",
-    "remainingFiles": 390
+    "archiveCommit": "aead8f6",
+    "verifiedUtc": "2026-10-21T08:28:51.636553+00:00",
+    "freshChecks": "committed archive/member manifest,19 current-source hashes,exact live file set,6125 absent PID/startTicks identities",
+    "removedFiles": 390,
+    "removedBytes": 15125880,
+    "removedEmptyChildDirectories": 9,
+    "remainingFiles": 0,
+    "retainedEmptyRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-skin-c7fexii5",
+    "failures": []
   },
-  "scopeLimit": "Bounded Iron Skin authored/runtime/native/bilingual/desktopChromiumCSSviewport/explicitsamecontextsave acceptance; no full private-v1/C0-C4/G0-G7/touch/allbrowser/accessibility/earnedcampaign/balance/performance acceptance"
+  "scopeLimit": "Bounded Iron Skin authored/runtime/native/bilingual/desktopChromiumCSSviewport/explicitsamecontextsave acceptance; no full private-v1/C0-C4/G0-G7/touch/allbrowser/accessibility/earnedcampaign/balance/performance acceptance",
+  "independentDurableReview": {
+    "kind": "root transcription of independent QA and producer verdicts",
+    "verdict": "APPROVE",
+    "scope": "exact five-path artifact commit and manifest RAW cleanup",
+    "readersReleased": true,
+    "verified": "390 members/live files,19 source fingerprints,4 historical report roundtrips,6125 absent birth identities,777 disposable files/three roots absent; no discrepancies"
+  }
 }

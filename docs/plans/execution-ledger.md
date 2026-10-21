@@ -2547,3 +2547,10 @@ RAW manifest cleanup remain pending. Root owns that cleanup at the Iron RAW
 path. Sharedcaches/parents/Noto/source/history preserved, original checkout
 untouched, umbrella worktree claim continues, no remote action. Next approved
 contract candidate P07a05SkeletonMastery; privatev1/C0–C4/G0–G7 remain open.
+
+
+P07a04 durable closure: archive commit `aead8f6`; QA/producer independent
+packet+cleanup APPROVE and all readers released. Fresh390member/source19/
+6125birthidentity/exactlive checks pass; root removes390 RAW files15,125,880B
+and9 empty child directories, verifies retained Iron RAW root empty with zero
+failures. Packet records actual cleanup and root-transcribed verdicts.
