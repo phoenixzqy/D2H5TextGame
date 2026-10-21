@@ -4913,3 +4913,77 @@ is sole writer/executor; umbrella worktree claim continues; no remote action or
 server. Production wave/caller guards, exact receipt/conflict/publication/settlement/
 replay integration and bilingual Iron UI/browser acceptance remain pending.
 FullD06/P09/P10/private-v1 remain open.
+
+
+## D06 v1y production start/advance readiness and recoverable combat feedback
+
+Mode readiness received independent QA, TD/five-axis and producer APPROVE and
+committed as `104e731`. Exact readiness-modes cleanup removed857files/
+42,724,287bytes and14 empty directories with zero failures/remaining targets;
+recorded command identities were dead. Diagnostics remain retained.
+
+TD approved this five-path start/advance+CombatScreen plan. Private preflight checks
+wave/restore ownership before hydration, preserving waveBusy > restorePending >
+hydrationNotReady. Start validates seed/ordinal first; both public helpers preflight
+before no-owner/playback controls or any completion effect. This checks ownership
+only; it acquires no transition lease and does not claim deferred-save integration.
+
+CombatScreen catches only typed guard refusals in mount/start and the actual1500ms
+advance callback, clearing countdown in finally. Existing common error/retry copy
+provides bilingual role=alert feedback and44px controls. Ownership refusal requires
+explicit retry without repeated automatic calls. Unready hydration suppresses start,
+scheduled playback, advance and timed idle continuation; ready resumes the appropriate effect.
+Refusal changes local feedback/countdown only, retaining recording/selection/run and
+actual gains. Unexpected errors still rethrow; synthetic no-active-run skip remains.
+
+Store RED1 had8failures9.912s; expanded RED2 had13failures9.824s because required
+refusals were absent. Store GREEN13 passed9.656s. With real preflight installed,
+UI RED8failed/18passed13.686s exposed uncaught effect/timer refusals; expanded UI
+RED12failed/18passed13.894s also exposed hydration playback/mount behavior. Initial
+combined43 passed13.868s; additional idle-continuation control brought focused to44
+passed13.658s. The added idle control is not claimed as preimplementation RED.
+Initial types failed14.509s on an accidentally duplicated unused hydration selector
+in nested UnitCard; removed only that line. All failed/earlier receipts are retained.
+Final serial focused44/2files14.104s, types14.335s, lint39.234s including85 purity
+files, full6523/221files113.608s and build10.040s passed on final source.
+
+Store tests retain exact domain/hydration/selection roots, run identity+metadata,
+pity and zero notifications under idle/loading/error, empty/existing runs and held
+wave/restore ownership. Invalid-argument precedence, ordinal continuity, ready
+no-player/no-run controls and real simulated/drained playback with once-only XP/
+merc effects are covered. Controlled finisher damage is a synthetic integration
+fixture, not earned power/balance evidence. UI tests use real guarded calls/leases,
+localized feedback, explicit recovery and real1500ms callbacks, preserving frozen
+records and proving no retry loop. Loading suspends pending playback/advance and
+synthetic finalized-idle continuation until ready.
+
+Development-browser integration passed58.617s: en/zh-CN ×360x640/1280x800 ×wave/
+restore, eight owner flows each checking mount and actual advance refusals/retry,
+plus four hydration pause/recovery flows. Snapshot references/zero notifications,
+cleared countdown, keyboard retry, >=44px touch targets and no horizontal overflow
+at mount were observed. All four contexts reported no browser console/page errors.
+Lease/hydration/locale states were explicitly injected through real dev modules;
+this is not ordinary-earned or production-build browser acceptance. Screenshot
+inspection confirmed English layout; Chinese DOM copy is correct but screenshots
+show missing CJK glyphs despite an installed Noto font. Cause remains unproven;
+Chinese visual acceptance remains open. Harness hashes are in command output;
+server PID3328116/startTicks53948633 exited0 and was reaped, liveAfterCleanup=false.
+Playwright contexts/browser closed; disposable screenshots await exact cleanup.
+
+Build603modules/index-DUg10qWq.js1262.01kB observed. Prior unexplained build variance
+remains unresolved. Related5s/full15s budgets and existing React act, fixture
+fallback, stale Browserslist, chunk/precache diagnostics remain open. SaveCurrent11
+unchanged. Security check passes: fail-closed preflight without bypass/new save
+payload or resource authority; no new runtime dependency or persistent browser hook.
+
+Five paths, all readiness-guards receipts/source/output identities (including RED
+and initial type failure), prior cleanup and exact owned dist/tmp inventory are
+frozen in readiness-guards-v3-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review remains
+before commit; disposable outputs await exact cleanup. Diagnostics and external
+harnesses retained; root is sole writer/executor; umbrella worktree claim continues;
+no remote action or persistent server. Explicit replay/SkillsScreen readiness,
+exact receipt/conflict/publication/settlement/replay integration, bilingual Iron UI/
+browser acceptance and fullD06/P09/P10/private-v1 remain open.

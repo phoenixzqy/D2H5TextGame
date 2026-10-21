@@ -48,9 +48,16 @@ import { composeSkeletonMastery } from '@/engine/skills/skeleton-mastery';
 import { isPreparationSummonSkill } from '@/engine/skills/summon-preparation';
 import { isIronGolemSkill } from '@/engine/skills/iron-golem';
 import { clearIronGolemSelection, clearIronGolemSelectionAfterRestore } from './ironGolemSelectionStore';
-import { assertWaveRestoreOwner, assertWaveSnapshotAllowed, type WaveRestoreLease } from './waveTransitionGuard';
+import { useHydrationStore } from './hydrationStore';
+import { WaveGuardError, assertWaveRestoreOwner, assertWaveSnapshotAllowed, type WaveRestoreLease } from './waveTransitionGuard';
 import { canonicalSkillIdFromData, getSkillRequiredLevel, getSkillsForClass,
   skillIdAliases, type SkillTemplate } from './skillsHelpers';
+
+/** Check existing ownership before hydration; this preflight acquires no lease. */
+function assertWaveReady(): void {
+  assertWaveSnapshotAllowed();
+  if (useHydrationStore.getState().status !== 'ready') throw new WaveGuardError('hydrationNotReady');
+}
 
 const CHALLENGE_ORDINAL_PERIOD = 360360;
 let manualChallengeOrdinal = 0;
@@ -430,6 +437,8 @@ export function resetIdleElitePity(): void {
  * @throws If wave planning, simulation, terminal validation or normalization fails;
  * the previous run, recording, ordinal and rewards remain unchanged.
  * Publisher failures after successful staging still require receipt integration.
+ * @throws {WaveGuardError} for wave/restore ownership or unready hydration, after
+ * replay argument validation and before player/no-run controls or other effects.
  */
 export function startSubAreaRun(opts: {
   readonly subAreaId?: string | null;
@@ -448,6 +457,7 @@ export function startSubAreaRun(opts: {
       opts.challengeOrdinal >= CHALLENGE_ORDINAL_PERIOD)) {
     throw new RangeError('challengeOrdinal must be an integer in [0, 360360)');
   }
+  assertWaveReady();
   const playerState = usePlayerStore.getState();
   if (!playerState.player) {
     console.warn('[startSubAreaRun] no player; abort');
@@ -535,8 +545,11 @@ export function startSubAreaRun(opts: {
  *   - `'victory'`   — the run is fully cleared.
  *   - `'defeat'`    — the wave was not won, or the original hero died.
  *   - `'idle'`      — no active run or current playback is incomplete.
+ * @throws {WaveGuardError} for wave/restore ownership or unready hydration before
+ * no-run/playback controls and every completion effect.
  */
 export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idle' {
+  assertWaveReady();
   if (!combatRunLifecycle.activeRun) return 'idle';
   const combat = useCombatStore.getState();
   const outcome = combat.outcome;

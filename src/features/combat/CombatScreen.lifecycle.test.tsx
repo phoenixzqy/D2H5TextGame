@@ -28,7 +28,7 @@ function reset() {
 beforeEach(async () => { reset(); useHydrationStore.getState().setStatus('ready'); await i18n.changeLanguage('en'); });
 afterEach(() => { cleanup(); reset(); useHydrationStore.getState().setStatus('idle'); vi.restoreAllMocks(); vi.useRealTimers(); });
 
-function arrange(idle: boolean) {
+function arrange(idle: boolean, options: { beforeRender?: () => void; active?: boolean } = {}) {
   const clock = vi.spyOn(Date, 'now').mockReturnValue(1792497600000);
   const player = { ...createMockPlayer('Exit Authority', 'amazon'), equipment: [] };
   usePlayerStore.getState().setPlayer(player);
@@ -38,6 +38,7 @@ function arrange(idle: boolean) {
   expect(useInventoryStore.getState().equipItem(bow)).toEqual({ ok: true });
   useMapStore.getState().setCurrentLocation(1, 'areas/act1-blood-moor');
   if (idle) useMetaStore.getState().setIdleTarget('areas/act1-blood-moor');
+  options.beforeRender?.();
   render(<I18nextProvider i18n={i18n}><Suspense fallback={null}>
     <MemoryRouter initialEntries={['/combat']} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <nav><Link to="/skills">Test Skills</Link><Link to="/inventory">Test Inventory</Link>
@@ -47,8 +48,8 @@ function arrange(idle: boolean) {
         <Route path="/skills" element={<SkillsScreen />} /><Route path="/inventory" element={<InventoryScreen />} /></Routes>
     </MemoryRouter>
   </Suspense></I18nextProvider>);
-  expect(hasActiveSubAreaRun()).toBe(true);
-  expect(useCombatStore.getState().recordedEvents.some(event => event.kind === 'action' &&
+  expect(hasActiveSubAreaRun()).toBe(options.active ?? true);
+  if (options.active !== false) expect(useCombatStore.getState().recordedEvents.some(event => event.kind === 'action' &&
     event.actor === player.id && event.skillId === 'amazon.magic_arrow')).toBe(true);
   return { clock, player };
 }
@@ -211,4 +212,129 @@ describe.each(['en', 'zh-CN'] as const)('guarded combat exit feedback in %s', lo
       inCombat: false, recordedEvents: [], outcome: null, subAreaRunId: null
     });
   });
+});
+
+
+const readinessDomains = [useCombatStore, useFormationStore, useInventoryStore,
+  useMapStore, useMercStore, useMetaStore, usePlayerStore, useIronGolemSelectionStore] as const;
+function holdTransition(owner: 'wave' | 'restore') {
+  if (owner === 'wave') {
+    const lease = beginWaveTransition(true);
+    return () => { endWaveTransition(lease); };
+  }
+  const lease = reserveWaveRestore();
+  return () => { releaseWaveRestore(lease); };
+}
+
+describe.each(['en', 'zh-CN'] as const)('wave readiness feedback in %s', locale => {
+  it.each(['wave', 'restore'] as const)('retains a refused mount during %s ownership and retries explicitly', async owner => {
+    await i18n.changeLanguage(locale);
+    let release: (() => void) | undefined;
+    let before: unknown[] = [];
+    let stops: (() => void)[] = [];
+    const notified = vi.fn();
+    try {
+      arrange(false, { active: false, beforeRender: () => {
+        const player = usePlayerStore.getState().player;
+        if (!player) throw new Error('Missing mount fixture');
+        armIronGolemSelection(player.id, 'mount-selection', true);
+        release = holdTransition(owner);
+        before = readinessDomains.map(store => store.getState());
+        stops = readinessDomains.map(store => store.subscribe(notified));
+      } });
+      expect(screen.getByRole('alert')).toHaveTextContent(i18n.t('common:error'));
+      expect(screen.getByTestId('combat-screen')).toBeVisible();
+      readinessDomains.forEach((store, i) => { expect(store.getState()).toBe(before[i]); });
+      expect(notified).not.toHaveBeenCalled();
+    } finally { stops.forEach(stop => { stop(); }); release?.(); }
+    expect(hasActiveSubAreaRun()).toBe(false);
+    fireEvent.click(screen.getByRole('button', { name: i18n.t('common:retry') }));
+    expect(hasActiveSubAreaRun()).toBe(true);
+    expect(useCombatStore.getState().recordedEvents.length).toBeGreaterThan(0);
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+  });
+
+  it.each(['wave', 'restore'] as const)('catches a real advance timer during %s ownership without looping or losing its recording', async owner => {
+    await i18n.changeLanguage(locale);
+    vi.useFakeTimers();
+    const { player } = arrange(false);
+    fireEvent.click(screen.getByTestId('skip-button'));
+    expect(useCombatStore.getState().playbackComplete).toBe(true);
+    armIronGolemSelection(player.id, 'advance-selection', true);
+    const before = readinessDomains.map(store => store.getState());
+    const pity = getIdleEliteMisses();
+    const notified = vi.fn();
+    const stops = readinessDomains.map(store => store.subscribe(notified));
+    const release = holdTransition(owner);
+    try {
+      act(() => { vi.advanceTimersByTime(1500); });
+      expect(screen.getByRole('alert')).toHaveTextContent(i18n.t('common:error'));
+      expect(screen.queryByTestId('next-wave-banner')).not.toBeInTheDocument();
+      act(() => { vi.advanceTimersByTime(6000); });
+      readinessDomains.forEach((store, i) => { expect(store.getState()).toBe(before[i]); });
+      expect(hasActiveSubAreaRun()).toBe(true);
+      expect(getIdleEliteMisses()).toBe(pity);
+      expect(notified).not.toHaveBeenCalled();
+    } finally { stops.forEach(stop => { stop(); }); release(); }
+    fireEvent.click(screen.getByRole('button', { name: i18n.t('common:retry') }));
+    act(() => { vi.advanceTimersByTime(1500); });
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+    expect(useCombatStore.getState().runDefeat || useCombatStore.getState().currentWave === 2).toBe(true);
+  });
+});
+
+it.each(['idle', 'loading', 'error'] as const)('waits through %s hydration on mount and starts when ready', status => {
+  vi.useFakeTimers();
+  let before: unknown[] = [];
+  arrange(false, { active: false, beforeRender: () => {
+    useHydrationStore.getState().setStatus(status, 'mount-loading-marker');
+    before = readinessDomains.map(store => store.getState());
+  } });
+  expect(screen.getByRole('alert')).toHaveTextContent(i18n.t('common:error'));
+  expect(screen.getByRole('button', { name: i18n.t('common:retry') })).toBeDisabled();
+  act(() => { vi.advanceTimersByTime(6000); });
+  readinessDomains.forEach((store, i) => { expect(store.getState()).toBe(before[i]); });
+  expect(hasActiveSubAreaRun()).toBe(false);
+  act(() => { useHydrationStore.getState().setStatus('ready'); });
+  expect(hasActiveSubAreaRun()).toBe(true);
+  expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+});
+
+it('suspends playback and a pending advance while hydration is unready, then resumes', () => {
+  vi.useFakeTimers();
+  arrange(false);
+  const opening = useCombatStore.getState();
+  act(() => { useHydrationStore.getState().setStatus('loading'); });
+  act(() => { vi.advanceTimersByTime(6000); });
+  expect(useCombatStore.getState()).toBe(opening);
+  act(() => { useHydrationStore.getState().setStatus('ready'); });
+  act(() => { vi.advanceTimersByTime(6000); });
+  expect(useCombatStore.getState().eventCursor).toBeGreaterThan(opening.eventCursor);
+  fireEvent.click(screen.getByTestId('skip-button'));
+  expect(screen.getByTestId('next-wave-banner')).toBeVisible();
+  act(() => { useHydrationStore.getState().setStatus('loading'); });
+  const completed = readinessDomains.map(store => store.getState());
+  expect(screen.queryByTestId('next-wave-banner')).not.toBeInTheDocument();
+  act(() => { vi.advanceTimersByTime(6000); });
+  readinessDomains.forEach((store, i) => { expect(store.getState()).toBe(completed[i]); });
+  act(() => { useHydrationStore.getState().setStatus('ready'); });
+  act(() => { vi.advanceTimersByTime(1500); });
+  expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+  expect(useCombatStore.getState().runDefeat || useCombatStore.getState().currentWave === 2).toBe(true);
+});
+
+
+it('retains a finalized idle recording until hydration allows its timed continuation', () => {
+  vi.useFakeTimers();
+  arrange(true);
+  terminal(); // Synthetic terminal flag isolates the continuation timer.
+  act(() => { useHydrationStore.getState().setStatus('loading'); });
+  const before = useCombatStore.getState();
+  act(() => { vi.advanceTimersByTime(6000); });
+  expect(useCombatStore.getState()).toBe(before);
+  expect(hasActiveSubAreaRun()).toBe(false);
+  act(() => { useHydrationStore.getState().setStatus('ready'); });
+  act(() => { vi.advanceTimersByTime(1500); });
+  expect(hasActiveSubAreaRun()).toBe(true);
+  expect(useCombatStore.getState().recordedEvents).not.toBe(before.recordedEvents);
 });
