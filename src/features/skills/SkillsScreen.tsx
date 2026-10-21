@@ -29,6 +29,7 @@ import {
   type SkillTemplate
 } from '@/stores/skillsHelpers';
 import { refreshActivePlayerCombatConfig, resolveEquippedWeapon } from '@/stores/combatHelpers';
+import { WaveGuardError } from '@/stores/waveTransitionGuard';
 import { getSkill, listSkills } from '@/engine/skills/registry';
 import { canCastSkill } from '@/engine/skills/eligibility';
 import { isPreparationSummonSkill } from '@/engine/skills/summon-preparation';
@@ -82,6 +83,7 @@ export function SkillsScreen() {
   const selectAura = usePlayerStore((s) => s.selectAura);
   const [selectedSkillId, setSelectedSkillId] = useState('');
   const [previewSkillId, setPreviewSkillId] = useState<string | null>(null);
+  const [replayRefused, setReplayRefused] = useState(false);
 
   const skillPoints = player?.skillPoints ?? 0;
   const playerLevel = player?.level ?? 1;
@@ -194,7 +196,13 @@ export function SkillsScreen() {
 
   const saveComboOrder = useCallback((order: readonly string[]): void => {
     setComboOrder(order.filter(Boolean));
-    refreshActivePlayerCombatConfig({ replayCurrentWave: true });
+    try {
+      refreshActivePlayerCombatConfig({ replayCurrentWave: true });
+      setReplayRefused(false);
+    } catch (error) {
+      if (!(error instanceof WaveGuardError)) throw error;
+      setReplayRefused(true);
+    }
   }, [setComboOrder]);
 
   useEffect(() => {
@@ -295,6 +303,7 @@ export function SkillsScreen() {
   const activePanel = (
     <Panel title={t('activeSkills')} data-testid="skills-active-panel">
       <p className="text-xs text-d2-white/70 mb-2">{t('dragToReorder')}</p>
+      {replayRefused ? <p role="alert" className="mb-2 text-d2-red">{t('common:error')}</p> : null}
       <ol className="space-y-2">
         {combo.map((id, idx) => (
           <li

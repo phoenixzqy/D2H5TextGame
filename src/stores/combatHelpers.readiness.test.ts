@@ -1,8 +1,9 @@
 /** Synthetic lifecycle fixtures exercise real production staging and playback. */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import * as combatEngine from '@/engine/combat/combat';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { loadDefaultSkills, registerSkill, resetRegistry } from '@/engine/skills/registry';
-import { abortSubAreaRun, advanceWaveOrFinish, hasActiveSubAreaRun, startSubAreaRun } from './combatHelpers';
+import { abortSubAreaRun, advanceWaveOrFinish, hasActiveSubAreaRun, refreshActivePlayerCombatConfig, startSubAreaRun } from './combatHelpers';
 import { combatRunLifecycle } from './combatRunLifecycle';
 import { useCombatStore } from './combatStore';
 import { usePlayerStore } from './playerStore';
@@ -142,4 +143,80 @@ it.each(['idle', 'loading', 'error'] as const)('refuses completed playback durin
   expect(mercXp).toHaveBeenCalledTimes(1);
   expect(clear).not.toHaveBeenCalled();
   stores.forEach((store, i) => { expect(store.getState()).toBe(after[i]); });
+});
+
+
+describe.each(['idle', 'loading', 'error', 'wave', 'restore'] as const)('explicit replay during %s', refusal => {
+  it.each(['absent', 'playing', 'ended'] as const)('preflights before the %s control without simulation', context => {
+    if (context !== 'absent') start();
+    if (context === 'ended') useCombatStore.getState().endCombat();
+    const player = usePlayerStore.getState().player;
+    if (!player) throw new Error('Missing replay fixture');
+    armIronGolemSelection(player.id, 'replay-selection', true);
+    usePlayerStore.getState().setComboOrder([]);
+    const engine = vi.spyOn(combatEngine, 'runBattleRecorded');
+    const wave = refusal === 'wave' ? beginWaveTransition(true) : undefined;
+    const restore = refusal === 'restore' ? reserveWaveRestore() : undefined;
+    useHydrationStore.getState().setStatus(
+      refusal === 'wave' || refusal === 'restore' ? 'error' : refusal, 'replay-unready');
+    try {
+      refusesWithoutMutation(() => { refreshActivePlayerCombatConfig({ replayCurrentWave: true }); },
+        refusal === 'wave' ? 'waveBusy' : refusal === 'restore' ? 'restorePending' : 'hydrationNotReady');
+      expect(engine).not.toHaveBeenCalled();
+    } finally {
+      if (wave) expect(endWaveTransition(wave)).toBe(false);
+      if (restore) releaseWaveRestore(restore);
+    }
+  });
+});
+
+it('keeps ordinary refresh unconditional no-ops even while ownership and hydration refuse replay', () => {
+  start();
+  const wave = beginWaveTransition(true);
+  useHydrationStore.getState().setStatus('error', 'ordinary-refresh');
+  const before = stores.map(store => store.getState());
+  const run = combatRunLifecycle.activeRun;
+  const runData = structuredClone(run);
+  const notified = vi.fn();
+  const stops = stores.map(store => store.subscribe(notified));
+  const engine = vi.spyOn(combatEngine, 'runBattleRecorded');
+  try {
+    refreshActivePlayerCombatConfig();
+    refreshActivePlayerCombatConfig({ replayCurrentWave: false });
+    stores.forEach((store, i) => { expect(store.getState()).toBe(before[i]); });
+    expect(combatRunLifecycle.activeRun).toBe(run);
+    expect(run).toEqual(runData);
+    expect(engine).not.toHaveBeenCalled();
+    expect(notified).not.toHaveBeenCalled();
+  } finally {
+    stops.forEach(stop => { stop(); });
+    expect(endWaveTransition(wave)).toBe(false);
+  }
+});
+
+it('preserves ready inactive controls and explicitly replays the latest combo from the original baseline', () => {
+  const engine = vi.spyOn(combatEngine, 'runBattleRecorded');
+  const noRun = useCombatStore.getState();
+  refreshActivePlayerCombatConfig({ replayCurrentWave: true });
+  expect(useCombatStore.getState()).toBe(noRun);
+  expect(engine).not.toHaveBeenCalled();
+  start();
+  const run = combatRunLifecycle.activeRun;
+  if (!run) throw new Error('Missing accepted replay');
+  const baseline = run.carryPlayerTeam;
+  const recording = useCombatStore.getState().recordedEvents;
+  usePlayerStore.getState().setComboOrder([]);
+  engine.mockClear();
+  refreshActivePlayerCombatConfig({ replayCurrentWave: true });
+  expect(engine).toHaveBeenCalledTimes(1);
+  expect(combatRunLifecycle.activeRun).toBe(run);
+  expect(run.carryPlayerTeam).toBe(baseline);
+  expect(useCombatStore.getState().recordedEvents).not.toBe(recording);
+  expect(useCombatStore.getState().playerTeam[0]?.skillOrder).toEqual([]);
+  useCombatStore.getState().endCombat();
+  const ended = useCombatStore.getState();
+  engine.mockClear();
+  refreshActivePlayerCombatConfig({ replayCurrentWave: true });
+  expect(useCombatStore.getState()).toBe(ended);
+  expect(engine).not.toHaveBeenCalled();
 });

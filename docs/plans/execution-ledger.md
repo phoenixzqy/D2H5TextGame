@@ -4987,3 +4987,78 @@ harnesses retained; root is sole writer/executor; umbrella worktree claim contin
 no remote action or persistent server. Explicit replay/SkillsScreen readiness,
 exact receipt/conflict/publication/settlement/replay integration, bilingual Iron UI/
 browser acceptance and fullD06/P09/P10/private-v1 remain open.
+
+
+## D06 v1z explicit replay readiness and retained Skills edits
+
+Start/advance guards received independent QA, TD/five-axis and producer APPROVE
+and committed as `c05317a`. Exact readiness-guards-v3 cleanup removed873files/
+44,196,788bytes and14 empty directories with zero failures/remaining targets;
+recorded command identities were dead. Diagnostics and browser harnesses remain
+retained. Chinese screenshot glyph rendering remains unresolved.
+
+TD approved this five-path explicit-replay+SkillsScreen plan. Ordinary default/
+false refresh remains an unconditional no-op. Explicit replay checks wave/restore
+ownership then hydration before active-run/inCombat controls or staging. Refusal
+preserves all domain roots, run metadata, original carry baseline, selection and
+recording, with no engine invocation. This still checks existing ownership only;
+transition lease acquisition and deferred-save wake integration remain pending.
+
+SkillsScreen persists a legitimate combo edit before requesting replay and catches
+only WaveGuardError, using existing bilingual common:error role=alert feedback.
+The edit applies next wave while the complete current recording stays intact.
+Releasing ownership or becoming ready does not trigger replay; a subsequent
+successful explicit edit/replay clears feedback. No rollback, delayed replay or
+retry loop was added. Unexpected errors still rethrow; the sanitation effect
+remains separate and does not request replay.
+
+Store preimplementation RED15failed/15passed10.393s exposed missing refusals for
+idle/loading/error/wave/restore across absent/playing/ended controls. Store GREEN30
+passed9.910s. UI RED10failed plus10uncaught guard errors13.348s established the
+real event-handler failure in both languages. Initial combined40passed11.319s.
+Initial types failed14.580s on possibly undefined role lookup and heterogeneous
+store-array inference in the new test; corrected with named role lookup and typed
+combat snapshot. Focused-v2 40passed11.178s and types-v2 passed14.820s. Lint-v2
+failed38.939s on a shorthand void arrow in the new store test; added braces only.
+All failures and earlier source identities remain retained, not relabeled as final.
+
+Final serial focused40/2files11.405s, types14.982s, lint38.675s including85 purity
+files, full6550/222files113.290s and build9.585s passed. Store controls preserve
+ready inactive behavior and ordinary no-ops under held ownership, and demonstrate
+one real replay from the unchanged original carry reference using the latest
+combo. UI tests use public skill allocation, real simulation/leases and exact
+recording/run/selection roots, zero protected-store notifications, retained edits,
+10seconds without automatic replay, and successful explicit recovery in en/zh-CN.
+These are synthetic boundary/integration fixtures, not earned/balance evidence.
+
+Development-browser integration passed21.970s for20refusal/recovery flows:
+en/zh-CN ×360x640/1280x800 ×idle/loading/error/wave/restore. Native keyboard combo
+clear retains the edit and complete recording, run metadata and protected roots
+with zero notifications; release/ready alone produces no publication. Explicit
+reselection recovers and clears the alert. Selects are >=44px high, no horizontal
+overflow was observed, and all four contexts reported no console/page errors.
+Locale/readiness/leases and real helper startup were deliberately injected through
+dev modules. This is not production-build or ordinary-earned browser acceptance.
+Twelve disposable screenshots were captured. English mobile layout was inspected;
+Chinese DOM text is correct but screenshot glyphs remain missing, so Chinese visual
+acceptance and its cause remain open. Harness hashes are in browser output.
+Server PID3341881/startTicks54046522 exited0 and was reaped, liveAfterCleanup=false;
+contexts/browser closed. No persistent server remains.
+
+Build603modules/index-D3VVJ0Ms.js1262.19kB observed. Prior unexplained build variance
+remains unresolved. Related5s/full15s budgets and existing React act, fixture
+fallback, stale Browserslist, chunk/precache diagnostics remain open. SaveCurrent11
+unchanged. Security check passes: fail-closed explicit replay preflight and local
+feedback preserve legitimate edits without bypass/new ownership authority, runtime
+dependency or save payload. No persistent browser hooks were added to app source.
+
+Five paths, all readiness-replay receipts/source/output identities (including RED,
+initial type and lint failures), prior cleanup and exact owned dist/tmp inventory
+are frozen in readiness-replay-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review remains
+before commit; disposable outputs await exact cleanup. Diagnostics and external
+harnesses retained; root is sole writer/executor; umbrella worktree claim continues;
+no remote action. Exact receipt/conflict/publication/settlement/replay integration,
+bilingual Iron UI/browser acceptance and fullD06/P09/P10/private-v1 remain open.

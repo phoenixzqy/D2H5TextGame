@@ -399,13 +399,17 @@ export function hasActiveSubAreaRun(): boolean {
  * Replay the current wave with latest configuration when explicitly requested.
  * Ordinary changes leave the recording frozen and apply on the next playWave.
  * Staging errors preserve the prior run, recording and terminal clock.
+ * @throws {WaveGuardError} for wave/restore ownership or unready hydration
+ * before explicit replay controls or staging; ordinary refresh remains a no-op.
  */
 export function refreshActivePlayerCombatConfig({
   replayCurrentWave = false
 }: {
   readonly replayCurrentWave?: boolean;
 } = {}): void {
-  if (!combatRunLifecycle.activeRun || !replayCurrentWave) return;
+  if (!replayCurrentWave) return;
+  assertWaveReady();
+  if (!combatRunLifecycle.activeRun) return;
   const combat = useCombatStore.getState();
   if (combat.inCombat) {
     playWave(combatRunLifecycle.activeRun.waveIdx);
