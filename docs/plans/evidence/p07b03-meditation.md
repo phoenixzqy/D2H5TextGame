@@ -447,3 +447,15 @@ Root owns only496manifest files and derived empty childdirs for that cleanup;
 retain the empty RAWroot, sharedparents/source/history/fonts/tools. The packet
 records final review/receipt; this paragraph does not claim removal before it runs.
 Full private-v1/C0–C4/G0–G7 remain open; umbrella worktree claim continues.
+
+
+## Verified RAW cleanup receipt
+
+After independent QA/producer durableAPPROVE and archivecommit `b55367a`, root
+freshly reverified committedarchive/all496members/exactliveRAW/current26sources,
+all11,089births absent, every disposable path absent and originalcheckout clean.
+Exact496files22,200,320B and9emptychilddirs removed; zero failures/remainingfiles.
+The real empty RAWroot is intentionally retained at the path recorded in packet;
+sharedparents/source/history/installedfonts/tools preserved. The durable archive
+retains all original required evidence. Umbrella claim continues into separately
+owned MeteorUI preparation; full private-v1 remains open.

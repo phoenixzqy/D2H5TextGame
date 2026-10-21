@@ -2873,3 +2873,13 @@ drafts/reviews/browserbodies/compressedreports/cleanupreceipts preserved. Indepe
 durable review+archivecommit must precede root's exact496fileRAWcleanup; emptyroot
 and sharedparents/source/history/fonts/tools retained. Packet carries finalreceipt.
 Claimcontinues,noremote; fullv1 open; next P08a08D MeteorUI remains unimplemented.
+
+
+## P07b03 exact RAW cleanup
+
+Archivecommit `b55367a` precedes fresh guardedverification and exact496files/
+22,200,320B/9emptychilddirs removal; zero failures/remainingfiles.
+[Packet receipt](evidence/fixtures/p07b03-meditation/packet.json) retains archive/
+26sources/process11089/outputabsence evidence. EmptyRAWroot/sharedparents/
+source/history/fonts/tools preserved. Meditation boundedclosure complete; umbrella
+claim continues into MeteorUI preparation, fullv1/C0–C4/G0–G7 remainopen,noremote.
