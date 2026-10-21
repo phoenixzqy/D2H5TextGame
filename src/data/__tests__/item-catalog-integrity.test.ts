@@ -22,7 +22,10 @@ import {
 import zhCnItems from '../../i18n/locales/zh-CN/items.json';
 import enItems from '../../i18n/locales/en/items.json';
 import { resolveItemIcon } from '../../ui/cardAssets';
-import { loadTreasureClasses } from '../loaders/loot';
+import { loadItemBases, loadTreasureClasses } from '../loaders/loot';
+import { GameDataValidationError, loadGameData, validateGameData } from '../loader';
+import itemBaseSchema from '../schema/item-base.schema.json';
+import type { ItemBase, ItemBaseType } from '../../engine/types/items';
 
 interface NamedEntry {
   readonly id: string;
@@ -316,5 +319,87 @@ describe('item catalogue integrity', () => {
       .filter((pick) => (pick.type ?? 'item') === 'item' && pick.baseId)
       .every((pick) => pick.qlvlMin >= (baseReqLevels.get(pick.baseId ?? '') ?? 1))
     ).toBe(true);
+  });
+});
+
+
+// Literal acceptance set from D06 v1d, independent of catalog metadata.
+const IRON_METAL_IDS = [
+  'wp1h-short-sword', 'wp1h-scimitar', 'wp1h-long-sword', 'wp1h-war-sword',
+  'wp1h-phase-blade', 'wp1h-legend-sword',
+  'wp2h-two-handed-sword', 'wp2h-great-axe', 'wp2h-war-pike',
+  'wp2h-giant-thresher', 'wp2h-colossus-blade', 'wp2h-thunder-maul',
+  'weapon-axe', 'weapon-mace', 'weapon-polearm', 'weapon-scepter',
+  'helm-skull-cap', 'helm-casque', 'helm-armet',
+  'armor-chain-mail', 'armor-breast-plate', 'armor-archon-plate',
+  'glove-chain', 'glove-light-gauntlets',
+  'boot-chain', 'boot-light-plated', 'boot-myrmidon-greaves',
+  'belt-plated', 'belt-mithril-coil', 'sh-aegis', 'sh-monarch'
+].map(suffix => `items/base/${suffix}`).sort();
+
+const BASE_KINDS: readonly ItemBaseType[] = [
+  'weapon', 'armor', 'jewelry', 'charm', 'rune', 'gem', 'material'
+];
+
+function metalSchemaCandidate(type: ItemBaseType): ItemBase {
+  return {
+    id: 'items/base/metal-fixture', name: 'items.base.metal-fixture', type,
+    slot: null, reqLevel: 1, canHaveAffixes: false,
+    ...(type === 'weapon' ? { weaponType: 'sword', handedness: 'oneHanded' } as const : {})
+  };
+}
+
+describe('Iron Golem authored metal metadata', () => {
+  it('authors exactly the 31 approved existing bases, with no inferred additions', () => {
+    const catalog = rawItemBases as readonly ItemBase[];
+    expect(new Set(IRON_METAL_IDS).size).toBe(31);
+    for (const id of IRON_METAL_IDS) {
+      expect(catalog.filter(base => base.id === id), id).toHaveLength(1);
+    }
+    expect(catalog.filter(base => base.metal === true).map(base => base.id).sort())
+      .toEqual(IRON_METAL_IDS);
+    for (const base of catalog) {
+      expect(() => validateGameData(itemBaseSchema.$id, base), base.id).not.toThrow();
+      if (!IRON_METAL_IDS.includes(base.id)) expect(base.metal, base.id).not.toBe(true);
+    }
+  });
+
+  it('preserves the exact material flags through both real data loaders', async () => {
+    for (const loaded of [loadItemBases(), (await loadGameData()).itemBases]) {
+      expect([...loaded.values()].filter(base => base.metal === true).map(base => base.id).sort())
+        .toEqual(IRON_METAL_IDS);
+      for (const base of loaded.values()) {
+        if (base.metal === true) expect(['weapon', 'armor']).toContain(base.type);
+      }
+    }
+  });
+
+  it.each(BASE_KINDS)('accepts omitted and false metadata for %s', type => {
+    expect(() => validateGameData(itemBaseSchema.$id, metalSchemaCandidate(type))).not.toThrow();
+    expect(() => validateGameData(itemBaseSchema.$id, { ...metalSchemaCandidate(type), metal: false }))
+      .not.toThrow();
+  });
+
+  it.each(['weapon', 'armor'] as const)('accepts explicit true for %s', type => {
+    expect(() => validateGameData(itemBaseSchema.$id, { ...metalSchemaCandidate(type), metal: true }))
+      .not.toThrow();
+  });
+
+  it.each(['jewelry', 'charm', 'rune', 'gem', 'material'] as const)(
+    'rejects true for excluded kind %s even with a metal-like name', type => {
+      expect(() => validateGameData(itemBaseSchema.$id, {
+        ...metalSchemaCandidate(type), name: 'items.base.iron-sword', metal: true
+      })).toThrow(GameDataValidationError);
+    }
+  );
+
+  it.each([null, 0, 1, 'true', 'false', [], {}])('rejects nonboolean metal value %j', metal => {
+    expect(() => validateGameData(itemBaseSchema.$id, { ...metalSchemaCandidate('armor'), metal }))
+      .toThrow(GameDataValidationError);
+  });
+
+  it('keeps typo protection instead of allowing arbitrary base properties', () => {
+    expect(() => validateGameData(itemBaseSchema.$id, { ...metalSchemaCandidate('armor'), metals: true }))
+      .toThrow(GameDataValidationError);
   });
 });

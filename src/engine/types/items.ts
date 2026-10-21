@@ -109,6 +109,9 @@ export interface ItemBase {
   /** Number of sockets (for runewords) */
   readonly sockets?: number;
   
+  /** Authored Iron Golem material eligibility; only explicit true permits metal. */
+  readonly metal?: boolean;
+
   /** Can this base have random affixes? */
   readonly canHaveAffixes: boolean;
 }

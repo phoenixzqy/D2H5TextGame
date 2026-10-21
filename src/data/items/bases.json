@@ -11,6 +11,7 @@
   },
   {
     "id": "items/base/helm-skull-cap",
+    "metal": true,
     "name": "items.base.helm-skull-cap",
     "type": "armor",
     "slot": "head",
@@ -31,6 +32,7 @@
   },
   {
     "id": "items/base/helm-casque",
+    "metal": true,
     "name": "items.base.helm-casque",
     "type": "armor",
     "slot": "head",
@@ -41,6 +43,7 @@
   },
   {
     "id": "items/base/helm-armet",
+    "metal": true,
     "name": "items.base.helm-armet",
     "type": "armor",
     "slot": "head",
@@ -81,6 +84,7 @@
   },
   {
     "id": "items/base/armor-chain-mail",
+    "metal": true,
     "name": "items.base.armor-chain-mail",
     "type": "armor",
     "slot": "chest",
@@ -91,6 +95,7 @@
   },
   {
     "id": "items/base/armor-breast-plate",
+    "metal": true,
     "name": "items.base.armor-breast-plate",
     "type": "armor",
     "slot": "chest",
@@ -111,6 +116,7 @@
   },
   {
     "id": "items/base/armor-archon-plate",
+    "metal": true,
     "name": "items.base.armor-archon-plate",
     "type": "armor",
     "slot": "chest",
@@ -141,6 +147,7 @@
   },
   {
     "id": "items/base/glove-chain",
+    "metal": true,
     "name": "items.base.glove-chain",
     "type": "armor",
     "slot": "gloves",
@@ -151,6 +158,7 @@
   },
   {
     "id": "items/base/glove-light-gauntlets",
+    "metal": true,
     "name": "items.base.glove-light-gauntlets",
     "type": "armor",
     "slot": "gloves",
@@ -201,6 +209,7 @@
   },
   {
     "id": "items/base/boot-chain",
+    "metal": true,
     "name": "items.base.boot-chain",
     "type": "armor",
     "slot": "boots",
@@ -211,6 +220,7 @@
   },
   {
     "id": "items/base/boot-light-plated",
+    "metal": true,
     "name": "items.base.boot-light-plated",
     "type": "armor",
     "slot": "boots",
@@ -231,6 +241,7 @@
   },
   {
     "id": "items/base/boot-myrmidon-greaves",
+    "metal": true,
     "name": "items.base.boot-myrmidon-greaves",
     "type": "armor",
     "slot": "boots",
@@ -271,6 +282,7 @@
   },
   {
     "id": "items/base/belt-plated",
+    "metal": true,
     "name": "items.base.belt-plated",
     "type": "armor",
     "slot": "belt",
@@ -291,6 +303,7 @@
   },
   {
     "id": "items/base/belt-mithril-coil",
+    "metal": true,
     "name": "items.base.belt-mithril-coil",
     "type": "armor",
     "slot": "belt",
@@ -397,6 +410,7 @@
   },
   {
     "id": "items/base/wp1h-short-sword",
+    "metal": true,
     "name": "items.base.wp1h-short-sword",
     "type": "weapon",
     "slot": "weapon",
@@ -415,6 +429,7 @@
   },
   {
     "id": "items/base/wp1h-scimitar",
+    "metal": true,
     "name": "items.base.wp1h-scimitar",
     "type": "weapon",
     "slot": "weapon",
@@ -433,6 +448,7 @@
   },
   {
     "id": "items/base/wp1h-long-sword",
+    "metal": true,
     "name": "items.base.wp1h-long-sword",
     "type": "weapon",
     "slot": "weapon",
@@ -451,6 +467,7 @@
   },
   {
     "id": "items/base/wp1h-war-sword",
+    "metal": true,
     "name": "items.base.wp1h-war-sword",
     "type": "weapon",
     "slot": "weapon",
@@ -469,6 +486,7 @@
   },
   {
     "id": "items/base/wp1h-phase-blade",
+    "metal": true,
     "name": "items.base.wp1h-phase-blade",
     "type": "weapon",
     "slot": "weapon",
@@ -487,6 +505,7 @@
   },
   {
     "id": "items/base/wp1h-legend-sword",
+    "metal": true,
     "name": "items.base.wp1h-legend-sword",
     "type": "weapon",
     "slot": "weapon",
@@ -505,6 +524,7 @@
   },
   {
     "id": "items/base/wp2h-two-handed-sword",
+    "metal": true,
     "name": "items.base.wp2h-two-handed-sword",
     "type": "weapon",
     "slot": "weapon",
@@ -523,6 +543,7 @@
   },
   {
     "id": "items/base/wp2h-great-axe",
+    "metal": true,
     "name": "items.base.wp2h-great-axe",
     "type": "weapon",
     "slot": "weapon",
@@ -541,6 +562,7 @@
   },
   {
     "id": "items/base/wp2h-war-pike",
+    "metal": true,
     "name": "items.base.wp2h-war-pike",
     "type": "weapon",
     "slot": "weapon",
@@ -559,6 +581,7 @@
   },
   {
     "id": "items/base/wp2h-giant-thresher",
+    "metal": true,
     "name": "items.base.wp2h-giant-thresher",
     "type": "weapon",
     "slot": "weapon",
@@ -577,6 +600,7 @@
   },
   {
     "id": "items/base/wp2h-colossus-blade",
+    "metal": true,
     "name": "items.base.wp2h-colossus-blade",
     "type": "weapon",
     "slot": "weapon",
@@ -595,6 +619,7 @@
   },
   {
     "id": "items/base/wp2h-thunder-maul",
+    "metal": true,
     "name": "items.base.wp2h-thunder-maul",
     "type": "weapon",
     "slot": "weapon",
@@ -633,6 +658,7 @@
   },
   {
     "id": "items/base/sh-aegis",
+    "metal": true,
     "name": "items.base.sh-aegis",
     "type": "armor",
     "slot": "offhand",
@@ -653,6 +679,7 @@
   },
   {
     "id": "items/base/sh-monarch",
+    "metal": true,
     "name": "items.base.sh-monarch",
     "type": "armor",
     "slot": "offhand",
@@ -772,6 +799,7 @@
     "reqLevel": 20,
     "type": "weapon",
     "id": "items/base/weapon-polearm",
+    "metal": true,
     "slot": "weapon",
     "sockets": 3,
     "canHaveAffixes": true,
@@ -808,6 +836,7 @@
     "reqLevel": 15,
     "type": "weapon",
     "id": "items/base/weapon-scepter",
+    "metal": true,
     "slot": "weapon",
     "sockets": 2,
     "canHaveAffixes": true,
@@ -826,6 +855,7 @@
     "reqLevel": 10,
     "type": "weapon",
     "id": "items/base/weapon-mace",
+    "metal": true,
     "slot": "weapon",
     "sockets": 2,
     "canHaveAffixes": true,
@@ -844,6 +874,7 @@
     "reqLevel": 12,
     "type": "weapon",
     "id": "items/base/weapon-axe",
+    "metal": true,
     "slot": "weapon",
     "sockets": 2,
     "canHaveAffixes": true,

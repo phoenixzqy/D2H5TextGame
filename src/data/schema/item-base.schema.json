@@ -55,11 +55,24 @@
       "minimum": 0,
       "maximum": 6
     },
+    "metal": {
+      "type": "boolean",
+      "description": "Authored Iron Golem material eligibility. Only explicit true on weapon/armor bases permits sacrifice; omission or false denies it."
+    },
     "canHaveAffixes": {
       "type": "boolean"
     }
   },
   "allOf": [
+    {
+      "if": {
+        "properties": { "metal": { "const": true } },
+        "required": ["metal"]
+      },
+      "then": {
+        "properties": { "type": { "enum": ["weapon", "armor"] } }
+      }
+    },
     {
       "if": {
         "properties": { "type": { "const": "weapon" } },

@@ -3314,3 +3314,41 @@ source evidence, not a claim that pending Iron code was tested. Umbrella claim
 continues. FullD06/P09/P10, all remaining plan checkpoints/gates, other corpse
 consumers, Mage elemental identity, earned campaign/balance and disclosed
 performance/platform/PWA/a11y limits remain open. No push/PR/merge/deploy.
+
+
+## D06 v1d inactive metal metadata foundation
+
+ADR-004 publication `ad406b1` received independent QA/TD and producer APPROVE.
+This next exactly-five-path increment adds optional definition-only
+`ItemBase.metal`, a boolean schema restriction allowing true only on weapon/
+armor, the literal31 approved base flags and24 schema/catalog/real-loader cases.
+No Item/SaveCurrent field, save version, migration, engine eligibility, selection,
+item debit or UI promise is enabled. All pre-existing catalog values/order remain.
+
+Genuine initial RED:11fail/19pass. First implementation run caught two neighboring
+flags caused by an authoring script assuming type followed id; the exact literal
+set detected Wand/Bow instead of Polearm/Scepter. After correcting the source,
+the loader test exposed a missing await in its new asynchronous-loader fixture.
+That fixture was corrected without changing any expected material/ID assertions.
+Final corrected test was also executed against the exact original three source
+files:11fail/19pass; implementation bytes were restored in a finally block.
+All initial/corrected RED and failed GREEN sources/output identities are retained.
+
+Serial source gates pass:322 focused schema/catalog/loader tests;3141 engine
+tests (15.984s wrapper);6055 full unit tests (102.694s);types14.292s;
+lint39.183s;production build10.284s. Existing engine/full-unit time budgets remain
+unmet; large chunk, stale Browserslist and generated-manifest precache warnings
+remain. No browser acceptance is inferred for this inactive metadata slice.
+There is no validate:data package script; actual schema/loader tests validate it.
+
+Root-owned evidence/sources/command receipts are under
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les`.
+Its exact task-owned `dist` and `tmp` outputs stay until review readers release;
+no earlier RAW root, shared cache/tool/dependency/source/history is cleanup scope.
+Independent QA, TD and five-axis source review APPROVED the frozen five-path
+metadata foundation and verified all10 command/source/output receipts; readers
+released. This status-only publication awaits producer review before commit.
+Next dependency is an inactive pure selected-item projection
+with refusal/stat/definition tests, then transient guards and engine/store
+integration. All fullD06/P09/P10, browser, earned supply/balance, performance and
+private-v1 gates remain open. Umbrella claim continues; no remote action.
