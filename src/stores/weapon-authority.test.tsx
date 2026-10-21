@@ -1,5 +1,6 @@
 /** Real canonical inventory, Skills and production battle recording, no runtime mocks. */
 import { afterEach, assert, beforeEach, describe, expect, it, vi } from 'vitest';
+import { useHydrationStore } from './hydrationStore';
 import { act, cleanup, fireEvent, render } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import { MemoryRouter } from 'react-router-dom';
@@ -109,8 +110,9 @@ beforeEach(async () => {
   reset();
   vi.spyOn(Date, 'now').mockReturnValue(1792454400000);
   await i18n.changeLanguage('en');
+  useHydrationStore.getState().setStatus('ready');
 });
-afterEach(() => { cleanup(); reset(); vi.restoreAllMocks(); });
+afterEach(() => { cleanup(); reset(); vi.restoreAllMocks(); useHydrationStore.getState().setStatus('idle'); });
 
 describe('actual canonical weapon authority', () => {
   it('records real Magic Arrow casts from a canonical bow with empty legacy', () => {

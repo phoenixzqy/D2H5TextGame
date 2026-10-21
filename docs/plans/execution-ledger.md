@@ -4739,3 +4739,51 @@ Further basic and simulation-adapter readiness prerequisites, production wave/
 caller guards, exact receipt/conflict/publication/settlement/replay integration
 and bilingual Iron UI/browser acceptance remain pending.
 FullD06/P09/P10/private-v1 remain open.
+
+
+## D06 v1u explicit readiness fixtures for basic combat and weapon authority
+
+Boundary readiness fixtures received independent QA, TD/five-axis and producer
+APPROVE and committed as `b6005fb`. Exact readiness-boundaries cleanup removed
+857files/42,724,311bytes and14 empty directories with zero failures/remaining
+targets; recorded command identities were dead. Diagnostics remain retained.
+
+TD approved this amended four-path basic plan. Combat helper tests become ready
+in successful-start setup and the beforeEach-only resetStores helper, with a new
+top-level abort then idle teardown. CombatScreen test setup becomes ready after
+resets and teardown idle after cleanup. Weapon authority becomes ready after
+awaited English setup, idle after cleanup/reset/mock restoration. All existing
+assertions/declarations, helpers, synthetic UI fixtures, public start/replay/advance
+and midtest map reset remain unchanged. Quest NPC talk remains untouched with its
+existing explicit readiness and exact prior-state restoration. No global fixture,
+production default/guard or readiness fallback changes. No behavioral RED or new
+tests for fixture state alone.
+
+Serial focused60/3files6.418s, types14.845s, lint38.699s including85 engine purity
+files, full6493/220files111.619s and production build10.029s passed. An observed
+build-output variance prompted one isolated repeat10.253s, which also passed.
+Initial basic build reported595 modules/index-C4YuN5tm.js1261.69kB; repeat reported
+603modules/index-BDxWwAA8.js1261.37kB, matching the preceding build. Both receipts
+have identical captured source/config hashes and both logs remain retained. TD
+found no production import/glob reaching these tests or distinctive test-bridge/
+Vitest/Testing Library tokens in final chunks. CSS stayed unchanged. Cause is
+unproven: full build environment/module graph were not captured. Build-output
+variance remains unresolved; no deterministic-output or bundle-equivalence claim.
+No material concern attributable to this fixture diff was found.
+
+No browser run or new visual acceptance is claimed for test-only changes.
+Related5s/full15s budgets and existing React act, fixture fallback, stale
+Browserslist, chunk/precache diagnostics remain open. SaveCurrent11 unchanged.
+Security check passes for local test prerequisites without production bypass,
+ownership write or save payload change.
+
+Four paths, readiness-basic command/source/output identities, prior cleanup and
+exact owned dist/tmp inventory are frozen in readiness-basic-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review remains before commit; disposable outputs
+await exact cleanup. Diagnostics retained; root is sole
+writer/executor; umbrella worktree claim continues; no remote action or server.
+Simulation-adapter readiness prerequisites, production wave/caller guards, exact
+receipt/conflict/publication/settlement/replay integration and bilingual Iron
+UI/browser acceptance remain pending. FullD06/P09/P10/private-v1 remain open.

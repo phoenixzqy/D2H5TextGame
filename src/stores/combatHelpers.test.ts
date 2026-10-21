@@ -1,8 +1,10 @@
 /**
  * Tests for combat helper functions
  */
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { useHydrationStore } from './hydrationStore';
 import {
+  abortSubAreaRun,
   battleEventToLogEntry,
   awardLootForVictory,
   startSimpleBattle,
@@ -29,6 +31,11 @@ import { createMockPlayer, CHARACTER_CLASSES } from '@/features/character/create
 import { xpRequired, xpForKill } from '@/engine/progression/xp';
 import { getSkill } from '@/engine/skills/registry';
 import i18n from '@/i18n';
+
+afterEach(() => {
+  abortSubAreaRun();
+  useHydrationStore.getState().setStatus('idle');
+});
 
 describe('combatHelpers', () => {
   describe('battleEventToLogEntry', () => {
@@ -282,6 +289,7 @@ describe('combatHelpers', () => {
       useInventoryStore.getState().reset();
       const player = createMockPlayer('Tester', 'barbarian');
       usePlayerStore.getState().setPlayer(player);
+      useHydrationStore.getState().setStatus('ready');
     });
 
     it('lays out >1 wave for a known sub-area and advances waves until run-victory', () => {
@@ -447,6 +455,7 @@ function resetStores(): void {
   useCombatStore.getState().reset();
   useInventoryStore.getState().reset();
   useMapStore.getState().reset();
+  useHydrationStore.getState().setStatus('ready');
 }
 
 function buildMerc(overrides: Partial<Mercenary> = {}): Mercenary {

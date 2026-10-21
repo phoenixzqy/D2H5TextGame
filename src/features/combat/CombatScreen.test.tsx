@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { useHydrationStore } from '@/stores/hydrationStore';
 import { Suspense } from 'react';
 import { act, cleanup, render, screen, within } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
@@ -16,6 +17,7 @@ beforeEach(() => {
   useMapStore.getState().reset();
   useMetaStore.getState().reset();
   usePlayerStore.getState().reset();
+  useHydrationStore.getState().setStatus('ready');
 });
 
 afterEach(() => {
@@ -24,6 +26,7 @@ afterEach(() => {
   useCombatStore.getState().reset();
   usePlayerStore.getState().reset();
   useMetaStore.getState().reset();
+  useHydrationStore.getState().setStatus('idle');
 });
 
 describe('combat terminal outcome copy', () => {
