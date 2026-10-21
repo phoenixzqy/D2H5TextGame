@@ -3401,3 +3401,43 @@ Next bounded work is transient ownership/selection/transition foundations before
 engine and store integration. Full Iron/D06/P09/P10, native bilingual/browser
 flows, earned supply/balance, remaining performance/platform/PWA/a11y and
 private-v1/C0–C4/G0–G7 remain open. Umbrella claim continues; no remote action.
+
+
+## D06 v1d inactive selected-instance ownership foundation
+
+Projection received producer APPROVE and committed as `3359ede`. After every
+reader released, root verified and removed its exact1300 disposable files/
+43,813,786bytes and14 empty directories, zero failures. The actual cleanup
+receipt is `projection-cleanup.json` in the existing Iron evidence root.
+
+TD plan-review returned `ready` for this narrower three-path subincrement:
+`ironGolemSelection.ts`,28 focused tests and this ledger. The pure resolver takes
+only the explicit hero/item IDs and typed live ownership views. It counts every
+selected-ID location in backpack, stash, player equipment and all merc gear,
+including unfielded/orphan keys and repeated references; returns the exact live
+backpack reference/index only when unique. Stable refusal precedence is
+noSelection,heroMismatch,duplicateItem,notInBackpack. There is no substitution,
+item math, wearing gate, acknowledgement state, selection mutation or debit.
+No runtime store imports, production consumer, save shape or UI promise is added.
+
+The initial RED was a missing-module collection failure. The backpack-only
+implementation then produced a behavioral RED of15fail/13pass; adding the full
+ownership count passes all28 cases. All original sources/output are retained.
+Final serial gates on unchanged module/test bytes pass: focused28; types13.816s;
+lint39.319s (engine purity included); full unit6157/211files (115.506s wrapper);
+normal production build10.418s. No engine source changed; full unit includes
+engine regressions. The15s full-suite budget remains breached; stale Browserslist,
+large chunk and2.57MB generated-manifest precache warnings remain open.
+
+Evidence is under
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les`.
+Exact task-owned `dist`/`tmp` stay until review readers release; original failure/
+source/command diagnostics await durable retention. Security check passes for
+this typed, read-only ownership boundary. Independent QA and TD/five-axis
+source reviews APPROVED all three frozen files and seven evidence identities;
+all readers released. Status-only publication awaits producer scope review.
+Root is sole executor.
+Selection state, transition/restore guards, receipt, engine and store integration,
+native bilingual/browser flows and earned supply/balance remain pending. No
+runtime acceptance or fullD06/P09/P10/private-v1 completion is inferred. Umbrella
+claim continues; no remote action.
