@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { useHydrationStore } from './hydrationStore';
 // Only the disk boundary is fake; selection, validation/import and native combat remain real.
 vi.mock('./save-adapter', () => ({ hasSave: vi.fn(), loadSave: vi.fn(),
   saveSave: vi.fn(() => Promise.resolve(undefined)), deleteSave: vi.fn() }));
@@ -134,8 +135,9 @@ beforeEach(() => {
   vi.spyOn(combatEngine, 'runBattleRecorded').mockImplementation(input => {
     snapshots.push(input); return original(input);
   });
+  useHydrationStore.getState().setStatus('ready');
 });
-afterEach(() => { reset(); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });
+afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });
 
 describe('native selected Might wave composition', () => {
   it('keeps learning/combo unselected, freezes ordinary changes and activates only on next real wave', () => {

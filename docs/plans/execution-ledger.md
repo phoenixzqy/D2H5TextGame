@@ -4587,3 +4587,44 @@ Further bounded native/UI/boundary/basic and simulation-adapter readiness work,
 production wave/readiness/caller guards, exact receipt/conflict/publication/
 settlement/replay integration and bilingual Iron controls/browser acceptance
 remain pending. FullD06/P09/P10/private-v1 remain open.
+
+
+## D06 v1q explicit readiness fixtures for native auras and summons
+
+Passive readiness fixtures received QA, TD/five-axis and producer APPROVE and
+committed as `0e1cbee`. Exact readiness-passives cleanup removed857files/
+42,724,287bytes and14 empty directories with zero failures/remaining targets;
+recorded command identities were dead. Diagnostic evidence remains retained.
+
+TD approved this five-path native fixture plan. Might, Meditation, paid summon
+preparation and the two combat describes in corpse preparation import the hydration
+leaf and set ready at the end of existing successful-combat setup, then idle after
+existing teardown reset. The third adapter-only corpse describe stays untouched.
+All366 assertion/declaration lines are unchanged (82Might/102Meditation/56summon/
+126corpses); reset helpers, actual save/import, start/arrange/configure helpers,
+registry/clock/mock order and genuine public actions remain unchanged. No global
+setup, production default, actual readiness guard or fallback is activated.
+No new tests or behavioral RED is appropriate for fixture state alone.
+
+Serial focused97/4files5.873s, types14.897s, lint39.320s including85 engine purity
+files, full6493/220files111.034s and production build9.542s passed. No browser run
+or new visual acceptance is claimed for test-only changes. Related5s/full15s
+budgets and existing React act, fixture fallback, stale Browserslist, chunk and
+precache diagnostics remain open. SaveCurrent11 unchanged. Security check passes
+for hook-local prerequisites with no production bypass, ownership write or save
+payload change.
+
+Five paths, readiness-native command/source/output identities, prior cleanup and
+exact owned dist/tmp inventory are frozen in readiness-native-v2-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+QA corrected an initial loose-regex count that included two prose comments; the
+original freeze is retained, and this reporting-only correction reuses unchanged
+source/receipts/inventory without rerunning validation. Independent QA and
+TD/five-axis reviews APPROVED the corrected frozen scope; all readers released.
+Producer publication review remains before commit; disposable outputs await
+exact cleanup. Diagnostics retained; root is sole
+writer/executor; umbrella worktree claim continues; no remote action or server.
+Further UI/boundary/basic and simulation-adapter readiness prerequisites,
+production wave/caller guards, exact receipt/conflict/publication/settlement/replay
+integration and bilingual Iron UI/browser acceptance remain pending.
+FullD06/P09/P10/private-v1 remain open.

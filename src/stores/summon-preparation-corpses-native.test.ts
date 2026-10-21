@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { useHydrationStore } from './hydrationStore';
 // Only disk I/O is mocked. Imported L24, ranks, gear and finisher are scaffolding.
 vi.mock('./save-adapter', () => ({ hasSave: vi.fn(), loadSave: vi.fn(),
   saveSave: vi.fn(() => Promise.resolve(undefined)), deleteSave: vi.fn() }));
@@ -114,8 +115,9 @@ function setMastery(rank: number): void {
 }
 describe('P07a05C native Skeleton Mastery wave/replay/save boundaries', () => {
 beforeEach(() => { reset(); resetRegistry(); loadDefaultSkills();
-  vi.spyOn(Date, 'now').mockReturnValue(1792454400000); });
-afterEach(() => { reset(); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });
+  vi.spyOn(Date, 'now').mockReturnValue(1792454400000);
+  useHydrationStore.getState().setStatus('ready'); });
+afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });
   it('allocates and upgrades through real actions for fresh next-wave summons without changing current recordings or resource carry', () => {
     arrange(0); start();
     expectFreshSummons(162, 35, 19);
@@ -267,8 +269,8 @@ function resetComposition(): void {
   resetRegistry(); loadDefaultSkills();
 }
 describe('P07a05B actual native store wave wiring', () => {
-  beforeEach(resetComposition);
-  afterEach(() => { resetComposition(); vi.restoreAllMocks(); });
+  beforeEach(() => { resetComposition(); useHydrationStore.getState().setStatus('ready'); });
+  afterEach(() => { resetComposition(); useHydrationStore.getState().setStatus('idle'); vi.restoreAllMocks(); });
   it.each(CORPSE_CASES.flatMap(row => (['necromancer', 'sorceress'] as const).map(classId => ({ ...row, classId }))))(
     'passes authoritative $classId eligibility for $name through real waves', row => {
     const { classId } = row, active = `necromancer.${row.name}`;

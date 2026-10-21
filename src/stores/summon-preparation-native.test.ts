@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { useHydrationStore } from './hydrationStore';
 // Only disk I/O is mocked. Level, gear, allocated ranks/points and finisher are
 // imported integration scaffolding; none is earned campaign/balance evidence.
 vi.mock('./save-adapter', () => ({ hasSave: vi.fn(), loadSave: vi.fn(),
@@ -96,8 +97,9 @@ function expectBatch(count: number, payment: number): void {
 beforeEach(() => {
   reset(); resetRegistry(); loadDefaultSkills();
   vi.spyOn(Date, 'now').mockReturnValue(1792454400000);
+  useHydrationStore.getState().setStatus('ready');
 });
-afterEach(() => { reset(); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });
+afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });
 
 describe('D06 paid summon preparation through native recorded waves', () => {
   it('learns and upgrades for the next wave while preserving the current recording and event-array identity', () => {
