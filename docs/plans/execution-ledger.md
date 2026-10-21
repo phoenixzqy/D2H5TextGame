@@ -2716,3 +2716,26 @@ Producer audit omits unnecessary save-test preparation: only selected-aura.test.
 needs current-output changes and belongs to the atomic five-path v11 cutover next.
 Meditation save/selection/recovery/UI/browser, BUG068 closure and full private-v1/
 C0–C4/G0–G7 remain open.
+
+
+## P07b03B Meditation save11 cutover
+
+`8a79356` changes exactly five paths. Frozen v10 keeps Might-only selection and is
+validated before migration11 for direct10 and saves migrated through10. Current11
+supports exact canonical Might/Meditation or absence; own undefined is refused.
+Version-only migration preserves resources, native Maps, all domains and absence;
+canonical ineligible selection persists without a runtime grant.
+[Evidence](evidence/p07b03-meditation.md).
+
+Actual RED43=12fail+31controls; malformed11 is wrong-error evidence, not accepted
+malformed input. Compile RED exactly two intended live/current TS2344 diagnostics;
+frozen10 assertion compiles. Serial GREEN43, engine2751/80files, types/lint, full
+5284/197files and fresh production bridgebuild pass. No pending/todo/stops/signals;
+timing targets and existing warnings remain, no performance acceptance. Independent
+GD/TD source and QA/producer whole review APPROVE; readers released. After source
+commit, fresh source/output hashes and1111 absent births verify exact761file/
+40,972,201B cleanup plus nine childdirs/distroot; all absent, zero failures. RAW
+remains root-owned for later durable archive verification/exact cleanup; shared
+caches/dependencies/fonts/tools/source/history/original checkout preserved.
+Umbrella claim continues; no remote action. Store/runtime/UI/browser, BUG068 and
+full private-v1/C0–C4/G0–G7 remain open.

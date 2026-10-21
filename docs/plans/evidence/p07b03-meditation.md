@@ -1,4 +1,4 @@
-# P07b03A — Meditation definition and schema evidence
+# P07b03 — Meditation implementation evidence
 
 Status: Stage A accepted at source commit `3ba7ad4`; independent GD/TD source
 and QA/producer whole-evidence reviews APPROVE. All readers released.
@@ -91,3 +91,52 @@ then remove its exact files after all consumers release them. Unexecuted evidenc
 v2's16-command prose typo was corrected to the actual15 in v3 before acceptance;
 all drafts and the actual15 command records are preserved. Next is the reviewed
 atomic five-path v11 cutover, followed by store/projection/runtime/native/UI/browser.
+
+
+## Stage B — frozen v10 and current v11 save boundary
+
+Source commit `8a79356` changes exactly five paths: live Player selection,
+versioned save types/migration11, typed explicit migration target10, decode
+validation and selected-aura tests. V10 remains Might-only independently of live
+Player. Direct v10 and older saves migrated through10 are validated before11;
+current11 accepts only canonical Might/Meditation or physical absence. Own
+undefined is rejected. Migration11 changes only version, preserving resources,
+slices, native Maps and absence. Canonical ineligible selections persist without
+granting gameplay eligibility.
+
+The approved test draft was installed unchanged (15442B, SHA256
+`8711408316a2ff2dab531f19329e0273133b6ae4081f1cce5af9248589eacbc1`).
+Actual behavioral RED:43tests=12failures+31passing controls in2.768s, with all four
+production paths unchanged. The malformed-current11 case fails because baseline
+reports newer-than-target10 instead of Invalid save; this does not establish
+acceptance of malformed data. Historical7–10 Meditation rejection already passes
+and protects against accidental widening. Type RED: exactly two TS2344 diagnostics
+at lines187/188 for live/current selection unions,12.450s; the frozen10 assertion
+compiles. Vitest results do not prove compile-time assertions.
+
+Final serial validation on the five frozen paths:
+
+| Gate | Actual result | Seconds |
+| --- | --- | --- |
+| Focused save |43/43, one file|2.910|
+| Engine |2751/2751,80 actual files|12.800|
+| Types |pass|12.348|
+| Lint/purity |pass|32.057|
+| Full unit |5284/5284,197 actual files|84.095|
+| Fresh production build/bridge scan |pass; four JS chunks, no bridge identifiers|9.054|
+
+No pending/todo/stops/signals or surviving descendants. Eight command records are
+serial. Engine3s/full15s targets are missed; no performance acceptance. Existing
+Browserslist dataset, >500kB chunk and2.57MB art-manifest precache warnings remain.
+Independent GD/TD source and QA/producer whole-evidence reviews APPROVE; all readers
+released. RAW records include `stage-b-final-verification.json`, frozen hashes,
+original RED/GREEN/type diagnostics and review transcriptions.
+
+After source commit and reviewer release, fresh source/output hashes and1111 absent
+process births verified exact cleanup of761files/40,972,201B, nine childdirs and
+fresh dist root. Every exact file is absent; zero cleanup failures. Shared cache
+parents/dependencies/fonts/tools/source/history/original checkout are preserved.
+RAW remains root-owned at the path above until durable archive acceptance and
+independent verification, then root removes exact evidence files. The continuing
+umbrella worktree claim is retained. No remote actions. Meditation store/runtime/
+UI/browser, BUG068 closure and full private-v1 acceptance remain open.
