@@ -76,6 +76,43 @@
         "appliesTags": false
       }
     }
+  }, {
+    "if": {
+      "properties": { "id": { "const": "skills-sorceress-frozen-armor" } },
+      "required": ["id"]
+    },
+    "then": {
+      "required": ["cost", "scaling", "appliesStatus"],
+      "properties": {
+        "trigger": { "const": "active" },
+        "target": { "const": "self" },
+        "cooldown": { "type": "number", "exclusiveMinimum": 0 },
+        "passive": { "const": false },
+        "aura": { "const": false },
+        "summon": { "const": false },
+        "cost": {
+          "type": "object", "required": ["mana"],
+          "properties": { "mana": { "$ref": "#/properties/cost/properties/mana" } }
+        },
+        "appliesStatus": { "const": ["frozen-armor"] },
+        "scaling": {
+          "type": "object", "required": ["passiveStatsPerLevel"],
+          "properties": {
+            "passiveStatsPerLevel": {
+              "type": "object", "required": ["defensePct"], "additionalProperties": false,
+              "properties": {
+                "defensePct": {
+                  "type": "number", "minimum": 0,
+                  "description": "Finite nonnegative ordinary-defense fraction per allocated rank of the paid player Frozen Armor buff."
+                }
+              }
+            }
+          }
+        },
+        "damage": false,
+        "damageType": false
+      }
+    }
   }],
   "if": {
     "properties": { "id": { "const": "skills-necromancer-amplify-damage" } },

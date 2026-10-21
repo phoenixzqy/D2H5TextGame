@@ -93,6 +93,12 @@ export interface CombatUnit {
   readonly skillLevels?: Readonly<Record<string, number>>;
   /** Buffs already applied this combat (don't recast). */
   readonly activeBuffIds: readonly string[];
+  /** Paid player Frozen Armor potency, retained only within its native combat run. */
+  readonly frozenArmor?: {
+    readonly rank: number;
+    /** Fractional bonus captured from authored coefficient times allocated cast rank. */
+    readonly defensePct: number;
+  };
   /** Boss enrage activated? */
   readonly enraged: boolean;
   /**
