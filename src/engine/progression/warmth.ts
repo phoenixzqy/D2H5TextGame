@@ -1,6 +1,7 @@
-/** JSON-authored hero recovery and learned Warmth modifiers; no resource changes. */
+/** JSON-authored hero recovery and learned Sorceress passive modifiers; no resource changes. */
 import sorceressSkills from '../../data/skills/sorceress.json';
 import { RECOVERY_DEFINITION } from '../combat/recovery-definition';
+import { FIRE_MASTERY_DEFINITION, resolveFireMasteryRank } from '../skills/fire-mastery';
 import type { DamageType } from '../types/attributes';
 
 const warmth = sorceressSkills.find(skill => skill.id === 'skills-sorceress-warmth');
@@ -42,10 +43,14 @@ export function composeHeroRecovery(input: HeroRecoveryInput): HeroRecoveryModif
       }
     }
   }
+  const masteryRank = input.classId === 'sorceress' && Number.isFinite(input.level) &&
+    input.level >= FIRE_MASTERY_DEFINITION.requiredLevel
+    ? resolveFireMasteryRank(input.skillLevels) : 0;
   const energy = Number.isFinite(input.effectiveEnergy) ? Math.max(0, input.effectiveEnergy) : 0;
   return Object.freeze({
     manaRegenPerSecond: RECOVERY_DEFINITION.heroManaPerEffectiveEnergyPerSecond * energy *
       (1 + manaRegenPerRank * rank),
-    increasedDamagePct: Object.freeze({ fire: fireDamagePerRank * rank })
+    increasedDamagePct: Object.freeze({ fire: fireDamagePerRank * rank +
+      FIRE_MASTERY_DEFINITION.fireDamagePctPerRank * masteryRank })
   });
 }
