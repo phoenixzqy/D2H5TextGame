@@ -2680,5 +2680,7 @@ contract audit/runtime/UI/browser. Fullprivatev1/C0–C4/G0–G7 remain open.
 `aa007603a0759972f7cd4a26862601279eb0641ac03dbe5bc9eafc39b2f6acfc`.
 Root roundtrip-checked every member,18 current sources and5965 absent births
 from43 command reports. Independent QA/producer durable review APPROVE/allreadersreleased; verdict in
-packet. Exact RAW cleanup pending durablecommit/freshverification; root retains
-RAW. Full-v1 umbrella remains open; Meditation next.
+packet. After durablecommit `e6f8b9d` and fresharchive/member/source/process/
+disposablechecks, exactcleanup removes331RAWfiles19,896,406B/oneemptychilddir;
+zero remainingfiles/failures; emptyRAWroot retained. Source/history/sharedcaches/
+fonts/tools/originalcheckout preserved. Full-v1 umbrella remains open; Meditation next.

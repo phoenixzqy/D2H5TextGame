@@ -387,6 +387,10 @@ Historical freezes intentionally record earlier sources and unexecuted drafts;
 they do not all describe the final head. QA and producer independently verified all archive/live members, source hashes,
 process identities, disposable absence and truthful historical evidence: APPROVE.
 All readers released; their root-transcribed verdict is recorded in the packet.
-Exact RAW cleanup remains pending the durable commit and fresh verification;
-root owns the retained RAW until that finishes.
+After durable commit `e6f8b9d`, root freshly reverified the committed archive,
+member/live manifest,18 current source hashes,5965 absent process births and
+all disposable inventories. Exact cleanup removed331 RAW files19,896,406 bytes
+and one empty child directory, with zero remaining files/failures. The empty
+RAW root is retained at the recorded path. The packet records the actual cleanup;
+source/history/shared caches/tools/fonts and original checkout are preserved.
 The full private-v1/C0–C4/G0–G7 umbrella remains open.
