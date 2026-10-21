@@ -2776,3 +2776,20 @@ exact761file/40,972,922B cleanup and9childdirs/distroot; all absent,zero failure
 RAW retained root-owned for durable verification/exact cleanup; shared caches/tools/
 source/history/original preserved. Claim continues; no remote action. Combat/native/
 UI/browser,BUG068 and full private-v1/C0–C4/G0–G7 remain open.
+
+
+## P07b03E Meditation combat intervals
+
+`b478a56` changes exactly2paths. Start-interval source/recipient qualification is
+captured before periodic effects; surviving recipient alone is rechecked afterward,
+retaining elapsed merc credit when source dies. Baseline eligibility stays independent;
+inactive paths avoid carry writes. One pooled integral/delta/export/cap; primitive
+copy and pre-RNG dual-projection refusal. [Evidence](evidence/p07b03-meditation.md).
+ActualRED22=19behavioral failures+3controls;GREEN22,engine2839/81,types/lint,
+full5388/198 and productionbridgebuild pass. Seven serial records,no pending/todo/
+stops/signals; timing misses/warnings remain without performance acceptance. GD/TD
+and QA/producer APPROVE; readers released. Sourcecommit followed by fresh hashes/
+1102absentbirths and exact761file/40,975,401B cleanup plus9childdirs/distroot;
+all absent,zero failures. RAW retained root-owned; shared caches/tools/source/history/
+original preserved. Claim continues,no remote action. Native/UI/browser,BUG068 and
+full private-v1/C0–C4/G0–G7 remain open.

@@ -214,3 +214,37 @@ absent; zero failures. Shared caches/dependencies/fonts/tools/source/history/ori
 checkout preserved. RAW retained root-owned at the path above for durable archive
 verification then exact cleanup. Umbrella claim continues; no remote actions.
 Combat/native/UI/browser, BUG068 and full private-v1/C0–C4/G0–G7 remain open.
+
+
+## Stage E — actual combat interval integration
+
+Source commit `b478a56` changes exactly combat.ts and focused Meditation combat
+tests. Eligible original source/recipient identities are captured before each
+periodic settlement. After periodic deaths/orphan/refund/orb effects, only surviving
+recipient identity/life is rechecked: source death at the endpoint cannot erase the
+mercenary's elapsed credit. Baseline recovery remains available to previously
+supported living units independently of aura restrictions. No positive baseline/
+contribution means no fabricated carry/write. One pooled exact integral supplies
+one whole delta/carry export/capped commit. Engine copies only primitive projection
+fields and rejects simultaneous Might/Meditation before RNG/simulation.
+
+Approved installed draft12761B SHA256
+`e7d0c5a1bbc371753bd19c335722aefd8041647978d384b4888c33f2b3be1bf5`.
+Unexecuted v1 getter correction adds enumerable:true so a whole-object spread
+would fail; v1 retained, no executed failure claimed. Genuine unchanged-combat
+RED22=19behavioral assertion failures+3passing controls(2.790s); no capability or
+collection errors. GREEN22/22(2.739s). Literal decimal and mixed-boundary/handoff
+oracles, death priority, paid cast/cap reset, replacement, original identities,
+independent copy and no-RNG controls pass recorded/unrecorded paths.
+
+Seven serial command records in RAW `stage-e-final-verification.json`:
+engine2839/81files13.661s, types12.241s, lint/purity33.148s,
+full5388/198files86.813s, fresh productionbridgebuild9.345s4chunks all pass.
+No pending/todo/stops/signals/surviving descendants. Existing timing misses/build
+warnings remain without performance acceptance. GD/TD source and independent QA/
+producer whole-evidence reviews APPROVE; all readers released. After sourcecommit,
+fresh source/output hashes and1102absent process births verify exact761files/
+40,975,401B cleanup plus9childdirs/distroot; all exact files absent,zero failures.
+Shared caches/dependencies/fonts/tools/source/history/original checkout preserved.
+RAW remains root-owned for durable verification/exact cleanup. Umbrella claim
+continues; no remote action. Native/UI/browser,BUG068 and full-v1 remain open.
