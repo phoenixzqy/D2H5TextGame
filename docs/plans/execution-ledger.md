@@ -3025,3 +3025,24 @@ Root owns temporary evidence at
 `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-necromancer-preparation-edsqysz8`
 through later v1c review/archive/cleanup. Next: store then UI test prerequisites,
 then the five-path RED/GREEN runtime switch. Full private-v1 remains open.
+
+
+## D06 v1c native-store test prerequisite
+
+Engine staging committed as `faaee6d` after QA/producer approval. The store
+prerequisite renames the original native Mastery suite to
+`summon-preparation-corpses-native.test.ts`, retaining its six real allocation,
+respec, equipment, replay/carry and save cases. The two real-wave class cases
+and two adapter preservation/fallback cases move into that suite with unchanged
+assertions. Their separate original store/registry/clock setup contexts remain
+scoped; only the composition player builder is renamed to avoid a collision.
+Pure Mastery projection/decorator tests and thirteen-skill adapter matrices stay
+in their originals. No runtime, data or display change. Focused141/3files,
+full5805/208files94.86s (96.242s wrapper), types13.349s and lint35.550s pass
+serially. A trailing blank line caught by diff-check was removed after those
+checks; no fixture/assertion changed. The ordinary full15s target remains missed.
+Raw evidence stays in the previously recorded root-owned v1c directory until
+reviewed durable retention and cleanup. UI staging follows; the impact audit
+also found a legacy playback refund helper, approved for a separate synthetic
+clone prerequisite while preserving the canonical initial-spend test. The
+five-path runtime switch and full private-v1 acceptance remain pending.

@@ -148,27 +148,4 @@ describe('production scoped summon preparation eligibility', () => {
     } finally { catalog[index] = original; }
     expect(catalog[index]).toBe(original);
   });
-
-  it('excludes scoped foreign-class skills while preserving every unrelated/excluded slot and rank', () => {
-    const p = eligible('druid', 'raven');
-    const skillLevels = { ...p.skillLevels, 'amazon.valkyrie': 20,
-      'necromancer.raise_skeleton': 12, 'necromancer.iron_golem': 1, 'fixture.summon': 7 };
-    const order = ['amazon.valkyrie', 'skills-amazon-valkyrie', 'necromancer.raise_skeleton',
-      'skills-necromancer-raise-skeletal-mage', 'necromancer.revive', 'necromancer.iron_golem',
-      'fixture.summon', 'druid.firestorm'];
-    const before = structuredClone({ ...p, skillLevels, comboOrder: order });
-    const result = playerToCombatUnit(before);
-    expect(result.skillOrder).toEqual(order.slice(2));
-    expect(result.skillLevels).toEqual(skillLevels);
-    expect(before.skillLevels).toEqual(skillLevels);
-    expect(before.comboOrder).toEqual(order);
-  });
-
-  it('keeps generic unrelated and excluded production behavior when the allocation map is absent', () => {
-    const { skillLevels: _levels, ...rest } = eligible('necromancer', 'clay_golem');
-    const result = playerToCombatUnit({ ...rest, comboOrder: ['necromancer.clay_golem',
-      'necromancer.raise_skeleton', 'fixture.unrelated'] });
-    expect(result.skillOrder).toEqual(['necromancer.raise_skeleton', 'fixture.unrelated']);
-    expect(result.skillLevels).toEqual({});
-  });
 });

@@ -1,15 +1,12 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 vi.mock('./save-adapter', () => ({ hasSave: vi.fn(), loadSave: vi.fn(),
   saveSave: vi.fn(() => Promise.resolve(undefined)), deleteSave: vi.fn() }));
-import * as combatEngine from '@/engine/combat/combat';
-import type { CombatSnapshot } from '@/engine/combat/combat';
 import { composeSkeletonMastery, empowerSkeletonSummon, SKELETON_MASTERY_DEFINITION } from '@/engine/skills/skeleton-mastery';
 import { buildSummon } from '@/engine/skills/summons';
-import { loadDefaultSkills, registerSkill, resetRegistry } from '@/engine/skills/registry';
+import { loadDefaultSkills, resetRegistry } from '@/engine/skills/registry';
 import type { Player } from '@/engine/types/entities';
-import type { Item } from '@/engine/types/items';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
-import { abortSubAreaRun, playerToCombatUnit, resetIdleElitePity, startSubAreaRun } from './combatHelpers';
+import { abortSubAreaRun, playerToCombatUnit, resetIdleElitePity } from './combatHelpers';
 import { __resetPersistenceForTests } from './persistence';
 import { useCombatStore } from './combatStore';
 import { usePlayerStore } from './playerStore';
@@ -146,53 +143,5 @@ describe('P07a05B narrow fresh-summon decorator boundary', () => {
       expect(empowerSkeletonSummon(projection, owner, other)).toBe(other);
     }
     expect(empowerSkeletonSummon(undefined, owner, summon)).toBe(summon);
-  });
-});
-
-interface ProjectedSnapshot extends CombatSnapshot {
-  readonly skeletonMastery?: NonNullable<ReturnType<typeof composeSkeletonMastery>>;
-}
-describe('P07a05B actual native store wave wiring', () => {
-  it.each(['necromancer', 'sorceress'] as const)('passes authoritative eligibility for%s into real combat', classId => {
-    const snapshots: ProjectedSnapshot[] = [];
-    const original = combatEngine.runBattleRecorded;
-    vi.spyOn(combatEngine, 'runBattleRecorded').mockImplementation(input => {
-      snapshots.push(input); return original(input);
-    });
-    // Imported L24/gear and registered finisher are explicit integration scaffolding, not earned progress.
-    const hero = player({ class: classId, comboOrder: ['necromancer.raise_skeleton', 'fixture.mastery-finisher'],
-      skillLevels: { [CANONICAL]: 1, 'necromancer.raise_skeleton': 6 } });
-    usePlayerStore.getState().setPlayer(hero);
-    const cap: Item = { id: 'fixture-skeleton-cap', baseId: 'items/base/helm-cap', rarity: 'rare',
-      level: 1, identified: true, equipped: false, affixes: [{ affixId: 'fixture-imported',
-        values: new Map([['statMods.life', 100000], ['statMods.defense', 10000], ['statMods.mana', 100]]) }] };
-    useInventoryStore.getState().addItem(cap);
-    expect(useInventoryStore.getState().equipItem(cap)).toEqual({ ok: true });
-    const configured = usePlayerStore.getState().player;
-    if (!configured) throw new Error('Missing configured hero');
-    usePlayerStore.getState().setPlayer({ ...configured,
-      derivedStats: { ...configured.derivedStats, life: 10000, mana: 100 } });
-    useMapStore.getState().setCurrentLocation(1, 'areas/act1-blood-moor');
-    registerSkill({ id: 'fixture.mastery-finisher', archetype: 'fixture', target: 'all-enemies',
-      minLevel: 1, cooldown: 100, manaCost: 0,
-      effects: [{ kind: 'damage', damageType: 'physical', base: [1000000, 1000000] }] });
-    expect(startSubAreaRun({ runSeed: 7, challengeOrdinal: 0 })?.totalWaves).toBeGreaterThan(1);
-    const input = snapshots[0]; if (!input) throw new Error('Missing actual native input');
-    const eligible = classId === 'necromancer';
-    expect(input.skeletonMastery).toEqual(eligible ? composeSkeletonMastery(hero) : undefined);
-    if (eligible) expect(Object.isFrozen(input.skeletonMastery)).toBe(true);
-    const spawned = useCombatStore.getState().recordedEvents.find(e => e.kind === 'summon');
-    if (spawned?.kind !== 'summon') throw new Error('Missing native summon event');
-    expect(spawned.unit.stats.lifeMax).toBeCloseTo(eligible ? 168.48 : 162, 12);
-    expect(spawned.unit.stats.attack).toBeCloseTo(eligible ? 35.7 : 35, 12);
-    expect(spawned.unit.stats.defense).toBeCloseTo(eligible ? 19.19 : 19, 12);
-    expect(useCombatStore.getState().outcome?.winner).toBe('player');
-    const { skeletonMastery: _projection, ...none } = input;
-    const unboosted = original(none).events.find(e => e.kind === 'summon');
-    if (unboosted?.kind !== 'summon') throw new Error('Missing actual unprojected control summon');
-    expect(unboosted.unit.stats.lifeMax).toBe(162);
-    expect(input.playerTeam.find(u => u.id === hero.id)).not.toHaveProperty('skeletonMastery');
-    expect(usePlayerStore.getState().player).not.toHaveProperty('skeletonMastery');
-    // This bounded pair proves wiring; next-wave/respec/replay/carry/save belong Stage C.
   });
 });

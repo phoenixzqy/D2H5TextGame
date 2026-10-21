@@ -2,6 +2,10 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 // Only disk I/O is mocked. Imported L24, ranks, gear and finisher are scaffolding.
 vi.mock('./save-adapter', () => ({ hasSave: vi.fn(), loadSave: vi.fn(),
   saveSave: vi.fn(() => Promise.resolve(undefined)), deleteSave: vi.fn() }));
+import * as combatEngine from '@/engine/combat/combat';
+import type { CombatSnapshot } from '@/engine/combat/combat';
+import { composeSkeletonMastery } from '@/engine/skills/skeleton-mastery';
+import { getSkillsForClass } from './skillsHelpers';
 import { toJsonSafe } from '@/engine/save';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { loadDefaultSkills, registerSkill, resetRegistry } from '@/engine/skills/registry';
@@ -81,9 +85,6 @@ function finalHero() {
 }
 const pools = (hero: ReturnType<typeof currentHero>) => [hero.life, hero.mana,
   hero.manaRegenCarry, hero.manaRegenCompensation, hero.manaRegenExactCarry];
-beforeEach(() => { reset(); resetRegistry(); loadDefaultSkills();
-  vi.spyOn(Date, 'now').mockReturnValue(1792454400000); });
-afterEach(() => { reset(); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });
 
 function expectFreshSummons(life: number, attack: number, defense: number): void {
   expect(useCombatStore.getState().playerTeam.filter(u => u.kind === 'summon' || u.summon)).toEqual([]);
@@ -102,6 +103,9 @@ function setMastery(rank: number): void {
   configure({ skillLevels: { [ACTIVE]: 6, ...(rank > 0 ? { [CANONICAL]: rank } : {}) } });
 }
 describe('P07a05C native Skeleton Mastery wave/replay/save boundaries', () => {
+beforeEach(() => { reset(); resetRegistry(); loadDefaultSkills();
+  vi.spyOn(Date, 'now').mockReturnValue(1792454400000); });
+afterEach(() => { reset(); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });
   it('allocates and upgrades through real actions for fresh next-wave summons without changing current recordings or resource carry', () => {
     arrange(0); start();
     expectFreshSummons(162, 35, 19);
@@ -228,5 +232,104 @@ describe('P07a05C native Skeleton Mastery wave/replay/save boundaries', () => {
     start(); expectFreshSummons(291.6, 49, 22.8);
     expect(currentHero().stats.defense).toBe(100000); expect(player().derivedStats.defense).toBe(100000);
     // Browser disk/reload and earned campaign acceptance remain separate.
+  });
+});
+
+interface ProjectedSnapshot extends CombatSnapshot {
+  readonly skeletonMastery?: NonNullable<ReturnType<typeof composeSkeletonMastery>>;
+}
+function compositionPlayer(patch: Partial<Player> = {}): Player {
+  return { ...createMockPlayer('SkeletonBoundary', 'necromancer'), id: 'hero', level: 24,
+    comboOrder: [], skillLevels: { [CANONICAL]: 1 }, ...patch };
+}
+function resetComposition(): void {
+  __resetPersistenceForTests(); abortSubAreaRun(); resetIdleElitePity();
+  for (const store of stores) store.getState().reset();
+  resetRegistry(); loadDefaultSkills();
+}
+describe('P07a05B actual native store wave wiring', () => {
+  beforeEach(resetComposition);
+  afterEach(() => { resetComposition(); vi.restoreAllMocks(); });
+  it.each(['necromancer', 'sorceress'] as const)('passes authoritative eligibility for%s into real combat', classId => {
+    const snapshots: ProjectedSnapshot[] = [];
+    const original = combatEngine.runBattleRecorded;
+    vi.spyOn(combatEngine, 'runBattleRecorded').mockImplementation(input => {
+      snapshots.push(input); return original(input);
+    });
+    // Imported L24/gear and registered finisher are explicit integration scaffolding, not earned progress.
+    const hero = compositionPlayer({ class: classId, comboOrder: ['necromancer.raise_skeleton', 'fixture.mastery-finisher'],
+      skillLevels: { [CANONICAL]: 1, 'necromancer.raise_skeleton': 6 } });
+    usePlayerStore.getState().setPlayer(hero);
+    const cap: Item = { id: 'fixture-skeleton-cap', baseId: 'items/base/helm-cap', rarity: 'rare',
+      level: 1, identified: true, equipped: false, affixes: [{ affixId: 'fixture-imported',
+        values: new Map([['statMods.life', 100000], ['statMods.defense', 10000], ['statMods.mana', 100]]) }] };
+    useInventoryStore.getState().addItem(cap);
+    expect(useInventoryStore.getState().equipItem(cap)).toEqual({ ok: true });
+    const configured = usePlayerStore.getState().player;
+    if (!configured) throw new Error('Missing configured hero');
+    usePlayerStore.getState().setPlayer({ ...configured,
+      derivedStats: { ...configured.derivedStats, life: 10000, mana: 100 } });
+    useMapStore.getState().setCurrentLocation(1, 'areas/act1-blood-moor');
+    registerSkill({ id: 'fixture.mastery-finisher', archetype: 'fixture', target: 'all-enemies',
+      minLevel: 1, cooldown: 100, manaCost: 0,
+      effects: [{ kind: 'damage', damageType: 'physical', base: [1000000, 1000000] }] });
+    expect(startSubAreaRun({ runSeed: 7, challengeOrdinal: 0 })?.totalWaves).toBeGreaterThan(1);
+    const input = snapshots[0]; if (!input) throw new Error('Missing actual native input');
+    const eligible = classId === 'necromancer';
+    expect(input.skeletonMastery).toEqual(eligible ? composeSkeletonMastery(hero) : undefined);
+    if (eligible) expect(Object.isFrozen(input.skeletonMastery)).toBe(true);
+    const spawned = useCombatStore.getState().recordedEvents.find(e => e.kind === 'summon');
+    if (spawned?.kind !== 'summon') throw new Error('Missing native summon event');
+    expect(spawned.unit.stats.lifeMax).toBeCloseTo(eligible ? 168.48 : 162, 12);
+    expect(spawned.unit.stats.attack).toBeCloseTo(eligible ? 35.7 : 35, 12);
+    expect(spawned.unit.stats.defense).toBeCloseTo(eligible ? 19.19 : 19, 12);
+    expect(useCombatStore.getState().outcome?.winner).toBe('player');
+    const { skeletonMastery: _projection, ...none } = input;
+    const unboosted = original(none).events.find(e => e.kind === 'summon');
+    if (unboosted?.kind !== 'summon') throw new Error('Missing actual unprojected control summon');
+    expect(unboosted.unit.stats.lifeMax).toBe(162);
+    expect(input.playerTeam.find(u => u.id === hero.id)).not.toHaveProperty('skeletonMastery');
+    expect(usePlayerStore.getState().player).not.toHaveProperty('skeletonMastery');
+    // This bounded pair proves wiring; next-wave/respec/replay/carry/save belong Stage C.
+  });
+});
+
+describe('D06 corpse-summon adapter boundary before policy switch', () => {
+  function eligible(cls: 'druid' | 'necromancer', name: string): Player {
+    const canonical = `${cls}.${name}`;
+    const fresh = createMockPlayer('ImportedPreparation', cls);
+    const prerequisites = Object.fromEntries(getSkillsForClass(cls).map(skill => [skill.id, 1]));
+    return { ...fresh, level: 30, comboOrder: [canonical],
+      skillLevels: { ...prerequisites, [canonical]: 2 } };
+  }
+  beforeEach(() => {
+    useInventoryStore.getState().reset();
+    useFormationStore.getState().reset();
+  });
+  afterEach(() => {
+    useInventoryStore.getState().reset();
+    useFormationStore.getState().reset();
+  });
+  it('excludes scoped foreign-class skills while preserving every unrelated/excluded slot and rank', () => {
+    const p = eligible('druid', 'raven');
+    const skillLevels = { ...p.skillLevels, 'amazon.valkyrie': 20,
+      'necromancer.raise_skeleton': 12, 'necromancer.iron_golem': 1, 'fixture.summon': 7 };
+    const order = ['amazon.valkyrie', 'skills-amazon-valkyrie', 'necromancer.raise_skeleton',
+      'skills-necromancer-raise-skeletal-mage', 'necromancer.revive', 'necromancer.iron_golem',
+      'fixture.summon', 'druid.firestorm'];
+    const before = structuredClone({ ...p, skillLevels, comboOrder: order });
+    const result = playerToCombatUnit(before);
+    expect(result.skillOrder).toEqual(order.slice(2));
+    expect(result.skillLevels).toEqual(skillLevels);
+    expect(before.skillLevels).toEqual(skillLevels);
+    expect(before.comboOrder).toEqual(order);
+  });
+
+  it('keeps generic unrelated and excluded production behavior when the allocation map is absent', () => {
+    const { skillLevels: _levels, ...rest } = eligible('necromancer', 'clay_golem');
+    const result = playerToCombatUnit({ ...rest, comboOrder: ['necromancer.clay_golem',
+      'necromancer.raise_skeleton', 'fixture.unrelated'] });
+    expect(result.skillOrder).toEqual(['necromancer.raise_skeleton', 'fixture.unrelated']);
+    expect(result.skillLevels).toEqual({});
   });
 });
