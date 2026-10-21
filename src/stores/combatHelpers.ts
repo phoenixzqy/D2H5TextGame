@@ -47,8 +47,8 @@ import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-
 import { composeSkeletonMastery } from '@/engine/skills/skeleton-mastery';
 import { isPreparationSummonSkill } from '@/engine/skills/summon-preparation';
 import { isIronGolemSkill } from '@/engine/skills/iron-golem';
-import { clearIronGolemSelectionAfterRestore } from './ironGolemSelectionStore';
-import { assertWaveRestoreOwner, type WaveRestoreLease } from './waveTransitionGuard';
+import { clearIronGolemSelection, clearIronGolemSelectionAfterRestore } from './ironGolemSelectionStore';
+import { assertWaveRestoreOwner, assertWaveSnapshotAllowed, type WaveRestoreLease } from './waveTransitionGuard';
 import { canonicalSkillIdFromData, getSkillRequiredLevel, getSkillsForClass,
   skillIdAliases, type SkillTemplate } from './skillsHelpers';
 
@@ -659,9 +659,14 @@ export function clearCombatAfterRestore(lease: WaveRestoreLease): void {
   clearIronGolemSelectionAfterRestore(lease);
 }
 
-/** Tear down the active run without touching combat state. */
+/**
+ * Abandon the active run and armed selection; recording reset belongs to the caller.
+ * Throws WaveGuardError before any change during wave or restore ownership.
+ */
 export function abortSubAreaRun(): void {
+  assertWaveSnapshotAllowed();
   activeRun = null;
+  clearIronGolemSelection();
 }
 
 /**

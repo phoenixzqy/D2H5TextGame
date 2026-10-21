@@ -14,6 +14,7 @@ import { useFormationStore } from './formationStore';
 import { useMetaStore } from './metaStore';
 import { armIronGolemSelection, useIronGolemSelectionStore } from './ironGolemSelectionStore';
 import * as publication from './recordedBattlePublication';
+import { beginWaveTransition, endWaveTransition, reserveWaveRestore, releaseWaveRestore, WaveGuardError } from './waveTransitionGuard';
 
 const stores = [useCombatStore, usePlayerStore, useInventoryStore, useMercStore,
   useMapStore, useFormationStore, useMetaStore] as const;
@@ -129,5 +130,49 @@ describe('accepted new-run publication', () => {
     const first = start();
     expect(start({ challengeOrdinal: 23 }).challengeOrdinal).toBe(23);
     expect(start().challengeOrdinal).toBe((first.challengeOrdinal + 1) % period);
+  });
+});
+
+
+describe('explicit abort ownership and selection cleanup', () => {
+  it.each([
+    { owner: 'wave', active: true }, { owner: 'restore', active: true },
+    { owner: 'wave', active: false }, { owner: 'restore', active: false }
+  ] as const)('refuses $owner ownership with active=$active before any transient mutation', ({ owner, active }) => {
+    start();
+    if (!active) abortSubAreaRun();
+    const selection = armIronGolemSelection('hero', 'abort-selection', true);
+    const before = stores.map(store => store.getState());
+    const notified = vi.fn();
+    const stops = [...stores.map(store => store.subscribe(notified)), useIronGolemSelectionStore.subscribe(notified)];
+    const wave = owner === 'wave' ? beginWaveTransition(true) : undefined;
+    const restore = owner === 'restore' ? reserveWaveRestore() : undefined;
+    try {
+      expect(() => { abortSubAreaRun(); }).toThrow(WaveGuardError);
+      expect(() => { abortSubAreaRun(); }).toThrow(owner === 'wave' ? 'waveBusy' : 'restorePending');
+      expect(hasActiveSubAreaRun()).toBe(active);
+      stores.forEach((store, index) => { expect(store.getState()).toBe(before[index]); });
+      expect(useIronGolemSelectionStore.getState().selection).toBe(selection);
+      expect(notified).not.toHaveBeenCalled();
+    } finally {
+      stops.forEach(stop => { stop(); });
+      if (wave) endWaveTransition(wave);
+      if (restore) releaseWaveRestore(restore);
+    }
+    abortSubAreaRun();
+    expect(hasActiveSubAreaRun()).toBe(false);
+    expect(useIronGolemSelectionStore.getState().selection).toBeNull();
+    expect(useCombatStore.getState()).toBe(before[0]); // Recording remains the caller's responsibility.
+  });
+
+  it('clears an armed instruction with no active run while preserving the recording and persistent domains', () => {
+    start();
+    abortSubAreaRun();
+    armIronGolemSelection('hero', 'no-run-selection', true);
+    const before = stores.map(store => store.getState());
+    abortSubAreaRun();
+    expect(hasActiveSubAreaRun()).toBe(false);
+    expect(useIronGolemSelectionStore.getState().selection).toBeNull();
+    stores.forEach((store, index) => { expect(store.getState()).toBe(before[index]); });
   });
 });

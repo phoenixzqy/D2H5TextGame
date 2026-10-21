@@ -4198,3 +4198,62 @@ Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
 released. Producer publication review remains before commit. Disposable outputs
 remain until all readers release; diagnostics are retained. Root is sole
 writer/executor; no remote action or persistent browser/server.
+
+
+## D06 v1h guarded explicit abort and combat exits
+
+Successful-restore cleanup received QA, TD/five-axis and producer APPROVE and
+committed as `84e3c6f`. Exact cleanup removed857files/42,723,606bytes and14 empty
+directories, zero failures/remaining targets (restore-cleanup-cleanup.json).
+
+TD approved this five-path abort/API/UI slice. abortSubAreaRun checks snapshot
+ownership before clearing the actual run and armed selection, including when no
+run exists. It retains recording for its caller. Flee and Stop Idle attempt abort
+before setting the hidden exiting ref, changing idle/pity/combat state or routing.
+Typed guard refusal produces the existing bilingual accessible common:error
+alert; unexpected exceptions rethrow. No receipt exists yet.
+
+Initial API RED5/25 and UI RED8/18 demonstrate the missing refusal and UI ordering.
+Five API tests cover wave/restore ownership with/without a run, exact root and
+selection retention, no notifications, successful retry and recording retention.
+Eight real-store/router UI cases cover both exits, both owners and both locales.
+After refusal/release, a normal endCombat triggers auto-start, proving the hidden
+exiting ref was not poisoned; successful retry then exits. Playback is paused
+before reference capture, and subscriptions/leases are released in finally.
+Historical RED outputs and source identities remain separate from final evidence.
+
+Initial green focused115/4files7.989s, types14.723s, lint38.698s, full6481/219files
+116.426s and build10.163s passed. Independent QA found the auto-start proof was
+not discriminating: endCombat alone changes events to empty while retaining the
+run. Assertions now require inCombat true, populated new events, expected run ID
+and nonnull outcome. A deliberate pre-abort exiting-ref mutation fails all8cases
+at the new inCombat assertion (13.385s); restored production ordering passes.
+Final focused84/4files17.348s, types24.333s, lint63.271s including85 engine purity
+files, full6481/219files111.392s and production build9.698s passed. Related5s
+and full15s budgets remain unmet. Existing React act, stale Browserslist, chunk
+size and precache diagnostics remain open. SaveCurrent11 remains unchanged.
+
+Production Chromium20.518s exercised fresh hero creation, map entry, keyboard
+Flee, re-entry and click Flee at320x640,360x640,412x915,640x360,768x1024,1024x800,
+1280x800,1440x900,1920x1080. All passed with no horizontal overflow, Flee target
+68.8125x48 and no console warnings/errors/page errors. Inspected360/1280 screenshots
+confirm geometry; missing Chinese glyphs limit typography acceptance. Guard
+refusal and Stop Idle are component-tested, not injected browser acceptance.
+Only the runner-owned preview PID was terminated and waited; browser contexts
+closed. Browser scripts and server metadata/log are bound into this review.
+
+Security check passes for local typed ownership refusals and side-effect ordering.
+No production wave/debit caller is enabled. Public hero replacement cleanup,
+exact receipt/conflict/publication recovery, settlement, locked replay and
+bilingual Iron UI/browser acceptance remain pending. Full Iron/D06/P09/P10 and
+private-v1 remain open.
+
+The five repository paths, browser scripts/server receipts, all abort-ui command
+identities and exact owned dist/tmp inventory are frozen in abort-ui-v2-review.json
+under /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Initial abort-ui-review.json and QA CONCERNS remain historical evidence; its
+readers released before correction. Revised independent QA and TD/five-axis
+reviews APPROVED the frozen scope; all readers released. Producer publication
+review remains before commit. Disposable outputs remain until all readers
+release; diagnostics are retained. Root is sole writer/executor; umbrella claim
+continues; no remote action or persistent server.

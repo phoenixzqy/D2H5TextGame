@@ -22,6 +22,7 @@ import {
   resetIdleElitePity,
   resolveCombatUnitDisplayName
 } from '@/stores/combatHelpers';
+import { WaveGuardError } from '@/stores/waveTransitionGuard';
 import { nextSubAreaInAct } from '@/stores/subAreaResolver';
 import type { CombatLogEntry } from '@/stores/combatStore';
 import type { RecordedBattleEvent } from '@/engine/combat/combat';
@@ -93,6 +94,7 @@ export function CombatScreen() {
   const recentLog = useMemo(() => log.slice(-MAX_LOG), [log]);
   const [speed, setSpeed] = useState<Speed>(1);
   const [formationOpen, setFormationOpen] = useState(false);
+  const [exitFailed, setExitFailed] = useState(false);
   // Inter-wave countdown banner; null = no pending advance.
   const [nextWaveCountingDown, setNextWaveCountingDown] = useState(false);
   const isIdleLoop = Boolean(idleTarget && currentSubAreaId && (idleTarget === currentSubAreaId || idleTarget === currentSubAreaId.replace(/^areas\/act([1-5])-/, 'a$1-')));
@@ -182,9 +184,15 @@ export function CombatScreen() {
   // Mid-run flee: a sub-area run is in flight → bail to the world map (#21).
   // Synthetic / no-run battles fall through to the town hub as before.
   const handleFlee = () => {
-    exiting.current = true;
     const wasInRun = hasActiveSubAreaRun() || subAreaRunId !== null;
-    abortSubAreaRun();
+    try {
+      abortSubAreaRun();
+    } catch (error) {
+      if (!(error instanceof WaveGuardError)) throw error;
+      setExitFailed(true);
+      return;
+    }
+    exiting.current = true;
     if (wasInRun) {
       setIdleTarget(undefined);
       resetIdleElitePity();
@@ -236,10 +244,16 @@ export function CombatScreen() {
   }, [endCombat, isIdleLoop, runDefeat, runVictory, setIdleTarget]);
 
   const handleStopIdle = () => {
+    try {
+      abortSubAreaRun();
+    } catch (error) {
+      if (!(error instanceof WaveGuardError)) throw error;
+      setExitFailed(true);
+      return;
+    }
     exiting.current = true;
     setIdleTarget(undefined);
     resetIdleElitePity();
-    abortSubAreaRun();
     endCombat();
     navigate('/map');
   };
@@ -364,6 +378,7 @@ export function CombatScreen() {
         </div>
       }
     >
+      {exitFailed && <p role="alert" className="mx-auto mt-3 max-w-6xl px-4 text-red-400">{t('common:error')}</p>}
       <Battlefield
         allies={orderAlliesWithSummons(playerTeam)}
         enemies={enemyTeam}

@@ -14,6 +14,9 @@ import { useCombatStore, useFormationStore, useInventoryStore, useMapStore,
   useMercStore, useMetaStore, usePlayerStore } from '@/stores';
 import { abortSubAreaRun, hasActiveSubAreaRun } from '@/stores/combatHelpers';
 import type { Item } from '@/engine/types/items';
+import { armIronGolemSelection, useIronGolemSelectionStore } from '@/stores/ironGolemSelectionStore';
+import { beginWaveTransition, endWaveTransition, reserveWaveRestore, releaseWaveRestore } from '@/stores/waveTransitionGuard';
+import { getIdleEliteMisses } from '@/stores/idleElitePity';
 import { CombatScreen } from './CombatScreen';
 
 function reset() {
@@ -152,4 +155,59 @@ describe('explicit terminal exits and intentional restarts', () => {
       expect(useMetaStore.getState().idleState.idleTarget).toBe('areas/act1-blood-moor');
     });
   }
+});
+
+
+describe.each(['en', 'zh-CN'] as const)('guarded combat exit feedback in %s', locale => {
+  it.each([
+    { idle: false, owner: 'wave' }, { idle: true, owner: 'wave' },
+    { idle: false, owner: 'restore' }, { idle: true, owner: 'restore' }
+  ] as const)('keeps idle=$idle state intact during $owner ownership and allows retry', async ({ idle, owner }) => {
+    await i18n.changeLanguage(locale);
+    const { player } = arrange(idle);
+    act(() => { useCombatStore.getState().pausePlayback(); }); // Isolate the handler from playback timers.
+    const selection = armIronGolemSelection(player.id, 'exit-selection', true);
+    const stores = [useCombatStore, useFormationStore, useInventoryStore, useMapStore,
+      useMercStore, useMetaStore, usePlayerStore] as const;
+    const before = stores.map(store => store.getState());
+    const recording = useCombatStore.getState().recordedEvents;
+    const pity = getIdleEliteMisses();
+    const notified = vi.fn();
+    const stops = [...stores.map(store => store.subscribe(notified)), useIronGolemSelectionStore.subscribe(notified)];
+    const wave = owner === 'wave' ? beginWaveTransition(true) : undefined;
+    const restore = owner === 'restore' ? reserveWaveRestore() : undefined;
+    const label = i18n.t(idle ? 'combat:idleLoop.stop' : 'combat:flee');
+    try {
+      fireEvent.click(screen.getByRole('button', { name: label }));
+      expect(screen.getByRole('alert')).toHaveTextContent(i18n.t('common:error'));
+      expect(screen.getByTestId('combat-screen')).toBeVisible();
+      expect(screen.queryByTestId('map-screen')).not.toBeInTheDocument();
+      expect(hasActiveSubAreaRun()).toBe(true);
+      stores.forEach((store, index) => { expect(store.getState()).toBe(before[index]); });
+      expect(useIronGolemSelectionStore.getState().selection).toBe(selection);
+      expect(getIdleEliteMisses()).toBe(pity);
+      expect(notified).not.toHaveBeenCalled();
+    } finally {
+      stops.forEach(stop => { stop(); });
+      if (wave) endWaveTransition(wave);
+      if (restore) releaseWaveRestore(restore);
+    }
+    // A rejected exit must not leave the hidden exiting ref set: auto-start still runs.
+    act(() => { useCombatStore.getState().endCombat(); });
+    expect(hasActiveSubAreaRun()).toBe(true);
+    const restarted = useCombatStore.getState();
+    expect(restarted.inCombat).toBe(true);
+    expect(restarted.recordedEvents.length).toBeGreaterThan(0);
+    expect(restarted.recordedEvents).not.toBe(recording);
+    expect(restarted.subAreaRunId).toBe('areas/act1-blood-moor');
+    expect(restarted.outcome).not.toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: label }));
+    await screen.findByTestId('map-screen');
+    expect(hasActiveSubAreaRun()).toBe(false);
+    expect(useIronGolemSelectionStore.getState().selection).toBeNull();
+    expect(useMetaStore.getState().idleState.idleTarget).toBeUndefined();
+    expect(useCombatStore.getState()).toMatchObject({
+      inCombat: false, recordedEvents: [], outcome: null, subAreaRunId: null
+    });
+  });
 });
