@@ -53,6 +53,16 @@ export function releaseWaveRestore(lease: WaveRestoreLease): void {
   if (!restores.delete(lease)) throw new WaveGuardError('invalidLease');
 }
 
+/** Validate an active wave owner before privileged transient-state access. */
+export function assertWaveTransitionOwner(lease: WaveTransitionLease): void {
+  if (lease !== activeWave) throw new WaveGuardError('invalidLease');
+}
+
+/** Validate a still-reserved restore owner before successful-install cleanup. */
+export function assertWaveRestoreOwner(lease: WaveRestoreLease): void {
+  if (!restores.has(lease)) throw new WaveGuardError('invalidLease');
+}
+
 /** Refuse snapshots during synchronous transitions or unresolved restore ownership. */
 export function assertWaveSnapshotAllowed(): void {
   if (activeWave) throw new WaveGuardError('waveBusy');

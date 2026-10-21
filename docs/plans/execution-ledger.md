@@ -3491,3 +3491,51 @@ publication awaits producer scope review; root remains sole executor. Evidence s
 awaiting durable retention. FullD06/P09/P10, earned supply/balance, disclosed
 performance/platform/PWA/a11y and private-v1 gates stay open. Umbrella claim
 continues; no remote action.
+
+
+## D06 v1d inactive acknowledged-selection lifecycle foundation
+
+Wave guard received producer APPROVE and committed as `1ba26e0`. After every
+reader released, root verified and removed its exact1300 task disposable files/
+43,813,220bytes and14 empty directories, zero failures. Actual cleanup is retained
+as `guard-cleanup.json`; source/failure/command diagnostics remain intact.
+
+TD plan-review returned `ready` for this four-path subincrement: new transient
+`ironGolemSelectionStore.ts`,19 tests, two read-only exact-owner assertions in
+`waveTransitionGuard.ts`, and this ledger. The Zustand slice stores only a frozen
+explicit `{heroId,itemId}` instruction after acknowledgement, with a fresh identity
+even for same-ID rearming. Public arm/clear refuse active wave or reserved restore
+ownership. Accepted-wave consumption validates the exact active lease first, then
+compares selection references including null; mismatch never clears a later rearm.
+Successful-restore clearing requires a still-reserved exact restore lease. Caller
+acceptance/success is not inferred; staging/import failure callers do not clear.
+Synchronous observers may throw after an installed clear; no rollback is claimed.
+
+Initial RED was missing-module collection/no tests. The basic lifecycle without
+ownership checks then produced6fail/13pass. Exact guard assertions and checks pass
+all19 cases; the held-failure fixture now releases its read/restore in finally even
+if an assertion fails. First lint found one void-expression shorthand callback;
+adding braces changed no assertion. All original failed and pre-correction source/
+output receipts remain retained. Final serial gates bind unchanged source/test
+bytes: focused60/3files (19 lifecycle+13 guard+28 ownership),types14.154s,
+lint37.006s including engine purity,full unit6189/213files (109.210s wrapper),
+normal production build9.791s. No engine source changed; full unit includes engine
+regressions. The15s full-suite budget remains unmet. Stale Browserslist, >500kB
+chunk and2.57MB generated-manifest precache warnings remain open.
+
+Security check passes for this transient typed action boundary. No production
+consumer, item reservation/eligibility/debit, engine input, receipt, run/reward/
+replay action, persistence serialization or player-facing control is enabled.
+The module's acknowledgement flag does not establish visible UI acceptance.
+Actual accepted-failure clearing, technical-failure retention, abort/hero replacement
+and failed/successful restore behavior require future caller integration tests.
+This unused foundation has no browser/runtime acceptance.
+
+Independent QA and TD/five-axis source reviews APPROVED all four frozen paths
+and10 receipt/source/output identities; all readers released. Status-only
+publication awaits producer scope review; root remains sole writer/executor. Evidence stays under
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les`.
+Exact task-owned `dist`/`tmp` outputs stay until all readers release; original
+diagnostics await durable retention. Full Iron/D06/P09/P10, earned supply/balance,
+performance/platform/PWA/a11y and private-v1/C0–C4/G0–G7 remain open. Umbrella
+claim continues; no remote action.
