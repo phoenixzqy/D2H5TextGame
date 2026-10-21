@@ -78,7 +78,7 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 #### Active Skills (6)
 | ID | Name (EN / ZH) | Element | Target | Base Dmg (L1) | CD | Mana | Status | Notes |
 |---|---|---|---|---|---|---|---|---|
-| `necromancer.raise_skeleton` | Raise Skeleton / 召唤骷髅 | — | Self | — | — | 15 | Summon | Max skeletons scale by skill level: L1→1, L2→2, L3→3, then +1 every 3 levels (L6→4, L9→5, L12→6). |
+| `necromancer.raise_skeleton` | Raise Skeleton / 召唤骷髅 | — | Self | — | — | 15 | Summon | Existing authored cap: ranks1–5→1,6–11→2,12–20→3. Corpse/preparation policy remains deferred; see D06 v1b. |
 | `necromancer.corpse_explosion` | Corpse Explosion / 尸体爆炸 | Fire | All | 50–80 | 2 | 20 | Burn | Requires corpse (on-kill) |
 | `necromancer.poison_nova` | Poison Nova / 剧毒新星 | Poison | All | 20–30 | 3 | 25 | Poison (2 stacks) | Low base, high stack scaling |
 | `necromancer.bone_spear` | Bone Spear / 白骨之矛 | Arcane | Single | 60–90 | 1 | 20 | — | Ignores armor |
@@ -169,7 +169,7 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 | `druid.firestorm` | Firestorm / 火焰风暴 | Fire | All | 40–60 | 2 | 20 | Burn | AOE fire |
 | `druid.arctic_blast` | Arctic Blast / 极地风暴 | Cold | Cone | 50–70 | 2 | 25 | Chill | Cone cold |
 | `druid.tornado` | Tornado / 龙卷风 | Physical | Cone | 60–90 | 2 | 30 | — | Physical AOE |
-| `druid.summon_dire_wolf` | Summon Dire Wolf / 召唤狼 | — | Self | — | — | 20 | Summon | Max 3 wolves |
+| `druid.summon_dire_wolf` | Summon Dire Wolf / 召唤狼 | — | Self | — | — | 20 | Summon | Existing authored cap: L1/2/3/6/20→1/2/3/4/8; see D06 v1b (no new tuning). |
 | `druid.werewolf_maul` | Werewolf: Maul / 狼人：撕咬 | Physical | Single | 80–120 | 1 | 15 | Bleed | High single-target |
 | `druid.hurricane` | Hurricane / 飓风 | Cold | All | 70–100 | 4 | 50 | Chill | Ultimate cold AOE |
 
@@ -304,11 +304,19 @@ authored, save, selection, exact interval and runtime contracts.
 ## 7. Summon Skills
 
 ### 7.1 Summoning Behavior
-- **Summons spawn at combat start** if skill is slotted.
-- **Max count:** Defined per skill. Static caps are allowed (e.g., 3 wolves, 1 golem), but D2-style summon skills may declare a level-scaling cap.
-- **Raise Skeleton cap:** `level <= 0 ? 0 : level <= 3 ? level : 3 + floor((level - 3) / 3)`. Soft +skills count toward this effective level once item skill bonuses are wired.
-- **Re-summon mid-combat:** If active summons fall below cap and the skill is available, the caster may re-summon instead of basic-attacking.
-- **Summon stats scale with skill level** (HP, damage, attack speed).
+
+[D06 v1b](../plans/decisions/D06-summon-preparation-v1.md) is the scoped policy
+contract for thirteen summon skills without corpse/item inputs. Runtime validation
+is still pending; this specification does not claim the current engine already
+implements preparation batches.
+
+- **Startup:** learned, unlocked, prerequisite-eligible and slotted scoped skills prepare once at time0 of each battle/wave, in stable owner/skill order; canonical/authored alias duplicates count once. Require living opposing sides; initially terminal battles skip scoped preparation (a new policy, not a claim about current startup). Fill only missing living owner/template units, preserving preloaded units and existing positions/identity.
+- **Payment:** one existing rank-adjusted mana cost per missing-count batch; zero missing costs nothing. Insufficient mana or invalid template/input spawns nothing, spends nothing and receives no later retry. No ordinary action is consumed. Ignore only the scoped skill's stale carried cooldown for startup; set its normal resulting cooldown once, without clearing unrelated cooldowns.
+- **Replacement/death:** scoped skills never cast during ordinary actions. Preparation-enabled owner/template pairs govern matching new/preloaded deaths without mana refunds or cooldown resets; template identity alone does not suppress synthetic legacy behavior. Excluded/synthetic prior behavior remains unaccepted, unchanged until its own reviewed slice; do not globally delete the old replacement/refund branch.
+- **Caps:** use current authored per-skill curves, without tuning. Raise Skeleton remains ranks1–5→1,6–11→2,12–20→3 (its external-input behavior is deferred). Dire Wolf/Raven/Spirit Wolf use the existing first-three-then-every-three curve: ranks1/2/3/6/20→1/2/3/4/8. Singleton templates remain1. Preserve owner/exacttemplate coexistence; no new shared family exclusivity or total-unit cap.
+- **External inputs:** Raise Skeleton, Skeletal Mage and Revive still require an explicit corpse preparation/consumption contract; Iron Golem still requires an eligible selected metal inventory instance. D06 v1b excludes these four from its first runtime change and does not authorize unlimited corpses or a template-only Iron Golem.
+- **Wave resources:** preserve accepted D04 transient-summon rebuild and hero/merc resource carry. Each wave's batch pays actual carried mana; no automatic refill or campaign/balance acceptance follows.
+- **Summon stats** retain current skill-rank scaling/passives. Production uses authoritative allocated rank; standalone synthetic rank1 fallback is compatibility only, not proof of player learning eligibility.
 
 ### 7.2 Summon AI
 - **Melee summons:** Target nearest enemy, basic attack.
