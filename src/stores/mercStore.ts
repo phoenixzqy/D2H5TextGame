@@ -5,6 +5,7 @@
  */
 
 import { create } from 'zustand';
+import { assertIronGolemOwnershipMutationAllowed } from './waveTransitionGuard';
 import type { Mercenary } from '@/engine/types/entities';
 import type { EquipmentSlot, Item, ItemBase } from '@/engine/types/items';
 import { loadItemBases } from '@/data/loaders/loot';
@@ -194,10 +195,13 @@ function returnedItem(item: Item): Item {
   return { ...fields, equipped: false };
 }
 
+/** Ownership actions throw WaveGuardError(itemDebitBusy) during the sole Iron debit write. */
 export const useMercStore = create<MercState>((set, get) => ({
   ...initialState,
   
-  addMerc: (merc) => { set((state) => {
+  addMerc: (merc) => {
+    assertIronGolemOwnershipMutationAllowed();
+    set((state) => {
     if (state.ownedMercs.some((m) => m.id === merc.id)) {
       console.warn('Mercenary already owned:', merc.id);
       return state;
@@ -210,6 +214,7 @@ export const useMercStore = create<MercState>((set, get) => ({
   }); },
 
   hireMerc: (def) => {
+    assertIronGolemOwnershipMutationAllowed();
     const state = get();
     if (state.ownedMercs.some((merc) => merc.id.split('#')[0] === def.id)) {
       return { ok: false, reason: 'already-owned' };
@@ -220,7 +225,9 @@ export const useMercStore = create<MercState>((set, get) => ({
     return { ok: true, mercId: merc.id };
   },
   
-  removeMerc: (mercId) => { set((state) => {
+  removeMerc: (mercId) => {
+    assertIronGolemOwnershipMutationAllowed();
+    set((state) => {
     const { [mercId]: _eq, ...restEq } = state.mercEquipment;
     void _eq;
     const { [mercId]: _pg, ...restPg } = state.mercProgress;
@@ -256,6 +263,7 @@ export const useMercStore = create<MercState>((set, get) => ({
   }); },
 
   dismissMerc: (mercId) => {
+    assertIronGolemOwnershipMutationAllowed();
     const state = get();
     if (state.hasEquippedItems(mercId)) return false;
     state.removeMerc(mercId);
@@ -268,6 +276,7 @@ export const useMercStore = create<MercState>((set, get) => ({
   },
 
   equipOnMerc: (mercId, slot, requestedItem) => {
+    assertIronGolemOwnershipMutationAllowed();
     const state = get();
     if (!state.ownedMercs.some(merc => merc.id === mercId)) return { ok: false, reason: 'merc_not_owned' };
     const inventory = useInventoryStore.getState();
@@ -289,6 +298,7 @@ export const useMercStore = create<MercState>((set, get) => ({
   },
 
   unequipFromMerc: (mercId, slot) => {
+    assertIronGolemOwnershipMutationAllowed();
     const state = get();
     if (!state.ownedMercs.some(merc => merc.id === mercId)) return { ok: false, reason: 'merc_not_owned' };
     const current = state.mercEquipment[mercId] ?? {};
@@ -372,5 +382,5 @@ export const useMercStore = create<MercState>((set, get) => ({
     state.addExperience(id, share);
   },
   
-  reset: () => { set(initialState); }
+  reset: () => { assertIronGolemOwnershipMutationAllowed(); set(initialState); }
 }));

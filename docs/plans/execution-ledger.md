@@ -3819,3 +3819,61 @@ diagnostics remain retained.
 Full Iron/D06/P09/P10, receipt/caller/replay/persistence/UI, earned supply/balance,
 performance/platform/PWA/a11y and private-v1/C0–C4/G0–G7 remain open. Umbrella
 claim continues; root is sole writer/executor; no remote action.
+
+
+## D06 v1d inventory and mercenary ownership action guards
+
+Complete staged publication received QA, TD/five-axis and producer APPROVE and
+committed as `5665460`. After all readers released, exact cleanup removed1300
+files/43,816,237bytes and14 empty directories, zero failures or remaining targets;
+`iron-payload-cleanup.json` preserves actual results and diagnostics remain.
+
+TD plan-review returned `ready` for this four-path increment: inventory store,
+mercenary store, new ownership-guard tests and this ledger. Ownership-changing
+public actions now check the existing exact-debit guard at entry before item
+reads, factories, preflight and cross-store writes. Inventory add (backpack/stash),
+remove, discard, bulk-discard, equip, unequip, both transfers and reset are covered;
+mercenary add, hire, remove, dismiss, equip, unequip and reset are covered.
+They throw typed WaveGuardError with code itemDebitBusy only while the sole
+Iron debit write owns that window. Currency/read-only actions and mercenary
+fielding/level/XP remain available without changing the four ownership roots.
+No generalized setter wrapper or transaction framework was introduced.
+
+41 new tests exercise17 action cases with realistic sources and successful
+outside-debit mutations, refusal before any inventory/merc/player notification,
+exact unchanged state references and contents, caller-item getter traps proving
+entry-before-read, caught/uncaught observer refusal after the sole direct backpack
+installation, finally-release restoring usable transfers, and currency/read/merc
+progression controls retaining all ownership references. Initial RED24failed/
+17passed included one test-fixture error: shared XP floors75percent, so sharing1
+adds0. The corrected control shares2 and asserts literal total2; source-before-fix
+RED23failed/18passed preserves genuine guard failures. Initial lint found test
+void-arrow and unsafe generic matcher usage; explicit blocks and an unknown-typed
+single-call refusal helper corrected those without weakening assertions.
+
+Final unchanged source/test gates: focused129/7files (41new,12.583s wrapper),
+types15.578s,lint42.179s including85 engine purity files,full unit6396/218files
+(117.434s),normal production build11.187s. Earlier RED, test corrections and
+superseded checks retain separate command/source/output identities. Related5s
+and full15s budgets remain unmet; existing stale Browserslist, >500kB chunk and
+2.57MB manifest-precache warnings remain open. No engine source change or browser
+Iron acceptance occurred.
+
+Security check passes for these local typed entry guards. Their scope is these
+store actions, not arbitrary raw setters/reference mutation. Persistence and
+character replacement and quest/internal rollback are supported integration paths
+that still require their own guards before production debit activation. No
+production debit-window caller is enabled; inventory payment, receipt lifecycle,
+new-wave staging/settlement/recovery, replay lock behavior, persistence coordination
+and bilingual UI remain pending. No saved shape or migration changes occur here.
+
+Exact four-path source and all command/output/disposable identities are frozen in
+`ownership-guard-review.json` under
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les`.
+Independent QA and TD/five-axis reviews APPROVED the frozen source scope; all
+readers released. Only producer publication scope review remains pending before
+commit. Exact owned dist/tmp disposables stay until readers release; diagnostic
+evidence is retained.
+Full Iron/D06/P09/P10, earned supply/balance, performance/platform/PWA/a11y and
+private-v1/C0–C4/G0–G7 remain open. Umbrella claim continues; root remains sole
+writer/executor; no remote action.

@@ -15,6 +15,7 @@ import {
 } from '@/features/inventory/compareEquip';
 import { usePlayerStore } from './playerStore';
 import { BACKPACK_CAPACITY, STASH_CAPACITY } from './inventoryCapacity';
+import { assertIronGolemOwnershipMutationAllowed } from './waveTransitionGuard';
 
 interface EquipSuccess {
   ok: true;
@@ -91,27 +92,36 @@ function isTwoHandedBase(base: ItemBase | undefined): boolean {
   return isTwoHanded(base);
 }
 
+/** Ownership actions throw WaveGuardError(itemDebitBusy) during the sole Iron debit write. */
 export const useInventoryStore = create<InventoryState>((set, get) => ({
   ...initialState,
   
-  addItem: (item, toStash = false) => { set((state) => {
+  addItem: (item, toStash = false) => {
+    assertIronGolemOwnershipMutationAllowed();
+    set((state) => {
     const target = toStash ? 'stash' : 'backpack';
     return {
       [target]: [...state[target], item]
     };
   }); },
   
-  removeItem: (itemId) => { set((state) => ({
+  removeItem: (itemId) => {
+    assertIronGolemOwnershipMutationAllowed();
+    set((state) => ({
     backpack: state.backpack.filter((i) => i.id !== itemId),
     stash: state.stash.filter((i) => i.id !== itemId)
   })); },
 
-  discardItem: (itemId) => { set((state) => ({
+  discardItem: (itemId) => {
+    assertIronGolemOwnershipMutationAllowed();
+    set((state) => ({
     backpack: state.backpack.filter((i) => i.id !== itemId),
     stash: state.stash.filter((i) => i.id !== itemId)
   })); },
 
-  bulkDiscard: (itemIds) => { set((state) => {
+  bulkDiscard: (itemIds) => {
+    assertIronGolemOwnershipMutationAllowed();
+    set((state) => {
     const ids = new Set(itemIds);
     return {
       backpack: state.backpack.filter((i) => !ids.has(i.id)),
@@ -120,6 +130,7 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
   }); },
   
   equipItem: (requestedItem) => {
+    assertIronGolemOwnershipMutationAllowed();
     const state = get();
     const sourceIndex = state.backpack.findIndex((item) => item.id === requestedItem.id);
     const item = state.backpack[sourceIndex];
@@ -178,6 +189,7 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
   },
   
   unequipItem: (slot) => {
+    assertIronGolemOwnershipMutationAllowed();
     const state = get();
     const item = state.equipped[slot];
     if (!item) return { ok: false, reason: 'not_found' };
@@ -196,6 +208,7 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
   },
   
   moveToStash: (itemId) => {
+    assertIronGolemOwnershipMutationAllowed();
     const state = get();
     const index = state.backpack.findIndex((item) => item.id === itemId);
     const item = state.backpack[index];
@@ -209,6 +222,7 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
   },
   
   moveToBackpack: (itemId) => {
+    assertIronGolemOwnershipMutationAllowed();
     const state = get();
     const index = state.stash.findIndex((item) => item.id === itemId);
     const item = state.stash[index];
@@ -258,5 +272,5 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
     return state.currencies[currencyId] ?? 0;
   },
   
-  reset: () => { set(initialState); }
+  reset: () => { assertIronGolemOwnershipMutationAllowed(); set(initialState); }
 }));
