@@ -3595,3 +3595,55 @@ Exact `dist`/`tmp` disposables stay until all readers release; original diagnost
 receipts await durable retention. Full Iron/D06/P09/P10, earned supply/balance,
 performance/platform/PWA/a11y and private-v1/C0–C4/G0–G7 remain open. Umbrella
 claim continues; no remote action.
+
+## D06 v1d exact recorded-publication staging prerequisite
+
+Exact-debit intent received producer APPROVE and committed as `41165ec`. After
+all readers released, root verified and removed its exact857 task disposable
+files/42,719,728bytes and14 empty directories, zero failures. Actual evidence is
+`debit-cleanup.json` beside the retained source/command/failure diagnostics.
+
+TD plan-review returned `ready` for this four-path increment: new pure
+`recordedBattlePublication.ts`,11 focused tests, mechanical `combatStore.ts`
+delegation and this ledger. Staging captures all17 existing publication fields,
+including playback resets and run flags, and normalizes both initial teams before
+any store update. Omitted wave/run values resolve against captured defaults;
+explicit null run ID clears it. The staged installer writes exact references in
+one update without allocating teams or consulting newer defaults. Existing
+`setRecordedBattle` delegates to staging then one update, preserving auto mode
+and accumulated run rewards. Only the owned top-level descriptor is frozen;
+shared caller units/events/names/outcome are never frozen or mutated by staging.
+
+Tests cover literal default grid positions, caller ownership, complete existing
+playback resets, exact recording/name/outcome/presentation references, omitted
+versus null run IDs, empty recordings, installation after changed live defaults,
+one subscriber notification, ordinary API compatibility, normalization failure
+leaving the exact old state untouched, and observer throw after installation.
+Initial RED was missing-module collection/no tests. Type checking caught an
+explicit undefined optional fixture; it now omits that field. First lint caught
+two void callback shorthand expressions; adding braces changed no assertions.
+Original failures and pre-correction source/output identities remain retained.
+Final serial gates bind unchanged source/test bytes: focused17/2files (11 staging
++6 existing store,8.459s wrapper),types14.279s,lint37.586s including engine purity,
+full unit6230/215files (110.719s wrapper),normal production build10.901s. No engine
+source changed; full unit includes engine regressions. Related5s and full15s
+budgets remain unmet; existing stale Browserslist, >500kB chunk and2.57MB
+generated-manifest precache warnings remain open.
+
+Security check passes for this typed internal staging/publication boundary. This
+payload covers current publication behavior only: replay lock and atomic new-run
+reward reset must join it before a receipt can claim complete recovery. The
+staged installer has no production caller; existing recording publication uses
+the extracted staging helper. No Iron payment/receipt/guard/replay/save/UI
+integration or new player-facing promise is enabled. Normalization may throw
+before any update; synchronous observers may throw after installation. No rollback,
+automatic recovery or browser/runtime Iron acceptance is claimed.
+
+Independent QA and TD/five-axis source reviews APPROVED all four frozen paths
+and10 receipt/source/output identities; all readers released. Status-only
+publication awaits producer scope review before commit. Evidence stays under
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les`.
+Exact `dist`/`tmp` disposables stay until all readers release; diagnostics await
+durable retention. Full Iron/D06/P09/P10, earned supply/balance, performance/
+platform/PWA/a11y and private-v1/C0–C4/G0–G7 remain open. Umbrella claim continues;
+root remains sole writer/executor; no remote action.

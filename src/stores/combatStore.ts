@@ -13,6 +13,7 @@ import { withDefaultGridPositions } from '@/engine/combat/grid';
 import { applyEventToTeams } from './combatPlayback';
 import { eventToLocalizedLogEntry } from './eventToLogI18n';
 import { resolveSummonDisplayName } from './summonDisplayName';
+import { stageRecordedBattle, type RecordedBattleInput, type RecordedBattlePublication } from './recordedBattlePublication';
 
 export interface CombatLogEntry {
   id: string;
@@ -86,21 +87,12 @@ interface CombatState {
    * provided initial teams (cursor 0) and stores the final state +
    * rewards for use when playback completes.
    */
-  setRecordedBattle: (input: {
-    initialPlayerTeam: readonly CombatUnit[];
-    initialEnemyTeam: readonly CombatUnit[];
-    events: readonly RecordedBattleEvent[];
-    unitNameMap: UnitNameMap;
-    outcome: RecordedBattleOutcome;
-    /** 1-based wave index (defaults to current value). */
-    currentWave?: number;
-    /** Total wave count (defaults to current value). */
-    totalWaves?: number;
-    /** Sub-area run id (null/undefined for one-off battles). */
-    subAreaRunId?: string | null;
-    /** Transient wave metadata for UI badges. */
-    wavePresentation?: WavePresentation;
-  }) => void;
+  setRecordedBattle: (input: RecordedBattleInput) => void;
+  /**
+   * Install exact staged references in one update, without normalization/defaults.
+   * Observer errors may follow installation; callers must inspect live state.
+   */
+  publishStagedRecordedBattle: (publication: RecordedBattlePublication) => void;
   /** Mark the active sub-area run as fully cleared. */
   markRunVictory: () => void;
   /** Mark the active sub-area run as failed; the raw engine winner is retained. */
@@ -233,39 +225,11 @@ export const useCombatStore= create<CombatState>((set, get) => ({
 
   reset: () => { set(initialState); },
 
-  setRecordedBattle: ({
-    initialPlayerTeam,
-    initialEnemyTeam,
-    events,
-    unitNameMap,
-    outcome,
-    currentWave,
-    totalWaves,
-    subAreaRunId,
-    wavePresentation
-  }) => {
-    set((state) => ({
-      inCombat: true,
-      playerTeam: withDefaultGridPositions(initialPlayerTeam),
-      enemyTeam: withDefaultGridPositions(initialEnemyTeam),
-      recordedEvents: events,
-      eventCursor: 0,
-      playbackComplete: events.length === 0,
-      log: [],
-      currentTurn: 0,
-      isPaused: false,
-      unitNameMap,
-      outcome,
-      currentWave: currentWave ?? state.currentWave,
-      totalWaves: totalWaves ?? state.totalWaves,
-      currentWavePresentation: wavePresentation ?? null,
-      subAreaRunId: subAreaRunId === undefined ? state.subAreaRunId : subAreaRunId,
-      // A new wave clears the per-wave run flags; final flags are set
-      // explicitly via markRunVictory / markRunDefeat after playback.
-      runVictory: false,
-      runDefeat: false
-    }));
+  setRecordedBattle: input => {
+    const publication = stageRecordedBattle(input, get());
+    set(publication);
   },
+  publishStagedRecordedBattle: publication => { set(publication); },
 
   markRunVictory: () => { set({ runVictory: true, runDefeat: false }); },
   markRunDefeat: () => { set({ runDefeat: true, runVictory: false }); },
