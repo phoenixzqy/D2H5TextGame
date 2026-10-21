@@ -323,3 +323,20 @@ cleanup plus9childdirs/distroot; all exactfiles absent,zero failures. Shared
 caches/dependencies/fonts/tools/source/history/original preserved. RAW remains
 root-owned for durable verification/exact cleanup. Claim continues,no remoteaction.
 Spec reconciliation/browser,BUG068 and full private-v1/C0–C4/G0–G7 remain open.
+
+
+## Stage H — specification reconciliation, browser pending
+
+Commit `f575986` changes exactly skills-spec.md and D05. The obsolete Meditation
+row and §6.2 None/Might-only scope are reconciled together: physical None/exclusive
+slot, independent eligibility, authoritative source baseline and each recipient's
+retained baseline, pooled exact integration and earned surviving-merc interval
+credit. Might104/192 and103/160 strengths/timing remain intact. D05 cites UI source
+10c051f and explicitly keeps production-browser/BUG068 closure pending.
+
+GD/TD approve exact drafts; QA/producer independently match current/committed
+bytes/hashes and resolve both controlling links. Static checks in RAW
+stage-h-validation.json pass; no runtime edit, gate rerun or disposable output is
+claimed. All readers released. RAW drafts/check/review records remain root-owned
+for durable archive/exact cleanup. Claim continues; no remote action. Browser,
+BUG068, provisional balance and full private-v1/C0–C4/G0–G7 remain open.

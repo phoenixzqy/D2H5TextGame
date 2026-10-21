@@ -2828,3 +2828,14 @@ APPROVE/readersreleased. Sourcecommit then fresh hashes/901absentbirths verify
 exact761files40,978,522B cleanup plus9childdirs/distroot,allabsent/zerofailures.
 RAW retainedrootowned for durable archive/exactcleanup; shared caches/tools/source/
 history/original preserved. Claimcontinues,noremote. Spec/browser/BUG068/fullv1 open.
+
+
+## P07b03H Meditation specification reconciliation
+
+`f575986` changes2docs: obsolete row and §6.2 updated together, Might strengths/
+timing preserved, explicit source-baseline/recipient/pooled exact interval contract.
+D05 cites10c051f and remains browser/BUG068 pending.
+[Evidence](evidence/p07b03-meditation.md). GD/TD exactdraft and QA/producer static
+checks APPROVE; all readers released. No runtime edit/rerun or disposable output.
+RAW retainedrootowned for archive/exactcleanup; claimcontinues,noremote.
+Browser/BUG068/balance/fullv1 remain open.
