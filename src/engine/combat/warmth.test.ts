@@ -313,7 +313,9 @@ describe('P07a01d authored passive action exclusion and active/legacy boundaries
   it.each(['skills-sorceress-frozen-armor', 'sorceress.frozen_armor'])(
     'keeps actual active Frozen Armor %s eligible despite its passive scaling metadata', id => {
       expect(getSkill(id)).toMatchObject({ trigger: 'active', isBuff: true, manaCost: 7 });
-      const result = runBattleRecorded(withHero(snapshot(), { skillOrder: [id] }));
+      const input = snapshot();
+      const result = runBattleRecorded(withHero(input, { skillOrder: [id],
+        skillLevels: { ...input.playerTeam[0]?.skillLevels, [id]: 1 } }));
       expect(result.events.filter(e => e.kind === 'action')).toEqual([
         expect.objectContaining({ skillId: 'sorceress.frozen_armor', simClockMs: 1700 })
       ]);

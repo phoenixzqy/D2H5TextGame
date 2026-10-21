@@ -262,6 +262,7 @@ describe('runBattle (timeline scheduler)', () => {
       id: 'p1',
       side: 'player',
       skillOrder: ['sorceress.frozen_armor'],
+      skillLevels: { 'sorceress.frozen_armor': 1 },
       stats: { ...baseStats, attack: 1 }
     });
     const enemy = mkUnit({
