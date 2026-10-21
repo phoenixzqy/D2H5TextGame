@@ -9,6 +9,7 @@ import { abortSubAreaRun, hasActiveSubAreaRun } from '@/stores/combatHelpers';
 import { getIdleEliteMisses, setIdleEliteMisses } from '@/stores/idleElitePity';
 import { getAllocatedSkillLevel, getSkillRequiredLevel, getSkillsForClass,
   skillIdAliases } from '@/stores/skillsHelpers';
+import { useHydrationStore } from '@/stores/hydrationStore';
 import { captureEarnedRestorers, resetEarnedStores, observeEarnedState, observeStore } from './earned-state';
 import { collectSourceState } from './provenance';
 import { assertEarnedSourceStable } from './earned-measurement';
@@ -144,6 +145,7 @@ function executeMode(options: RestoredModeOptions): ModeObservation {
 /**
  * Observe one closed, synthetic direct-service run; no earned UI eligibility is claimed.
  * Restores all seven caller stores/methods, clock and pity, preserving original errors.
+ * Temporarily declares readiness and restores the caller's exact hydration state.
  * Does not initialize persistence or reset process-global identity/ordinal allocators.
  */
 export function runRestoredModeOnce(input: unknown): RestoredModeAttempt {
@@ -163,6 +165,7 @@ export function runRestoredModeOnce(input: unknown): RestoredModeAttempt {
     Date.now = () => CLOCK;
     resetEarnedStores();
     setIdleEliteMisses(0);
+    useHydrationStore.getState().setStatus('ready');
     observation = executeMode(options);
   } catch (error) { failed = true; failure = error; }
   finally {

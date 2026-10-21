@@ -12,6 +12,7 @@ import { useMercStore, mercXpForLevel } from '@/stores/mercStore';
 import { useFormationStore } from '@/stores/formationStore';
 import { useCombatStore } from '@/stores/combatStore';
 import { useMetaStore } from '@/stores/metaStore';
+import { useHydrationStore } from '@/stores/hydrationStore';
 import * as production from '@/stores/combatHelpers';
 import { getIdleEliteMisses, setIdleEliteMisses } from '@/stores/idleElitePity';
 import * as playback from './earned-playback';
@@ -90,6 +91,21 @@ function assertInstalledGuard(combat: RestoredModeAttempt['terminalCombat']) {
 }
 
 describe('closed restored production modes', () => {
+  it('temporarily becomes ready for real mode playback and restores its loading caller', () => {
+    useHydrationStore.getState().setStatus('loading', 'mode-loading-marker');
+    const hydration = useHydrationStore.getState();
+    const observed = new Set<string>();
+    const advance = useCombatStore.getState().advanceEvent;
+    vi.spyOn(useCombatStore.getState(), 'advanceEvent').mockImplementation(() => {
+      observed.add(useHydrationStore.getState().status);
+      advance();
+    });
+    const result = observe(normal);
+    expect(result.status).toBe('completed');
+    expect(observed).toEqual(new Set(['ready']));
+    expect(useHydrationStore.getState()).toEqual(hydration);
+  });
+
   it('retains four native mode/pity observations and restores every caller domain and method', () => {
     sentinels();
     const before = caller();
@@ -257,18 +273,25 @@ describe('closed restored production modes', () => {
   it.each([undefined, {}, { mode: 'offline', idleEliteMisses: 0 },
     { mode: 'manual', idleEliteMisses: 1 }, { ...normal, seed: 1 }])('rejects invalid closed options %j before collection or mutation', input => {
     sentinels(); const before = caller();
+    useHydrationStore.getState().setStatus('error', 'mode-invalid-marker');
+    const hydration = useHydrationStore.getState();
     const collect = vi.spyOn(identity, 'collectSourceState');
     expect(() => runRestoredModeOnce(input)).toThrow(/options/i);
+    expect(useHydrationStore.getState()).toBe(hydration);
     expect(collect).not.toHaveBeenCalled();
     expect(caller()).toEqual(before);
   });
 
   it('rejects a pre-existing run without disturbing its recording or caller', () => {
     sentinels();
+    useHydrationStore.getState().setStatus('ready');
     production.startSubAreaRun({ act: 1, subAreaId: AREA, runSeed: 2330410254, challengeOrdinal: 0 });
+    useHydrationStore.getState().setStatus('error', 'mode-active-marker');
+    const hydration = useHydrationStore.getState();
     const before = caller();
     const collect = vi.spyOn(identity, 'collectSourceState');
     expect(() => runRestoredModeOnce(normal)).toThrow(/active production run/i);
+    expect(useHydrationStore.getState()).toBe(hydration);
     expect(collect).not.toHaveBeenCalled(); expect(caller()).toEqual(before);
     expect(production.hasActiveSubAreaRun()).toBe(true);
   });
@@ -292,18 +315,30 @@ describe('closed restored production modes', () => {
 
   it.each(['initialization', 'playback'] as const)('preserves the original %s error identity and restores all caller state', stage => {
     sentinels(); const error = new Error(stage);
-    if (stage === 'initialization') vi.spyOn(usePlayerStore.getState(), 'setPlayer').mockImplementation(() => { throw error; });
-    else vi.spyOn(useCombatStore.getState(), 'advanceEvent').mockImplementation(() => { throw error; });
+    useHydrationStore.getState().setStatus('error', `mode-${stage}-marker`);
+    const hydration = useHydrationStore.getState();
+    let observedStatus: string | undefined;
+    const fail = () => { observedStatus = useHydrationStore.getState().status; throw error; };
+    if (stage === 'initialization') vi.spyOn(usePlayerStore.getState(), 'setPlayer').mockImplementation(fail);
+    else vi.spyOn(useCombatStore.getState(), 'advanceEvent').mockImplementation(fail);
     const before = caller();
     let caught: unknown;
     try { runRestoredModeOnce(normal); } catch (failure) { caught = failure; }
     expect(caught).toBe(error);
+    expect(observedStatus).toBe('ready');
+    expect(useHydrationStore.getState()).toEqual(hydration);
     expect(caller()).toEqual(before); expect(production.hasActiveSubAreaRun()).toBe(false);
   });
 
   it('aggregates cleanup failure after the original failure and still runs later restorers', () => {
     sentinels(); const original = new Error('primary'); const cleanup = new Error('cleanup');
-    vi.spyOn(useCombatStore.getState(), 'advanceEvent').mockImplementation(() => { throw original; });
+    useHydrationStore.getState().setStatus('error', 'mode-cleanup-marker');
+    const hydration = useHydrationStore.getState();
+    let observedStatus: string | undefined;
+    vi.spyOn(useCombatStore.getState(), 'advanceEvent').mockImplementation(() => {
+      observedStatus = useHydrationStore.getState().status;
+      throw original;
+    });
     vi.spyOn(useInventoryStore, 'setState').mockImplementationOnce(() => { throw cleanup; });
     const before = caller(); let caught: unknown;
     try { runRestoredModeOnce(normal); } catch (error) { caught = error; }
@@ -311,6 +346,8 @@ describe('closed restored production modes', () => {
     if (!(caught instanceof AggregateError)) throw new Error('Missing cleanup aggregate');
     expect(caught.errors).toHaveLength(2);
     expect(caught.errors[0]).toBe(original); expect(caught.errors[1]).toBe(cleanup);
+    expect(observedStatus).toBe('ready');
+    expect(useHydrationStore.getState()).toEqual(hydration);
     const after = caller();
     expect(after.domains.player).toEqual(before.domains.player);
     for (const key of ['map', 'merc', 'formation', 'meta'] as const) expect(after.domains[key]).toEqual(before.domains[key]);
