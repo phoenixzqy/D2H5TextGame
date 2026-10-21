@@ -21,6 +21,8 @@ export type SummonStatScaling = Partial<Record<
 /** One ordered status application after a successful damage hit. */
 export interface OnHitStatus {
   readonly id: string;
+  /** Base simulation milliseconds, before canonical status/boss-duration resolution. */
+  readonly durationMs?: number;
   readonly chance?: number; // 0..1, default 1
   readonly stacksOnApply?: number; // default 1
   readonly dotPctOfDamage?: number; // for DoTs, fraction of dealt damage per tick

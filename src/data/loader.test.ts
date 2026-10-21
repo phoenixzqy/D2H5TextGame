@@ -9,9 +9,81 @@ import skillSchema from './schema/skill.schema.json';
 import necromancerSkills from './skills/necromancer.json';
 import sorceressSkills from './skills/sorceress.json';
 import { skills, mainQuests, sideQuests } from './index';
-import type { DamageEffect } from '../engine/skills/effects';
+import type { DamageEffect, OnHitStatus } from '../engine/skills/effects';
+import type { SkillAdditionalStatusEffects } from '../engine/types/skills';
 
 describe('data/loader', () => {
+  describe('exact Meteor secondary Armor Melt representation', () => {
+    const authored = sorceressSkills.find(row => row.id === 'skills-sorceress-meteor');
+    if (!authored) throw new Error('Production Meteor is missing');
+    const legacy: Record<string, unknown> = { ...authored };
+    delete legacy.additionalStatusEffects;
+    const metadata = { chance: 1, defenseReductionPct: 30, durationMs: 3000 };
+    const candidate = (melt: unknown = metadata) => ({
+      ...legacy, additionalStatusEffects: { 'armor-melt': melt }
+    });
+
+    it('accepts only the reviewed opt-in on the actual valid Meteor row', () => {
+      expect(() => validateGameData(skillSchema.$id, legacy)).not.toThrow();
+      expect(() => validateGameData(skillSchema.$id, candidate())).not.toThrow();
+    });
+
+    it.each([0, 12.5, 30, 100])('accepts finite defense reduction %s', defenseReductionPct => {
+      expect(() => validateGameData(skillSchema.$id, candidate({ ...metadata, defenseReductionPct }))).not.toThrow();
+    });
+
+    it('preserves positive fractional duration', () => {
+      expect(() => validateGameData(skillSchema.$id, candidate({ ...metadata, durationMs: 0.5 }))).not.toThrow();
+    });
+
+    it.each(['chance', 'defenseReductionPct', 'durationMs'])(
+      'requires Melt metadata %s', field => {
+        const incomplete = { ...metadata };
+        Reflect.deleteProperty(incomplete, field);
+        expect(() => validateGameData(skillSchema.$id, candidate(incomplete))).toThrow(GameDataValidationError);
+      });
+
+    it.each([
+      null, [], {}, 1, 'armor-melt',
+      ...[0, 0.5, -1, 1.01, NaN, Infinity, '1', null].map(chance => ({ ...metadata, chance })),
+      ...[-0.01, 100.01, NaN, Infinity, -Infinity, '30', null].map(defenseReductionPct => ({ ...metadata, defenseReductionPct })),
+      ...[0, -1, NaN, Infinity, -Infinity, '3000', null].map(durationMs => ({ ...metadata, durationMs })),
+      ...['dotPctOfDamage', 'stacksOnApply', 'physicalResistReductionPct', 'typo'].map(key => ({ ...metadata, [key]: 1 }))
+    ])('rejects malformed, implicit or unrelated metadata %j', melt => {
+      expect(() => validateGameData(skillSchema.$id, candidate(melt))).toThrow(GameDataValidationError);
+    });
+
+    it.each([
+      { id: 'skills-sorceress-fire-bolt' }, { id: 'mskill-meteor' }, { damageType: 'cold' },
+      { appliesStatus: ['armor-melt', 'burn'] }, { appliesStatus: ['burn'] },
+      { appliesStatus: ['burn', 'armor-melt', 'freeze'] }, { appliesStatus: ['chill', 'armor-melt'] },
+      { appliesStatus: ['armor-melt', 'armor-melt'] }, { appliesStatus: [] },
+      { damage: undefined }, { damageType: undefined }, { appliesStatus: undefined }
+    ])('rejects opt-in outside exact Meteor/fire/ordered-pair contract %j', fields => {
+      expect(() => validateGameData(skillSchema.$id, { ...candidate(), ...fields })).toThrow(GameDataValidationError);
+    });
+
+    it('rejects mixed Freeze and Melt while preserving the legacy opt-out', () => {
+      expect(() => validateGameData(skillSchema.$id, {
+        ...candidate(), additionalStatusEffects: { 'armor-melt': metadata, freeze: { chance: 1 } }
+      })).toThrow(GameDataValidationError);
+      expect(() => validateGameData(skillSchema.$id, { ...legacy, appliesStatus: ['burn', 'armor-melt'] })).not.toThrow();
+    });
+
+    it('expresses exclusive readonly secondary variants and on-hit milliseconds', () => {
+      const melt: SkillAdditionalStatusEffects = { 'armor-melt': { chance: 1, defenseReductionPct: 30, durationMs: 3000 } };
+      const freeze: SkillAdditionalStatusEffects = { freeze: { chance: 0.1 } };
+      const onHit: OnHitStatus = { id: 'armor-melt', chance: 1, durationMs: 3000 };
+      // @ts-expect-error -- Melt is a closed non-DoT metadata type.
+      const dot: SkillAdditionalStatusEffects = { 'armor-melt': { chance: 1, defenseReductionPct: 30, durationMs: 3000, dotPctOfDamage: 0.1 } };
+      // @ts-expect-error -- no mixed secondary variants.
+      const mixed: SkillAdditionalStatusEffects = { ...melt, ...freeze };
+      // @ts-expect-error -- explicit certain proc required for exact Meteor.
+      const implicit: SkillAdditionalStatusEffects = { 'armor-melt': { defenseReductionPct: 30, durationMs: 3000 } };
+      expect([melt, freeze, onHit, dot, mixed, implicit]).toHaveLength(6);
+    });
+  });
+
   describe('exact mercenary Inner Sight contract', () => {
     const row = {
       id: 'mskill-inner-sight', name: 'fixture.name', description: 'fixture.desc',

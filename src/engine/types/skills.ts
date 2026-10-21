@@ -147,8 +147,15 @@ export interface SkillSecondaryStatusEffectMetadata {
 }
 
 /** Currently supported authored secondary statuses, validated by the skill schema. */
-export interface SkillAdditionalStatusEffects {
-  readonly freeze: SkillSecondaryStatusEffectMetadata;
+export type SkillAdditionalStatusEffects =
+  | { readonly freeze: SkillSecondaryStatusEffectMetadata; readonly 'armor-melt'?: never }
+  | { readonly freeze?: never; readonly 'armor-melt': SkillArmorMeltMetadata };
+
+/** Exact Meteor secondary metadata; distinct from primary Burn's DoT payload. */
+export interface SkillArmorMeltMetadata {
+  readonly chance: 1;
+  readonly defenseReductionPct: number;
+  readonly durationMs: number;
 }
 
 /**
@@ -188,7 +195,7 @@ export interface SkillDef {
   readonly appliesStatus?: readonly string[]; // status IDs
   /** Runtime metadata for the first applied status, such as DoT strength or stacks. */
   readonly statusEffect?: SkillStatusEffectMetadata;
-  /** Opt-in metadata for the secondary Freeze after the primary status. */
+  /** Opt-in metadata for a reviewed secondary status after the primary status. */
   readonly additionalStatusEffects?: SkillAdditionalStatusEffects;
   
   /** Healing amount (if any) */

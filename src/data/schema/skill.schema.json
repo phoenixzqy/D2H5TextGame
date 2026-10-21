@@ -8,7 +8,9 @@
   "additionalProperties": false,
   "allOf": [{
     "if": {
-      "properties": { "additionalStatusEffects": {} },
+      "properties": { "additionalStatusEffects": {
+        "type": "object", "properties": { "freeze": {} }, "required": ["freeze"]
+      } },
       "required": ["additionalStatusEffects"]
     },
     "then": {
@@ -27,6 +29,21 @@
           ],
           "items": false
         }
+      }
+    }
+  }, {
+    "if": {
+      "properties": { "additionalStatusEffects": {
+        "type": "object", "properties": { "armor-melt": {} }, "required": ["armor-melt"]
+      } },
+      "required": ["additionalStatusEffects"]
+    },
+    "then": {
+      "required": ["damage", "damageType", "appliesStatus"],
+      "properties": {
+        "id": { "const": "skills-sorceress-meteor" },
+        "damageType": { "const": "fire" },
+        "appliesStatus": { "const": ["burn", "armor-melt"] }
       }
     }
   }, {
@@ -198,10 +215,22 @@
     },
     "additionalStatusEffects": {
       "type": "object",
-      "required": ["freeze"],
+      "minProperties": 1,
+      "maxProperties": 1,
       "additionalProperties": false,
-      "description": "Explicit opt-in secondary metadata. Only primary plus Freeze is currently supported.",
+      "description": "Exclusive opt-in secondary metadata: primary plus Freeze, or exact Meteor Burn plus Armor Melt.",
       "properties": {
+        "armor-melt": {
+          "type": "object",
+          "required": ["chance", "defenseReductionPct", "durationMs"],
+          "additionalProperties": false,
+          "description": "Exact Meteor secondary: certain application with authored ordinary-defense reduction and finite positive milliseconds.",
+          "properties": {
+            "chance": { "const": 1 },
+            "defenseReductionPct": { "type": "number", "minimum": 0, "maximum": 100 },
+            "durationMs": { "type": "number", "exclusiveMinimum": 0 }
+          }
+        },
         "freeze": {
           "type": "object",
           "required": ["chance"],
