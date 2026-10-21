@@ -36,8 +36,9 @@ function player(): Player {
   if (!current) throw new Error('Missing Skeleton Mastery native fixture player');
   return current;
 }
+/** Synthetic configuration/resource projection retains the run; not public hero replacement. */
 function configure(fields: Partial<Player>): void {
-  usePlayerStore.getState().setPlayer({ ...player(), ...fields });
+  usePlayerStore.setState({ player: { ...player(), ...fields } });
 }
 function arrange(rank = 20): Item {
   const fresh = createMockPlayer('SkeletonNative', 'necromancer');

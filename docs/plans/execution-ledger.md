@@ -4337,3 +4337,38 @@ Root is sole writer/executor; umbrella claim continues; no remote action or
 persistent browser/server. Corpses prerequisite, public hero lifecycle, receipt,
 recovery, settlement, replay and bilingual Iron UI/browser acceptance remain
 pending. FullD06/P09/P10/private-v1 remain open.
+
+
+## D06 v1k corpse fixture prerequisite
+
+Passive fixtures received independent QA, TD/five-axis and producer APPROVE,
+committed as `bd3b6c2`. Exact passive-fixtures-cleanup.json removed857files/
+42,723,821bytes and14 empty directories with zero failures/remaining targets;
+command processes were dead. Diagnostics and suspended lifecycle sources remain.
+
+The second TD-approved prerequisite changes only the common configure helper
+in summon-preparation-corpses-native.test.ts to a documented synthetic raw player
+projection. Its initial public setPlayer setup, genuine actions and all123
+assertion/test-declaration lines remain unchanged. This preserves the original
+run while supplying controlled Skeleton Mastery configuration/resource inputs;
+it does not establish supported public replacement semantics. No product API,
+new tests or browser acceptance claimed. RED is inapplicable to this fixture-only
+adaptation; genuine lifecycle behavior is covered by the preserved next slice.
+
+Focused61/1file10.555s, types15.758s, lint40.870s including85 engine purity files,
+full6481/219files116.324s and production build9.991s passed. Related5s/full15s
+budgets remain unmet; existing React act, fixture fallback, stale Browserslist,
+large chunk and precache diagnostics remain open. SaveCurrent11 unchanged.
+Security check passes for scoped test-local projection without product bypass.
+
+Two paths, all corpses-fixtures command/source/output identities, prior cleanup
+and exact owned dist/tmp inventory are frozen in corpses-fixtures-review.json
+under /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review remains before commit. Disposable outputs
+remain until readers release; diagnostics and suspended source retained.
+Root is sole writer/executor; umbrella claim continues; no remote action or
+persistent browser/server. Next verify/reapply the exact lifecycle source, then
+validate freshly; no expected6493-test pass is claimed yet. Receipt/recovery,
+settlement/replay/caller guards and bilingual Iron UI/browser acceptance remain
+pending. FullD06/P09/P10/private-v1 remain open.
