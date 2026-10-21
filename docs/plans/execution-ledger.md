@@ -2739,3 +2739,21 @@ remains root-owned for later durable archive verification/exact cleanup; shared
 caches/dependencies/fonts/tools/source/history/original checkout preserved.
 Umbrella claim continues; no remote action. Store/runtime/UI/browser, BUG068 and
 full private-v1/C0–C4/G0–G7 remain open.
+
+
+## P07b03C Meditation exclusive store selection
+
+`c65b663` changes exactly two paths. Canonical requests dispatch independent aura
+eligibility before same-selection no-op. None is omission; refusals publish nothing,
+replacement preserves resources, learning/combo never select, upgrades retain
+selection and only successful paid respec clears. [Evidence](evidence/p07b03-meditation.md).
+Actual unchanged-production RED45=11behavioral failures+34controls; GREEN45, types,
+lint/purity, full5300/197files and fresh production bridgebuild pass. No engine
+source edits; B engine2751 remains attributed to B. Six serial records, no pending/
+todo/stops/signals; timing/build warnings remain without performance acceptance.
+GD/TD source and QA/producer whole review APPROVE; readers released. After source
+commit, fresh hashes/921absentbirths verify exact761file/40,972,917B cleanup and
+ninechilddirs/distroot; all absent, zero failures. RAW retained root-owned for
+durable verification/exact cleanup; shared parents/tools/source/history/original
+preserved. Umbrella claim continues, no remote action. Runtime/UI/browser, BUG068
+and private-v1/C0–C4/G0–G7 remain open.

@@ -140,3 +140,30 @@ RAW remains root-owned at the path above until durable archive acceptance and
 independent verification, then root removes exact evidence files. The continuing
 umbrella worktree claim is retained. No remote actions. Meditation store/runtime/
 UI/browser, BUG068 closure and full private-v1 acceptance remain open.
+
+
+## Stage C — exclusive eligible store selection
+
+Source commit `c65b663` changes only playerStore and its aura tests. Exact canonical
+Meditation requests use independent class/level/allocated-rank eligibility before
+same-selection no-op handling. Replacement preserves resources/references; None
+omits selection. Refusals publish nothing. Learning/combo never select, upgrades
+preserve explicit selection and only successful paid respec clears atomically.
+
+Approved13724B draft SHA256
+`6412108a993e55f945fdd189b0cececa89dd4749843406e6fc9d4cd723d1e38e`
+retains the original7881B Might prefix. Actual unchanged-production RED45=11
+unsupported-aura behavioral failures+34controls (3.154s); GREEN45/45(3.050s).
+Serial types12.412s, lint/purity32.962s, full5300/5300 in197actualfiles85.191s and
+fresh production bridge/build9.073s pass. Engine source is unchanged; Stage B's
+2751engine results remain attributed to B. No pending/todo/stops/signals; existing
+timing misses/build warnings remain, no performance acceptance.
+
+GD/TD source and independent QA/producer whole-evidence reviews APPROVE; readers
+released. RAW `stage-c-final-verification.json` links the six serial records.
+After source commit, fresh source/output hashes and921 absent process births verify
+exact761file/40,972,917B cleanup plus nine childdirs/distroot. All exact files absent,
+zero failures; shared cache parents/dependencies/fonts/tools/source/history/original
+checkout preserved. RAW ownership/retention remains as above. No remote actions;
+umbrella claim continues. Projection/recovery/combat/native adapter/UI/browser and
+BUG068/full-v1 acceptance remain pending.
