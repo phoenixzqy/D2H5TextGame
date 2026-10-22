@@ -7379,3 +7379,106 @@ All readers released includingdist/tmp. Approval-only ledgerappend; fixture/
 runner/test/report unchanged. Publication/producer audit/localcommit/exactcleanup
 next. BalanceCONCERNS, otherfamilies/earned/global/fullgates,budget/warnings
 remain open. No production/data/save/config or remotechange.
+
+
+## D06 v1bk Mage Mastery-family paired audit
+
+Rank audit94ef958 committed after QA/test-evidence/TD/five-axis/producer approval.
+Cleanup00368213831cc70e544254ceeb5a6062578275a40a580f37b42652ff96406c4f removed
+1312files/43,858,424bytes/16dirs, no failures/remaining; both checkouts clean.
+Producer planREADY, GD/TD APPROVE, QA literal/preflight APPROVE. Root sole
+writer/executor in same claimed worktree; exactly5paths new Mastery fixture,
+runner,test,datedreport,ledger. Security PASS: immutable local Git capture,
+owned gzip streams, no credential/network/dependency/permission/save changes.
+Fixed unearned near-level L26 Mage6/Skeleton1/Mastery0,1,19,20; ordinary core/
+resources/recovery/no gear/merc/preloads/Mage-only combo. Production authored
+allocation and exact owner-bound Mastery projection. Authored Act2 Arcane
+Sanctuary wave0, manual/ordinal0/pity0/planSeed7/enemySeed991, enemiesL24.
+Four frozen fixtures once, historical physicalcf19757 vs elemental94ef958,
+1000seeds/domain/cell=8000measured/4000paired; actual controls/loss/censoring/
+nonactors retained, no winning-recipe adjustment. Literal exactM20Attack
+62.99999999999999 floors62; semantic forgeries recompute wrapper hashes.
+Raw status sources unavailable; observed Mage death events include orphan
+transactions without direct-kill claims, absence separate. TDD then serial
+validation/frozen reviews/publication/localcommit/exactcleanup. Masteryfamily
+only; otherfamilies/earned/global/fullgates,budget/buildwarnings remain open.
+
+
+CollectionRED expected missingmodule,0tests. InitialassertionRED13fail/5pass:
+12pending-runner failures plus a wrong testfield physicalDodge; corrected to
+existingphysDodge with numerical0.05 unchanged (originalcaptured). Core loop
+then15pass/3pending; fullrunner18pass. Initialtypes rejected explicitundefined
+optionalprojection in test; corrected to omittedproperty, no runtimechange.
+Expanded source-unavailable syntheticcontrol/earlyaction/orphan/absence
+assertions pass18/18(wrapper3.658s/Vitest2.33s). Initiallint42.961s passes;
+correctedtypes and independent literal/toolpreflights next. No measurement
+or balanceacceptance claimed yet; actualrecipe and fourreviewedcells unchanged.
+
+
+Corrected types PASS15.932s; QA core and TD toolpreflight APPROVE on exact
+drafts/scripts. Captured173Gitobject sources/domain and full helper/config/tool
+closure, generated4fixtures once; all10stream/provenance probes pass. Tiny
+preflight16rows/domain all defeat with controls/nonactors, no recipeadjustment.
+FirstphysicalM0 retained1000cell3.213s (wrapper4.893s), then7serialcells38.338s
+wrapper; all8000battles defeat/hero death, no victory/draw. AA/ABA and plainparity
+0/999 pass everycell. Paired4000rows12.137s pass exact expected identities,
+inputs/preparation/IDs without imposing controlled action-time equality.
+Allmeasurement/comparison processes exit0, no[ERROR]diagnostic, SSRclosed.
+Report/rawchecker and independent designinterpretation then finalserialchecks/
+frozenreviews/publication/localcommit/exactcleanup next. No successfulTTK or
+clear-time acceptance implied by defeat duration; no production/data/save/config
+or remotechanges. Masteryfamily only, broadergates/budget/warnings remainopen.
+
+
+Raw preflight16.772s PASS streams all8000raw/4000pairs, HP/MP/counters/Mastery/
+types/timing/quantiles/provenance;602870265rawbytes/28385337gzipbytes,8PIDs.
+Independent GD reconciles4000pairedseeds/allaggregates; BALANCE-CHECK:CONCERNS.
+Allloss/no successfulTTK; absolute Mage effective damage71.722to259.116 across
+M0to20 in elemental domain, no viability/globalclaim. Physical landedhitsM0/1
+all1; M19/20 noncrit1/crit4, not allfloor1. BothM19/20 base62; lifedefense/trace
+changes do not imply newM20perhitstep. Report corrected elemental-onlyFCLP and
+statusID available forstatusbutnotstunned; source unavailableforboth. Readers
+released. Finalfocused33pass; types/lint PASS but2.925s overlap retained; serial
+typesv2/lintv2 passed16.252s/43.798s. Following reportfactualcorrection, final
+checks will capture corrected reportbytes; first fullunit retained as historical
+validation. Final frozen review/publication/localcommit/cleanup stillpending.
+
+
+Report correction now verified inactualbytes: elemental-onlyFCLP; statusIDfor
+status, notstunned; sourceunavailableboth. Added absolute physical1/4-hit and
+sharedM19/20base62 explanation without broad acceptance. Firstfullunit243files/
+7496tests passes(Vitest126.65s/wrapper128.203s), retained historicalreceipt.
+Final exactbyte serial sequence after corrections: focused33/33 pass(wrapper
+3.828s/Vitest2.52s), typesv3 PASS15.614s, lintv3 PASS42.653s, fullunitv2
+243files/7496tests PASS(Vitest131.15s/wrapper132.748s). Existing15s suitebudget
+remains exceeded/open. VITE_E2E=false productionbuild PASS10.404s; existing
+Browserslist/chunk-size/2.57MBmanifestprecache warnings persist. Receipt times
+show serialfinalchecks; finalraw/source/report/build-exclusion checker next,
+then frozenQA/test-evidence/TD/fiveaxis/publication/produceraudit/localcommit/
+exactcleanup. Exactly5paths, production/data/save/config unchanged. No remote
+action; otherbalancefamilies and earned/global/fullgates remainopen.
+
+
+Final raw/source/arithmetic/report/build-exclusion checker17.086s PASS: all
+8000rawbattles/4000pairs,8distinctdomainPIDs,602870265uncompressedbytes/
+28385337gzipbytes; exactfinalscope/source andserialreceiptorder verified.
+No measurement or production change after capture. Freeze support/review
+manifests and independentQA/test-evidence/TD/five-axis next; no acceptance
+claimed beyond bounded family evidence. Existing suitebudget/buildwarnings and
+allotherfamily/earned/global/fullgates remainopen. No persistenttest/server
+process currently running; task-owned dist/tmp retained for reviewers until
+publication/produceraudit/localcommit and exactcleanup after readers release.
+
+
+Frozen QA-D06-MAGE-MASTERY APPROVE; TEST-EVIDENCE ADEQUATE; TD-ARCH-REVIEW
+and CODE-REVIEW APPROVE, no material findings. Support083aade82edf512078d30e3f
+41efda3f0ee0174e582e2716b68374b6eaedeeba and review238066bb5b3fb4f2c948ec3
+26304c6c08c99a49c6f95b5323fdbb98dc3775b7b independently reconcile2066retained
+files/38receipts,346Git-backed sources,8000raw/4000pairs; QA additionally
+replayed240eventtraces. Finalserial33focused/types/lint/243files7496tests/build/
+rawchecker PASS. Exact1306disposablefiles/43858282bytes/15dirs verified; all
+38recordedPIDs absent. Allreviewreaders released includingdist/tmp. Approval-only
+ledgerappend; fixture/runner/test/report unchanged. Publication/produceraudit/
+localcommit/exactcleanup next. BALANCE-CHECK CONCERNS; all-loss/nullsuccessfulTTK,
+otherfamilies/earned/global/fullgates,budget/buildwarnings remainopen. No
+production/data/save/config or remotechange.
