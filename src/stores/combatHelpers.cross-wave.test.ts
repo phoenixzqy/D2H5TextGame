@@ -265,12 +265,16 @@ describe('production cross-wave status clock', () => {
   });
 
   it('does not age statuses during playback pause, UI delays or elapsed wall time', () => {
+    const original = combatEngine.runBattleRecorded;
+    vi.spyOn(combatEngine, 'runBattleRecorded').mockImplementationOnce(input => {
+      const actual = original(input);
+      return { ...actual, events: actual.events.map(e => ({ ...e, uiDelayMs: 3000 })) };
+    });
     start();
     const first = useCombatStore.getState();
     const end = first.recordedEvents.at(-1);
     const hero = first.outcome?.finalPlayerTeam[0];
     if (end?.kind !== 'end' || !hero) throw new Error('Missing first-wave result');
-    useCombatStore.setState({ recordedEvents: first.recordedEvents.map(e => ({ ...e, uiDelayMs: 3000 })) });
     useCombatStore.getState().pausePlayback();
     vi.mocked(Date.now).mockReturnValue(1792454400000 + 3_600_000);
     useCombatStore.getState().advanceEvent();
@@ -285,17 +289,23 @@ describe('production cross-wave status clock', () => {
     })));
   });
 
-  it('uses the original captured engine end clock when playback events change', () => {
+  it('captures the terminal engine clock despite presentation cues with different clocks', () => {
+    const original = combatEngine.runBattleRecorded;
+    vi.spyOn(combatEngine, 'runBattleRecorded').mockImplementationOnce(input => {
+      const actual = original(input);
+      const end = actual.events.at(-1);
+      if (end?.kind !== 'end') throw new Error('Missing terminal fixture');
+      return { ...actual, events: [{ kind: 'message' as const, messageKey: 'fixture.intro',
+        simClockMs: 0, uiDelayMs: 1200 }, ...actual.events.slice(0, -1),
+      { kind: 'message' as const, messageKey: 'fixture.outro', simClockMs: 50_000, uiDelayMs: 3000 }, end] };
+    });
     start();
     const first = useCombatStore.getState();
     const end = first.recordedEvents.at(-1);
     const hero = first.outcome?.finalPlayerTeam[0];
     const poison = hero?.statuses.find(s => s.id === 'poison');
     if (end?.kind !== 'end' || !hero || poison?.expiresAtMs === undefined) throw new Error('Missing poison');
-    // Presentation may prepend cues; the engine clock was already captured.
-    useCombatStore.setState({ recordedEvents: [{ kind: 'message', messageKey: 'fixture.intro',
-      simClockMs: 0, uiDelayMs: 1200 }, ...first.recordedEvents,
-    { kind: 'message', messageKey: 'fixture.outro', simClockMs: 50_000, uiDelayMs: 3000 }] });
+    expect(first.recordedEvents.some(e => e.kind === 'message' && e.simClockMs === 50_000)).toBe(true);
     drain();
     expect(advanceWaveOrFinish()).toBe('next-wave');
     expect(useCombatStore.getState().playerTeam[0]?.statuses.find(s => s.id === 'poison')?.expiresAtMs)
@@ -303,6 +313,16 @@ describe('production cross-wave status clock', () => {
   });
 
   it('suppresses a real next-wave action inside carried control and allows the action after expiry', () => {
+    const original = combatEngine.runBattleRecorded;
+    vi.spyOn(combatEngine, 'runBattleRecorded').mockImplementationOnce(input => {
+      const actual = original(input);
+      const end = actual.events.at(-1);
+      const hero = actual.result.playerTeam[0];
+      if (end?.kind !== 'end' || !hero) throw new Error('Missing first-wave outcome');
+      const controlled = applyStatus(hero,
+        { id: 'freeze', sourceId: 'fixture', simClockMs: end.simClockMs, durationMs: 500 }, createRng(7));
+      return { ...actual, result: { ...actual.result, playerTeam: [controlled] } };
+    });
     start();
     const first = useCombatStore.getState();
     const end = first.recordedEvents.at(-1);
@@ -310,11 +330,8 @@ describe('production cross-wave status clock', () => {
     const hero = outcome?.finalPlayerTeam[0];
     if (end?.kind !== 'end' || !outcome || !hero) throw new Error('Missing first-wave outcome');
     drain();
-    // Controlled completed-outcome boundary supplements the genuine poison cases.
+    // Controlled staged result supplements the genuine poison cases.
     equipWaveCap(138); // Authoritative AS125+138=263 reaches the400ms period floor.
-    const controlled = applyStatus(hero,
-      { id: 'freeze', sourceId: 'fixture', simClockMs: end.simClockMs, durationMs: 500 }, createRng(7));
-    useCombatStore.setState({ outcome: { ...outcome, finalPlayerTeam: [controlled] } });
     expect(advanceWaveOrFinish()).toBe('next-wave');
     const second = useCombatStore.getState();
     expect(second.recordedEvents.some(e => e.kind === 'stunned' && e.target === hero.id && e.simClockMs === 400)).toBe(true);
@@ -323,6 +340,17 @@ describe('production cross-wave status clock', () => {
   });
 
   it('carries living merc status clocks and non-status state while excluding dead allies and summons', () => {
+    const original = combatEngine.runBattleRecorded;
+    vi.spyOn(combatEngine, 'runBattleRecorded').mockImplementationOnce(input => {
+      const actual = original(input);
+      const hero = actual.result.playerTeam[0];
+      if (!hero) throw new Error('Missing first-wave hero');
+      const merc = { ...hero, id: 'merc-fixture', kind: 'merc' as const, mana: 7,
+        cooldowns: { fixture: 123 }, activeBuffIds: ['fixture.merc-buff'] };
+      const dead = { ...merc, id: 'merc-dead', life: 0 };
+      const summon = { ...hero, id: 'fixture-summon', kind: 'summon' as const, summonOwnerId: hero.id };
+      return { ...actual, result: { ...actual.result, playerTeam: [hero, merc, dead, summon] } };
+    });
     start();
     const first = useCombatStore.getState();
     const end = first.recordedEvents.at(-1);
@@ -330,11 +358,8 @@ describe('production cross-wave status clock', () => {
     const hero = outcome?.finalPlayerTeam[0];
     if (end?.kind !== 'end' || !outcome || !hero) throw new Error('Missing first-wave outcome');
     drain();
-    const merc = { ...hero, id: 'merc-fixture', kind: 'merc' as const, mana: 7,
-      cooldowns: { fixture: 123 }, activeBuffIds: ['fixture.merc-buff'] };
-    const dead = { ...merc, id: 'merc-dead', life: 0 };
-    const summon = { ...hero, id: 'fixture-summon', kind: 'summon' as const, summonOwnerId: hero.id };
-    useCombatStore.setState({ outcome: { ...outcome, finalPlayerTeam: [hero, merc, dead, summon] } });
+    const merc = outcome.finalPlayerTeam[1];
+    if (!merc) throw new Error('Missing staged merc fixture');
     expect(advanceWaveOrFinish()).toBe('next-wave');
     const team = useCombatStore.getState().playerTeam;
     expect(team.map(u => u.id)).toEqual([hero.id, merc.id]);

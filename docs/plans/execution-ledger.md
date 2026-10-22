@@ -5686,3 +5686,49 @@ idle-bonus, Skills readiness and ledger) before atomic producer/settlement activ
 (helpers, helper receipt integration, quest-objective refusals and ledger). No
 runtime compatibility fallback is authorized. Selected-item debit/replay lock,
 recovery UI, bilingual Iron acceptance and fullD06/P09/P10/private-v1 remain open.
+
+
+## D06 v1ak exact-authority fixture prerequisites
+
+Settlement access received independent QA, TD/five-axis and producer APPROVE and
+committed as `00b0ddd`. Exact settlement-access cleanup removed1300files/
+43,821,253bytes and14empty directories with zero failures/remaining targets; all8
+recorded command identities were absent.
+
+TD approved this five-path test-only prerequisite before coherent production
+activation. Cross-wave clock/control/merc fixtures now inject controlled engine
+return values before staging establishes recording identity. UI-delay and cue
+clocks remain covered, with the terminal engine event still last; the cue test now
+asserts terminal capture despite different cue clocks, rather than permitting
+post-publication event replacement. Existing poison/recovery/replay/carry/action
+assertions remain. Final draw/enemy/dead-original-hero and idle-bonus/no-slain
+fixtures likewise inject results before publication; genuine timeout and production
+reward tests remain. Skills receipt-phase abandonment now aborts the old run,
+checks no automatic publication, then explicitly starts a fresh run before testing
+the next combo edit. It never resurrects a run after clearing only its authority.
+No production source/API or gameplay behavior changed. Quest forged-reference
+refusals remain in the upcoming atomic activation scope.
+
+Initial store run2failed/45passed6.184s exposed incorrect use of toBe with an
+asymmetric matcher in the revised life assertions; corrected explicit zero/positive
+checks preserve the intended original-hero predicate. Final focused63/4files7.872s,
+types15.229s, lint40.692s including85purity, full6992/228files118.708s and task-local
+build10.163s passed. Build608modules/index-GCiYf-P6.js1264.77kB observed without
+claiming deterministic equivalence. No new tests or skipped/weakened acceptance
+cases; this is fixture migration, not a new production behavior/TDD RED claim.
+Original failure and exact source/output identities retained. Related5s/full15s
+overruns, prior unexplained bundle variance, existing React act/fixture fallback,
+stale Browserslist and chunk/precache warnings remain open. SaveCurrent11 unchanged.
+No browser/server run or UI/visual/earned/paid-Iron acceptance claim; Chinese
+screenshot glyph rendering remains unresolved. Security review: test-only controlled
+engine returns, no new external IO/dependency/item writes/compatibility bypass.
+
+Five paths, command/source/output identities, prior settlement-access cleanup and
+exact owned dist/tmp inventory are frozen in authority-fixtures-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review, local commit and exact cleanup follow.
+Root remains sole writer/executor; umbrella claim
+continues; no remote action. Atomic production start/replay/next-wave/settlement
+activation, selected-item debit/lock, recovery UI and bilingual Iron acceptance,
+and fullD06/P09/P10/private-v1 remain open.

@@ -3,6 +3,7 @@ import { useHydrationStore } from './hydrationStore';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { loadAwardPools } from '@/data/loaders/loot';
 import * as lootData from '@/data/loaders/loot';
+import * as combatEngine from '@/engine/combat/combat';
 import { rollBatchRewards, rollKillRewards, type KillRewardInput } from '@/engine/loot/award';
 import { effectiveMagicFind, rollDrops, type TreasureClass } from '@/engine/loot/drop-roller';
 import { __resetRollItemSeqForTests } from '@/engine/loot/rollItem';
@@ -214,17 +215,20 @@ describe('production award-time idle XP/MF bonus (BUG-025)', () => {
 
   it.each(['draw', 'loss', 'dead-original-hero', 'no-slain'] as const)(
     'does not sample or award for %s', (failure) => {
+      const original = combatEngine.runBattleRecorded;
+      vi.spyOn(combatEngine, 'runBattleRecorded').mockImplementationOnce(input => {
+        const actual = original(input);
+        const heroId = required(input.playerTeam.find(unit => unit.kind === 'hero')).id;
+        return { ...actual, result: { ...actual.result,
+          winner: failure === 'draw' ? null : failure === 'loss' ? 'enemy' : 'player',
+          playerTeam: actual.result.playerTeam.map(unit => ({ ...unit,
+            life: failure === 'dead-original-hero' && unit.id === heroId ? 0 : unit.life })),
+          enemyTeam: failure === 'no-slain'
+            ? actual.result.enemyTeam.map(unit => ({ ...unit, kind: 'summon' as const }))
+            : actual.result.enemyTeam
+        } };
+      });
       start(); drain();
-      const outcome = required(useCombatStore.getState().outcome);
-      const heroId = required(usePlayerStore.getState().player).id;
-      useCombatStore.setState({ outcome: { ...outcome,
-        winner: failure === 'draw' ? null : failure === 'loss' ? 'enemy' : 'player',
-        finalPlayerTeam: outcome.finalPlayerTeam.map((unit) => ({ ...unit,
-          life: failure === 'dead-original-hero' && unit.id === heroId ? 0 : unit.life })),
-        finalEnemyTeam: failure === 'no-slain'
-          ? outcome.finalEnemyTeam.map((unit) => ({ ...unit, kind: 'summon' as const }))
-          : outcome.finalEnemyTeam
-      } });
       const read = vi.spyOn(useMetaStore.getState(), 'readIdleBonus');
       const before = rewardsSnapshot();
       expect(advanceWaveOrFinish()).toBe(failure === 'no-slain' ? 'next-wave' : 'defeat');

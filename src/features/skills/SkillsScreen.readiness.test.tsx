@@ -14,8 +14,7 @@ import { useHydrationStore } from '@/stores/hydrationStore';
 import { abortSubAreaRun, startSubAreaRun } from '@/stores/combatHelpers';
 import { combatRunLifecycle } from '@/stores/combatRunLifecycle';
 import { stageRecordedBattle } from '@/stores/recordedBattlePublication';
-import { prepareRecordedWave, commitPreparedRecordedWave, inspectRecordedWaves,
-  abandonRecordedWaves } from '@/stores/recordedWaveReceipt';
+import { prepareRecordedWave, commitPreparedRecordedWave, inspectRecordedWaves } from '@/stores/recordedWaveReceipt';
 import { armIronGolemSelection, useIronGolemSelectionStore } from '@/stores/ironGolemSelectionStore';
 import { beginWaveTransition, endWaveTransition, reserveWaveRestore, releaseWaveRestore } from '@/stores/waveTransitionGuard';
 import { SkillsScreen } from './SkillsScreen';
@@ -87,7 +86,7 @@ describe.each(['en', 'zh-CN'])('combo replay refusal in %s', locale => {
         if (released) return;
         if (wave) expect(endWaveTransition(wave)).toBe(false);
         if (restore) releaseWaveRestore(restore);
-        if (receiptPhase) abandonRecordedWaves();
+        if (receiptPhase) abortSubAreaRun();
         released = true;
       };
       act(() => { useHydrationStore.getState().setStatus(
@@ -117,12 +116,23 @@ describe.each(['en', 'zh-CN'])('combo replay refusal in %s', locale => {
         expect(useCombatStore.getState()).toBe(recording);
         expect(engine).not.toHaveBeenCalled();
         expect(screen.getByRole('alert')).toBeVisible();
+        if (receiptPhase) {
+          // Explicit abandonment ends the run. Start a fresh authoritative run;
+          // readiness recovery itself never publishes or resurrects the old one.
+          expect(combatRunLifecycle.activeRun).toBeNull();
+          expect(inspectRecordedWaves()).toEqual({ currentPublished: null, pending: null });
+          act(() => { expect(startSubAreaRun({ subAreaId: 'areas/act1-blood-moor', runSeed: 7 })).not.toBeNull(); });
+          expect(combatRunLifecycle.activeRun).not.toBe(run);
+          expect(engine).toHaveBeenCalledTimes(1);
+          engine.mockClear();
+        }
+        const replayRun = combatRunLifecycle.activeRun;
         fireEvent.change(slot, { target: { value: fireBolt } });
         expect(usePlayerStore.getState().player?.comboOrder).toEqual([fireBolt]);
         expect(engine).toHaveBeenCalledTimes(1);
         expect(screen.queryByRole('alert')).not.toBeInTheDocument();
         expect(useCombatStore.getState().recordedEvents).not.toBe(recording.recordedEvents);
-        expect(combatRunLifecycle.activeRun).toBe(run);
+        expect(combatRunLifecycle.activeRun).toBe(replayRun);
       } finally { stops.forEach(stop => { stop(); }); release(); }
     });
 });

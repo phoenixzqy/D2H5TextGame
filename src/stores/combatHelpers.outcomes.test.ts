@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useHydrationStore } from './hydrationStore';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import type { Item } from '@/engine/types/items';
+import * as combatEngine from '@/engine/combat/combat';
 import {
   abortSubAreaRun, advanceWaveOrFinish, hasActiveSubAreaRun, startSubAreaRun
 } from './combatHelpers';
@@ -149,21 +150,27 @@ describe('qualified production wave finalization', () => {
       for (let wave = 1; wave < totalWaves; wave++) {
         expect(useCombatStore.getState().outcome?.winner).toBe('player');
         drain();
+        if (wave === totalWaves - 1) {
+          // Inject the controlled final result before publication establishes authority.
+          const original = combatEngine.runBattleRecorded;
+          vi.spyOn(combatEngine, 'runBattleRecorded').mockImplementationOnce(input => {
+            const actual = original(input);
+            return { ...actual, result: { ...actual.result,
+              winner: failure === 'draw' ? null : failure === 'enemy-winner' ? 'enemy' : 'player',
+              playerTeam: actual.result.playerTeam.map(unit => ({
+                ...unit, life: failure === 'dead-hero' ? 0 : unit.life
+              }))
+            } };
+          });
+        }
         expect(advanceWaveOrFinish()).toBe('next-wave');
       }
       drain();
       const final = useCombatStore.getState().outcome;
       if (!final) throw new Error('Missing final outcome');
-      // Controlled result boundary complements the genuine first-wave timeout above.
-      // Keep the original hero alive for draw/enemy cases; death takes priority even
-      // if an inconsistent result claims a player win.
-      useCombatStore.setState({ outcome: {
-        ...final,
-        winner: failure === 'draw' ? null : failure === 'enemy-winner' ? 'enemy' : 'player',
-        finalPlayerTeam: final.finalPlayerTeam.map((unit) => ({
-          ...unit, life: failure === 'dead-hero' ? 0 : unit.life
-        }))
-      } });
+      expect(final.winner).toBe(failure === 'draw' ? null : failure === 'enemy-winner' ? 'enemy' : 'player');
+      if (failure === 'dead-hero') expect(final.finalPlayerTeam[0]?.life).toBe(0);
+      else expect(final.finalPlayerTeam[0]?.life).toBeGreaterThan(0);
       const before = progressSnapshot();
       expect(before.player?.level).toBeGreaterThan(1);
 
