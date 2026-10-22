@@ -6394,3 +6394,77 @@ Independent QA/test-evidence and TD/five-axis final reviews APPROVE this frozen
 slice; all readers released. Producer publication, local commit and exact cleanup follow. Native production browser
 matrix/save/reload/import/replay acceptance, earned acquisition, native identify
 and fullD06/P09/P10/private-v1 remain open. No remote action.
+
+
+## D06 v1aw native selected-item production browser acceptance
+
+Committed Skills integration5e7b29b follows independent QA/TD/five-axis/producer
+APPROVE. Its cleanup845f7810548cdac40b44a76cead1e26be7c6b3e4c3145323a14d31f69e6c65b7
+removed1300files/43,855,641bytes/14directories with zero failures/remaining.
+Root remains sole executor in the claimed umbrella worktree. TD approved native
+spec isolation outside the default debug-server testDir. This increment changes
+exactly five paths: dedicated config, its explicit tsconfig.node inclusion,
+native spec, durable evidence and this ledger. Product sources stay at5e7b29b.
+
+The prebuilt VITE_E2E=false production artifact index-BdT59sro.js (1,341,224bytes,
+SHA9c5c2e9a011b8de94496778c2539268fa70b9f9188d4b696078c3b2e53675d8b) has no emitted
+__GAME__ reference; every setup/reopened Continue page checks runtime absence.
+This exact760file build, not the preceding integration build, receives browser
+acceptance. One worker, zero retries, no rebuild or server reuse; tests/native
+cannot be collected by the default tests/e2e config. Playwright1.59.1/Chromium147
+on Linux/WSL2. See evidence/d06-iron-golem.md for walkthrough and precise limits.
+
+18 cases across en/zh-CN:10 controls covering360x640,412x915,640x360,1280x800,
+1920x1080;4 startup35/34MP plus Save/close/Continue;2 locked replay and actual W2;
+2 rejected/successful backup imports. Native creation/export/import derives a
+version11 L24/Iron6/Blood1 fixture with two identified normal items and explicitly
+unearned core-stat scaffolding. This is no earned build/clear/economy acceptance.
+Literal340/54/63 and356/56/66 previews, native Tab/Enter/Space, stable form through
+hover/focus, local reset versus armed retention, no Arm/Clear payment, exact
+startup inventory, awaited Saved status, replay card identity, later combo
+application and restore authority are asserted. No debug/store/source injection,
+forced completion, native identification or anti-rollback claim.
+
+Types15.504s and lint41.813s/85purity pass. Initial lint found missing new config
+in explicit Node TSConfig; inclusion fixes the cause without exclusions. Extra
+broad Node-config compile exposed unchanged vitest.workspace.ts:75 maxThreads
+mismatch; retained baseline hash proves it predates this diff. New config direct
+strict compile passes1.640s; broad baseline issue remains unresolved. Initial
+full-unit process ended143 without totals (child status/cause unknown), with
+partial log and initial metadata retained; no pass claimed. Unchanged rerun
+7259tests/233files121.371s (Vitest119.92s) passes. Build9.613s/600modules passes;
+existing build warnings and15s unit budget overrun remain, no policy weakened.
+
+Initial browser grep found no tests; corrected single probe passed7.437s.
+Preliminary matrix18passed105.319s. Final relocated spec/config18passed108.839s,
+no skipped/retried tests or collected page/console warnings/errors, including
+reopened pages. Launcher color-env warnings are distinct. Final outputSHA
+cd7da33d205b5663716ba11d90c1ba0954f7f4ce79c23120cb33651924d27734.
+All original command/source/config/output failures and successes remain retained.
+
+DOM metrics enforce44px targets,16px select text, document/main/panel overflow
+and full bounds for each separately scrolled part. Initial whole-panel probe
+capture is excluded from visual acceptance. Root inspected ten original-size
+lossless seven-part sheets and ten focus captures;75/80 final originals are
+identical, and all five differing originals were directly inspected. Warning,
+values, actions, wrapping/CJK glyphs and focus are readable. Physical devices,
+other browsers, unrelated navigation glyphs and full screen-reader/PWA gates
+remain unaccepted. Both matrices'15 recorded descendants and rerun's4 recorded
+processes are absent; exact bounded absence receipts retained, no broad killing.
+
+Support manifest iron-browser-support-manifest.json SHA
+79a570fc1e40b6ab4868c998d24da244afe5ac8189e538e5f45bc3ac6ad6e3b4
+binds421 retained browser evidence files and760 tested artifact files under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Root security check: pass; validated local artifact path/port/run identity,
+normal local save dialogs, exclusive evidence writes, no product external IO,
+credentials, dependencies, permissions or SaveCurrent11 changes. Review freeze
+will bind these five sources, command captures, support SHA, prior cleanup and
+exact owned dist/tmp inventory. Independent QA/test-evidence (ADEQUATE) and
+TD/five-axis final reviews APPROVE this frozen slice; all readers released.
+Producer publication, local commit and exact cleanup follow.
+Retain browser-evidence/commands/manifests for reviewers and future acceptance;
+root removes only frozen disposable dist/tmp after readers release. Earned supply,
+native identify, other corpse consumers, Mage identity, campaign/economy/balance,
+outstanding warnings and fullD06/P09/P10/private-v1 stay open. Next bounded card
+reconciles obsolete Iron decision/register status. No remote action.
