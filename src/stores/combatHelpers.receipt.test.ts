@@ -19,6 +19,7 @@ import { getIdleEliteMisses, setIdleEliteMisses } from './idleElitePity';
 import { stageRecordedBattle } from './recordedBattlePublication';
 import { prepareRecordedWave, commitPreparedRecordedWave, recognizeRecordedWavePublication,
   inspectRecordedWaves, abandonRecordedWaves, prepareRecordedWaveInstallation,
+  markRecordedWaveMetadataInstalled, observeRecordedWaveSelection, beginRecordedWaveSettlement, finishRecordedWaveSettlement,
   type RecordedWaveInstallIntent, RecordedWaveReceiptError } from './recordedWaveReceipt';
 import { RecordedWaveAccessError } from './recordedWaveAccess';
 import { beginWaveTransition, endWaveTransition, reserveWaveRestore, releaseWaveRestore, WaveGuardError, deferWaveSaveIfBusy, assertWaveSnapshotAllowed } from './waveTransitionGuard';
@@ -48,6 +49,22 @@ function receipt(run: ActiveRun, phase: typeof phases[number] | 'published', int
       selection, ownership, debitIntent: null, attestation: null,
       engineInput: { seed: run.seed, playerTeam: combat.playerTeam, enemyTeam: combat.enemyTeam },
       recording, publication };
+    if (intent?.kind === 'newWave' || (intent?.kind === 'replay' && !inspectRecordedWaves().currentPublished?.installation)) {
+      // Protocol-only predecessor around the actual recording: no payout or carry rebase.
+      const previous = { ...binding, expectedActiveRun: null, targetWaveIdx: run.waveIdx,
+        publication: { ...publication, currentWave: run.waveIdx + 1 } };
+      const predecessor = prepareRecordedWaveInstallation(previous,
+        { kind: 'newRun', nextDefaultChallengeOrdinal: null }, lease);
+      commitPreparedRecordedWave(predecessor, lease, { activeRun: null, heroId: run.playerUnit.id, selection, ownership });
+      markRecordedWaveMetadataInstalled(predecessor, lease); observeRecordedWaveSelection(predecessor, lease, null);
+      expect(recognizeRecordedWavePublication(predecessor, lease, { activeRun: run,
+        heroId: run.playerUnit.id, combat: previous.publication })).toBe(true);
+      if (intent.kind === 'newWave') {
+        beginRecordedWaveSettlement(predecessor, lease, { activeRun: run, heroId: run.playerUnit.id,
+          combat: { ...previous.publication, playbackComplete: true } });
+        finishRecordedWaveSettlement(predecessor, lease, { kind: 'nextWave', carryPlayerTeam: intent.carryPlayerTeam });
+      }
+    }
     const token = intent ? prepareRecordedWaveInstallation(binding, intent, lease) : prepareRecordedWave(binding, lease);
     if (phase !== 'prepared') expect(commitPreparedRecordedWave(token, lease, {
       activeRun: combatRunLifecycle.activeRun, heroId: run.playerUnit.id, selection,

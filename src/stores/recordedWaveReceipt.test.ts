@@ -20,7 +20,8 @@ import {
   cancelPreparedRecordedWave, commitPreparedRecordedWave, recognizeRecordedWavePublication,
   abandonRecordedWaves, type RecordedWaveBinding, type RecordedWaveLive,
   RecordedWaveReceiptError, prepareRecordedWaveInstallation, readRecordedWaveInstallation,
-  markRecordedWaveMetadataInstalled, observeRecordedWaveSelection, type RecordedWaveInstallIntent
+  markRecordedWaveMetadataInstalled, observeRecordedWaveSelection, type RecordedWaveInstallIntent,
+  readRecordedWaveSettlement, beginRecordedWaveSettlement, finishRecordedWaveSettlement, failRecordedWaveSettlement
 } from './recordedWaveReceipt';
 
 function requiredFixtureValue<T>(value: T | null | undefined): T {
@@ -509,9 +510,14 @@ describe('recorded wave installation intent', () => {
 
 
 it.each(['newRun', 'newWave', 'replay'] as const)('captures valid %s policy without mutating run, carry or caller intent', kind => {
-  const run = fixture().binding.candidateRun;
-  const { binding, live } = kind === 'newRun' ? fixture() : fixture(false, run, kind === 'newWave' ? 1 : 0);
+  const predecessor = kind === 'newRun' ? null : publishInstallation();
+  const run = predecessor?.binding.candidateRun ?? fixture().binding.candidateRun;
   const carry = [...run.carryPlayerTeam];
+  if (kind === 'newWave' && predecessor) {
+    beginRecordedWaveSettlement(predecessor.token, lease, predecessor.completion);
+    finishRecordedWaveSettlement(predecessor.token, lease, { kind: 'nextWave', carryPlayerTeam: carry });
+  }
+  const { binding, live } = kind === 'newRun' ? fixture() : fixture(false, run, kind === 'newWave' ? 1 : 0);
   const intent: RecordedWaveInstallIntent = kind === 'newRun' ? { kind, nextDefaultChallengeOrdinal: null }
     : kind === 'newWave' ? { kind, carryPlayerTeam: carry } : { kind };
   const before = structuredClone(binding.candidateRun);
@@ -585,4 +591,250 @@ it('needs no selection setter for null instructions and keeps progress marks ide
   markRecordedWaveMetadataInstalled(token, lease); observeRecordedWaveSelection(token, lease, null);
   expect(inspectRecordedWaves()).toBe(marked);
   expect(recognizeRecordedWavePublication(token, lease, install(binding))).toBe(true);
+});
+
+
+/** Protocol-only publication; synthetic payouts below never call game rewards. */
+function publishInstallation(data = fixture(), intent: RecordedWaveInstallIntent = {
+  kind: 'newRun', nextDefaultChallengeOrdinal: null
+}) {
+  const token = prepareRecordedWaveInstallation(data.binding, intent, lease);
+  commitPreparedRecordedWave(token, lease, data.live);
+  markRecordedWaveMetadataInstalled(token, lease);
+  observeRecordedWaveSelection(token, lease, null);
+  const installed = install(data.binding);
+  expect(recognizeRecordedWavePublication(token, lease, installed)).toBe(true);
+  return { ...data, token, completion: { ...installed,
+    combat: { ...installed.combat, playbackComplete: true } } };
+}
+
+describe('inactive recorded wave settlement authority', () => {
+  it('latches before effects, excludes nested settlement, and captures carry once', () => {
+    const first = publishInstallation();
+    const initial = readRecordedWaveSettlement(first.token, lease);
+    expect(initial.binding).toBe(inspectRecordedWaves().currentPublished?.binding);
+    expect(initial.progress).toEqual({ phase: 'unsettled' });
+    expect(beginRecordedWaveSettlement(first.token, lease, first.completion)).toBe(true);
+    expect(readRecordedWaveSettlement(first.token, lease).progress).toEqual({ phase: 'settling' });
+    const latched = inspectRecordedWaves();
+    expect(() => beginRecordedWaveSettlement(first.token, lease, first.completion)).toThrow('wrongPhase');
+    expect(inspectRecordedWaves()).toBe(latched);
+    const carry = [...first.binding.candidateRun.carryPlayerTeam];
+    finishRecordedWaveSettlement(first.token, lease, { kind: 'nextWave', carryPlayerTeam: carry });
+    const view = readRecordedWaveSettlement(first.token, lease);
+    expect(view.identity).toBe(initial.identity);
+    expect(view.progress).toEqual({ phase: 'awaitingNextWave', nextWaveIdx: 1, carryPlayerTeam: carry });
+    if (view.progress.phase !== 'awaitingNextWave') throw new Error('Missing carry fixture');
+    expect(view.progress.carryPlayerTeam).toBe(carry);
+    expect(Object.isFrozen(view)).toBe(true); expect(Object.isFrozen(view.progress)).toBe(true);
+    expect(Object.isFrozen(carry)).toBe(false); expect(Object.isFrozen(carry[0])).toBe(false);
+    const settled = inspectRecordedWaves();
+    expect(() => { finishRecordedWaveSettlement(first.token, lease, { kind: 'nextWave', carryPlayerTeam: [] }); }).toThrow('wrongPhase');
+    expect(() => beginRecordedWaveSettlement(first.token, lease, first.completion)).toThrow('wrongPhase');
+    expect(inspectRecordedWaves()).toBe(settled);
+  });
+
+  it.each(['run', 'hero', 'runHero', 'cursor', 'recording', 'events', 'outcome', 'area', 'wave', 'total'] as const)(
+    'refuses mismatched completion %s before progress or gameplay changes', mismatch => {
+    const first = publishInstallation(); const live = { ...first.completion, combat: { ...first.completion.combat } };
+    if (mismatch === 'run') live.activeRun = { ...first.binding.candidateRun };
+    else if (mismatch === 'hero') live.heroId = 'other-hero';
+    else if (mismatch === 'runHero') first.binding.candidateRun.playerUnit = { ...first.binding.candidateRun.playerUnit, id: 'other-hero' };
+    else if (mismatch === 'cursor') first.binding.candidateRun.waveIdx = 1;
+    else if (mismatch === 'recording') first.binding.candidateRun.recording = { ...first.binding.recording };
+    else if (mismatch === 'events') live.combat.recordedEvents = [...first.binding.recording.events];
+    else if (mismatch === 'outcome') live.combat.outcome = { ...first.binding.recording.outcome };
+    else if (mismatch === 'area') live.combat.subAreaRunId = 'other-area';
+    else if (mismatch === 'wave') live.combat.currentWave = 2;
+    else live.combat.totalWaves++;
+    const before = inspectRecordedWaves(); const combat = useCombatStore.getState();
+    const run = structuredClone(first.binding.candidateRun);
+    expect(() => beginRecordedWaveSettlement(first.token, lease, live)).toThrow('bindingMismatch');
+    expect(inspectRecordedWaves()).toBe(before); expect(useCombatStore.getState()).toBe(combat);
+    expect(first.binding.candidateRun).toEqual(run);
+  });
+
+  it('does not settle incomplete playback, and accepts changed playback teams/log/cursor', () => {
+    const first = publishInstallation(); const before = inspectRecordedWaves();
+    expect(beginRecordedWaveSettlement(first.token, lease, { ...first.completion,
+      combat: { ...first.completion.combat, playbackComplete: false } })).toBe(false);
+    expect(inspectRecordedWaves()).toBe(before);
+    const played = { ...first.completion, combat: { ...first.completion.combat,
+      playerTeam: [], enemyTeam: [], log: [], eventCursor: 999, paused: true, playbackSpeed: 2 as const } };
+    expect(beginRecordedWaveSettlement(first.token, lease, played)).toBe(true);
+  });
+
+  it.each(['before', 'after'] as const)('retains original %s-write error and actual gains without retry or compensation', when => {
+    const first = publishInstallation(); const gains = { xp: 0 }; const error = { message: 'reward notification' };
+    expect(beginRecordedWaveSettlement(first.token, lease, first.completion)).toBe(true);
+    if (when === 'after') gains.xp += 75;
+    failRecordedWaveSettlement(first.token, lease, { error });
+    const failed = inspectRecordedWaves(); const view = readRecordedWaveSettlement(first.token, lease);
+    expect(view.progress).toEqual({ phase: 'settlementFailed', failure: { error } });
+    if (view.progress.phase !== 'settlementFailed') throw new Error('Missing failure fixture');
+    expect(view.progress.failure.error).toBe(error); expect(Object.isFrozen(view.progress.failure)).toBe(true);
+    expect(first.binding.candidateRun.recording).toBe(first.binding.recording);
+    for (const action of [() => beginRecordedWaveSettlement(first.token, lease, first.completion),
+      () => { finishRecordedWaveSettlement(first.token, lease, { kind: 'terminal', result: 'defeat' }); },
+      () => { failRecordedWaveSettlement(first.token, lease, { error: new Error('later') }); }]) {
+      expect(action).toThrow('wrongPhase'); expect(inspectRecordedWaves()).toBe(failed);
+    }
+    expect(gains.xp).toBe(when === 'after' ? 75 : 0);
+    expect(() => prepareRecordedWaveInstallation(fixture().binding,
+      { kind: 'newRun', nextDefaultChallengeOrdinal: null }, lease)).toThrow('wrongPhase');
+    expect(inspectRecordedWaves()).toBe(failed);
+  });
+
+  it('replay retains exact payout identity/progress and a pending replay blocks old settlement', () => {
+    const first = publishInstallation(); const initial = readRecordedWaveSettlement(first.token, lease);
+    const replay = fixture(false, first.binding.candidateRun);
+    const token = prepareRecordedWaveInstallation(replay.binding, { kind: 'replay' }, lease);
+    const pending = inspectRecordedWaves();
+    expect(() => beginRecordedWaveSettlement(first.token, lease, first.completion)).toThrow('pendingReceipt');
+    expect(inspectRecordedWaves()).toBe(pending);
+    commitPreparedRecordedWave(token, lease, replay.live); markRecordedWaveMetadataInstalled(token, lease);
+    expect(recognizeRecordedWavePublication(token, lease, install(replay.binding))).toBe(true);
+    const view = readRecordedWaveSettlement(token, lease);
+    expect(token).not.toBe(first.token); expect(replay.binding.recording).not.toBe(first.binding.recording);
+    expect(view.identity).toBe(initial.identity); expect(view.progress).toBe(initial.progress);
+    expect(() => readRecordedWaveSettlement(first.token, lease)).toThrow('staleReceipt');
+  });
+
+  it('new-wave preparation requires exact captured predecessor carry and allocates a fresh payout', () => {
+    const first = publishInstallation(); const initial = readRecordedWaveSettlement(first.token, lease);
+    const carry = [...first.binding.candidateRun.carryPlayerTeam];
+    beginRecordedWaveSettlement(first.token, lease, first.completion);
+    finishRecordedWaveSettlement(first.token, lease, { kind: 'nextWave', carryPlayerTeam: carry });
+    const next = fixture(false, first.binding.candidateRun, 1); const before = inspectRecordedWaves();
+    expect(() => prepareRecordedWaveInstallation(next.binding, { kind: 'newWave', carryPlayerTeam: [...carry] }, lease))
+      .toThrow('bindingMismatch'); expect(inspectRecordedWaves()).toBe(before);
+    // A failed stager has no protocol call: old cursor/carry and payout remain captured.
+    expect(first.binding.candidateRun.waveIdx).toBe(0);
+    expect(readRecordedWaveSettlement(first.token, lease).progress).toMatchObject({ carryPlayerTeam: carry });
+    const token = prepareRecordedWaveInstallation(next.binding, { kind: 'newWave', carryPlayerTeam: carry }, lease);
+    commitPreparedRecordedWave(token, lease, next.live); markRecordedWaveMetadataInstalled(token, lease);
+    observeRecordedWaveSelection(token, lease, null);
+    expect(recognizeRecordedWavePublication(token, lease, install(next.binding))).toBe(true);
+    const current = readRecordedWaveSettlement(token, lease);
+    expect(current.identity).not.toBe(initial.identity); expect(current.progress).toEqual({ phase: 'unsettled' });
+  });
+
+  it.each(['awaitingNextWave', 'settled', 'settling', 'settlementFailed'] as const)(
+    'cannot fork a replay after predecessor is %s', phase => {
+    const first = publishInstallation(); beginRecordedWaveSettlement(first.token, lease, first.completion);
+    if (phase === 'awaitingNextWave') finishRecordedWaveSettlement(first.token, lease,
+      { kind: 'nextWave', carryPlayerTeam: [] });
+    else if (phase === 'settled') finishRecordedWaveSettlement(first.token, lease, { kind: 'terminal', result: 'defeat' });
+    else if (phase === 'settlementFailed') failRecordedWaveSettlement(first.token, lease, { error: 'first' });
+    const replay = fixture(false, first.binding.candidateRun); const before = inspectRecordedWaves();
+    expect(() => prepareRecordedWaveInstallation(replay.binding, { kind: 'replay' }, lease)).toThrow('wrongPhase');
+    expect(inspectRecordedWaves()).toBe(before);
+  });
+
+  it.each(['replay', 'newWave'] as const)('requires a published installation predecessor for %s', kind => {
+    const run = fixture().binding.candidateRun;
+    const data = fixture(false, run, kind === 'newWave' ? 1 : 0); const before = inspectRecordedWaves();
+    expect(() => prepareRecordedWaveInstallation(data.binding,
+      kind === 'replay' ? { kind } : { kind, carryPlayerTeam: [] }, lease)).toThrow('bindingMismatch');
+    expect(inspectRecordedWaves()).toBe(before);
+  });
+
+  it('enforces lease, current token, installation metadata and settlement phase before mutation', () => {
+    const foundation = fixture(); const token = prepareRecordedWave(foundation.binding, lease);
+    commitPreparedRecordedWave(token, lease, foundation.live);
+    recognizeRecordedWavePublication(token, lease, install(foundation.binding));
+    const before = inspectRecordedWaves();
+    const actions = [() => readRecordedWaveSettlement(token, lease),
+      () => beginRecordedWaveSettlement(token, lease, { ...install(foundation.binding), combat: { ...foundation.binding.publication, playbackComplete: true } }),
+      () => { finishRecordedWaveSettlement(token, lease, { kind: 'terminal' as const, result: 'defeat' as const }); },
+      () => { failRecordedWaveSettlement(token, lease, { error: 'failure' }); }];
+    for (const action of actions) { expect(action).toThrow('bindingMismatch'); expect(inspectRecordedWaves()).toBe(before); }
+    const oldLease = lease; releaseLease(); lease = beginWaveTransition(true); leaseLive = true;
+    expect(() => readRecordedWaveSettlement(token, oldLease)).toThrow('invalidLease');
+    const first = publishInstallation(); const current = inspectRecordedWaves();
+    for (const action of actions) { expect(action).toThrow('staleReceipt'); expect(inspectRecordedWaves()).toBe(current); }
+    expect(() => { finishRecordedWaveSettlement(first.token, lease, { kind: 'terminal', result: 'defeat' }); }).toThrow('wrongPhase');
+    expect(() => { failRecordedWaveSettlement(first.token, lease, { error: 'early' }); }).toThrow('wrongPhase');
+    expect(inspectRecordedWaves()).toBe(current);
+  });
+});
+
+
+it.each(['victory', 'defeat'] as const)('records terminal %s once and gives replacement runs a fresh payout identity', result => {
+  const data = fixture();
+  const candidateRun = { ...data.binding.candidateRun,
+    plan: { ...data.binding.candidateRun.plan, waves: data.binding.candidateRun.plan.waves.slice(0, 1) } };
+  const first = publishInstallation({ ...data, binding: { ...data.binding, candidateRun,
+    publication: { ...data.binding.publication, totalWaves: 1 } } });
+  const identity = readRecordedWaveSettlement(first.token, lease).identity;
+  beginRecordedWaveSettlement(first.token, lease, first.completion); const settling = inspectRecordedWaves();
+  expect(() => { finishRecordedWaveSettlement(first.token, lease, { kind: 'nextWave', carryPlayerTeam: [] }); })
+    .toThrow('bindingMismatch'); expect(inspectRecordedWaves()).toBe(settling);
+  finishRecordedWaveSettlement(first.token, lease, { kind: 'terminal', result });
+  expect(readRecordedWaveSettlement(first.token, lease).progress).toEqual({ phase: 'settled', result });
+  const settled = inspectRecordedWaves();
+  expect(() => { finishRecordedWaveSettlement(first.token, lease, { kind: 'terminal', result }); }).toThrow('wrongPhase');
+  expect(inspectRecordedWaves()).toBe(settled);
+  const next = publishInstallation(); expect(readRecordedWaveSettlement(next.token, lease).identity).not.toBe(identity);
+});
+
+it('checks live leases before every settlement operation and keeps a newer published token intact', () => {
+  const first = publishInstallation(); const oldLease = lease; releaseLease();
+  lease = beginWaveTransition(true); leaseLive = true;
+  const next = publishInstallation(); const before = inspectRecordedWaves();
+  const operations = [() => readRecordedWaveSettlement(first.token, oldLease),
+    () => beginRecordedWaveSettlement(first.token, oldLease, first.completion),
+    () => { finishRecordedWaveSettlement(first.token, oldLease, { kind: 'terminal', result: 'defeat' }); },
+    () => { failRecordedWaveSettlement(first.token, oldLease, { error: 'failure' }); }];
+  for (const action of operations) { expect(action).toThrow('invalidLease'); expect(inspectRecordedWaves()).toBe(before); }
+  expect(readRecordedWaveSettlement(next.token, lease).progress).toEqual({ phase: 'unsettled' });
+});
+
+it('blocks every settlement operation while a replay is pending, and cancellation preserves the predecessor', () => {
+  const first = publishInstallation(); const original = readRecordedWaveSettlement(first.token, lease);
+  const replay = fixture(false, first.binding.candidateRun);
+  const pending = prepareRecordedWaveInstallation(replay.binding, { kind: 'replay' }, lease);
+  const before = inspectRecordedWaves();
+  for (const action of [() => readRecordedWaveSettlement(first.token, lease),
+    () => beginRecordedWaveSettlement(first.token, lease, first.completion),
+    () => { finishRecordedWaveSettlement(first.token, lease, { kind: 'terminal', result: 'defeat' }); },
+    () => { failRecordedWaveSettlement(first.token, lease, { error: 'failure' }); }]) {
+    expect(action).toThrow('pendingReceipt'); expect(inspectRecordedWaves()).toBe(before);
+  }
+  cancelPreparedRecordedWave(pending, lease, replay.live.ownership);
+  expect(readRecordedWaveSettlement(first.token, lease).identity).toBe(original.identity);
+  expect(readRecordedWaveSettlement(first.token, lease).progress).toBe(original.progress);
+  expect(beginRecordedWaveSettlement(first.token, lease, first.completion)).toBe(true);
+});
+
+it.each(['replay', 'newWave'] as const)('rejects foundation-only published predecessors for %s', kind => {
+  const data = fixture(); const token = prepareRecordedWave(data.binding, lease);
+  commitPreparedRecordedWave(token, lease, data.live); recognizeRecordedWavePublication(token, lease, install(data.binding));
+  const next = fixture(false, data.binding.candidateRun, kind === 'newWave' ? 1 : 0);
+  const before = inspectRecordedWaves();
+  expect(() => prepareRecordedWaveInstallation(next.binding,
+    kind === 'replay' ? { kind } : { kind, carryPlayerTeam: [] }, lease)).toThrow('bindingMismatch');
+  expect(inspectRecordedWaves()).toBe(before);
+});
+
+it.each(['run', 'hero', 'recording', 'cursor'] as const)('refuses stale replay predecessor %s before allocation', mismatch => {
+  const first = publishInstallation(); let next = fixture(false, first.binding.candidateRun);
+  if (mismatch === 'run') {
+    const other = { ...first.binding.candidateRun };
+    next = { ...next, binding: { ...next.binding, candidateRun: other, expectedActiveRun: other } };
+  } else if (mismatch === 'hero') next = { ...next, binding: { ...next.binding, heroId: 'other' } };
+  else if (mismatch === 'recording') first.binding.candidateRun.recording = { ...first.binding.recording };
+  else first.binding.candidateRun.waveIdx++;
+  const before = inspectRecordedWaves();
+  expect(() => prepareRecordedWaveInstallation(next.binding, { kind: 'replay' }, lease)).toThrow('bindingMismatch');
+  expect(inspectRecordedWaves()).toBe(before);
+});
+
+
+it('refuses replacement preparation while settlement effects own the published wave', () => {
+  const first = publishInstallation(); beginRecordedWaveSettlement(first.token, lease, first.completion);
+  const before = inspectRecordedWaves(); const replacement = fixture();
+  expect(() => prepareRecordedWaveInstallation(replacement.binding,
+    { kind: 'newRun', nextDefaultChallengeOrdinal: null }, lease)).toThrow('wrongPhase');
+  expect(inspectRecordedWaves()).toBe(before);
 });

@@ -44,8 +44,38 @@ export type RecordedWaveInstallIntent =
   | { readonly kind: 'newRun'; readonly nextDefaultChallengeOrdinal: number | null }
   | { readonly kind: 'newWave'; readonly carryPlayerTeam: CombatUnit[] }
   | { readonly kind: 'replay' };
+const payoutBrand = Symbol('recordedWavePayout');
+/** Opaque logical-wave identity shared by ordinary replays; never persisted. */
+export interface RecordedWavePayoutIdentity { readonly [payoutBrand]: true }
+/** Immutable process-local progress; carry is captured once by the helper. */
+export type RecordedWaveSettlementProgress =
+  | { readonly phase: 'unsettled' }
+  | { readonly phase: 'settling' }
+  | { readonly phase: 'awaitingNextWave'; readonly nextWaveIdx: number; readonly carryPlayerTeam: CombatUnit[] }
+  | { readonly phase: 'settled'; readonly result: 'victory' | 'defeat' }
+  | { readonly phase: 'settlementFailed'; readonly failure: ReceiptFailure };
+interface LogicalWaveSettlement {
+  readonly identity: RecordedWavePayoutIdentity;
+  readonly progress: RecordedWaveSettlementProgress;
+}
+/** Exact completion authority; playback-mutated teams/log/cursor are excluded. */
+export interface RecordedWaveSettlementLive {
+  readonly activeRun: ActiveRun | null;
+  readonly heroId: string | null;
+  readonly combat: Pick<ReturnType<typeof useCombatStore.getState>,
+    'subAreaRunId' | 'currentWave' | 'totalWaves' | 'recordedEvents' | 'outcome' | 'playbackComplete'>;
+}
+/** Retained binding and logical-wave settlement under live transition ownership. */
+export interface RecordedWaveSettlementView extends LogicalWaveSettlement {
+  readonly binding: RecordedWaveBinding;
+}
+/** Terminal effects have finished, or surviving carry has been computed once. */
+export type RecordedWaveSettlementResult =
+  | { readonly kind: 'terminal'; readonly result: 'victory' | 'defeat' }
+  | { readonly kind: 'nextWave'; readonly carryPlayerTeam: CombatUnit[] };
 interface InstallationProgress {
   readonly intent: RecordedWaveInstallIntent;
+  readonly settlement: LogicalWaveSettlement;
   readonly metadataInstalled: boolean;
   readonly selectionProgress: 'notRequired' | 'pending' | 'resolved';
   readonly selectionFailure?: ReceiptFailure;
@@ -128,14 +158,22 @@ export function prepareRecordedWave(binding: RecordedWaveBinding, lease: WaveTra
 /**
  * Capture a narrowly validated install intent in the sole receipt holder.
  * New runs replace a distinct run at wave zero; next waves/replays keep run
- * identity. Replay cannot debit or consume selection. Only owned wrappers are
- * frozen; captured carry and all caller gameplay values remain untouched.
+ * identity. Replay requires the exact unsettled published predecessor and shares
+ * its payout identity/progress; next wave requires its exact captured settled
+ * carry. Settling/failed predecessors refuse replacement. Replay cannot debit or
+ * consume selection. Freeze only owned wrappers, leaving caller values untouched.
  * Throws receipt binding/phase errors or WaveGuardError before holder mutation.
  */
 export function prepareRecordedWaveInstallation(
   binding: RecordedWaveBinding, intent: RecordedWaveInstallIntent, lease: WaveTransitionLease
 ): RecordedWaveReceipt {
   assertWaveTransitionOwner(lease);
+  if (holder.pending) throw new RecordedWaveReceiptError('pendingReceipt');
+  const previous = holder.currentPublished;
+  const settlement = previous?.installation?.settlement;
+  if (settlement?.progress.phase === 'settling' || settlement?.progress.phase === 'settlementFailed') {
+    throw new RecordedWaveReceiptError('wrongPhase');
+  }
   const sameRun = binding.expectedActiveRun !== null && binding.candidateRun === binding.expectedActiveRun;
   const valid = intent.kind === 'newRun'
     ? !sameRun && binding.targetWaveIdx === 0 && (intent.nextDefaultChallengeOrdinal === null ||
@@ -144,10 +182,26 @@ export function prepareRecordedWaveInstallation(
       ? sameRun && binding.targetWaveIdx === binding.expectedActiveRun.waveIdx + 1
       : sameRun && binding.targetWaveIdx === binding.expectedActiveRun.waveIdx && binding.debitIntent === null;
   if (!valid) throw new RecordedWaveReceiptError('bindingMismatch');
+  if (intent.kind !== 'newRun') {
+    if (!previous || !settlement || previous.binding.candidateRun !== binding.expectedActiveRun ||
+      previous.binding.heroId !== binding.heroId || binding.expectedActiveRun.recording !== previous.binding.recording ||
+      binding.expectedActiveRun.waveIdx !== previous.binding.targetWaveIdx) {
+      throw new RecordedWaveReceiptError('bindingMismatch');
+    }
+    if (intent.kind === 'replay') {
+      if (settlement.progress.phase !== 'unsettled') throw new RecordedWaveReceiptError('wrongPhase');
+    } else {
+      if (settlement.progress.phase !== 'awaitingNextWave') throw new RecordedWaveReceiptError('wrongPhase');
+      if (binding.targetWaveIdx !== settlement.progress.nextWaveIdx ||
+        intent.carryPlayerTeam !== settlement.progress.carryPlayerTeam) throw new RecordedWaveReceiptError('bindingMismatch');
+    }
+  }
+  const logicalWave = intent.kind === 'replay' && settlement ? settlement : Object.freeze({
+    identity: Object.freeze({ [payoutBrand]: true as const }), progress: Object.freeze({ phase: 'unsettled' as const }) });
   const receipt = prepareRecordedWave(binding, lease);
   const pending = pendingFor(receipt, lease, 'prepared');
   updatePending({ ...pending, installation: Object.freeze({ intent: Object.freeze({ ...intent }),
-    metadataInstalled: false,
+    metadataInstalled: false, settlement: logicalWave,
     selectionProgress: intent.kind === 'replay' || binding.selection === null ? 'notRequired' : 'pending' }) });
   return receipt;
 }
@@ -275,4 +329,72 @@ export function abandonRecordedWaves(): void {
 export function clearRecordedWavesAfterRestore(lease: WaveRestoreLease): void {
   assertWaveRestoreOwner(lease);
   holder = Object.freeze({ currentPublished: null, pending: null });
+}
+
+
+function publishedSettlementFor(receipt: RecordedWaveReceipt, lease: WaveTransitionLease) {
+  assertWaveTransitionOwner(lease);
+  const current = holder.currentPublished;
+  if (current?.receipt !== receipt) throw new RecordedWaveReceiptError('staleReceipt');
+  if (holder.pending) throw new RecordedWaveReceiptError('pendingReceipt');
+  if (!current.installation) throw new RecordedWaveReceiptError('bindingMismatch');
+  return { current, installation: current.installation };
+}
+function updateSettlement(current: ReceiptView, installation: InstallationProgress, progress: RecordedWaveSettlementProgress) {
+  const next = Object.freeze({ ...current, installation: Object.freeze({ ...installation,
+    settlement: Object.freeze({ identity: installation.settlement.identity, progress: Object.freeze(progress) }) }) });
+  holder = Object.freeze({ currentPublished: next, pending: null });
+}
+
+/** Read the exact current installation settlement; no foundation fallback. */
+export function readRecordedWaveSettlement(receipt: RecordedWaveReceipt, lease: WaveTransitionLease): RecordedWaveSettlementView {
+  const { current, installation } = publishedSettlementFor(receipt, lease);
+  return Object.freeze({ binding: current.binding, ...installation.settlement });
+}
+
+/**
+ * Validate completion authority before any effect, then latch once. Incomplete
+ * playback returns false without mutation. Throws for stale token, pending work,
+ * missing metadata, non-unsettled phase, mismatched authority or invalid lease.
+ */
+export function beginRecordedWaveSettlement(
+  receipt: RecordedWaveReceipt, lease: WaveTransitionLease, live: RecordedWaveSettlementLive
+): boolean {
+  const { current, installation } = publishedSettlementFor(receipt, lease);
+  if (installation.settlement.progress.phase !== 'unsettled') throw new RecordedWaveReceiptError('wrongPhase');
+  const { binding } = current; const { combat, activeRun } = live;
+  if (activeRun !== binding.candidateRun || live.heroId !== binding.heroId ||
+    activeRun.playerUnit.id !== binding.heroId || activeRun.waveIdx !== binding.targetWaveIdx ||
+    activeRun.recording !== binding.recording || combat.recordedEvents !== binding.recording.events ||
+    combat.outcome !== binding.recording.outcome || combat.subAreaRunId !== binding.publication.subAreaRunId ||
+    combat.currentWave !== binding.publication.currentWave || combat.totalWaves !== binding.publication.totalWaves) {
+    throw new RecordedWaveReceiptError('bindingMismatch');
+  }
+  if (!combat.playbackComplete) return false;
+  updateSettlement(current, installation, { phase: 'settling' });
+  return true;
+}
+
+/** Capture terminal success or the once-rebased next-wave carry after effects. */
+export function finishRecordedWaveSettlement(
+  receipt: RecordedWaveReceipt, lease: WaveTransitionLease, result: RecordedWaveSettlementResult
+): void {
+  const { current, installation } = publishedSettlementFor(receipt, lease);
+  if (installation.settlement.progress.phase !== 'settling') throw new RecordedWaveReceiptError('wrongPhase');
+  const nextWaveIdx = current.binding.targetWaveIdx + 1;
+  if (result.kind === 'nextWave' && nextWaveIdx >= current.binding.publication.totalWaves) {
+    throw new RecordedWaveReceiptError('bindingMismatch');
+  }
+  updateSettlement(current, installation, result.kind === 'nextWave'
+    ? { phase: 'awaitingNextWave', nextWaveIdx, carryPlayerTeam: result.carryPlayerTeam }
+    : { phase: 'settled', result: result.result });
+}
+
+/** Retain the original thrown value and actual gains; never retry or compensate. */
+export function failRecordedWaveSettlement(
+  receipt: RecordedWaveReceipt, lease: WaveTransitionLease, failure: ReceiptFailure
+): void {
+  const { current, installation } = publishedSettlementFor(receipt, lease);
+  if (installation.settlement.progress.phase !== 'settling') throw new RecordedWaveReceiptError('wrongPhase');
+  updateSettlement(current, installation, { phase: 'settlementFailed', failure: Object.freeze({ error: failure.error }) });
 }

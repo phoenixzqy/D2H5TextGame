@@ -5575,3 +5575,66 @@ Inactive settlement authority/access, coherent all-producer activation, selected
 item debit/replay lock, bilingual Iron acceptance and fullD06/P09/P10/private-v1
 remain open. TD approved splitting settlement authority+both fixture sets+ledger
 (four paths) before access+tests+ledger (three paths); neither activates production.
+
+
+## D06 v1ai inactive logical-wave settlement authority
+
+Installation/recovery support received independent QA, TD/five-axis and producer
+APPROVE and committed as `86d99a5`. Exact install-intent cleanup removed1300files/
+43,820,938bytes and14empty directories, with zero failures/remaining targets; all16
+recorded command identities were absent.
+
+TD approved this four-path protocol/fixture slice before the separate access slice.
+Installation receipts now contain immutable logical-wave settlement metadata in
+the existing holder. New runs/waves receive fresh opaque payout identities; replay
+requires the exact published unsettled run/hero/cursor/recording predecessor and
+inherits its exact identity/progress. Next wave requires the exact awaitingNextWave
+predecessor and captured carry reference. Invalid relationships allocate no pending
+state; settling/failed predecessors refuse all installation preparation. Existing
+foundation-only receipt fixtures remain valid but cannot use strict settlement.
+Both receipt fixture sets now establish the necessary installation predecessor
+chains; helper fixtures remain synthetic around actual recordings, with no payout.
+
+Strict read/begin/finish/fail APIs check live lease, exact current token, absence
+of pending work and installation metadata. Begin validates exact run, current hero,
+run cursor, installed recording, event/outcome references and publication area/wave/
+total metadata; incomplete playback is a no-op. It latches unsettled to settling
+before granting effect permission. Playback-mutated teams/log/cursor/pause/speed
+are excluded from completion equality. Finish records terminal victory/defeat or
+derives the next index and captures already computed carry once, without freezing
+caller units/arrays. Fail retains the first arbitrary thrown value and original
+recording, with no payout retry/compensation. Only owned wrappers are frozen.
+Pending replay blocks all settlement operations, preventing progress forks.
+No completion effect, rebase, stage, store notification or callback is invoked by
+this protocol. Production producers and completion still use their prior path;
+settlement access refusals are NOT integrated by this slice.
+
+Thirty-four new protocol tests cover completion identity mismatches, incomplete
+playback, legitimate changed playback fields, latch/nested refusal, exact payout
+inheritance and fresh identities, pending replay/cancellation, current predecessor
+and carry checks, terminal settlement/last-wave bounds, before/after-write synthetic
+gains, original error retention, wrong phase/lease/token/metadata, replacement
+refusal during settling/failure and immutable owned versus mutable caller values.
+Initial RED23failed/79filtered6.089s included missing APIs and missing predecessor
+refusals; GREEN23/79filtered5.844s passed. Broader fixture run1failed/176passed6.028s
+identified the remaining replay predecessor fixture; corrected GREEN177/2files5.684s.
+Expanded264/4files6.687s and scoped ESLint7.283s passed. Final focused265/4files6.434s,
+types14.717s, lint41.144s including85purity, full6944/228files112.970s and task-local
+build9.732s passed. Build608modules/index-C6tTVijd.js1264.45kB observed, without a
+new deterministic bundle-equivalence claim. Original failures and exact source/
+output identities remain retained. Related5s/full15s overruns, prior unexplained
+bundle variance, existing React act/fixture fallback, stale Browserslist and chunk/
+precache warnings remain open. SaveCurrent11 unchanged. No browser/server run or
+UI/visual/earned/paid-Iron acceptance claim; Chinese screenshot glyph rendering
+remains unresolved. Security check passes: no new external IO/dependency/persistence
+or inventory-write authority, generic callback registry or validation bypass.
+
+Four paths, command/source/output identities, prior install-intent cleanup and exact
+owned dist/tmp inventory are frozen in settlement-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review, local commit and exact cleanup follow.
+Root is sole writer and executor; umbrella worktree claim continues; no remote
+action.
+Settlement access, coherent all-producer/settlement activation, selected-item debit/
+replay lock, bilingual Iron acceptance and fullD06/P09/P10/private-v1 remain open.
