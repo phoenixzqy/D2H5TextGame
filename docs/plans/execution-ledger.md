@@ -5991,3 +5991,78 @@ all readers released. Root remains sole writer/executor. Producer publication
 review, local commit and exact cleanup follow. Umbrella claim continues without
 remote action. Real item debit/lock,
 bilingual Iron selection acceptance and fullD06/P09/P10/private-v1 remain open.
+
+## D06 v1ap selected-item production payment and replay lock
+
+Explicit recovery presentation committed as `3c4741a` after independent QA,
+test-evidence, TD/five-axis and producer APPROVE. Exact cleanup removed1306files/
+48,037,357bytes/17directories with zero failures/remaining; all38 command identities
+and all four recorded browser-server identities absent. Umbrella claim continues.
+
+Combat helpers now resolve the captured live hero-bound instruction, project the
+selected item alone and stage immutable Iron input before any write. Qualification
+from filtered slots locks replay independently of item, mana, life/full/terminal
+success. A successful matching owner/item/canonical-skill/positive-finite-MP and
+time0 spawn attestation authorizes one prepared exact-index debit. No attestation
+means no item payment. Exact prewrite revalidation precedes the sole inventory
+setter, held under the existing item-debit guard. Unrelated containers/items,
+currencies and actual concurrent raw writes are never compensated or overwritten.
+
+After success or arbitrary setter throw, actual live ownership determines unpaid,
+committed or conflict. Verified live-original ownership cancels only the unpaid
+preparation; its notifying error is wrapped privately with an own exact cause,
+including undefined, and the screen returns false for explicit Retry. Direct
+callers receive that documented wrapper. A silent unchanged setter refuses.
+Committed/conflicting errors retain their exact original values and receipt;
+publication recovery never pays again. Before any attempted write, stale staging
+cancels using the known unpaid capture. Postwrite cancellation uses only verified
+live-original references. The narrow expectedBackpack-as-Item[] assertion keeps
+exact frozen-array proof and ordinary immutable inventory replacement semantics.
+
+Locked replay reinstalls the exact original input, recording and publication
+without resolution, simulation, selection consumption or debit. It gets a fresh
+receipt with null attestation/debit and shares logical payout identity. Unlocked
+replay retains ordinary current-configuration behavior but suppresses canonical
+and alias Iron slots/item input until the next new wave. Fresh new waves use
+carried mana and require a new explicit selection; no automatic source choice.
+SaveCurrent11, engine formulas/data and source modules outside helpers are unchanged.
+
+New48-case real-producer integration uses explicit test hero/inventory, synthetic
+finisher, controlled engine fixtures and injected faults. Literal rank6 Short
+Sword oracle340life/54attack/63defense and35MP-to0 succeeds;34MP, no/missing/
+unidentified/duplicate ownership, class/rank/level/prerequisite/slot refusals,
+dead/full/earlier-terminal attempts do not pay. Tests cover exact index/other
+references, frozen input, one-shot selection, successful/poor/no-item locked
+replay after config/respec, newly added Iron on unlocked replay, stale staging,
+paid summon death during actual simulation, arbitrary undefined/null/NaN/object
+setter throws before/after write, third-reference/authority conflicts without
+compensation, silent no-write refusal, inconsistent proof, publisher recovery,
+fresh selections/carry and supported nested ownership/run/save refusals inside
+actual synchronous debit notification. Synthetic fixtures do not prove earned
+affordability, native selection controls or complete acceptance.
+
+RED39failed/9passed6.141s preceded the helpers edit. First GREEN attempt3failed/
+255passed7.971s exposed fixture errors: terminal startup did not guarantee removal
+of every dodging foe, and inter-wave exact-backpack expectations omitted actual
+reward drops. A single non-dodging terminal target and assertions over retained
+original fixture IDs preserve the intended boundaries while allowing legitimate
+loot. Exact single-wave index/container assertions remain. Corrected focused258/
+3files7.642s passed. ESLint then found five style/static-literal findings;
+Array<T>/void-arrow style was corrected and runtime canonical-skill proof now
+uses Object.is, preserving the forged-skill regression without suppression.
+Final focused258/3files7.950s, types15.493s, lint41.464s (85 purity modules),
+full7135/229files115.094s (Vitest113.65s) and build9.653s passed. Build609modules,
+index-CRdnMUb-.js1282.99kB; existing chunk/Browserslist/precache warnings remain.
+Full unit duration exceeds the repository15s budget; no threshold was changed.
+
+Security assessment: explicit acknowledged process-local item instruction,
+default-deny live ownership/projection, no IO/dependency/save-shape expansion,
+exact debit guard and no compensation of unknown writes. Three paths and exact
+source/command/output identities, prior cleanup and owned dist/tmp inventory will
+be frozen in paid-iron-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA/test-evidence and TD/five-axis reviews APPROVE this frozen slice;
+all readers released. Root remains sole writer/executor. Producer publication
+review, local commit and exact cleanup follow.
+No remote action. Native bilingual acknowledgement/preview/refusal/lock UI,
+production-byte/save/reload/earned acceptance and fullD06/P09/P10/private-v1 remain open.

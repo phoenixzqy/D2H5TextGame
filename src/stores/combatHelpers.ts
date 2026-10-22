@@ -55,10 +55,12 @@ import { composeMeditationAura } from '@/engine/skills/meditation';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
 import { composeSkeletonMastery } from '@/engine/skills/skeleton-mastery';
 import { isPreparationSummonSkill } from '@/engine/skills/summon-preparation';
-import { isIronGolemSkill } from '@/engine/skills/iron-golem';
+import { IRON_GOLEM_SKILL_ID, isIronGolemSkill } from '@/engine/skills/iron-golem';
+import { projectIronGolemItem } from '@/engine/items/iron-golem';
+import { captureIronGolemDebit, classifyIronGolemDebit, type IronGolemDebitIntent } from './ironGolemDebit';
 import { clearIronGolemSelection, consumeIronGolemSelection, useIronGolemSelectionStore } from './ironGolemSelectionStore';
 import { useHydrationStore } from './hydrationStore';
-import { beginWaveTransition, endWaveTransition, assertWaveSnapshotAllowed, WaveGuardError, type WaveTransitionLease } from './waveTransitionGuard';
+import { beginWaveTransition, endWaveTransition, beginIronGolemDebit, endIronGolemDebit, assertWaveSnapshotAllowed, WaveGuardError, type WaveTransitionLease } from './waveTransitionGuard';
 import { resumeWaveDeferredSave } from './persistence';
 import { canonicalSkillIdFromData, getSkillRequiredLevel, getSkillsForClass,
   skillIdAliases, type SkillTemplate } from './skillsHelpers';
@@ -430,9 +432,16 @@ export function refreshActivePlayerCombatConfig({
     if (!run) return;
     const combat = useCombatStore.getState();
     if (combat.inCombat) {
-      requirePublishedRun(run, lease);
+      const original = requirePublishedRun(run, lease).binding;
       const attempt = captureWaveAttempt();
-      commitStagedWave(run, stageWave(run, run.waveIdx), { kind: 'replay' }, attempt, lease);
+      // Locked replay reinstalls the exact original baseline, including failed attempts.
+      // Unlocked replay keeps ordinary current-config semantics while suppressing Iron.
+      const staged: StagedWaveAttempt = original.publication.ironGolemReplayLocked
+        ? { engineInput: original.engineInput, attestation: null, waveIdx: original.targetWaveIdx,
+            elapsedMs: original.waveElapsedMs, recording: original.recording,
+            publication: original.publication, debitIntent: null }
+        : stageWave(run, run.waveIdx, attempt, false, run.carryPlayerTeam, false);
+      commitStagedWave(run, staged, { kind: 'replay' }, attempt, lease);
     }
   }, 'replay');
 }
@@ -462,6 +471,8 @@ export function resetIdleElitePity(): void {
  * @throws If wave planning, simulation, terminal validation or normalization fails;
  * the previous run, recording, ordinal and rewards remain unchanged.
  * Publisher failures retain exact recovery progress/payload, without restaging.
+ * Canceled unpaid item-setter failures throw an Error wrapper whose own cause is
+ * the original thrown value. Committed/conflicting setter failures throw that value.
  * @throws {WaveGuardError} for wave/restore ownership or unready hydration, after
  * replay argument validation and before player/no-run controls or other effects.
  * @throws {RecordedWaveAccessError} for unpublished/conflicting/failed settlement, after
@@ -559,7 +570,7 @@ function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {}
       waveElapsedMs: 0
     };
 
-    const staged = stageWave(candidate, 0, true);
+    const staged = stageWave(candidate, 0, attempt, true);
     commitStagedWave(candidate, staged, { kind: 'newRun', nextDefaultChallengeOrdinal:
       opts.challengeOrdinal === undefined ? (challengeOrdinal + 1) % CHALLENGE_ORDINAL_PERIOD : null }, attempt, lease);
     return { runId: plan.subAreaId, totalWaves: plan.waves.length, runSeed: seed, challengeOrdinal };
@@ -689,7 +700,7 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
     // Staging/publication failures retain awaiting carry or committed publication;
     // they must never turn a successfully paid wave into settlementFailed.
     const attempt = captureWaveAttempt();
-    const staged = stageWave(run, next.nextWaveIdx, false, next.carryPlayerTeam);
+    const staged = stageWave(run, next.nextWaveIdx, attempt, false, next.carryPlayerTeam);
     commitStagedWave(run, staged, { kind: 'newWave', carryPlayerTeam: next.carryPlayerTeam }, attempt, lease);
     return 'next-wave';
   }, 'transition', observation);
@@ -707,8 +718,11 @@ export function abortSubAreaRun(): void {
 }
 
 /** Build the whole recording before changing any run metadata or combat state. */
-function stageWave(run: ActiveRun, waveIdx: number, resetRunRewards = false,
-  carryPlayerTeam = run.carryPlayerTeam): StagedRecordedWave {
+interface StagedWaveAttempt extends StagedRecordedWave {
+  readonly debitIntent: IronGolemDebitIntent | null;
+}
+function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetRunRewards = false,
+  carryPlayerTeam = run.carryPlayerTeam, allowIron = true): StagedWaveAttempt {
   const wave = run.plan.waves[waveIdx];
   if (!wave) throw new Error('Wave index does not exist in run plan');
   const combat = useCombatStore.getState();
@@ -746,7 +760,8 @@ function stageWave(run: ActiveRun, waveIdx: number, resetRunRewards = false,
       manaRegenCarry: capped ? 0 : unit.manaRegenCarry ?? 0,
       manaRegenCompensation: capped ? 0 : unit.manaRegenCompensation ?? 0,
       ...(capped ? { manaRegenExactCarry: '0' } : {}),
-      skillOrder: fresh.skillOrder, skillLevels: fresh.skillLevels ?? {},
+      skillOrder: allowIron ? fresh.skillOrder : fresh.skillOrder.filter(id => !isIronGolemSkill({ id })),
+      skillLevels: fresh.skillLevels ?? {},
       equippedWeapon: fresh.equippedWeapon ?? {},
       summonGridPositions: fresh.summonGridPositions ?? [] };
     if (resolveFrozenArmorRank(fresh.skillLevels) > 0) return refreshed;
@@ -757,11 +772,20 @@ function stageWave(run: ActiveRun, waveIdx: number, resetRunRewards = false,
       id !== 'skills-sorceress-frozen-armor' && id !== 'sorceress.frozen_armor' && id !== 'frozen-armor') };
   });
 
-  return stageRecordedWave({
+  // Qualification comes from the filtered Player configuration, independently of
+  // life, item, mana, full preload or terminal startup success.
+  const ironGolemReplayLocked = allowIron && Boolean(fresh?.skillOrder.some(id => isIronGolemSkill({ id })));
+  const captured = ironGolemReplayLocked
+    ? captureIronGolemDebit(attempt.heroId, attempt.selection, attempt.ownership) : null;
+  const projected = captured?.ok ? projectIronGolemItem(captured.intent.item) : null;
+  const ironGolem = captured?.ok && projected?.eligible
+    ? { sourceHeroId: run.playerUnit.id, sourceItemId: captured.intent.item.id, ...projected.bonuses } : null;
+  const staged = stageRecordedWave({
     snapshot: {
       seed: waveSeed,
       playerTeam,
       enemyTeam: enemies,
+      ...(ironGolem ? { ironGolem } : {}),
       ...(mightAura ? { mightAura } : {}),
       ...(meditationAura ? { meditationAura } : {}),
       ...(skeletonMastery ? { skeletonMastery } : {})
@@ -772,10 +796,20 @@ function stageWave(run: ActiveRun, waveIdx: number, resetRunRewards = false,
     defaults: combat,
     resolveDisplayName: resolveCombatUnitDisplayName,
     resetRunRewards,
+    ironGolemReplayLocked,
     ...(chapterBoss ? { chapterBoss } : {}),
     ...(wave.bossIntro ? { bossIntro: wave.bossIntro } : {}),
     ...(wave.presentation ? { wavePresentation: wave.presentation } : {})
   });
+  const proof = staged.attestation;
+  if (proof && (!captured?.ok || !ironGolem || proof.sourceHeroId !== ironGolem.sourceHeroId ||
+    proof.sourceItemId !== ironGolem.sourceItemId || !Object.is(proof.skillId, IRON_GOLEM_SKILL_ID) ||
+    !Number.isFinite(proof.paidMp) || proof.paidMp <= 0 || !staged.recording.events.some(event =>
+      event.kind === 'summon' && event.owner === proof.sourceHeroId && event.summonId === 'iron_golem' &&
+      event.unit.id === proof.spawnedUnitId && event.simClockMs === 0))) {
+    throw new RecordedWaveReceiptError('bindingMismatch');
+  }
+  return { ...staged, debitIntent: proof && captured?.ok ? captured.intent : null };
 }
 
 /** Preserve cursor/recording values even if the referenced run changes during staging. */
@@ -813,13 +847,20 @@ function validateCapturedOrdinal(ordinal: number | null): void {
   }
 }
 
-/** Prepare and exact-revalidate before committing a no-debit attempt under the existing lease. */
-function commitStagedWave(run: ActiveRun, staged: StagedRecordedWave, intent: RecordedWaveInstallIntent,
+/** A canceled unpaid setter failure; original thrown value remains an own cause. */
+class UnpaidIronGolemDebitError extends Error {
+  constructor(error: unknown) {
+    super('ironGolemDebitUnpaid', { cause: error }); this.name = 'UnpaidIronGolemDebitError';
+  }
+}
+
+/** Prepare, exact-revalidate, observe actual debit, then install under the existing lease. */
+function commitStagedWave(run: ActiveRun, staged: StagedWaveAttempt, intent: RecordedWaveInstallIntent,
   attempt: WaveAttempt, lease: WaveTransitionLease): void {
   if (intent.kind === 'newRun') validateCapturedOrdinal(intent.nextDefaultChallengeOrdinal);
   const receipt = prepareRecordedWaveInstallation({ candidateRun: run, expectedActiveRun: attempt.activeRun,
     heroId: run.playerUnit.id, targetWaveIdx: staged.waveIdx, waveElapsedMs: staged.elapsedMs,
-    selection: attempt.selection, ownership: attempt.ownership, debitIntent: null,
+    selection: attempt.selection, ownership: attempt.ownership, debitIntent: staged.debitIntent,
     engineInput: staged.engineInput, attestation: staged.attestation,
     recording: staged.recording, publication: staged.publication }, intent, lease);
   const live = captureWaveAttempt();
@@ -834,7 +875,34 @@ function commitStagedWave(run: ActiveRun, staged: StagedRecordedWave, intent: Re
     cancelPreparedRecordedWave(receipt, lease, attempt.ownership);
     throw error;
   }
-  if (commitPreparedRecordedWave(receipt, lease, live) !== 'committedPendingPublication') {
+  if (staged.debitIntent) {
+    let failure: { error: unknown } | undefined;
+    beginIronGolemDebit(lease);
+    try {
+      // Exact identity is the debit proof. Supported inventory operations replace
+      // arrays immutably; do not copy this privately owned frozen expected array.
+      useInventoryStore.setState({ backpack: staged.debitIntent.expectedBackpack as Item[] });
+    } catch (error) { failure = { error }; }
+    finally { endIronGolemDebit(lease); }
+    const observed = captureWaveAttempt();
+    let phase: ReturnType<typeof commitPreparedRecordedWave>;
+    try { phase = commitPreparedRecordedWave(receipt, lease, observed, failure); }
+    catch (error) {
+      if (classifyIronGolemDebit(staged.debitIntent, observed.ownership) === 'original') {
+        cancelPreparedRecordedWave(receipt, lease, observed.ownership);
+        if (failure) throw new UnpaidIronGolemDebitError(failure.error);
+      }
+      throw error;
+    }
+    if (phase === 'prepared') {
+      // Postwrite cancellation may use only verified LIVE original ownership.
+      cancelPreparedRecordedWave(receipt, lease, observed.ownership);
+      if (failure) throw new UnpaidIronGolemDebitError(failure.error);
+      throw new RecordedWaveReceiptError('bindingMismatch'); // Silent unchanged setter.
+    }
+    if (failure) throw failure.error; // Exact committed/conflict receipt retains the first error.
+    if (phase !== 'committedPendingPublication') throw new RecordedWaveReceiptError('bindingMismatch');
+  } else if (commitPreparedRecordedWave(receipt, lease, live) !== 'committedPendingPublication') {
     throw new RecordedWaveReceiptError('bindingMismatch');
   }
   installCapturedRecordedWave(receipt, lease);
@@ -991,7 +1059,8 @@ export function performCombatScreenTransition(action: CombatScreenTransition): b
     // Origin is observed before classifying typed refusals or retained gameplay errors.
     if (retryAttempt.wakeFailure !== undefined) throw error;
     if (error instanceof WaveGuardError) return error.code === 'hydrationNotReady';
-    if (error instanceof RecordedWaveAccessError || error instanceof RecordedWaveReceiptError) return false;
+    if (error instanceof RecordedWaveAccessError || error instanceof RecordedWaveReceiptError ||
+      error instanceof UnpaidIronGolemDebitError) return false;
     const after = inspectRecordedWaves();
     const retryReceipt = action.kind === 'retry' && action.recovery.kind === 'recoverPublication'
       ? action.recovery.receipt : null;
