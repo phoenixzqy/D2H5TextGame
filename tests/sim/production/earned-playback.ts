@@ -36,11 +36,16 @@ export function playEarnedWave(handle: EarnedRunHandle, index: number) {
   const end = opening.recordedEvents.at(-1);
   if (!end || end.kind !== 'end' || !Number.isFinite(end.simClockMs) || end.simClockMs < 0)
     throw new Error('Missing actual terminal end event');
+  const recording = useCombatStore.getState().recordedEvents;
+  const outcome = useCombatStore.getState().outcome;
   for (let step = 0; step < opening.recordedEvents.length; step++) {
-    const cursor = useCombatStore.getState().eventCursor;
-    useCombatStore.getState().advanceEvent();
-    if (useCombatStore.getState().eventCursor !== cursor + 1)
-      throw new Error('Earned playback cursor did not progress one event');
+    const before = useCombatStore.getState();
+    if (before.playbackComplete) break;
+    before.advanceEvent();
+    const after = useCombatStore.getState();
+    if (!Number.isInteger(after.eventCursor) || after.eventCursor <= before.eventCursor ||
+      after.eventCursor > opening.recordedEvents.length || after.recordedEvents !== recording || after.outcome !== outcome)
+      throw new Error('Earned playback did not progress within its original recording');
   }
   const played = observeStore(useCombatStore);
   if (!played.playbackComplete || played.eventCursor !== opening.recordedEvents.length)

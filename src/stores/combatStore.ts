@@ -107,7 +107,7 @@ interface CombatState {
   accumulateRunRewards: (rewards: KillRewards) => void;
   /** Reset the run-aggregate rewards (called when starting a new run). */
   resetRunRewards: () => void;
-  /** Check ownership/receipt phase, then advance (no-op when paused or complete). */
+  /** Check ownership/receipt phase, then publish one timestamp batch; paused/complete is inert. */
   advanceEvent: () => void;
   /** Alias for {@link advanceEvent} kept for UI timer ergonomics. */
   tick: () => void;
@@ -116,6 +116,29 @@ interface CombatState {
   /** Resume playback; throws typed ownership/receipt refusals before changing state. */
   resumePlayback: () => void;
 }
+
+/**
+ * Bounds and presentation delay of the next atomic simulation timestamp group.
+ * Only a leading boss intro is separate; engine warmup and speed apply once.
+ */
+export function recordedPlaybackBatch(
+  events: readonly RecordedBattleEvent[], cursor: number, speed = 1
+): { readonly end: number; readonly delayMs: number } | null {
+  const next = events[cursor];
+  if (!next) return null;
+  const first = events[0];
+  const hasIntro = first?.kind === 'message' && first.messageKey === 'combat:bossIntro';
+  const isIntro = cursor === 0 && hasIntro;
+  let end = cursor + 1;
+  if (!isIntro) {
+    while (end < events.length && events[end]?.simClockMs === next.simClockMs) end++;
+  }
+  const previous = events[cursor - 1];
+  const delay = isIntro ? 1200 : cursor === 0 || (cursor === 1 && hasIntro) ? 200
+    : Math.max(50, Math.min(3000, next.simClockMs - (previous?.simClockMs ?? 0)));
+  return { end, delayMs: Math.max(50, Math.floor(delay / speed)) };
+}
+
 
 /** Empty {@link KillRewards} value used to seed run-aggregate state. */
 function emptyRewards(): KillRewards {
@@ -265,61 +288,46 @@ export const useCombatStore= create<CombatState>((set, get) => ({
     assertRecordedWavePlaybackAllowed();
     const state = get();
     if (state.isPaused || state.playbackComplete) return;
-    const idx = state.eventCursor;
-    const ev = state.recordedEvents[idx];
-    if (!ev) {
+    const batch = recordedPlaybackBatch(state.recordedEvents, state.eventCursor);
+    if (!batch) {
       set({ playbackComplete: true });
       return;
     }
-    const stepped = applyEventToTeams(state.playerTeam, state.enemyTeam, ev, state.statusPlayback);
-    const statusPlayback = stepped.statusPlayback ?? null;
-
-    // Extend the name map when a summon enters the battle so the log resolves
-    // its display name.
+    let playerTeam = state.playerTeam;
+    let enemyTeam = state.enemyTeam;
+    let statusPlayback = state.statusPlayback;
     let nameMap = state.unitNameMap;
-    if (ev.kind === 'summon' && !nameMap.has(ev.unit.id)) {
-      const next = new Map(nameMap);
-      next.set(ev.unit.id, resolveSummonDisplayName(ev.unit));
-      nameMap = next;
+    let log = state.log;
+    let currentTurn = state.currentTurn;
+    for (let idx = state.eventCursor; idx < batch.end; idx++) {
+      const ev = state.recordedEvents[idx];
+      if (!ev) continue;
+      const stepped = applyEventToTeams(playerTeam, enemyTeam, ev, statusPlayback);
+      playerTeam = stepped.playerTeam as CombatUnit[];
+      enemyTeam = stepped.enemyTeam as CombatUnit[];
+      statusPlayback = stepped.statusPlayback ?? null;
+      // Summon names must be available to later events in this same batch.
+      if (ev.kind === 'summon' && !nameMap.has(ev.unit.id)) {
+        const next = new Map(nameMap);
+        next.set(ev.unit.id, resolveSummonDisplayName(ev.unit));
+        nameMap = next;
+      }
+      const entry = eventToLogEntry(ev, nameMap);
+      if (entry) log = [...log, { ...entry, id: `${String(idx)}-${String(ev.kind)}`, timestamp: Date.now() }].slice(-200);
+      if (ev.kind === 'turn-start') currentTurn = ev.turn;
     }
-
-    const logEntry = eventToLogEntry(ev, nameMap);
-    const newLog = logEntry
-      ? [
-          ...state.log,
-          {
-            ...logEntry,
-            id: `${String(idx)}-${String(ev.kind)}`,
-            timestamp: Date.now()
-          }
-        ].slice(-200)
-      : state.log;
-
-    const nextCursor = idx + 1;
-    const finished = nextCursor >= state.recordedEvents.length;
-
-    // Preserve raw resource snapping, overlaying only authoritative presentation
-    // statuses so expired/dead raw records cannot restore visible badges.
-    const finalTeams = finished && state.outcome
-      ? {
-          playerTeam: statusPlayback ? overlayStatusPresentation(state.outcome.finalPlayerTeam, statusPlayback)
-            : [...state.outcome.finalPlayerTeam],
-          enemyTeam: statusPlayback ? overlayStatusPresentation(state.outcome.finalEnemyTeam, statusPlayback)
-            : [...state.outcome.finalEnemyTeam]
-        }
-      : { playerTeam: stepped.playerTeam as CombatUnit[], enemyTeam: stepped.enemyTeam as CombatUnit[] };
-
-    set({
-      statusPlayback,
-      playerTeam: finalTeams.playerTeam,
-      enemyTeam: finalTeams.enemyTeam,
-      log: newLog,
-      eventCursor: nextCursor,
-      playbackComplete: finished,
-      unitNameMap: nameMap,
-      currentTurn: ev.kind === 'turn-start' ? ev.turn : state.currentTurn
-    });
+    const finished = batch.end >= state.recordedEvents.length;
+    // Snap resources only after folding the complete terminal timestamp group.
+    if (finished && state.outcome) {
+      playerTeam = statusPlayback ? overlayStatusPresentation(state.outcome.finalPlayerTeam, statusPlayback)
+        : [...state.outcome.finalPlayerTeam];
+      enemyTeam = statusPlayback ? overlayStatusPresentation(state.outcome.finalEnemyTeam, statusPlayback)
+        : [...state.outcome.finalEnemyTeam];
+    }
+    set({ playerTeam, enemyTeam, statusPlayback, unitNameMap: nameMap, log, currentTurn,
+      eventCursor: batch.end, playbackComplete: finished });
   },
+
 
   tick: () => { get().advanceEvent(); },
 

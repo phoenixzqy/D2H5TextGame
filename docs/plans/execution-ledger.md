@@ -9621,3 +9621,46 @@ remains; logs/source/receipts and parent Batch parked bytes remain root-owned
 until final combination and umbrella consumers finish. Parent tmp/cache cleanup
 follows final Batch validation. Final publication and settled cached whitespace
 precede local precursor commit; restore exact Batch sources next.
+
+
+## D04 v1cw — Atomic recorded timestamp batches
+
+Batch5 owns combatStore.ts, CombatScreen.tsx, its existing tests, earned-playback.ts
+and this ledger. Root sole writer/executor. Security PASS: transient publication/
+presentation timing only; engine, gameplay/RNG/save/rewards/receipt authority unchanged.
+Contiguous equal-clock events fold in original order with one store notification;
+summon names are available inside the group. Raw event/outcome objects and indexed
+log IDs remain intact. Terminal resources/status overlay follow the complete group.
+One pure helper controls both cursor range and component timer. Separate boss intro
+1200ms, first engine warmup200ms, later distinct gaps50..3000ms, speed/floor/min50
+apply once. Silent observations add no individual delay. Earned traversal remains
+bounded, integer/increasing, recording-bound and single-settlement.
+
+Causal RED6failed/45passed preceded runtime; exact unchanged tests pass focused
+197/4 in23.73s(wrapper24.903). Types PASS36.726s; lint PASS67.569s. First combined
+serial full8256pass/2fail retained: old Mage assertion inspected partial raw event
+iteration after all three equal-clock dodges already published. Separately accepted
+a8a88d1 preserves exact cumulative per-range localized assertions and all gameplay
+oracles; exact Batch bytes restored afterward, ledger preserved. Final full8258/260
+PASS, wrapper605.481s, one invocation/retries0, unchanged limits:
+npm test -- --fileParallelism=false --poolOptions.threads.maxThreads=1
+--poolOptions.threads.minThreads=1. This accepts only that configuration; previous
+default parallel timeout/performance remains open. Clean production build/bridge
+PASS10.725s; VITE_E2E absent, all four application JS chunks scanned.
+
+TD/CODE source APPROVE and QA focused ADEQUATE bind exact validated source hashes.
+Final independent evidence/publication review and exact disposable cleanup follow.
+ROOT: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-status-batching-emggxtmi`. Source/RED/failed-run/parking/review/log/receipt evidence remains
+root-owned until umbrella consumers finish; root removes afterward. No push/PR/
+merge/deploy. BUG080 remains open for compact badges/FX and native browser proof.
+Next UI3→bounded FirstAct3→Browser3 (producer READY; no dependency on imported
+Poison/layout proof for first-act discovery); C0 in progress, C1–C4 and
+G0–G7 remain unaccepted. No combat-math draw fix or campaign acceptance is claimed.
+
+Final independent QA ADEQUATE and producer PUBLICATION APPROVE verified exact
+five-path/source/receipt/append-only evidence. All readers released. Exact cleanup
+removed857files/42783023bytes/15directories; remaining[]/failures[].
+Cleanup receipt SHA256899625552d95bfb2f7ad7d2bd4f7a80a1df71588e34a09499735dd7e9633a9c7.
+Required evidence remains root-owned at ROOT until umbrella consumers finish;
+root removes afterward. No owned processes remain; settled cached whitespace
+precedes local commit.

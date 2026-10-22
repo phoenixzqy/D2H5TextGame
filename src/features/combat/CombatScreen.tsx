@@ -27,6 +27,7 @@ import { assertRecordedWavePlaybackAllowed, RecordedWaveAccessError } from '@/st
 import { useHydrationStore } from '@/stores/hydrationStore';
 import { nextSubAreaInAct } from '@/stores/subAreaResolver';
 import type { CombatLogEntry } from '@/stores/combatStore';
+import { recordedPlaybackBatch } from '@/stores/combatStore';
 import type { RecordedBattleEvent } from '@/engine/combat/combat';
 import type { CombatUnit, GridPosition } from '@/engine/combat/types';
 import { inferKind } from '@/engine/combat/types';
@@ -117,14 +118,11 @@ export function CombatScreen() {
     }
   }, [inCombat, isIdleLoop, player, runVictory, runDefeat, transitionBlocked, transitionRetry]);
 
-  // Timer-driven playback: schedule the next event after its uiDelayMs
-  // (divided by the chosen speed multiplier). Re-runs whenever the cursor,
-  // pause state, or speed changes.
+  // Schedule the same atomic timestamp group consumed by the store.
   useEffect(() => {
     if (transitionBlocked || !inCombat || isPaused || playbackComplete) return;
-    const next = recordedEvents[eventCursor];
-    if (!next) return;
-    const delay = Math.max(50, Math.floor(next.uiDelayMs / speed));
+    const batch = recordedPlaybackBatch(recordedEvents, eventCursor, speed);
+    if (!batch) return;
     const handle = setTimeout(() => {
       if (readCombatTransitionRecovery().kind !== 'ready') { setTransitionFailed(true); return; }
       try { tick(); }
@@ -132,7 +130,7 @@ export function CombatScreen() {
         if (!(error instanceof WaveGuardError || error instanceof RecordedWaveAccessError)) throw error;
         setTransitionFailed(error.code !== 'hydrationNotReady');
       }
-    }, delay);
+    }, batch.delayMs);
     return () => { clearTimeout(handle); };
   }, [inCombat, isPaused, playbackComplete, eventCursor, recordedEvents, tick, speed, transitionBlocked, transitionRetry]);
 

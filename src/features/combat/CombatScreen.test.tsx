@@ -367,3 +367,179 @@ describe('captured combat transition recovery UI', () => {
     expect(useCombatStore.getState().runVictory).toBe(false);
   });
 });
+
+/** Imported UI fixtures: real timers/store effects under Vitest's controlled timeout clock. */
+describe('atomic simulation timestamp playback', () => {
+  type Event = combatEngine.RecordedBattleEvent;
+  type Mark = CombatUnit['statuses'][number];
+  const poison: Mark = { id: 'poison', stacks: 2, remaining: -1, sourceId: 'batch-hero', tags: ['poison'] };
+  const view = (target: string, statuses: readonly Mark[], at: number, initial = false): Event =>
+    ({ kind: 'status-state', target, statuses, simClockMs: at, uiDelayMs: 999,
+      ...(initial ? { initial: true as const } : {}) });
+  const mana = (value: number, at: number): Event =>
+    ({ kind: 'mana', target: 'batch-hero', mana: value, reason: 'cast', simClockMs: at, uiDelayMs: 1 });
+  const end = (at: number): Event => ({ kind: 'end', winner: null, simClockMs: at, uiDelayMs: 1 });
+  const prefix = (): Event[] => [view('batch-hero', [], 0, true), view('batch-enemy', [], 0, true)];
+  const tree = () => <I18nextProvider i18n={i18n}><Suspense fallback={null}>
+    <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><CombatScreen /></MemoryRouter>
+  </Suspense></I18nextProvider>;
+  function install(events: readonly Event[]) {
+    const player = createMockPlayer('Batch Hero', 'sorceress');
+    usePlayerStore.getState().setPlayer(player);
+    const hero: CombatUnit = { ...playerToCombatUnit(player), id: 'batch-hero', life: 100, mana: 53 };
+    const enemy: CombatUnit = { ...hero, id: 'batch-enemy', name: 'Batch Enemy', side: 'enemy', kind: 'monster' };
+    const input = { initialPlayerTeam: [hero], initialEnemyTeam: [enemy], events,
+      unitNameMap: new Map([[hero.id, 'Batch Hero'], [enemy.id, 'Batch Enemy']]),
+      outcome: { winner: null, finalPlayerTeam: [{ ...hero, life: 77, mana: 9, statuses: [poison] }],
+        finalEnemyTeam: [{ ...enemy, life: 0, statuses: [poison] }] }, currentWave: 1, totalWaves: 1 };
+    useCombatStore.getState().setRecordedBattle(input);
+    return input;
+  }
+  beforeEach(async () => {
+    await i18n.changeLanguage('en');
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] });
+  });
+  afterEach(() => { vi.useRealTimers(); });
+
+  it('publishes all ordered same-time writes once, including summon names and terminal status overlay', () => {
+    const player = createMockPlayer('Batch Summon', 'sorceress');
+    const summon: CombatUnit = { ...playerToCombatUnit(player), id: 'batch-summon', name: 'Batch Summon', kind: 'summon' };
+    const terminalPoison: Mark = { ...poison, stacks: 3, sourceId: summon.id };
+    const events: readonly Event[] = [...prefix(),
+      { kind: 'turn-start', turn: 7, simClockMs: 0, uiDelayMs: 1 },
+      { kind: 'summon', owner: 'batch-hero', summonId: 'fixture', unit: summon, simClockMs: 0, uiDelayMs: 1 },
+      view(summon.id, [poison], 0),
+      { kind: 'action', actor: summon.id, skillId: null, simClockMs: 0, uiDelayMs: 1 },
+      mana(41, 0),
+      { kind: 'damage', source: summon.id, target: 'batch-enemy', damageType: 'physical', amount: 20,
+        crit: false, dodged: false, simClockMs: 0, uiDelayMs: 1 },
+      view('batch-enemy', [poison], 0),
+      { kind: 'death', target: 'batch-enemy', simClockMs: 0, uiDelayMs: 1 },
+      view('batch-enemy', [], 0),
+      mana(9, 1000), view('batch-hero', [terminalPoison], 1000),
+      { kind: 'dot', target: 'batch-hero', amount: 5, simClockMs: 1000, uiDelayMs: 1 },
+      { kind: 'death', target: summon.id, simClockMs: 1000, uiDelayMs: 1 },
+      view(summon.id, [], 1000), end(1000)];
+    const raw = install(events), frozen = structuredClone(raw);
+    const held = useCombatStore.getState();
+    const notifications: ReturnType<typeof useCombatStore.getState>[] = [];
+    const release = useCombatStore.subscribe(state => { notifications.push(state); });
+    try {
+      held.advanceEvent();
+      const first = useCombatStore.getState();
+      expect(notifications).toEqual([first]);
+      expect(first.eventCursor).toBe(11); expect(first.playbackComplete).toBe(false);
+      expect(first.currentTurn).toBe(7); expect(first.playerTeam[0]?.mana).toBe(41);
+      expect(first.enemyTeam[0]).toMatchObject({ life: 0, statuses: [] });
+      expect(first.playerTeam[1]).toMatchObject({ id: summon.id, statuses: [poison] });
+      expect(first.log.map(entry => entry.id)).toEqual(['2-turn-start', '3-summon', '5-action', '7-damage', '9-death']);
+      expect(first.log[2]?.actorName).toBe(first.unitNameMap.get(summon.id));
+      expect(first.log[3]?.actorName).toBe(first.unitNameMap.get(summon.id));
+      first.advanceEvent();
+      const terminal = useCombatStore.getState();
+      expect(notifications).toEqual([first, terminal]);
+      expect(terminal.eventCursor).toBe(17); expect(terminal.playbackComplete).toBe(true);
+      expect(terminal.playerTeam[0]).toMatchObject({ life: 77, mana: 9, statuses: [terminalPoison] });
+      expect(terminal.statusPlayback?.deadIds).toEqual(['batch-enemy', summon.id]);
+      expect(terminal.log.map(entry => entry.id)).toEqual([
+        '2-turn-start', '3-summon', '5-action', '7-damage', '9-death', '13-dot', '14-death', '16-end']);
+      expect(terminal.enemyTeam[0]).toMatchObject({ life: 0, statuses: [] });
+      expect(terminal.recordedEvents).toBe(raw.events); expect(terminal.outcome).toBe(raw.outcome);
+      expect(held.playerTeam[0]?.mana).toBe(53); expect(held.enemyTeam[0]?.life).toBe(100);
+      expect(held.playerTeam[0]?.statuses).toEqual([]);
+      expect(raw).toStrictEqual(frozen);
+      terminal.advanceEvent(); expect(useCombatStore.getState()).toBe(terminal);
+    } finally { release(); }
+  });
+
+  it('waits once for warmup and each future observation boundary, ignoring per-event hints', () => {
+    install([...prefix(), mana(41, 0), view('batch-enemy', [poison], 1300.25),
+      view('batch-enemy', [], 1400.5), end(2400)]);
+    render(tree());
+    act(() => { vi.advanceTimersByTime(199); }); expect(useCombatStore.getState().eventCursor).toBe(0);
+    act(() => { vi.advanceTimersByTime(1); }); expect(useCombatStore.getState().eventCursor).toBe(3);
+    expect(useCombatStore.getState().playerTeam[0]?.mana).toBe(41);
+    act(() => { vi.advanceTimersByTime(100); });
+    fireEvent.click(screen.getByRole('button', { name: 'Pause' }));
+    const paused = useCombatStore.getState();
+    act(() => { vi.advanceTimersByTime(5000); }); expect(useCombatStore.getState()).toBe(paused);
+    fireEvent.click(screen.getByRole('button', { name: i18n.t('combat:speed') }));
+    expect(useCombatStore.getState().eventCursor).toBe(3);
+    expect(useCombatStore.getState().enemyTeam[0]?.statuses).toEqual([]);
+    fireEvent.click(screen.getByRole('button', { name: 'Resume' }));
+    act(() => { vi.advanceTimersByTime(649); }); expect(useCombatStore.getState().eventCursor).toBe(3);
+    act(() => { vi.advanceTimersByTime(1); }); expect(useCombatStore.getState().eventCursor).toBe(4);
+    expect(useCombatStore.getState().enemyTeam[0]?.statuses).toEqual([poison]);
+    act(() => { vi.advanceTimersByTime(49); }); expect(useCombatStore.getState().eventCursor).toBe(4);
+    act(() => { vi.advanceTimersByTime(1); }); expect(useCombatStore.getState().eventCursor).toBe(5);
+    expect(useCombatStore.getState().enemyTeam[0]?.statuses).toEqual([]);
+    expect(useCombatStore.getState().playbackComplete).toBe(false);
+  });
+
+  it('keeps only the leading intro separate, then pays the engine warmup', () => {
+    const intro: Event = { kind: 'message', messageKey: 'combat:bossIntro', simClockMs: 0, uiDelayMs: 1200 };
+    install([intro, ...prefix(), mana(41, 0), intro, end(1000)]);
+    render(tree());
+    act(() => { vi.advanceTimersByTime(100); });
+    fireEvent.click(screen.getByRole('button', { name: 'Pause' }));
+    const paused = useCombatStore.getState();
+    act(() => { vi.advanceTimersByTime(5000); }); expect(useCombatStore.getState()).toBe(paused);
+    fireEvent.click(screen.getByRole('button', { name: i18n.t('combat:speed') }));
+    expect(useCombatStore.getState().eventCursor).toBe(0);
+    expect(useCombatStore.getState().playerTeam[0]?.mana).toBe(53);
+    fireEvent.click(screen.getByRole('button', { name: 'Resume' }));
+    act(() => { vi.advanceTimersByTime(599); }); expect(useCombatStore.getState().eventCursor).toBe(0);
+    act(() => { vi.advanceTimersByTime(1); }); expect(useCombatStore.getState().eventCursor).toBe(1);
+    expect(useCombatStore.getState().playerTeam[0]?.mana).toBe(53);
+    expect(useCombatStore.getState().log.map(entry => entry.id)).toEqual(['0-message']);
+    act(() => { vi.advanceTimersByTime(99); }); expect(useCombatStore.getState().eventCursor).toBe(1);
+    act(() => { vi.advanceTimersByTime(1); }); expect(useCombatStore.getState().eventCursor).toBe(5);
+    expect(useCombatStore.getState().playerTeam[0]?.mana).toBe(41);
+    expect(useCombatStore.getState().log.map(entry => entry.id)).toEqual(['0-message', '4-message']);
+  });
+
+  it('cancels paused timers and seeds the same recording again without advancing startup writes', () => {
+    const raw = install([...prefix(), mana(41, 0), view('batch-enemy', [poison], 1000), end(2000)]);
+    render(tree());
+    act(() => { vi.advanceTimersByTime(199); });
+    fireEvent.click(screen.getByRole('button', { name: 'Pause' }));
+    const paused = useCombatStore.getState();
+    act(() => { vi.advanceTimersByTime(5000); }); expect(useCombatStore.getState()).toBe(paused);
+    paused.advanceEvent(); expect(useCombatStore.getState()).toBe(paused);
+    fireEvent.click(screen.getByRole('button', { name: 'Resume' }));
+    act(() => { vi.advanceTimersByTime(199); }); expect(useCombatStore.getState().eventCursor).toBe(0);
+    act(() => { vi.advanceTimersByTime(1); }); expect(useCombatStore.getState().eventCursor).toBe(3);
+    act(() => { useCombatStore.getState().setRecordedBattle(raw); });
+    expect(useCombatStore.getState().playerTeam[0]?.mana).toBe(53);
+    expect(useCombatStore.getState().enemyTeam[0]?.statuses).toEqual([]);
+    act(() => { vi.advanceTimersByTime(199); }); expect(useCombatStore.getState().eventCursor).toBe(0);
+    act(() => { vi.advanceTimersByTime(1); }); expect(useCombatStore.getState().eventCursor).toBe(3);
+    expect(useCombatStore.getState().recordedEvents).toBe(raw.events);
+  });
+
+  it('caps a distinct timestamp gap at three seconds at normal speed', () => {
+    install([mana(41, 0), mana(30, 10000), end(20000)]);
+    render(tree());
+    act(() => { vi.advanceTimersByTime(200); }); expect(useCombatStore.getState().eventCursor).toBe(1);
+    act(() => { vi.advanceTimersByTime(2999); }); expect(useCombatStore.getState().eventCursor).toBe(1);
+    act(() => { vi.advanceTimersByTime(1); }); expect(useCombatStore.getState().eventCursor).toBe(2);
+    expect(useCombatStore.getState().playerTeam[0]?.mana).toBe(30);
+  });
+
+  it('groups legacy recordings and applies distinct-gap clamps and speed only once', () => {
+    install([mana(41, 0), mana(40, 0), mana(30, 10), mana(20, 10010), mana(10, 20010), end(20020)]);
+    render(tree());
+    act(() => { vi.advanceTimersByTime(199); }); expect(useCombatStore.getState().eventCursor).toBe(0);
+    act(() => { vi.advanceTimersByTime(1); }); expect(useCombatStore.getState().eventCursor).toBe(2);
+    act(() => { vi.advanceTimersByTime(49); }); expect(useCombatStore.getState().eventCursor).toBe(2);
+    act(() => { vi.advanceTimersByTime(1); }); expect(useCombatStore.getState().eventCursor).toBe(3);
+    fireEvent.click(screen.getByRole('button', { name: i18n.t('combat:speed') }));
+    act(() => { vi.advanceTimersByTime(1499); }); expect(useCombatStore.getState().eventCursor).toBe(3);
+    act(() => { vi.advanceTimersByTime(1); }); expect(useCombatStore.getState().eventCursor).toBe(4);
+    fireEvent.click(screen.getByRole('button', { name: i18n.t('combat:speed') }));
+    act(() => { vi.advanceTimersByTime(749); }); expect(useCombatStore.getState().eventCursor).toBe(4);
+    act(() => { vi.advanceTimersByTime(1); }); expect(useCombatStore.getState().eventCursor).toBe(5);
+    act(() => { vi.advanceTimersByTime(49); }); expect(useCombatStore.getState().eventCursor).toBe(5);
+    act(() => { vi.advanceTimersByTime(1); }); expect(useCombatStore.getState().playbackComplete).toBe(true);
+  });
+});
