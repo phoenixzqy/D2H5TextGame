@@ -6813,3 +6813,76 @@ reviewers verify6receipts/168source snapshots and exact draft/scope/identities;
 all readers released. Approval-only ledger update; code/tests unchanged.
 Publication/producer audit, local commit and exact cleanup follow. All broader
 acceptance and recorded limitations remain open; no remote action.
+
+
+## D06 v1bd production Mage waves and current-configuration replay
+
+Composition14d6042 committed with frozen independent QA/test-evidence(ADEQUATE),
+TD/five-axis/producer APPROVE. Cleanup
+bc15edd79f8dbf7b1152c51d907b60cc79276d9aeea1d1f5614a3512a090c49b removed1300files/
+43,857,815bytes/14directories, no failures/remaining. Root remains sole writer/
+executor under the same isolated umbrella claim and retained evidence root.
+Producer two-path plan READY: new production Mage wave tests and ledger only.
+Root security-check: pass; local tests/evidence only, no dependencies/credentials/
+permissions/external IO/save-shape changes. Reuse TDD, incremental-implementation
+and root-cause-fix for truthful bounded acceptance. No production defect is
+assumed; characterization may pass initially. Read-only QA pre-probe sanity READY.
+Use actual Blood Moor planner, seed7 candidate, real equip imported survival
+cap, NecromancerL30/Mage6/Skeleton1/unslottedMastery20/E21. WAIT/finisher are
+unearned timing scaffolding; do not infer progression, campaign or balance. No
+engine/staging mocks, transition leases or binding mutations. Root will retain
+probe output/source, freeze final QA expectations before serial checks, then
+frozen reviews/publication/producer audit/local commit/exact cleanup. Require
+actual positive bolts by four fresh IDs before finisher, fresh next-wave batch/
+resources/statuses/cooldowns and native slot A/A/A-B-A replay with stable payout
+identity/no duplicate awards. IDs may repeat across battles. Mixed Iron replay
+locks, actual playback/log transport, bilingual mounted/browser, paired balance/
+earned/full Mage/signature statuses/D06/P09/P10/private-v1 remain separate/open.
+No remote action.
+
+
+Unearned native probe passes first execution. Seed7 W0 has8enemies; actual IDs
+produce F50/C61/L61/P50 positive noncritical hits/kills at1940 before4000finisher.
+Real dodges extend terminal to5820. MP100→78 once at0; terminal220 plus exact
+.444carry, WAITcooldown2000/activeBuff. W1 has9enemies, fresh4 at0 (local IDs
+may repeat), pays220→198, terminal753/.888 at5820; its cold bolts at1940/3880
+both dodge, so no W1 four-positive-hit claim. Actual hero remains fullHP with
+empty statuses; nonzero cooldown/buff/fraction carries are measured. Native
+Bcombo removes Mage; A restores exact W1 recording/input. Retain probe receipt
+and28source snapshots; no artificial RED or source defect.
+Root draft v1's optional ownerId assertion is contradicted by inspected actual
+unit DTO: event.owner and unit.summonOwnerId carry owner authority. Correct v2
+removes only the nonexistent optional field before any final test execution.
+QA freezes v2 READY17232bytes
+SHAa4b2ac9604ec41718f4408b711bf7c8d5b333ddb0deb4f7dbc95a06c740c4901.
+Three cases cover real publication/4positive pre-finisher kills/plain outcome
+equality/immutable sources, exact native carry/fresh cycle/payment/onceawards,
+and native A/A/A-B-A before/after completed playback and changed wall clock with
+original100MP/baseline/status/cooldowns/unsettled payout/no rewards. W1 dodge
+limits remain explicit; full status carry and clamp evidence uses its separate
+existing cross-wave tests, not a manufactured status in this fixture.
+
+
+Final focused154/154 in3files (4.66s), full7433/237files (116.82s; wall118.30s),
+standard types/lint and VITE_E2E=false production build pass. Exact two-path
+checker includes untracked-file whitespace and compares every captured nonledger
+source/config/test byte across final focused/full/types/lint/build. Final tests
+match QA's v2 draft exactly. Artifact index-Bvz2NhdJ.js is1,343,317bytes
+SHA78667ac87b31ef7838fb57a2403a2c546a04a2acfbb9ba6ba78c088283dd0ab9.
+A bounded artifact follow-up extends bridge checks to exact Mage fixture markers
+and Vitest; all absent in four emitted JS chunks. This test-only slice's bundle
+hash differs from the prior build; no byte-reproducible-build claim is made.
+No production source was changed. Full116.82s exceeds15s loop budget. Existing
+Browserslist/large-chunk/2.57MBmanifest-precache warnings and broad Node-config
+maxThreads incompatibility remain open. No browser/balance/earned measurement
+was run. Frozen independent QA/test-evidence and TD/five-axis review follows;
+publication/producer audit, local commit and exact cleanup remain pending.
+All broader Mage/D06/P09/P10/private-v1 acceptance remains unfinished.
+
+Frozen QA/test-evidence(ADEQUATE), TD and five-axis reviews APPROVE this
+wave/current-configuration replay increment with no blocking findings. Both
+reviewers verify8receipts/224source snapshots, exact v2 test bytes and final
+validation identities; historical probe is distinguished. All readers released.
+Approval-only ledger update; tests/source unchanged. Publication/producer audit,
+local commit and exact cleanup follow. Broader playback/log/browser/balance/
+earned/full Mage/D06/P09/P10/private-v1 and limitations remain open.
