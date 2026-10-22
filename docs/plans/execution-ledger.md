@@ -6117,3 +6117,64 @@ all readers released. Root remains sole writer/executor. Producer publication
 review, local commit and exact cleanup follow.
 Native bilingual selection, production-byte/save/reload/earned acceptance and
 fullD06/P09/P10/private-v1 remain open. No remote action.
+
+## D06 v1ar live selected-item presentation and guarded actions
+
+Shared preview committed as `886aa6c` after QA/TD/five-axis/producer APPROVE.
+Exact cleanup removed1300files/43,839,628bytes/14directories, zero failures or
+remaining targets; all10 recorded command identities absent. Umbrella claim
+continues. TD-D06-PRESENTATION-PLAN APPROVE includes isReplay in unfinished
+states so replay wording cannot hide publication or conflict progress. Root
+plan-review: ready; four paths, sole writer/executor, no UI wiring yet.
+
+Export the existing pure scopedSummonConfiguration unchanged with public TSDoc.
+New store presentation composes live ownership, isolated item projection and that
+production configuration boundary. Reading neither chooses nor arms an item.
+Draft, armed instruction and receipt-backed current outcome remain distinct.
+Matching pending evidence precedes older publication; foreign heroes are ignored.
+Prepared/conflict never prove payment from staged attestation, item absence or
+selection clearing. Only committed receipt debit plus matching hero/item proof
+reports payment. No-debit is receipt-local; pending replay retains its intent,
+and published replay reports original lock policy without another sacrifice.
+NotPrepared deliberately invents no poor/full/terminal cause. Qualification does
+not depend on mana or life. No persistence, SaveCurrent11 or simulation changes.
+
+Arm checks the primitive guard first, explicit acknowledgement, displayed hero,
+live ownership/projection and shared configuration before the existing arm write.
+Clear checks guard, displayed hero and exact displayed selection reference.
+Unexpected subscriber errors propagate unchanged after actual writes; callers
+must reread live state. Supported hero replacement retains its existing cleanup.
+
+42 focused cases cover isolated bonuses/refusals/all-container duplicates,
+stale movement/hero/selection, class/level/rank/prerequisite/slot qualification,
+guard precedence, read/action non-payment, post-write errors, pending priority,
+foreign receipts, actual payment/no-preparation, conflict and both replay policies.
+Controlled hero/item fixtures and injected faults are not earned/native acceptance.
+RED module-resolution failures7.362s/7.192s were captured before implementation;
+no tests were collected in those runs. Initial implementation35passed/4failed
+10.484s exposed fixture mistakes: supported setPlayer clears transient evidence,
+and replay at an identical installed baseline can recognize publication despite a
+publisher throw. Fixtures now explicitly preserve stale evidence using raw swaps
+only for identity-filter tests, use supported combo changes for unlocked replay,
+and advance playback before publication fault injection. Added supported hero
+cleanup and post-write exception cases;42passed10.237s. Initial lint identified
+unsafe asymmetric matcher arguments/void shorthand and a redundant literal-type
+check; typed refusal errors/braced callbacks preserve assertions, and canonical
+attestation remains guaranteed by the production boundary and type contract.
+
+Final focused109/3files5.467s; types14.857s; lint41.852s/85purity; full7204/
+230files114.825s (Vitest113.42s); build9.582s passed. Build603modules,
+index-CunfhIHe.js1283.48kB. Related/full exceed5s/15s budgets; existing
+chunk/Browserslist/precache warnings remain, no thresholds changed. All commands
+serial, no persistent server/browser. Root security check: pass; no external IO,
+credentials, dependencies, permissions or save-shape changes; observation and
+arming never confer debit authority. Required native UI/browser/save/earned and
+fullD06/P09/P10/private-v1 acceptance remain open.
+
+Four-path source/config/output captures, prior cleanup and owned dist/tmp inventory
+will be frozen in iron-presentation-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA/test-evidence and TD/five-axis reviews APPROVE this frozen slice;
+all readers released. Producer publication, local commit and exact cleanup follow. Before UI wiring, a separate approved
+receipt subscription must notify the latest immutable snapshot after the current
+synchronous stack, including promotion/cancellation/abandonment. No remote action.

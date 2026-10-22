@@ -79,8 +79,13 @@ function withWaveTransition<T>(operation: (lease: WaveTransitionLease) => T,
 const CHALLENGE_ORDINAL_PERIOD = 360360;
 let manualChallengeOrdinal = 0;
 
-/** Validate class, level and allocations before scoped summon slots enter the engine. */
-function scopedSummonConfiguration(player: Player): Pick<CombatUnit, 'skillOrder' | 'skillLevels'> {
+/**
+ * Pure production configuration boundary shared by combat and presentation.
+ * Validate class, level, rank and prerequisites before scoped summon slots enter
+ * the engine. This does not qualify owner life, mana, item payment or preparation.
+ * Copies configuration without mutating the player or consulting transient state.
+ */
+export function scopedSummonConfiguration(player: Player): Pick<CombatUnit, 'skillOrder' | 'skillLevels'> {
   const skillLevels = { ...player.skillLevels };
   const catalog = getSkillsForClass(player.class);
   const byCanonical = new Map(catalog.map(skill => [canonicalSkillIdFromData(skill.id), skill]));
