@@ -1,7 +1,7 @@
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useHydrationStore } from '@/stores/hydrationStore';
 import { Suspense } from 'react';
-import { act, cleanup, render, screen, within } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import { MemoryRouter } from 'react-router-dom';
 import i18n from '@/i18n';
@@ -10,6 +10,12 @@ import { useCombatStore, useMapStore, useMetaStore, usePlayerStore } from '@/sto
 import { abortSubAreaRun, playerToCombatUnit } from '@/stores/combatHelpers';
 import type { CombatUnit } from '@/engine/combat/types';
 import { CombatScreen } from './CombatScreen';
+import { synthDefaultPlan } from '@/engine/combat';
+import type { ActiveRun } from '@/stores/combatRunLifecycle';
+import { stageRecordedBattle } from '@/stores/recordedBattlePublication';
+import { prepareRecordedWave, commitPreparedRecordedWave, inspectRecordedWaves,
+  abandonRecordedWaves } from '@/stores/recordedWaveReceipt';
+import { beginWaveTransition, endWaveTransition, reserveWaveRestore, releaseWaveRestore } from '@/stores/waveTransitionGuard';
 
 beforeEach(() => {
   abortSubAreaRun();
@@ -174,4 +180,81 @@ describe('live combat resource display', () => {
       expect(screen.getByTestId('unit-card-visible-hero')).toBeVisible();
     });
   }
+});
+
+
+/** Real receipt refusals and playback UI; synthetic recording, no item payment. */
+describe('receipt playback refusal and Retry', () => {
+  afterEach(() => { vi.useRealTimers(); });
+  function fixture(phase: 'prepared' | 'committedPendingPublication' | 'conflict', paused: boolean) {
+    const player = createMockPlayer('Playback Retry', 'sorceress'); usePlayerStore.getState().setPlayer(player);
+    const hero = playerToCombatUnit(player);
+    const plan = synthDefaultPlan({ id: 'ui-receipt', lootTable: 'loot/trash-act1', areaLevel: 1 },
+      'monsters/act1.fallen', 1, 7);
+    const run: ActiveRun = { plan, act: 1, seed: 7, mode: 'manual', playerUnit: hero,
+      waveIdx: 0, carryPlayerTeam: [hero], waveElapsedMs: 1000 };
+    const events = [{ kind: 'turn-start' as const, turn: 1, simClockMs: 0, uiDelayMs: 1000 },
+      { kind: 'end' as const, winner: 'player' as const, simClockMs: 1000, uiDelayMs: 1000 }];
+    const outcome = { winner: 'player' as const, finalPlayerTeam: [hero], finalEnemyTeam: [] };
+    const publication = stageRecordedBattle({ initialPlayerTeam: [hero], initialEnemyTeam: [],
+      events, outcome, unitNameMap: new Map(), currentWave: 1, totalWaves: plan.waves.length,
+      subAreaRunId: plan.subAreaId }, useCombatStore.getState());
+    useCombatStore.getState().publishStagedRecordedBattle(publication);
+    useCombatStore.setState({ isPaused: paused });
+    const ownership = { backpack: [], stash: [], equipped: {}, mercEquipment: {} };
+    const lease = beginWaveTransition(true);
+    try {
+      const token = prepareRecordedWave({ candidateRun: run, expectedActiveRun: null, heroId: hero.id,
+        targetWaveIdx: 0, waveElapsedMs: 1000, selection: null, ownership, debitIntent: null, attestation: null,
+        engineInput: { seed: 7, playerTeam: [hero], enemyTeam: [] }, recording: { events, outcome }, publication }, lease);
+      if (phase !== 'prepared') commitPreparedRecordedWave(token, lease, { activeRun: null, heroId: hero.id,
+        selection: null, ownership: phase === 'conflict' ? { ...ownership, backpack: [] } : ownership });
+    } finally { endWaveTransition(lease); }
+    render(<I18nextProvider i18n={i18n}><Suspense fallback={null}>
+      <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><CombatScreen /></MemoryRouter>
+    </Suspense></I18nextProvider>);
+  }
+  const phases = ['prepared', 'committedPendingPublication', 'conflict'] as const;
+  for (const locale of ['en', 'zh-CN'] as const) {
+    it.each(phases.flatMap(phase => (['skip-paused', 'pause', 'resume'] as const).map(action => ({ phase, action }))))(
+      locale + ' $action refuses $phase without mutating playback', async ({ phase, action }) => {
+        await i18n.changeLanguage(locale); vi.useFakeTimers(); fixture(phase, action !== 'pause');
+        const before = useCombatStore.getState(); const holder = inspectRecordedWaves();
+        fireEvent.click(action === 'skip-paused' ? screen.getByTestId('skip-button') :
+          screen.getByRole('button', { name: i18n.t(action === 'pause' ? 'combat:pause' : 'combat:resume') }));
+        expect(useCombatStore.getState()).toBe(before); expect(inspectRecordedWaves()).toBe(holder);
+        expect(screen.getByRole('alert')).toHaveTextContent(i18n.t('common:error'));
+        expect(screen.getByRole('button', { name: i18n.t('common:retry') })).toBeEnabled();
+      });
+
+    it.each(phases)(locale + ' timer refusal in %s resumes on Retry after explicit abandonment', async phase => {
+      await i18n.changeLanguage(locale); vi.useFakeTimers(); fixture(phase, false);
+      const before = useCombatStore.getState(); const holder = inspectRecordedWaves();
+      act(() => { vi.advanceTimersByTime(1000); });
+      expect(useCombatStore.getState()).toBe(before); expect(inspectRecordedWaves()).toBe(holder);
+      expect(screen.getByRole('alert')).toBeVisible();
+      act(() => { vi.advanceTimersByTime(5000); }); expect(useCombatStore.getState()).toBe(before);
+      abandonRecordedWaves();
+      fireEvent.click(screen.getByRole('button', { name: i18n.t('common:retry') }));
+      expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+      act(() => { vi.advanceTimersByTime(999); }); expect(useCombatStore.getState().eventCursor).toBe(0);
+      act(() => { vi.advanceTimersByTime(1); }); expect(useCombatStore.getState().eventCursor).toBe(1);
+      expect(useCombatStore.getState().isPaused).toBe(false);
+    });
+  }
+
+  it.each(['wave', 'restore'] as const)('%s ownership timer refusal can Retry after release', async ownership => {
+    await i18n.changeLanguage('en'); vi.useFakeTimers(); fixture('prepared', false); abandonRecordedWaves();
+    const wave = ownership === 'wave' ? beginWaveTransition(true) : null;
+    const restore = ownership === 'restore' ? reserveWaveRestore() : null;
+    try {
+      const before = useCombatStore.getState(); act(() => { vi.advanceTimersByTime(1000); });
+      expect(useCombatStore.getState()).toBe(before); expect(screen.getByRole('alert')).toBeVisible();
+    } finally {
+      if (wave) endWaveTransition(wave);
+      if (restore) releaseWaveRestore(restore);
+    }
+    fireEvent.click(screen.getByRole('button', { name: 'Retry' }));
+    act(() => { vi.advanceTimersByTime(1000); }); expect(useCombatStore.getState().eventCursor).toBe(1);
+  });
 });

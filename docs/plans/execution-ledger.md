@@ -5381,3 +5381,67 @@ sole writer/executor; umbrella worktree claim continues; no remote action.
 Playback/UI/new-transition consumers, production receipts/debit/recovery, once-only
 settlement/replay lock, bilingual Iron acceptance and fullD06/P09/P10/private-v1
 remain open.
+
+
+## D06 v1af playback receipt-phase consumers
+
+Persistence integration received independent QA, TD/five-axis and producer APPROVE
+and committed as `cdc6ec1`. Exact persistence-phase cleanup removed857files/
+42,726,888bytes and14empty directories with zero failures/remaining targets; all11
+command identities and the exact owned Vite identity were absent.
+
+TD approved this five-path consumer slice, including guards on all public pause
+controls and the Retry timer dependency refinement. advanceEvent now checks the
+playback adapter before state reads and paused/completed returns; tick delegates.
+pausePlayback/resumePlayback/togglePause check before reads/setters. CombatScreen
+preflights Skip before reading/resuming paused state, catches both typed ownership
+and receipt-phase refusals in timer/Skip/Pause and existing start/advance paths,
+and rethrows unexpected errors. Timer scheduling stops while transitionFailed;
+transitionFailed and transitionRetry dependencies ensure Retry reschedules at an
+unchanged cursor/pause/speed. Existing bilingual generic error/Retry UI is reused.
+Abort/exit primitive guards and lifecycle setters retain their existing behavior.
+Production receipt creation, payment and selected-item activation remain absent.
+
+Fifty-two new real-store cases cover prepared/committed/conflict across five
+controls and playing/paused/completed states, unchanged combat/holder roots and
+zero notifications, primitive ownership precedence, and empty/published ordinary
+controls. Twenty-six new real-receipt UI cases cover three phases with paused
+Skip/Pause/Resume and timer refusal in both locales, unchanged playback/holder,
+visible error/Retry, five seconds with no repeated tick, valid abandonment then
+Retry resuming at the original delay, and wave/restore ownership recovery.
+
+Store RED50failed/8passed9.500s and GREEN58passed9.186s establish missing boundary
+checks. UI RED26failed/14passed13.490s included18 captured uncaught handler errors;
+UI catches/timer wiring produced GREEN98/2files12.203s without those errors.
+Initial types failed15.418s because four test queries used Playwright's exact
+option in Testing Library; removed the unsupported options without weakening
+string-name assertions. Historical failures/source/output identities are retained.
+Final serial focused129/3files14.757s, types15.345s, lint40.145s including85purity,
+full6811/227files117.003s and build10.061s passed. Build608modules/
+index-Ccs0at2A.js1264.40kB observed. Related5s/full15s overruns, prior unexplained
+bundle variance, existing React act/fixture fallback, stale Browserslist and
+chunk/precache diagnostics remain open; no deterministic bundle-equivalence claim.
+SaveCurrent11 unchanged.
+
+Development-browser integration passed43.065s in en/zh-CN at360x640 and1280x800.
+Forty-eight UI flows exercised all three unsafe phases through paused Skip, Pause,
+Resume and timer refusal; combat/holder/cursor/pause were preserved and Retry was
+available. All twelve timer flows resumed after explicit receipt abandonment and
+Retry without pause/speed changes. No console/page errors. Hero creation/navigation
+used UI controls; recording/receipt phases used dev-module fixtures. This is not
+paid-Iron, visual, earned, production-build or fullD06 acceptance. Chinese screenshot
+glyph rendering remains unresolved. Browser contexts/browser closed; exact owned
+Vite terminated/reaped and independently checked absent. Security check passes:
+no new external IO/dependency/save payload/item-write authority or bypass; no
+app-source browser hooks.
+
+Five paths, all playback-phase command/source/output identities, prior cleanup and
+exact owned dist/tmp inventory are frozen in playback-phase-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review remains before commit; disposable outputs
+await exact cleanup. Root remains
+sole writer/executor; umbrella worktree claim continues; no remote action.
+New-transition/Skills consumers, production receipts/debit/recovery, once-only
+settlement/replay lock, bilingual Iron acceptance and fullD06/P09/P10/private-v1
+remain open.

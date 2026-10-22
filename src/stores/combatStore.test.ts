@@ -1,8 +1,15 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { useCombatStore } from './combatStore';
 import type { CombatUnit } from '@/engine/combat/types';
 import { runBattle, runBattleRecorded } from '@/engine/combat/combat';
 import i18n from '@/i18n';
+import { synthDefaultPlan } from '@/engine/combat';
+import type { ActiveRun } from './combatRunLifecycle';
+import { stageRecordedBattle } from './recordedBattlePublication';
+import { prepareRecordedWave, commitPreparedRecordedWave, recognizeRecordedWavePublication,
+  inspectRecordedWaves, abandonRecordedWaves } from './recordedWaveReceipt';
+import { beginWaveTransition, endWaveTransition, reserveWaveRestore, releaseWaveRestore } from './waveTransitionGuard';
+import { RecordedWaveAccessError } from './recordedWaveAccess';
 
 function unit(id: string, side: 'player' | 'enemy'): CombatUnit {
   return {
@@ -157,5 +164,79 @@ describe('actual recorded canonical Fire Bolt cast playback', () => {
       useCombatStore.getState().reset();
       await i18n.changeLanguage(previous);
     }
+  });
+});
+
+
+/** Synthetic receipt phases with real store playback; no production debit. */
+describe('recorded receipt playback access', () => {
+  beforeEach(() => { abandonRecordedWaves(); useCombatStore.getState().reset(); });
+  afterEach(() => { abandonRecordedWaves(); useCombatStore.getState().reset(); });
+  const actions = ['advanceEvent', 'tick', 'pausePlayback', 'resumePlayback', 'togglePause'] as const;
+  function receipt(phase: 'prepared' | 'committedPendingPublication' | 'conflict' | 'published') {
+    const hero = unit('receipt-playback-hero', 'player'); const enemy = unit('receipt-playback-enemy', 'enemy');
+    const plan = synthDefaultPlan({ id: 'receipt-playback', lootTable: 'loot/trash-act1', areaLevel: 1 },
+      'monsters/act1.fallen', 1, 7);
+    const run: ActiveRun = { plan, act: 1, seed: 7, mode: 'manual', playerUnit: hero,
+      waveIdx: 0, carryPlayerTeam: [hero], waveElapsedMs: 1200 };
+    const events = [{ kind: 'turn-start' as const, turn: 1, simClockMs: 0, uiDelayMs: 50 },
+      { kind: 'end' as const, winner: 'player' as const, simClockMs: 1200, uiDelayMs: 50 }];
+    const outcome = { winner: 'player' as const, finalPlayerTeam: [hero], finalEnemyTeam: [enemy] };
+    const recording = { events, outcome };
+    const publication = stageRecordedBattle({ initialPlayerTeam: [hero], initialEnemyTeam: [enemy],
+      events, outcome, unitNameMap: new Map(), currentWave: 1, totalWaves: plan.waves.length,
+      subAreaRunId: plan.subAreaId }, useCombatStore.getState());
+    useCombatStore.getState().publishStagedRecordedBattle(publication);
+    const ownership = { backpack: [], stash: [], equipped: {}, mercEquipment: {} };
+    const lease = beginWaveTransition(true);
+    try {
+      const token = prepareRecordedWave({ candidateRun: run, expectedActiveRun: null, heroId: hero.id,
+        targetWaveIdx: 0, waveElapsedMs: 1200, selection: null, ownership, debitIntent: null,
+        attestation: null, engineInput: { seed: 7, playerTeam: [hero], enemyTeam: [enemy] },
+        recording, publication }, lease);
+      if (phase !== 'prepared') commitPreparedRecordedWave(token, lease, { activeRun: null,
+        heroId: hero.id, selection: null, ownership: phase === 'conflict' ? { ...ownership, backpack: [] } : ownership });
+      if (phase === 'published') {
+        run.recording = recording;
+        expect(recognizeRecordedWavePublication(token, lease, { activeRun: run, heroId: hero.id,
+          combat: useCombatStore.getState() })).toBe(true);
+      }
+    } finally { endWaveTransition(lease); }
+  }
+
+  it.each((['prepared', 'committedPendingPublication', 'conflict'] as const).flatMap(phase =>
+    actions.flatMap(action => (['playing', 'paused', 'complete'] as const).map(mode => ({ phase, action, mode })))))(
+    '$phase refuses $action while $mode without changing references or notifying', ({ phase, action, mode }) => {
+      receipt(phase); useCombatStore.setState({ isPaused: mode === 'paused', playbackComplete: mode === 'complete' });
+      const before = useCombatStore.getState(); const holder = inspectRecordedWaves(); let notifications = 0;
+      const stop = useCombatStore.subscribe(() => { notifications++; });
+      try {
+        expect(before[action]).toThrow(RecordedWaveAccessError);
+        expect(before[action]).toThrow(phase === 'committedPendingPublication' ? 'publicationPending' :
+          phase === 'prepared' ? 'preparedPending' : 'conflict');
+      } finally { stop(); }
+      expect(useCombatStore.getState()).toBe(before); expect(inspectRecordedWaves()).toBe(holder);
+      expect(notifications).toBe(0);
+    });
+
+  it.each(actions)('%s preserves primitive ownership precedence', action => {
+    receipt('prepared'); const before = useCombatStore.getState(); const holder = inspectRecordedWaves();
+    const lease = beginWaveTransition(true);
+    try { expect(before[action]).toThrow('waveBusy'); } finally { endWaveTransition(lease); }
+    const restore = reserveWaveRestore();
+    try { expect(before[action]).toThrow('restorePending'); } finally { releaseWaveRestore(restore); }
+    expect(useCombatStore.getState()).toBe(before); expect(inspectRecordedWaves()).toBe(holder);
+  });
+
+  it.each(['empty', 'published'] as const)('%s permits ordinary controls and playback', phase => {
+    receipt('published'); if (phase === 'empty') abandonRecordedWaves();
+    const holder = inspectRecordedWaves(); const store = useCombatStore.getState();
+    store.pausePlayback(); expect(useCombatStore.getState().isPaused).toBe(true);
+    store.advanceEvent(); expect(useCombatStore.getState().eventCursor).toBe(0);
+    store.resumePlayback(); expect(useCombatStore.getState().isPaused).toBe(false);
+    store.togglePause(); expect(useCombatStore.getState().isPaused).toBe(true);
+    store.togglePause(); store.tick(); expect(useCombatStore.getState().eventCursor).toBe(1);
+    store.advanceEvent(); expect(useCombatStore.getState().playbackComplete).toBe(true);
+    expect(inspectRecordedWaves()).toBe(holder);
   });
 });

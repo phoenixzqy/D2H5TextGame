@@ -14,6 +14,7 @@ import { applyEventToTeams } from './combatPlayback';
 import { eventToLocalizedLogEntry } from './eventToLogI18n';
 import { resolveSummonDisplayName } from './summonDisplayName';
 import { stageRecordedBattle, type RecordedBattleInput, type RecordedBattlePublication } from './recordedBattlePublication';
+import { assertRecordedWavePlaybackAllowed } from './recordedWaveAccess';
 
 export interface CombatLogEntry {
   id: string;
@@ -80,6 +81,7 @@ interface CombatState {
   nextTurn: () => void;
   nextWave: (newEnemies: CombatUnit[]) => void;
   updateUnit: (unitId: string, updater: (unit: CombatUnit) => CombatUnit) => void;
+  /** Toggle playback pause; refuses active ownership or unpublished receipt phases. */
   togglePause: () => void;
   toggleAutoMode: () => void;
   reset: () => void;
@@ -103,11 +105,13 @@ interface CombatState {
   accumulateRunRewards: (rewards: KillRewards) => void;
   /** Reset the run-aggregate rewards (called when starting a new run). */
   resetRunRewards: () => void;
-  /** Advance the cursor by one event (no-op when paused or complete). */
+  /** Check ownership/receipt phase, then advance (no-op when paused or complete). */
   advanceEvent: () => void;
   /** Alias for {@link advanceEvent} kept for UI timer ergonomics. */
   tick: () => void;
+  /** Pause playback; throws typed ownership/receipt refusals before changing state. */
   pausePlayback: () => void;
+  /** Resume playback; throws typed ownership/receipt refusals before changing state. */
   resumePlayback: () => void;
 }
 
@@ -221,7 +225,7 @@ export const useCombatStore= create<CombatState>((set, get) => ({
     enemyTeam: state.enemyTeam.map((u) => (u.id === unitId ? updater(u) : u))
   })); },
 
-  togglePause: () => { set((state) => ({
+  togglePause: () => { assertRecordedWavePlaybackAllowed(); set((state) => ({
     isPaused: !state.isPaused
   })); },
 
@@ -252,6 +256,7 @@ export const useCombatStore= create<CombatState>((set, get) => ({
   resetRunRewards: () => { set({ runRewards: emptyRewards() }); },
 
   advanceEvent: () => {
+    assertRecordedWavePlaybackAllowed();
     const state = get();
     if (state.isPaused || state.playbackComplete) return;
     const idx = state.eventCursor;
@@ -308,6 +313,6 @@ export const useCombatStore= create<CombatState>((set, get) => ({
 
   tick: () => { get().advanceEvent(); },
 
-  pausePlayback: () => { set({ isPaused: true }); },
-  resumePlayback: () => { set({ isPaused: false }); }
+  pausePlayback: () => { assertRecordedWavePlaybackAllowed(); set({ isPaused: true }); },
+  resumePlayback: () => { assertRecordedWavePlaybackAllowed(); set({ isPaused: false }); }
 }));

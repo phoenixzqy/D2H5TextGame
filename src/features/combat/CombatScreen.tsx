@@ -23,6 +23,7 @@ import {
   resolveCombatUnitDisplayName
 } from '@/stores/combatHelpers';
 import { WaveGuardError } from '@/stores/waveTransitionGuard';
+import { assertRecordedWavePlaybackAllowed, RecordedWaveAccessError } from '@/stores/recordedWaveAccess';
 import { useHydrationStore } from '@/stores/hydrationStore';
 import { nextSubAreaInAct } from '@/stores/subAreaResolver';
 import type { CombatLogEntry } from '@/stores/combatStore';
@@ -115,7 +116,7 @@ export function CombatScreen() {
         startSubAreaRun({ mode: isIdleLoop ? 'idle' : 'manual' });
         setTransitionFailed(false);
       } catch (error) {
-        if (!(error instanceof WaveGuardError)) throw error;
+        if (!(error instanceof WaveGuardError || error instanceof RecordedWaveAccessError)) throw error;
         setTransitionFailed(error.code !== 'hydrationNotReady');
       }
     }
@@ -125,15 +126,19 @@ export function CombatScreen() {
   // (divided by the chosen speed multiplier). Re-runs whenever the cursor,
   // pause state, or speed changes.
   useEffect(() => {
-    if (hydrationStatus !== 'ready' || !inCombat || isPaused || playbackComplete) return;
+    if (hydrationStatus !== 'ready' || transitionFailed || !inCombat || isPaused || playbackComplete) return;
     const next = recordedEvents[eventCursor];
     if (!next) return;
     const delay = Math.max(50, Math.floor(next.uiDelayMs / speed));
     const handle = setTimeout(() => {
-      tick();
+      try { tick(); }
+      catch (error) {
+        if (!(error instanceof WaveGuardError || error instanceof RecordedWaveAccessError)) throw error;
+        setTransitionFailed(error.code !== 'hydrationNotReady');
+      }
     }, delay);
     return () => { clearTimeout(handle); };
-  }, [inCombat, isPaused, playbackComplete, eventCursor, recordedEvents, tick, speed, hydrationStatus]);
+  }, [inCombat, isPaused, playbackComplete, eventCursor, recordedEvents, tick, speed, hydrationStatus, transitionFailed, transitionRetry]);
 
   // Wave completion → auto-advance to next wave (1.5s pause) OR finalize run.
   // The 1.5s pause is the recommended default per the spec; it gives the
@@ -154,7 +159,7 @@ export function CombatScreen() {
         advanceWaveOrFinish();
         setTransitionFailed(false);
       } catch (error) {
-        if (!(error instanceof WaveGuardError)) throw error;
+        if (!(error instanceof WaveGuardError || error instanceof RecordedWaveAccessError)) throw error;
         setTransitionFailed(error.code !== 'hydrationNotReady');
       } finally {
         setNextWaveCountingDown(false);
@@ -191,14 +196,29 @@ export function CombatScreen() {
   }, []);
 
   const handleSkip = useCallback(() => {
-    // Resume if paused so advanceEvent isn't a no-op, then drain.
-    const store = useCombatStore.getState();
-    if (store.isPaused) store.resumePlayback();
-    let safety = 10_000;
-    while (!useCombatStore.getState().playbackComplete && safety-- > 0) {
-      useCombatStore.getState().advanceEvent();
+    try {
+      assertRecordedWavePlaybackAllowed();
+      // Resume if paused so advanceEvent isn't a no-op, then drain.
+      const store = useCombatStore.getState();
+      if (store.isPaused) store.resumePlayback();
+      let safety = 10_000;
+      while (!useCombatStore.getState().playbackComplete && safety-- > 0) {
+        useCombatStore.getState().advanceEvent();
+      }
+      setTransitionFailed(false);
+    } catch (error) {
+      if (!(error instanceof WaveGuardError || error instanceof RecordedWaveAccessError)) throw error;
+      setTransitionFailed(error.code !== 'hydrationNotReady');
     }
   }, []);
+
+  const handlePause = useCallback(() => {
+    try { togglePause(); setTransitionFailed(false); }
+    catch (error) {
+      if (!(error instanceof WaveGuardError || error instanceof RecordedWaveAccessError)) throw error;
+      setTransitionFailed(error.code !== 'hydrationNotReady');
+    }
+  }, [togglePause]);
 
   // Mid-run flee: a sub-area run is in flight → bail to the world map (#21).
   // Synthetic / no-run battles fall through to the town hub as before.
@@ -352,7 +372,7 @@ export function CombatScreen() {
             <Button
               variant="secondary"
               className="min-h-11 min-w-11 px-3 text-sm"
-              onClick={togglePause}
+              onClick={handlePause}
               aria-pressed={isPaused}
               disabled={playbackComplete}
             >
