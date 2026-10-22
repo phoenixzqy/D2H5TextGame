@@ -259,9 +259,9 @@ describe('data/loader', () => {
       }
     );
 
-    it('keeps all 284 authored rows and their central loaded definitions unchanged', async () => {
+    it('keeps all 286 authored rows and their central loaded definitions unchanged', async () => {
       const before = JSON.stringify(skills);
-      expect(skills).toHaveLength(284);
+      expect(skills).toHaveLength(286);
       const loaded = await loadGameData();
       expect([...loaded.skills.values()]).toEqual(skills);
       expect(JSON.stringify(skills)).toBe(before);

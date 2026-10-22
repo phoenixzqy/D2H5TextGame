@@ -15,6 +15,9 @@ import type { CombatUnit } from '../combat/types';
 import type { DerivedStats } from '../types/attributes';
 import type { SummonStatScaling } from './effects';
 import { scaleSummonStats } from './scaling';
+import { buildMonsterUnit } from '../combat/monster-factory';
+import type { MonsterDef } from '../types/monsters';
+import type { Rng } from '../rng';
 
 /** @deprecated Templates are pure; battles now own their summon identity. */
 export function resetSummonCounters(): void {
@@ -24,6 +27,8 @@ export function resetSummonCounters(): void {
 export interface BuildSummonOptions {
   readonly skillLevel?: number;
   readonly statScaling?: SummonStatScaling | undefined;
+  readonly monsterDef?: MonsterDef | undefined;
+  readonly rng?: Rng | undefined;
 }
 
 /** Factory: build a fresh summon for `owner`. */
@@ -53,8 +58,10 @@ export function buildSummon(
   options: BuildSummonOptions = {}
 ): CombatUnit | undefined {
   const factory = FACTORIES.get(summonId);
-  if (!factory) return undefined;
-  const unit = factory(owner);
+  const unit = options.monsterDef
+    ? options.rng ? buildMonsterUnit({ def: options.monsterDef, level: owner.level, tier: 'trash', rng: options.rng }) : undefined
+    : factory?.(owner);
+  if (!unit) return undefined;
   const stats = scaleSummonStats(unit.stats, options.statScaling, options.skillLevel ?? 1);
   // Ensure owner-derived fields are correct regardless of factory return.
   return {

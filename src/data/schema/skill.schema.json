@@ -7,6 +7,44 @@
   "required": ["id", "name", "description", "trigger", "target", "cooldown", "minLevel", "maxLevel"],
   "additionalProperties": false,
   "allOf": [{
+    "if": { "properties": { "id": { "const": "monster-blood-raven-raise-dead" } }, "required": ["id"] },
+    "then": {
+      "required": ["monsterSummon", "summonId", "cost"],
+      "properties": {
+        "monsterSummon": { "$ref": "#/properties/monsterSummon" },
+        "summonId": { "const": "blood_raven_zombie" },
+        "trigger": { "const": "active" }, "target": { "const": "summon" },
+        "cooldown": { "type": "number", "minimum": 1 },
+        "cost": { "type": "object", "required": ["mana"], "maxProperties": 1, "properties": { "mana": { "const": 0 } } },
+        "damage": false, "damageType": false, "scaling": false,
+        "appliesStatus": false, "statusEffect": false, "additionalStatusEffects": false,
+        "heal": false, "passive": false, "aura": false,
+        "requires": false, "aoeShape": false, "appliesTags": false
+      }
+    },
+    "else": { "properties": { "monsterSummon": false } }
+  }, {
+    "if": { "properties": { "id": { "const": "monster-blood-raven-fire-arrow" } }, "required": ["id"] },
+    "then": {
+      "required": ["cost", "damage", "damageType", "appliesStatus", "statusEffect"],
+      "properties": {
+        "trigger": { "const": "active" }, "target": { "const": "single-enemy" },
+        "cooldown": { "type": "number", "minimum": 1 },
+        "cost": { "type": "object", "required": ["mana"], "maxProperties": 1, "properties": { "mana": { "const": 0 } } },
+        "damage": { "$ref": "#/$defs/damageInfo" }, "damageType": { "const": "fire" },
+        "appliesStatus": { "const": ["burn"] },
+        "statusEffect": { "type": "object", "required": ["chance", "stacksOnApply", "dotPctOfDamage", "durationMs"],
+          "properties": {
+            "chance": { "const": 1 }, "stacksOnApply": { "const": 2 },
+            "dotPctOfDamage": { "$ref": "#/properties/statusEffect/properties/dotPctOfDamage" },
+            "durationMs": { "$ref": "#/properties/statusEffect/properties/durationMs" }
+          }, "maxProperties": 4 },
+        "scaling": false, "additionalStatusEffects": false, "heal": false,
+        "summonId": false, "passive": false, "aura": false, "summon": false,
+        "requires": false, "aoeShape": false, "appliesTags": false
+      }
+    }
+  }, {
     "if": {
       "properties": {
         "id": {
@@ -598,6 +636,17 @@
     }
   },
   "properties": {
+    "monsterSummon": {
+      "type": "object", "additionalProperties": false,
+      "description": "Reviewed Blood Raven monster-archetype summon batch and death policy.",
+      "required": ["archetypeId", "count", "maxCount", "refundOnDeath"],
+      "properties": {
+        "archetypeId": { "const": "monsters/act1.zombie" },
+        "count": { "type": "integer", "minimum": 1, "maximum": 6 },
+        "maxCount": { "type": "integer", "minimum": 1, "maximum": 6 },
+        "refundOnDeath": { "const": false }
+      }
+    },
     "attackDamagePct": {
       "type": "number", "minimum": 0,
       "description": "Finite nonnegative percentage of snapshot Attack added before damage multipliers and mitigation; exact Basic/Pierce mercenary rows only."

@@ -19,6 +19,7 @@ import { MINOR_HEAL_SKILL } from './minor-heal';
 import { MERC_INNER_SIGHT_SKILL } from './inner-sight';
 import { MERC_ARROW_SKILLS } from './merc-arrows';
 import { ACT1_LIGHTNING_AFFIX_SKILL } from './act1-lightning';
+import { BLOOD_RAVEN_SKILLS } from './blood-raven';
 
 const registry = new Map<string, RegisteredSkill>();
 const warned = new Set<string>();
@@ -92,6 +93,7 @@ export function loadDefaultSkills(): void {
     registry.set(s.id, s);
   }
   registry.set(ACT1_LIGHTNING_AFFIX_SKILL.id, ACT1_LIGHTNING_AFFIX_SKILL);
+  for (const skill of BLOOD_RAVEN_SKILLS) registry.set(skill.id, skill);
 }
 
 // Auto-load defaults on import.

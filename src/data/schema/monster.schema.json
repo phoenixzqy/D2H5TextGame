@@ -39,6 +39,24 @@
       "minimum": 0,
       "description": "Base attack speed"
     },
+    "basicAttack": {
+      "type": "object", "additionalProperties": false,
+      "description": "Optional ordinary base attack; no mana or skill cooldown.",
+      "required": ["damage", "damageType"],
+      "properties": {
+        "damage": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "number", "minimum": 0 } },
+        "damageType": { "enum": ["physical", "fire", "cold", "lightning", "poison", "arcane", "thorns"] }
+      }
+    },
+    "enrage": {
+      "type": "object", "additionalProperties": false,
+      "description": "Sticky low-life attack-speed multiplier; base stats remain unchanged.",
+      "required": ["lifeFraction", "attackSpeedMultiplier"],
+      "properties": {
+        "lifeFraction": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
+        "attackSpeedMultiplier": { "type": "number", "minimum": 1 }
+      }
+    },
     "magicResist": { "type": "number", "minimum": 0, "description": "Base independent flat magical mitigation" },
     "magicResistGrowth": { "type": "number", "minimum": 0, "description": "Independent flat magical mitigation growth per level" },
     "defense": {

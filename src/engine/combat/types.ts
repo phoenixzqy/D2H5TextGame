@@ -101,6 +101,9 @@ export interface CombatUnit {
   };
   /** Boss enrage activated? */
   readonly enraged: boolean;
+  /** Authored monster base action and optional sticky enrage; absent preserves legacy behavior. */
+  readonly basicAttack?: import('../types/monsters').MonsterDef['basicAttack'];
+  readonly enrage?: import('../types/monsters').MonsterDef['enrage'];
   /**
    * Has summon-on-start been cast for this unit?
    *
@@ -129,6 +132,8 @@ export interface CombatUnit {
   readonly summonOwnerId?: string;
   /** Summon template id used for per-template caps and UI localization. */
   readonly summonTemplateId?: string;
+  /** Explicit false keeps a periodic summon's cooldown/cost when its minions die. */
+  readonly summonRefundOnDeath?: boolean;
   /**
    * Snapshot of the unit's currently equipped weapon, used by
    * {@link import('../ai/policy').chooseSkill} to gate skills with

@@ -125,7 +125,7 @@ export function shouldEnrage(
   if (unit.tier !== 'boss') return false;
   if (unit.enraged) return true;
   if (unit.life <= 0) return false;
-  return unit.life / unit.stats.lifeMax <= bossEnrageThreshold(act);
+  return unit.life / unit.stats.lifeMax <= (unit.enrage?.lifeFraction ?? bossEnrageThreshold(act));
 }
 
 /** Re-export for external consumers checking control immunity. */

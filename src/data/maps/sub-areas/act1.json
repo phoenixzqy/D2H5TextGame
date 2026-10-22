@@ -341,7 +341,8 @@
         },
         {
           "archetypeId": "monsters/act1.bone-warrior",
-          "count": 3
+          "count": 3,
+          "boss": false
         }
       ]
     },

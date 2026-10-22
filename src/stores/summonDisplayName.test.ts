@@ -7,6 +7,7 @@ import { eventToLocalizedLogEntry } from './eventToLogI18n';
 
 // Literal bilingual names, independent of the production translation resources.
 const names = [
+  ['blood_raven_zombie', 'Zombie', '僵尸'],
   ['skeleton', 'Skeleton Warrior', '骷髅战士'],
   ['clay_golem', 'Clay Golem', '黏土石魔'],
   ['blood_golem', 'Blood Golem', '鲜血石魔'],

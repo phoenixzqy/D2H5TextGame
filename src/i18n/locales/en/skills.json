@@ -1056,6 +1056,14 @@
       "name": "Charge",
       "desc": "A boss ability: charges a target for heavy physical damage."
     },
+    "blood-raven-raise-dead": {
+      "name": "Raise Dead",
+      "desc": "Raises 3 Zombies every 25 seconds, up to 6 living Zombies."
+    },
+    "blood-raven-fire-arrow": {
+      "name": "Fire Arrow",
+      "desc": "Deals 35–55 fire damage and applies 2 Burn stacks for 3 seconds."
+    },
     "summon-adds": {
       "name": "Summon Minions",
       "desc": "Summons 2 trash minions to aid the boss."

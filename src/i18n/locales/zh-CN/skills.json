@@ -1056,6 +1056,14 @@
       "name": "冲锋",
       "desc": "首领技能：冲向目标造成沉重物理伤害。"
     },
+    "blood-raven-raise-dead": {
+      "name": "复活死尸",
+      "desc": "每25秒召唤3只僵尸，最多同时存在6只。"
+    },
+    "blood-raven-fire-arrow": {
+      "name": "火焰箭",
+      "desc": "造成35–55点火焰伤害，并施加2层持续3秒的燃烧。"
+    },
     "summon-adds": {
       "name": "召唤随从",
       "desc": "召唤 2 个杂兵协助首领。"

@@ -212,6 +212,13 @@ export interface SkillDef {
  
   /** Summon template id when this skill spawns a creature. */
   readonly summonId?: string;
+  /** Reviewed ordinary-action monster summon batch. */
+  readonly monsterSummon?: {
+    readonly archetypeId: string;
+    readonly count: number;
+    readonly maxCount: number;
+    readonly refundOnDeath: boolean;
+  };
 
   /** Authored fresh-batch basic element cycle; permitted only on the exact Mage skill row. */
   readonly summonBasicAttackElements?: readonly ('fire' | 'cold' | 'lightning' | 'poison')[];

@@ -22,6 +22,10 @@ export interface MonsterDef {
   
   /** Base attack speed */
   readonly attackSpeed?: number;
+  /** Optional authored ordinary attack; does not consume a skill cooldown. */
+  readonly basicAttack?: { readonly damage: readonly [number, number]; readonly damageType: import('./attributes').DamageType };
+  /** Optional sticky low-life attack-speed projection. */
+  readonly enrage?: { readonly lifeFraction: number; readonly attackSpeedMultiplier: number };
   
   /** Base defense */
   readonly defense?: number;

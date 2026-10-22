@@ -1,5 +1,24 @@
 [
   {
+    "id": "monster-blood-raven-raise-dead",
+    "name": "skills.monster.blood-raven-raise-dead.name",
+    "description": "skills.monster.blood-raven-raise-dead.desc",
+    "trigger": "active", "target": "summon", "cooldown": 25,
+    "minLevel": 1, "maxLevel": 1, "cost": { "mana": 0 },
+    "summonId": "blood_raven_zombie",
+    "monsterSummon": { "archetypeId": "monsters/act1.zombie", "count": 3, "maxCount": 6, "refundOnDeath": false }
+  },
+  {
+    "id": "monster-blood-raven-fire-arrow",
+    "name": "skills.monster.blood-raven-fire-arrow.name",
+    "description": "skills.monster.blood-raven-fire-arrow.desc",
+    "trigger": "active", "target": "single-enemy", "cooldown": 2,
+    "minLevel": 1, "maxLevel": 1, "cost": { "mana": 0 },
+    "damage": { "min": 35, "max": 55, "breakdown": { "fire": 55 } }, "damageType": "fire",
+    "appliesStatus": ["burn"],
+    "statusEffect": { "chance": 1, "stacksOnApply": 2, "dotPctOfDamage": 0.1, "durationMs": 3000 }
+  },
+  {
     "id": "monster-weak-melee",
     "name": "skills.monster.weak-melee.name",
     "description": "skills.monster.weak-melee.desc",

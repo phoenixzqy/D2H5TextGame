@@ -76,6 +76,7 @@
   "acting": "行动中",
   "summon": "召唤物",
   "summons": {
+    "blood_raven_zombie": "僵尸",
     "skeleton": "骷髅战士",
     "clay_golem": "黏土石魔",
     "blood_golem": "鲜血石魔",

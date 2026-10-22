@@ -245,7 +245,8 @@ function observeStatuses(state: State, target: string, initial = false): void {
 /** Keep base stats intact; active Chill changes the stat before cadence/clamps. */
 function effectiveActionPeriod(unit: CombatUnit, at: number): number {
   const chilled = unit.statuses.some(s => s.id === 'chill' && statusActiveAt(s, at));
-  return actionPeriodMs(unit.stats.attackSpeed * (chilled ? CHILL_DEFINITION.attackSpeedMultiplier : 1));
+  const enrage = unit.enraged ? unit.enrage?.attackSpeedMultiplier ?? 1 : 1;
+  return actionPeriodMs(unit.stats.attackSpeed * enrage * (chilled ? CHILL_DEFINITION.attackSpeedMultiplier : 1));
 }
 
 /** All new attempts start one full effective period after the current clock. */
@@ -257,6 +258,8 @@ function scheduleNextAction(state: State, unit: CombatUnit): void {
 /** Preserve remaining progress at onset/expiry; unchanged refresh never reschedules. */
 function reconcileActionPeriods(state: State): void {
   for (const [id, scheduled] of state.actionSchedule) {
+    // Authored enrage observes damage/periodic boundaries and preserves pending phase.
+    if (state.units.get(id)?.enrage) checkEnrage(state, id);
     const unit = state.units.get(id);
     if (!unit || !alive(unit)) {
       state.actionSchedule.delete(id);
@@ -592,7 +595,7 @@ function deathEffects(state: State, dead: CombatUnit): void {
   // (mana cost 15, no cooldown, no in-combat regen) hits a hard mana wall
   // at 5 lifetime summons; once their mana drains, dead skeletons are
   // never replaced.
-  if (inferKind(dead) === 'summon' && dead.summonOwnerId &&
+  if (inferKind(dead) === 'summon' && dead.summonOwnerId && dead.summonRefundOnDeath !== false &&
     !(dead.summonTemplateId && state.preparationTemplates.get(dead.summonOwnerId)?.has(dead.summonTemplateId))) {
     const owner = state.units.get(dead.summonOwnerId);
     if (owner && alive(owner)) {
@@ -735,6 +738,7 @@ function hasAvailableEffect(state: State, actorId: string, skill: RegisteredSkil
   }
   if (!skill.effects.every((effect) => effect.kind === 'summon')) return true;
   return skill.effects.some((effect) =>
+    (effect.monsterDef !== undefined || getSummon(effect.summonId) !== undefined) &&
     summonsOf(state, actorId, effect.summonId).length < resolveSummonMaxCount(effect, skillLevel)
   );
 }
@@ -862,19 +866,17 @@ function applyEffect(
       const existing = summonsOf(state, actorId, effect.summonId).length;
       const cap = resolveSummonMaxCount(effect, skillLevel);
       if (existing >= cap) return;
-      const template = buildSummon(owner, effect.summonId, {
-        skillLevel,
-        statScaling: effect.statScaling
-      });
-      if (!template) {
-        // Unknown template — log & no-op.
-        // eslint-disable-next-line no-console
-        console.warn(`[combat] unknown summonId: ${effect.summonId}`);
-        return;
+      for (let i = 0; i < Math.min(effect.count ?? 1, cap - existing); i++) {
+        const template = buildSummon(owner, effect.summonId, {
+          skillLevel, statScaling: effect.statScaling, monsterDef: effect.monsterDef, rng: state.rng
+        });
+        if (!template) return;
+        const empowered = empowerGolemSummon(state.golemMastery, owner,
+          empowerSkeletonSummon(state.skeletonMastery, owner, template));
+        if (empowered) registerSpawnedSummon(state, owner, effect.summonId, {
+          ...empowered, ...(effect.refundOnDeath !== undefined ? { summonRefundOnDeath: effect.refundOnDeath } : {})
+        });
       }
-      const empowered = empowerGolemSummon(state.golemMastery, owner,
-        empowerSkeletonSummon(state.skeletonMastery, owner, template));
-      if (empowered) registerSpawnedSummon(state, owner, effect.summonId, empowered);
       break;
     }
     case 'heal': {
@@ -987,8 +989,8 @@ function basicAttack(state: State, actorId: string): void {
   const baseAttack = Math.max(1, Math.floor(actor.stats.attack * (1 + attackPct)));
   const effect: DamageEffect = {
     kind: 'damage',
-    damageType: state.skeletalMageElements.get(actorId) ?? 'physical',
-    base: [baseAttack, baseAttack]
+    damageType: actor.basicAttack?.damageType ?? state.skeletalMageElements.get(actorId) ?? 'physical',
+    base: actor.basicAttack?.damage ?? [baseAttack, baseAttack]
   };
   applyDamageToUnit(state, actorId, target.id, effect);
 }

@@ -76,6 +76,7 @@
   "acting": "Acting",
   "summon": "Summon",
   "summons": {
+    "blood_raven_zombie": "Zombie",
     "skeleton": "Skeleton Warrior",
     "clay_golem": "Clay Golem",
     "blood_golem": "Blood Golem",

@@ -93,6 +93,11 @@ export interface SummonEffect {
   readonly kind: 'summon';
   readonly summonId: string;
   readonly maxCount: number;
+  /** Number created per ordinary cast, clipped to the missing living capacity. */
+  readonly count?: number;
+  /** Validated archetype for real monster summons instead of a generic template. */
+  readonly monsterDef?: import('../types/monsters').MonsterDef;
+  readonly refundOnDeath?: boolean;
   readonly maxCountScaling?: SummonMaxCountScaling;
   readonly statScaling?: SummonStatScaling;
 }

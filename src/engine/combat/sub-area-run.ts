@@ -658,7 +658,9 @@ export function encountersToSpawns(
         ? 'boss'
         : m.elite
           ? 'elite'
-          : waveTier === 'boss'
+          : m.boss === false
+            ? 'trash'
+            : waveTier === 'boss'
             ? 'boss'
             : waveTier === 'elite'
               ? 'elite'

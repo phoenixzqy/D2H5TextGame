@@ -236,6 +236,9 @@ export function buildMonsterUnit(opts: BuildMonsterOpts): CombatUnit {
       : {}),
     activeBuffIds: [],
     enraged: false,
+    ...(def.basicAttack ? { basicAttack: Object.freeze({ ...def.basicAttack,
+      damage: Object.freeze([...def.basicAttack.damage] as [number, number]) }) } : {}),
+    ...(def.enrage ? { enrage: Object.freeze({ ...def.enrage }) } : {}),
     summonedAdds: false,
     kind: 'monster'
   };
