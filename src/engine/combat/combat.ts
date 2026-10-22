@@ -49,6 +49,8 @@ import { buildSummon, getSummon } from '../skills/summons';
 import { isPreparationSummonSkill, SUMMON_PREPARATION_TEMPLATES } from '../skills/summon-preparation';
 import { copyCorpseExplosionProjections, corpseExplosionRank, isCorpseExplosionId, matchesCorpseExplosion,
   type CorpseExplosionProjection } from '../skills/corpse-explosion';
+import { copyPoisonExplosionProjections, poisonExplosionRank, isPoisonExplosionId, matchesPoisonExplosion,
+  type PoisonExplosionProjection } from '../skills/poison-explosion';
 import { empowerSkeletonSummon, type SkeletonMasteryProjection } from '../skills/skeleton-mastery';
 import { empowerGolemSummon, type GolemMasteryProjection } from '../skills/golem-mastery';
 import { SKELETAL_MAGE_DEFINITION, type SkeletalMageElement } from '../skills/skeletal-mage';
@@ -122,6 +124,8 @@ export interface CombatSnapshot {
   readonly maxRounds?: number;
   /** Player-composed CE eligibility, copied once; corpses themselves never enter a snapshot. */
   readonly corpseExplosion?: readonly CorpseExplosionProjection[];
+  /** Independent Player-composed PE eligibility; both consumers share one empty wave-local FIFO. */
+  readonly poisonExplosion?: readonly PoisonExplosionProjection[];
   /** Frozen explicit player Might selection for this wave, active from simulation entry. */
   readonly mightAura?: MightAuraProjection;
   /** Frozen explicit Meditation selection; eligibility is captured at each interval start. */
@@ -151,6 +155,7 @@ export interface CombatResult {
 interface State {
   /** Valid copied player authority and FIFO primary enemy-monster death IDs; wave-local only. */
   readonly corpseExplosion: Map<string, number>;
+  readonly poisonExplosion: Map<string, number>;
   readonly corpses: string[];
   readonly ironGolem?: IronGolemInput;
   ironGolemPreparation?: IronGolemPreparationAttestation;
@@ -523,7 +528,7 @@ function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void
   }
   // Publish only after the complete closure/effects, in the existing death-event order.
   // Keep every outcome unit and handled death intact for rewards and replay.
-  if (state.corpseExplosion.size > 0) {
+  if (state.corpseExplosion.size > 0 || state.poisonExplosion.size > 0) {
     for (const u of dead) {
       if (!primary.has(u.id) || u.side !== 'enemy' || inferKind(u) !== 'monster' ||
         u.summon === true || u.ownerId !== undefined || u.summonOwnerId !== undefined) continue;
@@ -702,13 +707,15 @@ function canUseSkillForState(
   skillOrderId: string,
   hasEnemyTarget: boolean
 ): boolean {
-  const consumesCorpse = isCorpseExplosionId(skillOrderId) || isCorpseExplosionId(skill.id);
-  const skillLevel = consumesCorpse ? corpseExplosionRank(unit, state.corpseExplosion) : effectiveSkillLevel(unit, skill);
-  if (consumesCorpse && (!matchesCorpseExplosion(skill) || skillLevel === 0 || state.corpses.length === 0 ||
-    !hasEnemyTarget || !Number.isFinite(unit.mana) ||
-    ['necromancer.corpse_explosion', 'skills-necromancer-corpse-explosion'].some(id => (unit.cooldowns[id] ?? 0) > 0))) {
-    return false;
-  }
+  const ce = isCorpseExplosionId(skillOrderId) || isCorpseExplosionId(skill.id);
+  const pe = isPoisonExplosionId(skillOrderId) || isPoisonExplosionId(skill.id);
+  const skillLevel = ce ? corpseExplosionRank(unit, state.corpseExplosion)
+    : pe ? poisonExplosionRank(unit, state.poisonExplosion) : effectiveSkillLevel(unit, skill);
+  if (ce && (!matchesCorpseExplosion(skill) ||
+    ['necromancer.corpse_explosion', 'skills-necromancer-corpse-explosion'].some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
+  if (pe && (!matchesPoisonExplosion(skill) ||
+    ['necromancer.poison_explosion', 'skills-necromancer-poison-explosion'].some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
+  if ((ce || pe) && (skillLevel === 0 || state.corpses.length === 0 || !hasEnemyTarget || !Number.isFinite(unit.mana))) return false;
   if (skill.trigger === 'passive') return false;
   if ((unit.cooldowns[skill.id] ?? unit.cooldowns[skillOrderId] ?? 0) > 0) return false;
   if (skill.id === 'sorceress.frozen_armor' && skillLevel === 0) return false;
@@ -743,6 +750,7 @@ function chooseSkillForState(
   for (const skillId of unit.skillOrder) {
     const skill = getSkill(skillId);
     if (!skill || ((isCorpseExplosionId(skillId) || isCorpseExplosionId(skill.id)) && !matchesCorpseExplosion(skill)) ||
+      ((isPoisonExplosionId(skillId) || isPoisonExplosionId(skill.id)) && !matchesPoisonExplosion(skill)) ||
       isPreparationSummonSkill(skill) || isIronGolemSkill(skill)) continue;
     if (!canUseSkillForState(state, unit, skill, skillId, hasEnemyTarget)) continue;
     return { skill, orderId: skillId };
@@ -874,10 +882,13 @@ function castSkill(
   const actor = state.units.get(actorId);
   if (!actor) return;
 
-  const consumesCorpse = isCorpseExplosionId(skillOrderId) || isCorpseExplosionId(skill.id);
+  const ce = isCorpseExplosionId(skillOrderId) || isCorpseExplosionId(skill.id);
+  const pe = isPoisonExplosionId(skillOrderId) || isPoisonExplosionId(skill.id);
+  const consumesCorpse = ce || pe;
   if (consumesCorpse && !canUseSkillForState(state, actor, skill, skillOrderId,
     aliveOf(state, actor.side === 'player' ? 'enemy' : 'player').length > 0)) return;
-  const skillLevel = consumesCorpse ? corpseExplosionRank(actor, state.corpseExplosion)
+  const skillLevel = ce ? corpseExplosionRank(actor, state.corpseExplosion)
+    : pe ? poisonExplosionRank(actor, state.poisonExplosion)
     : prepared?.skillLevel ?? effectiveSkillLevel(actor, skill);
   // Synchronous commit: reserve exactly one oldest body before ordinary payment/effects.
   if (consumesCorpse) state.corpses.shift();
@@ -898,7 +909,7 @@ function castSkill(
 
   emit(state, { kind: 'action', actor: actorId, skillId: skill.id });
   if (manaEvent) emit(state, manaEvent);
-  if (consumesCorpse) emit(state, { kind: 'message', messageKey: 'combat:corpses.consumed',
+  if (consumesCorpse) emit(state, { kind: 'message', messageKey: pe ? 'combat:corpses.consumedPoison' : 'combat:corpses.consumed',
     params: { count: state.corpses.length } });
   if (prepared) {
     return prepared.units.map(candidate => registerSpawnedSummon(state, actor, prepared.summonId, candidate));
@@ -1209,7 +1220,8 @@ function castSummonsOnStart(state: State, unitId: string): void {
   const prepared = new Set<string>();
   for (const skillId of unit.skillOrder) {
     const skill = getSkill(skillId);
-    if (!skill || isCorpseExplosionId(skillId) || isCorpseExplosionId(skill.id)) continue;
+    if (!skill || isCorpseExplosionId(skillId) || isCorpseExplosionId(skill.id) ||
+      isPoisonExplosionId(skillId) || isPoisonExplosionId(skill.id)) continue;
     unit = state.units.get(unitId);
     if (!unit || !alive(unit)) return;
     if (isIronGolemSkill(skill)) {
@@ -1395,6 +1407,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   const iron = snapshot.ironGolem;
   const state: State = {
     corpseExplosion: new Map(copyCorpseExplosionProjections(snapshot.corpseExplosion).map(p => [p.sourceHeroId, p.rank])),
+    poisonExplosion: new Map(copyPoisonExplosionProjections(snapshot.poisonExplosion).map(p => [p.sourceHeroId, p.rank])),
     corpses: [],
     ...(golemMastery ? { golemMastery: Object.freeze({ sourceHeroId: golemMastery.sourceHeroId,
       rank: golemMastery.rank, maxRank: golemMastery.maxRank, golemLifePct: golemMastery.golemLifePct,
@@ -1439,6 +1452,10 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   for (const id of state.corpseExplosion.keys()) {
     const hero = state.units.get(id);
     if (!hero || corpseExplosionRank(hero, state.corpseExplosion) === 0) state.corpseExplosion.delete(id);
+  }
+  for (const id of state.poisonExplosion.keys()) {
+    const hero = state.units.get(id);
+    if (!hero || poisonExplosionRank(hero, state.poisonExplosion) === 0) state.poisonExplosion.delete(id);
   }
 
   for (const u of state.units.values()) {

@@ -8805,3 +8805,67 @@ or remaining disposable paths/processes. Cleanup receipt SHA256
 `b7649023e68b3bc36705f7fd44add7c6a6525a3a44c10b1f0e5ccb5019db22cd`. Raw/source/coverage/review evidence remains root-owned at ROOT
 until umbrella consumers finish. Final exact-path/data/append-only and settled
 cached whitespace checks precede the local commit.
+
+
+## D06 v1cf — Poison Explosion combat qualification and shared consumption
+
+Root owns exactly four paths: combat.ts, new combat/poison-explosion.test.ts,
+structured BUG-077 and this ledger. Security PASS: local pure-TS authority/FIFO;
+no network/dependency/credential/permission/CI/save-format change. Existing claim
+and branch retained. Meaningful RED4/4 preceded the bug and runtime patch:
+missing authority and empty supply still cast; PE-only collected no feedback;
+PE and CE both used one body. BUG-077 retains raw reproduction and scope.
+
+Extend the accepted CE boundary minimally: independent copied/pruned PE authority,
+requested/resolved identity checks at selection/recheck/startup, exact registered
+semantics/projected rank, finite affordable mana, living target/supply and alias
+cooldown. Either consumer enables the same FIFO; commitment shifts one oldest
+token before ordinary15MP/2s effects and emits consumedPoison. No status scheduler,
+damage, death/reward identity or persistent-corpse refactor. CE tests untouched.
+
+Before patching, freeze24 declared production cases: seed1, ranks1/5/6/9/12/13/
+17/20, fresh/marker3/damaging3; actual Player projection and production registry,
+real Bleed primary death1000, action1700, full Poison horizon6700. Integer combo/
+potency/HP-ms arithmetic checks all events/finalHP. A/A/B/A and plain/recorded
+outputs agree with frozen inputs and no resets. Freeze SHA256
+`f46ecc7cda017d50d3f3591b4b365986a604117e0bcec369bc1f91fe3f52e493`.
+A separate postpatch replay of the original frozen inputs passes all24 with full
+recording/result equality after removing only intended corpse messages; new
+messages exactly availability1@1000 and consumedPoison0@1700. No baseline overwrite.
+Rank1 fresh60direct/15DoT/final925; marker3 gives87direct/80DoT/final833;
+positive1HP/s retained gives87direct/25DoT/final888.
+
+Focused170/170 (PE108+CE62),2.88s (wrapper3.829s); engine3867/93,19.27s
+(wrapper20.592s); full8110/256,138.06s (wrapper139.705s); types22.585s,
+preservation2.284s, lint/purity52.833s and production build/bridge9.909s pass.
+Combat coverage97.97% lines/statements,92.4% branches,100% functions using engine
+suite3867/93,21.03s (wrapper23.720s). Initial focused3fail/167pass retained:
+exclude only configured skillOrder from final runtime-state comparison; seed2
+avoids the seed1 MP orb in nonfinite-MP cases and asserts zero orb;19MP fixture
+needs19MP cap. Runtime unchanged for these proven fixture corrections.
+Independent GD/TD/code APPROVE and QA ADEQUATE cover source, negatives and all24
+integer oracles. Final publication review follows. Engine3s/full15s budgets and
+existing Browserslist/>500kB chunk/2.57MB manifest-precache warnings remain open;
+four production JS chunks contain no bridge.
+
+Raw oracle/RED/green/check/source/coverage evidence:
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-poison-runtime-_e0h72gf`.
+Root retains required evidence until umbrella consumers finish, then removes it.
+Exact manifest/hash/symlink-checked disposal of ROOT/dist,tmp,vite-cache follows
+final reader release; shared caches remain intact. Exact-four-path and append-only
+ledger checks plus settled cached whitespace validation precede local commit.
+No push/PR/merge/deployment.
+
+Next producer-approved five-path native card: combatHelpers.ts, new PE native
+test, BUG-077 closure with actual combat SHA, BUG-078 after missing-projection
+RED and before patch, and ledger. Generic staging already clones/freezes the
+complete snapshot; add Player-ID-bound PE composition at that seam. Native
+replay/rewards/save, localized feedback/Skills, production browser/mobile/a11y,
+earnedL18, balance/feel and complete D06/P09/P10/private-v1 remain open.
+
+Final publication QA ADEQUATE and producer APPROVE bind the final source, checks
+and bounded documentation. All consumers released before exact dist/tmp/vite-cache
+cleanup:857files/42777942bytes/14directories, no remaining disposable paths or
+failures. Cleanup receipt SHA256 `23f48138c7df6df71f3783ccd027f85f15e0b57117bf918cdd863f851454eb7f`. Raw/source/oracle/coverage/review evidence remains
+root-owned at ROOT until umbrella consumers finish. Final exact-path/append-only
+and settled cached whitespace checks precede local commit.
