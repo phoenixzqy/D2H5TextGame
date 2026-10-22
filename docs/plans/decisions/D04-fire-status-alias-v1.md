@@ -71,3 +71,16 @@ command exits, timing misses and warnings. This engine slice has no new browser
 acceptance claim; ordinary learn/upgrade/effects/boss UI remains C1 work.
 Track/remove exact owned dist/.vite/coverage/scratch outputs after reviewers;
 preserve small durable decisive evidence, source/history and shared tool caches.
+
+## Forward qualification — rate-less active records
+
+The [accepted D06 Poison Explosion contract](D06-poison-explosion-v1.md) specifies a shared
+active-refresh promotion rule. A Burn/Ignite marker lacking finite positive
+potency may adopt a valid incoming rate/source and supplied optional type.
+Preserve its stored alias, first-match behavior, capped aggregate stack increase,
+original start, normal expiry and fractional carry. Valid-rate retention remains
+unchanged. The old rate-less-refresh expectations are intentionally superseded
+only at that boundary upon implementation; independent GD/TD/QA contract approval
+is recorded in execution-ledger v1cc. No implicit rate
+is added to a marker without a valid incoming payload. Historical acceptance
+above remains a record of its original behavior, not proof of the new rule.

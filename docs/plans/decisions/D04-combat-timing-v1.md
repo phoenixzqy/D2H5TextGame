@@ -254,3 +254,16 @@ inert periodic boundaries, spawned units, replay determinism and immutable input
 Run focused/E/U/T/L/B, changed-module coverage and independent root/producer
 review. Stop and report legitimate out-of-scope old-order fixture failures before
 changing them. No broader D04/P06 or campaign-balance acceptance is claimed.
+
+## Forward qualification — damaging active-status refresh
+
+The [accepted D06 Poison Explosion contract](D06-poison-explosion-v1.md) specifies one
+explicit qualification to active source/potency retention: an active first-match
+record lacking finite positive DoT potency adopts a valid incoming rate/source
+and supplied optional type, retaining aggregate stacks/start/normal expiry and
+fractional carry. A valid previous rate retains its original payload. Promotion
+is prospective, with no retroactive/free damage, extra RNG or accumulator reset.
+Future/expired replacement and all temporal/control rules remain unchanged.
+Independent GD/TD/QA contract approval is recorded in execution-ledger v1cc;
+behavioral implementation remains pending.
+this forward reference alone is not runtime acceptance.

@@ -8631,3 +8631,52 @@ preview port4399 closed. Cleanup receipt SHA256
 Retained raw/source/oracle/review evidence stays at the exact earned ROOT above;
 root removes it after umbrella consumers finish. Settled cached whitespace
 check precedes the local commit; no push/PR/merge/deployment.
+
+## D06 v1cc — Poison Explosion and shared DoT refresh contract
+
+Earned CE card committed `c1b51a1` after exact four-path staged hashes and settled
+cached whitespace PASS. Independent GD/TD/code APPROVE, QA ADEQUATE and producer
+ready support its bounded earned route/cast. Verified863-file/42952880-byte
+dist/tmp cleanup receipt is recorded in v1cb; retained earned evidence remains
+root-owned until umbrella consumers finish. General balance/pacing/feel remain open.
+
+Producer plan-review ready for this doc-only five-path card: new PE mechanic
+contract, explicit forward qualifications appended to D04 timing/fire-alias
+controls, PE QA-plan and this ledger. Root remains sole writer in the same claim.
+No product/test/data/save/dependency changes or runtime validation in this card.
+Security PASS: local documentation only, no new network/credentials/permissions.
+
+The [proposed contract](decisions/D06-poison-explosion-v1.md) preserves authored
+L18/Dagger/15MP/2s/rank1–20 poison hit and adds explicit0.05 DoT plus shared CE/PE
+FIFO/strict Player authority/atomic body+mana+CD. Shared active-status refresh
+adopts a valid incoming rate/source only when previous potency is not finite
+positive, preserving existing stacks/start/expiry/carry and valid-rate retention.
+This fixes marker→damaging application at its owner primitive rather than a PE
+conditional; affected aliases/statuses/spread and previous D04 promises are
+explicit. Wider Poison/Plague distinction and Dagger's own absent potency remain
+open. [QA plan](../../production/stories/poison-explosion/qa-plan.md) separates
+literal unit/periodic/corpse/native/browser/earned/feel acceptance.
+
+Contract GD/TD/QA and publication review precede commit; runtime RED/bug filing,
+independent validation and bounded delivery follow separately. Evidence:
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-poison-contract-vsytwklg`.
+Root owns eventual retained-evidence removal. No disposable artifact/process
+requires cleanup. Design register/catalog reconciliation follows in a later
+bounded docs card. No runtime/balance/earned-L18/full-skill/full-v1 claim.
+
+Independent GD-DESIGN/TD-ARCH/DESIGN-REVIEW APPROVE, QA-PLAN APPROVE/ADEQUATE and
+producer ready accept this bounded contract. QA corrected positive-case wording
+to zero dodge stats rather than guaranteed hits (ordinary85% remains), and
+post-combo actual hit potency (three stacks:60→87→4HP/s×four=16HP/s). Live
+two-stack prerequisite oracle retains0.85 fractional HP, deals20direct/15DoT
+and ends965HP; spread oracle yields27recipientDoT. These are analytic planned
+oracles, not executed results. Contract acceptance remains separate from runtime.
+
+Exact five-path, append-only historical controls/ledger, new-link and literal
+rank/rounding/HP-ms arithmetic checks passed. Final validation binds accepted
+document bytes; no runtime rerun was needed for this doc-only card. All readers
+released, no artifacts/processes were created by reviewers, and no disposable
+output requires cleanup. Settled cached whitespace check precedes local commit.
+Next: five-path shared-refresh prerequisite with meaningful RED/BUG-076 before
+patch, exact temporal/alias/payload negatives, engine/full/types/lint/build and
+independent QA/GD/TD/code review. PE itself is still partial/unimplemented.
