@@ -10211,3 +10211,24 @@ remaining[]/failures[]; earlier FIXtmpcleanup separately recorded. Required raw
 trace/report/screenshots/source/receipts remain at exact nativeROOT above for W3
 diagnosis, root-owned until consumers finish. Local commit only; checkpoint/full
 v1 acceptance remains open.
+
+
+## P01 — Den W3 production-service diagnosis
+
+[Evidence](evidence/p01-den-wave-three-diagnosis.md) preserves the failed caller-
+omission card and corrected exit0/4.283s single invocation. Native W1–W3terminal
+matches,36resourceaccounts and4carrycomparisons pass; full1969events retained.
+W3draw is the60000ms deadline with254scheduled actions, not mana starvation or
+1000action cap. Rare leader takes171/855damage; actual two-entry skill order is
+Frost/Fire, with learned Ice unslotted. No resolver defect/BUG/tuning or campaign
+acceptance claimed. QA ADEQUATE and GD APPROVE raw evidence; exact publication
+review follows. Both processgroups absent; exact ownedtmp/cache cleanup2files/
+46bytes,remaining[]/failures[]. Required raw evidence remains root-owned at the
+two exact paths in the report through design/fix/umbrella consumers. Next is
+reviewed Den entry power and authored encounter correction, followed by complete
+Den/first-act route proof. Root sole writer, original checkout untouched.
+
+Final producer PUBLICATION APPROVE and independent QA ADEQUATE verify exact
+five-path publication, lossless1969event/36account recovery, all source/raw
+bindings, both attempts and exact cleanup. All readers released. Local
+docs/fixture commit only; no validation rerun required for retained evidence.
