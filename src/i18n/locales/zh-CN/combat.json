@@ -33,7 +33,8 @@
   "logHoverPausedHint": "日志已暂停滚动",
   "corpses": {
     "available": "敌人倒下，留下一具尸体。可用尸体：{{count}}。",
-    "consumed": "尸体爆炸消耗一具尸体。剩余尸体：{{count}}。"
+    "consumed": "尸体爆炸消耗一具尸体。剩余尸体：{{count}}。",
+    "consumedPoison": "尸体剧毒爆破消耗一具尸体。剩余尸体：{{count}}。"
   },
   "allies": "我方",
   "enemies": "敌人",

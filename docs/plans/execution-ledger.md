@@ -8930,3 +8930,42 @@ and bounded documents. All readers released before exact cleanup:857files/
 `2eeccd6487adce8f98e33d2f9d7da9f3fe78bccf346ed6f80ed9508551e24737`. Raw/source/check/review evidence remains root-owned
 at ROOT until umbrella consumers finish. Exact-path/append-only and settled
 cached whitespace checks precede local commit.
+
+
+## D06 v1ch — Bilingual Poison Explosion consumption feedback
+
+Root owns exactly five paths: en/zh-CN combat.json, eventToLogI18n.test.ts,
+BUG-078 closure with actual native commit4daa9c6 and this ledger. Full actual
+native SHA is in BUG-078; short label here is not a different revision. Security
+PASS: local translated text/renderer tests, no network/dependency/permission/
+credential/CI/save change. Existing isolated claim/branch retained.
+
+Seven literal real-renderer REDs showed raw corpses.consumedPoison before the
+locale patch. Add only consumedPoison in both locales; preserve CE availability/
+consumption exactly. Chinese uses existing skill name尸体剧毒爆破. Tests render
+counts0/1/3 in each language and the same event en→zh-CN→en, checking complete
+log payloads and literal text. No renderer source change was necessary.
+
+Focused86/3 pass4.75s (wrapper5.763s), types22.637s, lint/purity52.024s,
+full8135/257 pass139.09s (wrapper140.746s), production build/bridge10.318s
+pass. Four JS chunks contain no bridge. QA source/TDD ADEQUATE; final publication
+review follows. Existing full15s budget, Browserslist/>500kB chunk/2.57MB manifest
+precache warnings remain open. No browser/earned/balance/feel acceptance inferred.
+
+ROOT: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-poison-feedback-i9qbc2n7`.
+Root retains source/RED/green/check/review evidence until umbrella consumers finish,
+then removes it. Exact manifest/hash/symlink-checked ROOT/dist,tmp,vite-cache
+cleanup follows all reader release; receipt and exact-five-path/append-only/
+settled cached whitespace checks precede local commit. No push/PR/merge/deploy.
+
+Next approved cards: shared known-status localization at its generic renderer
+boundary, then Skills PE current/next-rank lifecycle copy. D04 status-state event,
+playback timing and compact badges require a reviewed contract and separate
+bounded runtime cards before production browser expiry proof. EarnedL18,
+balance/manualfeel and full D06/P09/P10/private-v1 remain open.
+
+Final QA ADEQUATE and producer APPROVE; all readers released before cleanup.
+Removed exactly857files/42778878bytes/14directories; no remnants/failures.
+Cleanup receipt SHA256 `7737f61eec107c09fad825cfb51eba4187502bc44cd12159be342b063645dab8`.
+Required evidence stays root-owned at ROOT until umbrella consumers finish.
+Final path/append-only and settled cached whitespace checks precede local commit.

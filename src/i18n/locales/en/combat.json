@@ -33,7 +33,8 @@
   "logHoverPausedHint": "Log auto-scroll paused",
   "corpses": {
     "available": "A fallen enemy leaves a corpse. Available: {{count}}.",
-    "consumed": "Corpse Explosion consumes a corpse. Remaining: {{count}}."
+    "consumed": "Corpse Explosion consumes a corpse. Remaining: {{count}}.",
+    "consumedPoison": "Poison Explosion consumes a corpse. Remaining: {{count}}."
   },
   "allies": "Allies",
   "enemies": "Enemies",

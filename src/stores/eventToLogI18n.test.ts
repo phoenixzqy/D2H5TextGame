@@ -59,6 +59,45 @@ it('changes corpse feedback language for newly rendered events without retaining
   }
 });
 
+describe.each(['en', 'zh-CN'])('finite Poison Explosion feedback in %s', locale => {
+  it.each([0, 1, 3])('renders remaining count%s through the actual log renderer', async count => {
+    const previous = i18n.language;
+    try {
+      await i18n.changeLanguage(locale);
+      const english = locale === 'en';
+      expect(eventToLocalizedLogEntry({
+        kind: 'message', messageKey: 'combat:corpses.consumedPoison', params: { count }
+      })).toEqual({
+        type: 'system', actorId: 'system', actorName: english ? 'System' : '系统',
+        message: english
+          ? `Poison Explosion consumes a corpse. Remaining: ${String(count)}.`
+          : `尸体剧毒爆破消耗一具尸体。剩余尸体：${String(count)}。`
+      });
+    } finally {
+      await i18n.changeLanguage(previous);
+    }
+  });
+});
+
+it('renders the same Poison Explosion event in en then zh-CN then en', async () => {
+  const previous = i18n.language;
+  try {
+    const event: BattleEvent = { kind: 'message', messageKey: 'combat:corpses.consumedPoison', params: { count: 0 } };
+    const messages: (string | undefined)[] = [];
+    for (const locale of ['en', 'zh-CN', 'en']) {
+      await i18n.changeLanguage(locale);
+      messages.push(eventToLocalizedLogEntry(event)?.message);
+    }
+    expect(messages).toEqual([
+      'Poison Explosion consumes a corpse. Remaining: 0.',
+      '尸体剧毒爆破消耗一具尸体。剩余尸体：0。',
+      'Poison Explosion consumes a corpse. Remaining: 0.'
+    ]);
+  } finally {
+    await i18n.changeLanguage(previous);
+  }
+});
+
 describe.each(['en', 'zh-CN'])('Rogue Inner Sight status feedback %s', locale => {
   it('localizes the exact mercenary status and effect label with literal copy oracles', async () => {
     const previous = i18n.language;

@@ -1,6 +1,6 @@
 # BUG-078 — Project actual Poison Explosion allocation into native waves
 
-Status: fix validated; local commit pending. Actual SHA recorded in the following feedback increment.
+Status: Fixed in `4daa9c6e817651b4e043664c8b1f5dc48d07ccda`.
 Severity: High — native PE cannot cast after a kill; no ordinary control restores
 missing authority. Other skills work, but removing PE is not a feature workaround.
 
