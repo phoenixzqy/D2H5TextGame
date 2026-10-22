@@ -8194,3 +8194,40 @@ dist/tmp, no reviewer processes/artifacts. Approval-only ledger append;
 four other paths unchanged. Producer publication audit, staged whitespace,
 local commit and exact cleanup follow. Root retains evidence for the umbrella
 plan. Corpse consumption is next; earned/full-v1 acceptance remains open.
+
+
+## D06 v1bu — finite Corpse Explosion contract
+
+E committed 1760c4d; exact cleanup
+2149ed91619958fd485c451d27c8a016691d8e3c0ee0bab98bfa36a81a015321
+removed 1,310 files / 126,152,493 bytes / 21 directories, no failures or remaining
+targets; both checkouts clean. Prior Golem evidence remains root-owned at
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les`.
+
+Producer plan review and GD/TD/QA read-only preflight resolved the next gameplay
+scope: finite wave-local CE pool, primary enemy-monster deaths/all tiers/any
+killer/Shatter, team ownership/FIFO, preserve dead units and rewards, atomic
+one-body cast/fallback and distinct replay modes. Narrow Player-derived strict
+rank authority avoids generic rank-one/class inference. Poison Explosion DoT
+stays separate. Root owns exactly four docs: new decision, design-decisions,
+skills-spec, ledger. No runtime edit or acceptance yet. Design-review rubric
+applied; canonical GDD supplies intent because pillar files are absent.
+Security PASS for local documentation of deterministic gameplay; no external
+requests, credential/data/permission/CI change. Root sole writer/executor in
+existing claimed worktree. Diagnostic ownership:
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-corpse-ct585nik`.
+Full contract owner/QA review and local document verification follow; no tests,
+builds or new disposable runtime outputs are required for this docs-only slice.
+
+Independent GD-DESIGN-REVIEW and TD-ARCH-REVIEW APPROVE; QA-D06-CORPSE-CONTRACT
+APPROVE. The strict Player projection resolves prior eligibility concerns;
+accepted mechanic status only, no runtime/native/earned/balance acceptance.
+Local verification passed: exact four-path scope, eight required sections,
+four local decision links, current authored unlock/prerequisite/cap/cost/CD/
+base/rank/ignite oracles and whitespace; original checkout clean. Status-only
+updates mark the decision/index/catalog accepted as a mechanic contract;
+current-source document verification and producer audit follow. No runtime
+checks rerun or disposable build/cache outputs created. Root retains command
+source/raw evidence in the named corpse diagnostic root; empty task tmp is
+removed after readers release. Next: five-path CE engine delivery with genuine
+behavioral RED, then native lifecycle/rewards and bilingual player presentation.
