@@ -8092,3 +8092,50 @@ dist/tmp, no reviewer processes/artifacts. Approval-only ledger append; four
 source paths unchanged. Producer audit, staged whitespace success, local commit
 and exact cleanup follow. D/E browser/UI, earned progression and broader plan
 remain open; current budgets and production warnings retained.
+
+
+## D06 v1bs — Skills Golem Mastery composition and bilingual prose
+
+C committed2f3f5bc; cleanup6d28ae18ac5c18535b83c3e0cc51b7acfaf401c416182c0b933398d969991308
+removed1298 files/43858235 bytes/14 directories; no failures/remaining targets,
+both checkouts clean. Retained evidence owned by root for umbrella plan.
+Approved five-path D scope: SkillsScreen/new focused test, two skills locales,
+ledger. Frontend UI/browser skills applied; use shared engine definition and
+current actual eligible Player, fifth display argument and exact allocated rank
+normalization without legacy fallback. Preserve Skeleton context and empty Iron
+item slot. Precise fresh-creation-only bilingual life/flat-AS prose; no timing
+guarantee or Attack/Defense changes. Security PASS local deterministic UI only,
+no dependency/network/save/schema/remote changes. Imported fixture eligibility
+will be explicit; native browser UI acceptance is not earned progression.
+Root sole writer/executor, existing claim retained; behavioral RED follows.
+
+D behavioral RED30 failures/12 controls, GREEN42. First lint retained three
+non-null-assertion warnings in new tests; replaced with typed label tuple/row
+iteration and corrected parameterized test title, preserving all assertions.
+Final unchanged-source checks PASS: focused166/5 files10.84s, types17.969s,
+lint43.173s/purity89, full7698/250 files137.01s(wrapper138.610s), build10.242s.
+First task-external browser harness failed before tests due TS/CommonJS scope;
+retained source/log, switched harness to explicit ESM, no application edit.
+Production native browser PASS2/2 in40.2s; supplemental lower-row reachability
+PASS2/2 in52.2s. Both locales at360x640/412x915/640x360/375x667/393x851/
+768x1024/1280x800/1920x1080: exact passive prose/current+next, all four golem
+previews, no horizontal overflow, >=44px allocation target. Native Tab/Enter
+allocation changes current previews without resource/item changes; cap20 and
+missing-Clay controls verified. Actual Settings export/import only, no debug
+bridge; eligibility/points explicitly unearned. Root visually inspected retained
+mobile/desktop/bilingual screenshots and lower current/next rows; native scroll
+and hit-testing confirm rows reachable beyond fixed navigation. No application
+console warnings/errors. CLI color-env warning is separate retained harness output.
+Final independent evidence review follows. E selected-item wiring, earned
+progression and broader D06/P09/P10/private-v1 remain open; existing budgets/
+Browserslist/chunk/precache warnings remain unresolved.
+
+Final independent QA-D06-GOLEM-SKILLS APPROVE/test evidence ADEQUATE and
+TD/five-axis APPROVE. Verified reviewc58a21b19d292bb8f5b8889c85556c32ccb70c400cc7f69acea4de554df45bb2,
+support4d962d7bf2f3097688186d3dfa15f4ea7d2e5ef94a36f00a857b695f8eef2233,
+238 retained files/13 settled receipts/153 source captures; native browser and
+screenshots independently accepted. Exact disposal1306 files/43989686 bytes/
+20 directories verified; all readers released including dist/tmp; no reviewer
+artifacts/processes. Approval-only ledger append; four other paths unchanged.
+Producer publication audit, staged whitespace success, local commit and exact
+cleanup follow. E and broader gameplay/earned/campaign/full-v1 remain open.

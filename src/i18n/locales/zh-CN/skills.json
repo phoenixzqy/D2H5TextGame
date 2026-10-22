@@ -728,7 +728,7 @@
     },
     "golem-mastery": {
       "name": "石魔支配",
-      "desc": "增强石魔的力量和速度。"
+      "desc": "被动：每投入1点技能点，新召唤的黏土石魔、血魔像、钢铁石魔和火焰石魔最大生命+{{life}}%、攻击速度+{{speed}}点（最多{{cap}}点，合计生命+{{maxLife}}%、攻击速度+{{maxSpeed}}点）。角色{{level}}级解锁。"
     },
     "raise-skeletal-mage": {
       "name": "召唤骷髅法师",

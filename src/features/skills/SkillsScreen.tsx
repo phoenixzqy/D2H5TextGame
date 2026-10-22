@@ -39,6 +39,7 @@ import { AMPLIFY_DAMAGE_DEFINITION } from '@/engine/combat/amplify-damage-defini
 import { METEOR_ARMOR_MELT_DEFINITION } from '@/engine/skills/armor-melt';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
 import { SKELETON_MASTERY_DEFINITION, composeSkeletonMastery, resolveSkeletonMasteryRank } from '@/engine/skills/skeleton-mastery';
+import { GOLEM_MASTERY_DEFINITION, composeGolemMastery, resolveGolemMasteryRank } from '@/engine/skills/golem-mastery';
 import { LIGHTNING_MASTERY_DEFINITION, resolveLightningMasteryRank } from '@/engine/skills/lightning-mastery';
 import { MIGHT_DEFINITION, resolveEligibleMightRank, resolveMightRank } from '@/engine/skills/might';
 import { MEDITATION_DEFINITION, resolveEligibleMeditationRank, resolveMeditationRank } from '@/engine/skills/meditation';
@@ -145,6 +146,11 @@ export function SkillsScreen() {
       if (skeletonMasteryRank > 0) map.set(alias, skeletonMasteryRank);
       else map.delete(alias);
     }
+    const golemMasteryRank = resolveGolemMasteryRank(levels);
+    for (const alias of ['necromancer.golem_mastery', 'skills-necromancer-golem-mastery']) {
+      if (golemMasteryRank > 0) map.set(alias, golemMasteryRank);
+      else map.delete(alias);
+    }
     return map;
   }, [player?.skillLevels, player?.skills]);
 
@@ -164,7 +170,8 @@ export function SkillsScreen() {
   const selectedSkill = skillById.get(selectedSkillId);
   const activeModel = activeSkill
     ? computeSkillDisplayModel(activeSkill, allocatedSkills.get(activeSkill.id) ?? 0,
-      player ? composeSkeletonMastery(player) : undefined)
+      player ? composeSkeletonMastery(player) : undefined, undefined,
+      player ? composeGolemMastery(player) : undefined)
     : null;
   const activeLocked = activeSkill ? isSkillLocked(activeSkill, playerLevel, allocatedSkills) : false;
   const activeCanAllocate = Boolean(
@@ -1125,6 +1132,11 @@ function dynamicDescription(
       attack: Math.round(attack * 100), defense: Math.round(defense * 100),
       maxLife: Math.round(life * maxRank * 100), maxAttack: Math.round(attack * maxRank * 100),
       maxDefense: Math.round(defense * maxRank * 100), cap: maxRank, level: requiredLevel });
+  }
+  if (skill.id === 'skills-necromancer-golem-mastery') {
+    const { golemLifePctPerRank: life, golemAttackSpeedPerRank: speed, maxRank, requiredLevel } = GOLEM_MASTERY_DEFINITION;
+    return t('necromancer.golem-mastery.desc', { life: Math.round(life * 100), speed,
+      maxLife: Math.round(life * maxRank * 100), maxSpeed: speed * maxRank, cap: maxRank, level: requiredLevel });
   }
   const firstDamage = stats?.damage[0];
   if (skill.id === 'skills-sorceress-meteor' && firstDamage) {

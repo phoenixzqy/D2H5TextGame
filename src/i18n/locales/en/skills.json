@@ -728,7 +728,7 @@
     },
     "golem-mastery": {
       "name": "Golem Mastery",
-      "desc": "Increases the power and speed of golems."
+      "desc": "Passive: Newly created Clay, Blood, Iron and Fire Golems gain +{{life}}% maximum life and +{{speed}} flat Attack Speed per allocated skill rank (up to +{{maxLife}}% life and +{{maxSpeed}} Attack Speed at rank {{cap}}). Unlocks at character level {{level}}."
     },
     "raise-skeletal-mage": {
       "name": "Raise Skeletal Mage",
