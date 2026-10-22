@@ -6228,3 +6228,51 @@ Independent QA/test-evidence and TD/five-axis reviews APPROVE this frozen slice;
 all readers released. Producer publication, local commit and exact cleanup follow. Native bilingual UI, production-byte browser/
 save/reload/earned acceptance and fullD06/P09/P10/private-v1 remain open.
 No remote action.
+
+## D06 v1at bilingual selected-item explanation
+
+Receipt observation committed as `eff24d4` after QA/TD/five-axis/producer APPROVE.
+Exact cleanup removed1300files/43,839,767bytes/14directories, zero failures or
+remaining targets; all8 recorded command identities absent. Umbrella claim
+continues. TD-D06-UI-PLAN APPROVE scopes this static copy increment separately
+from native controls. Root plan-review ready: two skills locale files and ledger.
+
+47 matching ironGolem keys in zh-CN/en explain explicit item choice, permanent
+sacrifice, one-wave lifetime, only Life/Attack/Defense inheritance without set
+combinations, no reservation/payment on arm, one accepted new-wave attempt with
+no same-wave retry, no refund, live invalidation and save clearing. Draft preview,
+armed future instruction and receipt-backed recorded outcome have separate copy.
+Prepared/conflict stays unverified; pending publication and replay retain their
+status without asserting another debit. Labels cover current/next item totals,
+base-only legacy stats, qualification, all ownership/item refusals, guard errors,
+stale Clear and post-write subscriber failures. Existing Iron skill descriptions
+now name selected backpack sacrifice and35MP instead of a generic transmutation.
+No UI, behavior, save shape, data, transaction or engine changes.
+
+Static source copy needs no behavior-test scaffold. Exact47-key and placeholder
+parity passed. npm run lint:i18n exited1:270 existing data literals,2 missing
+Inventory source references and8 DevUI literals; zero parse/data-key/parity gaps.
+A read-only diagnostic substitutes only the two HEAD locale files via Node fs
+reads, without changing repository files or the audit: its full JSON findings and
+current findings are byte-identical SHA b44b5a56fea4ee418d28d64792277b58aa54ef2c45aebdb0bcd96eed1035b7ea.
+Explicit comparison passes; no new audit finding is suppressed. Both diagnostic
+helper and unchanged audit source remain inspectable with HEAD binding.
+
+Types15.265s passed. Root mistakenly began the first full run before lint had
+finished; stopped only that captured npm process and its verified task-owned
+child tree (3674823/3674834/3674835/3674861), all subsequently absent. Interrupted
+receipt exits-15 after16.583s and is not validation. Initial lint50.144s passed;
+final serial lint41.282s/85purity, full7215/231files118.217s (Vitest116.69s),
+build9.634s/609modules/index-DtgnP2yL.js1288.66kB passed. These final checks ran
+serially. Full exceeds15s budget; existing chunk/Browserslist/precache warnings
+remain and no thresholds changed. No browser/server or native acceptance.
+
+Root security check: pass; static localized explanation only, no external IO,
+dependencies, permissions or authority change. Three-path source/config/output
+captures, original audit/interrupted results, prior cleanup and exact owned
+dist/tmp inventory will be frozen in iron-copy-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA/test-evidence and TD/five-axis reviews APPROVE this frozen slice;
+all readers released. Producer publication, local commit and exact cleanup follow. Native bilingual controls, production-byte
+browser/save/reload/earned acceptance and fullD06/P09/P10/private-v1 remain open.
+No remote action.

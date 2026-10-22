@@ -740,7 +740,7 @@
     },
     "iron-golem": {
       "name": "Iron Golem",
-      "desc": "Transmutes a metal item into a powerful iron golem."
+      "desc": "Sacrifice one explicitly chosen metal backpack item and 35 MP at a new wave start to prepare one Iron Golem for that wave. It inherits only the item’s Life, Attack and Defense."
     },
     "fire-golem": {
       "name": "Fire Golem",
@@ -1348,5 +1348,56 @@
     "meditationNeedsRank": "Spend a skill point on Meditation first.",
     "meditationRankBonuses": "These rank bonuses require selecting Meditation.",
     "meditationEarned": "A surviving mercenary keeps Meditation recovery earned before you fell."
+  },
+  "ironGolem": {
+    "title": "Iron Golem sacrifice",
+    "rules": "The golem expires at wave end. It inherits only the chosen item's Life, Attack and Defense, without set combination bonuses.",
+    "timing": "Arming does not reserve or consume the item. Moving, equipping or discarding it may invalidate the instruction. Loading a save clears the instruction.",
+    "choose": "Backpack item",
+    "empty": "Choose an item…",
+    "unknownItem": "Unknown item",
+    "option": "{{position}} · {{rarity}} · {{item}}",
+    "acknowledge": "I understand: if Iron Golem prepares successfully in the next new wave, this item will be permanently consumed.",
+    "arm": "Arm for next wave",
+    "clear": "Clear instruction",
+    "armed": "Next new wave: {{item}}",
+    "notArmed": "No item armed for the next new wave.",
+    "armedInvalid": "The armed instruction is no longer eligible: {{reason}}",
+    "preview": "Chosen-item preview",
+    "bonuses": "Item contribution: Life +{{life}}, Attack +{{attack}}, Defense +{{defense}}.",
+    "previewScope": "Current and next rank totals include this item once. Preview does not guarantee preparation or payment.",
+    "configurationUnavailable": "Learn Iron Golem and its prerequisite, meet its level requirement, and add it to Active Skill Priority before arming.",
+    "armDone": "Instruction armed. The item has not been consumed.",
+    "clearDone": "Instruction cleared.",
+    "recorded": "Current recorded wave",
+    "noAttempt": "No recorded attempt for this hero.",
+    "summoned": "{{item}} was sacrificed to prepare Iron Golem for this recording ({{mana}} MP).",
+    "notPrepared": "Iron Golem was not prepared in this recording. No sacrifice was charged for this attempt.",
+    "unverified": "The sacrifice outcome is unverified. Review the recovery controls in Combat.",
+    "pendingPaid": "{{item}} was sacrificed ({{mana}} MP); the recorded wave still needs publication. Review Combat recovery controls.",
+    "pendingNoDebit": "The recorded wave still needs publication. This attempt has no additional item debit. Review Combat recovery controls.",
+    "replay": "This is a replay; it consumes no additional sacrifice.",
+    "locked": "This wave keeps its original Iron Golem result. Skill, rank, equipment and item changes apply from the next new wave.",
+    "unlocked": "Iron Golem added now waits for the next new wave; replaying this wave cannot add a sacrifice.",
+    "refusal": {
+      "noSelection": "Choose an item explicitly.",
+      "heroMismatch": "The displayed hero has changed. Choose again for the current hero.",
+      "duplicateItem": "This item appears in more than one location and cannot be sacrificed.",
+      "notInBackpack": "This item is no longer in the backpack.",
+      "unidentified": "Identify this item first.",
+      "equipped": "Unequip this item first.",
+      "ineligibleBase": "Choose a metal weapon or armor item.",
+      "unsupportedRunes": "Items with installed runes and runewords cannot be sacrificed.",
+      "invalidDefinition": "This item's definition is inconsistent; choose another item.",
+      "invalidRolls": "This item's inherited stats are invalid; choose another item.",
+      "acknowledgementRequired": "Acknowledge the permanent sacrifice before arming.",
+      "staleSelection": "The instruction changed. Review it before clearing.",
+      "waveBusy": "A wave is changing. Try again when it finishes.",
+      "restorePending": "A save is loading. Try again when it finishes."
+    },
+    "emptyBackpack": "The backpack is empty. Find or move an eligible metal item into it.",
+    "basePreview": "Base stats without a sacrifice. Chosen-item totals appear in the sacrifice preview.",
+    "actionUnverified": "The action did not finish normally. Review the live instruction before trying again.",
+    "attemptTiming": "The instruction clears after one accepted new-wave attempt, even if preparation fails. No retry that wave; a consumed item is never refunded."
   }
 }

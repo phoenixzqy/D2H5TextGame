@@ -740,7 +740,7 @@
     },
     "iron-golem": {
       "name": "钢铁石魔",
-      "desc": "将金属物品变形为强力钢铁石魔。"
+      "desc": "在新波次开始时献祭一件明确选择的背包金属物品，并支付35点法力，为本波准备一只钢铁石魔。仅继承物品的生命、攻击与防御。"
     },
     "fire-golem": {
       "name": "火焰石魔",
@@ -1348,5 +1348,56 @@
     "meditationNeedsRank": "请先为冥想投入技能点。",
     "meditationRankBonuses": "以下技能等级加成需要选择冥想光环才会生效。",
     "meditationEarned": "角色倒下前已获得的冥想恢复仍会计入存活的佣兵。"
+  },
+  "ironGolem": {
+    "title": "钢铁石魔献祭",
+    "rules": "石魔在本波结束时消失，只继承所选物品自身的生命、攻击与防御，不继承套装组合加成。",
+    "timing": "设为待用不会预留或立即消耗物品。移动、装备或丢弃物品可能使指令失效；读取存档会清除指令。",
+    "choose": "背包物品",
+    "empty": "请选择物品…",
+    "unknownItem": "未知物品",
+    "option": "{{position}} · {{rarity}} · {{item}}",
+    "acknowledge": "我明白：若下一场新波次成功召唤钢铁石魔，所选物品将被永久消耗。",
+    "arm": "设为下一波祭品",
+    "clear": "清除待用指令",
+    "armed": "下一场新波次：{{item}}",
+    "notArmed": "尚未为下一场新波次设置祭品。",
+    "armedInvalid": "待用指令已不符合条件：{{reason}}",
+    "preview": "所选物品预览",
+    "bonuses": "物品贡献：生命 +{{life}}、攻击 +{{attack}}、防御 +{{defense}}。",
+    "previewScope": "当前与下一级总值均只计入该物品一次。预览不保证召唤成功，也不代表已支付。",
+    "configurationUnavailable": "请先学习钢铁石魔及其前置技能，达到等级要求，并将其加入主动技能优先级。",
+    "armDone": "已设置待用指令，物品尚未消耗。",
+    "clearDone": "已清除待用指令。",
+    "recorded": "当前已记录波次",
+    "noAttempt": "当前角色没有已记录的尝试。",
+    "summoned": "本次记录已献祭{{item}}，并支付{{mana}}点法力准备钢铁石魔。",
+    "notPrepared": "本次记录未准备钢铁石魔，此次尝试未消耗祭品。",
+    "unverified": "献祭结果尚未核实，请查看战斗界面的恢复操作。",
+    "pendingPaid": "已献祭{{item}}（{{mana}}点法力），但战斗记录仍待发布，请查看战斗恢复操作。",
+    "pendingNoDebit": "战斗记录仍待发布，此次尝试没有额外的物品扣除，请查看战斗恢复操作。",
+    "replay": "当前为重播，不会再次消耗祭品。",
+    "locked": "本波保留原始钢铁石魔结果。技能配置、技能等级、装备及祭品变更从下一场新波次生效。",
+    "unlocked": "现在加入钢铁石魔需等到下一场新波次；重播本波不会新增献祭。",
+    "refusal": {
+      "noSelection": "请明确选择一件物品。",
+      "heroMismatch": "当前角色已更换，请为当前角色重新选择。",
+      "duplicateItem": "该物品出现在多个位置，无法献祭。",
+      "notInBackpack": "该物品已不在背包中。",
+      "unidentified": "请先鉴定该物品。",
+      "equipped": "请先卸下该物品。",
+      "ineligibleBase": "请选择金属武器或护甲。",
+      "unsupportedRunes": "已镶嵌符文的物品与符文之语无法献祭。",
+      "invalidDefinition": "该物品的定义不一致，请选择其他物品。",
+      "invalidRolls": "该物品可继承的属性无效，请选择其他物品。",
+      "acknowledgementRequired": "请先确认接受永久献祭，再设置待用指令。",
+      "staleSelection": "待用指令已变更，请核对后再清除。",
+      "waveBusy": "波次正在切换，请稍后再试。",
+      "restorePending": "存档正在读取，请完成后再试。"
+    },
+    "emptyBackpack": "背包为空，请获取一件符合条件的金属物品或将其移入背包。",
+    "basePreview": "此处为不含祭品的基础属性，所选物品总值见献祭预览。",
+    "actionUnverified": "操作未正常完成，请核对当前待用指令后再试。",
+    "attemptTiming": "下一场新波次接受尝试后即清除指令，即使召唤失败也不保留。本波不会重试，已消耗的物品不予退还。"
   }
 }
