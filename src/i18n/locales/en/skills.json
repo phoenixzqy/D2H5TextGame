@@ -660,7 +660,7 @@
     },
     "corpse-explosion": {
       "name": "Corpse Explosion",
-      "desc": "Detonates a fresh corpse, dealing fire damage to all nearby enemies and burning them."
+      "desc": "Requires an enemy monster to die in this wave first. Consumes one shared corpse and {{mana}} MP to deal {{min}}–{{max}} {{type}} damage to all remaining enemies and apply {{ignite}} on hit. Cooldown: {{cooldown}}. With no corpse, the combo skips this skill. Corpses clear between waves; consumption leaves normal kill rewards unchanged."
     },
     "poison-nova": {
       "name": "Poison Nova",

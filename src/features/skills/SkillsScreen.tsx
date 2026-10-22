@@ -1139,6 +1139,15 @@ function dynamicDescription(
       maxLife: Math.round(life * maxRank * 100), maxSpeed: speed * maxRank, cap: maxRank, level: requiredLevel });
   }
   const firstDamage = stats?.damage[0];
+  if (skill.id === 'skills-necromancer-corpse-explosion' && stats && firstDamage) {
+    return t('necromancer.corpse-explosion.desc', {
+      min: firstDamage.min, max: firstDamage.max,
+      type: t(`damage-types:type.${firstDamage.type}`),
+      ignite: t('damage-types:status.ignite'),
+      mana: stats.manaCost,
+      cooldown: t('details.seconds', { seconds: stats.cooldown })
+    });
+  }
   if (skill.id === 'skills-sorceress-meteor' && firstDamage) {
     const { statusId, defenseReductionPct, durationMs } = METEOR_ARMOR_MELT_DEFINITION;
     return t('sorceress.meteor.desc', {

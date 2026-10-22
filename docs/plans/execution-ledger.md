@@ -8396,3 +8396,60 @@ final unchanged application/test bindings. Exact disposal1300files/43867233bytes
 artifacts or processes. Approval-only ledger append; two application/test paths
 unchanged. Staged publication audit, successful cached whitespace check, local
 commit and exact cleanup follow. Broader acceptance remains open.
+
+
+## D06 v1by — finite Corpse Explosion Skills description
+
+Native lifecycle prerequisite committed cdfec4e. Exact prior cleanup
+26106bc4961ffe249bf501d212afc11d9bdfa9fef1ced888b6493dcb7f63deb8
+removed1300files/43867233bytes/14directories; no remaining paths/failures.
+Prior source/raw/review evidence remains root-owned for umbrella consumers.
+
+Root owns five paths: SkillsScreen.tsx, dedicated SkillsScreen.corpse-explosion.test.tsx,
+both Skills locales, this ledger. The authored-specific description now precedes
+the generic damage formatter. Existing display stats supply rank damage, mana and
+cooldown; existing localized Fire/Ignite terms retain successful-hit meaning.
+Both locales explain the initial enemy-monster death, shared one-body payment,
+empty-pool combo skip, wave reset and unchanged normal rewards. Other Skills and
+monster CE locale values remain byte-semantically unchanged. No engine, allocation,
+combo/replay, persistence, data, dependency, network or permission change.
+Security PASS for bounded local presentation. Producer preflight ready.
+
+Seventeen real-store/UI cases cover literal ranks1/2/20 at50–80/56–86/164–194,
+current/next rows and cap, fixed20MP/CD2/Ignite, unlearned rank1 preview without
+player mutation, native learn/upgrade and point payment, real combo controls
+placing CE before Teeth, ordinary allocations0→1/1→2 preserving exact native
+input/recording/publication/event-array pointers and resources, and locale A/B/A.
+Imported level/ranks/points are explicitly unearned scaffolding. Original RED17
+also found two test-authoring missing-tab clicks; corrected controls before
+implementation gave genuine RED17/17 solely missing lifecycle prose. GREEN17/1file
+7.26s(wrapper8.475). No product bug or test oracle weakening is inferred from
+that test-only control correction.
+
+Final unchanged application/test sources PASS, settled serial commands:
+typecheck20.007s; lint46.409s/purity91files; full7874tests/254files133.05s
+(wrapper134.629); external production build10.082s; changed-key localization
+validation0.054s checks equal six placeholders, UTF-8, actual Ignite/点燃 and
+unchanged unrelated/monster values. No authored string length limit exists;
+production layout acceptance follows. Existing full15s/engine3s budgets and
+Browserslist/chunk/precache warnings remain open. No engine edit or separate
+engine rerun claimed. Independent GD/TD/five-axis APPROVE and QA SOURCE/TEST
+ADEQUATE/APPROVE. Evidence freeze/execution audit and staged publication follow.
+Evidence root:
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-corpse-skills-xtvox0pl`.
+Root retains source/raw/failure/review records until umbrella consumers finish;
+exact dist/tmp cleanup follows after readers release. Production bilingual
+mobile/desktop acceptance, earned/balance evidence, remaining D06/P09/P10 and
+private-v1 remain open. Next four-path browser card preflight ready with native
+DOM telemetry for separate cast→20MP debit→consumed→fire evidence and exact
+challenge-history, save/reload and fresh-wave controls; no hidden state mutation.
+
+
+Final QA EXECUTION/EVIDENCE ADEQUATE/APPROVE and producer ready.
+Review13de67f3672469540c2cecc01569d703dab094f7a70f3c376e9e07b79641d799
+verifies102 retained files/82 source captures/8 settled serial receipts and
+unchanged application/test/locale bindings. Exact disposal1300files/43868030bytes/
+14directories verified; all readers released including dist/tmp, no reviewer
+artifacts or processes. Approval-only ledger append; four application/test/locale
+paths unchanged. Staged audit, settled cached whitespace check, local commit and
+exact cleanup follow. Production browser and broader acceptance remain open.
