@@ -7,6 +7,7 @@ import { composeSkeletonMastery, type SkeletonMasteryProjection } from './skelet
 import { computeSkillDisplayModel, computeSkillRankDisplayStats } from './displayStats';
 import { applyIronGolemItemStats } from './iron-golem';
 import { getSummonStats } from './summons';
+import { composeGolemMastery } from './golem-mastery';
 
 describe('skill display stats', () => {
   it('scales direct damage and exposes next-level deltas', () => {
@@ -130,7 +131,9 @@ function expectSummonValues(
   stats: ReturnType<typeof computeSkillRankDisplayStats> | undefined,
   expected: readonly number[]
 ) {
-  expect(stats?.summonUnit?.stats.map(row => row.id)).toEqual(['lifeMax', 'attack', 'defense']);
+  const ids = ['lifeMax', 'attack', 'defense'];
+  if (['clay_golem', 'blood_golem', 'iron_golem', 'fire_golem'].includes(stats?.summonUnit?.summonId ?? '')) ids.push('attackSpeed');
+  expect(stats?.summonUnit?.stats.map(row => row.id)).toEqual(ids);
   for (const [index, value] of expected.entries()) {
     expect(stats?.summonUnit?.stats[index]?.value).toBeCloseTo(value, 10);
   }
@@ -313,5 +316,77 @@ describe('D06 selected-item Iron current and next rank preview', () => {
     expect(base).toEqual(before);
     expect(applyIronGolemItemStats({ ...base, defense: Number.MAX_VALUE },
       { life: 0, attack: 0, defense: Number.MAX_VALUE })).toBeUndefined();
+  });
+});
+
+const golemMastery = (rank: number) => composeGolemMastery({ id: 'display-golem-hero', class: 'necromancer',
+  level: 30, skillLevels: { 'necromancer.clay_golem': 1, 'necromancer.golem_mastery': rank } });
+describe('Golem Mastery in exact golem previews', () => {
+  it.each([
+    ['clay-golem', 1, 233.2, 252.28, 56], ['clay-golem', 20, 484, 523.6, 75],
+    ['blood-golem', 1, 190.8, 205.64, 71], ['blood-golem', 20, 396, 426.8, 90],
+    ['iron-golem', 1, 275.6, 292.56, 61], ['iron-golem', 20, 572, 607.2, 80],
+    ['fire-golem', 1, 254.4, 269.24, 66], ['fire-golem', 20, 528, 558.8, 85]
+  ] as const)('shows %s at summon ranks1/2 with Mastery%s', (slug, rank, life, nextLife, speed) => {
+    const authored = authoredSummon(`skills-necromancer-${slug}`), projection = golemMastery(rank);
+    for (const id of [authored.id, `necromancer.${slug.replaceAll('-', '_')}`]) {
+      const source = { ...authored, id };
+      const before = structuredClone({ source, projection });
+      const model = computeSkillDisplayModel(source, 1, undefined, undefined, projection);
+      const value = (stats: typeof model.current, key: string) => stats?.summonUnit?.stats.find(row => row.id === key)?.value;
+      expect(value(model.current, 'lifeMax')).toBeCloseTo(life, 12);
+      expect(value(model.next, 'lifeMax')).toBeCloseTo(nextLife, 12);
+      expect(value(model.current, 'attackSpeed')).toBe(speed);
+      expect(value(model.next, 'attackSpeed')).toBe(speed);
+      const ordinary = { 'clay-golem': [24, 34, 25, 36], 'blood-golem': [34, 24, 36, 25],
+        'iron-golem': [36, 48, 38, 51], 'fire-golem': [42, 36, 45, 37] }[slug];
+      expect([value(model.current, 'attack'), value(model.current, 'defense'),
+        value(model.next, 'attack'), value(model.next, 'defense')]).toEqual(ordinary);
+      expect({ source, projection }).toEqual(before);
+    }
+  });
+
+  it.each([[1, 373.65, 390.61, 61], [20, 775.5, 810.7, 80]] as const)(
+    'applies Mastery%s after rank6/7 Iron item inheritance once', (rank, life, nextLife, speed) => {
+      const item = Object.freeze({ life: 12.5, attack: 3.25, defense: 4.5 }), projection = golemMastery(rank);
+      const model = computeSkillDisplayModel(iron(), 6, mastery(20), item, projection);
+      expectSummonValues(model.current, [life, 49.25, 67.5, speed]);
+      expectSummonValues(model.next, [nextLife, 51.25, 70.5, speed]);
+      expect(computeSkillRankDisplayStats(iron(), 6, undefined, item, projection)).toEqual(model.current);
+      expect(item).toEqual({ life: 12.5, attack: 3.25, defense: 4.5 });
+      expect(model.current?.manaCost).toBe(35); expect(model.current?.summonCap).toBe(1);
+    });
+
+  it('uses current eligible Mastery for conditional unlearned and capped summon previews', () => {
+    const unlearned = computeSkillDisplayModel(iron(), 0, undefined, undefined, golemMastery(20));
+    expect(unlearned.current).toBeUndefined(); expect(unlearned.nextRank).toBe(1);
+    expectSummonValues(unlearned.next, [572, 36, 48, 80]);
+    const capped = computeSkillDisplayModel(iron(), 20, undefined, undefined, golemMastery(20));
+    expect(capped.maxed).toBe(true); expect(capped.next).toBeUndefined();
+    expectSummonValues(capped.current, [1240.8, 74, 105, 80]);
+  });
+
+  it.each([
+    () => skeleton(), () => mage(), () => revive(),
+    () => ({ ...iron(), id: 'synthetic.iron_golem' }),
+    () => ({ ...iron(), id: 'necromancer.iron_golem-copy' }),
+    () => ({ ...iron(), summonId: 'clay_golem' }),
+    () => { const source = { ...iron() }; delete source.summonId; return source; }
+  ])('excludes unrelated or mismatched exact skill/template pairs %#', source => {
+    expect(computeSkillDisplayModel(source(), 6, undefined, undefined, golemMastery(20)))
+      .toEqual(computeSkillDisplayModel(source(), 6));
+  });
+
+  it('keeps malformed projection inert and omits an overflowing valid projection', () => {
+    const projection = golemMastery(1);
+    if (!projection) throw new Error('Missing eligible Golem display context');
+    for (const patch of [{ rank: 0 }, { sourceHeroId: '' }, { golemLifePct: NaN }, { golemAttackSpeed: -1 }]) {
+      expect(computeSkillDisplayModel(iron(), 6, undefined, undefined, { ...projection, ...patch }))
+        .toEqual(computeSkillDisplayModel(iron(), 6));
+    }
+    const model = computeSkillDisplayModel(iron(), 6, undefined, { life: 12.5, attack: 3.25, defense: 4.5 },
+      { ...projection, golemLifePct: Number.MAX_VALUE });
+    expect(model.current?.summonUnit).toBeUndefined(); expect(model.next?.summonUnit).toBeUndefined();
+    expect(model.current?.manaCost).toBe(35); expect(model.current?.summonCap).toBe(1);
   });
 });

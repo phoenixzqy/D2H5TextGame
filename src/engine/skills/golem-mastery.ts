@@ -90,6 +90,27 @@ export function composeGolemMastery(player: Pick<Player, 'id' | 'class' | 'level
   return Object.freeze({ sourceHeroId: player.id, rank, maxRank: definition.maxRank, golemLifePct, golemAttackSpeed });
 }
 
+function isValidProjection(projection: GolemMasteryProjection | undefined): projection is GolemMasteryProjection {
+  return Boolean(projection && positiveInteger(projection.rank) && positiveInteger(projection.maxRank) &&
+    projection.rank <= projection.maxRank && nonnegative(projection.golemLifePct) &&
+    nonnegative(projection.golemAttackSpeed) && projection.sourceHeroId.length > 0);
+}
+
+/**
+ * Share maximum-life and flat Attack Speed arithmetic without changing current life.
+ * Callers establish golem identity and, for runtime creation, fresh owner provenance.
+ * Missing/malformed projections are inert; arithmetic overflow refuses the result.
+ */
+export function applyGolemMasteryStats<T extends { readonly lifeMax: number; readonly attackSpeed: number }>(
+  stats: T, projection: GolemMasteryProjection | undefined
+): T | undefined {
+  if (!isValidProjection(projection)) return stats;
+  const lifeMax = stats.lifeMax * (1 + projection.golemLifePct);
+  const attackSpeed = stats.attackSpeed + projection.golemAttackSpeed;
+  if (!nonnegative(lifeMax) || lifeMax === 0 || !nonnegative(attackSpeed)) return undefined;
+  return { ...stats, lifeMax, attackSpeed };
+}
+
 /**
  * Apply once to a fresh owned golem, after rank scaling and Iron item inheritance.
  * Callers never pass preloaded or already decorated units. Invalid authority is
@@ -98,9 +119,7 @@ export function composeGolemMastery(player: Pick<Player, 'id' | 'class' | 'level
  */
 export function empowerGolemSummon(projection: GolemMasteryProjection | undefined,
   owner: CombatUnit, fresh: CombatUnit): CombatUnit | undefined {
-  if (!projection || !positiveInteger(projection.rank) || !positiveInteger(projection.maxRank) ||
-    projection.rank > projection.maxRank || !nonnegative(projection.golemLifePct) ||
-    !nonnegative(projection.golemAttackSpeed) || projection.sourceHeroId.length === 0 ||
+  if (!isValidProjection(projection) ||
     owner.id !== projection.sourceHeroId || owner.side !== 'player' || inferKind(owner) !== 'hero' ||
     !Number.isFinite(owner.life) || owner.life <= 0 || owner.summon === true ||
     owner.ownerId !== undefined || owner.summonOwnerId !== undefined ||
@@ -108,8 +127,6 @@ export function empowerGolemSummon(projection: GolemMasteryProjection | undefine
     fresh.summonOwnerId !== owner.id || (fresh.ownerId !== undefined && fresh.ownerId !== owner.id) ||
     !['clay_golem', 'blood_golem', 'iron_golem', 'fire_golem'].includes(fresh.summonTemplateId ?? '') ||
     fresh.life !== fresh.stats.lifeMax || fresh.stats.life !== fresh.stats.lifeMax) return fresh;
-  const lifeMax = fresh.stats.lifeMax * (1 + projection.golemLifePct);
-  const attackSpeed = fresh.stats.attackSpeed + projection.golemAttackSpeed;
-  if (!nonnegative(lifeMax) || lifeMax === 0 || !nonnegative(attackSpeed)) return undefined;
-  return { ...fresh, life: lifeMax, stats: { ...fresh.stats, life: lifeMax, lifeMax, attackSpeed } };
+  const stats = applyGolemMasteryStats(fresh.stats, projection);
+  return stats ? { ...fresh, life: stats.lifeMax, stats: { ...stats, life: stats.lifeMax } } : undefined;
 }

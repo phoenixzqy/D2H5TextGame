@@ -13,6 +13,7 @@ import { maxFirstThreeThenEveryThreeForLevel, maxSkeletonsForLevel } from './sca
 import { getSummonStats } from './summons';
 import { applySkeletonMasteryStats, type SkeletonMasteryProjection } from './skeleton-mastery';
 import { applyIronGolemItemStats, isIronGolemSkill, type IronGolemInput } from './iron-golem';
+import { applyGolemMasteryStats, type GolemMasteryProjection } from './golem-mastery';
 
 export interface DisplaySkillSource {
   readonly id: string;
@@ -203,7 +204,8 @@ function summonUnit(
   skill: DisplaySkillSource,
   rank: number,
   mastery: SkeletonMasteryProjection | undefined,
-  ironGolem: Pick<IronGolemInput, 'life' | 'attack' | 'defense'> | undefined
+  ironGolem: Pick<IronGolemInput, 'life' | 'attack' | 'defense'> | undefined,
+  golemMastery: GolemMasteryProjection | undefined
 ): SkillSummonDisplayStats | undefined {
   const summonId = inferSummonId(skill);
   if (!summonId) return undefined;
@@ -222,13 +224,23 @@ function summonUnit(
     if (!inherited) return undefined;
     stats = inherited;
   }
+  const exactGolem = ['clay', 'blood', 'iron', 'fire'].some(type =>
+    skill.summonId === `${type}_golem` &&
+    (skill.id === `skills-necromancer-${type}-golem` || skill.id === `necromancer.${type}_golem`));
+  if (exactGolem) {
+    const empowered = applyGolemMasteryStats(stats, golemMastery);
+    if (!empowered) return undefined;
+    stats = empowered;
+  }
   return {
     summonId,
     nameKey: `details.summonName.${summonId}`,
     stats: [
       { id: 'lifeMax', labelKey: 'details.summonStat.lifeMax', value: stats.lifeMax, valueKind: 'flat' },
       { id: 'attack', labelKey: 'details.summonStat.attack', value: stats.attack, valueKind: 'flat' },
-      { id: 'defense', labelKey: 'details.summonStat.defense', value: stats.defense, valueKind: 'flat' }
+      { id: 'defense', labelKey: 'details.summonStat.defense', value: stats.defense, valueKind: 'flat' },
+      ...(exactGolem ? [{ id: 'attackSpeed' as const, labelKey: 'details.summonStat.attackSpeed',
+        value: stats.attackSpeed, valueKind: 'flat' as const }] : [])
     ]
   };
 }
@@ -282,13 +294,15 @@ function passiveUtilityRows(skill: DisplaySkillSource, rank: number): readonly S
  * Resolve one rank with current eligible Mastery and optional isolated Iron item bonuses.
  * Item bonuses affect only exact Iron skill/template identities; invalid inherited
  * stats omit the summon preview. An absent item context retains ordinary base rows.
- * Neither preview context establishes hero qualification or authorizes payment.
+ * Golem Mastery follows rank scaling and optional Iron inheritance. Preview
+ * contexts establish neither hero qualification nor payment authorization.
  */
 export function computeSkillRankDisplayStats(
   skill: DisplaySkillSource,
   rank: number,
   mastery?: SkeletonMasteryProjection,
-  ironGolem?: Pick<IronGolemInput, 'life' | 'attack' | 'defense'>
+  ironGolem?: Pick<IronGolemInput, 'life' | 'attack' | 'defense'>,
+  golemMastery?: GolemMasteryProjection
 ): SkillRankDisplayStats {
   const safeRank = clampRank(rank, skill.maxLevel);
   const damage = damageRows(skill, safeRank);
@@ -299,7 +313,7 @@ export function computeSkillRankDisplayStats(
       }
     : undefined;
   const resolvedSummonCap = summonCap(skill, safeRank);
-  const resolvedSummonUnit = summonUnit(skill, safeRank, mastery, ironGolem);
+  const resolvedSummonUnit = summonUnit(skill, safeRank, mastery, ironGolem, golemMastery);
   const utility = passiveUtilityRows(skill, safeRank);
   const manaCost = scaleCost(skill.cost?.mana, skill.scaling?.costPerLevel ?? 0, safeRank);
   const lifeCost = scaleCost(skill.cost?.life, skill.scaling?.costPerLevel ?? 0, safeRank);
@@ -324,7 +338,8 @@ export function computeSkillDisplayModel(
   skill: DisplaySkillSource,
   allocatedLevel: number,
   mastery?: SkeletonMasteryProjection,
-  ironGolem?: Pick<IronGolemInput, 'life' | 'attack' | 'defense'>
+  ironGolem?: Pick<IronGolemInput, 'life' | 'attack' | 'defense'>,
+  golemMastery?: GolemMasteryProjection
 ): SkillDisplayModel {
   const maxLevel = Math.max(1, Math.floor(skill.maxLevel));
   const allocated = Math.max(0, Math.floor(allocatedLevel));
@@ -337,8 +352,8 @@ export function computeSkillDisplayModel(
     maxLevel,
     displayRank,
     ...(nextRank !== undefined ? { nextRank } : {}),
-    ...(allocated > 0 ? { current: computeSkillRankDisplayStats(skill, displayRank, mastery, ironGolem) } : {}),
-    ...(nextRank !== undefined ? { next: computeSkillRankDisplayStats(skill, nextRank, mastery, ironGolem) } : {}),
+    ...(allocated > 0 ? { current: computeSkillRankDisplayStats(skill, displayRank, mastery, ironGolem, golemMastery) } : {}),
+    ...(nextRank !== undefined ? { next: computeSkillRankDisplayStats(skill, nextRank, mastery, ironGolem, golemMastery) } : {}),
     maxed
   };
 }

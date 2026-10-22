@@ -3,7 +3,7 @@ import { runBattle, runBattleRecorded, type CombatSnapshot, type RecordedBattleE
 import type { CombatUnit } from '../combat/types';
 import { loadDefaultSkills, registerSkill, resetRegistry } from './registry';
 import necromancerSkills from '../../data/skills/necromancer.json';
-import { composeGolemMastery, empowerGolemSummon, GOLEM_MASTERY_DEFINITION, resolveGolemMasteryDefinition,
+import { applyGolemMasteryStats, composeGolemMastery, empowerGolemSummon, GOLEM_MASTERY_DEFINITION, resolveGolemMasteryDefinition,
   resolveGolemMasteryRank } from './golem-mastery';
 import { buildSummon, getSummon, registerSummon } from './summons';
 
@@ -11,6 +11,34 @@ const AUTHORED = 'skills-necromancer-golem-mastery', CANONICAL = 'necromancer.go
 const CLAY = 'necromancer.clay_golem';
 const player = () => ({ id: 'hero', class: 'necromancer', level: 12,
   skillLevels: { [CANONICAL]: 1, [CLAY]: 1 } });
+
+describe('shared Golem Mastery stat arithmetic', () => {
+  const stats = Object.freeze({ life: 7, lifeMax: 220, attackSpeed: 55, attack: 24, defense: 34 });
+  const projection = () => {
+    const value = composeGolemMastery({ ...player(), skillLevels: { [CLAY]: 1, [CANONICAL]: 20 } });
+    if (!value) throw new Error('Missing eligible Mastery projection');
+    return value;
+  };
+  it('changes only maximum life and flat AS without refilling current life or mutating inputs', () => {
+    const input = projection(), before = structuredClone(input);
+    const result = applyGolemMasteryStats(stats, input);
+    expect(result?.lifeMax).toBeCloseTo(484, 12);
+    expect(result).toMatchObject({ life: 7, attackSpeed: 75, attack: 24, defense: 34 });
+    expect(stats.life).toBe(7); expect(input).toEqual(before);
+  });
+  it('leaves absent and malformed projections inert', () => {
+    expect(applyGolemMasteryStats(stats, undefined)).toBe(stats);
+    for (const patch of [{ rank: 0 }, { rank: 1.5 }, { maxRank: 0 }, { rank: 21 },
+      { golemLifePct: NaN }, { golemAttackSpeed: Infinity }, { sourceHeroId: '' }]) {
+      expect(applyGolemMasteryStats(stats, { ...projection(), ...patch })).toBe(stats);
+    }
+  });
+  it('refuses finite-input overflow without returning partly transformed stats', () => {
+    expect(applyGolemMasteryStats({ ...stats, lifeMax: Number.MAX_VALUE }, projection())).toBeUndefined();
+    expect(applyGolemMasteryStats({ ...stats, attackSpeed: Number.MAX_VALUE },
+      { ...projection(), golemAttackSpeed: Number.MAX_VALUE })).toBeUndefined();
+  });
+});
 function authored() {
   const row = necromancerSkills.find(row => row.id === AUTHORED);
   if (!row) throw new Error('Missing authored Mastery');

@@ -8039,3 +8039,56 @@ all readers released including dist/tmp; no reviewer artifacts/processes.
 Approval-only ledger append; other two paths unchanged. Producer publication
 audit, staged whitespace gate, local commit and exact cleanup follow. Existing
 budgets/warnings and UI/earned/balance/full-v1 acceptance gaps remain open.
+
+
+## D06 v1br — Shared Golem Mastery preview arithmetic
+
+Native B committedd542275; cleanup27f5fbd16fdf123abd7917b9d4a94757ecf234c54ed8b381590ac70b767f0b51
+removed1298 files/43857838 bytes/14 directories, no failures/remaining targets;
+both checkouts clean. Native source/raw/failure/review evidence retained by root.
+Producer plan-review ready, TD/GD and QA-GOLEM-PREVIEW-PLAN APPROVE preview plan
+f6e37bb3b9f9de504049d1c7519f61d234211f7b27c965b38136bf1155df5a25.
+Five-path C scope: Golem Mastery module/test, displayStats module/test and ledger.
+Root sole writer/executor in existing claimed worktree; original read-only.
+Security check PASS: local deterministic shared math/display, no data/schema/save,
+network/dependency/credential/remote changes. Share only lifeMax/flat AS math;
+preserve runtime ownership/freshness/payment guards. Add optional fifth display
+argument, exact four golem skill/template pairs, rank→Iron item→Mastery order,
+flat AS row, no Attack/Defense increase or rounding. Malformed projection inert,
+valid overflow omits preview. UI composition/prose and selected-Iron wiring are
+separate D/E; actual bilingual native browser acceptance follows those slices.
+Behavioral RED precedes implementation. Existing warnings/budgets and broader
+D06/P09/P10/private-v1 acceptance remain open; no broad simulation family.
+
+Behavioral RED: all8 golem/Mastery rank cases failed against unchanged display
+runtime with71 prior tests passing. Shared helper extracted from existing combat
+math; runtime authority/freshness/payment preserved. Display fifth argument
+selects exact authored/canonical golem+explicit-template pairs, applies rank→item
+→Mastery and adds flat AS row. Current/next/unlearned/cap, fractional rank6 Iron,
+nonrecipient/mismatch/lookalike, malformed context, overflow and immutability tests
+added. First GREEN retained7 expected failures from old three-row golem assertions;
+updated expected golem row shape while retaining all numeric expectations and
+three-row nongolems. First engine run exposed overly strict exact decimal helper
+assertion484 vs484.00000000000006; corrected only HP assertion to12-digit tolerance,
+with exact current-life/Attack/Defense/AS checks. Final engine3502/89 files PASS
+18.58s (wrapper19.840s), retaining existing3s budget breach. All prior53 runtime
+Mastery cases still pass unchanged. Final consumer/type/lint/full/build checks and
+independent reviews follow; UI has not yet composed current Mastery or new prose.
+
+Final unchanged-source C checks PASS: consumer focused250/5 files10.65s,
+types16.937s, lint44.353s/purity89, full7656/249 files130.39s
+(wrapper131.937s), production build10.264s. Engine3502/89 files18.58s
+remains above3s; full remains above15s. Existing Browserslist/chunk/precache
+warnings retained. QA source APPROVE/test evidence ADEQUATE and TD/five-axis
+source APPROVE; final frozen evidence review follows. UI composition is still
+D/E work, with native bilingual browser acceptance outstanding.
+
+Final independent QA-D06-GOLEM-DISPLAY APPROVE/test evidence ADEQUATE and
+TD/five-axis APPROVE. Verified review00b0bcf2e54538366cfdfc1bd0ed0b22c4496c53217c16e096ba93f8ce001331,
+support9a625623a49a1df3c21bdf0ba8035ae21321bfcca0d99280b6ac7248f160dd36,
+131 retained files/9 settled serial receipts/104 source captures. Exact disposal
+1298 files/43858235 bytes/14 directories verified; readers released including
+dist/tmp, no reviewer processes/artifacts. Approval-only ledger append; four
+source paths unchanged. Producer audit, staged whitespace success, local commit
+and exact cleanup follow. D/E browser/UI, earned progression and broader plan
+remain open; current budgets and production warnings retained.
