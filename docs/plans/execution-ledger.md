@@ -7102,3 +7102,113 @@ all historical failures/overlap. All mounted/disposable readers released.
 Approval-only ledger append; tests/locales/source unchanged. Publication/
 producer audit, local commit and exact cleanup follow. Browser/balance/earned/
 full Mage/statuses/D06/P09/P10/private-v1 and existing limitations stay open.
+
+
+## D06 v1bh native Mage production browser acceptance
+
+Mounted216ac9b committed after frozen QA/test-evidence(ADEQUATE),TD/five-axis/
+producer APPROVE; cleanup89894145579183ba5d79fb068d5dc84383ec2ebf89ee45f703e5327af04e77cf
+removed1300files/43,858,124bytes/14dirs, zero failures/remaining. Same isolated
+umbrella claim; root sole writer/executor. TD five-path plan APPROVE: native
+Mage Playwright spec, isolated preview config, tsconfig.node include, evidence
+doc and ledger. Security PASS: local native imported QA fixture and evidence;
+no credentials/external send/dependency/permission/production/save shape change.
+Webapp-testing/mobile-responsive-check apply; Python Playwright unavailable,
+use installed repository Node Playwright with owned strictport production
+preview lifecycle. Prepared v1 caught normal-only hit regex and clipped large
+screenshots; v2 admits exact positive normal/critical copy, own main/container
+overflow checks, visiblepart geometry, eachcard/elementline fullviewport check,
+exact rank6/7 rows and afterEach retainedconsole including failure. V3 fixes
+RTL-only locator option and proves postlogpause incomplete with Skip-enabled/
+no nextbanner/victory/defeat; prior drafts preserved outside repo. TD preflight
+APPROVE and QA READY exact18557bytes SHA
+f707d339cff956287f3d35abe795d9351eae89a984c5755dc9cbae23007620c0.
+Native Newgame Necro→Save11Export→explicit unearned L30Mage6/Skeleton1/Mastery20
+core15/25/20/21/survivalcap/100MP/emptycombo fixture→Import→Skills realMagecombo
+→Map→Combat4cards/78MP/4positive elemental messages→nativeSave→close→Continue.
+FixedDate1792454400000 keeps real timers; native area/time seed, no injected
+seed7/storebridge/events/WAIT/FINISH/customskills. Probe first to establish
+timing/distribution; no automatic reroll. Fullmatrix zh-CN/en×360×640,412×915,
+640×360,1280×800,1920×1080 follows stableprobe. Unique runID+wx avoids evidence
+overwrite; root records exact processbirths/evidence/disposal. Current doc is
+pending, no browser measurement asserted yet. Native exact displayAttack63
+differs intentionally from runtime floor62. Save compares actual export, not
+claiming live78 persisted before settlement. No fullparagraph/all4cards
+simultaneoussmallviewport claim; percard/perline captures prove visibility.
+Serial types/build/probe first; finalmatrix/standard checks/frozen reviews/
+publication/audit/localcommit/exactcleanup follow. Balance/earned/fullMage/
+statuses/D06/P09/P10/private-v1 remain unfinished; no remote action.
+
+
+Initial types/build pass. Native zh-CN360probe1 fails only exact nextcap row:
+actual4（无变化）, expected4. Source numberDelta intentionally adds localized
+noChange when rank6→7 cap stays4; test oracle omitted annotation. Preserve
+receipt/source and copy failure screenshot/context from disposable output into
+retained probe1 evidence. All15 sampled processbirth identities absent. Follow
+debugging/root-cause-fix: revise only exact nextcap wholetext to zh4（无变化）/
+en4(no change), preserving all other stats/visibility/native acceptance. No
+product defect, oracle weakening, seed change or reroll. Prior v3 preserved;
+new probe runID prevents overwrite. No startup/elemental browser result yet.
+
+
+Corrected exact-oracle probe2 passes native zh-CN360×640 (16.5s case,18.8s
+Playwright,20.1078s wrapper). All15 sampled processbirth identities absent;
+support a144e595f6ebb2461b010201f8192745b558d82afe757e85314e2c48ddbfaccf.
+Observed positive lines: Fire50→FallenA, Cold61→FallenE, Lightning61→FallenB,
+Poison50→FallenC; native seed targets differ from unit seed7 as expected.
+Console-errors empty; native Save11/export/close/Continue comparisons pass.
+Representative mobile skill/grid captures inspected; they show only recorded
+visible intersections, with individual card/line captures retained. Current
+spec18607bytes SHA1e92404e2c51af1ff1df1f299f8f2315ec7cec9e397c70d69809b21264fa1d41.
+Full10-case acceptance1 matrix running with fresh contexts, zero retries,
+new retained evidence namespace; final types/lint/full/build remain pending.
+
+
+acceptance1 all10 native cases pass2.7m(wrapper164.436s), zero retries;
+zh/en×all5viewports. Every case observes Fire50→FallenA/Cold61→FallenE/
+Lightning61→FallenB/Poison50→FallenC; all consoleerror files empty. Native
+Save11 actual player/inventory/formation/comborestoration pass. FixedDate
+means displayed logtimes00:00:00, not timing evidence; source/HP/timing
+covered separately. All15 sampled processbirth identities absent. Support
+7c2b25ac7d307280eef8f94aaa6d66a088ccb2f9c2e894061fadde221ebe9134 binds
+exact build/evidence. Root inspected enmobile detail, zhlandscape log and
+zhdesktop grid; only measured visiblepart/percard/perline claims. Evidence
+doc now records exact matrix, limitations, hashes and historical failed
+oracle distinctly. Final serial types/lint/fullunit/build/check next; no
+source/engine/save changes or remote action. Balance/earned/fullMage and
+D06/P09/P10/private-v1 remain unfinished.
+
+
+Final serial types15.925s/lint42.736s pass, fullunit7439/240files124.69s
+(wall126.238s) pass on exact current spec/config/doc bytes. Unit budget15s
+remains exceeded; do not claim performance acceptance. Final production
+build/check/frozenreviews remain pending. Separate next balance-screen plan
+TD APPROVE uses pinned physical cf19757dd5e50f122371e5eda7327f8a79095fbb
+vs frozen proposed Git objects, identical serialized ordinary unearned
+rank6/Mastery0 fixture, independent module/process domains, no scenario
+patching/preload baseline, tiny fixed seeds before >=1000 paired audit.
+Balance verdict remains CONCERNS until measured design review.
+
+
+Final VITE_E2E=false build10.437s and browser checker pass: exactfivepaths,
+tracked/untracked whitespace, current captured source/config/test/doc bytes
+across final serial checks; exact QA spec/config drafts; only tsconfiginclude
+addition; ten native retained cases/errors/Save11/screenshotgeometry checks.
+Final entire build byte identities match tested acceptance1 production artifact;
+main index-BURmCSR0.js1343224bytes SHA
+729627ee6da2023c32bdb1ffecab37c6e9f6f25f5fb3f28aa19b243184c5b92f.
+Four emitted JS chunks free of declared bridge/Magefixture/Vitest markers.
+Existing Browserslist/chunk/2.57MBmanifest-precache warnings persist.
+Frozen QA/test-evidence and TD/five-axis review next; no broader acceptance
+inferred. Root retains exact external native evidence; manifest-bound dist/tmp
+cleanup waits until all reviewers/processes release. No remote action.
+
+
+Frozen QA/test-evidence(ADEQUATE), TD and five-axis reviews APPROVE, no
+blockers. Both independently verify10receipts/output identities,420source
+snapshots,272retained evidence files,760tested/finalbuild files and exact
+5pathscope/drafts. All1453disposable files/46,703,209bytes/45dirs inventoried;
+all readers released including dist/tmp. Durable100MP restoration distinct
+from live78. Approval-only ledger append; test/config/doc bytes unchanged.
+Publication/producer audit/localcommit/exactcleanup next. Balance/earned/
+fullMage/statuses/D06/P09/P10/private-v1 and existing limitations remain open.
