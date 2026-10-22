@@ -7797,3 +7797,38 @@ ledgerappend; fourotherpathsunchanged. BALANCE-CHECK CONCERNS, syntheticwindow/
 noactiveHorrorcoverage/all-loss censoring, existingbudgets/warnings and broader
 gates remainopen. Publication/produceraudit/localcommit/exactcleanup next;
 noengine/data/save/config orremotechange.
+
+
+## D06 v1bn documentation whitespace follow-up
+
+Comboaudit committed842de3ae4f52d2a9ef3dba81aaa4248acfea8749. Exactcleanup
+2f7fbdc704d54ca684579cb480a0eaa6cf01931d231e9cc5e8f11b67f4375c8d removed
+1306files/43858602bytes/15directories; nofailures/remainingtargets; bothcheckouts
+clean. Root erroneously continued the localcommit after staged diff--check exit2:
+reportextra blankline EOF. Reproduced failure retained in mage-combo-format-red.
+Producer planreview ready for2path doc-only repair:report andledger. Preserved
+originalbound generator/evidence; correctedgenerator mage-combo-format-report.py
+retained separately. Regeneratedreport equalsparent minus exactlyone finalnewline,
+with allsubstantive reportbytes andthreecorehashes unchanged. Original validation
+remains historical evidence for originalaudit; no unit/build rerun claimed or
+needed for EOF-only change. Follow-up byte/provenance/append-only/stagedwhitespace
+checks, frozenreviews/localcommit/exactcleanup next. Root solewriter in claimed
+worktree; noengine/data/save/config/remotechange. Broadgates/budgets/warnings open.
+
+
+Follow-up validation PASS:report33294→33293bytes exactlyonefinalnewline removed;
+all substantive reportbytes/threecorefiles unchanged; original1366supportfiles
+verified unchanged; ledgerappend-only/exact2paths; no dist/tmp remain. Retained
+mage-combo-format-check PASS0.281s and staged diff--check PASSexit0, contrasting
+originalfailed exit2. No unit/build rerun. Frozen doc-onlyreviews next.
+
+
+Frozen doc-onlyreview68d81d083c2b3ec5f3ea8a6f5a33b325d7640b6020110b3e0ffa058e3f5fb064
+support65019cb475b1ff332549e67359112d775c73c3253da14f3541e52adde72fd3f0:
+QA APPROVE/test-evidence ADEQUATE and TD/five-axis APPROVE, nomaterialfindings.
+Both independentlyverified exactone-newline reportdelta, append-onlyledger,
+threeunchangedcorefiles/1366originalsupportfiles,48follow-upfiles/4receipts,
+originalexit2 andcorrectedstagedexit0, immutableoriginalgenerator/separatefixed
+copy, priorcleanup andemptydisposal. Allreadersreleased includingdist/tmp;
+noownartifacts/processes. Approval-onlyledgerappend; substantivereview remains
+applicable without unit/buildrerun. Broadgates/budgets/warnings remainopen.

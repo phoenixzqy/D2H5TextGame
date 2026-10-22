@@ -494,4 +494,3 @@ campaign pacing, natural combo uptime, drop yield or global balance. Realistic
 mixed armies follow separately, then earned/campaign/holdout/experiential work.
 Signature statuses, full Mage/D06/P09/P10/private-v1 remain unaccepted. Production
 engine/data/save/config and SaveCurrent11 remain untouched; no remote action.
-
