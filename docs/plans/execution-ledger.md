@@ -6066,3 +6066,54 @@ all readers released. Root remains sole writer/executor. Producer publication
 review, local commit and exact cleanup follow.
 No remote action. Native bilingual acknowledgement/preview/refusal/lock UI,
 production-byte/save/reload/earned acceptance and fullD06/P09/P10/private-v1 remain open.
+
+
+## D06 v1aq shared selected-item summon stat preview
+
+Paid integration committed as `e00e772` after independent QA/test-evidence,
+TD/five-axis and producer APPROVE. Exact cleanup removed1300files/43,839,437bytes/
+14directories, zero failures/remaining; all10 recorded command identities absent.
+The umbrella claim continues. TD-D06-UI-PLAN APPROVE requires one shared-stat
+increment before store presentation, bilingual copy and native Skills selection.
+Root plan-review: ready; this five-path slice removes duplicated combat/preview
+addition while preserving source qualification, isolated item projection and payment.
+
+The pure applyIronGolemItemStats copies only life/attack/defense after rank scaling,
+sets fresh current life to final maximum and refuses invalid inherited scalars or
+results. It preserves all unrelated template fields and does not mutate input.
+Preparation uses it before full-candidate validation. Its existing pre-template
+input validation remains, preserving early refusal. Optional item context in the
+skill-display resolver applies only to exact Iron identities plus explicit
+iron_golem template. Invalid inheritance omits the summon preview; absent context
+retains ordinary base rows. Current and next ranks share exactly the same item
+bonuses without rank-multiplying or rounding them. Mastery and unrelated summons
+retain existing behavior; preview establishes neither qualification nor payment.
+No React, save, data, inventory or transaction changes.
+
+New27cases include canonical/authored rank6/7 Short Sword340/54/63 then356/56/66,
+rank1/20 Chain Mail defense101/158, fractional rank6/7, unlearned/maxed boundaries,
+negative/nonfinite/overflow refusal, unrelated/mismatched identities, immutability
+and preservation of other stats/references. RED20failed/51passed2.889s precedes
+source edits. First focused119/2files5.990s passed; its command also named a
+nonexistent iron-golem.test.ts path, which Vitest ignored. The required engine
+project run includes the actual iron-golem-preparation suite. Initial types failed
+TS2704 because the missing-template test deleted a readonly authored field; it now
+copies the fixture before deletion, preserving its intended negative case. No
+production workaround. Final focused184/3files5.991s, types14.812s, lint40.999s
+(85purity files), full7162/229files116.389s (Vitest114.93s), build9.830s and final
+engine3307/85files16.529s passed. Final engine rerun binds the corrected test
+fixture too; runtime sources remained unchanged. Build609modules,
+index-Cyxg18JM.js1283.16kB; existing chunk/Browserslist/precache warnings remain.
+Engine/full durations exceed3s/15s repository budgets; no thresholds were changed.
+No native UI/browser/save/earned/full acceptance claim.
+
+Security assessment: pure finite arithmetic over existing isolated item scalars,
+no IO/dependency/permission/save-shape changes; invalid previews do not authorize
+payment. Five-path source and command identities, prior cleanup and exact owned
+dist/tmp inventory will be frozen in iron-preview-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA/test-evidence and TD/five-axis reviews APPROVE this frozen slice;
+all readers released. Root remains sole writer/executor. Producer publication
+review, local commit and exact cleanup follow.
+Native bilingual selection, production-byte/save/reload/earned acceptance and
+fullD06/P09/P10/private-v1 remain open. No remote action.

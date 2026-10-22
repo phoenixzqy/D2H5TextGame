@@ -12,6 +12,7 @@ import type { DamageType } from '../types/attributes';
 import { maxFirstThreeThenEveryThreeForLevel, maxSkeletonsForLevel } from './scaling';
 import { getSummonStats } from './summons';
 import { applySkeletonMasteryStats, type SkeletonMasteryProjection } from './skeleton-mastery';
+import { applyIronGolemItemStats, isIronGolemSkill, type IronGolemInput } from './iron-golem';
 
 export interface DisplaySkillSource {
   readonly id: string;
@@ -201,7 +202,8 @@ function inferSummonId(skill: DisplaySkillSource): string | undefined {
 function summonUnit(
   skill: DisplaySkillSource,
   rank: number,
-  mastery: SkeletonMasteryProjection | undefined
+  mastery: SkeletonMasteryProjection | undefined,
+  ironGolem: Pick<IronGolemInput, 'life' | 'attack' | 'defense'> | undefined
 ): SkillSummonDisplayStats | undefined {
   const summonId = inferSummonId(skill);
   if (!summonId) return undefined;
@@ -214,7 +216,12 @@ function summonUnit(
     (skill.id === 'skills-necromancer-raise-skeleton' || skill.id === 'necromancer.raise_skeleton')) ||
     (skill.summonId === 'skeletal_mage' &&
       (skill.id === 'skills-necromancer-raise-skeletal-mage' || skill.id === 'necromancer.raise_skeletal_mage'));
-  const stats = receivesMastery ? applySkeletonMasteryStats(baseStats, mastery) : baseStats;
+  let stats = receivesMastery ? applySkeletonMasteryStats(baseStats, mastery) : baseStats;
+  if (ironGolem !== undefined && skill.summonId === 'iron_golem' && isIronGolemSkill(skill)) {
+    const inherited = applyIronGolemItemStats(baseStats, ironGolem);
+    if (!inherited) return undefined;
+    stats = inherited;
+  }
   return {
     summonId,
     nameKey: `details.summonName.${summonId}`,
@@ -271,11 +278,17 @@ function passiveUtilityRows(skill: DisplaySkillSource, rank: number): readonly S
   return rows;
 }
 
-/** Resolve one rank's rows with the eligible current Mastery from composeSkeletonMastery, when supplied. */
+/**
+ * Resolve one rank with current eligible Mastery and optional isolated Iron item bonuses.
+ * Item bonuses affect only exact Iron skill/template identities; invalid inherited
+ * stats omit the summon preview. An absent item context retains ordinary base rows.
+ * Neither preview context establishes hero qualification or authorizes payment.
+ */
 export function computeSkillRankDisplayStats(
   skill: DisplaySkillSource,
   rank: number,
-  mastery?: SkeletonMasteryProjection
+  mastery?: SkeletonMasteryProjection,
+  ironGolem?: Pick<IronGolemInput, 'life' | 'attack' | 'defense'>
 ): SkillRankDisplayStats {
   const safeRank = clampRank(rank, skill.maxLevel);
   const damage = damageRows(skill, safeRank);
@@ -286,7 +299,7 @@ export function computeSkillRankDisplayStats(
       }
     : undefined;
   const resolvedSummonCap = summonCap(skill, safeRank);
-  const resolvedSummonUnit = summonUnit(skill, safeRank, mastery);
+  const resolvedSummonUnit = summonUnit(skill, safeRank, mastery, ironGolem);
   const utility = passiveUtilityRows(skill, safeRank);
   const manaCost = scaleCost(skill.cost?.mana, skill.scaling?.costPerLevel ?? 0, safeRank);
   const lifeCost = scaleCost(skill.cost?.life, skill.scaling?.costPerLevel ?? 0, safeRank);
@@ -306,11 +319,12 @@ export function computeSkillRankDisplayStats(
   };
 }
 
-/** Resolve current and next skill ranks using the same eligible current allocated Mastery projection. */
+/** Resolve current/next ranks using the same eligible Mastery and isolated Iron item context. */
 export function computeSkillDisplayModel(
   skill: DisplaySkillSource,
   allocatedLevel: number,
-  mastery?: SkeletonMasteryProjection
+  mastery?: SkeletonMasteryProjection,
+  ironGolem?: Pick<IronGolemInput, 'life' | 'attack' | 'defense'>
 ): SkillDisplayModel {
   const maxLevel = Math.max(1, Math.floor(skill.maxLevel));
   const allocated = Math.max(0, Math.floor(allocatedLevel));
@@ -323,8 +337,8 @@ export function computeSkillDisplayModel(
     maxLevel,
     displayRank,
     ...(nextRank !== undefined ? { nextRank } : {}),
-    ...(allocated > 0 ? { current: computeSkillRankDisplayStats(skill, displayRank, mastery) } : {}),
-    ...(nextRank !== undefined ? { next: computeSkillRankDisplayStats(skill, nextRank, mastery) } : {}),
+    ...(allocated > 0 ? { current: computeSkillRankDisplayStats(skill, displayRank, mastery, ironGolem) } : {}),
+    ...(nextRank !== undefined ? { next: computeSkillRankDisplayStats(skill, nextRank, mastery, ironGolem) } : {}),
     maxed
   };
 }

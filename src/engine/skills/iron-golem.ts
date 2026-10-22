@@ -2,6 +2,7 @@ import Ajv2020 from 'ajv/dist/2020';
 import necromancerSkills from '../../data/skills/necromancer.json';
 import skillSchema from '../../data/schema/skill.schema.json';
 import type { SkillDef } from '../types/skills';
+import type { DerivedStats } from '../types/attributes';
 import { inferKind, type CombatUnit } from '../combat/types';
 import type { RegisteredSkill } from './effects';
 
@@ -35,6 +36,26 @@ export interface IronGolemInput {
   readonly life: number;
   readonly attack: number;
   readonly defense: number;
+}
+
+/**
+ * Add only the selected item's isolated life/attack/defense after ordinary rank scaling.
+ * A fresh summon starts at its final maximum life. Invalid bonuses or inherited
+ * results return undefined; callers retain source/ownership and full-candidate validation.
+ * No caller objects are mutated, and every unrelated template field is preserved.
+ */
+export function applyIronGolemItemStats(
+  stats: DerivedStats,
+  bonuses: Pick<IronGolemInput, 'life' | 'attack' | 'defense'> | undefined
+): DerivedStats | undefined {
+  if (!bonuses || ![bonuses.life, bonuses.attack, bonuses.defense]
+    .every(value => Number.isFinite(value) && value >= 0)) return undefined;
+  const lifeMax = stats.lifeMax + bonuses.life;
+  const attack = stats.attack + bonuses.attack;
+  const defense = stats.defense + bonuses.defense;
+  if (lifeMax <= 0 || ![lifeMax, attack, defense]
+    .every(value => Number.isFinite(value) && value >= 0)) return undefined;
+  return { ...stats, life: lifeMax, lifeMax, attack, defense };
 }
 
 /** Proof of successful engine preparation, retained independently of the unit's later life. */

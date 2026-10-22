@@ -48,7 +48,7 @@ import { getSkill } from '../skills/registry';
 import { buildSummon, getSummon } from '../skills/summons';
 import { isPreparationSummonSkill, SUMMON_PREPARATION_TEMPLATES } from '../skills/summon-preparation';
 import { empowerSkeletonSummon, type SkeletonMasteryProjection } from '../skills/skeleton-mastery';
-import { IRON_GOLEM_SKILL_ID, isIronGolemSkill, qualifyIronGolemSource,
+import { IRON_GOLEM_SKILL_ID, isIronGolemSkill, qualifyIronGolemSource, applyIronGolemItemStats,
   type IronGolemInput, type IronGolemPreparationAttestation } from '../skills/iron-golem';
 import { resolveSummonMaxCount, scalePerRank } from '../skills/scaling';
 import { resolveAoeTargets, withDefaultGridPositions } from './grid';
@@ -1132,9 +1132,8 @@ function prepareIronGolem(state: State, owner: CombatUnit, skill: RegisteredSkil
     !Number.isFinite(owner.mana) || owner.mana < cost) return;
   const template = buildSummon(owner, 'iron_golem', { skillLevel: rank, statScaling: effect.statScaling });
   if (!template) return;
-  const stats = { ...template.stats, life: template.stats.lifeMax + input.life,
-    lifeMax: template.stats.lifeMax + input.life, attack: template.stats.attack + input.attack,
-    defense: template.stats.defense + input.defense };
+  const stats = applyIronGolemItemStats(template.stats, input);
+  if (!stats) return;
   const candidate = { ...template, stats, life: stats.lifeMax };
   if (!validPreparationCandidate(candidate)) return;
   const spawned = castSkill(state, owner.id, skill, { summonId: 'iron_golem', units: [candidate], skillLevel: rank })?.[0];

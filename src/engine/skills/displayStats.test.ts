@@ -5,6 +5,8 @@ import skillSchema from '../../data/schema/skill.schema.json';
 import type { SkillDef } from '../types/skills';
 import { composeSkeletonMastery, type SkeletonMasteryProjection } from './skeleton-mastery';
 import { computeSkillDisplayModel, computeSkillRankDisplayStats } from './displayStats';
+import { applyIronGolemItemStats } from './iron-golem';
+import { getSummonStats } from './summons';
 
 describe('skill display stats', () => {
   it('scales direct damage and exposes next-level deltas', () => {
@@ -231,5 +233,85 @@ describe('BUG073 current allocated Skeleton Mastery in summon previews', () => {
     const model = computeSkillDisplayModel(revive(), 6, mastery(20));
     expectSummonValues(model.current, [210, 38, 23]);
     expectSummonValues(model.next, [222, 40, 24]);
+  });
+});
+
+const iron = () => authoredSummon('skills-necromancer-iron-golem');
+
+describe('D06 selected-item Iron current and next rank preview', () => {
+  it.each(['skills-necromancer-iron-golem', 'necromancer.iron_golem'])('adds Short Sword to %s at ranks6/7', id => {
+    const source = { ...iron(), id };
+    const bonuses = Object.freeze({ life: 0, attack: 8, defense: 0 });
+    const before = structuredClone(source);
+    const model = computeSkillDisplayModel(source, 6, mastery(20), bonuses);
+    expectSummonValues(model.current, [340, 54, 63]);
+    expectSummonValues(model.next, [356, 56, 66]);
+    expect(computeSkillRankDisplayStats(source, 6, undefined, bonuses)).toEqual(model.current);
+    expect(model.current?.manaCost).toBe(35);
+    expect(model.current?.summonCap).toBe(1);
+    expect(source).toEqual(before);
+  });
+
+  it.each([[1, 260, 36, 101], [20, 564, 74, 158]])('adds Chain Mail defense53 at rank%s', (rank, life, attack, defense) => {
+    const model = computeSkillDisplayModel(iron(), rank, undefined, { life: 0, attack: 0, defense: 53 });
+    expectSummonValues(model.current, [life, attack, defense]);
+    if (rank === 20) expect(model.next).toBeUndefined();
+  });
+
+  it('preserves fractional contributions without rounding or scaling them by rank', () => {
+    const model = computeSkillDisplayModel(iron(), 6, undefined, { life: 12.5, attack: 3.25, defense: 4.5 });
+    expectSummonValues(model.current, [352.5, 49.25, 67.5]);
+    expectSummonValues(model.next, [368.5, 51.25, 70.5]);
+  });
+
+  it('shows only rank1 for an unlearned preview without implying learned qualification', () => {
+    const model = computeSkillDisplayModel(iron(), 0, undefined, { life: 0, attack: 8, defense: 0 });
+    expect(model.current).toBeUndefined();
+    expect(model.nextRank).toBe(1);
+    expectSummonValues(model.next, [260, 44, 48]);
+  });
+
+  it('keeps ordinary base preview when item context is absent', () => {
+    expectSummonValues(computeSkillDisplayModel(iron(), 6).current, [340, 46, 63]);
+  });
+
+  it.each((['life', 'attack', 'defense'] as const).flatMap(key =>
+    [-1, NaN, Infinity, -Infinity].map(value => ({ ...{ life: 0, attack: 0, defense: 0 }, [key]: value }))))(
+    'omits an inherited preview for invalid bonuses %j', bonuses => {
+      const model = computeSkillDisplayModel(iron(), 6, undefined, bonuses);
+      expect(model.current?.summonUnit).toBeUndefined();
+      expect(model.next?.summonUnit).toBeUndefined();
+      expect(model.current?.manaCost).toBe(35);
+    });
+
+  it('omits overflow rather than showing base stats as a successful item preview', () => {
+    const source = { ...iron(), scaling: { summonStatsPerLevel: { attack: Number.MAX_VALUE } } };
+    const model = computeSkillDisplayModel(source, 2, undefined, { life: 0, attack: Number.MAX_VALUE, defense: 0 });
+    expect(model.current?.summonUnit).toBeUndefined();
+    expect(model.next?.summonUnit).toBeUndefined();
+  });
+
+  it.each([
+    () => skeleton(), () => mage(), () => revive(),
+    () => ({ ...iron(), id: 'synthetic.iron_golem' }),
+    () => ({ ...iron(), summonId: 'clay_golem' }),
+    () => { const source = { ...iron() }; delete source.summonId; return source; }
+  ])('ignores item context for unrelated or mismatched source %#', makeSkill => {
+    const source = makeSkill();
+    expect(computeSkillDisplayModel(source, 6, mastery(20), { life: 100, attack: 200, defense: 300 }))
+      .toEqual(computeSkillDisplayModel(source, 6, mastery(20)));
+  });
+
+  it('shares exact three-stat addition with preparation and preserves all unrelated fields', () => {
+    const base = getSummonStats('iron_golem', { skillLevel: 6, statScaling: iron().scaling?.summonStatsPerLevel });
+    if (!base) throw new Error('Missing Iron template');
+    const before = structuredClone(base);
+    const bonuses = Object.freeze({ life: 12.5, attack: 3.25, defense: 4.5 });
+    const stats = applyIronGolemItemStats(base, bonuses);
+    expect(stats).toEqual({ ...base, life: 352.5, lifeMax: 352.5, attack: 49.25, defense: 67.5 });
+    expect(stats?.resistances).toBe(base.resistances);
+    expect(base).toEqual(before);
+    expect(applyIronGolemItemStats({ ...base, defense: Number.MAX_VALUE },
+      { life: 0, attack: 0, defense: Number.MAX_VALUE })).toBeUndefined();
   });
 });
