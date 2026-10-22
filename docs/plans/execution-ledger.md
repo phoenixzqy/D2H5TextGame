@@ -7832,3 +7832,97 @@ originalexit2 andcorrectedstagedexit0, immutableoriginalgenerator/separatefixed
 copy, priorcleanup andemptydisposal. Allreadersreleased includingdist/tmp;
 noownartifacts/processes. Approval-onlyledgerappend; substantivereview remains
 applicable without unit/buildrerun. Broadgates/budgets/warnings remainopen.
+
+
+## D06 v1bo one authored mixed-army family
+
+Predecessor842de3ae4f52d2a9ef3dba81aaa4248acfea8749 and EOF-onlyfollow-up
+c1816b67a70624beeb732772f54eef6eb4ba621c committedlocally. Comboexactcleanup
+2f7fbdc704d54ca684579cb480a0eaa6cf01931d231e9cc5e8f11b67f4375c8d removed
+1306files/43858602bytes/15dirs; formatcleanup93c9e08365d4d5e436728f3dde0f61e708af6f5b82d66e8e6dad1b5ef2e44775
+empty; nofailures/remainingtargets, bothcheckouts clean; finalstagedwhitespace
+and follow-up commitcheck exit0. Alloriginalsource/raw/failureevidence retained.
+Producerplanreviewready and GD-DESIGN-REVIEW/TD-ARCH-REVIEW/
+QA-D06-MAGE-MIXED-PREFLIGHT APPROVE plan ae41ca6b9e6d1ec1bb24319f9ecf3ea1fdc17b7873e7bfb92b2ddb4c924ba313.
+Draftv1 retained; sourcecombatseed0/generation7 and separateSkeletonmagicDodge.05/
+Mage.09 correctedbeforegates. QA independentlyfroze exactJSstats/gridpositions/
+IDs(Skeleton1/2,Mage3..6)/withinMageFCLP/twopayments187→172→150/literals.
+OnefixedunearnedL26Skeleton6/Mage6/Mastery1, slotsSkeleton→Mage, unmodifiedArcane
+wave0/plan7/enemy991. Exactly2000fresh/1000pairs, nomatrix/derivedcontrols or
+outcomedrivenrecipechange. Sixhelpers+driver, noMasteryrunner; explicitserver.ws
+false andhmrfalse. Exact5paths:mixedfixture/runner/test/report/ledger. Rootsole
+writer/executor in existingclaimedworktree; originalreadonly. External evidence
+uses mage-army prefix after ownership guard found older retained mage-mixed
+engine evidence; no prior paths overwritten. Noengine/data/save/config/
+SaveCurrent11/remotechange. Broadergates/budgets/warnings remainopen.
+
+
+v1bo implementation preflight: GD-DESIGN-REVIEW/TD-ARCH-REVIEW and
+QA-D06-MAGE-MIXED-IMPLEMENTATION APPROVE; test-evidence ADEQUATE. Independently
+verified 346 immutable Git blobs, six helper copies per domain, seven configs,
+507 tool files and Node identity. Source manifest SHA256
+6d62e3665467d740755b0a1b2598fcd1f75163811ce2235b8a5ed081b82f5d72;
+mixed fixture logical c956c7e0a7ac23d779ba83348a0c76c1767acc7c115446f599623c47e8cd38b6,
+6735 serialized bytes SHA256 7e348dace3481ba5d0005dbaf01aaf58de1491daebfeaa9c6997e2b72a9ae3c8.
+Initial missing-module RED retained. green1 found timed/plain event-copy mismatch;
+types1 exposed test-contract typing errors; explicitlint1 found five strict lint
+errors; all preserved and corrected without production changes. The original
+synthetic test incorrectly used a fractional HP-orb restore: production floors
+425*.5 to212, so independent effective Mage/player oracles are507/687. Original
+draft remains retained. Negative events now update both event copies and assert
+the intended rejection reason. Current-source core-focused12 tests and explicit
+lint pass; types2/repository lint1 precede final lint-only cleanup and do not
+validate current bytes. Final complete serial checks will follow reporting.
+Source-only independent checker PASS;21 integrity probes2 accepted/19 rejected.
+Both four-seed diagnostic preflights settled exit0, all defeats, six registrations,
+12strata, native controls/zeros preserved, deterministic parity/input checks true,
+SSR servers closed. These diagnostics are outside measurement counts. All review
+readers released. Proceed to physical1000, inspect, then elemental1000; no recipe
+changes. Broader balance/earned/campaign/global gates remain open.
+
+
+v1bo measurements settled serially: physical1000 (10.281s), first-cell stream
+inspection PASS1000 rows/four independent replay samples (4.254s), elemental1000
+(10.103s), then1000 P→E pairs (10.395s). No remeasurement or recipe change.
+Independent exhaustive replay PASS10.832s:2000 battles/1000 pairs/484226 events,
+two isolated domain PIDs. All battles defeat/hero death; successfulTTK0/null.
+Each domain registered6000 summons,65 nonacting,6000 death events including orphan
+cleanup, no unexplained absence;6259 native player status events,0 stunned.
+Mage effective mean10.192→122.994; mean per-battle DPS.6887779254→8.3224487131.
+Hero/Skeleton/enemy means unchanged. Report generated from checked aggregates;
+24 unit×species rows preserve zeros and separate landed crit/noncrit histograms.
+Broader balance concerns remain. Producer bounded roadmap: the declared finite
+Mage rank/Mastery/mitigation/resistance-dodge/combo/mixed coverage is delivered;
+stop adding diagnostic families or seeking no-gear wins. Next concrete runtime
+card is authored Golem Mastery after explicit GD/TD Iron-life ordering; full
+Mage/D06/P09/P10/private-v1 and earned/campaign/holdout gates stay open. Final
+serial checks and independent frozen reviews now follow for exact five paths.
+
+
+GD/LD measured interpretation: BALANCE-CHECK CONCERNS. Every12683 Mage and8091
+Skeleton attempts/domain target Flayers; Horror exposure remains zero. C/L supply
+95.77% of elemental Mage damage. Mean player damage removes5.06% of2970 entryHP;
+paired duration unchanged (median15.3s/p95 18.7s), so no observed survival/victory,
+composition synergy, starvation or clear-speed claim. Report incorporates this
+bounded interpretation before final validation; all GD/LD readers released.
+
+
+v1bo final current-source serial validation PASS: focused52 tests/3files4.115s;
+typecheck16.345s; repositorylint42.252s; explicitlint6.638s; fullunit7575tests/
+247files136.387s; productionbuild9.887s; final exhaustivechecker11.144s. Checker
+replayed all2000battles/1000pairs/484226events, exactsources/fixtures/tools,
+reporttableidentity and productiontest-markerexclusion. Fullunit exceeds the
+existing15s budget; Browserslist/chunk-size/2.57MBprecache warnings remainopen.
+All checks settled exit0 before dependent work. Exact five-path frozen QA/TD
+reviews follow; no production engine/data/save/config change or global acceptance.
+
+
+Frozen v1bo review d0e83e708d4b1a03127c57dffda82d9931ee36b0750953a7ead5632a844804f3:
+QA APPROVE/test-evidence ADEQUATE; TD/five-axis APPROVE, no material findings.
+Independently verified 771 retained files/29 settled serial receipts/324 captures,
+346 gameplay blobs/507 tool files, all streams/events and 11 report tables. Exact
+disposal 1308 files/43855246 bytes/15 directories verified including identities;
+all readers released including dist/tmp, no reviewer artifacts/processes.
+Approval-only ledger append; other four paths unchanged. Balance CONCERNS, full
+Mage/D06/P09/P10/private-v1, existing budgets/build warnings remain open. Producer
+publication audit, staged whitespace gate, local commit and exact cleanup follow.
