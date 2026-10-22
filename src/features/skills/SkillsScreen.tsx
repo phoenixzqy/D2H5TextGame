@@ -14,6 +14,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { flushSync } from 'react-dom';
 import { useTranslation } from 'react-i18next';
+import { IronGolemPanel } from './IronGolemPanel';
 import { Button, Panel, ScreenShell, Tabs, resolveSkillIcon, tDataKey } from '@/ui';
 import { usePlayerStore } from '@/stores';
 import { useInventoryStore } from '@/stores/inventoryStore';
@@ -160,6 +161,7 @@ export function SkillsScreen() {
 
   const activeSkillId = previewSkillId ?? (selectedSkillId || defaultSkillId);
   const activeSkill = skillById.get(activeSkillId) ?? allSkills[0];
+  const selectedSkill = skillById.get(selectedSkillId);
   const activeModel = activeSkill
     ? computeSkillDisplayModel(activeSkill, allocatedSkills.get(activeSkill.id) ?? 0,
       player ? composeSkeletonMastery(player) : undefined)
@@ -296,6 +298,12 @@ export function SkillsScreen() {
           canAllocate={activeCanAllocate}
           onAllocate={allocateActiveSkill}
           t={t}
+        />
+      ) : null}
+      {selectedSkill?.id === 'skills-necromancer-iron-golem' ? (
+        <IronGolemPanel
+          skill={selectedSkill}
+          rank={allocatedSkills.get(selectedSkill.id) ?? 0}
         />
       ) : null}
     </div>
@@ -650,6 +658,9 @@ function SkillDetailPanel({
           <p className="text-sm text-d2-white/90">{t('auraSelection.rankBonuses')}</p>
         ) : null}
 
+        {skill.id === 'skills-necromancer-iron-golem' ? (
+          <p className="text-sm text-d2-white/90">{t('ironGolem.basePreview')}</p>
+        ) : null}
         <div className="grid gap-3 md:grid-cols-3">
           <StatSection
             title={current ? t('details.current') : t('details.notLearned')}

@@ -1,6 +1,6 @@
 # BUG-074 — Recheck the acknowledged sacrifice instance when arming
 
-- **Status:** Corrected locally; independent revised review and commit pending.
+- **Status:** Fixed in `192e810`; independent QA/TD/five-axis/producer reviews APPROVE.
 - **Severity:** Medium — stale acknowledgement can authorize a changed instance after a failed subscriber notification; selecting and acknowledging again is a workaround. Arming itself does not consume an item.
 - **Owner / affected systems:** frontend-dev; IronGolemPanel local acknowledgement and guarded selection adapter.
 - **Build:** parent `4f725440a266518026017a15c99477ba711427c0`, uncommitted standalone panel frozen by iron-panel-review.json SHA486056ff5bd810fa6deca69dbb5db82f4f6690112dc6871aae851cc9492e03fa.
@@ -41,8 +41,8 @@ preserve guard and acknowledgement error ordering. No payment or save change.
 
 Arm rereads the live draft and requires the exact acknowledged item reference
 before calling the existing guarded adapter. The causal regression now passes;
-final serial types/lint/full7251tests/production build pass. Commit identity
-will be recorded after independent publication review. Regression:
+final serial types/lint/full7251tests/production build pass. Local commit
+`192e810` contains the independently approved fix. Regression:
 `src/features/skills/IronGolemPanel.test.tsx` — “refuses stale acknowledgement
 after a same-ID replacement skips the mounted subscriber”. It also requires
 live unchecked/disabled state, no payment and successful explicit reacknowledgement.

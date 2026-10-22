@@ -6354,3 +6354,43 @@ uses a persistent committed-skill sibling form, preserving draft/ack through
 hover/focus previews; preview-only Iron does not expose interactive controls.
 Native Skills integration, production-byte browser/save/reload/earned acceptance,
 native identification and fullD06/P09/P10/private-v1 remain open. No remote action.
+
+## D06 v1av committed-skill Iron controls integration
+
+Standalone panel committed as `192e810` after revised QA/TD/five-axis/producer
+APPROVE. Exact cleanup removed858files/42,835,763bytes/15directories, zero
+failures or remaining targets; recorded processes absent. BUG074 now records
+that fix commit. Umbrella worktree claim continues; root remains sole executor.
+TD-D06-UI-INTEGRATION-PLAN and QA plan APPROVE this four-path increment.
+
+SkillsScreen resolves the committed selected skill through the current class's
+skillById map and mounts one IronGolemPanel sibling after the fixed detail panel.
+Temporary hover/focus previews still update ordinary detail without replacing the
+interactive form, its draft, acknowledgement or focus. Preview-only Iron does not
+mount controls. Committing another skill/class or leaving the tree can unmount
+local controls; future armed authority remains in its existing guarded store.
+Current allocated rank flows to the panel; the shared preview formula remains
+authoritative. Legacy Iron detail explicitly labels base-only values separately
+from chosen-item totals. No save/schema/payment/engine or combo behavior changes.
+
+Eight mounted integration cases (four per locale) cover preview-only versus
+committed selection, exact form/select identity through hover/focus/Tab restoration,
+explicit skill-change draft/ack reset with armed instruction retention and clear,
+no selection/payment/combo side effects, and native allocation r6→7 updating
+literal item-adjusted totals340/54/63→356/56/66→372/58/69 while base Attack46 stays
+separately scoped. Programmatic component focus does not prove native traversal.
+Initial RED8failed9.938s (missing mount/base label); GREEN8passed8.472s.
+Final serial types15.599s, lint42.347s/85purity, full7259tests/233files120.023s
+(Vitest118.54s), production build9.860s passed. Build explicitly VITE_E2E=false,
+610modules, index-BnQMJlsE.js1297.29kB. Focused/full exceed5s/15s budgets;
+existing chunk/Browserslist/precache warnings remain; no policy was weakened.
+
+Root security check: pass; existing guarded local panel authority only, no new
+external IO, dependencies, credentials, permissions or persisted state. Exact
+four-path source/config/output captures, original RED and prior cleanup, plus
+owned dist/tmp inventory freeze in iron-integration-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA/test-evidence and TD/five-axis final reviews APPROVE this frozen
+slice; all readers released. Producer publication, local commit and exact cleanup follow. Native production browser
+matrix/save/reload/import/replay acceptance, earned acquisition, native identify
+and fullD06/P09/P10/private-v1 remain open. No remote action.
