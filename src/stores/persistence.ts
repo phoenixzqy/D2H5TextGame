@@ -16,7 +16,7 @@ import i18n from '@/i18n';
 import { buildSave, toJsonSafe } from '@/engine/save';
 import { decodeSave } from '@/engine/save/validate';
 import { resumeIdleBonus } from '@/engine/idle/persisted-bonus';
-import { clearCombatAfterRestore } from './combatHelpers';
+import { clearCombatAfterRestore } from './combatRunLifecycle';
 import { seedItemSeqFromIds } from '@/engine/loot/rollItem';
 import type { SaveCurrent } from '@/engine/types/save';
 import { hasSave, loadSave, saveSave, deleteSave } from './save-adapter';

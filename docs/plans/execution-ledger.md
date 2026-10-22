@@ -5130,3 +5130,71 @@ await exact cleanup. Root remains sole writer/executor;
 umbrella worktree claim continues; no remote action. Actual lease acquisition/save
 wake, selected-item staging/debit, recovery, settlement/replay integration,
 bilingual Iron UI/browser acceptance and fullD06/P09/P10/private-v1 remain open.
+
+## D06 v1ab production wave leases and deferred-save wake
+
+Receipt foundation received independent QA, TD/five-axis and producer APPROVE
+and committed as `ff785b6`. Exact receipt-foundation cleanup removed1300files/
+43,819,016bytes and14empty directories with zero failures/remaining targets;
+all17recorded command identities were dead. Diagnostics remain retained.
+
+TD approved this five-path lease plan. Start, advance and explicit current-wave
+replay now acquire one synchronous wave lease before gameplay reads and retain it
+through simulation, publication, completion effects and synchronous subscribers.
+An ownership preflight precedes even the hydration read. All return/throw paths
+release in finally; a deferred notification requests one normal save debounce
+after release. Ordinary/default/false refresh stays an unconditional no-op and
+private playWave does not reacquire. Start argument validation retains precedence.
+The unchanged restore-cleanup function moved to combatRunLifecycle, with a helpers
+re-export and direct persistence import, removing persistence-to-helpers before
+helpers calls the existing persistence save wake. No save schema change occurs.
+
+Nineteen real helper/guard/persistence integration tests fake only Dexie's IO
+boundary. They verify nested transition/abort/hero/selection/snapshot/export/
+flush/import/delete/hydration/restore refusals through publication and rewards,
+no duplicate simulation/payout during reentry, no-player/no-run/inactive/incomplete
+release, original engine/setter/subscriber error identity, and real autosave
+subscriptions coalescing inventory/player mutations until one post-release500ms
+save. No-mutation and stopAutoSave-before-unwind controls schedule no new save.
+This ownership slice does not yet make settlement once-only after a thrown effect.
+
+Preimplementation publication RED2failed10.719s and transition RED3failed/10passed
+11.535s demonstrated accepted nested work, including reward reentry. Transition
+GREEN13passed24.031s followed ownership acquisition. Added save integration19passed
+16.578s and focused151/5files10.560s passed; save-wake tests were added after wake
+implementation and have no preimplementation RED claim. Initial types passed
+15.662s. Initial lint failed40.438s on prefer-for-of and an empty cleanup callback
+in the new test. Both corrected without suppression; all original receipts and
+source/output identities remain retained.
+
+Final serial focused151/5files6.010s, types15.177s, lint40.851s including85purity
+files, full6630/224files116.167s and build10.132s passed. Build606modules/
+index-DY70nKO3.js1262.67kB observed. Prior unexplained build variance remains open;
+no deterministic bundle-equivalence claim. Related5s/full15s budget overruns and
+existing React act, fixture fallback, stale Browserslist, chunk/precache diagnostics
+remain open. SaveCurrent11 unchanged.
+
+Development-browser integration passed19.443s for start/replay/advance/throwing
+subscriber at360x640 and1280x800. Each of8flows refused7nested operations, retained
+original failure identity where injected, released ownership and produced exactly
+one coalesced real IndexedDB write with the expected live inventory values.
+No console/page errors were observed. Hero creation used UI controls; transition,
+fixture finisher and observer injection used dev modules. This is not production-
+build, visual, earned-gameplay or fullD06 acceptance. No UI or locale strings
+changed; Chinese screenshot glyph rendering remains unresolved. Browser contexts
+and browser closed; the exact task-owned Vite server was terminated and reaped,
+with process identity and cleanup result retained in the browser server receipt.
+No persistent server remains. Security check passes: fail-closed synchronous
+ownership and normal save wake add no new item-write authority, dependency, save
+payload, external IO or bypass. No app-source browser hooks were introduced.
+
+Five paths, all wave-leases command/source/output identities, prior cleanup and
+exact owned dist/tmp inventory are frozen in wave-leases-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review remains before commit; disposable outputs
+await exact cleanup.
+Root is sole writer/executor; umbrella worktree claim continues; no remote action.
+Privately owned immutable input, phase access, receipt staging/debit/recovery,
+once-only settlement and replay lock integration, bilingual Iron UI/browser
+acceptance and fullD06/P09/P10/private-v1 remain open.

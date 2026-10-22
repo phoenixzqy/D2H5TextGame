@@ -25,7 +25,8 @@ import { resolveSubArea } from './subAreaResolver';
 import { useCombatStore, type CombatLogEntry, type RecordedBattleOutcome } from './combatStore';
 import { stageRecordedBattle, type RecordedBattlePublication } from './recordedBattlePublication';
 import { combatRunLifecycle, type ActiveRun } from './combatRunLifecycle';
-import { abandonRecordedWaves, clearRecordedWavesAfterRestore } from './recordedWaveReceipt';
+import { abandonRecordedWaves } from './recordedWaveReceipt';
+export { clearCombatAfterRestore } from './combatRunLifecycle';
 import { eventToLocalizedLogEntry } from './eventToLogI18n';
 import { useInventoryStore } from './inventoryStore';
 import { useMapStore } from './mapStore';
@@ -48,16 +49,20 @@ import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-
 import { composeSkeletonMastery } from '@/engine/skills/skeleton-mastery';
 import { isPreparationSummonSkill } from '@/engine/skills/summon-preparation';
 import { isIronGolemSkill } from '@/engine/skills/iron-golem';
-import { clearIronGolemSelection, clearIronGolemSelectionAfterRestore } from './ironGolemSelectionStore';
+import { clearIronGolemSelection } from './ironGolemSelectionStore';
 import { useHydrationStore } from './hydrationStore';
-import { WaveGuardError, assertWaveRestoreOwner, assertWaveSnapshotAllowed, type WaveRestoreLease } from './waveTransitionGuard';
+import { beginWaveTransition, endWaveTransition, assertWaveSnapshotAllowed } from './waveTransitionGuard';
+import { resumeWaveDeferredSave } from './persistence';
 import { canonicalSkillIdFromData, getSkillRequiredLevel, getSkillsForClass,
   skillIdAliases, type SkillTemplate } from './skillsHelpers';
 
-/** Check existing ownership before hydration; this preflight acquires no lease. */
-function assertWaveReady(): void {
+/** Hold ownership through synchronous callbacks; wake a deferred save after release. */
+function withWaveTransition<T>(operation: () => T): T {
   assertWaveSnapshotAllowed();
-  if (useHydrationStore.getState().status !== 'ready') throw new WaveGuardError('hydrationNotReady');
+  const lease = beginWaveTransition(useHydrationStore.getState().status === 'ready');
+  try { return operation(); } finally {
+    if (endWaveTransition(lease)) resumeWaveDeferredSave();
+  }
 }
 
 const CHALLENGE_ORDINAL_PERIOD = 360360;
@@ -409,12 +414,13 @@ export function refreshActivePlayerCombatConfig({
   readonly replayCurrentWave?: boolean;
 } = {}): void {
   if (!replayCurrentWave) return;
-  assertWaveReady();
-  if (!combatRunLifecycle.activeRun) return;
-  const combat = useCombatStore.getState();
-  if (combat.inCombat) {
-    playWave(combatRunLifecycle.activeRun.waveIdx);
-  }
+  withWaveTransition(() => {
+    if (!combatRunLifecycle.activeRun) return;
+    const combat = useCombatStore.getState();
+    if (combat.inCombat) {
+      playWave(combatRunLifecycle.activeRun.waveIdx);
+    }
+  });
 }
 
 /** Reset transient online-idle elite pity when the player stops idle farming. */
@@ -462,82 +468,83 @@ export function startSubAreaRun(opts: {
       opts.challengeOrdinal >= CHALLENGE_ORDINAL_PERIOD)) {
     throw new RangeError('challengeOrdinal must be an integer in [0, 360360)');
   }
-  assertWaveReady();
-  const playerState = usePlayerStore.getState();
-  if (!playerState.player) {
-    console.warn('[startSubAreaRun] no player; abort');
-    return null;
-  }
+  return withWaveTransition(() => {
+    const playerState = usePlayerStore.getState();
+    if (!playerState.player) {
+      console.warn('[startSubAreaRun] no player; abort');
+      return null;
+    }
 
-  const map = useMapStore.getState();
-  const act = clampAct(opts.act ?? map.currentAct);
-  const subAreaId = opts.subAreaId ?? map.currentSubAreaId;
-  const subArea = resolveSubArea(act, subAreaId);
-  const mode = opts.mode ?? 'manual';
+    const map = useMapStore.getState();
+    const act = clampAct(opts.act ?? map.currentAct);
+    const subAreaId = opts.subAreaId ?? map.currentSubAreaId;
+    const subArea = resolveSubArea(act, subAreaId);
+    const mode = opts.mode ?? 'manual';
 
-  // Resolve a wave plan, falling back to the synthetic 4-wave default.
-  // Run seed is generated up-front and threaded into wave-plan resolution
-  // so spawn-count rolls are reproducible per-run (Bug C).
-  const fallbackArchetype = pickFallbackArchetypeId(act);
-  const synthId = `areas/synth-act${String(act)}`;
-  const planSeed = opts.runSeed ?? hashSeed(
-    `${subArea?.id ?? synthId}|${String(Date.now())}`
-  );
-  const challengeOrdinal = opts.challengeOrdinal ?? manualChallengeOrdinal;
-  const plan = subArea
-    ? resolveChallengeWavePlan({
-        subArea,
-        fallbackArchetypeId: fallbackArchetype,
-        fallbackLevel: subArea.areaLevel,
-        seed: planSeed,
-        challengeOrdinal,
-        mode,
-        idleEliteMisses: getIdleEliteMisses()
-      })
-    : synthDefaultPlan(
-        {
-          id: synthId,
-          lootTable: `loot/trash-act${String(act)}`,
-          areaLevel: opts.level ?? playerState.player.level
-        },
-        fallbackArchetype,
-        opts.level ?? playerState.player.level,
-        planSeed
-      );
+    // Resolve a wave plan, falling back to the synthetic 4-wave default.
+    // Run seed is generated up-front and threaded into wave-plan resolution
+    // so spawn-count rolls are reproducible per-run (Bug C).
+    const fallbackArchetype = pickFallbackArchetypeId(act);
+    const synthId = `areas/synth-act${String(act)}`;
+    const planSeed = opts.runSeed ?? hashSeed(
+      `${subArea?.id ?? synthId}|${String(Date.now())}`
+    );
+    const challengeOrdinal = opts.challengeOrdinal ?? manualChallengeOrdinal;
+    const plan = subArea
+      ? resolveChallengeWavePlan({
+          subArea,
+          fallbackArchetypeId: fallbackArchetype,
+          fallbackLevel: subArea.areaLevel,
+          seed: planSeed,
+          challengeOrdinal,
+          mode,
+          idleEliteMisses: getIdleEliteMisses()
+        })
+      : synthDefaultPlan(
+          {
+            id: synthId,
+            lootTable: `loot/trash-act${String(act)}`,
+            areaLevel: opts.level ?? playerState.player.level
+          },
+          fallbackArchetype,
+          opts.level ?? playerState.player.level,
+          planSeed
+        );
 
-  const seed = planSeed;
-  const formation = useFormationStore.getState();
-  const playerUnit = playerToCombatUnit(playerState.player);
-  const mercState = useMercStore.getState();
-  const fieldedMerc = mercState.fieldedMercId
-    ? mercState.ownedMercs.find(merc => merc.id === mercState.fieldedMercId)
-    : undefined;
-  const mercUnit = fieldedMerc
-    ? mercToCombatUnit(
-        fieldedMerc, formation.mercPosition, mercState.mercEquipment[fieldedMerc.id]
-      )
-    : undefined;
-  const playerTeam: CombatUnit[] = mercUnit ? [playerUnit, mercUnit] : [playerUnit];
+    const seed = planSeed;
+    const formation = useFormationStore.getState();
+    const playerUnit = playerToCombatUnit(playerState.player);
+    const mercState = useMercStore.getState();
+    const fieldedMerc = mercState.fieldedMercId
+      ? mercState.ownedMercs.find(merc => merc.id === mercState.fieldedMercId)
+      : undefined;
+    const mercUnit = fieldedMerc
+      ? mercToCombatUnit(
+          fieldedMerc, formation.mercPosition, mercState.mercEquipment[fieldedMerc.id]
+        )
+      : undefined;
+    const playerTeam: CombatUnit[] = mercUnit ? [playerUnit, mercUnit] : [playerUnit];
 
-  const candidate: ActiveRun = {
-    plan,
-    act,
-    seed,
-    mode,
-    ...(mercUnit ? { fieldedMercCombatId: mercUnit.id } : {}),
-    playerUnit,
-    waveIdx: 0,
-    carryPlayerTeam: playerTeam,
-    waveElapsedMs: 0
-  };
+    const candidate: ActiveRun = {
+      plan,
+      act,
+      seed,
+      mode,
+      ...(mercUnit ? { fieldedMercCombatId: mercUnit.id } : {}),
+      playerUnit,
+      waveIdx: 0,
+      carryPlayerTeam: playerTeam,
+      waveElapsedMs: 0
+    };
 
-  const staged = stageWave(candidate, 0, true);
-  combatRunLifecycle.activeRun = candidate;
-  if (opts.challengeOrdinal === undefined) {
-    manualChallengeOrdinal = (challengeOrdinal + 1) % CHALLENGE_ORDINAL_PERIOD;
-  }
-  installStagedWave(candidate, staged);
-  return { runId: plan.subAreaId, totalWaves: plan.waves.length, runSeed: seed, challengeOrdinal };
+    const staged = stageWave(candidate, 0, true);
+    combatRunLifecycle.activeRun = candidate;
+    if (opts.challengeOrdinal === undefined) {
+      manualChallengeOrdinal = (challengeOrdinal + 1) % CHALLENGE_ORDINAL_PERIOD;
+    }
+    installStagedWave(candidate, staged);
+    return { runId: plan.subAreaId, totalWaves: plan.waves.length, runSeed: seed, challengeOrdinal };
+  });
 }
 
 /**
@@ -554,104 +561,92 @@ export function startSubAreaRun(opts: {
  * no-run/playback controls and every completion effect.
  */
 export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idle' {
-  assertWaveReady();
-  if (!combatRunLifecycle.activeRun) return 'idle';
-  const combat = useCombatStore.getState();
-  const outcome = combat.outcome;
+  return withWaveTransition(() => {
+    if (!combatRunLifecycle.activeRun) return 'idle';
+    const combat = useCombatStore.getState();
+    const outcome = combat.outcome;
 
-  if (!outcome || !combat.playbackComplete) return 'idle';
+    if (!outcome || !combat.playbackComplete) return 'idle';
 
-  const completedWave = combatRunLifecycle.activeRun.plan.waves[combatRunLifecycle.activeRun.waveIdx];
-  if (
-    combatRunLifecycle.activeRun.mode === 'idle' &&
-    completedWave?.presentation?.idleEliteMissesAfterWave !== undefined
-  ) {
-    setIdleEliteMisses(completedWave.presentation.idleEliteMissesAfterWave);
-  }
+    const completedWave = combatRunLifecycle.activeRun.plan.waves[combatRunLifecycle.activeRun.waveIdx];
+    if (
+      combatRunLifecycle.activeRun.mode === 'idle' &&
+      completedWave?.presentation?.idleEliteMissesAfterWave !== undefined
+    ) {
+      setIdleEliteMisses(completedWave.presentation.idleEliteMissesAfterWave);
+    }
 
-  const alivePlayer = outcome.finalPlayerTeam.find(
-    (u) => u.id === combatRunLifecycle.activeRun?.playerUnit.id && u.life > 0
-  );
-  if (outcome.winner !== 'player' || !alivePlayer) {
-    combat.markRunDefeat();
-    combatRunLifecycle.activeRun = null;
-    return 'defeat';
-  }
+    const alivePlayer = outcome.finalPlayerTeam.find(
+      (u) => u.id === combatRunLifecycle.activeRun?.playerUnit.id && u.life > 0
+    );
+    if (outcome.winner !== 'player' || !alivePlayer) {
+      combat.markRunDefeat();
+      combatRunLifecycle.activeRun = null;
+      return 'defeat';
+    }
 
-  const slain = outcome.finalEnemyTeam.filter(
-    (u) => u.life <= 0 && inferKind(u) !== 'summon'
-  );
-  if (slain.length > 0) {
-    const now = Date.now();
-    const multiplier = useMetaStore.getState().readIdleBonus(now).activeMultiplier;
-    let xpGained = 0;
-    for (const enemy of slain) xpGained += Math.floor(xpForKill(enemy.level) * multiplier);
-    if (xpGained > 0) {
-      const xpResult = usePlayerStore.getState().gainExperience(xpGained);
-      useMercStore.getState().shareExperienceWithFielded(xpGained);
-      if (xpResult.levelsGained > 0) {
-        combat.addLogEntry({
-          type: 'system',
-          actorId: 'system',
-          actorName: 'System',
-          message: `combat:levelUp:${String(xpResult.newLevel)}`
+    const slain = outcome.finalEnemyTeam.filter(
+      (u) => u.life <= 0 && inferKind(u) !== 'summon'
+    );
+    if (slain.length > 0) {
+      const now = Date.now();
+      const multiplier = useMetaStore.getState().readIdleBonus(now).activeMultiplier;
+      let xpGained = 0;
+      for (const enemy of slain) xpGained += Math.floor(xpForKill(enemy.level) * multiplier);
+      if (xpGained > 0) {
+        const xpResult = usePlayerStore.getState().gainExperience(xpGained);
+        useMercStore.getState().shareExperienceWithFielded(xpGained);
+        if (xpResult.levelsGained > 0) {
+          combat.addLogEntry({
+            type: 'system',
+            actorId: 'system',
+            actorName: 'System',
+            message: `combat:levelUp:${String(xpResult.newLevel)}`
+          });
+        }
+      }
+
+      const wave = combatRunLifecycle.activeRun.plan.waves[combatRunLifecycle.activeRun.waveIdx];
+      const tcId = wave?.lootTable ?? combatRunLifecycle.activeRun.plan.defaultLootTable;
+      const rewards = awardLootForVictory({
+        slainEnemies: slain,
+        act: combatRunLifecycle.activeRun.act,
+        treasureClassId: tcId,
+        seed: combatRunLifecycle.activeRun.seed ^ 0x9e3779b1 ^ combatRunLifecycle.activeRun.waveIdx,
+        magicFindMultiplier: multiplier
+      });
+      combat.accumulateRunRewards(rewards);
+    }
+
+    const nextIdx = combatRunLifecycle.activeRun.waveIdx + 1;
+    if (nextIdx >= combatRunLifecycle.activeRun.plan.waves.length) {
+      const recording = combatRunLifecycle.activeRun.recording;
+      const boss = recording?.chapterBoss;
+      if (boss && outcome === recording.outcome && combat.recordedEvents === recording.events &&
+        combat.subAreaRunId === combatRunLifecycle.activeRun.plan.subAreaId &&
+        combat.currentWave === combatRunLifecycle.activeRun.waveIdx + 1 && combat.totalWaves === combatRunLifecycle.activeRun.plan.waves.length &&
+        outcome.finalEnemyTeam.some(enemy => enemy.id === boss.unitId && enemy.side === 'enemy' &&
+          enemy.kind === 'monster' && enemy.tier === 'chapter-boss' && enemy.life <= 0)) {
+        useMapStore.getState().recordBossKill({
+          actId: `acts/act${String(combatRunLifecycle.activeRun.act)}`,
+          areaId: combatRunLifecycle.activeRun.plan.subAreaId,
+          bossArchetypeId: boss.archetypeId
         });
       }
+      // Only a complete sequence of won waves can clear an area or unlock idle.
+      useMapStore.getState().markCleared(combatRunLifecycle.activeRun.plan.subAreaId);
+      combat.markRunVictory();
+      combatRunLifecycle.activeRun = null;
+      return 'victory';
     }
-
-    const wave = combatRunLifecycle.activeRun.plan.waves[combatRunLifecycle.activeRun.waveIdx];
-    const tcId = wave?.lootTable ?? combatRunLifecycle.activeRun.plan.defaultLootTable;
-    const rewards = awardLootForVictory({
-      slainEnemies: slain,
-      act: combatRunLifecycle.activeRun.act,
-      treasureClassId: tcId,
-      seed: combatRunLifecycle.activeRun.seed ^ 0x9e3779b1 ^ combatRunLifecycle.activeRun.waveIdx,
-      magicFindMultiplier: multiplier
-    });
-    combat.accumulateRunRewards(rewards);
-  }
-
-  const nextIdx = combatRunLifecycle.activeRun.waveIdx + 1;
-  if (nextIdx >= combatRunLifecycle.activeRun.plan.waves.length) {
-    const recording = combatRunLifecycle.activeRun.recording;
-    const boss = recording?.chapterBoss;
-    if (boss && outcome === recording.outcome && combat.recordedEvents === recording.events &&
-      combat.subAreaRunId === combatRunLifecycle.activeRun.plan.subAreaId &&
-      combat.currentWave === combatRunLifecycle.activeRun.waveIdx + 1 && combat.totalWaves === combatRunLifecycle.activeRun.plan.waves.length &&
-      outcome.finalEnemyTeam.some(enemy => enemy.id === boss.unitId && enemy.side === 'enemy' &&
-        enemy.kind === 'monster' && enemy.tier === 'chapter-boss' && enemy.life <= 0)) {
-      useMapStore.getState().recordBossKill({
-        actId: `acts/act${String(combatRunLifecycle.activeRun.act)}`,
-        areaId: combatRunLifecycle.activeRun.plan.subAreaId,
-        bossArchetypeId: boss.archetypeId
-      });
-    }
-    // Only a complete sequence of won waves can clear an area or unlock idle.
-    useMapStore.getState().markCleared(combatRunLifecycle.activeRun.plan.subAreaId);
-    combat.markRunVictory();
-    combatRunLifecycle.activeRun = null;
-    return 'victory';
-  }
-  const elapsedMs = combatRunLifecycle.activeRun.waveElapsedMs;
-  combatRunLifecycle.activeRun.carryPlayerTeam = outcome.finalPlayerTeam
-    .filter(u => inferKind(u) !== 'summon' && u.life > 0)
-    .map(u => rebaseStatusClock(u, elapsedMs));
-  combatRunLifecycle.activeRun.waveIdx = nextIdx;
-  playWave(nextIdx);
-  return 'next-wave';
-}
-
-/**
- * Abandon process-local combat only after a validated restore/deletion succeeds.
- * The caller retains its restore reservation throughout installation. An invalid
- * or released lease throws WaveGuardError before any transient state changes.
- */
-export function clearCombatAfterRestore(lease: WaveRestoreLease): void {
-  assertWaveRestoreOwner(lease);
-  combatRunLifecycle.activeRun = null;
-  clearRecordedWavesAfterRestore(lease);
-  useCombatStore.getState().reset();
-  clearIronGolemSelectionAfterRestore(lease);
+    const elapsedMs = combatRunLifecycle.activeRun.waveElapsedMs;
+    combatRunLifecycle.activeRun.carryPlayerTeam = outcome.finalPlayerTeam
+      .filter(u => inferKind(u) !== 'summon' && u.life > 0)
+      .map(u => rebaseStatusClock(u, elapsedMs));
+    combatRunLifecycle.activeRun.waveIdx = nextIdx;
+    playWave(nextIdx);
+    return 'next-wave';
+  });
 }
 
 /**

@@ -2,9 +2,9 @@ import type { WavePlan } from '@/engine/combat';
 import type { CombatUnit } from '@/engine/combat/types';
 import type { RecordedBattleEvent } from '@/engine/combat/combat';
 import { useCombatStore, type RecordedBattleOutcome } from './combatStore';
-import { clearIronGolemSelection } from './ironGolemSelectionStore';
-import { assertWaveSnapshotAllowed } from './waveTransitionGuard';
-import { abandonRecordedWaves } from './recordedWaveReceipt';
+import { clearIronGolemSelection, clearIronGolemSelectionAfterRestore } from './ironGolemSelectionStore';
+import { assertWaveRestoreOwner, assertWaveSnapshotAllowed, type WaveRestoreLease } from './waveTransitionGuard';
+import { abandonRecordedWaves, clearRecordedWavesAfterRestore } from './recordedWaveReceipt';
 
 /** Internal transient run shape; never persisted or exported through a public barrel. */
 export interface ActiveRun {
@@ -42,4 +42,17 @@ export function clearCombatForHeroReplacement(): void {
   abandonRecordedWaves();
   useCombatStore.getState().reset();
   clearIronGolemSelection();
+}
+
+/**
+ * Abandon process-local combat only after a validated restore/deletion succeeds.
+ * The caller retains its restore reservation throughout installation. An invalid
+ * or released lease throws WaveGuardError before any transient state changes.
+ */
+export function clearCombatAfterRestore(lease: WaveRestoreLease): void {
+  assertWaveRestoreOwner(lease);
+  combatRunLifecycle.activeRun = null;
+  clearRecordedWavesAfterRestore(lease);
+  useCombatStore.getState().reset();
+  clearIronGolemSelectionAfterRestore(lease);
 }
