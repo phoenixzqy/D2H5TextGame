@@ -1,0 +1,154 @@
+import { createServer } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/vite/dist/node/index.js';
+import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
+import assert from 'node:assert/strict';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const wt = '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2';
+const root = path.dirname(fileURLToPath(import.meta.url));
+const inputPath = path.join(wt, 'docs/plans/evidence/fixtures/p04a10-den-claimed-earned.json');
+const encode = value => JSON.stringify(value, (_key, v) => v instanceof Map ? [...v.entries()] : v instanceof Set ? [...v] : v, 2) + '\n';
+const sha = bytes => createHash('sha256').update(bytes).digest('hex');
+const input = await readFile(inputPath);
+assert.equal(sha(input), 'b022aa436d30b9102528995f6f5c2419000f682df84d18d6c18321547e2faa35');
+const files = execFileSync('git', ['ls-files', '-z', 'src', 'tests/sim/production', 'package.json', 'package-lock.json', 'vite.config.ts'], { cwd: wt, encoding: 'utf8' }).split('\0').filter(Boolean);
+const sources = async () => Object.fromEntries(await Promise.all(files.map(async rel => [rel, sha(await readFile(path.join(wt, rel)))])));
+const beforeSources = await sources();
+const report = { kind: 'earned production-service Act I continuation; not native browser or idle timing proof',
+  head: execFileSync('git', ['rev-parse', 'HEAD'], { cwd: wt, encoding: 'utf8' }).trim(),
+  inputSha: sha(input), scriptSha: sha(await readFile(fileURLToPath(import.meta.url))),
+  node: process.version, pid: process.pid, seed: 2223645302, firstOrdinal: 41, maxFarmRuns: 100,
+  farmMode: 'manual', targetLevel: 12, levelCeiling: 14, bonus: 1,
+  rules: ['stop at first nonwin or L12', 'no retry, respec, refill, gear change, direct XP grant or idle ticker',
+    'earned points only: Ice Blast; each level 2 Vitality / 3 Energy',
+    'then uncleared Blood Moor, Cold Plains, Burial Grounds, Dark Wood once in order'],
+  runs: [], allocations: [], totalCombatMs: 0, sources: beforeSources };
+let server, restorers = [], state, helpers, player, inventory, merc, map, meta, formation, hydration, combat, oldPity;
+const originalNow = Date.now;
+try {
+  await mkdir(path.join(root, 'tmp'), { recursive: true });
+  server = await createServer({ configFile: false, root: wt, cacheDir: path.join(root, 'vite-cache'),
+    server: { middlewareMode: true, hmr: false }, resolve: { alias: { '@': path.join(wt, 'src') } } });
+  const load = rel => server.ssrLoadModule('/' + rel);
+  state = await load('tests/sim/production/earned-state.ts');
+  const playback = await load('tests/sim/production/earned-playback.ts');
+  helpers = await load('src/stores/combatHelpers.ts');
+  const pity = await load('src/stores/idleElitePity.ts');
+  const { decodeSave } = await load('src/engine/save/validate.ts');
+  const { toJsonSafe } = await load('src/engine/save/serialize.ts');
+  const { xpTotal } = await load('src/engine/progression/xp.ts');
+  ({ usePlayerStore: player } = await load('src/stores/playerStore.ts'));
+  ({ useInventoryStore: inventory } = await load('src/stores/inventoryStore.ts'));
+  ({ useMercStore: merc } = await load('src/stores/mercStore.ts'));
+  ({ useMapStore: map } = await load('src/stores/mapStore.ts'));
+  ({ useMetaStore: meta } = await load('src/stores/metaStore.ts'));
+  ({ useFormationStore: formation } = await load('src/stores/formationStore.ts'));
+  ({ useHydrationStore: hydration } = await load('src/stores/hydrationStore.ts'));
+  ({ useCombatStore: combat } = await load('src/stores/combatStore.ts'));
+  const { default: i18n } = await load('src/i18n/index.ts'); await i18n.changeLanguage('en');
+  const save = decodeSave(JSON.parse(input));
+  restorers = state.captureEarnedRestorers(); oldPity = pity.getIdleEliteMisses();
+  Date.now = () => 1792497600000;
+  state.resetEarnedStores();
+  player.setState({ player: structuredClone(save.player) });
+  inventory.setState(structuredClone(save.inventory)); merc.setState(structuredClone(save.mercs));
+  map.setState(structuredClone(save.map)); meta.setState({ ...structuredClone(save.meta), idleBonusAnchor: Date.now() });
+  formation.getState().hydrate(save.formation); hydration.getState().setStatus('ready');
+  const exportSave = () => {
+    const observed = state.observeEarnedState();
+    return toJsonSafe({ version: save.version, timestamp: save.timestamp,
+      player: observed.player.player, inventory: observed.inventory, mercs: observed.merc,
+      map: observed.map, meta: { settings: observed.meta.settings, idleState: observed.meta.idleState,
+        gachaState: observed.meta.gachaState }, formation: observed.formation });
+  };
+  assert.deepEqual(exportSave(), toJsonSafe(save)); report.initialFullSaveEquality = true;
+  const totalXp = () => xpTotal(player.getState().player.level) + player.getState().player.experience;
+  report.initialCumulativeXp = totalXp(); assert.equal(totalXp(), 13230);
+  const allocate = () => {
+    const before = structuredClone(player.getState().player);
+    if (!before.statPoints && !before.skillPoints) return;
+    assert.equal(before.statPoints % 5, 0, 'Only full earned level stat budgets');
+    const levels = before.statPoints / 5;
+    if (levels) assert.equal(player.getState().allocateStatPoints({ strength: 0, dexterity: 0,
+      vitality: levels * 2, energy: levels * 3 }, player.getState().player), 'ok');
+    for (let i = 0; i < before.skillPoints; i++)
+      assert.equal(player.getState().allocateSkillPoint('skills-sorceress-ice-blast'), 'ok');
+    const after = structuredClone(player.getState().player);
+    assert.equal(after.derivedStats.life, before.derivedStats.life, 'No allocation healing');
+    assert.equal(after.derivedStats.mana, before.derivedStats.mana, 'No allocation mana refill');
+    report.allocations.push({ level: after.level, statPointsSpent: before.statPoints,
+      skillPointsSpent: before.skillPoints, coreStats: after.coreStats, skillLevels: after.skillLevels });
+  };
+  allocate();
+  const attempt = async (area, ordinal, purpose) => {
+    assert.ok(player.getState().player.level <= report.levelCeiling);
+    assert.equal(helpers.hasActiveSubAreaRun(), false);
+    map.getState().setCurrentLocation(1, area);
+    const before = state.observeEarnedState();
+    const handle = playback.startEarnedRun({ act: 1, subAreaId: area, mode: 'manual',
+      runSeed: report.seed, challengeOrdinal: ordinal });
+    const run = { area, ordinal, purpose, handle, openingLevel: before.player.player.level,
+      openingCumulativeXp: totalXp(), waves: [] };
+    report.runs.push(run);
+    for (let index = 0; index < handle.totalWaves; index++) {
+      const wave = playback.playEarnedWave(handle, index);
+      report.totalCombatMs += wave.terminalSimClockMs;
+      run.waves.push({ index, winner: wave.opening.outcome.winner, terminalMs: wave.terminalSimClockMs,
+        result: wave.advanceResult, xp: wave.actualDelta.xp, mercXp: wave.actualDelta.mercXp,
+        currencies: wave.actualDelta.currencies, items: wave.actualDelta.addedItems.length,
+        enemies: wave.opening.enemyTeam.map(u => ({ id: u.id, level: u.level, tier: u.tier,
+          life: u.life, stats: u.stats })),
+        openingAllies: wave.opening.playerTeam.map(u => ({ id: u.id, hp: u.life, mp: u.mana })),
+        finalAllies: wave.opening.outcome.finalPlayerTeam.map(u => ({ id: u.id, hp: u.life, mp: u.mana })),
+        finalEnemies: wave.opening.outcome.finalEnemyTeam.map(u => ({ id: u.id, hp: u.life, mp: u.mana })) });
+      if (wave.opening.outcome.winner !== 'player') assert.equal(wave.actualDelta.xp, 0);
+      if (wave.advanceResult !== 'next-wave') { run.result = wave.advanceResult; break; }
+    }
+    const after = state.observeEarnedState();
+    run.delta = state.earnedDelta(before, after);
+    run.delta.addedItemIds = run.delta.addedItems.map(item => item.id); delete run.delta.addedItems;
+    run.finalLevel = after.player.player.level; run.finalCumulativeXp = totalXp();
+    assert.equal(helpers.hasActiveSubAreaRun(), false);
+    if (run.result === 'victory') {
+      assert.equal(run.waves.length, handle.totalWaves);
+      assert.ok(after.map.clearedSubAreas.includes(area));
+      allocate();
+    }
+    console.log(JSON.stringify({ ordinal, area, result: run.result, level: run.finalLevel,
+      xp: run.finalCumulativeXp, totalCombatMs: report.totalCombatMs }));
+    await writeFile(path.join(root, 'progress.json'), encode({ ...report, sources: undefined }));
+    return run;
+  };
+  for (let i = 0; i < report.maxFarmRuns && player.getState().player.level < report.targetLevel; i++) {
+    const run = await attempt('areas/act1-den-of-evil', report.firstOrdinal + i, 'bounded full-clear acquisition');
+    if (run.result !== 'victory') { report.stopReason = 'first farming nonwin'; break; }
+  }
+  report.reachedTarget = player.getState().player.level >= report.targetLevel;
+  if (report.reachedTarget && !report.stopReason) {
+    await writeFile(path.join(root, 'earned-l12.json'), encode(exportSave()));
+    for (const area of ['areas/act1-blood-moor', 'areas/act1-cold-plains', 'areas/act1-burial-grounds', 'areas/act1-dark-wood']) {
+      if (map.getState().clearedSubAreas.includes(area)) continue;
+      const run = await attempt(area, report.firstOrdinal + report.runs.length, 'ordered whole-Act-I route');
+      if (run.result !== 'victory') { report.stopReason = 'first route nonwin'; break; }
+    }
+  }
+  report.stopReason ??= report.reachedTarget ? 'earned pre-Catacombs route complete' : 'farm budget exhausted';
+  report.finalSave = exportSave(); report.finalCumulativeXp = totalXp();
+  report.finalSaveSha = sha(Buffer.from(encode(report.finalSave)));
+  await writeFile(path.join(root, 'earned-final.json'), encode(report.finalSave));
+  assert.deepEqual(await sources(), beforeSources); report.sourceHashesUnchanged = true;
+  pity.setIdleEliteMisses(oldPity);
+} catch (error) {
+  report.error = { message: error.message, stack: error.stack };
+  process.exitCode = 1;
+} finally {
+  try { helpers?.abortSubAreaRun(); } catch (error) { report.abortError = String(error); }
+  for (const restore of restorers.reverse()) restore();
+  Date.now = originalNow;
+  if (server) await server.close();
+  await writeFile(path.join(root, 'entry-report.json'), encode(report));
+  console.log(JSON.stringify({ stopReason: report.stopReason, error: report.error,
+    runs: report.runs.length, totalCombatMs: report.totalCombatMs, finalCumulativeXp: report.finalCumulativeXp }));
+}

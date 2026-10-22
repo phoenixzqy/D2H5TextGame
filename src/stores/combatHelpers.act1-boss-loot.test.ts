@@ -1,7 +1,7 @@
 /** BUG048: actual manual boss level must reach its authored equipment pool. */
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { loadTreasureClasses } from '@/data/loaders/loot';
-import { resolveChallengeWavePlan } from '@/engine/combat/sub-area-run';
+import { DEFAULT_ELITE_CONFIG, resolveChallengeWavePlan } from '@/engine/combat/sub-area-run';
 import { decodeSave } from '@/engine/save/validate';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { awardLootForVictory, buildEnemiesForWave } from './combatHelpers';
@@ -35,6 +35,52 @@ function actualBossWave() {
 }
 
 describe('Act I manual chapter-boss equipment eligibility', () => {
+  it.each([
+    [2, 'a2-tomb-of-tal-rasha', 32, 25600, 220, 280],
+    [3, 'a3-durance-of-hate', 47, 33600, 300, 360],
+    [4, 'a4-chaos-sanctuary', 61, 44800, 420, 460],
+    [5, 'a5-throne-of-destruction', 82, 57600, 520, 560]
+  ] as const)('preserves Act %i chapter boss scaling', (act, alias, level, hp, attack, defense) => {
+    const subArea = required(resolveSubArea(act, alias));
+    const plan = resolveChallengeWavePlan({ subArea,
+      fallbackArchetypeId: 'monsters/act1.fallen', fallbackLevel: 1,
+      seed: 1, challengeOrdinal: 0, mode: 'manual' });
+    const boss = required(buildEnemiesForWave(required(plan.waves.at(-1)), 1)[0]);
+    expect(boss).toMatchObject({ level, life: hp, stats: { lifeMax: hp, attack, defense } });
+    expect(subArea.chapterBoss?.magicResist).toBeUndefined();
+  });
+
+  it.each([0, 1, 0xffffffff])('builds the reviewed Act I entry boss without altering its guards or identity (seed %i)', seed => {
+    const subArea = required(resolveSubArea(1, 'a1-catacombs'));
+    const chapterBoss = required(subArea.chapterBoss);
+    const oldArea = { ...subArea, chapterBoss: {
+      archetypeId: chapterBoss.archetypeId, hp: 2200, atk: 150, def: 200,
+      skills: chapterBoss.skills, dropTable: chapterBoss.dropTable
+    } };
+    const options = { fallbackArchetypeId: 'monsters/act1.fallen', fallbackLevel: 1,
+      seed, challengeOrdinal: 0, mode: 'manual' as const };
+    const plan = resolveChallengeWavePlan({ ...options, subArea });
+    const oldPlan = resolveChallengeWavePlan({ ...options, subArea: oldArea });
+    expect(plan.waves.slice(0, -1)).toEqual(oldPlan.waves.slice(0, -1));
+    const wave = required(plan.waves.at(-1));
+    const oldWave = required(oldPlan.waves.at(-1));
+    const boss = required(buildEnemiesForWave(wave, seed)[0]);
+    const oldBoss = required(buildEnemiesForWave(oldWave, seed)[0]);
+    expect(DEFAULT_ELITE_CONFIG.chapterBossHpMultiplier).toBe(8);
+    expect(subArea.chapterBoss).toEqual({ archetypeId: 'monsters/act1.andariel',
+      hp: 150, atk: 90, def: 40, magicResist: 15,
+      skills: ['monster-poison-cloud'], dropTable: 'loot/act1-boss' });
+    expect(boss).toMatchObject({ level: 19, life: 1200, tier: 'chapter-boss',
+      kind: 'monster', stats: { lifeMax: 1200, attack: 90, defense: 40, magicResist: 15 } });
+    expect(wave.lootTable).toBe('loot/act1-boss');
+    expect(wave.spawns).toHaveLength(1);
+    // Reversing only the selected power fields recovers the old entire unit:
+    // resistance, AS, dodge, skills, cooldowns, RNG-derived naming and ID stay intact.
+    expect({ ...boss, life: oldBoss.life, stats: { ...boss.stats,
+      life: oldBoss.stats.life, lifeMax: oldBoss.stats.lifeMax, attack: oldBoss.stats.attack,
+      defense: oldBoss.stats.defense, magicResist: oldBoss.stats.magicResist } }).toEqual(oldBoss);
+  });
+
   it('uses the real level19 chapter boss and its actual treasure class', () => {
     const wave = actualBossWave();
     expect(wave.lootTable).toBe('loot/act1-boss');

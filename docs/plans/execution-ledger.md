@@ -19,6 +19,7 @@ Current implementation evidence lives in `evidence/`.
 | P00 | in-progress | Producer F01–F21 mapping and assertion audit below. Expand current-head measurements and strict tests with each fix. |
 | P00b | accepted tooling fix | `test:related` now invokes Vitest's `related --run`; scoped 25 tests pass in 1.45 s, broad 226 pass/1 existing skip in 10.70 s (over budget). Producer approval; BUG-003. |
 | P01 | in-progress | D12 save/import contract recorded. Offline portion, D01–D11/D13–D14 pending; D04/D06 source reconciliation under review. |
+| P01 Act I entry | failed route screens; provisional boss data implemented | [Evidence](evidence/p01-act1-earned-entry.md): service-earned L12 and L13 from genuine Den save; three Cold Plains W3 draws. L12 Frost/Ice leaves38HP; L13 Nova3 leaves68HP. Andariel HP1200/ATK90/DEF40/MR15 passes real-data regression and8388U/T/L/build; no earned boss attempt or C1 acceptance. QA found BUG-083: later service restores omit item-sequence hydration; original L12 is unique, later exports are diagnostic-only. Next correct restoration fidelity and diagnose actual W3 cadence/targeting/mitigation/resources. |
 | P02a01 | accepted contract slice | `5adaeec`; strict fresh recipe/provenance/hash contract, 35 discovered self-tests. Producer independent APPROVE. No combat measurement yet. |
 | P02a02 | accepted input slice | `e5428a2` (agent `b35155d`); validated explicit seed/ordinal, preserved defaults/counter, 20 new regressions and independent source APPROVE. Full-run rewards remain open. |
 | P02a03 | accepted screening/tooling slice | `3820a19` (agent `994cfd9`); real fresh creation/run/playback/awards, full recordings+hashes, actual source provenance, safe external CLI output. Root+producer APPROVE; evidence below. Full-run/idle/campaign measurement remains. |
@@ -10312,3 +10313,47 @@ is proved. OnepassXP cannot earn assumedL12entry; finitefullchallenge/idle budge
 and an ActI-specific finalbosspackage need reviewedchoices together. Preserve
 this actualearnedcheckpoint, qualify route before bosslaunch, keep global/later
 actdefaults unless separatelyreviewed. C0–C4/G0–G7 remain unaccepted.
+
+## P01 — Earned L12/L13 entry and provisional Andariel data
+
+[Evidence](evidence/p01-act1-earned-entry.md) records three one-invocation service
+screens. Original genuine L6 save →61 Den wins →L12/147220XP;3344 items reconcile.
+Original Frost/Fire route draws Cold Plains W3 with996HP remaining. Selecting
+paid Frost Nova2/Ice Blast8 from the exact pre-route input draws with38HP.
+The reviewed bounded L13 extension earns50740XP in24 Den wins (2670512combatms),
+spends only earned Nova3/2Vit/3Energy and draws the same wave with68HP left.
+All drawn waves award zero; Burial Grounds/Dark Wood/Catacombs are not launched.
+No native acquisition, boss victory, pacing or checkpoint acceptance follows.
+
+The sole runtime object changes Andariel baseHP150/finalHP1200, ATK90/DEF40/MR15.
+Resolved L19, global×8/+5, Catacombs guards and later acts remain. Real-data RED
+3fail/10controls precedes correction. Test-only reversal-life and optional-MR
+fixture errors were corrected openly. Final focused20/2, full8388/263 (198.97s),
+types/lint/build and four-chunk production bridge scan pass. Producer final
+source APPROVE/security PASS includes both test corrections; GD approved
+contract/extension and QA reviewed exact scripts before execution.
+
+Independent QA found BUG-083 before publication: direct service store restore
+omits production item-sequence hydration. Original L12 has3737objects/3737IDs
+and remains unaffected. Rotation final has3789objects/3785IDs; L13 pre-route
+5033objects/5010IDs. Their ID-based loot deltas undercount; affected exports
+remain unchanged and diagnostic-only. Normal runtime hydration already seeds
+the allocator; no native persistence bug is established. Next fix future
+reconstruction fidelity/count checks, then inspect actual W3 cadence, targeting,
+mitigation and resources before more tuning/farming. No L13 boss launch.
+
+All three owned script PIDs absent and all readers released. Exact disposable
+build/cache/tmp/progress cleanup removed797files/51907183bytes; remaining[] and
+failures[]. Raw scripts, reports, saves, validation logs and cleanup receipt
+remain root-owned through W3/C1/umbrella consumers at
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-act1-earned-entry-eg5lmxdv`
+(including route-cold and entry-l13). Root removes when consumers finish.
+Shared caches/original checkout untouched. Final publication review follows;
+local commit only, umbrella goal/claim remain active.
+
+Final producer publication APPROVE/security PASS and independent QA ADEQUATE
+verify report717892b3, compact summary9412c937, scripts/raw bindings, all item
+reconciliations and cleanup. Producer pre-approved the only subsequent report
+wording change: failed "First GREEN" → "First post-change run". All readers
+released, no reviewer artifacts/processes. No broad validation rerun for this
+evidence-only wording/ledger completion; runtime/test bytes remain validated.

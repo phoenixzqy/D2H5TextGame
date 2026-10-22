@@ -596,9 +596,10 @@
     },
     "chapterBoss": {
       "archetypeId": "monsters/act1.andariel",
-      "hp": 2200,
-      "atk": 150,
-      "def": 200,
+      "hp": 150,
+      "atk": 90,
+      "def": 40,
+      "magicResist": 15,
       "skills": [
         "monster-poison-cloud"
       ],
