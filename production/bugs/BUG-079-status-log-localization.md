@@ -1,6 +1,8 @@
 # BUG-079 — Localize all known status names in combat logs
 
-Status: fix validated; local commit pending. Actual SHA recorded in a following bounded increment.
+Status: closed — local fix commit `20b34bed276ca35492899bb7b4382a5a551d9e54`.
+Independent final QA ADEQUATE and producer APPROVE; exact cleanup and publication
+are recorded in execution-ledger v1ci. No push or merge is implied.
 Severity: Medium — known status IDs are shown instead of their existing translated
 names. Status badges already use translations; combat behavior still works.
 

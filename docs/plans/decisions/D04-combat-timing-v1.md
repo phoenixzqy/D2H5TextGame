@@ -267,3 +267,23 @@ Future/expired replacement and all temporal/control rules remain unchanged.
 Independent GD/TD/QA contract approval is recorded in execution-ledger v1cc;
 behavioral implementation remains pending.
 this forward reference alone is not runtime acceptance.
+
+
+## D04 v1f — Authoritative status playback and atomic timestamp batches
+
+The [accepted status playback child](D04-status-playback-v1.md) adds complete
+engine-authored active-status observations with a complete explicit initial
+prefix. Pure staging seeds only that prefix at cursor0; legacy no-transport
+recordings retain existing status behavior. Playback consumes complete lists
+without UI status math or wall-clock expiry, clears dead views and prevents raw
+final records from resurrecting expired badges in authoritative mode.
+
+Contiguous equal-simClockMs events now present atomically in array order. Apply
+one200ms warmup, then one clamped50..3000ms delay per distinct timestamp and the
+existing speed rule once. A sole leading bossIntro remains a separate1200ms
+prelude before the engine warmup. Status transport adds no event wait/FX slot.
+This supersedes older separate same-time action→MP→corpse DOM-frame assertions;
+exact ordered events and atomic resource/body state remain required. The linked
+contract and [QA plan](../../../production/stories/status-playback/qa-plan.md)
+control lifecycle, malformed-prefix, replay and browser proof. Simulation5s does
+not imply5s wall time. Runtime/feel/full D04/D06 acceptance remains pending.

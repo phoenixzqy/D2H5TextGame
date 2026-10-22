@@ -9062,3 +9062,42 @@ All readers released before exact cleanup:857files/42779942bytes/
 14directories; no remnants/failures. Cleanup receipt SHA256 `6f48371faebda78e8c0bd1b7917c8187b04171ffe5ca378617f7385e96559b74`.
 Required evidence remains root-owned at ROOT until umbrella consumers finish.
 Exact-path/append-only and settled cached whitespace checks precede local commit.
+
+
+## D04 v1ck — Status playback contract and preimplementation QA
+
+Root owns exactly five paths: new D04-status-playback-v1, appended D04 timing,
+new status-playback QA plan, BUG-079 actual20b34be closure and this ledger.
+Security PASS: local design/protocol/QA documentation and actual-SHA closure;
+no executable/network/dependency/CI/credential/permission/save change. Existing
+isolated claim retained. No runtime or browser acceptance is granted.
+
+GD/TD/QA/producer independently approved complete copied active-status transport,
+effective initial units Map prefix preserving duplicate-ID overwrite semantics,
+cursor0-only seeding, malformed-prefix staging failure, legacy fallback, silent
+immutable replacement, death clear/final overlay, pause/speed/replay/new-wave,
+equal-time ordered atomic batches, boss1200→engine200 prelude/warmup, FX last4
+nontransport events, and all compact duplicate/>4 badges. SP01–13 explicitly
+cover exact fresh PE1700→6700 survivor lifetime/final interval, preserved frozen
+oracles, negative/legacy controls and actual production bilingual mobile proof.
+No wall-time/HP-only expiry inference is accepted; full/earned/feel gates stay open.
+
+ROOT: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-status-contract-65keizv8`.
+Draft/source/check/review evidence remains root-owned until umbrella consumers
+finish, then root removes it. No disposable builds/caches/processes were created
+for this docs-only card. Validate exact five paths, append-only timing/ledger,
+local links/stated source facts and whitespace; no redundant runtime rerun.
+
+The mandatory pre-runtime audit found multiple old exact event/result oracles;
+land separately bounded transport-only compatibility cards preserving expected
+bytes/gameplay timestamps/order/non-event outcomes. A separate ADR/ledger card
+records the cross-module data shape. Engine/Store/UI/runtime/browser cards follow
+with genuine causal REDs and their own reviews/checks. An encompassing lifecycle
+bug may be filed after Engine RED, then reused with later causal evidence within
+path budgets. Full D04/D06/P09/P10/private-v1 remains unfinished. No push/PR/merge/deploy.
+
+Final integrated publication QA ADEQUATE and producer APPROVE match checks.json
+hashes, actual BUG-079 fix SHA and approved drafts. All readers released; no
+disposable paths/remnants/failures or reader-owned processes. Required raw/source/
+review evidence remains root-owned at ROOT until umbrella consumers finish.
+Settled cached whitespace and exact-path/append-only checks precede local commit.
