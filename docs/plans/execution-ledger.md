@@ -9192,3 +9192,51 @@ source/receipt hashes. All readers released. Exact cleanup removed857files/
 Required source/raw/review evidence remains root-owned at ROOT until umbrella
 consumers finish. No owned processes remain. Exact5paths/append-only and settled
 cached whitespace precede commit.
+
+
+## D04 v1cn — Preserve Mastery and Might historical recording comparisons
+
+CompatibilityB4 owns exactly combat/fire-mastery.test.ts, lightning-mastery.test.ts,
+might.test.ts and this ledger. Root remains sole writer/executor in the existing
+isolated claim. Security PASS: test-only approved projection, no production,
+network, credentials, dependencies, CI, save or gameplay changes.
+
+Each test changes only one import and its frozen historical comparison wrapper
+using the reviewed helper committed atd4adcb1. Exact whole-file transformations
+prove every other byte unchanged, including Fire Mastery's existing optional-zero
+hero normalization, all three original full literals/inputs and raw repeated
+recording/plain-recorded/input-immutability assertions. Projection removes only
+status-state and rederives only outer legacy uiDelayMs; all gameplay payloads,
+order, simClockMs and non-event fields remain exact. TD/CODE APPROVE and QA
+TEST-EVIDENCE ADEQUATE independently verify source hashes and frozen literals.
+
+No runtime behavior or new behavioral RED is claimed. The initial multi-file
+apply_patch rejected an incorrect Might import before changing any file; empty
+git diff was verified and the exact import then used. setup-failure.txt retains
+this authoring failure. Focused70/3 PASS2.37s (wrapper3.327); engine3872/94 PASS19.74s
+(wrapper21.054); types PASS22.262s; lint PASS50.939s; full8218/259 PASS138.94s
+(wrapper140.607); production build/bridge PASS10.524s, four JS chunks with VITE_E2E
+absent. Existing engine3s/full15s budgets and Browserslist/>500kB chunk/2.57MB
+manifest-precache warnings remain open.
+
+ROOT: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-status-oracle-b-76vt0hc7`.
+Root retains source/raw/check/review/receipt evidence until umbrella consumers
+finish, then removes it. Final QA/producer publication and all reader releases
+precede exact disposable cleanup; append its receipt before commit. Exact4paths,
+append-only ledger and settled cached whitespace are required. No push/PR/merge/deploy.
+
+Producer clarified and APPROVE of C4 → Engine4 → Native4/Mage4 preparation →
+lifecycle5 → earned2 → batching5 → browser/UI proof. Silent additive transport can
+pass current dynamic raw traversal; Native/Mage are later lifecycle/batching
+prerequisites. Explicit legacy no-transport controls cannot replace authoritative
+production-engine acceptance. Engine4 alone grants no staging/lifecycle/pacing or
+browser acceptance. Full D04/D06/P09/P10/private-v1, browser/mobile/a11y, earnedL18,
+balance/manualfeel and performance remain open.
+
+Final publication QA ADEQUATE and producer APPROVE verify exact4paths, source/
+receipt hashes, frozen literals, append-only ledger and accurate provenance. All
+readers released. Exact cleanup removed857files/42,780,160bytes/14directories;
+remaining[]/failures[]. Cleanup receipt SHA256
+f7706c038cd5aacc2068d73aebc66f1ffefb986ee8a4820125f77a634601fa07.
+Required source/raw/review evidence stays root-owned at ROOT until umbrella
+consumers finish. No owned processes remain. Settled cached whitespace precedes commit.

@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { legacyRecording } from '@/test/combat-oracle';
 import { loadDefaultSkills, registerSkill, resetRegistry } from '../skills/registry';
 import type { DamageType } from '../types/attributes';
 import { runBattle, runBattleRecorded, type CombatSnapshot, type RecordedBattleResult } from './combat';
@@ -432,5 +433,5 @@ const prepatch = {
   }
 } satisfies { input: CombatSnapshot; actual: RecordedBattleResult };
 it('preserves the complete unaffected prepatch recording including times, delays and final teams', () => {
-  expect(record(prepatch.input)).toEqual(prepatch.actual);
+  expect(legacyRecording(record(prepatch.input))).toEqual(prepatch.actual);
 });
