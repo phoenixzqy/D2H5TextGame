@@ -215,7 +215,13 @@ describe('D06 v1c fresh Mastery and Revive identity', () => {
     const sources = new Set(created.map(e => e.unit.id));
     const damage = out.events.filter(e => e.kind === 'damage' && sources.has(e.source));
     expect(damage.length).toBeGreaterThan(0);
-    expect(damage.every(e => e.kind === 'damage' && e.damageType === 'physical')).toBe(true);
+    const types = row.template === 'skeletal_mage' ? ['fire', 'cold', 'lightning', 'poison'] :
+      ['physical', 'physical', 'physical', 'physical'];
+    created.forEach((event, index) => {
+      const hits = damage.filter(e => e.kind === 'damage' && e.source === event.unit.id);
+      expect(hits.length).toBeGreaterThan(0);
+      expect(hits.every(e => e.kind === 'damage' && e.damageType === types[index])).toBe(true);
+    });
     expect(out.events.at(-1)).toMatchObject({ kind: 'end', simClockMs: 60000 });
   });
 });

@@ -6669,3 +6669,90 @@ helper. Independent frozen QA/test-evidence (ADEQUATE) and TD/five-axis reviews 
 this inactive helper; all readers released. Producer publication, local commit
 and exact cleanup follow; full Mage/statuses/balance/earned/campaign and
 D06/P09/P10/private-v1 remain open.
+
+
+## D06 v1bb fresh Mage elemental combat basics
+
+Inactive helper cf19757 committed after QA/test-evidence (ADEQUATE), TD/five-axis
+and producer APPROVE. Cleanup
+dad8c5ec71bc12d76e0c7a35bddd1405b7e4ae00ee4ee55018622765020ac292 removed1300files/
+43,856,802bytes/14directories with zero failures/remaining. Root remains sole
+writer/executor in the existing umbrella claim; retained evidence root:
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+
+TD and producer plan-review READY scopes exactly four paths: combat.ts, new
+skeletal-mage-elements tests, existing summon-preparation-corpses regression and
+ledger. Preserve generic preparation/payment first; grant elemental authority
+only to successfully returned fresh canonical player Mage registrations from a
+living finite integral-level hero without summon/owner markers and the explicit
+canonical-first first-positive raw allocation actually used to prepare. Require
+integral1..immutable JSON-derived maxRank matching that preparation rank. The
+composer retains class, unlock, direct-prerequisite and slot eligibility; these
+engine checks cannot authenticate arbitrary forged snapshots/registry sources.
+Verify each actual returned registration's side/kind/template/owner markers;
+assign its original local batch index through the immutable cycle. One private
+battle-local actual-ID map alone selects the existing basic DamageEffect type;
+retain shared Attack flooring/Might exclusion, targets, crit/hit/dodge/mitigation,
+combos, retaliation and scheduling. No snapshot/save flags, RNG draws, global
+counters, new tuning, status or DoT applications. Preserve22MP whole-batch startup,
+Mastery/caps/growth, no corpse/retry/refund/replacement, physical preloads/Revive
+and generic behavior of unqualified elemental sources.
+
+QA frozen draft18769bytes SHAbb84ed783649e81f7a792fca3fa5d385f10e9d77bd170e112ef2bdd699ef1f58
+is READY before RED. It covers literal rank/cap/stats/cycles/cadence/MP/real HP,
+Defense/Magic Resistance/crit/Mastery/resistance clamp/explicit penalties/combos,
+magical dodge, Frozen Armor retaliation/no shatter, no automatic status/DoT,
+preloads/dead-ID collisions/unrelated batches/owners/seeds/A-B-A, canonical alias
+precedence/raw allocation and owner/source refusals, returned provenance without
+filtered reindex, whole-batch failure and exactly22MP/poor controls. A restored
+builder spy changes only first-candidate provenance after real builder normalization;
+assert the bad marker actually survives registration. Rank1 explicit-vs-missing
+allocation trace compares all events excluding intentional damage type/amount to
+guard assignment RNG. Imported typed scenarios establish no earned progression.
+Root security-check: pass; local pure engine state only, no external IO,
+credentials, dependencies, permissions, agent-behavior or save-shape changes.
+TDD/incremental-implementation/root-cause-fix/plan-review apply. Serial RED/focused/
+engine/full/types/lint/production build, frozen independent reviews, producer
+publication, local commit and exact cleanup follow. Root owns tmp/dist only as
+disposable; retain exact command/source/draft/manifests. Later production replay,
+bilingual copy/browser and balance evidence remain separate. Full Mage/statuses/
+balance/earned/campaign and D06/P09/P10/private-v1 remain open. No remote action.
+
+
+Initial RED had37failures/14controls; one raw-rank21 fixture wrongly expected
+generic preparation despite its cap9 exceeding the existing max8. QA frozen
+v2 draft19033bytes SHA1cf3d44a05161c8764e4b2895e1af001b13da95b2ea94cfccccae3384bc05760
+uses raw20.5 (existing floor20/cap8) for the physical-fallback control and
+separately asserts rank21 no-payment refusal. Corrected RED has36intended
+elemental failures/16passing controls (52tests), retained with the original.
+First implementation focused run passes173/174 combined cases. Its remaining
+Mastery20 oracle failure reveals the unchanged IEEE754 product
+45*(1+20*.02)=62.99999999999999 and existing floor62, hence34/41 noncritical
+fire-poison/cold-lightning damage at25%/Defense12/MR5. TD/QA/producer agree the
+card's idealized63/35/42 literals contradict its normative no-rounding rule.
+Producer accepts a fifth path for precise contract clarification. Preserve raw
+stats, shared flooring and multiplication order; no epsilon/rounding fix.
+QA v3 draft retains all other oracles and adds exact stored/<63/floor62 assertions;
+retain the failed receipt and independent Node arithmetic diagnostic. Initial
+types and lint pass; final validation below must bind the corrected bytes.
+
+
+QA freezes corrected v3 draft19249bytes
+SHAb090086acaa8a22c530c5681fc33f2d7d23de90a4ca3f9cb7bac4111451bf4f7
+before final validation. Final focused174/174 and engine3427tests/88files pass;
+full7379tests/236files passes. Standard types/lint and VITE_E2E=false production
+build pass. Exact scope/whitespace/source-identity check binds final code, tests
+and corrected contract across all final checks and proves the test matches QA's
+v3 draft. Build index-CYMT-F3r.js is1,342,899bytes
+SHA09fcd2ae363378841ce7d9044b38ec8557906d1bff972872d3e845154c9bca2a;
+no emitted test bridge in four JS chunks. Engine16.75s/full118.03s exceed the
+existing3s/15s loop budgets; performance acceptance remains open. Existing stale
+Browserslist, large-chunk and2.57MB asset-manifest precache warnings remain.
+Broad Node-config maxThreads incompatibility is unchanged and not claimed as a
+passing gate. No browser or balance measurement was run for this engine slice.
+Independent frozen QA/test-evidence (ADEQUATE) and TD/five-axis reviews APPROVE
+this runtime increment with no findings; all readers released. Approval-only
+ledger update, publication/producer audit, local commit and exact cleanup follow.
+Later production composer/wave/replay/playback/log, bilingual mounted/browser,
+paired balance and earned evidence remain separate; full Mage/signature statuses,
+D06/P09/P10 and private-v1 remain unfinished. No remote action.

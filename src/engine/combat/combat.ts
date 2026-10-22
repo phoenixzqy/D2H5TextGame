@@ -48,6 +48,7 @@ import { getSkill } from '../skills/registry';
 import { buildSummon, getSummon } from '../skills/summons';
 import { isPreparationSummonSkill, SUMMON_PREPARATION_TEMPLATES } from '../skills/summon-preparation';
 import { empowerSkeletonSummon, type SkeletonMasteryProjection } from '../skills/skeleton-mastery';
+import { SKELETAL_MAGE_DEFINITION, type SkeletalMageElement } from '../skills/skeletal-mage';
 import { IRON_GOLEM_SKILL_ID, isIronGolemSkill, qualifyIronGolemSource, applyIronGolemItemStats,
   type IronGolemInput, type IronGolemPreparationAttestation } from '../skills/iron-golem';
 import { resolveSummonMaxCount, scalePerRank } from '../skills/scaling';
@@ -176,6 +177,8 @@ interface State {
   summonSequence: number;
   /** Valid startup sources authorize only their own exact template deaths. */
   preparationTemplates: Map<string, Set<string>>;
+  /** Fresh qualified Mage registrations only; never copied from snapshots or saved. */
+  skeletalMageElements: Map<string, SkeletalMageElement>;
 }
 
 interface PeriodicIntegral {
@@ -894,7 +897,7 @@ function basicAttack(state: State, actorId: string): void {
   const baseAttack = Math.max(1, Math.floor(actor.stats.attack * (1 + attackPct)));
   const effect: DamageEffect = {
     kind: 'damage',
-    damageType: 'physical',
+    damageType: state.skeletalMageElements.get(actorId) ?? 'physical',
     base: [baseAttack, baseAttack]
   };
   applyDamageToUnit(state, actorId, target.id, effect);
@@ -1110,7 +1113,25 @@ function prepareSummons(state: State, owner: CombatUnit, skill: RegisteredSkill)
   }
   templates.add(effect.summonId);
   if (missing === 0 || cost > owner.mana) return;
-  castSkill(state, owner.id, skill, { summonId: effect.summonId, units: candidates });
+  const registered = castSkill(state, owner.id, skill, { summonId: effect.summonId, units: candidates });
+  // Generic preparation/payment stays intact; elemental authority requires explicit provenance.
+  if (!registered || registered.length !== candidates.length ||
+    skill.id !== 'necromancer.raise_skeletal_mage' || skill.archetype !== 'necromancer' ||
+    owner.id.length === 0 || owner.side !== 'player' || inferKind(owner) !== 'hero' ||
+    owner.summon === true || owner.ownerId !== undefined || owner.summonOwnerId !== undefined ||
+    !Number.isFinite(owner.life) || owner.life <= 0 ||
+    !Number.isInteger(owner.level) || owner.level < skill.minLevel) return;
+  // Match effectiveSkillLevel's first-positive precedence without accepting its flooring/default.
+  const rawRank = skillLevelCandidates(skill).map(id => owner.skillLevels?.[id])
+    .find(level => typeof level === 'number' && level > 0);
+  if (rawRank === undefined || !Number.isFinite(rawRank) || !Number.isInteger(rawRank) ||
+    rawRank < 1 || rawRank > SKELETAL_MAGE_DEFINITION.maxRank || rawRank !== rank) return;
+  registered.forEach((unit, index) => {
+    if (unit.side !== 'player' || unit.kind !== 'summon' || unit.summon !== true ||
+      unit.summonTemplateId !== 'skeletal_mage' || unit.summonOwnerId !== owner.id ||
+      (unit.ownerId !== undefined && unit.ownerId !== owner.id)) return;
+    state.skeletalMageElements.set(unit.id, SKELETAL_MAGE_DEFINITION.elementAt(index));
+  });
 }
 
 /** Qualify authority first; a fully staged singleton is the only path to payment. */
@@ -1363,7 +1384,8 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     heroDead: false,
     insertionCounter: 0,
     summonSequence: 0,
-    preparationTemplates: new Map()
+    preparationTemplates: new Map(),
+    skeletalMageElements: new Map()
   };
 
   for (const u of withDefaultGridPositions(snapshot.playerTeam)) registerUnit(state, u);

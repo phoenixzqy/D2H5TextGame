@@ -143,9 +143,14 @@ periodMs = clamp(2500 - floor(attackSpeed) * 8, 400, 2000)
 These record existing template/growth/Mastery values, not new tuning. Rank1/6/20
 without Mastery yields cap1/4/8, life88/123/221, Attack30/45/87, Defense10 and
 magic dodge0.08/0.09/0.118. Caps at ranks1/2/3/5/6/11/12/20 are1/2/3/3/4/5/6/8.
-Rank6 with Mastery1 has127.92/45.9/10.1 and bolt base45; Mastery20 has221.4/63/12
-and base63. Preserve the45.9 stat despite its base45 direct hit. No display
-rounding is fed back into stats or damage.
+Rank6 with Mastery1 has127.92/45.9/10.1 and bolt base45. Mastery20 has
+mathematical Attack63, but the existing JavaScript Number multiplication
+`45 * (1 + 20 * 0.02)` stores62.99999999999999; the unchanged single floor
+therefore gives bolt base62. Its life/defense remain approximately221.4/12.
+This numerical clarification preserves rule7 and existing arithmetic: add no
+epsilon, rounding or multiplication-order change. Preserve the45.9 Mastery1
+stat despite its base45 direct hit. No display rounding is fed back into stats
+or damage.
 
 For a successful noncritical hit with no other modifiers/combos, let `B` be the
 bolt base, `R = clamp(typeResistance - explicitPenalty, -100, 75)` and `M` be
@@ -159,7 +164,8 @@ dodgedDamage = 0
 
 With25% chosen-element resistance, Defense12 and Magic Resistance5, independently
 specified rank1/6/20 noncritical values are fire/poison10/21/53 and cold/lightning
-17/28/60. Rank6 Mastery1 remains21/28; Mastery20 is35/42. Rank6 critical values
+17/28/60. Rank6 Mastery1 remains21/28; Mastery20 is34/41 from the actual stored
+Attack and base62 described above. Rank6 critical values
 are38/45. At effective resistance0/75/−100, rank6 noncritical fire/poison values
 are33/1/78 and cold/lightning40/6/85. A raw95% type resistance still caps at75%.
 A raw50% resistance with explicit penalty20 gives effective30% and rank6 values
@@ -250,7 +256,8 @@ and exact cleanup after readers release:
    Literal element order, reset/invalid-index/source/data cases and no RNG are
    tested independently of combat. No runtime consumer yet.
 3. Combat consumer, a dedicated engine test file, existing
-   `src/engine/combat/summon-preparation-corpses.test.ts` and ledger (4paths).
+   `src/engine/combat/summon-preparation-corpses.test.ts`, ledger and this contract's
+   reviewed Mastery20 numerical clarification (5paths).
    Update that regression's fresh canonical Mage physical-only expectation while
    preserving its Mastery assertions and Revive/preload physical controls. Prove
    fresh batch authority, all four actual damage types/amounts, r1/r6/r20 and
