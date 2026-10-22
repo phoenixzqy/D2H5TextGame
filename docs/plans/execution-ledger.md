@@ -7685,3 +7685,115 @@ Allreviewreadersreleased includingdist/tmp, noreviewerartifacts/processes.
 Approval-onlyledgerappend; fourotherpathsunchanged. BALANCE-CHECK CONCERNS,
 existingbudgets/warnings andbroadergates remainopen. Publication/produceraudit/
 localcommit/exactcleanup next; noengine/data/save/config orremotechange.
+
+
+## D06 v1bn controlled target-condition combo family
+
+Predecessor v1bm committed locally as05dc47541bb19f9875d65910d105ec459d96cdf0.
+Exact cleanup14c0061001495ac91cdd4b41a3daedfa4298b6ab84f331bf5eebc955ff48bf6a
+removed1306files/43858578bytes/15directories, with no failures/remaining targets;
+both checkouts clean. Retained predecessor source/raw/evidence remains owned by
+root under /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+
+Producer plan-review ready; GD-DESIGN-REVIEW and TD-ARCH-REVIEW APPROVE; independent
+QA-D06-MAGE-COMBO-PREFLIGHT APPROVE at plan3f5fea88552b2cbcc814e1a93e8ad0e2e6fc863127141624eb864dfb7351c65c.
+Four fixed synthetic/unearned initial target cases:none/chill/ignite/paralyze,
+common [0,6000)ms window explicitly approved. Default paralyze1000ms expires
+before the first uncontrolled Mage action1940ms; this diagnostic window is not
+an earned cast or natural uptime. Direct frozen M0 source avoids mitigation/
+asymmetry helper imports. None snapshot matches accepted neutral logical hash
+97e3d6a84c77d895f442909da7bd4b13167a45c88f96be90bcd85c3981865661.
+Exact scope:combo fixture/runner/test, balance report and this ledger. Root sole
+writer/executor in the existing claimed human worktree; original read-only.
+No engine/data/save/config/SaveCurrent11 or remote change.
+
+Fixture and recorder missing-module RED receipts retained. Fixture GREEN7tests;
+recorder GREEN13; comparison RED2failed/19passed then focused GREEN91tests/3files.
+Independent static oracles, actual-clock active/expired/none strata, zero rows,
+full semantic fixture rejection before legacy recording, expected pair/control
+identities, HP replay through heal/orb/overkill/death and successful-only TTK.
+Accepted meter guards finite/nonnegative/nondecreasing clocks; fractional clocks
+and original equal-time order retained. Unsupported enemy status refreshes,
+actions during active paralyze and enemy stun-window inconsistencies reject;
+native player controls remain. Initial typecheck rejected a negative-test tags
+array inferred as string[]; narrowed its literal tuple, preserving the failed
+receipt. No production behavior changed. Corrected checks/source-tool preflight
+and fixed8cell×1000seeds serial measurements follow. Broader acceptance open.
+
+Corrected source preflight PASS:92focusedtests, types15.968s, explicit ESLint
+--no-ignore6.152s. Repository lint42.917s PASS but excludes tests; first targeted
+lint refused ignored files, explicit lint then found6errors/18warnings in new
+files. Corrected typed runtime-mode validation, checked required values and
+void-return test closures without suppression. Superseded premeasurement source
+capture retained under mage-combo-capture-v1; no measurements used it. Final
+seven-helper+driver closure recaptured from immutable173Gitfiles/domain;
+fixtures generated once and none snapshot equals retained neutral byte-for-byte
+under canonical JSON. Integrity19probes(2accepted/17rejected)PASS. Serial
+preflight16rows/domain at seeds0/7/991/999 all defeats, controls/nonactors/zeros
+retained. No outcome-driven recipe change. Independent implementation/source/
+tool preflight gates pending before first1000physical-none cell.
+
+
+Independent implemented-source/tool preflight TD-ARCH-REVIEW and
+QA-D06-MAGE-COMBO-IMPLEMENTATION-PREFLIGHT APPROVE before measurements.
+First1000physical-none cell6.280s(wrapper8.040s), inspected stream identities/
+counts before remaining cells. Completed8,000fresh battles/4,000P→Epairs and
+6,000derived within-domain contrasts without fixture changes; all defeats/
+hero deaths, successfulTTKcount0/null. Raw623578168bytes/gzip32502834bytes.
+Root mistakenly began elemental control aggregation while physical still ran;
+original elemental attempt logged WebSocket port error. Stopped only verified
+owned PID3992954(exit-15); both original attempts/partial outputs preserved in
+mage-combo-control-overlap and original receipts. All6,000accepted contrasts
+regenerated serially from unchanged measured battles:physical25.539s,
+elemental25.180s; no measured battle rerun. Independent exhaustive checker
+PASS28.060s reconstructs fixtures,8kraw HP/MP/source counters, every Mage damage
+against independent literals, actual-clock status strata/histograms,4kpairs/
+6kcontrols, reporttables and accepted serial windows. Core three files remain
+unchanged from source capture. BALANCE-CHECK CONCERNS, synthetic window and
+source-separated attribution limits retained. Independent GD/LD interpretation
+and final serial validation/frozen reviews/publication/localcommit/exactcleanup
+next. BroaderD06/P09/P10/private-v1 and existingbudgets/warnings remainopen.
+
+
+Final serial validation PASS against unchanged core/report:focused3files/92tests,
+wrapper4.413s/Vitest3.05s; types15.968s; lint42.941s; explicit test-file lint
+--no-ignore5.937s. Fullunit246files/7563tests PASS, wrapper130.488s/Vitest128.89s;
+existing15s budget exceeded/remainsopen. Productionbuild VITE_E2E=false PASS
+10.329s/606modules, existing Browserslist/chunk-size/2.57MBmanifest-precache
+warnings retained. Final exhaustive raw/control/report/provenance/serialreceipt
+reconciliation and production audit-marker exclusion next. Noengine/data/save/
+config/remotechange or broader balance/performance acceptance.
+
+
+Independent GD/LD BALANCE-CHECK CONCERNS; no material report correction required.
+Reviewer reconciled8kraw/4kpairs/6kcontrols, exposure/histograms/literal damage,
+serial controls and reportarithmetic. Neutralnumericparity; P→EMage effective
+HP/DPS:chill-1.7829%/-1.6480%, ignite-17.4564%/-16.1839%, paralyze+2.9865%/
++1.7220%. Physicalbonus covers allhistoricalMages forchill/ignite; elemental
+bonus is oneelement. Paralyze total gains include6senemy suppression and battle
+feedback, not Mage-only power. Activehits exclusivelyFlayers; Horrorattempts
+onlyexpired:chillP/E2/2, ignite1/0, paralyze809/943. NoactiveHorrorcoverage.
+All8kdefeats; syntheticwindow doesnot estimate earneduptime/viability. Reader
+released includingdist/tmp; noartifacts/processes. Reportunchanged.
+
+Final exhaustive checker PASS28.539s:8kraw/4kpairs/6kcontrols/8domainprocesses,
+fullHP/MP/sourcecounters/literaldamage/statusstrata/histograms, preparation/
+nonactors/provenance/reporttables, acceptedserialreceipts, unchangedfourpaths,
+append-onlyledger and exclusionofthreeauditmarkersfromproductionassets.
+Raw623578168bytes/gzip32502834bytes. Frozen independent QA/test-evidence and
+TD/five-axisreviews next; broadgates/budgets/warnings remainopen.
+
+
+Frozen reviewc0db1d322ddfff7a1a8b93be06f2f85f63e0ab2da60b782e87c8d1308d14ab35
+supporta3e78378ee8cc60d60b60040fed0b4a21b8e39cb528eeedbacbd56e04bacdf29:
+QA APPROVE/test-evidence ADEQUATE; TD/five-axis APPROVE, no material findings.
+All1366retainedfiles/43receipts/494capturedsources/346Gitfiles independently
+verified; QAreplayed8000battles/1368534events/4000pairs/6000controls and displayed
+reporttables. Finalserialfocused92/types/lint/explicitlint/full7563/build/checker
+sourcebindingsPASS. Exactdisposal1306files/43858602bytes/15dirs verified with
+noextras/symlinks;43recordedPIDsabsent, noexhaustivedescendantclaim. Allreview
+readersreleased includingdist/tmp; noreviewerartifacts/processes. Approval-only
+ledgerappend; fourotherpathsunchanged. BALANCE-CHECK CONCERNS, syntheticwindow/
+noactiveHorrorcoverage/all-loss censoring, existingbudgets/warnings and broader
+gates remainopen. Publication/produceraudit/localcommit/exactcleanup next;
+noengine/data/save/config orremotechange.
