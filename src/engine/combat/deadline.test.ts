@@ -1,3 +1,4 @@
+import { legacyRecordedEvents } from '@/test/combat-oracle';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { runBattle, runBattleRecorded, type CombatSnapshot } from './combat';
 import type { CombatUnit } from './types';
@@ -158,7 +159,7 @@ describe('seeded scheduler ties', () => {
     const input = { seed: 7, playerTeam: [unit('hero', 'player', 150)],
       enemyTeam: [{ ...unit('enemy', 'enemy', 100), life: 1 }] };
     const r = runBattleRecorded(input);
-    expect(JSON.stringify(r.events)).toMatchInlineSnapshot(`"[{"kind":"turn-start","turn":1,"simClockMs":0,"uiDelayMs":200},{"kind":"action","actor":"hero","skillId":null,"simClockMs":1300,"uiDelayMs":1300},{"kind":"damage","source":"hero","target":"enemy","damageType":"physical","amount":1,"crit":false,"dodged":false,"simClockMs":1300,"uiDelayMs":50},{"kind":"death","target":"enemy","simClockMs":1300,"uiDelayMs":50},{"kind":"end","winner":"player","simClockMs":1300,"uiDelayMs":50}]"`);
+    expect(JSON.stringify(legacyRecordedEvents(r.events))).toMatchInlineSnapshot(`"[{"kind":"turn-start","turn":1,"simClockMs":0,"uiDelayMs":200},{"kind":"action","actor":"hero","skillId":null,"simClockMs":1300,"uiDelayMs":1300},{"kind":"damage","source":"hero","target":"enemy","damageType":"physical","amount":1,"crit":false,"dodged":false,"simClockMs":1300,"uiDelayMs":50},{"kind":"death","target":"enemy","simClockMs":1300,"uiDelayMs":50},{"kind":"end","winner":"player","simClockMs":1300,"uiDelayMs":50}]"`);
     expect(r.result.winner).toBe('player');
     expect(r.result.playerTeam[0]?.life).toBe(100_000);
     expect(r.result.enemyTeam[0]?.life).toBe(0);
@@ -172,7 +173,7 @@ describe('seeded scheduler ties', () => {
       playerTeam: [{ ...hero, stats: { ...hero.stats, attack: 100, critChance: 0.5, critDamage: 2 } }],
       enemyTeam: [{ ...enemy, life: 240, stats: { ...enemy.stats, attack: 50, critChance: 0.5, critDamage: 2 } }] };
     const r = runBattleRecorded(input);
-    expect(JSON.stringify(r.events)).toMatchInlineSnapshot(`"[{"kind":"turn-start","turn":1,"simClockMs":0,"uiDelayMs":200},{"kind":"action","actor":"hero","skillId":null,"simClockMs":1300,"uiDelayMs":1300},{"kind":"damage","source":"hero","target":"enemy","damageType":"physical","amount":200,"crit":true,"dodged":false,"simClockMs":1300,"uiDelayMs":50},{"kind":"action","actor":"enemy","skillId":null,"simClockMs":1700,"uiDelayMs":400},{"kind":"damage","source":"enemy","target":"hero","damageType":"physical","amount":0,"crit":false,"dodged":true,"simClockMs":1700,"uiDelayMs":50},{"kind":"action","actor":"hero","skillId":null,"simClockMs":2600,"uiDelayMs":900},{"kind":"damage","source":"hero","target":"enemy","damageType":"physical","amount":100,"crit":false,"dodged":false,"simClockMs":2600,"uiDelayMs":50},{"kind":"death","target":"enemy","simClockMs":2600,"uiDelayMs":50},{"kind":"end","winner":"player","simClockMs":2600,"uiDelayMs":50}]"`);
+    expect(JSON.stringify(legacyRecordedEvents(r.events))).toMatchInlineSnapshot(`"[{"kind":"turn-start","turn":1,"simClockMs":0,"uiDelayMs":200},{"kind":"action","actor":"hero","skillId":null,"simClockMs":1300,"uiDelayMs":1300},{"kind":"damage","source":"hero","target":"enemy","damageType":"physical","amount":200,"crit":true,"dodged":false,"simClockMs":1300,"uiDelayMs":50},{"kind":"action","actor":"enemy","skillId":null,"simClockMs":1700,"uiDelayMs":400},{"kind":"damage","source":"enemy","target":"hero","damageType":"physical","amount":0,"crit":false,"dodged":true,"simClockMs":1700,"uiDelayMs":50},{"kind":"action","actor":"hero","skillId":null,"simClockMs":2600,"uiDelayMs":900},{"kind":"damage","source":"hero","target":"enemy","damageType":"physical","amount":100,"crit":false,"dodged":false,"simClockMs":2600,"uiDelayMs":50},{"kind":"death","target":"enemy","simClockMs":2600,"uiDelayMs":50},{"kind":"end","winner":"player","simClockMs":2600,"uiDelayMs":50}]"`);
     expect(r.result.winner).toBe('player');
     expect(runBattle(input)).toEqual(r.result);
   });

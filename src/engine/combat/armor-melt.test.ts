@@ -1,3 +1,4 @@
+import { legacyRecording } from '@/test/combat-oracle';
 import { createHash } from 'node:crypto';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import sorceressSkills from '../../data/skills/sorceress.json';
@@ -235,7 +236,7 @@ describe('Armor Melt shared pre-hit defense and single fire-combo bonus', () => 
   it('preserves the complete prepatch no-Melt/no-fire-status control recording', () => {
     const r = replay(direct('fire', []));
     // Full pre-runtime recording captured by focused-c-red at0353da5 (seed7).
-    expect(createHash('sha256').update(JSON.stringify(r)).digest('hex'))
+    expect(createHash('sha256').update(JSON.stringify(legacyRecording(r))).digest('hex'))
       .toBe('bc410c62608c3265818f4f00473705edca576549f4fc6321574ac5e7c05d3484');
     expect(hits(r)[0]?.amount).toBe(80);
   });

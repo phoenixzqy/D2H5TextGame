@@ -9142,3 +9142,53 @@ document hashes and prior TD architecture approval. All readers released; no
 disposable artifacts/remnants/failures or owned processes. Required evidence stays
 root-owned at ROOT until umbrella consumers finish. Exact2/append-only and settled
 cached whitespace checks precede local commit.
+
+
+## D04 v1cm — Preserve historical combat oracles across status transport
+
+CompatibilityA5 owns exactly src/test/combat-oracle.ts, combat/combat-oracle.test.ts,
+combat/deadline.test.ts, combat/armor-melt.test.ts and this ledger. Root remains
+sole writer/executor in the existing isolated claim. Security PASS: test-only
+projection; no production/network/credential/CI/dependency/save change.
+
+The accepted D04 contract intentionally adds silent status-state events. A shared
+test-only projection removes only that exact kind, preserves gameplay payloads,
+array order and simClockMs, and independently rederives only historical outer
+uiDelayMs (first200, then clamp50..3000). Nested plain result.events only filter
+transport; all other wrapper/result fields remain exact. Corpse messages, status
+cues, unknown kinds, final teams/statuses and attestation metadata are retained.
+Five tests cover narrow filtering, mutation controls, clocks/clamps, both arrays,
+ownership/immutability, old exact values, idempotence and empty arrays.
+
+Deadline's two original inline snapshot literals and Armor Melt's original SHA
+bc410c62608c3265818f4f00473705edca576549f4fc6321574ac5e7c05d3484 are unchanged.
+Only those historical comparisons use the projection. Raw repeat determinism and
+plain/recorded equality remain untouched. Independent TD/CODE APPROVE and QA
+TEST-EVIDENCE ADEQUATE cover all four source hashes and frozen-literals.json.
+
+Provenance: the new-module RED was collection-only (missing helper, zero tests),
+not a behavioral RED. A separate unresolved-placeholder runner attempt exited2
+before tests; setup-failure.txt retains it. Correct resolved commands followed.
+Focused58/3 PASS2.24s; engine3872/94 PASS19.54s; types PASS23.450s; lint PASS51.575s;
+full8218/259 PASS140.22s (wrapper141.923s); production build/bridge PASS10.404s,
+four JS chunks scanned with VITE_E2E absent. Existing engine3s/full15s budgets and
+Browserslist, >500kB chunk and 2.57MB manifest-precache warnings remain open.
+
+ROOT: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-status-oracle-a-v8zd81uh`.
+Root retains exact sources, raw logs, receipts, frozen literals and review evidence
+until umbrella consumers finish, then removes them. Final QA/producer publication
+and reader release precede exact disposable cleanup; receipt follows append-only.
+Producer PLAN APPROVE of next bounded B4 (fire/lightning mastery, Might, ledger)
+and C4 (Skeleton Mastery, Frozen Armor, Chill timing, ledger), retaining original
+literals/hashes and raw dynamic checks. Runtime, browser/mobile/a11y, earnedL18,
+balance/manualfeel, performance and full D04/D06/P09/P10/private-v1 remain open.
+No push/PR/merge/deploy. Exact5paths/append-only and settled cached whitespace
+checks precede local commit.
+
+Final publication QA ADEQUATE and producer APPROVE verify checks.json and all
+source/receipt hashes. All readers released. Exact cleanup removed857files/
+42,779,870bytes/14directories; remaining[]/failures[]. Cleanup receipt SHA256
+5516ead99bc0c875c92f0d148d8b74711f3534db523bb76a49e24552c2bbf74a.
+Required source/raw/review evidence remains root-owned at ROOT until umbrella
+consumers finish. No owned processes remain. Exact5paths/append-only and settled
+cached whitespace precede commit.
