@@ -8559,3 +8559,75 @@ references, preserved unrelated content/contract body and append-only ledger.
 Runtime evidence remains the unchanged validated `f0f4d99` product/test bytes.
 No disposable paths or processes require cleanup. Producer publication review
 and settled cached whitespace check follow before the local commit.
+
+
+## D06 v1cb — bounded fresh earned Necromancer-to-CE pilot
+
+Status reconciliation committed `4f95cca`; its exact five-document checks and
+independent GD/TD/QA/producer approval passed with no disposable artifacts.
+Its retained evidence remains root-owned until umbrella consumers finish.
+
+Root owns four paths: dedicated earned production config/spec,
+evidence/d06-corpse-explosion-earned.md and this ledger. Producer preflight
+ready for the frozen protocol in the report and external ownership record.
+One fresh English desktop Necromancer; Skeleton1, native Teeth1/free Rogue;
+no gear/stat spend/respec/import, no seed search or adaptation. Forty native
+Skip first-wave Moor entries, 180s preparation limit, stop first defeat. Only
+after earned L6, CE1 and one ordinal40 native1x observation <=30s;240s case cap.
+Accelerated farming proves no pacing/feel. Protocol completion and earned CE
+acceptance are distinct outcomes. Keep every attempt and failure.
+
+Security PASS: local production preview, native UI and exports/read-only DOM;
+no product, dependency, credential, network, permission, data or save-format
+change. Bilingual/mobile functional acceptance remains the prior separate card.
+Raw/source/review evidence root:
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-corpse-earned-zuu7r0ay`.
+Root owns eventual retained-evidence removal; exact dist/tmp disposal follows
+validation and reader release. Execution and independent evidence review follow.
+Earned reachability is still unmeasured; broad affordability/balance/player feel,
+remaining D06/P09/P10 and private-v1 remain open.
+
+Pre-execution QA/GD/TD concerns corrected before any pilot run: startup is
+captured before Skip can evict it from the200-row log; hard180s prep timeout
+and elapsed check apply to all exits, extended240s only for lawful earnedL6.
+A SHA-pinned external oracle derives all40 first-wave new item contents/full
+currencies from the committed historical packet, stripping only new allocator
+IDs while preserving actual prefix/unique IDs. Reproduction is in the report.
+The fixed recipe/seed/attempt budget remains unchanged; no pilot attempted yet.
+
+Final revised-source preflight: GD/TD/code APPROVE, QA ADEQUATE, producer ready.
+One frozen pilot then ran once, exit0,1 passed, zero retries/skips. Outcome
+earned-CE-observed:40 first-wave wins,11080XP→L6/67XP,5 earned points before
+CE allocation,4 reserved after;25 stat points unspent. Exact full reward oracle
+matched all344 items and5157 rune shards. No equipment/stat spend/import/reload
+or incidental wave2 settlement. Preparation100.074s<=180s; wrapper113.635s,
+test110.533s. Native1x ordinal40 retained79 DOM frames over8.823s: separate
+Skeleton87→72MP; real death→corpse supply;CE85→65MP with unchanged logs;
+one of two bodies consumed, then71 hero fire damage. Final native export equals
+the ready export exactly, with no further rewards; browser diagnostics empty,
+bridge absent. Full report and reproducible scope/limitations are in
+[earned evidence](evidence/d06-corpse-explosion-earned.md).
+
+Full7874/254 tests137.60s (wrapper139.306s) and build/bridge scan9.860s cover
+unchanged product/unit bytes; revised spec types19.997s/lint49.068s passed.
+Existing test-loop budgets and build warnings remain open. Frozen config/spec
+hashes and exact command/raw-report hashes are recorded in the report. Root
+retains the measured evidence for independent readers. QA ADEQUATE confirms
+all raw/decoded attachments, exact XP/loot/IDs, native allocation, separate
+startup and CE debits, causal consumption/hit and budget bounds. The Rogue
+naturally reached L9; observation stopped with six monsters alive, so ordinal40
+battle victory is unmeasured. Final reviews/document checks, cached whitespace validation
+and local commit follow. General affordability/balance, natural pacing/feel,
+other corpse consumers and remaining D06/P09/P10/private-v1 remain open.
+
+Final measured GD/TD/code APPROVE and producer ready independently confirm the
+raw attachments, source bindings, exports, timeline, screenshot and bounded
+claims. Exact four-path/document/source/hash/append-only checks passed; config/
+spec bytes are unchanged from the single passing pilot. All consumers released
+before manifest/hash/symlink-checked disposal of ROOT/dist/tmp:863 files,
+42952880 bytes,18 directories; no failures or remaining disposable paths and
+preview port4399 closed. Cleanup receipt SHA256
+`8509cca10858db41fd70eb0327d527d1c0cbf1646f82e37bb345906709ffa65a`.
+Retained raw/source/oracle/review evidence stays at the exact earned ROOT above;
+root removes it after umbrella consumers finish. Settled cached whitespace
+check precedes the local commit; no push/PR/merge/deployment.
