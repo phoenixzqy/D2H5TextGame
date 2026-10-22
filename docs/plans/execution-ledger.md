@@ -9101,3 +9101,44 @@ hashes, actual BUG-079 fix SHA and approved drafts. All readers released; no
 disposable paths/remnants/failures or reader-owned processes. Required raw/source/
 review evidence remains root-owned at ROOT until umbrella consumers finish.
 Settled cached whitespace and exact-path/append-only checks precede local commit.
+
+
+## D04 v1cl — Record authoritative status transport architecture
+
+Root owns exactly ADR-005-authoritative-status-playback.md and this ledger.
+Security PASS: architecture documentation only; no executable/network/credential/
+permission/dependency/CI/save change. Existing isolated claim/branch retained.
+The architecture-decision skill requires an ADR for this cross-module data shape;
+keep it separate from Contract5 to respect the five-path ceiling.
+
+TD independently APPROVE of the scratch ADR: silent complete copied status-state
+observations, strict initial-prefix staging, explicit legacy fallback, immutable
+replacement, authoritative death/final overlay, atomic timestamp presentation and
+compact complete badges follow the accepted D04/QA contracts without new gameplay
+math or save/resource authority. Alternatives reject UI timers/defaults, final-only
+status display and consumer-reconstructed deltas. Explicit consequences include
+more transport memory/events and changed same-time DOM frames; feel remains open.
+
+The exact-oracle audit requires eight old engine test adaptations in separately
+bounded cards before engine runtime. Shared test-only helper filters only new
+status-state observations; rederive outer recorded uiDelayMs from retained exact
+timestamps, filter nested plain result.events only, preserve every other field.
+Original expected literals/hashes remain unchanged. Keep dynamic determinism and
+plain/recorded equality raw; no corpse-message stripping in this shared helper.
+Helper/test/ledger first, then3–4 existing tests plus ledger per card. Later Store
+batching also needs the production earned-playback exact-cursor consumer and
+bounded native/rendered test adaptations; reslice before those writes.
+
+ROOT: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-status-adr-nma9msw9`.
+Root retains draft/source/check/review evidence until umbrella consumers finish,
+then removes it. Docs-only checks cover exact2paths, append-only ledger, all local
+links, next ADR number and whitespace. No runtime rerun or disposable artifacts/
+processes. Final producer/QA publication follows. Full D04/D06/P09/P10/private-v1,
+browser/mobile/a11y, earnedL18, balance/manualfeel and performance remain open.
+No push/PR/merge/deploy.
+
+Final ADR2 publication QA ADEQUATE and producer APPROVE match both checked
+document hashes and prior TD architecture approval. All readers released; no
+disposable artifacts/remnants/failures or owned processes. Required evidence stays
+root-owned at ROOT until umbrella consumers finish. Exact2/append-only and settled
+cached whitespace checks precede local commit.
