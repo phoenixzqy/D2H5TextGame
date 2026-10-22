@@ -5638,3 +5638,51 @@ Root is sole writer and executor; umbrella worktree claim continues; no remote
 action.
 Settlement access, coherent all-producer/settlement activation, selected-item debit/
 replay lock, bilingual Iron acceptance and fullD06/P09/P10/private-v1 remain open.
+
+
+## D06 v1aj settlement-aware access boundaries
+
+Logical-wave settlement authority received independent QA, TD/five-axis and
+producer APPROVE and committed as `8e6e0fc`. Exact settlement cleanup removed
+1300files/43,821,018bytes and14empty directories, with zero failures/remaining
+targets; all11 recorded command identities were absent.
+
+The three-path access slice preserves primitive ownership first and pending-phase
+precedence before inspecting the sole holder's settlement metadata. Settling
+refuses snapshot/restore/playback/new transition/replay. Stable settlementFailed
+permits snapshot/restore (preserving actual gains) but refuses playback and new
+transitions/replay. Awaiting/terminal settlement permits snapshot/playback/general
+transition but refuses ordinary replay. Restore refusal releases only its own
+reservation; successful restore cleanup still abandons transient authority.
+The replay-specific adapter is inactive, with no production caller. Production
+producers create no installation/settlement receipts yet, so this is not production
+payout or paid-Iron acceptance. Existing abandonment remains an explicit escape;
+synchronous real settlement retains primitive ownership throughout effects.
+
+Forty-eight new cases cover five settlement states across access categories,
+primitive ownership and pending precedence, restore reservation preservation,
+stable failure save/restore/abandonment and synthetic actual-gain preservation.
+RED34failed/61passed6.093s established missing support; GREEN95/5.490s passed.
+First focused283/3files5.909s contained an ignored nonexistent persistence filter;
+corrected focused319/4files6.179s includes persistence.receipt.test.ts36. Types
+15.274s, lint39.818s including85purity, full6992/228files115.083s and task-local
+build9.807s passed. Build608modules/index-GCiYf-P6.js1264.77kB observed. Source/
+output identities and the mistyped-filter receipt are retained. Related5s/full15s
+budget overruns, prior unexplained bundle variance, existing React act/fixture
+fallback, stale Browserslist and chunk/precache warnings remain open. No new
+engine/UI/browser/server change or visual/earned/paid-Iron acceptance claim.
+Chinese screenshot glyph rendering remains unresolved. SaveCurrent11 unchanged.
+Security check passes: no new IO/dependency/persisted payload/inventory writes,
+callback registry or compatibility bypass.
+
+Three paths, command/source/output identities, prior settlement cleanup and exact
+owned dist/tmp inventory are frozen in settlement-access-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review, local commit and exact cleanup follow.
+Root is sole writer/executor; umbrella claim continues;
+no remote action. TD approved prerequisite fixture migration (cross-wave, outcomes,
+idle-bonus, Skills readiness and ledger) before atomic producer/settlement activation
+(helpers, helper receipt integration, quest-objective refusals and ledger). No
+runtime compatibility fallback is authorized. Selected-item debit/replay lock,
+recovery UI, bilingual Iron acceptance and fullD06/P09/P10/private-v1 remain open.

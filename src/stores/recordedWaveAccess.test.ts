@@ -7,10 +7,12 @@ import type { ActiveRun } from './combatRunLifecycle';
 import { stageRecordedBattle } from './recordedBattlePublication';
 import { abandonRecordedWaves, prepareRecordedWave, commitPreparedRecordedWave,
   recognizeRecordedWavePublication, inspectRecordedWaves, RecordedWaveReceiptError,
+  prepareRecordedWaveInstallation, markRecordedWaveMetadataInstalled,
+  beginRecordedWaveSettlement, finishRecordedWaveSettlement, failRecordedWaveSettlement, clearRecordedWavesAfterRestore,
   type RecordedWaveBinding, type RecordedWaveLive } from './recordedWaveReceipt';
 import { assertRecordedWaveSnapshotAllowed, reserveRecordedWaveRestore,
   assertRecordedWavePlaybackAllowed, assertRecordedWaveNewTransitionAllowed,
-  assertRecordedWavePublicationRecoveryAllowed, RecordedWaveAccessError } from './recordedWaveAccess';
+  assertRecordedWavePublicationRecoveryAllowed, assertRecordedWaveReplayAllowed, RecordedWaveAccessError } from './recordedWaveAccess';
 import { beginWaveTransition, endWaveTransition, reserveWaveRestore, releaseWaveRestore,
   assertWaveSnapshotAllowed, WaveGuardError,
   type WaveTransitionLease, type WaveRestoreLease } from './waveTransitionGuard';
@@ -97,7 +99,8 @@ describe('recorded-wave phase access', () => {
 
   describe.each([
     ['playback', assertRecordedWavePlaybackAllowed],
-    ['new transition', assertRecordedWaveNewTransitionAllowed]
+    ['new transition', assertRecordedWaveNewTransitionAllowed],
+    ['ordinary replay', assertRecordedWaveReplayAllowed]
   ] as const)('%s', (_name, check) => {
     it.each(states)('allows only empty/published holders in %s', state => {
       installState(state); const before = inspectRecordedWaves();
@@ -203,4 +206,109 @@ describe('recorded-wave phase access', () => {
       const lease = acquireWave(); releaseWave(lease);
       expect(inspectRecordedWaves()).toEqual({ currentPublished: null, pending: null });
     });
+});
+
+
+const settlementStates = ['unsettled', 'settling', 'awaitingNextWave', 'settled', 'settlementFailed'] as const;
+type SettlementState = typeof settlementStates[number];
+function installSettlementState(state: SettlementState) {
+  const { binding, live } = fixture(); const lease = acquireWave();
+  try {
+    const token = prepareRecordedWaveInstallation(binding, { kind: 'newRun', nextDefaultChallengeOrdinal: null }, lease);
+    commitPreparedRecordedWave(token, lease, live); markRecordedWaveMetadataInstalled(token, lease);
+    Object.assign(binding.candidateRun, { recording: binding.recording, waveElapsedMs: binding.waveElapsedMs });
+    expect(recognizeRecordedWavePublication(token, lease, { activeRun: binding.candidateRun,
+      heroId: binding.heroId, combat: binding.publication })).toBe(true);
+    const failure = { message: 'original payout exception' };
+    if (state !== 'unsettled') {
+      beginRecordedWaveSettlement(token, lease, { activeRun: binding.candidateRun, heroId: binding.heroId,
+        combat: { ...binding.publication, playbackComplete: true } });
+      if (state === 'awaitingNextWave') finishRecordedWaveSettlement(token, lease,
+        { kind: 'nextWave', carryPlayerTeam: [...binding.candidateRun.carryPlayerTeam] });
+      else if (state === 'settled') finishRecordedWaveSettlement(token, lease, { kind: 'terminal', result: 'defeat' });
+      else if (state === 'settlementFailed') failRecordedWaveSettlement(token, lease, { error: failure });
+    }
+    return { token, binding, failure };
+  } finally { releaseWave(lease); }
+}
+const settlementActions = [
+  { name: 'snapshot', check: assertRecordedWaveSnapshotAllowed },
+  { name: 'restore', check: () => { releaseRestore(trackRestore(reserveRecordedWaveRestore())); } },
+  { name: 'playback', check: assertRecordedWavePlaybackAllowed },
+  { name: 'transition', check: assertRecordedWaveNewTransitionAllowed },
+  { name: 'replay', check: () => { assertRecordedWaveReplayAllowed(); } }
+] as const;
+function settlementRefusal(state: SettlementState, action: typeof settlementActions[number]['name']) {
+  if (state === 'settling') return 'settling';
+  if (state === 'settlementFailed' && action !== 'snapshot' && action !== 'restore') return 'settlementFailed';
+  if (action === 'replay' && (state === 'awaitingNextWave' || state === 'settled')) return 'replaySettled';
+  return null;
+}
+
+describe('inactive settlement access rules', () => {
+  it.each(settlementStates.flatMap(state => settlementActions.map(action => ({ state, ...action }))))(
+    '$name observes $state without changing progress or gameplay', ({ state, name, check }) => {
+    const { binding, failure } = installSettlementState(state); const before = inspectRecordedWaves();
+    const run = structuredClone(binding.candidateRun); const code = settlementRefusal(state, name);
+    if (code) expect(check).toThrow(new RecordedWaveAccessError(code));
+    else expect(check).not.toThrow();
+    expect(inspectRecordedWaves()).toBe(before); expect(binding.candidateRun).toEqual(run);
+    if (state === 'settlementFailed') expect(before.currentPublished?.installation?.settlement.progress)
+      .toEqual({ phase: 'settlementFailed', failure: { error: failure } });
+    // A failed reservation must have released its own lease.
+    const wave = acquireWave(); releaseWave(wave);
+  });
+
+  it.each(settlementStates.flatMap(state => (['wave', 'restore'] as const).map(owner => ({ state, owner }))))(
+    '$owner ownership has precedence over $state settlement access', ({ state, owner }) => {
+    installSettlementState(state); const before = inspectRecordedWaves();
+    const wave = owner === 'wave' ? acquireWave() : undefined;
+    const restore = owner === 'restore' ? trackRestore(reserveWaveRestore()) : undefined;
+    try {
+      for (const { name, check } of settlementActions) {
+        if (owner === 'restore' && name === 'restore') continue; // Restore reservations may coexist.
+        expect(check).toThrow(new WaveGuardError(owner === 'wave' ? 'waveBusy' : 'restorePending'));
+      }
+      expect(inspectRecordedWaves()).toBe(before);
+    } finally { if (wave) releaseWave(wave); if (restore) releaseRestore(restore); }
+  });
+
+  it.each((['settling', 'settlementFailed'] as const).flatMap(settlement =>
+    (['prepared', 'committedPendingPublication', 'conflict'] as const).map(pending => ({ settlement, pending }))))(
+    'pending $pending restrictions precede $settlement settlement', ({ settlement, pending }) => {
+    installSettlementState(settlement); installState(pending); const before = inspectRecordedWaves();
+    for (const { name, check } of settlementActions) {
+      const snapshot = name === 'snapshot' || name === 'restore';
+      const code = pending === 'prepared' ? 'preparedPending' : pending === 'conflict' ? 'conflict'
+        : !snapshot ? 'publicationPending' : settlementRefusal(settlement, name);
+      if (code) expect(check).toThrow(new RecordedWaveAccessError(code));
+      else expect(check).not.toThrow();
+      expect(inspectRecordedWaves()).toBe(before);
+    }
+    const wave = acquireWave(); releaseWave(wave);
+  });
+
+  it('permits stable failure snapshot/restore and explicit abandonment without changing retained gains', () => {
+    const { binding, failure } = installSettlementState('settlementFailed'); const gains = { xp: 75, items: ['paid-loot'] };
+    const before = inspectRecordedWaves();
+    expect(assertRecordedWaveSnapshotAllowed).not.toThrow();
+    releaseRestore(trackRestore(reserveRecordedWaveRestore()));
+    expect(inspectRecordedWaves()).toBe(before);
+    expect(() => { assertRecordedWaveReplayAllowed(); }).toThrow(new RecordedWaveAccessError('settlementFailed'));
+    expect(before.currentPublished?.installation?.settlement.progress).toEqual({ phase: 'settlementFailed', failure: { error: failure } });
+    const recording = binding.candidateRun.recording;
+    abandonRecordedWaves();
+    for (const { check } of settlementActions) expect(check).not.toThrow();
+    expect(inspectRecordedWaves()).toEqual({ currentPublished: null, pending: null });
+    expect(binding.candidateRun.recording).toBe(recording); expect(gains).toEqual({ xp: 75, items: ['paid-loot'] });
+  });
+
+  it('successful restore cleanup discards stable failed receipts and keeps actual gameplay values', () => {
+    const { binding } = installSettlementState('settlementFailed'); const run = structuredClone(binding.candidateRun);
+    const restore = trackRestore(reserveRecordedWaveRestore());
+    try { clearRecordedWavesAfterRestore(restore); } finally { releaseRestore(restore); }
+    expect(inspectRecordedWaves()).toEqual({ currentPublished: null, pending: null });
+    expect(binding.candidateRun).toEqual(run);
+    for (const { check } of settlementActions) expect(check).not.toThrow();
+  });
 });
