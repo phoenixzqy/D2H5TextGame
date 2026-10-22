@@ -132,6 +132,35 @@ describe('independent target-combo literal oracles', () => {
 });
 
 describe('independently expected pairs and within-domain contrasts', () => {
+  it('retains raw startup preparation and rejects control gameplay mutations without changing either run', () => {
+    const fixture = buildMageComboFixture('ignite');
+    const neutral = recordMageComboSeed(buildMageComboFixture('none'), 'none', 'elemental', 7);
+    const actual = recordMageComboSeed(fixture, 'ignite', 'elemental', 7);
+    const bytes = JSON.stringify({ neutral, actual });
+    expect(actual.preparation.events).toEqual(actual.recorded.events.filter(event => event.simClockMs === 0));
+    expect(neutral.preparation.events).toEqual(neutral.recorded.events.filter(event => event.simClockMs === 0));
+    expect(compareMageComboControl(neutral, actual, fixture, 'ignite', 'elemental').seed).toBe(7);
+    const preparation = actual.preparation;
+    for (const patch of [
+      { ...preparation, startupPayment: 21 },
+      { ...preparation, mages: preparation.mages.map((mage, i) => i === 0 ? { ...mage, mana: mage.mana + 1 } : mage) },
+      { ...preparation, events: preparation.events.map(event => event.kind === 'action'
+        ? { ...event, skillId: 'fixture.changed-startup' } : event) },
+      { ...preparation, events: preparation.events.map(event => event.kind === 'mana'
+        ? { ...event, mana: event.mana + 1 } : event) },
+      { ...preparation, events: preparation.events.map(event => event.kind === 'summon'
+        ? { ...event, owner: 'fixture.changed-owner' } : event) },
+      { ...preparation, events: preparation.events.map(event => event.kind === 'summon'
+        ? { ...event, simClockMs: 1 } : event) },
+      { ...preparation, events: [...preparation.events].reverse() },
+      { ...preparation, events: preparation.events.filter(event => event.kind !== 'summon') }
+    ]) {
+      expect(() => compareMageComboControl(neutral, { ...actual, preparation: patch }, fixture, 'ignite', 'elemental'))
+        .toThrow('Mage combo control seed/preparation');
+    }
+    expect(JSON.stringify({ neutral, actual })).toBe(bytes);
+  });
+
   it('rejects shared wrong pair metadata and separately validates both control fixtures', () => {
     const control = buildMageComboFixture('none'), fixture = buildMageComboFixture('ignite');
     const none = recordMageComboSeed(control, 'none', 'elemental', 7), actual = recordMageComboSeed(fixture, 'ignite', 'elemental', 7);

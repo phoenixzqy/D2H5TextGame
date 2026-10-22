@@ -1,4 +1,4 @@
-import { legacyRecordedEvents } from '@/test/combat-oracle';
+import { legacyRecordedEvents, legacyRecording } from '@/test/combat-oracle';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { runBattle, runBattleRecorded, type CombatSnapshot } from './combat';
 import type { CombatUnit } from './types';
@@ -215,7 +215,7 @@ describe('seeded scheduler ties', () => {
     const bounded = { ...input, playerTeam: input.playerTeam.map(u => ({ ...u,
       statuses: [{ id: 'fixture.inert', sourceId: 'fixture', stacks: 1, remaining: 1,
         appliedAtMs: 500, expiresAtMs: 1000 }] })) };
-    expect(runBattleRecorded(bounded)).toEqual(r);
+    expect(legacyRecording(runBattleRecorded(bounded))).toEqual(legacyRecording(r));
   });
 
   it('falls back to insertion order on exact seeded priority collisions', () => {

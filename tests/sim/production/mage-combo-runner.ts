@@ -1,4 +1,5 @@
 import type { RecordedBattleResult } from '@/engine/combat/combat';
+import { legacyRecordedEvents } from '@/test/combat-oracle';
 import { activeStatusView, expireStatuses } from '@/engine/combat/status';
 import { applyOrbs } from '@/engine/combat/orbs';
 import { mageJsonHash } from './mage-balance-fixture';
@@ -124,7 +125,11 @@ export function compareMageComboControl(neutral: ReturnType<typeof recordMageCom
   assertMageComboFixture(fixture, expectedCase);
   const control = buildMageComboFixture('none');
   assertRun(neutral, control, 'none', mode); assertRun(intervention, fixture, expectedCase, mode);
-  if (neutral.seed !== intervention.seed || mageJsonHash(neutral.preparation) !== mageJsonHash(intervention.preparation)) {
+  // Initial status observations intentionally differ across these two inputs.
+  // Compare startup gameplay without changing either retained native preparation.
+  const gameplay = (preparation: typeof neutral.preparation) => ({ ...preparation,
+    events: legacyRecordedEvents(preparation.events) });
+  if (neutral.seed !== intervention.seed || mageJsonHash(gameplay(neutral.preparation)) !== mageJsonHash(gameplay(intervention.preparation))) {
     throw new Error('Mage combo control seed/preparation');
   }
   return { caseId: expectedCase, mode, source: fixture.source, neutralFixtureHash: control.hash, fixtureHash: fixture.hash,

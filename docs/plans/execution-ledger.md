@@ -9286,3 +9286,54 @@ failures[]. Cleanup receipt SHA256
 d9cb6a6097547b784c09a48cc12e69ee9548651d58cadf1aa1307a1213f0f8fb.
 Required source/raw/review evidence remains root-owned at ROOT until umbrella
 consumers finish. No owned processes remain. Settled cached whitespace precedes commit.
+
+
+## D04 v1cp — Preserve deadline and Mage control gameplay comparisons
+
+CompatibilityD5 owns exactly combat/deadline.test.ts, production Mage combo
+runner/test, BUG-080 and this ledger. Root remains sole writer/executor in the
+claimed isolated worktree. Security PASS: approved test-only transport projection
+and diagnostic report; no production, dependency, network, credentials or save
+change. BUG080 remains open across engine/store/UI. It was filed after genuine
+lifecycle RED and before the parked engine patch, rather than after the fix.
+
+The parked engine passed focused/engine/types/original24 preservation but failed
+one full-suite Mage control comparison. Neutral/Ignite control inputs deliberately
+differ in initial statuses; their raw t0 preparation events correctly differ once
+transport exists. Only the control comparison now projects temporary preparation
+event copies. Raw retained preparation, recordings, same-input determinism,
+payments/mage metadata and gameplay fields remain exact. A new regression asserts
+raw t0 retention, immutability and rejection of eight payment/mage/payload/time/
+order/missing-event mutations. Deadline projects only its bounded-inert-input
+versus base whole-recording comparison. Its frozen literals stay unchanged.
+
+Producer/TD approved resequence: CompatibilityD5 → Engine3 → Native4/Mage4 →
+lifecycle5 → earned2 → batching5 → browser/UI. Engine bytes are parked externally;
+current combat.ts is byte-exact HEAD and lifecycle test is absent. Pre-boundary
+23/1 PASS3.16s (wrapper4.090) is baseline prerequisite evidence, not RED. The
+integrated full failure and original genuine lifecycle REDs remain retained in
+engine evidence. No new behavioral RED is claimed for this prerequisite.
+
+Focused40/2 PASS3.41s (wrapper4.397); engine3872/94 PASS (wrapper21.704);
+types PASS22.302s; lint PASS50.973s; full8219/259 PASS136.44s (wrapper137.967);
+production build/bridge PASS10.293s, four JS chunks scanned, VITE_E2E absent.
+Engine3s/full15s budgets and Browserslist/>500kB chunk/2.57MB manifest-precache
+warnings remain open. This baseline validation does not grant combined Engine,
+staging/lifecycle/pacing/browser acceptance. TD/CODE APPROVE and QA TEST-EVIDENCE
+ADEQUATE bind current source hashes and preserve that distinction.
+
+ROOT: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-status-oracle-d-tprk4ctl`.
+Root retains exact source/log/review/receipt evidence until umbrella consumers
+finish, then removes it. Final QA/producer publication review and reader release
+precede exact disposable cleanup and append-only receipt. Exact5paths, append-only
+ledger and settled cached whitespace precede local commit. No push/PR/merge/deploy.
+Full D04/D06/P09/P10/private-v1, earnedL18, balance/manualfeel, mobile/a11y/browser
+and performance remain open.
+
+Final QA ADEQUATE and producer PUBLICATION APPROVE verified exact5paths, all
+source/receipt hashes, append-only ledger and correct baseline/RED provenance.
+All readers released. Exact cleanup removed857files/42779886bytes/14directories;
+remaining[]/failures[]. Cleanup receipt SHA256
+56ba5cdbf070f4eb42344b17cde2eb0c291da5a1594b3b98d9f1d9f140b6e03d.
+Required evidence stays root-owned at ROOT until umbrella consumers finish.
+No owned processes remain. Settled cached whitespace precedes commit.
