@@ -111,7 +111,7 @@ describe.each(['en', 'zh-CN'])('Rogue Inner Sight status feedback %s', locale =>
       expect(i18n.t('combat:effect.status.merc-inner-sight')).toBe(english ? 'Inner Sight' : '心眼');
       expect(eventToLocalizedLogEntry({ kind: 'action', actor: 'rogue', skillId: 'mskill-inner-sight' }, names)?.message)
         .toBe(english ? 'Rogue Scout — Inner Sight casts Inner Sight.' : '罗格侦察兵 — 内视 施放了 心眼。');
-      for (const statusId of ['inner-sight', 'inner_sight', 'poison', 'fixture-unknown-status']) {
+      for (const statusId of ['inner-sight', 'inner_sight', 'fixture-unknown-status']) {
         expect(eventToLocalizedLogEntry({ kind: 'status', target: 'enemy', statusId }, names)?.message)
           .toBe(english ? `Target is afflicted with [${statusId}].` : `Target 进入【${statusId}】状态。`);
       }
@@ -119,6 +119,61 @@ describe.each(['en', 'zh-CN'])('Rogue Inner Sight status feedback %s', locale =>
       await i18n.changeLanguage(previous);
     }
   });
+});
+
+const statusNames = [
+  ['merc-inner-sight', 'Inner Sight', '心眼'], ['chill', 'Chill', '冰冷'],
+  ['freeze', 'Freeze', '冻结'], ['paralyze', 'Paralyze', '麻痹'], ['stun', 'Stun', '眩晕'],
+  ['ignite', 'Ignite', '点燃'], ['burn', 'Burn', '燃烧'], ['poison', 'Poison', '中毒'],
+  ['plague', 'Plague', '瘟疫'], ['bleed', 'Bleed', '流血'], ['amplify', 'Amplify', '伤害加深'],
+  ['amplify-damage', 'Amplify', '伤害加深'], ['decrepify', 'Decrepify', '衰老'],
+  ['dim-vision', 'Dim Vision', '微暗灵视'], ['weaken', 'Weaken', '削弱'],
+  ['iron-maiden', 'Iron Maiden', '攻击反噬'], ['terror', 'Terror', '恐惧'],
+  ['confuse', 'Confuse', '迷乱'], ['life-tap', 'Life Tap', '偷取生命'],
+  ['attract', 'Attract', '吸引'], ['lower-resist', 'Lower Resist', '降低抵抗'],
+  ['mana-burn', 'Mana Burn', '法力燃烧']
+] as const;
+
+describe.each(['en', 'zh-CN'])('shared status log names in %s', locale => {
+  it.each(statusNames)('renders known %s with literal localized copy', async (statusId, en, zh) => {
+    const previous = i18n.language;
+    try {
+      await i18n.changeLanguage(locale);
+      expect(eventToLocalizedLogEntry({ kind: 'status', target: 'enemy', statusId }, new Map([['enemy', 'Target']])))
+        .toEqual({ type: 'debuff', actorId: 'enemy', actorName: 'Target',
+          message: locale === 'en' ? `Target is afflicted with [${en}].` : `Target 进入【${zh}】状态。` });
+    } finally {
+      await i18n.changeLanguage(previous);
+    }
+  });
+  it.each(['fixture-unknown-status', 'inner-sight', 'inner_sight', 'fixture.status', 'fixture/status', 'fixture:status'])(
+    'retains exact unknown ID%s as fallback', async statusId => {
+      const previous = i18n.language;
+      try {
+        await i18n.changeLanguage(locale);
+        expect(eventToLocalizedLogEntry({ kind: 'status', target: 'enemy', statusId }, new Map([['enemy', 'Target']]))?.message)
+          .toBe(locale === 'en' ? `Target is afflicted with [${statusId}].` : `Target 进入【${statusId}】状态。`);
+      } finally {
+        await i18n.changeLanguage(previous);
+      }
+    });
+});
+
+it('renders known status names in en then zh-CN then en without cached text', async () => {
+  const previous = i18n.language;
+  try {
+    const event: BattleEvent = { kind: 'status', target: 'enemy', statusId: 'poison' };
+    const messages: (string | undefined)[] = [];
+    for (const locale of ['en', 'zh-CN', 'en']) {
+      await i18n.changeLanguage(locale);
+      messages.push(eventToLocalizedLogEntry(event, new Map([['enemy', 'Target']]))?.message);
+    }
+    expect(messages).toEqual([
+      'Target is afflicted with [Poison].', 'Target 进入【中毒】状态。', 'Target is afflicted with [Poison].'
+    ]);
+  } finally {
+    await i18n.changeLanguage(previous);
+  }
 });
 
 describe('silent authoritative mana events', () => {

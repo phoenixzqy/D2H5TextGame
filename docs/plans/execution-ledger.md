@@ -8969,3 +8969,47 @@ Removed exactly857files/42778878bytes/14directories; no remnants/failures.
 Cleanup receipt SHA256 `7737f61eec107c09fad825cfb51eba4187502bc44cd12159be342b063645dab8`.
 Required evidence stays root-owned at ROOT until umbrella consumers finish.
 Final path/append-only and settled cached whitespace checks precede local commit.
+
+
+## D06 v1ci — Shared known-status log localization
+
+Root owns exactly four paths: eventToLogI18n.ts/test, structured BUG-079 and this
+ledger. Security PASS: generic existing-label lookup with exact raw unknown
+fallback; no network/credential/permission/dependency/CI/save change. Existing
+isolated claim/branch retained. RED43/112 before bug/runtime:21 untranslated
+known status IDs in both languages plus locale-switch case fail. Inner Sight and
+unknown controls passed. BUG-079 was filed before the renderer patch.
+
+Replace mercenary-only naming with existing combat:effect.status.<id> translation
+and raw-ID defaultValue. One shared source line fixes every known status, without
+PE-specific branches/new locale entries. Literal assertions cover all22 existing
+keys/en/zh, six unknown IDs including dot/slash/colon, and en→zh-CN→en. Only the
+obsolete raw-poison entry was removed from the old unknown list under the explicit
+known-status rule; actual unknowns and Inner Sight exact copy remain intact.
+
+Focused143/3 pass4.87s (wrapper5.886s), types22.529s, lint/purity51.007s,
+full8192/257 pass138.05s (wrapper139.674s), build/bridge10.404s pass. Four
+production JS chunks contain no bridge. QA source/TDD ADEQUATE; final publication
+review follows. Full15s budget and existing Browserslist/>500kB chunk/2.57MB
+manifest-precache warnings remain open. No status lifecycle/math/reward changes.
+
+ROOT: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-status-log-l5xknylw`.
+Root retains raw/source/check/review evidence until umbrella consumers finish,
+then removes it. After all readers release remove only manifest/hash/symlink-
+checked ROOT/dist,tmp,vite-cache and record receipt. Exact-four-path/append-only
+and settled cached whitespace checks precede local commit. No push/PR/merge/deploy.
+
+Next Skills5 card closes BUG-079 with actual SHA and is therefore six paths unless
+split: retain the approved SkillsScreen/newtest/en+zh skills.json/ledger5; defer
+BUG-079 actual-SHA closure to the following contract4 card's spare fifth path.
+D04 scratch contract/QA reviews are independent of this renderer publication.
+Engine-authoritative status observations, batched playback and compact badges
+precede browser expiry proof. EarnedL18/balance/manualfeel and full
+D04/D06/P09/P10/private-v1 remain open.
+
+Final publication QA ADEQUATE and producer APPROVE bind final source/checks/docs.
+All readers released before exact cleanup:857files/42778626bytes/
+14directories, no remnants/failures. Cleanup receipt SHA256
+`01f60feb814cfadbca3dd7f83a7d5f1f3cb4d100ddf0ddb928c7deb1c7384c95`. Required evidence stays
+root-owned at ROOT until umbrella consumers finish. Exact-path/append-only and
+settled cached whitespace checks precede local commit.
