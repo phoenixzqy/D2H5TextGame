@@ -165,7 +165,7 @@
             "level": 4,
             "monsters": [
               {
-                "archetypeId": "monsters/act1.dark-stalker",
+                "archetypeId": "monsters/act1.dark-one",
                 "count": 2,
                 "elite": true
               },

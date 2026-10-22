@@ -1,0 +1,165 @@
+import { createServer } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/vite/dist/node/index.js';
+import { readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
+import assert from 'node:assert/strict';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+const wt='/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2';
+const root=path.dirname(fileURLToPath(import.meta.url));
+const nativeRoot=path.join(root,'../lightning-native');
+const inputPath=path.join(wt,'docs/plans/evidence/fixtures/p04a09-lightning-den-earned-discovery.json');
+const epoch=1792497600000;
+const encode=value=>JSON.stringify(value,(_key,v)=>v instanceof Map?[...v.entries()]:v instanceof Set?[...v]:v,2)+'\n';
+const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
+const originalNow=Date.now;
+const report={kind:'complete Den production-service feasibility after authored family correction; not new earned/browser proof',epoch,runSeed:2223645302,challengeOrdinal:40,maxWaves:4,node:process.version,pid:process.pid,waves:[],cleanupErrors:[],limits:['Process-local stores populated from retained native earned save; no browser/persistence writes','cursor0 openings differ from native Pause timing','fresh-process item allocator IDs may differ; no allocator/global-counter reset','W1–W4 once, first nonwin stops; no retry, seed sweep, acquisition, skill replacement or runtime tuning']};
+let server,restorers=[],originalPity,pity,helpers,originalStores,state,error;
+const sourceFiles=execFileSync('git',['ls-files','--cached','--others','--exclude-standard','-z','src','tests/sim/production','package.json','package-lock.json','tsconfig.json','tsconfig.node.json','vite.config.ts'],{cwd:wt,encoding:'utf8'}).split('\0').filter(Boolean);
+const getSources=async()=>Object.fromEntries(await Promise.all(sourceFiles.map(async rel=>[rel,sha(await readFile(path.join(wt,rel)))])));
+const sources=await getSources();
+const inputBytes=await readFile(inputPath);
+const fixture=JSON.parse(inputBytes);
+const nativeSummaryBytes=await readFile(path.join(nativeRoot,'native-summary.json'));
+const nativeSummary=JSON.parse(nativeSummaryBytes);
+const nativeObservations=Object.fromEntries(Object.entries(nativeSummary.observations).filter(([k])=>k!=='exact-earned-upgrades'));
+const fullNativeW1=nativeObservations['den-award-1'];
+nativeObservations['den-award-1']={player:fullNativeW1.player,bag_count:fullNativeW1.inventory.backpack.length,currencies:fullNativeW1.inventory.currencies,mercs:fullNativeW1.mercs,map:fullNativeW1.map};
+assert.deepEqual(fixture.observations,nativeObservations,'Published/native observations, documented W1 compact projection');
+report.nativeSummarySha=sha(nativeSummaryBytes);
+report.nativeRawReportSha=sha(await readFile(path.join(nativeRoot,'browser-report.json')));
+assert.equal(report.nativeRawReportSha,nativeSummary.raw_report_sha256);
+assert.equal(report.nativeRawReportSha,fixture.raw_evidence.report_sha256);
+report.input={path:inputPath,sha:sha(inputBytes),scriptSha:sha(await readFile(fileURLToPath(import.meta.url))),head:execFileSync('git',['rev-parse','HEAD'],{cwd:wt,encoding:'utf8'}).trim()};
+await writeFile(path.join(root,'input-manifest.json'),encode({...report.input,sources}));
+function account(wave){
+ const units=new Map([...wave.opening.playerTeam,...wave.opening.enemyTeam].map(u=>[u.id,{id:u.id,side:u.side,opening:{hp:u.life,mp:u.mana},hp:u.life,mp:u.mana,hpMax:u.stats.lifeMax,mpMax:u.stats.manaMax,damage:{},damageEffective:{},overkill:0,healEffective:0,hpOrbEffective:0,hpOrbCount:0,mpOrbCount:0,manaDelta:{},actions:[],resources:[]}]));
+ let action=null;
+ for(const [index,event] of wave.opening.recordedEvents.entries()){
+  if(event.kind==='action'){ action={actor:event.actor,skillId:event.skillId,simClockMs:event.simClockMs}; units.get(event.actor)?.actions.push(action); }
+  const u=units.get(event.target); if(!u) continue;
+  const before={hp:u.hp,mp:u.mp};
+  if((event.kind==='damage'&&!event.dodged)||event.kind==='dot'){
+   const amount=event.amount; const effective=Math.min(u.hp,amount);
+   const key=event.kind==='dot'?'dot':`${event.source}:${event.damageType}`;
+   u.damage[key]=(u.damage[key]??0)+amount; u.damageEffective[key]=(u.damageEffective[key]??0)+effective;
+   u.overkill+=amount-effective;u.hp=Math.max(0,u.hp-amount);
+  }else if(event.kind==='heal'){
+   const effective=Math.min(u.hpMax-u.hp,event.amount);u.healEffective+=effective;u.hp+=effective;
+  }else if(event.kind==='orb'){
+   if(event.orb.kind==='hp'){const effective=Math.min(u.hpMax-u.hp,Math.floor(u.hpMax*event.orb.restorePct));u.hpOrbEffective+=effective;u.hpOrbCount++;u.hp+=effective;}
+   else u.mpOrbCount++;
+  }else if(event.kind==='mana'){
+   const delta=event.mana-u.mp;u.manaDelta[event.reason]=(u.manaDelta[event.reason]??0)+delta;u.mp=event.mana;
+  }else if(event.kind==='death'){
+   if(u.hp!==0) throw new Error(`Death without accounted damage: ${u.id}, HP ${u.hp}`);
+  }
+  if(before.hp!==u.hp||before.mp!==u.mp||['damage','dot','orb','heal','death'].includes(event.kind)) u.resources.push({index,clock:event.simClockMs,event,contextAction:action,before,after:{hp:u.hp,mp:u.mp}});
+ }
+ for(const final of [...wave.opening.outcome.finalPlayerTeam,...wave.opening.outcome.finalEnemyTeam]){
+  const u=units.get(final.id);assert(u,`Unregistered final unit ${final.id}`);u.actualFinal={hp:final.life,mp:final.mana};
+  assert.equal(u.hp,final.life,`HP accounting ${final.id}`);assert.equal(u.mp,final.mana,`MP accounting ${final.id}`);
+  u.reconciled=true;
+ }
+ return [...units.values()];
+}
+function compareNative(wave,native,stage){
+ const team=stage==='terminal'?[...wave.opening.outcome.finalPlayerTeam,...wave.opening.outcome.finalEnemyTeam]:[...wave.opening.playerTeam,...wave.opening.enemyTeam];
+ const ids=team.map(u=>u.id).sort();const nativeIds=native.cards.map(c=>c.id.replace(/^unit-card-/, '')).sort();
+ assert.deepEqual(ids,nativeIds,`Native roster ${stage} W${wave.index+1}`);
+ const values=team.map(u=>{const card=native.cards.find(c=>c.id===`unit-card-${u.id}`);const hp=Number(card.hp.match(/[\d.]+/)?.[0]);const expected=Number((u.life/u.stats.lifeMax*100).toFixed(2));return {id:u.id,hp:u.life,hpMax:u.stats.lifeMax,diagnosticPercent:expected,nativePercent:hp,equal:expected===hp,nativeDead:card.dead};});
+ if(stage==='terminal'){
+  for(const v of values)assert.equal(v.equal,true,`Native terminal HP ${v.id}`);
+  assert.equal(Number(native.mp),team.find(u=>u.kind==='hero')?.mana,`Native terminal MP W${wave.index+1}`);
+  assert.deepEqual(wave.played.log.map(e=>e.message),native.log,`Native terminal log W${wave.index+1}`);
+ }
+ return {stage,rosterEqual:true,values,nativeMP:Number(native.mp),diagnosticHeroMP:team.find(u=>u.kind==='hero')?.mana,logEqual:stage==='terminal'?JSON.stringify(wave.played.log.map(e=>e.message))===JSON.stringify(native.log):null};
+}
+try{
+ server=await createServer({configFile:false,root:wt,cacheDir:path.join(root,'vite-cache'),server:{middlewareMode:true,hmr:false},resolve:{alias:{'@':path.join(wt,'src')}}});
+ const load=rel=>server.ssrLoadModule('/'+rel);
+ state=await load('tests/sim/production/earned-state.ts');
+ const playback=await load('tests/sim/production/earned-playback.ts');
+ helpers=await load('src/stores/combatHelpers.ts');
+ pity=await load('src/stores/idleElitePity.ts');
+ const {decodeSave}=await load('src/engine/save/validate.ts');
+ const {toJsonSafe}=await load('src/engine/save/serialize.ts');
+ const {usePlayerStore:player}=await load('src/stores/playerStore.ts');
+ const {useInventoryStore:inventory}=await load('src/stores/inventoryStore.ts');
+ const {useMercStore:merc}=await load('src/stores/mercStore.ts');
+ const {useMapStore:map}=await load('src/stores/mapStore.ts');
+ const {useMetaStore:meta}=await load('src/stores/metaStore.ts');
+ const {useFormationStore:formation}=await load('src/stores/formationStore.ts');
+ const {useHydrationStore:hydration}=await load('src/stores/hydrationStore.ts');
+ const {default:i18n}=await load('src/i18n/index.ts');await i18n.changeLanguage('en');
+ const save=decodeSave(fixture.observations['den-tracked-earned']);
+ restorers=state.captureEarnedRestorers();originalStores=state.observeEarnedState();originalPity=pity.getIdleEliteMisses();
+ Date.now=()=>epoch;state.resetEarnedStores();pity.setIdleEliteMisses(0);
+ player.setState({player:structuredClone(save.player)});
+ inventory.setState(structuredClone(save.inventory));
+ merc.setState(structuredClone(save.mercs));
+ map.setState(structuredClone(save.map));
+ meta.setState({...structuredClone(save.meta),idleBonusAnchor:epoch});
+ formation.getState().hydrate(save.formation);hydration.getState().setStatus('ready');
+ const observed=state.observeEarnedState();
+ const reconstructed={version:save.version,timestamp:save.timestamp,player:observed.player.player,inventory:observed.inventory,mercs:observed.merc,map:observed.map,meta:{settings:observed.meta.settings,idleState:observed.meta.idleState,gachaState:observed.meta.gachaState},formation:observed.formation};
+ assert.deepEqual(toJsonSafe(reconstructed),toJsonSafe(save),'Pre-start six domain equality');report.preStartDomainEquality=true;report.reconstructedSave=reconstructed;
+ // Native MapScreen.enterArea chooses its alias before CombatScreen starts.
+ // The retained tracked save was captured immediately before that UI action.
+ const beforeEnter=state.observeEarnedState();
+ map.getState().setCurrentLocation(1,'a1-den-of-evil');
+ const afterEnter=state.observeEarnedState();
+ assert.deepEqual(afterEnter,{...beforeEnter,map:{...beforeEnter.map,currentAct:1,currentSubAreaId:'a1-den-of-evil'}},'Exact MapScreen entry changes location only');
+ report.nativeCallerEntry={action:'useMapStore.setCurrentLocation',args:[1,'a1-den-of-evil'],before:beforeEnter.map,after:afterEnter.map,locationOnly:true,source:'src/features/map/MapScreen.tsx enterArea / enter button; retained native spec enter(page,...,a1-den-of-evil)'};
+ const handle=playback.startEarnedRun({act:1,subAreaId:'areas/act1-den-of-evil',mode:'manual',runSeed:report.runSeed,challengeOrdinal:40});report.handle=handle;assert.equal(handle.totalWaves,4,'Exact four-wave Den budget');
+ for(let i=0;i<handle.totalWaves;i++){
+  assert(i<4,'No wave beyond complete four-wave Den');
+  const wave=playback.playEarnedWave(handle,i);report.waves.push(wave);wave.accounting=account(wave);
+  wave.stopEvidence={terminalMs:wave.terminalSimClockMs,events:wave.opening.recordedEvents.length,scheduledActionEvents:wave.opening.recordedEvents.filter(e=>e.kind==='action'||e.kind==='stunned').length,survivors:[...wave.opening.outcome.finalPlayerTeam,...wave.opening.outcome.finalEnemyTeam].filter(u=>u.life>0).map(u=>({id:u.id,hp:u.life,mp:u.mana}))};
+  if(i<2){
+   wave.nativeComparison=[compareNative(wave,fixture.observations[`den-opening-${i+1}`],'opening'),compareNative(wave,fixture.observations[`den-terminal-${i+1}`],'terminal')];
+   assert.equal(wave.opening.outcome.winner,'player','Previous won wave unchanged');
+   const nativeAward=fixture.observations[`den-award-${i+1}`];
+   assert.deepEqual(toJsonSafe(wave.afterAward.player.player),nativeAward.player,'Unchanged earned hero award');
+   assert.deepEqual(toJsonSafe(wave.afterAward.merc),nativeAward.mercs,'Unchanged earned merc award');
+   assert.deepEqual(toJsonSafe(wave.afterAward.map),nativeAward.map,'Unchanged earned map award');
+   assert.deepEqual(wave.afterAward.inventory.currencies,nativeAward.currencies??nativeAward.inventory.currencies,'Unchanged earned currencies');
+   assert.equal(wave.afterAward.inventory.backpack.length,nativeAward.bag_count??nativeAward.inventory.backpack.length,'Unchanged earned bag count');
+   if(i===1){const omitId=items=>items.map(({id,...item})=>item);assert.deepEqual(toJsonSafe(omitId(wave.afterAward.inventory.backpack)),omitId(nativeAward.inventory.backpack),'W2 complete backpack item content, only top-level IDs omitted');}
+  }
+  if(i>0){
+   const prior=report.waves[i-1];
+   wave.carry=[];
+   for(const u of prior.opening.outcome.finalPlayerTeam.filter(u=>u.life>0)){
+    const next=wave.opening.playerTeam.find(v=>v.id===u.id);assert(next,'Living ally retained');
+    assert.deepEqual({hp:next.life,mp:next.mana},{hp:u.life,mp:u.mana},'No inter-wave refill');
+    wave.carry.push({id:u.id,hp:u.life,mp:u.mana,equal:true});
+   }
+  }
+  if(wave.opening.outcome.winner!=='player'){
+   assert.equal(wave.advanceResult,'defeat');assert.equal(wave.actualDelta.xp,0);assert.equal(wave.actualDelta.addedItems.length,0);assert.equal(wave.actualDelta.addedClears.length,0);
+   assert.equal(wave.actualDelta.removedItemIds.length,0);for(const xp of Object.values(wave.actualDelta.mercXp))assert.equal(xp,0);for(const amount of Object.values(wave.actualDelta.currencies))assert.equal(amount,0);
+   break;
+  }
+  if(wave.advanceResult!=='next-wave')break;
+ }
+ report.routeComplete=report.waves.length===4&&report.waves.at(-1).advanceResult==='victory';
+ if(report.routeComplete){
+  assert(report.waves.at(-1).actualDelta.addedClears.includes('areas/act1-den-of-evil'),'Qualified complete Den clear');
+ }
+ report.noNativeRetry=true;
+}catch(e){error=e;report.error={name:e.name,message:e.message,stack:e.stack};}
+finally{
+ const attempt=async(label,fn)=>{try{await fn();}catch(e){report.cleanupErrors.push({label,message:e.message,stack:e.stack});}};
+ if(helpers)await attempt('abort',()=>helpers.abortSubAreaRun());
+ for(const [i,restore]of restorers.entries())await attempt(`restore${i}`,restore);
+ if(state&&originalStores)await attempt('restored-domain-equality',()=>{assert.deepEqual(state.observeEarnedState(),originalStores);report.restoredDomainEquality=true;});
+ if(pity&&originalPity!==undefined)await attempt('pity',()=>pity.setIdleEliteMisses(originalPity));
+ await attempt('clock',()=>{Date.now=originalNow;assert.equal(Date.now,originalNow);});
+ if(server)await attempt('server-close',()=>server.close());
+ await attempt('source-continuity',async()=>{assert.deepEqual(await getSources(),sources);report.sourceUnchanged=true;});
+ report.finishedAt=new Date().toISOString();
+ await writeFile(path.join(root,'route.json'),encode(report));
+}
+console.log(JSON.stringify({routeComplete:report.routeComplete,preStartDomainEquality:report.preStartDomainEquality,waves:report.waves.map(w=>({index:w.index,winner:w.opening.outcome.winner,result:w.advanceResult,clock:w.terminalSimClockMs,events:w.opening.recordedEvents.length,stopEvidence:w.stopEvidence,nativeAwardComparison:w.nativeAwardComparison,players:w.accounting?.filter(u=>u.side==='player').map(({resources,actions,...u})=>u),nativeComparison:w.nativeComparison})),error:report.error,sourceUnchanged:report.sourceUnchanged,cleanupErrors:report.cleanupErrors}));
+if(error||report.cleanupErrors.length)process.exitCode=1;

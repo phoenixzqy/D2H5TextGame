@@ -10232,3 +10232,30 @@ Final producer PUBLICATION APPROVE and independent QA ADEQUATE verify exact
 five-path publication, lossless1969event/36account recovery, all source/raw
 bindings, both attempts and exact cleanup. All readers released. Local
 docs/fixture commit only; no validation rerun required for retained evidence.
+
+
+## P01 — Correct authored Den guard family; complete service route
+
+Accepted D07 corrects exactly Den W3 first archetype DarkStalker→DarkOne,
+retaining counts/elite/levels and every other field. Shared row intentionally
+changes legacy and active Den; global DarkStalkers/later maps/formulas unchanged.
+Five new regressions; initial4behavioral RED, corrected focused69/3 and typed5/1
+PASS. Final typecheck24.666s, lint58.295s, productionbuild10.405s and full8381tests/
+263files561.719s PASS; final runtime/test hashes unchanged. Initial67/68 test
+level mismatch and test-only typing failure retained/corrected, not hidden.
+Map SHAece33222b71b86f1a06618a0d535253f4a013fbfc821430aafe531cd4ff11af6;
+test SHAf8a086b320dba6fe93e7eaed8aa2f983708b1f11f7362020492d4e9dc577bdcb.
+GD DESIGN APPROVE, producer source/root-cause/security APPROVE, QA ADEQUATE.
+
+[Complete service evidence](evidence/p01-den-complete-service.md) preserves one
+exit0/5.037s invocation: all4wins at7500/21000/22860/46500ms; actual heroXP
+270/400/770/210 andmercXP202/300/577/157; canonical clear, questcleartrue/returnfalse.
+All1805events/41accounts/6carrychecks independently QA ADEQUATE; frozen scripts
+and compact evidence agree with raw source/events. No retry/acquisition/refill/
+new native proof or checkpoint/fullgate acceptance. BUG082 fixed in this scoped
+source correction; Den/claim/persistence and ActI remain open. Raw evidence and
+borrowed productiondist remain root-owned at exact den-family-fix root cited in
+the evidence through native/C1/umbrella consumers; exact disposable cleanup after
+all processes/readers finish. Next nativecard: earnedDen→Akara→onceclaim→Save→
+newpageContinue at360×640viewport, then1280×800, DesktopChrome/en context.
+Andariel shortcut remains unqualified; preserve earned checkpoint for C1.

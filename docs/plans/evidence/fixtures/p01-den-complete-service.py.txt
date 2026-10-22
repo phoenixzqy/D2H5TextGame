@@ -1,0 +1,24 @@
+from pathlib import Path
+import subprocess,json,os,time,sys,signal
+r=Path(__file__).parent
+w=Path('/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2')
+assert not (r/'execution.receipt.json').exists()
+env=dict(os.environ,TMPDIR=str(r/'tmp'),TMP=str(r/'tmp'),TEMP=str(r/'tmp'))
+argv=['node',str(r/'run.mjs')]
+began=time.monotonic()
+with (r/'execution.log').open('x') as log:
+ p=subprocess.Popen(argv,cwd=w,env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
+ (r/'execution.process.json').write_text(json.dumps({'pid':p.pid,'pgid':p.pid,'argv':argv},indent=2)+'\n')
+ timed_out=False
+ try: code=p.wait(timeout=55)
+ except subprocess.TimeoutExpired:
+  timed_out=True
+  os.killpg(p.pid,signal.SIGTERM)
+  try: code=p.wait(timeout=5)
+  except subprocess.TimeoutExpired:
+   os.killpg(p.pid,signal.SIGKILL);code=p.wait()
+receipt={'argv':argv,'exit_code':code,'elapsed_seconds':time.monotonic()-began,'execution_timeout_seconds':55,'termination_grace_seconds':5,'outer_budget_seconds':60,'timed_out':timed_out,'attempts':1}
+(r/'execution.receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
+print(json.dumps(receipt))
+print((r/'execution.log').read_text()[-14000:])
+sys.exit(code if code>=0 else 1)
