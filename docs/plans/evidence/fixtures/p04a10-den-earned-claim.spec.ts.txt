@@ -1,0 +1,141 @@
+import { expect, test, type Page, type TestInfo } from '@playwright/test';
+import { readFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import type { SaveCurrent } from '../../src/engine/types/save';
+import { navTo } from '../e2e/_helpers';
+
+const fixedTime = new Date('2026-10-20T12:00:00.000Z');
+const merc = 'mercs/act1-rogue-inner-sight';
+const quest = 'quests/act1-den-of-evil';
+async function backup(page: Page): Promise<SaveCurrent> {
+  await navTo(page, 'settings');
+  const pending = page.waitForEvent('download');
+  await page.getByTestId('export-save-button').click();
+  const download = await pending;
+  try { return JSON.parse(await readFile(await download.path(), 'utf8')) as SaveCurrent; }
+  finally { await download.delete(); }
+}
+async function stored(page: Page): Promise<SaveCurrent> {
+  return page.evaluate(() => new Promise<SaveCurrent>((resolve, reject) => {
+    const open = indexedDB.open('D2H5TextGame');
+    open.onerror = () => { reject(new Error('Could not open saved character')); };
+    open.onsuccess = () => {
+      const db = open.result;
+      const get = db.transaction('saves', 'readonly').objectStore('saves').get('current');
+      get.onerror = () => { db.close(); reject(new Error('Could not read saved character')); };
+      get.onsuccess = () => {
+        const record = get.result as { data: SaveCurrent } | undefined;
+        db.close();
+        if (!record) reject(new Error('No committed character'));
+        else resolve(record.data);
+      };
+    };
+  }));
+}
+async function production(page: Page) {
+  expect(await page.evaluate(() => '__GAME__' in window)).toBe(false);
+  expect(await page.evaluate(() => navigator.serviceWorker.controller?.state)).toBe('activated');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+}
+async function attach(info: TestInfo, label: string, value: unknown) {
+  await info.attach(label, { body: JSON.stringify(value), contentType: 'application/json' });
+}
+/** One readonly DOM observation before native inter-wave navigation can replace it. */
+
+/** One restore continuation from the exact native earned export, with no combat or acquisition. */
+test('earned Den public restore claim Save Continue at mobile and desktop', async ({ page, context }, info) => {
+  const inputText = await readFile(new URL('../../docs/plans/evidence/fixtures/p04a10-den-preclaim-earned.json', import.meta.url), 'utf8');
+  expect(createHash('sha256').update(inputText).digest('hex')).toBe('f64a602e464b9b2393c091f3ef415fbb0a5371e0e80892d2475d3506a0403aaa');
+  const input = JSON.parse(inputText) as SaveCurrent;
+  const errors: string[] = [];
+  const watch = (target: Page) => {
+    target.on('pageerror', error => errors.push(error.message));
+    target.on('console', message => { if (['warning', 'error'].includes(message.type())) errors.push(message.text()); });
+  };
+  watch(page);
+  let active = page;
+  try {
+    await page.setViewportSize({ width: 360, height: 640 });
+    expect(page.viewportSize()).toEqual({ width: 360, height: 640 });
+    await page.clock.setFixedTime(fixedTime);
+    await page.goto('/');
+    await expect(page.getByTestId('home-screen')).toBeVisible();
+    await page.getByTestId('home-settings').click();
+    await page.getByRole('button', { name: 'English', exact: true }).click();
+    await page.getByRole('button', { name: 'Import Save', exact: true }).click();
+    const dialog = page.getByRole('dialog');
+    await dialog.getByRole('textbox', { name: 'Import Save', exact: true }).fill(inputText);
+    await dialog.getByRole('button', { name: 'Import Save', exact: true }).click();
+    await expect(page.getByRole('status')).toHaveText('Save imported');
+    await expect(dialog).toHaveCount(0);
+    await expect.poll(() => page.evaluate(() => navigator.serviceWorker.controller?.state), { timeout: 30_000 }).toBe('activated');
+    expect(await stored(page)).toEqual(input);
+    const restored = await backup(page);
+    await attach(info, 'actual-earned-restored', restored);
+    expect(restored).toEqual(input);
+    await production(page);
+    await navTo(page, 'map');
+    await expect(page.getByTestId('cleared-badge-a1-den-of-evil')).toBeVisible();
+    await expect(page.getByTestId('farm-here-a1-den-of-evil')).toBeEnabled();
+    await navTo(page, 'quests');
+    const claim = page.getByTestId(`quest-claim-${quest}`);
+    await expect(claim).toBeEnabled();
+    await claim.click();
+    await expect(claim).toBeDisabled();
+    const claimed = await backup(page);
+    await attach(info, 'actual-den-claimed', claimed); // Retain earned continuation before any assertion can fail.
+    expect(claimed).toEqual({ ...input,
+      player: { ...input.player, experience: 2217, skillPoints: 1 },
+      mercs: { ...input.mercs, mercProgress: { ...input.mercs.mercProgress,
+        [merc]: { experience: 1860, experienceToNextLevel: 4404 } } },
+      map: { ...input.map, questProgress: { ...input.map.questProgress,
+        [quest]: { id: quest, status: 'completed', objectives: { 'obj-clear-den': true, 'obj-return': true }, rewardClaimed: true } } }
+    });
+    await navTo(page, 'quests');
+    await expect(claim).toBeDisabled();
+    await production(page);
+    await info.attach('actual-mobile-claimed-quest', { body: await page.screenshot(), contentType: 'image/png' });
+    await navTo(page, 'town');
+    await page.getByTestId('town-npc-akara').click();
+    await page.getByTestId('town-conversation-quests').click();
+    await expect(claim).toBeDisabled();
+    expect(await backup(page)).toEqual(claimed);
+    await page.getByRole('button', { name: 'Save', exact: true }).click();
+    await expect(page.getByRole('status')).toHaveText('Saved');
+    const committed = await stored(page);
+    await attach(info, 'actual-den-committed', committed);
+    expect(committed).toEqual(claimed);
+    expect(await backup(page)).toEqual(committed);
+    await page.close();
+    const reopened = await context.newPage(); active = reopened;
+    watch(reopened);
+    await reopened.setViewportSize({ width: 360, height: 640 });
+    expect(reopened.viewportSize()).toEqual({ width: 360, height: 640 });
+    await reopened.clock.setFixedTime(fixedTime);
+    await reopened.goto('/');
+    await reopened.getByTestId('home-continue').click();
+    await expect(reopened.getByTestId('town-screen')).toBeVisible();
+    expect(await stored(reopened)).toEqual(committed);
+    const continued = await backup(reopened);
+    await attach(info, 'actual-den-continued', continued);
+    expect(continued).toEqual(committed);
+    await navTo(reopened, 'map');
+    await expect(reopened.getByTestId('cleared-badge-a1-den-of-evil')).toBeVisible();
+    await expect(reopened.getByTestId('farm-here-a1-den-of-evil')).toBeEnabled();
+    await navTo(reopened, 'quests');
+    await expect(reopened.getByTestId(`quest-claim-${quest}`)).toBeDisabled();
+    await production(reopened);
+    await info.attach('actual-mobile-continued-quest', { body: await reopened.screenshot(), contentType: 'image/png' });
+    await reopened.setViewportSize({ width: 1280, height: 800 });
+    expect(reopened.viewportSize()).toEqual({ width: 1280, height: 800 });
+    await navTo(reopened, 'map');
+    await expect(reopened.getByTestId('cleared-badge-a1-den-of-evil')).toBeVisible();
+    await production(reopened);
+    expect(await backup(reopened)).toEqual(committed);
+    await info.attach('actual-desktop-continued', { body: await reopened.screenshot(), contentType: 'image/png' });
+    expect(errors).toEqual([]);
+  } finally {
+    await attach(info, 'browser-errors', errors);
+    if (!active.isClosed()) await info.attach('last-continuation-screen', { body: await active.screenshot(), contentType: 'image/png' });
+  }
+});

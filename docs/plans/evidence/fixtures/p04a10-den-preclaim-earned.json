@@ -1,0 +1,5646 @@
+{
+  "version": 11,
+  "timestamp": 1792497600000,
+  "player": {
+    "id": "player-1792497600000",
+    "name": "Earned Act I",
+    "type": "player",
+    "team": "player",
+    "level": 6,
+    "coreStats": {
+      "strength": 10,
+      "dexterity": 25,
+      "vitality": 25,
+      "energy": 45
+    },
+    "derivedStats": {
+      "life": 120,
+      "lifeMax": 190,
+      "mana": 102,
+      "manaMax": 137,
+      "attack": 49,
+      "defense": 51,
+      "magicResist": 0,
+      "attackSpeed": 125,
+      "critChance": 0.05,
+      "critDamage": 2,
+      "physDodge": 0.1,
+      "magicDodge": 0.05,
+      "magicFind": 0,
+      "goldFind": 0,
+      "resistances": {
+        "fire": 0,
+        "cold": 0,
+        "lightning": 0,
+        "poison": 0,
+        "arcane": 0,
+        "physical": 0
+      }
+    },
+    "statusEffects": [],
+    "cooldowns": [],
+    "skills": [],
+    "comboOrder": [
+      "skills-sorceress-frost-nova",
+      "skills-sorceress-fire-bolt"
+    ],
+    "skillLevels": {
+      "sorceress.frost_nova": 2,
+      "sorceress.ice_bolt": 1,
+      "sorceress.fire_bolt": 4,
+      "sorceress.warmth": 1
+    },
+    "alive": true,
+    "turnOrder": 0,
+    "class": "sorceress",
+    "experience": 1717,
+    "experienceToNextLevel": 8818,
+    "statPoints": 0,
+    "skillPoints": 0,
+    "equipment": []
+  },
+  "inventory": {
+    "backpack": [
+      {
+        "id": "it-3yxk7-2",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-5",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-6",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-7",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-a",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-b",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-c",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-d",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-e",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-f",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-g",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-h",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-i",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-j",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-k",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-l",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-m",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-n",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-o",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-p",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-q",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-r",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-s",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-t",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-u",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-v",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-w",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-x",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-y",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-z",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-10",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-11",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-13",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-14",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-15",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-16",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-17",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-18",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-19",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-1c",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-1d",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-1e",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-1f",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-1g",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-1h",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-1i",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-71emu-1j",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8n9ca-1k",
+        "baseId": "items/base/weapon-bow-training",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "attack": 17
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-4hnqm-1l",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-1m",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-1n",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-1o",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-1p",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-1q",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-1r",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-1s",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-71emu-1t",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8n9ca-1u",
+        "baseId": "items/base/weapon-bow-training",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "attack": 17
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-4hnqm-1v",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-1w",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-1x",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-1y",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-1z",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-20",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-21",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-22",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-71emu-23",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8n9ca-24",
+        "baseId": "items/base/weapon-bow-training",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "attack": 17
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-4hnqm-25",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-7pc6a-26",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-27",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-28",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-29",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-2a",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-2b",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-2c",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-2d",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-71emu-2e",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8n9ca-2f",
+        "baseId": "items/base/weapon-bow-training",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "attack": 17
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-4hnqm-2g",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-7pc6a-2h",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-2i",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-2j",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-2k",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-2l",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-2m",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-2n",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-2o",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-71emu-2p",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8n9ca-2q",
+        "baseId": "items/base/weapon-bow-training",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "attack": 17
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-4hnqm-2r",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-7pc6a-2s",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-59h87-2t",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-2u",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-2v",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-2w",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-2x",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-2y",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-2z",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-30",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-71emu-31",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8n9ca-32",
+        "baseId": "items/base/weapon-bow-training",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "attack": 17
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-4hnqm-33",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-7pc6a-34",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-59h87-35",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-36",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-37",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-38",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-39",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-3a",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-3b",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-3c",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-3d",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-3e",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-3f",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-3g",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-3h",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-3i",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-3j",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-3k",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-3l",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-3m",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-3n",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-3o",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-3p",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-3q",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-3r",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-3s",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-3t",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-3u",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-3v",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-3w",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-3x",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-3y",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-3z",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-40",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-41",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-42",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-43",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-44",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-45",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-46",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-71emu-47",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-48",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-49",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-4a",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-4b",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-4c",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-4d",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-4e",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-71emu-4f",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8n9ca-4g",
+        "baseId": "items/base/weapon-bow-training",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "attack": 17
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-4h",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-4i",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-4j",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-4k",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-4l",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-4m",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-4n",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-71emu-4o",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8n9ca-4p",
+        "baseId": "items/base/weapon-bow-training",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "attack": 17
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-4hnqm-4q",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-4r",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-4s",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-4t",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-4u",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-4v",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-4w",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-4x",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-71emu-4y",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8n9ca-4z",
+        "baseId": "items/base/weapon-bow-training",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "attack": 17
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-4hnqm-50",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-51",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-52",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-53",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-54",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-55",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-56",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-57",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-71emu-58",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8n9ca-59",
+        "baseId": "items/base/weapon-bow-training",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "attack": 17
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-4hnqm-5a",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-7pc6a-5b",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-5c",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-5d",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-5e",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-5f",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-5g",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-5h",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-5i",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-71emu-5j",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8n9ca-5k",
+        "baseId": "items/base/weapon-bow-training",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "attack": 17
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-4hnqm-5l",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-7pc6a-5m",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-5n",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-5o",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-5p",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-5q",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-5r",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-5s",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-5t",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-71emu-5u",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8n9ca-5v",
+        "baseId": "items/base/weapon-bow-training",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "attack": 17
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-4hnqm-5w",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-7pc6a-5x",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-59h87-5y",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-5z",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-60",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-61",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-62",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-63",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-64",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-65",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-71emu-66",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8n9ca-67",
+        "baseId": "items/base/weapon-bow-training",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "attack": 17
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-4hnqm-68",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-7pc6a-69",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-59h87-6a",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-6b",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-6c",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-6d",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-6e",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-6f",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-6g",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-6h",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-6i",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-6j",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-6k",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-6l",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-6m",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-6n",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-6o",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-6p",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-6q",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-6r",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-6s",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-6t",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-6u",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-6v",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-6w",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-6x",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-6y",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-6z",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-70",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-71",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-72",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-73",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-74",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-75",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-76",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-77",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-78",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-79",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-7a",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-7b",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-71emu-7c",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-7d",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-7e",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-7f",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-7g",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-7h",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-7i",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-7j",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-71emu-7k",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8n9ca-7l",
+        "baseId": "items/base/weapon-bow-training",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "attack": 17
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-7m",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-7n",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-7o",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-7p",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-7q",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-7r",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-7s",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-71emu-7t",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8n9ca-7u",
+        "baseId": "items/base/weapon-bow-training",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "attack": 17
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-4hnqm-7v",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-7w",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-7x",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-7y",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-7z",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-80",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-81",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-82",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-71emu-83",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8n9ca-84",
+        "baseId": "items/base/weapon-bow-training",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "attack": 17
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-4hnqm-85",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-86",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-87",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-88",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-89",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-8a",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-8b",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-8c",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-71emu-8d",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8n9ca-8e",
+        "baseId": "items/base/weapon-bow-training",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "attack": 17
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-4hnqm-8f",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-7pc6a-8g",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-8h",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-8i",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-8j",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-8k",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-8l",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-8m",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-8n",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-71emu-8o",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8n9ca-8p",
+        "baseId": "items/base/weapon-bow-training",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "attack": 17
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-4hnqm-8q",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-7pc6a-8r",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-8s",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-8t",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-8u",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-8v",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-8w",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-8x",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-8y",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-71emu-8z",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8n9ca-90",
+        "baseId": "items/base/weapon-bow-training",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "attack": 17
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-4hnqm-91",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-7pc6a-92",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-59h87-93",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-94",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-95",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-96",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-97",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-98",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2698r-99",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1owml-9a",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-71emu-9b",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8n9ca-9c",
+        "baseId": "items/base/weapon-bow-training",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "attack": 17
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-4hnqm-9d",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-7pc6a-9e",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-59h87-9f",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-9g",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3yxk7-9h",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-96fga-9i",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5iwwr-9j",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3h1j3-9k",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8jv2k-1",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-43c49-9l",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 3,
+        "ilvl": 3,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8f9rm-9m",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 3,
+        "ilvl": 3,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-35xje-9n",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 3,
+        "ilvl": 3,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8iimt-9o",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 3,
+        "ilvl": 3,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-jy6u-9p",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 4,
+        "ilvl": 4,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-oxm6-9q",
+        "baseId": "items/base/helm-skull-cap",
+        "rarity": "normal",
+        "level": 4,
+        "ilvl": 4,
+        "baseRolls": {
+          "defense": 14
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3tshd-9r",
+        "baseId": "items/base/wp1h-short-sword",
+        "rarity": "normal",
+        "level": 4,
+        "ilvl": 4,
+        "baseRolls": {
+          "attack": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-7i4c2-9s",
+        "baseId": "items/base/helm-skull-cap",
+        "rarity": "normal",
+        "level": 4,
+        "ilvl": 4,
+        "baseRolls": {
+          "defense": 12
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3o1n7-9t",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 4,
+        "ilvl": 4,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1kccw-9u",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 4,
+        "ilvl": 4,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2lftz-9v",
+        "baseId": "items/base/weapon-bow-training",
+        "rarity": "normal",
+        "level": 4,
+        "ilvl": 4,
+        "baseRolls": {
+          "attack": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1tlg-9w",
+        "baseId": "items/base/weapon-bow-training",
+        "rarity": "normal",
+        "level": 4,
+        "ilvl": 4,
+        "baseRolls": {
+          "attack": 12
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-87tii-9x",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 4,
+        "ilvl": 4,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8r68i-9y",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 4,
+        "ilvl": 4,
+        "baseRolls": {
+          "defense": 7
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-g3p9-9z",
+        "baseId": "items/base/wp1h-short-sword",
+        "rarity": "normal",
+        "level": 4,
+        "ilvl": 4,
+        "baseRolls": {
+          "attack": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-719jg-a0",
+        "baseId": "items/base/wp1h-short-sword",
+        "rarity": "normal",
+        "level": 4,
+        "ilvl": 4,
+        "baseRolls": {
+          "attack": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-6fzu0-a1",
+        "baseId": "items/base/sh-buckler",
+        "rarity": "normal",
+        "level": 4,
+        "ilvl": 4,
+        "baseRolls": {
+          "defense": 7
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1rge4-a2",
+        "baseId": "items/base/wp1h-short-sword",
+        "rarity": "normal",
+        "level": 4,
+        "ilvl": 4,
+        "baseRolls": {
+          "attack": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-5xc3z-a3",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 4,
+        "ilvl": 4,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-4ym3l-a4",
+        "baseId": "items/base/wp2h-two-handed-sword",
+        "rarity": "normal",
+        "level": 4,
+        "ilvl": 4,
+        "baseRolls": {
+          "attack": 9
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8bwk0-a5",
+        "baseId": "items/base/ring-iron",
+        "rarity": "normal",
+        "level": 4,
+        "ilvl": 4,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-87vn9-a6",
+        "baseId": "items/base/armor-quilted",
+        "rarity": "normal",
+        "level": 4,
+        "ilvl": 4,
+        "baseRolls": {
+          "defense": 11
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-61y50-a7",
+        "baseId": "items/base/belt-light",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1a78h-a8",
+        "baseId": "items/base/belt-sash",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "defense": 2
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-6wt83-a9",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-9yibk-aa",
+        "baseId": "items/base/belt-sash",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-6mb24-ab",
+        "baseId": "items/base/wp1h-short-sword",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "attack": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-42rxi-ac",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-243i6-ad",
+        "baseId": "items/base/helm-skull-cap",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "defense": 13
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8nun1-ae",
+        "baseId": "items/base/wp2h-two-handed-sword",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "attack": 17
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1u1tx-af",
+        "baseId": "items/base/sh-kite",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "defense": 14
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-302f0-ag",
+        "baseId": "items/base/wp1h-short-sword",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "attack": 7
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-33nt5-ah",
+        "baseId": "items/base/armor-quilted",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "defense": 9
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-36jl9-ai",
+        "baseId": "items/base/armor-leather",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "defense": 18
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-1lquj-aj",
+        "baseId": "items/base/belt-sash",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "defense": 2
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2hhl9-ak",
+        "baseId": "items/base/belt-sash",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "defense": 2
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-22zc9-al",
+        "baseId": "items/base/belt-sash",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-8z88y-am",
+        "baseId": "items/base/wp1h-short-sword",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "attack": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3zbek-an",
+        "baseId": "items/base/armor-leather",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "defense": 23
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-7is2r-ao",
+        "baseId": "items/base/wp2h-great-axe",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "attack": 18
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-66xv2-ap",
+        "baseId": "items/base/sh-kite",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "defense": 15
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-9qlpi-aq",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2mhtl-ar",
+        "baseId": "items/base/wp1h-scimitar",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "attack": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-2c0ac-as",
+        "baseId": "items/base/wp1h-scimitar",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "attack": 12
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-6dtra-at",
+        "baseId": "items/base/wp1h-short-sword",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "attack": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-9mr1x-au",
+        "baseId": "items/base/sh-kite",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "defense": 16
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-3dsjq-av",
+        "baseId": "items/base/belt-light",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-9cixc-aw",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "defense": 4
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      {
+        "id": "it-7i7bl-ax",
+        "baseId": "items/base/amu-tin",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {},
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      }
+    ],
+    "stash": [],
+    "equipped": {
+      "gloves": {
+        "id": "it-96fga-3",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": true
+      },
+      "boots": {
+        "id": "it-5iwwr-4",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 3
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": true
+      },
+      "head": {
+        "id": "it-71emu-12",
+        "baseId": "items/base/helm-cap",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": true
+      },
+      "offhand": null,
+      "weapon": {
+        "id": "it-8n9ca-1b",
+        "baseId": "items/base/weapon-bow-training",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "attack": 17
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": true
+      }
+    },
+    "currencies": {
+      "rune-shard": 11566,
+      "wishstone": 30,
+      "gem-shard": 6
+    }
+  },
+  "mercs": {
+    "ownedMercs": [
+      {
+        "id": "mercs/act1-rogue-inner-sight",
+        "name": "Rogue Scout \u2014 Inner Sight",
+        "type": "mercenary",
+        "team": "player",
+        "level": 9,
+        "coreStats": {
+          "strength": 18,
+          "dexterity": 40,
+          "vitality": 16,
+          "energy": 20
+        },
+        "derivedStats": {
+          "life": 196,
+          "lifeMax": 196,
+          "mana": 79,
+          "manaMax": 79,
+          "attack": 25,
+          "defense": 26,
+          "magicResist": 0,
+          "attackSpeed": 122,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.094,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "statusEffects": [],
+        "cooldowns": [],
+        "skills": [],
+        "comboOrder": [
+          "mskill-inner-sight",
+          "mskill-basic-arrow",
+          "mskill-pierce-arrow"
+        ],
+        "alive": true,
+        "turnOrder": 0,
+        "archetype": "back",
+        "classId": "rogue",
+        "rarity": "R",
+        "signatureSkillId": "mskill-inner-sight",
+        "equipment": []
+      }
+    ],
+    "fieldedMercId": "mercs/act1-rogue-inner-sight",
+    "mercEquipment": {
+      "mercs/act1-rogue-inner-sight": {
+        "gloves": {
+          "id": "it-96fga-8",
+          "baseId": "items/base/glove-leather",
+          "rarity": "normal",
+          "level": 2,
+          "ilvl": 2,
+          "baseRolls": {
+            "defense": 5
+          },
+          "affixes": [],
+          "generatedName": {},
+          "identified": true,
+          "equipped": true,
+          "equipSlot": "gloves"
+        },
+        "head": {
+          "id": "it-71emu-1a",
+          "baseId": "items/base/helm-cap",
+          "rarity": "normal",
+          "level": 2,
+          "ilvl": 2,
+          "baseRolls": {
+            "defense": 8
+          },
+          "affixes": [],
+          "generatedName": {},
+          "identified": true,
+          "equipped": true,
+          "equipSlot": "head"
+        },
+        "boots": {
+          "id": "it-5iwwr-9",
+          "baseId": "items/base/boot-leather",
+          "rarity": "normal",
+          "level": 2,
+          "ilvl": 2,
+          "baseRolls": {
+            "defense": 3
+          },
+          "affixes": [],
+          "generatedName": {},
+          "identified": true,
+          "equipped": true,
+          "equipSlot": "boots"
+        }
+      }
+    },
+    "mercProgress": {
+      "mercs/act1-rogue-inner-sight": {
+        "experience": 1485,
+        "experienceToNextLevel": 4404
+      }
+    }
+  },
+  "map": {
+    "currentAct": 1,
+    "currentSubAreaId": "a1-den-of-evil",
+    "discoveredAreas": [],
+    "clearedSubAreas": [
+      "areas/act1-den-of-evil"
+    ],
+    "questProgress": {
+      "quests/act1-den-of-evil": {
+        "id": "quests/act1-den-of-evil",
+        "status": "completed",
+        "objectives": {
+          "obj-clear-den": true,
+          "obj-return": true
+        }
+      }
+    }
+  },
+  "meta": {
+    "settings": {
+      "locale": "en",
+      "stealthMode": false,
+      "soundEnabled": true,
+      "musicEnabled": true,
+      "combatSpeed": 1,
+      "autoCombat": true
+    },
+    "idleState": {
+      "lastOnline": 1792497600000,
+      "offlineTime": 0,
+      "multiplierSecondsRemaining": 0,
+      "activeMultiplier": 1
+    },
+    "gachaState": {
+      "currency": 0,
+      "ownedMercIds": [],
+      "pityCounter": 0
+    }
+  },
+  "formation": {
+    "playerPosition": {
+      "row": 1,
+      "col": 1
+    },
+    "mercPosition": {
+      "row": 0,
+      "col": 0
+    },
+    "summonPositions": [
+      {
+        "row": 2,
+        "col": 0
+      },
+      {
+        "row": 2,
+        "col": 1
+      },
+      {
+        "row": 2,
+        "col": 2
+      },
+      {
+        "row": 0,
+        "col": 1
+      },
+      {
+        "row": 0,
+        "col": 2
+      },
+      {
+        "row": 1,
+        "col": 0
+      },
+      {
+        "row": 1,
+        "col": 2
+      },
+      {
+        "row": 0,
+        "col": 0
+      }
+    ]
+  }
+}

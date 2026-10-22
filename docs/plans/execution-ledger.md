@@ -10259,3 +10259,56 @@ the evidence through native/C1/umbrella consumers; exact disposable cleanup afte
 all processes/readers finish. Next nativecard: earnedDen→Akara→onceclaim→Save→
 newpageContinue at360×640viewport, then1280×800, DesktopChrome/en context.
 Andariel shortcut remains unqualified; preserve earned checkpoint for C1.
+
+
+## P04a10 — Native Den clear; earned restore claim and persistence
+
+Runtime331e737 finalsource8381tests/263files/T/L/build PASS. Final producer
+source/publication APPROVE and QA ADEQUATE for the9path Denfamily/servicecommit;
+allreadersreleased. [Native evidence](evidence/p04a10-den-clear-and-restored-persistence.md)
+preserves two separate cards, not an uninterrupted freshpersistencepass.
+
+Fresh nativecard oneattempt/retry0: exit1/no-timeout wrapper175.985s/test150.424s.
+All40earnedprep and4nativeDenwins pass at360×640; canonicalclear/farm/awards/
+Akaratalk pass. Claimactivated/disabled; fullSave differs from expected only
+mercXP1485→1860. Existingproduction/test contract shares375 of quest500XP:
+incorrecttestoracle, no gameplaybug/patch. Original Save/reopen not reached;
+browsererrors[]. Executed spec/config are frozen unchanged. Genuine preclaim
+export SHAf64a602e464b9b2393c091f3ef415fbb0a5371e0e80892d2475d3506a0403aaa
+matches actual rawattachment parsedcontent and is preserved for provenance.
+
+Separate continuation oneattempt/retry0: publicHomeSettingsImport exactearned
+export, stored/export fullSave equality beforeclaim; claim500heroXP/+1skill/
+375mercXP, repeatAkara/disabledclaim leaves fullSaveunchanged; Save→stored/export
+→close→newpageContinue fullSaveidentity PASS at explicit360×640 then1280×800.
+Exit0/no-timeout wrapper77.696s/test74.599s; browsererrors[]. Actual claimed=
+committed=continued checkpoint SHAb022aa436d30b9102528995f6f5c2419000f682df84d18d6c18321547e2faa35
+is retained as `evidence/fixtures/p04a10-den-claimed-earned.json` for C1; no more
+fresh40farm preparation needed. English/DesktopChrome context and mobileviewport
+only; no touchdevice/zhCN/fullActI/campaign/checkpoint acceptance.
+
+Both candidates pass typecheck/exactone-test discovery. Repositorylint excludes
+tests/**/*.ts; focusedignoredfilewarnings disclosed, no configuration change.
+QA exactexecutedbytes READY bothcards; producer freshapproval preceded3explicit
+viewportassertions, exactcontinuationapproved. Final raw/publication QA ADEQUATE
+and producer APPROVE; review-provenance and postrun-tense qualifications applied
+in finalreport SHA8b85dc103c6dabce9ee9b183624dbd481f85adb50c6ee4e21e288cc8bab02f17.
+Recorded postrun1358fresh/1359continuation inputs and760dist hashes unchanged;
+allrecordedprocessIDs absent/bothpreviewportsclosed. Allreadersreleased before
+exactcleanup1080files/46879229bytes from ownedtmp/cache/borroweddist andlast2
+executablecandidates; remaining[]/failures[]. First2nativecandidates previously
+removed afterbyteidentical frozen copy; all4runnablecandidates absent. Shared
+pre-existing toolcaches untouched. Cleanup receipt:
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-first-elite-r7una0p6/den-earned-continuation/cleanup.receipt.json`.
+Required rawreports/traces/screenshots/source/commands/receipts remain root-owned
+through C1/umbrella consumers at exact siblingroots den-family-fix,
+den-native-clear andden-earned-continuation under that taskbase; root removes
+when consumers finish. No taskprocesses remain. Local evidencecommits only.
+
+Next: P01 ActI earned-entry and chapterboss-power numericcontract under D02/D07.
+Staticdesignassessment: currentAndarielL19/17600HP/DEF200/MR54 follows explicit
+×8/+5 semantics and accepted loot/MR compatibility; no accidentaldouble-scaling
+is proved. OnepassXP cannot earn assumedL12entry; finitefullchallenge/idle budget
+and an ActI-specific finalbosspackage need reviewedchoices together. Preserve
+this actualearnedcheckpoint, qualify route before bosslaunch, keep global/later
+actdefaults unless separatelyreviewed. C0–C4/G0–G7 remain unaccepted.

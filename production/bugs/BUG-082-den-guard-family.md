@@ -47,4 +47,6 @@ in raw logs; assertions were corrected against existing source/native evidence.
 
 [Complete service proof](../../docs/plans/evidence/p01-den-complete-service.md)
 wins all4waves from the exact earned save with actual carry/award settlement;
-QA ADEQUATE. Native Den/claim/persistence proof and broader Act I are still open.
+QA ADEQUATE. Subsequent [native clear and restored-persistence evidence](../../docs/plans/evidence/p04a10-den-clear-and-restored-persistence.md)
+records four native wins and a separately passing earned-save restore continuation.
+Broader Act I remains open.
