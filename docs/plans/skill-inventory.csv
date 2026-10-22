@@ -121,7 +121,7 @@ druid,skills-druid-solar-creeper,druid.solar_creeper,active,summon,,src/data/ski
 druid,skills-druid-spirit-of-barbs,druid.spirit_of_barbs,passive,buff,,src/data/skills/druid.json,buff-mechanics-not-applied-in-audited-handler|automatic-passive-path-not-found-in-audit,unverified,
 druid,skills-druid-summon-grizzly,druid.summon_grizzly,active,summon,,src/data/skills/druid.json,,unverified,
 necromancer,skills-necromancer-raise-skeleton,necromancer.raise_skeleton,active,summon,,src/data/skills/necromancer.json,,unverified,
-necromancer,skills-necromancer-corpse-explosion,necromancer.corpse_explosion,active,damage,ignite,src/data/skills/necromancer.json,,unverified,
+necromancer,skills-necromancer-corpse-explosion,necromancer.corpse_explosion,active,damage,ignite,src/data/skills/necromancer.json,,bounded-functional;earned-balance-open,docs/plans/evidence/d06-corpse-explosion-ui.md
 necromancer,skills-necromancer-poison-nova,necromancer.poison_nova,active,damage,poison,src/data/skills/necromancer.json,,unverified,
 necromancer,skills-necromancer-bone-spear,necromancer.bone_spear,active,damage,,src/data/skills/necromancer.json,,unverified,
 necromancer,skills-necromancer-amplify-damage,necromancer.amplify_damage,active,debuff,amplify-damage,src/data/skills/necromancer.json,pure-debuff-consumer-not-found-in-audit,unverified,

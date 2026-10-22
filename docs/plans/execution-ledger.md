@@ -8520,3 +8520,42 @@ including dist/tmp, no reviewer artifacts or processes. Approval-only ledger
 append; config/spec/evidence bytes unchanged. Staged publication audit, successful
 cached whitespace check, local commit and exact cleanup follow. Earned/feel/balance,
 remaining D06/P09/P10/private-v1 remain open.
+
+
+## D06 v1ca — Corpse Explosion status reconciliation
+
+Browser prerequisite committed `f0f4d99`. Verified post-commit cleanup receipt
+`91f579c5b99340df28a9e828b99cdf9ff0848d718a02d3fd5e0eebbae171edd5`
+removed exactly 1308 files / 44,063,417 bytes / 19 directories from its task-owned
+dist/tmp, with no remaining paths or failures. Prior raw/source/failure/review
+evidence remains root-owned until umbrella consumers finish.
+
+Root owns exactly five documents: the CE contract, decision register, Skills
+catalog, CE inventory row and this ledger. Preserve the original contract-only
+approval and historical baseline's initially-unverified census. Record subsequent
+bounded engine/native/Skills/production-browser acceptance with prerequisite
+commits and the consolidated evidence report. Correct only CE's catalog status
+name from Burn to canonical Ignite. The inventory retains its static authored
+input fields; only CE's behavior-verification/evidence cells change. No mechanic,
+product/test bytes, baseline, unrelated skill rows or new runtime validation.
+
+Validation: exact five-path scope, resolvable changed document links and commit
+references, CSV schema/count/unique IDs, CE-only row delta, unchanged unrelated
+content, append-only ledger and whitespace. Independent bounded reviews and
+settled cached whitespace check precede the local commit. No disposable build,
+cache or process is created. Status evidence is retained at:
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-corpse-status-4459uvr2`. Root removes it after umbrella consumers finish.
+
+Earned Necromancer-to-CE reachability/affordability, balance, owner/fresh-player
+feel, other corpse consumers, remaining D06/P09/P10 and private-v1 remain open.
+Next: one bounded fresh earned native-UI pilot with frozen legal build/equip/
+attempt budget; retain unsuccessful attempts and report reachability honestly.
+Poison Explosion still requires its own reviewed DoT/consumption contract.
+
+Independent GD/TD APPROVE and QA DOC/EVIDENCE ACCURACY APPROVE. Validation
+passed exact five paths, 213 CSV rows with unique data/runtime IDs, CE-only
+verification/evidence delta, 112 resolvable document links, all seven commit
+references, preserved unrelated content/contract body and append-only ledger.
+Runtime evidence remains the unchanged validated `f0f4d99` product/test bytes.
+No disposable paths or processes require cleanup. Producer publication review
+and settled cached whitespace check follow before the local commit.

@@ -79,7 +79,7 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 | ID | Name (EN / ZH) | Element | Target | Base Dmg (L1) | CD | Mana | Status | Notes |
 |---|---|---|---|---|---|---|---|---|
 | `necromancer.raise_skeleton` | Raise Skeleton / 召唤骷髅 | — | Self | — | — | 15 | Summon | Authored cap: ranks1–5→1,6–11→2,12–20→3. D06 v1c specifies paid battle-start preparation without corpse consumption; implementation pending. |
-| `necromancer.corpse_explosion` | Corpse Explosion / 尸体爆炸 | Fire | All | 50–80 | 2 | 20 | Burn | Requires an actual current-wave enemy-monster corpse; [accepted finite-pool/consumption mechanic contract](../plans/decisions/D06-corpse-consumption-v1.md). Runtime/native acceptance pending. |
+| `necromancer.corpse_explosion` | Corpse Explosion / 尸体爆炸 | Fire | All | 50–80 | 2 | 20 | Ignite | Requires an actual current-wave enemy-monster corpse; one shared corpse per accepted cast, empty-pool combo skip and new-wave reset under the [accepted contract](../plans/decisions/D06-corpse-consumption-v1.md). [Bounded engine/native/Skills and bilingual production-browser acceptance](../plans/evidence/d06-corpse-explosion-ui.md) through `f0f4d99`; earned progression, affordability, balance and player feel remain open. |
 | `necromancer.poison_nova` | Poison Nova / 剧毒新星 | Poison | All | 20–30 | 3 | 25 | Poison (2 stacks) | Low base, high stack scaling |
 | `necromancer.bone_spear` | Bone Spear / 白骨之矛 | Arcane | Single | 60–90 | 1 | 20 | — | Ignores armor |
 | `necromancer.amplify_damage` | Amplify Damage / 伤害加深 | — | All | — | 3 | 15 | -50% physical resist debuff | Curse |

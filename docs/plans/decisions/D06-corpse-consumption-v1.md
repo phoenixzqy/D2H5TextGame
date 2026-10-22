@@ -1,8 +1,14 @@
 # D06 — wave-local Corpse Explosion consumption
 
 Status: accepted bounded mechanic contract, 2026-10-22; independent GD/TD/QA
-approval is recorded in execution-ledger v1bu.
-This card grants no runtime, balance, earned-progression or full-skill acceptance.
+contract approval is recorded in execution-ledger v1bu (commit `ddd918c`).
+The contract alone granted no runtime, balance, earned-progression or full-skill
+acceptance. Subsequent bounded engine/native/Skills and production-browser
+acceptance is recorded in [the evidence report](../evidence/d06-corpse-explosion-ui.md)
+and execution-ledger v1bv–v1bz: engine `7cd5768`, regression closure `ca8f641`,
+feedback `bd62ea3`, native `cdfec4e`, Skills `6eb41de`, browser `f0f4d99`.
+Imported functional fixtures do not establish earned progression, affordability,
+balance or player feel; those and full D06/P09/P10/private-v1 remain open.
 Root is sole writer/executor in the existing claimed worktree. Every delivery
 increment owns at most five repository paths and commits before the next.
 
