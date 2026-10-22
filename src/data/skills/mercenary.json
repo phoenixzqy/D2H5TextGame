@@ -129,6 +129,8 @@
   },
   {
     "id": "mskill-basic-arrow",
+    "attackDamagePct": 100,
+    "cost": { "mana": 0 },
     "name": "skills.mercenary.basic-arrow.name",
     "description": "skills.mercenary.basic-arrow.desc",
     "icon": "skills/merc/basic-arrow.png",
@@ -185,6 +187,8 @@
   },
   {
     "id": "mskill-pierce-arrow",
+    "attackDamagePct": 100,
+    "cost": { "mana": 0 },
     "name": "skills.mercenary.pierce-arrow.name",
     "description": "skills.mercenary.pierce-arrow.desc",
     "icon": "skills/merc/pierce-arrow.png",

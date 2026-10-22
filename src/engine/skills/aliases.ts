@@ -140,8 +140,6 @@ export const MERC_STUB_SKILLS: readonly RegisteredSkill[] = Object.freeze([
   stub({ id: 'mskill-cold-arrow', target: 'single-enemy', cooldown: 1, manaCost: 0, damageType: 'cold', base: [25, 40], status: { id: 'chill' } }),
   stub({ id: 'mskill-glacial-spike', target: 'area-enemies', cooldown: 2, manaCost: 0, damageType: 'cold', base: [30, 50], status: { id: 'chill' } }),
   stub({ id: 'mskill-charged-bolt', target: 'single-enemy', cooldown: 1, manaCost: 0, damageType: 'lightning', base: [25, 40] }),
-  stub({ id: 'mskill-pierce-arrow', target: 'all-enemies', cooldown: 2, manaCost: 0, damageType: 'physical', base: [22, 35] }),
-  stub({ id: 'mskill-basic-arrow', target: 'single-enemy', cooldown: 1, manaCost: 0, damageType: 'physical', base: [15, 25] }),
   stub({ id: 'mskill-pierce-thrust', target: 'single-enemy', cooldown: 1, manaCost: 0, damageType: 'physical', base: [25, 40] }),
   stub({ id: 'mskill-chop', target: 'single-enemy', cooldown: 1, manaCost: 0, damageType: 'physical', base: [22, 35] }),
   stub({ id: 'mskill-basic-swing', target: 'single-enemy', cooldown: 1, manaCost: 0, damageType: 'physical', base: [18, 28] }),

@@ -434,7 +434,7 @@ function buildDamageInput(
   return {
     baseMin,
     baseMax,
-    flatBonus: baseFlatBonus,
+    flatBonus: baseFlatBonus + (effect.attackDamagePct ? stats.attack * effect.attackDamagePct / 100 : 0),
     increasedPct: (attacker.increasedDamagePct?.[effect.damageType] ?? 0) +
       (effect.damageType === 'physical' ? activeMightAura(state.mightAura, attacker.id, state.units)?.physicalDamagePct ?? 0 : 0),
     comboMult: combo,

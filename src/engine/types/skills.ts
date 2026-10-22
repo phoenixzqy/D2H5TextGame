@@ -187,6 +187,8 @@ export interface SkillDef {
   
   /** Base damage (if any) */
   readonly damage?: DamageInfo;
+  /** Finite nonnegative snapshot Attack percentage; exact Basic/Pierce mercenary rows only. */
+  readonly attackDamagePct?: number;
   
   /** Damage type (primary) */
   readonly damageType?: DamageType;

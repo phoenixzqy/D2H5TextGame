@@ -8,6 +8,110 @@
   "additionalProperties": false,
   "allOf": [{
     "if": {
+      "properties": {
+        "id": {
+          "enum": [
+            "mskill-basic-arrow",
+            "mskill-pierce-arrow"
+          ]
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "then": {
+      "required": [
+        "damage",
+        "damageType",
+        "cost",
+        "attackDamagePct"
+      ],
+      "properties": {
+        "trigger": {
+          "const": "active"
+        },
+        "damageType": {
+          "const": "physical"
+        },
+        "cooldown": {
+          "type": "number",
+          "minimum": 1
+        },
+        "cost": {
+          "type": "object",
+          "required": [
+            "mana"
+          ],
+          "maxProperties": 1,
+          "properties": {
+            "mana": {
+              "const": 0
+            }
+          }
+        },
+        "scaling": false,
+        "appliesStatus": false,
+        "statusEffect": false,
+        "additionalStatusEffects": false,
+        "heal": false,
+        "summonId": false,
+        "requires": false,
+        "aoeShape": false,
+        "passive": false,
+        "aura": false,
+        "summon": false,
+        "damage": {
+          "$ref": "#/$defs/damageInfo"
+        },
+        "attackDamagePct": {
+          "$ref": "#/properties/attackDamagePct"
+        }
+      }
+    },
+    "else": {
+      "properties": {
+        "attackDamagePct": false
+      }
+    }
+  }, {
+    "if": {
+      "properties": {
+        "id": {
+          "const": "mskill-basic-arrow"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "then": {
+      "properties": {
+        "target": {
+          "const": "single-enemy"
+        }
+      }
+    }
+  }, {
+    "if": {
+      "properties": {
+        "id": {
+          "const": "mskill-pierce-arrow"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "then": {
+      "properties": {
+        "target": {
+          "const": "all-enemies"
+        }
+      }
+    }
+  }, {
+    "if": {
       "properties": { "id": { "const": "monster-act1-lightning-affix" } },
       "required": ["id"]
     },
@@ -494,6 +598,10 @@
     }
   },
   "properties": {
+    "attackDamagePct": {
+      "type": "number", "minimum": 0,
+      "description": "Finite nonnegative percentage of snapshot Attack added before damage multipliers and mitigation; exact Basic/Pierce mercenary rows only."
+    },
     "id": {
       "type": "string",
       "pattern": "^[a-z0-9-]+$",

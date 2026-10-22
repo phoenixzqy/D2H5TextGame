@@ -17,6 +17,7 @@ import { aliasToCanonical, MERC_STUB_SKILLS, MONSTER_STUB_SKILLS } from './alias
 import { PLAYABLE_CLASS_DATA_SKILLS } from './dataCatalog';
 import { MINOR_HEAL_SKILL } from './minor-heal';
 import { MERC_INNER_SIGHT_SKILL } from './inner-sight';
+import { MERC_ARROW_SKILLS } from './merc-arrows';
 import { ACT1_LIGHTNING_AFFIX_SKILL } from './act1-lightning';
 
 const registry = new Map<string, RegisteredSkill>();
@@ -86,6 +87,7 @@ export function loadDefaultSkills(): void {
   }
   registry.set(MINOR_HEAL_SKILL.id, MINOR_HEAL_SKILL);
   registry.set(MERC_INNER_SIGHT_SKILL.id, MERC_INNER_SIGHT_SKILL);
+  for (const skill of MERC_ARROW_SKILLS) registry.set(skill.id, skill);
   for (const s of MONSTER_STUB_SKILLS) {
     registry.set(s.id, s);
   }

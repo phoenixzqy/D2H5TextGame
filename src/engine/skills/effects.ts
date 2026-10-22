@@ -33,6 +33,8 @@ interface DamageEffectBase {
   readonly damageType: DamageType;
   /** [min, max] base at skill rank 1. */
   readonly base: readonly [number, number];
+  /** Opt-in percentage of snapshot Attack added before damage multipliers and mitigation. */
+  readonly attackDamagePct?: number;
   /** Per-rank growth [min, max]. */
   readonly perRank?: readonly [number, number];
   /** Tags the hit applies (combo synergies). */

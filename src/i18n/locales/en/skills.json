@@ -1241,7 +1241,7 @@
     },
     "basic-arrow": {
       "name": "Basic Arrow",
-      "desc": "A standard arrow shot used by trainee rogues."
+      "desc": "Deals 16–26 physical damage plus 100% of the mercenary's Attack to one enemy. Cooldown: 1s. Costs no mana."
     },
     "fire-arrow": {
       "name": "Fire Arrow",
@@ -1253,7 +1253,7 @@
     },
     "pierce-arrow": {
       "name": "Pierce Arrow",
-      "desc": "An arrow that punches through multiple foes."
+      "desc": "Deals 26–42 physical damage plus 100% of the mercenary's Attack to every enemy. Cooldown: 3s. Costs no mana."
     },
     "inner-sight": {
       "name": "Inner Sight",

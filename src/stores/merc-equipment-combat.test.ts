@@ -163,7 +163,7 @@ describe('equipment authority and next fresh-run boundaries', () => {
 });
 
 
-describe('adapter resources and unchanged damage policy', () => {
+describe('adapter resources and equipment damage authority', () => {
   it('projects stats without healing saved pools but starts fresh combat at equipped maxima', () => {
     const original = arrange();
     const owned = { ...original, derivedStats: { ...original.derivedStats, life: 160, mana: 60 } };
@@ -186,16 +186,29 @@ describe('adapter resources and unchanged damage policy', () => {
     expect(firstDamage(armed)).toMatchObject({ amount: 32, crit: false, dodged: false });
   });
 
-  it('retains registered Basic Arrow range and identical named damage with sword attack', () => {
-    const merc = { ...arrange(), signatureSkillId: '', comboOrder: ['mskill-basic-arrow'] };
-    expect(getSkill('mskill-basic-arrow')?.effects).toContainEqual({
-      kind: 'damage', damageType: 'physical', base: [15, 25] });
+  it.each([
+    ['mskill-basic-arrow', [16, 26], 41, 48],
+    ['mskill-pierce-arrow', [26, 42], 51, 58]
+  ] as const)('adds real sword Attack once to %s and restores damage on unequip', (id, base, bareDamage, armedDamage) => {
+    const merc = { ...arrange(), signatureSkillId: '', comboOrder: [id] };
     const bare = adapt(merc);
-    const armed = adapt(merc, undefined, { weapon: item('sword',
-      'items/base/wp1h-short-sword', { attack: 7 }) });
-    // Seed0 hit draw .2664; base draw .000329→15; crit disabled in this fixture.
-    expect(firstDamage(bare)).toMatchObject({ amount: 15, crit: false, dodged: false });
-    expect(firstDamage(armed)).toEqual(firstDamage(bare));
+    const sword = item('sword', 'items/base/wp1h-short-sword', { attack: 7 });
+    useInventoryStore.getState().addItem(sword);
+    expect(useMercStore.getState().equipOnMerc(merc.id, 'weapon', sword)).toEqual({ ok: true });
+    const saved = structuredClone(useMercStore.getState().ownedMercs);
+    const gear = useMercStore.getState().mercEquipment[merc.id];
+    const armed = adapt(merc, undefined, gear);
+    expect(firstDamage(armed).amount - firstDamage(bare).amount).toBe(7);
+    // Seed0 hit draw .2664; base draw .000329 selects the authored minimum.
+    expect(firstDamage(bare)).toMatchObject({ amount: bareDamage, crit: false, dodged: false });
+    expect(firstDamage(armed)).toMatchObject({ amount: armedDamage, crit: false, dodged: false });
+    expect(firstDamage(adapt(merc, undefined, gear))).toEqual(firstDamage(armed));
+    expect(useMercStore.getState().ownedMercs).toEqual(saved);
+    expect(useMercStore.getState().unequipFromMerc(merc.id, 'weapon')).toEqual({ ok: true });
+    expect(firstDamage(adapt(merc, undefined, useMercStore.getState().mercEquipment[merc.id])))
+      .toEqual(firstDamage(bare));
+    expect(getSkill(id)?.effects).toContainEqual({
+      kind: 'damage', damageType: 'physical', base, attackDamagePct: 100, tags: ['physical'] });
   });
 });
 
