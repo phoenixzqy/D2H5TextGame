@@ -1,0 +1,233 @@
+{
+  "scope": "P14a01 Blood Raven only; no C/G gate acceptance",
+  "parent": "c020dba",
+  "rawRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-blood-raven-m76yc8no",
+  "screen": {
+    "baseline": {
+      "wins": 0,
+      "draws": 862,
+      "heroDeaths": 138,
+      "mercDeaths": 942,
+      "successfulTtkP50Ms": null,
+      "successfulTtkP95Ms": null,
+      "maximumSummons": 1
+    },
+    "candidate": {
+      "wins": 992,
+      "draws": 6,
+      "heroDeaths": 2,
+      "mercDeaths": 42,
+      "successfulTtkP50Ms": 21336,
+      "successfulTtkP95Ms": 30480,
+      "maximumSummons": 9
+    },
+    "maximumSummonsMeaning": "lifetime creations; live cap6 is independently tested",
+    "exactSeed": 4233610418,
+    "exactCandidateDurationMs": 18288,
+    "exactWinner": "player"
+  },
+  "earnedRoute": {
+    "inputSha256": "8c46c4f4026116360356a2d17dcde3d723310969a25664f85bc291a1886d2afc",
+    "initialFullSaveEquality": true,
+    "sourceHashesUnchanged": true,
+    "runs": [
+      {
+        "area": "areas/act1-blood-moor",
+        "ordinal": 102,
+        "result": "victory",
+        "waveTerminalMs": [
+          4572,
+          9000,
+          15240
+        ],
+        "earnedXp": 1460
+      },
+      {
+        "area": "areas/act1-cold-plains",
+        "ordinal": 103,
+        "result": "victory",
+        "waveTerminalMs": [
+          9000,
+          3048,
+          33000,
+          12000
+        ],
+        "earnedXp": 3100
+      },
+      {
+        "area": "areas/act1-burial-grounds",
+        "ordinal": 104,
+        "result": "victory",
+        "waveTerminalMs": [
+          9144,
+          30000,
+          54864,
+          18288
+        ],
+        "earnedXp": 3130
+      },
+      {
+        "area": "areas/act1-dark-wood",
+        "ordinal": 105,
+        "result": "victory",
+        "waveTerminalMs": [
+          6000,
+          6096,
+          10500,
+          57912,
+          46500
+        ],
+        "earnedXp": 6600
+      }
+    ],
+    "finalSaveSha256": "c32f919de346b2230322630254e7d1e2c3e0cd0185398cc210064aa7ae22c3e0",
+    "itemCountsReconcile": true
+  },
+  "catacombs": {
+    "sameCompleteEarnedInput": true,
+    "allAttemptedWavesAndAwardsEqual": true,
+    "seed": 2223645302,
+    "ordinal": 106,
+    "results": {
+      "old": {
+        "result": "defeat",
+        "attemptedWaves": 4,
+        "terminalMs": 7653.846153846154,
+        "bossReached": false,
+        "overrideCount": 1
+      },
+      "reviewed": {
+        "result": "defeat",
+        "attemptedWaves": 4,
+        "terminalMs": 7653.846153846154,
+        "bossReached": false,
+        "overrideCount": 0
+      }
+    }
+  },
+  "validation": {
+    "focused": 22,
+    "engine": 4065,
+    "unit": 8480,
+    "typecheck": "pass",
+    "lint": "pass, including terminal-exit0 catalog and explicit native-spec lint",
+    "productionBuild": "pass",
+    "browser": {
+      "passed": 4,
+      "stats": {
+        "startTime": "2026-10-22T23:23:38.132Z",
+        "duration": 77344.939,
+        "expected": 4,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "locales": [
+        "en",
+        "zh-CN"
+      ],
+      "viewports": [
+        [
+          360,
+          640
+        ],
+        [
+          1280,
+          800
+        ]
+      ],
+      "production": true,
+      "importedEarnedFixture": true,
+      "freshBrowserCampaign": false
+    }
+  },
+  "rawFiles": {
+    "baseline-measure.json": "d614321f52ea95e835a7f94505e286f6caf6ca2044889a2f4a6cc6d630d96023",
+    "baseline.log": "bc7bf7c999c7b1821c9ebf10e8b1288b82523e363842ccce18f51b913116a71f",
+    "bridge-scan.json": "300a78118b74071f4a2b3af478efaeacfd04e514bbb57402c90a0f6096e467bd",
+    "browser-attempt1.log": "a416167e4fd1ff857ae9fbdc6f6af3b046023e8f4a58dddea5b72e3d26473298",
+    "browser-compact.log": "5c0c2fb0cc5ec9923812e23b50414c2cb4f47796687f47317a7f143c3389ae51",
+    "browser-encounter.log": "03bc2f520f4625244488ebb14fef873cf64dac0a2b87704a812bc96e725f5c13",
+    "browser-report-compact.json": "cbb451f03e3423a8f095d7cea74ea7a06192e467685990aa1bde1b9c1dc1fbc4",
+    "browser-report-encounter.json": "bf81e781e027a60deb8b276ded0e5db4786defbf503e6a21d174874261376c76",
+    "browser-report-final.json": "d77e12a2ece860d020daa5647d97e94d4bce8bd10db8a9538046aa1cc103022a",
+    "browser.log": "a416167e4fd1ff857ae9fbdc6f6af3b046023e8f4a58dddea5b72e3d26473298",
+    "build.log": "64d3e3405962c908c581b79c7c0a8e008cd578c0f4a305e36d7ef5488148862d",
+    "candidate-measure.json": "21e550ec8ee436c0689378b6f4fbcead7d245ea1120d625e2928db5f03f1bee2",
+    "candidate.log": "0b9faef57ea9c375d6cceb6a1921667c6e06f60bec3fbc657e21f8f8b1a5d5b4",
+    "catacombs-old-final.json": "3065a41613e3b7c35c963d12d7a037d45ee51f2d10b217d638580366d99da6d1",
+    "catacombs-old-report.json": "0f630b5b0b7bb7e39ea30175a05644e3ed89700e9e1df847a35bd310278c796b",
+    "catacombs-old.log": "8b8ac6f5abd78143ce2ae0d70a99ca5162734ef93cd94d473d995fd695a78a45",
+    "catacombs-reviewed-final.json": "3065a41613e3b7c35c963d12d7a037d45ee51f2d10b217d638580366d99da6d1",
+    "catacombs-reviewed-report.json": "fb4644382cdb732be86fa6b1946a170bc715dc22503bc81f746e490356f21838",
+    "catacombs-reviewed.log": "8b8ac6f5abd78143ce2ae0d70a99ca5162734ef93cd94d473d995fd695a78a45",
+    "catacombs.mjs": "6105eeeb73b1b903314d01883c4455b323b32a602a03aa69b332ab942a097b13",
+    "catalog-fix.log": "7e09ee98219be7e4a4a7c511f874e5793d68fdab1bc67d847646cfdcf7ce41eb",
+    "cleanup.receipt.json": "fc30ed04de8d5ddb1ac6c3ff663c6432671c5d466af87893e85429d493af6050",
+    "earned-route.mjs": "6f16cd0295e3a7f15cd31b7d8475eb82276746e2baf0c2e3ade97d05c89ca425",
+    "engine.log": "8bb1bdd42a0cb272f26e23aaab4c39ed904ed84a7ee72b481ff7888678f9a9eb",
+    "final-added-lint.log": "d5e0fa65ed1a35664b5a50f2f497ef4b5f971a2ceea4c5f296e4a01c31f4a656",
+    "focused.log": "80d1c973ece14a7c0a7db1f4d36359e53ff3aa91050bfb5ba2ec19ef1c918ecb",
+    "focused2.log": "fabbdbacc62bdced2037117c4feb2785362ff5ec5c86b6f8e96cb2b9a78665a6",
+    "green.log": "d0ed278eb51a28406940c72c49f7bfaa85d94927674d5175f92eed0880a7ed10",
+    "green2.log": "2d7758f39baa7df3b29212d2a115a2bba28a17bb679ab9e35cca5b8d39aa6937",
+    "lint.log": "358831a683284e2c129c8e2538a8d9623bcae776cea1a55a4ef108ee6d661a0a",
+    "measure.mjs": "8721e3b68a451cfacc778ff88f7e4bc5894b6b7a78e20fcf6bb9654fe7bbbb27",
+    "native-lint-close.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native-lint-final.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "playwright.config.mjs": "437bc4f2cd36ea3c63efcc4e39232d96576680fc44aed492cf87b629c7369a25",
+    "raven-route-final.json": "c32f919de346b2230322630254e7d1e2c3e0cd0185398cc210064aa7ae22c3e0",
+    "raven-route-report.json": "3035c80afb9e98e97e8670507bc0c823be58572c093ee1802263eeac36aacc05",
+    "red-final.log": "2707d883bbc9882cf056efa07db5a03a155c981d5bb3d299e80d474b2ca44b9e",
+    "red.log": "8e00b49938f1c97595e0eb0237c0097c739ac7755107b738a03f4d0f060c3ecd",
+    "route.log": "85bccfdea0203514f5d71ff41a25ac3930b70994662e1d7006245db14d3f44c5",
+    "serve.mjs": "19053ec85e3383294e68d1f6dedb1a3408b58fda5f3d1eab40431bda182805f2",
+    "typecheck-final.log": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+    "typecheck.log": "93394262b65144161332d5cae7d4c46bc8d1efb6ece4d97960faf3702951c32f",
+    "typecheck2.log": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+    "unit-final.log": "b1cafcdfc2f40770c4d33c912a3ff3c1c9bfb524abcac01e5a32a75c918a4c9f",
+    "unit.log": "80f0f7383338b2af5335ea05561b0dcec917bae1c8046b13e58f4d2a9045948f"
+  },
+  "remaining": [
+    "Catacombs W4 approved authored attack model implementation",
+    "Catacombs W4 root-cause diagnosis, no boss attempt yet",
+    "C0\u2013C4/G0\u2013G7 and all other full-v1 requirements remain open"
+  ],
+  "implementation": "06f3c88197ec24b04c9ffc409de91f4680eb6a11",
+  "runtimeChangesAfterMeasurement": [],
+  "testOnlyChangesAfterMeasurement": [
+    "src/data/loader.test.ts",
+    "src/stores/eventToLogI18n.test.ts"
+  ],
+  "reviews": {
+    "GD": "APPROVE",
+    "TD": "APPROVE",
+    "producer": "APPROVE; security PASS",
+    "finalIndependentQA": "ADEQUATE; no actionable gaps"
+  },
+  "cleanup": {
+    "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-blood-raven-m76yc8no",
+    "readerReleases": [
+      "producer",
+      "design_contracts",
+      "qa_save_review"
+    ],
+    "removed": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-blood-raven-m76yc8no/dist",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-blood-raven-m76yc8no/baseline-cache",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-blood-raven-m76yc8no/candidate-cache",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-blood-raven-m76yc8no/route-cache",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-blood-raven-m76yc8no/route-tmp",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-blood-raven-m76yc8no/catacombs-old-cache",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-blood-raven-m76yc8no/catacombs-old-tmp",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-blood-raven-m76yc8no/catacombs-reviewed-cache",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-blood-raven-m76yc8no/catacombs-reviewed-tmp",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-blood-raven-m76yc8no/review-source",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-blood-raven-m76yc8no/browser-output-encounter"
+    ],
+    "alreadyAbsent": [],
+    "failures": [],
+    "retained": "raw logs/reports/scripts/saves/screenshots and failed browser evidence; root owns through dependent progression/C1",
+    "remaining": []
+  }
+}
