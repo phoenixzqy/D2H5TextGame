@@ -12,7 +12,7 @@ import { toJsonSafe } from '@/engine/save';
 import type { Mercenary, Player } from '@/engine/types/entities';
 import type { Item } from '@/engine/types/items';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
-import { abortSubAreaRun, advanceWaveOrFinish, playerToCombatUnit, refreshActivePlayerCombatConfig,
+import { abortSubAreaRun, advanceWaveOrFinish, hasActiveSubAreaRun, playerToCombatUnit, refreshActivePlayerCombatConfig,
   resetIdleElitePity, startSubAreaRun } from './combatHelpers';
 import { __resetPersistenceForTests, importIntoStores, snapshotStores } from './persistence';
 import { useCombatStore } from './combatStore';
@@ -238,13 +238,29 @@ describe('native selected Might wave composition', () => {
     selected(20); start(); const before = recording(); configure(patch);
     expect(recording()).toEqual(before); replay(); expect(latest().mightAura).toBeUndefined();
   });
-  it('does not reuse the original saved selector if current player is absent or has another identity', () => {
-    selected(20); start(); const saved = player(); const before = recording();
-    // Synthetic resolver inputs deliberately retain the original run; not public replacement.
-    usePlayerStore.setState({ player: null }); replay(); expect(latest().mightAura).toBeUndefined();
-    usePlayerStore.setState({ player: { ...saved, id: 'different-hero' } }); replay();
-    expect(latest().mightAura).toBeUndefined(); expect(before.events.length).toBeGreaterThan(0);
-    usePlayerStore.setState({ player: saved }); replay(); aura(20); assertActualEffect();
+  it('clears the original run and selector when the public hero lifecycle removes or replaces it', () => {
+    selected(20); start(); const saved = player(); const recorded = snapshots.length;
+    usePlayerStore.getState().reset();
+    expect(hasActiveSubAreaRun()).toBe(false);
+    const absent = useCombatStore.getState();
+    replay();
+    expect(useCombatStore.getState()).toBe(absent);
+    expect(snapshots).toHaveLength(recorded);
+    expect(absent.recordedEvents).toEqual([]);
+    const { selectedAuraId: _selection, ...unselected } = saved;
+    usePlayerStore.getState().setPlayer({ ...unselected, id: 'different-hero' });
+    const replaced = useCombatStore.getState();
+    replay();
+    expect(useCombatStore.getState()).toBe(replaced);
+    expect(snapshots).toHaveLength(recorded);
+    start();
+    expect(latest().playerTeam[0]?.id).toBe('different-hero');
+    expect(latest().mightAura).toBeUndefined();
+    usePlayerStore.getState().setPlayer(saved);
+    expect(hasActiveSubAreaRun()).toBe(false);
+    replay();
+    expect(snapshots).toHaveLength(recorded + 1);
+    start(); aura(20); assertActualEffect();
   });
   it('keeps the original explicitly fielded merc across roster changes; bench cannot receive the projection', () => {
     selected(20); const first = merc('fielded-a'); const bench = merc('bench-b');

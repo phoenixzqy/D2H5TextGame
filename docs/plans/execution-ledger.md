@@ -5732,3 +5732,50 @@ Root remains sole writer/executor; umbrella claim
 continues; no remote action. Atomic production start/replay/next-wave/settlement
 activation, selected-item debit/lock, recovery UI and bilingual Iron acceptance,
 and fullD06/P09/P10/private-v1 remain open.
+
+
+## D06 v1al aura authority fixture prerequisites
+
+Prior exact-authority prerequisite committed as `53719b4` after independent
+QA/TD/five-axis/producer APPROVE. Its cleanup removed857files/42,727,729bytes and
+14empty directories, zero failures/remaining; all6 command identities absent.
+
+Broad production activation exposed7failures in three more synthetic fixtures.
+Activation's four-path diff is suspended losslessly outside the repository as
+producer-activation-suspended-v1.patch (SHA256
+64c4e802f0f12f7b3ba4b2453b2f4ac7fcf325f42865e28199c3a1849bf53f6c),
+with exact HEAD/source identities in its JSON manifest. Only root-owned changes
+were restored while this prerequisite lands. No production fallback was added.
+TD approved the bounded three-test-plus-ledger prerequisite.
+
+Frozen Armor marker supplements now modify the actual engine return before
+staging/publication captures its identity. Genuine paid rank20/mana/pools,
+carry/stripping/unrelated-marker/replay-baseline assertions remain. Might and
+Meditation use public reset/setPlayer lifecycle: removed/replaced heroes clear
+old authority; Retry-style replay neither simulates nor resurrects it; a fresh
+unselected different-hero run has no aura, while restoring the saved selected
+hero requires a new start and still demonstrates real damage/regeneration effect.
+This replaces unsupported raw identity substitution; it does not weaken runtime
+binding or add skipped cases. No production source/API/save/UI changed.
+
+Initial focused5failed/47passed6.185s exposed a mistaken test engine-return shape;
+corrected to result.playerTeam. Focused52/3files5.840s, types15.055s,
+lint40.264s including85purity, full6992/228files118.560s and task-local build9.914s
+passed. Build608modules/index-GCiYf-P6.js1264.77kB observed; no deterministic bundle
+equivalence claim. Original failures and exact command/source/output identities
+retained. Existing related5s/full15s overruns, React act/fixture fallback,
+Browserslist/chunk/precache warnings, prior unexplained bundle variance and
+Chinese screenshot glyph issue remain. SaveCurrent11 unchanged. No browser/server
+or visual/earned/paid-Iron acceptance claim. Security assessment: controlled
+prepublication test data/public lifecycle only; no external IO/dependency/payment
+or compatibility bypass.
+
+Four paths, validation identities, prior cleanup and exact owned dist/tmp inventory
+are frozen in authority-fixtures2-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review,
+local commit and exact cleanup follow. Root remains sole writer/executor; umbrella
+claim continues without remote action. Production activation, recovery UI,
+selected-item debit/lock/bilingual acceptance and fullD06/P09/P10/private-v1 remain
+open.

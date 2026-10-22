@@ -4,6 +4,7 @@ import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { loadDefaultSkills, registerSkill, resetRegistry } from '@/engine/skills/registry';
 import type { Player } from '@/engine/types/entities';
 import type { Item } from '@/engine/types/items';
+import * as combatEngine from '@/engine/combat/combat';
 import {
   abortSubAreaRun, advanceWaveOrFinish, hasActiveSubAreaRun, playerToCombatUnit,
   refreshActivePlayerCombatConfig, resetIdleElitePity, startSubAreaRun
@@ -99,8 +100,18 @@ function recording() {
     complete: state.playbackComplete, paused: state.isPaused });
 }
 
-function paidFirstWave() {
+function paidFirstWave(withMarkerRepresentations = false) {
   arrange();
+  if (withMarkerRepresentations) {
+    const original = combatEngine.runBattleRecorded;
+    vi.spyOn(combatEngine, 'runBattleRecorded').mockImplementationOnce(input => {
+      const result = original(input);
+      // Supplement marker representations before staging captures the genuine paid result.
+      return { ...result, result: { ...result.result,
+        playerTeam: result.result.playerTeam.map(unit => ({ ...unit,
+          activeBuffIds: [...MARKERS, 'fixture.unrelated', 'mskill-frozen-armor', 'frozen_armor'] })) } };
+    });
+  }
   start();
   const first = useCombatStore.getState();
   const input = first.playerTeam[0];
@@ -132,14 +143,7 @@ function paidFirstWave() {
 }
 
 function nextPaidWave(withMarkerRepresentations = false) {
-  const prior = paidFirstWave();
-  if (withMarkerRepresentations) {
-    const outcome = prior.first.outcome;
-    if (!outcome) throw new Error('Missing actual paid result');
-    // Marker representation supplement only; paid potency and victory remain genuine.
-    useCombatStore.setState({ outcome: { ...outcome, finalPlayerTeam: [{ ...prior.final,
-      activeBuffIds: [...MARKERS, 'fixture.unrelated', 'mskill-frozen-armor', 'frozen_armor'] }] } });
-  }
+  const prior = paidFirstWave(withMarkerRepresentations);
   drain();
   expect(advanceWaveOrFinish()).toBe('next-wave');
   const second = useCombatStore.getState();
@@ -234,15 +238,15 @@ describe('native paid Frozen Armor lifetime and configuration boundaries', () =>
     });
 
   it('strips every exact marker representation while preserving unrelated and mercenary markers', () => {
-    const { final } = paidFirstWave();
+    paidFirstWave(true);
     drain();
     const state = useCombatStore.getState();
     const outcome = state.outcome;
     if (!outcome) throw new Error('Missing actual paid result');
-    // Marker-representation supplement only: the snapshot and victory are real.
-    const markers = [...MARKERS, 'fixture.unrelated', 'mskill-frozen-armor', 'frozen_armor'];
-    useCombatStore.setState({ outcome: { ...outcome,
-      finalPlayerTeam: [{ ...final, activeBuffIds: markers }] } });
+    const hero = outcome.finalPlayerTeam[0];
+    if (!hero) throw new Error('Missing actual paid hero');
+    const markers = [...hero.activeBuffIds];
+    expect(markers).toEqual([...MARKERS, 'fixture.unrelated', 'mskill-frozen-armor', 'frozen_armor']);
     configure({});
     expect(advanceWaveOrFinish()).toBe('next-wave');
     expect(useCombatStore.getState().playerTeam[0]?.activeBuffIds)
