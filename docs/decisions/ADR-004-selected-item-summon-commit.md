@@ -282,3 +282,26 @@ QA and TD reapproval. Both released all readers. This publication changes status
 and attribution only; the approved architecture is unchanged. Producer publication/
 scope review is required before this two-path increment commits. This does not
 approve pending source, UI, browser, economy or full-plan completion.
+
+
+## Delivery/status addendum — 2026-10-22
+
+The pending-source language above records the architecture's acceptance-time
+state. Bounded selected-item Iron engine/store, bilingual Skills and native
+production-browser delivery is now accepted. The original architecture and
+mechanic rules are unchanged; [delivery evidence](../plans/evidence/d06-iron-golem.md)
+binds source increments, the tested production artifact, literal oracles, all18
+native cases and validation/failure provenance. Independent QA/test-evidence,
+TD/five-axis and producer approved that frozen slice; browser publication is
+local commit `1c1595d` after product integration `5e7b29b`.
+
+The native matrix uses imported functional scaffolding in both locales. It
+verifies selection/acknowledgement,35MP success/34MP refusal, exact selected-item
+loss, locked replay, actual next-wave configuration and Save/close/Continue plus
+failed/successful import. Prepared/conflict/publication-failure coverage remains
+controlled-test evidence. SaveCurrent11 is unchanged; no crash-atomic storage,
+anti-rollback, native-identification, earned supply/economy or full accessibility/
+platform/PWA acceptance is inferred. Existing duration/build warnings, other
+corpse consumers, Mage elemental identity and full D06/P09/P10/private-v1 remain
+open. Review, publication, retained evidence and verified exact disposable
+cleanup are recorded in execution-ledger v1aw/v1ax and its bound manifests.

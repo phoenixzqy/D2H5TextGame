@@ -6468,3 +6468,39 @@ root removes only frozen disposable dist/tmp after readers release. Earned suppl
 native identify, other corpse consumers, Mage identity, campaign/economy/balance,
 outstanding warnings and fullD06/P09/P10/private-v1 stay open. Next bounded card
 reconciles obsolete Iron decision/register status. No remote action.
+
+
+## D06 v1ax selected-item Iron delivery status reconciliation
+
+Native browser increment `1c1595d53606478813b795fa423016e9086ef3b9` committed after
+QA/test-evidence (ADEQUATE), TD/five-axis and producer APPROVE. Exact cleanup
+`885b0154a31d71ecaa6f9cf82cc16e1368b9537b2bac58647a96490c38b81c1f` removed
+1994files/72,963,111bytes/30directories with zero failures or remaining targets;
+all13 recorded command roots were absent, in addition to the34 recorded browser/
+unit descendants already checked. Retained browser-evidence, commands and bound
+manifests remain under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les
+for reviewers and future acceptance; root owns their eventual retention review.
+No disposable dist/tmp remains. Umbrella worktree claim and sole executor continue.
+
+TD and producer approved this four-document scope: update obsolete Iron contract
+status/references, reconcile only the D06 decision-register row, append a dated
+ADR-004 delivery/status addendum and record this ledger increment. Original ADR
+architecture and historical review records stay intact. The existing durable
+Iron evidence is reused without another evidence document or work-plan edit.
+Bounded engine/store, bilingual Skills and18 imported functional native Chromium
+cases are accepted; earned supply/economy, native identification, broader platform/
+a11y/PWA, Mage identity, other corpse consumers and fullD06/P09/P10/private-v1
+remain open. No mechanics, runtime, save shape or validation policy changes.
+
+Documentation checks cover exact four-path scope, whitespace, changed local links,
+append-only ADR and unchanged mechanic rules. No redundant unit/build rerun for
+these documentation-only edits; preceding frozen source validation remains the
+source evidence. Root security check: pass; status reconciliation of local
+observed evidence only, no executable instructions, external IO, credentials,
+dependencies or permissions added. iron-status-review.json binds source/check
+receipts and the preceding cleanup. Independent QA/test-evidence (ADEQUATE) and
+TD/five-axis reviews APPROVE this frozen slice; all readers released. Producer
+publication, local commit and exact cleanup follow.
+Next separately reviewed documentation card defines Mage elemental identity
+before any related runtime change. No remote action.

@@ -1,8 +1,10 @@
 # D06 v1d — Selected-item Iron Golem preparation
 
 Status: accepted scoped mechanic contract, 2026-10-21; independent QA, GD and
-TD approved. Transaction ADR, implementation, UI/browser and balance remain pending;
-no runtime acceptance.
+TD approved. Bounded engine/store, bilingual Skills and native production-browser
+delivery accepted, 2026-10-22, under [ADR-004](../../decisions/ADR-004-selected-item-summon-commit.md)
+and the [delivery evidence](../evidence/d06-iron-golem.md). Earned supply, balance
+and full Iron/D06 acceptance remain open.
 This is the next bounded D06/P09 dependency after accepted
 [v1b](D06-summon-preparation-v1.md) and
 [v1c](D06-summon-corpses-v1.md). It does not close full D06/P09/P10 or private-v1.
@@ -194,8 +196,9 @@ If debit has become committed, retain the receipt and exact staged recording so
 publication can recover without another debit; never independently refund an
 already authoritative recording. Surface restoration/publication failures,
 retain recovery evidence, and prevent advancing/restarting the unsettled wave.
-The subsequent TD architecture decision must define concrete commit/recovery
-states and supported save/action guards before implementation.
+Accepted [ADR-004](../../decisions/ADR-004-selected-item-summon-commit.md) defines
+the concrete commit/recovery states and supported save/action guards used by
+the bounded implementation.
 
 This promises settled process-local consistency for supported actions, not
 unobservable Zustand intermediate states or rollback of arbitrary subscriber
@@ -232,9 +235,10 @@ Flow: authored base metadata + authoritative live Item → existing isolated ite
 resolver → immutable engine projection → staged attempt/recording → guarded
 exact-index inventory debit and authoritative receipt/publication. The UI issues
 only hero/item IDs and reads preview/results; it owns no stat or transaction math.
-The metadata and transient transaction interfaces require a separately reviewed
-TD ADR before runtime edits, without adding a save shape or generic transaction
-framework. This mechanic card does not lock implementation type names.
+The metadata and transient transaction interfaces follow separately reviewed
+[ADR-004](../../decisions/ADR-004-selected-item-summon-commit.md), without adding a
+save shape or generic transaction framework. This mechanic card does not lock
+implementation type names.
 
 Use existing `necromancer.iron-golem.desc` in the skills namespace, plus
 namespaced i18n keys for selection, clear, no eligible item, refusal reason,
@@ -294,7 +298,11 @@ affordability/TTK claims, corpse economy or shared golem-family tuning.
    on production bytes. Retain reports/screenshots and clean exact task-owned
    outputs after all readers release.
 
-Full Iron/D06 acceptance remains pending implementation and experiential proof.
+The [delivery evidence](../evidence/d06-iron-golem.md) records bounded engine/store,
+bilingual Skills and imported functional native-browser acceptance, including
+selection, sacrifice, refusal, locked replay, actual next wave and save/import/
+Continue. Controlled tests cover transaction/recovery branches beyond the browser
+matrix. Full Iron/D06 acceptance still requires earned and experiential proof.
 Other corpse consumers, Mage elemental identity, earned campaign/economy/balance,
 open time/build warnings, complete a11y/platform/PWA gates and private-v1 remain
 open. No earned Moor/Den attempt or completed matrix is reopened by this card.
