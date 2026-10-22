@@ -6604,3 +6604,68 @@ Independent QA/test-evidence (ADEQUATE) and TD/five-axis reviews APPROVE this fr
 inactive metadata slice; all readers released. Producer publication, local commit
 and exact cleanup follow. Next separately gated three-path helper
 plan is READY, contingent on this increment's approval/commit/cleanup.
+
+
+## D06 v1ba immutable Mage definition and fresh-index lookup
+
+Inactive metadata `1baa7e7` committed after QA/test-evidence (ADEQUATE), TD/five-axis
+and producer APPROVE. Cleanup
+`a4132923fb38e0f4ff6086e815c1432a00e5957d681c228753c84cbbb9e35700` removed857files/
+42,762,677bytes/14directories with zero failures/remaining targets. Root remains
+sole writer/executor under the umbrella worktree claim; retained evidence root:
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+
+Producer plan-review READY scopes exactly three paths: new pure skeletal-mage
+module, its tests and ledger. Strict noncoercing Ajv resolves exactly one authored
+Mage row, explicitly checks active/summon/template provenance and copies/freezes
+its authored element cycle. The immutable definition exposes elementAt(freshIndex)
+over that validated copy, rejecting non-safe/nonintegral/negative/nonfinite
+indices without a fallback. No schema compilation or registry lookup per index,
+RNG/counter/global sequence, source mutation, runtime consumer, copy or save change.
+Root uses api-and-interface-design to keep lookup tied to the validated definition;
+TDD/incremental-implementation/root-cause-fix keep this inactive boundary narrow.
+Root security check: pass; local typed/data boundary only, no external IO,
+credentials, dependencies, permissions or agent-behavior changes.
+
+QA pre-RED draft SHAa11b9fedcca76ea9458dfb45ab92d68382180f7be22fa450209c6bef6e69a2f2
+freezes independent F/C/L/P prefixes1/2/3/4/8, safe-index boundaries (largest safe
+index gives poison), authored permutation, nested copy/freeze/source-edit/replace/
+push isolation, missing/duplicate/foreign/malformed source refusal, noncoercing
+schema validation, restored registry override and A/B/A helper controls. Repeated
+calls prove helper statelessness only; actual owner/batch registration, RNG-stream
+and runtime damage behavior require their later increments. Serial RED/focused/
+engine/full/types/lint/production build, frozen independent reviews, publication,
+local commit and exact cleanup follow. Track only owned tmp/dist as disposable;
+retain command/source evidence and literal drafts. Full Mage/statuses/balance/
+earned/campaign and D06/P09/P10/private-v1 remain open. No remote action.
+
+
+TD and producer approve the same three-path helper delta: copy validated
+maxLevel into immutable maxRank, keeping later runtime qualification JSON-driven.
+QA pre-RED v2 draft SHA18c6a74efe3e6a4c1a14af77d0319a66ab535ca14430967d00c4203d7c9a4c9c
+adds production20, independent alternate7, source-mutation isolation and invalid
+bounds. Revised RED has two intended missing-maxRank failures with36 controls
+passing. Earlier missing-module RED, earlier31-test/3368-engine/7320-full passes
+and tsc unchecked-array-index failure remain historical evidence. A guarded
+lookup now throws on an impossible missing element, without fallback tuning.
+Final validation is rerun against this revised helper; prior passes do not
+validate the changed bytes.
+
+
+Final focused38/38 and engine3375tests/87files pass. Full7327tests/235files
+passes (118.73s), and standard typecheck passes, against the exact final helper
+implementation. Lint identified only a test callback line-break violation;
+joined that whitespace, retained its failed receipt, and reran focused38,
+engine3375 and lint successfully on the final test bytes. The retained scope
+check proves the full/type test delta is exactly that line join; no behavior
+changed and no further full-suite repetition is claimed. Final engine15.04s and
+full118.73s remain above existing3s/15s loop budgets; performance acceptance stays
+open. VITE_E2E=false production build passes to owned dist; existing stale
+Browserslist, large-chunk and2.57MB asset-manifest precache warnings remain.
+Broad Node-config maxThreads incompatibility is unchanged, not claimed as a
+passing gate. Exact three-path/whitespace/artifact and no emitted-test-bridge
+checks pass. No runtime/browser/balance acceptance comes from this inactive
+helper. Independent frozen QA/test-evidence (ADEQUATE) and TD/five-axis reviews APPROVE
+this inactive helper; all readers released. Producer publication, local commit
+and exact cleanup follow; full Mage/statuses/balance/earned/campaign and
+D06/P09/P10/private-v1 remain open.
