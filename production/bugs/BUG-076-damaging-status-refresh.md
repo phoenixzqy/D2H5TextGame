@@ -1,7 +1,8 @@
 # BUG-076 — Allow a damaging status to promote an active marker
 
-Status: fix validated; local commit pending. The following execution-ledger
-entry records the exact prerequisite commit for closure.
+Status: fixed and independently validated in local commit
+`0dcb7533a537fea8edba0069af83076bb5ea05ce` (shared refresh prerequisite).
+Closure is recorded by execution-ledger v1ce; PE combat integration is separate.
 
 Severity: High — an active potency-free marker blocks the later damaging-status
 path, including Poison Explosion after its Poison Dagger prerequisite. Waiting

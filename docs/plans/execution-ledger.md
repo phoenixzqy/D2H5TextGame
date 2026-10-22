@@ -8744,3 +8744,64 @@ Cleanup receipt SHA256 `60625a512b4fb873eb831ddba0b9ec8845905143cb1dae55e0d1976a
 Raw/source/coverage/review evidence remains root-owned at the exact ROOT above
 until umbrella consumers finish. Final doc/staged checks and settled cached
 whitespace validation precede the local commit.
+
+
+## D06 v1ce — Poison Explosion metadata and independent authority
+
+Root owns exactly five paths: Necromancer skill JSON, new
+`engine/skills/poison-explosion.ts` and its test, BUG-076 closure and this ledger.
+BUG-076 is fixed in prerequisite `0dcb7533a537fea8edba0069af83076bb5ea05ce`;
+its final validation and cleanup remain recorded in v1cd. Security PASS: local
+JSON coefficient and pure-TS Player projection; no network/dependency/credential/
+permission/CI/save-format change. Existing claim/branch retained.
+
+A genuine metadata RED failed one independent literal registered-definition
+assertion solely because `dotPctOfDamage:0.05` was absent. The only authored
+data change supplies that coefficient; all other rows/fields remain intact.
+The ordinary adapter immediately supplies damaging Poison even before the
+corpse gate is connected. This slice is therefore not behavior-neutral and
+does not accept current ungated casting. All32 Necromancer rows pass the
+existing AJV schema through a root-owned external validator; no schema/script
+change was needed.
+
+Separate PE definition validates exact authored and registered semantics,
+unlock18/Dagger prerequisite/cap20/15MP/2s/40–60+5per-rank/all-enemy poison.
+Player composition requires actual Necromancer allocation and maximum valid
+integral aliases without summing/clamping/implicit rank. Complete projection
+copy is frozen and fail-closed for malformed/sparse/duplicate/extra fields;
+runtime identity/liveness and CE separation are independently tested. It is
+not yet connected to combat or native wave staging.
+
+Focused234/3files passes (PE100,CE67,registry67); engine3759/92files19.63s
+(wrapper20.867s), full8002/255files134.49s (wrapper136.099s), types22.761s,
+schema0.241s, lint/purity52.569s and production build/bridge10.138s pass.
+Changed-module coverage98.51% lines/statements,98.78% branches,100% functions.
+Independent GD/TD/code APPROVE and QA ADEQUATE cover the final source/test
+hashes; final evidence/publication review follows. Engine3s/full15s budgets
+and existing Browserslist/>500kB chunk/2.57MB manifest-precache warnings remain
+open. Four production JS chunks contain no bridge.
+
+Raw RED/green/check logs, captured sources, coverage and review evidence:
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-poison-authority-dhmk1rbu`.
+Root retains required evidence until umbrella consumers finish, then removes it.
+Exact manifest/hash/symlink-checked disposal of that ROOT/dist/tmp follows final
+reader release; shared caches remain intact. Exact five-path/append-only-ledger/
+unchanged-other-data checks and settled cached whitespace validation precede
+local commit. No push/PR/merge/deployment.
+
+Next approved four-path card: combat.ts, new PE combat test, structured BUG-077
+after meaningful RED and before patch, and ledger. First freeze a hash-bound
+production-registry damage/Poison baseline outside the repository: declared seed
+and ranks, actual Player projection, real Bleed primary death, one PE action and
+full five-second Poison horizon. Preserve its damage oracle while adding one
+shared FIFO/independent authority/atomic15MP+body+2s commitment and negative cases.
+Native store/replay/rewards, localized PE feedback/Skills copy, production
+browser, earnedL18, balance/feel and full D06/P09/P10/private-v1 remain open.
+
+Final evidence/publication QA ADEQUATE and producer APPROVE bind the final
+source, settled receipts and bounded documentation. All consumers released
+before exact dist/tmp disposal:857files/42774697bytes/14directories, no failures
+or remaining disposable paths/processes. Cleanup receipt SHA256
+`b7649023e68b3bc36705f7fd44add7c6a6525a3a44c10b1f0e5ccb5019db22cd`. Raw/source/coverage/review evidence remains root-owned at ROOT
+until umbrella consumers finish. Final exact-path/data/append-only and settled
+cached whitespace checks precede the local commit.
