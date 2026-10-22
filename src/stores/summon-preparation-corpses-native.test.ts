@@ -1,6 +1,9 @@
+import * as wavePlanning from '@/engine/combat/sub-area-run';
+import { preBoundedActOnePlanFixture } from '@/test/fixtures/pre-bounded-act1-plan';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useHydrationStore } from './hydrationStore';
-// Only disk I/O is mocked. Imported L24, ranks, gear and finisher are scaffolding.
+// Disk I/O and encounter selection are mocked; combat/rewards/playback are real.
+// Imported L24, ranks, gear and finisher are synthetic scaffolding.
 vi.mock('./save-adapter', () => ({ hasSave: vi.fn(), loadSave: vi.fn(),
   saveSave: vi.fn(() => Promise.resolve(undefined)), deleteSave: vi.fn() }));
 import * as combatEngine from '@/engine/combat/combat';
@@ -114,7 +117,8 @@ function setMastery(rank: number): void {
   configure({ skillLevels: { [ACTIVE]: 6, ...(rank > 0 ? { [CANONICAL]: rank } : {}) } });
 }
 describe('P07a05C native Skeleton Mastery wave/replay/save boundaries', () => {
-beforeEach(() => { reset(); resetRegistry(); loadDefaultSkills();
+beforeEach(() => {
+  vi.spyOn(wavePlanning, 'resolveChallengeWavePlan').mockImplementation(preBoundedActOnePlanFixture); reset(); resetRegistry(); loadDefaultSkills();
   vi.spyOn(Date, 'now').mockReturnValue(1792454400000);
   useHydrationStore.getState().setStatus('ready'); });
 afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });

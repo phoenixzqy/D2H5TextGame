@@ -9829,3 +9829,62 @@ Recorded task PIDs absent; owned preview port36255closed. Required evidence rema
 at ROOT under root ownership until umbrella consumers finish. Final exact frozen
 hashes, append-only ledger and unchanged runtime/default suites verified; settled
 cached whitespace check precedes local commit.
+
+
+## P01e01 — Keep carry/replay fixtures independent of campaign composition
+
+Root sole writer/executor, exact five-path compatibility child. The new Act I
+bounded elite-group planner exposed four failures in three synthetic store
+suites: cross-wave timing/poison expiry and two summon mana/orb oracles depended
+on the previous whole-wave champion roster. The broad related run failed these
+assertions, then reached its declared210s cap (exit-15/owned group stopped).
+This is not a complete related pass. Runtime carry/replay was not changed.
+
+Freeze the historical manual Blood Moor seed7/ordinal0 plan at the planner seam
+in those three suites. The shared test-only helper is exact JSON equality with
+production49af342 planning:8trash,9champions,10rare-group bodies, complete levels,
+indices and affix metadata. Every original assertion remains unchanged. The
+factory, combat, actual rewards/settlement, playback and replay remain real;
+these suites now explicitly claim frozen synthetic encounters. Production
+composition is independently covered by the parent57planner tests. No C1,
+actual earned progression or production-planner integration acceptance follows.
+
+External source-backed fixture probe PASS: exact historical JSON, independent
+nested structuredClone outputs and four refusal cases (area/seed/ordinal/mode).
+Unchanged final three-suite tests PASS86/3 with current planner11.367s and
+historical planner11.117s. Variant bindings pair each run to exact planner SHA:
+current3c1187400587f7546555ea00775c4c5cb3363c30cb5756341d1f574a6fd455f6;
+historical2824bc43ab1671be7187cf688e16a5f5a6f96916b1685f4dc0f6f8460c85d0d3.
+Diagnostic-only instrumentation of two selected tests recorded complete real
+carry/poison events/teams/outcomes. Historical real planner, historical frozen
+plan and current frozen plan traces are deeply identical. Actual mana carry is
+0.64 into W2 and0.6 after W2; actual W2 poison remains until7000ms after6000ms
+terminal, with positive DOT events121/8/18/164/36/146/54. Selected runs PASS2
+(20deselected, no maintained skip). Exact final test/runtime bytes restored and
+SHA-verified in finally. No diagnostic logging remains in repository source.
+
+Source/oracle QA ADEQUATE and producer PLAN-REVIEW ready for exact five paths.
+Final type/lint and independent result/publication verification follow. One
+integrated current-source serial full after child+parent is approved; no new
+full-suite result is claimed here. ROOT:
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-first-elite-r7una0p6/fixture-compat`.
+Source snapshots, variant bindings, full diagnostic traces, logs and receipts
+remain root-owned until umbrella consumers finish, then root removes them.
+Disposable probe cache/tmp cleanup follows reader release. C0 remains in
+progress; C1–C4/G0–G7/fullv1 remain unaccepted. Local commit only; no push/PR/
+merge/deploy. Parent runtime/decision/planner tests stay outside this commit.
+
+Final integrated source types PASS23.870s and full lint/purity PASS54.991s.
+All four final child source hashes match focused-new/focused-historical and both
+static-check receipts. The external trace variant bindings identify planner
+SHA for each paired run; exact restoration is separately recorded. Independent
+final QA/publication review and disposable cache/tmp cleanup follow.
+
+Independent final QA ADEQUATE and producer PUBLICATION APPROVE verify exact
+four source hashes, append-only ledger, historical/current runtime bindings and
+all three complete trace comparisons. All readers released. Exact child-owned
+tmp/cache cleanup removed98files/1667902bytes/6directories;
+remaining[]/failures[]. No owned child process remains; parent integrated full
+continues with its separate parent TMPDIR. Required diagnostic evidence remains
+at child ROOT under root ownership until umbrella consumers finish. Settled
+cached whitespace check precedes the exact five-path local child commit.

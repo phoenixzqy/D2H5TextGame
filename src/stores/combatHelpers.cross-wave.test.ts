@@ -1,3 +1,5 @@
+import * as wavePlanning from '@/engine/combat/sub-area-run';
+import { preBoundedActOnePlanFixture } from '@/test/fixtures/pre-bounded-act1-plan';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useHydrationStore } from './hydrationStore';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
@@ -40,8 +42,8 @@ function equipWaveCap(attackSpeedBonus = -63): void {
 }
 
 function start(withRecovery = false): void {
-  // Real production plan, spawn, targeting, damage, status and playback paths;
-  // only skill definitions and hero stats are controlled integration fixtures.
+  // Frozen synthetic encounters; real spawning, targeting, damage, status and
+  // playback. Skills and hero stats are also controlled integration fixtures.
   registerSkill({ id: 'fixture.wave-finisher', archetype: 'fixture', target: 'all-enemies',
     cooldown: 1, manaCost: 0, minLevel: 1, effects: [
       { kind: 'damage', damageType: 'physical', base: [100_000, 100_000] },
@@ -89,6 +91,7 @@ function drain(): void {
 }
 
 beforeEach(() => {
+  vi.spyOn(wavePlanning, 'resolveChallengeWavePlan').mockImplementation(preBoundedActOnePlanFixture);
   reset();
   useHydrationStore.getState().setStatus('ready');
   vi.spyOn(Date, 'now').mockReturnValue(1792454400000);

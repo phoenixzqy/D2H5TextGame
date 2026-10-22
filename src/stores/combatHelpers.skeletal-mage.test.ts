@@ -1,4 +1,6 @@
-/** Unearned integration fixture; real production waves/engine, no staging mocks. */
+/** Unearned integration fixture; frozen encounters, real engine/settlement/playback. */
+import * as wavePlanning from '@/engine/combat/sub-area-run';
+import { preBoundedActOnePlanFixture } from '@/test/fixtures/pre-bounded-act1-plan';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { runBattle, type RecordedBattleEvent } from '@/engine/combat/combat';
 import type { Item } from '@/engine/types/items';
@@ -31,6 +33,7 @@ function drain() {
   expect(useCombatStore.getState().playbackComplete).toBe(true);
 }
 beforeEach(() => {
+  vi.spyOn(wavePlanning, 'resolveChallengeWavePlan').mockImplementation(preBoundedActOnePlanFixture);
   abortSubAreaRun();
   for (const store of [useCombatStore, usePlayerStore, useInventoryStore, useMercStore,
     useMapStore, useMetaStore, useFormationStore]) store.getState().reset();
