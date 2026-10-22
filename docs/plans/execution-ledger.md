@@ -10145,3 +10145,69 @@ Required source snapshots/failed attempts/logs/receipts remain root-owned at
 through fix/native/umbrella consumers. Root removes exact disposable tmp/cache/
 dist after processes/readers finish; dist is retained for the next native card.
 Original checkout untouched, local commit only; no remote action.
+
+
+## P04a09 — Fresh earned Den screen after authored Act I Lightning
+
+Parentdbd0821commits reviewed D07A/B with final full8376/262serialPASS,
+T/L/productionbuild+bridge evidence and independent producer/QA publication
+approval. Root sole writer/executor; native spec/config and append-only ledger
+are the only three writable paths. SecurityPASS: known localhost production UI,
+readonly owned game-save inspection/export, no credentials/network writes or
+bridge/store/storage mutation. New separately reviewed card retains exact40prep
+wins/build/gear/Date/ordinal and firstnonwin stop. Producer planready and QA
+artifactreuseADEQUATE; no acquisition/refill/import/seed sweep/retry/fallback.
+
+Exact source588ea504…a1ed0d/config88805f08…6815b7 installed from reviewed external
+drafts, with prior failed candidate/fixtures untouched. One worker/retries0/
+maxFailures1, test240s/server30s/outer295s+5s hard timeout; max41starts/44Skips/
+40prepPause-Flee/3DenPauses. Desktop1280×800en only. If actually reached: native
+fourwaveclear→Akara talk→explicit500XP/+1skill claim once→Save/newpageContinue.
+No numeric carry assertion is inferred from t0-cast native screenshots.
+
+Reuses verified prior production artifact at lightning-fix/dist: all1092input
+hashes/760distfiles rechecked after parent commit; prior build17.032s requires
+VITE_E2Eabsent and scans all4applicationJS chunks. It is byte-equivalent runtime
+reuse, not a newer-head rebuild. Root retains borrowed dist through all native
+readers/processes; native cleanup does not delete it. Focused static/types/list
+and exact-source final readiness precede the sole browser invocation. No new
+native result is claimed yet. Root-owned sources/logs/receipts/runtime/dist
+bindings and eventual rawattachments remain at
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-first-elite-r7una0p6/lightning-native`
+through fix/native/umbrella consumers; root removes exact disposable candidates/
+tmp/cache after all readers/processes finish. C0–C4/G0–G7 remain unaccepted.
+
+
+P04a09sole attempt TERMINAL: exit1/no-timeout191.493s wrapper,164.524s test/
+189.475s report, retry0. All40prep passed; W1victory +270hero/+202mercXP/4items/
+133shards; W2VICTORY +400hero/+300mercXP/18items/379shards/1wishstone, hero57/190,merc168/196,
+MP137. Prior W2defeat is now an earned native victory with Lightning18/26/21
+in the capped tail. W3DRAW with heroalive9.47%/MP123, mercdead, twoDarkStalkers
+alive6.43%/80%; strict originalvictory assertion stops. No W3award/W4/Denfullclear/
+claim/Save/reopen/mobile/Andariel/campaign acceptance. Native browsererrors[].
+All1093production inputs (including additional Tailwind TS config) and760distfiles
+unchanged after run; all4recorded taskprocessIDs absent. Existing Nodewarnings
+retained; no retry/tuning/extraacquisition.
+
+Producer approved five-path evidence publication plus justified sixth BUG-081
+scoped status update; original discrepancy/history preserved. Exact frozen
+spec/config/machine evidence and honest failure report installed. Runnable
+candidates removed only after matching fixture copy/hash verification. Next is
+one bound W1→W3 source-backed full-event/resource/draw diagnostic, not more
+numeric tuning or native replay. C0–C4/G0–G7remainunaccepted. Required rawreport/
+trace/screenshots/source/receipt evidence remains root-owned at exact nativeROOT
+above through W3/fix/umbrella consumers; root removes after consumers finish.
+Final independent publication review and exact disposable cleanup follow.
+
+
+Independent final producerPUBLICATIONAPPROVE and QA ADEQUATE verify exact six
+publication hashes, fixture/executed-source agreement, all40prep summaries, raw
+report/trace hashes, completeW2awards including wishstone, truthful W3/unreached
+limits and scopedBUG081resolution. All readers released. Four recorded wrapper
+PIDs and two owned Node logPIDs absent; all four processgroups absent and native
+serverport60205closed. Exact nativeTMP/borrowedFIXdist and remaining owned cache
+cleanup removed2475files/47415828bytes (per-root receipts authoritative),
+remaining[]/failures[]; earlier FIXtmpcleanup separately recorded. Required raw
+trace/report/screenshots/source/receipts remain at exact nativeROOT above for W3
+diagnosis, root-owned until consumers finish. Local commit only; checkpoint/full
+v1 acceptance remains open.
