@@ -5,7 +5,10 @@
  */
 
 import { create } from 'zustand';
-import { assertIronGolemOwnershipMutationAllowed } from './waveTransitionGuard';
+import { assertIronGolemOwnershipMutationAllowed, assertWaveSnapshotAllowed, WaveGuardError } from './waveTransitionGuard';
+import { useCombatStore } from './combatStore';
+import { combatRunLifecycle } from './combatRunLifecycle';
+import { getMercSkillOrder } from './mercToCombatUnit';
 import type { Mercenary } from '@/engine/types/entities';
 import type { EquipmentSlot, Item, ItemBase } from '@/engine/types/items';
 import { loadItemBases } from '@/data/loaders/loot';
@@ -138,6 +141,8 @@ interface MercState {
   removeMerc: (mercId: string) => void;
   setFieldedMerc: (mercId: string | null) => void;
   getFieldedMerc: () => Mercenary | null;
+  /** Reorder existing owned skills with signature first; refuse busy or invalid requests atomically. */
+  setSkillOrder: (mercId: string, order: readonly string[]) => boolean;
   upgradeMerc: (mercId: string) => void;
   /**
    * Dismiss a merc only when all equipment has been removed first. Returns
@@ -252,6 +257,28 @@ export const useMercStore = create<MercState>((set, get) => ({
     const state = get();
     if (!state.fieldedMercId) return null;
     return state.ownedMercs.find((m) => m.id === state.fieldedMercId) ?? null;
+  },
+
+  setSkillOrder: (mercId, order) => {
+    try {
+      assertWaveSnapshotAllowed();
+      assertIronGolemOwnershipMutationAllowed();
+    } catch (error) {
+      if (error instanceof WaveGuardError) return false;
+      throw error;
+    }
+    if (combatRunLifecycle.activeRun !== null || useCombatStore.getState().inCombat) return false;
+    const merc = get().ownedMercs.find(candidate => candidate.id === mercId);
+    if (!merc) return false;
+    const current = getMercSkillOrder(merc);
+    const requested = new Set(order);
+    if (order.length !== current.length || requested.size !== current.length ||
+      current.some(id => !requested.has(id)) ||
+      (merc.signatureSkillId && order[0] !== merc.signatureSkillId)) return false;
+    const comboOrder = [...order];
+    set(state => ({ ownedMercs: state.ownedMercs.map(candidate =>
+      candidate.id === mercId ? { ...candidate, comboOrder } : candidate) }));
+    return true;
   },
   
   upgradeMerc: (mercId) => { set((state) => {

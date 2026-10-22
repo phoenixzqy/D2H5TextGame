@@ -24,6 +24,7 @@ import type { Mercenary } from '@/engine/types/entities';
 import type { EquipmentSlot, Item } from '@/engine/types/items';
 import { loadItemBases } from '@/data/loaders/loot';
 import { loadMercHireRoster, loadMercPool, resolveMercSkillLoadout, type MercDef } from '@/data/loaders/mercs';
+import { MercSkillPriority } from './MercSkillPriority';
 
 export function MercsScreen() {
   const { t } = useTranslation(['mercs', 'common', 'inventory']);
@@ -251,6 +252,7 @@ function MercCard({
               <div className="h-full bg-gradient-to-r from-d2-gold/55 via-d2-gold to-amber-200" style={{ width: `${String(xpPct)}%` }} />
             </div>
           </div>
+          <MercSkillPriority merc={merc} />
         </div>
       </div>
 

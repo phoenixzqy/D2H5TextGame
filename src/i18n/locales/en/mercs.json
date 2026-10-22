@@ -24,6 +24,17 @@
   "lore": "Lore",
   "aura": "Aura",
   "signature": "Signature",
+  "priority": {
+    "title": "Skill priority",
+    "unknown": "Unrecognized skill: {{skill}}",
+    "help": "The first ready skill is used. Keep the signature first and move other skills earlier or later. Applies to the next battle.",
+    "earlier": "Move {{skill}} earlier",
+    "later": "Move {{skill}} later",
+    "up": "Up",
+    "down": "Down",
+    "locked": "Finish the current battle before changing skill priority.",
+    "refused": "Priority could not be changed. Finish combat and try again."
+  },
   "hireActs": {
     "act1": "Act I: Rogue Scouts",
     "act2": "Act II: Lut Gholein Guards",

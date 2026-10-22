@@ -28,13 +28,8 @@ const ARCHETYPE_SKILLS: Readonly<Record<string, readonly string[]>> = Object.fre
 });
 const DEFAULT_SKILL_ORDER: readonly string[] = ['mskill-jab'];
 
-/** Build a fresh runtime unit using the owned merc's canonical equipment map. */
-export function mercToCombatUnit(
-  merc: Mercenary,
-  gridPosition?: GridPosition,
-  equipment: Readonly<Record<string, Item | null>> = {}
-): CombatUnit {
-  const stats = deriveEquippedMercStats(merc, equipment);
+/** Current effective priority, preserving signature, owned skills and legacy fallback. */
+export function getMercSkillOrder(merc: Mercenary): string[] {
   const order: string[] = [];
   const seen = new Set<string>();
   const push = (id: string | undefined): void => {
@@ -49,6 +44,16 @@ export function mercToCombatUnit(
     const fallback = ARCHETYPE_SKILLS[merc.archetype] ?? DEFAULT_SKILL_ORDER;
     for (const id of fallback) push(id);
   }
+  return order;
+}
+
+/** Build a fresh runtime unit using the owned merc's canonical equipment map. */
+export function mercToCombatUnit(
+  merc: Mercenary,
+  gridPosition?: GridPosition,
+  equipment: Readonly<Record<string, Item | null>> = {}
+): CombatUnit {
+  const stats = deriveEquippedMercStats(merc, equipment);
 
   return {
     id: `merc-${merc.id}`,
@@ -61,7 +66,7 @@ export function mercToCombatUnit(
     mana: stats.manaMax,
     statuses: [],
     cooldowns: {},
-    skillOrder: order,
+    skillOrder: getMercSkillOrder(merc),
     activeBuffIds: [],
     enraged: false,
     summonedAdds: false,

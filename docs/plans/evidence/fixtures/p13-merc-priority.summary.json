@@ -1,0 +1,226 @@
+{
+  "kind": "merc secondary priority implementation and bounded failing progression evidence",
+  "rawRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-merc-priority-fl7odaqn",
+  "rawFilesSha256": {
+    "diagnose-priority.attempt1.mjs": "2a7331d231ac43051bf5977ce80cf88177140c4b7200916601b54c99bb3f04c9",
+    "priority-diagnostic.attempt1.json": "18e52b3e08b5e548d956e68bb275e9f21a95bf9b2b77585b2345b3c2e1e459fc",
+    "diagnostic.attempt1.log": "e79feac8ffbbe3182f8ad165dcc9d7f79f082f3f073cb63cbffea5eb10562d92",
+    "diagnose-priority.mjs": "ae7b16cc58fdd23419a8e66d5272bdfa0c5211c9176f05712dae0cc5b8630408",
+    "priority-diagnostic.json": "99aa7583fbde4d62ec05eb68b3626faecd19e78ef0af6d193198be3be68c2f99",
+    "priority-route.mjs": "7ae200d14b5bfa973450bbfdf3b6eccf38997d7f1c45d8c36dae22fe3588e9a5",
+    "priority-route-report.json": "26568a4b56a7e7c4a742a9b71c132865f50f54fe857cfd616b1becaa2715c9c1",
+    "priority-route-final.json": "7668289771aa41d5fcafd2b022de4c6ae6980146321d8ae11b259eeb94cbc95a",
+    "browser-report.json": "aa0fe679988a5fb8d0fdcab0bf99905fe8929e4064ba12d6b5992f0a41b0846f",
+    "merc-priority-native.executed.spec.ts": "eb9337e8fcb18a1a77fc6beb8f3f9d27978b93de8d8cb51943974f8df8df6851",
+    "playwright.config.mjs": "4322fdcb0014b3591021a8f65290c5ac36568376b5b95d715a23c90e578c6802",
+    "serve.mjs": "d5eaaf0ee421bd8a56fe33ce02124a2daeecc616eb4da812050b3d7ceb7ab756",
+    "unit-full.log": "492b0c1ae4a034d209c45fd7c16879a40dfd9020349ec95a368e826ea42d41f7",
+    "final-focused.log": "c3fb46b5021ded8738c865434a1a8a272c92c4313f3b21d65fda5f62f3bc7849",
+    "final-lint.log": "b098c75ed55f8c9bd773bc30c9198bebcedabd4a79040fe8dc4989295f2e544b",
+    "corrected-typecheck.log": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+    "native-lint-corrected.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "final-build.log": "d45e13328692df5c45320bd51eb4e73c351891d6826772b0631ee9128973b9f8",
+    "bridge-scan.json": "9d7ef4af6407693b42422cb78b35cd3a064cb1eb296f62a4f73dcd64384cfe37"
+  },
+  "sourcesSha256": {
+    "src/stores/mercStore.ts": "5f2918fbeaf1b6e6952afd69b1ec9414143d1acede5dd3b3f82bae9105c06de9",
+    "src/stores/mercToCombatUnit.ts": "45eedafc472fb3a57da42d619efecbad776ee451751a2211a65d8a84551f9390",
+    "src/features/mercs/MercsScreen.tsx": "cdc6d4ea1f6ed8f99da37f2fe7422e26e60c79569766caeb21c161174c1852e1",
+    "src/features/mercs/MercSkillPriority.tsx": "5f3fe52864631cf7b8f3bc7b193d08ca0792b2a618570bc7ec546de619f00230",
+    "src/features/mercs/MercsScreen.priority.test.tsx": "c338c9245660ce9db5596d95b06ff79b64fcd9f21a30611562be3c42a315dc39",
+    "src/stores/merc-skill-priority.test.ts": "1f1fccfd9e2dd17598690f4ac8155eb503c47c4cfbed53b1e0ef8c42faee435d",
+    "src/i18n/locales/en/mercs.json": "e6f4e3280d3f492377f7a4813674fd79ec9d7ed57494b7ee65a40534d0e62960",
+    "src/i18n/locales/zh-CN/mercs.json": "8671200121240e368a638e0046d0164c1ca42685e6cc080a758f12ded190846d",
+    "tests/native/merc-priority-native.spec.ts": "f0857da6931cd49f98db4b1c78851201def5d97992c3ece93c10fff36dba4961"
+  },
+  "diagnostic": {
+    "exactBaselineReproduced": true,
+    "waveSeed": 1579962213,
+    "summary": {
+      "baseline": {
+        "winner": null,
+        "terminalMs": 60000,
+        "survivors": [
+          {
+            "id": "enemy-act1.zombie-0-f5f3",
+            "life": 38
+          }
+        ],
+        "mercCasts": {
+          "mskill-inner-sight": 10,
+          "mskill-basic-arrow": 29
+        },
+        "mercDamageIncludingOverkill": 166
+      },
+      "candidate": {
+        "winner": null,
+        "terminalMs": 60000,
+        "survivors": [
+          {
+            "id": "enemy-act1.dark-stalker-1-bf0e",
+            "life": 94
+          },
+          {
+            "id": "enemy-act1.zombie-0-f5f3",
+            "life": 67
+          }
+        ],
+        "mercCasts": {
+          "mskill-inner-sight": 10,
+          "mskill-pierce-arrow": 19,
+          "mskill-basic-arrow": 10
+        },
+        "mercDamageIncludingOverkill": 421
+      }
+    },
+    "firstAttempt": "baseline events matched; wrong final-team result field assertion stopped before candidate; corrected field access only"
+  },
+  "route": {
+    "inputSha": "8c46c4f4026116360356a2d17dcde3d723310969a25664f85bc291a1886d2afc",
+    "seed": 2223645302,
+    "bonus": 1,
+    "initialFullSaveEquality": true,
+    "initialItems": 3737,
+    "finalItems": 3789,
+    "itemCountsReconcile": true,
+    "sourceHashesUnchanged": true,
+    "routeComplete": false,
+    "stopReason": "first route nonwin",
+    "runs": [
+      {
+        "area": "areas/act1-blood-moor",
+        "ordinal": 102,
+        "result": "victory",
+        "waves": [
+          {
+            "index": 0,
+            "terminalMs": 6000,
+            "winner": "player",
+            "itemAwards": 8
+          },
+          {
+            "index": 1,
+            "terminalMs": 12000,
+            "winner": "player",
+            "itemAwards": 23
+          },
+          {
+            "index": 2,
+            "terminalMs": 27432,
+            "winner": "player",
+            "itemAwards": 11
+          }
+        ]
+      },
+      {
+        "area": "areas/act1-cold-plains",
+        "ordinal": 103,
+        "result": "defeat",
+        "waves": [
+          {
+            "index": 0,
+            "terminalMs": 9144,
+            "winner": "player",
+            "itemAwards": 8
+          },
+          {
+            "index": 1,
+            "terminalMs": 9144,
+            "winner": "player",
+            "itemAwards": 2
+          },
+          {
+            "index": 2,
+            "terminalMs": 60000,
+            "winner": null,
+            "itemAwards": 0
+          }
+        ]
+      }
+    ],
+    "lastSurvivors": [
+      {
+        "id": "enemy-act1.dark-stalker-1-bf0e",
+        "life": 94
+      },
+      {
+        "id": "enemy-act1.zombie-0-f5f3",
+        "life": 67
+      }
+    ],
+    "lastActualDelta": {
+      "xp": 0,
+      "mercXp": {
+        "mercs/act1-rogue-inner-sight": 0
+      },
+      "currencies": {
+        "rune-shard": 0,
+        "wishstone": 0,
+        "gem-shard": 0
+      },
+      "addedItems": [],
+      "removedItemIds": [],
+      "addedClears": []
+    }
+  },
+  "validation": {
+    "focused": {
+      "tests": 17,
+      "files": 2,
+      "result": "pass"
+    },
+    "full": {
+      "tests": 8417,
+      "files": 266,
+      "seconds": 197.36,
+      "result": "pass"
+    },
+    "types": "pass after native-test viewport tuple type correction",
+    "lint": "repository and explicit ignored native test pass",
+    "productionBuild": "pass; final runtime source",
+    "bridge": {
+      "chunks": 4,
+      "violations": []
+    },
+    "browser": {
+      "tests": 2,
+      "result": "pass",
+      "seconds": 44.5,
+      "locales": [
+        "en",
+        "zh-CN"
+      ],
+      "viewports": [
+        [
+          360,
+          640
+        ],
+        [
+          412,
+          915
+        ],
+        [
+          640,
+          360
+        ],
+        [
+          1280,
+          800
+        ],
+        [
+          1920,
+          1080
+        ]
+      ],
+      "context": "Desktop Chrome; viewport changes, no touch-device claim",
+      "nativeSaveContinue": "fresh character/free hire, keyboard Enter order, Save->close page->new page Continue, full export equality; no browser-process restart",
+      "executedVsFinalTest": "as const tuple and equivalent String numeric attachment labels only; frozen exact executed copy retained"
+    }
+  },
+  "limits": [
+    "No Act I clear or Andariel attempt",
+    "No C0-C4/G0-G7 acceptance",
+    "No campaign pacing/seven-class/213-skill completion claim",
+    "No push, PR, merge or deployment"
+  ]
+}

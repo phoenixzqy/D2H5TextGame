@@ -10384,3 +10384,35 @@ Exact disposable cleanup follows reader/process release; no remote action.
 Final producer source/publication APPROVE/security PASS; QA ADEQUATE. All readers
 released and validation/diagnostic handles terminal; exact tmp/cache cleanup
 removed1files/23bytes, remaining[]/failures[]. Receipt at rawROOT/cleanup.receipt.json.
+
+## P13 — Player-controlled mercenary secondary priority; route remains incomplete
+
+[Evidence](evidence/p13-merc-skill-priority.md) records D04/BUG084 implementation:
+exact owned permutations, fixed signature, active-run/combat and ownership guards,
+copied input and existing comboOrder persistence. Native localized keyboard44px
+controls preserve defaults/definitions. Initial16RED, fallback1RED/3controls;
+final17focused and full8417/266 (197.36s), types/lint/build/4chunkbridge PASS.
+Two production-browser tests PASS/retry0/44.5s: fresh ordinary hire, both locales,
+five viewport sizes, priority controls and full Save→close-page→Continue identity.
+No touch-device/browser-process-restart claim. Exact executed native source is
+frozen; final spec has only tuple typing/equivalent numeric-label corrections.
+Producer source APPROVE/security PASS; QA ADEQUATE for scripts and diagnostics.
+
+Exact retained W3 baseline reproduces all events/teams. Candidate only changes
+merc priority, casts19Pierce, raises merc overkill-inclusive damage166→421, yet
+still draws60s with Stalker94HP/Zombie67HP versus baseline Zombie38HP. First
+diagnostic stopped before candidate on wrong result-field assertion; preserved.
+One original unique-L12 route via ordinary actions wins BloodMoor3waves then
+draws ColdPlainsW3; stops before BurialGrounds/DarkWood/Catacombs. Initial full
+save equality/source invariance and52awards/3737→3789unique items reconcile;
+draw rewards zero. Missing control is fixed; progression is not. No extra tuning,
+farming or boss launch. C0–C4/G0–G7 remain unaccepted; umbrella goal/claim active.
+Raw evidence root retained through progression/C1 consumers:
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-merc-priority-fl7odaqn`.
+Exact disposable cleanup receipt follows reader/process release. Local only.
+
+Final independent QA publication ADEQUATE; all readers released. All known
+script/server/worker PIDs absent and port60319closed. Exact disposable cleanup
+passes, remaining[]/failures[]; rawROOT/cleanup.receipt.json records each path.
+Required reports/events/saves/scripts/screenshots/logs remain at the exact root
+above through progression/C1/umbrella consumers; root removes afterward.
