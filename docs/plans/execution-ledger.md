@@ -6963,3 +6963,69 @@ readers released. Approval-only ledger append; tests/source unchanged.
 Publication/producer audit, local commit and manifest-bound cleanup follow.
 Broader playback/log/bilingual/browser/balance/earned/full Mage/D06/P09/P10/
 private-v1 and existing limitations remain open.
+
+
+## D06 v1bf live Mage playback and localized log transport
+
+Mixed1860fbd committed after frozen QA/test-evidence(ADEQUATE), TD/five-axis/
+producer APPROVE. Cleanup efadc7294ed894cce907a32b68ab67a7e19bdf1f802255244deab9d3dc8951c1
+removed1300files/43,858,221bytes/14dirs, zero failures/remaining. Continue same
+isolated umbrella claim; root sole writer/executor. TD two-path plan APPROVE:
+new native store playback tests plus ledger. Security-check/root-cause-fix/TDD/
+incremental apply; local test-only acceptance adds no permission/dependency/
+credential/external IO/save shape. No runtime defect or artificial RED assumed.
+Use real seed7W0 imported/unearned fixture through advanceEvent, real live
+HP/MP/summon state, converter and stored localized entries. No event injection,
+direct playback-state write or converter-generated expected messages.
+QA v1 review catches an omitted actual cold61hit at3880 on FallenD HP41→0;
+preserve draft, add separate hit branch/count before executing. Exact v2 QA
+READY11554bytes SHA85047b2630d7a17423b696a8901b5dba4cab7c14c27a7a5fec90138f11a91bcf.
+Both zh-CN/en cases cover hero-only100MP/empty initial log, startup summon
+counts1→4 with real positions/names, sole100→78cast/no log, four1940positive
+F50/C61/L61/P50 immediate HP kills before death, exact actor/target/value/type/
+event-index log IDs and independent messages, additional cold3880positivehit,
+three3880actual noncold dodges preserving liveHP and exact type-omitting copy.
+Stop incomplete before4000FINISH/end snap; frozen source/input/durable state
+unchanged. No structured damageType field is invented on CombatLogEntry.
+Serial focused/types/lint/full/build/check then frozen review/publication/audit/
+local commit/exact cleanup. Mounted/bilingual skill-copy/browser/balance/earned/
+full Mage/D06/P09/P10/private-v1 remain open; no remote action.
+
+
+First focused fails bothlocale at initial rawinput-vs-displayteam deep equality:
+stageRecordedBattle applies withDefaultGridPositions to published enemy team.
+Exact diff adds only gridPosition; documented staging behavior is intentional,
+not a production bug. Preserve receipt/output/source and v2 draft. Root follows
+debugging/root-cause-fix; v3 changes only initial array toMatchObject to retain
+length/order/all input fields while allowing added display positions. Exact
+per-event HP/log/durable assertions unchanged. QA v3 READY11644bytes
+SHA637d611f3d6451692c3a2bcdf62a6c950f90bc05f28468b6a6592ba1a59ce9f0;
+copy exact before restarting final serial checks. Include staging/grid sources
+in all final captures. No production defect or artificial RED claim.
+
+
+Final exact-v3 focused7/3files4.31s, full7437/239files119.18s (wall120.62s),
+standard types/lint and VITE_E2E=false production build pass. Exact-scope checker
+includes tracked/untracked whitespace, exact QA v3 bytes and every captured
+nonledger source/config/test byte across final checks, including real playback/
+converter/locales/staging/grid. No test bridge/Mage fixture/Vitest markers in
+four emitted JS chunks. Artifact index-CYMT-F3r.js1,342,899bytes
+SHA09fcd2ae363378841ce7d9044b38ec8557906d1bff972872d3e845154c9bca2a.
+No production source changed; artifact differs from prior, no reproducibility
+claim. Initial grid-assertion failure and superseded drafts remain historical,
+not a production defect or artificial TDD RED. Full119.18s exceeds15s budget;
+existing Browserslist/chunk/manifest-precache warnings and broad Node-config
+maxThreads incompatibility remain open. No mounted/browser/balance/earned
+measurement here. Frozen QA/test-evidence and TD/five-axis review follows;
+publication/audit/local commit/exact cleanup pending. Bilingual skill identity
+copy still incorrectly says physical until separate next increment. Full Mage/
+D06/P09/P10/private-v1 and other named acceptance remain unfinished.
+
+
+Frozen QA/test-evidence(ADEQUATE), TD and five-axis reviews APPROVE with no
+blocking findings. Both independently verify exact v3 source, seven receipt/
+output hashes and264 source snapshots; historical grid-assertion failure stays
+distinct from passing final checks. All playback disposable readers released.
+Approval-only ledger append; tests/source unchanged. Publication/producer audit,
+local commit and manifest-bound cleanup follow. Mounted/bilingual-copy/browser/
+balance/earned/full Mage/D06/P09/P10/private-v1 and existing limitations stay open.
