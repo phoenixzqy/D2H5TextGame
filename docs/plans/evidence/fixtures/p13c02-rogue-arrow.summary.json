@@ -1,0 +1,242 @@
+{
+  "scope": "P13c02 equipped Attack arrow fix; bounded screens only; full campaign and gates remain open",
+  "parentHead": "ade07f315c7863a8062704d67b88938947178273",
+  "rawRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-rogue-attack-mfx9_n49",
+  "screen": {
+    "seedGrid": [
+      0,
+      999
+    ],
+    "scriptSha": "274d587f5bc78c7659559b7866a30429bf22674515c4f90903b142a736d11e6a",
+    "snapshotSha": "6f1b3320c7e2a8e2c2d37beee755b089b6f68782647ae0e61d45d55636b33912",
+    "baseline": {
+      "wins": 458,
+      "draws": 542,
+      "heroDeaths": 0,
+      "successfulTtkP50Ms": 57000,
+      "successfulTtkP95Ms": 60000,
+      "mercDpsIncludingOverkillP50": 8.462884447136416,
+      "minimumHeroMana": 168,
+      "mercHitAttempts": 106723,
+      "mercDodges": 21232,
+      "mercLanded": 85491,
+      "mercCrits": 4420
+    },
+    "candidate": {
+      "wins": 989,
+      "draws": 11,
+      "heroDeaths": 0,
+      "successfulTtkP50Ms": 42672,
+      "successfulTtkP95Ms": 54000,
+      "mercDpsIncludingOverkillP50": 32.43344581927259,
+      "minimumHeroMana": 168,
+      "mercHitAttempts": 64388,
+      "mercDodges": 12810,
+      "mercLanded": 51578,
+      "mercCrits": 2590
+    },
+    "exact": {
+      "seed": 1579962213,
+      "winner": "player",
+      "durationMs": 42672,
+      "heroDied": false,
+      "mercDamageIncludingOverkill": 1242,
+      "mercDpsIncludingOverkill": 29.105736782902138,
+      "mercHitAttempts": 62,
+      "mercDodges": 14,
+      "mercLanded": 48,
+      "mercCrits": 2,
+      "minimumHeroMana": 168,
+      "enemyRemainingHp": 0
+    },
+    "sameInputAndScript": true,
+    "sourcesUnchangedDuringBoth": true,
+    "subsequentTestOnlyChanges": [
+      "src/engine/combat/attack-damage.test.ts",
+      "src/engine/skills/merc-arrows.test.ts"
+    ]
+  },
+  "route": {
+    "inputSha": "8c46c4f4026116360356a2d17dcde3d723310969a25664f85bc291a1886d2afc",
+    "scriptSha": "15db82054d4df185d51222fa36c05cf66b8388cc3be799406fff31b782f4d7e2",
+    "seed": 2223645302,
+    "bonus": 1,
+    "weaponChoice": {
+      "currentAttack": 25,
+      "candidateCount": 1003,
+      "selected": {
+        "item": {
+          "id": "it-7is2r-10i",
+          "baseId": "items/base/wp2h-great-axe",
+          "rarity": "normal",
+          "level": 7,
+          "ilvl": 7,
+          "baseRolls": {
+            "attack": 18
+          },
+          "affixes": [],
+          "generatedName": {},
+          "identified": true,
+          "equipped": false
+        },
+        "attack": 43
+      },
+      "transfer": {
+        "ok": true
+      }
+    },
+    "initialFullSaveEquality": true,
+    "initialItems": 3737,
+    "finalItems": 3850,
+    "actualRawAwardCount": 113,
+    "itemCountsReconcile": true,
+    "sourcesUnchanged": true,
+    "routeComplete": false,
+    "runs": [
+      {
+        "area": "areas/act1-blood-moor",
+        "ordinal": 102,
+        "result": "victory",
+        "terminalMs": [
+          4572,
+          9000,
+          15240
+        ]
+      },
+      {
+        "area": "areas/act1-cold-plains",
+        "ordinal": 103,
+        "result": "victory",
+        "terminalMs": [
+          9000,
+          3048,
+          33000,
+          12000
+        ]
+      },
+      {
+        "area": "areas/act1-burial-grounds",
+        "ordinal": 104,
+        "result": "defeat",
+        "terminalMs": [
+          9144,
+          30000,
+          54864,
+          60000
+        ]
+      }
+    ],
+    "stopReason": "first route nonwin"
+  },
+  "files": {
+    "lint.log": "4ce7369415d35454283428ff645d022e0e8256cfc621e55896cbb1c0940128ad",
+    "typecheck-native.log": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+    "browser-final.log": "279ada8b99cd32c7e87a0d897bd1837dea746d1eda404e6e81624f07009312fc",
+    "typecheck-corrected.log": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+    "focused-final.log": "77988edaf0ad4bf705e3c50f0a63a075817fdaa1cf0371e8107f0a348ea902c6",
+    "typecheck-final.log": "266575b80e50b8bba2d903db798921d2127c9b58ac626ee5f483f27176bc8ab3",
+    "browser.log": "7fecd5d9ae10a5d4cc43586ecb10508bbe64178c92aaa7519ef941e4c76b4a41",
+    "en-combat-log.txt": "2eb47b9290b8d5f1d00179ee1df1402b793059aab56c61308d21f2254e3691dc",
+    "serve.mjs": "55324b69139f4d35566e2c8de4025f9ae396c3aa99bc164cc29a0bec73e59b75",
+    "engine-green2.log": "dbaa51b52679cae5233220a93258ebfe016575e772626a3de1ec429f0853a8b2",
+    "browser-report-final.json": "63dc310e3c744435cb24dc28c09fb982f019c1232c0d20b8334526a9fe4238db",
+    "playwright.config.mjs": "eaefbda9f03ecade923d92847fc1a6e22b5efed3cca7aec2b4c249bbf8ba501e",
+    "lint-corrected.log": "21e04a0d4a34764464623098058e53f4efecbe60532156e461b52ba7b0f34737",
+    "native-attempt1.spec.ts": "1bad4563ed322a5e0a2459f758b9e65e469a45cebd369b9778fe3ee860b00608",
+    "browser-report.json": "4e2860cf8d6d0d0c300920eb91d863903cf6001e0d7077b4fbbee4592a534379",
+    "native-lint-final.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bridge-scan.json": "c8614b46c4cd437e0c19f3c7905740b816fd85e51e73fe15b292d996c9bfe922",
+    "native-lint.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "red-final.log": "4d13d04a49281c4c1e01e98e5c6a1d6ef24f49fdcccfc4be1c0990edd92d1386",
+    "candidate-measure.json": "c60a766d607153828e0f4d5a356064d513e6944d0e29952fbcc34a3ee902da24",
+    "store-green2.log": "4dd68079bf37b8a437710f45e1ee0c7552fe1ef6f8cf7d438bc61e7c2fce4226",
+    "engine-green3.log": "49ac56f3d172accbf657ebbc856d61eac33eb4ad2bfb921782f4f9de73753804",
+    "candidate.log": "38a25e78d92827218be06ca39e38a5a08f1d311d5b3e238a645ff1105a6655f1",
+    "zh-CN-combat-log.txt": "db24a7a4b5d2d87134a98e54d116f491b5232469cd8592e346d038c0ef5ac73a",
+    "engine-green.log": "aed1001dd8b37b3726e96a0005aae1ba81e871ef326acb9ebece8354246201eb",
+    "typecheck.log": "266575b80e50b8bba2d903db798921d2127c9b58ac626ee5f483f27176bc8ab3",
+    "lint-final.log": "a55527a60efcc95a5372f1487e830e219b876c7fab781d9e0186a676d9bf7eee",
+    "measure-rogue.mjs": "274d587f5bc78c7659559b7866a30429bf22674515c4f90903b142a736d11e6a",
+    "arrow-route-report.json": "151f2f19fdcf840345eb28080470c4549f7795fc5e09c9083ce8197c3c916bae",
+    "red-primitive.log": "a5b067b6ddd4f8ccfe94745389a15798193520c1cc447f507f179726e58eb26a",
+    "baseline.log": "64502c14f6fcb1058e2193ed2e907c8af11502ac2a252b8e90f0b5115da436a5",
+    "arrow-route-final.json": "50cf296738ff9ad664e95ead6151c4788c02e4e28152c85dc046741289548e72",
+    "en-native-arrow-combat.png": "926343e8713118bf0b502e78df4c0d57b3178d1117288b575a338eb311b9661e",
+    "baseline-measure.json": "dddbbea74f3989e4bae53f5da7402cd94f5fe7fee4008bb382d09c0dc41ca538",
+    "final-source.json": "ee1455a66354d3dd9f59345f2c4060e6585d17ec25eb5b23698bf41b14907e3c",
+    "unit-final.log": "c82285392a73e599de80c370766578c800ce051fd978cb29a53892b957ba3d47",
+    "store-green.log": "309737a3d2873a0a7ae9c8da02105d5a9766be4ed4b72456e5e77a7f4f149624",
+    "build.log": "44ea597ea5adafdc5f56a495e902b8da4f1cb798949f5ad719acb1f73a496d69",
+    "earned-route.log": "018054332557617aee9eb266cca5c0deca824fecc451020a809344c948f22a6b",
+    "engine-final.log": "9498c9a61d61d862c5d3c71111fa83d43938d1e09670e54f00598b9a279f3fea",
+    "red-existing.log": "40f90760659e17bd35e704c7db9b3c518d728b134d2a1a5963441d132b2e3bbe",
+    "zh-CN-native-arrow-combat.png": "7c1092c71c1d53c1799d9cbb798522d29eff01e4e3c3631eef00324256d8f8f8",
+    "earned-route.mjs": "15db82054d4df185d51222fa36c05cf66b8388cc3be799406fff31b782f4d7e2",
+    "cleanup.receipt.json": "88e85c73464bdf9a60fff550bacdd767fe0280d3e3d277a7d048c4372a30ce8b",
+    "qa-final.md": "e107bca21df8b15a45cdf2c67a7d687e944d75d9b90d8316a5598913b5b77f63"
+  },
+  "validation": {
+    "unit": {
+      "passed": 8456,
+      "files": 268,
+      "seconds": 181.8
+    },
+    "engine": {
+      "passed": 4043,
+      "files": 100,
+      "seconds": 46.39
+    },
+    "focused": {
+      "passed": 52,
+      "files": 3,
+      "seconds": 6.12
+    },
+    "typecheck": "pass (corrected plus native)",
+    "lint": "pass (corrected)",
+    "nativeLint": "pass",
+    "productionBuild": "pass; VITE_E2E unset",
+    "bridgeScanChunks": 4,
+    "bridgeViolations": [],
+    "browser": {
+      "passed": 2,
+      "failed": 0,
+      "seconds": 22.6,
+      "retries": 0,
+      "locales": [
+        "en",
+        "zh-CN"
+      ],
+      "viewports": [
+        [
+          360,
+          640
+        ],
+        [
+          1280,
+          800
+        ]
+      ],
+      "initialAttempt": "Chinese positive-damage selector used English source name; actual localized damage preserved; corrected source-specific selector"
+    }
+  },
+  "implementationHead": "f493d5e6dfb8f099f3686e6b50796fbbd7fc3c58",
+  "finalQa": "ADEQUATE; no actionable gaps; all readers released",
+  "cleanup": {
+    "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-rogue-attack-mfx9_n49",
+    "exactPaths": [
+      "dist",
+      "baseline-cache",
+      "candidate-cache",
+      "route-cache",
+      "route-tmp"
+    ],
+    "removedFiles": 763,
+    "removedBytes": 41041465,
+    "remaining": [],
+    "failures": [],
+    "allReadersReleased": true,
+    "allKnownTaskProcessesExited": true,
+    "preservedPreexistingCache": "worktree node_modules/.vite (pre-existing shared tool cache; not task-owned)",
+    "previewPort60327Closed": true
+  }
+}

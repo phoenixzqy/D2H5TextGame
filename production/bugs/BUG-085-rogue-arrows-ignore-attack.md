@@ -1,6 +1,7 @@
 # BUG-085 — Make Rogue arrows consume equipment Attack
 
-Status: open. Severity: High. Owners: engine-dev/content-designer; QA verification.
+Status: Fixed in `f493d5e6dfb8f099f3686e6b50796fbbd7fc3c58` (local).
+Severity: High. Owners: engine-dev/content-designer; QA verified ADEQUATE.
 
 Reproduction: ade07f3; Node/Vitest production combat, no browser/viewport;
 locale independent (en/zh-CN), seed0.
@@ -27,3 +28,11 @@ This bug is a missing equipment response, not proof of the draw's sole cause.
 
 No ordinary skill-order workaround made the exact Cold Plains route succeed.
 See docs/plans/decisions/P13c02-rogue-arrow-attack-v1.md for scope and validation.
+
+Regression paths: `src/stores/merc-equipment-combat.test.ts`,
+`src/engine/combat/attack-damage.test.ts`, `src/engine/skills/merc-arrows.test.ts`.
+Final full unit8456, engine4043, focused52, typecheck/lint/production build and
+two localized production browser cases pass. Independent source APPROVE and
+final evidence ADEQUATE; [evidence](../../docs/plans/evidence/p13c02-rogue-arrow-attack.md).
+The earned route now clears Cold Plains but stops at Blood Raven; this bug's
+closure does not accept Act I, campaign balance or the full v1 gates.
