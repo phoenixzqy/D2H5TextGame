@@ -26,6 +26,7 @@ import { useCombatStore, type CombatLogEntry } from './combatStore';
 import { stageRecordedWave, type StagedRecordedWave } from './recordedWaveStaging';
 import { combatRunLifecycle, type ActiveRun } from './combatRunLifecycle';
 import { abandonRecordedWaves } from './recordedWaveReceipt';
+import { assertRecordedWaveNewTransitionAllowed } from './recordedWaveAccess';
 export { clearCombatAfterRestore } from './combatRunLifecycle';
 import { eventToLocalizedLogEntry } from './eventToLogI18n';
 import { useInventoryStore } from './inventoryStore';
@@ -58,7 +59,7 @@ import { canonicalSkillIdFromData, getSkillRequiredLevel, getSkillsForClass,
 
 /** Hold ownership through synchronous callbacks; wake a deferred save after release. */
 function withWaveTransition<T>(operation: () => T): T {
-  assertWaveSnapshotAllowed();
+  assertRecordedWaveNewTransitionAllowed();
   const lease = beginWaveTransition(useHydrationStore.getState().status === 'ready');
   try { return operation(); } finally {
     if (endWaveTransition(lease)) resumeWaveDeferredSave();
@@ -407,6 +408,8 @@ export function hasActiveSubAreaRun(): boolean {
  * Staging errors preserve the prior run, recording and terminal clock.
  * @throws {WaveGuardError} for wave/restore ownership or unready hydration
  * before explicit replay controls or staging; ordinary refresh remains a no-op.
+ * @throws {RecordedWaveAccessError} for an unpublished/conflicting receipt, after
+ * primitive ownership checks and before hydration or explicit replay controls.
  */
 export function refreshActivePlayerCombatConfig({
   replayCurrentWave = false
@@ -450,6 +453,8 @@ export function resetIdleElitePity(): void {
  * Publisher failures after successful staging still require receipt integration.
  * @throws {WaveGuardError} for wave/restore ownership or unready hydration, after
  * replay argument validation and before player/no-run controls or other effects.
+ * @throws {RecordedWaveAccessError} for an unpublished/conflicting receipt, after
+ * argument/ownership checks and before hydration, staging or ordinal changes.
  */
 export function startSubAreaRun(opts: {
   readonly subAreaId?: string | null;
@@ -559,6 +564,8 @@ export function startSubAreaRun(opts: {
  *   - `'idle'`      — no active run or current playback is incomplete.
  * @throws {WaveGuardError} for wave/restore ownership or unready hydration before
  * no-run/playback controls and every completion effect.
+ * @throws {RecordedWaveAccessError} for an unpublished/conflicting receipt, after
+ * primitive ownership checks and before hydration or any completion effect.
  */
 export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idle' {
   return withWaveTransition(() => {

@@ -5445,3 +5445,72 @@ sole writer/executor; umbrella worktree claim continues; no remote action.
 New-transition/Skills consumers, production receipts/debit/recovery, once-only
 settlement/replay lock, bilingual Iron acceptance and fullD06/P09/P10/private-v1
 remain open.
+
+
+## D06 v1ag new-transition and Skills receipt-phase consumers
+
+Playback integration received independent QA, TD/five-axis and producer APPROVE
+and committed as `dff3fd8`. Exact playback-phase cleanup removed857files/
+42,727,359bytes and14empty directories with zero failures/remaining targets; all12
+command identities and the exact owned Vite identity were absent.
+
+TD approved this five-path consumer integration. The shared withWaveTransition
+boundary now calls assertRecordedWaveNewTransitionAllowed before reading hydration
+or acquiring ownership. Primitive wave/restore ownership still takes precedence;
+prepared/committed-pending/conflict receipts refuse start, completion/advance and
+explicit replay before domain/run reads, simulation, ordinal or completion effects.
+Start replay-input validation still precedes the preflight. Default/false refresh
+remains an unconditional no-op. Abort retains its primitive abandonment guard so
+it can clear uncertain receipts while preserving actual persistent data.
+
+SkillsScreen catches both typed ownership and receipt-phase refusals, retaining
+the existing bilingual error alert and rethrowing unexpected errors. The combo
+edit still commits before replay: configuration remains editable for future waves.
+Clearing a phase does not automatically replay or dismiss the alert; a subsequent
+explicit edit retries. No Retry button or automatic replay was introduced.
+Production receipt creation/payment/selected-item activation remain disconnected.
+
+Fifty-three new real-store cases cover all three actions independently across
+three unsafe phases and absent/playing/completed run controls, unchanged domain/
+holder/run references and data, zero protected notifications, no simulation or
+payout, phase-before-hydration and primitive-before-phase precedence, argument
+validation, unconditional no-op refresh, refused default ordinals, accepted
+explicit/default ordinal progression, explicit abandonment/abort and ordinary
+empty/published access. Six new bilingual Skills cases extend existing readiness
+coverage, preserving the edit while protecting recording/run/holder/selection,
+then proving no automatic replay and successful later explicit-edit recovery.
+
+Initial store RED21failed/14passed7.280s and GREEN35passed6.007s established the
+boundary. Expanded independent-action RED27failed/26filtered5.678s used the
+primitive-only preflight, then restored the receipt adapter. UI RED6failed/
+10passed9.328s included6 captured uncaught phase errors; the typed catch resolved
+them. Final serial focused146/4files8.169s, types15.137s, lint41.430s including
+85purity, full6870/228files120.343s and build10.090s passed. Build608modules/
+index-C3e0bJMt.js1264.45kB observed. Original failures, filtered RED and initial
+focused/types/source/output identities remain retained. Related5s/full15s budget
+overruns, prior unexplained bundle variance, existing React act/fixture fallback,
+stale Browserslist and chunk/precache diagnostics remain open; no deterministic
+bundle-equivalence claim. SaveCurrent11 unchanged.
+
+Development-browser integration passed18.501s in en/zh-CN at360x640 and1280x800.
+Twelve actual keyboard combo-edit flows cover every unsafe receipt phase, retained
+edit, bilingual error, unchanged protected store/run/holder references and data,
+zero protected notifications, no automatic publication after abandonment, and
+successful later explicit-edit recovery. Combo targets were at least44px and no
+horizontal overflow was observed. No console/page errors. Hero creation/navigation
+used UI controls; receipt phases used dev-module fixtures around actual recordings.
+This is not paid-Iron, visual, earned, production-build or fullD06 acceptance.
+Chinese screenshot glyph rendering remains unresolved. Browser contexts/browser
+closed; exact owned Vite terminated/reaped and independently checked absent.
+Security check passes: no new external IO/dependency/save payload/item-write
+authority or bypass; no app-source browser hooks.
+
+Five paths, all helper-phase command/source/output identities, prior cleanup and
+exact owned dist/tmp inventory are frozen in helper-phase-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review remains before commit; disposable outputs
+await exact cleanup. Root remains
+sole writer/executor; umbrella worktree claim continues; no remote action.
+Production receipts/debit/recovery, once-only settlement/replay lock, bilingual
+Iron acceptance and fullD06/P09/P10/private-v1 remain open.

@@ -30,6 +30,7 @@ import {
 } from '@/stores/skillsHelpers';
 import { refreshActivePlayerCombatConfig, resolveEquippedWeapon } from '@/stores/combatHelpers';
 import { WaveGuardError } from '@/stores/waveTransitionGuard';
+import { RecordedWaveAccessError } from '@/stores/recordedWaveAccess';
 import { getSkill, listSkills } from '@/engine/skills/registry';
 import { canCastSkill } from '@/engine/skills/eligibility';
 import { isPreparationSummonSkill } from '@/engine/skills/summon-preparation';
@@ -200,7 +201,7 @@ export function SkillsScreen() {
       refreshActivePlayerCombatConfig({ replayCurrentWave: true });
       setReplayRefused(false);
     } catch (error) {
-      if (!(error instanceof WaveGuardError)) throw error;
+      if (!(error instanceof WaveGuardError) && !(error instanceof RecordedWaveAccessError)) throw error;
       setReplayRefused(true);
     }
   }, [setComboOrder]);

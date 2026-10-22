@@ -13,6 +13,9 @@ import { useCombatStore, usePlayerStore, useInventoryStore, useMapStore,
 import { useHydrationStore } from '@/stores/hydrationStore';
 import { abortSubAreaRun, startSubAreaRun } from '@/stores/combatHelpers';
 import { combatRunLifecycle } from '@/stores/combatRunLifecycle';
+import { stageRecordedBattle } from '@/stores/recordedBattlePublication';
+import { prepareRecordedWave, commitPreparedRecordedWave, inspectRecordedWaves,
+  abandonRecordedWaves } from '@/stores/recordedWaveReceipt';
 import { armIronGolemSelection, useIronGolemSelectionStore } from '@/stores/ironGolemSelectionStore';
 import { beginWaveTransition, endWaveTransition, reserveWaveRestore, releaseWaveRestore } from '@/stores/waveTransitionGuard';
 import { SkillsScreen } from './SkillsScreen';
@@ -33,7 +36,8 @@ afterEach(() => {
 });
 
 describe.each(['en', 'zh-CN'])('combo replay refusal in %s', locale => {
-  it.each(['idle', 'loading', 'error', 'wave', 'restore'] as const)(
+  it.each(['idle', 'loading', 'error', 'wave', 'restore',
+    'prepared', 'committedPendingPublication', 'conflict'] as const)(
     'keeps the edit and recording during %s until another explicit edit', async refusal => {
       await i18n.changeLanguage(locale);
       usePlayerStore.getState().setPlayer(createMockPlayer('Replay readiness', 'sorceress'));
@@ -52,6 +56,30 @@ describe.each(['en', 'zh-CN'])('combo replay refusal in %s', locale => {
       const slot = screen.getByRole('combobox', { name: i18n.t('skills:slotN', { n: 1 }) });
       expect(slot).toHaveValue(fireBolt);
       const engine = vi.spyOn(combatEngine, 'runBattleRecorded');
+      const receiptPhase = refusal === 'prepared' || refusal === 'committedPendingPublication' || refusal === 'conflict';
+      if (receiptPhase) {
+        const run = combatRunLifecycle.activeRun; const combat = useCombatStore.getState();
+        if (!run?.recording) throw new Error('Missing phase fixture recording');
+        const inv = useInventoryStore.getState();
+        const ownership = { backpack: inv.backpack, stash: inv.stash, equipped: inv.equipped,
+          mercEquipment: useMercStore.getState().mercEquipment };
+        const selection = useIronGolemSelectionStore.getState().selection;
+        const publication = stageRecordedBattle({ initialPlayerTeam: combat.playerTeam, initialEnemyTeam: combat.enemyTeam,
+          events: run.recording.events, outcome: run.recording.outcome, unitNameMap: combat.unitNameMap,
+          currentWave: run.waveIdx + 1, totalWaves: run.plan.waves.length, subAreaRunId: run.plan.subAreaId }, combat);
+        const lease = beginWaveTransition(true);
+        try {
+          const token = prepareRecordedWave({ candidateRun: run, expectedActiveRun: run, heroId: run.playerUnit.id,
+            targetWaveIdx: run.waveIdx, waveElapsedMs: run.waveElapsedMs, selection, ownership,
+            debitIntent: null, attestation: null,
+            engineInput: { seed: run.seed, playerTeam: combat.playerTeam, enemyTeam: combat.enemyTeam },
+            recording: run.recording, publication }, lease);
+          if (refusal !== 'prepared') expect(commitPreparedRecordedWave(token, lease, {
+            activeRun: run, heroId: run.playerUnit.id, selection,
+            ownership: refusal === 'conflict' ? { ...ownership, backpack: [] } : ownership
+          })).toBe(refusal);
+        } finally { expect(endWaveTransition(lease)).toBe(false); }
+      }
       const wave = refusal === 'wave' ? beginWaveTransition(true) : undefined;
       const restore = refusal === 'restore' ? reserveWaveRestore() : undefined;
       let released = false;
@@ -59,11 +87,13 @@ describe.each(['en', 'zh-CN'])('combo replay refusal in %s', locale => {
         if (released) return;
         if (wave) expect(endWaveTransition(wave)).toBe(false);
         if (restore) releaseWaveRestore(restore);
+        if (receiptPhase) abandonRecordedWaves();
         released = true;
       };
       act(() => { useHydrationStore.getState().setStatus(
-        refusal === 'wave' || refusal === 'restore' ? 'error' : refusal, 'skills-unready'); });
+        receiptPhase ? 'ready' : refusal === 'wave' || refusal === 'restore' ? 'error' : refusal, 'skills-unready'); });
       const recording = useCombatStore.getState();
+      const holder = inspectRecordedWaves();
       const before = protectedStores.map(store => store.getState());
       const run = combatRunLifecycle.activeRun;
       const runData = structuredClone(run);
@@ -76,6 +106,7 @@ describe.each(['en', 'zh-CN'])('combo replay refusal in %s', locale => {
         expect(slot).toHaveValue('');
         expect(screen.getByRole('alert')).toHaveTextContent(i18n.t('common:error'));
         expect(engine).not.toHaveBeenCalled();
+        expect(inspectRecordedWaves()).toBe(holder);
         protectedStores.forEach((store, i) => { expect(store.getState()).toBe(before[i]); });
         expect(notified).not.toHaveBeenCalled();
         expect(combatRunLifecycle.activeRun).toBe(run);
