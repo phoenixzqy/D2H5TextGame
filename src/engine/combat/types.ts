@@ -101,6 +101,8 @@ export interface CombatUnit {
   };
   /** Boss enrage activated? */
   readonly enraged: boolean;
+  /** Level/tier-resolved ordinary damage; fixed basicAttack takes precedence. */
+  readonly attackRange?: readonly [number, number];
   /** Authored monster base action and optional sticky enrage; absent preserves legacy behavior. */
   readonly basicAttack?: import('../types/monsters').MonsterDef['basicAttack'];
   readonly enrage?: import('../types/monsters').MonsterDef['enrage'];

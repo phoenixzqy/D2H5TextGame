@@ -1,6 +1,8 @@
 [
   {
     "id": "monsters/act1.fallen",
+    "attack": [32, 32],
+    "attackGrowth": [5, 5],
     "name": "monsters.fallen",
     "life": [30, 50],
     "lifeGrowth": [3, 5],
@@ -15,6 +17,8 @@
   },
   {
     "id": "monsters/act1.zombie",
+    "attack": [28.8, 28.8],
+    "attackGrowth": [4.5, 4.5],
     "name": "monsters.zombie",
     "life": [50, 70],
     "lifeGrowth": [5, 7],
@@ -42,6 +46,8 @@
   },
   {
     "id": "monsters/act1.quill-rat",
+    "attack": [27.2, 27.2],
+    "attackGrowth": [4.25, 4.25],
     "name": "monsters.quillRat",
     "life": [20, 40],
     "lifeGrowth": [2, 4],
@@ -84,6 +90,8 @@
   },
   {
     "id": "monsters/act1.carver",
+    "attack": [33.6, 33.6],
+    "attackGrowth": [5.25, 5.25],
     "name": "monsters.carver",
     "life": [40, 60],
     "lifeGrowth": [4, 6],
@@ -140,6 +148,8 @@
   },
   {
     "id": "monsters/act1.fallen-shaman",
+    "attack": [13, 13],
+    "attackGrowth": [2, 2],
     "name": "monsters.fallenShaman",
     "life": [60, 90],
     "lifeGrowth": [6, 10],
@@ -208,6 +218,8 @@
   },
   {
     "id": "monsters/act1.tainted",
+    "attack": [32, 32],
+    "attackGrowth": [5, 5],
     "name": "monsters.tainted",
     "life": [50, 70],
     "lifeGrowth": [5, 7],
@@ -292,6 +304,8 @@
   },
   {
     "id": "monsters/act1.dark-archer",
+    "attack": [35.2, 35.2],
+    "attackGrowth": [5.5, 5.5],
     "name": "monsters.darkArcher",
     "life": [40, 60],
     "lifeGrowth": [4, 6],
@@ -443,6 +457,8 @@
   },
   {
     "id": "monsters/act1.bone-warrior",
+    "attack": [35.2, 35.2],
+    "attackGrowth": [5.5, 5.5],
     "name": "monsters.boneWarrior",
     "life": [70, 100],
     "lifeGrowth": [7, 10],

@@ -6,6 +6,7 @@
   "type": "object",
   "required": ["id", "name", "life", "lifeGrowth", "skills", "baseExperience"],
   "additionalProperties": false,
+  "dependentRequired": { "attack": ["attackGrowth"], "attackGrowth": ["attack"] },
   "properties": {
     "id": {
       "type": "string",
@@ -24,6 +25,14 @@
     "lifeGrowth": {
       "$ref": "#/$defs/range",
       "description": "Life growth per level [min, max]"
+    },
+    "attack": {
+      "$ref": "#/$defs/attackRange",
+      "description": "Ordinary attack at level 1 [min, max]; paired with attackGrowth"
+    },
+    "attackGrowth": {
+      "$ref": "#/$defs/attackRange",
+      "description": "Ordinary attack growth per level [min, max]; paired with attack"
     },
     "skills": {
       "type": "array",
@@ -91,6 +100,13 @@
     }
   },
   "$defs": {
+    "attackRange": {
+      "type": "array",
+      "items": { "type": "number", "minimum": 0 },
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "Finite nonnegative [min, max]; endpoint order is checked by the shared runtime validator"
+    },
     "range": {
       "type": "array",
       "items": {

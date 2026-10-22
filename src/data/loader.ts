@@ -6,6 +6,7 @@
 
 import Ajv2020, { type ValidateFunction } from 'ajv/dist/2020';
 import addFormats from 'ajv-formats';
+import { isValidMonsterAttackProgression } from '../engine/monster-attack';
 import type {
   MonsterDef,
   SkillDef,
@@ -169,6 +170,10 @@ function validateData<T>(
 
   if (!validate(data)) {
     throw new GameDataValidationError(filePath, validate.errors ?? []);
+  }
+
+  if (schemaId === monsterSchema.$id && !isValidMonsterAttackProgression(data as MonsterDef)) {
+    throw new GameDataValidationError(filePath, [{ message: 'Invalid monster attack progression: expected paired finite nonnegative ordered ranges' }]);
   }
 
   return data;

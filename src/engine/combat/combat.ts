@@ -986,11 +986,12 @@ function basicAttack(state: State, actorId: string): void {
 
   emit(state, { kind: 'action', actor: actorId, skillId: null });
   const attackPct = activeMightAura(state.mightAura, actorId, state.units)?.attackPct ?? 0;
-  const baseAttack = Math.max(1, Math.floor(actor.stats.attack * (1 + attackPct)));
+  const ordinaryRange = actor.attackRange ?? [actor.stats.attack, actor.stats.attack];
+  const projectAttack = (value: number): number => Math.max(1, Math.floor(value * (1 + attackPct)));
   const effect: DamageEffect = {
     kind: 'damage',
     damageType: actor.basicAttack?.damageType ?? state.skeletalMageElements.get(actorId) ?? 'physical',
-    base: actor.basicAttack?.damage ?? [baseAttack, baseAttack]
+    base: actor.basicAttack?.damage ?? [projectAttack(ordinaryRange[0]), projectAttack(ordinaryRange[1])]
   };
   applyDamageToUnit(state, actorId, target.id, effect);
 }

@@ -8,8 +8,8 @@
  *   - **elite**: ~×1.6 life / ×1.3 attack/defense + 1 random affix label.
  *   - **boss**: ~×3 life / ×1.6 attack / ×1.5 defense + signature ability.
  *
- * Attack & defense scaling derive from `docs/balance/early-game-spec.md §4`
- * because v1 monster JSON does not yet carry per-archetype attack ranges:
+ * Attack ranges use JSON base/growth and tier scaling, rounded at the end.
+ * Unmigrated archetypes retain the early-game-spec §4 fallback:
  *
  *   `attack  = round(BASE_ATK + (lvl-1) * GROWTH_ATK)`
  *   `defense = round((def ?? BASE_DEF) + (lvl-1) * GROWTH_DEF)`
@@ -22,6 +22,7 @@
  */
 
 import { MITIGATION_DEFINITION } from './mitigation-definition';
+import { isValidMonsterAttackProgression } from '../monster-attack';
 import { ACT1_LIGHTNING_AFFIX_ID, ACT1_LIGHTNING_AFFIX_CANONICAL_ID } from '../skills/act1-lightning';
 import defaultEliteConfigJson from '../../data/elite/elite-config.json';
 import type { Rng } from '../rng';
@@ -135,6 +136,20 @@ export function scaleMonsterLevelForArea(
 
 export function buildMonsterUnit(opts: BuildMonsterOpts): CombatUnit {
   const { def, level, tier, rng, index } = opts;
+  if (!isValidMonsterAttackProgression(def)) {
+    throw new Error(`Invalid attack progression for ${def.id}`);
+  }
+  const levelOffset = Math.max(0, level - 1);
+  const tierAttack = TIER_MULTIPLIERS[tier].attack;
+  const attackRange: readonly [number, number] | undefined = def.attack && def.attackGrowth
+    ? Object.freeze(opts.statOverrides?.attack !== undefined
+      ? [opts.statOverrides.attack, opts.statOverrides.attack] as [number, number]
+      : [Math.round((def.attack[0] + levelOffset * def.attackGrowth[0]) * tierAttack),
+         Math.round((def.attack[1] + levelOffset * def.attackGrowth[1]) * tierAttack)] as [number, number])
+    : undefined;
+  if (attackRange && !attackRange.every(Number.isFinite)) {
+    throw new Error(`Nonfinite resolved attack progression for ${def.id}`);
+  }
 
   // 1. Life: roll within JSON range, add growth per level, apply tier mult.
   const [lifeMin, lifeMax] = def.life;
@@ -145,9 +160,11 @@ export function buildMonsterUnit(opts: BuildMonsterOpts): CombatUnit {
   const rolledLifeMax = Math.max(1, Math.round(rawLife * TIER_MULTIPLIERS[tier].life));
   const lifeMaxStat = opts.statOverrides?.lifeMax ?? rolledLifeMax;
 
-  // 2. Attack: derived (no per-arch JSON yet — see early-game-spec §4).
-  const rawAtk = BASE_ATK + Math.max(0, level - 1) * GROWTH_ATK;
-  const attack = opts.statOverrides?.attack ?? Math.round(rawAtk * TIER_MULTIPLIERS[tier].attack);
+  // 2. Scalar consumers use the resolved midpoint; ordinary combat keeps the range.
+  const rawAtk = BASE_ATK + levelOffset * GROWTH_ATK;
+  const attack = opts.statOverrides?.attack ?? (attackRange
+    ? Math.round(attackRange[0] / 2 + attackRange[1] / 2)
+    : Math.round(rawAtk * tierAttack));
 
   // 3. Defense: from JSON if present, else trash baseline; level-scaled.
   const baseDef = def.defense ?? BASE_DEF;
@@ -236,6 +253,7 @@ export function buildMonsterUnit(opts: BuildMonsterOpts): CombatUnit {
       : {}),
     activeBuffIds: [],
     enraged: false,
+    ...(attackRange ? { attackRange } : {}),
     ...(def.basicAttack ? { basicAttack: Object.freeze({ ...def.basicAttack,
       damage: Object.freeze([...def.basicAttack.damage] as [number, number]) }) } : {}),
     ...(def.enrage ? { enrage: Object.freeze({ ...def.enrage }) } : {}),

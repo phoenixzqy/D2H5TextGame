@@ -16,6 +16,11 @@ export interface MonsterDef {
   
   /** Life growth per level [min, max] */
   readonly lifeGrowth: readonly [number, number];
+
+  /** Ordinary attack at level one; must be paired with attackGrowth. */
+  readonly attack?: readonly [number, number];
+  /** Ordinary attack growth per level; finite, nonnegative, ordered endpoints. */
+  readonly attackGrowth?: readonly [number, number];
   
   /** Skill IDs this monster can use */
   readonly skills: readonly string[];
