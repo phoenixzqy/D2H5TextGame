@@ -18,7 +18,7 @@
 
 import type { Rng } from '../rng';
 import { createRng } from '../rng';
-import type { CombatUnit, CombatSide, GridPosition } from './types';
+import type { ActiveStatus, CombatUnit, CombatSide, GridPosition } from './types';
 import { inferKind } from './types';
 import { resolveDamage, type DamageInput } from './damage';
 import {
@@ -98,6 +98,9 @@ export type BattleEvent =
       readonly dodged: boolean;
     }
   | { readonly kind: 'status'; readonly target: string; readonly statusId: string }
+  /** Silent complete active view; initial observations precede all gameplay. */
+  | { readonly kind: 'status-state'; readonly target: string;
+      readonly statuses: readonly ActiveStatus[]; readonly initial?: true }
   | { readonly kind: 'buff'; readonly target: string; readonly buffId: string }
   | {
       readonly kind: 'summon';
@@ -165,6 +168,8 @@ interface State {
   readonly golemMastery?: GolemMasteryProjection;
   units: Map<string, CombatUnit>;
   events: BattleEvent[];
+  /** Battle-local copied presentation views; never used by gameplay. */
+  readonly observedStatuses: Map<string, readonly ActiveStatus[]>;
   /** parallel array: simClockMs at the moment events[i] was emitted. */
   simTimes: number[];
   rng: Rng;
@@ -207,6 +212,34 @@ interface PeriodicIntegral {
 
 function alive(u: CombatUnit): boolean {
   return u.life > 0;
+}
+
+/** Compare ordered records without collapsing absent fields or nonfinite values. */
+function sameStatusView(previous: readonly ActiveStatus[], next: readonly ActiveStatus[]): boolean {
+  return previous.length === next.length && previous.every((a, i) => {
+    const b = next[i];
+    if (!b) return false;
+    const keys = Object.keys(a) as (keyof ActiveStatus)[];
+    return keys.length === Object.keys(b).length && keys.every(key => {
+      if (!Object.prototype.hasOwnProperty.call(b, key)) return false;
+      if (key === 'tags' && a.tags !== undefined && b.tags !== undefined) {
+        return a.tags.length === b.tags.length && a.tags.every((tag, j) => Object.is(tag, b.tags?.[j]));
+      }
+      return Object.is(a[key], b[key]);
+    });
+  });
+}
+
+/** Observe committed state only; clocks, raw statuses and RNG remain authoritative. */
+function observeStatuses(state: State, target: string, initial = false): void {
+  const unit = state.units.get(target);
+  if (!unit) return;
+  const active = alive(unit) ? unit.statuses.filter(s => statusActiveAt(s, state.simClockMs)) : [];
+  const previous = state.observedStatuses.get(target);
+  if (!initial && previous !== undefined && sameStatusView(previous, active)) return;
+  const statuses = active.map(s => ({ ...s, ...(s.tags !== undefined ? { tags: [...s.tags] } : {}) }));
+  state.observedStatuses.set(target, statuses);
+  emit(state, { kind: 'status-state', target, statuses, ...(initial ? { initial: true as const } : {}) });
 }
 
 /** Keep base stats intact; active Chill changes the stat before cadence/clamps. */
@@ -479,6 +512,7 @@ function applyDamageToUnit(
         }
         state.units.set(defenderId, updated);
         emit(state, { kind: 'status', target: defenderId, statusId: status.id });
+        observeStatuses(state, defenderId);
       }
     }
   }
@@ -489,6 +523,7 @@ function applyDamageToUnit(
       id: 'chill', sourceId: defenderId, simClockMs: state.simClockMs
     }, state.rng));
     emit(state, { kind: 'status', target: attackerId, statusId: 'chill' });
+    observeStatuses(state, attackerId);
   }
 
   const after = state.units.get(defenderId);
@@ -521,7 +556,10 @@ function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void
     state.manaRecovery.delete(u.id);
     if (inferKind(u) === 'hero') state.heroDead = true;
   }
-  for (const u of dead) emit(state, { kind: 'death', target: u.id });
+  for (const u of dead) {
+    observeStatuses(state, u.id);
+    emit(state, { kind: 'death', target: u.id });
+  }
   for (const u of dead) {
     const source = primary.get(u.id);
     if (source) deathEffects(state, source);
@@ -544,6 +582,7 @@ function deathEffects(state: State, dead: CombatUnit): void {
     const recipients = [...state.units.values()].filter(u => u.side === dead.side && alive(u));
     for (const u of spreadPlague(dead, recipients, 0.5, state.rng, state.simClockMs)) {
       state.units.set(u.id, u);
+      observeStatuses(state, u.id);
     }
   }
 
@@ -813,6 +852,7 @@ function applyEffect(
         );
         state.units.set(t.id, updated);
         emit(state, { kind: 'status', target: t.id, statusId: effect.statusId });
+        observeStatuses(state, t.id);
       }
       break;
     }
@@ -871,6 +911,7 @@ function registerSpawnedSummon(state: State, owner: CombatUnit, templateId: stri
   scheduleNextAction(state, positionedSummon);
   state.cooldownExpiresAt.set(positionedSummon.id, new Map());
   emit(state, { kind: 'summon', owner: owner.id, summonId: templateId, unit: positionedSummon });
+  observeStatuses(state, positionedSummon.id);
   return positionedSummon;
 }
 
@@ -996,6 +1037,9 @@ function settlePeriodic(state: State, to: number): void {
   finishDeaths(state, dead);
   for (const u of state.units.values()) {
     if (alive(u)) state.units.set(u.id, expireStatuses(u, to));
+  }
+  for (const u of state.units.values()) {
+    if (alive(u)) observeStatuses(state, u.id);
   }
 }
 
@@ -1426,6 +1470,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
       ...(aura.fieldedMercCombatId !== undefined ? { fieldedMercCombatId: aura.fieldedMercCombatId } : {}) }) } : {}),
     units: new Map(),
     events: [],
+    observedStatuses: new Map(),
     simTimes: [],
     rng,
     tieRng: rng.fork('scheduler-ties'),
@@ -1464,6 +1509,7 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
     state.cooldownExpiresAt.set(u.id, new Map(Object.entries(u.cooldowns)
       .filter(([, remaining]) => Number.isFinite(remaining) && remaining > 0)));
   }
+  for (const u of state.units.values()) observeStatuses(state, u.id, true);
   emitTurnBoundaries(state);
 
   const startOrder = [...state.units.values()]

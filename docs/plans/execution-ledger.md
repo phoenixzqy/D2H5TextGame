@@ -9337,3 +9337,51 @@ remaining[]/failures[]. Cleanup receipt SHA256
 56ba5cdbf070f4eb42344b17cde2eb0c291da5a1594b3b98d9f1d9f140b6e03d.
 Required evidence stays root-owned at ROOT until umbrella consumers finish.
 No owned processes remain. Settled cached whitespace precedes commit.
+
+
+## D04 v1cq — Authoritative engine status observations
+
+Engine3 owns combat.ts, new status-lifecycle.test.ts and this ledger. Security
+PASS: copied battle-local observation only; no RNG/math/scheduler/save/network/
+credential/dependency or persistent authority change. Root sole writer/executor.
+Genuine prepatch RED3/3 then13/13 and BUG080-before-patch history remain retained.
+D5 prerequisite5e4b530 resolves the integrated differing-input Mage comparison;
+its baseline green was never presented as RED or integrated engine acceptance.
+
+Runtime49a68538 restores approved bytes exactly: complete effective-roster initial
+prefix, ordered copied records/tags/optional-field presence, committed on-hit/
+debuff/retaliation/summon/spread/death updates, expiry/future boundaries before
+surviving actions, dead-empty presentation and end last. Raw death statuses stay
+available for effects. Thirteen lifecycle tests include production PE1700→6700,
+final-interval simultaneous death/spread, aliases/nonfinite fields and determinism.
+Disclosed fixture corrections and all failed runs remain external evidence.
+Combined lint caught one numeric template in the test; explicit String(i) preserves
+identical fixture IDs. Corrected test3433ed3d, runtime unchanged. TD/CODE APPROVE
+confirmed both the restored code and the exact one-line correction.
+
+Final focused235/6 PASS (wrapper4.825); engine3885/95 PASS
+(wrapper21.905); types PASS23.163; lint PASS55.327;
+full8232/260 PASS151.57s (wrapper153.114); production build/bridge PASS
+10.232s, four chunks, VITE_E2E absent. Original24 frozen PE preservation
+PASS2.365s against unchanged freeze f46ecc7c; runner5df0ed19 and current-runtime
+outputs equal prior preserved outputs byte-for-byte. It precedes only the inert
+test-name correction; runtime/inputs/registry/oracle unchanged. Prior integrated
+full failure and lint failure are preserved. Timing budgets/build warnings remain
+open. BUG080 remains open; no store/UI/browser/full-v1 acceptance is claimed.
+
+ROOT: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-status-engine-71syvdk6`.
+Root retains source/RED/oracle/log/review/receipt evidence until umbrella consumers
+finish, then removes it. Final independent QA/producer publication and releases
+precede exact disposable cleanup; append receipt before local commit. Exact3paths,
+append-only ledger and settled cached whitespace required. Next Native/Mage test
+migration retains explicit legacy coverage, then lifecycle/earned/batching/UI and
+production browser proof. Full D04/D06/P09/P10/private-v1 remains unfinished.
+No push/PR/merge/deploy.
+
+Final QA TEST-EVIDENCE ADEQUATE and producer PUBLICATION APPROVE verify exact3
+paths, append-only ledger, final source/receipt hashes and original24 preservation.
+All readers released. Exact cleanup removed857files/42781082bytes/14directories;
+remaining[]/failures[]. Cleanup receipt SHA256
+007dd9c3b14747ab11929231fe32d09c0d2c9cb7f7000c023a304de4b9fc4a7f.
+Required evidence remains root-owned at ROOT until umbrella consumers finish.
+No owned processes remain. Settled cached whitespace precedes local commit.
