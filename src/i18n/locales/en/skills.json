@@ -732,7 +732,7 @@
     },
     "raise-skeletal-mage": {
       "name": "Raise Skeletal Mage",
-      "desc": "Prepare skeletal mages that fight with physical basic attacks; no corpse is required."
+      "desc": "Each fresh batch assigns mages Fire → Cold → Lightning → Poison, repeating from Fire. Their basic attacks deal direct damage of their assigned element. No corpse is required; these attacks do not automatically apply statuses or damage over time."
     },
     "summon-resist": {
       "name": "Summon Resist",

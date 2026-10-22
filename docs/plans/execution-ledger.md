@@ -7029,3 +7029,76 @@ distinct from passing final checks. All playback disposable readers released.
 Approval-only ledger append; tests/source unchanged. Publication/producer audit,
 local commit and manifest-bound cleanup follow. Mounted/bilingual-copy/browser/
 balance/earned/full Mage/D06/P09/P10/private-v1 and existing limitations stay open.
+
+
+## D06 v1bg mounted Mage screen and honest bilingual identity copy
+
+Playback7817576 committed after frozen QA/test-evidence(ADEQUATE), TD/five-axis/
+producer APPROVE. Cleanup66b245ce5a3fe384cc0ebd719d8d6dc9f8974a768d9b35cd3254cb5edc93b383
+removed1300files/43,857,815bytes/14dirs with zero failures/remaining. Same isolated
+umbrella claim; root sole writer/executor. TD five-path plan APPROVE and QA
+pre-validation READY: two skills locales, existing Skills preparation test, new
+CombatScreen mounted test and ledger. Security check PASS: local authored copy/
+tests only, no permissions/dependencies/credentials/network/save shape changes.
+Incremental/TDD/root-cause-fix apply. Fix only Mage identity description in zh/en;
+existing SkillsScreen combines authored identity with unchanged shared22MP/cap/
+preparation prose. Explain Fire→Cold→Lightning→Poison per-batch cycle, direct
+elemental basic damage, no corpse, no automatic status/DOT. Existing cap/stats/
+preparation expectations stay. First narrow RED proves stale physical copy.
+Mounted tests use actual planner/engine recording and native CombatScreen timers
+for both locales, visible summon cards/grid/MP/HP/logs, incomplete through3880
+before FINISH4000 or settlement; no direct stepping/injected events. Cleanup
+unmounts before reset and never drains pending timers. Prior draft store-relative
+imports were wrong for features/combat destination: preserve original outside
+repo, correct only ten @/stores imports; QA corrected draft READY11604bytes
+SHA01cf808014584cb08b81bc2b32263cdc7b5fa2e61733353ffb9f0c67189b5935.
+No mounted runtime test has executed yet. Serial focused/types/lint/full/build/
+check then frozen independent reviews/publication/audit/local commit/exact
+cleanup. Browser/balance/earned/full Mage/D06/P09/P10/private-v1 remain open.
+
+
+First narrow RED selector matches no cases because Vitest object-table titles
+quote the slug; all22skipped is no validation/RED. Preserve receipt. Correct
+selector to common explains phrase: both Mage locales fail exact new identity
+vs stale physical copy, four other summon cases pass,16unselected. This is the
+expected actual copy RED. Copy approved locale bytes and corrected mounted
+draft; no component/engine/save/schema changes. Focused validation follows.
+
+
+Firstfocused26/3files8.19s and types pass; lint fails only newtest144 redundant
+event.kind check after isMageHit already narrows damage. Preserve v2 and lint
+receipt, follow debugging/root-cause-fix, remove only redundant conjunction;
+no oracles/suppressions/production change. QA v3 READY11577bytes
+SHA38d090f84f058021d32cdb2905e46739a1f0ed5b73a0f31f922b55ad476abe56.
+Root accidentally launched old-source fullunit before lint completed; no source
+changed until it exited7439/240files145.93s. Preserve as historical overlapping
+run, not final serial validation. Final focused/types/lint/full/build/check all
+restart serially on exact v3 source now, including new final unit run.
+
+
+Final exact-v3 serial focused26/3files8.05s, standard types/lint, full7439/
+240files143.84s(wall145.03s), VITE_E2E=false production build and exact-scope
+checker pass. Historical overlapping full145.93s is distinct; final checks use
+unchanged QA v3 bytes. Checker verifies five-path scope/tracked+untracked
+whitespace, all captured nonledger source/test/config bytes across final checks,
+exact four QA drafts, and semantic locale delta only Mage description. No test
+bridge/Mage fixture/Vitest markers in four emitted JS chunks. Artifact
+index-BURmCSR0.js1343224bytes SHA729627ee6da2023c32bdb1ffecab37c6e9f6f25f5fb3f28aa19b243184c5b92f.
+Authored copy now matches direct elemental bolts and discloses no automatic
+statuses/DOT; preparation semantics unchanged. Both mounted screens use own
+timers through real3880hits/dodges, stop incomplete, unmount before reset with
+zero pending timers, preserve frozen source/durable/unsettled state. Fixture
+remains imported/unearned. Full143.84s exceeds15s budget; existing Browserslist/
+chunk/manifest-precache warnings and broad Node-config maxThreads issue remain
+open. Frozen QA/test-evidence and TD/five-axis reviews next; publication/audit/
+local commit/exact cleanup pending. Production browser/balance/earned/full
+Mage/statuses/D06/P09/P10/private-v1 remain unfinished. No remote action.
+
+
+Frozen QA/test-evidence(ADEQUATE), TD and five-axis reviews APPROVE with no
+blocking findings. Both independently verify12receipt/output hashes,498source
+snapshots and exact four QA drafts; final-v3serial checks/identities distinguish
+all historical failures/overlap. All mounted/disposable readers released.
+Approval-only ledger append; tests/locales/source unchanged. Publication/
+producer audit, local commit and exact cleanup follow. Browser/balance/earned/
+full Mage/statuses/D06/P09/P10/private-v1 and existing limitations stay open.
