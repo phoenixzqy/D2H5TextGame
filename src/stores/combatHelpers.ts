@@ -25,6 +25,7 @@ import { resolveSubArea } from './subAreaResolver';
 import { useCombatStore, type CombatLogEntry, type RecordedBattleOutcome } from './combatStore';
 import { stageRecordedBattle, type RecordedBattlePublication } from './recordedBattlePublication';
 import { combatRunLifecycle, type ActiveRun } from './combatRunLifecycle';
+import { abandonRecordedWaves, clearRecordedWavesAfterRestore } from './recordedWaveReceipt';
 import { eventToLocalizedLogEntry } from './eventToLogI18n';
 import { useInventoryStore } from './inventoryStore';
 import { useMapStore } from './mapStore';
@@ -648,6 +649,7 @@ export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idl
 export function clearCombatAfterRestore(lease: WaveRestoreLease): void {
   assertWaveRestoreOwner(lease);
   combatRunLifecycle.activeRun = null;
+  clearRecordedWavesAfterRestore(lease);
   useCombatStore.getState().reset();
   clearIronGolemSelectionAfterRestore(lease);
 }
@@ -659,6 +661,7 @@ export function clearCombatAfterRestore(lease: WaveRestoreLease): void {
 export function abortSubAreaRun(): void {
   assertWaveSnapshotAllowed();
   combatRunLifecycle.activeRun = null;
+  abandonRecordedWaves();
   clearIronGolemSelection();
 }
 

@@ -5062,3 +5062,71 @@ before commit; disposable outputs await exact cleanup. Diagnostics and external
 harnesses retained; root is sole writer/executor; umbrella worktree claim continues;
 no remote action. Exact receipt/conflict/publication/settlement/replay integration,
 bilingual Iron UI/browser acceptance and fullD06/P09/P10/private-v1 remain open.
+
+## D06 v1aa transient recorded-wave receipt foundation
+
+Explicit replay readiness received independent QA, TD/five-axis and producer
+APPROVE and committed as `0d56184`. Exact readiness-replay cleanup removed869files/
+43,144,182bytes and14 empty directories with zero failures/remaining targets;
+recorded command identities were dead. Diagnostics and browser harnesses remain
+retained. Chinese screenshot glyph rendering remains unresolved.
+
+TD approved this five-path receipt-foundation plan after separating candidate/target
+from expected old active-run/cursor, and read-only immediate pre-debit validation
+from post-setter observation. One private holder retains current published plus
+at most one pending receipt. Opaque tokens and live leases gate narrow preparation,
+validation, cancellation, commitment and exact publication recognition operations.
+There is no generic phase setter or historical map. Original ownership stays
+prepared; exact expected debit commits; third references or paid changed authority
+enter conflict. Cancellation requires exact original ownership even after metadata
+or selection became stale. No absence-based success, compensation or refund occurs.
+
+Publication recognition compares every complete payload field plus candidate run,
+target cursor, recording and terminal clock. Recovery accepts the same token under
+a new live lease, retains exact engine input/attestation/recording/payload and first
+debit/publication errors separately, and performs no simulation, payment or store
+publication. Owned wrappers are frozen; caller units, Maps, arrays and inventory
+remain untouched. A future stager must privately own the immutable original engine
+input: shallow receipt freezing does not establish deep input immutability.
+
+Abort, public hero replacement and successful restore clear both receipt slots
+alongside local run removal before combat/selection notifications. Existing guard
+assertions precede mutation. Invalid/released restore leases preserve both slots;
+failed import decoding preserves run/receipts. Clearing receipts leaves actual
+inventory/player/merc/map roots intact, including conflict abandonment; a throwing
+combat subscriber observes cleared receipts. These are synthetic protocol and
+boundary fixtures, not production item-payment or earned/balance acceptance.
+Production currently creates no receipts; pending/conflict gameplay restrictions,
+automatic recovery and settlement are not integrated by this increment.
+
+Initial contract RED was a missing-module collection failure with0tests collected,
+not a semantic RED. Basic2, debit15, recovery27 and identity44 test batches passed.
+Cleanup preimplementation RED3failed/47passed10.047s demonstrated stale slots visible
+to abort/hero/restore subscribers; GREEN50passed10.526s followed the three hooks.
+Expanded focused61passed11.687s. Initial types failed17.774s on a private CombatState
+import and invalid test wave kind; corrected with a type-only store return type
+and authored trash kind. Types-v2 passed19.773s. Lint failed75.246s on test non-null
+assertions, shorthand void arrows and a nullable condition. Explicit fixture checks,
+scoped ESLint fixes and boolean narrowing corrected those; the scoped fix attempt
+also exposed a replacement typo (4errors), corrected before final validation.
+All historical failures/source/output identities are retained.
+
+Final serial focused61/1file14.361s, types23.755s, lint61.432s including85 purity
+files, full6611/223files140.909s and build11.645s passed. Build600modules/
+index-DJm5a57J.js1262.55kB observed. Prior unexplained build variance remains open;
+no deterministic bundle-equivalence claim. Related5s/full15s budget overruns and
+existing React act, fixture fallback, stale Browserslist, chunk/precache diagnostics
+remain open. SaveCurrent11 unchanged. No browser acceptance is claimed for this
+inactive store-only foundation; no server/browser or persistent process started.
+Security check passes: receipt operations fail closed on lease/reference mismatch,
+add no save payload, dependency, external IO, bypass or new resource-write authority.
+
+Five paths, all receipt-foundation command/source/output identities, prior cleanup
+and exact owned dist/tmp inventory are frozen in receipt-foundation-review.json
+under /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review remains before commit; disposable outputs
+await exact cleanup. Root remains sole writer/executor;
+umbrella worktree claim continues; no remote action. Actual lease acquisition/save
+wake, selected-item staging/debit, recovery, settlement/replay integration,
+bilingual Iron UI/browser acceptance and fullD06/P09/P10/private-v1 remain open.

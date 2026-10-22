@@ -4,6 +4,7 @@ import type { RecordedBattleEvent } from '@/engine/combat/combat';
 import { useCombatStore, type RecordedBattleOutcome } from './combatStore';
 import { clearIronGolemSelection } from './ironGolemSelectionStore';
 import { assertWaveSnapshotAllowed } from './waveTransitionGuard';
+import { abandonRecordedWaves } from './recordedWaveReceipt';
 
 /** Internal transient run shape; never persisted or exported through a public barrel. */
 export interface ActiveRun {
@@ -38,6 +39,7 @@ export const combatRunLifecycle: { activeRun: ActiveRun | null } = { activeRun: 
 export function clearCombatForHeroReplacement(): void {
   assertWaveSnapshotAllowed();
   combatRunLifecycle.activeRun = null;
+  abandonRecordedWaves();
   useCombatStore.getState().reset();
   clearIronGolemSelection();
 }
