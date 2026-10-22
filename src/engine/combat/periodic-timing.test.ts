@@ -35,6 +35,13 @@ function register(effects: readonly SkillEffect[], id = 'fixture.periodic'): str
     manaCost: 0, minLevel: 1, effects });
   return id;
 }
+function freezeInput<T>(value: T): T {
+  if (value !== null && typeof value === 'object') {
+    Object.freeze(value);
+    Object.values(value).forEach(freezeInput);
+  }
+  return value;
+}
 afterEach(() => { resetRegistry(); loadDefaultSkills(); });
 
 describe('periodic global timing contract', () => {
@@ -53,17 +60,53 @@ describe('periodic global timing contract', () => {
     expect(input).toEqual(before);
   });
 
-  it('keeps a stored rate-less legacy burn rate-less through refresh and the whole battle', () => {
-    const old = status('burn', { stacks: 2, remaining: 1 });
-    const input = unit('enemy', 'enemy', { statuses: [hold, old] });
-    const refreshed = applyStatus(input, {
-      id: 'ignite', sourceId: 'new', simClockMs: 1700, dotPerStack: 99
-    }, createRng(7));
-    expect(refreshed.statuses).toEqual([hold, { ...old, stacks: 3, remaining: 3 }]);
-    const result = run(refreshed);
-    expect(dots(result)).toBe(0);
-    expect(result.result.enemyTeam[0]?.life).toBe(100_000);
-    expect(input.statuses).toEqual([hold, old]);
+  it('promotes a live poison marker prospectively while preserving the previous fractional integral', () => {
+    const skill = register([{ kind: 'damage', damageType: 'poison', base: [20, 20],
+      applyStatus: { id: 'poison', dotPctOfDamage: 0.05 } }]);
+    const enemy = unit('enemy', 'enemy', { life: 1000, statuses: [hold,
+      status('poison', { stacks: 2, appliedAtMs: 0, expiresAtMs: 3000 }),
+      status('bleed', { dotPerStack: 0.5, expiresAtMs: 1700 }),
+      status('marker', { expiresAtMs: 2000 })] });
+    const hero = unit('hero', 'player', { skillOrder: [skill],
+      statuses: [status('stun', { appliedAtMs: 1701 })] });
+    const input = freezeInput({ seed: 7, playerTeam: [hero], enemyTeam: [enemy] });
+    const before = structuredClone(input);
+    const result = runBattleRecorded(input);
+    expect(result.events.filter(e => e.kind === 'damage' && e.source === 'hero'))
+      .toEqual([expect.objectContaining({ simClockMs: 1700, amount: 20, dodged: false, crit: false })]);
+    expect(result.events.flatMap(e => e.kind === 'dot' && e.target === 'enemy' ? [[e.simClockMs, e.amount]] : []))
+      .toEqual([[2000, 1], [3400, 4], [5100, 6], [6700, 4]]);
+    expect(dots(result)).toBe(15);
+    expect(result.result.enemyTeam[0]?.life).toBe(965);
+    expect(runBattleRecorded(input)).toEqual(result);
+    const intervening = freezeInput({ ...input, enemyTeam: [{ ...enemy, life: 1001 }] });
+    expect(runBattleRecorded(intervening)).not.toEqual(result);
+    expect(runBattleRecorded(input)).toEqual(result);
+    expect(runBattle(input)).toEqual(result.result);
+    expect(input).toEqual(before);
+  });
+
+  it('promotes a living marker through poison death spread without backdating the rate', () => {
+    const source = unit('source', 'enemy', { life: 2, statuses: [hold,
+      status('poison', { stacks: 2, dotPerStack: 1, expiresAtMs: 1000 })] });
+    const recipient = unit('recipient', 'enemy', { life: 1000, statuses: [hold,
+      status('poison', { stacks: 2, appliedAtMs: 0, expiresAtMs: 10_000 })] });
+    const input = freezeInput({ seed: 7, playerTeam: [unit('hero', 'player')], enemyTeam: [source, recipient] });
+    const before = structuredClone(input), result = runBattleRecorded(input);
+    expect(result.events.flatMap(e => e.kind === 'dot' && e.target === 'source' ? [[e.simClockMs, e.amount]] : []))
+      .toEqual([[1000, 2]]);
+    const recipientDots = result.events.filter(e => e.kind === 'dot' && e.target === 'recipient');
+    expect(recipientDots[0]).toMatchObject({ simClockMs: 1700, amount: 2 });
+    expect(dots(result, 'recipient')).toBe(27);
+    expect(result.result.enemyTeam.find(u => u.id === 'recipient')?.life).toBe(973);
+    expect(result.events.filter(e => e.kind === 'death').map(e => [e.simClockMs, e.target]))
+      .toEqual([[1000, 'source']]);
+    expect(runBattleRecorded(input)).toEqual(result);
+    const intervening = freezeInput({ ...input, enemyTeam: [source, { ...recipient, life: 1001 }] });
+    expect(runBattleRecorded(intervening)).not.toEqual(result);
+    expect(runBattleRecorded(input)).toEqual(result);
+    expect(runBattle(input)).toEqual(result.result);
+    expect(input).toEqual(before);
   });
 
   it('settles exactly 10 damage before a 1000ms expiry preceding every action', () => {

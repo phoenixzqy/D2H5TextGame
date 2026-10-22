@@ -190,13 +190,13 @@ describe('status engine', () => {
     expect(input).toEqual(before);
   });
 
-  it('extends finite legacy burn expiry but preserves an indefinite rate-less record', () => {
+  it('extends finite legacy burn expiry and promotes an indefinite rate-less record', () => {
     const old = { id: 'burn', sourceId: 'old', stacks: 2, remaining: 1 };
     const indefinite = mkUnit({ statuses: [old] });
     const refreshed = applyStatus(indefinite, {
       id: 'ignite', sourceId: 'new', simClockMs: 1700, dotPerStack: 99
     }, createRng(7));
-    expect(refreshed.statuses).toEqual([{ ...old, stacks: 3, remaining: 3 }]);
+    expect(refreshed.statuses).toEqual([{ ...old, stacks: 3, remaining: 3, sourceId: 'new', dotPerStack: 99 }]);
     const finite = { ...old, appliedAtMs: 500, expiresAtMs: 2000, dotPerStack: 2 };
     const extended = applyStatus(mkUnit({ statuses: [finite] }), {
       id: 'ignite', sourceId: 'new', simClockMs: 1700, dotPerStack: 99
@@ -356,5 +356,110 @@ describe('status engine', () => {
     expect(d.total).toBe(4 * 2 + 7);
     expect(d.perStatus.get('poison')).toBe(8);
     expect(d.perStatus.get('ignite')).toBe(7);
+  });
+});
+
+describe('D06 shared active DoT promotion', () => {
+  const invalid = [undefined, 0, -1, NaN, Infinity, -Infinity];
+  const marker = (overrides: Partial<ActiveStatus> = {}): ActiveStatus => ({
+    id: 'poison', sourceId: 'old', stacks: 4, remaining: 1,
+    appliedAtMs: 500, expiresAtMs: 10_000, damageType: 'fire',
+    tags: ['poison'], ...overrides
+  });
+
+  it.each(invalid)('promotes invalid previous rate %s without changing clocks, metadata or RNG', (rate) => {
+    const old = marker({ ...(rate !== undefined ? { dotPerStack: rate } : {}) });
+    const input = mkUnit({ statuses: [old] }), before = structuredClone(input);
+    const random = createRng(7), control = createRng(7);
+    const result = applyStatus(input, {
+      id: 'poison', sourceId: 'new', simClockMs: 1700, dotPerStack: 3, damageType: 'poison'
+    }, random);
+    expect(result.statuses).toEqual([{ ...old, stacks: 5, remaining: 5,
+      dotPerStack: 3, sourceId: 'new', damageType: 'poison' }]);
+    expect(input).toEqual(before);
+    expect(random.next()).toBe(control.next());
+  });
+
+  it.each(invalid)('does not promote or sanitize when incoming rate is %s', (rate) => {
+    for (const previous of [undefined, 0, 0.25]) {
+      const old = marker({ ...(previous !== undefined ? { dotPerStack: previous } : {}) });
+      const random = createRng(7), control = createRng(7);
+      const result = applyStatus(mkUnit({ statuses: [old] }), {
+        id: 'poison', sourceId: 'new', simClockMs: 1700, damageType: 'poison',
+        ...(rate !== undefined ? { dotPerStack: rate } : {})
+      }, random);
+      expect(result.statuses).toEqual([{ ...old, stacks: 5, remaining: 5 }]);
+      expect(random.next()).toBe(control.next());
+    }
+  });
+
+  it.each([0.25, 9])('retains valid first rate %s and its source/type against stronger or weaker hits', (rate) => {
+    const old = marker({ dotPerStack: rate });
+    for (const incoming of [0.125, 99]) {
+      expect(applyStatus(mkUnit({ statuses: [old] }), {
+        id: 'poison', sourceId: 'new', simClockMs: 1700, dotPerStack: incoming, damageType: 'poison'
+      }, createRng(7)).statuses).toEqual([{ ...old, stacks: 5, remaining: 5 }]);
+    }
+  });
+
+  it.each([
+    ['poison', 10, 5], ['plague', 10, 5], ['ignite', 5, 3], ['burn', 5, 3], ['bleed', 1, 3]
+  ] as const)('promotes %s below and at cap without adding a new record', (id, cap, remaining) => {
+    for (const stacks of new Set([Math.max(1, cap - 1), cap])) {
+      const old = marker({ id, stacks });
+      expect(applyStatus(mkUnit({ statuses: [old] }), {
+        id, sourceId: 'new', simClockMs: 1700, dotPerStack: 0.5
+      }, createRng(7)).statuses).toEqual([{ ...old, stacks: cap, remaining,
+        dotPerStack: 0.5, sourceId: 'new' }]);
+    }
+  });
+
+  it.each([undefined, 'fire'] as const)('preserves optional previous type %s when incoming type is absent', (type) => {
+    const old: ActiveStatus = { id: 'poison', sourceId: 'old', stacks: 1, remaining: 1,
+      ...(type !== undefined ? { damageType: type } : {}) };
+    const result = applyStatus(mkUnit({ statuses: [old] }), {
+      id: 'poison', sourceId: 'new', dotPerStack: 0.25
+    }, createRng(7));
+    expect(result.statuses).toEqual([{ ...old, sourceId: 'new', dotPerStack: 0.25, stacks: 2, remaining: 5 }]);
+    expect(Object.hasOwn(result.statuses[0] ?? {}, 'damageType')).toBe(type !== undefined);
+    expect(result.statuses[0]).not.toHaveProperty('appliedAtMs');
+    expect(result.statuses[0]).not.toHaveProperty('expiresAtMs');
+  });
+
+  it.each(['burn', 'ignite'])('promotes only the first mixed fire record when requested as %s', (id) => {
+    const { expiresAtMs: _expiry, ...first } = marker({ id: 'burn', stacks: 5 });
+    const second = marker({ id: 'ignite', dotPerStack: 99 });
+    const other = marker({ id: 'chill' });
+    const input = mkUnit({ statuses: [first, second, other] }), before = structuredClone(input);
+    const result = applyStatus(input, { id, sourceId: 'new', simClockMs: 1700, dotPerStack: 0.5 }, createRng(7));
+    expect(result.statuses).toEqual([{ ...first, sourceId: 'new', dotPerStack: 0.5, remaining: 3 }, second, other]);
+    expect(result.statuses[1]).toBe(second); expect(result.statuses[2]).toBe(other);
+    expect(input).toEqual(before);
+  });
+
+  it('extends shorter expiry during promotion and keeps a longer legacy remaining counter', () => {
+    const old = marker({ expiresAtMs: 2000, remaining: 9 });
+    expect(applyStatus(mkUnit({ statuses: [old] }), {
+      id: 'poison', sourceId: 'new', simClockMs: 1700, dotPerStack: 3
+    }, createRng(7)).statuses).toEqual([{ ...old, stacks: 5, sourceId: 'new', dotPerStack: 3, expiresAtMs: 6700 }]);
+  });
+
+  it.each([[500, 1700], [1800, 3000]])('replaces inactive clocks %s..%s without old stacks or payload', (start, end) => {
+    const old = marker({ appliedAtMs: start, expiresAtMs: end, dotPerStack: 99 });
+    const input = mkUnit({ statuses: [old] }), before = structuredClone(input);
+    expect(applyStatus(input, {
+      id: 'poison', sourceId: 'new', simClockMs: 1700, dotPerStack: 0.5
+    }, createRng(7)).statuses).toEqual([{ id: 'poison', sourceId: 'new', stacks: 1, remaining: 5,
+      appliedAtMs: 1700, expiresAtMs: 6700, dotPerStack: 0.5 }]);
+    expect(input).toEqual(before);
+  });
+
+  it('leaves ordinary non-DoT control payload and RNG unchanged', () => {
+    const old = marker({ id: 'chill', stacks: 1 });
+    const random = createRng(7), control = createRng(7);
+    expect(applyStatus(mkUnit({ statuses: [old] }), {
+      id: 'chill', sourceId: 'new', simClockMs: 1700, damageType: 'poison'
+    }, random).statuses).toEqual([{ ...old, remaining: 2 }]);
+    expect(random.next()).toBe(control.next());
   });
 });

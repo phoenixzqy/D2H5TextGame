@@ -128,7 +128,8 @@ function lookupConfig(id: string, override?: StatusConfig): StatusConfig {
  *  - Non-stackable: refresh duration to the new value.
  *  - Burn/ignite and amplify/amplify-damage share configuration and first-match
  *    identity. Fresh records use canonical IDs; active refresh preserves the
- *    stored id and payload.
+ *    stored id and valid DoT payload. An active marker adopts the first finite
+ *    positive incoming DoT rate/source/type without changing its start clock.
  *  - Boss tiers: configured duration multiplier applies in milliseconds for
  *    timed callers (positive results floor to at least 1ms); legacy remaining
  *    retains whole-turn rounding with minimum 1.
@@ -198,10 +199,18 @@ export function applyStatus(
     // Undefined expiry is indefinite, including legacy combat-entry records.
     const newExpiresAtMs = prev.expiresAtMs === undefined ? undefined
       : expiresAtMs === undefined ? prev.expiresAtMs : Math.max(prev.expiresAtMs, expiresAtMs);
+    const validRate = (rate: number | undefined): boolean =>
+      typeof rate === 'number' && Number.isFinite(rate) && rate > 0;
+    const promoteDot = !validRate(prev.dotPerStack) && validRate(input.dotPerStack);
     const updated: ActiveStatus = {
       ...prev,
       stacks,
       remaining: Math.max(prev.remaining, dur),
+      ...(promoteDot ? {
+        dotPerStack: input.dotPerStack,
+        sourceId: input.sourceId,
+        ...(input.damageType !== undefined ? { damageType: input.damageType } : {})
+      } : {}),
       ...(newExpiresAtMs !== undefined ? { expiresAtMs: newExpiresAtMs } : {})
     };
     next = unit.statuses.map((s, i) => (i === idx ? updated : s));

@@ -8680,3 +8680,67 @@ output requires cleanup. Settled cached whitespace check precedes local commit.
 Next: five-path shared-refresh prerequisite with meaningful RED/BUG-076 before
 patch, exact temporal/alias/payload negatives, engine/full/types/lint/build and
 independent QA/GD/TD/code review. PE itself is still partial/unimplemented.
+
+
+## D06 v1cd — shared damaging-status refresh prerequisite
+
+Accepted contract committed `01d03aa`; its independent GD/TD/design/QA/producer
+approvals and five-document checks are recorded in v1cc. Root owns exactly five
+paths in the existing claim: status.ts, status.test.ts, periodic-timing.test.ts,
+[BUG-076](../../production/bugs/BUG-076-damaging-status-refresh.md) and this ledger.
+Security PASS: pure local status transition, no dependency/network/credential/
+permission/CI/save-format change. PE runtime remains a later increment.
+
+Meaningful RED at the accepted baseline:19failed/76passed in the two focused
+files, including both live HP oracles. Filed BUG-076 before patching runtime.
+The minimal shared active-refresh change promotes invalid-old/valid-incoming
+finite-positive potency/source/optional type, retaining valid prior payload,
+first stored alias, aggregate cap, original start/expiry, metadata and fractional
+carry. No PE branch, scheduler change, immediate/retrospective tick or RNG draw.
+Two obsolete rate-less expectations changed under the accepted D04 qualification.
+
+Final focused95/95 (2.07s; wrapper2.988s), engine3659/91files (19.06s;
+wrapper20.266s), full7902/254files (135.68s; wrapper137.220s), typecheck20.618s,
+lint/purity49.398s and production build/bridge10.079s pass. Changed status
+coverage98.94% lines/statements,94.48% branches,100% functions. Final live
+20direct+15DoT leaves965HP with exact2000:1/3400:4/5100:6/6700:4 events and
+retained0.85 fractional HP; death spread yields27recipientDoT/final973HP.
+Both use deep-frozen A/A/B/A and plain/recorded equality without resets.
+
+QA's initial missing-A/B/A concern was corrected before final validation.
+Initial typecheck found two event-union narrowing errors and explicit undefined
+optional expiry in new tests; corrected only test typings and reran the complete
+final validation. All failed/earlier attempts and their source bytes remain
+retained. Final labels are green-typed, engine-typed, coverage-typed, full-typed,
+types-final, lint and build. Independent QA ADEQUATE and GD/TD/code APPROVE bind
+the final runtime/test sources. Final evidence/publication review follows.
+
+Engine3s/full15s budgets remain exceeded; existing Browserslist, >500kB bundle
+and2.57MB manifest-precache warnings remain open. Production emitted four JS
+chunks with no test bridge; no browser/earned-L18/balance/feel acceptance is
+claimed here. Retained raw/source/coverage/review evidence and exact commands:
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-dot-refresh-_63lf3av`.
+Root removes this evidence after umbrella consumers finish. Exact manifest/hash/
+symlink-checked dist/tmp disposal follows final reader release; shared caches
+remain intact. Staged exact-five-path validation and settled cached whitespace
+check precede local commit. No push/PR/merge/deployment.
+
+Next producer-approved five-path increment: PE authored0.05 metadata, separate
+strict definition/Player projection and literal tests (including an independent
+registered metadata assertion), BUG-076 closure with the actual prerequisite
+SHA and ledger. No separate registry.test edit is needed. The ordinary adapter
+will supply potency immediately; corpse-gated
+selection/payment/native acceptance remain pending. Freeze a production damage
+baseline outside the repository after metadata and before the combat patch.
+Broader Poison/Plague design, Dagger potency, earnedL18, balance/feel and complete
+D06/P09/P10/private-v1 remain open.
+
+Final publication QA ADEQUATE and producer APPROVE confirm the final source,
+receipts and bounded claims. reviews-final.json distinguishes the earlier test
+review from final strict-typing-corrected bytes. All consumers released before
+verified exact dist/tmp cleanup: 857files/42774647bytes/
+14directories; no failures or remaining disposable paths, no task processes.
+Cleanup receipt SHA256 `60625a512b4fb873eb831ddba0b9ec8845905143cb1dae55e0d1976a09bb0c5c`.
+Raw/source/coverage/review evidence remains root-owned at the exact ROOT above
+until umbrella consumers finish. Final doc/staged checks and settled cached
+whitespace validation precede the local commit.
