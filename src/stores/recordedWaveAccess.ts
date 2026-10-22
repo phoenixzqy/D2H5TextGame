@@ -58,7 +58,7 @@ export function assertRecordedWaveNewTransitionAllowed(): void {
 }
 /**
  * Ordinary replay additionally refuses awaiting/terminal settlement, preserving
- * captured carry and preventing payout resets. No production caller uses this yet.
+ * captured carry and preventing payout resets before explicit replay acquires ownership.
  */
 export function assertRecordedWaveReplayAllowed(): void {
   assertWaveSnapshotAllowed();

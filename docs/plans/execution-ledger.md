@@ -5830,3 +5830,61 @@ local commit and exact cleanup follow. Root remains sole writer/executor;
 umbrella claim continues without remote action. Production activation, recovery
 UI, selected-item debit/lock/bilingual acceptance and fullD06/P09/P10/private-v1
 remain open.
+
+
+## D06 v1an production receipt and settlement activation
+
+Resource authority fixture prerequisite committed as `4827cc0` after independent
+QA/TD/five-axis/producer APPROVE. Exact cleanup removed857files/42,728,046bytes/
+14empty directories with zero failures/remaining; all6 command identities absent.
+The suspended four-path production patch was reapplied with every source SHA256
+matching producer-activation-suspended-v2.json and patch SHA256
+64c4e802f0f12f7b3ba4b2453b2f4ac7fcf325f42865e28199c3a1849bf53f6c.
+
+Start, explicit replay and next-wave producers now prepare, exact-revalidate,
+commit no-debit and install their captured recording under the existing lease.
+Pre-staging authority captures run, cursor/recording values, hero, selection and
+ownership. New start stages before replacing the run, rewards or default ordinal.
+Failed precommit revalidation cancels only provably unpaid preparation. Replay
+requires the published production installation and shares logical payout identity;
+foundation/missing-authority fallback is removed. Selection is consumed only by
+accepted new-wave/new-run installations, never replay. All commitments in this
+slice remain no-debit: real selected-item input, payment and replay lock are open.
+
+Completion validates exact recording/run/hero/cursor before effects and latches
+settling before notifying callbacks. Arbitrary completion errors preserve actual
+gains and original thrown identity in stable settlementFailed. Nonterminal success
+captures once-rebased carry in awaitingNextWave; the old cursor/recording remains
+until the new wave commits. Staging retries use captured carry without repeated
+rewards/rebasing. Terminal completion settles once. Real producers now exercise
+captured publication recovery. Recovery UI is still unimplemented.
+
+Receipt tests increased75to103 with real producer/payout identity, ten forged
+completion boundaries, nested settlement refusal, awaiting retry/current config,
+XP before/after-write faults (including arbitrary thrown objects), rebase/clear
+faults, staging preservation, selection/ownership/cursor/recording revalidation,
+selection/publication failure/recovery and terminal idempotence. Quest tests now
+refuse forged metadata/outcome/events/prior recordings before all effects.
+No compatibility fallback, skips or save schema changes; SaveCurrent11 unchanged.
+Security assessment: exact process-local authority, retained actual effects and
+no new external IO/dependencies; no payment or validation bypass.
+
+Historical TDD/fixture/style failures and earlier activation full12failed/7008passed
+119.314s are retained under producer-activation-*; fixture prerequisites resolved
+those failures. Current focused-v3 passed651/18files12.893s (the singular outcome
+filter matched no file); comprehensive focused-v4 passed722/21files15.873s.
+Types-v3 passed14.974s, lint-v3 passed42.199s including85purity, full-v2 passed
+7020/228files115.974s, task-local build-v1 passed9.583s. Build608modules/
+index-1LjgeaQz.js1274.92kB observed. Existing module/bundle variance, related5s/
+full15s overruns, React act/fixture fallback, Browserslist/chunk/precache warnings
+and Chinese screenshot glyph issue remain open. No browser/server, visual,
+earned or paid-Iron acceptance is claimed for this slice.
+
+Five paths, exact validation/source/output identities, prior cleanup and owned
+dist/tmp inventory are frozen in producer-activation-v1an-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review,
+local commit and exact cleanup follow. Root remains sole writer/executor;
+umbrella worktree claim continues without remote action. Recovery UI, real item
+debit/lock, bilingual Iron acceptance and fullD06/P09/P10/private-v1 remain open.

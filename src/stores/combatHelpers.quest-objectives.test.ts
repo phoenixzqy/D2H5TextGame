@@ -15,6 +15,7 @@ import { useMetaStore } from './metaStore';
 import { __resetPersistenceForTests, exportCurrentSave, snapshotStores } from './persistence';
 import { useHydrationStore } from './hydrationStore';
 import { usePlayerStore } from './playerStore';
+import { inspectRecordedWaves, RecordedWaveReceiptError } from './recordedWaveReceipt';
 
 const QUEST = 'quests/act1-sisters-to-the-slaughter';
 const AREA = 'areas/act1-catacombs';
@@ -35,6 +36,13 @@ function track(): void {
   });
 }
 function progress() { return useMapStore.getState().questProgress[QUEST]; }
+function refuseCompletion(): void {
+  const stores = [useCombatStore, usePlayerStore, useInventoryStore, useMercStore, useMapStore, useMetaStore] as const;
+  const before = stores.map(store => store.getState()); const holder = inspectRecordedWaves();
+  expect(advanceWaveOrFinish).toThrow(new RecordedWaveReceiptError('bindingMismatch'));
+  stores.forEach((store, index) => { expect(store.getState()).toBe(before[index]); });
+  expect(inspectRecordedWaves()).toBe(holder);
+}
 function start(area = AREA): number {
   const player = createMockPlayer('BossQuestWiring', 'sorceress');
   usePlayerStore.getState().setPlayer({ ...player, comboOrder: [] });
@@ -117,7 +125,7 @@ describe('qualified current chapter-boss quest settlement', () => {
     'does not emit against mismatched recording metadata %j', mismatch => {
       track(); reachFinal(); drain(); const before = progress();
       useCombatStore.setState(mismatch);
-      expect(advanceWaveOrFinish()).toBe('victory'); // Existing clear policy is unchanged.
+      refuseCompletion();
       expect(progress()).toBe(before);
     });
 
@@ -134,7 +142,7 @@ describe('qualified current chapter-boss quest settlement', () => {
         : kind === 'clone-events' ? { recordedEvents: [...current.recordedEvents] }
         : { outcome: old.outcome, recordedEvents: old.recordedEvents });
       const before = progress();
-      expect(advanceWaveOrFinish()).toBe('victory');
+      refuseCompletion();
       expect(progress()).toBe(before);
     });
 
@@ -156,7 +164,7 @@ describe('qualified current chapter-boss quest settlement', () => {
     expect(final.currentWave).toBe(total); drain();
     useCombatStore.setState({ outcome: first.outcome, recordedEvents: first.recordedEvents });
     const before = progress();
-    expect(advanceWaveOrFinish()).toBe('victory');
+    refuseCompletion();
     expect(progress()).toBe(before);
   });
 

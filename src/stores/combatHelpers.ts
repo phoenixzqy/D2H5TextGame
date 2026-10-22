@@ -27,8 +27,12 @@ import { stageRecordedWave, type StagedRecordedWave } from './recordedWaveStagin
 import { combatRunLifecycle, type ActiveRun } from './combatRunLifecycle';
 import { abandonRecordedWaves, readRecordedWaveInstallation, markRecordedWaveMetadataInstalled,
   observeRecordedWaveSelection, recognizeRecordedWavePublication, RecordedWaveReceiptError,
-  type RecordedWaveReceipt } from './recordedWaveReceipt';
-import { assertRecordedWaveNewTransitionAllowed, assertRecordedWavePublicationRecoveryAllowed } from './recordedWaveAccess';
+  prepareRecordedWaveInstallation, assertPreparedRecordedWaveBinding, cancelPreparedRecordedWave,
+  commitPreparedRecordedWave, inspectRecordedWaves, readRecordedWaveSettlement,
+  beginRecordedWaveSettlement, finishRecordedWaveSettlement, failRecordedWaveSettlement,
+  type RecordedWaveReceipt, type RecordedWaveLive, type RecordedWaveInstallIntent } from './recordedWaveReceipt';
+import { assertRecordedWaveNewTransitionAllowed, assertRecordedWaveReplayAllowed,
+  assertRecordedWavePublicationRecoveryAllowed } from './recordedWaveAccess';
 export { clearCombatAfterRestore } from './combatRunLifecycle';
 import { eventToLocalizedLogEntry } from './eventToLogI18n';
 import { useInventoryStore } from './inventoryStore';
@@ -60,8 +64,9 @@ import { canonicalSkillIdFromData, getSkillRequiredLevel, getSkillsForClass,
   skillIdAliases, type SkillTemplate } from './skillsHelpers';
 
 /** Hold ownership through synchronous callbacks; wake a deferred save after release. */
-function withWaveTransition<T>(operation: (lease: WaveTransitionLease) => T): T {
-  assertRecordedWaveNewTransitionAllowed();
+function withWaveTransition<T>(operation: (lease: WaveTransitionLease) => T, access: 'transition' | 'replay' = 'transition'): T {
+  if (access === 'replay') assertRecordedWaveReplayAllowed();
+  else assertRecordedWaveNewTransitionAllowed();
   const lease = beginWaveTransition(useHydrationStore.getState().status === 'ready');
   try { return operation(lease); } finally {
     if (endWaveTransition(lease)) resumeWaveDeferredSave();
@@ -406,11 +411,11 @@ export function hasActiveSubAreaRun(): boolean {
 
 /**
  * Replay the current wave with latest configuration when explicitly requested.
- * Ordinary changes leave the recording frozen and apply on the next playWave.
+ * Ordinary changes leave the recording frozen and apply on the next accepted wave.
  * Staging errors preserve the prior run, recording and terminal clock.
  * @throws {WaveGuardError} for wave/restore ownership or unready hydration
  * before explicit replay controls or staging; ordinary refresh remains a no-op.
- * @throws {RecordedWaveAccessError} for an unpublished/conflicting receipt, after
+ * @throws {RecordedWaveAccessError} for unpublished/conflicting/settled replay, after
  * primitive ownership checks and before hydration or explicit replay controls.
  */
 export function refreshActivePlayerCombatConfig({
@@ -419,13 +424,16 @@ export function refreshActivePlayerCombatConfig({
   readonly replayCurrentWave?: boolean;
 } = {}): void {
   if (!replayCurrentWave) return;
-  withWaveTransition(() => {
-    if (!combatRunLifecycle.activeRun) return;
+  withWaveTransition(lease => {
+    const run = combatRunLifecycle.activeRun;
+    if (!run) return;
     const combat = useCombatStore.getState();
     if (combat.inCombat) {
-      playWave(combatRunLifecycle.activeRun.waveIdx);
+      requirePublishedRun(run, lease);
+      const attempt = captureWaveAttempt();
+      commitStagedWave(run, stageWave(run, run.waveIdx), { kind: 'replay' }, attempt, lease);
     }
-  });
+  }, 'replay');
 }
 
 /** Reset transient online-idle elite pity when the player stops idle farming. */
@@ -452,10 +460,10 @@ export function resetIdleElitePity(): void {
  * validation precedes any store, active-run or counter mutation.
  * @throws If wave planning, simulation, terminal validation or normalization fails;
  * the previous run, recording, ordinal and rewards remain unchanged.
- * Publisher failures after successful staging still require receipt integration.
+ * Publisher failures retain exact recovery progress/payload, without restaging.
  * @throws {WaveGuardError} for wave/restore ownership or unready hydration, after
  * replay argument validation and before player/no-run controls or other effects.
- * @throws {RecordedWaveAccessError} for an unpublished/conflicting receipt, after
+ * @throws {RecordedWaveAccessError} for unpublished/conflicting/failed settlement, after
  * argument/ownership checks and before hydration, staging or ordinal changes.
  */
 export function startSubAreaRun(opts: {
@@ -475,12 +483,13 @@ export function startSubAreaRun(opts: {
       opts.challengeOrdinal >= CHALLENGE_ORDINAL_PERIOD)) {
     throw new RangeError('challengeOrdinal must be an integer in [0, 360360)');
   }
-  return withWaveTransition(() => {
+  return withWaveTransition(lease => {
     const playerState = usePlayerStore.getState();
     if (!playerState.player) {
       console.warn('[startSubAreaRun] no player; abort');
       return null;
     }
+    const attempt = captureWaveAttempt();
 
     const map = useMapStore.getState();
     const act = clampAct(opts.act ?? map.currentAct);
@@ -545,11 +554,8 @@ export function startSubAreaRun(opts: {
     };
 
     const staged = stageWave(candidate, 0, true);
-    combatRunLifecycle.activeRun = candidate;
-    if (opts.challengeOrdinal === undefined) {
-      manualChallengeOrdinal = (challengeOrdinal + 1) % CHALLENGE_ORDINAL_PERIOD;
-    }
-    installStagedWave(candidate, staged);
+    commitStagedWave(candidate, staged, { kind: 'newRun', nextDefaultChallengeOrdinal:
+      opts.challengeOrdinal === undefined ? (challengeOrdinal + 1) % CHALLENGE_ORDINAL_PERIOD : null }, attempt, lease);
     return { runId: plan.subAreaId, totalWaves: plan.waves.length, runSeed: seed, challengeOrdinal };
   });
 }
@@ -557,7 +563,8 @@ export function startSubAreaRun(opts: {
 /**
  * Advance to the next wave (if any) or finish the run. Intended to be
  * invoked by the UI once `playbackComplete === true` for the current
- * wave's recorded battle. Idempotent.
+ * wave's recorded battle. Completion settles once; next-wave staging may retry
+ * using captured carry without repeating effects or rebasing.
  *
  * @returns the new state after the call:
  *   - `'next-wave'` — a new wave's recorded battle has been installed.
@@ -566,94 +573,114 @@ export function startSubAreaRun(opts: {
  *   - `'idle'`      — no active run or current playback is incomplete.
  * @throws {WaveGuardError} for wave/restore ownership or unready hydration before
  * no-run/playback controls and every completion effect.
- * @throws {RecordedWaveAccessError} for an unpublished/conflicting receipt, after
+ * @throws {RecordedWaveAccessError} for unpublished/conflicting/failed settlement, after
  * primitive ownership checks and before hydration or any completion effect.
+ * @throws {RecordedWaveReceiptError} for missing or mismatched published authority.
+ * Completion-effect errors retain actual gains and enter stable settlementFailed;
+ * staging/publication errors retain awaiting carry or committed publication.
  */
 export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idle' {
-  return withWaveTransition(() => {
-    if (!combatRunLifecycle.activeRun) return 'idle';
-    const combat = useCombatStore.getState();
-    const outcome = combat.outcome;
-
-    if (!outcome || !combat.playbackComplete) return 'idle';
-
-    const completedWave = combatRunLifecycle.activeRun.plan.waves[combatRunLifecycle.activeRun.waveIdx];
-    if (
-      combatRunLifecycle.activeRun.mode === 'idle' &&
-      completedWave?.presentation?.idleEliteMissesAfterWave !== undefined
-    ) {
-      setIdleEliteMisses(completedWave.presentation.idleEliteMissesAfterWave);
-    }
-
-    const alivePlayer = outcome.finalPlayerTeam.find(
-      (u) => u.id === combatRunLifecycle.activeRun?.playerUnit.id && u.life > 0
-    );
-    if (outcome.winner !== 'player' || !alivePlayer) {
-      combat.markRunDefeat();
-      combatRunLifecycle.activeRun = null;
-      return 'defeat';
-    }
-
-    const slain = outcome.finalEnemyTeam.filter(
-      (u) => u.life <= 0 && inferKind(u) !== 'summon'
-    );
-    if (slain.length > 0) {
-      const now = Date.now();
-      const multiplier = useMetaStore.getState().readIdleBonus(now).activeMultiplier;
-      let xpGained = 0;
-      for (const enemy of slain) xpGained += Math.floor(xpForKill(enemy.level) * multiplier);
-      if (xpGained > 0) {
-        const xpResult = usePlayerStore.getState().gainExperience(xpGained);
-        useMercStore.getState().shareExperienceWithFielded(xpGained);
-        if (xpResult.levelsGained > 0) {
-          combat.addLogEntry({
-            type: 'system',
-            actorId: 'system',
-            actorName: 'System',
-            message: `combat:levelUp:${String(xpResult.newLevel)}`
-          });
+  return withWaveTransition(lease => {
+    const run = combatRunLifecycle.activeRun;
+    if (!run) return 'idle';
+    const { receipt, binding, progress } = requirePublishedRun(run, lease);
+    let next: { readonly nextWaveIdx: number; readonly carryPlayerTeam: CombatUnit[] };
+    if (progress.phase === 'awaitingNextWave') {
+      next = progress;
+    } else {
+      const combat = useCombatStore.getState();
+      if (!beginRecordedWaveSettlement(receipt, lease, { activeRun: run,
+        heroId: usePlayerStore.getState().player?.id ?? null, combat })) return 'idle';
+      const outcome = binding.recording.outcome;
+      try {
+        const completedWave = run.plan.waves[binding.targetWaveIdx];
+        if (
+          run.mode === 'idle' &&
+          completedWave?.presentation?.idleEliteMissesAfterWave !== undefined
+        ) {
+          setIdleEliteMisses(completedWave.presentation.idleEliteMissesAfterWave);
         }
-      }
 
-      const wave = combatRunLifecycle.activeRun.plan.waves[combatRunLifecycle.activeRun.waveIdx];
-      const tcId = wave?.lootTable ?? combatRunLifecycle.activeRun.plan.defaultLootTable;
-      const rewards = awardLootForVictory({
-        slainEnemies: slain,
-        act: combatRunLifecycle.activeRun.act,
-        treasureClassId: tcId,
-        seed: combatRunLifecycle.activeRun.seed ^ 0x9e3779b1 ^ combatRunLifecycle.activeRun.waveIdx,
-        magicFindMultiplier: multiplier
-      });
-      combat.accumulateRunRewards(rewards);
-    }
+        const alivePlayer = outcome.finalPlayerTeam.find(
+          (u) => u.id === binding.heroId && u.life > 0
+        );
+        if (outcome.winner !== 'player' || !alivePlayer) {
+          combat.markRunDefeat();
+          finishRecordedWaveSettlement(receipt, lease, { kind: 'terminal', result: 'defeat' });
+          combatRunLifecycle.activeRun = null;
+          return 'defeat';
+        }
 
-    const nextIdx = combatRunLifecycle.activeRun.waveIdx + 1;
-    if (nextIdx >= combatRunLifecycle.activeRun.plan.waves.length) {
-      const recording = combatRunLifecycle.activeRun.recording;
-      const boss = recording?.chapterBoss;
-      if (boss && outcome === recording.outcome && combat.recordedEvents === recording.events &&
-        combat.subAreaRunId === combatRunLifecycle.activeRun.plan.subAreaId &&
-        combat.currentWave === combatRunLifecycle.activeRun.waveIdx + 1 && combat.totalWaves === combatRunLifecycle.activeRun.plan.waves.length &&
-        outcome.finalEnemyTeam.some(enemy => enemy.id === boss.unitId && enemy.side === 'enemy' &&
-          enemy.kind === 'monster' && enemy.tier === 'chapter-boss' && enemy.life <= 0)) {
-        useMapStore.getState().recordBossKill({
-          actId: `acts/act${String(combatRunLifecycle.activeRun.act)}`,
-          areaId: combatRunLifecycle.activeRun.plan.subAreaId,
-          bossArchetypeId: boss.archetypeId
-        });
+        const slain = outcome.finalEnemyTeam.filter(
+          (u) => u.life <= 0 && inferKind(u) !== 'summon'
+        );
+        if (slain.length > 0) {
+          const now = Date.now();
+          const multiplier = useMetaStore.getState().readIdleBonus(now).activeMultiplier;
+          let xpGained = 0;
+          for (const enemy of slain) xpGained += Math.floor(xpForKill(enemy.level) * multiplier);
+          if (xpGained > 0) {
+            const xpResult = usePlayerStore.getState().gainExperience(xpGained);
+            useMercStore.getState().shareExperienceWithFielded(xpGained);
+            if (xpResult.levelsGained > 0) {
+              combat.addLogEntry({
+                type: 'system',
+                actorId: 'system',
+                actorName: 'System',
+                message: `combat:levelUp:${String(xpResult.newLevel)}`
+              });
+            }
+          }
+
+          const wave = run.plan.waves[binding.targetWaveIdx];
+          const tcId = wave?.lootTable ?? run.plan.defaultLootTable;
+          const rewards = awardLootForVictory({
+            slainEnemies: slain,
+            act: run.act,
+            treasureClassId: tcId,
+            seed: run.seed ^ 0x9e3779b1 ^ binding.targetWaveIdx,
+            magicFindMultiplier: multiplier
+          });
+          combat.accumulateRunRewards(rewards);
+        }
+
+        const nextIdx = binding.targetWaveIdx + 1;
+        if (nextIdx >= run.plan.waves.length) {
+          const recording = binding.recording;
+          const boss = recording.chapterBoss;
+          if (boss && outcome === recording.outcome && combat.recordedEvents === recording.events &&
+            combat.subAreaRunId === run.plan.subAreaId &&
+            combat.currentWave === binding.targetWaveIdx + 1 && combat.totalWaves === run.plan.waves.length &&
+            outcome.finalEnemyTeam.some(enemy => enemy.id === boss.unitId && enemy.side === 'enemy' &&
+              enemy.kind === 'monster' && enemy.tier === 'chapter-boss' && enemy.life <= 0)) {
+            useMapStore.getState().recordBossKill({
+              actId: `acts/act${String(run.act)}`,
+              areaId: run.plan.subAreaId,
+              bossArchetypeId: boss.archetypeId
+            });
+          }
+          // Only a complete sequence of won waves can clear an area or unlock idle.
+          useMapStore.getState().markCleared(run.plan.subAreaId);
+          combat.markRunVictory();
+          finishRecordedWaveSettlement(receipt, lease, { kind: 'terminal', result: 'victory' });
+          combatRunLifecycle.activeRun = null;
+          return 'victory';
+        }
+        const carryPlayerTeam = outcome.finalPlayerTeam
+          .filter(u => inferKind(u) !== 'summon' && u.life > 0)
+          .map(u => rebaseStatusClock(u, binding.waveElapsedMs));
+        finishRecordedWaveSettlement(receipt, lease, { kind: 'nextWave', carryPlayerTeam });
+        next = { nextWaveIdx: binding.targetWaveIdx + 1, carryPlayerTeam };
+      } catch (error) {
+        failRecordedWaveSettlement(receipt, lease, { error });
+        throw error;
       }
-      // Only a complete sequence of won waves can clear an area or unlock idle.
-      useMapStore.getState().markCleared(combatRunLifecycle.activeRun.plan.subAreaId);
-      combat.markRunVictory();
-      combatRunLifecycle.activeRun = null;
-      return 'victory';
     }
-    const elapsedMs = combatRunLifecycle.activeRun.waveElapsedMs;
-    combatRunLifecycle.activeRun.carryPlayerTeam = outcome.finalPlayerTeam
-      .filter(u => inferKind(u) !== 'summon' && u.life > 0)
-      .map(u => rebaseStatusClock(u, elapsedMs));
-    combatRunLifecycle.activeRun.waveIdx = nextIdx;
-    playWave(nextIdx);
+    // Staging/publication failures retain awaiting carry or committed publication;
+    // they must never turn a successfully paid wave into settlementFailed.
+    const attempt = captureWaveAttempt();
+    const staged = stageWave(run, next.nextWaveIdx, false, next.carryPlayerTeam);
+    commitStagedWave(run, staged, { kind: 'newWave', carryPlayerTeam: next.carryPlayerTeam }, attempt, lease);
     return 'next-wave';
   });
 }
@@ -669,19 +696,9 @@ export function abortSubAreaRun(): void {
   clearIronGolemSelection();
 }
 
-/**
- * Internal: build & install the recorded battle for the given wave index
- * in the active run. Intentionally isolated so {@link startSubAreaRun}
- * and {@link advanceWaveOrFinish} share one code path.
- */
-function playWave(waveIdx: number): void {
-  if (!combatRunLifecycle.activeRun) return;
-  const run = combatRunLifecycle.activeRun;
-  installStagedWave(run, stageWave(run, waveIdx));
-}
-
 /** Build the whole recording before changing any run metadata or combat state. */
-function stageWave(run: ActiveRun, waveIdx: number, resetRunRewards = false): StagedRecordedWave {
+function stageWave(run: ActiveRun, waveIdx: number, resetRunRewards = false,
+  carryPlayerTeam = run.carryPlayerTeam): StagedRecordedWave {
   const wave = run.plan.waves[waveIdx];
   if (!wave) throw new Error('Wave index does not exist in run plan');
   const combat = useCombatStore.getState();
@@ -708,7 +725,7 @@ function stageWave(run: ActiveRun, waveIdx: number, resetRunRewards = false): St
     ? composeMeditationAura(currentPlayer, fresh.manaRegenPerSecond ?? 0, run.fieldedMercCombatId) : undefined;
   const skeletonMastery = currentPlayer?.id === run.playerUnit.id
     ? composeSkeletonMastery(currentPlayer) : undefined;
-  const playerTeam = run.carryPlayerTeam.map(unit => {
+  const playerTeam = carryPlayerTeam.map(unit => {
     if (!fresh || unit.id !== fresh.id) return unit;
     const mana = Math.min(unit.mana, fresh.stats.manaMax);
     const capped = mana >= fresh.stats.manaMax;
@@ -751,12 +768,66 @@ function stageWave(run: ActiveRun, waveIdx: number, resetRunRewards = false): St
   });
 }
 
-/** Install captured run metadata once, then publish the complete captured value once. */
-function installStagedWave(run: ActiveRun, staged: StagedRecordedWave): void {
-  run.waveIdx = staged.waveIdx;
-  run.waveElapsedMs = staged.elapsedMs;
-  run.recording = staged.recording;
-  useCombatStore.getState().publishStagedRecordedBattle(staged.publication);
+/** Preserve cursor/recording values even if the referenced run changes during staging. */
+interface WaveAttempt extends RecordedWaveLive {
+  readonly waveIdx: number | null;
+  readonly recording: ActiveRun['recording'];
+}
+/** Read exact operation-boundary references before staging, and again before commitment. */
+function captureWaveAttempt(): WaveAttempt {
+  const inventory = useInventoryStore.getState();
+  const run = combatRunLifecycle.activeRun;
+  return { activeRun: run, waveIdx: run?.waveIdx ?? null, recording: run?.recording,
+    heroId: usePlayerStore.getState().player?.id ?? null,
+    selection: useIronGolemSelectionStore.getState().selection,
+    ownership: { backpack: inventory.backpack, stash: inventory.stash, equipped: inventory.equipped,
+      mercEquipment: useMercStore.getState().mercEquipment } };
+}
+
+/** Active production runs require exact published installation authority, without fallback. */
+function requirePublishedRun(run: ActiveRun, lease: WaveTransitionLease) {
+  const current = inspectRecordedWaves().currentPublished;
+  if (!current) throw new RecordedWaveReceiptError('bindingMismatch');
+  const settlement = readRecordedWaveSettlement(current.receipt, lease);
+  const { binding } = settlement;
+  if (binding.candidateRun !== run || binding.heroId !== usePlayerStore.getState().player?.id ||
+    run.playerUnit.id !== binding.heroId || run.waveIdx !== binding.targetWaveIdx || run.recording !== binding.recording) {
+    throw new RecordedWaveReceiptError('bindingMismatch');
+  }
+  return { receipt: current.receipt, ...settlement };
+}
+
+function validateCapturedOrdinal(ordinal: number | null): void {
+  if (ordinal !== null && (!Number.isInteger(ordinal) || ordinal < 0 || ordinal >= CHALLENGE_ORDINAL_PERIOD)) {
+    throw new RangeError('nextDefaultChallengeOrdinal must be an integer in [0, 360360)');
+  }
+}
+
+/** Prepare and exact-revalidate before committing a no-debit attempt under the existing lease. */
+function commitStagedWave(run: ActiveRun, staged: StagedRecordedWave, intent: RecordedWaveInstallIntent,
+  attempt: WaveAttempt, lease: WaveTransitionLease): void {
+  if (intent.kind === 'newRun') validateCapturedOrdinal(intent.nextDefaultChallengeOrdinal);
+  const receipt = prepareRecordedWaveInstallation({ candidateRun: run, expectedActiveRun: attempt.activeRun,
+    heroId: run.playerUnit.id, targetWaveIdx: staged.waveIdx, waveElapsedMs: staged.elapsedMs,
+    selection: attempt.selection, ownership: attempt.ownership, debitIntent: null,
+    engineInput: staged.engineInput, attestation: staged.attestation,
+    recording: staged.recording, publication: staged.publication }, intent, lease);
+  const live = captureWaveAttempt();
+  try {
+    if (live.waveIdx !== attempt.waveIdx || live.recording !== attempt.recording) {
+      throw new RecordedWaveReceiptError('bindingMismatch');
+    }
+    assertPreparedRecordedWaveBinding(receipt, lease, live);
+  }
+  catch (error) {
+    // No setter has run: the exact captured preparation is provably unpaid.
+    cancelPreparedRecordedWave(receipt, lease, attempt.ownership);
+    throw error;
+  }
+  if (commitPreparedRecordedWave(receipt, lease, live) !== 'committedPendingPublication') {
+    throw new RecordedWaveReceiptError('bindingMismatch');
+  }
+  installCapturedRecordedWave(receipt, lease);
 }
 
 /** Install only the committed captured payload; never stage, debit or pay rewards. */
@@ -764,11 +835,7 @@ function installCapturedRecordedWave(receipt: RecordedWaveReceipt, lease: WaveTr
   const view = readRecordedWaveInstallation(receipt, lease);
   const { binding, intent } = view;
   // Counter policy remains local to helpers, including retained recovery input.
-  if (intent.kind === 'newRun' && intent.nextDefaultChallengeOrdinal !== null &&
-    (!Number.isInteger(intent.nextDefaultChallengeOrdinal) || intent.nextDefaultChallengeOrdinal < 0 ||
-      intent.nextDefaultChallengeOrdinal >= CHALLENGE_ORDINAL_PERIOD)) {
-    throw new RangeError('nextDefaultChallengeOrdinal must be an integer in [0, 360360)');
-  }
+  if (intent.kind === 'newRun') validateCapturedOrdinal(intent.nextDefaultChallengeOrdinal);
   if (!view.metadataInstalled) {
     const run = binding.candidateRun;
     combatRunLifecycle.activeRun = run;
@@ -805,8 +872,8 @@ function installCapturedRecordedWave(receipt: RecordedWaveReceipt, lease: WaveTr
 
 /**
  * Recover exactly one retained committed installation without simulation, item
- * payment, reward settlement or ordinal increments. No production producer creates
- * installation receipts yet. Foundation-only, stale and wrong-phase tokens refuse.
+ * payment, reward settlement or ordinal increments. Foundation-only, stale and
+ * wrong-phase tokens refuse.
  * @throws {WaveGuardError} for primitive ownership or unready hydration first.
  * @throws {RecordedWaveReceiptError} for token/phase/installation mismatch.
  * @throws {RangeError} for invalid retained ordinal before any installation change.
