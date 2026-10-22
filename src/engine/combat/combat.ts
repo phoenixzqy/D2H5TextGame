@@ -48,6 +48,7 @@ import { getSkill } from '../skills/registry';
 import { buildSummon, getSummon } from '../skills/summons';
 import { isPreparationSummonSkill, SUMMON_PREPARATION_TEMPLATES } from '../skills/summon-preparation';
 import { empowerSkeletonSummon, type SkeletonMasteryProjection } from '../skills/skeleton-mastery';
+import { empowerGolemSummon, type GolemMasteryProjection } from '../skills/golem-mastery';
 import { SKELETAL_MAGE_DEFINITION, type SkeletalMageElement } from '../skills/skeletal-mage';
 import { IRON_GOLEM_SKILL_ID, isIronGolemSkill, qualifyIronGolemSource, applyIronGolemItemStats,
   type IronGolemInput, type IronGolemPreparationAttestation } from '../skills/iron-golem';
@@ -123,6 +124,8 @@ export interface CombatSnapshot {
   readonly meditationAura?: MeditationAuraProjection;
   /** Eligible player Mastery copied at wave entry; applies only at fresh summon creation. */
   readonly skeletonMastery?: SkeletonMasteryProjection;
+  /** Copied authoritative Golem Mastery for fresh summons in this wave. */
+  readonly golemMastery?: GolemMasteryProjection;
   /** Explicit isolated item bonuses for a selected-item Iron startup attempt. */
   readonly ironGolem?: IronGolemInput;
 }
@@ -147,6 +150,7 @@ interface State {
   readonly mightAura?: MightAuraProjection;
   readonly meditationAura?: MeditationAuraProjection;
   readonly skeletonMastery?: SkeletonMasteryProjection;
+  readonly golemMastery?: GolemMasteryProjection;
   units: Map<string, CombatUnit>;
   events: BattleEvent[];
   /** parallel array: simClockMs at the moment events[i] was emitted. */
@@ -796,8 +800,9 @@ function applyEffect(
         console.warn(`[combat] unknown summonId: ${effect.summonId}`);
         return;
       }
-      const empowered = empowerSkeletonSummon(state.skeletonMastery, owner, template);
-      registerSpawnedSummon(state, owner, effect.summonId, empowered);
+      const empowered = empowerGolemSummon(state.golemMastery, owner,
+        empowerSkeletonSummon(state.skeletonMastery, owner, template));
+      if (empowered) registerSpawnedSummon(state, owner, effect.summonId, empowered);
       break;
     }
     case 'heal': {
@@ -1102,8 +1107,9 @@ function prepareSummons(state: State, owner: CombatUnit, skill: RegisteredSkill)
   for (let i = 0; i < missing; i++) {
     const template = buildSummon(owner, effect.summonId, { skillLevel: rank, statScaling: effect.statScaling });
     if (!template) return;
-    const candidate = empowerSkeletonSummon(state.skeletonMastery, owner, template);
-    if (!validPreparationCandidate(candidate)) return;
+    const candidate = empowerGolemSummon(state.golemMastery, owner,
+      empowerSkeletonSummon(state.skeletonMastery, owner, template));
+    if (!candidate || !validPreparationCandidate(candidate)) return;
     candidates.push(candidate);
   }
   let templates = state.preparationTemplates.get(owner.id);
@@ -1155,8 +1161,8 @@ function prepareIronGolem(state: State, owner: CombatUnit, skill: RegisteredSkil
   if (!template) return;
   const stats = applyIronGolemItemStats(template.stats, input);
   if (!stats) return;
-  const candidate = { ...template, stats, life: stats.lifeMax };
-  if (!validPreparationCandidate(candidate)) return;
+  const candidate = empowerGolemSummon(state.golemMastery, owner, { ...template, stats, life: stats.lifeMax });
+  if (!candidate || !validPreparationCandidate(candidate)) return;
   const spawned = castSkill(state, owner.id, skill, { summonId: 'iron_golem', units: [candidate], skillLevel: rank })?.[0];
   if (spawned) state.ironGolemPreparation = Object.freeze({ sourceHeroId: owner.id, sourceItemId: input.sourceItemId,
     skillId: IRON_GOLEM_SKILL_ID, spawnedUnitId: spawned.id, paidMp: cost });
@@ -1352,8 +1358,12 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   const aura = snapshot.mightAura;
   const meditation = snapshot.meditationAura;
   const mastery = snapshot.skeletonMastery;
+  const golemMastery = snapshot.golemMastery;
   const iron = snapshot.ironGolem;
   const state: State = {
+    ...(golemMastery ? { golemMastery: Object.freeze({ sourceHeroId: golemMastery.sourceHeroId,
+      rank: golemMastery.rank, maxRank: golemMastery.maxRank, golemLifePct: golemMastery.golemLifePct,
+      golemAttackSpeed: golemMastery.golemAttackSpeed }) } : {}),
     ...(iron ? { ironGolem: Object.freeze({ sourceHeroId: iron.sourceHeroId, sourceItemId: iron.sourceItemId,
       life: iron.life, attack: iron.attack, defense: iron.defense }) } : {}),
     ...(meditation ? { meditationAura: Object.freeze({ selectedAuraId: meditation.selectedAuraId,

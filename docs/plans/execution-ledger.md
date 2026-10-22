@@ -7926,3 +7926,63 @@ all readers released including dist/tmp, no reviewer artifacts/processes.
 Approval-only ledger append; other four paths unchanged. Balance CONCERNS, full
 Mage/D06/P09/P10/private-v1, existing budgets/build warnings remain open. Producer
 publication audit, staged whitespace gate, local commit and exact cleanup follow.
+
+
+## D06 v1bp — Golem Mastery engine support
+
+Mixed audit committed locally as 1d3dcbc; exact cleanup c8f3f1df19828e7b10ef70579446c012a82207bd2a02ef7e5429bc36f382d5aa
+removed 1308 files/43855246 bytes/15 directories, no failures or remaining targets;
+both checkouts clean. Original audit evidence remains retained.
+
+Producer plan-review ready; GD-DESIGN-REVIEW/TD-ARCH-REVIEW and QA-GOLEM-MASTERY-PLAN
+APPROVE v2 0d9143d5178c91dda5534727f18af15be6c0bca90526d3b8c03e416400b73c37.
+Root sole writer/executor in the existing claimed worktree; original read-only.
+Security check PASS: deterministic local JSON-derived engine code, no network,
+dependency, credential, permission, data, schema, save-version or remote change.
+Split to preserve engine-test purity: this four-path engine increment (module,
+engine test, combat integration, ledger), then three-path native wave integration
+(combatHelpers, native store test, ledger). Player-facing preview follows separately.
+
+Authored passive gives +6% golem life and +1 flat Attack Speed per allocated rank,
+cap20. Definition copies immutable validated JSON primitives and direct Clay cap.
+Composer requires actual Necromancer, integral level>=12 and allocated exact Clay
+prerequisite; exact authored/canonical Mastery aliases use MAX once, capped20,
+with no default/gear/combo fallback. Per-wave copied projection binds one living
+player hero; apply once only to fresh Clay/Blood/Iron/Fire. Order: summon rank
+scaling, Iron isolated item inheritance, then Mastery life multiplier and AS. No
+Attack/Defense bonus, rounding, passive action, MP, cooldown or slot charge.
+Preloaded/damaged summons are not retrofitted or refilled. Nonfinite transformed
+candidates refuse production preparation before payment/registration.
+
+Actual initial behavioral RED: four golem life assertions failed against unchanged
+engine (not missing-module failure). Separate API RED retained for missing helper.
+Definition GREEN then runtime GREEN; first engine regression 3459 tests/89 files
+passed19.289s, exceeding existing3s budget. Expanded focused suite now53 passes,
+including real cadence boundaries, rank6 Iron+item ordering, complete preloads,
+no-item/poor/terminal controls, death/refund authority, generic fresh effects,
+overflow, owner/nonrecipient exclusions, immutable wave copy and deterministic
+plain/recorded parity. One fixture incorrectly omitted normal grid placement;
+retained focused2 failure showed only added gridPosition, fixed by giving preload
+an explicit position. Typecheck1 exposed tuple/optional-property typing and
+missing authored classification fields in the local validated type; corrected
+without weakening checks, typecheck2 passes. Final exact-source validation and
+independent reviews follow. No native wave/UI/full Golem/balance/global acceptance
+yet. Existing full-unit/engine budgets, build warnings and broader D06/P09/P10/
+private-v1 remain open. No new Mage audit or remote publication.
+
+Final unchanged-core validation settled: focused53, engine3480/89 files19.649s,
+full-unit7628/248 files126.94s (wrapper128.684s), typecheck17.880s, lint44.619s
+including engine-purity89, production build10.133s all PASS. Existing engine3s/
+full-unit15s budgets exceeded; no waiver. Build retains stale Browserslist,
+>500kB chunk and2.57MB manifest precache warnings. Source QA APPROVE/evidence
+ADEQUATE and TD/five-axis APPROVE cover the exact three core hashes; final frozen
+evidence review follows. Native integration and full Golem acceptance remain open.
+
+Final independent QA-D06-GOLEM-ENGINE APPROVE/test evidence ADEQUATE and
+TD-ARCH-REVIEW/five-axis APPROVE. Verified review d9f4f97f460f0b1114941d86040526b14ccfdc602bb76f13e47c93e580c8e98e,
+support0d9a85dd946698d2f73c2a78a6809ad99dce2a476b7ede2f573293e801fdb779,
+190 retained files/15 settled serial receipts/150 captures/current core bindings.
+Exact disposal1298 files/43857135 bytes/14 directories verified, readers released
+including dist/tmp; no reviewer artifacts/processes. Approval-only append; other
+three paths unchanged. Producer publication audit, staged whitespace gate, local
+commit and exact cleanup follow. Broader acceptance gaps and warnings remain open.
