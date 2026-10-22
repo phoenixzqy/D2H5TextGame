@@ -8453,3 +8453,70 @@ unchanged application/test/locale bindings. Exact disposal1300files/43868030byte
 artifacts or processes. Approval-only ledger append; four application/test/locale
 paths unchanged. Staged audit, settled cached whitespace check, local commit and
 exact cleanup follow. Production browser and broader acceptance remain open.
+
+
+## D06 v1bz — finite Corpse Explosion production browser acceptance
+
+Skills prerequisite committed6eb41de. Prior cleanup
+7e19f29901337c0e0f98f77d8ffc1f8c7e88af0dd4433dab9fa3f428121d4ac1
+removed1300files/43868030bytes/14directories, no remaining paths/failures.
+Prior source/raw/failure/review records remain root-owned for umbrella consumers.
+
+Root owns four paths: dedicated production browser config/spec,
+evidence/d06-corpse-explosion-ui.md and this ledger. No product/runtime source,
+dependency, network, permission, data or save-format change. Security PASS for
+bounded local native acceptance; imported L6/Teeth1/two points/gear/resources are
+explicitly unearned scaffolding. Producer concrete preflight ready. Existing
+isolated worktree and root-only writer/executor retained.
+
+Four cases (en/zh-CN × desktop1280×800/Pixel5 mobile360×640) PASS on exact external
+production bytes with VITE_E2E absent and all4 JS chunks free of test bridges.
+Native keyboard CE1→2 allocation preserves exact Player deltas and paused combat
+DOM; combo places CE before Teeth. Read-only DOM timelines prove first Teeth,
+death→available1→CE with survivors→silent108→88MP debit→consumed0→outgoing74 fire.
+Each has57frames, cast51/debit52, no512-frame overflow; native1x cast arrives
+7.239–7.291s. Date fixed only; inferred module ordinal history is disclosed.
+Exact whole save survives Save/Saved/close/newpage/Continue. Fresh ordinal0 wave
+has Teeth/no CE/no corpse/death feedback and every monster alive with positiveHP.
+
+Browser4/4, zero retries/skips/flaky/unexpected/report errors,82.660s report/
+84.048s wrapper; all console arrays empty. Twenty layout samples cover9sizes
+in both desktop locales plus360×640 mobile,14px prose, >=80×48 changed controls,
+clear9-point hit grids/no horizontal overflow.24 original PNGs retained; root
+inspected6 representative originals. Existing navigation glyph boxes remain;
+offscreen mobile combat log/enemy claims rely on DOM telemetry. No physical-device,
+full accessibility, earned progression/affordability/balance/feel acceptance.
+
+Two failed first-case attempts (3notrun each) and snapshots retained: initial
+navigation snapshot read before route mount; explicit visible-log wait fixes
+readiness while preserving equality. Next timeout was uppercase Fire matcher
+against actual lowercase fire. Full timeline already proved the chain within
+7.432s; root corrected an initially misleading final-frame/later-wave diagnosis.
+Proposed longer timeout was reverted before execution; final original30s poll/
+90s test, fixture, seed, playback and core oracles unchanged.
+
+Final unchanged test bytes PASS: full7874/254files142.30s(wrapper143.842),
+types19.592s, lint47.805s/purity91, external production build/bridge scan9.931s.
+No engine edit; full includes existing engine baseline. Existing engine3s/full15s
+budgets and Browserslist/chunk/precache warnings remain open. GD/TD/five-axis
+source/execution APPROVE; QA source ADEQUATE/APPROVE. Frozen execution/evidence
+and staged publication audit follow. Bounded evidence document links the
+engine/native/Skills prerequisites and complete reproduction/limitations.
+Evidence root:
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-corpse-browser-qylaye9r`.
+Root retains source/raw/failure/review/screenshots until umbrella consumers finish;
+exact dist/tmp cleanup follows reader release. Next approved five-doc status
+reconciliation, then bounded earned Necromancer-to-CE pilot. Remaining
+D06/P09/P10/private-v1 and owner/fresh-player feel assessment remain open.
+
+
+Final independent QA EXECUTION/EVIDENCE ADEQUATE/APPROVE and producer ready.
+Reviewe0e5b0cbc7478e587aef522af558ae503a9310668a851ec84f9b45180d0b9ddf
+verified218 retained files/159 source captures/11 settled serial receipts and
+unchanged final config/spec bindings. Raw attachments independently match all24
+original PNGs,20 layouts and four57-frame event/payment/save/fresh controls.
+Exact disposal1308files/44063417bytes/19directories verified; all readers released
+including dist/tmp, no reviewer artifacts or processes. Approval-only ledger
+append; config/spec/evidence bytes unchanged. Staged publication audit, successful
+cached whitespace check, local commit and exact cleanup follow. Earned/feel/balance,
+remaining D06/P09/P10/private-v1 remain open.
