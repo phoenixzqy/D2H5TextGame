@@ -98,6 +98,41 @@ interface ReceiptHolder {
   readonly pending: ReceiptView | null;
 }
 let holder: ReceiptHolder = Object.freeze({ currentPublished: null, pending: null });
+const observers = new Map<symbol, () => void>();
+let notificationScheduled = false;
+
+function replaceHolder(next: ReceiptHolder): void {
+  holder = Object.freeze(next);
+  if (notificationScheduled) return;
+  notificationScheduled = true;
+  queueMicrotask(() => {
+    notificationScheduled = false;
+    // New registrations during delivery wait for a subsequent notification.
+    for (const [token, listener] of [...observers]) {
+      if (!observers.has(token)) continue;
+      try { listener(); } catch (error) {
+        // Observation cannot replace a synchronous transition's result or failure.
+        console.error('Recorded wave observer failed', error);
+      }
+    }
+  });
+}
+
+/**
+ * External-store subscription paired with inspectRecordedWaves. Coalesce holder
+ * replacements until after the current synchronous stack; callbacks must reread
+ * the latest immutable snapshot. An asynchronous restore may still own its guard.
+ * Each registration is independent, including duplicate callbacks. Unsubscribe
+ * before delivery suppresses that registration. Callback errors are reported to
+ * console.error and do not stop peers or alter synchronous transition semantics.
+ * No immediate notification, polling or copy of receipt authority is introduced.
+ */
+export function subscribeRecordedWaves(listener: () => void): () => void {
+  const token = Symbol('recordedWaveObserver');
+  observers.set(token, listener);
+  return () => { observers.delete(token); };
+}
+
 /** Stable refusal; invalid lease errors remain WaveGuardError and take precedence. */
 export class RecordedWaveReceiptError extends Error {
   constructor(readonly code: 'staleReceipt' | 'wrongPhase' | 'pendingReceipt' | 'bindingMismatch') {
@@ -122,7 +157,7 @@ function authorityMatches(binding: CapturedBinding, live: RecordedWaveLive): boo
     live.selection === binding.selection;
 }
 function updatePending(pending: ReceiptView): void {
-  holder = Object.freeze({ currentPublished: holder.currentPublished, pending: Object.freeze(pending) });
+  replaceHolder({ currentPublished: holder.currentPublished, pending: Object.freeze(pending) });
 }
 
 /**
@@ -266,7 +301,7 @@ export function cancelPreparedRecordedWave(
     (pending.binding.debitIntent && classifyIronGolemDebit(pending.binding.debitIntent, ownership) !== 'original')) {
     throw new RecordedWaveReceiptError('bindingMismatch');
   }
-  holder = Object.freeze({ currentPublished: holder.currentPublished, pending: null });
+  replaceHolder({ currentPublished: holder.currentPublished, pending: null });
 }
 
 /**
@@ -313,7 +348,7 @@ export function recognizeRecordedWavePublication(
     keys.every(key => live.combat[key] === binding.publication[key]);
   const next = Object.freeze({ ...pending,
     ...(failure && !pending.publicationFailure ? { publicationFailure: Object.freeze({ error: failure.error }) } : {}) });
-  if (installed) holder = Object.freeze({ currentPublished: Object.freeze({ ...next, phase: 'published' }), pending: null });
+  if (installed) replaceHolder({ currentPublished: Object.freeze({ ...next, phase: 'published' }), pending: null });
   else updatePending(next);
   return installed;
 }
@@ -323,12 +358,12 @@ export function inspectRecordedWaves(): ReceiptHolder { return holder; }
 /** Explicit abandonment clears transient receipts only, retaining all actual gameplay values. */
 export function abandonRecordedWaves(): void {
   assertWaveSnapshotAllowed();
-  holder = Object.freeze({ currentPublished: null, pending: null });
+  replaceHolder({ currentPublished: null, pending: null });
 }
 /** Successful-restore cleanup; stale leases preserve both receipt slots. */
 export function clearRecordedWavesAfterRestore(lease: WaveRestoreLease): void {
   assertWaveRestoreOwner(lease);
-  holder = Object.freeze({ currentPublished: null, pending: null });
+  replaceHolder({ currentPublished: null, pending: null });
 }
 
 
@@ -343,7 +378,7 @@ function publishedSettlementFor(receipt: RecordedWaveReceipt, lease: WaveTransit
 function updateSettlement(current: ReceiptView, installation: InstallationProgress, progress: RecordedWaveSettlementProgress) {
   const next = Object.freeze({ ...current, installation: Object.freeze({ ...installation,
     settlement: Object.freeze({ identity: installation.settlement.identity, progress: Object.freeze(progress) }) }) });
-  holder = Object.freeze({ currentPublished: next, pending: null });
+  replaceHolder({ currentPublished: next, pending: null });
 }
 
 /** Read the exact current installation settlement; no foundation fallback. */

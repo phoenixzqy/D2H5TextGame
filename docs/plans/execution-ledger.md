@@ -6178,3 +6178,53 @@ Independent QA/test-evidence and TD/five-axis reviews APPROVE this frozen slice;
 all readers released. Producer publication, local commit and exact cleanup follow. Before UI wiring, a separate approved
 receipt subscription must notify the latest immutable snapshot after the current
 synchronous stack, including promotion/cancellation/abandonment. No remote action.
+
+## D06 v1as receipt observation for mounted presentation
+
+Live presentation committed as `8d59b15` after QA/TD/five-axis/producer APPROVE.
+Exact cleanup removed1300files/43,840,048bytes/14directories, zero failures or
+remaining targets; all11 recorded command identities absent. Umbrella claim
+continues. TD-D06-OBSERVATION-PLAN APPROVE addresses a material UI prerequisite:
+receipt promotion/cancellation/abandonment can follow the last domain-store
+notification, so combat/selection subscriptions alone can leave mounted UI stale.
+Root plan-review ready: one receipt module, focused tests and this ledger only.
+
+All six holder-replacement sites now use one notifier. inspectRecordedWaves stays
+synchronous and identity-stable until replacement. subscribeRecordedWaves is an
+external-store notification surface with no second copy of receipt authority.
+Notifications coalesce in a microtask after the current synchronous stack, reading
+latest authority at callback time; this does not promise an asynchronous restore
+has released its lease. Existing guards still refuse during that ownership.
+Registration tokens keep duplicate callbacks and unsubscribe/resubscribe distinct.
+Delivery snapshots registrations, checks each token, resets the scheduling flag
+before callbacks, and allows nested changes to schedule another notification.
+Callbacks added mid-delivery wait for a subsequent notification. Each callback
+failure reports the original error through console.error and peers continue;
+observer errors cannot replace a synchronous transition exception or return value.
+No React, polling, guard, receipt-policy, payment, simulation or save changes.
+
+11 synthetic protocol cases cover stable immutable snapshot identity/no immediate
+notification, latest-state coalescing, promotion/cancellation without subsequent
+domain-store notifications, abandonment, restore still owning its lease,
+installation/settlement finish/fail progress, independent duplicate subscriptions,
+same-callback unsubscribe/resubscribe during delivery, nested updates, error
+reporting/peer delivery and preservation of the original transition error. RED
+11failed6.025s before implementation: missing subscription function. First focused
+330passed/1failed6.629s and types15.214s identified a fixture passing RecordedWaveLive
+to cancellation instead of its ownership field. Corrected that argument without
+changing its cancellation/notification assertions, and strengthened same-callback
+registration identity coverage. Final focused331/4files6.807s, types15.104s,
+lint40.283s/85purity, full7215/231files115.280s (Vitest113.77s) and build9.907s
+passed serially. Build609modules,index-DHqK1fvm.js1283.28kB. Focused/full exceed
+5s/15s budgets; existing chunk/Browserslist/precache warnings remain. No threshold
+or validation policy changed. No persistent browser/server or native acceptance.
+
+Root security check: pass; fixed local callback observation, no new external IO,
+dependencies, credentials, permissions, persisted state or authority bypass.
+Three-path source/config/output captures, prior cleanup and exact task-owned
+dist/tmp inventory will be frozen in iron-observer-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA/test-evidence and TD/five-axis reviews APPROVE this frozen slice;
+all readers released. Producer publication, local commit and exact cleanup follow. Native bilingual UI, production-byte browser/
+save/reload/earned acceptance and fullD06/P09/P10/private-v1 remain open.
+No remote action.
