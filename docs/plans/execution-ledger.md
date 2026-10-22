@@ -7579,3 +7579,109 @@ All review readers released includingdist/tmp; no reviewer artifacts/processes.
 Approval-only ledger append; four other paths unchanged. BALANCE-CHECK CONCERNS,
 existing budgets/warnings and broadergates remainopen. Publication/produceraudit/
 localcommit/exactcleanup next; no production/data/save/config or remotechange.
+
+
+## D06 v1bm controlled resistance/dodge main effects
+
+Mitigation auditca3e065 locally committed after QA/test-evidence/TD/five-axis/
+producer approval; publicationb27a69d81ec14e7614d1b855ee0c78dea2d13d87da6fc027d29d9735891db2e8.
+Cleanupe766c22dc71d6cc35355e0b01a0cad8116a65ccc57e1bc4eb0af8a2db8e874b8
+removed863files/42765236bytes/15dirs, no failures/remaining; bothcheckouts clean.
+ProducerREADY and GD/TD/QA design/literal preflightAPPROVE externalplan
+6c4e662f1c29991b18325c6125c4f056add70cd2fc7e8506b29e16e3b619c813.
+Rootsolewriter/executor, sameclaimedhumanworktree, exact5paths asymmetryfixture/
+runner/test/datedreport/ledger; originalcheckoutreadonly. Security PASS local
+immutableGit/closedfixtures/ownedgzip, no network/credentials/dependencies/
+permissions/data/savechange. Sourcev1bld00-m00 e3eb0805ba668583a8f2d26d986071aab9ede8d68c7cbe7a70702302c4d537dd
+serialized5efa93aa26fb17572bd5c4bd1ec4b99871cb20f12f0b4c6d4244e224be6bb2f2,
+underlyingM0 identitiesretained. Fivefixedsynthetic/unearnedcells neutral,
+physical-resist75, elemental-resist75, physical-dodge0.35, magical-dodge0.35;
+Defense/MR0, otherresist0/dodge0.05, arcane0, allotherhero/enemyfieldsunchanged.
+Changed-onlycounts16/18/32/24/24. QA froze45/67versus11/16, exacthitthresholds
+0.7999999999999999 and0.5, crit0.05 strictless; everyelementusesmagicDodge.
+Fulloutersemantics/externalexpectedidentitybeforeMasteryprimitive; noaccepted
+helperedit.10000freshbattles/5000P→Epairs physicalcf19757 vs actualca3e065,
+samefixed0..999; within-domain interventionsvsneutral derivefromsamebattles
+withseparateexpectedcase/inputidentities. No interaction/global/viabilityclaim.
+Preflight0/7/991/999, first1000timing, fullunchangedserialmatrix; TDD/rawcheck/
+finalserialvalidation/frozenreviews/publication/localcommit/exactcleanup.
+Broadercombos/mixed/earned/fullgates and budgets/buildwarnings remainopen.
+Noengine/data/save/config/SaveCurrent11 orremotechange.
+
+TDD fixturemissingcollectionRED→8GREEN; recordermissingcollectionRED→15GREEN;
+missingcontrolcomparatorRED24pass/1fail→25new+52existingMageengine77GREEN
+(wrapper4.381s/Vitest2.92s). Existingengine52provealltype magicaldodge routing;
+newprobabilityprobescheckactualrequestedthresholds and below/at/above, not only
+forcedchancebooleans. InitialtypesPASS15.531s and lintPASS41.848s. Earlierrelated
+wrappers7.700/8.242s exceed5sbudget, retained/open; finalfocused usesexactVitest
+paths. Clonedreadonlystats reconstructed asnewobjects before finalcorechecks.
+Newseparatecontrolcomparator accepts intentionalfixture/inputhashdifferences
+whilebindingeachside'sexpectedcase/source/overrides/seed/domain/preparation.
+Source/toolpreflightpending; no measuredmatrixyet. ExternalNode syntaxcheck
+PASS; exacttask-ownedPythonbytecodepath removedandverified, no sharedcachepurge.
+Production/data/save/config unchanged.
+
+Independent QA core and TD/source/tool preflights APPROVE exact fixture
+f738880478b1851dc56a56736e9e22a32056b5f17ecce7d0b38cd5d7753cbc35,
+runner44e5b58670951dcd519a52396e7c8f320af5ba1d82c261dfe6d62c082aa91d25,
+tests543f9352693c84fd1469681aaa2c7d603ac890d294270483405a3d77edf57348.
+Captured173immutableGitfiles/domain/eighthelpers/toolclosure; fivefixturesonce,
+19integrityprobesPASS(2accept/17reject),20-row/domainpreflightPASS all loss.
+Firstphysicalneutral1000cell5.626s/wrapper7.332s; remainingninefixedcellsserial.
+All10000battlesdefeat/hero death; successfulTTKnull/count0; AA/ABA/inputpreserved/
+plainparitychecksPASS. FiveP→Epairs5000rowsPASS27.570s. Root incorrectly started
+secondcontrolaggregation before firstsettled; stopped verifiedowned elemental
+PID3967664(exit-15, WebSocketporterror), preservedbothattempts/partialoutputs in
+externalmage-asymmetry-control-overlap/. Regeneratedall8000derivedcontrasts
+serially, physical26.845s then elemental27.448s; acceptedcommands exit0/no
+ERROR/WebSocketdiagnostics/SSRclosed. No measuredbattle rerun or recipechange.
+Checker independently enforces acceptedmeasurement/aggregation serialreceipts.
+Reportgeneratorinitialouterquoteparsefailure creatednooutput; correctedgenerator
+syntaxPASS/reportwritten. Exhaustiveraw/source/control/reportreconciliation,
+independentGDinterpretation and finalserialvalidation/frozenreviews next.
+All5cases synthetic/unearned; broaderbalance/fullgates/budgets/warnings remainopen.
+Noengine/data/save/config/SaveCurrent11 or remotechange.
+
+Root exhaustive checker PASS24.830s:10000raw/5000P→Epairs/8000derivedcontrols,
+10isolatedcellprocesses, exactsource/helper/tool/input/provenance, independent
+HP/MP/sourcecounter/strata/histogram/controlarithmetic/displayedtables. Raw
+706444085bytes/gzip37343434bytes. IndependentGD/LD streamedall10000recordings,
+reconciledMagecounter/literal/aggregatemetrics,5000pairs/8000controls andstream
+hashes; BALANCE-CHECK CONCERNS. Neutralperseednumericalparity; relevantresistance
+reducesMageeffectiveDamage75.513%physical/75.474%elemental, relevantdodgereduces
+36.850%/36.840%; hero damage/whole-battletrajectoryeffects keptseparate.
+AllHorrorattempts0/static-onlycoverage. Correctedunsupported“adjacentrolls” to
+below/at/above (testsuse±Number.EPSILON); nosource/testchange. Finalreportcontains
+independentboundedinterpretation. Finalserialfocused/types/lint/fullunit/build/
+rawchecker and frozenreviews/publication/localcommit/exactcleanup next.
+Broaderfamilies/earned/global/fullgates/budgets/warnings remainopen.
+
+Final serial validation PASS: exactfocused4files/115tests, wrapper4.293s/
+Vitest3.00s; types15.515s; lint42.039s. Fullunit245files/7541tests PASS,
+wrapper125.911s/Vitest124.47s; existing15sbudget exceeded/remainsopen.
+Productionbuild VITE_E2E=false PASS10.354s,606modules, existingBrowserslist/
+chunk-size/2.57MBmanifest-precachewarnings. Productionbundleexclusion and final
+exhaustiveraw/control/report/serialreceiptsreconciliation follows. Report/core
+unchangedthroughfinalchecks; noengine/data/save/config/remotechange or broader
+balance/performanceacceptance.
+
+Final checker PASS24.938s:10000raw/5000P→Epairs/8000derivedcontrols,10domain
+processes, unchangedfournonledgerpaths, ledgerappend-only throughserialfocused/
+types/lint/fullunit/build receipts, source/helper/config/tool/inputprovenance,
+HP/MP/sourcecounter/strata/histogram/arithmetic/reporttables and exclusionof
+allthreeauditmarkersfromproductionassets. Raw706444085bytes/gzip37343434bytes.
+FrozenQA/test-evidence/TD/five-axisreview next; BALANCE-CHECK CONCERNS andbroader
+gates/budgets/warnings remainopen. Noengine/data/save/config/remotechange.
+
+Frozen review520b3da0427840697c59c723049036ffd326cd7663d1ee4281907b05e57ff57f
+support33d9d967e070b209f6034bbd348cb3962e403119c46a084f22bf046e78e39c2b:
+QA APPROVE/test-evidence ADEQUATE; TD/five-axis APPROVE, no material findings.
+All2029retainedfiles/37receipts/346Gitfiles independentlyverified; QA replayed
+10000battles/1571606events, allHP/MP/counters/strata/histograms/controls/nonactors,
+5000P→Epairs/8000derivedcontrols and reporttables/interpretation. Finalserial
+focused115/types/lint/full7541/build/rawchecker sourcebindingsPASS. Exactdisposal
+1306files/43858578bytes/15dirs verified, noextras/symlinks;37recordedPIDsabsent.
+Allreviewreadersreleased includingdist/tmp, noreviewerartifacts/processes.
+Approval-onlyledgerappend; fourotherpathsunchanged. BALANCE-CHECK CONCERNS,
+existingbudgets/warnings andbroadergates remainopen. Publication/produceraudit/
+localcommit/exactcleanup next; noengine/data/save/config orremotechange.
