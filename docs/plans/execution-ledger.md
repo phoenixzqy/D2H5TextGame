@@ -8869,3 +8869,64 @@ cleanup:857files/42777942bytes/14directories, no remaining disposable paths or
 failures. Cleanup receipt SHA256 `23f48138c7df6df71f3783ccd027f85f15e0b57117bf918cdd863f851454eb7f`. Raw/source/oracle/coverage/review evidence remains
 root-owned at ROOT until umbrella consumers finish. Final exact-path/append-only
 and settled cached whitespace checks precede local commit.
+
+
+## D06 v1cg — Poison Explosion native projection and lifecycle
+
+Root owns exactly five paths: combatHelpers.ts, new native PE test, BUG-077
+closure at actual combat SHA a7deb7bd867bea4c701ac1d318e2e210204c948b,
+structured BUG-078 and this append-only ledger. Security PASS: local Player-bound
+projection; no network/credentials/permissions/dependencies/CI/save-format change.
+Existing isolated claim and branch retained. Missing native cast RED and explicit
+undefined-projection RED both preceded BUG-078 and the runtime patch, with actual
+complete enemy deaths asserted before the latter failure.
+
+Import/compose PE adjacent to CE using the existing currentPlayer/run hero ID
+check, then spread its independent authority into the snapshot. Generic staging
+already copies/deep-freezes the entire input. No replay/reward/save infrastructure
+or status scheduler edit.18 actual-store/production-data tests, only disk adapter
+mocked, cover Dagger first kill/PE15MP/body commitment; plain-recorded equality;
+frozen independent authorities; refresh preserves original input/recording/object
+publication; next wave upgrades rank, carries actual fractional pools and starts
+empty; unlocked replay twice uses captured resources/current allocation, revoked
+and restored prerequisites; malformed/alias/ineligible/missing slot controls;
+wrong Player receipt binding rejection; full identity-set nonzero XP/loot and
+exact-once item/inventory retry; Iron-locked replay twice retains exact original
+objects and rearmed selection; validated save/import excludes transient projection/
+corpse state and fresh run needs another real kill. Imported L18/Dagger/points/
+survival cap and separate L30 Iron setup are explicitly unearned.
+
+Final source-bound focused229/6 pass5.20s (wrapper6.316s), types21.909s,
+full8128/257 pass141.16s (wrapper142.776s), lint/purity52.652s and production
+build/bridge10.333s pass. Four JS chunks contain no bridge. Retain initial lint
+failure and exact test-style-only diff: returning void callback changed to braces;
+final focused/types/full/build rerun on those bytes. Earlier fixture failures are
+retained: dot events lack damageType; seed7 dodging survivor gets spread, capped
+10x1HP/s (2@7700,13@9000 independently recomputed); energy26 creates genuine
+fractional carry; changed Player rejects at existing receipt binding. No weakening
+of runtime/assertions to hide these findings. Independent GD/TD/code APPROVE and
+QA ADEQUATE cover source and native lifecycle/reward/save proof. Final publication
+review follows. Related5s/full15s budgets and existing Browserslist/>500kB chunk/
+2.57MB manifest-precache warnings remain open.
+
+Evidence ROOT:
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-poison-native-sed442jn`.
+Root retains raw/source/check/review evidence until umbrella consumers finish,
+then removes it. After all readers release, remove only manifest/hash/symlink-
+checked ROOT/dist,tmp,vite-cache; record receipt. Exact-five-path/append-only and
+settled cached whitespace checks precede local commit. No push/PR/merge/deploy.
+
+Next approved cards: localized consumedPoison renderer feedback and bilingual
+Skills current/next rank/priority copy. Shared status-log localization and newly
+observed live-status playback gap require their own bounded cards: playback
+currently ignores status events and only snaps final outcome, so a browser fixture
+cannot prove Poison expiry on the same surviving unrefreshed enemy. Design/QA
+contract review precedes a playback fix. Browser/mobile/a11y, separately earnedL18,
+balance/manualfeel and complete D06/P09/P10/private-v1 remain unfinished.
+
+Final publication QA ADEQUATE and producer APPROVE bind final native source/checks
+and bounded documents. All readers released before exact cleanup:857files/
+42778521bytes/14directories, no remnants/failures. Cleanup receipt SHA256
+`2eeccd6487adce8f98e33d2f9d7da9f3fe78bccf346ed6f80ed9508551e24737`. Raw/source/check/review evidence remains root-owned
+at ROOT until umbrella consumers finish. Exact-path/append-only and settled
+cached whitespace checks precede local commit.

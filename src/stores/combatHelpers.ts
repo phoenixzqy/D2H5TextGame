@@ -56,6 +56,7 @@ import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-
 import { composeSkeletonMastery } from '@/engine/skills/skeleton-mastery';
 import { composeGolemMastery } from '@/engine/skills/golem-mastery';
 import { composeCorpseExplosion } from '@/engine/skills/corpse-explosion';
+import { composePoisonExplosion } from '@/engine/skills/poison-explosion';
 import { isPreparationSummonSkill } from '@/engine/skills/summon-preparation';
 import { IRON_GOLEM_SKILL_ID, isIronGolemSkill } from '@/engine/skills/iron-golem';
 import { projectIronGolemItem } from '@/engine/items/iron-golem';
@@ -760,6 +761,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
     ? composeGolemMastery(currentPlayer) : undefined;
   const corpseExplosion = currentPlayer?.id === run.playerUnit.id
     ? composeCorpseExplosion(currentPlayer) : undefined;
+  const poisonExplosion = currentPlayer?.id === run.playerUnit.id
+    ? composePoisonExplosion(currentPlayer) : undefined;
   const playerTeam = carryPlayerTeam.map(unit => {
     if (!fresh || unit.id !== fresh.id) return unit;
     const mana = Math.min(unit.mana, fresh.stats.manaMax);
@@ -801,7 +804,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       ...(meditationAura ? { meditationAura } : {}),
       ...(skeletonMastery ? { skeletonMastery } : {}),
       ...(golemMastery ? { golemMastery } : {}),
-      ...(corpseExplosion ? { corpseExplosion: [corpseExplosion] } : {})
+      ...(corpseExplosion ? { corpseExplosion: [corpseExplosion] } : {}),
+      ...(poisonExplosion ? { poisonExplosion: [poisonExplosion] } : {})
     },
     waveIdx,
     totalWaves: run.plan.waves.length,

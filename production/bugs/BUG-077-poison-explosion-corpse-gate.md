@@ -1,6 +1,6 @@
 # BUG-077 — Require authority and one shared corpse for Poison Explosion
 
-Status: fix validated; local commit pending. Actual SHA recorded in the following native increment.
+Status: Fixed in `a7deb7bd867bea4c701ac1d318e2e210204c948b`.
 Severity: High — the advertised corpse consumer casts without authority or a
 kill, and CE can spend the same body afterward. Removing PE from priority avoids
 the cast but removes the feature rather than satisfying its prerequisite.
@@ -77,3 +77,7 @@ Raw failed attempts remain in the evidence root. Engine3s/full15s budget overrun
 and existing production size/precache/Browserslist warnings remain open.
 Native projection, replay/rewards, localized feedback and Skills/browser/earned18/
 feel acceptance follow separately; this resolution claims engine behavior only.
+
+Actual combat fix commit: `a7deb7bd867bea4c701ac1d318e2e210204c948b`. Regression path remains
+`src/engine/combat/poison-explosion.test.ts`; final validation is recorded above
+and in ledger v1cf. Native authority is tracked separately as BUG-078.
