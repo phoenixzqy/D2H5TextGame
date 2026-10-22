@@ -9013,3 +9013,52 @@ All readers released before exact cleanup:857files/42778626bytes/
 `01f60feb814cfadbca3dd7f83a7d5f1f3cb4d100ddf0ddb928c7deb1c7384c95`. Required evidence stays
 root-owned at ROOT until umbrella consumers finish. Exact-path/append-only and
 settled cached whitespace checks precede local commit.
+
+## D06 v1cj — Bilingual Poison Explosion Skills lifecycle
+
+Root owns exactly five paths: SkillsScreen.tsx, its new poison-explosion test,
+en/zh-CN skills.json and this ledger. Security PASS: display-only authored PE
+branch and translated copy using existing controls; no network, dependency, CI,
+credential, permission or save change. Existing isolated claim/branch retained.
+BUG-079 actual-SHA closure remains in the following Contract5 card.
+
+Genuine21/21 RED before the display/locale patch showed generic damage prose.
+Use display stats for current damage/cost/cooldown and STATUS_DEFAULTS for fresh
+Poison5s/cap10; no combat math duplication. Both locales explain an enemy-monster
+death, shared corpse plus15MP, hits applying Poison, fresh duration, aggregate
+refresh with first damaging rate,2s cooldown, no-body skip, wave reset and normal
+rewards. Existing CE description and controls remain unchanged.
+
+Literal tests cover rank1/2/6/12/20 current/next/cap, unlearned preview, actual
+allocation1→2, PE-before-Dagger combo selectors, frozen current recording/input/
+publication/events/resources during allocation0→1/1→2 and en→zh-CN→en. Imported
+L18/prerequisite/points fixtures remain explicitly unearned. An accidental setup
+command targeted a nonexistent scratch script and exited2 before tests; retained
+setup-failure.txt distinguishes it from the subsequent genuine behavioral RED.
+
+Focused168/4 pass6.82s (wrapper7.865s), types23.439s, lint/purity54.055s,
+full8213/258 pass142.28s (wrapper143.882s), production build/bridge10.824s pass.
+Four production JS chunks contain no bridge. Independent GD/TD/code APPROVE and
+QA source/TDD ADEQUATE; publication follows. Full15s budget and existing
+Browserslist/>500kB chunk/2.57MB manifest-precache warnings remain open.
+
+ROOT: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-poison-skills-exe5h10b`.
+Root retains source/RED/green/check/review evidence until umbrella consumers
+finish, then removes it. Exact manifest/hash/symlink-checked ROOT/dist,tmp,
+vite-cache cleanup follows reader release; receipt and exact-five-path/
+append-only/settled cached whitespace checks precede local commit.
+No push/PR/merge/deploy. Browser/mobile/a11y, earnedL18, balance/manualfeel and
+full D04/D06/P09/P10/private-v1 remain open.
+
+Next: approved status playback Contract5 plus separate ADR/ledger card. The
+pre-runtime event audit found multiple historical exact-oracle test files need
+the accepted transport-only projection before Engine4 can stay bounded. Reslice
+those tests separately, preserving frozen expected bytes and legacy gameplay
+payload/order/simClockMs and all non-event outcomes; exclude/rederive only derived
+uiDelayMs. Engine/Store/UI and production-browser evidence remain subsequent.
+
+Final publication QA ADEQUATE and producer APPROVE bind source/checks/ledger.
+All readers released before exact cleanup:857files/42779942bytes/
+14directories; no remnants/failures. Cleanup receipt SHA256 `6f48371faebda78e8c0bd1b7917c8187b04171ffe5ca378617f7385e96559b74`.
+Required evidence remains root-owned at ROOT until umbrella consumers finish.
+Exact-path/append-only and settled cached whitespace checks precede local commit.

@@ -708,7 +708,7 @@
     },
     "poison-explosion": {
       "name": "Poison Explosion",
-      "desc": "Detonates a corpse, releasing toxic fumes."
+      "desc": "Requires an enemy monster to die in this wave first. Consumes one shared corpse and {{mana}} MP to deal {{min}}–{{max}} {{type}} damage to all remaining enemies. Hits apply {{poison}}; fresh {{poison}} lasts {{duration}}, up to {{stacks}} stacks. Reapplication refreshes the stack duration and retains the first damaging rate. Cooldown: {{cooldown}}. With no corpse, the combo skips this skill. Corpses clear between waves; consumption leaves normal kill rewards unchanged."
     },
     "bone-prison": {
       "name": "Bone Prison",

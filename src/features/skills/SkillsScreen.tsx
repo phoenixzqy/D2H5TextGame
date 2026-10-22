@@ -36,6 +36,7 @@ import { getSkill, listSkills } from '@/engine/skills/registry';
 import { canCastSkill } from '@/engine/skills/eligibility';
 import { isPreparationSummonSkill } from '@/engine/skills/summon-preparation';
 import { AMPLIFY_DAMAGE_DEFINITION } from '@/engine/combat/amplify-damage-definition';
+import { STATUS_DEFAULTS } from '@/engine/combat/status';
 import { METEOR_ARMOR_MELT_DEFINITION } from '@/engine/skills/armor-melt';
 import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-skin';
 import { SKELETON_MASTERY_DEFINITION, composeSkeletonMastery, resolveSkeletonMasteryRank } from '@/engine/skills/skeleton-mastery';
@@ -1144,6 +1145,17 @@ function dynamicDescription(
       min: firstDamage.min, max: firstDamage.max,
       type: t(`damage-types:type.${firstDamage.type}`),
       ignite: t('damage-types:status.ignite'),
+      mana: stats.manaCost,
+      cooldown: t('details.seconds', { seconds: stats.cooldown })
+    });
+  }
+  if (skill.id === 'skills-necromancer-poison-explosion' && stats && firstDamage) {
+    return t('necromancer.poison-explosion.desc', {
+      min: firstDamage.min, max: firstDamage.max,
+      type: t(`damage-types:type.${firstDamage.type}`),
+      poison: t('combat:effect.status.poison'),
+      duration: t('details.seconds', { seconds: STATUS_DEFAULTS.poison.duration }),
+      stacks: STATUS_DEFAULTS.poison.maxStacks,
       mana: stats.manaCost,
       cooldown: t('details.seconds', { seconds: stats.cooldown })
     });
