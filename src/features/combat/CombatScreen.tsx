@@ -750,7 +750,7 @@ function UnitCard({
 
   return (
     <div
-      className={`${wrapperCls} ${ringCls} relative h-full w-full rounded-md transition-opacity motion-reduce:transition-none`}
+      className={`${wrapperCls} ${ringCls} relative flex h-full min-w-0 w-full flex-col rounded-md transition-opacity motion-reduce:transition-none`}
       data-acting={acting || undefined}
       data-dead={isDead || undefined}
       data-kind={kind}
@@ -762,7 +762,7 @@ function UnitCard({
       {compact ? (
         <div
           className={[
-            'relative flex h-full min-h-[4.5rem] w-full flex-col overflow-hidden rounded border bg-d2-panel text-d2-white',
+            'relative flex min-h-[4.5rem] w-full flex-1 flex-col overflow-hidden rounded border bg-d2-panel text-d2-white',
             rarity === 'boss'
               ? 'border-d2-boss'
               : rarity === 'rareElite'
@@ -833,17 +833,17 @@ function UnitCard({
           {eventFxLabel(eventFx, t)}
         </div>
       ) : null}
-      {!compact && chips.length > 0 ? (
+      {chips.length > 0 ? (
         <div
-          className="mt-1 flex max-w-[11rem] flex-wrap gap-1"
+          className="mt-1 flex w-full min-w-0 flex-wrap gap-1"
           aria-label={t('effect.activeEffects')}
           data-testid="unit-effect-chips"
         >
-          {chips.slice(0, 4).map((chip) => (
+          {chips.map((chip, index) => (
             <span
-              key={`${chip.kind}-${chip.id}`}
+              key={`${chip.kind}-${chip.id}-${String(index)}`}
               className={[
-                'rounded border px-1.5 py-0.5 text-[10px] leading-none',
+                'min-w-0 max-w-full break-words rounded border px-1.5 py-0.5 text-[10px] leading-none [overflow-wrap:anywhere]',
                 chip.kind === 'buff'
                   ? 'border-blue-300/50 bg-blue-500/15 text-blue-200'
                   : chip.kind === 'dot'
@@ -855,11 +855,6 @@ function UnitCard({
               {chip.label}{'stacks' in chip && chip.stacks > 1 ? ` ×${String(chip.stacks)}` : ''}
             </span>
           ))}
-          {chips.length > 4 ? (
-            <span className="rounded border border-d2-border px-1.5 py-0.5 text-[10px] leading-none text-d2-white/60">
-              +{chips.length - 4}
-            </span>
-          ) : null}
         </div>
       ) : null}
     </div>
@@ -987,7 +982,11 @@ function occupantForFormationCell(
 
 function buildUnitEventFx(events: readonly RecordedBattleEvent[], cursor: number): ReadonlyMap<string, UnitEventFx> {
   const fx = new Map<string, UnitEventFx>();
-  const start = Math.max(0, cursor - 4);
+  let start = cursor, remaining = 4;
+  while (start > 0 && remaining > 0) {
+    start--;
+    if (events[start]?.kind !== 'status-state') remaining--;
+  }
   for (let i = start; i < cursor; i++) {
     const ev = events[i];
     if (!ev) continue;

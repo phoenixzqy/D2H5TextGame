@@ -9664,3 +9664,41 @@ Cleanup receipt SHA256899625552d95bfb2f7ad7d2bd4f7a80a1df71588e34a09499735dd7e96
 Required evidence remains root-owned at ROOT until umbrella consumers finish;
 root removes afterward. No owned processes remain; settled cached whitespace
 precedes local commit.
+
+
+## D04 v1cx — Complete compact status chips and transport-neutral FX
+
+UI3 owns CombatScreen.tsx, its existing tests and this ledger. Root sole writer/
+executor. Security PASS: transient display only; no gameplay/engine/RNG/save/
+receipt/reward authority change. Real compact formation cards now show every
+ordered buff/status record, including duplicate IDs/stacks, with unique indexed
+keys and localized labels. Card-width wrapping and flex-column allocation keep
+chips separate from the compact image/name/HP section. FX considers the last four
+non-status-state events; silent mana/message/turn still count exactly as before.
+
+Genuine RED3failed/51passed reproduces hidden compact chips in both locales and
+transport-evicted damage feedback. Unchanged tests GREEN focused94/2 in11.81s
+(wrapper13.241); duplicate entries/order, HP/MP/source immutability, empty removal
+and exact fourth-gameplay-event FX eviction covered. Types PASS54.821s; lint
+PASS59.643s. Clean production build/bridge PASS11.238s, VITE_E2E absent,
+four application JS chunks scanned. Final full8261/260 PASS, wrapper
+578.839s: one predeclared serial invocation/retries0/default limits unchanged,
+npm test -- --fileParallelism=false --poolOptions.threads.maxThreads=1
+--poolOptions.threads.minThreads=1. Acceptance is serial-only; earlier default
+parallel timeout/performance remains open. TD/CODE APPROVE exact source/test hashes.
+
+This is source/component acceptance only. No browser geometry/native status
+lifetime/mobile layout claim; BUG080 stays open until Browser3. Producer READY
+orders bounded FirstAct3 discovery next, before independent Browser3. Full C0–C4/
+G0–G7/campaign/balance/manual feel remain unaccepted. ROOT: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-status-ui-epfe03kg`. Source/RED/
+review/log/receipt evidence remains root-owned until umbrella consumers finish;
+root removes afterward. Final independent evidence/publication review, disposable
+cleanup and exact three-path/append-only/cached whitespace checks follow. No push/
+PR/merge/deploy.
+
+Final independent QA ADEQUATE and producer PUBLICATION APPROVE bind exact three
+paths/receipt/source/append-only evidence. All readers released. Exact cleanup
+removed857files/42782971bytes/15directories; remaining[]/failures[].
+Cleanup receipt SHA25614d18ef08d39750e85e3a50491ff41ff84e32530afd085fc2e8673a9691423b4.
+No owned process remains. Required evidence retained at ROOT, root removes when
+umbrella consumers finish. Settled cached whitespace precedes local commit.

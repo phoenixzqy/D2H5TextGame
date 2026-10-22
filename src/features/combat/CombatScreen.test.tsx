@@ -543,3 +543,82 @@ describe('atomic simulation timestamp playback', () => {
     act(() => { vi.advanceTimersByTime(1); }); expect(useCombatStore.getState().playbackComplete).toBe(true);
   });
 });
+
+/** Real compact formation cards; imported display fixtures are not campaign proof. */
+describe('complete compact status presentation', () => {
+  const tree = () => <I18nextProvider i18n={i18n}><Suspense fallback={null}>
+    <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><CombatScreen /></MemoryRouter>
+  </Suspense></I18nextProvider>;
+  function units() {
+    const player = createMockPlayer('Status Hero', 'sorceress');
+    usePlayerStore.getState().setPlayer(player);
+    const hero = { ...playerToCombatUnit(player), id: 'chips-hero', life: 100, mana: 53 };
+    const enemy: CombatUnit = { ...hero, id: 'chips-enemy', side: 'enemy', kind: 'monster' };
+    return { hero, enemy };
+  }
+  beforeEach(() => { vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] }); });
+  afterEach(() => { vi.useRealTimers(); });
+  for (const locale of ['en', 'zh-CN'] as const) {
+    it('shows every active record, including duplicate IDs and stacks, in ' + locale, async () => {
+      await i18n.changeLanguage(locale);
+      const { hero, enemy } = units();
+      const ids = ['poison', 'burn', 'chill', 'stun', 'bleed', 'poison'];
+      const statuses = ids.map((id, index) => ({ id, stacks: index + 1, remaining: -1, sourceId: `source-${String(index)}` }));
+      const shown = { ...hero, activeBuffIds: ['might'], statuses };
+      const frozen = structuredClone(shown);
+      useCombatStore.setState({ inCombat: true, isPaused: true, playerTeam: [shown], enemyTeam: [enemy] });
+      const errors = vi.spyOn(console, 'error');
+      try {
+        render(tree());
+        const card = screen.getByTestId('unit-card-chips-hero');
+        const chips = within(card).getByTestId('unit-effect-chips');
+        expect(chips).toHaveAttribute('aria-label', i18n.t('combat:effect.activeEffects'));
+        expect(Array.from(chips.children, node => node.textContent)).toEqual([
+          i18n.t('combat:effect.buff.might'),
+          ...ids.map((id, index) => i18n.t(`combat:effect.status.${id}`) + (index > 0 ? ` ×${String(index + 1)}` : ''))
+        ]);
+        expect(chips.children).toHaveLength(7);
+        expect(card.querySelector('.bg-red-600')).toBeVisible();
+        expect(screen.getByRole('group', { name: i18n.t('combat:mp') })).toHaveTextContent('53 /');
+        expect(shown).toStrictEqual(frozen);
+        expect(errors.mock.calls.filter(call => String(call[0]).includes('same key'))).toEqual([]);
+        act(() => { useCombatStore.setState({ playerTeam: [{ ...shown, activeBuffIds: [], statuses: [] }] }); });
+        expect(within(card).queryByTestId('unit-effect-chips')).not.toBeInTheDocument();
+        expect(shown).toStrictEqual(frozen);
+      } finally { errors.mockRestore(); }
+    });
+  }
+
+  it('excludes only transport from the four-event FX window, retaining silent gameplay members', () => {
+    const { hero, enemy } = units();
+    type Event = combatEngine.RecordedBattleEvent;
+    const initial = (target: string): Event => ({ kind: 'status-state', target, statuses: [],
+      initial: true, simClockMs: 0, uiDelayMs: 200 });
+    const observation: Event = { kind: 'status-state', target: enemy.id, statuses: [], simClockMs: 0, uiDelayMs: 50 };
+    const events: readonly Event[] = [initial(hero.id), initial(enemy.id),
+      { kind: 'damage', source: hero.id, target: enemy.id, amount: 20, damageType: 'physical',
+        crit: false, dodged: false, simClockMs: 0, uiDelayMs: 50 },
+      observation, observation, observation, observation, observation,
+      { kind: 'mana', target: hero.id, mana: 52, reason: 'cast', simClockMs: 1000, uiDelayMs: 1000 },
+      { kind: 'message', messageKey: 'combat:event.draw', simClockMs: 2000, uiDelayMs: 1000 },
+      { kind: 'turn-start', turn: 2, simClockMs: 3000, uiDelayMs: 1000 },
+      { kind: 'mana', target: hero.id, mana: 51, reason: 'cast', simClockMs: 4000, uiDelayMs: 1000 },
+      { kind: 'end', winner: null, simClockMs: 5000, uiDelayMs: 1000 }];
+    useCombatStore.getState().setRecordedBattle({ initialPlayerTeam: [hero], initialEnemyTeam: [enemy],
+      events, unitNameMap: new Map(), currentWave: 1, totalWaves: 1,
+      outcome: { winner: null, finalPlayerTeam: [hero], finalEnemyTeam: [enemy] } });
+    render(tree());
+    act(() => { useCombatStore.getState().advanceEvent(); });
+    const card = screen.getByTestId('unit-card-chips-enemy');
+    expect(within(card).getByTestId('combat-event-fx')).toHaveTextContent('-20');
+    for (let step = 0; step < 3; step++) {
+      act(() => { useCombatStore.getState().advanceEvent(); });
+      expect(within(card).getByTestId('combat-event-fx')).toHaveTextContent('-20');
+    }
+    act(() => { useCombatStore.getState().advanceEvent(); });
+    expect(within(card).queryByTestId('combat-event-fx')).not.toBeInTheDocument();
+    expect(useCombatStore.getState().enemyTeam[0]?.life).toBe(80);
+    expect(useCombatStore.getState().recordedEvents).toBe(events);
+    expect(hero.mana).toBe(53); expect(enemy.life).toBe(100);
+  });
+});
