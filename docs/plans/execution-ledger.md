@@ -6504,3 +6504,46 @@ TD/five-axis reviews APPROVE this frozen slice; all readers released. Producer
 publication, local commit and exact cleanup follow.
 Next separately reviewed documentation card defines Mage elemental identity
 before any related runtime change. No remote action.
+
+
+## D06 v1ay Skeletal Mage elemental identity contract
+
+Iron status reconciliation `48aefed` committed after QA/test-evidence, TD/five-axis
+and producer APPROVE; exact cleanup
+`3bb9432c8b2c78443ee2e481213753a654106f6d8051d0d674fcaf799ae83e20` verified zero
+disposable targets/failures/remaining. Retained evidence root continues at
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Root remains sole writer/executor under the umbrella claim. This documentation-
+only increment changes the new D06 v1e Mage contract, D06 register row and ledger.
+
+The proposed bounded adaptation converts only fresh successful canonical player
+Mage basic hits to fire/cold/lightning/poison, cycling from fire independently per
+owner/fresh batch/new wave with no assignment RNG or new serialized marker.
+Existing22MP batch/caps/rank/Mastery/cadence/targets/damage pipeline stay controlling;
+preloads and unrelated/synthetic/enemy units are unchanged. Type-only direct bolts
+apply no automatic signature statuses/DoT. Existing localized damage logs plus
+truthful future copy provide text-first presentation. Exact formulas, independent
+literal tables, failure/preload/replay controls and≤5path inactive-metadata→helper→
+runtime→production-tests→copy/browser sequencing are proposed before implementation.
+No runtime, copy, save or gameplay data changed; no full-skill/earned/balance claim.
+
+Root uses design-review/documentation and plan-review to challenge this contract.
+Plan-review: ready for frozen design review; one authored cycle, one battle-local
+authority and the existing damage/log path avoid parallel formulas or save changes.
+GD/TD planning consult approves fixed fresh-batch cycling; independent QA supplies
+literal oracles. LD flags material mitigation/dodge/combo power changes and requires
+paired1000-run scenarios before balance acceptance; no balance approval is claimed.
+These consults precede the frozen draft review. Root
+security check: pass; local design text only, no new executable instructions,
+external IO, credentials, dependencies or permissions. Documentation checks cover
+scope, whitespace, local links, unchanged non-D06 register rows and literal
+arithmetic; no redundant runtime unit/build run. Initial frozen mage-contract-review.json
+(SHA1674263de9996ed32d78ca7e5eabc895c175cfdaea77b1c3bf9fa7874f2fa28d)
+received GD APPROVE and TD/five-axis CONCERNS: the existing Mastery regression
+explicitly expects canonical Mage physical hits. Revised runtime sequencing now
+includes that fourth path, preserving Mastery and Revive/preload physical controls.
+No mechanic/oracle change; original evidence retained. mage-contract-v2-review.json
+binds revised source/check receipts and prior cleanup. Independent GD/TD, QA/test-
+evidence (ADEQUATE) and five-axis reviews APPROVE this frozen contract; all readers
+released. Producer publication, local commit and exact cleanup follow. Signature-status design/full Mage, earned campaign/economy,
+other corpse consumers and fullD06/P09/P10/private-v1 remain open. No remote action.
