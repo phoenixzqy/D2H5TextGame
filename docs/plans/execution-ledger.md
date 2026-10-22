@@ -9702,3 +9702,60 @@ removed857files/42782971bytes/15directories; remaining[]/failures[].
 Cleanup receipt SHA25614d18ef08d39750e85e3a50491ff41ff84e32530afd085fc2e8673a9691423b4.
 No owned process remains. Required evidence retained at ROOT, root removes when
 umbrella consumers finish. Settled cached whitespace precedes local commit.
+
+
+## P04a05 — Retained earned first-act discovery failure
+
+Root sole writer/executor. This increment publishes exactly two frozen diagnostic
+artifacts and this append-only ledger. The exact task-owned runnable candidates
+were copied, SHA-verified, then removed; no maintained/default test is registered,
+marked expected-fail/skipped, or weakened. Spec SHA256c01839dd711d0c34f3caf70522d06004a487f0d8fd4787966d50ae1ba2a53776;
+config SHA2566c5077031801515f24e1707834759869dbd0d85e05b520fa70c0608b3b923cde. Source baseline4e314f0; runtime/data/RNG/
+save/reward authority unchanged. Native UI only, no import/bridge/store/storage
+writes; success-only IDB observation is read-only. Date-only2026-10-20T12:00Z,
+actual timers, en1280x800. Accepted40-wave prep block remains byte-identical to
+prior50bc03df artifact. No retries, substitute gear/build, refill or unplanned reentry.
+
+Final typecheck includes both candidates: PASS23.312s. Explicit-path eslint
+--no-ignore PASS5.895s; initial lint failures retained. Diagnostic handler now
+preserves original throws via finally and reports capture failures afterward only
+when main work succeeds; QA READY exact final bytes. Clean production build and
+all4application-JS bridge scan PASS10.409s, VITE_E2E absent. Inherit unchanged runtime
+UI3 full8261/260 serial-only evidence by producer-approved test-only scope; no new
+full/default-parallel result is claimed. Exact command/captures/receipts in ROOT.
+
+One case, workers1/retries0/maxFailures1; test240s/server30s/outer300s with teardown
+margin; capped41run starts/46Skips/40Pause-Flee pairs. Actual browser exit1,
+not timed out: test136.487s, report159.288s, wrapper160.675s. All40prep terminal
+victories and40exact awards passed:554kills/11080XP, L6XP67/8818,25stat/5skill,
+344items/5157shards. Earned3equips/Fire4Frost2Warmth1/attributes matched exact
+prepared341bag state. Tracked Andariel quest remained inProgress/killfalse.
+
+First Catacombs ordinal40 wave1 completed Skip to native DEFEAT: original hero
+and merc dead, all9enemy representatives alive, MP103/137. Strict victory assertion
+failed and stopped immediately; no other wave/boss/claim/equip/Save/reopen ran.
+Browser-errors empty. Original assertion, terminal DOM, screenshot/error-context,
+full Playwright report and trace retained. This recipe is insufficient for the
+observed encounter. No combat-runtime defect, mana starvation or tuning change
+is established. Predicted successful L7-versus-CoifL9 remains unreached analysis;
+approved reward construction promises no claimant-level eligibility.
+
+QA ADEQUATE for bounded failure only; producer reviewed result and approves frozen
+evidence publication. Design confirms missing earned Den remains C1 work. Next
+freeze substantive earned ActI skill/gear/point/award progression policy, then one
+bounded intermediate-area pilot (Cold Plains candidate), before another Catacombs
+attempt. Browser3 remains queued/open and is no prerequisite for that progression.
+C0 remains in progress, C1–C4/G0–G7/fullv1 unaccepted; BUG080/browser/native/mobile
+acceptance open. No push/PR/merge/deploy. ROOT: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-first-act-rgechfjm`.
+Root owns required evidence until umbrella consumers finish and removes afterward.
+Exact disposable cleanup and final publication verification follow reader release.
+
+All readers released. Exact disposable cleanup removed863files/43018060bytes/
+20directories; remaining[]/failures[]. Additionally removed4524redundant trace
+staging files/256701714bytes/3directories only after every byte matched retained
+trace.zip (SHA25652ea8185d4794f1e831365b99b08f753577045c7974b93fad484ef3987f158b5);
+remaining[]/failures[]. Reports/trace/screenshot/context/source/receipts remain
+root-owned at ROOT until umbrella consumers finish; root removes afterward.
+Recorded task PIDs absent and owned preview port60495closed. Final frozen hashes
+match all final receipts; exact three-path publication, unchanged runtime/default
+suites and append-only ledger verified. Settled cached whitespace precedes commit.
