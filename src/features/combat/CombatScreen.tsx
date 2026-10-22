@@ -15,8 +15,8 @@ import { useTranslation } from 'react-i18next';
 import { Button, Modal, Panel, ScreenShell, StatBar, GameCard, getClassPortraitUrl, getMercPortraitUrl, getMonsterImageUrl, getSummonImageUrl, tDataKey, tItemName } from '@/ui';
 import { useCombatStore, useFormationStore, useMapStore, useMetaStore, usePlayerStore } from '@/stores';
 import {
-  startSubAreaRun,
-  advanceWaveOrFinish,
+  performCombatScreenTransition,
+  readCombatTransitionRecovery,
   abortSubAreaRun,
   hasActiveSubAreaRun,
   resetIdleElitePity,
@@ -98,9 +98,10 @@ export function CombatScreen() {
   const [speed, setSpeed] = useState<Speed>(1);
   const [formationOpen, setFormationOpen] = useState(false);
   const [exitFailed, setExitFailed] = useState(false);
-  const [transitionFailed, setTransitionFailed] = useState(false);
+  const [transitionFailed, setTransitionFailed] = useState(() => readCombatTransitionRecovery().kind !== 'ready');
   const [transitionRetry, setTransitionRetry] = useState(0);
-  const transitionBlocked = transitionFailed || hydrationStatus !== 'ready';
+  const recovery = readCombatTransitionRecovery();
+  const transitionBlocked = transitionFailed || recovery.kind !== 'ready' || hydrationStatus !== 'ready';
   // Inter-wave countdown banner; null = no pending advance.
   const [nextWaveCountingDown, setNextWaveCountingDown] = useState(false);
   const isIdleLoop = Boolean(idleTarget && currentSubAreaId && (idleTarget === currentSubAreaId || idleTarget === currentSubAreaId.replace(/^areas\/act([1-5])-/, 'a$1-')));
@@ -110,27 +111,22 @@ export function CombatScreen() {
 
   // Auto-start a sub-area run if none is in flight.
   useEffect(() => {
-    if (hydrationStatus !== 'ready' || transitionFailed) return;
+    if (transitionBlocked || readCombatTransitionRecovery().kind !== 'ready') return;
     if (!exiting.current && !inCombat && player && !runVictory && !runDefeat) {
-      try {
-        startSubAreaRun({ mode: isIdleLoop ? 'idle' : 'manual' });
-        setTransitionFailed(false);
-      } catch (error) {
-        if (!(error instanceof WaveGuardError || error instanceof RecordedWaveAccessError)) throw error;
-        setTransitionFailed(error.code !== 'hydrationNotReady');
-      }
+      setTransitionFailed(!performCombatScreenTransition({ kind: 'start', options: { mode: isIdleLoop ? 'idle' : 'manual' } }));
     }
-  }, [inCombat, isIdleLoop, player, runVictory, runDefeat, hydrationStatus, transitionFailed, transitionRetry]);
+  }, [inCombat, isIdleLoop, player, runVictory, runDefeat, transitionBlocked, transitionRetry]);
 
   // Timer-driven playback: schedule the next event after its uiDelayMs
   // (divided by the chosen speed multiplier). Re-runs whenever the cursor,
   // pause state, or speed changes.
   useEffect(() => {
-    if (hydrationStatus !== 'ready' || transitionFailed || !inCombat || isPaused || playbackComplete) return;
+    if (transitionBlocked || !inCombat || isPaused || playbackComplete) return;
     const next = recordedEvents[eventCursor];
     if (!next) return;
     const delay = Math.max(50, Math.floor(next.uiDelayMs / speed));
     const handle = setTimeout(() => {
+      if (readCombatTransitionRecovery().kind !== 'ready') { setTransitionFailed(true); return; }
       try { tick(); }
       catch (error) {
         if (!(error instanceof WaveGuardError || error instanceof RecordedWaveAccessError)) throw error;
@@ -138,13 +134,13 @@ export function CombatScreen() {
       }
     }, delay);
     return () => { clearTimeout(handle); };
-  }, [inCombat, isPaused, playbackComplete, eventCursor, recordedEvents, tick, speed, hydrationStatus, transitionFailed, transitionRetry]);
+  }, [inCombat, isPaused, playbackComplete, eventCursor, recordedEvents, tick, speed, transitionBlocked, transitionRetry]);
 
   // Wave completion → auto-advance to next wave (1.5s pause) OR finalize run.
   // The 1.5s pause is the recommended default per the spec; it gives the
   // player time to read the last log line before the next wave appears.
   useEffect(() => {
-    if (hydrationStatus !== 'ready' || transitionFailed || !playbackComplete) {
+    if (transitionBlocked || !playbackComplete) {
       setNextWaveCountingDown(false);
       return;
     }
@@ -155,18 +151,14 @@ export function CombatScreen() {
 
     setNextWaveCountingDown(true);
     const handle = setTimeout(() => {
-      try {
-        advanceWaveOrFinish();
-        setTransitionFailed(false);
-      } catch (error) {
-        if (!(error instanceof WaveGuardError || error instanceof RecordedWaveAccessError)) throw error;
-        setTransitionFailed(error.code !== 'hydrationNotReady');
-      } finally {
-        setNextWaveCountingDown(false);
+      if (readCombatTransitionRecovery().kind !== 'ready') {
+        setTransitionFailed(true); setNextWaveCountingDown(false); return;
       }
+      try { setTransitionFailed(!performCombatScreenTransition({ kind: 'advance' })); }
+      finally { setNextWaveCountingDown(false); }
     }, 1500);
     return () => { clearTimeout(handle); };
-  }, [playbackComplete, runVictory, runDefeat, hydrationStatus, transitionFailed, transitionRetry]);
+  }, [playbackComplete, runVictory, runDefeat, transitionBlocked, transitionRetry]);
 
   // Currently-acting unit id — derived by walking back from the cursor to
   // the most recent `action` event. With the timeline scheduler, turn-start
@@ -247,12 +239,13 @@ export function CombatScreen() {
   );
 
   const handleContinueToNext = () => {
-    if (!nextSubArea) return;
+    if (transitionBlocked || readCombatTransitionRecovery().kind !== 'ready' || !nextSubArea) return;
     setLocation(currentAct, nextSubArea.id);
     endCombat(); // will trigger auto-start in the mount effect
   };
 
   const handleReturnToMap = () => {
+    if (transitionBlocked || readCombatTransitionRecovery().kind !== 'ready') return;
     exiting.current = true;
     setIdleTarget(undefined);
     resetIdleElitePity();
@@ -261,6 +254,7 @@ export function CombatScreen() {
   };
 
   const handleReturnToTown = () => {
+    if (transitionBlocked || readCombatTransitionRecovery().kind !== 'ready') return;
     exiting.current = true;
     setIdleTarget(undefined);
     resetIdleElitePity();
@@ -269,7 +263,7 @@ export function CombatScreen() {
   };
 
   useEffect(() => {
-    if (hydrationStatus !== 'ready' || !isIdleLoop) return;
+    if (transitionBlocked || !isIdleLoop || readCombatTransitionRecovery().kind !== 'ready') return;
     if (runDefeat) {
       setIdleTarget(undefined);
       resetIdleElitePity();
@@ -277,10 +271,11 @@ export function CombatScreen() {
     }
     if (!runVictory) return;
     const handle = setTimeout(() => {
+      if (readCombatTransitionRecovery().kind !== 'ready') return;
       endCombat();
     }, 1500);
     return () => { clearTimeout(handle); };
-  }, [endCombat, isIdleLoop, runDefeat, runVictory, setIdleTarget, hydrationStatus]);
+  }, [endCombat, isIdleLoop, runDefeat, runVictory, setIdleTarget, transitionBlocked]);
 
   const handleStopIdle = () => {
     try {
@@ -420,8 +415,11 @@ export function CombatScreen() {
       {(exitFailed || transitionBlocked) && (
         <div role="alert" className="mx-auto mt-3 flex max-w-6xl flex-wrap items-center gap-3 px-4 text-red-400">
           <p>{t('common:error')}</p>
-          {transitionBlocked && <Button className="min-h-11 min-w-11" disabled={hydrationStatus !== 'ready'}
-            onClick={() => { setTransitionFailed(false); setTransitionRetry(value => value + 1); }}>
+          {transitionBlocked && <Button className="min-h-11 min-w-11" disabled={hydrationStatus !== 'ready' || recovery.kind === 'parked'}
+            onClick={() => {
+              setTransitionFailed(!performCombatScreenTransition({ kind: 'retry', recovery }));
+              setTransitionRetry(value => value + 1);
+            }}>
             {t('common:retry')}
           </Button>}
         </div>
@@ -494,8 +492,9 @@ export function CombatScreen() {
               {runVictory && nextSubArea && (
                 <Button
                   variant="primary"
-                  className="min-h-[40px] text-sm"
+                  className="min-h-11 text-sm"
                   onClick={handleContinueToNext}
+                  disabled={transitionBlocked}
                   data-testid="continue-next-subarea"
                 >
                   {t('continueToNextSubArea')}
@@ -504,8 +503,11 @@ export function CombatScreen() {
               {runVictory && isIdleLoop && (
                 <Button
                   variant="primary"
-                  className="min-h-[40px] text-sm"
-                  onClick={() => { endCombat(); }}
+                  className="min-h-11 text-sm"
+                  onClick={() => {
+                    if (readCombatTransitionRecovery().kind === 'ready') endCombat();
+                  }}
+                  disabled={transitionBlocked}
                   data-testid="idle-loop-next-run"
                 >
                   {t('idleLoop.continue')}
@@ -513,16 +515,18 @@ export function CombatScreen() {
               )}
               <Button
                 variant="secondary"
-                className="min-h-[40px] text-sm"
+                className="min-h-11 text-sm"
                 onClick={handleReturnToMap}
+                disabled={transitionBlocked}
                 data-testid="return-to-map"
               >
                 {t('returnToMap')}
               </Button>
               <Button
                 variant="secondary"
-                className="min-h-[40px] text-sm"
+                className="min-h-11 text-sm"
                 onClick={handleReturnToTown}
+                disabled={transitionBlocked}
                 data-testid="return-to-town"
               >
                 {t('returnToTown')}

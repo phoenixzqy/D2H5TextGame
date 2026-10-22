@@ -7,9 +7,11 @@ import { MemoryRouter } from 'react-router-dom';
 import i18n from '@/i18n';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { useCombatStore, useMapStore, useMetaStore, usePlayerStore } from '@/stores';
-import { abortSubAreaRun, playerToCombatUnit } from '@/stores/combatHelpers';
+import { abortSubAreaRun, playerToCombatUnit, startSubAreaRun, advanceWaveOrFinish, performCombatScreenTransition, readCombatTransitionRecovery } from '@/stores/combatHelpers';
 import type { CombatUnit } from '@/engine/combat/types';
 import { CombatScreen } from './CombatScreen';
+import * as combatEngine from '@/engine/combat/combat';
+import { loadDefaultSkills, registerSkill, resetRegistry } from '@/engine/skills/registry';
 import { synthDefaultPlan } from '@/engine/combat';
 import type { ActiveRun } from '@/stores/combatRunLifecycle';
 import { stageRecordedBattle } from '@/stores/recordedBattlePublication';
@@ -186,6 +188,9 @@ describe('live combat resource display', () => {
 /** Real receipt refusals and playback UI; synthetic recording, no item payment. */
 describe('receipt playback refusal and Retry', () => {
   afterEach(() => { vi.useRealTimers(); });
+  const tree = () => <I18nextProvider i18n={i18n}><Suspense fallback={null}>
+    <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><CombatScreen /></MemoryRouter>
+  </Suspense></I18nextProvider>;
   function fixture(phase: 'prepared' | 'committedPendingPublication' | 'conflict', paused: boolean) {
     const player = createMockPlayer('Playback Retry', 'sorceress'); usePlayerStore.getState().setPlayer(player);
     const hero = playerToCombatUnit(player);
@@ -210,9 +215,8 @@ describe('receipt playback refusal and Retry', () => {
       if (phase !== 'prepared') commitPreparedRecordedWave(token, lease, { activeRun: null, heroId: hero.id,
         selection: null, ownership: phase === 'conflict' ? { ...ownership, backpack: [] } : ownership });
     } finally { endWaveTransition(lease); }
-    render(<I18nextProvider i18n={i18n}><Suspense fallback={null}>
-      <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><CombatScreen /></MemoryRouter>
-    </Suspense></I18nextProvider>);
+    const view = render(tree());
+    return () => { view.rerender(tree()); };
   }
   const phases = ['prepared', 'committedPendingPublication', 'conflict'] as const;
   for (const locale of ['en', 'zh-CN'] as const) {
@@ -224,17 +228,19 @@ describe('receipt playback refusal and Retry', () => {
           screen.getByRole('button', { name: i18n.t(action === 'pause' ? 'combat:pause' : 'combat:resume') }));
         expect(useCombatStore.getState()).toBe(before); expect(inspectRecordedWaves()).toBe(holder);
         expect(screen.getByRole('alert')).toHaveTextContent(i18n.t('common:error'));
-        expect(screen.getByRole('button', { name: i18n.t('common:retry') })).toBeEnabled();
+        const retry = screen.getByRole('button', { name: i18n.t('common:retry') });
+        if (phase === 'conflict') expect(retry).toBeDisabled();
+        else expect(retry).toBeEnabled();
       });
 
     it.each(phases)(locale + ' timer refusal in %s resumes on Retry after explicit abandonment', async phase => {
-      await i18n.changeLanguage(locale); vi.useFakeTimers(); fixture(phase, false);
+      await i18n.changeLanguage(locale); vi.useFakeTimers(); const rerender = fixture(phase, false);
       const before = useCombatStore.getState(); const holder = inspectRecordedWaves();
       act(() => { vi.advanceTimersByTime(1000); });
       expect(useCombatStore.getState()).toBe(before); expect(inspectRecordedWaves()).toBe(holder);
       expect(screen.getByRole('alert')).toBeVisible();
       act(() => { vi.advanceTimersByTime(5000); }); expect(useCombatStore.getState()).toBe(before);
-      abandonRecordedWaves();
+      act(() => { abandonRecordedWaves(); rerender(); });
       fireEvent.click(screen.getByRole('button', { name: i18n.t('common:retry') }));
       expect(screen.queryByRole('alert')).not.toBeInTheDocument();
       act(() => { vi.advanceTimersByTime(999); }); expect(useCombatStore.getState().eventCursor).toBe(0);
@@ -256,5 +262,108 @@ describe('receipt playback refusal and Retry', () => {
     }
     fireEvent.click(screen.getByRole('button', { name: 'Retry' }));
     act(() => { vi.advanceTimersByTime(1000); }); expect(useCombatStore.getState().eventCursor).toBe(1);
+  });
+});
+
+
+/** Development fault fixtures around real producers/UI, not earned or paid-Iron acceptance. */
+describe('captured combat transition recovery UI', () => {
+  beforeEach(async () => {
+    await i18n.changeLanguage('en'); loadDefaultSkills();
+    registerSkill({ id: 'fixture.ui-finisher', archetype: 'fixture', target: 'all-enemies',
+      cooldown: 1, manaCost: 0, minLevel: 1,
+      effects: [{ kind: 'damage', damageType: 'physical', base: [100_000, 100_000] }] });
+    const player = createMockPlayer('Recovery UI', 'sorceress');
+    usePlayerStore.getState().setPlayer({ ...player, comboOrder: ['fixture.ui-finisher'] });
+    useMapStore.getState().setCurrentLocation(1, 'areas/act1-blood-moor');
+    vi.useFakeTimers();
+  });
+  afterEach(() => { vi.useRealTimers(); vi.restoreAllMocks(); resetRegistry(); });
+  const tree = () => <I18nextProvider i18n={i18n}><Suspense fallback={null}>
+    <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}><CombatScreen /></MemoryRouter>
+  </Suspense></I18nextProvider>;
+  function drainUIFixture() {
+    while (!useCombatStore.getState().playbackComplete) useCombatStore.getState().advanceEvent();
+  }
+
+  it.each(['en', 'zh-CN'] as const)('recovers the displayed pending payload only on explicit Retry in %s', async locale => {
+    await i18n.changeLanguage(locale);
+    const engine = vi.spyOn(combatEngine, 'runBattleRecorded');
+    const publish = vi.spyOn(useCombatStore.getState(), 'publishStagedRecordedBattle')
+      .mockImplementationOnce(() => { throw new Error('before publication'); });
+    expect(performCombatScreenTransition({ kind: 'start', options: { runSeed: 7 } })).toBe(false);
+    const pending = inspectRecordedWaves().pending;
+    let view = render(tree()); expect(screen.getByRole('alert')).toBeVisible();
+    act(() => { vi.advanceTimersByTime(5000); });
+    expect(inspectRecordedWaves().pending).toBe(pending); expect(publish).toHaveBeenCalledTimes(1);
+    view.unmount(); view = render(tree());
+    act(() => { useHydrationStore.getState().setStatus('loading'); });
+    act(() => { useHydrationStore.getState().setStatus('ready'); });
+    view.rerender(tree());
+    expect(inspectRecordedWaves().pending).toBe(pending); expect(engine).toHaveBeenCalledTimes(1);
+    fireEvent.click(screen.getByRole('button', { name: i18n.t('common:retry') }));
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+    expect(inspectRecordedWaves().currentPublished?.receipt).toBe(pending?.receipt);
+    expect(useCombatStore.getState().recordedEvents).toBe(pending?.binding.recording.events);
+    expect(publish).toHaveBeenCalledTimes(2); expect(engine).toHaveBeenCalledTimes(1);
+  });
+
+  it('resumes existing playback when auto-start publication wrote then threw', () => {
+    const engine = vi.spyOn(combatEngine, 'runBattleRecorded');
+    const original = useCombatStore.getState().publishStagedRecordedBattle;
+    const publish = vi.spyOn(useCombatStore.getState(), 'publishStagedRecordedBattle').mockImplementationOnce(value => {
+      original(value); throw new Error('after publication');
+    });
+    expect(() => render(tree())).not.toThrow();
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+    expect(readCombatTransitionRecovery()).toEqual({ kind: 'ready' });
+    expect(engine).toHaveBeenCalledTimes(1); expect(publish).toHaveBeenCalledTimes(1);
+  });
+
+  it('offers explicit next-wave staging Retry after the completion timer without repeating rewards', () => {
+    startSubAreaRun({ runSeed: 7 }); drainUIFixture();
+    const engine = vi.spyOn(combatEngine, 'runBattleRecorded').mockImplementationOnce(() => { throw new Error('stage next'); });
+    const xp = vi.spyOn(usePlayerStore.getState(), 'gainExperience');
+    render(tree()); act(() => { vi.advanceTimersByTime(1500); });
+    expect(screen.getByRole('alert')).toBeVisible(); expect(xp).toHaveBeenCalledTimes(1);
+    const rewards = useCombatStore.getState().runRewards; const player = usePlayerStore.getState().player;
+    expect(useCombatStore.getState().currentWave).toBe(1);
+    act(() => { vi.advanceTimersByTime(10_000); });
+    expect(engine).toHaveBeenCalledTimes(1); expect(xp).toHaveBeenCalledTimes(1);
+    fireEvent.click(screen.getByRole('button', { name: 'Retry' }));
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+    expect(useCombatStore.getState().currentWave).toBe(2); expect(engine).toHaveBeenCalledTimes(2);
+    expect(xp).toHaveBeenCalledTimes(1); expect(useCombatStore.getState().runRewards).toBe(rewards);
+    expect(usePlayerStore.getState().player).toBe(player);
+  });
+
+  it('keeps partially finalized idle victory parked across timers, remount and navigation controls', () => {
+    useMetaStore.getState().setIdleTarget('areas/act1-blood-moor');
+    startSubAreaRun({ mode: 'idle', runSeed: 7 });
+    while (useCombatStore.getState().currentWave < useCombatStore.getState().totalWaves) {
+      drainUIFixture(); expect(advanceWaveOrFinish()).toBe('next-wave');
+    }
+    drainUIFixture();
+    const original = useCombatStore.getState().markRunVictory;
+    vi.spyOn(useCombatStore.getState(), 'markRunVictory').mockImplementation(() => {
+      original(); throw new Error('victory subscriber');
+    });
+    expect(performCombatScreenTransition({ kind: 'advance' })).toBe(false);
+    expect(useCombatStore.getState().runVictory).toBe(true);
+    const before = useCombatStore.getState(); const holder = inspectRecordedWaves();
+    let view = render(tree());
+    expect(screen.getByRole('alert')).toBeVisible();
+    expect(screen.getByRole('button', { name: 'Retry' })).toBeDisabled();
+    for (const id of ['idle-loop-next-run', 'return-to-map', 'return-to-town', 'continue-next-subarea']) {
+      expect(screen.getByTestId(id)).toBeDisabled(); fireEvent.click(screen.getByTestId(id));
+    }
+    act(() => { vi.advanceTimersByTime(10_000); });
+    expect(useCombatStore.getState()).toBe(before); expect(inspectRecordedWaves()).toBe(holder);
+    view.unmount(); view = render(tree()); act(() => { vi.advanceTimersByTime(10_000); });
+    expect(screen.getByRole('button', { name: 'Retry' })).toBeDisabled();
+    expect(useCombatStore.getState()).toBe(before); expect(inspectRecordedWaves()).toBe(holder);
+    fireEvent.click(screen.getByRole('button', { name: i18n.t('combat:idleLoop.stop') }));
+    expect(readCombatTransitionRecovery()).toEqual({ kind: 'ready' });
+    expect(useCombatStore.getState().runVictory).toBe(false);
   });
 });

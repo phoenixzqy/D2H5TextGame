@@ -30,9 +30,9 @@ import { abandonRecordedWaves, readRecordedWaveInstallation, markRecordedWaveMet
   prepareRecordedWaveInstallation, assertPreparedRecordedWaveBinding, cancelPreparedRecordedWave,
   commitPreparedRecordedWave, inspectRecordedWaves, readRecordedWaveSettlement,
   beginRecordedWaveSettlement, finishRecordedWaveSettlement, failRecordedWaveSettlement,
-  type RecordedWaveReceipt, type RecordedWaveLive, type RecordedWaveInstallIntent } from './recordedWaveReceipt';
+  type RecordedWaveReceipt, type RecordedWaveLive, type RecordedWaveInstallIntent, type RecordedWaveSettlementProgress } from './recordedWaveReceipt';
 import { assertRecordedWaveNewTransitionAllowed, assertRecordedWaveReplayAllowed,
-  assertRecordedWavePublicationRecoveryAllowed } from './recordedWaveAccess';
+  assertRecordedWavePublicationRecoveryAllowed, RecordedWaveAccessError } from './recordedWaveAccess';
 export { clearCombatAfterRestore } from './combatRunLifecycle';
 import { eventToLocalizedLogEntry } from './eventToLogI18n';
 import { useInventoryStore } from './inventoryStore';
@@ -58,18 +58,19 @@ import { isPreparationSummonSkill } from '@/engine/skills/summon-preparation';
 import { isIronGolemSkill } from '@/engine/skills/iron-golem';
 import { clearIronGolemSelection, consumeIronGolemSelection, useIronGolemSelectionStore } from './ironGolemSelectionStore';
 import { useHydrationStore } from './hydrationStore';
-import { beginWaveTransition, endWaveTransition, assertWaveSnapshotAllowed, type WaveTransitionLease } from './waveTransitionGuard';
+import { beginWaveTransition, endWaveTransition, assertWaveSnapshotAllowed, WaveGuardError, type WaveTransitionLease } from './waveTransitionGuard';
 import { resumeWaveDeferredSave } from './persistence';
 import { canonicalSkillIdFromData, getSkillRequiredLevel, getSkillsForClass,
   skillIdAliases, type SkillTemplate } from './skillsHelpers';
 
 /** Hold ownership through synchronous callbacks; wake a deferred save after release. */
-function withWaveTransition<T>(operation: (lease: WaveTransitionLease) => T, access: 'transition' | 'replay' = 'transition'): T {
+function withWaveTransition<T>(operation: (lease: WaveTransitionLease) => T,
+  access: 'transition' | 'replay' = 'transition', observation?: PublicationAttemptObservation): T {
   if (access === 'replay') assertRecordedWaveReplayAllowed();
   else assertRecordedWaveNewTransitionAllowed();
   const lease = beginWaveTransition(useHydrationStore.getState().status === 'ready');
   try { return operation(lease); } finally {
-    if (endWaveTransition(lease)) resumeWaveDeferredSave();
+    if (endWaveTransition(lease)) resumePublicationDeferredSave(observation);
   }
 }
 
@@ -474,6 +475,11 @@ export function startSubAreaRun(opts: {
   readonly runSeed?: number;
   readonly challengeOrdinal?: number;
 } = {}): { runId: string; totalWaves: number; runSeed: number; challengeOrdinal: number } | null {
+  return startSubAreaRunAttempt(opts);
+}
+
+function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {},
+  observation?: PublicationAttemptObservation): ReturnType<typeof startSubAreaRun> {
   if (opts.runSeed !== undefined &&
     (!Number.isInteger(opts.runSeed) || opts.runSeed < 0 || opts.runSeed > 0xffffffff)) {
     throw new RangeError('runSeed must be an unsigned 32-bit integer');
@@ -557,7 +563,7 @@ export function startSubAreaRun(opts: {
     commitStagedWave(candidate, staged, { kind: 'newRun', nextDefaultChallengeOrdinal:
       opts.challengeOrdinal === undefined ? (challengeOrdinal + 1) % CHALLENGE_ORDINAL_PERIOD : null }, attempt, lease);
     return { runId: plan.subAreaId, totalWaves: plan.waves.length, runSeed: seed, challengeOrdinal };
-  });
+  }, 'transition', observation);
 }
 
 /**
@@ -580,6 +586,10 @@ export function startSubAreaRun(opts: {
  * staging/publication errors retain awaiting carry or committed publication.
  */
 export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idle' {
+  return advanceWaveOrFinishAttempt();
+}
+
+function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation): ReturnType<typeof advanceWaveOrFinish> {
   return withWaveTransition(lease => {
     const run = combatRunLifecycle.activeRun;
     if (!run) return 'idle';
@@ -682,7 +692,7 @@ export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idl
     const staged = stageWave(run, next.nextWaveIdx, false, next.carryPlayerTeam);
     commitStagedWave(run, staged, { kind: 'newWave', carryPlayerTeam: next.carryPlayerTeam }, attempt, lease);
     return 'next-wave';
-  });
+  }, 'transition', observation);
 }
 
 /**
@@ -830,8 +840,15 @@ function commitStagedWave(run: ActiveRun, staged: StagedRecordedWave, intent: Re
   installCapturedRecordedWave(receipt, lease);
 }
 
+/** Private attempt-local diagnostics; durable receipts retain their first error. */
+interface PublicationAttemptObservation {
+  failure?: { readonly error: unknown };
+  wakeFailure?: { readonly error: unknown };
+}
+
 /** Install only the committed captured payload; never stage, debit or pay rewards. */
-function installCapturedRecordedWave(receipt: RecordedWaveReceipt, lease: WaveTransitionLease): void {
+function installCapturedRecordedWave(receipt: RecordedWaveReceipt, lease: WaveTransitionLease,
+  observation?: PublicationAttemptObservation): void {
   const view = readRecordedWaveInstallation(receipt, lease);
   const { binding, intent } = view;
   // Counter policy remains local to helpers, including retained recovery input.
@@ -851,7 +868,10 @@ function installCapturedRecordedWave(receipt: RecordedWaveReceipt, lease: WaveTr
   if (view.selectionProgress === 'pending') {
     let failure: { error: unknown } | undefined;
     try { consumeIronGolemSelection(binding.selection, lease); }
-    catch (error) { failure = { error }; }
+    catch (error) {
+      failure = { error };
+      if (observation) observation.failure = failure;
+    }
     observeRecordedWaveSelection(receipt, lease, useIronGolemSelectionStore.getState().selection, failure);
     if (failure) throw failure.error;
     if (readRecordedWaveInstallation(receipt, lease).selectionProgress === 'pending') {
@@ -862,6 +882,7 @@ function installCapturedRecordedWave(receipt: RecordedWaveReceipt, lease: WaveTr
     heroId: usePlayerStore.getState().player?.id ?? null, combat: useCombatStore.getState() });
   try { useCombatStore.getState().publishStagedRecordedBattle(binding.publication); }
   catch (error) {
+    if (observation) observation.failure = { error };
     recognizeRecordedWavePublication(receipt, lease, live(), { error });
     throw error;
   }
@@ -880,13 +901,115 @@ function installCapturedRecordedWave(receipt: RecordedWaveReceipt, lease: WaveTr
  * Setter errors retain exact progress/payload and their first failure evidence.
  */
 export function recoverRecordedWavePublication(receipt: RecordedWaveReceipt): void {
+  recoverPublicationAttempt(receipt);
+}
+
+function recoverPublicationAttempt(receipt: RecordedWaveReceipt, observation?: PublicationAttemptObservation): void {
   assertWaveSnapshotAllowed();
   const lease = beginWaveTransition(useHydrationStore.getState().status === 'ready');
   try {
     assertRecordedWavePublicationRecoveryAllowed(receipt, lease);
-    installCapturedRecordedWave(receipt, lease);
+    installCapturedRecordedWave(receipt, lease, observation);
   } finally {
-    if (endWaveTransition(lease)) resumeWaveDeferredSave();
+    if (endWaveTransition(lease)) resumePublicationDeferredSave(observation);
+  }
+}
+
+function resumePublicationDeferredSave(observation?: PublicationAttemptObservation): void {
+  try { resumeWaveDeferredSave(); }
+  catch (error) {
+    // This exception belongs to the wake, even when its value equals a setter failure.
+    if (observation) {
+      delete observation.failure;
+      observation.wakeFailure = { error };
+    }
+    throw error;
+  }
+}
+
+
+/** Process-local recovery displayed by CombatScreen; never persisted or auto-executed. */
+export type CombatTransitionRecovery =
+  | { readonly kind: 'ready' }
+  | { readonly kind: 'recoverPublication'; readonly receipt: RecordedWaveReceipt }
+  | { readonly kind: 'retryNextWave'; readonly receipt: RecordedWaveReceipt;
+      readonly progress: Extract<RecordedWaveSettlementProgress, { phase: 'awaitingNextWave' }> }
+  | { readonly kind: 'parked'; readonly reason: 'conflict' | 'settling' | 'settlementFailed' };
+
+/** Observe recovery without staging, publication or any gameplay effect. */
+export function readCombatTransitionRecovery(): CombatTransitionRecovery {
+  const { pending, currentPublished } = inspectRecordedWaves();
+  if (pending?.phase === 'conflict') return { kind: 'parked', reason: 'conflict' };
+  if (pending?.phase === 'committedPendingPublication' && pending.installation) {
+    return { kind: 'recoverPublication', receipt: pending.receipt };
+  }
+  const progress = currentPublished?.installation?.settlement.progress;
+  if (progress?.phase === 'settling' || progress?.phase === 'settlementFailed') {
+    return { kind: 'parked', reason: progress.phase };
+  }
+  if (!pending && currentPublished && progress?.phase === 'awaitingNextWave') {
+    return { kind: 'retryNextWave', receipt: currentPublished.receipt, progress };
+  }
+  // Foundation-only pending phases retain their existing typed access refusals.
+  return { kind: 'ready' };
+}
+
+/** Explicit screen operations, with the exact recovery that was displayed. */
+export type CombatScreenTransition =
+  | { readonly kind: 'start'; readonly options?: Parameters<typeof startSubAreaRun>[0] }
+  | { readonly kind: 'advance' }
+  | { readonly kind: 'retry'; readonly recovery: CombatTransitionRecovery };
+
+/**
+ * Perform one explicit operation. False requires Retry or abandonment; true resumes
+ * existing UI behavior (hydration remains independently gated). Classify only typed
+ * refusals or exact newly observed failure evidence; unrelated thrown values escape.
+ * Retry never substitutes another receipt or falls back to start/ordinary advance.
+ */
+export function performCombatScreenTransition(action: CombatScreenTransition): boolean {
+  const before = inspectRecordedWaves();
+  const retryAttempt: PublicationAttemptObservation = {};
+  let advances = action.kind === 'advance';
+  try {
+    if (action.kind === 'start') startSubAreaRunAttempt(action.options, retryAttempt);
+    else if (action.kind === 'advance') advanceWaveOrFinishAttempt(retryAttempt);
+    else {
+      const displayed = action.recovery; const live = readCombatTransitionRecovery();
+      if (displayed.kind === 'parked') return false;
+      if (displayed.kind !== live.kind ||
+        (displayed.kind === 'recoverPublication' &&
+          (live.kind !== 'recoverPublication' || displayed.receipt !== live.receipt)) ||
+        (displayed.kind === 'retryNextWave' && (live.kind !== 'retryNextWave' ||
+          displayed.receipt !== live.receipt || displayed.progress !== live.progress))) {
+        throw new RecordedWaveReceiptError('staleReceipt');
+      }
+      if (displayed.kind === 'recoverPublication') recoverPublicationAttempt(displayed.receipt, retryAttempt);
+      else if (displayed.kind === 'retryNextWave') { advances = true; advanceWaveOrFinishAttempt(retryAttempt); }
+    }
+    return true;
+  } catch (error) {
+    // Origin is observed before classifying typed refusals or retained gameplay errors.
+    if (retryAttempt.wakeFailure !== undefined) throw error;
+    if (error instanceof WaveGuardError) return error.code === 'hydrationNotReady';
+    if (error instanceof RecordedWaveAccessError || error instanceof RecordedWaveReceiptError) return false;
+    const after = inspectRecordedWaves();
+    const retryReceipt = action.kind === 'retry' && action.recovery.kind === 'recoverPublication'
+      ? action.recovery.receipt : null;
+    const failedHere = (view: typeof after.pending, previous: typeof before.pending) => view !== null && view !== previous &&
+      (retryReceipt !== null
+        ? view.receipt === retryReceipt && retryAttempt.failure !== undefined && Object.is(retryAttempt.failure.error, error)
+        : [view.debitFailure, view.publicationFailure, view.installation?.selectionFailure,
+          view.installation?.settlement.progress.phase === 'settlementFailed'
+            ? view.installation.settlement.progress.failure : undefined]
+          .some(failure => failure !== undefined && Object.prototype.hasOwnProperty.call(failure, 'error') && Object.is(failure.error, error)));
+    if (failedHere(after.pending, before.pending)) return false;
+    if (failedHere(after.currentPublished, before.currentPublished)) {
+      // A publisher may notify then throw after its exact complete value was written.
+      return after.pending === null && readCombatTransitionRecovery().kind === 'ready';
+    }
+    // Staging has no retained error; classify it only inside our own advance.
+    if (advances && readCombatTransitionRecovery().kind === 'retryNextWave') return false;
+    throw error;
   }
 }
 

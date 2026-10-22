@@ -5,7 +5,7 @@ import * as statusEngine from '@/engine/combat/status';
 import * as persistence from './persistence';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { loadDefaultSkills, registerSkill, resetRegistry } from '@/engine/skills/registry';
-import { abortSubAreaRun, advanceWaveOrFinish, refreshActivePlayerCombatConfig, startSubAreaRun, recoverRecordedWavePublication } from './combatHelpers';
+import { abortSubAreaRun, advanceWaveOrFinish, refreshActivePlayerCombatConfig, startSubAreaRun, recoverRecordedWavePublication, readCombatTransitionRecovery, performCombatScreenTransition } from './combatHelpers';
 import { combatRunLifecycle, type ActiveRun } from './combatRunLifecycle';
 import { useCombatStore } from './combatStore';
 import { usePlayerStore } from './playerStore';
@@ -721,4 +721,262 @@ it.each(['victory', 'defeat'] as const)('settles terminal %s once and refuses re
   unchanged(advanceWaveOrFinish, null);
   unchanged(() => { refreshActivePlayerCombatConfig({ replayCurrentWave: true }); }, new RecordedWaveAccessError('replaySettled'));
   expect(start()).not.toBeNull();
+});
+
+
+/** Real producer failures; injected setters/engine faults are not earned gameplay. */
+describe('explicit combat screen transition recovery', () => {
+  const screenStart = () => performCombatScreenTransition({ kind: 'start', options: {
+    subAreaId: 'areas/act1-blood-moor', runSeed: 7 } });
+
+  function readyScreenAdvance(kind: 'advance' | 'retryNextWave') {
+    start(); drain();
+    if (kind === 'advance') return () => performCombatScreenTransition({ kind: 'advance' });
+    vi.spyOn(combatEngine, 'runBattleRecorded').mockImplementationOnce(() => { throw new Error('initial staging'); });
+    expect(performCombatScreenTransition({ kind: 'advance' })).toBe(false);
+    const recovery = readCombatTransitionRecovery();
+    expect(recovery.kind).toBe('retryNextWave');
+    return () => performCombatScreenTransition({ kind: 'retry', recovery });
+  }
+
+  it.each((['start', 'advance', 'retryNextWave'] as const).flatMap(kind =>
+    (['before', 'after'] as const).flatMap(when =>
+      [undefined, null, NaN, { fault: 'same wake' }, new WaveGuardError('hydrationNotReady')]
+        .map(error => ({ kind, when, error })))))('propagates the exact $kind wake after publication throws $when write', ({ kind, when, error }) => {
+    const action = kind === 'start' ? screenStart : readyScreenAdvance(kind);
+    const original = useCombatStore.getState().publishStagedRecordedBattle;
+    vi.spyOn(useCombatStore.getState(), 'publishStagedRecordedBattle').mockImplementationOnce(value => {
+      expect(deferWaveSaveIfBusy()).toBe(true);
+      if (when === 'after') original(value);
+      // eslint-disable-next-line @typescript-eslint/only-throw-error -- Publisher and wake deliberately reuse exact arbitrary/typed values.
+      throw error;
+    });
+    vi.spyOn(persistence, 'resumeWaveDeferredSave').mockImplementationOnce(() => {
+      // eslint-disable-next-line @typescript-eslint/only-throw-error -- Exception provenance must survive identical values.
+      throw error;
+    });
+    let caught: unknown, threw = false;
+    try { action(); } catch (failure) { caught = failure; threw = true; }
+    expect(threw).toBe(true); expect(Object.is(caught, error)).toBe(true);
+    const retained = when === 'before' ? inspectRecordedWaves().pending : inspectRecordedWaves().currentPublished;
+    expect(Object.is(retained?.publicationFailure?.error, error)).toBe(true);
+  });
+
+  it.each(['advance', 'retryNextWave'] as const)('propagates a distinct deferred-save wake after %s staging fails', kind => {
+    const action = readyScreenAdvance(kind), wake = new Error('distinct deferred wake');
+    vi.spyOn(combatEngine, 'runBattleRecorded').mockImplementationOnce(() => {
+      expect(deferWaveSaveIfBusy()).toBe(true); throw new Error('new staging failure');
+    });
+    vi.spyOn(persistence, 'resumeWaveDeferredSave').mockImplementationOnce(() => { throw wake; });
+    expect(action).toThrow(wake);
+    expect(readCombatTransitionRecovery().kind).toBe('retryNextWave');
+  });
+
+  it.each(['success', 'publisherFailure'] as const)('propagates a typed wake after publication recovery %s', result => {
+    const actual = useCombatStore.getState().publishStagedRecordedBattle;
+    const publish = vi.spyOn(useCombatStore.getState(), 'publishStagedRecordedBattle');
+    publish.mockImplementationOnce(() => { throw new Error('first publication'); });
+    expect(screenStart()).toBe(false); const recovery = readCombatTransitionRecovery();
+    publish.mockImplementationOnce(value => {
+      expect(deferWaveSaveIfBusy()).toBe(true);
+      if (result === 'success') actual(value); else throw new Error('retry publication');
+    });
+    const wake = new RecordedWaveReceiptError('bindingMismatch');
+    vi.spyOn(persistence, 'resumeWaveDeferredSave').mockImplementationOnce(() => { throw wake; });
+    expect(() => performCombatScreenTransition({ kind: 'retry', recovery })).toThrow(wake);
+  });
+
+  it.each([undefined, null, NaN, { fault: 'publisher' }])('recovers an exact pending publication after arbitrary throw %j', error => {
+    const engine = vi.spyOn(combatEngine, 'runBattleRecorded');
+    const publish = vi.spyOn(useCombatStore.getState(), 'publishStagedRecordedBattle');
+    // eslint-disable-next-line @typescript-eslint/only-throw-error -- Arbitrary thrown values are intentional protocol fixtures.
+    publish.mockImplementationOnce(() => { throw error; });
+    expect(screenStart()).toBe(false);
+    const recovery = readCombatTransitionRecovery();
+    expect(recovery.kind).toBe('recoverPublication');
+    const pending = inspectRecordedWaves().pending;
+    expect(pending?.publicationFailure).toHaveProperty('error');
+    expect(Object.is(pending?.publicationFailure?.error, error)).toBe(true);
+    expect(performCombatScreenTransition({ kind: 'retry', recovery })).toBe(true);
+    expect(readCombatTransitionRecovery()).toEqual({ kind: 'ready' });
+    expect(inspectRecordedWaves().currentPublished?.receipt).toBe(pending?.receipt);
+    expect(useCombatStore.getState().recordedEvents).toBe(pending?.binding.recording.events);
+    expect(engine).toHaveBeenCalledTimes(1); expect(publish).toHaveBeenCalledTimes(2);
+    unchanged(() => { expect(performCombatScreenTransition({ kind: 'retry', recovery })).toBe(false); }, null);
+    expect(engine).toHaveBeenCalledTimes(1); expect(publish).toHaveBeenCalledTimes(2);
+  });
+
+  it.each(['before', 'after'] as const)('classifies a distinct second publication failure %s write while preserving the first', when => {
+    const first = new Error('first publisher failure'), second = { failure: 'second publisher' };
+    const engine = vi.spyOn(combatEngine, 'runBattleRecorded');
+    const original = useCombatStore.getState().publishStagedRecordedBattle;
+    const publish = vi.spyOn(useCombatStore.getState(), 'publishStagedRecordedBattle');
+    publish.mockImplementationOnce(() => { throw first; });
+    expect(screenStart()).toBe(false);
+    const recovery = readCombatTransitionRecovery(), pending = inspectRecordedWaves().pending;
+    publish.mockImplementationOnce(value => {
+      if (when === 'after') original(value);
+      // eslint-disable-next-line @typescript-eslint/only-throw-error -- Distinct retry failure must not replace first diagnostic evidence.
+      throw second;
+    });
+    expect(performCombatScreenTransition({ kind: 'retry', recovery })).toBe(when === 'after');
+    const retained = when === 'after' ? inspectRecordedWaves().currentPublished : inspectRecordedWaves().pending;
+    expect(retained?.receipt).toBe(pending?.receipt);
+    expect(retained?.publicationFailure?.error).toBe(first);
+    expect(retained?.binding).toBe(pending?.binding);
+    expect(engine).toHaveBeenCalledTimes(1); expect(publish).toHaveBeenCalledTimes(2);
+    if (when === 'before') expect(performCombatScreenTransition({ kind: 'retry', recovery })).toBe(true);
+    expect(readCombatTransitionRecovery()).toEqual({ kind: 'ready' });
+  });
+
+  it.each(['before', 'after'] as const)('classifies a distinct second selection failure %s write without replacing the first', when => {
+    const first = new Error('first selection failure'), second = { failure: 'second selection' };
+    const engine = vi.spyOn(combatEngine, 'runBattleRecorded');
+    const original = useIronGolemSelectionStore.setState;
+    const setter = vi.spyOn(useIronGolemSelectionStore, 'setState');
+    setter.mockImplementationOnce(() => { throw first; });
+    expect(screenStart()).toBe(false); const recovery = readCombatTransitionRecovery();
+    const pending = inspectRecordedWaves().pending;
+    setter.mockImplementationOnce(value => {
+      if (when === 'after') original(value);
+      // eslint-disable-next-line @typescript-eslint/only-throw-error -- Retried selection notification may throw a different value.
+      throw second;
+    });
+    expect(performCombatScreenTransition({ kind: 'retry', recovery })).toBe(false);
+    expect(inspectRecordedWaves().pending?.receipt).toBe(pending?.receipt);
+    expect(inspectRecordedWaves().pending?.installation?.selectionFailure?.error).toBe(first);
+    expect(inspectRecordedWaves().pending?.installation?.selectionProgress).toBe(when === 'before' ? 'pending' : 'resolved');
+    expect(performCombatScreenTransition({ kind: 'retry', recovery })).toBe(true);
+    expect(engine).toHaveBeenCalledTimes(1); expect(readCombatTransitionRecovery()).toEqual({ kind: 'ready' });
+  });
+
+  it.each([
+    ...[undefined, null, NaN, { fault: 'same first value' }].flatMap(error =>
+      (['success', 'publisherFailure'] as const).map(result => ({ result, first: error,
+        publisherError: new Error('retry publisher'), wakeError: error }))),
+    ...(() => { const same = new Error('same current publisher and wake'); return [{
+      result: 'publisherFailure' as const, first: new Error('first publisher'), publisherError: same, wakeError: same }]; })()
+  ])('preserves deferred-save provenance for $result even with identical historical/current values', ({ result, first, publisherError, wakeError }) => {
+    const original = useCombatStore.getState().publishStagedRecordedBattle;
+    const publish = vi.spyOn(useCombatStore.getState(), 'publishStagedRecordedBattle');
+    publish.mockImplementationOnce(() => {
+      // eslint-disable-next-line @typescript-eslint/only-throw-error -- Arbitrary initial diagnostic identity.
+      throw first;
+    });
+    expect(screenStart()).toBe(false); const recovery = readCombatTransitionRecovery();
+    publish.mockImplementationOnce(value => {
+      expect(deferWaveSaveIfBusy()).toBe(true);
+      if (result === 'success') original(value); else throw publisherError;
+    });
+    vi.spyOn(persistence, 'resumeWaveDeferredSave').mockImplementationOnce(() => {
+      // eslint-disable-next-line @typescript-eslint/only-throw-error -- Wake may throw the same primitive/object as historical evidence.
+      throw wakeError;
+    });
+    let caught: unknown, threw = false;
+    try { performCombatScreenTransition({ kind: 'retry', recovery }); } catch (error) { caught = error; threw = true; }
+    expect(threw).toBe(true); expect(Object.is(caught, wakeError)).toBe(true);
+    const retained = result === 'success' ? inspectRecordedWaves().currentPublished : inspectRecordedWaves().pending;
+    expect(Object.is(retained?.publicationFailure?.error, first)).toBe(true);
+  });
+
+  it.each(['success', 'publisherFailure'] as const)('does not swallow an unrelated deferred-save failure after recovery %s', result => {
+    const first = new Error('first publication'), second = new Error('deferred save');
+    const original = useCombatStore.getState().publishStagedRecordedBattle;
+    const publish = vi.spyOn(useCombatStore.getState(), 'publishStagedRecordedBattle');
+    publish.mockImplementationOnce(() => { throw first; });
+    expect(screenStart()).toBe(false); const recovery = readCombatTransitionRecovery();
+    const third = new Error('retry publisher');
+    publish.mockImplementationOnce(value => {
+      expect(deferWaveSaveIfBusy()).toBe(true);
+      if (result === 'success') original(value); else throw third;
+    });
+    vi.spyOn(persistence, 'resumeWaveDeferredSave').mockImplementationOnce(() => { throw second; });
+    expect(() => performCombatScreenTransition({ kind: 'retry', recovery })).toThrow(second);
+    const retained = result === 'success' ? inspectRecordedWaves().currentPublished : inspectRecordedWaves().pending;
+    expect(retained?.publicationFailure?.error).toBe(first);
+  });
+
+  it.each([undefined, null, NaN, { fault: 'after publication' }])('resumes an already published exact recording after throw %j', error => {
+    const engine = vi.spyOn(combatEngine, 'runBattleRecorded');
+    const original = useCombatStore.getState().publishStagedRecordedBattle;
+    const publish = vi.spyOn(useCombatStore.getState(), 'publishStagedRecordedBattle').mockImplementationOnce(value => {
+      original(value);
+      // eslint-disable-next-line @typescript-eslint/only-throw-error -- Verify field presence and Object.is rather than error truthiness.
+      throw error;
+    });
+    expect(screenStart()).toBe(true); expect(readCombatTransitionRecovery()).toEqual({ kind: 'ready' });
+    expect(inspectRecordedWaves().currentPublished?.publicationFailure).toHaveProperty('error');
+    expect(engine).toHaveBeenCalledTimes(1); expect(publish).toHaveBeenCalledTimes(1);
+    // Historical evidence must not swallow a subsequent unrelated staging failure.
+    const unrelated = new Error('unrelated staging failure');
+    engine.mockImplementationOnce(() => { throw unrelated; });
+    expect(screenStart).toThrow(unrelated); expect(publish).toHaveBeenCalledTimes(1);
+  });
+
+  it.each(['before', 'after'] as const)('classifies selection throw-%s-write and recovers without claiming a rearm', when => {
+    const selected = useIronGolemSelectionStore.getState().selection;
+    if (!selected) throw new Error('Missing selection');
+    const error = { selection: when }; const engine = vi.spyOn(combatEngine, 'runBattleRecorded');
+    const setter = when === 'before' ? vi.spyOn(useIronGolemSelectionStore, 'setState').mockImplementationOnce(() => {
+      // eslint-disable-next-line @typescript-eslint/only-throw-error -- Selection setter fault fixture.
+      throw error;
+    }) : undefined;
+    const stop = when === 'after' ? useIronGolemSelectionStore.subscribe(() => {
+      // eslint-disable-next-line @typescript-eslint/only-throw-error -- Selection notification fault fixture.
+      throw error;
+    }) : () => { /* No throwing observer before write. */ };
+    try { expect(screenStart()).toBe(false); } finally { setter?.mockRestore(); stop(); }
+    const recovery = readCombatTransitionRecovery(); expect(recovery.kind).toBe('recoverPublication');
+    const rearm = armIronGolemSelection(selected.heroId, selected.itemId, true);
+    expect(performCombatScreenTransition({ kind: 'retry', recovery })).toBe(true);
+    expect(useIronGolemSelectionStore.getState().selection).toBe(rearm);
+    expect(engine).toHaveBeenCalledTimes(1); expect(readCombatTransitionRecovery()).toEqual({ kind: 'ready' });
+  });
+
+  it('refuses a displayed stale publication token without recovering its replacement', () => {
+    const publish = vi.spyOn(useCombatStore.getState(), 'publishStagedRecordedBattle');
+    publish.mockImplementationOnce(() => { throw new Error('old pending'); });
+    expect(screenStart()).toBe(false); const stale = readCombatTransitionRecovery();
+    abortSubAreaRun(); publish.mockImplementationOnce(() => { throw new Error('new pending'); });
+    expect(screenStart()).toBe(false); const replacement = inspectRecordedWaves();
+    unchanged(() => { expect(performCombatScreenTransition({ kind: 'retry', recovery: stale })).toBe(false); }, null);
+    expect(inspectRecordedWaves()).toBe(replacement); expect(publish).toHaveBeenCalledTimes(2);
+  });
+
+  it('retries only the displayed receipt and carry progress, without repeated rewards or rebasing', () => {
+    start(); drain();
+    const xp = vi.spyOn(usePlayerStore.getState(), 'gainExperience');
+    const rebase = vi.spyOn(statusEngine, 'rebaseStatusClock');
+    const engine = vi.spyOn(combatEngine, 'runBattleRecorded').mockImplementationOnce(() => { throw new Error('staging'); });
+    expect(performCombatScreenTransition({ kind: 'advance' })).toBe(false);
+    const recovery = readCombatTransitionRecovery();
+    if (recovery.kind !== 'retryNextWave') throw new Error('Missing captured carry recovery');
+    const gains = stores.map(store => store.getState()); const rewards = useCombatStore.getState().runRewards;
+    const rebases = rebase.mock.calls.length;
+    expect(xp).toHaveBeenCalledTimes(1); expect(rebases).toBeGreaterThan(0);
+    unchanged(() => { expect(performCombatScreenTransition({ kind: 'retry', recovery: {
+      ...recovery, progress: { ...recovery.progress } } })).toBe(false); }, null);
+    expect(performCombatScreenTransition({ kind: 'retry', recovery })).toBe(true);
+    expect(engine).toHaveBeenCalledTimes(2); expect(xp).toHaveBeenCalledTimes(1);
+    expect(rebase).toHaveBeenCalledTimes(rebases);
+    expect(usePlayerStore.getState()).toBe(gains[1]); expect(useInventoryStore.getState()).toBe(gains[2]);
+    expect(useCombatStore.getState().runRewards).toBe(rewards);
+    unchanged(() => { expect(performCombatScreenTransition({ kind: 'retry', recovery })).toBe(false); }, null);
+  });
+
+  it('parks a partial settlement and retains the exact failure until explicit abandonment', () => {
+    start(); drain(); const original = usePlayerStore.getState().gainExperience;
+    const error = { fault: 'partial XP' };
+    vi.spyOn(usePlayerStore.getState(), 'gainExperience').mockImplementation(amount => {
+      original(amount);
+      // eslint-disable-next-line @typescript-eslint/only-throw-error -- Verify stable arbitrary settlement failure.
+      throw error;
+    });
+    expect(performCombatScreenTransition({ kind: 'advance' })).toBe(false);
+    expect(readCombatTransitionRecovery()).toEqual({ kind: 'parked', reason: 'settlementFailed' });
+    const recovery = readCombatTransitionRecovery();
+    unchanged(() => { expect(performCombatScreenTransition({ kind: 'retry', recovery })).toBe(false); }, null);
+    expect(readCombatTransitionRecovery()).toEqual(recovery);
+    abortSubAreaRun(); expect(readCombatTransitionRecovery()).toEqual({ kind: 'ready' });
+  });
 });

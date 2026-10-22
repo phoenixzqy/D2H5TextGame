@@ -5888,3 +5888,106 @@ released. Producer publication review,
 local commit and exact cleanup follow. Root remains sole writer/executor;
 umbrella worktree claim continues without remote action. Recovery UI, real item
 debit/lock, bilingual Iron acceptance and fullD06/P09/P10/private-v1 remain open.
+
+
+## D06 v1ao explicit combat recovery presentation
+
+Production no-debit activation committed as `8067e1c` after independent
+QA/TD/five-axis/producer APPROVE. Exact cleanup removed1300files/43,831,370bytes/
+14directories with zero failures/remaining; all22 command identities absent.
+
+Combat helpers now expose read-only recovery observations and an explicit screen
+operation boundary. Retry binds the displayed receipt and exact awaiting carry
+progress; stale observations refuse. Publication recovery reinstalls captured data
+without simulation or settlement. Captured next-wave retries cannot repeat XP,
+loot or rebasing. Conflicts and partial settlement remain parked until explicit
+abandonment. Arbitrary thrown values (undefined/null/NaN/objects) are classified
+only against newly changed retained failure evidence; unrelated throws escape.
+A publisher that writes its exact value then throws resumes existing playback.
+
+CombatScreen initializes recovery presentation on mount, checks live authority in
+playback/completion/idle timers and terminal actions, and never executes recovery
+on mount, hydration or locale change. Retry is disabled for parked states;
+terminal controls cannot replace parked progress. Existing bilingual Retry/error/
+Stop copy is reused. Explicit Stop/Flee abandons. Four terminal buttons now meet
+the44px minimum. SaveCurrent11 and all locale files remain unchanged.
+
+Receipt tests103to165 cover arbitrary before/after-write publication faults,
+selection notification failures/newer rearm preservation, stale retry, historical
+errors, captured carry and partial settlement. UI tests40to45 cover remount,
+hydration/locales, after-write publication, actual1.5s completion retries, and a
+real final idle victory whose notifying setter writes then throws. Foundation
+conflict fixtures now expect disabled Retry; direct holder abandonment is followed
+by explicit test rerender. Original guard/mutation assertions remain; no skips.
+
+RED helper11failed/103passed6.526s and screen4failed/40passed8.630s demonstrate the
+missing exports/UI behavior. Intermediate screen9failed/149passed7.916s records
+stale foundation expectations and an incorrect literal Stop label, corrected in
+screen-green-v2 (158/2files7.348s). Focused621/18files12.862s, final full7038/
+228files114.105s, types15.067s, lint42.970s including85purity, and task-local
+build9.873s passed. Build608modules/index-B6pRI0Ck.js1276.92kB observed. Existing
+module/bundle variance, related5s/full15s overruns, React act/fixture fallback,
+Browserslist/chunk/precache warnings and Chinese screenshot glyph issue remain.
+
+Development-browser harness passed71.883s for en/zh-CN at360x640,412x915,640x360,
+1280x800,1920x1080. Real producers/stores/UI with an explicitly synthetic finisher
+and injected before-write publication/after-write victory faults verify pending
+remount preservation, explicit exact retry, parked timer/terminal controls and
+explicit Stop. Retry/Stop48px, no horizontal overflow or page errors observed;
+harness rejects console errors/warnings. Harness hashes and exact owned Vite
+PID/startTicks/termination evidence retained. This is synthetic fault integration,
+not production-build, visual-glyph, earned or paid-Iron acceptance.
+
+Initial frozen-v1 QA/TD/five-axis reviews returned CONCERNS: a second distinct
+Retry error escaped because durable receipts correctly retain only the first
+error. No commit/publication followed those concerns; all readers released.
+Four regression failures/118passed6.901s reproduced publication/selection
+before/after-write retries. A private attempt-local observation now captures the
+current error while preserving the first receipt error. Two additional controls
+prove unrelated deferred-save exceptions still escape after success or failure.
+Corrected focused167/2files7.470s, full7044/228files118.701s, types14.818s,
+lint41.829s/85purity and build9.789s passed. Build608modules/index-C_Qrnqlf.js
+1277.13kB observed; reused task-local outDir retains a prior emitted asset, so its
+757-entry precache is not a clean-output equivalence claim. Exact inventory is
+tracked for cleanup. Revised browser harness additionally injects distinct
+undefined/null/object publication errors over two explicit retries, retaining the
+first error while recognizing the final after-write publication. All ten revised
+browser cases passed72.785s; exact owned server termination is retained.
+
+Frozen-v2 reviews returned CONCERNS for same-value deferred-save provenance:
+a wake could match a historical or current publication error. Nine new failures/
+122passed6.397s reproduced this; focused176/2files7.155s passed after recovery
+used exclusive attempt-local evidence and invalidated it on wake failure. Lint
+then rejected a direct throw in finally; extracting the wake helper preserved
+behavior without suppression. An attempted validation label collided with an
+existing evidence directory and stopped before starting typecheck; unique labels
+preserved existing evidence. Subsequent focused176/2files7.998s, types14.944s,
+lint42.353s/85purity, full7053/228files119.577s, build9.834s and ten-case browser
+72.782s passed. Build608modules/index-1RrAMxc7.js1277.20kB observed.
+
+Pre-freeze TD consultation found the same provenance gap on Start/Advance and
+next-wave Retry: retained-error matching could swallow same-value wakes, and
+awaiting-carry fallback could swallow even a distinct wake after staging failed.
+Typed wake exceptions also hit early refusal classification. Thirty-four new
+regressions failed/131passed7.210s. Private start/advance attempts now thread the
+same observation through the shared wake helper, which records wakeFailure.
+The screen checks that origin before every typed/retained/fallback classification
+and rethrows the exact value. Public signatures and durable first-error data are
+unchanged. Focused210/2files7.736s, full7087/228files114.940s, types15.239s,
+lint39.580s/85purity and build9.916s passed. Build608modules/index-DsP1AHtw.js
+1277.30kB observed. The reused outDir now has759precache entries, retaining prior
+emitted chunks; this is still not a clean-output equivalence claim. Final ten-case
+development-browser matrix passed73.288s with no reported page/console errors,
+no horizontal overflow and48px Retry/Stop. Exact owned server termination and
+harness hashes retained. This remains synthetic no-debit recovery evidence.
+
+Security assessment: bounded process-local failure classification, exact retry
+authority and no new external IO/dependencies, item writes or save-schema change.
+Five paths, source/command/output identities, prior cleanup and owned dist/tmp
+inventory are frozen in transition-ui-v4-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA/test-evidence and TD/five-axis reviews APPROVED frozen v4;
+all readers released. Root remains sole writer/executor. Producer publication
+review, local commit and exact cleanup follow. Umbrella claim continues without
+remote action. Real item debit/lock,
+bilingual Iron selection acceptance and fullD06/P09/P10/private-v1 remain open.
