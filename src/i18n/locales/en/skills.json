@@ -1365,7 +1365,7 @@
     "armedInvalid": "The armed instruction is no longer eligible: {{reason}}",
     "preview": "Chosen-item preview",
     "bonuses": "Item contribution: Life +{{life}}, Attack +{{attack}}, Defense +{{defense}}.",
-    "previewScope": "Current and next rank totals include this item once. Preview does not guarantee preparation or payment.",
+    "previewScope": "Current and next totals include this item once, then current eligible Golem Mastery. Attack Speed is flat. These live previews can differ from the recorded attempt and do not guarantee preparation or payment.",
     "configurationUnavailable": "Learn Iron Golem and its prerequisite, meet its level requirement, and add it to Active Skill Priority before arming.",
     "armDone": "Instruction armed. The item has not been consumed.",
     "clearDone": "Instruction cleared.",
@@ -1396,7 +1396,7 @@
       "restorePending": "A save is loading. Try again when it finishes."
     },
     "emptyBackpack": "The backpack is empty. Find or move an eligible metal item into it.",
-    "basePreview": "Base stats without a sacrifice. Chosen-item totals appear in the sacrifice preview.",
+    "basePreview": "Without a sacrifice, with current eligible Golem Mastery. Chosen-item totals appear in the sacrifice preview.",
     "actionUnverified": "The action did not finish normally. Review the live instruction before trying again.",
     "attemptTiming": "The instruction clears after one accepted new-wave attempt, even if preparation fails. No retry that wave; a consumed item is never refunded."
   }

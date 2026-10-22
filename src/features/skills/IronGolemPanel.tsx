@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import type { Item } from '@/engine/types/items';
 import type { Player } from '@/engine/types/entities';
 import { computeSkillDisplayModel, type SkillRankDisplayStats } from '@/engine/skills/displayStats';
+import { composeGolemMastery } from '@/engine/skills/golem-mastery';
 import { loadItemBases } from '@/data/loaders/loot';
 import { Button, Panel, tItemName } from '@/ui';
 import { itemBaseSlug } from '@/ui/i18nKey';
@@ -62,7 +63,13 @@ function HeroIronGolemPanel({ skill, rank, player }: Props & { readonly player: 
     setAcknowledgedItem(null);
   }, [source]);
   const preview = model.draft.eligible
-    ? computeSkillDisplayModel(skill, rank, undefined, model.draft.bonuses)
+    ? computeSkillDisplayModel(
+        skill,
+        rank,
+        undefined,
+        model.draft.bonuses,
+        composeGolemMastery(player)
+      )
     : null;
   const name = (item: Item) =>
     loadItemBases().has(item.baseId) && i18n.exists(`items:base.${itemBaseSlug(item.baseId)}`)
@@ -252,14 +259,12 @@ function PreviewRank({
       </h4>
       {stats?.summonUnit ? (
         <dl className="space-y-1">
-          {stats.summonUnit.stats
-            .filter((row) => ['lifeMax', 'attack', 'defense'].includes(row.id))
-            .map((row) => (
-              <div key={row.id} className="flex justify-between gap-3">
-                <dt>{t(row.labelKey)}</dt>
-                <dd>{format(row.value)}</dd>
-              </div>
-            ))}
+          {stats.summonUnit.stats.map((row) => (
+            <div key={row.id} className="flex justify-between gap-3">
+              <dt>{t(row.labelKey)}</dt>
+              <dd>{format(row.value)}</dd>
+            </div>
+          ))}
         </dl>
       ) : (
         <p>

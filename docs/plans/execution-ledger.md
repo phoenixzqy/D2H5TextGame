@@ -8139,3 +8139,58 @@ screenshots independently accepted. Exact disposal1306 files/43989686 bytes/
 artifacts/processes. Approval-only ledger append; four other paths unchanged.
 Producer publication audit, staged whitespace success, local commit and exact
 cleanup follow. E and broader gameplay/earned/campaign/full-v1 remain open.
+
+
+## D06 v1bt — selected-item Iron Golem Mastery previews
+
+D committed a615431; cleanup6cae2e3007621ce40521ad1085b8218039be1c52f022f9ebd6b2edd6a4e40b3b
+removed1306 files/43989686 bytes/20 directories, no remaining targets/failures;
+both checkouts clean. Root retains diagnostic evidence for the umbrella plan.
+Approved five-path E: IronGolemPanel/test, two skills locales, ledger. Shared
+actual eligible Player Mastery enters the fifth display argument after isolated
+item contribution once. Render all four golem stat rows including flat AS;
+clarify live/current-Mastery totals versus frozen recorded attempt and base
+without sacrifice in both locales. Match Chinese skill name 石魔支配. Security
+PASS: local deterministic presentation, no save/schema/dependency/remote change.
+
+Ten new bilingual cases: fractional item/current+next at Mastery1/20,
+unlearned/capped summon, native Mastery allocation with paid locked recording,
+explicit replay and unchanged resources/items. Genuine RED10fail/36controls.
+Retained first implementation failure (incorrect import module), corrected to
+engine helper; subsequent44pass/2fail exposed draft plain-sword life oracles
+using348 instead of authored340. Corrected independent literals340*1.06=360.4
+and340*1.12=380.8; fractional cases already passed. No production math changed.
+Final unchanged-source PASS: focused150/5files7.73s(wrapper8.921),
+types17.443s, lint46.077s/purity89, full7708/250files138.53s(wrapper140.116),
+production build10.054s. Existing full15s/engine3s budgets and Browserslist,
+chunk-size/precache warnings remain unresolved; no engine edit in this slice.
+
+First native browser run failed after allocation because leaving Iron clears
+the component-local draft; original harness/log/traces retained. Corrected the
+harness to select the remaining item again through the native control. Final
+production browser PASS2/2in31.7s(wrapper33.294). Both locales/eight sizes
+360x640/412x915/640x360/375x667/393x851/768x1024/1280x800/1920x1080:
+fractional current+next, flat AS, native lower-row scroll/hit-testing,
+>=44px select/arm controls and no horizontal overflow. Native cap20/Mastery20
+and unlearned controls pass. Settings exports establish preview/arm have no
+item/resource debit, actual paid wave consumes exactly chosen item, real
+Mastery1→2 allocation updates live totals while paused summon identity/text
+and paid/locked result remain; explicit native replay has original summon ID
+and no second item/MP debit. Unit evidence additionally compares frozen input,
+recording and publication exactly. No debug bridge or page-eval mutation;
+imported rank/core/resources are explicitly unearned. No application console
+warnings/errors; CLI color-env warnings retained separately. Root visually
+inspected bilingual mobile/desktop screenshots; final independent evidence
+review follows. Earned progression, corpse consumers and fullD06/P09/P10/
+private-v1 remain open. No remote publication occurred.
+
+Final independent QA-D06-GOLEM-IRON APPROVE/test evidence ADEQUATE and
+TD/five-axis APPROVE. Review5cec57cd855f4f6188d729b1e2ea8c57d43350fd45547e63135e1dfe6ef993b0,
+support2c24d152b86bf259c817366944e2a485df926fa8d7be9dec178c4c8ae532dffe,
+211 retained files/11 settled serial receipts verified. Bilingual native
+screenshots/exports independently accepted. Exact disposal1310 files/
+126152493 bytes/21 directories verified; all readers released including
+dist/tmp, no reviewer processes/artifacts. Approval-only ledger append;
+four other paths unchanged. Producer publication audit, staged whitespace,
+local commit and exact cleanup follow. Root retains evidence for the umbrella
+plan. Corpse consumption is next; earned/full-v1 acceptance remains open.

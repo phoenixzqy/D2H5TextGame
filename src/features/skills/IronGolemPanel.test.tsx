@@ -613,3 +613,162 @@ describe('published replay policies', () => {
     }
   );
 });
+
+describe('current Golem Mastery and isolated selected-item previews', () => {
+  function fractionalItem() {
+    useInventoryStore.setState({
+      backpack: [
+        {
+          ...item(),
+          rarity: 'rare',
+          baseRolls: { attack: 0 },
+          affixes: [
+            {
+              affixId: 'fixture',
+              values: new Map([
+                ['statMods.life', 12.5],
+                ['statMods.attack', 3.25],
+                ['statMods.defense', 4.5]
+              ])
+            }
+          ]
+        }
+      ]
+    });
+  }
+  function values(id: string, expected: readonly number[]) {
+    const panel = screen.getByTestId(id),
+      labels = ['lifeMax', 'attack', 'defense', 'attackSpeed'];
+    labels.forEach((label, index) => {
+      const value = within(panel).getByText(i18n.t('skills:details.summonStat.' + label), {
+        selector: 'dt'
+      }).nextElementSibling;
+      expect(value?.textContent).toBe(String(expected[index]));
+    });
+  }
+  for (const locale of ['en', 'zh-CN']) {
+    it.each([
+      [1, 373.65, 390.61, 61],
+      [20, 775.5, 810.7, 80]
+    ])(
+      `includes Mastery%s after fractional rank6/7 and item stats in ${locale}`,
+      async (mastery, life, nextLife, speed) => {
+        await i18n.changeLanguage(locale);
+        hero({
+          skillLevels: {
+            [IRON]: 6,
+            [BLOOD]: 1,
+            'necromancer.clay_golem': 1,
+            'necromancer.golem_mastery': mastery
+          }
+        });
+        fractionalItem();
+        const before = useInventoryStore.getState(),
+          resources = usePlayerStore.getState().player?.derivedStats;
+        mount();
+        choose();
+        values('iron-preview-current', [life, 49.25, 67.5, speed]);
+        values('iron-preview-next', [nextLife, 51.25, 70.5, speed]);
+        expect(
+          screen.getByText(
+            i18n.t('skills:ironGolem.bonuses', { life: 12.5, attack: 3.25, defense: 4.5 })
+          )
+        ).toBeVisible();
+        expect(screen.getByText(text('previewScope'))).toBeVisible();
+        expect(useInventoryStore.getState()).toBe(before);
+        expect(usePlayerStore.getState().player?.derivedStats).toBe(resources);
+        expect(useIronGolemSelectionStore.getState().selection).toBeNull();
+      }
+    );
+    it.each([
+      [0, 'iron-preview-next', [288.85, 39.25, 52.5, 61]],
+      [20, 'iron-preview-current', [611.09, 77.25, 109.5, 61]]
+    ] as const)(
+      `keeps unlearned/capped summon boundaries with current Mastery in ${locale}: rank%s`,
+      async (rank, id, expected) => {
+        await i18n.changeLanguage(locale);
+        hero({
+          skillLevels: {
+            [IRON]: rank,
+            [BLOOD]: 1,
+            'necromancer.clay_golem': 1,
+            'necromancer.golem_mastery': 1
+          }
+        });
+        fractionalItem();
+        mount(rank);
+        choose();
+        values(id, expected);
+        const other = screen.getByTestId(rank === 0 ? 'iron-preview-current' : 'iron-preview-next');
+        expect(other).toHaveTextContent(
+          i18n.t(rank === 0 ? 'skills:details.currentEmpty' : 'skills:details.maxLevel')
+        );
+      }
+    );
+    it(`updates live preview while keeping a locked paid recording and resources in ${locale}`, async () => {
+      await i18n.changeLanguage(locale);
+      enableRecording(100);
+      const player = usePlayerStore.getState().player;
+      if (!player) throw new Error('Missing preview fixture');
+      usePlayerStore
+        .getState()
+        .setPlayer({
+          ...player,
+          skillPoints: 1,
+          skillLevels: {
+            [IRON]: 6,
+            [BLOOD]: 1,
+            'necromancer.clay_golem': 1,
+            'necromancer.golem_mastery': 1
+          }
+        });
+      mount();
+      choose();
+      acknowledge();
+      arm();
+      act(() => {
+        start();
+      });
+      await flush();
+      const published = inspectRecordedWaves().currentPublished;
+      if (!published) throw new Error('Missing locked recording');
+      const binding = published.binding;
+      expect(binding.engineInput.golemMastery?.rank).toBe(1);
+      const frozen = structuredClone({
+        input: binding.engineInput,
+        recording: binding.recording,
+        publication: binding.publication
+      });
+      choose('second');
+      values('iron-preview-current', [360.4, 54, 63, 61]);
+      const inventory = useInventoryStore.getState(),
+        resources = usePlayerStore.getState().player?.derivedStats;
+      act(() => {
+        usePlayerStore.getState().allocateSkillPoint('necromancer.golem_mastery');
+      });
+      values('iron-preview-current', [380.8, 54, 63, 62]);
+      expect(screen.getByRole('status')).toHaveTextContent(text('locked'));
+      expect(screen.getByRole('status')).toHaveTextContent(
+        i18n.t('skills:ironGolem.summoned', {
+          item: locale === 'en' ? 'Short Sword' : '短剑',
+          mana: 35
+        })
+      );
+      act(() => {
+        refreshActivePlayerCombatConfig({ replayCurrentWave: true });
+      });
+      await flush();
+      const replay = inspectRecordedWaves().currentPublished;
+      if (!replay) throw new Error('Missing replay');
+      expect({
+        input: replay.binding.engineInput,
+        recording: replay.binding.recording,
+        publication: replay.binding.publication
+      }).toEqual(frozen);
+      expect(useInventoryStore.getState()).toBe(inventory);
+      expect(usePlayerStore.getState().player?.derivedStats).toEqual(resources);
+      expect(screen.getByRole('status')).toHaveTextContent(text('replay'));
+      values('iron-preview-current', [380.8, 54, 63, 62]);
+    });
+  }
+});
