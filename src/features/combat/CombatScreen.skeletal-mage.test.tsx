@@ -141,9 +141,10 @@ it.each(['zh-CN', 'en'] as const)('renders real scheduled Mage playback and elem
     if (!pending || pending.simClockMs > 3880) break;
     const priorLife = new Map(previous.enemyTeam.map(unit => [unit.id, unit.life]));
     const hpStyles = new Map(previous.enemyTeam.map(unit => [unit.id, hpBar(unit.id).getAttribute('style')]));
-    await act(async () => {
-      await vi.advanceTimersByTimeAsync(Math.max(50, Math.floor(pending.uiDelayMs)));
-    }); // Native component timers drive each consumed range; no direct store stepping.
+    for (let timer = 0; timer < events.length && useCombatStore.getState().eventCursor === previous.eventCursor; timer++) {
+      expect(vi.getTimerCount()).toBeGreaterThan(0);
+      await act(async () => { await vi.advanceTimersToNextTimerAsync(); });
+    } // Native component timers drive each consumed range; no direct store stepping.
     const next = useCombatStore.getState();
     expect(next.eventCursor).toBeGreaterThan(previous.eventCursor);
     expect(next.eventCursor).toBeLessThanOrEqual(events.length);
@@ -189,7 +190,6 @@ it.each(['zh-CN', 'en'] as const)('renders real scheduled Mage playback and elem
           expect(event).toMatchObject({ simClockMs: 3880, amount: 0, dodged: true });
           expect(life).toBeGreaterThan(0); expect(message).toBe(copy.dodge);
           expect(hpBar(event.target).getAttribute('style')).toBe(hpStyles.get(event.target));
-          expect(within(log).getAllByText(copy.dodge, { exact: true })).toHaveLength(dodges);
         }
       }
       if ('target' in event) {
@@ -200,6 +200,8 @@ it.each(['zh-CN', 'en'] as const)('renders real scheduled Mage playback and elem
         }
       }
     }
+    // The DOM presents the complete consumed group, including every same-time dodge.
+    expect(within(log).queryAllByText(copy.dodge, { exact: true })).toHaveLength(dodges);
     expect(next.log.filter(entry => entry.type === 'damage' && bySource.has(entry.actorId)).map(entry => entry.id))
       .toEqual(events.slice(0, next.eventCursor).flatMap((event, idx) =>
         event.kind === 'damage' && bySource.has(event.source) ? [`${String(idx)}-damage`] : []));

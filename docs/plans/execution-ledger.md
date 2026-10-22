@@ -9585,3 +9585,39 @@ remaining[]/failures[]. Cleanup receipt SHA256
 d2de2cd0b903d4853853ac363145d83b893e9b03cfc36507ca8bb5fc626cc907.
 Required evidence remains root-owned at ROOT until umbrella consumers finish.
 No owned processes remain. Settled cached whitespace precedes local commit.
+
+
+## D04 v1cv — Mage DOM assertions follow complete consumed ranges
+
+Test-only compatibility precursor at172cb889; Mage test and ledger only. Root
+sole writer/executor. First Batch combined serial full retained:8256pass/2fail,
+259/260files,542.92s(wrapper544.193). Both locales fail Mage line192: expected
+one visible dodge while all three equal-clock dodges are already published.
+BUG080 integration diagnosis: the assertion inspects a partial raw-event loop
+after atomic publication; D04 requires the complete timestamp group. Gameplay
+messages/target life/damage and final3dodge oracle are unchanged. Exact four Batch
+source bytes are parked with hashes and restored to172cb889 for this precursor.
+
+Approved correction checks exact cumulative localized DOM dodge count after each
+consumed range, including zero before any dodge. Retain every indexed message,
+ordered event-log ID, HP/death/life assertion,4summons/1payment/4hits/1cold/3dodges,
+unsettled receipt and original-input/recording/durable immutability. Actual next
+native timers drive a bounded progression loop; retain literal3880stop before
+4000 without draining future gameplay. No runtime/fixtures/thresholds/timeouts
+change. Producer approves focused Mage+screen/types/lint for this test-only
+precursor, inheriting exact unchanged Lifecycle runtime8252/260 serial pass and
+build/bridge evidence; no new full/build result is claimed for the precursor.
+After commit restore exact Batch bytes without overwriting this ledger, then run
+one complete final serial full and build/bridge for the actual combination.
+ROOT: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-status-batching-emggxtmi/mage-precursor`.
+Source/log/review/receipt evidence remains root-owned until umbrella consumers
+finish; root removes afterward. BUG080/fullprivate-v1/C0–C4/G0–G7 remain open.
+
+Precursor focused47/2 PASS8.92s(wrapper10.144); types PASS24.491s; lint
+PASS101.081s. These are compatibility checks, not a new causal runtime RED.
+TD/CODE APPROVE and QA ADEQUATE confirm exact15b33d3b test bytes and preserved
+assertions; all readers released. No precursor-owned disposable output/process
+remains; logs/source/receipts and parent Batch parked bytes remain root-owned
+until final combination and umbrella consumers finish. Parent tmp/cache cleanup
+follows final Batch validation. Final publication and settled cached whitespace
+precede local precursor commit; restore exact Batch sources next.
