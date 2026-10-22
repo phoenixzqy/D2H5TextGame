@@ -7212,3 +7212,85 @@ all readers released including dist/tmp. Durable100MP restoration distinct
 from live78. Approval-only ledger append; test/config/doc bytes unchanged.
 Publication/producer audit/localcommit/exactcleanup next. Balance/earned/
 fullMage/statuses/D06/P09/P10/private-v1 and existing limitations remain open.
+
+
+## D06 v1bi paired Mage balance screening foundation
+
+Native browser0b2b907 committed after QA/test-evidence(ADEQUATE),TD/five-axis/
+producer APPROVE. Cleanupe5e5e60068b6321a423d2d8664db5e8da679e2ed20d255e96fb822c43bbc75cd
+removed1453files/46,703,209bytes/45dirs, zero failures/remaining. Same claimed
+isolated umbrella worktree; root sole writer/executor. Use combat-balance/
+balance-check, incremental/TDD/root-cause-fix/security-check. Security PASS: pure
+local engine measurement, owned source captures/SSRcache, no credentials/network
+export/dependency/permission/save/production changes. TD plan-review ready for
+exact5paths: mage-balance-fixture.ts/runner.ts/test.ts, dated balance report,
+ledger. Closed unearned L30Necro/Mage6/Skeleton1/Mastery0/core15/25/15/25/
+unspentpoints/noequipment/noMerc/preload. Pure allocation uses authored
+requiredLevel??minLevel/maxLevel/canonical prerequisites rank1. Full normal
+derivedresources/recovery. One authored BloodMoor manualwave1/ordinal0/pity0,
+separate fixed plan/enemygeneration seeds; exactmonster lookup refuses fallback.
+Label L30 versus early BloodMoor, not on-level/on-zone. Generate/serialize once,
+then immutable Gitobject physicalcf19757dd5e50f122371e5eda7327f8a79095fbb vs
+proposed0b2b907ff378a60d7bc6d7ae15eefdc810a9cf29 in separate Node/ViteSSR
+module/process domains with identical driver+snapshot bytes, combatseeds7/991.
+No runtimepatch/preload/alias/rank change to synthesize physicalbaseline.
+Record plain/recorded equality,A/A,A/B/A,inputpreservation,preparation/cadence/
+types and raw events/finalteams; separate rawdamage/actualHPremoved, outcome/
+censoredTTK/logicaltime/hero-death/crit+dodge denominators/MP entryminimumfinal.
+No mana-starved-action inference. Capture exactsource/driver/recipe/config/
+package-lock hashes and close SSR finally on failure. Testsfirst then focused
+actualscreen/finalstandardchecks/frozenreviews/publication/localcommit/cleanup.
+Tiny screen is neither >=1000audit nor balance/earned/fullMage/D06/P09/P10/
+private-v1 acceptance. No statuses/tuning or remote action.
+
+
+Fixture7focused pass; runner/metrics14focused pass; finalHP-reconciliation
+assertionRED1 reached expected missingguard, then15focused pass. Initial strict
+indexed-access/monsterJSONcast errors corrected; types15.943s/lint42.986s pass.
+QA draft1 preflight APPROVE/ADEQUATE, no acceptance beyond prepared method.
+TD externaltool preflight required Ajv dedupe, applied before capture; source
+capture173non-test files/domain verified to Gitobjects. Original fixture
+generation failed missing copied tsconfig.node.json reference, finally closed,
+wrote nofixture. Exact already-manifested sharedconfig completed in both
+domains with retained completion script/manifest; no gameplay source changed.
+Retry generated sole6028byte fixture SHA
+430bc3f8961281fd7c34a0dbb98f8afc4ea3748da7e9d3fdf4687a2c81e8c9a9.
+Pinned physical/proposed actualruns exit0 in distinctprocesses, loadedgameplay
+58/59 paths verified against captures. Same driver/data/tool/inputbytes.
+Plain/recorded,A/A,A/B/A,B/B,inputpreservation/preparation/firstcadence pass.
+All fourpaired observations win, nohero deaths,330effectiveenemyHP each;
+seed7duration7760to5820(-25%),Mage loggedDPS38.7887to55.1546(+42.19%),
+effective31.5722to43.4708(+37.69%);seed991duration4500unchanged,Mage
+logged68.8889to78.2222(+13.55%),effective46.6667unchanged(overkill).
+All pay22MP,fourMagefirstactions1940ms,MP203/181/203. No mana-starved
+action-rate inference. Actualhistoricalphysical, no simulatedpreload baseline.
+Design/TD interpretation BALANCE-CHECK:CONCERNS, signals require separate
+>=1000pairedseed/scenarioaudit, no broadinvariantfailure or acceptance inferred.
+Comparison checks/output succeeded exit0, emitted esbuild cancellation during
+shutdown then closedserver; cause(backgroundoptimizer suspected) unproven. TD
+review regards this boundedtoolinglimitation, not measurementblocker; retained
+and disclosed. Initial evidencechecker mistakenly required its own stillrunning
+receipt completed; fixed to exclude only its own exactPID+command, original
+script/log retained. Final serialchecks then frozenQA/TD/fiveaxis remain next.
+Exactfivepaths, no production/data/save/config edits or remoteaction.
+
+
+Final serial focused15/15 pass(wrapper3.530s/Vitest2.30s),types15.387s,
+lint41.656s,fullunit241files/7454tests pass(Vitest127.16s/wrapper128.614s);
+existing15s full-suite budget remains exceeded/open. Final VITE_E2E=false
+productionbuild9.862s passes; existing Browserslist/chunk-size/2.57MBmanifest
+precache warnings persist. Final source/provenance/rawmetrics/report/build
+exclusion checker then frozenQA/test-evidence/TD/fiveaxis review next.
+No engine/data/save/config changes or broader acceptance inferred.
+
+
+FrozenQA APPROVE/test-evidence ADEQUATE and TD/five-axis APPROVE, no blockers.
+Independently verified1517retained files,26receipts/1088source snapshots,346
+Gitobject sourcefiles,507installedtoolfiles, distinct58/59loadedgameplay
+closures, raw-event HP/MP/counter/rate arithmetic and exactfivepathscope.
+All1302disposable regularfiles/43,858,747bytes/18dirs identity-bound; all26
+recorded commandbirths absent; all readers released includingdist/tmp.
+Approval-only ledgerappend; fixture/runner/test/report bytes unchanged.
+Publication/producer audit/localcommit/exactcleanup next. Broader balance,
+>=1000scenariofamilies/earned/signaturestatuses/fullMage/D06/P09/P10/private-v1
+remain open; existingtestbudget/buildwarnings retained. No remoteaction.
