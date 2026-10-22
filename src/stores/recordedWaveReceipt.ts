@@ -1,4 +1,5 @@
 import type { CombatSnapshot } from '@/engine/combat/combat';
+import type { CombatUnit } from '@/engine/combat/types';
 import type { IronGolemPreparationAttestation } from '@/engine/skills/iron-golem';
 import type { ActiveRun } from './combatRunLifecycle';
 import type { useCombatStore } from './combatStore';
@@ -38,6 +39,21 @@ interface CapturedBinding extends RecordedWaveBinding {
   readonly expectedRecording: ActiveRun['recording'];
 }
 interface ReceiptFailure { readonly error: unknown }
+/** Captured installation policy; challenge-counter range remains helper-owned. */
+export type RecordedWaveInstallIntent =
+  | { readonly kind: 'newRun'; readonly nextDefaultChallengeOrdinal: number | null }
+  | { readonly kind: 'newWave'; readonly carryPlayerTeam: CombatUnit[] }
+  | { readonly kind: 'replay' };
+interface InstallationProgress {
+  readonly intent: RecordedWaveInstallIntent;
+  readonly metadataInstalled: boolean;
+  readonly selectionProgress: 'notRequired' | 'pending' | 'resolved';
+  readonly selectionFailure?: ReceiptFailure;
+}
+/** Exact retained payload and progress under live transition ownership. */
+export interface RecordedWaveInstallationView extends InstallationProgress {
+  readonly binding: RecordedWaveBinding;
+}
 type Phase = 'prepared' | 'committedPendingPublication' | 'published' | 'conflict';
 interface ReceiptView {
   readonly receipt: RecordedWaveReceipt;
@@ -45,6 +61,7 @@ interface ReceiptView {
   readonly phase: Phase;
   readonly debitFailure?: ReceiptFailure;
   readonly publicationFailure?: ReceiptFailure;
+  readonly installation?: InstallationProgress;
 }
 interface ReceiptHolder {
   readonly currentPublished: ReceiptView | null;
@@ -108,6 +125,73 @@ export function prepareRecordedWave(binding: RecordedWaveBinding, lease: WaveTra
   return receipt;
 }
 
+/**
+ * Capture a narrowly validated install intent in the sole receipt holder.
+ * New runs replace a distinct run at wave zero; next waves/replays keep run
+ * identity. Replay cannot debit or consume selection. Only owned wrappers are
+ * frozen; captured carry and all caller gameplay values remain untouched.
+ * Throws receipt binding/phase errors or WaveGuardError before holder mutation.
+ */
+export function prepareRecordedWaveInstallation(
+  binding: RecordedWaveBinding, intent: RecordedWaveInstallIntent, lease: WaveTransitionLease
+): RecordedWaveReceipt {
+  assertWaveTransitionOwner(lease);
+  const sameRun = binding.expectedActiveRun !== null && binding.candidateRun === binding.expectedActiveRun;
+  const valid = intent.kind === 'newRun'
+    ? !sameRun && binding.targetWaveIdx === 0 && (intent.nextDefaultChallengeOrdinal === null ||
+      (Number.isSafeInteger(intent.nextDefaultChallengeOrdinal) && intent.nextDefaultChallengeOrdinal >= 0))
+    : intent.kind === 'newWave'
+      ? sameRun && binding.targetWaveIdx === binding.expectedActiveRun.waveIdx + 1
+      : sameRun && binding.targetWaveIdx === binding.expectedActiveRun.waveIdx && binding.debitIntent === null;
+  if (!valid) throw new RecordedWaveReceiptError('bindingMismatch');
+  const receipt = prepareRecordedWave(binding, lease);
+  const pending = pendingFor(receipt, lease, 'prepared');
+  updatePending({ ...pending, installation: Object.freeze({ intent: Object.freeze({ ...intent }),
+    metadataInstalled: false,
+    selectionProgress: intent.kind === 'replay' || binding.selection === null ? 'notRequired' : 'pending' }) });
+  return receipt;
+}
+
+function installationFor(receipt: RecordedWaveReceipt, lease: WaveTransitionLease) {
+  const pending = pendingFor(receipt, lease, 'committedPendingPublication');
+  const installation = pending.installation;
+  if (!installation) throw new RecordedWaveReceiptError('bindingMismatch');
+  return { pending, installation };
+}
+
+/** Read exact committed install data; foundation-only receipts cannot install. */
+export function readRecordedWaveInstallation(
+  receipt: RecordedWaveReceipt, lease: WaveTransitionLease
+): RecordedWaveInstallationView {
+  const { pending, installation } = installationFor(receipt, lease);
+  return Object.freeze({ binding: pending.binding, ...installation });
+}
+
+/** Mark only after non-notifying local assignments and before notifying setters. */
+export function markRecordedWaveMetadataInstalled(receipt: RecordedWaveReceipt, lease: WaveTransitionLease): void {
+  const { pending, installation } = installationFor(receipt, lease);
+  if (installation.metadataInstalled) return;
+  updatePending({ ...pending, installation: Object.freeze({ ...installation, metadataInstalled: true }) });
+}
+
+/**
+ * Observe actual selection after success or throw, retaining its first error.
+ * Only the original exact reference remains retryable. Absence or a newer rearm
+ * resolves the old instruction without claiming or clearing that newer choice.
+ */
+export function observeRecordedWaveSelection(
+  receipt: RecordedWaveReceipt, lease: WaveTransitionLease,
+  liveSelection: IronGolemSelection | null, failure?: ReceiptFailure
+): void {
+  const { pending, installation } = installationFor(receipt, lease);
+  if (!installation.metadataInstalled) throw new RecordedWaveReceiptError('wrongPhase');
+  if (installation.selectionProgress === 'notRequired') return;
+  const selectionProgress = installation.selectionProgress === 'resolved' || liveSelection !== pending.binding.selection
+    ? 'resolved' : 'pending';
+  updatePending({ ...pending, installation: Object.freeze({ ...installation, selectionProgress,
+    ...(failure && !installation.selectionFailure ? { selectionFailure: Object.freeze({ error: failure.error }) } : {}) }) });
+}
+
 /** Read-only pre-debit revalidation; mismatch leaves the exact preparation intact. */
 export function assertPreparedRecordedWaveBinding(
   receipt: RecordedWaveReceipt, lease: WaveTransitionLease, live: RecordedWaveLive
@@ -167,7 +251,9 @@ export function recognizeRecordedWavePublication(
   const pending = pendingFor(receipt, lease, 'committedPendingPublication');
   const { binding } = pending;
   const keys = Object.keys(binding.publication) as (keyof RecordedBattlePublication)[];
-  const installed = live.activeRun === binding.candidateRun && live.heroId === binding.heroId &&
+  const installationReady = !pending.installation || (pending.installation.metadataInstalled &&
+    pending.installation.selectionProgress !== 'pending');
+  const installed = installationReady && live.activeRun === binding.candidateRun && live.heroId === binding.heroId &&
     live.activeRun.waveIdx === binding.targetWaveIdx && live.activeRun.recording === binding.recording &&
     live.activeRun.waveElapsedMs === binding.waveElapsedMs &&
     keys.every(key => live.combat[key] === binding.publication[key]);

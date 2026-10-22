@@ -25,8 +25,10 @@ import { resolveSubArea } from './subAreaResolver';
 import { useCombatStore, type CombatLogEntry } from './combatStore';
 import { stageRecordedWave, type StagedRecordedWave } from './recordedWaveStaging';
 import { combatRunLifecycle, type ActiveRun } from './combatRunLifecycle';
-import { abandonRecordedWaves } from './recordedWaveReceipt';
-import { assertRecordedWaveNewTransitionAllowed } from './recordedWaveAccess';
+import { abandonRecordedWaves, readRecordedWaveInstallation, markRecordedWaveMetadataInstalled,
+  observeRecordedWaveSelection, recognizeRecordedWavePublication, RecordedWaveReceiptError,
+  type RecordedWaveReceipt } from './recordedWaveReceipt';
+import { assertRecordedWaveNewTransitionAllowed, assertRecordedWavePublicationRecoveryAllowed } from './recordedWaveAccess';
 export { clearCombatAfterRestore } from './combatRunLifecycle';
 import { eventToLocalizedLogEntry } from './eventToLogI18n';
 import { useInventoryStore } from './inventoryStore';
@@ -50,18 +52,18 @@ import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-
 import { composeSkeletonMastery } from '@/engine/skills/skeleton-mastery';
 import { isPreparationSummonSkill } from '@/engine/skills/summon-preparation';
 import { isIronGolemSkill } from '@/engine/skills/iron-golem';
-import { clearIronGolemSelection } from './ironGolemSelectionStore';
+import { clearIronGolemSelection, consumeIronGolemSelection, useIronGolemSelectionStore } from './ironGolemSelectionStore';
 import { useHydrationStore } from './hydrationStore';
-import { beginWaveTransition, endWaveTransition, assertWaveSnapshotAllowed } from './waveTransitionGuard';
+import { beginWaveTransition, endWaveTransition, assertWaveSnapshotAllowed, type WaveTransitionLease } from './waveTransitionGuard';
 import { resumeWaveDeferredSave } from './persistence';
 import { canonicalSkillIdFromData, getSkillRequiredLevel, getSkillsForClass,
   skillIdAliases, type SkillTemplate } from './skillsHelpers';
 
 /** Hold ownership through synchronous callbacks; wake a deferred save after release. */
-function withWaveTransition<T>(operation: () => T): T {
+function withWaveTransition<T>(operation: (lease: WaveTransitionLease) => T): T {
   assertRecordedWaveNewTransitionAllowed();
   const lease = beginWaveTransition(useHydrationStore.getState().status === 'ready');
-  try { return operation(); } finally {
+  try { return operation(lease); } finally {
     if (endWaveTransition(lease)) resumeWaveDeferredSave();
   }
 }
@@ -755,6 +757,70 @@ function installStagedWave(run: ActiveRun, staged: StagedRecordedWave): void {
   run.waveElapsedMs = staged.elapsedMs;
   run.recording = staged.recording;
   useCombatStore.getState().publishStagedRecordedBattle(staged.publication);
+}
+
+/** Install only the committed captured payload; never stage, debit or pay rewards. */
+function installCapturedRecordedWave(receipt: RecordedWaveReceipt, lease: WaveTransitionLease): void {
+  const view = readRecordedWaveInstallation(receipt, lease);
+  const { binding, intent } = view;
+  // Counter policy remains local to helpers, including retained recovery input.
+  if (intent.kind === 'newRun' && intent.nextDefaultChallengeOrdinal !== null &&
+    (!Number.isInteger(intent.nextDefaultChallengeOrdinal) || intent.nextDefaultChallengeOrdinal < 0 ||
+      intent.nextDefaultChallengeOrdinal >= CHALLENGE_ORDINAL_PERIOD)) {
+    throw new RangeError('nextDefaultChallengeOrdinal must be an integer in [0, 360360)');
+  }
+  if (!view.metadataInstalled) {
+    const run = binding.candidateRun;
+    combatRunLifecycle.activeRun = run;
+    if (intent.kind === 'newWave') run.carryPlayerTeam = intent.carryPlayerTeam;
+    run.waveIdx = binding.targetWaveIdx;
+    run.waveElapsedMs = binding.waveElapsedMs;
+    run.recording = binding.recording;
+    if (intent.kind === 'newRun' && intent.nextDefaultChallengeOrdinal !== null) {
+      manualChallengeOrdinal = intent.nextDefaultChallengeOrdinal;
+    }
+    markRecordedWaveMetadataInstalled(receipt, lease);
+  }
+  if (view.selectionProgress === 'pending') {
+    let failure: { error: unknown } | undefined;
+    try { consumeIronGolemSelection(binding.selection, lease); }
+    catch (error) { failure = { error }; }
+    observeRecordedWaveSelection(receipt, lease, useIronGolemSelectionStore.getState().selection, failure);
+    if (failure) throw failure.error;
+    if (readRecordedWaveInstallation(receipt, lease).selectionProgress === 'pending') {
+      throw new RecordedWaveReceiptError('bindingMismatch');
+    }
+  }
+  const live = () => ({ activeRun: combatRunLifecycle.activeRun,
+    heroId: usePlayerStore.getState().player?.id ?? null, combat: useCombatStore.getState() });
+  try { useCombatStore.getState().publishStagedRecordedBattle(binding.publication); }
+  catch (error) {
+    recognizeRecordedWavePublication(receipt, lease, live(), { error });
+    throw error;
+  }
+  if (!recognizeRecordedWavePublication(receipt, lease, live())) {
+    throw new RecordedWaveReceiptError('bindingMismatch');
+  }
+}
+
+/**
+ * Recover exactly one retained committed installation without simulation, item
+ * payment, reward settlement or ordinal increments. No production producer creates
+ * installation receipts yet. Foundation-only, stale and wrong-phase tokens refuse.
+ * @throws {WaveGuardError} for primitive ownership or unready hydration first.
+ * @throws {RecordedWaveReceiptError} for token/phase/installation mismatch.
+ * @throws {RangeError} for invalid retained ordinal before any installation change.
+ * Setter errors retain exact progress/payload and their first failure evidence.
+ */
+export function recoverRecordedWavePublication(receipt: RecordedWaveReceipt): void {
+  assertWaveSnapshotAllowed();
+  const lease = beginWaveTransition(useHydrationStore.getState().status === 'ready');
+  try {
+    assertRecordedWavePublicationRecoveryAllowed(receipt, lease);
+    installCapturedRecordedWave(receipt, lease);
+  } finally {
+    if (endWaveTransition(lease)) resumeWaveDeferredSave();
+  }
 }
 
 function clampAct(n: number): 1 | 2 | 3 | 4 | 5 {

@@ -1,9 +1,10 @@
 /** Synthetic receipt phases around actual run staging, playback and completion. */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import * as combatEngine from '@/engine/combat/combat';
+import * as persistence from './persistence';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { loadDefaultSkills, registerSkill, resetRegistry } from '@/engine/skills/registry';
-import { abortSubAreaRun, advanceWaveOrFinish, refreshActivePlayerCombatConfig, startSubAreaRun } from './combatHelpers';
+import { abortSubAreaRun, advanceWaveOrFinish, refreshActivePlayerCombatConfig, startSubAreaRun, recoverRecordedWavePublication } from './combatHelpers';
 import { combatRunLifecycle, type ActiveRun } from './combatRunLifecycle';
 import { useCombatStore } from './combatStore';
 import { usePlayerStore } from './playerStore';
@@ -17,9 +18,10 @@ import { armIronGolemSelection, useIronGolemSelectionStore } from './ironGolemSe
 import { getIdleEliteMisses, setIdleEliteMisses } from './idleElitePity';
 import { stageRecordedBattle } from './recordedBattlePublication';
 import { prepareRecordedWave, commitPreparedRecordedWave, recognizeRecordedWavePublication,
-  inspectRecordedWaves, abandonRecordedWaves } from './recordedWaveReceipt';
+  inspectRecordedWaves, abandonRecordedWaves, prepareRecordedWaveInstallation,
+  type RecordedWaveInstallIntent, RecordedWaveReceiptError } from './recordedWaveReceipt';
 import { RecordedWaveAccessError } from './recordedWaveAccess';
-import { beginWaveTransition, endWaveTransition, reserveWaveRestore, releaseWaveRestore, WaveGuardError } from './waveTransitionGuard';
+import { beginWaveTransition, endWaveTransition, reserveWaveRestore, releaseWaveRestore, WaveGuardError, deferWaveSaveIfBusy, assertWaveSnapshotAllowed } from './waveTransitionGuard';
 
 const phases = ['prepared', 'committedPendingPublication', 'conflict'] as const;
 const stores = [useCombatStore, usePlayerStore, useInventoryStore, useMercStore,
@@ -29,7 +31,7 @@ const start = (options: Parameters<typeof startSubAreaRun>[0] = {}) =>
 const actions = [{ name: 'start', action: () => start() }, { name: 'advance', action: advanceWaveOrFinish },
   { name: 'replay', action: () => { refreshActivePlayerCombatConfig({ replayCurrentWave: true }); } }] as const;
 
-function receipt(run: ActiveRun, phase: typeof phases[number] | 'published') {
+function receipt(run: ActiveRun, phase: typeof phases[number] | 'published', intent?: RecordedWaveInstallIntent, targetWaveIdx = run.waveIdx) {
   const combat = useCombatStore.getState(); const inv = useInventoryStore.getState();
   const recording = run.recording;
   if (!recording) throw new Error('Missing actual recording');
@@ -38,14 +40,15 @@ function receipt(run: ActiveRun, phase: typeof phases[number] | 'published') {
   const selection = useIronGolemSelectionStore.getState().selection;
   const publication = stageRecordedBattle({ initialPlayerTeam: combat.playerTeam, initialEnemyTeam: combat.enemyTeam,
     events: recording.events, outcome: recording.outcome, unitNameMap: combat.unitNameMap,
-    currentWave: run.waveIdx + 1, totalWaves: run.plan.waves.length, subAreaRunId: run.plan.subAreaId }, combat);
+    currentWave: targetWaveIdx + 1, totalWaves: run.plan.waves.length, subAreaRunId: run.plan.subAreaId }, combat);
   const lease = beginWaveTransition(true);
   try {
-    const token = prepareRecordedWave({ candidateRun: run, expectedActiveRun: combatRunLifecycle.activeRun,
-      heroId: run.playerUnit.id, targetWaveIdx: run.waveIdx, waveElapsedMs: run.waveElapsedMs,
+    const binding = { candidateRun: run, expectedActiveRun: combatRunLifecycle.activeRun,
+      heroId: run.playerUnit.id, targetWaveIdx, waveElapsedMs: run.waveElapsedMs,
       selection, ownership, debitIntent: null, attestation: null,
       engineInput: { seed: run.seed, playerTeam: combat.playerTeam, enemyTeam: combat.enemyTeam },
-      recording, publication }, lease);
+      recording, publication };
+    const token = intent ? prepareRecordedWaveInstallation(binding, intent, lease) : prepareRecordedWave(binding, lease);
     if (phase !== 'prepared') expect(commitPreparedRecordedWave(token, lease, {
       activeRun: combatRunLifecycle.activeRun, heroId: run.playerUnit.id, selection,
       ownership: phase === 'conflict' ? { ...ownership, backpack: [] } : ownership
@@ -55,6 +58,7 @@ function receipt(run: ActiveRun, phase: typeof phases[number] | 'published') {
       expect(recognizeRecordedWavePublication(token, lease, { activeRun: run,
         heroId: run.playerUnit.id, combat: useCombatStore.getState() })).toBe(true);
     }
+    return { token, binding, publication };
   } finally { expect(endWaveTransition(lease)).toBe(false); }
 }
 
@@ -189,4 +193,226 @@ it.each(['empty', 'published'] as const)('allows start, explicit replay and comp
   expect(advanceWaveOrFinish()).toBe('next-wave');
   expect(engine).toHaveBeenCalledTimes(2);
   expect(start()).not.toBeNull(); expect(engine).toHaveBeenCalledTimes(3);
+});
+
+
+describe('captured publication installation', () => {
+  it('retains a failed publisher payload and recovers it without simulation or repeated selection', () => {
+    start(); const oldRun = activeRun(); const candidate = { ...oldRun };
+    const { token, publication } = receipt(candidate, 'committedPendingPublication',
+      { kind: 'newRun', nextDefaultChallengeOrdinal: 17 });
+    const engine = vi.spyOn(combatEngine, 'runBattleRecorded');
+    const error = new Error('publisher before write');
+    const publish = vi.spyOn(useCombatStore.getState(), 'publishStagedRecordedBattle')
+      .mockImplementationOnce(() => { throw error; });
+    const selectionChanged = vi.fn(); const stop = useIronGolemSelectionStore.subscribe(selectionChanged);
+    try {
+      expect(() => { recoverRecordedWavePublication(token); }).toThrow(error);
+      expect(activeRun()).toBe(candidate); expect(candidate.recording).toBe(oldRun.recording);
+      expect(inspectRecordedWaves().pending?.binding.publication).toBe(publication);
+      expect(inspectRecordedWaves().pending?.installation).toMatchObject({ metadataInstalled: true, selectionProgress: 'resolved' });
+      expect(useIronGolemSelectionStore.getState().selection).toBeNull();
+      recoverRecordedWavePublication(token);
+      expect(inspectRecordedWaves().pending).toBeNull();
+      expect(inspectRecordedWaves().currentPublished?.receipt).toBe(token);
+      expect(inspectRecordedWaves().currentPublished?.publicationFailure?.error).toBe(error);
+      expect(publish).toHaveBeenNthCalledWith(1, publication); expect(publish).toHaveBeenNthCalledWith(2, publication);
+      expect(selectionChanged).toHaveBeenCalledTimes(1); expect(engine).not.toHaveBeenCalled();
+      const combat = useCombatStore.getState(); const holder = inspectRecordedWaves();
+      expect(() => { recoverRecordedWavePublication(token); }).toThrow('staleReceipt');
+      expect(useCombatStore.getState()).toBe(combat); expect(inspectRecordedWaves()).toBe(holder);
+      expect(start()?.challengeOrdinal).toBe(17);
+    } finally { stop(); }
+  });
+
+  it('recognizes a publisher-after-write error without resetting playback on retry', () => {
+    start(); const run = activeRun();
+    const { token, publication } = receipt(run, 'committedPendingPublication', { kind: 'replay' });
+    const original = useCombatStore.getState().publishStagedRecordedBattle;
+    const error = new Error('publisher after write');
+    const publish = vi.spyOn(useCombatStore.getState(), 'publishStagedRecordedBattle').mockImplementation(value => {
+      original(value); throw error;
+    });
+    const selection = useIronGolemSelectionStore.getState().selection;
+    expect(() => { recoverRecordedWavePublication(token); }).toThrow(error);
+    expect(inspectRecordedWaves().pending).toBeNull();
+    expect(inspectRecordedWaves().currentPublished?.publicationFailure?.error).toBe(error);
+    expect(useIronGolemSelectionStore.getState().selection).toBe(selection);
+    useCombatStore.getState().advanceEvent();
+    const combat = useCombatStore.getState(); const holder = inspectRecordedWaves();
+    expect(() => { recoverRecordedWavePublication(token); }).toThrow('staleReceipt');
+    expect(useCombatStore.getState()).toBe(combat); expect(inspectRecordedWaves()).toBe(holder);
+    expect(publish).toHaveBeenCalledTimes(1); expect(publish).toHaveBeenCalledWith(publication);
+  });
+});
+
+
+it.each(['before', 'after'] as const)('observes selection throw-%s-write and retries only unresolved consumption', when => {
+  start(); const candidate = { ...activeRun() };
+  const { token } = receipt(candidate, 'committedPendingPublication', { kind: 'newRun', nextDefaultChallengeOrdinal: null });
+  const originalSelection = useIronGolemSelectionStore.getState().selection;
+  const error = new Error(`selection ${when} write`);
+  const selectionChanged = vi.fn(); const stopCount = useIronGolemSelectionStore.subscribe(selectionChanged);
+  const setter = when === 'before' ? vi.spyOn(useIronGolemSelectionStore, 'setState')
+    .mockImplementationOnce(() => { throw error; }) : undefined;
+  const stopThrow = when === 'after' ? useIronGolemSelectionStore.subscribe(() => { throw error; }) : () => { /* No throwing subscription to release in the before-write case. */ };
+  const publish = vi.spyOn(useCombatStore.getState(), 'publishStagedRecordedBattle');
+  try {
+    expect(() => { recoverRecordedWavePublication(token); }).toThrow(error);
+    expect(inspectRecordedWaves().pending?.installation).toMatchObject({ metadataInstalled: true,
+      selectionProgress: when === 'before' ? 'pending' : 'resolved', selectionFailure: { error } });
+    expect(useIronGolemSelectionStore.getState().selection).toBe(when === 'before' ? originalSelection : null);
+    expect(publish).not.toHaveBeenCalled();
+    setter?.mockRestore(); stopThrow();
+    recoverRecordedWavePublication(token);
+    expect(inspectRecordedWaves().currentPublished?.installation?.selectionFailure?.error).toBe(error);
+    expect(useIronGolemSelectionStore.getState().selection).toBeNull();
+    expect(selectionChanged).toHaveBeenCalledTimes(1); expect(publish).toHaveBeenCalledTimes(1);
+  } finally { setter?.mockRestore(); stopThrow(); stopCount(); }
+});
+
+it.each(['before', 'after'] as const)('preserves a fresh same-ID rearm after a selection throw-%s-write', when => {
+  start(); const run = { ...activeRun() };
+  const { token } = receipt(run, 'committedPendingPublication', { kind: 'newRun', nextDefaultChallengeOrdinal: null });
+  const old = useIronGolemSelectionStore.getState().selection;
+  if (!old) throw new Error('Missing captured selection');
+  const error = new Error('selection notification');
+  const setter = when === 'before' ? vi.spyOn(useIronGolemSelectionStore, 'setState')
+    .mockImplementationOnce(() => { throw error; }) : undefined;
+  const stopThrow = when === 'after' ? useIronGolemSelectionStore.subscribe(() => { throw error; }) : () => { /* No throwing subscription to release in the before-write case. */ };
+  try { expect(() => { recoverRecordedWavePublication(token); }).toThrow(error); }
+  finally { setter?.mockRestore(); stopThrow(); }
+  const rearm = armIronGolemSelection(old.heroId, old.itemId, true);
+  expect(rearm).not.toBe(old); expect(rearm).toEqual(old);
+  const changed = vi.fn(); const stop = useIronGolemSelectionStore.subscribe(changed);
+  try {
+    recoverRecordedWavePublication(token);
+    expect(useIronGolemSelectionStore.getState().selection).toBe(rearm); expect(changed).not.toHaveBeenCalled();
+    expect(inspectRecordedWaves().currentPublished?.installation?.selectionProgress).toBe('resolved');
+  } finally { stop(); }
+});
+
+it('installs captured next-wave carry once and preserves replay baseline and selection', () => {
+  start(); const run = activeRun(); const carry = structuredClone(run.carryPlayerTeam);
+  const { token, binding } = receipt(run, 'committedPendingPublication', { kind: 'newWave', carryPlayerTeam: carry }, 1);
+  const error = new Error('next wave publisher before write');
+  vi.spyOn(useCombatStore.getState(), 'publishStagedRecordedBattle').mockImplementationOnce(() => { throw error; });
+  expect(() => { recoverRecordedWavePublication(token); }).toThrow(error);
+  expect(run.carryPlayerTeam).toBe(carry); expect(run.waveIdx).toBe(1);
+  recoverRecordedWavePublication(token);
+  expect(activeRun()).toBe(run); expect(run.waveIdx).toBe(1); expect(run.carryPlayerTeam).toBe(carry);
+  expect(run.recording).toBe(binding.recording); expect(run.waveElapsedMs).toBe(binding.waveElapsedMs);
+  expect(Object.isFrozen(carry)).toBe(false);
+  const selection = armIronGolemSelection(run.playerUnit.id, 'next-selection', true);
+  const replay = receipt(run, 'committedPendingPublication', { kind: 'replay' });
+  const changed = vi.fn(); const stop = useIronGolemSelectionStore.subscribe(changed);
+  try {
+    recoverRecordedWavePublication(replay.token);
+    expect(run.carryPlayerTeam).toBe(carry); expect(useIronGolemSelectionStore.getState().selection).toBe(selection);
+    expect(changed).not.toHaveBeenCalled();
+  } finally { stop(); }
+});
+
+it('keeps the default ordinal unchanged for an explicit-ordinal installation', () => {
+  const first = start(); if (!first) throw new Error('Missing ordinal control');
+  const { token } = receipt({ ...activeRun() }, 'committedPendingPublication',
+    { kind: 'newRun', nextDefaultChallengeOrdinal: null });
+  recoverRecordedWavePublication(token);
+  expect(start()?.challengeOrdinal).toBe((first.challengeOrdinal + 1) % 360360);
+});
+
+it.each([360360, Number.MAX_SAFE_INTEGER])('refuses retained ordinal %s before any installation mutation', nextDefaultChallengeOrdinal => {
+  const first = start(); if (!first) throw new Error('Missing ordinal control');
+  const { token } = receipt({ ...activeRun() }, 'committedPendingPublication', { kind: 'newRun', nextDefaultChallengeOrdinal });
+  unchanged(() => { recoverRecordedWavePublication(token); },
+    new RangeError('nextDefaultChallengeOrdinal must be an integer in [0, 360360)'));
+  expect(inspectRecordedWaves().pending?.installation?.metadataInstalled).toBe(false);
+  abandonRecordedWaves();
+  expect(start()?.challengeOrdinal).toBe((first.challengeOrdinal + 1) % 360360);
+});
+
+
+it.each(['idle', 'loading', 'error', 'wave', 'restore'] as const)('refuses recovery during %s and releases ownership for later exact recovery', refusal => {
+  start(); const { token } = receipt({ ...activeRun() }, 'committedPendingPublication',
+    { kind: 'newRun', nextDefaultChallengeOrdinal: null });
+  const engine = vi.spyOn(combatEngine, 'runBattleRecorded');
+  const publish = vi.spyOn(useCombatStore.getState(), 'publishStagedRecordedBattle');
+  const wave = refusal === 'wave' ? beginWaveTransition(true) : undefined;
+  const restore = refusal === 'restore' ? reserveWaveRestore() : undefined;
+  useHydrationStore.getState().setStatus(refusal === 'wave' || refusal === 'restore' ? 'error' : refusal);
+  try {
+    unchanged(() => { recoverRecordedWavePublication(token); }, new WaveGuardError(refusal === 'wave' ? 'waveBusy'
+      : refusal === 'restore' ? 'restorePending' : 'hydrationNotReady'));
+    expect(engine).not.toHaveBeenCalled(); expect(publish).not.toHaveBeenCalled();
+  } finally {
+    if (wave) expect(endWaveTransition(wave)).toBe(false);
+    if (restore) releaseWaveRestore(restore);
+  }
+  useHydrationStore.getState().setStatus('ready'); recoverRecordedWavePublication(token);
+  expect(inspectRecordedWaves().currentPublished?.receipt).toBe(token);
+  expect(assertWaveSnapshotAllowed).not.toThrow(); expect(engine).not.toHaveBeenCalled();
+});
+
+it.each(['prepared', 'conflict', 'foundation'] as const)('refuses %s receipt recovery without an install fallback', phase => {
+  start(); const { token } = receipt({ ...activeRun() }, phase === 'foundation' ? 'committedPendingPublication' : phase,
+    phase === 'foundation' ? undefined : { kind: 'newRun', nextDefaultChallengeOrdinal: null });
+  unchanged(() => { recoverRecordedWavePublication(token); }, new RecordedWaveReceiptError(phase === 'foundation' ? 'bindingMismatch' : 'wrongPhase'));
+  expect(assertWaveSnapshotAllowed).not.toThrow();
+});
+
+it('preserves a newer pending install when an older genuine token requests recovery', () => {
+  start(); const old = receipt({ ...activeRun() }, 'committedPendingPublication',
+    { kind: 'newRun', nextDefaultChallengeOrdinal: null });
+  abandonRecordedWaves();
+  const next = receipt({ ...activeRun() }, 'committedPendingPublication',
+    { kind: 'newRun', nextDefaultChallengeOrdinal: null });
+  unchanged(() => { recoverRecordedWavePublication(old.token); }, new RecordedWaveReceiptError('staleReceipt'));
+  recoverRecordedWavePublication(next.token);
+  expect(inspectRecordedWaves().currentPublished?.receipt).toBe(next.token);
+});
+
+it('marks metadata before observers, rejects nested recovery and wakes one deferred save after release', () => {
+  start(); const run = { ...activeRun() };
+  const { token } = receipt(run, 'committedPendingPublication', { kind: 'newRun', nextDefaultChallengeOrdinal: null });
+  const wake = vi.spyOn(persistence, 'resumeWaveDeferredSave').mockImplementation(() => {
+    expect(assertWaveSnapshotAllowed).not.toThrow();
+  });
+  const observed = vi.fn(() => {
+    expect(activeRun()).toBe(run);
+    expect(inspectRecordedWaves().pending?.installation?.metadataInstalled).toBe(true);
+    expect(() => { recoverRecordedWavePublication(token); }).toThrow(new WaveGuardError('waveBusy'));
+    expect(deferWaveSaveIfBusy()).toBe(true); expect(deferWaveSaveIfBusy()).toBe(true);
+  });
+  const stop = useCombatStore.subscribe(observed);
+  try {
+    recoverRecordedWavePublication(token);
+    expect(observed).toHaveBeenCalledTimes(1); expect(wake).toHaveBeenCalledTimes(1);
+    expect(inspectRecordedWaves().currentPublished?.receipt).toBe(token);
+    expect(assertWaveSnapshotAllowed).not.toThrow();
+  } finally { stop(); }
+});
+
+
+it('retains a partially installed publisher result until exact captured publication recovers', () => {
+  start(); const { token, publication } = receipt({ ...activeRun() }, 'committedPendingPublication',
+    { kind: 'newRun', nextDefaultChallengeOrdinal: null });
+  const publish = vi.spyOn(useCombatStore.getState(), 'publishStagedRecordedBattle').mockImplementationOnce(value => {
+    useCombatStore.setState({ outcome: value.outcome, recordedEvents: [] });
+  });
+  expect(() => { recoverRecordedWavePublication(token); }).toThrow(new RecordedWaveReceiptError('bindingMismatch'));
+  expect(inspectRecordedWaves().pending?.binding.publication).toBe(publication);
+  expect(useCombatStore.getState().recordedEvents).toEqual([]);
+  recoverRecordedWavePublication(token);
+  expect(useCombatStore.getState().recordedEvents).toBe(publication.recordedEvents);
+  expect(inspectRecordedWaves().currentPublished?.receipt).toBe(token);
+  expect(publish).toHaveBeenCalledTimes(2);
+});
+
+it('keeps production start, replay and next-wave producers disconnected from install receipts', () => {
+  expect(inspectRecordedWaves()).toEqual({ currentPublished: null, pending: null });
+  start(); refreshActivePlayerCombatConfig({ replayCurrentWave: true });
+  const length = useCombatStore.getState().recordedEvents.length;
+  for (let i = 0; i < length; i++) useCombatStore.getState().advanceEvent();
+  expect(advanceWaveOrFinish()).toBe('next-wave');
+  expect(inspectRecordedWaves()).toEqual({ currentPublished: null, pending: null });
 });

@@ -19,7 +19,8 @@ import {
   prepareRecordedWave, inspectRecordedWaves, assertPreparedRecordedWaveBinding,
   cancelPreparedRecordedWave, commitPreparedRecordedWave, recognizeRecordedWavePublication,
   abandonRecordedWaves, type RecordedWaveBinding, type RecordedWaveLive,
-  RecordedWaveReceiptError
+  RecordedWaveReceiptError, prepareRecordedWaveInstallation, readRecordedWaveInstallation,
+  markRecordedWaveMetadataInstalled, observeRecordedWaveSelection, type RecordedWaveInstallIntent
 } from './recordedWaveReceipt';
 
 function requiredFixtureValue<T>(value: T | null | undefined): T {
@@ -455,4 +456,133 @@ describe('receipt ownership and binding', () => {
       binding.ownership.backpack[0]]) expect(Object.isFrozen(value)).toBe(false);
     expect(binding.engineInput.playerTeam[0]).toBe(binding.candidateRun.playerUnit);
   });
+});
+
+
+describe('recorded wave installation intent', () => {
+  it('captures immutable new-run intent and only resolves the exact old instruction', () => {
+    const { binding, live } = fixture();
+    const intent = { kind: 'newRun' as const, nextDefaultChallengeOrdinal: 17 };
+    const token = prepareRecordedWaveInstallation(binding, intent, lease);
+    commitPreparedRecordedWave(token, lease, live);
+    const view = readRecordedWaveInstallation(token, lease);
+    expect(view.binding).toBe(inspectRecordedWaves().pending?.binding);
+    expect(view.intent).toEqual(intent); expect(Object.isFrozen(view.intent)).toBe(true);
+    expect(view.metadataInstalled).toBe(false); expect(view.selectionProgress).toBe('pending');
+    markRecordedWaveMetadataInstalled(token, lease);
+    const firstError = new Error('selection before write');
+    observeRecordedWaveSelection(token, lease, binding.selection, { error: firstError });
+    expect(readRecordedWaveInstallation(token, lease).selectionProgress).toBe('pending');
+    const rearm = { ...requiredFixtureValue(binding.selection) };
+    observeRecordedWaveSelection(token, lease, rearm, { error: new Error('later observer') });
+    const resolved = readRecordedWaveInstallation(token, lease);
+    expect(resolved.metadataInstalled).toBe(true); expect(resolved.selectionProgress).toBe('resolved');
+    expect(resolved.selectionFailure?.error).toBe(firstError);
+    expect(binding.selection).not.toBe(rearm); expect(binding.selection).toEqual(rearm);
+  });
+
+  it('refuses invalid attempt relationships without leaving prepared residue', () => {
+    const { binding } = fixture(); const before = inspectRecordedWaves();
+    for (const intent of [{ kind: 'replay' as const },
+      { kind: 'newWave' as const, carryPlayerTeam: binding.candidateRun.carryPlayerTeam },
+      { kind: 'newRun' as const, nextDefaultChallengeOrdinal: -1 }]) {
+      expect(() => prepareRecordedWaveInstallation(binding, intent, lease))
+        .toThrow(new RecordedWaveReceiptError('bindingMismatch'));
+      expect(inspectRecordedWaves()).toBe(before);
+    }
+  });
+
+  it('requires metadata and selection resolution before exact publication promotion', () => {
+    const { binding, live } = fixture();
+    const token = prepareRecordedWaveInstallation(binding,
+      { kind: 'newRun', nextDefaultChallengeOrdinal: null }, lease);
+    commitPreparedRecordedWave(token, lease, live);
+    const installed = install(binding); const error = new Error('publisher after write');
+    expect(recognizeRecordedWavePublication(token, lease, installed, { error })).toBe(false);
+    markRecordedWaveMetadataInstalled(token, lease);
+    expect(recognizeRecordedWavePublication(token, lease, installed)).toBe(false);
+    observeRecordedWaveSelection(token, lease, null);
+    expect(recognizeRecordedWavePublication(token, lease, installed)).toBe(true);
+    expect(inspectRecordedWaves().currentPublished?.publicationFailure?.error).toBe(error);
+  });
+});
+
+
+it.each(['newRun', 'newWave', 'replay'] as const)('captures valid %s policy without mutating run, carry or caller intent', kind => {
+  const run = fixture().binding.candidateRun;
+  const { binding, live } = kind === 'newRun' ? fixture() : fixture(false, run, kind === 'newWave' ? 1 : 0);
+  const carry = [...run.carryPlayerTeam];
+  const intent: RecordedWaveInstallIntent = kind === 'newRun' ? { kind, nextDefaultChallengeOrdinal: null }
+    : kind === 'newWave' ? { kind, carryPlayerTeam: carry } : { kind };
+  const before = structuredClone(binding.candidateRun);
+  const token = prepareRecordedWaveInstallation(binding, intent, lease);
+  commitPreparedRecordedWave(token, lease, live);
+  const view = readRecordedWaveInstallation(token, lease);
+  expect(view.intent).toEqual(intent); expect(view.intent).not.toBe(intent);
+  expect(Object.isFrozen(intent)).toBe(false); expect(Object.isFrozen(carry)).toBe(false);
+  expect(binding.candidateRun).toEqual(before);
+  if (view.intent.kind === 'newWave') expect(view.intent.carryPlayerTeam).toBe(carry);
+  expect(view.selectionProgress).toBe(kind === 'replay' ? 'notRequired' : 'pending');
+});
+
+it.each(['sameRun', 'newRunWave', 'skippedWave', 'advancedReplay', 'paidReplay',
+  'negative', 'fractional', 'unsafe', 'nonfinite'] as const)('rejects %s installation intent before any holder mutation', change => {
+  const run = fixture().binding.candidateRun;
+  let data = fixture(); let intent: RecordedWaveInstallIntent = { kind: 'newRun', nextDefaultChallengeOrdinal: 0 };
+  if (change === 'sameRun') data = fixture(false, run);
+  else if (change === 'newRunWave') data = fixture(false, null, 1);
+  else if (change === 'skippedWave') { data = fixture(false, run, 2); intent = { kind: 'newWave', carryPlayerTeam: [] }; }
+  else if (change === 'advancedReplay') { data = fixture(false, run, 1); intent = { kind: 'replay' }; }
+  else if (change === 'paidReplay') { data = fixture(true, run); intent = { kind: 'replay' }; }
+  else intent = { kind: 'newRun', nextDefaultChallengeOrdinal: change === 'negative' ? -1
+    : change === 'fractional' ? 0.5 : change === 'unsafe' ? Number.MAX_SAFE_INTEGER + 1 : Infinity };
+  const before = inspectRecordedWaves();
+  expect(() => prepareRecordedWaveInstallation(data.binding, intent, lease)).toThrow('bindingMismatch');
+  expect(inspectRecordedWaves()).toBe(before);
+});
+
+it('enforces install token, lease and phase authority without implicit progress', () => {
+  const { binding, live } = fixture();
+  const token = prepareRecordedWaveInstallation(binding, { kind: 'newRun', nextDefaultChallengeOrdinal: 0 }, lease);
+  const prepared = inspectRecordedWaves();
+  for (const action of [() => readRecordedWaveInstallation(token, lease),
+    () => { markRecordedWaveMetadataInstalled(token, lease); }, () => { observeRecordedWaveSelection(token, lease, null); }]) {
+    expect(action).toThrow('wrongPhase'); expect(inspectRecordedWaves()).toBe(prepared);
+  }
+  commitPreparedRecordedWave(token, lease, live);
+  const committed = inspectRecordedWaves();
+  expect(() => { observeRecordedWaveSelection(token, lease, null); }).toThrow('wrongPhase');
+  expect(inspectRecordedWaves()).toBe(committed);
+  const oldLease = lease; releaseLease();
+  for (const action of [() => readRecordedWaveInstallation(token, oldLease),
+    () => { markRecordedWaveMetadataInstalled(token, oldLease); }, () => { observeRecordedWaveSelection(token, oldLease, null); },
+    () => prepareRecordedWaveInstallation(binding, { kind: 'replay' }, oldLease)]) {
+    expect(action).toThrow('invalidLease'); expect(inspectRecordedWaves()).toBe(committed);
+  }
+  abandonRecordedWaves(); lease = beginWaveTransition(true); leaseLive = true;
+  const empty = inspectRecordedWaves();
+  for (const action of [() => readRecordedWaveInstallation(token, lease),
+    () => { markRecordedWaveMetadataInstalled(token, lease); }, () => { observeRecordedWaveSelection(token, lease, null); }]) {
+    expect(action).toThrow('staleReceipt'); expect(inspectRecordedWaves()).toBe(empty);
+  }
+});
+
+it('requires explicit installation intent instead of accepting foundation-only receipts', () => {
+  const { binding, live } = fixture(); const token = prepareRecordedWave(binding, lease);
+  commitPreparedRecordedWave(token, lease, live); const before = inspectRecordedWaves();
+  for (const action of [() => readRecordedWaveInstallation(token, lease),
+    () => { markRecordedWaveMetadataInstalled(token, lease); }, () => { observeRecordedWaveSelection(token, lease, null); }]) {
+    expect(action).toThrow('bindingMismatch'); expect(inspectRecordedWaves()).toBe(before);
+  }
+});
+
+it('needs no selection setter for null instructions and keeps progress marks idempotent', () => {
+  const original = fixture(); const binding = { ...original.binding, selection: null };
+  const token = prepareRecordedWaveInstallation(binding, { kind: 'newRun', nextDefaultChallengeOrdinal: null }, lease);
+  commitPreparedRecordedWave(token, lease, { ...original.live, selection: null });
+  expect(readRecordedWaveInstallation(token, lease).selectionProgress).toBe('notRequired');
+  markRecordedWaveMetadataInstalled(token, lease); const marked = inspectRecordedWaves();
+  markRecordedWaveMetadataInstalled(token, lease); observeRecordedWaveSelection(token, lease, null);
+  expect(inspectRecordedWaves()).toBe(marked);
+  expect(recognizeRecordedWavePublication(token, lease, install(binding))).toBe(true);
 });

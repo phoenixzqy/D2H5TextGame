@@ -5514,3 +5514,64 @@ await exact cleanup. Root remains
 sole writer/executor; umbrella worktree claim continues; no remote action.
 Production receipts/debit/recovery, once-only settlement/replay lock, bilingual
 Iron acceptance and fullD06/P09/P10/private-v1 remain open.
+
+
+## D06 v1ah inactive captured installation and publication recovery
+
+Helper-phase consumers received QA, TD/five-axis and producer APPROVE and committed
+as `7eeb896`. Exact helper-phase cleanup removed1300files/43,820,889bytes and14empty
+directories, with zero failures/remaining targets; all command identities and the
+exact owned Vite identity were absent.
+
+TD approved this five-path inactive support slice. Installation receipts retain
+newRun/newWave/replay intent, metadata-installed progress, exact-reference selection
+resolution and first selection error in the existing sole holder. Strict install
+APIs refuse foundation-only receipts. Replay cannot debit or consume selection.
+Owned wrappers are frozen; caller carry, units and objects remain mutable. Intent
+validation rejects inconsistent run/cursor policy before allocating pending state.
+Promotion of intent-bearing receipts additionally requires installed metadata and
+resolved/not-required selection, including publisher-after-write exceptions.
+
+The inactive recoverRecordedWavePublication helper acquires primitive ownership
+with hydration, validates the exact committed token, then installs only captured
+values. It checks the private360360 ordinal range before any mutation, assigns the
+absolute ordinal/run/carry/cursor/clock/recording once and marks before notifying
+setters. Selection throws retain actual resolved/pending state and first error;
+newer rearm is preserved. Publication recognizes exact installation on success or
+throw, retains first publisher error, and keeps partial payloads pending. Recovery
+never stages, simulates, debits, pays, rebases or increments the ordinal. The exact
+lease releases and wakes deferred saves. Production start/replay/next-wave still
+create no receipts and no UI invokes recovery. This is not paid-Iron acceptance.
+
+Forty new tests cover install intent/token/lease/phase authority, no fallback,
+owned wrapper immutability, metadata/selection prerequisites, separate original
+selection/publisher errors, before/after-write recovery, same-ID rearm, exact carry,
+replay baseline, ordinal policy, hydration/ownership recovery refusal, stale token
+preservation, metadata-before-observer ordering, nested recovery refusal, deferred
+save wake and partial publication. An explicit test checks disconnected producers.
+Protocol RED3failed/61filtered6.245s and helper RED2failed/53filtered5.683s established
+missing support; incremental GREEN119,127,142,229 passed. Focused231/4files6.505s;
+final focused231/4files6.363s passed. Initial lint failed28 style/narrowing errors;
+scoped ESLint fixed22 callbacks and manual fixes addressed empty callbacks and
+redundant narrowing. Final types14.594s, lint41.144s including85purity, full6910/
+228files115.822s and task-local build9.980s passed. Build608modules/index-C6tTVijd.js
+1264.45kB observed. Original failures and source/output identities remain retained.
+Related5s/full15s budget overruns, prior unexplained bundle variance, existing React
+act/fixture fallback, stale Browserslist and chunk/precache warnings remain open;
+no deterministic bundle-equivalence claim. SaveCurrent11 unchanged. No browser,
+server, engine-source or user-facing UI change; no browser/visual/earned acceptance
+claim. Chinese screenshot glyph rendering remains unresolved. Security check:
+no new external IO/dependency/save payload/item-write authority or bypass.
+
+Five paths, command/source/output identities, prior helper cleanup and exact owned
+dist/tmp inventory are frozen in install-intent-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope and released all
+readers. Focused231 preceded two explanatory comments in test no-op callbacks;
+subsequent types/lint/full/build bind the exact frozen sources. Producer publication
+review, local commit and exact cleanup follow. Root is sole writer and executor;
+umbrella worktree claim continues; no remote action.
+Inactive settlement authority/access, coherent all-producer activation, selected
+item debit/replay lock, bilingual Iron acceptance and fullD06/P09/P10/private-v1
+remain open. TD approved splitting settlement authority+both fixture sets+ledger
+(four paths) before access+tests+ledger (three paths); neither activates production.
