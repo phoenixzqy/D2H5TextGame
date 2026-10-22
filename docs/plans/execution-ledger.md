@@ -7986,3 +7986,56 @@ Exact disposal1298 files/43857135 bytes/14 directories verified, readers release
 including dist/tmp; no reviewer artifacts/processes. Approval-only append; other
 three paths unchanged. Producer publication audit, staged whitespace gate, local
 commit and exact cleanup follow. Broader acceptance gaps and warnings remain open.
+
+
+## D06 v1bq — Golem Mastery native wave integration
+
+Engine A committed44376bc; exact cleanup12892beb8642828b8f5df736d9aa83802ed9fbe1931b10a9b73a4e1c27c4415e
+removed1298 files/43857135 bytes/14 directories, no failures/remaining targets;
+both checkouts clean. Engine source/raw/failure/review evidence retained by root.
+Producer plan-review ready for approved plan-v2 B: three repository paths only,
+combatHelpers/native store test/ledger. Security check PASS for local deterministic
+composition, no dependency/network/credential/schema/save/remote changes. Root
+sole writer/executor in the claimed worktree; original remains read-only.
+Compose from matching current authoritative Player at stageWave. Ordinary refresh
+and recording remain frozen; next wave/current-config unlocked replay recomposes,
+using carried/original hero resources respectively. Iron-locked replay restores
+exact input/projection/recording with no second item or mana debit. Imported
+levels/ranks/points, survival gear, wait and finisher are explicitly unearned test
+scaffolding, real native lifecycle/engine with only disk I/O mocked. Fresh summons
+replace prior-wave summons as current lifecycle requires; no preload injection.
+Behavioral RED, final validation and independent reviews follow. Engine A already
+covers damaged preloads without retrofit/refill; no new large simulation family.
+
+Behavioral RED reproduced missing stageWave integration: allocatedM8 Clay had220
+life instead of325.6. Smallest production change imports composer, derives matching
+Player projection beside Skeleton Mastery and includes optional snapshot field.
+GREEN first native case confirms325.6HP/AS63/1996ms. Expanded6 native cases pass:
+M0→1→2 and M7→8→9 allocations preserve current frozen evidence, then fresh waves
+use exact carried pools with no carried summons; unlocked replay recomposesM8 from
+original resource baseline without settlement; rank6 Iron+isolated item gives
+373.65HP/Attack49.25/Defense67.5, one35MP/item payment, and both100MP/34MP attempts
+retain exact locked input/recording after Mastery/combo edits without another debit.
+Only disk I/O mocked; imported fixtures remain unearned. Retained green2 failure
+was an invalid comparison of live candidateRun lifecycle metadata, corrected to
+frozen input/recording/publication. Retained green3 fixture assumed imported900k
+health stayed damaged despite real healing orbs; lowered imported starting life
+so the no-refill check remains meaningful. No production behavior altered for
+these fixture corrections. Final validation and independent review follow.
+
+Final native unchanged-source checks settled PASS: focused113/5 files5.27s,
+typecheck17.267s, lint43.560s including purity89, full-unit7634/249 files130.54s
+(wrapper132.066s), production build10.099s. Existing unit15s/engine3s budgets and
+Browserslist/>500kB chunks/2.57MB precache warnings remain open. QA native source
+APPROVE/test-evidence ADEQUATE; TD/five-axis source APPROVE. Final frozen evidence
+review follows; UI/preview, earned progression and broader D06/P09/P10 remain open.
+
+Final independent QA-D06-GOLEM-NATIVE APPROVE/test evidence ADEQUATE and
+TD/five-axis APPROVE. Verified review6b4ea2e1a6810ecdf15e0b353edc4ede6863982dcbac73a994a9e98e9af22f25,
+supportbf4710c113e2b807e13c4a51168fc636cf29a0cb66edd338caeca65735368cdc,
+129 retained files/10 settled serial receipts/99 captures/current-source bindings.
+Exact disposal1298 files/43857838 bytes/14 directories independently verified;
+all readers released including dist/tmp; no reviewer artifacts/processes.
+Approval-only ledger append; other two paths unchanged. Producer publication
+audit, staged whitespace gate, local commit and exact cleanup follow. Existing
+budgets/warnings and UI/earned/balance/full-v1 acceptance gaps remain open.
