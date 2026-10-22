@@ -7294,3 +7294,88 @@ Approval-only ledgerappend; fixture/runner/test/report bytes unchanged.
 Publication/producer audit/localcommit/exactcleanup next. Broader balance,
 >=1000scenariofamilies/earned/signaturestatuses/fullMage/D06/P09/P10/private-v1
 remain open; existingtestbudget/buildwarnings retained. No remoteaction.
+
+
+## D06 v1bj Mage rank-family paired audit
+
+Screen9d2310d committed after QA/test-evidence/TD/five-axis/producer approval;
+cleanup9b0c9ddbf8b7a05d39c85fdf4d525cef29c808c73c6358b62f246a1f4d2f9896
+removed1302files/43,858,747bytes/18dirs, zero failures/remaining. Same claimed
+worktree/root sole writer-executor. TD plan ready and QA literalpreflight
+APPROVE after FCLPFCLP/evenquantile/censoring/streamintegrity additions.
+Security PASS: local immutable engine capture/owned stream paths, no network/
+credential/dependency/permission/production/save changes. Exactfivepaths new
+mage-rank-fixture/runner/test, datedreport,ledger. Common unearnedL32 versus
+earlyBloodMoor,Mage1-20/Skeleton1/Mastery0/noequipment/merc/preload; ordinary
+core/resources/recovery,33availablepoints,21spent atMage20, allothersunspent.
+Reuse authored screenenemy builder/direct-only meter with complete captured
+transitive helperclosure. Twenty fixtures generate/serialize once for both
+Gitobject physicalcf19757d vs elemental0b2b907 domains, distinctprocesses,
+sameconfig/tool/driver/input. Stream exclusivegzip rawrecordings seeds0-999
+percell:40000measuredbattles, opt-in outside defaults. A/A/ABA0/1 eachcell;
+plain/recorded ranks1/2/3/6/9/12/15/18/20 seeds0/999. Allow nonactingMage;
+exactcap/IDs/payment/everyobservedtype/initialsurvivingcadence. Verify negative
+missing/duplicate/reorderedseed,provenance,truncated/failedgzip beforefullrun;
+time firstcompletecell before estimating runtime. Stream pairchecks and retain
+rawgzip/count/byte/hashindexes. Per-rank outcomes/deaths/successTTKdenominators/
+quantiles/logged-vs-effective damage/DPS/crit-dodge denominators/MP/nonactors.
+No mana-starved-action inference. Mastery/mitigation/resistance/dodge/status/
+coexistence/earned/fullMage/D06/P09/P10/private-v1 remain open. TDD then serial
+checks/frozenreviews/publication/localcommit/exactcleanup; no remoteaction.
+
+
+FixturecollectionRED expected missingmodule(0tests), then9fixturetests pass.
+RunnerpendingRED reached15assertionfailures/9passes, then24focused pass
+(wrapper3.664s/Vitest2.42s). Types15.684s/lint43.284s pass. ExternalTDpreflight
+found sharedstale index/rank provenance gap; preservedv1, three wrong-rank/
+fixture/driver guardsRED(3missingexceptions) thenGREEN against exactexpected
+manifest/domain/frozenfixture binding. Bothstreamreader returns nowallsettled.
+Ten v2integritycases pass including completeaccept plus missing/duplicate/
+reorder/provenance/sharedwrongidentities/truncation/writerfailure refusals.
+TD toolpreflight APPROVE before sourcecapture/fullrun. Capture346Gitobject
+sourcefiles with identicalfivehelperfiles/domain and both tsconfigs; generate
+20fixturesonce. Firstphysicalrank1 retainedcell1000measurements2.332s,
+wrapper3.856s; remaining39serialcells158.550s wrapper, all40000measurements
+victory/noherodeaths. EverycellA/A/ABA and boundedplainparity checks pass;
+rawgzip/count/byte/hashindexes retained. Pairedcomplete20ranks comparator
+45.640s passes exactexpectedidentity/seed/preparation/firstsurvivingcadence;
+no[ERROR] diagnostic in40measurement/comparisonlogs, allSSRclosed.
+Mean durationflags>15% none; loggedMageDPS>10% ranks2-8. Rank1 physical/fire
+identical; ranks12-20 identicalclear/effective shares whileloggedoverkillgrows.
+Reportfilled, unearnedL32earlyzone/saturationlimitations explicit. Design
+interpretation/currentrawarithmeticchecker then finalserialchecks/frozen
+reviews pending; no tuning/global/fullacceptance or remoteaction.
+
+
+Rawsource/arithmetic preflight53.158s PASS independently streamed/reconciled
+all40000rawbattles/20000pairs: logicaltime/outcome/HP/MP/counters/type/cap/
+inputs/preparation/cadence/quantiles/aggregates/provenance/report. Forty
+distinctdomainprocesses; raw1,998,641,840bytes compressed85,586,671bytes.
+Design BALANCE-CHECK:CONCERNS independentlychecked20000pairedsummaries;
+rank2-11 fastermean(max13.67%), ranks3/5/8 effectiveMageHP/s rises20.92%/
+24.36%/19.65%, not solelyoverkill. Rank12-20 saturation unchangedeffective
+shares/clears withloggedgains. No materialmethod/reportfinding. Balancefamily
+evidence only, otherfamilies/global/earned/fullgates open. Finalserialchecks
+then frozenQA/TD/fiveaxis/publication/producer/localcommit/cleanup next.
+
+
+Final serial focused39/39 pass(wrapper3.680s/Vitest2.39s), types15.858s,
+lint42.433s, fullunit242files/7478tests pass(Vitest127.33s/wrapper128.757s).
+Existing15s full-suite budget remains exceeded/open. VITE_E2E=false production
+build10.524s passes; existing Browserslist/chunk-size/2.57MBmanifest-precache
+warnings persist. Final rawsource/arithmetic/report/build-exclusion checker
+then frozenQA/test-evidence/TD/five-axis review next. Exactlyfivepaths;
+no production/data/save/config or remote changes, no broaderacceptance.
+
+
+Frozen QA APPROVE/test-evidence ADEQUATE and TD/five-axis APPROVE, no material
+findings. Independently verified3226retained files/159,719,514bytes,62receipts/
+2601source snapshots,346Gitobject sources/507installedtoolfiles and40distinct
+measurementprocesses. QA independently streamed40000raw/20000paired rows,
+sample-reconciled240eventstreams, reproduced80report rows, verified finalfull
+raw-arithmetic PASS and exactfivepathscope. All1312disposable regularfiles/
+43,858,424bytes/16directory identities verified; all62recordedPIDs absent.
+All readers released includingdist/tmp. Approval-only ledgerappend; fixture/
+runner/test/report unchanged. Publication/producer audit/localcommit/exactcleanup
+next. BalanceCONCERNS, otherfamilies/earned/global/fullgates,budget/warnings
+remain open. No production/data/save/config or remotechange.
