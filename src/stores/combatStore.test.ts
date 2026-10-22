@@ -134,17 +134,31 @@ describe('actual recorded canonical Fire Bolt cast playback', () => {
       const outcome = { winner: control.winner, finalPlayerTeam: control.playerTeam, finalEnemyTeam: control.enemyTeam };
       useCombatStore.getState().setRecordedBattle({ initialPlayerTeam: input.playerTeam, initialEnemyTeam: input.enemyTeam,
         events: recorded.events, outcome, unitNameMap: new Map([['hero', 'Hero'], ['target', 'Target']]) });
-      for (const event of recorded.events) {
+      for (let calls = 0; calls < recorded.events.length && !useCombatStore.getState().playbackComplete; calls++) {
         const prior = useCombatStore.getState();
-        const target = event.kind === 'damage' ? [...prior.playerTeam, ...prior.enemyTeam].find(unit => unit.id === event.target) : undefined;
+        const expected = new Map([...prior.playerTeam, ...prior.enemyTeam]
+          .map(unit => [unit.id, { life: unit.life, mana: unit.mana, lifeMax: unit.stats.lifeMax }]));
         useCombatStore.getState().advanceEvent();
         const state = useCombatStore.getState();
-        // Before final outcome publication, verify the actual event-by-event transport.
+        expect(state.eventCursor).toBeGreaterThan(prior.eventCursor);
+        expect(state.eventCursor).toBeLessThanOrEqual(recorded.events.length);
+        // Fold the consumed raw range independently; calls may advance a whole timestamp.
+        for (const event of recorded.events.slice(prior.eventCursor, state.eventCursor)) {
+          if (!('target' in event)) continue;
+          const target = expected.get(event.target);
+          if (!target) throw new Error('Missing real Fire Bolt target');
+          if (event.kind === 'mana') target.mana = event.mana;
+          if (event.kind === 'dot' || (event.kind === 'damage' && !event.dodged)) {
+            target.life = Math.max(0, target.life - event.amount);
+          }
+          if (event.kind === 'heal') target.life = Math.min(target.lifeMax, target.life + event.amount);
+          if (event.kind === 'death') target.life = 0;
+        }
         if (!state.playbackComplete) {
-          const teams = [...state.playerTeam, ...state.enemyTeam];
-          if (event.kind === 'mana') expect(teams.find(unit => unit.id === event.target)?.mana).toBe(event.mana);
-          if (event.kind === 'damage' && target) {
-            expect(teams.find(unit => unit.id === event.target)?.life).toBe(Math.max(0, target.life - event.amount));
+          for (const unit of [...state.playerTeam, ...state.enemyTeam]) {
+            expect({ life: unit.life, mana: unit.mana }).toEqual({
+              life: expected.get(unit.id)?.life, mana: expected.get(unit.id)?.mana
+            });
           }
         }
       }
@@ -152,8 +166,11 @@ describe('actual recorded canonical Fire Bolt cast playback', () => {
       expect(state.playbackComplete).toBe(true);
       expect(state.eventCursor).toBe(recorded.events.length);
       expect(state.recordedEvents).toEqual(frozen.events);
-      expect(state.playerTeam).toEqual(control.playerTeam);
-      expect(state.enemyTeam).toEqual(control.enemyTeam);
+      // Authoritative presentation statuses have a separate lifecycle contract.
+      // Every other final field still snaps exactly to the raw engine outcome.
+      const resources = (team: readonly CombatUnit[]) => team.map(({ statuses: _statuses, ...unit }) => unit);
+      expect(resources(state.playerTeam)).toEqual(resources(control.playerTeam));
+      expect(resources(state.enemyTeam)).toEqual(resources(control.enemyTeam));
       expect(state.outcome).toEqual(outcome);
       expect(recorded).toEqual(frozen);
       expect(input).toEqual(before);
@@ -164,6 +181,36 @@ describe('actual recorded canonical Fire Bolt cast playback', () => {
       useCombatStore.getState().reset();
       await i18n.changeLanguage(previous);
     }
+  });
+
+  it('retains complete raw final teams and intermediate status cues for an explicit legacy recording without transport', () => {
+    useCombatStore.getState().reset();
+    try {
+      const hero = unit('legacy-hero', 'player');
+      const status = { id: 'poison', sourceId: hero.id, stacks: 2, remaining: 5, expiresAtMs: 1000 };
+      const target = { ...unit('legacy-target', 'enemy'), statuses: [status] };
+      const outcome = { winner: 'player' as const, finalPlayerTeam: [{ ...hero, mana: 7 }],
+        finalEnemyTeam: [{ ...target, life: 0 }] };
+      const events = [
+        { kind: 'turn-start' as const, turn: 1, simClockMs: 0, uiDelayMs: 200 },
+        { kind: 'status' as const, target: target.id, statusId: 'ignite', simClockMs: 1000, uiDelayMs: 1000 },
+        { kind: 'death' as const, target: target.id, simClockMs: 2000, uiDelayMs: 1000 },
+        { kind: 'end' as const, winner: 'player' as const, simClockMs: 2500, uiDelayMs: 500 }
+      ];
+      const before = structuredClone({ hero, target, outcome, events });
+      useCombatStore.getState().setRecordedBattle({ initialPlayerTeam: [hero], initialEnemyTeam: [target],
+        events, outcome, unitNameMap: new Map() });
+      for (let calls = 0; calls < events.length && useCombatStore.getState().eventCursor < 3; calls++) {
+        useCombatStore.getState().advanceEvent();
+      }
+      expect(useCombatStore.getState().playbackComplete).toBe(false);
+      expect(useCombatStore.getState().enemyTeam[0]).toMatchObject({ life: 0, statuses: [status] });
+      useCombatStore.getState().advanceEvent();
+      expect(useCombatStore.getState().playbackComplete).toBe(true);
+      expect(useCombatStore.getState().playerTeam).toEqual(outcome.finalPlayerTeam);
+      expect(useCombatStore.getState().enemyTeam).toEqual(outcome.finalEnemyTeam);
+      expect({ hero, target, outcome, events }).toEqual(before);
+    } finally { useCombatStore.getState().reset(); }
   });
 });
 

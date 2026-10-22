@@ -130,14 +130,29 @@ describe('production continuous-mana carry between recorded waves', () => {
   it('plays actual recovered MP before the end event can snap teams to their final state', () => {
     const { first } = firstRecoveryWave();
     const outcome = structuredClone(first.outcome);
-    const endIndex = first.recordedEvents.findIndex(e => e.kind === 'end');
-    expect(endIndex).toBeGreaterThan(0);
-    for (let i = 0; i < endIndex; i++) useCombatStore.getState().advanceEvent();
+    const end = first.recordedEvents.find(e => e.kind === 'end');
+    if (!end) throw new Error('Missing terminal event');
+    const recoveryIndex = first.recordedEvents.findIndex(e =>
+      e.kind === 'mana' && e.reason === 'regeneration' && e.simClockMs < end.simClockMs);
+    expect(recoveryIndex).toBeGreaterThan(0);
+    for (let calls = 0; calls < first.recordedEvents.length &&
+      useCombatStore.getState().eventCursor <= recoveryIndex; calls++) {
+      const cursor = useCombatStore.getState().eventCursor;
+      useCombatStore.getState().advanceEvent();
+      expect(useCombatStore.getState().eventCursor).toBeGreaterThan(cursor);
+    }
     const beforeEnd = useCombatStore.getState();
-    expect(beforeEnd.eventCursor).toBe(endIndex);
+    const consumed = first.recordedEvents.slice(0, beforeEnd.eventCursor);
+    expect(beforeEnd.eventCursor).toBeGreaterThan(recoveryIndex);
+    expect(consumed.at(-1)?.simClockMs).toBeLessThan(end.simClockMs);
     expect(beforeEnd.playbackComplete).toBe(false);
-    expect.soft(beforeEnd.playerTeam[0]?.mana).toBe(20);
-    expect.soft(first.recordedEvents.some(e => e.kind === 'mana' && e.reason === 'regeneration')).toBe(true);
+    const hero = first.playerTeam[0];
+    if (!hero) throw new Error('Missing recovery hero');
+    const expectedMana = consumed.reduce((mana, e) =>
+      e.kind === 'mana' && e.target === hero.id ? e.mana : mana, hero.mana);
+    expect(beforeEnd.playerTeam[0]?.mana).toBe(expectedMana);
+    expect(expectedMana).toBeGreaterThan(0);
+    expect(expectedMana).toBeLessThan(20); // Actual earlier recovery, before final16+4 MP.
     expect(beforeEnd.outcome).toEqual(outcome);
   });
 
@@ -231,7 +246,7 @@ describe('production cross-wave status clock', () => {
     expect(second.playerTeam[0]?.activeBuffIds).toContain('fixture.carried-buff');
   });
 
-  it('deals carried poison damage and changes actual playback HP before the next wave first action', () => {
+  it('plays carried poison damage through the next wave first action without a final snap', () => {
     const { hero, poison, elapsed, second } = next();
     const action = second.recordedEvents.find(e => e.kind === 'action');
     if (!action || poison.expiresAtMs === undefined) throw new Error('Missing timing fixture');
@@ -242,8 +257,24 @@ describe('production cross-wave status clock', () => {
     const earlyDots = second.recordedEvents.filter(e => e.kind === 'dot' && e.target === hero.id && e.simClockMs <= action.simClockMs);
     expect(earlyDots.reduce((sum, e) => sum + (e.kind === 'dot' ? e.amount : 0), 0)).toBe(damage);
     const actionIndex = second.recordedEvents.indexOf(action);
-    for (let i = 0; i <= actionIndex; i++) useCombatStore.getState().advanceEvent();
-    expect(useCombatStore.getState().playerTeam[0]?.life).toBe(hero.life - damage);
+    for (let calls = 0; calls < second.recordedEvents.length &&
+      useCombatStore.getState().eventCursor <= actionIndex; calls++) {
+      const cursor = useCombatStore.getState().eventCursor;
+      useCombatStore.getState().advanceEvent();
+      expect(useCombatStore.getState().eventCursor).toBeGreaterThan(cursor);
+    }
+    const state = useCombatStore.getState();
+    const consumed = second.recordedEvents.slice(0, state.eventCursor);
+    const expectedLife = consumed.reduce((life, e) => {
+      if ((e.kind === 'dot' || (e.kind === 'damage' && !e.dodged)) && e.target === hero.id) {
+        return Math.max(0, life - e.amount);
+      }
+      return life;
+    }, hero.life);
+    expect(state.eventCursor).toBeGreaterThan(actionIndex);
+    expect(state.playbackComplete).toBe(false);
+    expect(state.playerTeam[0]?.life).toBe(expectedLife);
+    expect(expectedLife).toBeLessThanOrEqual(hero.life - damage);
   });
 
   it('replays the current wave without subtracting previous elapsed time again', () => {
@@ -295,7 +326,7 @@ describe('production cross-wave status clock', () => {
       const actual = original(input);
       const end = actual.events.at(-1);
       if (end?.kind !== 'end') throw new Error('Missing terminal fixture');
-      return { ...actual, events: [{ kind: 'message' as const, messageKey: 'fixture.intro',
+      return { ...actual, events: [{ kind: 'message' as const, messageKey: 'combat:bossIntro',
         simClockMs: 0, uiDelayMs: 1200 }, ...actual.events.slice(0, -1),
       { kind: 'message' as const, messageKey: 'fixture.outro', simClockMs: 50_000, uiDelayMs: 3000 }, end] };
     });

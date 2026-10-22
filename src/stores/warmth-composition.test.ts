@@ -291,7 +291,9 @@ describe('original wave-input resources and replay', () => {
     const progress = structuredClone({ player: player(), inventory: useInventoryStore.getState().backpack,
       currencies: useInventoryStore.getState().currencies, rewards: initial.rewards });
     useCombatStore.getState().advanceEvent();
-    expect(useCombatStore.getState().eventCursor).toBe(1);
+    expect(useCombatStore.getState().eventCursor).toBeGreaterThan(0);
+    expect(useCombatStore.getState().eventCursor).toBeLessThan(initial.events.length);
+    expect(useCombatStore.getState().playbackComplete).toBe(false);
     for (let replay = 0; replay < 2; replay++) {
       refreshActivePlayerCombatConfig({ replayCurrentWave: true });
       expect.soft(recording()).toEqual(initial);

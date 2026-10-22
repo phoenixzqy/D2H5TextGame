@@ -9385,3 +9385,49 @@ remaining[]/failures[]. Cleanup receipt SHA256
 007dd9c3b14747ab11929231fe32d09c0d2c9cb7f7000c023a304de4b9fc4a7f.
 Required evidence remains root-owned at ROOT until umbrella consumers finish.
 No owned processes remain. Settled cached whitespace precedes local commit.
+
+
+## D04 v1cr — Native playback tests follow consumed event ranges
+
+Native4 owns three store test files and this ledger, exactly four paths. Root
+remains sole writer/executor in the claimed worktree. Security PASS: test-only
+migration to the accepted status/batching contract; no production, dependency,
+network, credential, save or gameplay changes. Runtime49a68538 stays unchanged.
+
+Cross-wave recovery selects a real regeneration event strictly before terminal
+engine time, folds consumed MP independently and proves incomplete playback with
+0<MP<20 before the final orb/outcome. Next-wave Poison assertions fold actual
+consumed hero damage and retain early carried damage. The sole leading message
+uses the accepted bossIntro identity; terminal-engine-clock carry remains tested.
+Warmth proves bounded partial cursor progress. Native Fire Bolt retains actual raw
+recording/input/outcome and exact ordered bilingual cast logs while independently
+folding consumed HP/MP ranges. Only final presentation statuses use their separate
+lifecycle contract. An explicit no-transport legacy case preserves intermediate
+status/death behavior and exact whole raw final teams; real transport is retained.
+
+Baseline97/3 PASS4.91s (wrapper5.970) was green-only, not a behavioral RED.
+Traversal39/2 PASS4.95s (wrapper5.914); final focused98/3 PASS4.64s
+(wrapper5.662). Types PASS25.609s; lint PASS55.963s; full8233/260
+PASS148.24s (wrapper149.780); production build/bridge PASS11.488s,
+four JS chunks scanned with VITE_E2E absent. Full validation covers the engine;
+no separate engine rerun is claimed for these test-only edits. Existing timing
+budgets, Browserslist, large-chunk and manifest-precache warnings remain open.
+TD/CODE APPROVE and QA TEST-EVIDENCE ADEQUATE confirm source/focused provenance.
+BUG080 and authoritative store/staging/lifecycle/batching/UI/browser remain open.
+
+ROOT: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-status-native-ghsrrpxb`.
+Root retains source/log/check/review/receipt evidence until umbrella consumers
+finish, then removes it. Final QA/producer publication and reader releases precede
+exact disposable cleanup. Scope/source/append-only checks and settled cached
+whitespace precede local commit. No push/PR/merge/deploy. Full private-v1 remains
+unfinished: C0 in progress, C1–C4 pending, no complete G0–G7 acceptance. After the
+bounded status chain, delivery priority is one earned fresh Sorceress→Andariel→
+correct loot/equipment→Save→close→new-page Continue route; no unrelated mechanics.
+
+Final independent QA ADEQUATE and producer PUBLICATION APPROVE verify scope,
+source/receipt hashes, append-only ledger and bounded acceptance. All readers
+released. Exact cleanup removed857files/42780773bytes/14directories;
+remaining[]/failures[]. Cleanup receipt SHA256
+f864ec508fc9f1e2837c2bfeef727319c650b76aef8fe05114ef4f252048c8f8.
+Required evidence remains root-owned at ROOT until umbrella consumers finish.
+No owned processes remain. Settled cached whitespace precedes local commit.
