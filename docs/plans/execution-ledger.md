@@ -6886,3 +6886,80 @@ validation identities; historical probe is distinguished. All readers released.
 Approval-only ledger update; tests/source unchanged. Publication/producer audit,
 local commit and exact cleanup follow. Broader playback/log/browser/balance/
 earned/full Mage/D06/P09/P10/private-v1 and limitations remain open.
+
+
+## D06 v1be mixed Mage/Iron locked replay acceptance
+
+Waves47c0f74 committed after independent frozen QA/test-evidence(ADEQUATE),
+TD/five-axis/producer APPROVE. Cleanup
+04011b1237e92dbc44d8aeb6df98175712feda67ec6472cb164f09aebf7e66fb removed1300files/
+43,858,233bytes/14directories, zero failures/remaining. Same isolated umbrella
+claim/evidence root; root sole writer/executor. TD bounded two-path plan READY:
+new mixed Mage/Iron replay tests and ledger only. QA pre-probe sanity READY.
+Root security-check passes local acceptance tests/evidence; no new dependencies/
+permissions/credentials/external IO/save shape. TDD/incremental-implementation/
+root-cause-fix apply; no defect or artificial RED assumed. Use real Blood Moor
+planner/engine, actual identified short-sword addItem/selection, Mage6 before
+Iron6 with Blood1 direct allocation, imported L30/Mastery20 survival/clock cap
+and unrelated WAIT/FINISH scaffolding. All fixtures explicitly unearned.
+Probe100MP→Mage78→Iron43 versus56MP→Mage34→Iron refusal; both must retain valid
+item projection and lock whole original recording/input/publication on native
+combo edits and replay, including after completed playback. Retain exact
+post-start containers/resources/selection/no awards and actual elemental hit/HP
+evidence; mixed participation can change Mage-only numeric/terminal oracles.
+Do not copy those values without measurement. No staging/engine mocks, leases
+or receipt mutations. Final QA literal freeze precedes serial required checks,
+frozen review/publication/producer audit/local commit/exact cleanup. Playback/
+log transport, bilingual mounted/browser, balance/earned/full Mage/signature
+statuses/D06/P09/P10/private-v1 remain separate/open. No remote action.
+
+
+Native mixed probe passes2/2 (4.57s; wall6.05s), retained receipt/output/source.
+Both valid Iron projections target mixed-sacrifice with attack8/life0/defense0.
+At100MP actual cast events78→43 produce one rank6 Iron340HP/54Attack/63Defense,
+35MP attestation/debit and terminal4000/final177MP. At56MP only Mage34 occurs;
+no Iron action/summon/attestation/debit despite later regeneration, terminal5820/
+final176MP. Both four Mages hit/kill F50/C61/L61/P50 at1940 before FINISH4000.
+Native combo edit removes summons, rearmed item remains selected, explicit
+replay before/after completed playback preserves original whole engine input,
+recording/publication by reference with new receipt/same unsettled payout and
+no new debit/attestation/rewards. These are measured imported-fixture values.
+QA final draft READY12769bytes SHA
+830a840ea44b77760e338a9c64eb5e69f95bab4d51eee26cafc7a3d04b22a38d;
+exact bytes copied before final serial checks. No oracle corrections or source
+change indicated. Test-only characterization; no artificial RED claimed.
+
+
+Initial final focused53/3files4.60s and types pass. Lint correctly rejects an
+unsafe-any return in matcher-producing map at test109. Root preserves original
+failure/draft, follows debugging/root-cause-fix, replaces only this matcher map
+with explicit cast count and indexed per-event toMatchObject. No production
+source/oracle changes, suppressions or weakened assertions. QA v2 READY12851bytes
+SHA89f2bd3428c4790d1beb5e7eef476a12af248b8be8c71af712118abcf8fb4269.
+All final checks restart on exact v2 bytes; older receipts remain historical.
+
+
+Final exact-v2 focused53/3files4.37s, full7435/238files120.29s (wall121.80s),
+standard types/lint and VITE_E2E=false production build pass. Checker verifies
+two-path scope/tracked+untracked whitespace, exact QA v2 draft, all captured
+nonledger source/config/test bytes across final checks, and no test bridge/
+Mage fixture/Vitest markers in four JS chunks. Artifact index-bki7oh7l.js is
+1,343,225bytes SHA91a61823f2dd8bd148cf0d24d7eb108d4fe452d788ac3ad84c3312f08686d29d.
+Test-only slice changes no production source; artifact bytes differ from prior
+build, no reproducibility claim. Historical initial lint failure is retained
+and distinguished from passing v2; no production defect or fake RED claimed.
+Full120.29s exceeds15s budget; existing Browserslist/chunk/manifest-precache
+warnings and broad Node-config maxThreads incompatibility remain open. No
+browser/balance/earned evidence here. Frozen independent QA/test-evidence and
+TD/five-axis review follows; publication/producer audit, local commit and exact
+cleanup pending. Broader playback/log/bilingual/browser/balance/full Mage/
+D06/P09/P10/private-v1 remain unfinished.
+
+
+Frozen QA/test-evidence(ADEQUATE), TD and five-axis reviews APPROVE with no
+blocking findings. Both verify10receipts/output hashes/280source snapshots and
+exact final v2 identities, distinguishing historical lint failure. All mixed
+readers released. Approval-only ledger append; tests/source unchanged.
+Publication/producer audit, local commit and manifest-bound cleanup follow.
+Broader playback/log/bilingual/browser/balance/earned/full Mage/D06/P09/P10/
+private-v1 and existing limitations remain open.
