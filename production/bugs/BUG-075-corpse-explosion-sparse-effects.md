@@ -1,6 +1,6 @@
 # BUG-075 — Reject sparse Corpse Explosion effects before payment
 
-- **Status:** Open; reproduced during pre-commit TD review of D06 engine delivery.
+- **Status:** Fixed in `7cd5768`; reproduced during pre-commit TD review of D06 engine delivery.
 - **Severity:** Critical — malformed injected registry data crashes the battle runner after payment. The production JSON catalog is dense; no native production occurrence is claimed.
 - **Owner / affected systems:** engine-dev; CE registered-semantics validation and synchronous cast payment.
 - **Build:** parent `ddd918c`; uncommitted candidate sources captured by `commands/sparse-effects-red/source/` below.
@@ -35,8 +35,16 @@ source reference and existing payment boundary. Do not change authored tuning.
 
 ## Workaround and resolution
 
-Keep production's dense registered effects unchanged. Resolution pending;
-regressions are “rejects a trailing sparse effect before payment rather than
+The structural comparator now requires equal array lengths as well as exact
+dense keys, rejecting the malformed registry entry before payment. Production's
+dense registered effects and tuning remain unchanged. Fix: `7cd5768`.
+Regressions are “rejects a trailing sparse effect before payment rather than
 throwing during effects” (combat) and “rejects an extended sparse effect array
-rather than matching only enumerable keys” (skills). Record the fixing commit
-and settled final validation in this report after the bounded engine delivery.
+rather than matching only enumerable keys” (skills).
+
+Final settled validation: engine3,631/91 files, full7,837/252 files, typecheck,
+lint/purity91 and production build all pass. Both regression failures are
+retained alongside the passing source/receipts. Independent QA engine APPROVE /
+test evidence ADEQUATE and TD/five-axis APPROVE bind frozen review SHA256
+`2625041c5e2ca7ed0ecd3663c92727be0bbdf68afd9e10ddbd3199e72f217913`
+at the root above. Native/browser/earned acceptance is outside this bug closure.
