@@ -8336,3 +8336,63 @@ released including dist/tmp, no reviewer artifacts/processes. Approval-only
 ledger append; three application/test paths unchanged. Staged publication
 audit, successful cached whitespace check, local commit and cleanup follow.
 Native lifecycle card remains next; full-goal acceptance remains open.
+
+
+## D06 v1bx — native finite-corpse lifecycle and rewards
+
+Feedback prerequisite committed bd62ea3. Exact prior cleanup
+8239ea7b7ee6f327968603e65fdd41279dc18c2aedc0173568d70d4a29b76bd1
+removed855files/42769927bytes/14directories; no remaining paths/failures.
+Prior source/raw/review evidence remains root-owned for umbrella consumers.
+
+Root owns three paths: combatHelpers.ts, dedicated corpse-explosion-native.test.ts,
+this ledger. stageWave now composes CE only from the actual current matching
+Player, alongside established projections. Existing staging privately copies and
+freezes the array/entry. No carried unit, combo presence, previous outcome or
+legacy rank supplies authority. Replay, death closure, loot and save schemas
+remain on their established paths. Security check PASS: bounded local gameplay
+projection, no dependency/network/credential/permission or persistence change.
+Producer plan review ready; root remains sole writer/executor in existing claim.
+
+Thirteen native cases use real production Teeth/CE, monsters, staging and stores;
+only disk I/O is mocked. Imported level/points/ranks/survival gear are explicitly
+unearned. All enemies start alive, real first kill precedes CE, survivors receive
+fire damage and ordinary20MP payment is observed. Dead IDs stay in outcomes.
+Full slain-set nonzero XP/items/shards settle once; repeated advance on the next
+undrained recording adds none. Allocation refresh preserves exact frozen
+input/recording/publication. Next wave recomposes rank2 and every original hero
+resource/carry field but needs a new death despite proven leftover prior bodies.
+Unlocked replay twice preserves fractional original resources and settlement
+identity; current Player prerequisite revocation/restoration gives deterministic
+A/B/A without rewards or resource drift. Invalid class/level/Teeth/CE/rank21,
+valid authored alias maximum and combo-slot controls cover native authority.
+Real paid Iron replay twice retains original pointers/rank while a newly armed
+reserve survives; no second item/corpse/resource payment. Real snapshotStores →
+toJsonSafe/JSON → validated import preserves allocation/combo/inventory, clears
+run/recording and transient fields structurally, and fresh staging starts empty.
+
+Genuine RED1failed on absent CE cast after real native win/death controls. Retained
+test-authoring failures/corrections: messageKey field, independently allocated
+item-ID oracle (rolled contents compared separately; actual IDs retained exactly),
+missing currency treated0, explicit TypeScript mana discriminant narrowing, and
+canonical resolved action ID for authored order alias. No product bug was found.
+Final unchanged application/test sources PASS: focused13/1file5.32s(wrapper6.639),
+types20.194s, lint45.931s/purity91, full7857/253files132.95s(wrapper134.519),
+production build10.274s. No engine source changed; full includes engine baseline
+3631/91. Existing engine3s/full15s budgets and Browserslist/chunk/precache warnings
+remain unresolved. Final GD/TD/five-axis source review APPROVE and QA source/test
+review APPROVE; frozen execution review and publication audit follow.
+Evidence root:
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-corpse-native-7m82ii4a`.
+Exact task-owned dist/tmp cleanup follows after readers release. Skills lifecycle
+copy, production bilingual mobile/desktop acceptance, earned/balance evidence,
+remaining D06/P09/P10 and private-v1 acceptance remain open.
+
+Final independent QA EXECUTION/EVIDENCE ADEQUATE/APPROVE, GD/TD/five-axis
+APPROVE and producer ready. Reviewa237c64731972c23a0ebbf04cb1a3e2b3be03c199dcfe6c995d73f617a5dd4d4
+verified155 retained files/14 settled serial receipts/125 source captures and
+final unchanged application/test bindings. Exact disposal1300files/43867233bytes/
+14directories verified; every reader released including dist/tmp, no reviewer
+artifacts or processes. Approval-only ledger append; two application/test paths
+unchanged. Staged publication audit, successful cached whitespace check, local
+commit and exact cleanup follow. Broader acceptance remains open.
