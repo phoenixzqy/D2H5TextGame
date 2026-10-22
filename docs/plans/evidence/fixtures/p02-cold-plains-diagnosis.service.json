@@ -1,0 +1,486 @@
+{
+  "kind": "unchanged earned L12 Frost/Ice route diagnostic; corrected allocator hydration; not browser or campaign proof",
+  "baseHead": "36ee0b8de6b5b26da42f0a509380ff69df27ad7e",
+  "scriptSha256": "5022b89f9133daa8cee6990da1555d72c9f4e1f2898de12fba7f594e3fdca436",
+  "inputSha256": "8c46c4f4026116360356a2d17dcde3d723310969a25664f85bc291a1886d2afc",
+  "rawRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-cold-plains-diagnosis-f76nlumd",
+  "rawReportSha256": "f9e9464f1f2a35fa1602521d958a8910121c678ffd72a87cde497b8027803975",
+  "finalSaveSha256": "37ae22d79c0c8ecd11e16c36fbe1aa88339aa5a7c1254ea44c63c6feaf243bbb",
+  "initialFullSaveEquality": true,
+  "initialItems": 3737,
+  "finalItems": 3789,
+  "actualAddedItemObjects": 52,
+  "itemCountsReconcile": true,
+  "sourceHashesUnchanged": true,
+  "priorFailedOutcomeReproduced": true,
+  "error": null,
+  "changedToolingSha256": {
+    "tests/sim/production/earned-state.ts": "0e5d413b89caaff3499cdc83b40f670436e1cdd43412e424f00e3ea00690bb15",
+    "tests/sim/production/earned-state.test.ts": "7c6f8c578a7f1acd632c76533daf3dd1a83a6cfbad6077809b0a0291e7e60e41"
+  },
+  "runs": [
+    {
+      "area": "areas/act1-blood-moor",
+      "ordinal": 102,
+      "result": "victory",
+      "waves": [
+        {
+          "index": 0,
+          "terminalMs": 7500,
+          "winner": "player",
+          "xp": 380,
+          "rawItems": 8,
+          "actualItems": 8,
+          "itemObjects": 3745,
+          "uniqueItemIds": 3745
+        },
+        {
+          "index": 1,
+          "terminalMs": 18000,
+          "winner": "player",
+          "xp": 600,
+          "rawItems": 23,
+          "actualItems": 23,
+          "itemObjects": 3768,
+          "uniqueItemIds": 3768
+        },
+        {
+          "index": 2,
+          "terminalMs": 31500,
+          "winner": "player",
+          "xp": 480,
+          "rawItems": 11,
+          "actualItems": 11,
+          "itemObjects": 3779,
+          "uniqueItemIds": 3779
+        }
+      ]
+    },
+    {
+      "area": "areas/act1-cold-plains",
+      "ordinal": 103,
+      "result": "defeat",
+      "waves": [
+        {
+          "index": 0,
+          "terminalMs": 16500,
+          "winner": "player",
+          "xp": 1000,
+          "rawItems": 8,
+          "actualItems": 8,
+          "itemObjects": 3787,
+          "uniqueItemIds": 3787
+        },
+        {
+          "index": 1,
+          "terminalMs": 12000,
+          "winner": "player",
+          "xp": 480,
+          "rawItems": 2,
+          "actualItems": 2,
+          "itemObjects": 3789,
+          "uniqueItemIds": 3789
+        },
+        {
+          "index": 2,
+          "terminalMs": 60000,
+          "winner": null,
+          "xp": 0,
+          "rawItems": 0,
+          "actualItems": 0,
+          "itemObjects": 3789,
+          "uniqueItemIds": 3789
+        }
+      ]
+    }
+  ],
+  "lastWave": {
+    "openingEnemies": [
+      {
+        "id": "enemy-act1.dark-stalker-0-cd14",
+        "tier": "champion",
+        "life": 682,
+        "armor": 79,
+        "magicResist": 14,
+        "coldResist": 25
+      },
+      {
+        "id": "enemy-act1.dark-stalker-1-bf0e",
+        "tier": "champion",
+        "life": 623,
+        "armor": 79,
+        "magicResist": 14,
+        "coldResist": 25
+      },
+      {
+        "id": "enemy-act1.zombie-0-f5f3",
+        "tier": "champion",
+        "life": 329,
+        "armor": 29,
+        "magicResist": 14,
+        "coldResist": 25
+      },
+      {
+        "id": "enemy-act1.zombie-1-2ead",
+        "tier": "trash",
+        "life": 99,
+        "armor": 23,
+        "magicResist": 7,
+        "coldResist": 25
+      },
+      {
+        "id": "enemy-act1.dark-stalker-2-5061",
+        "tier": "trash",
+        "life": 196,
+        "armor": 61,
+        "magicResist": 7,
+        "coldResist": 25
+      },
+      {
+        "id": "enemy-act1.dark-stalker-3-00bb",
+        "tier": "trash",
+        "life": 218,
+        "armor": 61,
+        "magicResist": 7,
+        "coldResist": 25
+      },
+      {
+        "id": "enemy-act1.zombie-2-8d02",
+        "tier": "trash",
+        "life": 106,
+        "armor": 23,
+        "magicResist": 7,
+        "coldResist": 25
+      },
+      {
+        "id": "enemy-act1.zombie-3-9a5f",
+        "tier": "trash",
+        "life": 101,
+        "armor": 23,
+        "magicResist": 7,
+        "coldResist": 25
+      },
+      {
+        "id": "enemy-act1.dark-stalker-4-5f6d",
+        "tier": "trash",
+        "life": 215,
+        "armor": 61,
+        "magicResist": 7,
+        "coldResist": 25
+      }
+    ],
+    "finalAllies": [
+      {
+        "id": "player-1792497600000",
+        "life": 140,
+        "mana": 175
+      },
+      {
+        "id": "merc-mercs/act1-rogue-inner-sight",
+        "life": 181,
+        "mana": 79
+      }
+    ],
+    "survivors": [
+      {
+        "id": "enemy-act1.zombie-0-f5f3",
+        "life": 38
+      }
+    ],
+    "heroManaMinimum": 168,
+    "heroActions": [
+      {
+        "ms": 1500,
+        "skill": "sorceress.frost_nova"
+      },
+      {
+        "ms": 3000,
+        "skill": "sorceress.ice_blast"
+      },
+      {
+        "ms": 4500,
+        "skill": "sorceress.frost_nova"
+      },
+      {
+        "ms": 6000,
+        "skill": "sorceress.ice_blast"
+      },
+      {
+        "ms": 7500,
+        "skill": "sorceress.frost_nova"
+      },
+      {
+        "ms": 9000,
+        "skill": "sorceress.ice_blast"
+      },
+      {
+        "ms": 10500,
+        "skill": "sorceress.frost_nova"
+      },
+      {
+        "ms": 12000,
+        "skill": "sorceress.ice_blast"
+      },
+      {
+        "ms": 13500,
+        "skill": "sorceress.frost_nova"
+      },
+      {
+        "ms": 15000,
+        "skill": "sorceress.ice_blast"
+      },
+      {
+        "ms": 16500,
+        "skill": "sorceress.frost_nova"
+      },
+      {
+        "ms": 18000,
+        "skill": "sorceress.ice_blast"
+      },
+      {
+        "ms": 19500,
+        "skill": "sorceress.frost_nova"
+      },
+      {
+        "ms": 21000,
+        "skill": "sorceress.ice_blast"
+      },
+      {
+        "ms": 22500,
+        "skill": "sorceress.frost_nova"
+      },
+      {
+        "ms": 24000,
+        "skill": "sorceress.ice_blast"
+      },
+      {
+        "ms": 25500,
+        "skill": "sorceress.frost_nova"
+      },
+      {
+        "ms": 27000,
+        "skill": "sorceress.ice_blast"
+      },
+      {
+        "ms": 28500,
+        "skill": "sorceress.frost_nova"
+      },
+      {
+        "ms": 30000,
+        "skill": "sorceress.ice_blast"
+      },
+      {
+        "ms": 31500,
+        "skill": "sorceress.frost_nova"
+      },
+      {
+        "ms": 33000,
+        "skill": "sorceress.ice_blast"
+      },
+      {
+        "ms": 34500,
+        "skill": "sorceress.frost_nova"
+      },
+      {
+        "ms": 36000,
+        "skill": "sorceress.ice_blast"
+      },
+      {
+        "ms": 37500,
+        "skill": "sorceress.frost_nova"
+      },
+      {
+        "ms": 39000,
+        "skill": "sorceress.ice_blast"
+      },
+      {
+        "ms": 40500,
+        "skill": "sorceress.frost_nova"
+      },
+      {
+        "ms": 42000,
+        "skill": "sorceress.ice_blast"
+      },
+      {
+        "ms": 43500,
+        "skill": "sorceress.frost_nova"
+      },
+      {
+        "ms": 45000,
+        "skill": "sorceress.ice_blast"
+      },
+      {
+        "ms": 46500,
+        "skill": "sorceress.frost_nova"
+      },
+      {
+        "ms": 48000,
+        "skill": "sorceress.ice_blast"
+      },
+      {
+        "ms": 49500,
+        "skill": "sorceress.frost_nova"
+      },
+      {
+        "ms": 51000,
+        "skill": "sorceress.ice_blast"
+      },
+      {
+        "ms": 52500,
+        "skill": "sorceress.frost_nova"
+      },
+      {
+        "ms": 54000,
+        "skill": "sorceress.ice_blast"
+      },
+      {
+        "ms": 55500,
+        "skill": "sorceress.frost_nova"
+      },
+      {
+        "ms": 57000,
+        "skill": "sorceress.ice_blast"
+      },
+      {
+        "ms": 58500,
+        "skill": "sorceress.frost_nova"
+      },
+      {
+        "ms": 60000,
+        "skill": "sorceress.ice_blast"
+      }
+    ],
+    "damageBySkill": [
+      {
+        "source": "player-1792497600000",
+        "skill": "sorceress.frost_nova",
+        "amountIncludingOverkill": 1491,
+        "events": 116,
+        "dodges": 18,
+        "crits": 4
+      },
+      {
+        "source": "enemy-act1.dark-stalker-1-bf0e",
+        "skill": "monster.strong_melee",
+        "amountIncludingOverkill": 45,
+        "events": 26,
+        "dodges": 6,
+        "crits": 1
+      },
+      {
+        "source": "enemy-act1.dark-stalker-3-00bb",
+        "skill": "monster.strong_melee",
+        "amountIncludingOverkill": 31,
+        "events": 21,
+        "dodges": 6,
+        "crits": 0
+      },
+      {
+        "source": "enemy-act1.dark-stalker-4-5f6d",
+        "skill": "monster.strong_melee",
+        "amountIncludingOverkill": 37,
+        "events": 30,
+        "dodges": 8,
+        "crits": 1
+      },
+      {
+        "source": "enemy-act1.dark-stalker-0-cd14",
+        "skill": "monster.strong_melee",
+        "amountIncludingOverkill": 5,
+        "events": 9,
+        "dodges": 4,
+        "crits": 0
+      },
+      {
+        "source": "enemy-act1.dark-stalker-2-5061",
+        "skill": "monster.strong_melee",
+        "amountIncludingOverkill": 14,
+        "events": 21,
+        "dodges": 8,
+        "crits": 2
+      },
+      {
+        "source": "enemy-act1.zombie-0-f5f3",
+        "skill": "monster.weak_melee",
+        "amountIncludingOverkill": 15,
+        "events": 27,
+        "dodges": 12,
+        "crits": 3
+      },
+      {
+        "source": "enemy-act1.zombie-3-9a5f",
+        "skill": "monster.weak_melee",
+        "amountIncludingOverkill": 4,
+        "events": 9,
+        "dodges": 5,
+        "crits": 1
+      },
+      {
+        "source": "enemy-act1.zombie-1-2ead",
+        "skill": "monster.weak_melee",
+        "amountIncludingOverkill": 5,
+        "events": 6,
+        "dodges": 1,
+        "crits": 0
+      },
+      {
+        "source": "enemy-act1.zombie-2-8d02",
+        "skill": "monster.weak_melee",
+        "amountIncludingOverkill": 13,
+        "events": 15,
+        "dodges": 2,
+        "crits": 1
+      },
+      {
+        "source": "player-1792497600000",
+        "skill": "sorceress.ice_blast",
+        "amountIncludingOverkill": 953,
+        "events": 20,
+        "dodges": 3,
+        "crits": 2
+      },
+      {
+        "source": "merc-mercs/act1-rogue-inner-sight",
+        "skill": "mskill-basic-arrow",
+        "amountIncludingOverkill": 166,
+        "events": 29,
+        "dodges": 8,
+        "crits": 1
+      }
+    ],
+    "deaths": [
+      {
+        "ms": 13500,
+        "target": "enemy-act1.zombie-1-2ead"
+      },
+      {
+        "ms": 19500,
+        "target": "enemy-act1.zombie-3-9a5f"
+      },
+      {
+        "ms": 27432,
+        "target": "enemy-act1.dark-stalker-0-cd14"
+      },
+      {
+        "ms": 31500,
+        "target": "enemy-act1.zombie-2-8d02"
+      },
+      {
+        "ms": 40500,
+        "target": "enemy-act1.dark-stalker-2-5061"
+      },
+      {
+        "ms": 40500,
+        "target": "enemy-act1.dark-stalker-3-00bb"
+      },
+      {
+        "ms": 52500,
+        "target": "enemy-act1.dark-stalker-4-5f6d"
+      },
+      {
+        "ms": 54864,
+        "target": "enemy-act1.dark-stalker-1-bf0e"
+      }
+    ]
+  }
+}

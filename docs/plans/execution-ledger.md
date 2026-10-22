@@ -20,6 +20,7 @@ Current implementation evidence lives in `evidence/`.
 | P00b | accepted tooling fix | `test:related` now invokes Vitest's `related --run`; scoped 25 tests pass in 1.45 s, broad 226 pass/1 existing skip in 10.70 s (over budget). Producer approval; BUG-003. |
 | P01 | in-progress | D12 save/import contract recorded. Offline portion, D01–D11/D13–D14 pending; D04/D06 source reconciliation under review. |
 | P01 Act I entry | failed route screens; provisional boss data implemented | [Evidence](evidence/p01-act1-earned-entry.md): service-earned L12 and L13 from genuine Den save; three Cold Plains W3 draws. L12 Frost/Ice leaves38HP; L13 Nova3 leaves68HP. Andariel HP1200/ATK90/DEF40/MR15 passes real-data regression and8388U/T/L/build; no earned boss attempt or C1 acceptance. QA found BUG-083: later service restores omit item-sequence hydration; original L12 is unique, later exports are diagnostic-only. Next correct restoration fidelity and diagnose actual W3 cadence/targeting/mitigation/resources. |
+| BUG-083 / P02 diagnosis | corrected tooling; same gameplay draw | Prevalidated quiescent restore now seeds real item allocator before readiness; duplicate observations fail. Genuine3RED/1control, final12focused/types/explicitlint pass; full8399 covers unchanged helper/earlier11test version. One frozen L12 replay reproduces Cold Plains W3 Zombie38HP with52raw/actual awards and3737→3789unique items. Mana min168/188,40heroactions: damage/mitigation/rotation bottleneck. [Evidence](evidence/p02-cold-plains-diagnosis.md). GD/TD next contract pending; no more farming/retry/boss launch. |
 | P02a01 | accepted contract slice | `5adaeec`; strict fresh recipe/provenance/hash contract, 35 discovered self-tests. Producer independent APPROVE. No combat measurement yet. |
 | P02a02 | accepted input slice | `e5428a2` (agent `b35155d`); validated explicit seed/ordinal, preserved defaults/counter, 20 new regressions and independent source APPROVE. Full-run rewards remain open. |
 | P02a03 | accepted screening/tooling slice | `3820a19` (agent `994cfd9`); real fresh creation/run/playback/awards, full recordings+hashes, actual source provenance, safe external CLI output. Root+producer APPROVE; evidence below. Full-run/idle/campaign measurement remains. |
@@ -10357,3 +10358,29 @@ reconciliations and cleanup. Producer pre-approved the only subsequent report
 wording change: failed "First GREEN" → "First post-change run". All readers
 released, no reviewer artifacts/processes. No broad validation rerun for this
 evidence-only wording/ledger completion; runtime/test bytes remain validated.
+
+## BUG-083 — Correct service reconstruction and diagnose the existing draw
+
+The preceding goal turn reported status only (no progress). This turn corrects
+service allocator hydration, adds meaningful identity/restore regressions, and
+executes the previously reviewed one-shot original-L12 diagnostic.
+[Evidence](evidence/p02-cold-plains-diagnosis.md) retains exact script/summary.
+No src/runtime/save changes. Independent final QA ADEQUATE; full8399/264 passes
+for unchanged helper/earlier11-case tests, strengthened final12focused/types/
+explicitlint passes. Tests initially exposed an unsaved-anchor export oracle
+and later unchecked-definition/void-body setup issues; original logs retained.
+One script exit0, initialfullsave/sourcehashes exact,52actual/raw item awards
+and3737→3789unique owned objects reconcile. Same Blood Moor victory/Cold Plains
+W3 draw at60s/Zombie38HP, zero draw rewards. Hero40actions, min168/188mana,
+Nova1491/Ice953/Rogue166 damage including overkill; intentional spawn-order
+targeting reaches last Zombie at57s. No timing/resource stall established.
+Next GD/TD throughput/progression choice precedes further gameplay. No more
+farming, tuning or boss launch by this tooling correction. Full C0–C4/G0–G7
+remain unaccepted. Required raw reports/logs/save/script/source evidence retained
+root-owned through progression/C1/umbrella consumers at
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-cold-plains-diagnosis-f76nlumd`.
+Exact disposable cleanup follows reader/process release; no remote action.
+
+Final producer source/publication APPROVE/security PASS; QA ADEQUATE. All readers
+released and validation/diagnostic handles terminal; exact tmp/cache cleanup
+removed1files/23bytes, remaining[]/failures[]. Receipt at rawROOT/cleanup.receipt.json.

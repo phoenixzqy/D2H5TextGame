@@ -1,6 +1,7 @@
 # BUG-083 — Restore item-ID allocation before service continuation
 
-Status: open; affects task service reconstruction, not an observed native
+Status: fixed in future service reconstruction; affected historical exports
+remain diagnostic-only. Affects task service reconstruction, not an observed native
 persistence failure. Owner: QA/engine-dev. Severity: High — service exports
 cannot safely qualify the browser continuation until reconstruction is fixed.
 
@@ -55,3 +56,20 @@ restore the actual production allocator lifecycle and enforce object/unique-ID
 and reward-count reconciliation. Do not mutate old IDs or replay merely to
 replace a failed gameplay result. No runtime persistence patch is justified by
 this evidence alone.
+
+## Fix and verification
+
+`tests/sim/production/earned-state.ts` now offers `restoreEarnedSave`, which
+clones a prevalidated quiescent service save and invokes production item-ID
+seeding across all owned item locations before hydration readiness. Duplicate
+input IDs, nonfinite anchors and live combat are refused before mutation.
+`earnedDelta` rejects duplicate IDs in both observations. No runtime persistence
+change or historical ID rewriting.
+
+Genuine identity RED3fail/1control becomes4GREEN. Final12 regressions include
+actual allocation during readiness, every owned location, nondefault full-save
+fidelity/wounded resources/clones, and refusal without allocator advancement.
+Full8399 with earlier11 assertions, final focused12/types/explicitlint pass.
+Independent QA ADEQUATE. The one corrected original-L12 replay reproduces the
+same38HP gameplay draw while all52raw/actual item awards and3737→3789 unique
+owned objects reconcile. [Diagnostic evidence](../../docs/plans/evidence/p02-cold-plains-diagnosis.md).

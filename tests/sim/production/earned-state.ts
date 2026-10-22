@@ -1,5 +1,7 @@
 import type { StoreApi } from 'zustand';
 import type { Item } from '@/engine/types/items';
+import type { SaveCurrent, InventorySaveData, MercSaveData } from '@/engine/types/save';
+import { seedItemSeqFromIds } from '@/engine/loot/rollItem';
 import { computeStats } from '@/engine/items/computeStats';
 import { loadAffixPool, loadItemBases } from '@/data/loaders/loot';
 import { xpTotal } from '@/engine/progression/xp';
@@ -11,6 +13,7 @@ import { useFormationStore } from '@/stores/formationStore';
 import { useCombatStore } from '@/stores/combatStore';
 import { useMetaStore } from '@/stores/metaStore';
 import { useHydrationStore } from '@/stores/hydrationStore';
+import { hasActiveSubAreaRun } from '@/stores/combatHelpers';
 import type { EarnedItemSelector } from './earned-fixture';
 
 type Data<S> = { [K in keyof S as S[K] extends (...args: never[]) => unknown ? never : K]: S[K] };
@@ -56,6 +59,33 @@ export function resetEarnedStores(): void {
   useMetaStore.getState().reset();
 }
 
+/**
+ * Reconstruct a prevalidated save in isolated, quiescent service stores.
+ * Includes production item-sequence hydration; does not perform browser IO,
+ * offline reconciliation or the public persistence restore protocol.
+ */
+export function restoreEarnedSave(save: SaveCurrent, idleBonusAnchor: number): void {
+  const copy = structuredClone(save);
+  if (!Number.isFinite(idleBonusAnchor)) throw new RangeError('Earned restore needs a finite bonus anchor');
+  const owned = ownedItems(copy.inventory, copy.mercs);
+  assertUniqueOwnedItems(owned);
+  if (hasActiveSubAreaRun() || useCombatStore.getState().inCombat)
+    throw new Error('Earned restore requires quiescent service stores');
+
+  useHydrationStore.getState().setStatus('loading');
+  resetEarnedStores();
+  usePlayerStore.setState({ player: copy.player });
+  useInventoryStore.setState({ ...copy.inventory,
+    backpack: [...copy.inventory.backpack], stash: [...copy.inventory.stash] });
+  useMercStore.setState({ ...copy.mercs, ownedMercs: [...copy.mercs.ownedMercs] });
+  useMapStore.setState({ ...copy.map, discoveredAreas: [...copy.map.discoveredAreas],
+    clearedSubAreas: [...copy.map.clearedSubAreas] });
+  useMetaStore.setState({ ...copy.meta, idleBonusAnchor });
+  useFormationStore.getState().hydrate(copy.formation);
+  seedItemSeqFromIds(owned.map(item => item.id));
+  useHydrationStore.getState().setStatus('ready');
+}
+
 /** Preserve acquisition order while resolving the original current backpack object. */
 export function selectEarnedBackpackItem(
   selector: EarnedItemSelector, slot: 'gloves' | 'boots',
@@ -72,11 +102,18 @@ export function selectEarnedBackpackItem(
   return undefined;
 }
 
-function items(state: EarnedState): Item[] {
-  return [...state.inventory.backpack, ...state.inventory.stash,
-    ...Object.values(state.inventory.equipped).filter((item): item is Item => item !== null),
-    ...Object.values(state.merc.mercEquipment).flatMap(equipment =>
+function ownedItems(inventory: InventorySaveData, mercs: MercSaveData): Item[] {
+  return [...inventory.backpack, ...inventory.stash,
+    ...Object.values(inventory.equipped).filter((item): item is Item => item !== null),
+    ...Object.values(mercs.mercEquipment).flatMap(equipment =>
       Object.values(equipment).filter((item): item is Item => item != null))];
+}
+function assertUniqueOwnedItems(items: readonly Item[]): void {
+  const seen = new Set<string>();
+  for (const item of items) {
+    if (seen.has(item.id)) throw new Error(`Duplicate owned item ID: ${item.id}`);
+    seen.add(item.id);
+  }
 }
 function mercXp(state: EarnedState, id: string): number {
   const merc = state.merc.ownedMercs.find(candidate => candidate.id === id);
@@ -93,7 +130,10 @@ export function earnedDelta(before: EarnedState, after: EarnedState) {
     if (!player) throw new Error('Earned observation lost production player');
     return xpTotal(player.level) + player.experience;
   };
-  const oldItems = items(before); const newItems = items(after);
+  const oldItems = ownedItems(before.inventory, before.merc);
+  const newItems = ownedItems(after.inventory, after.merc);
+  assertUniqueOwnedItems(oldItems);
+  assertUniqueOwnedItems(newItems);
   const oldIds = new Set(oldItems.map(item => item.id));
   const newIds = new Set(newItems.map(item => item.id));
   const currencyKeys = new Set([...Object.keys(before.inventory.currencies), ...Object.keys(after.inventory.currencies)]);
