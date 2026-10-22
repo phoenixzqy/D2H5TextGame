@@ -1,8 +1,10 @@
 # P14a02 — Authored monster attack progression
 
 GD-DESIGN-REVIEW: APPROVE. TD-TECH-REVIEW: APPROVE.
-Implementation pending after `1f28d76`; root sole writer in claimed human
-worktree2. Full v1/C0–C4/G0–G7 scope remains unchanged.
+Implemented by `e3bf53a`; root sole writer in claimed human worktree2.
+[Execution evidence](../evidence/p14a02-monster-attack.md): shared runtime/eight
+archetypes verified; CatacombsW4 still defeats the single earned route.
+Full v1/C0–C4/G0–G7 scope remains unchanged.
 
 The earned Catacombs comparison in P14a01 loses W4 before Andariel. All13
 enemies are planner output, not summons. Of352incoming damage, Shaman physical

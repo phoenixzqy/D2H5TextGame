@@ -1,6 +1,8 @@
 # BUG-087 — Monster ordinary attacks omit authored archetype progression
 
-Status: open. Severity: High. Owners: engine-dev/content-designer; GD/TD/QA.
+Status: shared runtime and eight archetypes fixed at `e3bf53a`; remaining101
+catalog definitions still need numeric migration. Severity: High.
+Owners: engine-dev/content-designer; GD/TD/QA.
 
 Environment: Node production-service continuation, implementation `06f3c88`;
 locale/viewport independent. Retained P14a01 Catacombs old/reviewed reports.
@@ -27,4 +29,9 @@ which has no enemy death.
 
 Root cause: monster schema/type/factory lacks per-archetype attack/growth,
 leaving one generic fallback as ordinary combat damage for all monster roles.
-No runtime fix, accepted balance screen or new route retry exists yet.
+The shared schema/type/factory/combat gap is fixed, with genuine47RED/5controls,
+finalE4121/U8536/T/L/build and four production browser cases passing. See
+[P14a02 evidence](../../docs/plans/evidence/p14a02-monster-attack.md). Complete
+matched cohort improves1→14wins/1000, but the original earned route still loses
+CatacombsW4 before the boss; this does not accept campaign balance. Remaining
+catalog numeric authoring and real resurrection stay open.

@@ -1,0 +1,1034 @@
+{
+  "slice": "P14a02 authored monster attack progression; no full feature/checkpoint/gate/campaign acceptance",
+  "implementationCommit": "e3bf53a9238c65054efda151be1742b700bf8d77",
+  "rawRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-monster-attack-m031y930",
+  "red": {
+    "testSha": "c92ff2bb1edab49c596172142ac2e83b541027be9abe5ff233f08ebe6fb3579f",
+    "redExit": 1,
+    "failed": 47,
+    "passed": 5,
+    "log": "red.log"
+  },
+  "validation": {
+    "focused": {
+      "tests": 52,
+      "pass": true
+    },
+    "engine": {
+      "tests": 4121,
+      "files": 104,
+      "seconds": 29.94,
+      "budgetSeconds": 3,
+      "exit": 0
+    },
+    "unit": {
+      "tests": 8536,
+      "files": 272,
+      "seconds": 169.88,
+      "budgetSeconds": 15,
+      "exit": 0
+    },
+    "typecheck": {
+      "exit": 0,
+      "log": "typecheck-final.log"
+    },
+    "lint": {
+      "exit": 0,
+      "log": "lint.log"
+    },
+    "build": {
+      "exit": 0,
+      "output": "dist",
+      "log": "build.log",
+      "VITE_E2E": "unset"
+    },
+    "bridge": {
+      "chunks": [
+        "game-engine-CqIzUXqx.js",
+        "i18n-Bxr3rY09.js",
+        "index-Bm-z0Rpc.js",
+        "react-vendor-dRBhy6jq.js"
+      ],
+      "patterns": [
+        "/__GAME__/",
+        "/\\bseedItem\\b/",
+        "/\\bseedMerc\\b/",
+        "/\\binstallTestBridge\\b/",
+        "/[,{]flushSave:/"
+      ],
+      "pass": true
+    },
+    "browser": {
+      "startTime": "2026-10-22T23:39:06.490Z",
+      "duration": 106956.639,
+      "expected": 4,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "review": {
+    "producerSource": "APPROVE",
+    "security": "pass",
+    "GD": "APPROVE",
+    "TD": "APPROVE",
+    "QAInitial": "ADEQUATE",
+    "QAFinalEvidence": "ADEQUATE; no actionable evidence gaps; readers released",
+    "GDRouteDiagnosis": "Failed fixed recipe is not a proven runtime regression; reconcile new-challenge resource-entry policy before more tuning or retry"
+  },
+  "cohort": {
+    "scope": "fixed retained CatacombsW4 opening; production planner/factory; seeds0-999, no rewards/continuation",
+    "baseline": {
+      "wins": 1,
+      "draws": 1,
+      "losses": 998,
+      "heroDeaths": 998,
+      "mercDeaths": 606,
+      "durationP50Ms": 7653.846153846154,
+      "durationP95Ms": 13100,
+      "successfulTtkP50Ms": 48000,
+      "successfulTtkP95Ms": 48000,
+      "heroHpP50": 0,
+      "heroMpP50": 179,
+      "mercHpP50": 0,
+      "mercMpP50": 79
+    },
+    "candidate": {
+      "wins": 14,
+      "draws": 13,
+      "losses": 973,
+      "heroDeaths": 973,
+      "mercDeaths": 754,
+      "durationP50Ms": 15073.033707865168,
+      "durationP95Ms": 28565.934065934067,
+      "successfulTtkP50Ms": 48768,
+      "successfulTtkP95Ms": 60000,
+      "heroHpP50": 0,
+      "heroMpP50": 183,
+      "mercHpP50": 0,
+      "mercMpP50": 79
+    },
+    "transitions": {
+      "enemy\u2192enemy": 973,
+      "null\u2192null": 1,
+      "enemy\u2192null": 12,
+      "enemy\u2192player": 13,
+      "player\u2192player": 1
+    },
+    "spawnRngAndAllNonAttackFieldsUnchanged": true,
+    "exactBefore": {
+      "seed": 4233610418,
+      "winner": "enemy",
+      "durationMs": 7653.846153846154,
+      "allies": [
+        {
+          "id": "player-1792497600000",
+          "life": 0,
+          "mana": 170
+        },
+        {
+          "id": "merc-mercs/act1-rogue-inner-sight",
+          "life": 0,
+          "mana": 79
+        }
+      ],
+      "enemies": [
+        {
+          "id": "enemy-act1.fallen-shaman-0-6080",
+          "life": 386,
+          "mana": 0
+        },
+        {
+          "id": "enemy-act1.fallen-shaman-1-5a21",
+          "life": 578,
+          "mana": 0
+        },
+        {
+          "id": "enemy-act1.bone-warrior-0-ff58",
+          "life": 663,
+          "mana": 0
+        },
+        {
+          "id": "enemy-act1.bone-warrior-1-228e",
+          "life": 187,
+          "mana": 0
+        },
+        {
+          "id": "enemy-act1.bone-warrior-2-10b2",
+          "life": 202,
+          "mana": 0
+        },
+        {
+          "id": "enemy-act1.fallen-shaman-2-9240",
+          "life": 61,
+          "mana": 0
+        },
+        {
+          "id": "enemy-act1.fallen-shaman-3-ff89",
+          "life": 10,
+          "mana": 0
+        },
+        {
+          "id": "enemy-act1.bone-warrior-3-705b",
+          "life": 203,
+          "mana": 0
+        },
+        {
+          "id": "enemy-act1.bone-warrior-4-488b",
+          "life": 137,
+          "mana": 0
+        },
+        {
+          "id": "enemy-act1.bone-warrior-5-26b8",
+          "life": 104,
+          "mana": 0
+        },
+        {
+          "id": "enemy-act1.fallen-shaman-4-9d01",
+          "life": 97,
+          "mana": 0
+        },
+        {
+          "id": "enemy-act1.fallen-shaman-5-3f45",
+          "life": 147,
+          "mana": 0
+        },
+        {
+          "id": "enemy-act1.bone-warrior-6-428a",
+          "life": 161,
+          "mana": 0
+        }
+      ],
+      "recordingSha": "6c307ed5b734691e19a20d3737e1f226b5c73ab428b5646d77d18d5cb858474d"
+    },
+    "exactAfter": {
+      "seed": 4233610418,
+      "winner": "enemy",
+      "durationMs": 15456.043956043955,
+      "allies": [
+        {
+          "id": "player-1792497600000",
+          "life": 0,
+          "mana": 181
+        },
+        {
+          "id": "merc-mercs/act1-rogue-inner-sight",
+          "life": 0,
+          "mana": 79
+        }
+      ],
+      "enemies": [
+        {
+          "id": "enemy-act1.fallen-shaman-0-6080",
+          "life": 165,
+          "mana": 0
+        },
+        {
+          "id": "enemy-act1.fallen-shaman-1-5a21",
+          "life": 461,
+          "mana": 0
+        },
+        {
+          "id": "enemy-act1.bone-warrior-0-ff58",
+          "life": 656,
+          "mana": 0
+        },
+        {
+          "id": "enemy-act1.bone-warrior-1-228e",
+          "life": 141,
+          "mana": 0
+        },
+        {
+          "id": "enemy-act1.bone-warrior-2-10b2",
+          "life": 171,
+          "mana": 0
+        },
+        {
+          "id": "enemy-act1.fallen-shaman-2-9240",
+          "life": 0,
+          "mana": 0
+        },
+        {
+          "id": "enemy-act1.fallen-shaman-3-ff89",
+          "life": 0,
+          "mana": 0
+        },
+        {
+          "id": "enemy-act1.bone-warrior-3-705b",
+          "life": 107,
+          "mana": 0
+        },
+        {
+          "id": "enemy-act1.bone-warrior-4-488b",
+          "life": 13,
+          "mana": 0
+        },
+        {
+          "id": "enemy-act1.bone-warrior-5-26b8",
+          "life": 52,
+          "mana": 0
+        },
+        {
+          "id": "enemy-act1.fallen-shaman-4-9d01",
+          "life": 0,
+          "mana": 0
+        },
+        {
+          "id": "enemy-act1.fallen-shaman-5-3f45",
+          "life": 72,
+          "mana": 0
+        },
+        {
+          "id": "enemy-act1.bone-warrior-6-428a",
+          "life": 130,
+          "mana": 0
+        }
+      ],
+      "recordingSha": "eaee413a9dc5828e001fb80f3e534f2ff56a5e336d8cf28a2745c6aaccf643a5"
+    }
+  },
+  "route": {
+    "inputSha": "8c46c4f4026116360356a2d17dcde3d723310969a25664f85bc291a1886d2afc",
+    "initialFullSaveEquality": true,
+    "seed": 2223645302,
+    "bonus": 1,
+    "initialItems": 3737,
+    "finalItems": 3910,
+    "itemCountsReconcile": true,
+    "routeComplete": false,
+    "finalSaveSha": "3065a41613e3b7c35c963d12d7a037d45ee51f2d10b217d638580366d99da6d1",
+    "stopReason": "first route nonwin",
+    "runs": [
+      {
+        "area": "areas/act1-blood-moor",
+        "ordinal": 102,
+        "result": "victory",
+        "combatMs": 28812,
+        "xp": 1460,
+        "waves": [
+          {
+            "index": 0,
+            "result": "next-wave",
+            "terminalMs": 4572,
+            "openingAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 120,
+                "mana": 102
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 244,
+                "mana": 79
+              }
+            ],
+            "finalAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 177,
+                "mana": 154
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 244,
+                "mana": 79
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "result": "next-wave",
+            "terminalMs": 9000,
+            "openingAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 177,
+                "mana": 154
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 244,
+                "mana": 79
+              }
+            ],
+            "finalAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 243,
+                "mana": 184
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 244,
+                "mana": 79
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "result": "victory",
+            "terminalMs": 15240,
+            "openingAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 243,
+                "mana": 184
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 244,
+                "mana": 79
+              }
+            ],
+            "finalAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 262,
+                "mana": 187
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 244,
+                "mana": 79
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area": "areas/act1-cold-plains",
+        "ordinal": 103,
+        "result": "victory",
+        "combatMs": 57048,
+        "xp": 3100,
+        "waves": [
+          {
+            "index": 0,
+            "result": "next-wave",
+            "terminalMs": 9000,
+            "openingAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 120,
+                "mana": 102
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 244,
+                "mana": 79
+              }
+            ],
+            "finalAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 153,
+                "mana": 150
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 242,
+                "mana": 79
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "result": "next-wave",
+            "terminalMs": 3048,
+            "openingAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 153,
+                "mana": 150
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 242,
+                "mana": 79
+              }
+            ],
+            "finalAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 163,
+                "mana": 188
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 244,
+                "mana": 79
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "result": "next-wave",
+            "terminalMs": 33000,
+            "openingAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 163,
+                "mana": 188
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 244,
+                "mana": 79
+              }
+            ],
+            "finalAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 203,
+                "mana": 184
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 218,
+                "mana": 79
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "result": "victory",
+            "terminalMs": 12000,
+            "openingAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 203,
+                "mana": 184
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 218,
+                "mana": 79
+              }
+            ],
+            "finalAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 248,
+                "mana": 184
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 244,
+                "mana": 79
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area": "areas/act1-burial-grounds",
+        "ordinal": 104,
+        "result": "victory",
+        "combatMs": 112296,
+        "xp": 3130,
+        "waves": [
+          {
+            "index": 0,
+            "result": "next-wave",
+            "terminalMs": 9144,
+            "openingAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 120,
+                "mana": 102
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 244,
+                "mana": 79
+              }
+            ],
+            "finalAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 112,
+                "mana": 125
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 239,
+                "mana": 79
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "result": "next-wave",
+            "terminalMs": 30000,
+            "openingAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 112,
+                "mana": 125
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 239,
+                "mana": 79
+              }
+            ],
+            "finalAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 129,
+                "mana": 184
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 217,
+                "mana": 79
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "result": "next-wave",
+            "terminalMs": 54864,
+            "openingAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 129,
+                "mana": 184
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 217,
+                "mana": 79
+              }
+            ],
+            "finalAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 183,
+                "mana": 188
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 191,
+                "mana": 79
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "result": "victory",
+            "terminalMs": 18288,
+            "openingAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 183,
+                "mana": 188
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 191,
+                "mana": 79
+              }
+            ],
+            "finalAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 172,
+                "mana": 188
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 170,
+                "mana": 79
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area": "areas/act1-dark-wood",
+        "ordinal": 105,
+        "result": "victory",
+        "combatMs": 127008,
+        "xp": 6600,
+        "waves": [
+          {
+            "index": 0,
+            "result": "next-wave",
+            "terminalMs": 6000,
+            "openingAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 120,
+                "mana": 102
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 244,
+                "mana": 79
+              }
+            ],
+            "finalAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 153,
+                "mana": 161
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 244,
+                "mana": 79
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "result": "next-wave",
+            "terminalMs": 6096,
+            "openingAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 153,
+                "mana": 161
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 244,
+                "mana": 79
+              }
+            ],
+            "finalAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 145,
+                "mana": 177
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 239,
+                "mana": 79
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "result": "next-wave",
+            "terminalMs": 10500,
+            "openingAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 145,
+                "mana": 177
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 239,
+                "mana": 79
+              }
+            ],
+            "finalAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 149,
+                "mana": 168
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 242,
+                "mana": 79
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "result": "next-wave",
+            "terminalMs": 57912,
+            "openingAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 149,
+                "mana": 168
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 242,
+                "mana": 79
+              }
+            ],
+            "finalAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 168,
+                "mana": 188
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 209,
+                "mana": 79
+              }
+            ]
+          },
+          {
+            "index": 4,
+            "result": "victory",
+            "terminalMs": 46500,
+            "openingAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 168,
+                "mana": 188
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 209,
+                "mana": 79
+              }
+            ],
+            "finalAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 187,
+                "mana": 177
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 15,
+                "life": 146,
+                "mana": 79
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area": "areas/act1-catacombs",
+        "ordinal": 106,
+        "result": "defeat",
+        "combatMs": 82248.04395604396,
+        "xp": 4860,
+        "waves": [
+          {
+            "index": 0,
+            "result": "next-wave",
+            "terminalMs": 15240,
+            "openingAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 120,
+                "mana": 102
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 16,
+                "life": 252,
+                "mana": 79
+              }
+            ],
+            "finalAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 101,
+                "mana": 159
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 16,
+                "life": 208,
+                "mana": 79
+              }
+            ]
+          },
+          {
+            "index": 1,
+            "result": "next-wave",
+            "terminalMs": 16500,
+            "openingAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 101,
+                "mana": 159
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 16,
+                "life": 208,
+                "mana": 79
+              }
+            ],
+            "finalAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 139,
+                "mana": 168
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 16,
+                "life": 229,
+                "mana": 79
+              }
+            ]
+          },
+          {
+            "index": 2,
+            "result": "next-wave",
+            "terminalMs": 35052,
+            "openingAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 139,
+                "mana": 168
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 16,
+                "life": 229,
+                "mana": 79
+              }
+            ],
+            "finalAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 122,
+                "mana": 175
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 16,
+                "life": 181,
+                "mana": 79
+              }
+            ]
+          },
+          {
+            "index": 3,
+            "result": "defeat",
+            "terminalMs": 15456.043956043955,
+            "openingAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 122,
+                "mana": 175
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 16,
+                "life": 181,
+                "mana": 79
+              }
+            ],
+            "finalAllies": [
+              {
+                "id": "player-1792497600000",
+                "level": 12,
+                "life": 0,
+                "mana": 181
+              },
+              {
+                "id": "merc-mercs/act1-rogue-inner-sight",
+                "level": 16,
+                "life": 0,
+                "mana": 79
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "retainedArtifacts": {
+    "measure.mjs": "49878226d40e014f19dc49d1eb926b89367ae894113e677ffd02649ce76e14a5",
+    "route.mjs": "c6533cac24dc967f3b9e67412dd6d77298f64b136717b70b729b5d6aba7035e3",
+    "baseline-measure.json": "4f112418a5cf0165a780f446cfac23e9ea685252b8c6cda41e541e3bd4839555",
+    "candidate-measure.json": "1c07cd9b92407a259f36069747143f6b882994c1e12a2737cf9acb6b49544900",
+    "attack-route-report.json": "7dba519a23e604fee95bfdc809793b4b8f60062a51b4f3a5aa366154f3d7c523",
+    "attack-route-final.json": "3065a41613e3b7c35c963d12d7a037d45ee51f2d10b217d638580366d99da6d1",
+    "red.log": "a3b165d6c2199c67bda7bc15dc07c8425365b9651d8237efeb02fe3f2e80f165",
+    "green.log": "f192d40fda0bce6a0ae231b9c13d500d705c96e96c6dca497ecde75018079779",
+    "engine-final.log": "0eefcd8f4262ca3257a7a4e784775bc652b372ca16703b08581967ee6ef9b945",
+    "unit.log": "d65b1cc60983024f2461943ac46bd0ff1fe76af6fb68c9e900018c38e7ba277d",
+    "typecheck-final.log": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+    "lint.log": "8c9c4fa8fa4eb690889c6af5a8ce94a36ca107353349eded751c1415c3a7eb91",
+    "build.log": "1502765a160e78422922781591eb388924ef13e02d4e3bc44e5f07e7f038d2fa",
+    "browser-report-encounter.json": "b5240835274137aaff14e8494655a182c356f76366370644388cbf7906241b6a",
+    "route-diagnosis.json": "de975f89a12132d4fcc9a43858dfa2bec4b2f3b7e35567219c36ebccc352b5bd",
+    "cleanup.receipt.json": "f4558c0dd9e0cde4bbdd2ee75ac97291253643ad59d93544a82d4b9d403d46db"
+  },
+  "cleanup": {
+    "status": "complete",
+    "remaining": [],
+    "failures": [],
+    "receipt": "cleanup.receipt.json",
+    "retentionOwner": "root through dependent progression/C1"
+  }
+}
