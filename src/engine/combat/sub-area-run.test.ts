@@ -3,11 +3,14 @@
  */
 import { describe, it, expect } from 'vitest';
 import type { SubAreaDef } from '../types/maps';
+import act1Areas from '../../data/maps/sub-areas/act1.json';
+import type { WaveSpec } from './sub-area-run';
 import {
   resolveWavePlan,
   resolveChallengeWavePlan,
   synthDefaultPlan,
-  DEFAULT_FALLBACK_PLAN
+  DEFAULT_FALLBACK_PLAN,
+  DEFAULT_ELITE_CONFIG
 } from './sub-area-run';
 
 const BLOOD_MOOR: SubAreaDef = {
@@ -253,9 +256,13 @@ describe('resolveChallengeWavePlan', () => {
     const final = plan.waves[plan.waves.length - 1];
     expect(penultimate?.presentation?.isForcedElite).toBe(true);
     expect(final?.presentation?.isForcedElite).toBe(true);
-    expect(penultimate?.spawns.every((s) => s.tier === 'champion')).toBe(true);
+    expect(penultimate?.spawns.map((s) => s.tier)).toEqual([
+      'champion', 'champion', 'champion', ...Array<string>(6).fill('trash')
+    ]);
     expect(final?.spawns[0]?.tier).toBe('rare-elite');
-    expect(final?.spawns.slice(1).every((s) => s.tier === 'rare-minion')).toBe(true);
+    expect(final?.spawns.map((s) => s.tier)).toEqual([
+      'rare-elite', 'rare-minion', 'rare-minion', 'rare-minion', ...Array<string>(6).fill('trash')
+    ]);
     expect(final?.spawns).toHaveLength(10);
   });
 
@@ -338,6 +345,164 @@ describe('resolveChallengeWavePlan', () => {
     expect(first?.presentation?.idleEliteMissesAfterWave).toBe(0);
     expect(first?.spawns[0]?.tier).toBe('rare-elite');
     expect(first?.spawns).toHaveLength(8);
+  });
+});
+
+describe('Act I bounded promoted elite groups', () => {
+  const args = { fallbackArchetypeId: 'monsters/act1.fallen', fallbackLevel: 6, seed: 123, challengeOrdinal: 40 };
+
+  function expectCore(wave: WaveSpec | undefined, kind: 'champion' | 'rareElite') {
+    expect(wave).toBeDefined();
+    const spawns = wave?.spawns ?? [];
+    expect(spawns.length).toBeGreaterThanOrEqual(8);
+    const tiers = kind === 'champion'
+      ? ['champion', 'champion', 'champion']
+      : ['rare-elite', 'rare-minion', 'rare-minion', 'rare-minion'];
+    expect(spawns.map((s) => s.tier)).toEqual([...tiers, ...Array<string>(spawns.length - tiers.length).fill('trash')]);
+    expect(spawns[0]?.eliteAffix).toBeDefined();
+    for (const spawn of spawns.slice(0, tiers.length)) expect(spawn.eliteAffix).toEqual(spawns[0]?.eliteAffix);
+    for (const spawn of spawns.slice(tiers.length)) expect(spawn).not.toHaveProperty('eliteAffix');
+    for (const id of new Set(spawns.map((s) => s.archetypeId))) {
+      const members = spawns.filter((s) => s.archetypeId === id);
+      expect(members.map((s) => s.index)).toEqual(members.map((_, i) => i));
+    }
+  }
+
+  it.each(['areas/act1-den-of-evil', 'areas/act1-cold-plains'])('bounds actual %s ordinal40 guards and preserves roster, metadata and boss', (id) => {
+    const subArea = (act1Areas as SubAreaDef[]).find((area) => area.id === id);
+    if (!subArea) throw new Error(`Missing authored area ${id}`);
+    const before = structuredClone(subArea);
+    const plan = resolveChallengeWavePlan({ ...args, subArea });
+    // Identical source with a later-act identity retains the previous all-count guards.
+    const control = resolveChallengeWavePlan({ ...args, subArea: { ...subArea, actId: 'acts/act2' } });
+    const guards = plan.waves.filter((w) => w.presentation?.isForcedElite);
+    expect(guards).toHaveLength(2);
+    expectCore(guards[0], 'champion');
+    expectCore(guards[1], 'rareElite');
+    expect({ ...plan, waves: [] }).toEqual({ ...control, waves: [] });
+    for (let i = 0; i < plan.waves.length; i++) {
+      const wave = plan.waves[i];
+      const old = control.waves[i];
+      expect({ ...wave, spawns: [] }).toEqual({ ...old, spawns: [] });
+      expect(wave?.spawns.map((s) => [s.archetypeId, s.level])).toEqual(old?.spawns.map((s) => [s.archetypeId, s.level]));
+      if (!wave?.presentation?.isForcedElite) expect(wave).toEqual(old);
+    }
+    expect(subArea).toEqual(before);
+    if (id.endsWith('cold-plains')) {
+      expect(guards[0]?.spawns.map((s) => s.archetypeId.split('.').pop())).toEqual([
+        'dark-stalker', 'dark-stalker', 'zombie', 'zombie', 'dark-stalker', 'dark-stalker',
+        'zombie', 'zombie', 'dark-stalker', 'dark-stalker', 'zombie'
+      ]);
+      // Authored elite:true on every fitted Fallen must not promote the filler.
+      expect(guards[1]?.spawns).toHaveLength(12);
+      expect(guards[1]?.spawns.every((s) => s.archetypeId === 'monsters/act1.fallen')).toBe(true);
+    }
+  });
+
+  it.each(Array.from({ length: 13 }, (_, i) => i))('caps both cores throughout the default8–20 cycle ordinal%i', (challengeOrdinal) => {
+    const plan = resolveChallengeWavePlan({ ...args, subArea: BLOOD_MOOR, challengeOrdinal });
+    expect(plan.waves.map((w) => w.spawns.length)).toEqual([8 + challengeOrdinal, 8 + ((challengeOrdinal + 1) % 13)]);
+    expectCore(plan.waves[0], 'champion');
+    expectCore(plan.waves[1], 'rareElite');
+  });
+
+  it.each([1, 2, 3, 4])('preserves the public minimum8 when authored bounds request%i', (count) => {
+    const subArea: SubAreaDef = { ...BLOOD_MOOR, challenge: {
+      monsterCount: { min: count, max: count }, rotation: ['trash'], manualFinalEliteWaves: 2
+    } };
+    const plan = resolveChallengeWavePlan({ ...args, subArea });
+    expect(plan.waves.map((w) => w.spawns.length)).toEqual([8, 8]);
+    expectCore(plan.waves[0], 'champion');
+    expectCore(plan.waves[1], 'rareElite');
+  });
+
+  it.each([0, 1, 7, 42, 123, 0xffffffff])('keeps one affix draw and subsequent randomized rosters/boss at seed%i', (seed) => {
+    const subArea: SubAreaDef = {
+      ...BLOOD_MOOR,
+      challenge: { monsterCount: { min: 8, max: 20 }, rotation: ['trash'], manualFinalEliteWaves: 4 },
+      waves: Array.from({ length: 4 }, (_, i) => ({
+        id: `random-${String(i)}`, type: 'trash', lootTable: `loot/wave-${String(i)}`,
+        encounters: [{ id: `enc-${String(i)}`, level: 2, monsters: [
+          { archetypeId: 'monsters/act1.fallen', countMin: 1, countMax: 3 },
+          { archetypeId: 'monsters/act1.quill-rat', countMin: 1, countMax: 3 }
+        ] }]
+      })),
+      bossEncounter: { id: 'random-boss', level: 4, monsters: [
+        { archetypeId: 'monsters/act1.carver', countMin: 1, countMax: 3, boss: true }
+      ] }
+    };
+    const input = structuredClone(subArea);
+    const configBefore = structuredClone(DEFAULT_ELITE_CONFIG);
+    const plan = resolveChallengeWavePlan({ ...args, subArea, seed, challengeOrdinal: 0 });
+    const rng = createRng(seed);
+    for (let i = 0; i < 4; i++) {
+      const fallen = rng.nextInt(1, 3);
+      const quills = rng.nextInt(1, 3);
+      const affix = rng.pick(DEFAULT_ELITE_CONFIG.affixes);
+      const roster = [...Array<string>(fallen).fill('monsters/act1.fallen'), ...Array<string>(quills).fill('monsters/act1.quill-rat')];
+      const wave = plan.waves[i];
+      expectCore(wave, i === 3 ? 'rareElite' : 'champion');
+      expect(wave?.spawns.map((s) => s.archetypeId)).toEqual(Array.from({ length: 8 + i }, (_, j) => roster[j % roster.length]));
+      expect(wave?.spawns.every((s) => s.level === 2 + i)).toBe(true);
+      expect(wave?.lootTable).toBe(`loot/wave-${String(i)}`);
+      expect(wave?.spawns[0]?.eliteAffix).toEqual(affix);
+    }
+    expect(plan.waves[4]?.spawns).toEqual(Array.from({ length: rng.nextInt(1, 3) }, (_, index) => ({
+      archetypeId: 'monsters/act1.carver', tier: 'boss', level: 6, index
+    })));
+    expect(subArea).toEqual(input);
+    expect(DEFAULT_ELITE_CONFIG).toEqual(configBefore);
+  });
+
+  it.each(['champion', 'hard-pity', 'miss', 'disabled'] as const)('shares bounded groups in idle %s and preserves exact pity transitions', (scenario) => {
+    const subArea = (act1Areas as SubAreaDef[]).find((a) => a.id === 'areas/act1-cold-plains');
+    if (!subArea) throw new Error('Missing Cold Plains');
+    const eliteConfig = { ...DEFAULT_ELITE_CONFIG, idle: {
+      ...DEFAULT_ELITE_CONFIG.idle, enabled: scenario !== 'disabled',
+      baseEliteChance: scenario === 'champion' ? 1 : 0, pityChanceCap: 1,
+      pityStep: 0, championShareOfEliteRoll: 1, rareShareOfEliteRoll: 0
+    } };
+    const initialMisses = scenario === 'hard-pity' || scenario === 'disabled' ? 11 : 3;
+    const input = { ...args, subArea, eliteConfig, mode: 'idle' as const, idleEliteMisses: initialMisses };
+    const plan = resolveChallengeWavePlan(input);
+    const control = resolveChallengeWavePlan({ ...input, subArea: { ...subArea, actId: 'acts/act2' } });
+    expect(plan.waves.map((w) => w.presentation)).toEqual(control.waves.map((w) => w.presentation));
+    const misses = scenario === 'champion' ? [0, 0] : scenario === 'hard-pity' ? [0, 1] : [initialMisses + 1, initialMisses + 2];
+    expect(plan.waves.map((w) => w.presentation?.idleEliteMissesAfterWave)).toEqual([...misses, undefined, undefined]);
+    if (scenario === 'champion' || scenario === 'hard-pity') {
+      expect(plan.waves[0]?.presentation?.isIdleElite).toBe(true);
+      expectCore(plan.waves[0], scenario === 'champion' ? 'champion' : 'rareElite');
+      if (scenario === 'champion') expectCore(plan.waves[1], 'champion');
+      else expect(plan.waves[1]).toEqual(control.waves[1]);
+    } else {
+      expect(plan.waves.slice(0, 2)).toEqual(control.waves.slice(0, 2));
+      expect(plan.waves[0]?.presentation).not.toHaveProperty('isIdleElite');
+    }
+    expectCore(plan.waves[2], 'champion');
+    expectCore(plan.waves[3], 'rareElite');
+  });
+
+  it.each([2, 3, 4, 5])('retains all-count forced and idle guards for Act%i', (act) => {
+    const subArea: SubAreaDef = { ...BLOOD_MOOR, actId: `acts/act${String(act)}` };
+    const forced = resolveChallengeWavePlan({ ...args, subArea });
+    expect(forced.waves[0]?.spawns.every((s) => s.tier === 'champion' && s.eliteAffix !== undefined)).toBe(true);
+    expect(forced.waves[1]?.spawns.map((s) => s.tier)).toEqual(['rare-elite', ...Array<string>(9).fill('rare-minion')]);
+    const idle = resolveChallengeWavePlan({ ...args, subArea: { ...subArea, challenge: {
+      monsterCount: { min: 8, max: 20 }, rotation: ['trash'], manualFinalEliteWaves: 0
+    } }, mode: 'idle', idleEliteMisses: 11 });
+    expect(idle.waves[0]?.spawns.map((s) => s.tier)).toEqual(['rare-elite', ...Array<string>(8).fill('rare-minion')]);
+  });
+
+  it.each(['manual', 'idle'] as const)('preserves unpromoted authored flags in %s', (mode) => {
+    const subArea: SubAreaDef = { ...DEN_OF_EVIL, challenge: {
+      monsterCount: { min: 8, max: 20 }, rotation: ['trash'], manualFinalEliteWaves: 0
+    } };
+    const plan = resolveChallengeWavePlan({ ...args, subArea, mode, eliteConfig: {
+      ...DEFAULT_ELITE_CONFIG, idle: { ...DEFAULT_ELITE_CONFIG.idle, enabled: false }
+    } });
+    expect(plan.waves[0]?.spawns.every((s) => s.tier === 'trash')).toBe(true);
+    expect(plan.waves[1]?.spawns.every((s) => s.tier === 'elite' && s.eliteAffix === undefined)).toBe(true);
+    expect(plan.waves[2]?.spawns.map((s) => s.tier)).toEqual(['boss']);
   });
 });
 

@@ -9888,3 +9888,69 @@ remaining[]/failures[]. No owned child process remains; parent integrated full
 continues with its separate parent TMPDIR. Required diagnostic evidence remains
 at child ROOT under root ownership until umbrella consumers finish. Settled
 cached whitespace check precedes the exact five-path local child commit.
+
+
+## P01e02 — Bound active Act I elite groups within existing waves
+
+Root sole writer/executor, original five parent paths: controlling D07 decision,
+planner, planner tests, evidence report and this append-only ledger. Compatibility
+childddfab2c is separate. D07 was installed before runtime; producer PLAN-REVIEW
+ready, QA-PLAN APPROVE and GD-DESIGN-REVIEW APPROVE preceded implementation.
+[Detailed evidence](evidence/p01-first-act-elite-power.md) binds original/final
+source hashes, exact commands/receipts, failed attempts, controls and limitations.
+
+Fit the existing ActI ordered roster to its current8–20 count, then assign
+3champions or1rare leader+3minions; all other fitted bodies are affix-free trash.
+This applies to forced/manual/idle promotions, including authored elite flags
+inside promoted waves. Preserve all levels/counts/order/metadata and exactly
+one affix RNG pick; rare transient IDs intentionally normalize to fitted
+per-archetype indices. Legacy/later-act/dedicated/chapter-boss paths, idle
+pity/probabilities and numeric tier/reward services remain unchanged. Actual
+changed tiers may still affect loot/orbs; no inherited award outcome promised.
+
+Final planner source3c1187400587f7546555ea00775c4c5cb3363c30cb5756341d1f574a6fd455f6;
+final typed testsabf428df9182ec77817577c561437e0839d38d017f7c93d6dfeb33d4f9daf51b.
+Final unchanged tests RED30failed/27passed against exact original runtime,
+then GREEN57PASS1.828s. Initial boss-level7oracle corrected to existing rounded6
+before final RED/GREEN; fixture type/lint errors corrected, failed receipts kept.
+Engine3920/95PASS73.923s same runtime before type-only fixture corrections.
+Before/after controls:46later-act plans,29legacy plans and6ActI boss waves equal;
+31promoted ActI waves match intended rule. Den factory HP423/1948/3514/715→
+423/1043/2511/715; Cold771/843/5256/1904→771/843/2783/1298 at fixed ordinal40.
+After-probe nonfatal HMR occupied-port warning retained; server closed normally.
+
+Broad related failed four stale synthetic-fixture expectations, then210s cap
+exit-15. Compatibility child preserves every assertion and proves exact
+historical fixture and old/new86/3PASS plus actual carry/poison trace equality.
+Do not call the broad related invocation a complete pass. Integrated final-source
+T23.870/L54.991PASS; clean external build/bridge11.266PASS, VITE_E2E absent,
+all4application chunks scanned. Existing build/test warnings retained. Final
+integrated full8296/260PASS514.134s wrapper, Vitest512.63s; one predeclared serial
+invocation/retries0/default limits unchanged. Runtime/test/fixture TS manifest
+verified unchanged through final validation; child commit/docs metadata changed
+while run continued. Serial-only acceptance; earlier parallel timeout/performance
+remains open. CODE/GD APPROVE final runtime/decision/typed test hashes.
+
+Source composition acceptance only. No earned Den/Andariel victory, 30–50h pacing,
+Browser3/native status/mobile/campaign or save acceptance is inferred. C0 remains
+in progress; C1–C4/G0–G7/fullv1 unaccepted. Next separate Den screen uses exact
+same40earned ceiling and actual surviving ally carry, then actual clear→Akara→
+explicit500XP/+1skill claim→Save/new-pageContinue if reached. Outside-repo draft
+exists but is not installed/typechecked/executed; survivor identity revision
+requires exact-source readiness before the sole attempt. No extra grind/refill/
+import/alternate build. ROOT:
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-first-elite-r7una0p6`.
+Required sources/logs/receipts/comparisons/reviews and next Den draft remain
+root-owned until umbrella consumers finish, then root removes them. Independent
+final evidence/publication review and exact disposable cleanup follow. No
+push/PR/merge/deploy; local commit only.
+
+Independent final QA ADEQUATE and producer PUBLICATION APPROVE confirm the exact
+five-path parent, unchanged RED/GREEN source, integrated source continuity,
+8296/260 serial result and retained control comparisons. GD/code APPROVE remains
+current. All readers released and all26recorded task process IDs absent. Exact
+parent-owned tmp/cache/dist cleanup removed1171files/55736316bytes/19directories;
+remaining[]/failures[], verified in parent-cleanup.receipt.json. Required source
+snapshots/logs/receipts/comparisons/reviews and the unexecuted Den draft remain at
+the exact ROOT above under root ownership until umbrella consumers finish, then
+root removes them. No campaign/checkpoint acceptance follows; local commit only.

@@ -225,13 +225,15 @@ export function resolveWavePlan(
  * Manual challenges preserve the authored map wave structure, cycle each
  * authored/fallback non-boss wave to 8-20 monsters, force the final two non-boss
  * waves into elite guards, then append an authored map boss / chapter boss
- * after those guards when present.
+ * after those guards when present. Act I guards contain three champions or
+ * one rare leader with three minions; the remaining fitted monsters are trash.
  */
 export function resolveChallengeWavePlan(input: ResolveChallengeWavePlanInput): WavePlan {
   const { subArea, fallbackArchetypeId, fallbackLevel, seed } = input;
   const eliteConfig = input.eliteConfig ?? DEFAULT_ELITE_CONFIG;
   const rng = createRng(seed >>> 0);
   const difficulty = resolveDifficultyContext(subArea);
+  const act = actNumberFromSubArea(subArea);
   const baseLevel = findSubAreaBaseLevel(subArea);
   const templates = challengeWaveTemplates(subArea, fallbackArchetypeId, fallbackLevel);
   const out: WaveSpec[] = [];
@@ -259,14 +261,14 @@ export function resolveChallengeWavePlan(input: ResolveChallengeWavePlanInput): 
     );
     const forcedEliteKind = forcedEliteIndex && i === templates.length - 1 ? 'rareElite' : 'champion';
     let spawns = forcedEliteIndex
-      ? forceElitePack(baseSpawns, rng, eliteConfig, forcedEliteKind, targetMonsterCount)
+      ? forceElitePack(baseSpawns, rng, eliteConfig, forcedEliteKind, targetMonsterCount, act)
       : fitSpawnsToMonsterCount(baseSpawns, targetMonsterCount);
     let isIdleElite = false;
     let idleEliteMissesAfterWave: number | undefined;
     if (mode === 'idle' && !forcedEliteIndex && waveKind === 'trash') {
       const idleEncounter = resolveIdleEncounter({
         subArea,
-        act: actNumberFromSubArea(subArea),
+        act,
         tickIndex: input.challengeOrdinal * IDLE_CHALLENGE_TICK_STRIDE + i,
         seed,
         playerLevel: fallbackLevel,
@@ -283,7 +285,8 @@ export function resolveChallengeWavePlan(input: ResolveChallengeWavePlanInput): 
           rng,
           eliteConfig,
           idleEncounter.monsterTier === 'rare-elite' ? 'rareElite' : 'champion',
-          targetMonsterCount
+          targetMonsterCount,
+          act
         );
       }
     }
@@ -490,11 +493,24 @@ function forceElitePack(
   rng: Rng,
   config: EliteConfigDef,
   forcedEliteKind: 'champion' | 'rareElite',
-  targetCount: number
+  targetCount: number,
+  act: 1 | 2 | 3 | 4 | 5
 ): readonly MonsterSpawn[] {
   const leader = baseSpawns.find((s) => s.tier === 'trash' || s.tier === 'elite') ?? baseSpawns[0];
   if (!leader) return baseSpawns;
   const affix = rng.pick(config.affixes);
+  if (act === 1) {
+    const coreSize = forcedEliteKind === 'champion' ? 3 : 4;
+    return fitSpawnsToMonsterCount(baseSpawns, targetCount).map((spawn, i): MonsterSpawn => {
+      const { eliteAffix: _affix, ...source } = spawn;
+      if (i >= coreSize) return { ...source, tier: 'trash' };
+      return {
+        ...source,
+        tier: forcedEliteKind === 'champion' ? 'champion' : i === 0 ? 'rare-elite' : 'rare-minion',
+        eliteAffix: affix
+      };
+    });
+  }
   if (forcedEliteKind === 'rareElite') {
     const count = clampSpawn(targetCount);
     const pack: MonsterSpawn[] = [{ ...leader, tier: 'rare-elite', index: 0, eliteAffix: affix }];
