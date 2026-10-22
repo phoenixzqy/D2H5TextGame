@@ -1,0 +1,83 @@
+import { MAX_SIM_MS, runBattleRecorded, type CombatSnapshot, type RecordedBattleEvent } from '@/engine/combat/combat';
+import type { CombatUnit } from '@/engine/combat/types';
+import type { WaveSpec, WavePresentation } from '@/engine/combat';
+import type { IronGolemPreparationAttestation } from '@/engine/skills/iron-golem';
+import type { ActiveRun } from './combatRunLifecycle';
+import { stageRecordedBattle, type RecordedBattleDefaults, type RecordedBattlePublication } from './recordedBattlePublication';
+
+/** Already-composed wave input; run/selection/ownership authority remains with the caller. */
+export interface RecordedWaveStagingInput {
+  readonly snapshot: CombatSnapshot;
+  readonly waveIdx: number;
+  readonly totalWaves: number;
+  readonly subAreaRunId: string;
+  readonly defaults: RecordedBattleDefaults;
+  readonly chapterBoss?: { readonly unitId: string; readonly archetypeId: string };
+  readonly bossIntro?: WaveSpec['bossIntro'];
+  readonly wavePresentation?: WavePresentation;
+  readonly ironGolemReplayLocked?: boolean;
+  readonly resetRunRewards?: boolean;
+  readonly resolveDisplayName: (unit: CombatUnit) => string;
+}
+
+/** Complete staged result; an attestation alone never authorizes an inventory debit. */
+export interface StagedRecordedWave {
+  readonly engineInput: CombatSnapshot;
+  readonly attestation: IronGolemPreparationAttestation | null;
+  readonly waveIdx: number;
+  readonly elapsedMs: number;
+  readonly recording: NonNullable<ActiveRun['recording']>;
+  readonly publication: RecordedBattlePublication;
+}
+
+/** The combat snapshot is a DTO tree; freeze only its privately cloned objects. */
+function freezeOwnedInput(value: unknown): void {
+  if (typeof value !== 'object' || value === null) return;
+  for (const child of Object.values(value)) freezeOwnedInput(child);
+  Object.freeze(value);
+}
+
+/**
+ * Simulate and normalize one complete wave without store reads or writes.
+ * Retain the exact deeply frozen private snapshot supplied to the engine.
+ * Structured cloning preserves optional/undefined and nonfinite values; caller
+ * units, carry, stats and formation are neither shared nor frozen.
+ * The naming callback runs after simulation so newly spawned summons are named;
+ * it is not retained. Any simulation, clock, naming or normalization failure
+ * reaches the caller before run installation, ordinal changes or item payment.
+ */
+export function stageRecordedWave(input: RecordedWaveStagingInput): StagedRecordedWave {
+  const engineInput = structuredClone(input.snapshot);
+  freezeOwnedInput(engineInput);
+  const { events, result } = runBattleRecorded(engineInput);
+  const terminal = events.at(-1);
+  if (terminal?.kind !== 'end' || !Number.isFinite(terminal.simClockMs) ||
+    terminal.simClockMs < 0 || terminal.simClockMs > MAX_SIM_MS) {
+    throw new Error('Recorded battle must end with a valid terminal simulation clock');
+  }
+  const unitMap = new Map<string, string>();
+  for (const unit of [...result.playerTeam, ...result.enemyTeam]) {
+    unitMap.set(unit.id, input.resolveDisplayName(unit));
+  }
+  const enemy = engineInput.enemyTeam[0];
+  const playbackEvents: readonly RecordedBattleEvent[] = input.bossIntro
+    ? [{ kind: 'message', messageKey: 'combat:bossIntro',
+        params: { boss: unitMap.get(enemy?.id ?? '') ?? enemy?.name ?? input.bossIntro.bossArchetypeId },
+        simClockMs: 0, uiDelayMs: 1200 }, ...events]
+    : events;
+  const outcome = { winner: result.winner,
+    finalPlayerTeam: result.playerTeam, finalEnemyTeam: result.enemyTeam };
+  const publication = stageRecordedBattle({
+    initialPlayerTeam: engineInput.playerTeam,
+    initialEnemyTeam: engineInput.enemyTeam,
+    events: playbackEvents, unitNameMap: unitMap, outcome,
+    currentWave: input.waveIdx + 1, totalWaves: input.totalWaves, subAreaRunId: input.subAreaRunId,
+    ...(input.resetRunRewards !== undefined ? { resetRunRewards: input.resetRunRewards } : {}),
+    ...(input.ironGolemReplayLocked !== undefined ? { ironGolemReplayLocked: input.ironGolemReplayLocked } : {}),
+    ...(input.wavePresentation ? { wavePresentation: input.wavePresentation } : {})
+  }, input.defaults);
+  return Object.freeze({ engineInput, attestation: result.ironGolemPreparation ?? null,
+    waveIdx: input.waveIdx, elapsedMs: terminal.simClockMs, publication,
+    recording: Object.freeze({ outcome, events: playbackEvents,
+      ...(input.chapterBoss ? { chapterBoss: Object.freeze({ ...input.chapterBoss }) } : {}) }) });
+}

@@ -43,7 +43,7 @@ afterEach(() => {
   useHydrationStore.getState().setStatus('idle');
 });
 
-const faults = ['engine', 'normalization', 'empty-plan', 'missing-end', 'non-end',
+const faults = ['engine', 'snapshot-copy', 'normalization', 'empty-plan', 'missing-end', 'non-end',
   NaN, Infinity, -1, combatEngine.MAX_SIM_MS + 1] as const;
 
 describe.each([undefined, 23])('new-run staging with requested ordinal %s', challengeOrdinal => {
@@ -63,7 +63,9 @@ describe.each([undefined, 23])('new-run staging with requested ordinal %s', chal
     const stops = stores.map(store => store.subscribe(notified));
     const failure = new Error(`staging ${String(fault)}`);
     if (fault === 'engine') engine.mockImplementationOnce(() => { throw failure; });
-    else if (fault === 'normalization') {
+    else if (fault === 'snapshot-copy') {
+      vi.spyOn(globalThis, 'structuredClone').mockImplementationOnce(() => { throw failure; });
+    } else if (fault === 'normalization') {
       vi.spyOn(publication, 'stageRecordedBattle').mockImplementationOnce(() => { throw failure; });
     } else if (fault === 'empty-plan') {
       const originalPlan = wavePlans.resolveChallengeWavePlan;
@@ -127,6 +129,32 @@ describe('accepted new-run publication', () => {
         runVictory: false, runDefeat: false, isPaused: false, ironGolemReplayLocked: false });
       expect(next.challengeOrdinal).toBe((previous.challengeOrdinal + 1) % period);
     } finally { stop(); }
+  });
+
+  it('uses a private frozen engine input while live player/formation and playback remain mutable', () => {
+    const engine = vi.spyOn(combatEngine, 'runBattleRecorded');
+    const hero = usePlayerStore.getState().player;
+    const formation = useFormationStore.getState();
+    start();
+    const snapshot = engine.mock.calls[0]?.[0];
+    if (!snapshot || !hero) throw new Error('Missing production staging fixture');
+    const captured = structuredClone(snapshot);
+    expect(Object.isFrozen(snapshot)).toBe(true);
+    expect(Object.isFrozen(snapshot.playerTeam)).toBe(true);
+    expect(Object.isFrozen(snapshot.playerTeam[0]?.stats)).toBe(true);
+    expect(Object.isFrozen(snapshot.playerTeam[0]?.summonGridPositions)).toBe(true);
+    expect(Object.isFrozen(hero)).toBe(false);
+    expect(Object.isFrozen(hero.derivedStats)).toBe(false);
+    expect(Object.isFrozen(formation.summonPositions)).toBe(false);
+    expect(snapshot.playerTeam[0]?.summonGridPositions).not.toBe(formation.summonPositions);
+    usePlayerStore.getState().setComboOrder(['skills-sorceress-fire-bolt']);
+    for (const _event of useCombatStore.getState().recordedEvents) useCombatStore.getState().advanceEvent();
+    expect(useCombatStore.getState().playbackComplete).toBe(true);
+    refreshActivePlayerCombatConfig({ replayCurrentWave: true });
+    expect(snapshot).toEqual(captured);
+    expect(engine).toHaveBeenCalledTimes(2);
+    expect(engine.mock.calls[1]?.[0]).not.toBe(snapshot);
+    expect(Object.isFrozen(engine.mock.calls[1]?.[0])).toBe(true);
   });
 
   it('never advances the default ordinal for an accepted explicit ordinal', () => {

@@ -4,7 +4,7 @@
  */
 
 import i18n from '@/i18n';
-import { MAX_SIM_MS, runBattleRecorded, type BattleEvent, type RecordedBattleEvent } from '@/engine/combat/combat';
+import type { BattleEvent } from '@/engine/combat/combat';
 import { rebaseStatusClock } from '@/engine/combat/status';
 import type { CombatUnit, MonsterTier } from '@/engine/combat/types';
 import { inferKind } from '@/engine/combat/types';
@@ -22,8 +22,8 @@ import {
 import { loadAwardPools, loadItemBases } from '@/data/loaders/loot';
 import { eliteConfig, monsters as monsterList } from '@/data/index';
 import { resolveSubArea } from './subAreaResolver';
-import { useCombatStore, type CombatLogEntry, type RecordedBattleOutcome } from './combatStore';
-import { stageRecordedBattle, type RecordedBattlePublication } from './recordedBattlePublication';
+import { useCombatStore, type CombatLogEntry } from './combatStore';
+import { stageRecordedWave, type StagedRecordedWave } from './recordedWaveStaging';
 import { combatRunLifecycle, type ActiveRun } from './combatRunLifecycle';
 import { abandonRecordedWaves } from './recordedWaveReceipt';
 export { clearCombatAfterRestore } from './combatRunLifecycle';
@@ -671,15 +671,8 @@ function playWave(waveIdx: number): void {
   installStagedWave(run, stageWave(run, waveIdx));
 }
 
-interface StagedWave {
-  readonly waveIdx: number;
-  readonly elapsedMs: number;
-  readonly recording: NonNullable<ActiveRun['recording']>;
-  readonly publication: RecordedBattlePublication;
-}
-
 /** Build the whole recording before changing any run metadata or combat state. */
-function stageWave(run: ActiveRun, waveIdx: number, resetRunRewards = false): StagedWave {
+function stageWave(run: ActiveRun, waveIdx: number, resetRunRewards = false): StagedRecordedWave {
   const wave = run.plan.waves[waveIdx];
   if (!wave) throw new Error('Wave index does not exist in run plan');
   const combat = useCombatStore.getState();
@@ -728,61 +721,29 @@ function stageWave(run: ActiveRun, waveIdx: number, resetRunRewards = false): St
       id !== 'skills-sorceress-frozen-armor' && id !== 'sorceress.frozen_armor' && id !== 'frozen-armor') };
   });
 
-  const { events, result } = runBattleRecorded({
-    seed: waveSeed,
-    playerTeam,
-    enemyTeam: enemies,
-    ...(mightAura ? { mightAura } : {}),
-    ...(meditationAura ? { meditationAura } : {}),
-    ...(skeletonMastery ? { skeletonMastery } : {})
-  });
-  const terminal = events.at(-1);
-  if (terminal?.kind !== 'end' || !Number.isFinite(terminal.simClockMs) ||
-    terminal.simClockMs < 0 || terminal.simClockMs > MAX_SIM_MS) {
-    throw new Error('Recorded battle must end with a valid terminal simulation clock');
-  }
-
-  const unitMap = new Map<string, string>();
-  [...result.playerTeam, ...result.enemyTeam].forEach((unit) => {
-    unitMap.set(unit.id, resolveCombatUnitDisplayName(unit));
-  });
-
-  const playbackEvents: readonly RecordedBattleEvent[] = wave.bossIntro
-    ? [
-        {
-          kind: 'message',
-          messageKey: 'combat:bossIntro',
-          params: { boss: unitMap.get(enemies[0]?.id ?? '') ?? enemies[0]?.name ?? wave.bossIntro.bossArchetypeId },
-          simClockMs: 0,
-          uiDelayMs: 1200
-        },
-        ...events
-      ]
-    : events;
-
-  const outcome: RecordedBattleOutcome = {
-    winner: result.winner,
-    finalPlayerTeam: result.playerTeam,
-    finalEnemyTeam: result.enemyTeam
-  };
-  const publication = stageRecordedBattle({
-    initialPlayerTeam: playerTeam,
-    initialEnemyTeam: enemies,
-    events: playbackEvents,
-    unitNameMap: unitMap,
-    outcome,
-    currentWave: waveIdx + 1,
+  return stageRecordedWave({
+    snapshot: {
+      seed: waveSeed,
+      playerTeam,
+      enemyTeam: enemies,
+      ...(mightAura ? { mightAura } : {}),
+      ...(meditationAura ? { meditationAura } : {}),
+      ...(skeletonMastery ? { skeletonMastery } : {})
+    },
+    waveIdx,
     totalWaves: run.plan.waves.length,
     subAreaRunId: run.plan.subAreaId,
+    defaults: combat,
+    resolveDisplayName: resolveCombatUnitDisplayName,
     resetRunRewards,
+    ...(chapterBoss ? { chapterBoss } : {}),
+    ...(wave.bossIntro ? { bossIntro: wave.bossIntro } : {}),
     ...(wave.presentation ? { wavePresentation: wave.presentation } : {})
-  }, combat);
-  return Object.freeze({ waveIdx, elapsedMs: terminal.simClockMs, publication,
-    recording: Object.freeze({ outcome, events: playbackEvents, ...(chapterBoss ? { chapterBoss } : {}) }) });
+  });
 }
 
 /** Install captured run metadata once, then publish the complete captured value once. */
-function installStagedWave(run: ActiveRun, staged: StagedWave): void {
+function installStagedWave(run: ActiveRun, staged: StagedRecordedWave): void {
   run.waveIdx = staged.waveIdx;
   run.waveElapsedMs = staged.elapsedMs;
   run.recording = staged.recording;

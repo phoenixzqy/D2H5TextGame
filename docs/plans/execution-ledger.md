@@ -5198,3 +5198,68 @@ Root is sole writer/executor; umbrella worktree claim continues; no remote actio
 Privately owned immutable input, phase access, receipt staging/debit/recovery,
 once-only settlement and replay lock integration, bilingual Iron UI/browser
 acceptance and fullD06/P09/P10/private-v1 remain open.
+
+
+## D06 v1ac privately owned recorded-wave input
+
+Production wave leases received independent QA, TD/five-axis and producer APPROVE
+and committed as `14e1a84`. Exact wave-leases cleanup removed857files/
+42,725,611bytes and14empty directories, zero failures/remaining targets; all13
+recorded command identities and the task-owned Vite server were absent.
+
+TD approved this five-path extraction. The store-free stageRecordedWave accepts
+an already composed snapshot and captured publication defaults, creates its own
+structured clone, recursively freezes that DTO tree and supplies that exact
+retained input to the real engine. It preserves undefined and nonfinite values
+without JSON coercion and never freezes caller units, stats, carry or formation.
+Terminal-clock validation, post-simulation names (including spawned summons),
+boss intro/identity, presentation, lock/reward options and complete publication
+remain staged before installation. It retains the exact optional engine Iron
+attestation, without authorizing payment. Helpers retain composition/qualification
+and delegate complete staging. No selection resolution, receipt creation, debit,
+run installation or ordinal mutation was added. Production still supplies no
+selected-item Iron input; this is an integration foundation, not fullD06.
+
+New stager17cases and production staging28cases plus lease19cases verify exact
+real-engine input identity/equivalence, deep ownership/freeze, mutable callers,
+literal-copy controls, all optional projections, successful Iron attestation and
+spawn naming, intro/lock/rewards and staging failures. Nonfinite-copy controls
+stub the engine deliberately; they do not claim the engine accepts those values.
+Snapshot-copy failure joins the old-run/ordinal/reward/selection preservation
+matrix. Playback/config replay leaves the captured production baseline unchanged.
+
+Initial missing-module collection RED collected0tests (not semantic RED). The
+initial shared-input extraction produced ownership RED6failed/11passed3.771s;
+clone/freeze/delegation GREEN64passed6.337s. Initial types failed15.409s on optional
+summon positions and exact optional fixture construction; explicit fixture checks
+and Object.assign corrected them. Initial lint failed42.093s on a redundant
+already-narrowed kind guard; removed without weakening assertions. Historical
+failures and command/source/output identities remain retained.
+
+Final serial focused64/3files6.288s, types15.088s, lint41.230s including85purity
+files, full6650/225files115.402s and build9.847s passed. Build607modules/
+index-B81B5Iiz.js1263.42kB observed. Related5s/full15s budget overruns, prior
+unexplained bundle variance, React act/fixture fallback, stale Browserslist,
+chunk/precache diagnostics remain open; no deterministic bundle-equivalence claim.
+SaveCurrent11 unchanged.
+
+Development-browser integration passed19.456s at360x640 and1280x800. Both contexts
+verified the new stager owns a deeply frozen snapshot independent of mutable
+caller/formation state. Eight start/replay/advance/throwing-subscriber flows each
+refused7nested operations, released ownership and saved exactly once to real
+IndexedDB. No console/page errors. Hero creation used UI controls; fixtures and
+stager checks used dev modules. This is not production-build, visual, earned or
+fullD06 acceptance. Chinese screenshot glyph rendering remains unresolved. Browser
+contexts/browser closed; the exact owned Vite PID was terminated, reaped and
+independently checked absent. Security check passes: no new external IO, dependency,
+save payload, item-write authority or bypass; no app-source browser hooks.
+
+Five paths, all wave-input command/source/output identities, prior cleanup and
+exact owned dist/tmp inventory are frozen in wave-input-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review remains before commit; disposable outputs
+await exact cleanup. Root remains sole writer/executor; umbrella worktree claim
+continues; no remote action. Phase access,
+receipt staging/debit/recovery, once-only settlement/replay lock, bilingual Iron
+UI/browser acceptance and fullD06/P09/P10/private-v1 remain open.
