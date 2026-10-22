@@ -10011,3 +10011,45 @@ through bug/fix consumers; root removes after umbrella consumers finish.
 Ownership metadata now distinguishes retained attachments from disposed outputs.
 This closes failure-evidence publication only; C0–C4/G0–G7 remain unaccepted.
 Settled cached whitespace check precedes the exact five-path local commit.
+
+## P01e03 — Source-backed Lightning affix diagnosis before power tuning
+
+Previous goal turn committed8460668 truthful native failure evidence and verified
+its cleanup; concrete progress, C0–C4/G0–G7remainopen. Root sole writer/executor
+in continuing claimedWT2. Current five writable paths: BUG-081, diagnosis report,
+immutable JSON/script fixtures and this ledger. Security checkPASS: trusted local
+production functions and retained game save, process-local stores only, no actual
+persistence/browser writes/credentials/network/dependencies or runtime change.
+Existing root-cause/debugging/plan-review/bug-report workflows apply. Producer
+approved one reconstructed service diagnostic before authority decision/patch.
+
+Exact external script uses production decodeSave and existing earned services,
+proves all six saved domains equal before start, freezes Date1792497600000,
+manualDen seed2223645302/ordinal40/pity0. W1thenW2maximum, firstnonwin stop, no
+retry/seed sweep/registry replacement/tuning/extra acquisition. One invocation
+exit0/4.184s within60s cap. Both wave rosters/outcomes/terminalHPpercentages/MP/
+native cappedlogtails and W1awards270/202XP/4items/133shards match. All23units'
+HP/MP ledgers reconcile to actual outcomes across591events; source manifest
+unchanged. W2hero112+18HPorbs−17other−143rawLightning→0,30overkill; merc190+18−48=160;
+lastShaman36/297. Native defeat is reproduced in production services, not another
+earned/browser proof or no-Lightning counterfactual. Full skill authority conflict
+is confirmed; no targeting/carry/mitigation bug or allbuild impossibility claimed.
+
+BUG-081filed before any runtime patch. Design owner reviewing a narrow ActIaffix
+power contract; no global monster catalog migration, pack/XP/gear/carry tuning or
+browser retry. Detailed report/fixtures bind runtime/input/script hashes, full
+recording/resource ledgers, native comparisons and honest reconstruction limits.
+ROOT:`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-first-elite-r7una0p6/lightning-diagnosis`.
+Root retains required raw/script/manifest/log/receipts through bug/fix consumers,
+then removes after umbrella finishes. Independent QA/publication review and
+physical tasktmp/cache cleanup follow reader release. Local commit only.
+
+Independent final QA ADEQUATE and producer PUBLICATION APPROVE verify exact five
+paths, all622source hashes, input/script/raw bindings, native comparisons and all
+23event-derived resource ledgers. All disposable-output readers released.
+Diagnostic PID834721absent; exact tasktmp/cache cleanup completed with
+remaining[]/failures[] (counts in external cleanup.receipt.json). Raw diagnostics
+and native attachments remain root-owned through bug/fix consumers. Cleanup
+callbacks succeeded; independent postrestore-store equality was not asserted.
+The process exited normally, and no browser/persistence state was touched.
+No runtime or campaign/checkpoint acceptance follows. Local commit only.

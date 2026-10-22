@@ -1,0 +1,117 @@
+import { createServer } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/vite/dist/node/index.js';
+import { readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
+import assert from 'node:assert/strict';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+const wt='/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2';
+const root=path.dirname(fileURLToPath(import.meta.url));
+const nativeRoot=path.join(root,'../den-attempt');
+const inputPath=path.join(nativeRoot,'den-tracked-earned.json');
+const epoch=1792497600000;
+const encode=value=>JSON.stringify(value,(_key,v)=>v instanceof Map?[...v.entries()]:v instanceof Set?[...v]:v,2)+'\n';
+const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
+const originalNow=Date.now;
+const report={kind:'reconstructed production-service diagnostic, not new earned/browser proof',epoch,runSeed:2223645302,challengeOrdinal:40,maxWaves:2,node:process.version,pid:process.pid,waves:[],cleanupErrors:[],limits:['Process-local stores populated from retained native earned save; no browser/persistence writes','cursor0 openings differ from native Pause timing','fresh-process item allocator IDs may differ; no allocator/global-counter reset','Only W1/W2, no retry, seed sweep, skill replacement or balance tuning']};
+let server,restorers=[],originalPity,pity,helpers,originalStores,error;
+const sourceFiles=execFileSync('git',['ls-files','-z','src','tests/sim/production'],{cwd:wt,encoding:'utf8'}).split('\0').filter(Boolean);
+const getSources=async()=>Object.fromEntries(await Promise.all(sourceFiles.map(async rel=>[rel,sha(await readFile(path.join(wt,rel)))])));
+const sources=await getSources();
+const inputBytes=await readFile(inputPath);
+report.input={path:inputPath,sha:sha(inputBytes),scriptSha:sha(await readFile(fileURLToPath(import.meta.url))),head:execFileSync('git',['rev-parse','HEAD'],{cwd:wt,encoding:'utf8'}).trim()};
+await writeFile(path.join(root,'input-manifest.json'),encode({...report.input,sources}));
+function account(wave){
+ const units=new Map([...wave.opening.playerTeam,...wave.opening.enemyTeam].map(u=>[u.id,{id:u.id,side:u.side,opening:{hp:u.life,mp:u.mana},hp:u.life,mp:u.mana,hpMax:u.stats.lifeMax,mpMax:u.stats.manaMax,damage:{},damageEffective:{},overkill:0,healEffective:0,hpOrbEffective:0,hpOrbCount:0,mpOrbCount:0,manaDelta:{},actions:[],resources:[]}]));
+ let action=null;
+ for(const [index,event] of wave.opening.recordedEvents.entries()){
+  if(event.kind==='action'){ action={actor:event.actor,skillId:event.skillId,simClockMs:event.simClockMs}; units.get(event.actor)?.actions.push(action); }
+  const u=units.get(event.target); if(!u) continue;
+  const before={hp:u.hp,mp:u.mp};
+  if((event.kind==='damage'&&!event.dodged)||event.kind==='dot'){
+   const amount=event.amount; const effective=Math.min(u.hp,amount);
+   const key=event.kind==='dot'?'dot':`${event.source}:${event.damageType}`;
+   u.damage[key]=(u.damage[key]??0)+amount; u.damageEffective[key]=(u.damageEffective[key]??0)+effective;
+   u.overkill+=amount-effective;u.hp=Math.max(0,u.hp-amount);
+  }else if(event.kind==='heal'){
+   const effective=Math.min(u.hpMax-u.hp,event.amount);u.healEffective+=effective;u.hp+=effective;
+  }else if(event.kind==='orb'){
+   if(event.orb.kind==='hp'){const effective=Math.min(u.hpMax-u.hp,Math.floor(u.hpMax*event.orb.restorePct));u.hpOrbEffective+=effective;u.hpOrbCount++;u.hp+=effective;}
+   else u.mpOrbCount++;
+  }else if(event.kind==='mana'){
+   const delta=event.mana-u.mp;u.manaDelta[event.reason]=(u.manaDelta[event.reason]??0)+delta;u.mp=event.mana;
+  }else if(event.kind==='death'){
+   if(u.hp!==0) throw new Error(`Death without accounted damage: ${u.id}, HP ${u.hp}`);
+  }
+  if(before.hp!==u.hp||before.mp!==u.mp||['damage','dot','orb','heal','death'].includes(event.kind)) u.resources.push({index,clock:event.simClockMs,event,contextAction:action,before,after:{hp:u.hp,mp:u.mp}});
+ }
+ for(const final of [...wave.opening.outcome.finalPlayerTeam,...wave.opening.outcome.finalEnemyTeam]){
+  const u=units.get(final.id);assert(u,`Unregistered final unit ${final.id}`);u.actualFinal={hp:final.life,mp:final.mana};
+  assert.equal(u.hp,final.life,`HP accounting ${final.id}`);assert.equal(u.mp,final.mana,`MP accounting ${final.id}`);
+  u.reconciled=true;
+ }
+ return [...units.values()];
+}
+function compareNative(wave,native,stage){
+ const team=stage==='terminal'?[...wave.opening.outcome.finalPlayerTeam,...wave.opening.outcome.finalEnemyTeam]:[...wave.opening.playerTeam,...wave.opening.enemyTeam];
+ const ids=team.map(u=>u.id).sort();const nativeIds=native.cards.map(c=>c.id.replace(/^unit-card-/, '')).sort();
+ assert.deepEqual(ids,nativeIds,`Native roster ${stage} W${wave.index+1}`);
+ const values=team.map(u=>{const card=native.cards.find(c=>c.id===`unit-card-${u.id}`);const hp=Number(card.hp.match(/[\d.]+/)?.[0]);const expected=Number((u.life/u.stats.lifeMax*100).toFixed(2));return {id:u.id,hp:u.life,hpMax:u.stats.lifeMax,diagnosticPercent:expected,nativePercent:hp,equal:expected===hp,nativeDead:card.dead};});
+ if(stage==='terminal') for(const v of values)assert.equal(v.equal,true,`Native terminal HP ${v.id}`);
+ return {stage,rosterEqual:true,values,nativeMP:Number(native.mp),diagnosticHeroMP:team.find(u=>u.kind==='hero')?.mana,logEqual:stage==='terminal'?JSON.stringify(wave.played.log.map(e=>e.message))===JSON.stringify(native.log):null};
+}
+try{
+ server=await createServer({configFile:false,root:wt,cacheDir:path.join(root,'vite-cache'),server:{middlewareMode:true,hmr:false},resolve:{alias:{'@':path.join(wt,'src')}}});
+ const load=rel=>server.ssrLoadModule('/'+rel);
+ const state=await load('tests/sim/production/earned-state.ts');
+ const playback=await load('tests/sim/production/earned-playback.ts');
+ helpers=await load('src/stores/combatHelpers.ts');
+ pity=await load('src/stores/idleElitePity.ts');
+ const {decodeSave}=await load('src/engine/save/validate.ts');
+ const {toJsonSafe}=await load('src/engine/save/serialize.ts');
+ const {usePlayerStore:player}=await load('src/stores/playerStore.ts');
+ const {useInventoryStore:inventory}=await load('src/stores/inventoryStore.ts');
+ const {useMercStore:merc}=await load('src/stores/mercStore.ts');
+ const {useMapStore:map}=await load('src/stores/mapStore.ts');
+ const {useMetaStore:meta}=await load('src/stores/metaStore.ts');
+ const {useFormationStore:formation}=await load('src/stores/formationStore.ts');
+ const {useHydrationStore:hydration}=await load('src/stores/hydrationStore.ts');
+ const {default:i18n}=await load('src/i18n/index.ts');await i18n.changeLanguage('en');
+ const save=decodeSave(JSON.parse(inputBytes));
+ restorers=state.captureEarnedRestorers();originalStores=state.observeEarnedState();originalPity=pity.getIdleEliteMisses();
+ Date.now=()=>epoch;state.resetEarnedStores();pity.setIdleEliteMisses(0);
+ player.setState({player:structuredClone(save.player)});
+ inventory.setState(structuredClone(save.inventory));
+ merc.setState(structuredClone(save.mercs));
+ map.setState(structuredClone(save.map));
+ meta.setState({...structuredClone(save.meta),idleBonusAnchor:epoch});
+ formation.getState().hydrate(save.formation);hydration.getState().setStatus('ready');
+ const observed=state.observeEarnedState();
+ const reconstructed={version:save.version,timestamp:save.timestamp,player:observed.player.player,inventory:observed.inventory,mercs:observed.merc,map:observed.map,meta:{settings:observed.meta.settings,idleState:observed.meta.idleState,gachaState:observed.meta.gachaState},formation:observed.formation};
+ assert.deepEqual(toJsonSafe(reconstructed),toJsonSafe(save),'Pre-start six domain equality');report.preStartDomainEquality=true;report.reconstructedSave=reconstructed;
+ const handle=playback.startEarnedRun({act:1,subAreaId:'areas/act1-den-of-evil',mode:'manual',runSeed:report.runSeed,challengeOrdinal:40});report.handle=handle;
+ for(let i=0;i<2;i++){
+  const wave=playback.playEarnedWave(handle,i);report.waves.push(wave);wave.accounting=account(wave);
+  const nativeOpening=JSON.parse(await readFile(path.join(nativeRoot,`den-opening-${i+1}.json`)));
+  const nativeTerminal=JSON.parse(await readFile(path.join(nativeRoot,`den-terminal-${i+1}.json`)));
+  wave.nativeComparison=[compareNative(wave,nativeOpening,'opening'),compareNative(wave,nativeTerminal,'terminal')];
+  assert.equal(wave.opening.outcome.winner,i===0?'player':'enemy',`W${i+1} native outcome`);
+  if(i===0){assert.equal(wave.actualDelta.xp,270);assert.equal(wave.actualDelta.mercXp['mercs/act1-rogue-inner-sight'],202);assert.equal(wave.actualDelta.addedItems.length,4);assert.equal(wave.actualDelta.currencies['rune-shard'],133);assert.equal(wave.advanceResult,'next-wave');}
+  if(wave.advanceResult!=='next-wave')break;
+  if(i===1)throw new Error('W2 unexpectedly won; abort rather than enter W3');
+ }
+ report.matchedNative=true;
+}catch(e){error=e;report.error={name:e.name,message:e.message,stack:e.stack};}
+finally{
+ const attempt=async(label,fn)=>{try{await fn();}catch(e){report.cleanupErrors.push({label,message:e.message,stack:e.stack});}};
+ if(helpers)await attempt('abort',()=>helpers.abortSubAreaRun());
+ for(const [i,restore]of restorers.entries())await attempt(`restore${i}`,restore);
+ if(pity&&originalPity!==undefined)await attempt('pity',()=>pity.setIdleEliteMisses(originalPity));
+ await attempt('clock',()=>{Date.now=originalNow;assert.equal(Date.now,originalNow);});
+ if(server)await attempt('server-close',()=>server.close());
+ await attempt('source-continuity',async()=>{assert.deepEqual(await getSources(),sources);report.sourceUnchanged=true;});
+ report.finishedAt=new Date().toISOString();
+ await writeFile(path.join(root,'diagnostic.json'),encode(report));
+}
+console.log(JSON.stringify({matchedNative:report.matchedNative,preStartDomainEquality:report.preStartDomainEquality,waves:report.waves.map(w=>({index:w.index,winner:w.opening.outcome.winner,result:w.advanceResult,clock:w.terminalSimClockMs,events:w.opening.recordedEvents.length,players:w.accounting?.filter(u=>u.side==='player').map(({resources,actions,...u})=>u),nativeComparison:w.nativeComparison})),error:report.error,sourceUnchanged:report.sourceUnchanged,cleanupErrors:report.cleanupErrors}));
+if(error||report.cleanupErrors.length)process.exitCode=1;
