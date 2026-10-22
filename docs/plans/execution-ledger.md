@@ -9954,3 +9954,60 @@ remaining[]/failures[], verified in parent-cleanup.receipt.json. Required source
 snapshots/logs/receipts/comparisons/reviews and the unexecuted Den draft remain at
 the exact ROOT above under root ownership until umbrella consumers finish, then
 root removes them. No campaign/checkpoint acceptance follows; local commit only.
+
+
+## P04a08 — Earned Den discovery after bounded Act I elite groups
+
+Previous goal turn made progress: parent2f7df8a committed reviewed planner/tests
+and validated integrated8296/260serialPASS; disposable cleanup verified. Full
+private-v1/C0–C4/G0–G7 remains open. Root sole writer/executor, exact writable
+scope: bounded-den-earned spec/config and this append-only ledger. Security
+check PASS: native localhost UI, readonly owned save inspection/export, no
+credentials/dependencies/external writes or test bridge; exact owned cleanup.
+
+Goal: screen real Den reachability with unchanged40earned MoorW1wins and five
+identical earned gear upgrades; strict first nonwin stops, no imported state,
+extra grind/refill/retry/build change. If reached, actual clear→Akara talk without
+award→explicit500XP/+1skill claim exactly once→manual Save→new-page Continue with
+exact save equality. Native dates fixed, timers real. Merc death permitted;
+compare surviving original hero/merc IDs between waves, no resurrection. Native
+t0casts may precede Pause, so HP/MP diagnostics do not establish exact numeric
+resource carry. Parent pure/source carry coverage remains independent.
+
+One attempt, workers1/retries0/maxFailures1, test240s/server30s/outer soft295s+
+5s hard limit; clean external production build210s/VITE_E2E absent/bridge scan
+before execution. At most41starts/44Skips/40prepPause-Flee/3DenPauses. Install
+exact reviewed draft bytes, run types/focused lint/discovery listing, then obtain
+exact-source producer/QA readiness before sole native attempt. These checks do
+not certify progression before it is observed. All source snapshots, receipts,
+logs and next result stay root-owned at:
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-first-elite-r7una0p6/den-attempt`.
+Root removes disposable candidates/tmp/dist after all processes/readers finish,
+retaining required outcome evidence until umbrella consumers finish. No remote
+action. No new browser result is claimed yet.
+
+P04a08 sole attempt TERMINAL: exact612c5348…396c/f9da21e7…57f3e, exit1/no timeout,
+181.285s wrapper/154.583s test/179.913s report, retries0. All40prep+same upgrades
+passed, DenW1won9trash (+270hero/+202mercXP,4items/+133shards), W2lost on hero
+death with merc81.63%alive and onechampionShaman12.12%alive. Original strict
+victory assertion failed; no fallback/retry. DenW3/W4/clear/claim/save/reopen and
+mobile remain unreached. Capped200line log includes Lightning40/57/46 but is not
+complete causal accounting. Native browsererrors[]. Exact source/config and
+bounded machine/outcome evidence are retained with a detailed failure report;
+runnable failing candidates removed after byte verification. Independent QA
+ADEQUATE and producer triage confirm actual bounded loss, not broad impossibility
+or harness timeout. Next is source-backed Lightning affix authority diagnosis,
+not more pack/XP/build tuning. Root retains rawreport/trace/screenshot/context
+at the exact Den-attempt ROOT above through bug/fix consumers; root removes after
+umbrella finish. Final publication review and disposable tmp/dist cleanup follow.
+
+Independent final QA ADEQUATE and producer PUBLICATION APPROVE verify all five
+publication hashes, raw/machine agreement, append-only ledger, exact failed
+source/config and trace SHA. All readers released. Exact attempt tmp/dist
+cleanup removed964files/43609344bytes/31directories; remaining[]/failures[].
+All7recorded process IDs absent. Required raw report/log/trace/screenshots/context
+and receipts remain at the exact Den-attempt ROOT above under root ownership
+through bug/fix consumers; root removes after umbrella consumers finish.
+Ownership metadata now distinguishes retained attachments from disposed outputs.
+This closes failure-evidence publication only; C0–C4/G0–G7 remain unaccepted.
+Settled cached whitespace check precedes the exact five-path local commit.

@@ -1,0 +1,33 @@
+import { defineConfig, devices } from '@playwright/test';
+import { isAbsolute } from 'node:path';
+import production from './playwright.config';
+
+const outputDir = process.env.EARNED_DEN_OUTPUT_DIR;
+const dist = process.env.EARNED_DEN_DIST;
+const port = Number(process.env.PWA_PORT);
+if (!outputDir || !isAbsolute(outputDir) || !dist || !isAbsolute(dist)
+  || !/^[a-zA-Z0-9_./-]+$/.test(dist)
+  || !Number.isInteger(port) || port < 1024 || port > 65535) {
+  throw new Error('Earned Den discovery requires isolated absolute output/dist paths and explicit PWA_PORT');
+}
+
+/** One production discovery attempt. Build/bridge scan runs separately before this server. */
+export default defineConfig({
+  ...production,
+  testMatch: ['bounded-den-earned.spec.ts'],
+  fullyParallel: false,
+  workers: 1,
+  retries: 0,
+  maxFailures: 1,
+  timeout: 240_000,
+  outputDir,
+  reporter: [['line'], ['json']],
+  projects: [{ name: 'earned-den-desktop', use: { ...devices['Desktop Chrome'], viewport: { width: 1280, height: 800 } } }],
+  webServer: {
+    ...production.webServer,
+    command: `node node_modules/vite/bin/vite.js preview --outDir ${dist} --port ${String(port)} --host 127.0.0.1 --strictPort`,
+    url: `http://127.0.0.1:${String(port)}`,
+    reuseExistingServer: false,
+    timeout: 30_000
+  }
+});
