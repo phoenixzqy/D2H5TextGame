@@ -6756,3 +6756,60 @@ ledger update, publication/producer audit, local commit and exact cleanup follow
 Later production composer/wave/replay/playback/log, bilingual mounted/browser,
 paired balance and earned evidence remain separate; full Mage/signature statuses,
 D06/P09/P10 and private-v1 remain unfinished. No remote action.
+
+
+## D06 v1bc production Mage composition acceptance
+
+Runtime051d792 committed after frozen QA/test-evidence(ADEQUATE), TD/five-axis
+and producer APPROVE. Cleanup
+5a868a33ca9a515ae935a71e334d4d1bf458963a2ec21f2640f7d19432b9c343 removed1300files/
+43,857,823bytes/14directories with zero failures/remaining. Root remains sole
+writer/executor in the existing umbrella worktree claim; retained evidence root:
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+
+Producer plan-review READY scopes exactly two paths: existing production
+summon-eligibility tests and ledger. No production source edit is indicated.
+QA pre-validation draft12917bytes
+SHAf4e72046316b3bd6266c4899d6c712cb1be858ff04140b3b28bbc95091eb2560 is READY.
+Add Mage to shared playerToCombatUnit cases and test the real pure scoped
+composer with minimal Mage/one direct Skeleton prerequisite fixtures. Cover
+Necromancer versus six foreign classes, exact integralL12 versusL11/fractional/
+nonfinite levels, ranks1/6/20 and invalid-only refusal, canonical/authored/duplicate
+slots, unlearned slotted/learned unslotted, prerequisite aliases/invalid/absent,
+highest VALID alias allocation normalization, preserved unrelated entries and
+copied configuration/frozen input. Production highest-valid alias normalization
+is distinct from raw engine first-positive precedence; no clamping or invented
+prerequisite/transitive allocation is introduced. These imported fixtures prove
+composition acceptance only, never earned progression or runtime/replay/browser/
+balance acceptance. Characterization may already pass; no artificial RED or
+missing-behavior claim. Root security-check: pass; tests/local evidence only, no
+credentials, dependencies, permissions, external IO or save-shape changes.
+TDD/incremental-implementation/root-cause-fix apply to truthful acceptance evidence.
+Serial focused/type/lint/full/production build, exact frozen review/publication,
+producer audit, local commit and exact cleanup follow. Only owned tmp/dist are
+disposable; preserve drafts/receipts/source hashes/manifests. Production waves/
+current-config replay, mixed Iron lock, actual playback/log, bilingual mounted/
+browser, balance/earned/full Mage/statuses/D06/P09/P10/private-v1 remain open.
+No remote action.
+
+
+Final focused129/129 (UI project4.38s), full7430tests/236files (119.98s),
+standard types/lint and VITE_E2E=false production build pass. Characterization
+passed on its first execution; no production source change was needed. Exact
+two-path/whitespace/source-identity checker binds final tests across focused/full/
+types/lint/build, verifies QA's draft byte-for-byte and finds no emitted test
+bridge in four JS chunks. Artifact index-CYMT-F3r.js is1,342,899bytes
+SHA09fcd2ae363378841ce7d9044b38ec8557906d1bff972872d3e845154c9bca2a.
+Full119.98s exceeds the existing15s loop budget. Existing stale Browserslist,
+large-chunk and2.57MB asset-manifest precache warnings remain. Broad Node-config
+maxThreads incompatibility remains unchanged; no passing claim for that command.
+No browser, balance or earned-progression evidence was run for this test-only
+slice. Independent frozen review/publication, producer audit, local commit and
+exact cleanup remain to be performed. All broader acceptance stays open.
+
+Frozen QA/test-evidence(ADEQUATE), TD and five-axis reviews APPROVE this
+composition acceptance slice with no blocking findings. Both independent
+reviewers verify6receipts/168source snapshots and exact draft/scope/identities;
+all readers released. Approval-only ledger update; code/tests unchanged.
+Publication/producer audit, local commit and exact cleanup follow. All broader
+acceptance and recorded limitations remain open; no remote action.
