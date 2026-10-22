@@ -15,6 +15,50 @@ import i18n from '@/i18n';
 import { skills } from '@/data';
 import { aliasToCanonical } from '@/engine/skills/aliases';
 
+describe.each(['en', 'zh-CN'])('finite Corpse Explosion feedback in %s', locale => {
+  it.each([0, 1, 3])('renders remaining count%s with literal localized copy', async count => {
+    const previous = i18n.language;
+    try {
+      await i18n.changeLanguage(locale);
+      const english = locale === 'en';
+      const remaining = String(count);
+      for (const [messageKey, message] of [
+        ['combat:corpses.available', english
+          ? `A fallen enemy leaves a corpse. Available: ${remaining}.`
+          : `敌人倒下，留下一具尸体。可用尸体：${remaining}。`],
+        ['combat:corpses.consumed', english
+          ? `Corpse Explosion consumes a corpse. Remaining: ${remaining}.`
+          : `尸体爆炸消耗一具尸体。剩余尸体：${remaining}。`]
+      ] as const) {
+        expect(i18n.exists(messageKey), messageKey).toBe(true);
+        expect(eventToLocalizedLogEntry({ kind: 'message', messageKey, params: { count } }))
+          .toEqual({ type: 'system', actorId: 'system', actorName: english ? 'System' : '系统', message });
+      }
+    } finally {
+      await i18n.changeLanguage(previous);
+    }
+  });
+});
+
+it('changes corpse feedback language for newly rendered events without retaining the old locale', async () => {
+  const previous = i18n.language;
+  try {
+    const event: BattleEvent = { kind: 'message', messageKey: 'combat:corpses.consumed', params: { count: 0 } };
+    const messages: (string | undefined)[] = [];
+    for (const locale of ['en', 'zh-CN', 'en']) {
+      await i18n.changeLanguage(locale);
+      messages.push(eventToLocalizedLogEntry(event)?.message);
+    }
+    expect(messages).toEqual([
+      'Corpse Explosion consumes a corpse. Remaining: 0.',
+      '尸体爆炸消耗一具尸体。剩余尸体：0。',
+      'Corpse Explosion consumes a corpse. Remaining: 0.'
+    ]);
+  } finally {
+    await i18n.changeLanguage(previous);
+  }
+});
+
 describe.each(['en', 'zh-CN'])('Rogue Inner Sight status feedback %s', locale => {
   it('localizes the exact mercenary status and effect label with literal copy oracles', async () => {
     const previous = i18n.language;

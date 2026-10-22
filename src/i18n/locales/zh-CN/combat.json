@@ -31,6 +31,10 @@
   "logEmpty": "战斗即将开始…",
   "logPaused": "已暂停滚动 (移开光标继续)",
   "logHoverPausedHint": "日志已暂停滚动",
+  "corpses": {
+    "available": "敌人倒下，留下一具尸体。可用尸体：{{count}}。",
+    "consumed": "尸体爆炸消耗一具尸体。剩余尸体：{{count}}。"
+  },
   "allies": "我方",
   "enemies": "敌人",
   "noAllies": "无单位",

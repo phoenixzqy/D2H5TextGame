@@ -8294,3 +8294,45 @@ verified; all readers released including dist/tmp, no reviewer artifacts or
 processes. Approval-only ledger append; four runtime/test paths unchanged.
 Producer staged publication audit, successful cached whitespace check, local
 commit and exact cleanup follow. Broader acceptance remains open.
+
+
+## D06 v1bw — bilingual corpse feedback prerequisite
+
+Engine committed7cd5768; BUG-075 closed separately inca8f641. Exact cleanup
+b36f6b959bd72f7681ed5c84ee3711e36a512361ee9a830c1b86995949cc8439
+removed1298files/43863254bytes/14directories with no remaining paths/failures.
+Root retains prior source/raw/failure/review evidence for the umbrella plan.
+
+Producer identified untranslated native messages before lifecycle wiring. Root
+owns four paths: en/zh-CN combat locales, existing eventToLogI18n test, ledger.
+Added exact available/consumed count feedback through the existing message path.
+Context: combat log, remaining wave-local shared bodies; count is an integer,
+including zero after consumption. Copy adds no corpse-health coefficient,
+physical damage, cross-wave persistence, refund or new reward promise. Localize
+validate rubric confirms both keys and matching count placeholders. Security
+PASS: local presentation only, no runtime/API/save/schema/dependency/network or
+permission changes. Existing isolated claim and root-only writer/executor kept.
+
+Seven literal bilingual cases cover0/1/3 counts, system labels and en→zh-CN→en
+switching with locale restoration. Genuine RED7fail/41controls retained. First
+lint found four numeric-template-expression errors in new literal expectations;
+explicit String(count) preserves the oracles. Final unchanged-source PASS:
+focused48/1file2.30s(wrapper3.418), types20.599s, placeholder validation,
+lint46.222s/purity91, full7844/252files129.64s(wrapper131.233), build10.180s.
+No engine source changed, so prior engine3631/91 evidence remains the engine
+baseline; full suite includes it. Existing engine3s/full15s budgets and
+Browserslist/chunk/precache warnings remain unresolved. GD/TD/five-axis source
+review APPROVE; final frozen QA/execution review follows. Evidence root:
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-corpse-feedback-uyxvbq0e`.
+Exact task-owned dist/tmp cleanup follows after all readers release. Native
+exposure, lifecycle/reward/replay/save wiring, Skills descriptions, production
+bilingual browser acceptance and earned/balance/full-v1 remain open.
+
+Final independent QA-D06-CE-FEEDBACK APPROVE/test evidence ADEQUATE and
+GD/TD/five-axis APPROVE. Review4bd86d914935f3e3ee4d80605ef00e8cbd8dbedd521e74ad974c9d2a79d040bd
+verified133 retained files/11 settled serial receipts/109 source captures.
+Exact disposal855files/42769927bytes/14directories verified; all readers
+released including dist/tmp, no reviewer artifacts/processes. Approval-only
+ledger append; three application/test paths unchanged. Staged publication
+audit, successful cached whitespace check, local commit and cleanup follow.
+Native lifecycle card remains next; full-goal acceptance remains open.
