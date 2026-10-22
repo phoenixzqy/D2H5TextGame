@@ -9480,3 +9480,43 @@ Cleanup receipt SHA256
 727388858ab8ebcfdf15d317971750bc75cebc63377c9221a1d92a52f08bcedc.
 Required evidence remains root-owned at ROOT until umbrella consumers finish.
 No owned processes remain. Settled cached whitespace precedes local commit.
+
+
+## D04 v1ct — Cross-wave raw carry and initial presentation are independent
+
+Clock2 owns combatHelpers.cross-wave.test.ts and this append-only ledger. Root
+sole writer/executor; security PASS, test-only contract clarification. Runtime,
+engine49a68538, gameplay, codec and save authority unchanged. Producer approved
+parking the four lifecycle files with exact hashes outside repo, restoring their
+HEAD bytes, landing this prerequisite, then restoring lifecycle without replacing
+the newly appended ledger. Original failed lifecycle head/evidence retained.
+
+Terminal0/0.5/MAX cases now inspect actual next runBattleRecorded CombatSnapshot
+input: full raw Poison metadata retained only while unexpired; appliedAtMs and
+expiresAtMs subtract the exact captured terminal without rounding. Separately,
+next recording initial status prefix omits future/expired Poison. Invalid-terminal
+controls remain intact. This strengthens the original raw-clock oracle without
+requiring raw carried state to be displayed before its application time.
+
+Baseline22/1 PASS6.59s (wrapper7.838) is green-only, not causal RED. Final
+focused22/1 PASS5.68s (wrapper6.985); types PASS32.078s; lint PASS82.099s;
+full8233/260 PASS177.01s (wrapper179.302); production build/bridge
+PASS10.286s with four JS chunks and VITE_E2E absent. TD/CODE APPROVE and QA TEST-EVIDENCE
+ADEQUATE confirm exact720d09ad source and parking provenance. Existing timing
+budgets and build warnings remain open. Restored-lifecycle integration validation
+is still pending; BUG080 and all full-v1/C/G acceptance remain unfinished.
+
+ROOT: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-status-clock-4z42radm`.
+Required source/log/review/receipt/parking evidence remains root-owned until
+umbrella consumers finish; root removes afterward. Final publication and reader
+release precede exact disposable cleanup and settled cached whitespace/commit.
+No push/PR/merge/deploy. Resume approved lifecycle readonly-array codec correction,
+then bounded batching/UI/browser status chain and earned first-act route.
+
+Final QA ADEQUATE and producer PUBLICATION APPROVE independently verify exact
+two-path/source/receipt/append-only provenance. All readers released. Exact
+cleanup removed857files/42780757bytes/14directories; remaining[]/failures[].
+Cleanup receipt SHA256
+0e508d1a94c4ecdb1dc170ae58f82c9e6eb7af0618109d0526e1c7ec1eca267c.
+Required evidence remains root-owned at ROOT until umbrella consumers finish.
+No owned processes remain. Settled cached whitespace precedes local commit.

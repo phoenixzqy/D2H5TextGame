@@ -425,15 +425,28 @@ describe('trusted terminal clock capture', () => {
     const actual = combatEngine.runBattleRecorded({ seed: 7, playerTeam: state.playerTeam, enemyTeam: state.enemyTeam });
     const last = actual.events.at(-1);
     if (last?.kind !== 'end') throw new Error('Missing engine terminal');
-    vi.spyOn(combatEngine, 'runBattleRecorded').mockReturnValueOnce({ ...actual,
+    const recorder = vi.spyOn(combatEngine, 'runBattleRecorded').mockReturnValueOnce({ ...actual,
       events: [...actual.events.slice(0, -1), { ...last, simClockMs }] });
     expect(() => { refreshActivePlayerCombatConfig({ replayCurrentWave: true }); }).not.toThrow();
     const outcome = useCombatStore.getState().outcome;
-    const poison = outcome?.finalPlayerTeam[0]?.statuses.find(s => s.id === 'poison');
-    if (poison?.expiresAtMs === undefined) throw new Error('Missing poison');
+    const hero = outcome?.finalPlayerTeam[0];
+    const poison = hero?.statuses.find(s => s.id === 'poison');
+    if (!hero || poison?.expiresAtMs === undefined || poison.appliedAtMs === undefined) {
+      throw new Error('Missing timestamped poison');
+    }
     drain();
     expect(advanceWaveOrFinish()).toBe('next-wave');
-    const nextPoison = useCombatStore.getState().playerTeam[0]?.statuses.find(s => s.id === 'poison');
-    expect(nextPoison?.expiresAtMs).toBe(poison.expiresAtMs > simClockMs ? poison.expiresAtMs - simClockMs : undefined);
+    expect(recorder).toHaveBeenCalledTimes(2);
+    const nextInput = recorder.mock.calls.at(-1)?.[0];
+    const nextHero = nextInput?.playerTeam.find(u => u.id === hero.id);
+    expect(nextHero).toBeDefined();
+    expect(nextHero?.statuses.find(s => s.id === 'poison')).toEqual(poison.expiresAtMs > simClockMs
+      ? { ...poison, appliedAtMs: poison.appliedAtMs - simClockMs, expiresAtMs: poison.expiresAtMs - simClockMs }
+      : undefined);
+    const initial = useCombatStore.getState().recordedEvents.find(e =>
+      e.kind === 'status-state' && e.initial === true && e.target === hero.id);
+    if (initial?.kind !== 'status-state') throw new Error('Missing next-wave initial observation');
+    expect(initial.simClockMs).toBe(0);
+    expect(initial.statuses.some(s => s.id === 'poison')).toBe(false);
   });
 });
