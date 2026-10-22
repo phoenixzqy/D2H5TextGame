@@ -23,7 +23,7 @@ and source manifest rather than assuming another environment is equivalent.
 4. Trace config→factory→registry: `elite-config.json` references
    `monster-lightning`; `getSkill` aliases it to the hardcoded `monster.lightning`
    stub in `src/engine/skills/aliases.ts`. Contrast the authored
-   `src/data/skills/monsters.json` entry and `docs/design/monster-spec.md` §8.
+   `src/data/skills/monsters.json` entry and `docs/design/monster-spec.md` §9.
 
 Expected: one explicit reviewed affix semantics/power policy, JSON-authored and
 consistent with production lookup. The first-elite challenge must be evaluated

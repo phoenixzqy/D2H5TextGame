@@ -53,7 +53,7 @@ proof that removing it alone changes winner. Other damage/RNG/durability matter.
 
 Config `elite-affix/lightning-enchanted`→`monster-lightning`→factory append→registry
 alias→hardcoded `monster.lightning`: single target40–60/2s/no status. Authored
-`monsters.json`: all-enemies40–65/3s/Paralyze. Older `monster-spec.md` §8:
+`monsters.json`: all-enemies40–65/3s/Paralyze. Older `monster-spec.md` §9:
 +50%Lightningresist/25%on-hit bolt. Monster level/ATK do not scale this flat stub.
 D04MR0/resist0 works as specified; physicalDEF51 is irrelevant to Lightning.
 D07preserved current affix skills; this is not a demonstrated composition regression.

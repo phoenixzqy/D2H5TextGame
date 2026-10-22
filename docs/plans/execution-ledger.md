@@ -10053,3 +10053,30 @@ and native attachments remain root-owned through bug/fix consumers. Cleanup
 callbacks succeeded; independent postrestore-store equality was not asserted.
 The process exited normally, and no browser/persistence state was touched.
 No runtime or campaign/checkpoint acceptance follows. Local commit only.
+
+## P01e04 — Freeze Act I Lightning affix semantics and power before source tuning
+
+Previous childfd7bdd7committed the exact source diagnostic/BUG-081 after independent
+QA/producer approval and verified disposable cleanup. Proposed controlling
+D07v1c is installed for review, no runtime changes yet. Own leafJSON curve
+L1[12,18]+(L−1)[2,3], L15[40,60]; keep appended/single/mana0/CD2/no status. Isolate
+only exact built-in ActI promoted Lightning affix, retain sharedmonster.lightning,
+other affixes/customreplacements/lateracts/legacy/bosses and current D04/D07core.
+Actual freshL1Sorc120HP was verified independently from creation formula; the
+witness120/190is damagedL6. Endpoint arithmetic and234–360ShamanHPexposure limits
+are explicit; no seedwin/campaign acceptance or more acquisition promised.
+Schema/data/type/adapter/tests sliceA precedes registry/planner/factory/integration
+sliceB, no global damage pipeline. Existing namekeys must prevent rawskillIDlogs.
+Design/technical/QA review precedes code. Local work only, claim continues.
+
+Plan review caught existing loader catalog count283: sliceA now explicitly adds
+its justified284row compatibility update (sixsourcepaths); equality/immutability
+assertions stay. GD requested exactCD2schema and legacysection9citation; corrected
+before source implementation. QA-PLANAPPROVE includes L16uncapped endpoint, real
+damage/mitigation/cadence/logname cases. Final design/technical review follows.
+
+Final GD-DESIGN-REVIEW APPROVE and producer PLAN-REVIEW ready accept the corrected
+exactCD2/section9 and six-pathA/catalog compatibility plan. QA-PLAN APPROVE remains
+applicable. Readers released. This freezes the narrow implementation contract;
+no runtime, native victory, pacing or checkpoint acceptance follows. Root proceeds
+with behavioral RED/GREEN in the continuing owned worktree; no remote action.
