@@ -17,6 +17,7 @@ import { aliasToCanonical, MERC_STUB_SKILLS, MONSTER_STUB_SKILLS } from './alias
 import { PLAYABLE_CLASS_DATA_SKILLS } from './dataCatalog';
 import { MINOR_HEAL_SKILL } from './minor-heal';
 import { MERC_INNER_SIGHT_SKILL } from './inner-sight';
+import { ACT1_LIGHTNING_AFFIX_SKILL } from './act1-lightning';
 
 const registry = new Map<string, RegisteredSkill>();
 const warned = new Set<string>();
@@ -88,6 +89,7 @@ export function loadDefaultSkills(): void {
   for (const s of MONSTER_STUB_SKILLS) {
     registry.set(s.id, s);
   }
+  registry.set(ACT1_LIGHTNING_AFFIX_SKILL.id, ACT1_LIGHTNING_AFFIX_SKILL);
 }
 
 // Auto-load defaults on import.

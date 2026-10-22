@@ -445,7 +445,9 @@ describe('Act I bounded promoted elite groups', () => {
       expect(wave?.spawns.map((s) => s.archetypeId)).toEqual(Array.from({ length: 8 + i }, (_, j) => roster[j % roster.length]));
       expect(wave?.spawns.every((s) => s.level === 2 + i)).toBe(true);
       expect(wave?.lootTable).toBe(`loot/wave-${String(i)}`);
-      expect(wave?.spawns[0]?.eliteAffix).toEqual(affix);
+      expect(wave?.spawns[0]?.eliteAffix).toEqual(affix.skillId === 'monster-lightning'
+        ? { ...affix, skillId: 'monster-act1-lightning-affix' }
+        : affix);
     }
     expect(plan.waves[4]?.spawns).toEqual(Array.from({ length: rng.nextInt(1, 3) }, (_, index) => ({
       archetypeId: 'monsters/act1.carver', tier: 'boss', level: 6, index

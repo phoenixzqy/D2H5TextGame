@@ -35,6 +35,7 @@ import { scaleMonsterLevelForArea } from './monster-factory';
 import type { ChapterBossDef } from '../types/maps';
 import type { EliteAffixDef, EliteConfigDef } from '../types/elite';
 import { resolveIdleEncounter } from '../idle/online-tick';
+import { ACT1_LIGHTNING_AFFIX_ID } from '../skills/act1-lightning';
 
 export const DEFAULT_ELITE_CONFIG = defaultEliteConfigJson as EliteConfigDef;
 
@@ -498,7 +499,15 @@ function forceElitePack(
 ): readonly MonsterSpawn[] {
   const leader = baseSpawns.find((s) => s.tier === 'trash' || s.tier === 'elite') ?? baseSpawns[0];
   if (!leader) return baseSpawns;
-  const affix = rng.pick(config.affixes);
+  const selectedAffix = rng.pick(config.affixes);
+  // Preserve the one affix draw and its label; only the built-in Act I spell
+  // receives the authored early-game curve. Custom replacements keep their skill.
+  const affix = act === 1 &&
+    selectedAffix.id === 'elite-affix/lightning-enchanted' &&
+    selectedAffix.nameKey === 'combat.eliteAffix.lightningEnchanted' &&
+    selectedAffix.skillId === 'monster-lightning'
+    ? { ...selectedAffix, skillId: ACT1_LIGHTNING_AFFIX_ID }
+    : selectedAffix;
   if (act === 1) {
     const coreSize = forcedEliteKind === 'champion' ? 3 : 4;
     return fitSpawnsToMonsterCount(baseSpawns, targetCount).map((spawn, i): MonsterSpawn => {

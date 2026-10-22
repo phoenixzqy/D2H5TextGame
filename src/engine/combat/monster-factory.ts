@@ -22,6 +22,7 @@
  */
 
 import { MITIGATION_DEFINITION } from './mitigation-definition';
+import { ACT1_LIGHTNING_AFFIX_ID, ACT1_LIGHTNING_AFFIX_CANONICAL_ID } from '../skills/act1-lightning';
 import defaultEliteConfigJson from '../../data/elite/elite-config.json';
 import type { Rng } from '../rng';
 import type { EliteConfigDef } from '../types/elite';
@@ -228,6 +229,11 @@ export function buildMonsterUnit(opts: BuildMonsterOpts): CombatUnit {
     statuses: [],
     cooldowns: {},
     skillOrder,
+    // Affix provenance and effective order are both required: a boss override
+    // or an ordinary authored skill alone must not opt into monster-level power.
+    ...(opts.extraSkillIds?.some(isAct1LightningAffix) && skillOrder.some(isAct1LightningAffix)
+      ? { skillLevels: { [ACT1_LIGHTNING_AFFIX_CANONICAL_ID]: level } }
+      : {}),
     activeBuffIds: [],
     enraged: false,
     summonedAdds: false,
@@ -262,4 +268,8 @@ function rollFloat(rng: Rng, min: number, max: number): number {
   const lo = Math.min(min, max);
   const hi = Math.max(min, max);
   return lo + rng.next() * (hi - lo);
+}
+
+function isAct1LightningAffix(id: string): boolean {
+  return id === ACT1_LIGHTNING_AFFIX_ID || id === ACT1_LIGHTNING_AFFIX_CANONICAL_ID;
 }

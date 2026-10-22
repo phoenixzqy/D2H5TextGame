@@ -10100,3 +10100,48 @@ bridge scan follow sliceB. Source/receipts/failed attempts remain root-owned in
 `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-first-elite-r7una0p6/lightning-fix`
 through fix/native consumers; root removes disposable tmp/dist/cache after all
 processes/readers finish. Local commit only; original checkout untouched.
+
+
+## P01e05B — Route promoted Act I Lightning through authored level power
+
+Root implemented the five-source-path B slice under accepted D07: separately
+register the authored leaf; replace only the exact built-in Lightning triple
+in forceElitePack Act I with no extra RNG draw; bind canonical effective rank
+to actor level only when affix extra skills and effective skill order both
+contain the raw/canonical leaf. Shared Lightning, custom triples, later acts,
+legacy plans and bosses remain covered controls. Existing RNG oracle changes
+only the intended selected skill ID; count/order/level/boss RNG and immutability
+assertions remain.
+
+Meaningful B RED collected17behavioral failures/12controls (3.995s); no collection
+errors. The29 original RED assertions remain; two additional tests/canonical
+checks produce31new integration tests. Focused final88/2PASS4.390s; independent
+producer/code/security APPROVE, GD-DESIGN-REVIEW APPROVE and QA ADEQUATE. Full
+engine4000/97PASS91.873s, full lint70.766s, production build17.032s and all4JS
+chunk bridge scanPASS/VITE_E2Eabsent. Final typecheck initially failed only the
+new test helper narrowing; explicit damage-event predicate/type import fixed
+it without changing conditions/assertions/runtime. Typecheck27.101s and focused
+test lint8.312sPASS; QA rechecked exact type-only diff and retained ADEQUATE.
+Engine/full lint/build predate that test-only annotation; integrated full below
+covers final test bytes. No newer-head rebuild is claimed. Existing bundle/
+precache/Browserslist/test warnings and test-time-budget overruns remain open.
+
+Final integrated full8376/262PASS594.152s wrapper/592.74s Vitest, one predeclared
+serial invocation, timeout660s unchanged. All owned source hashes verified equal
+to full-run snapshots before the ledger append; complete final test bytes covered.
+Serial validation does not resolve default-parallel/performance budget concerns.
+
+No earned Den/Andariel, campaign/pacing/mobile or C0–C4/G0–G7acceptance follows
+from source validation. Separately reviewed next native card keeps exact40earned
+prep/build/gear/Date/ordinal and first-nonwin stop, with one attempt/no retries.
+Producer and QA approved verified runtime reuse of prior scanned build:1092
+production inputs and760distfiles independently checked. Borrowed lightning-fix/
+dist remains root-owned through all native readers/processes; no premature
+cleanup or fresh final-head-build claim. Native candidate install/static/list/
+exact-source readiness remains a separate next gate.
+
+Required source snapshots/failed attempts/logs/receipts remain root-owned at
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-first-elite-r7una0p6/lightning-fix`
+through fix/native/umbrella consumers. Root removes exact disposable tmp/cache/
+dist after processes/readers finish; dist is retained for the next native card.
+Original checkout untouched, local commit only; no remote action.
