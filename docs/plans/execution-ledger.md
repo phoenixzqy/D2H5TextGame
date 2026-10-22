@@ -5263,3 +5263,60 @@ await exact cleanup. Root remains sole writer/executor; umbrella worktree claim
 continues; no remote action. Phase access,
 receipt staging/debit/recovery, once-only settlement/replay lock, bilingual Iron
 UI/browser acceptance and fullD06/P09/P10/private-v1 remain open.
+
+
+## D06 v1ad inactive receipt phase-access adapter
+
+Privately owned wave input received independent QA, TD/five-axis and producer
+APPROVE and committed as `6df0add`. Exact wave-input cleanup removed857files/
+42,726,315bytes and14empty directories with zero failures/remaining targets;
+all13 command identities and the exact task-owned Vite identity were absent.
+
+TD approved this three-path inactive adapter plan. recordedWaveAccess depends
+only on the receipt foundation and primitive wave guard; it has no runtime store
+imports, mirrored phases, registered callbacks or extra receipt holder. Each
+check reads the sole holder once after primitive ownership checks. Empty/current-
+published holders permit ordinary access. Prepared/conflict refuse snapshots,
+restore reservations, playback and new transitions; committed pending publication
+allows stable snapshots/restores but refuses playback/new transitions. Typed
+RecordedWaveAccessError carries preparedPending/publicationPending/conflict.
+Primitive WaveGuardError precedence remains unchanged. Restore acquires its raw
+reservation first, checks phase without rejecting its own reservation, and releases
+only that exact newly acquired lease on refusal. Recovery checks live ownership
+before exact pending token/committed phase, preserving staleReceipt/wrongPhase;
+it does not preflight against its own lease or install/mutate any receipt.
+
+Forty-seven new real receipt/guard tests cover every phase/action cell, primitive
+wave/queued-restore precedence, exact and stale recovery tokens/leases, release of
+refused reservations, preservation of existing queued restores and both receipt
+slots/error references, and access after explicit abandonment. Leaked prepared
+state fails closed; no auto-clear, refund or normalization exists. This foundation
+has no production import/consumer; receipt creation/payment remain disconnected.
+
+Preimplementation snapshot RED2failed/3passed10.568s and expanded matrix RED
+14failed/21passed10.515s demonstrated missing refusals in primitive-only API stubs.
+Phase checks produced GREEN35passed10.029s. Expanded focused121/3files10.152s and
+initial types14.853s passed. Initial lint failed41.773s on five shorthand void
+callbacks in tests; added braces without changing assertions or suppressions.
+Historical command/source/output identities are retained.
+
+Final serial focused121/3files10.329s, types15.039s, lint41.838s including85purity,
+full6697/226files118.684s and build9.603s passed. Build607modules/
+index-B81B5Iiz.js1263.42kB observed. Related5s/full15s overruns, prior unexplained
+bundle variance, existing React act/fixture fallback, stale Browserslist and
+chunk/precache diagnostics remain open; no deterministic bundle-equivalence claim.
+SaveCurrent11 unchanged. No browser acceptance is claimed for this inactive
+store-free foundation; no server/browser or persistent process started. Security
+check passes: fail-closed phase checks introduce no dependency, save payload,
+external IO, item-write authority or bypass. Chinese visual rendering remains open.
+
+Three paths, all wave-access command/source/output identities, prior cleanup and
+exact owned dist/tmp inventory are frozen in wave-access-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review remains before commit; disposable outputs
+await exact cleanup. Root remains sole writer/executor; umbrella worktree claim
+continues; no remote action. Persistence,
+playback/UI and new-transition consumers, production receipts/debit/recovery,
+once-only settlement/replay lock, bilingual Iron acceptance and fullD06/P09/P10/
+private-v1 remain open.
