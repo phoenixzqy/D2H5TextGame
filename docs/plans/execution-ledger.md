@@ -6276,3 +6276,81 @@ Independent QA/test-evidence and TD/five-axis reviews APPROVE this frozen slice;
 all readers released. Producer publication, local commit and exact cleanup follow. Native bilingual controls, production-byte
 browser/save/reload/earned acceptance and fullD06/P09/P10/private-v1 remain open.
 No remote action.
+
+## D06 v1au standalone selected-item Skills controls
+
+Bilingual explanation committed as `4f72544` after QA/TD/five-axis/producer
+APPROVE. Exact cleanup removed1153files/54,888,742bytes/16directories, zero
+failures or remaining targets; recorded processes absent. Umbrella claim
+continues. TD-D06-UI-IMPLEMENTATION-PLAN APPROVE and QA plan additions scope one
+standalone panel, tests and ledger. It is not yet mounted by SkillsScreen.
+
+Native labeled backpack selection starts empty; no automatic choice. Localized
+position/rarity/name distinguish same-name items, with safe unknown/stale/empty
+fallbacks. A permanent-sacrifice acknowledgement binds to the exact current item
+reference and resets on hero/item changes. Shared presentation and guarded
+arm/clear APIs own qualification, configuration and mutations. Shared display
+math supplies separately scoped current/next Life/Attack/Defense totals; UI only
+formats values. Rank zero/maxed and fractional contributions remain explicit.
+Stable receipt external-store snapshots and live domain subscriptions update
+armed instructions and recorded outcomes independently. Prepared/conflict remains
+unverified; pending/publication/replay states use receipt authority, never item
+absence as payment proof. Guard refusals and unexpected post-write subscriber
+errors remain localized; a forced live reread prevents a false rollback display.
+Success notices bind to selection/receipt identity so an old arm notice cannot
+claim the item remains unconsumed after recording. Native controls use existing
+D2 tokens, large clickable acknowledgement and44px minimum select/buttons.
+No business/stat/payment logic, save schema, router or debug bridge is added.
+
+36 controlled component tests cover both locales' accessible controls/statuses,
+explicit acknowledgement/arm/clear without payment, literal rank6/7 totals,
+hero/item reference resets, supported equip/transfer/discard invalidation,
+unidentified/duplicate refusal, unknown/empty fallback, synthetic identification
+change, live configuration, wave/restore guards and subscriber exceptions.
+Real producers cover paid/unpaid attempts, item-disappearance-before-verification,
+conflict, pending publication, pending replay, locked/unlocked published replays,
+and a future Chain Mail instruction alongside an older paid Short Sword receipt.
+No native identify action exists; synthetic fixture updates do not establish one.
+
+Initial5tests collected5missing-UI failures10.717s, then5passed11.298s.
+Expanded33:9failed/24passed11.534s (8missing outcomes;1replay fixture omitted
+replayCurrentWave). Outcome rendering:32passed/1same fixture failure11.419s.
+Corrected only that replay invocation and added both published replay policies.
+Focused-v2:88/3files11.552s. Initial types15.474s failed10unsupported exact role
+query options; removed redundant options (role names match exactly by default).
+Initial lint41.776s found2interface-style violations and unsafe Object.entries
+value inference; explicit typed Life/Attack/Defense formatting fixes the cause.
+Pre-review serial focused88/3files11.673s, types15.004s, lint40.592s/85purity,
+full7250/232files118.702s (Vitest117.23s), build9.933s passed. Build609modules,
+index-BFfYMKhl.js1288.66kB; unmounted panel is not production-path proof.
+Focused/full exceed5s/15s budgets; existing chunk/Browserslist/precache warnings
+remain; no threshold or validation policy changed. No browser/server started.
+
+Independent frozen TD/five-axis and QA review returned CONCERNS: render-time
+acknowledgement could authorize a distinct same-ID item if an earlier inventory
+subscriber threw before React notification. After all readers released, a causal
+mounted regression reproduced1failure/35controls12.130s: stale enabled Arm wrote
+selection. BUG074 was filed before the fix. Arm now reads the live draft and
+requires exact identity with acknowledgedItem, then delegates to the same API;
+existing guard/error precedence remains. Regression also requires no payment,
+live unchecked/disabled reread and successful explicit reacknowledgement.
+Focused89/3files11.877s and types15.336s passed. Lint45.067s found one new test
+void-expression callback style violation; added braces without altering its
+assertions. Final serial types15.274s, lint41.922s/85purity,
+full7251/232files121.264s (Vitest119.81s), build9.993s passed. Build identity,
+budget and warning limits above remain; no production panel is mounted yet.
+Original review486056ff5bd810fa6deca69dbb5db82f4f6690112dc6871aae851cc9492e03fa
+and all original failure/source/output evidence are retained. No validation or
+assertion was weakened. Four repository paths include the structured bug report.
+
+Root security check: pass; UI calls existing guarded local authority, no new
+external IO, credentials, dependencies, permissions or persisted state. Four-path
+sources/config/output captures, original failures/review, prior cleanup and exact
+owned dist/tmp inventory freeze in iron-panel-v2-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA/test-evidence and TD/five-axis revised reviews APPROVE this frozen
+slice; all readers released. Producer publication, local commit and exact cleanup follow. Next approved integration
+uses a persistent committed-skill sibling form, preserving draft/ack through
+hover/focus previews; preview-only Iron does not expose interactive controls.
+Native Skills integration, production-byte browser/save/reload/earned acceptance,
+native identification and fullD06/P09/P10/private-v1 remain open. No remote action.
