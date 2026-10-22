@@ -47,6 +47,8 @@ import { canCastSkill } from '../skills/eligibility';
 import { getSkill } from '../skills/registry';
 import { buildSummon, getSummon } from '../skills/summons';
 import { isPreparationSummonSkill, SUMMON_PREPARATION_TEMPLATES } from '../skills/summon-preparation';
+import { copyCorpseExplosionProjections, corpseExplosionRank, isCorpseExplosionId, matchesCorpseExplosion,
+  type CorpseExplosionProjection } from '../skills/corpse-explosion';
 import { empowerSkeletonSummon, type SkeletonMasteryProjection } from '../skills/skeleton-mastery';
 import { empowerGolemSummon, type GolemMasteryProjection } from '../skills/golem-mastery';
 import { SKELETAL_MAGE_DEFINITION, type SkeletalMageElement } from '../skills/skeletal-mage';
@@ -118,6 +120,8 @@ export interface CombatSnapshot {
   readonly enemyTeam: readonly CombatUnit[];
   readonly act?: 1 | 2 | 3 | 4 | 5;
   readonly maxRounds?: number;
+  /** Player-composed CE eligibility, copied once; corpses themselves never enter a snapshot. */
+  readonly corpseExplosion?: readonly CorpseExplosionProjection[];
   /** Frozen explicit player Might selection for this wave, active from simulation entry. */
   readonly mightAura?: MightAuraProjection;
   /** Frozen explicit Meditation selection; eligibility is captured at each interval start. */
@@ -145,6 +149,9 @@ export interface CombatResult {
 }
 
 interface State {
+  /** Valid copied player authority and FIFO primary enemy-monster death IDs; wave-local only. */
+  readonly corpseExplosion: Map<string, number>;
+  readonly corpses: string[];
   readonly ironGolem?: IronGolemInput;
   ironGolemPreparation?: IronGolemPreparationAttestation;
   readonly mightAura?: MightAuraProjection;
@@ -514,6 +521,16 @@ function finishDeaths(state: State, primarySources: readonly CombatUnit[]): void
     const source = primary.get(u.id);
     if (source) deathEffects(state, source);
   }
+  // Publish only after the complete closure/effects, in the existing death-event order.
+  // Keep every outcome unit and handled death intact for rewards and replay.
+  if (state.corpseExplosion.size > 0) {
+    for (const u of dead) {
+      if (!primary.has(u.id) || u.side !== 'enemy' || inferKind(u) !== 'monster' ||
+        u.summon === true || u.ownerId !== undefined || u.summonOwnerId !== undefined) continue;
+      state.corpses.push(u.id);
+      emit(state, { kind: 'message', messageKey: 'combat:corpses.available', params: { count: state.corpses.length } });
+    }
+  }
 }
 
 /** Ordinary effects use the frozen final-interval source and current living recipients. */
@@ -685,9 +702,15 @@ function canUseSkillForState(
   skillOrderId: string,
   hasEnemyTarget: boolean
 ): boolean {
+  const consumesCorpse = isCorpseExplosionId(skillOrderId) || isCorpseExplosionId(skill.id);
+  const skillLevel = consumesCorpse ? corpseExplosionRank(unit, state.corpseExplosion) : effectiveSkillLevel(unit, skill);
+  if (consumesCorpse && (!matchesCorpseExplosion(skill) || skillLevel === 0 || state.corpses.length === 0 ||
+    !hasEnemyTarget || !Number.isFinite(unit.mana) ||
+    ['necromancer.corpse_explosion', 'skills-necromancer-corpse-explosion'].some(id => (unit.cooldowns[id] ?? 0) > 0))) {
+    return false;
+  }
   if (skill.trigger === 'passive') return false;
   if ((unit.cooldowns[skill.id] ?? unit.cooldowns[skillOrderId] ?? 0) > 0) return false;
-  const skillLevel = effectiveSkillLevel(unit, skill);
   if (skill.id === 'sorceress.frozen_armor' && skillLevel === 0) return false;
   if (effectiveManaCost(skill, skillLevel) > unit.mana) return false;
   if (unit.level < skill.minLevel) return false;
@@ -716,12 +739,13 @@ function chooseSkillForState(
   state: State,
   unit: CombatUnit,
   hasEnemyTarget: boolean
-): RegisteredSkill | undefined {
+): { readonly skill: RegisteredSkill; readonly orderId: string } | undefined {
   for (const skillId of unit.skillOrder) {
     const skill = getSkill(skillId);
-    if (!skill || isPreparationSummonSkill(skill) || isIronGolemSkill(skill)) continue;
+    if (!skill || ((isCorpseExplosionId(skillId) || isCorpseExplosionId(skill.id)) && !matchesCorpseExplosion(skill)) ||
+      isPreparationSummonSkill(skill) || isIronGolemSkill(skill)) continue;
     if (!canUseSkillForState(state, unit, skill, skillId, hasEnemyTarget)) continue;
-    return skill;
+    return { skill, orderId: skillId };
   }
   return undefined;
 }
@@ -844,12 +868,19 @@ function registerSpawnedSummon(state: State, owner: CombatUnit, templateId: stri
 
 function castSkill(
   state: State, actorId: string, skill: RegisteredSkill,
-  prepared?: { readonly summonId: string; readonly units: readonly CombatUnit[]; readonly skillLevel?: number }
+  prepared?: { readonly summonId: string; readonly units: readonly CombatUnit[]; readonly skillLevel?: number },
+  skillOrderId = skill.id
 ): readonly CombatUnit[] | undefined {
   const actor = state.units.get(actorId);
   if (!actor) return;
 
-  const skillLevel = prepared?.skillLevel ?? effectiveSkillLevel(actor, skill);
+  const consumesCorpse = isCorpseExplosionId(skillOrderId) || isCorpseExplosionId(skill.id);
+  if (consumesCorpse && !canUseSkillForState(state, actor, skill, skillOrderId,
+    aliveOf(state, actor.side === 'player' ? 'enemy' : 'player').length > 0)) return;
+  const skillLevel = consumesCorpse ? corpseExplosionRank(actor, state.corpseExplosion)
+    : prepared?.skillLevel ?? effectiveSkillLevel(actor, skill);
+  // Synchronous commit: reserve exactly one oldest body before ordinary payment/effects.
+  if (consumesCorpse) state.corpses.shift();
   const manaCost = effectiveManaCost(skill, skillLevel);
   const newMana = Math.max(0, actor.mana - manaCost);
   const manaEvent = commitMana(state, actor, { ...actor, mana: newMana }, 'cast');
@@ -867,6 +898,8 @@ function castSkill(
 
   emit(state, { kind: 'action', actor: actorId, skillId: skill.id });
   if (manaEvent) emit(state, manaEvent);
+  if (consumesCorpse) emit(state, { kind: 'message', messageKey: 'combat:corpses.consumed',
+    params: { count: state.corpses.length } });
   if (prepared) {
     return prepared.units.map(candidate => registerSpawnedSummon(state, actor, prepared.summonId, candidate));
   }
@@ -1176,7 +1209,7 @@ function castSummonsOnStart(state: State, unitId: string): void {
   const prepared = new Set<string>();
   for (const skillId of unit.skillOrder) {
     const skill = getSkill(skillId);
-    if (!skill) continue;
+    if (!skill || isCorpseExplosionId(skillId) || isCorpseExplosionId(skill.id)) continue;
     unit = state.units.get(unitId);
     if (!unit || !alive(unit)) return;
     if (isIronGolemSkill(skill)) {
@@ -1213,7 +1246,7 @@ function takeAction(state: State, unitId: string): void {
   const hasEnemy = aliveOf(state, enemySide).length > 0;
   const skill = chooseSkillForState(state, unit, hasEnemy);
   if (skill) {
-    castSkill(state, unitId, skill);
+    castSkill(state, unitId, skill.skill, undefined, skill.orderId);
     return;
   }
   basicAttack(state, unitId);
@@ -1361,6 +1394,8 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
   const golemMastery = snapshot.golemMastery;
   const iron = snapshot.ironGolem;
   const state: State = {
+    corpseExplosion: new Map(copyCorpseExplosionProjections(snapshot.corpseExplosion).map(p => [p.sourceHeroId, p.rank])),
+    corpses: [],
     ...(golemMastery ? { golemMastery: Object.freeze({ sourceHeroId: golemMastery.sourceHeroId,
       rank: golemMastery.rank, maxRank: golemMastery.maxRank, golemLifePct: golemMastery.golemLifePct,
       golemAttackSpeed: golemMastery.golemAttackSpeed }) } : {}),
@@ -1400,6 +1435,11 @@ function runBattleWithTimestamps(snapshot: CombatSnapshot): {
 
   for (const u of withDefaultGridPositions(snapshot.playerTeam)) registerUnit(state, u);
   for (const u of withDefaultGridPositions(snapshot.enemyTeam)) registerUnit(state, u);
+  // Feedback requires an actual eligible runtime hero, never an unbound projection alone.
+  for (const id of state.corpseExplosion.keys()) {
+    const hero = state.units.get(id);
+    if (!hero || corpseExplosionRank(hero, state.corpseExplosion) === 0) state.corpseExplosion.delete(id);
+  }
 
   for (const u of state.units.values()) {
     scheduleNextAction(state, u);

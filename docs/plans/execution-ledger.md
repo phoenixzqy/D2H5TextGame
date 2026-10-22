@@ -8231,3 +8231,66 @@ checks rerun or disposable build/cache outputs created. Root retains command
 source/raw evidence in the named corpse diagnostic root; empty task tmp is
 removed after readers release. Next: five-path CE engine delivery with genuine
 behavioral RED, then native lifecycle/rewards and bilingual player presentation.
+
+## D06 v1bv — finite Corpse Explosion engine
+
+Contract committed ddd918c; prior publication7fa2af678213d78837d030c444239efbe4e1e1aaa3a869f0e34630547b2a989b
+and cleanup18f497d2543d753be1edeaeffdf0fba2cacc38980d3ff61a34ad292322b8200f
+remain immutable. Root retains that diagnostic evidence for the umbrella plan.
+Approved five-path engine card: CE definition/composer/test, combat/test, ledger.
+Security PASS: local deterministic gameplay, strict copied Player authority and
+independent JSON semantics; no dependency, network, save/schema or permission
+change. Root sole writer/executor in the existing claimed worktree.
+
+Added independently validated/frozen authored semantics and strict Necromancer
+level6/allocated Teeth/CE rank1–20 projection. Both exact order aliases and
+resolved CE identity require valid projected runtime hero authority. Wave-local
+team FIFO credits actual primary monster deaths once after death closure,
+including all tiers/killers/DoT/Shatter; excludes initial-dead/summon/owner/orphan
+cases. One accepted cast atomically consumes one body with ordinary20MP/2s and
+authored fire/ignite effects. Empty/invalid/unaffordable casts fall through
+without CE payment/RNG/event/extra action. Dead units/reward identities remain.
+Localized-key count feedback is emitted only with valid player CE authority;
+native composer wiring and locale strings remain following cards.
+
+129 new tests include independent rank1/6/20 landed damage80/110/194,
+same-time death-order FIFO, shared heroes, preserved token after19MP skip,
+all-dodge payment, exact1200/3200ms cooldown, later direct/ignite supply,
+empty fallback RNG equivalence, input immutability/plain-recorded equivalence,
+A/A and A/B/A without resets and fresh-wave empty supply. Initial behavioral
+RED15fail/3502controls retained. Draft seed7 landed-damage expectations were
+corrected to seed1 (seed7 naturally dodges); dodge regression retained. A draft
+cooldown-field assertion used a stale actor-action view; replaced by actual
+cast-time assertions, then isolated the400ms supply fixture with an initial
+stun to prevent an earlier basic kill. Omitted optional skillLevels instead of
+explicit undefined for exact optional types. First lint's four style findings
+were corrected without behavior changes.
+
+Independent TD review exposed sparse effects accepted by an enumerable-key-only
+comparator. Filed BUG-075 before patch in separate intake commit8c725c0.
+Genuine RED2fail/3627controls retained; minimal array-length comparison rejects
+the malformed spell before payment. Both regressions pass. Final QA test-quality
+APPROVE and TD/five-axis delta APPROVE; final frozen execution review follows.
+
+Final unchanged-runtime-source PASS: engine3631/91files18.23s(wrapper19.477),
+types19.723s, lint47.916s/purity91, full7837/252files137.98s(wrapper139.564),
+production build9.754s. Engine3s/full15s budgets and existing Browserslist,
+chunk-size/precache warnings remain unresolved. No browser/native acceptance
+is claimed for this engine-only card. Evidence and all draft failures retained:
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-corpse-engine-6qvxle5x`.
+Review/publication bindings and exact dist/tmp cleanup follow after readers
+release. BUG-075 closure is a separate docs checkpoint after the fixing SHA.
+Producer native preflight requires localized feedback before native exposure;
+land both combat locales and event-to-log assertions in a bounded prerequisite,
+then native lifecycle/reward/replay/save wiring, Skills presentation and
+production bilingual mobile/desktop acceptance, then earned/balance evidence.
+Poison Explosion and broader D06/P09/P10/private-v1 remain open.
+
+Final independent QA-D06-CE-ENGINE APPROVE/test evidence ADEQUATE and
+TD/five-axis APPROVE. Frozen review2625041c5e2ca7ed0ecd3663c92727be0bbdf68afd9e10ddbd3199e72f217913
+verified233 retained files/18 settled serial receipts/195 source captures and
+final source bindings. Exact disposal1298files/43863254bytes/14directories
+verified; all readers released including dist/tmp, no reviewer artifacts or
+processes. Approval-only ledger append; four runtime/test paths unchanged.
+Producer staged publication audit, successful cached whitespace check, local
+commit and exact cleanup follow. Broader acceptance remains open.
