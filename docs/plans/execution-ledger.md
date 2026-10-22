@@ -9240,3 +9240,49 @@ remaining[]/failures[]. Cleanup receipt SHA256
 f7706c038cd5aacc2068d73aebc66f1ffefb986ee8a4820125f77a634601fa07.
 Required source/raw/review evidence stays root-owned at ROOT until umbrella
 consumers finish. No owned processes remain. Settled cached whitespace precedes commit.
+
+
+## D04 v1co — Preserve Skeleton, Frozen Armor and Chill gameplay oracles
+
+CompatibilityC4 owns exactly combat/skeleton-mastery.test.ts, frozen-armor.test.ts,
+chill-timing.test.ts and this ledger. Root sole writer/executor retains the isolated
+claim. Security PASS: test-only approved projection, no production/network/CI/
+credentials/dependency/save or gameplay change. No new behavioral RED is claimed.
+
+Skeleton projects only its two historical PREPATCH comparisons; original literal
+and exact synthetic skill-identity normalization remain unchanged. Frozen Armor
+projects only the serialized recording before its unchanged SHA expectation
+7ca6d4c9d59d6d74ad9b50e86895acc855f8dccc6f241ddb1e4827f8e4b5c91a.
+Chill projects only the intentionally different-input boundary-versus-base event
+comparison, because the inert future marker changes transport observations while
+leaving gameplay unchanged. Same-input determinism, plain/recorded equality and
+input immutability remain raw. Whole-file exact transformations verify every
+other byte unchanged. Helper removes only status-state, rederives only outer
+legacy uiDelayMs and retains all gameplay timestamps/order/payload/non-event data.
+TD/CODE APPROVE and QA TEST-EVIDENCE ADEQUATE independently confirm this scope.
+
+Focused128/3 PASS2.81s (wrapper3.804); engine3872/94 PASS20.12s (wrapper21.359);
+types PASS22.176s; lint PASS51.130s; full8218/259 PASS137.64s (wrapper139.306);
+production build/bridge PASS10.279s, four JS chunks scanned with VITE_E2E absent.
+Engine3s/full15s budgets and Browserslist/>500kB chunk/2.57MB manifest-precache
+warnings remain open. No runtime/staging/lifecycle/pacing/browser acceptance yet.
+
+ROOT: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-status-oracle-c-9r05xxa6`.
+Root retains source/raw/check/review/receipt evidence until umbrella consumers
+finish, then removes it. Final QA/producer publication and reader releases precede
+exact disposable cleanup and append-only receipt. Exact4paths/append-only ledger
+and settled cached whitespace precede commit. All eight audited historical engine
+consumers now use the accepted boundary; original expected bytes remain preserved.
+Next approved Engine4 records a genuine lifecycle RED, files BUG080 before patch,
+then adds engine observations; Native/Mage preparation and staging/lifecycle,
+earned driver, batching and browser/UI follow in bounded cards. Full D04/D06/P09/
+P10/private-v1, earnedL18, balance/manualfeel, mobile/a11y/performance remain open.
+No push/PR/merge/deploy.
+
+Final publication QA ADEQUATE and producer APPROVE verify exact4paths, all source/
+receipt hashes, original frozen expectations and append-only ledger. All readers
+released. Exact cleanup removed857files/42,779,894bytes/14directories; remaining[]/
+failures[]. Cleanup receipt SHA256
+d9cb6a6097547b784c09a48cc12e69ee9548651d58cadf1aa1307a1213f0f8fb.
+Required source/raw/review evidence remains root-owned at ROOT until umbrella
+consumers finish. No owned processes remain. Settled cached whitespace precedes commit.

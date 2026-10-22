@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { legacyRecording } from '@/test/combat-oracle';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import sorceressSkills from '../../data/skills/sorceress.json';
 import { getSkill, loadDefaultSkills, registerSkill, resetRegistry } from '../skills/registry';
@@ -395,7 +396,7 @@ describe('P07b01 shared direct defense projection and retaliation', () => {
 
   it('preserves the complete unaffected prepatch recording byte for byte', () => {
     const r = replay(incoming('fire', false));
-    const serialized = JSON.stringify(r);
+    const serialized = JSON.stringify(legacyRecording(r));
     expect(damages(r)[0]?.amount).toBe(80);
     expect(createHash('sha256').update(serialized).digest('hex')).toBe('7ca6d4c9d59d6d74ad9b50e86895acc855f8dccc6f241ddb1e4827f8e4b5c91a');
   });

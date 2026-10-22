@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { legacyRecording } from '@/test/combat-oracle';
 import { getSkill, loadDefaultSkills, registerSkill, resetRegistry } from '../skills/registry';
 import { buildSummon, getSummon, registerSummon } from '../skills/summons';
 import { runBattle, runBattleRecorded, type CombatSnapshot, type BattleEvent } from './combat';
@@ -730,8 +731,8 @@ describe('P07a05B creation-only native Skeleton Mastery', () => {
     const source = getSkill('necromancer.raise_skeleton');
     if (!source) throw new Error('Missing actual Skeleton source');
     registerSkill({ ...source, id: 'fixture.mastery-skeleton', archetype: 'fixture' });
-    expect(record(LEGACY_PREPATCH.input)).toEqual(LEGACY_PREPATCH.actual);
-    expect(record({ ...LEGACY_PREPATCH.input, skeletonMastery: projection(0) })).toEqual(LEGACY_PREPATCH.actual);
+    expect(legacyRecording(record(LEGACY_PREPATCH.input))).toEqual(LEGACY_PREPATCH.actual);
+    expect(legacyRecording(record({ ...LEGACY_PREPATCH.input, skeletonMastery: projection(0) }))).toEqual(LEGACY_PREPATCH.actual);
     const actual = record(LEGACY_PREPATCH.input);
     const spawned = summons(actual);
     expect(spawned.map(e => [e.unit.id, e.simClockMs, e.unit.gridPosition])).toEqual([

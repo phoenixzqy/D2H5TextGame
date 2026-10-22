@@ -1,4 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
+import { legacyRecordedEvents } from '@/test/combat-oracle';
 import { loadDefaultSkills, registerSkill, resetRegistry } from '../skills/registry';
 import { getSummon, registerSummon } from '../skills/summons';
 import { runBattle, runBattleRecorded, type CombatSnapshot, type RecordedBattleEvent, type RecordedBattleResult } from './combat';
@@ -210,7 +211,7 @@ describe('Chill phase-preserving action cadence', () => {
     console.log('CHILL_NO_STATUS_CONTROL', JSON.stringify(base));
     const boundary = replay({ ...input, enemyTeam: [{ ...unit('target', 'enemy'),
       statuses: [status('marker', 1300, 3300)] }] });
-    expect(boundary.events).toEqual(base.events);
+    expect(legacyRecordedEvents(boundary.events)).toEqual(legacyRecordedEvents(base.events));
     expectTimes(times(base).slice(0, 3), [1700, 3400, 5100]);
     expect(runBattleRecorded(input)).toEqual(base);
   });
