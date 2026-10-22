@@ -5779,3 +5779,54 @@ local commit and exact cleanup follow. Root remains sole writer/executor; umbrel
 claim continues without remote action. Production activation, recovery UI,
 selected-item debit/lock/bilingual acceptance and fullD06/P09/P10/private-v1 remain
 open.
+
+
+## D06 v1am resource authority fixture prerequisites
+
+Aura prerequisite committed as `d5b9383` after independent QA/TD/five-axis/producer
+APPROVE. Exact cleanup removed1300files/43,821,325bytes/14empty directories with
+zero failures/remaining; all6 command identities absent. Activation reapplied with
+all four source hashes unchanged, focused692/19files14.308s, types15.973s and
+lint41.542s passed. Full activation12failed/7008passed119.314s identified Warmth
+and merc resource fixtures still replacing outcomes after publication. Those
+failures remain in producer-activation-full. Activation is suspended again using
+the same lossless patch SHA256
+64c4e802f0f12f7b3ba4b2453b2f4ac7fcf325f42865e28199c3a1849bf53f6c;
+producer-activation-suspended-v2.json records HEAD/source identities. Only root's
+four activation paths were restored. No runtime fallback or extra activation
+scope was added. TD approved this two-test-plus-ledger prerequisite.
+
+Warmth's controlled resources/exact credit now supplement each actual engine
+return before its respective first/second-wave staging. Original pool, exact
+carry, capped/re-expanded replay, maxima, real reward idempotence and native merc
+assertions remain. Public reset/setPlayer replaces raw missing/different hero
+substitution: replay cannot simulate or resurrect a cleared run, and explicit
+new start uses the replacement hero. Finalized ordinary refresh remains frozen;
+explicit abandonment precedes no-run replay. The activation receipt suite owns
+the changed settled-replay refusal. Merc gear carry likewise supplements the
+real first-wave result before staging, preserving depleted135life/40mana and
+frozen equipped stats across an actual gear swap; fresh-run gear checks remain.
+Mocks are restored. No skipped/exclusive cases, production/API/save/UI changes,
+or new gameplay/TDD RED claim.
+
+Initial focused30/2files5.757s and final30/2files5.338s (after explicit terminal
+lifecycle migration), types14.906s, lint41.669s including85purity,
+full6992/228files119.279s and task-local build9.691s passed. Build600modules/
+index-DnJOjQ5b.js1265.13kB observed; previous608modules/index-GCiYf-P6.js1264.77kB
+variance remains unexplained, not deterministic equivalence or a proven runtime
+regression. Original activation failures and exact source/output identities
+retained. Existing related5s/full15s overruns, React act/fixture fallback,
+Browserslist/chunk/precache warnings and Chinese screenshot glyph issue remain.
+SaveCurrent11 unchanged. No browser/server, visual/earned/paid-Iron acceptance.
+Security assessment: bounded controlled test returns/public lifecycle, no new
+external IO/dependencies/item writes or authority bypass.
+
+Three paths, validation identities, prior cleanup and exact owned dist/tmp
+inventory are frozen in authority-fixtures3-review.json under
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review,
+local commit and exact cleanup follow. Root remains sole writer/executor;
+umbrella claim continues without remote action. Production activation, recovery
+UI, selected-item debit/lock/bilingual acceptance and fullD06/P09/P10/private-v1
+remain open.

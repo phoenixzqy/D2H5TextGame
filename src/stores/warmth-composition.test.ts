@@ -4,11 +4,13 @@ import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { loadDefaultSkills, registerSkill, resetRegistry } from '@/engine/skills/registry';
 import type { Player } from '@/engine/types/entities';
 import type { Item } from '@/engine/types/items';
+import type { CombatUnit } from '@/engine/combat/types';
+import * as combatEngine from '@/engine/combat/combat';
 import { loadMercPool } from '@/data/loaders/mercs';
 import { createMercFromDef } from './mercFactory';
 import { mercToCombatUnit } from './mercToCombatUnit';
 import {
-  abortSubAreaRun, advanceWaveOrFinish, playerToCombatUnit,
+  abortSubAreaRun, advanceWaveOrFinish, hasActiveSubAreaRun, playerToCombatUnit,
   refreshActivePlayerCombatConfig, startSubAreaRun
 } from './combatHelpers';
 import { useCombatStore } from './combatStore';
@@ -88,21 +90,28 @@ function recording() {
     complete: state.playbackComplete, rewards: state.runRewards });
 }
 
+/** Supplement the genuine result before staging establishes publication authority. */
+function controlNextCarry(patch: Partial<CombatUnit>): void {
+  const original = combatEngine.runBattleRecorded;
+  vi.spyOn(combatEngine, 'runBattleRecorded').mockImplementationOnce(input => {
+    const actual = original(input);
+    return { ...actual, result: { ...actual.result,
+      playerTeam: actual.result.playerTeam.map(unit => ({ ...unit, ...patch })) } };
+  });
+}
+
 /** Controlled carry boundary; recovery integration itself belongs to stage f. */
-function nextWithCarry(exactCarry?: string): void {
+function nextWithCarry(exactCarry?: string, nextOutcome?: Partial<CombatUnit>): void {
   // L4 Energy182 gives335 MP; +30gear→206effective plus34flat→405.
   arrange(182, { level: 4, skillLevels: { [WARMTH]: 1 } });
   equip([['coreStats.energy', 30], ['statMods.life', 56], ['statMods.mana', 34],
     ['statMods.defense', 99_964]]);
   setResources(190, 400);
+  controlNextCarry({ life: 190, mana: 400, manaRegenCarry: 0.75, manaRegenCompensation: 0.125,
+    ...(exactCarry === undefined ? {} : { manaRegenExactCarry: exactCarry }) });
   start();
   drain();
-  const outcome = useCombatStore.getState().outcome;
-  if (!outcome) throw new Error('Missing actual winning outcome');
-  useCombatStore.setState({ outcome: { ...outcome,
-    finalPlayerTeam: outcome.finalPlayerTeam.map(unit => ({ ...unit,
-      life: 190, mana: 400, manaRegenCarry: 0.75, manaRegenCompensation: 0.125,
-      ...(exactCarry === undefined ? {} : { manaRegenExactCarry: exactCarry }) })) } });
+  if (nextOutcome) controlNextCarry(nextOutcome);
   expect(advanceWaveOrFinish()).toBe('next-wave');
   expect(player().level).toBe(4);
 }
@@ -262,14 +271,9 @@ describe('original wave-input resources and replay', () => {
   });
 
   it.each([false, true])('preserves qualified exact carry on next wave unless fresh maxima cap resources (%s)', shrink => {
-    nextWithCarry('0.625');
+    nextWithCarry('0.625', { mana: 400, manaRegenCarry: 0.75,
+      manaRegenCompensation: 0.125, manaRegenExactCarry: '0.625' });
     drain();
-    const prior = useCombatStore.getState().outcome;
-    if (!prior) throw new Error('Missing real outcome for exact-carry boundary');
-    // Controlled metadata boundary, not evidence that this fraction was earned.
-    useCombatStore.setState({ outcome: { ...prior,
-      finalPlayerTeam: prior.finalPlayerTeam.map(unit => ({ ...unit,
-        mana: 400, manaRegenCarry: 0.75, manaRegenCompensation: 0.125, manaRegenExactCarry: '0.625' })) } });
     const baseline = structuredClone(useCombatStore.getState().outcome);
     if (shrink) expect(useInventoryStore.getState().unequipItem('head')).toEqual({ ok: true });
     expect(advanceWaveOrFinish()).toBe('next-wave');
@@ -353,7 +357,7 @@ describe('original wave-input resources and replay', () => {
     expect(initial?.mana).toBe(400);
   });
 
-  it('starts a new run with fresh carry and ignores refresh after finalization', () => {
+  it('starts with fresh carry, freezes ordinary refresh after finalization and ignores replay after abandonment', () => {
     nextWithCarry();
     start();
     const hero = useCombatStore.getState().playerTeam[0];
@@ -366,19 +370,17 @@ describe('original wave-input resources and replay', () => {
     }
     const before = useCombatStore.getState();
     refreshActivePlayerCombatConfig();
+    expect(useCombatStore.getState()).toBe(before);
+    abortSubAreaRun();
+    expect(hasActiveSubAreaRun()).toBe(false);
     refreshActivePlayerCombatConfig({ replayCurrentWave: true });
     expect(useCombatStore.getState()).toBe(before);
   });
 
   it('clamps carried resources and clears carry at cap on an actual next wave', () => {
-    nextWithCarry();
-    const oldOutcome = useCombatStore.getState().outcome;
-    if (!oldOutcome) throw new Error('Missing actual second-wave result');
+    nextWithCarry(undefined, { life: 190, mana: 400, manaRegenCarry: 0.75,
+      manaRegenCompensation: 0.125 });
     drain();
-    // Keep the intended baseline resource edge independent of orb RNG.
-    useCombatStore.setState({ outcome: { ...oldOutcome,
-      finalPlayerTeam: oldOutcome.finalPlayerTeam.map(unit => ({ ...unit,
-        life: 190, mana: 400, manaRegenCarry: 0.75, manaRegenCompensation: 0.125 })) } });
     expect(useInventoryStore.getState().unequipItem('head')).toEqual({ ok: true });
     expect(advanceWaveOrFinish()).toBe('next-wave');
     const hero = useCombatStore.getState().playerTeam[0];
@@ -409,13 +411,21 @@ describe('original wave-input resources and replay', () => {
     expect(before.team[1]).toEqual(expected);
   });
 
-  it.each(['missing', 'different'] as const)('retains the current hero when the persistent player is %s', replacement => {
+  it.each(['missing', 'different'] as const)('does not replay a cleared run after public hero replacement (%s)', replacement => {
     nextWithCarry();
-    const before = recording();
-    // Synthetic resolver inputs retain the original run; public reset/replacement clears it.
-    if (replacement === 'missing') usePlayerStore.setState({ player: null });
-    else usePlayerStore.setState({ player: { ...player(), id: 'replacement-hero' } });
+    const saved = player();
+    if (replacement === 'missing') usePlayerStore.getState().reset();
+    else usePlayerStore.getState().setPlayer({ ...saved, id: 'replacement-hero' });
+    const before = useCombatStore.getState();
+    const engine = vi.spyOn(combatEngine, 'runBattleRecorded');
+    expect(hasActiveSubAreaRun()).toBe(false);
+    expect(before.recordedEvents).toEqual([]);
     refreshActivePlayerCombatConfig({ replayCurrentWave: true });
-    expect(recording()).toEqual(before);
+    expect(useCombatStore.getState()).toBe(before);
+    expect(engine).not.toHaveBeenCalled();
+    if (replacement === 'different') {
+      start();
+      expect(useCombatStore.getState().playerTeam[0]?.id).toBe('replacement-hero');
+    }
   });
 });

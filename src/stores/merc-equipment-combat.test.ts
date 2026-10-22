@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useHydrationStore } from './hydrationStore';
 import { loadMercPool } from '@/data/loaders/mercs';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
@@ -9,6 +9,7 @@ import type { CombatUnit, GridPosition } from '@/engine/combat/types';
 import type { Mercenary } from '@/engine/types/entities';
 import { abortSubAreaRun, advanceWaveOrFinish, startSubAreaRun } from './combatHelpers';
 import { runBattleRecorded } from '@/engine/combat/combat';
+import * as combatEngine from '@/engine/combat/combat';
 import { getSkill, loadDefaultSkills, registerSkill, resetRegistry } from '@/engine/skills/registry';
 import { usePlayerStore } from './playerStore';
 import { useCombatStore } from './combatStore';
@@ -52,7 +53,7 @@ function item(id: string, baseId: string, baseRolls: NonNullable<Item['baseRolls
 }
 
 beforeEach(() => { reset(); resetRegistry(); loadDefaultSkills(); useHydrationStore.getState().setStatus('ready'); });
-afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); resetRegistry(); loadDefaultSkills(); });
+afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });
 
 describe('canonical merc equipment reaches fresh production combat', () => {
   it('retains the grown unequipped baseline without re-deriving current core', () => {
@@ -228,6 +229,14 @@ describe('active run carry remains frozen', () => {
     useInventoryStore.getState().addItem(cap);
     useInventoryStore.getState().addItem(swap);
     expect(useMercStore.getState().equipOnMerc(merc.id, 'head', cap)).toEqual({ ok: true });
+    const original = combatEngine.runBattleRecorded;
+    vi.spyOn(combatEngine, 'runBattleRecorded').mockImplementationOnce(input => {
+      const actual = original(input);
+      // Controlled carry supplements the result before staging captures authority.
+      return { ...actual, result: { ...actual.result,
+        playerTeam: actual.result.playerTeam.map(unit => unit.kind === 'merc'
+          ? { ...unit, life: 135, mana: 40 } : unit) } };
+    });
     const initial = startMerc();
     expect(initial.stats.defense).toBe(32);
     const count = useCombatStore.getState().recordedEvents.length;
@@ -235,10 +244,6 @@ describe('active run carry remains frozen', () => {
     const outcome = useCombatStore.getState().outcome;
     expect(outcome?.winner).toBe('player');
     if (!outcome) throw new Error('Missing real recorded outcome');
-    // Explicit controlled carry, not an earned-gameplay resource oracle.
-    useCombatStore.setState({ outcome: { ...outcome,
-      finalPlayerTeam: outcome.finalPlayerTeam.map(unit => unit.kind === 'merc'
-        ? { ...unit, life: 135, mana: 40 } : unit) } });
     expect(useMercStore.getState().equipOnMerc(merc.id, 'head', swap)).toEqual({ ok: true });
     expect(advanceWaveOrFinish()).toBe('next-wave');
     const carried = useCombatStore.getState().playerTeam.find(unit => unit.kind === 'merc');
