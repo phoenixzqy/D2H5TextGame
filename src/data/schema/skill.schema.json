@@ -8,6 +8,18 @@
   "additionalProperties": false,
   "allOf": [{
     "if": {
+      "properties": { "id": { "const": "skills-necromancer-raise-skeletal-mage" } },
+      "required": ["id"]
+    },
+    "then": {
+      "required": ["summonBasicAttackElements"],
+      "properties": {
+        "summonBasicAttackElements": { "$ref": "#/properties/summonBasicAttackElements" }
+      }
+    },
+    "else": { "properties": { "summonBasicAttackElements": false } }
+  }, {
+    "if": {
       "properties": { "additionalStatusEffects": {
         "type": "object", "properties": { "freeze": {} }, "required": ["freeze"]
       } },
@@ -475,6 +487,14 @@
     "summon": {
       "type": "boolean",
       "description": "True if this skill summons a creature"
+    },
+    "summonBasicAttackElements": {
+      "type": "array",
+      "description": "Ordered fresh-batch basic attack elements for the exact authored Skeletal Mage skill. Each of the four elements appears once; order is tuning.",
+      "minItems": 4,
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": { "type": "string", "enum": ["fire", "cold", "lightning", "poison"] }
     },
     "summonId": {
       "type": "string",

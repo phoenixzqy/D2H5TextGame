@@ -210,6 +210,9 @@ export interface SkillDef {
  
   /** Summon template id when this skill spawns a creature. */
   readonly summonId?: string;
+
+  /** Authored fresh-batch basic element cycle; permitted only on the exact Mage skill row. */
+  readonly summonBasicAttackElements?: readonly ('fire' | 'cold' | 'lightning' | 'poison')[];
   
   /** Combo tags this skill benefits from (and how much) */
   readonly synergies?: ReadonlyMap<ComboTag, number>; // tag -> damage multiplier

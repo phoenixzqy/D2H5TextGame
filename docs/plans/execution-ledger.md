@@ -6547,3 +6547,60 @@ binds revised source/check receipts and prior cleanup. Independent GD/TD, QA/tes
 evidence (ADEQUATE) and five-axis reviews APPROVE this frozen contract; all readers
 released. Producer publication, local commit and exact cleanup follow. Signature-status design/full Mage, earned campaign/economy,
 other corpse consumers and fullD06/P09/P10/private-v1 remain open. No remote action.
+
+
+## D06 v1az inactive authored Mage element metadata
+
+Mage contract `06aa61c5f57fe89fc1fc5f07a91f94dd9cc208eb` committed after GD/TD,
+QA/test-evidence (ADEQUATE), five-axis and producer APPROVE. Exact cleanup
+`3d4fd3102d0d45556e4d2e5688ed07bd6e189171666a6aed670f6660388ab66f` verified zero
+disposable targets/failures/remaining. Root remains sole writer/executor under
+the existing umbrella claim; evidence remains at
+/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+
+Producer plan-review READY scopes exactly five paths: SkillDef, skill schema,
+Necromancer JSON, new engine metadata/schema tests and this ledger. Implement
+optional narrow readonly summonBasicAttackElements on generic SkillDef; require
+four unique fire/cold/lightning/poison strings on the exact authored Mage row
+and reject the field elsewhere. Initial order F/C/L/P stays JSON tuning; reordered
+valid permutations remain accepted. Preserve existing22MP/CD1/unlock12/prerequisite,
+cap and growth literals. No resolver, runtime consumer, registry default, player
+copy or save shape change. This inactive foundation accepts no elemental attacks.
+
+QA freezes the independent literal/schema matrix before RED: authored default,
+exact-row required-field failure, valid permutations, empty/null/scalar/object,
+non-string members, duplicate/missing/extra/excluded elements, canonical alias,
+synthetic ID, other summon/class and unchanged production rows. Root security
+check: pass; local data/type/schema only, no external IO, credentials, dependencies,
+permissions or agent behavior changes. Root uses game-data-schema, TDD and
+incremental-implementation; plan-review ready. No validate:data script exists;
+strict Ajv tests validate data; the existing production build checks bundling.
+Serial RED/focused/engine/full/types/lint/production build, frozen independent
+reviews, publication, local commit and exact cleanup follow. Root tracks only
+owned tmp/dist as disposable; commands/manifests/draft remain retained evidence.
+Full Mage/statuses/balance/earned/campaign and D06/P09/P10/private-v1 remain open.
+No remote action.
+
+QA pre-RED draft freeze36443cb6762ae029183e52bb3a0bf892a8c3bffa410fb624835fdb2a53f90061
+approved the schema/literal matrix. Original RED caught five intended missing
+behaviors plus one test-fixture mistake: dotted canonical IDs already violate the
+authored ID pattern. Corrected only that control (and its Record type annotation);
+the alias is explicitly rejected by the existing pattern without widening IDs.
+Corrected RED retains five genuine failures: production default, exact-row required
+field and three valid permutations. Original first-GREEN strictRequired compilation
+failure is retained; a local $ref for the conditional required property follows
+existing strict Ajv conventions, preserving the single property definition.
+
+Final focused30/30 and engine3337tests/86files pass; full7289tests/234files pass.
+Vitest durations15.28s engine and117.94s full exceed existing3s/15s budgets; this
+slice does not resolve performance acceptance. Standard typecheck and lint pass;
+VITE_E2E=false production build passes to owned dist. Existing stale Browserslist,
+large chunk and2.57MB non-precached asset-manifest warnings remain open. Existing
+broad Node-config maxThreads incompatibility is unchanged and was not rerun as
+standard typecheck evidence. No runtime/browser/balance claim is made from this
+inactive metadata change. Final scope/data/artifact check and frozen review bind
+all five sources, original failures, command outputs and disposable inventory.
+Independent QA/test-evidence (ADEQUATE) and TD/five-axis reviews APPROVE this frozen
+inactive metadata slice; all readers released. Producer publication, local commit
+and exact cleanup follow. Next separately gated three-path helper
+plan is READY, contingent on this increment's approval/commit/cleanup.

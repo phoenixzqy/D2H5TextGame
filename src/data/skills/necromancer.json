@@ -754,6 +754,7 @@
     ],
     "summon": true,
     "summonId": "skeletal_mage",
+    "summonBasicAttackElements": ["fire", "cold", "lightning", "poison"],
     "trigger": "active",
     "target": "summon",
     "cooldown": 1,
