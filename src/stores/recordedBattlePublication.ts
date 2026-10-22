@@ -4,6 +4,7 @@ import { withDefaultGridPositions } from '@/engine/combat/grid';
 import type { CombatUnit } from '@/engine/combat/types';
 import type { KillRewards } from '@/engine/loot/award';
 import type { CombatLogEntry, RecordedBattleOutcome, UnitNameMap } from './combatStore';
+import { overlayStatusPresentation, stageStatusPlayback, type StatusPlaybackState } from './combatPlayback';
 
 /** Existing recorded-battle input; omitted wave/run values retain captured defaults. */
 export interface RecordedBattleInput {
@@ -41,6 +42,7 @@ export interface RecordedBattleDefaults {
  * publication prevention remain the installer's caller obligations.
  */
 export interface RecordedBattlePublication {
+  readonly statusPlayback: StatusPlaybackState | null;
   readonly inCombat: true;
   readonly playerTeam: CombatUnit[];
   readonly enemyTeam: CombatUnit[];
@@ -71,10 +73,14 @@ export function stageRecordedBattle(
   input: RecordedBattleInput,
   defaults: RecordedBattleDefaults
 ): RecordedBattlePublication {
+  const statusPlayback = stageStatusPlayback(input.initialPlayerTeam, input.initialEnemyTeam, input.events);
+  const playerTeam = withDefaultGridPositions(input.initialPlayerTeam);
+  const enemyTeam = withDefaultGridPositions(input.initialEnemyTeam);
   return Object.freeze({
+    statusPlayback,
     inCombat: true,
-    playerTeam: withDefaultGridPositions(input.initialPlayerTeam),
-    enemyTeam: withDefaultGridPositions(input.initialEnemyTeam),
+    playerTeam: statusPlayback ? overlayStatusPresentation(playerTeam, statusPlayback) : playerTeam,
+    enemyTeam: statusPlayback ? overlayStatusPresentation(enemyTeam, statusPlayback) : enemyTeam,
     recordedEvents: input.events,
     eventCursor: 0,
     playbackComplete: input.events.length === 0,

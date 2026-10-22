@@ -5,13 +5,72 @@
  *
  * @module stores/combatPlayback
  */
-import type { BattleEvent } from '@/engine/combat/combat';
-import type { CombatUnit } from '@/engine/combat/types';
+import type { BattleEvent, RecordedBattleEvent } from '@/engine/combat/combat';
+import type { ActiveStatus, CombatUnit } from '@/engine/combat/types';
+
+/** Battle-local presentation authority; never part of a save or engine input. */
+export interface StatusPlaybackState {
+  readonly byId: ReadonlyMap<string, readonly ActiveStatus[]>;
+  readonly deadIds: readonly string[];
+}
+
+function copyStatuses(statuses: readonly ActiveStatus[]): ActiveStatus[] {
+  return statuses.map(s => ({ ...s, ...(s.tags !== undefined ? { tags: [...s.tags] } : {}) }));
+}
+
+/** Validate the complete explicit initial prefix without consuming any event. */
+export function stageStatusPlayback(
+  playerTeam: readonly CombatUnit[],
+  enemyTeam: readonly CombatUnit[],
+  events: readonly RecordedBattleEvent[]
+): StatusPlaybackState | null {
+  if (!events.some(ev => ev.kind === 'status-state')) return null;
+  const units = new Map([...playerTeam, ...enemyTeam].map(u => [u.id, u]));
+  const byId = new Map<string, readonly ActiveStatus[]>();
+  const deadIds: string[] = [];
+  const first = events[0];
+  let index = first?.kind === 'message' && first.messageKey === 'combat:bossIntro' ? 1 : 0;
+  for (const [id, unit] of units) {
+    const ev = events[index++];
+    if (ev?.kind !== 'status-state' || ev.initial !== true || ev.simClockMs !== 0 || ev.target !== id) {
+      throw new Error('Malformed recorded status initial prefix');
+    }
+    if (!(unit.life > 0)) deadIds.push(id);
+    byId.set(id, deadIds.includes(id) ? [] : copyStatuses(ev.statuses));
+  }
+  for (; index < events.length; index++) {
+    const ev = events[index];
+    if (ev?.kind === 'status-state' && ev.initial === true) {
+      throw new Error('Unexpected later initial status observation');
+    }
+  }
+  return { byId, deadIds };
+}
+
+function presentStatuses(unit: CombatUnit, state: StatusPlaybackState): CombatUnit {
+  return { ...unit, statuses: unit.life > 0 && !state.deadIds.includes(unit.id)
+    ? copyStatuses(state.byId.get(unit.id) ?? []) : [] };
+}
+
+/** Overlay copied last observations by ID, retaining every nonstatus field. */
+export function overlayStatusPresentation(
+  team: readonly CombatUnit[], state: StatusPlaybackState
+): CombatUnit[] {
+  return team.map(unit => presentStatuses(unit, state));
+}
+
+function replaceTargetStatuses(
+  team: readonly CombatUnit[], target: string, state: StatusPlaybackState
+): readonly CombatUnit[] {
+  return team.some(u => u.id === target)
+    ? team.map(u => u.id === target ? presentStatuses(u, state) : u) : team;
+}
 
 /** Result of advancing teams by a single event. */
 export interface PlaybackStepResult {
   readonly playerTeam: readonly CombatUnit[];
   readonly enemyTeam: readonly CombatUnit[];
+  readonly statusPlayback?: StatusPlaybackState;
 }
 
 function patchUnit(
@@ -43,14 +102,15 @@ function patchUnit(
 
 /**
  * Apply a single recorded {@link BattleEvent} to the given teams,
- * returning new arrays (immutable). Only HP / MP / buff-list changes are
- * tracked — full simulation lives in the engine; this is just enough
- * for the UI to animate resources and effects during playback.
+ * returning immutable resource/buff updates and copied authoritative status
+ * observations when supplied. Statuses are never inferred from cues or clocks.
+ * Omitted authority preserves the legacy helper result and death behavior.
  */
 export function applyEventToTeams(
   playerTeam: readonly CombatUnit[],
   enemyTeam: readonly CombatUnit[],
-  ev: BattleEvent
+  ev: BattleEvent,
+  statusPlayback?: StatusPlaybackState | null
 ): PlaybackStepResult {
   let teams = { player: playerTeam, enemy: enemyTeam };
 
@@ -83,6 +143,17 @@ export function applyEventToTeams(
     }
     case 'death': {
       teams = patchUnit(teams, ev.target, (u) => ({ ...u, life: 0 }));
+      if (statusPlayback?.byId.has(ev.target)) {
+        const byId = new Map(statusPlayback.byId);
+        const deadIds = statusPlayback.deadIds.includes(ev.target)
+          ? statusPlayback.deadIds : [...statusPlayback.deadIds, ev.target];
+        byId.set(ev.target, []);
+        statusPlayback = { byId, deadIds };
+        teams = {
+          player: replaceTargetStatuses(teams.player, ev.target, statusPlayback),
+          enemy: replaceTargetStatuses(teams.enemy, ev.target, statusPlayback)
+        };
+      }
       break;
     }
     case 'buff': {
@@ -95,15 +166,34 @@ export function applyEventToTeams(
     }
     case 'status':
       break;
+    case 'status-state': {
+      if (!statusPlayback?.byId.has(ev.target) || statusPlayback.deadIds.includes(ev.target)) break;
+      const byId = new Map(statusPlayback.byId);
+      byId.set(ev.target, copyStatuses(ev.statuses));
+      statusPlayback = { byId, deadIds: statusPlayback.deadIds };
+      teams = {
+        player: replaceTargetStatuses(teams.player, ev.target, statusPlayback),
+        enemy: replaceTargetStatuses(teams.enemy, ev.target, statusPlayback)
+      };
+      break;
+    }
     case 'summon': {
       const exists =
         teams.player.some((u) => u.id === ev.unit.id) ||
         teams.enemy.some((u) => u.id === ev.unit.id);
       if (!exists) {
+        const unit = statusPlayback ? { ...ev.unit, statuses: [] } : ev.unit;
+        if (statusPlayback) {
+          const byId = new Map(statusPlayback.byId);
+          const deadIds = !(unit.life > 0) && !statusPlayback.deadIds.includes(unit.id)
+            ? [...statusPlayback.deadIds, unit.id] : statusPlayback.deadIds;
+          byId.set(unit.id, []);
+          statusPlayback = { byId, deadIds };
+        }
         if (ev.unit.side === 'player') {
-          teams = { player: [...teams.player, ev.unit], enemy: teams.enemy };
+          teams = { player: [...teams.player, unit], enemy: teams.enemy };
         } else {
-          teams = { player: teams.player, enemy: [...teams.enemy, ev.unit] };
+          teams = { player: teams.player, enemy: [...teams.enemy, unit] };
         }
       }
       break;
@@ -116,5 +206,6 @@ export function applyEventToTeams(
       break;
   }
 
-  return { playerTeam: teams.player, enemyTeam: teams.enemy };
+  return { playerTeam: teams.player, enemyTeam: teams.enemy,
+    ...(statusPlayback ? { statusPlayback } : {}) };
 }

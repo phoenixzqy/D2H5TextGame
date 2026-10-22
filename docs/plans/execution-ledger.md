@@ -9520,3 +9520,68 @@ Cleanup receipt SHA256
 0e508d1a94c4ecdb1dc170ae58f82c9e6eb7af0618109d0526e1c7ec1eca267c.
 Required evidence remains root-owned at ROOT until umbrella consumers finish.
 No owned processes remain. Settled cached whitespace precedes local commit.
+
+
+## D04 v1cu — Authoritative staged status presentation and lifecycle
+
+Lifecycle5 owns combatPlayback.ts, recordedBattlePublication.ts, combatStore.ts,
+existing recordedBattlePublication.test.ts and this ledger. Root sole writer/
+executor. Security PASS: battle-local copied presentation only; no persistent
+schema/save/reward/receipt/RNG/gameplay authority change. Engine49a68538 unchanged.
+Complete ordered initial:true sim0 prefix is validated purely before publication,
+optionally past one sole leading bossIntro. It seeds copied status records/tags/
+optional fields without consuming events or executing startup gameplay. Malformed
+prefixes fail atomically. Effective Map registration initializes logical death;
+all visible aliases get independent copies. Unknown later IDs are inert until
+summon registration; death clears aliases and prevents status resurrection.
+Final status overlay retains all raw nonstatus fields and recording/outcome refs.
+Legacy no-transport behavior is exact; authority clears on replay/start/next/exit.
+Single-event stepping remains until approved batching.
+
+Causal prepatch reviewed RED18failed/21passed preceded runtime edits. Original
+focused green65/2 was insufficient: full163failed/8088passed exposed unsupported
+Set in complete earned observations, two obsolete cross-wave presentation oracles
+and one loaded Mage timeout. All failures retained. Type/lint fixture corrections
+used ownundefined Reflect.set and block callback, preserving coverage. Producer
+approved exact four-file parking, separately accepted Clock2e3f20ef, then exact
+restore without replacing its ledger. The codec regression uses actual observeStore
+with nonempty dead IDs and copied status payloads, ownundefined/nonfinite/tags,
+JSON encode/decode full equality and held/raw immutability. Revised codec RED
+1failed/39passed preceded readonly unique immutable array correction; byId Map
+and codec/schema stay unchanged. Repeated death preserves insertion order without
+duplicates. Three isolated Mage2/1 repeats passed original timing limit; the prior
+loaded timeout is retained. No timeout or oracle threshold was raised.
+
+Forty publication/lifecycle tests include native PE application1700→expiry6700,
+actual hit/DoT/living target, future1300.25/expiry1400.5 before end, stale raw final
+status suppression with exact life77/mana9, aliases/summons/death/replay/legacy.
+Array full default run8251passed/1failed retained: only Mage zh-CN5000ms timeout,
+156.70s (wrapper158.300). Producer preapproved one complete serial invocation,
+no retries, all assertions/default5000ms limits unchanged: npm test --
+--fileParallelism=false --poolOptions.threads.maxThreads=1
+--poolOptions.threads.minThreads=1. Its pass below covers only that configuration;
+default loaded-suite timeout/performance remains open.
+Final array-focused164/4 PASS16.82s (wrapper18.004), including76 formerly broken
+earned comparisons. Types PASS24.794s; lint PASS58.133s; serial full8252/260 PASS
+(wrapper661.980s; exact Vitest duration in log); production build/bridge PASS11.879s,
+four chunks, VITE_E2E absent. Full covers engine; no separate engine rerun claimed.
+TD/CODE APPROVE and QA ADEQUATE bind exact candidate/installed/focused sources;
+final publication follows. Existing timing budgets/build warnings remain open.
+BUG080, batching/UI/browser and all full private-v1 acceptance remain unfinished.
+
+ROOT: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-status-lifecycle-9hxiaxky`.
+Required source/RED/failed-run/parking/review/log/receipt evidence remains root-owned
+until umbrella consumers finish; root removes afterward. Final reader release
+precedes exact disposable cleanup; scope/receipt/hash/append-only/cached whitespace
+checks precede local commit. No push/PR/merge/deploy. Next bounded batching, badge/
+FX presentation and native-timer production browser proof; then earned fresh
+Sorceress→Andariel→loot/equipment→Save→close→new-page Continue. C0 in progress,
+C1–C4 pending, no complete G0–G7 acceptance; full scope preserved.
+
+Final independent QA ADEQUATE and producer PUBLICATION APPROVE verify current
+five-path/source/receipt/append-only provenance, with default parallel timeout
+retained. All readers released. Exact cleanup removed1300files/43876209bytes/14directories;
+remaining[]/failures[]. Cleanup receipt SHA256
+d2de2cd0b903d4853853ac363145d83b893e9b03cfc36507ca8bb5fc626cc907.
+Required evidence remains root-owned at ROOT until umbrella consumers finish.
+No owned processes remain. Settled cached whitespace precedes local commit.

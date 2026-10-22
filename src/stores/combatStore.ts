@@ -10,7 +10,7 @@ import type { RecordedBattleEvent } from '@/engine/combat/combat';
 import type { CombatSide } from '@/engine/combat/types';
 import type { KillRewards } from '@/engine/loot/award';
 import { withDefaultGridPositions } from '@/engine/combat/grid';
-import { applyEventToTeams } from './combatPlayback';
+import { applyEventToTeams, overlayStatusPresentation, type StatusPlaybackState } from './combatPlayback';
 import { eventToLocalizedLogEntry } from './eventToLogI18n';
 import { resolveSummonDisplayName } from './summonDisplayName';
 import { stageRecordedBattle, type RecordedBattleInput, type RecordedBattlePublication } from './recordedBattlePublication';
@@ -57,6 +57,8 @@ interface CombatState {
   playbackComplete: boolean;
   unitNameMap: UnitNameMap;
   outcome: RecordedBattleOutcome | null;
+  /** Copied battle-local status views; null for recordings without transport. */
+  statusPlayback: StatusPlaybackState | null;
   /** Transient recording-level Iron lock; never included in saved game data. */
   ironGolemReplayLocked: boolean;
 
@@ -136,6 +138,7 @@ const initialState = {
   playbackComplete: false,
   unitNameMap: new Map() as UnitNameMap,
   outcome: null as RecordedBattleOutcome | null,
+  statusPlayback: null as StatusPlaybackState | null,
   ironGolemReplayLocked: false,
   subAreaRunId: null as string | null,
   runVictory: false,
@@ -169,6 +172,7 @@ export const useCombatStore= create<CombatState>((set, get) => ({
     eventCursor: 0,
     playbackComplete: false,
     outcome: null,
+    statusPlayback: null,
     ironGolemReplayLocked: false
   }); },
 
@@ -188,6 +192,7 @@ export const useCombatStore= create<CombatState>((set, get) => ({
     playbackComplete: false,
     unitNameMap: new Map(),
     outcome: null,
+    statusPlayback: null,
     ironGolemReplayLocked: false,
     subAreaRunId: null,
     runVictory: false,
@@ -217,6 +222,7 @@ export const useCombatStore= create<CombatState>((set, get) => ({
     enemyTeam: withDefaultGridPositions(newEnemies),
     currentWavePresentation: null,
     currentTurn: 0,
+    statusPlayback: null,
     ironGolemReplayLocked: false
   })); },
 
@@ -265,7 +271,8 @@ export const useCombatStore= create<CombatState>((set, get) => ({
       set({ playbackComplete: true });
       return;
     }
-    const stepped = applyEventToTeams(state.playerTeam, state.enemyTeam, ev);
+    const stepped = applyEventToTeams(state.playerTeam, state.enemyTeam, ev, state.statusPlayback);
+    const statusPlayback = stepped.statusPlayback ?? null;
 
     // Extend the name map when a summon enters the battle so the log resolves
     // its display name.
@@ -291,16 +298,19 @@ export const useCombatStore= create<CombatState>((set, get) => ({
     const nextCursor = idx + 1;
     const finished = nextCursor >= state.recordedEvents.length;
 
-    // When playback completes, snap to final state from outcome (orb effects,
-    // statuses, etc. that the lightweight stepper doesn't model).
+    // Preserve raw resource snapping, overlaying only authoritative presentation
+    // statuses so expired/dead raw records cannot restore visible badges.
     const finalTeams = finished && state.outcome
       ? {
-          playerTeam: [...state.outcome.finalPlayerTeam],
-          enemyTeam: [...state.outcome.finalEnemyTeam]
+          playerTeam: statusPlayback ? overlayStatusPresentation(state.outcome.finalPlayerTeam, statusPlayback)
+            : [...state.outcome.finalPlayerTeam],
+          enemyTeam: statusPlayback ? overlayStatusPresentation(state.outcome.finalEnemyTeam, statusPlayback)
+            : [...state.outcome.finalEnemyTeam]
         }
       : { playerTeam: stepped.playerTeam as CombatUnit[], enemyTeam: stepped.enemyTeam as CombatUnit[] };
 
     set({
+      statusPlayback,
       playerTeam: finalTeams.playerTeam,
       enemyTeam: finalTeams.enemyTeam,
       log: newLog,
