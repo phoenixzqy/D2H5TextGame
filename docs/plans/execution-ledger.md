@@ -9759,3 +9759,73 @@ root-owned at ROOT until umbrella consumers finish; root removes afterward.
 Recorded task PIDs absent and owned preview port60495closed. Final frozen hashes
 match all final receipts; exact three-path publication, unchanged runtime/default
 suites and append-only ledger verified. Settled cached whitespace precedes commit.
+
+
+## P04a06 — Earned Cold Plains pilot: two wins, elite-wave defeat
+
+Root is the sole writer/executor. This increment retains the exact diagnostic
+spec/config as `.txt` fixtures plus this append-only ledger; runnable candidates
+were hash-verified and removed after the one declared attempt. No maintained
+failing test, skip, expected-failure conversion, runtime/data change or retry.
+Baseline f513ff8. Spec SHA256
+25f1c6e267fb29bc81d29403f11df53393505b5078bf32c5122843ab96e0ea05;
+config SHA256
+369402d718684fc498459baec4a7ad39a97552e6b462a8221177d0781cca6327.
+Producer READY and QA READY approved those exact bytes before execution.
+
+The accepted 40-win Moor preparation remained byte-identical. Native UI equipped
+five additional already-earned items, returning the displaced merc glove:
+hero cap it-71emu-12 and bow it-8n9ca-1b; merc cap it-71emu-1a,
+glove it-96fga-8 and boots it-5iwwr-9. Exact item provenance, two-handed
+hero offhand:null, bag337 and hero ATK49/DEF51 matched. Merc saved DEF26
+and exact equipped gear matched; combat DEF42 is the source-derived projection.
+Fire4/Frost2/Warmth1, Frost-to-Fire order, Energy10/Vitality15 point spend,
+HP120/190 and MP102/137 remained fixed. No extra grind, refill, imported
+state, storage writes, build changes or substitute equipment were allowed.
+
+Typecheck including both candidates PASS22.660s; explicit-path eslint
+--no-ignore PASS5.944s; clean production build plus all four application-JS
+bridge scans PASS10.413s, VITE_E2E absent. Per producer-approved diagnostic-only
+scope, unchanged runtime inherits UI3 full8261/260 serial-only evidence; this
+increment claims no new full/default-parallel result.
+
+One en1280x800 production case with Date-only2026-10-20T12:00Z and native
+timers; workers1/retries0/maxFailures1. Bounds: test240s/server30s/outer300s,
+41run starts/44Skips/40prepPause-Flee pairs/3pilotPauses. Actual exit1, no timeout:
+test144.429s, report167.608s, wrapper168.869s. All40prep wins and exact awards,
+then exact earned upgrades passed. Cold Plains ordinal40 normal waves1/2 won
+with original hero and merc alive, all9/10 enemies defeated. Exact hero XP
++450/+600 and merc XP+337/+450 passed. Each wave appended5items, with shards
++211/+294; previous bag prefix, unique IDs, equipment/stash and quest state
+were preserved. After W2 hero L6XP1117, merc L9XP1036, bag347/shards5662.
+
+W3 was the first elite wave. Native terminal defeat killed original hero and
+merc with all11enemies alive and MP116/137. Strict victory assertion stopped
+the attempt immediately. W4, canonical area clear, Farm Here unlock, manual
+Save and new-page Continue were not reached. Browser errors were empty.
+This establishes failure of the tested progression recipe; no runtime defect,
+mana starvation, balancing change or general impossibility has been established.
+Full report, terminal DOM, screenshots and original assertion/trace retained.
+Trace SHA2567b687a52230585b8908ff5c15748a0465b6025e38b8300bc0551b6c3c7540458.
+
+ROOT: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-earned-plains-2_rpxbls`.
+Root retains required source/log/report/trace/review/receipt evidence until
+umbrella consumers finish, then removes it. C0 remains in progress; C1–C4,
+G0–G7, BUG080 native/browser/mobile acceptance and full v1 remain open.
+No push/PR/merge/deploy. Independent result/publication reviews and exact
+cleanup follow before local commit.
+
+Independent QA ADEQUATE and producer PUBLICATION APPROVE bind the exact frozen
+source hashes, receipts, three-path scope and bounded-failure interpretation.
+All readers released. Next: freeze intended first-elite power/progression and a
+finite legal acquisition budget, reconcile the W2-to-W3 boundary with source
+elite scaling, then choose one causally justified correction or ratified route.
+No arbitrary extra grind or balancing change is authorized by this failure alone.
+Exact disposable cleanup removed863files/43020129bytes/20directories; remaining[]/
+failures[]. Cleanup receipt SHA256479ef48b2e32c89d7a0d160337adfeabb8e9efe8054b1fd7de9bb185189fd500.
+Additionally removed4757redundant trace-staging files/272636759bytes/3directories
+only after every file matched retained trace.zip content; remaining[]/failures[].
+Recorded task PIDs absent; owned preview port36255closed. Required evidence remains
+at ROOT under root ownership until umbrella consumers finish. Final exact frozen
+hashes, append-only ledger and unchanged runtime/default suites verified; settled
+cached whitespace check precedes local commit.
