@@ -198,7 +198,7 @@ describe('receipt playback refusal and Retry', () => {
       'monsters/act1.fallen', 1, 7);
     const run: ActiveRun = { plan, act: 1, seed: 7, mode: 'manual', playerUnit: hero,
       waveIdx: 0, carryPlayerTeam: [hero], waveElapsedMs: 1000 };
-    const events = [{ kind: 'turn-start' as const, turn: 1, simClockMs: 0, uiDelayMs: 1000 },
+    const events = [{ kind: 'turn-start' as const, turn: 1, simClockMs: 0, uiDelayMs: 200 },
       { kind: 'end' as const, winner: 'player' as const, simClockMs: 1000, uiDelayMs: 1000 }];
     const outcome = { winner: 'player' as const, finalPlayerTeam: [hero], finalEnemyTeam: [] };
     const publication = stageRecordedBattle({ initialPlayerTeam: [hero], initialEnemyTeam: [],
@@ -243,7 +243,7 @@ describe('receipt playback refusal and Retry', () => {
       act(() => { abandonRecordedWaves(); rerender(); });
       fireEvent.click(screen.getByRole('button', { name: i18n.t('common:retry') }));
       expect(screen.queryByRole('alert')).not.toBeInTheDocument();
-      act(() => { vi.advanceTimersByTime(999); }); expect(useCombatStore.getState().eventCursor).toBe(0);
+      act(() => { vi.advanceTimersByTime(199); }); expect(useCombatStore.getState().eventCursor).toBe(0);
       act(() => { vi.advanceTimersByTime(1); }); expect(useCombatStore.getState().eventCursor).toBe(1);
       expect(useCombatStore.getState().isPaused).toBe(false);
     });

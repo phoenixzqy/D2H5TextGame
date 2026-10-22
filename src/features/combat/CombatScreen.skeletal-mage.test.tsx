@@ -135,56 +135,74 @@ it.each(['zh-CN', 'en'] as const)('renders real scheduled Mage playback and elem
   expect(mp().getByText('100 / 1197', { exact: true })).toBeVisible();
   summons.forEach(event => { expect(screen.queryByTestId(`unit-card-${event.unit.id}`)).not.toBeInTheDocument(); });
   let spawned = 0, paid = 0, hits = 0, cold = 0, dodges = 0;
-  for (const [idx, event] of events.entries()) {
-    if (event.simClockMs > 3880) break;
+  for (let remaining = events.length; remaining > 0; remaining--) {
     const previous = useCombatStore.getState();
-    expect(previous.eventCursor).toBe(idx);
-    const isMageHit = event.kind === 'damage' && bySource.has(event.source);
-    const targetBefore = event.kind === 'damage' ? previous.enemyTeam.find(u => u.id === event.target) : undefined;
-    const hpStyle = isMageHit ? hpBar(event.target).getAttribute('style') : null;
+    const pending = events[previous.eventCursor];
+    if (!pending || pending.simClockMs > 3880) break;
+    const priorLife = new Map(previous.enemyTeam.map(unit => [unit.id, unit.life]));
+    const hpStyles = new Map(previous.enemyTeam.map(unit => [unit.id, hpBar(unit.id).getAttribute('style')]));
     await act(async () => {
-      await vi.advanceTimersByTimeAsync(Math.max(50, Math.floor(event.uiDelayMs)));
-    }); // The real CombatScreen effect calls advanceEvent; no direct store stepping.
+      await vi.advanceTimersByTimeAsync(Math.max(50, Math.floor(pending.uiDelayMs)));
+    }); // Native component timers drive each consumed range; no direct store stepping.
     const next = useCombatStore.getState();
-    expect(next.eventCursor).toBe(idx + 1); expect(next.playbackComplete).toBe(false);
-    if (event.kind === 'summon') {
-      spawned++;
-      const position = event.unit.gridPosition;
-      if (!position) throw new Error('Missing real summon position');
-      const card = screen.getByTestId(`unit-card-${event.unit.id}`);
-      expect(card).toBeVisible(); expect(card).toHaveTextContent(copy.mage);
-      expect(within(screen.getByTestId(`player-grid-cell-${String(position.row)}-${String(position.col)}`))
-        .getByTestId(`unit-card-${event.unit.id}`)).toBe(card);
+    expect(next.eventCursor).toBeGreaterThan(previous.eventCursor);
+    expect(next.eventCursor).toBeLessThanOrEqual(events.length);
+    expect(next.playbackComplete).toBe(false);
+    for (let idx = previous.eventCursor; idx < next.eventCursor; idx++) {
+      const event = events[idx];
+      if (!event) throw new Error('Missing consumed Mage event');
+      expect(event.simClockMs).toBeLessThanOrEqual(3880);
+      if (event.kind === 'summon') {
+        spawned++;
+        const position = event.unit.gridPosition;
+        if (!position) throw new Error('Missing real summon position');
+        const card = screen.getByTestId(`unit-card-${event.unit.id}`);
+        expect(card).toBeVisible(); expect(card).toHaveTextContent(copy.mage);
+        expect(within(screen.getByTestId(`player-grid-cell-${String(position.row)}-${String(position.col)}`))
+          .getByTestId(`unit-card-${event.unit.id}`)).toBe(card);
+      }
+      if (event.kind === 'mana' && event.reason === 'cast') {
+        paid++;
+        expect(mp().getByRole('progressbar')).toHaveAttribute('aria-valuenow', '78');
+        expect(mp().getByText('78 / 1197', { exact: true })).toBeVisible();
+        expect(next.log.some(entry => entry.id === `${String(idx)}-mana`)).toBe(false);
+      }
+      if (event.kind === 'damage' && bySource.has(event.source)) {
+        const index = bySource.get(event.source);
+        const life = priorLife.get(event.target);
+        if (index === undefined || life === undefined) throw new Error('Missing real Mage target');
+        const message = next.log.find(entry => entry.id === `${String(idx)}-damage`)?.message;
+        if (event.simClockMs === 1940) {
+          hits++;
+          expect(life).toBe([35, 46, 34, 35][index]);
+          expect(message).toBe(copy.hits[index]);
+          expect(hpBar(event.target)).toHaveStyle({ width: '0%' });
+          expect(within(log).getByText(copy.hits[index] ?? '', { exact: true })).toBeVisible();
+        } else if (event.damageType === 'cold') {
+          cold++;
+          expect(event).toMatchObject({ simClockMs: 3880, amount: 61, dodged: false });
+          expect(life).toBe(41); expect(message).toBe(copy.coldHit);
+          expect(hpBar(event.target)).toHaveStyle({ width: '0%' });
+          expect(within(log).getByText(copy.coldHit, { exact: true })).toBeVisible();
+        } else {
+          dodges++;
+          expect(event).toMatchObject({ simClockMs: 3880, amount: 0, dodged: true });
+          expect(life).toBeGreaterThan(0); expect(message).toBe(copy.dodge);
+          expect(hpBar(event.target).getAttribute('style')).toBe(hpStyles.get(event.target));
+          expect(within(log).getAllByText(copy.dodge, { exact: true })).toHaveLength(dodges);
+        }
+      }
+      if ('target' in event) {
+        const life = priorLife.get(event.target);
+        if (life !== undefined) {
+          if (event.kind === 'dot' || (event.kind === 'damage' && !event.dodged)) priorLife.set(event.target, Math.max(0, life - event.amount));
+          if (event.kind === 'death') priorLife.set(event.target, 0);
+        }
+      }
     }
-    if (event.kind === 'mana' && event.reason === 'cast') {
-      paid++;
-      expect(mp().getByRole('progressbar')).toHaveAttribute('aria-valuenow', '78');
-      expect(mp().getByText('78 / 1197', { exact: true })).toBeVisible();
-      expect(next.log).toBe(previous.log);
-    }
-    if (event.kind !== 'damage' || !isMageHit) continue;
-    const index = bySource.get(event.source);
-    if (index === undefined || !targetBefore) throw new Error('Missing real Mage target');
-    const message = next.log.at(-1)?.message;
-    if (event.simClockMs === 1940) {
-      hits++;
-      expect(targetBefore.life).toBe([35, 46, 34, 35][index]);
-      expect(message).toBe(copy.hits[index]);
-      expect(hpBar(event.target)).toHaveStyle({ width: '0%' });
-      expect(within(log).getByText(copy.hits[index] ?? '', { exact: true })).toBeVisible();
-    } else if (event.damageType === 'cold') {
-      cold++;
-      expect(event).toMatchObject({ simClockMs: 3880, amount: 61, dodged: false });
-      expect(targetBefore.life).toBe(41); expect(message).toBe(copy.coldHit);
-      expect(hpBar(event.target)).toHaveStyle({ width: '0%' });
-      expect(within(log).getByText(copy.coldHit, { exact: true })).toBeVisible();
-    } else {
-      dodges++;
-      expect(event).toMatchObject({ simClockMs: 3880, amount: 0, dodged: true });
-      expect(targetBefore.life).toBeGreaterThan(0); expect(message).toBe(copy.dodge);
-      expect(hpBar(event.target).getAttribute('style')).toBe(hpStyle);
-      expect(within(log).getAllByText(copy.dodge, { exact: true })).toHaveLength(dodges);
-    }
+    expect(next.log.filter(entry => entry.type === 'damage' && bySource.has(entry.actorId)).map(entry => entry.id))
+      .toEqual(events.slice(0, next.eventCursor).flatMap((event, idx) =>
+        event.kind === 'damage' && bySource.has(event.source) ? [`${String(idx)}-damage`] : []));
   }
   expect({ spawned, paid, hits, cold, dodges }).toEqual({ spawned: 4, paid: 1, hits: 4, cold: 1, dodges: 3 });
   const stopped = useCombatStore.getState();

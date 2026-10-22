@@ -121,67 +121,91 @@ it.each(['zh-CN', 'en'] as const)('transports real Mage spawn, MP, hit and dodge
   expect(events.find(e => e.kind === 'action' && e.skillId === FINISH)?.simClockMs).toBe(4000);
   let spawned = 0, paid = 0, secondCold = 0;
   const hitElements: string[] = [], dodgeElements: string[] = [];
-  for (const [idx, event] of events.entries()) {
-    if (event.simClockMs > 3880) break; // Before FINISH/end and the final-outcome snap.
+  for (let remaining = events.length; remaining > 0; remaining--) {
     const previous = useCombatStore.getState();
-    expect(previous.eventCursor).toBe(idx);
-    if (event.kind === 'summon') {
-      expect(previous.playerTeam.some(u => u.id === event.unit.id)).toBe(false);
-    }
-    const targetBefore = event.kind === 'damage'
-      ? previous.enemyTeam.find(u => u.id === event.target) : undefined;
+    const pending = events[previous.eventCursor];
+    if (!pending || pending.simClockMs > 3880) break; // Before FINISH/end and final snap.
+    const expected = new Map([...previous.playerTeam, ...previous.enemyTeam]
+      .map(unit => [unit.id, { life: unit.life, mana: unit.mana, lifeMax: unit.stats.lifeMax }]));
     useCombatStore.getState().advanceEvent();
     const next = useCombatStore.getState();
-    expect(next.eventCursor).toBe(idx + 1); expect(next.playbackComplete).toBe(false);
-    if (event.kind === 'summon') {
-      spawned++;
-      expect(next.playerTeam.filter(u => u.kind === 'summon')).toHaveLength(spawned);
-      expect(next.playerTeam.filter(u => u.id === event.unit.id)).toEqual([event.unit]);
-      expect(next.playerTeam.find(u => u.id === event.unit.id)?.gridPosition).toEqual(event.unit.gridPosition);
-      expect(next.unitNameMap.get(event.unit.id)).toBe(copy.mage);
+    expect(next.eventCursor).toBeGreaterThan(previous.eventCursor);
+    expect(next.eventCursor).toBeLessThanOrEqual(events.length);
+    expect(next.playbackComplete).toBe(false);
+    for (let idx = previous.eventCursor; idx < next.eventCursor; idx++) {
+      const event = events[idx];
+      if (!event) throw new Error('Missing consumed Mage event');
+      expect(event.simClockMs).toBeLessThanOrEqual(3880);
+      if (event.kind === 'summon') {
+        expect(expected.has(event.unit.id)).toBe(false);
+        expected.set(event.unit.id, { life: event.unit.life, mana: event.unit.mana, lifeMax: event.unit.stats.lifeMax });
+        spawned++;
+        expect(next.playerTeam.filter(u => u.id === event.unit.id)).toEqual([event.unit]);
+        expect(next.playerTeam.find(u => u.id === event.unit.id)?.gridPosition).toEqual(event.unit.gridPosition);
+        expect(next.unitNameMap.get(event.unit.id)).toBe(copy.mage);
+      }
+      const targetBefore = 'target' in event ? expected.get(event.target) : undefined;
+      if (event.kind === 'mana' && event.reason === 'cast') {
+        paid++;
+        expect(targetBefore?.mana).toBe(100);
+        expect(event.mana).toBe(78);
+        expect(next.log.some(entry => entry.id === `${String(idx)}-mana`)).toBe(false);
+      }
+      if (event.kind === 'damage' && bySource.has(event.source)) {
+        const index = bySource.get(event.source);
+        if (index === undefined || !targetBefore) throw new Error('Missing real Mage/target');
+        const targetAfter = next.enemyTeam.find(u => u.id === event.target);
+        const entry = next.log.find(entry => entry.id === `${String(idx)}-damage`);
+        expect(entry).toMatchObject({ timestamp: 1792454400000,
+          type: 'damage', actorId: event.source, actorName: copy.mage,
+          targetId: event.target, targetName: next.unitNameMap.get(event.target), value: event.amount });
+        if (event.simClockMs === 1940) {
+          expect(event).toMatchObject({ damageType: ['fire', 'cold', 'lightning', 'poison'][index],
+            amount: [50, 61, 61, 50][index], crit: false, dodged: false });
+          expect(targetBefore.life).toBe([35, 46, 34, 35][index]);
+          expect(next.unitNameMap.get(event.target)).toBe(copy.targets[index]);
+          expect(targetAfter?.life).toBe(0);
+          expect(events.slice(0, idx).some(e => e.kind === 'death' && e.target === event.target)).toBe(false);
+          expect(entry?.message).toBe(copy.hits[index]);
+          hitElements.push(event.damageType);
+        } else if (event.damageType === 'cold') {
+          secondCold++;
+          expect(event).toMatchObject({ simClockMs: 3880, damageType: 'cold', amount: 61,
+            dodged: false, crit: false });
+          expect(targetBefore.life).toBe(41);
+          expect(next.unitNameMap.get(event.target)).toBe(copy.coldTarget);
+          expect(targetAfter?.life).toBe(0);
+          expect(events.slice(0, idx).some(e => e.kind === 'death' && e.target === event.target)).toBe(false);
+          expect(entry?.message).toBe(copy.coldHit);
+        } else {
+          expect(event.simClockMs).toBe(3880);
+          expect(event).toMatchObject({ dodged: true, amount: 0 });
+          expect(next.unitNameMap.get(event.target)).toBe(copy.dodgeTarget);
+          expect(targetBefore.life).toBeGreaterThan(0);
+          expect(targetAfter?.life).toBe(targetBefore.life);
+          expect(entry?.message).toBe(copy.dodge);
+          dodgeElements.push(event.damageType);
+        }
+      }
+      // Independent resource fold across every consumed event, including non-Mage hits.
+      if (targetBefore) {
+        if (event.kind === 'mana') targetBefore.mana = event.mana;
+        if (event.kind === 'dot' || (event.kind === 'damage' && !event.dodged)) {
+          targetBefore.life = Math.max(0, targetBefore.life - event.amount);
+        }
+        if (event.kind === 'heal') targetBefore.life = Math.min(targetBefore.lifeMax, targetBefore.life + event.amount);
+        if (event.kind === 'death') targetBefore.life = 0;
+      }
     }
-    if (event.kind === 'mana' && event.reason === 'cast') {
-      paid++;
-      expect(previous.playerTeam.find(u => u.id === HERO)?.mana).toBe(100);
-      expect(next.playerTeam.find(u => u.id === HERO)?.mana).toBe(78);
-      expect(next.log).toBe(previous.log); // Mana playback changes MP without a visible log.
+    expect(next.playerTeam.filter(u => u.kind === 'summon')).toHaveLength(spawned);
+    for (const unit of [...next.playerTeam, ...next.enemyTeam]) {
+      expect({ life: unit.life, mana: unit.mana }).toEqual({
+        life: expected.get(unit.id)?.life, mana: expected.get(unit.id)?.mana
+      });
     }
-    if (event.kind !== 'damage' || !bySource.has(event.source)) continue;
-    const index = bySource.get(event.source);
-    if (index === undefined || !targetBefore) throw new Error('Missing real Mage/target');
-    const targetAfter = next.enemyTeam.find(u => u.id === event.target);
-    const entry = next.log.at(-1);
-    expect(next.log).toHaveLength(previous.log.length + 1);
-    expect(entry).toMatchObject({ id: `${String(idx)}-damage`, timestamp: 1792454400000,
-      type: 'damage', actorId: event.source, actorName: copy.mage,
-      targetId: event.target, targetName: previous.unitNameMap.get(event.target), value: event.amount });
-    if (event.simClockMs === 1940) {
-      expect(event).toMatchObject({ damageType: ['fire', 'cold', 'lightning', 'poison'][index],
-        amount: [50, 61, 61, 50][index], crit: false, dodged: false });
-      expect(targetBefore.life).toBe([35, 46, 34, 35][index]);
-      expect(previous.unitNameMap.get(event.target)).toBe(copy.targets[index]);
-      expect(targetAfter?.life).toBe(0); // Assert immediately after damage, before death.
-      expect(events.slice(0, idx).some(e => e.kind === 'death' && e.target === event.target)).toBe(false);
-      expect(entry?.message).toBe(copy.hits[index]);
-      hitElements.push(event.damageType);
-    } else if (event.damageType === 'cold') {
-      secondCold++;
-      expect(event).toMatchObject({ simClockMs: 3880, damageType: 'cold', amount: 61,
-        dodged: false, crit: false });
-      expect(targetBefore.life).toBe(41);
-      expect(previous.unitNameMap.get(event.target)).toBe(copy.coldTarget);
-      expect(targetAfter?.life).toBe(0);
-      expect(events.slice(0, idx).some(e => e.kind === 'death' && e.target === event.target)).toBe(false);
-      expect(entry?.message).toBe(copy.coldHit);
-    } else {
-      expect(event.simClockMs).toBe(3880);
-      expect(event).toMatchObject({ dodged: true, amount: 0 });
-      expect(previous.unitNameMap.get(event.target)).toBe(copy.dodgeTarget);
-      expect(targetBefore.life).toBeGreaterThan(0);
-      expect(targetAfter?.life).toBe(targetBefore.life);
-      expect(entry?.message).toBe(copy.dodge);
-      dodgeElements.push(event.damageType);
-    }
+    expect(next.log.filter(entry => entry.type === 'damage' && bySource.has(entry.actorId)).map(entry => entry.id))
+      .toEqual(events.slice(0, next.eventCursor).flatMap((event, idx) =>
+        event.kind === 'damage' && bySource.has(event.source) ? [`${String(idx)}-damage`] : []));
   }
   expect(spawned).toBe(4); expect(paid).toBe(1); expect(secondCold).toBe(1);
   expect(hitElements).toHaveLength(4);

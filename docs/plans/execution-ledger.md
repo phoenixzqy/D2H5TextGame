@@ -9431,3 +9431,52 @@ remaining[]/failures[]. Cleanup receipt SHA256
 f864ec508fc9f1e2837c2bfeef727319c650b76aef8fe05114ef4f252048c8f8.
 Required evidence remains root-owned at ROOT until umbrella consumers finish.
 No owned processes remain. Settled cached whitespace precedes local commit.
+
+
+## D04 v1cs — Mage playback tests follow native consumed ranges
+
+Mage4 owns two native Mage playback tests, CombatScreen.test.tsx and this ledger,
+exactly four paths. Security PASS: test-only accepted contract migration; runtime,
+RNG, gameplay, save and receipt authority unchanged. Root sole writer/executor.
+
+Store traversal independently folds every consumed event's HP/MP; component
+traversal uses the pending raw event's real timer and consumed cursor range.
+Both preserve exact ordered raw damage-log IDs and bilingual literal copy,
+four startup summons, single100→78MP payment,1940 elemental hits,3880 cold hit
+and three dodges, living dodge target, stop before4000, unsettled receipt, raw
+input/recording and full durable state. Grouped death needs no separate damage
+DOM frame. Silent MP has no indexed log entry. Retry fixture now uses accepted
+first200ms and exact199+1 boundary. Production batching is still unimplemented.
+
+Baseline49/3 PASS7.09s (wrapper8.877) is green-only, not RED. Initial focused49/3
+PASS7.54s, then lint rejected two simple call-budget for-loops. Only their
+budget declarations changed to equivalent decrementing bounded counters;
+TD/CODE independently verified reversed correction reproduces approved hashes.
+Corrected focused49/3 PASS8.09s (wrapper9.595). Final types
+PASS23.398s; lint PASS54.728s;
+full8233/260 PASS166.66s (wrapper168.366);
+production build/bridge PASS10.842s, four chunks,
+VITE_E2E absent. No separate engine rerun for test-only edits; full covers engine.
+All earlier receipts/failure retained. Existing timing budgets and build warnings
+remain open. TD/CODE APPROVE and QA source/focused evidence ADEQUATE; final
+publication follows. BUG080/store/lifecycle/batching/UI/browser remain open.
+
+ROOT: `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-status-mage-34t1j5tw`.
+Root retains source/log/check/review/receipt evidence until umbrella consumers
+finish, then removes it. Final QA/producer publication and reader releases precede
+exact disposable cleanup. Scope/source/append-only checks and settled cached
+whitespace precede local commit. No push/PR/merge/deploy or full-v1 acceptance.
+Next approved lifecycle5 extends existing recordedBattlePublication.test.ts for
+combined causal tests: three production modules + that test + ledger. This
+preserves the exact publication expectation when adding transient authority,
+without a sixth path or compatibility projection. Single stepping remains until
+batching. Joined earned Sorceress→Andariel→loot/equipment→Save→close/new-page
+Continue remains delivery priority after the bounded status chain.
+
+Final QA ADEQUATE and producer PUBLICATION APPROVE verify final source/receipt
+hashes and exact four-path append-only scope. All readers released. Exact cleanup
+removed1300files/43874417bytes/14directories; remaining[]/failures[].
+Cleanup receipt SHA256
+727388858ab8ebcfdf15d317971750bc75cebc63377c9221a1d92a52f08bcedc.
+Required evidence remains root-owned at ROOT until umbrella consumers finish.
+No owned processes remain. Settled cached whitespace precedes local commit.
