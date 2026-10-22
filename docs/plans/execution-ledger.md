@@ -5320,3 +5320,64 @@ continues; no remote action. Persistence,
 playback/UI and new-transition consumers, production receipts/debit/recovery,
 once-only settlement/replay lock, bilingual Iron acceptance and fullD06/P09/P10/
 private-v1 remain open.
+
+
+## D06 v1ae persistence receipt-phase consumers
+
+The inactive access adapter received independent QA, TD/five-axis and producer
+APPROVE and committed as `f336f93`. Exact wave-access cleanup removed857files/
+42,726,323bytes and14empty directories with zero failures/remaining targets;
+all11 recorded command identities were absent.
+
+TD approved this three-path integration. Persistence now checks the recorded-wave
+snapshot boundary before building/exporting snapshots or cancelling a flush
+debounce, and reserves restores through the phase-aware adapter before queueing.
+Prepared/conflict refuse before IO, flags/status/hydration, timers, domains or
+queue ownership change. Primitive lease precedence, import decode precedence,
+exact lease release and existing initialization-flight caching remain intact.
+Stable committed pending publication allows actual-live-data saves and restores.
+Successful installation clears receipt/selection before hero notifications under
+restore ownership; failed IO and no-save hydrate retain them without refund.
+Production receipt creation and payment remain disconnected.
+
+Thirty-six new cases use real persistence/receipt/guard code and fake Dexie IO.
+They cover seven actions per unsafe phase, debounce retention, retryable refused
+initialization and cached accepted initialization, decode errors, no-debit and
+synthetic-paid SaveCurrent11 snapshots, successful/failed restore paths, no-save
+hydrate and exact two-request queue ownership after first success/failure. The
+synthetic-paid fixture explicitly installs the frozen expectedBackpack through a
+test-only type assertion at the legacy mutable-store boundary; it is not a
+production debit writer. SaveCurrent11 and its exact top-level keys are unchanged.
+
+Boundary RED2failed10.604s and per-action RED14failed10.037s reproduced the missing
+phase checks. Integration GREEN14passed10.074s; expanded22passed10.162s and
+restore32passed10.276s followed. Final serial focused85/4files10.084s,
+types15.005s, lint42.919s including85purity, full6733/227files118.612s and
+build9.855s passed. Build608modules/index-K4BBvH7V.js1263.95kB observed. All
+command/source/output identities, including failures, are retained. Related5s/
+full15s overruns, prior unexplained bundle variance, existing React act/fixture
+fallback, stale Browserslist and chunk/precache diagnostics remain open; no
+deterministic bundle-equivalence claim.
+
+Development-browser integration passed19.374s at360x640 and1280x800 with real
+IndexedDB. Per context, prepared/conflict each refused six persistence actions
+with unchanged holder/zero writes/no leaked reservation; committed no-debit
+snapshot/export/save wrote once and successful hydrate cleared the receipt.
+Owned-input staging and eight prior lease/deferred-save flows also passed; no
+console/page errors. Hero creation used UI controls; receipt phases used dev-module
+fixtures. This is not paid-Iron, visual, earned, production-build or fullD06
+acceptance. Chinese screenshot glyph rendering remains unresolved. Browser
+contexts/browser closed; exact owned Vite terminated/reaped and checked absent.
+Security check passes: no new external IO/dependency/save payload/item-write
+authority or bypass; no app-source browser hooks.
+
+Three paths, all persistence-phase command/source/output identities, prior cleanup
+and exact owned dist/tmp inventory are frozen in persistence-phase-review.json
+under /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-iron-golem-bc3r0les.
+Independent QA and TD/five-axis reviews APPROVED the frozen scope; all readers
+released. Producer publication review remains before commit; disposable outputs
+await exact cleanup. Root remains
+sole writer/executor; umbrella worktree claim continues; no remote action.
+Playback/UI/new-transition consumers, production receipts/debit/recovery, once-only
+settlement/replay lock, bilingual Iron acceptance and fullD06/P09/P10/private-v1
+remain open.
