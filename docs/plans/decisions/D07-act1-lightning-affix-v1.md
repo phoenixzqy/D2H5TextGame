@@ -96,11 +96,11 @@ Data aggregation provides the existing translated Lightning name for both the
 raw authored ID and its normal alias; no new user-visible copy is needed.
 
 Two source slices: A schema/data/type/leaf adapter/unit tests plus the existing data-loader
-catalog-count compatibility assertion (six source paths),
+catalog-count compatibility assertions in loader and bilingual log tests (seven source paths),
 then B registry/planner/factory/integration tests/existing RNG oracle if proven
 stale (five source paths). One integrated final full suite/T/L/B follows, with
 focused RED/GREEN and static validation per slice. Diagnostic evidence is separate.
-The loader count changes283→284because one distinct authored row is added; keep
+The loader and bilingual log catalog counts change283→284because one distinct authored row is added; keep
 its complete catalog-equality/no-mutation assertions. Do not commit knowingly
 failing required tests before their fix.
 

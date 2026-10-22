@@ -10080,3 +10080,23 @@ exactCD2/section9 and six-pathA/catalog compatibility plan. QA-PLAN APPROVE rema
 applicable. Readers released. This freezes the narrow implementation contract;
 no runtime, native victory, pacing or checkpoint acceptance follows. Root proceeds
 with behavioral RED/GREEN in the continuing owned worktree; no remote action.
+
+## P01e05A — Authored Act I Lightning leaf and immutable adapter
+
+Root implemented accepted D07 in seven source paths. Producer approved the second
+catalog283→284consumer in bilingual log tests; all equality/immutability/name
+assertions remain. Missing-row behavioral RED is genuine (2fail/23pass collected);
+the initial schema-positive failure was confounded by fixture omission of required
+damage.breakdown, so it is not independent proof of the new schema restriction.
+Original RED bytes/receipts retained. Early GREEN exposed missing strict Ajv object
+types/required-property reference and required damage.breakdown; all corrected,
+with failed runs retained. Final focused453/3PASS6.751s; final source engine3969/
+96PASS86.781s, typecheck31.277s/lint10.323sPASS. Actual budget overruns remain open.
+GD-DESIGN-REVIEW APPROVE, QA ADEQUATE independently confirm isolated authored row,
+actual alternate coefficients, rejection, copied/deepfrozen output and all prior
+monster rows unchanged. All readers released. Registry/planner/factory unchanged;
+no native/balance/campaign/checkpoint acceptance. Full integrated U/T/L/cleanB and
+bridge scan follow sliceB. Source/receipts/failed attempts remain root-owned in
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-root-first-elite-r7una0p6/lightning-fix`
+through fix/native consumers; root removes disposable tmp/dist/cache after all
+processes/readers finish. Local commit only; original checkout untouched.

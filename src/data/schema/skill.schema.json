@@ -8,6 +8,50 @@
   "additionalProperties": false,
   "allOf": [{
     "if": {
+      "properties": { "id": { "const": "monster-act1-lightning-affix" } },
+      "required": ["id"]
+    },
+    "then": {
+      "required": ["cost", "damage", "damageType", "scaling"],
+      "propertyNames": { "enum": [
+        "id", "name", "description", "icon", "trigger", "target", "cost",
+        "cooldown", "minLevel", "maxLevel", "damage", "damageType", "scaling"
+      ] },
+      "properties": {
+        "trigger": { "const": "active" },
+        "target": { "const": "single-enemy" },
+        "cooldown": { "const": 2 },
+        "minLevel": { "const": 1 },
+        "maxLevel": { "const": 1 },
+        "cost": {
+          "type": "object", "required": ["mana"], "maxProperties": 1,
+          "properties": { "mana": { "const": 0 } }
+        },
+        "damage": {
+          "type": "object",
+          "properties": {
+            "min": { "type": "integer", "minimum": 0 },
+            "max": { "type": "integer", "minimum": 0 },
+            "breakdown": {
+              "type": "object", "required": ["lightning"], "maxProperties": 1,
+              "properties": { "lightning": { "type": "integer", "minimum": 0 } }
+            }
+          }
+        },
+        "damageType": { "const": "lightning" },
+        "scaling": {
+          "type": "object", "required": ["monsterLevelDamageGrowth"], "maxProperties": 1,
+          "properties": {
+            "monsterLevelDamageGrowth": { "$ref": "#/properties/scaling/properties/monsterLevelDamageGrowth" }
+          }
+        }
+      }
+    },
+    "else": { "properties": {
+      "scaling": { "type": "object", "properties": { "monsterLevelDamageGrowth": false } }
+    } }
+  }, {
+    "if": {
       "properties": { "id": { "const": "skills-necromancer-raise-skeletal-mage" } },
       "required": ["id"]
     },
@@ -646,6 +690,11 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
+        "monsterLevelDamageGrowth": {
+          "type": "array", "minItems": 2, "maxItems": 2,
+          "items": { "type": "integer", "minimum": 0 },
+          "description": "Exact Act I Lightning affix: min/max damage growth per effective monster level above one; range order is checked by the leaf adapter."
+        },
         "damagePerLevel": { "type": "number" },
         "cooldownPerLevel": { "type": "number" },
         "costPerLevel": { "type": "number" },

@@ -596,6 +596,32 @@
     "appliesTags": ["cold", "chill"]
   },
   {
+    "id": "monster-act1-lightning-affix",
+    "name": "skills.monster.lightning.name",
+    "description": "skills.monster.lightning.desc",
+    "icon": "skills/monster/lightning.png",
+    "trigger": "active",
+    "target": "single-enemy",
+    "cost": {
+      "mana": 0
+    },
+    "cooldown": 2,
+    "minLevel": 1,
+    "maxLevel": 1,
+    "damage": {
+      "min": 12,
+      "max": 18,
+      "breakdown": { "lightning": 18 }
+    },
+    "damageType": "lightning",
+    "scaling": {
+      "monsterLevelDamageGrowth": [
+        2,
+        3
+      ]
+    }
+  },
+  {
     "id": "monster-lightning",
     "name": "skills.monster.lightning.name",
     "description": "skills.monster.lightning.desc",

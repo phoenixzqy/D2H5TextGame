@@ -228,6 +228,8 @@ export interface SkillDef {
   
   /** Scaling per level */
   readonly scaling?: {
+    /** Exact Act I Lightning affix min/max growth per effective monster level above one. */
+    readonly monsterLevelDamageGrowth?: readonly [number, number];
     readonly damagePerLevel?: number;
     readonly cooldownPerLevel?: number; // negative = reduces CD
     readonly costPerLevel?: number;

@@ -376,7 +376,7 @@ describe.each(['en', 'zh-CN'])('authored cast names in %s', locale => {
     const previous = i18n.language;
     try {
       await i18n.changeLanguage(locale);
-      expect(skills).toHaveLength(283);
+      expect(skills).toHaveLength(284);
       for (const skill of skills) {
         const key = skill.name.replace(/^skills\./, 'skills:');
         expect(i18n.exists(key), key).toBe(true);
