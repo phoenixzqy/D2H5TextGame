@@ -1,0 +1,11 @@
+{
+  "id": "dialogue/act4/tyrael",
+  "npcId": "tyrael",
+  "greetings": [
+    {
+      "textKey": "town:dialogue.greetings.act4.tyrael",
+      "text": "Track The Fallen Angel before facing Izual on the Plains of Despair. In the Chaos Sanctuary, open the three seals in order, then defeat Diablo for Terror’s End quest credit. Claim each reward in Quests."
+    }
+  ],
+  "services": []
+}

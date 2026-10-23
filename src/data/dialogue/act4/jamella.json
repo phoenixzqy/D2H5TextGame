@@ -1,0 +1,11 @@
+{
+  "id": "dialogue/act4/jamella",
+  "npcId": "jamella",
+  "greetings": [
+    {
+      "textKey": "town:dialogue.greetings.act4.jamella",
+      "text": "The Pandemonium Fortress is a small light against the darkness. Rest here, then choose your next battle carefully."
+    }
+  ],
+  "services": []
+}

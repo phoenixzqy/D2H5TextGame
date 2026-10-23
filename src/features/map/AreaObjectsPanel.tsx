@@ -32,7 +32,7 @@ export function AreaObjectsPanel({ act, areaId, onClose }: Props) {
           { actId: `acts/act${String(act)}`, areaId, targetId });
         const key = `areaObjects.objects.${targetId.replace(/^objects\//, '')}`;
         return (
-          <div key={targetId} className="space-y-2">
+          <div key={targetId} className="w-full min-w-0 space-y-2 break-words">
             <h3 className="text-d2-white font-semibold">{t(`${key}.name`)}</h3>
             <p role="status" className="text-sm text-d2-white/90">
               {t(`${key}.${status}`, { defaultValue: t(`areaObjects.${status}`) })}
@@ -40,8 +40,8 @@ export function AreaObjectsPanel({ act, areaId, onClose }: Props) {
             {(status === 'completed' || status === 'claimed') && (
               <p data-testid="area-object-excerpt" className="text-sm text-d2-white/90 break-words">{t(`${key}.excerpt`)}</p>
             )}
-            <Button variant="primary" className="min-h-[44px] min-w-[44px]"
-              disabled={status !== 'ready'} onClick={() => {
+            <Button variant="primary" className="min-h-[44px] min-w-[44px] max-w-full whitespace-normal"
+              data-testid={`quest-object-${targetId}`} disabled={status !== 'ready'} onClick={() => {
                 try {
                   const result = interactWithAreaObject(targetId);
                   setFailure(result === 'ok' || result === 'already-read' ? null : result);
@@ -98,7 +98,7 @@ export function AreaObjectsPanel({ act, areaId, onClose }: Props) {
         return (
           <div key={source} className="min-w-0 space-y-2 break-words">
             <h3 className="text-d2-white font-semibold">{t(tool.kind === 'delivery' ? tool.nameKey : `${key}.name`)}</h3>
-            {(tool.kind === 'delivery' || tool.kind === 'component') && <p className="text-sm text-d2-white/90">{t(tool.descKey)}</p>}
+            <p className="text-sm text-d2-white/90">{t(tool.descKey)}</p>
             <p role="status" className="text-sm text-d2-white/90">
               {t(tool.kind === 'delivery' ? `areaObjects.delivery.${status}` : `${key}.${status}`)}
             </p>

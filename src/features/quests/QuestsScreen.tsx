@@ -22,7 +22,7 @@ import { loadUniques } from '@/data/loaders/loot';
 import { loadQuestItems } from '@/data/loaders/quest-items';
 import { loadQuestUniqueProfile } from '@/data/loaders/quest-rewards';
 import { isQuestResistanceReward } from '@/engine/progression/quest-resistance';
-import { useMapStore } from '@/stores';
+import { useInventoryStore, useMapStore } from '@/stores';
 import { claimQuestReward, canClaim, type ClaimResult } from './claimReward';
 import {
   loadQuestsByAct,
@@ -45,6 +45,9 @@ const ACT_ORDER: readonly string[] = [
 export function QuestsScreen() {
   const { t } = useTranslation(['quests', 'common']);
   const questProgress = useMapStore((s) => s.questProgress);
+  // Claim eligibility also depends on retained source proof and owned/consumed items.
+  useMapStore((s) => s.questReceipts);
+  useInventoryStore((s) => s.questItems);
 
   const byAct = useMemo(() => loadQuestsByAct(), []);
 
@@ -274,6 +277,7 @@ function formatReward(
   }
   if (k === 'xp' && typeof v === 'number')
     return `✨ ${String(v)} ${t('rewardLabel.xp')}`;
+  if (k === 'gemShards' && typeof v === 'number') return `💎 ${String(v)} ${t('rewardLabel.gemShards')}`;
   if (k === 'gold' && typeof v === 'number') return `💰 ${String(v)}`;
   if (k === 'skillPoints' && typeof v === 'number')
     return `🎯 +${String(v)} ${t('rewardLabel.skillPoint')}`;

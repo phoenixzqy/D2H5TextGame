@@ -25,6 +25,14 @@
         "ready": "Khalim’s Will is ready. Break the Orb to open the way to the Durance of Hate.",
         "unavailable": "Track The Guardian, visit Travincal, and assemble Khalim’s Will first.",
         "consumed": "Orb broken. Khalim’s Will was consumed, and the way to the Durance of Hate is open. Defeat Mephisto, then claim The Guardian reward separately in Quests."
+      },
+      "act4-shatter-soulstone": {
+        "name": "Hellforge",
+        "description": "Shatter Mephisto’s Soulstone at the Hellforge. This consumes both the recovered Hellforge Hammer and the Soulstone granted by The Guardian. Shattering grants no XP; claim Hell’s Forge rewards separately in Quests.",
+        "action": "Shatter Soulstone",
+        "ready": "Both the Hellforge Hammer and Mephisto’s Soulstone are owned and ready to be consumed.",
+        "unavailable": "Track Hell’s Forge, defeat Hephasto, recover the hammer, and bring the Soulstone claimed from The Guardian to the River of Flame.",
+        "consumed": "Soulstone shattered. Both the Hellforge Hammer and Mephisto’s Soulstone were consumed. Claim Hell’s Forge rewards separately in Quests."
       }
     },
     "title": "Area Objects",
@@ -87,6 +95,13 @@
         "owned": "Viper Amulet recovered.",
         "consumed": "Viper Amulet used in assembly.",
         "unavailable": "Track The Horadric Staff and recover the shaft first."
+      },
+      "hellforge_hammer": {
+        "name": "Hellforge Hammer",
+        "ready": "Hephasto defeated. Recover his hammer explicitly.",
+        "owned": "Hammer recovered. Bring it and Mephisto’s Soulstone to the Hellforge; shattering consumes both.",
+        "consumed": "Hammer consumed together with Mephisto’s Soulstone at the Hellforge.",
+        "unavailable": "Track Hell’s Forge and defeat Hephasto in the River of Flame first."
       }
     },
     "objects": {
@@ -104,6 +119,33 @@
         "completed": "Altar destroyed. Claim the quest reward separately in Quests.",
         "claimed": "Altar destroyed. Quest reward claimed.",
         "excerpt": "Sunlight returns to the desert. The amulet can be recovered separately."
+      },
+      "diablo_seal_1": {
+        "name": "Chaos Seal 1",
+        "action": "Open Seal 1",
+        "ready": "Open seal 1. Open all three in order before defeating Diablo for quest credit.",
+        "unavailable": "Track Terror’s End and open the earlier seals in order first.",
+        "completed": "Seal opened. The remaining seals and Diablo victory are separate quest steps.",
+        "claimed": "Seal opened. Terror’s End reward claimed.",
+        "excerpt": "The seal is broken. The seals record quest progress; entering the area and facing Diablo remain available independently."
+      },
+      "diablo_seal_2": {
+        "name": "Chaos Seal 2",
+        "action": "Open Seal 2",
+        "ready": "Open seal 2. Open all three in order before defeating Diablo for quest credit.",
+        "unavailable": "Track Terror’s End and open the earlier seals in order first.",
+        "completed": "Seal opened. The remaining seals and Diablo victory are separate quest steps.",
+        "claimed": "Seal opened. Terror’s End reward claimed.",
+        "excerpt": "The seal is broken. The seals record quest progress; entering the area and facing Diablo remain available independently."
+      },
+      "diablo_seal_3": {
+        "name": "Chaos Seal 3",
+        "action": "Open Seal 3",
+        "ready": "Open seal 3. Open all three in order before defeating Diablo for quest credit.",
+        "unavailable": "Track Terror’s End and open the earlier seals in order first.",
+        "completed": "Seal opened. The remaining seals and Diablo victory are separate quest steps.",
+        "claimed": "Seal opened. Terror’s End reward claimed.",
+        "excerpt": "The seal is broken. The seals record quest progress; entering the area and facing Diablo remain available independently."
       }
     },
     "feedback": {
@@ -275,18 +317,22 @@
     },
     "act4-fallen-angel": {
       "name": "The Fallen Angel",
-      "desc": "Defeat the fallen angel Izual on the Plains of Despair.",
-      "obj1": "Defeat Izual"
+      "desc": "Track this quest before defeating Izual on the Plains of Despair. Claim 9,000 XP and 2 skill points separately in Quests.",
+      "obj1": "Defeat Izual on the Plains of Despair"
     },
-    "act4-hells-forge": {
-      "name": "Hell's Forge",
-      "desc": "Smash Mephisto's soulstone on Hell's Forge.",
-      "obj1": "Destroy the soulstone"
+    "act4-hellforge": {
+      "name": "Hell’s Forge",
+      "desc": "Track this quest and defeat Hephasto in the River of Flame, then recover his hammer. At the Hellforge, consume the hammer and Mephisto’s Soulstone together. Claim 7,000 XP, one rune reward roll, and 3 Gem Shards separately.",
+      "obj1": "Defeat Hephasto in the River of Flame",
+      "obj2": "Recover the hammer, then shatter the Soulstone at the Hellforge (consumes both)"
     },
     "act4-terrors-end": {
-      "name": "Terror's End",
-      "desc": "Defeat Diablo in the Chaos Sanctuary.",
-      "obj1": "Defeat Diablo"
+      "name": "Terror’s End",
+      "desc": "Track this quest, open the three Chaos Sanctuary seals in order, then defeat Diablo. Early victories do not count toward this quest; the seals do not control battle access. Claim 25,000 XP and five Diablo quest reward rolls separately.",
+      "obj1": "Open Chaos Seal 1",
+      "obj2": "Open Chaos Seal 2",
+      "obj3": "Open Chaos Seal 3",
+      "obj4": "Defeat Diablo after opening all three seals"
     },
     "act5-siege": {
       "name": "Siege on Harrogath",
@@ -332,7 +378,8 @@
     "gold": "Gold",
     "rune": "Rune",
     "xp": "XP",
-    "mercenaryUnlock": "Mercenary Unlock"
+    "mercenaryUnlock": "Mercenary Unlock",
+    "gemShards": "Gem Shards"
   },
   "rewardValue": {
     "identify_free": "Free identify service",

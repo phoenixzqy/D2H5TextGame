@@ -42,7 +42,13 @@
       "gheed": "Gheed, at your service. A sharp eye finds treasures others overlook.",
       "kashya": "I am Kashya, captain of the Rogue archers. Darkness has taken many sisters, but we still hold this camp.",
       "warriv": "I am Warriv, leader of this caravan. The roads are dangerous, so we remain here for now.",
-      "atma": "Radament's lair is a burial chamber beneath the Far Oasis. Track Radament's Lair in Quests. Once you defeat him, claim your reward there and read the Book of Skill in Inventory."
+      "atma": "Radament's lair is a burial chamber beneath the Far Oasis. Track Radament's Lair in Quests. Once you defeat him, claim your reward there and read the Book of Skill in Inventory.",
+      "act4": {
+        "cain": "Track Hell’s Forge before confronting Hephasto in the River of Flame. Recover his hammer, then use it with Mephisto’s Soulstone at the Hellforge. Both are consumed; claim the quest reward separately.",
+        "halbu": "I am Halbu. These walls offer a brief refuge from the River of Flame. Prepare yourself before returning to battle.",
+        "jamella": "The Pandemonium Fortress is a small light against the darkness. Rest here, then choose your next battle carefully.",
+        "tyrael": "Track The Fallen Angel before facing Izual on the Plains of Despair. In the Chaos Sanctuary, open the three seals in order, then defeat Diablo for Terror’s End quest credit. Claim each reward in Quests."
+      }
     },
     "den": {
       "untracked": "Demons infest the Den of Evil near camp. Track the Den of Evil in Quests, then clear the cave.",
@@ -50,5 +56,8 @@
       "readyToClaim": "You have cleansed the Den of Evil and given the camp some peace. Claim your reward in Quests.",
       "claimed": "The darkness in the Den of Evil has lifted. May your new strength guard the camp."
     }
-  }
+  },
+  "town.npc.tyrael": "Tyrael",
+  "town.npc.halbu": "Halbu",
+  "town.npc.jamella": "Jamella"
 }

@@ -78,6 +78,39 @@ describe.each(['zh-CN', 'en'] as const)('QuestsScreen %s', locale => {
     expect(usePlayerStore.getState()).toBe(before[2]);
   });
 
+  it('previews all three Act IV main rewards and the seven ordered objectives without granting anything', () => {
+    const before = [useMapStore.getState(), useInventoryStore.getState(), usePlayerStore.getState()];
+    renderScreen();
+    const fallen = screen.getByTestId('quest-quests/act4-fallen-angel');
+    const forge = screen.getByTestId('quest-quests/act4-hellforge');
+    const terror = screen.getByTestId('quest-quests/act4-terrors-end');
+    expect(fallen).toHaveTextContent('9000');
+    expect(fallen).toHaveTextContent(locale === 'en' ? '+2 Skill Point' : '+2 技能点');
+    expect(forge).toHaveTextContent('7000');
+    expect(forge).toHaveTextContent(locale === 'en' ? '3 Gem Shards' : '3 宝石碎片');
+    expect(forge).toHaveTextContent(i18n.t('rewardLabel.rewardCache', { ns: 'quests' }));
+    expect(terror).toHaveTextContent('25000');
+    expect(terror).toHaveTextContent(i18n.t('rewardLabel.rewardCache', { ns: 'quests' }));
+    for (const [card, id, count] of [[fallen, 'act4-fallen-angel', 1], [forge, 'act4-hellforge', 2],
+      [terror, 'act4-terrors-end', 4]] as const) {
+      let previous = -1;
+      for (let index = 1; index <= count; index++) {
+        const label = i18n.t(`byId.${id}.obj${String(index)}`, { ns: 'quests' });
+        const objective = within(card).getByText(label);
+        expect(objective).toBeVisible();
+        const position = card.textContent.indexOf(label);
+        expect(position).toBeGreaterThan(previous);
+        previous = position;
+      }
+      expect(card.textContent).not.toMatch(/gemShards|lootTable|tableId|picks|ilvl|rewardLabel|byId\.|[{}]/);
+    }
+    expect(forge).toHaveTextContent(locale === 'en' ? 'consume the hammer and Mephisto’s Soulstone together' : '同时消耗铁锤和墨菲斯托的灵魂石');
+    expect(terror).toHaveTextContent(locale === 'en' ? 'seals do not control battle access' : '封印不控制战斗入口');
+    expect(useMapStore.getState()).toBe(before[0]);
+    expect(useInventoryStore.getState()).toBe(before[1]);
+    expect(usePlayerStore.getState()).toBe(before[2]);
+  });
+
   it('renders the main quest tab with real Act 1 quests by default', () => {
     renderScreen();
     // "Den of Evil" is the first main quest in act1.

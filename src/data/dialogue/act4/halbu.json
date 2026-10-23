@@ -1,0 +1,11 @@
+{
+  "id": "dialogue/act4/halbu",
+  "npcId": "halbu",
+  "greetings": [
+    {
+      "textKey": "town:dialogue.greetings.act4.halbu",
+      "text": "I am Halbu. These walls offer a brief refuge from the River of Flame. Prepare yourself before returning to battle."
+    }
+  ],
+  "services": []
+}

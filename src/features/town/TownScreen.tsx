@@ -105,7 +105,7 @@ export function TownScreen() {
               {t(selectedNpc.nameKey)}
             </h3>
             <div role="status" aria-live="polite" className="space-y-2 text-sm text-d2-white/90">
-              <p>{t(`dialogue.greetings.${selectedNpc.portraitId}`)}</p>
+              <p>{t([`dialogue.greetings.act${String(currentAct)}.${selectedNpc.portraitId}`, `dialogue.greetings.${selectedNpc.portraitId}`])}</p>
               {selectedNpc.id === 'npc/akara' && <p>{t(`dialogue.den.${denCopy}`)}</p>}
             </div>
             <QuestDeliveryPanel key={`${String(currentAct)}:${selectedNpc.id}`} npcId={selectedNpc.id} />

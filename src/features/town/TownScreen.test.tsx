@@ -130,7 +130,7 @@ describe.each(['zh-CN', 'en'] as const)('TownScreen %s', (locale) => {
     const originalAkara = screen.getByTestId('town-npc-akara');
     fireEvent.click(originalAkara);
     expect(screen.getByTestId('town-conversation')).toBeVisible();
-    act(() => { useMapStore.getState().setCurrentLocation(4, 'areas/act4-town'); });
+    act(() => { useMapStore.getState().setCurrentLocation(5, 'areas/act5-town'); });
     expect(screen.queryAllByTestId(/^town-npc-/)).toHaveLength(0);
     expect(screen.queryByTestId('town-conversation')).not.toBeInTheDocument();
     expect(screen.getByTestId('town-screen')).toHaveTextContent(i18n.t('noNpcs', { ns: 'town' }));
@@ -145,6 +145,43 @@ describe.each(['zh-CN', 'en'] as const)('TownScreen %s', (locale) => {
     expect(screen.queryByTestId('town-conversation')).not.toBeInTheDocument();
     expect(talk).toHaveBeenCalledTimes(1);
     expect(talk).toHaveBeenCalledWith('npc/akara');
+  });
+
+  it('opens all four Act IV conversations without paying, consuming, or starting quests, and keeps Cain act-specific', () => {
+    useMapStore.getState().setCurrentLocation(4, 'areas/act4-town');
+    const before = rewards();
+    const ledger = useInventoryStore.getState().questItems;
+    const quests = useMapStore.getState().questProgress;
+    const receipts = useMapStore.getState().questReceipts;
+    renderTown();
+    expect(screen.getAllByTestId(/^town-npc-/)).toHaveLength(4);
+    const names = locale === 'en'
+      ? ['Deckard Cain', 'Halbu', 'Jamella', 'Tyrael'] : ['迪卡·凯恩', '海尔布', '贾梅拉', '泰瑞尔'];
+    ['cain', 'halbu', 'jamella', 'tyrael'].forEach((slug, index) => {
+      const name = names[index];
+      if (!name) throw new Error('Missing Act IV NPC fixture name');
+      const npc = screen.getByTestId(`town-npc-${slug}`);
+      expect(npc).toHaveAccessibleName(name);
+      fireEvent.click(npc);
+      expect(npc).toHaveFocus();
+      expect(screen.getByRole('region', { name })).toBeVisible();
+      expect(screen.getByRole('status')).toHaveTextContent(i18n.t(`dialogue.greetings.act4.${slug}`, { ns: 'town' }));
+      expect(useMapStore.getState().questProgress).toBe(quests);
+      expect(useMapStore.getState().questReceipts).toBe(receipts);
+      expect(useInventoryStore.getState().questItems).toBe(ledger);
+      expect(rewards()).toEqual(before);
+      fireEvent.click(screen.getByTestId('town-conversation-close'));
+      expect(npc).toHaveFocus();
+    });
+    expect(talk).toHaveBeenCalledTimes(4);
+    fireEvent.click(screen.getByTestId('town-npc-cain'));
+    expect(screen.getByRole('status')).toHaveTextContent(locale === 'en' ? 'Both are consumed' : '两件物品都会消耗');
+    expect(screen.getByRole('status')).not.toHaveTextContent(/Jade Figurine|玉制小雕像/);
+    act(() => { useMapStore.getState().setCurrentLocation(3, 'areas/act3-town'); });
+    expect(screen.queryByTestId('town-conversation')).not.toBeInTheDocument();
+    fireEvent.click(screen.getByTestId('town-npc-cain'));
+    expect(screen.getByTestId('town-conversation')).toHaveTextContent(locale === 'en' ? 'Jade Figurine' : '玉制小雕像');
+    expect(screen.getByTestId('town-conversation')).not.toHaveTextContent(/Hellforge|地狱熔炉/);
   });
 
   it('shows Atma in Act II with the authored Far Oasis route and no implicit quest or reward', () => {

@@ -1,0 +1,11 @@
+{
+  "id": "dialogue/act4/cain",
+  "npcId": "cain",
+  "greetings": [
+    {
+      "textKey": "town:dialogue.greetings.act4.cain",
+      "text": "Track Hell’s Forge before confronting Hephasto in the River of Flame. Recover his hammer, then use it with Mephisto’s Soulstone at the Hellforge. Both are consumed; claim the quest reward separately."
+    }
+  ],
+  "services": []
+}
