@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D10 v19 material/socket groundwork | pure actions and target migration validated; native integration open | Ordered mixed sockets,35 word predicates,35 gem effects,98 recipes, deterministic latest-replay actions, whole-ownership target migration and guarded rollback pass the local source gate. Full10706/382 with2 existing skips; engine5178/144; types/lint/build and7-JS bridge scan pass. SaveCurrent remains18. Runtime adapter, native persistence, grants, bilingual UI and earned acquisition→craft→combat→Continue proof remain open. |
 | D10 v18 concrete materials | integrated gate passed; earned browser acceptance pending | Strict69-ID ledger, RNG-preserving acquisition, whole-bag/current-destination grants and complete participating rollback integrated with save/UI/sim. At `10a63d9`, full10309/368 with2 existing opt-in skips, engine4826/134, types/lint/build and5-chunk bridge scan pass. Independent review clear after observer/owned-location fixes. Prepared inventory browser proof does not establish earned acquisition. [Evidence](evidence/d10-materials-integration.md). Sockets/crafting and fullv1 remain open. |
 | D11/P14 Act V Prison/services | five-viewport functional proof accepted | Constructed-power production en/zh×360×640,412×915,640×360,1280×800,1920×1080 passes10/10, retry/skips/flaky/errors0. Actual potion/thaw/post-thaw kill/Claim/scroll Read and real-drop socket/personalization survive exact Save-close-Continue; all442 preparation-owned payloads preserved, shared Close44px checks pass. Independent QA ADEQUATE;741source/760build/3inputs unchanged. [Evidence](evidence/act5-prison-services.md). Live insertion/crafting and earned ActV/C2 remain open. |
 | D11/P14 Act V finale | five-viewport functional proof accepted | Actual prior service export with declared constructed ancestry; Ancients/Rite Claim, four-vs-five-wave Throne interruption, new Baal/separate cache Claim, title and Nightmare victory/Normal restoration all pass Save-close-Continue. Production en/zh×five required sizes10/10, retry/skips/flaky/errors0; independent QA ADEQUATE and all80 staged save attachments checked, all956 prior payloads retained. [Evidence](evidence/act5-finale.md). Earned campaign/C2, exact replay calibration and manual acceptance remain open. |
@@ -10819,3 +10820,43 @@ stat pipeline. Unified v19 migration/recovery, sockets/recipes/actions, effects,
 UI and persistence remain required. The new explicit GD-approved item-grant
 adaptation amendment is in D10; those runtime effects remain unimplemented.
 C0/C1 remain accepted; C2 underway; C3/C4 and fullG0–G7 remain open. Local only.
+
+## D10 — Canonical sockets and material action prerequisites
+
+Implemented the approved D10/ADR-009 mechanics as pure deterministic services:
+ordered rune/gem contents, exact completed-word identity and placement, all35
+gem packages and98 recipes, legal caster affix rolling, fusion/dismantling,
+socket rolling/clearing/insertion, bulk salvage and explicit v18 recovery.
+Prepared requests bind character, ordinal, exact costs and target preimages;
+latest replay precedes spent-input checks and uses a persisted closed result.
+The shared material lease covers preflight, publication and full rollback,
+including observable rollback failures and save wake after release.
+
+The target v18→19 migration converts actual ownership once, quarantines exact
+unsupported payloads with provenance, rebuilds actor equipment mirrors and
+recomposes surviving canonical effects without healing. Historical v16→17
+cache repair remains isolated from new socket effects. BUG115 inverse word
+identity, BUG116 raw future-field laundering and BUG117 raw Map export loss
+have causal regression controls; independent QA approves the corrected raw
+guard, target migration and export behavior. SaveCurrent remains18 and the
+target migration is not yet registered.
+
+Validation: final engine5178/144PASS73.06s; full lintPASS; final production
+buildPASS25.02s and all7 JS files have zero forbidden bridge matches. Two
+test-fixture typing errors were corrected, then typecheck and targeted lint
+passed. The simultaneous full/engine/lint/build run had one5000ms module-entry
+timeout (10705passed); the unchanged behavior passes29/29 focused controls,
+then the standalone full run passes10706/382 with2 existing opt-in skips in
+240.68s. An earlier run invalidated by edits during provenance measurement is
+not used as passing evidence. Test-loop budgets remain exceeded.
+
+Raw logs remain root-owned through native-v19/umbrella consumers at
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-v19-materials-rh7euwd2`:
+`final-{engine,lint,build}.log`, `fixed-{types,focused,fixture-lint}.log`,
+`solo-full-unit.log`; failed-attempt logs are diagnostic evidence. Root removes
+them after those consumers finish. Disposable build/staging directories are
+removed separately after the completed validation consumers release them.
+Native v19 validation/storage/reset, the concrete store action adapter,
+candidate-sensitive live effects and item grants, bilingual UI and earned
+browser proof remain required. C0/C1 accepted; C2 incomplete; C3/C4 and full
+G0–G7 remain open. Local commits only; no remote publication.
