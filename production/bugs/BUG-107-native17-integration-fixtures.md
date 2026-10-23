@@ -1,6 +1,6 @@
 # BUG-107 — Restore precise integration fixtures after native17
 
-- Status: Reproduced; repairs in progress.
+- Status: Fixed; full integrated unit suite passes at `69828f6`.
 - Severity: Medium (validation failures; no player-facing failure inferred).
 - Owner: producer / QA; root integrates.
 - Build: `0d6d7b2`; Node/Vitest in the claimed Linux worktree. Browser,
@@ -31,3 +31,24 @@ Repair constraint: use historical-field removal only at genuine predecessor
 construction boundaries, add explicit native capacity, and preserve validator,
 provenance, ownership, transaction and negative-case assertions. Never relax the
 production validator to accommodate a stale fixture.
+
+## Integrated result
+
+`ffb82ac` restores genuine historical shapes, explicit native capacity and
+unique current ownership. `69828f6` repairs the remaining twelve store
+fixtures, including persisted challenge ordinals and literal source identity.
+The separate runtime causes remain attributed to BUG-105/106; no production
+validator or negative assertion was weakened for this repair.
+
+At `69828f682684ce5fd737bdff801619a57bdadb29`, the full non-watch unit run
+passes **10068 tests / 351 files**, zero failures, in 230.30s. Engine tests
+within that baseline pass 4692 tests / 129 files. Full typecheck, lint/engine
+purity and production build pass. This closes the integration-fixture failure;
+it does not establish earned campaign, browser or pacing acceptance. The test
+runtime still exceeds the documented suite-time budget.
+
+Final unit report: `/tmp/d2h5-a5-integration-650ka_is/full-unit-integrated.json`,
+SHA256 `ec4f4ea3076d5bb77d4153f97181788cde46445c89d99e9a5626405ec7153fee`;
+the sibling `.log` records file count and timing. Root retains the original
+failed and final reports through Act V integration review and owns their
+eventual removal after compact diagnostic evidence is preserved.
