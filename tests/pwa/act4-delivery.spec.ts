@@ -169,7 +169,8 @@ for (const locale of ['zh-CN', 'en'] as const) {
     await inspect(page, 'a4-river-of-flame'); await expect(page.getByTestId('quest-recover-quest/hellforge_hammer')).toBeDisabled();
     await expect(page.getByTestId('quest-action-actions/act4-shatter-soulstone')).toBeDisabled();
     await victory(page, 'a4-plains-of-despair', locale, info, 'izual'); const izualWon = await backup(page);
-    expect(izualWon.map.questProgress[IZUAL]).toMatchObject({ status: 'completed', rewardClaimed: false });
+    expect(izualWon.map.questProgress[IZUAL]).toMatchObject({ status: 'completed' });
+    expect(izualWon.map.questProgress[IZUAL]?.rewardClaimed).not.toBe(true);
     expect(izualWon.map.questReceipts[`${IZUAL}#action:izual-victory`]).toBe(true);
     await navTo(page, 'quests'); await page.getByTestId(`quest-claim-${IZUAL}`).click(); const izualPaid = await backup(page);
     sameReward(izualWon, izualPaid, 9000, null, 0, 2);
@@ -188,7 +189,8 @@ for (const locale of ['zh-CN', 'en'] as const) {
     expect(shattered.inventory.questItems).toEqual({ ...recovered.inventory.questItems,
       [HAMMER]: { itemId: 'quest/hellforge_hammer', state: 'consumed' }, [SOULSTONE]: { itemId: 'items/soulstone_mephisto', state: 'consumed' } });
     expect(shattered.map.questReceipts[`${FORGE}#action:shatter-soulstone`]).toBe(true);
-    expect(shattered.map.questProgress[FORGE]).toMatchObject({ status: 'completed', rewardClaimed: false });
+    expect(shattered.map.questProgress[FORGE]).toMatchObject({ status: 'completed' });
+    expect(shattered.map.questProgress[FORGE]?.rewardClaimed).not.toBe(true);
     expect(shattered.player).toEqual(recovered.player); expect(shattered.mercs).toEqual(recovered.mercs);
     page = await continued(page, context, locale, info, 'forge-consumed-unclaimed-continued', observe);
     await navTo(page, 'quests'); const forgeClaim = page.getByTestId(`quest-claim-${FORGE}`); await usable(forgeClaim); await forgeClaim.click();
@@ -211,7 +213,8 @@ for (const locale of ['zh-CN', 'en'] as const) {
       'obj-seal-1': true, 'obj-seal-2': true, 'obj-seal-3': true, 'obj-kill-diablo': false } });
     page = await continued(page, context, locale, info, 'seals-no-backfill-continued', observe);
     await victory(page, 'a4-chaos-sanctuary', locale, info, 'qualified-diablo'); const diabloWon = await backup(page);
-    expect(diabloWon.map.questProgress[DIABLO]).toMatchObject({ status: 'completed', rewardClaimed: false });
+    expect(diabloWon.map.questProgress[DIABLO]).toMatchObject({ status: 'completed' });
+    expect(diabloWon.map.questProgress[DIABLO]?.rewardClaimed).not.toBe(true);
     expect(diabloWon.map.questReceipts[`${DIABLO}#action:diablo-victory`]).toBe(true);
     page = await continued(page, context, locale, info, 'diablo-unclaimed-continued', observe);
     await navTo(page, 'quests'); const diabloClaim = page.getByTestId(`quest-claim-${DIABLO}`); await usable(diabloClaim); await diabloClaim.click();
