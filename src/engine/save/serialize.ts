@@ -12,6 +12,7 @@ import {
   type SaveCurrent,
   type InventorySaveData,
   type QuestItemLedger,
+  type QuestActionReceipts,
   type MercSaveData,
   type MapSaveData,
   type MetaSaveData,
@@ -24,7 +25,7 @@ export interface BuildSaveInput {
   readonly player: Player;
   readonly inventory: InventorySaveData & { readonly questItems?: QuestItemLedger };
   readonly mercs: MercSaveData;
-  readonly map: MapSaveData;
+  readonly map: MapSaveData & { readonly questReceipts?: QuestActionReceipts };
   readonly meta: MetaSaveData;
   readonly formation: FormationPreferences;
   readonly timestamp?: number;
@@ -35,13 +36,15 @@ export function buildSave(input: BuildSaveInput): SaveCurrent {
   // Only truly absent trusted legacy input defaults; present corruption is never erased.
   const questItems = Object.hasOwn(input.inventory, 'questItems') ? input.inventory.questItems : {};
   if (questItems === undefined) throw new Error('Invalid save: present questItems must be a ledger');
+  const questReceipts = Object.hasOwn(input.map, 'questReceipts') ? input.map.questReceipts : {};
+  if (questReceipts === undefined) throw new Error('Invalid save: present questReceipts must be a receipt map');
   return {
     version: CURRENT_SAVE_VERSION,
     timestamp: input.timestamp ?? Date.now(),
     player: input.player,
     inventory: { ...input.inventory, questItems },
     mercs: input.mercs,
-    map: input.map,
+    map: { ...input.map, questReceipts },
     meta: input.meta,
     formation: input.formation
   };

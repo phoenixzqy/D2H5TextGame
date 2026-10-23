@@ -12,6 +12,7 @@ import { subAreas } from '@/data/index';
 import { applyObjectInteraction, type InteractionProgress, type ObjectInteraction } from '@/engine/map/questInteractions';
 import { resolveSubArea } from './subAreaResolver';
 import type { WaveSource } from '@/engine/combat/sub-area-run';
+import type { QuestActionReceipts } from '@/engine/types/save';
 
 type QuestProgress = InteractionProgress;
 
@@ -28,6 +29,7 @@ interface MapState {
    */
   clearedSubAreas: string[];
   questProgress: Record<string, QuestProgress>;
+  questReceipts: QuestActionReceipts;
   
   // Actions
   discoverArea: (areaId: string) => void;
@@ -71,7 +73,8 @@ const initialState = {
   currentSubAreaId: null,
   discoveredAreas: [] as string[],
   clearedSubAreas: [] as string[],
-  questProgress: {} as Record<string, QuestProgress>
+  questProgress: {} as Record<string, QuestProgress>,
+  questReceipts: {} as QuestActionReceipts
 };
 
 export const useMapStore = create<MapState>((set, get) => ({

@@ -10,7 +10,9 @@ import {
   type SaveV1,
   type SaveV2,
   type SaveV3,
-  type SaveV5
+  type SaveV5,
+  type SaveV14,
+  type QuestActionReceipts
 } from '../types/save';
 
 function fakePlayer(): SaveCurrent['player'] {
@@ -85,6 +87,24 @@ function buildSampleSaveCurrent(): SaveCurrent {
 }
 
 describe('save round-trip', () => {
+  it('preserves explicit nonempty action receipts without deriving proof from objective flags', () => {
+    const original = buildSampleSaveCurrent();
+    const questReceipts: QuestActionReceipts = { 'quests/act3-guardian#action:break-compelling-orb': true };
+    const input = { ...original, map: { ...original.map, questReceipts } };
+    const saved = buildSave(input);
+    expect(saved.map.questReceipts).toBe(questReceipts);
+    expect(toJsonSafe(saved)).toEqual(saved);
+    expect(buildSampleSaveCurrent().map.questReceipts).toEqual({});
+    expect(saved.player).toBe(original.player);
+    expect(saved.inventory).toEqual(original.inventory);
+  });
+
+  it('does not silently default present undefined action receipts', () => {
+    const input = buildSampleSaveCurrent();
+    Reflect.set(input.map, 'questReceipts', undefined);
+    expect(() => buildSave(input)).toThrow('Invalid save: present questReceipts');
+  });
+
   it('survives JSON-stringify and parse with all slices intact', () => {
     const original = buildSampleSaveCurrent();
     const safe = toJsonSafe(original);
@@ -117,6 +137,22 @@ describe('save round-trip', () => {
 });
 
 describe('runMigrations', () => {
+  it('migrates v14 by adding only an empty receipt map, preserving claimed history and balances', () => {
+    const current = buildSampleSaveCurrent();
+    const { questReceipts, ...historicalMap } = current.map;
+    expect(questReceipts).toEqual({});
+    const historical: SaveV14 = { ...current, version: 14, map: historicalMap };
+    const before = structuredClone(historical);
+    const migrated = runMigrations(historical);
+    expect(migrated).toEqual({ ...historical, version: 15,
+      map: { ...historical.map, questReceipts: {} } });
+    expect(migrated.player).toBe(historical.player);
+    expect(migrated.inventory).toBe(historical.inventory);
+    expect(migrated.map.questProgress).toBe(historical.map.questProgress);
+    expect(historical).toEqual(before);
+    expect(Object.hasOwn(historical.map, 'questReceipts')).toBe(false);
+  });
+
   it('returns SaveCurrent unchanged when already current', () => {
     const cur = buildSampleSaveCurrent();
     const out = runMigrations(cur, CURRENT_SAVE_VERSION);

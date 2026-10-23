@@ -14,7 +14,7 @@ import type { GridPosition } from '../combat/types';
  * Current save format version. Bump this and add an entry to {@link MIGRATIONS}
  * whenever the on-disk shape changes.
  */
-export const CURRENT_SAVE_VERSION = 14;
+export const CURRENT_SAVE_VERSION = 15;
 
 /**
  * Save file version (most recent).
@@ -125,6 +125,9 @@ export interface QuestItemEntry {
 /** Keys are canonical authored reward/objective sources, not generated item instance IDs. */
 export type QuestItemLedger = Readonly<Record<string, QuestItemEntry>>;
 
+/** Finite source-bound action proofs; canonical sources are validated at the save boundary. */
+export type QuestActionReceipts = Readonly<Record<string, true>>;
+
 /** Current inventory; the historical v2–v11 inventory shape above stays frozen. */
 export interface QuestInventorySaveData extends InventorySaveData {
   readonly questItems: QuestItemLedger;
@@ -157,6 +160,11 @@ export interface MapSaveData {
   readonly discoveredAreas: readonly string[];
   readonly clearedSubAreas: readonly string[];
   readonly questProgress: Readonly<Record<string, QuestProgressData>>;
+}
+
+/** Current map snapshot; historical v2–v14 map shapes remain unchanged. */
+export interface QuestMapSaveData extends MapSaveData {
+  readonly questReceipts: QuestActionReceipts;
 }
 
 /** Persisted meta (settings + idle + gacha) snapshot. */
@@ -291,7 +299,13 @@ export interface SaveV14 extends Omit<SaveV13, 'version'> {
   readonly version: 14;
 }
 
-export type SaveCurrent = SaveV14;
+/** Save file v15 — explicit source-bound action receipts, never inferred from quest flags. */
+export interface SaveV15 extends Omit<SaveV14, 'version' | 'map'> {
+  readonly version: 15;
+  readonly map: QuestMapSaveData;
+}
+
+export type SaveCurrent = SaveV15;
 
 /**
  * Migration function type. Each entry receives the previous version's shape
@@ -483,5 +497,10 @@ export const MIGRATIONS: Record<number, Migration> = {
   },
   /** v12 to v13: widen supported sources without inferring or changing any entitlement. */
   13: (raw: unknown): SaveV13 => ({ ...(raw as SaveV12), version: 13 }),
-  14: (raw: unknown): SaveV14 => ({ ...(raw as SaveV13), version: 14 })
+  14: (raw: unknown): SaveV14 => ({ ...(raw as SaveV13), version: 14 }),
+  /** v14 to v15: decode validates frozen v14 first; legacy flags grant no action proof. */
+  15: (raw: unknown): SaveV15 => {
+    const v14 = raw as SaveV14;
+    return { ...v14, version: 15, map: { ...v14.map, questReceipts: {} } };
+  }
 };

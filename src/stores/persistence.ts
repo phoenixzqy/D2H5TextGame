@@ -116,7 +116,8 @@ function buildStoreSnapshot(now: number, projectBonus: boolean): SaveCurrent | n
       currentSubAreaId: map.currentSubAreaId,
       discoveredAreas: map.discoveredAreas,
       clearedSubAreas: map.clearedSubAreas,
-      questProgress: map.questProgress
+      questProgress: map.questProgress,
+      questReceipts: map.questReceipts
     },
     meta: {
       settings: meta.settings,
@@ -378,7 +379,8 @@ function applySaveToStores(data: SaveCurrent, idleBonusAnchor: number, lease: Wa
     currentSubAreaId: data.map.currentSubAreaId,
     discoveredAreas: [...data.map.discoveredAreas],
     clearedSubAreas: [...data.map.clearedSubAreas],
-    questProgress: { ...data.map.questProgress }
+    questProgress: { ...data.map.questProgress },
+    questReceipts: { ...data.map.questReceipts }
   });
   useMetaStore.setState({
     settings: data.meta.settings,

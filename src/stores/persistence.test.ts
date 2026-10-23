@@ -30,7 +30,9 @@ import {
   AUTO_SAVE_DEBOUNCE_MS,
   __resetPersistenceForTests,
   flushSave,
+  exportCurrentSave,
   hydrateFromSave,
+  importIntoStores,
   initPersistence,
   snapshotStores,
   startAutoSave,
@@ -43,6 +45,8 @@ import { useMetaStore } from './metaStore';
 import { useMapStore } from './mapStore';
 import { useMercStore } from './mercStore';
 import { useFormationStore } from './formationStore';
+import { createMockPlayer } from '@/features/character/createMockPlayer';
+import * as saveValidation from '@/engine/save/validate';
 
 function fakePlayer(): NonNullable<ReturnType<typeof usePlayerStore.getState>['player']> {
   return {
@@ -101,6 +105,60 @@ describe('persistence', () => {
       expect(snap?.version).toBe(CURRENT_SAVE_VERSION);
       expect(snap?.player.id).toBe('p1');
       expect(snap?.formation.playerPosition).toEqual({ row: 1, col: 1 });
+    });
+  });
+
+  describe('action receipt plumbing', () => {
+    it('preserves a prevalidated nonempty map through snapshot, export, Save and Continue', async () => {
+      // The adapter supplies prevalidated data here; source/graph admission has separate tests.
+      usePlayerStore.getState().setPlayer(fakePlayer());
+      const questReceipts = { 'quests/act3-guardian#action:break-compelling-orb': true } as const;
+      useMapStore.setState({ questReceipts });
+      expect(snapshotStores()?.map.questReceipts).toBe(questReceipts);
+      expect((JSON.parse(exportCurrentSave() ?? 'null') as SaveCurrent).map.questReceipts).toEqual(questReceipts);
+      await flushSave();
+      expect(mockSaveStore.current?.map.questReceipts).toEqual(questReceipts);
+      resetAllStores();
+      expect(useMapStore.getState().questReceipts).toEqual({});
+      expect(await hydrateFromSave()).toBe(true);
+      expect(useMapStore.getState().questReceipts).toEqual(questReceipts);
+      expect(useMapStore.getState().questReceipts).not.toBe(questReceipts);
+      expect(snapshotStores()?.map.questReceipts).toEqual(questReceipts);
+      expect(usePlayerStore.getState().player).toEqual(mockSaveStore.current?.player);
+    });
+
+    it('preserves live receipts when import storage fails before runtime replacement', async () => {
+      usePlayerStore.getState().setPlayer(createMockPlayer('Live receipts', 'sorceress'));
+      const questReceipts = { 'quests/act3-guardian#action:break-compelling-orb': true } as const;
+      useMapStore.setState({ questReceipts });
+      const before = snapshotStores();
+      if (!before) throw new Error('Missing live character');
+      const incoming: SaveCurrent = { ...before, player: { ...before.player, id: 'replacement' },
+        map: { ...before.map, questReceipts: {} } };
+      saveSpy.mockRejectedValueOnce(new Error('Receipt import quota'));
+      await expect(importIntoStores(JSON.stringify(incoming))).rejects.toThrow('Receipt import quota');
+      expect(useMapStore.getState().questReceipts).toBe(questReceipts);
+      expect(usePlayerStore.getState().player).toBe(before.player);
+      expect(mockSaveStore.current).toBeNull();
+    });
+
+    it('installs a prevalidated nonempty import exactly, replacing stale live receipts', async () => {
+      usePlayerStore.getState().setPlayer(createMockPlayer('Receipt import', 'sorceress'));
+      const before = snapshotStores();
+      if (!before) throw new Error('Missing import character');
+      const questReceipts = { 'quests/act3-guardian#action:break-compelling-orb': true } as const;
+      const incoming: SaveCurrent = { ...before, map: { ...before.map, questReceipts } };
+      useMapStore.setState({ questReceipts: { 'fixture/stale-action': true } });
+      // Exercise import publication separately from the production source/graph validator.
+      const decode = vi.spyOn(saveValidation, 'decodeSave').mockReturnValueOnce(incoming);
+      try {
+        await importIntoStores(JSON.stringify(incoming));
+        expect(decode).toHaveBeenCalledWith(incoming);
+        expect(mockSaveStore.current?.map.questReceipts).toEqual(questReceipts);
+        expect(useMapStore.getState().questReceipts).toEqual(questReceipts);
+        expect(useMapStore.getState().questReceipts).not.toBe(questReceipts);
+        expect(usePlayerStore.getState().player).toBe(incoming.player);
+      } finally { decode.mockRestore(); }
     });
   });
 
