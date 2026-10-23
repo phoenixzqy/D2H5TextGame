@@ -32,11 +32,15 @@ async function layout(page: Page, scope: Locator): Promise<void> {
   expect(await scope.evaluate(node => node.scrollWidth <= node.clientWidth)).toBe(true);
 }
 
-async function continued(page: Page, context: BrowserContext, en: boolean, info: TestInfo, stage: string): Promise<Page> {
+async function continued(page: Page, context: BrowserContext, en: boolean, info: TestInfo, stage: string,
+  viewport: { width: number; height: number }, observe: (page: Page) => void): Promise<Page> {
   const before = await backup(page);
   await page.getByRole('button', { name: en ? 'Save' : '保存', exact: true }).click();
   await expect(page.getByRole('status')).toHaveText(en ? 'Saved' : '已保存'); await page.close();
-  const next = await context.newPage(); await next.goto('/'); await next.getByTestId('home-continue').click();
+  const next = await context.newPage(); observe(next);
+  await next.setViewportSize(viewport);
+  expect(next.viewportSize()).toEqual(viewport);
+  await next.goto('/'); await next.getByTestId('home-continue').click();
   await expect(next.getByTestId('town-screen')).toBeVisible();
   const after = await backup(next);
   for (const key of ['player', 'inventory', 'map', 'mercs', 'formation'] as const) expect(after[key]).toEqual(before[key]);
@@ -128,7 +132,7 @@ for (const locale of ['en', 'zh-CN'] as const) for (const [width, height] of siz
     expect(wordState.inventory.materialActionOrdinal).toBe(7);
     expect(wordState.inventory.backpack.find(item => item.id === 'blade')).toMatchObject({ rarity: 'runeword', runewordId: 'runewords/steel',
       socketContents: [{ kind: 'rune', id: 'runes/tir' }, { kind: 'rune', id: 'runes/el' }] });
-    page = await continued(page, context, en, info, 'completed-word-continued'); observe(page); await page.setViewportSize({ width, height });
+    page = await continued(page, context, en, info, 'completed-word-continued', { width, height }, observe);
     await navTo(page, 'inventory');
     await category('socket-clear'); await target('blade'); await preview();
     await expect(page.getByRole('dialog')).toContainText(en ? 'No inserts are refunded' : '不返还镶嵌材料'); await commit();
@@ -153,7 +157,7 @@ for (const locale of ['en', 'zh-CN'] as const) for (const [width, height] of siz
     expect(result.inventory.backpack.find(item => item.id === 'old-lore')).toEqual({ ...preserved, rarity: 'normal', socketContents: [] });
     expect(result.inventory.backpack.find(item => item.id === 'amulet')?.affixes).toHaveLength(3);
     expect(result.inventory.backpack.find(item => item.id === 'chest')?.baseRolls).toEqual({ defense: 17 });
-    const finalPage = await continued(page, context, en, info, 'all-actions-continued'); await finalPage.close();
+    const finalPage = await continued(page, context, en, info, 'all-actions-continued', { width, height }, observe); await finalPage.close();
     expect(errors).toEqual([]); expect(warnings).toEqual([]);
   });
 }
