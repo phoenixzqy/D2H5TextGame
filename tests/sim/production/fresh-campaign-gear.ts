@@ -48,6 +48,17 @@ function validateNative(item: Item): number {
   }
 }
 
+/** Refuse drift in a separately frozen complete earned instance, including absent fields. */
+export function auditFrozenNativeItem(expected: Item): Item {
+  const actual = useInventoryStore.getState().backpack.find(item => item.id === expected.id);
+  if (!isDeepStrictEqual(actual, expected)) throw new FreshGearRefusal({
+    reason: 'frozen-v2-owned-payload-drift', expected, actual: actual ?? null
+  });
+  assert.ok(actual);
+  validateNative(actual);
+  return actual;
+}
+
 function mercIn(state: EarnedState) {
   const merc = state.merc.ownedMercs.find(actor => actor.id === state.merc.fieldedMercId);
   assert.ok(merc && merc.classId === 'rogue', 'Accepted policy requires its fielded earned Rogue');

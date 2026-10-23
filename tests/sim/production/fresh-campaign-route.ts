@@ -10,11 +10,11 @@ import { setIdleEliteMisses } from '@/stores/idleElitePity';
 import { claimQuestReward, canClaim, readQuestItem } from '@/features/quests/claimReward';
 import { assembleQuestItem, insertQuestItem, interactWithAreaObject,
   recoverQuestTool, travelToAreaObjects } from '@/features/quests/interactObject';
-import { freshCampaignPolicy as policy, freshCampaignUpgrades } from './fresh-campaign-policy';
+import { freshCampaignPolicy as policy, freshCampaignUpgrades, freshCampaignV2 } from './fresh-campaign-policy';
 import { earnedDelta, observeEarnedState } from './earned-state';
 import { hashObservation } from './earned-report';
 import { playEarnedWave, startEarnedRun, type EarnedRunHandle, type EarnedWave } from './earned-playback';
-import { auditNativeLiteral, selectFreshGear, transferFreshItem } from './fresh-campaign-gear';
+import { auditNativeLiteral, auditFrozenNativeItem, selectFreshGear, transferFreshItem } from './fresh-campaign-gear';
 
 const fire = policy.fire, frost = 'skills-sorceress-frost-nova', warmth = 'skills-sorceress-warmth';
 const ice = 'skills-sorceress-ice-blast';
@@ -33,7 +33,7 @@ interface RouteHooks {
 }
 
 /** Accepted earned Act I policy then conditional Act II; stops before any Act III launch. */
-export function runFreshCampaignRoute(hooks: RouteHooks) {
+export function runFreshCampaignRoute(hooks: RouteHooks, variant: 'native17-act2' | 'native17-v2-far-oasis' = 'native17-act2') {
   const player = () => { const value = usePlayerStore.getState().player; assert.ok(value); return value; };
   const action = (label: string, operation: () => unknown, expected: unknown = 'ok') => {
     const before = observeEarnedState();
@@ -185,7 +185,26 @@ export function runFreshCampaignRoute(hooks: RouteHooks) {
   action('visit-tomb-orifice', () => travelToAreaObjects(2, 'areas/act2-tomb-of-tal-rasha'));
   action('insert-staff', () => insertQuestItem(assembledSource));
   actTwoCheckpoint('before-radament');
+  if (variant === 'native17-v2-far-oasis') {
+    const allocation = () => ({ coreStats: player().coreStats, skillLevels: player().skillLevels,
+      statPoints: player().statPoints, skillPoints: player().skillPoints, comboOrder: player().comboOrder,
+      mercCombos: useMercStore.getState().ownedMercs.map(merc => merc.comboOrder) });
+    const frozenAllocation = structuredClone(allocation());
+    // Freeze every candidate before the first transfer; never broaden the retained selector.
+    for (const choice of freshCampaignV2.transfers)
+      hooks.action('v2-frozen-earned-payload', auditFrozenNativeItem(choice.item));
+    for (const choice of freshCampaignV2.transfers) transfer(choice.owner, choice.slot, choice.item.id);
+    const state = observeEarnedState();
+    assert.equal(state.inventory.equipped.head?.uniqueId, 'items/unique/coif-of-glory');
+    assert.equal(state.merc.mercEquipment[policy.mercId]?.weapon?.uniqueId, 'items/unique/blood-crescent');
+    assert.deepEqual(allocation(), frozenAllocation, 'V2 transfers changed the frozen allocations or combos');
+    checkpoint('v2-before-single-far-oasis');
+  }
   run(2, 'areas/act2-far-oasis', 'radament');
+  if (variant === 'native17-v2-far-oasis') {
+    checkpoint('v2-single-far-oasis-complete');
+    return; // No claim, Book, Arcane, second attempt or later campaign trial.
+  }
   claim(radament, 5000);
   action('read-book-of-skill', () => readQuestItem(`${radament}#reward:questItem`));
   actTwoCheckpoint('before-arcane');
