@@ -13,6 +13,7 @@ import { useTranslation } from 'react-i18next';
 import { Button, Panel, ScreenShell, GameImage, getZoneArtUrl, getNpcPortraitUrl } from '@/ui';
 import { useMapStore, usePlayerStore } from '@/stores';
 import { loadTownNpcs } from '@/data/loaders/towns';
+import { QuestDeliveryPanel } from './QuestDeliveryPanel';
 
 export function TownScreen() {
   const { t } = useTranslation(['town', 'common']);
@@ -107,6 +108,7 @@ export function TownScreen() {
               <p>{t(`dialogue.greetings.${selectedNpc.portraitId}`)}</p>
               {selectedNpc.id === 'npc/akara' && <p>{t(`dialogue.den.${denCopy}`)}</p>}
             </div>
+            <QuestDeliveryPanel key={`${String(currentAct)}:${selectedNpc.id}`} npcId={selectedNpc.id} />
             <div className="flex flex-wrap gap-2">
               <Button
                 variant="secondary"

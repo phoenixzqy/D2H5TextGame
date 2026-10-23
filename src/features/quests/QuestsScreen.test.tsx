@@ -61,6 +61,23 @@ describe.each(['zh-CN', 'en'] as const)('QuestsScreen %s', locale => {
     expect(card.textContent).not.toMatch(/fire_resist|cold_resist|[{}]/);
   });
 
+  it('previews the real Blade ring and Tome attribute rewards without publishing or exposing content IDs', () => {
+    const before = [useMapStore.getState(), useInventoryStore.getState(), usePlayerStore.getState()];
+    renderScreen();
+    const blade = within(screen.getByTestId('quest-quests/act3-blade-of-the-old-religion'));
+    const tome = within(screen.getByTestId('quest-quests/act3-lam-esens-tome'));
+    expect(blade.getByText(locale === 'en' ? '🎁 Unique ring' : '🎁 暗金戒指')).toBeVisible();
+    expect(tome.getByText(locale === 'en' ? '📈 +5 Stat Point' : '📈 +5 属性点')).toBeVisible();
+    for (const id of ['act3-blade-of-the-old-religion', 'act3-lam-esens-tome']) {
+      const card = screen.getByTestId(`quest-quests/${id}`);
+      expect(card).toHaveTextContent(i18n.t(`byId.${id}.obj2`, { ns: 'quests' }));
+      expect(card.textContent).not.toMatch(/profileId|quest-rewards|statPoints|itemDrop|rewardLabel|[{}]/);
+    }
+    expect(useMapStore.getState()).toBe(before[0]);
+    expect(useInventoryStore.getState()).toBe(before[1]);
+    expect(usePlayerStore.getState()).toBe(before[2]);
+  });
+
   it('renders the main quest tab with real Act 1 quests by default', () => {
     renderScreen();
     // "Den of Evil" is the first main quest in act1.

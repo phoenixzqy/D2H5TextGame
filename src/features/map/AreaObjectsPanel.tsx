@@ -16,8 +16,9 @@ interface Props { act: number; areaId: string; onClose: () => void }
 
 /** Reusable authored area objects; rendering/opening never emits an interaction. */
 export function AreaObjectsPanel({ act, areaId, onClose }: Props) {
-  const { t } = useTranslation(['quests', 'common']);
+  const { t } = useTranslation(['quests', 'common', 'inventory']);
   const progress = useMapStore(state => state.questProgress);
+  useMapStore(state => state.clearedSubAreas);
   useInventoryStore(state => state.questItems);
   const [failure, setFailure] = useState<RecoverToolResult | QuestCraftingResult | 'busy' | 'restoration-failed' | null>(null);
   return (
@@ -73,9 +74,12 @@ export function AreaObjectsPanel({ act, areaId, onClose }: Props) {
         const source = questItemSource(tool), status = questToolStatus(source);
         const key = `areaObjects.tools.${tool.id.replace(/^quest\//, '')}`;
         return (
-          <div key={source} className="space-y-2">
-            <h3 className="text-d2-white font-semibold">{t(`${key}.name`)}</h3>
-            <p role="status" className="text-sm text-d2-white/90">{t(`${key}.${status}`)}</p>
+          <div key={source} className="min-w-0 space-y-2 break-words">
+            <h3 className="text-d2-white font-semibold">{t(tool.kind === 'delivery' ? tool.nameKey : `${key}.name`)}</h3>
+            {tool.kind === 'delivery' && <p className="text-sm text-d2-white/90">{t(tool.descKey)}</p>}
+            <p role="status" className="text-sm text-d2-white/90">
+              {t(tool.kind === 'delivery' ? `areaObjects.delivery.${status}` : `${key}.${status}`)}
+            </p>
             <Button variant="primary" className="min-h-[44px] min-w-[44px]"
               disabled={status !== 'ready'} onClick={() => {
                 try {

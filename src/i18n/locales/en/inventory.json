@@ -1,6 +1,15 @@
 {
   "inventory.title": "Inventory",
   "questItems": {
+    "delivered": "Delivered to its recipient",
+    "gidbinn": {
+      "name": "The Gidbinn",
+      "description": "Recover this sacred blade in the Flayer Jungle, then give it to Ormus in Kurast Docks."
+    },
+    "lam_esens_tome": {
+      "name": "Lam Esen’s Tome",
+      "description": "Recover this ancient tome in the Kurast Bazaar, then give it to Alkor in Kurast Docks."
+    },
     "title": "Quest items",
     "bound": "Bound to this character. Does not use backpack or stash space.",
     "empty": "No quest items yet.",

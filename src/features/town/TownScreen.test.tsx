@@ -130,7 +130,7 @@ describe.each(['zh-CN', 'en'] as const)('TownScreen %s', (locale) => {
     const originalAkara = screen.getByTestId('town-npc-akara');
     fireEvent.click(originalAkara);
     expect(screen.getByTestId('town-conversation')).toBeVisible();
-    act(() => { useMapStore.getState().setCurrentLocation(3, 'areas/act3-town'); });
+    act(() => { useMapStore.getState().setCurrentLocation(4, 'areas/act4-town'); });
     expect(screen.queryAllByTestId(/^town-npc-/)).toHaveLength(0);
     expect(screen.queryByTestId('town-conversation')).not.toBeInTheDocument();
     expect(screen.getByTestId('town-screen')).toHaveTextContent(i18n.t('noNpcs', { ns: 'town' }));

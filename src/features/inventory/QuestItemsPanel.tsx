@@ -47,7 +47,8 @@ export function QuestItemsPanel() {
                 </div>
                 {item.kind !== undefined ? (
                   <p className="text-sm text-d2-gold">{t(consumed
-                    ? item.kind === 'component' ? 'questItems.usedInAssembly' : 'questItems.inserted'
+                    ? item.kind === 'component' ? 'questItems.usedInAssembly'
+                      : item.kind === 'delivery' ? 'questItems.delivered' : 'questItems.inserted'
                     : 'questItems.owned')}</p>
                 ) : <Button
                   variant="secondary"

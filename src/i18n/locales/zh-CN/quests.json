@@ -23,6 +23,12 @@
     "recover": "取回",
     "ready": "现在可以阅读这本日记。",
     "unavailable": "请先追踪任务并完成此前的目标，再阅读日记。",
+    "delivery": {
+      "ready": "区域已清理，可以取回此任务物品。",
+      "unavailable": "请先追踪任务、完成此前的目标，并清理此区域。",
+      "owned": "物品已取回，请交给营地中指定的人。",
+      "consumed": "物品已交付，此物品只能交付一次。"
+    },
     "tools": {
       "horadric_cube": {
         "name": "霍拉德里克方块宝匣",
@@ -90,6 +96,18 @@
     "5": "第五幕任务"
   },
   "byId": {
+    "act3-blade-of-the-old-religion": {
+      "name": "古神信仰之刃",
+      "desc": "在剥皮丛林取回吉得宾，再将这把神圣之刃交给奥玛斯。",
+      "obj1": "取回吉得宾",
+      "obj2": "将吉得宾交给奥玛斯"
+    },
+    "act3-lam-esens-tome": {
+      "name": "蓝·依森的古书",
+      "desc": "在库拉斯特市集取回蓝·依森的古书，再交给艾柯。",
+      "obj1": "取回蓝·依森的古书",
+      "obj2": "将蓝·依森的古书交给艾柯"
+    },
     "act1-sisters-to-the-slaughter": {
       "name": "姐妹的劫难",
       "desc": "苦痛之女安达利尔已腐化了罗格修女堡。深入地下墓穴，斩杀她，解救姐妹们，重开通往东方的道路。",
@@ -127,6 +145,7 @@
     "act5-eve-of-destruction": { "name": "毁灭前夕", "desc": "于毁灭王座击败巴尔。", "obj1": "击败巴尔" }
   },
   "rewardLabel": {
+    "uniqueRing": "暗金戒指",
     "permanentResistance": "永久火焰抗性 +{{fire}}%，冰冷抗性 +{{cold}}%",
     "rewardCache": "奖励宝箱",
     "uniqueItem": "暗金装备",

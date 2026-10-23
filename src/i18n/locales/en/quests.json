@@ -23,6 +23,12 @@
     "recover": "Recover",
     "ready": "The journal is ready to read.",
     "unavailable": "Track the quest and complete its earlier objectives before reading.",
+    "delivery": {
+      "ready": "Clear secured. Recover this quest item.",
+      "unavailable": "Track the quest, complete its earlier objectives, and clear this area first.",
+      "owned": "Item recovered. Give it to the named NPC in town.",
+      "consumed": "Item delivered. This item can only be given once."
+    },
     "tools": {
       "horadric_cube": {
         "name": "Horadric Cube Coffer",
@@ -90,6 +96,18 @@
     "5": "Act V Quests"
   },
   "byId": {
+    "act3-blade-of-the-old-religion": {
+      "name": "Blade of the Old Religion",
+      "desc": "Recover the Gidbinn in the Flayer Jungle and give the sacred blade to Ormus.",
+      "obj1": "Recover the Gidbinn",
+      "obj2": "Give the Gidbinn to Ormus"
+    },
+    "act3-lam-esens-tome": {
+      "name": "Lam Esen’s Tome",
+      "desc": "Recover Lam Esen’s Tome in the Kurast Bazaar and give it to Alkor.",
+      "obj1": "Recover Lam Esen’s Tome",
+      "obj2": "Give Lam Esen’s Tome to Alkor"
+    },
     "act1-sisters-to-the-slaughter": {
       "name": "Sisters to the Slaughter",
       "desc": "Andariel, the Maiden of Anguish, has corrupted the Rogue Monastery. Descend through the Catacombs and slay her to free the Sisters and reopen the path east.",
@@ -257,6 +275,7 @@
     }
   },
   "rewardLabel": {
+    "uniqueRing": "Unique ring",
     "permanentResistance": "Permanent fire resistance +{{fire}}%, cold resistance +{{cold}}%",
     "rewardCache": "Reward cache",
     "uniqueItem": "Unique item",

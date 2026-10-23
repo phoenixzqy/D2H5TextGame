@@ -14,8 +14,27 @@
   "town.npc.kashya": "Kashya",
   "town.npc.warriv": "Warriv",
   "town.npc.atma": "Atma",
+  "town.npc.cain": "Deckard Cain",
+  "town.npc.hratli": "Hratli",
+  "town.npc.ormus": "Ormus",
+  "town.npc.alkor": "Alkor",
+  "town.npc.asheara": "Asheara",
+  "town.npc.meshif": "Meshif",
+  "delivery": {
+    "give": "Give {{item}}",
+    "consumes": "Giving consumes {{item}}. Claim the quest reward separately in Quests.",
+    "ready": "Ready to give.",
+    "unavailable": "Track the quest, complete its earlier objectives, and recover this item first.",
+    "consumed": "Delivered. This item can only be given once. Claim the quest reward separately in Quests."
+  },
   "dialogue": {
     "greetings": {
+      "cain": "The old records may yet reveal a path through the darkness over Kurast.",
+      "hratli": "The Gidbinn once protected Kurast. Recover it in the Flayer Jungle, then give it to Ormus.",
+      "ormus": "Bring Ormus the Gidbinn, and its sacred power may shelter this dock once more.",
+      "alkor": "Seek Lam Esen’s Tome in the Kurast Bazaar, then give it to me. Its pages hold knowledge worth preserving.",
+      "asheara": "The Iron Wolves keep watch over these docks. Beyond them, the jungle offers little shelter.",
+      "meshif": "I brought you to Kurast. Take care beyond the docks; the jungle has changed.",
       "akara": "I am Akara. Darkness presses on the camp, and we need your help.",
       "charsi": "I'm Charsi, the camp's blacksmith. While the hammer rings, hope holds.",
       "gheed": "Gheed, at your service. A sharp eye finds treasures others overlook.",

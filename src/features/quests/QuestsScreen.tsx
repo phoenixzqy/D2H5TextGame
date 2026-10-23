@@ -20,6 +20,7 @@ import { useTranslation } from 'react-i18next';
 import { Button, Panel, ScreenShell, Tabs, tDataKey } from '@/ui';
 import { loadUniques } from '@/data/loaders/loot';
 import { loadQuestItems } from '@/data/loaders/quest-items';
+import { loadQuestUniqueProfile } from '@/data/loaders/quest-rewards';
 import { isQuestResistanceReward } from '@/engine/progression/quest-resistance';
 import { useMapStore } from '@/stores';
 import { claimQuestReward, canClaim, type ClaimResult } from './claimReward';
@@ -273,9 +274,14 @@ function formatReward(
   if (k === 'gold' && typeof v === 'number') return `💰 ${String(v)}`;
   if (k === 'skillPoints' && typeof v === 'number')
     return `🎯 +${String(v)} ${t('rewardLabel.skillPoint')}`;
+  if (k === 'statPoints' && typeof v === 'number')
+    return `📈 +${String(v)} ${t('rewardLabel.statPoint')}`;
   if (k === 'mercenaryUnlock' && typeof v === 'string') return `🛡️ ${t('rewardLabel.mercenaryUnlock')}: ${formatRewardValue(v, t)}`;
   if (k === 'service' && typeof v === 'string') return `🏷️ ${formatRewardValue(v, t)}`;
   if (k === 'itemDrop' && typeof v === 'string') return `🎁 ${formatRewardValue(v, t)}`;
+  if (k === 'itemDrop' && typeof v === 'object' && v !== null && 'profileId' in v) {
+    return `🎁 ${t(v.profileId === loadQuestUniqueProfile().id ? 'rewardLabel.uniqueRing' : 'rewardLabel.uniqueItem')}`;
+  }
   if (k === 'itemDrop' && typeof v === 'object' && v !== null && 'uniqueId' in v) {
     const matches = loadUniques().filter((unique) => unique.id === v.uniqueId);
     const template = matches.length === 1 ? matches[0] : undefined;

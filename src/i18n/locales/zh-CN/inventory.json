@@ -1,6 +1,15 @@
 {
   "inventory.title": "背包",
   "questItems": {
+    "delivered": "已交付给收取者",
+    "gidbinn": {
+      "name": "吉得宾",
+      "description": "在剥皮丛林取回这把神圣之刃，再交给库拉斯特码头的奥玛斯。"
+    },
+    "lam_esens_tome": {
+      "name": "蓝·依森的古书",
+      "description": "在库拉斯特市集取回这部古书，再交给库拉斯特码头的艾柯。"
+    },
     "title": "任务物品",
     "bound": "与当前角色绑定，不占用背包或仓库空间。",
     "empty": "尚无任务物品。",
