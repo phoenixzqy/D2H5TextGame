@@ -1,6 +1,9 @@
 import { subAreas } from '@/data/index';
+import { loadQuestActions, questActionInputs } from '@/data/loaders/quest-actions';
+import { loadQuests } from '@/data/loaders/quests';
 import { validateQuestServiceLedger } from '../services/quest-services';
 import { EVE_QUEST, PRISON_QUEST } from '../map/act5-admission';
+import { HEPHASTO_PROOF } from '../map/act4-admission';
 import type { CampaignMapSaveData, QuestActionReceipts, QuestItemLedger, QuestProgressData } from '../types/save';
 import { hasAct5Completion, validateAct5QuestGraph } from './act5-state';
 export const BAAL_TITLE = 'titles/slayer_of_baal';
@@ -14,6 +17,29 @@ function finiteMap(value: unknown, key: string): void {
     throw new Error('Invalid save: unknown campaign entitlement');
   }
 }
+/**
+ * Actual completion authority for main service sources and their side prerequisites.
+ * Callers first validate the reciprocal item/action graph; historical flags alone
+ * never supply a victory, a physical input, or an action receipt.
+ */
+export function hasQuestServiceSourceGraph(questId: string, progress: Readonly<Record<string, QuestProgressData>>,
+  receipts: QuestActionReceipts, items: QuestItemLedger): boolean {
+  const sourceQuest = questId === 'quests/side-act5-larzuks-sockets' ? 'quests/act5-siege-on-harrogath'
+    : questId === 'quests/side-act5-anyas-gift' ? PRISON_QUEST
+      : questId === 'quests/side-act4-halbus-soul' ? 'quests/act4-hellforge' : questId;
+  if (sourceQuest !== 'quests/act4-hellforge') return hasAct5Completion(sourceQuest, progress, receipts, items);
+  const quest = loadQuests().find(row => row.id === sourceQuest);
+  const action = loadQuestActions().find(row => row.questId === sourceQuest);
+  const row = Object.hasOwn(progress, sourceQuest) ? progress[sourceQuest] : undefined;
+  const has = (source: string) => Object.hasOwn(receipts, source) && receipts[source] === true;
+  return quest !== undefined && action !== undefined && record(row) && Object.hasOwn(row, 'id') && row.id === sourceQuest &&
+    Object.hasOwn(row, 'status') && row.status === 'completed' && Object.hasOwn(row, 'objectives') && record(row.objectives) &&
+    Object.keys(row.objectives).length === quest.objectives.length && quest.objectives.every(objective =>
+      Object.hasOwn(row.objectives, objective.id) && row.objectives[objective.id] === true) &&
+    has(HEPHASTO_PROOF) && has(action.receiptSource) && questActionInputs(action).every(input =>
+      Object.hasOwn(items, input.inputSource) && items[input.inputSource]?.itemId === input.itemId &&
+      items[input.inputSource]?.state === 'consumed');
+}
 /** Claimed Eve plus actual full source graph is the shared entitlement authority. */
 export function hasAct5CampaignReward(progress: Readonly<Record<string, QuestProgressData>>,
   receipts: QuestActionReceipts, items: QuestItemLedger): boolean {
@@ -25,8 +51,8 @@ export function validateAct5CampaignRewards(map: CampaignMapSaveData, items: Que
   const ledger = validateQuestServiceLedger(services, map.questProgress);
   for (const source of Object.keys(ledger)) {
     const questId = source.slice(0, source.indexOf('#'));
-    if (questId === PRISON_QUEST || questId === 'quests/act5-siege-on-harrogath') {
-      if (!hasAct5Completion(questId, map.questProgress, map.questReceipts, items)) throw new Error('Invalid save: service lacks actual main source graph');
+    if (!hasQuestServiceSourceGraph(questId, map.questProgress, map.questReceipts, items)) {
+      throw new Error('Invalid save: service lacks actual prerequisite source graph');
     }
   }
   finiteMap(map.questTitles, BAAL_TITLE); finiteMap(map.questDifficulties, NIGHTMARE_UNLOCK);

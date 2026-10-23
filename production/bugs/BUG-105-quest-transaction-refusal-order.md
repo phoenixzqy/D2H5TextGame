@@ -1,7 +1,7 @@
 # BUG-105 — Preserve quest transaction refusal ordering
 
 - **Severity:** High
-- **Status:** Fixed; reproduced at `3715d28`
+- **Status:** Fixed in `2fd0aec`; reproduced at `3715d28`
 - **Affected systems:** engine-dev / quest transaction and persistence integration
 - **Environment:** Vitest UI project, jsdom (no browser viewport), fixture locales; no engine RNG required
 

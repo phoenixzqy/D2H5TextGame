@@ -1,6 +1,6 @@
-import { validateQuestServiceLedger, type QuestServiceLedger } from '@/engine/services/quest-services';
+import { QUEST_SERVICE_SOURCES, validateQuestServiceLedger, type QuestServiceLedger } from '@/engine/services/quest-services';
 import { hasAct5Completion, READ_PROOF, SCROLL_SOURCE } from '@/engine/save/act5-state';
-import { validateAct5CampaignRewards, BAAL_TITLE, NIGHTMARE_UNLOCK } from '@/engine/save/act5-campaign';
+import { hasQuestServiceSourceGraph, validateAct5CampaignRewards, BAAL_TITLE, NIGHTMARE_UNLOCK } from '@/engine/save/act5-campaign';
 import { EVE_QUEST, RESCUE_QUEST } from '@/engine/map/act5-admission';
 import { ACT4_ENCOUNTERS } from '@/engine/map/act4-admission';
 /** Shared synchronous quest reward boundary; completion and claim stay separate. */
@@ -76,6 +76,16 @@ function hasAct4Completion(quest: QuestDef): boolean {
   catch { return false; }
 }
 
+/** Service eligibility uses the same actual source graph as save and service validation. */
+function hasQuestServiceCompletion(questId: string): boolean {
+  if (!Object.hasOwn(QUEST_SERVICE_SOURCES, `${questId}#reward:service`)) return true;
+  const map = useMapStore.getState(), items = useInventoryStore.getState().questItems;
+  try {
+    validateQuestItemLedger(items, map.questProgress, map.questReceipts);
+    return hasQuestServiceSourceGraph(questId, map.questProgress, map.questReceipts, items);
+  } catch { return false; }
+}
+
 /** Basic action availability; execution can still refuse with a retryable reason. */
 export function canClaim(questId: string): boolean {
   const progress = useMapStore.getState().questProgress[questId];
@@ -85,6 +95,7 @@ export function canClaim(questId: string): boolean {
   if (progress.rewardClaimed) return false;
   const quest = findQuest(questId);
   return Boolean(quest?.rewards && Object.keys(quest.rewards).length > 0 &&
+    hasQuestServiceCompletion(quest.id) &&
     hasAct5Completion(quest.id, useMapStore.getState().questProgress, useMapStore.getState().questReceipts, useInventoryStore.getState().questItems) && hasAct4Completion(quest) && hasQuestDeliveryCompletion(quest) && hasQuestAssemblyCompletion(quest) && hasRetainedQuestRewardCompletion(quest));
 }
 
@@ -143,7 +154,7 @@ export function claimQuestReward(questId: string): ClaimResult {
     if (progress.rewardClaimed) return 'already-claimed';
     const quest = findQuest(questId);
     if (!quest) return 'unknown-quest';
-    if (!hasAct5Completion(quest.id, useMapStore.getState().questProgress, useMapStore.getState().questReceipts, useInventoryStore.getState().questItems) || !hasAct4Completion(quest) || !hasQuestDeliveryCompletion(quest) || !hasQuestAssemblyCompletion(quest) ||
+    if (!hasQuestServiceCompletion(quest.id) || !hasAct5Completion(quest.id, useMapStore.getState().questProgress, useMapStore.getState().questReceipts, useInventoryStore.getState().questItems) || !hasAct4Completion(quest) || !hasQuestDeliveryCompletion(quest) || !hasQuestAssemblyCompletion(quest) ||
       !hasRetainedQuestRewardCompletion(quest)) return 'not-completed';
     const rewards = quest.rewards;
     if (!rewards || Object.keys(rewards).length === 0) return 'no-rewards';

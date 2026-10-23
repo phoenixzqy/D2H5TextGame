@@ -2,9 +2,24 @@ import { describe, expect, it } from 'vitest';
 import { deriveStats } from '../progression/stats';
 import { buildSave } from './serialize';
 import { decodeSave } from './validate';
-import type { SaveV16, SaveCurrent } from '../types/save';
+import type { SaveV16, SaveCurrent, QuestProgressData } from '../types/save';
 import type { Item } from '../types/items';
 import { BAAL_TITLE, NIGHTMARE_UNLOCK } from './act5-campaign';
+import { loadQuests } from '@/data/loaders/quests';
+import { ACT5_ENCOUNTERS, PRISON_QUEST } from '../map/act5-admission';
+import { INSPECT_PROOF, POTION_SOURCE, THAW_PROOF } from './act5-state';
+
+const sideServices = [
+  ['quests/side-act5-larzuks-sockets', 'quests/act5-siege-on-harrogath', 'socket_item'],
+  ['quests/side-act5-anyas-gift', 'quests/act5-prison-of-ice', 'personalize_item'],
+  ['quests/side-act4-halbus-soul', 'quests/act4-hellforge', 'socket_armor']
+] as const;
+function completed(id: string): QuestProgressData {
+  const quest = loadQuests().find(row => row.id === id);
+  if (!quest) throw new Error('Missing service quest fixture');
+  return { id, status: 'completed', rewardClaimed: true,
+    objectives: Object.fromEntries(quest.objectives.map(objective => [objective.id, true])) };
+}
 
 function sample(): SaveCurrent {
   const coreStats = { strength: 10, dexterity: 25, vitality: 10, energy: 35 };
@@ -33,6 +48,41 @@ function item(id: string, extra: Partial<Item> = {}): Item {
 }
 
 describe('native17 finite campaign save state', () => {
+  it.each(sideServices)('rejects %s service backed only by historical prerequisite flags', (side, main, serviceId) => {
+    const save = sample();
+    const forged = { ...save, map: { ...save.map, questProgress: { [side]: completed(side), [main]: completed(main) } },
+      inventory: { ...save.inventory, questServices: { [`${side}#reward:service`]: { serviceId, state: 'available' } } } };
+    expect(() => decodeSave(forged)).toThrow();
+  });
+  it.each(sideServices)('preserves historical claimed %s without inferring a charge or prerequisite graph', (side, main) => {
+    const old = old16();
+    const history = { ...old, map: { ...old.map, questProgress: { [side]: completed(side), [main]: completed(main) } } };
+    const migrated = decodeSave(history);
+    expect(migrated.map.questProgress).toEqual(history.map.questProgress);
+    expect(migrated.inventory.questServices).toEqual({});
+    expect(migrated.inventory.questItems).toEqual({});
+    expect(migrated.map.questReceipts).toEqual({});
+  });
+  it.each(sideServices.slice(0, 2))('accepts %s with actual completed but unclaimed prerequisite and requires every source edge',
+    (side, main, serviceId) => {
+      const save = sample(), encounter = ACT5_ENCOUNTERS.find(row => row.questId === main);
+      if (!encounter) throw new Error('Missing service victory fixture');
+      const questReceipts = { [encounter.proof]: true as const, ...(main === PRISON_QUEST
+        ? { [INSPECT_PROOF]: true as const, [POTION_SOURCE]: true as const, [THAW_PROOF]: true as const } : {}) };
+      const questItems = main === PRISON_QUEST
+        ? { [POTION_SOURCE]: { itemId: 'quest/malahs_potion', state: 'consumed' as const } } : {};
+      const valid = { ...save, map: { ...save.map, questProgress: { [side]: completed(side),
+        [main]: { ...completed(main), rewardClaimed: false } }, questReceipts }, inventory: { ...save.inventory,
+        questItems, questServices: { [`${side}#reward:service`]: { serviceId, state: 'available' as const } } } };
+      expect(decodeSave(valid)).toEqual(valid);
+      for (const source of Object.keys(questReceipts)) {
+        const missing = { ...questReceipts }; Reflect.deleteProperty(missing, source);
+        expect(() => decodeSave({ ...valid, map: { ...valid.map, questReceipts: missing } })).toThrow();
+      }
+      if (main === PRISON_QUEST) {
+        expect(() => decodeSave({ ...valid, inventory: { ...valid.inventory, questItems: {} } })).toThrow();
+      }
+    });
   it('round trips explicit empty defaults and migrates16 without inferring rewards from history', () => {
     expect(decodeSave(sample())).toEqual(sample());
     const old = old16(), before = structuredClone(old);

@@ -65,6 +65,17 @@ beforeEach(() => {
 afterEach(() => { subscriptions.splice(0).forEach(stop => { stop(); }); vi.restoreAllMocks(); useMapStore.setState({ isActUnlocked: unlock }); __resetPersistenceForTests(); });
 
 describe('Act V five main source-backed rewards', () => {
+  it.each([
+    ['quests/side-act5-larzuks-sockets', 'quests/act5-siege-on-harrogath'],
+    ['quests/side-act5-anyas-gift', PRISON_QUEST],
+    ['quests/side-act4-halbus-soul', 'quests/act4-hellforge']
+  ])('refuses %s Claim backed only by historical prerequisite flags', (side, main) => {
+    track(main, true, true); track(side, true);
+    const before = bytes();
+    expect.soft(canClaim(side)).toBe(false);
+    expect.soft(claimQuestReward(side)).toBe('not-completed');
+    expect(bytes()).toBe(before);
+  });
   it('settles the five-main budget once:85000 hero/63750 merc XP, two quest skill points and15 all-six resistance', () => {
     const merc = required(loadMercPool().pool.find(row => row.id === 'mercs/act1-rogue-inner-sight'));
     const hired = useMercStore.getState().hireMerc(merc); if (!hired.ok) throw new Error('Hire failed');
