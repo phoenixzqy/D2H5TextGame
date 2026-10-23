@@ -2,7 +2,7 @@
 import { expect, test, type Locator, type Page, type TestInfo } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import type { SaveCurrent } from '../../src/engine/types/save';
-import { awardXp, xpTotal } from '../../src/engine/progression/xp';
+import { awardXp, xpRequired, xpTotal } from '../../src/engine/progression/xp';
 import { createRng, hashSeed } from '../../src/engine/rng';
 import { clearGameStorage, createCharacter, navTo } from '../e2e/_helpers';
 
@@ -28,6 +28,149 @@ async function backup(page: Page): Promise<SaveCurrent> {
   if (!path) throw new Error('Missing exported save');
   try { return JSON.parse(await readFile(path, 'utf8')) as SaveCurrent; }
   finally { await download.delete(); }
+}
+
+for (const locale of ['zh-CN', 'en'] as const) {
+  test(`constructed Golden Bird exchange Claim Read and Continue ${locale}`, async ({ page, context }, info) => {
+    const english = locale === 'en', text = copy[locale];
+    const quest = 'quests/act3-golden-bird';
+    const jadeSource = `${quest}#objective:obj-find-figurine`;
+    const birdSource = `${quest}#objective:obj-give-cain`;
+    const potionSource = `${quest}#reward:questItem`;
+    const errors: string[] = [];
+    const observe = (target: Page): void => {
+      target.on('pageerror', error => errors.push(error.message));
+      target.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
+    };
+    observe(page);
+    await clearGameStorage(page);
+    await createCharacter(page, { class: 'sorceress', name: 'Golden Bird fixture' });
+    await navTo(page, 'settings');
+    await page.getByRole('button', { name: english ? 'English' : '简体中文', exact: true }).click();
+    await navTo(page, 'mercs');
+    await page.getByTestId('hire-merc-mercs/act1-rogue-inner-sight').getByRole('button').click();
+    const original = await backup(page);
+    // Explicit level/clear fixture avoids incidental hero level-up when testing Claim's Life payload.
+    const incoming: SaveCurrent = { ...original,
+      player: { ...original.player, level: 30, experience: 0, experienceToNextLevel: xpRequired(30),
+        derivedStats: { ...original.player.derivedStats, life: 17, lifeMax: 352 } },
+      map: { ...original.map, currentAct: 3, currentSubAreaId: 'areas/act3-spider-forest',
+        clearedSubAreas: ['areas/act1-catacombs', 'areas/act2-tomb-of-tal-rasha', 'areas/act3-spider-forest'],
+        questProgress: { ...original.map.questProgress, [quest]: {
+          id: quest, status: 'inProgress', rewardClaimed: false,
+          objectives: { 'obj-find-figurine': false, 'obj-give-cain': false, 'obj-give-alkor': false }
+        } }
+      }
+    };
+    await page.getByRole('button', { name: text.importSave, exact: true }).click();
+    const dialog = page.getByRole('dialog');
+    await dialog.getByRole('textbox').fill(JSON.stringify(incoming));
+    await dialog.getByRole('button', { name: text.importSave, exact: true }).click();
+    await expect(dialog).toHaveCount(0);
+    const imported = await backup(page);
+    expect(imported.player).toEqual(incoming.player);
+    await attach(info, 'golden-constructed-start', imported);
+    await recover(page, 'a3-spider-forest', english ? 'Jade Figurine' : '玉制小雕像', text.recover);
+    const recovered = await backup(page);
+    expect(recovered.inventory.questItems).toEqual({
+      [jadeSource]: { itemId: 'quest/jade_figurine', state: 'owned' }
+    });
+    expect(recovered.map.questProgress[quest]).toMatchObject({ status: 'inProgress', rewardClaimed: false,
+      objectives: { 'obj-find-figurine': true, 'obj-give-cain': false, 'obj-give-alkor': false } });
+    expect(recovered.player).toEqual(imported.player);
+    expect(recovered.mercs).toEqual(imported.mercs);
+    for (const [npc, item, expectedLedger] of [
+      ['cain', 'quest/jade_figurine', { [jadeSource]: { itemId: 'quest/jade_figurine', state: 'consumed' },
+        [birdSource]: { itemId: 'quest/golden_bird', state: 'owned' } }],
+      ['alkor', 'quest/golden_bird', { [jadeSource]: { itemId: 'quest/jade_figurine', state: 'consumed' },
+        [birdSource]: { itemId: 'quest/golden_bird', state: 'consumed' } }]
+    ] as const) {
+      const beforeTalk = await backup(page);
+      await navTo(page, 'town');
+      await page.getByTestId(`town-npc-${npc}`).click();
+      const talked = await backup(page);
+      expect(talked.inventory).toEqual(beforeTalk.inventory);
+      expect(talked.map.questProgress).toEqual(beforeTalk.map.questProgress);
+      await navTo(page, 'town');
+      await page.getByTestId(`town-npc-${npc}`).click();
+      const give = page.getByTestId(`quest-give-${item}`);
+      await usable(give);
+      await give.focus();
+      await give.press('Enter');
+      await expect(give).toBeDisabled();
+      await productionLayout(page);
+      await info.attach(`golden-${npc}-give`, { body: await page.screenshot(), contentType: 'image/png' });
+      const given = await backup(page);
+      expect(given.inventory.questItems).toEqual(expectedLedger);
+      expect(given.map.questProgress[quest]).toMatchObject({
+        status: npc === 'cain' ? 'inProgress' : 'completed', rewardClaimed: false,
+        objectives: { 'obj-find-figurine': true, 'obj-give-cain': true, 'obj-give-alkor': npc === 'alkor' }
+      });
+      expect(given.player).toEqual(imported.player);
+      expect(given.mercs).toEqual(imported.mercs);
+    }
+    const given = await backup(page);
+    expect(given.map.questProgress[quest]).toMatchObject({ status: 'completed', rewardClaimed: false });
+    await navTo(page, 'quests');
+    const claim = page.getByTestId(`quest-claim-${quest}`);
+    await usable(claim);
+    await claim.click();
+    await expect(claim).toBeDisabled();
+    const paid = await backup(page);
+    expect(heroXp(paid) - heroXp(given)).toBe(4000);
+    expect(mercXp(paid) - mercXp(given)).toBe(3000);
+    expect(paid.player.level).toBe(30);
+    expect(paid.player.derivedStats.lifeMax).toBe(given.player.derivedStats.lifeMax);
+    expect(paid.player.derivedStats.life).toBe(17);
+    expect(paid.inventory).toEqual({ ...given.inventory, questItems: {
+      ...given.inventory.questItems, [potionSource]: { itemId: 'items/potion_of_life_q', state: 'owned' }
+    } });
+    await attach(info, 'golden-claim-owned-no-life-bonus', paid);
+    await navTo(page, 'inventory');
+    const read = page.getByTestId('quest-item-read-items/potion_of_life_q');
+    await usable(read);
+    await expect(read).toHaveAccessibleName(english ? 'Read' : '阅读');
+    await read.focus();
+    await read.press('Enter');
+    await expect(read).toHaveAttribute('aria-disabled', 'true');
+    await expect(read).toHaveText(english ? 'Already read' : '已阅读');
+    await productionLayout(page);
+    await info.attach('golden-read-no-heal', { body: await page.screenshot(), contentType: 'image/png' });
+    const consumed = await backup(page);
+    expect(consumed.player).toEqual({ ...paid.player, derivedStats: {
+      ...paid.player.derivedStats, lifeMax: paid.player.derivedStats.lifeMax + 20
+    } });
+    expect(consumed.mercs).toEqual(paid.mercs);
+    expect(consumed.inventory).toEqual({ ...paid.inventory, questItems: {
+      ...paid.inventory.questItems, [potionSource]: { itemId: 'items/potion_of_life_q', state: 'consumed' }
+    } });
+    await attach(info, 'golden-read-consumed', consumed);
+    await navTo(page, 'settings');
+    await page.getByRole('button', { name: text.save, exact: true }).click();
+    await expect(page.getByRole('status')).toHaveText(text.saved);
+    await page.close();
+    const continued = await context.newPage();
+    observe(continued);
+    await continued.goto('/');
+    await continued.getByTestId('home-continue').click();
+    await expect(continued.getByTestId('town-screen')).toBeVisible();
+    const restored = await backup(continued);
+    expect(restored.player).toEqual(consumed.player);
+    expect(restored.inventory).toEqual(consumed.inventory);
+    expect(restored.mercs).toEqual(consumed.mercs);
+    expect(restored.map).toEqual(consumed.map);
+    await attach(info, 'golden-continued', restored);
+    await navTo(continued, 'inventory');
+    const reread = continued.getByTestId('quest-item-read-items/potion_of_life_q');
+    await expect(reread).toHaveAttribute('aria-disabled', 'true');
+    await reread.focus();
+    await reread.press('Enter');
+    const repeated = await backup(continued);
+    expect(repeated.player).toEqual(restored.player);
+    expect(repeated.inventory).toEqual(restored.inventory);
+    expect(repeated.mercs).toEqual(restored.mercs);
+    expect(errors).toEqual([]);
+  });
 }
 
 async function attach(info: TestInfo, name: string, save: SaveCurrent): Promise<void> {
