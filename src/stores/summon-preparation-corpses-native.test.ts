@@ -51,7 +51,7 @@ function arrange(rank = 20): Item {
     skillLevels: { [ACTIVE]: 6, ...(rank > 0 ? { [CANONICAL]: rank } : {}) },
     comboOrder: [ACTIVE, FINISHER] });
   // Necromancer L24: life314/mana179/defense89. Cap base defense7.
-  const cap: Item = { id: 'fixture-skeleton-native-cap', baseId: 'items/base/helm-cap', rarity: 'rare',
+  const cap: Item = { id: 'fixture-skeleton-native-cap', baseId: 'items/base/helm-cap', socketCapacity: 0, rarity: 'rare',
     level: 1, identified: true, equipped: false, affixes: [{ affixId: 'fixture-imported',
       values: new Map([['statMods.life', 999686], ['statMods.mana', 821], ['statMods.defense', 99904]]) }] };
   useInventoryStore.getState().addItem(cap);
@@ -290,7 +290,7 @@ describe('P07a05B actual native store wave wiring', () => {
       skillLevels: { [CANONICAL]: 1,
         ...(row.prerequisite ? { [`necromancer.${row.prerequisite}`]: 1 } : {}), [active]: 6 } });
     usePlayerStore.getState().setPlayer(hero);
-    const cap: Item = { id: 'fixture-skeleton-cap', baseId: 'items/base/helm-cap', rarity: 'rare',
+    const cap: Item = { id: 'fixture-skeleton-cap', baseId: 'items/base/helm-cap', socketCapacity: 0, rarity: 'rare',
       level: 1, identified: true, equipped: false, affixes: [{ affixId: 'fixture-imported',
         values: new Map([['statMods.life', 100000], ['statMods.defense', 10000], ['statMods.mana', 100]]) }] };
     useInventoryStore.getState().addItem(cap);

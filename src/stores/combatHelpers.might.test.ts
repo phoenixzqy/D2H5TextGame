@@ -10,6 +10,7 @@ import { activeMightAura } from '@/engine/skills/might';
 import { loadDefaultSkills, registerSkill, resetRegistry } from '@/engine/skills/registry';
 import { deriveStats } from '@/engine/progression/stats';
 import { toJsonSafe } from '@/engine/save';
+import { withoutV17Fields } from '../../tests/helpers/save-fixtures';
 import type { Mercenary, Player } from '@/engine/types/entities';
 import type { Item } from '@/engine/types/items';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
@@ -44,7 +45,7 @@ function player(): Player {
 /** Synthetic configuration projection retains the run; public hero replacement clears it. */
 function configure(patch: Partial<Player>): void { usePlayerStore.setState({ player: { ...player(), ...patch } }); }
 function gear(mana = 100, attackSpeed = 0): void {
-  const cap: Item = { id: `fixture-might-cap-${String(++gearSequence)}`, baseId: 'items/base/helm-cap',
+  const cap: Item = { id: `fixture-might-cap-${String(++gearSequence)}`, baseId: 'items/base/helm-cap', socketCapacity: 0,
     rarity: 'rare', level: 1, identified: true, equipped: false, affixes: [{ affixId: 'fixture-imported',
       values: new Map([['statMods.life', 999880], ['statMods.defense', 99973], ['statMods.mana', mana], ['statMods.attackSpeed', attackSpeed]]) }] };
   useInventoryStore.getState().addItem(cap);
@@ -295,11 +296,10 @@ describe('native selected Might wave composition', () => {
   it('imports a genuine v9 None selection without inferring it from allocated Might or combo', async () => {
     arrange(20); usePlayerStore.getState().setComboOrder([AURA, FINISHER]);
     const save = snapshotStores(); if (!save) throw new Error('Missing actual v9 import fixture');
-    const jsonSafe = toJsonSafe(save);
-    if (typeof jsonSafe !== 'object' || jsonSafe === null) throw new Error('Missing serialized legacy fixture');
-    const { questItems: _ledger, ...inventory } = save.inventory;
-    const { questReceipts: _receipts, ...map } = save.map;
-    const legacy = { ...jsonSafe, version: 9 as const, inventory, map };
+    const historical = toJsonSafe(withoutV17Fields(save)) as Record<string, unknown>;
+    const { questItems: _ledger, ...inventory } = historical.inventory as Record<string, unknown>;
+    const { questReceipts: _receipts, ...map } = historical.map as Record<string, unknown>;
+    const legacy = { ...historical, version: 9 as const, inventory, map };
     expect(save.player).not.toHaveProperty('selectedAuraId');
     await importIntoStores(JSON.stringify(legacy));
     expect(player()).not.toHaveProperty('selectedAuraId');

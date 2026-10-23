@@ -45,7 +45,7 @@ function arrange(ranks: NonNullable<Player['skillLevels']> = {}): Item {
     skillLevels: ranks, comboOrder: [FINISHER] });
   // L18 naked defense71, cap7, flat99922 =>100000 before Iron Skin.
   // L18 life286/mana133 plus flat modifiers =>1000000/1000 maxima.
-  const cap: Item = { id: 'fixture-iron-native-cap', baseId: 'items/base/helm-cap', rarity: 'rare',
+  const cap: Item = { id: 'fixture-iron-native-cap', baseId: 'items/base/helm-cap', socketCapacity: 0, rarity: 'rare',
     level: 1, identified: true, equipped: false, affixes: [{ affixId: 'fixture-imported',
       values: new Map([['statMods.life', 999714], ['statMods.mana', 867], ['statMods.defense', 99922]]) }] };
   useInventoryStore.getState().addItem(cap);

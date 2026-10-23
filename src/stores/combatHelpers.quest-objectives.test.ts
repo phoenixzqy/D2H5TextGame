@@ -48,7 +48,7 @@ function start(area = AREA, act = 1): number {
   const player = createMockPlayer('BossQuestWiring', 'sorceress');
   usePlayerStore.getState().setPlayer({ ...player, comboOrder: [] });
   // Imported canonical gear and explicit fixture refill, not earned power.
-  const gear = { id: 'boss-quest-imported-cap', baseId: 'items/base/helm-cap',
+  const gear = { id: 'boss-quest-imported-cap', baseId: 'items/base/helm-cap', socketCapacity: 0,
     rarity: 'rare' as const, level: 1, identified: true, equipped: false,
     affixes: [{ affixId: 'imported-wiring-fixture', values: new Map([
       ['statMods.attack', 99978], ['statMods.defense', 99973], ['statMods.life', 999880]

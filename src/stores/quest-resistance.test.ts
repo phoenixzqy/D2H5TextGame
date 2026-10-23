@@ -20,7 +20,7 @@ const SUN = 'quests/act2-tainted-sun';
 const stores = [usePlayerStore, useInventoryStore, useMapStore, useMercStore, useMetaStore,
   useFormationStore, useCombatStore] as const;
 const hero = () => required(usePlayerStore.getState().player);
-const amulet: Item = { id: 'sun-gear', baseId: 'items/base/amu-tin', rarity: 'rare',
+const amulet: Item = { id: 'sun-gear', baseId: 'items/base/amu-tin', socketCapacity: 0, rarity: 'rare',
   level: 1, identified: true, equipped: true, affixes: [{ affixId: 'legacy-resists',
     values: new Map([['resistances.fire', 91], ['resistances.cold', -12.5]]) }] };
 function claimed() { useMapStore.getState().updateQuestProgress(SUN, {
@@ -87,7 +87,7 @@ describe('permanent quest resistance across live projections', () => {
     claimed(); expect(advanceWaveOrFinish()).toBe('next-wave');
     expect(required(useCombatStore.getState().playerTeam.find(u => u.kind === 'hero')).stats.resistances.fire).toBe(30);
   });
-  it('repairs only claimed save fire/cold from its own map, independently of the live character', () => {
+  it('rebuilds claimed save resistance caches from its own map and authoritative gear independently of the live character', () => {
     claimed(); const input = required(snapshotStores());
     const saved = { ...input, player: { ...input.player, derivedStats: { ...input.player.derivedStats,
       resistances: { ...input.player.derivedStats.resistances, fire: 999, cold: 888, poison: 777 } } } };
@@ -95,7 +95,8 @@ describe('permanent quest resistance across live projections', () => {
     useMapStore.getState().reset();
     const decoded = decodeSave(raw);
     expect(decoded.player.derivedStats).toEqual({ ...saved.player.derivedStats,
-      resistances: { ...saved.player.derivedStats.resistances, fire: 121, cold: 17.5 } });
+      resistances: { fire: 121, cold: 17.5, lightning: 0, poison: 0, arcane: 0, physical: 0 } });
+    expect(decoded.player.equipment).toEqual(saved.player.equipment);
     expect({ ...decoded, player: saved.player }).toEqual(saved);
     expect(raw).toEqual(before);
     expect(decodeSave(toJsonSafe(decoded))).toEqual(decoded);

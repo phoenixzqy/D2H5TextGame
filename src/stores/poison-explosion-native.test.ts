@@ -45,7 +45,7 @@ function arrange(): void {
   usePlayerStore.getState().setPlayer({ ...createMockPlayer('Unearned PE waves', 'necromancer'),
     id: 'corpse-native-hero', level: 18, skillPoints: 2,
     skillLevels: { [DAGGER]: 1, [PE]: 1 }, comboOrder: [PE, DAGGER] });
-  const cap: Item = { id: 'fixture-corpse-native-cap', baseId: 'items/base/helm-cap',
+  const cap: Item = { id: 'fixture-corpse-native-cap', baseId: 'items/base/helm-cap', socketCapacity: 0,
     rarity: 'rare', level: 1, identified: true, equipped: false,
     affixes: [{ affixId: 'fixture-imported-corpse-survival', values: new Map([
       ['statMods.life', 1000000], ['statMods.defense', 1000000], ['statMods.mana', 10000]
@@ -314,7 +314,7 @@ it('reinstalls Iron-locked PE input and recording twice without another item, co
   usePlayerStore.getState().setPlayer({ ...player(), level: 30, skillLevels: { ...player().skillLevels,
     'necromancer.clay_golem': 1, 'necromancer.blood_golem': 1, [IRON]: 1 },
   comboOrder: [IRON, PE, DAGGER] });
-  const sacrifice: Item = { id: 'fixture-corpse-sacrifice', baseId: 'items/base/wp1h-short-sword',
+  const sacrifice: Item = { id: 'fixture-corpse-sacrifice', baseId: 'items/base/wp1h-short-sword', socketCapacity: 0,
     rarity: 'normal', level: 1, identified: true, equipped: false, affixes: [] };
   const reserve: Item = { ...sacrifice, id: 'fixture-corpse-reserve' };
   useInventoryStore.getState().addItem(sacrifice); useInventoryStore.getState().addItem(reserve);

@@ -60,7 +60,7 @@ function progress() { return required(useMapStore.getState().questProgress[QUEST
 function preparePlayer(): void {
   const player = createMockPlayer('Guardian constructed fixture', 'sorceress');
   usePlayerStore.getState().setPlayer({ ...player, comboOrder: [] });
-  const gear = { id: 'guardian-fixture-cap', baseId: 'items/base/helm-cap', rarity: 'rare' as const,
+  const gear = { id: 'guardian-fixture-cap', baseId: 'items/base/helm-cap', socketCapacity: 0, rarity: 'rare' as const,
     level: 1, identified: true, equipped: false,
     affixes: [{ affixId: 'constructed-power', values: new Map([
       ['statMods.attack', 99978], ['statMods.defense', 99973], ['statMods.life', 999880]
@@ -217,7 +217,13 @@ describe('post-Orb Guardian accepted settlement', () => {
 
   it('does not accept a flag-only Orb without its actual retained graph', () => {
     track(false); useMapStore.setState({ questReceipts: { [ORB]: true } });
-    reachFinal(); const before = progress(); finish(); expect(progress()).toBe(before);
+    const stores = [usePlayerStore, useInventoryStore, useMapStore, useCombatStore, useMercStore] as const;
+    const before = stores.map(store => store.getState()), holder = inspectRecordedWaves();
+    expect(start).toThrow('action proof requires its tracked owner and exact consumed assembled input');
+    stores.forEach((store, index) => { expect(store.getState()).toBe(before[index]); });
+    expect(inspectRecordedWaves()).toBe(holder);
+    expect(progress()).toMatchObject({ status: 'inProgress', rewardClaimed: false,
+      objectives: { 'obj-kill-mephisto': false } });
   });
 
   it('revalidates the graph at publication and surfaces invalidation without granting credit', () => {

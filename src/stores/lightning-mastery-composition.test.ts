@@ -48,7 +48,7 @@ function arrange(ranks: Readonly<Record<string, number>> = { [WARMTH]: 1 }): voi
   usePlayerStore.getState().setPlayer({ ...fresh, level: 30, skillPoints: 2,
     coreStats: { ...fresh.coreStats, energy: 20 }, skillLevels: { [FIRE]: 20, ...ranks },
     comboOrder: [FINISHER] });
-  const cap: Item = { id: 'fixture-mastery-cap', baseId: 'items/base/helm-cap', rarity: 'rare',
+  const cap: Item = { id: 'fixture-mastery-cap', baseId: 'items/base/helm-cap', socketCapacity: 0, rarity: 'rare',
     level: 1, identified: true, equipped: false, affixes: [{ affixId: 'fixture-imported',
       values: new Map([['statMods.life', 999880], ['statMods.defense', 99973]]) }] };
   useInventoryStore.getState().addItem(cap);

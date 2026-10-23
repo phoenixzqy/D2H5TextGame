@@ -15,6 +15,7 @@ import { decodeSave } from '@/engine/save/validate';
 import { toJsonSafe } from '@/engine/save';
 import { claimQuestReward, readQuestItem } from '@/features/quests/claimReward';
 import { inspectRecordedWaves } from './recordedWaveReceipt';
+import { withoutV17Fields } from '../../tests/helpers/save-fixtures';
 
 const QUEST = 'quests/act3-khalims-will';
 const SOURCE = `${QUEST}#action:council-victory`;
@@ -34,7 +35,7 @@ function track(): void {
 function start(options: Parameters<typeof startSubAreaRun>[0] = {}): number {
   const player = createMockPlayer('Council constructed fixture', 'sorceress');
   usePlayerStore.getState().setPlayer({ ...player, comboOrder: [] });
-  const item = { id: 'council-fixture-cap', baseId: 'items/base/helm-cap', rarity: 'rare' as const,
+  const item = { id: 'council-fixture-cap', baseId: 'items/base/helm-cap', socketCapacity: 0, rarity: 'rare' as const,
     level: 1, identified: true, equipped: false,
     affixes: [{ affixId: 'constructed-power', values: new Map([
       ['statMods.attack', 99978], ['statMods.defense', 99973], ['statMods.life', 999880]
@@ -215,9 +216,10 @@ describe('Council accepted settlement action proof', () => {
     track(); settleAll();
     const saved = required(snapshotStores());
     expect(decodeSave(toJsonSafe(saved)).map.questReceipts).toEqual({ [SOURCE]: true });
-    const json = toJsonSafe(saved) as Record<string, unknown>;
+    const historical = withoutV17Fields(saved);
+    const json = toJsonSafe(historical) as Record<string, unknown>;
     expect(() => decodeSave({ ...json, version: 14 })).toThrow(/historical/);
-    const { questReceipts: _receipts, ...map } = saved.map;
-    expect(decodeSave({ ...json, version: 14, map }).map.questReceipts).toEqual({});
+    const { questReceipts: _receipts, ...map } = historical.map;
+    expect(decodeSave({ ...historical, version: 14, map }).map.questReceipts).toEqual({});
   });
 });
