@@ -30,6 +30,10 @@ export type PlayableSkillClass =
 
 interface JsonSkill {
   readonly id: string;
+  readonly name: string;
+  readonly icon?: string;
+  readonly maxLevel: number;
+  readonly prerequisites?: readonly string[];
   readonly trigger: 'active' | 'passive' | 'aura';
   readonly target: SkillTarget;
   readonly cooldown: number;

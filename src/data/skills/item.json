@@ -1,0 +1,14 @@
+[
+  {
+    "id": "item-redemption",
+    "name": "skills.item.redemption.name",
+    "description": "skills.item.redemption.desc",
+    "trigger": "active",
+    "target": "self",
+    "minLevel": 1,
+    "maxLevel": 1,
+    "cooldown": 4,
+    "cost": { "mana": 0 },
+    "heal": { "pctOfMaxLife": 0.1, "target": "self" }
+  }
+]

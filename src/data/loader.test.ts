@@ -259,9 +259,10 @@ describe('data/loader', () => {
       }
     );
 
-    it('keeps all 286 authored rows and their central loaded definitions unchanged', async () => {
+    it('preserves all 286 non-item rows and loads the single item-specific row', async () => {
       const before = JSON.stringify(skills);
-      expect(skills).toHaveLength(286);
+      expect(skills.filter(skill => skill.id !== 'item-redemption')).toHaveLength(286);
+      expect(skills.filter(skill => skill.id === 'item-redemption')).toHaveLength(1);
       const loaded = await loadGameData();
       expect([...loaded.skills.values()]).toEqual(skills);
       expect(JSON.stringify(skills)).toBe(before);

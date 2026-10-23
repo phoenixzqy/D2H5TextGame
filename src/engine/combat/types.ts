@@ -10,6 +10,7 @@
 import type { DamageType, DerivedStats, Resistances } from '../types/attributes';
 import type { ComboTag } from '../types/skills';
 import type { WeaponType, Handedness } from '../types/items';
+import type { GovernedActiveRanks } from '../skills/runeword-actives';
 
 /** Tag a unit's "side" in combat. */
 export type CombatSide = 'player' | 'enemy';
@@ -63,6 +64,8 @@ export interface ActiveStatus {
 
 /** Combat-time unit. Immutable; updates produce new instances. */
 export interface CombatUnit {
+  /** Frozen equipment/learned active availability captured at the wave boundary; never persisted. */
+  readonly governedActiveRanks?: GovernedActiveRanks;
   readonly id: string;
   readonly name: string;
   readonly side: CombatSide;

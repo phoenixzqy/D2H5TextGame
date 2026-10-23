@@ -201,11 +201,10 @@ export interface SkillDef {
   readonly additionalStatusEffects?: SkillAdditionalStatusEffects;
   
   /** Healing amount (if any) */
-  readonly heal?: {
-    readonly min: number;
-    readonly max: number;
-    readonly target: 'self' | 'ally';
-  };
+  readonly heal?: { readonly target: 'self' | 'ally' } & (
+    | { readonly min: number; readonly max: number; readonly pctOfMaxLife?: never }
+    | { readonly pctOfMaxLife: number; readonly min?: never; readonly max?: never }
+  );
   
   /** Combo tags this skill applies to targets */
   readonly appliesTags?: readonly ComboTag[];

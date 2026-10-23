@@ -54,6 +54,7 @@ export function registerSkillAlias(aliasId: string, canonicalId: string): void {
  * Returns `undefined` if no transform applies.
  */
 export function aliasToCanonical(id: string): string | undefined {
+  if (id === 'item-redemption') return 'item.redemption';
   const explicit = aliases.get(id);
   if (explicit !== undefined) return explicit;
 

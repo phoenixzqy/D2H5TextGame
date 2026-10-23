@@ -45,6 +45,7 @@ import {
 import { isImmobilized, shouldEnrage } from '../ai/policy';
 import { canCastSkill } from '../skills/eligibility';
 import { getSkill } from '../skills/registry';
+import { governedActiveId } from '../skills/runeword-actives';
 import { buildSummon, getSummon } from '../skills/summons';
 import { isPreparationSummonSkill, SUMMON_PREPARATION_TEMPLATES } from '../skills/summon-preparation';
 import { copyCorpseExplosionProjections, corpseExplosionRank, isCorpseExplosionId, matchesCorpseExplosion,
@@ -690,6 +691,11 @@ function skillLevelCandidates(skill: RegisteredSkill): readonly string[] {
 }
 
 function effectiveSkillLevel(unit: CombatUnit, skill: RegisteredSkill): number {
+  const governed = governedActiveId(skill.id);
+  if (governed) {
+    if (unit.governedActiveRanks) return unit.governedActiveRanks[governed];
+    if (governed === 'item.redemption') return 0;
+  }
   if (skill.id === 'sorceress.frozen_armor') return resolveFrozenArmorRank(unit.skillLevels);
   const levels = unit.skillLevels;
   if (!levels) return 1;
@@ -773,6 +779,7 @@ function canUseSkillForState(
     ['necromancer.poison_explosion', 'skills-necromancer-poison-explosion'].some(id => (unit.cooldowns[id] ?? 0) > 0))) return false;
   if ((ce || pe) && (skillLevel === 0 || state.corpses.length === 0 || !hasEnemyTarget || !Number.isFinite(unit.mana))) return false;
   if (skill.trigger === 'passive') return false;
+  if (governedActiveId(skill.id) && skillLevel === 0) return false;
   if ((unit.cooldowns[skill.id] ?? unit.cooldowns[skillOrderId] ?? 0) > 0) return false;
   if (skill.id === 'sorceress.frozen_armor' && skillLevel === 0) return false;
   if (effectiveManaCost(skill, skillLevel) > unit.mana) return false;

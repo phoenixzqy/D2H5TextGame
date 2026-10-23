@@ -10,6 +10,7 @@ import type { CombatUnit } from '../combat/types';
 import { hasStatus } from '../combat/status';
 import { getSkill } from '../skills/registry';
 import { canCastSkill } from '../skills/eligibility';
+import { governedActiveId } from '../skills/runeword-actives';
 
 /**
  * Decide which skill a unit should use this turn.
@@ -32,6 +33,9 @@ export function chooseSkill(
   for (const skillId of unit.skillOrder) {
     const skill = getSkill(skillId);
     if (!skill) continue;
+    const governed = governedActiveId(skill.id);
+    if (governed && (unit.governedActiveRanks?.[governed] === 0 ||
+      (governed === 'item.redemption' && !unit.governedActiveRanks))) continue;
     if ((unit.cooldowns[skillId] ?? 0) > 0) continue;
     if (skill.manaCost > unit.mana) continue;
     if (unit.level < skill.minLevel) continue;

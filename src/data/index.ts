@@ -41,7 +41,8 @@ export const skillFiles = [
   './skills/paladin.json',
   './skills/sorceress.json',
   './skills/monsters.json',
-  './skills/mercenary.json'
+  './skills/mercenary.json',
+  './skills/item.json'
 ] as const;
 
 /** Monster archetype JSON files (one per act). */
