@@ -94,6 +94,14 @@ personalize, insert/match runes, salvage or supply summon material. A future
 explicit repair decision is required to release it; no silent repair/deletion
 or rejection of previously valid16 data solely for new semantic constraints.
 
+Native17 active ownership instance IDs are unique across backpack, stash,
+equipped and mercenary-equipment containers. Actual16 permits duplicate IDs;
+quarantine **all** colliding ownership instances losslessly with their distinct
+origins. Quarantine origins must be unique even when item IDs repeat. Actor
+equipment caches are mirrors, not additional ownership containers; rebuild
+them from canonical ownership so quarantined equipment cannot retain effects
+through stale caches.
+
 Historical validation retains literal predecessor rules and explicitly rejects
 reserved17 keys on raw items (`socketCapacity`, `personalizedBy`), inventory
 (`questServices`, `legacyGearQuarantine`) and map (the title/profile/clear/
