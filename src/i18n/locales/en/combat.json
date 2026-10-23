@@ -25,6 +25,8 @@
   "xpGained": "Gained XP: {{amount}}",
   "levelUp": "Level Up!",
   "runeShard": "Rune Shards",
+  "wishstones": "Wishstones",
+  "rewardLine": "+{{quantity}} {{name}}",
   "levelUpToast": "Level up! You are now level {{level}}",
   "continue": "Continue",
   "log": "Combat Log",

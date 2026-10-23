@@ -12,7 +12,8 @@
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button, Modal, Panel, ScreenShell, StatBar, GameCard, getClassPortraitUrl, getMercPortraitUrl, getMonsterImageUrl, getSummonImageUrl, tDataKey, tItemName } from '@/ui';
+import { Button, Modal, Panel, ScreenShell, StatBar, GameCard, getClassPortraitUrl, getMercPortraitUrl, getMonsterImageUrl, getSummonImageUrl, tDataKey } from '@/ui';
+import { CombatRewardSummary } from './CombatRewardSummary';
 import { useCombatStore, useFormationStore, useMapStore, useMetaStore, usePlayerStore } from '@/stores';
 import {
   performCombatScreenTransition,
@@ -47,15 +48,6 @@ interface UnitEventFx {
 function mapSubAreaNameKey(id: string): string {
   return `map.subArea.${id.replace(/^areas\/act([1-5])-/, 'a$1-')}`;
 }
-
-const RARITY_COLORS: Record<string, string> = {
-  normal: 'text-d2-white',
-  magic: 'text-blue-300',
-  rare: 'text-yellow-300',
-  set: 'text-green-400',
-  unique: 'text-d2-gold',
-  runeword: 'text-orange-400',
-};
 
 export function CombatScreen() {
   const { t } = useTranslation(['combat', 'common', 'map']);
@@ -460,32 +452,7 @@ export function CombatScreen() {
               ? t('runVictoryTitle')
               : t(outcome?.winner === null ? 'event.draw' : 'runDefeatTitle')}
           >
-            {runVictory && (runRewards.items.length > 0 || runRewards.runeShards > 0) && (
-              <div className="mb-2" data-testid="loot-summary">
-                {runRewards.runeShards > 0 && (
-                  <div className="text-d2-gold text-sm mb-1">
-                    +{runRewards.runeShards} {t('runeShard')}
-                  </div>
-                )}
-                {runRewards.items.length > 0 && (
-                  <ul className="space-y-1 text-sm" data-testid="loot-items">
-                    {runRewards.items.map((it) => (
-                      <li key={it.id} className={RARITY_COLORS[it.rarity] ?? 'text-d2-white'}>
-                        {tItemName(t, it)}{' '}
-                        <span className="text-xs text-d2-white/50">[{it.rarity} · iLvl {it.level}]</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                {(runRewards.runes > 0 || runRewards.gems > 0 || runRewards.wishstones > 0) && (
-                  <div className="text-xs text-d2-white/70 mt-2">
-                    {runRewards.runes > 0 && <span className="mr-2">+{runRewards.runes} rune</span>}
-                    {runRewards.gems > 0 && <span className="mr-2">+{runRewards.gems} gem</span>}
-                    {runRewards.wishstones > 0 && <span className="mr-2">+{runRewards.wishstones} wishstone</span>}
-                  </div>
-                )}
-              </div>
-            )}
+            {runVictory && <CombatRewardSummary rewards={runRewards} />}
             <div className="flex flex-wrap gap-2 mt-2">
               {runVictory && nextSubArea && (
                 <Button
