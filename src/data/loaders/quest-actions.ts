@@ -6,15 +6,36 @@ import { subAreas } from '../index';
 import { loadQuests } from './quests';
 
 export interface QuestActionInput { readonly inputSource: string; readonly itemId: string }
-export interface QuestItemActionDef extends QuestActionInput {
-  readonly id: 'actions/act3-break-compelling-orb' | 'actions/act4-shatter-soulstone';
+interface QuestActionBase extends QuestActionInput {
+  readonly id: string;
   readonly questId: string;
   readonly receiptSource: string;
   readonly areaId: string;
   readonly targetId: string;
-  readonly additionalInputs?: readonly QuestActionInput[];
-  readonly completeObjectiveId?: string;
 }
+interface OrbActionDef extends QuestActionBase {
+  readonly id: 'actions/act3-break-compelling-orb';
+  readonly questId: 'quests/act3-guardian';
+  readonly receiptSource: 'quests/act3-guardian#action:break-compelling-orb';
+  readonly areaId: 'areas/act3-travincal';
+  readonly targetId: 'objects/compelling_orb';
+  readonly inputSource: 'quests/act3-khalims-will#objective:obj-transmute';
+  readonly itemId: 'items/khalims_will';
+  readonly additionalInputs?: never;
+  readonly completeObjectiveId?: never;
+}
+interface HellforgeActionDef extends QuestActionBase {
+  readonly id: 'actions/act4-shatter-soulstone';
+  readonly questId: 'quests/act4-hellforge';
+  readonly receiptSource: 'quests/act4-hellforge#action:shatter-soulstone';
+  readonly areaId: 'areas/act4-river-of-flame';
+  readonly targetId: 'objects/hellforge';
+  readonly inputSource: 'quests/act4-hellforge#objective:obj-kill-hephasto';
+  readonly itemId: 'quest/hellforge_hammer';
+  readonly additionalInputs: readonly [{ readonly inputSource: 'quests/act3-guardian#reward:questItem'; readonly itemId: 'items/soulstone_mephisto' }];
+  readonly completeObjectiveId: 'obj-shatter';
+}
+export type QuestItemActionDef = OrbActionDef | HellforgeActionDef;
 
 /** All exact physical inputs, preserving the original one-input Orb contract. */
 export function questActionInputs(action: QuestItemActionDef): readonly QuestActionInput[] {

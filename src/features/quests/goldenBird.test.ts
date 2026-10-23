@@ -1,3 +1,4 @@
+import { CURRENT_SAVE_VERSION } from '@/engine/types/save';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { loadMercPool } from '@/data/loaders/mercs';
@@ -285,7 +286,7 @@ describe('Golden Bird real exchange chain and Life potion', () => {
     const old = { ...json, version: 14, map,
       inventory: { ...current.inventory, questItems: {} } };
     const decoded = decodeSave(old);
-    expect(decoded.version).toBe(15);
+    expect(decoded.version).toBe(CURRENT_SAVE_VERSION);
     expect(decoded.map.questProgress[QUEST]).toEqual(current.map.questProgress[QUEST]);
     expect(decoded.inventory.questItems).toEqual({});
     expect(decoded.map.questReceipts).toEqual({});

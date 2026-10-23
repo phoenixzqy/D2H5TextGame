@@ -29,11 +29,13 @@ export function questActionStatus(source: string): 'ready' | 'consumed' | 'unava
   if (Object.hasOwn(map.questReceipts, source)) return 'consumed';
   const row = Object.hasOwn(map.questProgress, action.questId) ? map.questProgress[action.questId] : undefined;
   const quest = loadQuests().find(definition => definition.id === action.questId);
-  if (!row || row.id !== action.questId || row.status !== 'inProgress' || row.rewardClaimed === true ||
+  if (!row || row.id !== action.questId || row.rewardClaimed === true ||
     !quest || !quest.objectives.every(objective => Object.hasOwn(row.objectives, objective.id) && typeof row.objectives[objective.id] === 'boolean') ||
     (action.completeObjectiveId === undefined
-      ? !quest.objectives.every(objective => row.objectives[objective.id] === false)
-      : row.objectives[action.completeObjectiveId] !== false || !questObjectivePrerequisitesMet(quest, row.objectives, action.completeObjectiveId))) return 'unavailable';
+      ? row.status !== 'inProgress' || !quest.objectives.every(objective => row.objectives[objective.id] === false)
+      : !(row.status === 'inProgress' && row.objectives[action.completeObjectiveId] === false ||
+          row.status === 'completed' && quest.objectives.every(objective => row.objectives[objective.id] === true)) ||
+        !questObjectivePrerequisitesMet(quest, row.objectives, action.completeObjectiveId))) return 'unavailable';
   return questActionInputs(action).every(input => Object.hasOwn(items, input.inputSource) &&
     items[input.inputSource]?.itemId === input.itemId && items[input.inputSource]?.state === 'owned') ? 'ready' : 'unavailable';
 }

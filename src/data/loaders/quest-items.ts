@@ -24,7 +24,7 @@ export interface ReadQuestItemDef extends QuestItemBase {
     | { readonly maxLife: number; readonly skillPoints?: never };
 }
 
-/** A reward retained as an actual item; no Read effect or admitted consumer exists yet. */
+/** An actual retained reward with a closed optional consumer; never a Read effect. */
 export interface RetainedQuestItemDef extends QuestItemBase {
   readonly kind: 'retained';
   readonly sourceObjectiveId?: never;

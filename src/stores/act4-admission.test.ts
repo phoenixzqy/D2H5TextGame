@@ -3,6 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { loadQuests } from '@/data/loaders/quests';
 import { ACT4_ENCOUNTERS } from '@/engine/map/act4-admission';
+import { claimQuestReward } from '@/features/quests/claimReward';
 import { interactWithAreaObject } from '@/features/quests/interactObject';
 import { abortSubAreaRun, advanceWaveOrFinish, refreshActivePlayerCombatConfig, startSubAreaRun } from './combatHelpers';
 import { combatRunLifecycle } from './combatRunLifecycle';
@@ -77,6 +78,38 @@ describe.each(ACT4_ENCOUNTERS)('Act IV accepted settlement $questId', contract =
     Object.assign(final, { source: present ? undefined : source });
     refreshActivePlayerCombatConfig({ replayCurrentWave: true });
     finish(); expect(useMapStore.getState().questReceipts[contract.proof]).toBe(present ? true : undefined);
+  });
+  it('does not admit progress supplied by a synchronous income observer after eligibility was captured', () => {
+    reachFinal(contract.areaId);
+    const gain = usePlayerStore.getState().gainExperience;
+    vi.spyOn(usePlayerStore.getState(), 'gainExperience').mockImplementation(amount => {
+      const result = gain(amount), quest = required(loadQuests().find(row => row.id === contract.questId));
+      useMapStore.getState().updateQuestProgress(contract.questId, { status: 'inProgress', rewardClaimed: false,
+        objectives: Object.fromEntries(quest.objectives.map(row => [row.id, contract.prerequisites.some(id => id === row.id)])) });
+      return result;
+    });
+    finish(); expect(useMapStore.getState().questReceipts[contract.proof]).toBeUndefined();
+    expect(useMapStore.getState().questProgress[contract.questId]?.objectives[contract.objectiveId]).toBe(false);
+    expect(useMapStore.getState().clearedSubAreas).toContain(contract.areaId);
+  });
+  it.each([false, true])('restores the participating row and proof after publication failure after-write=%s', afterWrite => {
+    track(contract.questId); if (contract.prerequisites.length) seals(); reachFinal(contract.areaId); drain();
+    const before = useMapStore.getState().questProgress[contract.questId], write = useMapStore.setState;
+    let injected = false;
+    vi.spyOn(useMapStore, 'setState').mockImplementation((...args) => {
+      const patch = typeof args[0] === 'function' ? args[0](useMapStore.getState()) : args[0];
+      if (patch.questReceipts?.[contract.proof] !== true || injected) { write(...args); return; }
+      injected = true; if (afterWrite) write(...args);
+      expect(claimQuestReward(contract.questId)).toBe('claim-in-progress');
+      useMapStore.getState().updateQuestProgress('quests/act3-lam-esens-tome', { status: 'inProgress',
+        objectives: { 'obj-find-tome': false, 'obj-deliver': false } });
+      throw new Error('Act IV proof publication failure');
+    });
+    expect(advanceWaveOrFinish).toThrow('Act IV proof publication failure'); expect(injected).toBe(true);
+    expect(useMapStore.getState().questProgress[contract.questId]).toBe(before);
+    expect(useMapStore.getState().questReceipts[contract.proof]).toBeUndefined();
+    expect(useMapStore.getState().questProgress['quests/act3-lam-esens-tome']).toBeDefined();
+    expect(advanceWaveOrFinish).toThrow();
   });
   it('does not accept a stale pre-replay outcome', () => {
     track(contract.questId); if (contract.prerequisites.length) seals(); reachFinal(contract.areaId);

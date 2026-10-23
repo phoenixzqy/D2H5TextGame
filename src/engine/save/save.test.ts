@@ -144,7 +144,7 @@ describe('runMigrations', () => {
     const historical: SaveV14 = { ...current, version: 14, map: historicalMap };
     const before = structuredClone(historical);
     const migrated = runMigrations(historical);
-    expect(migrated).toEqual({ ...historical, version: 15,
+    expect(migrated).toEqual({ ...historical, version: CURRENT_SAVE_VERSION,
       map: { ...historical.map, questReceipts: {} } });
     expect(migrated.player).toBe(historical.player);
     expect(migrated.inventory).toBe(historical.inventory);

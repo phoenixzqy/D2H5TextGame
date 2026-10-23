@@ -14,6 +14,10 @@ export const ACT4_ENCOUNTERS = [
     proof: 'quests/act4-terrors-end#action:diablo-victory', source: { kind: 'chapterBoss', archetypeId: 'monsters/act4.diablo' },
     members: ['monsters/act4.diablo'], prerequisites: ['obj-seal-1', 'obj-seal-2', 'obj-seal-3'] }
 ] as const;
+for (const contract of ACT4_ENCOUNTERS) {
+  Object.freeze(contract.source); Object.freeze(contract.members); Object.freeze(contract.prerequisites); Object.freeze(contract);
+}
+Object.freeze(ACT4_ENCOUNTERS);
 export const HEPHASTO_PROOF = 'quests/act4-hellforge#action:hephasto-victory';
 export type Act4EncounterContract = typeof ACT4_ENCOUNTERS[number];
 export interface Act4Encounter {

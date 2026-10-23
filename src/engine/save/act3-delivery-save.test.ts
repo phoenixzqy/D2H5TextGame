@@ -1,3 +1,4 @@
+import { CURRENT_SAVE_VERSION } from '../types/save';
 import { describe, expect, it } from 'vitest';
 import { buildSave, toJsonSafe } from './serialize';
 import { decodeSave } from './validate';
@@ -25,10 +26,10 @@ function sample(state: 'owned' | 'consumed' = 'owned') {
   });
 }
 
-describe('v15 actual delivery receipts and frozen v14 boundary', () => {
+describe('actual delivery receipts and frozen v14 boundary', () => {
   it.each(['owned', 'consumed'] as const)('roundtrips the exact %s source with no points or XP granted', state => {
     const input = sample(state);
-    expect(input.version).toBe(15);
+    expect(input.version).toBe(CURRENT_SAVE_VERSION);
     expect(decodeSave(input)).toEqual(input);
     expect(decodeSave(toJsonSafe(input))).toEqual(input);
   });
@@ -48,7 +49,7 @@ describe('v15 actual delivery receipts and frozen v14 boundary', () => {
     const { questReceipts: _receipts, ...map } = latest.map;
     const input = { ...latest, version: 14, inventory: { ...latest.inventory, questItems: {} }, map };
     const before = structuredClone(input);
-    expect(decodeSave(input)).toEqual({ ...input, version: 15, map: { ...map, questReceipts: {} } });
+    expect(decodeSave(input)).toEqual({ ...input, version: CURRENT_SAVE_VERSION, map: { ...map, questReceipts: {} } });
     expect(input).toEqual(before);
     expect(() => decodeSave({ ...input, inventory: latest.inventory })).toThrow(/v14/);
     expect(() => decodeSave({ ...input, map: { ...map, questReceipts: {} } })).toThrow(/historical map/);
