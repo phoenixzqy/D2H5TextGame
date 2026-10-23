@@ -91,3 +91,74 @@ describe('v18 concrete material ownership', () => {
     expect(() => decodeSave({ ...old, map: { ...old.map, questReceipts: { forged: true } } })).toThrow();
   });
 });
+
+describe('raw pre-v19 reservation before chained normalization or migration', () => {
+  it.each(['Map', 'Set'] as const)('uses intrinsic %s traversal without invoking imported methods', kind => {
+    let calls = 0;
+    const nested = { baseId: 'items/base/wp1h-short-sword', socketContents: undefined };
+    const container = kind === 'Map' ? new Map([['gear', nested]]) : new Set([nested]);
+    Object.defineProperty(container, 'values', { get: () => { calls++; return () => []; } });
+    expect(() => decodeSave({ ...sample(), snapshot: container })).toThrow('reserved v19');
+    expect(calls).toBe(0);
+  });
+  it('rejects a version accessor without invoking it', () => {
+    let calls = 0;
+    const input = sample();
+    Object.defineProperty(input, 'version', { enumerable: true, get: () => { calls++; return 18; } });
+    expect(() => decodeSave(input)).toThrow(/version/i);
+    expect(calls).toBe(0);
+  });
+  it('rejects a symbol iterator accessor before a v1 migration can invoke it', () => {
+    let calls = 0;
+    const equipment = new Map();
+    Object.defineProperty(equipment, Symbol.iterator, { get: () => { calls++; return Map.prototype[Symbol.iterator]; } });
+    const input = sample();
+    const old = { version: 1, timestamp: input.timestamp, player: input.player,
+      inventory: { backpack: [], stash: [], equipment }, mercenaries: [],
+      mapProgress: { currentAct: 1, currentSubArea: null, completedSubAreas: [] },
+      ...input.meta };
+    expect(() => decodeSave(old)).toThrow(/accessor/i);
+    expect(calls).toBe(0);
+  });
+  it('preserves same-spelled keys in open historical currency dictionaries', () => {
+    const input = sample();
+    const currencies = { socketContents: 1, materialActionOrdinal: 2, latestMaterialAction: 3,
+      socketQuarantine: 4, sourceVersion: 5, item: 6, origin: 7 };
+    expect(decodeSave({ ...input, inventory: { ...input.inventory, currencies } }).inventory.currencies)
+      .toEqual(currencies);
+  });
+  it.each(Array.from({ length: 18 }, (_, index) => index + 1).flatMap(version =>
+    ['materialActionOrdinal', 'latestMaterialAction', 'socketQuarantine'].map(field => ({ version, field }))))(
+    'rejects own undefined $field on raw v$version before migration', ({ version, field }) => {
+      const save = sample();
+      const inventory = { ...save.inventory, [field]: undefined };
+      expect(() => decodeSave({ ...save, version, inventory })).toThrow('reserved v19');
+    });
+  it.each(['backpack', 'stash', 'equipped', 'heroMirror', 'mercEquipment', 'mercMirror',
+    'legacyEquipmentMap', 'legacyEquipmentArray', 'legacyMercMirror', 'quarantine', 'snapshot'] as const)(
+    'rejects reserved sockets in raw %s without invoking the socket getter', site => {
+      const save = sample();
+      const gear = { id: 'reserved', baseId: 'items/base/wp1h-short-sword', rarity: 'normal' as const,
+        level: 1, socketCapacity: 2, identified: true, equipped: false };
+      Object.defineProperty(gear, 'socketContents', { enumerable: true, get: () => { throw new Error('evaluated reserved getter'); } });
+      const merc = { ...save.player, id: 'merc', type: 'mercenary' as const, archetype: 'rogue', rarity: 'common', equipment: [gear] };
+      const input = { ...save,
+        player: { ...save.player, equipment: site === 'heroMirror' ? [gear] : [] },
+        inventory: { ...save.inventory,
+          backpack: site === 'backpack' ? [gear] : [], stash: site === 'stash' ? [gear] : [],
+          equipped: site === 'equipped' ? { weapon: gear } : {},
+          ...(site === 'legacyEquipmentMap' ? { equipment: new Map([['weapon', gear]]) } : {}),
+          ...(site === 'legacyEquipmentArray' ? { equipment: [['weapon', gear]] } : {}),
+          legacyGearQuarantine: site === 'quarantine' ? [{ item: gear, origin: { container: 'backpack' as const, index: 0 } }] : [] },
+        mercs: { ...save.mercs, ownedMercs: site === 'mercMirror' ? [merc] : [],
+          mercEquipment: site === 'mercEquipment' ? { merc: { weapon: gear } } : {} },
+        ...(site === 'legacyMercMirror' ? { mercenaries: [merc] } : {}),
+        ...(site === 'snapshot' ? { combatSnapshot: { actors: [{ equipment: [gear] }] } } : {}) };
+      expect(() => decodeSave(input)).toThrow('reserved v19');
+    });
+  it('rejects a raw new quarantine discriminator before legacy quarantine normalization', () => {
+    const save = sample();
+    expect(() => decodeSave({ ...save, inventory: { ...save.inventory,
+      legacyGearQuarantine: [{ sourceVersion: undefined, item: {}, origin: {} }] } })).toThrow('reserved v19');
+  });
+});

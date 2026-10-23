@@ -1,5 +1,6 @@
 import frozenItemSchema from './frozen-v16-item.schema.json';
 import { readMaterialLedger } from './material-state';
+import { rejectPreV19State } from './pre-v19-state';
 import { ACT5_RECEIPTS, validateAct5QuestGraph } from './act5-state';
 import { ACT5_ENCOUNTERS } from '../map/act5-admission';
 import { validateAct5CampaignRewards } from './act5-campaign';
@@ -704,16 +705,18 @@ function normalizeMaps(value: unknown): unknown {
 
 /** Decode any supported version, migrating and validating without changing the source. */
 export function decodeSave(value: unknown): SaveCurrent {
+  const version: unknown = value !== null && typeof value === 'object'
+    ? Object.getOwnPropertyDescriptor(value, 'version')?.value : undefined;
   if (
     typeof value !== 'object' ||
     value === null ||
-    !('version' in value) ||
-    !Number.isInteger(value.version) ||
-    (value.version as number) < 1
+    !Number.isInteger(version) ||
+    (version as number) < 1
   ) {
     throw new Error('Invalid save: version must be a positive integer');
   }
   let input = value as VersionedSave;
+  if (input.version < 19) rejectPreV19State(input);
   const originalInventory = 'inventory' in value ? value.inventory : undefined;
   if (input.version < 18 && record(originalInventory) && 'materials' in originalInventory) {
     throw new Error('Invalid save: reserved materials in historical inventory');
