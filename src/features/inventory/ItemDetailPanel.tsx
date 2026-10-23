@@ -7,11 +7,8 @@
  * stats is local: red text for unmet entries.
  *
  * Sockets:
- *   `base.sockets` is the slot count. `item.runes` (if present) maps each
- *   filled socket. We render `base.sockets` boxes, filled with rune name
- *   in order, otherwise `[ ]`. If the item has `runes` but no
- *   `base.sockets`, we render `item.runes.length` filled boxes — there
- *   are no orphan empties to invent.
+ *   Native instance capacity is the slot count. `item.runes` maps each
+ *   filled socket in order, otherwise `[ ]`.
  *
  * Affix lines reuse `formatAffixRoll()` for the value formatting and
  * `RarityText` for color tier (per-affix tiering is deferred to Bug
@@ -32,6 +29,7 @@ import { tDataKey } from '@/ui/i18nKey';
 import { loadItemBases, resolveItemReqLevel } from '@/data/loaders/loot';
 import type { CoreStats } from '@/engine/types/attributes';
 import type { Item, ItemBase } from '@/engine/types/items';
+import { effectiveSocketCapacity } from '@/engine/items/socket-capacity';
 import type { CompareResult } from './compareEquip';
 import { ItemComparePanel } from './ItemComparePanel';
 
@@ -129,7 +127,7 @@ export function ItemDetailPanel({
   }
 
   // Sockets
-  const socketCount = base?.sockets ?? item.runes?.length ?? 0;
+  const socketCount = base ? effectiveSocketCapacity(item, base) : 0;
   const runes = item.runes ?? [];
   const socketBoxes: string[] = [];
   for (let i = 0; i < socketCount; i++) {
@@ -165,6 +163,9 @@ export function ItemDetailPanel({
             {displayName}
           </RarityText>
           <div className="text-[11px] text-d2-white/70 mt-0.5">{typeLine}</div>
+          {item.personalizedBy && <div className="text-xs text-d2-gold break-words" data-testid="inv-detail-personalization">
+            {t('detail.personalizedBy', { name: item.personalizedBy.name })}
+          </div>}
         </div>
         <button
           type="button"

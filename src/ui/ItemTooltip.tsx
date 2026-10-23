@@ -25,10 +25,13 @@ import { formatAffixRoll } from './affixFormat';
 import { resolveItemDisplay } from './itemDisplay';
 import { loadItemBases, resolveItemReqLevel } from '@/data/loaders/loot';
 import type { Item, ItemBase, EquipmentSlot } from '@/engine/types/items';
+import { effectiveSocketCapacity } from '@/engine/items/socket-capacity';
 
 interface ItemTooltipProps {
   item: Item;
   className?: string;
+  /** Preserve historical quarantine inspection without applying native item requirements. */
+  legacyInspection?: boolean;
 }
 
 const RARITY_BORDER: Record<Item['rarity'], string> = {
@@ -86,12 +89,13 @@ function buildDefenseLine(
   return t('tooltip.defense', { value });
 }
 
-export function ItemTooltip({ item, className = '' }: ItemTooltipProps): JSX.Element {
+export function ItemTooltip({ item, className = '', legacyInspection = false }: ItemTooltipProps): JSX.Element {
   const { t } = useTranslation('items');
   const { t: tInventory } = useTranslation(['inventory', 'items']);
   const { t: tAffix } = useTranslation('affixes');
   const icon = getItemIconUrl(item);
   const base: ItemBase | undefined = loadItemBases().get(item.baseId);
+  const socketCapacity = legacyInspection ? null : base ? effectiveSocketCapacity(item, base) : 0;
 
   const display = resolveItemDisplay(item, tInventory);
   const displayName = display.name;
@@ -188,8 +192,12 @@ export function ItemTooltip({ item, className = '' }: ItemTooltipProps): JSX.Ele
 
       <div className="text-d2-white/70 text-[11px] text-center mb-2">
         {t('tooltip.ilvl', { value: item.ilvl ?? item.level })}
-        {base?.sockets ? ` · ${t('tooltip.sockets', { value: base.sockets })}` : ''}
+        {socketCapacity ? ` · ${t('tooltip.sockets', { value: socketCapacity })}` : ''}
+        {legacyInspection && <div>{tInventory('quarantine.socketCapacityUnknown')}</div>}
       </div>
+      {item.personalizedBy && <div className="text-d2-gold text-xs text-center break-words" data-testid="item-tooltip-personalization">
+        {tInventory('detail.personalizedBy', { name: item.personalizedBy.name })}
+      </div>}
 
       {/* (4) Requirements */}
       {reqRows.length > 0 && (

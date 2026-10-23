@@ -192,6 +192,7 @@
     "affixes": "Affixes",
     "specialStats": "Special Stats",
     "sockets": "Sockets",
+    "personalizedBy": "Personalized by {{name}}",
     "emptySocket": "[ ]",
     "filledSocket": "[{{name}}]",
     "setBonus": "Set Bonus",
@@ -303,6 +304,7 @@
     }
   },
   "quarantine": {
+    "socketCapacityUnknown": "Socket capacity could not be verified for this preserved item.",
     "title": "Preserved legacy gear",
     "description": "These original items were preserved during a save upgrade because they could not safely enter active equipment. Inspect them here; they cannot be equipped, modified, salvaged or used for summons.",
     "origin": {

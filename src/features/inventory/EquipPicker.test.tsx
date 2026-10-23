@@ -43,6 +43,7 @@ function shortSword(id: string, rarity: 'normal' | 'magic'): Item {
     level: 1,
     ilvl: 1,
     identified: true,
+    socketCapacity: 0,
     equipped: false,
     affixes,
   } as unknown as Item;

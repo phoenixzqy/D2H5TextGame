@@ -19,7 +19,7 @@ export function LegacyGearQuarantinePanel() {
               mercenary: entry.origin.container === 'mercEquipment' ? entry.origin.mercId : undefined
             })}
           </summary>
-          <ItemTooltip item={entry.item} className="max-w-full" />
+          <ItemTooltip item={entry.item} className="max-w-full" legacyInspection />
         </details>
       </li>)}
     </ul>

@@ -27,6 +27,7 @@ vi.mock('@/data/loaders/loot', () => {
     type: 'armor',
     slot: 'chest',
     reqLevel: 1,
+    maxSockets: 2,
     // intentionally no baseDefense — the bug's degenerate input
   } as unknown as ItemBase);
   bases.set('items/base/armor-good', {
@@ -34,6 +35,7 @@ vi.mock('@/data/loaders/loot', () => {
     type: 'armor',
     slot: 'chest',
     reqLevel: 1,
+    maxSockets: 2,
     baseDefense: 25,
   } as unknown as ItemBase);
   bases.set('items/base/wp1h-short-sword', {
@@ -41,6 +43,7 @@ vi.mock('@/data/loaders/loot', () => {
     type: 'weapon',
     slot: 'weapon',
     reqLevel: 1,
+    maxSockets: 2,
     baseDamage: { min: 2, max: 6 },
   } as unknown as ItemBase);
   return {
@@ -75,6 +78,7 @@ const baseItem = (baseId: string, extra: Partial<Item> = {}): Item =>
     level: 1,
     ilvl: 1,
     affixes: [],
+    socketCapacity: 0,
     ...extra,
   } as unknown as Item);
 
@@ -176,4 +180,3 @@ describe('<ItemTooltip> Bug 1 — defenseLine guard', () => {
     }
   });
 });
-

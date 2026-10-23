@@ -192,6 +192,7 @@
     "affixes": "词缀",
     "specialStats": "特殊属性",
     "sockets": "镶孔",
+    "personalizedBy": "{{name}} 的个性化装备",
     "emptySocket": "[ ]",
     "filledSocket": "[{{name}}]",
     "setBonus": "套装效果",
@@ -303,6 +304,7 @@
     }
   },
   "quarantine": {
+    "socketCapacityUnknown": "此保留物品的镶孔数量尚无法确认。",
     "title": "旧存档装备保留区",
     "description": "升级存档时，这些原始物品因无法安全转入当前装备系统而被完整保留。可在此查看，无法装备、改造、分解或用于召唤。",
     "origin": {
