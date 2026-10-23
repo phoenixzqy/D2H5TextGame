@@ -102,7 +102,8 @@ function buildStoreSnapshot(now: number, projectBonus: boolean): SaveCurrent | n
       backpack: inv.backpack,
       stash: inv.stash,
       equipped: inv.equipped,
-      currencies: inv.currencies
+      currencies: inv.currencies,
+      questItems: inv.questItems
     },
     mercs: {
       ownedMercs: merc.ownedMercs,
@@ -363,7 +364,8 @@ function applySaveToStores(data: SaveCurrent, idleBonusAnchor: number, lease: Wa
     backpack: [...data.inventory.backpack],
     stash: [...data.inventory.stash],
     equipped: { ...data.inventory.equipped },
-    currencies: { ...data.inventory.currencies }
+    currencies: { ...data.inventory.currencies },
+    questItems: { ...data.inventory.questItems }
   });
   useMercStore.setState({
     ownedMercs: [...data.mercs.ownedMercs],

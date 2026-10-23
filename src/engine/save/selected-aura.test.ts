@@ -1,7 +1,7 @@
 import { describe, expect, expectTypeOf, it } from 'vitest';
 import { deriveStats } from '../progression/stats';
 import type { Player, Mercenary } from '../types/entities';
-import { CURRENT_SAVE_VERSION, MIGRATIONS, type SaveV10, type SaveCurrent } from '../types/save';
+import { CURRENT_SAVE_VERSION, MIGRATIONS, type SaveV10, type SaveV11, type SaveCurrent } from '../types/save';
 import { runMigrations } from './migrate';
 import { buildSave, toJsonSafe } from './serialize';
 import { decodeSave, validateSave } from './validate';
@@ -17,7 +17,7 @@ function sampleSave() {
   };
   const merc = (id: string): Mercenary => ({ ...player, id, type: 'mercenary',
     archetype: 'back', rarity: 'R', derivedStats: { ...player.derivedStats, life: 7, mana: 2 } });
-  return buildSave({ player, timestamp: 1000,
+  const save = buildSave({ player, timestamp: 1000,
     inventory: { backpack: [], stash: [], equipped: {}, currencies: { 'rune-shard': 71 } },
     mercs: { ownedMercs: [merc('fielded'), merc('bench')], fieldedMercId: 'fielded',
       mercEquipment: {}, mercProgress: { fielded: { experience: 19, experienceToNextLevel: 200 } } },
@@ -29,6 +29,12 @@ function sampleSave() {
       gachaState: { currency: 3, ownedMercIds: [], pityCounter: 4 } },
     formation: { playerPosition: { row: 2, col: 2 }, mercPosition: { row: 0, col: 0 }, summonPositions: [] }
   });
+  // This suite's historical fixtures predate the v12 quest-item ledger.
+  const { questItems: _ledger, ...inventory } = save.inventory;
+  return { ...save, version: 11 as const, inventory };
+}
+function currentShape<T extends { inventory: object }>(save: T) {
+  return { ...save, version: CURRENT_SAVE_VERSION, inventory: { ...save.inventory, questItems: {} } };
 }
 
 const versions = [7, 8, 9, 10, 11] as const;
@@ -40,8 +46,8 @@ const malformedSelections: readonly unknown[] = [
 ];
 
 describe('D05 v11 exclusive selected aura save boundary', () => {
-  it('declares v11 and retains compatibility migrations8/9/10/11', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(11);
+  it('retains the v11 contract and its migrations with v12 current', () => {
+    expect(CURRENT_SAVE_VERSION).toBe(12);
     for (const version of [8, 9, 10, 11]) expect(MIGRATIONS[version]).toBeDefined();
   });
 
@@ -49,7 +55,7 @@ describe('D05 v11 exclusive selected aura save boundary', () => {
     const input = { ...sampleSave(), version };
     const original = structuredClone(input);
     const output = decodeSave(input);
-    expect(output).toEqual({ ...input, version: CURRENT_SAVE_VERSION });
+    expect(output).toEqual(currentShape(input));
     expect(Object.hasOwn(output.player, 'selectedAuraId')).toBe(false);
     expect(input).toEqual(original);
     expect(decodeSave(structuredClone(output))).toEqual(output);
@@ -61,7 +67,7 @@ describe('D05 v11 exclusive selected aura save boundary', () => {
     const input = { ...base, version, player: { ...base.player, selectedAuraId: 'paladin.might' } };
     const original = structuredClone(input);
     const output = decodeSave(input);
-    expect(output).toEqual({ ...input, version: CURRENT_SAVE_VERSION });
+    expect(output).toEqual(currentShape(input));
     expect(output.player.selectedAuraId).toBe('paladin.might');
     expect(input).toEqual(original);
     expect(decodeSave(structuredClone(output))).toEqual(output);
@@ -93,10 +99,10 @@ describe('D05 v11 exclusive selected aura save boundary', () => {
     const base = sampleSave();
     const input = { ...base, version: 9,
       player: { ...base.player, ...patch, selectedAuraId: 'paladin.might' } };
-    expect(decodeSave(input)).toEqual({ ...input, version: CURRENT_SAVE_VERSION });
+    expect(decodeSave(input)).toEqual(currentShape(input));
   });
 
-  it('keeps explicit historical9/10 targets and chains to current by changing only version', () => {
+  it('keeps explicit historical9/10 targets and chains to current with an empty ledger', () => {
     const base = sampleSave();
     const input = { ...base, version: 9 as const,
       player: { ...base.player, selectedAuraId: 'paladin.might' } };
@@ -104,7 +110,7 @@ describe('D05 v11 exclusive selected aura save boundary', () => {
     expect(runMigrations(input, 9)).toBe(input);
     expect(runMigrations(input, 9).version).toBe(9);
     expect(runMigrations(input, 10)).toEqual({ ...input, version: 10 });
-    expect(runMigrations(input)).toEqual({ ...input, version: CURRENT_SAVE_VERSION });
+    expect(runMigrations(input)).toEqual(currentShape(input));
     expect(input).toEqual(original);
   });
 
@@ -141,7 +147,7 @@ describe('D05 native Maps and genuine historical migration', () => {
     };
     const original = structuredClone(input);
     const output = decodeSave(input);
-    expect(output).toEqual({ ...input, version: CURRENT_SAVE_VERSION });
+    expect(output).toEqual(currentShape(input));
     const affix = output.inventory.equipped.head?.affixes?.[0];
     expect(affix && 'values' in affix && affix.values).toEqual(new Map([['statMods.life', 20]]));
     expect(output.player.skills[0]?.synergies).toEqual(new Map([['physical', 0.2]]));
@@ -166,7 +172,7 @@ describe('D05 native Maps and genuine historical migration', () => {
       const output = decodeSave(input);
       expect(input.player.derivedStats).not.toHaveProperty('magicResist');
       expect(input.mercs.ownedMercs.every(m => !Object.hasOwn(m.derivedStats, 'magicResist'))).toBe(true);
-      expect(output).toEqual({ ...input, version: CURRENT_SAVE_VERSION,
+      expect(output).toEqual({ ...currentShape(input),
         player: { ...input.player, derivedStats: { ...input.player.derivedStats, magicResist: 0 } },
         mercs: { ...input.mercs, ownedMercs: input.mercs.ownedMercs.map(m => ({ ...m,
           derivedStats: { ...m.derivedStats, magicResist: 0 } })) } });
@@ -187,13 +193,17 @@ describe('D05 Meditation v11 acceptance and frozen historical v10', () => {
     expectTypeOf<Player['selectedAuraId']>().toEqualTypeOf<'paladin.might' | 'paladin.meditation' | undefined>();
     expectTypeOf<SaveCurrent['player']['selectedAuraId']>().toEqualTypeOf<'paladin.might' | 'paladin.meditation' | undefined>();
   });
-  it.each(['paladin.might', 'paladin.meditation'])('accepts only the exact current canonical aura %s through native and JSON round trips', selectedAuraId => {
+  it.each([11, CURRENT_SAVE_VERSION].flatMap(version =>
+    ['paladin.might', 'paladin.meditation'].map(selectedAuraId => ({ version, selectedAuraId }))))(
+    'preserves canonical $selectedAuraId in frozen v$version through current native and JSON round trips', ({ version, selectedAuraId }) => {
     const base = sampleSave();
-    const input = { ...base, version: 11, player: { ...base.player, selectedAuraId } };
+    const input = { ...(version === 11 ? base : currentShape(base)), version,
+      player: { ...base.player, selectedAuraId } };
     const before = structuredClone(input);
-    expect(validateSave(input)).toEqual(input);
+    const expected = currentShape(input);
+    expect(validateSave(expected)).toEqual(expected);
     const output = decodeSave(input);
-    expect(output).toEqual(input);
+    expect(output).toEqual(expected);
     expect(output.player.derivedStats).toMatchObject({ life: 17, mana: 9 });
     expect(decodeSave(structuredClone(output))).toEqual(output);
     expect(decodeSave(toJsonSafe(output))).toEqual(output);
@@ -220,14 +230,14 @@ describe('D05 Meditation v11 acceptance and frozen historical v10', () => {
       const before = structuredClone(input);
       expect(runMigrations(input, 10)).toBe(input);
       expect(runMigrations(input, 10).version).toBe(10);
-      const migrated = runMigrations(input);
+      const migrated = runMigrations(input, 11) as SaveV11;
       expect(migrated).toEqual({ ...input, version: 11 });
       expect(migrated.player).toBe(input.player);
       expect(migrated.inventory).toBe(input.inventory);
       expect(migrated.mercs).toBe(input.mercs);
       expect(migrated.player.skills[0]?.synergies).toBe(input.player.skills[0]?.synergies);
       expect(Object.hasOwn(migrated.player, 'selectedAuraId')).toBe(selected);
-      expect(decodeSave(input)).toEqual({ ...input, version: 11 });
+      expect(decodeSave(input)).toEqual(currentShape(input));
       expect(input).toEqual(before);
     }
   });
@@ -239,7 +249,7 @@ describe('D05 Meditation v11 acceptance and frozen historical v10', () => {
     { class: 'paladin', level: 24, skillLevels: { 'paladin.meditation': 0 } }
   ])('retains current canonical Meditation independently of gameplay eligibility %#', patch => {
     const base = sampleSave();
-    const input = { ...base, version: 11,
+    const input = { ...currentShape(base),
       player: { ...base.player, ...patch, selectedAuraId: 'paladin.meditation' } };
     expect(decodeSave(input)).toEqual(input);
   });
@@ -258,12 +268,12 @@ describe('D05 Meditation v11 acceptance and frozen historical v10', () => {
     }
   });
 
-  it('retains Meditation, native affix and synergy Maps and all resources at current11', () => {
+  it('retains Meditation, native affix and synergy Maps and all resources at current12', () => {
     const base = sampleSave();
-    const input = { ...base, version: 11, player: { ...base.player, selectedAuraId: 'paladin.meditation',
+    const input = { ...currentShape(base), player: { ...base.player, selectedAuraId: 'paladin.meditation',
       skills: [{ id: 'current-map-skill', name: 'Map', description: '', trigger: 'active', target: 'single-enemy',
         cooldown: 1, cost: {}, minLevel: 1, level: 1, maxLevel: 20, synergies: new Map([['physical', 0.2]]) }] },
-      inventory: { ...base.inventory, equipped: { head: { id: 'current-hat', baseId: 'items/base/helm-cap',
+      inventory: { ...base.inventory, questItems: {}, equipped: { head: { id: 'current-hat', baseId: 'items/base/helm-cap',
         rarity: 'magic', level: 1, identified: true, equipped: true,
         affixes: [{ affixId: 'legacy', values: new Map([['statMods.life', 20]]) }] } } } };
     const before = structuredClone(input); const output = decodeSave(input);

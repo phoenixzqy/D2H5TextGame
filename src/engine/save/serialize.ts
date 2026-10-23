@@ -11,6 +11,7 @@ import {
   CURRENT_SAVE_VERSION,
   type SaveCurrent,
   type InventorySaveData,
+  type QuestItemLedger,
   type MercSaveData,
   type MapSaveData,
   type MetaSaveData,
@@ -21,7 +22,7 @@ import type { Player } from '../types/entities';
 /** Inputs required to assemble a {@link SaveCurrent}. */
 export interface BuildSaveInput {
   readonly player: Player;
-  readonly inventory: InventorySaveData;
+  readonly inventory: InventorySaveData & { readonly questItems?: QuestItemLedger };
   readonly mercs: MercSaveData;
   readonly map: MapSaveData;
   readonly meta: MetaSaveData;
@@ -31,11 +32,14 @@ export interface BuildSaveInput {
 
 /** Build a {@link SaveCurrent} blob from in-memory state. Pure. */
 export function buildSave(input: BuildSaveInput): SaveCurrent {
+  // Only truly absent trusted legacy input defaults; present corruption is never erased.
+  const questItems = Object.hasOwn(input.inventory, 'questItems') ? input.inventory.questItems : {};
+  if (questItems === undefined) throw new Error('Invalid save: present questItems must be a ledger');
   return {
     version: CURRENT_SAVE_VERSION,
     timestamp: input.timestamp ?? Date.now(),
     player: input.player,
-    inventory: input.inventory,
+    inventory: { ...input.inventory, questItems },
     mercs: input.mercs,
     map: input.map,
     meta: input.meta,

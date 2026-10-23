@@ -55,6 +55,7 @@ for (const locale of ['en', 'zh-CN'] as const) {
     const imported: SaveCurrent = {
       ...original,
       inventory: {
+        questItems: {},
         backpack: [candidate, oneHanded, ...fillers],
         stash: [item('stash-retained', 'items/base/ring', { rarity: 'rare', identified: false })],
         equipped: { weapon: oldWeapon, offhand: oldShield },

@@ -13,7 +13,7 @@ vi.mock('dexie', () => ({ default: class {
 } }));
 
 import type { Item } from '@/engine/types/items';
-import type { SaveCurrent } from '@/engine/types/save';
+import { CURRENT_SAVE_VERSION, type SaveCurrent } from '@/engine/types/save';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { synthDefaultPlan } from '@/engine/combat';
 import { createSimpleEnemy, playerToCombatUnit } from './combatHelpers';
@@ -166,7 +166,7 @@ describe('receipt phase persistence boundaries', () => {
     const snapshot = required(snapshotStores()); const json = required(exportCurrentSave()); await flushSave();
     const ids = paid ? ['kept'] : ['selected', 'kept'];
     for (const save of [snapshot, JSON.parse(json) as SaveCurrent, required(disk.state.record).data as SaveCurrent]) {
-      expect(save.version).toBe(11); expect(save.inventory.backpack.map(value => value.id)).toEqual(ids);
+      expect(save.version).toBe(CURRENT_SAVE_VERSION); expect(save.inventory.backpack.map(value => value.id)).toEqual(ids);
       expect(Object.keys(save).sort()).toEqual(['formation', 'inventory', 'map', 'mercs', 'meta', 'player', 'timestamp', 'version']);
     }
     expect(disk.put).toHaveBeenCalledTimes(1); expect(inspectRecordedWaves()).toBe(holder);

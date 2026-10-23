@@ -297,7 +297,8 @@ describe('native selected Might wave composition', () => {
     const save = snapshotStores(); if (!save) throw new Error('Missing actual v9 import fixture');
     const jsonSafe = toJsonSafe(save);
     if (typeof jsonSafe !== 'object' || jsonSafe === null) throw new Error('Missing serialized legacy fixture');
-    const legacy = { ...jsonSafe, version: 9 as const };
+    const { questItems: _ledger, ...inventory } = save.inventory;
+    const legacy = { ...jsonSafe, version: 9 as const, inventory };
     expect(save.player).not.toHaveProperty('selectedAuraId');
     await importIntoStores(JSON.stringify(legacy));
     expect(player()).not.toHaveProperty('selectedAuraId');

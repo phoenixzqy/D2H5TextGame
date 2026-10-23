@@ -4,8 +4,10 @@ import { restoreEquipment, restoreItem, restoreUnit } from './restore';
 import { repairEquipmentRateCache } from './equipment-rate-cache';
 import { repairMercenaryGrowth } from '../progression/merc-growth';
 import { LEVEL_CAP } from '../progression/xp';
-import { CURRENT_SAVE_VERSION, type SaveCurrent, type SaveV7, type SaveV8, type SaveV9, type SaveV10 } from '../types/save';
+import { CURRENT_SAVE_VERSION, type SaveCurrent, type SaveV7, type SaveV8, type SaveV9, type SaveV10, type SaveV11 } from '../types/save';
 import { runMigrations, type VersionedSave } from './migrate';
+import { loadQuestItems, questItemSource } from '../../data/loaders/quest-items';
+import { loadQuests } from '../../data/loaders/quests';
 
 const number = { type: 'number' };
 const text = { type: 'string' };
@@ -156,7 +158,8 @@ const position = object({
 const saveSchema = (
   version: AnySchema,
   actorProperties: Record<string, AnySchema>,
-  playerOptional: Record<string, AnySchema> = {}
+  playerOptional: Record<string, AnySchema> = {},
+  inventoryProperties: Record<string, AnySchema> = {}
 ): AnySchema => object({
   version,
   timestamp: number,
@@ -175,7 +178,8 @@ const saveSchema = (
     backpack: array(item),
     stash: array(item),
     equipped: equipment,
-    currencies: dict(number)
+    currencies: dict(number),
+    ...inventoryProperties
   }),
   mercs: object({
     ownedMercs: array(
@@ -232,6 +236,12 @@ const saveSchema = (
 });
 const ajv = new Ajv({ strictNumbers: true });
 const validate = ajv.compile<SaveCurrent>(saveSchema({ const: CURRENT_SAVE_VERSION }, unitProperties, {
+  selectedAuraId: { enum: ['paladin.might', 'paladin.meditation'] }
+}, {
+  questItems: dict({ type: 'object', required: ['itemId', 'state'], additionalProperties: false,
+    properties: { itemId: text, state: { enum: ['owned', 'consumed'] } } })
+}));
+const validateV11 = ajv.compile<SaveV11>(saveSchema({ const: 11 }, unitProperties, {
   selectedAuraId: { enum: ['paladin.might', 'paladin.meditation'] }
 }));
 const validateV10 = ajv.compile<SaveV10>(saveSchema({ const: 10 }, unitProperties, {
@@ -299,13 +309,48 @@ function validateV10Save(value: unknown): void {
   }
 }
 
+/** Freeze v11 before the ledger migration can add defaults or replace reserved extras. */
+function validateV11Save(value: unknown): void {
+  const normalized = normalizeMaps(value);
+  rejectUndefinedMagicResist(normalized);
+  rejectUndefinedSelection(normalized);
+  if (!validateV11(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(validateV11.errors)}`);
+  if (Object.hasOwn((normalized as SaveV11).inventory, 'questItems')) {
+    throw new Error('Invalid save: historical inventory cannot contain questItems');
+  }
+}
+
+/** Entitlements must agree with both the current definition and claimed canonical quest. */
+function validateQuestItemSources(save: SaveCurrent): void {
+  const entries = Object.entries(save.inventory.questItems);
+  if (entries.length === 0) return;
+  const definitions = loadQuestItems();
+  const quests = loadQuests();
+  for (const [source, entry] of entries) {
+    const definition = definitions.find(item => questItemSource(item) === source);
+    if (!definition || definition.id !== entry.itemId ||
+      !Object.hasOwn(save.map.questProgress, definition.sourceQuestId)) {
+      throw new Error('Invalid save: unknown quest item source or item');
+    }
+    const progress = save.map.questProgress[definition.sourceQuestId];
+    const quest = quests.find(row => row.id === definition.sourceQuestId);
+    if (!quest || progress?.id !== definition.sourceQuestId || progress.status !== 'completed' ||
+      progress.rewardClaimed !== true || !quest.objectives.every(objective =>
+        Object.hasOwn(progress.objectives, objective.id) && progress.objectives[objective.id] === true)) {
+      throw new Error('Invalid save: quest item source must be completed and claimed');
+    }
+  }
+}
+
 /** Validate a migrated save before any IO or store mutation. Preserves optional fields. */
 export function validateSave(value: unknown): SaveCurrent {
   const normalized = normalizeMaps(value);
   rejectUndefinedMagicResist(normalized);
   rejectUndefinedSelection(normalized);
   if (!validate(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(validate.errors)}`);
-  return normalized as SaveCurrent;
+  const save = normalized as SaveCurrent;
+  validateQuestItemSources(save);
+  return save;
 }
 
 /** IndexedDB preserves Maps, whose entries JSON Schema cannot otherwise inspect. */
@@ -332,6 +377,10 @@ export function decodeSave(value: unknown): SaveCurrent {
     throw new Error('Invalid save: version must be a positive integer');
   }
   let input = value as VersionedSave;
+  const rawInventory = 'inventory' in value ? value.inventory : undefined;
+  if (input.version < 12 && record(rawInventory) && Object.hasOwn(rawInventory, 'questItems')) {
+    throw new Error('Invalid save: historical inventory cannot contain questItems');
+  }
   if (input.version < 8) {
     input = runMigrations(input, 7);
   }
@@ -340,6 +389,8 @@ export function decodeSave(value: unknown): SaveCurrent {
   if (input.version === 9) validateV9Save(input);
   if (input.version < 10) input = runMigrations(input, 10);
   if (input.version === 10) validateV10Save(input);
+  if (input.version < 11) input = runMigrations(input, 11);
+  if (input.version === 11) validateV11Save(input);
   const save = validateSave(runMigrations(input));
   return repairEquipmentRateCache({
     ...save,

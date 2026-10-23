@@ -6,6 +6,7 @@
 import { create } from 'zustand';
 import { loadItemBases } from '@/data/loaders/loot';
 import type { EquipmentSlot, Item, ItemBase } from '@/engine/types/items';
+import type { QuestItemLedger } from '@/engine/types/save';
 import { isTwoHanded } from '@/engine/inventory/equipValidator';
 import {
   checkEligibility,
@@ -39,6 +40,8 @@ interface InventoryState {
   
   // Currencies (runes, gems, materials)
   currencies: Record<string, number>;
+  /** Bound entitlements and consumed receipts, independent of gear capacities. */
+  questItems: QuestItemLedger;
   
   // Actions
   /** Retain earned/returned items, including visible recovery overflow. Never rejects by length. */
@@ -77,7 +80,8 @@ const initialState = {
   backpack: [] as Item[],
   stash: [] as Item[],
   equipped: {} as Record<string, Item | null>,
-  currencies: {} as Record<string, number>
+  currencies: {} as Record<string, number>,
+  questItems: {} as QuestItemLedger
 };
 
 function withEquippedFlag(item: Item, equipped: boolean): Item {

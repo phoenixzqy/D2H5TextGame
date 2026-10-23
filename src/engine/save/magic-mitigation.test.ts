@@ -33,7 +33,8 @@ function oldStats(stats: DerivedStats) {
 }
 function legacySave(version = 8) {
   const save = currentSave();
-  return { ...save, version, player: { ...save.player, derivedStats: oldStats(save.player.derivedStats) },
+  const { questItems: _ledger, ...inventory } = save.inventory;
+  return { ...save, inventory, version, player: { ...save.player, derivedStats: oldStats(save.player.derivedStats) },
     mercs: { ...save.mercs, ownedMercs: save.mercs.ownedMercs.map(m => ({ ...m, derivedStats: oldStats(m.derivedStats) })) } };
 }
 
@@ -47,6 +48,7 @@ describe('D04 v9 magic mitigation save boundary', () => {
     expect(input.player.derivedStats).not.toHaveProperty('magicResist');
     expect(input.mercs.ownedMercs.every(m => !Object.hasOwn(m.derivedStats, 'magicResist'))).toBe(true);
     expect(output).toEqual({ ...input, version: CURRENT_SAVE_VERSION,
+      inventory: { ...input.inventory, questItems: {} },
       formation: version === 6 ? {
         playerPosition: { row: 1, col: 1 }, mercPosition: { row: 0, col: 0 },
         summonPositions: [
@@ -64,12 +66,13 @@ describe('D04 v9 magic mitigation save boundary', () => {
 
   it('decodes frozen v9 nonzero MR to current for player, fielded and unfielded mercs without refill', () => {
     const base = currentSave();
-    const input = { ...base, version: 9, player: { ...base.player,
+    const { questItems: _ledger, ...inventory } = base.inventory;
+    const input = { ...base, inventory, version: 9, player: { ...base.player,
       derivedStats: { ...base.player.derivedStats, magicResist: 11 } },
       mercs: { ...base.mercs, ownedMercs: base.mercs.ownedMercs.map((m, i) => ({ ...m,
         derivedStats: { ...m.derivedStats, magicResist: 20 + i } })) } };
     expect(runMigrations(input, 9)).toBe(input);
-    const expected = { ...input, version: CURRENT_SAVE_VERSION };
+    const expected = { ...input, version: CURRENT_SAVE_VERSION, inventory: { ...input.inventory, questItems: {} } };
     expect(decodeSave(input)).toEqual(expected);
     expect(decodeSave(toJsonSafe(decodeSave(input)))).toEqual(expected);
   });
@@ -80,7 +83,8 @@ describe('D04 v9 magic mitigation save boundary', () => {
       derivedStats: { ...input.player.derivedStats, magicResist: 17 } },
       mercs: { ...input.mercs, ownedMercs: input.mercs.ownedMercs.map(m => ({ ...m,
         derivedStats: { ...m.derivedStats, magicResist: 23 } })) } };
-    expect(decodeSave(withMR)).toEqual({ ...withMR, version: CURRENT_SAVE_VERSION });
+    expect(decodeSave(withMR)).toEqual({ ...withMR, version: CURRENT_SAVE_VERSION,
+      inventory: { ...withMR.inventory, questItems: {} } });
   });
 
   it.each([7, 8])('rejects malformed historical MR before any v%s compatibility recomposition', version => {

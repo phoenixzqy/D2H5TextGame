@@ -14,7 +14,7 @@ import type { GridPosition } from '../combat/types';
  * Current save format version. Bump this and add an entry to {@link MIGRATIONS}
  * whenever the on-disk shape changes.
  */
-export const CURRENT_SAVE_VERSION = 11;
+export const CURRENT_SAVE_VERSION = 12;
 
 /**
  * Save file version (most recent).
@@ -115,6 +115,19 @@ export interface InventorySaveData {
   readonly stash: readonly Item[];
   readonly equipped: Readonly<Record<string, Item | null>>;
   readonly currencies: Readonly<Record<string, number>>;
+}
+
+/** One source-bound entitlement or its durable consumed receipt; never equippable gear. */
+export interface QuestItemEntry {
+  readonly itemId: string;
+  readonly state: 'owned' | 'consumed';
+}
+/** Keys are canonical authored quest reward sources, not generated item instance IDs. */
+export type QuestItemLedger = Readonly<Record<string, QuestItemEntry>>;
+
+/** Current inventory; the historical v2–v11 inventory shape above stays frozen. */
+export interface QuestInventorySaveData extends InventorySaveData {
+  readonly questItems: QuestItemLedger;
 }
 
 /** Persisted mercenary progression snapshot. */
@@ -256,10 +269,19 @@ export interface SaveV10 extends Omit<SaveV9, 'version' | 'player'> {
 /** Save file v11 — exclusive canonical Might or Meditation selection; absent means None. */
 export interface SaveV11 extends Omit<SaveV10, 'version' | 'player'> {
   readonly version: 11;
+  readonly player: Omit<Player, 'selectedAuraId'> & {
+    readonly selectedAuraId?: 'paladin.might' | 'paladin.meditation';
+  };
+}
+
+/** Save file v12 — source-bound quest items and durable consumed receipts. */
+export interface SaveV12 extends Omit<SaveV11, 'version' | 'inventory' | 'player'> {
+  readonly version: 12;
+  readonly inventory: QuestInventorySaveData;
   readonly player: Player;
 }
 
-export type SaveCurrent = SaveV11;
+export type SaveCurrent = SaveV12;
 
 /**
  * Migration function type. Each entry receives the previous version's shape
@@ -443,5 +465,10 @@ export const MIGRATIONS: Record<number, Migration> = {
   /** v9 to v10: preserve all data; absent selection remains None. Decode validates both versions. */
   10: (raw: unknown): SaveV10 => ({ ...(raw as SaveV9), version: 10 }),
   /** v10 to v11: widen selection only; frozen v10 is validated before this migration. */
-  11: (raw: unknown): SaveV11 => ({ ...(raw as SaveV10), version: 11 })
+  11: (raw: unknown): SaveV11 => ({ ...(raw as SaveV10), version: 11 }),
+  /** v11 to v12: never infer an entitlement or point from historical claimed flags. */
+  12: (raw: unknown): SaveV12 => {
+    const v11 = raw as SaveV11;
+    return { ...v11, version: 12, inventory: { ...v11.inventory, questItems: {} } };
+  }
 };

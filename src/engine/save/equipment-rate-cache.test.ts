@@ -185,7 +185,8 @@ describe('historical equipped-rate cache compatibility', () => {
 
   it.each([7, 8, 9, 10])('repairs identifiable gear after migrating v%s', version => {
     const input = saved({ amulet: item([{ id: 'affix.savage.crit-damage', tier: 0, rolledValue: 5 }]) });
-    expect(decodeSave({ ...input, version })).toEqual({ ...input, player: { ...input.player,
+    const { questItems: _ledger, ...inventory } = input.inventory;
+    expect(decodeSave({ ...input, inventory, version })).toEqual({ ...input, player: { ...input.player,
       derivedStats: { ...input.player.derivedStats, critDamage: 2.05 } } });
   });
 });
