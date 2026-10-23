@@ -309,7 +309,7 @@
       "backpack": "原背包第{{position}}格",
       "stash": "原仓库第{{position}}格",
       "equipped": "原角色装备 · {{slot}}",
-      "mercEquipment": "原佣兵装备 · {{slot}}"
+      "mercEquipment": "原佣兵装备 · {{mercenary}} · {{slot}}"
     }
   }
 }

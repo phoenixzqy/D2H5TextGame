@@ -16,6 +16,7 @@ export function Act5QuestActionsPanel(context: Context) {
   useMapStore(state => state.clearedSubAreas);
   useMapStore(state => state.currentAct);
   useMapStore(state => state.currentSubAreaId);
+  useMapStore(state => state.selectedDifficulty);
   useInventoryStore(state => state.questItems);
   const [feedback, setFeedback] = useState<string | null>(null);
   const actions = context.npcId !== undefined ? npcAct5QuestActions(context.npcId)

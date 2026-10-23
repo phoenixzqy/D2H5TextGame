@@ -5,6 +5,7 @@ import { MemoryRouter } from 'react-router-dom';
 import i18n from '@/i18n';
 import { loadQuests } from '@/data/loaders/quests';
 import { loadItemBases } from '@/data/loaders/loot';
+import { subAreas } from '@/data';
 import type { Item } from '@/engine/types/items';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { EquipPicker } from '@/features/inventory/EquipPicker';
@@ -13,11 +14,10 @@ import { LegacyGearQuarantinePanel } from '@/features/inventory/LegacyGearQuaran
 import { QuestsScreen } from '@/features/quests/QuestsScreen';
 import { claimQuestReward, readQuestItem } from '@/features/quests/claimReward';
 import { TownScreen } from '@/features/town/TownScreen';
-import { QuestServicePanel } from '@/features/town/QuestServicePanel';
 import { useCombatStore, useInventoryStore, useMapStore, useMercStore, usePlayerStore } from '@/stores';
 import { useHydrationStore } from '@/stores/persistence';
 import { AreaObjectsPanel } from './AreaObjectsPanel';
-import { ReplayProfileControls } from './ReplayProfileControls';
+import { MapScreen } from './MapScreen';
 
 const SIEGE = 'quests/act5-siege-on-harrogath', RESCUE = 'quests/act5-rescue-on-mount-arreat';
 const PRISON = 'quests/act5-prison-of-ice', RITE = 'quests/act5-rite-of-passage', EVE = 'quests/act5-eve-of-destruction';
@@ -156,7 +156,8 @@ describe.each(['en', 'zh-CN'])('Act V actual-core player controls %s', locale =>
     const selected = gear('selected-sword'), other = gear('other-sword');
     useInventoryStore.setState({ backpack: [selected, other] });
     const source = `${SIEGE}#reward:service`;
-    mount(<QuestServicePanel npcId="npc/larzuk" />);
+    mount(<TownScreen />);
+    fireEvent.click(screen.getByTestId('town-npc-larzuk'));
     const use = screen.getByTestId(`quest-service-use-${source}`);
     expect(use).toBeDisabled();
     expect(useInventoryStore.getState().backpack).toEqual([selected, other]);
@@ -175,7 +176,8 @@ describe.each(['en', 'zh-CN'])('Act V actual-core player controls %s', locale =>
     useInventoryStore.setState({ backpack: [target, other] });
     const player = usePlayerStore.getState().player;
     const source = `${PRISON}#reward:service`;
-    mount(<QuestServicePanel npcId="npc/anya" />);
+    mount(<TownScreen />);
+    fireEvent.click(screen.getByTestId('town-npc-anya'));
     fireEvent.change(screen.getByTestId(`quest-service-target-${source}`), { target: { value: target.id } });
     fireEvent.click(screen.getByTestId(`quest-service-use-${source}`));
     expect(useInventoryStore.getState().backpack.find(item => item.id === target.id)?.personalizedBy)
@@ -185,10 +187,34 @@ describe.each(['en', 'zh-CN'])('Act V actual-core player controls %s', locale =>
     expect(useInventoryStore.getState().questServices[source]?.state).toBe('consumed');
   });
 
+  it('refreshes service availability when hydration finishes and actual item ownership changes', () => {
+    readySiege();
+    const target = gear('live-service-target'), source = `${SIEGE}#reward:service`;
+    useInventoryStore.setState({ backpack: [target] });
+    useHydrationStore.getState().setStatus('loading');
+    mount(<TownScreen />);
+    fireEvent.click(screen.getByTestId('town-npc-larzuk'));
+    expect(screen.queryByTestId('quest-services')).not.toBeInTheDocument();
+    act(() => { useHydrationStore.getState().setStatus('ready'); });
+    const spend = screen.getByTestId(`quest-service-use-${source}`);
+    fireEvent.change(screen.getByTestId(`quest-service-target-${source}`), { target: { value: target.id } });
+    expect(spend).toBeEnabled();
+    act(() => { useInventoryStore.setState({ stash: [target] }); });
+    expect(spend).toBeDisabled();
+    expect(screen.queryByTestId(`quest-service-preview-${source}`)).not.toBeInTheDocument();
+    expect(useInventoryStore.getState().questServices[source]?.state).toBe('available');
+  });
+
   it('uses actual claimed campaign rewards to select a title and Nightmare, preserving Normal clear records', () => {
     campaignFixture();
+    useMapStore.setState(state => ({ clearedSubAreas: [...state.clearedSubAreas, 'areas/act1-blood-moor'] }));
     const normalClears = useMapStore.getState().clearedSubAreas;
-    mount(<><TownScreen /><ReplayProfileControls /></>);
+    const normalLevel = subAreas.find(area => area.id === 'areas/act1-blood-moor')?.areaLevel;
+    if (normalLevel === undefined) throw new Error('Missing Blood Moor data');
+    mount(<><TownScreen /><MapScreen /></>);
+    const mapRow = screen.getByTestId('sub-area-row-a1-blood-moor');
+    expect(mapRow).toHaveTextContent(i18n.t('recommendedLevel', { ns: 'map', level: normalLevel }));
+    expect(mapRow).toHaveAttribute('data-cleared', 'true');
     fireEvent.click(screen.getByTestId('quest-title-slayer'));
     expect(useMapStore.getState().selectedTitle).toBe('titles/slayer_of_baal');
     expect(screen.getByTestId('town-screen')).toHaveTextContent(i18n.t('titles.slayer', { ns: 'town' }));
@@ -196,6 +222,12 @@ describe.each(['en', 'zh-CN'])('Act V actual-core player controls %s', locale =>
     expect(useMapStore.getState().selectedDifficulty).toBe('nightmare');
     expect(useMapStore.getState().clearedSubAreas).toBe(normalClears);
     expect(useMapStore.getState().nightmareClearedSubAreas).toEqual([]);
+    expect(mapRow).toHaveTextContent(i18n.t('recommendedLevel', { ns: 'map', level: normalLevel + 20 }));
+    expect(mapRow).not.toHaveAttribute('data-cleared');
+    expect(screen.getByTestId('farm-locked-a1-blood-moor')).toBeDisabled();
+    fireEvent.click(screen.getByTestId('replay-profile-normal'));
+    expect(mapRow).toHaveAttribute('data-cleared', 'true');
+    expect(mapRow).toHaveTextContent(i18n.t('recommendedLevel', { ns: 'map', level: normalLevel }));
     fireEvent.click(screen.getByTestId('quest-title-none'));
     expect(useMapStore.getState().selectedTitle).toBeNull();
     expect(screen.getByTestId('replay-profile-controls').textContent).not.toMatch(/replay\.|undefined/);
@@ -218,11 +250,15 @@ describe.each(['en', 'zh-CN'])('Act V actual-core player controls %s', locale =>
   it('keeps preserved duplicate legacy instances inspectable with distinct origins and no ownership actions', () => {
     const { socketCapacity: _capacity, ...oldItem } = gear('legacy-collision');
     const quarantine = [{ item: oldItem, origin: { container: 'backpack' as const, index: 0 } },
-      { item: oldItem, origin: { container: 'stash' as const, index: 4 } }];
+      { item: oldItem, origin: { container: 'stash' as const, index: 4 } },
+      { item: oldItem, origin: { container: 'mercEquipment' as const, mercId: 'merc-a', slot: 'weapon' as const } },
+      { item: oldItem, origin: { container: 'mercEquipment' as const, mercId: 'merc-b', slot: 'weapon' as const } }];
     useInventoryStore.setState({ legacyGearQuarantine: quarantine });
     mount(<LegacyGearQuarantinePanel />);
     const panel = screen.getByTestId('legacy-gear-quarantine');
-    expect(panel.querySelectorAll('details')).toHaveLength(2);
+    expect(panel.querySelectorAll('details')).toHaveLength(4);
+    expect(panel).toHaveTextContent('merc-a');
+    expect(panel).toHaveTextContent('merc-b');
     expect(within(panel).queryByRole('button')).not.toBeInTheDocument();
     expect(useInventoryStore.getState().legacyGearQuarantine).toBe(quarantine);
     expect(useInventoryStore.getState().backpack).toEqual([]);

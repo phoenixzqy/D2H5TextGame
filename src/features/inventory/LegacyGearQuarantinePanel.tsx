@@ -15,7 +15,8 @@ export function LegacyGearQuarantinePanel() {
           <summary className="min-h-[44px] cursor-pointer py-3 text-d2-gold focus-visible:ring-2 focus-visible:ring-d2-gold">
             {tItemName(t, entry.item)} · {t(`quarantine.origin.${entry.origin.container}`, {
               position: 'index' in entry.origin ? entry.origin.index + 1 : undefined,
-              slot: 'slot' in entry.origin ? t(`slots.${entry.origin.slot}`) : undefined
+              slot: 'slot' in entry.origin ? t(`slots.${entry.origin.slot}`) : undefined,
+              mercenary: entry.origin.container === 'mercEquipment' ? entry.origin.mercId : undefined
             })}
           </summary>
           <ItemTooltip item={entry.item} className="max-w-full" />

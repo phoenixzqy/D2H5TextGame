@@ -309,7 +309,7 @@
       "backpack": "Backpack, position {{position}}",
       "stash": "Stash, position {{position}}",
       "equipped": "Character equipment · {{slot}}",
-      "mercEquipment": "Mercenary equipment · {{slot}}"
+      "mercEquipment": "Mercenary equipment · {{mercenary}} · {{slot}}"
     }
   }
 }

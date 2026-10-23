@@ -1,7 +1,8 @@
 import { useId, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { questServicesForNpc, questServiceCandidates, useQuestService as applyQuestService } from '@/features/quests/useQuestService';
-import { useInventoryStore, useMapStore, usePlayerStore } from '@/stores';
+import { questServicesForNpc, questServiceCandidates, useQuestService as applyQuestService } from './questServices';
+import { useCombatStore, useInventoryStore, useMapStore, useMercStore, usePlayerStore } from '@/stores';
+import { useHydrationStore } from '@/stores/hydrationStore';
 import { WaveGuardError } from '@/stores/waveTransitionGuard';
 import { RecordedWaveAccessError } from '@/stores/recordedWaveAccess';
 import { Button, ItemTooltip, tItemName } from '@/ui';
@@ -55,8 +56,20 @@ function ServiceRow({ service }: { service: Service }) {
 export function QuestServicePanel({ npcId }: { npcId: string }) {
   useInventoryStore(state => state.questServices);
   useInventoryStore(state => state.backpack);
+  useInventoryStore(state => state.stash);
+  useInventoryStore(state => state.equipped);
+  useInventoryStore(state => state.legacyGearQuarantine);
+  useInventoryStore(state => state.questItems);
   useMapStore(state => state.currentAct);
+  useMapStore(state => state.currentSubAreaId);
+  useMapStore(state => state.selectedDifficulty);
+  useMapStore(state => state.questProgress);
+  useMapStore(state => state.questReceipts);
+  useMercStore(state => state.mercEquipment);
+  useMercStore(state => state.ownedMercs);
   usePlayerStore(state => state.player);
+  useCombatStore(state => state.inCombat);
+  useHydrationStore(state => state.status);
   const services = questServicesForNpc(npcId);
   if (services.length === 0) return null;
   return <div className="w-full min-w-0 space-y-3" data-testid="quest-services">
