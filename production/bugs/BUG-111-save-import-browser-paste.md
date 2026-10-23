@@ -63,3 +63,14 @@ The remaining four-size matrix also passes8/8, giving10/10 total. Its report
 SHA256 is`f8411651d3fa2740a7f6877f7e444a7405442865cf5d1dd7dd796e9e1b10c266`;
 independent QA verifies all64 additional staged save attachments and unchanged
 source/build/input lineage. There are no retries/skips/flaky/browser errors.
+
+## Earned-material continuation follow-up — 2026-10-23
+
+The new materials-earned harness reused locator.fill with the exact authentic
+native17 export (2,452,888 UTF-8 bytes, 104,014 lines), reproducing a setup stall.
+Root interrupted its exact Playwright PID before import-baseline export or
+challenge-start; zero combat attempts occurred. The report records one test
+that did not run to completion, not a combat loss or successful material check.
+The helper now uses the same clipboard transport and exact textbox equality
+above. Product input remains unchanged. Independent review and the actual
+earned browser continuation remain required before acceptance.

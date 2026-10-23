@@ -375,3 +375,82 @@ rollback requirements before root accepted that implementation contract. This
 is plan readiness only. Slice B's numeric mechanic defaults still require the
 normal independent GD/TD/QA verdict; they are not a request for repeated owner
 permission. A catalog-only or test-only delivery cannot close Slice A or P12b.
+
+## Slice B review amendment — 2026-10-23
+
+This amendment resolves the GD/TD review's five concrete concerns and controls
+over conflicting proposed Slice B wording above. GD/TD approve implementation
+with these exact amendments; independent QA review of the amended contract is
+READY after the boundary amendment below. Numeric defaults are approved as mechanics, with earned affordability
+and balance still unmeasured. Deliver unified v19 socket/recipe behavior rather
+than another inactive ownership schema. Full P12b acceptance remains unchanged.
+
+1. **Complete alternative base predicates.** Phoenix changes to
+   `allowedBases:['weapon','armor']`; Exile changes to `['armor']`. Each allowed
+   alternative is a complete predicate. Spirit is `(type:weapon,slot:weapon,
+   weaponType:sword) OR (type:armor,slot:offhand)`. Phoenix is
+   `(type:weapon,slot:weapon) OR (type:armor,slot:offhand)`. Weapon-type limits
+   apply only within the weapon alternative. Preserve all35 sequences, exact
+   capacities/required levels and the other listed restrictions.
+2. **Freeze historical acceptance and recover unsupported placements.** Before
+   changing live restrictions, freeze v18's item validator, matcher and relevant
+   catalogs. A currently valid v18 Lore on chest armor must still decode under
+   v18, even though new v19 insertion cannot create it. Compatible active items
+   convert in order without loss. Newly disallowed placements move to exact,
+   version-tagged v18 quarantine payloads with original ownership provenance;
+   they contribute no active effects. Keep existing v16 quarantine under its
+   frozen contract. Migration neither strips contents nor refunds materials.
+   Provide an explicit bilingual recovery preview/confirmation: return the same
+   instance/base/base rolls/capacity/personalization as normal gear with empty
+   contents, remove runeword identity, and credit its exact inserted rune counts
+   to materials. Commit target ingress, refund and removal of the quarantine
+   entry once, under the shared action boundary. Gear-capacity/material overflow
+   or any fault preserves the complete entry and prior state. No inferred rune
+   identities, silent loss or activation of unsupported legacy placements.
+3. **Every action shares one replay boundary.** The latest receipt's closed
+   result contains an optional transformed `itemId`, a material-output map and
+   a currency-output map. Output maps obey the closed catalogs and positive safe
+   counts, omitting zero. Crafting currency output keys are only rune-shard and
+   gem-shard. This represents insertion, clearing, socket rolls, caster craft,
+   fusion, dismantling, salvage and quarantine recovery. Ordinal starts at0 with
+   no receipt; a new prepared intent uses current+1, refusing safe-integer
+   overflow. Check exact latest ordinal/requestHash replay before checking inputs
+   that the original action consumed. Return the recorded result without a
+   publication or RNG. Older, mismatched and gapped requests refuse. One UI
+   confirmation intent retains one prepared request through double-click/retry.
+   New refused inputs and rolled-back writes advance nothing. Commit all inputs,
+   output, ordinal and receipt together. See ADR-009's amendment for schema and
+   ordering; no unbounded receipt history or crash-atomicity claim is added.
+4. **Source level and caster fixed package.** Craft/salvage use own item.ilvl
+   when present, otherwise item.level; require a positive safe integer. A
+   malformed present ilvl refuses, never falls back. Preserve original fields,
+   including absent ilvl; never substitute character level/base requirements.
+   Caster fixed bonuses use one reserved recipe-affix ID and values authored in
+   recipe JSON, persisted in existing LegacyAffixRoll format with Map entries
+   `coreStats.energy→5` and `statMods.mana→20`, plus exactly one newly rolled
+   legal modern prefix and one suffix at that source level. Empty legal pools
+   refuse before spending. Replace old affixes/generated name; retain specified
+   instance/base/socket fields. Apply the fixed Map once, without duplicating
+   those values into base rolls or derived caches.
+5. **Stat units stay explicit.** ItemBonusStats critical/dodge packages use
+   ratios; resistance, attackSpeed, magicFind and currencyFind use points.
+   magicResist is a flat mitigation rating. Existing modern critical/dodge
+   affixes remain authored in percentage points and keep their existing single
+   conversion. The six named catalog ratio corrections above apply before
+   activation; no blanket runtime division or second affix conversion.
+
+Compliance adds historical loose-match fixtures, new strict branch controls,
+lossless equipped/backpack/stash/merc quarantine migration and confirmed
+recovery, every result kind's reload/replay without input reconsumption,
+ordinal boundaries, legacy missing/present-invalid ilvl, caster Map/modern
+affix composition once and flat-MR/ratio/point sentinels. Existing per35-word,
+all-recipe, transaction and earned UI/combat/save requirements remain mandatory.
+
+QA boundary amendment: reject reserved v19 fields on raw predecessor payloads
+before any historical normalization/migration can erase them. This includes
+socketContents at every item, mirror and snapshot site, materialActionOrdinal,
+its latest receipt, and the new quarantine discriminator. Native ordinal0 is
+valid exactly when no receipt exists. A positive ordinal requires exactly one
+closed latest receipt with equal ordinal, a canonical bounded request hash and
+both required closed result maps. Malformed/missing/mismatched receipt and
+predecessor-field-laundering controls are mandatory.

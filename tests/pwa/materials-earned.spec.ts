@@ -32,8 +32,13 @@ async function backup(page: Page): Promise<{ save: SaveCurrent; raw: string }> {
 async function importRaw(page: Page, raw: string, english: boolean): Promise<void> {
   const label = english ? 'Import Save' : '导入存档';
   await page.getByRole('button', { name: label, exact: true }).click();
-  const dialog = page.getByRole('dialog');
-  await dialog.getByRole('textbox').fill(raw);
+  const dialog = page.getByRole('dialog'), textbox = dialog.getByRole('textbox');
+  // BUG-111: multiline CDP insertText stalls; paste the exact native export.
+  await page.context().grantPermissions(['clipboard-read', 'clipboard-write'], { origin: new URL(page.url()).origin });
+  await page.evaluate(async value => navigator.clipboard.writeText(value), raw);
+  await textbox.click();
+  await textbox.press('ControlOrMeta+V');
+  await expect(textbox).toHaveValue(raw);
   await dialog.getByRole('button', { name: label, exact: true }).click();
   await expect(dialog).toHaveCount(0);
 }

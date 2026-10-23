@@ -89,3 +89,20 @@ runtime-error/missed-terminal stopping, active-page diagnostics and enabled-only
 Pause guards were added. Root runs final type/scoped-lint/list checks and freezes
 the reviewed files plus production build before launch. No combat has run at
 this plan commit.
+
+Setup interruption: the first invocation stalled inserting the unmodified
+2,452,888-byte multiline save through locator.fill, repeating the automation
+transport defect already documented in BUG-111. Root interrupted that exact
+task-owned Playwright process; its worker/browser/preview processes terminated.
+No import-baseline export or challenge-start marker exists, and no combat ran.
+Preserve its original freeze/report and setup-interruption diagnostic separately.
+The corrected helper uses BUG-111's reviewed ordinary clipboard paste and exact
+textbox equality before pressing public Import. No timeout, input bytes,
+assertion, runtime or combat-attempt limit changes. Re-review/refreeze the
+changed harness before the sole combat launch.
+
+Independent QA re-review: READY for the exact clipboard helper and unchanged
+sole-combat limit. Final typecheck, explicit --no-ignore scoped ESLint and
+Playwright collection (one test) pass. The initial ESLint invocation ignored
+tests by repository default; the explicit scoped invocation actually checked
+both files. No runtime/build drift occurred during this transport correction.

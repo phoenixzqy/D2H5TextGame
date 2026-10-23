@@ -145,3 +145,90 @@ The D10 acceptance matrix requires boundary RNG fixtures, exact conservation,
 atomic exception/retry tests, old/native save round trips, actual earned UI
 acquisition and bilingual mobile Save-Continue. Constructed state proves a
 mechanic, not earned affordability, full P12b, C2 or campaign balance.
+
+## v19 review amendment — 2026-10-23
+
+GD/TD approve the proposed v19 architecture with the clarifications below;
+independent QA sign-off on this amended contract is READY after the raw
+predecessor and native action invariants below. These supersede
+the conflicting proposed active-item retention and item-only receipt wording
+above without changing accepted v18 behavior. The corresponding D10 amendment
+defines exact mechanic defaults, base predicates and caster representation.
+
+### Frozen history and explicit recovery
+
+Freeze v18's complete item validation, loose matcher and relevant catalogs
+before editing live recipe restrictions. Validate the actual predecessor first.
+Convert compatible items across all ownership locations with exact ordered
+rune contents and unchanged payload. Stricter v19 base predicates can make a
+previously valid item ineligible; preserve that exact source item in a closed,
+version-tagged v18 quarantine entry with original ownership/location provenance.
+Its active slot becomes empty and it contributes no effect. Keep existing v16
+quarantine validation frozen and separate. Migration never silently strips,
+discards, credits materials or recomposes an unsupported active word.
+
+An explicit recovery action previews the same item ID/base/base rolls/capacity/
+personalization restored as normal gear with empty socket contents and no
+runeword identity, plus the exact explicit inserted rune counts returned to the
+material ledger. Preserve unrelated payload. It consumes the quarantine entry
+only after complete input/arithmetic/output-capacity preflight and commits the
+replacement/refund/entry removal/receipt together. Faults roll back every
+participant; overflow leaves the exact original entry available for later
+recovery. This restores known explicit ownership rather than inventing lost
+anonymous currency identities. Bilingual UI must expose the entry and preview.
+
+### Closed action result and replay ordering
+
+The per-character native materialActionOrdinal is a nonnegative safe integer;
+migration sets0 with no last receipt. A new prepared request uses current+1.
+Overflow refuses. The bounded latest receipt is
+`{ordinal,requestHash,result:{itemId?,materials,currencies}}`: itemId identifies
+the one transformed/recovered item when applicable, materials uses the closed
+material catalog and currencies permits only rune-shard/gem-shard outputs.
+Counts are positive safe integers with zeros omitted; no additional output
+keys or parallel cached item payload. This covers actions whose only outputs
+are materials/currency, including fusion, dismantling and bulk salvage.
+
+Validate request structure/character/hash, then check exact latest receipt
+replay before checking now-consumed inputs. Matching latest ordinal/hash returns
+the stored result without a mutation or RNG draw. Older ordinals, mismatched
+latest requests and gaps refuse. Only current+1 proceeds to complete current
+ownership/eligibility/capacity/arithmetic preflight. Hold the synchronous lock
+through publication and rollback; publish exact input costs, persisted output,
+ordinal and receipt together. Failed preflight or complete rollback leaves
+ordinal/output unchanged. A UI confirmation retains one canonical prepared
+request through double-click/retry, rather than preparing a new ordinal for
+each click. The hash binds character, recipe, ordered exact IDs/quantities and
+target preimage. Random action output uses that same identity and all rolls
+persist; equip/import/Continue never reroll. Latest-only replay still refuses
+older completed actions without an unbounded receipt journal.
+
+For craft/salvage level gates, own present ilvl is authoritative; only its
+absence permits item.level. The chosen value must be a positive safe integer;
+malformed present data never falls back. Preserve original stored fields. The
+caster's reserved recipe-authored LegacyAffixRoll Map stores fixed energy+5/
+mana+20 beside its legal modern prefix/suffix, never in a second bonus cache.
+ItemBonusStats magicResist is flat mitigation; modern affix critical/dodge
+point-to-ratio conversion remains separate from ratio-valued stat packages.
+
+Compliance requires frozen historical acceptance, every source ownership site,
+lossless explicit recovery, every output/result kind, exact latest replay before
+spent-input validation, mismatch/gap/overflow refusals, rollback and JSON/native/
+Continue round trips. Schema readiness alone cannot accept v19 or full P12b.
+
+### Raw predecessor reservation and native action invariants
+
+Before historical migration or normalization, reject all reserved v19 fields
+on the raw predecessor: socketContents at every item/mirror/snapshot location,
+materialActionOrdinal, the latest action receipt and the new quarantine
+discriminator. A historical decoder dropping an unknown field must not launder
+it into a valid v19 save. These checks also precede chained old-version imports.
+
+Native ordinal0 holds if and only if no receipt exists. A positive ordinal
+requires exactly one closed latest receipt whose ordinal equals
+materialActionOrdinal, whose requestHash is a canonical 64-character lowercase
+hex SHA256 value, and whose result includes both closed required maps
+materials/currencies (empty maps allowed) and only the optional itemId above.
+Reject missing, malformed, mismatched and extra receipt fields. Compliance
+includes those native rejection controls and raw predecessor-field-laundering
+tests at each ownership/mirror/snapshot location.
