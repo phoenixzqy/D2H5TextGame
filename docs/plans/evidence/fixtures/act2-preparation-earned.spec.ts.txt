@@ -1,0 +1,113 @@
+/** One earned earlier-ActII route; first nonwin stop, no retry/allocation/tuning/boss. */
+import { test, expect, type Page, type BrowserContext } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/@playwright/test/index.mjs';
+import { readFile, writeFile, appendFile } from 'node:fs/promises';
+import { createCharacter, navTo } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/tests/e2e/_helpers';
+import { gunzipSync, gzipSync } from 'node:zlib';
+const root='/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-act2-preparation-hmy6xs2y';
+const now=1792497600000;
+const quest='quests/act2-radaments-lair';
+async function backup(page:Page) {
+ await navTo(page,'settings'); const pending=page.waitForEvent('download');
+ await page.getByTestId('export-save-button').click(); const download=await pending;
+ try { return JSON.parse(await readFile(await download.path(),'utf8')); } finally { await download.delete(); }
+}
+async function disk(page:Page) {
+ return page.evaluate(async()=>{
+  const db=await new Promise<IDBDatabase>((resolve,reject)=>{const req=indexedDB.open('D2H5TextGame'); req.onsuccess=()=>resolve(req.result); req.onerror=()=>reject(req.error);});
+  try {
+   const record=await new Promise<{data:unknown}>((resolve,reject)=>{const req=db.transaction('saves','readonly').objectStore('saves').get('current'); req.onsuccess=()=>resolve(req.result); req.onerror=()=>reject(req.error);});
+   return JSON.parse(JSON.stringify(record.data,(_key,value)=>value instanceof Map?[...value.entries()]:value));
+  } finally { db.close(); }
+ });
+}
+async function importSave(page:Page, raw:string, english:boolean) {
+ await navTo(page,'settings'); const label=english?'Import Save':'导入存档';
+ await page.getByRole('button',{name:label,exact:true}).click(); const dialog=page.getByRole('dialog');
+ await dialog.getByRole('textbox').fill(raw);
+ await dialog.getByRole('button',{name:label,exact:true}).click(); await expect(dialog).toHaveCount(0);
+}
+async function reopen(page:Page, context:BrowserContext, english:boolean, expected:unknown, errors:string[]) {
+ await navTo(page,'settings');
+ await page.getByRole('button',{name:english?'Save':'保存',exact:true}).click();
+ await expect(page.getByRole('status')).toHaveText(english?'Saved':'已保存');
+ expect(await disk(page)).toEqual(expected); expect(await backup(page)).toEqual(expected);
+ await page.close(); const next=await context.newPage(); next.on('pageerror',error=>errors.push(error.message));
+ await next.clock.setFixedTime(now); await next.goto('/'); await next.waitForLoadState('networkidle');
+ await next.getByTestId('home-continue').click(); await expect(next.getByTestId('town-screen')).toBeVisible();
+ expect(await backup(next)).toEqual(expected); expect(await disk(next)).toEqual(expected);
+ return next;
+}
+
+async function save(label:string,value:unknown) {await writeFile(root+'/'+label+'.json.gz',gzipSync(JSON.stringify(value)));}
+function ids(s) {return [...s.inventory.backpack,...s.inventory.stash,...Object.values(s.inventory.equipped),...Object.values(s.mercs.mercEquipment).flatMap(Object.values)].filter(Boolean).map(x=>x.id);}
+function heroXP(s) {let xp=s.player.experience;for(let l=1;l<s.player.level;l++)xp+=Math.floor(100*l**2.5);return xp;}
+function mercXP(s) {const actor=s.mercs.ownedMercs.find(x=>x.id===s.mercs.fieldedMercId);let xp=s.mercs.mercProgress[actor.id].experience;for(let l=1;l<actor.level;l++)xp+=Math.floor(60*l*1.3**(l-1));return xp;}
+async function wave(page:Page) {return Number((await page.getByTestId('wave-counter').innerText()).match(/\d+/)?.[0]);}
+async function pause(page:Page) {await page.getByRole('button',{name:'Pause',exact:true}).click({timeout:1000});await expect(page.getByRole('button',{name:'Resume',exact:true})).toHaveAttribute('aria-pressed','true');}
+async function terminal(page:Page) {return page.evaluate(()=>({
+ counter:document.querySelector('[data-testid="wave-counter"]')?.textContent,
+ log:Array.from(document.querySelectorAll('[data-testid="combat-log"] > div > span:last-child'),n=>n.textContent),
+ enemies:Array.from(document.querySelectorAll('[data-testid="enemies-grid"] [data-testid^="unit-card-"]'),c=>({id:c.getAttribute('data-testid'),dead:c.getAttribute('data-dead'),text:c.textContent})),
+ hero:document.querySelector('[data-testid="unit-card-player-1792497600000"]')?.getAttribute('data-dead'),
+ defeats:document.querySelectorAll('[data-testid="defeat-panel"]').length,
+ skipDisabled:document.querySelector<HTMLButtonElement>('[data-testid="skip-button"]')?.disabled
+ }));}
+function conservation(after,before) {
+ expect(new Set(ids(after)).size).toBe(ids(after).length);const afterIds=new Set(ids(after));expect(ids(before).every(id=>afterIds.has(id))).toBe(true);
+ expect(after.inventory.backpack.slice(0,before.inventory.backpack.length)).toEqual(before.inventory.backpack);
+ expect(after.inventory.stash).toEqual(before.inventory.stash);expect(after.inventory.equipped).toEqual(before.inventory.equipped);
+ expect(after.mercs.mercEquipment).toEqual(before.mercs.mercEquipment);expect(after.mercs.fieldedMercId).toBe(before.mercs.fieldedMercId);
+}
+
+test('one earned Rocky Waste then Dry Hills preparation',async({page,context})=>{
+ let active=page,phase='setup',last;const errors:string[]=[],outcomes:unknown[]=[];
+ const checks:Record<string,unknown>={classification:'earned historical C1 plus four Radament-area waves; not fresh-current-runtime C2',date:now,route:['a2-rocky-waste','a2-dry-hills'],retries:0};
+ active.on('pageerror',e=>errors.push(e.message));
+ try {
+  await active.clock.setFixedTime(now);await active.goto('/');await active.waitForLoadState('networkidle');
+  await createCharacter(active,{class:'sorceress',name:'Earned preparation import'});
+  await navTo(active,'settings');await active.getByRole('button',{name:'English',exact:true}).click();
+  const raw=gunzipSync(await readFile('/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/d11-earned-radament-prefix.json.gz')).toString();
+  const input=JSON.parse(raw);expect(ids(input)).toHaveLength(4000);expect(input.version).toBe(12);
+  await importSave(active,raw,true);expect(await backup(active)).toEqual(input);expect(await disk(active)).toEqual(input);last=input;
+  await expect.poll(()=>active.evaluate(()=>navigator.serviceWorker.controller?.state),{timeout:60000}).toBe('activated');expect(await active.evaluate(()=>'__GAME__' in window)).toBe(false);
+  phase='preflight-save-close-continue';active=await reopen(active,context,true,input,errors);checks.preflightExact=true;
+  let ordinal=0,stopped=false;
+  for(const area of ['a2-rocky-waste','a2-dry-hills']) {
+   phase=area+'-entry';await navTo(active,'map');const act=active.getByRole('button',{name:/^Act 2 ·/});if(await act.getAttribute('aria-expanded')!=='true')await act.click();
+   await active.getByTestId('sub-area-row-'+area).getByRole('button',{name:'Enter',exact:true}).click();await expect(active.getByTestId('combat-screen')).toBeVisible();await pause(active);
+   const counter=await active.getByTestId('wave-counter').innerText(),total=Number(counter.match(/\/\s*(\d+)/)?.[1]);expect(total).toBe(area==='a2-rocky-waste'?4:5);expect(await wave(active)).toBe(1);
+   const entry=await backup(active);expect(entry).toEqual({...last,map:{...last.map,currentSubAreaId:area}});last=entry;await save(area+'-entry',last);
+   await appendFile(root+'/reproducibility.jsonl',JSON.stringify({area,date:now,sessionChallengeOrdinal:ordinal,note:'No seed injection; source derivation is separately frozen in source manifest',totalWaves:total})+'\n');
+   await navTo(active,'combat');
+   for(let n=1;n<=total;n++) {
+    phase=area+'-wave-'+n;expect(await wave(active)).toBe(n);await save(phase+'-opening',await terminal(active));expect(errors).toEqual([]);
+    await active.getByTestId('skip-button').click();await expect(active.getByTestId('skip-button')).toBeDisabled();
+    const result=await terminal(active);outcomes.push({area,wave:n,...result});await save(phase+'-terminal',result);await writeFile(root+'/outcomes.json',JSON.stringify(outcomes,null,2));
+    if(result.log.at(-1)!=='Victory! All enemies are defeated.') {
+     stopped=true;checks.outcome='first-nonwin';checks.stoppedAt={area,wave:n};await active.screenshot({path:root+'/nonwin.png'});
+     const failed=await backup(active);expect(failed).toEqual(last);await save('nonwin-save',failed);last=failed;break;
+    }
+    expect(result.hero).toBeNull();expect(result.defeats).toBe(0);expect(result.enemies.length).toBeGreaterThan(0);expect(result.enemies.every(x=>x.dead==='true')).toBe(true);
+    if(n<total) {await expect.poll(()=>wave(active),{timeout:5000,intervals:[50]}).toBe(n+1);await pause(active);}
+    else {await expect(active.getByTestId('victory-panel')).toBeVisible();await active.screenshot({path:root+'/'+area+'-victory.png'});await active.getByTestId('return-to-map').click();await expect(active.getByTestId('cleared-badge-'+area)).toBeVisible();}
+    const after=await backup(active);await save(phase+'-award',after);conservation(after,last);
+    expect(after.player.coreStats).toEqual(input.player.coreStats);expect(after.player.skillLevels).toEqual(input.player.skillLevels);expect(after.player.comboOrder).toEqual(input.player.comboOrder);expect(after.map.questProgress).toEqual(input.map.questProgress);expect(after.inventory.questItems).toEqual({});
+    const xp=heroXP(after)-heroXP(last),mxp=mercXP(after)-mercXP(last);expect(xp).toBeGreaterThan(0);expect(mxp).toBe(Math.floor(xp*.75));
+    const currencies=Object.fromEntries([...new Set([...Object.keys(last.inventory.currencies),...Object.keys(after.inventory.currencies)])].map(k=>[k,(after.inventory.currencies[k]??0)-(last.inventory.currencies[k]??0)]));expect(Object.values(currencies).every(x=>x>=0)).toBe(true);
+    await appendFile(root+'/awards.jsonl',JSON.stringify({area,wave:n,heroXP:xp,mercXP:mxp,originalCount:ids(last).length,newCount:ids(after).length,newItems:after.inventory.backpack.slice(last.inventory.backpack.length),currencies})+'\n');last=after;
+    if(n<total) {await navTo(active,'combat');expect(await wave(active)).toBe(n+1);await expect(active.getByRole('button',{name:'Resume',exact:true})).toHaveAttribute('aria-pressed','true');}
+   }
+   if(stopped)break;ordinal++;
+  }
+  phase='final-state';const gained=last.player.level-input.player.level,milestones=[12,24,36].filter(l=>input.player.level<l&&last.player.level>=l).length;
+  expect(last.player.skillPoints-input.player.skillPoints).toBe(gained+milestones);expect(last.player.statPoints-input.player.statPoints).toBe(5*gained);expect(last.map.questProgress[quest]).toEqual(input.map.questProgress[quest]);expect(last.map.clearedSubAreas).not.toContain('areas/act2-far-oasis');expect(last.inventory.questItems).toEqual({});conservation(last,input);
+  await save('earned-prefix',last);phase='final-save-close-continue';active=await reopen(active,context,true,last,errors);checks.finalPrefixExact=true;
+  expect(errors).toEqual([]);expect(await active.evaluate(()=>'__GAME__' in window)).toBe(false);checks.outcome??='both-areas-cleared';checks.originalIDs=4000;checks.finalIDs=ids(last).length;checks.heroXPGain=heroXP(last)-heroXP(input);checks.mercXPGain=mercXP(last)-mercXP(input);checks.heroLevelBefore=input.player.level;checks.heroLevelAfter=last.player.level;checks.earnedUnspentSkillPoints=last.player.skillPoints;checks.earnedUnspentStatPoints=last.player.statPoints;
+  await navTo(active,'quests');await active.getByTestId('quest-'+quest).scrollIntoViewIfNeeded();await active.screenshot({path:root+'/radament-still-unclaimed.png'});
+ } catch(error) {
+  checks.error=error instanceof Error?error.stack:String(error);checks.phase=phase;
+  if(!active.isClosed())try {const p=active.getByRole('button',{name:'Pause',exact:true});if(await p.count())await p.click({timeout:1000});await active.screenshot({path:root+'/last-page.png'});await save('last-save',await backup(active));}catch(diagnostic){checks.diagnosticError=String(diagnostic);}
+  throw error;
+ } finally {checks.pageErrors=errors;await writeFile(root+'/assertions.json',JSON.stringify(checks,null,2));if(!active.isClosed())await active.close();}
+});

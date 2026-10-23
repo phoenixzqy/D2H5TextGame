@@ -10522,3 +10522,18 @@ Exact task-owned build/browser outputs removed, remaining[]/failures[]; raw
 evidence stays root-owned through journal/C2/umbrella consumers at the exact root
 in the evidence document. No combat, earned Arcane or C2 claim follows.
 C0/C1 accepted; C2 underway; C3/C4/fullG0–G7 remain open. Local only.
+
+## P14 — Earned earlier Act II preparation
+
+[Evidence](evidence/act2-earned-preparation.md): unchanged genuine4000-item
+prefix, exact import/preflight Save-close-Continue, one Rocky Waste challenge.
+Three wins then wave4 defeat; Dry Hills not attempted, no retries. Actual
+4170heroXP/3127mercXP/57gear,4057unique IDs; no level/points/clear/quest/book.
+Failed save equals final winning prefix, preserved exactly through Continue.
+Production build/4chunkbridge/source786/build760/harness integrity pass.
+One bounded contract browser case PASS26s, not an area-clear assertion. Producer
+READY/security PASS; independent QA APPROVE/security PASS, all readers released.
+Exact disposable dist/browser outputs removed, remaining[]/failures[]; raw
+evidence retained root-owned through C2/umbrella at the path in the evidence.
+Next actual implementation is approved objective-bound Cube recovery. C0/C1
+accepted; C2 underway; C3/C4/fullG0–G7 open. Local only.
