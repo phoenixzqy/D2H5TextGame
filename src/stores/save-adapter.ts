@@ -7,6 +7,7 @@ import Dexie, { type Table } from 'dexie';
 import { type SaveCurrent } from '@/engine/types/save';
 import { type VersionedSave } from '@/engine/save';
 import { decodeSave } from '@/engine/save/validate';
+import { toJsonSafe } from '@/engine/save/serialize';
 
 export interface SaveRecord {
   id: string; // Always "current" for single-player
@@ -69,7 +70,7 @@ export function saveSave(data: SaveCurrent): Promise<void> {
 export async function exportSave(): Promise<string | null> {
   const record = await db.saves.get('current');
   if (!record) return null;
-  return JSON.stringify(record.data, null, 2);
+  return JSON.stringify(toJsonSafe(record.data), null, 2);
 }
 
 /**

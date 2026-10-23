@@ -62,7 +62,7 @@ export function buildSave(input: BuildSaveInput): SaveCurrent {
  *
  * Caller is responsible for any final `JSON.stringify`.
  */
-export function toJsonSafe(save: SaveCurrent): unknown {
+export function toJsonSafe(save: unknown): unknown {
   return JSON.parse(
     JSON.stringify(save, (_key, value: unknown): unknown => {
       if (value instanceof Map) return [...value.entries()];

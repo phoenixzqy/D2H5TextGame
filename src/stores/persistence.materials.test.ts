@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { SaveRecord } from './save-adapter';
-import type { SaveCurrent } from '@/engine/types/save';
+import type { SaveCurrent, SaveV17 } from '@/engine/types/save';
 
 const disk = vi.hoisted(() => {
   const state: { record: SaveRecord | undefined } = { record: undefined };
@@ -21,7 +21,7 @@ import { useMapStore } from './mapStore';
 import { useMercStore } from './mercStore';
 import { useMetaStore } from './metaStore';
 import { useFormationStore } from './formationStore';
-import { loadSave } from './save-adapter';
+import { exportSave, loadSave } from './save-adapter';
 import { __resetPersistenceForTests, exportCurrentSave, flushSave, hydrateFromSave,
   importIntoStores, snapshotStores, useHydrationStore } from './persistence';
 
@@ -43,6 +43,30 @@ beforeEach(() => {
 afterEach(() => { __resetPersistenceForTests(); });
 
 describe('native v18 material persistence', () => {
+  it.each([17, 18])('raw disk export preserves affix Map entries and stored version %i', async version => {
+    const values = new Map([['coreStats.energy', 5], ['statMods.mana', 20]]);
+    useInventoryStore.getState().addItem({ id: 'caster-map', baseId: 'items/base/amu-tin',
+      rarity: 'rare', level: 20, identified: true, equipped: false,
+      affixes: [{ affixId: 'recipes/caster-fixed', values }] });
+    await flushSave();
+    const record = disk.state.record;
+    if (!record) throw new Error('Missing saved record');
+    const saved = snapshot();
+    const { materials: _materials, ...oldInventory } = saved.inventory;
+    const historical: SaveV17 = { ...saved, version: 17, inventory: oldInventory };
+    disk.state.record = { ...record, version, data: version === 17 ? historical : saved };
+    const before = structuredClone(disk.state.record);
+    const raw = await exportSave();
+    if (!raw) throw new Error('Missing raw disk export');
+    const parsed = JSON.parse(raw) as SaveCurrent;
+    expect(parsed.version).toBe(version);
+    expect(parsed.inventory.backpack[0]?.affixes).toEqual([
+      { affixId: 'recipes/caster-fixed', values: [...values] }
+    ]);
+    expect(disk.state.record).toEqual(before);
+    await importIntoStores(raw);
+    expect(snapshot().inventory.backpack[0]?.affixes).toEqual([{ affixId: 'recipes/caster-fixed', values }]);
+  });
   it('preserves typed holdings through snapshot/export/Save/reset/Continue and repeated import', async () => {
     const materials = { 'runes/ral': 3, 'gems/ruby/chipped': 5, 'materials/scrap': Number.MAX_SAFE_INTEGER };
     useInventoryStore.getState().addMaterials(materials);
