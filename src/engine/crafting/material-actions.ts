@@ -7,12 +7,15 @@ import { createRng, hashSeed, type Rng } from '../rng';
 import { sha256 } from '../sha256';
 import type { Affix, ItemBase } from '../types/items';
 import type { HistoricalItem } from '../save/historical-items';
-import type { LegacyGearOrigin } from '../types/save';
 import { historicalSocketBases, validateItemServiceFields } from '../save/historical-sockets';
 import { actionData, canonicalActionValue, readMaterialActionState, type MaterialActionReceipt } from './action-state';
 
+/** Exact v18 location; historical ownership maps accept arbitrary string keys. */
+export type MaterialRecoveryOrigin = { readonly container: 'backpack' | 'stash'; readonly index: number }
+  | { readonly container: 'equipped'; readonly slot: string }
+  | { readonly container: 'mercEquipment'; readonly mercId: string; readonly slot: string };
 /** Exact unsupported v18 payload plus its original location; recovery never infers contents. */
-export interface MaterialRecoveryEntry { readonly sourceVersion: 18; readonly item: HistoricalItem; readonly origin: LegacyGearOrigin }
+export interface MaterialRecoveryEntry { readonly sourceVersion: 18; readonly item: HistoricalItem; readonly origin: MaterialRecoveryOrigin }
 /** Whole participating inventory projection; the store adapter owns publication and rollback. */
 export interface MaterialActionInventory {
   readonly backpack: readonly CanonicalSocketItem[];

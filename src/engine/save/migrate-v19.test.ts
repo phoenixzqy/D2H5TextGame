@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { buildSave } from './serialize';
+import { buildSave, toJsonSafe } from './serialize';
+import { validateFrozenV18Save, validateSocketSave } from './validate';
 import { deriveStats } from '../progression/stats';
 import type { HistoricalItem } from './historical-items';
 import type { SaveV18 } from '../types/save';
@@ -121,4 +122,19 @@ describe('complete v18 ownership migration for connected v19 rollout', () => {
     expect(() => migrateSaveV19(input)).toThrow();
     expect(input).toEqual(before);
   });
+});
+
+
+it('composes identical gear stats from native Maps and validated JSON without changing stored payloads', () => {
+  const save = sample(), equipped = { weapon: sword('json-steel') };
+  const input = { ...save, inventory: { ...save.inventory, equipped } };
+  const before = structuredClone(input), json = toJsonSafe(input);
+  const normalized = validateFrozenV18Save(json);
+  const migrated = migrateSaveV19(normalized), native = migrateSaveV19(input);
+  expect(migrated.player.derivedStats).toEqual(native.player.derivedStats);
+  expect(migrated.player.derivedStats.manaMax).toBeGreaterThan(save.player.derivedStats.manaMax);
+  expect(validateSocketSave(migrated)).toEqual(toJsonSafe(native));
+  expect(toJsonSafe(migrated.inventory.equipped.weapon?.affixes)).toEqual(toJsonSafe(equipped.weapon.affixes));
+  expect(input).toEqual(before);
+  expect(toJsonSafe(normalized)).toEqual(json);
 });
