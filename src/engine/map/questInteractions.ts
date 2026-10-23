@@ -1,3 +1,5 @@
+import { questObjectivePrerequisitesMet } from './questStages';
+
 /** Ordered, area-bound object events. Item-dependent objectives need their own transaction. */
 export interface InteractionProgress {
   id: string;
@@ -9,6 +11,7 @@ export interface InteractionProgress {
 export interface InteractionQuest {
   readonly id: string;
   readonly actId: string;
+  readonly objectiveStages?: readonly (readonly string[])[];
   readonly objectives: readonly {
     readonly id: string;
     readonly type: string;
@@ -24,19 +27,18 @@ export type ObjectInteractionStatus = 'unavailable' | 'ready' | 'completed' | 'c
 function areaObjectives(quests: readonly InteractionQuest[], areas: readonly InteractionArea[], location: ObjectLocation) {
   if (!areas.some(area => area.id === location.areaId && area.actId === location.actId)) return [];
   return quests.filter(quest => quest.actId === location.actId).flatMap(quest =>
-    quest.objectives.flatMap((objective, index) =>
+    quest.objectives.flatMap((objective) =>
       objective.type === 'interact' && objective.areaId === location.areaId &&
       typeof objective.targetId === 'string' && objective.targetId.length > 0 &&
       objective.itemRequired === undefined && (objective.count === undefined || objective.count === 1)
-        ? [{ quest, objective, index, targetId: objective.targetId }] : []));
+        ? [{ quest, objective, targetId: objective.targetId }] : []));
 }
 
 function eligible(entry: ReturnType<typeof areaObjectives>[number], progress: Record<string, InteractionProgress>): boolean {
   const current = progress[entry.quest.id];
   return current?.status === 'inProgress' && !current.rewardClaimed &&
     current.objectives[entry.objective.id] !== true &&
-    entry.quest.objectives.slice(0, entry.index).every(previous =>
-      Object.hasOwn(current.objectives, previous.id) && current.objectives[previous.id] === true);
+    questObjectivePrerequisitesMet(entry.quest, current.objectives, entry.objective.id);
 }
 
 /** List supported authored objects in a canonical area, without granting or banking credit. */

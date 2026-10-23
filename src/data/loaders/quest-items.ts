@@ -4,6 +4,7 @@ import schema from '../schema/quest-item.schema.json';
 import document from '../quests/items.json';
 import { loadQuests, type QuestDef, type QuestObjective } from './quests';
 import { subAreas } from '../index';
+import { questObjectivePrerequisites } from '../../engine/map/questStages';
 
 /** A unique quest reward entitlement and its one-time Read effect. */
 interface QuestItemBase {
@@ -109,14 +110,14 @@ export function loadQuestItems(): readonly QuestItemDef[] {
       }
     } else if (item.kind === 'assembled') {
       const quest = quests.find(row => row.id === item.sourceQuestId);
-      const index = quest?.objectives.findIndex(objective => objective.id === item.sourceObjectiveId) ?? -1;
+      const prerequisiteIds = quest ? questObjectivePrerequisites(quest, item.sourceObjectiveId) : undefined;
       const tool = items.find(row => row.id === item.requiredTool);
       const ingredients = item.ingredients.map(id => items.find(row => row.id === id));
-      const predecessors = quest?.objectives.slice(0, index) ?? [];
+      const predecessors = quest?.objectives.filter(objective => prerequisiteIds?.includes(objective.id)) ?? [];
       const inputs = [tool, ...ingredients];
       const consumerQuest = quests.find(row => row.id === item.consumeQuestId);
       const consumer = exactObjective(consumerQuest, item.consumeObjectiveId);
-      if (!quest || index < 0 || tool?.kind !== 'tool' ||
+      if (!quest || prerequisiteIds === undefined || tool?.kind !== 'tool' ||
         ingredients.some(ingredient => ingredient?.kind !== 'component' || ingredient.consumedBy !== item.id) ||
         inputs.some(input => input?.kind === undefined || input.sourceQuestId !== item.sourceQuestId ||
           !predecessors.some(objective => objective.id === input.sourceObjectiveId)) ||

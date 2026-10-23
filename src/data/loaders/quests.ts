@@ -38,6 +38,8 @@ export interface QuestDef {
   readonly giver?: string;
   readonly description: string;
   readonly objectives: readonly QuestObjective[];
+  /** Complete ordered partition; peers may progress in any order. Omitted means serial objectives. */
+  readonly objectiveStages?: readonly (readonly string[])[];
   readonly rewards?: QuestRewards;
   readonly unlocks?: string;
   readonly prerequisites?: readonly string[];
@@ -67,6 +69,17 @@ export function loadQuests(): readonly QuestDef[] {
   for (const [document, context] of [[main, 'quests/main.json'], [side, 'quests/side.json']] as const) {
     for (const quest of document.quests) {
       if (ids.has(quest.id)) throw new Error(`Duplicate quest id "${quest.id}" in ${context}`);
+      const objectiveIds = new Set(quest.objectives.map(objective => objective.id));
+      if (objectiveIds.size !== quest.objectives.length) {
+        throw new Error(`Duplicate objective id in ${context}: ${quest.id}`);
+      }
+      if (quest.objectiveStages !== undefined) {
+        const stagedIds = quest.objectiveStages.flat();
+        if (stagedIds.length !== objectiveIds.size || new Set(stagedIds).size !== stagedIds.length ||
+          stagedIds.some(id => !objectiveIds.has(id))) {
+          throw new Error(`Invalid objectiveStages partition in ${context}: ${quest.id}`);
+        }
+      }
       ids.add(quest.id);
       quests.push(quest);
     }

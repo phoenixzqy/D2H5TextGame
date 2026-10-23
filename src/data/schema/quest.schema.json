@@ -874,6 +874,17 @@
           },
           "description": "Ordered objective payloads, with IDs scoped per quest."
         },
+        "objectiveStages": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Complete ordered partition of objective IDs; each stage is unordered internally. Omission retains serial objective order. Coverage and cross-stage duplicates are checked by the loader.",
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": { "type": "string", "minLength": 1 }
+          }
+        },
         "rewards": {
           "$ref": "#/$defs/rewards"
         },

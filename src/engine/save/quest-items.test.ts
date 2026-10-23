@@ -3,6 +3,8 @@ import { deriveStats } from '../progression/stats';
 import { CURRENT_SAVE_VERSION, MIGRATIONS, type SaveV1 } from '../types/save';
 import { buildSave, toJsonSafe, type BuildSaveInput } from './serialize';
 import { decodeSave, validateSave, validateQuestItemLedger } from './validate';
+import questItemsDocument from '../../data/quests/items.json';
+import questsDocument from '../../data/quests/main.json';
 
 const questId = 'quests/act2-radaments-lair';
 const source = `${questId}#reward:questItem`;
@@ -215,6 +217,41 @@ describe('v12 source-bound quest item ledger', () => {
 });
 
 describe('v14 Staff component and consumption graph', () => {
+  it.each([undefined, {}, null, new Map(), new Date(1000),
+    { 'quests/act3-guardian#action:break-compelling-orb': true }])(
+    'rejects reserved future proof maps before normalization or migration (%j)', questReceipts => {
+      for (const version of [12, 13, 14]) {
+        const input = { ...sampleSave(), version };
+        Reflect.set(input.map, 'questReceipts', questReceipts);
+        const before = Object.getOwnPropertyDescriptors(input.map);
+        expect(() => decodeSave(input)).toThrow('Invalid save');
+        if (version === CURRENT_SAVE_VERSION) expect(() => validateSave(input)).toThrow('Invalid save');
+        expect(Object.getOwnPropertyDescriptors(input.map)).toEqual(before);
+      }
+    }
+  );
+
+  it('keeps the v14 item domain closed when live definitions admit a future reward', () => {
+    const quest = questsDocument.quests.find(row => row.id === questId);
+    if (!quest) throw new Error('Missing Radament source fixture');
+    const originalItems = Object.getOwnPropertyDescriptor(questItemsDocument, 'items');
+    const originalRewards = Object.getOwnPropertyDescriptor(quest, 'rewards');
+    if (!originalItems || !originalRewards) throw new Error('Missing content descriptors');
+    const futureId = 'items/future-book';
+    const input = withLedger({ [source]: { itemId: futureId, state: 'owned' } });
+    try {
+      Object.defineProperty(questItemsDocument, 'items', { ...originalItems,
+        value: [{ id: futureId, sourceQuestId: questId, effect: { skillPoints: 1 },
+          nameKey: 'inventory:questItems.future.name', descKey: 'inventory:questItems.future.description' }] });
+      Object.defineProperty(quest, 'rewards', { ...originalRewards, value: { questItem: futureId } });
+      expect(validateQuestItemLedger(input.inventory.questItems, input.map.questProgress)).toEqual(input.inventory.questItems);
+      expect(() => decodeSave(input)).toThrow('Invalid save');
+    } finally {
+      Object.defineProperty(questItemsDocument, 'items', originalItems);
+      Object.defineProperty(quest, 'rewards', originalRewards);
+    }
+  });
+
   const staffQuest = 'quests/act2-horadric-staff';
   const tombQuest = 'quests/act2-seven-tombs';
   const cube = `${staffQuest}#objective:obj-cube`;
@@ -247,6 +284,43 @@ describe('v14 Staff component and consumption graph', () => {
     expect(decodeSave(input)).toEqual(input);
     expect(decodeSave(toJsonSafe(input))).toEqual(input);
     expect(input).toEqual(original);
+  });
+
+  it('allows live peer receipts without weakening frozen v14 serial predecessors', () => {
+    const quest = questsDocument.quests.find(row => row.id === staffQuest);
+    if (!quest) throw new Error('Missing Staff quest');
+    const previousStages = Object.getOwnPropertyDescriptor(quest, 'objectiveStages');
+    const input = staffSave('components');
+    Reflect.deleteProperty(input.inventory.questItems, cube);
+    Reflect.deleteProperty(input.inventory.questItems, shaft);
+    input.map.questProgress[staffQuest].objectives['obj-cube'] = false;
+    input.map.questProgress[staffQuest].objectives['obj-shaft'] = false;
+    try {
+      Object.defineProperty(quest, 'objectiveStages', { configurable: true, enumerable: true,
+        value: [['obj-cube', 'obj-shaft', 'obj-amulet'], ['obj-transmute']] });
+      expect(validateQuestItemLedger(input.inventory.questItems, input.map.questProgress)).toEqual(input.inventory.questItems);
+      expect(() => decodeSave(input)).toThrow('Invalid save');
+      input.map.questProgress[staffQuest].objectives['obj-amulet'] = false;
+      expect(() => validateQuestItemLedger(input.inventory.questItems, input.map.questProgress)).toThrow('Invalid save');
+    } finally {
+      if (previousStages) Object.defineProperty(quest, 'objectiveStages', previousStages);
+      else Reflect.deleteProperty(quest, 'objectiveStages');
+    }
+  });
+
+  it.each(['obj-shaft', 'obj-amulet'] as const)('preserves explicit partial repair receipt %s without inventing earlier items', objectiveId => {
+    const input = staffSave('components');
+    for (const key of Object.keys(input.inventory.questItems)) {
+      if (key !== `${staffQuest}#objective:${objectiveId}`) Reflect.deleteProperty(input.inventory.questItems, key);
+    }
+    Reflect.set(input.map.questProgress[staffQuest], 'status', 'completed');
+    Reflect.set(input.map.questProgress[staffQuest], 'rewardClaimed', true);
+    input.map.questProgress[staffQuest].objectives['obj-transmute'] = true;
+    const before = structuredClone(input);
+    expect(decodeSave(input)).toEqual(input);
+    expect(decodeSave(toJsonSafe(input))).toEqual(input);
+    expect(input).toEqual(before);
+    expect(Object.keys(input.inventory.questItems)).toEqual([`${staffQuest}#objective:${objectiveId}`]);
   });
 
   it.each([

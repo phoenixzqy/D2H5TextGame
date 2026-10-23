@@ -12,7 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
-| D11/P14 coherent Act III batch | source metadata implemented; five playable flows remain open | [Frozen contract](decisions/D11-compact-act3-contract.md), [objective map](decisions/D11-compact-act3-objective-map.json), and [12-case matrix](decisions/D11-compact-act3-qa-cases.json). Authored wave/encounter/chapter provenance survives planning and qualified settlement; synthetic waves supply no authored source. Nine new cases cover canonical Council/Mephisto wiring, identity preservation, and fallback controls. Final 9156 tests/307 files, engine4371/113, types/lint/build/four-chunk scan pass. This adds no receipt, reward, objective credit, save field, or playable A3 flow. Admission, item/action graph, migration, rewards, town/UI and five-flow acceptance remain next. |
+| D11/P14 coherent Act III batch | source and stage/save foundations implemented; five playable flows remain open | [Frozen contract](decisions/D11-compact-act3-contract.md), [objective map](decisions/D11-compact-act3-objective-map.json), and [12-case matrix](decisions/D11-compact-act3-qa-cases.json). Authored encounter provenance is retained. [Stage foundation](evidence/act3-objective-stages.md) adds shared optional unordered stages with serial fallback and frozen v14 validation; all 24 component orders and real receipt-based assembly tested. Final 9190 tests/310 files, engine4385/114, types/lint/build/four-chunk scan pass; independent TD/QA approval for foundation only. No authored quest flow, new item/proof/reward, save-version bump or browser acceptance. Admission, cross-quest item/action graph, migration, rewards, town/UI and five-flow acceptance remain next. |
 | Fresh current-runtime Act II screen | stopped at actual Radament draw; evidence accepted | At `d2e3cfa`, one fresh production360×640/en Sorceress wins310 ActI waves, claims/equips actual Andariel reward and Continues exactly. Real Staff/Sun/insert actions and14paired persistence barriers pass; FarOasis wins4waves then actual RadamentW5draw.315terminals/314wins, zero failed-wave awards, final save exactly wave4;3296prior→3376unique gear IDs, +7760heroXP/+5820mercXP. Source2433/build760/30immutable harness files match; original31-file freeze includes intentionally overwritten generated report, documented separately. All8attachments retained. Producer and independent QA APPROVE/security PASS for truthful stopped evidence; exact disposable cleanup verified, diagnostics retained root-owned. [Evidence](evidence/fresh-current-act2-screen.md). No Radament victory/Book/Arcane/Duriel/ActIII/C2 claim or automatic balance-defect inference. |
 | D11 Duriel credit/cache | implemented and independently reviewed | `5d5f0d0`/`afdd39a`: canonical ordered qualified Duriel settlement/no-backfill, ordinary boss32/table preserved; explicit deterministic five-pick Claim with safe normalized currencies, multi-item rollback and overflow. Full9102/303, engine4357/112, final T/L/build/4chunk scan pass. Constructed production en/zh2/2, retry0/errors[], exact12000heroXP/9000mercXP/4items/21534shards,4057prior→4061distinct gear IDs, Save-close-Continue/reimports;639source/760build/4harness/input drift[]. Producer/QA final APPROVE/security PASS; exact disposable cleanup verified, diagnostics retained root-owned. [Evidence](evidence/duriel-quest-cache.md). Earned Duriel/ActII/C2, Tainted Sun resistance, Canyon metadata and full narrative localization remain open. |
 | D11 Staff item path | implemented and independently reviewed | Recover shaft/amulet, retained-Cube assembly, separate6000XP Claim and consumed-Staff insertion. Save14 reciprocal receipts/frozen13 and explicit completed/claimed repair. Full9011/299, engine4331/111, final T/L/build/4chunk scan pass; production en/zh2/2, retry0/pageErrors[], exact stage Save-close-Continue/import and4057 gear identities preserved. Producer/QA-H2 APPROVE/security PASS;806source/760build/2harness/input drift[]. Exact disposable cleanup verified; diagnostic evidence retained root-owned. [Evidence](evidence/staff-acquisition.md). Duriel, earned ActII/C2, Tainted Sun resistance and Canyon metadata remain open. |
@@ -10701,3 +10701,24 @@ All agent readers are released; root removes those exact retained artifacts
 when their integration/umbrella consumers finish. Durable contracts above are
 source deliverables and are preserved. C0/C1 remain narrowly accepted; C2,
 C3/C4 and full G0–G7 remain open. Work remains local on the claimed worktree.
+
+## D11/P14 — Shared objective stages and frozen v14 foundation
+
+[Evidence](evidence/act3-objective-stages.md) records optional complete stage
+partitions, shared pre-event eligibility across live events/actions/receipts,
+and recipe checks using progression stages rather than display order. Omission
+retains serial progression; no authored quest data is changed. Literal v14
+Book/Cube/Shaft/Amulet/Staff validation runs before future migration and ignores
+live definitions. Raw historical reserved proofs reject before normalization.
+No new save field, migration grant, reward or playable A3 flow is introduced.
+
+Final 9190 tests/310 files PASS (219.07s), engine4385/114 PASS (60.67s),
+typecheck/lint/production build and four-chunk bridge scan pass. All 15 frozen
+source/test hashes match. TD approves ADR007; independent QA approves applied
+source/recipe correction with security PASS; producer confirms foundation-only
+scope. Known suite budgets remain exceeded. No browser/campaign acceptance.
+All final sessions are terminal and readers released. Exact task-owned dist/tmp
+removed; cache absent; cleanup remaining[]/failures[]. Root retains logs and
+receipts at `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-a3-stages-1413g41j`
+through A3/umbrella integration and removes them after consumers finish. C0/C1
+remain narrowly accepted; C2 underway; C3/C4 and full G0–G7 remain open. Local only.

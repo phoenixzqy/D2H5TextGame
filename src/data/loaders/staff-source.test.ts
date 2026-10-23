@@ -15,6 +15,26 @@ function replaceItem(id: string, replacement: object, check: () => void): void {
 }
 
 describe('authored Horadric Staff recipe and sources', () => {
+  it.each([false, true])('validates recipe predecessors by authored stages rather than display order (same stage: %s)', sameStage => {
+    const quest = quests.quests.find(row => row.id === questId);
+    if (!quest) throw new Error('Missing Staff quest');
+    const originalObjectives = Object.getOwnPropertyDescriptor(quest, 'objectives');
+    const originalStages = Object.getOwnPropertyDescriptor(quest, 'objectiveStages');
+    if (!originalObjectives) throw new Error('Missing objective descriptor');
+    try {
+      if (!sameStage) Reflect.set(quest, 'objectives', [...quest.objectives].reverse());
+      Reflect.set(quest, 'objectiveStages', sameStage
+        ? [['obj-cube', 'obj-shaft', 'obj-amulet', 'obj-transmute']]
+        : [['obj-cube', 'obj-shaft', 'obj-amulet'], ['obj-transmute']]);
+      if (sameStage) expect(() => loadQuestItems()).toThrow('quests/items.json');
+      else expect(loadQuestItems().find(item => item.id === staffId)?.kind).toBe('assembled');
+    } finally {
+      Object.defineProperty(quest, 'objectives', originalObjectives);
+      if (originalStages) Object.defineProperty(quest, 'objectiveStages', originalStages);
+      else Reflect.deleteProperty(quest, 'objectiveStages');
+    }
+  });
+
   it('binds both fetches and the consumable output to exact canonical objectives', () => {
     const definitions = loadQuestItems();
     expect(definitions.find(item => item.id === 'quest/staff_of_kings')).toMatchObject({

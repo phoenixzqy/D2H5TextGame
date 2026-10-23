@@ -20,6 +20,40 @@ function progress(kill = true): Record<string, InteractionProgress> {
 }
 
 describe('ordered area-object events', () => {
+  it('allows every order within a stage, requires all peers before advancing, and never cascades', () => {
+    const organs = ['heart', 'brain', 'eye', 'flail'];
+    const staged = { ...quest, objectives: [...organs, 'assemble', 'use'].map(id => ({
+      id, type: 'interact', areaId: location.areaId, targetId: id === 'use' ? 'objects/assemble' : `objects/${id}`
+    })), objectiveStages: [organs, ['assemble'], ['use']] };
+    function permutations(ids: readonly string[]): string[][] {
+      return ids.length === 0 ? [[]] : ids.flatMap(id =>
+        permutations(ids.filter(other => other !== id)).map(rest => [id, ...rest]));
+    }
+    const orders = permutations(organs);
+    expect(orders).toHaveLength(24);
+    for (const order of orders) {
+      let current: Record<string, InteractionProgress> = { [quest.id]: {
+        id: quest.id, status: 'inProgress', objectives: {}, rewardClaimed: false
+      } };
+      const assembly = { ...event, targetId: 'objects/assemble' };
+      for (const id of order) {
+        expect(applyObjectInteraction([staged], areas, current, assembly)).toBe(current);
+        const recovery = { ...event, targetId: `objects/${id}` };
+        expect(objectInteractionStatus([staged], areas, current, recovery)).toBe('ready');
+        const before = structuredClone(current);
+        const after = applyObjectInteraction([staged], areas, current, recovery);
+        expect(current).toEqual(before);
+        expect(after[quest.id]?.objectives).toEqual({ ...before[quest.id]?.objectives, [id]: true });
+        current = after;
+        expect(applyObjectInteraction([staged], areas, current, recovery)).toBe(current);
+      }
+      current = applyObjectInteraction([staged], areas, current, assembly);
+      expect(current[quest.id]?.objectives).toEqual({ heart: true, brain: true, eye: true, flail: true, assemble: true });
+      expect(current[quest.id]?.status).toBe('inProgress');
+      expect(applyObjectInteraction([staged], areas, current, assembly)[quest.id]?.status).toBe('completed');
+    }
+  });
+
   it('completes exactly the authored eligible objective, preserving unrelated state', () => {
     const before = progress();
     const after = applyObjectInteraction([quest], areas, before, event);

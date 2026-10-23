@@ -9,6 +9,7 @@ import { assertRecordedWaveNewTransitionAllowed } from '@/stores/recordedWaveAcc
 import { validateQuestItemLedger } from '@/engine/save/validate';
 import type { QuestItemLedger } from '@/engine/types/save';
 import type { QuestDef } from '@/data/loaders/quests';
+import { questObjectivePrerequisitesMet } from '@/engine/map/questStages';
 
 let inProgress = false;
 
@@ -41,7 +42,7 @@ export function eligibleQuestObjective(quest: QuestDef, objectiveId: string): bo
   return progress.status === 'completed'
     ? quest.objectives.every(objective => ownTrue(objective.id))
     : progress.status === 'inProgress' && progress.rewardClaimed !== true &&
-      quest.objectives.slice(0, index).every(objective => ownTrue(objective.id));
+      questObjectivePrerequisitesMet(quest, progress.objectives, objectiveId);
 }
 
 type Progress = ReturnType<typeof useMapStore.getState>['questProgress'][string];

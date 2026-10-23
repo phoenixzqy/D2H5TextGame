@@ -7,7 +7,8 @@ import { LEVEL_CAP } from '../progression/xp';
 import { CURRENT_SAVE_VERSION, type SaveCurrent, type SaveV7, type SaveV8, type SaveV9, type SaveV10, type SaveV11, type QuestItemEntry, type QuestItemLedger } from '../types/save';
 import { runMigrations, type VersionedSave } from './migrate';
 import { loadQuestItems, questItemSource } from '../../data/loaders/quest-items';
-import { loadQuests } from '../../data/loaders/quests';
+import { loadQuests, type QuestDef } from '../../data/loaders/quests';
+import { questObjectivePrerequisitesMet } from '../map/questStages';
 
 const number = { type: 'number' };
 const text = { type: 'string' };
@@ -356,6 +357,18 @@ function validObjectiveProgress(context: LedgerContext, questId: string, objecti
       Object.hasOwn(progress.objectives, id) && progress.objectives[id] === true));
 }
 
+/** Live stages govern prerequisites; a receipt additionally requires its own true source. */
+function validLiveObjectiveProgress(context: LedgerContext, quest: QuestDef, objectiveId: string): boolean {
+  if (!Object.hasOwn(context.questProgress, quest.id)) return false;
+  const progress = context.questProgress[quest.id];
+  const ownTrue = (id: string) => progress !== undefined &&
+    Object.hasOwn(progress.objectives, id) && progress.objectives[id] === true;
+  return progress?.id === quest.id && (progress.status === 'inProgress' || progress.status === 'completed') &&
+    (progress.rewardClaimed !== true || progress.status === 'completed') && ownTrue(objectiveId) &&
+    questObjectivePrerequisitesMet(quest, progress.objectives, objectiveId) &&
+    (progress.status !== 'completed' || quest.objectives.every(objective => ownTrue(objective.id)));
+}
+
 /** Validate untrusted ledger/progress structure and canonical entitlements without store reads or repair. */
 export function validateQuestItemLedger(questItems: unknown, questProgress: unknown): QuestItemLedger {
   const validated = ledgerContext(questItems, questProgress);
@@ -378,9 +391,7 @@ export function validateQuestItemLedger(questItems: unknown, questProgress: unkn
     const progress = validated.questProgress[definition.sourceQuestId];
     const quest = quests.find(row => row.id === definition.sourceQuestId);
     if (definition.kind !== undefined) {
-      const index = quest?.objectives.findIndex(objective => objective.id === definition.sourceObjectiveId) ?? -1;
-      if (!quest || !validObjectiveProgress(validated, definition.sourceQuestId,
-        quest.objectives.map(objective => objective.id), index)) {
+      if (!quest || !validLiveObjectiveProgress(validated, quest, definition.sourceObjectiveId)) {
         throw new Error('Invalid save: quest item requires its completed objective source');
       }
       if (definition.kind === 'tool' && entry.state !== 'owned') {
@@ -397,9 +408,7 @@ export function validateQuestItemLedger(questItems: unknown, questProgress: unkn
         }
         if (entry.state === 'consumed') {
           const consumer = quests.find(row => row.id === definition.consumeQuestId);
-          const consumerIndex = consumer?.objectives.findIndex(objective => objective.id === definition.consumeObjectiveId) ?? -1;
-          if (!consumer || !validObjectiveProgress(validated, definition.consumeQuestId,
-            consumer.objectives.map(objective => objective.id), consumerIndex)) {
+          if (!consumer || !validLiveObjectiveProgress(validated, consumer, definition.consumeObjectiveId)) {
             throw new Error('Invalid save: consumed output requires its exact interaction source');
           }
         }
@@ -464,8 +473,60 @@ function validateV13Save(value: unknown): void {
   if (!validateV13(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(validateV13.errors)}`);
 }
 
+// v14's graph is literal historical data. Never consult live stages or item definitions here.
+const validateV14 = ajv.compile(saveSchema({ const: 14 }, unitProperties, {
+  selectedAuraId: { enum: ['paladin.might', 'paladin.meditation'] }
+}, { questItems: questItemLedgerSchema }));
+
+function validateV14Save(value: unknown): void {
+  if (!record(value) || !record(value.inventory) || !record(value.map)) throw new Error('Invalid save: v14 structure');
+  const context = ledgerContext(value.inventory.questItems, value.map.questProgress);
+  const staffQuest = 'quests/act2-horadric-staff';
+  const source = (objectiveId: string) => `${staffQuest}#objective:${objectiveId}`;
+  const receipt = (objectiveId: string) => Object.hasOwn(context.questItems, source(objectiveId))
+    ? context.questItems[source(objectiveId)] : undefined;
+  const objectiveIds = ['obj-cube', 'obj-shaft', 'obj-amulet', 'obj-transmute'];
+  const itemIds = ['quest/horadric_cube', 'quest/staff_of_kings', 'quest/viper_amulet', 'quest/horadric_staff'];
+  for (const [key, entry] of Object.entries(context.questItems)) {
+    if (validFrozenBookReceipt(context, key, entry)) continue;
+    const index = objectiveIds.findIndex(id => key === source(id));
+    if (index < 0 || entry.itemId !== itemIds[index] ||
+      !validObjectiveProgress(context, staffQuest, objectiveIds, index)) {
+      throw new Error('Invalid save: unsupported v14 quest item source');
+    }
+    if (index === 0 && entry.state !== 'owned') throw new Error('Invalid save: v14 Cube must remain owned');
+    if ((index === 1 || index === 2) &&
+      ((entry.state === 'consumed') !== (receipt('obj-transmute') !== undefined))) {
+      throw new Error('Invalid save: v14 consumed components require Staff output');
+    }
+    if (index === 3) {
+      if (receipt('obj-cube')?.state !== 'owned' || receipt('obj-shaft')?.state !== 'consumed' ||
+        receipt('obj-amulet')?.state !== 'consumed') {
+        throw new Error('Invalid save: v14 Staff requires its owned Cube and consumed ingredients');
+      }
+      if (entry.state === 'consumed' && !validObjectiveProgress(context, 'quests/act2-seven-tombs',
+        ['obj-open-tomb', 'obj-kill-duriel'], 0)) {
+        throw new Error('Invalid save: v14 consumed Staff requires its insertion source');
+      }
+    }
+  }
+  const normalized = normalizeMaps(value);
+  rejectUndefinedMagicResist(normalized);
+  rejectUndefinedSelection(normalized);
+  if (!validateV14(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(validateV14.errors)}`);
+}
+
+/** Reserved future proofs must be rejected before normalization or a migration can erase them. */
+function rejectHistoricalQuestReceipts(value: unknown): void {
+  if (record(value) && typeof value.version === 'number' && value.version <= 14 &&
+    record(value.map) && Object.hasOwn(value.map, 'questReceipts')) {
+    throw new Error('Invalid save: historical map cannot contain questReceipts');
+  }
+}
+
 /** Validate a migrated save before any IO or store mutation. Preserves optional fields. */
 export function validateSave(value: unknown): SaveCurrent {
+  rejectHistoricalQuestReceipts(value);
   if (record(value) && record(value.inventory) && record(value.map)) {
     validateQuestItemLedger(value.inventory.questItems, value.map.questProgress);
   }
@@ -501,6 +562,7 @@ export function decodeSave(value: unknown): SaveCurrent {
     throw new Error('Invalid save: version must be a positive integer');
   }
   let input = value as VersionedSave;
+  rejectHistoricalQuestReceipts(input);
   const rawInventory = 'inventory' in value ? value.inventory : undefined;
   if (input.version < 12 && record(rawInventory) && Object.hasOwn(rawInventory, 'questItems')) {
     throw new Error('Invalid save: historical inventory cannot contain questItems');
@@ -519,6 +581,8 @@ export function decodeSave(value: unknown): SaveCurrent {
   if (input.version === 12) validateV12Save(input);
   if (input.version < 13) input = runMigrations(input, 13);
   if (input.version === 13) validateV13Save(input);
+  if (input.version < 14) input = runMigrations(input, 14);
+  if (input.version === 14) validateV14Save(input);
   const save = validateSave(runMigrations(input));
   return repairQuestResistanceCache(repairEquipmentRateCache({
     ...save,

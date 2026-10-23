@@ -4,6 +4,7 @@
  */
 
 import { create } from 'zustand';
+import { questObjectivePrerequisitesMet } from '@/engine/map/questStages';
 import { loadQuests } from '@/data/loaders/quests';
 import { loadTownNpcs } from '@/data/loaders/towns';
 import { isActUnlocked as engineIsActUnlocked, isSubAreaUnlocked as engineIsSubAreaUnlocked } from '@/engine/map/unlock';
@@ -137,10 +138,10 @@ export const useMapStore = create<MapState>((set, get) => ({
     let questProgress = state.questProgress;
     for (const quest of loadQuests()) {
       const progress = state.questProgress[quest.id];
-      if (progress?.status !== 'inProgress') continue;
+      if (progress?.status !== 'inProgress' || progress.rewardClaimed) continue;
       const matching = quest.objectives.filter((objective) =>
         objective.type === 'clear-area' && objective.areaId === subAreaId &&
-        !progress.objectives[objective.id]
+        !progress.objectives[objective.id] && questObjectivePrerequisitesMet(quest, progress.objectives, objective.id)
       );
       if (matching.length === 0) continue;
       const objectives = {
@@ -171,9 +172,9 @@ export const useMapStore = create<MapState>((set, get) => ({
       if (quest.actId !== `acts/act${String(state.currentAct)}`) continue;
       const progress = state.questProgress[quest.id];
       if (progress?.status !== 'inProgress' || progress.rewardClaimed) continue;
-      const matching = quest.objectives.filter((objective, index) =>
+      const matching = quest.objectives.filter((objective) =>
         objective.type === 'talk' && objective.npcId === npcId && !progress.objectives[objective.id] &&
-        quest.objectives.slice(0, index).every((previous) => progress.objectives[previous.id])
+        questObjectivePrerequisitesMet(quest, progress.objectives, objective.id)
       );
       if (matching.length === 0) continue;
       const objectives = {
@@ -198,10 +199,10 @@ export const useMapStore = create<MapState>((set, get) => ({
       if (quest.actId !== event.actId) continue;
       const progress = state.questProgress[quest.id];
       if (progress?.status !== 'inProgress' || progress.rewardClaimed) continue;
-      const matching = quest.objectives.filter((objective, index) =>
+      const matching = quest.objectives.filter((objective) =>
         objective.type === 'kill-boss' && objective.areaId === event.areaId &&
         objective.targetId === event.bossArchetypeId && !progress.objectives[objective.id] &&
-        quest.objectives.slice(0, index).every((previous) => progress.objectives[previous.id])
+        questObjectivePrerequisitesMet(quest, progress.objectives, objective.id)
       );
       if (matching.length === 0) continue;
       const objectives = {
@@ -235,11 +236,11 @@ export const useMapStore = create<MapState>((set, get) => ({
       if (quest.actId !== event.actId) continue;
       const progress = state.questProgress[quest.id];
       if (progress?.status !== 'inProgress' || progress.rewardClaimed) continue;
-      const matching = quest.objectives.filter((objective, index) =>
+      const matching = quest.objectives.filter((objective) =>
         objective.type === 'kill' && objective.areaId === event.areaId &&
         typeof objective.targetId === 'string' && targets.has(objective.targetId) &&
         (objective.count === undefined || objective.count === 1) && !progress.objectives[objective.id] &&
-        quest.objectives.slice(0, index).every((previous) => progress.objectives[previous.id])
+        questObjectivePrerequisitesMet(quest, progress.objectives, objective.id)
       );
       if (matching.length === 0) continue;
       const objectives = { ...progress.objectives,

@@ -62,6 +62,36 @@ const invalidDocuments = [
 ];
 
 describe('synchronous quest consumer validation', () => {
+  it('accepts explicit unordered stages independently of objective display order', () => {
+    const row = fixture('staged', {
+      objectives: ['heart', 'brain', 'eye', 'flail', 'assemble'].map(id => ({
+        id, type: 'interact', description: id, areaId: 'areas/cave', targetId: `objects/${id}`
+      })),
+      objectiveStages: [['eye', 'heart', 'flail', 'brain'], ['assemble']]
+    });
+    withDocuments(envelope([row]), envelope([]), () => {
+      expect(loadQuests()).toEqual([row]);
+      expect(loadQuests()[0]).toBe(row);
+    });
+  });
+
+  it.each([[], [[]], [['clear'], []], [['unknown']], [['clear', 'unknown']],
+    [['clear'], ['clear']], [['clear', 'clear']], [null], 'clear', null].map(objectiveStages => ({ objectiveStages })))(
+    'rejects incomplete, duplicate or malformed objective stages $objectiveStages', ({ objectiveStages }) => {
+      withDocuments(envelope([fixture('staged', { objectiveStages })]), envelope([]), () => {
+        expect(() => loadQuests()).toThrow('quests/main.json');
+      });
+    }
+  );
+
+  it('rejects duplicate objective identities even without explicit stages', () => {
+    const objective = { id: 'clear', type: 'clear-area', description: 'Clear', areaId: 'areas/cave' };
+    const row = fixture('duplicate-objective', { objectives: [objective, objective] });
+    withDocuments(envelope([row]), envelope([]), () => {
+      expect(() => loadQuests()).toThrow('Duplicate objective id');
+    });
+  });
+
   it('accepts empty documents and optional envelope metadata without inventing quests', () => {
     withDocuments({ quests: [] }, envelope([]), () => {
       const all = loadQuests();
