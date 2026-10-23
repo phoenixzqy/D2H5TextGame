@@ -242,7 +242,7 @@
       "objectives": [
         { "id": "obj-kill-mephisto", "type": "kill-boss", "targetId": "monsters/act3.mephisto", "areaId": "areas/act3-durance-of-hate", "description": "Slay Mephisto." }
       ],
-      "rewards": { "xp": 18000, "lootTable": "loot/mephisto-q", "itemDrop": "items/soulstone_mephisto" },
+      "rewards": { "xp": 18000, "lootTable": { "tableId": "loot/mephisto-q", "ilvl": 47, "picks": 5 }, "questItem": "items/soulstone_mephisto" },
       "unlocks": "acts/act4",
       "order": 16
     },

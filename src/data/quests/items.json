@@ -151,6 +151,14 @@
       "effect": {
         "maxLife": 20
       }
+    },
+    {
+      "id": "items/soulstone_mephisto",
+      "sourceQuestId": "quests/act3-guardian",
+      "kind": "retained",
+      "requiredActionSource": "quests/act3-guardian#action:break-compelling-orb",
+      "nameKey": "inventory:questItems.mephistosSoulstone.name",
+      "descKey": "inventory:questItems.mephistosSoulstone.description"
     }
   ]
 }

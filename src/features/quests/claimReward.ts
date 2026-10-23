@@ -47,6 +47,18 @@ function findQuest(questId: string): QuestDef | undefined {
   return loadQuests().find((q) => q.id === questId);
 }
 
+/** Retained rewards require their actual action graph before Claim; legacy flags supply no item or proof. */
+function hasRetainedQuestRewardCompletion(quest: QuestDef): boolean {
+  try {
+    const retained = loadQuestItems().filter(item => item.kind === 'retained' && item.sourceQuestId === quest.id);
+    if (retained.length === 0) return true;
+    const map = useMapStore.getState();
+    validateQuestItemLedger(useInventoryStore.getState().questItems, map.questProgress, map.questReceipts);
+    return retained.every(item => item.kind === 'retained' &&
+      Object.hasOwn(map.questReceipts, item.requiredActionSource) && map.questReceipts[item.requiredActionSource] === true);
+  } catch { return false; }
+}
+
 /** Basic action availability; execution can still refuse with a retryable reason. */
 export function canClaim(questId: string): boolean {
   const progress = useMapStore.getState().questProgress[questId];
@@ -56,7 +68,7 @@ export function canClaim(questId: string): boolean {
   if (progress.rewardClaimed) return false;
   const quest = findQuest(questId);
   return Boolean(quest?.rewards && Object.keys(quest.rewards).length > 0 &&
-    hasQuestDeliveryCompletion(quest) && hasQuestAssemblyCompletion(quest));
+    hasQuestDeliveryCompletion(quest) && hasQuestAssemblyCompletion(quest) && hasRetainedQuestRewardCompletion(quest));
 }
 
 function safeCount(value: number): boolean {
@@ -114,7 +126,8 @@ export function claimQuestReward(questId: string): ClaimResult {
     if (progress.rewardClaimed) return 'already-claimed';
     const quest = findQuest(questId);
     if (!quest) return 'unknown-quest';
-    if (!hasQuestDeliveryCompletion(quest) || !hasQuestAssemblyCompletion(quest)) return 'not-completed';
+    if (!hasQuestDeliveryCompletion(quest) || !hasQuestAssemblyCompletion(quest) ||
+      !hasRetainedQuestRewardCompletion(quest)) return 'not-completed';
     const rewards = quest.rewards;
     if (!rewards || Object.keys(rewards).length === 0) return 'no-rewards';
     if (useHydrationStore.getState().status !== 'ready' || isReplacingSave()) return 'not-ready';
@@ -142,7 +155,8 @@ export function claimQuestReward(questId: string): ClaimResult {
       if (kind === 'questItem') {
         try {
           const definition = loadQuestItems().find(row => row.id === amount && row.sourceQuestId === questId);
-          if (!definition || definition.kind !== undefined || !Object.hasOwn(questProgress, questId)) return 'unsupported-rewards';
+          if (!definition || (definition.kind !== undefined && definition.kind !== 'retained') ||
+            !Object.hasOwn(questProgress, questId)) return 'unsupported-rewards';
           const source = questItemSource(definition);
           if (Object.hasOwn(inventory.questItems, source)) return 'unsupported-rewards';
           questItems = validateQuestItemLedger({ ...inventory.questItems,

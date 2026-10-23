@@ -411,7 +411,7 @@ function validateLiveQuestState(questItems: unknown, questProgress: unknown, rec
     }
     const progress = validated.questProgress[definition.sourceQuestId];
     const quest = quests.find(row => row.id === definition.sourceQuestId);
-    if (definition.kind !== undefined) {
+    if (definition.kind !== undefined && definition.kind !== 'retained') {
       if (!quest || !validLiveObjectiveProgress(validated, quest, definition.sourceObjectiveId)) {
         throw new Error('Invalid save: quest item requires its completed objective source');
       }
@@ -470,6 +470,10 @@ function validateLiveQuestState(questItems: unknown, questProgress: unknown, rec
       return input !== undefined && itemEntry(input.id)?.state === 'consumed';
     })) {
       throw new Error('Invalid save: reward item requires its real consumed hand-in graph');
+    }
+    if (definition.kind === 'retained' && (entry.state !== 'owned' ||
+      !Object.hasOwn(questReceipts, definition.requiredActionSource))) {
+      throw new Error('Invalid save: retained reward requires owned state and its actual action graph');
     }
   }
   for (const action of actions) {

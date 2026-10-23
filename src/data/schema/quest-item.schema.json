@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://d2h5.game/schemas/quest-item.json",
   "title": "Bound quest item definitions",
-  "description": "Capacity-independent, source-bound quest items and their authored Read effects.",
+  "description": "Capacity-independent, source-bound quest items, retained rewards and authored Read effects.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -89,7 +89,8 @@
               "tool",
               "component",
               "assembled",
-              "delivery"
+              "delivery",
+              "retained"
             ],
             "description": "Objective-sourced retained tool, recipe ingredient, or assembled quest key."
           },
@@ -108,8 +109,8 @@
             "description": "Explicit recovery additionally requires the source area's full clear."
           },
           "requiredActionSource": {
-            "const": "quests/act3-khalims-will#action:council-victory",
-            "description": "Exact qualified Council action proof required by this component."
+            "enum": ["quests/act3-khalims-will#action:council-victory", "quests/act3-guardian#action:break-compelling-orb"],
+            "description": "Exact finite action proof required by its closed item variant."
           },
           "recipe": {
             "type": "string",
@@ -200,6 +201,7 @@
               "kind": {
                 "const": "component"
               },
+              "requiredActionSource": { "const": "quests/act3-khalims-will#action:council-victory" },
               "effect": false,
               "recipe": false,
               "requiredTool": false,
@@ -233,6 +235,24 @@
               { "required": ["consumeObjectiveId"], "properties": { "consumeObjectiveId": {}, "consumeActionId": false } },
               { "required": ["consumeActionId"], "properties": { "consumeActionId": {}, "consumeObjectiveId": false } }
             ]
+          },
+          {
+            "required": ["kind", "requiredActionSource"],
+            "properties": {
+              "kind": { "const": "retained" },
+              "requiredActionSource": { "const": "quests/act3-guardian#action:break-compelling-orb" },
+              "effect": false,
+              "sourceObjectiveId": false,
+              "consumedBy": false,
+              "recipe": false,
+              "requiredTool": false,
+              "ingredients": false,
+              "consumeQuestId": false,
+              "consumeObjectiveId": false,
+              "consumeActionId": false,
+              "requiresAreaClear": false,
+              "outputItemId": false
+            }
           },
           {
             "required": [

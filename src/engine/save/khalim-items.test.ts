@@ -70,3 +70,31 @@ describe('prospective Khalim item/action state', () => {
         { ...owned, [WILL]: { itemId: 'items/khalims_will', state: 'consumed' } })).toThrow();
     });
 });
+
+describe('retained Guardian reward in the same source graph', () => {
+  const STONE = `${GUARDIAN}#reward:questItem`;
+  const paidProgress = { ...progress, [GUARDIAN]: { id: GUARDIAN, status: 'completed' as const,
+    rewardClaimed: true, objectives: { 'obj-kill-mephisto': true } } };
+  const paidItems: QuestItemLedger = { ...owned, [WILL]: { itemId: 'items/khalims_will', state: 'consumed' },
+    [STONE]: { itemId: 'items/soulstone_mephisto', state: 'owned' } };
+  const paidReceipts = { ...receipts, [ORB]: true };
+
+  it('retains only the exact owned reward with its claimed source and actual Orb/Will graph', () => {
+    expect(validateQuestItemLedger(paidItems, paidProgress, paidReceipts)).toBe(paidItems);
+    expect(validateQuestActionReceipts(paidReceipts, paidProgress, paidItems)).toBe(paidReceipts);
+  });
+
+  it.each(['consumed', 'wrong-source', 'unclaimed', 'no-orb', 'missing-will'] as const)(
+    'rejects %s retained reward state', fault => {
+      const items = { ...paidItems }, rows = structuredClone(paidProgress), actions = { ...paidReceipts };
+      if (fault === 'consumed') items[STONE] = { itemId: 'items/soulstone_mephisto', state: 'consumed' };
+      if (fault === 'wrong-source') {
+        Reflect.deleteProperty(items, STONE); items[`${QUEST}#reward:questItem`] = { itemId: 'items/soulstone_mephisto', state: 'owned' };
+      }
+      if (fault === 'unclaimed') rows[GUARDIAN].rewardClaimed = false;
+      if (fault === 'no-orb') Reflect.deleteProperty(actions, ORB);
+      if (fault === 'missing-will') Reflect.deleteProperty(items, WILL);
+      expect(() => validateQuestItemLedger(items, rows, actions)).toThrow();
+      expect(() => validateQuestActionReceipts(actions, rows, items)).toThrow();
+    });
+});

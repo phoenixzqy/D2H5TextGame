@@ -24,6 +24,14 @@ export interface ReadQuestItemDef extends QuestItemBase {
     | { readonly maxLife: number; readonly skillPoints?: never };
 }
 
+/** A reward retained as an actual item; no Read effect or admitted consumer exists yet. */
+export interface RetainedQuestItemDef extends QuestItemBase {
+  readonly kind: 'retained';
+  readonly sourceObjectiveId?: never;
+  readonly effect?: never;
+  readonly requiredActionSource: 'quests/act3-guardian#action:break-compelling-orb';
+}
+
 /** Retained tool issued only by its explicit authored fetch objective. */
 export interface QuestToolDef extends QuestItemBase {
   readonly kind: 'tool';
@@ -64,14 +72,14 @@ export interface AssembledQuestItemDef extends QuestItemBase {
 }
 
 export type ObjectiveQuestItemDef = QuestToolDef | QuestComponentDef | QuestDeliveryDef | AssembledQuestItemDef;
-export type QuestItemDef = ReadQuestItemDef | ObjectiveQuestItemDef;
+export type QuestItemDef = ReadQuestItemDef | RetainedQuestItemDef | ObjectiveQuestItemDef;
 
 const ajv = new Ajv2020({ strict: true, allErrors: true });
 const validate = ajv.compile<{ readonly items: readonly QuestItemDef[] }>(schema);
 
 /** Canonical source identity, independent of gear instances and allocation sequences. */
 export function questItemSource(item: QuestItemDef): string {
-  return item.kind !== undefined
+  return item.kind !== undefined && item.kind !== 'retained'
     ? `${item.sourceQuestId}#objective:${item.sourceObjectiveId}`
     : `${item.sourceQuestId}#reward:questItem`;
 }
@@ -104,7 +112,7 @@ export function loadQuestItems(): readonly QuestItemDef[] {
       throw new Error('quests/items.json: duplicate quest item or source');
     }
     const quest = quests.find(row => row.id === item.sourceQuestId);
-    if (item.kind !== undefined) {
+    if (item.kind !== undefined && item.kind !== 'retained') {
       const objective = exactObjective(quest, item.sourceObjectiveId);
       if (!quest || !objective || (item.kind === 'assembled'
         ? objective.type !== 'transmute' || objective.recipe !== item.recipe
@@ -117,6 +125,10 @@ export function loadQuestItems(): readonly QuestItemDef[] {
       }
     } else if (!quest?.rewards || !Object.hasOwn(quest.rewards, 'questItem') || quest.rewards.questItem !== item.id) {
       throw new Error(`quests/items.json: reward/source mismatch for ${item.id}`);
+    }
+    // The closed schema pins the retained proof to Orb; its owner must also match.
+    if (item.kind === 'retained' && !actions.some(action => action.questId === item.sourceQuestId)) {
+      throw new Error(`quests/items.json: retained reward/action mismatch for ${item.id}`);
     }
     ids.add(item.id);
     sources.add(source);
