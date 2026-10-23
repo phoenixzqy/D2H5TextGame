@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "id": "endgame/worldstone-remnant",
+  "nameKey": "endgame.worldstoneRemnant.name",
+  "monsterLevel": 90,
+  "mode": "manual",
+  "entryCost": {},
+  "lootProfile": { "act": 5, "difficulty": "normal" },
+  "defaultLootTable": "loot/trash-act5",
+  "waves": [
+    { "id": "worldstone-remnant/w1", "spawns": [
+      { "kind": "monster", "archetypeId": "monsters/act5.barbarian-savage", "count": 2, "tier": "trash" },
+      { "kind": "monster", "archetypeId": "monsters/act5.overseer", "count": 2, "tier": "trash" }
+    ] },
+    { "id": "worldstone-remnant/w2", "spawns": [
+      { "kind": "monster", "archetypeId": "monsters/act5.death-mauler", "count": 2, "tier": "trash" },
+      { "kind": "modifier", "count": 2, "tier": "trash" }
+    ] },
+    { "id": "worldstone-remnant/w3", "spawns": [
+      { "kind": "monster", "archetypeId": "monsters/act5.succubus", "count": 2, "tier": "trash" },
+      { "kind": "modifier", "count": 2, "tier": "trash" }
+    ] },
+    { "id": "worldstone-remnant/w4", "spawns": [
+      { "kind": "monster", "archetypeId": "monsters/act5.ancient-barbarian", "count": 1, "tier": "boss" },
+      { "kind": "modifier", "count": 2, "tier": "trash" }
+    ] }
+  ],
+  "modifiers": [
+    { "id": "ashen", "nameKey": "endgame.modifiers.ashen.name", "descriptionKey": "endgame.modifiers.ashen.description",
+      "archetypeId": "monsters/act5.blood-lord", "completionMaterials": { "gems/ruby/flawless": 1 } },
+    { "id": "glacial", "nameKey": "endgame.modifiers.glacial.name", "descriptionKey": "endgame.modifiers.glacial.description",
+      "archetypeId": "monsters/act5.frozen-terror", "completionMaterials": { "gems/sapphire/flawless": 1 } }
+  ],
+  "achievement": {
+    "id": "achievements/worldstone-adapt",
+    "requiredModifiers": ["ashen", "glacial"],
+    "reward": { "titleId": "titles/worldstone-adapt", "materials": { "gems/ruby/perfect": 1, "gems/sapphire/perfect": 1 } }
+  }
+}

@@ -1,4 +1,11 @@
 {
+  "endgame.worldstoneRemnant.name": "世界之石残境",
+  "endgame.modifiers.ashen.name": "余烬",
+  "endgame.modifiers.ashen.description": "鲜血之王拥有火焰抗性，并使用火焰吐息和灼烧攻击。请准备其他伤害类型与火焰防护。",
+  "endgame.modifiers.glacial.name": "凛霜",
+  "endgame.modifiers.glacial.description": "冰冻恐魔拥有冰冷抗性，并使用带有冰冷减速的霜冻光环。请准备其他伤害类型、冰冷防护与续航。",
+  "endgame.achievement.name": "适应残境",
+  "endgame.achievement.title": "裂境行者",
   "app.title": "暗黑2 文字版",
   "home.start": "开始游戏",
   "home.continue": "继续游戏",

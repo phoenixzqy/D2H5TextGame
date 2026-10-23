@@ -1,4 +1,11 @@
 {
+  "endgame.worldstoneRemnant.name": "Worldstone Remnant",
+  "endgame.modifiers.ashen.name": "Ashen",
+  "endgame.modifiers.ashen.description": "Blood Lords resist fire and attack with fire breath and burning damage. Prepare alternate damage and fire defense.",
+  "endgame.modifiers.glacial.name": "Glacial",
+  "endgame.modifiers.glacial.description": "Frozen Terrors resist cold and use a chilling frost aura. Prepare alternate damage, cold defense and sustain.",
+  "endgame.achievement.name": "Adapt to the Remnant",
+  "endgame.achievement.title": "Riftwalker",
   "app.title": "D2 Text",
   "home.start": "Start",
   "home.continue": "Continue",
