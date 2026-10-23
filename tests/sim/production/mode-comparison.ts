@@ -97,13 +97,13 @@ function itemIds(a: RestoredModeAttempt): string[] {
     ...a.terminalCombat.runRewards.items].map(i => i.id);
 }
 function rawAward(value: KillRewards): boolean {
-  return value.items.length > 0 || [value.runeShards, value.runes, value.gems, value.wishstones].some(n => n !== 0);
+  return value.items.length > 0 || Object.values(value.materials).some(n => n !== 0) || [value.runeShards, value.runes, value.gems, value.wishstones].some(n => n !== 0);
 }
 function rewardCoverage(a: RestoredModeAttempt): Coverage {
   const changed = rawAward(a.terminalCombat.runRewards) || a.waves.some(w => {
     const d = w.actualDelta;
     return rawAward(w.rawRewardDelta) || d.xp !== 0 || Object.values(d.mercXp).some(n => n !== 0) ||
-      Object.values(d.currencies).some(n => n !== 0) || d.addedItems.length > 0 ||
+      Object.values(d.currencies).some(n => n !== 0) || Object.values(d.materials).some(n => n !== 0) || d.addedItems.length > 0 ||
       d.removedItemIds.length > 0 || d.addedClears.length > 0;
   });
   return changed ? 'exercised' : 'unexercised';

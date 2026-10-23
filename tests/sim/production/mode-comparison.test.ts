@@ -214,6 +214,8 @@ it.each(rewardPositions)('keeps nested item IDs significant at %j', (...path) =>
   expect(result.itemIdentityAssessment).toBe('equal');
 });
 const rewardProbes = [
+  { path: [...wave, 'rawRewardDelta', 'materials'], value: { 'materials/scrap': 1 } },
+  { path: [...wave, 'actualDelta', 'materials'], value: { 'runes/el': -1 } },
   { path: [...wave, 'rawRewardDelta', 'gems'], value: 1 },
   { path: [...wave, 'actualDelta', 'xp'], value: -1 },
   { path: [...wave, 'actualDelta', 'mercXp'], value: { merc: -1 } },
@@ -227,10 +229,10 @@ it.each(rewardProbes)('isolates reward comparison and coverage at $path', ({ pat
   const [a, b] = pair();
   for (const attempt of [a, b]) {
     for (const w of attempt.waves) {
-      set(w, ['rawRewardDelta'], { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0 });
-      set(w, ['actualDelta'], { xp: 0, mercXp: {}, currencies: {}, addedItems: [], removedItemIds: [], addedClears: [] });
+      set(w, ['rawRewardDelta'], { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0, materials: {} });
+      set(w, ['actualDelta'], { xp: 0, mercXp: {}, currencies: {}, materials: {}, addedItems: [], removedItemIds: [], addedClears: [] });
     }
-    set(attempt, ['terminalCombat', 'runRewards'], { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0 });
+    set(attempt, ['terminalCombat', 'runRewards'], { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0, materials: {} });
   }
   expect(compare(a, b).rewardPathCoverage).toEqual({ first: 'unexercised', second: 'unexercised' });
   set(b, path, value); const result = compare(a, b);
@@ -268,7 +270,7 @@ it('does not call a synthetic refusal an exercised battle or reward path', () =>
   for (const attempt of [a, b]) {
     set(attempt, ['status'], 'baseline-refused'); set(attempt, ['refusal'], { actionIndex: 0, reason: 'synthetic' });
     set(attempt, ['handle'], null); set(attempt, ['waves'], []);
-    set(attempt, ['terminalCombat', 'runRewards'], { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0 });
+    set(attempt, ['terminalCombat', 'runRewards'], { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0, materials: {} });
   }
   const result = compare(a, b);
   expect(result.waveComparisons).toEqual([]);
@@ -293,7 +295,7 @@ it('does not infer rewards or played battle coverage from victory flags alone', 
   for (const attempt of [a, b]) {
     set(attempt, ['waves'], []); set(attempt, ['handle'], null);
     set(attempt, ['terminalCombat', 'runVictory'], true);
-    set(attempt, ['terminalCombat', 'runRewards'], { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0 });
+    set(attempt, ['terminalCombat', 'runRewards'], { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0, materials: {} });
   }
   const empty = compare(a, b);
   expect(empty.rewardPathCoverage).toEqual({ first: 'unexercised', second: 'unexercised' });

@@ -18,6 +18,7 @@ import { hydrateEconomyAncestry, prepareEconomyAncestry, allocateEconomyBoundary
 import { economyPolicy as policy } from './fresh-campaign-economy-policy';
 import { captureFreshEconomyNativeSave, captureFreshNativeSave, publishFreshCampaignReport } from './fresh-campaign-save';
 import { hashObservation } from './earned-report';
+import { historicalV17Save, historicalV17EarnedState } from './historical-v17';
 import { collectSourceState } from './provenance';
 
 let restorers: (() => void)[];
@@ -31,8 +32,12 @@ const action = (_name: string, operation: () => unknown, expected: unknown = 'ok
 
 it('authenticates Rocky native ancestry and exactly hydrates every saved domain without offline gain', () => {
   expect(hydrateEconomyAncestry().rawSha256).toBe(policy.sourceRawSha256);
-  expect(hashObservation(snapshotStores())).toBe(policy.sourceSaveHash);
-  expect(hashObservation(observeEarnedState())).toBe(policy.sourceEarnedHash);
+  const live = snapshotStores();
+  if (!live) throw new Error('Missing migrated ancestry');
+  expect(live.version).toBe(18);
+  expect(live.inventory.materials).toEqual({});
+  expect(hashObservation(historicalV17Save(live))).toBe(policy.sourceSaveHash);
+  expect(hashObservation(historicalV17EarnedState(observeEarnedState()))).toBe(policy.sourceEarnedHash);
   expect(useHydrationStore.getState().status).toBe('ready');
   expect(useCombatStore.getState().inCombat).toBe(false);
 });

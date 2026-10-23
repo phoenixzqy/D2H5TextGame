@@ -148,9 +148,10 @@ describe('fresh production adapter', () => {
         expect(wave.enemyGenerationSeed).toBe(wave.battleSeed);
         expect(wave.actualDelta.addedItems).toEqual(wave.rawRewardDelta.items);
         expect(wave.actualDelta.currencies['rune-shard'] ?? 0).toBe(
-          wave.rawRewardDelta.runeShards + wave.rawRewardDelta.runes
+          wave.rawRewardDelta.runeShards
         );
-        expect(wave.actualDelta.currencies['gem-shard'] ?? 0).toBe(wave.rawRewardDelta.gems);
+        expect(wave.actualDelta.currencies['gem-shard'] ?? 0).toBe(0);
+        expect(wave.actualDelta.materials).toEqual(wave.rawRewardDelta.materials);
         expect(wave.actualDelta.currencies.wishstone ?? 0).toBe(wave.rawRewardDelta.wishstones);
       }
       const wonWave = run.waves[0];
@@ -327,7 +328,7 @@ describe('fresh production adapter', () => {
     const first = report.runs[0];
     const second = report.runs[1];
     if (!first || !second) throw new Error('Missing fresh repetitions');
-    const noRewards = { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0 };
+    const noRewards = { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0, materials: {} };
     const noWin = {
       ...first,
       rawRunRewards: noRewards,
@@ -335,7 +336,7 @@ describe('fresh production adapter', () => {
         ...wave,
         rewardApplied: false,
         rawRewardDelta: noRewards,
-        actualDelta: { ...wave.actualDelta, xp: 0, addedItems: [], currencies: {} },
+        actualDelta: { ...wave.actualDelta, xp: 0, addedItems: [], currencies: {}, materials: {} },
         outcome: { ...wave.outcome, winner: null }
       }))
     };

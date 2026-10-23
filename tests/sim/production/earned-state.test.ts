@@ -45,6 +45,17 @@ function rollNextItem(): Item {
 }
 
 describe('earned item measurement integrity', () => {
+  it('observes exact signed material changes independently of unchanged legacy currencies', () => {
+    useInventoryStore.setState({ materials: { 'runes/el': 4, 'materials/scrap': 2 },
+      currencies: { 'rune-shard': 17, 'gem-shard': 8 } });
+    const before = observeEarnedState();
+    useInventoryStore.setState({ materials: { 'runes/el': 1, 'gems/ruby/chipped': 2 } });
+    const delta = earnedDelta(before, observeEarnedState());
+    expect(delta).toMatchObject({ materials: { 'runes/el': -3, 'materials/scrap': -2, 'gems/ruby/chipped': 2 },
+      currencies: { 'rune-shard': 0, 'gem-shard': 0 } });
+    expect(before.inventory.materials).toEqual({ 'runes/el': 4, 'materials/scrap': 2 });
+  });
+
   it('refuses a newly added object reusing an existing ID instead of reporting zero loot', () => {
     useInventoryStore.setState({ backpack: [item('same')] });
     const before = observeEarnedState();

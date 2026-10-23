@@ -15,6 +15,7 @@ import { getIdleEliteMisses, setIdleEliteMisses } from '@/stores/idleElitePity';
 import { canClaim, claimQuestReward, readQuestItem } from '@/features/quests/claimReward';
 import { captureEarnedRestorers, earnedDelta, observeEarnedState, observeStore, restoreEarnedSave } from './earned-state';
 import { hashObservation } from './earned-report';
+import { historicalV17Save, historicalV17EarnedState } from './historical-v17';
 import { FreshGearRefusal, auditFrozenNativeItem, transferFreshItem } from './fresh-campaign-gear';
 import { captureFreshEconomyNativeSave } from './fresh-campaign-save';
 import { startEarnedRun, type EarnedRunHandle } from './earned-playback';
@@ -56,14 +57,18 @@ export function hydrateEconomyAncestry() {
   assert.equal(digest(compressed), policy.sourceGzipSha256);
   const bytes = gunzipSync(compressed);
   assert.equal(digest(bytes), policy.sourceRawSha256);
-  const save = decodeSave(JSON.parse(bytes.toString('utf8')) as unknown);
-  assert.equal(hashObservation(save), policy.sourceSaveHash);
+  const original: unknown = JSON.parse(bytes.toString('utf8'));
+  assert.ok(typeof original === 'object' && original !== null && 'version' in original && original.version === 17,
+    'Authenticated ancestry must remain native v17');
+  const save = decodeSave(original);
+  assert.equal(hashObservation(historicalV17Save(save)), policy.sourceSaveHash);
   assert.equal(Date.now(), policy.clockEpochMs);
   restoreEarnedSave(save, policy.clockEpochMs);
   assert.deepEqual(snapshotStores(), save, 'Economic ancestry hydration changed a saved domain');
-  assert.equal(hashObservation(observeEarnedState()), policy.sourceEarnedHash);
+  assert.equal(hashObservation(historicalV17EarnedState(observeEarnedState())), policy.sourceEarnedHash);
   return { source: policy.source, rawSha256: digest(bytes), gzipSha256: digest(compressed),
-    saveHash: hashObservation(save), parentReportRawSha256: policy.parentReportRawSha256 };
+    saveHash: hashObservation(historicalV17Save(save)), liveSaveHash: hashObservation(save),
+    liveSaveVersion: save.version, migratedMaterials: structuredClone(save.inventory.materials), parentReportRawSha256: policy.parentReportRawSha256 };
 }
 
 /** Only real earned points, between complete challenges; no speculative masteries or respec. */

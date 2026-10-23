@@ -86,13 +86,13 @@ function itemIds(attempt: EarnedAttempt): string[] {
     .map(item => item.id);
 }
 function rawRewardChanged(raw: KillRewards): boolean {
-  return raw.items.length > 0 || [raw.runeShards, raw.runes, raw.gems, raw.wishstones].some(n => n !== 0);
+  return raw.items.length > 0 || Object.values(raw.materials).some(n => n !== 0) || [raw.runeShards, raw.runes, raw.gems, raw.wishstones].some(n => n !== 0);
 }
 function rewardCoverage(attempt: EarnedAttempt): 'exercised' | 'unexercised' {
   const changed = attemptedWaves(attempt).some(wave => {
     const delta = wave.actualDelta;
     return delta.xp !== 0 || Object.values(delta.mercXp).some(n => n !== 0) ||
-      Object.values(delta.currencies).some(n => n !== 0) || delta.addedItems.length > 0 ||
+      Object.values(delta.currencies).some(n => n !== 0) || Object.values(delta.materials).some(n => n !== 0) || delta.addedItems.length > 0 ||
       delta.removedItemIds.length > 0 || delta.addedClears.length > 0 || rawRewardChanged(wave.rawRewardDelta);
   }) || (attempt.target !== null && rawRewardChanged(attempt.target.rawRunRewards));
   return changed ? 'exercised' : 'unexercised';

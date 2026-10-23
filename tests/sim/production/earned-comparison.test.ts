@@ -71,6 +71,9 @@ it.each([
   { name: 'merc XP only', path: ['actualDelta', 'mercXp'], value: { merc: 1 } },
   { name: 'currency only', path: ['actualDelta', 'currencies'], value: { runeShards: 1 } },
   { name: 'negative currency only', path: ['actualDelta', 'currencies'], value: { runeShards: -1 } },
+  { name: 'material only', path: ['actualDelta', 'materials'], value: { 'materials/scrap': 1 } },
+  { name: 'spent material only', path: ['actualDelta', 'materials'], value: { 'runes/el': -1 } },
+  { name: 'raw concrete material only', path: ['rawRewardDelta', 'materials'], value: { 'materials/scrap': 1 } },
   { name: 'item only', path: ['actualDelta', 'addedItems'], value: [{ id: 'synthetic-item' }] },
   { name: 'clear only', path: ['actualDelta', 'addedClears'], value: ['synthetic-clear'] },
   { name: 'removed item only', path: ['actualDelta', 'removedItemIds'], value: ['original-id'] },
@@ -80,8 +83,8 @@ it.each([
   for (const attempt of [left, right]) {
     set(attempt, ['target'], null); set(attempt, ['acquisitionJournal'], []);
     for (const action of attempt.actions) for (const farm of action.farms) for (const wave of farm.waves)
-      Object.assign(wave, { rawRewardDelta: { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0 },
-        actualDelta: { xp: 0, mercXp: {}, currencies: {}, addedItems: [], removedItemIds: [], addedClears: [] } });
+      Object.assign(wave, { rawRewardDelta: { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0, materials: {} },
+        actualDelta: { xp: 0, mercXp: {}, currencies: {}, materials: {}, addedItems: [], removedItemIds: [], addedClears: [] } });
   }
   expect(compareEarnedAttempts(left, right).rewardPathCoverage)
     .toEqual({ first: 'unexercised', second: 'unexercised' });
@@ -270,11 +273,11 @@ describe('earned replay comparisons — synthetic sensitivity, no victory oracle
       set(attempt, ['target', 'terminalAdvance'], 'victory');
       const target = attempt.target;
       if (!target) throw new Error('Missing native target');
-      const zeroReward = { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0 };
+      const zeroReward = { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0, materials: {} };
       set(attempt, ['target', 'rawRunRewards'], zeroReward);
       for (const wave of target.waves) {
         Object.assign(wave, { rawRewardDelta: zeroReward, actualDelta: { xp: 0, mercXp: {},
-          currencies: {}, addedItems: [], removedItemIds: [], addedClears: [] } });
+          currencies: {}, materials: {}, addedItems: [], removedItemIds: [], addedClears: [] } });
       }
     }
     expect(compareEarnedAttempts(left, right).rewardPathCoverage)

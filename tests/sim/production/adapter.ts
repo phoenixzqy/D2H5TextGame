@@ -10,6 +10,8 @@ import { inferKind } from '@/engine/combat/types';
 import type { RecordedBattleEvent } from '@/engine/combat/combat';
 import type { WavePresentation } from '@/engine/combat';
 import type { KillRewards } from '@/engine/loot/award';
+import type { MaterialLedger } from '@/engine/loot/materials';
+import { materialDelta, materialRewardDelta } from './material-delta';
 import { xpTotal } from '@/engine/progression/xp';
 import { usePlayerStore } from '@/stores/playerStore';
 import { useInventoryStore } from '@/stores/inventoryStore';
@@ -42,6 +44,7 @@ interface ProgressSnapshot {
     readonly equipped: Readonly<Record<string, Item | null>>;
   };
   readonly currencies: Readonly<Record<string, number>>;
+  readonly materials: MaterialLedger;
   readonly xp: { readonly level: number; readonly intoLevel: number; readonly cumulative: number };
   readonly map: Pick<
     ReturnType<typeof useMapStore.getState>,
@@ -54,6 +57,7 @@ export interface ProgressDelta {
   readonly addedItems: readonly Item[];
   readonly removedItemIds: readonly string[];
   readonly currencies: Readonly<Record<string, number>>;
+  readonly materials: Readonly<Record<string, number>>;
   readonly xp: number;
   readonly addedClears: readonly string[];
 }
@@ -142,6 +146,8 @@ export function hasObservedAward(delta: ProgressDelta, rewards: KillRewards): bo
     delta.xp > 0 ||
     delta.addedItems.length > 0 ||
     Object.values(delta.currencies).some((amount) => amount > 0) ||
+    Object.values(delta.materials).some((amount) => amount > 0) ||
+    Object.values(rewards.materials).some((amount) => amount > 0) ||
     rewards.items.length > 0 ||
     [rewards.runeShards, rewards.runes, rewards.gems, rewards.wishstones].some(
       (amount) => amount > 0
@@ -192,6 +198,7 @@ function progress(): ProgressSnapshot {
       equipped: inventory.equipped
     },
     currencies: inventory.currencies,
+    materials: inventory.materials,
     xp: {
       level: player.level,
       intoLevel: player.experience,
@@ -230,6 +237,7 @@ function difference(before: ProgressSnapshot, after: ProgressSnapshot): Progress
         .sort()
         .map((id) => [id, (after.currencies[id] ?? 0) - (before.currencies[id] ?? 0)])
     ),
+    materials: materialDelta(before.materials, after.materials),
     xp: after.xp.cumulative - before.xp.cumulative,
     addedClears: after.map.clearedSubAreas.filter((id) => !before.map.clearedSubAreas.includes(id))
   };
@@ -240,7 +248,8 @@ function rewardDifference(before: KillRewards, after: KillRewards): KillRewards 
     runeShards: after.runeShards - before.runeShards,
     runes: after.runes - before.runes,
     gems: after.gems - before.gems,
-    wishstones: after.wishstones - before.wishstones
+    wishstones: after.wishstones - before.wishstones,
+    materials: materialRewardDelta(before.materials, after.materials)
   });
 }
 function measureOnce(fixture: FreshFixture, seed: number, repetition: number): MeasuredRun {

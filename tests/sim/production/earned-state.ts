@@ -1,4 +1,5 @@
 import type { StoreApi } from 'zustand';
+import { materialDelta } from './material-delta';
 import type { Item } from '@/engine/types/items';
 import type { SaveCurrent, InventorySaveData, MercSaveData } from '@/engine/types/save';
 import { seedItemSeqFromIds } from '@/engine/loot/rollItem';
@@ -141,6 +142,7 @@ export function earnedDelta(before: EarnedState, after: EarnedState) {
   return {
     xp: playerXp(after) - playerXp(before),
     mercXp: Object.fromEntries([...mercIds].map(id => [id, mercXp(after, id) - mercXp(before, id)])),
+    materials: materialDelta(before.inventory.materials, after.inventory.materials),
     currencies: Object.fromEntries([...currencyKeys].map(id => [id,
       (after.inventory.currencies[id] ?? 0) - (before.inventory.currencies[id] ?? 0)])),
     addedItems: structuredClone(newItems.filter(item => !oldIds.has(item.id))),

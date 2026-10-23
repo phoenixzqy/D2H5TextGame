@@ -15,6 +15,7 @@ import { abortSubAreaRun, hasActiveSubAreaRun } from '@/stores/combatHelpers';
 import { getIdleEliteMisses, setIdleEliteMisses } from '@/stores/idleElitePity';
 import { captureEarnedRestorers, earnedDelta, observeEarnedState, restoreEarnedSave } from './earned-state';
 import { hashObservation } from './earned-report';
+import { historicalV17Save, historicalV17EarnedState } from './historical-v17';
 import { FreshGearRefusal, auditFrozenNativeItem, transferFreshItem } from './fresh-campaign-gear';
 import { captureFreshNativeSave } from './fresh-campaign-save';
 import { startEarnedRun, playEarnedWave, type EarnedWave } from './earned-playback';
@@ -33,10 +34,14 @@ export function loadAuthenticV2Terminal() {
   assert.equal(digest(compressed), policy.sourceGzipSha256, 'Native source compressed bytes drifted');
   const bytes = gunzipSync(compressed);
   assert.equal(digest(bytes), policy.sourceRawSha256, 'Native source export bytes drifted');
-  const save = decodeSave(JSON.parse(bytes.toString('utf8')) as unknown);
-  assert.equal(hashObservation(save), policy.sourceSaveHash, 'Native source decoder changed the saved values');
+  const original: unknown = JSON.parse(bytes.toString('utf8'));
+  assert.ok(typeof original === 'object' && original !== null && 'version' in original && original.version === 17,
+    'Authenticated ancestry must remain native v17');
+  const save = decodeSave(original);
+  assert.equal(hashObservation(historicalV17Save(save)), policy.sourceSaveHash, 'Native source decoder changed the saved values');
   return { save, ancestry: { source: policy.source, gzipSha256: digest(compressed), rawSha256: digest(bytes),
-    saveHash: hashObservation(save), parentReportRawSha256: policy.parentReportRawSha256 } };
+    saveHash: hashObservation(historicalV17Save(save)), liveSaveHash: hashObservation(save),
+    liveSaveVersion: save.version, migratedMaterials: structuredClone(save.inventory.materials), parentReportRawSha256: policy.parentReportRawSha256 } };
 }
 
 /** Exact service hydration of the authenticated native save, without IO or offline accrual. */
@@ -45,7 +50,7 @@ export function hydrateAuthenticV2Terminal() {
   assert.equal(Date.now(), policy.clockEpochMs);
   restoreEarnedSave(authenticated.save, policy.clockEpochMs);
   assert.deepEqual(snapshotStores(), authenticated.save, 'Hydration changed an authenticated saved domain');
-  assert.equal(hashObservation(observeEarnedState()), policy.sourceEarnedHash, 'Hydrated earned domains differ from native ancestry');
+  assert.equal(hashObservation(historicalV17EarnedState(observeEarnedState())), policy.sourceEarnedHash, 'Hydrated earned domains differ from native ancestry');
   return authenticated;
 }
 

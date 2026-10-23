@@ -13,6 +13,7 @@ import { hydrateAuthenticV2Terminal, loadAuthenticV2Terminal, prepareNativeConti
   runNativeContinuationScreen } from './fresh-campaign-continuation';
 import { nativeContinuationPolicy as policy } from './fresh-campaign-continuation-policy';
 import { hashObservation } from './earned-report';
+import { historicalV17Save, historicalV17EarnedState } from './historical-v17';
 import { collectSourceState } from './provenance';
 import { publishFreshCampaignReport } from './fresh-campaign-save';
 
@@ -24,7 +25,10 @@ it('authenticates exact captured native bytes and hydrates all persisted domains
   const authenticated = hydrateAuthenticV2Terminal();
   expect(authenticated.ancestry.rawSha256).toBe(policy.sourceRawSha256);
   expect(snapshotStores()).toEqual(authenticated.save);
-  expect(hashObservation(observeEarnedState())).toBe(policy.sourceEarnedHash);
+  expect(authenticated.save.version).toBe(18);
+  expect(authenticated.save.inventory.materials).toEqual({});
+  expect(hashObservation(historicalV17Save(authenticated.save))).toBe(policy.sourceSaveHash);
+  expect(hashObservation(historicalV17EarnedState(observeEarnedState()))).toBe(policy.sourceEarnedHash);
   expect(useCombatStore.getState().inCombat).toBe(false);
   expect(useHydrationStore.getState().status).toBe('ready');
 });
@@ -82,7 +86,12 @@ it('retains a no-combat production transfer refusal when native publication thro
   expect(report.waves).toEqual([]);
   expect(report.nativePublicationFailure).toBe('Synthetic native publication failure');
   expect(report.nativeSaveCapture?.status).toBe('captured');
-  expect(report.nativeSaveCapture?.snapshotHash).toBe(policy.sourceSaveHash);
+  const captured = report.nativeSaveCapture?.snapshot;
+  if (!captured) throw new Error('Missing live capture');
+  expect(captured.version).toBe(18);
+  expect(captured.inventory.materials).toEqual({});
+  expect(hashObservation(historicalV17Save(captured))).toBe(policy.sourceSaveHash);
+  expect(report.nativeSaveCapture?.snapshotHash).toBe(hashObservation(captured));
   expect(observeEarnedState()).toEqual(caller);
   expect(Date.now).toBe(now);
   const scratch = mkdtempSync(join(tmpdir(), 'd2h5-native-continuation-contract-'));

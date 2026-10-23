@@ -193,8 +193,9 @@ describe('isolated fresh earned production adapter', () => {
     expect(result.acquisitionJournal).toEqual(first.rawRewardDelta.items);
     expect(earned.state.inventory.backpack).toEqual(first.rawRewardDelta.items);
     expect(first.actualDelta.currencies['rune-shard'] ?? 0)
-      .toBe(first.rawRewardDelta.runeShards + first.rawRewardDelta.runes);
-    expect(first.actualDelta.currencies['gem-shard'] ?? 0).toBe(first.rawRewardDelta.gems);
+      .toBe(first.rawRewardDelta.runeShards);
+    expect(first.actualDelta.currencies['gem-shard'] ?? 0).toBe(0);
+    expect(first.actualDelta.materials).toEqual(first.rawRewardDelta.materials);
     expect(first.actualDelta.currencies.wishstone ?? 0).toBe(first.rawRewardDelta.wishstones);
     expect(playerXp(required(first.afterAward.player.player)) -
       playerXp(required(first.beforeAward.player.player))).toBe(160);

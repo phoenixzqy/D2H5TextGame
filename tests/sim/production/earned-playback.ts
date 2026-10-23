@@ -1,4 +1,5 @@
 import type { KillRewards } from '@/engine/loot/award';
+import { materialRewardDelta } from './material-delta';
 import { useCombatStore } from '@/stores/combatStore';
 import { useMetaStore } from '@/stores/metaStore';
 import { abortSubAreaRun, advanceWaveOrFinish, hasActiveSubAreaRun,
@@ -22,7 +23,8 @@ function rewardDelta(before: KillRewards, after: KillRewards): KillRewards {
     items: after.items.slice(before.items.length),
     runeShards: after.runeShards - before.runeShards,
     runes: after.runes - before.runes, gems: after.gems - before.gems,
-    wishstones: after.wishstones - before.wishstones
+    wishstones: after.wishstones - before.wishstones,
+    materials: materialRewardDelta(before.materials, after.materials)
   });
 }
 
