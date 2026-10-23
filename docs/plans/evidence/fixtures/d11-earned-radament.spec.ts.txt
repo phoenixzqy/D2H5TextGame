@@ -1,0 +1,126 @@
+/** One unchanged historical-C1 earned Radament continuation. No preparation or gameplay retry. */
+import { test, expect, type Page, type BrowserContext } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/@playwright/test/index.mjs';
+import { readFile, writeFile, appendFile } from 'node:fs/promises';
+import { createCharacter, navTo } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/tests/e2e/_helpers';
+import { gunzipSync, gzipSync } from 'node:zlib';
+const root='/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-radament-q_amr773';
+const quest='quests/act2-radaments-lair';
+const source=quest+'#reward:questItem';
+const now=1792497600000;
+async function backup(page:Page) {
+ await navTo(page,'settings'); const pending=page.waitForEvent('download');
+ await page.getByTestId('export-save-button').click(); const download=await pending;
+ try { return JSON.parse(await readFile(await download.path(),'utf8')); } finally { await download.delete(); }
+}
+async function disk(page:Page) {
+ return page.evaluate(async()=>{
+  const db=await new Promise<IDBDatabase>((resolve,reject)=>{const req=indexedDB.open('D2H5TextGame'); req.onsuccess=()=>resolve(req.result); req.onerror=()=>reject(req.error);});
+  try {
+   const record=await new Promise<{data:unknown}>((resolve,reject)=>{const req=db.transaction('saves','readonly').objectStore('saves').get('current'); req.onsuccess=()=>resolve(req.result); req.onerror=()=>reject(req.error);});
+   return JSON.parse(JSON.stringify(record.data,(_key,value)=>value instanceof Map?[...value.entries()]:value));
+  } finally { db.close(); }
+ });
+}
+async function importSave(page:Page, raw:string, english:boolean) {
+ await navTo(page,'settings'); const label=english?'Import Save':'导入存档';
+ await page.getByRole('button',{name:label,exact:true}).click(); const dialog=page.getByRole('dialog');
+ await dialog.getByRole('textbox').fill(raw);
+ await dialog.getByRole('button',{name:label,exact:true}).click(); await expect(dialog).toHaveCount(0);
+}
+async function reopen(page:Page, context:BrowserContext, english:boolean, expected:unknown, errors:string[]) {
+ await navTo(page,'settings');
+ await page.getByRole('button',{name:english?'Save':'保存',exact:true}).click();
+ await expect(page.getByRole('status')).toHaveText(english?'Saved':'已保存');
+ expect(await disk(page)).toEqual(expected); expect(await backup(page)).toEqual(expected);
+ await page.close(); const next=await context.newPage(); next.on('pageerror',error=>errors.push(error.message));
+ await next.clock.setFixedTime(now); await next.goto('/'); await next.waitForLoadState('networkidle');
+ await next.getByTestId('home-continue').click(); await expect(next.getByTestId('town-screen')).toBeVisible();
+ expect(await backup(next)).toEqual(expected); expect(await disk(next)).toEqual(expected);
+ return next;
+}
+
+async function save(label:string,value:unknown) {await writeFile(root+'/'+label+'.json.gz',gzipSync(JSON.stringify(value)));}
+function ids(s) {return [...s.inventory.backpack,...s.inventory.stash,...Object.values(s.inventory.equipped),...Object.values(s.mercs.mercEquipment).flatMap(Object.values)].filter(Boolean).map(x=>x.id);}
+function heroXP(s) {let xp=s.player.experience;for(let l=1;l<s.player.level;l++)xp+=Math.floor(100*l**2.5);return xp;}
+function mercXP(s) {const actor=s.mercs.ownedMercs.find(x=>x.id===s.mercs.fieldedMercId);let xp=s.mercs.mercProgress[actor.id].experience;for(let l=1;l<actor.level;l++)xp+=Math.floor(60*l*1.3**(l-1));return xp;}
+function hashSeed(text:string) {let x=0;for(let i=0;i<text.length;i++)x=((x<<5)-x+text.charCodeAt(i))>>>0;return x;}
+async function wave(page:Page) {return Number((await page.getByTestId('wave-counter').innerText()).match(/\d+/)?.[0]);}
+async function pause(page:Page) {await page.getByRole('button',{name:'Pause',exact:true}).click({timeout:1000});await expect(page.getByRole('button',{name:'Resume',exact:true})).toHaveAttribute('aria-pressed','true');}
+async function terminal(page:Page) {return page.evaluate(()=>({
+ counter:document.querySelector('[data-testid="wave-counter"]')?.textContent,
+ log:Array.from(document.querySelectorAll('[data-testid="combat-log"] > div > span:last-child'),n=>n.textContent),
+ enemies:Array.from(document.querySelectorAll('[data-testid="enemies-grid"] [data-testid^="unit-card-"]'),c=>({id:c.getAttribute('data-testid'),dead:c.getAttribute('data-dead'),text:c.textContent})),
+ hero:document.querySelector('[data-testid="unit-card-player-1792497600000"]')?.getAttribute('data-dead'),
+ defeats:document.querySelectorAll('[data-testid="defeat-panel"]').length,
+ skipDisabled:document.querySelector<HTMLButtonElement>('[data-testid="skip-button"]')?.disabled
+ }));}
+function conservation(after,before) {
+ expect(new Set(ids(after)).size).toBe(ids(after).length);const afterIds=new Set(ids(after));expect(ids(before).every(id=>afterIds.has(id))).toBe(true);
+ expect(after.inventory.backpack.slice(0,before.inventory.backpack.length)).toEqual(before.inventory.backpack);
+ expect(after.inventory.stash).toEqual(before.inventory.stash);expect(after.inventory.equipped).toEqual(before.inventory.equipped);
+ expect(after.mercs.mercEquipment).toEqual(before.mercs.mercEquipment);expect(after.mercs.fieldedMercId).toBe(before.mercs.fieldedMercId);
+}
+test('one earned historical C1 to Radament continuation',async({page,context})=>{
+ const errors:string[]=[],outcomes:unknown[]=[],checks:Record<string,unknown>={classification:'earned continuation from historical C1; not fresh-current-runtime C2',date:now,sessionChallengeOrdinal:0};
+ let active=page;let phase='setup';let entered=false;let last;
+ const watch=(p:Page)=>p.on('pageerror',e=>errors.push(e.message));watch(active);
+ try {
+  await active.clock.setFixedTime(now);await active.goto('/');await active.waitForLoadState('networkidle');
+  await createCharacter(active,{class:'sorceress',name:'Earned continuation import'});
+  await navTo(active,'settings');await active.getByRole('button',{name:'English',exact:true}).click();
+  const compressed=await readFile('/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/c1-fresh-act1-earned.json.gz');
+  const raw=gunzipSync(compressed).toString(),input=JSON.parse(raw);expect(ids(input)).toHaveLength(3920);expect(heroXP(input)).toBe(179290);
+  phase='import';await importSave(active,raw,true);
+  const migrated={...input,version:12,inventory:{...input.inventory,questItems:{}}};
+  expect(await backup(active)).toEqual(migrated);expect(await disk(active)).toEqual(migrated);last=migrated;await save('migrated',last);checks.exactMigration=true;
+  await expect.poll(()=>active.evaluate(()=>navigator.serviceWorker.controller?.state),{timeout:60000}).toBe('activated');
+  expect(await active.evaluate(()=>'__GAME__' in window)).toBe(false);expect(errors).toEqual([]);
+  phase='track';await navTo(active,'quests');await active.getByTestId(`quest-start-${quest}`).click();
+  const tracked=await backup(active);expect(tracked).toEqual({...migrated,map:{...migrated.map,questProgress:{...migrated.map.questProgress,[quest]:{id:quest,status:'inProgress',objectives:{'obj-kill-radament':false}}}}});
+  last=tracked;await save('tracked',tracked);
+  const planSeed=hashSeed('areas/act2-far-oasis|'+now);checks.reproducibility={date:now,sessionChallengeOrdinal:0,expectedPlanSeedDerivedFromSource:planSeed,expectedWaveSeeds:[1,2,3,4,5].map(i=>(planSeed^(i*0x9e3779b1))>>>0),note:'Derived from production source and fixed Date; not captured private engine input and not injected.'};
+  phase='entry';await navTo(active,'map');const act=active.getByRole('button',{name:/^Act 2 ·/});if(await act.getAttribute('aria-expanded')!=='true')await act.click();
+  await active.getByTestId('sub-area-row-a2-far-oasis').getByRole('button',{name:'Enter',exact:true}).click();entered=true;
+  await expect(active.getByTestId('combat-screen')).toBeVisible();await pause(active);expect(await wave(active)).toBe(1);await expect(active.getByTestId('wave-counter')).toContainText('/ 5');
+  for(let n=1;n<=5;n++) {
+   phase='wave-'+n;expect(await wave(active)).toBe(n);const opening=await terminal(active);await save('opening-'+n,opening);
+   if(n===5) {expect(opening.enemies.some(x=>x.text?.includes('Radament'))).toBe(true);await active.screenshot({path:root+'/radament-opening.png'});}
+   expect(errors).toEqual([]);await active.getByTestId('skip-button').click();await expect(active.getByTestId('skip-button')).toBeDisabled();
+   const result=await terminal(active);outcomes.push({wave:n,...result});await save('terminal-'+n,result);
+   await writeFile(root+'/outcomes.json',JSON.stringify(outcomes,null,2));
+   if(result.log.at(-1)!=='Victory! All enemies are defeated.') {
+    checks.outcome='nonwin';checks.stoppedWave=n;await active.screenshot({path:root+'/nonwin.png'});
+    const failed=await backup(active);await save('nonwin-save',failed);conservation(failed,last);expect(heroXP(failed)).toBe(heroXP(last));expect(mercXP(failed)).toBe(mercXP(last));last=failed;
+    throw new Error('Earned attempt stopped at first nonwin on wave '+n+': '+result.log.at(-1));
+   }
+   expect(result.hero).not.toBeUndefined();expect(result.hero).not.toBe('true');expect(result.defeats).toBe(0);expect(result.enemies.length).toBeGreaterThan(0);expect(result.enemies.every(x=>x.dead==='true')).toBe(true);
+   if(n<5) {await expect.poll(()=>wave(active),{timeout:5000,intervals:[50]}).toBe(n+1);await pause(active);}
+   else {await expect(active.getByTestId('victory-panel')).toBeVisible();await active.screenshot({path:root+'/victory.png'});await active.getByTestId('return-to-map').click();await expect(active.getByTestId('cleared-badge-a2-far-oasis')).toBeVisible();}
+   const after=await backup(active);await save('award-'+n,after);conservation(after,last);const xp=heroXP(after)-heroXP(last),mxp=mercXP(after)-mercXP(last);expect(xp).toBeGreaterThan(0);expect(mxp).toBe(Math.floor(xp*.75));
+   const currencies=Object.fromEntries([...new Set([...Object.keys(last.inventory.currencies),...Object.keys(after.inventory.currencies)])].map(k=>[k,(after.inventory.currencies[k]??0)-(last.inventory.currencies[k]??0)]));expect(Object.values(currencies).every(x=>x>=0)).toBe(true);
+   await appendFile(root+'/awards.jsonl',JSON.stringify({wave:n,heroXP:xp,mercXP:mxp,originalCount:ids(last).length,newCount:ids(after).length,newItems:after.inventory.backpack.slice(last.inventory.backpack.length),currencies})+'\n');last=after;
+   if(n<5) {await navTo(active,'combat');expect(await wave(active)).toBe(n+1);await expect(active.getByRole('button',{name:'Resume',exact:true})).toHaveAttribute('aria-pressed','true');}
+  }
+  phase='completed';const completed=last;expect(completed.map.questProgress[quest]).toEqual({id:quest,status:'completed',objectives:{'obj-kill-radament':true}});expect(completed.map.clearedSubAreas).toContain('areas/act2-far-oasis');expect(completed.inventory.questItems).toEqual({});
+  await navTo(active,'quests');await active.getByTestId(`quest-${quest}`).scrollIntoViewIfNeeded();await active.screenshot({path:root+'/completed-unclaimed.png'});
+  phase='claim';await active.getByTestId(`quest-claim-${quest}`).click();const unread=await backup(active);await save('unread',unread);
+  expect(heroXP(unread)-heroXP(completed)).toBe(5000);expect(mercXP(unread)-mercXP(completed)).toBe(3750);conservation(unread,completed);
+  const gained=unread.player.level-completed.player.level,bonus=[12,24,36].filter(l=>completed.player.level<l&&unread.player.level>=l).length;
+  expect(unread.player.skillPoints-completed.player.skillPoints).toBe(gained+bonus);expect(unread.player.statPoints-completed.player.statPoints).toBe(5*gained);
+  expect(unread.inventory).toEqual({...completed.inventory,questItems:{[source]:{itemId:'items/book_of_skill',state:'owned'}}});expect(unread.map.questProgress[quest]).toEqual({...completed.map.questProgress[quest],rewardClaimed:true});
+  phase='unread-persistence';active=await reopen(active,context,true,unread,errors);last=unread;
+  phase='read';await navTo(active,'inventory');await active.getByTestId('quest-items-panel').getByRole('button',{name:'Read',exact:true}).click();const consumed=await backup(active);
+  expect(consumed).toEqual({...unread,player:{...unread.player,skillPoints:unread.player.skillPoints+1},inventory:{...unread.inventory,questItems:{[source]:{itemId:'items/book_of_skill',state:'consumed'}}}});await save('consumed',consumed);last=consumed;
+  phase='consumed-persistence';active=await reopen(active,context,true,consumed,errors);expect(errors).toEqual([]);expect(await active.evaluate(()=>'__GAME__' in window)).toBe(false);
+  checks.outcome='earned-Radament-win';checks.originalIDs=3920;checks.finalIDs=ids(consumed).length;checks.claimHeroXP=5000;checks.claimMercXP=3750;checks.claimQuestSP=0;checks.readSkillPoints=1;checks.unreadAndConsumedSaveCloseContinueExact=true;
+  await navTo(active,'inventory');await active.getByTestId('quest-items-panel').scrollIntoViewIfNeeded();await active.screenshot({path:root+'/consumed-restored.png'});
+ } catch(error) {
+  checks.error=error instanceof Error?error.stack:String(error);checks.phase=phase;checks.entered=entered;
+  if(!active.isClosed()) {
+   try {const p=active.getByRole('button',{name:'Pause',exact:true});if(await p.count())await p.click({timeout:1000});await active.screenshot({path:root+'/last-page.png'});await save('last-save',await backup(active));}catch(diagnostic){checks.diagnosticError=String(diagnostic);}
+  }
+  throw error;
+ } finally {
+  checks.pageErrors=errors;await writeFile(root+'/assertions.json',JSON.stringify(checks,null,2));if(!active.isClosed())await active.close();
+ }
+});

@@ -50,6 +50,6 @@ Required raw logs, reports, saves, scripts and manifests remain root-owned at
 `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-book-ui-4ie0ae7w`
 through D11/C2/full-v1 consumers; root removes them after those consumers finish.
 The preview process is terminal and port34443 is closed. The exact task-owned
-`dist` and `browser-output` directories are temporarily retained for the approved
-earned Radament attempt; root will remove them after that consumer finishes. No earned Act II,
+`dist` and `browser-output` directories were removed after the approved
+[earned Radament attempt](d11-earned-radament.md); cleanup remaining[]/failures[]. No earned Act II,
 C2–C4, full G0–G7, pacing or full-v1 acceptance follows. Local work only.

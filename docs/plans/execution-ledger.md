@@ -14,6 +14,7 @@ Current implementation evidence lives in `evidence/`.
 | --- | --- | --- |
 | C0 | accepted narrow trust/measurement checkpoint | Producer APPROVE and independent QA closure recommendation against the original exit:21feature trace rows, honest baseline/assertion audit, production-path recordings/provenance and diagnosed manual/idle comparison; next-slice BUG090/preparation contract frozen. [Evidence](evidence/c0-trust-checkpoint.md). FullP01/P02/G0/C1–C4 and performance remain open. |
 | C1 honest first-act loop | accepted original exit | Fresh 360×640 production at `5f417b4`: all 310 combat results are genuine victories, including Den and Andariel. Exact earned preparation/gear, skills/passive/status-support, once-only quest claim, unique boss reward equip, full Save→close→new-page Continue and Act II availability pass. 3920 unique owned IDs; source1527/build760/freeze14 drift[]. Browser 1/1, zero retry/skip/flaky/page errors; independent QA-C1 ADEQUATE, no remaining blocking original-exit gap. [Evidence](evidence/c1-fresh-act1.md). No Act II challenge or C2–C4/full G0–G7 acceptance. |
+| D11 earned continuation | failed final-wave recipe; prefix preserved | At9c84c97, unchanged historical-C1 import/exact migration, no preparation, native wins4/5; Radament draw, one attempt/retry0/pageErrors0. +7760heroXP/+5820mercXP/+80gear,3920 originals→4000unique. Failed/final saves exactly equal wave4: no clear/claim/book/points. Independent QA APPROVE as nonwin evidence/security PASS; source/build/input hashes match. [Evidence](evidence/d11-earned-radament.md). No earned Radament/C2 acceptance or inferred product defect; next independent Summoner repair. |
 | D11 inventory/Atma UI | implemented and independently reviewed | Bound unread/consumed quest-item rows, authoritative Read, localized claim preview and failure feedback, Atma/Far Oasis copy. Full8862/288(206.96s), T/L/build/4chunk scan pass; production en/zh2/2 with exact unread/consumed Save-close-Continue, repeated imports,11viewports per locale and44px controls. Independent source/browser QA APPROVE/security PASS. [Evidence](evidence/radament-book-ui.md). Browser input is constructed; earned Radament continuation is next, not yet accepted. |
 | D11 Claim/Read transactions | implemented and independently reviewed | Shared guarded lock, safe production XP/point arithmetic, exact owned→consumed book receipt, complete participating-store rollback and explicit restoration failure. BUG098 native-record regression fixed. Focused242/6, engine4283/110, full8850/287(195.54s), T/L/build/4chunk scan pass; independent QA APPROVE/security PASS. [Evidence](evidence/radament-book-transactions.md). UI/Atma/copy/browser and earned C2 remain open. |
 | D11 book definitions / v12 storage | implemented and independently reviewed; transactions pending | Definitions `94e66eb`; strict source-bound owned/consumed ledger, frozen historical validation and empty migration, storage/reset/Continue/import preserve exact ownership and points. BUG097 genuine v1 RED3/37 corrected before migration. Focused124/6 and full8806/286 pass; final equivalent guard narrowing has engine4279/110,T/L/build/4chunk scan passing. QA APPROVE/security PASS. [Evidence](evidence/radament-book-storage.md). Claim/Read/UI/Atma/copy and earned C2 remain open. |
@@ -10477,3 +10478,13 @@ The [one earned continuation](d11-earned-radament.md) is READY and may now run.
 The existing task-owned UI dist/browser-output remain root-owned only through
 that immediate consumer; remove afterward. Required raw evidence remains through
 D11/C2/umbrella consumers. C0/C1 accepted, C2 underway, C3/C4 and fullG0–G7 open.
+
+## D11 — Earned Radament attempt stops at final draw
+
+The unchanged historical C1 character wins four native waves, then draws against
+actual Radament. No retry, preparation, tuning, claim or book follows. Full earned
+prefix, complete raw state and final draw DOM are retained; [evidence](evidence/d11-earned-radament.md)
+records exact awards, identity conservation, independent QA and limits. All
+readers/processes terminal; exact owned UI/dist and both browser-output folders
+removed, remaining[]/failures[]. Raw evidence roots remain root-owned through
+D11/C2/umbrella consumers. C0/C1 accepted; C2 underway, C3/C4/fullG0–G7 open.
