@@ -1,3 +1,4 @@
+import type { QuestItemLedger } from '@/engine/types/save';
 /**
  * compareEquip — pure helpers for the equipment picker / comparison flyout.
  *
@@ -171,15 +172,16 @@ export function compareEquip(
   slot: EquipmentSlot,
   equipped: Readonly<Record<string, Item | null>>,
   bases: ReadonlyMap<string, ItemBase> = loadItemBases(),
-  questProgress: QuestProgressContext = {}
+  questProgress: QuestProgressContext = {},
+  questItems: QuestItemLedger = {}
 ): CompareResult {
   const base = bases.get(candidate.baseId);
   const resolved = resolveTargetSlot(base?.slot ?? slot, slot, equipped);
   const current = equipped[resolved] ?? null;
 
-  const currentDerived = deriveEquippedPlayerStats(player, player.level, equipped, questProgress);
+  const currentDerived = deriveEquippedPlayerStats(player, player.level, equipped, questProgress, questItems);
   const candidateEquipped = simulateEquip(equipped, candidate, slot, bases);
-  const candidateDerived = deriveEquippedPlayerStats(player, player.level, candidateEquipped, questProgress);
+  const candidateDerived = deriveEquippedPlayerStats(player, player.level, candidateEquipped, questProgress, questItems);
 
   const stats = {} as Record<ComparableStatKey, StatDelta>;
   for (const key of COMPARABLE_KEYS) {

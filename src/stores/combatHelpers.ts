@@ -138,7 +138,7 @@ export function playerToCombatUnit(player: Player): CombatUnit {
   const equippedWeapon = resolveEquippedWeapon(equipped);
   const mods = aggregateEquipmentMods(equipped);
   const core = applyEquipmentCoreMods(player.coreStats, mods);
-  const freshStats = deriveEquippedPlayerStats(player, player.level, equipped, useMapStore.getState().questProgress);
+  const freshStats = deriveEquippedPlayerStats(player, player.level, equipped, useMapStore.getState().questProgress, useInventoryStore.getState().questItems);
   const ironSkinRank = player.class === 'barbarian' && Number.isFinite(player.level) &&
     player.level >= IRON_SKIN_DEFINITION.requiredLevel ? resolveIronSkinRank(player.skillLevels) : 0;
   const stats = { ...freshStats,

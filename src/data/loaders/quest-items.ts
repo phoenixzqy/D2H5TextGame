@@ -19,7 +19,8 @@ interface QuestItemBase {
 export interface ReadQuestItemDef extends QuestItemBase {
   readonly kind?: never;
   readonly sourceObjectiveId?: never;
-  readonly effect: { readonly skillPoints: number };
+  readonly effect: { readonly skillPoints: number; readonly maxLife?: never }
+    | { readonly maxLife: number; readonly skillPoints?: never };
 }
 
 /** Retained tool issued only by its explicit authored fetch objective. */
@@ -42,6 +43,7 @@ export interface QuestDeliveryDef extends QuestItemBase {
   readonly kind: 'delivery';
   readonly sourceObjectiveId: string;
   readonly consumeObjectiveId: string;
+  readonly outputItemId?: string;
   readonly effect?: never;
 }
 
@@ -101,8 +103,11 @@ export function loadQuestItems(): readonly QuestItemDef[] {
       const objective = exactObjective(quest, item.sourceObjectiveId);
       if (!quest || !objective || (item.kind === 'assembled'
         ? objective.type !== 'transmute' || objective.recipe !== item.recipe
-        : objective.type !== 'fetch' || objective.itemId !== item.id ||
-          objective.itemRequired !== undefined || !canonicalObject(quest, objective))) {
+        : item.kind === 'delivery' && objective.type === 'give'
+          ? !items.some(input => input.kind === 'delivery' && input.outputItemId === item.id &&
+              input.sourceQuestId === item.sourceQuestId && input.consumeObjectiveId === item.sourceObjectiveId)
+          : objective.type !== 'fetch' || objective.itemId !== item.id ||
+            objective.itemRequired !== undefined || !canonicalObject(quest, objective))) {
         throw new Error(`quests/items.json: objective/source mismatch for ${item.id}`);
       }
     } else if (!quest?.rewards || !Object.hasOwn(quest.rewards, 'questItem') || quest.rewards.questItem !== item.id) {
@@ -122,6 +127,14 @@ export function loadQuestItems(): readonly QuestItemDef[] {
         items.filter(other => other.kind === 'delivery' && other.sourceQuestId === item.sourceQuestId &&
           other.consumeObjectiveId === item.consumeObjectiveId).length !== 1) {
         throw new Error(`quests/items.json: delivery/consumer mismatch for ${item.id}`);
+      }
+      if (item.outputItemId !== undefined) {
+        const output = items.find(row => row.id === item.outputItemId);
+        if (output?.kind !== 'delivery' || output.sourceQuestId !== item.sourceQuestId ||
+          output.sourceObjectiveId !== item.consumeObjectiveId ||
+          items.filter(input => input.kind === 'delivery' && input.outputItemId === output.id).length !== 1) {
+          throw new Error(`quests/items.json: exchange/output mismatch for ${item.id}`);
+        }
       }
     } else if (item.kind === 'component') {
       const output = items.find(row => row.id === item.consumedBy);

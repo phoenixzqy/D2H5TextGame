@@ -175,11 +175,11 @@
       "giver": "npc/cain",
       "description": "A jade figurine of a golden bird, looted from Skatsimi monks, can be transmuted into a potion of life. Find it and bring it to Alkor.",
       "objectives": [
-        { "id": "obj-find-figurine", "type": "fetch", "itemId": "quest/jade_figurine", "areaId": "areas/act3_spider_forest", "description": "Find the Jade Figurine." },
-        { "id": "obj-give-cain", "type": "talk", "npcId": "npc/cain", "description": "Give the figurine to Cain." },
-        { "id": "obj-give-alkor", "type": "talk", "npcId": "npc/alkor", "description": "Bring the Golden Bird to Alkor." }
+        { "id": "obj-find-figurine", "type": "fetch", "itemId": "quest/jade_figurine", "areaId": "areas/act3-spider-forest", "targetId": "objects/jade_figurine_cache", "description": "Find the Jade Figurine." },
+        { "id": "obj-give-cain", "type": "give", "npcId": "npc/cain", "itemId": "quest/jade_figurine", "description": "Give the figurine to Cain." },
+        { "id": "obj-give-alkor", "type": "give", "npcId": "npc/alkor", "itemId": "quest/golden_bird", "description": "Bring the Golden Bird to Alkor." }
       ],
-      "rewards": { "xp": 4000, "itemDrop": "items/potion_of_life_q", "stat": { "life": 20 } },
+      "rewards": { "xp": 4000, "questItem": "items/potion_of_life_q" },
       "unlocks": null,
       "order": 12
     },

@@ -50,17 +50,39 @@
             "type": "object",
             "description": "Read effect, applied once when the entitlement is consumed.",
             "additionalProperties": false,
-            "required": [
-              "skillPoints"
-            ],
             "properties": {
               "skillPoints": {
                 "type": "integer",
                 "minimum": 1,
                 "maximum": 9007199254740991,
                 "description": "Authored positive safe-integer unspent skill points granted by Read."
+              },
+              "maxLife": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9007199254740991,
+                "description": "Permanent maximum Life granted by actual once-only Read; does not heal."
               }
-            }
+            },
+            "oneOf": [
+              {
+                "required": [
+                  "skillPoints"
+                ],
+                "properties": {
+                  "skillPoints": {}
+                }
+              },
+              {
+                "required": [
+                  "maxLife"
+                ],
+                "properties": {
+                  "maxLife": {}
+                }
+              }
+            ],
+            "maxProperties": 1
           },
           "kind": {
             "enum": [
@@ -106,6 +128,11 @@
           "consumeObjectiveId": {
             "type": "string",
             "minLength": 1
+          },
+          "outputItemId": {
+            "type": "string",
+            "pattern": "^(quest|items)/[a-z0-9][a-z0-9._-]*$",
+            "description": "Optional real delivery output created by this exact hand-in; reciprocal source graph is loader-validated."
           }
         },
         "oneOf": [
@@ -122,7 +149,8 @@
               "requiredTool": false,
               "ingredients": false,
               "consumeQuestId": false,
-              "consumeObjectiveId": false
+              "consumeObjectiveId": false,
+              "outputItemId": false
             }
           },
           {
@@ -140,7 +168,8 @@
               "requiredTool": false,
               "ingredients": false,
               "consumeQuestId": false,
-              "consumeObjectiveId": false
+              "consumeObjectiveId": false,
+              "outputItemId": false
             }
           },
           {
@@ -158,7 +187,8 @@
               "requiredTool": false,
               "ingredients": false,
               "consumeQuestId": false,
-              "consumeObjectiveId": false
+              "consumeObjectiveId": false,
+              "outputItemId": false
             }
           },
           {
@@ -176,7 +206,8 @@
                 "const": "assembled"
               },
               "effect": false,
-              "consumedBy": false
+              "consumedBy": false,
+              "outputItemId": false
             }
           },
           {

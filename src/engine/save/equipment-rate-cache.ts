@@ -88,3 +88,15 @@ export function repairQuestResistanceCache(save: SaveCurrent): SaveCurrent {
   return { ...save, player: { ...save.player, derivedStats: { ...old,
     resistances: { ...old.resistances, fire, cold } } } };
 }
+
+/** Rebuild Golden Bird's Life cache from real receipts; legacy flags grant no bonus. */
+export function repairQuestLifeCache(save: SaveCurrent): SaveCurrent {
+  if (!Object.hasOwn(save.map.questProgress, 'quests/act3-golden-bird')) return save;
+  const projected = deriveEquippedPlayerStats(save.player, save.player.level,
+    save.inventory.equipped, save.map.questProgress, save.inventory.questItems);
+  const old = save.player.derivedStats;
+  if (old.lifeMax === projected.lifeMax && old.life === projected.life) return save;
+  return { ...save, player: { ...save.player, derivedStats: {
+    ...old, lifeMax: projected.lifeMax, life: projected.life
+  } } };
+}

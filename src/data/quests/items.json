@@ -69,6 +69,34 @@
       "consumeObjectiveId": "obj-deliver",
       "nameKey": "inventory:questItems.lam_esens_tome.name",
       "descKey": "inventory:questItems.lam_esens_tome.description"
+    },
+    {
+      "id": "quest/jade_figurine",
+      "sourceQuestId": "quests/act3-golden-bird",
+      "kind": "delivery",
+      "sourceObjectiveId": "obj-find-figurine",
+      "consumeObjectiveId": "obj-give-cain",
+      "outputItemId": "quest/golden_bird",
+      "nameKey": "inventory:questItems.jadeFigurine.name",
+      "descKey": "inventory:questItems.jadeFigurine.description"
+    },
+    {
+      "id": "quest/golden_bird",
+      "sourceQuestId": "quests/act3-golden-bird",
+      "kind": "delivery",
+      "sourceObjectiveId": "obj-give-cain",
+      "consumeObjectiveId": "obj-give-alkor",
+      "nameKey": "inventory:questItems.goldenBird.name",
+      "descKey": "inventory:questItems.goldenBird.description"
+    },
+    {
+      "id": "items/potion_of_life_q",
+      "sourceQuestId": "quests/act3-golden-bird",
+      "nameKey": "inventory:questItems.potionOfLife.name",
+      "descKey": "inventory:questItems.potionOfLife.description",
+      "effect": {
+        "maxLife": 20
+      }
     }
   ]
 }

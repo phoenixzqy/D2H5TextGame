@@ -61,9 +61,15 @@ export function giveQuestItem(source: string, npcId: string): QuestCraftingResul
     if (!quest || !item) return 'not-eligible';
     const progress = map.questProgress[quest.id];
     if (!progress) return 'not-eligible';
+    const output = item.outputItemId === undefined ? undefined
+      : loadQuestItems().find(row => row.id === item.outputItemId);
+    if (item.outputItemId !== undefined && (!output || Object.hasOwn(inventory.questItems, questItemSource(output)))) {
+      return 'not-eligible';
+    }
     const objectives = { ...progress.objectives, [item.consumeObjectiveId]: true };
     return publishQuestItemChange(quest.id, { ...progress, objectives,
       status: quest.objectives.every(objective => objectives[objective.id] === true) ? 'completed' : progress.status },
-    { ...inventory.questItems, [source]: { itemId: item.id, state: 'consumed' } });
+    { ...inventory.questItems, [source]: { itemId: item.id, state: 'consumed' },
+      ...(output ? { [questItemSource(output)]: { itemId: output.id, state: 'owned' as const } } : {}) });
   });
 }

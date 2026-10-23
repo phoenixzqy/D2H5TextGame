@@ -1,7 +1,7 @@
 /** Structural validation at the untrusted save boundary; never mutates input. */
 import Ajv, { type AnySchema } from 'ajv';
 import { restoreEquipment, restoreItem, restoreUnit } from './restore';
-import { repairEquipmentRateCache, repairQuestResistanceCache } from './equipment-rate-cache';
+import { repairEquipmentRateCache, repairQuestLifeCache, repairQuestResistanceCache } from './equipment-rate-cache';
 import { repairMercenaryGrowth } from '../progression/merc-growth';
 import { LEVEL_CAP } from '../progression/xp';
 import { CURRENT_SAVE_VERSION, type SaveCurrent, type SaveV7, type SaveV8, type SaveV9, type SaveV10, type SaveV11, type QuestItemEntry, type QuestItemLedger } from '../types/save';
@@ -410,6 +410,19 @@ export function validateQuestItemLedger(questItems: unknown, questProgress: unkn
         !validLiveObjectiveProgress(validated, quest, definition.consumeObjectiveId)) {
         throw new Error('Invalid save: delivered item requires its exact hand-in objective');
       }
+      if (definition.kind === 'delivery') {
+        if (definition.outputItemId !== undefined &&
+          ((entry.state === 'consumed') !== (itemEntry(definition.outputItemId) !== undefined))) {
+          throw new Error('Invalid save: exchange input requires its exact output receipt');
+        }
+        const issuingObjective = quest.objectives.find(objective => objective.id === definition.sourceObjectiveId);
+        if (issuingObjective?.type === 'give') {
+          const input = definitions.find(item => item.kind === 'delivery' && item.outputItemId === definition.id);
+          if (!input || itemEntry(input.id)?.state !== 'consumed') {
+            throw new Error('Invalid save: exchange output requires its consumed input');
+          }
+        }
+      }
       if (definition.kind === 'assembled') {
         if (itemEntry(definition.requiredTool)?.state !== 'owned' ||
           !definition.ingredients.every(id => itemEntry(id)?.state === 'consumed')) {
@@ -426,6 +439,12 @@ export function validateQuestItemLedger(questItems: unknown, questProgress: unkn
       progress.rewardClaimed !== true || !quest.objectives.every(objective =>
         Object.hasOwn(progress.objectives, objective.id) && progress.objectives[objective.id] === true)) {
       throw new Error('Invalid save: quest item source must be completed and claimed');
+    } else if (!quest.objectives.filter(objective => objective.type === 'give').every(objective => {
+      const input = definitions.find(item => item.kind === 'delivery' &&
+        item.sourceQuestId === quest.id && item.consumeObjectiveId === objective.id);
+      return input !== undefined && itemEntry(input.id)?.state === 'consumed';
+    })) {
+      throw new Error('Invalid save: reward item requires its real consumed hand-in graph');
     }
   }
   return validated.questItems;
@@ -600,7 +619,7 @@ export function decodeSave(value: unknown): SaveCurrent {
   if (input.version < 14) input = runMigrations(input, 14);
   if (input.version === 14) validateV14Save(input);
   const save = validateSave(runMigrations(input));
-  return repairQuestResistanceCache(repairEquipmentRateCache({
+  return repairQuestLifeCache(repairQuestResistanceCache(repairEquipmentRateCache({
     ...save,
     player: restoreUnit(save.player),
     inventory: {
@@ -616,5 +635,5 @@ export function decodeSave(value: unknown): SaveCurrent {
         Object.entries(save.mercs.mercEquipment).map(([id, equip]) => [id, restoreEquipment(equip)])
       )
     }
-  }));
+  })));
 }

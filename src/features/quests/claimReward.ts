@@ -12,7 +12,7 @@ import { isQuestUniqueProfileRewardInput, resolveQuestUniqueProfile } from '@/en
 import { isQuestTableRewardInput, rollQuestTableRewards, type QuestTableRewardInput } from '@/engine/loot/award';
 import { createRng, hashSeed } from '@/engine/rng';
 import type { Item } from '@/engine/types/items';
-import { withQuestTransaction } from './questTransaction';
+import { publishQuestItemChange, questActionPreflight, withQuestTransaction } from './questTransaction';
 import { hasQuestDeliveryCompletion } from './questDelivery';
 import { loadQuestItems, questItemSource } from '@/data/loaders/quest-items';
 import { validateQuestItemLedger } from '@/engine/save/validate';
@@ -185,7 +185,7 @@ export function claimQuestReward(questId: string): ClaimResult {
     if (resistanceReward) {
       const xp = grants.find(grant => grant.kind === 'xp')?.amount ?? 0;
       const level = awardXp(xpTotal(player.level) + player.experience, xp).level;
-      try { deriveEquippedPlayerStats(player, level, inventory.equipped, claimedContext); }
+      try { deriveEquippedPlayerStats(player, level, inventory.equipped, claimedContext, inventory.questItems); }
       catch { return 'unsupported-rewards'; }
     }
 
@@ -256,7 +256,8 @@ export function claimQuestReward(questId: string): ClaimResult {
         usePlayerStore.setState(state => {
           if (!state.player) throw new Error('Player disappeared during quest reward');
           return { player: { ...state.player, derivedStats: deriveEquippedPlayerStats(
-            state.player, state.player.level, useInventoryStore.getState().equipped, claimedContext
+            state.player, state.player.level, useInventoryStore.getState().equipped, claimedContext,
+            useInventoryStore.getState().questItems
           ) } };
         });
       }
@@ -298,23 +299,29 @@ export function readQuestItem(source: string): ReadQuestItemResult {
     const player = usePlayerStore.getState().player;
     if (!player) return 'no-player';
     const questItems = useInventoryStore.getState().questItems;
-    let points: number;
-    let itemId: string;
+    let nextPlayer: Player;
+    let nextItems: QuestItemLedger;
     try {
       validateQuestItemLedger(questItems, useMapStore.getState().questProgress);
       const definition = loadQuestItems().find(row => questItemSource(row) === source);
       if (!definition || definition.kind !== undefined) return 'unsupported-rewards';
       if (!Object.hasOwn(questItems, source)) return 'not-owned';
       if (questItems[source]?.state === 'consumed') return 'already-consumed';
-      points = definition.effect.skillPoints;
-      itemId = definition.id;
-      if (!safeCount(player.skillPoints) || !safeCount(points) || points <= 0 ||
-        !safeCount(player.skillPoints + points)) return 'unsupported-rewards';
+      nextItems = validateQuestItemLedger({ ...questItems,
+        [source]: { itemId: definition.id, state: 'consumed' } }, useMapStore.getState().questProgress);
+      if (definition.effect.maxLife !== undefined) {
+        nextPlayer = { ...player, derivedStats: deriveEquippedPlayerStats(player, player.level,
+          useInventoryStore.getState().equipped, useMapStore.getState().questProgress, nextItems) };
+      } else {
+        const points = definition.effect.skillPoints;
+        if (!safeCount(player.skillPoints) || !safeCount(points) || points <= 0 ||
+          !safeCount(player.skillPoints + points)) return 'unsupported-rewards';
+        nextPlayer = { ...player, skillPoints: player.skillPoints + points };
+      }
     } catch { return 'unsupported-rewards'; }
     try {
-      usePlayerStore.setState({ player: { ...player, skillPoints: player.skillPoints + points } });
-      useInventoryStore.setState({ questItems: { ...questItems,
-        [source]: { itemId, state: 'consumed' } } });
+      usePlayerStore.setState({ player: nextPlayer });
+      useInventoryStore.setState({ questItems: nextItems });
       return 'ok';
     } catch (cause) {
       const errors: unknown[] = [];
@@ -323,5 +330,52 @@ export function readQuestItem(source: string): ReadQuestItemResult {
       if (errors.length > 0) throw new AggregateError(errors, 'Quest item restoration failed', { cause });
       return 'grant-failed';
     }
+  });
+}
+
+export type RecoverClaimedRewardResult = 'ok' | 'not-ready' | 'no-player' | 'combat-active'
+  | 'not-eligible' | 'already-owned' | 'already-consumed' | 'claim-in-progress' | 'grant-failed';
+
+export type QuestRewardItemRecoveryStatus = 'ready' | 'owned' | 'consumed' | 'unavailable';
+
+/** Read-only eligibility for explicit recovery after actual hand-ins, never from legacy flags alone. */
+export function questRewardItemRecoveryStatus(questId: string): QuestRewardItemRecoveryStatus {
+  const quest = findQuest(questId);
+  const progress = useMapStore.getState().questProgress[questId];
+  if (!quest || progress?.status !== 'completed' || progress.rewardClaimed !== true ||
+    !quest.objectives.some(objective => objective.type === 'give') ||
+    !hasQuestDeliveryCompletion(quest)) return 'unavailable';
+  const definition = loadQuestItems().find(item => item.kind === undefined &&
+    item.sourceQuestId === questId && item.id === quest.rewards?.questItem);
+  if (!definition) return 'unavailable';
+  const source = questItemSource(definition);
+  const ledger = useInventoryStore.getState().questItems;
+  if (!Object.hasOwn(ledger, source)) return 'ready';
+  return ledger[source]?.state === 'consumed' ? 'consumed' : 'owned';
+}
+
+/**
+ * Explicit legacy repair after real hand-ins. Retains claimed history, grants no
+ * XP, and never creates an item from objective/claimed flags alone.
+ */
+export function recoverClaimedQuestRewardItem(questId: string): RecoverClaimedRewardResult {
+  const refusal = questActionPreflight();
+  if (refusal) return refusal;
+  return withQuestTransaction<RecoverClaimedRewardResult>(() => {
+    const status = questRewardItemRecoveryStatus(questId);
+    if (status === 'unavailable') return 'not-eligible';
+    if (status === 'owned') return 'already-owned';
+    if (status === 'consumed') return 'already-consumed';
+    const quest = findQuest(questId);
+    const progress = useMapStore.getState().questProgress[questId];
+    if (!quest || !progress) return 'not-eligible';
+    const definition = loadQuestItems().find(item => item.kind === undefined &&
+      item.sourceQuestId === questId && item.id === quest.rewards?.questItem);
+    if (!definition) return 'not-eligible';
+    const source = questItemSource(definition);
+    const ledger = useInventoryStore.getState().questItems;
+    return publishQuestItemChange(questId, progress, {
+      ...ledger, [source]: { itemId: definition.id, state: 'owned' }
+    });
   });
 }

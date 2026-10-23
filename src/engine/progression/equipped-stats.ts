@@ -5,13 +5,16 @@ import type { DerivedStats } from '../types/attributes';
 import { aggregateEquipmentMods, applyEquipmentCoreMods, equipmentModsToDerivedModifiers } from './equipment-mods';
 import { deriveStats } from './stats';
 import { hasTaintedSunEntitlement, resolveQuestResistanceBonus, type QuestProgressContext } from './quest-resistance';
+import { resolveQuestLifeBonus } from './quest-life';
+import type { QuestItemLedger } from '../types/save';
 
 /** Shared gear composition; resource pools never heal during recomputation. */
 export function deriveEquippedPlayerStats(
   player: Pick<Player, 'coreStats' | 'derivedStats'>,
   level: number,
   equipped: Readonly<Record<string, Item | null>>,
-  questProgress: QuestProgressContext = {}
+  questProgress: QuestProgressContext = {},
+  questItems: QuestItemLedger = {}
 ): DerivedStats {
   const equipmentMods = aggregateEquipmentMods(equipped);
   const coreWithEquipment = applyEquipmentCoreMods(player.coreStats, equipmentMods);
@@ -20,6 +23,10 @@ export function deriveEquippedPlayerStats(
     level,
     equipmentModsToDerivedModifiers(equipmentMods)
   );
+  const lifeBonus = resolveQuestLifeBonus(questProgress, questItems);
+  const lifeMax = fresh.lifeMax + lifeBonus;
+  if (!Number.isFinite(lifeMax) || Math.abs(lifeMax) > Number.MAX_SAFE_INTEGER ||
+    (lifeBonus > 0 && lifeMax <= fresh.lifeMax)) throw new Error('Unsafe quest Life arithmetic');
   const resistances = { ...fresh.resistances };
   if (hasTaintedSunEntitlement(questProgress)) {
     const bonus = resolveQuestResistanceBonus(questProgress);
@@ -37,8 +44,9 @@ export function deriveEquippedPlayerStats(
   }
   return {
     ...fresh,
+    lifeMax,
     resistances,
-    life: Math.min(fresh.lifeMax, player.derivedStats.life),
+    life: Math.min(lifeMax, player.derivedStats.life),
     mana: Math.min(fresh.manaMax, player.derivedStats.mana)
   };
 }
