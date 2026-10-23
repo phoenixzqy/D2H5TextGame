@@ -1,0 +1,26 @@
+{
+  "cleanup.json": {
+    "bytes": 961,
+    "sha256": "21adefc054795c48eb22e529424febeca0c74c54324be879ad934e1a243d78d6"
+  },
+  "final-native.json.gz": {
+    "bytes": 84885,
+    "sha256": "1bdebc9a0513b4e51b6309f5f9de8d6c6180185bb4ac6a9ef8efb0612c201b48"
+  },
+  "process-audit.json": {
+    "bytes": 471,
+    "sha256": "6cab1448d3df98b195fab4def2130869a3f55e26f7b154847ff9089d44f040ba"
+  },
+  "raw-evidence.tar.gz": {
+    "bytes": 2413256,
+    "sha256": "3a14d5caaf3a8753781df17065a5080f3cef4fa33bdf05ce49b8d580401ae941"
+  },
+  "retained-earned-export.json.gz": {
+    "bytes": 68088,
+    "sha256": "1de7b2371224cd09d2b1baad532416bad2e4ac19f0719e2dcf64fec9c05c0c8c"
+  },
+  "summary.json": {
+    "bytes": 4731,
+    "sha256": "595576b8e8694773e9a501029d4f65011608366497a305d828168b7395c8d4f4"
+  }
+}

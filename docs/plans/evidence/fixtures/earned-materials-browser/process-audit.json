@@ -1,0 +1,30 @@
+{
+  "trackedPids": [
+    2608542,
+    2608559,
+    2608560,
+    2608607,
+    2608621,
+    2611137,
+    2611149,
+    2611677,
+    2611689,
+    2631327,
+    2631347,
+    2631348,
+    2631356,
+    2631369,
+    2631382,
+    2631384,
+    2631385,
+    2631400,
+    2631402,
+    2631421,
+    2631508
+  ],
+  "livePids": [],
+  "browserProfiles": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/playwright_chromiumdev_profile-tWWIPg"
+  ],
+  "remainingBrowserProfiles": []
+}

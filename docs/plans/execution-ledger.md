@@ -10747,3 +10747,48 @@ committed as continuation evidence. Other viewport projects and the finale
 are separately running; neither is accepted here. C0/C1 accepted; C2 underway;
 C3/C4/fullG0–G7 open. Local only. Exact diagnostics and active dist-close remain
 root-owned at`/tmp/d2h5-a5-integration-650ka_is` through their consumers.
+
+## D10 — Actual earned materials, inventory performance and storage
+
+[Evidence](evidence/earned-materials-browser.md) preserves the sole ordinary
+Catacombs invocation at Normal252: six actual native victories,13 new unique
+gear, Eld1/four gem stacks,18806 rune-shards and14 wishstones. All5680 original
+full gear payloads survive and ordinal253 persists. Native export and exact raw
+download reimport pass. The original test nevertheless FAILS at Inventory's5s
+material-row assertion; Save/Continue and the panel matrix remain unproved in
+that original run. Its failed report and the separate zero-combat clipboard
+setup interruption are retained, with no combat retry.
+
+BUG114 is measured through a separate unchanged-earned-input storage profile:
+40.838s panel latency,37.4s in backpack comparison and about27.7s repeated quest/
+catalog validation. The fix prepares quest entitlements and canonical current
+loadout once per batch; every candidate retains exact gear/core/stat/quest
+composition, displacement, eligibility and upgrade rules. No global cache,
+lost items, hidden gear, tuning or timeout increase. Three causal RED tests
+precede the fix; existing real-equip/quest controls remain independent.
+
+The separately reviewed/frozen storage-only production test PASS1/1,38.216s,
+retry/skipped/unexpected/flaky0, no page/console errors and zero combat. Public
+Import→manual Save/read-only IndexedDB→close/new-page Continue preserves all5693
+full unique payloads,5677backpack entries, all gameplay domains, five material
+stacks, currencies2461541/8059/1159 and Normal253/Nightmare0. Eight bilingual
+360×640/1280×800 layouts fit with zero horizontal overflow. Four route mounts
+take3232.04/2844.55/3371.35/2869.24ms, below unchanged5000ms. Independent QA
+ADEQUATE verifies all exports, screenshots,1745 frozen hashes, seven production
+JS bridge scans and12 absent tracked processes; producer READY precedes launch.
+
+Final full unit10312/369PASS230.50s with two existing opt-in skips; engine4826/
+134PASS58.14s; related3799/180PASS232.04s. Typecheck/full lint/scoped lint/fresh
+production build pass. Existing test-runner budgets remain exceeded. Final edits
+after measurement only record results; exact frozen pre-result documents are
+retained in the verified lossless archive with reports/profile/saves/logs.
+
+Durable fixtures include the exact retained earned JSON artifact (distinct from
+original native formatting), actual final multiline native export, summary,
+manifest, raw archive and cleanup receipt. Both task-owned builds and all three
+browser-output directories are removed; remaining[]/failures[]. Pre-existing
+dist/shared caches are preserved. Required raw evidence/attempt markers remain
+root-owned at `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-materials-_gkzh9u6`
+through umbrella consumers, then root removes them. C0/C1 remain accepted;
+C2 underway; cache acquisition, unified v19 material services, C3/C4 and full
+G0–G7 remain open. All changes stay local; umbrella goal/worktree claim active.

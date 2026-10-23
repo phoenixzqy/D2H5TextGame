@@ -1,0 +1,164 @@
+{
+  "scope": "Six earned wave victories/export prefix plus separately passing storage continuation; original combat test remains failed; C2/cache/crafting/full-v1 open",
+  "originalBrowser": {
+    "startTime": "2026-10-23T13:44:50.349Z",
+    "duration": 153372.664,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "storageBrowser": {
+    "startTime": "2026-10-23T14:06:13.633Z",
+    "duration": 38216.004,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "inventoryTimingMs": {
+    "continued-panel-en-route-timing.json.gz": 3371.348599000001,
+    "continued-panel-zh-CN-route-timing.json.gz": 2869.243954999998,
+    "imported-panel-en-route-timing.json.gz": 3232.0417199999993,
+    "imported-panel-zh-CN-route-timing.json.gz": 2844.552743
+  },
+  "beforeFixDiagnostic": {
+    "inputGzipSha": "1de7b2371224cd09d2b1baad532416bad2e4ac19f0719e2dcf64fec9c05c0c8c",
+    "inputRawSha": "f68fb4988f388f493e54a279c4d0b9bbe2e6ad2f091b4ede886987d39e9dc10a",
+    "marks": [
+      {
+        "phase": "before-inventory",
+        "at": 5699.288679,
+        "url": "http://127.0.0.1:4413/settings"
+      },
+      {
+        "phase": "click-returned",
+        "elapsed": 77.14161799999965,
+        "url": "http://127.0.0.1:4413/inventory"
+      },
+      {
+        "phase": "panel-visible",
+        "elapsed": 40838.175456000004,
+        "url": "http://127.0.0.1:4413/inventory",
+        "inventory": 1,
+        "panels": 1,
+        "rows": [
+          {
+            "id": "material-runes/eld",
+            "text": "EldOwned: 1"
+          },
+          {
+            "id": "material-gems/amethyst/flawed",
+            "text": "Flawed AmethystOwned: 1"
+          },
+          {
+            "id": "material-gems/sapphire/flawed",
+            "text": "Flawed SapphireOwned: 2"
+          },
+          {
+            "id": "material-gems/skull/chipped",
+            "text": "Chipped SkullOwned: 2"
+          },
+          {
+            "id": "material-gems/skull/flawed",
+            "text": "Flawed SkullOwned: 2"
+          }
+        ],
+        "overflow": 0
+      }
+    ],
+    "errors": [],
+    "acceptance": "diagnostic only; no combat, no new Save/Continue acceptance"
+  },
+  "storageResult": {
+    "outcome": "pass",
+    "input": "unchanged retained earned-export JSON artifact",
+    "rawSha": "f68fb4988f388f493e54a279c4d0b9bbe2e6ad2f091b4ede886987d39e9dc10a",
+    "gzipSha": "1de7b2371224cd09d2b1baad532416bad2e4ac19f0719e2dcf64fec9c05c0c8c",
+    "owned": 5693,
+    "materials": {
+      "gems/skull/chipped": 2,
+      "gems/sapphire/flawed": 2,
+      "gems/amethyst/flawed": 1,
+      "gems/skull/flawed": 2,
+      "runes/eld": 1
+    },
+    "currencies": {
+      "rune-shard": 2461541,
+      "wishstone": 8059,
+      "gem-shard": 1159
+    },
+    "ordinals": {
+      "normal": 253,
+      "nightmare": 0
+    },
+    "errors": [],
+    "consoleErrors": [],
+    "combatLaunches": 0,
+    "retries": 0,
+    "scope": "storage/UI only; original combat test remains failed; cache and campaign open"
+  },
+  "postRunIntegrity": {
+    "frozenFiles": 1745,
+    "drift": [],
+    "trackedProcesses": 12,
+    "liveTrackedProcesses": []
+  },
+  "validation": {
+    "fullUnit": {
+      "passed": 10312,
+      "files": 369,
+      "existingOptInSkips": 2,
+      "seconds": 230.5,
+      "exit": 0
+    },
+    "engine": {
+      "passed": 4826,
+      "files": 134,
+      "seconds": 58.14,
+      "exit": 0
+    },
+    "related": {
+      "passed": 3799,
+      "files": 180,
+      "existingOptInSkips": 2,
+      "seconds": 232.04,
+      "exit": 0
+    },
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "explicitScopedLint": "PASS",
+    "productionBuild": "PASS",
+    "bridgeScan": {
+      "files": 7,
+      "violations": []
+    },
+    "testTimeBudgets": "Exceeded; no performance acceptance for test-runner budgets"
+  },
+  "source": [
+    {
+      "path": "src/engine/progression/equipped-stats.ts",
+      "sha256": "aee58ab0d741cc06137d6907b6e030ba81c60a81a13d07f1209529999f21a2ef"
+    },
+    {
+      "path": "src/features/inventory/compareEquip.ts",
+      "sha256": "cb1c6d4aaf0be16fc5e85b9ebaed066666afbde15c9b9fc8192593ac8570bda5"
+    },
+    {
+      "path": "src/features/inventory/InventoryScreen.tsx",
+      "sha256": "fce0b778ee03bc369aa98542afde3cd23c9f134cf7328ef742f93a879bf5b531"
+    },
+    {
+      "path": "src/features/inventory/compareEquip.batch.test.ts",
+      "sha256": "5269bb3242db6abbb850f419fb0393f29eb71215252cb59f2bf1301327d7fe8d"
+    }
+  ],
+  "postMeasurementDocumentation": {
+    "changes": [
+      "plan execution-result append",
+      "BUG114 fixed status and final validation"
+    ],
+    "frozenOriginals": "storage-continuation/frozen-documents/",
+    "runtimeAndHarnessChanged": false
+  }
+}

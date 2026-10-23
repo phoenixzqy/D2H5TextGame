@@ -18,7 +18,7 @@ import type { QuestItemLedger, QuestActionReceipts } from '@/engine/types/save';
  */
 
 import { loadItemBases, resolveItemReqLevel } from '@/data/loaders/loot';
-import { deriveEquippedPlayerStats } from '@/engine/progression/equipped-stats';
+import { prepareEquippedPlayerStats } from '@/engine/progression/equipped-stats';
 import type { QuestProgressContext } from '@/engine/progression/quest-resistance';
 import { isTwoHanded } from '@/engine/inventory/equipValidator';
 import type { CoreStats, DerivedStats, Resistances } from '@/engine/types/attributes';
@@ -176,28 +176,43 @@ export function compareEquip(
   questItems: QuestItemLedger = {},
   questReceipts: QuestActionReceipts = {}
 ): CompareResult {
-  const base = bases.get(candidate.baseId);
-  const resolved = resolveTargetSlot(base?.slot ?? slot, slot, equipped);
-  const current = equipped[resolved] ?? null;
+  return prepareCompareEquip(player, equipped, bases, questProgress, questItems, questReceipts)(candidate, slot);
+}
 
-  const currentDerived = deriveEquippedPlayerStats(player, player.level, equipped, questProgress, questItems, questReceipts);
-  const candidateEquipped = simulateEquip(equipped, candidate, slot, bases);
-  const candidateDerived = deriveEquippedPlayerStats(player, player.level, candidateEquipped, questProgress, questItems, questReceipts);
+/** Prepare one canonical current loadout and quest snapshot for a batch of candidates. */
+export function prepareCompareEquip(
+  player: PlayerLike,
+  equipped: Readonly<Record<string, Item | null>>,
+  bases: ReadonlyMap<string, ItemBase> = loadItemBases(),
+  questProgress: QuestProgressContext = {},
+  questItems: QuestItemLedger = {},
+  questReceipts: QuestActionReceipts = {}
+): (candidate: Item, slot: EquipmentSlot) => CompareResult {
+  const derive = prepareEquippedPlayerStats(player, player.level, questProgress, questItems, questReceipts);
+  const currentDerived = derive(equipped);
+  return (candidate, slot) => {
+    const base = bases.get(candidate.baseId);
+    const resolved = resolveTargetSlot(base?.slot ?? slot, slot, equipped);
+    const current = equipped[resolved] ?? null;
 
-  const stats = {} as Record<ComparableStatKey, StatDelta>;
-  for (const key of COMPARABLE_KEYS) {
-    const c = currentDerived[key];
-    const n = candidateDerived[key];
-    stats[key] = { current: c, candidate: n, delta: n - c };
-  }
-  const resistances = {} as Record<keyof Resistances, StatDelta>;
-  for (const key of RESIST_KEYS) {
-    const c = currentDerived.resistances[key];
-    const n = candidateDerived.resistances[key];
-    resistances[key] = { current: c, candidate: n, delta: n - c };
-  }
+    const candidateEquipped = simulateEquip(equipped, candidate, slot, bases);
+    const candidateDerived = derive(candidateEquipped);
 
-  return { current, candidate, slot: resolved, stats, resistances };
+    const stats = {} as Record<ComparableStatKey, StatDelta>;
+    for (const key of COMPARABLE_KEYS) {
+      const c = currentDerived[key];
+      const n = candidateDerived[key];
+      stats[key] = { current: c, candidate: n, delta: n - c };
+    }
+    const resistances = {} as Record<keyof Resistances, StatDelta>;
+    for (const key of RESIST_KEYS) {
+      const c = currentDerived.resistances[key];
+      const n = candidateDerived.resistances[key];
+      resistances[key] = { current: c, candidate: n, delta: n - c };
+    }
+
+    return { current, candidate, slot: resolved, stats, resistances };
+  };
 }
 
 export function netEquipDelta(compare: CompareResult): number {

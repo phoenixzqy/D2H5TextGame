@@ -1,0 +1,17 @@
+{
+  "removed": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-materials-_gkzh9u6/dist",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-materials-_gkzh9u6/dist-inventory",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-materials-_gkzh9u6/browser",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-materials-_gkzh9u6/storage-continuation/browser",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-materials-_gkzh9u6/setup-only-interrupted/browser"
+  ],
+  "alreadyAbsent": [],
+  "remaining": [],
+  "failures": [],
+  "retainedEvidenceRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-materials-_gkzh9u6",
+  "retainedReason": "Required raw evidence and exclusive combat/storage attempt markers for unfinished umbrella goal",
+  "cleanupOwner": "root after umbrella consumers finish",
+  "preExistingRepoDistTouched": false,
+  "sharedCachesTouched": false
+}

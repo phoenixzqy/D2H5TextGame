@@ -51,29 +51,25 @@ import type { Item, EquipmentSlot } from '@/engine/types/items';
 import { loadItemBases } from '@/data/loaders/loot';
 import {
   checkEligibility,
-  compareEquip,
+  prepareCompareEquip,
   isClearNetUpgrade,
   resolveAutoEquipSlot,
   type CompareResult,
   type PlayerLike
 } from './compareEquip';
-import type { QuestProgressContext } from '@/engine/progression/quest-resistance';
-import type { QuestActionReceipts, QuestItemLedger } from '@/engine/types/save';
 
 function compareBackpackItem(
   item: Item,
   player: PlayerLike,
   equipped: Readonly<Record<string, Item | null>>,
   bases: ReturnType<typeof loadItemBases>,
-  questProgress: QuestProgressContext,
-  questItems: QuestItemLedger,
-  questReceipts: QuestActionReceipts
+  compare: ReturnType<typeof prepareCompareEquip>
 ): CompareResult | null {
   const slot = bases.get(item.baseId)?.slot;
   if (!slot) return null;
   const eligibility = checkEligibility(item, player, bases);
   if (!eligibility.eligible) return null;
-  return compareEquip(player, item, resolveAutoEquipSlot(slot, equipped), equipped, bases, questProgress, questItems, questReceipts);
+  return compare(item, resolveAutoEquipSlot(slot, equipped));
 }
 
 type ToastState = { readonly message: string; readonly tone: 'success' | 'error' } | null;
@@ -319,11 +315,14 @@ function BackpackTabContent({
     return { level: player.level, coreStats: player.coreStats, derivedStats: player.derivedStats };
   }, [player]);
   const bases = useMemo(() => loadItemBases(), []);
+  const compare = useMemo(() => playerForCompare
+    ? prepareCompareEquip(playerForCompare, equipped, bases, questProgress, questItems, questReceipts)
+    : null, [playerForCompare, equipped, bases, questProgress, questItems, questReceipts]);
   const selectedCompare = useMemo(
-    () => selected && playerForCompare
-      ? compareBackpackItem(selected, playerForCompare, equipped, bases, questProgress, questItems, questReceipts)
+    () => selected && playerForCompare && compare
+      ? compareBackpackItem(selected, playerForCompare, equipped, bases, compare)
       : null,
-    [bases, equipped, playerForCompare, selected, questProgress, questItems, questReceipts]
+    [bases, equipped, playerForCompare, selected, compare]
   );
   const selectedEquippedAfter = useMemo(() => {
     if (!selected || !selectedCompare) return [] as Item[];
@@ -334,14 +333,14 @@ function BackpackTabContent({
     ];
   }, [equipped, selected, selectedCompare]);
   const upgradeItemIds = useMemo(() => {
-    if (!playerForCompare) return new Set<string>();
+    if (!playerForCompare || !compare) return new Set<string>();
     const ids = new Set<string>();
     for (const item of items) {
-      const compare = compareBackpackItem(item, playerForCompare, equipped, bases, questProgress, questItems, questReceipts);
-      if (compare && isClearNetUpgrade(compare)) ids.add(item.id);
+      const result = compareBackpackItem(item, playerForCompare, equipped, bases, compare);
+      if (result && isClearNetUpgrade(result)) ids.add(item.id);
     }
     return ids;
-  }, [bases, equipped, items, playerForCompare, questProgress, questItems, questReceipts]);
+  }, [bases, equipped, items, playerForCompare, compare]);
 
   return (
     <div className="flex flex-col">
