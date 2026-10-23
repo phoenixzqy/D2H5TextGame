@@ -15,7 +15,7 @@ import { PRISON_QUEST } from '@/engine/map/act5-admission';
 export { assembleQuestItem, questAssemblyStatus, areaQuestInsertions, questInsertionStatus, insertQuestItem } from './questCrafting';
 
 export type ObjectActionResult = 'ok' | 'already-read' | 'not-eligible' | 'not-ready'
-  | 'no-player' | 'combat-active' | 'locked-area' | 'unknown-area';
+  | 'no-player' | 'combat-active' | 'locked-area' | 'unknown-area' | 'claim-in-progress';
 
 /** Supported object identities come from canonical authored objectives, never inferred legacy areas. */
 export function areaObjectTargets(act: number, areaId: string): readonly string[] {

@@ -7,7 +7,8 @@ import { useCombatStore } from '@/stores/combatStore';
 import { useMercStore } from '@/stores/mercStore';
 import { abortSubAreaRun, startSubAreaRun } from '@/stores/combatHelpers';
 import * as persistence from '@/stores/persistence';
-import { beginWaveTransition, endWaveTransition, reserveWaveRestore, releaseWaveRestore } from '@/stores/waveTransitionGuard';
+import { beginWaveTransition, endWaveTransition, reserveWaveRestore, releaseWaveRestore,
+  beginIronGolemDebit, endIronGolemDebit } from '@/stores/waveTransitionGuard';
 import { decodeSave } from '@/engine/save/validate';
 import { toJsonSafe } from '@/engine/save';
 import { xpTotal } from '@/engine/progression/xp';
@@ -211,7 +212,12 @@ describe('Horadric Staff acquisition through insertion', () => {
   it.each(['assemble', 'insert'] as const)('refuses %s under wave/restore ownership before any writes', operation => {
     prepareParts(); const act = () => operation === 'assemble' ? actions.assembleQuestItem(staff) : actions.insertQuestItem(staff);
     const before = data(), wave = beginWaveTransition(true);
-    try { expect(act).toThrow('waveBusy'); expect(data()).toEqual(before); } finally { endWaveTransition(wave); }
+    try {
+      expect(act).toThrow('waveBusy'); expect(data()).toEqual(before);
+      beginIronGolemDebit(wave);
+      try { expect(act).toThrow('itemDebitBusy'); expect(data()).toEqual(before); }
+      finally { endIronGolemDebit(wave); }
+    } finally { endWaveTransition(wave); }
     const restore = reserveWaveRestore();
     try { expect(act).toThrow('restorePending'); expect(data()).toEqual(before); } finally { releaseWaveRestore(restore); }
   });

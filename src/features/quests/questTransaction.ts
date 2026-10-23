@@ -1,4 +1,4 @@
-import { beginQuestTransaction, endQuestTransaction, assertIronGolemOwnershipMutationAllowed } from '@/stores/waveTransitionGuard';
+import { beginQuestTransaction, endQuestTransaction, assertIronGolemOwnershipMutationAllowed, WaveGuardError } from '@/stores/waveTransitionGuard';
 import { usePlayerStore } from '@/stores/playerStore';
 import { useCombatStore } from '@/stores/combatStore';
 import { useInventoryStore } from '@/stores/inventoryStore';
@@ -14,9 +14,10 @@ import { questObjectivePrerequisitesMet } from '@/engine/map/questStages';
 let inProgress = false;
 
 /** Serialize synchronous quest grants through all rollback attempts. */
-export function withQuestTransaction<T>(operation: () => T): T | 'claim-in-progress' {
+export function withQuestTransaction<T>(operation: () => T): T | 'claim-in-progress' | 'not-ready' {
   assertIronGolemOwnershipMutationAllowed();
   if (inProgress) return 'claim-in-progress';
+  if (isReplacingSave()) return 'not-ready';
   const lease = beginQuestTransaction();
   inProgress = true;
   try { return operation(); } finally {
@@ -26,8 +27,15 @@ export function withQuestTransaction<T>(operation: () => T): T | 'claim-in-progr
 }
 
 /** Shared live readiness check for explicit world-item actions; typed wave refusals propagate. */
-export function questActionPreflight(): 'not-ready' | 'no-player' | 'combat-active' | null {
-  assertRecordedWaveNewTransitionAllowed();
+export function questActionPreflight(): 'not-ready' | 'no-player' | 'combat-active' | 'claim-in-progress' | null {
+  assertIronGolemOwnershipMutationAllowed();
+  try { assertRecordedWaveNewTransitionAllowed(); }
+  catch (error) {
+    // Only our own synchronous quest lease is a result refusal; outer wave,
+    // restore and receipt guards retain their existing typed failure precedence.
+    if (inProgress && error instanceof WaveGuardError && error.code === 'questBusy') return 'claim-in-progress';
+    throw error;
+  }
   if (useHydrationStore.getState().status !== 'ready' || isReplacingSave()) return 'not-ready';
   if (!usePlayerStore.getState().player) return 'no-player';
   if (hasActiveSubAreaRun() || useCombatStore.getState().inCombat) return 'combat-active';
