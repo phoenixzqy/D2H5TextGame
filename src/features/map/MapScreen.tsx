@@ -19,6 +19,7 @@ import { Button, Panel, ScreenShell, GameImage, getZoneArtUrl, tDataKey } from '
 import { useMapStore, useMetaStore } from '@/stores';
 import { subAreas as subAreaList, acts as actList, monsters as monsterList } from '@/data/index';
 import { ACT_GATE_BOSS_SUB_AREAS } from '@/engine/map/unlock';
+import { monsterLevelForReplay } from '@/engine/map/replay-profile';
 import { IdleTickerStrip } from '@/features/idle/IdleTickerStrip';
 import { hasAreaObjects, travelToAreaObjects, type ObjectActionResult } from '@/features/quests/interactObject';
 import { ReplayProfileControls } from './ReplayProfileControls';
@@ -64,6 +65,7 @@ export function MapScreen() {
   const navigate = useNavigate();
   const setLocation = useMapStore((s) => s.setCurrentLocation);
   const isActUnlocked = useMapStore((s) => s.isActUnlocked);
+  const selectedDifficulty = useMapStore(s => s.selectedDifficulty);
   const clearedSubAreas = useMapStore(s => s.selectedDifficulty === 'nightmare' ? s.nightmareClearedSubAreas : s.clearedSubAreas);
   const setIdleTarget = useMetaStore((s) => s.setIdleTarget);
   const idleTarget = useMetaStore((s) => s.idleState.idleTarget);
@@ -289,7 +291,7 @@ export function MapScreen() {
                             )}
                           </div>
                           <div className="text-xs text-d2-white/60">
-                            {t('recommendedLevel', { level: sa.recommendedLevel })}
+                            {t('recommendedLevel', { level: monsterLevelForReplay(sa.recommendedLevel, selectedDifficulty) })}
                             {' · '}
                             {t('challengeMonsters', { min: sa.challengeMonsterMin, max: sa.challengeMonsterMax })}
                           </div>
