@@ -120,4 +120,69 @@ for (const locale of ['en', 'zh-CN'] as const) for (const [width, height] of siz
     const last = await continued(page, context, en, info, 'exile-removed-continued', { width, height }, observe); await last.close();
     expect(errors).toEqual([]); expect(warnings).toEqual([]);
   });
+
+  for (const word of ['beast', 'last-wish'] as const) {
+    test(`${word} stat grant, removal and Continue ${locale} ${String(width)}x${String(height)}`, async ({ page: initial, context }, info) => {
+      const en = locale === 'en', errors: string[] = [];
+      const observe = (current: Page) => {
+        current.on('pageerror', error => errors.push(error.message));
+        current.on('console', entry => {
+          if (entry.type() === 'error' || entry.type() === 'warning') errors.push(entry.text());
+        });
+      };
+      let page = initial; observe(page); await page.setViewportSize({ width, height });
+      await page.goto('/'); await createCharacter(page, { class: 'sorceress', name: 'Stat Grant QA' });
+      await navTo(page, 'settings');
+      await page.getByRole('button', { name: en ? 'English' : '简体中文', exact: true }).click();
+      const fresh = await backup(page);
+      const beast = word === 'beast';
+      const runes = beast ? ['ber', 'tir', 'um', 'mal', 'lum'] : ['jah', 'mal', 'jah', 'sur', 'jah', 'ber'];
+      const item: Item = { id: `browser-${word}`, baseId: beast ? 'items/base/wp2h-thunder-maul' : 'items/base/wp1h-legend-sword',
+        rarity: 'runeword', runewordId: `runewords/${word}`, level: 70, identified: true, equipped: true,
+        socketCapacity: runes.length, socketContents: runes.map(id => ({ kind: 'rune', id: `runes/${id}` })) };
+      const ordinaryLife = 100 + 69 * 8 + fresh.player.coreStats.vitality * 2;
+      const ordinarySpeed = 100 + fresh.player.coreStats.dexterity;
+      const affected = beast ? { lifeMax: ordinaryLife * 1.15, attackSpeed: ordinarySpeed * 1.05 }
+        : { magicDodge: .05 + .025,
+          resistances: { physical: 10, fire: 10, cold: 10, lightning: 10, poison: 10, arcane: 10 } };
+      const fixture: SaveCurrent = { ...fresh, player: { ...fresh.player, level: 70, equipment: [item],
+        derivedStats: { ...fresh.player.derivedStats, life: 13, mana: 17 } },
+        inventory: { ...fresh.inventory, equipped: { weapon: item }, backpack: [], stash: [] } };
+      const importLabel = en ? 'Import Save' : '导入存档';
+      await page.getByRole('button', { name: importLabel, exact: true }).click();
+      await page.getByRole('dialog').getByRole('textbox').fill(JSON.stringify(fixture));
+      await page.getByRole('dialog').getByRole('button', { name: importLabel, exact: true }).click();
+      await expect(page.getByRole('dialog')).toHaveCount(0);
+      await info.attach('constructed-native19-input', { body: JSON.stringify(fixture), contentType: 'application/json' });
+      expect((await backup(page)).player.derivedStats).toEqual({ ...fixture.player.derivedStats, ...affected });
+      await navTo(page, 'inventory');
+      const equipment = () => page.getByRole('tab', { name: en ? 'Equipment' : '装备', exact: true });
+      await equipment().click(); await page.getByTestId('equip-slot-weapon-details').click();
+      const selfOnly = beast
+        ? en ? 'While equipped: +15% maximum Life and +5% Attack Speed (self only)' : '装备时：自身生命上限 +15%，攻击速度 +5%'
+        : en ? 'While equipped: +10 to all six resistances and +2.5% Magic Dodge (self only)' : '装备时：自身六系抗性 +10，魔法闪避 +2.5%';
+      await expect(page.getByTestId('equipped-item-modal')).toContainText(selfOnly);
+      await layout(page, page.getByTestId('equipped-item-modal'));
+      await info.attach('equipped-stat-grant', { body: await page.screenshot(), contentType: 'image/png' });
+      await page.getByTestId('equipped-item-modal-close').click();
+      await page.getByTestId('equip-slot-weapon').getByRole('button', { name: en ? 'Unequip' : '卸下', exact: true }).click();
+      const removed = await backup(page);
+      expect(removed.player.derivedStats).toMatchObject({ lifeMax: ordinaryLife, attackSpeed: ordinarySpeed,
+        magicDodge: .05, resistances: { physical: 0, fire: 0, cold: 0, lightning: 0, poison: 0, arcane: 0 }, life: 13, mana: 17 });
+      expect(removed.inventory.backpack).toEqual([{ ...item, equipped: false }]);
+      await navTo(page, 'inventory'); await page.getByTestId(`inv-item-browser-${word}`).click(); await page.mouse.move(0, 0);
+      const detail = page.getByTestId('inv-detail-panel');
+      await expect(detail).toContainText(selfOnly); await layout(page, detail);
+      await detail.getByTestId('inv-primary-action').click();
+      const equipped = await backup(page);
+      expect(equipped.player.derivedStats).toMatchObject({ ...affected, life: 13, mana: 17 });
+      expect(equipped.player.skillLevels).toEqual(fixture.player.skillLevels);
+      page = await continued(page, context, en, info, 'stat-grant-equipped-continued', { width, height }, observe);
+      await navTo(page, 'inventory'); await equipment().click();
+      await page.getByTestId('equip-slot-weapon').getByRole('button', { name: en ? 'Unequip' : '卸下', exact: true }).click();
+      expect((await backup(page)).player.derivedStats).toEqual(removed.player.derivedStats);
+      const last = await continued(page, context, en, info, 'stat-grant-removed-continued', { width, height }, observe);
+      await last.close(); expect(errors).toEqual([]);
+    });
+  }
 }

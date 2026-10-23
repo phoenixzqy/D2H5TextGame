@@ -65,14 +65,345 @@
       "minItems": 1,
       "description": "Reviewed self-only adaptations, resolved from canonical equipped words at wave creation.",
       "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["id", "rank", "defensePct"],
-        "properties": {
-          "id": { "const": "aura-defiance", "description": "Named adaptation; duplicate sources use the highest rank." },
-          "rank": { "type": "integer", "minimum": 1, "maximum": 20 },
-          "defensePct": { "type": "number", "minimum": 0, "maximum": 1, "description": "Fraction of the complete ordinary defense, applied once after flat equipment composition." }
-        }
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "rank",
+              "defensePct"
+            ],
+            "properties": {
+              "id": {
+                "const": "aura-defiance"
+              },
+              "rank": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 20
+              },
+              "defensePct": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "rank",
+              "lifePct",
+              "attackSpeedPct"
+            ],
+            "properties": {
+              "id": {
+                "const": "skill-lycanthropy"
+              },
+              "rank": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 20
+              },
+              "lifePct": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "attackSpeedPct": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "rank",
+              "allResistance",
+              "magicDodge"
+            ],
+            "properties": {
+              "id": {
+                "const": "skill-fade"
+              },
+              "rank": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 20
+              },
+              "allResistance": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "magicDodge": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "rank",
+              "increasedDamagePct"
+            ],
+            "properties": {
+              "id": {
+                "const": "aura-conviction"
+              },
+              "rank": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 20
+              },
+              "increasedDamagePct": {
+                "type": "object",
+                "additionalProperties": false,
+                "minProperties": 1,
+                "properties": {
+                  "fire": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "cold": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "lightning": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "poison": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "arcane": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "rank",
+              "increasedDamagePct"
+            ],
+            "properties": {
+              "id": {
+                "const": "aura-holy-shock"
+              },
+              "rank": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 20
+              },
+              "increasedDamagePct": {
+                "type": "object",
+                "additionalProperties": false,
+                "minProperties": 1,
+                "properties": {
+                  "fire": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "cold": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "lightning": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "poison": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "arcane": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "rank",
+              "reflectionPct"
+            ],
+            "properties": {
+              "id": {
+                "const": "aura-thorns-aura"
+              },
+              "rank": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 20
+              },
+              "reflectionPct": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "rank",
+              "skillId",
+              "manaRegenPct"
+            ],
+            "properties": {
+              "id": {
+                "const": "aura-redemption"
+              },
+              "rank": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 20
+              },
+              "skillId": {
+                "const": "item.redemption"
+              },
+              "manaRegenPct": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "rank",
+              "skillId",
+              "increasedDamagePct"
+            ],
+            "properties": {
+              "id": {
+                "const": "skill-fire-bolt"
+              },
+              "rank": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 20
+              },
+              "skillId": {
+                "const": "sorceress.fire_bolt"
+              },
+              "increasedDamagePct": {
+                "type": "object",
+                "additionalProperties": false,
+                "minProperties": 1,
+                "properties": {
+                  "fire": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "cold": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "lightning": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "poison": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "arcane": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "rank",
+              "skillId"
+            ],
+            "properties": {
+              "id": {
+                "const": "skill-blaze"
+              },
+              "rank": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 20
+              },
+              "skillId": {
+                "const": "sorceress.blaze"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "rank",
+              "skillId"
+            ],
+            "properties": {
+              "id": {
+                "const": "skill-chain-lightning"
+              },
+              "rank": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 20
+              },
+              "skillId": {
+                "const": "sorceress.chain_lightning"
+              }
+            }
+          }
+        ]
       }
     },
     "allowedSlots": {

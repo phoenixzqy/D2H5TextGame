@@ -35,5 +35,7 @@ export function resolveEquippedRunewordGrants(
       if (!previous || grant.rank > previous.rank) grants.set(grant.id, grant);
     }
   }
-  return Object.freeze([...grants.values()].map(grant => Object.freeze({ ...grant })));
+  return Object.freeze([...grants.values()].map(grant => Object.freeze({ ...grant,
+    ...('increasedDamagePct' in grant
+      ? { increasedDamagePct: Object.freeze({ ...grant.increasedDamagePct }) } : {}) })));
 }

@@ -3,7 +3,7 @@
  * @module engine/types/items
  */
 
-import type { DamageInfo, CoreStats } from './attributes';
+import type { DamageInfo, CoreStats, DamageType } from './attributes';
 
 /**
  * Item rarity enumeration
@@ -269,12 +269,20 @@ export interface Rune {
   readonly shieldEffect?: ItemBonusStats;
 }
 
-/** Reviewed self-only Defiance adaptation; tuning belongs to validated word data. */
-export interface RunewordGrant {
-  readonly id: 'aura-defiance';
-  readonly rank: number;
-  readonly defensePct: number;
-}
+/** Closed, self-only reviewed adaptations; tuning belongs to validated word data. */
+export type RunewordGrant = { readonly rank: number } & (
+  | { readonly id: 'aura-defiance'; readonly defensePct: number }
+  | { readonly id: 'skill-lycanthropy'; readonly lifePct: number; readonly attackSpeedPct: number }
+  | { readonly id: 'skill-fade'; readonly allResistance: number; readonly magicDodge: number }
+  | { readonly id: 'aura-conviction' | 'aura-holy-shock';
+      readonly increasedDamagePct: Readonly<Partial<Record<DamageType, number>>> }
+  | { readonly id: 'aura-thorns-aura'; readonly reflectionPct: number }
+  | { readonly id: 'aura-redemption'; readonly skillId: 'item.redemption'; readonly manaRegenPct: number }
+  | { readonly id: 'skill-fire-bolt'; readonly skillId: 'sorceress.fire_bolt';
+      readonly increasedDamagePct: Readonly<Partial<Record<DamageType, number>>> }
+  | { readonly id: 'skill-blaze'; readonly skillId: 'sorceress.blaze' }
+  | { readonly id: 'skill-chain-lightning'; readonly skillId: 'sorceress.chain_lightning' }
+);
 
 /** Runeword definition. */
 export interface RuneWord {

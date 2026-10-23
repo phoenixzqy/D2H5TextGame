@@ -28,4 +28,25 @@ describe.each(['en', 'zh-CN'] as const)('item bonus units %s', locale => {
     expect(grant?.text).toBe(locale === 'en' ? 'While equipped: +20% Defense (self only)' : '装备时：自身防御 +20%');
     expect(lines.filter(line => line.key === 'statMods.defense')).toHaveLength(1);
   });
+  it.each([
+    { word: 'beast', base: 'wp2h-thunder-maul', runes: ['ber', 'tir', 'um', 'mal', 'lum'],
+      id: 'skill-lycanthropy', value: .15,
+      en: 'While equipped: +15% maximum Life and +5% Attack Speed (self only)',
+      zh: '装备时：自身生命上限 +15%，攻击速度 +5%' },
+    { word: 'last-wish', base: 'wp1h-legend-sword', runes: ['jah', 'mal', 'jah', 'sur', 'jah', 'ber'],
+      id: 'skill-fade', value: 10,
+      en: 'While equipped: +10 to all six resistances and +2.5% Magic Dodge (self only)',
+      zh: '装备时：自身六系抗性 +10，魔法闪避 +2.5%' }
+  ])('describes $word with exact self-only units', row => {
+    const item: Item = { id: row.word, baseId: `items/base/${row.base}`, rarity: 'runeword',
+      level: 70, identified: true, equipped: false, socketCapacity: row.runes.length,
+      runewordId: `runewords/${row.word}`,
+      socketContents: row.runes.map(id => ({ kind: 'rune', id: `runes/${id}` })) };
+    const grant = resolveSocketDisplayLines(item, i18n.getFixedT(locale, 'inventory'))
+      .find(line => line.key === `grant.${row.id}`);
+    expect(grant?.value).toBe(row.value);
+    expect(grant?.text).toBe(locale === 'en' ? row.en : row.zh);
+    expect(grant?.label).toBe(locale === 'en' ? row.word === 'beast' ? 'Life' : 'All Resistances'
+      : row.word === 'beast' ? '生命' : '所有抗性');
+  });
 });

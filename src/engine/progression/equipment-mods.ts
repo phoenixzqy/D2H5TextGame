@@ -28,6 +28,8 @@ export interface EquipmentMods {
   readonly attack?: number;
   readonly defense?: number;
   readonly defensePct?: number;
+  readonly lifePct?: number;
+  readonly attackSpeedPct?: number;
   readonly magicResist?: number;
   readonly attackSpeed?: number;
   readonly critChance?: number;
@@ -67,6 +69,8 @@ const ZERO_MODS: MutableEquipmentMods = {
   attack: 0,
   defense: 0,
   defensePct: 0,
+  lifePct: 0,
+  attackSpeedPct: 0,
   magicResist: 0,
   attackSpeed: 0,
   critChance: 0,
@@ -143,7 +147,19 @@ export function aggregateCanonicalEquipmentMods(
     if (!base) throw new Error('Unknown canonical equipment base');
     for (const stats of socketBonusPackages(item, base)) addStatPackage(mods, stats, item.statRolls);
   }
-  for (const grant of resolveEquippedRunewordGrants(equipped)) mods.defensePct += grant.defensePct;
+  for (const grant of resolveEquippedRunewordGrants(equipped)) {
+    switch (grant.id) {
+      case 'aura-defiance': mods.defensePct += grant.defensePct; break;
+      case 'skill-lycanthropy':
+        mods.lifePct += grant.lifePct;
+        mods.attackSpeedPct += grant.attackSpeedPct;
+        break;
+      case 'skill-fade':
+        mods.allRes += grant.allResistance;
+        mods.magicDodge += grant.magicDodge;
+        break;
+    }
+  }
   return compact(mods);
 }
 

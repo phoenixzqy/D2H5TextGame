@@ -230,7 +230,9 @@
       "damage": "Damage",
       "magicResist": "Magic Resist"
     },
-    "grantedDefense": "While equipped: +{{percent}}% Defense (self only)"
+    "grantedDefense": "While equipped: +{{percent}}% Defense (self only)",
+    "grantedLifeSpeed": "While equipped: +{{life}}% maximum Life and +{{speed}}% Attack Speed (self only)",
+    "grantedFade": "While equipped: +{{resistance}} to all six resistances and +{{dodge}}% Magic Dodge (self only)"
   },
   "discardConfirm": {
     "title": "Confirm Discard",

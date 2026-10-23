@@ -10,7 +10,7 @@ import frozenV16 from './frozen-v16-quests.json';
 /** Structural validation at the untrusted save boundary; never mutates input. */
 import Ajv, { type AnySchema } from 'ajv';
 import { restoreEquipment, restoreItem, restoreUnit } from './restore';
-import { repairEquipmentRateCache, repairQuestLifeCache, repairQuestResistanceCache, repairRunewordDefenseCache } from './equipment-rate-cache';
+import { repairEquipmentRateCache, repairQuestLifeCache, repairQuestResistanceCache, repairRunewordStatCache } from './equipment-rate-cache';
 import { COUNCIL_RECEIPT_SOURCE, isCouncilReceiptProgress } from '../map/council-admission';
 import type { QuestActionReceipts } from '../types/save';
 import frozenV15 from './frozen-v15-quests.json';
@@ -780,7 +780,7 @@ export function decodeSave(value: unknown): SaveCurrent {
   if (input.version < 18) input = runMigrations(input, 18);
   if (input.version === 18) input = validateFrozenV18Save(input);
   const save = validateSave(runMigrations(input));
-  return repairRunewordDefenseCache(repairQuestLifeCache(repairQuestResistanceCache(repairEquipmentRateCache({
+  return repairRunewordStatCache(repairQuestLifeCache(repairQuestResistanceCache(repairEquipmentRateCache({
     ...save,
     player: restoreUnit(save.player),
     inventory: {

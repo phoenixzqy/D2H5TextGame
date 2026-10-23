@@ -71,6 +71,16 @@
     ],
     "allowedWeaponTypes": [
       "staff"
+    ],
+    "grants": [
+      {
+        "id": "skill-fire-bolt",
+        "rank": 3,
+        "skillId": "sorceress.fire_bolt",
+        "increasedDamagePct": {
+          "fire": 0.12
+        }
+      }
     ]
   },
   {
@@ -741,6 +751,19 @@
     ],
     "allowedWeaponTypes": [
       "polearm"
+    ],
+    "grants": [
+      {
+        "id": "aura-conviction",
+        "rank": 5,
+        "increasedDamagePct": {
+          "fire": 0.1,
+          "cold": 0.1,
+          "lightning": 0.1,
+          "poison": 0.1,
+          "arcane": 0.05
+        }
+      }
     ]
   },
   {
@@ -776,6 +799,14 @@
       "axe",
       "mace",
       "scepter"
+    ],
+    "grants": [
+      {
+        "id": "skill-lycanthropy",
+        "rank": 5,
+        "lifePct": 0.15,
+        "attackSpeedPct": 0.05
+      }
     ]
   },
   {
@@ -839,6 +870,13 @@
     "sockets": 4,
     "allowedSlots": [
       "chest"
+    ],
+    "grants": [
+      {
+        "id": "aura-thorns-aura",
+        "rank": 5,
+        "reflectionPct": 0.2
+      }
     ]
   },
   {
@@ -871,6 +909,14 @@
     "sockets": 6,
     "allowedSlots": [
       "weapon"
+    ],
+    "grants": [
+      {
+        "id": "skill-fade",
+        "rank": 5,
+        "allResistance": 10,
+        "magicDodge": 0.025
+      }
     ]
   },
   {
@@ -903,6 +949,14 @@
     "allowedSlots": [
       "weapon",
       "offhand"
+    ],
+    "grants": [
+      {
+        "id": "aura-redemption",
+        "rank": 1,
+        "skillId": "item.redemption",
+        "manaRegenPct": 0.1
+      }
     ]
   },
   {
@@ -933,6 +987,15 @@
     "allowedSlots": [
       "head",
       "offhand"
+    ],
+    "grants": [
+      {
+        "id": "aura-holy-shock",
+        "rank": 5,
+        "increasedDamagePct": {
+          "lightning": 0.15
+        }
+      }
     ]
   },
   {
@@ -963,6 +1026,13 @@
     "sockets": 4,
     "allowedSlots": [
       "weapon"
+    ],
+    "grants": [
+      {
+        "id": "skill-blaze",
+        "rank": 5,
+        "skillId": "sorceress.blaze"
+      }
     ]
   },
   {
@@ -1033,6 +1103,13 @@
     "sockets": 5,
     "allowedSlots": [
       "weapon"
+    ],
+    "grants": [
+      {
+        "id": "skill-chain-lightning",
+        "rank": 5,
+        "skillId": "sorceress.chain_lightning"
+      }
     ]
   }
 ]

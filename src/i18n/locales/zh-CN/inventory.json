@@ -230,7 +230,9 @@
       "damage": "伤害",
       "magicResist": "魔法抗性"
     },
-    "grantedDefense": "装备时：自身防御 +{{percent}}%"
+    "grantedDefense": "装备时：自身防御 +{{percent}}%",
+    "grantedLifeSpeed": "装备时：自身生命上限 +{{life}}%，攻击速度 +{{speed}}%",
+    "grantedFade": "装备时：自身六系抗性 +{{resistance}}，魔法闪避 +{{dodge}}%"
   },
   "discardConfirm": {
     "title": "确认丢弃",

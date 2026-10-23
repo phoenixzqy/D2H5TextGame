@@ -56,9 +56,10 @@ export function prepareEquipmentStatComposition(
       level,
       equipmentModsToDerivedModifiers(equipmentMods)
     );
-    const lifeMax = fresh.lifeMax + lifeBonus;
-    if (lifeBonus > 0 && (!Number.isFinite(lifeMax) || Math.abs(lifeMax) > Number.MAX_SAFE_INTEGER ||
-      lifeMax <= fresh.lifeMax)) throw new Error('Unsafe quest Life arithmetic');
+    const ordinaryLifeMax = fresh.lifeMax + lifeBonus;
+    if (lifeBonus > 0 && (!Number.isFinite(ordinaryLifeMax) || Math.abs(ordinaryLifeMax) > Number.MAX_SAFE_INTEGER ||
+      ordinaryLifeMax <= fresh.lifeMax)) throw new Error('Unsafe quest Life arithmetic');
+    const lifeMax = ordinaryLifeMax * (1 + (equipmentMods.lifePct ?? 0));
     const resistances = { ...fresh.resistances };
     {
       for (const key of ['fire', 'cold', 'lightning', 'poison', 'arcane', 'physical'] as const) {
@@ -76,6 +77,7 @@ export function prepareEquipmentStatComposition(
     return {
       ...fresh,
       defense: fresh.defense * (1 + (equipmentMods.defensePct ?? 0)),
+      attackSpeed: fresh.attackSpeed * (1 + (equipmentMods.attackSpeedPct ?? 0)),
       lifeMax,
       resistances,
       life: Math.min(lifeMax, player.derivedStats.life),

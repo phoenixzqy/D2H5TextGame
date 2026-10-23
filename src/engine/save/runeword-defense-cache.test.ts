@@ -4,6 +4,8 @@ import type { Item } from '../types/items';
 import { buildSave, toJsonSafe } from './serialize';
 import { decodeSave } from './validate';
 import { deriveEquippedPlayerStats } from '../progression/equipped-stats';
+import { socketRunewords } from '@/data/loaders/socket-effects';
+import { deriveStats } from '../progression/stats';
 
 const shield: Item = { id: 'native19-exile', baseId: 'items/base/sh-monarch', rarity: 'runeword',
   runewordId: 'runewords/exile', socketCapacity: 4, level: 60, identified: true, equipped: true,
@@ -42,5 +44,47 @@ describe('qualified native19 Exile display-cache compatibility', () => {
     expect(decodeSave(toJsonSafe(input))).toEqual(input);
     const naked = { ...input, inventory: { ...input.inventory, backpack: [] } };
     expect(decodeSave(toJsonSafe(naked))).toEqual(naked);
+  });
+});
+
+describe('qualified native19 Beast/Fade cache compatibility', () => {
+  function source(word: string, baseId: string): Item {
+    const row = socketRunewords.find(data => data.id === `runewords/${word}`);
+    if (!row) throw new Error(`Missing runeword ${word}`);
+    return { id: word, baseId, rarity: 'runeword', runewordId: row.id, level: 70,
+      socketCapacity: row.sockets, identified: true, equipped: false,
+      socketContents: row.runes.map(id => ({ kind: 'rune', id })) };
+  }
+  it('repairs only Beast Life/AS, clamps current life, and is idempotent', () => {
+    const input = fixture();
+    const old = { ...input.player.derivedStats, life: 950, attackSpeed: 999 };
+    const save = { ...input, player: { ...input.player, derivedStats: old },
+      inventory: { ...input.inventory, equipped: { weapon: source('beast', 'items/base/wp2h-thunder-maul') } } };
+    const before = structuredClone(save);
+    const ordinary = deriveStats(save.player.coreStats, 60);
+    const lifeMax = ordinary.lifeMax * 1.15;
+    const expected = { ...save, player: { ...save.player, derivedStats: { ...old,
+      lifeMax, life: Math.min(950, lifeMax), attackSpeed: ordinary.attackSpeed * 1.05 } } };
+    const output = decodeSave(toJsonSafe(save));
+    expect(output).toEqual(expected);
+    expect(decodeSave(toJsonSafe(output))).toEqual(output);
+    expect(save).toEqual(before);
+  });
+  it('repairs only Fade six resistances/magicDodge, with no resource change', () => {
+    const input = fixture();
+    const save = { ...input, inventory: { ...input.inventory,
+      equipped: { weapon: source('last-wish', 'items/base/wp1h-legend-sword') } } };
+    const expected = { ...save, player: { ...save.player, derivedStats: { ...save.player.derivedStats,
+      magicDodge: .05 + .025,
+      resistances: { physical: 10, fire: 10, cold: 10, lightning: 10, poison: 10, arcane: 10 } } } };
+    const output = decodeSave(toJsonSafe(save));
+    expect(output).toEqual(expected);
+    expect(decodeSave(toJsonSafe(output))).toEqual(output);
+  });
+  it.each(['beast', 'last-wish'])('leaves backpack-only %s historical caches exact', word => {
+    const input = fixture(false);
+    const item = source(word, word === 'beast' ? 'items/base/wp2h-thunder-maul' : 'items/base/wp1h-legend-sword');
+    const save = { ...input, inventory: { ...input.inventory, backpack: [item] } };
+    expect(decodeSave(toJsonSafe(save))).toEqual(save);
   });
 });

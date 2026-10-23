@@ -33,7 +33,7 @@ export function deriveEquippedMercStats(
     const delta = geared.resistances[key] - bare.resistances[key];
     return delta === 0 ? saved.resistances[key] : saved.resistances[key] + delta;
   };
-  const lifeMax = scalar('lifeMax');
+  const lifeMax = scalar('lifeMax') * (1 + (mods.lifePct ?? 0));
   const manaMax = scalar('manaMax');
 
   return {
@@ -45,9 +45,9 @@ export function deriveEquippedMercStats(
     defense: scalar('defense') * (1 + (mods.defensePct ?? 0)),
     // Apply the signed gear value before clamping; deriveStats clamps negatives.
     magicResist: Math.max(0, Math.floor(saved.magicResist + (mods.magicResist ?? 0))),
-    attackSpeed: geared.attackSpeed === bare.attackSpeed
+    attackSpeed: (geared.attackSpeed === bare.attackSpeed
       ? saved.attackSpeed
-      : Math.max(1, scalar('attackSpeed')),
+      : Math.max(1, scalar('attackSpeed'))) * (1 + (mods.attackSpeedPct ?? 0)),
     critChance: scalar('critChance'),
     critDamage: scalar('critDamage'),
     physDodge: scalar('physDodge'),

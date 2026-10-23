@@ -97,9 +97,20 @@ export function resolveSocketDisplayLines(item: Item, t: TFunction): readonly Di
   const lines = socketBonusPackages(item, base).flatMap(stats => resolveStatPackage(stats, item.statRolls))
     .map(stat => formatDisplayStat(stat, t));
   for (const grant of resolveItemRunewordGrants(item)) {
-    lines.push({ key: `grant.${grant.id}`, value: grant.defensePct,
-      label: t('inventory:detail.stat.defense'),
-      text: t('inventory:detail.grantedDefense', { percent: Number((grant.defensePct * 100).toFixed(4)) }) });
+    const percent = (value: number): number => Number((value * 100).toFixed(4));
+    if (grant.id === 'aura-defiance') {
+      lines.push({ key: `grant.${grant.id}`, value: grant.defensePct,
+        label: t('inventory:detail.stat.defense'),
+        text: t('inventory:detail.grantedDefense', { percent: percent(grant.defensePct) }) });
+    } else if (grant.id === 'skill-lycanthropy') {
+      lines.push({ key: `grant.${grant.id}`, value: grant.lifePct,
+        label: t('inventory:detail.stat.life'),
+        text: t('inventory:detail.grantedLifeSpeed', { life: percent(grant.lifePct), speed: percent(grant.attackSpeedPct) }) });
+    } else if (grant.id === 'skill-fade') {
+      lines.push({ key: `grant.${grant.id}`, value: grant.allResistance,
+        label: t('inventory:detail.stat.allRes'),
+        text: t('inventory:detail.grantedFade', { resistance: grant.allResistance, dodge: percent(grant.magicDodge) }) });
+    }
   }
   return lines;
 }

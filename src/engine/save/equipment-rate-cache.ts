@@ -4,14 +4,24 @@ import type { SaveCurrent } from '../types/save';
 import { hasTaintedSunEntitlement, resolveAct5ResistanceBonus } from '../progression/quest-resistance';
 import { resolveEquippedRunewordGrants } from '../items/runeword-grants';
 
-/** Repair only defense for identifiable equipped grants; unrelated historical caches stay exact. */
-export function repairRunewordDefenseCache(save: SaveCurrent): SaveCurrent {
-  if (!resolveEquippedRunewordGrants(save.inventory.equipped).some(grant => grant.defensePct > 0)) return save;
-  const defense = deriveEquippedPlayerStats(save.player, save.player.level, save.inventory.equipped,
-    save.map.questProgress, save.inventory.questItems, save.map.questReceipts).defense;
-  if (!Number.isFinite(defense)) throw new Error('Invalid save: nonfinite runeword defense');
-  if (save.player.derivedStats.defense === defense) return save;
-  return { ...save, player: { ...save.player, derivedStats: { ...save.player.derivedStats, defense } } };
+/** Repair only fields identified by equipped grants; merc saved baselines remain bare. */
+export function repairRunewordStatCache(save: SaveCurrent): SaveCurrent {
+  const ids = new Set(resolveEquippedRunewordGrants(save.inventory.equipped).map(grant => grant.id));
+  if (!ids.has('aura-defiance') && !ids.has('skill-lycanthropy') && !ids.has('skill-fade')) return save;
+  const projected = deriveEquippedPlayerStats(save.player, save.player.level, save.inventory.equipped,
+    save.map.questProgress, save.inventory.questItems, save.map.questReceipts);
+  const old = save.player.derivedStats;
+  const changes = {
+    ...(ids.has('aura-defiance') ? { defense: projected.defense } : {}),
+    ...(ids.has('skill-lycanthropy') ? { lifeMax: projected.lifeMax,
+      life: Math.min(old.life, projected.lifeMax), attackSpeed: projected.attackSpeed } : {}),
+    ...(ids.has('skill-fade') ? { magicDodge: projected.magicDodge, resistances: projected.resistances } : {})
+  };
+  for (const value of Object.values(changes)) {
+    const values = typeof value === 'number' ? [value] : Object.values(value);
+    if (values.some(number => !Number.isFinite(number))) throw new Error('Invalid save: nonfinite runeword stat');
+  }
+  return { ...save, player: { ...save.player, derivedStats: { ...old, ...changes } } };
 }
 
 type RateKey = 'critChance' | 'critDamage' | 'physDodge' | 'magicDodge';
