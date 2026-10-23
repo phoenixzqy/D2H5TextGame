@@ -1,0 +1,85 @@
+/** Unmodified earned checkpoint; ordinary import/export/save/Continue only. */
+import { test, expect, type Page } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/@playwright/test/index.mjs';
+import { readFile, writeFile } from 'node:fs/promises';
+import { createCharacter, navTo } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/tests/e2e/_helpers';
+const root = '/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-merc-growth-p0ei0ryu';
+const mercId = 'mercs/act1-rogue-inner-sight';
+const now = 1792497600000;
+async function backup(page: Page) {
+  await navTo(page, 'settings');
+  const pending = page.waitForEvent('download');
+  await page.getByTestId('export-save-button').click();
+  const download = await pending;
+  try { return JSON.parse(await readFile(await download.path(), 'utf8')); }
+  finally { await download.delete(); }
+}
+async function disk(page: Page) {
+  return page.evaluate(async () => {
+    const db = await new Promise<IDBDatabase>((resolve, reject) => {
+      const req = indexedDB.open('D2H5TextGame');
+      req.onsuccess = () => resolve(req.result); req.onerror = () => reject(req.error);
+    });
+    try {
+      const record = await new Promise<{ data: unknown }>((resolve, reject) => {
+        const req = db.transaction('saves', 'readonly').objectStore('saves').get('current');
+        req.onsuccess = () => resolve(req.result); req.onerror = () => reject(req.error);
+      });
+      return JSON.parse(JSON.stringify(record.data, (_key, value) => value instanceof Map ? [...value.entries()] : value));
+    } finally { db.close(); }
+  });
+}
+async function roster(page: Page, locale: string) {
+  await navTo(page, 'mercs');
+  const card = page.getByTestId(`merc-card-${mercId}`);
+  for (const [label, value] of [['LVL', 16], ['STR', 25], ['DEX', 61], ['VIT', 16]]) {
+    const stat = card.getByText(String(label), { exact: true }).locator('..');
+    await stat.scrollIntoViewIfNeeded(); await expect(stat).toHaveText(`${label}${value}`);
+  }
+  await expect(card.getByTestId(`merc-xp-${mercId}`)).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  expect(await page.evaluate(() => '__GAME__' in window)).toBe(false);
+  await card.getByText('DEX', { exact: true }).scrollIntoViewIfNeeded();
+  await page.screenshot({ path: `${root}/merc-${locale}-${page.viewportSize()?.width}.png` });
+}
+for (const locale of ['en', 'zh-CN']) test(`earned merc cache import and Save-close-Continue ${locale}`, async ({ page, context }) => {
+  const errors: string[] = [];
+  const watch = (target: Page) => target.on('pageerror', error => errors.push(error.message));
+  watch(page); await page.clock.setFixedTime(now); await page.setViewportSize({ width: 360, height: 640 });
+  await page.goto('/'); await page.waitForLoadState('networkidle');
+  await createCharacter(page, { class: 'sorceress', name: 'Merc growth QA' });
+  await navTo(page, 'settings'); await page.getByRole('button', { name: 'English', exact: true }).click();
+  const raw = await readFile(root + '/earned-input.json', 'utf8');
+  const input = JSON.parse(raw);
+  await page.getByRole('button', { name: 'Import Save', exact: true }).click();
+  const dialog = page.getByRole('dialog'); await dialog.getByRole('textbox').fill(raw);
+  await dialog.getByRole('button', { name: 'Import Save', exact: true }).click();
+  await expect(dialog).toHaveCount(0);
+  const expected = structuredClone(input);
+  Object.assign(expected.mercs.ownedMercs[0].derivedStats, { attack: 70, defense: 65, attackSpeed: 161, manaMax: 150, physDodge: 0.172 });
+  // Entire-save equality establishes the exact five-field mask, including gear/XP/HP/MP/MR preservation.
+  await expect.poll(() => disk(page)).toEqual(expected);
+  expect(await backup(page)).toEqual(expected);
+  if (locale === 'zh-CN') {
+    await page.getByRole('button', { name: '简体中文', exact: true }).click();
+    expected.meta.settings.locale = locale;
+  }
+  for (const [width, height] of [[360, 640], [1280, 800]]) {
+    await page.setViewportSize({ width, height }); await roster(page, locale);
+  }
+  await navTo(page, 'settings');
+  await page.getByRole('button', { name: locale === 'en' ? 'Save' : '保存', exact: true }).click();
+  await expect(page.getByRole('status')).toHaveText(locale === 'en' ? 'Saved' : '已保存');
+  const saved = await backup(page); expect(saved).toEqual(expected); expect(await disk(page)).toEqual(saved);
+  await writeFile(`${root}/saved-${locale}.json`, JSON.stringify(saved));
+  await page.close();
+  const reopened = await context.newPage(); watch(reopened); await reopened.clock.setFixedTime(now);
+  await reopened.setViewportSize({ width: 360, height: 640 }); await reopened.goto('/'); await reopened.waitForLoadState('networkidle');
+  await reopened.getByTestId('home-continue').click(); await expect(reopened.getByTestId('town-screen')).toBeVisible();
+  expect(await backup(reopened)).toEqual(saved); expect(await disk(reopened)).toEqual(saved);
+  await roster(reopened, locale); expect(errors).toEqual([]);
+  await writeFile(`${root}/assertions-${locale}.json`, JSON.stringify({ source: 'unmodified earned native W4 checkpoint', locale,
+    importExactFiveFieldRepair: true, fullSavePreserved: true, saveCloseContinueExact: true,
+    inputMana: 79, savedMana: saved.mercs.ownedMercs[0].derivedStats.mana, savedManaMax: 150,
+    viewports: [[360,640],[1280,800]], pageErrors: errors }, null, 2));
+  await reopened.close();
+});

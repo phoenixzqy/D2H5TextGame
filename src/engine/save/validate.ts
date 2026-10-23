@@ -2,6 +2,7 @@
 import Ajv, { type AnySchema } from 'ajv';
 import { restoreEquipment, restoreItem, restoreUnit } from './restore';
 import { repairEquipmentRateCache } from './equipment-rate-cache';
+import { repairMercenaryGrowth } from '../progression/merc-growth';
 import { LEVEL_CAP } from '../progression/xp';
 import { CURRENT_SAVE_VERSION, type SaveCurrent, type SaveV7, type SaveV8, type SaveV9, type SaveV10 } from '../types/save';
 import { runMigrations, type VersionedSave } from './migrate';
@@ -351,7 +352,7 @@ export function decodeSave(value: unknown): SaveCurrent {
     },
     mercs: {
       ...save.mercs,
-      ownedMercs: save.mercs.ownedMercs.map(restoreUnit),
+      ownedMercs: save.mercs.ownedMercs.map(merc => repairMercenaryGrowth(restoreUnit(merc))),
       mercEquipment: Object.fromEntries(
         Object.entries(save.mercs.mercEquipment).map(([id, equip]) => [id, restoreEquipment(equip)])
       )

@@ -258,23 +258,30 @@ describe('mercStore — level-aware new and missing progress (P13a)', () => {
   });
 
   it.each([
-    { amount: 6361, levels: 0, remainder: 6361 },
-    { amount: 6362, levels: 1, remainder: 0 },
-    { amount: 6362 + 7, levels: 1, remainder: 7 },
-    { amount: 6362 + mercXpForLevel(11) + 9, levels: 2, remainder: 9 }
-  ])('preserves exact L10 thresholds and gains for $amount XP', ({ amount, levels, remainder }) => {
+    { amount: 6361, levels: 0, remainder: 6361, attack: 15, manaMax: 65 },
+    { amount: 6362, levels: 1, remainder: 0, attack: 18, manaMax: 70 },
+    { amount: 6362 + 7, levels: 1, remainder: 7, attack: 18, manaMax: 70 },
+    { amount: 6362 + mercXpForLevel(11) + 9, levels: 2, remainder: 9, attack: 22, manaMax: 76 }
+  ])('preserves exact L10 thresholds and gains for $amount XP', ({ amount, levels, remainder, attack, manaMax }) => {
     const merc = { ...makeMerc(), level: 10 };
     useMercStore.getState().addMerc(merc);
     expect(useMercStore.getState().addExperience(merc.id, amount)).toEqual({ levelsGained: levels, newLevel: 10 + levels });
     expect(useMercStore.getState().getMercProgress(merc.id)).toEqual({
       experience: remainder, experienceToNextLevel: mercXpForLevel(10 + levels)
     });
-    expect(useMercStore.getState().ownedMercs[0]).toEqual({
+    const grown = useMercStore.getState().ownedMercs[0];
+    if (!grown) throw new Error('Missing grown merc');
+    // This fixture stores an L1 baseline at L10: retain its offsets and add
+    // only the shared L10→new-level contributions, including floor boundaries.
+    expect(grown.derivedStats.physDodge).toBeCloseTo(0.07 + 0.006 * levels, 12);
+    expect({ ...grown, derivedStats: { ...grown.derivedStats,
+      physDodge: merc.derivedStats.physDodge } }).toEqual({
       ...merc, level: 10 + levels,
       coreStats: { ...merc.coreStats, strength: merc.coreStats.strength + levels,
         dexterity: merc.coreStats.dexterity + 3 * levels, energy: merc.coreStats.energy + levels },
       derivedStats: { ...merc.derivedStats, life: merc.derivedStats.life + 8 * levels,
-        lifeMax: merc.derivedStats.lifeMax + 8 * levels }
+        lifeMax: merc.derivedStats.lifeMax + 8 * levels, attack, manaMax,
+        defense: 20 + 3 * levels, attackSpeed: 110 + 3 * levels }
     });
   });
 

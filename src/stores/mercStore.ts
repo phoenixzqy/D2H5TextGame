@@ -14,6 +14,7 @@ import type { EquipmentSlot, Item, ItemBase } from '@/engine/types/items';
 import { loadItemBases } from '@/data/loaders/loot';
 import type { MercDef } from '@/data/loaders/mercs';
 import { createMercFromDef } from './mercFactory';
+import { growMercenary, repairMercenaryGrowth } from '@/engine/progression/merc-growth';
 import { useInventoryStore } from './inventoryStore';
 import { BACKPACK_CAPACITY } from './inventoryCapacity';
 
@@ -57,48 +58,7 @@ export function mercXpForLevel(level: number): number {
  */
 export const MERC_XP_SHARE = 0.75;
 
-/** Per-level gain block applied on each merc level-up. */
-interface PerLevelGain {
-  readonly life: number;
-  readonly strength: number;
-  readonly dexterity: number;
-  readonly energy: number;
-}
-
-/**
- * Per-class per-level stat gains, keyed by `Mercenary.classId` (which mirrors
- * `MercDef.classRef`). Values picked to give each class a distinct identity:
- *  - rogue / thief   → dex-heavy archers / skirmishers
- *  - desert-merc     → str + life polearm tank
- *  - iron-wolf       → caster (low life, high energy)
- *  - barbarian       → highest life pool, str-heavy
- *  - paladin         → balanced front-line
- *  - militia         → unremarkable generalist
- *  - acolyte         → caster healer (energy-focused)
- *
- * Class IDs not present in this table fall through to {@link DEFAULT_PER_LEVEL_GAIN}.
- */
-const PER_LEVEL_GAIN_BY_CLASS: Readonly<Record<string, PerLevelGain>> = Object.freeze({
-  'rogue':        { life: 8,  strength: 1, dexterity: 3, energy: 1 },
-  'desert-merc':  { life: 14, strength: 3, dexterity: 1, energy: 1 },
-  'iron-wolf':    { life: 6,  strength: 1, dexterity: 1, energy: 4 },
-  'barbarian':    { life: 16, strength: 3, dexterity: 2, energy: 0 },
-  'paladin':      { life: 12, strength: 2, dexterity: 1, energy: 1 },
-  'militia':      { life: 10, strength: 2, dexterity: 1, energy: 1 },
-  'thief':        { life: 7,  strength: 1, dexterity: 3, energy: 1 },
-  'acolyte':      { life: 6,  strength: 1, dexterity: 1, energy: 4 }
-});
-
-/** Fallback gains for unknown / legacy classes. */
-const DEFAULT_PER_LEVEL_GAIN: PerLevelGain = Object.freeze({
-  life: 10, strength: 2, dexterity: 1, energy: 1
-});
-
-/** Resolve gains for a merc class id (case-sensitive). */
-export function getPerLevelGain(classId: string | undefined): PerLevelGain {
-  if (!classId) return DEFAULT_PER_LEVEL_GAIN;
-  return PER_LEVEL_GAIN_BY_CLASS[classId] ?? DEFAULT_PER_LEVEL_GAIN;
-}
+export { getPerLevelGain } from '@/engine/progression/merc-growth';
 
 interface MercProgress {
   experience: number;
@@ -195,6 +155,13 @@ function initialProgress(level: number): MercProgress {
   return { experience: 0, experienceToNextLevel: mercXpForLevel(level) };
 }
 
+function assertFiniteProgress(progress: MercProgress): void {
+  if (!Number.isFinite(progress.experience) ||
+      !Number.isFinite(progress.experienceToNextLevel) || progress.experienceToNextLevel <= 0) {
+    throw new Error('Invalid mercenary XP progress');
+  }
+}
+
 function returnedItem(item: Item): Item {
   const { equipSlot: _equipSlot, ...fields } = item;
   return { ...fields, equipped: false };
@@ -282,10 +249,18 @@ export const useMercStore = create<MercState>((set, get) => ({
   },
   
   upgradeMerc: (mercId) => { set((state) => {
+    const current = state.ownedMercs.find(m => m.id === mercId);
+    if (!current) return state;
+    const progress = state.mercProgress[mercId];
+    const nextProgress = progress?.experienceToNextLevel === mercXpForLevel(current.level)
+      ? { ...progress, experienceToNextLevel: mercXpForLevel(current.level + 1) } : progress;
+    if (nextProgress) assertFiniteProgress(nextProgress);
     return {
-      ownedMercs: state.ownedMercs.map((m) =>
-        m.id === mercId ? { ...m, level: m.level + 1 } : m
-      )
+      ownedMercs: state.ownedMercs.map(m => m === current
+        ? growMercenary(repairMercenaryGrowth(m), 1) : m),
+      mercProgress: nextProgress && nextProgress !== progress
+        ? { ...state.mercProgress, [mercId]: nextProgress }
+        : state.mercProgress
     };
   }); },
 
@@ -347,6 +322,7 @@ export const useMercStore = create<MercState>((set, get) => ({
       const m = get().ownedMercs.find((x) => x.id === mercId);
       return { levelsGained: 0, newLevel: m?.level ?? 1 };
     }
+    if (!Number.isFinite(amount)) throw new Error('Invalid mercenary XP');
     const state = get();
     const merc = state.ownedMercs.find((m) => m.id === mercId);
     if (!merc) return { levelsGained: 0, newLevel: 1 };
@@ -354,36 +330,19 @@ export const useMercStore = create<MercState>((set, get) => ({
     let level = merc.level;
     let levelsGained = 0;
     let xpRemaining = progress.experience + amount;
+    assertFiniteProgress({ ...progress, experience: xpRemaining });
     while (xpRemaining >= progress.experienceToNextLevel) {
       xpRemaining -= progress.experienceToNextLevel;
       level += 1;
       levelsGained += 1;
       progress = { experience: 0, experienceToNextLevel: mercXpForLevel(level) };
+      assertFiniteProgress(progress);
     }
     progress = { experience: xpRemaining, experienceToNextLevel: progress.experienceToNextLevel };
     set((s) => {
       const updatedMercs = s.ownedMercs.map((m) => {
         if (m.id !== mercId) return m;
-        if (levelsGained === 0) return m;
-        const gain = getPerLevelGain(m.classId);
-        const ds = m.derivedStats;
-        const cs = m.coreStats;
-        const lifeBonus = gain.life * levelsGained;
-        return {
-          ...m,
-          level,
-          coreStats: {
-            ...cs,
-            strength: cs.strength + gain.strength * levelsGained,
-            dexterity: cs.dexterity + gain.dexterity * levelsGained,
-            energy: cs.energy + gain.energy * levelsGained
-          },
-          derivedStats: {
-            ...ds,
-            lifeMax: ds.lifeMax + lifeBonus,
-            life: Math.min(ds.lifeMax + lifeBonus, ds.life + lifeBonus)
-          }
-        };
+        return growMercenary(repairMercenaryGrowth(m), levelsGained);
       });
       return {
         ownedMercs: updatedMercs,

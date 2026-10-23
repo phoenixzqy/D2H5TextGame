@@ -36,8 +36,8 @@ function arrange() {
   if (!grown) throw new Error('Missing owned merc');
   expect(grown.level).toBe(6);
   expect(grown.coreStats).toEqual({ strength: 15, dexterity: 31, vitality: 16, energy: 17 });
-  expect(grown.derivedStats).toMatchObject({ lifeMax: 172, manaMax: 79,
-    attack: 25, defense: 26, attackSpeed: 122 });
+  expect(grown.derivedStats).toMatchObject({ lifeMax: 172, manaMax: 95,
+    attack: 35, defense: 35, attackSpeed: 131 });
   return grown;
 }
 function startMerc() {
@@ -68,7 +68,7 @@ describe('canonical merc equipment reaches fresh production combat', () => {
     expect(useMercStore.getState().equipOnMerc(merc.id, 'head', cap)).toEqual({ ok: true });
     expect(useInventoryStore.getState().backpack).not.toContainEqual(cap);
     const before = structuredClone(useMercStore.getState().ownedMercs);
-    expect(startMerc().stats.defense).toBe(32);
+    expect(startMerc().stats.defense).toBe(41);
     expect(useMercStore.getState().ownedMercs).toEqual(before);
   });
 
@@ -77,7 +77,7 @@ describe('canonical merc equipment reaches fresh production combat', () => {
     const sword = item('merc-sword', 'items/base/wp1h-short-sword', { attack: 7 });
     useInventoryStore.getState().addItem(sword);
     expect(useMercStore.getState().equipOnMerc(merc.id, 'weapon', sword)).toEqual({ ok: true });
-    expect(startMerc().stats.attack).toBe(32);
+    expect(startMerc().stats.attack).toBe(42);
     expect(useMercStore.getState().getFieldedMerc()).toBe(merc);
   });
 });
@@ -105,8 +105,8 @@ describe('equipment authority and next fresh-run boundaries', () => {
       progress: useMercStore.getState().mercProgress,
       hero: usePlayerStore.getState().player });
     const unit = startMerc();
-    expect(unit.stats.defense).toBe(32);
-    expect(unit.stats.attack).toBe(25);
+    expect(unit.stats.defense).toBe(41);
+    expect(unit.stats.attack).toBe(35);
     expect({ owned: useMercStore.getState().ownedMercs,
       maps: useMercStore.getState().mercEquipment,
       progress: useMercStore.getState().mercProgress,
@@ -120,12 +120,12 @@ describe('equipment authority and next fresh-run boundaries', () => {
     const cap = item('other-cap', 'items/base/helm-cap', { defense: 9 });
     useInventoryStore.getState().addItem(cap);
     expect(useMercStore.getState().equipOnMerc(other.id, 'head', cap)).toEqual({ ok: true });
-    expect(startMerc().stats.defense).toBe(26);
+    expect(startMerc().stats.defense).toBe(35);
     abortSubAreaRun();
     useMercStore.getState().setFieldedMerc(other.id);
     const next = startMerc();
     expect(next.id).toBe('merc-other-merc');
-    expect(next.stats.defense).toBe(35);
+    expect(next.stats.defense).toBe(44);
   });
 
   it('leaves a frozen recording intact and rereads swapped gear on a fresh run', () => {
@@ -135,7 +135,7 @@ describe('equipment authority and next fresh-run boundaries', () => {
     useInventoryStore.getState().addItem(cap);
     useInventoryStore.getState().addItem(swap);
     expect(useMercStore.getState().equipOnMerc(merc.id, 'head', cap)).toEqual({ ok: true });
-    expect(startMerc().stats.defense).toBe(32);
+    expect(startMerc().stats.defense).toBe(41);
     const state = useCombatStore.getState();
     const frozen = structuredClone({ team: state.playerTeam, events: state.recordedEvents,
       outcome: state.outcome, cursor: state.eventCursor });
@@ -144,7 +144,7 @@ describe('equipment authority and next fresh-run boundaries', () => {
     expect({ team: current.playerTeam, events: current.recordedEvents,
       outcome: current.outcome, cursor: current.eventCursor }).toEqual(frozen);
     abortSubAreaRun();
-    expect(startMerc().stats.defense).toBe(35);
+    expect(startMerc().stats.defense).toBe(44);
     abortSubAreaRun();
     expect(useMercStore.getState().unequipFromMerc(merc.id, 'head')).toEqual({ ok: true });
     expect(startMerc().stats).toEqual(merc.derivedStats);
@@ -155,9 +155,9 @@ describe('equipment authority and next fresh-run boundaries', () => {
     const cap = item('direct-cap', 'items/base/helm-cap', { defense: 6 });
     const unit = adapt(merc, { row: 2, col: 1 }, { head: cap });
     expect(unit).toMatchObject({ id: `merc-${merc.id}`, kind: 'merc',
-      gridPosition: { row: 2, col: 1 }, life: 172, mana: 79 });
+      gridPosition: { row: 2, col: 1 }, life: 172, mana: 95 });
     expect(unit.skillOrder).toEqual(mercToCombatUnit(merc).skillOrder);
-    expect(unit.stats.defense).toBe(32);
+    expect(unit.stats.defense).toBe(41);
     expect(unit.equippedWeapon).toBeUndefined();
   });
 });
@@ -170,8 +170,8 @@ describe('adapter resources and equipment damage authority', () => {
     const charm = { ...item('pool-control', 'fixture/unknown', {}), affixes: [{
       affixId: 'pools', values: new Map([['statMods.life', 14], ['statMods.mana', 8]]) }] };
     const unit = adapt(owned, undefined, { head: charm });
-    expect(unit.stats).toEqual({ ...owned.derivedStats, lifeMax: 186, manaMax: 87 });
-    expect([unit.life, unit.mana]).toEqual([186, 87]);
+    expect(unit.stats).toEqual({ ...owned.derivedStats, lifeMax: 186, manaMax: 103 });
+    expect([unit.life, unit.mana]).toEqual([186, 103]);
     expect([owned.derivedStats.life, owned.derivedStats.mana]).toEqual([160, 60]);
     expect(adapt(owned).stats).not.toBe(owned.derivedStats);
     expect(adapt(owned).stats.resistances).not.toBe(owned.derivedStats.resistances);
@@ -182,13 +182,13 @@ describe('adapter resources and equipment damage authority', () => {
     const bare = adapt(merc);
     const armed = adapt(merc, undefined, { weapon: item('sword',
       'items/base/wp1h-short-sword', { attack: 7 }) });
-    expect(firstDamage(bare)).toMatchObject({ amount: 25, crit: false, dodged: false });
-    expect(firstDamage(armed)).toMatchObject({ amount: 32, crit: false, dodged: false });
+    expect(firstDamage(bare)).toMatchObject({ amount: 35, crit: false, dodged: false });
+    expect(firstDamage(armed)).toMatchObject({ amount: 42, crit: false, dodged: false });
   });
 
   it.each([
-    ['mskill-basic-arrow', [16, 26], 41, 48],
-    ['mskill-pierce-arrow', [26, 42], 51, 58]
+    ['mskill-basic-arrow', [16, 26], 51, 58],
+    ['mskill-pierce-arrow', [26, 42], 61, 68]
   ] as const)('adds real sword Attack once to %s and restores damage on unequip', (id, base, bareDamage, armedDamage) => {
     const merc = { ...arrange(), signatureSkillId: '', comboOrder: [id] };
     const bare = adapt(merc);
@@ -251,7 +251,7 @@ describe('active run carry remains frozen', () => {
           ? { ...unit, life: 135, mana: 40 } : unit) } };
     });
     const initial = startMerc();
-    expect(initial.stats.defense).toBe(32);
+    expect(initial.stats.defense).toBe(41);
     const count = useCombatStore.getState().recordedEvents.length;
     for (let i = 0; i < count; i++) useCombatStore.getState().advanceEvent();
     const outcome = useCombatStore.getState().outcome;
@@ -264,8 +264,8 @@ describe('active run carry remains frozen', () => {
     expect([carried?.life, carried?.mana]).toEqual([135, 40]);
     abortSubAreaRun();
     const next = startMerc();
-    expect(next.stats.defense).toBe(35);
-    expect([next.life, next.mana]).toEqual([172, 79]);
+    expect(next.stats.defense).toBe(44);
+    expect([next.life, next.mana]).toEqual([172, 95]);
   });
 
   it('leaves missing or unowned fielded identities out of the team', () => {
