@@ -9,12 +9,12 @@ data-shape and source-authority sign-off, not runtime or full P18 acceptance.
 ## Context
 
 The [Act V contract](../design/compact-act5-contract.md) requires usable socket,
-personalization and Nightmare rewards. Currently `base.sockets` supplies both
-displayed capacity and the sole rune insertion/matcher limit. Eligible bases
+personalization and Nightmare rewards. Currently `base.sockets` supplies displayed capacity and the pure runeword
+matcher limit. There is no live rune-insertion action or UI yet. Eligible bases
 therefore already appear socketed; the four zero-capacity weapon/armor bases
 also have zero maximum. A charge with no reachable eligible item is unfinished.
 Current chapter-boss exact HP/attack/defense overrides also bypass level growth;
-adding20 to the spawn level alone would not scale actual boss power.
+adding 20 to the spawn level alone would not scale actual boss power.
 
 The [GDD](../../Diablo2TextGame.md) §7.2 permits difficulty through level only.
 [D03/D14](../plans/design-decisions.md) reject stale independent difficulty
