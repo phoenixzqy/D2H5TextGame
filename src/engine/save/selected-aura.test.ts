@@ -29,12 +29,14 @@ function sampleSave() {
       gachaState: { currency: 3, ownedMercIds: [], pityCounter: 4 } },
     formation: { playerPosition: { row: 2, col: 2 }, mercPosition: { row: 0, col: 0 }, summonPositions: [] }
   });
-  // This suite's historical fixtures predate the v12 quest-item ledger.
+  // These historical fixtures predate both the v12 ledger and v15 action receipts.
   const { questItems: _ledger, ...inventory } = save.inventory;
-  return { ...save, version: 11 as const, inventory };
+  const { questReceipts: _receipts, ...map } = save.map;
+  return { ...save, version: 11 as const, inventory, map };
 }
-function currentShape<T extends { inventory: object }>(save: T) {
-  return { ...save, version: CURRENT_SAVE_VERSION, inventory: { ...save.inventory, questItems: {} } };
+function currentShape<T extends { inventory: object; map: object }>(save: T) {
+  return { ...save, version: CURRENT_SAVE_VERSION, inventory: { ...save.inventory, questItems: {} },
+    map: { ...save.map, questReceipts: {} } };
 }
 
 const versions = [7, 8, 9, 10, 11] as const;
@@ -46,8 +48,8 @@ const malformedSelections: readonly unknown[] = [
 ];
 
 describe('D05 v11 exclusive selected aura save boundary', () => {
-  it('retains the v11 contract and its migrations with v13 current', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(14);
+  it('retains the v11 contract and its migrations with the current receipt format', () => {
+    expect(CURRENT_SAVE_VERSION).toBe(15);
     for (const version of [8, 9, 10, 11]) expect(MIGRATIONS[version]).toBeDefined();
   });
 
@@ -87,7 +89,7 @@ describe('D05 v11 exclusive selected aura save boundary', () => {
 
   it('rejects present undefined at the direct current native validation boundary', () => {
     const base = sampleSave();
-    expect(() => validateSave({ ...base, version: CURRENT_SAVE_VERSION,
+    expect(() => validateSave({ ...currentShape(base),
       player: { ...base.player, selectedAuraId: undefined } })).toThrow('Invalid save');
   });
 
@@ -268,7 +270,7 @@ describe('D05 Meditation v11 acceptance and frozen historical v10', () => {
     }
   });
 
-  it('retains Meditation, native affix and synergy Maps and all resources at current12', () => {
+  it('retains Meditation, native affix and synergy Maps and all resources at the current version', () => {
     const base = sampleSave();
     const input = { ...currentShape(base), player: { ...base.player, selectedAuraId: 'paladin.meditation',
       skills: [{ id: 'current-map-skill', name: 'Map', description: '', trigger: 'active', target: 'single-enemy',

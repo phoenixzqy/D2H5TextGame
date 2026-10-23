@@ -32,6 +32,16 @@ function sampleSave() {
   });
 }
 
+/** Genuine historical inputs must not carry the v15 receipt field from current builders. */
+function historicalSave<T extends { map: ReturnType<typeof sampleSave>['map'] }>(save: T, version: number) {
+  const { questReceipts: _receipts, ...map } = save.map;
+  return { ...save, version, map };
+}
+
+function migratedShape<T extends { map: object }>(save: T) {
+  return { ...save, version: CURRENT_SAVE_VERSION, map: { ...save.map, questReceipts: {} } };
+}
+
 function withLedger(questItems: unknown) {
   const save = sampleSave();
   return { ...save, inventory: { ...save.inventory, questItems } };
@@ -41,7 +51,7 @@ function legacySave() {
   const save = sampleSave();
   const inventory = { backpack: save.inventory.backpack, stash: save.inventory.stash,
     equipped: save.inventory.equipped, currencies: save.inventory.currencies };
-  return { ...save, version: 11, inventory };
+  return { ...historicalSave(save, 11), inventory };
 }
 
 function legacyV1(): SaveV1 {
@@ -67,7 +77,7 @@ describe('v13 objective-bound retained tools', () => {
 
   it('preserves an owned tool and its exact objective through JSON/native decoding', () => {
     const input = cubeSave();
-    expect(input.version).toBe(14);
+    expect(input.version).toBe(CURRENT_SAVE_VERSION);
     expect(decodeSave(input)).toEqual(input);
     expect(decodeSave(toJsonSafe(input))).toEqual(input);
   });
@@ -77,22 +87,22 @@ describe('v13 objective-bound retained tools', () => {
   });
 
   it('rejects objective entitlements injected into frozen v12 before migration', () => {
-    expect(() => decodeSave({ ...cubeSave(), version: 12 })).toThrow('Invalid save');
+    expect(() => decodeSave(historicalSave(cubeSave(), 12))).toThrow('Invalid save');
   });
 
   it.each(['owned', 'consumed'])('copies the v12 Book %s receipt without grants or inference', state => {
     const latest = withLedger({ [source]: { itemId: bookId, state } });
-    const input = { ...latest, version: 12 };
+    const input = historicalSave(latest, 12);
     const before = structuredClone(input);
     expect(MIGRATIONS[13]?.(input)).toEqual({ ...input, version: 13 });
-    expect(decodeSave(input)).toEqual({ ...input, version: CURRENT_SAVE_VERSION });
+    expect(decodeSave(input)).toEqual(migratedShape(input));
     expect(input).toEqual(before);
   });
 
   it('preserves legacy true Cube flags without manufacturing a missing tool', () => {
     const latest = cubeSave();
-    const input = { ...latest, version: 12, inventory: { ...latest.inventory, questItems: {} } };
-    expect(decodeSave(input)).toEqual({ ...input, version: CURRENT_SAVE_VERSION });
+    const input = { ...historicalSave(latest, 12), inventory: { ...latest.inventory, questItems: {} } };
+    expect(decodeSave(input)).toEqual(migratedShape(input));
   });
 });
 
@@ -127,7 +137,7 @@ describe('v12 source-bound quest item ledger', () => {
     }
   );
   it('emits a required empty ledger for a trusted legacy builder input', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(14);
+    expect(CURRENT_SAVE_VERSION).toBe(15);
     expect(sampleSave().inventory).toHaveProperty('questItems', {});
   });
 
@@ -196,9 +206,9 @@ describe('v12 source-bound quest item ledger', () => {
     const input = legacySave();
     const original = structuredClone(input);
     const expected = { ...input, version: CURRENT_SAVE_VERSION,
-      inventory: { ...input.inventory, questItems: {} } };
+      inventory: { ...input.inventory, questItems: {} }, map: { ...input.map, questReceipts: {} } };
     expect(MIGRATIONS[12]).toBeDefined();
-    expect(MIGRATIONS[12]?.(input)).toEqual({ ...expected, version: 12 });
+    expect(MIGRATIONS[12]?.(input)).toEqual({ ...input, version: 12, inventory: { ...input.inventory, questItems: {} } });
     expect(decodeSave(input)).toEqual(expected);
     expect(input).toEqual(original);
   });
@@ -221,11 +231,11 @@ describe('v14 Staff component and consumption graph', () => {
     { 'quests/act3-guardian#action:break-compelling-orb': true }])(
     'rejects reserved future proof maps before normalization or migration (%j)', questReceipts => {
       for (const version of [12, 13, 14]) {
-        const input = { ...sampleSave(), version };
+        const input = historicalSave(sampleSave(), version);
         Reflect.set(input.map, 'questReceipts', questReceipts);
         const before = Object.getOwnPropertyDescriptors(input.map);
         expect(() => decodeSave(input)).toThrow('Invalid save');
-        if (version === CURRENT_SAVE_VERSION) expect(() => validateSave(input)).toThrow('Invalid save');
+        expect(() => validateSave(input)).toThrow('Invalid save');
         expect(Object.getOwnPropertyDescriptors(input.map)).toEqual(before);
       }
     }
@@ -238,7 +248,7 @@ describe('v14 Staff component and consumption graph', () => {
     const originalRewards = Object.getOwnPropertyDescriptor(quest, 'rewards');
     if (!originalItems || !originalRewards) throw new Error('Missing content descriptors');
     const futureId = 'items/future-book';
-    const input = withLedger({ [source]: { itemId: futureId, state: 'owned' } });
+    const input = historicalSave(withLedger({ [source]: { itemId: futureId, state: 'owned' } }), 14);
     try {
       Object.defineProperty(questItemsDocument, 'items', { ...originalItems,
         value: [{ id: futureId, sourceQuestId: questId, effect: { skillPoints: 1 },
@@ -277,12 +287,15 @@ describe('v14 Staff component and consumption graph', () => {
       } } };
   }
 
-  it.each(['components', 'assembled', 'inserted'] as const)('preserves the %s graph through native and JSON decoding', stage => {
-    const input = staffSave(stage);
+  it.each((['components', 'assembled', 'inserted'] as const).flatMap(stage =>
+    [14, CURRENT_SAVE_VERSION].map(version => ({ stage, version }))))(
+    'preserves the $stage graph from v$version through native and JSON decoding', ({ stage, version }) => {
+    const current = staffSave(stage);
+    const input = version === 14 ? historicalSave(current, 14) : current;
     const original = structuredClone(input);
-    expect(input.version).toBe(14);
-    expect(decodeSave(input)).toEqual(input);
-    expect(decodeSave(toJsonSafe(input))).toEqual(input);
+    expect(input.version).toBe(version);
+    expect(decodeSave(input)).toEqual(migratedShape(input));
+    expect(decodeSave(toJsonSafe(input))).toEqual(migratedShape(input));
     expect(input).toEqual(original);
   });
 
@@ -290,7 +303,7 @@ describe('v14 Staff component and consumption graph', () => {
     const quest = questsDocument.quests.find(row => row.id === staffQuest);
     if (!quest) throw new Error('Missing Staff quest');
     const previousStages = Object.getOwnPropertyDescriptor(quest, 'objectiveStages');
-    const input = staffSave('components');
+    const input = historicalSave(staffSave('components'), 14);
     Reflect.deleteProperty(input.inventory.questItems, cube);
     Reflect.deleteProperty(input.inventory.questItems, shaft);
     input.map.questProgress[staffQuest].objectives['obj-cube'] = false;
@@ -309,7 +322,7 @@ describe('v14 Staff component and consumption graph', () => {
   });
 
   it.each(['obj-shaft', 'obj-amulet'] as const)('preserves explicit partial repair receipt %s without inventing earlier items', objectiveId => {
-    const input = staffSave('components');
+    const input = historicalSave(staffSave('components'), 14);
     for (const key of Object.keys(input.inventory.questItems)) {
       if (key !== `${staffQuest}#objective:${objectiveId}`) Reflect.deleteProperty(input.inventory.questItems, key);
     }
@@ -317,8 +330,8 @@ describe('v14 Staff component and consumption graph', () => {
     Reflect.set(input.map.questProgress[staffQuest], 'rewardClaimed', true);
     input.map.questProgress[staffQuest].objectives['obj-transmute'] = true;
     const before = structuredClone(input);
-    expect(decodeSave(input)).toEqual(input);
-    expect(decodeSave(toJsonSafe(input))).toEqual(input);
+    expect(decodeSave(input)).toEqual(migratedShape(input));
+    expect(decodeSave(toJsonSafe(input))).toEqual(migratedShape(input));
     expect(input).toEqual(before);
     expect(Object.keys(input.inventory.questItems)).toEqual([`${staffQuest}#objective:${objectiveId}`]);
   });
@@ -384,21 +397,21 @@ describe('v14 Staff component and consumption graph', () => {
     Reflect.set(input.map.questProgress[tombQuest], 'status', 'completed');
     Reflect.set(input.map.questProgress[tombQuest], 'rewardClaimed', true);
     input.map.questProgress[tombQuest].objectives['obj-kill-duriel'] = true;
-    const legacy = { ...input, version: 13 };
+    const legacy = historicalSave(input, 13);
     expect(MIGRATIONS[14]?.(legacy)).toEqual({ ...legacy, version: 14 });
-    expect(decodeSave(legacy)).toEqual({ ...legacy, version: 14 });
+    expect(decodeSave(legacy)).toEqual(migratedShape(legacy));
   });
 
   it.each(['components', 'assembled', 'inserted'] as const)('rejects new %s receipts injected into frozen v13', stage => {
-    expect(() => decodeSave({ ...staffSave(stage), version: 13 })).toThrow('Invalid save');
+    expect(() => decodeSave(historicalSave(staffSave(stage), 13))).toThrow('Invalid save');
   });
 
   it('validates frozen v13 without consulting the widened live definitions', () => {
     const input = staffSave('components');
     Reflect.deleteProperty(input.inventory.questItems, shaft);
     Reflect.deleteProperty(input.inventory.questItems, amulet);
-    const legacy = { ...input, version: 13 };
-    expect(decodeSave(legacy)).toEqual({ ...legacy, version: 14 });
+    const legacy = historicalSave(input, 13);
+    expect(decodeSave(legacy)).toEqual(migratedShape(legacy));
     const entry = legacy.inventory.questItems[cube];
     if (!entry) throw new Error('Missing Cube receipt');
     Reflect.set(entry, 'state', 'consumed');

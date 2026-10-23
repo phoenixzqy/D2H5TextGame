@@ -233,15 +233,18 @@ describe('runMigrations', () => {
   });
 
   it('retains an explicit v9 target without applying later migrations', () => {
-    const v9 = { ...buildSampleSaveCurrent(), version: 9 as const };
+    const current = buildSampleSaveCurrent();
+    const { questReceipts: _receipts, ...map } = current.map;
+    const v9 = { ...current, version: 9 as const, map };
     expect(runMigrations(v9, 9)).toBe(v9);
     expect(runMigrations(v9, 9).version).toBe(9);
   });
 
   it('migrates v2 → v3 by folding currencies.gold into rune-shard', () => {
     const current = buildSampleSaveCurrent();
+    const { questReceipts: _receipts, ...map } = current.map;
     const v2: SaveV2 = {
-      ...current,
+      ...current, map,
       version: 2,
       inventory: {
         ...current.inventory,
@@ -258,7 +261,7 @@ describe('runMigrations', () => {
   it('migrates v3 → v4 with safe defaults for newly persisted fields', () => {
     const current = buildSampleSaveCurrent();
     const { mercEquipment: _mercEquipment, mercProgress: _mercProgress, ...legacyMercs } = current.mercs;
-    const { clearedSubAreas: _clearedSubAreas, ...legacyMap } = current.map;
+    const { clearedSubAreas: _clearedSubAreas, questReceipts: _receipts, ...legacyMap } = current.map;
     void _mercEquipment;
     void _mercProgress;
     void _clearedSubAreas;
@@ -317,8 +320,9 @@ describe('runMigrations', () => {
 
   it('migrates v5 → v6 with JSON-safe item stat rolls', () => {
     const current = buildSampleSaveCurrent();
+    const { questReceipts: _receipts, ...map } = current.map;
     const v5: SaveV5 = {
-      ...current,
+      ...current, map,
       version: 5,
       inventory: {
         ...current.inventory,

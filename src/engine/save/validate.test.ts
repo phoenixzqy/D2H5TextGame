@@ -12,10 +12,11 @@ function historicalStats(stats: DerivedStats): LegacyDerivedStats {
   return old;
 }
 
-/** Expected current shape keeps every prior field and adds the new actor field. */
-function expectedCurrent<T extends { inventory: object; player: { derivedStats: LegacyDerivedStats }; mercs: { ownedMercs: readonly { derivedStats: LegacyDerivedStats }[] } }>(save: T) {
+/** Expected current shape preserves prior fields and adds versioned actor/receipt defaults. */
+function expectedCurrent<T extends { inventory: object; map: object; player: { derivedStats: LegacyDerivedStats }; mercs: { ownedMercs: readonly { derivedStats: LegacyDerivedStats }[] } }>(save: T) {
   return { ...save, version: CURRENT_SAVE_VERSION,
     inventory: { ...save.inventory, questItems: {} },
+    map: { ...save.map, questReceipts: {} },
     player: { ...save.player, derivedStats: { ...save.player.derivedStats, magicResist: 0 } },
     mercs: { ...save.mercs, ownedMercs: save.mercs.ownedMercs.map(merc => ({ ...merc,
       derivedStats: { ...merc.derivedStats, magicResist: 0 } })) } };
@@ -91,7 +92,8 @@ describe('save boundary', () => {
   it('migrates valid v6 formation preferences without mutating the original', () => {
     const { formation: _formation, ...rest } = sampleSave();
     const { questItems: _ledger, ...inventory } = rest.inventory;
-    const legacy = { ...rest, inventory, version: 6, player: { ...rest.player, derivedStats: historicalStats(rest.player.derivedStats) } };
+    const { questReceipts: _receipts, ...map } = rest.map;
+    const legacy = { ...rest, inventory, map, version: 6, player: { ...rest.player, derivedStats: historicalStats(rest.player.derivedStats) } };
     expect(decodeSave(legacy).version).toBe(CURRENT_SAVE_VERSION);
     expect(decodeSave(legacy).formation.playerPosition).toEqual({ row: 1, col: 1 });
     expect(legacy).not.toHaveProperty('formation');
@@ -211,9 +213,10 @@ function legacyAmazon(intermediate = false) {
   const base = sampleSave();
   // Freeze this v7 fixture before fields introduced by later save builders.
   const { questItems: _ledger, ...inventory } = base.inventory;
+  const { questReceipts: _receipts, ...map } = base.map;
   const coreStats = { strength: 20, dexterity: 25, vitality: 20, energy: 15 };
   return {
-    ...base, inventory, version: 7,
+    ...base, inventory, map, version: 7,
     player: {
       ...base.player, class: 'amazon', coreStats, derivedStats: historicalStats(deriveStats(coreStats, 1)),
       equipment: [legacyStarter(intermediate)], comboOrder: ['amazon.magic_arrow'],
@@ -280,7 +283,7 @@ describe('conservative legacy Amazon starter compatibility', () => {
     expect({ ...output.player, equipment: input.player.equipment, derivedStats: progressed.player.derivedStats })
       .toEqual(progressed.player);
     expect(output.inventory.currencies).toEqual(progressed.inventory.currencies);
-    expect(output.map).toEqual(progressed.map);
+    expect(output.map).toEqual({ ...progressed.map, questReceipts: {} });
     expect(output.mercs).toEqual(expectedCurrent(progressed).mercs);
     expect(output.formation).toEqual(progressed.formation);
     const affix = output.inventory.equipped.head?.affixes?.[0];
