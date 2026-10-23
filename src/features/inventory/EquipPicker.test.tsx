@@ -62,6 +62,12 @@ function seedPlayer() {
   });
 }
 
+function currentPlayer() {
+  const player = usePlayerStore.getState().player;
+  if (!player) throw new Error('Picker fixture has no player');
+  return player;
+}
+
 function seedBackpack(items: Item[]) {
   act(() => {
     useInventoryStore.getState().reset();
@@ -226,7 +232,47 @@ describe('<EquipPicker> — Esc / auto-select / candidate change (mirrors equip-
     expect(useInventoryStore.getState().equipped.weapon?.id).toBe('only');
   });
 
-  it('shows the already-equipped badge and disables Equip when same item is selected', () => {
+  it.each([
+    { name: 'rolled base Attack', currentRoll: 5, nextRoll: 9, currentAffixes: [], nextAffixes: [], delta: 4 },
+    { name: 'same-count affix value', currentRoll: 5, nextRoll: 5,
+      currentAffixes: [{ id: 'affix.weapon.attack.flat', tier: 0, rolledValue: 1 }],
+      nextAffixes: [{ id: 'affix.weapon.attack.flat', tier: 0, rolledValue: 5 }], delta: 4 }
+  ])('compares and equips a distinct same-base instance with better $name', ({ currentRoll, nextRoll, currentAffixes, nextAffixes, delta }) => {
+    seedPlayer();
+    const current: Item = { ...shortSword('current', currentAffixes.length ? 'magic' : 'normal'),
+      baseRolls: { attack: currentRoll }, affixes: currentAffixes };
+    const candidate: Item = { ...current, id: 'upgrade', baseRolls: { attack: nextRoll }, affixes: nextAffixes };
+    seedBackpack([current, candidate]);
+    act(() => { expect(useInventoryStore.getState().equipItem(current).ok).toBe(true); });
+    const before = currentPlayer().derivedStats.attack;
+    render(wrap(<EquipPicker slot="weapon" onClose={() => undefined} />));
+    expect(screen.queryByTestId('already-equipped-badge')).not.toBeInTheDocument();
+    expect(screen.getByTestId('stat-compare-table')).toBeInTheDocument();
+    expect(screen.getByTestId('equip-picker-confirm')).toBeEnabled();
+    fireEvent.click(screen.getByTestId('equip-picker-confirm'));
+    expect(useInventoryStore.getState().equipped.weapon?.id).toBe(candidate.id);
+    expect(currentPlayer().derivedStats.attack).toBe(before + delta);
+    expect(useInventoryStore.getState().backpack.map(item => item.id)).toEqual([current.id]);
+  });
+
+  it('permits a distinct equal-roll instance and conserves both owned IDs', () => {
+    seedPlayer();
+    const current = shortSword('current', 'normal');
+    const candidate = { ...current, id: 'equal-roll-copy' };
+    seedBackpack([current, candidate]);
+    act(() => { expect(useInventoryStore.getState().equipItem(current).ok).toBe(true); });
+    const before = currentPlayer().derivedStats;
+    render(wrap(<EquipPicker slot="weapon" onClose={() => undefined} />));
+    expect(screen.queryByTestId('already-equipped-badge')).not.toBeInTheDocument();
+    expect(screen.getByTestId('stat-compare-table')).toBeInTheDocument();
+    expect(screen.getByTestId('equip-picker-confirm')).toBeEnabled();
+    fireEvent.click(screen.getByTestId('equip-picker-confirm'));
+    expect(useInventoryStore.getState().equipped.weapon?.id).toBe(candidate.id);
+    expect(useInventoryStore.getState().backpack.map(item => item.id)).toEqual([current.id]);
+    expect(currentPlayer().derivedStats).toEqual(before);
+  });
+
+  it('shows the already-equipped badge only for the same persistent instance ID', () => {
     seedPlayer();
     const same = shortSword('only', 'normal');
     act(() => {
@@ -234,11 +280,9 @@ describe('<EquipPicker> — Esc / auto-select / candidate change (mirrors equip-
       useInventoryStore.getState().addItem(same);
       useInventoryStore.getState().equipItem(same);
     });
-    // After equipping, slotCandidates(backpack) should include nothing of
-    // matching baseId from backpack — but we want to assert the
-    // already-equipped path. Add a structurally-identical clone.
-    const clone = shortSword('clone', 'normal');
-    act(() => { useInventoryStore.getState().addItem(clone); });
+    // A normal store transfer removes the equipped instance from candidates.
+    // Model a stale UI projection to retain the exact-ID defensive guard.
+    act(() => { useInventoryStore.setState({ backpack: [{ ...same, equipped: false }] }); });
 
     render(wrap(<EquipPicker slot="weapon" onClose={() => undefined} />));
     expect(screen.getByTestId('already-equipped-badge')).toBeInTheDocument();

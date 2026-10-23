@@ -12,6 +12,9 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| C0 | accepted narrow trust/measurement checkpoint | Producer APPROVE and independent QA closure recommendation against the original exit:21feature trace rows, honest baseline/assertion audit, production-path recordings/provenance and diagnosed manual/idle comparison; next-slice BUG090/preparation contract frozen. [Evidence](evidence/c0-trust-checkpoint.md). FullP01/P02/G0/C1–C4 and performance remain open. |
+| P03b06 / BUG090 | accepted picker identity slice; route still fails | Same persistent ID alone means already equipped. Genuine3RED/11controls; focused35/full8546tests/273files,T/L/build/4production browser cases pass;756input hashes unchanged; producer APPROVE/security pass, final QA ADEQUATE. Earned boots exact IDs/DEF69→70/save-reopen verified; screenshots do not show scrolled comparison. One approved prepared route clears four maps and CatacombsW4, then losesW5of6at31400ms; Andariel not reached. [Evidence](evidence/p03b06-equip-instance-identity.md). C1 remains open. |
+| P14a03 / BUG088 | accepted fresh-entry resource slice; route still fails | `4f0b37c`; fresh hero pools fill from current maxima, ongoing wave carry preserved. Genuine5RED/2controls; full8543/T/L/build/4production browser cases pass. One original-earned route losesCatacombsW4; no Andariel/C1. [Evidence](evidence/p14a03-challenge-entry.md). Separate preexisting node-project typecheck gap BUG089 remains open. |
 | P14a02 / BUG087 | accepted shared/eight-archetype slice; route still fails | `e3bf53a`; paired finite ordered attack/growth, final level/tier rounding, resolved ordinary range, exact overrides and legacy/fixed-arrow compatibility. Genuine47RED/5controls; E4121/U8536/T/L/build/4production browser cases pass; producer/GD/TD APPROVE and final QA ADEQUATE. Matched1000seeds1→14wins; original earned route still loses CatacombsW4at15456ms, no Andariel/C/G acceptance. Exact cleanup remaining[]/failures[]. Remaining101definitions need numeric migration; next reconcile new-challenge resource-entry policy before more tuning/retries. [Evidence](evidence/p14a02-monster-attack.md). |
 | P14a01 / BUG086 | accepted encounter slice; route advances | `06f3c88`; explicit ordinary guards, scheduled real Zombies, dedicated Fire/base arrows and sticky speed enrage. E4065/U8480/T/L/build/4production locale×viewport cases pass; producer/GD/TD/QA APPROVE/ADEQUATE. Disposable cleanup remaining[]/failures[]. Same1000seeds0→992wins; original earnedL12 now wins all four route maps through DarkWood. Identical-input old/reviewed Catacombs attempts both lose W4beforeboss; no ActI/C/G acceptance. [Evidence](evidence/p14a01-blood-raven.md). |
 | P13c02 / BUG085 | accepted equipment-response slice; bounded route advances | `f493d5e`; JSON-derived Basic/Pierce arrows now add100% snapshot Attack once before mitigation. Genuine14RED/14controls, E4043/U8456/T/L/build and2production browser cases pass; GD/TD and producer source APPROVE, final QA ADEQUATE. Same preselected1000W3 seeds458→989wins. Original earnedL12 with one existing weapon clears Moor/ColdPlains, then BurialGrounds BloodRaven W4draw; stop, no DarkWood/Catacombs. Exact disposable cleanup remaining[]/failures[]; required raw evidence retained through progression/C1. [Evidence](evidence/p13c02-rogue-arrow-attack.md). FullP13/C/G remain open. |
@@ -86,7 +89,8 @@ Current implementation evidence lives in `evidence/`.
 | P16–P18 | pending | Critical UI/a11y/performance, offline/PWA, endgame and achievements. |
 | P19 | pending dependencies | Full matrix, actual required CI, independent review/QA, holdout, soak, human playtest. |
 
-C0 in progress; C1–C4 pending. No G0–G7 gate is fully accepted.
+C0 accepted under its original narrow exit; C1 in progress, C2–C4 pending.
+No G0–G7 gate is fully accepted. See [C0 evidence](evidence/c0-trust-checkpoint.md).
 
 ## Feature traceability
 

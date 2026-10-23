@@ -25,7 +25,7 @@
  *   - On open with ≥1 eligible candidate, auto-select the first eligible
  *     so the compare panel is populated WITHOUT user interaction.
  *   - aria-live="polite" announces selection changes.
- *   - Same-baseId+rarity+affixCount as currently-equipped → render an
+ *   - Same persistent item ID as currently-equipped → render an
  *     "already-equipped" badge, omit the StatSheet body, disable Equip.
  *   - Empty-slot path is handled by StatSheet (data-empty="true").
  *
@@ -61,15 +61,9 @@ interface Props {
 /* Helpers                                                             */
 /* ------------------------------------------------------------------ */
 
-/** True if two items are visually/functionally indistinguishable. */
+/** Only the same owned instance is already equipped; equal rolls may be swapped. */
 function isSameItem(a: Item | null, b: Item | null): boolean {
-  if (!a || !b) return false;
-  if (a.id === b.id) return true;
-  return (
-    a.baseId === b.baseId &&
-    a.rarity === b.rarity &&
-    (a.affixes?.length ?? 0) === (b.affixes?.length ?? 0)
-  );
+  return a !== null && b !== null && a.id === b.id;
 }
 
 function formatReasons(elig: EligibilityResult, t: TFunction): string {

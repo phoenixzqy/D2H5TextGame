@@ -1,0 +1,371 @@
+{
+  "baseHead": "b47f4c638a4a6e4072f61d1df17a19ac335cd78e",
+  "inputSha": "8c46c4f4026116360356a2d17dcde3d723310969a25664f85bc291a1886d2afc",
+  "rawRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-equip-instance-3lpy4n6g",
+  "routeScriptSha": "61e37724892a9f9557654d37fa03d106cc0ade877dc278ccb9a56cc3cf514a0c",
+  "routeComplete": false,
+  "runs": [
+    {
+      "area": "areas/act1-blood-moor",
+      "ordinal": 102,
+      "result": "victory",
+      "waves": 3,
+      "combatMs": 28812,
+      "xp": 1460
+    },
+    {
+      "area": "areas/act1-cold-plains",
+      "ordinal": 103,
+      "result": "victory",
+      "waves": 4,
+      "combatMs": 57048,
+      "xp": 3100
+    },
+    {
+      "area": "areas/act1-burial-grounds",
+      "ordinal": 104,
+      "result": "victory",
+      "waves": 4,
+      "combatMs": 112296,
+      "xp": 3130
+    },
+    {
+      "area": "areas/act1-dark-wood",
+      "ordinal": 105,
+      "result": "victory",
+      "waves": 5,
+      "combatMs": 127008,
+      "xp": 6600
+    },
+    {
+      "area": "areas/act1-catacombs",
+      "ordinal": 106,
+      "result": "defeat",
+      "waves": 5,
+      "combatMs": 158192,
+      "xp": 7070
+    }
+  ],
+  "preparedHeroDefense": 120,
+  "preparedMercStats": {
+    "life": 244,
+    "lifeMax": 244,
+    "mana": 79,
+    "manaMax": 79,
+    "attack": 43,
+    "defense": 77,
+    "magicResist": 0,
+    "attackSpeed": 122,
+    "critChance": 0.05,
+    "critDamage": 2,
+    "physDodge": 0.094,
+    "magicDodge": 0.05,
+    "magicFind": 0,
+    "goldFind": 0,
+    "resistances": {
+      "fire": 0,
+      "cold": 0,
+      "lightning": 0,
+      "poison": 0,
+      "arcane": 0,
+      "physical": 0
+    }
+  },
+  "preparation": [
+    {
+      "owner": "hero",
+      "slot": "weapon",
+      "previousId": "it-8n9ca-1b",
+      "selectedId": "it-2c0ac-10m",
+      "baseId": "items/base/wp1h-scimitar",
+      "previousScore": 17,
+      "score": 12
+    },
+    {
+      "owner": "hero",
+      "slot": "offhand",
+      "previousId": null,
+      "selectedId": "it-9mr1x-10o",
+      "baseId": "items/base/sh-kite",
+      "previousScore": 0,
+      "score": 16
+    },
+    {
+      "owner": "hero",
+      "slot": "head",
+      "previousId": "it-71emu-12",
+      "selectedId": "it-oxm6-10x",
+      "baseId": "items/base/helm-skull-cap",
+      "previousScore": 8,
+      "score": 14
+    },
+    {
+      "owner": "hero",
+      "slot": "chest",
+      "previousId": null,
+      "selectedId": "it-3zbek-10h",
+      "baseId": "items/base/armor-leather",
+      "previousScore": 0,
+      "score": 23
+    },
+    {
+      "owner": "hero",
+      "slot": "belt",
+      "previousId": null,
+      "selectedId": "it-22zc9-10f",
+      "baseId": "items/base/belt-sash",
+      "previousScore": 0,
+      "score": 4
+    },
+    {
+      "owner": "hero",
+      "slot": "gloves",
+      "previousId": "it-96fga-3",
+      "selectedId": "it-96fga-3",
+      "baseId": "items/base/glove-leather",
+      "previousScore": 5,
+      "score": 5
+    },
+    {
+      "owner": "hero",
+      "slot": "boots",
+      "previousId": "it-5iwwr-4",
+      "selectedId": "it-9qlpi-10k",
+      "baseId": "items/base/boot-leather",
+      "previousScore": 3,
+      "score": 5
+    },
+    {
+      "owner": "merc",
+      "slot": "weapon",
+      "previousId": null,
+      "selectedId": "it-7is2r-10i",
+      "baseId": "items/base/wp2h-great-axe",
+      "previousScore": 0,
+      "score": 18
+    },
+    {
+      "owner": "merc",
+      "slot": "head",
+      "previousId": "it-71emu-1a",
+      "selectedId": "it-oxm6-129",
+      "baseId": "items/base/helm-skull-cap",
+      "previousScore": 8,
+      "score": 14
+    },
+    {
+      "owner": "merc",
+      "slot": "chest",
+      "previousId": null,
+      "selectedId": "it-3zbek-11t",
+      "baseId": "items/base/armor-leather",
+      "previousScore": 0,
+      "score": 23
+    },
+    {
+      "owner": "merc",
+      "slot": "belt",
+      "previousId": null,
+      "selectedId": "it-22zc9-11r",
+      "baseId": "items/base/belt-sash",
+      "previousScore": 0,
+      "score": 4
+    },
+    {
+      "owner": "merc",
+      "slot": "gloves",
+      "previousId": "it-96fga-8",
+      "selectedId": "it-96fga-8",
+      "baseId": "items/base/glove-leather",
+      "previousScore": 5,
+      "score": 5
+    },
+    {
+      "owner": "merc",
+      "slot": "boots",
+      "previousId": "it-5iwwr-9",
+      "selectedId": "it-9qlpi-11w",
+      "baseId": "items/base/boot-leather",
+      "previousScore": 3,
+      "score": 5
+    }
+  ],
+  "lastWave": {
+    "index": 4,
+    "totalWaves": 6,
+    "terminalMs": 31400,
+    "result": "defeat",
+    "openingAllies": [
+      {
+        "id": "player-1792497600000",
+        "level": 12,
+        "life": 96,
+        "lifeMax": 262,
+        "mana": 184,
+        "manaMax": 188
+      },
+      {
+        "id": "merc-mercs/act1-rogue-inner-sight",
+        "level": 16,
+        "life": 125,
+        "lifeMax": 252,
+        "mana": 79,
+        "manaMax": 79
+      }
+    ],
+    "openingEnemyCount": 14,
+    "finalAllies": [
+      {
+        "id": "player-1792497600000",
+        "life": 0,
+        "mana": 188
+      },
+      {
+        "id": "merc-mercs/act1-rogue-inner-sight",
+        "life": 52,
+        "mana": 79
+      }
+    ],
+    "finalEnemies": [
+      {
+        "id": "enemy-act1.dark-stalker-0-cb45",
+        "life": 1013,
+        "lifeMax": 1213
+      },
+      {
+        "id": "enemy-act1.dark-stalker-1-2e8e",
+        "life": 435,
+        "lifeMax": 778
+      },
+      {
+        "id": "enemy-act1.dark-stalker-2-9caa",
+        "life": 586,
+        "lifeMax": 731
+      },
+      {
+        "id": "enemy-act1.dark-stalker-3-9622",
+        "life": 555,
+        "lifeMax": 710
+      },
+      {
+        "id": "enemy-act1.dark-stalker-4-2311",
+        "life": 142,
+        "lifeMax": 374
+      },
+      {
+        "id": "enemy-act1.dark-stalker-5-2504",
+        "life": 135,
+        "lifeMax": 365
+      },
+      {
+        "id": "enemy-act1.dark-stalker-6-0d7e",
+        "life": 68,
+        "lifeMax": 352
+      },
+      {
+        "id": "enemy-act1.dark-stalker-7-fd9d",
+        "life": 73,
+        "lifeMax": 396
+      },
+      {
+        "id": "enemy-act1.dark-stalker-8-721b",
+        "life": 60,
+        "lifeMax": 364
+      },
+      {
+        "id": "enemy-act1.dark-stalker-9-c368",
+        "life": 224,
+        "lifeMax": 388
+      },
+      {
+        "id": "enemy-act1.dark-stalker-10-9c56",
+        "life": 0,
+        "lifeMax": 302
+      },
+      {
+        "id": "enemy-act1.dark-stalker-11-bb6a",
+        "life": 173,
+        "lifeMax": 349
+      },
+      {
+        "id": "enemy-act1.dark-stalker-12-5f53",
+        "life": 101,
+        "lifeMax": 354
+      },
+      {
+        "id": "enemy-act1.dark-stalker-13-4b5b",
+        "life": 32,
+        "lifeMax": 352
+      }
+    ]
+  },
+  "initialItems": 3737,
+  "finalItems": 3910,
+  "finalSaveSha": "393ea39af07b0381345bebdf775e3a83a802bad563ad2592dd7d52b78d888811",
+  "initialFullSaveEquality": true,
+  "entryAndHeroWaveCarryVerified": true,
+  "sourceHashesUnchanged": true,
+  "itemCountsReconcile": true,
+  "verification": {
+    "count": 756,
+    "changed": [],
+    "unitExit": 0,
+    "unitFiles": 273,
+    "unitTests": 8546,
+    "unitSeconds": 187.78,
+    "typecheckExit": 0,
+    "lintExit": 0
+  },
+  "browser": {
+    "passed": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "durationSeconds": 39.34731,
+    "screenshotLimitation": "candidate/Equip visible; comparison DOM asserted but scrolled outside screenshot viewport"
+  },
+  "hashes": {
+    "prepared-route.mjs": "61e37724892a9f9557654d37fa03d106cc0ade877dc278ccb9a56cc3cf514a0c",
+    "prepared-route-report.json": "c32fbb43583d9b28f469319c43701479fba6643d43ee15dd3f0f48bbe4a43cb6",
+    "prepared-input.json": "15074917d48b49cea7707ccf150ed5f9fef0a0b4a8087378a2473d912f1a9ee3",
+    "prepared-route-final.json": "393ea39af07b0381345bebdf775e3a83a802bad563ad2592dd7d52b78d888811",
+    "prepared-route.log": "fa7ed9cc6d70a356967c4cff6ae5d7d12ef736ecb6769d6810efb1d24d59ea0e",
+    "unit-final.log": "3eeba0e2e061acd36748b754eec605fff7a765ce1e5b21a8743601db1eca2ef4",
+    "typecheck-final.log": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+    "lint-frozen.log": "8c9c4fa8fa4eb690889c6af5a8ce94a36ca107353349eded751c1415c3a7eb91",
+    "browser-final.json": "1099543a792478b09aabd39e4625e5099339382637545c1536ba63143de06cf8",
+    "browser-summary.json": "e0f45d3d4b11d464afd06ede230e4c9d8225d621ee07d8992ac519bbe6467d0b",
+    "bridge.json": "a5589c28de839533e869a28db1e588a4f91fc1aa9cbed944d2bcd45b3ec35582",
+    "build.log": "6c2a834ffcd25758e1a4154db40ee54a51f3074b686f40fe80e5034d974a72c5",
+    "validation-receipt.json": "a2b295fe0fafd5f3c3f767f0890eea45ddf139339bf8c2b87625b114e39c0775",
+    "validated-inputs.json": "bcce4d6cb21a643be66c966f95e31b173cb67cf34817e1866ebb8b171b4aaf5c",
+    "red.log": "4139926e42eba431bc2759fa97e3cb060ce43d08ceafa64ea89d6fa1d6c35c21",
+    "focused.log": "c2c54ae4166d1367ef7a89b8af756fc763048dd6eec3e5f2ccb523876d84aa86",
+    "cleanup-receipt.json": "2d74833c06ec0a52251e7b3b27a28700289ca260fd8f1248930ffe0402b5142a"
+  },
+  "reviews": {
+    "source": "producer APPROVE/security PASS",
+    "qa": "independent qa_save_review ADEQUATE; all readers released",
+    "routeContract": "GD/TD APPROVE; single execution only",
+    "c0": "producer APPROVE and independent QA recommend narrow closure against original exit"
+  },
+  "cleanup": {
+    "removed": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-equip-instance-3lpy4n6g/tmp",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-equip-instance-3lpy4n6g/cache",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-equip-instance-3lpy4n6g/dist",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-equip-instance-3lpy4n6g/browser-output",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-equip-instance-3lpy4n6g/review-snapshot",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-equip-instance-3lpy4n6g/route-cache",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-equip-instance-3lpy4n6g/route-tmp"
+    ],
+    "remaining": [],
+    "failures": [],
+    "retainedRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-equip-instance-3lpy4n6g",
+    "retainedReason": "RED/final diagnostics, browser attachments/failures, reports/scripts/saves/manifests retained for progression/C1; root removes after dependent readers finish",
+    "retainedDirectories": [
+      "browser-attachments",
+      "browser-failed-details"
+    ]
+  }
+}
