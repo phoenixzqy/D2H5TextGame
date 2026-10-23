@@ -47,15 +47,16 @@ describe('authored Cube objective source', () => {
     const quest = quests.quests.find(row => row.id === questId);
     if (!quest) throw new Error('Missing Staff quest');
     const originals = { items: document.items, objectives: quest.objectives };
+    const retainedItems = originals.items.filter(item => item.sourceQuestId !== questId || item.id === cube.id);
     const shaft = { ...cube, id: 'quest/staff_shaft', sourceObjectiveId: 'obj-shaft' };
     try {
       const objective = quest.objectives.find(row => row.id === 'obj-shaft');
       if (!objective) throw new Error('Missing shaft');
       Reflect.set(quest, 'objectives', quest.objectives.map(row => row === objective ? { ...row, itemId: shaft.id,
         areaId: 'areas/act2-dry-hills', targetId: 'objects/staff_shaft' } : row));
-      Reflect.set(document, 'items', [...originals.items.filter(item => item.id === cube.id || item.id === 'items/book_of_skill'), shaft]);
+      Reflect.set(document, 'items', [...retainedItems, shaft]);
       expect(loadQuestItems().map(questItemSource)).toContain(`${questId}#objective:obj-shaft`);
-      Reflect.set(document, 'items', [...originals.items.filter(item => item.id === cube.id || item.id === 'items/book_of_skill'),
+      Reflect.set(document, 'items', [...retainedItems,
         { ...cube, id: 'quest/duplicate' }]);
       expect(() => loadQuestItems()).toThrow('duplicate quest item or source');
     } finally { Reflect.set(document, 'items', originals.items); Reflect.set(quest, 'objectives', originals.objectives); }
