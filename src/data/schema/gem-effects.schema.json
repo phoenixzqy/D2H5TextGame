@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/gem-effects.json",
+  "title": "Concrete gem effects in all three socket contexts",
+  "type": "array",
+  "minItems": 35,
+  "maxItems": 35,
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "id",
+      "weaponEffect",
+      "armorEffect",
+      "shieldEffect"
+    ],
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^gems/[a-z]+/(chipped|flawed|normal|flawless|perfect)$"
+      },
+      "weaponEffect": {
+        "$ref": "#/$defs/effect"
+      },
+      "armorEffect": {
+        "$ref": "#/$defs/effect"
+      },
+      "shieldEffect": {
+        "$ref": "#/$defs/effect"
+      }
+    }
+  },
+  "$defs": {
+    "effect": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "coreStats": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "strength": {
+              "type": "integer"
+            },
+            "dexterity": {
+              "type": "integer"
+            },
+            "vitality": {
+              "type": "integer"
+            },
+            "energy": {
+              "type": "integer"
+            }
+          }
+        },
+        "resistances": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "fire": {
+              "type": "number"
+            },
+            "cold": {
+              "type": "number"
+            },
+            "lightning": {
+              "type": "number"
+            },
+            "poison": {
+              "type": "number"
+            },
+            "arcane": {
+              "type": "number"
+            },
+            "physical": {
+              "type": "number"
+            },
+            "all": {
+              "type": "number",
+              "description": "Additive points in all six resistances."
+            }
+          }
+        },
+        "statMods": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "life": {
+              "type": "number"
+            },
+            "mana": {
+              "type": "number"
+            },
+            "attack": {
+              "type": "number"
+            },
+            "defense": {
+              "type": "number"
+            },
+            "attackSpeed": {
+              "type": "number"
+            },
+            "critChance": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Ratio; ordinary modern affix rolls retain their separate point authoring."
+            },
+            "critDamage": {
+              "type": "number"
+            },
+            "physDodge": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Ratio; ordinary modern affix rolls retain their separate point authoring."
+            },
+            "magicDodge": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Ratio; ordinary modern affix rolls retain their separate point authoring."
+            },
+            "magicFind": {
+              "type": "number"
+            },
+            "goldFind": {
+              "type": "number"
+            },
+            "magicResist": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Flat magical mitigation, not resistance percentage points."
+            }
+          }
+        }
+      }
+    }
+  }
+}

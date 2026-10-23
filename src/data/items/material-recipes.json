@@ -1,0 +1,1770 @@
+{
+  "version": 1,
+  "recipes": [
+    {
+      "id": "recipes/gem-fusion/amethyst/chipped",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/amethyst/chipped": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/amethyst/flawed": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/amethyst/chipped",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/amethyst/chipped": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 1
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/amethyst/flawed",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/amethyst/flawed": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/amethyst/normal": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/amethyst/flawed",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/amethyst/flawed": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 2
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/amethyst/normal",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/amethyst/normal": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/amethyst/flawless": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/amethyst/normal",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/amethyst/normal": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 3
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/amethyst/flawless",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/amethyst/flawless": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/amethyst/perfect": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/amethyst/flawless",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/amethyst/flawless": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 4
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/amethyst/perfect",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/amethyst/perfect": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 5
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/diamond/chipped",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/diamond/chipped": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/diamond/flawed": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/diamond/chipped",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/diamond/chipped": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 1
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/diamond/flawed",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/diamond/flawed": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/diamond/normal": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/diamond/flawed",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/diamond/flawed": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 2
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/diamond/normal",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/diamond/normal": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/diamond/flawless": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/diamond/normal",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/diamond/normal": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 3
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/diamond/flawless",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/diamond/flawless": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/diamond/perfect": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/diamond/flawless",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/diamond/flawless": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 4
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/diamond/perfect",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/diamond/perfect": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 5
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/emerald/chipped",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/emerald/chipped": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/emerald/flawed": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/emerald/chipped",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/emerald/chipped": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 1
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/emerald/flawed",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/emerald/flawed": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/emerald/normal": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/emerald/flawed",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/emerald/flawed": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 2
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/emerald/normal",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/emerald/normal": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/emerald/flawless": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/emerald/normal",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/emerald/normal": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 3
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/emerald/flawless",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/emerald/flawless": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/emerald/perfect": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/emerald/flawless",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/emerald/flawless": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 4
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/emerald/perfect",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/emerald/perfect": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 5
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/ruby/chipped",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/ruby/chipped": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/ruby/flawed": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/ruby/chipped",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/ruby/chipped": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 1
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/ruby/flawed",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/ruby/flawed": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/ruby/normal": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/ruby/flawed",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/ruby/flawed": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 2
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/ruby/normal",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/ruby/normal": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/ruby/flawless": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/ruby/normal",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/ruby/normal": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 3
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/ruby/flawless",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/ruby/flawless": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/ruby/perfect": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/ruby/flawless",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/ruby/flawless": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 4
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/ruby/perfect",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/ruby/perfect": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 5
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/sapphire/chipped",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/sapphire/chipped": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/sapphire/flawed": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/sapphire/chipped",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/sapphire/chipped": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 1
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/sapphire/flawed",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/sapphire/flawed": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/sapphire/normal": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/sapphire/flawed",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/sapphire/flawed": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 2
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/sapphire/normal",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/sapphire/normal": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/sapphire/flawless": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/sapphire/normal",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/sapphire/normal": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 3
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/sapphire/flawless",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/sapphire/flawless": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/sapphire/perfect": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/sapphire/flawless",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/sapphire/flawless": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 4
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/sapphire/perfect",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/sapphire/perfect": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 5
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/skull/chipped",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/skull/chipped": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/skull/flawed": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/skull/chipped",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/skull/chipped": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 1
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/skull/flawed",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/skull/flawed": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/skull/normal": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/skull/flawed",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/skull/flawed": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 2
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/skull/normal",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/skull/normal": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/skull/flawless": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/skull/normal",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/skull/normal": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 3
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/skull/flawless",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/skull/flawless": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/skull/perfect": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/skull/flawless",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/skull/flawless": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 4
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/skull/perfect",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/skull/perfect": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 5
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/topaz/chipped",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/topaz/chipped": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/topaz/flawed": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/topaz/chipped",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/topaz/chipped": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 1
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/topaz/flawed",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/topaz/flawed": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/topaz/normal": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/topaz/flawed",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/topaz/flawed": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 2
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/topaz/normal",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/topaz/normal": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/topaz/flawless": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/topaz/normal",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/topaz/normal": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 3
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-fusion/topaz/flawless",
+      "kind": "gem-fusion",
+      "nameKey": "crafting.recipe.gem-fusion",
+      "costs": {
+        "materials": {
+          "gems/topaz/flawless": 3
+        },
+        "currencies": {
+          "gem-shard": 1
+        }
+      },
+      "output": {
+        "materials": {
+          "gems/topaz/perfect": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/topaz/flawless",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/topaz/flawless": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 4
+        }
+      }
+    },
+    {
+      "id": "recipes/gem-dismantle/topaz/perfect",
+      "kind": "gem-dismantle",
+      "nameKey": "crafting.recipe.gem-dismantle",
+      "costs": {
+        "materials": {
+          "gems/topaz/perfect": 1
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {},
+        "currencies": {
+          "gem-shard": 5
+        }
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/el",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/el": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/eld": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/eld",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/eld": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/tir": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/tir",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/tir": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/nef": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/nef",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/nef": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/eth": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/eth",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/eth": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/ith": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/ith",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/ith": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/tal": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/tal",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/tal": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/ral": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/ral",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/ral": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/ort": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/ort",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/ort": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/thul": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/thul",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/thul": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/amn": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/amn",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/amn": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/sol": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/sol",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/sol": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/shael": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/shael",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/shael": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/dol": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/dol",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/dol": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/hel": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/hel",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/hel": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/io": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/io",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/io": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/lum": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/lum",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/lum": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/ko": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/ko",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/ko": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/fal": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/fal",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/fal": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/lem": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/lem",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/lem": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/pul": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/pul",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/pul": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/um": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/um",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/um": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/mal": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/mal",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/mal": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/ist": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/ist",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/ist": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/gul": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/gul",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/gul": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/vex": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/vex",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/vex": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/ohm": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/ohm",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/ohm": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/lo": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/lo",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/lo": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/sur": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/sur",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/sur": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/ber": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/ber",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/ber": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/jah": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/jah",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/jah": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/cham": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/rune-fusion/cham",
+      "kind": "rune-fusion",
+      "nameKey": "crafting.recipe.rune-fusion",
+      "costs": {
+        "materials": {
+          "runes/cham": 3
+        },
+        "currencies": {}
+      },
+      "output": {
+        "materials": {
+          "runes/zod": 1
+        },
+        "currencies": {}
+      }
+    },
+    {
+      "id": "recipes/socket-armor",
+      "kind": "socket-armor",
+      "nameKey": "crafting.recipe.socket-armor",
+      "costs": {
+        "materials": {
+          "runes/hel": 1,
+          "runes/amn": 1,
+          "gems/topaz/perfect": 1
+        },
+        "currencies": {}
+      },
+      "target": {
+        "type": "armor",
+        "slot": "chest",
+        "rarities": [
+          "normal"
+        ],
+        "emptyContents": true
+      },
+      "minimumSockets": 1
+    },
+    {
+      "id": "recipes/socket-clear",
+      "kind": "socket-clear",
+      "nameKey": "crafting.recipe.socket-clear",
+      "costs": {
+        "materials": {
+          "runes/hel": 1,
+          "gems/skull/flawed": 1
+        },
+        "currencies": {
+          "rune-shard": 100
+        }
+      },
+      "target": {
+        "type": "gear",
+        "rarities": [
+          "normal",
+          "magic",
+          "rare",
+          "set",
+          "unique",
+          "runeword"
+        ],
+        "emptyContents": false
+      }
+    },
+    {
+      "id": "recipes/caster-amulet",
+      "kind": "caster-amulet",
+      "nameKey": "crafting.recipe.caster-amulet",
+      "costs": {
+        "materials": {
+          "runes/ral": 1,
+          "gems/amethyst/perfect": 1,
+          "materials/scrap": 20
+        },
+        "currencies": {
+          "rune-shard": 1000
+        }
+      },
+      "target": {
+        "type": "jewelry",
+        "slot": "amulet",
+        "rarities": [
+          "magic"
+        ],
+        "emptyContents": true,
+        "identified": true
+      },
+      "fixedAffix": {
+        "affixId": "recipes/caster-amulet/fixed",
+        "values": {
+          "coreStats.energy": 5,
+          "statMods.mana": 20
+        }
+      }
+    }
+  ],
+  "salvage": {
+    "materialId": "materials/scrap",
+    "levelBandSize": 20,
+    "rarityYields": {
+      "normal": 1,
+      "magic": 2,
+      "rare": 4,
+      "set": 6,
+      "unique": 6,
+      "runeword": 6
+    }
+  },
+  "insertion": {
+    "quantity": 1
+  }
+}

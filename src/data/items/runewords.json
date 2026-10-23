@@ -17,7 +17,10 @@
         "attack": 50,
         "mana": 2
       }
-    }
+    },
+    "allowedSlots": [
+      "weapon"
+    ]
   },
   {
     "id": "runewords/stealth",
@@ -41,7 +44,10 @@
       "resistances": {
         "poison": 30
       }
-    }
+    },
+    "allowedSlots": [
+      "chest"
+    ]
   },
   {
     "id": "runewords/leaf",
@@ -59,7 +65,13 @@
       "resistances": {
         "cold": 33
       }
-    }
+    },
+    "allowedSlots": [
+      "weapon"
+    ],
+    "allowedWeaponTypes": [
+      "staff"
+    ]
   },
   {
     "id": "runewords/malice",
@@ -79,7 +91,10 @@
         "attack": 50,
         "life": 5
       }
-    }
+    },
+    "allowedSlots": [
+      "weapon"
+    ]
   },
   {
     "id": "runewords/strength",
@@ -102,7 +117,10 @@
         "critChance": 0.25,
         "mana": 2
       }
-    }
+    },
+    "allowedSlots": [
+      "weapon"
+    ]
   },
   {
     "id": "runewords/ancients-pledge",
@@ -127,7 +145,10 @@
         "lightning": 48,
         "poison": 48
       }
-    }
+    },
+    "allowedSlots": [
+      "offhand"
+    ]
   },
   {
     "id": "runewords/lore",
@@ -148,7 +169,10 @@
       "resistances": {
         "lightning": 30
       }
-    }
+    },
+    "allowedSlots": [
+      "head"
+    ]
   },
   {
     "id": "runewords/wealth",
@@ -172,7 +196,10 @@
         "magicFind": 100,
         "mana": 2
       }
-    }
+    },
+    "allowedSlots": [
+      "chest"
+    ]
   },
   {
     "id": "runewords/steelclash",
@@ -194,7 +221,10 @@
       "statMods": {
         "mana": 15
       }
-    }
+    },
+    "allowedSlots": [
+      "offhand"
+    ]
   },
   {
     "id": "runewords/smoke",
@@ -222,7 +252,10 @@
         "poison": 15,
         "arcane": 15
       }
-    }
+    },
+    "allowedSlots": [
+      "chest"
+    ]
   },
   {
     "id": "runewords/rhyme",
@@ -249,7 +282,10 @@
         "poison": 25,
         "arcane": 25
       }
-    }
+    },
+    "allowedSlots": [
+      "offhand"
+    ]
   },
   {
     "id": "runewords/insight",
@@ -276,7 +312,14 @@
         "attack": 180,
         "mana": 8
       }
-    }
+    },
+    "allowedSlots": [
+      "weapon"
+    ],
+    "allowedWeaponTypes": [
+      "polearm",
+      "staff"
+    ]
   },
   {
     "id": "runewords/treachery",
@@ -296,7 +339,10 @@
         "attackSpeed": 45,
         "goldFind": 50
       }
-    }
+    },
+    "allowedSlots": [
+      "chest"
+    ]
   },
   {
     "id": "runewords/duress",
@@ -322,7 +368,10 @@
         "poison": 15,
         "arcane": 15
       }
-    }
+    },
+    "allowedSlots": [
+      "chest"
+    ]
   },
   {
     "id": "runewords/spirit",
@@ -349,7 +398,14 @@
         "lightning": 35,
         "poison": 35
       }
-    }
+    },
+    "allowedSlots": [
+      "weapon",
+      "offhand"
+    ],
+    "allowedWeaponTypes": [
+      "sword"
+    ]
   },
   {
     "id": "runewords/lionheart",
@@ -379,7 +435,10 @@
         "poison": 30,
         "arcane": 30
       }
-    }
+    },
+    "allowedSlots": [
+      "chest"
+    ]
   },
   {
     "id": "runewords/obedience",
@@ -411,7 +470,13 @@
         "poison": 30,
         "arcane": 30
       }
-    }
+    },
+    "allowedSlots": [
+      "weapon"
+    ],
+    "allowedWeaponTypes": [
+      "polearm"
+    ]
   },
   {
     "id": "runewords/passion",
@@ -432,7 +497,10 @@
         "attackSpeed": 25,
         "goldFind": 75
       }
-    }
+    },
+    "allowedSlots": [
+      "weapon"
+    ]
   },
   {
     "id": "runewords/oath",
@@ -455,7 +523,10 @@
       "statMods": {
         "attackSpeed": 50
       }
-    }
+    },
+    "allowedSlots": [
+      "weapon"
+    ]
   },
   {
     "id": "runewords/fortitude",
@@ -484,7 +555,11 @@
         "poison": 15,
         "arcane": 15
       }
-    }
+    },
+    "allowedSlots": [
+      "weapon",
+      "chest"
+    ]
   },
   {
     "id": "runewords/call-to-arms",
@@ -506,7 +581,10 @@
         "attackSpeed": 40,
         "magicFind": 30
       }
-    }
+    },
+    "allowedSlots": [
+      "weapon"
+    ]
   },
   {
     "id": "runewords/heart-of-the-oak",
@@ -538,7 +616,14 @@
         "poison": 30,
         "arcane": 30
       }
-    }
+    },
+    "allowedSlots": [
+      "weapon"
+    ],
+    "allowedWeaponTypes": [
+      "staff",
+      "mace"
+    ]
   },
   {
     "id": "runewords/enigma",
@@ -562,7 +647,10 @@
         "life": 14,
         "magicFind": 105
       }
-    }
+    },
+    "allowedSlots": [
+      "chest"
+    ]
   },
   {
     "id": "runewords/breath-of-the-dying",
@@ -590,7 +678,10 @@
       "statMods": {
         "attackSpeed": 60
       }
-    }
+    },
+    "allowedSlots": [
+      "weapon"
+    ]
   },
   {
     "id": "runewords/grief",
@@ -613,7 +704,13 @@
         "mana": 2,
         "life": 12
       }
-    }
+    },
+    "allowedSlots": [
+      "weapon"
+    ],
+    "allowedWeaponTypes": [
+      "sword"
+    ]
   },
   {
     "stats": {
@@ -622,7 +719,7 @@
       ],
       "statMods": {
         "attackSpeed": 45,
-        "critChance": 20,
+        "critChance": 0.2,
         "attack": 300
       }
     },
@@ -638,7 +735,13 @@
     "name": "items.runeword.infinity",
     "reqLevel": 63,
     "id": "runewords/infinity",
-    "sockets": 4
+    "sockets": 4,
+    "allowedSlots": [
+      "weapon"
+    ],
+    "allowedWeaponTypes": [
+      "polearm"
+    ]
   },
   {
     "stats": {
@@ -665,7 +768,15 @@
     "name": "items.runeword.beast",
     "reqLevel": 63,
     "id": "runewords/beast",
-    "sockets": 5
+    "sockets": 5,
+    "allowedSlots": [
+      "weapon"
+    ],
+    "allowedWeaponTypes": [
+      "axe",
+      "mace",
+      "scepter"
+    ]
   },
   {
     "stats": {
@@ -696,7 +807,10 @@
     "name": "items.runeword.chains-of-honor",
     "reqLevel": 63,
     "id": "runewords/chains-of-honor",
-    "sockets": 4
+    "sockets": 4,
+    "allowedSlots": [
+      "chest"
+    ]
   },
   {
     "stats": {
@@ -722,13 +836,16 @@
     "name": "items.runeword.bramble",
     "reqLevel": 61,
     "id": "runewords/bramble",
-    "sockets": 4
+    "sockets": 4,
+    "allowedSlots": [
+      "chest"
+    ]
   },
   {
     "stats": {
       "statMods": {
         "attack": 350,
-        "critChance": 25
+        "critChance": 0.25
       },
       "coreStats": {
         "strength": 30
@@ -751,7 +868,10 @@
     "name": "items.runeword.last-wish",
     "reqLevel": 65,
     "id": "runewords/last-wish",
-    "sockets": 6
+    "sockets": 6,
+    "allowedSlots": [
+      "weapon"
+    ]
   },
   {
     "stats": {
@@ -773,12 +893,17 @@
       "runes/jah"
     ],
     "allowedBases": [
-      "weapon"
+      "weapon",
+      "armor"
     ],
     "name": "items.runeword.phoenix",
     "reqLevel": 65,
     "id": "runewords/phoenix",
-    "sockets": 4
+    "sockets": 4,
+    "allowedSlots": [
+      "weapon",
+      "offhand"
+    ]
   },
   {
     "stats": {
@@ -804,7 +929,11 @@
     "name": "items.runeword.dream",
     "reqLevel": 65,
     "id": "runewords/dream",
-    "sockets": 3
+    "sockets": 3,
+    "allowedSlots": [
+      "head",
+      "offhand"
+    ]
   },
   {
     "stats": {
@@ -831,7 +960,10 @@
     "name": "items.runeword.hand-of-justice",
     "reqLevel": 67,
     "id": "runewords/hand-of-justice",
-    "sockets": 4
+    "sockets": 4,
+    "allowedSlots": [
+      "weapon"
+    ]
   },
   {
     "stats": {
@@ -858,18 +990,21 @@
       "runes/dol"
     ],
     "allowedBases": [
-      "weapon"
+      "armor"
     ],
     "name": "items.runeword.exile",
     "reqLevel": 57,
     "id": "runewords/exile",
-    "sockets": 4
+    "sockets": 4,
+    "allowedSlots": [
+      "offhand"
+    ]
   },
   {
     "stats": {
       "statMods": {
         "attack": 400,
-        "critChance": 50
+        "critChance": 0.5
       },
       "coreStats": {
         "strength": 25
@@ -891,6 +1026,9 @@
     "name": "items.runeword.death",
     "reqLevel": 55,
     "id": "runewords/death",
-    "sockets": 5
+    "sockets": 5,
+    "allowedSlots": [
+      "weapon"
+    ]
   }
 ]

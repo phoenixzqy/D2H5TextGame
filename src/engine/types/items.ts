@@ -256,13 +256,13 @@ export interface Rune {
   readonly tier: number; // 1-33 in D2
   
   /** Effect when socketed in weapon */
-  readonly weaponEffect?: Partial<Affix>;
+  readonly weaponEffect?: ItemBonusStats;
   
   /** Effect when socketed in armor/helm */
-  readonly armorEffect?: Partial<Affix>;
+  readonly armorEffect?: ItemBonusStats;
   
   /** Effect when socketed in shield */
-  readonly shieldEffect?: Partial<Affix>;
+  readonly shieldEffect?: ItemBonusStats;
 }
 
 /**
@@ -277,12 +277,16 @@ export interface RuneWord {
   
   /** Required item base types */
   readonly allowedBases: readonly ItemBaseType[];
+
+  /** Complete placement predicate; weapon restrictions apply to the weapon branch. */
+  readonly allowedSlots: readonly EquipmentSlot[];
+  readonly allowedWeaponTypes?: readonly WeaponType[];
   
   /** Required number of sockets */
   readonly sockets: number;
   
   /** Granted stats */
-  readonly stats: Partial<Affix>;
+  readonly stats: ItemBonusStats;
   
   /** Required level */
   readonly reqLevel: number;
@@ -324,4 +328,3 @@ export interface Inventory {
   /** Max stash size */
   readonly maxStash: number;
 }
-

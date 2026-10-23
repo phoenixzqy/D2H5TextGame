@@ -7,6 +7,8 @@
 import Ajv2020, { type ValidateFunction } from 'ajv/dist/2020';
 import addFormats from 'ajv-formats';
 import { isValidMonsterAttackProgression } from '../engine/monster-attack';
+import { gemEffects, type GemEffectDefinition } from './loaders/socket-effects';
+import { materialRecipes, type MaterialRecipe } from './loaders/material-recipes';
 import type {
   MonsterDef,
   SkillDef,
@@ -87,6 +89,8 @@ export interface GameData {
   readonly sets: ReadonlyMap<string, SetDef>;
   readonly runes: ReadonlyMap<string, Rune>;
   readonly runewords: ReadonlyMap<string, RuneWord>;
+  readonly gemEffects: ReadonlyMap<string, GemEffectDefinition>;
+  readonly materialRecipes: ReadonlyMap<string, MaterialRecipe>;
   readonly acts: ReadonlyMap<string, ActDef>;
   readonly subAreas: ReadonlyMap<string, SubAreaDef>;
   readonly mercenaries: ReadonlyMap<string, unknown>; // TODO: type after merc impl
@@ -303,6 +307,8 @@ export async function loadGameData(): Promise<GameData> {
     sets: Object.freeze(sets),
     runes: Object.freeze(runes),
     runewords: Object.freeze(runewords),
+    gemEffects: Object.freeze(gemEffects),
+    materialRecipes: Object.freeze(materialRecipes),
     acts: Object.freeze(acts),
     subAreas: Object.freeze(subAreas),
     mercenaries: Object.freeze(mercenaries),

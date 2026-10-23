@@ -1,0 +1,338 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "d2h5://schema/material-recipes",
+  "description": "Complete v1 crafting costs, transforms and salvage yields; validated before boot.",
+  "type": "object",
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "recipes": {
+      "type": "array",
+      "minItems": 98,
+      "maxItems": 98,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^recipes/[a-z0-9/-]+$"
+              },
+              "nameKey": {
+                "type": "string",
+                "pattern": "^crafting\\.recipe\\.[a-z-]+$"
+              },
+              "costs": {
+                "$ref": "#/$defs/bag"
+              },
+              "kind": {
+                "enum": [
+                  "rune-fusion",
+                  "gem-fusion",
+                  "gem-dismantle"
+                ]
+              },
+              "output": {
+                "$ref": "#/$defs/bag"
+              }
+            },
+            "required": [
+              "id",
+              "nameKey",
+              "costs",
+              "kind",
+              "output"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^recipes/[a-z0-9/-]+$"
+              },
+              "nameKey": {
+                "type": "string",
+                "pattern": "^crafting\\.recipe\\.[a-z-]+$"
+              },
+              "costs": {
+                "$ref": "#/$defs/bag"
+              },
+              "kind": {
+                "const": "socket-armor"
+              },
+              "target": {
+                "$ref": "#/$defs/target"
+              },
+              "minimumSockets": {
+                "$ref": "#/$defs/count"
+              }
+            },
+            "required": [
+              "id",
+              "nameKey",
+              "costs",
+              "kind",
+              "target",
+              "minimumSockets"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^recipes/[a-z0-9/-]+$"
+              },
+              "nameKey": {
+                "type": "string",
+                "pattern": "^crafting\\.recipe\\.[a-z-]+$"
+              },
+              "costs": {
+                "$ref": "#/$defs/bag"
+              },
+              "kind": {
+                "const": "socket-clear"
+              },
+              "target": {
+                "$ref": "#/$defs/target"
+              }
+            },
+            "required": [
+              "id",
+              "nameKey",
+              "costs",
+              "kind",
+              "target"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^recipes/[a-z0-9/-]+$"
+              },
+              "nameKey": {
+                "type": "string",
+                "pattern": "^crafting\\.recipe\\.[a-z-]+$"
+              },
+              "costs": {
+                "$ref": "#/$defs/bag"
+              },
+              "kind": {
+                "const": "caster-amulet"
+              },
+              "target": {
+                "$ref": "#/$defs/target"
+              },
+              "fixedAffix": {
+                "type": "object",
+                "properties": {
+                  "affixId": {
+                    "type": "string",
+                    "pattern": "^recipes/[a-z-]+/fixed$"
+                  },
+                  "values": {
+                    "type": "object",
+                    "properties": {
+                      "coreStats.energy": {
+                        "$ref": "#/$defs/count"
+                      },
+                      "statMods.mana": {
+                        "$ref": "#/$defs/count"
+                      }
+                    },
+                    "required": [
+                      "coreStats.energy",
+                      "statMods.mana"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "affixId",
+                  "values"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "nameKey",
+              "costs",
+              "kind",
+              "target",
+              "fixedAffix"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "salvage": {
+      "type": "object",
+      "properties": {
+        "materialId": {
+          "const": "materials/scrap"
+        },
+        "levelBandSize": {
+          "$ref": "#/$defs/count"
+        },
+        "rarityYields": {
+          "type": "object",
+          "properties": {
+            "normal": {
+              "$ref": "#/$defs/count"
+            },
+            "magic": {
+              "$ref": "#/$defs/count"
+            },
+            "rare": {
+              "$ref": "#/$defs/count"
+            },
+            "set": {
+              "$ref": "#/$defs/count"
+            },
+            "unique": {
+              "$ref": "#/$defs/count"
+            },
+            "runeword": {
+              "$ref": "#/$defs/count"
+            }
+          },
+          "required": [
+            "normal",
+            "magic",
+            "rare",
+            "set",
+            "unique",
+            "runeword"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "materialId",
+        "levelBandSize",
+        "rarityYields"
+      ],
+      "additionalProperties": false
+    },
+    "insertion": {
+      "type": "object",
+      "properties": {
+        "quantity": {
+          "$ref": "#/$defs/count"
+        }
+      },
+      "required": [
+        "quantity"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "version",
+    "recipes",
+    "salvage",
+    "insertion"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "count": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "materials": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^(runes/[a-z-]+|gems/[a-z]+/[a-z]+|materials/scrap)$"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/count"
+      }
+    },
+    "currencies": {
+      "type": "object",
+      "properties": {
+        "rune-shard": {
+          "$ref": "#/$defs/count"
+        },
+        "gem-shard": {
+          "$ref": "#/$defs/count"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "bag": {
+      "type": "object",
+      "properties": {
+        "materials": {
+          "$ref": "#/$defs/materials"
+        },
+        "currencies": {
+          "$ref": "#/$defs/currencies"
+        }
+      },
+      "required": [
+        "materials",
+        "currencies"
+      ],
+      "additionalProperties": false
+    },
+    "target": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "gear",
+            "armor",
+            "jewelry"
+          ]
+        },
+        "slot": {
+          "enum": [
+            "chest",
+            "amulet"
+          ]
+        },
+        "rarities": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "normal",
+              "magic",
+              "rare",
+              "set",
+              "unique",
+              "runeword"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 6,
+          "uniqueItems": true
+        },
+        "emptyContents": {
+          "type": "boolean"
+        },
+        "identified": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "rarities",
+        "emptyContents"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

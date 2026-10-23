@@ -4,7 +4,16 @@
   "title": "Runeword Definition",
   "description": "Runeword (orange) item definition",
   "type": "object",
-  "required": ["id", "name", "runes", "allowedBases", "sockets", "reqLevel", "stats"],
+  "required": [
+    "id",
+    "name",
+    "runes",
+    "allowedBases",
+    "sockets",
+    "reqLevel",
+    "stats",
+    "allowedSlots"
+  ],
   "additionalProperties": false,
   "properties": {
     "id": {
@@ -17,7 +26,9 @@
     },
     "runes": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "minItems": 2,
       "description": "Required rune sequence (in order)"
     },
@@ -25,7 +36,15 @@
       "type": "array",
       "items": {
         "type": "string",
-        "enum": ["weapon", "armor", "jewelry", "charm", "rune", "gem", "material"]
+        "enum": [
+          "weapon",
+          "armor",
+          "jewelry",
+          "charm",
+          "rune",
+          "gem",
+          "material"
+        ]
       },
       "minItems": 1
     },
@@ -40,6 +59,49 @@
     },
     "stats": {
       "$ref": "#/$defs/stats"
+    },
+    "allowedSlots": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "head",
+          "chest",
+          "gloves",
+          "belt",
+          "boots",
+          "amulet",
+          "ring-left",
+          "ring-right",
+          "weapon",
+          "offhand"
+        ]
+      },
+      "description": "All allowed placement slots, subject to weapon/armor branch identity."
+    },
+    "allowedWeaponTypes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "sword",
+          "axe",
+          "mace",
+          "dagger",
+          "spear",
+          "polearm",
+          "bow",
+          "crossbow",
+          "throwing",
+          "staff",
+          "wand",
+          "scepter",
+          "orb"
+        ]
+      },
+      "description": "Restriction on weapon branches only; armor/offhand branches remain independent."
     }
   },
   "$defs": {
@@ -51,44 +113,106 @@
           "type": "object",
           "additionalProperties": false,
           "properties": {
-            "strength": { "type": "integer" },
-            "dexterity": { "type": "integer" },
-            "vitality": { "type": "integer" },
-            "energy": { "type": "integer" }
+            "strength": {
+              "type": "integer"
+            },
+            "dexterity": {
+              "type": "integer"
+            },
+            "vitality": {
+              "type": "integer"
+            },
+            "energy": {
+              "type": "integer"
+            }
           }
         },
         "resistances": {
           "type": "object",
           "additionalProperties": false,
           "properties": {
-            "fire": { "type": "number" },
-            "cold": { "type": "number" },
-            "lightning": { "type": "number" },
-            "poison": { "type": "number" },
-            "arcane": { "type": "number" },
-            "physical": { "type": "number" }
+            "fire": {
+              "type": "number"
+            },
+            "cold": {
+              "type": "number"
+            },
+            "lightning": {
+              "type": "number"
+            },
+            "poison": {
+              "type": "number"
+            },
+            "arcane": {
+              "type": "number"
+            },
+            "physical": {
+              "type": "number"
+            },
+            "all": {
+              "type": "number",
+              "description": "Additive points in all six resistances."
+            }
           }
         },
         "statMods": {
           "type": "object",
           "additionalProperties": false,
           "properties": {
-            "life": { "type": "number" },
-            "mana": { "type": "number" },
-            "attack": { "type": "number" },
-            "defense": { "type": "number" },
-            "attackSpeed": { "type": "number" },
-            "critChance": { "type": "number" },
-            "critDamage": { "type": "number" },
-            "physDodge": { "type": "number" },
-            "magicDodge": { "type": "number" },
-            "magicFind": { "type": "number" },
-            "goldFind": { "type": "number" }
+            "life": {
+              "type": "number"
+            },
+            "mana": {
+              "type": "number"
+            },
+            "attack": {
+              "type": "number"
+            },
+            "defense": {
+              "type": "number"
+            },
+            "attackSpeed": {
+              "type": "number"
+            },
+            "critChance": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Ratio; ordinary modern affix rolls retain their separate point authoring."
+            },
+            "critDamage": {
+              "type": "number"
+            },
+            "physDodge": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Ratio; ordinary modern affix rolls retain their separate point authoring."
+            },
+            "magicDodge": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Ratio; ordinary modern affix rolls retain their separate point authoring."
+            },
+            "magicFind": {
+              "type": "number"
+            },
+            "goldFind": {
+              "type": "number"
+            },
+            "magicResist": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Flat magical mitigation, not resistance percentage points."
+            }
           }
         },
         "grantsSkills": {
           "type": "array",
-          "items": { "type": "string" }
+          "items": {
+            "type": "string"
+          }
         }
       }
     }

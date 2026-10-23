@@ -1,0 +1,662 @@
+[
+  {
+    "id": "gems/amethyst/chipped",
+    "weaponEffect": {
+      "statMods": {
+        "attack": 5
+      }
+    },
+    "armorEffect": {
+      "coreStats": {
+        "strength": 1
+      }
+    },
+    "shieldEffect": {
+      "statMods": {
+        "defense": 5
+      }
+    }
+  },
+  {
+    "id": "gems/amethyst/flawed",
+    "weaponEffect": {
+      "statMods": {
+        "attack": 10
+      }
+    },
+    "armorEffect": {
+      "coreStats": {
+        "strength": 2
+      }
+    },
+    "shieldEffect": {
+      "statMods": {
+        "defense": 10
+      }
+    }
+  },
+  {
+    "id": "gems/amethyst/normal",
+    "weaponEffect": {
+      "statMods": {
+        "attack": 15
+      }
+    },
+    "armorEffect": {
+      "coreStats": {
+        "strength": 3
+      }
+    },
+    "shieldEffect": {
+      "statMods": {
+        "defense": 15
+      }
+    }
+  },
+  {
+    "id": "gems/amethyst/flawless",
+    "weaponEffect": {
+      "statMods": {
+        "attack": 20
+      }
+    },
+    "armorEffect": {
+      "coreStats": {
+        "strength": 4
+      }
+    },
+    "shieldEffect": {
+      "statMods": {
+        "defense": 20
+      }
+    }
+  },
+  {
+    "id": "gems/amethyst/perfect",
+    "weaponEffect": {
+      "statMods": {
+        "attack": 25
+      }
+    },
+    "armorEffect": {
+      "coreStats": {
+        "strength": 5
+      }
+    },
+    "shieldEffect": {
+      "statMods": {
+        "defense": 25
+      }
+    }
+  },
+  {
+    "id": "gems/diamond/chipped",
+    "weaponEffect": {
+      "statMods": {
+        "magicResist": 2
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "magicResist": 2
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "fire": 2,
+        "cold": 2,
+        "lightning": 2,
+        "poison": 2,
+        "arcane": 2,
+        "physical": 2
+      }
+    }
+  },
+  {
+    "id": "gems/diamond/flawed",
+    "weaponEffect": {
+      "statMods": {
+        "magicResist": 4
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "magicResist": 4
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "fire": 4,
+        "cold": 4,
+        "lightning": 4,
+        "poison": 4,
+        "arcane": 4,
+        "physical": 4
+      }
+    }
+  },
+  {
+    "id": "gems/diamond/normal",
+    "weaponEffect": {
+      "statMods": {
+        "magicResist": 6
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "magicResist": 6
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "fire": 6,
+        "cold": 6,
+        "lightning": 6,
+        "poison": 6,
+        "arcane": 6,
+        "physical": 6
+      }
+    }
+  },
+  {
+    "id": "gems/diamond/flawless",
+    "weaponEffect": {
+      "statMods": {
+        "magicResist": 8
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "magicResist": 8
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "fire": 8,
+        "cold": 8,
+        "lightning": 8,
+        "poison": 8,
+        "arcane": 8,
+        "physical": 8
+      }
+    }
+  },
+  {
+    "id": "gems/diamond/perfect",
+    "weaponEffect": {
+      "statMods": {
+        "magicResist": 10
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "magicResist": 10
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "fire": 10,
+        "cold": 10,
+        "lightning": 10,
+        "poison": 10,
+        "arcane": 10,
+        "physical": 10
+      }
+    }
+  },
+  {
+    "id": "gems/emerald/chipped",
+    "weaponEffect": {
+      "coreStats": {
+        "dexterity": 1
+      }
+    },
+    "armorEffect": {
+      "coreStats": {
+        "dexterity": 1
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "poison": 6
+      }
+    }
+  },
+  {
+    "id": "gems/emerald/flawed",
+    "weaponEffect": {
+      "coreStats": {
+        "dexterity": 2
+      }
+    },
+    "armorEffect": {
+      "coreStats": {
+        "dexterity": 2
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "poison": 12
+      }
+    }
+  },
+  {
+    "id": "gems/emerald/normal",
+    "weaponEffect": {
+      "coreStats": {
+        "dexterity": 3
+      }
+    },
+    "armorEffect": {
+      "coreStats": {
+        "dexterity": 3
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "poison": 18
+      }
+    }
+  },
+  {
+    "id": "gems/emerald/flawless",
+    "weaponEffect": {
+      "coreStats": {
+        "dexterity": 4
+      }
+    },
+    "armorEffect": {
+      "coreStats": {
+        "dexterity": 4
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "poison": 24
+      }
+    }
+  },
+  {
+    "id": "gems/emerald/perfect",
+    "weaponEffect": {
+      "coreStats": {
+        "dexterity": 5
+      }
+    },
+    "armorEffect": {
+      "coreStats": {
+        "dexterity": 5
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "poison": 30
+      }
+    }
+  },
+  {
+    "id": "gems/ruby/chipped",
+    "weaponEffect": {
+      "statMods": {
+        "attack": 4
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "life": 10
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "fire": 6
+      }
+    }
+  },
+  {
+    "id": "gems/ruby/flawed",
+    "weaponEffect": {
+      "statMods": {
+        "attack": 8
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "life": 20
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "fire": 12
+      }
+    }
+  },
+  {
+    "id": "gems/ruby/normal",
+    "weaponEffect": {
+      "statMods": {
+        "attack": 12
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "life": 30
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "fire": 18
+      }
+    }
+  },
+  {
+    "id": "gems/ruby/flawless",
+    "weaponEffect": {
+      "statMods": {
+        "attack": 16
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "life": 40
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "fire": 24
+      }
+    }
+  },
+  {
+    "id": "gems/ruby/perfect",
+    "weaponEffect": {
+      "statMods": {
+        "attack": 20
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "life": 50
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "fire": 30
+      }
+    }
+  },
+  {
+    "id": "gems/sapphire/chipped",
+    "weaponEffect": {
+      "statMods": {
+        "mana": 4
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "mana": 10
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "cold": 6
+      }
+    }
+  },
+  {
+    "id": "gems/sapphire/flawed",
+    "weaponEffect": {
+      "statMods": {
+        "mana": 8
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "mana": 20
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "cold": 12
+      }
+    }
+  },
+  {
+    "id": "gems/sapphire/normal",
+    "weaponEffect": {
+      "statMods": {
+        "mana": 12
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "mana": 30
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "cold": 18
+      }
+    }
+  },
+  {
+    "id": "gems/sapphire/flawless",
+    "weaponEffect": {
+      "statMods": {
+        "mana": 16
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "mana": 40
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "cold": 24
+      }
+    }
+  },
+  {
+    "id": "gems/sapphire/perfect",
+    "weaponEffect": {
+      "statMods": {
+        "mana": 20
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "mana": 50
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "cold": 30
+      }
+    }
+  },
+  {
+    "id": "gems/skull/chipped",
+    "weaponEffect": {
+      "statMods": {
+        "life": 5
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "life": 5,
+        "mana": 5
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "physical": 2
+      }
+    }
+  },
+  {
+    "id": "gems/skull/flawed",
+    "weaponEffect": {
+      "statMods": {
+        "life": 10
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "life": 10,
+        "mana": 10
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "physical": 4
+      }
+    }
+  },
+  {
+    "id": "gems/skull/normal",
+    "weaponEffect": {
+      "statMods": {
+        "life": 15
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "life": 15,
+        "mana": 15
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "physical": 6
+      }
+    }
+  },
+  {
+    "id": "gems/skull/flawless",
+    "weaponEffect": {
+      "statMods": {
+        "life": 20
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "life": 20,
+        "mana": 20
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "physical": 8
+      }
+    }
+  },
+  {
+    "id": "gems/skull/perfect",
+    "weaponEffect": {
+      "statMods": {
+        "life": 25
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "life": 25,
+        "mana": 25
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "physical": 10
+      }
+    }
+  },
+  {
+    "id": "gems/topaz/chipped",
+    "weaponEffect": {
+      "statMods": {
+        "attackSpeed": 2
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "magicFind": 5
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "lightning": 6
+      }
+    }
+  },
+  {
+    "id": "gems/topaz/flawed",
+    "weaponEffect": {
+      "statMods": {
+        "attackSpeed": 4
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "magicFind": 10
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "lightning": 12
+      }
+    }
+  },
+  {
+    "id": "gems/topaz/normal",
+    "weaponEffect": {
+      "statMods": {
+        "attackSpeed": 6
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "magicFind": 15
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "lightning": 18
+      }
+    }
+  },
+  {
+    "id": "gems/topaz/flawless",
+    "weaponEffect": {
+      "statMods": {
+        "attackSpeed": 8
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "magicFind": 20
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "lightning": 24
+      }
+    }
+  },
+  {
+    "id": "gems/topaz/perfect",
+    "weaponEffect": {
+      "statMods": {
+        "attackSpeed": 10
+      }
+    },
+    "armorEffect": {
+      "statMods": {
+        "magicFind": 25
+      }
+    },
+    "shieldEffect": {
+      "resistances": {
+        "lightning": 30
+      }
+    }
+  }
+]

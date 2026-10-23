@@ -12,7 +12,7 @@
  * @module engine/loot/runeword
  */
 
-import type { ItemBaseType, RuneWord } from '../types/items';
+import type { EquipmentSlot, ItemBaseType, RuneWord, WeaponType } from '../types/items';
 
 /** Recipe descriptor for the engine matcher. */
 export interface RunewordRecipe {
@@ -21,6 +21,8 @@ export interface RunewordRecipe {
   readonly runes: readonly string[];
   readonly sockets: number;
   readonly allowedBases: readonly ItemBaseType[];
+  readonly allowedSlots?: readonly EquipmentSlot[];
+  readonly allowedWeaponTypes?: readonly WeaponType[];
   readonly reqLevel: number;
 }
 
@@ -55,6 +57,8 @@ export const BUILTIN_RUNEWORDS: readonly RunewordRecipe[] = Object.freeze([
 /** Input describing a candidate item for runeword matching. */
 export interface RunewordCandidate {
   readonly baseType: ItemBaseType;
+  readonly slot?: EquipmentSlot | null;
+  readonly weaponType?: WeaponType;
   readonly sockets: number;
   /** Inserted runes in socket order. */
   readonly runes: readonly string[];
@@ -75,6 +79,13 @@ export function matchRuneword(
     if (recipe.sockets !== candidate.sockets) continue;
     if (recipe.runes.length !== candidate.runes.length) continue;
     if (!recipe.allowedBases.includes(candidate.baseType)) continue;
+    if (recipe.allowedSlots) {
+      if (!candidate.slot || !recipe.allowedSlots.includes(candidate.slot)) continue;
+      if (candidate.baseType === 'weapon' && candidate.slot !== 'weapon') continue;
+      if (candidate.baseType === 'armor' && candidate.slot === 'weapon') continue;
+    }
+    if (candidate.baseType === 'weapon' && recipe.allowedWeaponTypes
+      && (!candidate.weaponType || !recipe.allowedWeaponTypes.includes(candidate.weaponType))) continue;
     let ok = true;
     for (let i = 0; i < recipe.runes.length; i++) {
       if (recipe.runes[i] !== candidate.runes[i]) {
@@ -95,6 +106,8 @@ export function recipeFromData(rw: RuneWord): RunewordRecipe {
     runes: rw.runes,
     sockets: rw.sockets,
     allowedBases: rw.allowedBases,
+    allowedSlots: rw.allowedSlots,
+    ...(rw.allowedWeaponTypes ? { allowedWeaponTypes: rw.allowedWeaponTypes } : {}),
     reqLevel: rw.reqLevel
   };
 }

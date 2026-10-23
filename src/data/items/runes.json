@@ -30,12 +30,12 @@
     },
     "armorEffect": {
       "statMods": {
-        "physDodge": 2
+        "physDodge": 0.02
       }
     },
     "shieldEffect": {
       "statMods": {
-        "physDodge": 7
+        "physDodge": 0.07
       }
     }
   },
@@ -267,7 +267,7 @@
     },
     "shieldEffect": {
       "statMods": {
-        "physDodge": 10
+        "physDodge": 0.1
       }
     }
   },
