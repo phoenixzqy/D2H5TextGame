@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "d2h5://schema/replay-profiles",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["normal", "nightmare"],
+  "properties": {
+    "normal": {
+      "type": "object", "additionalProperties": false, "required": ["monsterLevelOffset"],
+      "properties": { "monsterLevelOffset": { "const": 0, "description": "Preserves all resolved Normal monster levels." } }
+    },
+    "nightmare": {
+      "type": "object", "additionalProperties": false, "required": ["monsterLevelOffset"],
+      "properties": { "monsterLevelOffset": { "const": 20, "description": "Added once after all Normal area, wave and elite level adjustments." } }
+    }
+  }
+}

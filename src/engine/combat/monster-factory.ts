@@ -39,6 +39,20 @@ const BASE_DEF = 4;
 const GROWTH_DEF = 1.5;
 const ELITE_CONFIG = defaultEliteConfigJson as EliteConfigDef;
 
+/** Unrounded level progression shared by ordinary construction and anchored replay overrides. */
+export function nativeMonsterStats(def: MonsterDef, level: number): {
+  readonly life: number; readonly attack: number; readonly defense: number;
+} {
+  const offset = Math.max(0, level - 1);
+  return {
+    life: def.life[0] / 2 + def.life[1] / 2 + offset * (def.lifeGrowth[0] / 2 + def.lifeGrowth[1] / 2),
+    attack: def.attack && def.attackGrowth
+      ? def.attack[0] / 2 + def.attack[1] / 2 + offset * (def.attackGrowth[0] / 2 + def.attackGrowth[1] / 2)
+      : BASE_ATK + offset * GROWTH_ATK,
+    defense: (def.defense ?? BASE_DEF) + offset * GROWTH_DEF
+  };
+}
+
 /**
  * Per-tier multipliers applied **on top of** the level-scaled base stats.
  *
@@ -161,14 +175,14 @@ export function buildMonsterUnit(opts: BuildMonsterOpts): CombatUnit {
   const lifeMaxStat = opts.statOverrides?.lifeMax ?? rolledLifeMax;
 
   // 2. Scalar consumers use the resolved midpoint; ordinary combat keeps the range.
-  const rawAtk = BASE_ATK + levelOffset * GROWTH_ATK;
+  const native = nativeMonsterStats(def, level);
+  const rawAtk = native.attack;
   const attack = opts.statOverrides?.attack ?? (attackRange
     ? Math.round(attackRange[0] / 2 + attackRange[1] / 2)
     : Math.round(rawAtk * tierAttack));
 
   // 3. Defense: from JSON if present, else trash baseline; level-scaled.
-  const baseDef = def.defense ?? BASE_DEF;
-  const rawDef = baseDef + Math.max(0, level - 1) * GROWTH_DEF;
+  const rawDef = native.defense;
   const defense = opts.statOverrides?.defense ?? Math.round(rawDef * TIER_MULTIPLIERS[tier].defense);
 
   const mr = MITIGATION_DEFINITION.monster;

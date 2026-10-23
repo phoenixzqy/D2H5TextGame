@@ -1,0 +1,4 @@
+{
+  "normal": { "monsterLevelOffset": 0 },
+  "nightmare": { "monsterLevelOffset": 20 }
+}
