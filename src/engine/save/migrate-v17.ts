@@ -1,7 +1,8 @@
-import { itemBases } from '@/data/index';
-import { migrateLegacyItemSocketState } from '../items/socket-capacity';
+import { historicalSocketBases as itemBases } from './historical-sockets';
+import { migrateLegacyItemSocketState } from './historical-sockets';
 import { deriveEquippedPlayerStats } from '../progression/equipped-stats';
-import type { Item, EquipmentSlot } from '../types/items';
+import type { HistoricalItem as Item } from './historical-items';
+import type { EquipmentSlot } from '../types/items';
 import type { SaveV16, SaveV17, LegacyGearQuarantineEntry, LegacyGearOrigin } from '../types/save';
 /** Migrate validated16 only, preserving exact incompatible payloads outside active ownership. */
 export function migrateSaveV17(old: SaveV16): SaveV17 {

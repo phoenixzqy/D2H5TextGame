@@ -10792,3 +10792,30 @@ root-owned at `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-mate
 through umbrella consumers, then root removes them. C0/C1 remain accepted;
 C2 underway; cache acquisition, unified v19 material services, C3/C4 and full
 G0–G7 remain open. All changes stay local; umbrella goal/worktree claim active.
+
+## D10 — Frozen pre-v19 item acceptance
+
+Historical v17/v18 socket validation and the v16→17 socket projection now use
+an independent literal catalog and matcher, not live socket/runeword rules.
+The structural item schema and historical item/equipment types are also frozen.
+Independent QA compared the snapshot with the baseline:74bases,33rune IDs and
+35ordered word recipes match exactly, including permissive historical structural
+extra fields, capacity/personalization checks and first-match behavior.
+
+Five causal tests first fail5/5 when live validators/migration throw, then pass5/5
+with history isolated. Lore on chest remains historically valid across backpack,
+stash,hero and merc ownership; wrong order still refuses; v16→17 retains its
+old capacity and word behavior without source mutation. Existing Act V/material
+controls pass76/76 including the new tests. Engine passes4831/135 in35.38s; full
+unit passes10317/370 with two existing opt-in skips in248.07s. Typecheck and a
+production build pass. Two test-arrow lint findings were corrected and the five
+causal tests rerun successfully; final full lint passes with zero warnings.
+Test-runner budgets remain exceeded. Independent source QA returns APPROVE.
+
+This is a compatibility prerequisite, not v19 acceptance. Before live socket
+effects activate, cover intermediate v16 migration with retained historical word
+gear beside quarantined equipped gear: its cache repair still uses the live
+stat pipeline. Unified v19 migration/recovery, sockets/recipes/actions, effects,
+UI and persistence remain required. The new explicit GD-approved item-grant
+adaptation amendment is in D10; those runtime effects remain unimplemented.
+C0/C1 remain accepted; C2 underway; C3/C4 and fullG0–G7 remain open. Local only.

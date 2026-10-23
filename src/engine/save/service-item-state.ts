@@ -1,6 +1,6 @@
-import { itemBases } from '@/data/index';
-import { validateItemServiceFields } from '../items/socket-capacity';
-import type { Item } from '../types/items';
+import { historicalSocketBases as itemBases } from './historical-sockets';
+import { validateItemServiceFields } from './historical-sockets';
+import type { HistoricalItem as Item } from './historical-items';
 import type { SaveV17 } from '../types/save';
 const slots = ['head', 'chest', 'gloves', 'belt', 'boots', 'amulet', 'ring-left', 'ring-right', 'weapon', 'offhand'];
 const mapFields = ['questTitles', 'questDifficulties', 'selectedTitle', 'selectedDifficulty', 'nightmareClearedSubAreas', 'challengeOrdinals'];

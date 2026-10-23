@@ -1,3 +1,4 @@
+import frozenItemSchema from './frozen-v16-item.schema.json';
 import { readMaterialLedger } from './material-state';
 import { ACT5_RECEIPTS, validateAct5QuestGraph } from './act5-state';
 import { ACT5_ENCOUNTERS } from '../map/act5-admission';
@@ -49,42 +50,8 @@ const object = (
 const numbers = (keys: string): Record<string, AnySchema> =>
   Object.fromEntries(keys.split(' ').map((key) => [key, number]));
 const damage = object({ min: number, max: number, breakdown: dict(number) });
-const item = object(
-  {
-    id: text,
-    baseId: text,
-    rarity: { enum: ['normal', 'magic', 'rare', 'unique', 'set', 'runeword'] },
-    level: number,
-    identified: bool,
-    equipped: bool
-  },
-  {
-    ilvl: number,
-    equipSlot: text,
-    uniqueId: text,
-    setId: text,
-    setPieceId: text,
-    runewordId: text,
-    runes: strings,
-    statRolls: dict(number),
-    baseRolls: dict(number),
-    generatedName: object({}, { prefix: text, suffix: text }),
-    affixes: array({
-      anyOf: [
-        object({ id: text, tier: number, rolledValue: number }),
-        object({
-          affixId: text,
-          values: {
-            anyOf: [
-              dict(number),
-              array({ type: 'array', items: [text, number], minItems: 2, maxItems: 2 })
-            ]
-          }
-        })
-      ]
-    })
-  }
-);
+// Literal pre-v19 shape: current socket schemas must not reinterpret history.
+const item: AnySchema = frozenItemSchema;
 const equipment = dict({ anyOf: [item, { type: 'null' }] });
 const status = object(
   {

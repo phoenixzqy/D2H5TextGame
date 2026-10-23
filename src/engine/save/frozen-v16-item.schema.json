@@ -1,0 +1,150 @@
+{
+  "type": "object",
+  "required": [
+    "id",
+    "baseId",
+    "rarity",
+    "level",
+    "identified",
+    "equipped"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "baseId": {
+      "type": "string"
+    },
+    "rarity": {
+      "enum": [
+        "normal",
+        "magic",
+        "rare",
+        "unique",
+        "set",
+        "runeword"
+      ]
+    },
+    "level": {
+      "type": "number"
+    },
+    "identified": {
+      "type": "boolean"
+    },
+    "equipped": {
+      "type": "boolean"
+    },
+    "ilvl": {
+      "type": "number"
+    },
+    "equipSlot": {
+      "type": "string"
+    },
+    "uniqueId": {
+      "type": "string"
+    },
+    "setId": {
+      "type": "string"
+    },
+    "setPieceId": {
+      "type": "string"
+    },
+    "runewordId": {
+      "type": "string"
+    },
+    "runes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "statRolls": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number"
+      }
+    },
+    "baseRolls": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number"
+      }
+    },
+    "generatedName": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "prefix": {
+          "type": "string"
+        },
+        "suffix": {
+          "type": "string"
+        }
+      }
+    },
+    "affixes": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "tier",
+              "rolledValue"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "tier": {
+                "type": "number"
+              },
+              "rolledValue": {
+                "type": "number"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "affixId",
+              "values"
+            ],
+            "properties": {
+              "affixId": {
+                "type": "string"
+              },
+              "values": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "number"
+                    }
+                  },
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "minItems": 2,
+                      "maxItems": 2
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

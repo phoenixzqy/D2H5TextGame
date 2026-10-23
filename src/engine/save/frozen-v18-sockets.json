@@ -1,0 +1,916 @@
+{
+  "bases": [
+    {
+      "id": "items/base/helm-cap",
+      "type": "armor",
+      "sockets": 2,
+      "maxSockets": 2
+    },
+    {
+      "id": "items/base/helm-skull-cap",
+      "type": "armor",
+      "sockets": 2,
+      "maxSockets": 2
+    },
+    {
+      "id": "items/base/helm-war-hat",
+      "type": "armor",
+      "sockets": 3,
+      "maxSockets": 3
+    },
+    {
+      "id": "items/base/helm-casque",
+      "type": "armor",
+      "sockets": 3,
+      "maxSockets": 3
+    },
+    {
+      "id": "items/base/helm-armet",
+      "type": "armor",
+      "sockets": 4,
+      "maxSockets": 4
+    },
+    {
+      "id": "items/base/helm-giant-conch",
+      "type": "armor",
+      "sockets": 4,
+      "maxSockets": 4
+    },
+    {
+      "id": "items/base/armor-quilted",
+      "type": "armor",
+      "sockets": 2,
+      "maxSockets": 2
+    },
+    {
+      "id": "items/base/armor-leather",
+      "type": "armor",
+      "sockets": 2,
+      "maxSockets": 2
+    },
+    {
+      "id": "items/base/armor-chain-mail",
+      "type": "armor",
+      "sockets": 3,
+      "maxSockets": 3
+    },
+    {
+      "id": "items/base/armor-breast-plate",
+      "type": "armor",
+      "sockets": 3,
+      "maxSockets": 3
+    },
+    {
+      "id": "items/base/armor-dusk-shroud",
+      "type": "armor",
+      "sockets": 4,
+      "maxSockets": 4
+    },
+    {
+      "id": "items/base/armor-archon-plate",
+      "type": "armor",
+      "sockets": 4,
+      "maxSockets": 4
+    },
+    {
+      "id": "items/base/glove-leather",
+      "type": "armor",
+      "sockets": 1,
+      "maxSockets": 1
+    },
+    {
+      "id": "items/base/glove-heavy",
+      "type": "armor",
+      "sockets": 2,
+      "maxSockets": 2
+    },
+    {
+      "id": "items/base/glove-chain",
+      "type": "armor",
+      "sockets": 2,
+      "maxSockets": 2
+    },
+    {
+      "id": "items/base/glove-light-gauntlets",
+      "type": "armor",
+      "sockets": 3,
+      "maxSockets": 3
+    },
+    {
+      "id": "items/base/glove-vampirebone",
+      "type": "armor",
+      "sockets": 3,
+      "maxSockets": 3
+    },
+    {
+      "id": "items/base/glove-bramble-mitts",
+      "type": "armor",
+      "sockets": 4,
+      "maxSockets": 4
+    },
+    {
+      "id": "items/base/boot-leather",
+      "type": "armor",
+      "sockets": 1,
+      "maxSockets": 1
+    },
+    {
+      "id": "items/base/boot-heavy",
+      "type": "armor",
+      "sockets": 2,
+      "maxSockets": 2
+    },
+    {
+      "id": "items/base/boot-chain",
+      "type": "armor",
+      "sockets": 2,
+      "maxSockets": 2
+    },
+    {
+      "id": "items/base/boot-light-plated",
+      "type": "armor",
+      "sockets": 3,
+      "maxSockets": 3
+    },
+    {
+      "id": "items/base/boot-demonhide",
+      "type": "armor",
+      "sockets": 3,
+      "maxSockets": 3
+    },
+    {
+      "id": "items/base/boot-myrmidon-greaves",
+      "type": "armor",
+      "sockets": 4,
+      "maxSockets": 4
+    },
+    {
+      "id": "items/base/belt-sash",
+      "type": "armor",
+      "sockets": 1,
+      "maxSockets": 1
+    },
+    {
+      "id": "items/base/belt-light",
+      "type": "armor",
+      "sockets": 1,
+      "maxSockets": 1
+    },
+    {
+      "id": "items/base/belt-heavy",
+      "type": "armor",
+      "sockets": 2,
+      "maxSockets": 2
+    },
+    {
+      "id": "items/base/belt-plated",
+      "type": "armor",
+      "sockets": 2,
+      "maxSockets": 2
+    },
+    {
+      "id": "items/base/belt-demonhide",
+      "type": "armor",
+      "sockets": 3,
+      "maxSockets": 3
+    },
+    {
+      "id": "items/base/belt-mithril-coil",
+      "type": "armor",
+      "sockets": 3,
+      "maxSockets": 3
+    },
+    {
+      "id": "items/base/ring-iron",
+      "type": "jewelry",
+      "maxSockets": 0
+    },
+    {
+      "id": "items/base/ring-silver",
+      "type": "jewelry",
+      "maxSockets": 0
+    },
+    {
+      "id": "items/base/ring-jade",
+      "type": "jewelry",
+      "maxSockets": 0
+    },
+    {
+      "id": "items/base/ring-amber",
+      "type": "jewelry",
+      "maxSockets": 0
+    },
+    {
+      "id": "items/base/ring-obsidian",
+      "type": "jewelry",
+      "maxSockets": 0
+    },
+    {
+      "id": "items/base/ring-zircon",
+      "type": "jewelry",
+      "maxSockets": 0
+    },
+    {
+      "id": "items/base/amu-tin",
+      "type": "jewelry",
+      "maxSockets": 0
+    },
+    {
+      "id": "items/base/amu-brass",
+      "type": "jewelry",
+      "maxSockets": 0
+    },
+    {
+      "id": "items/base/amu-silver",
+      "type": "jewelry",
+      "maxSockets": 0
+    },
+    {
+      "id": "items/base/amu-jade",
+      "type": "jewelry",
+      "maxSockets": 0
+    },
+    {
+      "id": "items/base/amu-obsidian",
+      "type": "jewelry",
+      "maxSockets": 0
+    },
+    {
+      "id": "items/base/amu-zircon",
+      "type": "jewelry",
+      "maxSockets": 0
+    },
+    {
+      "id": "items/base/wp1h-short-sword",
+      "type": "weapon",
+      "sockets": 2,
+      "maxSockets": 2
+    },
+    {
+      "id": "items/base/wp1h-scimitar",
+      "type": "weapon",
+      "sockets": 2,
+      "maxSockets": 2
+    },
+    {
+      "id": "items/base/wp1h-long-sword",
+      "type": "weapon",
+      "sockets": 3,
+      "maxSockets": 3
+    },
+    {
+      "id": "items/base/wp1h-war-sword",
+      "type": "weapon",
+      "sockets": 3,
+      "maxSockets": 3
+    },
+    {
+      "id": "items/base/wp1h-phase-blade",
+      "type": "weapon",
+      "sockets": 4,
+      "maxSockets": 4
+    },
+    {
+      "id": "items/base/wp1h-legend-sword",
+      "type": "weapon",
+      "sockets": 6,
+      "maxSockets": 6
+    },
+    {
+      "id": "items/base/wp2h-two-handed-sword",
+      "type": "weapon",
+      "sockets": 2,
+      "maxSockets": 2
+    },
+    {
+      "id": "items/base/wp2h-great-axe",
+      "type": "weapon",
+      "sockets": 2,
+      "maxSockets": 2
+    },
+    {
+      "id": "items/base/wp2h-war-pike",
+      "type": "weapon",
+      "sockets": 3,
+      "maxSockets": 3
+    },
+    {
+      "id": "items/base/wp2h-giant-thresher",
+      "type": "weapon",
+      "sockets": 4,
+      "maxSockets": 4
+    },
+    {
+      "id": "items/base/wp2h-colossus-blade",
+      "type": "weapon",
+      "sockets": 5,
+      "maxSockets": 5
+    },
+    {
+      "id": "items/base/wp2h-thunder-maul",
+      "type": "weapon",
+      "sockets": 6,
+      "maxSockets": 6
+    },
+    {
+      "id": "items/base/sh-buckler",
+      "type": "armor",
+      "sockets": 1,
+      "maxSockets": 1
+    },
+    {
+      "id": "items/base/sh-kite",
+      "type": "armor",
+      "sockets": 2,
+      "maxSockets": 2
+    },
+    {
+      "id": "items/base/sh-aegis",
+      "type": "armor",
+      "sockets": 3,
+      "maxSockets": 3
+    },
+    {
+      "id": "items/base/sh-dragon-shield",
+      "type": "armor",
+      "sockets": 3,
+      "maxSockets": 3
+    },
+    {
+      "id": "items/base/sh-monarch",
+      "type": "armor",
+      "sockets": 4,
+      "maxSockets": 4
+    },
+    {
+      "id": "items/base/sh-sacred-targe",
+      "type": "armor",
+      "sockets": 4,
+      "maxSockets": 4
+    },
+    {
+      "id": "items/base/ring",
+      "type": "jewelry",
+      "sockets": 0,
+      "maxSockets": 0
+    },
+    {
+      "id": "items/base/gloves",
+      "type": "armor",
+      "sockets": 0,
+      "maxSockets": 0
+    },
+    {
+      "id": "items/base/boots",
+      "type": "armor",
+      "sockets": 0,
+      "maxSockets": 0
+    },
+    {
+      "id": "items/base/belt",
+      "type": "armor",
+      "sockets": 0,
+      "maxSockets": 0
+    },
+    {
+      "id": "items/base/armor-light",
+      "type": "armor",
+      "sockets": 2,
+      "maxSockets": 2
+    },
+    {
+      "id": "items/base/armor-heavy",
+      "type": "armor",
+      "sockets": 3,
+      "maxSockets": 3
+    },
+    {
+      "id": "items/base/weapon-bow",
+      "type": "weapon",
+      "sockets": 2,
+      "maxSockets": 2
+    },
+    {
+      "id": "items/base/weapon-crossbow",
+      "type": "weapon",
+      "sockets": 2,
+      "maxSockets": 2
+    },
+    {
+      "id": "items/base/weapon-polearm",
+      "type": "weapon",
+      "sockets": 3,
+      "maxSockets": 3
+    },
+    {
+      "id": "items/base/weapon-wand",
+      "type": "weapon",
+      "sockets": 1,
+      "maxSockets": 1
+    },
+    {
+      "id": "items/base/weapon-scepter",
+      "type": "weapon",
+      "sockets": 2,
+      "maxSockets": 2
+    },
+    {
+      "id": "items/base/weapon-mace",
+      "type": "weapon",
+      "sockets": 2,
+      "maxSockets": 2
+    },
+    {
+      "id": "items/base/weapon-axe",
+      "type": "weapon",
+      "sockets": 2,
+      "maxSockets": 2
+    },
+    {
+      "id": "items/base/weapon-bow-training",
+      "type": "weapon",
+      "sockets": 0,
+      "maxSockets": 0
+    }
+  ],
+  "runeIds": [
+    "runes/el",
+    "runes/eld",
+    "runes/tir",
+    "runes/nef",
+    "runes/eth",
+    "runes/ith",
+    "runes/tal",
+    "runes/ral",
+    "runes/ort",
+    "runes/thul",
+    "runes/amn",
+    "runes/sol",
+    "runes/shael",
+    "runes/dol",
+    "runes/hel",
+    "runes/io",
+    "runes/lum",
+    "runes/ko",
+    "runes/fal",
+    "runes/lem",
+    "runes/pul",
+    "runes/um",
+    "runes/mal",
+    "runes/ist",
+    "runes/gul",
+    "runes/vex",
+    "runes/ohm",
+    "runes/lo",
+    "runes/sur",
+    "runes/ber",
+    "runes/jah",
+    "runes/cham",
+    "runes/zod"
+  ],
+  "runewords": [
+    {
+      "id": "runewords/steel",
+      "runes": [
+        "runes/tir",
+        "runes/el"
+      ],
+      "sockets": 2,
+      "allowedBases": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "runewords/stealth",
+      "runes": [
+        "runes/tal",
+        "runes/eth"
+      ],
+      "sockets": 2,
+      "allowedBases": [
+        "armor"
+      ]
+    },
+    {
+      "id": "runewords/leaf",
+      "runes": [
+        "runes/tir",
+        "runes/ral"
+      ],
+      "sockets": 2,
+      "allowedBases": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "runewords/malice",
+      "runes": [
+        "runes/ith",
+        "runes/el",
+        "runes/eth"
+      ],
+      "sockets": 3,
+      "allowedBases": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "runewords/strength",
+      "runes": [
+        "runes/amn",
+        "runes/tir"
+      ],
+      "sockets": 2,
+      "allowedBases": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "runewords/ancients-pledge",
+      "runes": [
+        "runes/ral",
+        "runes/ort",
+        "runes/tal"
+      ],
+      "sockets": 3,
+      "allowedBases": [
+        "armor"
+      ]
+    },
+    {
+      "id": "runewords/lore",
+      "runes": [
+        "runes/ort",
+        "runes/sol"
+      ],
+      "sockets": 2,
+      "allowedBases": [
+        "armor"
+      ]
+    },
+    {
+      "id": "runewords/wealth",
+      "runes": [
+        "runes/lem",
+        "runes/ko",
+        "runes/tir"
+      ],
+      "sockets": 3,
+      "allowedBases": [
+        "armor"
+      ]
+    },
+    {
+      "id": "runewords/steelclash",
+      "runes": [
+        "runes/shael",
+        "runes/eth",
+        "runes/lum"
+      ],
+      "sockets": 3,
+      "allowedBases": [
+        "armor"
+      ]
+    },
+    {
+      "id": "runewords/smoke",
+      "runes": [
+        "runes/nef",
+        "runes/lum"
+      ],
+      "sockets": 2,
+      "allowedBases": [
+        "armor"
+      ]
+    },
+    {
+      "id": "runewords/rhyme",
+      "runes": [
+        "runes/shael",
+        "runes/eth"
+      ],
+      "sockets": 2,
+      "allowedBases": [
+        "armor"
+      ]
+    },
+    {
+      "id": "runewords/insight",
+      "runes": [
+        "runes/ral",
+        "runes/tir",
+        "runes/tal",
+        "runes/sol"
+      ],
+      "sockets": 4,
+      "allowedBases": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "runewords/treachery",
+      "runes": [
+        "runes/shael",
+        "runes/thul",
+        "runes/lem"
+      ],
+      "sockets": 3,
+      "allowedBases": [
+        "armor"
+      ]
+    },
+    {
+      "id": "runewords/duress",
+      "runes": [
+        "runes/shael",
+        "runes/um",
+        "runes/thul"
+      ],
+      "sockets": 3,
+      "allowedBases": [
+        "armor"
+      ]
+    },
+    {
+      "id": "runewords/spirit",
+      "runes": [
+        "runes/tal",
+        "runes/thul",
+        "runes/ort",
+        "runes/amn"
+      ],
+      "sockets": 4,
+      "allowedBases": [
+        "weapon",
+        "armor"
+      ]
+    },
+    {
+      "id": "runewords/lionheart",
+      "runes": [
+        "runes/hel",
+        "runes/lum",
+        "runes/fal"
+      ],
+      "sockets": 3,
+      "allowedBases": [
+        "armor"
+      ]
+    },
+    {
+      "id": "runewords/obedience",
+      "runes": [
+        "runes/hel",
+        "runes/ko",
+        "runes/thul",
+        "runes/eth",
+        "runes/fal"
+      ],
+      "sockets": 5,
+      "allowedBases": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "runewords/passion",
+      "runes": [
+        "runes/dol",
+        "runes/ort",
+        "runes/eld",
+        "runes/lem"
+      ],
+      "sockets": 4,
+      "allowedBases": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "runewords/oath",
+      "runes": [
+        "runes/shael",
+        "runes/pul",
+        "runes/mal",
+        "runes/lum"
+      ],
+      "sockets": 4,
+      "allowedBases": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "runewords/fortitude",
+      "runes": [
+        "runes/el",
+        "runes/sol",
+        "runes/dol",
+        "runes/lo"
+      ],
+      "sockets": 4,
+      "allowedBases": [
+        "weapon",
+        "armor"
+      ]
+    },
+    {
+      "id": "runewords/call-to-arms",
+      "runes": [
+        "runes/amn",
+        "runes/ral",
+        "runes/mal",
+        "runes/ist",
+        "runes/ohm"
+      ],
+      "sockets": 5,
+      "allowedBases": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "runewords/heart-of-the-oak",
+      "runes": [
+        "runes/ko",
+        "runes/vex",
+        "runes/pul",
+        "runes/thul"
+      ],
+      "sockets": 4,
+      "allowedBases": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "runewords/enigma",
+      "runes": [
+        "runes/jah",
+        "runes/ith",
+        "runes/ber"
+      ],
+      "sockets": 3,
+      "allowedBases": [
+        "armor"
+      ]
+    },
+    {
+      "id": "runewords/breath-of-the-dying",
+      "runes": [
+        "runes/vex",
+        "runes/hel",
+        "runes/el",
+        "runes/eld",
+        "runes/zod",
+        "runes/eth"
+      ],
+      "sockets": 6,
+      "allowedBases": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "runewords/grief",
+      "runes": [
+        "runes/eth",
+        "runes/tir",
+        "runes/lo",
+        "runes/mal",
+        "runes/ral"
+      ],
+      "sockets": 5,
+      "allowedBases": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "runewords/infinity",
+      "runes": [
+        "runes/ber",
+        "runes/mal",
+        "runes/ber",
+        "runes/ist"
+      ],
+      "sockets": 4,
+      "allowedBases": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "runewords/beast",
+      "runes": [
+        "runes/ber",
+        "runes/tir",
+        "runes/um",
+        "runes/mal",
+        "runes/lum"
+      ],
+      "sockets": 5,
+      "allowedBases": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "runewords/chains-of-honor",
+      "runes": [
+        "runes/dol",
+        "runes/um",
+        "runes/ber",
+        "runes/ist"
+      ],
+      "sockets": 4,
+      "allowedBases": [
+        "armor"
+      ]
+    },
+    {
+      "id": "runewords/bramble",
+      "runes": [
+        "runes/ral",
+        "runes/ohm",
+        "runes/sur",
+        "runes/eth"
+      ],
+      "sockets": 4,
+      "allowedBases": [
+        "armor"
+      ]
+    },
+    {
+      "id": "runewords/last-wish",
+      "runes": [
+        "runes/jah",
+        "runes/mal",
+        "runes/jah",
+        "runes/sur",
+        "runes/jah",
+        "runes/ber"
+      ],
+      "sockets": 6,
+      "allowedBases": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "runewords/phoenix",
+      "runes": [
+        "runes/vex",
+        "runes/vex",
+        "runes/lo",
+        "runes/jah"
+      ],
+      "sockets": 4,
+      "allowedBases": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "runewords/dream",
+      "runes": [
+        "runes/io",
+        "runes/jah",
+        "runes/pul"
+      ],
+      "sockets": 3,
+      "allowedBases": [
+        "armor"
+      ]
+    },
+    {
+      "id": "runewords/hand-of-justice",
+      "runes": [
+        "runes/sur",
+        "runes/cham",
+        "runes/amn",
+        "runes/lo"
+      ],
+      "sockets": 4,
+      "allowedBases": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "runewords/exile",
+      "runes": [
+        "runes/vex",
+        "runes/ohm",
+        "runes/ist",
+        "runes/dol"
+      ],
+      "sockets": 4,
+      "allowedBases": [
+        "weapon"
+      ]
+    },
+    {
+      "id": "runewords/death",
+      "runes": [
+        "runes/hel",
+        "runes/el",
+        "runes/vex",
+        "runes/ort",
+        "runes/gul"
+      ],
+      "sockets": 5,
+      "allowedBases": [
+        "weapon"
+      ]
+    }
+  ]
+}

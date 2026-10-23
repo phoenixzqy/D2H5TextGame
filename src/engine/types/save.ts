@@ -1,3 +1,4 @@
+import type { HistoricalItem } from '../save/historical-items';
 /**
  * Save system types
  * @module engine/types/save
@@ -8,7 +9,7 @@ import { migrateSaveV17 } from '../save/migrate-v17';
 import { migrateLegacyStarter } from '../save/legacyStarter';
 import type { Player, Mercenary } from './entities';
 import type { DerivedStats } from './attributes';
-import type { EquipmentSlot, Inventory, Item } from './items';
+import type { EquipmentSlot, Inventory } from './items';
 import type { MapProgress } from './maps';
 import type { GridPosition } from '../combat/types';
 import type { MaterialLedger } from '../loot/materials';
@@ -84,12 +85,18 @@ export interface QuestProgressData {
 export type LegacyDerivedStats = Omit<DerivedStats, 'magicResist'> & {
   readonly magicResist?: number;
 };
-export type LegacyPlayer = Omit<Player, 'derivedStats' | 'selectedAuraId'> & {
+export type LegacyPlayer = Omit<Player, 'derivedStats' | 'selectedAuraId' | 'equipment'> & {
   readonly derivedStats: LegacyDerivedStats;
+  readonly equipment: readonly HistoricalItem[];
 };
-export type LegacyMercenary = Omit<Mercenary, 'derivedStats'> & {
+export type LegacyMercenary = Omit<Mercenary, 'derivedStats' | 'equipment'> & {
   readonly derivedStats: LegacyDerivedStats;
+  readonly equipment: readonly HistoricalItem[];
 };
+
+/** Actor payloads retain the historical equipment contract through v18. */
+export type HistoricalPlayer = Omit<Player, 'equipment'> & { readonly equipment: readonly HistoricalItem[] };
+export type HistoricalMercenary = Omit<Mercenary, 'equipment'> & { readonly equipment: readonly HistoricalItem[] };
 
 /**
  * Save file v1 (legacy — engine-shape, never deployed to users).
@@ -99,7 +106,10 @@ export type LegacyMercenary = Omit<Mercenary, 'derivedStats'> & {
 export interface SaveV1 {
   readonly version: 1;
   readonly player: LegacyPlayer;
-  readonly inventory: Inventory;
+  readonly inventory: Omit<Inventory, 'backpack' | 'stash' | 'equipment'> & {
+    readonly backpack: readonly HistoricalItem[]; readonly stash: readonly HistoricalItem[];
+    readonly equipment: ReadonlyMap<EquipmentSlot, HistoricalItem>;
+  };
   readonly mercenaries: readonly LegacyMercenary[];
   readonly activeMercId?: string;
   readonly mapProgress: MapProgress;
@@ -114,9 +124,9 @@ export interface SaveV1 {
  * is a near-direct copy with no lossy conversion.
  */
 export interface InventorySaveData {
-  readonly backpack: readonly Item[];
-  readonly stash: readonly Item[];
-  readonly equipped: Readonly<Record<string, Item | null>>;
+  readonly backpack: readonly HistoricalItem[];
+  readonly stash: readonly HistoricalItem[];
+  readonly equipped: Readonly<Record<string, HistoricalItem | null>>;
   readonly currencies: Readonly<Record<string, number>>;
 }
 
@@ -145,9 +155,9 @@ export interface MercProgressSaveData {
 
 /** Persisted mercenary snapshot. */
 export interface MercSaveData {
-  readonly ownedMercs: readonly Mercenary[];
+  readonly ownedMercs: readonly HistoricalMercenary[];
   readonly fieldedMercId: string | null;
-  readonly mercEquipment: Readonly<Record<string, Partial<Record<EquipmentSlot, Item | null>>>>;
+  readonly mercEquipment: Readonly<Record<string, Partial<Record<EquipmentSlot, HistoricalItem | null>>>>;
   readonly mercProgress: Readonly<Record<string, MercProgressSaveData>>;
 }
 
@@ -262,12 +272,12 @@ export interface SaveV8 extends Omit<SaveV7, 'version'> {
 /** Save file v9 — explicit independent magical mitigation for every saved actor. */
 export interface SaveV9 extends Omit<SaveV8, 'version' | 'player' | 'mercs'> {
   readonly version: 9;
-  readonly player: Omit<Player, 'selectedAuraId'>;
+  readonly player: Omit<HistoricalPlayer, 'selectedAuraId'>;
   readonly mercs: MercSaveData;
 }
 
 /** Frozen v10 selection: widening live Player must never widen historical saves. */
-export type SaveV10Player = Omit<Player, 'selectedAuraId'> & {
+export type SaveV10Player = Omit<HistoricalPlayer, 'selectedAuraId'> & {
   readonly selectedAuraId?: 'paladin.might';
 };
 
@@ -280,7 +290,7 @@ export interface SaveV10 extends Omit<SaveV9, 'version' | 'player'> {
 /** Save file v11 — exclusive canonical Might or Meditation selection; absent means None. */
 export interface SaveV11 extends Omit<SaveV10, 'version' | 'player'> {
   readonly version: 11;
-  readonly player: Omit<Player, 'selectedAuraId'> & {
+  readonly player: Omit<HistoricalPlayer, 'selectedAuraId'> & {
     readonly selectedAuraId?: 'paladin.might' | 'paladin.meditation';
   };
 }
@@ -289,7 +299,7 @@ export interface SaveV11 extends Omit<SaveV10, 'version' | 'player'> {
 export interface SaveV12 extends Omit<SaveV11, 'version' | 'inventory' | 'player'> {
   readonly version: 12;
   readonly inventory: QuestInventorySaveData;
-  readonly player: Player;
+  readonly player: HistoricalPlayer;
 }
 
 /** Save file v13 — objective-bound retained tools alongside unchanged reward receipts. */
@@ -323,7 +333,7 @@ export type LegacyGearOrigin = { readonly container: 'backpack' | 'stash'; reado
   | { readonly container: 'equipped'; readonly slot: EquipmentSlot }
   | { readonly container: 'mercEquipment'; readonly mercId: string; readonly slot: EquipmentSlot };
 export interface LegacyGearQuarantineEntry {
-  readonly item: Item;
+  readonly item: HistoricalItem;
   readonly origin: LegacyGearOrigin;
 }
 export interface ServiceInventorySaveData extends QuestInventorySaveData {
@@ -360,13 +370,13 @@ export const MIGRATIONS: Record<number, Migration> = {
   /** v1 (legacy engine-shape) → v2 (store-shape). */
   2: (raw: unknown): SaveV2 => {
     const v1 = raw as SaveV1;
-    const equipped: Record<string, Item | null> = {};
+    const equipped: Record<string, HistoricalItem | null> = {};
     const eq: unknown = v1.inventory.equipment;
     if (eq instanceof Map) {
-      for (const [slot, item] of eq) equipped[slot as string] = item as Item;
+      for (const [slot, item] of eq) equipped[slot as string] = item as HistoricalItem;
     } else if (Array.isArray(eq)) {
       // Already JSON-serialized via toJsonSafe: [[slot, item], ...]
-      for (const entry of eq as readonly (readonly [string, Item])[]) {
+      for (const entry of eq as readonly (readonly [string, HistoricalItem])[]) {
         equipped[entry[0]] = entry[1];
       }
     }
@@ -441,13 +451,13 @@ export const MIGRATIONS: Record<number, Migration> = {
   /** v4 to v5: ensure legacy items have rolled-instance containers. */
   5: (raw: unknown): SaveV5 => {
     const v4 = raw as SaveV4;
-    const migrateItem = (item: Item): Item => ({
+    const migrateItem = (item: HistoricalItem): HistoricalItem => ({
       ...item,
       ilvl: item.ilvl ?? item.level,
       baseRolls: item.baseRolls ?? {},
       affixes: item.affixes ?? []
     });
-    const migrateItemOrNull = (item: Item | null): Item | null => item ? migrateItem(item) : null;
+    const migrateItemOrNull = (item: HistoricalItem | null): HistoricalItem | null => item ? migrateItem(item) : null;
     return {
       ...v4,
       version: 5,
@@ -466,12 +476,12 @@ export const MIGRATIONS: Record<number, Migration> = {
   /** v5 to v6: ensure definition-backed item fields have JSON-safe defaults. */
   6: (raw: unknown): SaveV6 => {
     const v5 = raw as SaveV5;
-    const migrateItem = (item: Item): Item => ({
+    const migrateItem = (item: HistoricalItem): HistoricalItem => ({
       ...item,
       statRolls: item.statRolls ?? {},
       affixes: item.affixes ?? []
     });
-    const migrateItemOrNull = (item: Item | null): Item | null => item ? migrateItem(item) : null;
+    const migrateItemOrNull = (item: HistoricalItem | null): HistoricalItem | null => item ? migrateItem(item) : null;
     return {
       ...v5,
       version: 6,

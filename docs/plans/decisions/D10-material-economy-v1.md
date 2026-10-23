@@ -454,3 +454,57 @@ valid exactly when no receipt exists. A positive ordinal requires exactly one
 closed latest receipt with equal ordinal, a canonical bounded request hash and
 both required closed result maps. Malformed/missing/mismatched receipt and
 predecessor-field-laundering controls are mandatory.
+
+## Item-granted skill adaptation amendment — 2026-10-23
+
+`[GD-D10-GRANTS]: APPROVE` from the designated read-only design reviewer.
+These are newly approved v19 defaults, not numbers authorized by earlier D10
+text, implemented behavior, or measured earned balance. Derive them only from
+validated equipped words for a qualifying hero or merc. They are self-only and
+independent of the player's selected aura. Backpack/stash/quarantine grant none.
+
+| Word | Exact adaptation |
+| --- | --- |
+| Leaf | `sorceress.fire_bolt` rank3 plus12% direct fire damage; describe this explicitly rather than claiming +3 all Fire skills |
+| Infinity / aura-conviction | Rank5:10% direct fire/cold/lightning/poison damage and5% direct arcane damage; no enemy-resistance-reduction promise |
+| Beast / skill-lycanthropy | Rank5:15% maxLife and5% attackSpeed, without requiring transformation |
+| Bramble / aura-thorns-aura | Rank5:20% reflection of actual HP lost to a successful enemy direct physical hit, under the bounded rules below |
+| Last Wish / skill-fade | Rank5:10 resistance points in all six types and.025 magicDodge |
+| Phoenix / aura-redemption | `item.redemption`: self-heal floor(10% maxLife),0MP,4s CD, one ordinary action; plus10% of existing MP regeneration rate |
+| Dream / aura-holy-shock | Rank5:15% direct lightning damage; no autonomous pulse |
+| Hand of Justice / skill-blaze | Real `sorceress.blaze` rank5, using its authored damage,22MP,3s CD, targeting, burn and tags |
+| Exile / aura-defiance | Rank5:20% defense |
+| Death / skill-chain-lightning | Real `sorceress.chain_lightning` rank5, using its authored damage,25MP,2s CD, line-3 targeting, paralyze and tags |
+
+Duplicate sources of a named adaptation use the highest grant rank, not a sum.
+Different named damage increases add to the existing increasedDamagePct bucket.
+Life/defense/attack-speed percentages apply once after ordinary flat equipment
+composition; recomposition preserves current HP/MP and never heals. Retain the
+existing resistance and dodge limits.
+
+Granted actives appear in the combo editor. Preserve explicit priority and
+append missing granted actives after the stored order, before basic fallback,
+in fixed equipment-slot order. Canonicalize aliases and deduplicate. Effective
+active rank is max(legal learned rank, granted rank), capped by source maximum;
+no learned allocation, prerequisite payment or permanent skill ownership is
+created. Unequip removes source-only availability even if a stored combo entry
+remains. Ordinary action, mana, cooldown and target/eligibility rules apply.
+
+Thorns requires the bearer to survive a successful hostile direct physical hit
+with positive actual HP loss. Raw reflection is max(1,floor(actualHpLost*.20)),
+then uses existing thorns physical-resistance/defense/minimum-damage rules. It
+has no dodge, crit, combo, increased-damage multiplier or battle RNG. No DoT,
+friendly or reflected damage triggers it; reflection never recursively reflects.
+Emit ordinary damage/death evidence.
+
+Redemption uses existing HealEffect availability/clamping, only while alive,
+injured and able to heal; it never resurrects or consumes a corpse. Multiply the
+existing MP regeneration baseline by1.10; a zero baseline stays zero. Freeze the
+authoritative hero/merc equipment projection at wave creation for playback;
+no mid-playback store lookups, summon inheritance or party aura are introduced.
+No derived-bonus cache is persisted.
+
+Acceptance requires individual positive/removal/duplicate-source controls for
+all ten rows, hero/merc parity, active priority/payment, preserved HP/MP,
+deterministic reflection/replay and the existing earned UI/save requirements.
+Mapping grant strings to generic passive markers alone is not implementation.
