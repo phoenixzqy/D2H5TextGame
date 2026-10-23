@@ -227,8 +227,8 @@ function firstDamage(unit: CombatUnit) {
 }
 
 
-describe('active run carry remains frozen', () => {
-  it('keeps recorded merc stats and depleted resources through the next wave', () => {
+describe('equipment freezes per wave and resources carry between waves', () => {
+  it('refreshes current merc equipment next wave while preserving depleted resources', () => {
     const merc = arrange();
     const hero = usePlayerStore.getState().player;
     if (!hero) throw new Error('Missing hero');
@@ -257,15 +257,67 @@ describe('active run carry remains frozen', () => {
     const outcome = useCombatStore.getState().outcome;
     expect(outcome?.winner).toBe('player');
     if (!outcome) throw new Error('Missing real recorded outcome');
+    const frozen = structuredClone({ team: useCombatStore.getState().playerTeam,
+      events: useCombatStore.getState().recordedEvents, outcome });
     expect(useMercStore.getState().equipOnMerc(merc.id, 'head', swap)).toEqual({ ok: true });
+    expect({ team: useCombatStore.getState().playerTeam,
+      events: useCombatStore.getState().recordedEvents, outcome: useCombatStore.getState().outcome }).toEqual(frozen);
     expect(advanceWaveOrFinish()).toBe('next-wave');
     const carried = useCombatStore.getState().playerTeam.find(unit => unit.kind === 'merc');
-    expect(carried?.stats).toEqual(initial.stats);
+    // D10 grants amendment supersedes the old whole-run equipment freeze.
+    expect(carried?.stats).toEqual({ ...initial.stats, defense: 44 });
     expect([carried?.life, carried?.mana]).toEqual([135, 40]);
     abortSubAreaRun();
     const next = startMerc();
     expect(next.stats.defense).toBe(44);
     expect([next.life, next.mana]).toEqual([172, 95]);
+  });
+
+  it.each(['unequip', 'dismiss', 'remove'] as const)(
+    'removes equipped Exile next wave after %s without rewriting the fight or retargeting the merc', removal => {
+    const original = arrange();
+    // Explicit constructed level permits the real L57 transfer; no earned/balance claim.
+    const merc = { ...original, level: 60 };
+    const bench = { ...merc, id: 'bench-exile-control', derivedStats: { ...merc.derivedStats, defense: 999 } };
+    useMercStore.setState({ ownedMercs: [merc, bench] });
+    const hero = usePlayerStore.getState().player;
+    if (!hero) throw new Error('Missing hero');
+    registerSkill({ id: 'fixture.exile-finisher', archetype: 'fixture',
+      target: 'all-enemies', minLevel: 1, cooldown: 1, manaCost: 8,
+      effects: [{ kind: 'damage', damageType: 'physical', base: [100_000, 100_000] }] });
+    usePlayerStore.getState().setPlayer({ ...hero, comboOrder: ['fixture.exile-finisher'] });
+    const shield: Item = { id: 'wave-exile', baseId: 'items/base/sh-monarch', rarity: 'runeword',
+      level: 60, identified: true, equipped: false, baseRolls: { defense: 64 },
+      socketCapacity: 4, runewordId: 'runewords/exile',
+      socketContents: ['vex', 'ohm', 'ist', 'dol'].map(id => ({ kind: 'rune', id: `runes/${id}` })) };
+    useInventoryStore.getState().addItem(shield);
+    expect(useMercStore.getState().equipOnMerc(merc.id, 'offhand', shield)).toEqual({ ok: true });
+    const initial = startMerc();
+    expect(initial.stats.defense).toBeCloseTo(382.8, 12);
+    const state = useCombatStore.getState();
+    const before = structuredClone({ team: state.playerTeam, events: state.recordedEvents, outcome: state.outcome });
+    if (removal === 'remove') {
+      useMercStore.getState().removeMerc(merc.id);
+    } else {
+      expect(useMercStore.getState().unequipFromMerc(merc.id, 'offhand')).toEqual({ ok: true });
+      if (removal === 'dismiss') expect(useMercStore.getState().dismissMerc(merc.id)).toBe(true);
+    }
+    useMercStore.getState().setFieldedMerc(bench.id);
+    expect({ team: useCombatStore.getState().playerTeam, events: useCombatStore.getState().recordedEvents,
+      outcome: useCombatStore.getState().outcome }).toEqual(before);
+    state.recordedEvents.forEach(() => { useCombatStore.getState().advanceEvent(); });
+    expect(useCombatStore.getState().outcome?.winner).toBe('player');
+    const final = useCombatStore.getState().outcome?.finalPlayerTeam.find(unit => unit.kind === 'merc');
+    if (!final) throw new Error('Missing recorded merc outcome');
+    expect(advanceWaveOrFinish()).toBe('next-wave');
+    const next = useCombatStore.getState().playerTeam.find(unit => unit.kind === 'merc');
+    expect(next?.id).toBe(`merc-${merc.id}`);
+    expect(next?.stats).toEqual(merc.derivedStats);
+    expect(next?.stats.defense).toBe(35);
+    // Dol and Exile also raised maxLife; removal clamps overflow without refilling.
+    expect([next?.life, next?.mana]).toEqual([Math.min(final.life, merc.derivedStats.lifeMax), final.mana]);
+    expect(useMercStore.getState().ownedMercs.find(row => row.id === merc.id)?.derivedStats)
+      .toEqual(removal === 'unequip' ? merc.derivedStats : undefined);
   });
 
   it('leaves missing or unowned fielded identities out of the team', () => {

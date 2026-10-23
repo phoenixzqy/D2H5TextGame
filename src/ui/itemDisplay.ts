@@ -2,6 +2,7 @@ import type { TFunction } from 'i18next';
 import { loadItemBases, loadSetPieces, loadSets, loadUniques } from '@/data/loaders/loot';
 import { resolveStatPackage, type ResolvedStatValue } from '@/engine/items/statRolls';
 import { socketBonusPackages } from '@/engine/items/socket-contents';
+import { resolveItemRunewordGrants } from '@/engine/items/runeword-grants';
 import type { Item, SetDef, SetPieceDef, UniqueItemDef } from '@/engine/types/items';
 import { tDataKey, tItemBaseName } from './i18nKey';
 
@@ -93,8 +94,14 @@ export function formatDisplayStat(stat: ResolvedStatValue, t: TFunction): Displa
 export function resolveSocketDisplayLines(item: Item, t: TFunction): readonly DisplayStatLine[] {
   const base = loadItemBases().get(item.baseId);
   if (!base || !item.socketContents?.length) return [];
-  return socketBonusPackages(item, base).flatMap(stats => resolveStatPackage(stats, item.statRolls))
+  const lines = socketBonusPackages(item, base).flatMap(stats => resolveStatPackage(stats, item.statRolls))
     .map(stat => formatDisplayStat(stat, t));
+  for (const grant of resolveItemRunewordGrants(item)) {
+    lines.push({ key: `grant.${grant.id}`, value: grant.defensePct,
+      label: t('inventory:detail.stat.defense'),
+      text: t('inventory:detail.grantedDefense', { percent: Number((grant.defensePct * 100).toFixed(4)) }) });
+  }
+  return lines;
 }
 
 export function resolveItemDisplay(

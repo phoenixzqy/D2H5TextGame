@@ -666,7 +666,10 @@ function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {}
       seed,
       mode,
       ...(opts.questRecovery ? { questRecovery: opts.questRecovery } : {}),
-      ...(mercUnit ? { fieldedMercCombatId: mercUnit.id } : {}),
+      ...(mercUnit && fieldedMerc ? {
+        fieldedMercCombatId: mercUnit.id,
+        fieldedMercBareUnit: Object.freeze(mercToCombatUnit(fieldedMerc, formation.mercPosition, {}))
+      } : {}),
       playerUnit,
       waveIdx: 0,
       carryPlayerTeam: playerTeam,
@@ -1001,6 +1004,11 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
   const currentPlayer = usePlayerStore.getState().player;
   const fresh = currentPlayer?.id === run.playerUnit.id
     ? playerToCombatUnit(currentPlayer) : null;
+  const mercState = useMercStore.getState();
+  const ownedMerc = mercState.ownedMercs.find(merc => `merc-${merc.id}` === run.fieldedMercCombatId);
+  const freshMerc = ownedMerc
+    ? mercToCombatUnit(ownedMerc, undefined, mercState.mercEquipment[ownedMerc.id])
+    : run.fieldedMercBareUnit;
   const mightAura = currentPlayer?.id === run.playerUnit.id
     ? composeMightAura(currentPlayer, run.fieldedMercCombatId) : undefined;
   const meditationAura = fresh && currentPlayer?.id === run.playerUnit.id
@@ -1014,6 +1022,13 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
   const poisonExplosion = currentPlayer?.id === run.playerUnit.id
     ? composePoisonExplosion(currentPlayer) : undefined;
   const playerTeam = carryPlayerTeam.map(unit => {
+    if (freshMerc && unit.kind === 'merc' && unit.id === freshMerc.id) {
+      // Equipment is authoritative at this wave boundary; current recording and
+      // carried HP/MP remain untouched. Never project the bearer bonus onto summons.
+      return { ...unit, level: freshMerc.level, stats: freshMerc.stats,
+        life: Math.min(unit.life, freshMerc.stats.lifeMax),
+        mana: Math.min(unit.mana, freshMerc.stats.manaMax) };
+    }
     if (!fresh || unit.id !== fresh.id) return unit;
     const mana = Math.min(unit.mana, fresh.stats.manaMax);
     const capped = mana >= fresh.stats.manaMax;

@@ -269,9 +269,14 @@ export interface Rune {
   readonly shieldEffect?: ItemBonusStats;
 }
 
-/**
- * Runeword definition
- */
+/** Reviewed self-only Defiance adaptation; tuning belongs to validated word data. */
+export interface RunewordGrant {
+  readonly id: 'aura-defiance';
+  readonly rank: number;
+  readonly defensePct: number;
+}
+
+/** Runeword definition. */
 export interface RuneWord {
   readonly id: string;
   readonly name: string;
@@ -291,6 +296,9 @@ export interface RuneWord {
   
   /** Granted stats */
   readonly stats: ItemBonusStats;
+
+  /** Runtime adaptations; ownership is derived from authoritative equipment, never saved separately. */
+  readonly grants?: readonly RunewordGrant[];
   
   /** Required level */
   readonly reqLevel: number;

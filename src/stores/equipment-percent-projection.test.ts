@@ -52,6 +52,28 @@ function equipHero() {
 
 describe('earned affix units reach hero, mercenary, save and display', () => {
   beforeEach(reset); afterEach(reset);
+  it('equips, saves and removes real Exile without double-counting defense or healing pools', () => {
+    usePlayerStore.getState().setPlayer({ ...hero(), level: 60 });
+    const shield: Item = { id: 'store-exile', baseId: 'items/base/sh-monarch', rarity: 'runeword',
+      runewordId: 'runewords/exile', level: 60, socketCapacity: 4, baseRolls: { defense: 64 },
+      identified: true, equipped: false,
+      socketContents: ['vex', 'ohm', 'ist', 'dol'].map(id => ({ kind: 'rune', id: `runes/${id}` })) };
+    useInventoryStore.getState().addItem(shield);
+    expect(useInventoryStore.getState().equipItem(shield)).toEqual({ ok: true });
+    const player = usePlayerStore.getState().player;
+    if (!player) throw new Error('Missing Exile wearer');
+    expect(player.derivedStats.defense).toBeCloseTo(577.2, 12);
+    expect(player.derivedStats).toMatchObject({ life: 53, mana: 47 });
+    expect(playerToCombatUnit(player).stats).toEqual(player.derivedStats);
+    const save = snapshotStores();
+    if (!save) throw new Error('Missing Exile snapshot');
+    expect(decodeSave(JSON.parse(JSON.stringify(save)) as unknown)).toEqual(save);
+    usePlayerStore.getState().recomputeDerived(useInventoryStore.getState().equipped);
+    expect(usePlayerStore.getState().player?.derivedStats).toEqual(player.derivedStats);
+    expect(useInventoryStore.getState().unequipItem('offhand')).toEqual({ ok: true });
+    expect(usePlayerStore.getState().player?.derivedStats).toMatchObject({ defense: 197, life: 53, mana: 47 });
+    expect(usePlayerStore.getState().player?.skillLevels).toEqual(player.skillLevels);
+  });
   it('projects the actual earned item once into hero cache and fresh combat, preserving pools', () => {
     const player = equipHero();
     expect(player.derivedStats.physDodge).toBeCloseTo(.12, 12);

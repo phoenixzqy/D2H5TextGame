@@ -978,10 +978,7 @@
       },
       "coreStats": {
         "vitality": 20
-      },
-      "grantsSkills": [
-        "aura-defiance"
-      ]
+      }
     },
     "runes": [
       "runes/vex",
@@ -998,6 +995,13 @@
     "sockets": 4,
     "allowedSlots": [
       "offhand"
+    ],
+    "grants": [
+      {
+        "id": "aura-defiance",
+        "rank": 5,
+        "defensePct": 0.2
+      }
     ]
   },
   {

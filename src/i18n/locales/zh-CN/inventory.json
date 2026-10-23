@@ -229,7 +229,8 @@
       "maxDamage": "最大伤害",
       "damage": "伤害",
       "magicResist": "魔法抗性"
-    }
+    },
+    "grantedDefense": "装备时：自身防御 +{{percent}}%"
   },
   "discardConfirm": {
     "title": "确认丢弃",

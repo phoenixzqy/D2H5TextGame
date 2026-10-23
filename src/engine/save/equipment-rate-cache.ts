@@ -2,6 +2,17 @@ import { loadAffixPool, loadSetPieces } from '@/data/loaders/loot';
 import { deriveEquippedPlayerStats } from '../progression/equipped-stats';
 import type { SaveCurrent } from '../types/save';
 import { hasTaintedSunEntitlement, resolveAct5ResistanceBonus } from '../progression/quest-resistance';
+import { resolveEquippedRunewordGrants } from '../items/runeword-grants';
+
+/** Repair only defense for identifiable equipped grants; unrelated historical caches stay exact. */
+export function repairRunewordDefenseCache(save: SaveCurrent): SaveCurrent {
+  if (!resolveEquippedRunewordGrants(save.inventory.equipped).some(grant => grant.defensePct > 0)) return save;
+  const defense = deriveEquippedPlayerStats(save.player, save.player.level, save.inventory.equipped,
+    save.map.questProgress, save.inventory.questItems, save.map.questReceipts).defense;
+  if (!Number.isFinite(defense)) throw new Error('Invalid save: nonfinite runeword defense');
+  if (save.player.derivedStats.defense === defense) return save;
+  return { ...save, player: { ...save.player, derivedStats: { ...save.player.derivedStats, defense } } };
+}
 
 type RateKey = 'critChance' | 'critDamage' | 'physDodge' | 'magicDodge';
 const RATE_KEYS: readonly RateKey[] = ['critChance', 'critDamage', 'physDodge', 'magicDodge'];

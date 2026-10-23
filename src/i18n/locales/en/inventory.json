@@ -229,7 +229,8 @@
       "maxDamage": "Maximum Damage",
       "damage": "Damage",
       "magicResist": "Magic Resist"
-    }
+    },
+    "grantedDefense": "While equipped: +{{percent}}% Defense (self only)"
   },
   "discardConfirm": {
     "title": "Confirm Discard",

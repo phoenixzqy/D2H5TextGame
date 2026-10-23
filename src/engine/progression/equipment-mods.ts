@@ -15,6 +15,7 @@ import type { DerivedModifiers } from './stats';
 import type { CoreStats, Resistances } from '../types/attributes';
 import type { Item, SetDef, SetPieceDef, UniqueItemDef } from '../types/items';
 import { socketBonusPackages, type CanonicalSocketItem } from '../items/socket-contents';
+import { resolveEquippedRunewordGrants } from '../items/runeword-grants';
 
 /** Additive stat deltas contributed by equipped gear. */
 export interface EquipmentMods {
@@ -26,6 +27,7 @@ export interface EquipmentMods {
   readonly mana?: number;
   readonly attack?: number;
   readonly defense?: number;
+  readonly defensePct?: number;
   readonly magicResist?: number;
   readonly attackSpeed?: number;
   readonly critChance?: number;
@@ -64,6 +66,7 @@ const ZERO_MODS: MutableEquipmentMods = {
   mana: 0,
   attack: 0,
   defense: 0,
+  defensePct: 0,
   magicResist: 0,
   attackSpeed: 0,
   critChance: 0,
@@ -140,6 +143,7 @@ export function aggregateCanonicalEquipmentMods(
     if (!base) throw new Error('Unknown canonical equipment base');
     for (const stats of socketBonusPackages(item, base)) addStatPackage(mods, stats, item.statRolls);
   }
+  for (const grant of resolveEquippedRunewordGrants(equipped)) mods.defensePct += grant.defensePct;
   return compact(mods);
 }
 

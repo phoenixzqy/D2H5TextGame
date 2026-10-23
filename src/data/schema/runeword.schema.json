@@ -60,6 +60,21 @@
     "stats": {
       "$ref": "#/$defs/stats"
     },
+    "grants": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Reviewed self-only adaptations, resolved from canonical equipped words at wave creation.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "rank", "defensePct"],
+        "properties": {
+          "id": { "const": "aura-defiance", "description": "Named adaptation; duplicate sources use the highest rank." },
+          "rank": { "type": "integer", "minimum": 1, "maximum": 20 },
+          "defensePct": { "type": "number", "minimum": 0, "maximum": 1, "description": "Fraction of the complete ordinary defense, applied once after flat equipment composition." }
+        }
+      }
+    },
     "allowedSlots": {
       "type": "array",
       "minItems": 1,

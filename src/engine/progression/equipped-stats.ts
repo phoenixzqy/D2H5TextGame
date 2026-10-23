@@ -75,6 +75,7 @@ export function prepareEquipmentStatComposition(
     }
     return {
       ...fresh,
+      defense: fresh.defense * (1 + (equipmentMods.defensePct ?? 0)),
       lifeMax,
       resistances,
       life: Math.min(lifeMax, player.derivedStats.life),

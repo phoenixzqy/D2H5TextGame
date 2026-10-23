@@ -17,6 +17,8 @@ export interface ActiveRun {
   readonly questRecovery?: 'khalims-council';
   /** Exact merc unit constructed at run start; roster changes never retarget this run. */
   readonly fieldedMercCombatId?: string;
+  /** Separate bare run-start snapshot, used only if the original roster owner disappears. */
+  readonly fieldedMercBareUnit?: Readonly<CombatUnit>;
   playerUnit: CombatUnit;
   /** Index of the wave currently being played (0-based). */
   waveIdx: number;

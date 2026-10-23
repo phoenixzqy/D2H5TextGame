@@ -24,7 +24,7 @@ import { Button } from '@/ui/Button';
 import { RarityText } from '@/ui/RarityText';
 import { getItemIconUrl } from '@/ui/imageHelpers';
 import { formatAffixRoll } from '@/ui/affixFormat';
-import { resolveItemDisplay } from '@/ui/itemDisplay';
+import { resolveItemDisplay, resolveSocketDisplayLines } from '@/ui/itemDisplay';
 import { tDataKey } from '@/ui/i18nKey';
 import { loadItemBases, resolveItemReqLevel } from '@/data/loaders/loot';
 import type { CoreStats } from '@/engine/types/attributes';
@@ -73,6 +73,7 @@ export function ItemDetailPanel({
 
   const base: ItemBase | undefined = loadItemBases().get(item.baseId);
   const display = resolveItemDisplay(item, t, equippedItems);
+  const specialStatLines = [...display.definitionStatLines, ...resolveSocketDisplayLines(item, t)];
   const displayName = display.name;
   const icon = getItemIconUrl(item);
   const ilvl = item.ilvl ?? item.level;
@@ -173,7 +174,7 @@ export function ItemDetailPanel({
           type="button"
           onClick={onClose}
           aria-label={t('close')}
-          className="shrink-0 min-h-[44px] min-w-[44px] -mr-1 -mt-1 px-2 py-1 text-d2-white/60 hover:text-d2-gold focus:outline-none focus:ring-2 focus:ring-d2-gold rounded"
+          className="shrink-0 min-h-[44px] min-w-[44px] -mt-1 px-2 py-1 text-d2-white/60 hover:text-d2-gold focus:outline-none focus:ring-2 focus:ring-d2-gold rounded"
           data-testid="inv-detail-close"
         >
           ×
@@ -245,14 +246,14 @@ export function ItemDetailPanel({
       )}
 
       {/* Set / unique flavor */}
-      {display.definitionStatLines.length > 0 && (
+      {specialStatLines.length > 0 && (
         <section data-testid="inv-detail-definition-stats">
           <h3 className="text-[10px] uppercase tracking-wide text-d2-white/50 mb-1">
             {t('detail.specialStats')}
           </h3>
           <ul className="space-y-0.5 text-xs">
-            {display.definitionStatLines.map((line) => (
-              <li key={line.key} className={rarityTextClass(item.rarity)}>
+            {specialStatLines.map((line, index) => (
+              <li key={`${line.key}-${String(index)}`} className={rarityTextClass(item.rarity)}>
                 {line.text}
               </li>
             ))}

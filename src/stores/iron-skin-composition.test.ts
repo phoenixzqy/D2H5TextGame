@@ -23,6 +23,23 @@ beforeEach(() => { useInventoryStore.getState().reset(); useFormationStore.getSt
 afterEach(() => { useInventoryStore.getState().reset(); useFormationStore.getState().reset(); });
 
 describe('P07a04B fresh combat-only Iron Skin adapter', () => {
+  it('applies Exile after flat equipment and before Iron Skin, without intermediate flooring or pool changes', () => {
+    const shield: Item = { id: 'iron-exile', baseId: 'items/base/sh-monarch', rarity: 'runeword',
+      runewordId: 'runewords/exile', level: 60, socketCapacity: 4, baseRolls: { defense: 64 },
+      identified: true, equipped: true,
+      socketContents: ['vex', 'ohm', 'ist', 'dol'].map(id => ({ kind: 'rune', id: `runes/${id}` })) };
+    useInventoryStore.setState({ equipped: { offhand: shield } });
+    const hero = player({ level: 60, skillLevels: { [CANONICAL]: 1 } });
+    const before = structuredClone(hero);
+    const unit = playerToCombatUnit(hero);
+    // (L60def197 + shield64 + word220)×1.20×1.04.
+    expect(unit.stats.defense).toBeCloseTo(600.288, 12);
+    expect([unit.life, unit.mana]).toEqual([31, 17]);
+    expect(playerToCombatUnit(hero)).toEqual(unit); expect(hero).toEqual(before);
+    useInventoryStore.setState({ equipped: {} });
+    expect(playerToCombatUnit(hero).stats.defense).toBeCloseTo(204.88, 12);
+    expect(unit.stats.defense).toBeCloseTo(600.288, 12);
+  });
   it.each([AUTHORED, CANONICAL])('uses allocated%s once at ranks1/10/20 and cap', alias => {
     const hero = player();
     expect(playerToCombatUnit(hero).stats.defense).toBe(71);
