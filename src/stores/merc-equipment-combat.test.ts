@@ -158,7 +158,7 @@ describe('equipment authority and next fresh-run boundaries', () => {
       gridPosition: { row: 2, col: 1 }, life: 172, mana: 95 });
     expect(unit.skillOrder).toEqual(mercToCombatUnit(merc).skillOrder);
     expect(unit.stats.defense).toBe(41);
-    expect(unit.equippedWeapon).toBeUndefined();
+    expect(unit.equippedWeapon).toEqual({});
   });
 });
 

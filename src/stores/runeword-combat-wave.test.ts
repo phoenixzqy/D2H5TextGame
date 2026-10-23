@@ -79,6 +79,57 @@ afterEach(() => {
 });
 
 describe('native wave-frozen runeword combat effects (constructed integration characters)', () => {
+  describe.each(['hero', 'merc'] as const)('%s active-grant wave boundaries', owner => {
+    it.each([
+      { word: 'leaf', base: 'weapon-staff', slot: 'weapon', id: 'sorceress.fire_bolt', rank: 3 },
+      { word: 'hand-of-justice', base: 'wp1h-legend-sword', slot: 'weapon', id: 'sorceress.blaze', rank: 5 },
+      { word: 'death', base: 'wp1h-legend-sword', slot: 'weapon', id: 'sorceress.chain_lightning', rank: 5 },
+      { word: 'phoenix', base: 'sh-monarch', slot: 'offhand', id: 'item.redemption', rank: 1 }
+    ] as const)('refreshes $word only at a fresh wave while preserving resources, priority and replay', row => {
+      const merc = arrange(), item = word(row.word, row.base);
+      useInventoryStore.getState().addItem(item);
+      const hero = usePlayerStore.getState().player;
+      if (!hero) throw new Error('Missing hero');
+      const id = owner === 'hero' ? hero.id : 'merc-original';
+      if (owner === 'hero') {
+        usePlayerStore.setState({ player: { ...hero, comboOrder: [FINISHER, row.id] } });
+        expect(useInventoryStore.getState().equipItem(item)).toEqual({ ok: true });
+      } else {
+        useMercStore.setState({ ownedMercs: useMercStore.getState().ownedMercs.map(candidate =>
+          candidate.id === merc.id ? { ...candidate, comboOrder: ['mskill-jab', row.id] } : candidate) });
+        expect(useMercStore.getState().equipOnMerc(merc.id, row.slot, item)).toEqual({ ok: true });
+      }
+      const originalSkills = structuredClone(usePlayerStore.getState().player?.skillLevels);
+      start();
+      expect(bearer(id).governedActiveRanks?.[row.id]).toBe(row.rank);
+      expect(bearer(id).skillOrder).toContain(row.id);
+      const original = structuredClone(latest()), installed = recording();
+      refreshActivePlayerCombatConfig({ replayCurrentWave: true });
+      expect(latest()).toEqual(original); expect(recording()).toEqual(installed);
+      if (owner === 'hero') expect(useInventoryStore.getState().unequipItem(row.slot)).toEqual({ ok: true });
+      else expect(useMercStore.getState().unequipFromMerc(merc.id, row.slot)).toEqual({ ok: true });
+      expect(recording()).toEqual(installed);
+      const final = useCombatStore.getState().outcome?.finalPlayerTeam.find(unit => unit.id === id);
+      const end = useCombatStore.getState().recordedEvents.at(-1);
+      if (!final || end?.kind !== 'end') throw new Error('Missing final bearer');
+      const rebased = rebaseStatusClock(final, end.simClockMs);
+      advance();
+      const next = bearer(id);
+      expect(next.governedActiveRanks?.[row.id]).toBe(0);
+      expect(next.skillOrder).not.toContain(row.id);
+      expect(next.equippedWeapon).toEqual({});
+      expect(next.life).toBe(Math.min(final.life, next.stats.lifeMax));
+      expect(next.mana).toBe(Math.min(final.mana, next.stats.manaMax));
+      expect(next.statuses).toEqual(rebased.statuses);
+      expect(next.cooldowns).toEqual(final.cooldowns);
+      expect(next.manaRegenExactCarry).toEqual(final.manaRegenExactCarry);
+      expect(inputs[0]).toEqual(original);
+      expect(usePlayerStore.getState().player?.skillLevels).toEqual(originalSkills);
+      const stored = owner === 'hero' ? usePlayerStore.getState().player?.comboOrder
+        : useMercStore.getState().ownedMercs.find(candidate => candidate.id === merc.id)?.comboOrder;
+      expect(stored).toContain(row.id);
+    });
+  });
   it.each(['unequip', 'dismiss', 'remove'] as const)(
     'clears original merc damage/reflection after %s while preserving recording, carry and identity', removal => {
     const merc = arrange();

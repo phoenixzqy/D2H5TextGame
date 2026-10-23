@@ -28,7 +28,7 @@ import {
   synthDefaultPlan,
   type WaveSpec
 } from '@/engine/combat';
-import { loadAwardPools, loadItemBases } from '@/data/loaders/loot';
+import { loadAwardPools } from '@/data/loaders/loot';
 import { eliteConfig, monsters as monsterList } from '@/data/index';
 import { resolveSubArea } from './subAreaResolver';
 import { useCombatStore, type CombatLogEntry } from './combatStore';
@@ -84,6 +84,9 @@ import { beginWaveTransition, endWaveTransition, beginIronGolemDebit, endIronGol
 import { resumeWaveDeferredSave } from './persistence';
 import { canonicalSkillIdFromData, getSkillRequiredLevel, getSkillsForClass,
   skillIdAliases, type SkillTemplate } from './skillsHelpers';
+import { projectGovernedActives, type GovernedActiveRanks } from '@/engine/skills/runeword-actives';
+import { resolveEquippedWeapon } from '@/engine/items/equipped-weapon';
+export { resolveEquippedWeapon } from '@/engine/items/equipped-weapon';
 
 /** Hold ownership through synchronous callbacks; wake a deferred save after release. */
 function withWaveTransition<T>(operation: (lease: WaveTransitionLease) => T,
@@ -148,7 +151,7 @@ export function scopedSummonConfiguration(player: Player): Pick<CombatUnit, 'ski
  * skill chooser can apply weapon-type / handedness gates
  * (see {@link import('@/engine/skills/eligibility').canCastSkill}).
  */
-export function playerToCombatUnit(player: Player): CombatUnit {
+export function playerToCombatUnit(player: Player): CombatUnit & { readonly governedActiveRanks: GovernedActiveRanks } {
   const equipped = useInventoryStore.getState().equipped;
   const equippedWeapon = resolveEquippedWeapon(equipped);
   const mods = aggregateEquipmentMods(equipped);
@@ -166,6 +169,11 @@ export function playerToCombatUnit(player: Player): CombatUnit {
     effectiveEnergy: effectiveStatValue(core.energy),
     ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
   const formation = useFormationStore.getState();
+  const grants = resolveEquippedRunewordGrants(equipped);
+  const configuration = scopedSummonConfiguration(player);
+  const actives = projectGovernedActives({ owner: { kind: 'hero', classId: player.class,
+    level: player.level, learnedRanks: player.skillLevels ?? {} }, grants,
+    storedOrder: configuration.skillOrder });
   return {
     id: player.id,
     name: player.name,
@@ -175,13 +183,15 @@ export function playerToCombatUnit(player: Player): CombatUnit {
     stats,
     life: stats.life,
     mana: stats.mana,
-    ...composeRunewordCombatModifiers(resolveEquippedRunewordGrants(equipped), recovery),
+    ...composeRunewordCombatModifiers(grants, recovery),
     manaRegenCarry: 0,
     manaRegenCompensation: 0,
     manaRegenExactCarry: '0',
     statuses: [],
     cooldowns: {},
-    ...scopedSummonConfiguration(player),
+    ...configuration,
+    skillOrder: actives.combatOrder,
+    governedActiveRanks: actives.ranks,
     activeBuffIds: [],
     enraged: false,
     summonedAdds: false,
@@ -190,30 +200,6 @@ export function playerToCombatUnit(player: Player): CombatUnit {
     gridPosition: formation.playerPosition,
     summonGridPositions: formation.summonPositions
   };
-}
-
-/**
- * Resolve weapon eligibility metadata from the canonical weapon slot.
- * Missing items or unknown bases are explicitly unarmed; item flags and legacy
- * player equipment do not participate in this read.
- */
-export function resolveEquippedWeapon(
-  equipped: Readonly<Record<string, Item | null>>
-): {
-  weaponType?: import('@/engine/types/items').WeaponType;
-  handedness?: import('@/engine/types/items').Handedness;
-} {
-  const weapon = equipped.weapon;
-  if (!weapon) return {};
-  const base = loadItemBases().get(weapon.baseId);
-  if (!base) return {};
-  const out: {
-    weaponType?: import('@/engine/types/items').WeaponType;
-    handedness?: import('@/engine/types/items').Handedness;
-  } = {};
-  if (base.weaponType !== undefined) out.weaponType = base.weaponType;
-  if (base.handedness !== undefined) out.handedness = base.handedness;
-  return out;
 }
 
 // ---------------------------------------------------------------------------
@@ -1034,7 +1020,10 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
         manaRegenPerSecond: freshMerc.manaRegenPerSecond ?? 0,
         manaRegenBaselinePerSecond: freshMerc.manaRegenBaselinePerSecond ?? 0,
         increasedDamagePct: freshMerc.increasedDamagePct ?? {},
-        physicalReflectionPct: freshMerc.physicalReflectionPct ?? 0 };
+        physicalReflectionPct: freshMerc.physicalReflectionPct ?? 0,
+        skillOrder: freshMerc.skillOrder,
+        governedActiveRanks: freshMerc.governedActiveRanks,
+        equippedWeapon: freshMerc.equippedWeapon ?? {} };
     }
     if (!fresh || unit.id !== fresh.id) return unit;
     const mana = Math.min(unit.mana, fresh.stats.manaMax);
@@ -1050,6 +1039,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       ...(capped ? { manaRegenExactCarry: '0' } : {}),
       skillOrder: allowIron ? fresh.skillOrder : fresh.skillOrder.filter(id => !isIronGolemSkill({ id })),
       skillLevels: fresh.skillLevels ?? {},
+      governedActiveRanks: fresh.governedActiveRanks,
       equippedWeapon: fresh.equippedWeapon ?? {},
       summonGridPositions: fresh.summonGridPositions ?? [] };
     if (resolveFrozenArmorRank(fresh.skillLevels) > 0) return refreshed;

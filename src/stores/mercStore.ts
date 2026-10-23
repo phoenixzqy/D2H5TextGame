@@ -8,7 +8,7 @@ import { create } from 'zustand';
 import { assertIronGolemOwnershipMutationAllowed, assertWaveSnapshotAllowed, WaveGuardError } from './waveTransitionGuard';
 import { useCombatStore } from './combatStore';
 import { combatRunLifecycle } from './combatRunLifecycle';
-import { getMercSkillOrder } from './mercToCombatUnit';
+import { getMercConfiguredSkillOrder } from './mercToCombatUnit';
 import type { Mercenary } from '@/engine/types/entities';
 import type { EquipmentSlot, Item, ItemBase } from '@/engine/types/items';
 import { loadItemBases } from '@/data/loaders/loot';
@@ -238,7 +238,7 @@ export const useMercStore = create<MercState>((set, get) => ({
     if (combatRunLifecycle.activeRun !== null || useCombatStore.getState().inCombat) return false;
     const merc = get().ownedMercs.find(candidate => candidate.id === mercId);
     if (!merc) return false;
-    const current = getMercSkillOrder(merc);
+    const current = getMercConfiguredSkillOrder(merc, get().mercEquipment[mercId]);
     const requested = new Set(order);
     if (order.length !== current.length || requested.size !== current.length ||
       current.some(id => !requested.has(id)) ||

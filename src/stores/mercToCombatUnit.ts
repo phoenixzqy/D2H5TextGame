@@ -23,6 +23,8 @@ import type { Item } from '@/engine/types/items';
 import { deriveEquippedMercStats } from '@/engine/progression/merc-equipment-stats';
 import { resolveEquippedRunewordGrants } from '@/engine/items/runeword-grants';
 import { composeRunewordCombatModifiers } from '@/engine/items/runeword-combat';
+import { resolveEquippedWeapon } from '@/engine/items/equipped-weapon';
+import { projectGovernedActives, type GovernedActiveProjection, type GovernedActiveRanks } from '@/engine/skills/runeword-actives';
 
 const ARCHETYPE_SKILLS: Readonly<Record<string, readonly string[]>> = Object.freeze({
   front: ['mskill-bash'],
@@ -49,13 +51,27 @@ export function getMercSkillOrder(merc: Mercenary): string[] {
   return order;
 }
 
+/** Native owned priorities plus current equipment grants; stored dormant entries remain configured. */
+export function getMercActiveProjection(merc: Mercenary,
+  equipment: Readonly<Record<string, Item | null>> = {}): GovernedActiveProjection {
+  return projectGovernedActives({ owner: { kind: 'merc', level: merc.level },
+    storedOrder: getMercSkillOrder(merc), grants: resolveEquippedRunewordGrants(equipment) });
+}
+
+/** Authoritative reorder set; availability is projected independently for combat. */
+export function getMercConfiguredSkillOrder(merc: Mercenary,
+  equipment: Readonly<Record<string, Item | null>> = {}): readonly string[] {
+  return getMercActiveProjection(merc, equipment).configuredOrder;
+}
+
 /** Build a fresh runtime unit using the owned merc's canonical equipment map. */
 export function mercToCombatUnit(
   merc: Mercenary,
   gridPosition?: GridPosition,
   equipment: Readonly<Record<string, Item | null>> = {}
-): CombatUnit {
+): CombatUnit & { readonly governedActiveRanks: GovernedActiveRanks } {
   const stats = deriveEquippedMercStats(merc, equipment);
+  const actives = getMercActiveProjection(merc, equipment);
 
   return {
     id: `merc-${merc.id}`,
@@ -69,7 +85,9 @@ export function mercToCombatUnit(
     ...composeRunewordCombatModifiers(resolveEquippedRunewordGrants(equipment)),
     statuses: [],
     cooldowns: {},
-    skillOrder: getMercSkillOrder(merc),
+    skillOrder: actives.combatOrder,
+    governedActiveRanks: actives.ranks,
+    equippedWeapon: resolveEquippedWeapon(equipment),
     activeBuffIds: [],
     enraged: false,
     summonedAdds: false,

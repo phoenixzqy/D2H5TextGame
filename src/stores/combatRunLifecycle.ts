@@ -1,5 +1,6 @@
 import type { WavePlan } from '@/engine/combat';
 import type { CombatUnit } from '@/engine/combat/types';
+import type { GovernedActiveRanks } from '@/engine/skills/runeword-actives';
 import type { RecordedBattleEvent } from '@/engine/combat/combat';
 import { useCombatStore, type RecordedBattleOutcome } from './combatStore';
 import { clearIronGolemSelection, clearIronGolemSelectionAfterRestore } from './ironGolemSelectionStore';
@@ -18,7 +19,7 @@ export interface ActiveRun {
   /** Exact merc unit constructed at run start; roster changes never retarget this run. */
   readonly fieldedMercCombatId?: string;
   /** Separate bare run-start snapshot, used only if the original roster owner disappears. */
-  readonly fieldedMercBareUnit?: Readonly<CombatUnit>;
+  readonly fieldedMercBareUnit?: Readonly<CombatUnit & { readonly governedActiveRanks: GovernedActiveRanks }>;
   playerUnit: CombatUnit;
   /** Index of the wave currently being played (0-based). */
   waveIdx: number;

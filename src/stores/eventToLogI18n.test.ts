@@ -376,7 +376,12 @@ describe.each(['en', 'zh-CN'])('authored cast names in %s', locale => {
     const previous = i18n.language;
     try {
       await i18n.changeLanguage(locale);
-      expect(skills).toHaveLength(286);
+      expect(skills.filter(skill => skill.id !== 'item-redemption')).toHaveLength(286);
+      expect(skills.filter(skill => skill.id === 'item-redemption')).toHaveLength(1);
+      for (const skillId of ['item-redemption', 'item.redemption']) {
+        expect(eventToLocalizedLogEntry({ kind: 'action', actor: 'hero', skillId })?.message)
+          .toBe(locale === 'en' ? 'hero casts Redemption.' : 'hero 施放了 救赎。');
+      }
       for (const skill of skills) {
         const key = skill.name.replace(/^skills\./, 'skills:');
         expect(i18n.exists(key), key).toBe(true);

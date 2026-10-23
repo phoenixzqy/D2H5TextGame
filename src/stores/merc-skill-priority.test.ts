@@ -14,6 +14,8 @@ import { mercToCombatUnit } from './mercToCombatUnit';
 import { abortSubAreaRun, startSubAreaRun } from './combatHelpers';
 import { snapshotStores } from './persistence';
 import { releaseWaveRestore, reserveWaveRestore } from './waveTransitionGuard';
+import { socketRunewords } from '@/data/loaders/socket-effects';
+import type { Item } from '@/engine/types/items';
 
 const signature = 'mskill-inner-sight';
 const basic = 'mskill-basic-arrow';
@@ -50,6 +52,28 @@ beforeEach(() => {
 afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); });
 
 describe('owned mercenary skill priority', () => {
+  it('accepts only the equipment-aware permutation and preserves a dormant grant after unequip', () => {
+    const merc = ownedMerc();
+    const row = socketRunewords.find(row => row.id === 'runewords/phoenix');
+    if (!row) throw new Error('Missing Phoenix');
+    const shield: Item = { id: 'phoenix', baseId: 'items/base/sh-monarch', rarity: 'runeword', level: 70,
+      identified: true, equipped: false, runewordId: row.id, socketCapacity: row.sockets,
+      socketContents: row.runes.map(id => ({ kind: 'rune', id })) };
+    useMercStore.setState({ mercEquipment: { [merc.id]: { offhand: shield } } });
+    const withGrant = [signature, 'item.redemption', pierce, basic];
+    expect(setOrder(merc.id, withGrant)).toBe(true);
+    expect(useMercStore.getState().getFieldedMerc()?.comboOrder).toEqual(withGrant);
+    expect(merc.comboOrder).toEqual([signature, basic, pierce]);
+    const before = useMercStore.getState();
+    expect(setOrder(merc.id, [signature, 'sorceress.blaze', pierce, basic])).toBe(false);
+    expect(useMercStore.getState()).toBe(before);
+    useMercStore.setState({ mercEquipment: {} });
+    expect(setOrder(merc.id, [signature, pierce, 'item.redemption', basic])).toBe(true);
+    expect(useMercStore.getState().getFieldedMerc()?.comboOrder).toContain('item.redemption');
+    const restored = useMercStore.getState().getFieldedMerc();
+    if (!restored) throw new Error('Missing merc');
+    expect(mercToCombatUnit(restored).skillOrder).not.toContain('item.redemption');
+  });
   it('preserves defaults and changes only a copied owned order', () => {
     const merc = ownedMerc();
     expect(merc.comboOrder).toEqual([signature, basic, pierce]);
