@@ -7,6 +7,7 @@ import { stageRecordedBattle, type RecordedBattleDefaults, type RecordedBattlePu
 
 /** Already-composed wave input; run/selection/ownership authority remains with the caller. */
 export interface RecordedWaveStagingInput {
+  readonly replayProfileId?: 'normal' | 'nightmare';
   readonly snapshot: CombatSnapshot;
   readonly waveIdx: number;
   readonly totalWaves: number;
@@ -79,5 +80,6 @@ export function stageRecordedWave(input: RecordedWaveStagingInput): StagedRecord
   return Object.freeze({ engineInput, attestation: result.ironGolemPreparation ?? null,
     waveIdx: input.waveIdx, elapsedMs: terminal.simClockMs, publication,
     recording: Object.freeze({ outcome, events: playbackEvents,
+      ...(input.replayProfileId ? { replayProfileId: input.replayProfileId } : {}),
       ...(input.chapterBoss ? { chapterBoss: Object.freeze({ ...input.chapterBoss }) } : {}) }) });
 }

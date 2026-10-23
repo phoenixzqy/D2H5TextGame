@@ -2,6 +2,8 @@ import { captureAct5Encounter, captureAct5ThroneWave, EVE_QUEST, THRONE_PROOF, t
 import { prepareAct5Settlement } from './act5QuestAdmission';
 import { captureAct4Encounter, hasOriginalAct4Victory, isAct4AdmissionEligible, type Act4Encounter } from '@/engine/map/act4-admission';
 import { loadQuests } from '@/data/loaders/quests';
+import { applyReplayProfileToPlan, type ReplayProfileId } from '@/engine/map/replay-profile';
+import { validateAct5CampaignRewards } from '@/engine/save/act5-campaign';
 /**
  * Combat integration helpers
  * Bridge between engine and stores for playability
@@ -91,7 +93,6 @@ function withWaveTransition<T>(operation: (lease: WaveTransitionLease) => T,
 }
 
 const CHALLENGE_ORDINAL_PERIOD = 360360;
-let manualChallengeOrdinal = 0;
 
 /**
  * Pure production configuration boundary shared by combat and presentation.
@@ -148,7 +149,9 @@ export function playerToCombatUnit(player: Player): CombatUnit {
   const equippedWeapon = resolveEquippedWeapon(equipped);
   const mods = aggregateEquipmentMods(equipped);
   const core = applyEquipmentCoreMods(player.coreStats, mods);
-  const freshStats = deriveEquippedPlayerStats(player, player.level, equipped, useMapStore.getState().questProgress, useInventoryStore.getState().questItems);
+  const map = useMapStore.getState();
+  const freshStats = deriveEquippedPlayerStats(player, player.level, equipped, map.questProgress,
+    useInventoryStore.getState().questItems, map.questReceipts);
   const ironSkinRank = player.class === 'barbarian' && Number.isFinite(player.level) &&
     player.level >= IRON_SKIN_DEFINITION.requiredLevel ? resolveIronSkinRank(player.skillLevels) : 0;
   const stats = { ...freshStats,
@@ -369,6 +372,7 @@ export function buildEnemiesForWave(wave: WaveSpec, seed: number): CombatUnit[] 
  * loot summary panel.
  */
 export function awardLootForVictory(opts: {
+  readonly replayProfileId?: ReplayProfileId;
   readonly slainEnemies: readonly CombatUnit[];
   readonly act: 1 | 2 | 3 | 4 | 5;
   readonly treasureClassId: string;
@@ -399,7 +403,7 @@ export function awardLootForVictory(opts: {
         magicFindMultiplier: opts.magicFindMultiplier ?? 1,
         goldFind,
         act: opts.act,
-        difficulty: 'normal'
+        difficulty: opts.replayProfileId ?? 'normal'
       },
       pools,
       rng
@@ -545,6 +549,10 @@ function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {}
     const attempt = captureWaveAttempt();
 
     const map = useMapStore.getState();
+    const profile = map.selectedDifficulty;
+    const inventory = useInventoryStore.getState();
+    validateQuestActionReceipts(map.questReceipts, map.questProgress, inventory.questItems);
+    validateAct5CampaignRewards(map, inventory.questItems, inventory.questServices);
     const act = clampAct(opts.act ?? map.currentAct);
     const subAreaId = opts.subAreaId ?? map.currentSubAreaId;
     const subArea = resolveSubArea(act, subAreaId);
@@ -558,13 +566,14 @@ function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {}
     const planSeed = opts.runSeed ?? hashSeed(
       `${subArea?.id ?? synthId}|${String(Date.now())}`
     );
-    const challengeOrdinal = opts.challengeOrdinal ?? manualChallengeOrdinal;
+    const challengeOrdinal = opts.challengeOrdinal ?? map.challengeOrdinals[profile];
     const eve = map.questProgress[EVE_QUEST];
-    const projectThrone = mode === 'manual' && subArea?.id === 'areas/act5-throne-of-destruction' &&
+    const projectThrone = profile === 'normal' && mode === 'manual' && subArea?.id === 'areas/act5-throne-of-destruction' &&
       eve?.id === EVE_QUEST && (eve.status === 'inProgress' || eve.status === 'completed') && eve.rewardClaimed !== true &&
       !Object.hasOwn(map.questReceipts, THRONE_PROOF);
     if (opts.questSource && !projectThrone) throw new Error('Act V quest-source projection is not eligible');
-    const plan = subArea
+    if (profile === 'nightmare' && !subArea) throw new Error('Nightmare requires a canonical area');
+    const normalPlan = subArea
       ? resolveChallengeWavePlan({
           subArea,
           ...(projectThrone ? { questSourceProjection: 'act5-throne' as const } : {}),
@@ -586,6 +595,7 @@ function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {}
           planSeed
         );
 
+    const plan = applyReplayProfileToPlan(normalPlan, profile, getMonsterIndex());
     const seed = planSeed;
     const formation = useFormationStore.getState();
     const projectedPlayer = playerToCombatUnit(playerState.player);
@@ -614,6 +624,7 @@ function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {}
       carryPlayerTeam: playerTeam,
       waveElapsedMs: 0
     };
+    Object.defineProperty(candidate, 'replayProfileId', { value: profile, enumerable: true, writable: false, configurable: false });
 
     const staged = stageWave(candidate, 0, attempt, true);
     commitStagedWave(candidate, staged, { kind: 'newRun', nextDefaultChallengeOrdinal:
@@ -658,15 +669,16 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
       if (!beginRecordedWaveSettlement(receipt, lease, { activeRun: run,
         heroId: usePlayerStore.getState().player?.id ?? null, combat })) return 'idle';
       const outcome = binding.recording.outcome;
+      const normalRun = (binding.replayProfileId ?? 'normal') === 'normal';
       // Snapshot eligibility before ordinary income or any quest event can publish.
       const councilProgress = useMapStore.getState().questProgress[COUNCIL_QUEST_ID];
       const councilEncounter = binding.councilEncounter;
-      const councilEligible = councilEncounter !== undefined &&
+      const councilEligible = normalRun && councilEncounter !== undefined &&
         isCouncilAdmissionEligible(useMapStore.getState().questProgress, councilEncounter.historicalRecovery);
       const publishAct5Victory = prepareAct5Settlement(binding);
       const act4Encounter = binding.act4Encounter;
       const act4Progress = act4Encounter ? useMapStore.getState().questProgress[act4Encounter.contract.questId] : undefined;
-      const act4Eligible = act4Encounter !== undefined && isAct4AdmissionEligible(act4Encounter.contract,
+      const act4Eligible = normalRun && act4Encounter !== undefined && isAct4AdmissionEligible(act4Encounter.contract,
         useMapStore.getState().questProgress);
       const publishAct4Victory = (): void => {
         if (!act4Eligible || !act4Progress ||
@@ -707,7 +719,7 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
       const guardianProgress = useMapStore.getState().questProgress[GUARDIAN_QUEST_ID];
       const guardianEligible = (() => {
         const map = useMapStore.getState();
-        if (!binding.guardianEncounter || !isGuardianAdmissionEligible(map.questProgress, map.questReceipts)) return false;
+        if (!normalRun || !binding.guardianEncounter || !isGuardianAdmissionEligible(map.questProgress, map.questReceipts)) return false;
         try { validateQuestActionReceipts(map.questReceipts, map.questProgress, useInventoryStore.getState().questItems); return true; }
         catch { return false; }
       })();
@@ -809,6 +821,7 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
           const wave = run.plan.waves[binding.targetWaveIdx];
           const tcId = wave?.lootTable ?? run.plan.defaultLootTable;
           const rewards = awardLootForVictory({
+            replayProfileId: binding.replayProfileId ?? 'normal',
             slainEnemies: slain,
             act: run.act,
             treasureClassId: tcId,
@@ -818,7 +831,7 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
           combat.accumulateRunRewards(rewards);
         }
 
-        if (completedWave?.waveTier === 'boss' && !completedWave.presentation?.isActBoss &&
+        if (normalRun && completedWave?.waveTier === 'boss' && !completedWave.presentation?.isActBoss &&
           completedWave.spawns.length === binding.engineInput.enemyTeam.length) {
           const originals = binding.engineInput.enemyTeam;
           const archetypeIds = completedWave.spawns.flatMap((spawn, index) => {
@@ -843,7 +856,7 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
         if (nextIdx >= run.plan.waves.length) {
           const recording = binding.recording;
           const boss = recording.chapterBoss;
-          if (boss && outcome === recording.outcome && combat.recordedEvents === recording.events &&
+          if (normalRun && boss && outcome === recording.outcome && combat.recordedEvents === recording.events &&
             combat.subAreaRunId === run.plan.subAreaId &&
             combat.currentWave === binding.targetWaveIdx + 1 && combat.totalWaves === run.plan.waves.length &&
             outcome.finalEnemyTeam.some(enemy => enemy.id === boss.unitId && enemy.side === 'enemy' &&
@@ -856,7 +869,9 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
             });
           }
           // Only a complete sequence of won waves can clear an area or unlock idle.
-          useMapStore.getState().markCleared(run.plan.subAreaId);
+          if (normalRun) useMapStore.getState().markCleared(run.plan.subAreaId);
+          else useMapStore.setState(state => ({ nightmareClearedSubAreas: state.nightmareClearedSubAreas.includes(run.plan.subAreaId)
+            ? state.nightmareClearedSubAreas : [...state.nightmareClearedSubAreas, run.plan.subAreaId] }));
           combat.markRunVictory();
           publishCouncilProof();
           publishGuardianVictory();
@@ -981,6 +996,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
     ? captureAct5ThroneWave(run.act, run.plan.subAreaId, wave, enemies) : undefined;
   const act4Encounter = captureAct4Encounter(run.act, run.plan.subAreaId, wave, enemies);
   const staged = stageRecordedWave({
+    replayProfileId: run.replayProfileId ?? 'normal',
     snapshot: {
       seed: waveSeed,
       playerTeam,
@@ -1141,7 +1157,13 @@ function installCapturedRecordedWave(receipt: RecordedWaveReceipt, lease: WaveTr
     run.waveElapsedMs = binding.waveElapsedMs;
     run.recording = binding.recording;
     if (intent.kind === 'newRun' && intent.nextDefaultChallengeOrdinal !== null) {
-      manualChallengeOrdinal = intent.nextDefaultChallengeOrdinal;
+      const profile = binding.replayProfileId ?? 'normal';
+      const nextOrdinal = intent.nextDefaultChallengeOrdinal;
+      useMapStore.setState(state => ({ challengeOrdinals: { ...state.challengeOrdinals,
+        [profile]: nextOrdinal } }));
+      if (useMapStore.getState().challengeOrdinals[profile] !== intent.nextDefaultChallengeOrdinal) {
+        throw new RecordedWaveReceiptError('bindingMismatch');
+      }
     }
     markRecordedWaveMetadataInstalled(receipt, lease);
   }

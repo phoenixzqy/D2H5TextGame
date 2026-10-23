@@ -147,12 +147,12 @@ describe('Act V contiguous original Throne sequence', () => {
     for (let index = 1; index <= total; index++) expect(accept()).toBe(index === total ? 'victory' : 'next-wave');
     expect(useMapStore.getState().questReceipts[THRONE_PROOF]).toBeUndefined();
   });
-  it('does not admit Normal proof from an active Nightmare plan', () => {
+  it('refuses replacing a captured Normal profile while preserving its original proof authority', () => {
     track(EVE_QUEST); const total = begin(throne);
-    Object.assign(required(combatRunLifecycle.activeRun).plan, { replayProfileId: 'nightmare' });
+    expect(() => Object.assign(required(combatRunLifecycle.activeRun).plan, { replayProfileId: 'nightmare' })).toThrow();
     for (let index = 1; index <= total; index++) expect(accept()).toBe(index === total ? 'victory' : 'next-wave');
-    expect(useMapStore.getState().questReceipts[THRONE_PROOF]).toBeUndefined();
-    expect(useMapStore.getState().questProgress[EVE_QUEST]?.objectives['obj-kill-baal']).toBe(false);
+    expect(useMapStore.getState().questReceipts[THRONE_PROOF]).toBe(true);
+    expect(useMapStore.getState().questProgress[EVE_QUEST]?.objectives['obj-kill-baal']).toBe(true);
   });
   it('requires a new post-thaw Nihlathak victory after early clear', () => {
     track(PRISON_QUEST); const contract = required(ACT5_ENCOUNTERS.find(row => row.questId === PRISON_QUEST));

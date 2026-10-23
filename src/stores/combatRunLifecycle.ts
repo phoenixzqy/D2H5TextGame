@@ -8,6 +8,7 @@ import { abandonRecordedWaves, clearRecordedWavesAfterRestore } from './recorded
 
 /** Internal transient run shape; never persisted or exported through a public barrel. */
 export interface ActiveRun {
+  readonly replayProfileId?: 'normal' | 'nightmare';
   readonly plan: WavePlan;
   readonly act: 1 | 2 | 3 | 4 | 5;
   readonly seed: number;
@@ -25,6 +26,7 @@ export interface ActiveRun {
   waveElapsedMs: number;
   /** Exact installed recording and original authored boss identity; never persisted. */
   recording?: {
+    readonly replayProfileId?: 'normal' | 'nightmare';
     readonly outcome: RecordedBattleOutcome;
     readonly events: readonly RecordedBattleEvent[];
     readonly chapterBoss?: { readonly unitId: string; readonly archetypeId: string };

@@ -18,6 +18,7 @@ const receiptBrand = Symbol('recordedWaveReceipt');
 export interface RecordedWaveReceipt { readonly [receiptBrand]: true }
 /** Validated staging values; original engine input must be privately owned and immutable. */
 export interface RecordedWaveBinding {
+  readonly replayProfileId?: 'normal' | 'nightmare';
   readonly candidateRun: ActiveRun;
   readonly expectedActiveRun: ActiveRun | null;
   readonly heroId: string;
@@ -179,6 +180,13 @@ export function prepareRecordedWave(binding: RecordedWaveBinding, lease: WaveTra
   assertWaveTransitionOwner(lease);
   if (holder.pending) throw new RecordedWaveReceiptError('pendingReceipt');
   const { debitIntent, publication, recording, candidateRun } = binding;
+  const replayProfileId: unknown = candidateRun.replayProfileId ?? candidateRun.plan.replayProfileId ?? 'normal';
+  const profiles = [binding.replayProfileId, candidateRun.replayProfileId, candidateRun.plan.replayProfileId,
+    recording.replayProfileId];
+  if ((replayProfileId !== 'normal' && replayProfileId !== 'nightmare') ||
+    profiles.some(profile => profile !== undefined && profile !== replayProfileId)) {
+    throw new RecordedWaveReceiptError('bindingMismatch');
+  }
   if (candidateRun.playerUnit.id !== binding.heroId || !Number.isInteger(binding.targetWaveIdx) ||
     binding.targetWaveIdx < 0 || binding.targetWaveIdx >= candidateRun.plan.waves.length ||
     publication.currentWave !== binding.targetWaveIdx + 1 || publication.totalWaves !== candidateRun.plan.waves.length ||
@@ -192,6 +200,7 @@ export function prepareRecordedWave(binding: RecordedWaveBinding, lease: WaveTra
   }
   const receipt: RecordedWaveReceipt = Object.freeze({ [receiptBrand]: true as const });
   const captured: CapturedBinding = Object.freeze({ ...binding,
+    replayProfileId,
     ...(binding.guardianEncounter ? { guardianEncounter: Object.freeze({ ...binding.guardianEncounter }) } : {}),
     ...(binding.councilEncounter ? { councilEncounter: Object.freeze({ ...binding.councilEncounter,
       originalMemberIds: Object.freeze([...binding.councilEncounter.originalMemberIds]) }) } : {}),
@@ -237,6 +246,7 @@ export function prepareRecordedWaveInstallation(
   if (!valid) throw new RecordedWaveReceiptError('bindingMismatch');
   if (intent.kind !== 'newRun') {
     if (!previous || !settlement || previous.binding.candidateRun !== binding.expectedActiveRun ||
+      previous.binding.replayProfileId !== (binding.candidateRun.replayProfileId ?? binding.candidateRun.plan.replayProfileId ?? 'normal') ||
       previous.binding.heroId !== binding.heroId || binding.expectedActiveRun.recording !== previous.binding.recording ||
       binding.expectedActiveRun.waveIdx !== previous.binding.targetWaveIdx) {
       throw new RecordedWaveReceiptError('bindingMismatch');

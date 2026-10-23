@@ -85,6 +85,38 @@ function publishedAndPending(phase: 'prepared' | 'committed' | 'conflict') {
   return inspectRecordedWaves();
 }
 
+describe('captured replay profile consistency', () => {
+  it.each(['normal', 'nightmare'] as const)('captures the consistent %s profile as immutable receipt authority', profile => {
+    const { binding } = fixture();
+    Object.assign(binding.candidateRun, { replayProfileId: profile });
+    Object.assign(binding.candidateRun.plan, { replayProfileId: profile });
+    Object.assign(binding.recording, { replayProfileId: profile });
+    prepareRecordedWave({ ...binding, replayProfileId: profile }, lease);
+    expect(inspectRecordedWaves().pending?.binding.replayProfileId).toBe(profile);
+    expect(Object.isFrozen(inspectRecordedWaves().pending?.binding)).toBe(true);
+  });
+  it.each(['run', 'plan', 'recording', 'binding'] as const)('refuses a mismatched %s profile before publishing a receipt', part => {
+    const { binding } = fixture();
+    Object.assign(binding.candidateRun, { replayProfileId: 'normal' });
+    Object.assign(binding.candidateRun.plan, { replayProfileId: 'normal' });
+    Object.assign(binding.recording, { replayProfileId: 'normal' });
+    if (part === 'run') Object.assign(binding.candidateRun, { replayProfileId: 'nightmare' });
+    if (part === 'plan') Object.assign(binding.candidateRun.plan, { replayProfileId: 'nightmare' });
+    if (part === 'recording') Object.assign(binding.recording, { replayProfileId: 'nightmare' });
+    const input = part === 'binding' ? { ...binding, replayProfileId: 'nightmare' as const } : binding;
+    expect(() => prepareRecordedWave(input, lease)).toThrow('bindingMismatch');
+    expect(inspectRecordedWaves().pending).toBeNull();
+  });
+  it('refuses a foreign profile even when all supplied wrappers agree', () => {
+    const { binding } = fixture();
+    Object.assign(binding.candidateRun, { replayProfileId: 'hell' });
+    Object.assign(binding.candidateRun.plan, { replayProfileId: 'hell' });
+    Object.assign(binding.recording, { replayProfileId: 'hell' });
+    expect(() => prepareRecordedWave(binding, lease)).toThrow('bindingMismatch');
+    expect(inspectRecordedWaves().pending).toBeNull();
+  });
+});
+
 describe('receipt lifecycle cleanup', () => {
   it.each((['abort', 'hero', 'restore'] as const).flatMap(action =>
     (['prepared', 'committed', 'conflict'] as const).map(phase => ({ action, phase }))))(

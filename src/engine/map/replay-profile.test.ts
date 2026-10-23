@@ -11,6 +11,10 @@ const native: MonsterDef = { id: 'test/boss', name: 'Boss', life: [10, 14], life
   attack: [5, 9], attackGrowth: [1, 3], defense: 6, skills: [], baseExperience: 1,
   canBeElite: false, canBeBoss: true };
 const boss = { archetypeId: native.id, hp: 7200, atk: 520, def: 560, skills: ['boss-skill'], dropTable: 'boss-loot' };
+function required<T>(value: T | null | undefined): T {
+  if (value == null) throw new Error('Missing replay profile fixture');
+  return value;
+}
 
 describe('level-only replay profiles', () => {
   it.each([1, 14, 82, 90, 102])('adds the authored offset after resolved Normal level %i without the hero cap', level => {
@@ -62,7 +66,7 @@ describe('level-only replay profiles', () => {
     const index = new Map(monsters.map(def => [def.id, def]));
     expect(subAreas).toHaveLength(29);
     for (const area of subAreas) {
-      const normal = resolveChallengeWavePlan({ subArea: area, fallbackArchetypeId: monsters[0]!.id,
+      const normal = resolveChallengeWavePlan({ subArea: area, fallbackArchetypeId: required(monsters[0]).id,
         fallbackLevel: area.areaLevel, seed: 39, challengeOrdinal: 0 });
       const before = structuredClone(normal);
       const replay = applyReplayProfileToPlan(normal, 'nightmare', index);
@@ -70,16 +74,16 @@ describe('level-only replay profiles', () => {
       expect(replay.replayProfileId).toBe('nightmare');
       expect(replay.waves).toHaveLength(normal.waves.length);
       replay.waves.forEach((wave, i) => {
-        const original = normal.waves[i]!;
+        const original = required(normal.waves[i]);
         expect({ ...wave, spawns: [] }).toEqual({ ...original, spawns: [] });
         wave.spawns.forEach((spawn, j) => {
-          const old = original.spawns[j]!;
+          const old = required(original.spawns[j]);
           expect(spawn.level).toBe(old.level + 20);
           expect({ ...spawn, level: 0, chapterBoss: undefined }).toEqual({ ...old, level: 0, chapterBoss: undefined });
           if (spawn.chapterBoss) {
-            expect(spawn.chapterBoss.hp).toBeGreaterThan(old.chapterBoss!.hp);
-            expect(spawn.chapterBoss.atk).toBeGreaterThan(old.chapterBoss!.atk);
-            expect(spawn.chapterBoss.def).toBeGreaterThan(old.chapterBoss!.def);
+            expect(spawn.chapterBoss.hp).toBeGreaterThan(required(old.chapterBoss).hp);
+            expect(spawn.chapterBoss.atk).toBeGreaterThan(required(old.chapterBoss).atk);
+            expect(spawn.chapterBoss.def).toBeGreaterThan(required(old.chapterBoss).def);
           }
         });
       });
