@@ -1,0 +1,432 @@
+{
+  "status": "A3-first8-frozen-design-later13-proposed-not-implemented",
+  "sourceRoot": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+  "preservedBaseAreaCount": 29,
+  "preservedQuestRowCount": 46,
+  "laterMainQuestCount": 13,
+  "laterMainObjectiveCount": 28,
+  "areaBearingObjectiveCount": 21,
+  "nonAreaBearingObjectiveCount": 7,
+  "mappings": [
+    {
+      "number": 1,
+      "questId": "quests/act3-golden-bird",
+      "objectiveId": "obj-find-figurine",
+      "status": "frozen-a3-design-not-implemented",
+      "current": {
+        "type": "fetch",
+        "areaId": "areas/act3_spider_forest",
+        "itemId": "quest/jade_figurine"
+      },
+      "proposed": {
+        "areaId": "areas/act3-spider-forest",
+        "family": "recover",
+        "targetId": "objects/jade_figurine_cache",
+        "requiresFullAreaClear": true
+      }
+    },
+    {
+      "number": 2,
+      "questId": "quests/act3-blade-of-the-old-religion",
+      "objectiveId": "obj-find-gidbinn",
+      "status": "frozen-a3-design-not-implemented",
+      "current": {
+        "type": "interact",
+        "areaId": "areas/act3_flayer_jungle",
+        "targetId": "objects/gidbinn_altar"
+      },
+      "proposed": {
+        "areaId": "areas/act3-flayer-jungle",
+        "family": "recover",
+        "targetId": "objects/gidbinn_altar",
+        "requiresFullAreaClear": true
+      }
+    },
+    {
+      "number": 3,
+      "questId": "quests/act3-khalims-will",
+      "objectiveId": "obj-heart",
+      "status": "frozen-a3-design-not-implemented",
+      "current": {
+        "type": "fetch",
+        "areaId": "areas/act3_flayer_dungeon_3",
+        "itemId": "quest/khalims_heart"
+      },
+      "proposed": {
+        "areaId": "areas/act3-flayer-jungle",
+        "family": "recover",
+        "targetId": "objects/khalims_heart_chest",
+        "requiresFullAreaClear": true
+      }
+    },
+    {
+      "number": 4,
+      "questId": "quests/act3-khalims-will",
+      "objectiveId": "obj-brain",
+      "status": "frozen-a3-design-not-implemented",
+      "current": {
+        "type": "fetch",
+        "areaId": "areas/act3_great_marsh",
+        "itemId": "quest/khalims_brain"
+      },
+      "proposed": {
+        "areaId": "areas/act3-great-marsh",
+        "family": "recover",
+        "targetId": "objects/khalims_brain_chest",
+        "requiresFullAreaClear": true
+      }
+    },
+    {
+      "number": 5,
+      "questId": "quests/act3-khalims-will",
+      "objectiveId": "obj-eye",
+      "status": "frozen-a3-design-not-implemented",
+      "current": {
+        "type": "fetch",
+        "areaId": "areas/act3_sewers_2",
+        "itemId": "quest/khalims_eye"
+      },
+      "proposed": {
+        "areaId": "areas/act3-kurast-bazaar",
+        "family": "recover",
+        "targetId": "objects/khalims_eye_chest",
+        "requiresFullAreaClear": true
+      }
+    },
+    {
+      "number": 6,
+      "questId": "quests/act3-khalims-will",
+      "objectiveId": "obj-flail",
+      "status": "frozen-a3-design-not-implemented",
+      "current": {
+        "type": "fetch",
+        "areaId": "areas/act3_travincal",
+        "itemId": "quest/khalims_flail"
+      },
+      "proposed": {
+        "areaId": "areas/act3-travincal",
+        "family": "recover",
+        "targetId": "objects/high_council_reliquary",
+        "sourceEncounterId": "act3-travincal-council",
+        "requiresFullAreaClear": true,
+        "sourceAdmission": {
+          "kind": "bossEncounter",
+          "encounterId": "act3-travincal-council",
+          "requiresAllOriginalMembers": true,
+          "memberArchetypeId": "monsters/act3.infector",
+          "originalMemberCount": 3,
+          "requiresLiveHeroAcceptedSettlement": true,
+          "proofSource": "quests/act3-khalims-will#action:council-victory"
+        }
+      }
+    },
+    {
+      "number": 7,
+      "questId": "quests/act3-lam-esens-tome",
+      "objectiveId": "obj-find-tome",
+      "status": "frozen-a3-design-not-implemented",
+      "current": {
+        "type": "fetch",
+        "areaId": "areas/act3_kurast_temples",
+        "itemId": "quest/lam_esens_tome"
+      },
+      "proposed": {
+        "areaId": "areas/act3-kurast-bazaar",
+        "family": "recover",
+        "targetId": "objects/lam_esens_tome_chest",
+        "requiresFullAreaClear": true
+      }
+    },
+    {
+      "number": 8,
+      "questId": "quests/act3-guardian",
+      "objectiveId": "obj-kill-mephisto",
+      "status": "frozen-a3-design-not-implemented",
+      "current": {
+        "type": "kill-boss",
+        "areaId": "areas/act3_durance_of_hate_3",
+        "targetId": "monsters/mephisto"
+      },
+      "proposed": {
+        "areaId": "areas/act3-durance-of-hate",
+        "family": "qualified-chapter",
+        "targetId": "monsters/act3.mephisto",
+        "requiresAction": "actions/act3-break-compelling-orb",
+        "authoredBossEncounterReference": "act3-durance-mephisto",
+        "sourceAdmission": {
+          "kind": "chapterBoss",
+          "archetypeId": "monsters/act3.mephisto",
+          "requiresCanonicalFinalUnit": true,
+          "requiresLiveHeroAcceptedSettlement": true,
+          "requiresPreEventReceipt": "quests/act3-guardian#action:break-compelling-orb",
+          "earlyWinBackfill": false
+        }
+      }
+    },
+    {
+      "number": 9,
+      "questId": "quests/act4-fallen-angel",
+      "objectiveId": "obj-kill-izual",
+      "status": "proposed",
+      "current": {
+        "type": "kill",
+        "areaId": "areas/act4_plains_of_despair",
+        "targetId": "monsters/izual"
+      },
+      "proposed": {
+        "areaId": "areas/act4-plains-of-despair",
+        "family": "qualified-mini",
+        "targetId": "monsters/act4.izual",
+        "sourceEncounterId": "act4-pod-izual"
+      }
+    },
+    {
+      "number": 10,
+      "questId": "quests/act4-hellforge",
+      "objectiveId": "obj-kill-hephasto",
+      "status": "proposed",
+      "current": {
+        "type": "kill",
+        "areaId": "areas/act4_river_of_flame",
+        "targetId": "monsters/hephasto"
+      },
+      "proposed": {
+        "areaId": "areas/act4-river-of-flame",
+        "family": "qualified-mini",
+        "targetId": "monsters/act4.mega-demon",
+        "sourceEncounterId": "act4-rof-hephasto"
+      }
+    },
+    {
+      "number": 11,
+      "questId": "quests/act4-terrors-end",
+      "objectiveId": "obj-seal-1",
+      "status": "proposed",
+      "current": {
+        "type": "interact",
+        "areaId": "areas/act4_chaos_sanctuary",
+        "targetId": "objects/diablo_seal_1"
+      },
+      "proposed": {
+        "areaId": "areas/act4-chaos-sanctuary",
+        "family": "interact",
+        "targetId": "objects/diablo_seal_1"
+      }
+    },
+    {
+      "number": 12,
+      "questId": "quests/act4-terrors-end",
+      "objectiveId": "obj-seal-2",
+      "status": "proposed",
+      "current": {
+        "type": "interact",
+        "areaId": "areas/act4_chaos_sanctuary",
+        "targetId": "objects/diablo_seal_2"
+      },
+      "proposed": {
+        "areaId": "areas/act4-chaos-sanctuary",
+        "family": "interact",
+        "targetId": "objects/diablo_seal_2"
+      }
+    },
+    {
+      "number": 13,
+      "questId": "quests/act4-terrors-end",
+      "objectiveId": "obj-seal-3",
+      "status": "proposed",
+      "current": {
+        "type": "interact",
+        "areaId": "areas/act4_chaos_sanctuary",
+        "targetId": "objects/diablo_seal_3"
+      },
+      "proposed": {
+        "areaId": "areas/act4-chaos-sanctuary",
+        "family": "interact",
+        "targetId": "objects/diablo_seal_3"
+      }
+    },
+    {
+      "number": 14,
+      "questId": "quests/act4-terrors-end",
+      "objectiveId": "obj-kill-diablo",
+      "status": "proposed",
+      "current": {
+        "type": "kill-boss",
+        "areaId": "areas/act4_chaos_sanctuary",
+        "targetId": "monsters/diablo"
+      },
+      "proposed": {
+        "areaId": "areas/act4-chaos-sanctuary",
+        "family": "qualified-chapter",
+        "targetId": "monsters/act4.diablo",
+        "sourceEncounterId": "act4-cs-diablo"
+      }
+    },
+    {
+      "number": 15,
+      "questId": "quests/act5-siege-on-harrogath",
+      "objectiveId": "obj-kill-shenk",
+      "status": "proposed",
+      "current": {
+        "type": "kill",
+        "areaId": "areas/act5_bloody_foothills",
+        "targetId": "monsters/shenk_the_overseer"
+      },
+      "proposed": {
+        "areaId": "areas/act5-bloody-foothills",
+        "family": "qualified-mini",
+        "targetId": "monsters/act5.overseer",
+        "sourceEncounterId": "act5-bf-shenk"
+      }
+    },
+    {
+      "number": 16,
+      "questId": "quests/act5-rescue-on-mount-arreat",
+      "objectiveId": "obj-free-15",
+      "status": "proposed",
+      "current": {
+        "type": "rescue",
+        "areaId": "areas/act5_frigid_highlands",
+        "targetId": "npc/barbarian_prisoner",
+        "count": 15
+      },
+      "proposed": {
+        "areaId": "areas/act5-frigid-highlands",
+        "family": "bounded-rescue",
+        "targetId": "groups/act5-barbarian-prisoners",
+        "requiredCount": 15,
+        "tokens": [
+          {
+            "id": "objects/barbarian_cage_1",
+            "contribution": 5
+          },
+          {
+            "id": "objects/barbarian_cage_2",
+            "contribution": 5
+          },
+          {
+            "id": "objects/barbarian_cage_3",
+            "contribution": 5
+          }
+        ],
+        "requiresFullAreaClear": true,
+        "descriptiveNpcId": "npc/barbarian-prisoner"
+      }
+    },
+    {
+      "number": 17,
+      "questId": "quests/act5-prison-of-ice",
+      "objectiveId": "obj-find-anya",
+      "status": "proposed",
+      "current": {
+        "type": "interact",
+        "areaId": "areas/act5_crystalline_passage",
+        "targetId": "objects/frozen_anya"
+      },
+      "proposed": {
+        "areaId": "areas/act5-crystalline-passage",
+        "family": "interact",
+        "targetId": "objects/frozen_anya"
+      }
+    },
+    {
+      "number": 18,
+      "questId": "quests/act5-prison-of-ice",
+      "objectiveId": "obj-kill-nihlathak",
+      "status": "proposed",
+      "current": {
+        "type": "kill",
+        "areaId": "areas/act5_halls_of_vaught",
+        "targetId": "monsters/nihlathak"
+      },
+      "proposed": {
+        "areaId": "areas/act5-crystalline-passage",
+        "family": "qualified-mini",
+        "targetId": "monsters/act5.warped-shaman",
+        "sourceEncounterId": "act5-cp-nihlathak"
+      }
+    },
+    {
+      "number": 19,
+      "questId": "quests/act5-rite-of-passage",
+      "objectiveId": "obj-kill-ancients",
+      "status": "proposed",
+      "current": {
+        "type": "kill-boss-group",
+        "areaId": "areas/act5_arreat_summit",
+        "targetId": "monsters/the_ancients"
+      },
+      "proposed": {
+        "areaId": "areas/act5-ancients-way",
+        "family": "qualified-group",
+        "targetId": "groups/act5-ancients",
+        "sourceEncounterId": "act5-aw-ancients",
+        "memberArchetypeId": "monsters/act5.ancient-barbarian",
+        "originalMemberNames": [
+          "Talic",
+          "Korlic",
+          "Madawc"
+        ],
+        "oneAcceptedLiveWave": true
+      }
+    },
+    {
+      "number": 20,
+      "questId": "quests/act5-eve-of-destruction",
+      "objectiveId": "obj-throne-waves",
+      "status": "proposed",
+      "current": {
+        "type": "survive-waves",
+        "areaId": "areas/act5_throne_of_destruction",
+        "waves": 5
+      },
+      "proposed": {
+        "areaId": "areas/act5-throne-of-destruction",
+        "family": "qualified-sequence",
+        "targetId": "sequences/act5-baal-minions",
+        "sourceWaveIds": [
+          "w1",
+          "w2",
+          "w3",
+          "w4",
+          "w5"
+        ],
+        "oneContiguousAcceptedLiveRun": true,
+        "durablePartialProgress": false
+      }
+    },
+    {
+      "number": 21,
+      "questId": "quests/act5-eve-of-destruction",
+      "objectiveId": "obj-kill-baal",
+      "status": "proposed",
+      "current": {
+        "type": "kill-boss",
+        "areaId": "areas/act5_worldstone_chamber",
+        "targetId": "monsters/baal"
+      },
+      "proposed": {
+        "areaId": "areas/act5-throne-of-destruction",
+        "family": "qualified-chapter",
+        "targetId": "monsters/act5.baal",
+        "sourceEncounterId": "act5-tod-baal"
+      }
+    }
+  ],
+  "frozenContract": "compact-campaign-d11-p14-frozen-a3.md",
+  "metadataAloneGrantsCredit": false,
+  "orbAction": {
+    "ownerQuestId": "quests/act3-guardian",
+    "actionId": "actions/act3-break-compelling-orb",
+    "receiptSource": "quests/act3-guardian#action:break-compelling-orb",
+    "areaId": "areas/act3-travincal",
+    "targetId": "objects/compelling_orb",
+    "requiresGuardianStartedEligibleUnclaimed": true,
+    "inputSource": "quests/act3-khalims-will#objective:obj-transmute",
+    "inputItemId": "items/khalims_will",
+    "inputState": "owned",
+    "khalimClaimTimingRelevant": false,
+    "consumesInput": true,
+    "awardsXP": 0
+  }
+}

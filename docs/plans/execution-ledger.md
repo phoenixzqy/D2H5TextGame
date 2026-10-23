@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D11/P14 coherent Act III batch | source metadata implemented; five playable flows remain open | [Frozen contract](decisions/D11-compact-act3-contract.md), [objective map](decisions/D11-compact-act3-objective-map.json), and [12-case matrix](decisions/D11-compact-act3-qa-cases.json). Authored wave/encounter/chapter provenance survives planning and qualified settlement; synthetic waves supply no authored source. Nine new cases cover canonical Council/Mephisto wiring, identity preservation, and fallback controls. Final 9156 tests/307 files, engine4371/113, types/lint/build/four-chunk scan pass. This adds no receipt, reward, objective credit, save field, or playable A3 flow. Admission, item/action graph, migration, rewards, town/UI and five-flow acceptance remain next. |
 | Fresh current-runtime Act II screen | stopped at actual Radament draw; evidence accepted | At `d2e3cfa`, one fresh production360×640/en Sorceress wins310 ActI waves, claims/equips actual Andariel reward and Continues exactly. Real Staff/Sun/insert actions and14paired persistence barriers pass; FarOasis wins4waves then actual RadamentW5draw.315terminals/314wins, zero failed-wave awards, final save exactly wave4;3296prior→3376unique gear IDs, +7760heroXP/+5820mercXP. Source2433/build760/30immutable harness files match; original31-file freeze includes intentionally overwritten generated report, documented separately. All8attachments retained. Producer and independent QA APPROVE/security PASS for truthful stopped evidence; exact disposable cleanup verified, diagnostics retained root-owned. [Evidence](evidence/fresh-current-act2-screen.md). No Radament victory/Book/Arcane/Duriel/ActIII/C2 claim or automatic balance-defect inference. |
 | D11 Duriel credit/cache | implemented and independently reviewed | `5d5f0d0`/`afdd39a`: canonical ordered qualified Duriel settlement/no-backfill, ordinary boss32/table preserved; explicit deterministic five-pick Claim with safe normalized currencies, multi-item rollback and overflow. Full9102/303, engine4357/112, final T/L/build/4chunk scan pass. Constructed production en/zh2/2, retry0/errors[], exact12000heroXP/9000mercXP/4items/21534shards,4057prior→4061distinct gear IDs, Save-close-Continue/reimports;639source/760build/4harness/input drift[]. Producer/QA final APPROVE/security PASS; exact disposable cleanup verified, diagnostics retained root-owned. [Evidence](evidence/duriel-quest-cache.md). Earned Duriel/ActII/C2, Tainted Sun resistance, Canyon metadata and full narrative localization remain open. |
 | D11 Staff item path | implemented and independently reviewed | Recover shaft/amulet, retained-Cube assembly, separate6000XP Claim and consumed-Staff insertion. Save14 reciprocal receipts/frozen13 and explicit completed/claimed repair. Full9011/299, engine4331/111, final T/L/build/4chunk scan pass; production en/zh2/2, retry0/pageErrors[], exact stage Save-close-Continue/import and4057 gear identities preserved. Producer/QA-H2 APPROVE/security PASS;806source/760build/2harness/input drift[]. Exact disposable cleanup verified; diagnostic evidence retained root-owned. [Evidence](evidence/staff-acquisition.md). Duriel, earned ActII/C2, Tainted Sun resistance and Canyon metadata remain open. |
@@ -10652,3 +10653,51 @@ as one coherent integration. Buff review accepts the shared lifecycle direction
 but requires retained-record validation, QA coverage and justified tuning before
 production activation; BattleCommand/Enchant retain their promised identities.
 C0/C1 accepted; C2 underway; C3/C4/fullG0–G7 remain open. Local only.
+
+## D11/P14 — Act III source foundation and frozen five-quest contract
+
+The [self-contained contract](decisions/D11-compact-act3-contract.md) fixes all
+five main flows, Guardian-owned Orb admission independent of Khalim Claim,
+complete-original-member Council proof, new post-Orb Mephisto credit, unordered
+components with the retained real Cube, exact ring profile/seeds and Mephisto
+cache, XP-only Khalim Claim, and potion Read as the sole Life entitlement.
+Independent GD/ND design approvals and TD's narrow ordering correction are
+incorporated. QA's twelve criteria are frozen as planned, not executed batch
+acceptance. Later Acts IV/V, side services and endgame remain in scope.
+
+The first runtime increment preserves optional authored source metadata through
+wave generation, per-member encounter mapping, fitting/elite transforms and
+the existing qualified settlement events. Chapter overrides have their own
+canonical source; fallback waves have no authored source. It introduces no
+new quest credit, durable receipt, save field, reward, UI control or tuning.
+Actual Council/Orb/Mephisto admission is the next foundation step; none of the
+five Act III flows is reported playable or accepted from this change.
+
+Eight causal REDs and one fallback control preceded implementation. The first
+test attempt also contained two unsupported matcher errors; the corrected RED
+retains eight behavioral failures. An existing exact seeded-spawn regression
+was extended with the new encounter field without weakening its count, RNG,
+archetype, tier or level assertions. Initial lint caught an unsafe matcher
+callback return; the typed projection correction passes. A changed-test run
+correctly refused source drift because root edited that test for lint while
+measurement was running. No integrity guard was changed. All repository edits
+then stopped for the final full run: **9156 tests / 307 files PASS, exit0,
+175.78s**. Final engine **4371 / 113 PASS, 40.67s**, typecheck, lint, production
+build and equivalent forbidden-token scan of all four emitted JS chunks pass.
+Known suite-time budgets remain exceeded. No browser or earned campaign run
+was repeated for this inert source increment; A3 UI validation remains required.
+
+Raw diagnostic ownership: root retains
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-a3-source-8qdc1a5_`
+through A3/umbrella integration consumers and removes it afterward. Its exact
+task-owned `dist` was removed after build/scan; `cache` and `tmp` are absent;
+cleanup remaining[]/failures[]. No browser/server was started. All command
+sessions are terminal; logs, frozen input hashes and receipts remain diagnostic
+evidence. Root also retains the exact planning directory
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-compact-campaign-contract-8XKSb97J`
+for its original broader IV/V/side draft and frozen A3 provenance, and
+`/tmp/d2h5-campaign-contract-review-8q6r1x_k` for the independent design report.
+All agent readers are released; root removes those exact retained artifacts
+when their integration/umbrella consumers finish. Durable contracts above are
+source deliverables and are preserved. C0/C1 remain narrowly accepted; C2,
+C3/C4 and full G0–G7 remain open. Work remains local on the claimed worktree.

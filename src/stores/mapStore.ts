@@ -10,6 +10,7 @@ import { isActUnlocked as engineIsActUnlocked, isSubAreaUnlocked as engineIsSubA
 import { subAreas } from '@/data/index';
 import { applyObjectInteraction, type InteractionProgress, type ObjectInteraction } from '@/engine/map/questInteractions';
 import { resolveSubArea } from './subAreaResolver';
+import type { WaveSource } from '@/engine/combat/sub-area-run';
 
 type QuestProgress = InteractionProgress;
 
@@ -45,12 +46,16 @@ interface MapState {
     readonly actId: string;
     readonly areaId: string;
     readonly bossArchetypeId: string;
+    /** Authored origin supplied by qualified settlement, never inferred from archetype alone. */
+    readonly source?: WaveSource;
   }) => void;
   /** Advance ordered boolean kill objectives from one qualified settlement batch. Never awards rewards. */
   recordMonsterKills: (event: {
     readonly actId: string;
     readonly areaId: string;
     readonly archetypeIds: readonly string[];
+    /** Authored origin supplied by qualified settlement; not a durable action receipt. */
+    readonly source?: WaveSource;
   }) => void;
   isCleared: (subAreaId: string) => boolean;
   /** Convenience selector for the act-unlock engine predicate. */

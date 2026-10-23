@@ -66,6 +66,42 @@ function drain(): void {
   events.forEach(() => { useCombatStore.getState().advanceEvent(); });
   expect(useCombatStore.getState().playbackComplete).toBe(true);
 }
+
+describe('Act III settlement provenance (constructed wiring, no earned progress)', () => {
+  it('delivers all three original Council kills with their explicit encounter source', () => {
+    const kills = vi.spyOn(useMapStore.getState(), 'recordMonsterKills');
+    const total = start('areas/act3-travincal', 3);
+    for (let wave = 1; wave <= total; wave++) {
+      expect(useCombatStore.getState().outcome?.winner).toBe('player');
+      drain(); expect(advanceWaveOrFinish()).toBe(wave === total ? 'victory' : 'next-wave');
+    }
+    expect(kills).toHaveBeenCalledOnce();
+    expect(kills).toHaveBeenCalledWith({
+      actId: 'acts/act3', areaId: 'areas/act3-travincal',
+      archetypeIds: Array.from({ length: 3 }, () => 'monsters/act3.infector'),
+      source: { kind: 'bossEncounter', encounterId: 'act3-travincal-council' }
+    });
+    expect(useMapStore.getState().clearedSubAreas).toContain('areas/act3-travincal');
+  });
+
+  it('delivers Mephisto with its chapter source and preserves the independent area clear', () => {
+    const kills = vi.spyOn(useMapStore.getState(), 'recordBossKill');
+    const total = start('areas/act3-durance-of-hate', 3);
+    for (let wave = 1; wave <= total; wave++) {
+      expect(useCombatStore.getState().outcome?.winner).toBe('player');
+      drain(); expect(advanceWaveOrFinish()).toBe(wave === total ? 'victory' : 'next-wave');
+    }
+    expect(kills).toHaveBeenCalledOnce();
+    expect(kills).toHaveBeenCalledWith({
+      actId: 'acts/act3', areaId: 'areas/act3-durance-of-hate',
+      bossArchetypeId: 'monsters/act3.mephisto',
+      source: { kind: 'chapterBoss', archetypeId: 'monsters/act3.mephisto' }
+    });
+    expect(useMapStore.getState().clearedSubAreas).toContain('areas/act3-durance-of-hate');
+    expect(useMapStore.getState().isActUnlocked(4)).toBe(true);
+    expect(useMapStore.getState().questProgress['quests/act3-guardian']).toBeUndefined();
+  });
+});
 function reachFinal(): number {
   const total = start();
   let expectedXP = 0;

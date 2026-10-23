@@ -1,0 +1,258 @@
+{
+  "status": "frozen-A3-criteria-planned-not-executed",
+  "author": "/root/producer",
+  "reviewInput": "Existing completed QA review forwarded by qa_save_review; QA-PLAN INCOMPLETE pending frozen choices and actual matrix, no new review requested.",
+  "caseCount": 12,
+  "fixture": {
+    "playerId": "qa-a3-hero",
+    "claimOnlyLevel": 30,
+    "claimOnlyStartsWithConstructedEligibleCompletedRows": true,
+    "earnedObjectiveProof": false,
+    "totalHeroXP": 41000,
+    "totalFieldedMercXP": 30750,
+    "unspentStatPoints": 5,
+    "maxLifeOnlyAfterRead": 20
+  },
+  "ringProfile": {
+    "profileId": "quest-rewards/act3-gidbinn-ring-v1",
+    "ilvl": 34,
+    "entries": [
+      {
+        "uniqueId": "items/unique/nagelring",
+        "weight": 1
+      },
+      {
+        "uniqueId": "items/unique/manald-heal",
+        "weight": 1
+      },
+      {
+        "uniqueId": "items/unique/ring-of-the-leech",
+        "weight": 1
+      },
+      {
+        "uniqueId": "items/unique/stone-of-jordan",
+        "weight": 1
+      }
+    ],
+    "poolSeedProtocol": [
+      "quest-unique-pool-v1",
+      "player.id",
+      "quest.id",
+      "profileId",
+      "ilvl"
+    ],
+    "selection": "private createRng(poolSeed).nextInt(0,3)",
+    "selectedUniqueSeedProtocol": [
+      "quest-unique-v1",
+      "player.id",
+      "quest.id",
+      "uniqueId",
+      "ilvl"
+    ],
+    "rewindAllocator": false
+  },
+  "cases": [
+    {
+      "caseId": "A3-01",
+      "name": "References, discovery and campaign boundary",
+      "layers": [
+        "data/schema",
+        "town/discovery"
+      ],
+      "status": "planned-not-executed",
+      "requiredAssertions": [
+        "All46 quest IDs and29 authored areas retained; all21 mapped area references resolve.",
+        "Six A3 NPC docs have exact act/town/NPC identity and both discovery imports find them.",
+        "Unknown references, mismatched source/tool/output identities and source/action/tool cycles reject at load.",
+        "Only five A3 main rows are batch targets; no side/fullP14/F10/C2 acceptance inferred."
+      ]
+    },
+    {
+      "caseId": "A3-02",
+      "name": "Provenance preservation is inert until admission",
+      "layers": [
+        "planner",
+        "recording",
+        "settlement"
+      ],
+      "status": "planned-not-executed",
+      "requiredAssertions": [
+        "Original authored waveId/encounterIds or bossEncounter identity survive generated runtime IDs, member spawning, fitting and elite transforms.",
+        "ChapterBoss override preserves canonical archetype source and never fabricates encounterId.",
+        "Synthetic/fallback/no-source templates cannot supply authored proof.",
+        "Optional WaveSpec.source/MonsterSpawn.encounterId or optional event source payload alone grants no credit,receipt,item,reward or save field.",
+        "Wrong/stale/mutated source, unbound recording and rejected settlement change no new A3 quest state."
+      ]
+    },
+    {
+      "caseId": "A3-03",
+      "name": "Complete Council proof and actual Flail recovery",
+      "layers": [
+        "engine/native settlement",
+        "quest action"
+      ],
+      "status": "planned-not-executed",
+      "requiredAssertions": [
+        "Exact ActIII/Travincal source bossEncounter act3-travincal-council; all three original monsters/act3.infector member identities dead in one accepted win with living hero.",
+        "Partial/duplicate/archetype-name-only/summoned/replaced/wrong-area/wrong-source/hero-dead/draw/stale inputs inert.",
+        "Khalim tracked eligible before event; no untracked early-victory banking.",
+        "Flail Recover at exact high_council_reliquary requires qualified Council proof plus full clear; clear flag alone insufficient.",
+        "Creates one real owned quest/khalims_flail at existing obj-flail source; repeated Recover produces nothing."
+      ]
+    },
+    {
+      "caseId": "A3-04",
+      "name": "Actual Golden Bird and Gidbinn exchanges",
+      "layers": [
+        "pure planners",
+        "store transaction",
+        "town UI"
+      ],
+      "status": "planned-not-executed",
+      "requiredAssertions": [
+        "GoldenBird Recover owns Jade; explicit Give Cain consumes exact Jade source and creates real GoldenBird; explicit Give Alkor consumes that exact output.",
+        "Opening Cain/Alkor/Ormus never Gives; wrong act/town/NPC/missing/consumed/wrong-source inputs refuse.",
+        "No crossquest or multiobjective hand-in cascade at shared NPC from one event.",
+        "GoldenBird Claim only4000heroXP/3000mercXP+owned potion; legacy stat.life removed.",
+        "Blade actual Gidbinn Recover and Ormus hand-in precede Claim5000heroXP/3750mercXP+one legal unique ring."
+      ]
+    },
+    {
+      "caseId": "A3-05",
+      "name": "All component orders, real Cube and XP-only Khalim Claim",
+      "layers": [
+        "pure planners",
+        "store transaction",
+        "inventory"
+      ],
+      "status": "planned-not-executed",
+      "requiredAssertions": [
+        "Exercise all24 Heart/Brain/Eye/Flail recovery permutations subject to each actual source prerequisite.",
+        "Require all four actual owned source components and actual owned retained ActII Cube.",
+        "Missing/consumed/wrong-source input, flag-only component or Cube, bad crossquest tool reference refuse with no changes.",
+        "Assembly consumes exactly four components, creates one Will at obj-transmute, retains Cube unchanged.",
+        "Khalim Claim8000heroXP/6000mercXP only; no legacy Will itemDrop; Claim before/after Orb never duplicates Will."
+      ]
+    },
+    {
+      "caseId": "A3-06",
+      "name": "Guardian-owned Orb admission and Khalim Claim independence",
+      "layers": [
+        "pure action admission",
+        "store transaction",
+        "UI"
+      ],
+      "status": "planned-not-executed",
+      "requiredAssertions": [
+        "Guardian must be started eligible inProgress/unclaimed; current ActIII/Travincal exact CompellingOrb object and absent Guardian Orb receipt.",
+        "Actual owned assembled Will from Khalim obj-transmute source required, irrespective of Khalim completed-unclaimed or claimed state.",
+        "Consume Will and publish quests/act3-guardian#action:break-compelling-orb together; no new objective row, XP or reward.",
+        "Unstarted/completed/claimed/wrong-owning quest, wrong act/area/object, missing/consumed/wrong-source Will, duplicate/reentrant and replacing-save states inert.",
+        "Write failure cannot leave consumed-but-unrecorded or recorded-with-owned-Will state; no Claim timing coupling."
+      ]
+    },
+    {
+      "caseId": "A3-07",
+      "name": "New qualified Mephisto after Orb and preserved OR transition",
+      "layers": [
+        "engine/native settlement",
+        "quest progression",
+        "map unlock"
+      ],
+      "status": "planned-not-executed",
+      "requiredAssertions": [
+        "Early Mephisto victory retains ordinary win income/area clear/ActIV OR unlock while Guardian credit remains false.",
+        "Starting Guardian or breaking Orb later cannot backfill early win.",
+        "Require new canonical chapterBoss monsters/act3.mephisto at Durance exact unit/live accepted final settlement and Guardian Orb receipt pre-event.",
+        "No-source/synthetic/fallback/wrong area/archetype/tier/unit/stale/hero-dead/draw/duplicate outcomes give no Guardian credit.",
+        "Then explicit once-only Claim18000heroXP/13500mercXP+47/5cache+one real bound Soulstone.",
+        "Act-wide Enter remains available independent of quest/object order."
+      ]
+    },
+    {
+      "caseId": "A3-08",
+      "name": "Versioned ring profile and strict deterministic cache",
+      "layers": [
+        "data validation",
+        "reward preparation",
+        "Claim transaction"
+      ],
+      "status": "planned-not-executed",
+      "requiredAssertions": [
+        "Exact profile quest-rewards/act3-gidbinn-ring-v1 ilvl34 literal ring order Nagelring,ManaldHeal,RingOfTheLeech,StoneOfJordan,eachweight1.",
+        "Force every four selection indices and every selectable cache entry/eligible unique candidate; exact closed references validated.",
+        "Pool private quest-unique-pool-v1 seed selects0..3; selected unique uses existing quest-unique-v1 seed; repeats preserve properties/quantities; allocator never rewound.",
+        "Mephisto exact47/5 existing quest-loot-table-v1 source seed; dedicated unique base breastplate correction only, preserveweight60/min38/max60.",
+        "No silent skip,downgrade,reroll or future unique autoentry; five picks promise neither five gear nor a guaranteed unique.",
+        "Existing table gold-entry and rune aggregation target rune-shard; full bag keeps lossless overflow; ordinary kill RNG/income unchanged."
+      ]
+    },
+    {
+      "caseId": "A3-09",
+      "name": "Tome points, Life Read and shared composition",
+      "layers": [
+        "quest transaction",
+        "progression composition",
+        "UI preview/native"
+      ],
+      "status": "planned-not-executed",
+      "requiredAssertions": [
+        "Tome real Recover/Alkor hand-in then6000heroXP/4500mercXP+5unspent statPoints; raw core allocation unchanged.",
+        "Life potion actual Read consumes once,+20maxLife,currentLife unchanged,0hero/mercXP,no healing or duplicate benefit.",
+        "Claim alone gives no Life entitlement; stale derived cache/imported flag gives none.",
+        "Equipment,preview,allocation,XP-level-up,respec,restore,battle entry/waves agree without compounding.",
+        "Fixed claim-only level30 qa-a3-hero fixture totals41000heroXP/30750mercXP,+5points,+20maxLife only afterRead; constructed fixture is functional evidence only."
+      ]
+    },
+    {
+      "caseId": "A3-10",
+      "name": "Shared lock, rollback and restoration failure evidence",
+      "layers": [
+        "transaction",
+        "all participating stores"
+      ],
+      "status": "planned-not-executed",
+      "requiredAssertions": [
+        "Inject prewrite and mutate-then-throw failures at each participating inventory,receipt,player,merc,map/claimed publication.",
+        "Restore all participating slices while preserving unrelated legitimate writes.",
+        "Nested same and other quest actions refuse throughout commit and restoration.",
+        "Attempt all restorations even after one fails; aggregate restoration failures explicitly; do not claim unchanged state when restoration failed.",
+        "Successful duplicate Claim/Read/Recover/Give/Assemble/Orb and settlement actions pay/consume nothing more; prospective wholegraph and safe totals validated before writes."
+      ]
+    },
+    {
+      "caseId": "A3-11",
+      "name": "Frozen predecessor, empty migration and real legacy repair",
+      "layers": [
+        "save validator/migration",
+        "inventory graph",
+        "quest repair"
+      ],
+      "status": "planned-not-executed",
+      "requiredAssertions": [
+        "Freeze strict v14 validator before v15 migration; v14 carrying future A3 receipts rejects rather than gaining proof.",
+        "Migration only empty new defaults; no owned/consumed item,Council/Orb proof,entitlement,XP,point,service use minted from objective/completed/claimed flags.",
+        "Preserve historical claimed/completed rows and point/XP balances.",
+        "Historical Khalim repair uses explicit real sources/qualified Council proof/actual components+Cube; assembly/Orb consume real inputs,neverrepay8000XP.",
+        "Unknown/future/oversize/malformed receipt graphs reject; save roundtrip preserves real owned/consumed state."
+      ]
+    },
+    {
+      "caseId": "A3-12",
+      "name": "Five real control flows, persistence and accessible locale UI",
+      "layers": [
+        "UI integration/browser",
+        "save/Continue",
+        "a11y/regression"
+      ],
+      "status": "planned-not-executed",
+      "requiredAssertions": [
+        "Exercise actual Recover/Give/Assemble/Orb/Read/Claim controls for allfive rows and Save->close->Continue exact retained state.",
+        "Verify zh-CN and en at360x640,412x915,1280x800; keyboard,screenreader,reducedmotion; prerequisite and consumption summaries.",
+        "Plain NPC opening never consumes/delivers; actual reward/state/disabled reason visible and localized.",
+        "Preserve existing46 row IDs/statuses and all earlier ActII/sourceitem/Talk/chapter/Claim/mainRNG regressions.",
+        "Functional/imported fixture success is not earned campaign,fullP14/F10 or C2 pacing proof."
+      ]
+    }
+  ]
+}

@@ -42,6 +42,8 @@ export const DEFAULT_ELITE_CONFIG = defaultEliteConfigJson as EliteConfigDef;
 /** Per-monster spawn directive resolved from a wave/encounter. */
 export interface MonsterSpawn {
   readonly archetypeId: string;
+  /** Encounter that supplied this spawn; meaningful only with an authored wave source. */
+  readonly encounterId?: string;
   readonly tier: MonsterTier;
   readonly level: number;
   /** Per-archetype 0-based index inside this wave (for naming). */
@@ -62,9 +64,17 @@ export interface WavePresentation {
   readonly difficultyBand?: 'normal' | 'hard' | 'finale';
 }
 
+/** Authored origin, independent of generated runtime wave IDs and elite fitting. */
+export type WaveSource =
+  | { readonly kind: 'wave'; readonly waveId: string; readonly encounterIds: readonly string[] }
+  | { readonly kind: 'bossEncounter'; readonly encounterId: string }
+  | { readonly kind: 'chapterBoss'; readonly archetypeId: string };
+
 /** Resolved spec for a single wave inside a sub-area run. */
 export interface WaveSpec {
   readonly id: string;
+  /** Absent for synthetic/fallback waves. Provenance alone grants no quest credit. */
+  readonly source?: WaveSource;
   /** Wave-level tier label (largely informational). */
   readonly waveTier: WaveDef['type'];
   /** Spawn list, already index-tagged for naming. */
@@ -183,6 +193,7 @@ export function resolveWavePlan(
       : baseSpawns;
     out.push({
       id: wave.id,
+      source: authoredWaveSource(wave),
       waveTier: wave.type,
       spawns,
       ...(wave.lootTable !== undefined ? { lootTable: wave.lootTable } : {})
@@ -197,6 +208,7 @@ export function resolveWavePlan(
         const lootTable = subArea.chapterBoss ? undefined : explicitBossLootTable(subArea);
         out.push({
           id: `${subArea.id}-boss`,
+          source: { kind: 'bossEncounter', encounterId: subArea.bossEncounter.id },
           waveTier: 'boss',
           spawns,
           ...(lootTable !== undefined ? { lootTable } : {})
@@ -296,6 +308,7 @@ export function resolveChallengeWavePlan(input: ResolveChallengeWavePlanInput): 
     if (spawns.length === 0) continue;
     out.push({
       id: `${subArea.id}-challenge-w${String(i + 1)}`,
+      ...(subArea.waves.includes(template) ? { source: authoredWaveSource(template) } : {}),
       waveTier: isIdleElite ? 'elite' : waveKind,
       spawns,
       ...(template.lootTable !== undefined ? { lootTable: template.lootTable } : {}),
@@ -321,6 +334,7 @@ export function resolveChallengeWavePlan(input: ResolveChallengeWavePlanInput): 
       const lootTable = explicitBossLootTable(subArea);
       out.push({
         id: `${subArea.id}-boss`,
+        source: { kind: 'bossEncounter', encounterId: subArea.bossEncounter.id },
         waveTier: 'boss',
         spawns: bossSpawns,
         ...(lootTable !== undefined ? { lootTable } : {}),
@@ -343,6 +357,7 @@ export function resolveChallengeWavePlan(input: ResolveChallengeWavePlanInput): 
       if (bossSpawns.length > 0) {
         out.push({
           id: `${subArea.id}-boss`,
+          source: authoredWaveSource(authoredBoss),
           waveTier: 'boss',
           spawns: bossSpawns,
           ...(authoredBoss.lootTable !== undefined ? { lootTable: authoredBoss.lootTable } : {}),
@@ -376,6 +391,10 @@ export function resolveChallengeWavePlan(input: ResolveChallengeWavePlanInput): 
     seed,
     difficulty
   };
+}
+
+function authoredWaveSource(wave: WaveDef): WaveSource {
+  return { kind: 'wave', waveId: wave.id, encounterIds: (wave.encounters ?? []).map(encounter => encounter.id) };
 }
 
 /** Keep the authored boss wave as the single TC authority for an explicit encounter. */
@@ -561,6 +580,7 @@ function chapterBossWave(
   };
   return {
     id: `${subAreaId}-chapter-boss`,
+    source: { kind: 'chapterBoss', archetypeId: boss.archetypeId },
     waveTier: 'boss',
     spawns: [spawn],
     lootTable: boss.dropTable,
@@ -698,6 +718,7 @@ export function encountersToSpawns(
         perArchetypeIdx.set(m.archetypeId, idx + 1);
         out.push({
           archetypeId: m.archetypeId,
+          encounterId: enc.id,
           tier,
           level: areaLevel === undefined || baseLevel === undefined
             ? enc.level

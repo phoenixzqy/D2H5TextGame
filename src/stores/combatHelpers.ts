@@ -692,7 +692,8 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
               Number.isFinite(final.life) && final.life <= 0 ? [spawn.archetypeId] : [];
           });
           if (archetypeIds.length > 0) useMapStore.getState().recordMonsterKills({
-            actId: `acts/act${String(run.act)}`, areaId: run.plan.subAreaId, archetypeIds
+            actId: `acts/act${String(run.act)}`, areaId: run.plan.subAreaId, archetypeIds,
+            ...(completedWave.source ? { source: completedWave.source } : {})
           });
         }
 
@@ -708,7 +709,8 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
             useMapStore.getState().recordBossKill({
               actId: `acts/act${String(run.act)}`,
               areaId: run.plan.subAreaId,
-              bossArchetypeId: boss.archetypeId
+              bossArchetypeId: boss.archetypeId,
+              ...(completedWave?.source ? { source: completedWave.source } : {})
             });
           }
           // Only a complete sequence of won waves can clear an area or unlock idle.

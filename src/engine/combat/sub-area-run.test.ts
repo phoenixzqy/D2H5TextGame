@@ -5,6 +5,7 @@ import { describe, it, expect } from 'vitest';
 import type { SubAreaDef } from '../types/maps';
 import act1Areas from '../../data/maps/sub-areas/act1.json';
 import act2Areas from '../../data/maps/sub-areas/act2.json';
+import act3Areas from '../../data/maps/sub-areas/act3.json';
 import type { WaveSpec } from './sub-area-run';
 import {
   resolveWavePlan,
@@ -100,6 +101,69 @@ function required<T>(value: T | undefined): T {
   if (value === undefined) throw new Error('Missing expected wave');
   return value;
 }
+
+describe('authored encounter provenance', () => {
+  const council = required(act3Areas.find(area => area.id === 'areas/act3-travincal')) as SubAreaDef;
+  const durance = required(act3Areas.find(area => area.id === 'areas/act3-durance-of-hate')) as SubAreaDef;
+  const challenge = (subArea: SubAreaDef, mode: 'manual' | 'idle') => resolveChallengeWavePlan({
+    subArea, fallbackArchetypeId: 'monsters/act3.infector', fallbackLevel: 38,
+    seed: 7, challengeOrdinal: 0, mode
+  });
+
+  it.each(['manual', 'idle'] as const)('%s retains original wave IDs and the exact Council encounter', mode => {
+    const plan = challenge(council, mode);
+    expect(plan.waves[0]).toMatchObject({
+      id: 'areas/act3-travincal-challenge-w1',
+      source: { kind: 'wave', waveId: 'w1', encounterIds: ['act3-tv-w1-e1'] }
+    });
+    expect(plan.waves.at(-1)).toMatchObject({
+      source: { kind: 'bossEncounter', encounterId: 'act3-travincal-council' },
+      spawns: [0, 1, 2].map(index => ({
+        archetypeId: 'monsters/act3.infector', tier: 'boss', index,
+        encounterId: 'act3-travincal-council'
+      }))
+    });
+  });
+
+  it('retains a legacy authored boss wave separately from the explicit boss encounter', () => {
+    expect(resolveWavePlan(council, 'monsters/act3.infector', 38, 7).waves.at(-1)).toMatchObject({
+      source: { kind: 'wave', waveId: 'w6', encounterIds: ['act3-tv-w6-e1'] },
+      spawns: [0, 1, 2].map(index => ({ encounterId: 'act3-tv-w6-e1', index }))
+    });
+  });
+
+  it.each(['manual', 'idle'] as const)('%s attributes a chapter override to the canonical chapter definition', mode => {
+    expect(challenge(durance, mode).waves.at(-1)).toMatchObject({
+      source: { kind: 'chapterBoss', archetypeId: 'monsters/act3.mephisto' },
+      spawns: [{ archetypeId: 'monsters/act3.mephisto', tier: 'chapter-boss' }]
+    });
+    expect(challenge(durance, mode).waves.at(-1)?.spawns[0]).not.toHaveProperty('encounterId');
+  });
+
+  it('keeps two encounter identities for the same archetype through fitting and forced elites', () => {
+    const subArea: SubAreaDef = { ...BLOOD_MOOR, waves: [{ id: 'original-w9', type: 'trash', encounters: [
+      { id: 'left', level: 2, monsters: [{ archetypeId: 'monsters/act1.fallen', count: 1 }] },
+      { id: 'right', level: 2, monsters: [{ archetypeId: 'monsters/act1.fallen', count: 1 }] }
+    ] }] };
+    const wave = required(challenge(subArea, 'manual').waves[0]);
+    expect(wave).toMatchObject({ source: {
+      kind: 'wave', waveId: 'original-w9', encounterIds: ['left', 'right']
+    } });
+    expect(wave.spawns).toHaveLength(8);
+    expect(wave.spawns.map(spawn => ({ encounterId: spawn.encounterId, index: spawn.index })))
+      .toEqual(Array.from({ length: 8 }, (_, i) => ({
+      encounterId: i % 2 === 0 ? 'left' : 'right', index: i
+      })));
+  });
+
+  it('gives synthetic waves and fallback templates no authored proof', () => {
+    const fallback: SubAreaDef = { ...BLOOD_MOOR, waves: [] };
+    for (const plan of [synthDefaultPlan(fallback, 'monsters/act1.fallen', 2),
+      challenge(fallback, 'manual'), resolveWavePlan(fallback, 'monsters/act1.fallen', 2)]) {
+      for (const wave of plan.waves) expect(wave).not.toHaveProperty('source');
+    }
+  });
+});
 
 it('retains canonical manual Duriel level32 and ordinary boss treasure class', () => {
   const subArea = required(act2Areas.find(area => area.id === 'areas/act2-tomb-of-tal-rasha')) as SubAreaDef;
@@ -552,7 +616,7 @@ describe('Act I bounded promoted elite groups', () => {
         : affix);
     }
     expect(plan.waves[4]?.spawns).toEqual(Array.from({ length: rng.nextInt(1, 3) }, (_, index) => ({
-      archetypeId: 'monsters/act1.carver', tier: 'boss', level: 6, index
+      archetypeId: 'monsters/act1.carver', encounterId: 'random-boss', tier: 'boss', level: 6, index
     })));
     expect(subArea).toEqual(input);
     expect(DEFAULT_ELITE_CONFIG).toEqual(configBefore);
