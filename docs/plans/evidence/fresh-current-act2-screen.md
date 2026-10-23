@@ -89,6 +89,9 @@ The [packet](fixtures/fresh-current-act2-screen/packet.json) retains exact spec,
 helper/config/module envelope, frozen recipe, manifests, launch/terminal logs,
 analysis and supplement, representative earned saves, plan, nonwin accounting
 and all8 attachments. Historical stopped attempts remain unchanged.
+The raw Playwright error-context attachment is stored as gzip with its original
+content hash: codeframe whitespace triggered a diff-check warning on the first
+evidence commit, so compression preserves the exact bytes without editing them.
 
 Required raw evidence remains root-owned through C2/umbrella consumers at
 `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9`.

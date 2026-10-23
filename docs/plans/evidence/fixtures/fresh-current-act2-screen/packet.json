@@ -33,13 +33,20 @@
     "supplement-evidence.py.txt": "9c8a5751bafef6eb0d05ada98083e09de5d2bc2ef57af2f2575e7bb245cba912",
     "analyze-evidence.py.txt": "785a8ce81a20d1d3bf72f33124577933e5ab21ec982b54911f579c4dd473c118",
     "images/000-test-failed-1.png": "2da24f5d38346e2be12a3fa8cc3f35feb65877cbb9fe8e16a7073f0441b7e7cd",
-    "images/001-error-context.md": "18c73513d22799ed4793f10d51e7c489be1320904e83470dd5d14b2df1a7e5ef",
     "images/actual-earned-den-clear.png": "f99190ea0c8ff41a4e96a28aae6a3646e7dfe35483420a6d623335bb50217c63",
     "images/fresh-mobile-den-claimed.png": "b78671fce14b11ca4357335e8d641854f312cb0198e80bae8518892dcb1f2a05",
     "images/earned-boss-coif-comparison.png": "ff9d72143405f8426ce4d644cdacd4fe3253d0e256e9652a249db3ccf3b35246",
     "images/fresh-mobile-act-two-continued.png": "4968ddab86ced2210902f6c64614a0a20fd2c5099ec402b6132f5803ee1f5020",
     "images/run-a2-far-oasis-0-wave-5-nonwin-screen.png": "7d634a85e643c90fdf59c40dae9ff00280ed9dc5abbdae1de49eb132d21ce250",
     "images/last-native-screen.png": "b1d976290cda305b5cc29de5ca1fb052e05fae1ca2c12a1ca1f076c6dacccbb6",
-    "cleanup.receipt.json": "470e624fa94b2afd88cc39efeabd11123b5b37939745303f8c2d61990cbe103d"
+    "cleanup.receipt.json": "470e624fa94b2afd88cc39efeabd11123b5b37939745303f8c2d61990cbe103d",
+    "images/001-error-context.md.gz": "c9c079c76e970aa320b51c3735a060349ebecfef3a83ff86c3e6a8015c028159"
+  },
+  "compressedArtifacts": {
+    "images/001-error-context.md.gz": {
+      "originalName": "images/001-error-context.md",
+      "decompressedSha256": "18c73513d22799ed4793f10d51e7c489be1320904e83470dd5d14b2df1a7e5ef",
+      "reason": "Preserve exact Playwright codeframe whitespace without introducing diff-check whitespace warnings."
+    }
   }
 }
