@@ -56,6 +56,13 @@ const pools: AwardDataPools = {
 describe('award.rollKillRewards', () => {
   beforeEach(() => { __resetItemSeqForTests(); });
 
+  it.each(['chapter-boss', 'rare-elite'] as const)('pins pre-extraction %s output and following RNG', tier => {
+    const rng = createRng(92374);
+    const rewards = rollKillRewards({ tier, monsterLevel: 14, treasureClassId: tc.id,
+      magicFind: 137, magicFindMultiplier: 1.4, goldFind: 51, act: 2 }, pools, rng);
+    expect({ rewards, following: rng.next() }).toMatchSnapshot();
+  });
+
   it('is deterministic for a fixed seed', () => {
     const a = rollKillRewards(
       { tier: 'elite', monsterLevel: 5, treasureClassId: tc.id, magicFind: 100, goldFind: 0, act: 1 },

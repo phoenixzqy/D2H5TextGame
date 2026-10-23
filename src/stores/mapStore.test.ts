@@ -64,7 +64,7 @@ describe('qualified kill-boss quest events (BUG049)', () => {
 
   it('requires an earlier authored objective before a later boss kill without cascading', () => {
     const questId = 'quests/act2-seven-tombs';
-    const event = { actId: 'acts/act2', areaId: 'areas/act2_duriels_lair', bossArchetypeId: 'monsters/duriel' };
+    const event = { actId: 'acts/act2', areaId: 'areas/act2-tomb-of-tal-rasha', bossArchetypeId: 'monsters/act2.duriel' };
     useMapStore.getState().updateQuestProgress(questId, {
       status: 'inProgress', objectives: { 'obj-open-tomb': false, 'obj-kill-duriel': false }
     });
@@ -72,10 +72,23 @@ describe('qualified kill-boss quest events (BUG049)', () => {
     before.recordBossKill(event);
     expect(useMapStore.getState()).toBe(before);
     before.updateQuestProgress(questId, { objectives: { 'obj-open-tomb': true, 'obj-kill-duriel': false } });
+    expect(useMapStore.getState().questProgress[questId]?.status).toBe('inProgress');
     useMapStore.getState().recordBossKill(event);
     expect(useMapStore.getState().questProgress[questId]).toEqual({
       id: questId, status: 'completed', objectives: { 'obj-open-tomb': true, 'obj-kill-duriel': true }
     });
+  });
+
+  it.each([
+    { areaId: 'areas/act2_duriels_lair' }, { bossArchetypeId: 'monsters/duriel' }, { actId: 'acts/act1' }
+  ])('rejects obsolete or wrong Duriel context %j', mismatch => {
+    useMapStore.getState().updateQuestProgress('quests/act2-seven-tombs', {
+      status: 'inProgress', objectives: { 'obj-open-tomb': true, 'obj-kill-duriel': false }
+    });
+    const before = useMapStore.getState();
+    before.recordBossKill({ actId: 'acts/act2', areaId: 'areas/act2-tomb-of-tal-rasha',
+      bossArchetypeId: 'monsters/act2.duriel', ...mismatch });
+    expect(useMapStore.getState()).toBe(before);
   });
 
   it('does not reinterpret an ordinary kill objective as kill-boss', () => {

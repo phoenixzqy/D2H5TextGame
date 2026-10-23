@@ -233,6 +233,65 @@ describe('qualified Radament kill settlement (constructed integration fixture)',
     });
 });
 
+describe('qualified Duriel settlement (constructed integration fixture)', () => {
+  const quest = 'quests/act2-seven-tombs';
+  function trackDuriel(opened: boolean): void {
+    useMapStore.getState().updateQuestProgress(quest, { status: 'inProgress', rewardClaimed: false,
+      objectives: { 'obj-open-tomb': opened, 'obj-kill-duriel': false } });
+  }
+  function reachDuriel(): void {
+    const total = start('areas/act2-tomb-of-tal-rasha', 2);
+    for (let wave = 1; wave < total; wave++) {
+      expect(useCombatStore.getState().outcome?.winner).toBe('player');
+      drain(); expect(advanceWaveOrFinish()).toBe('next-wave');
+    }
+    const outcome = required(useCombatStore.getState().outcome);
+    expect(outcome.winner).toBe('player');
+    expect(outcome.finalEnemyTeam).toEqual([expect.objectContaining({
+      monsterArchetypeId: 'monsters/act2.duriel', tier: 'chapter-boss', level: 32, life: 0
+    })]);
+  }
+
+  it('credits canonical Duriel only after playback and keeps Claim separate', () => {
+    trackDuriel(true); reachDuriel();
+    const before = useMapStore.getState().questProgress[quest];
+    expect(advanceWaveOrFinish()).toBe('idle');
+    expect(useMapStore.getState().questProgress[quest]).toBe(before);
+    useMapStore.getState().setCurrentLocation(1, AREA);
+    drain(); expect(advanceWaveOrFinish()).toBe('victory');
+    expect(useMapStore.getState().questProgress[quest]).toEqual({ id: quest,
+      status: 'completed', rewardClaimed: false,
+      objectives: { 'obj-open-tomb': true, 'obj-kill-duriel': true } });
+    const saved = decodeSave(JSON.parse(required(exportCurrentSave())) as unknown);
+    expect(saved.map.questProgress).toEqual(useMapStore.getState().questProgress);
+    const settled = snapshotStores(); expect(advanceWaveOrFinish()).toBe('idle');
+    expect(snapshotStores()).toEqual(settled);
+  });
+
+  it('does not bank an unopened victory; opening requires a new qualified victory', () => {
+    trackDuriel(false); reachDuriel(); drain(); expect(advanceWaveOrFinish()).toBe('victory');
+    expect(useMapStore.getState().questProgress[quest]?.objectives['obj-kill-duriel']).toBe(false);
+    trackDuriel(true); expect(advanceWaveOrFinish()).toBe('idle');
+    expect(useMapStore.getState().questProgress[quest]?.status).toBe('inProgress');
+    reachDuriel(); drain(); expect(advanceWaveOrFinish()).toBe('victory');
+    expect(useMapStore.getState().questProgress[quest]?.status).toBe('completed');
+    expect(useMapStore.getState().questProgress[quest]?.rewardClaimed).toBe(false);
+  });
+
+  it.each(['clone-outcome', 'clone-events', 'prior-run', 'pre-replay'] as const)(
+    'refuses Duriel %s references without quest credit', kind => {
+      trackDuriel(true); reachDuriel(); const old = useCombatStore.getState();
+      if (kind === 'prior-run') { abortSubAreaRun(); reachDuriel(); }
+      if (kind === 'pre-replay') refreshActivePlayerCombatConfig({ replayCurrentWave: true });
+      const current = useCombatStore.getState(); drain();
+      useCombatStore.setState(kind === 'clone-outcome' ? { outcome: { ...required(current.outcome) } }
+        : kind === 'clone-events' ? { recordedEvents: [...current.recordedEvents] }
+        : { outcome: old.outcome, recordedEvents: old.recordedEvents });
+      const before = useMapStore.getState().questProgress;
+      refuseCompletion(); expect(useMapStore.getState().questProgress).toBe(before);
+    });
+});
+
 describe('qualified current chapter-boss quest settlement', () => {
   it('completes a tracked objective only at final playback settlement, without extra quest rewards', () => {
     track(); const expectedXP = reachFinal();

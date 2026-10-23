@@ -16,7 +16,7 @@ import type { Rng } from '../rng';
 import type { EliteConfigDef } from '../types/elite';
 import type { Item, SetPieceDef, UniqueItemDef } from '../types/items';
 import type { MonsterTier } from '../combat/types';
-import { rollDrops, type TreasureClass } from './drop-roller';
+import { rollDrops, type DropResult, type TreasureClass } from './drop-roller';
 
 const RARE_ELITE_MAGIC_FIND_BONUS = (defaultEliteConfigJson as EliteConfigDef).rareEliteMagicFindBonus;
 import { rollCurrencyDrops, type Difficulty, type CurrencyDrops } from './orbs-and-currency';
@@ -50,6 +50,60 @@ export interface KillRewards extends CurrencyDrops {
 
 /** Empty rewards (used for unknown TCs to keep call sites simple). */
 const EMPTY: KillRewards = { items: [], runeShards: 0, wishstones: 0, runes: 0, gems: 0 };
+
+/** Explicit generation context for one quest cache, independent of live combat/gear. */
+export interface QuestTableRewardInput {
+  readonly tableId: string;
+  readonly ilvl: number;
+  readonly picks: number;
+}
+
+/** Accept only the closed authored cache profile, including safe integer arithmetic. */
+export function isQuestTableRewardInput(value: unknown): value is QuestTableRewardInput {
+  if (typeof value !== 'object' || value === null || Object.keys(value).length !== 3 ||
+    !Object.hasOwn(value, 'tableId') || !Object.hasOwn(value, 'ilvl') || !Object.hasOwn(value, 'picks') ||
+    !('tableId' in value) || !('ilvl' in value) || !('picks' in value)) return false;
+  return typeof value.tableId === 'string' && /^loot\/[a-z0-9][a-z0-9._-]*$/.test(value.tableId) &&
+    typeof value.ilvl === 'number' && Number.isSafeInteger(value.ilvl) && value.ilvl > 0 &&
+    typeof value.picks === 'number' && Number.isSafeInteger(value.picks) && value.picks > 0;
+}
+
+function materializeDrops(drops: readonly DropResult[], pools: AwardDataPools, rng: Rng):
+  { rewards: KillRewards; complete: boolean } {
+  const items: Item[] = [];
+  let runeShards = 0, wishstones = 0, runes = 0, gems = 0;
+  let complete = true;
+  for (const drop of drops) {
+    if (drop.kind === 'item') {
+      const item = rollItem(drop, pools, rng);
+      if (item) items.push(item);
+      else complete = false;
+    } else if (drop.currency === 'runeShards') runeShards += drop.quantity;
+    else if (drop.currency === 'wishstones') wishstones += drop.quantity;
+    else if (drop.currency === 'runes') runes += drop.quantity;
+    else gems += drop.quantity;
+  }
+  return { rewards: { items, runeShards, wishstones, runes, gems }, complete };
+}
+
+/**
+ * Roll only a quest's authored treasure class: replacement picks, noDrop0, MF0.
+ * Unknown/empty/ineligible tables or incomplete materialization refuse the whole
+ * bag. All selections precede materialization; exceptions propagate to the caller.
+ * No independent kill income is rolled. Failed attempts may leave allocator gaps.
+ */
+export function rollQuestTableRewards(input: QuestTableRewardInput, pools: AwardDataPools, rng: Rng): KillRewards | undefined {
+  if (!isQuestTableRewardInput(input)) return undefined;
+  const tc = pools.treasureClasses.get(input.tableId);
+  if (!tc) return undefined;
+  const drops = rollDrops({ tc: { ...tc, numPicks: input.picks, noDropChance: 0 },
+    tier: 'chapter-boss', monsterLevel: input.ilvl, magicFind: 0, magicFindMultiplier: 1 }, rng);
+  if (drops.length !== input.picks) return undefined;
+  const { rewards, complete } = materializeDrops(drops, pools, rng);
+  if (!complete || ![rewards.runeShards, rewards.wishstones, rewards.runes, rewards.gems]
+    .every(amount => Number.isSafeInteger(amount) && amount >= 0)) return undefined;
+  return rewards;
+}
 
 /**
  * Roll the full reward set for a single kill. Items are materialised from the
@@ -87,25 +141,7 @@ export function rollKillRewards(
     rng
   );
 
-  const items: Item[] = [];
-  let directRuneShards = 0;
-  let directWishstones = 0;
-  let directRunes = 0;
-  let directGems = 0;
-  for (const d of drops) {
-    if (d.kind === 'item') {
-      const it = rollItem(d, pools, rng);
-      if (it) items.push(it);
-    } else if (d.currency === 'runeShards') {
-      directRuneShards += d.quantity;
-    } else if (d.currency === 'wishstones') {
-      directWishstones += d.quantity;
-    } else if (d.currency === 'runes') {
-      directRunes += d.quantity;
-    } else {
-      directGems += d.quantity;
-    }
-  }
+  const direct = materializeDrops(drops, pools, rng).rewards;
 
   const cur = rollCurrencyDrops(
     input.monsterLevel,
@@ -117,11 +153,11 @@ export function rollKillRewards(
   );
 
   return {
-    items,
-    runeShards: cur.runeShards + directRuneShards,
-    wishstones: cur.wishstones + directWishstones,
-    runes: cur.runes + directRunes,
-    gems: cur.gems + directGems
+    items: direct.items,
+    runeShards: cur.runeShards + direct.runeShards,
+    wishstones: cur.wishstones + direct.wishstones,
+    runes: cur.runes + direct.runes,
+    gems: cur.gems + direct.gems
   };
 }
 

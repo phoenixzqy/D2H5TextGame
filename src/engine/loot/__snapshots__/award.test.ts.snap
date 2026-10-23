@@ -1,0 +1,161 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`award.rollKillRewards > pins pre-extraction chapter-boss output and following RNG 1`] = `
+{
+  "following": 0.38724254560656846,
+  "rewards": {
+    "gems": 1,
+    "items": [
+      {
+        "affixes": [
+          {
+            "id": "pre.defense",
+            "rolledValue": 1,
+            "tier": 0,
+          },
+          {
+            "id": "suf.health",
+            "rolledValue": 10,
+            "tier": 0,
+          },
+        ],
+        "baseId": "helm_cap",
+        "baseRolls": {},
+        "equipped": false,
+        "generatedName": {},
+        "id": "it-39lfr-1",
+        "identified": true,
+        "ilvl": 14,
+        "level": 14,
+        "rarity": "magic",
+      },
+      {
+        "affixes": [],
+        "baseId": "helm_cap",
+        "baseRolls": {},
+        "equipped": false,
+        "generatedName": {},
+        "id": "it-4a1v9-2",
+        "identified": true,
+        "ilvl": 14,
+        "level": 14,
+        "rarity": "normal",
+      },
+      {
+        "affixes": [
+          {
+            "id": "pre.defense",
+            "rolledValue": 3,
+            "tier": 0,
+          },
+          {
+            "id": "suf.warding",
+            "rolledValue": 5,
+            "tier": 0,
+          },
+        ],
+        "baseId": "helm_cap",
+        "baseRolls": {},
+        "equipped": false,
+        "generatedName": {},
+        "id": "it-2no7w-3",
+        "identified": true,
+        "ilvl": 14,
+        "level": 14,
+        "rarity": "magic",
+      },
+    ],
+    "runeShards": 3900,
+    "runes": 1,
+    "wishstones": 12,
+  },
+}
+`;
+
+exports[`award.rollKillRewards > pins pre-extraction rare-elite output and following RNG 1`] = `
+{
+  "following": 0.639883654890582,
+  "rewards": {
+    "gems": 0,
+    "items": [
+      {
+        "affixes": [
+          {
+            "id": "pre.defense",
+            "rolledValue": 1,
+            "tier": 0,
+          },
+          {
+            "id": "suf.health",
+            "rolledValue": 10,
+            "tier": 0,
+          },
+          {
+            "id": "suf.warding",
+            "rolledValue": 5,
+            "tier": 0,
+          },
+        ],
+        "baseId": "helm_cap",
+        "baseRolls": {},
+        "equipped": false,
+        "generatedName": {},
+        "id": "it-5ozc0-1",
+        "identified": false,
+        "ilvl": 14,
+        "level": 14,
+        "rarity": "rare",
+      },
+      {
+        "affixes": [
+          {
+            "id": "pre.defense",
+            "rolledValue": 5,
+            "tier": 0,
+          },
+          {
+            "id": "suf.warding",
+            "rolledValue": 5,
+            "tier": 0,
+          },
+        ],
+        "baseId": "helm_cap",
+        "baseRolls": {},
+        "equipped": false,
+        "generatedName": {},
+        "id": "it-8f51s-2",
+        "identified": true,
+        "ilvl": 14,
+        "level": 14,
+        "rarity": "magic",
+      },
+      {
+        "affixes": [
+          {
+            "id": "pre.defense",
+            "rolledValue": 2,
+            "tier": 0,
+          },
+          {
+            "id": "suf.warding",
+            "rolledValue": 5,
+            "tier": 0,
+          },
+        ],
+        "baseId": "helm_cap",
+        "baseRolls": {},
+        "equipped": false,
+        "generatedName": {},
+        "id": "it-7nmwr-3",
+        "identified": true,
+        "ilvl": 14,
+        "level": 14,
+        "rarity": "magic",
+      },
+    ],
+    "runeShards": 580,
+    "runes": 0,
+    "wishstones": 2,
+  },
+}
+`;

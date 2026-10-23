@@ -101,6 +101,17 @@ function required<T>(value: T | undefined): T {
   return value;
 }
 
+it('retains canonical manual Duriel level32 and ordinary boss treasure class', () => {
+  const subArea = required(act2Areas.find(area => area.id === 'areas/act2-tomb-of-tal-rasha')) as SubAreaDef;
+  const plan = resolveChallengeWavePlan({ subArea, fallbackArchetypeId: 'monsters/act2.mummy',
+    fallbackLevel: 25, seed: 7, challengeOrdinal: 0, mode: 'manual' });
+  const boss = required(plan.waves.at(-1));
+  expect(boss.lootTable).toBe('loot/act2-boss');
+  expect(boss.spawns).toEqual([expect.objectContaining({
+    archetypeId: 'monsters/act2.duriel', tier: 'chapter-boss', level: 32
+  })]);
+});
+
 describe('Radament authored encounter and treasure class', () => {
   const farOasis = act2Areas.find((area) => area.id === 'areas/act2-far-oasis') as SubAreaDef;
   const challenge = (subArea: SubAreaDef, mode: 'manual' | 'idle' = 'manual') =>
