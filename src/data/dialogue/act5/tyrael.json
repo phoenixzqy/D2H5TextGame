@@ -1,0 +1,11 @@
+{
+  "id": "dialogue/act5/tyrael",
+  "npcId": "tyrael",
+  "greetings": [
+    {
+      "textKey": "town:dialogue.greetings.act5.tyrael",
+      "text": "In the Throne of Destruction, overcome the five minion waves in order, then defeat Baal. Claim Eve of Destruction to select your title and unlock Nightmare replay."
+    }
+  ],
+  "services": []
+}

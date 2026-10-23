@@ -11,9 +11,13 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, Panel, ScreenShell, GameImage, getZoneArtUrl, getNpcPortraitUrl } from '@/ui';
-import { useMapStore, usePlayerStore } from '@/stores';
+import { useInventoryStore, useMapStore, usePlayerStore } from '@/stores';
 import { loadTownNpcs } from '@/data/loaders/towns';
 import { QuestDeliveryPanel } from './QuestDeliveryPanel';
+import { QuestServicePanel } from './QuestServicePanel';
+import { QuestTitleControls } from './QuestTitleControls';
+import { Act5QuestActionsPanel } from '@/features/quests/Act5QuestActionsPanel';
+import { isAnyaThawed, isAnyaTownPresent } from '@/features/quests/act5QuestActions';
 
 export function TownScreen() {
   const { t } = useTranslation(['town', 'common']);
@@ -22,7 +26,12 @@ export function TownScreen() {
   const currentAct = useMapStore((s) => s.currentAct);
   const recordNpcTalk = useMapStore((s) => s.recordNpcTalk);
   const den = useMapStore((s) => s.questProgress['quests/act1-den-of-evil']);
-  const npcs = loadTownNpcs(currentAct);
+  useMapStore(s => s.questReceipts);
+  useInventoryStore(s => s.questItems);
+  const selectedTitle = useMapStore(s => s.selectedTitle);
+  useMapStore(s => s.questProgress['quests/act5-prison-of-ice']);
+  // Presence comes from the quest graph, including the supported legacy dialogue path.
+  const npcs = loadTownNpcs(currentAct).filter(npc => npc.id !== 'npc/anya' || isAnyaTownPresent());
   const [selection, setSelection] = useState<{ act: number; npcId: string } | null>(null);
   const conversationTrigger = useRef<HTMLButtonElement | null>(null);
   // Town can stay mounted while the current act changes. Never retain another act's NPC.
@@ -40,7 +49,7 @@ export function TownScreen() {
         <span>
           {t('map:act', { number: currentAct })} ·{' '}
           {t('town')}
-          {player && <span className="ml-2 text-sm text-d2-white/60">— {player.name}</span>}
+          {player && <span className="ml-2 text-sm text-d2-white/60">— {player.name}{selectedTitle === 'titles/slayer_of_baal' ? ` · ${t('titles.slayer')}` : ''}</span>}
         </span>
       }
     >
@@ -58,6 +67,7 @@ export function TownScreen() {
       </div>
 
       <div className="space-y-4 max-w-3xl mx-auto">
+        <QuestTitleControls />
         <Panel title={t('npcs')}>
           <ul className="grid grid-cols-2 sm:grid-cols-4 gap-2">
             {npcs.map((npc) => (
@@ -106,9 +116,12 @@ export function TownScreen() {
             </h3>
             <div role="status" aria-live="polite" className="space-y-2 text-sm text-d2-white/90">
               <p>{t([`dialogue.greetings.act${String(currentAct)}.${selectedNpc.portraitId}`, `dialogue.greetings.${selectedNpc.portraitId}`])}</p>
+              {selectedNpc.id === 'npc/anya' && !isAnyaThawed() && <p>{t('dialogue.legacyAnya')}</p>}
               {selectedNpc.id === 'npc/akara' && <p>{t(`dialogue.den.${denCopy}`)}</p>}
             </div>
             <QuestDeliveryPanel key={`${String(currentAct)}:${selectedNpc.id}`} npcId={selectedNpc.id} />
+            <Act5QuestActionsPanel key={`actions:${String(currentAct)}:${selectedNpc.id}`} npcId={selectedNpc.id} />
+            <QuestServicePanel key={`services:${String(currentAct)}:${selectedNpc.id}`} npcId={selectedNpc.id} />
             <div className="flex flex-wrap gap-2">
               <Button
                 variant="secondary"

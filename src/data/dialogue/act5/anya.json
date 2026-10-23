@@ -1,0 +1,11 @@
+{
+  "id": "dialogue/act5/anya",
+  "npcId": "anya",
+  "greetings": [
+    {
+      "textKey": "town:dialogue.greetings.act5.anya",
+      "text": "Thank you for freeing me. Your Scroll of Resistance must be claimed in Quests, then read in Inventory. A personalization charge lets you mark one eligible item with your name."
+    }
+  ],
+  "services": []
+}

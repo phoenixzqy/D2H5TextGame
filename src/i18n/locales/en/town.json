@@ -30,7 +30,16 @@
     "consumed": "Delivered. This item can only be given once. Claim the quest reward separately in Quests."
   },
   "dialogue": {
+    "legacyAnya": "Anya is present from an older completed quest. This history does not grant new quest rewards or thaw proof.",
     "greetings": {
+      "act5": {
+        "larzuk": "Track Siege on Harrogath before facing Shenk in the Bloody Foothills. After claiming the reward, bring an eligible unsocketed backpack item here to use your socket charge.",
+        "malah": "Inspect frozen Anya in the Crystalline Passage, then return here for my potion. Take it back to thaw her before confronting Nihlathak. Claim your Scroll of Resistance in Quests and read it in Inventory.",
+        "qual-kehk": "Clear the Frigid Highlands and release all three groups of prisoners. In the Ancients’ Way, defeat Talic, Korlic and Madawc together to complete their rite.",
+        "anya": "Thank you for freeing me. Your Scroll of Resistance must be claimed in Quests, then read in Inventory. A personalization charge lets you mark one eligible item with your name.",
+        "cain": "Anya and Nihlathak are in the Crystalline Passage. The Ancients await in the Ancients’ Way. Follow your tracked quests and claim each reward separately.",
+        "tyrael": "In the Throne of Destruction, overcome the five minion waves in order, then defeat Baal. Claim Eve of Destruction to select your title and unlock Nightmare replay."
+      },
       "cain": "Bring me the Jade Figurine from the Spider Forest, and I will exchange it for the Golden Bird. Alkor may know its purpose.",
       "hratli": "The Gidbinn once protected Kurast. Recover it in the Flayer Jungle, then give it to Ormus.",
       "ormus": "Bring Ormus the Gidbinn, and its sacred power may shelter this dock once more.",
@@ -59,5 +68,44 @@
   },
   "town.npc.tyrael": "Tyrael",
   "town.npc.halbu": "Halbu",
-  "town.npc.jamella": "Jamella"
+  "town.npc.jamella": "Jamella",
+  "town.npc.larzuk": "Larzuk",
+  "town.npc.malah": "Malah",
+  "town.npc.qual-kehk": "Qual-Kehk",
+  "town.npc.anya": "Anya",
+  "services": {
+    "description": {
+      "socket_item": "Spend one charge to add sockets to one eligible unsocketed weapon or armor in your backpack. The selected item is changed permanently.",
+      "socket_armor": "Spend one charge to add sockets to one eligible unsocketed armor item in your backpack. The selected item is changed permanently.",
+      "personalize_item": "Spend one charge to mark one eligible backpack item with your character’s current name. This adds no combat stats."
+    },
+    "available": "One charge available.",
+    "consumed": "Charge used. This reward cannot be spent again.",
+    "chooseItem": "Backpack item",
+    "selectItem": "Choose an item…",
+    "itemOption": "{{number}}. {{name}} · Lv {{level}}",
+    "noCandidates": "No eligible backpack items. Bring an eligible unequipped item into your backpack.",
+    "use": "Use charge on selected item",
+    "feedback": {
+      "ok": "Action completed.",
+      "already-consumed": "This charge or action has already been used.",
+      "not-eligible": "This item or character is not eligible.",
+      "not-ready": "Complete the quest requirements first.",
+      "no-player": "Create or load a character first.",
+      "combat-active": "Finish or stop combat before continuing.",
+      "claim-in-progress": "Another quest action is still finishing. Try again shortly.",
+      "grant-failed": "The action could not finish. Nothing was spent; try again.",
+      "busy": "A combat or quest update is still finishing. Try again shortly.",
+      "restoration-failed": "The action could not be restored. Stop here and reload your last saved game.",
+      "not-owned": "Claim the required quest reward first."
+    },
+    "sourceMain": "Main quest reward",
+    "sourceSide": "Side quest reward"
+  },
+  "titles": {
+    "title": "Character title",
+    "description": "Choose a title for your nameplate. Titles add no combat stats.",
+    "slayer": "Slayer of Baal",
+    "none": "No title"
+  }
 }

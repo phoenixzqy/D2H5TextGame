@@ -33,6 +33,54 @@
         "ready": "Both the Hellforge Hammer and Mephisto’s Soulstone are owned and ready to be consumed.",
         "unavailable": "Track Hell’s Forge, defeat Hephasto, recover the hammer, and bring the Soulstone claimed from The Guardian to the River of Flame.",
         "consumed": "Soulstone shattered. Both the Hellforge Hammer and Mephisto’s Soulstone were consumed. Claim Hell’s Forge rewards separately in Quests."
+      },
+      "act5-release-barbarian-cage-1": {
+        "name": "Prisoner cage 1",
+        "description": "Release this group of five prisoners after clearing the Frigid Highlands. Each cage can be opened once.",
+        "action": "Release five prisoners",
+        "ready": "Area clear secured. This group is ready to be freed.",
+        "unavailable": "Track Rescue on Mount Arreat and clear the Frigid Highlands first.",
+        "consumed": "Five prisoners freed from this cage."
+      },
+      "act5-release-barbarian-cage-2": {
+        "name": "Prisoner cage 2",
+        "description": "Release this group of five prisoners after clearing the Frigid Highlands. Each cage can be opened once.",
+        "action": "Release five prisoners",
+        "ready": "Area clear secured. This group is ready to be freed.",
+        "unavailable": "Track Rescue on Mount Arreat and clear the Frigid Highlands first.",
+        "consumed": "Five prisoners freed from this cage."
+      },
+      "act5-release-barbarian-cage-3": {
+        "name": "Prisoner cage 3",
+        "description": "Release this group of five prisoners after clearing the Frigid Highlands. Each cage can be opened once.",
+        "action": "Release five prisoners",
+        "ready": "Area clear secured. This group is ready to be freed.",
+        "unavailable": "Track Rescue on Mount Arreat and clear the Frigid Highlands first.",
+        "consumed": "Five prisoners freed from this cage."
+      },
+      "act5-inspect-anya": {
+        "name": "Frozen Anya",
+        "description": "Inspect Anya in the Crystalline Passage, then visit Malah in Harrogath for her potion. No area clear is needed to inspect.",
+        "action": "Inspect Anya",
+        "ready": "Anya is within reach. Inspect the ice around her.",
+        "unavailable": "Track Prison of Ice and visit the Crystalline Passage.",
+        "consumed": "Anya inspected. Ask Malah in Harrogath for her potion."
+      },
+      "act5-receive-malah-potion": {
+        "name": "Malah’s rescue potion",
+        "description": "Receive the actual potion, then return to frozen Anya in the Crystalline Passage. Receiving it grants no quest reward.",
+        "action": "Receive Malah’s Potion",
+        "ready": "Anya inspected. Malah has one potion for you.",
+        "unavailable": "Track Prison of Ice and inspect frozen Anya first.",
+        "consumed": "Potion received. Take it to Anya in the Crystalline Passage."
+      },
+      "act5-thaw-anya": {
+        "name": "Thaw Anya",
+        "description": "Use Malah’s Potion on Anya. The potion is consumed. Then defeat Nihlathak in the Crystalline Passage and claim your quest reward separately.",
+        "action": "Use potion to thaw Anya",
+        "ready": "Malah’s Potion is ready to thaw Anya.",
+        "unavailable": "Inspect Anya, then receive Malah’s Potion in Harrogath and bring it here.",
+        "consumed": "Anya thawed. Defeat Nihlathak, then claim the personalization charge and Scroll of Resistance in Quests. Read the scroll in Inventory."
       }
     },
     "title": "Area Objects",
@@ -176,6 +224,16 @@
     "5": "Act V Quests"
   },
   "byId": {
+    "act5-siege-on-harrogath": {
+      "name": "Siege on Harrogath",
+      "desc": "Track this quest, then defeat Shenk in the Bloody Foothills. Claim 10,000 XP and a socket charge. At Larzuk, choose an eligible unsocketed item from your backpack to use the charge.",
+      "obj1": "Defeat Shenk in the Bloody Foothills"
+    },
+    "act5-rescue-on-mount-arreat": {
+      "name": "Rescue on Mount Arreat",
+      "desc": "Clear the Frigid Highlands, then open its three prisoner cages. Each cage frees five different barbarians. Claim 8,000 XP, one skill point and permanent +5 resistance to all six damage channels.",
+      "obj1": "Free all 15 barbarians from the three cages"
+    },
     "act3-guardian": {
       "name": "The Guardian",
       "desc": "Use the real assembled Khalim’s Will to break the Compelling Orb in Travincal, then defeat Mephisto in the Durance of Hate. Claim the quest reward separately. Breaking the Orb grants no XP.",
@@ -336,19 +394,20 @@
     },
     "act5-siege": {
       "name": "Siege on Harrogath",
-      "desc": "Repel the demonic siege of Harrogath.",
-      "obj1": "Defeat Shenk the Overseer"
+      "desc": "Track this quest, then defeat Shenk in the Bloody Foothills. Claim 10,000 XP and a socket charge. At Larzuk, choose an eligible unsocketed item from your backpack to use the charge.",
+      "obj1": "Defeat Shenk in the Bloody Foothills"
     },
     "act5-rescue-anya": {
       "name": "Rescue on Mount Arreat",
-      "desc": "Free Anya from her icy prison in the Frigid Highlands.",
-      "obj1": "Find Anya",
-      "obj2": "Defeat Nihlathak"
+      "desc": "Clear the Frigid Highlands, then open its three prisoner cages. Each cage frees five different barbarians. Claim 8,000 XP, one skill point and permanent +5 resistance to all six damage channels.",
+      "obj1": "Free all 15 barbarians from the three cages"
     },
     "act5-prison-of-ice": {
       "name": "Prison of Ice",
-      "desc": "Break the curse of ice from Anya.",
-      "obj1": "Use the Scroll of Resistance"
+      "desc": "Inspect frozen Anya in the Crystalline Passage, get Malah’s potion in town, then return and use it to thaw her. Defeat Nihlathak there afterward. Claim 12,000 XP, a personalization charge and a Scroll of Resistance. Read the scroll in Inventory for permanent +10 resistance to all six damage channels.",
+      "obj1": "Inspect frozen Anya in the Crystalline Passage",
+      "obj2": "Get Malah’s potion in town, then use it at frozen Anya",
+      "obj3": "Defeat Nihlathak after thawing Anya"
     },
     "act5-betrayal-of-harrogath": {
       "name": "Betrayal of Harrogath",
@@ -357,16 +416,19 @@
     },
     "act5-rite-of-passage": {
       "name": "Rite of Passage",
-      "desc": "Defeat the three Ancients atop Mount Arreat.",
-      "obj1": "Defeat the Ancients"
+      "desc": "Track this quest and defeat Talic, Korlic and Madawc together in the Ancients’ Way while you survive. Claim 15,000 XP and one skill point.",
+      "obj1": "Defeat all three original Ancients in one victory"
     },
     "act5-eve-of-destruction": {
       "name": "Eve of Destruction",
-      "desc": "Defeat Baal at the Throne of Destruction.",
-      "obj1": "Defeat Baal"
+      "desc": "Defeat Baal’s five original minion waves in order during one uninterrupted challenge in the Throne of Destruction, then defeat Baal. Stopping, losing or reloading before the fifth wave discards partial progress. Claim 40,000 XP, five quest reward rolls, the Slayer of Baal title and Nightmare replay.",
+      "obj1": "Defeat the five original minion waves in order during one run",
+      "obj2": "Defeat Baal after completing the five-wave sequence"
     }
   },
   "rewardLabel": {
+    "allResistance": "Permanent +{{all}}% resistance to fire, cold, lightning, poison, arcane and physical damage",
+    "resistanceScroll": "{{item}} — Read for permanent +{{all}}% resistance to all six damage channels",
     "lifePotion": "{{item}} — Read for +{{maxLife}} maximum Life",
     "uniqueRing": "Unique ring",
     "permanentResistance": "Permanent fire resistance +{{fire}}%, cold resistance +{{cold}}%",
@@ -382,6 +444,11 @@
     "gemShards": "Gem Shards"
   },
   "rewardValue": {
+    "socket_item": "One socket charge",
+    "socket_armor": "One armor socket charge",
+    "personalize_item": "One personalization charge",
+    "titles_slayer_of_baal": "Slayer of Baal title",
+    "difficulty_nightmare": "Nightmare replay",
     "identify_free": "Free identify service",
     "imbue_item": "Imbue service",
     "items_imbued_rare_random": "Random imbued rare item",
@@ -433,5 +500,19 @@
     "reward": {
       "imbue": "Imbue Charge"
     }
-  }
+  },
+  "act5Feedback": {
+    "ok": "Action completed.",
+    "already-consumed": "This charge or action has already been used.",
+    "not-eligible": "This item or character is not eligible.",
+    "not-ready": "Complete the quest requirements first.",
+    "no-player": "Create or load a character first.",
+    "combat-active": "Finish or stop combat before continuing.",
+    "claim-in-progress": "Another quest action is still finishing. Try again shortly.",
+    "grant-failed": "The action could not finish. Nothing was spent; try again.",
+    "busy": "A combat or quest update is still finishing. Try again shortly.",
+    "restoration-failed": "The action could not be restored. Stop here and reload your last saved game.",
+    "not-owned": "Claim the required quest reward first."
+  },
+  "act5RescueCount": "Prisoners freed: {{count}} / 15"
 }

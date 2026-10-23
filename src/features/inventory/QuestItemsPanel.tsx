@@ -14,7 +14,7 @@ export function QuestItemsPanel() {
   const { t, i18n } = useTranslation('inventory');
   const ledger = useInventoryStore(state => state.questItems);
   const progress = useMapStore(state => state.questProgress);
-  const [feedback, setFeedback] = useState<{ key: string; skillPoints?: number; maxLife?: number; item?: string } | null>(null);
+  const [feedback, setFeedback] = useState<{ key: string; skillPoints?: number; maxLife?: number; allResist?: number; item?: string } | null>(null);
   const definitions = loadQuestItems();
   const items = definitions.filter(item => {
     const source = questItemSource(item);
@@ -27,12 +27,15 @@ export function QuestItemsPanel() {
   const read = (item: ReadQuestItemDef): void => {
     try {
       const result = readQuestItem(questItemSource(item));
-      const key = item.effect.maxLife !== undefined && result === 'ok' ? 'life-increased'
+      const key = item.effect.allResist !== undefined && result === 'ok' ? 'resistance-increased'
+        : item.effect.allResist !== undefined && result === 'already-consumed' ? 'resistance-already-consumed'
+        : item.effect.maxLife !== undefined && result === 'ok' ? 'life-increased'
         : item.effect.maxLife !== undefined && result === 'already-consumed' ? 'life-already-consumed' : result;
       setFeedback({ key, ...item.effect });
     } catch (error) {
       setFeedback({ key: error instanceof AggregateError
-        ? item.effect.maxLife !== undefined ? 'life-restoration-failed' : 'restoration-failed'
+        ? item.effect.allResist !== undefined ? 'resistance-restoration-failed'
+          : item.effect.maxLife !== undefined ? 'life-restoration-failed' : 'restoration-failed'
         : error instanceof WaveGuardError || error instanceof RecordedWaveAccessError ? 'busy' : 'action-failed' });
     }
   };
@@ -124,7 +127,7 @@ export function QuestItemsPanel() {
         </div>;
       })}
       <p role="status" aria-atomic="true" className="mt-3 text-sm text-d2-gold">
-        {feedback ? t(`questItems.feedback.${feedback.key}`, { skillPoints: feedback.skillPoints, maxLife: feedback.maxLife, item: feedback.item }) : ''}
+        {feedback ? t(`questItems.feedback.${feedback.key}`, { skillPoints: feedback.skillPoints, maxLife: feedback.maxLife, allResist: feedback.allResist, item: feedback.item }) : ''}
       </p>
     </Panel>
   );

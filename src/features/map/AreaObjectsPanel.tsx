@@ -1,3 +1,4 @@
+import { Act5QuestActionsPanel } from '@/features/quests/Act5QuestActionsPanel';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/ui';
@@ -117,6 +118,7 @@ export function AreaObjectsPanel({ act, areaId, onClose }: Props) {
           </div>
         );
       })}
+      <Act5QuestActionsPanel act={act} areaId={areaId} />
       {failure && <p role="alert" className="text-sm text-d2-white/90">{t(`areaObjects.feedback.${failure}`)}</p>}
       <Button variant="secondary" className="min-h-[44px] min-w-[44px]" data-testid="area-object-close"
         onClick={onClose}>{t('common:close')}</Button>

@@ -205,6 +205,9 @@ function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) 
                 </li>
               ))}
             </ul>
+            {quest.unlocks === 'difficulty/nightmare' && (
+              <p className="mb-2 text-sm text-d2-white/90">{t('rewardValue.difficulty_nightmare')}</p>
+            )}
             <div className="flex flex-wrap gap-2">
               {status === 'available' && (
                 <Button
@@ -273,6 +276,9 @@ function formatReward(
     if (item && item.kind === undefined && item.effect.maxLife !== undefined) {
       return t('rewardLabel.lifePotion', { item: tDataKey(t, item.nameKey), maxLife: item.effect.maxLife });
     }
+    if (item && item.kind === undefined && item.effect.allResist !== undefined) {
+      return t('rewardLabel.resistanceScroll', { item: tDataKey(t, item.nameKey), all: item.effect.allResist });
+    }
     return item ? tDataKey(t, item.nameKey) : t('inventory:questItems.title');
   }
   if (k === 'xp' && typeof v === 'number')
@@ -285,6 +291,7 @@ function formatReward(
     return `📈 +${String(v)} ${t('rewardLabel.statPoint')}`;
   if (k === 'mercenaryUnlock' && typeof v === 'string') return `🛡️ ${t('rewardLabel.mercenaryUnlock')}: ${formatRewardValue(v, t)}`;
   if (k === 'service' && typeof v === 'string') return `🏷️ ${formatRewardValue(v, t)}`;
+  if (k === 'title' && typeof v === 'string') return `🏅 ${formatRewardValue(v, t)}`;
   if (k === 'itemDrop' && typeof v === 'string') return `🎁 ${formatRewardValue(v, t)}`;
   if (k === 'itemDrop' && typeof v === 'object' && v !== null && 'profileId' in v) {
     return `🎁 ${t(v.profileId === loadQuestUniqueProfile().id ? 'rewardLabel.uniqueRing' : 'rewardLabel.uniqueItem')}`;
@@ -300,6 +307,8 @@ function formatReward(
   if (k === 'npcUnlock' && typeof v === 'string') return `👤 ${formatRewardValue(v, t)}`;
   if (k === 'stat' && isQuestResistanceReward(v))
     return t('rewardLabel.permanentResistance', { fire: v.fire_resist, cold: v.cold_resist });
+  if (k === 'stat' && typeof v === 'object' && v !== null && 'all_resist' in v && typeof v.all_resist === 'number')
+    return t('rewardLabel.allResistance', { all: v.all_resist });
   if (k === 'stat' && typeof v === 'object' && v !== null)
     return `📈 +${JSON.stringify(v)}`;
   return `${k}: ${typeof v === 'object' ? JSON.stringify(v) : String(v)}`;

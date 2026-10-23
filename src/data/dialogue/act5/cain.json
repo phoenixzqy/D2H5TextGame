@@ -1,0 +1,11 @@
+{
+  "id": "dialogue/act5/cain",
+  "npcId": "cain",
+  "greetings": [
+    {
+      "textKey": "town:dialogue.greetings.act5.cain",
+      "text": "Anya and Nihlathak are in the Crystalline Passage. The Ancients await in the Ancients’ Way. Follow your tracked quests and claim each reward separately."
+    }
+  ],
+  "services": []
+}

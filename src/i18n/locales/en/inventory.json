@@ -1,6 +1,14 @@
 {
   "inventory.title": "Inventory",
   "questItems": {
+    "malahsPotion": {
+      "name": "Malah’s Potion",
+      "description": "Bound quest potion. Use it at frozen Anya in the Crystalline Passage. It cannot restore Life or Mana in combat."
+    },
+    "scrollOfResistance": {
+      "name": "Scroll of Resistance",
+      "description": "Read once for permanent +{{allResist}}% fire, cold, lightning, poison, arcane and physical resistance. Claiming alone grants no resistance."
+    },
     "mephistosSoulstone": {
       "name": "Mephisto’s Soulstone",
       "description": "A bound quest trophy granted by The Guardian. Consumed together with the Hellforge Hammer when shattering the Soulstone at the Hellforge. It cannot be read or equipped."
@@ -75,6 +83,9 @@
       "description": "Read once to gain {{skillPoints}} skill point."
     },
     "feedback": {
+      "resistance-increased": "Permanent resistance increased by {{allResist}}% in all six channels. Current Life and Mana are unchanged.",
+      "resistance-already-consumed": "This Scroll of Resistance was already read.",
+      "resistance-restoration-failed": "The scroll could not be read safely. Check your resistance and quest items before trying again.",
       "item-assembled": "{{item}} assembled.",
       "assembly-restoration-failed": "The action could not finish safely. Check your quest items and quest progress before trying again.",
       "busy": "A battle or save operation is in progress. Try again when it finishes.",
@@ -289,6 +300,16 @@
       "disabledNoSelection": "Select a candidate",
       "disabledIneligible": "Requirements not met",
       "disabledAlreadyEquipped": "This item is already equipped"
+    }
+  },
+  "quarantine": {
+    "title": "Preserved legacy gear",
+    "description": "These original items were preserved during a save upgrade because they could not safely enter active equipment. Inspect them here; they cannot be equipped, modified, salvaged or used for summons.",
+    "origin": {
+      "backpack": "Backpack, position {{position}}",
+      "stash": "Stash, position {{position}}",
+      "equipped": "Character equipment · {{slot}}",
+      "mercEquipment": "Mercenary equipment · {{slot}}"
     }
   }
 }

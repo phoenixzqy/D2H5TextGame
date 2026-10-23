@@ -1,6 +1,14 @@
 {
   "inventory.title": "背包",
   "questItems": {
+    "malahsPotion": {
+      "name": "马拉的药剂",
+      "description": "绑定任务药剂。请在水晶通道用于被冰封的安雅，不能在战斗中恢复生命或法力。"
+    },
+    "scrollOfResistance": {
+      "name": "抗性卷轴",
+      "description": "阅读一次，火焰、冰冷、闪电、毒素、奥术与物理抗性永久+{{allResist}}%。仅领取卷轴不会增加抗性。"
+    },
     "mephistosSoulstone": {
       "name": "墨菲斯托的灵魂石",
       "description": "完成“守护者”并领取奖励后获得的绑定任务物品。在地狱熔炉击碎灵魂石时，与地狱熔炉铁锤一同消耗。不可阅读或装备。"
@@ -75,6 +83,9 @@
       "description": "阅读一次，获得 {{skillPoints}} 个技能点。"
     },
     "feedback": {
+      "resistance-increased": "六种伤害抗性永久+{{allResist}}%。当前生命与法力不变。",
+      "resistance-already-consumed": "此抗性卷轴已经阅读。",
+      "resistance-restoration-failed": "无法安全完成阅读。请检查抗性与任务物品后再试。",
       "item-assembled": "{{item}}已合成。",
       "assembly-restoration-failed": "操作未能安全完成，请检查任务物品与任务进度后再尝试。",
       "busy": "战斗或存档操作正在进行，请稍后重试。",
@@ -289,6 +300,16 @@
       "disabledNoSelection": "请选择候选装备",
       "disabledIneligible": "未满足装备需求",
       "disabledAlreadyEquipped": "该物品已装备"
+    }
+  },
+  "quarantine": {
+    "title": "旧存档装备保留区",
+    "description": "升级存档时，这些原始物品因无法安全转入当前装备系统而被完整保留。可在此查看，无法装备、改造、分解或用于召唤。",
+    "origin": {
+      "backpack": "原背包第{{position}}格",
+      "stash": "原仓库第{{position}}格",
+      "equipped": "原角色装备 · {{slot}}",
+      "mercEquipment": "原佣兵装备 · {{slot}}"
     }
   }
 }

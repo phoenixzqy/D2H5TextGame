@@ -61,6 +61,27 @@ describe.each(['zh-CN', 'en'] as const)('QuestsScreen %s', locale => {
     expect(card.textContent).not.toMatch(/fire_resist|cold_resist|[{}]/);
   });
 
+  it('previews all five Act V main quests and their usable rewards without publishing', () => {
+    const before = [useMapStore.getState(), useInventoryStore.getState(), usePlayerStore.getState()];
+    renderScreen();
+    for (const slug of ['act5-siege-on-harrogath', 'act5-rescue-on-mount-arreat', 'act5-prison-of-ice',
+      'act5-rite-of-passage', 'act5-eve-of-destruction']) {
+      const card = screen.getByTestId(`quest-quests/${slug}`);
+      expect(within(card).getByRole('heading', { name: i18n.t(`byId.${slug}.name`, { ns: 'quests' }) })).toBeVisible();
+      expect(card.textContent).not.toMatch(/byId\.|rewardLabel|rewardValue|all_resist|titles\/|difficulty\/|[{}]/);
+    }
+    expect(screen.getByTestId('quest-quests/act5-siege-on-harrogath')).toHaveTextContent(
+      i18n.t('rewardValue.socket_item', { ns: 'quests' }));
+    expect(screen.getByTestId('quest-quests/act5-prison-of-ice')).toHaveTextContent(
+      i18n.t('rewardValue.personalize_item', { ns: 'quests' }));
+    expect(screen.getByTestId('quest-quests/act5-rescue-on-mount-arreat')).toHaveTextContent(
+      i18n.t('rewardLabel.allResistance', { ns: 'quests', all: 5 }));
+    const eve = screen.getByTestId('quest-quests/act5-eve-of-destruction');
+    expect(eve).toHaveTextContent(i18n.t('rewardValue.titles_slayer_of_baal', { ns: 'quests' }));
+    expect(eve).toHaveTextContent(i18n.t('rewardValue.difficulty_nightmare', { ns: 'quests' }));
+    expect([useMapStore.getState(), useInventoryStore.getState(), usePlayerStore.getState()]).toEqual(before);
+  });
+
   it('previews the real Blade ring and Tome attribute rewards without publishing or exposing content IDs', () => {
     const before = [useMapStore.getState(), useInventoryStore.getState(), usePlayerStore.getState()];
     renderScreen();

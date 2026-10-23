@@ -60,5 +60,26 @@
     "a5-worldstone-keep": "世界之石要塞"
   },
   "bossBadge": "首领",
-  "defeatBossToUnlockAct": "击败 {{boss}} 以解锁第 {{act}} 章"
+  "defeatBossToUnlockAct": "击败 {{boss}} 以解锁第 {{act}} 章",
+  "replay": {
+    "title": "重玩难度",
+    "description": "噩梦重玩相同区域，敌人等级提高20级。通关记录分别保存；任务奖励仅可在普通难度领取一次。",
+    "normal": "普通",
+    "nightmare": "噩梦",
+    "locked": "领取毁灭前夕的奖励后解锁噩梦重玩。",
+    "selected": "当前选择：{{profile}}",
+    "feedback": {
+      "ok": "操作完成。",
+      "already-consumed": "此次数或操作已经使用。",
+      "not-eligible": "此物品或角色不符合条件。",
+      "not-ready": "请先完成任务条件。",
+      "no-player": "请先创建或载入角色。",
+      "combat-active": "请先结束或停止战斗。",
+      "claim-in-progress": "另一项任务操作尚未完成，请稍后重试。",
+      "grant-failed": "操作未能完成，未消耗任何物品或次数，请重试。",
+      "busy": "战斗或任务状态正在更新，请稍后重试。",
+      "restoration-failed": "操作无法恢复，请停止操作并重新载入最近存档。",
+      "not-owned": "请先领取对应的任务奖励。"
+    }
+  }
 }

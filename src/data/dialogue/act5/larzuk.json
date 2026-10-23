@@ -1,0 +1,11 @@
+{
+  "id": "dialogue/act5/larzuk",
+  "npcId": "larzuk",
+  "greetings": [
+    {
+      "textKey": "town:dialogue.greetings.act5.larzuk",
+      "text": "Track Siege on Harrogath before facing Shenk in the Bloody Foothills. After claiming the reward, bring an eligible unsocketed backpack item here to use your socket charge."
+    }
+  ],
+  "services": []
+}

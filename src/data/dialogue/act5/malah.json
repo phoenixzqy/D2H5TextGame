@@ -1,0 +1,11 @@
+{
+  "id": "dialogue/act5/malah",
+  "npcId": "malah",
+  "greetings": [
+    {
+      "textKey": "town:dialogue.greetings.act5.malah",
+      "text": "Inspect frozen Anya in the Crystalline Passage, then return here for my potion. Take it back to thaw her before confronting Nihlathak. Claim your Scroll of Resistance in Quests and read it in Inventory."
+    }
+  ],
+  "services": []
+}

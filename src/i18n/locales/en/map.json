@@ -60,5 +60,26 @@
     "a5-worldstone-keep": "Worldstone Keep"
   },
   "bossBadge": "BOSS",
-  "defeatBossToUnlockAct": "Defeat {{boss}} to unlock Act {{act}}"
+  "defeatBossToUnlockAct": "Defeat {{boss}} to unlock Act {{act}}",
+  "replay": {
+    "title": "Replay difficulty",
+    "description": "Nightmare replays the same areas with enemies 20 levels higher. Clear records are separate; quest rewards are granted only once in Normal.",
+    "normal": "Normal",
+    "nightmare": "Nightmare",
+    "locked": "Claim Eve of Destruction to unlock Nightmare replay.",
+    "selected": "Selected: {{profile}}",
+    "feedback": {
+      "ok": "Action completed.",
+      "already-consumed": "This charge or action has already been used.",
+      "not-eligible": "This item or character is not eligible.",
+      "not-ready": "Complete the quest requirements first.",
+      "no-player": "Create or load a character first.",
+      "combat-active": "Finish or stop combat before continuing.",
+      "claim-in-progress": "Another quest action is still finishing. Try again shortly.",
+      "grant-failed": "The action could not finish. Nothing was spent; try again.",
+      "busy": "A combat or quest update is still finishing. Try again shortly.",
+      "restoration-failed": "The action could not be restored. Stop here and reload your last saved game.",
+      "not-owned": "Claim the required quest reward first."
+    }
+  }
 }

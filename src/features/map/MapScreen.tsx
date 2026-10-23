@@ -21,6 +21,7 @@ import { subAreas as subAreaList, acts as actList, monsters as monsterList } fro
 import { ACT_GATE_BOSS_SUB_AREAS } from '@/engine/map/unlock';
 import { IdleTickerStrip } from '@/features/idle/IdleTickerStrip';
 import { hasAreaObjects, travelToAreaObjects, type ObjectActionResult } from '@/features/quests/interactObject';
+import { ReplayProfileControls } from './ReplayProfileControls';
 import { AreaObjectsPanel } from './AreaObjectsPanel';
 import { resolveSubArea } from '@/stores/subAreaResolver';
 import { WaveGuardError } from '@/stores/waveTransitionGuard';
@@ -63,7 +64,7 @@ export function MapScreen() {
   const navigate = useNavigate();
   const setLocation = useMapStore((s) => s.setCurrentLocation);
   const isActUnlocked = useMapStore((s) => s.isActUnlocked);
-  const clearedSubAreas = useMapStore((s) => s.clearedSubAreas);
+  const clearedSubAreas = useMapStore(s => s.selectedDifficulty === 'nightmare' ? s.nightmareClearedSubAreas : s.clearedSubAreas);
   const setIdleTarget = useMetaStore((s) => s.setIdleTarget);
   const idleTarget = useMetaStore((s) => s.idleState.idleTarget);
   const currentAct = useMapStore(s => s.currentAct);
@@ -152,6 +153,7 @@ export function MapScreen() {
   return (
     <ScreenShell testId="map-screen" title={t('worldMap')}>
       <div className="space-y-3 max-w-3xl mx-auto pb-12">
+        <ReplayProfileControls />
         {idleTarget && idleAreaName && (
           <div
             className="sticky top-0 z-20 -mx-3 md:-mx-6 px-3 md:px-6 py-2

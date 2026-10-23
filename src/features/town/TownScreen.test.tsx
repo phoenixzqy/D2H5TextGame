@@ -125,15 +125,15 @@ describe.each(['zh-CN', 'en'] as const)('TownScreen %s', (locale) => {
     expect(talk).toHaveBeenCalledTimes(1);
   });
 
-  it('hides an unauthored act and restores focus to the current NPC after an act round trip', () => {
+  it('switches to the authored Act V town and restores focus after an act round trip', () => {
     renderTown();
     const originalAkara = screen.getByTestId('town-npc-akara');
     fireEvent.click(originalAkara);
     expect(screen.getByTestId('town-conversation')).toBeVisible();
     act(() => { useMapStore.getState().setCurrentLocation(5, 'areas/act5-town'); });
-    expect(screen.queryAllByTestId(/^town-npc-/)).toHaveLength(0);
+    expect(screen.getByTestId('town-npc-larzuk')).toBeVisible();
+    expect(screen.queryByTestId('town-npc-akara')).not.toBeInTheDocument();
     expect(screen.queryByTestId('town-conversation')).not.toBeInTheDocument();
-    expect(screen.getByTestId('town-screen')).toHaveTextContent(i18n.t('noNpcs', { ns: 'town' }));
     expect(screen.getByTestId('town-screen')).not.toHaveTextContent(/Akara|阿卡拉|Den of Evil|邪恶巢穴/);
     act(() => { useMapStore.getState().setCurrentLocation(1, 'areas/act1-town'); });
     const currentAkara = screen.getByTestId('town-npc-akara');

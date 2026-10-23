@@ -1,0 +1,11 @@
+{
+  "id": "dialogue/act5/qual-kehk",
+  "npcId": "qual-kehk",
+  "greetings": [
+    {
+      "textKey": "town:dialogue.greetings.act5.qual-kehk",
+      "text": "Clear the Frigid Highlands and release all three groups of prisoners. In the Ancients’ Way, defeat Talic, Korlic and Madawc together to complete their rite."
+    }
+  ],
+  "services": []
+}
