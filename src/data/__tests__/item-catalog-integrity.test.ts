@@ -344,10 +344,24 @@ const BASE_KINDS: readonly ItemBaseType[] = [
 function metalSchemaCandidate(type: ItemBaseType): ItemBase {
   return {
     id: 'items/base/metal-fixture', name: 'items.base.metal-fixture', type,
-    slot: null, reqLevel: 1, canHaveAffixes: false,
+    slot: null, reqLevel: 1, canHaveAffixes: false, maxSockets: 0,
     ...(type === 'weapon' ? { weaponType: 'sword', handedness: 'oneHanded' } as const : {})
   };
 }
+
+describe('reviewed socket maximum metadata', () => {
+  it('covers all 74 bases and preserves their pre-instance socket ceiling', () => {
+    expect(rawItemBases).toHaveLength(74);
+    for (const base of rawItemBases) {
+      expect(base.maxSockets, base.id).toBe('sockets' in base ? base.sockets : 0);
+    }
+  });
+
+  it.each([undefined, null, -1, 0.5, 7, '2'])('rejects missing or invalid reviewed maximum %o', maxSockets => {
+    expect(() => validateGameData(itemBaseSchema.$id, { ...metalSchemaCandidate('armor'), maxSockets }))
+      .toThrow(GameDataValidationError);
+  });
+});
 
 describe('Iron Golem authored metal metadata', () => {
   it('authors exactly the 31 approved existing bases, with no inferred additions', () => {

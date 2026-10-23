@@ -34,7 +34,7 @@ describe('P08a05a actual legal Amazon training-bow content and loot', () => {
     const base = data.itemBases.get(trainingId);
     expect(base).toEqual({ id: trainingId, name: 'items.base.weapon-bow-training',
       type: 'weapon', slot: 'weapon', weaponType: 'bow', handedness: 'twoHanded',
-      reqLevel: 1, sockets: 0, canHaveAffixes: true,
+      reqLevel: 1, sockets: 0, maxSockets: 0, canHaveAffixes: true,
       baseDamage: { min: 8, max: 18, breakdown: { physical: 18 } } });
     expect(loadItemBases().get(trainingId)).toEqual(base);
     expect(isTwoHanded(base)).toBe(true);

@@ -106,8 +106,11 @@ export interface ItemBase {
   /** Required stats */
   readonly reqStats?: Partial<CoreStats>;
   
-  /** Number of sockets (for runewords) */
+  /** Historical/fixed-template sockets; live capacity belongs to the instance. */
   readonly sockets?: number;
+
+  /** Reviewed socket ceiling, required in the authored base catalog. */
+  readonly maxSockets?: number;
   
   /** Authored Iron Golem material eligibility; only explicit true permits metal. */
   readonly metal?: boolean;
@@ -224,6 +227,12 @@ export interface Item {
   
   /** Socketed runes (if any) */
   readonly runes?: readonly string[]; // rune IDs
+
+  /** Own native-save capacity for weapon/armor; legacy fallback is migration-only. */
+  readonly socketCapacity?: number;
+
+  /** Text-only cosmetic identity; service entry checks the current character ID. */
+  readonly personalizedBy?: { readonly characterId: string; readonly name: string };
 
   /** Persisted deterministic rolls for definition-backed stats. */
   readonly statRolls?: Readonly<Record<string, number>>;

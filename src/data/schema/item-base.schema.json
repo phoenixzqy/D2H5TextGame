@@ -4,7 +4,7 @@
   "title": "Item Base Definition",
   "description": "Base item template (white item)",
   "type": "object",
-  "required": ["id", "name", "type", "reqLevel", "canHaveAffixes"],
+  "required": ["id", "name", "type", "reqLevel", "canHaveAffixes", "maxSockets"],
   "additionalProperties": false,
   "properties": {
     "id": {
@@ -54,6 +54,12 @@
       "type": "integer",
       "minimum": 0,
       "maximum": 6
+    },
+    "maxSockets": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 6,
+      "description": "Reviewed per-base ceiling for native instance socketCapacity."
     },
     "metal": {
       "type": "boolean",

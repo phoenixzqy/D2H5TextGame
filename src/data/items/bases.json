@@ -7,6 +7,7 @@
     "baseDefense": 7,
     "reqLevel": 1,
     "sockets": 2,
+    "maxSockets": 2,
     "canHaveAffixes": true
   },
   {
@@ -18,6 +19,7 @@
     "baseDefense": 12,
     "reqLevel": 5,
     "sockets": 2,
+    "maxSockets": 2,
     "canHaveAffixes": true
   },
   {
@@ -28,6 +30,7 @@
     "baseDefense": 30,
     "reqLevel": 22,
     "sockets": 3,
+    "maxSockets": 3,
     "canHaveAffixes": true
   },
   {
@@ -39,6 +42,7 @@
     "baseDefense": 45,
     "reqLevel": 28,
     "sockets": 3,
+    "maxSockets": 3,
     "canHaveAffixes": true
   },
   {
@@ -50,6 +54,7 @@
     "baseDefense": 75,
     "reqLevel": 45,
     "sockets": 4,
+    "maxSockets": 4,
     "canHaveAffixes": true
   },
   {
@@ -60,6 +65,7 @@
     "baseDefense": 105,
     "reqLevel": 55,
     "sockets": 4,
+    "maxSockets": 4,
     "canHaveAffixes": true
   },
   {
@@ -70,6 +76,7 @@
     "baseDefense": 10,
     "reqLevel": 1,
     "sockets": 2,
+    "maxSockets": 2,
     "canHaveAffixes": true
   },
   {
@@ -80,6 +87,7 @@
     "baseDefense": 21,
     "reqLevel": 6,
     "sockets": 2,
+    "maxSockets": 2,
     "canHaveAffixes": true
   },
   {
@@ -91,6 +99,7 @@
     "baseDefense": 53,
     "reqLevel": 25,
     "sockets": 3,
+    "maxSockets": 3,
     "canHaveAffixes": true
   },
   {
@@ -102,6 +111,7 @@
     "baseDefense": 75,
     "reqLevel": 32,
     "sockets": 3,
+    "maxSockets": 3,
     "canHaveAffixes": true
   },
   {
@@ -112,6 +122,7 @@
     "baseDefense": 125,
     "reqLevel": 50,
     "sockets": 4,
+    "maxSockets": 4,
     "canHaveAffixes": true
   },
   {
@@ -123,6 +134,7 @@
     "baseDefense": 180,
     "reqLevel": 60,
     "sockets": 4,
+    "maxSockets": 4,
     "canHaveAffixes": true
   },
   {
@@ -133,6 +145,7 @@
     "baseDefense": 4,
     "reqLevel": 1,
     "sockets": 1,
+    "maxSockets": 1,
     "canHaveAffixes": true
   },
   {
@@ -143,6 +156,7 @@
     "baseDefense": 8,
     "reqLevel": 7,
     "sockets": 2,
+    "maxSockets": 2,
     "canHaveAffixes": true
   },
   {
@@ -154,6 +168,7 @@
     "baseDefense": 17,
     "reqLevel": 24,
     "sockets": 2,
+    "maxSockets": 2,
     "canHaveAffixes": true
   },
   {
@@ -165,6 +180,7 @@
     "baseDefense": 26,
     "reqLevel": 30,
     "sockets": 3,
+    "maxSockets": 3,
     "canHaveAffixes": true
   },
   {
@@ -175,6 +191,7 @@
     "baseDefense": 42,
     "reqLevel": 48,
     "sockets": 3,
+    "maxSockets": 3,
     "canHaveAffixes": true
   },
   {
@@ -185,6 +202,7 @@
     "baseDefense": 58,
     "reqLevel": 58,
     "sockets": 4,
+    "maxSockets": 4,
     "canHaveAffixes": true
   },
   {
@@ -195,6 +213,7 @@
     "baseDefense": 4,
     "reqLevel": 1,
     "sockets": 1,
+    "maxSockets": 1,
     "canHaveAffixes": true
   },
   {
@@ -205,6 +224,7 @@
     "baseDefense": 8,
     "reqLevel": 7,
     "sockets": 2,
+    "maxSockets": 2,
     "canHaveAffixes": true
   },
   {
@@ -216,6 +236,7 @@
     "baseDefense": 17,
     "reqLevel": 24,
     "sockets": 2,
+    "maxSockets": 2,
     "canHaveAffixes": true
   },
   {
@@ -227,6 +248,7 @@
     "baseDefense": 26,
     "reqLevel": 30,
     "sockets": 3,
+    "maxSockets": 3,
     "canHaveAffixes": true
   },
   {
@@ -237,6 +259,7 @@
     "baseDefense": 42,
     "reqLevel": 48,
     "sockets": 3,
+    "maxSockets": 3,
     "canHaveAffixes": true
   },
   {
@@ -248,6 +271,7 @@
     "baseDefense": 58,
     "reqLevel": 58,
     "sockets": 4,
+    "maxSockets": 4,
     "canHaveAffixes": true
   },
   {
@@ -258,6 +282,7 @@
     "baseDefense": 3,
     "reqLevel": 1,
     "sockets": 1,
+    "maxSockets": 1,
     "canHaveAffixes": true
   },
   {
@@ -268,6 +293,7 @@
     "baseDefense": 5,
     "reqLevel": 7,
     "sockets": 1,
+    "maxSockets": 1,
     "canHaveAffixes": true
   },
   {
@@ -278,6 +304,7 @@
     "baseDefense": 10,
     "reqLevel": 22,
     "sockets": 2,
+    "maxSockets": 2,
     "canHaveAffixes": true
   },
   {
@@ -289,6 +316,7 @@
     "baseDefense": 17,
     "reqLevel": 30,
     "sockets": 2,
+    "maxSockets": 2,
     "canHaveAffixes": true
   },
   {
@@ -299,6 +327,7 @@
     "baseDefense": 30,
     "reqLevel": 48,
     "sockets": 3,
+    "maxSockets": 3,
     "canHaveAffixes": true
   },
   {
@@ -310,6 +339,7 @@
     "baseDefense": 48,
     "reqLevel": 58,
     "sockets": 3,
+    "maxSockets": 3,
     "canHaveAffixes": true
   },
   {
@@ -318,6 +348,7 @@
     "type": "jewelry",
     "slot": "ring-left",
     "reqLevel": 1,
+    "maxSockets": 0,
     "canHaveAffixes": true
   },
   {
@@ -326,6 +357,7 @@
     "type": "jewelry",
     "slot": "ring-left",
     "reqLevel": 10,
+    "maxSockets": 0,
     "canHaveAffixes": true
   },
   {
@@ -334,6 +366,7 @@
     "type": "jewelry",
     "slot": "ring-left",
     "reqLevel": 25,
+    "maxSockets": 0,
     "canHaveAffixes": true
   },
   {
@@ -342,6 +375,7 @@
     "type": "jewelry",
     "slot": "ring-left",
     "reqLevel": 35,
+    "maxSockets": 0,
     "canHaveAffixes": true
   },
   {
@@ -350,6 +384,7 @@
     "type": "jewelry",
     "slot": "ring-left",
     "reqLevel": 50,
+    "maxSockets": 0,
     "canHaveAffixes": true
   },
   {
@@ -358,6 +393,7 @@
     "type": "jewelry",
     "slot": "ring-left",
     "reqLevel": 60,
+    "maxSockets": 0,
     "canHaveAffixes": true
   },
   {
@@ -366,6 +402,7 @@
     "type": "jewelry",
     "slot": "amulet",
     "reqLevel": 1,
+    "maxSockets": 0,
     "canHaveAffixes": true
   },
   {
@@ -374,6 +411,7 @@
     "type": "jewelry",
     "slot": "amulet",
     "reqLevel": 10,
+    "maxSockets": 0,
     "canHaveAffixes": true
   },
   {
@@ -382,6 +420,7 @@
     "type": "jewelry",
     "slot": "amulet",
     "reqLevel": 25,
+    "maxSockets": 0,
     "canHaveAffixes": true
   },
   {
@@ -390,6 +429,7 @@
     "type": "jewelry",
     "slot": "amulet",
     "reqLevel": 35,
+    "maxSockets": 0,
     "canHaveAffixes": true
   },
   {
@@ -398,6 +438,7 @@
     "type": "jewelry",
     "slot": "amulet",
     "reqLevel": 50,
+    "maxSockets": 0,
     "canHaveAffixes": true
   },
   {
@@ -406,6 +447,7 @@
     "type": "jewelry",
     "slot": "amulet",
     "reqLevel": 60,
+    "maxSockets": 0,
     "canHaveAffixes": true
   },
   {
@@ -423,6 +465,7 @@
     },
     "reqLevel": 1,
     "sockets": 2,
+    "maxSockets": 2,
     "canHaveAffixes": true,
     "weaponType": "sword",
     "handedness": "oneHanded"
@@ -442,6 +485,7 @@
     },
     "reqLevel": 8,
     "sockets": 2,
+    "maxSockets": 2,
     "canHaveAffixes": true,
     "weaponType": "sword",
     "handedness": "oneHanded"
@@ -461,6 +505,7 @@
     },
     "reqLevel": 22,
     "sockets": 3,
+    "maxSockets": 3,
     "canHaveAffixes": true,
     "weaponType": "sword",
     "handedness": "oneHanded"
@@ -480,6 +525,7 @@
     },
     "reqLevel": 32,
     "sockets": 3,
+    "maxSockets": 3,
     "canHaveAffixes": true,
     "weaponType": "sword",
     "handedness": "oneHanded"
@@ -499,6 +545,7 @@
     },
     "reqLevel": 50,
     "sockets": 4,
+    "maxSockets": 4,
     "canHaveAffixes": true,
     "weaponType": "sword",
     "handedness": "oneHanded"
@@ -518,6 +565,7 @@
     },
     "reqLevel": 60,
     "sockets": 6,
+    "maxSockets": 6,
     "canHaveAffixes": true,
     "weaponType": "sword",
     "handedness": "oneHanded"
@@ -537,6 +585,7 @@
     },
     "reqLevel": 1,
     "sockets": 2,
+    "maxSockets": 2,
     "canHaveAffixes": true,
     "weaponType": "sword",
     "handedness": "twoHanded"
@@ -556,6 +605,7 @@
     },
     "reqLevel": 8,
     "sockets": 2,
+    "maxSockets": 2,
     "canHaveAffixes": true,
     "weaponType": "axe",
     "handedness": "twoHanded"
@@ -575,6 +625,7 @@
     },
     "reqLevel": 24,
     "sockets": 3,
+    "maxSockets": 3,
     "canHaveAffixes": true,
     "weaponType": "polearm",
     "handedness": "twoHanded"
@@ -594,6 +645,7 @@
     },
     "reqLevel": 35,
     "sockets": 4,
+    "maxSockets": 4,
     "canHaveAffixes": true,
     "weaponType": "polearm",
     "handedness": "twoHanded"
@@ -613,6 +665,7 @@
     },
     "reqLevel": 52,
     "sockets": 5,
+    "maxSockets": 5,
     "canHaveAffixes": true,
     "weaponType": "sword",
     "handedness": "twoHanded"
@@ -632,6 +685,7 @@
     },
     "reqLevel": 62,
     "sockets": 6,
+    "maxSockets": 6,
     "canHaveAffixes": true,
     "weaponType": "mace",
     "handedness": "twoHanded"
@@ -644,6 +698,7 @@
     "baseDefense": 6,
     "reqLevel": 1,
     "sockets": 1,
+    "maxSockets": 1,
     "canHaveAffixes": true
   },
   {
@@ -654,6 +709,7 @@
     "baseDefense": 15,
     "reqLevel": 8,
     "sockets": 2,
+    "maxSockets": 2,
     "canHaveAffixes": true
   },
   {
@@ -665,6 +721,7 @@
     "baseDefense": 29,
     "reqLevel": 25,
     "sockets": 3,
+    "maxSockets": 3,
     "canHaveAffixes": true
   },
   {
@@ -675,6 +732,7 @@
     "baseDefense": 40,
     "reqLevel": 35,
     "sockets": 3,
+    "maxSockets": 3,
     "canHaveAffixes": true
   },
   {
@@ -686,6 +744,7 @@
     "baseDefense": 63,
     "reqLevel": 50,
     "sockets": 4,
+    "maxSockets": 4,
     "canHaveAffixes": true
   },
   {
@@ -696,6 +755,7 @@
     "baseDefense": 83,
     "reqLevel": 60,
     "sockets": 4,
+    "maxSockets": 4,
     "canHaveAffixes": true
   },
   {
@@ -706,6 +766,7 @@
     "name": "items.base.ring",
     "slot": "ring-left",
     "sockets": 0,
+    "maxSockets": 0,
     "canHaveAffixes": true
   },
   {
@@ -716,6 +777,7 @@
     "name": "items.base.gloves",
     "slot": "gloves",
     "sockets": 0,
+    "maxSockets": 0,
     "canHaveAffixes": true
   },
   {
@@ -726,6 +788,7 @@
     "name": "items.base.boots",
     "slot": "boots",
     "sockets": 0,
+    "maxSockets": 0,
     "canHaveAffixes": true
   },
   {
@@ -736,6 +799,7 @@
     "name": "items.base.belt",
     "slot": "belt",
     "sockets": 0,
+    "maxSockets": 0,
     "canHaveAffixes": true
   },
   {
@@ -746,6 +810,7 @@
     "name": "items.base.armor-light",
     "slot": "chest",
     "sockets": 2,
+    "maxSockets": 2,
     "canHaveAffixes": true
   },
   {
@@ -756,6 +821,7 @@
     "name": "items.base.armor-heavy",
     "slot": "chest",
     "sockets": 3,
+    "maxSockets": 3,
     "canHaveAffixes": true
   },
   {
@@ -765,6 +831,7 @@
     "id": "items/base/weapon-bow",
     "slot": "weapon",
     "sockets": 2,
+    "maxSockets": 2,
     "canHaveAffixes": true,
     "weaponType": "bow",
     "handedness": "twoHanded",
@@ -783,6 +850,7 @@
     "id": "items/base/weapon-crossbow",
     "slot": "weapon",
     "sockets": 2,
+    "maxSockets": 2,
     "canHaveAffixes": true,
     "weaponType": "crossbow",
     "handedness": "twoHanded",
@@ -802,6 +870,7 @@
     "metal": true,
     "slot": "weapon",
     "sockets": 3,
+    "maxSockets": 3,
     "canHaveAffixes": true,
     "weaponType": "polearm",
     "handedness": "twoHanded",
@@ -820,6 +889,7 @@
     "id": "items/base/weapon-wand",
     "slot": "weapon",
     "sockets": 1,
+    "maxSockets": 1,
     "canHaveAffixes": true,
     "weaponType": "wand",
     "handedness": "oneHanded",
@@ -839,6 +909,7 @@
     "metal": true,
     "slot": "weapon",
     "sockets": 2,
+    "maxSockets": 2,
     "canHaveAffixes": true,
     "weaponType": "scepter",
     "handedness": "oneHanded",
@@ -858,6 +929,7 @@
     "metal": true,
     "slot": "weapon",
     "sockets": 2,
+    "maxSockets": 2,
     "canHaveAffixes": true,
     "weaponType": "mace",
     "handedness": "oneHanded",
@@ -877,6 +949,7 @@
     "metal": true,
     "slot": "weapon",
     "sockets": 2,
+    "maxSockets": 2,
     "canHaveAffixes": true,
     "weaponType": "axe",
     "handedness": "oneHanded",
@@ -902,6 +975,7 @@
     },
     "reqLevel": 1,
     "sockets": 0,
+    "maxSockets": 0,
     "canHaveAffixes": true,
     "weaponType": "bow",
     "handedness": "twoHanded"
