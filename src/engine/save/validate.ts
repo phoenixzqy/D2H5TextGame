@@ -1,6 +1,7 @@
 /** Structural validation at the untrusted save boundary; never mutates input. */
 import Ajv, { type AnySchema } from 'ajv';
 import { restoreEquipment, restoreItem, restoreUnit } from './restore';
+import { repairEquipmentRateCache } from './equipment-rate-cache';
 import { LEVEL_CAP } from '../progression/xp';
 import { CURRENT_SAVE_VERSION, type SaveCurrent, type SaveV7, type SaveV8, type SaveV9, type SaveV10 } from '../types/save';
 import { runMigrations, type VersionedSave } from './migrate';
@@ -339,7 +340,7 @@ export function decodeSave(value: unknown): SaveCurrent {
   if (input.version < 10) input = runMigrations(input, 10);
   if (input.version === 10) validateV10Save(input);
   const save = validateSave(runMigrations(input));
-  return {
+  return repairEquipmentRateCache({
     ...save,
     player: restoreUnit(save.player),
     inventory: {
@@ -355,5 +356,5 @@ export function decodeSave(value: unknown): SaveCurrent {
         Object.entries(save.mercs.mercEquipment).map(([id, equip]) => [id, restoreEquipment(equip)])
       )
     }
-  };
+  });
 }

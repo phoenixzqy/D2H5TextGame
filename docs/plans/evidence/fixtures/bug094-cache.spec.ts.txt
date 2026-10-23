@@ -1,0 +1,73 @@
+/** Constructed stale-cache diagnostic imported through ordinary controls. No acquisition or campaign claim. */
+import {test,expect,type Page} from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/@playwright/test/index.mjs';
+import {readFile,writeFile} from 'node:fs/promises';
+import {createCharacter,navTo} from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/tests/e2e/_helpers';
+const root='/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-equipment-cache-p_071mu1';
+const now=1792497600000;
+async function backup(page:Page) {
+ await navTo(page,'settings');const pending=page.waitForEvent('download');await page.getByTestId('export-save-button').click();
+ const download=await pending;try{return JSON.parse(await readFile(await download.path(),'utf8'));}finally{await download.delete();}
+}
+async function disk(page:Page) {
+ return page.evaluate(async()=>{
+  const db=await new Promise<IDBDatabase>((resolve,reject)=>{const req=indexedDB.open('D2H5TextGame');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});
+  try {
+   const record=await new Promise<{data:unknown}>((resolve,reject)=>{const req=db.transaction('saves','readonly').objectStore('saves').get('current');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});
+   return JSON.parse(JSON.stringify(record.data,(_key,value)=>value instanceof Map?[...value.entries()]:value));
+  } finally {db.close();}
+ });
+}
+async function rows(page:Page,locale:string) {
+ if (!await page.getByTestId('character-screen').isVisible()) await page.getByTestId('character-hud').click();
+ await expect(page.getByTestId('character-screen')).toBeVisible();
+ const labels=locale==='en'?['Crit Chance','Crit Damage','Physical Dodge','Magical Dodge']:['暴击率','暴击伤害','物理闪避','魔法闪避'];
+ for(const [index,value] of ['7%','230%','12%','6%'].entries()) {
+  const row=page.locator('li').filter({has:page.getByText(labels[index],{exact:true})});
+  await expect(row).toHaveCount(1);await row.scrollIntoViewIfNeeded();await expect(row).toBeVisible();await expect(row.locator('span').last()).toHaveText(value);
+ }
+}
+for(const locale of ['en','zh-CN']) test(`stale cache import Save Continue and one attribute Apply ${locale}`,async({page,context})=>{
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.clock.setFixedTime(now);await page.setViewportSize({width:360,height:640});
+ await page.goto('/');await page.waitForLoadState('networkidle');await createCharacter(page,{class:'sorceress',name:'Save compatibility QA'});
+ await navTo(page,'settings');await page.getByRole('button',{name:'English',exact:true}).click();
+ const input=JSON.parse(await readFile(root+'/diagnostic-input.json','utf8'));
+ input.meta.settings.locale=locale;
+ await page.getByRole('button',{name:'Import Save',exact:true}).click();
+ const dialog=page.getByRole('dialog');await dialog.getByRole('textbox').fill(JSON.stringify(input));
+ await dialog.getByRole('button',{name:'Import Save',exact:true}).click();await expect(dialog).toHaveCount(0);
+ const expected=structuredClone(input);Object.assign(expected.player.derivedStats,{critChance:.07,critDamage:2.3,physDodge:.12000000000000001,magicDodge:.060000000000000005});
+ // Import commits corrected data before installation; readonly IndexedDB inspection.
+ await expect.poll(()=>disk(page)).toEqual(expected);
+ expect(await backup(page)).toEqual(expected);
+ await rows(page,locale);
+ for(const [width,height] of [[360,640],[1280,800]]) {
+  await page.setViewportSize({width,height});await rows(page,locale);
+  for(const label of locale==='en'?['Crit Chance','Crit Damage','Physical Dodge','Magical Dodge']:['暴击率','暴击伤害','物理闪避','魔法闪避']) await expect(page.getByText(label,{exact:true})).toBeInViewport();
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  await page.screenshot({path:`${root}/rates-${locale}-${width}.png`,fullPage:true});
+ }
+ await navTo(page,'settings');await page.getByRole('button',{name:locale==='en'?'Save':'保存',exact:true}).click();
+ await expect(page.getByRole('status')).toHaveText(locale==='en'?'Saved':'已保存');
+ const saved=await backup(page);expect(saved).toEqual(expected);expect(await disk(page)).toEqual(saved);
+ await writeFile(`${root}/saved-${locale}.json`,JSON.stringify(saved,null,2));
+ await page.close();const reopened=await context.newPage();reopened.on('pageerror',e=>errors.push(e.message));
+ await reopened.clock.setFixedTime(now);await reopened.setViewportSize({width:360,height:640});await reopened.goto('/');await reopened.waitForLoadState('networkidle');
+ await reopened.getByTestId('home-continue').click();await expect(reopened.getByTestId('town-screen')).toBeVisible();
+ expect(await backup(reopened)).toEqual(saved);expect(await disk(reopened)).toEqual(saved);await rows(reopened,locale);
+ await expect(reopened.getByTestId('char-stat-points')).toHaveText('5');
+ await reopened.getByRole('button',{name:locale==='en'?'Increase Dexterity':'增加敏捷',exact:true}).click();
+ await expect(reopened.getByTestId('char-draft-dexterity')).toHaveText('25 → 26');await expect(reopened.getByTestId('char-draft-remaining')).toHaveText('4');
+ await reopened.getByRole('button',{name:locale==='en'?'Apply attributes':'应用属性',exact:true}).click();
+ await expect(reopened.getByRole('status')).toHaveText(locale==='en'?'Attributes applied.':'属性已应用。');
+ await expect(reopened.getByTestId('char-stat-points')).toHaveText('4');
+ await expect(reopened.getByRole('button',{name:locale==='en'?'Apply attributes':'应用属性',exact:true})).toBeDisabled();
+ const applied=await backup(reopened),after=structuredClone(saved);
+ after.player.coreStats.dexterity=26;after.player.statPoints=4;
+ Object.assign(after.player.derivedStats,{attack:62,attackSpeed:126,magicResist:0,physDodge:.12200000000000001});
+ expect(applied).toEqual(after);
+ await writeFile(`${root}/applied-${locale}.json`,JSON.stringify(applied,null,2));
+ expect(await reopened.evaluate(()=>'__GAME__' in window)).toBe(false);expect(errors).toEqual([]);
+ await writeFile(`${root}/assertions-${locale}.json`,JSON.stringify({condition:'constructed diagnostic only',locale,viewports:[[360,640],[1280,800]],importDiskAndLiveExact:true,saveCloseContinueExact:true,oneOrdinaryAttributeApply:true,pageErrors:errors},null,2));
+ await reopened.close();
+});

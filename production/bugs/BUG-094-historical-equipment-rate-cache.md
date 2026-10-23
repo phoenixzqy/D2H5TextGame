@@ -1,10 +1,11 @@
 # BUG-094 — Historical saves retain stale equipment critical/dodge caches
 
-Status: source-reproduced; compatibility repair pending. Severity: Medium.
+Status: Fixed in the accompanying shared-decode repair (parent 16db3c5). Severity: Medium.
 Owner: engine/save compatibility. Separate from BUG091/BUG093 numeric projection.
 
-Environment: fd2c96e plus the reviewed, uncommitted BUG091/BUG093 unit correction.
-This is a source-path finding; no historical-save browser reproduction is claimed.
+Environment: 16db3c5, including the committed BUG091/BUG093 unit correction.
+Initially source-reproduced; constructed stale-cache browser verification now passes.
+No naturally acquired historical-save or campaign acceptance is claimed.
 
 Reproduction by source inspection:
 1. A save previously written while affected gear was equipped contains oversized
@@ -34,3 +35,23 @@ This report authorizes no save-format bump, blanket cache reset or campaign retr
 The follow-up needs affected-source detection, idempotence, JSON/IndexedDB import
 and Continue coverage, unchanged raw items/HP/MP/unrelated caches, and unaffected
 historical-save controls. Root owns this follow-up within the full-v1 objective.
+
+Approved repair contract: shared decode boundary, per-stat source mask from
+nonzero modern rolled rate affixes and the exact24BUG093 corrected unique/set
+fields. Count distinct active set pieces with canonical membership as the
+existing aggregator does. Reproject once and copy only masked rates; reject
+nonfinite repaired arithmetic after validating the original save. Originally
+fractional unique/set packages and legacy Maps alone do not trigger repair.
+Raw items, resources/maxima, MR, unmasked fields and all merc state stay exact.
+Removed gear cannot identify a stale cache and remains outside this repair.
+Producer contract APPROVE/security PASS. Initial executable reproduction:
+four rate assertions fail and one naked/legacy-only control passes.
+
+Verified correction: `src/engine/save/equipment-rate-cache.ts`, called after
+validation/Map restoration from `decodeSave`. Regressions:
+`src/engine/save/equipment-rate-cache.test.ts` (42) and four new real-adapter
+cases in `src/stores/persistence.offline.test.ts`. Final full8646/278, types,
+lint, production build/four-chunk bridge scan and two locale browser cases pass.
+Producer source APPROVE/security PASS; independent final browser QA ADEQUATE.
+[Complete evidence](../../docs/plans/evidence/historical-equipment-rate-cache.md).
+Removed-gear ambiguity remains explicitly outside the identifiable repair scope.

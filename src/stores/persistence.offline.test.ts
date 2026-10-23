@@ -2,6 +2,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { SaveCurrent } from '@/engine/types/save';
 import type { SaveRecord } from './save-adapter';
+import { loadMercPool } from '@/data/loaders/mercs';
+import { createMercFromDef } from './mercFactory';
 
 const disk = vi.hoisted(() => {
   const state: { record: SaveRecord | undefined } = { record: undefined };
@@ -103,6 +105,77 @@ afterEach(() => {
   __resetPersistenceForTests();
   vi.useRealTimers();
   vi.restoreAllMocks();
+});
+
+describe('equipment rate cache persistence compatibility', () => {
+  function affectedSave() {
+    const base = fixture();
+    const definition = loadMercPool().pool.find(row => row.id === 'mercs/act1-rogue-inner-sight');
+    if (!definition) throw new Error('missing real starter Rogue');
+    const merc = createMercFromDef(definition);
+    const amulet = { id: 'saved-unit-amulet', baseId: 'items/base/amu-tin',
+      rarity: 'rare' as const, level: 9, identified: true, equipped: true, affixes: [
+        { id: 'affix.precise.crit-chance', tier: 0, rolledValue: 2 },
+        { id: 'affix.savage.crit-damage', tier: 0, rolledValue: 5 },
+        { id: 'affix.nimble.phys-dodge', tier: 0, rolledValue: 2 },
+        { id: 'affix.ethereal.magic-dodge', tier: 0, rolledValue: 1 },
+        { affixId: 'legacy-canonical', values: new Map([['statMods.critDamage', .25]]) }
+      ] };
+    const input: SaveCurrent = { ...base, player: { ...base.player,
+      derivedStats: { ...base.player.derivedStats, life: 53, mana: 47, magicResist: 17,
+        critChance: 2.05, critDamage: 7.25, physDodge: 2.1, magicDodge: 1.05 } },
+      inventory: { ...base.inventory, equipped: { amulet } },
+      mercs: { ...base.mercs, ownedMercs: [merc], fieldedMercId: merc.id,
+        mercEquipment: { [merc.id]: { amulet: { ...amulet, id: 'merc-unit-amulet' } } },
+        mercProgress: { [merc.id]: { level: 5, experience: 73, experienceToNextLevel: 97 } } } };
+    const expected = { ...input, player: { ...input.player,
+      derivedStats: { ...input.player.derivedStats,
+        critChance: .05 + .02, critDamage: 2 + .05 + .25,
+        physDodge: .05 + 25 * .002 + .02, magicDodge: .05 + .01 } } };
+    disk.state.record = { id: 'current', version: input.version, timestamp: input.timestamp, data: input };
+    return { input, expected };
+  }
+
+  it('imports corrected disk/live/export data before exposing it and preserves merc growth', async () => {
+    const { input, expected } = affectedSave();
+    const before = structuredClone(input);
+    await importIntoStores(JSON.stringify(toJsonSafe(input)));
+    expect(savedData()).toEqual(expected);
+    expect(snapshotStores()).toEqual({ ...expected, timestamp: NOW });
+    expect(JSON.parse(required(persistence.exportCurrentSave()))).toEqual(toJsonSafe({ ...expected,
+      timestamp: NOW, meta: { ...expected.meta,
+        idleState: { ...expected.meta.idleState, lastOnline: NOW } } }));
+    expect(input).toEqual(before);
+  });
+
+  it('hydrates a native-Map record and persists corrected caches on explicit Save', async () => {
+    const { input, expected } = affectedSave();
+    expect(await hydrateFromSave()).toBe(true);
+    expect(snapshotStores()).toEqual({ ...expected, timestamp: NOW });
+    expect(savedData()).toEqual(input);
+    await flushSave();
+    expect(savedData()).toEqual({ ...expected, timestamp: NOW, meta: { ...expected.meta,
+      idleState: { ...expected.meta.idleState, lastOnline: NOW } } });
+  });
+
+  it('startup commits normalized caches alongside ordinary offline reconciliation', async () => {
+    const { expected } = affectedSave();
+    await initPersistence();
+    const persisted = savedData();
+    expect(persisted.player).toEqual(expected.player);
+    expect(persisted.inventory).toEqual(expected.inventory);
+    expect(persisted.mercs).toEqual(expected.mercs);
+    expect(snapshotStores()).toEqual(persisted);
+  });
+
+  it('leaves old disk/live state intact if a corrected import write fails', async () => {
+    const { input } = affectedSave();
+    const original = fixture();
+    disk.put.mockRejectedValueOnce(new Error('Rate-cache quota'));
+    await expect(importIntoStores(JSON.stringify(toJsonSafe(input)))).rejects.toThrow('Rate-cache quota');
+    expect(savedData()).toEqual(original);
+    expect(usePlayerStore.getState().player).toBeNull();
+  });
 });
 
 describe('persisted bonus startup reconciliation', () => {
