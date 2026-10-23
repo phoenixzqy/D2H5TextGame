@@ -12,7 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
-| D10 v19 material/socket groundwork | pure actions and target migration validated; native integration open | Ordered mixed sockets,35 word predicates,35 gem effects,98 recipes, deterministic latest-replay actions, whole-ownership target migration and guarded rollback pass the local source gate. Full10706/382 with2 existing skips; engine5178/144; types/lint/build and7-JS bridge scan pass. SaveCurrent remains18. Runtime adapter, native persistence, grants, bilingual UI and earned acquisition→craft→combat→Continue proof remain open. |
+| D10 v19 material/socket groundwork | pure actions, target migration and native target boundary validated; runtime integration open | Ordered mixed sockets,35 word predicates,35 gem effects,98 recipes, deterministic latest-replay actions, whole-ownership target migration, raw accessor refusal and guarded rollback pass the local source gate. At `6bbf505`, full10764/383 with2 existing skips; engine5236/145; types/lint/build and7-JS bridge scan pass. SaveCurrent remains18. Runtime adapter, native persistence, grants, bilingual UI and earned acquisition→craft→combat→Continue proof remain open. |
 | D10 v18 concrete materials | integrated gate passed; earned browser acceptance pending | Strict69-ID ledger, RNG-preserving acquisition, whole-bag/current-destination grants and complete participating rollback integrated with save/UI/sim. At `10a63d9`, full10309/368 with2 existing opt-in skips, engine4826/134, types/lint/build and5-chunk bridge scan pass. Independent review clear after observer/owned-location fixes. Prepared inventory browser proof does not establish earned acquisition. [Evidence](evidence/d10-materials-integration.md). Sockets/crafting and fullv1 remain open. |
 | D11/P14 Act V Prison/services | five-viewport functional proof accepted | Constructed-power production en/zh×360×640,412×915,640×360,1280×800,1920×1080 passes10/10, retry/skips/flaky/errors0. Actual potion/thaw/post-thaw kill/Claim/scroll Read and real-drop socket/personalization survive exact Save-close-Continue; all442 preparation-owned payloads preserved, shared Close44px checks pass. Independent QA ADEQUATE;741source/760build/3inputs unchanged. [Evidence](evidence/act5-prison-services.md). Live insertion/crafting and earned ActV/C2 remain open. |
 | D11/P14 Act V finale | five-viewport functional proof accepted | Actual prior service export with declared constructed ancestry; Ancients/Rite Claim, four-vs-five-wave Throne interruption, new Baal/separate cache Claim, title and Nightmare victory/Normal restoration all pass Save-close-Continue. Production en/zh×five required sizes10/10, retry/skips/flaky/errors0; independent QA ADEQUATE and all80 staged save attachments checked, all956 prior payloads retained. [Evidence](evidence/act5-finale.md). Earned campaign/C2, exact replay calibration and manual acceptance remain open. |
@@ -10860,3 +10860,43 @@ Native v19 validation/storage/reset, the concrete store action adapter,
 candidate-sensitive live effects and item grants, bilingual UI and earned
 browser proof remain required. C0/C1 accepted; C2 incomplete; C3/C4 and full
 G0–G7 remain open. Local commits only; no remote publication.
+
+
+## D10 — Native target validation before connected rollout
+
+Local `6bbf505` validates canonical ownership and actor mirrors, exact v18
+recovery provenance and latest action receipts without counting mirrors as
+ownership. A descriptor-only graph preflight refuses own/inherited string or
+symbol getters, Map keys/values, Set entries and cycles before semantic reads;
+repeated noncyclic references remain valid. Normalization uses intrinsic Map
+iteration and own array descriptors. Frozen16 quarantine retains its historical
+origin/internal-ID rules and reserves newer fields; v18 recovery preserves the
+arbitrary string location keys and empty IDs that frozen history admitted.
+
+BUG118 records causal boundary failures before correction. BUG119 records the
+validated JSON affix-Map migration crash; restoring only the composition view
+now produces identical native/JSON derived stats without changing payloads.
+Independent read-only source QA returns CLEAR after inherited-accessor and
+sparse-array corrections; it does not grant runtime or rollout acceptance.
+
+Final focused183/3PASS; engine5236/145PASS44.48s; standalone full10764/383PASS
+with2 existing opt-in skips in231.15s. The full-run receipt confirms unchanged
+HEAD/diff/untracked contents across execution. Typecheck/full lint/production
+build and all7-JS forbidden-bridge scan PASS. Existing test-time budgets and
+bundle/PWA warnings remain; no performance gate is accepted.
+
+SaveCurrent remains18 and migration19 stays unregistered. Next is the
+connected runtime/store/save/action adapter and bilingual crafting UI, then
+earned acquisition→craft→equip/combat→Save-close-Continue. Historical raw
+preflight compatibility still needs checking during registration; no new
+historical defect is established by this note. C0/C1 remain narrowly accepted;
+C2 is incomplete; C3/C4 and fullG0–G7 remain open. Work is local only.
+
+Evidence remains root-owned through native-v19/umbrella consumers at
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-v19-materials-rh7euwd2`:
+`native-boundary-{engine,types,lint,build,full}.log`,
+`native-boundary-freeze.json`, `native-boundary-bridge.json`, and causal
+`native-*-red.log` / `native-inherited-green.log`. Exact disposable
+`native-boundary-dist` was removed and absence verified; no browser/server
+started, all validation processes terminal. Root removes retained diagnostics
+after integration/umbrella consumers finish.
