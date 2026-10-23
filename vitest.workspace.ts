@@ -7,9 +7,9 @@
  *   - `ui`:     React/JSX, jsdom + RTL setup, isolated workers.
  *   - `sim-contracts`: Node self-tests for production measurement contracts.
  *
- * Coverage thresholds and `coverage.include` (rooted at `src/engine/**`)
- * stay on the root `vitest.config.ts` so `npm run test:cov` reports a single
- * unified coverage view across the workspace.
+ * Worker bounds, coverage thresholds and `coverage.include` (rooted at
+ * `src/engine/**`) stay on the root `vitest.config.ts`. All three projects
+ * share that bounded pool and one unified coverage view.
  *
  * @see docs/perf/p05a-engine-state-audit.md
  */
@@ -71,9 +71,6 @@ export default defineWorkspace([
       ],
       pool: 'threads',
       isolate: true,
-      poolOptions: {
-        threads: { maxThreads: 4 },
-      },
     },
   },
 ]);

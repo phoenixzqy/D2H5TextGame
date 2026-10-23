@@ -7,7 +7,9 @@ import path from 'path';
  *
  * With `vitest.workspace.ts` present, project-level `test` config (env,
  * setupFiles, isolate, include) is owned by each project. This root file
- * holds only **shared** concerns: coverage thresholds + the alias resolver.
+ * holds **shared** concerns: worker bounds, coverage thresholds and aliases.
+ * Vitest 1.x sizes its shared thread pool from this root configuration;
+ * project-local maxThreads does not limit workspace worker concurrency.
  *
  * Coverage rooted at `src/engine/**`: the Wave A baseline gate (80% across
  * lines/functions/branches/statements). The UI project is intentionally
@@ -23,6 +25,9 @@ export default defineConfig({
     }
   },
   test: {
+    poolOptions: {
+      threads: { minThreads: 1, maxThreads: 4 }
+    },
     exclude: ['**/node_modules/**', '**/dist/**', '**/tests/e2e/**'],
     coverage: {
       provider: 'v8',
