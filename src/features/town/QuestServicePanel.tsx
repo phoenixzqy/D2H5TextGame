@@ -4,7 +4,7 @@ import { questServicesForNpc, questServiceCandidates, useQuestService as applyQu
 import { useInventoryStore, useMapStore, usePlayerStore } from '@/stores';
 import { WaveGuardError } from '@/stores/waveTransitionGuard';
 import { RecordedWaveAccessError } from '@/stores/recordedWaveAccess';
-import { Button, tItemName } from '@/ui';
+import { Button, ItemTooltip, tItemName } from '@/ui';
 
 type Service = ReturnType<typeof questServicesForNpc>[number];
 
@@ -30,6 +30,7 @@ function ServiceRow({ service }: { service: Service }) {
           {t('services.itemOption', { name: tItemName(t, item), level: item.level, number: index + 1 })}
         </option>)}
       </select>
+      {selected && <div data-testid={`quest-service-preview-${service.source}`} className="max-w-full"><ItemTooltip item={selected} className="max-w-full" /></div>}
       {candidates.length === 0 && <p className="text-sm text-d2-white/80">{t('services.noCandidates')}</p>}
       <Button type="button" variant="primary" disabled={!selected}
         className="min-h-[44px] min-w-[44px] max-w-full whitespace-normal break-words"
