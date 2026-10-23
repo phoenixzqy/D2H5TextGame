@@ -1,3 +1,4 @@
+import { withoutV17Fields, withV17Defaults } from '../../../tests/helpers/save-fixtures';
 import { describe, expect, it } from 'vitest';
 import { deriveStats } from '../progression/stats';
 import { CURRENT_SAVE_VERSION, MIGRATIONS, type SaveV1 } from '../types/save';
@@ -18,7 +19,7 @@ function sampleSave() {
       statusEffects: [], cooldowns: [], skills: [], comboOrder: [], alive: true, turnOrder: 0,
       experience: 0, experienceToNextLevel: 100, statPoints: 0, skillPoints: 7, equipment: [] },
     inventory: { backpack: [{ id: 'retained-gear-17', baseId: 'items/base/helm-cap',
-      rarity: 'normal', level: 1, identified: true, equipped: false }],
+      rarity: 'normal', level: 1, identified: true, equipped: false, socketCapacity: 2 }],
       stash: [], equipped: {}, currencies: { 'rune-shard': 42 } },
     mercs: { ownedMercs: [], fieldedMercId: null, mercEquipment: {}, mercProgress: {} },
     map: { currentAct: 2, currentSubAreaId: null, discoveredAreas: [], clearedSubAreas: [],
@@ -32,14 +33,17 @@ function sampleSave() {
   });
 }
 
-/** Genuine historical inputs must not carry the v15 receipt field from current builders. */
-function historicalSave<T extends { map: ReturnType<typeof sampleSave>['map'] }>(save: T, version: number) {
-  const { questReceipts: _receipts, ...map } = save.map;
-  return { ...save, version, map };
+/** Remove later reserved fields before constructing historical inputs or corruption. */
+function historicalSave<T extends Parameters<typeof withoutV17Fields>[0]>(save: T, version: number) {
+  const historical = withoutV17Fields(save);
+  const { questReceipts: _receipts, ...map } = historical.map;
+  return { ...historical, version, map };
 }
 
-function migratedShape<T extends { map: object }>(save: T) {
-  return { ...save, version: CURRENT_SAVE_VERSION, map: { ...save.map, questReceipts: {} } };
+function migratedShape<T extends { map: object; inventory: { backpack: readonly object[] } }>(save: T) {
+  return withV17Defaults({ ...save, inventory: { ...save.inventory,
+    backpack: save.inventory.backpack.map(item => ({ ...item, socketCapacity: 2 })) },
+    map: { ...save.map, questReceipts: {} } });
 }
 
 function withLedger(questItems: unknown) {
@@ -48,10 +52,10 @@ function withLedger(questItems: unknown) {
 }
 
 function legacySave() {
-  const save = sampleSave();
+  const save = historicalSave(sampleSave(), 11);
   const inventory = { backpack: save.inventory.backpack, stash: save.inventory.stash,
     equipped: save.inventory.equipped, currencies: save.inventory.currencies };
-  return { ...historicalSave(save, 11), inventory };
+  return { ...save, inventory };
 }
 
 function legacyV1(): SaveV1 {
@@ -101,7 +105,8 @@ describe('v13 objective-bound retained tools', () => {
 
   it('preserves legacy true Cube flags without manufacturing a missing tool', () => {
     const latest = cubeSave();
-    const input = { ...historicalSave(latest, 12), inventory: { ...latest.inventory, questItems: {} } };
+    const historical = historicalSave(latest, 12);
+    const input = { ...historical, inventory: { ...historical.inventory, questItems: {} } };
     expect(decodeSave(input)).toEqual(migratedShape(input));
   });
 });
@@ -137,7 +142,7 @@ describe('v12 source-bound quest item ledger', () => {
     }
   );
   it('emits a required empty ledger for a trusted legacy builder input', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(16);
+    expect(CURRENT_SAVE_VERSION).toBe(17);
     expect(sampleSave().inventory).toHaveProperty('questItems', {});
   });
 
@@ -205,8 +210,7 @@ describe('v12 source-bound quest item ledger', () => {
   it('migrates historical claimed v11 to an empty ledger with exact nonledger state', () => {
     const input = legacySave();
     const original = structuredClone(input);
-    const expected = { ...input, version: CURRENT_SAVE_VERSION,
-      inventory: { ...input.inventory, questItems: {} }, map: { ...input.map, questReceipts: {} } };
+    const expected = migratedShape({ ...input, inventory: { ...input.inventory, questItems: {} } });
     expect(MIGRATIONS[12]).toBeDefined();
     expect(MIGRATIONS[12]?.(input)).toEqual({ ...input, version: 12, inventory: { ...input.inventory, questItems: {} } });
     expect(decodeSave(input)).toEqual(expected);

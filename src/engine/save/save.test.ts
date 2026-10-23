@@ -1,3 +1,5 @@
+import { withoutV17Fields, withV17Defaults } from '../../../tests/helpers/save-fixtures';
+import { deriveStats } from '../progression/stats';
 /**
  * Round-trip and migration tests for the save module.
  */
@@ -12,11 +14,11 @@ import {
   type SaveV3,
   type SaveV5,
   type SaveV14,
+  type SaveV15,
   type QuestActionReceipts
 } from '../types/save';
 
 function fakePlayer(): SaveCurrent['player'] {
-  // Cast — we don't exercise gameplay invariants here, only persistence shape.
   return {
     id: 'p1',
     name: 'Hero',
@@ -24,18 +26,20 @@ function fakePlayer(): SaveCurrent['player'] {
     team: 'player',
     level: 5,
     coreStats: { strength: 1, dexterity: 1, vitality: 1, energy: 1 },
-    derivedStats: {},
+    derivedStats: deriveStats({ strength: 1, dexterity: 1, vitality: 1, energy: 1 }, 5),
     statusEffects: [],
     cooldowns: [],
     skills: [],
     comboOrder: [],
     alive: true,
     turnOrder: 0,
-    classId: 'barbarian',
+    class: 'barbarian',
+    equipment: [],
+    experienceToNextLevel: 500,
     experience: 100,
     statPoints: 0,
     skillPoints: 0
-  } as unknown as SaveCurrent['player'];
+  };
 }
 
 function buildSampleSaveCurrent(): SaveCurrent {
@@ -137,17 +141,18 @@ describe('save round-trip', () => {
 });
 
 describe('runMigrations', () => {
-  it('migrates v14 by adding only an empty receipt map, preserving claimed history and balances', () => {
-    const current = buildSampleSaveCurrent();
+  it('preserves the v14 receipt migration and adds empty current entitlements without changing history', () => {
+    const current = withoutV17Fields(buildSampleSaveCurrent());
     const { questReceipts, ...historicalMap } = current.map;
     expect(questReceipts).toEqual({});
     const historical: SaveV14 = { ...current, version: 14, map: historicalMap };
     const before = structuredClone(historical);
     const migrated = runMigrations(historical);
-    expect(migrated).toEqual({ ...historical, version: CURRENT_SAVE_VERSION,
-      map: { ...historical.map, questReceipts: {} } });
-    expect(migrated.player).toBe(historical.player);
-    expect(migrated.inventory).toBe(historical.inventory);
+    const v15 = runMigrations(historical, 15) as SaveV15;
+    expect(v15).toEqual({ ...historical, version: 15, map: { ...historical.map, questReceipts: {} } });
+    expect(v15.player).toBe(historical.player);
+    expect(v15.inventory).toBe(historical.inventory);
+    expect(migrated).toEqual(withV17Defaults({ ...historical, map: { ...historical.map, questReceipts: {} } }));
     expect(migrated.map.questProgress).toBe(historical.map.questProgress);
     expect(historical).toEqual(before);
     expect(Object.hasOwn(historical.map, 'questReceipts')).toBe(false);
@@ -179,7 +184,8 @@ describe('runMigrations', () => {
       inventory: {
         backpack: [],
         stash: [],
-        equipment: new Map([['weapon', { id: 'w1' } as never]]),
+        equipment: new Map([['weapon', { id: 'w1', baseId: 'items/base/wp1h-short-sword',
+          rarity: 'normal', level: 1, identified: true, equipped: true }]]),
         maxBackpack: 500,
         maxStash: 2000
       },
@@ -233,7 +239,7 @@ describe('runMigrations', () => {
   });
 
   it('retains an explicit v9 target without applying later migrations', () => {
-    const current = buildSampleSaveCurrent();
+    const current = withoutV17Fields(buildSampleSaveCurrent());
     const { questReceipts: _receipts, ...map } = current.map;
     const v9 = { ...current, version: 9 as const, map };
     expect(runMigrations(v9, 9)).toBe(v9);
@@ -241,7 +247,7 @@ describe('runMigrations', () => {
   });
 
   it('migrates v2 → v3 by folding currencies.gold into rune-shard', () => {
-    const current = buildSampleSaveCurrent();
+    const current = withoutV17Fields(buildSampleSaveCurrent());
     const { questReceipts: _receipts, ...map } = current.map;
     const v2: SaveV2 = {
       ...current, map,
@@ -259,7 +265,7 @@ describe('runMigrations', () => {
   });
 
   it('migrates v3 → v4 with safe defaults for newly persisted fields', () => {
-    const current = buildSampleSaveCurrent();
+    const current = withoutV17Fields(buildSampleSaveCurrent());
     const { mercEquipment: _mercEquipment, mercProgress: _mercProgress, ...legacyMercs } = current.mercs;
     const { clearedSubAreas: _clearedSubAreas, questReceipts: _receipts, ...legacyMap } = current.map;
     void _mercEquipment;
@@ -292,7 +298,8 @@ describe('runMigrations', () => {
       inventory: {
         backpack: [],
         stash: [],
-        equipment: [['head', { id: 'h1' }]],
+        equipment: [['head', { id: 'h1', baseId: 'items/base/helm-cap',
+          rarity: 'normal', level: 1, identified: true, equipped: true }]],
         maxBackpack: 500,
         maxStash: 2000
       },
@@ -319,7 +326,7 @@ describe('runMigrations', () => {
   });
 
   it('migrates v5 → v6 with JSON-safe item stat rolls', () => {
-    const current = buildSampleSaveCurrent();
+    const current = withoutV17Fields(buildSampleSaveCurrent());
     const { questReceipts: _receipts, ...map } = current.map;
     const v5: SaveV5 = {
       ...current, map,

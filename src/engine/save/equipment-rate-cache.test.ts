@@ -1,3 +1,4 @@
+import { withoutV17Fields } from '../../../tests/helpers/save-fixtures';
 import { describe, expect, it } from 'vitest';
 import { buildSave, toJsonSafe } from './serialize';
 import { decodeSave } from './validate';
@@ -62,14 +63,14 @@ function unique(slug: string): Item {
   const def = loadUniques().find(row => row.id === `items/unique/${slug}`);
   if (!def) throw new Error(`missing unique ${slug}`);
   return { ...item(), id: slug, baseId: def.baseId, uniqueId: def.id, rarity: 'unique',
-    statRolls: { irrelevant: 987 } };
+    statRolls: { irrelevant: 987 }, socketCapacity: 0 };
 }
 function set(id: string, count: number): Record<string, Item> {
   const def = loadSets().find(row => row.id === id);
   if (!def?.pieces || def.pieces.length < count) throw new Error(`missing set ${id}`);
   return Object.fromEntries(def.pieces.slice(0, count).map(piece => [piece.id, {
     ...item(), id: piece.id, baseId: piece.baseId, rarity: 'set',
-    setPieceId: piece.id, setId: id
+    setPieceId: piece.id, setId: id, socketCapacity: 0
   }]));
 }
 
@@ -148,8 +149,8 @@ describe('historical equipped-rate cache compatibility', () => {
     const gear = item([{ id: 'affix.savage.crit-damage', tier: 0, rolledValue: 5 }]);
     const input = saved();
     const external = { ...input, player: { ...input.player, equipment: [gear] },
-      inventory: { ...input.inventory, backpack: [gear], stash: [unique('crushflange')] },
-      mercs: { ...input.mercs, mercEquipment: { unfielded: { amulet: gear } } } };
+      inventory: { ...input.inventory, backpack: [{ ...gear, id: 'bag-rate-item' }], stash: [unique('crushflange')] },
+      mercs: { ...input.mercs, mercEquipment: { unfielded: { amulet: { ...gear, id: 'merc-rate-item' } } } } };
     expect(decodeSave(external)).toEqual(external);
   });
 
@@ -185,9 +186,11 @@ describe('historical equipped-rate cache compatibility', () => {
 
   it.each([7, 8, 9, 10])('repairs identifiable gear after migrating v%s', version => {
     const input = saved({ amulet: item([{ id: 'affix.savage.crit-damage', tier: 0, rolledValue: 5 }]) });
-    const { questItems: _ledger, ...inventory } = input.inventory;
-    const { questReceipts: _receipts, ...map } = input.map;
-    expect(decodeSave({ ...input, inventory, map, version })).toEqual({ ...input, player: { ...input.player,
+    const historical = withoutV17Fields(input);
+    const { questItems: _ledger, ...inventory } = historical.inventory;
+    const { questReceipts: _receipts, ...map } = historical.map;
+    expect(decodeSave({ ...historical, inventory, map, version })).toEqual({ ...input, player: { ...input.player,
+      equipment: [input.inventory.equipped.amulet],
       derivedStats: { ...input.player.derivedStats, critDamage: 2.05 } } });
   });
 });

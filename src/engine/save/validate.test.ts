@@ -1,3 +1,4 @@
+import { withoutV17Fields, withV17Defaults } from '../../../tests/helpers/save-fixtures';
 import { assert, describe, expect, it } from 'vitest';
 import type { DerivedStats } from '../types/attributes';
 import { CURRENT_SAVE_VERSION, type LegacyDerivedStats } from '../types/save';
@@ -12,14 +13,38 @@ function historicalStats(stats: DerivedStats): LegacyDerivedStats {
   return old;
 }
 
-/** Expected current shape preserves prior fields and adds versioned actor/receipt defaults. */
-function expectedCurrent<T extends { inventory: object; map: object; player: { derivedStats: LegacyDerivedStats }; mercs: { ownedMercs: readonly { derivedStats: LegacyDerivedStats }[] } }>(save: T) {
-  return { ...save, version: CURRENT_SAVE_VERSION,
-    inventory: { ...save.inventory, questItems: {} },
+/** Expected fixture capacities are the frozen template capacities, not new item rolls. */
+function expectedGear<T extends { baseId: string }>(item: T) {
+  const capacities: Record<string, number> = {
+    'items/base/weapon-bow-training': 0, 'items/base/helm-cap': 2, 'items/base/sh-buckler': 1
+  };
+  const socketCapacity = capacities[item.baseId];
+  if (socketCapacity === undefined) throw new Error(`Unspecified fixture base ${item.baseId}`);
+  return { ...item, socketCapacity };
+}
+function expectedSlots(slots: Readonly<Record<string, { baseId: string } | null | undefined>>) {
+  return Object.fromEntries(Object.entries(slots).map(([slot, item]) => [slot, item ? expectedGear(item) : null]));
+}
+/** Current defaults and authoritative equipment replace historical actor cache mirrors. */
+function expectedCurrent<T extends {
+  inventory: { backpack: readonly { baseId: string }[]; stash: readonly { baseId: string }[];
+    equipped: Readonly<Record<string, { baseId: string } | null | undefined>> };
+  map: object; player: { derivedStats: LegacyDerivedStats };
+  mercs: { mercEquipment: Readonly<Record<string, Readonly<Record<string, { baseId: string } | null | undefined>>>>;
+    ownedMercs: readonly { id: string; derivedStats: LegacyDerivedStats }[] }
+}>(save: T) {
+  const equipped = expectedSlots(save.inventory.equipped);
+  const mercEquipment = Object.fromEntries(Object.entries(save.mercs.mercEquipment)
+    .map(([id, slots]) => [id, expectedSlots(slots)]));
+  return withV17Defaults({ ...save,
+    inventory: { ...save.inventory, questItems: {}, equipped,
+      backpack: save.inventory.backpack.map(expectedGear), stash: save.inventory.stash.map(expectedGear) },
     map: { ...save.map, questReceipts: {} },
-    player: { ...save.player, derivedStats: { ...save.player.derivedStats, magicResist: 0 } },
-    mercs: { ...save.mercs, ownedMercs: save.mercs.ownedMercs.map(merc => ({ ...merc,
-      derivedStats: { ...merc.derivedStats, magicResist: 0 } })) } };
+    player: { ...save.player, equipment: Object.values(equipped).filter(item => item !== null),
+      derivedStats: { ...save.player.derivedStats, magicResist: 0 } },
+    mercs: { ...save.mercs, mercEquipment, ownedMercs: save.mercs.ownedMercs.map(merc => ({ ...merc,
+      equipment: Object.values(mercEquipment[merc.id] ?? {}).filter(item => item !== null),
+      derivedStats: { ...merc.derivedStats, magicResist: 0 } })) } });
 }
 
 const coreStats = { strength: 10, dexterity: 25, vitality: 10, energy: 35 };
@@ -90,7 +115,7 @@ describe('save boundary', () => {
   });
 
   it('migrates valid v6 formation preferences without mutating the original', () => {
-    const { formation: _formation, ...rest } = sampleSave();
+    const { formation: _formation, ...rest } = withoutV17Fields(sampleSave());
     const { questItems: _ledger, ...inventory } = rest.inventory;
     const { questReceipts: _receipts, ...map } = rest.map;
     const legacy = { ...rest, inventory, map, version: 6, player: { ...rest.player, derivedStats: historicalStats(rest.player.derivedStats) } };
@@ -108,7 +133,8 @@ describe('save boundary', () => {
         equipped: {
           weapon: {
             id: 'legacy-item',
-            baseId: 'items/base/weapon-bow',
+            baseId: 'items/base/weapon-bow-training',
+            socketCapacity: 0,
             rarity: 'normal',
             level: 1,
             identified: true,
@@ -160,7 +186,8 @@ describe('save boundary', () => {
           stash: [
             {
               id: 'bad-affix',
-              baseId: 'items/base/weapon-bow',
+              baseId: 'items/base/weapon-bow-training',
+              socketCapacity: 0,
               rarity: 'normal',
               level: 1,
               identified: true,
@@ -210,7 +237,7 @@ function legacyStarter(intermediate = false): Item {
   };
 }
 function legacyAmazon(intermediate = false) {
-  const base = sampleSave();
+  const base = withoutV17Fields(sampleSave());
   // Freeze this v7 fixture before fields introduced by later save builders.
   const { questItems: _ledger, ...inventory } = base.inventory;
   const { questReceipts: _receipts, ...map } = base.map;
@@ -231,10 +258,10 @@ describe('conservative legacy Amazon starter compatibility', () => {
     const input = legacyAmazon(intermediate);
     const before = structuredClone(input);
     const output = decodeSave(input);
-    expect(output.player.equipment).toEqual([]);
+    expect(output.player.equipment).toEqual(Object.values(output.inventory.equipped).filter(item => item != null));
     expect(output.version).toBe(CURRENT_SAVE_VERSION);
     expect(output.inventory.equipped.weapon).toEqual({
-      ...legacyStarter(true), id: starterId
+      ...legacyStarter(true), id: starterId, socketCapacity: 0
     });
     expect(output.player.derivedStats.attack).toBe(35);
     expect(output.player.comboOrder).toEqual(['amazon.magic_arrow']);
@@ -274,7 +301,7 @@ describe('conservative legacy Amazon starter compatibility', () => {
     };
     const before = structuredClone(progressed);
     const output = decodeSave(progressed);
-    expect(output.player.equipment).toEqual([]);
+    expect(output.player.equipment).toEqual(Object.values(output.inventory.equipped).filter(item => item != null));
     // L12: floor(10+22+max(20,25+10)/2+13)=62; retained gear participates.
     expect(output.player.derivedStats.attack).toBe(62);
     expect(output.player.derivedStats.lifeMax).toBe(248);
@@ -283,7 +310,7 @@ describe('conservative legacy Amazon starter compatibility', () => {
     expect({ ...output.player, equipment: input.player.equipment, derivedStats: progressed.player.derivedStats })
       .toEqual(progressed.player);
     expect(output.inventory.currencies).toEqual(progressed.inventory.currencies);
-    expect(output.map).toEqual({ ...progressed.map, questReceipts: {} });
+    expect(output.map).toEqual(expectedCurrent(progressed).map);
     expect(output.mercs).toEqual(expectedCurrent(progressed).mercs);
     expect(output.formation).toEqual(progressed.formation);
     const affix = output.inventory.equipped.head?.affixes?.[0];
@@ -326,7 +353,7 @@ describe('conservative legacy Amazon starter compatibility', () => {
     const output = decodeSave({ ...input, inventory: { ...input.inventory, equipped: { offhand: null } } });
     expect(output.inventory.equipped.offhand).toBeNull();
     expect(output.inventory.equipped.weapon?.id).toBe(starterId);
-    expect(output.player.equipment).toEqual([]);
+    expect(output.player.equipment).toEqual(Object.values(output.inventory.equipped).filter(item => item != null));
   });
 
   it.each([
@@ -393,7 +420,7 @@ describe('legacy starter boundary controls', () => {
     const input = legacyAmazon();
     const output = decodeSave({ ...input, player: { ...input.player,
       derivedStats: { ...input.player.derivedStats, life: pool, mana: pool } } });
-    expect(output.player.equipment).toEqual([]);
+    expect(output.player.equipment).toEqual(Object.values(output.inventory.equipped).filter(item => item != null));
     expect(output.player.derivedStats.life).toBe(Math.min(140, pool));
     expect(output.player.derivedStats.mana).toBe(Math.min(72, pool));
   });
@@ -403,7 +430,7 @@ describe('legacy starter boundary controls', () => {
     expect(output.version).toBe(CURRENT_SAVE_VERSION);
     expect(output.formation.playerPosition).toEqual({ row: 1, col: 1 });
     expect(output.inventory.equipped.weapon?.id).toBe(starterId);
-    expect(output.player.equipment).toEqual([]);
+    expect(output.player.equipment).toEqual(Object.values(output.inventory.equipped).filter(item => item != null));
     expect(input).not.toHaveProperty('formation');
   });
   it.each(['offhand', 'head', 'body', 'hands', 'feet', 'belt', 'amulet', 'ring1', 'ring2'])(

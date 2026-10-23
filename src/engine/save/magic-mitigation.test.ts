@@ -1,3 +1,4 @@
+import { withoutV17Fields, withV17Defaults } from '../../../tests/helpers/save-fixtures';
 import { describe, expect, it } from 'vitest';
 import { deriveStats } from '../progression/stats';
 import type { DerivedStats } from '../types/attributes';
@@ -32,7 +33,7 @@ function oldStats(stats: DerivedStats) {
   return old;
 }
 function legacySave(version = 8) {
-  const save = currentSave();
+  const save = withoutV17Fields(currentSave());
   const { questItems: _ledger, ...inventory } = save.inventory;
   const { questReceipts: _receipts, ...map } = save.map;
   return { ...save, inventory, map, version, player: { ...save.player, derivedStats: oldStats(save.player.derivedStats) },
@@ -48,7 +49,7 @@ describe('D04 v9 magic mitigation save boundary', () => {
     const output = decodeSave(input);
     expect(input.player.derivedStats).not.toHaveProperty('magicResist');
     expect(input.mercs.ownedMercs.every(m => !Object.hasOwn(m.derivedStats, 'magicResist'))).toBe(true);
-    expect(output).toEqual({ ...input, version: CURRENT_SAVE_VERSION,
+    expect(output).toEqual(withV17Defaults({ ...input, version: CURRENT_SAVE_VERSION,
       inventory: { ...input.inventory, questItems: {} },
       map: { ...input.map, questReceipts: {} },
       formation: version === 6 ? {
@@ -61,13 +62,13 @@ describe('D04 v9 magic mitigation save boundary', () => {
       } : legacy.formation,
       player: { ...input.player, derivedStats: { ...input.player.derivedStats, magicResist: 0 } },
       mercs: { ...input.mercs, ownedMercs: input.mercs.ownedMercs.map(m => ({ ...m,
-        derivedStats: { ...m.derivedStats, magicResist: 0 } })) } });
+        derivedStats: { ...m.derivedStats, magicResist: 0 } })) } }));
     expect(decodeSave(toJsonSafe(output))).toEqual(output);
     expect(input).toEqual(original);
   });
 
   it('decodes frozen v9 nonzero MR to current for player, fielded and unfielded mercs without refill', () => {
-    const base = currentSave();
+    const base = withoutV17Fields(currentSave());
     const { questItems: _ledger, ...inventory } = base.inventory;
     const { questReceipts: _receipts, ...map } = base.map;
     const input = { ...base, inventory, map, version: 9, player: { ...base.player,
@@ -75,8 +76,8 @@ describe('D04 v9 magic mitigation save boundary', () => {
       mercs: { ...base.mercs, ownedMercs: base.mercs.ownedMercs.map((m, i) => ({ ...m,
         derivedStats: { ...m.derivedStats, magicResist: 20 + i } })) } };
     expect(runMigrations(input, 9)).toBe(input);
-    const expected = { ...input, version: CURRENT_SAVE_VERSION, inventory: { ...input.inventory, questItems: {} },
-      map: { ...input.map, questReceipts: {} } };
+    const expected = withV17Defaults({ ...input, version: CURRENT_SAVE_VERSION, inventory: { ...input.inventory, questItems: {} },
+      map: { ...input.map, questReceipts: {} } });
     expect(decodeSave(input)).toEqual(expected);
     expect(decodeSave(toJsonSafe(decodeSave(input)))).toEqual(expected);
   });
@@ -87,8 +88,8 @@ describe('D04 v9 magic mitigation save boundary', () => {
       derivedStats: { ...input.player.derivedStats, magicResist: 17 } },
       mercs: { ...input.mercs, ownedMercs: input.mercs.ownedMercs.map(m => ({ ...m,
         derivedStats: { ...m.derivedStats, magicResist: 23 } })) } };
-    expect(decodeSave(withMR)).toEqual({ ...withMR, version: CURRENT_SAVE_VERSION,
-      inventory: { ...withMR.inventory, questItems: {} }, map: { ...withMR.map, questReceipts: {} } });
+    expect(decodeSave(withMR)).toEqual(withV17Defaults({ ...withMR, version: CURRENT_SAVE_VERSION,
+      inventory: { ...withMR.inventory, questItems: {} }, map: { ...withMR.map, questReceipts: {} } }));
   });
 
   it.each([7, 8])('rejects malformed historical MR before any v%s compatibility recomposition', version => {
@@ -118,7 +119,7 @@ describe('D04 v9 magic mitigation save boundary', () => {
     const out = decodeSave(source);
     expect(out.player.derivedStats).toMatchObject({ magicResist: 17, life: 17, mana: 3 });
     expect(out.inventory.equipped.weapon?.baseId).toBe('items/base/weapon-bow-training');
-    expect(out.player.equipment).toEqual([]);
+    expect(out.player.equipment).toEqual([out.inventory.equipped.weapon]);
   });
 
   it('requires finite nonnegative MR on every current actor, including an unfielded merc', () => {

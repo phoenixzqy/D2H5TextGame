@@ -1,3 +1,4 @@
+import { withoutV17Fields, withV17Defaults } from '../../../tests/helpers/save-fixtures';
 import { describe, expect, expectTypeOf, it } from 'vitest';
 import { deriveStats } from '../progression/stats';
 import type { Player, Mercenary } from '../types/entities';
@@ -30,13 +31,14 @@ function sampleSave() {
     formation: { playerPosition: { row: 2, col: 2 }, mercPosition: { row: 0, col: 0 }, summonPositions: [] }
   });
   // These historical fixtures predate both the v12 ledger and v15 action receipts.
-  const { questItems: _ledger, ...inventory } = save.inventory;
-  const { questReceipts: _receipts, ...map } = save.map;
-  return { ...save, version: 11 as const, inventory, map };
+  const historical = withoutV17Fields(save);
+  const { questItems: _ledger, ...inventory } = historical.inventory;
+  const { questReceipts: _receipts, ...map } = historical.map;
+  return { ...historical, version: 11 as const, inventory, map };
 }
 function currentShape<T extends { inventory: object; map: object }>(save: T) {
-  return { ...save, version: CURRENT_SAVE_VERSION, inventory: { ...save.inventory, questItems: {} },
-    map: { ...save.map, questReceipts: {} } };
+  return withV17Defaults({ ...save, inventory: { ...save.inventory, questItems: {} },
+    map: { ...save.map, questReceipts: {} } });
 }
 
 const versions = [7, 8, 9, 10, 11] as const;
@@ -49,7 +51,7 @@ const malformedSelections: readonly unknown[] = [
 
 describe('D05 v11 exclusive selected aura save boundary', () => {
   it('retains the v11 contract and its migrations with the current receipt format', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(16);
+    expect(CURRENT_SAVE_VERSION).toBe(17);
     for (const version of [8, 9, 10, 11]) expect(MIGRATIONS[version]).toBeDefined();
   });
 
@@ -149,7 +151,9 @@ describe('D05 native Maps and genuine historical migration', () => {
     };
     const original = structuredClone(input);
     const output = decodeSave(input);
-    expect(output).toEqual(currentShape(input));
+    expect(output).toEqual({ ...currentShape(input),
+      inventory: { ...currentShape(input).inventory, equipped: { head: { ...input.inventory.equipped.head, socketCapacity: 2 } } },
+      player: { ...input.player, equipment: [{ ...input.inventory.equipped.head, socketCapacity: 2 }] } });
     const affix = output.inventory.equipped.head?.affixes?.[0];
     expect(affix && 'values' in affix && affix.values).toEqual(new Map([['statMods.life', 20]]));
     expect(output.player.skills[0]?.synergies).toEqual(new Map([['physical', 0.2]]));
@@ -275,8 +279,8 @@ describe('D05 Meditation v11 acceptance and frozen historical v10', () => {
     const input = { ...currentShape(base), player: { ...base.player, selectedAuraId: 'paladin.meditation',
       skills: [{ id: 'current-map-skill', name: 'Map', description: '', trigger: 'active', target: 'single-enemy',
         cooldown: 1, cost: {}, minLevel: 1, level: 1, maxLevel: 20, synergies: new Map([['physical', 0.2]]) }] },
-      inventory: { ...base.inventory, questItems: {}, equipped: { head: { id: 'current-hat', baseId: 'items/base/helm-cap',
-        rarity: 'magic', level: 1, identified: true, equipped: true,
+      inventory: { ...currentShape(base).inventory, equipped: { head: { id: 'current-hat', baseId: 'items/base/helm-cap',
+        rarity: 'magic', level: 1, identified: true, equipped: true, socketCapacity: 0,
         affixes: [{ affixId: 'legacy', values: new Map([['statMods.life', 20]]) }] } } } };
     const before = structuredClone(input); const output = decodeSave(input);
     expect(output).toEqual(input);

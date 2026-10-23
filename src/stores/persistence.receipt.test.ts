@@ -49,7 +49,7 @@ function deferred<T>() {
     reject: (error: Error) => { required(reject)(error); } };
 }
 const item = (id: string): Item => ({ id, baseId: 'items/base/wp1h-short-sword', rarity: 'normal',
-  level: 1, identified: true, equipped: false });
+  level: 1, identified: true, equipped: false, socketCapacity: 0 });
 beforeEach(() => {
   __resetPersistenceForTests(); abandonRecordedWaves(); clearIronGolemSelection();
   for (const store of domains) store.getState().reset();
