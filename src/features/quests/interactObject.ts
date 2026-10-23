@@ -10,6 +10,7 @@ import { resolveSubArea } from '@/stores/subAreaResolver';
 import { areaQuestInsertions } from './questCrafting';
 import { areaQuestActions } from './questActions';
 import { areaAct5QuestActions } from './act5QuestActions';
+import { PRISON_QUEST } from '@/engine/map/act5-admission';
 
 export { assembleQuestItem, questAssemblyStatus, areaQuestInsertions, questInsertionStatus, insertQuestItem } from './questCrafting';
 
@@ -18,7 +19,8 @@ export type ObjectActionResult = 'ok' | 'already-read' | 'not-eligible' | 'not-r
 
 /** Supported object identities come from canonical authored objectives, never inferred legacy areas. */
 export function areaObjectTargets(act: number, areaId: string): readonly string[] {
-  return listAreaObjectTargets(loadQuests(), subAreas, { actId: `acts/act${String(act)}`, areaId });
+  return listAreaObjectTargets(loadQuests().filter(quest => quest.id !== PRISON_QUEST), subAreas,
+    { actId: `acts/act${String(act)}`, areaId });
 }
 
 /**
@@ -49,6 +51,7 @@ export function interactWithAreaObject(targetId: string): ObjectActionResult {
   const actId = `acts/act${String(map.currentAct)}`;
   if (!area || area.actId !== actId) return 'unknown-area';
   if (!map.isActUnlocked(map.currentAct)) return 'locked-area';
+  if (!areaObjectTargets(map.currentAct, area.id).includes(targetId)) return 'not-eligible';
   const event = { actId, areaId: area.id, targetId };
   const status = objectInteractionStatus(loadQuests(), subAreas, map.questProgress, event);
   if (status === 'completed' || status === 'claimed') return 'already-read';

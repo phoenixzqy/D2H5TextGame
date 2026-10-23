@@ -47,7 +47,7 @@ export function validateLegacyQuarantine(save: SaveCurrent, validateItem: (value
   const origins = new Set<string>();
   if (!Array.isArray(save.inventory.legacyGearQuarantine)) throw new Error('Invalid save: quarantine must be an array');
   for (const entry of save.inventory.legacyGearQuarantine) {
-    if (!record(entry) || Object.keys(entry).length !== 2 || !Object.hasOwn(entry, 'item') || !Object.hasOwn(entry, 'origin') ||
+    if (!record(entry) || Reflect.ownKeys(entry).length !== 2 || !Object.hasOwn(entry, 'item') || !Object.hasOwn(entry, 'origin') ||
       !record(entry.origin)) throw new Error('Invalid save: quarantine entry');
     validateItem(entry.item);
     if (!record(entry.item) || ['socketCapacity', 'personalizedBy'].some(key => Object.hasOwn(entry.item as object, key))) {
@@ -56,10 +56,10 @@ export function validateLegacyQuarantine(save: SaveCurrent, validateItem: (value
     const origin = entry.origin;
     let key: string;
     if (origin.container === 'backpack' || origin.container === 'stash') {
-      if (Object.keys(origin).length !== 2 || typeof origin.index !== 'number' || !Number.isSafeInteger(origin.index) || origin.index < 0) throw new Error('Invalid save: quarantine bag origin');
+      if (Reflect.ownKeys(origin).length !== 2 || typeof origin.index !== 'number' || !Number.isSafeInteger(origin.index) || origin.index < 0) throw new Error('Invalid save: quarantine bag origin');
       key = `${origin.container}:${String(origin.index)}`;
     } else if (origin.container === 'equipped' || origin.container === 'mercEquipment') {
-      if (typeof origin.slot !== 'string' || !slots.includes(origin.slot) || Object.keys(origin).length !== (origin.container === 'equipped' ? 2 : 3) ||
+      if (typeof origin.slot !== 'string' || !slots.includes(origin.slot) || Reflect.ownKeys(origin).length !== (origin.container === 'equipped' ? 2 : 3) ||
         origin.container === 'mercEquipment' && (typeof origin.mercId !== 'string' || !origin.mercId.length)) throw new Error('Invalid save: quarantine equipment origin');
       key = origin.container === 'equipped' ? `equipped:${origin.slot}` : `merc:${String(origin.mercId)}:${origin.slot}`;
     } else throw new Error('Invalid save: unknown quarantine origin');

@@ -11,10 +11,12 @@ import { CAGE_PROOFS, INSPECT_PROOF, POTION_SOURCE, READ_PROOF, SCROLL_SOURCE, T
 import { BAAL_TITLE, NIGHTMARE_UNLOCK } from '@/engine/save/act5-campaign';
 import { validateQuestItemLedger, decodeSave } from '@/engine/save/validate';
 import { xpTotal } from '@/engine/progression/xp';
+import { loadMercPool } from '@/data/loaders/mercs';
+import { mercXpForLevel } from '@/stores/mercStore';
 import { deriveEquippedPlayerStats } from '@/engine/progression/equipped-stats';
 import { claimQuestReward, canClaim, readQuestItem } from './claimReward';
 import { executeAct5QuestAction, act5QuestActionStatus, isAnyaThawed, rescuedBarbarianCount } from './act5QuestActions';
-import { hasAreaObjects, travelToAreaObjects } from './interactObject';
+import { hasAreaObjects, travelToAreaObjects, areaObjectTargets, interactWithAreaObject } from './interactObject';
 import { selectQuestTitle } from './questTitles';
 
 const stores = [usePlayerStore, useInventoryStore, useMapStore, useMercStore, useMetaStore,
@@ -63,6 +65,29 @@ beforeEach(() => {
 afterEach(() => { subscriptions.splice(0).forEach(stop => { stop(); }); vi.restoreAllMocks(); useMapStore.setState({ isActUnlocked: unlock }); __resetPersistenceForTests(); });
 
 describe('Act V five main source-backed rewards', () => {
+  it('settles the five-main budget once:85000 hero/63750 merc XP, two quest skill points and15 all-six resistance', () => {
+    const merc = required(loadMercPool().pool.find(row => row.id === 'mercs/act1-rogue-inner-sight'));
+    const hired = useMercStore.getState().hireMerc(merc); if (!hired.ok) throw new Error('Hire failed');
+    const mercId = required(hired.mercId); useMercStore.getState().setFieldedMerc(mercId);
+    const mercXp = () => {
+      const owned = required(useMercStore.getState().ownedMercs.find(row => row.id === mercId));
+      let total = useMercStore.getState().getMercProgress(mercId).experience;
+      for (let level = 1; level < owned.level; level++) total += mercXpForLevel(level);
+      return total;
+    };
+    const before = player(), priorXp = xp(), priorMerc = mercXp();
+    const ids = ['quests/act5-siege-on-harrogath', RESCUE_QUEST, PRISON_QUEST, 'quests/act5-rite-of-passage', EVE_QUEST];
+    for (const id of ids) {
+      if (id === RESCUE_QUEST) rescue(); else if (id === PRISON_QUEST) { thaw(); proof(id); } else proof(id);
+      expect(claimQuestReward(id)).toBe('ok');
+    }
+    expect(xp()).toBe(priorXp + 85000); expect(mercXp()).toBe(priorMerc + 63750);
+    expect(player().skillPoints).toBe(before.skillPoints + player().level - before.level + 2);
+    expect(readQuestItem(SCROLL_SOURCE)).toBe('ok');
+    expect(Object.values(player().derivedStats.resistances)).toEqual([15, 15, 15, 15, 15, 15]);
+    const settled = bytes(); for (const id of ids) expect(claimQuestReward(id)).toBe('already-claimed');
+    expect(bytes()).toBe(settled);
+  });
   it.each(['quests/act5-siege-on-harrogath', RESCUE_QUEST, PRISON_QUEST, 'quests/act5-rite-of-passage', EVE_QUEST])(
     'refuses completed historical flags as initial reward authority for %s', id => {
       track(id, true); const before = bytes(); expect(canClaim(id)).toBe(false);
@@ -86,6 +111,8 @@ describe('Act V five main source-backed rewards', () => {
   });
   it('requires Inspect, actual current-town Malah and the exact potion for Thaw', () => {
     track(PRISON_QUEST); useMapStore.setState({ currentSubAreaId: 'areas/act5-crystalline-passage' });
+    expect(areaObjectTargets(5, 'areas/act5-crystalline-passage')).not.toContain('objects/frozen_anya');
+    expect(interactWithAreaObject('objects/frozen_anya')).toBe('not-eligible');
     expect(executeAct5QuestAction(THAW_PROOF)).toBe('not-eligible');
     expect(executeAct5QuestAction(INSPECT_PROOF)).toBe('ok');
     vi.mocked(towns.loadTownNpcs).mockImplementation(act => act === 5 ? [] : originalTownNpcs(act));
@@ -143,6 +170,25 @@ describe('Act V five main source-backed rewards', () => {
 });
 
 describe('Act V reciprocal source validation and shared transaction guard', () => {
+  it.each(['claim', 'read'] as const)('guards every %s publication and rollback, preserving retry and unrelated writes', operation => {
+    thaw(); proof(PRISON_QUEST);
+    if (operation === 'read') expect(claimQuestReward(PRISON_QUEST)).toBe('ok');
+    const before = bytes(), attempts: string[] = [];
+    const observe = () => { expect(() => snapshotStores()).toThrow('questBusy');
+      expect(() => reserveWaveRestore()).toThrow('questBusy'); attempts.push('guarded'); };
+    subscriptions.push(usePlayerStore.subscribe(observe), useInventoryStore.subscribe(observe), useMapStore.subscribe(observe));
+    if (operation === 'claim') {
+      const original = useMapStore.getState().markQuestRewardClaimed;
+      vi.spyOn(useMapStore.getState(), 'markQuestRewardClaimed').mockImplementationOnce(id => { original(id); throw new Error('claim receipt'); });
+    } else {
+      const real = useMapStore.setState;
+      vi.spyOn(useMapStore, 'setState').mockImplementationOnce(value => { real(value); throw new Error('Read receipt'); });
+    }
+    const execute = () => operation === 'claim' ? claimQuestReward(PRISON_QUEST) : readQuestItem(SCROLL_SOURCE);
+    expect(execute()).toBe('grant-failed'); subscriptions.splice(0).forEach(stop => { stop(); });
+    expect(attempts.length).toBeGreaterThanOrEqual(5); expect(bytes()).toBe(before);
+    vi.restoreAllMocks(); expect(execute()).toBe('ok');
+  });
   it.each(['inspect', 'potion', 'thaw', 'victory', 'read'])('rejects missing %s graph edge before Claim or Read', fault => {
     thaw(); proof(PRISON_QUEST); expect(claimQuestReward(PRISON_QUEST)).toBe('ok');
     const map = useMapStore.getState(), receipts = { ...map.questReceipts }, items = { ...useInventoryStore.getState().questItems };

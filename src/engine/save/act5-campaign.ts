@@ -38,7 +38,7 @@ export function validateAct5CampaignRewards(map: CampaignMapSaveData, items: Que
   if (!Array.isArray(map.nightmareClearedSubAreas) || new Set(map.nightmareClearedSubAreas).size !== map.nightmareClearedSubAreas.length ||
     map.nightmareClearedSubAreas.some(id => !subAreas.some(area => area.id === id)) ||
     (!unlocked && map.nightmareClearedSubAreas.length > 0)) throw new Error('Invalid save: Nightmare clear namespace');
-  if (!record(map.challengeOrdinals) || Object.keys(map.challengeOrdinals).length !== 2 ||
+  if (!record(map.challengeOrdinals) || Reflect.ownKeys(map.challengeOrdinals).length !== 2 ||
     !['normal', 'nightmare'].every(profile => Object.hasOwn(map.challengeOrdinals, profile) &&
       Number.isSafeInteger(map.challengeOrdinals[profile as 'normal' | 'nightmare']) &&
       map.challengeOrdinals[profile as 'normal' | 'nightmare'] >= 0 && map.challengeOrdinals[profile as 'normal' | 'nightmare'] < 360360)) {

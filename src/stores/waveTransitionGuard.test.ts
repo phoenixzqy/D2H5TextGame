@@ -122,6 +122,34 @@ describe('wave transition ownership', () => {
   });
 });
 
+describe('shared quest transaction ownership', () => {
+  it('excludes snapshots, restores, nested quests and new waves until exact release and wakes one deferred save', () => {
+    const lease = guard.beginQuestTransaction();
+    refuses(() => { guard.assertWaveSnapshotAllowed(); }, 'questBusy');
+    refuses(() => guard.reserveWaveRestore(), 'questBusy');
+    refuses(() => guard.beginWaveTransition(true), 'questBusy');
+    refuses(() => guard.beginQuestTransaction(), 'questBusy');
+    expect(guard.deferWaveSaveIfBusy()).toBe(true); expect(guard.deferWaveSaveIfBusy()).toBe(true);
+    expect(guard.endQuestTransaction(lease)).toBe(true);
+    expect(() => { guard.assertWaveSnapshotAllowed(); }).not.toThrow(); expect(guard.deferWaveSaveIfBusy()).toBe(false);
+    const next = guard.beginQuestTransaction();
+    refuses(() => guard.endQuestTransaction(lease), 'invalidLease');
+    expect(guard.endQuestTransaction(next)).toBe(false);
+  });
+  it('retains deferred save ownership until the outer accepted wave finishes', () => {
+    const wave = guard.beginWaveTransition(true), quest = guard.beginQuestTransaction();
+    expect(guard.deferWaveSaveIfBusy()).toBe(true); expect(guard.endQuestTransaction(quest)).toBe(false);
+    refuses(() => { guard.assertWaveSnapshotAllowed(); }, 'waveBusy');
+    expect(guard.endWaveTransition(wave)).toBe(true); expect(guard.deferWaveSaveIfBusy()).toBe(false);
+  });
+  it('cannot enter during a reserved restore or the exact Iron debit', () => {
+    const restore = guard.reserveWaveRestore(); refuses(() => guard.beginQuestTransaction(), 'restorePending');
+    guard.releaseWaveRestore(restore);
+    const wave = guard.beginWaveTransition(true); guard.beginIronGolemDebit(wave);
+    refuses(() => guard.beginQuestTransaction(), 'itemDebitBusy'); guard.endIronGolemDebit(wave); guard.endWaveTransition(wave);
+  });
+});
+
 
 describe('exact Iron Golem debit ownership', () => {
   it('blocks ownership-changing actions only within the owned debit boundary', () => {
