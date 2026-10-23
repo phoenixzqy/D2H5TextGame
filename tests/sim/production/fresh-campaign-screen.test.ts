@@ -27,8 +27,9 @@ it('runs the declared fresh preparation stage once and restores its production r
     expect(report.created.inventory.backpack).toEqual([]);
     expect(report.created.map.challengeOrdinals).toEqual({ normal: 0, nightmare: 0 });
     expect(report.waves.length).toBeGreaterThan(0);
-    expect(report.waves.length).toBeLessThanOrEqual(stage === 'accepted-preparation' ? 40 : 1);
-    expect(report.waves.map(wave => wave.handle.challengeOrdinal)).toEqual(report.waves.map((_, index) => index));
+    expect(report.waves.length).toBeLessThanOrEqual(stage === 'native17-act2' ? 492 : stage === 'accepted-preparation' ? 40 : 1);
+    const ordinals = [...new Set(report.waves.map(wave => wave.handle.challengeOrdinal))];
+    expect(ordinals).toEqual(ordinals.map((_, index) => index));
     expect(report.waves.filter(wave => !wave.wonAlive)).toHaveLength(report.firstNonwin ? 1 : 0);
     if (report.firstNonwin) expect(report.waves.at(-1)?.wonAlive).toBe(false);
     if (stage === 'one-preparation-wave') expect(report.status).toBe('stage-complete');
@@ -45,7 +46,7 @@ it('runs the declared fresh preparation stage once and restores its production r
     console.info(JSON.stringify({ stage, status: report.status, waves: report.waves.length,
       level: report.terminal.player.player?.level, wallSeconds: report.wallSeconds }));
   } finally { for (const restore of restorers) restore(); }
-}, 30_000);
+}, 120_000);
 
 it('rejects an undeclared campaign stage before gameplay can start', () => {
   expect(() => parseFreshCampaignStage('retry-until-win')).toThrow('Unknown fresh campaign stage');

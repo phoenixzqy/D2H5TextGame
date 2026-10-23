@@ -15,6 +15,8 @@ import { abandonEarnedNextWave, playEarnedWave, startEarnedRun, type EarnedRunHa
 import { hashObservation } from './earned-report';
 import { freshCampaignPolicy as policy, type FreshCampaignStage } from './fresh-campaign-policy';
 import { assertSourceStable, collectSourceState, type SourceState } from './provenance';
+import { FreshGearRefusal } from './fresh-campaign-gear';
+import { FreshRouteStop, runFreshCampaignRoute } from './fresh-campaign-route';
 
 function wonAlive(wave: EarnedWave): boolean {
   const id = wave.beforeAward.player.player?.id;
@@ -25,8 +27,8 @@ function wonAlive(wave: EarnedWave): boolean {
 type FleeSummary = { delta: ReturnType<typeof earnedDelta>; beforeHash: string;
   afterHash: string; activeAfterFlee: boolean } | null;
 
-function summarizeWave(wave: EarnedWave, index: number, handle: EarnedRunHandle, flee: FleeSummary) {
-  return { index, handle, winner: wave.opening.outcome?.winner, wonAlive: wonAlive(wave),
+function summarizeWave(wave: EarnedWave, index: number, handle: EarnedRunHandle, flee: FleeSummary, label = 'preparation') {
+  return { index, waveIndex: wave.index, label, handle, winner: wave.opening.outcome?.winner, wonAlive: wonAlive(wave),
     terminalSimClockMs: wave.terminalSimClockMs, advanceResult: wave.advanceResult,
     actualDelta: wave.actualDelta, rawRewardDelta: wave.rawRewardDelta,
     finalPlayerTeam: wave.opening.outcome?.finalPlayerTeam,
@@ -40,7 +42,7 @@ function execute(stage: FreshCampaignStage) {
   const created = observeEarnedState();
   const waves: ReturnType<typeof summarizeWave>[] = [];
   const actions: { action: string; result: unknown }[] = [];
-  const finish = (status: 'stage-complete' | 'action-refused' | 'preparation-nonwin',
+  const finish = (status: 'stage-complete' | 'action-refused' | 'preparation-nonwin' | 'campaign-nonwin',
     refusal: unknown = null, firstNonwin: EarnedWave | null = null) => ({
     status, refusal, firstNonwin, created, actions, waves, terminal: observeEarnedState()
   });
@@ -58,7 +60,7 @@ function execute(stage: FreshCampaignStage) {
   usePlayerStore.getState().setComboOrder([policy.fire]);
   actions.push({ action: 'set-fire-bolt-combo', result: observeEarnedState().player.player?.comboOrder });
 
-  const count = stage === 'accepted-preparation' ? policy.preparationCount : 1;
+  const count = stage === 'one-preparation-wave' ? 1 : policy.preparationCount;
   for (let index = 0; index < count; index++) {
     useMapStore.getState().setCurrentLocation(1, policy.area);
     // Use persisted production ordinals and production clock seeds: no overrides.
@@ -93,6 +95,19 @@ function execute(stage: FreshCampaignStage) {
       });
     }
   }
+  if (stage === 'native17-act2') {
+    try {
+      runFreshCampaignRoute({
+        wave: (wave, handle, label) => waves.push(summarizeWave(wave, waves.length, handle, null, label)),
+        action: (action, result) => actions.push({ action, result })
+      });
+    } catch (error) {
+      if (error instanceof FreshGearRefusal) return finish('action-refused', error.evidence);
+      if (error instanceof FreshRouteStop) return finish(error.wave ? 'campaign-nonwin' : 'action-refused',
+        error.evidence, error.wave);
+      throw error;
+    }
+  }
   return finish('stage-complete');
 }
 
@@ -106,6 +121,12 @@ export function runFreshCampaignScreen(stage: FreshCampaignStage, beforeImport: 
   const root = fileURLToPath(new URL('../../../', import.meta.url));
   const sourceBefore = collectSourceState(root);
   assertSourceStable(beforeImport, sourceBefore);
+  const readReferences = () => [policy.source,
+    'docs/plans/evidence/fixtures/fresh-current-act2-screen/fresh-gear-helper.mjs.txt',
+    'docs/plans/evidence/fixtures/fresh-native17-campaign-screen/native17-frozen-plan.md'
+  ].map(path => ({ path, sha256: createHash('sha256').update(readFileSync(new URL(
+    `../../../${path}`, import.meta.url))).digest('hex') }));
+  const referenceInputs = readReferences();
   const retainedPolicySha256 = createHash('sha256').update(readFileSync(new URL(
     `../../../${policy.source}`, import.meta.url))).digest('hex');
   const restore = captureEarnedRestorers();
@@ -137,12 +158,16 @@ export function runFreshCampaignScreen(stage: FreshCampaignStage, beforeImport: 
   if (!result) throw new Error('Fresh screen did not produce an observation');
   const sourceAfter = collectSourceState(root);
   assertSourceStable(sourceBefore, sourceAfter);
+  if (!isDeepStrictEqual(referenceInputs, readReferences())) throw new Error('Fresh frozen reference input drift');
   if (retainedPolicySha256 !== createHash('sha256').update(readFileSync(new URL(
     `../../../${policy.source}`, import.meta.url))).digest('hex')) throw new Error('Retained policy drift');
   return { reportVersion: 1, observationEncoding: 'd2h5-observation-v1',
     kind: 'fresh-production-service-screen', stage, policy, retainedPolicySha256,
-    sourceBeforeImport: beforeImport, sourceBefore, sourceAfter,
+    sourceBeforeImport: beforeImport, sourceBefore, sourceAfter, referenceInputs,
+    native17Adaptation: stage === 'native17-act2' ?
+      'Preserve all historical literal fields/IDs; validate own actual socketCapacity with native authoritative validators; preserve exact native payload through real transfers. Persisted ordinals never reset.' : null,
     limitations: ['No browser, persistence, Save/Continue, or player pacing acceptance.',
-      'Only the declared preparation checkpoint is implemented; Den and later acts remain unattempted.'],
+      stage === 'native17-act2' ? 'Conditional route stops at first refusal/nonwin or after Act III availability; no Act III launch.'
+        : 'Only the declared preparation checkpoint is implemented; Den and later acts remain unattempted.'],
     wallSeconds: (performance.now() - started) / 1000, ...result };
 }
