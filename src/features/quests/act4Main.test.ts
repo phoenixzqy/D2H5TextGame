@@ -1,3 +1,4 @@
+import { withoutV17Fields } from '../../../tests/helpers/save-fixtures';
 import * as questLoader from '@/data/loaders/quests';
 import mainDocument from '@/data/quests/main.json';
 import * as lootLoader from '@/data/loaders/loot';
@@ -256,7 +257,7 @@ describe('Act IV exact reward bundle and save boundary', () => {
       expect(claimQuestReward(FORGE)).toBe('ok'); expect(useInventoryStore.getState().currencies['gem-shard']).toBe(3);
     });
   it('migrates frozen15 without minting proof, item, consumption, points or claimed reward repair', () => {
-    prepareSoulstone(); const save = required(snapshotStores()), v15 = { ...save, version: 15 }, before = structuredClone(v15);
+    prepareSoulstone(); const save = required(snapshotStores()), v15 = { ...withoutV17Fields(save), version: 15 }, before = structuredClone(v15);
     expect(decodeSave(v15)).toEqual(save); expect(v15).toEqual(before);
     const { [STONE]: _stone, ...questItems } = save.inventory.questItems;
     const missing = { ...v15, inventory: { ...v15.inventory, questItems } };
@@ -275,6 +276,6 @@ describe('Act IV exact reward bundle and save boundary', () => {
         const suffix = fault === 'izual-proof' ? 'izual-victory' : fault === 'diablo-proof' ? 'diablo-victory' : 'hephasto-victory';
         latest = { ...latest, map: { ...latest.map, questReceipts: { ...save.map.questReceipts, [`${id}#action:${suffix}`]: true } } };
       }
-      expect(() => decodeSave({ ...latest, version: 15 })).toThrow();
+      expect(() => decodeSave({ ...withoutV17Fields(latest), version: 15 })).toThrow();
     });
 });

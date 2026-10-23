@@ -32,7 +32,7 @@ vi.mock('./save-adapter', () => ({
 function items(prefix: string, count: number): Item[] {
   return Array.from({ length: count }, (_, index) => ({
     id: `${prefix}-${String(index)}`, baseId: 'items/base/helm-cap',
-    rarity: 'normal', level: 1, identified: true, equipped: false, affixes: []
+    rarity: 'normal', level: 1, identified: true, equipped: false, socketCapacity: 0, affixes: []
   }));
 }
 function reset(): void {
@@ -156,7 +156,7 @@ describe('overflow ownership across public save boundaries', () => {
     const stash = items('stash', 2000);
     useInventoryStore.setState({ backpack, stash, currencies: { 'rune-shard': 23 } });
     const returned: Item = { id: 'returned-with-map', baseId: 'items/base/helm-cap', rarity: 'magic', level: 1,
-      identified: true, equipped: false,
+      identified: true, equipped: false, socketCapacity: 0,
       affixes: [{ affixId: 'test', values: new Map([['coreStats.vitality', 3]]) }] };
     useInventoryStore.getState().addItem(returned);
     useInventoryStore.getState().addItem({ ...returned, id: 'stash-return-with-map' }, true);

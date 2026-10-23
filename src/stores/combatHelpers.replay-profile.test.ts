@@ -185,7 +185,7 @@ describe('production replay profile authority', () => {
     expect(inspectRecordedWaves().pending).toBeNull();
     expect(useMapStore.getState().challengeOrdinals).toEqual({ normal: 5, nightmare: 9 });
     expect(required(combatRunLifecycle.activeRun).recording?.replayProfileId).toBe('nightmare');
-    expect(() => recoverRecordedWavePublication(pending.receipt)).toThrow('staleReceipt');
+    expect(() => { recoverRecordedWavePublication(pending.receipt); }).toThrow('staleReceipt');
     expect(useMapStore.getState().challengeOrdinals).toEqual({ normal: 5, nightmare: 9 });
   });
 });

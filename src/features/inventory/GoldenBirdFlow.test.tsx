@@ -200,7 +200,7 @@ describe.each(['en', 'zh-CN'])('Golden Bird player actions %s', locale => {
   it.each(['backpack', 'picker'])('updates %s equipment previews when the actual Potion is read', surface => {
     completeDeliveries(); expect(claimQuestReward(QUEST)).toBe('ok');
     const candidate: Item = { id: 'golden-preview-helm', baseId: 'items/base/helm-cap', rarity: 'normal',
-      level: 1, ilvl: 1, identified: true, equipped: false };
+      level: 1, ilvl: 1, identified: true, equipped: false, socketCapacity: 0 };
     useInventoryStore.getState().addItem(candidate);
     if (surface === 'backpack') {
       mount(<InventoryScreen />);

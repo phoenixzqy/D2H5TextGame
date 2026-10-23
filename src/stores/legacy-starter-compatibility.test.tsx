@@ -7,6 +7,7 @@ import { SkillsScreen } from '@/features/skills/SkillsScreen';
 import i18n from '@/i18n';
 import type { SaveRecord } from './save-adapter';
 import { CURRENT_SAVE_VERSION, type SaveV7 } from '@/engine/types/save';
+import { withoutV17Fields } from '../../tests/helpers/save-fixtures';
 
 const disk = vi.hoisted(() => {
   const state: { record: SaveRecord | undefined } = { record: undefined };
@@ -52,8 +53,9 @@ function oldSave(intermediate = false): SaveV7 {
     ...(intermediate ? { ilvl: 1, baseRolls: { attack: 13 } } : {})
   };
   usePlayerStore.getState().setPlayer({ ...player, equipment: [starter] });
-  const save = snapshotStores();
-  assert(save);
+  const current = snapshotStores();
+  assert(current);
+  const save = withoutV17Fields(current);
   usePlayerStore.getState().setPlayer(createMockPlayer('Current', 'sorceress'));
   const { magicResist: _mr, ...oldStats } = save.player.derivedStats;
   const { questItems: _ledger, ...inventory } = save.inventory;
@@ -64,7 +66,7 @@ function seedDisk(data: SaveV7) {
   disk.state.record = { id: 'current', data: structuredClone(data), version: 7, timestamp: data.timestamp };
 }
 function assertLiveCanonical() {
-  expect(usePlayerStore.getState().player?.equipment).toEqual([]);
+  expect(usePlayerStore.getState().player?.equipment).toEqual([useInventoryStore.getState().equipped.weapon]);
   expect(usePlayerStore.getState().player?.derivedStats.attack).toBe(35);
   expect(useInventoryStore.getState().equipped.weapon).toMatchObject({
     id, baseId: 'items/base/weapon-bow-training', baseRolls: { attack: 13 }
@@ -93,7 +95,7 @@ describe('legacy starter actual persistence paths', () => {
     seedDisk(legacy);
     const decoded = await loadSave();
     expect(decoded?.inventory.equipped.weapon?.id).toBe(id);
-    expect(decoded?.player.equipment).toEqual([]);
+    expect(decoded?.player.equipment).toEqual([decoded?.inventory.equipped.weapon]);
     expect(decoded?.player.derivedStats.attack).toBe(35);
     expect(decoded?.version).toBe(CURRENT_SAVE_VERSION);
     // Raw disk export deliberately remains diagnostic, until an ordinary save writes normalized data.
@@ -106,7 +108,7 @@ describe('legacy starter actual persistence paths', () => {
       expect(await hydrateFromSave()).toBe(true);
       assertLiveCanonical();
       expect(publications).toHaveLength(1);
-      expect(publications[0]).toMatchObject({ equipment: [], derivedStats: { attack: 35 } });
+      expect(publications[0]).toMatchObject({ equipment: [{ id, socketCapacity: 0 }], derivedStats: { attack: 35 } });
       expect(await hydrateFromSave()).toBe(true);
       assertLiveCanonical();
       await flushSave();
@@ -121,7 +123,8 @@ describe('legacy starter actual persistence paths', () => {
     const json = JSON.stringify(legacy);
     await importSave(json);
     expect(disk.state.record?.version).toBe(CURRENT_SAVE_VERSION);
-    expect((await loadSave())?.player.equipment).toEqual([]);
+    const decoded = await loadSave();
+    expect(decoded?.player.equipment).toEqual([decoded?.inventory.equipped.weapon]);
     expect((await loadSave())?.inventory.equipped.weapon?.id).toBe(id);
     await importIntoStores(json);
     assertLiveCanonical();
@@ -179,7 +182,7 @@ describe('legacy starter actual persistence paths', () => {
     expect(disk.state.record).toEqual(currentDisk);
     await importIntoStores(JSON.stringify(input));
     assertLiveCanonical();
-    expect((await loadSave())?.player.equipment).toEqual([]);
+    expect((await loadSave())?.player.equipment).toEqual([useInventoryStore.getState().equipped.weapon]);
   });
 });
 
@@ -227,6 +230,7 @@ describe('canonical weapon authority through mounted save replacement', () => {
       baseId: kind === 'bow' ? 'items/base/weapon-bow-training' : 'items/base/wp1h-short-sword',
       baseRolls: { attack: kind === 'bow' ? 13 : 8 }
     };
+    const expectedWeapon = weapon ? { ...weapon, socketCapacity: kind === 'bow' ? 0 : 2 } : null;
     const input = {
       ...legacy, version: 8,
       player: { ...legacy.player, equipment: kind === 'bow' ? [] : legacy.player.equipment },
@@ -236,7 +240,7 @@ describe('canonical weapon authority through mounted save replacement', () => {
     await act(async () => { await importIntoStores(JSON.stringify(input)); });
     expect(arrowOptionPresent()).toBe(kind === 'bow');
     expect(usePlayerStore.getState().player?.comboOrder).toEqual(kind === 'bow' ? ['skills-amazon-magic-arrow'] : []);
-    expect(usePlayerStore.getState().player?.equipment).toEqual(input.player.equipment);
+    expect(usePlayerStore.getState().player?.equipment).toEqual(expectedWeapon ? [expectedWeapon] : []);
     expect(usePlayerStore.getState().player?.skillLevels).toEqual({ 'amazon.magic_arrow': 1 });
     const exported = exportCurrentSave();
     assert(exported);
@@ -244,6 +248,6 @@ describe('canonical weapon authority through mounted save replacement', () => {
     await act(async () => { expect(await hydrateFromSave()).toBe(true); });
     expect(arrowOptionPresent()).toBe(kind === 'bow');
     expect(usePlayerStore.getState().player?.comboOrder).toEqual(kind === 'bow' ? ['skills-amazon-magic-arrow'] : []);
-    expect(useInventoryStore.getState().equipped.weapon).toEqual(weapon);
+    expect(useInventoryStore.getState().equipped.weapon).toEqual(expectedWeapon);
   });
 });

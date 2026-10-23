@@ -1,3 +1,4 @@
+import { withoutV17Fields } from '../../../tests/helpers/save-fixtures';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { useMapStore } from '@/stores/mapStore';
@@ -270,10 +271,11 @@ describe('actual unordered Khalim components and assembly', () => {
     assemble();
     expect(claimQuestReward(QUEST)).toBe('ok');
     const saved = required(snapshotStores());
-    const { questReceipts: _receipts, ...map } = saved.map;
-    expect(() => decodeSave({ ...saved, version: 14, map })).toThrow(/v14/);
-    const historical = { ...saved, version: 14, map,
-      inventory: { ...saved.inventory, questItems: { [CUBE]: required(saved.inventory.questItems[CUBE]) } } };
+    const predecessor = withoutV17Fields(saved);
+    const { questReceipts: _receipts, ...map } = predecessor.map;
+    expect(() => decodeSave({ ...predecessor, version: 14, map })).toThrow(/v14/);
+    const historical = { ...predecessor, version: 14, map,
+      inventory: { ...predecessor.inventory, questItems: { [CUBE]: required(saved.inventory.questItems[CUBE]) } } };
     const before = structuredClone(historical), decoded = decodeSave(historical);
     expect(historical).toEqual(before);
     expect(decoded.inventory.questItems).toEqual(historical.inventory.questItems);

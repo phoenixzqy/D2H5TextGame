@@ -198,10 +198,23 @@ describe('transition deferred-save wake', () => {
       expect(disk.put).toHaveBeenCalledTimes(1);
     });
 
-  it('schedules no debounce when the transition has no persistent mutation', async () => {
+  it('debounces the newly persisted challenge ordinal after start releases its lease', async () => {
     startAutoSave();
     start();
     assertReleased();
+    expect(useMapStore.getState().challengeOrdinals).toEqual({ normal: 1, nightmare: 0 });
+    await vi.advanceTimersByTimeAsync(AUTO_SAVE_DEBOUNCE_MS);
+    expect(disk.put).toHaveBeenCalledTimes(1);
+    expect(disk.put.mock.calls[0]?.[0].data).toMatchObject({ map: { challengeOrdinals: { normal: 1, nightmare: 0 } } });
+  });
+
+  it('schedules no debounce when replay has no persistent mutation', async () => {
+    start();
+    const ordinals = useMapStore.getState().challengeOrdinals;
+    startAutoSave();
+    replay();
+    assertReleased();
+    expect(useMapStore.getState().challengeOrdinals).toBe(ordinals);
     expect(vi.getTimerCount()).toBe(1);
     await vi.advanceTimersByTimeAsync(AUTO_SAVE_DEBOUNCE_MS);
     expect(disk.put).not.toHaveBeenCalled();

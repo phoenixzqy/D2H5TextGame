@@ -1,3 +1,4 @@
+import { withoutV17Fields } from '../../../tests/helpers/save-fixtures';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { loadMercPool } from '@/data/loaders/mercs';
@@ -133,10 +134,11 @@ describe('Guardian exact cache and retained reward', () => {
     const { [SOULSTONE]: soulstone, ...items } = useInventoryStore.getState().questItems;
     expect(() => validateQuestItemLedger({ ...items, [`${KHALIM}#reward:questItem`]: required(soulstone) },
       map.questProgress, map.questReceipts)).toThrow(/unknown/);
-    const { questReceipts: _receipts, ...historicalMap } = paid.map;
-    expect(() => decodeSave({ ...paid, version: 14, map: historicalMap })).toThrow(/v14/);
-    const historical = { ...paid, version: 14, map: historicalMap,
-      inventory: { ...paid.inventory, questItems: { [CUBE]: required(paid.inventory.questItems[CUBE]) } } };
+    const predecessor = withoutV17Fields(paid);
+    const { questReceipts: _receipts, ...historicalMap } = predecessor.map;
+    expect(() => decodeSave({ ...predecessor, version: 14, map: historicalMap })).toThrow(/v14/);
+    const historical = { ...predecessor, version: 14, map: historicalMap,
+      inventory: { ...predecessor.inventory, questItems: { [CUBE]: required(paid.inventory.questItems[CUBE]) } } };
     const decoded = decodeSave(historical);
     expect(decoded.inventory.questItems).toEqual(historical.inventory.questItems);
     expect(decoded.map.questReceipts).toEqual({});

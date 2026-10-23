@@ -17,7 +17,7 @@ const shieldBase = 'items/base/sh-buckler';
 
 function item(id: string, baseId = 'items/base/helm-cap', fields: Partial<Item> = {}): Item {
   return {
-    id, baseId, rarity: 'normal', level: 1, identified: true, equipped: false,
+    id, baseId, rarity: 'normal', level: 1, identified: true, equipped: false, socketCapacity: 0,
     affixes: [{ affixId: 'retained', values: new Map([['statMods.life', 3]]) }],
     ...fields
   };

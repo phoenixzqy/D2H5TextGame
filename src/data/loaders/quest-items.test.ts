@@ -26,7 +26,7 @@ describe('bound quest item definitions', () => {
       'quest/gidbinn', 'quest/lam_esens_tome', 'quest/jade_figurine',
       'quest/golden_bird', 'quest/khalims_heart', 'quest/khalims_brain',
       'quest/khalims_eye', 'quest/khalims_flail', 'items/khalims_will', 'items/potion_of_life_q', 'items/soulstone_mephisto',
-      'quest/hellforge_hammer']);
+      'quest/hellforge_hammer', 'quest/malahs_potion', 'items/scroll_of_resist']);
     expect(questItemSource(book)).toBe('quests/act2-radaments-lair#reward:questItem');
     expect(Object.isFrozen(items)).toBe(true);
     expect(JSON.stringify(document)).toBe(before);

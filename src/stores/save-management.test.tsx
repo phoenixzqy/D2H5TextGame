@@ -169,27 +169,28 @@ describe('save management integrity', () => {
     expect(usePlayerStore.getState().player?.name).toBe('Imported');
   });
 
-  it('round-trips all v7 domains, over-cap contents and item identity', async () => {
+  it('round-trips all current domains, over-cap contents and item identity', async () => {
     const player = required(usePlayerStore.getState().player);
     const item = {
       id: 'it-1-zz',
-      baseId: 'items/base/weapon-bow',
+      baseId: 'items/base/weapon-bow-training',
       rarity: 'magic' as const,
       level: 1,
       identified: true,
       equipped: false,
+      socketCapacity: 0,
       affixes: [{ id: 'affixes/prefix/attack', tier: 0, rolledValue: 3 }]
     };
     useInventoryStore.setState({
       backpack: Array.from({ length: 101 }, (_, n) => ({ ...item, id: `legacy-${String(n)}` })),
       stash: [item],
-      equipped: { weapon: item },
+      equipped: { weapon: { ...item, id: 'hero-weapon', equipped: true } },
       currencies: { 'rune-shard': 99 }
     });
     useMercStore.setState({
       ownedMercs: [{ ...player, id: 'merc-1', type: 'mercenary', archetype: 'front', rarity: 'R' }],
       fieldedMercId: 'merc-1',
-      mercEquipment: { 'merc-1': { weapon: item } },
+      mercEquipment: { 'merc-1': { weapon: { ...item, id: 'merc-weapon', equipped: true } } },
       mercProgress: { 'merc-1': { experience: 23, experienceToNextLevel: 50 } }
     });
     useMapStore.getState().setCurrentLocation(2, 'lut-gholein');
@@ -301,11 +302,12 @@ describe('save management integrity', () => {
       stash: [
         {
           id: 'legacy-map',
-          baseId: 'items/base/weapon-bow',
+          baseId: 'items/base/weapon-bow-training',
           rarity: 'magic',
           level: 1,
           identified: true,
           equipped: false,
+          socketCapacity: 0,
           affixes: [{ affixId: 'legacy-affix', values: new Map([['attack', 12]]) }]
         }
       ]

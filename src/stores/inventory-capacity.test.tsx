@@ -12,7 +12,7 @@ import { usePlayerStore } from './playerStore';
 function items(prefix: string, count: number): Item[] {
   return Array.from({ length: count }, (_, index) => ({
     id: `${prefix}-${String(index)}`, baseId: 'items/base/helm-cap', rarity: 'magic',
-    level: 1, identified: true, equipped: false,
+    level: 1, identified: true, equipped: false, socketCapacity: 0,
     affixes: [{ affixId: 'retained', values: new Map([['coreStats.vitality', index + 1]]) }]
   }));
 }

@@ -1,3 +1,4 @@
+import { withoutV17Fields } from '../../../tests/helpers/save-fixtures';
 import { CURRENT_SAVE_VERSION } from '@/engine/types/save';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
@@ -280,11 +281,12 @@ describe('Golden Bird real exchange chain and Life potion', () => {
   it('rejects future Golden Bird receipts in frozen14 and migrates legacy flags without items', () => {
     exchanges();
     const current = required(snapshotStores());
-    const json = toJsonSafe(current) as Record<string, unknown>;
-    const { questReceipts: _receipts, ...map } = current.map;
+    const predecessor = withoutV17Fields(current);
+    const json = toJsonSafe(predecessor) as Record<string, unknown>;
+    const { questReceipts: _receipts, ...map } = predecessor.map;
     expect(() => decodeSave({ ...json, version: 14, map })).toThrow(/v14/);
     const old = { ...json, version: 14, map,
-      inventory: { ...current.inventory, questItems: {} } };
+      inventory: { ...predecessor.inventory, questItems: {} } };
     const decoded = decodeSave(old);
     expect(decoded.version).toBe(CURRENT_SAVE_VERSION);
     expect(decoded.map.questProgress[QUEST]).toEqual(current.map.questProgress[QUEST]);
