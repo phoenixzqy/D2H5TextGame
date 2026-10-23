@@ -1,0 +1,1543 @@
+{
+  "kind": "immutable-fresh-native17-v2-single-attempt-summary",
+  "reportVersion": 1,
+  "status": "campaign-nonwin",
+  "originalStop": {
+    "act": 2,
+    "action": "radament",
+    "actualDelta": {
+      "addedClears": [],
+      "addedItems": [],
+      "currencies": {
+        "gem-shard": 0,
+        "rune-shard": 0,
+        "wishstone": 0
+      },
+      "mercXp": {
+        "mercs/act1-rogue-inner-sight": 0
+      },
+      "removedItemIds": [],
+      "xp": 0
+    },
+    "area": "areas/act2-far-oasis",
+    "handle": {
+      "challengeOrdinal": 107,
+      "runId": "areas/act2-far-oasis",
+      "runSeed": 1283116162,
+      "totalWaves": 5
+    },
+    "waveIndex": 4,
+    "winner": null
+  },
+  "artifacts": {
+    "fullReport": {
+      "path": "native17-v2-attempt.json.gz",
+      "rawByteLength": 30125222,
+      "rawSha256": "90a79b6c0fe564f250379660705fb7ab9cc619dc2726c5b4fe1eb9d8e021a1cd",
+      "gzipByteLength": 1016467,
+      "gzipSha256": "80f2c651c27744d58a5c21577af61cae8d65da45c7f6f17c029c44fdfae550a0",
+      "verifiedRoundTrip": true,
+      "compression": "gzip mtime=0; exact original bytes"
+    },
+    "nativeExport": {
+      "path": "native17-v2-native-export.json.gz",
+      "rawByteLength": 1376837,
+      "rawSha256": "c038427361d2171ebb3693509804966ff5538f2b9bd6e0da1d23f660516567d6",
+      "gzipByteLength": 31069,
+      "gzipSha256": "51d1611a1dbae156d43293a392ccdb5749a61161605f0a47f91c1c050e48655e",
+      "verifiedRoundTrip": true,
+      "compression": "gzip mtime=0; exact original bytes"
+    },
+    "nativeCapture": {
+      "path": "native17-v2-native-capture.json.gz",
+      "rawByteLength": 5116954,
+      "rawSha256": "40a0318129b4d6ad0150afddac602146a807ca28f7b6d42538ddabe9b13afcd4",
+      "gzipByteLength": 184861,
+      "gzipSha256": "64702ed0f7a9cad056483df50822d2784e0df92c95ca1b453060a0aa057837d2",
+      "verifiedRoundTrip": true,
+      "compression": "gzip mtime=0; exact original bytes"
+    }
+  },
+  "provenance": {
+    "sourceSha": "a3d8d843f7d4e907d5e3298fd458423b8130e988",
+    "sourceTreeHash": "7fdc2070c8abf8a4b42e30b3590aec6056ac0bb2faee0b74ca01af5980752f80",
+    "dataHash": "a1c9be78af566f3c9bd9fd8df22b25d81423fc1ab43e591c07fac3a794eee851",
+    "nodeVersion": "v24.21.0",
+    "vitestVersion": "1.6.1",
+    "sourceBeforeImportEqualsBeforeEqualsAfter": true,
+    "dirty": {
+      "isDirty": false,
+      "porcelainEntries": []
+    },
+    "referenceInputs": [
+      {
+        "path": "docs/plans/evidence/fixtures/fresh-current-act2-screen/fresh-native.spec.ts.txt",
+        "sha256": "bceaab7cb2e1ebf0e3b945c96e3fd1a4959553058871476c42201dbe1f994936"
+      },
+      {
+        "path": "docs/plans/evidence/fixtures/fresh-current-act2-screen/fresh-gear-helper.mjs.txt",
+        "sha256": "c70ebd227ccf41cfc479377769702367e242eda04e0d9daf9929aac968594f2b"
+      },
+      {
+        "path": "docs/plans/evidence/fixtures/fresh-native17-campaign-screen/native17-frozen-plan.md",
+        "sha256": "d16c50484765f6acadc659f87810d568fc342bcd0f764a3401eac2298b5dfc75"
+      },
+      {
+        "path": "docs/plans/evidence/fixtures/fresh-native17-campaign-screen/native17-v2-frozen-plan.md",
+        "sha256": "0fe8812a317991b48c1ffcfb8c759c0a20ef1a0367a05a48be944d31f3aa9847"
+      }
+    ],
+    "priorDefeatUnchanged": true,
+    "runtimeAndDataEdited": false
+  },
+  "policy": {
+    "experiment": {
+      "id": "fresh-native17-v2-single-far-oasis",
+      "plan": "docs/plans/evidence/fixtures/fresh-native17-campaign-screen/native17-v2-frozen-plan.md",
+      "transfers": [
+        {
+          "item": {
+            "affixes": [
+              {
+                "id": "affix.mystic.mana.flat",
+                "rolledValue": 29,
+                "tier": 1
+              },
+              {
+                "id": "affix.ethereal.magic-dodge",
+                "rolledValue": 3,
+                "tier": 1
+              },
+              {
+                "id": "affix.vital.life.flat",
+                "rolledValue": 31,
+                "tier": 1
+              },
+              {
+                "id": "affix.physical.resistance",
+                "rolledValue": 8,
+                "tier": 1
+              }
+            ],
+            "baseId": "items/base/amu-brass",
+            "baseRolls": {},
+            "equipped": false,
+            "generatedName": {},
+            "id": "it-6ghhi-2hx",
+            "identified": false,
+            "ilvl": 12,
+            "level": 12,
+            "rarity": "rare"
+          },
+          "owner": "hero",
+          "slot": "amulet"
+        },
+        {
+          "item": {
+            "affixes": [
+              {
+                "id": "affix.nimble.phys-dodge",
+                "rolledValue": 4,
+                "tier": 1
+              },
+              {
+                "id": "affix.vital.life.flat",
+                "rolledValue": 31,
+                "tier": 1
+              },
+              {
+                "id": "affix.mystic.mana.flat",
+                "rolledValue": 20,
+                "tier": 1
+              },
+              {
+                "id": "affix.poison.resistance",
+                "rolledValue": 18,
+                "tier": 1
+              },
+              {
+                "id": "affix.lightning.resistance",
+                "rolledValue": 15,
+                "tier": 1
+              },
+              {
+                "id": "affix.physical.resistance",
+                "rolledValue": 12,
+                "tier": 1
+              }
+            ],
+            "baseId": "items/base/armor-leather",
+            "baseRolls": {
+              "defense": 20
+            },
+            "equipped": false,
+            "generatedName": {},
+            "id": "it-111b8-2jg",
+            "identified": false,
+            "ilvl": 19,
+            "level": 19,
+            "rarity": "rare",
+            "socketCapacity": 0
+          },
+          "owner": "hero",
+          "slot": "chest"
+        },
+        {
+          "item": {
+            "affixes": [
+              {
+                "id": "affix.armor.defense.flat",
+                "rolledValue": 11,
+                "tier": 1
+              },
+              {
+                "id": "affix.vital.life.flat",
+                "rolledValue": 26,
+                "tier": 1
+              },
+              {
+                "id": "affix.ethereal.magic-dodge",
+                "rolledValue": 2,
+                "tier": 1
+              },
+              {
+                "id": "affix.poison.resistance",
+                "rolledValue": 17,
+                "tier": 1
+              },
+              {
+                "id": "affix.lightning.resistance",
+                "rolledValue": 10,
+                "tier": 1
+              },
+              {
+                "id": "affix.cold.resistance",
+                "rolledValue": 18,
+                "tier": 1
+              }
+            ],
+            "baseId": "items/base/helm-skull-cap",
+            "baseRolls": {
+              "defense": 14
+            },
+            "equipped": false,
+            "generatedName": {},
+            "id": "it-23pcn-2ji",
+            "identified": false,
+            "ilvl": 19,
+            "level": 19,
+            "rarity": "rare",
+            "socketCapacity": 1
+          },
+          "owner": "merc",
+          "slot": "head"
+        }
+      ]
+    },
+    "clockEpochMs": 1792497600000,
+    "newFreshPrefix": true,
+    "noImportedCheckpoint": true,
+    "seedOrOrdinalOverride": false,
+    "attempts": 1,
+    "retries": 0,
+    "preparationWins": 40,
+    "nativeZeroRewardFlees": 40,
+    "extraFullDenRuns": 61,
+    "noPostStopChanges": true,
+    "noRadamentClaimBookArcane": true
+  },
+  "observed": {
+    "launches": 108,
+    "waveTerminals": 315,
+    "wins": 314,
+    "enemyVictories": 0,
+    "draws": 1,
+    "routeWallSeconds": 77.54210216000001,
+    "invocationWallSeconds": 85.27,
+    "harnessTestsPassed": 2,
+    "claims": [
+      {
+        "action": "claim:quests/act1-den-of-evil",
+        "result": "ok",
+        "xp": 500,
+        "mercXp": {
+          "mercs/act1-rogue-inner-sight": 375
+        },
+        "itemCount": 0
+      },
+      {
+        "action": "claim:quests/act1-sisters-to-the-slaughter",
+        "result": "ok",
+        "xp": 8000,
+        "mercXp": {
+          "mercs/act1-rogue-inner-sight": 6000
+        },
+        "itemCount": 1
+      },
+      {
+        "action": "claim:quests/act2-horadric-staff",
+        "result": "ok",
+        "xp": 6000,
+        "mercXp": {
+          "mercs/act1-rogue-inner-sight": 4500
+        },
+        "itemCount": 0
+      },
+      {
+        "action": "claim:quests/act2-tainted-sun",
+        "result": "ok",
+        "xp": 4500,
+        "mercXp": {
+          "mercs/act1-rogue-inner-sight": 3375
+        },
+        "itemCount": 0
+      }
+    ],
+    "farOasis": [
+      {
+        "waveNumber": 1,
+        "winner": "player",
+        "advanceResult": "next-wave",
+        "terminalSimClockMs": 8736,
+        "beforeAwardHash": "19ee3557f24d6155eb7f9dc5f11dc8fc705e3e81294131b8bfec152bc72e6bc1",
+        "afterAwardHash": "7219428e7e751f3ecc5ae682ffcda13d560e1bc51eed4fa882d125036cbc9bad",
+        "actualDelta": {
+          "xp": 1980,
+          "mercXp": {
+            "mercs/act1-rogue-inner-sight": 1485
+          },
+          "currencies": {
+            "gem-shard": 0,
+            "rune-shard": 996,
+            "wishstone": 0
+          },
+          "addedItems": 6,
+          "addedClears": []
+        },
+        "finalParty": [
+          {
+            "id": "player-1792497600000",
+            "level": 12,
+            "life": 334,
+            "lifeMax": 334,
+            "mana": 227,
+            "manaMax": 237
+          },
+          {
+            "id": "merc-mercs/act1-rogue-inner-sight",
+            "level": 16,
+            "life": 292,
+            "lifeMax": 293,
+            "mana": 150,
+            "manaMax": 150
+          }
+        ]
+      },
+      {
+        "waveNumber": 2,
+        "winner": "player",
+        "advanceResult": "next-wave",
+        "terminalSimClockMs": 9828,
+        "beforeAwardHash": "7219428e7e751f3ecc5ae682ffcda13d560e1bc51eed4fa882d125036cbc9bad",
+        "afterAwardHash": "12f3e0eefe49ec8dff22383705b7cbd5f2e2cb035143c10ff5c57ce24b99203f",
+        "actualDelta": {
+          "xp": 2400,
+          "mercXp": {
+            "mercs/act1-rogue-inner-sight": 1800
+          },
+          "currencies": {
+            "gem-shard": 0,
+            "rune-shard": 1177,
+            "wishstone": 0
+          },
+          "addedItems": 4,
+          "addedClears": []
+        },
+        "finalParty": [
+          {
+            "id": "player-1792497600000",
+            "level": 12,
+            "life": 184,
+            "lifeMax": 334,
+            "mana": 237,
+            "manaMax": 237
+          },
+          {
+            "id": "merc-mercs/act1-rogue-inner-sight",
+            "level": 16,
+            "life": 51,
+            "lifeMax": 293,
+            "mana": 150,
+            "manaMax": 150
+          }
+        ]
+      },
+      {
+        "waveNumber": 3,
+        "winner": "player",
+        "advanceResult": "next-wave",
+        "terminalSimClockMs": 30576,
+        "beforeAwardHash": "12f3e0eefe49ec8dff22383705b7cbd5f2e2cb035143c10ff5c57ce24b99203f",
+        "afterAwardHash": "39e61536e4fda35a771649be9b884821cc5e15f67a066fb4ad1569565e30f49c",
+        "actualDelta": {
+          "xp": 2730,
+          "mercXp": {
+            "mercs/act1-rogue-inner-sight": 2047
+          },
+          "currencies": {
+            "gem-shard": 3,
+            "rune-shard": 5164,
+            "wishstone": 7
+          },
+          "addedItems": 65,
+          "addedClears": []
+        },
+        "finalParty": [
+          {
+            "id": "player-1792497600000",
+            "level": 12,
+            "life": 334,
+            "lifeMax": 334,
+            "mana": 237,
+            "manaMax": 237
+          },
+          {
+            "id": "merc-mercs/act1-rogue-inner-sight",
+            "level": 16,
+            "life": 183,
+            "lifeMax": 293,
+            "mana": 150,
+            "manaMax": 150
+          }
+        ]
+      },
+      {
+        "waveNumber": 4,
+        "winner": "player",
+        "advanceResult": "next-wave",
+        "terminalSimClockMs": 29820,
+        "beforeAwardHash": "39e61536e4fda35a771649be9b884821cc5e15f67a066fb4ad1569565e30f49c",
+        "afterAwardHash": "64972a1f3494c8f488fd85a843365e6d07a628c5c7a5ffcfdf688b579e789df7",
+        "actualDelta": {
+          "xp": 3080,
+          "mercXp": {
+            "mercs/act1-rogue-inner-sight": 2310
+          },
+          "currencies": {
+            "gem-shard": 0,
+            "rune-shard": 4139,
+            "wishstone": 15
+          },
+          "addedItems": 30,
+          "addedClears": []
+        },
+        "finalParty": [
+          {
+            "id": "player-1792497600000",
+            "level": 13,
+            "life": 342,
+            "lifeMax": 342,
+            "mana": 241,
+            "manaMax": 241
+          },
+          {
+            "id": "merc-mercs/act1-rogue-inner-sight",
+            "level": 16,
+            "life": 293,
+            "lifeMax": 293,
+            "mana": 150,
+            "manaMax": 150
+          }
+        ]
+      },
+      {
+        "waveNumber": 5,
+        "winner": null,
+        "advanceResult": "defeat",
+        "terminalSimClockMs": 60000,
+        "beforeAwardHash": "64972a1f3494c8f488fd85a843365e6d07a628c5c7a5ffcfdf688b579e789df7",
+        "afterAwardHash": "64972a1f3494c8f488fd85a843365e6d07a628c5c7a5ffcfdf688b579e789df7",
+        "actualDelta": {
+          "xp": 0,
+          "mercXp": {
+            "mercs/act1-rogue-inner-sight": 0
+          },
+          "currencies": {
+            "gem-shard": 0,
+            "rune-shard": 0,
+            "wishstone": 0
+          },
+          "addedItems": 0,
+          "addedClears": []
+        },
+        "finalParty": [
+          {
+            "id": "player-1792497600000",
+            "level": 13,
+            "life": 324,
+            "lifeMax": 342,
+            "mana": 233,
+            "manaMax": 241
+          },
+          {
+            "id": "merc-mercs/act1-rogue-inner-sight",
+            "level": 16,
+            "life": 282,
+            "lifeMax": 293,
+            "mana": 150,
+            "manaMax": 150
+          }
+        ]
+      }
+    ],
+    "terminalPlayer": {
+      "level": 13,
+      "skillPoints": 1,
+      "statPoints": 5,
+      "coreStats": {
+        "dexterity": 25,
+        "energy": 63,
+        "strength": 10,
+        "vitality": 37
+      },
+      "skillLevels": {
+        "sorceress.fire_bolt": 4,
+        "sorceress.frost_nova": 2,
+        "sorceress.ice_blast": 8,
+        "sorceress.ice_bolt": 1,
+        "sorceress.warmth": 1
+      },
+      "comboOrder": [
+        "skills-sorceress-frost-nova",
+        "skills-sorceress-ice-blast"
+      ]
+    },
+    "beforeFarOasisPlayer": {
+      "level": 12,
+      "skillPoints": 0,
+      "statPoints": 0,
+      "coreStats": {
+        "dexterity": 25,
+        "energy": 63,
+        "strength": 10,
+        "vitality": 37
+      },
+      "skillLevels": {
+        "sorceress.fire_bolt": 4,
+        "sorceress.frost_nova": 2,
+        "sorceress.ice_blast": 8,
+        "sorceress.ice_bolt": 1,
+        "sorceress.warmth": 1
+      }
+    },
+    "terminalMap": {
+      "challengeOrdinals": {
+        "nightmare": 0,
+        "normal": 108
+      },
+      "clearedSubAreas": [
+        "areas/act1-den-of-evil",
+        "areas/act1-blood-moor",
+        "areas/act1-cold-plains",
+        "areas/act1-burial-grounds",
+        "areas/act1-dark-wood",
+        "areas/act1-catacombs"
+      ],
+      "currentAct": 2,
+      "currentSubAreaId": "areas/act2-far-oasis",
+      "discoveredAreas": [],
+      "nightmareClearedSubAreas": [],
+      "questDifficulties": {},
+      "questProgress": {
+        "quests/act1-den-of-evil": {
+          "id": "quests/act1-den-of-evil",
+          "objectives": {
+            "obj-clear-den": true,
+            "obj-return": true
+          },
+          "rewardClaimed": true,
+          "status": "completed"
+        },
+        "quests/act1-sisters-to-the-slaughter": {
+          "id": "quests/act1-sisters-to-the-slaughter",
+          "objectives": {
+            "obj-kill-andariel": true
+          },
+          "rewardClaimed": true,
+          "status": "completed"
+        },
+        "quests/act2-arcane-sanctuary": {
+          "id": "quests/act2-arcane-sanctuary",
+          "objectives": {
+            "obj-find-summoner": false,
+            "obj-read-journal": false
+          },
+          "status": "inProgress"
+        },
+        "quests/act2-horadric-staff": {
+          "id": "quests/act2-horadric-staff",
+          "objectives": {
+            "obj-amulet": true,
+            "obj-cube": true,
+            "obj-shaft": true,
+            "obj-transmute": true
+          },
+          "rewardClaimed": true,
+          "status": "completed"
+        },
+        "quests/act2-radaments-lair": {
+          "id": "quests/act2-radaments-lair",
+          "objectives": {
+            "obj-kill-radament": false
+          },
+          "status": "inProgress"
+        },
+        "quests/act2-seven-tombs": {
+          "id": "quests/act2-seven-tombs",
+          "objectives": {
+            "obj-kill-duriel": false,
+            "obj-open-tomb": true
+          },
+          "status": "inProgress"
+        },
+        "quests/act2-tainted-sun": {
+          "id": "quests/act2-tainted-sun",
+          "objectives": {
+            "obj-destroy-altar": true
+          },
+          "rewardClaimed": true,
+          "status": "completed"
+        }
+      },
+      "questReceipts": {},
+      "questTitles": {},
+      "selectedDifficulty": "normal",
+      "selectedTitle": null
+    },
+    "ownedBackpackItems": 3386,
+    "terminalEquipped": {
+      "amulet": {
+        "affixes": [
+          {
+            "id": "affix.mystic.mana.flat",
+            "rolledValue": 29,
+            "tier": 1
+          },
+          {
+            "id": "affix.ethereal.magic-dodge",
+            "rolledValue": 3,
+            "tier": 1
+          },
+          {
+            "id": "affix.vital.life.flat",
+            "rolledValue": 31,
+            "tier": 1
+          },
+          {
+            "id": "affix.physical.resistance",
+            "rolledValue": 8,
+            "tier": 1
+          }
+        ],
+        "baseId": "items/base/amu-brass",
+        "baseRolls": {},
+        "equipped": true,
+        "generatedName": {},
+        "id": "it-6ghhi-2hx",
+        "identified": false,
+        "ilvl": 12,
+        "level": 12,
+        "rarity": "rare"
+      },
+      "belt": {
+        "affixes": [],
+        "baseId": "items/base/belt-light",
+        "baseRolls": {
+          "defense": 6
+        },
+        "equipped": true,
+        "generatedName": {},
+        "id": "it-2jm8r-2h6",
+        "identified": true,
+        "ilvl": 9,
+        "level": 9,
+        "rarity": "normal",
+        "socketCapacity": 1
+      },
+      "boots": {
+        "affixes": [],
+        "baseId": "items/base/boot-leather",
+        "baseRolls": {
+          "defense": 5
+        },
+        "equipped": true,
+        "generatedName": {},
+        "id": "it-24svg-2hv",
+        "identified": true,
+        "ilvl": 12,
+        "level": 12,
+        "rarity": "normal",
+        "socketCapacity": 1
+      },
+      "chest": {
+        "affixes": [
+          {
+            "id": "affix.nimble.phys-dodge",
+            "rolledValue": 4,
+            "tier": 1
+          },
+          {
+            "id": "affix.vital.life.flat",
+            "rolledValue": 31,
+            "tier": 1
+          },
+          {
+            "id": "affix.mystic.mana.flat",
+            "rolledValue": 20,
+            "tier": 1
+          },
+          {
+            "id": "affix.poison.resistance",
+            "rolledValue": 18,
+            "tier": 1
+          },
+          {
+            "id": "affix.lightning.resistance",
+            "rolledValue": 15,
+            "tier": 1
+          },
+          {
+            "id": "affix.physical.resistance",
+            "rolledValue": 12,
+            "tier": 1
+          }
+        ],
+        "baseId": "items/base/armor-leather",
+        "baseRolls": {
+          "defense": 20
+        },
+        "equipped": true,
+        "generatedName": {},
+        "id": "it-111b8-2jg",
+        "identified": false,
+        "ilvl": 19,
+        "level": 19,
+        "rarity": "rare",
+        "socketCapacity": 0
+      },
+      "gloves": {
+        "affixes": [],
+        "baseId": "items/base/glove-leather",
+        "baseRolls": {
+          "defense": 5
+        },
+        "equipped": true,
+        "generatedName": {},
+        "id": "it-96fga-3",
+        "identified": true,
+        "ilvl": 2,
+        "level": 2,
+        "rarity": "normal",
+        "socketCapacity": 1
+      },
+      "head": {
+        "affixes": [],
+        "baseId": "items/base/helm-skull-cap",
+        "baseRolls": {
+          "defense": 11
+        },
+        "equipped": true,
+        "generatedName": {},
+        "id": "it-6zft2-2jk",
+        "identified": true,
+        "ilvl": 19,
+        "level": 19,
+        "rarity": "unique",
+        "socketCapacity": 2,
+        "statRolls": {},
+        "uniqueId": "items/unique/coif-of-glory"
+      },
+      "offhand": {
+        "affixes": [],
+        "baseId": "items/base/sh-kite",
+        "baseRolls": {
+          "defense": 14
+        },
+        "equipped": true,
+        "generatedName": {},
+        "id": "it-1u1tx-10g",
+        "identified": true,
+        "ilvl": 7,
+        "level": 7,
+        "rarity": "normal",
+        "socketCapacity": 1
+      },
+      "weapon": {
+        "affixes": [],
+        "baseId": "items/base/weapon-wand",
+        "baseRolls": {
+          "attack": 7
+        },
+        "equipped": true,
+        "generatedName": {},
+        "id": "it-2w6n3-2gw",
+        "identified": true,
+        "ilvl": 9,
+        "level": 9,
+        "rarity": "set",
+        "setId": "sets/naj-ancient-vestige",
+        "setPieceId": "sets/naj-ancient-vestige/weapon",
+        "socketCapacity": 1,
+        "statRolls": {}
+      }
+    },
+    "terminalMercEquipped": {
+      "mercs/act1-rogue-inner-sight": {
+        "belt": {
+          "affixes": [],
+          "baseId": "items/base/belt-light",
+          "baseRolls": {
+            "defense": 6
+          },
+          "equipSlot": "belt",
+          "equipped": true,
+          "generatedName": {},
+          "id": "it-9jozy-2hm",
+          "identified": true,
+          "ilvl": 12,
+          "level": 12,
+          "rarity": "normal",
+          "socketCapacity": 1
+        },
+        "boots": {
+          "affixes": [],
+          "baseId": "items/base/boot-leather",
+          "baseRolls": {
+            "defense": 5
+          },
+          "equipSlot": "boots",
+          "equipped": true,
+          "generatedName": {},
+          "id": "it-66obq-2fe",
+          "identified": true,
+          "ilvl": 3,
+          "level": 3,
+          "rarity": "normal",
+          "socketCapacity": 0
+        },
+        "chest": {
+          "affixes": [],
+          "baseId": "items/base/armor-leather",
+          "baseRolls": {
+            "defense": 21
+          },
+          "equipSlot": "chest",
+          "equipped": true,
+          "generatedName": {},
+          "id": "it-1xxse-2fp",
+          "identified": true,
+          "ilvl": 6,
+          "level": 6,
+          "rarity": "normal",
+          "socketCapacity": 2
+        },
+        "gloves": {
+          "affixes": [],
+          "baseId": "items/base/glove-leather",
+          "baseRolls": {
+            "defense": 5
+          },
+          "equipSlot": "gloves",
+          "equipped": true,
+          "generatedName": {},
+          "id": "it-96fga-8",
+          "identified": true,
+          "ilvl": 2,
+          "level": 2,
+          "rarity": "normal",
+          "socketCapacity": 1
+        },
+        "head": {
+          "affixes": [
+            {
+              "id": "affix.armor.defense.flat",
+              "rolledValue": 11,
+              "tier": 1
+            },
+            {
+              "id": "affix.vital.life.flat",
+              "rolledValue": 26,
+              "tier": 1
+            },
+            {
+              "id": "affix.ethereal.magic-dodge",
+              "rolledValue": 2,
+              "tier": 1
+            },
+            {
+              "id": "affix.poison.resistance",
+              "rolledValue": 17,
+              "tier": 1
+            },
+            {
+              "id": "affix.lightning.resistance",
+              "rolledValue": 10,
+              "tier": 1
+            },
+            {
+              "id": "affix.cold.resistance",
+              "rolledValue": 18,
+              "tier": 1
+            }
+          ],
+          "baseId": "items/base/helm-skull-cap",
+          "baseRolls": {
+            "defense": 14
+          },
+          "equipSlot": "head",
+          "equipped": true,
+          "generatedName": {},
+          "id": "it-23pcn-2ji",
+          "identified": false,
+          "ilvl": 19,
+          "level": 19,
+          "rarity": "rare",
+          "socketCapacity": 1
+        },
+        "offhand": {
+          "affixes": [],
+          "baseId": "items/base/sh-kite",
+          "baseRolls": {
+            "defense": 14
+          },
+          "equipSlot": "offhand",
+          "equipped": true,
+          "generatedName": {},
+          "id": "it-1u1tx-11w",
+          "identified": true,
+          "ilvl": 7,
+          "level": 7,
+          "rarity": "normal",
+          "socketCapacity": 1
+        },
+        "weapon": {
+          "affixes": [],
+          "baseId": "items/base/wp1h-short-sword",
+          "baseRolls": {
+            "attack": 5
+          },
+          "equipSlot": "weapon",
+          "equipped": true,
+          "generatedName": {},
+          "id": "it-4bfya-2gy",
+          "identified": true,
+          "ilvl": 9,
+          "level": 9,
+          "rarity": "unique",
+          "socketCapacity": 2,
+          "statRolls": {},
+          "uniqueId": "items/unique/blood-crescent"
+        }
+      }
+    }
+  },
+  "nativeCapture": {
+    "kind": "live-production-snapshot-and-export",
+    "status": "captured",
+    "failure": null,
+    "publicationFailure": null,
+    "beforeHash": "64972a1f3494c8f488fd85a843365e6d07a628c5c7a5ffcfdf688b579e789df7",
+    "afterHash": "64972a1f3494c8f488fd85a843365e6d07a628c5c7a5ffcfdf688b579e789df7",
+    "snapshotHash": "688505bef96a7fc2129564d12c1215cc82709d55ffc1d11dac7c365053ed6a8f",
+    "decodedHash": "688505bef96a7fc2129564d12c1215cc82709d55ffc1d11dac7c365053ed6a8f",
+    "exportedSha256": "c038427361d2171ebb3693509804966ff5538f2b9bd6e0da1d23f660516567d6",
+    "idleMetadata": {
+      "equalOutsideIdleMetadata": true,
+      "exportedDecoded": {
+        "activeMultiplier": 1,
+        "lastOnline": 1792497600000,
+        "multiplierSecondsRemaining": 0,
+        "offlineTime": 0
+      },
+      "matches": true,
+      "snapshot": {
+        "activeMultiplier": 1,
+        "lastOnline": 1792497600000,
+        "multiplierSecondsRemaining": 0,
+        "offlineTime": 0
+      }
+    },
+    "version": 17,
+    "terminalChallengeOrdinals": {
+      "nightmare": 0,
+      "normal": 108
+    },
+    "independentEnvelopeMatchesPrimary": true,
+    "exactExportMatchesPrimary": true,
+    "capturedBeforeCleanupAndAfterStop": true,
+    "limitations": [
+      "Captured through production snapshot/export before realm cleanup; no observation reconstruction.",
+      "Export projects idle metadata through readIdleBonus; snapshot retains raw idleState. Both are retained and compared separately.",
+      "No IndexedDB write/read, browser Save/Continue, offline reconciliation or C2 acceptance is established."
+    ]
+  },
+  "drawAnalysis": {
+    "terminalSimClockMs": 60000,
+    "endEvent": {
+      "kind": "end",
+      "simClockMs": 60000,
+      "uiDelayMs": 50,
+      "winner": null
+    },
+    "recordedEvents": 704,
+    "eventKinds": {
+      "status-state": 130,
+      "turn-start": 13,
+      "action": 135,
+      "summon": 1,
+      "damage": 146,
+      "death": 5,
+      "mana": 187,
+      "status": 70,
+      "stunned": 12,
+      "orb": 4,
+      "end": 1
+    },
+    "beforeAwardEqualsAfterAwardEqualsTerminal": true,
+    "earnedStateHash": "64972a1f3494c8f488fd85a843365e6d07a628c5c7a5ffcfdf688b579e789df7",
+    "boss": {
+      "id": "enemy-act2.radament-0-00f1",
+      "level": 22,
+      "openingLife": 8615,
+      "finalLife": 7847,
+      "stats": {
+        "attack": 219,
+        "attackSpeed": 100,
+        "critChance": 0.1,
+        "critDamage": 1.75,
+        "defense": 242,
+        "goldFind": 0,
+        "life": 8615,
+        "lifeMax": 8615,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "magicResist": 63,
+        "mana": 0,
+        "manaMax": 0,
+        "physDodge": 0.05,
+        "resistances": {
+          "arcane": 0,
+          "cold": 0,
+          "fire": 50,
+          "lightning": 0,
+          "physical": 25,
+          "poison": 75
+        }
+      },
+      "actions": {
+        "monster.summon_adds": 1,
+        "monster.strong_melee": 22
+      }
+    },
+    "finalEnemies": [
+      {
+        "id": "enemy-act2.radament-0-00f1",
+        "life": 7847,
+        "lifeMax": 8615,
+        "kind": "monster"
+      },
+      {
+        "id": "enemy-act2.mummy-0-607f",
+        "life": 0,
+        "lifeMax": 298,
+        "kind": "monster"
+      },
+      {
+        "id": "enemy-act2.mummy-1-ce20",
+        "life": 0,
+        "lifeMax": 251,
+        "kind": "monster"
+      },
+      {
+        "id": "enemy-act2.mummy-2-20a1",
+        "life": 0,
+        "lifeMax": 245,
+        "kind": "monster"
+      },
+      {
+        "id": "enemy-act2.mummy-3-7f6c",
+        "life": 0,
+        "lifeMax": 255,
+        "kind": "monster"
+      },
+      {
+        "id": "enemy-act2.radament-0-00f1-summon-minion-1",
+        "life": 0,
+        "lifeMax": 40,
+        "kind": "summon"
+      }
+    ],
+    "party": [
+      {
+        "id": "player-1792497600000",
+        "level": 13,
+        "opening": {
+          "life": 342,
+          "mana": 241,
+          "stats": {
+            "attack": 80,
+            "attackSpeed": 135,
+            "critChance": 0.05,
+            "critDamage": 2,
+            "defense": 137,
+            "goldFind": 0,
+            "life": 120,
+            "lifeMax": 342,
+            "magicDodge": 0.08,
+            "magicFind": 0,
+            "magicResist": 0,
+            "mana": 102,
+            "manaMax": 241,
+            "physDodge": 0.14,
+            "resistances": {
+              "arcane": 0,
+              "cold": 30,
+              "fire": 30,
+              "lightning": 30,
+              "physical": 20,
+              "poison": 18
+            }
+          },
+          "cooldowns": {
+            "sorceress.frost_nova": 160
+          },
+          "skillOrder": [
+            "skills-sorceress-frost-nova",
+            "skills-sorceress-ice-blast"
+          ]
+        },
+        "terminal": {
+          "life": 324,
+          "mana": 233,
+          "cooldowns": {
+            "sorceress.frost_nova": 160
+          }
+        },
+        "actions": {
+          "sorceress.frost_nova": 14,
+          "sorceress.ice_blast": 28
+        },
+        "recordedOutgoingDamage": {
+          "cold": 805
+        },
+        "recordedDamageToBoss": {
+          "cold": 635
+        },
+        "outgoingDamageEvents": 52,
+        "outgoingDodges": 3,
+        "recordedIncomingDamage": {
+          "physical": 18
+        },
+        "incomingDodges": 5,
+        "manaEventSamples": [
+          {
+            "kind": "mana",
+            "mana": 221,
+            "reason": "cast",
+            "simClockMs": 1420,
+            "target": "player-1792497600000",
+            "uiDelayMs": 50
+          },
+          {
+            "kind": "mana",
+            "mana": 225,
+            "reason": "regeneration",
+            "simClockMs": 1749.4117647058824,
+            "target": "player-1792497600000",
+            "uiDelayMs": 329.41176470588243
+          }
+        ],
+        "observedManaRange": [
+          221,
+          241
+        ],
+        "actionTiming": {
+          "sorceress.frost_nova": {
+            "count": 14,
+            "firstMs": 1420,
+            "lastMs": 56800,
+            "minimumIntervalMs": 4260,
+            "maximumIntervalMs": 4260
+          },
+          "sorceress.ice_blast": {
+            "count": 28,
+            "firstMs": 2840,
+            "lastMs": 59640,
+            "minimumIntervalMs": 1420,
+            "maximumIntervalMs": 2840
+          }
+        }
+      },
+      {
+        "id": "merc-mercs/act1-rogue-inner-sight",
+        "level": 16,
+        "opening": {
+          "life": 293,
+          "mana": 150,
+          "stats": {
+            "attack": 125,
+            "attackSpeed": 176,
+            "critChance": 0.05,
+            "critDamage": 2,
+            "defense": 141,
+            "goldFind": 0,
+            "life": 252,
+            "lifeMax": 293,
+            "magicDodge": 0.07,
+            "magicFind": 0,
+            "magicResist": 0,
+            "mana": 79,
+            "manaMax": 150,
+            "physDodge": 0.172,
+            "resistances": {
+              "arcane": 0,
+              "cold": 18,
+              "fire": 0,
+              "lightning": 10,
+              "physical": 0,
+              "poison": 17
+            }
+          },
+          "cooldowns": {
+            "mskill-inner-sight": 3908,
+            "mskill-pierce-arrow": 816
+          },
+          "skillOrder": [
+            "mskill-inner-sight",
+            "mskill-pierce-arrow",
+            "mskill-basic-arrow"
+          ]
+        },
+        "terminal": {
+          "life": 282,
+          "mana": 150,
+          "cooldowns": {}
+        },
+        "actions": {
+          "mskill-pierce-arrow": 16,
+          "mskill-basic-arrow": 27,
+          "mskill-inner-sight": 11
+        },
+        "recordedOutgoingDamage": {
+          "physical": 1448
+        },
+        "recordedDamageToBoss": {
+          "physical": 133
+        },
+        "outgoingDamageEvents": 56,
+        "outgoingDodges": 8,
+        "recordedIncomingDamage": {
+          "physical": 11
+        },
+        "incomingDodges": 4,
+        "manaEventSamples": [],
+        "observedManaRange": [
+          150,
+          150
+        ],
+        "actionTiming": {
+          "mskill-pierce-arrow": {
+            "count": 16,
+            "firstMs": 1092,
+            "lastMs": 55692,
+            "minimumIntervalMs": 3276,
+            "maximumIntervalMs": 4368
+          },
+          "mskill-basic-arrow": {
+            "count": 27,
+            "firstMs": 2184,
+            "lastMs": 57876,
+            "minimumIntervalMs": 1092,
+            "maximumIntervalMs": 3276
+          },
+          "mskill-inner-sight": {
+            "count": 11,
+            "firstMs": 4368,
+            "lastMs": 58968,
+            "minimumIntervalMs": 5460,
+            "maximumIntervalMs": 5460
+          }
+        }
+      }
+    ],
+    "deaths": [
+      {
+        "kind": "death",
+        "simClockMs": 1092,
+        "target": "enemy-act2.radament-0-00f1-summon-minion-1",
+        "uiDelayMs": 50
+      },
+      {
+        "kind": "death",
+        "simClockMs": 5460,
+        "target": "enemy-act2.mummy-3-7f6c",
+        "uiDelayMs": 50
+      },
+      {
+        "kind": "death",
+        "simClockMs": 8736,
+        "target": "enemy-act2.mummy-0-607f",
+        "uiDelayMs": 50
+      },
+      {
+        "kind": "death",
+        "simClockMs": 9940,
+        "target": "enemy-act2.mummy-2-20a1",
+        "uiDelayMs": 50
+      },
+      {
+        "kind": "death",
+        "simClockMs": 14200,
+        "target": "enemy-act2.mummy-1-ce20",
+        "uiDelayMs": 50
+      }
+    ],
+    "orbs": [
+      {
+        "kind": "orb",
+        "orb": {
+          "kind": "mp",
+          "restorePct": 0.05
+        },
+        "simClockMs": 9940,
+        "target": "player-1792497600000",
+        "uiDelayMs": 50
+      },
+      {
+        "kind": "orb",
+        "orb": {
+          "kind": "mp",
+          "restorePct": 0.05
+        },
+        "simClockMs": 9940,
+        "target": "merc-mercs/act1-rogue-inner-sight",
+        "uiDelayMs": 50
+      },
+      {
+        "kind": "orb",
+        "orb": {
+          "kind": "mp",
+          "restorePct": 0.05
+        },
+        "simClockMs": 14200,
+        "target": "player-1792497600000",
+        "uiDelayMs": 50
+      },
+      {
+        "kind": "orb",
+        "orb": {
+          "kind": "mp",
+          "restorePct": 0.05
+        },
+        "simClockMs": 14200,
+        "target": "merc-mercs/act1-rogue-inner-sight",
+        "uiDelayMs": 50
+      }
+    ],
+    "observations": [
+      "One actual native 60000ms timeout with both party members and Radament alive; draw is handled by the native defeat path.",
+      "Damage event totals can exceed HP removed on killed adds because of overkill; boss HP removal is separately checkable.",
+      "One skill point and five stat points earned at L13 remain unspent under the in-challenge frozen policy.",
+      "No alternative build projection, later wave, retry, browser Save/Continue or C2 acceptance was performed.",
+      "All four original mummies and the single summoned minion die by 14200ms; Radament remains alive with 7847/8615 HP at timeout.",
+      "Boss loses exactly 768 HP: 635 cold from the hero and 133 physical from the Rogue. Party loses 29 HP total; every landed incoming hit is physical1.",
+      "Hero casts Nova14/IceBlast28 and retains mana221–241; Rogue performs Pierce16/Basic27/InnerSight11 with mana150 throughout. The recording supports an observed boss damage shortfall, without establishing an alternate winning build."
+    ],
+    "damageToBossBySkill": {
+      "mskill-pierce-arrow": 15,
+      "sorceress.frost_nova": 24,
+      "mskill-basic-arrow": 118,
+      "sorceress.ice_blast": 611
+    },
+    "lastAddDeathMs": 14200,
+    "incomingDamageAmounts": {
+      "0": 9,
+      "1": 29
+    }
+  },
+  "validation": {
+    "syntheticNoCombatContracts": "8/8 passed",
+    "typecheck": "passed",
+    "scopedEslint": "passed with --no-ignore",
+    "beforeLaunchDiffCheck": "passed",
+    "concreteDesignReview": "ready",
+    "concreteQaSaveReview": "ready",
+    "terminalEvidenceIndependentReview": "QA/save ADEQUATE; independently recomputed all native/terminal hashes and exact export bytes; design independently verified recording totals and draw"
+  },
+  "limitations": [
+    "No browser, persistence, Save/Continue, or player pacing acceptance.",
+    "Separately declared NEW fresh prefix and three exact earned transfers; stops at first refusal/nonwin or after its single Far Oasis challenge. No claim/Book/Arcane, retry or continuation from prior evidence."
+  ],
+  "omittedEarnedGear": {
+    "review": "Design independent read-only raw payload/base requirement review; no alternative build projection or transfer",
+    "candidates": [
+      {
+        "item": {
+          "affixes": [
+            {
+              "id": "affix.mystic.mana.flat",
+              "rolledValue": 21,
+              "tier": 1
+            },
+            {
+              "id": "affix.nimble.phys-dodge",
+              "rolledValue": 4,
+              "tier": 1
+            },
+            {
+              "id": "affix.savage.crit-damage",
+              "rolledValue": 26,
+              "tier": 1
+            },
+            {
+              "id": "affix.cold.resistance",
+              "rolledValue": 12,
+              "tier": 1
+            },
+            {
+              "id": "affix.bat.mana.flat",
+              "rolledValue": 25,
+              "tier": 1
+            },
+            {
+              "id": "affix.fire.resistance",
+              "rolledValue": 11,
+              "tier": 1
+            }
+          ],
+          "baseId": "items/base/amu-brass",
+          "baseRolls": {},
+          "equipped": false,
+          "generatedName": {},
+          "id": "it-4fzod-2jh",
+          "identified": false,
+          "ilvl": 19,
+          "level": 19,
+          "rarity": "rare"
+        },
+        "availableBeforeFarOasis": true,
+        "baseRequiredLevel": 10,
+        "note": "Prominent omitted offensive candidate: raw critical-damage26pp and mana21+25; Rogue amulet slot empty. No whole-build projection or production transfer tested."
+      },
+      {
+        "item": {
+          "affixes": [
+            {
+              "id": "affix.mystic.mana.flat",
+              "rolledValue": 11,
+              "tier": 0
+            },
+            {
+              "id": "affix.ethereal.magic-dodge",
+              "rolledValue": 2,
+              "tier": 0
+            },
+            {
+              "id": "affix.vital.life.flat",
+              "rolledValue": 9,
+              "tier": 0
+            },
+            {
+              "id": "affix.fire.resistance",
+              "rolledValue": 8,
+              "tier": 0
+            }
+          ],
+          "baseId": "items/base/glove-heavy",
+          "baseRolls": {
+            "defense": 8
+          },
+          "equipped": false,
+          "generatedName": {},
+          "id": "it-2znuq-2gv",
+          "identified": false,
+          "ilvl": 9,
+          "level": 9,
+          "rarity": "rare",
+          "socketCapacity": 2
+        },
+        "availableBeforeFarOasis": true,
+        "baseRequiredLevel": 7,
+        "note": "Raw defensive gloves: defense8, life9, mana11, magic dodge2pp, fire resistance8."
+      },
+      {
+        "item": {
+          "affixes": [],
+          "baseId": "items/base/boot-heavy",
+          "baseRolls": {
+            "defense": 9
+          },
+          "equipped": false,
+          "generatedName": {},
+          "id": "it-2a4mq-2gx",
+          "identified": true,
+          "ilvl": 9,
+          "level": 9,
+          "rarity": "set",
+          "setId": "sets/tancred-battlegear",
+          "setPieceId": "sets/tancred-battlegear/boots",
+          "socketCapacity": 2,
+          "statRolls": {}
+        },
+        "availableBeforeFarOasis": true,
+        "baseRequiredLevel": 7,
+        "note": "Raw defensive Tancred boots; not an offensive superiority claim."
+      },
+      {
+        "item": {
+          "affixes": [],
+          "baseId": "items/base/wp2h-great-axe",
+          "baseRolls": {
+            "attack": 24
+          },
+          "equipped": false,
+          "generatedName": {},
+          "id": "it-6qobc-2kt",
+          "identified": true,
+          "ilvl": 21,
+          "level": 21,
+          "rarity": "normal",
+          "socketCapacity": 2
+        },
+        "availableBeforeFarOasis": false,
+        "baseRequiredLevel": 8,
+        "note": "New normal two-handed axe with base attack24; would displace Blood Crescent/offhand, with no superiority claim."
+      },
+      {
+        "item": {
+          "affixes": [],
+          "baseId": "items/base/sh-kite",
+          "baseRolls": {
+            "defense": 17
+          },
+          "equipped": false,
+          "generatedName": {},
+          "id": "it-7zwo5-2jt",
+          "identified": true,
+          "ilvl": 20,
+          "level": 20,
+          "rarity": "normal",
+          "socketCapacity": 0
+        },
+        "availableBeforeFarOasis": false,
+        "baseRequiredLevel": 8,
+        "note": "New normal shield with base defense17; raw defensive observation."
+      }
+    ],
+    "newFarOasisItems": {
+      "count": 105,
+      "allNormalNoAffixes": true
+    },
+    "eligibilityLimits": "L22 long sword/warhat and L25 chainmail remain ineligible at actual levels. Raw candidates do not establish a stronger full build or a winning result."
+  }
+}
