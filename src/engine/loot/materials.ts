@@ -9,7 +9,8 @@ export function isMaterialLedger(value: unknown): value is MaterialLedger {
   if (typeof value !== 'object' || value === null || Array.isArray(value) ||
     (Object.getPrototypeOf(value) !== Object.prototype && Object.getPrototypeOf(value) !== null)) return false;
   return Reflect.ownKeys(value).every(key => typeof key === 'string' && materialCatalog.has(key) &&
-    Object.hasOwn(value, key) && 'value' in (Object.getOwnPropertyDescriptor(value, key) ?? {}) &&
+    Object.hasOwn(value, key) && Object.getOwnPropertyDescriptor(value, key)?.enumerable === true &&
+    'value' in (Object.getOwnPropertyDescriptor(value, key) ?? {}) &&
     typeof Reflect.get(value, key) === 'number' && Number.isSafeInteger(Reflect.get(value, key)) && Reflect.get(value, key) > 0);
 }
 

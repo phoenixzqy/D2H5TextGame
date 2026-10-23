@@ -41,6 +41,12 @@ describe('closed concrete material ownership', () => {
     expect(() => mergeMaterials({ 'runes/el': Number.MAX_SAFE_INTEGER }, { 'runes/el': 1 })).toThrow();
     expect(() => mergeMaterials({}, { 'runes/el': 0 })).toThrow();
   });
+
+  it('refuses a hidden owned stack rather than silently dropping it during enumeration', () => {
+    const ledger = Object.defineProperty({}, 'runes/el', { value: 1, enumerable: false });
+    expect(isMaterialLedger(ledger)).toBe(false);
+    expect(() => mergeMaterials(ledger)).toThrow();
+  });
 });
 
 describe('reviewed material pools', () => {
