@@ -36,6 +36,7 @@ import type { ChapterBossDef } from '../types/maps';
 import type { EliteAffixDef, EliteConfigDef } from '../types/elite';
 import { resolveIdleEncounter } from '../idle/online-tick';
 import { ACT1_LIGHTNING_AFFIX_ID } from '../skills/act1-lightning';
+import { ACT5_RUNTIME } from '../map/act5-admission';
 
 export const DEFAULT_ELITE_CONFIG = defaultEliteConfigJson as EliteConfigDef;
 
@@ -97,6 +98,8 @@ export interface DifficultyContext {
 
 /** Full ordered wave plan for a sub-area run. */
 export interface WavePlan {
+  readonly questSourceProjection?: 'act5-throne';
+  readonly replayProfileId?: 'normal' | 'nightmare';
   readonly subAreaId: string;
   readonly waves: readonly WaveSpec[];
   /** Sub-area loot table (used when a wave doesn't override it). */
@@ -107,6 +110,7 @@ export interface WavePlan {
 }
 
 export interface ResolveChallengeWavePlanInput {
+  readonly questSourceProjection?: 'act5-throne';
   readonly subArea: SubAreaDef;
   readonly fallbackArchetypeId: string;
   readonly fallbackLevel: number;
@@ -245,6 +249,7 @@ export function resolveWavePlan(
  */
 export function resolveChallengeWavePlan(input: ResolveChallengeWavePlanInput): WavePlan {
   const { subArea, fallbackArchetypeId, fallbackLevel, seed } = input;
+  if (input.questSourceProjection !== undefined) return resolveThroneQuestPlan(input);
   const eliteConfig = input.eliteConfig ?? DEFAULT_ELITE_CONFIG;
   const rng = createRng(seed >>> 0);
   const difficulty = resolveDifficultyContext(subArea);
@@ -391,6 +396,32 @@ export function resolveChallengeWavePlan(input: ResolveChallengeWavePlanInput): 
     seed,
     difficulty
   };
+}
+
+/** Exact finite quest-source projection; ordinary challenge fitting is unaffected. */
+function resolveThroneQuestPlan(input: ResolveChallengeWavePlanInput): WavePlan {
+  const { subArea, seed } = input;
+  if (input.questSourceProjection !== 'act5-throne' || input.mode === 'idle' ||
+    subArea.id !== 'areas/act5-throne-of-destruction' || subArea.actId !== 'acts/act5' || !subArea.chapterBoss) {
+    throw new Error('Invalid Act V quest-source projection');
+  }
+  const difficulty = resolveDifficultyContext(subArea), baseLevel = findSubAreaBaseLevel(subArea);
+  const rng = createRng(seed >>> 0);
+  const waves: WaveSpec[] = ACT5_RUNTIME.throneWaves.map(manifest => {
+    const wave = subArea.waves.find(row => row.id === manifest.waveId);
+    if (!wave || wave.type !== 'elite') throw new Error('Missing original Throne source wave');
+    const spawns = encountersToSpawns(wave.encounters ?? [], wave.type, rng, subArea.areaLevel, baseLevel);
+    if (spawns.length !== manifest.members.length || !spawns.every((spawn, index) => {
+      const original = manifest.members[index];
+      return spawn.archetypeId === original?.archetypeId && spawn.tier === original.tier && spawn.encounterId === original.encounterId;
+    })) throw new Error('Changed original Throne source manifest');
+    return { id: wave.id, source: authoredWaveSource(wave), waveTier: wave.type, spawns,
+      ...(wave.lootTable ? { lootTable: wave.lootTable } : {}), presentation: { kind: 'elite', difficultyBand: 'finale' } };
+  });
+  waves.push(chapterBossWave(subArea.id, subArea.chapterBoss,
+    Math.max(1, subArea.areaLevel + difficulty.monsterLevelBonus + 5), 'finale'));
+  return { subAreaId: subArea.id, waves, defaultLootTable: subArea.lootTable, mode: 'manual', seed, difficulty,
+    questSourceProjection: 'act5-throne', replayProfileId: 'normal' };
 }
 
 function authoredWaveSource(wave: WaveDef): WaveSource {

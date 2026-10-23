@@ -1,3 +1,5 @@
+import { captureAct5Encounter, captureAct5ThroneWave, EVE_QUEST, THRONE_PROOF, type Act5Encounter } from '@/engine/map/act5-admission';
+import { prepareAct5Settlement } from './act5QuestAdmission';
 import { captureAct4Encounter, hasOriginalAct4Victory, isAct4AdmissionEligible, type Act4Encounter } from '@/engine/map/act4-admission';
 import { loadQuests } from '@/data/loaders/quests';
 /**
@@ -459,11 +461,13 @@ export function refreshActivePlayerCombatConfig({
             publication: original.publication, debitIntent: null }
         : stageWave(run, run.waveIdx, attempt, false, run.carryPlayerTeam, false);
       // Replay retains the originally captured origin, even if mutable plan copies changed.
-      const { councilEncounter: _recaptured, guardianEncounter: _guardianRecaptured, act4Encounter: _act4Recaptured, ...replay } = staged;
+      const { councilEncounter: _recaptured, guardianEncounter: _guardianRecaptured, act4Encounter: _act4Recaptured, act5Encounter: _act5Recaptured, act5ThroneWave: _throneRecaptured, ...replay } = staged;
       commitStagedWave(run, { ...replay,
         ...(original.councilEncounter ? { councilEncounter: original.councilEncounter } : {}),
         ...(original.guardianEncounter ? { guardianEncounter: original.guardianEncounter } : {}),
-        ...(original.act4Encounter ? { act4Encounter: original.act4Encounter } : {}) },
+        ...(original.act4Encounter ? { act4Encounter: original.act4Encounter } : {}),
+        ...(original.act5Encounter ? { act5Encounter: original.act5Encounter } : {}),
+        ...(original.act5ThroneWave ? { act5ThroneWave: original.act5ThroneWave } : {}) },
       { kind: 'replay' }, attempt, lease);
     }
   }, 'replay');
@@ -510,12 +514,15 @@ export function startSubAreaRun(opts: {
   readonly runSeed?: number;
   readonly challengeOrdinal?: number;
   readonly questRecovery?: 'khalims-council';
+  readonly questSource?: 'act5-throne';
 } = {}): { runId: string; totalWaves: number; runSeed: number; challengeOrdinal: number } | null {
   return startSubAreaRunAttempt(opts);
 }
 
 function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {},
   observation?: PublicationAttemptObservation): ReturnType<typeof startSubAreaRun> {
+  const questSource: unknown = opts.questSource;
+  if (questSource !== undefined && questSource !== 'act5-throne') throw new RangeError('Unknown quest source');
   const recoveryMode: unknown = opts.questRecovery;
   if (recoveryMode !== undefined && recoveryMode !== 'khalims-council') {
     throw new RangeError('Unknown quest recovery mode');
@@ -552,9 +559,15 @@ function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {}
       `${subArea?.id ?? synthId}|${String(Date.now())}`
     );
     const challengeOrdinal = opts.challengeOrdinal ?? manualChallengeOrdinal;
+    const eve = map.questProgress[EVE_QUEST];
+    const projectThrone = mode === 'manual' && subArea?.id === 'areas/act5-throne-of-destruction' &&
+      eve?.id === EVE_QUEST && (eve.status === 'inProgress' || eve.status === 'completed') && eve.rewardClaimed !== true &&
+      !Object.hasOwn(map.questReceipts, THRONE_PROOF);
+    if (opts.questSource && !projectThrone) throw new Error('Act V quest-source projection is not eligible');
     const plan = subArea
       ? resolveChallengeWavePlan({
           subArea,
+          ...(projectThrone ? { questSourceProjection: 'act5-throne' as const } : {}),
           fallbackArchetypeId: fallbackArchetype,
           fallbackLevel: subArea.areaLevel,
           seed: planSeed,
@@ -650,6 +663,7 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
       const councilEncounter = binding.councilEncounter;
       const councilEligible = councilEncounter !== undefined &&
         isCouncilAdmissionEligible(useMapStore.getState().questProgress, councilEncounter.historicalRecovery);
+      const publishAct5Victory = prepareAct5Settlement(binding);
       const act4Encounter = binding.act4Encounter;
       const act4Progress = act4Encounter ? useMapStore.getState().questProgress[act4Encounter.contract.questId] : undefined;
       const act4Eligible = act4Encounter !== undefined && isAct4AdmissionEligible(act4Encounter.contract,
@@ -847,6 +861,7 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
           publishCouncilProof();
           publishGuardianVictory();
           publishAct4Victory();
+          publishAct5Victory();
           finishRecordedWaveSettlement(receipt, lease, { kind: 'terminal', result: 'victory' });
           combatRunLifecycle.activeRun = null;
           return 'victory';
@@ -856,6 +871,7 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
           .map(u => rebaseStatusClock(u, binding.waveElapsedMs));
         publishCouncilProof();
         publishAct4Victory();
+        publishAct5Victory();
         finishRecordedWaveSettlement(receipt, lease, { kind: 'nextWave', carryPlayerTeam });
         next = { nextWaveIdx: binding.targetWaveIdx + 1, carryPlayerTeam };
       } catch (error) {
@@ -888,6 +904,8 @@ interface StagedWaveAttempt extends StagedRecordedWave {
   readonly councilEncounter?: CouncilEncounter;
   readonly guardianEncounter?: GuardianEncounter;
   readonly act4Encounter?: Act4Encounter;
+  readonly act5Encounter?: Act5Encounter;
+  readonly act5ThroneWave?: Act5Encounter & { readonly ordinal: number };
   readonly debitIntent: IronGolemDebitIntent | null;
 }
 function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetRunRewards = false,
@@ -958,6 +976,9 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
   const councilEncounter = captureCouncilEncounter(run.act, run.plan.subAreaId, wave,
     enemies, run.questRecovery === 'khalims-council');
   const guardianEncounter = captureGuardianEncounter(run.act, run.plan.subAreaId, wave, enemies);
+  const act5Encounter = captureAct5Encounter(run.act, run.plan.subAreaId, wave, enemies);
+  const act5ThroneWave = run.plan.questSourceProjection === 'act5-throne'
+    ? captureAct5ThroneWave(run.act, run.plan.subAreaId, wave, enemies) : undefined;
   const act4Encounter = captureAct4Encounter(run.act, run.plan.subAreaId, wave, enemies);
   const staged = stageRecordedWave({
     snapshot: {
@@ -994,7 +1015,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
   return { ...staged, debitIntent: proof && captured?.ok ? captured.intent : null,
     ...(councilEncounter ? { councilEncounter } : {}),
     ...(guardianEncounter ? { guardianEncounter } : {}),
-    ...(act4Encounter ? { act4Encounter } : {}) };
+    ...(act4Encounter ? { act4Encounter } : {}),
+    ...(act5Encounter ? { act5Encounter } : {}), ...(act5ThroneWave ? { act5ThroneWave } : {}) };
 }
 
 /** Preserve cursor/recording values even if the referenced run changes during staging. */
@@ -1050,6 +1072,8 @@ function commitStagedWave(run: ActiveRun, staged: StagedWaveAttempt, intent: Rec
     ...(staged.councilEncounter ? { councilEncounter: staged.councilEncounter } : {}),
     ...(staged.guardianEncounter ? { guardianEncounter: staged.guardianEncounter } : {}),
     ...(staged.act4Encounter ? { act4Encounter: staged.act4Encounter } : {}),
+    ...(staged.act5Encounter ? { act5Encounter: staged.act5Encounter } : {}),
+    ...(staged.act5ThroneWave ? { act5ThroneWave: staged.act5ThroneWave } : {}),
     recording: staged.recording, publication: staged.publication }, intent, lease);
   const live = captureWaveAttempt();
   try {

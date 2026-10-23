@@ -1,0 +1,355 @@
+{
+  "encounters": [
+    {
+      "questId": "quests/act5-siege-on-harrogath",
+      "objectiveId": "obj-kill-shenk",
+      "areaId": "areas/act5-bloody-foothills",
+      "proof": "quests/act5-siege-on-harrogath#action:shenk-victory",
+      "source": {
+        "kind": "bossEncounter",
+        "encounterId": "act5-bf-shenk"
+      },
+      "members": [
+        {
+          "archetypeId": "monsters/act5.overseer",
+          "tier": "boss"
+        },
+        {
+          "archetypeId": "monsters/act5.death-mauler",
+          "tier": "boss"
+        },
+        {
+          "archetypeId": "monsters/act5.death-mauler",
+          "tier": "boss"
+        },
+        {
+          "archetypeId": "monsters/act5.death-mauler",
+          "tier": "boss"
+        }
+      ],
+      "prerequisites": []
+    },
+    {
+      "questId": "quests/act5-prison-of-ice",
+      "objectiveId": "obj-kill-nihlathak",
+      "areaId": "areas/act5-crystalline-passage",
+      "proof": "quests/act5-prison-of-ice#action:nihlathak-victory",
+      "source": {
+        "kind": "bossEncounter",
+        "encounterId": "act5-cp-nihlathak"
+      },
+      "members": [
+        {
+          "archetypeId": "monsters/act5.warped-shaman",
+          "tier": "boss"
+        },
+        {
+          "archetypeId": "monsters/act5.frozen-terror",
+          "tier": "boss"
+        },
+        {
+          "archetypeId": "monsters/act5.frozen-terror",
+          "tier": "boss"
+        },
+        {
+          "archetypeId": "monsters/act5.frozen-terror",
+          "tier": "boss"
+        },
+        {
+          "archetypeId": "monsters/act5.frozen-terror",
+          "tier": "boss"
+        }
+      ],
+      "prerequisites": [
+        "obj-thaw"
+      ]
+    },
+    {
+      "questId": "quests/act5-rite-of-passage",
+      "objectiveId": "obj-kill-ancients",
+      "areaId": "areas/act5-ancients-way",
+      "proof": "quests/act5-rite-of-passage#action:ancients-victory",
+      "source": {
+        "kind": "bossEncounter",
+        "encounterId": "act5-aw-ancients"
+      },
+      "members": [
+        {
+          "archetypeId": "monsters/act5.ancient-barbarian",
+          "tier": "boss"
+        },
+        {
+          "archetypeId": "monsters/act5.ancient-barbarian",
+          "tier": "boss"
+        },
+        {
+          "archetypeId": "monsters/act5.ancient-barbarian",
+          "tier": "boss"
+        }
+      ],
+      "prerequisites": []
+    },
+    {
+      "questId": "quests/act5-eve-of-destruction",
+      "objectiveId": "obj-kill-baal",
+      "areaId": "areas/act5-throne-of-destruction",
+      "proof": "quests/act5-eve-of-destruction#action:baal-victory",
+      "source": {
+        "kind": "chapterBoss",
+        "archetypeId": "monsters/act5.baal"
+      },
+      "members": [
+        {
+          "archetypeId": "monsters/act5.baal",
+          "tier": "chapter-boss"
+        }
+      ],
+      "prerequisites": [
+        "obj-throne-waves"
+      ]
+    }
+  ],
+  "throneWaves": [
+    {
+      "waveId": "w1",
+      "encounterIds": [
+        "act5-tod-w1-e1"
+      ],
+      "members": [
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w1-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w1-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w1-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w1-e1"
+        }
+      ]
+    },
+    {
+      "waveId": "w2",
+      "encounterIds": [
+        "act5-tod-w2-e1"
+      ],
+      "members": [
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w2-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w2-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w2-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w2-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.frozen-terror",
+          "tier": "elite",
+          "encounterId": "act5-tod-w2-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.frozen-terror",
+          "tier": "elite",
+          "encounterId": "act5-tod-w2-e1"
+        }
+      ]
+    },
+    {
+      "waveId": "w3",
+      "encounterIds": [
+        "act5-tod-w3-e1"
+      ],
+      "members": [
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w3-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w3-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w3-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.warped-shaman",
+          "tier": "elite",
+          "encounterId": "act5-tod-w3-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.warped-shaman",
+          "tier": "elite",
+          "encounterId": "act5-tod-w3-e1"
+        }
+      ]
+    },
+    {
+      "waveId": "w4",
+      "encounterIds": [
+        "act5-tod-w4-e1"
+      ],
+      "members": [
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w4-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w4-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w4-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w4-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.death-mauler",
+          "tier": "elite",
+          "encounterId": "act5-tod-w4-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.death-mauler",
+          "tier": "elite",
+          "encounterId": "act5-tod-w4-e1"
+        }
+      ]
+    },
+    {
+      "waveId": "w5",
+      "encounterIds": [
+        "act5-tod-w5-e1"
+      ],
+      "members": [
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w5-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w5-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w5-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w5-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w5-e1"
+        }
+      ]
+    },
+    {
+      "waveId": "w6",
+      "encounterIds": [
+        "act5-tod-w6-e1"
+      ],
+      "members": [
+        {
+          "archetypeId": "monsters/act5.ancient-barbarian",
+          "tier": "elite",
+          "encounterId": "act5-tod-w6-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.ancient-barbarian",
+          "tier": "elite",
+          "encounterId": "act5-tod-w6-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w6-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w6-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w6-e1"
+        }
+      ]
+    },
+    {
+      "waveId": "w7",
+      "encounterIds": [
+        "act5-tod-w7-e1"
+      ],
+      "members": [
+        {
+          "archetypeId": "monsters/act5.overseer",
+          "tier": "elite",
+          "encounterId": "act5-tod-w7-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w7-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w7-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w7-e1"
+        },
+        {
+          "archetypeId": "monsters/act5.baal-minion",
+          "tier": "elite",
+          "encounterId": "act5-tod-w7-e1"
+        }
+      ]
+    }
+  ],
+  "ancientRoles": [
+    "talic",
+    "korlic",
+    "madawc"
+  ]
+}

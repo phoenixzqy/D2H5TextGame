@@ -1,3 +1,4 @@
+import type { Act5Encounter } from '@/engine/map/act5-admission';
 import type { Act4Encounter } from '@/engine/map/act4-admission';
 import type { CombatSnapshot } from '@/engine/combat/combat';
 import type { CombatUnit } from '@/engine/combat/types';
@@ -32,6 +33,8 @@ export interface RecordedWaveBinding {
   readonly councilEncounter?: CouncilEncounter;
   readonly guardianEncounter?: GuardianEncounter;
   readonly act4Encounter?: Act4Encounter;
+  readonly act5Encounter?: Act5Encounter;
+  readonly act5ThroneWave?: Act5Encounter & { readonly ordinal: number };
 }
 /** Authoritative references assembled by the store caller at the operation boundary. */
 export interface RecordedWaveLive {
@@ -194,6 +197,10 @@ export function prepareRecordedWave(binding: RecordedWaveBinding, lease: WaveTra
       originalMemberIds: Object.freeze([...binding.councilEncounter.originalMemberIds]) }) } : {}),
     ...(binding.act4Encounter ? { act4Encounter: Object.freeze({ ...binding.act4Encounter,
       originalMemberIds: Object.freeze([...binding.act4Encounter.originalMemberIds]) }) } : {}),
+    ...(binding.act5Encounter ? { act5Encounter: Object.freeze({ ...binding.act5Encounter,
+      originalMemberIds: Object.freeze([...binding.act5Encounter.originalMemberIds]) }) } : {}),
+    ...(binding.act5ThroneWave ? { act5ThroneWave: Object.freeze({ ...binding.act5ThroneWave,
+      originalMemberIds: Object.freeze([...binding.act5ThroneWave.originalMemberIds]) }) } : {}),
     ownership: Object.freeze({ ...binding.ownership }),
     expectedWaveIdx: binding.expectedActiveRun?.waveIdx ?? null,
     expectedRecording: binding.expectedActiveRun?.recording });

@@ -1,0 +1,190 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "encounters": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "questId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "objectiveId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "areaId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "proof": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "kind": {
+                    "const": "bossEncounter"
+                  },
+                  "encounterId": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "kind",
+                  "encounterId"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "kind": {
+                    "const": "chapterBoss"
+                  },
+                  "archetypeId": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "kind",
+                  "archetypeId"
+                ]
+              }
+            ]
+          },
+          "members": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 5,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "archetypeId": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "tier": {
+                  "enum": [
+                    "boss",
+                    "chapter-boss",
+                    "elite"
+                  ]
+                },
+                "encounterId": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "archetypeId",
+                "tier"
+              ]
+            }
+          },
+          "prerequisites": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "questId",
+          "objectiveId",
+          "areaId",
+          "proof",
+          "source",
+          "members",
+          "prerequisites"
+        ]
+      }
+    },
+    "throneWaves": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "waveId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "encounterIds": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "members": {
+            "type": "array",
+            "minItems": 4,
+            "maxItems": 6,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "archetypeId": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "tier": {
+                  "enum": [
+                    "boss",
+                    "chapter-boss",
+                    "elite"
+                  ]
+                },
+                "encounterId": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "archetypeId",
+                "tier"
+              ]
+            }
+          }
+        },
+        "required": [
+          "waveId",
+          "encounterIds",
+          "members"
+        ]
+      }
+    },
+    "ancientRoles": {
+      "const": [
+        "talic",
+        "korlic",
+        "madawc"
+      ]
+    }
+  },
+  "required": [
+    "encounters",
+    "throneWaves",
+    "ancientRoles"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}
