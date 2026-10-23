@@ -18,7 +18,7 @@ function fixture() {
   const hero = playerToCombatUnit({ ...createMockPlayer('Receipt observer', 'necromancer'), id: 'observer-hero' });
   const enemy = createSimpleEnemy(1);
   const plan = synthDefaultPlan({ id: 'observer-area', lootTable: 'loot/trash-act1', areaLevel: 1 }, 'monsters/act1.fallen', 1, 7);
-  const candidateRun: ActiveRun = { plan, act: 1, seed: 7, mode: 'manual', playerUnit: hero,
+  const candidateRun: ActiveRun = { origin: Object.freeze({ kind: 'area', replayProfileId: 'normal' }), plan, act: 1, seed: 7, mode: 'manual', playerUnit: hero,
     waveIdx: 0, carryPlayerTeam: [hero], waveElapsedMs: 0 };
   const events = [{ kind: 'end' as const, winner: 'player' as const, simClockMs: 1200, uiDelayMs: 0 }];
   const outcome = { winner: 'player' as const, finalPlayerTeam: [hero], finalEnemyTeam: [enemy] };
@@ -27,7 +27,7 @@ function fixture() {
     events, outcome, unitNameMap: new Map(), currentWave: 1, totalWaves: plan.waves.length,
     subAreaRunId: plan.subAreaId, resetRunRewards: true }, useCombatStore.getState());
   const ownership = { backpack: [], stash: [], equipped: {}, mercEquipment: {} };
-  const binding: RecordedWaveBinding = { candidateRun, expectedActiveRun: null, heroId: hero.id,
+  const binding: RecordedWaveBinding = { origin: candidateRun.origin, candidateRun, expectedActiveRun: null, heroId: hero.id,
     targetWaveIdx: 0, waveElapsedMs: 1200, selection: null, ownership, debitIntent: null,
     engineInput: { seed: 7, playerTeam: [hero], enemyTeam: [enemy] }, attestation: null, recording, publication };
   const live: RecordedWaveLive = { activeRun: null, heroId: hero.id, selection: null, ownership };

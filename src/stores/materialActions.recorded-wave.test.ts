@@ -38,7 +38,7 @@ function installPhase(phase: 'preparedPending' | 'publicationPending' | 'settlin
   const enemy = createSimpleEnemy(1);
   const plan = synthDefaultPlan({ id: 'guard-area', lootTable: 'loot/trash-act1', areaLevel: 1 },
     'monsters/act1.fallen', 1, 7);
-  const run: ActiveRun = { plan, act: 1, seed: 7, mode: 'manual', playerUnit: hero,
+  const run: ActiveRun = { origin: Object.freeze({ kind: 'area', replayProfileId: 'normal' }), plan, act: 1, seed: 7, mode: 'manual', playerUnit: hero,
     waveIdx: 0, carryPlayerTeam: [hero], waveElapsedMs: 0 };
   const events = [{ kind: 'end' as const, winner: 'player' as const, simClockMs: 1200, uiDelayMs: 0 }];
   const outcome = { winner: 'player' as const, finalPlayerTeam: [hero], finalEnemyTeam: [enemy] };
@@ -47,7 +47,7 @@ function installPhase(phase: 'preparedPending' | 'publicationPending' | 'settlin
     events, outcome, unitNameMap: new Map() }, { currentWave: 1, totalWaves: plan.waves.length,
     subAreaRunId: plan.subAreaId, runRewards: { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0, materials: {} } });
   const ownership = { backpack: [], stash: [], equipped: {}, mercEquipment: {} };
-  const binding = { candidateRun: run, expectedActiveRun: null, heroId: hero.id, targetWaveIdx: 0,
+  const binding = { origin: run.origin, candidateRun: run, expectedActiveRun: null, heroId: hero.id, targetWaveIdx: 0,
     waveElapsedMs: 1200, selection: null, ownership, debitIntent: null,
     engineInput: { seed: 7, playerTeam: [hero], enemyTeam: [enemy] }, attestation: null, recording, publication };
   const lease = beginWaveTransition(true);

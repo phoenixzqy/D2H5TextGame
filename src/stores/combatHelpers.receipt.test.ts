@@ -45,7 +45,7 @@ function receipt(run: ActiveRun, phase: typeof phases[number] | 'published', int
     currentWave: targetWaveIdx + 1, totalWaves: run.plan.waves.length, subAreaRunId: run.plan.subAreaId }, combat);
   const lease = beginWaveTransition(true);
   try {
-    const binding = { candidateRun: run, expectedActiveRun: combatRunLifecycle.activeRun,
+    const binding = { origin: run.origin, candidateRun: run, expectedActiveRun: combatRunLifecycle.activeRun,
       heroId: run.playerUnit.id, targetWaveIdx, waveElapsedMs: run.waveElapsedMs,
       selection, ownership, debitIntent: null, attestation: null,
       engineInput: { seed: run.seed, playerTeam: combat.playerTeam, enemyTeam: combat.enemyTeam },

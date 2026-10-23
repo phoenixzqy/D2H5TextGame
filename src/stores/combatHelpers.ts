@@ -1,3 +1,6 @@
+import { advanceEndgameWave, captureEndgameWave, prepareEndgameAttempt, type EndgameWaveBinding } from '@/engine/endgame/runtime';
+import { readEndgameState } from '@/engine/endgame/state';
+import type { EndgameState } from '@/engine/endgame/types';
 import { captureAct5Encounter, captureAct5ThroneWave, EVE_QUEST, THRONE_PROOF, type Act5Encounter } from '@/engine/map/act5-admission';
 import { captureAct5SettlementRollback, prepareAct5Settlement } from './act5QuestAdmission';
 import { captureAct4Encounter, hasOriginalAct4Victory, isAct4AdmissionEligible, type Act4Encounter } from '@/engine/map/act4-admission';
@@ -41,7 +44,7 @@ import { withQuestTransaction } from '@/features/quests/questTransaction';
 import { validateQuestActionReceipts } from '@/engine/save/validate';
 import { combatRunLifecycle, type ActiveRun } from './combatRunLifecycle';
 import { abandonRecordedWaves, readRecordedWaveInstallation, markRecordedWaveMetadataInstalled,
-  observeRecordedWaveSelection, recognizeRecordedWavePublication, RecordedWaveReceiptError,
+  observeRecordedWaveSelection, observeRecordedWaveEntry, recognizeRecordedWavePublication, RecordedWaveReceiptError,
   prepareRecordedWaveInstallation, assertPreparedRecordedWaveBinding, cancelPreparedRecordedWave,
   commitPreparedRecordedWave, inspectRecordedWaves, readRecordedWaveSettlement,
   beginRecordedWaveSettlement, finishRecordedWaveSettlement, failRecordedWaveSettlement,
@@ -428,7 +431,7 @@ function captureSettlementRollback(run: ActiveRun, binding: RecordedWaveBinding)
   const player = usePlayerStore.getState(), merc = useMercStore.getState();
   const inventory = useInventoryStore.getState(), map = useMapStore.getState(), combat = useCombatStore.getState();
   const metadata = { playerUnit: run.playerUnit, waveIdx: run.waveIdx, carryPlayerTeam: run.carryPlayerTeam,
-    waveElapsedMs: run.waveElapsedMs, recording: run.recording }, pity = getIdleEliteMisses();
+    waveElapsedMs: run.waveElapsedMs, recording: run.recording, endgameProgress: run.endgameProgress }, pity = getIdleEliteMisses();
   const restoreAct5 = captureAct5SettlementRollback(run);
   // Ordinary clear/kill events can touch any authored combat objective for this
   // area; source admissions additionally own their captured row and proof.
@@ -449,9 +452,11 @@ function captureSettlementRollback(run: ActiveRun, binding: RecordedWaveBinding)
       const questProgress = restoreSettlementKeys(current.questProgress, map.questProgress, questIds);
       const questReceipts = restoreSettlementKeys(current.questReceipts, map.questReceipts, proofKeys);
       if (questProgress !== current.questProgress || questReceipts !== current.questReceipts ||
-        current.clearedSubAreas !== map.clearedSubAreas || current.nightmareClearedSubAreas !== map.nightmareClearedSubAreas) {
+        current.clearedSubAreas !== map.clearedSubAreas || current.nightmareClearedSubAreas !== map.nightmareClearedSubAreas ||
+        (run.origin.kind === 'endgame' && current.endgame !== map.endgame)) {
         useMapStore.setState({ questProgress, questReceipts, clearedSubAreas: map.clearedSubAreas,
-          nightmareClearedSubAreas: map.nightmareClearedSubAreas });
+          nightmareClearedSubAreas: map.nightmareClearedSubAreas,
+          ...(run.origin.kind === 'endgame' ? { endgame: map.endgame } : {}) });
       }
     });
     restore(() => { if (useCombatStore.getState() !== combat) useCombatStore.setState(combat, true); });
@@ -503,6 +508,7 @@ export function refreshActivePlayerCombatConfig({
       // Replay retains the originally captured origin, even if mutable plan copies changed.
       const { councilEncounter: _recaptured, guardianEncounter: _guardianRecaptured, act4Encounter: _act4Recaptured, act5Encounter: _act5Recaptured, act5ThroneWave: _throneRecaptured, ...replay } = staged;
       commitStagedWave(run, { ...replay,
+        ...(original.endgameWave ? { endgameWave: original.endgameWave } : {}),
         ...(original.councilEncounter ? { councilEncounter: original.councilEncounter } : {}),
         ...(original.guardianEncounter ? { guardianEncounter: original.guardianEncounter } : {}),
         ...(original.act4Encounter ? { act4Encounter: original.act4Encounter } : {}),
@@ -559,8 +565,21 @@ export function startSubAreaRun(opts: {
   return startSubAreaRunAttempt(opts);
 }
 
+/**
+ * Enter the unlocked manual dungeon using its issued seed and separate ordinal.
+ * Uses the same guarded recording/installation/recovery path as area runs.
+ * No caller-provided seed, level, difficulty or campaign counter is accepted.
+ */
+export function startEndgameRun(modifierId: string): {
+  runId: string; totalWaves: number; runSeed: number; attemptOrdinal: number
+} | null {
+  const result = startSubAreaRunAttempt({}, undefined, { modifierId });
+  return result && { runId: result.runId, totalWaves: result.totalWaves,
+    runSeed: result.runSeed, attemptOrdinal: result.challengeOrdinal };
+}
+
 function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {},
-  observation?: PublicationAttemptObservation): ReturnType<typeof startSubAreaRun> {
+  observation?: PublicationAttemptObservation, endgameRequest?: { readonly modifierId: string }): ReturnType<typeof startSubAreaRun> {
   const questSource: unknown = opts.questSource;
   if (questSource !== undefined && questSource !== 'act5-throne') throw new RangeError('Unknown quest source');
   const recoveryMode: unknown = opts.questRecovery;
@@ -585,31 +604,35 @@ function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {}
     const attempt = captureWaveAttempt();
 
     const map = useMapStore.getState();
-    const profile = map.selectedDifficulty;
     const inventory = useInventoryStore.getState();
+    const endgame = endgameRequest === undefined ? null : prepareEndgameAttempt({
+      heroId: playerState.player.id, modifierId: endgameRequest.modifierId, state: map.endgame,
+      campaign: { questProgress: map.questProgress, questReceipts: map.questReceipts, questItems: inventory.questItems }
+    });
+    const profile = endgame ? 'normal' : map.selectedDifficulty;
     validateQuestActionReceipts(map.questReceipts, map.questProgress, inventory.questItems);
     validateAct5CampaignRewards(map, inventory.questItems, inventory.questServices);
-    const act = clampAct(opts.act ?? map.currentAct);
+    const act = endgame ? 5 : clampAct(opts.act ?? map.currentAct);
     const subAreaId = opts.subAreaId ?? map.currentSubAreaId;
     const subArea = resolveSubArea(act, subAreaId);
-    const mode = opts.mode ?? 'manual';
+    const mode = endgame ? 'manual' : opts.mode ?? 'manual';
 
     // Resolve a wave plan, falling back to the synthetic 4-wave default.
     // Run seed is generated up-front and threaded into wave-plan resolution
     // so spawn-count rolls are reproducible per-run (Bug C).
     const fallbackArchetype = pickFallbackArchetypeId(act);
     const synthId = `areas/synth-act${String(act)}`;
-    const planSeed = opts.runSeed ?? hashSeed(
+    const planSeed = endgame?.progress.context.seed ?? opts.runSeed ?? hashSeed(
       `${subArea?.id ?? synthId}|${String(Date.now())}`
     );
-    const challengeOrdinal = opts.challengeOrdinal ?? map.challengeOrdinals[profile];
+    const challengeOrdinal = endgame?.progress.context.attemptOrdinal ?? opts.challengeOrdinal ?? map.challengeOrdinals[profile];
     const eve = map.questProgress[EVE_QUEST];
     const projectThrone = profile === 'normal' && mode === 'manual' && subArea?.id === 'areas/act5-throne-of-destruction' &&
       eve?.id === EVE_QUEST && (eve.status === 'inProgress' || eve.status === 'completed') && eve.rewardClaimed !== true &&
       !Object.hasOwn(map.questReceipts, THRONE_PROOF);
     if (opts.questSource && !projectThrone) throw new Error('Act V quest-source projection is not eligible');
     if (profile === 'nightmare' && !subArea) throw new Error('Nightmare requires a canonical area');
-    const normalPlan = subArea
+    const normalPlan = endgame ? endgame.progress.plan : subArea
       ? resolveChallengeWavePlan({
           subArea,
           ...(projectThrone ? { questSourceProjection: 'act5-throne' as const } : {}),
@@ -631,7 +654,7 @@ function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {}
           planSeed
         );
 
-    const plan = applyReplayProfileToPlan(normalPlan, profile, getMonsterIndex());
+    const plan = endgame ? endgame.progress.plan : applyReplayProfileToPlan(normalPlan, profile, getMonsterIndex());
     const seed = planSeed;
     const formation = useFormationStore.getState();
     const projectedPlayer = playerToCombatUnit(playerState.player);
@@ -648,7 +671,10 @@ function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {}
       : undefined;
     const playerTeam: CombatUnit[] = mercUnit ? [playerUnit, mercUnit] : [playerUnit];
 
+    const origin = endgame?.progress.context ?? Object.freeze({ kind: 'area' as const, replayProfileId: profile });
     const candidate: ActiveRun = {
+      origin,
+      ...(endgame ? { endgameProgress: endgame.progress } : {}),
       plan,
       act,
       seed,
@@ -663,11 +689,13 @@ function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {}
       carryPlayerTeam: playerTeam,
       waveElapsedMs: 0
     };
+    Object.defineProperty(candidate, 'origin', { value: origin, enumerable: true, writable: false, configurable: false });
     Object.defineProperty(candidate, 'replayProfileId', { value: profile, enumerable: true, writable: false, configurable: false });
 
     const staged = stageWave(candidate, 0, attempt, true);
     commitStagedWave(candidate, staged, { kind: 'newRun', nextDefaultChallengeOrdinal:
-      opts.challengeOrdinal === undefined ? (challengeOrdinal + 1) % CHALLENGE_ORDINAL_PERIOD : null }, attempt, lease);
+      endgame !== null || opts.challengeOrdinal !== undefined ? null : (challengeOrdinal + 1) % CHALLENGE_ORDINAL_PERIOD,
+      ...(endgame ? { endgameEntry: { stateBefore: map.endgame, stateAfterEntry: endgame.stateAfterEntry } } : {}) }, attempt, lease, observation);
     return { runId: plan.subAreaId, totalWaves: plan.waves.length, runSeed: seed, challengeOrdinal };
   }, 'transition', observation);
 }
@@ -699,25 +727,51 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
   return withWaveTransition(lease => {
     const run = combatRunLifecycle.activeRun;
     if (!run) return 'idle';
-    const { receipt, binding, progress } = requirePublishedRun(run, lease);
+    const { receipt, binding, progress, endgameState } = requirePublishedRun(run, lease);
     let next: { readonly nextWaveIdx: number; readonly carryPlayerTeam: CombatUnit[] };
     if (progress.phase === 'awaitingNextWave') {
       next = progress;
     } else {
       const combat = useCombatStore.getState();
+      if (binding.origin.kind === 'endgame' && (useMapStore.getState().endgame !== endgameState ||
+        run.endgameProgress !== binding.endgameWave?.progress)) throw new RecordedWaveReceiptError('bindingMismatch');
       if (!beginRecordedWaveSettlement(receipt, lease, { activeRun: run,
         heroId: usePlayerStore.getState().player?.id ?? null, combat })) return 'idle';
       const rollback = captureSettlementRollback(run, binding);
       let preparedRewards: KillRewards | undefined;
       try {
         const outcome = binding.recording.outcome;
-        const normalRun = (binding.replayProfileId ?? 'normal') === 'normal';
+        const areaRun = binding.origin.kind === 'area';
+        const normalRun = areaRun && binding.origin.replayProfileId === 'normal';
+        const endgameAdvance = binding.origin.kind === 'endgame' ? (() => {
+          if (!run.endgameProgress || !binding.endgameWave) throw new RecordedWaveReceiptError('bindingMismatch');
+          return advanceEndgameWave(run.endgameProgress, binding.endgameWave, outcome);
+        })() : undefined;
+        const publishEndgameProgress = (): void => {
+          if (!endgameAdvance) return;
+          if (useMapStore.getState().endgame !== endgameState || run.endgameProgress !== binding.endgameWave?.progress) {
+            throw new RecordedWaveReceiptError('bindingMismatch');
+          }
+          if (endgameAdvance.completion) {
+            const completion = endgameAdvance.completion;
+            const map = useMapStore.getState();
+            if (endgameState.attemptOrdinal !== completion.attemptOrdinal + 1) {
+              throw new RecordedWaveReceiptError('bindingMismatch');
+            }
+            const next = readEndgameState({ ...endgameState, clearCounts: { ...endgameState.clearCounts,
+              [completion.modifierId]: endgameState.clearCounts[completion.modifierId] + 1 } },
+            { questProgress: map.questProgress, questReceipts: map.questReceipts, questItems: useInventoryStore.getState().questItems });
+            useMapStore.setState({ endgame: next });
+            if (useMapStore.getState().endgame !== next) throw new RecordedWaveReceiptError('bindingMismatch');
+          }
+          run.endgameProgress = endgameAdvance.progress;
+        };
         // Snapshot eligibility before ordinary income or any quest event can publish.
         const councilProgress = useMapStore.getState().questProgress[COUNCIL_QUEST_ID];
         const councilEncounter = binding.councilEncounter;
         const councilEligible = normalRun && councilEncounter !== undefined &&
           isCouncilAdmissionEligible(useMapStore.getState().questProgress, councilEncounter.historicalRecovery);
-        const publishAct5Victory = prepareAct5Settlement(binding);
+        const publishAct5Victory = areaRun ? prepareAct5Settlement(binding) : () => undefined;
         const act4Encounter = binding.act4Encounter;
         const act4Progress = act4Encounter ? useMapStore.getState().questProgress[act4Encounter.contract.questId] : undefined;
         const act4Eligible = normalRun && act4Encounter !== undefined && isAct4AdmissionEligible(act4Encounter.contract,
@@ -823,7 +877,7 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
         };
         const completedWave = run.plan.waves[binding.targetWaveIdx];
         const publishPity = () => {
-          if (run.mode === 'idle' && completedWave?.presentation?.idleEliteMissesAfterWave !== undefined) {
+          if (areaRun && run.mode === 'idle' && completedWave?.presentation?.idleEliteMissesAfterWave !== undefined) {
             setIdleEliteMisses(completedWave.presentation.idleEliteMissesAfterWave);
           }
         };
@@ -831,9 +885,10 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
         const alivePlayer = outcome.finalPlayerTeam.find(
           (u) => u.id === binding.heroId && u.life > 0
         );
-        if (outcome.winner !== 'player' || !alivePlayer) {
+        if (outcome.winner !== 'player' || !alivePlayer || endgameAdvance?.progress.status === 'failed') {
           publishPity();
           combat.markRunDefeat();
+          publishEndgameProgress();
           finishRecordedWaveSettlement(receipt, lease, { kind: 'terminal', result: 'defeat' });
           combatRunLifecycle.activeRun = null;
           return 'defeat';
@@ -846,11 +901,14 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
           const multiplier = useMetaStore.getState().readIdleBonus(now).activeMultiplier;
           const wave = run.plan.waves[binding.targetWaveIdx];
           const tcId = wave?.lootTable ?? run.plan.defaultLootTable;
-          const rewards = prepareLootForVictory({
+          const ordinaryRewards = prepareLootForVictory({
             replayProfileId: binding.replayProfileId ?? 'normal', slainEnemies: slain,
             act: run.act, treasureClassId: tcId,
             seed: run.seed ^ 0x9e3779b1 ^ binding.targetWaveIdx, magicFindMultiplier: multiplier
           });
+          const cache = endgameAdvance?.completion?.materials;
+          const rewards = cache ? mergeRewards(ordinaryRewards, { items: [], runeShards: 0, wishstones: 0,
+            runes: 0, gems: Object.values(cache).reduce((sum, count) => sum + count, 0), materials: cache }) : ordinaryRewards;
           // Own diagnostic output before any synchronous observer can touch the grant.
           preparedRewards = structuredClone(rewards);
           planRewardGrant(rewards, { ...useInventoryStore.getState(), mercEquipment: useMercStore.getState().mercEquipment });
@@ -916,13 +974,14 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
           }
           // Only a complete sequence of won waves can clear an area or unlock idle.
           if (normalRun) useMapStore.getState().markCleared(run.plan.subAreaId);
-          else useMapStore.setState(state => ({ nightmareClearedSubAreas: state.nightmareClearedSubAreas.includes(run.plan.subAreaId)
+          else if (areaRun) useMapStore.setState(state => ({ nightmareClearedSubAreas: state.nightmareClearedSubAreas.includes(run.plan.subAreaId)
             ? state.nightmareClearedSubAreas : [...state.nightmareClearedSubAreas, run.plan.subAreaId] }));
           combat.markRunVictory();
           publishCouncilProof();
           publishGuardianVictory();
           publishAct4Victory();
           publishAct5Victory();
+          publishEndgameProgress();
           finishRecordedWaveSettlement(receipt, lease, { kind: 'terminal', result: 'victory' });
           combatRunLifecycle.activeRun = null;
           return 'victory';
@@ -933,6 +992,7 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
         publishCouncilProof();
         publishAct4Victory();
         publishAct5Victory();
+        publishEndgameProgress();
         finishRecordedWaveSettlement(receipt, lease, { kind: 'nextWave', carryPlayerTeam });
         next = { nextWaveIdx: binding.targetWaveIdx + 1, carryPlayerTeam };
       } catch (error) {
@@ -945,7 +1005,7 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
     // they must never turn a successfully paid wave into settlementFailed.
     const attempt = captureWaveAttempt();
     const staged = stageWave(run, next.nextWaveIdx, attempt, false, next.carryPlayerTeam);
-    commitStagedWave(run, staged, { kind: 'newWave', carryPlayerTeam: next.carryPlayerTeam }, attempt, lease);
+    commitStagedWave(run, staged, { kind: 'newWave', carryPlayerTeam: next.carryPlayerTeam }, attempt, lease, observation);
     return 'next-wave';
   }, 'transition', observation);
 }
@@ -963,6 +1023,7 @@ export function abortSubAreaRun(): void {
 
 /** Build the whole recording before changing any run metadata or combat state. */
 interface StagedWaveAttempt extends StagedRecordedWave {
+  readonly endgameWave?: EndgameWaveBinding;
   readonly councilEncounter?: CouncilEncounter;
   readonly guardianEncounter?: GuardianEncounter;
   readonly act4Encounter?: Act4Encounter;
@@ -1058,13 +1119,21 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
   const projected = captured?.ok ? projectIronGolemItem(captured.intent.item) : null;
   const ironGolem = captured?.ok && projected?.eligible
     ? { sourceHeroId: run.playerUnit.id, sourceItemId: captured.intent.item.id, ...projected.bonuses } : null;
-  const councilEncounter = captureCouncilEncounter(run.act, run.plan.subAreaId, wave,
-    enemies, run.questRecovery === 'khalims-council');
-  const guardianEncounter = captureGuardianEncounter(run.act, run.plan.subAreaId, wave, enemies);
-  const act5Encounter = captureAct5Encounter(run.act, run.plan.subAreaId, wave, enemies);
-  const act5ThroneWave = run.plan.questSourceProjection === 'act5-throne'
+  const endgameWave = run.origin.kind === 'endgame' ? (() => {
+    const progress = run.endgameProgress;
+    if (!progress || progress.context !== run.origin || progress.plan !== run.plan || progress.nextWaveIndex !== waveIdx) {
+      throw new RecordedWaveReceiptError('bindingMismatch');
+    }
+    return captureEndgameWave(progress, playerTeam, enemies);
+  })() : undefined;
+  const areaRun = run.origin.kind === 'area';
+  const councilEncounter = areaRun ? captureCouncilEncounter(run.act, run.plan.subAreaId, wave,
+    enemies, run.questRecovery === 'khalims-council') : undefined;
+  const guardianEncounter = areaRun ? captureGuardianEncounter(run.act, run.plan.subAreaId, wave, enemies) : undefined;
+  const act5Encounter = areaRun ? captureAct5Encounter(run.act, run.plan.subAreaId, wave, enemies) : undefined;
+  const act5ThroneWave = areaRun && run.plan.questSourceProjection === 'act5-throne'
     ? captureAct5ThroneWave(run.act, run.plan.subAreaId, wave, enemies) : undefined;
-  const act4Encounter = captureAct4Encounter(run.act, run.plan.subAreaId, wave, enemies);
+  const act4Encounter = areaRun ? captureAct4Encounter(run.act, run.plan.subAreaId, wave, enemies) : undefined;
   const staged = stageRecordedWave({
     replayProfileId: run.replayProfileId ?? 'normal',
     snapshot: {
@@ -1098,7 +1167,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       event.unit.id === proof.spawnedUnitId && event.simClockMs === 0))) {
     throw new RecordedWaveReceiptError('bindingMismatch');
   }
-  return { ...staged, debitIntent: proof && captured?.ok ? captured.intent : null,
+  return { ...staged, ...(endgameWave ? { endgameWave } : {}), debitIntent: proof && captured?.ok ? captured.intent : null,
     ...(councilEncounter ? { councilEncounter } : {}),
     ...(guardianEncounter ? { guardianEncounter } : {}),
     ...(act4Encounter ? { act4Encounter } : {}),
@@ -1109,6 +1178,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
 interface WaveAttempt extends RecordedWaveLive {
   readonly waveIdx: number | null;
   readonly recording: ActiveRun['recording'];
+  readonly endgame: EndgameState;
 }
 /** Read exact operation-boundary references before staging, and again before commitment. */
 function captureWaveAttempt(): WaveAttempt {
@@ -1116,6 +1186,7 @@ function captureWaveAttempt(): WaveAttempt {
   const run = combatRunLifecycle.activeRun;
   return { activeRun: run, waveIdx: run?.waveIdx ?? null, recording: run?.recording,
     heroId: usePlayerStore.getState().player?.id ?? null,
+    endgame: useMapStore.getState().endgame,
     selection: useIronGolemSelectionStore.getState().selection,
     ownership: { backpack: inventory.backpack, stash: inventory.stash, equipped: inventory.equipped,
       mercEquipment: useMercStore.getState().mercEquipment } };
@@ -1128,7 +1199,8 @@ function requirePublishedRun(run: ActiveRun, lease: WaveTransitionLease) {
   const settlement = readRecordedWaveSettlement(current.receipt, lease);
   const { binding } = settlement;
   if (binding.candidateRun !== run || binding.heroId !== usePlayerStore.getState().player?.id ||
-    run.playerUnit.id !== binding.heroId || run.waveIdx !== binding.targetWaveIdx || run.recording !== binding.recording) {
+    run.origin !== binding.origin || run.playerUnit.id !== binding.heroId || run.waveIdx !== binding.targetWaveIdx || run.recording !== binding.recording ||
+    (binding.origin.kind === 'endgame' && useMapStore.getState().endgame !== settlement.endgameState)) {
     throw new RecordedWaveReceiptError('bindingMismatch');
   }
   return { receipt: current.receipt, ...settlement };
@@ -1149,9 +1221,11 @@ class UnpaidIronGolemDebitError extends Error {
 
 /** Prepare, exact-revalidate, observe actual debit, then install under the existing lease. */
 function commitStagedWave(run: ActiveRun, staged: StagedWaveAttempt, intent: RecordedWaveInstallIntent,
-  attempt: WaveAttempt, lease: WaveTransitionLease): void {
+  attempt: WaveAttempt, lease: WaveTransitionLease, observation?: PublicationAttemptObservation): void {
   if (intent.kind === 'newRun') validateCapturedOrdinal(intent.nextDefaultChallengeOrdinal);
-  const receipt = prepareRecordedWaveInstallation({ candidateRun: run, expectedActiveRun: attempt.activeRun,
+  const receipt = prepareRecordedWaveInstallation({ origin: run.origin,
+    ...(staged.endgameWave ? { endgameWave: staged.endgameWave, endgameState: attempt.endgame } : {}),
+    candidateRun: run, expectedActiveRun: attempt.activeRun,
     heroId: run.playerUnit.id, targetWaveIdx: staged.waveIdx, waveElapsedMs: staged.elapsedMs,
     selection: attempt.selection, ownership: attempt.ownership, debitIntent: staged.debitIntent,
     engineInput: staged.engineInput, attestation: staged.attestation,
@@ -1163,7 +1237,8 @@ function commitStagedWave(run: ActiveRun, staged: StagedWaveAttempt, intent: Rec
     recording: staged.recording, publication: staged.publication }, intent, lease);
   const live = captureWaveAttempt();
   try {
-    if (live.waveIdx !== attempt.waveIdx || live.recording !== attempt.recording) {
+    if (live.waveIdx !== attempt.waveIdx || live.recording !== attempt.recording ||
+      (run.origin.kind === 'endgame' && live.endgame !== attempt.endgame)) {
       throw new RecordedWaveReceiptError('bindingMismatch');
     }
     assertPreparedRecordedWaveBinding(receipt, lease, live);
@@ -1203,7 +1278,7 @@ function commitStagedWave(run: ActiveRun, staged: StagedWaveAttempt, intent: Rec
   } else if (commitPreparedRecordedWave(receipt, lease, live) !== 'committedPendingPublication') {
     throw new RecordedWaveReceiptError('bindingMismatch');
   }
-  installCapturedRecordedWave(receipt, lease);
+  installCapturedRecordedWave(receipt, lease, observation);
 }
 
 /** Private attempt-local diagnostics; durable receipts retain their first error. */
@@ -1219,6 +1294,18 @@ function installCapturedRecordedWave(receipt: RecordedWaveReceipt, lease: WaveTr
   const { binding, intent } = view;
   // Counter policy remains local to helpers, including retained recovery input.
   if (intent.kind === 'newRun') validateCapturedOrdinal(intent.nextDefaultChallengeOrdinal);
+  const entry = observeRecordedWaveEntry(receipt, lease, useMapStore.getState().endgame);
+  if (entry === 'conflict') throw new RecordedWaveReceiptError('bindingMismatch');
+  let entryFailure: { error: unknown } | undefined;
+  if (entry === 'write' && intent.kind === 'newRun' && intent.endgameEntry) {
+    try { useMapStore.setState({ endgame: intent.endgameEntry.stateAfterEntry }); }
+    catch (error) { entryFailure = { error }; if (observation) observation.failure = entryFailure; }
+    const observed = observeRecordedWaveEntry(receipt, lease, useMapStore.getState().endgame, entryFailure);
+    if (observed !== 'committed') {
+      if (entryFailure) throw entryFailure.error;
+      throw new RecordedWaveReceiptError('bindingMismatch');
+    }
+  }
   if (!view.metadataInstalled) {
     const run = binding.candidateRun;
     combatRunLifecycle.activeRun = run;
@@ -1237,6 +1324,7 @@ function installCapturedRecordedWave(receipt: RecordedWaveReceipt, lease: WaveTr
     }
     markRecordedWaveMetadataInstalled(receipt, lease);
   }
+  if (entryFailure) throw entryFailure.error;
   if (view.selectionProgress === 'pending') {
     let failure: { error: unknown } | undefined;
     try { consumeIronGolemSelection(binding.selection, lease); }
@@ -1250,7 +1338,10 @@ function installCapturedRecordedWave(receipt: RecordedWaveReceipt, lease: WaveTr
       throw new RecordedWaveReceiptError('bindingMismatch');
     }
   }
-  const live = () => ({ activeRun: combatRunLifecycle.activeRun,
+  if (observeRecordedWaveEntry(receipt, lease, useMapStore.getState().endgame) === 'conflict') {
+    throw new RecordedWaveReceiptError('bindingMismatch');
+  }
+  const live = () => ({ activeRun: combatRunLifecycle.activeRun, endgame: useMapStore.getState().endgame,
     heroId: usePlayerStore.getState().player?.id ?? null, combat: useCombatStore.getState() });
   try { useCombatStore.getState().publishStagedRecordedBattle(binding.publication); }
   catch (error) {
@@ -1329,6 +1420,7 @@ export function readCombatTransitionRecovery(): CombatTransitionRecovery {
 /** Explicit screen operations, with the exact recovery that was displayed. */
 export type CombatScreenTransition =
   | { readonly kind: 'start'; readonly options?: Parameters<typeof startSubAreaRun>[0] }
+  | { readonly kind: 'endgame'; readonly modifierId: string }
   | { readonly kind: 'advance' }
   | { readonly kind: 'retry'; readonly recovery: CombatTransitionRecovery };
 
@@ -1344,6 +1436,7 @@ export function performCombatScreenTransition(action: CombatScreenTransition): b
   let advances = action.kind === 'advance';
   try {
     if (action.kind === 'start') startSubAreaRunAttempt(action.options, retryAttempt);
+    else if (action.kind === 'endgame') startSubAreaRunAttempt({}, retryAttempt, { modifierId: action.modifierId });
     else if (action.kind === 'advance') advanceWaveOrFinishAttempt(retryAttempt);
     else {
       const displayed = action.recovery; const live = readCombatTransitionRecovery();

@@ -1,3 +1,4 @@
+import type { EndgameProgress, EndgameRunContext } from '@/engine/endgame/runtime';
 import type { WavePlan } from '@/engine/combat';
 import type { CombatUnit } from '@/engine/combat/types';
 import type { GovernedActiveRanks } from '@/engine/skills/runeword-actives';
@@ -7,8 +8,13 @@ import { clearIronGolemSelection, clearIronGolemSelectionAfterRestore } from './
 import { assertWaveRestoreOwner, assertWaveSnapshotAllowed, type WaveRestoreLease } from './waveTransitionGuard';
 import { abandonRecordedWaves, clearRecordedWavesAfterRestore } from './recordedWaveReceipt';
 
+/** Immutable source authority shared by a native run and its exact wave receipts. */
+export type RunOrigin = Readonly<{ kind: 'area'; replayProfileId: 'normal' | 'nightmare' }> | EndgameRunContext;
+
 /** Internal transient run shape; never persisted or exported through a public barrel. */
 export interface ActiveRun {
+  readonly origin: RunOrigin;
+  endgameProgress?: EndgameProgress;
   readonly replayProfileId?: 'normal' | 'nightmare';
   readonly plan: WavePlan;
   readonly act: 1 | 2 | 3 | 4 | 5;

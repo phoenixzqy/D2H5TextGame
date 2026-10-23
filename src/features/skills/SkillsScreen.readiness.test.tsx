@@ -72,7 +72,7 @@ describe.each(['en', 'zh-CN'])('combo replay refusal in %s', locale => {
           currentWave: run.waveIdx + 1, totalWaves: run.plan.waves.length, subAreaRunId: run.plan.subAreaId }, combat);
         const lease = beginWaveTransition(true);
         try {
-          const token = prepareRecordedWave({ candidateRun: run, expectedActiveRun: run, heroId: run.playerUnit.id,
+          const token = prepareRecordedWave({ origin: run.origin, candidateRun: run, expectedActiveRun: run, heroId: run.playerUnit.id,
             targetWaveIdx: run.waveIdx, waveElapsedMs: run.waveElapsedMs, selection, ownership,
             debitIntent: null, attestation: null,
             engineInput: { seed: run.seed, playerTeam: combat.playerTeam, enemyTeam: combat.enemyTeam },

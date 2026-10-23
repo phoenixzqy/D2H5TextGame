@@ -224,7 +224,7 @@ describe('recorded receipt playback access', () => {
     const hero = unit('receipt-playback-hero', 'player'); const enemy = unit('receipt-playback-enemy', 'enemy');
     const plan = synthDefaultPlan({ id: 'receipt-playback', lootTable: 'loot/trash-act1', areaLevel: 1 },
       'monsters/act1.fallen', 1, 7);
-    const run: ActiveRun = { plan, act: 1, seed: 7, mode: 'manual', playerUnit: hero,
+    const run: ActiveRun = { origin: Object.freeze({ kind: 'area', replayProfileId: 'normal' }), plan, act: 1, seed: 7, mode: 'manual', playerUnit: hero,
       waveIdx: 0, carryPlayerTeam: [hero], waveElapsedMs: 1200 };
     const events = [{ kind: 'turn-start' as const, turn: 1, simClockMs: 0, uiDelayMs: 50 },
       { kind: 'end' as const, winner: 'player' as const, simClockMs: 1200, uiDelayMs: 50 }];
@@ -237,7 +237,7 @@ describe('recorded receipt playback access', () => {
     const ownership = { backpack: [], stash: [], equipped: {}, mercEquipment: {} };
     const lease = beginWaveTransition(true);
     try {
-      const token = prepareRecordedWave({ candidateRun: run, expectedActiveRun: null, heroId: hero.id,
+      const token = prepareRecordedWave({ origin: run.origin, candidateRun: run, expectedActiveRun: null, heroId: hero.id,
         targetWaveIdx: 0, waveElapsedMs: 1200, selection: null, ownership, debitIntent: null,
         attestation: null, engineInput: { seed: 7, playerTeam: [hero], enemyTeam: [enemy] },
         recording, publication }, lease);

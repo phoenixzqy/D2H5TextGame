@@ -1,10 +1,12 @@
+import type { EndgameWaveBinding } from '@/engine/endgame/runtime';
+import type { EndgameState } from '@/engine/endgame/types';
 import type { Act5Encounter } from '@/engine/map/act5-admission';
 import type { Act4Encounter } from '@/engine/map/act4-admission';
 import type { CombatSnapshot } from '@/engine/combat/combat';
 import type { CombatUnit } from '@/engine/combat/types';
 import type { KillRewards } from '@/engine/loot/award';
 import type { IronGolemPreparationAttestation } from '@/engine/skills/iron-golem';
-import type { ActiveRun } from './combatRunLifecycle';
+import type { ActiveRun, RunOrigin } from './combatRunLifecycle';
 import type { useCombatStore } from './combatStore';
 import type { RecordedBattlePublication } from './recordedBattlePublication';
 import type { CouncilEncounter } from '@/engine/map/council-admission';
@@ -19,6 +21,9 @@ const receiptBrand = Symbol('recordedWaveReceipt');
 export interface RecordedWaveReceipt { readonly [receiptBrand]: true }
 /** Validated staging values; original engine input must be privately owned and immutable. */
 export interface RecordedWaveBinding {
+  readonly origin: RunOrigin;
+  readonly endgameWave?: EndgameWaveBinding;
+  readonly endgameState?: EndgameState;
   readonly replayProfileId?: 'normal' | 'nightmare';
   readonly candidateRun: ActiveRun;
   readonly expectedActiveRun: ActiveRun | null;
@@ -56,7 +61,8 @@ interface ReceiptFailure {
 }
 /** Captured installation policy; challenge-counter range remains helper-owned. */
 export type RecordedWaveInstallIntent =
-  | { readonly kind: 'newRun'; readonly nextDefaultChallengeOrdinal: number | null }
+  | { readonly kind: 'newRun'; readonly nextDefaultChallengeOrdinal: number | null;
+      readonly endgameEntry?: { readonly stateBefore: EndgameState; readonly stateAfterEntry: EndgameState } }
   | { readonly kind: 'newWave'; readonly carryPlayerTeam: CombatUnit[] }
   | { readonly kind: 'replay' };
 const payoutBrand = Symbol('recordedWavePayout');
@@ -82,6 +88,7 @@ export interface RecordedWaveSettlementLive {
 }
 /** Retained binding and logical-wave settlement under live transition ownership. */
 export interface RecordedWaveSettlementView extends LogicalWaveSettlement {
+  readonly endgameState: EndgameState | undefined;
   readonly binding: RecordedWaveBinding;
 }
 /** Terminal effects have finished, or surviving carry has been computed once. */
@@ -175,6 +182,13 @@ function updatePending(pending: ReceiptView): void {
   replaceHolder({ currentPublished: holder.currentPublished, pending: Object.freeze(pending) });
 }
 
+function assertRunOrigin(origin: unknown): asserts origin is RunOrigin {
+  if (typeof origin !== 'object' || origin === null || !Object.isFrozen(origin) ||
+    !('kind' in origin) || (origin.kind !== 'area' && origin.kind !== 'endgame')) {
+    throw new RecordedWaveReceiptError('bindingMismatch');
+  }
+}
+
 /**
  * Capture one pending attempt, preserving the current published receipt.
  * No simulation, payment or publication occurs. Freeze only owned wrappers;
@@ -185,7 +199,21 @@ export function prepareRecordedWave(binding: RecordedWaveBinding, lease: WaveTra
   assertWaveTransitionOwner(lease);
   if (holder.pending) throw new RecordedWaveReceiptError('pendingReceipt');
   const { debitIntent, publication, recording, candidateRun } = binding;
-  const replayProfileId: unknown = candidateRun.replayProfileId ?? candidateRun.plan.replayProfileId ?? 'normal';
+  const origin = binding.origin;
+  assertRunOrigin(origin);
+  if (origin !== candidateRun.origin) throw new RecordedWaveReceiptError('bindingMismatch');
+  const replayProfileId: unknown = origin.kind === 'area' ? origin.replayProfileId : 'normal';
+  if (origin.kind === 'endgame') {
+    const progress = candidateRun.endgameProgress;
+    if (!progress || progress.context !== origin || progress.plan !== candidateRun.plan ||
+      progress.heroId !== binding.heroId || progress.nextWaveIndex !== binding.targetWaveIdx ||
+      progress.status !== 'active' || binding.endgameWave?.progress !== progress || !binding.endgameState ||
+      candidateRun.act !== 5 || candidateRun.mode !== 'manual' || candidateRun.seed !== origin.seed ||
+      binding.councilEncounter !== undefined || binding.guardianEncounter !== undefined || binding.act4Encounter !== undefined ||
+      binding.act5Encounter !== undefined || binding.act5ThroneWave !== undefined) throw new RecordedWaveReceiptError('bindingMismatch');
+  } else if (binding.endgameWave !== undefined || binding.endgameState !== undefined || candidateRun.endgameProgress !== undefined) {
+    throw new RecordedWaveReceiptError('bindingMismatch');
+  }
   const profiles = [binding.replayProfileId, candidateRun.replayProfileId, candidateRun.plan.replayProfileId,
     recording.replayProfileId];
   if ((replayProfileId !== 'normal' && replayProfileId !== 'nightmare') ||
@@ -222,6 +250,13 @@ export function prepareRecordedWave(binding: RecordedWaveBinding, lease: WaveTra
   return receipt;
 }
 
+/** The predecessor's committed reference; live state never supplies a new baseline. */
+function committedEndgameState(view: ReceiptView): EndgameState | undefined {
+  const intent = view.installation?.intent;
+  return intent?.kind === 'newRun' && intent.endgameEntry
+    ? intent.endgameEntry.stateAfterEntry : view.binding.endgameState;
+}
+
 /**
  * Capture a narrowly validated install intent in the sole receipt holder.
  * New runs replace a distinct run at wave zero; next waves/replays keep run
@@ -251,9 +286,12 @@ export function prepareRecordedWaveInstallation(
   if (!valid) throw new RecordedWaveReceiptError('bindingMismatch');
   if (intent.kind !== 'newRun') {
     if (!previous || !settlement || previous.binding.candidateRun !== binding.expectedActiveRun ||
-      previous.binding.replayProfileId !== (binding.candidateRun.replayProfileId ?? binding.candidateRun.plan.replayProfileId ?? 'normal') ||
+      previous.binding.origin !== binding.origin ||
       previous.binding.heroId !== binding.heroId || binding.expectedActiveRun.recording !== previous.binding.recording ||
       binding.expectedActiveRun.waveIdx !== previous.binding.targetWaveIdx) {
+      throw new RecordedWaveReceiptError('bindingMismatch');
+    }
+    if (binding.origin.kind === 'endgame' && binding.endgameState !== committedEndgameState(previous)) {
       throw new RecordedWaveReceiptError('bindingMismatch');
     }
     if (intent.kind === 'replay') {
@@ -264,11 +302,20 @@ export function prepareRecordedWaveInstallation(
         intent.carryPlayerTeam !== settlement.progress.carryPlayerTeam) throw new RecordedWaveReceiptError('bindingMismatch');
     }
   }
+  if (intent.kind === 'newRun') {
+    const entry = intent.endgameEntry;
+    if (binding.origin.kind === 'endgame' ? !entry || intent.nextDefaultChallengeOrdinal !== null ||
+      entry.stateBefore !== binding.endgameState || entry.stateAfterEntry.attemptOrdinal !== binding.origin.attemptOrdinal + 1 ||
+      entry.stateBefore.attemptOrdinal !== binding.origin.attemptOrdinal : entry !== undefined) {
+      throw new RecordedWaveReceiptError('bindingMismatch');
+    }
+  }
   const logicalWave = intent.kind === 'replay' && settlement ? settlement : Object.freeze({
     identity: Object.freeze({ [payoutBrand]: true as const }), progress: Object.freeze({ phase: 'unsettled' as const }) });
   const receipt = prepareRecordedWave(binding, lease);
   const pending = pendingFor(receipt, lease, 'prepared');
-  updatePending({ ...pending, installation: Object.freeze({ intent: Object.freeze({ ...intent }),
+  updatePending({ ...pending, installation: Object.freeze({ intent: Object.freeze({ ...intent, ...(intent.kind === 'newRun' && intent.endgameEntry
+      ? { endgameEntry: Object.freeze({ ...intent.endgameEntry }) } : {}) }),
     metadataInstalled: false, settlement: logicalWave,
     selectionProgress: intent.kind === 'replay' || binding.selection === null ? 'notRequired' : 'pending' }) });
   return receipt;
@@ -294,6 +341,28 @@ export function markRecordedWaveMetadataInstalled(receipt: RecordedWaveReceipt, 
   const { pending, installation } = installationFor(receipt, lease);
   if (installation.metadataInstalled) return;
   updatePending({ ...pending, installation: Object.freeze({ ...installation, metadataInstalled: true }) });
+}
+
+/**
+ * Observe the captured endgame entry before any installation and after each
+ * notifying boundary. Exact before-state is retryable only before metadata;
+ * exact after-state is committed. Unknown references park without overwriting.
+ * Retain the first installation error through the existing publication channel.
+ */
+export function observeRecordedWaveEntry(
+  receipt: RecordedWaveReceipt, lease: WaveTransitionLease, live: EndgameState | undefined, failure?: ReceiptFailure
+): 'notRequired' | 'write' | 'committed' | 'conflict' {
+  const { pending, installation } = installationFor(receipt, lease);
+  const entry = installation.intent.kind === 'newRun' ? installation.intent.endgameEntry : undefined;
+  if (!entry && pending.binding.origin.kind !== 'endgame') return 'notRequired';
+  const observed = !entry ? (live === pending.binding.endgameState ? 'committed' : 'conflict')
+    : live === entry.stateAfterEntry ? 'committed'
+      : live === entry.stateBefore && !installation.metadataInstalled ? 'write' : 'conflict';
+  if (observed === 'conflict' || failure) {
+    updatePending({ ...pending, ...(observed === 'conflict' ? { phase: 'conflict' as const } : {}),
+      ...(failure && !pending.publicationFailure ? { publicationFailure: Object.freeze({ error: failure.error }) } : {}) });
+  }
+  return observed;
 }
 
 /**
@@ -368,9 +437,12 @@ export function commitPreparedRecordedWave(
 export function recognizeRecordedWavePublication(
   receipt: RecordedWaveReceipt, lease: WaveTransitionLease,
   live: { readonly activeRun: ActiveRun | null; readonly heroId: string | null;
-    readonly combat: Pick<ReturnType<typeof useCombatStore.getState>, keyof RecordedBattlePublication> }, failure?: ReceiptFailure
+    readonly combat: Pick<ReturnType<typeof useCombatStore.getState>, keyof RecordedBattlePublication>;
+    readonly endgame?: EndgameState }, failure?: ReceiptFailure
 ): boolean {
-  const pending = pendingFor(receipt, lease, 'committedPendingPublication');
+  let pending = pendingFor(receipt, lease, 'committedPendingPublication');
+  if (pending.installation && observeRecordedWaveEntry(receipt, lease, live.endgame, failure) === 'conflict') return false;
+  pending = pendingFor(receipt, lease, 'committedPendingPublication');
   const { binding } = pending;
   const keys = Object.keys(binding.publication) as (keyof RecordedBattlePublication)[];
   const installationReady = !pending.installation || (pending.installation.metadataInstalled &&
@@ -417,7 +489,7 @@ function updateSettlement(current: ReceiptView, installation: InstallationProgre
 /** Read the exact current installation settlement; no foundation fallback. */
 export function readRecordedWaveSettlement(receipt: RecordedWaveReceipt, lease: WaveTransitionLease): RecordedWaveSettlementView {
   const { current, installation } = publishedSettlementFor(receipt, lease);
-  return Object.freeze({ binding: current.binding, ...installation.settlement });
+  return Object.freeze({ binding: current.binding, endgameState: committedEndgameState(current), ...installation.settlement });
 }
 
 /**

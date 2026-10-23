@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D14/P18c native endgame | entry/recording/settlement validated locally; Claim/title/UI open | Native issued four-wave attempts use immutable origins and the existing receipt/settlement authority. Exact reference entry/recovery/predecessor continuity, once-only Iron debit and atomic ordinary loot/cache/count/progress; campaign/Nightmare/pity suppression. BUG137–139 fixed with causal regressions. Final11161/414+2existing skips, types/full lint/build/7JS bridge scan pass;1186frozen source/config/test files drift[]. Independent source clear and assertion QA ADEQUATE. Constructed functional controls, no earned/browser/balance acceptance. Exact disposables removed; diagnostics retained through next consumers. [Evidence](evidence/p18c-endgame-native.md). C2–C4/fullG0–G7 remain open; local only. |
 | D14/P18a Worldstone Remnant foundation | pure content/runtime foundation accepted locally; native integration open | `c844125`: approved four-wave/two-modifier contract, closed JSON/schema/loader, strict campaign-authorized state, immutable seeded plans and issued original-wave/cache proposals. BUG135 extra-original regression corrected; both modifiers run four production battles. Independent design APPROVE/source-test QA ADEQUATE. Focused60/3, engine5403/158, standalone full11088/411+2existing skips, types/scoped+full lint/build/4chunk bridge scan pass;1076source freeze drift[]. Test-time/bundle/PWA budgets remain open. SaveCurrent19; no native entry/grant/count/Claim/save20/UI/browser or earned/balance acceptance. Disposable build removed; diagnostics root-owned through native/umbrella consumers. [Evidence](evidence/p18a-endgame-foundation.md). Full P18, earned ActsII–V/C2, C3–C4/G0–G7 and fullv1 remain open. |
 | D10 earned Eld insertion | earned precombat proof; combat test failed after wave1 | Exact retained earned v18→v19,5693gear, one Eld spent/one receipt, Cancel unchanged, original/replacement shields audited, dodge.19→.26, resources120/102 retained; precombat Save-close-Continue and en/zh360×640/1280×800 inspection pass. Full11028/408+2existing skips,T/L/build/4chunk bridge scan pass;1819frozen hashes unchanged. One ordinal253→254 launch wins wave1,+5gear/+1960XP/+949shards, then strict post-nav DOM read seesNaN; catch sees actual paused wave2/emptylog. Original0expected/1unexpected retained, no retry. BUG134 adds route-screen readiness only; no passing browser rerun. Six-wave/finalContinue, other earned crafting families, ActII–V and fullv1 remain open. [Evidence](evidence/d10-earned-socket.md). |
 | D10 equipped active skills | implemented and validated locally; earned acceptance open | Leaf/FireBolt3, HandOfJustice/Blaze5, Death/ChainLightning5 and separate Phoenix/Redemption1 project through hero/merc factories, frozen waves and both priority editors without learned allocation. Engine5343/155, focused controls and compatibility145/3 pass; final types/lint/build and production10/10 en/zh×five sizes pass. All40 saves audited; independent source CLEAR/browser ADEQUATE. Prior failed full outcomes retained. BUG125 corrects ineffective project worker bounds at root; actual max4 observed, final standard full11027/407+2existing skips passes340.55s with unchanged timeouts/assertions. Final1055source drift[], browser delta only runner configs,760build drift[]; disposable cleanup remaining[]/failures[]. Earned crafting/ActII–V, skills/endgame/pacing and full C2–C4/G0–G7 remain open. [Evidence](evidence/d10-runeword-actives.md). |
@@ -10923,3 +10924,18 @@ incomplete; C3/C4/fullG0–G7 open. Test/performance/PWA budgets remain unresolv
 Local only; diagnostics root-owned through umbrella consumers at
 `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-native-sapkemp7`;
 exact disposable paths absent, cleanup remaining[]/failures[].
+
+
+## P18c — Native endgame entry, recording and settlement
+
+[Native evidence](evidence/p18c-endgame-native.md) records entry/recovery,
+original-wave qualification and once-only ordinary/cache/count settlement.
+Final11161/414PASS+2existing skips,536.82s; types/full lint/build/7JS bridge
+scanPASS;1186frozen files and baseHEAD unchanged. BUG137–139 corrected with
+causal regression controls; independent source clear/QA ADEQUATE. Native
+fixtures construct campaign entitlement and high power: no earned, browser,
+balance or reward-utility claim follows. Explicit Claim/current title/bilingual
+UI and production play remain next; earnedActsII–V/C2, C3/C4/fullG0–G7 open.
+No remote publication. Exact task-owned dist/validator/draft removed; cleanup
+remaining[]/failures[]. Root retains diagnostic evidence and next-slice plan
+through their consumers in the same exact P18 artifact directory.

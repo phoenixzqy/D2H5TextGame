@@ -35,7 +35,7 @@ function fixture(debit = false, expectedActiveRun: ActiveRun | null = null, targ
   const enemy = createSimpleEnemy(1);
   const plan = synthDefaultPlan({ id: 'receipt-area', lootTable: 'loot/trash-act1', areaLevel: 1 },
     'monsters/act1.fallen', 1, 7);
-  const candidateRun: ActiveRun = expectedActiveRun ?? { plan, act: 1, seed: 7, mode: 'manual',
+  const candidateRun: ActiveRun = expectedActiveRun ?? { origin: Object.freeze({ kind: 'area', replayProfileId: 'normal' }), plan, act: 1, seed: 7, mode: 'manual',
     playerUnit: hero, waveIdx: 0, carryPlayerTeam: [hero], waveElapsedMs: 0 };
   const events = [{ kind: 'end' as const, winner: 'player' as const, simClockMs: 1200, uiDelayMs: 0 }];
   const outcome = { winner: 'player' as const, finalPlayerTeam: [hero], finalEnemyTeam: [enemy] };
@@ -50,7 +50,7 @@ function fixture(debit = false, expectedActiveRun: ActiveRun | null = null, targ
   const ownership = { backpack: [item], stash: [], equipped: {}, mercEquipment: {} };
   const captured = captureIronGolemDebit(hero.id, selection, ownership);
   if (!captured.ok) throw new Error(captured.reason);
-  const binding: RecordedWaveBinding = { candidateRun, expectedActiveRun, targetWaveIdx,
+  const binding: RecordedWaveBinding = { origin: candidateRun.origin, candidateRun, expectedActiveRun, targetWaveIdx,
     heroId: hero.id, selection, ownership, debitIntent: debit ? captured.intent : null,
     engineInput: { seed: 7, playerTeam: [hero], enemyTeam: [enemy] },
     attestation: debit ? { sourceHeroId: hero.id, sourceItemId: item.id,
@@ -88,10 +88,11 @@ function publishedAndPending(phase: 'prepared' | 'committed' | 'conflict') {
 describe('captured replay profile consistency', () => {
   it.each(['normal', 'nightmare'] as const)('captures the consistent %s profile as immutable receipt authority', profile => {
     const { binding } = fixture();
-    Object.assign(binding.candidateRun, { replayProfileId: profile });
+    const origin = Object.freeze({ kind: 'area' as const, replayProfileId: profile });
+    Object.assign(binding.candidateRun, { origin, replayProfileId: profile });
     Object.assign(binding.candidateRun.plan, { replayProfileId: profile });
     Object.assign(binding.recording, { replayProfileId: profile });
-    prepareRecordedWave({ ...binding, replayProfileId: profile }, lease);
+    prepareRecordedWave({ ...binding, origin, replayProfileId: profile }, lease);
     expect(inspectRecordedWaves().pending?.binding.replayProfileId).toBe(profile);
     expect(Object.isFrozen(inspectRecordedWaves().pending?.binding)).toBe(true);
   });

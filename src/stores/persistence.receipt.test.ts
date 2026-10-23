@@ -81,7 +81,7 @@ function receiptFixture(phase: Phase, paid = false) {
   const intent = captured?.intent ?? null;
   const plan = synthDefaultPlan({ id: 'receipt-save', lootTable: 'loot/trash-act1', areaLevel: 1 },
     'monsters/act1.fallen', 1, 7);
-  const run: ActiveRun = { plan, act: 1, seed: 7, mode: 'manual', playerUnit: hero,
+  const run: ActiveRun = { origin: Object.freeze({ kind: 'area', replayProfileId: 'normal' }), plan, act: 1, seed: 7, mode: 'manual', playerUnit: hero,
     waveIdx: 0, carryPlayerTeam: [hero], waveElapsedMs: 0 };
   const events = [{ kind: 'end' as const, winner: 'player' as const, simClockMs: 1200, uiDelayMs: 0 }];
   const outcome = { winner: 'player' as const, finalPlayerTeam: [hero], finalEnemyTeam: [enemy] };
@@ -90,7 +90,7 @@ function receiptFixture(phase: Phase, paid = false) {
     totalWaves: plan.waves.length, subAreaRunId: plan.subAreaId },
   { currentWave: 0, totalWaves: 0, subAreaRunId: null,
     runRewards: { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0, materials: {} } });
-  const binding: RecordedWaveBinding = { candidateRun: run, expectedActiveRun: null,
+  const binding: RecordedWaveBinding = { origin: run.origin, candidateRun: run, expectedActiveRun: null,
     heroId: hero.id, targetWaveIdx: 0, waveElapsedMs: 1200, selection, ownership,
     debitIntent: intent, attestation: intent ? { sourceHeroId: hero.id, sourceItemId: intent.item.id,
       skillId: 'necromancer.iron_golem', spawnedUnitId: 'receipt-iron', paidMp: 35 } : null,

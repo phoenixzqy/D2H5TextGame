@@ -34,7 +34,7 @@ function fixture() {
   const enemy = createSimpleEnemy(1);
   const plan = synthDefaultPlan({ id: 'access-area', lootTable: 'loot/trash-act1', areaLevel: 1 },
     'monsters/act1.fallen', 1, 7);
-  const run: ActiveRun = { plan, act: 1, seed: 7, mode: 'manual', playerUnit: hero,
+  const run: ActiveRun = { origin: Object.freeze({ kind: 'area', replayProfileId: 'normal' }), plan, act: 1, seed: 7, mode: 'manual', playerUnit: hero,
     waveIdx: 0, carryPlayerTeam: [hero], waveElapsedMs: 0 };
   const events = [{ kind: 'end' as const, winner: 'player' as const, simClockMs: 1200, uiDelayMs: 0 }];
   const outcome = { winner: 'player' as const, finalPlayerTeam: [hero], finalEnemyTeam: [enemy] };
@@ -44,7 +44,7 @@ function fixture() {
   const publication = stageRecordedBattle({ initialPlayerTeam: [hero], initialEnemyTeam: [enemy],
     events, outcome, unitNameMap: new Map() }, defaults);
   const ownership = { backpack: [], stash: [], equipped: {}, mercEquipment: {} };
-  const binding: RecordedWaveBinding = { candidateRun: run, expectedActiveRun: null,
+  const binding: RecordedWaveBinding = { origin: run.origin, candidateRun: run, expectedActiveRun: null,
     heroId: hero.id, targetWaveIdx: 0, waveElapsedMs: 1200, selection: null, ownership,
     debitIntent: null, engineInput: { seed: 7, playerTeam: [hero], enemyTeam: [enemy] },
     attestation: null, recording, publication };
