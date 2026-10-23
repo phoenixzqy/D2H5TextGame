@@ -64,6 +64,17 @@ Evidence root:
   timeouts or discovery rules were weakened. The same corrected source/tests
   are committed at `167aaba`; BUG125 timing diagnosis remains open.
 
+Historical browser coverage correction (BUG128): the above reports and exact
+save comparisons remain unchanged. Their reopened pages navigated, Continued
+and exported at the runner's default1280×720 before caller-side resizing and
+listener setup; the final reopened page had no listeners. Those reports prove
+the recorded functional equality and initial-page responsive flows, but not
+Continue startup at every named viewport or absence of startup console/page
+errors. The Exile follow-up reproduces360×640 expected versus1280×720 actual,
+and corrects both helpers to set/assert viewport and attach listeners before
+navigation, including the final page. Corrected browser validation is recorded
+in [Exile evidence](d10-exile-grant.md); historical report bytes are preserved.
+
 Source/build manifests preserve the earlier and corrected candidates separately:
 `crafting-source-freeze.json`, `crafting-build-freeze.json`,
 `crafting-residual-source-freeze.json` (813 inputs),
@@ -80,8 +91,10 @@ once. This is not manual screen-reader or performance acceptance.
 
 The browser fixture is explicitly constructed v18 holdings imported through the
 ordinary product controls. It proves functional migration/crafting/persistence,
-not earned material acquisition, combat usefulness or campaign balance. The ten
-approved runeword adaptations remain unimplemented in combat. Earned ActII remains
+not earned material acquisition, combat usefulness or campaign balance. At this
+checkpoint the ten approved runeword adaptations were unimplemented in combat;
+the subsequent [Exile increment](d10-exile-grant.md) implements one of them,
+with nine still open. Earned ActII remains
 stopped at the retained Radament draw/Rocky Waste defeat. Prepared-character
 ActsIII–V evidence does not establish earned campaign completion.
 
