@@ -11,7 +11,7 @@ const dist = `'${join(root, 'dist').replace(/'/g, "'\\''")}'`;
 
 /** Ordinary production build only; test bridge and dev store injection are prohibited. */
 export default defineConfig({
-  testDir: '.', testMatch: ['crafting.spec.ts', 'runeword-grants.spec.ts'],
+  testDir: '.', testMatch: ['crafting.spec.ts', 'runeword-grants.spec.ts', 'runeword-actives.spec.ts'],
   fullyParallel: false, forbidOnly: true, workers: 1, retries: 0, timeout: 120_000,
   outputDir: join(root, 'browser'),
   reporter: [['line'], ['json', { outputFile: join(root, 'browser-report.json') }]],
