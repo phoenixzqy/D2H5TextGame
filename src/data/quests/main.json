@@ -97,9 +97,9 @@
       "type": "main",
       "actId": "acts/act2",
       "giver": "npc/atma",
-      "description": "Atma the tavern keeper begs you to slay Radament, a mummy that haunts the sewers beneath Lut Gholein and devours the city's people.",
+      "description": "Atma the tavern keeper begs you to slay Radament, a mummy sheltering in a burial chamber beneath the Far Oasis and preying on Lut Gholein's people.",
       "objectives": [
-        { "id": "obj-kill-radament", "type": "kill", "targetId": "monsters/act2.radament", "areaId": "areas/act2-far-oasis", "description": "Slay Radament in the sewers." }
+        { "id": "obj-kill-radament", "type": "kill", "targetId": "monsters/act2.radament", "areaId": "areas/act2-far-oasis", "description": "Slay Radament in the burial chamber beneath the Far Oasis." }
       ],
       "rewards": { "xp": 5000, "questItem": "items/book_of_skill" },
       "unlocks": null,

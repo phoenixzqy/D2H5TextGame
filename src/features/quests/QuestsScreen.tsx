@@ -19,6 +19,7 @@ import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Panel, ScreenShell, Tabs, tDataKey } from '@/ui';
 import { loadUniques } from '@/data/loaders/loot';
+import { loadQuestItems } from '@/data/loaders/quest-items';
 import { useMapStore } from '@/stores';
 import { claimQuestReward, canClaim, type ClaimResult } from './claimReward';
 import {
@@ -116,7 +117,7 @@ function resolveStatus(
 }
 
 function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) {
-  const { t } = useTranslation(['quests', 'common', 'items']);
+  const { t } = useTranslation(['quests', 'common', 'items', 'inventory']);
   const slug = questI18nKey(quest.id);
   // Quest data files ship with English `name`, `description`, and per-objective
   // `description` strings; locale files override by slug. When the slug has no
@@ -142,9 +143,14 @@ function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) 
     setFeedback(t('feedback.started'));
   };
   const claim = (): void => {
-    const result = claimQuestReward(quest.id);
-    setFeedback(t(claimFeedbackKey(result)));
-    if (result === 'ok') force((n) => n + 1);
+    try {
+      const result = claimQuestReward(quest.id);
+      setFeedback(t(claimFeedbackKey(result)));
+      if (result === 'ok') force((n) => n + 1);
+    } catch (error) {
+      setFeedback(t(`inventory:questItems.feedback.${error instanceof AggregateError
+        ? 'restoration-failed' : 'action-failed'}`));
+    }
   };
 
   return (
@@ -190,7 +196,7 @@ function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) 
                   key={k}
                   className="border border-d2-border rounded px-2 py-0.5 bg-d2-bg/40"
                 >
-                  {formatReward(k, v, t)}
+                  {formatReward(k, v, t, quest.id)}
                 </li>
               ))}
             </ul>
@@ -254,8 +260,13 @@ function QuestCard({ quest, status }: { quest: QuestDef; status: QuestStatus }) 
 function formatReward(
   k: string,
   v: unknown,
-  t: ReturnType<typeof useTranslation<'quests'>>['t']
+  t: ReturnType<typeof useTranslation<'quests'>>['t'],
+  questId: string
 ): string {
+  if (k === 'questItem') {
+    const item = loadQuestItems().find(row => row.id === v && row.sourceQuestId === questId);
+    return item ? tDataKey(t, item.nameKey) : t('inventory:questItems.title');
+  }
   if (k === 'xp' && typeof v === 'number')
     return `✨ ${String(v)} ${t('rewardLabel.xp')}`;
   if (k === 'gold' && typeof v === 'number') return `💰 ${String(v)}`;

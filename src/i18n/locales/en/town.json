@@ -13,13 +13,15 @@
   "town.npc.gheed": "Gheed",
   "town.npc.kashya": "Kashya",
   "town.npc.warriv": "Warriv",
+  "town.npc.atma": "Atma",
   "dialogue": {
     "greetings": {
       "akara": "I am Akara. Darkness presses on the camp, and we need your help.",
       "charsi": "I'm Charsi, the camp's blacksmith. While the hammer rings, hope holds.",
       "gheed": "Gheed, at your service. A sharp eye finds treasures others overlook.",
       "kashya": "I am Kashya, captain of the Rogue archers. Darkness has taken many sisters, but we still hold this camp.",
-      "warriv": "I am Warriv, leader of this caravan. The roads are dangerous, so we remain here for now."
+      "warriv": "I am Warriv, leader of this caravan. The roads are dangerous, so we remain here for now.",
+      "atma": "Radament's lair is a burial chamber beneath the Far Oasis. Track Radament's Lair in Quests. Once you defeat him, claim your reward there and read the Book of Skill in Inventory."
     },
     "den": {
       "untracked": "Demons infest the Den of Evil near camp. Track the Den of Evil in Quests, then clear the cave.",

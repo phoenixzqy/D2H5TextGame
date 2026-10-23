@@ -130,7 +130,7 @@ describe.each(['zh-CN', 'en'] as const)('TownScreen %s', (locale) => {
     const originalAkara = screen.getByTestId('town-npc-akara');
     fireEvent.click(originalAkara);
     expect(screen.getByTestId('town-conversation')).toBeVisible();
-    act(() => { useMapStore.getState().setCurrentLocation(2, 'areas/act2-town'); });
+    act(() => { useMapStore.getState().setCurrentLocation(3, 'areas/act3-town'); });
     expect(screen.queryAllByTestId(/^town-npc-/)).toHaveLength(0);
     expect(screen.queryByTestId('town-conversation')).not.toBeInTheDocument();
     expect(screen.getByTestId('town-screen')).toHaveTextContent(i18n.t('noNpcs', { ns: 'town' }));
@@ -145,5 +145,25 @@ describe.each(['zh-CN', 'en'] as const)('TownScreen %s', (locale) => {
     expect(screen.queryByTestId('town-conversation')).not.toBeInTheDocument();
     expect(talk).toHaveBeenCalledTimes(1);
     expect(talk).toHaveBeenCalledWith('npc/akara');
+  });
+
+  it('shows Atma in Act II with the authored Far Oasis route and no implicit quest or reward', () => {
+    useMapStore.getState().setCurrentLocation(2, 'areas/act2-town');
+    const before = rewards();
+    const questsBefore = useMapStore.getState().questProgress;
+    renderTown();
+    expect(loadTownNpcs(2).map(npc => npc.id)).toEqual(['npc/atma']);
+    expect(screen.getAllByTestId(/^town-npc-/)).toHaveLength(1);
+    const atma = screen.getByRole('button', { name: locale === 'en' ? 'Atma' : '阿特玛' });
+    fireEvent.click(atma);
+    expect(talk).toHaveBeenCalledTimes(1);
+    expect(talk).toHaveBeenCalledWith('npc/atma');
+    expect(atma).toHaveFocus();
+    expect(screen.getByRole('status')).toHaveTextContent(locale === 'en' ? 'beneath the Far Oasis' : '遥远绿洲下方');
+    expect(screen.getByRole('status')).not.toHaveTextContent(/sewer|下水道|repair|修理/i);
+    expect(useMapStore.getState().questProgress).toBe(questsBefore);
+    expect(rewards()).toEqual(before);
+    fireEvent.click(screen.getByTestId('town-conversation-close'));
+    expect(atma).toHaveFocus();
   });
 });

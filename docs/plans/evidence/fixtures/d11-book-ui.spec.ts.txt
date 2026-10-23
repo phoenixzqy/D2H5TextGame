@@ -1,0 +1,101 @@
+/** Constructed diagnostic import; no earned Act II or C2 acceptance. */
+import { test, expect, type Page, type BrowserContext } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/@playwright/test/index.mjs';
+import { readFile, writeFile } from 'node:fs/promises';
+import { createCharacter, navTo } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/tests/e2e/_helpers';
+const root='/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-book-ui-4ie0ae7w';
+const quest='quests/act2-radaments-lair';
+const source=quest+'#reward:questItem';
+const now=1792497600000;
+async function backup(page:Page) {
+ await navTo(page,'settings'); const pending=page.waitForEvent('download');
+ await page.getByTestId('export-save-button').click(); const download=await pending;
+ try { return JSON.parse(await readFile(await download.path(),'utf8')); } finally { await download.delete(); }
+}
+async function disk(page:Page) {
+ return page.evaluate(async()=>{
+  const db=await new Promise<IDBDatabase>((resolve,reject)=>{const req=indexedDB.open('D2H5TextGame'); req.onsuccess=()=>resolve(req.result); req.onerror=()=>reject(req.error);});
+  try {
+   const record=await new Promise<{data:unknown}>((resolve,reject)=>{const req=db.transaction('saves','readonly').objectStore('saves').get('current'); req.onsuccess=()=>resolve(req.result); req.onerror=()=>reject(req.error);});
+   return JSON.parse(JSON.stringify(record.data,(_key,value)=>value instanceof Map?[...value.entries()]:value));
+  } finally { db.close(); }
+ });
+}
+async function importSave(page:Page, raw:string, english:boolean) {
+ await navTo(page,'settings'); const label=english?'Import Save':'导入存档';
+ await page.getByRole('button',{name:label,exact:true}).click(); const dialog=page.getByRole('dialog');
+ await dialog.getByRole('textbox').fill(raw);
+ await dialog.getByRole('button',{name:label,exact:true}).click(); await expect(dialog).toHaveCount(0);
+}
+async function reopen(page:Page, context:BrowserContext, english:boolean, expected:unknown, errors:string[]) {
+ await navTo(page,'settings');
+ await page.getByRole('button',{name:english?'Save':'保存',exact:true}).click();
+ await expect(page.getByRole('status')).toHaveText(english?'Saved':'已保存');
+ expect(await disk(page)).toEqual(expected); expect(await backup(page)).toEqual(expected);
+ await page.close(); const next=await context.newPage(); next.on('pageerror',error=>errors.push(error.message));
+ await next.clock.setFixedTime(now); await next.goto('/'); await next.waitForLoadState('networkidle');
+ await next.getByTestId('home-continue').click(); await expect(next.getByTestId('town-screen')).toBeVisible();
+ expect(await backup(next)).toEqual(expected); expect(await disk(next)).toEqual(expected);
+ return next;
+}
+for(const locale of ['en','zh-CN'])test(`Book Claim Read native persistence and responsive keyboard ${locale}`,async({page,context})=>{
+ const english=locale==='en', errors:string[]=[], checks:unknown[]=[];
+ page.on('pageerror',error=>errors.push(error.message));
+ await page.clock.setFixedTime(now); await page.goto('/'); await page.waitForLoadState('networkidle');
+ await createCharacter(page,{class:'sorceress',name:'Book UI diagnostic'});
+ await navTo(page,'settings'); await page.getByRole('button',{name:'English',exact:true}).click();
+ const raw=await readFile(root+'/input.json','utf8'), input=JSON.parse(raw);
+ await importSave(page,raw,true);
+ const migrated={...input,version:12,inventory:{...input.inventory,questItems:{}}};
+ expect(await backup(page)).toEqual(migrated); expect(await disk(page)).toEqual(migrated);
+ if(!english)await page.getByRole('button',{name:'简体中文',exact:true}).click();
+ const unclaimed=await backup(page);
+ await expect.poll(()=>page.evaluate(()=>navigator.serviceWorker.controller?.state),{timeout:60000}).toBe('activated');
+ expect(await page.evaluate(()=>'__GAME__' in window)).toBe(false);
+ await navTo(page,'town'); const atma=page.getByTestId('town-npc-atma');
+ await atma.focus(); await page.keyboard.press('Enter');
+ await expect(page.getByTestId('town-conversation')).toContainText(english?'beneath the Far Oasis':'遥远绿洲下方');
+ await expect(page.getByTestId('town-conversation')).not.toContainText(/sewer|下水道/i);
+ await page.getByTestId('town-conversation-close').click(); await expect(atma).toBeFocused();
+ expect(await backup(page)).toEqual(unclaimed);
+ await navTo(page,'quests'); const card=page.getByTestId(`quest-${quest}`);
+ await expect(card).toContainText(english?'Book of Skill':'技能之书'); await expect(card).toContainText('5000');
+ await expect(card).toContainText(english?'Far Oasis':'遥远绿洲'); await expect(card).not.toContainText(/questItem|items\/book_of_skill|sewer|下水道/);
+ const claim=page.getByTestId(`quest-claim-${quest}`); await claim.focus(); await page.keyboard.press('Enter');
+ const unread=await backup(page);
+ expect(unread.inventory.questItems).toEqual({[source]:{itemId:'items/book_of_skill',state:'owned'}});
+ expect(unread.player.level).toBe(unclaimed.player.level);
+ expect(unread.player.experience).toBe(unclaimed.player.experience+5000);
+ expect(unread.player.skillPoints).toBe(unclaimed.player.skillPoints);
+ expect(unread.map.questProgress[quest]).toEqual({...unclaimed.map.questProgress[quest],rewardClaimed:true});
+ await writeFile(`${root}/unread-${locale}.json`,JSON.stringify(unread));
+ page=await reopen(page,context,english,unread,errors);
+ await importSave(page,JSON.stringify(unread),english); expect(await backup(page)).toEqual(unread);
+ await navTo(page,'inventory'); const panel=page.getByTestId('quest-items-panel'), button=panel.getByRole('button');
+ await expect(button).toHaveText(english?'Read':'阅读'); await expect(panel).toContainText(english?'1 skill point':'1 个技能点');
+ for(const [width,height] of [[320,640],[360,640],[375,667],[393,851],[412,915],[640,360],[768,1024],[1024,768],[1280,800],[1440,900],[1920,1080]]) {
+  await page.setViewportSize({width,height}); await button.scrollIntoViewIfNeeded();
+  const box=await button.boundingBox(); expect(box).not.toBeNull(); expect(box!.height).toBeGreaterThanOrEqual(44); expect(box!.width).toBeGreaterThanOrEqual(44);
+  const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth); expect(overflow).toBeLessThanOrEqual(0);
+  checks.push({width,height,readButton:box,overflow});
+  if(width===360||width===1280)await page.screenshot({path:`${root}/unread-${locale}-${width}.png`});
+ }
+ await page.setViewportSize({width:360,height:640}); await button.focus(); await page.keyboard.press('Enter');
+ await expect(button).toBeFocused(); await expect(button).toHaveAttribute('aria-disabled','true');
+ await expect(button).toHaveText(english?'Already read':'已阅读');
+ await expect(panel.getByRole('status')).toHaveText(english?'Gained 1 skill point.':'获得 1 个技能点。');
+ await page.screenshot({path:`${root}/consumed-${locale}-360.png`});
+ const consumed=await backup(page);
+ expect(consumed).toEqual({...unread,player:{...unread.player,skillPoints:unread.player.skillPoints+1},inventory:{...unread.inventory,questItems:{[source]:{itemId:'items/book_of_skill',state:'consumed'}}}});
+ await writeFile(`${root}/consumed-${locale}.json`,JSON.stringify(consumed));
+ await navTo(page,'inventory'); await button.focus(); await page.keyboard.press('Space');
+ await expect(panel.getByRole('status')).toHaveText(english?'This book was already read.':'这本书已经阅读过。');
+ expect(await backup(page)).toEqual(consumed);
+ page=await reopen(page,context,english,consumed,errors);
+ for(let n=0;n<2;n++){await importSave(page,JSON.stringify(consumed),english);expect(await backup(page)).toEqual(consumed);}
+ await navTo(page,'inventory'); const finalPanel=page.getByTestId('quest-items-panel');
+ await expect(finalPanel.getByRole('button')).toHaveText(english?'Already read':'已阅读');
+ await finalPanel.getByRole('button').focus(); await page.keyboard.press('Enter'); expect(await backup(page)).toEqual(consumed);
+ expect(await page.evaluate(()=>'__GAME__' in window)).toBe(false); expect(errors).toEqual([]);
+ await writeFile(`${root}/assertions-${locale}.json`,JSON.stringify({classification:'Constructed diagnostic; NOT earned C2',locale,migratedV11Exactly:true,claimXp:5000,claimSkillPoints:0,readSkillPoints:1,unreadAndConsumedSaveCloseContinueExact:true,consumedRepeatedImportExact:true,viewports:checks,pageErrors:errors},null,2));
+ await page.close();
+});

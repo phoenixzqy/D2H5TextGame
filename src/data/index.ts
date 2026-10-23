@@ -105,7 +105,7 @@ export const bannerConfigFile = './gacha/banner-config.json';
 export const eliteConfigFile = './elite/elite-config.json';
 
 /** Dialogue files. */
-export const dialogueFiles = ['./dialogue/act1/*.json'] as const;
+export const dialogueFiles = ['./dialogue/act1/*.json', './dialogue/act2/*.json'] as const;
 
 /** Quest files. */
 export const mainQuestsFile = './quests/main.json';
@@ -182,7 +182,7 @@ const mercModules = import.meta.glob<unknown[]>(
 ) as JsonModule<unknown[]>;
 
 const dialogueModules = import.meta.glob<unknown[]>(
-  './dialogue/act1/*.json',
+  ['./dialogue/act1/*.json', './dialogue/act2/*.json'],
   { eager: true, import: 'default' }
 ) as JsonModule<unknown[]>;
 

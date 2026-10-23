@@ -88,8 +88,8 @@
     },
     "act2-radaments-lair": {
       "name": "Radament's Lair",
-      "desc": "Descend into the sewers and defeat Radament.",
-      "obj1": "Defeat Radament"
+      "desc": "Atma asks you to defeat Radament in the burial chamber beneath the Far Oasis.",
+      "obj1": "Defeat Radament beneath the Far Oasis"
     },
     "act2-horadric-staff": {
       "name": "The Horadric Staff",

@@ -1,0 +1,11 @@
+{
+  "id": "dialogue/act2/atma",
+  "npcId": "atma",
+  "greetings": [
+    {
+      "text": "Radament's lair is a burial chamber beneath the Far Oasis. Track Radament's Lair in Quests. Once you defeat him, claim your reward there and read the Book of Skill in Inventory.",
+      "textKey": "town:dialogue.greetings.atma"
+    }
+  ],
+  "services": []
+}

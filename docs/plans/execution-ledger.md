@@ -14,6 +14,7 @@ Current implementation evidence lives in `evidence/`.
 | --- | --- | --- |
 | C0 | accepted narrow trust/measurement checkpoint | Producer APPROVE and independent QA closure recommendation against the original exit:21feature trace rows, honest baseline/assertion audit, production-path recordings/provenance and diagnosed manual/idle comparison; next-slice BUG090/preparation contract frozen. [Evidence](evidence/c0-trust-checkpoint.md). FullP01/P02/G0/C1–C4 and performance remain open. |
 | C1 honest first-act loop | accepted original exit | Fresh 360×640 production at `5f417b4`: all 310 combat results are genuine victories, including Den and Andariel. Exact earned preparation/gear, skills/passive/status-support, once-only quest claim, unique boss reward equip, full Save→close→new-page Continue and Act II availability pass. 3920 unique owned IDs; source1527/build760/freeze14 drift[]. Browser 1/1, zero retry/skip/flaky/page errors; independent QA-C1 ADEQUATE, no remaining blocking original-exit gap. [Evidence](evidence/c1-fresh-act1.md). No Act II challenge or C2–C4/full G0–G7 acceptance. |
+| D11 inventory/Atma UI | implemented and independently reviewed | Bound unread/consumed quest-item rows, authoritative Read, localized claim preview and failure feedback, Atma/Far Oasis copy. Full8862/288(206.96s), T/L/build/4chunk scan pass; production en/zh2/2 with exact unread/consumed Save-close-Continue, repeated imports,11viewports per locale and44px controls. Independent source/browser QA APPROVE/security PASS. [Evidence](evidence/radament-book-ui.md). Browser input is constructed; earned Radament continuation is next, not yet accepted. |
 | D11 Claim/Read transactions | implemented and independently reviewed | Shared guarded lock, safe production XP/point arithmetic, exact owned→consumed book receipt, complete participating-store rollback and explicit restoration failure. BUG098 native-record regression fixed. Focused242/6, engine4283/110, full8850/287(195.54s), T/L/build/4chunk scan pass; independent QA APPROVE/security PASS. [Evidence](evidence/radament-book-transactions.md). UI/Atma/copy/browser and earned C2 remain open. |
 | D11 book definitions / v12 storage | implemented and independently reviewed; transactions pending | Definitions `94e66eb`; strict source-bound owned/consumed ledger, frozen historical validation and empty migration, storage/reset/Continue/import preserve exact ownership and points. BUG097 genuine v1 RED3/37 corrected before migration. Focused124/6 and full8806/286 pass; final equivalent guard narrowing has engine4279/110,T/L/build/4chunk scan passing. QA APPROVE/security PASS. [Evidence](evidence/radament-book-storage.md). Claim/Read/UI/Atma/copy and earned C2 remain open. |
 | BUG096 / D11 A/B | accepted encounter and quest-credit scope | Actual Radament/four ordinary companions, explicit mini-boss TC and provenance-qualified pre-event kill batch. Genuine RED; focused139, engine4237/109, full8735/282(214.87s), T/L/build/4bridgechunks pass. Constructed en/zh production five-wave proof,3920 original IDs→4005 distinct, unclaimed/SP0 and exact Save-close-Continue; source1548/build760/input5 drift[]. Two Chinese harness setup failures retained. Producer APPROVE/security PASS; independent QA ADEQUATE. [Evidence](evidence/radament-encounter-objective.md). Book/codec/claim/Read/Atma/copy and earned C2 remain open; shared TC correction changes future nonchapter-map loot, so historical C1 does not prove a fresh route on this runtime. |
@@ -98,7 +99,7 @@ Current implementation evidence lives in `evidence/`.
 | P16–P18 | pending | Critical UI/a11y/performance, offline/PWA, endgame and achievements. |
 | P19 | pending dependencies | Full matrix, actual required CI, independent review/QA, holdout, soak, human playtest. |
 
-C0 accepted under its original narrow exit; C1 in progress, C2–C4 pending.
+C0 and C1 accepted under their original exits; C2 underway, C3–C4 pending.
 No G0–G7 gate is fully accepted. See [C0 evidence](evidence/c0-trust-checkpoint.md).
 
 ## Feature traceability
@@ -10464,3 +10465,15 @@ All readers released and all known handles terminal. Exact disposable cleanup
 passes, remaining[]/failures[]; rawROOT/cleanup.receipt.json records each path.
 Required diagnostics remain at the exact root above through progression/C1; root
 removes after dependent consumers finish. Local only.
+
+## D11 — Inventory Book of Skill and Atma
+
+The preceding status turn yielded final full-suite evidence:8862tests/288files
+pass, exit0. Source777/build760 hashes remain unchanged. Bound quest items,
+localized Read/Claim feedback, Atma and Far Oasis copy now pass independent
+source/browser review and both production-browser locale cases. See
+[evidence](evidence/radament-book-ui.md). No earned Act II or C2 acceptance yet.
+The [one earned continuation](d11-earned-radament.md) is READY and may now run.
+The existing task-owned UI dist/browser-output remain root-owned only through
+that immediate consumer; remove afterward. Required raw evidence remains through
+D11/C2/umbrella consumers. C0/C1 accepted, C2 underway, C3/C4 and fullG0–G7 open.

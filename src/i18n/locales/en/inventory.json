@@ -1,5 +1,28 @@
 {
   "inventory.title": "Inventory",
+  "questItems": {
+    "title": "Quest items",
+    "bound": "Bound to this character. Does not use backpack or stash space.",
+    "empty": "No quest items yet.",
+    "read": "Read",
+    "consumed": "Already read",
+    "bookOfSkill": {
+      "name": "Book of Skill",
+      "description": "Read once to gain {{skillPoints}} skill point."
+    },
+    "feedback": {
+      "ok": "Gained {{skillPoints}} skill point.",
+      "not-ready": "Save data is loading or being replaced. Try again when it finishes.",
+      "no-player": "Create or load a character before reading.",
+      "not-owned": "This quest item is no longer available.",
+      "already-consumed": "This book was already read.",
+      "unsupported-rewards": "This quest item cannot be read right now.",
+      "claim-in-progress": "A quest reward action is in progress. Try again when it finishes.",
+      "grant-failed": "The book could not be read. Try again.",
+      "action-failed": "This action is unavailable right now. Try again.",
+      "restoration-failed": "The action could not finish safely. Check your skill points and quest items before trying again."
+    }
+  },
   "backpack": "Backpack",
   "stash": "Stash",
   "equipment": "Equipment",
