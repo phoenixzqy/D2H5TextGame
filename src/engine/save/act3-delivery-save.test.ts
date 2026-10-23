@@ -54,10 +54,16 @@ describe('v15 actual delivery receipts and frozen v14 boundary', () => {
     expect(() => decodeSave({ ...input, map: { ...map, questReceipts: {} } })).toThrow(/historical map/);
   });
 
-  it.each([undefined, null, new Map(), new Date(), { 'quests/act3-guardian#action:break-compelling-orb': true }])(
-    'refuses malformed or as-yet undefined current action receipts before normalization (%j)', questReceipts => {
+  it.each([undefined, null, new Map(), new Date(), { 'quests/act3-guardian#action:future': true }])(
+    'refuses malformed or unknown current action receipts before normalization (%j)', questReceipts => {
       const input = sample();
       expect(() => decodeSave({ ...input, map: { ...input.map, questReceipts } })).toThrow(/questReceipts/);
     }
   );
+
+  it('rejects a known Orb receipt without its actual owner and consumed input graph', () => {
+    const input = sample();
+    expect(() => decodeSave({ ...input, map: { ...input.map,
+      questReceipts: { 'quests/act3-guardian#action:break-compelling-orb': true } } })).toThrow(/action proof requires/);
+  });
 });
