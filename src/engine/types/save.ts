@@ -3,6 +3,8 @@
  * @module engine/types/save
  */
 
+import type { QuestServiceLedger } from '../services/quest-services';
+import { migrateSaveV17 } from '../save/migrate-v17';
 import { migrateLegacyStarter } from '../save/legacyStarter';
 import type { Player, Mercenary } from './entities';
 import type { DerivedStats } from './attributes';
@@ -14,7 +16,7 @@ import type { GridPosition } from '../combat/types';
  * Current save format version. Bump this and add an entry to {@link MIGRATIONS}
  * whenever the on-disk shape changes.
  */
-export const CURRENT_SAVE_VERSION = 16;
+export const CURRENT_SAVE_VERSION = 17;
 
 /**
  * Save file version (most recent).
@@ -307,7 +309,33 @@ export interface SaveV15 extends Omit<SaveV14, 'version' | 'map'> {
 
 /** Save v16 adds qualified Act IV victory and exact two-input Forge receipts. */
 export interface SaveV16 extends Omit<SaveV15, 'version'> { readonly version: 16 }
-export type SaveCurrent = SaveV16;
+export type ReplayProfileId = 'normal' | 'nightmare';
+export interface CampaignMapSaveData extends QuestMapSaveData {
+  readonly questTitles: Readonly<Record<string, true>>;
+  readonly questDifficulties: Readonly<Record<string, true>>;
+  readonly selectedTitle: 'titles/slayer_of_baal' | null;
+  readonly selectedDifficulty: ReplayProfileId;
+  readonly nightmareClearedSubAreas: readonly string[];
+  readonly challengeOrdinals: Readonly<Record<ReplayProfileId, number>>;
+}
+export type LegacyGearOrigin = { readonly container: 'backpack' | 'stash'; readonly index: number }
+  | { readonly container: 'equipped'; readonly slot: EquipmentSlot }
+  | { readonly container: 'mercEquipment'; readonly mercId: string; readonly slot: EquipmentSlot };
+export interface LegacyGearQuarantineEntry {
+  readonly item: Item;
+  readonly origin: LegacyGearOrigin;
+}
+export interface ServiceInventorySaveData extends QuestInventorySaveData {
+  readonly questServices: QuestServiceLedger;
+  readonly legacyGearQuarantine: readonly LegacyGearQuarantineEntry[];
+}
+/** Native v17: actual Act V sources, services, titles and difficulty-scoped replay state. */
+export interface SaveV17 extends Omit<SaveV16, 'version' | 'inventory' | 'map'> {
+  readonly version: 17;
+  readonly inventory: ServiceInventorySaveData;
+  readonly map: CampaignMapSaveData;
+}
+export type SaveCurrent = SaveV17;
 
 /**
  * Migration function type. Each entry receives the previous version's shape
@@ -506,5 +534,7 @@ export const MIGRATIONS: Record<number, Migration> = {
     return { ...v14, version: 15, map: { ...v14.map, questReceipts: {} } };
   },
   /** Widen the domain only; flags create no item, proof, consumption, or reward. */
-  16: (raw: unknown): SaveV16 => ({ ...(raw as SaveV15), version: 16 })
+  16: (raw: unknown): SaveV16 => ({ ...(raw as SaveV15), version: 16 }),
+  /** Lossless predecessor migration: no proof or reward is inferred from history. */
+  17: (raw: unknown): SaveV17 => migrateSaveV17(raw as SaveV16)
 };

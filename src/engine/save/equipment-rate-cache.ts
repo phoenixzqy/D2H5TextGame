@@ -1,7 +1,7 @@
 import { loadAffixPool, loadSetPieces } from '@/data/loaders/loot';
 import { deriveEquippedPlayerStats } from '../progression/equipped-stats';
 import type { SaveCurrent } from '../types/save';
-import { hasTaintedSunEntitlement } from '../progression/quest-resistance';
+import { hasTaintedSunEntitlement, resolveAct5ResistanceBonus } from '../progression/quest-resistance';
 
 type RateKey = 'critChance' | 'critDamage' | 'physDodge' | 'magicDodge';
 const RATE_KEYS: readonly RateKey[] = ['critChance', 'critDamage', 'physDodge', 'magicDodge'];
@@ -80,20 +80,20 @@ export function repairEquipmentRateCache(save: SaveCurrent): SaveCurrent {
 
 /** Refresh only a qualified claimed Sun row's fire/cold cache using this save's gear and map. */
 export function repairQuestResistanceCache(save: SaveCurrent): SaveCurrent {
-  if (!hasTaintedSunEntitlement(save.map.questProgress)) return save;
-  const { fire, cold } = deriveEquippedPlayerStats(save.player, save.player.level,
-    save.inventory.equipped, save.map.questProgress).resistances;
+  if (!hasTaintedSunEntitlement(save.map.questProgress) &&
+    resolveAct5ResistanceBonus(save.map.questProgress, save.inventory.questItems, save.map.questReceipts) === 0) return save;
+  const resistances = deriveEquippedPlayerStats(save.player, save.player.level,
+    save.inventory.equipped, save.map.questProgress, save.inventory.questItems, save.map.questReceipts).resistances;
   const old = save.player.derivedStats;
-  if (old.resistances.fire === fire && old.resistances.cold === cold) return save;
-  return { ...save, player: { ...save.player, derivedStats: { ...old,
-    resistances: { ...old.resistances, fire, cold } } } };
+  if (Object.entries(resistances).every(([key, value]) => old.resistances[key as keyof typeof resistances] === value)) return save;
+  return { ...save, player: { ...save.player, derivedStats: { ...old, resistances } } };
 }
 
 /** Rebuild Golden Bird's Life cache from real receipts; legacy flags grant no bonus. */
 export function repairQuestLifeCache(save: SaveCurrent): SaveCurrent {
   if (!Object.hasOwn(save.map.questProgress, 'quests/act3-golden-bird')) return save;
   const projected = deriveEquippedPlayerStats(save.player, save.player.level,
-    save.inventory.equipped, save.map.questProgress, save.inventory.questItems);
+    save.inventory.equipped, save.map.questProgress, save.inventory.questItems, save.map.questReceipts);
   const old = save.player.derivedStats;
   if (old.lifeMax === projected.lifeMax && old.life === projected.life) return save;
   return { ...save, player: { ...save.player, derivedStats: {

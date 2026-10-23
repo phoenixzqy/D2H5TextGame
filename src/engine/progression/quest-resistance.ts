@@ -1,3 +1,7 @@
+import { loadQuestItems } from '@/data/loaders/quest-items';
+import { RESCUE_QUEST, PRISON_QUEST } from '../map/act5-admission';
+import { hasAct5Completion, READ_PROOF, SCROLL_SOURCE } from '../save/act5-state';
+import type { QuestItemLedger, QuestActionReceipts } from '../types/save';
 import { loadQuests } from '@/data/loaders/quests';
 import type { QuestProgressData } from '../types/save';
 
@@ -40,4 +44,28 @@ export function resolveQuestResistanceBonus(progress: QuestProgressContext): { f
   const reward = loadQuests().find(quest => quest.id === TAINTED_SUN_QUEST_ID)?.rewards?.stat;
   if (!isQuestResistanceReward(reward)) throw new Error('Invalid Tainted Sun resistance reward');
   return { fire: reward.fire_resist, cold: reward.cold_resist };
+}
+
+/** Actual Act V sources compose once across every canonical equipment/stat projection. */
+export function resolveAct5ResistanceBonus(progress: QuestProgressContext, items: QuestItemLedger,
+  receipts: QuestActionReceipts): number {
+  const rescue = progress[RESCUE_QUEST];
+  const direct = rescue?.rewardClaimed === true && hasAct5Completion(RESCUE_QUEST, progress, receipts, items)
+    ? loadQuests().find(quest => quest.id === RESCUE_QUEST)?.rewards?.stat : undefined;
+  let amount = 0;
+  if (direct !== undefined) {
+    if (direct === null || typeof direct !== 'object' || Object.keys(direct).length !== 1 ||
+      !Object.hasOwn(direct, 'all_resist') || Reflect.get(direct, 'all_resist') !== 5) {
+      throw new Error('Invalid Rescue resistance reward');
+    }
+    amount += 5;
+  }
+  if (Object.hasOwn(items, SCROLL_SOURCE) && items[SCROLL_SOURCE]?.itemId === 'items/scroll_of_resist' &&
+    items[SCROLL_SOURCE].state === 'consumed' && Object.hasOwn(receipts, READ_PROOF) &&
+    progress[PRISON_QUEST]?.rewardClaimed === true && hasAct5Completion(PRISON_QUEST, progress, receipts, items)) {
+    const scroll = loadQuestItems().find(item => item.id === 'items/scroll_of_resist');
+    if (!scroll || scroll.kind !== undefined || scroll.effect.allResist !== 10) throw new Error('Invalid resistance scroll effect');
+    amount += scroll.effect.allResist;
+  }
+  return amount;
 }

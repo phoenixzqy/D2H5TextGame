@@ -1,3 +1,7 @@
+import { validateQuestServiceLedger, type QuestServiceLedger } from '@/engine/services/quest-services';
+import { hasAct5Completion, READ_PROOF, SCROLL_SOURCE } from '@/engine/save/act5-state';
+import { validateAct5CampaignRewards, BAAL_TITLE, NIGHTMARE_UNLOCK } from '@/engine/save/act5-campaign';
+import { EVE_QUEST, RESCUE_QUEST } from '@/engine/map/act5-admission';
 import { ACT4_ENCOUNTERS } from '@/engine/map/act4-admission';
 /** Shared synchronous quest reward boundary; completion and claim stay separate. */
 import { usePlayerStore } from '@/stores/playerStore';
@@ -81,7 +85,7 @@ export function canClaim(questId: string): boolean {
   if (progress.rewardClaimed) return false;
   const quest = findQuest(questId);
   return Boolean(quest?.rewards && Object.keys(quest.rewards).length > 0 &&
-    hasAct4Completion(quest) && hasQuestDeliveryCompletion(quest) && hasQuestAssemblyCompletion(quest) && hasRetainedQuestRewardCompletion(quest));
+    hasAct5Completion(quest.id, useMapStore.getState().questProgress, useMapStore.getState().questReceipts, useInventoryStore.getState().questItems) && hasAct4Completion(quest) && hasQuestDeliveryCompletion(quest) && hasQuestAssemblyCompletion(quest) && hasRetainedQuestRewardCompletion(quest));
 }
 
 function safeCount(value: number): boolean {
@@ -139,7 +143,7 @@ export function claimQuestReward(questId: string): ClaimResult {
     if (progress.rewardClaimed) return 'already-claimed';
     const quest = findQuest(questId);
     if (!quest) return 'unknown-quest';
-    if (!hasAct4Completion(quest) || !hasQuestDeliveryCompletion(quest) || !hasQuestAssemblyCompletion(quest) ||
+    if (!hasAct5Completion(quest.id, useMapStore.getState().questProgress, useMapStore.getState().questReceipts, useInventoryStore.getState().questItems) || !hasAct4Completion(quest) || !hasQuestDeliveryCompletion(quest) || !hasQuestAssemblyCompletion(quest) ||
       !hasRetainedQuestRewardCompletion(quest)) return 'not-completed';
     const rewards = quest.rewards;
     if (!rewards || Object.keys(rewards).length === 0) return 'no-rewards';
@@ -157,12 +161,31 @@ export function claimQuestReward(questId: string): ClaimResult {
     let tableReward: QuestTableRewardInput | undefined;
     let questItems: QuestItemLedger | undefined;
     let resistanceReward = false;
+    let questServices: QuestServiceLedger | undefined;
+    let campaignReward = false;
+    const serviceSource = `${questId}#reward:service`;
     for (const [kind, amount] of Object.entries(rewards)) {
       // Gold has no executable economy; authored zero is a harmless no-op.
       if (kind === 'gold' && amount === 0) continue;
       if (kind === 'stat') {
-        if (questId !== TAINTED_SUN_QUEST_ID || !isQuestResistanceReward(amount)) return 'unsupported-rewards';
+        if (!(questId === TAINTED_SUN_QUEST_ID && isQuestResistanceReward(amount)) &&
+          !(questId === RESCUE_QUEST && amount !== null && typeof amount === 'object' && Object.keys(amount).length === 1 &&
+            Object.hasOwn(amount, 'all_resist') && Reflect.get(amount, 'all_resist') === 5)) return 'unsupported-rewards';
         resistanceReward = true;
+        continue;
+      }
+      if (kind === 'service') {
+        try {
+          if (Object.hasOwn(inventory.questServices, serviceSource)) return 'unsupported-rewards';
+          questServices = validateQuestServiceLedger({ ...inventory.questServices,
+            [serviceSource]: { serviceId: amount, state: 'available' } },
+          { ...questProgress, [questId]: { ...progress, rewardClaimed: true } });
+        } catch { return 'unsupported-rewards'; }
+        continue;
+      }
+      if (kind === 'title') {
+        if (questId !== EVE_QUEST || amount !== BAAL_TITLE || quest.unlocks !== NIGHTMARE_UNLOCK) return 'unsupported-rewards';
+        campaignReward = true;
         continue;
       }
       if (kind === 'questItem') {
@@ -201,7 +224,7 @@ export function claimQuestReward(questId: string): ClaimResult {
         || !safeCount(amount) || kind === 'gemShards' && amount <= 0) return 'unsupported-rewards';
       if (amount > 0) grants.push({ kind, amount });
     }
-    if (grants.length === 0 && !uniqueReward && !uniqueProfileReward && !tableReward && !questItems && !resistanceReward) return 'no-rewards';
+    if (grants.length === 0 && !uniqueReward && !uniqueProfileReward && !tableReward && !questItems && !resistanceReward && !questServices && !campaignReward) return 'no-rewards';
     if (!safeGrants(player, grants)) return 'unsupported-rewards';
     if (uniqueProfileReward) {
       try {
@@ -214,9 +237,16 @@ export function claimQuestReward(questId: string): ClaimResult {
     if (resistanceReward) {
       const xp = grants.find(grant => grant.kind === 'xp')?.amount ?? 0;
       const level = awardXp(xpTotal(player.level) + player.experience, xp).level;
-      try { deriveEquippedPlayerStats(player, level, inventory.equipped, claimedContext, inventory.questItems); }
+      try { deriveEquippedPlayerStats(player, level, inventory.equipped, claimedContext, questItems ?? inventory.questItems, useMapStore.getState().questReceipts); }
       catch { return 'unsupported-rewards'; }
     }
+
+    const mapBefore = useMapStore.getState();
+    const campaignFields = campaignReward ? { questTitles: { ...mapBefore.questTitles, [BAAL_TITLE]: true as const },
+      questDifficulties: { ...mapBefore.questDifficulties, [NIGHTMARE_UNLOCK]: true as const } } : {};
+    try { validateAct5CampaignRewards({ ...mapBefore, ...campaignFields, questProgress: claimedContext },
+      questItems ?? inventory.questItems, questServices ?? inventory.questServices); }
+    catch { return 'unsupported-rewards'; }
 
     // Preparation is private: failure here must not publish rollback writes.
     const items: Item[] = [];
@@ -259,6 +289,9 @@ export function claimQuestReward(questId: string): ClaimResult {
       if (!safeCount(amount) || !safeCount(balance) || !safeCount(balance + amount)) return 'unsupported-rewards';
     }
 
+    const serviceEntry = questServices?.[serviceSource];
+    if (questServices && !serviceEntry) return 'unsupported-rewards';
+    const previousServiceEntry = inventory.questServices[serviceSource];
     const changesPlayer = resistanceReward || grants.some(({ kind }) =>
       kind === 'xp' || kind === 'skillPoints' || kind === 'statPoints');
     const sharesXp = grants.some(({ kind }) => kind === 'xp');
@@ -284,12 +317,15 @@ export function claimQuestReward(questId: string): ClaimResult {
       for (const [target, amount] of currencyGrants) useInventoryStore.getState().addCurrency(target, amount);
       for (const item of items) useInventoryStore.getState().addItem(item);
       if (questItems) useInventoryStore.setState({ questItems });
+      if (serviceEntry) useInventoryStore.setState(state => ({ questServices: { ...state.questServices,
+        [serviceSource]: serviceEntry } }));
+      if (campaignReward) useMapStore.setState(campaignFields);
       if (resistanceReward) {
         usePlayerStore.setState(state => {
           if (!state.player) throw new Error('Player disappeared during quest reward');
           return { player: { ...state.player, derivedStats: deriveEquippedPlayerStats(
             state.player, state.player.level, useInventoryStore.getState().equipped, claimedContext,
-            useInventoryStore.getState().questItems
+            useInventoryStore.getState().questItems, useMapStore.getState().questReceipts
           ) } };
         });
       }
@@ -307,6 +343,13 @@ export function claimQuestReward(questId: string): ClaimResult {
       if (changesCurrency || items.length > 0 || questItems !== undefined) {
         restore(() => { useInventoryStore.setState(inventorySnapshot); });
       }
+      if (questServices) restore(() => { useInventoryStore.setState(state => {
+        const restored = { ...state.questServices };
+        if (previousServiceEntry) restored[serviceSource] = previousServiceEntry;
+        else Reflect.deleteProperty(restored, serviceSource);
+        return { questServices: restored };
+      }); });
+      if (campaignReward) restore(() => { useMapStore.setState({ questTitles: mapBefore.questTitles, questDifficulties: mapBefore.questDifficulties }); });
       restore(() => { useMapStore.setState((state) => ({
         questProgress: { ...state.questProgress, [questId]: progress }
       })); });
@@ -333,18 +376,21 @@ export function readQuestItem(source: string): ReadQuestItemResult {
     const questItems = useInventoryStore.getState().questItems;
     let nextPlayer: Player;
     let nextItems: QuestItemLedger;
+    const map = useMapStore.getState();
+    let nextReceipts = map.questReceipts;
     try {
       validateQuestItemLedger(questItems, useMapStore.getState().questProgress, useMapStore.getState().questReceipts);
       const definition = loadQuestItems().find(row => questItemSource(row) === source);
       if (!definition || definition.kind !== undefined) return 'unsupported-rewards';
       if (!Object.hasOwn(questItems, source)) return 'not-owned';
       if (questItems[source]?.state === 'consumed') return 'already-consumed';
+      if (source === SCROLL_SOURCE) nextReceipts = { ...map.questReceipts, [READ_PROOF]: true };
       nextItems = validateQuestItemLedger({ ...questItems,
         [source]: { itemId: definition.id, state: 'consumed' } }, useMapStore.getState().questProgress,
-      useMapStore.getState().questReceipts);
-      if (definition.effect.maxLife !== undefined) {
+      nextReceipts);
+      if (definition.effect.maxLife !== undefined || definition.effect.allResist !== undefined) {
         nextPlayer = { ...player, derivedStats: deriveEquippedPlayerStats(player, player.level,
-          useInventoryStore.getState().equipped, useMapStore.getState().questProgress, nextItems) };
+          useInventoryStore.getState().equipped, map.questProgress, nextItems, nextReceipts) };
       } else {
         const points = definition.effect.skillPoints;
         if (!safeCount(player.skillPoints) || !safeCount(points) || points <= 0 ||
@@ -355,11 +401,20 @@ export function readQuestItem(source: string): ReadQuestItemResult {
     try {
       usePlayerStore.setState({ player: nextPlayer });
       useInventoryStore.setState({ questItems: nextItems });
+      if (nextReceipts !== map.questReceipts) useMapStore.setState(state => ({ questReceipts: { ...state.questReceipts, [READ_PROOF]: true } }));
       return 'ok';
     } catch (cause) {
       const errors: unknown[] = [];
       try { usePlayerStore.setState({ player }); } catch (error) { errors.push(error); }
       try { useInventoryStore.setState({ questItems }); } catch (error) { errors.push(error); }
+      if (nextReceipts !== map.questReceipts) {
+        try { useMapStore.setState(state => {
+          const restored = { ...state.questReceipts };
+          if (Object.hasOwn(map.questReceipts, READ_PROOF)) restored[READ_PROOF] = true;
+          else Reflect.deleteProperty(restored, READ_PROOF);
+          return { questReceipts: restored };
+        }); } catch (error) { errors.push(error); }
+      }
       if (errors.length > 0) throw new AggregateError(errors, 'Quest item restoration failed', { cause });
       return 'grant-failed';
     }

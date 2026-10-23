@@ -1,3 +1,5 @@
+import type { QuestServiceLedger } from '@/engine/services/quest-services';
+import type { LegacyGearQuarantineEntry } from '@/engine/types/save';
 /**
  * Inventory store
  * Manages backpack, stash, equipment, and currencies
@@ -42,6 +44,8 @@ interface InventoryState {
   currencies: Record<string, number>;
   /** Bound entitlements and consumed receipts, independent of gear capacities. */
   questItems: QuestItemLedger;
+  questServices: QuestServiceLedger;
+  legacyGearQuarantine: readonly LegacyGearQuarantineEntry[];
   
   // Actions
   /** Retain earned/returned items, including visible recovery overflow. Never rejects by length. */
@@ -81,7 +85,9 @@ const initialState = {
   stash: [] as Item[],
   equipped: {} as Record<string, Item | null>,
   currencies: {} as Record<string, number>,
-  questItems: {} as QuestItemLedger
+  questItems: {} as QuestItemLedger,
+  questServices: {} as QuestServiceLedger,
+  legacyGearQuarantine: [] as readonly LegacyGearQuarantineEntry[]
 };
 
 function withEquippedFlag(item: Item, equipped: boolean): Item {

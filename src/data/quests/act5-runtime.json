@@ -351,5 +351,66 @@
     "talic",
     "korlic",
     "madawc"
+  ],
+  "actions": [
+    {
+      "id": "actions/act5-release-barbarian-cage-1",
+      "kind": "cage",
+      "questId": "quests/act5-rescue-on-mount-arreat",
+      "receiptSource": "quests/act5-rescue-on-mount-arreat#action:release-cage-1",
+      "areaId": "areas/act5-frigid-highlands",
+      "targetId": "objects/barbarian_cage_1",
+      "groupSize": 5
+    },
+    {
+      "id": "actions/act5-release-barbarian-cage-2",
+      "kind": "cage",
+      "questId": "quests/act5-rescue-on-mount-arreat",
+      "receiptSource": "quests/act5-rescue-on-mount-arreat#action:release-cage-2",
+      "areaId": "areas/act5-frigid-highlands",
+      "targetId": "objects/barbarian_cage_2",
+      "groupSize": 5
+    },
+    {
+      "id": "actions/act5-release-barbarian-cage-3",
+      "kind": "cage",
+      "questId": "quests/act5-rescue-on-mount-arreat",
+      "receiptSource": "quests/act5-rescue-on-mount-arreat#action:release-cage-3",
+      "areaId": "areas/act5-frigid-highlands",
+      "targetId": "objects/barbarian_cage_3",
+      "groupSize": 5
+    },
+    {
+      "id": "actions/act5-inspect-anya",
+      "kind": "inspect",
+      "questId": "quests/act5-prison-of-ice",
+      "receiptSource": "quests/act5-prison-of-ice#action:inspect-anya",
+      "areaId": "areas/act5-crystalline-passage",
+      "targetId": "objects/frozen_anya"
+    },
+    {
+      "id": "actions/act5-receive-malah-potion",
+      "kind": "potion",
+      "questId": "quests/act5-prison-of-ice",
+      "receiptSource": "quests/act5-prison-of-ice#action:receive-potion",
+      "npcId": "npc/malah",
+      "itemId": "quest/malahs_potion"
+    },
+    {
+      "id": "actions/act5-thaw-anya",
+      "kind": "thaw",
+      "questId": "quests/act5-prison-of-ice",
+      "receiptSource": "quests/act5-prison-of-ice#action:thaw-anya",
+      "areaId": "areas/act5-crystalline-passage",
+      "targetId": "objects/frozen_anya",
+      "itemId": "quest/malahs_potion"
+    },
+    {
+      "id": "actions/act5-read-resistance-scroll",
+      "kind": "read",
+      "questId": "quests/act5-prison-of-ice",
+      "receiptSource": "quests/act5-prison-of-ice#action:read-resistance-scroll",
+      "itemId": "items/scroll_of_resist"
+    }
   ]
 }

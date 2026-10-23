@@ -302,9 +302,18 @@
       "giver": "npc/larzuk",
       "description": "Baal's lieutenant Shenk the Overseer drives demons against Harrogath's walls. Break the siege by slaying him on the Bloody Foothills.",
       "objectives": [
-        { "id": "obj-kill-shenk", "type": "kill", "targetId": "monsters/shenk_the_overseer", "areaId": "areas/act5_bloody_foothills", "description": "Slay Shenk the Overseer." }
+        {
+          "id": "obj-kill-shenk",
+          "type": "kill",
+          "targetId": "monsters/act5.overseer",
+          "areaId": "areas/act5-bloody-foothills",
+          "description": "Slay Shenk the Overseer."
+        }
       ],
-      "rewards": { "xp": 10000, "service": "socket_item" },
+      "rewards": {
+        "xp": 10000,
+        "service": "socket_item"
+      },
       "unlocks": "services/socket",
       "order": 20
     },
@@ -313,12 +322,25 @@
       "name": "Rescue on Mount Arreat",
       "type": "main",
       "actId": "acts/act5",
-      "giver": "npc/qual_kehk",
+      "giver": "npc/qual-kehk",
       "description": "Demons have captured barbarian warriors in the Frigid Highlands. Free them so they may rejoin Harrogath's defense.",
       "objectives": [
-        { "id": "obj-free-15", "type": "rescue", "targetId": "npc/barbarian_prisoner", "count": 15, "areaId": "areas/act5_frigid_highlands", "description": "Free the captured barbarians." }
+        {
+          "id": "obj-free-15",
+          "type": "rescue",
+          "targetId": "npc/barbarian-prisoner",
+          "count": 15,
+          "areaId": "areas/act5-frigid-highlands",
+          "description": "Free the captured barbarians."
+        }
       ],
-      "rewards": { "xp": 8000, "skillPoints": 1, "stat": { "all_resist": 5 } },
+      "rewards": {
+        "xp": 8000,
+        "skillPoints": 1,
+        "stat": {
+          "all_resist": 5
+        }
+      },
       "unlocks": null,
       "order": 21
     },
@@ -328,13 +350,34 @@
       "type": "main",
       "actId": "acts/act5",
       "giver": "npc/malah",
-      "description": "Anya, the elder's daughter, has been frozen by Nihlathak and exiled. Find her, thaw her with Malah's potion, and confront Nihlathak in the Halls of Vaught.",
+      "description": "Anya, the elder's daughter, has been frozen by Nihlathak and exiled. Find her, thaw her with Malah's potion, and confront Nihlathak in the Crystalline Passage.",
       "objectives": [
-        { "id": "obj-find-anya", "type": "interact", "targetId": "objects/frozen_anya", "areaId": "areas/act5_crystalline_passage", "description": "Find Anya in the Crystalline Passage." },
-        { "id": "obj-thaw", "type": "use-item", "itemId": "quest/malahs_potion", "description": "Thaw Anya with Malah's potion." },
-        { "id": "obj-kill-nihlathak", "type": "kill", "targetId": "monsters/nihlathak", "areaId": "areas/act5_halls_of_vaught", "description": "Slay Nihlathak." }
+        {
+          "id": "obj-find-anya",
+          "type": "interact",
+          "targetId": "objects/frozen_anya",
+          "areaId": "areas/act5-crystalline-passage",
+          "description": "Find Anya in the Crystalline Passage."
+        },
+        {
+          "id": "obj-thaw",
+          "type": "use-item",
+          "itemId": "quest/malahs_potion",
+          "description": "Thaw Anya with Malah's potion."
+        },
+        {
+          "id": "obj-kill-nihlathak",
+          "type": "kill",
+          "targetId": "monsters/act5.warped-shaman",
+          "areaId": "areas/act5-crystalline-passage",
+          "description": "Slay Nihlathak."
+        }
       ],
-      "rewards": { "xp": 12000, "service": "personalize_item", "stat": { "all_resist": 10 }, "itemDrop": "items/scroll_of_resist" },
+      "rewards": {
+        "xp": 12000,
+        "service": "personalize_item",
+        "questItem": "items/scroll_of_resist"
+      },
       "unlocks": "services/personalize",
       "order": 22
     },
@@ -343,13 +386,21 @@
       "name": "Rite of Passage",
       "type": "main",
       "actId": "acts/act5",
-      "giver": "npc/qual_kehk",
-      "description": "To enter the Worldstone Keep, you must complete the Ancients' Rite. Climb to the Arreat Summit and defeat Talic, Korlic, and Madawc in single combat.",
+      "giver": "npc/qual-kehk",
+      "description": "To enter the Worldstone Keep, you must complete the Ancients' Rite. Reach the Ancients' Way and defeat Talic, Korlic, and Madawc together.",
       "objectives": [
-        { "id": "obj-kill-ancients", "type": "kill-boss-group", "targetId": "monsters/the_ancients", "areaId": "areas/act5_arreat_summit", "description": "Defeat the three Ancients." }
+        {
+          "id": "obj-kill-ancients",
+          "type": "kill-boss-group",
+          "targetId": "monsters/act5.ancient-barbarian",
+          "areaId": "areas/act5-ancients-way",
+          "description": "Defeat the three Ancients."
+        }
       ],
-      "rewards": { "xp": 15000, "skillPoints": 1 },
-      "unlocks": "areas/act5_worldstone_keep_1",
+      "rewards": {
+        "xp": 15000,
+        "skillPoints": 1
+      },
       "order": 23
     },
     {
@@ -360,10 +411,31 @@
       "giver": "npc/tyrael",
       "description": "Baal, Lord of Destruction, has reached the Worldstone Chamber. End his life before he corrupts the Worldstone forever.",
       "objectives": [
-        { "id": "obj-throne-waves", "type": "survive-waves", "areaId": "areas/act5_throne_of_destruction", "waves": 5, "description": "Defeat Baal's five minion waves in the Throne of Destruction." },
-        { "id": "obj-kill-baal", "type": "kill-boss", "targetId": "monsters/baal", "areaId": "areas/act5_worldstone_chamber", "description": "Slay Baal." }
+        {
+          "id": "obj-throne-waves",
+          "type": "survive-waves",
+          "areaId": "areas/act5-throne-of-destruction",
+          "waves": 5,
+          "description": "Defeat Baal's five minion waves in the Throne of Destruction."
+        },
+        {
+          "id": "obj-kill-baal",
+          "type": "kill-boss",
+          "targetId": "monsters/act5.baal",
+          "areaId": "areas/act5-throne-of-destruction",
+          "description": "Slay Baal."
+        }
       ],
-      "rewards": { "xp": 40000, "skillPoints": 0, "lootTable": "loot/baal-q", "title": "titles/slayer_of_baal" },
+      "rewards": {
+        "xp": 40000,
+        "skillPoints": 0,
+        "lootTable": {
+          "tableId": "loot/baal-q",
+          "ilvl": 82,
+          "picks": 5
+        },
+        "title": "titles/slayer_of_baal"
+      },
       "unlocks": "difficulty/nightmare",
       "order": 24
     }

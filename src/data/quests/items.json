@@ -176,6 +176,24 @@
       "targetId": "objects/hellforge_hammer_cache",
       "requiredActionSource": "quests/act4-hellforge#action:hephasto-victory",
       "consumeActionId": "actions/act4-shatter-soulstone"
+    },
+    {
+      "id": "quest/malahs_potion",
+      "sourceQuestId": "quests/act5-prison-of-ice",
+      "kind": "action",
+      "sourceActionId": "actions/act5-receive-malah-potion",
+      "consumeActionId": "actions/act5-thaw-anya",
+      "nameKey": "inventory:questItems.malahsPotion.name",
+      "descKey": "inventory:questItems.malahsPotion.description"
+    },
+    {
+      "id": "items/scroll_of_resist",
+      "sourceQuestId": "quests/act5-prison-of-ice",
+      "nameKey": "inventory:questItems.scrollOfResistance.name",
+      "descKey": "inventory:questItems.scrollOfResistance.description",
+      "effect": {
+        "allResist": 10
+      }
     }
   ]
 }

@@ -1,10 +1,10 @@
-import { assertIronGolemOwnershipMutationAllowed } from '@/stores/waveTransitionGuard';
+import { beginQuestTransaction, endQuestTransaction, assertIronGolemOwnershipMutationAllowed } from '@/stores/waveTransitionGuard';
 import { usePlayerStore } from '@/stores/playerStore';
 import { useCombatStore } from '@/stores/combatStore';
 import { useInventoryStore } from '@/stores/inventoryStore';
 import { useMapStore } from '@/stores/mapStore';
 import { hasActiveSubAreaRun } from '@/stores/combatHelpers';
-import { isReplacingSave, useHydrationStore } from '@/stores/persistence';
+import { isReplacingSave, useHydrationStore, resumeWaveDeferredSave } from '@/stores/persistence';
 import { assertRecordedWaveNewTransitionAllowed } from '@/stores/recordedWaveAccess';
 import { validateQuestItemLedger } from '@/engine/save/validate';
 import type { QuestActionReceipts, QuestItemLedger } from '@/engine/types/save';
@@ -17,8 +17,12 @@ let inProgress = false;
 export function withQuestTransaction<T>(operation: () => T): T | 'claim-in-progress' {
   assertIronGolemOwnershipMutationAllowed();
   if (inProgress) return 'claim-in-progress';
+  const lease = beginQuestTransaction();
   inProgress = true;
-  try { return operation(); } finally { inProgress = false; }
+  try { return operation(); } finally {
+    inProgress = false;
+    if (endQuestTransaction(lease)) resumeWaveDeferredSave();
+  }
 }
 
 /** Shared live readiness check for explicit world-item actions; typed wave refusals propagate. */

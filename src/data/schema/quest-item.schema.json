@@ -62,6 +62,9 @@
                 "minimum": 1,
                 "maximum": 9007199254740991,
                 "description": "Permanent maximum Life granted by actual once-only Read; does not heal."
+              },
+              "allResist": {
+                "const": 10
               }
             },
             "oneOf": [
@@ -80,6 +83,14 @@
                 "properties": {
                   "maxLife": {}
                 }
+              },
+              {
+                "required": [
+                  "allResist"
+                ],
+                "properties": {
+                  "allResist": {}
+                }
               }
             ],
             "maxProperties": 1
@@ -91,7 +102,8 @@
               "assembled",
               "delivery",
               "retained",
-              "encounter"
+              "encounter",
+              "action"
             ],
             "description": "Objective-sourced retained tool, recipe ingredient, or assembled quest key."
           },
@@ -144,10 +156,10 @@
             "minLength": 1
           },
           "consumeActionId": {
-            "description": "Exact finite item action consuming this assembled output, exclusive with an objective consumer.",
             "enum": [
               "actions/act3-break-compelling-orb",
-              "actions/act4-shatter-soulstone"
+              "actions/act4-shatter-soulstone",
+              "actions/act5-thaw-anya"
             ]
           },
           "outputItemId": {
@@ -157,6 +169,9 @@
           },
           "targetId": {
             "const": "objects/hellforge_hammer_cache"
+          },
+          "sourceActionId": {
+            "const": "actions/act5-receive-malah-potion"
           }
         },
         "oneOf": [
@@ -178,7 +193,8 @@
               "requiresAreaClear": false,
               "requiredActionSource": false,
               "outputItemId": false,
-              "targetId": false
+              "targetId": false,
+              "sourceActionId": false
             }
           },
           {
@@ -201,7 +217,8 @@
               "requiresAreaClear": false,
               "requiredActionSource": false,
               "outputItemId": false,
-              "targetId": false
+              "targetId": false,
+              "sourceActionId": false
             }
           },
           {
@@ -225,7 +242,8 @@
               "consumeObjectiveId": false,
               "consumeActionId": false,
               "outputItemId": false,
-              "targetId": false
+              "targetId": false,
+              "sourceActionId": false
             }
           },
           {
@@ -249,7 +267,8 @@
               "targetId": false,
               "consumeActionId": {
                 "const": "actions/act3-break-compelling-orb"
-              }
+              },
+              "sourceActionId": false
             },
             "oneOf": [
               {
@@ -298,7 +317,8 @@
               },
               "requiresAreaClear": false,
               "outputItemId": false,
-              "targetId": false
+              "targetId": false,
+              "sourceActionId": false
             }
           },
           {
@@ -320,7 +340,8 @@
               "consumeActionId": false,
               "requiresAreaClear": false,
               "requiredActionSource": false,
-              "targetId": false
+              "targetId": false,
+              "sourceActionId": false
             }
           },
           {
@@ -371,6 +392,43 @@
               },
               "consumeActionId": {
                 "const": "actions/act4-shatter-soulstone"
+              },
+              "sourceActionId": false
+            }
+          },
+          {
+            "required": [
+              "kind",
+              "sourceActionId",
+              "consumeActionId"
+            ],
+            "properties": {
+              "effect": false,
+              "sourceObjectiveId": false,
+              "consumedBy": false,
+              "requiresAreaClear": false,
+              "requiredActionSource": false,
+              "recipe": false,
+              "requiredTool": false,
+              "ingredients": false,
+              "consumeQuestId": false,
+              "consumeObjectiveId": false,
+              "outputItemId": false,
+              "targetId": false,
+              "id": {
+                "const": "quest/malahs_potion"
+              },
+              "sourceQuestId": {
+                "const": "quests/act5-prison-of-ice"
+              },
+              "kind": {
+                "const": "action"
+              },
+              "sourceActionId": {
+                "const": "actions/act5-receive-malah-potion"
+              },
+              "consumeActionId": {
+                "const": "actions/act5-thaw-anya"
               }
             }
           }

@@ -1,3 +1,8 @@
+import type { CampaignMapSaveData } from '@/engine/types/save';
+import { ACT5_ENCOUNTERS, PRISON_QUEST } from '@/engine/map/act5-admission';
+import { THAW_PROOF } from '@/engine/save/act5-state';
+import { validateQuestItemLedger } from '@/engine/save/validate';
+import { useInventoryStore } from './inventoryStore';
 import { ACT4_ENCOUNTERS } from '@/engine/map/act4-admission';
 /**
  * Map store
@@ -18,7 +23,7 @@ import { GUARDIAN_QUEST_ID } from '@/engine/map/guardian-admission';
 
 type QuestProgress = InteractionProgress;
 
-interface MapState {
+interface MapState extends Pick<CampaignMapSaveData, 'questTitles' | 'questDifficulties' | 'selectedTitle' | 'selectedDifficulty' | 'nightmareClearedSubAreas' | 'challengeOrdinals'> {
   currentAct: number;
   currentSubAreaId: string | null;
   discoveredAreas: string[];
@@ -76,7 +81,9 @@ const initialState = {
   discoveredAreas: [] as string[],
   clearedSubAreas: [] as string[],
   questProgress: {} as Record<string, QuestProgress>,
-  questReceipts: {} as QuestActionReceipts
+  questReceipts: {} as QuestActionReceipts,
+  questTitles: {}, questDifficulties: {}, selectedTitle: null, selectedDifficulty: 'normal' as const,
+  nightmareClearedSubAreas: [] as string[], challengeOrdinals: { normal: 0, nightmare: 0 }
 };
 
 export const useMapStore = create<MapState>((set, get) => ({
@@ -171,6 +178,11 @@ export const useMapStore = create<MapState>((set, get) => ({
   isCleared: (subAreaId) => get().clearedSubAreas.includes(subAreaId),
 
   recordNpcTalk: (npcId) => { set((state) => {
+    if (npcId === 'npc/anya' && (state.currentAct !== 5 || !Object.hasOwn(state.questReceipts, THAW_PROOF))) return state;
+    if (npcId === 'npc/anya') {
+      try { validateQuestItemLedger(useInventoryStore.getState().questItems, state.questProgress, state.questReceipts); }
+      catch { return state; }
+    }
     if (!loadTownNpcs(state.currentAct).some((npc) => npc.id === npcId)) return state;
     let questProgress = state.questProgress;
     for (const quest of loadQuests()) {
@@ -202,7 +214,7 @@ export const useMapStore = create<MapState>((set, get) => ({
     let questProgress = state.questProgress;
     for (const quest of loadQuests()) {
       // Guardian needs the accepted original post-Orb settlement, beyond event metadata.
-      if (quest.id === GUARDIAN_QUEST_ID || ACT4_ENCOUNTERS.some(row => row.questId === quest.id)) continue;
+      if (quest.id === GUARDIAN_QUEST_ID || (ACT4_ENCOUNTERS.some(row => row.questId === quest.id) || ACT5_ENCOUNTERS.some(row => row.questId === quest.id))) continue;
       if (quest.actId !== event.actId) continue;
       const progress = state.questProgress[quest.id];
       if (progress?.status !== 'inProgress' || progress.rewardClaimed) continue;
@@ -232,7 +244,7 @@ export const useMapStore = create<MapState>((set, get) => ({
     const current = resolveSubArea(state.currentAct, state.currentSubAreaId);
     if (event.actId !== `acts/act${String(state.currentAct)}` || current?.actId !== event.actId ||
       current.id !== event.areaId) return state;
-    const questProgress = applyObjectInteraction(loadQuests(), subAreas, state.questProgress, event);
+    const questProgress = applyObjectInteraction(loadQuests().filter(quest => quest.id !== PRISON_QUEST), subAreas, state.questProgress, event);
     return questProgress === state.questProgress ? state : { questProgress };
   }); },
 
@@ -240,7 +252,7 @@ export const useMapStore = create<MapState>((set, get) => ({
     let questProgress = state.questProgress;
     const targets = new Set(event.archetypeIds);
     for (const quest of loadQuests()) {
-      if (ACT4_ENCOUNTERS.some(row => row.questId === quest.id)) continue;
+      if ((ACT4_ENCOUNTERS.some(row => row.questId === quest.id) || ACT5_ENCOUNTERS.some(row => row.questId === quest.id))) continue;
       if (quest.actId !== event.actId) continue;
       const progress = state.questProgress[quest.id];
       if (progress?.status !== 'inProgress' || progress.rewardClaimed) continue;

@@ -7,6 +7,7 @@ import { subAreas } from '../index';
 import { questObjectivePrerequisites } from '../../engine/map/questStages';
 import { loadTownNpcs } from './towns';
 import { loadQuestActions, questActionInputs } from './quest-actions';
+import { act5Runtime } from './act5-runtime';
 
 /** A unique quest reward entitlement and its one-time Read effect. */
 interface QuestItemBase {
@@ -20,8 +21,9 @@ interface QuestItemBase {
 export interface ReadQuestItemDef extends QuestItemBase {
   readonly kind?: never;
   readonly sourceObjectiveId?: never;
-  readonly effect: { readonly skillPoints: number; readonly maxLife?: never }
-    | { readonly maxLife: number; readonly skillPoints?: never };
+  readonly effect: { readonly skillPoints: number; readonly maxLife?: never; readonly allResist?: never }
+    | { readonly maxLife: number; readonly skillPoints?: never; readonly allResist?: never }
+    | { readonly allResist: 10; readonly skillPoints?: never; readonly maxLife?: never };
 }
 
 /** An actual retained reward with a closed optional consumer; never a Read effect. */
@@ -82,14 +84,28 @@ export interface AssembledQuestItemDef extends QuestItemBase {
   readonly effect?: never;
 }
 
+/** The one exact NPC-issued potion, bound to its receive action rather than an objective. */
+export interface ActionQuestItemDef extends QuestItemBase {
+  readonly kind: 'action';
+  readonly sourceActionId: 'actions/act5-receive-malah-potion';
+  readonly consumeActionId: 'actions/act5-thaw-anya';
+  readonly sourceObjectiveId?: never;
+  readonly effect?: never;
+}
+
 export type ObjectiveQuestItemDef = QuestEncounterItemDef | QuestToolDef | QuestComponentDef | QuestDeliveryDef | AssembledQuestItemDef;
-export type QuestItemDef = ReadQuestItemDef | RetainedQuestItemDef | ObjectiveQuestItemDef;
+export type QuestItemDef = ReadQuestItemDef | RetainedQuestItemDef | ActionQuestItemDef | ObjectiveQuestItemDef;
 
 const ajv = new Ajv2020({ strict: true, allErrors: true });
 const validate = ajv.compile<{ readonly items: readonly QuestItemDef[] }>(schema);
 
 /** Canonical source identity, independent of gear instances and allocation sequences. */
 export function questItemSource(item: QuestItemDef): string {
+  if (item.kind === 'action') {
+    const action = act5Runtime.actions.find(row => row.id === item.sourceActionId);
+    if (!action) throw new Error('Missing bound potion source');
+    return action.receiptSource;
+  }
   return item.kind !== undefined && item.kind !== 'retained'
     ? `${item.sourceQuestId}#objective:${item.sourceObjectiveId}`
     : `${item.sourceQuestId}#reward:questItem`;
@@ -123,7 +139,13 @@ export function loadQuestItems(): readonly QuestItemDef[] {
       throw new Error('quests/items.json: duplicate quest item or source');
     }
     const quest = quests.find(row => row.id === item.sourceQuestId);
-    if (item.kind !== undefined && item.kind !== 'retained') {
+    if (item.kind === 'action') {
+      if (item.id !== 'quest/malahs_potion' || item.sourceQuestId !== 'quests/act5-prison-of-ice' ||
+        !act5Runtime.actions.some(action => action.id === item.sourceActionId && action.kind === 'potion') ||
+        !act5Runtime.actions.some(action => action.id === item.consumeActionId && action.kind === 'thaw')) {
+        throw new Error('quests/items.json: invalid bound potion actions');
+      }
+    } else if (item.kind !== undefined && item.kind !== 'retained') {
       const objective = exactObjective(quest, item.sourceObjectiveId);
       if (!quest || !objective || (item.kind === 'assembled'
         ? objective.type !== 'transmute' || objective.recipe !== item.recipe
@@ -138,6 +160,10 @@ export function loadQuestItems(): readonly QuestItemDef[] {
       }
     } else if (!quest?.rewards || !Object.hasOwn(quest.rewards, 'questItem') || quest.rewards.questItem !== item.id) {
       throw new Error(`quests/items.json: reward/source mismatch for ${item.id}`);
+    }
+    if (item.kind === undefined && item.effect.allResist !== undefined &&
+      (item.id !== 'items/scroll_of_resist' || item.sourceQuestId !== 'quests/act5-prison-of-ice')) {
+      throw new Error('quests/items.json: invalid resistance scroll source');
     }
     // The closed schema pins the retained proof to Orb; its owner must also match.
     if (item.kind === 'retained' && !actions.some(action => action.questId === item.sourceQuestId)) {

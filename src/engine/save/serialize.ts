@@ -13,6 +13,8 @@ import {
   type InventorySaveData,
   type QuestItemLedger,
   type QuestActionReceipts,
+  type CampaignMapSaveData,
+  type ServiceInventorySaveData,
   type MercSaveData,
   type MapSaveData,
   type MetaSaveData,
@@ -23,9 +25,9 @@ import type { Player } from '../types/entities';
 /** Inputs required to assemble a {@link SaveCurrent}. */
 export interface BuildSaveInput {
   readonly player: Player;
-  readonly inventory: InventorySaveData & { readonly questItems?: QuestItemLedger };
+  readonly inventory: InventorySaveData & { readonly questItems?: QuestItemLedger } & Partial<Pick<ServiceInventorySaveData, 'questServices' | 'legacyGearQuarantine'>>;
   readonly mercs: MercSaveData;
-  readonly map: MapSaveData & { readonly questReceipts?: QuestActionReceipts };
+  readonly map: MapSaveData & { readonly questReceipts?: QuestActionReceipts } & Partial<Pick<CampaignMapSaveData, 'questTitles' | 'questDifficulties' | 'selectedTitle' | 'selectedDifficulty' | 'nightmareClearedSubAreas' | 'challengeOrdinals'>>;
   readonly meta: MetaSaveData;
   readonly formation: FormationPreferences;
   readonly timestamp?: number;
@@ -42,9 +44,10 @@ export function buildSave(input: BuildSaveInput): SaveCurrent {
     version: CURRENT_SAVE_VERSION,
     timestamp: input.timestamp ?? Date.now(),
     player: input.player,
-    inventory: { ...input.inventory, questItems },
+    inventory: { questServices: {}, legacyGearQuarantine: [], ...input.inventory, questItems },
     mercs: input.mercs,
-    map: { ...input.map, questReceipts },
+    map: { questTitles: {}, questDifficulties: {}, selectedTitle: null, selectedDifficulty: 'normal',
+      nightmareClearedSubAreas: [], challengeOrdinals: { normal: 0, nightmare: 0 }, ...input.map, questReceipts },
     meta: input.meta,
     formation: input.formation
   };

@@ -1,5 +1,5 @@
 /** Process-local wave ownership only; receipt-specific boundaries are caller-owned. */
-export type WaveGuardRefusal = 'waveBusy' | 'restorePending' | 'hydrationNotReady' | 'invalidLease' | 'itemDebitBusy';
+export type WaveGuardRefusal = 'waveBusy' | 'restorePending' | 'hydrationNotReady' | 'invalidLease' | 'itemDebitBusy' | 'questBusy';
 
 /** Stable typed refusal for supported guarded actions and invalid lease use. */
 export class WaveGuardError extends Error {
@@ -20,10 +20,14 @@ let activeWave: WaveTransitionLease | null = null;
 const restores = new Set<WaveRestoreLease>();
 let deferredSave = false;
 let itemDebitActive = false;
+const questBrand = Symbol('questTransaction');
+export interface QuestTransactionLease { readonly [questBrand]: true }
+let activeQuest: QuestTransactionLease | null = null;
 
 /** Acquire exclusive synchronous wave ownership; caller must release in finally. */
 export function beginWaveTransition(hydrationReady: boolean): WaveTransitionLease {
   if (activeWave) throw new WaveGuardError('waveBusy');
+  if (activeQuest) throw new WaveGuardError('questBusy');
   if (restores.size > 0) throw new WaveGuardError('restorePending');
   if (!hydrationReady) throw new WaveGuardError('hydrationNotReady');
   activeWave = Object.freeze({ [waveBrand]: true as const });
@@ -43,6 +47,7 @@ export function endWaveTransition(lease: WaveTransitionLease): boolean {
 /** Reserve restore ownership synchronously; retain it through installation/failure cleanup. */
 export function reserveWaveRestore(): WaveRestoreLease {
   if (activeWave) throw new WaveGuardError('waveBusy');
+  if (activeQuest) throw new WaveGuardError('questBusy');
   const lease = Object.freeze({ [restoreBrand]: true as const });
   restores.add(lease);
   return lease;
@@ -66,12 +71,13 @@ export function assertWaveRestoreOwner(lease: WaveRestoreLease): void {
 /** Refuse snapshots during synchronous transitions or unresolved restore ownership. */
 export function assertWaveSnapshotAllowed(): void {
   if (activeWave) throw new WaveGuardError('waveBusy');
+  if (activeQuest) throw new WaveGuardError('questBusy');
   if (restores.size > 0) throw new WaveGuardError('restorePending');
 }
 
 /** Coalesce save scheduling only while busy; the release caller performs the normal wake. */
 export function deferWaveSaveIfBusy(): boolean {
-  if (!activeWave) return false;
+  if (!activeWave && !activeQuest) return false;
   deferredSave = true;
   return true;
 }
@@ -93,4 +99,22 @@ export function endIronGolemDebit(lease: WaveTransitionLease): void {
 /** Supported ownership-changing actions must call this before reading or writing items. */
 export function assertIronGolemOwnershipMutationAllowed(): void {
   if (itemDebitActive) throw new WaveGuardError('itemDebitBusy');
+}
+
+/** Hold snapshot/restore exclusion across every quest publication and rollback attempt. */
+export function beginQuestTransaction(): QuestTransactionLease {
+  assertIronGolemOwnershipMutationAllowed();
+  if (activeQuest) throw new WaveGuardError('questBusy');
+  if (restores.size > 0) throw new WaveGuardError('restorePending');
+  activeQuest = Object.freeze({ [questBrand]: true as const });
+  return activeQuest;
+}
+/** Release the exact owner; an outer accepted-wave transition retains save deferral. */
+export function endQuestTransaction(lease: QuestTransactionLease): boolean {
+  if (lease !== activeQuest) throw new WaveGuardError('invalidLease');
+  activeQuest = null;
+  if (activeWave) return false;
+  const wakeSave = deferredSave;
+  deferredSave = false;
+  return wakeSave;
 }

@@ -103,7 +103,7 @@ function buildStoreSnapshot(now: number, projectBonus: boolean): SaveCurrent | n
       stash: inv.stash,
       equipped: inv.equipped,
       currencies: inv.currencies,
-      questItems: inv.questItems
+      questItems: inv.questItems, questServices: inv.questServices, legacyGearQuarantine: inv.legacyGearQuarantine
     },
     mercs: {
       ownedMercs: merc.ownedMercs,
@@ -117,7 +117,10 @@ function buildStoreSnapshot(now: number, projectBonus: boolean): SaveCurrent | n
       discoveredAreas: map.discoveredAreas,
       clearedSubAreas: map.clearedSubAreas,
       questProgress: map.questProgress,
-      questReceipts: map.questReceipts
+      questReceipts: map.questReceipts,
+      questTitles: map.questTitles, questDifficulties: map.questDifficulties, selectedTitle: map.selectedTitle,
+      selectedDifficulty: map.selectedDifficulty, nightmareClearedSubAreas: map.nightmareClearedSubAreas,
+      challengeOrdinals: map.challengeOrdinals
     },
     meta: {
       settings: meta.settings,
@@ -366,7 +369,8 @@ function applySaveToStores(data: SaveCurrent, idleBonusAnchor: number, lease: Wa
     stash: [...data.inventory.stash],
     equipped: { ...data.inventory.equipped },
     currencies: { ...data.inventory.currencies },
-    questItems: { ...data.inventory.questItems }
+    questItems: { ...data.inventory.questItems },
+    questServices: { ...data.inventory.questServices }, legacyGearQuarantine: [...data.inventory.legacyGearQuarantine]
   });
   useMercStore.setState({
     ownedMercs: [...data.mercs.ownedMercs],
@@ -380,7 +384,10 @@ function applySaveToStores(data: SaveCurrent, idleBonusAnchor: number, lease: Wa
     discoveredAreas: [...data.map.discoveredAreas],
     clearedSubAreas: [...data.map.clearedSubAreas],
     questProgress: { ...data.map.questProgress },
-    questReceipts: { ...data.map.questReceipts }
+    questReceipts: { ...data.map.questReceipts },
+    questTitles: { ...data.map.questTitles }, questDifficulties: { ...data.map.questDifficulties },
+    selectedTitle: data.map.selectedTitle, selectedDifficulty: data.map.selectedDifficulty,
+    nightmareClearedSubAreas: [...data.map.nightmareClearedSubAreas], challengeOrdinals: { ...data.map.challengeOrdinals }
   });
   useMetaStore.setState({
     settings: data.meta.settings,
