@@ -1,6 +1,6 @@
 # BUG-103 — Accept valid absent unclaimed flags in Act IV browser checks
 
-Status: reproduced; harness correction pending verification.
+Status: fixed in `409f091`; complete production flow verified.
 Severity: Low (test harness; no observed player-facing defect).
 Owner: root / QA.
 
@@ -35,3 +35,12 @@ optional reward flag is not true at each unclaimed boundary; keep exact XP,
 once-only Claim and duplicate-refusal assertions. The same false assumption
 appears at Forge and Diablo boundaries and is corrected together. Verify the
 complete production flow before marking fixed.
+
+## Verification
+
+The corrected desktop rerun passes2/2. The final frozen production matrix at
+`e6474b7` passes10/10, en/zh-CN at all five sizes, retry0/skips0/errors[].
+Actual unclaimed receipts, exact rewards, once-only Claim and staged
+Save-close-new-page Continue pass. Source2545/build760 hashes remain unchanged.
+Independent QA approves the narrow functional evidence; no product fix was
+needed. [Delivery evidence](../../docs/plans/evidence/act4-main-flows.md).

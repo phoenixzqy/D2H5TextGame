@@ -1,6 +1,6 @@
 # BUG-104 — Align closed data expectations with the Act IV contract
 
-Status: correction verified; fix commit recorded in the Act IV delivery evidence.
+Status: fixed in `54d2648`; correction verified.
 Severity: Low (test assertions; no observed player-facing defect).
 Owner: root / QA.
 
