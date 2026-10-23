@@ -325,8 +325,8 @@ function validateV11Save(value: unknown): void {
   }
 }
 
-/** Validate untrusted ledger/progress structure and canonical entitlements without store reads or repair. */
-export function validateQuestItemLedger(questItems: unknown, questProgress: unknown): QuestItemLedger {
+/** Validate raw JSON records before generic normalization can erase invalid prototypes. */
+function ledgerContext(questItems: unknown, questProgress: unknown): LedgerContext {
   // Generic save normalization must not erase a Date, Map or inherited receipt.
   const plainRecord = (value: unknown): value is Record<string, unknown> => {
     if (!record(value)) return false;
@@ -342,7 +342,12 @@ export function validateQuestItemLedger(questItems: unknown, questProgress: unkn
   if (!validateLedgerContext(context)) {
     throw new Error(`Invalid save: ${ajv.errorsText(validateLedgerContext.errors)}`);
   }
-  const validated = context as LedgerContext;
+  return context as LedgerContext;
+}
+
+/** Validate untrusted ledger/progress structure and canonical entitlements without store reads or repair. */
+export function validateQuestItemLedger(questItems: unknown, questProgress: unknown): QuestItemLedger {
+  const validated = ledgerContext(questItems, questProgress);
   const entries = Object.entries(validated.questItems);
   if (entries.length === 0) return validated.questItems;
   const definitions = loadQuestItems();
@@ -355,13 +360,49 @@ export function validateQuestItemLedger(questItems: unknown, questProgress: unkn
     }
     const progress = validated.questProgress[definition.sourceQuestId];
     const quest = quests.find(row => row.id === definition.sourceQuestId);
-    if (!quest || progress?.id !== definition.sourceQuestId || progress.status !== 'completed' ||
+    if (definition.kind === 'tool') {
+      const index = quest?.objectives.findIndex(objective => objective.id === definition.sourceObjectiveId) ?? -1;
+      if (!quest || index < 0 || progress?.id !== definition.sourceQuestId || entry.state !== 'owned' ||
+        (progress.status !== 'inProgress' && progress.status !== 'completed') ||
+        (progress.rewardClaimed === true && progress.status !== 'completed') ||
+        !quest.objectives.slice(0, index + 1).every(objective =>
+          Object.hasOwn(progress.objectives, objective.id) && progress.objectives[objective.id] === true) ||
+        (progress.status === 'completed' && !quest.objectives.every(objective =>
+          Object.hasOwn(progress.objectives, objective.id) && progress.objectives[objective.id] === true))) {
+        throw new Error('Invalid save: retained tool requires its completed objective source');
+      }
+    } else if (!quest || progress?.id !== definition.sourceQuestId || progress.status !== 'completed' ||
       progress.rewardClaimed !== true || !quest.objectives.every(objective =>
         Object.hasOwn(progress.objectives, objective.id) && progress.objectives[objective.id] === true)) {
       throw new Error('Invalid save: quest item source must be completed and claimed');
     }
   }
   return validated.questItems;
+}
+
+// v12 admitted only the Radament Book. Keep this closed historical domain
+// independent of future live definitions, objectives and reward additions.
+const validateV12 = ajv.compile(saveSchema({ const: 12 }, unitProperties, {
+  selectedAuraId: { enum: ['paladin.might', 'paladin.meditation'] }
+}, { questItems: questItemLedgerSchema }));
+
+function validateV12Save(value: unknown): void {
+  if (!record(value) || !record(value.inventory) || !record(value.map)) throw new Error('Invalid save: v12 structure');
+  const context = ledgerContext(value.inventory.questItems, value.map.questProgress);
+  for (const [source, entry] of Object.entries(context.questItems)) {
+    const id = 'quests/act2-radaments-lair';
+    const progress = context.questProgress[id];
+    if (source !== `${id}#reward:questItem` || entry.itemId !== 'items/book_of_skill' ||
+      !Object.hasOwn(context.questProgress, id) || progress?.id !== id ||
+      progress.status !== 'completed' || progress.rewardClaimed !== true ||
+      !Object.hasOwn(progress.objectives, 'obj-kill-radament') || progress.objectives['obj-kill-radament'] !== true) {
+      throw new Error('Invalid save: unsupported v12 quest item source');
+    }
+  }
+  const normalized = normalizeMaps(value);
+  rejectUndefinedMagicResist(normalized);
+  rejectUndefinedSelection(normalized);
+  if (!validateV12(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(validateV12.errors)}`);
 }
 
 /** Validate a migrated save before any IO or store mutation. Preserves optional fields. */
@@ -415,6 +456,8 @@ export function decodeSave(value: unknown): SaveCurrent {
   if (input.version === 10) validateV10Save(input);
   if (input.version < 11) input = runMigrations(input, 11);
   if (input.version === 11) validateV11Save(input);
+  if (input.version < 12) input = runMigrations(input, 12);
+  if (input.version === 12) validateV12Save(input);
   const save = validateSave(runMigrations(input));
   return repairEquipmentRateCache({
     ...save,

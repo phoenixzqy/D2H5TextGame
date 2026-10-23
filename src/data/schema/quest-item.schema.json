@@ -5,40 +5,100 @@
   "description": "Capacity-independent, source-bound quest items and their authored Read effects.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["items"],
+  "required": [
+    "items"
+  ],
   "properties": {
-    "$schema": { "type": "string", "description": "Optional authoring schema reference." },
+    "$schema": {
+      "type": "string",
+      "description": "Optional authoring schema reference."
+    },
     "items": {
       "type": "array",
       "description": "Unique item and source quest pairs; cross-references are checked by the loader.",
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "sourceQuestId", "nameKey", "descKey", "effect"],
+        "required": [
+          "id",
+          "sourceQuestId",
+          "nameKey",
+          "descKey"
+        ],
         "properties": {
           "id": {
-            "type": "string", "pattern": "^(quest|items)/[a-z0-9][a-z0-9._-]*$",
+            "type": "string",
+            "pattern": "^(quest|items)/[a-z0-9][a-z0-9._-]*$",
             "description": "Quest item definition identity; this does not identify equippable gear."
           },
           "sourceQuestId": {
-            "type": "string", "pattern": "^quests/[a-z0-9][a-z0-9._-]*$",
-            "description": "The sole quest whose questItem reward may issue this entitlement."
+            "type": "string",
+            "pattern": "^quests/[a-z0-9][a-z0-9._-]*$",
+            "description": "Quest containing the issuing reward or explicitly named fetch objective."
           },
-          "nameKey": { "type": "string", "minLength": 1, "description": "Localized item name key." },
-          "descKey": { "type": "string", "minLength": 1, "description": "Localized effect description key." },
+          "nameKey": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Localized item name key."
+          },
+          "descKey": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Localized effect description key."
+          },
           "effect": {
             "type": "object",
             "description": "Read effect, applied once when the entitlement is consumed.",
             "additionalProperties": false,
-            "required": ["skillPoints"],
+            "required": [
+              "skillPoints"
+            ],
             "properties": {
               "skillPoints": {
-                "type": "integer", "minimum": 1, "maximum": 9007199254740991,
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9007199254740991,
                 "description": "Authored positive safe-integer unspent skill points granted by Read."
               }
             }
+          },
+          "kind": {
+            "const": "tool",
+            "description": "Retained objective-sourced tool without a Read effect."
+          },
+          "sourceObjectiveId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Exact fetch objective that issues this tool; together with sourceQuestId forms its unique source."
           }
-        }
+        },
+        "oneOf": [
+          {
+            "required": [
+              "effect"
+            ],
+            "properties": {
+              "effect": {},
+              "kind": false,
+              "sourceObjectiveId": false
+            }
+          },
+          {
+            "required": [
+              "kind",
+              "sourceObjectiveId"
+            ],
+            "properties": {
+              "kind": {
+                "const": "tool"
+              },
+              "sourceObjectiveId": {
+                "type": "string"
+              },
+              "effect": false
+            }
+          }
+        ]
       }
     }
   }

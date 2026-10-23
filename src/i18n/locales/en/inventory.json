@@ -6,6 +6,11 @@
     "empty": "No quest items yet.",
     "read": "Read",
     "consumed": "Already read",
+    "owned": "Owned",
+    "horadricCube": {
+      "name": "Horadric Cube",
+      "description": "Retained tool for Horadric transmutation. Bound to this character."
+    },
     "bookOfSkill": {
       "name": "Book of Skill",
       "description": "Read once to gain {{skillPoints}} skill point."

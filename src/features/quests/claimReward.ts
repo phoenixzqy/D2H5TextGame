@@ -9,7 +9,7 @@ import { loadAwardPools } from '@/data/loaders/loot';
 import { rollUniqueItem, type RollUniqueItemInput } from '@/engine/loot/rollItem';
 import { createRng, hashSeed } from '@/engine/rng';
 import type { Item } from '@/engine/types/items';
-import { assertIronGolemOwnershipMutationAllowed } from '@/stores/waveTransitionGuard';
+import { withQuestTransaction } from './questTransaction';
 import { loadQuestItems, questItemSource } from '@/data/loaders/quest-items';
 import { validateQuestItemLedger } from '@/engine/save/validate';
 import { awardXp, LEVEL_CAP, xpTotal } from '@/engine/progression/xp';
@@ -48,16 +48,6 @@ export function canClaim(questId: string): boolean {
   if (progress.rewardClaimed) return false;
   const quest = findQuest(questId);
   return Boolean(quest?.rewards && Object.keys(quest.rewards).length > 0);
-}
-
-// Shared by Claim and Read: nested grants must not be erased by rollback.
-let claimInProgress = false;
-
-function withQuestTransaction<T>(operation: () => T): T | 'claim-in-progress' {
-  assertIronGolemOwnershipMutationAllowed();
-  if (claimInProgress) return 'claim-in-progress';
-  claimInProgress = true;
-  try { return operation(); } finally { claimInProgress = false; }
 }
 
 function safeCount(value: number): boolean {
@@ -133,7 +123,7 @@ export function claimQuestReward(questId: string): ClaimResult {
       if (kind === 'questItem') {
         try {
           const definition = loadQuestItems().find(row => row.id === amount && row.sourceQuestId === questId);
-          if (!definition || !Object.hasOwn(questProgress, questId)) return 'unsupported-rewards';
+          if (!definition || definition.kind === 'tool' || !Object.hasOwn(questProgress, questId)) return 'unsupported-rewards';
           const source = questItemSource(definition);
           if (Object.hasOwn(inventory.questItems, source)) return 'unsupported-rewards';
           questItems = validateQuestItemLedger({ ...inventory.questItems,
@@ -241,7 +231,7 @@ export function readQuestItem(source: string): ReadQuestItemResult {
     try {
       validateQuestItemLedger(questItems, useMapStore.getState().questProgress);
       const definition = loadQuestItems().find(row => questItemSource(row) === source);
-      if (!definition) return 'unsupported-rewards';
+      if (!definition || definition.kind === 'tool') return 'unsupported-rewards';
       if (!Object.hasOwn(questItems, source)) return 'not-owned';
       if (questItems[source]?.state === 'consumed') return 'already-consumed';
       points = definition.effect.skillPoints;

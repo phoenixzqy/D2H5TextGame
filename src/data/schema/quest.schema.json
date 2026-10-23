@@ -300,6 +300,10 @@
         },
         "areaId": {
           "$ref": "#/$defs/areaId"
+        },
+        "targetId": {
+          "$ref": "#/$defs/objectId",
+          "description": "Explicit object source for an objective-bound tool; omitted legacy fetches remain unsupported by recovery."
         }
       }
     },

@@ -20,7 +20,7 @@ import { useMapStore, useMetaStore } from '@/stores';
 import { subAreas as subAreaList, acts as actList, monsters as monsterList } from '@/data/index';
 import { ACT_GATE_BOSS_SUB_AREAS } from '@/engine/map/unlock';
 import { IdleTickerStrip } from '@/features/idle/IdleTickerStrip';
-import { areaObjectTargets, travelToAreaObjects, type ObjectActionResult } from '@/features/quests/interactObject';
+import { hasAreaObjects, travelToAreaObjects, type ObjectActionResult } from '@/features/quests/interactObject';
 import { AreaObjectsPanel } from './AreaObjectsPanel';
 import { resolveSubArea } from '@/stores/subAreaResolver';
 import { WaveGuardError } from '@/stores/waveTransitionGuard';
@@ -304,7 +304,7 @@ export function MapScreen() {
                           </span>
                         ) : (
                           <div className="flex flex-wrap gap-2">
-                            {areaObjectTargets(act.number, sa.id).length > 0 && (
+                            {hasAreaObjects(act.number, sa.id) && (
                               <button type="button"
                                 data-testid={`area-objects-${sa.alias}`}
                                 aria-expanded={selectedObjectArea === sa.id && currentArea?.id === sa.id}

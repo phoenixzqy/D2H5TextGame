@@ -6,7 +6,17 @@
       "sourceQuestId": "quests/act2-radaments-lair",
       "nameKey": "inventory:questItems.bookOfSkill.name",
       "descKey": "inventory:questItems.bookOfSkill.description",
-      "effect": { "skillPoints": 1 }
+      "effect": {
+        "skillPoints": 1
+      }
+    },
+    {
+      "id": "quest/horadric_cube",
+      "sourceQuestId": "quests/act2-horadric-staff",
+      "kind": "tool",
+      "sourceObjectiveId": "obj-cube",
+      "nameKey": "inventory:questItems.horadricCube.name",
+      "descKey": "inventory:questItems.horadricCube.description"
     }
   ]
 }

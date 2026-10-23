@@ -10537,3 +10537,24 @@ Exact disposable dist/browser outputs removed, remaining[]/failures[]; raw
 evidence retained root-owned through C2/umbrella at the path in the evidence.
 Next actual implementation is approved objective-bound Cube recovery. C0/C1
 accepted; C2 underway; C3/C4/fullG0–G7 open. Local only.
+
+
+## P14 — Explicit Horadric Cube acquisition
+
+[Evidence](evidence/cube-acquisition.md) records the complete H1 vertical path:
+ordinary Quest Start, Dry Hills Inspect and explicit Recover; inert bilingual
+Inventory, exact owned source and obj-cube only. Version13 copy migration validates
+frozen12 first, preserves Books and never backfills Cube ownership from flags.
+Shared Claim/Read/Recover lock, guards, capacity and rollback tests pass.
+Final8945tests/296files PASS194.10s; engine4304/111, types/lint/build/4chunkbridge
+PASS. Frozen812source/760build hashes match; the test-only lint correction is
+recorded. Production en/zh2/2 PASS151.956s, retry0/pageErrors[], 11viewports,
+all4057 earned gear IDs unchanged, exact five-stage Save-close-Continue/import,
+separate constructed legacy repair, no rewards/clear/unlock. Native Close/focus
+check1/1 bothlocales PASS6.677s. Producer H1 and independent QA-H1 APPROVE/security
+PASS; all readers released and handles terminal. Exact disposable dist and both
+browser outputs removed, remaining[]/failures[]; raw required evidence retained
+root-owned through H1/C2/umbrella at the exact path in the evidence document.
+Next: contract component consumption/output sources, recover shaft/amulet and
+assemble Staff; insertion/Duriel/rewards/access follow. C0/C1 historical acceptance
+retained; C2 underway; C3/C4/fullG0–G7 remain open. Local only.

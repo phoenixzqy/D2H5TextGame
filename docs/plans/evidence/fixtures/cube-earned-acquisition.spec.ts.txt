@@ -1,0 +1,93 @@
+/** Earned-prefix explicit Cube acquisition, plus separately constructed legacy compatibility. No combat. */
+import { test, expect, type Page, type BrowserContext } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/@playwright/test/index.mjs';
+import { readFile, writeFile } from 'node:fs/promises';
+import { gunzipSync, gzipSync } from 'node:zlib';
+import { createCharacter, navTo } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/tests/e2e/_helpers';
+const root='/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-cube-sytoegqp';
+const repo='/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2';
+const quest='quests/act2-horadric-staff', area='areas/act2-dry-hills', now=1792497600000;
+const fixture=repo+'/docs/plans/evidence/fixtures/act2-preparation-earned-prefix.json.gz';
+async function backup(page:Page) {
+ await navTo(page,'settings'); const pending=page.waitForEvent('download');
+ await page.getByTestId('export-save-button').click(); const download=await pending;
+ try {return JSON.parse(await readFile(await download.path(),'utf8'));} finally {await download.delete();}
+}
+async function disk(page:Page) {return page.evaluate(async()=>{
+ const db=await new Promise<IDBDatabase>((resolve,reject)=>{const req=indexedDB.open('D2H5TextGame');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});
+ try {const record=await new Promise<{data:unknown}>((resolve,reject)=>{const req=db.transaction('saves','readonly').objectStore('saves').get('current');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});return JSON.parse(JSON.stringify(record.data,(_k,v)=>v instanceof Map?[...v.entries()]:v));} finally {db.close();}
+});}
+async function importSave(page:Page, value:unknown, english:boolean) {
+ await navTo(page,'settings');const label=english?'Import Save':'导入存档';await page.getByRole('button',{name:label,exact:true}).click();
+ const dialog=page.getByRole('dialog');await dialog.getByRole('textbox').fill(JSON.stringify(value));await dialog.getByRole('button',{name:label,exact:true}).click();await expect(dialog).toHaveCount(0);
+}
+async function reopen(page:Page, context:BrowserContext, english:boolean, expected:unknown, errors:string[]) {
+ await navTo(page,'settings');await page.getByRole('button',{name:english?'Save':'保存',exact:true}).click();
+ await expect(page.getByRole('status')).toHaveText(english?'Saved':'已保存');expect(await disk(page)).toEqual(expected);expect(await backup(page)).toEqual(expected);
+ await page.close();const next=await context.newPage();next.on('pageerror',error=>errors.push(error.message));await next.clock.setFixedTime(now);await next.goto('/');await next.waitForLoadState('networkidle');
+ await next.getByTestId('home-continue').click();await expect(next.getByTestId('town-screen')).toBeVisible();expect(await backup(next)).toEqual(expected);expect(await disk(next)).toEqual(expected);return next;
+}
+const source=quest+'#objective:obj-cube';
+async function openCube(page:Page, english:boolean) {
+ await navTo(page,'map'); const toggle=page.getByRole('button',{name:english?/^Act 2 ·/:/^第 2 章 ·/});
+ if(await toggle.getAttribute('aria-expanded')!=='true')await toggle.click();
+ const trigger=page.getByTestId('area-objects-a2-dry-hills');await trigger.focus();await page.keyboard.press('Enter');
+ const panel=page.getByTestId('area-object-panel');await expect(panel).toBeVisible();
+ await expect(panel.getByRole('heading',{name:english?'Horadric Cube Coffer':'霍拉德里克方块宝匣',exact:true})).toBeVisible();
+ await expect(page.getByTestId('combat-screen')).toHaveCount(0);return panel;
+}
+async function retain(name:string,value:unknown) {await writeFile(root+'/'+name+'.json.gz',gzipSync(JSON.stringify(value)));}
+for(const locale of ['en','zh-CN'])test(`Cube earned-prefix acquisition and legacy persistence ${locale}`,async({page,context})=>{
+ const english=locale==='en',errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
+ await page.clock.setFixedTime(now);await page.goto('/');await page.waitForLoadState('networkidle');
+ await createCharacter(page,{class:'sorceress',name:'Cube acquisition'});
+ await navTo(page,'settings');await page.getByRole('button',{name:'English',exact:true}).click();
+ const original=JSON.parse(gunzipSync(await readFile(fixture)).toString('utf8'));
+ expect(original.version).toBe(12);expect(original.map.questProgress[quest]).toBeUndefined();
+ await importSave(page,original,true);expect(await backup(page)).toEqual({...original,version:13});
+ if(!english)await page.getByRole('button',{name:'简体中文',exact:true}).click();
+ await expect.poll(()=>page.evaluate(()=>navigator.serviceWorker.controller?.state),{timeout:60000}).toBe('activated');
+ expect(await page.evaluate(()=>'__GAME__' in window)).toBe(false);
+ const before=await backup(page);expect(before.inventory.backpack).toHaveLength(4042);await retain('before-'+locale,before);
+ page=await reopen(page,context,english,before,errors);
+ // Untracked Inspect is inert, then ordinary Quest Start supplies the entitlement.
+ let panel=await openCube(page,english);const recoverName=english?'Recover':'取回';
+ await expect(panel.getByRole('button',{name:recoverName,exact:true})).toBeDisabled();
+ const visited=await backup(page);expect(visited).toEqual({...before,map:{...before.map,currentSubAreaId:area}});
+ await navTo(page,'quests');const start=page.getByTestId('quest-start-'+quest);await expect(start).toBeEnabled();await start.click();
+ const progress={id:quest,status:'inProgress',objectives:{'obj-cube':false,'obj-shaft':false,'obj-amulet':false,'obj-transmute':false}};
+ const tracked=await backup(page);expect(tracked).toEqual({...visited,map:{...visited.map,questProgress:{...visited.map.questProgress,[quest]:progress}}});
+ await retain('tracked-'+locale,tracked);page=await reopen(page,context,english,tracked,errors);
+ panel=await openCube(page,english);const recover=panel.getByRole('button',{name:recoverName,exact:true});await expect(recover).toBeEnabled();
+ const sizes=[[360,640],[412,915],[640,360],[1280,800],[1920,1080],[375,667],[393,851],[768,1024],[320,640],[1024,768],[1440,900]];
+ for(const [width,height] of sizes) {
+  await page.setViewportSize({width,height});await panel.scrollIntoViewIfNeeded();
+  expect(await page.evaluate(()=>{const main=document.querySelector('main')!;return {document:document.documentElement.scrollWidth<=innerWidth,main:main.scrollWidth<=main.clientWidth};})).toEqual({document:true,main:true});
+  for(const control of [page.getByTestId('area-objects-a2-dry-hills'),recover,panel.getByTestId('area-object-close')]) {
+   const box=await control.boundingBox();expect(box?.height).toBeGreaterThanOrEqual(44);expect(box?.width).toBeGreaterThanOrEqual(44);
+  }
+ }
+ await page.setViewportSize({width:360,height:640});await recover.focus();await page.keyboard.press('Enter');await expect(recover).toBeDisabled();
+ await expect(panel).toContainText(english?'Cube recovered.':'方块已取回。');await panel.screenshot({path:root+'/recovered-'+locale+'.png'});
+ const owned=await backup(page);const expected={...tracked,inventory:{...tracked.inventory,questItems:{...tracked.inventory.questItems,[source]:{itemId:'quest/horadric_cube',state:'owned'}}},map:{...tracked.map,questProgress:{...tracked.map.questProgress,[quest]:{...progress,objectives:{...progress.objectives,'obj-cube':true}}}}};
+ expect(owned).toEqual(expected);await retain('owned-'+locale,owned);
+ await navTo(page,'inventory');const inventory=page.getByTestId('quest-items-panel');await expect(inventory).toContainText(english?'Horadric Cube':'霍拉德里克方块');
+ await expect(inventory).toContainText(english?'Owned':'已持有');await expect(inventory.getByRole('button')).toHaveCount(0);
+ await expect(inventory).not.toContainText('questItems.');await inventory.screenshot({path:root+'/inventory-'+locale+'.png'});
+ for(const [width,height] of sizes) {await page.setViewportSize({width,height});expect(await page.evaluate(()=>{const main=document.querySelector('main')!;return document.documentElement.scrollWidth<=innerWidth&&main.scrollWidth<=main.clientWidth;})).toBe(true);}
+ await page.setViewportSize({width:360,height:640});
+ page=await reopen(page,context,english,owned,errors);panel=await openCube(page,english);
+ await expect(panel.getByRole('button',{name:recoverName,exact:true})).toBeDisabled();await expect(panel).toContainText(english?'Cube recovered.':'方块已取回。');
+ await panel.getByRole('button',{name:recoverName,exact:true}).evaluate((button:HTMLButtonElement)=>button.click());expect(await backup(page)).toEqual(owned);
+ await importSave(page,tracked,english);expect(await backup(page)).toEqual(tracked);panel=await openCube(page,english);await expect(panel.getByRole('button',{name:recoverName,exact:true})).toBeEnabled();
+ await importSave(page,owned,english);expect(await backup(page)).toEqual(owned);panel=await openCube(page,english);await expect(panel.getByRole('button',{name:recoverName,exact:true})).toBeDisabled();
+ // Constructed legacy compatibility case: true flag and no item; this is not an earned campaign step.
+ const legacy={...tracked,version:12,map:{...tracked.map,questProgress:{...tracked.map.questProgress,[quest]:{...progress,objectives:{...progress.objectives,'obj-cube':true}}}}};
+ await retain('legacy-input-'+locale,legacy);await importSave(page,legacy,english);const migrated={...legacy,version:13};expect(await backup(page)).toEqual(migrated);
+ page=await reopen(page,context,english,migrated,errors);panel=await openCube(page,english);await expect(panel.getByRole('button',{name:recoverName,exact:true})).toBeEnabled();
+ await panel.getByRole('button',{name:recoverName,exact:true}).click();expect(await backup(page)).toEqual(owned);
+ page=await reopen(page,context,english,owned,errors);expect(await backup(page)).toEqual(owned);
+ await navTo(page,'map');await page.getByRole('button',{name:english?/^Act 3 ·/:/^第 3 章 ·/}).click();
+ await expect(page.getByTestId('sub-area-row-a3-spider-forest').getByRole('button',{name:english?'Enter':'进入',exact:true})).toHaveCount(0);
+ expect(errors).toEqual([]);expect(await page.evaluate(()=>'__GAME__' in window)).toBe(false);
+ await writeFile(root+'/assertions-'+locale+'.json',JSON.stringify({locale,classification:'Earned-prefix Cube acquisition; separate constructed legacy flag-only compatibility',migrationOnlyChangesVersion:true,untrackedInspectGrantsNothing:true,ordinaryQuestStart:true,explicitKeyboardRecover:true,exactOwnedReceiptAndCubeFlagOnly:true,gearIdentitiesPreserved:4057,backpackCount:4042,noRewardsClaimsClearsOrUnlocks:true,inertLocalizedInventory:true,viewports:sizes,saveCloseContinueStages:['before','tracked','owned','legacy-migrated','legacy-repaired'],exactImports:['v12-earned-input','tracked','owned','v12-legacy'],noDuplicateRecover:true,act3Locked:true,pageErrors:errors},null,2));await page.close();
+});

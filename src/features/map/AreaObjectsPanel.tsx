@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/ui';
+import { useInventoryStore } from '@/stores/inventoryStore';
+import { questItemSource } from '@/data/loaders/quest-items';
 import { useMapStore } from '@/stores/mapStore';
 import { subAreas } from '@/data/index';
 import { loadQuests } from '@/data/loaders/quests';
 import { objectInteractionStatus } from '@/engine/map/questInteractions';
-import { areaObjectTargets, interactWithAreaObject, type ObjectActionResult } from '@/features/quests/interactObject';
+import { areaObjectTargets, areaQuestTools, questToolStatus, recoverQuestTool, interactWithAreaObject, type RecoverToolResult } from '@/features/quests/interactObject';
 import { WaveGuardError } from '@/stores/waveTransitionGuard';
 import { RecordedWaveAccessError } from '@/stores/recordedWaveAccess';
 
@@ -15,7 +17,8 @@ interface Props { act: number; areaId: string; onClose: () => void }
 export function AreaObjectsPanel({ act, areaId, onClose }: Props) {
   const { t } = useTranslation(['quests', 'common']);
   const progress = useMapStore(state => state.questProgress);
-  const [failure, setFailure] = useState<ObjectActionResult | 'busy' | null>(null);
+  useInventoryStore(state => state.questItems);
+  const [failure, setFailure] = useState<RecoverToolResult | 'busy' | 'restoration-failed' | null>(null);
   return (
     <section id="area-objects" data-testid="area-object-panel" aria-labelledby="area-objects-title"
       className="w-full min-w-0 rounded border border-d2-border bg-d2-bg/60 p-3 space-y-3">
@@ -43,6 +46,27 @@ export function AreaObjectsPanel({ act, areaId, onClose }: Props) {
                   setFailure('busy');
                 }
               }}>{t('areaObjects.read')}</Button>
+          </div>
+        );
+      })}
+      {areaQuestTools(act, areaId).map(tool => {
+        const source = questItemSource(tool), status = questToolStatus(source);
+        const key = `areaObjects.tools.${tool.id.replace(/^quest\//, '')}`;
+        return (
+          <div key={source} className="space-y-2">
+            <h3 className="text-d2-white font-semibold">{t(`${key}.name`)}</h3>
+            <p role="status" className="text-sm text-d2-white/90">{t(`${key}.${status}`)}</p>
+            <Button variant="primary" className="min-h-[44px] min-w-[44px]"
+              disabled={status !== 'ready'} onClick={() => {
+                try {
+                  const result = recoverQuestTool(source);
+                  setFailure(result === 'ok' || result === 'already-owned' ? null : result);
+                } catch (error) {
+                  if (error instanceof AggregateError) setFailure('restoration-failed');
+                  else if (error instanceof WaveGuardError || error instanceof RecordedWaveAccessError) setFailure('busy');
+                  else throw error;
+                }
+              }}>{t('areaObjects.recover')}</Button>
           </div>
         );
       })}

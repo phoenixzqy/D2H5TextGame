@@ -6,6 +6,11 @@
     "empty": "尚无任务物品。",
     "read": "阅读",
     "consumed": "已阅读",
+    "owned": "已持有",
+    "horadricCube": {
+      "name": "霍拉德里克方块",
+      "description": "保留的工具，用于霍拉德里克转化，与当前角色绑定。"
+    },
     "bookOfSkill": {
       "name": "技能之书",
       "description": "阅读一次，获得 {{skillPoints}} 个技能点。"

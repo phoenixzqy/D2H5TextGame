@@ -51,6 +51,49 @@ function legacyV1(): SaveV1 {
     settings: save.meta.settings, idleState: save.meta.idleState, gachaState: save.meta.gachaState };
 }
 
+describe('v13 objective-bound retained tools', () => {
+  const staffQuest = 'quests/act2-horadric-staff';
+  const cubeSource = `${staffQuest}#objective:obj-cube`;
+  function cubeSave(state: 'owned' | 'consumed' = 'owned', flag = true) {
+    const save = sampleSave();
+    return { ...save, inventory: { ...save.inventory,
+      questItems: { [cubeSource]: { itemId: 'quest/horadric_cube', state } } },
+    map: { ...save.map, questProgress: { ...save.map.questProgress,
+      [staffQuest]: { id: staffQuest, status: 'inProgress' as const, objectives: { 'obj-cube': flag,
+        'obj-shaft': false, 'obj-amulet': false, 'obj-transmute': false } } } } };
+  }
+
+  it('preserves an owned tool and its exact objective through JSON/native decoding', () => {
+    const input = cubeSave();
+    expect(input.version).toBe(13);
+    expect(decodeSave(input)).toEqual(input);
+    expect(decodeSave(toJsonSafe(input))).toEqual(input);
+  });
+
+  it.each([['consumed', true], ['owned', false]] as const)('rejects incompatible Cube state %s / flag %s', (state, flag) => {
+    expect(() => decodeSave(cubeSave(state, flag))).toThrow('Invalid save');
+  });
+
+  it('rejects objective entitlements injected into frozen v12 before migration', () => {
+    expect(() => decodeSave({ ...cubeSave(), version: 12 })).toThrow('Invalid save');
+  });
+
+  it.each(['owned', 'consumed'])('copies the v12 Book %s receipt without grants or inference', state => {
+    const latest = withLedger({ [source]: { itemId: bookId, state } });
+    const input = { ...latest, version: 12 };
+    const before = structuredClone(input);
+    expect(MIGRATIONS[13]?.(input)).toEqual({ ...input, version: 13 });
+    expect(decodeSave(input)).toEqual({ ...input, version: 13 });
+    expect(input).toEqual(before);
+  });
+
+  it('preserves legacy true Cube flags without manufacturing a missing tool', () => {
+    const latest = cubeSave();
+    const input = { ...latest, version: 12, inventory: { ...latest.inventory, questItems: {} } };
+    expect(decodeSave(input)).toEqual({ ...input, version: 13 });
+  });
+});
+
 describe('v12 source-bound quest item ledger', () => {
   it.each([
     { label: 'Map', ledger: new Map([[source, { itemId: bookId, state: 'owned' }]]) },
@@ -66,7 +109,7 @@ describe('v12 source-bound quest item ledger', () => {
     const input = legacyV1();
     const before = structuredClone(input);
     const decoded = decodeSave(input);
-    expect(decoded.version).toBe(12);
+    expect(decoded.version).toBe(CURRENT_SAVE_VERSION);
     expect(decoded.inventory.questItems).toEqual({});
     expect(decoded.player.skillPoints).toBe(input.player.skillPoints);
     expect(input).toEqual(before);
@@ -82,7 +125,7 @@ describe('v12 source-bound quest item ledger', () => {
     }
   );
   it('emits a required empty ledger for a trusted legacy builder input', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(12);
+    expect(CURRENT_SAVE_VERSION).toBe(13);
     expect(sampleSave().inventory).toHaveProperty('questItems', {});
   });
 
@@ -153,7 +196,7 @@ describe('v12 source-bound quest item ledger', () => {
     const expected = { ...input, version: CURRENT_SAVE_VERSION,
       inventory: { ...input.inventory, questItems: {} } };
     expect(MIGRATIONS[12]).toBeDefined();
-    expect(MIGRATIONS[12]?.(input)).toEqual(expected);
+    expect(MIGRATIONS[12]?.(input)).toEqual({ ...expected, version: 12 });
     expect(decodeSave(input)).toEqual(expected);
     expect(input).toEqual(original);
   });

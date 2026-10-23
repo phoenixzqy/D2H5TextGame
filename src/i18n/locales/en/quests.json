@@ -20,8 +20,17 @@
     "title": "Area Objects",
     "inspect": "Inspect",
     "read": "Read",
+    "recover": "Recover",
     "ready": "The journal is ready to read.",
     "unavailable": "Track the quest and complete its earlier objectives before reading.",
+    "tools": {
+      "horadric_cube": {
+        "name": "Horadric Cube Coffer",
+        "ready": "Recover the Horadric Cube from this coffer.",
+        "owned": "Cube recovered.",
+        "unavailable": "Track The Horadric Staff quest to recover the Cube."
+      }
+    },
     "objects": {
       "horazon_journal": {
         "name": "Horazon's Journal",
@@ -37,7 +46,10 @@
       "locked-area": "This act is still locked.",
       "unknown-area": "This object is not available in this area.",
       "not-eligible": "Track the quest and complete its earlier objectives first.",
-      "busy": "A battle or save operation is in progress. Try again when it finishes."
+      "busy": "A battle or save operation is in progress. Try again when it finishes.",
+      "claim-in-progress": "A quest action is in progress. Try again when it finishes.",
+      "grant-failed": "The item could not be recovered. Try again.",
+      "restoration-failed": "The action could not finish safely. Check your quest progress and quest items before trying again."
     }
   },
   "act": {
@@ -118,7 +130,7 @@
     "act2-horadric-staff": {
       "name": "The Horadric Staff",
       "desc": "Collect the parts of the Horadric Staff and combine them.",
-      "obj1": "Find the Staff Top",
+      "obj1": "Recover the Horadric Cube from the coffer in the Dry Hills.",
       "obj2": "Find the Amber Gem",
       "obj3": "Find the Staff Shaft"
     },

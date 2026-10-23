@@ -113,12 +113,12 @@
       "giver": "npc/cain",
       "description": "Cain reveals that Tal Rasha's tomb can only be opened with the Horadric Staff. Recover the Cube, the Staff shaft, and the Viper Amulet, then assemble them.",
       "objectives": [
-        { "id": "obj-cube", "type": "fetch", "itemId": "quest/horadric_cube", "areaId": "areas/act2_halls_of_the_dead_3", "description": "Recover the Horadric Cube." },
+        { "id": "obj-cube", "type": "fetch", "itemId": "quest/horadric_cube", "areaId": "areas/act2-dry-hills", "targetId": "objects/horadric_cube_chest", "description": "Recover the Horadric Cube from the coffer in the Dry Hills." },
         { "id": "obj-shaft", "type": "fetch", "itemId": "quest/staff_of_kings", "areaId": "areas/act2_maggot_lair_3", "description": "Recover the Staff of Kings." },
         { "id": "obj-amulet", "type": "fetch", "itemId": "quest/viper_amulet", "areaId": "areas/act2_claw_viper_temple_2", "description": "Recover the Amulet of the Viper." },
         { "id": "obj-transmute", "type": "transmute", "recipe": "horadric_staff", "description": "Combine staff and amulet in the Horadric Cube." }
       ],
-      "rewards": { "xp": 6000, "itemDrop": "items/horadric_cube" },
+      "rewards": { "xp": 6000 },
       "unlocks": "areas/act2_canyon_of_the_magi",
       "order": 8
     },

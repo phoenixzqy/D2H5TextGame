@@ -14,7 +14,7 @@ import type { GridPosition } from '../combat/types';
  * Current save format version. Bump this and add an entry to {@link MIGRATIONS}
  * whenever the on-disk shape changes.
  */
-export const CURRENT_SAVE_VERSION = 12;
+export const CURRENT_SAVE_VERSION = 13;
 
 /**
  * Save file version (most recent).
@@ -281,7 +281,12 @@ export interface SaveV12 extends Omit<SaveV11, 'version' | 'inventory' | 'player
   readonly player: Player;
 }
 
-export type SaveCurrent = SaveV12;
+/** Save file v13 — objective-bound retained tools alongside unchanged reward receipts. */
+export interface SaveV13 extends Omit<SaveV12, 'version'> {
+  readonly version: 13;
+}
+
+export type SaveCurrent = SaveV13;
 
 /**
  * Migration function type. Each entry receives the previous version's shape
@@ -470,5 +475,7 @@ export const MIGRATIONS: Record<number, Migration> = {
   12: (raw: unknown): SaveV12 => {
     const v11 = raw as SaveV11;
     return { ...v11, version: 12, inventory: { ...v11.inventory, questItems: {} } };
-  }
+  },
+  /** v12 to v13: widen supported sources without inferring or changing any entitlement. */
+  13: (raw: unknown): SaveV13 => ({ ...(raw as SaveV12), version: 13 })
 };

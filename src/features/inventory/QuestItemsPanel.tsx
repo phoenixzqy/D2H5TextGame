@@ -37,17 +37,19 @@ export function QuestItemsPanel() {
                 <div className="min-w-0">
                   <h3 className="font-serif text-d2-gold">{tDataKey(t, item.nameKey)}</h3>
                   <p className="text-sm text-d2-white/80">
-                    {t(item.descKey, { skillPoints: item.effect.skillPoints })}
+                    {t(item.descKey, item.kind === 'tool' ? {} : { skillPoints: item.effect.skillPoints })}
                   </p>
                 </div>
-                <Button
+                {item.kind === 'tool' ? (
+                  <p className="text-sm text-d2-gold">{t('questItems.owned')}</p>
+                ) : <Button
                   variant="secondary"
                   className="min-h-[44px] shrink-0"
                   aria-disabled={consumed}
                   onClick={() => { read(source, item.effect.skillPoints); }}
                 >
                   {t(consumed ? 'questItems.consumed' : 'questItems.read')}
-                </Button>
+                </Button>}
               </li>
             );
           })}

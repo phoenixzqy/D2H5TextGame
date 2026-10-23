@@ -46,8 +46,8 @@ const malformedSelections: readonly unknown[] = [
 ];
 
 describe('D05 v11 exclusive selected aura save boundary', () => {
-  it('retains the v11 contract and its migrations with v12 current', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(12);
+  it('retains the v11 contract and its migrations with v13 current', () => {
+    expect(CURRENT_SAVE_VERSION).toBe(13);
     for (const version of [8, 9, 10, 11]) expect(MIGRATIONS[version]).toBeDefined();
   });
 

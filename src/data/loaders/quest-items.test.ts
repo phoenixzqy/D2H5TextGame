@@ -20,7 +20,8 @@ describe('bound quest item definitions', () => {
   it('resolves the authored one-point book and its unique source without changing data', () => {
     const before = JSON.stringify(document);
     const items = loadQuestItems();
-    expect(items).toEqual([book]);
+    expect(items.find(item => item.id === book.id)).toEqual(book);
+    expect(items.map(item => item.id)).toEqual([book.id, 'quest/horadric_cube']);
     expect(questItemSource(book)).toBe('quests/act2-radaments-lair#reward:questItem');
     expect(Object.isFrozen(items)).toBe(true);
     expect(JSON.stringify(document)).toBe(before);

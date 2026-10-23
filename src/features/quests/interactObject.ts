@@ -1,3 +1,7 @@
+import { loadQuestItems, questItemSource, type QuestToolDef } from '@/data/loaders/quest-items';
+import { validateQuestItemLedger } from '@/engine/save/validate';
+import { useInventoryStore } from '@/stores/inventoryStore';
+import { withQuestTransaction } from './questTransaction';
 import { loadQuests } from '@/data/loaders/quests';
 import { subAreas } from '@/data/index';
 import { listAreaObjectTargets, objectInteractionStatus } from '@/engine/map/questInteractions';
@@ -33,7 +37,7 @@ export function areaObjectTargets(act: number, areaId: string): readonly string[
 export function travelToAreaObjects(act: number, areaId: string): ObjectActionResult {
   const refusal = preflight();
   if (refusal) return refusal;
-  if (areaObjectTargets(act, areaId).length === 0) return 'unknown-area';
+  if (!hasAreaObjects(act, areaId)) return 'unknown-area';
   const map = useMapStore.getState();
   if (!map.isActUnlocked(act)) return 'locked-area';
   map.setCurrentLocation(act, areaId);
@@ -59,4 +63,76 @@ export function interactWithAreaObject(targetId: string): ObjectActionResult {
   if (status !== 'ready') return 'not-eligible';
   map.recordObjectInteraction(event);
   return 'ok';
+}
+
+/** Objective-bound tools placed at this canonical authored location. Listing grants nothing. */
+export function areaQuestTools(act: number, areaId: string): readonly QuestToolDef[] {
+  const quests = loadQuests();
+  return loadQuestItems().filter((item): item is QuestToolDef => item.kind === 'tool' &&
+    quests.some(quest => quest.id === item.sourceQuestId && quest.actId === `acts/act${String(act)}` &&
+      quest.objectives.some(objective => objective.id === item.sourceObjectiveId && objective.areaId === areaId)));
+}
+
+/** Whether an explicit visit can show a supported Read or Recover object. */
+export function hasAreaObjects(act: number, areaId: string): boolean {
+  return areaObjectTargets(act, areaId).length > 0 || areaQuestTools(act, areaId).length > 0;
+}
+
+/** Durable recovery availability; execution additionally checks hydration, combat and ownership guards. */
+export function questToolStatus(source: string): 'ready' | 'owned' | 'unavailable' {
+  const map = useMapStore.getState();
+  const area = resolveSubArea(map.currentAct, map.currentSubAreaId);
+  if (!area || !map.isActUnlocked(map.currentAct)) return 'unavailable';
+  const tool = areaQuestTools(map.currentAct, area.id).find(item => questItemSource(item) === source);
+  if (!tool || !Object.hasOwn(map.questProgress, tool.sourceQuestId)) return 'unavailable';
+  const quest = loadQuests().find(row => row.id === tool.sourceQuestId);
+  const progress = map.questProgress[tool.sourceQuestId];
+  const index = quest?.objectives.findIndex(objective => objective.id === tool.sourceObjectiveId) ?? -1;
+  if (Object.hasOwn(useInventoryStore.getState().questItems, source)) return 'owned';
+  if (!quest || index < 0 || progress?.id !== quest.id || progress.status !== 'inProgress' ||
+    progress.rewardClaimed === true || !quest.objectives.slice(0, index).every(objective =>
+      Object.hasOwn(progress.objectives, objective.id) && progress.objectives[objective.id] === true)) return 'unavailable';
+  return 'ready';
+}
+
+export type RecoverToolResult = ObjectActionResult | 'already-owned' | 'claim-in-progress' | 'grant-failed';
+
+/**
+ * Recover one exact authored tool at the live location. Only its owned receipt and
+ * objective flag change; legacy true flags may recover a missing receipt explicitly.
+ * Synchronous failures restore both domains, retaining the lock through restoration.
+ * Failed restoration throws AggregateError; intermediate writes are observable.
+ */
+export function recoverQuestTool(source: string): RecoverToolResult {
+  const refusal = preflight();
+  if (refusal) return refusal;
+  return withQuestTransaction<RecoverToolResult>(() => {
+    const map = useMapStore.getState();
+    const inventory = useInventoryStore.getState();
+    try { validateQuestItemLedger(inventory.questItems, map.questProgress); }
+    catch { return 'not-eligible'; }
+    const status = questToolStatus(source);
+    if (status === 'owned') return 'already-owned';
+    if (status !== 'ready') return 'not-eligible';
+    const tool = loadQuestItems().find((item): item is QuestToolDef => item.kind === 'tool' && questItemSource(item) === source);
+    if (!tool) return 'not-eligible';
+    const progress = map.questProgress[tool.sourceQuestId];
+    if (!progress) return 'not-eligible';
+    const nextProgress = { ...progress, objectives: { ...progress.objectives, [tool.sourceObjectiveId]: true } };
+    const nextItems = { ...inventory.questItems, [source]: { itemId: tool.id, state: 'owned' as const } };
+    try { validateQuestItemLedger(nextItems, { ...map.questProgress, [tool.sourceQuestId]: nextProgress }); }
+    catch { return 'not-eligible'; }
+    try {
+      useInventoryStore.setState({ questItems: nextItems });
+      useMapStore.setState(state => ({ questProgress: { ...state.questProgress, [tool.sourceQuestId]: nextProgress } }));
+      return 'ok';
+    } catch (cause) {
+      const errors: unknown[] = [];
+      try { useInventoryStore.setState({ questItems: inventory.questItems }); } catch (error) { errors.push(error); }
+      try { useMapStore.setState(state => ({ questProgress: { ...state.questProgress, [tool.sourceQuestId]: progress } })); }
+      catch (error) { errors.push(error); }
+      if (errors.length > 0) throw new AggregateError(errors, 'Quest tool restoration failed', { cause });
+      return 'grant-failed';
+    }
+  });
 }

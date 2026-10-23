@@ -11,6 +11,7 @@ import { beginWaveTransition, endWaveTransition, reserveWaveRestore, releaseWave
 import { awardXp, xpTotal } from '@/engine/progression/xp';
 import { decodeSave } from '@/engine/save/validate';
 import { toJsonSafe } from '@/engine/save';
+import { CURRENT_SAVE_VERSION } from '@/engine/types/save';
 import { claimQuestReward } from './claimReward';
 import { interactWithAreaObject, travelToAreaObjects } from './interactObject';
 
@@ -75,12 +76,12 @@ describe('explicit area-object actions', () => {
     expect(useMapStore.getState().isActUnlocked(3)).toBe(false);
   });
 
-  it('round-trips kill-only/read/claimed objective receipts without a save version bump', () => {
+  it('round-trips kill-only/read/claimed objective receipts under the current save version', () => {
     for (const stage of ['kill', 'read', 'claimed']) {
       if (stage === 'read') expect(interactWithAreaObject(targetId)).toBe('ok');
       if (stage === 'claimed') expect(claimQuestReward(questId)).toBe('ok');
       const saved = required(persistence.snapshotStores());
-      expect(saved.version).toBe(12);
+      expect(saved.version).toBe(CURRENT_SAVE_VERSION);
       expect(decodeSave(toJsonSafe(saved))).toEqual(saved);
     }
   });
