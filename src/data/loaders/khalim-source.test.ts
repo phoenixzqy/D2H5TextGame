@@ -26,7 +26,7 @@ describe('closed Khalim recipe and Guardian action graph', () => {
       ingredients: ['quest/khalims_heart', 'quest/khalims_brain', 'quest/khalims_eye', 'quest/khalims_flail'],
       consumeQuestId: 'quests/act3-guardian', consumeActionId: 'actions/act3-break-compelling-orb' });
     expect(will).not.toHaveProperty('consumeObjectiveId');
-    expect(actions).toHaveLength(1);
+    expect(actions.map(action => action.id)).toEqual(['actions/act3-break-compelling-orb', 'actions/act4-shatter-soulstone']);
     expect(actions[0]).toMatchObject({ questId: 'quests/act3-guardian',
       inputSource: questItemSource(will), itemId: will.id });
     const quest = required(loadQuests().find(row => row.id === 'quests/act3-khalims-will'));
@@ -57,16 +57,16 @@ describe('closed Khalim recipe and Guardian action graph', () => {
   ])('rejects unknown, cyclic or mismatched action data %j', patch => {
     const before = actionDocument.actions;
     try {
-      Object.defineProperty(actionDocument, 'actions', { value: [{ ...required(before[0]), ...patch }] });
+      Object.defineProperty(actionDocument, 'actions', { value: [{ ...required(before[0]), ...patch }, ...before.slice(1)] });
       expect(() => loadQuestActions()).toThrow(/quests\/actions.json/);
       expect(() => loadQuestItems()).toThrow(/quests\/actions.json/);
     } finally { Object.defineProperty(actionDocument, 'actions', { value: before }); }
   });
 
-  it.each([0, 2])('rejects a missing or duplicate action domain of size %s', count => {
+  it.each([0, 2])('rejects a missing or duplicate Orb action with %s copies', count => {
     const before = actionDocument.actions;
     try {
-      Object.defineProperty(actionDocument, 'actions', { value: Array.from({ length: count }, () => required(before[0])) });
+      Object.defineProperty(actionDocument, 'actions', { value: [...Array.from({ length: count }, () => required(before[0])), ...before.slice(1)] });
       expect(() => loadQuestActions()).toThrow(/quests\/actions.json/);
       expect(() => loadQuestItems()).toThrow(/quests\/actions.json/);
     } finally { Object.defineProperty(actionDocument, 'actions', { value: before }); }

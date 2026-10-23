@@ -9,10 +9,11 @@ function required<T>(value: T | undefined): T {
   return value;
 }
 describe('closed retained Guardian reward definition', () => {
-  it('authors the exact retained reward and fixed level47/five-pick cache without a Read or later consumer', () => {
+  it('authors the exact retained reward and fixed level47/five-pick cache with only the Hellforge consumer', () => {
     const item = required(loadQuestItems().find(row => row.id === ITEM));
     expect(item).toEqual({ id: ITEM, sourceQuestId: QUEST, kind: 'retained',
       requiredActionSource: `${QUEST}#action:break-compelling-orb`,
+      consumeActionId: 'actions/act4-shatter-soulstone',
       nameKey: 'inventory:questItems.mephistosSoulstone.name', descKey: 'inventory:questItems.mephistosSoulstone.description' });
     expect(questItemSource(item)).toBe(`${QUEST}#reward:questItem`);
     expect(required(loadQuests().find(row => row.id === QUEST)).rewards).toEqual({
