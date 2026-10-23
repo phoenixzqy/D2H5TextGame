@@ -7,14 +7,11 @@ import { create } from 'zustand';
 import { loadQuests } from '@/data/loaders/quests';
 import { loadTownNpcs } from '@/data/loaders/towns';
 import { isActUnlocked as engineIsActUnlocked, isSubAreaUnlocked as engineIsSubAreaUnlocked } from '@/engine/map/unlock';
+import { subAreas } from '@/data/index';
+import { applyObjectInteraction, type InteractionProgress, type ObjectInteraction } from '@/engine/map/questInteractions';
+import { resolveSubArea } from './subAreaResolver';
 
-interface QuestProgress {
-  id: string;
-  status: 'locked' | 'available' | 'inProgress' | 'completed';
-  objectives: Record<string, boolean>;
-  /** Bug #9 — set true when the player claims rewards for a completed quest. */
-  rewardClaimed?: boolean;
-}
+type QuestProgress = InteractionProgress;
 
 interface MapState {
   currentAct: number;
@@ -41,6 +38,8 @@ interface MapState {
   markCleared: (subAreaId: string) => void;
   /** Advance eligible ordered talk objectives for an exact current-town NPC. Never awards rewards. */
   recordNpcTalk: (npcId: string) => void;
+  /** Record an ordered canonical current-area object event, without granting rewards. */
+  recordObjectInteraction: (event: ObjectInteraction) => void;
   /** Advance tracked, unclaimed, ordered boss objectives for an exact qualified kill. Never awards rewards. */
   recordBossKill: (event: {
     readonly actId: string;
@@ -213,6 +212,14 @@ export const useMapStore = create<MapState>((set, get) => ({
         }
       };
     }
+    return questProgress === state.questProgress ? state : { questProgress };
+  }); },
+
+  recordObjectInteraction: (event) => { set((state) => {
+    const current = resolveSubArea(state.currentAct, state.currentSubAreaId);
+    if (event.actId !== `acts/act${String(state.currentAct)}` || current?.actId !== event.actId ||
+      current.id !== event.areaId) return state;
+    const questProgress = applyObjectInteraction(loadQuests(), subAreas, state.questProgress, event);
     return questProgress === state.questProgress ? state : { questProgress };
   }); },
 

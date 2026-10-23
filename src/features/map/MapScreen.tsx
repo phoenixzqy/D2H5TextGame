@@ -12,7 +12,7 @@
  * resolved to nothing in `subAreaResolver`, so `markCleared` landed on
  * a synthetic id the badge logic never checked).
  */
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, Panel, ScreenShell, GameImage, getZoneArtUrl, tDataKey } from '@/ui';
@@ -20,6 +20,11 @@ import { useMapStore, useMetaStore } from '@/stores';
 import { subAreas as subAreaList, acts as actList, monsters as monsterList } from '@/data/index';
 import { ACT_GATE_BOSS_SUB_AREAS } from '@/engine/map/unlock';
 import { IdleTickerStrip } from '@/features/idle/IdleTickerStrip';
+import { areaObjectTargets, travelToAreaObjects, type ObjectActionResult } from '@/features/quests/interactObject';
+import { AreaObjectsPanel } from './AreaObjectsPanel';
+import { resolveSubArea } from '@/stores/subAreaResolver';
+import { WaveGuardError } from '@/stores/waveTransitionGuard';
+import { RecordedWaveAccessError } from '@/stores/recordedWaveAccess';
 
 interface SubArea {
   id: string;
@@ -54,13 +59,19 @@ function monsterNameKeyFromId(id: string): string {
 }
 
 export function MapScreen() {
-  const { t } = useTranslation(['map', 'common', 'monsters']);
+  const { t } = useTranslation(['map', 'common', 'monsters', 'quests']);
   const navigate = useNavigate();
   const setLocation = useMapStore((s) => s.setCurrentLocation);
   const isActUnlocked = useMapStore((s) => s.isActUnlocked);
   const clearedSubAreas = useMapStore((s) => s.clearedSubAreas);
   const setIdleTarget = useMetaStore((s) => s.setIdleTarget);
   const idleTarget = useMetaStore((s) => s.idleState.idleTarget);
+  const currentAct = useMapStore(s => s.currentAct);
+  const currentAreaId = useMapStore(s => s.currentSubAreaId);
+  const [selectedObjectArea, setSelectedObjectArea] = useState<string | null>(null);
+  const [objectFailure, setObjectFailure] = useState<{ areaId: string; result: ObjectActionResult | 'busy' } | null>(null);
+  const objectTrigger = useRef<HTMLButtonElement | null>(null);
+  const currentArea = resolveSubArea(currentAct, currentAreaId);
 
   const [openAct, setOpenAct] = useState<number>(1);
 
@@ -292,7 +303,25 @@ export function MapScreen() {
                             🔒 {t('locked')}
                           </span>
                         ) : (
-                          <div className="flex gap-2">
+                          <div className="flex flex-wrap gap-2">
+                            {areaObjectTargets(act.number, sa.id).length > 0 && (
+                              <button type="button"
+                                data-testid={`area-objects-${sa.alias}`}
+                                aria-expanded={selectedObjectArea === sa.id && currentArea?.id === sa.id}
+                                aria-controls="area-objects"
+                                className="min-h-[44px] min-w-[44px] rounded border border-d2-border px-3 py-2 text-sm text-d2-gold focus-visible:ring-2 focus-visible:ring-d2-gold"
+                                onClick={event => {
+                                  objectTrigger.current = event.currentTarget;
+                                  try {
+                                    const result = travelToAreaObjects(act.number, sa.id);
+                                    if (result === 'ok') { setSelectedObjectArea(sa.id); setObjectFailure(null); }
+                                    else setObjectFailure({ areaId: sa.id, result });
+                                  } catch (error) {
+                                    if (!(error instanceof WaveGuardError || error instanceof RecordedWaveAccessError)) throw error;
+                                    setObjectFailure({ areaId: sa.id, result: 'busy' });
+                                  }
+                                }}>{t('quests:areaObjects.inspect')}</button>
+                            )}
                             {isIdleHere ? (
                               // Bug #4 — give the row a clearly-visible
                               // "Stop Farming" toggle so the player can
@@ -340,6 +369,14 @@ export function MapScreen() {
                               {t('enter')}
                             </Button>
                           </div>
+                        )}
+                        {objectFailure?.areaId === sa.id && (
+                          <p role="alert" className="basis-full text-sm text-d2-white/90">{t(`quests:areaObjects.feedback.${objectFailure.result}`)}</p>
+                        )}
+                        {selectedObjectArea === sa.id && currentArea?.id === sa.id && currentAct === act.number && (
+                          <AreaObjectsPanel act={act.number} areaId={sa.id} onClose={() => {
+                            setSelectedObjectArea(null); objectTrigger.current?.focus();
+                          }} />
                         )}
                       </li>
                     );

@@ -1,0 +1,79 @@
+/** Constructed partial-quest diagnostic. No earned progression or combat launch. */
+import { test, expect, type Page, type BrowserContext } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/@playwright/test/index.mjs';
+import { readFile, writeFile } from 'node:fs/promises';
+import { gunzipSync, gzipSync } from 'node:zlib';
+import { createCharacter, navTo } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/tests/e2e/_helpers';
+const root='/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-journal-to6bx9bw';
+const repo='/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2';
+const quest='quests/act2-arcane-sanctuary', area='areas/act2-arcane-sanctuary', now=1792497600000;
+const fixture=repo+'/docs/plans/evidence/fixtures/summoner-partial-constructed.json.gz';
+async function backup(page:Page) {
+ await navTo(page,'settings'); const pending=page.waitForEvent('download');
+ await page.getByTestId('export-save-button').click(); const download=await pending;
+ try {return JSON.parse(await readFile(await download.path(),'utf8'));} finally {await download.delete();}
+}
+async function disk(page:Page) {return page.evaluate(async()=>{
+ const db=await new Promise<IDBDatabase>((resolve,reject)=>{const req=indexedDB.open('D2H5TextGame');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});
+ try {const record=await new Promise<{data:unknown}>((resolve,reject)=>{const req=db.transaction('saves','readonly').objectStore('saves').get('current');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});return JSON.parse(JSON.stringify(record.data,(_k,v)=>v instanceof Map?[...v.entries()]:v));} finally {db.close();}
+});}
+async function importSave(page:Page, value:unknown, english:boolean) {
+ await navTo(page,'settings');const label=english?'Import Save':'导入存档';await page.getByRole('button',{name:label,exact:true}).click();
+ const dialog=page.getByRole('dialog');await dialog.getByRole('textbox').fill(JSON.stringify(value));await dialog.getByRole('button',{name:label,exact:true}).click();await expect(dialog).toHaveCount(0);
+}
+async function reopen(page:Page, context:BrowserContext, english:boolean, expected:unknown, errors:string[]) {
+ await navTo(page,'settings');await page.getByRole('button',{name:english?'Save':'保存',exact:true}).click();
+ await expect(page.getByRole('status')).toHaveText(english?'Saved':'已保存');expect(await disk(page)).toEqual(expected);expect(await backup(page)).toEqual(expected);
+ await page.close();const next=await context.newPage();next.on('pageerror',error=>errors.push(error.message));await next.clock.setFixedTime(now);await next.goto('/');await next.waitForLoadState('networkidle');
+ await next.getByTestId('home-continue').click();await expect(next.getByTestId('town-screen')).toBeVisible();expect(await backup(next)).toEqual(expected);expect(await disk(next)).toEqual(expected);return next;
+}
+async function openJournal(page:Page, english:boolean) {
+ await navTo(page,'map');const toggle=page.getByRole('button',{name:english?/^Act 2 ·/:/^第 2 章 ·/});if(await toggle.getAttribute('aria-expanded')!=='true')await toggle.click();
+ const trigger=page.getByTestId('area-objects-a2-arcane-sanctuary');await trigger.focus();await expect(trigger).toBeFocused();await page.keyboard.press('Enter');
+ const panel=page.getByTestId('area-object-panel');await expect(panel).toBeVisible();await expect(panel.getByRole('heading',{name:english?"Horazon's Journal":'赫拉森的日记',exact:true})).toBeVisible();
+ await expect(page.getByTestId('combat-screen')).toHaveCount(0);return panel;
+}
+function heroXP(s) {let xp=s.player.experience;for(let l=1;l<s.player.level;l++)xp+=Math.floor(100*l**2.5);return xp;}
+function mercXP(s) {const actor=s.mercs.ownedMercs.find(x=>x.id===s.mercs.fieldedMercId);let xp=s.mercs.mercProgress[actor.id].experience;for(let l=1;l<actor.level;l++)xp+=Math.floor(60*l*1.3**(l-1));return xp;}
+async function retain(name:string,value:unknown) {await writeFile(root+'/'+name+'.json.gz',gzipSync(JSON.stringify(value)));}
+for(const locale of ['en','zh-CN'])test(`constructed journal read claim persistence ${locale}`,async({page,context})=>{
+ const english=locale==='en',errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
+ await page.clock.setFixedTime(now);await page.goto('/');await page.waitForLoadState('networkidle');await createCharacter(page,{class:'sorceress',name:'Journal diagnostic'});
+ await navTo(page,'settings');await page.getByRole('button',{name:'English',exact:true}).click();
+ const original=JSON.parse(gunzipSync(await readFile(fixture)).toString('utf8'));await importSave(page,original,true);expect(await backup(page)).toEqual(original);expect(await disk(page)).toEqual(original);
+ if(!english)await page.getByRole('button',{name:'简体中文',exact:true}).click();
+ await expect.poll(()=>page.evaluate(()=>navigator.serviceWorker.controller?.state),{timeout:60000}).toBe('activated');expect(await page.evaluate(()=>'__GAME__' in window)).toBe(false);
+ const kill=await backup(page);expect(kill.map.questProgress[quest].objectives).toEqual({'obj-find-summoner':true,'obj-read-journal':false});await retain('kill-'+locale,kill);
+ page=await reopen(page,context,english,kill,errors);
+ let panel=await openJournal(page,english);const readName=english?'Read':'阅读';await expect(panel.getByRole('button',{name:readName,exact:true})).toBeEnabled();await expect(panel.getByTestId('area-object-excerpt')).toHaveCount(0);
+ await panel.getByTestId('area-object-close').click();await expect(page.getByTestId('area-objects-a2-arcane-sanctuary')).toBeFocused();
+ const opened=await backup(page);expect(opened).toEqual({...kill,map:{...kill.map,currentSubAreaId:area}});
+ panel=await openJournal(page,english);
+ const sizes=[[360,640],[412,915],[640,360],[1280,800],[1920,1080],[375,667],[393,851],[768,1024],[320,640],[1024,768],[1440,900]];
+ for(const [width,height] of sizes) {
+  await page.setViewportSize({width,height});await panel.scrollIntoViewIfNeeded();
+  expect(await page.evaluate(()=>{const main=document.querySelector('main')!;return {document:document.documentElement.scrollWidth<=innerWidth,main:main.scrollWidth<=main.clientWidth};})).toEqual({document:true,main:true});
+  for(const control of [page.getByTestId('area-objects-a2-arcane-sanctuary'),panel.getByRole('button',{name:readName,exact:true}),panel.getByTestId('area-object-close')]) {
+   const box=await control.boundingBox();expect(box?.height).toBeGreaterThanOrEqual(44);expect(box?.width).toBeGreaterThanOrEqual(44);
+  }
+ }
+ await page.setViewportSize({width:360,height:640});const read=panel.getByRole('button',{name:readName,exact:true});await read.focus();await page.keyboard.press('Enter');
+ await expect(read).toBeDisabled();await expect(panel.getByTestId('area-object-excerpt')).toBeVisible();
+ await expect(panel).toContainText(english?'Journal read. Claim your quest rewards from Quests.':'日记已阅读。请前往任务界面领取奖励。');
+ await panel.screenshot({path:root+'/read-'+locale+'.png'});
+ const readState=await backup(page);expect(readState).toEqual({...opened,map:{...opened.map,questProgress:{...opened.map.questProgress,[quest]:{...opened.map.questProgress[quest],status:'completed',objectives:{'obj-find-summoner':true,'obj-read-journal':true}}}}});await retain('read-'+locale,readState);
+ page=await reopen(page,context,english,readState,errors);panel=await openJournal(page,english);await expect(panel.getByRole('button',{name:readName,exact:true})).toBeDisabled();await expect(panel.getByTestId('area-object-excerpt')).toBeVisible();expect(await backup(page)).toEqual(readState);
+ await navTo(page,'quests');const claim=page.getByTestId(`quest-claim-${quest}`);await expect(claim).toBeVisible();await claim.click();await expect(claim).toBeDisabled();await expect(claim).toHaveText(english?'Claimed':'已领取');
+ const paid=await backup(page);expect(paid.map.questProgress[quest]).toEqual({...readState.map.questProgress[quest],rewardClaimed:true});
+ expect(heroXP(paid)-heroXP(readState)).toBe(7000);expect(mercXP(paid)-mercXP(readState)).toBe(5250);
+ const levels=paid.player.level-readState.player.level,milestones=[12,24,36].filter(l=>readState.player.level<l&&paid.player.level>=l).length;
+ expect(paid.player.skillPoints-readState.player.skillPoints).toBe(levels+milestones+1);expect(paid.player.statPoints-readState.player.statPoints).toBe(levels*5);
+ expect(paid.inventory).toEqual(readState.inventory);expect(paid.map.clearedSubAreas).toEqual(readState.map.clearedSubAreas);await retain('claimed-'+locale,paid);
+ page=await reopen(page,context,english,paid,errors);panel=await openJournal(page,english);await expect(panel.getByRole('button',{name:readName,exact:true})).toBeDisabled();await expect(panel).toContainText(english?'Journal read. Quest rewards claimed.':'日记已阅读，任务奖励已领取。');await expect(panel).not.toContainText(english?'Claim your quest rewards from Quests.':'请前往任务界面领取奖励。');expect(await backup(page)).toEqual(paid);
+ await navTo(page,'quests');const paidClaim=page.getByTestId(`quest-claim-${quest}`);await expect(paidClaim).toBeDisabled();await expect(paidClaim).toHaveText(english?'Claimed':'已领取');await paidClaim.evaluate((button:HTMLButtonElement)=>button.click());expect(await backup(page)).toEqual(paid);
+ await importSave(page,kill,english);expect(await backup(page)).toEqual(kill);panel=await openJournal(page,english);await expect(panel.getByRole('button',{name:readName,exact:true})).toBeEnabled();await expect(panel.getByTestId('area-object-excerpt')).toHaveCount(0);expect((await backup(page)).map.questProgress[quest]).toEqual(kill.map.questProgress[quest]);
+ await importSave(page,readState,english);expect(await backup(page)).toEqual(readState);panel=await openJournal(page,english);await expect(panel.getByRole('button',{name:readName,exact:true})).toBeDisabled();
+ await importSave(page,paid,english);expect(await backup(page)).toEqual(paid);panel=await openJournal(page,english);await expect(panel).toContainText(english?'Journal read. Quest rewards claimed.':'日记已阅读，任务奖励已领取。');await expect(panel).not.toContainText(english?'Claim your quest rewards from Quests.':'请前往任务界面领取奖励。');expect(await backup(page)).toEqual(paid);
+ await navTo(page,'map');const third=page.getByRole('button',{name:english?/^Act 3 ·/:/^第 3 章 ·/});await third.click();const locked=page.getByTestId('sub-area-row-a3-spider-forest');await expect(locked).toBeVisible();await expect(locked.getByRole('button',{name:english?'Enter':'进入',exact:true})).toHaveCount(0);
+ expect(errors).toEqual([]);expect(await page.evaluate(()=>'__GAME__' in window)).toBe(false);
+ await writeFile(root+'/assertions-'+locale+'.json',JSON.stringify({classification:'Constructed partial quest diagnostic; no earned campaign or combat launch',locale,viewports:sizes,travelOnlyChangesLocation:true,explicitKeyboardReadCompletesWithoutRewards:true,heroClaimXP:7000,mercClaimXP:5250,questSkillPoints:1,inventoryUnchanged:true,saveCloseContinueStages:['kill-only','read-unclaimed','claimed'],exactImports:['kill-only','read-unclaimed','claimed'],noRepeatClaim:true,act3Locked:true,pageErrors:errors},null,2));await page.close();
+});

@@ -16,6 +16,30 @@
   "empty": "暂无任务",
   "turnIn": "交付",
   "abandon": "放弃",
+  "areaObjects": {
+    "title": "区域物件",
+    "inspect": "查看物件",
+    "read": "阅读",
+    "ready": "现在可以阅读这本日记。",
+    "unavailable": "请先追踪任务并完成此前的目标，再阅读日记。",
+    "objects": {
+      "horazon_journal": {
+        "name": "赫拉森的日记",
+        "completed": "日记已阅读。请前往任务界面领取奖励。",
+        "claimed": "日记已阅读，任务奖励已领取。",
+        "excerpt": "日记指出了真正的塔拉夏古墓。痛苦之王正潜伏其中。"
+      }
+    },
+    "feedback": {
+      "not-ready": "存档正在加载或替换，请稍后重试。",
+      "no-player": "请先创建或载入角色。",
+      "combat-active": "请先完成或离开当前战斗，再与物件互动。",
+      "locked-area": "本章尚未解锁。",
+      "unknown-area": "此区域中没有可用的物件。",
+      "not-eligible": "请先追踪任务并完成此前的目标。",
+      "busy": "战斗或存档操作正在进行，请稍后重试。"
+    }
+  },
   "act": {
     "1": "第一幕任务",
     "2": "第二幕任务",

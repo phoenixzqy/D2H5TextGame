@@ -16,6 +16,30 @@
   "empty": "No quests",
   "turnIn": "Turn In",
   "abandon": "Abandon",
+  "areaObjects": {
+    "title": "Area Objects",
+    "inspect": "Inspect",
+    "read": "Read",
+    "ready": "The journal is ready to read.",
+    "unavailable": "Track the quest and complete its earlier objectives before reading.",
+    "objects": {
+      "horazon_journal": {
+        "name": "Horazon's Journal",
+        "completed": "Journal read. Claim your quest rewards from Quests.",
+        "claimed": "Journal read. Quest rewards claimed.",
+        "excerpt": "The journal identifies the true Tomb of Tal Rasha. The Lord of Pain awaits within."
+      }
+    },
+    "feedback": {
+      "not-ready": "Save data is loading or being replaced. Try again when it finishes.",
+      "no-player": "Create or load a character first.",
+      "combat-active": "Finish or leave the current battle before interacting.",
+      "locked-area": "This act is still locked.",
+      "unknown-area": "This object is not available in this area.",
+      "not-eligible": "Track the quest and complete its earlier objectives first.",
+      "busy": "A battle or save operation is in progress. Try again when it finishes."
+    }
+  },
   "act": {
     "1": "Act I Quests",
     "2": "Act II Quests",

@@ -10504,3 +10504,21 @@ cleanup/ownership receipts are at the exact raw root in the evidence document.
 Raw evidence remains root-owned through journal/C2/umbrella consumers. Next is
 explicit recoverable journal reading, not an earned Arcane or C2 acceptance.
 C0/C1 accepted; C2 underway; C3/C4/fullG0–G7 remain open. Local only.
+
+## P14 — Explicit journal Read and recoverable ordered objects
+
+[Evidence](evidence/journal-object-interaction.md) records canonical, ordered
+area-object events and bilingual keyboard-accessible Inspect/Read. Travel/open
+does not credit objectives; Read completes once without rewards; explicit Claim
+uses the existing transaction. Own-predecessor and claimed-copy causal REDs
+precede final8908tests/293files pass, exit0,192.21s. Types/lint/build/4chunkbridge
+pass; frozen628source/760build and separate browser-helper hashes match.
+Two constructed production-browser cases pass, en/zh-CN, retry0/pageErrors[],
+11viewport sizes, exact three-stage Save-close-Continue/import, reward accounting
+and claimed feedback. Initial incorrect disappearing-button harness assertion is
+retained and corrected without runtime accommodation. Producer and independent
+QA-JOURNAL APPROVE/security PASS; no material findings; all readers released.
+Exact task-owned build/browser outputs removed, remaining[]/failures[]; raw
+evidence stays root-owned through journal/C2/umbrella consumers at the exact root
+in the evidence document. No combat, earned Arcane or C2 claim follows.
+C0/C1 accepted; C2 underway; C3/C4/fullG0–G7 remain open. Local only.
