@@ -3,6 +3,8 @@ import { loadItemBases, loadSetPieces, loadSets, loadUniques } from '@/data/load
 import { resolveStatPackage, type ResolvedStatValue } from '@/engine/items/statRolls';
 import { socketBonusPackages } from '@/engine/items/socket-contents';
 import { resolveItemRunewordGrants } from '@/engine/items/runeword-grants';
+import { governedActiveNameKey } from '@/engine/skills/runeword-actives';
+import { getSkill } from '@/engine/skills/registry';
 import type { Item, SetDef, SetPieceDef, UniqueItemDef } from '@/engine/types/items';
 import { tDataKey, tItemBaseName } from './i18nKey';
 
@@ -98,6 +100,20 @@ export function resolveSocketDisplayLines(item: Item, t: TFunction): readonly Di
     .map(stat => formatDisplayStat(stat, t));
   for (const grant of resolveItemRunewordGrants(item)) {
     const percent = (value: number): number => Number((value * 100).toFixed(4));
+    if ('skillId' in grant) {
+      const nameKey = governedActiveNameKey(grant.skillId);
+      const definition = getSkill(grant.skillId);
+      if (nameKey && definition) {
+        const label = tDataKey(t, nameKey);
+        lines.push({ key: `grant.${grant.id}.active`, value: grant.rank, label,
+          text: t('inventory:detail.grantedActive', { skill: label, rank: grant.rank,
+            mana: definition.manaCost, cooldown: definition.cooldown }) });
+        if (grant.skillId === 'item.redemption') {
+          lines.push({ key: `grant.${grant.id}.heal`, value: grant.rank, label,
+            text: tDataKey(t, 'skills.item.redemption.desc') });
+        }
+      }
+    }
     if (grant.id === 'aura-defiance') {
       lines.push({ key: `grant.${grant.id}`, value: grant.defensePct,
         label: t('inventory:detail.stat.defense'),

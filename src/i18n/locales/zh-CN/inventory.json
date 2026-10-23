@@ -236,6 +236,7 @@
     "grantedDamage": "装备时：自身{{type}} +{{percent}}%",
     "grantedReflection": "装备时：承受直接物理攻击后若存活，将所失生命的 {{percent}}% 以荆棘伤害反弹（仅自身）",
     "grantedRecovery": "装备时：自身已有法力回复速率 +{{percent}}%",
+    "grantedActive": "装备时：获得{{skill}}（{{rank}}级），消耗{{mana}}法力，冷却{{cooldown}}秒",
     "damageType": {
       "physical": "物理伤害",
       "fire": "火焰伤害",

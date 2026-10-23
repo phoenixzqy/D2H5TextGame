@@ -22,6 +22,7 @@ import { SkillsScreen } from './SkillsScreen';
 const protectedStores = [useCombatStore, useInventoryStore, useMapStore, useMercStore,
   useFormationStore, useMetaStore, useIronGolemSelectionStore, useHydrationStore] as const;
 const fireBolt = 'skills-sorceress-fire-bolt';
+const governedFireBolt = 'sorceress.fire_bolt';
 beforeEach(() => {
   abortSubAreaRun();
   for (const store of [usePlayerStore, useCombatStore, useInventoryStore, useMapStore,
@@ -44,6 +45,7 @@ describe.each(['en', 'zh-CN'])('combo replay refusal in %s', locale => {
       usePlayerStore.getState().setComboOrder([fireBolt]);
       const player = usePlayerStore.getState().player;
       if (!player) throw new Error('Missing skills fixture');
+      const learned = structuredClone(player.skillLevels);
       armIronGolemSelection(player.id, 'skills-armed-item', true);
       expect(startSubAreaRun({ subAreaId: 'areas/act1-blood-moor', runSeed: 7 })).not.toBeNull();
       render(<I18nextProvider i18n={i18n}><Suspense fallback={null}>
@@ -53,7 +55,9 @@ describe.each(['en', 'zh-CN'])('combo replay refusal in %s', locale => {
       </Suspense></I18nextProvider>);
       fireEvent.click(screen.getByRole('tab', { name: i18n.t('skills:tab.active') }));
       const slot = screen.getByRole('combobox', { name: i18n.t('skills:slotN', { n: 1 }) });
-      expect(slot).toHaveValue(fireBolt);
+      expect(slot).toHaveValue(governedFireBolt);
+      expect(usePlayerStore.getState().player?.comboOrder).toEqual([governedFireBolt]);
+      expect(usePlayerStore.getState().player?.skillLevels).toEqual(learned);
       const engine = vi.spyOn(combatEngine, 'runBattleRecorded');
       const receiptPhase = refusal === 'prepared' || refusal === 'committedPendingPublication' || refusal === 'conflict';
       if (receiptPhase) {
@@ -127,8 +131,9 @@ describe.each(['en', 'zh-CN'])('combo replay refusal in %s', locale => {
           engine.mockClear();
         }
         const replayRun = combatRunLifecycle.activeRun;
-        fireEvent.change(slot, { target: { value: fireBolt } });
-        expect(usePlayerStore.getState().player?.comboOrder).toEqual([fireBolt]);
+        fireEvent.change(slot, { target: { value: governedFireBolt } });
+        expect(usePlayerStore.getState().player?.comboOrder).toEqual([governedFireBolt]);
+        expect(usePlayerStore.getState().player?.skillLevels).toEqual(learned);
         expect(engine).toHaveBeenCalledTimes(1);
         expect(screen.queryByRole('alert')).not.toBeInTheDocument();
         expect(useCombatStore.getState().recordedEvents).not.toBe(recording.recordedEvents);

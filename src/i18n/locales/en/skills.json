@@ -2,6 +2,13 @@
   "title": "Skills",
   "skillTree": "Skill Tree",
   "activeSkills": "Active Skill Priority",
+  "equipmentUnavailable": "{{skill}} (unavailable)",
+  "item": {
+    "redemption": {
+      "name": "Redemption",
+      "desc": "While equipped: spend one action to restore 10% of your maximum Life, rounded down. Costs no Mana; 4-second cooldown. Only usable while injured."
+    }
+  },
   "allocate": "Allocate",
   "pointsRemaining": "Skill Points: {{count}}",
   "comboOrder": "Combo Order",

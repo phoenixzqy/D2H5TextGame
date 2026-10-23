@@ -252,7 +252,7 @@ function MercCard({
               <div className="h-full bg-gradient-to-r from-d2-gold/55 via-d2-gold to-amber-200" style={{ width: `${String(xpPct)}%` }} />
             </div>
           </div>
-          <MercSkillPriority merc={merc} />
+          <MercSkillPriority merc={merc} equipment={equipment} />
         </div>
       </div>
 

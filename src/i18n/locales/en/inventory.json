@@ -236,6 +236,7 @@
     "grantedDamage": "While equipped: +{{percent}}% {{type}} (self only)",
     "grantedReflection": "While equipped: survive a direct physical hit to reflect {{percent}}% of Life lost as Thorns Damage (self only)",
     "grantedRecovery": "While equipped: +{{percent}}% to existing Mana Regeneration (self only)",
+    "grantedActive": "While equipped: grants {{skill}} (Rank {{rank}}), {{mana}} Mana, {{cooldown}}s cooldown",
     "damageType": {
       "physical": "Physical Damage",
       "fire": "Fire Damage",

@@ -2,6 +2,13 @@
   "title": "技能",
   "skillTree": "技能树",
   "activeSkills": "主动技能顺序",
+  "equipmentUnavailable": "{{skill}}（不可用）",
+  "item": {
+    "redemption": {
+      "name": "救赎",
+      "desc": "装备时：消耗一次行动，恢复自身最大生命的10%，向下取整。不消耗法力，冷却4秒。仅受伤时可用。"
+    }
+  },
   "allocate": "分配",
   "pointsRemaining": "剩余技能点: {{count}}",
   "comboOrder": "技能连携顺序",

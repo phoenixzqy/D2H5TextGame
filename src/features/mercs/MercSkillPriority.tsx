@@ -1,19 +1,23 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { Mercenary } from '@/engine/types/entities';
+import type { Item } from '@/engine/types/items';
 import { useMercStore } from '@/stores/mercStore';
 import { useCombatStore } from '@/stores/combatStore';
-import { getMercSkillOrder } from '@/stores/mercToCombatUnit';
-import { Button } from '@/ui';
+import { getMercActiveProjection } from '@/stores/mercToCombatUnit';
+import { Button, tDataKey } from '@/ui';
 
 /** Ordinary controls for choosing an owned mercenary's secondary skill priority. */
-export function MercSkillPriority({ merc }: { merc: Mercenary }) {
+export function MercSkillPriority({ merc, equipment }: {
+  merc: Mercenary; equipment: Readonly<Record<string, Item | null>>
+}) {
   const { t } = useTranslation('mercs');
   const setSkillOrder = useMercStore(state => state.setSkillOrder);
   const locked = useCombatStore(state => state.inCombat ||
     (state.subAreaRunId !== null && !state.runVictory && !state.runDefeat));
   const [refused, setRefused] = useState(false);
-  const order = getMercSkillOrder(merc);
+  const projection = getMercActiveProjection(merc, equipment);
+  const order = projection.configuredOrder;
   const firstSecondary = merc.signatureSkillId ? 1 : 0;
   const move = (index: number, direction: -1 | 1) => {
     const next = [...order];
@@ -30,13 +34,15 @@ export function MercSkillPriority({ merc }: { merc: Mercenary }) {
       <p className="mt-1 text-sm text-d2-white/75">{t('priority.help')}</p>
       <ol className="mt-2 space-y-2" aria-live="polite">
         {order.map((id, index) => {
-          const name = t(`skillName.${id}`, { defaultValue: t('priority.unknown', {
+          const governed = projection.choices.find(choice => choice.id === id);
+          const name = governed ? tDataKey(t, governed.nameKey) : t(`skillName.${id}`, { defaultValue: t('priority.unknown', {
             skill: id.replace(/^mskill-/, '').replace(/[-_/.]+/g, ' ')
           }) });
           const signature = index < firstSecondary;
           return (
             <li key={id} className="flex min-w-0 flex-wrap items-center gap-2">
-              <span className="min-w-0 flex-1 break-words text-sm">{index + 1}. {name}</span>
+              <span className="min-w-0 flex-1 break-words text-sm">{index + 1}. {governed && !governed.available
+                ? t('skills:equipmentUnavailable', { skill: name }) : name}</span>
               {signature ? <span className="text-sm text-d2-gold">{t('signature')}</span> : (
                 <div className="flex gap-1">
                   <Button variant="secondary" className="min-h-[44px] min-w-[44px] px-2"

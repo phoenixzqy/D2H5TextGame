@@ -35,6 +35,8 @@ import { RecordedWaveAccessError } from '@/stores/recordedWaveAccess';
 import { getSkill, listSkills } from '@/engine/skills/registry';
 import { canCastSkill } from '@/engine/skills/eligibility';
 import { isPreparationSummonSkill } from '@/engine/skills/summon-preparation';
+import { resolveEquippedRunewordGrants } from '@/engine/items/runeword-grants';
+import { governedActiveId, projectGovernedActives } from '@/engine/skills/runeword-actives';
 import { AMPLIFY_DAMAGE_DEFINITION } from '@/engine/combat/amplify-damage-definition';
 import { STATUS_DEFAULTS } from '@/engine/combat/status';
 import { METEOR_ARMOR_MELT_DEFINITION } from '@/engine/skills/armor-melt';
@@ -187,6 +189,7 @@ export function SkillsScreen() {
     () =>
       allSkills.filter((skill) => {
         if (skill.trigger !== 'active') return false;
+        if (governedActiveId(skill.id)) return false;
         if (isSkillLocked(skill, playerLevel, allocatedSkills)) return false;
         if (getAllocatedSkillLevel(allocatedSkills, skill.id) <= 0) return false;
         const canonicalId = canonicalSkillIdFromData(skill.id) ?? skill.id;
@@ -199,11 +202,26 @@ export function SkillsScreen() {
 
   const sanitizedComboOrder = useMemo<string[]>(() => {
     const validIds = new Set(configurableActiveSkills.map((skill) => skill.id));
+    const seen = new Set<string>();
     return (player?.comboOrder ?? [])
-      .map((id) => dataSkillIdFromCanonical(id) ?? id)
-      .filter((id) => validIds.has(id))
-      .slice(0, COMBO_SLOTS);
+      .map((id) => governedActiveId(id) ?? dataSkillIdFromCanonical(id) ?? id)
+      .filter((id) => {
+        if (!governedActiveId(id)) return validIds.has(id);
+        if (seen.has(id)) return false;
+        seen.add(id);
+        return true;
+      });
   }, [configurableActiveSkills, player?.comboOrder]);
+
+  const activeProjection = useMemo(() => projectGovernedActives({
+    owner: { kind: 'hero', classId: playerClass, level: playerLevel,
+      learnedRanks: player?.skillLevels ?? {} },
+    grants: resolveEquippedRunewordGrants(equipped), storedOrder: sanitizedComboOrder
+  }), [equipped, playerClass, playerLevel, player?.skillLevels, sanitizedComboOrder]);
+  const activeChoices = useMemo(() => [
+    ...configurableActiveSkills.map(skill => ({ id: skill.id, nameKey: skill.name, available: true })),
+    ...activeProjection.choices.filter(choice => choice.available || activeProjection.configuredOrder.includes(choice.id))
+  ], [activeProjection, configurableActiveSkills]);
 
   const saveComboOrder = useCallback((order: readonly string[]): void => {
     setComboOrder(order.filter(Boolean));
@@ -224,10 +242,10 @@ export function SkillsScreen() {
   }, [player, sanitizedComboOrder, setComboOrder]);
 
   const combo = useMemo<string[]>(() => {
-    const arr = sanitizedComboOrder.slice();
+    const arr = [...activeProjection.configuredOrder];
     while (arr.length < COMBO_SLOTS) arr.push('');
     return arr;
-  }, [sanitizedComboOrder]);
+  }, [activeProjection]);
 
   const moveCombo = (idx: number, dir: -1 | 1) => {
     const next = [...combo];
@@ -331,13 +349,14 @@ export function SkillsScreen() {
             <select
               value={id}
               onChange={(e) => { setComboAt(idx, e.target.value); }}
-              className="flex-1 min-h-[44px] bg-d2-bg border border-d2-border rounded px-2 text-sm
+              className="flex-1 min-w-0 min-h-[44px] bg-d2-bg border border-d2-border rounded px-2 text-sm
                          focus:outline-none focus:border-d2-gold"
               aria-label={t('slotN', { n: idx + 1 })}
             >
               <option value="">— {t('common:none')} —</option>
-              {configurableActiveSkills.map((sk) => (
-                <option key={sk.id} value={sk.id}>{tDataKey(t, sk.name)}</option>
+              {activeChoices.map((sk) => (
+                <option key={sk.id} value={sk.id} disabled={!sk.available}>{sk.available ? tDataKey(t, sk.nameKey)
+                  : t('equipmentUnavailable', { skill: tDataKey(t, sk.nameKey) })}</option>
               ))}
             </select>
             <button

@@ -8,6 +8,8 @@ import { useCombatStore } from '@/stores/combatStore';
 import { createMercFromDef } from '@/stores/mercFactory';
 import { loadMercPool } from '@/data/loaders/mercs';
 import { MercsScreen } from './MercsScreen';
+import { socketRunewords } from '@/data/loaders/socket-effects';
+import type { Item } from '@/engine/types/items';
 
 const id = 'mercs/act1-rogue-inner-sight';
 beforeEach(async () => {
@@ -65,4 +67,19 @@ it('distinguishes legacy skill controls when names are untranslated', () => {
   expect(card.getByRole('button', { name: 'Move Unrecognized skill: legacy arrow earlier' })).toBeEnabled();
   expect(useMercStore.getState().ownedMercs[0]?.comboOrder)
     .toEqual(['mskill-inner-sight', 'mskill-legacy-bolt', 'mskill-legacy-arrow']);
+});
+
+it('passes equipped grants into named priorities without automatically saving them', () => {
+  const merc = useMercStore.getState().ownedMercs[0];
+  const row = socketRunewords.find(row => row.id === 'runewords/phoenix');
+  if (!merc || !row) throw new Error('Missing fixture data');
+  const shield: Item = { id: 'phoenix', baseId: 'items/base/sh-monarch', rarity: 'runeword', level: 70,
+    identified: true, equipped: false, runewordId: row.id, socketCapacity: row.sockets,
+    socketContents: row.runes.map(id => ({ kind: 'rune', id })) };
+  useMercStore.setState({ mercEquipment: { [merc.id]: { offhand: shield } } });
+  const card = renderScreen();
+  expect(useMercStore.getState().ownedMercs[0]?.comboOrder).toEqual(merc.comboOrder);
+  fireEvent.click(card.getByRole('button', { name: 'Move Redemption earlier' }));
+  expect(useMercStore.getState().ownedMercs[0]?.comboOrder)
+    .toEqual(['mskill-inner-sight', 'mskill-basic-arrow', 'item.redemption', 'mskill-pierce-arrow']);
 });
