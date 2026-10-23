@@ -1,6 +1,13 @@
 import type { Item } from '../../src/engine/types/items';
 import type { HistoricalItem } from '../../src/engine/save/historical-items';
 import type { SaveCurrent, LegacyGearQuarantineEntry } from '../../src/engine/types/save';
+import { emptyEndgameState } from '../../src/engine/endgame/state';
+
+/** Historical save roots never contain the new durable endgame namespace. */
+export function withoutV20Fields<T extends { endgame?: unknown }>(save: T) {
+  const { endgame: _endgame, ...historical } = save;
+  return historical;
+}
 
 /** Remove current-only state before constructing a genuine v18 or earlier fixture. */
 export function withoutV19Fields<T extends Omit<SaveCurrent, 'inventory'> & {
@@ -18,7 +25,7 @@ export function withoutV19Fields<T extends Omit<SaveCurrent, 'inventory'> & {
   };
   const equipment = (slots: Readonly<Record<string, Item | null | undefined>>) =>
     Object.fromEntries(Object.entries(slots).map(([slot, value]) => [slot, value ? item(value) : null]));
-  return { ...save, inventory: { ...inventory,
+  return { ...withoutV20Fields(save), inventory: { ...inventory,
     backpack: inventory.backpack.map(item), stash: inventory.stash.map(item),
     equipped: equipment(inventory.equipped) },
   player: { ...save.player, equipment: save.player.equipment.map(item) },
@@ -72,4 +79,15 @@ export function withV19Defaults<T extends { inventory: object; map: object }>(sa
   const v18 = withV18Defaults(save);
   return { ...v18, version: 19,
     inventory: { ...v18.inventory, socketQuarantine: [], materialActionOrdinal: 0 } };
+}
+
+/** Exact v19→20 expectation: preserve all holdings and add only empty endgame. */
+export function withV20Defaults<T extends { version: number }>(save: T) {
+  const { version: _version, ...unchanged } = save;
+  return { ...unchanged, version: 20 as const, endgame: emptyEndgameState() };
+}
+
+/** Older fixture expectations explicitly compose every added empty ownership domain. */
+export function withCurrentDefaults<T extends { inventory: object; map: object }>(save: T) {
+  return withV20Defaults(withV19Defaults(save));
 }

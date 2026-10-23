@@ -167,7 +167,7 @@ describe('receipt phase persistence boundaries', () => {
     const ids = paid ? ['kept'] : ['selected', 'kept'];
     for (const save of [snapshot, JSON.parse(json) as SaveCurrent, required(disk.state.record).data as SaveCurrent]) {
       expect(save.version).toBe(CURRENT_SAVE_VERSION); expect(save.inventory.backpack.map(value => value.id)).toEqual(ids);
-      expect(Object.keys(save).sort()).toEqual(['formation', 'inventory', 'map', 'mercs', 'meta', 'player', 'timestamp', 'version']);
+      expect(Object.keys(save).sort()).toEqual(['endgame', 'formation', 'inventory', 'map', 'mercs', 'meta', 'player', 'timestamp', 'version']);
     }
     expect(disk.put).toHaveBeenCalledTimes(1); expect(inspectRecordedWaves()).toBe(holder);
     domains.forEach((store, index) => { expect(store.getState()).toBe(before[index]); });

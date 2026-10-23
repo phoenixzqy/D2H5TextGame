@@ -31,7 +31,7 @@ export interface EndgameDefinition {
   };
 }
 
-/** Durable proposal only; native persistence is introduced by the dedicated successor migration. */
+/** Durable dungeon ownership; active issued attempts and recordings remain transient. */
 export interface EndgameState {
   readonly attemptOrdinal: number;
   readonly clearCounts: Readonly<Record<EndgameModifierId, number>>;

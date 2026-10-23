@@ -79,7 +79,7 @@ export function restoreEarnedSave(save: SaveCurrent, idleBonusAnchor: number): v
   useInventoryStore.setState({ ...copy.inventory,
     backpack: [...copy.inventory.backpack], stash: [...copy.inventory.stash] });
   useMercStore.setState({ ...copy.mercs, ownedMercs: [...copy.mercs.ownedMercs] });
-  useMapStore.setState({ ...copy.map, discoveredAreas: [...copy.map.discoveredAreas],
+  useMapStore.setState({ ...copy.map, endgame: copy.endgame, discoveredAreas: [...copy.map.discoveredAreas],
     clearedSubAreas: [...copy.map.clearedSubAreas] });
   useMetaStore.setState({ ...copy.meta, idleBonusAnchor });
   useFormationStore.getState().hydrate(copy.formation);

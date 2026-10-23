@@ -8,6 +8,7 @@
  */
 
 import { CURRENT_SAVE_VERSION, MIGRATIONS, type SaveCurrent, type SaveV7, type SaveV8, type SaveV9, type SaveV10 } from '../types/save';
+import { rejectPreV20State } from './endgame-state';
 
 /** A save in any past or current version. */
 export interface VersionedSave {
@@ -28,6 +29,7 @@ export function runMigrations(
   save: VersionedSave,
   targetVersion: number = CURRENT_SAVE_VERSION
 ): VersionedSave {
+  if (save.version < 20 && targetVersion >= 20) rejectPreV20State(save);
   let current: VersionedSave = save;
   while (current.version < targetVersion) {
     const next = current.version + 1;

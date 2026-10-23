@@ -1,4 +1,4 @@
-import { withoutV17Fields, withV19Defaults } from '../../../tests/helpers/save-fixtures';
+import { withoutV17Fields, withCurrentDefaults } from '../../../tests/helpers/save-fixtures';
 import { describe, expect, expectTypeOf, it } from 'vitest';
 import { deriveStats } from '../progression/stats';
 import type { Player, Mercenary } from '../types/entities';
@@ -37,7 +37,7 @@ function sampleSave() {
   return { ...historical, version: 11 as const, inventory, map };
 }
 function currentShape<T extends { inventory: object; map: object }>(save: T) {
-  return withV19Defaults({ ...save, inventory: { ...save.inventory, questItems: {} },
+  return withCurrentDefaults({ ...save, inventory: { ...save.inventory, questItems: {} },
     map: { ...save.map, questReceipts: {} } });
 }
 
@@ -51,7 +51,7 @@ const malformedSelections: readonly unknown[] = [
 
 describe('D05 v11 exclusive selected aura save boundary', () => {
   it('retains the v11 contract and its migrations with the current receipt format', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(19);
+    expect(CURRENT_SAVE_VERSION).toBe(20);
     for (const version of [8, 9, 10, 11]) expect(MIGRATIONS[version]).toBeDefined();
   });
 

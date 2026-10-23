@@ -1,4 +1,4 @@
-import { withoutV19Fields, withV19Defaults } from '../../../tests/helpers/save-fixtures';
+import { withoutV19Fields, withCurrentDefaults } from '../../../tests/helpers/save-fixtures';
 import { describe, expect, it } from 'vitest';
 import { CURRENT_SAVE_VERSION, MIGRATIONS } from '../types/save';
 import { deriveStats } from '../progression/stats';
@@ -29,13 +29,13 @@ function predecessor17() {
 
 describe('v18 concrete material ownership', () => {
   it('adds exactly an empty ledger to validated v17 without inventing old shard identities', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(19);
+    expect(CURRENT_SAVE_VERSION).toBe(20);
     const old = predecessor17(), before = structuredClone(old);
     const expected = { ...old, version: 18, inventory: { ...old.inventory, materials: {} } };
     const migrate = MIGRATIONS[18];
     if (!migrate) throw new Error('Missing v18 migration');
     expect(migrate(old)).toEqual(expected);
-    expect(decodeSave(old)).toEqual(withV19Defaults(expected));
+    expect(decodeSave(old)).toEqual(withCurrentDefaults(expected));
     expect(old).toEqual(before);
   });
 

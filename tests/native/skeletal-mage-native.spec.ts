@@ -290,7 +290,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
       expect(restored.formation).toEqual(beforeClose.formation);
       expect(restored.player.skillLevels).toEqual(fixture.player.skillLevels);
       expect(restored.meta.settings.locale).toBe(locale);
-      expect(Object.keys(restored).sort()).toEqual(['formation', 'inventory', 'map', 'mercs', 'meta', 'player', 'timestamp', 'version']);
+      expect(Object.keys(restored).sort()).toEqual(['endgame', 'formation', 'inventory', 'map', 'mercs', 'meta', 'player', 'timestamp', 'version']);
       await reopened.close();
     });
   }

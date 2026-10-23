@@ -1,4 +1,6 @@
 import type { CampaignMapSaveData } from '@/engine/types/save';
+import { emptyEndgameState } from '@/engine/endgame/state';
+import type { EndgameState } from '@/engine/endgame/types';
 import { ACT5_ENCOUNTERS, PRISON_QUEST } from '@/engine/map/act5-admission';
 import { THAW_PROOF } from '@/engine/save/act5-state';
 import { validateQuestItemLedger } from '@/engine/save/validate';
@@ -24,6 +26,7 @@ import { GUARDIAN_QUEST_ID } from '@/engine/map/guardian-admission';
 type QuestProgress = InteractionProgress;
 
 interface MapState extends Pick<CampaignMapSaveData, 'questTitles' | 'questDifficulties' | 'selectedTitle' | 'selectedDifficulty' | 'nightmareClearedSubAreas' | 'challengeOrdinals'> {
+  endgame: EndgameState;
   currentAct: number;
   currentSubAreaId: string | null;
   discoveredAreas: string[];
@@ -76,6 +79,7 @@ interface MapState extends Pick<CampaignMapSaveData, 'questTitles' | 'questDiffi
 }
 
 const initialState = {
+  endgame: emptyEndgameState(),
   currentAct: 1,
   currentSubAreaId: null,
   discoveredAreas: [] as string[],

@@ -1,3 +1,4 @@
+import { withoutV20Fields } from '../../../tests/helpers/save-fixtures';
 import { describe, expect, it } from 'vitest';
 import { buildSave, toJsonSafe } from './serialize';
 import { migrateSaveV19 } from './migrate-v19';
@@ -21,7 +22,7 @@ function predecessor(): SaveV18 {
       idleState: { lastOnline: 1000, offlineTime: 0, multiplierSecondsRemaining: 0, activeMultiplier: 1 },
       gachaState: { currency: 0, ownedMercIds: [], pityCounter: 0 } },
     formation: { playerPosition: { row: 1, col: 1 }, mercPosition: { row: 0, col: 0 }, summonPositions: [] } });
-  return { ...save, version: 18, inventory: { backpack: [], stash: [], equipped: {}, currencies: {},
+  return { ...withoutV20Fields(save), version: 18, inventory: { backpack: [], stash: [], equipped: {}, currencies: {},
     materials: {}, questItems: {}, questServices: {}, legacyGearQuarantine: [] } };
 }
 const gear = (id: string): CanonicalSocketItem => ({ id, baseId: 'items/base/wp1h-short-sword',

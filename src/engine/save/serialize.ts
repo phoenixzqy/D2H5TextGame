@@ -21,9 +21,12 @@ import {
 import type { Player } from '../types/entities';
 import { readMaterialActionState, type MaterialActionReceipt } from '../crafting/action-state';
 import { readMaterialLedger } from './material-state';
+import type { EndgameState } from '../endgame/types';
+import { readEndgameSaveField } from './endgame-state';
 
 /** Inputs required to assemble a {@link SaveCurrent}. */
 export interface BuildSaveInput {
+  readonly endgame?: EndgameState;
   readonly player: Player;
   readonly inventory: Pick<SocketInventorySaveData, 'backpack' | 'stash' | 'equipped' | 'currencies'> & Partial<Omit<SocketInventorySaveData, 'backpack' | 'stash' | 'equipped' | 'currencies' | 'latestMaterialAction'>> & { readonly latestMaterialAction?: MaterialActionReceipt | null };
   readonly mercs: SaveCurrent['mercs'];
@@ -41,6 +44,7 @@ export function buildSave(input: BuildSaveInput): SaveCurrent {
   if (questItems === undefined) throw new Error('Invalid save: present questItems must be a ledger');
   const questReceipts = Object.hasOwn(input.map, 'questReceipts') ? input.map.questReceipts : {};
   if (questReceipts === undefined) throw new Error('Invalid save: present questReceipts must be a receipt map');
+  const endgame = readEndgameSaveField(input, { questItems, questReceipts, questProgress: input.map.questProgress }, true);
   const { latestMaterialAction, ...owned } = input.inventory;
   if (Object.hasOwn(input.inventory, 'latestMaterialAction') && latestMaterialAction === undefined) {
     throw new Error('Invalid save: present material receipt is undefined');
@@ -51,6 +55,7 @@ export function buildSave(input: BuildSaveInput): SaveCurrent {
   readMaterialActionState(inventory);
   return {
     version: CURRENT_SAVE_VERSION,
+    endgame,
     timestamp: input.timestamp ?? Date.now(),
     player: { ...input.player, equipment: Object.values(input.inventory.equipped).filter(item => item !== null) },
     inventory,

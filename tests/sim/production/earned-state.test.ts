@@ -32,8 +32,9 @@ afterEach(() => {
 function currentSave(): SaveCurrent {
   const state = observeEarnedState();
   if (!state.player.player) throw new Error('Missing test player');
+  const { endgame, ...map } = state.map;
   return buildSave({ timestamp: 1792497600000, player: state.player.player,
-    inventory: state.inventory, mercs: state.merc, map: state.map,
+    inventory: state.inventory, mercs: state.merc, map, endgame,
     meta: { settings: state.meta.settings, idleState: state.meta.idleState,
       gachaState: state.meta.gachaState }, formation: state.formation });
 }

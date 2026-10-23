@@ -1,3 +1,4 @@
+import { readEndgameSaveField, rejectPreV20State } from './endgame-state';
 import frozenItemSchema from './frozen-v16-item.schema.json';
 import { readMaterialLedger } from './material-state';
 import { rejectPreV19State } from './pre-v19-state';
@@ -18,7 +19,7 @@ import { ACT4_ENCOUNTERS } from '../map/act4-admission';
 import { loadQuestActions, questActionInputs, type QuestItemActionDef } from '../../data/loaders/quest-actions';
 import { repairMercenaryGrowth } from '../progression/merc-growth';
 import { LEVEL_CAP } from '../progression/xp';
-import { type SaveCurrent, type SaveV17, type SaveV18, type SaveV19, type SaveV7, type SaveV8, type SaveV9, type SaveV10, type SaveV11, type QuestItemEntry, type QuestItemLedger } from '../types/save';
+import { type SaveCurrent, type SaveV17, type SaveV18, type SaveV19, type SaveV20, type SaveV7, type SaveV8, type SaveV9, type SaveV10, type SaveV11, type QuestItemEntry, type QuestItemLedger } from '../types/save';
 import { runMigrations, type VersionedSave } from './migrate';
 import { loadQuestItems, type QuestItemDef, questItemSource } from '../../data/loaders/quest-items';
 import { loadQuests, type QuestDef } from '../../data/loaders/quests';
@@ -225,12 +226,12 @@ const canonicalItem: AnySchema = { ...frozenItemSchema,
   properties: { ...frozenItemSchema.properties,
     socketContents: array(object({ kind: { enum: ['rune', 'gem'] }, id: text })) },
   not: { required: ['runes'] } };
-const nativeSaveSchema = (version: 17 | 18 | 19) => saveSchema({ const: version }, unitProperties, {
+const nativeSaveSchema = (version: 17 | 18 | 19 | 20) => saveSchema({ const: version }, unitProperties, {
   selectedAuraId: { enum: ['paladin.might', 'paladin.meditation'] }
 }, {
   questItems: questItemLedgerSchema, questServices: { type: 'object' }, legacyGearQuarantine: array({ type: 'object' }),
   ...(version >= 18 ? { materials: { type: 'object' } } : {}),
-  ...(version === 19 ? { materialActionOrdinal: { type: 'integer', minimum: 0, maximum: Number.MAX_SAFE_INTEGER },
+  ...(version >= 19 ? { materialActionOrdinal: { type: 'integer', minimum: 0, maximum: Number.MAX_SAFE_INTEGER },
     socketQuarantine: array({ type: 'object' }) } : {})
 }, {
   questTitles: { type: 'object' }, questDifficulties: { type: 'object' },
@@ -242,10 +243,11 @@ const nativeSaveSchema = (version: 17 | 18 | 19) => saveSchema({ const: version 
       'quests/act3-guardian#action:break-compelling-orb': { const: true },
       ...Object.fromEntries([...ACT4_ENCOUNTERS.map(row => row.proof), ...ACT5_RECEIPTS].map(source => [source, { const: true }])),
       'quests/act4-hellforge#action:shatter-soulstone': { const: true } } }
-}, version === 19 ? canonicalItem : item);
+}, version >= 19 ? canonicalItem : item);
 const validateV17 = ajv.compile<SaveV17>(nativeSaveSchema(17));
 const validateV18 = ajv.compile<SaveV18>(nativeSaveSchema(18));
 const validateV19 = ajv.compile<SaveV19>(nativeSaveSchema(19));
+const validateV20 = ajv.compile<SaveV20>(nativeSaveSchema(20));
 interface LedgerContext {
   questItems: QuestItemLedger;
   questProgress: SaveCurrent['map']['questProgress'];
@@ -669,7 +671,7 @@ export function validateQuestActionReceipts(receipts: unknown, questProgress: un
 }
 
 /** Preserve the v17 native graph/item validator before the v18 ownership-only migration. */
-function validateNativeSave(value: unknown, version: 17 | 18 | 19): SaveV17 | SaveV18 | SaveV19 {
+function validateNativeSave(value: unknown, version: 17 | 18 | 19 | 20): SaveV17 | SaveV18 | SaveV19 | SaveV20 {
   rejectHistoricalQuestReceipts(value);
   if (record(value) && record(value.inventory) && record(value.map)) {
     validateLiveQuestState(value.inventory.questItems, value.map.questProgress,
@@ -680,37 +682,45 @@ function validateNativeSave(value: unknown, version: 17 | 18 | 19): SaveV17 | Sa
   if (record(value) && value.version === version && record(value.map) && record(value.inventory)) {
     validateAct5CampaignRewards(value.map as unknown as SaveCurrent['map'], value.inventory.questItems as QuestItemLedger, value.inventory.questServices);
   }
-  if (version === 19) validateNativeSocketState(value, validateFrozenV16Item);
+  if (version >= 19) validateNativeSocketState(value, validateFrozenV16Item);
   const normalized = normalizeMaps(value);
   rejectUndefinedMagicResist(normalized);
   rejectUndefinedSelection(normalized);
-  const check = version === 17 ? validateV17 : version === 18 ? validateV18 : validateV19;
+  const check = version === 17 ? validateV17 : version === 18 ? validateV18 : version === 19 ? validateV19 : validateV20;
   if (!check(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(check.errors)}`);
   const save = normalized;
   // Own undefined, inherited values and accessors must not disappear through normalization.
   validateLegacyQuarantine(value as SaveV17 | SaveV18 | SaveV19, validateFrozenV16Item);
-  if (version !== 19) validateNativeItemState(value as SaveV17 | SaveV18);
+  if (version < 19) validateNativeItemState(value as SaveV17 | SaveV18);
   validateAct5CampaignRewards(save.map, save.inventory.questItems, save.inventory.questServices);
   validateLegacyQuarantine(save, validateFrozenV16Item);
-  if (version === 19) validateNativeSocketState(save, validateFrozenV16Item);
+  if (version >= 19) validateNativeSocketState(save, validateFrozenV16Item);
   else validateNativeItemState(save);
   return save;
 }
 
-/** Validate current material ownership before any normalization, IO or store mutation. */
+/** Validate current endgame/material ownership before any normalization, IO or store mutation. */
 export function validateSave(value: unknown): SaveCurrent {
-  return validateSocketSave(value);
+  rejectSocketSaveAccessors(value);
+  if (!record(value) || !record(value.map) || !record(value.inventory)) throw new Error('Invalid save: endgame structure');
+  const endgame = readEndgameSaveField(value, { questProgress: value.map.questProgress as SaveCurrent['map']['questProgress'],
+    questReceipts: value.map.questReceipts as QuestActionReceipts, questItems: value.inventory.questItems as QuestItemLedger });
+  readMaterialLedger(value.inventory);
+  const save = validateNativeSave(value, 20) as SaveV20;
+  return { ...save, endgame };
 }
 
 /** Validate the complete raw predecessor before any v19 conversion or defaulting. */
 export function validateFrozenV18Save(value: unknown): SaveV18 {
+  rejectPreV20State(value);
   rejectPreV19State(value);
   if (record(value) && record(value.inventory)) readMaterialLedger(value.inventory);
   return validateNativeSave(value, 18) as SaveV18;
 }
 
-/** Validate the native v19 target; rollout registration and runtime installation are separate. */
+/** Frozen native v19 boundary; future dungeon state cannot be laundered through history. */
 export function validateSocketSave(value: unknown): SaveV19 {
+  rejectPreV20State(value);
   rejectSocketSaveAccessors(value);
   if (record(value) && record(value.inventory)) readMaterialLedger(value.inventory);
   return validateNativeSave(value, 19) as SaveV19;
@@ -743,6 +753,7 @@ export function decodeSave(value: unknown): SaveCurrent {
   }
   let input = value as VersionedSave;
   // Reject getters before even historical direct-field reads/normalization.
+  if (input.version < 20) rejectPreV20State(input);
   if (input.version < 19) rejectPreV19State(input);
   rejectSocketSaveAccessors(input);
   const originalInventory = 'inventory' in value ? value.inventory : undefined;
@@ -779,6 +790,8 @@ export function decodeSave(value: unknown): SaveCurrent {
   if (input.version === 17) validateNativeSave(input, 17);
   if (input.version < 18) input = runMigrations(input, 18);
   if (input.version === 18) input = validateFrozenV18Save(input);
+  if (input.version < 19) input = runMigrations(input, 19);
+  if (input.version === 19) input = validateSocketSave(input);
   const save = validateSave(runMigrations(input));
   return repairRunewordStatCache(repairQuestLifeCache(repairQuestResistanceCache(repairEquipmentRateCache({
     ...save,

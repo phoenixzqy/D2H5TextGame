@@ -1,4 +1,4 @@
-import { withoutV17Fields, withV19Defaults } from '../../../tests/helpers/save-fixtures';
+import { withoutV17Fields, withCurrentDefaults } from '../../../tests/helpers/save-fixtures';
 import { describe, expect, it } from 'vitest';
 import { deriveStats } from '../progression/stats';
 import type { DerivedStats } from '../types/attributes';
@@ -49,7 +49,7 @@ describe('D04 v9 magic mitigation save boundary', () => {
     const output = decodeSave(input);
     expect(input.player.derivedStats).not.toHaveProperty('magicResist');
     expect(input.mercs.ownedMercs.every(m => !Object.hasOwn(m.derivedStats, 'magicResist'))).toBe(true);
-    expect(output).toEqual(withV19Defaults({ ...input, version: CURRENT_SAVE_VERSION,
+    expect(output).toEqual(withCurrentDefaults({ ...input, version: CURRENT_SAVE_VERSION,
       inventory: { ...input.inventory, questItems: {} },
       map: { ...input.map, questReceipts: {} },
       formation: version === 6 ? {
@@ -76,7 +76,7 @@ describe('D04 v9 magic mitigation save boundary', () => {
       mercs: { ...base.mercs, ownedMercs: base.mercs.ownedMercs.map((m, i) => ({ ...m,
         derivedStats: { ...m.derivedStats, magicResist: 20 + i } })) } };
     expect(runMigrations(input, 9)).toBe(input);
-    const expected = withV19Defaults({ ...input, version: CURRENT_SAVE_VERSION, inventory: { ...input.inventory, questItems: {} },
+    const expected = withCurrentDefaults({ ...input, version: CURRENT_SAVE_VERSION, inventory: { ...input.inventory, questItems: {} },
       map: { ...input.map, questReceipts: {} } });
     expect(decodeSave(input)).toEqual(expected);
     expect(decodeSave(toJsonSafe(decodeSave(input)))).toEqual(expected);
@@ -88,7 +88,7 @@ describe('D04 v9 magic mitigation save boundary', () => {
       derivedStats: { ...input.player.derivedStats, magicResist: 17 } },
       mercs: { ...input.mercs, ownedMercs: input.mercs.ownedMercs.map(m => ({ ...m,
         derivedStats: { ...m.derivedStats, magicResist: 23 } })) } };
-    expect(decodeSave(withMR)).toEqual(withV19Defaults({ ...withMR, version: CURRENT_SAVE_VERSION,
+    expect(decodeSave(withMR)).toEqual(withCurrentDefaults({ ...withMR, version: CURRENT_SAVE_VERSION,
       inventory: { ...withMR.inventory, questItems: {} }, map: { ...withMR.map, questReceipts: {} } }));
   });
 

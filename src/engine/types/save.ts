@@ -6,6 +6,8 @@ import type { HistoricalItem } from '../save/historical-items';
 
 import type { QuestServiceLedger } from '../services/quest-services';
 import { migrateSaveV19 } from '../save/migrate-v19';
+import { migrateSaveV20 } from '../save/migrate-v20';
+import type { EndgameState } from '../endgame/types';
 import { migrateSaveV17 } from '../save/migrate-v17';
 import { migrateLegacyStarter } from '../save/legacyStarter';
 import type { Player, Mercenary } from './entities';
@@ -22,7 +24,7 @@ import type { MaterialRecoveryEntry } from '../crafting/material-actions';
  * Current save format version. Bump this and add an entry to {@link MIGRATIONS}
  * whenever the on-disk shape changes.
  */
-export const CURRENT_SAVE_VERSION = 19;
+export const CURRENT_SAVE_VERSION = 20;
 
 /**
  * Save file version (most recent).
@@ -376,7 +378,12 @@ export interface SaveV19 extends Omit<SaveV18, 'version' | 'inventory' | 'player
     readonly ownedMercs: readonly (Omit<HistoricalMercenary, 'equipment'> & { readonly equipment: readonly CanonicalSocketItem[] })[];
   };
 }
-export type SaveCurrent = SaveV19;
+/** Native v20 adds separate durable dungeon ownership; historical campaign types stay frozen. */
+export interface SaveV20 extends Omit<SaveV19, 'version'> {
+  readonly version: 20;
+  readonly endgame: EndgameState;
+}
+export type SaveCurrent = SaveV20;
 
 /**
  * Migration function type. Each entry receives the previous version's shape
@@ -584,5 +591,6 @@ export const MIGRATIONS: Record<number, Migration> = {
     return { ...v17, version: 18, inventory: { ...v17.inventory, materials: {} } };
   },
   /** Decode validates frozen18 before the lossless canonical conversion. */
-  19: (raw: unknown): SaveV19 => migrateSaveV19(raw as SaveV18)
+  19: (raw: unknown): SaveV19 => migrateSaveV19(raw as SaveV18),
+  20: (raw: unknown): SaveV20 => migrateSaveV20(raw as SaveV19)
 };

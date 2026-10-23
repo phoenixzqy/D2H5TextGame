@@ -96,6 +96,7 @@ function buildStoreSnapshot(now: number, projectBonus: boolean): SaveCurrent | n
   const formation = useFormationStore.getState();
 
   return buildSave({
+    endgame: map.endgame,
     timestamp: now,
     player,
     inventory: {
@@ -400,6 +401,7 @@ function applySaveToStores(data: SaveCurrent, idleBonusAnchor: number, lease: Wa
     mercProgress: { ...data.mercs.mercProgress }
   });
   useMapStore.setState({
+    endgame: data.endgame,
     currentAct: data.map.currentAct,
     currentSubAreaId: data.map.currentSubAreaId,
     discoveredAreas: [...data.map.discoveredAreas],

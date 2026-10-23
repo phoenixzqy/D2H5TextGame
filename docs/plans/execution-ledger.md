@@ -10906,3 +10906,20 @@ Evidence remains root-owned through native-v19/umbrella consumers at
 `native-boundary-dist` was removed and absence verified; no browser/server
 started, all validation processes terminal. Root removes retained diagnostics
 after integration/umbrella consumers finish.
+
+
+## P18b — Separate endgame persistence prerequisite
+
+[Save20 evidence](evidence/p18b-endgame-save20.md) records required root endgame
+ownership, frozen19 migration, strict reservations, explicit live mapping and
+autosave/reset/delete coverage. Final full11133/413PASS with2existing skips,
+typecheck/lint/buildPASS;1182frozen files have zero drift. Production en/zh-CN
+mobile/desktop4/4PASS verifies constructed migration and exact page-close
+Continue persistence, not earned dungeon play. Independent source CLEAR and
+QA ADEQUATE. BUG136 corrects only three stale fixture boundaries.
+Native entry/recording/settlement, cache/counts, explicit achievement Claim,
+title/UI and earned endgame acceptance remain open. C0/C1 accepted; C2
+incomplete; C3/C4/fullG0–G7 open. Test/performance/PWA budgets remain unresolved.
+Local only; diagnostics root-owned through umbrella consumers at
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-endgame-native-sapkemp7`;
+exact disposable paths absent, cleanup remaining[]/failures[].

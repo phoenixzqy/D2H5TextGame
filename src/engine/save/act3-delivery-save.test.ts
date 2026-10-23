@@ -1,4 +1,4 @@
-import { withoutV17Fields, withV19Defaults } from '../../../tests/helpers/save-fixtures';
+import { withoutV17Fields, withCurrentDefaults } from '../../../tests/helpers/save-fixtures';
 import { CURRENT_SAVE_VERSION } from '../types/save';
 import { describe, expect, it } from 'vitest';
 import { buildSave, toJsonSafe } from './serialize';
@@ -51,7 +51,7 @@ describe('actual delivery receipts and frozen v14 boundary', () => {
     const { questReceipts: _receipts, ...map } = historical.map;
     const input = { ...historical, version: 14, inventory: { ...historical.inventory, questItems: {} }, map };
     const before = structuredClone(input);
-    expect(decodeSave(input)).toEqual(withV19Defaults({ ...input, map: { ...map, questReceipts: {} } }));
+    expect(decodeSave(input)).toEqual(withCurrentDefaults({ ...input, map: { ...map, questReceipts: {} } }));
     expect(input).toEqual(before);
     expect(() => decodeSave({ ...input, inventory: historical.inventory })).toThrow(/v14/);
     expect(() => decodeSave({ ...input, map: { ...map, questReceipts: {} } })).toThrow(/historical map/);

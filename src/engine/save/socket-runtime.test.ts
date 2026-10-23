@@ -1,3 +1,4 @@
+import { withoutV20Fields, withV20Defaults } from '../../../tests/helpers/save-fixtures';
 import { describe, expect, it } from 'vitest';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { buildSave, toJsonSafe } from './serialize';
@@ -16,7 +17,7 @@ function oldSave(): SaveV18 {
       idleState: { lastOnline: 1000, offlineTime: 0, multiplierSecondsRemaining: 0, activeMultiplier: 1 },
       gachaState: { currency: 0, ownedMercIds: [], pityCounter: 0 } },
     formation: { playerPosition: { row: 1, col: 1 }, mercPosition: { row: 0, col: 0 }, summonPositions: [] }, timestamp: 1000 });
-  return { ...save, version: 18, inventory: { backpack: [], stash: [], equipped: {}, currencies: {}, materials: {},
+  return { ...withoutV20Fields(save), version: 18, inventory: { backpack: [], stash: [], equipped: {}, currencies: {}, materials: {},
     questItems: {}, questServices: {}, legacyGearQuarantine: [] } };
 }
 const sword = (id: string): HistoricalItem => ({ id, baseId: 'items/base/wp1h-short-sword', rarity: 'normal',
@@ -46,7 +47,7 @@ describe('connected socket runtime save boundary', () => {
     const old = oldSave(), equipped = { ...sword('blade'), equipped: true };
     const input = { ...old, inventory: { ...old.inventory, equipped: { weapon: equipped } } };
     const before = structuredClone(input), decoded = decodeSave(toJsonSafe(input));
-    expect(decoded.version).toBe(19);
+    expect(decoded.version).toBe(20);
     expect(decoded.inventory.equipped.weapon).toMatchObject({ socketContents: [{ kind: 'rune', id: 'runes/el' }] });
     expect(decoded.inventory.equipped.weapon).not.toHaveProperty('runes');
     expect(decoded.player.equipment).toEqual([decoded.inventory.equipped.weapon]);
@@ -61,8 +62,8 @@ describe('connected socket runtime save boundary', () => {
     const native = migrateSaveV19({ ...old, inventory: { ...old.inventory, backpack: [sword('bag')], stash: [incompatible],
       legacyGearQuarantine: [{ item: old16, origin: { container: 'stash', index: 0 } }] } });
     const decoded = decodeSave(toJsonSafe(native));
-    expect(decoded.version).toBe(19);
-    expect(toJsonSafe(decoded)).toEqual(toJsonSafe(native));
+    expect(decoded.version).toBe(20);
+    expect(toJsonSafe(decoded)).toEqual(toJsonSafe(withV20Defaults(native)));
     for (const entry of [decoded.inventory.legacyGearQuarantine[0], decoded.inventory.socketQuarantine[0]]) {
       const affix = entry?.item.affixes?.[0];
       expect(affix && 'values' in affix && affix.values).toBeInstanceOf(Map);
