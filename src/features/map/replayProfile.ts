@@ -20,11 +20,13 @@ export function selectReplayProfile(profile: 'normal' | 'nightmare'): ReplayProf
     const refusal = questActionPreflight();
     if (refusal) return refusal;
     const recording = inspectRecordedWaves();
-    if (recording.pending || recording.currentPublished &&
+    if (recording.pending) return 'combat-active';
+    if (recording.currentPublished &&
       recording.currentPublished.installation?.settlement.progress.phase !== 'settled') return 'combat-active';
     return withQuestTransaction<ReplayProfileResult>(() => {
       // The exported TS union is not a runtime trust boundary.
-      if (profile !== 'normal' && profile !== 'nightmare') return 'not-owned';
+      const candidate: unknown = profile;
+      if (candidate !== 'normal' && candidate !== 'nightmare') return 'not-owned';
       const map = useMapStore.getState(), inventory = useInventoryStore.getState();
       try {
         validateQuestItemLedger(inventory.questItems, map.questProgress, map.questReceipts);

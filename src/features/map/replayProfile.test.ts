@@ -57,12 +57,15 @@ describe('selectReplayProfile', () => {
     expect(useInventoryStore.getState()).toBe(inventory);
   });
 
-  it.each(['missing-proof', 'unclaimed', 'false-unlock', 'inherited-unlock', 'foreign-unlock', 'contradictory-item'])
-  ('refuses an unearned or contradictory campaign graph: %s', fault => {
+  it.each(['missing-proof', 'unclaimed', 'false-unlock', 'inherited-unlock', 'foreign-unlock', 'contradictory-item'])(
+    'refuses an unearned or contradictory campaign graph: %s', fault => {
     entitlement();
     if (fault === 'missing-proof') useMapStore.setState({ questReceipts: { [`${EVE}#action:baal-victory`]: true } });
-    if (fault === 'unclaimed') useMapStore.setState(state => ({ questProgress: {
-      [EVE]: { ...state.questProgress[EVE]!, rewardClaimed: false } } }));
+    if (fault === 'unclaimed') useMapStore.setState(state => {
+      const progress = state.questProgress[EVE];
+      if (!progress) throw new Error('Missing Eve fixture');
+      return { questProgress: { [EVE]: { ...progress, rewardClaimed: false } } };
+    });
     if (fault === 'false-unlock') useMapStore.setState({ questDifficulties: { [NIGHTMARE_UNLOCK]: false as unknown as true } });
     if (fault === 'inherited-unlock') useMapStore.setState({ questDifficulties: Object.create({ [NIGHTMARE_UNLOCK]: true }) as Record<string, true> });
     if (fault === 'foreign-unlock') useMapStore.setState({ questDifficulties: { 'difficulty/foreign': true } });
