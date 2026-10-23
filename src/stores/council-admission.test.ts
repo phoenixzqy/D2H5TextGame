@@ -208,8 +208,10 @@ describe('Council accepted settlement action proof', () => {
     if (!(failure instanceof AggregateError)) throw new Error('Expected restoration AggregateError');
     expect(failure.errors).toHaveLength(1);
     expect(failure.message).toBe('Council proof restoration failed');
-    // Restoration failed: the API must not promise that publication was undone.
-    expect(useMapStore.getState().questReceipts).toEqual({ [SOURCE]: true });
+    // The outer wave restoration repairs this one-shot inner restoration fault,
+    // while preserving its original diagnostic AggregateError and closed receipt.
+    expect(useMapStore.getState().questReceipts).toEqual({});
+    expect(advanceWaveOrFinish).toThrow('settlementFailed');
   });
 
   it('roundtrips only actual finite Council proof; frozen14 rejects the future field and migration infers none', () => {

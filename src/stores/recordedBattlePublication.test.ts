@@ -35,7 +35,7 @@ function input(): RecordedBattleInput {
 }
 
 const defaults = { currentWave: 3, totalWaves: 7, subAreaRunId: 'old-run',
-  runRewards: { items: [], runeShards: 3, runes: 2, gems: 1, wishstones: 4 } };
+  runRewards: { items: [], runeShards: 3, runes: 2, gems: 1, wishstones: 4, materials: { 'runes/el': 2, 'gems/ruby/chipped': 1 } } };
 
 describe('recorded battle publication staging', () => {
   beforeEach(() => { useCombatStore.getState().reset(); });
@@ -103,7 +103,7 @@ describe('recorded battle publication staging', () => {
 
   it('installs captured values and references in one notification after defaults change', () => {
     const staged = stageRecordedBattle(input(), defaults);
-    const rewards = { items: [], runeShards: 9, runes: 2, gems: 3, wishstones: 4 };
+    const rewards = { items: [], runeShards: 9, runes: 2, gems: 3, wishstones: 4, materials: { 'runes/el': 2, 'gems/ruby/chipped': 3 } };
     useCombatStore.setState({
       currentWave: 99, totalWaves: 100, subAreaRunId: 'later-run', autoMode: false,
       runRewards: rewards, inCombat: false, runVictory: true, runDefeat: true,
@@ -133,7 +133,7 @@ describe('recorded battle publication staging', () => {
 
   it('keeps setRecordedBattle behavior, including current defaults and unrelated state', () => {
     const source = input();
-    const rewards = { items: [], runeShards: 6, runes: 0, gems: 0, wishstones: 0 };
+    const rewards = { items: [], runeShards: 6, runes: 0, gems: 0, wishstones: 0, materials: {} };
     useCombatStore.setState({ ...defaults, autoMode: false, runRewards: rewards });
     const observations: ReturnType<typeof useCombatStore.getState>[] = [];
     const release = useCombatStore.subscribe(state => { observations.push(state); });
@@ -199,7 +199,7 @@ describe('recorded battle publication staging', () => {
     const before = structuredClone(defaults.runRewards);
     const source = { ...input(), resetRunRewards: true };
     const staged = stageRecordedBattle(source, defaults), second = stageRecordedBattle(source, defaults);
-    expect(staged.runRewards).toEqual({ items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0 });
+    expect(staged.runRewards).toEqual({ items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0, materials: {} });
     expect(staged.runRewards).not.toBe(defaults.runRewards);
     expect(staged.runRewards).not.toBe(second.runRewards);
     expect(staged.runRewards.items).not.toBe(defaults.runRewards.items);
@@ -222,7 +222,7 @@ describe('recorded battle publication staging', () => {
       expect(state.subAreaRunId).toBe('new-run');
       expect(state.ironGolemReplayLocked).toBe(true);
       expect(state.runRewards).toBe(staged.runRewards);
-      expect(state.runRewards).toEqual({ items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0 });
+      expect(state.runRewards).toEqual({ items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0, materials: {} });
     } finally { release(); }
   });
 

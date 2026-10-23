@@ -8,6 +8,8 @@ import { INSPECT_PROOF, POTION_SOURCE, THAW_PROOF } from '@/engine/save/act5-sta
 import { claimQuestReward } from '@/features/quests/claimReward';
 import { abortSubAreaRun, advanceWaveOrFinish, refreshActivePlayerCombatConfig, startSubAreaRun } from './combatHelpers';
 import { combatRunLifecycle } from './combatRunLifecycle';
+import { captureAct5SettlementRollback, prepareAct5Settlement } from './act5QuestAdmission';
+import { inspectRecordedWaves } from './recordedWaveReceipt';
 import { usePlayerStore } from './playerStore';
 import { useInventoryStore } from './inventoryStore';
 import { useMapStore } from './mapStore';
@@ -101,6 +103,8 @@ describe.each(ACT5_ENCOUNTERS.filter(row => row.questId !== EVE_QUEST))('Act V a
   });
   it('restores source proof and the participating quest row when publication fails after mutation', () => {
     track(contract.questId); if (contract.questId === PRISON_QUEST) thawGraph(); reachFinal(contract.areaId); drain();
+    const stores = [usePlayerStore, useInventoryStore, useMercStore, useMapStore, useCombatStore] as const;
+    const states = stores.map(store => store.getState());
     const before = useMapStore.getState().questProgress[contract.questId], write = useMapStore.setState; let injected = false;
     vi.spyOn(useMapStore, 'setState').mockImplementation((...args) => {
       const patch = typeof args[0] === 'function' ? args[0](useMapStore.getState()) : args[0];
@@ -110,11 +114,27 @@ describe.each(ACT5_ENCOUNTERS.filter(row => row.questId !== EVE_QUEST))('Act V a
     });
     expect(advanceWaveOrFinish).toThrow('Act V victory publication refused'); expect(injected).toBe(true);
     expect(useMapStore.getState().questProgress[contract.questId]).toBe(before);
+    stores.forEach((store, index) => { expect(store.getState()).toEqual(states[index]); });
+    expect(advanceWaveOrFinish).toThrow('settlementFailed');
     expect(useMapStore.getState().questReceipts[contract.proof]).toBeUndefined(); expect(advanceWaveOrFinish).toThrow();
   });
 });
 
 describe('Act V contiguous original Throne sequence', () => {
+  it('restores both empty and existing hidden sequence checkpoints without publishing a proof', () => {
+    track(EVE_QUEST); begin(throne);
+    for (let ordinal = 1; ordinal <= 5; ordinal++) {
+      if (ordinal <= 2) {
+        const restore = captureAct5SettlementRollback(required(combatRunLifecycle.activeRun));
+        // Direct internal-boundary fault fixture: stage transient sequence work,
+        // restore it, then verify ordinary accepted playback still counts once.
+        prepareAct5Settlement(required(inspectRecordedWaves().currentPublished).binding)();
+        restore();
+      }
+      expect(accept()).toBe('next-wave');
+      expect(useMapStore.getState().questReceipts[THRONE_PROOF]).toBe(ordinal === 5 ? true : undefined);
+    }
+  });
   it('publishes exactly after five accepted original waves, preserves guards, then accepts real final Baal', () => {
     track(EVE_QUEST); expect(begin(throne)).toBe(8);
     for (let ordinal = 1; ordinal <= 5; ordinal++) {

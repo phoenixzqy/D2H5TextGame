@@ -287,7 +287,7 @@ describe('effective MF multiplier boundaries', () => {
     expect(original).toEqual({
       items: [{ id: 'it-6otyo-1', baseId: 'bonus-base', rarity: 'magic', level: 5, ilvl: 5,
         baseRolls: {}, affixes: [], generatedName: {}, identified: true, equipped: false, socketCapacity: 0 }],
-      runeShards: 25, wishstones: 0, runes: 0, gems: 0
+      runeShards: 25, wishstones: 0, runes: 0, gems: 0, materials: {}
     });
     __resetRollItemSeqForTests();
     const input = { ...kill, magicFindMultiplier: 1 };
@@ -300,7 +300,7 @@ describe('effective MF multiplier boundaries', () => {
     'keeps %s rewards, GF/materials/pick count and RNG state unchanged', (path) => {
       const entry: TreasureClass['picks'][number] = path === 'forced' ? { ...required(tc.picks[0]), rarity: 'magic' as const }
         : { type: path === 'wishstone' ? 'currency' : path === 'gold' ? 'gold' : path === 'gem' ? 'gem' : 'rune',
-          itemId: path === 'wishstone' ? 'currency/wishstone' : 'runes/tal',
+          itemId: path === 'wishstone' ? 'currency/wishstone' : path === 'gem' ? 'gems/ruby/chipped' : 'runes/tal',
           weight: 1, qlvlMin: 1, qlvlMax: 99, quantityMin: 2, quantityMax: 4 };
       const selectedTc = { ...tc, numPicks: 5, noDropChance: path === 'no-drop' ? 1 : 0.4,
         picks: [entry] };

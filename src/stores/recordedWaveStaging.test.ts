@@ -18,7 +18,7 @@ function input(): RecordedWaveStagingInput {
   return { snapshot: { seed: 7, playerTeam: [unit('hero', 'player')], enemyTeam: [unit('enemy', 'enemy')] },
     waveIdx: 1, totalWaves: 3, subAreaRunId: 'fixture-run',
     defaults: { currentWave: 9, totalWaves: 9, subAreaRunId: 'old-run',
-      runRewards: { items: [], runeShards: 3, runes: 2, gems: 1, wishstones: 4 } },
+      runRewards: { items: [], runeShards: 3, runes: 2, gems: 1, wishstones: 4, materials: { 'runes/el': 2, 'gems/ruby/chipped': 1 } } },
     resolveDisplayName: value => `localized:${value.id}` };
 }
 function required<T>(value: T | undefined): T {
@@ -142,7 +142,7 @@ describe('owned recorded-wave staging', () => {
       bossIntro: { bossArchetypeId: 'fixture-boss' }, wavePresentation: presentation,
       ironGolemReplayLocked: true, resetRunRewards: true });
     expect(staged.publication).toMatchObject({ currentWave: 2, totalWaves: 3, subAreaRunId: 'fixture-run',
-      ironGolemReplayLocked: true, runRewards: { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0 } });
+      ironGolemReplayLocked: true, runRewards: { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0, materials: {} } });
     expect(staged.publication.runRewards).not.toBe(source.defaults.runRewards);
     expect(staged.publication.currentWavePresentation).toBe(presentation);
     expect(staged.recording.chapterBoss).toEqual(boss);

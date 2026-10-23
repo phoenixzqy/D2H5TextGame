@@ -543,7 +543,7 @@ it('retries next-wave staging from captured carry without repeating rewards or r
   expect(useIronGolemSelectionStore.getState().selection).toBeNull();
 });
 
-it.each(['before', 'after'] as const)('retains actual XP and original failure after a %s-write settlement error', when => {
+it.each(['before', 'after'] as const)('restores XP and retains original failure after a %s-write settlement error', when => {
   start(); drain();
   const run = activeRun(); const recording = run.recording;
   const before = usePlayerStore.getState().player;
@@ -563,8 +563,7 @@ it.each(['before', 'after'] as const)('retains actual XP and original failure af
   expect(progress.failure.error).toBe(error);
   expect(activeRun()).toBe(run); expect(run.waveIdx).toBe(0); expect(run.recording).toBe(recording);
   const actual = usePlayerStore.getState().player;
-  if (when === 'before') expect(actual).toBe(before);
-  else expect(actual?.level).toBeGreaterThan(before?.level ?? 0);
+  expect(actual).toBe(before);
   expect(useMercStore.getState()).toBe(mercs); expect(useInventoryStore.getState()).toBe(inventory);
   expect(persistence.snapshotStores()?.player).toEqual(actual);
   for (const { action } of actions) unchanged(action, new RecordedWaveAccessError('settlementFailed'));
@@ -576,14 +575,17 @@ it.each(['before', 'after'] as const)('retains actual XP and original failure af
   expect(start()).not.toBeNull();
 });
 
-it('retains awarded gains when carry rebasing fails and never retries the payout', () => {
+it('restores awarded gains when carry rebasing fails and never retries the payout', () => {
   start(); drain(); const run = activeRun(); const recording = run.recording;
+  const before = [usePlayerStore, useInventoryStore, useMercStore, useMapStore, useCombatStore].map(store => store.getState());
   const xp = vi.spyOn(usePlayerStore.getState(), 'gainExperience');
   const error = new Error('carry rebasing');
   const rebase = vi.spyOn(statusEngine, 'rebaseStatusClock').mockImplementationOnce(() => { throw error; });
   expect(advanceWaveOrFinish).toThrow(error);
   expect(xp).toHaveBeenCalledTimes(1); expect(rebase).toHaveBeenCalledTimes(1);
-  expect(useCombatStore.getState().runRewards.items.length).toBeGreaterThan(0);
+  [usePlayerStore, useInventoryStore, useMercStore, useMapStore, useCombatStore].forEach((store, index) => {
+    expect(store.getState()).toEqual(before[index]);
+  });
   expect(inspectRecordedWaves().currentPublished?.installation?.settlement.progress)
     .toMatchObject({ phase: 'settlementFailed', failure: { error } });
   expect(run.waveIdx).toBe(0); expect(run.recording).toBe(recording);
@@ -591,7 +593,7 @@ it('retains awarded gains when carry rebasing fails and never retries the payout
   expect(xp).toHaveBeenCalledTimes(1); expect(rebase).toHaveBeenCalledTimes(1);
 });
 
-it.each(['before', 'after'] as const)('retains final-wave actual clear progress after a %s-write clear error', when => {
+it.each(['before', 'after'] as const)('restores final-wave clear progress after a %s-write clear error', when => {
   const handle = start(); if (!handle) throw new Error('Missing run handle');
   for (let wave = 1; wave < handle.totalWaves; wave++) { drain(); expect(advanceWaveOrFinish()).toBe('next-wave'); }
   drain(); const run = activeRun();
@@ -603,7 +605,7 @@ it.each(['before', 'after'] as const)('retains final-wave actual clear progress 
   });
   expect(advanceWaveOrFinish).toThrow(error);
   expect(activeRun()).toBe(run);
-  expect(useMapStore.getState().isCleared(run.plan.subAreaId)).toBe(when === 'after');
+  expect(useMapStore.getState().isCleared(run.plan.subAreaId)).toBe(false);
   expect(useCombatStore.getState().runVictory).toBe(false);
   expect(inspectRecordedWaves().currentPublished?.installation?.settlement.progress)
     .toMatchObject({ phase: 'settlementFailed', failure: { error } });

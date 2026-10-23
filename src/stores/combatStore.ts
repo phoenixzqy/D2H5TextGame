@@ -9,6 +9,7 @@ import type { WavePresentation } from '@/engine/combat';
 import type { RecordedBattleEvent } from '@/engine/combat/combat';
 import type { CombatSide } from '@/engine/combat/types';
 import type { KillRewards } from '@/engine/loot/award';
+import { mergeRewards } from '@/engine/loot/reward-plan';
 import { withDefaultGridPositions } from '@/engine/combat/grid';
 import { applyEventToTeams, overlayStatusPresentation, type StatusPlaybackState } from './combatPlayback';
 import { eventToLocalizedLogEntry } from './eventToLogI18n';
@@ -142,7 +143,7 @@ export function recordedPlaybackBatch(
 
 /** Empty {@link KillRewards} value used to seed run-aggregate state. */
 function emptyRewards(): KillRewards {
-  return { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0 };
+  return { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0, materials: {} };
 }
 
 const initialState = {
@@ -274,13 +275,7 @@ export const useCombatStore= create<CombatState>((set, get) => ({
   markRunDefeat: () => { set({ runDefeat: true, runVictory: false }); },
 
   accumulateRunRewards: (rewards) => { set((state) => ({
-    runRewards: {
-      items: [...state.runRewards.items, ...rewards.items],
-      runeShards: state.runRewards.runeShards + rewards.runeShards,
-      runes: state.runRewards.runes + rewards.runes,
-      gems: state.runRewards.gems + rewards.gems,
-      wishstones: state.runRewards.wishstones + rewards.wishstones
-    }
+    runRewards: mergeRewards(state.runRewards, rewards)
   })); },
   resetRunRewards: () => { set({ runRewards: emptyRewards() }); },
 

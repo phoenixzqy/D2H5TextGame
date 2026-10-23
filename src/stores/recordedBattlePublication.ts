@@ -97,7 +97,7 @@ export function stageRecordedBattle(
     runDefeat: false,
     ironGolemReplayLocked: input.ironGolemReplayLocked ?? false,
     runRewards: input.resetRunRewards
-      ? { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0 }
+      ? { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0, materials: {} }
       : defaults.runRewards
   });
 }

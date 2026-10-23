@@ -34,7 +34,7 @@ describe('combatStore — Bug #1 (reset on second battle)', () => {
       log: [{ id: 'l1', timestamp: 1, type: 'system', actorId: 's', actorName: 's', message: 'm' }],
       currentWave: 4, totalWaves: 4, runVictory: true,
       subAreaRunId: 'areas/a1-blood-moor',
-      runRewards: { items: [], runeShards: 9, runes: 0, gems: 0, wishstones: 0 },
+      runRewards: { items: [], runeShards: 9, runes: 0, gems: 0, wishstones: 0, materials: {} },
       outcome: { winner: 'player', finalPlayerTeam: [], finalEnemyTeam: [] }
     });
     useCombatStore.getState().endCombat();

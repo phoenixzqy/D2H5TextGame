@@ -654,12 +654,14 @@ describe('startSimpleBattle — Bug #12', () => {
 
 describe('awardLootForVictory (Bug #12 — no gold)', () => {
   beforeEach(resetStores);
-  it('folds rune drops and rune-shards into rune-shard currency without gold', () => {
+  it('credits actual rune-shards while keeping rune and gem identities separate', () => {
     boostedSorceress();
     const result = awardLootForVictory({ slainEnemies: Array.from({ length: 5 }, (_, i) => slainEnemy(`e${String(i)}`)), act: 1, treasureClassId: 'tc_missing', seed: 123 });
     expect(result.runeShards).toBeGreaterThan(0);
     expect('gold' in result).toBe(false);
-    expect(useInventoryStore.getState().getCurrency('rune-shard')).toBeGreaterThan(0);
+    expect(useInventoryStore.getState().getCurrency('rune-shard')).toBe(result.runeShards);
+    expect(useInventoryStore.getState().getCurrency('gem-shard')).toBe(0);
+    expect(useInventoryStore.getState().materials).toEqual(result.materials);
     expect(useInventoryStore.getState().getCurrency('gold')).toBe(0);
   });
 });

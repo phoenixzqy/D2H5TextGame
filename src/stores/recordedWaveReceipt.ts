@@ -2,6 +2,7 @@ import type { Act5Encounter } from '@/engine/map/act5-admission';
 import type { Act4Encounter } from '@/engine/map/act4-admission';
 import type { CombatSnapshot } from '@/engine/combat/combat';
 import type { CombatUnit } from '@/engine/combat/types';
+import type { KillRewards } from '@/engine/loot/award';
 import type { IronGolemPreparationAttestation } from '@/engine/skills/iron-golem';
 import type { ActiveRun } from './combatRunLifecycle';
 import type { useCombatStore } from './combatStore';
@@ -48,7 +49,11 @@ interface CapturedBinding extends RecordedWaveBinding {
   readonly expectedWaveIdx: number | null;
   readonly expectedRecording: ActiveRun['recording'];
 }
-interface ReceiptFailure { readonly error: unknown }
+interface ReceiptFailure {
+  readonly error: unknown;
+  /** Diagnostic complete generation output, never payout or retry authority. */
+  readonly preparedRewards?: KillRewards;
+}
 /** Captured installation policy; challenge-counter range remains helper-owned. */
 export type RecordedWaveInstallIntent =
   | { readonly kind: 'newRun'; readonly nextDefaultChallengeOrdinal: number | null }
@@ -453,11 +458,25 @@ export function finishRecordedWaveSettlement(
     : { phase: 'settled', result: result.result });
 }
 
-/** Retain the original thrown value and actual gains; never retry or compensate. */
+/** Freeze privately owned diagnostics, including the mutable Map values in gear. */
+function freezeRewardEvidence(value: unknown): void {
+  if (typeof value !== 'object' || value === null) return;
+  if (value instanceof Map) {
+    for (const child of value.values()) freezeRewardEvidence(child);
+    const refuse = () => { throw new TypeError('Recorded reward evidence is immutable'); };
+    Object.defineProperties(value, { set: { value: refuse }, delete: { value: refuse }, clear: { value: refuse } });
+  } else for (const child of Object.values(value)) freezeRewardEvidence(child);
+  Object.freeze(value);
+}
+
+/** Retain failure and complete generated output after caller restoration; never retry. */
 export function failRecordedWaveSettlement(
   receipt: RecordedWaveReceipt, lease: WaveTransitionLease, failure: ReceiptFailure
 ): void {
   const { current, installation } = publishedSettlementFor(receipt, lease);
   if (installation.settlement.progress.phase !== 'settling') throw new RecordedWaveReceiptError('wrongPhase');
-  updateSettlement(current, installation, { phase: 'settlementFailed', failure: Object.freeze({ error: failure.error }) });
+  const preparedRewards = failure.preparedRewards === undefined ? undefined : structuredClone(failure.preparedRewards);
+  if (preparedRewards) freezeRewardEvidence(preparedRewards);
+  updateSettlement(current, installation, { phase: 'settlementFailed', failure: Object.freeze({ error: failure.error,
+    ...(preparedRewards ? { preparedRewards } : {}) }) });
 }

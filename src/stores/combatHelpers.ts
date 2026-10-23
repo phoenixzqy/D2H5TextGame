@@ -1,5 +1,5 @@
 import { captureAct5Encounter, captureAct5ThroneWave, EVE_QUEST, THRONE_PROOF, type Act5Encounter } from '@/engine/map/act5-admission';
-import { prepareAct5Settlement } from './act5QuestAdmission';
+import { captureAct5SettlementRollback, prepareAct5Settlement } from './act5QuestAdmission';
 import { captureAct4Encounter, hasOriginalAct4Victory, isAct4AdmissionEligible, type Act4Encounter } from '@/engine/map/act4-admission';
 import { loadQuests } from '@/data/loaders/quests';
 import { applyReplayProfileToPlan, type ReplayProfileId } from '@/engine/map/replay-profile';
@@ -18,6 +18,7 @@ import type { Player } from '@/engine/types/entities';
 import type { Item } from '@/engine/types/items';
 import type { MonsterDef } from '@/engine/types/monsters';
 import { rollKillRewards, type KillRewards } from '@/engine/loot/award';
+import { mergeRewards, planRewardGrant } from '@/engine/loot/reward-plan';
 import { xpForKill } from '@/engine/progression/xp';
 import {
   buildMonsterUnit,
@@ -42,7 +43,7 @@ import { abandonRecordedWaves, readRecordedWaveInstallation, markRecordedWaveMet
   prepareRecordedWaveInstallation, assertPreparedRecordedWaveBinding, cancelPreparedRecordedWave,
   commitPreparedRecordedWave, inspectRecordedWaves, readRecordedWaveSettlement,
   beginRecordedWaveSettlement, finishRecordedWaveSettlement, failRecordedWaveSettlement,
-  type RecordedWaveReceipt, type RecordedWaveLive, type RecordedWaveInstallIntent, type RecordedWaveSettlementProgress } from './recordedWaveReceipt';
+  type RecordedWaveReceipt, type RecordedWaveBinding, type RecordedWaveLive, type RecordedWaveInstallIntent, type RecordedWaveSettlementProgress } from './recordedWaveReceipt';
 import { assertRecordedWaveNewTransitionAllowed, assertRecordedWaveReplayAllowed,
   assertRecordedWavePublicationRecoveryAllowed, RecordedWaveAccessError } from './recordedWaveAccess';
 export { clearCombatAfterRestore } from './combatRunLifecycle';
@@ -76,7 +77,8 @@ import { projectIronGolemItem } from '@/engine/items/iron-golem';
 import { captureIronGolemDebit, classifyIronGolemDebit, type IronGolemDebitIntent } from './ironGolemDebit';
 import { clearIronGolemSelection, consumeIronGolemSelection, useIronGolemSelectionStore } from './ironGolemSelectionStore';
 import { useHydrationStore } from './hydrationStore';
-import { beginWaveTransition, endWaveTransition, beginIronGolemDebit, endIronGolemDebit, assertWaveSnapshotAllowed, WaveGuardError, type WaveTransitionLease } from './waveTransitionGuard';
+import { beginWaveTransition, endWaveTransition, beginIronGolemDebit, endIronGolemDebit, assertWaveSnapshotAllowed,
+  assertIronGolemOwnershipMutationAllowed, WaveGuardError, type WaveTransitionLease } from './waveTransitionGuard';
 import { resumeWaveDeferredSave } from './persistence';
 import { canonicalSkillIdFromData, getSkillRequiredLevel, getSkillsForClass,
   skillIdAliases, type SkillTemplate } from './skillsHelpers';
@@ -366,10 +368,10 @@ export function buildEnemiesForWave(wave: WaveSpec, seed: number): CombatUnit[] 
 }
 
 /**
- * Award post-victory loot for a list of slain enemies. Pure dispatcher:
- * rolls items + currencies via the engine and pushes them into the
- * inventory store. Returns the aggregated rewards so the UI can render a
- * loot summary panel.
+ * Generate and validate the complete victory bag before one inventory write.
+ * Descriptive rune/gem totals never grant shard currencies. Observer failures
+ * restore inventory and propagate; native settlement additionally restores all
+ * other participating domains under its existing wave lease.
  */
 export function awardLootForVictory(opts: {
   readonly replayProfileId?: ReplayProfileId;
@@ -380,21 +382,29 @@ export function awardLootForVictory(opts: {
   /** Award-time multiplier applied after the MF diminishing-return curve. */
   readonly magicFindMultiplier?: number;
 }): KillRewards {
+  assertIronGolemOwnershipMutationAllowed();
+  const rewards = prepareLootForVictory(opts);
+  const inv = useInventoryStore.getState();
+  const grant = planRewardGrant(rewards, inv);
+  try { useInventoryStore.setState(grant); }
+  catch (cause) {
+    try { useInventoryStore.setState(inv, true); }
+    catch (error) { throw new AggregateError([error], 'Victory inventory restoration failed', { cause }); }
+    throw cause;
+  }
+  return rewards;
+}
+
+/** Roll every enemy without publishing partial rewards or changing inventory. */
+function prepareLootForVictory(opts: Parameters<typeof awardLootForVictory>[0]): KillRewards {
   const player = usePlayerStore.getState().player;
   const magicFind = player?.derivedStats.magicFind ?? 0;
   const goldFind = player?.derivedStats.goldFind ?? 0;
   const pools = loadAwardPools();
   const rng = createRng(opts.seed >>> 0);
-  const inv = useInventoryStore.getState();
-
-  const items: Item[] = [];
-  let runeShards = 0;
-  let runes = 0;
-  let gems = 0;
-  let wishstones = 0;
-
+  const rewards: KillRewards[] = [];
   for (const enemy of opts.slainEnemies) {
-    const r = rollKillRewards(
+    rewards.push(rollKillRewards(
       {
         tier: enemy.tier,
         monsterLevel: enemy.level,
@@ -407,23 +417,61 @@ export function awardLootForVictory(opts: {
       },
       pools,
       rng
-    );
-    for (const it of r.items) {
-      items.push(it);
-      inv.addItem(it);
-    }
-    runeShards += r.runeShards;
-    runes += r.runes;
-    gems += r.gems;
-    wishstones += r.wishstones;
+    ));
   }
+  return mergeRewards(...rewards);
+}
 
-  const totalRuneShards = runeShards + runes;
-  if (totalRuneShards > 0) inv.addCurrency('rune-shard', totalRuneShards);
-  if (gems > 0) inv.addCurrency('gem-shard', gems);
-  if (wishstones > 0) inv.addCurrency('wishstone', wishstones);
+/** Restore participating journal entries while retaining unrelated observer writes. */
+function restoreSettlementKeys<T>(current: Record<string, T>, before: Record<string, T>, keys: readonly string[]): Record<string, T> {
+  if (keys.every(key => Object.hasOwn(current, key) === Object.hasOwn(before, key) && current[key] === before[key])) return current;
+  const next = { ...current };
+  for (const key of keys) {
+    if (Object.hasOwn(before, key)) Object.defineProperty(next, key,
+      { value: before[key], enumerable: true, configurable: true, writable: true });
+    else Reflect.deleteProperty(next, key);
+  }
+  return Object.keys(next).length === Object.keys(before).length && Object.keys(before).every(key =>
+    Object.hasOwn(next, key) && next[key] === before[key]) ? before : next;
+}
 
-  return { items, runeShards, runes, gems, wishstones };
+/** Snapshot synchronous settlement participants; each restoration is attempted. */
+function captureSettlementRollback(run: ActiveRun, binding: RecordedWaveBinding): (cause: unknown) => unknown {
+  const player = usePlayerStore.getState(), merc = useMercStore.getState();
+  const inventory = useInventoryStore.getState(), map = useMapStore.getState(), combat = useCombatStore.getState();
+  const metadata = { playerUnit: run.playerUnit, waveIdx: run.waveIdx, carryPlayerTeam: run.carryPlayerTeam,
+    waveElapsedMs: run.waveElapsedMs, recording: run.recording }, pity = getIdleEliteMisses();
+  const restoreAct5 = captureAct5SettlementRollback(run);
+  // Ordinary clear/kill events can touch any authored combat objective for this
+  // area; source admissions additionally own their captured row and proof.
+  const admissions = [binding.act4Encounter, binding.act5Encounter, binding.act5ThroneWave].flatMap(encounter =>
+    encounter ? [encounter.contract] : []);
+  const questIds = [...new Set([...loadQuests().filter(quest => quest.objectives.some(objective =>
+    ['clear-area', 'kill', 'kill-boss'].includes(objective.type) && objective.areaId === run.plan.subAreaId)).map(quest => quest.id),
+  ...admissions.map(contract => contract.questId), ...(binding.guardianEncounter ? [GUARDIAN_QUEST_ID] : [])])];
+  const proofKeys = [...admissions.map(contract => contract.proof), ...(binding.councilEncounter ? [COUNCIL_RECEIPT_SOURCE] : [])];
+  return cause => {
+    const errors: unknown[] = [];
+    const restore = (operation: () => void) => { try { operation(); } catch (error) { errors.push(error); } };
+    restore(() => { if (usePlayerStore.getState() !== player) usePlayerStore.setState(player, true); });
+    restore(() => { if (useMercStore.getState() !== merc) useMercStore.setState(merc, true); });
+    restore(() => { if (useInventoryStore.getState() !== inventory) useInventoryStore.setState(inventory, true); });
+    restore(() => {
+      const current = useMapStore.getState();
+      const questProgress = restoreSettlementKeys(current.questProgress, map.questProgress, questIds);
+      const questReceipts = restoreSettlementKeys(current.questReceipts, map.questReceipts, proofKeys);
+      if (questProgress !== current.questProgress || questReceipts !== current.questReceipts ||
+        current.clearedSubAreas !== map.clearedSubAreas || current.nightmareClearedSubAreas !== map.nightmareClearedSubAreas) {
+        useMapStore.setState({ questProgress, questReceipts, clearedSubAreas: map.clearedSubAreas,
+          nightmareClearedSubAreas: map.nightmareClearedSubAreas });
+      }
+    });
+    restore(() => { if (useCombatStore.getState() !== combat) useCombatStore.setState(combat, true); });
+    restore(() => { Object.assign(run, metadata); combatRunLifecycle.activeRun = run; });
+    restore(() => { setIdleEliteMisses(pity); });
+    restore(restoreAct5);
+    return errors.length > 0 ? new AggregateError(errors, 'Wave settlement restoration failed', { cause }) : cause;
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -649,7 +697,7 @@ function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {}
  * @throws {RecordedWaveAccessError} for unpublished/conflicting/failed settlement, after
  * primitive ownership checks and before hydration or any completion effect.
  * @throws {RecordedWaveReceiptError} for missing or mismatched published authority.
- * Completion-effect errors retain actual gains and enter stable settlementFailed;
+ * Completion-effect errors restore all participating domains and enter stable settlementFailed;
  * staging/publication errors retain awaiting carry or committed publication.
  */
 export function advanceWaveOrFinish(): 'next-wave' | 'victory' | 'defeat' | 'idle' {
@@ -668,130 +716,132 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
       const combat = useCombatStore.getState();
       if (!beginRecordedWaveSettlement(receipt, lease, { activeRun: run,
         heroId: usePlayerStore.getState().player?.id ?? null, combat })) return 'idle';
-      const outcome = binding.recording.outcome;
-      const normalRun = (binding.replayProfileId ?? 'normal') === 'normal';
-      // Snapshot eligibility before ordinary income or any quest event can publish.
-      const councilProgress = useMapStore.getState().questProgress[COUNCIL_QUEST_ID];
-      const councilEncounter = binding.councilEncounter;
-      const councilEligible = normalRun && councilEncounter !== undefined &&
-        isCouncilAdmissionEligible(useMapStore.getState().questProgress, councilEncounter.historicalRecovery);
-      const publishAct5Victory = prepareAct5Settlement(binding);
-      const act4Encounter = binding.act4Encounter;
-      const act4Progress = act4Encounter ? useMapStore.getState().questProgress[act4Encounter.contract.questId] : undefined;
-      const act4Eligible = normalRun && act4Encounter !== undefined && isAct4AdmissionEligible(act4Encounter.contract,
-        useMapStore.getState().questProgress);
-      const publishAct4Victory = (): void => {
-        if (!act4Eligible || !act4Progress ||
-          !hasOriginalAct4Victory(act4Encounter, binding.heroId, outcome)) return;
-        const contract = act4Encounter.contract;
-        if (contract.source.kind === 'chapterBoss' && (binding.targetWaveIdx + 1 !== binding.publication.totalWaves ||
-          binding.recording.chapterBoss?.unitId !== act4Encounter.originalMemberIds[0] ||
-          binding.recording.chapterBoss?.archetypeId !== contract.members[0])) return;
-        if (useMapStore.getState().questProgress[contract.questId] !== act4Progress) return;
-        const result = withQuestTransaction(() => {
-          const map = useMapStore.getState();
-          if (!isAct4AdmissionEligible(contract, map.questProgress)) return;
-          const quest = loadQuests().find(row => row.id === contract.questId);
-          if (!quest) throw new Error('Missing Act IV quest contract');
-          const objectives = { ...act4Progress.objectives, [contract.objectiveId]: true };
-          const next = { ...act4Progress, objectives, status: quest.objectives.every(row => objectives[row.id])
-            ? 'completed' as const : 'inProgress' as const };
-          const before = map.questReceipts;
-          validateQuestActionReceipts({ ...before, [contract.proof]: true },
-            { ...map.questProgress, [contract.questId]: next }, useInventoryStore.getState().questItems);
-          try {
-            useMapStore.setState(state => ({ questProgress: { ...state.questProgress, [contract.questId]: next },
-              questReceipts: { ...state.questReceipts, [contract.proof]: true } }));
-          } catch (cause) {
-            try {
-              useMapStore.setState(state => {
-                const restored = { ...state.questReceipts };
-                if (Object.hasOwn(before, contract.proof)) restored[contract.proof] = true;
-                else Reflect.deleteProperty(restored, contract.proof);
-                return { questProgress: { ...state.questProgress, [contract.questId]: act4Progress }, questReceipts: restored };
-              });
-            } catch (error) { throw new AggregateError([error], 'Act IV victory restoration failed', { cause }); }
-            throw cause;
-          }
-        });
-        if (result === 'claim-in-progress') throw new Error('Act IV victory transaction is busy');
-      };
-      const guardianProgress = useMapStore.getState().questProgress[GUARDIAN_QUEST_ID];
-      const guardianEligible = (() => {
-        const map = useMapStore.getState();
-        if (!normalRun || !binding.guardianEncounter || !isGuardianAdmissionEligible(map.questProgress, map.questReceipts)) return false;
-        try { validateQuestActionReceipts(map.questReceipts, map.questProgress, useInventoryStore.getState().questItems); return true; }
-        catch { return false; }
-      })();
-      const publishGuardianVictory = (): void => {
-        if (!guardianEligible || !guardianProgress || !binding.guardianEncounter ||
-          binding.targetWaveIdx + 1 !== binding.publication.totalWaves ||
-          binding.recording.chapterBoss?.unitId !== binding.guardianEncounter.originalBossId ||
-          binding.recording.chapterBoss.archetypeId !== binding.guardianEncounter.archetypeId ||
-          !hasOriginalGuardianVictory(binding.guardianEncounter, binding.heroId, outcome) ||
-          useMapStore.getState().questProgress[GUARDIAN_QUEST_ID] !== guardianProgress) return;
-        const result = withQuestTransaction(() => {
-          const map = useMapStore.getState();
-          if (!isGuardianAdmissionEligible(map.questProgress, map.questReceipts)) return;
-          // The shared graph validator must admit the existing Orb and its retained history.
-          validateQuestActionReceipts(map.questReceipts, map.questProgress, useInventoryStore.getState().questItems);
-          const completed = { ...guardianProgress, status: 'completed' as const,
-            objectives: { ...guardianProgress.objectives, 'obj-kill-mephisto': true } };
-          validateQuestActionReceipts(map.questReceipts, { ...map.questProgress, [GUARDIAN_QUEST_ID]: completed },
-            useInventoryStore.getState().questItems);
-          try {
-            useMapStore.setState(state => ({ questProgress: { ...state.questProgress, [GUARDIAN_QUEST_ID]: completed } }));
-          } catch (cause) {
-            try {
-              useMapStore.setState(state => ({ questProgress: { ...state.questProgress, [GUARDIAN_QUEST_ID]: guardianProgress } }));
-            } catch (error) {
-              throw new AggregateError([error], 'Guardian progress restoration failed', { cause });
-            }
-            throw cause;
-          }
-        });
-        if (result === 'claim-in-progress') throw new Error('Guardian victory transaction is busy');
-      };
-      const publishCouncilProof = (): void => {
-        if (councilEligible &&
-          hasOriginalCouncilVictory(councilEncounter, binding.heroId, outcome) &&
-          useMapStore.getState().questProgress[COUNCIL_QUEST_ID] === councilProgress) {
-          // Only this guarded accepted settlement can publish the Council action proof.
+      const rollback = captureSettlementRollback(run, binding);
+      let preparedRewards: KillRewards | undefined;
+      try {
+        const outcome = binding.recording.outcome;
+        const normalRun = (binding.replayProfileId ?? 'normal') === 'normal';
+        // Snapshot eligibility before ordinary income or any quest event can publish.
+        const councilProgress = useMapStore.getState().questProgress[COUNCIL_QUEST_ID];
+        const councilEncounter = binding.councilEncounter;
+        const councilEligible = normalRun && councilEncounter !== undefined &&
+          isCouncilAdmissionEligible(useMapStore.getState().questProgress, councilEncounter.historicalRecovery);
+        const publishAct5Victory = prepareAct5Settlement(binding);
+        const act4Encounter = binding.act4Encounter;
+        const act4Progress = act4Encounter ? useMapStore.getState().questProgress[act4Encounter.contract.questId] : undefined;
+        const act4Eligible = normalRun && act4Encounter !== undefined && isAct4AdmissionEligible(act4Encounter.contract,
+          useMapStore.getState().questProgress);
+        const publishAct4Victory = (): void => {
+          if (!act4Eligible || !act4Progress ||
+            !hasOriginalAct4Victory(act4Encounter, binding.heroId, outcome)) return;
+          const contract = act4Encounter.contract;
+          if (contract.source.kind === 'chapterBoss' && (binding.targetWaveIdx + 1 !== binding.publication.totalWaves ||
+            binding.recording.chapterBoss?.unitId !== act4Encounter.originalMemberIds[0] ||
+            binding.recording.chapterBoss?.archetypeId !== contract.members[0])) return;
+          if (useMapStore.getState().questProgress[contract.questId] !== act4Progress) return;
           const result = withQuestTransaction(() => {
-            const before = useMapStore.getState().questReceipts;
-            if (Object.hasOwn(before, COUNCIL_RECEIPT_SOURCE)) return;
-            const receipts = validateQuestActionReceipts({ ...before, [COUNCIL_RECEIPT_SOURCE]: true },
-              useMapStore.getState().questProgress, useInventoryStore.getState().questItems);
+            const map = useMapStore.getState();
+            if (!isAct4AdmissionEligible(contract, map.questProgress)) return;
+            const quest = loadQuests().find(row => row.id === contract.questId);
+            if (!quest) throw new Error('Missing Act IV quest contract');
+            const objectives = { ...act4Progress.objectives, [contract.objectiveId]: true };
+            const next = { ...act4Progress, objectives, status: quest.objectives.every(row => objectives[row.id])
+              ? 'completed' as const : 'inProgress' as const };
+            const before = map.questReceipts;
+            validateQuestActionReceipts({ ...before, [contract.proof]: true },
+              { ...map.questProgress, [contract.questId]: next }, useInventoryStore.getState().questItems);
             try {
-              useMapStore.setState({ questReceipts: receipts });
+              useMapStore.setState(state => ({ questProgress: { ...state.questProgress, [contract.questId]: next },
+                questReceipts: { ...state.questReceipts, [contract.proof]: true } }));
             } catch (cause) {
               try {
                 useMapStore.setState(state => {
-                  const { [COUNCIL_RECEIPT_SOURCE]: _removed, ...receipts } = state.questReceipts;
-                  return { questReceipts: receipts };
+                  const restored = { ...state.questReceipts };
+                  if (Object.hasOwn(before, contract.proof)) restored[contract.proof] = true;
+                  else Reflect.deleteProperty(restored, contract.proof);
+                  return { questProgress: { ...state.questProgress, [contract.questId]: act4Progress }, questReceipts: restored };
                 });
+              } catch (error) { throw new AggregateError([error], 'Act IV victory restoration failed', { cause }); }
+              throw cause;
+            }
+          });
+          if (result === 'claim-in-progress') throw new Error('Act IV victory transaction is busy');
+        };
+        const guardianProgress = useMapStore.getState().questProgress[GUARDIAN_QUEST_ID];
+        const guardianEligible = (() => {
+          const map = useMapStore.getState();
+          if (!normalRun || !binding.guardianEncounter || !isGuardianAdmissionEligible(map.questProgress, map.questReceipts)) return false;
+          try { validateQuestActionReceipts(map.questReceipts, map.questProgress, useInventoryStore.getState().questItems); return true; }
+          catch { return false; }
+        })();
+        const publishGuardianVictory = (): void => {
+          if (!guardianEligible || !guardianProgress || !binding.guardianEncounter ||
+            binding.targetWaveIdx + 1 !== binding.publication.totalWaves ||
+            binding.recording.chapterBoss?.unitId !== binding.guardianEncounter.originalBossId ||
+            binding.recording.chapterBoss.archetypeId !== binding.guardianEncounter.archetypeId ||
+            !hasOriginalGuardianVictory(binding.guardianEncounter, binding.heroId, outcome) ||
+            useMapStore.getState().questProgress[GUARDIAN_QUEST_ID] !== guardianProgress) return;
+          const result = withQuestTransaction(() => {
+            const map = useMapStore.getState();
+            if (!isGuardianAdmissionEligible(map.questProgress, map.questReceipts)) return;
+            // The shared graph validator must admit the existing Orb and its retained history.
+            validateQuestActionReceipts(map.questReceipts, map.questProgress, useInventoryStore.getState().questItems);
+            const completed = { ...guardianProgress, status: 'completed' as const,
+              objectives: { ...guardianProgress.objectives, 'obj-kill-mephisto': true } };
+            validateQuestActionReceipts(map.questReceipts, { ...map.questProgress, [GUARDIAN_QUEST_ID]: completed },
+              useInventoryStore.getState().questItems);
+            try {
+              useMapStore.setState(state => ({ questProgress: { ...state.questProgress, [GUARDIAN_QUEST_ID]: completed } }));
+            } catch (cause) {
+              try {
+                useMapStore.setState(state => ({ questProgress: { ...state.questProgress, [GUARDIAN_QUEST_ID]: guardianProgress } }));
               } catch (error) {
-                throw new AggregateError([error], 'Council proof restoration failed', { cause });
+                throw new AggregateError([error], 'Guardian progress restoration failed', { cause });
               }
               throw cause;
             }
           });
-          if (result === 'claim-in-progress') throw new Error('Council proof transaction is busy');
-        }
-      };
-      try {
+          if (result === 'claim-in-progress') throw new Error('Guardian victory transaction is busy');
+        };
+        const publishCouncilProof = (): void => {
+          if (councilEligible &&
+            hasOriginalCouncilVictory(councilEncounter, binding.heroId, outcome) &&
+            useMapStore.getState().questProgress[COUNCIL_QUEST_ID] === councilProgress) {
+            // Only this guarded accepted settlement can publish the Council action proof.
+            const result = withQuestTransaction(() => {
+              const before = useMapStore.getState().questReceipts;
+              if (Object.hasOwn(before, COUNCIL_RECEIPT_SOURCE)) return;
+              const receipts = validateQuestActionReceipts({ ...before, [COUNCIL_RECEIPT_SOURCE]: true },
+                useMapStore.getState().questProgress, useInventoryStore.getState().questItems);
+              try {
+                useMapStore.setState({ questReceipts: receipts });
+              } catch (cause) {
+                try {
+                  useMapStore.setState(state => {
+                    const { [COUNCIL_RECEIPT_SOURCE]: _removed, ...receipts } = state.questReceipts;
+                    return { questReceipts: receipts };
+                  });
+                } catch (error) {
+                  throw new AggregateError([error], 'Council proof restoration failed', { cause });
+                }
+                throw cause;
+              }
+            });
+            if (result === 'claim-in-progress') throw new Error('Council proof transaction is busy');
+          }
+        };
         const completedWave = run.plan.waves[binding.targetWaveIdx];
-        if (
-          run.mode === 'idle' &&
-          completedWave?.presentation?.idleEliteMissesAfterWave !== undefined
-        ) {
-          setIdleEliteMisses(completedWave.presentation.idleEliteMissesAfterWave);
-        }
+        const publishPity = () => {
+          if (run.mode === 'idle' && completedWave?.presentation?.idleEliteMissesAfterWave !== undefined) {
+            setIdleEliteMisses(completedWave.presentation.idleEliteMissesAfterWave);
+          }
+        };
 
         const alivePlayer = outcome.finalPlayerTeam.find(
           (u) => u.id === binding.heroId && u.life > 0
         );
         if (outcome.winner !== 'player' || !alivePlayer) {
+          publishPity();
           combat.markRunDefeat();
           finishRecordedWaveSettlement(receipt, lease, { kind: 'terminal', result: 'defeat' });
           combatRunLifecycle.activeRun = null;
@@ -803,6 +853,18 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
         if (slain.length > 0) {
           const now = Date.now();
           const multiplier = useMetaStore.getState().readIdleBonus(now).activeMultiplier;
+          const wave = run.plan.waves[binding.targetWaveIdx];
+          const tcId = wave?.lootTable ?? run.plan.defaultLootTable;
+          const rewards = prepareLootForVictory({
+            replayProfileId: binding.replayProfileId ?? 'normal', slainEnemies: slain,
+            act: run.act, treasureClassId: tcId,
+            seed: run.seed ^ 0x9e3779b1 ^ binding.targetWaveIdx, magicFindMultiplier: multiplier
+          });
+          // Own diagnostic output before any synchronous observer can touch the grant.
+          preparedRewards = structuredClone(rewards);
+          planRewardGrant(rewards, useInventoryStore.getState());
+          mergeRewards(combat.runRewards, rewards);
+          publishPity();
           let xpGained = 0;
           for (const enemy of slain) xpGained += Math.floor(xpForKill(enemy.level) * multiplier);
           if (xpGained > 0) {
@@ -818,18 +880,11 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
             }
           }
 
-          const wave = run.plan.waves[binding.targetWaveIdx];
-          const tcId = wave?.lootTable ?? run.plan.defaultLootTable;
-          const rewards = awardLootForVictory({
-            replayProfileId: binding.replayProfileId ?? 'normal',
-            slainEnemies: slain,
-            act: run.act,
-            treasureClassId: tcId,
-            seed: run.seed ^ 0x9e3779b1 ^ binding.targetWaveIdx,
-            magicFindMultiplier: multiplier
-          });
+          // XP observers may legitimately change inventory. Recheck only pure
+          // destination arithmetic against their current state, without rerolling.
+          useInventoryStore.setState(current => planRewardGrant(rewards, current));
           combat.accumulateRunRewards(rewards);
-        }
+        } else publishPity();
 
         if (normalRun && completedWave?.waveTier === 'boss' && !completedWave.presentation?.isActBoss &&
           completedWave.spawns.length === binding.engineInput.enemyTeam.length) {
@@ -890,8 +945,9 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
         finishRecordedWaveSettlement(receipt, lease, { kind: 'nextWave', carryPlayerTeam });
         next = { nextWaveIdx: binding.targetWaveIdx + 1, carryPlayerTeam };
       } catch (error) {
-        failRecordedWaveSettlement(receipt, lease, { error });
-        throw error;
+        const failure = rollback(error);
+        failRecordedWaveSettlement(receipt, lease, { error: failure, ...(preparedRewards ? { preparedRewards } : {}) });
+        throw failure;
       }
     }
     // Staging/publication failures retain awaiting carry or committed publication;

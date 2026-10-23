@@ -151,7 +151,14 @@ describe('owned production recording transitions', () => {
         const store = fault === 'reward-subscriber' ? usePlayerStore : useCombatStore;
         stop = store.subscribe(() => { throw failure; });
       }
-      try { expect(action).toThrow(failure); } finally { stop?.(); }
+      try {
+        if (fault === 'reward-subscriber') {
+          let caught: unknown;
+          try { action(); } catch (error) { caught = error; }
+          expect(caught).toBeInstanceOf(AggregateError);
+          expect(caught).toMatchObject({ cause: failure, errors: [failure] });
+        } else expect(action).toThrow(failure);
+      } finally { stop?.(); }
       assertReleased();
     });
 });

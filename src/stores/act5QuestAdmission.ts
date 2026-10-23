@@ -9,6 +9,11 @@ import { useMapStore } from './mapStore';
 import { useInventoryStore } from './inventoryStore';
 
 const sequences = new WeakMap<ActiveRun, { count: number; row: QuestProgressData }>();
+/** Capture the hidden throne sequence alongside the caller's store rollback. */
+export function captureAct5SettlementRollback(run: ActiveRun): () => void {
+  const previous = sequences.get(run);
+  return () => { if (previous) sequences.set(run, previous); else sequences.delete(run); };
+}
 /** Capture pre-income eligibility once, then publish only at accepted settlement. */
 export function prepareAct5Settlement(binding: RecordedWaveBinding): () => void {
   const run = binding.candidateRun, encounter = binding.act5ThroneWave ?? binding.act5Encounter;
