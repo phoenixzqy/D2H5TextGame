@@ -19,7 +19,7 @@ export function areaQuestActions(act: number, areaId: string): readonly QuestIte
 /** Durable availability for one authored item action at the live location. */
 export function questActionStatus(source: string): 'ready' | 'consumed' | 'unavailable' {
   const map = useMapStore.getState();
-  if (!map.isActUnlocked(map.currentAct)) return 'unavailable';
+  if (map.currentSubAreaId === null || !map.isActUnlocked(map.currentAct)) return 'unavailable';
   const action = areaQuestActions(map.currentAct, map.currentSubAreaId).find(row => row.receiptSource === source);
   if (!action) return 'unavailable';
   const items = useInventoryStore.getState().questItems;
