@@ -1,0 +1,44 @@
+{
+  "at": "2026-10-23T07:31:08.339994+00:00",
+  "owner": "/root",
+  "allReviewReadersReleased": true,
+  "removed": [
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9/dist",
+      "files": 760
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9/browser-output",
+      "files": 3
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9/cache",
+      "files": 8
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9/tmp",
+      "files": 10
+    }
+  ],
+  "remaining": [],
+  "failures": [],
+  "ownedProcessIDs": [
+    2081666,
+    2081668,
+    2081682,
+    2081695,
+    2081683,
+    2081708,
+    2081775,
+    2081710,
+    2081711,
+    2081751,
+    2081726,
+    2081766
+  ],
+  "liveOwnedProcessIDs": [],
+  "port34579Open": false,
+  "remainingHelperCaches": [],
+  "retainedRawRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9",
+  "retention": "Required raw evidence through C2/umbrella; root removes after consumers finish. Worktree remains claimed for active umbrella goal."
+}

@@ -1,0 +1,6 @@
+{
+  "outcome": "failed",
+  "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"\u001b[7mVictory! All enemies are defeated\u001b[27m.\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mThe battle ends in a draw\u001b[27m.\"\u001b[39m",
+  "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"\u001b[7mVictory! All enemies are defeated\u001b[27m.\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mThe battle ends in a draw\u001b[27m.\"\u001b[39m\n    at expectTerminal (/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9/fresh-native.spec.ts:146:29)\n    at expectTerminalOrStop (/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9/fresh-native.spec.ts:154:9)\n    at /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9/fresh-native.spec.ts:869:13\n    at runNative (/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9/fresh-native.spec.ts:860:5)\n    at /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9/fresh-native.spec.ts:701:14",
+  "errors": []
+}

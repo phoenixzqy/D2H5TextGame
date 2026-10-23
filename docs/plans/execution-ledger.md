@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| Fresh current-runtime Act II screen | stopped at actual Radament draw; evidence accepted | At `d2e3cfa`, one fresh production360×640/en Sorceress wins310 ActI waves, claims/equips actual Andariel reward and Continues exactly. Real Staff/Sun/insert actions and14paired persistence barriers pass; FarOasis wins4waves then actual RadamentW5draw.315terminals/314wins, zero failed-wave awards, final save exactly wave4;3296prior→3376unique gear IDs, +7760heroXP/+5820mercXP. Source2433/build760/30immutable harness files match; original31-file freeze includes intentionally overwritten generated report, documented separately. All8attachments retained. Producer and independent QA APPROVE/security PASS for truthful stopped evidence; exact disposable cleanup verified, diagnostics retained root-owned. [Evidence](evidence/fresh-current-act2-screen.md). No Radament victory/Book/Arcane/Duriel/ActIII/C2 claim or automatic balance-defect inference. |
 | D11 Duriel credit/cache | implemented and independently reviewed | `5d5f0d0`/`afdd39a`: canonical ordered qualified Duriel settlement/no-backfill, ordinary boss32/table preserved; explicit deterministic five-pick Claim with safe normalized currencies, multi-item rollback and overflow. Full9102/303, engine4357/112, final T/L/build/4chunk scan pass. Constructed production en/zh2/2, retry0/errors[], exact12000heroXP/9000mercXP/4items/21534shards,4057prior→4061distinct gear IDs, Save-close-Continue/reimports;639source/760build/4harness/input drift[]. Producer/QA final APPROVE/security PASS; exact disposable cleanup verified, diagnostics retained root-owned. [Evidence](evidence/duriel-quest-cache.md). Earned Duriel/ActII/C2, Tainted Sun resistance, Canyon metadata and full narrative localization remain open. |
 | D11 Staff item path | implemented and independently reviewed | Recover shaft/amulet, retained-Cube assembly, separate6000XP Claim and consumed-Staff insertion. Save14 reciprocal receipts/frozen13 and explicit completed/claimed repair. Full9011/299, engine4331/111, final T/L/build/4chunk scan pass; production en/zh2/2, retry0/pageErrors[], exact stage Save-close-Continue/import and4057 gear identities preserved. Producer/QA-H2 APPROVE/security PASS;806source/760build/2harness/input drift[]. Exact disposable cleanup verified; diagnostic evidence retained root-owned. [Evidence](evidence/staff-acquisition.md). Duriel, earned ActII/C2, Tainted Sun resistance and Canyon metadata remain open. |
 | C0 | accepted narrow trust/measurement checkpoint | Producer APPROVE and independent QA closure recommendation against the original exit:21feature trace rows, honest baseline/assertion audit, production-path recordings/provenance and diagnosed manual/idle comparison; next-slice BUG090/preparation contract frozen. [Evidence](evidence/c0-trust-checkpoint.md). FullP01/P02/G0/C1–C4 and performance remain open. |
@@ -10621,3 +10622,33 @@ diagnostics remain root-owned through C2/umbrella at the evidence path.
 The build remains root-owned in `d2h5-fresh-act2-vtu72tc9/dist` for the immediate
 fresh current-runtime campaign screen; root removes it after screen consumers.
 C0/C1 remain accepted, C2 underway, C3/C4/full G0–G7 open. Local only.
+
+## P14 — Fresh current-runtime campaign stops at Radament
+
+[Evidence](evidence/fresh-current-act2-screen.md) preserves the single approved
+fresh gameplay attempt at `d2e3cfa`. The current first-act route earns310 actual
+victories, actual Andariel Claim/Coif and exact Save-close-Continue. All five
+ActII quests start; real Cube/components/assembly, separate Staff/Sun Claim and
+consumed Staff insertion pass. One FarOasis challenge earns4waves,7760heroXP/
+5820mercXP/80gear before actual Radament draws.315total terminals/314wins,
+zero failed-wave awards; final3376unique gear IDs and save equal actual wave4.
+No retry, further preparation, Book, Arcane, Duriel or ActIII follows.
+
+Source2433/build760 and30true immutable inputs match. The original31-entry
+harness freeze mistakenly includes generated collection reporter output;
+intended overwrite and both hashes are documented without changing preflight.
+All14paired Save-close-Continue barriers match; C1's additional manual barrier
+has exact in-test disk/export assertions and screenshot but no separate
+continued-save artifact. All8attachments retained, including6inline PNG bodies.
+Producer and independent QA APPROVE/security PASS for truthful stopped evidence;
+all readers released. Exact disposable dist/browser-output/cache/tmp removed,
+remaining[]/failures[]; all12 recorded PIDs absent and port34579closed. Required
+raw diagnostics remain root-owned through C2/umbrella at the exact evidence
+path. No new unit/type/lint/build run for this evidence-only change.
+
+Parallel compact-campaign and timed-buff drafts are proposed, not implemented.
+The campaign draft preserves all46quest rows and targets all5ActIII main flows
+as one coherent integration. Buff review accepts the shared lifecycle direction
+but requires retained-record validation, QA coverage and justified tuning before
+production activation; BattleCommand/Enchant retain their promised identities.
+C0/C1 accepted; C2 underway; C3/C4/fullG0–G7 remain open. Local only.

@@ -1,0 +1,19 @@
+{
+  "startedAt": "2026-10-23T07:09:32.089976+00:00",
+  "runnerPid": 2081666,
+  "playwrightPid": 2081668,
+  "command": [
+    "node",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "--config",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9/fresh-native.config.mjs"
+  ],
+  "cwd": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2",
+  "environmentOverrides": {
+    "PLAYWRIGHT_BROWSERS_PATH": "/home/felixzhao/.cache/ms-playwright",
+    "TMPDIR": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9/tmp",
+    "XDG_CACHE_HOME": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9/cache"
+  },
+  "port": 34579
+}

@@ -1,0 +1,425 @@
+{
+  "terminalResults": 315,
+  "victories": 314,
+  "nonvictoryTerminals": [
+    {
+      "label": "run-a2-far-oasis-0-terminal-5",
+      "victory": false
+    }
+  ],
+  "failedWaveAccounting": [
+    {
+      "label": "run-a2-far-oasis-0-wave-5-nonwin-zero-awards-classification",
+      "classification": {
+        "primaryError": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"\u001b[7mVictory! All enemies are defeated\u001b[27m.\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mThe battle ends in a draw\u001b[27m.\"\u001b[39m",
+        "area": "a2-far-oasis",
+        "wave": 5,
+        "terminal": {
+          "waveText": "Wave 5 / 5 \u00b7 Far Oasis \u00b7 Boss fight",
+          "waveKind": "Boss fight",
+          "heroPresent": true,
+          "heroDead": null,
+          "liveEnemies": 1,
+          "defeatPanels": 0,
+          "deadMerc": 0,
+          "skipDisabled": true,
+          "log": [
+            "Earned Act I dodges Radament A (Boss)'s attack!",
+            "Earned Act I casts Ice Blast.",
+            "Earned Act I attacks Radament A (Boss) for 14 cold damage.",
+            "Radament A (Boss) is afflicted with [Freeze].",
+            "Rogue Scout \u2014 Inner Sight casts Pierce Arrow.",
+            "Rogue Scout \u2014 Inner Sight attacks Radament A (Boss) for 1 physical damage.",
+            "Earned Act I casts Ice Blast.",
+            "Earned Act I attacks Radament A (Boss) for 13 cold damage.",
+            "Radament A (Boss) is afflicted with [Freeze].",
+            "Rogue Scout \u2014 Inner Sight casts Basic Arrow.",
+            "Rogue Scout \u2014 Inner Sight attacks Radament A (Boss) for 1 physical damage.",
+            "Radament A (Boss) is stunned and cannot act.",
+            "Rogue Scout \u2014 Inner Sight casts Basic Arrow.",
+            "CRITICAL! Rogue Scout \u2014 Inner Sight hits Radament A (Boss) for 37 physical damage!",
+            "Earned Act I casts Frost Nova.",
+            "Earned Act I attacks Radament A (Boss) for 1 cold damage.",
+            "Radament A (Boss) is afflicted with [Chill].",
+            "Radament A (Boss) casts Strong Melee.",
+            "Earned Act I dodges Radament A (Boss)'s attack!",
+            "Turn 6 begins",
+            "Rogue Scout \u2014 Inner Sight casts Inner Sight.",
+            "Radament A (Boss) is afflicted with [Inner Sight].",
+            "Earned Act I casts Ice Blast.",
+            "Earned Act I attacks Radament A (Boss) for 29 cold damage.",
+            "Radament A (Boss) is afflicted with [Freeze].",
+            "Rogue Scout \u2014 Inner Sight casts Pierce Arrow.",
+            "Radament A (Boss) dodges Rogue Scout \u2014 Inner Sight's attack!",
+            "Radament A (Boss) casts Strong Melee.",
+            "Radament A (Boss) attacks Rogue Scout \u2014 Inner Sight for 1 physical damage.",
+            "Earned Act I casts Ice Blast.",
+            "Earned Act I attacks Radament A (Boss) for 13 cold damage.",
+            "Radament A (Boss) is afflicted with [Freeze].",
+            "Rogue Scout \u2014 Inner Sight casts Basic Arrow.",
+            "Rogue Scout \u2014 Inner Sight attacks Radament A (Boss) for 1 physical damage.",
+            "Rogue Scout \u2014 Inner Sight casts Basic Arrow.",
+            "Radament A (Boss) dodges Rogue Scout \u2014 Inner Sight's attack!",
+            "Radament A (Boss) casts Strong Melee.",
+            "Earned Act I dodges Radament A (Boss)'s attack!",
+            "Earned Act I casts Frost Nova.",
+            "Earned Act I attacks Radament A (Boss) for 1 cold damage.",
+            "Radament A (Boss) is afflicted with [Chill].",
+            "Rogue Scout \u2014 Inner Sight casts Pierce Arrow.",
+            "CRITICAL! Rogue Scout \u2014 Inner Sight hits Radament A (Boss) for 75 physical damage!",
+            "Earned Act I casts Ice Blast.",
+            "Earned Act I attacks Radament A (Boss) for 26 cold damage.",
+            "Radament A (Boss) is afflicted with [Freeze].",
+            "Turn 7 begins",
+            "Radament A (Boss) casts Strong Melee.",
+            "Radament A (Boss) attacks Earned Act I for 1 physical damage.",
+            "Rogue Scout \u2014 Inner Sight casts Inner Sight.",
+            "Radament A (Boss) is afflicted with [Inner Sight].",
+            "Earned Act I casts Ice Blast.",
+            "Earned Act I attacks Radament A (Boss) for 18 cold damage.",
+            "Radament A (Boss) is afflicted with [Freeze].",
+            "Rogue Scout \u2014 Inner Sight casts Basic Arrow.",
+            "Rogue Scout \u2014 Inner Sight attacks Radament A (Boss) for 1 physical damage.",
+            "Radament A (Boss) casts Strong Melee.",
+            "Radament A (Boss) attacks Earned Act I for 1 physical damage.",
+            "Earned Act I casts Frost Nova.",
+            "Earned Act I attacks Radament A (Boss) for 1 cold damage.",
+            "Radament A (Boss) is afflicted with [Chill].",
+            "Radament A (Boss) is afflicted with [Freeze].",
+            "Rogue Scout \u2014 Inner Sight casts Pierce Arrow.",
+            "Rogue Scout \u2014 Inner Sight attacks Radament A (Boss) for 1 physical damage.",
+            "Rogue Scout \u2014 Inner Sight casts Basic Arrow.",
+            "Rogue Scout \u2014 Inner Sight attacks Radament A (Boss) for 1 physical damage.",
+            "Radament A (Boss) casts Strong Melee.",
+            "Radament A (Boss) attacks Earned Act I for 1 physical damage.",
+            "Earned Act I casts Ice Blast.",
+            "Earned Act I attacks Radament A (Boss) for 30 cold damage.",
+            "Radament A (Boss) is afflicted with [Freeze].",
+            "Rogue Scout \u2014 Inner Sight casts Basic Arrow.",
+            "Radament A (Boss) dodges Rogue Scout \u2014 Inner Sight's attack!",
+            "Turn 8 begins",
+            "Earned Act I casts Ice Blast.",
+            "Earned Act I attacks Radament A (Boss) for 30 cold damage.",
+            "Radament A (Boss) is afflicted with [Freeze].",
+            "Radament A (Boss) is stunned and cannot act.",
+            "Rogue Scout \u2014 Inner Sight casts Inner Sight.",
+            "Radament A (Boss) is afflicted with [Inner Sight].",
+            "Earned Act I casts Frost Nova.",
+            "Earned Act I attacks Radament A (Boss) for 1 cold damage.",
+            "Radament A (Boss) is afflicted with [Chill].",
+            "Rogue Scout \u2014 Inner Sight casts Pierce Arrow.",
+            "Radament A (Boss) dodges Rogue Scout \u2014 Inner Sight's attack!",
+            "Radament A (Boss) casts Strong Melee.",
+            "Radament A (Boss) attacks Earned Act I for 1 physical damage.",
+            "Rogue Scout \u2014 Inner Sight casts Basic Arrow.",
+            "Rogue Scout \u2014 Inner Sight attacks Radament A (Boss) for 1 physical damage.",
+            "Earned Act I casts Ice Blast.",
+            "Earned Act I attacks Radament A (Boss) for 17 cold damage.",
+            "Radament A (Boss) is afflicted with [Freeze].",
+            "Rogue Scout \u2014 Inner Sight casts Basic Arrow.",
+            "Rogue Scout \u2014 Inner Sight attacks Radament A (Boss) for 1 physical damage.",
+            "Radament A (Boss) casts Strong Melee.",
+            "Radament A (Boss) attacks Earned Act I for 1 physical damage.",
+            "Earned Act I casts Ice Blast.",
+            "Radament A (Boss) dodges Earned Act I's attack!",
+            "Turn 9 begins",
+            "Rogue Scout \u2014 Inner Sight casts Pierce Arrow.",
+            "Rogue Scout \u2014 Inner Sight attacks Radament A (Boss) for 1 physical damage.",
+            "Earned Act I casts Frost Nova.",
+            "Earned Act I attacks Radament A (Boss) for 1 cold damage.",
+            "Radament A (Boss) is afflicted with [Chill].",
+            "Radament A (Boss) casts Strong Melee.",
+            "Radament A (Boss) attacks Rogue Scout \u2014 Inner Sight for 1 physical damage.",
+            "Rogue Scout \u2014 Inner Sight casts Inner Sight.",
+            "Radament A (Boss) is afflicted with [Inner Sight].",
+            "Rogue Scout \u2014 Inner Sight casts Basic Arrow.",
+            "Rogue Scout \u2014 Inner Sight attacks Radament A (Boss) for 1 physical damage.",
+            "Earned Act I casts Ice Blast.",
+            "Earned Act I attacks Radament A (Boss) for 27 cold damage.",
+            "Radament A (Boss) is afflicted with [Freeze].",
+            "Radament A (Boss) casts Strong Melee.",
+            "CRITICAL! Radament A (Boss) hits Earned Act I for 1 physical damage!",
+            "Rogue Scout \u2014 Inner Sight casts Pierce Arrow.",
+            "Rogue Scout \u2014 Inner Sight attacks Radament A (Boss) for 1 physical damage.",
+            "Earned Act I casts Ice Blast.",
+            "Radament A (Boss) dodges Earned Act I's attack!",
+            "Rogue Scout \u2014 Inner Sight casts Basic Arrow.",
+            "Rogue Scout \u2014 Inner Sight attacks Radament A (Boss) for 1 physical damage.",
+            "Radament A (Boss) casts Strong Melee.",
+            "Radament A (Boss) attacks Earned Act I for 1 physical damage.",
+            "Turn 10 begins",
+            "Earned Act I casts Frost Nova.",
+            "Radament A (Boss) dodges Earned Act I's attack!",
+            "Rogue Scout \u2014 Inner Sight casts Basic Arrow.",
+            "Rogue Scout \u2014 Inner Sight attacks Radament A (Boss) for 1 physical damage.",
+            "Radament A (Boss) casts Strong Melee.",
+            "Radament A (Boss) attacks Earned Act I for 1 physical damage.",
+            "Earned Act I casts Ice Blast.",
+            "Earned Act I attacks Radament A (Boss) for 10 cold damage.",
+            "Radament A (Boss) is afflicted with [Freeze].",
+            "Rogue Scout \u2014 Inner Sight casts Inner Sight.",
+            "Radament A (Boss) is afflicted with [Inner Sight].",
+            "Rogue Scout \u2014 Inner Sight casts Pierce Arrow.",
+            "CRITICAL! Rogue Scout \u2014 Inner Sight hits Radament A (Boss) for 67 physical damage!",
+            "Earned Act I casts Ice Blast.",
+            "Earned Act I attacks Radament A (Boss) for 20 cold damage.",
+            "Radament A (Boss) is afflicted with [Freeze].",
+            "Radament A (Boss) is stunned and cannot act.",
+            "Rogue Scout \u2014 Inner Sight casts Basic Arrow.",
+            "Rogue Scout \u2014 Inner Sight attacks Radament A (Boss) for 1 physical damage.",
+            "Earned Act I casts Frost Nova.",
+            "Earned Act I attacks Radament A (Boss) for 1 cold damage.",
+            "Radament A (Boss) is afflicted with [Chill].",
+            "Turn 11 begins",
+            "Radament A (Boss) casts Strong Melee.",
+            "Radament A (Boss) attacks Rogue Scout \u2014 Inner Sight for 1 physical damage.",
+            "Rogue Scout \u2014 Inner Sight casts Basic Arrow.",
+            "Rogue Scout \u2014 Inner Sight attacks Radament A (Boss) for 1 physical damage.",
+            "Earned Act I casts Ice Blast.",
+            "Earned Act I attacks Radament A (Boss) for 10 cold damage.",
+            "Radament A (Boss) is afflicted with [Freeze].",
+            "Rogue Scout \u2014 Inner Sight casts Pierce Arrow.",
+            "Rogue Scout \u2014 Inner Sight attacks Radament A (Boss) for 1 physical damage.",
+            "Radament A (Boss) casts Strong Melee.",
+            "Rogue Scout \u2014 Inner Sight dodges Radament A (Boss)'s attack!",
+            "Rogue Scout \u2014 Inner Sight casts Inner Sight.",
+            "Radament A (Boss) is afflicted with [Inner Sight].",
+            "Earned Act I casts Ice Blast.",
+            "Earned Act I attacks Radament A (Boss) for 26 cold damage.",
+            "Radament A (Boss) is afflicted with [Freeze].",
+            "Rogue Scout \u2014 Inner Sight casts Basic Arrow.",
+            "Rogue Scout \u2014 Inner Sight attacks Radament A (Boss) for 1 physical damage.",
+            "Radament A (Boss) casts Strong Melee.",
+            "Radament A (Boss) attacks Rogue Scout \u2014 Inner Sight for 1 physical damage.",
+            "Earned Act I casts Frost Nova.",
+            "Earned Act I attacks Radament A (Boss) for 1 cold damage.",
+            "Radament A (Boss) is afflicted with [Chill].",
+            "Rogue Scout \u2014 Inner Sight casts Pierce Arrow.",
+            "Rogue Scout \u2014 Inner Sight attacks Radament A (Boss) for 1 physical damage.",
+            "Turn 12 begins",
+            "Earned Act I casts Ice Blast.",
+            "Earned Act I attacks Radament A (Boss) for 20 cold damage.",
+            "Radament A (Boss) is afflicted with [Freeze].",
+            "Radament A (Boss) is stunned and cannot act.",
+            "Rogue Scout \u2014 Inner Sight casts Basic Arrow.",
+            "Rogue Scout \u2014 Inner Sight attacks Radament A (Boss) for 1 physical damage.",
+            "Rogue Scout \u2014 Inner Sight casts Basic Arrow.",
+            "Rogue Scout \u2014 Inner Sight attacks Radament A (Boss) for 1 physical damage.",
+            "Earned Act I casts Ice Blast.",
+            "Earned Act I attacks Radament A (Boss) for 23 cold damage.",
+            "Radament A (Boss) is afflicted with [Freeze].",
+            "Radament A (Boss) casts Strong Melee.",
+            "Earned Act I dodges Radament A (Boss)'s attack!",
+            "Rogue Scout \u2014 Inner Sight casts Inner Sight.",
+            "Radament A (Boss) is afflicted with [Inner Sight].",
+            "Earned Act I casts Frost Nova.",
+            "Earned Act I attacks Radament A (Boss) for 1 cold damage.",
+            "Radament A (Boss) is afflicted with [Chill].",
+            "Rogue Scout \u2014 Inner Sight casts Pierce Arrow.",
+            "CRITICAL! Rogue Scout \u2014 Inner Sight hits Radament A (Boss) for 57 physical damage!",
+            "Radament A (Boss) casts Strong Melee.",
+            "Radament A (Boss) attacks Earned Act I for 1 physical damage.",
+            "Earned Act I casts Ice Blast.",
+            "Earned Act I attacks Radament A (Boss) for 27 cold damage.",
+            "Radament A (Boss) is afflicted with [Freeze].",
+            "Turn 13 begins",
+            "The battle ends in a draw."
+          ],
+          "mp": "183",
+          "cards": [
+            {
+              "id": "unit-card-merc-mercs/act1-rogue-inner-sight",
+              "kind": "merc",
+              "dead": null,
+              "hp": "width: 97.5%;",
+              "text": "Rogue Scout \u2014 Inner Sight"
+            },
+            {
+              "id": "unit-card-player-1792497600000",
+              "kind": "hero",
+              "dead": null,
+              "hp": "width: 96.07%;",
+              "text": "Earned Act I"
+            },
+            {
+              "id": "unit-card-enemy-act2.radament-0-00f1-summon-minion-1",
+              "kind": "summon",
+              "dead": "true",
+              "hp": "width: 0%;",
+              "text": "MiMinion"
+            },
+            {
+              "id": "unit-card-enemy-act2.mummy-0-607f",
+              "kind": "monster",
+              "dead": "true",
+              "hp": "width: 0%;",
+              "text": "Mummy A"
+            },
+            {
+              "id": "unit-card-enemy-act2.mummy-1-ce20",
+              "kind": "monster",
+              "dead": "true",
+              "hp": "width: 0%;",
+              "text": "Mummy B"
+            },
+            {
+              "id": "unit-card-enemy-act2.radament-0-00f1",
+              "kind": "monster",
+              "dead": null,
+              "hp": "width: 88.22%;",
+              "text": "Radament A (Boss)FreezeInner SightChillFreeze"
+            },
+            {
+              "id": "unit-card-enemy-act2.mummy-2-20a1",
+              "kind": "monster",
+              "dead": "true",
+              "hp": "width: 0%;",
+              "text": "Mummy C"
+            },
+            {
+              "id": "unit-card-enemy-act2.mummy-3-7f6c",
+              "kind": "monster",
+              "dead": "true",
+              "hp": "width: 0%;",
+              "text": "Mummy D"
+            }
+          ],
+          "allies": "Rogue Scout \u2014 Inner SightNo unitsNo unitsNo unitsEarned Act INo unitsNo unitsNo unitsNo units",
+          "enemies": "MiMinionMummy ANo enemiesMummy BRadament A (Boss)FreezeInner SightChillFreezeMummy CNo enemiesMummy DNo enemies"
+        },
+        "exportCaptured": true,
+        "zeroFailedWaveAwards": true,
+        "comparisonError": null,
+        "diagnosticErrors": [],
+        "awards": {
+          "heroXP": 0,
+          "mercXP": 0,
+          "skillPoints": 0,
+          "statPoints": 0,
+          "itemsUnchanged": true,
+          "currenciesUnchanged": true,
+          "questItemsUnchanged": true,
+          "questsUnchanged": true,
+          "clearsUnchanged": true,
+          "wholeSaveUnchangedExceptEnteredLocation": true
+        }
+      }
+    }
+  ],
+  "persistenceBarriers": [
+    {
+      "label": "fresh-campaign-committed",
+      "continued": false,
+      "equal": false
+    },
+    {
+      "label": "act2-start-act2-horadric-staff-committed",
+      "continued": true,
+      "equal": true
+    },
+    {
+      "label": "act2-start-act2-tainted-sun-committed",
+      "continued": true,
+      "equal": true
+    },
+    {
+      "label": "act2-start-act2-radaments-lair-committed",
+      "continued": true,
+      "equal": true
+    },
+    {
+      "label": "act2-start-act2-arcane-sanctuary-committed",
+      "continued": true,
+      "equal": true
+    },
+    {
+      "label": "act2-start-act2-seven-tombs-committed",
+      "continued": true,
+      "equal": true
+    },
+    {
+      "label": "act2-recover-obj-cube-committed",
+      "continued": true,
+      "equal": true
+    },
+    {
+      "label": "act2-recover-obj-shaft-committed",
+      "continued": true,
+      "equal": true
+    },
+    {
+      "label": "act2-recover-obj-amulet-committed",
+      "continued": true,
+      "equal": true
+    },
+    {
+      "label": "act2-altar-destroyed-committed",
+      "continued": true,
+      "equal": true
+    },
+    {
+      "label": "act2-staff-assembled-committed",
+      "continued": true,
+      "equal": true
+    },
+    {
+      "label": "act2-staff-claimed-committed",
+      "continued": true,
+      "equal": true
+    },
+    {
+      "label": "act2-sun-claimed-committed",
+      "continued": true,
+      "equal": true
+    },
+    {
+      "label": "act2-staff-inserted-committed",
+      "continued": true,
+      "equal": true
+    },
+    {
+      "label": "act2-ready-far-oasis-committed",
+      "continued": true,
+      "equal": true
+    }
+  ],
+  "integrity": {
+    "source": {
+      "count": 2433,
+      "drift": []
+    },
+    "build": {
+      "count": 760,
+      "drift": []
+    },
+    "harness": {
+      "count": 31,
+      "drift": [
+        "browser-report.json"
+      ]
+    }
+  },
+  "retainedAttachments": [
+    {
+      "name": "screenshot",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9/retained-images/000-test-failed-1.png",
+      "sha256": "2da24f5d38346e2be12a3fa8cc3f35feb65877cbb9fe8e16a7073f0441b7e7cd",
+      "contentType": "image/png"
+    },
+    {
+      "name": "error-context",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9/retained-images/001-error-context.md",
+      "sha256": "18c73513d22799ed4793f10d51e7c489be1320904e83470dd5d14b2df1a7e5ef",
+      "contentType": "text/markdown"
+    }
+  ],
+  "browserStats": {
+    "startTime": "2026-10-23T07:09:33.094Z",
+    "duration": 865420.135,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "gitStatus": ""
+}

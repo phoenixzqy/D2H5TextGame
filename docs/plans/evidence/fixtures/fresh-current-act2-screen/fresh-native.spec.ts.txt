@@ -1,0 +1,1107 @@
+/** REVIEW CANDIDATE: fresh production campaign, accepted C1 recipe then conditional earned Act II. First failure stops. */
+import { expect, test, type Locator, type Page, type TestInfo } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/@playwright/test/index.mjs';
+import { readFile, writeFile, appendFile, access } from 'node:fs/promises';
+import { gzipSync } from 'node:zlib';
+import { isDeepStrictEqual } from 'node:util';
+import createGearHelper from './fresh-gear-helper.mjs';
+const raw = '/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9';
+import type { SaveCurrent } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/src/engine/types/save';
+import type { Item } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/src/engine/types/items';
+import { createCharacter, navTo } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/tests/e2e/_helpers';
+
+const fixedTime = new Date('2026-10-20T12:00:00.000Z');
+const name = 'Earned Act I'; // Preserve accepted deterministic C1 character recipe.
+let launchCount = 0;
+let wallStarted = 0;
+function budget() { expect(Date.now() - wallStarted).toBeLessThan(45 * 60 * 1000); }
+const warmth = 'skills-sorceress-warmth';
+const fire = 'skills-sorceress-fire-bolt';
+const frost = 'skills-sorceress-frost-nova';
+const ice = 'skills-sorceress-ice-bolt';
+const merc = 'mercs/act1-rogue-inner-sight';
+const ranks = { 'sorceress.frost_nova': 1, 'sorceress.ice_bolt': 1 };
+const reachXP = [0, 0, 100, 665, 2223, 5423, 11013];
+const nextXP = [0, 100, 565, 1558, 3200, 5590, 8818];
+const itemAwards = [5, 6, 6, 6, 7, 8, 9, 10, 10, 11, 11, 12, 12];
+const shardAwards = [75, 84, 91, 99, 107, 119, 131, 141, 150, 158, 169, 180, 190];
+
+async function backup(page: Page): Promise<SaveCurrent> {
+  await navTo(page, 'settings');
+  const pending = page.waitForEvent('download');
+  await page.getByTestId('export-save-button').click();
+  const download = await pending;
+  try { return JSON.parse(await readFile(await download.path(), 'utf8')) as SaveCurrent; }
+  finally { await download.delete(); }
+}
+async function stored(page: Page): Promise<SaveCurrent> {
+  return page.evaluate(() => new Promise<SaveCurrent>((resolve, reject) => {
+    const open = indexedDB.open('D2H5TextGame');
+    open.onerror = () => { reject(new Error('Could not open saved character')); };
+    open.onsuccess = () => {
+      const db = open.result;
+      const get = db.transaction('saves', 'readonly').objectStore('saves').get('current');
+      get.onerror = () => { db.close(); reject(new Error('Could not read saved character')); };
+      get.onsuccess = () => {
+        const record = get.result as { data: SaveCurrent } | undefined;
+        db.close();
+        if (!record) reject(new Error('No committed character'));
+        else resolve(record.data);
+      };
+    };
+  }));
+}
+async function production(page: Page) {
+  expect(await page.evaluate(() => '__GAME__' in window)).toBe(false);
+  expect(await page.evaluate(() => navigator.serviceWorker.controller?.state)).toBe('activated');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+}
+async function tree(page: Page, skill: string) {
+  await navTo(page, 'skills');
+  await page.locator('[role="tab"][aria-controls="tabpanel-tree"]').click();
+  await page.getByTestId(`skill-node-${skill}`).click();
+  return page.getByTestId('skill-detail-panel');
+}
+async function slots(page: Page, english: boolean, selected: readonly string[]) {
+  await navTo(page, 'skills');
+  await page.locator('[role="tab"][aria-controls="tabpanel-active"]').click();
+  for (let slot = 1; slot <= 9; slot += 1) {
+    const select = page.getByRole('combobox', { name: `${english ? 'Slot' : '槽位'} ${String(slot)}`, exact: true });
+    await select.selectOption(selected[slot - 1] ?? '');
+    await expect(select).toHaveValue(selected[slot - 1] ?? '');
+  }
+  await production(page);
+}
+async function countMonsters(cards: Locator) {
+  let count = 0;
+  for (const card of await cards.all()) {
+    const badge = card.locator(':scope > div:first-of-type > div').filter({ hasText: /^\+\d+$/ });
+    expect(await badge.count()).toBeLessThanOrEqual(1);
+    count += 1 + (await badge.count() ? Number((await badge.innerText()).slice(1)) : 0);
+  }
+  return count;
+}
+async function enter(page: Page, english: boolean, area = 'a1-blood-moor') {
+  await navTo(page, 'map');
+  budget();
+  expect(launchCount).toBeLessThan(149);
+  const act = /^a([12])-/.exec(area)?.[1];
+  expect(act).toBeDefined();
+  const heading = page.getByRole('button', { name: new RegExp(`^Act ${act} ·`) });
+  if (await heading.getAttribute('aria-expanded') !== 'true') await heading.click();
+  await page.getByTestId(`sub-area-row-${area}`)
+    .getByRole('button', { name: english ? 'Enter' : '进入', exact: true }).click();
+  launchCount += 1;
+  await expect(page.getByTestId('combat-screen')).toBeVisible();
+  expect(await wave(page)).toBe(1);
+}
+async function wave(page: Page) {
+  const value = /^\D*(\d+)/.exec(await page.getByTestId('wave-counter').innerText())?.[1];
+  if (!value) throw new Error('Missing numeric wave');
+  return Number(value);
+}
+async function pause(page: Page, english: boolean) {
+  await page.getByRole('button', { name: english ? 'Pause' : '暂停', exact: true }).click({ timeout: 500 });
+  await expect(page.getByRole('button', { name: english ? 'Resume' : '继续', exact: true }))
+    .toHaveAttribute('aria-pressed', 'true');
+}
+async function flee(page: Page, english: boolean) {
+  await page.getByRole('button', { name: english ? 'Flee' : '逃跑', exact: true }).click();
+  await expect(page.getByTestId('map-screen')).toBeVisible();
+}
+const evidenceOccurrences=new Map<string,number>();
+async function attach(info: TestInfo, label: string, value: unknown) {
+  const occurrence=evidenceOccurrences.get(label)??0;evidenceOccurrences.set(label,occurrence+1);
+  const artifact=`${label}${occurrence?`-${occurrence}`:''}.json.gz`;
+  await writeFile(`${raw}/${artifact}`, gzipSync(JSON.stringify(value)),{flag:'wx'});
+  await appendFile(`${raw}/progress.jsonl`, JSON.stringify({ label, artifact, at: new Date().toISOString(), player: value?.player ? { level:value.player.level, experience:value.player.experience, skillPoints:value.player.skillPoints, statPoints:value.player.statPoints } : undefined }) + '\n');
+}
+/** One readonly DOM observation before native inter-wave navigation can replace it. */
+async function terminalDOM(page: Page) {
+  return page.evaluate(() => {
+    const hero = document.querySelector('[data-testid="unit-card-player-1792497600000"]');
+    const log = Array.from(document.querySelectorAll('[data-testid="combat-log"] > div > span:last-child'), node => node.textContent);
+    return {
+      waveText: document.querySelector('[data-testid="wave-counter"]')?.textContent,
+      waveKind: document.querySelector('[data-testid="wave-kind-label"]')?.textContent,
+      heroPresent: hero !== null,
+      heroDead: hero?.getAttribute('data-dead') ?? null,
+      liveEnemies: document.querySelectorAll('[data-testid="enemies-grid"] [data-testid^="unit-card-"]:not([data-dead="true"])').length,
+      defeatPanels: document.querySelectorAll('[data-testid="defeat-panel"]').length,
+      deadMerc: document.querySelectorAll('[data-testid="allies-grid"] [data-kind="merc"][data-dead="true"]').length,
+      skipDisabled: document.querySelector<HTMLButtonElement>('[data-testid="skip-button"]')?.disabled,
+      log,
+      mp: document.querySelector('[role="group"][aria-label="MP"] [role="progressbar"]')?.getAttribute('aria-valuenow'),
+      cards: Array.from(document.querySelectorAll('[data-testid^="unit-card-"]'), card => ({
+        id: card.getAttribute('data-testid'), kind: card.getAttribute('data-kind'),
+        dead: card.getAttribute('data-dead'), hp: card.querySelector('.bg-red-600')?.getAttribute('style'), text: card.textContent
+      })),
+      allies: document.querySelector('[data-testid="allies-grid"]')?.textContent,
+      enemies: document.querySelector('[data-testid="enemies-grid"]')?.textContent
+    };
+  });
+}
+function expectTerminal(result: Awaited<ReturnType<typeof terminalDOM>>, expectedWave: number) {
+  expect(Number(/^\D*(\d+)/.exec(result.waveText ?? '')?.[1])).toBe(expectedWave);
+  expect(result.skipDisabled).toBe(true);
+  expect(result.log.at(-1)).toBe('Victory! All enemies are defeated.');
+  expect(result.defeatPanels).toBe(0);
+  expect(result.liveEnemies).toBe(0);
+  expect(result.heroPresent).toBe(true);
+  expect(result.heroDead).not.toBe('true');
+}
+/** Failed-wave diagnostics only. Preserve the first terminal assertion even if export/comparison fails. */
+async function expectTerminalOrStop(page,result,expectedWave,lastEarned,area,label,info) {
+  try { expectTerminal(result,expectedWave); }
+  catch(nonwin) {
+    const diagnostic={primaryError:String(nonwin),area,wave:expectedWave,terminal:result,
+      exportCaptured:false,zeroFailedWaveAwards:false,comparisonError:null,diagnosticErrors:[]};
+    // Terminal DOM was captured synchronously before this function; screenshot also precedes navigation.
+    try {await attach(info,`${label}-nonwin-terminal`,result);} catch(error) {diagnostic.diagnosticErrors.push(String(error));}
+    try {await info.attach(`${label}-nonwin-screen`,{body:await page.screenshot(),contentType:'image/png'});} catch(error) {diagnostic.diagnosticErrors.push(String(error));}
+    try {
+      const expected=structuredClone(lastEarned);
+      expected.map.currentAct=Number(/^a([12])-/.exec(area)?.[1]);
+      expected.map.currentSubAreaId=area; // Ordinary Enter uses the short alias; no other expected mutation.
+      const failed=await backup(page);diagnostic.exportCaptured=true;
+      await attach(info,`${label}-nonwin-export`,failed);
+      await attach(info,`${label}-nonwin-last-earned-expectation`,expected);
+      const equal=isDeepStrictEqual;
+      diagnostic.awards={
+        heroXP:heroXP(failed)-heroXP(lastEarned),mercXP:mercXP(failed)-mercXP(lastEarned),
+        skillPoints:failed.player.skillPoints-lastEarned.player.skillPoints,
+        statPoints:failed.player.statPoints-lastEarned.player.statPoints,
+        itemsUnchanged:equal(failed.inventory.backpack,lastEarned.inventory.backpack)&&equal(failed.inventory.stash,lastEarned.inventory.stash)&&equal(failed.inventory.equipped,lastEarned.inventory.equipped)&&equal(failed.mercs.mercEquipment,lastEarned.mercs.mercEquipment),
+        currenciesUnchanged:equal(failed.inventory.currencies,lastEarned.inventory.currencies),
+        questItemsUnchanged:equal(failed.inventory.questItems,lastEarned.inventory.questItems),
+        questsUnchanged:equal(failed.map.questProgress,lastEarned.map.questProgress),
+        clearsUnchanged:equal(failed.map.clearedSubAreas,lastEarned.map.clearedSubAreas),
+        wholeSaveUnchangedExceptEnteredLocation:equal(failed,expected)
+      };
+      diagnostic.zeroFailedWaveAwards=diagnostic.awards.heroXP===0&&diagnostic.awards.mercXP===0&&
+        diagnostic.awards.skillPoints===0&&diagnostic.awards.statPoints===0&&
+        diagnostic.awards.itemsUnchanged&&diagnostic.awards.currenciesUnchanged&&diagnostic.awards.questItemsUnchanged&&
+        diagnostic.awards.questsUnchanged&&diagnostic.awards.clearsUnchanged&&diagnostic.awards.wholeSaveUnchangedExceptEnteredLocation;
+      try {expect(failed).toEqual(expected);} catch(error) {diagnostic.comparisonError=String(error);}
+    } catch(error) {diagnostic.diagnosticErrors.push(String(error));}
+    try {await attach(info,`${label}-nonwin-zero-awards-classification`,diagnostic);} catch(error) {diagnostic.diagnosticErrors.push(String(error));}
+    throw nonwin; // Never proceed, including when diagnostic export/equality itself fails.
+  }
+}
+function expectPlayer(actual: SaveCurrent, configured: SaveCurrent, totalXP: number, fireRank: number, spent: number, questPoints = 0) {
+  const level = totalXP >= 11013 ? 6 : totalXP >= 5423 ? 5 : totalXP >= 2223 ? 4 : totalXP >= 665 ? 3 : totalXP >= 100 ? 2 : 1;
+  expect(actual.player).toEqual({ ...configured.player, level, experience: totalXP - (reachXP[level] ?? -1),
+    experienceToNextLevel: nextXP[level], statPoints: (level - 1) * 5,
+    skillPoints: level - 1 - spent + questPoints,
+    skillLevels: { ...ranks, 'sorceress.fire_bolt': fireRank },
+    derivedStats: { ...configured.player.derivedStats, lifeMax: 120 + 8 * (level - 1),
+      manaMax: 102 + 4 * (level - 1), attack: 22 + 2 * (level - 1), defense: 20 + 3 * (level - 1) } });
+}
+function expectMerc(actual: SaveCurrent, hired: SaveCurrent, earnedXP: number, equipment = hired.mercs.mercEquipment) {
+  const initial = hired.mercs.ownedMercs[0];
+  if (!initial) throw new Error('Missing normally hired mercenary');
+  let level = 3;
+  let xp = earnedXP;
+  const threshold = (rank: number) => Math.floor(60 * rank * 1.3 ** (rank - 1));
+  while (xp >= threshold(level)) { xp -= threshold(level); level += 1; }
+  const gains = level - 3;
+  expect(actual.mercs).toEqual({ ...hired.mercs, mercEquipment: equipment,
+    ownedMercs: [expectedRogueGrowth(initial, gains)],
+    mercProgress: { [merc]: { experience: xp, experienceToNextLevel: threshold(level) } } });
+}
+// Independently frozen literals from accepted merc-gear-earned.spec.ts; no item injection.
+const mercGlove: Item = { id: 'it-8jv2k-1', baseId: 'items/base/glove-leather', rarity: 'normal', level: 2, ilvl: 2, baseRolls: { defense: 4 }, affixes: [], generatedName: {}, identified: true, equipped: false };
+const heroGlove: Item = { id: 'it-96fga-3', baseId: 'items/base/glove-leather', rarity: 'normal', level: 2, ilvl: 2, baseRolls: { defense: 5 }, affixes: [], generatedName: {}, identified: true, equipped: false };
+const heroBoots: Item = { id: 'it-5iwwr-4', baseId: 'items/base/boot-leather', rarity: 'normal', level: 2, ilvl: 2, baseRolls: { defense: 3 }, affixes: [], generatedName: {}, identified: true, equipped: false };
+
+const heroCap: Item = {"id":"it-71emu-12","baseId":"items/base/helm-cap","rarity":"normal","level":2,"ilvl":2,"baseRolls":{"defense":8},"affixes":[],"generatedName":{},"identified":true,"equipped":false};
+const heroBow: Item = {"id":"it-8n9ca-1b","baseId":"items/base/weapon-bow-training","rarity":"normal","level":2,"ilvl":2,"baseRolls":{"attack":17},"affixes":[],"generatedName":{},"identified":true,"equipped":false};
+const mercCap: Item = {"id":"it-71emu-1a","baseId":"items/base/helm-cap","rarity":"normal","level":2,"ilvl":2,"baseRolls":{"defense":8},"affixes":[],"generatedName":{},"identified":true,"equipped":false};
+const mercBetterGlove: Item = {"id":"it-96fga-8","baseId":"items/base/glove-leather","rarity":"normal","level":2,"ilvl":2,"baseRolls":{"defense":5},"affixes":[],"generatedName":{},"identified":true,"equipped":false};
+const mercBoots: Item = {"id":"it-5iwwr-9","baseId":"items/base/boot-leather","rarity":"normal","level":2,"ilvl":2,"baseRolls":{"defense":3},"affixes":[],"generatedName":{},"identified":true,"equipped":false};
+
+test('fresh current-runtime native earned Sorceress through conditional Act II and Continue', async ({ page, context }, info) => {
+  for(const previous of ['outcome.json','progress.jsonl','wave-awards.jsonl']) {
+    let exists=true;try {await access(`${raw}/${previous}`);} catch(error) {if(error.code==='ENOENT') exists=false;else throw error;}
+    expect(exists,`Fresh invocation refuses pre-existing ${previous}`).toBe(false);
+  }
+  wallStarted = Date.now(); launchCount = 0;
+  const english = true;
+  const errors: string[] = [];
+  const watch = (watched: Page) => {
+    watched.on('pageerror', error => errors.push(error.message));
+    watched.on('console', message => { if (['warning', 'error'].includes(message.type())) errors.push(message.text()); });
+  };
+  watch(page);
+  let active = page;
+  let diagnosticFailure: Error | undefined;
+  const helper = await createGearHelper();
+  try {
+    await page.clock.setFixedTime(fixedTime); // Date only; timers remain native.
+    await page.goto('/');
+    await createCharacter(page, { class: 'sorceress', name });
+    await navTo(page, 'settings');
+    await page.getByRole('button', { name: 'English', exact: true }).click();
+    await expect.poll(() => page.evaluate(() => navigator.serviceWorker.controller?.state), { timeout: 60_000 }).toBe('activated');
+    const fresh = await backup(page);
+    await attach(info, 'fresh', fresh);
+    expect(fresh.player).toMatchObject({ level: 1, experience: 0, statPoints: 0, skillPoints: 1, skillLevels: ranks });
+    expect(fresh.inventory.backpack).toEqual([]);
+    expect(fresh.inventory.equipped).toEqual({});
+    const locked = await tree(page, frost);
+    await expect(locked.getByRole('button', { name: 'Requires Lv. 6', exact: true })).toBeDisabled();
+    expect(await backup(page)).toEqual({ ...fresh, player: { ...fresh.player, comboOrder: [ice] } });
+    await navTo(page, 'mercs');
+    await page.getByTestId(`hire-merc-${merc}`).getByRole('button', { name: 'Hire', exact: true }).click();
+    const hired = await backup(page);
+    await attach(info, 'hired', hired);
+    expect(hired.inventory).toEqual(fresh.inventory);
+    expect(hired.mercs.fieldedMercId).toBe(merc);
+    expect(hired.mercs.ownedMercs).toHaveLength(1);
+    expect(hired.mercs.ownedMercs[0]?.level).toBe(3);
+    expect(hired.mercs.mercProgress).toEqual({ [merc]: { experience: 0, experienceToNextLevel: 304 } });
+    await tree(page, fire);
+    await page.getByTestId('skill-detail-panel').getByRole('button', { name: 'Allocate', exact: true }).click();
+    const learned = await backup(page);
+    expect(learned).toEqual({ ...hired, player: { ...hired.player, skillPoints: 0,
+      skillLevels: { ...ranks, 'sorceress.fire_bolt': 1 } } });
+    await slots(page, english, [fire]);
+    const configured = await backup(page);
+    await attach(info, 'configured', configured);
+    expect(configured).toEqual({ ...learned, player: { ...learned.player, comboOrder: [fire] } });
+    let totalXP = 0;
+    let items = 0;
+    let shards = 0;
+    let earned = configured;
+    for (let ordinal = 0; ordinal < 40; ordinal += 1) {
+      await test.step(`earned prep ordinal ${String(ordinal)}`, async () => {
+        await enter(page, english);
+        await attach(info, `prep-opening-${String(ordinal)}`, {
+          ordinal, wave: await wave(page), waveKind: await page.getByTestId('wave-kind-label').innerText(),
+          enemies: await page.getByTestId('enemies-grid').innerText(), allies: await page.getByTestId('allies-grid').innerText()
+        });
+        expect(await countMonsters(page.getByTestId('enemies-grid').locator('[data-testid^="unit-card-"]'))).toBe(8 + ordinal % 13);
+        await expect(page.getByTestId('allies-grid').locator('[data-kind="merc"]')).toHaveCount(1);
+        await page.getByTestId('skip-button').click();
+        await expect(page.getByTestId('skip-button')).toBeDisabled();
+        const result = await terminalDOM(page);
+        await attach(info, `prep-result-${String(ordinal)}`, result);
+        await expectTerminalOrStop(page,result,1,earned,'a1-blood-moor',`prep-${ordinal}-wave-1`,info);
+        await expect.poll(() => wave(page), { timeout: 5000, intervals: [50] }).toBe(2);
+        await pause(page, english);
+        expect(await wave(page)).toBe(2);
+        await flee(page, english);
+        const before = earned;
+        earned = await backup(page);
+        await attach(info, `prep-${String(ordinal)}`, earned);
+        totalXP += (8 + ordinal % 13) * 20;
+        items += itemAwards[ordinal % 13] ?? 0;
+        shards += shardAwards[ordinal % 13] ?? 0;
+        expectPlayer(earned, configured, totalXP, 1, 0);
+        expectMerc(earned, hired, totalXP * 0.75);
+        expect(earned.inventory.backpack).toHaveLength(items);
+        expect(earned.inventory.backpack.slice(0, before.inventory.backpack.length)).toEqual(before.inventory.backpack);
+        expect(earned.inventory.currencies).toEqual({ 'rune-shard': shards });
+        expect(earned.inventory.equipped).toEqual({});
+        expect(earned.inventory.stash).toEqual([]);
+      });
+    }
+    expect(totalXP).toBe(11080);
+    expect(items).toBe(344);
+    expect(shards).toBe(5157);
+    expect(earned.player).toMatchObject({ level: 6, experience: 67, experienceToNextLevel: 8818, skillPoints: 5, statPoints: 25 });
+    expect(earned.mercs.ownedMercs[0]).toMatchObject({ level: 9, coreStats: { strength: 18, dexterity: 40, vitality: 16, energy: 20 },
+      derivedStats: { life: 196, lifeMax: 196, mana: 79, manaMax: 112, attack: 46, defense: 44, attackSpeed: 140 } });
+    expect(earned.mercs.mercProgress[merc]).toEqual({ experience: 249, experienceToNextLevel: 4404 });
+    expect(new Set(earned.inventory.backpack.map(item => item.id)).size).toBe(344);
+    expect(earned.player.equipment).toEqual([]);
+    for (const item of [mercGlove, heroGlove, heroBoots]) {
+      expect(earned.inventory.backpack.find(candidate => candidate.id === item.id)).toEqual(item);
+    }
+    await attach(info, 'earned-level-six', earned);
+
+    for (const [skill, count] of [[fire, 3], [frost, 1], [warmth, 1]] as const) {
+      const detail = await tree(page, skill);
+      for (let point = 0; point < count; point += 1) {
+        await detail.getByRole('button', { name: 'Allocate', exact: true }).click();
+      }
+    }
+    await slots(page, english, [frost, fire]);
+    for (const item of [heroGlove, heroBoots]) {
+      helper.auditLiteral(await backup(page), item, 'hero', item.id === heroGlove.id ? 'gloves' : 'boots');
+      await navTo(page, 'inventory');
+      await page.getByTestId(`inv-item-${item.id}`).click();
+      await page.getByTestId('inv-primary-action').click();
+    }
+    const literalGloveAudit=helper.auditLiteral(await backup(page),mercGlove,'merc','gloves',0);
+    await navTo(page, 'mercs');
+    await page.getByTestId(`merc-equipment-${merc}`).click();
+    await page.getByTestId('merc-equip-slot-gloves').getByText('Gloves', { exact: true }).click();
+    const choices = page.getByRole('dialog').getByRole('listitem').filter({ has: page.getByRole('button', { name: 'Equip', exact: true }) });
+    await expect(choices).toHaveCount(literalGloveAudit.candidateCount);
+    await expect(choices.first()).toContainText(literalGloveAudit.name);
+    await expect(choices.first()).toBeVisible();
+    await choices.first().getByRole('button', { name: 'Equip', exact: true }).click();
+    await page.keyboard.press('Escape');
+    await page.getByTestId('character-hud').click();
+    await expect(page.getByTestId('character-screen')).toBeVisible();
+    for (let point = 0; point < 10; point += 1) await page.getByRole('button', { name: 'Increase Energy', exact: true }).click();
+    for (let point = 0; point < 15; point += 1) await page.getByRole('button', { name: 'Increase Vitality', exact: true }).click();
+    await expect(page.getByTestId('char-draft-energy')).toHaveText('35 → 45');
+    await expect(page.getByTestId('char-draft-vitality')).toHaveText('10 → 25');
+    await expect(page.getByTestId('char-draft-remaining')).toHaveText('0');
+    await page.getByRole('button', { name: 'Apply attributes', exact: true }).click();
+    const prepared = await backup(page);
+    await attach(info, 'prepared', prepared);
+    const equipment = { gloves: { ...heroGlove, equipped: true }, boots: { ...heroBoots, equipped: true } };
+    const mercEquipment = { [merc]: { gloves: { ...mercGlove, equipped: true, equipSlot: 'gloves' as const } } };
+    const selectedIds = new Set([mercGlove.id, heroGlove.id, heroBoots.id]);
+    expect(prepared).toEqual({ ...earned,
+      inventory: { ...earned.inventory, equipped: equipment, backpack: earned.inventory.backpack.filter(item => !selectedIds.has(item.id)) },
+      player: { ...earned.player, statPoints: 0, skillPoints: 0,
+        coreStats: { strength: 10, dexterity: 25, vitality: 25, energy: 45 },
+        derivedStats: { ...earned.player.derivedStats, life: 120, lifeMax: 190, mana: 102, manaMax: 137, defense: 43 },
+        comboOrder: [frost, fire], skillLevels: { ...ranks, 'sorceress.fire_bolt': 4, 'sorceress.frost_nova': 2, 'sorceress.warmth': 1 } },
+      mercs: { ...earned.mercs, mercEquipment }
+    });
+    expect(prepared.inventory.backpack).toHaveLength(341);
+    expect(prepared.player.derivedStats).toMatchObject({ attack: 32, defense: 43, attackSpeed: 125 });
+    // These exact objects were observed in the retained40-win earned bag.
+    const upgrades = [heroCap, heroBow, mercCap, mercBetterGlove, mercBoots];
+    for (const item of upgrades) {
+      expect(prepared.inventory.backpack.find(candidate => candidate.id === item.id)).toEqual(item);
+    }
+    for (const item of [heroCap, heroBow]) {
+      helper.auditLiteral(await backup(page),item,'hero',item.id===heroCap.id?'head':'weapon');
+      await navTo(page, 'inventory');
+      await page.getByTestId(`inv-item-${item.id}`).click();
+      await expect(page.getByTestId('inv-primary-action')).toBeEnabled();
+      await page.getByTestId('inv-primary-action').click();
+    }
+    for (const [slot, label, index] of [['head', 'Head', 3], ['gloves', 'Gloves', 3], ['boots', 'Boots', 0]] as const) {
+      const literalItem=slot==='head'?mercCap:slot==='gloves'?mercBetterGlove:mercBoots;
+      const literalAudit=helper.auditLiteral(await backup(page),literalItem,'merc',slot,index);
+      await navTo(page, 'mercs');
+      await page.getByTestId(`merc-equipment-${merc}`).click();
+      await page.getByTestId(`merc-equip-slot-${slot}`).getByText(label, { exact: true }).click();
+      const choices = page.getByRole('dialog').getByRole('listitem')
+        .filter({ has: page.getByRole('button', { name: 'Equip', exact: true }) });
+      await expect(choices).toHaveCount(literalAudit.candidateCount);
+      await expect(choices.nth(index)).toContainText(literalAudit.name);
+      await expect(choices.nth(index)).toBeVisible();
+      await choices.nth(index).getByRole('button', { name: 'Equip', exact: true }).click();
+      await page.keyboard.press('Escape');
+    }
+    const geared = await backup(page);
+    const upgradedIds = new Set(upgrades.map(item => item.id));
+    const upgradedEquipment = { ...equipment, head: { ...heroCap, equipped: true }, weapon: { ...heroBow, equipped: true }, offhand: null };
+    const upgradedMercEquipment = { [merc]: {
+      head: { ...mercCap, equipped: true, equipSlot: 'head' as const },
+      gloves: { ...mercBetterGlove, equipped: true, equipSlot: 'gloves' as const },
+      boots: { ...mercBoots, equipped: true, equipSlot: 'boots' as const }
+    } };
+    expect(geared).toEqual({ ...prepared,
+      inventory: { ...prepared.inventory, equipped: upgradedEquipment,
+        backpack: [...prepared.inventory.backpack.filter(item => !upgradedIds.has(item.id)), mercGlove] },
+      player: { ...prepared.player, derivedStats: { ...prepared.player.derivedStats, attack: 49, defense: 51 } },
+      mercs: { ...prepared.mercs, mercEquipment: upgradedMercEquipment }
+    });
+    expect(geared.inventory.backpack).toHaveLength(337);
+    await attach(info, 'exact-earned-upgrades', geared);
+    const quest = 'quests/act1-den-of-evil';
+    await navTo(page, 'quests');
+    await page.getByTestId(`quest-start-${quest}`).click();
+    const tracked = await backup(page);
+    expect(tracked).toEqual({ ...geared, map: { ...geared.map, questProgress: {
+      ...geared.map.questProgress, [quest]: { id: quest, status: 'inProgress',
+        objectives: { 'obj-clear-den': false, 'obj-return': false } }
+    } } });
+    await attach(info, 'den-tracked-earned', tracked);
+    await page.setViewportSize({ width: 360, height: 640 });
+    expect(page.viewportSize()).toEqual({ width: 360, height: 640 });
+    await navTo(page, 'map');
+    await production(page);
+    await expect(page.getByTestId('farm-locked-a1-den-of-evil')).toBeDisabled();
+    await enter(page, english, 'a1-den-of-evil'); // Exactly ordinal40, no more preparation.
+    const counts = [9, 10, 11, 3];
+    const awards = [270, 400, 770, 210]; // Real planned levels3/4/7/7, xpForKill10*level.
+    const mercAwards = [202, 300, 577, 157]; // floor each actual wave award * .75.
+    let mercEarned = 8310;
+    let latest = tracked;
+    let previousTerminal: Awaited<ReturnType<typeof terminalDOM>> | undefined;
+    for (let index = 0; index < 4; index += 1) {
+      await test.step(`Den native wave ${String(index + 1)}`, async () => {
+        const opening = await terminalDOM(page);
+        await attach(info, `den-opening-${String(index + 1)}`, opening);
+        const originalAllies = (snapshot: Awaited<ReturnType<typeof terminalDOM>>) =>
+          snapshot.cards.filter(card => card.id === 'unit-card-player-1792497600000' || card.kind === 'merc');
+        if (index === 0) {
+          expect(originalAllies(opening).map(card => card.id).sort()).toEqual(
+            ['unit-card-player-1792497600000', `unit-card-merc-${merc}`].sort());
+          expect(originalAllies(opening).every(card => card.dead !== 'true')).toBe(true);
+        }
+        if (previousTerminal) {
+          // Native t0 casts may precede Pause; resources stay diagnostic. Prove
+          // exact survivor identity: living allies persist, dead mercs stay gone.
+          expect(originalAllies(opening).map(card => card.id).sort()).toEqual(
+            originalAllies(previousTerminal).filter(card => card.dead !== 'true').map(card => card.id).sort());
+          expect(originalAllies(opening).every(card => card.dead !== 'true')).toBe(true);
+        }
+        expect(await wave(page)).toBe(index + 1);
+        expect(await countMonsters(page.getByTestId('enemies-grid').locator('[data-testid^="unit-card-"]'))).toBe(counts[index]);
+        await production(page);
+        await page.getByTestId('skip-button').click();
+        await expect(page.getByTestId('skip-button')).toBeDisabled();
+        const terminal = await terminalDOM(page);
+        await attach(info, `den-terminal-${String(index + 1)}`, terminal);
+        await expectTerminalOrStop(page,terminal,index+1,latest,'a1-den-of-evil',`den-wave-${index+1}`,info); // Stop at first nonwin, no retry/build change.
+        previousTerminal = terminal;
+        if (index < 3) {
+          await expect.poll(() => wave(page), { timeout: 5000, intervals: [50] }).toBe(index + 2);
+          await pause(page, english);
+        } else {
+          await expect(page.getByTestId('victory-panel')).toBeVisible();
+          await page.getByTestId('return-to-map').click();
+          await expect(page.getByTestId('cleared-badge-a1-den-of-evil')).toBeVisible();
+          await expect(page.getByTestId('farm-here-a1-den-of-evil')).toBeEnabled();
+          await info.attach('actual-earned-den-clear', { body: await page.screenshot(), contentType: 'image/png' });
+        }
+        const before = latest;
+        latest = await backup(page);
+        await attach(info, `den-award-${String(index + 1)}`, latest);
+        totalXP += awards[index] ?? 0;
+        mercEarned += mercAwards[index] ?? 0;
+        expect(latest.player).toEqual({ ...geared.player, experience: totalXP - 11013 });
+        expectMerc(latest, hired, mercEarned, upgradedMercEquipment);
+        expect(latest.inventory.backpack.slice(0, before.inventory.backpack.length)).toEqual(before.inventory.backpack);
+        expect(latest.inventory.backpack.length).toBeGreaterThan(before.inventory.backpack.length);
+        expect(new Set(latest.inventory.backpack.map(item => item.id)).size).toBe(latest.inventory.backpack.length);
+        expect(latest.inventory.currencies['rune-shard']).toBeGreaterThan(before.inventory.currencies['rune-shard'] ?? 0);
+        expect(latest.inventory.equipped).toEqual(upgradedEquipment);
+        expect(latest.inventory.stash).toEqual([]);
+        expect(latest.map.questProgress).toEqual({ ...tracked.map.questProgress, [quest]: {
+          id: quest, status: 'inProgress', objectives: { 'obj-clear-den': index === 3, 'obj-return': false }
+        } });
+        expect(latest.map.clearedSubAreas).toEqual(index === 3 ? ['areas/act1-den-of-evil'] : []);
+        if (index < 3) {
+          await navTo(page, 'combat');
+          expect(await wave(page)).toBe(index + 2);
+          await expect(page.getByRole('button', { name: 'Resume', exact: true })).toHaveAttribute('aria-pressed', 'true');
+        }
+      });
+    }
+    expect(totalXP).toBe(12730);
+    expect(mercEarned).toBe(9546);
+    expect(latest.player).toMatchObject({ level: 6, experience: 1717, statPoints: 0, skillPoints: 0 });
+    expect(latest.mercs.mercProgress[merc]).toEqual({ experience: 1485, experienceToNextLevel: 4404 });
+    await navTo(page, 'quests');
+    await expect(page.getByTestId(`quest-claim-${quest}`)).toHaveCount(0);
+    await navTo(page, 'town');
+    await page.getByTestId('town-npc-akara').click();
+    await expect(page.getByRole('status')).toContainText('Claim your reward in Quests.');
+    const talked = await backup(page);
+    expect(talked).toEqual({ ...latest, map: { ...latest.map, questProgress: {
+      ...latest.map.questProgress, [quest]: { id: quest, status: 'completed',
+        objectives: { 'obj-clear-den': true, 'obj-return': true } }
+    } } });
+    await attach(info, 'den-talk-no-award', talked);
+    await navTo(page, 'quests');
+    const claim = page.getByTestId(`quest-claim-${quest}`);
+    await expect(claim).toBeEnabled();
+    await claim.click();
+    await expect(claim).toBeDisabled();
+    const claimed = await backup(page);
+    expect(claimed).toEqual({ ...talked, player: { ...talked.player, experience: 2217, skillPoints: 1 },
+      mercs: { ...talked.mercs, mercProgress: { ...talked.mercs.mercProgress, [merc]: { experience: 1860, experienceToNextLevel: 4404 } } },
+      map: { ...talked.map, questProgress: { ...talked.map.questProgress, [quest]: {
+        id: quest, status: 'completed', objectives: { 'obj-clear-den': true, 'obj-return': true }, rewardClaimed: true
+      } } }
+    });
+    await attach(info, 'den-once-only-earned-award', claimed);
+    await navTo(page, 'quests');
+    await expect(claim).toBeDisabled();
+    await navTo(page, 'town');
+    await page.getByTestId('town-npc-akara').click();
+    await page.getByTestId('town-conversation-quests').click();
+    await expect(claim).toBeDisabled();
+    expect(await backup(page)).toEqual(claimed);
+    await info.attach('fresh-mobile-den-claimed', { body: await page.screenshot(), contentType: 'image/png' });
+    let latestFresh = await allocateEarned(page, claimed, info);
+    let ordinal = 41;
+    for (let run = 0; run < 100 && latestFresh.player.level < 12; run += 1) {
+      latestFresh = await runNative(page, latestFresh, 'a1-den-of-evil', ordinal++, helper, info);
+      latestFresh = await allocateEarned(page, latestFresh, info);
+    }
+    expect(latestFresh.player).toMatchObject({ level:12,statPoints:0,skillPoints:0,
+      coreStats:{strength:10,dexterity:25,vitality:37,energy:63},
+      skillLevels:{'sorceress.ice_blast':8,'sorceress.frost_nova':2,'sorceress.fire_bolt':4,'sorceress.warmth':1} });
+    await attach(info, 'fresh-earned-level-twelve', latestFresh);
+    latestFresh = await transferPlan(page, latestFresh, helper.select(latestFresh,'initial'), info);
+    await slots(page, true, [frost, 'skills-sorceress-ice-blast']);
+    const selected = await backup(page);
+    expect(selected).toEqual({...latestFresh,player:{...latestFresh.player,comboOrder:[frost,'skills-sorceress-ice-blast']}});
+    latestFresh=selected;
+    await navTo(page,'mercs');
+    // Source component is a named section; use named section locator without region assumptions.
+    const prioritySection=page.getByTestId(`merc-card-${merc}`).locator('section[aria-label="Skill priority"]');
+    await expect(prioritySection).toBeVisible();
+    await prioritySection.getByRole('button',{name:'Move Pierce Arrow earlier',exact:true}).click();
+    const ordered=await backup(page);
+    const expectedMercs=structuredClone(latestFresh.mercs);
+    expectedMercs.ownedMercs[0].comboOrder=['mskill-inner-sight','mskill-pierce-arrow','mskill-basic-arrow'];
+    expect(ordered).toEqual({...latestFresh,mercs:expectedMercs});
+    latestFresh=ordered;
+    await attach(info,'fresh-route-prepared',latestFresh);
+    // Native manual ordinal remains process-local; this page stays open through the boss.
+    for(const area of ['a1-blood-moor','a1-cold-plains','a1-burial-grounds']) {
+      latestFresh=await runNative(page,latestFresh,area,ordinal++,helper,info);
+    }
+    // Accepted boundary timing and selector policy; expectations come only from this current earned export.
+    await attach(info,'fresh-boundary-before',latestFresh);
+    const boundaryPlan=helper.select(latestFresh,'boundary');
+    expect(boundaryPlan.choices).toHaveLength(15);
+    latestFresh=await transferPlan(page,latestFresh,boundaryPlan,info);
+    await attach(info,'fresh-boundary-after',latestFresh);
+    latestFresh=await runNative(page,latestFresh,'a1-dark-wood',ordinal++,helper,info);
+    const sisters='quests/act1-sisters-to-the-slaughter';
+    await navTo(page,'quests');
+    await page.getByTestId(`quest-start-${sisters}`).click();
+    const sistersTracked=await backup(page);
+    expect(sistersTracked).toEqual({...latestFresh,map:{...latestFresh.map,questProgress:{...latestFresh.map.questProgress,
+      [sisters]:{id:sisters,status:'inProgress',objectives:{'obj-kill-andariel':false}}}}});
+    await navTo(page,'map');
+    await page.getByRole('button',{name:/^Act 2 ·/}).click();
+    await expect(page.getByTestId('sub-area-row-a2-rocky-waste').getByRole('button',{name:'Enter',exact:true})).toHaveCount(0);
+    latestFresh=await runNative(page,sistersTracked,'a1-catacombs',ordinal++,helper,info);
+    expect(latestFresh.map.questProgress[sisters]).toEqual({id:sisters,status:'completed',objectives:{'obj-kill-andariel':true}});
+    expect(latestFresh.map.clearedSubAreas).toContain('areas/act1-catacombs');
+    await attach(info,'fresh-earned-andariel-settled',latestFresh);
+    // Actual chapter-boss clear already unlocks Act II before the explicit quest claim.
+    await navTo(page,'map');
+    await page.getByRole('button',{name:/^Act 2 ·/}).click();
+    await expect(page.getByTestId('sub-area-row-a2-rocky-waste').getByRole('button',{name:'Enter',exact:true})).toBeEnabled();
+    await navTo(page,'quests');
+    const sistersClaim=page.getByTestId(`quest-claim-${sisters}`);
+    await expect(sistersClaim).toBeEnabled();
+    await sistersClaim.click();
+    await expect(sistersClaim).toBeDisabled();
+    const paid=await backup(page);
+    expect(heroXP(paid)-heroXP(latestFresh)).toBe(8000);
+    expect(mercXP(paid)-mercXP(latestFresh)).toBe(6000);
+    expectMercAdvance(paid,latestFresh,6000);
+    expect(paid.inventory.currencies).toEqual(latestFresh.inventory.currencies);
+    expect(paid.inventory.backpack.slice(0,-1)).toEqual(latestFresh.inventory.backpack);
+    const reward=paid.inventory.backpack.at(-1)!;
+    expect(reward).toMatchObject({uniqueId:'items/unique/coif-of-glory',baseId:'items/base/helm-skull-cap',rarity:'unique',level:19,ilvl:19,equipped:false,affixes:[],statRolls:{},generatedName:{},identified:true});
+    expect(Number.isInteger(reward.baseRolls.defense)).toBe(true);
+    expect(reward.baseRolls.defense).toBeGreaterThanOrEqual(10);expect(reward.baseRolls.defense).toBeLessThanOrEqual(14);
+    expect(Object.keys(reward.baseRolls)).toEqual(['defense']);
+    expect(allIds(latestFresh)).not.toContain(reward.id);
+    expect(paid.map).toEqual({...latestFresh.map,questProgress:{...latestFresh.map.questProgress,
+      [sisters]:{...latestFresh.map.questProgress[sisters],rewardClaimed:true}}});
+    const expectedPaidPlayer=xpPlayer(latestFresh.player,8000);
+    expectedPaidPlayer.derivedStats=helper.projectHero({...paid,player:expectedPaidPlayer});
+    expect(paid.player).toEqual(expectedPaidPlayer);
+    expect(paid.inventory).toEqual({...latestFresh.inventory,backpack:[...latestFresh.inventory.backpack,reward]});
+    for(const key of ['formation','meta']) expect(paid[key]).toEqual(latestFresh[key]);
+    expect(new Set(allIds(paid)).size).toBe(allIds(paid).length);
+    await navTo(page,'quests');await expect(sistersClaim).toBeDisabled();
+    expect(await backup(page)).toEqual(paid);
+    await attach(info,'fresh-earned-andariel-claimed',paid);
+    const rewardExpected=structuredClone(paid);
+    const oldHead=rewardExpected.inventory.equipped.head;
+    rewardExpected.inventory.backpack=rewardExpected.inventory.backpack.filter(item=>item.id!==reward.id);
+    if(oldHead) rewardExpected.inventory.backpack.push({...oldHead,equipped:false});
+    rewardExpected.inventory.equipped.head={...reward,equipped:true};
+    rewardExpected.player.derivedStats=helper.projectHero(rewardExpected);
+    await navTo(page,'inventory');await page.getByTestId(`inv-item-${reward.id}`).click();
+    const rewardDetail=page.getByTestId('inv-detail-panel');
+    await expect(rewardDetail.locator('[data-met="false"]')).toHaveCount(0);
+    const defenseRow=rewardDetail.getByRole('row').filter({has:page.getByText('Defense',{exact:true})});
+    await expect(defenseRow).toContainText(String(paid.player.derivedStats.defense));
+    await expect(defenseRow).toContainText(String(rewardExpected.player.derivedStats.defense));
+    await defenseRow.scrollIntoViewIfNeeded();await expect(defenseRow).toBeInViewport();
+    await info.attach('earned-boss-coif-comparison',{body:await page.screenshot(),contentType:'image/png'});
+    await expect(page.getByTestId('inv-primary-action')).toBeEnabled();
+    await page.getByTestId('inv-primary-action').click();await expect(rewardDetail).toHaveCount(0);
+    const rewardEquipped=await backup(page);expect(rewardEquipped).toEqual(rewardExpected);
+    expect([...allIds(rewardEquipped)].sort()).toEqual([...allIds(paid)].sort());
+    await attach(info,'fresh-boss-reward-equipped',rewardEquipped);
+    const transitioned=rewardEquipped; // Act II availability was proved without starting another challenge.
+    await page.getByRole('button',{name:'Save',exact:true}).click();
+    await expect(page.getByRole('status')).toHaveText('Saved');
+    const committed=await stored(page);expect(committed).toEqual(transitioned);
+    await attach(info,'fresh-campaign-committed',committed);
+    await page.close();
+    const reopened=await context.newPage();active=reopened;watch(reopened);
+    await reopened.clock.setFixedTime(fixedTime);await reopened.goto('/');
+    await reopened.getByTestId('home-continue').click();
+    await expect(reopened.getByTestId('town-screen')).toBeVisible();
+    expect(await stored(reopened)).toEqual(committed);expect(await backup(reopened)).toEqual(committed);
+    await navTo(reopened,'quests');await expect(reopened.getByTestId(`quest-claim-${sisters}`)).toBeDisabled();
+    await navTo(reopened,'map');await reopened.getByRole('button',{name:/^Act 2 ·/}).click();
+    await expect(reopened.getByTestId('sub-area-row-a2-rocky-waste').getByRole('button',{name:'Enter',exact:true})).toBeEnabled();
+    await production(reopened);
+    await info.attach('fresh-mobile-act-two-continued',{body:await reopened.screenshot(),contentType:'image/png'});
+    // C1 is completed and persisted. Every Act II action starts from this fresh earned state.
+    let campaignPage=reopened;
+    let campaign=committed;
+    const persist=async(label:string)=> {
+      campaignPage=await saveCloseContinue(campaignPage,context,campaign,label,watch,info,next=>{active=next;});
+      active=campaignPage;
+    };
+    for(const [id,objectives] of actTwoStarts) {
+      campaign=await startEarnedQuest(campaignPage,campaign,id,objectives,info);
+      await persist(`act2-start-${id.split('/').at(-1)}`);
+    }
+    for(const [area,objective,itemId] of [
+      ['a2-dry-hills','obj-cube','quest/horadric_cube'],
+      ['a2-far-oasis','obj-shaft','quest/staff_of_kings'],
+      ['a2-lost-city','obj-amulet','quest/viper_amulet']
+    ]) {
+      campaign=await openObjects(campaignPage,campaign,area,info);
+      const expected=structuredClone(campaign);
+      expected.map.questProgress[staff].objectives[objective]=true;
+      expected.inventory.questItems[`${staff}#objective:${objective}`]={itemId,state:'owned'};
+      campaign=await exactUIAction(campaignPage,expected,()=>campaignPage.getByTestId('area-object-panel').getByRole('button',{name:'Recover',exact:true}).click(),`act2-recover-${objective}`,info);
+      await persist(`act2-recover-${objective}`);
+    }
+    campaign=await openObjects(campaignPage,campaign,'a2-lost-city',info);
+    let expected=structuredClone(campaign);
+    expected.map.questProgress[sun]={...expected.map.questProgress[sun],status:'completed',objectives:{'obj-destroy-altar':true}};
+    campaign=await exactUIAction(campaignPage,expected,()=>campaignPage.getByTestId('area-object-panel').getByRole('button',{name:'Destroy altar',exact:true}).click(),'act2-altar-destroyed-no-award',info);
+    await persist('act2-altar-destroyed');
+    await navTo(campaignPage,'inventory');
+    expected=structuredClone(campaign);
+    for(const objective of ['obj-shaft','obj-amulet']) expected.inventory.questItems[`${staff}#objective:${objective}`].state='consumed';
+    expected.inventory.questItems[`${staff}#objective:obj-transmute`]={itemId:'quest/horadric_staff',state:'owned'};
+    expected.map.questProgress[staff].objectives['obj-transmute']=true;
+    expected.map.questProgress[staff].status='completed';
+    campaign=await exactUIAction(campaignPage,expected,()=>campaignPage.getByTestId('quest-items-panel').getByRole('button',{name:'Assemble Horadric Staff',exact:true}).click(),'act2-staff-assembled-no-award',info);
+    await persist('act2-staff-assembled');
+    campaign=await claimEarnedQuest(campaignPage,campaign,staff,6000,0,helper,info);
+    await persist('act2-staff-claimed');
+    const beforeSun=campaign;
+    campaign=await claimEarnedQuest(campaignPage,campaign,sun,4500,0,helper,info);
+    const noSunContext=structuredClone(campaign);delete noSunContext.map.questProgress[sun].rewardClaimed;
+    const withoutBonus=helper.projectHero(noSunContext);
+    expect(campaign.player.derivedStats.resistances).toEqual({...withoutBonus.resistances,fire:withoutBonus.resistances.fire+30,cold:withoutBonus.resistances.cold+30});
+    expect(campaign.inventory).toEqual(beforeSun.inventory);
+    await persist('act2-sun-claimed');
+    campaign=await openObjects(campaignPage,campaign,'a2-tomb-of-tal-rasha',info);
+    expected=structuredClone(campaign);
+    expected.inventory.questItems[`${staff}#objective:obj-transmute`].state='consumed';
+    expected.map.questProgress[tombs].objectives['obj-open-tomb']=true;
+    campaign=await exactUIAction(campaignPage,expected,()=>campaignPage.getByTestId('area-object-panel').getByRole('button',{name:'Insert Staff',exact:true}).click(),'act2-staff-inserted-no-award',info);
+    expect(campaign.map.clearedSubAreas.every(id=>!id.startsWith('areas/act2-'))).toBe(true);
+    expect(campaign.map.questProgress[tombs].objectives['obj-kill-duriel']).toBe(false);
+    await assertActThree(campaignPage,false);
+    await persist('act2-staff-inserted');
+    campaign=await actTwoCheckpoint(campaignPage,campaign,'before-far-oasis',helper,info);
+    await persist('act2-ready-far-oasis');
+    campaign=await runNative(campaignPage,campaign,'a2-far-oasis',0,helper,info);
+    expect(campaign.map.questProgress[radament]).toEqual({id:radament,status:'completed',objectives:{'obj-kill-radament':true}});
+    await persist('act2-radament-victory');
+    campaign=await claimEarnedQuest(campaignPage,campaign,radament,5000,0,helper,info);
+    await persist('act2-radament-claimed');
+    await navTo(campaignPage,'inventory');
+    expected=structuredClone(campaign);
+    expected.player.skillPoints+=1;
+    expected.inventory.questItems[bookSource].state='consumed';
+    campaign=await exactUIAction(campaignPage,expected,()=>campaignPage.getByTestId('quest-items-panel').getByRole('button',{name:'Read',exact:true}).click(),'act2-book-read-once',info);
+    await navTo(campaignPage,'inventory');
+    await expect(campaignPage.getByTestId('quest-items-panel').getByRole('button',{name:'Already read',exact:true})).toHaveAttribute('aria-disabled','true');
+    expect(await backup(campaignPage)).toEqual(campaign);
+    await persist('act2-book-consumed');
+    campaign=await actTwoCheckpoint(campaignPage,campaign,'before-arcane',helper,info);
+    await persist('act2-ready-arcane');
+    campaign=await runNative(campaignPage,campaign,'a2-arcane-sanctuary',0,helper,info);
+    expect(campaign.map.questProgress[arcane]).toEqual({id:arcane,status:'inProgress',objectives:{'obj-find-summoner':true,'obj-read-journal':false}});
+    await persist('act2-summoner-victory');
+    campaign=await openObjects(campaignPage,campaign,'a2-arcane-sanctuary',info);
+    expected=structuredClone(campaign);
+    expected.map.questProgress[arcane].objectives['obj-read-journal']=true;
+    expected.map.questProgress[arcane].status='completed';
+    campaign=await exactUIAction(campaignPage,expected,()=>campaignPage.getByTestId('area-object-panel').getByRole('button',{name:'Read',exact:true}).click(),'act2-journal-read-no-award',info);
+    await persist('act2-journal-read');
+    campaign=await claimEarnedQuest(campaignPage,campaign,arcane,7000,1,helper,info);
+    await persist('act2-arcane-claimed');
+    campaign=await actTwoCheckpoint(campaignPage,campaign,'before-tomb',helper,info);
+    await persist('act2-ready-tomb');
+    campaign=await runNative(campaignPage,campaign,'a2-tomb-of-tal-rasha',0,helper,info);
+    expect(campaign.map.questProgress[tombs]).toEqual({id:tombs,status:'completed',objectives:{'obj-open-tomb':true,'obj-kill-duriel':true}});
+    await assertActThree(campaignPage,true);
+    await persist('act2-duriel-victory');
+    campaign=await claimEarnedQuest(campaignPage,campaign,tombs,12000,0,helper,info);
+    await persist('act2-seven-tombs-claimed');
+    await assertActThree(campaignPage,true);
+    await production(campaignPage);budget();
+    expect(errors).toEqual([]);
+    await writeFile(`${raw}/outcome.json`,JSON.stringify({outcome:'pass',classification:'fresh current-runtime earned campaign',c1FinalOrdinal:ordinal,launchCount,wallMilliseconds:Date.now()-wallStarted,level:campaign.player.level,heroXP:heroXP(campaign),mercXP:mercXP(campaign),items:allIds(campaign).length,actThreeAvailable:true,actThreeLaunched:false,errors},null,2));
+
+  } catch(error) {
+    await writeFile(`${raw}/outcome.json`,JSON.stringify({outcome:'failed',error:String(error),stack:error instanceof Error?error.stack:null,errors},null,2));
+    throw error;
+  } finally {
+    for (const capture of [
+      async () => { await attach(info,'browser-errors',errors); },
+      async () => { if(!active.isClosed()) await attach(info,'last-native-DOM',await terminalDOM(active)); },
+      async () => { if(!active.isClosed()) await info.attach('last-native-screen',{body:await active.screenshot(),contentType:'image/png'}); },
+      async () => { if(!active.isClosed()) await attach(info,'last-native-save',await backup(active)); }
+    ]) {try {await capture();} catch(error) {diagnosticFailure??=error instanceof Error?error:new Error(String(error));}}
+    await helper.close();
+  }
+  if(diagnosticFailure) throw diagnosticFailure;
+});
+
+function heroXP(save) {
+  let sum=save.player.experience;
+  for(let level=1;level<save.player.level;level++) sum+=Math.floor(100*level**2.5);
+  return sum;
+}
+function mercXP(save) {
+  const actor=save.mercs.ownedMercs.find(row=>row.id===save.mercs.fieldedMercId);
+  let sum=save.mercs.mercProgress[actor.id].experience;
+  for(let level=1;level<actor.level;level++) sum+=Math.floor(60*level*1.3**(level-1));
+  return sum;
+}
+function allIds(save) {
+  return [...save.inventory.backpack,...save.inventory.stash,...Object.values(save.inventory.equipped).filter(Boolean),
+    ...Object.values(save.mercs.mercEquipment).flatMap(row=>Object.values(row).filter(Boolean))].map(row=>row.id);
+}
+function xpPlayer(player, amount) {
+  const state={...player};let xp=heroXP({player})+amount;let level=1;
+  while(xp>=Math.floor(100*level**2.5)) {xp-=Math.floor(100*level**2.5);level++;}
+  state.level=level;state.experience=xp;state.experienceToNextLevel=Math.floor(100*level**2.5);
+  state.statPoints+=5*(level-player.level);
+  state.skillPoints+=level-player.level+[12,24,36].filter(n=>player.level<n&&level>=n).length;
+  return state;
+}
+async function allocateEarned(page, before, info) {
+  const skill=before.player.skillPoints, stats=before.player.statPoints;
+  if(!skill&&!stats) return before;
+  const expected=structuredClone(before);
+  if(skill) {
+    const detail=await tree(page,'skills-sorceress-ice-blast');
+    for(let point=0;point<skill;point++) await detail.getByRole('button',{name:'Allocate',exact:true}).click();
+    expected.player.skillPoints=0;
+    expected.player.skillLevels['sorceress.ice_blast']=(expected.player.skillLevels['sorceress.ice_blast']??0)+skill;
+  }
+  if(stats) {
+    expect(stats%5).toBe(0);
+    await page.getByTestId('character-hud').click();
+    await expect(page.getByTestId('character-screen')).toBeVisible();
+    for(let point=0;point<stats/5*2;point++) await page.getByRole('button',{name:'Increase Vitality',exact:true}).click();
+    for(let point=0;point<stats/5*3;point++) await page.getByRole('button',{name:'Increase Energy',exact:true}).click();
+    await expect(page.getByTestId('char-draft-remaining')).toHaveText('0');
+    await page.getByRole('button',{name:'Apply attributes',exact:true}).click();
+    expected.player.statPoints=0;expected.player.coreStats.vitality+=stats/5*2;expected.player.coreStats.energy+=stats/5*3;
+    expected.player.derivedStats={...before.player.derivedStats,
+      lifeMax:100+(before.player.level-1)*8+expected.player.coreStats.vitality*2,
+      manaMax:Math.floor(50+(before.player.level-1)*4+expected.player.coreStats.energy*1.5)};
+  }
+  const after=await backup(page);expect(after).toEqual(expected);
+  await attach(info,`allocate-L${after.player.level}-ice${after.player.skillLevels['sorceress.ice_blast']}`,after);
+  return after;
+}
+async function transferPlan(page, before, plan, info) {
+  await attach(info,`${plan.phase}-gear-frozen`,plan);
+  let owner='';
+  for(const [index,transfer] of plan.transfers.entries()) {
+    if(!transfer.changed) continue;
+    const choice=plan.choices[index];
+    expect(choice.selectedId).toBe(transfer.selectedId);
+    if(owner!==transfer.owner) {
+      if(owner==='merc') {await page.keyboard.press('Escape');await expect(page.getByRole('dialog')).toHaveCount(0);}
+      await navTo(page,transfer.owner==='hero'?'inventory':'mercs');
+      if(transfer.owner==='merc') await page.getByTestId(`merc-equipment-${merc}`).click();
+      owner=transfer.owner;
+    }
+    if(transfer.owner==='hero') {
+      await page.getByTestId(`inv-item-${transfer.selectedId}`).click();
+      const detail=page.getByTestId('inv-detail-panel');
+      await expect(detail).toContainText(choice.names.en);
+      await expect(detail.locator('[data-met="false"]')).toHaveCount(0);
+      await expect(detail.getByTestId('stat-compare-table')).toBeVisible();
+      await expect(page.getByTestId('inv-primary-action')).toBeEnabled();
+      await page.getByTestId('inv-primary-action').click();await expect(detail).toHaveCount(0);
+    } else {
+      const dialog=page.getByRole('dialog');
+      await dialog.getByTestId(`merc-equip-slot-${transfer.slot}`).press('Enter');
+      const buttons=dialog.getByRole('button',{name:'Equip',exact:true});
+      await expect(buttons).toHaveCount(transfer.candidateCount);
+      expect(transfer.candidateIndex).toBeGreaterThanOrEqual(0);
+      await expect(buttons.nth(transfer.candidateIndex).locator('..').locator('span')).toHaveText(choice.names.en);
+      await buttons.nth(transfer.candidateIndex).click();await expect(buttons).toHaveCount(0);
+    }
+  }
+  if(owner==='merc') {await page.keyboard.press('Escape');await expect(page.getByRole('dialog')).toHaveCount(0);}
+  const after=await backup(page);expect(after).toEqual(plan.expectedAfter);
+  expect([...allIds(after)].sort()).toEqual([...allIds(before)].sort());
+  expect(new Set(allIds(after)).size).toBe(allIds(after).length);
+  await attach(info,`${plan.phase}-gear-applied`,after);
+  return after;
+}
+async function runNative(page, before, area, ordinal, helper, info) {
+  budget();
+  const oracle=helper.expectedChallenge(area,ordinal);
+  const actTwo=actTwoCombat[area];
+  if(actTwo) {
+    expect(oracle.waves).toHaveLength(actTwo.waves);
+    expect(oracle.waves.at(-1).spawns.some(spawn=>spawn.archetypeId===actTwo.target)).toBe(true);
+    expect(before.player.comboOrder).toEqual([frost,'skills-sorceress-ice-blast']);
+    expect(before.mercs.ownedMercs.find(row=>row.id===merc).comboOrder).toEqual(['mskill-inner-sight','mskill-pierce-arrow','mskill-basic-arrow']);
+  }
+  await attach(info,`run-${area}-${ordinal}-plan`,oracle);
+  await enter(page,true,area);
+  let latest=before;
+  let nativeSummary;
+  for(const [index,expectedWave] of oracle.waves.entries()) {
+    const number=index+1;
+    await test.step(`${area} ordinal${ordinal} wave${number}`,async()=> {
+      expect(await wave(page)).toBe(number);
+      const opening=await terminalDOM(page);
+      if(area==='a1-catacombs' && number===oracle.waves.length) expect(opening.enemies).toContain('Andariel');
+      await attach(info,`run-${area}-${ordinal}-opening-${number}`,opening);
+      expect(await countMonsters(page.getByTestId('enemies-grid').locator('[data-testid^="unit-card-"]'))).toBe(expectedWave.spawns.length);
+      await production(page);
+      await page.getByTestId('skip-button').click();await expect(page.getByTestId('skip-button')).toBeDisabled();
+      const terminal=await terminalDOM(page);await attach(info,`run-${area}-${ordinal}-terminal-${number}`,terminal);
+      await expectTerminalOrStop(page,terminal,number,latest,area,`run-${area}-${ordinal}-wave-${number}`,info);
+      if(number<oracle.waves.length) {await expect.poll(()=>wave(page),{timeout:5000,intervals:[50]}).toBe(number+1);await pause(page,true);}
+      else {await expect(page.getByTestId('victory-panel')).toBeVisible();
+        nativeSummary=await readLootSummary(page);await attach(info,`run-${area}-${ordinal}-loot-summary`,nativeSummary);
+        await page.getByTestId('return-to-map').click();
+        await expect(page.getByTestId(`cleared-badge-${area}`)).toBeVisible();}
+      const after=await backup(page);await attach(info,`run-${area}-${ordinal}-award-${number}`,after);
+      expect(heroXP(after)-heroXP(latest)).toBe(expectedWave.xp);
+      expect(mercXP(after)-mercXP(latest)).toBe(Math.floor(expectedWave.xp*0.75));
+      expectMercAdvance(after,latest,Math.floor(expectedWave.xp*0.75));
+      const expectedPlayer=xpPlayer(latest.player,expectedWave.xp);
+      expectedPlayer.derivedStats=helper.projectHero({...after,player:expectedPlayer});
+      expect(after.player).toEqual(expectedPlayer);
+      if(actTwo) {
+        const expectedMap=structuredClone(before.map);
+        expectedMap.currentAct=2;expectedMap.currentSubAreaId=area;
+        if(number===oracle.waves.length) {
+          if(!expectedMap.clearedSubAreas.includes(oracle.subAreaId)) expectedMap.clearedSubAreas.push(oracle.subAreaId);
+          expectedMap.questProgress[actTwo.quest].objectives[actTwo.objective]=true;
+          if(area!=='a2-arcane-sanctuary') expectedMap.questProgress[actTwo.quest].status='completed';
+        }
+        expect(after.map).toEqual(expectedMap);
+        expect(after.inventory.questItems).toEqual(before.inventory.questItems);
+      }
+      expect(after.inventory.backpack.slice(0,latest.inventory.backpack.length)).toEqual(latest.inventory.backpack);
+      expect(after.inventory.backpack.length).toBeGreaterThanOrEqual(latest.inventory.backpack.length);
+      expect(after.inventory.equipped).toEqual(latest.inventory.equipped);expect(after.inventory.stash).toEqual(latest.inventory.stash);
+      expect(after.mercs.mercEquipment).toEqual(latest.mercs.mercEquipment);
+      expect(after.mercs.fieldedMercId).toBe(latest.mercs.fieldedMercId);
+      const ids=allIds(after);expect(new Set(ids).size).toBe(ids.length);
+      const beforeIds=new Set(allIds(latest));expect(ids.filter(id=>beforeIds.has(id)).sort()).toEqual([...beforeIds].sort());
+      const added=after.inventory.backpack.slice(latest.inventory.backpack.length);
+      const currencies=Object.fromEntries([...new Set([...Object.keys(after.inventory.currencies),...Object.keys(latest.inventory.currencies)])]
+        .map(key=>[key,(after.inventory.currencies[key]??0)-(latest.inventory.currencies[key]??0)]));
+      expect(Object.values(currencies).every(value=>value>=0)).toBe(true);
+      await appendFile(`${raw}/wave-awards.jsonl`,JSON.stringify({area,ordinal,wave:number,xp:expectedWave.xp,
+        mercXP:Math.floor(expectedWave.xp*0.75),addedItems:added,currencies,heroLevel:after.player.level})+'\n');
+      latest=after;
+      if(number<oracle.waves.length) {await navTo(page,'combat');expect(await wave(page)).toBe(number+1);
+        await expect(page.getByRole('button',{name:'Resume',exact:true})).toHaveAttribute('aria-pressed','true');}
+    });
+  }
+  expect(nativeSummary).toBeDefined();
+  const runItems=latest.inventory.backpack.slice(before.inventory.backpack.length);
+  expect(nativeSummary.items).toEqual(runItems.map(item=>`${helper.itemName(item,'en')} [${item.rarity} · iLvl ${item.level}]`));
+  const currencyExpected={...before.inventory.currencies};
+  for(const [key,value] of [['rune-shard',nativeSummary.runeShards+nativeSummary.runes],['gem-shard',nativeSummary.gems],['wishstone',nativeSummary.wishstones]]) {
+    if(value>0) currencyExpected[key]=(currencyExpected[key]??0)+value;
+  }
+  expect(latest.inventory.currencies).toEqual(currencyExpected);
+  return latest;
+}
+
+function expectMercAdvance(after,before,amount) {
+  const expected=structuredClone(before.mercs),id=expected.fieldedMercId;
+  const actor=expected.ownedMercs.find(row=>row.id===id),progress=expected.mercProgress[id];
+  const start=actor.level;let xp=progress.experience+amount;
+  const threshold=level=>Math.floor(60*level*1.3**(level-1));
+  while(xp>=threshold(actor.level)) {xp-=threshold(actor.level);actor.level++;}
+  const gains=actor.level-start;
+  // Construct only the expected actor; the browser's mercenary is never patched.
+  const original=before.mercs.ownedMercs.find(row=>row.id===id);
+  expected.ownedMercs[expected.ownedMercs.findIndex(row=>row.id===id)]=expectedRogueGrowth(original,gains);
+  progress.experience=xp;progress.experienceToNextLevel=threshold(actor.level);
+  expect(after.mercs).toEqual(expected);
+  return expected;
+}
+
+// Independent expected-value arithmetic for this fixed Rogue recipe. No growth
+// implementation is imported, and no returned object is written into the game.
+const mercGrowthKeys=['attack','defense','attackSpeed','manaMax','physDodge'] as const;
+function rogueBareFields(core,level) {
+  const effective=value=>value<=200?value:200+(Math.min(500,value)-200)*.5;
+  const strength=effective(core.strength),dexterity=effective(core.dexterity),energy=effective(core.energy);
+  return {
+    attack:Math.floor(10+(level-1)*2+Math.max(strength,dexterity)*.5),
+    defense:Math.floor(20+(level-1)*3),attackSpeed:Math.max(1,Math.floor(100+dexterity)),
+    manaMax:Math.floor(50+(level-1)*4+energy*1.5),physDodge:.05+dexterity*.002
+  };
+}
+function expectedRogueGrowth(actor,levels) {
+  expect(actor.id).toBe(merc);expect(actor.classId).toBe('rogue');
+  expect(Number.isInteger(levels)&&levels>=0).toBe(true);
+  if(levels===0) return structuredClone(actor);
+  const result=structuredClone(actor),before=rogueBareFields(actor.coreStats,actor.level);
+  result.level+=levels;
+  result.coreStats.strength+=levels;result.coreStats.dexterity+=3*levels;result.coreStats.energy+=levels;
+  const after=rogueBareFields(result.coreStats,result.level);
+  for(const key of mercGrowthKeys) {
+    const delta=after[key]-before[key];
+    result.derivedStats[key]=delta===0?actor.derivedStats[key]:actor.derivedStats[key]+delta;
+  }
+  result.derivedStats.lifeMax+=8*levels;
+  result.derivedStats.life=Math.min(result.derivedStats.lifeMax,actor.derivedStats.life+8*levels);
+  // Explicit MR and saved current mana remain exactly as copied, without gear.
+  expect(result.derivedStats.mana).toBe(actor.derivedStats.mana);
+  expect(result.derivedStats.magicResist).toBe(actor.derivedStats.magicResist);
+  return result;
+}
+async function readLootSummary(page) {
+  const summary=page.getByTestId('loot-summary');await expect(summary).toBeVisible();
+  return summary.evaluate(node=> {
+    const clean=value=>(value??'').replace(/\s+/g,' ').trim();
+    const resources=Array.from(node.querySelectorAll(':scope > div > span'),span=>span.textContent).join(' ');
+    const amount=key=>Number(new RegExp('\\+(\\d+) '+key+'(?:\\s|$)').exec(resources)?.[1]??0);
+    const runeShards=Number(/^\+(\d+)/.exec(node.querySelector(':scope > div')?.textContent??'')?.[1]??0);
+    return {runeShards,runes:amount('rune'),gems:amount('gem'),wishstones:amount('wishstone'),
+      items:Array.from(node.querySelectorAll('[data-testid="loot-items"] > li'),li=>clean(li.textContent)),text:clean(node.textContent)};
+  });
+}
+
+const staff='quests/act2-horadric-staff',sun='quests/act2-tainted-sun';
+const radament='quests/act2-radaments-lair',arcane='quests/act2-arcane-sanctuary',tombs='quests/act2-seven-tombs';
+const bookSource=`${radament}#reward:questItem`;
+const actTwoStarts=[
+  [staff,['obj-cube','obj-shaft','obj-amulet','obj-transmute']],
+  [sun,['obj-destroy-altar']],
+  [radament,['obj-kill-radament']],
+  [arcane,['obj-find-summoner','obj-read-journal']],
+  [tombs,['obj-open-tomb','obj-kill-duriel']]
+] as const;
+const actTwoCombat={
+  'a2-far-oasis':{waves:5,target:'monsters/act2.radament',quest:radament,objective:'obj-kill-radament'},
+  'a2-arcane-sanctuary':{waves:6,target:'monsters/act2.the-summoner',quest:arcane,objective:'obj-find-summoner'},
+  'a2-tomb-of-tal-rasha':{waves:6,target:'monsters/act2.duriel',quest:tombs,objective:'obj-kill-duriel'}
+};
+async function exactUIAction(page,expected,action,label,info) {
+  budget();await action();
+  const actual=await backup(page);expect(actual).toEqual(expected);
+  expect(new Set(allIds(actual)).size).toBe(allIds(actual).length);
+  await attach(info,label,actual);return actual;
+}
+async function startEarnedQuest(page,before,id,objectives,info) {
+  expect(before.map.questProgress[id]).toBeUndefined();
+  await navTo(page,'quests');
+  const expected=structuredClone(before);
+  expected.map.questProgress[id]={id,status:'inProgress',objectives:Object.fromEntries(objectives.map(key=>[key,false]))};
+  return exactUIAction(page,expected,()=>page.getByTestId(`quest-start-${id}`).click(),`act2-started-${id.split('/').at(-1)}`,info);
+}
+async function openObjects(page,before,area,info) {
+  budget();await navTo(page,'map');
+  const heading=page.getByRole('button',{name:/^Act 2 ·/});
+  if(await heading.getAttribute('aria-expanded')!=='true') await heading.click();
+  await page.getByTestId(`area-objects-${area}`).click();
+  await expect(page.getByTestId('area-object-panel')).toBeVisible();
+  // Merely opening the panel may change the current location; it cannot issue receipts or quest credit.
+  const expected=structuredClone(before);
+  expected.map.currentAct=2;expected.map.currentSubAreaId=`areas/act2-${area.replace(/^a2-/,'')}`;
+  const opened=await backup(page);expect(opened).toEqual(expected);
+  await attach(info,`act2-inspected-${area}`,opened);
+  await navTo(page,'map');
+  if(await heading.getAttribute('aria-expanded')!=='true') await heading.click();
+  // Map screen remount closes the panel. Reopen through the same normal UI and prove no further mutation.
+  await page.getByTestId(`area-objects-${area}`).click();
+  await expect(page.getByTestId('area-object-panel')).toBeVisible();
+  return opened;
+}
+async function claimEarnedQuest(page,before,id,xp,skillPoints,helper,info) {
+  budget();expect(before.map.questProgress[id].status).toBe('completed');
+  expect(before.map.questProgress[id].rewardClaimed).toBeUndefined();
+  let oracle;
+  if(id===tombs) {oracle=helper.questCache(before);await attach(info,'act2-duriel-claim-frozen-oracle',oracle);}
+  await navTo(page,'quests');
+  const button=page.getByTestId(`quest-claim-${id}`);
+  await expect(button).toBeEnabled();await button.click();await expect(button).toBeDisabled();
+  const after=await backup(page),expected=structuredClone(before);
+  expected.map.questProgress[id].rewardClaimed=true;
+  expected.player=xpPlayer(before.player,xp);expected.player.skillPoints+=skillPoints;
+  expected.player.derivedStats=helper.projectHero({...expected,player:expected.player});
+  expect(heroXP(after)-heroXP(before)).toBe(xp);
+  expect(mercXP(after)-mercXP(before)).toBe(Math.floor(xp*.75));
+  expected.mercs=expectMercAdvance(after,before,Math.floor(xp*.75));
+  if(id===radament) expected.inventory.questItems[bookSource]={itemId:'items/book_of_skill',state:'owned'};
+  if(oracle) {
+    const added=after.inventory.backpack.slice(before.inventory.backpack.length);
+    const normalize=item=>({...item,id:''});
+    expect(added.map(normalize)).toEqual(oracle.cache.items.map(normalize));
+    expected.inventory.backpack.push(...added);
+    for(const [key,amount] of [['rune-shard',oracle.cache.runeShards+oracle.cache.runes],['gem-shard',oracle.cache.gems],['wishstone',oracle.cache.wishstones]]) {
+      if(amount>0) expected.inventory.currencies[key]=(expected.inventory.currencies[key]??0)+amount;
+    }
+    await attach(info,'act2-duriel-claim-actual-cache',{items:added,currencyOracle:oracle.cache});
+  }
+  expect(after).toEqual(expected);
+  const oldIds=new Set(allIds(before)),newIds=allIds(after);
+  expect(new Set(newIds).size).toBe(newIds.length);
+  expect(newIds.filter(id=>oldIds.has(id)).sort()).toEqual([...oldIds].sort());
+  await navTo(page,'quests');await expect(button).toBeDisabled();
+  expect(await backup(page)).toEqual(after);
+  await attach(info,`act2-claimed-${id.split('/').at(-1)}`,after);return after;
+}
+async function actTwoCheckpoint(page,before,label,helper,info) {
+  budget();const expected=structuredClone(before);
+  const rank=expected.player.skillLevels['sorceress.ice_blast']??0;
+  expect(rank).toBeLessThanOrEqual(20);expect(expected.player.coreStats.vitality).toBeLessThanOrEqual(500);
+  const skills=Math.min(expected.player.skillPoints,20-rank);
+  const stats=Math.min(expected.player.statPoints,500-expected.player.coreStats.vitality);
+  if(skills>0) {
+    const detail=await tree(page,'skills-sorceress-ice-blast');
+    for(let point=0;point<skills;point++) await detail.getByRole('button',{name:'Allocate',exact:true}).click();
+    expected.player.skillLevels['sorceress.ice_blast']=rank+skills;expected.player.skillPoints-=skills;
+  }
+  if(stats>0) {
+    await page.getByTestId('character-hud').click();await expect(page.getByTestId('character-screen')).toBeVisible();
+    for(let point=0;point<stats;point++) await page.getByRole('button',{name:'Increase Vitality',exact:true}).click();
+    await expect(page.getByTestId('char-draft-remaining')).toHaveText(String(before.player.statPoints-stats));
+    await page.getByRole('button',{name:'Apply attributes',exact:true}).click();
+    expected.player.statPoints-=stats;expected.player.coreStats.vitality+=stats;
+    expected.player.derivedStats=helper.projectHero(expected);
+  }
+  const allocated=await backup(page);expect(allocated).toEqual(expected);
+  await attach(info,`act2-${label}-earned-points`,{spentSkillPoints:skills,spentStatPoints:stats,heldSkillPoints:allocated.player.skillPoints,heldStatPoints:allocated.player.statPoints,save:allocated});
+  const plan=helper.select(allocated,'boundary');
+  expect(plan.choices).toHaveLength(15);
+  await attach(info,`act2-${label}-frozen-selection`,plan);
+  const after=await transferPlan(page,allocated,plan,info);
+  expect(after.player.comboOrder).toEqual([frost,'skills-sorceress-ice-blast']);
+  expect(after.mercs.ownedMercs.find(row=>row.id===merc).comboOrder).toEqual(['mskill-inner-sight','mskill-pierce-arrow','mskill-basic-arrow']);
+  await attach(info,`act2-${label}-frozen-preparation`,after);return after;
+}
+async function assertActThree(page,available) {
+  await navTo(page,'map');const heading=page.getByRole('button',{name:/^Act 3 ·/});
+  if(await heading.getAttribute('aria-expanded')!=='true') await heading.click();
+  const entry=page.getByTestId('sub-area-row-a3-spider-forest').getByRole('button',{name:'Enter',exact:true});
+  if(available) await expect(entry).toBeEnabled();else await expect(entry).toHaveCount(0);
+}
+async function saveCloseContinue(page,context,expected,label,watch,info,onNewPage) {
+  budget();
+  await navTo(page,'settings');await page.getByRole('button',{name:'Save',exact:true}).click();
+  await expect(page.getByRole('status')).toHaveText('Saved');
+  expect(await stored(page)).toEqual(expected);expect(await backup(page)).toEqual(expected);
+  await attach(info,`${label}-committed`,expected);
+  await page.close();const next=await context.newPage();onNewPage(next);watch(next);
+  await next.clock.setFixedTime(fixedTime);await next.goto('/');
+  await next.getByTestId('home-continue').click();await expect(next.getByTestId('town-screen')).toBeVisible();
+  expect(await stored(next)).toEqual(expected);expect(await backup(next)).toEqual(expected);
+  await expect.poll(()=>next.evaluate(()=>navigator.serviceWorker.controller?.state),{timeout:60000}).toBe('activated');
+  await production(next);await attach(info,`${label}-continued`,expected);return next;
+}

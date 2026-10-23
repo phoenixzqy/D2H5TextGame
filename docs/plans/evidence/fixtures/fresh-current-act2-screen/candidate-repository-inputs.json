@@ -1,0 +1,30 @@
+{
+  "purpose": "Preparation-time readonly dependency evidence; root full final source freeze remains required",
+  "files": [
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/tests/e2e/_helpers.ts",
+      "bytes": 7064,
+      "sha256": "f6880a954df5e06d5e2f5d6c66a916dfc1d50231c348ad41c4cce2a54d935d1b"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/src/engine/progression/equipped-stats.ts",
+      "bytes": 1875,
+      "sha256": "7249ddacfd233a55df30308b1efd52f6469411c46ee05c058724fc3d34570331"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/src/engine/progression/quest-resistance.ts",
+      "bytes": 2413,
+      "sha256": "abb1c870117cf21a6725ac7679723e5f0d2c6ef0256728ac8d86a1a4f2ffd91c"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/src/data/quests/main.json",
+      "bytes": 20194,
+      "sha256": "8585c727fde175a242f0ca2dfa6457051d717b4080d56ae06007edbb251d68ec"
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/src/data/quests/items.json",
+      "bytes": 1868,
+      "sha256": "22a1fb2c96ad4c6cb8c640ec5e7806131fabe67ea8c79124f79fe407500e9ccb"
+    }
+  ]
+}

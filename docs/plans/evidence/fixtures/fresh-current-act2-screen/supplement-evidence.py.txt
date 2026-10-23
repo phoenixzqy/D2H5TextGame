@@ -1,0 +1,117 @@
+from pathlib import Path
+import base64, gzip, hashlib, json, re, subprocess
+
+r = Path(__file__).resolve().parent
+w = Path('/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2')
+def read(name):
+    return json.loads(gzip.decompress((r / name).read_bytes()))
+def sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+def ids(s):
+    inv = s['inventory']
+    items = inv['backpack'] + inv['stash'] + [x for x in inv['equipped'].values() if x]
+    items += [x for g in s['mercs']['mercEquipment'].values() for x in g.values() if x]
+    return [x['id'] for x in items]
+
+original = json.loads((r / 'analysis.json').read_text())
+entries = [json.loads(x) for x in (r / 'progress.jsonl').read_text().splitlines()]
+report = json.loads((r / 'browser-report.json').read_text())
+attachments = list(original['retainedAttachments'])
+results = []
+def walk(suites):
+    for suite in suites:
+        for spec in suite.get('specs', []):
+            for test in spec.get('tests', []):
+                for result in test.get('results', []):
+                    results.append({k: result.get(k) for k in ['status', 'retry', 'duration']})
+                    for a in result.get('attachments', []):
+                        if 'body' not in a:
+                            continue
+                        assert a['contentType'] == 'image/png'
+                        name = re.sub(r'[^a-zA-Z0-9_-]', '-', a['name']) + '.png'
+                        target = r / 'retained-images' / name
+                        data = base64.b64decode(a['body'], validate=True)
+                        assert data.startswith(b'\x89PNG\r\n\x1a\n')
+                        if target.exists():
+                            assert target.read_bytes() == data
+                        else:
+                            target.write_bytes(data)
+                        attachments.append({'name': a['name'], 'path': str(target),
+                            'sha256': sha(target), 'contentType': a['contentType']})
+        walk(suite.get('suites', []))
+walk(report['suites'])
+
+frozen = json.loads((r / 'harness-before.json').read_text())
+generated = 'browser-report.json'
+assert str(r / generated) in (r / 'fresh-native.config.mjs').read_text()
+immutable = {k: v for k, v in frozen.items() if k != generated}
+drift = [k for k, v in immutable.items() if not (r / k).is_file() or sha(r / k) != v]
+tracked = set(subprocess.check_output(['git', 'ls-files'], cwd=w, text=True).splitlines())
+source_frozen = json.loads((r / 'source-before.json').read_text())
+initial_barrier = next(x for x in original['persistenceBarriers'] if x['label'] == 'fresh-campaign-committed')
+assert initial_barrier['continued'] is False
+spec = (r / 'fresh-native.spec.ts').read_text().splitlines()
+manual_assertions = '\n'.join(spec[629:644])
+assert 'expect(await stored(reopened)).toEqual(committed)' in manual_assertions
+assert 'expect(await backup(reopened)).toEqual(committed)' in manual_assertions
+assert 'fresh-mobile-act-two-continued' in manual_assertions
+committed = read('fresh-campaign-committed.json.gz')
+first_start = read('act2-started-act2-horadric-staff.json.gz')
+expected_start = json.loads(json.dumps(committed))
+expected_start['map']['questProgress']['quests/act2-horadric-staff'] = first_start['map']['questProgress']['quests/act2-horadric-staff']
+assert first_start == expected_start
+
+labels = ['fresh', 'fresh-campaign-committed', 'act2-before-far-oasis-frozen-preparation',
+    'run-a2-far-oasis-0-award-4', 'last-native-save']
+states = {}
+for label in labels:
+    e = next(x for x in entries if x['label'] == label)
+    s = read(e['artifact'])
+    owned = ids(s)
+    states[label] = {'artifact': e['artifact'], 'sha256': sha(r / e['artifact']),
+        'gearCount': len(owned), 'uniqueGearCount': len(set(owned)),
+        'player': {k: s['player'][k] for k in ['level', 'experience', 'statPoints', 'skillPoints', 'skillLevels', 'coreStats']},
+        'currencies': s['inventory']['currencies'], 'questItems': s['inventory']['questItems'],
+        'quests': s['map']['questProgress']}
+assert read('last-native-save.json.gz') == read('run-a2-far-oasis-0-award-4.json.gz')
+before_ids = set(ids(read('act2-before-far-oasis-frozen-preparation.json.gz')))
+after_ids = set(ids(read('last-native-save.json.gz')))
+awards = [json.loads(x) for x in (r / 'wave-awards.jsonl').read_text().splitlines()]
+act2 = [x for x in awards if x['area'] == 'a2-far-oasis']
+classification = read('run-a2-far-oasis-0-wave-5-nonwin-zero-awards-classification.json.gz')
+terminal = classification['terminal']
+out = {
+    'head': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=w, text=True).strip(),
+    'outcome': 'stopped at actual Far Oasis wave5 Radament draw; no retry or C2 acceptance',
+    'terminalResults': original['terminalResults'], 'victories': original['victories'],
+    'nonvictoryTerminals': original['nonvictoryTerminals'], 'browserResults': results,
+    'browserStats': original['browserStats'], 'pageErrors': read('browser-errors.json.gz'),
+    'integrity': {'source': original['integrity']['source'], 'build': original['integrity']['build'],
+        'sourceAddedTracked': sorted(tracked - set(source_frozen)), 'sourceRemovedTracked': sorted(set(source_frozen) - tracked),
+        'immutableHarness': {'count': len(immutable), 'drift': drift},
+        'generatedReport': {'path': str(r / generated), 'beforeSha256': frozen[generated], 'afterSha256': sha(r / generated),
+            'explanation': 'Original freeze mistakenly included generated --list reporter output. Frozen config intentionally overwrites it during the gameplay run; 30 actual immutable inputs are checked separately. Original preflight and analysis remain unchanged.'}},
+    'persistence': {'pairedBarriers': [x for x in original['persistenceBarriers'] if x != initial_barrier],
+        'manualC1Barrier': {'assertions': 'fresh-native.spec.ts:630-644, reached before actual ActII quest starts',
+            'diskAndExportEqualityAsserted': True, 'separateContinuedSaveArtifact': False,
+            'continuedScreenshot': 'retained-images/fresh-mobile-act-two-continued.png',
+            'firstSubsequentStartEqualsCommittedPlusOnlyNewQuest': True}},
+    'failedWave': {'waveText': terminal['waveText'], 'lastLog': terminal['log'][-1],
+        'heroPresent': terminal['heroPresent'], 'heroDead': terminal['heroDead'],
+        'liveEnemies': terminal['liveEnemies'], 'cards': terminal['cards'],
+        'zeroFailedWaveAwards': classification['zeroFailedWaveAwards'], 'awards': classification['awards'],
+        'diagnosticErrors': classification['diagnosticErrors'], 'finalSaveEqualsWave4': True},
+    'states': states,
+    'act2WinningWaves': {'count': len(act2), 'heroXP': sum(x['xp'] for x in act2),
+        'mercXP': sum(x['mercXP'] for x in act2), 'addedItems': sum(len(x['addedItems']) for x in act2),
+        'priorIDsRetained': before_ids <= after_ids, 'newDistinctIDs': len(after_ids - before_ids)},
+    'retainedAttachments': attachments,
+    'limitations': ['one class/build/seed/locale/mobile viewport', 'ordinary native Skip controls; execution wall time is not pacing proof',
+        'Radament victory/Book/Arcane/Duriel/ActIII not reached', 'nonwin does not itself establish product or balance defect',
+        'initial collection failed before browser due module marker; final collection passed; one actual gameplay attempt'],
+}
+(r / 'analysis-supplement.json').write_text(json.dumps(out, indent=2) + '\n')
+print(json.dumps({'terminalResults': out['terminalResults'], 'victories': out['victories'],
+    'immutableHarness': out['integrity']['immutableHarness'], 'pairedPersistence': len(out['persistence']['pairedBarriers']),
+    'act2WinningWaves': out['act2WinningWaves'], 'attachments': len(attachments),
+    'stateItemCounts': {k: v['gearCount'] for k, v in states.items()}}, indent=2))

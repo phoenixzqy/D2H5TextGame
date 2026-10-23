@@ -1,0 +1,680 @@
+{
+  "head": "d2e3cfaddd2dc8f618a8a5f6b8a75f970dd2caed",
+  "outcome": "stopped at actual Far Oasis wave5 Radament draw; no retry or C2 acceptance",
+  "terminalResults": 315,
+  "victories": 314,
+  "nonvictoryTerminals": [
+    {
+      "label": "run-a2-far-oasis-0-terminal-5",
+      "victory": false
+    }
+  ],
+  "browserResults": [
+    {
+      "status": "failed",
+      "retry": 0,
+      "duration": 862625
+    }
+  ],
+  "browserStats": {
+    "startTime": "2026-10-23T07:09:33.094Z",
+    "duration": 865420.135,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "pageErrors": [],
+  "integrity": {
+    "source": {
+      "count": 2433,
+      "drift": []
+    },
+    "build": {
+      "count": 760,
+      "drift": []
+    },
+    "sourceAddedTracked": [],
+    "sourceRemovedTracked": [],
+    "immutableHarness": {
+      "count": 30,
+      "drift": []
+    },
+    "generatedReport": {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9/browser-report.json",
+      "beforeSha256": "97d4c4e3b5a63fbfa92e7f7399646ad8c643f34f49e546b633152091a64b5ee1",
+      "afterSha256": "9e83c2ce6632c2565c5cef110b529cb473b8b8ce6f41f7d5a86fc68d8bae50bd",
+      "explanation": "Original freeze mistakenly included generated --list reporter output. Frozen config intentionally overwrites it during the gameplay run; 30 actual immutable inputs are checked separately. Original preflight and analysis remain unchanged."
+    }
+  },
+  "persistence": {
+    "pairedBarriers": [
+      {
+        "label": "act2-start-act2-horadric-staff-committed",
+        "continued": true,
+        "equal": true
+      },
+      {
+        "label": "act2-start-act2-tainted-sun-committed",
+        "continued": true,
+        "equal": true
+      },
+      {
+        "label": "act2-start-act2-radaments-lair-committed",
+        "continued": true,
+        "equal": true
+      },
+      {
+        "label": "act2-start-act2-arcane-sanctuary-committed",
+        "continued": true,
+        "equal": true
+      },
+      {
+        "label": "act2-start-act2-seven-tombs-committed",
+        "continued": true,
+        "equal": true
+      },
+      {
+        "label": "act2-recover-obj-cube-committed",
+        "continued": true,
+        "equal": true
+      },
+      {
+        "label": "act2-recover-obj-shaft-committed",
+        "continued": true,
+        "equal": true
+      },
+      {
+        "label": "act2-recover-obj-amulet-committed",
+        "continued": true,
+        "equal": true
+      },
+      {
+        "label": "act2-altar-destroyed-committed",
+        "continued": true,
+        "equal": true
+      },
+      {
+        "label": "act2-staff-assembled-committed",
+        "continued": true,
+        "equal": true
+      },
+      {
+        "label": "act2-staff-claimed-committed",
+        "continued": true,
+        "equal": true
+      },
+      {
+        "label": "act2-sun-claimed-committed",
+        "continued": true,
+        "equal": true
+      },
+      {
+        "label": "act2-staff-inserted-committed",
+        "continued": true,
+        "equal": true
+      },
+      {
+        "label": "act2-ready-far-oasis-committed",
+        "continued": true,
+        "equal": true
+      }
+    ],
+    "manualC1Barrier": {
+      "assertions": "fresh-native.spec.ts:630-644, reached before actual ActII quest starts",
+      "diskAndExportEqualityAsserted": true,
+      "separateContinuedSaveArtifact": false,
+      "continuedScreenshot": "retained-images/fresh-mobile-act-two-continued.png",
+      "firstSubsequentStartEqualsCommittedPlusOnlyNewQuest": true
+    }
+  },
+  "failedWave": {
+    "waveText": "Wave 5 / 5 \u00b7 Far Oasis \u00b7 Boss fight",
+    "lastLog": "The battle ends in a draw.",
+    "heroPresent": true,
+    "heroDead": null,
+    "liveEnemies": 1,
+    "cards": [
+      {
+        "id": "unit-card-merc-mercs/act1-rogue-inner-sight",
+        "kind": "merc",
+        "dead": null,
+        "hp": "width: 97.5%;",
+        "text": "Rogue Scout \u2014 Inner Sight"
+      },
+      {
+        "id": "unit-card-player-1792497600000",
+        "kind": "hero",
+        "dead": null,
+        "hp": "width: 96.07%;",
+        "text": "Earned Act I"
+      },
+      {
+        "id": "unit-card-enemy-act2.radament-0-00f1-summon-minion-1",
+        "kind": "summon",
+        "dead": "true",
+        "hp": "width: 0%;",
+        "text": "MiMinion"
+      },
+      {
+        "id": "unit-card-enemy-act2.mummy-0-607f",
+        "kind": "monster",
+        "dead": "true",
+        "hp": "width: 0%;",
+        "text": "Mummy A"
+      },
+      {
+        "id": "unit-card-enemy-act2.mummy-1-ce20",
+        "kind": "monster",
+        "dead": "true",
+        "hp": "width: 0%;",
+        "text": "Mummy B"
+      },
+      {
+        "id": "unit-card-enemy-act2.radament-0-00f1",
+        "kind": "monster",
+        "dead": null,
+        "hp": "width: 88.22%;",
+        "text": "Radament A (Boss)FreezeInner SightChillFreeze"
+      },
+      {
+        "id": "unit-card-enemy-act2.mummy-2-20a1",
+        "kind": "monster",
+        "dead": "true",
+        "hp": "width: 0%;",
+        "text": "Mummy C"
+      },
+      {
+        "id": "unit-card-enemy-act2.mummy-3-7f6c",
+        "kind": "monster",
+        "dead": "true",
+        "hp": "width: 0%;",
+        "text": "Mummy D"
+      }
+    ],
+    "zeroFailedWaveAwards": true,
+    "awards": {
+      "heroXP": 0,
+      "mercXP": 0,
+      "skillPoints": 0,
+      "statPoints": 0,
+      "itemsUnchanged": true,
+      "currenciesUnchanged": true,
+      "questItemsUnchanged": true,
+      "questsUnchanged": true,
+      "clearsUnchanged": true,
+      "wholeSaveUnchangedExceptEnteredLocation": true
+    },
+    "diagnosticErrors": [],
+    "finalSaveEqualsWave4": true
+  },
+  "states": {
+    "fresh": {
+      "artifact": "fresh.json.gz",
+      "sha256": "099fd7c3abfcf0379a004d5071c1cc38df631b7b84402cf38b34b8dc2ed858ee",
+      "gearCount": 0,
+      "uniqueGearCount": 0,
+      "player": {
+        "level": 1,
+        "experience": 0,
+        "statPoints": 0,
+        "skillPoints": 1,
+        "skillLevels": {
+          "sorceress.frost_nova": 1,
+          "sorceress.ice_bolt": 1
+        },
+        "coreStats": {
+          "strength": 10,
+          "dexterity": 25,
+          "vitality": 10,
+          "energy": 35
+        }
+      },
+      "currencies": {},
+      "questItems": {},
+      "quests": {}
+    },
+    "fresh-campaign-committed": {
+      "artifact": "fresh-campaign-committed.json.gz",
+      "sha256": "43e77d516a2c9bf47d122585fb57e3f733d9bbd7176323fc63110eb8aeb4e465",
+      "gearCount": 3296,
+      "uniqueGearCount": 3296,
+      "player": {
+        "level": 12,
+        "experience": 32341,
+        "statPoints": 0,
+        "skillPoints": 0,
+        "skillLevels": {
+          "sorceress.frost_nova": 2,
+          "sorceress.ice_bolt": 1,
+          "sorceress.fire_bolt": 4,
+          "sorceress.warmth": 1,
+          "sorceress.ice_blast": 8
+        },
+        "coreStats": {
+          "strength": 10,
+          "dexterity": 25,
+          "vitality": 37,
+          "energy": 63
+        }
+      },
+      "currencies": {
+        "rune-shard": 525697,
+        "wishstone": 5395,
+        "gem-shard": 632
+      },
+      "questItems": {},
+      "quests": {
+        "quests/act1-den-of-evil": {
+          "id": "quests/act1-den-of-evil",
+          "status": "completed",
+          "objectives": {
+            "obj-clear-den": true,
+            "obj-return": true
+          },
+          "rewardClaimed": true
+        },
+        "quests/act1-sisters-to-the-slaughter": {
+          "id": "quests/act1-sisters-to-the-slaughter",
+          "status": "completed",
+          "objectives": {
+            "obj-kill-andariel": true
+          },
+          "rewardClaimed": true
+        }
+      }
+    },
+    "act2-before-far-oasis-frozen-preparation": {
+      "artifact": "act2-before-far-oasis-frozen-preparation.json.gz",
+      "sha256": "1463aebd4c159c06e2087718106dce84190b2625407fdbdf9ecbeee7c4af0589",
+      "gearCount": 3296,
+      "uniqueGearCount": 3296,
+      "player": {
+        "level": 12,
+        "experience": 42841,
+        "statPoints": 0,
+        "skillPoints": 0,
+        "skillLevels": {
+          "sorceress.frost_nova": 2,
+          "sorceress.ice_bolt": 1,
+          "sorceress.fire_bolt": 4,
+          "sorceress.warmth": 1,
+          "sorceress.ice_blast": 8
+        },
+        "coreStats": {
+          "strength": 10,
+          "dexterity": 25,
+          "vitality": 37,
+          "energy": 63
+        }
+      },
+      "currencies": {
+        "rune-shard": 525697,
+        "wishstone": 5395,
+        "gem-shard": 632
+      },
+      "questItems": {
+        "quests/act2-horadric-staff#objective:obj-cube": {
+          "itemId": "quest/horadric_cube",
+          "state": "owned"
+        },
+        "quests/act2-horadric-staff#objective:obj-shaft": {
+          "itemId": "quest/staff_of_kings",
+          "state": "consumed"
+        },
+        "quests/act2-horadric-staff#objective:obj-amulet": {
+          "itemId": "quest/viper_amulet",
+          "state": "consumed"
+        },
+        "quests/act2-horadric-staff#objective:obj-transmute": {
+          "itemId": "quest/horadric_staff",
+          "state": "consumed"
+        }
+      },
+      "quests": {
+        "quests/act1-den-of-evil": {
+          "id": "quests/act1-den-of-evil",
+          "status": "completed",
+          "objectives": {
+            "obj-clear-den": true,
+            "obj-return": true
+          },
+          "rewardClaimed": true
+        },
+        "quests/act1-sisters-to-the-slaughter": {
+          "id": "quests/act1-sisters-to-the-slaughter",
+          "status": "completed",
+          "objectives": {
+            "obj-kill-andariel": true
+          },
+          "rewardClaimed": true
+        },
+        "quests/act2-horadric-staff": {
+          "id": "quests/act2-horadric-staff",
+          "status": "completed",
+          "objectives": {
+            "obj-cube": true,
+            "obj-shaft": true,
+            "obj-amulet": true,
+            "obj-transmute": true
+          },
+          "rewardClaimed": true
+        },
+        "quests/act2-tainted-sun": {
+          "id": "quests/act2-tainted-sun",
+          "status": "completed",
+          "objectives": {
+            "obj-destroy-altar": true
+          },
+          "rewardClaimed": true
+        },
+        "quests/act2-radaments-lair": {
+          "id": "quests/act2-radaments-lair",
+          "status": "inProgress",
+          "objectives": {
+            "obj-kill-radament": false
+          }
+        },
+        "quests/act2-arcane-sanctuary": {
+          "id": "quests/act2-arcane-sanctuary",
+          "status": "inProgress",
+          "objectives": {
+            "obj-find-summoner": false,
+            "obj-read-journal": false
+          }
+        },
+        "quests/act2-seven-tombs": {
+          "id": "quests/act2-seven-tombs",
+          "status": "inProgress",
+          "objectives": {
+            "obj-open-tomb": true,
+            "obj-kill-duriel": false
+          }
+        }
+      }
+    },
+    "run-a2-far-oasis-0-award-4": {
+      "artifact": "run-a2-far-oasis-0-award-4.json.gz",
+      "sha256": "d7b095d986c21d3d59c01e17b4918aac55192be0218b39a628c5adc9ea51adea",
+      "gearCount": 3376,
+      "uniqueGearCount": 3376,
+      "player": {
+        "level": 13,
+        "experience": 718,
+        "statPoints": 5,
+        "skillPoints": 1,
+        "skillLevels": {
+          "sorceress.frost_nova": 2,
+          "sorceress.ice_bolt": 1,
+          "sorceress.fire_bolt": 4,
+          "sorceress.warmth": 1,
+          "sorceress.ice_blast": 8
+        },
+        "coreStats": {
+          "strength": 10,
+          "dexterity": 25,
+          "vitality": 37,
+          "energy": 63
+        }
+      },
+      "currencies": {
+        "rune-shard": 534412,
+        "wishstone": 5413,
+        "gem-shard": 635
+      },
+      "questItems": {
+        "quests/act2-horadric-staff#objective:obj-cube": {
+          "itemId": "quest/horadric_cube",
+          "state": "owned"
+        },
+        "quests/act2-horadric-staff#objective:obj-shaft": {
+          "itemId": "quest/staff_of_kings",
+          "state": "consumed"
+        },
+        "quests/act2-horadric-staff#objective:obj-amulet": {
+          "itemId": "quest/viper_amulet",
+          "state": "consumed"
+        },
+        "quests/act2-horadric-staff#objective:obj-transmute": {
+          "itemId": "quest/horadric_staff",
+          "state": "consumed"
+        }
+      },
+      "quests": {
+        "quests/act1-den-of-evil": {
+          "id": "quests/act1-den-of-evil",
+          "status": "completed",
+          "objectives": {
+            "obj-clear-den": true,
+            "obj-return": true
+          },
+          "rewardClaimed": true
+        },
+        "quests/act1-sisters-to-the-slaughter": {
+          "id": "quests/act1-sisters-to-the-slaughter",
+          "status": "completed",
+          "objectives": {
+            "obj-kill-andariel": true
+          },
+          "rewardClaimed": true
+        },
+        "quests/act2-horadric-staff": {
+          "id": "quests/act2-horadric-staff",
+          "status": "completed",
+          "objectives": {
+            "obj-cube": true,
+            "obj-shaft": true,
+            "obj-amulet": true,
+            "obj-transmute": true
+          },
+          "rewardClaimed": true
+        },
+        "quests/act2-tainted-sun": {
+          "id": "quests/act2-tainted-sun",
+          "status": "completed",
+          "objectives": {
+            "obj-destroy-altar": true
+          },
+          "rewardClaimed": true
+        },
+        "quests/act2-radaments-lair": {
+          "id": "quests/act2-radaments-lair",
+          "status": "inProgress",
+          "objectives": {
+            "obj-kill-radament": false
+          }
+        },
+        "quests/act2-arcane-sanctuary": {
+          "id": "quests/act2-arcane-sanctuary",
+          "status": "inProgress",
+          "objectives": {
+            "obj-find-summoner": false,
+            "obj-read-journal": false
+          }
+        },
+        "quests/act2-seven-tombs": {
+          "id": "quests/act2-seven-tombs",
+          "status": "inProgress",
+          "objectives": {
+            "obj-open-tomb": true,
+            "obj-kill-duriel": false
+          }
+        }
+      }
+    },
+    "last-native-save": {
+      "artifact": "last-native-save.json.gz",
+      "sha256": "d7b095d986c21d3d59c01e17b4918aac55192be0218b39a628c5adc9ea51adea",
+      "gearCount": 3376,
+      "uniqueGearCount": 3376,
+      "player": {
+        "level": 13,
+        "experience": 718,
+        "statPoints": 5,
+        "skillPoints": 1,
+        "skillLevels": {
+          "sorceress.frost_nova": 2,
+          "sorceress.ice_bolt": 1,
+          "sorceress.fire_bolt": 4,
+          "sorceress.warmth": 1,
+          "sorceress.ice_blast": 8
+        },
+        "coreStats": {
+          "strength": 10,
+          "dexterity": 25,
+          "vitality": 37,
+          "energy": 63
+        }
+      },
+      "currencies": {
+        "rune-shard": 534412,
+        "wishstone": 5413,
+        "gem-shard": 635
+      },
+      "questItems": {
+        "quests/act2-horadric-staff#objective:obj-cube": {
+          "itemId": "quest/horadric_cube",
+          "state": "owned"
+        },
+        "quests/act2-horadric-staff#objective:obj-shaft": {
+          "itemId": "quest/staff_of_kings",
+          "state": "consumed"
+        },
+        "quests/act2-horadric-staff#objective:obj-amulet": {
+          "itemId": "quest/viper_amulet",
+          "state": "consumed"
+        },
+        "quests/act2-horadric-staff#objective:obj-transmute": {
+          "itemId": "quest/horadric_staff",
+          "state": "consumed"
+        }
+      },
+      "quests": {
+        "quests/act1-den-of-evil": {
+          "id": "quests/act1-den-of-evil",
+          "status": "completed",
+          "objectives": {
+            "obj-clear-den": true,
+            "obj-return": true
+          },
+          "rewardClaimed": true
+        },
+        "quests/act1-sisters-to-the-slaughter": {
+          "id": "quests/act1-sisters-to-the-slaughter",
+          "status": "completed",
+          "objectives": {
+            "obj-kill-andariel": true
+          },
+          "rewardClaimed": true
+        },
+        "quests/act2-horadric-staff": {
+          "id": "quests/act2-horadric-staff",
+          "status": "completed",
+          "objectives": {
+            "obj-cube": true,
+            "obj-shaft": true,
+            "obj-amulet": true,
+            "obj-transmute": true
+          },
+          "rewardClaimed": true
+        },
+        "quests/act2-tainted-sun": {
+          "id": "quests/act2-tainted-sun",
+          "status": "completed",
+          "objectives": {
+            "obj-destroy-altar": true
+          },
+          "rewardClaimed": true
+        },
+        "quests/act2-radaments-lair": {
+          "id": "quests/act2-radaments-lair",
+          "status": "inProgress",
+          "objectives": {
+            "obj-kill-radament": false
+          }
+        },
+        "quests/act2-arcane-sanctuary": {
+          "id": "quests/act2-arcane-sanctuary",
+          "status": "inProgress",
+          "objectives": {
+            "obj-find-summoner": false,
+            "obj-read-journal": false
+          }
+        },
+        "quests/act2-seven-tombs": {
+          "id": "quests/act2-seven-tombs",
+          "status": "inProgress",
+          "objectives": {
+            "obj-open-tomb": true,
+            "obj-kill-duriel": false
+          }
+        }
+      }
+    }
+  },
+  "act2WinningWaves": {
+    "count": 4,
+    "heroXP": 7760,
+    "mercXP": 5820,
+    "addedItems": 80,
+    "priorIDsRetained": true,
+    "newDistinctIDs": 80
+  },
+  "retainedAttachments": [
+    {
+      "name": "screenshot",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9/retained-images/000-test-failed-1.png",
+      "sha256": "2da24f5d38346e2be12a3fa8cc3f35feb65877cbb9fe8e16a7073f0441b7e7cd",
+      "contentType": "image/png"
+    },
+    {
+      "name": "error-context",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9/retained-images/001-error-context.md",
+      "sha256": "18c73513d22799ed4793f10d51e7c489be1320904e83470dd5d14b2df1a7e5ef",
+      "contentType": "text/markdown"
+    },
+    {
+      "name": "actual-earned-den-clear",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9/retained-images/actual-earned-den-clear.png",
+      "sha256": "f99190ea0c8ff41a4e96a28aae6a3646e7dfe35483420a6d623335bb50217c63",
+      "contentType": "image/png"
+    },
+    {
+      "name": "fresh-mobile-den-claimed",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9/retained-images/fresh-mobile-den-claimed.png",
+      "sha256": "b78671fce14b11ca4357335e8d641854f312cb0198e80bae8518892dcb1f2a05",
+      "contentType": "image/png"
+    },
+    {
+      "name": "earned-boss-coif-comparison",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9/retained-images/earned-boss-coif-comparison.png",
+      "sha256": "ff9d72143405f8426ce4d644cdacd4fe3253d0e256e9652a249db3ccf3b35246",
+      "contentType": "image/png"
+    },
+    {
+      "name": "fresh-mobile-act-two-continued",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9/retained-images/fresh-mobile-act-two-continued.png",
+      "sha256": "4968ddab86ced2210902f6c64614a0a20fd2c5099ec402b6132f5803ee1f5020",
+      "contentType": "image/png"
+    },
+    {
+      "name": "run-a2-far-oasis-0-wave-5-nonwin-screen",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9/retained-images/run-a2-far-oasis-0-wave-5-nonwin-screen.png",
+      "sha256": "7d634a85e643c90fdf59c40dae9ff00280ed9dc5abbdae1de49eb132d21ce250",
+      "contentType": "image/png"
+    },
+    {
+      "name": "last-native-screen",
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act2-vtu72tc9/retained-images/last-native-screen.png",
+      "sha256": "b1d976290cda305b5cc29de5ca1fb052e05fae1ca2c12a1ca1f076c6dacccbb6",
+      "contentType": "image/png"
+    }
+  ],
+  "limitations": [
+    "one class/build/seed/locale/mobile viewport",
+    "ordinary native Skip controls; execution wall time is not pacing proof",
+    "Radament victory/Book/Arcane/Duriel/ActIII not reached",
+    "nonwin does not itself establish product or balance defect",
+    "initial collection failed before browser due module marker; final collection passed; one actual gameplay attempt"
+  ]
+}

@@ -1,0 +1,42 @@
+from pathlib import Path
+import gzip,json,re,hashlib,subprocess,shutil
+r=Path(__file__).resolve().parent
+w=Path('/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2')
+def read(name):return json.loads(gzip.decompress((r/name).read_bytes()))
+entries=[json.loads(s) for s in (r/'progress.jsonl').read_text().splitlines()]
+terminals=[];nonwins=[];saved=[]
+for entry in entries:
+    label=entry['label']
+    if re.fullmatch(r'prep-result-\d+|den-terminal-\d+|run-a[12]-.+-\d+-terminal-\d+',label):
+        d=read(entry['artifact']);ok=(d.get('log',[None])[-1]=='Victory! All enemies are defeated.' and d.get('liveEnemies')==0 and d.get('defeatPanels')==0 and d.get('heroPresent') is True and d.get('heroDead')!='true' and d.get('skipDisabled') is True)
+        terminals.append({'label':label,'victory':ok})
+    if label.endswith('-nonwin-zero-awards-classification'):nonwins.append({'label':label,'classification':read(entry['artifact'])})
+    if label.endswith('-committed'):
+        target=label[:-10]+'-continued';following=next((x for x in entries if x['label']==target),None)
+        saved.append({'label':label,'continued':bool(following),'equal':bool(following) and read(entry['artifact'])==read(following['artifact'])})
+checks={}
+for name,base in [('source',w),('build',r/'dist'),('harness',r)]:
+    manifest=json.loads((r/(name+'-before.json')).read_text());drift=[]
+    for relative,expected in manifest.items():
+        p=base/relative
+        if not p.is_file() or hashlib.sha256(p.read_bytes()).hexdigest()!=expected:drift.append(relative)
+    checks[name]={'count':len(manifest),'drift':drift}
+new=[]
+report=json.loads((r/'browser-report.json').read_text())
+screens=r/'retained-images';screens.mkdir(exist_ok=True)
+def walk(suites):
+    for suite in suites:
+        for spec in suite.get('specs',[]):
+            for test in spec.get('tests',[]):
+                for result in test.get('results',[]):
+                    for a in result.get('attachments',[]):
+                        if a.get('path'):
+                            p=Path(a['path'])
+                            if p.is_file():
+                                target=screens/(str(len(new)).zfill(3)+'-'+p.name)
+                                shutil.copy2(p,target);new.append({'name':a.get('name'),'path':str(target),'sha256':hashlib.sha256(target.read_bytes()).hexdigest(),'contentType':a.get('contentType')})
+        walk(suite.get('suites',[]))
+walk(report.get('suites',[]))
+analysis={'terminalResults':len(terminals),'victories':sum(x['victory'] for x in terminals),'nonvictoryTerminals':[x for x in terminals if not x['victory']],'failedWaveAccounting':nonwins,'persistenceBarriers':saved,'integrity':checks,'retainedAttachments':new,'browserStats':report.get('stats'),'gitStatus':subprocess.check_output(['git','status','--short'],cwd=w,text=True)}
+(r/'analysis.json').write_text(json.dumps(analysis,indent=2)+'\n')
+print(json.dumps(analysis,indent=2))

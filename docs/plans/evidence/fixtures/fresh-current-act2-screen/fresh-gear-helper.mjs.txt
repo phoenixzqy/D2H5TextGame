@@ -1,0 +1,314 @@
+/**
+ * Task-local, read-only gear planner for actual exported saves.
+ * No mutable stores, save loading, combat preview, or browser actions are imported.
+ * Adapted from docs/plans/evidence/fixtures/p01-earned-boundary-route.mjs.txt.
+ */
+import assert from 'node:assert/strict';
+import { mkdtemp, readFile, rm } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import path from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+
+const DEFAULT_WORKTREE = '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2';
+const OWN_DIRECTORY = path.dirname(fileURLToPath(import.meta.url));
+const SOURCE_CONTRACT = 'docs/plans/evidence/fixtures/p01-earned-boundary-route.mjs.txt';
+const SAFE_MOD_KEYS = new Set(['strength', 'dexterity', 'vitality', 'energy', 'life', 'mana',
+  'attack', 'defense', 'magicResist', 'attackSpeed', 'allRes', 'fireRes', 'coldRes',
+  'lightningRes', 'poisonRes', 'arcaneRes', 'physicalRes']);
+const BUG091_KEYS = ['critChance', 'critDamage', 'physDodge', 'magicDodge'];
+const jsonCopy = value => JSON.parse(JSON.stringify(value, (_key, item) =>
+  item instanceof Map ? [...item.entries()] : item instanceof Set ? [...item] : item));
+function freeze(value) {
+  if (value && typeof value === 'object' && !Object.isFrozen(value)) {
+    for (const child of Object.values(value)) freeze(child);
+    Object.freeze(value);
+  }
+  return value;
+}
+function ownedIds(save) {
+  return [...save.inventory.backpack, ...save.inventory.stash,
+    ...Object.values(save.inventory.equipped).filter(Boolean),
+    ...Object.values(save.mercs.mercEquipment).flatMap(gear => Object.values(gear).filter(Boolean))]
+    .map(item => item.id);
+}
+function compatible(base, slot) {
+  return base?.slot === slot || (['ring-left', 'ring-right'].includes(base?.slot)
+    && ['ring-left', 'ring-right'].includes(slot));
+}
+function lexicographic(a, b) {
+  for (let index = 0; index < a.length; index++) {
+    assert.ok(Number.isFinite(a[index]) && Number.isFinite(b[index]), 'Nonfinite score');
+    if (a[index] !== b[index]) return b[index] - a[index];
+  }
+  return 0;
+}
+
+/**
+ * Returns { select(save, 'initial'|'boundary'), expectedChallenge(areaAlias,
+ * ordinal, clock=1792497600000), projectHero(save, gear?), close() }.
+ * select is synchronous after the asynchronous pure-module setup.
+ * close must be awaited, including on browser-test failure.
+ */
+export async function createFreshGearHelper({ worktree = DEFAULT_WORKTREE } = {}) {
+  const cacheDirectory = await mkdtemp(path.join(OWN_DIRECTORY, 'fresh-gear-vite-cache-'));
+  let server;
+  let closed = false;
+  try {
+    const { createServer } = await import(pathToFileURL(path.join(worktree, 'node_modules/vite/dist/node/index.js')).href);
+    server = await createServer({ configFile: false, root: worktree, cacheDir: cacheDirectory,
+      server: { middlewareMode: true, hmr: false, ws: false },
+      resolve: { alias: { '@': path.join(worktree, 'src') } } });
+    const load = relative => server.ssrLoadModule('/' + relative);
+    const [loot, equipment, playerProjection, mercProjection, compare, restoration, names,
+      areaResolver, wavePlanning, productionRng, progression, gameData, questAward] = await Promise.all([
+      load('src/data/loaders/loot.ts'),
+      load('src/engine/progression/equipment-mods.ts'),
+      load('src/engine/progression/equipped-stats.ts'),
+      load('src/engine/progression/merc-equipment-stats.ts'),
+      load('src/features/inventory/compareEquip.ts'),
+      load('src/engine/save/restore.ts'),
+      load('src/ui/i18nKey.ts'),
+      load('src/stores/subAreaResolver.ts'),
+      load('src/engine/combat/sub-area-run.ts'),
+      load('src/engine/rng.ts'),
+      load('src/engine/progression/xp.ts'),
+      load('src/data/index.ts'),
+      load('src/engine/loot/award.ts')
+    ]);
+    const locales = Object.fromEntries(await Promise.all(['en', 'zh-CN'].map(async language =>
+      [language, JSON.parse(await readFile(path.join(worktree, 'src/i18n/locales', language, 'items.json'), 'utf8'))])));
+    const bases = loot.loadItemBases();
+    const sourceContractSha256 = createHash('sha256')
+      .update(await readFile(path.join(worktree, SOURCE_CONTRACT))).digest('hex');
+    const { aggregateEquipmentMods } = equipment;
+    const { restoreItem, restoreEquipment } = restoration;
+    const mods = gear => aggregateEquipmentMods(restoreEquipment(gear));
+    const itemMods = item => mods({ item });
+    const safe = item => Object.keys(itemMods(item)).every(key => SAFE_MOD_KEYS.has(key));
+    const nameFor = (item, language) => names.tItemName(key => {
+      const [namespace, relative] = key.split(':');
+      if (namespace !== 'items' || !relative) return key;
+      const resolved = relative.split('.').reduce((value, component) => value?.[component], locales[language]);
+      return typeof resolved === 'string' ? resolved : key;
+    }, item);
+    const close = async () => {
+      if (closed) return;
+      closed = true;
+      try { await server.close(); }
+      finally { await rm(cacheDirectory, { recursive: true, force: true }); }
+    };
+
+    /** Canonical player gear projection only; does not select or transfer gear. */
+    function projectHero(save, gear = save.inventory.equipped) {
+      assert.ok(!closed, 'Gear helper is closed');
+      const player = jsonCopy(save.player);
+      return freeze(jsonCopy(playerProjection.deriveEquippedPlayerStats(
+        player, player.level, restoreEquipment(jsonCopy(gear)), save.map.questProgress)));
+    }
+
+    /** Pure Act-I/II manual plan and unmultiplied planned-kill XP arithmetic. */
+    function expectedChallenge(areaAlias, ordinal, clock = 1792497600000) {
+      assert.ok(!closed, 'Gear helper is closed');
+      assert.ok(typeof areaAlias === 'string' && areaAlias.length > 0, 'An Act-I/II area alias is required');
+      assert.ok(Number.isInteger(ordinal) && ordinal >= 0 && ordinal < 360360,
+        'challengeOrdinal must be an integer in [0, 360360)');
+      assert.ok(Number.isSafeInteger(clock), 'clock must be an integer millisecond timestamp');
+      const act = Number(/^a([12])-/.exec(areaAlias)?.[1]);
+      assert.ok(act === 1 || act === 2, 'Only authored Act-I/II aliases are accepted');
+      const subArea = areaResolver.resolveSubArea(act, areaAlias);
+      // A synthetic fallback needs the actual hero level, which this arithmetic
+      // API deliberately does not accept; never guess a native area's identity.
+      assert.ok(subArea && subArea.actId === `acts/act${act}`, `Unknown Act-I/II native area: ${areaAlias}`);
+      const fallbackArchetypeId = (gameData.monsters.find(monster => monster.id.startsWith(`monsters/act${act}.`))
+        ?? gameData.monsters[0])?.id ?? 'monsters/act1.fallen';
+      const fallbackLevel = subArea.areaLevel;
+      const seedInput = `${subArea.id}|${String(clock)}`;
+      const runSeed = productionRng.hashSeed(seedInput);
+      const plan = wavePlanning.resolveChallengeWavePlan({ subArea, fallbackArchetypeId,
+        fallbackLevel, seed: runSeed, challengeOrdinal: ordinal, mode: 'manual', idleEliteMisses: 0 });
+      const xpPerWave = plan.waves.map(wave => wave.spawns.reduce((sum, spawn) =>
+        sum + Math.floor(progression.xpForKill(spawn.level)), 0));
+      return freeze({ areaAlias, act, subAreaId: subArea.id, challengeOrdinal: ordinal,
+        clock, seedInput, runSeed, seed: runSeed, mode: 'manual',
+        fallbackArchetypeId, fallbackLevel, plan: jsonCopy(plan),
+        waves: jsonCopy(plan.waves.map((wave, index) => ({ ...wave, index,
+          spawnCount: wave.spawns.length, xp: xpPerWave[index] }))),
+        xpPerWave, totalXp: xpPerWave.reduce((sum, xp) => sum + xp, 0),
+        xpMultiplier: 1,
+        limitations: ['Act-I/II canonical native areas only; unknown or synthetic areas stop.',
+          'XP is arithmetic for all planned enemies slain with idle bonus multiplier 1; it predicts no victory or actual award.',
+          'No enemy units, combat resolution, outcomes, rewards, mutable stores, or native ordinal state are executed.'] });
+    }
+
+    function select(save, phase) {
+      assert.ok(!closed, 'Gear helper is closed');
+      assert.ok(phase === 'initial' || phase === 'boundary', 'phase must be initial or boundary');
+      const before = jsonCopy(save);
+      assert.ok(before.player && before.inventory && before.mercs, 'Expected a complete exported save');
+      const merc = before.mercs.ownedMercs.find(actor => actor.id === before.mercs.fieldedMercId);
+      assert.ok(merc, 'An owned, fielded Rogue is required');
+      assert.equal(merc.classId, 'rogue', 'The approved gear contract requires the fielded Rogue');
+      const priorIds = ownedIds(before);
+      assert.equal(new Set(priorIds).size, priorIds.length, 'Duplicate owned item IDs before selection');
+      const backpack = before.inventory.backpack;
+      const virtual = { hero: { ...before.inventory.equipped },
+        merc: { ...(before.mercs.mercEquipment[merc.id] ?? {}) } };
+      const reserved = new Set();
+      const choices = [];
+      const project = (owner, gear, player = before.player) => owner === 'hero'
+        ? playerProjection.deriveEquippedPlayerStats(player, player.level, restoreEquipment(gear), before.map.questProgress)
+        : mercProjection.deriveEquippedMercStats(merc, restoreEquipment(gear));
+      const effective = state => ({ hero: project('hero', state.inventory.equipped, state.player),
+        merc: project('merc', state.mercs.mercEquipment[merc.id] ?? {}) });
+      const exclusionAudit = backpack.filter(item => !safe(item)).map(item => {
+        const values = itemMods(item);
+        return { id: item.id, baseId: item.baseId, mods: values,
+          bug091Keys: BUG091_KEYS.filter(key => (values[key] ?? 0) !== 0),
+          unsupportedKeys: Object.keys(values).filter(key => !SAFE_MOD_KEYS.has(key)) };
+      });
+      function pick(owner, slot, keys, oneHanded = false) {
+        const current = virtual[owner][slot] ?? null;
+        const actor = owner === 'hero' ? before.player : merc;
+        const allowed = item => {
+          const base = bases.get(item.baseId);
+          if (base?.slot !== slot || reserved.has(item.id) || !safe(item)) return false;
+          if (oneHanded && base.handedness !== 'oneHanded') return false;
+          if (phase === 'initial' && (item.rarity !== 'normal' || (item.affixes?.length ?? 0) !== 0)) return false;
+          // A safe lone set piece must not activate an unaudited crit/dodge
+          // threshold when combined with the owner's already reserved gear.
+          if (!Object.keys(mods({ ...virtual[owner], [slot]: item })).every(key => SAFE_MOD_KEYS.has(key))) return false;
+          return compare.checkEligibility(restoreItem(item), actor, bases).eligible;
+        };
+        const values = item => {
+          const projected = project(owner, { ...virtual[owner], [slot]: item });
+          return phase === 'initial'
+            ? [itemMods(item)[slot === 'weapon' ? 'attack' : 'defense'] ?? 0]
+            : keys.map(key => key.endsWith('Res') ? projected.resistances[key.slice(0, -3)] : projected[key]);
+        };
+        const pool = [...backpack, ...(current ? [current] : [])].filter(allowed);
+        if (pool.length === 0 && phase === 'initial' && !current) {
+          choices.push({ owner, mercId: owner === 'merc' ? merc.id : null, slot,
+            previousId: null, selectedId: null, item: null, scoreKeys: keys, score: [], mods: {},
+            eligibility: null, reason: 'No eligible owned normal item; empty slot retained' });
+          return;
+        }
+        assert.ok(pool.length, `No audited ${owner}/${slot} candidate`);
+        pool.sort((a, b) => lexicographic(values(a), values(b))
+          || Number(b.id === current?.id) - Number(a.id === current?.id)
+          || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+        const item = pool[0];
+        choices.push({ owner, mercId: owner === 'merc' ? merc.id : null, slot,
+          previousId: current?.id ?? null, selectedId: item.id, item,
+          names: { en: nameFor(item, 'en'), 'zh-CN': nameFor(item, 'zh-CN') },
+          scoreKeys: keys, score: values(item), mods: itemMods(item),
+          eligibility: compare.checkEligibility(restoreItem(item), actor, bases),
+          effectiveStats: project(owner, { ...virtual[owner], [slot]: item }) });
+        reserved.add(item.id);
+        virtual[owner][slot] = item;
+      }
+
+      if (phase === 'initial') {
+        pick('hero', 'weapon', ['attack'], true);
+        for (const slot of ['offhand', 'head', 'chest', 'belt', 'gloves', 'boots']) pick('hero', slot, ['defense']);
+        pick('merc', 'weapon', ['attack']);
+        for (const slot of ['head', 'chest', 'belt', 'gloves', 'boots']) pick('merc', slot, ['defense']);
+      } else {
+        pick('merc', 'weapon', ['attack', 'attackSpeed'], true);
+        pick('merc', 'head', ['attack', 'lifeMax', 'defense']);
+        pick('hero', 'weapon', ['attackSpeed', 'lifeMax', 'magicResist', 'defense'], true);
+        for (const slot of ['head', 'offhand', 'chest', 'belt', 'gloves']) pick('hero', slot, ['defense', 'lifeMax']);
+        pick('hero', 'boots', ['fireRes', 'lightningRes', 'defense']);
+        pick('hero', 'amulet', ['lifeMax', 'physicalRes', 'manaMax']);
+        for (const slot of ['offhand', 'chest', 'belt', 'gloves', 'boots']) pick('merc', slot, ['defense', 'lifeMax']);
+      }
+
+      // Freeze every reservation before constructing even the local expected transfers.
+      freeze(choices);
+      const expectedAfter = jsonCopy(before);
+      const transfers = [];
+      for (const choice of choices) {
+        const { owner, slot, selectedId, previousId } = choice;
+        const gear = owner === 'hero' ? expectedAfter.inventory.equipped
+          : (expectedAfter.mercs.mercEquipment[merc.id] ?? {});
+        assert.equal(gear[slot]?.id ?? null, previousId, 'Unexpected slot dependency');
+        const candidates = expectedAfter.inventory.backpack.filter(item => compatible(bases.get(item.baseId), slot));
+        const candidateIndex = candidates.findIndex(item => item.id === selectedId);
+        const beforeBackpackCount = expectedAfter.inventory.backpack.length;
+        if (selectedId !== previousId) {
+          const sourceIndex = expectedAfter.inventory.backpack.findIndex(item => item.id === selectedId);
+          assert.ok(sourceIndex >= 0, `Reserved source ${selectedId} is not in the backpack`);
+          const item = expectedAfter.inventory.backpack[sourceIndex];
+          assert.ok(compare.checkEligibility(restoreItem(item), owner === 'hero' ? expectedAfter.player : merc, bases).eligible);
+          const nextBackpack = expectedAfter.inventory.backpack.filter((_, index) => index !== sourceIndex);
+          const displaced = gear[slot];
+          if (displaced) {
+            if (owner === 'merc') {
+              const { equipSlot: _equipSlot, ...fields } = displaced;
+              nextBackpack.push({ ...fields, equipped: false });
+            } else nextBackpack.push({ ...displaced, equipped: false });
+          }
+          if (owner === 'hero' && slot === 'offhand' && bases.get(gear.weapon?.baseId)?.handedness === 'twoHanded') {
+            nextBackpack.push({ ...gear.weapon, equipped: false });
+            gear.weapon = null;
+          }
+          // Hero weapons are predeclared one-handed; merc production swaps have no hand mutex.
+          assert.ok(nextBackpack.length <= beforeBackpackCount, 'Net-growing transfer is outside the contract');
+          gear[slot] = owner === 'hero' ? { ...item, equipped: true }
+            : { ...item, equipped: true, equipSlot: slot };
+          expectedAfter.inventory.backpack = nextBackpack;
+          if (owner === 'hero') expectedAfter.player.derivedStats = project('hero', gear, expectedAfter.player);
+          else expectedAfter.mercs.mercEquipment[merc.id] = gear;
+        }
+        transfers.push({ owner, mercId: choice.mercId, slot, previousId, selectedId,
+          changed: selectedId !== previousId, candidateIndex, candidateOrdinal: candidateIndex < 0 ? null : candidateIndex + 1,
+          candidateCount: candidates.length, names: choice.names ?? null,
+          beforeBackpackCount, afterBackpackCount: expectedAfter.inventory.backpack.length });
+      }
+      assert.deepEqual([...ownedIds(expectedAfter)].sort(), [...priorIds].sort());
+      assert.equal(new Set(ownedIds(expectedAfter)).size, priorIds.length);
+      assert.deepEqual({ ...expectedAfter.player, derivedStats: before.player.derivedStats }, before.player);
+      assert.deepEqual({ ...expectedAfter.mercs, mercEquipment: before.mercs.mercEquipment }, before.mercs);
+      for (const domain of ['map', 'meta', 'formation']) assert.deepEqual(expectedAfter[domain], before[domain]);
+      return freeze({ phase, sourceContract: SOURCE_CONTRACT, sourceContractSha256,
+        mercId: merc.id, choices, transfers, beforeEffectiveStats: jsonCopy(effective(before)),
+        afterEffectiveStats: jsonCopy(effective(expectedAfter)), expectedAfter,
+        itemIdsConserved: true, itemCount: priorIds.length, exclusionAudit,
+        limitations: ['No combat, outcome, reward, route or UI execution is performed.',
+          'Expected save preserves the input export timestamp; a newly stamped export timestamp is envelope metadata.',
+          'Merc candidate indices/counts follow the production compatible-slot backpack order immediately before each transfer.',
+          'Initial empty slots without any eligible normal candidate remain empty; boundary missing candidates stop.',
+          'Resources follow production recomputation without healing; lower maxima may clamp current resources.'] });
+    }
+    /** Guard the accepted eight literal C1 actions against the actual earned bag and UI order. */
+    function auditLiteral(save, literal, owner, slot, candidateIndex) {
+      assert.ok(!closed, 'Gear helper is closed');
+      const item = save.inventory.backpack.find(row => row.id === literal.id);
+      assert.deepEqual(item, literal, 'Accepted literal must be exactly current-owned');
+      assert.ok(compatible(bases.get(item.baseId), slot), 'Literal slot mismatch');
+      const actor = owner === 'hero' ? save.player : save.mercs.ownedMercs.find(row => row.id === save.mercs.fieldedMercId);
+      assert.ok(actor && compare.checkEligibility(restoreItem(item), actor, bases).eligible, 'Literal is ineligible');
+      const candidates = save.inventory.backpack.filter(row => compatible(bases.get(row.baseId), slot));
+      if (owner === 'merc') assert.equal(candidates[candidateIndex]?.id, item.id, 'Accepted candidate order changed');
+      return freeze({ id:item.id, candidateCount:candidates.length, candidateIndex, name:nameFor(item,'en') });
+    }
+    /** Pure cache expectation only; IDs belong to this isolated oracle and are never used for live selection. */
+    function questCache(save) {
+      const questId = 'quests/act2-seven-tombs';
+      const profile = { tableId:'loot/duriel-q', ilvl:32, picks:5 };
+      const seed = productionRng.hashSeed(JSON.stringify(['quest-loot-table-v1', save.player.id,
+        questId, profile.tableId, profile.ilvl, profile.picks]));
+      const cache = questAward.rollQuestTableRewards(profile, loot.loadAwardPools(), productionRng.createRng(seed));
+      assert.ok(cache, 'Current authored quest cache must materialize completely');
+      return freeze(jsonCopy({ questId, profile, seed, cache,
+        limitations:['Oracle-generated item IDs are not browser allocator IDs; compare every other item field, conserve all old IDs and require all live IDs unique.','Never drives live gear selection or predicts combat outcomes.'] }));
+    }
+    return { select, expectedChallenge, projectHero, auditLiteral, questCache, itemName: nameFor, close };
+  } catch (error) {
+    try { if (server) await server.close(); }
+    finally { await rm(cacheDirectory, { recursive: true, force: true }); }
+    throw error;
+  }
+}
+
+export const createGearHelper = createFreshGearHelper;
+export default createFreshGearHelper;

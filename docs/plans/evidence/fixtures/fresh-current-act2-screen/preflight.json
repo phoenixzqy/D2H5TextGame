@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-23T07:09:23.486830+00:00",
+  "head": "d2e3cfaddd2dc8f618a8a5f6b8a75f970dd2caed",
+  "gitStatus": "",
+  "sourceFiles": 2433,
+  "buildFiles": 760,
+  "harnessFiles": 31,
+  "specSHA256": "bceaab7cb2e1ebf0e3b945c96e3fd1a4959553058871476c42201dbe1f994936",
+  "packageMarkerSHA256": "a90fc33418afa2b9cbf4768524b021135b965ecdf993457505bfae3ac44a8428",
+  "importedE2EHelperSha256": "f6880a954df5e06d5e2f5d6c66a916dfc1d50231c348ad41c4cce2a54d935d1b",
+  "collection": "revision2 --list exit0,1test",
+  "port": 34579,
+  "portFree": true,
+  "errors": {
+    "source": [],
+    "build": [],
+    "candidate": []
+  },
+  "validationInheritedFrom": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-canyon-nedn1k7r"
+}
