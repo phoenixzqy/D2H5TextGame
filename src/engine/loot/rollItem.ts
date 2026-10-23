@@ -1,6 +1,6 @@
 import { createRng, hashSeed, type Rng } from '../rng';
 import { rollStatPackage } from '../items/statRolls';
-import type { Affix, AffixRoll, Item, ItemBase, ItemBaseType, ItemStatKey, Rarity, SetPieceDef, UniqueItemDef } from '../types/items';
+import type { Affix, AffixRoll, Item, ItemBase, ItemBaseType, ItemStatKey, Rarity, RolledAffix, SetPieceDef, UniqueItemDef } from '../types/items';
 export interface RarityAffixRange { readonly min: number; readonly max: number }
 export interface RarityAffixCount { readonly prefix: RarityAffixRange; readonly suffix: RarityAffixRange; readonly total?: RarityAffixRange }
 export type RarityAffixRules = Readonly<Partial<Record<Rarity, RarityAffixCount>>>;
@@ -61,6 +61,25 @@ function appliesTo(affix: Affix, type: ItemBaseType): boolean { return affix.app
 function pickWeighted(pool: readonly Affix[], rarity: Rarity, rng: Rng): Affix | undefined { const weighted = pool.map((affix) => ({ affix, weight: affix.rarityWeights[rarity] ?? 0 })).filter((entry) => entry.weight > 0); const total = weighted.reduce((sum, entry) => sum + entry.weight, 0); if (total <= 0) return undefined; let roll = rng.next() * total; for (const entry of weighted) { roll -= entry.weight; if (roll <= 0) return entry.affix; } return weighted[weighted.length - 1]?.affix; }
 function takeAffix(remaining: Affix[], kind: 'prefix' | 'suffix', rarity: Rarity, ilvl: number, rng: Rng): AffixRoll | undefined { const pool = remaining.filter((affix) => affix.kind === kind && tierIndexFor(affix, ilvl) !== undefined); const picked = pickWeighted(pool, rarity, rng); if (!picked) return undefined; const tierIndex = tierIndexFor(picked, ilvl); if (tierIndex === undefined) return undefined; const tier = picked.tiers[tierIndex]; if (!tier) return undefined; const idx = remaining.findIndex((affix) => affix.id === picked.id); if (idx >= 0) remaining.splice(idx, 1); return { id: picked.id, tier: tierIndex, rolledValue: rng.nextInt(tier.valueMin, tier.valueMax) }; }
 function eligibleFor(affix: Affix, rarity: Rarity, ilvl: number): boolean { return (affix.rarityWeights[rarity] ?? 0) > 0 && tierIndexFor(affix, ilvl) !== undefined; }
+/**
+ * Preflight exactly one legal rare prefix/suffix without consuming randomness.
+ * The returned roller reuses normal item affix selection and tier rolls, but
+ * never creates an item or changes identity, base rolls, capacity or source level.
+ */
+export function prepareRareAffixPair(base: ItemBase, ilvl: number, affixes: readonly Affix[]): (rng: Rng) => readonly RolledAffix[] {
+  if (!Number.isSafeInteger(ilvl) || ilvl < 1 || !base.canHaveAffixes) throw new Error('Invalid craft source level or base');
+  const legal = affixes.filter(affix => appliesTo(affix, base.type) && eligibleFor(affix, 'rare', ilvl));
+  if (!legal.some(affix => affix.kind === 'prefix') || !legal.some(affix => affix.kind === 'suffix')) {
+    throw new Error('Missing legal craft prefix or suffix');
+  }
+  return rng => {
+    const remaining = [...legal];
+    const prefix = takeAffix(remaining, 'prefix', 'rare', ilvl, rng);
+    const suffix = takeAffix(remaining, 'suffix', 'rare', ilvl, rng);
+    if (!prefix || !suffix || 'values' in prefix || 'values' in suffix) throw new Error('Invalid craft affix pool');
+    return [prefix, suffix];
+  };
+}
 function rollCounts(rarity: Rarity, rules: RarityAffixCount, available: { prefix: number; suffix: number }, rng: Rng): { prefix: number; suffix: number } { if (rarity === 'rare') { const totalRule = rules.total ?? { min: 4, max: 6 }; const maxTotal = Math.min(totalRule.max, available.prefix + available.suffix, rules.prefix.max + rules.suffix.max); const minTotal = Math.min(totalRule.min, maxTotal); const feasible: { total: number; minPrefix: number; maxPrefix: number }[] = []; for (let total = minTotal; total <= maxTotal; total += 1) { const minPrefix = Math.max(rules.prefix.min, total - rules.suffix.max, total - available.suffix, 0); const maxPrefix = Math.min(rules.prefix.max, available.prefix, total - rules.suffix.min); if (minPrefix <= maxPrefix) feasible.push({ total, minPrefix, maxPrefix }); } const picked = (feasible.length > 0 ? feasible[rng.nextInt(0, feasible.length - 1)] : undefined) ?? { total: 0, minPrefix: 0, maxPrefix: 0 }; const prefix = rng.nextInt(picked.minPrefix, picked.maxPrefix); return { prefix, suffix: picked.total - prefix }; } return { prefix: rng.nextInt(Math.min(rules.prefix.min, available.prefix), Math.min(rules.prefix.max, available.prefix)), suffix: rng.nextInt(Math.min(rules.suffix.min, available.suffix), Math.min(rules.suffix.max, available.suffix)) }; }
 function rollAffixes(base: ItemBase, rarity: Rarity, ilvl: number, affixes: readonly Affix[], rules: RarityAffixCount, rng: Rng): readonly AffixRoll[] { if (rarity !== 'magic' && rarity !== 'rare') return []; if (!base.canHaveAffixes) return []; const remaining = affixes.filter((affix) => appliesTo(affix, base.type) && eligibleFor(affix, rarity, ilvl)); const available = { prefix: remaining.filter((affix) => affix.kind === 'prefix').length, suffix: remaining.filter((affix) => affix.kind === 'suffix').length }; const counts = rollCounts(rarity, rules, available, rng); const rolled: AffixRoll[] = []; for (let i = 0; i < counts.prefix; i += 1) { const roll = takeAffix(remaining, 'prefix', rarity, ilvl, rng); if (roll) rolled.push(roll); } for (let i = 0; i < counts.suffix; i += 1) { const roll = takeAffix(remaining, 'suffix', rarity, ilvl, rng); if (roll) rolled.push(roll); } return rolled; }
 function templateWeight(template: { readonly weight?: number }): number { return Math.max(0, template.weight ?? 1); }
