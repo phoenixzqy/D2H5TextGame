@@ -1,0 +1,8 @@
+import { defineConfig } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/@playwright/test/index.mjs';
+export default defineConfig({
+ testDir: '/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-boundary-WP70rVKS', testMatch: 'boundary-native.spec.ts',
+ fullyParallel:false,workers:1,retries:0,maxFailures:1,timeout:120000,expect:{timeout:10000},reporter:'json',
+ outputDir:'/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-boundary-WP70rVKS/browser-output',
+ use:{actionTimeout:30000,browserName:'chromium',headless:true,baseURL:'http://127.0.0.1:60447',screenshot:'only-on-failure',trace:'off'},
+ webServer:{command:'npx vite preview --outDir /home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-boundary-WP70rVKS/dist --host 127.0.0.1 --port 60447 --strictPort',url:'http://127.0.0.1:60447',reuseExistingServer:false,timeout:30000,env:{VITE_E2E:'false'}}
+});

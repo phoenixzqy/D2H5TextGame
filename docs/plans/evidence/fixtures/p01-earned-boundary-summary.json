@@ -1,0 +1,5789 @@
+{
+  "kind": "one original earned L12 unchanged winning prefix, earned-reward town preparation, Catacombs once; not browser or campaign proof",
+  "head": "aec0041d43e31d9e788508d10f4f70b400b41ab7",
+  "inputSha": "8c46c4f4026116360356a2d17dcde3d723310969a25664f85bc291a1886d2afc",
+  "scriptSha": "66379847405c82d113c878b51de5a75bae4258dc8e17c0971509831c97594fcd",
+  "node": "v24.21.0",
+  "seed": 2223645302,
+  "bonus": 1,
+  "prefixMatchesOracle": true,
+  "initialItems": 3737,
+  "finalItems": 3913,
+  "itemCountsReconcile": true,
+  "entryAndHeroWaveCarryVerified": true,
+  "sourceHashesUnchanged": true,
+  "sourceCount": 644,
+  "finalSaveSha": "83fb9e8fa765e9c5c1d3840241615317eddaa5706d759b0e742d36ba643d21e8",
+  "runs": [
+    {
+      "area": "areas/act1-blood-moor",
+      "ordinal": 102,
+      "result": "victory",
+      "waves": [
+        {
+          "index": 0,
+          "terminalMs": 4572,
+          "result": "next-wave",
+          "actualDelta": {
+            "xp": 380,
+            "mercXp": {
+              "mercs/act1-rogue-inner-sight": 285
+            },
+            "currencies": {
+              "rune-shard": 176,
+              "wishstone": 0,
+              "gem-shard": 0
+            },
+            "addedItems": [
+              {
+                "id": "it-43c49-2kx",
+                "baseId": "items/base/glove-leather",
+                "rarity": "normal",
+                "level": 2,
+                "ilvl": 2,
+                "baseRolls": {
+                  "defense": 5
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-8f9rm-2ky",
+                "baseId": "items/base/glove-leather",
+                "rarity": "normal",
+                "level": 2,
+                "ilvl": 2,
+                "baseRolls": {
+                  "defense": 3
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-35xje-2kz",
+                "baseId": "items/base/glove-leather",
+                "rarity": "normal",
+                "level": 2,
+                "ilvl": 2,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-8iimt-2l0",
+                "baseId": "items/base/boot-leather",
+                "rarity": "normal",
+                "level": 2,
+                "ilvl": 2,
+                "baseRolls": {
+                  "defense": 3
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-7czgr-2l1",
+                "baseId": "items/base/helm-cap",
+                "rarity": "normal",
+                "level": 2,
+                "ilvl": 2,
+                "baseRolls": {
+                  "defense": 6
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-91abr-2l2",
+                "baseId": "items/base/boot-leather",
+                "rarity": "normal",
+                "level": 2,
+                "ilvl": 2,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-5ru1m-2l3",
+                "baseId": "items/base/glove-leather",
+                "rarity": "normal",
+                "level": 2,
+                "ilvl": 2,
+                "baseRolls": {
+                  "defense": 5
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-5899d-2l4",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 2,
+                "ilvl": 2,
+                "baseRolls": {
+                  "defense": 3
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              }
+            ],
+            "removedItemIds": [],
+            "addedClears": []
+          },
+          "itemObjects": 3745,
+          "uniqueItemIds": 3745
+        },
+        {
+          "index": 1,
+          "terminalMs": 9000,
+          "result": "next-wave",
+          "actualDelta": {
+            "xp": 600,
+            "mercXp": {
+              "mercs/act1-rogue-inner-sight": 450
+            },
+            "currencies": {
+              "rune-shard": 424,
+              "wishstone": 1,
+              "gem-shard": 0
+            },
+            "addedItems": [
+              {
+                "id": "it-jy6u-2l5",
+                "baseId": "items/base/boot-leather",
+                "rarity": "normal",
+                "level": 3,
+                "ilvl": 3,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-oxm6-2l6",
+                "baseId": "items/base/armor-quilted",
+                "rarity": "normal",
+                "level": 3,
+                "ilvl": 3,
+                "baseRolls": {
+                  "defense": 12
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-3tshd-2l7",
+                "baseId": "items/base/wp1h-short-sword",
+                "rarity": "normal",
+                "level": 3,
+                "ilvl": 3,
+                "baseRolls": {
+                  "attack": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-7i4c2-2l8",
+                "baseId": "items/base/armor-quilted",
+                "rarity": "normal",
+                "level": 3,
+                "ilvl": 3,
+                "baseRolls": {
+                  "defense": 10
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-3o1n7-2l9",
+                "baseId": "items/base/boot-leather",
+                "rarity": "normal",
+                "level": 3,
+                "ilvl": 3,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-1kccw-2la",
+                "baseId": "items/base/helm-cap",
+                "rarity": "normal",
+                "level": 3,
+                "ilvl": 3,
+                "baseRolls": {
+                  "defense": 8
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-2lftz-2lb",
+                "baseId": "items/base/weapon-bow-training",
+                "rarity": "normal",
+                "level": 3,
+                "ilvl": 3,
+                "baseRolls": {
+                  "attack": 8
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-1tlg-2lc",
+                "baseId": "items/base/weapon-bow-training",
+                "rarity": "normal",
+                "level": 3,
+                "ilvl": 3,
+                "baseRolls": {
+                  "attack": 12
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-87tii-2ld",
+                "baseId": "items/base/boot-leather",
+                "rarity": "normal",
+                "level": 3,
+                "ilvl": 3,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-8r68i-2le",
+                "baseId": "items/base/helm-cap",
+                "rarity": "normal",
+                "level": 3,
+                "ilvl": 3,
+                "baseRolls": {
+                  "defense": 7
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-g3p9-2lf",
+                "baseId": "items/base/wp1h-short-sword",
+                "rarity": "normal",
+                "level": 3,
+                "ilvl": 3,
+                "baseRolls": {
+                  "attack": 8
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-719jg-2lg",
+                "baseId": "items/base/wp2h-two-handed-sword",
+                "rarity": "normal",
+                "level": 3,
+                "ilvl": 3,
+                "baseRolls": {
+                  "attack": 9
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-6fzu0-2lh",
+                "baseId": "items/base/sh-buckler",
+                "rarity": "normal",
+                "level": 3,
+                "ilvl": 3,
+                "baseRolls": {
+                  "defense": 7
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-1rge4-2li",
+                "baseId": "items/base/wp1h-short-sword",
+                "rarity": "normal",
+                "level": 3,
+                "ilvl": 3,
+                "baseRolls": {
+                  "attack": 5
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-5xc3z-2lj",
+                "baseId": "items/base/helm-cap",
+                "rarity": "normal",
+                "level": 3,
+                "ilvl": 3,
+                "baseRolls": {
+                  "defense": 6
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-4ym3l-2lk",
+                "baseId": "items/base/wp2h-two-handed-sword",
+                "rarity": "normal",
+                "level": 3,
+                "ilvl": 3,
+                "baseRolls": {
+                  "attack": 9
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-8bwk0-2ll",
+                "baseId": "items/base/ring-iron",
+                "rarity": "normal",
+                "level": 3,
+                "ilvl": 3,
+                "baseRolls": {},
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-87vn9-2lm",
+                "baseId": "items/base/glove-leather",
+                "rarity": "normal",
+                "level": 3,
+                "ilvl": 3,
+                "baseRolls": {
+                  "defense": 5
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-8787l-2ln",
+                "baseId": "items/base/wp1h-short-sword",
+                "rarity": "normal",
+                "level": 3,
+                "ilvl": 3,
+                "baseRolls": {
+                  "attack": 7
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-4yu60-2lo",
+                "baseId": "items/base/boot-leather",
+                "rarity": "normal",
+                "level": 3,
+                "ilvl": 3,
+                "baseRolls": {
+                  "defense": 5
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-zd15-2lp",
+                "baseId": "items/base/boot-leather",
+                "rarity": "normal",
+                "level": 3,
+                "ilvl": 3,
+                "baseRolls": {
+                  "defense": 3
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-5klyr-2lq",
+                "baseId": "items/base/sh-buckler",
+                "rarity": "normal",
+                "level": 3,
+                "ilvl": 3,
+                "baseRolls": {
+                  "defense": 5
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-81teq-2lr",
+                "baseId": "items/base/wp1h-short-sword",
+                "rarity": "normal",
+                "level": 3,
+                "ilvl": 3,
+                "baseRolls": {
+                  "attack": 7
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              }
+            ],
+            "removedItemIds": [],
+            "addedClears": []
+          },
+          "itemObjects": 3768,
+          "uniqueItemIds": 3768
+        },
+        {
+          "index": 2,
+          "terminalMs": 15240,
+          "result": "victory",
+          "actualDelta": {
+            "xp": 480,
+            "mercXp": {
+              "mercs/act1-rogue-inner-sight": 360
+            },
+            "currencies": {
+              "rune-shard": 500,
+              "wishstone": 5,
+              "gem-shard": 3
+            },
+            "addedItems": [
+              {
+                "id": "it-61y50-2ls",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 6,
+                "ilvl": 6,
+                "baseRolls": {
+                  "defense": 2
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-1a78h-2lt",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 6,
+                "ilvl": 6,
+                "baseRolls": {
+                  "defense": 2
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-6wt83-2lu",
+                "baseId": "items/base/helm-cap",
+                "rarity": "normal",
+                "level": 6,
+                "ilvl": 6,
+                "baseRolls": {
+                  "defense": 8
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-9yibk-2lv",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 6,
+                "ilvl": 6,
+                "baseRolls": {
+                  "defense": 3
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-6mb24-2lw",
+                "baseId": "items/base/wp1h-short-sword",
+                "rarity": "normal",
+                "level": 6,
+                "ilvl": 6,
+                "baseRolls": {
+                  "attack": 8
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-42rxi-2lx",
+                "baseId": "items/base/helm-cap",
+                "rarity": "normal",
+                "level": 6,
+                "ilvl": 6,
+                "baseRolls": {
+                  "defense": 8
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-243i6-2ly",
+                "baseId": "items/base/helm-skull-cap",
+                "rarity": "normal",
+                "level": 6,
+                "ilvl": 6,
+                "baseRolls": {
+                  "defense": 13
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-8nun1-2lz",
+                "baseId": "items/base/wp1h-short-sword",
+                "rarity": "normal",
+                "level": 6,
+                "ilvl": 6,
+                "baseRolls": {
+                  "attack": 8
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-1u1tx-2m0",
+                "baseId": "items/base/sh-buckler",
+                "rarity": "normal",
+                "level": 6,
+                "ilvl": 6,
+                "baseRolls": {
+                  "defense": 5
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-302f0-2m1",
+                "baseId": "items/base/belt-light",
+                "rarity": "normal",
+                "level": 6,
+                "ilvl": 6,
+                "baseRolls": {
+                  "defense": 5
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-33nt5-2m2",
+                "baseId": "items/base/armor-quilted",
+                "rarity": "normal",
+                "level": 6,
+                "ilvl": 6,
+                "baseRolls": {
+                  "defense": 9
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              }
+            ],
+            "removedItemIds": [],
+            "addedClears": [
+              "areas/act1-blood-moor"
+            ]
+          },
+          "itemObjects": 3779,
+          "uniqueItemIds": 3779
+        }
+      ]
+    },
+    {
+      "area": "areas/act1-cold-plains",
+      "ordinal": 103,
+      "result": "victory",
+      "waves": [
+        {
+          "index": 0,
+          "terminalMs": 9000,
+          "result": "next-wave",
+          "actualDelta": {
+            "xp": 1000,
+            "mercXp": {
+              "mercs/act1-rogue-inner-sight": 750
+            },
+            "currencies": {
+              "rune-shard": 470,
+              "wishstone": 0,
+              "gem-shard": 0
+            },
+            "addedItems": [
+              {
+                "id": "it-43c49-2m3",
+                "baseId": "items/base/armor-leather",
+                "rarity": "normal",
+                "level": 5,
+                "ilvl": 5,
+                "baseRolls": {
+                  "defense": 24
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-8f9rm-2m4",
+                "baseId": "items/base/armor-quilted",
+                "rarity": "normal",
+                "level": 5,
+                "ilvl": 5,
+                "baseRolls": {
+                  "defense": 9
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-35xje-2m5",
+                "baseId": "items/base/armor-leather",
+                "rarity": "normal",
+                "level": 5,
+                "ilvl": 5,
+                "baseRolls": {
+                  "defense": 22
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-8iimt-2m6",
+                "baseId": "items/base/glove-leather",
+                "rarity": "normal",
+                "level": 5,
+                "ilvl": 5,
+                "baseRolls": {
+                  "defense": 3
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-7czgr-2m7",
+                "baseId": "items/base/helm-cap",
+                "rarity": "normal",
+                "level": 5,
+                "ilvl": 5,
+                "baseRolls": {
+                  "defense": 6
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-91abr-2m8",
+                "baseId": "items/base/boot-leather",
+                "rarity": "normal",
+                "level": 5,
+                "ilvl": 5,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-5ru1m-2m9",
+                "baseId": "items/base/armor-quilted",
+                "rarity": "normal",
+                "level": 5,
+                "ilvl": 5,
+                "baseRolls": {
+                  "defense": 12
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-5899d-2ma",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 5,
+                "ilvl": 5,
+                "baseRolls": {
+                  "defense": 3
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              }
+            ],
+            "removedItemIds": [],
+            "addedClears": []
+          },
+          "itemObjects": 3787,
+          "uniqueItemIds": 3787
+        },
+        {
+          "index": 1,
+          "terminalMs": 3048,
+          "result": "next-wave",
+          "actualDelta": {
+            "xp": 480,
+            "mercXp": {
+              "mercs/act1-rogue-inner-sight": 360
+            },
+            "currencies": {
+              "rune-shard": 213,
+              "wishstone": 0,
+              "gem-shard": 0
+            },
+            "addedItems": [
+              {
+                "id": "it-8nbk1-2mb",
+                "baseId": "items/base/glove-leather",
+                "rarity": "normal",
+                "level": 6,
+                "ilvl": 6,
+                "baseRolls": {
+                  "defense": 3
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-9uvm5-2mc",
+                "baseId": "items/base/glove-leather",
+                "rarity": "normal",
+                "level": 6,
+                "ilvl": 6,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              }
+            ],
+            "removedItemIds": [],
+            "addedClears": []
+          },
+          "itemObjects": 3789,
+          "uniqueItemIds": 3789
+        },
+        {
+          "index": 2,
+          "terminalMs": 33000,
+          "result": "next-wave",
+          "actualDelta": {
+            "xp": 720,
+            "mercXp": {
+              "mercs/act1-rogue-inner-sight": 540
+            },
+            "currencies": {
+              "rune-shard": 698,
+              "wishstone": 2,
+              "gem-shard": 0
+            },
+            "addedItems": [
+              {
+                "id": "it-61y50-2md",
+                "baseId": "items/base/belt-light",
+                "rarity": "normal",
+                "level": 8,
+                "ilvl": 8,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-1a78h-2me",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 8,
+                "ilvl": 8,
+                "baseRolls": {
+                  "defense": 2
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-6wt83-2mf",
+                "baseId": "items/base/helm-cap",
+                "rarity": "normal",
+                "level": 8,
+                "ilvl": 8,
+                "baseRolls": {
+                  "defense": 8
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-9yibk-2mg",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 8,
+                "ilvl": 8,
+                "baseRolls": {
+                  "defense": 3
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-6mb24-2mh",
+                "baseId": "items/base/wp1h-short-sword",
+                "rarity": "normal",
+                "level": 8,
+                "ilvl": 8,
+                "baseRolls": {
+                  "attack": 8
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-7k7kr-2mi",
+                "baseId": "items/base/armor-quilted",
+                "rarity": "normal",
+                "level": 8,
+                "ilvl": 8,
+                "baseRolls": {
+                  "defense": 11
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-8v8mo-2mj",
+                "baseId": "items/base/boot-leather",
+                "rarity": "normal",
+                "level": 8,
+                "ilvl": 8,
+                "baseRolls": {
+                  "defense": 5
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-8nun1-2mk",
+                "baseId": "items/base/armor-quilted",
+                "rarity": "normal",
+                "level": 8,
+                "ilvl": 8,
+                "baseRolls": {
+                  "defense": 12
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-1u1tx-2ml",
+                "baseId": "items/base/armor-quilted",
+                "rarity": "normal",
+                "level": 8,
+                "ilvl": 8,
+                "baseRolls": {
+                  "defense": 9
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-96fhy-2mm",
+                "baseId": "items/base/armor-quilted",
+                "rarity": "normal",
+                "level": 8,
+                "ilvl": 8,
+                "baseRolls": {
+                  "defense": 8
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-44j1o-2mn",
+                "baseId": "items/base/wp1h-short-sword",
+                "rarity": "normal",
+                "level": 8,
+                "ilvl": 8,
+                "baseRolls": {
+                  "attack": 5
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-4raom-2mo",
+                "baseId": "items/base/armor-quilted",
+                "rarity": "normal",
+                "level": 8,
+                "ilvl": 8,
+                "baseRolls": {
+                  "defense": 10
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-9xbe8-2mp",
+                "baseId": "items/base/boot-leather",
+                "rarity": "normal",
+                "level": 8,
+                "ilvl": 8,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-783u7-2mq",
+                "baseId": "items/base/helm-cap",
+                "rarity": "normal",
+                "level": 8,
+                "ilvl": 8,
+                "baseRolls": {
+                  "defense": 8
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-20u36-2mr",
+                "baseId": "items/base/helm-skull-cap",
+                "rarity": "normal",
+                "level": 8,
+                "ilvl": 8,
+                "baseRolls": {
+                  "defense": 11
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-36jl9-2ms",
+                "baseId": "items/base/armor-leather",
+                "rarity": "normal",
+                "level": 8,
+                "ilvl": 8,
+                "baseRolls": {
+                  "defense": 18
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-3bbhp-2mt",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 8,
+                "ilvl": 8,
+                "baseRolls": {
+                  "defense": 2
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-41ao5-2mu",
+                "baseId": "items/base/helm-cap",
+                "rarity": "normal",
+                "level": 8,
+                "ilvl": 8,
+                "baseRolls": {
+                  "defense": 8
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              }
+            ],
+            "removedItemIds": [],
+            "addedClears": []
+          },
+          "itemObjects": 3807,
+          "uniqueItemIds": 3807
+        },
+        {
+          "index": 3,
+          "terminalMs": 12000,
+          "result": "victory",
+          "actualDelta": {
+            "xp": 900,
+            "mercXp": {
+              "mercs/act1-rogue-inner-sight": 675
+            },
+            "currencies": {
+              "rune-shard": 909,
+              "wishstone": 12,
+              "gem-shard": 10
+            },
+            "addedItems": [
+              {
+                "id": "it-3yp06-2mv",
+                "baseId": "items/base/amu-tin",
+                "rarity": "rare",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {},
+                "affixes": [
+                  {
+                    "id": "affix.mystic.mana.flat",
+                    "tier": 0,
+                    "rolledValue": 7
+                  },
+                  {
+                    "id": "affix.wolf.life.flat",
+                    "tier": 0,
+                    "rolledValue": 12
+                  },
+                  {
+                    "id": "affix.fire.resistance",
+                    "tier": 0,
+                    "rolledValue": 5
+                  },
+                  {
+                    "id": "affix.physical.resistance",
+                    "tier": 0,
+                    "rolledValue": 4
+                  }
+                ],
+                "generatedName": {},
+                "identified": false,
+                "equipped": false
+              },
+              {
+                "id": "it-3q5gd-2mw",
+                "baseId": "items/base/belt-light",
+                "rarity": "unique",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {
+                  "defense": 6
+                },
+                "affixes": [],
+                "statRolls": {},
+                "generatedName": {},
+                "identified": true,
+                "equipped": false,
+                "uniqueId": "items/unique/lenymo"
+              },
+              {
+                "id": "it-8m36m-2mx",
+                "baseId": "items/base/belt-light",
+                "rarity": "unique",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {
+                  "defense": 5
+                },
+                "affixes": [],
+                "statRolls": {},
+                "generatedName": {},
+                "identified": true,
+                "equipped": false,
+                "uniqueId": "items/unique/lenymo"
+              },
+              {
+                "id": "it-2hfgx-2my",
+                "baseId": "items/base/helm-cap",
+                "rarity": "unique",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {
+                  "defense": 8
+                },
+                "affixes": [],
+                "statRolls": {},
+                "generatedName": {},
+                "identified": true,
+                "equipped": false,
+                "uniqueId": "items/unique/biggin-bonnet"
+              },
+              {
+                "id": "it-2mhtl-2mz",
+                "baseId": "items/base/helm-skull-cap",
+                "rarity": "unique",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {
+                  "defense": 10
+                },
+                "affixes": [],
+                "statRolls": {},
+                "generatedName": {},
+                "identified": true,
+                "equipped": false,
+                "uniqueId": "items/unique/coif-of-glory"
+              },
+              {
+                "id": "it-79786-2n0",
+                "baseId": "items/base/weapon-wand",
+                "rarity": "set",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {
+                  "attack": 9
+                },
+                "affixes": [],
+                "statRolls": {},
+                "generatedName": {},
+                "identified": true,
+                "equipped": false,
+                "setId": "sets/arcanna-tricks",
+                "setPieceId": "sets/arcanna-tricks/weapon"
+              },
+              {
+                "id": "it-483xw-2n1",
+                "baseId": "items/base/boots",
+                "rarity": "unique",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {
+                  "defense": 6
+                },
+                "affixes": [],
+                "statRolls": {},
+                "generatedName": {},
+                "identified": true,
+                "equipped": false,
+                "uniqueId": "items/unique/hotspur"
+              },
+              {
+                "id": "it-7i7bl-2n2",
+                "baseId": "items/base/wp1h-short-sword",
+                "rarity": "unique",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {
+                  "attack": 5
+                },
+                "affixes": [],
+                "statRolls": {},
+                "generatedName": {},
+                "identified": true,
+                "equipped": false,
+                "uniqueId": "items/unique/blood-crescent"
+              },
+              {
+                "id": "it-2cxjo-2n3",
+                "baseId": "items/base/amu-tin",
+                "rarity": "rare",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {},
+                "affixes": [
+                  {
+                    "id": "affix.mystic.mana.flat",
+                    "tier": 0,
+                    "rolledValue": 9
+                  },
+                  {
+                    "id": "affix.ethereal.magic-dodge",
+                    "tier": 0,
+                    "rolledValue": 1
+                  },
+                  {
+                    "id": "affix.cold.resistance",
+                    "tier": 0,
+                    "rolledValue": 6
+                  },
+                  {
+                    "id": "affix.bat.mana.flat",
+                    "tier": 0,
+                    "rolledValue": 7
+                  },
+                  {
+                    "id": "affix.wolf.life.flat",
+                    "tier": 0,
+                    "rolledValue": 5
+                  }
+                ],
+                "generatedName": {},
+                "identified": false,
+                "equipped": false
+              },
+              {
+                "id": "it-7yy59-2n4",
+                "baseId": "items/base/amu-tin",
+                "rarity": "rare",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {},
+                "affixes": [
+                  {
+                    "id": "affix.nimble.phys-dodge",
+                    "tier": 0,
+                    "rolledValue": 2
+                  },
+                  {
+                    "id": "affix.savage.crit-damage",
+                    "tier": 0,
+                    "rolledValue": 5
+                  },
+                  {
+                    "id": "affix.poison.resistance",
+                    "tier": 0,
+                    "rolledValue": 8
+                  },
+                  {
+                    "id": "affix.fire.resistance",
+                    "tier": 0,
+                    "rolledValue": 7
+                  },
+                  {
+                    "id": "affix.arcane.resistance",
+                    "tier": 0,
+                    "rolledValue": 7
+                  }
+                ],
+                "generatedName": {},
+                "identified": false,
+                "equipped": false
+              }
+            ],
+            "removedItemIds": [],
+            "addedClears": [
+              "areas/act1-cold-plains"
+            ]
+          },
+          "itemObjects": 3817,
+          "uniqueItemIds": 3817
+        }
+      ]
+    },
+    {
+      "area": "areas/act1-burial-grounds",
+      "ordinal": 104,
+      "result": "victory",
+      "waves": [
+        {
+          "index": 0,
+          "terminalMs": 9144,
+          "result": "next-wave",
+          "actualDelta": {
+            "xp": 640,
+            "mercXp": {
+              "mercs/act1-rogue-inner-sight": 480
+            },
+            "currencies": {
+              "rune-shard": 317,
+              "wishstone": 0,
+              "gem-shard": 0
+            },
+            "addedItems": [
+              {
+                "id": "it-43c49-2n5",
+                "baseId": "items/base/glove-leather",
+                "rarity": "normal",
+                "level": 8,
+                "ilvl": 8,
+                "baseRolls": {
+                  "defense": 5
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-8f9rm-2n6",
+                "baseId": "items/base/armor-leather",
+                "rarity": "normal",
+                "level": 8,
+                "ilvl": 8,
+                "baseRolls": {
+                  "defense": 19
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-35xje-2n7",
+                "baseId": "items/base/armor-leather",
+                "rarity": "normal",
+                "level": 8,
+                "ilvl": 8,
+                "baseRolls": {
+                  "defense": 22
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-8iimt-2n8",
+                "baseId": "items/base/boot-leather",
+                "rarity": "normal",
+                "level": 8,
+                "ilvl": 8,
+                "baseRolls": {
+                  "defense": 3
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              }
+            ],
+            "removedItemIds": [],
+            "addedClears": []
+          },
+          "itemObjects": 3821,
+          "uniqueItemIds": 3821
+        },
+        {
+          "index": 1,
+          "terminalMs": 30000,
+          "result": "next-wave",
+          "actualDelta": {
+            "xp": 810,
+            "mercXp": {
+              "mercs/act1-rogue-inner-sight": 607
+            },
+            "currencies": {
+              "rune-shard": 809,
+              "wishstone": 1,
+              "gem-shard": 0
+            },
+            "addedItems": [
+              {
+                "id": "it-jy6u-2n9",
+                "baseId": "items/base/boot-leather",
+                "rarity": "normal",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-oxm6-2na",
+                "baseId": "items/base/armor-quilted",
+                "rarity": "normal",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {
+                  "defense": 12
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-3tshd-2nb",
+                "baseId": "items/base/wp1h-scimitar",
+                "rarity": "normal",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {
+                  "attack": 7
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-7i4c2-2nc",
+                "baseId": "items/base/helm-skull-cap",
+                "rarity": "normal",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {
+                  "defense": 12
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-3o1n7-2nd",
+                "baseId": "items/base/boot-leather",
+                "rarity": "normal",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-1kccw-2ne",
+                "baseId": "items/base/helm-skull-cap",
+                "rarity": "normal",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {
+                  "defense": 13
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-2lftz-2nf",
+                "baseId": "items/base/weapon-bow-training",
+                "rarity": "normal",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {
+                  "attack": 8
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-1tlg-2ng",
+                "baseId": "items/base/weapon-bow-training",
+                "rarity": "normal",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {
+                  "attack": 12
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-87tii-2nh",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {
+                  "defense": 3
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-8r68i-2ni",
+                "baseId": "items/base/helm-cap",
+                "rarity": "normal",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {
+                  "defense": 7
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-g3p9-2nj",
+                "baseId": "items/base/wp1h-scimitar",
+                "rarity": "normal",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {
+                  "attack": 13
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-719jg-2nk",
+                "baseId": "items/base/wp2h-two-handed-sword",
+                "rarity": "normal",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {
+                  "attack": 9
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-6fzu0-2nl",
+                "baseId": "items/base/sh-buckler",
+                "rarity": "normal",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {
+                  "defense": 7
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-1rge4-2nm",
+                "baseId": "items/base/wp1h-scimitar",
+                "rarity": "normal",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {
+                  "attack": 8
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-5xc3z-2nn",
+                "baseId": "items/base/helm-cap",
+                "rarity": "normal",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {
+                  "defense": 6
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-4ym3l-2no",
+                "baseId": "items/base/wp2h-great-axe",
+                "rarity": "normal",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {
+                  "attack": 13
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-8bwk0-2np",
+                "baseId": "items/base/ring-iron",
+                "rarity": "normal",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {},
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-87vn9-2nq",
+                "baseId": "items/base/armor-leather",
+                "rarity": "normal",
+                "level": 9,
+                "ilvl": 9,
+                "baseRolls": {
+                  "defense": 22
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              }
+            ],
+            "removedItemIds": [],
+            "addedClears": []
+          },
+          "itemObjects": 3839,
+          "uniqueItemIds": 3839
+        },
+        {
+          "index": 2,
+          "terminalMs": 54864,
+          "result": "next-wave",
+          "actualDelta": {
+            "xp": 1200,
+            "mercXp": {
+              "mercs/act1-rogue-inner-sight": 900
+            },
+            "currencies": {
+              "rune-shard": 1085,
+              "wishstone": 5,
+              "gem-shard": 2
+            },
+            "addedItems": [
+              {
+                "id": "it-61y50-2nr",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 12,
+                "ilvl": 12,
+                "baseRolls": {
+                  "defense": 2
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-1a78h-2ns",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 12,
+                "ilvl": 12,
+                "baseRolls": {
+                  "defense": 2
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-6wt83-2nt",
+                "baseId": "items/base/helm-skull-cap",
+                "rarity": "normal",
+                "level": 12,
+                "ilvl": 12,
+                "baseRolls": {
+                  "defense": 14
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-9yibk-2nu",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 12,
+                "ilvl": 12,
+                "baseRolls": {
+                  "defense": 3
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-6mb24-2nv",
+                "baseId": "items/base/wp1h-scimitar",
+                "rarity": "normal",
+                "level": 12,
+                "ilvl": 12,
+                "baseRolls": {
+                  "attack": 13
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-42rxi-2nw",
+                "baseId": "items/base/helm-skull-cap",
+                "rarity": "normal",
+                "level": 12,
+                "ilvl": 12,
+                "baseRolls": {
+                  "defense": 13
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-243i6-2nx",
+                "baseId": "items/base/armor-leather",
+                "rarity": "normal",
+                "level": 12,
+                "ilvl": 12,
+                "baseRolls": {
+                  "defense": 23
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-8nun1-2ny",
+                "baseId": "items/base/wp2h-great-axe",
+                "rarity": "normal",
+                "level": 12,
+                "ilvl": 12,
+                "baseRolls": {
+                  "attack": 22
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-1u1tx-2nz",
+                "baseId": "items/base/ring-iron",
+                "rarity": "normal",
+                "level": 12,
+                "ilvl": 12,
+                "baseRolls": {},
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-302f0-2o0",
+                "baseId": "items/base/helm-skull-cap",
+                "rarity": "normal",
+                "level": 12,
+                "ilvl": 12,
+                "baseRolls": {
+                  "defense": 13
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-5zsb4-2o1",
+                "baseId": "items/base/belt-light",
+                "rarity": "normal",
+                "level": 12,
+                "ilvl": 12,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              }
+            ],
+            "removedItemIds": [],
+            "addedClears": []
+          },
+          "itemObjects": 3850,
+          "uniqueItemIds": 3850
+        },
+        {
+          "index": 3,
+          "terminalMs": 18288,
+          "result": "victory",
+          "actualDelta": {
+            "xp": 480,
+            "mercXp": {
+              "mercs/act1-rogue-inner-sight": 360
+            },
+            "currencies": {
+              "rune-shard": 3857,
+              "wishstone": 8,
+              "gem-shard": 1
+            },
+            "addedItems": [
+              {
+                "id": "it-1lquj-2o2",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 12,
+                "ilvl": 12,
+                "baseRolls": {
+                  "defense": 2
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-2hhl9-2o3",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 12,
+                "ilvl": 12,
+                "baseRolls": {
+                  "defense": 2
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-22zc9-2o4",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 12,
+                "ilvl": 12,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-8z88y-2o5",
+                "baseId": "items/base/belt-light",
+                "rarity": "normal",
+                "level": 12,
+                "ilvl": 12,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-3zbek-2o6",
+                "baseId": "items/base/glove-leather",
+                "rarity": "normal",
+                "level": 12,
+                "ilvl": 12,
+                "baseRolls": {
+                  "defense": 5
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-7is2r-2o7",
+                "baseId": "items/base/wp1h-scimitar",
+                "rarity": "normal",
+                "level": 12,
+                "ilvl": 12,
+                "baseRolls": {
+                  "attack": 10
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              }
+            ],
+            "removedItemIds": [],
+            "addedClears": [
+              "areas/act1-burial-grounds"
+            ]
+          },
+          "itemObjects": 3856,
+          "uniqueItemIds": 3856
+        }
+      ]
+    },
+    {
+      "area": "areas/act1-dark-wood",
+      "ordinal": 105,
+      "result": "victory",
+      "waves": [
+        {
+          "index": 0,
+          "terminalMs": 6000,
+          "result": "next-wave",
+          "actualDelta": {
+            "xp": 900,
+            "mercXp": {
+              "mercs/act1-rogue-inner-sight": 675
+            },
+            "currencies": {
+              "rune-shard": 450,
+              "wishstone": 0,
+              "gem-shard": 0
+            },
+            "addedItems": [
+              {
+                "id": "it-43c49-2o8",
+                "baseId": "items/base/glove-leather",
+                "rarity": "normal",
+                "level": 10,
+                "ilvl": 10,
+                "baseRolls": {
+                  "defense": 5
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-8f9rm-2o9",
+                "baseId": "items/base/armor-leather",
+                "rarity": "normal",
+                "level": 10,
+                "ilvl": 10,
+                "baseRolls": {
+                  "defense": 19
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-35xje-2oa",
+                "baseId": "items/base/glove-leather",
+                "rarity": "normal",
+                "level": 10,
+                "ilvl": 10,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-8iimt-2ob",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 10,
+                "ilvl": 10,
+                "baseRolls": {
+                  "defense": 2
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              }
+            ],
+            "removedItemIds": [],
+            "addedClears": []
+          },
+          "itemObjects": 3860,
+          "uniqueItemIds": 3860
+        },
+        {
+          "index": 1,
+          "terminalMs": 6096,
+          "result": "next-wave",
+          "actualDelta": {
+            "xp": 1000,
+            "mercXp": {
+              "mercs/act1-rogue-inner-sight": 750
+            },
+            "currencies": {
+              "rune-shard": 462,
+              "wishstone": 0,
+              "gem-shard": 0
+            },
+            "addedItems": [
+              {
+                "id": "it-8nbk1-2oc",
+                "baseId": "items/base/boot-leather",
+                "rarity": "normal",
+                "level": 10,
+                "ilvl": 10,
+                "baseRolls": {
+                  "defense": 3
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-9uvm5-2od",
+                "baseId": "items/base/glove-leather",
+                "rarity": "normal",
+                "level": 10,
+                "ilvl": 10,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-9vi7f-2oe",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 10,
+                "ilvl": 10,
+                "baseRolls": {
+                  "defense": 3
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              }
+            ],
+            "removedItemIds": [],
+            "addedClears": []
+          },
+          "itemObjects": 3863,
+          "uniqueItemIds": 3863
+        },
+        {
+          "index": 2,
+          "terminalMs": 10500,
+          "result": "next-wave",
+          "actualDelta": {
+            "xp": 1320,
+            "mercXp": {
+              "mercs/act1-rogue-inner-sight": 990
+            },
+            "currencies": {
+              "rune-shard": 653,
+              "wishstone": 0,
+              "gem-shard": 0
+            },
+            "addedItems": [
+              {
+                "id": "it-3nwhm-2of",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 12,
+                "ilvl": 12,
+                "baseRolls": {
+                  "defense": 3
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-5dwrw-2og",
+                "baseId": "items/base/amu-brass",
+                "rarity": "normal",
+                "level": 12,
+                "ilvl": 12,
+                "baseRolls": {},
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-8esyp-2oh",
+                "baseId": "items/base/ring-iron",
+                "rarity": "normal",
+                "level": 12,
+                "ilvl": 12,
+                "baseRolls": {},
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-6hbyq-2oi",
+                "baseId": "items/base/glove-leather",
+                "rarity": "normal",
+                "level": 12,
+                "ilvl": 12,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              }
+            ],
+            "removedItemIds": [],
+            "addedClears": []
+          },
+          "itemObjects": 3867,
+          "uniqueItemIds": 3867
+        },
+        {
+          "index": 3,
+          "terminalMs": 57912,
+          "result": "next-wave",
+          "actualDelta": {
+            "xp": 1560,
+            "mercXp": {
+              "mercs/act1-rogue-inner-sight": 1170
+            },
+            "currencies": {
+              "rune-shard": 1398,
+              "wishstone": 1,
+              "gem-shard": 0
+            },
+            "addedItems": [
+              {
+                "id": "it-1lquj-2oj",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 13,
+                "ilvl": 13,
+                "baseRolls": {
+                  "defense": 2
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-2hhl9-2ok",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 13,
+                "ilvl": 13,
+                "baseRolls": {
+                  "defense": 2
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-22zc9-2ol",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 13,
+                "ilvl": 13,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-8z88y-2om",
+                "baseId": "items/base/belt-light",
+                "rarity": "normal",
+                "level": 13,
+                "ilvl": 13,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-3zbek-2on",
+                "baseId": "items/base/glove-leather",
+                "rarity": "normal",
+                "level": 13,
+                "ilvl": 13,
+                "baseRolls": {
+                  "defense": 5
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-4t0jt-2oo",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 13,
+                "ilvl": 13,
+                "baseRolls": {
+                  "defense": 3
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-508dl-2op",
+                "baseId": "items/base/boot-leather",
+                "rarity": "normal",
+                "level": 13,
+                "ilvl": 13,
+                "baseRolls": {
+                  "defense": 5
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-77qxg-2oq",
+                "baseId": "items/base/glove-leather",
+                "rarity": "normal",
+                "level": 13,
+                "ilvl": 13,
+                "baseRolls": {
+                  "defense": 3
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-1fuf7-2or",
+                "baseId": "items/base/belt-light",
+                "rarity": "normal",
+                "level": 13,
+                "ilvl": 13,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-79786-2os",
+                "baseId": "items/base/wp2h-great-axe",
+                "rarity": "normal",
+                "level": 13,
+                "ilvl": 13,
+                "baseRolls": {
+                  "attack": 20
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-9mr1x-2ot",
+                "baseId": "items/base/ring-iron",
+                "rarity": "normal",
+                "level": 13,
+                "ilvl": 13,
+                "baseRolls": {},
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-7fkkp-2ou",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 13,
+                "ilvl": 13,
+                "baseRolls": {
+                  "defense": 3
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-31v85-2ov",
+                "baseId": "items/base/boot-leather",
+                "rarity": "normal",
+                "level": 13,
+                "ilvl": 13,
+                "baseRolls": {
+                  "defense": 5
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-5h357-2ow",
+                "baseId": "items/base/amu-tin",
+                "rarity": "normal",
+                "level": 13,
+                "ilvl": 13,
+                "baseRolls": {},
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-7i7bl-2ox",
+                "baseId": "items/base/armor-leather",
+                "rarity": "normal",
+                "level": 13,
+                "ilvl": 13,
+                "baseRolls": {
+                  "defense": 19
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-a7fp-2oy",
+                "baseId": "items/base/boot-leather",
+                "rarity": "normal",
+                "level": 13,
+                "ilvl": 13,
+                "baseRolls": {
+                  "defense": 3
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-2cxjo-2oz",
+                "baseId": "items/base/armor-leather",
+                "rarity": "normal",
+                "level": 13,
+                "ilvl": 13,
+                "baseRolls": {
+                  "defense": 18
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-r0u5-2p0",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 13,
+                "ilvl": 13,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-86hns-2p1",
+                "baseId": "items/base/wp1h-scimitar",
+                "rarity": "normal",
+                "level": 13,
+                "ilvl": 13,
+                "baseRolls": {
+                  "attack": 9
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-6u0hc-2p2",
+                "baseId": "items/base/helm-skull-cap",
+                "rarity": "normal",
+                "level": 13,
+                "ilvl": 13,
+                "baseRolls": {
+                  "defense": 12
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-4ye15-2p3",
+                "baseId": "items/base/armor-leather",
+                "rarity": "normal",
+                "level": 13,
+                "ilvl": 13,
+                "baseRolls": {
+                  "defense": 20
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              }
+            ],
+            "removedItemIds": [],
+            "addedClears": []
+          },
+          "itemObjects": 3888,
+          "uniqueItemIds": 3888
+        },
+        {
+          "index": 4,
+          "terminalMs": 46500,
+          "result": "victory",
+          "actualDelta": {
+            "xp": 1820,
+            "mercXp": {
+              "mercs/act1-rogue-inner-sight": 1365
+            },
+            "currencies": {
+              "rune-shard": 1469,
+              "wishstone": 5,
+              "gem-shard": 1
+            },
+            "addedItems": [
+              {
+                "id": "it-16th-2p4",
+                "baseId": "items/base/armor-leather",
+                "rarity": "normal",
+                "level": 14,
+                "ilvl": 14,
+                "baseRolls": {
+                  "defense": 19
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-2l5gh-2p5",
+                "baseId": "items/base/armor-leather",
+                "rarity": "normal",
+                "level": 14,
+                "ilvl": 14,
+                "baseRolls": {
+                  "defense": 24
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-60v77-2p6",
+                "baseId": "items/base/ring-iron",
+                "rarity": "normal",
+                "level": 14,
+                "ilvl": 14,
+                "baseRolls": {},
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-60yby-2p7",
+                "baseId": "items/base/belt-light",
+                "rarity": "normal",
+                "level": 14,
+                "ilvl": 14,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-2o5cj-2p8",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 14,
+                "ilvl": 14,
+                "baseRolls": {
+                  "defense": 3
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-109e-2p9",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 14,
+                "ilvl": 14,
+                "baseRolls": {
+                  "defense": 2
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-k5em-2pa",
+                "baseId": "items/base/boot-leather",
+                "rarity": "normal",
+                "level": 14,
+                "ilvl": 14,
+                "baseRolls": {
+                  "defense": 5
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-4ah9h-2pb",
+                "baseId": "items/base/boot-leather",
+                "rarity": "normal",
+                "level": 14,
+                "ilvl": 14,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-3pq5y-2pc",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 14,
+                "ilvl": 14,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-9m9iy-2pd",
+                "baseId": "items/base/ring-silver",
+                "rarity": "normal",
+                "level": 14,
+                "ilvl": 14,
+                "baseRolls": {},
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-763wk-2pe",
+                "baseId": "items/base/sh-kite",
+                "rarity": "normal",
+                "level": 14,
+                "ilvl": 14,
+                "baseRolls": {
+                  "defense": 14
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-9kone-2pf",
+                "baseId": "items/base/belt-sash",
+                "rarity": "normal",
+                "level": 14,
+                "ilvl": 14,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-87h2c-2pg",
+                "baseId": "items/base/armor-leather",
+                "rarity": "normal",
+                "level": 14,
+                "ilvl": 14,
+                "baseRolls": {
+                  "defense": 19
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-832r5-2ph",
+                "baseId": "items/base/amu-brass",
+                "rarity": "normal",
+                "level": 14,
+                "ilvl": 14,
+                "baseRolls": {},
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              }
+            ],
+            "removedItemIds": [],
+            "addedClears": [
+              "areas/act1-dark-wood"
+            ]
+          },
+          "itemObjects": 3902,
+          "uniqueItemIds": 3902
+        }
+      ]
+    },
+    {
+      "area": "areas/act1-catacombs",
+      "ordinal": 106,
+      "result": "victory",
+      "waves": [
+        {
+          "index": 0,
+          "terminalMs": 15620,
+          "result": "next-wave",
+          "actualDelta": {
+            "xp": 1400,
+            "mercXp": {
+              "mercs/act1-rogue-inner-sight": 1050
+            },
+            "currencies": {
+              "rune-shard": 700,
+              "wishstone": 0,
+              "gem-shard": 0
+            },
+            "addedItems": [
+              {
+                "id": "it-43c49-2pi",
+                "baseId": "items/base/glove-leather",
+                "rarity": "normal",
+                "level": 14,
+                "ilvl": 14,
+                "baseRolls": {
+                  "defense": 5
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-8f9rm-2pj",
+                "baseId": "items/base/glove-leather",
+                "rarity": "normal",
+                "level": 14,
+                "ilvl": 14,
+                "baseRolls": {
+                  "defense": 3
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-35xje-2pk",
+                "baseId": "items/base/glove-leather",
+                "rarity": "normal",
+                "level": 14,
+                "ilvl": 14,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-8iimt-2pl",
+                "baseId": "items/base/boot-leather",
+                "rarity": "normal",
+                "level": 14,
+                "ilvl": 14,
+                "baseRolls": {
+                  "defense": 3
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              }
+            ],
+            "removedItemIds": [],
+            "addedClears": []
+          },
+          "itemObjects": 3906,
+          "uniqueItemIds": 3906
+        },
+        {
+          "index": 1,
+          "terminalMs": 15444,
+          "result": "next-wave",
+          "actualDelta": {
+            "xp": 1540,
+            "mercXp": {
+              "mercs/act1-rogue-inner-sight": 1155
+            },
+            "currencies": {
+              "rune-shard": 727,
+              "wishstone": 0,
+              "gem-shard": 0
+            },
+            "addedItems": [
+              {
+                "id": "it-8nbk1-2pm",
+                "baseId": "items/base/boot-leather",
+                "rarity": "normal",
+                "level": 14,
+                "ilvl": 14,
+                "baseRolls": {
+                  "defense": 3
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-9uvm5-2pn",
+                "baseId": "items/base/boot-leather",
+                "rarity": "normal",
+                "level": 14,
+                "ilvl": 14,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-9vi7f-2po",
+                "baseId": "items/base/boot-leather",
+                "rarity": "normal",
+                "level": 14,
+                "ilvl": 14,
+                "baseRolls": {
+                  "defense": 4
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              },
+              {
+                "id": "it-76fvl-2pp",
+                "baseId": "items/base/glove-leather",
+                "rarity": "normal",
+                "level": 14,
+                "ilvl": 14,
+                "baseRolls": {
+                  "defense": 3
+                },
+                "affixes": [],
+                "generatedName": {},
+                "identified": true,
+                "equipped": false
+              }
+            ],
+            "removedItemIds": [],
+            "addedClears": []
+          },
+          "itemObjects": 3910,
+          "uniqueItemIds": 3910
+        },
+        {
+          "index": 2,
+          "terminalMs": 19656,
+          "result": "next-wave",
+          "actualDelta": {
+            "xp": 1920,
+            "mercXp": {
+              "mercs/act1-rogue-inner-sight": 1440
+            },
+            "currencies": {
+              "rune-shard": 988,
+              "wishstone": 0,
+              "gem-shard": 1
+            },
+            "addedItems": [],
+            "removedItemIds": [],
+            "addedClears": []
+          },
+          "itemObjects": 3910,
+          "uniqueItemIds": 3910
+        },
+        {
+          "index": 3,
+          "terminalMs": 36504,
+          "result": "next-wave",
+          "actualDelta": {
+            "xp": 2210,
+            "mercXp": {
+              "mercs/act1-rogue-inner-sight": 1657
+            },
+            "currencies": {
+              "rune-shard": 2035,
+              "wishstone": 2,
+              "gem-shard": 0
+            },
+            "addedItems": [],
+            "removedItemIds": [],
+            "addedClears": []
+          },
+          "itemObjects": 3910,
+          "uniqueItemIds": 3910
+        },
+        {
+          "index": 4,
+          "terminalMs": 55380,
+          "result": "next-wave",
+          "actualDelta": {
+            "xp": 2520,
+            "mercXp": {
+              "mercs/act1-rogue-inner-sight": 1890
+            },
+            "currencies": {
+              "rune-shard": 2096,
+              "wishstone": 5,
+              "gem-shard": 0
+            },
+            "addedItems": [],
+            "removedItemIds": [],
+            "addedClears": []
+          },
+          "itemObjects": 3910,
+          "uniqueItemIds": 3910
+        },
+        {
+          "index": 5,
+          "terminalMs": 19656,
+          "result": "victory",
+          "actualDelta": {
+            "xp": 190,
+            "mercXp": {
+              "mercs/act1-rogue-inner-sight": 142
+            },
+            "currencies": {
+              "rune-shard": 4245,
+              "wishstone": 24,
+              "gem-shard": 1
+            },
+            "addedItems": [
+              {
+                "id": "it-4x8ao-2pq",
+                "baseId": "items/base/helm-skull-cap",
+                "rarity": "rare",
+                "level": 19,
+                "ilvl": 19,
+                "baseRolls": {
+                  "defense": 11
+                },
+                "affixes": [
+                  {
+                    "id": "affix.ethereal.magic-dodge",
+                    "tier": 1,
+                    "rolledValue": 4
+                  },
+                  {
+                    "id": "affix.armor.defense.flat",
+                    "tier": 1,
+                    "rolledValue": 18
+                  },
+                  {
+                    "id": "affix.vital.life.flat",
+                    "tier": 1,
+                    "rolledValue": 30
+                  },
+                  {
+                    "id": "affix.lightning.resistance",
+                    "tier": 1,
+                    "rolledValue": 9
+                  },
+                  {
+                    "id": "affix.fire.resistance",
+                    "tier": 1,
+                    "rolledValue": 10
+                  },
+                  {
+                    "id": "affix.cold.resistance",
+                    "tier": 1,
+                    "rolledValue": 17
+                  }
+                ],
+                "generatedName": {},
+                "identified": false,
+                "equipped": false
+              },
+              {
+                "id": "it-3o7yq-2pr",
+                "baseId": "items/base/ring-silver",
+                "rarity": "rare",
+                "level": 19,
+                "ilvl": 19,
+                "baseRolls": {},
+                "affixes": [
+                  {
+                    "id": "affix.savage.crit-damage",
+                    "tier": 1,
+                    "rolledValue": 24
+                  },
+                  {
+                    "id": "affix.nimble.phys-dodge",
+                    "tier": 1,
+                    "rolledValue": 4
+                  },
+                  {
+                    "id": "affix.vital.life.flat",
+                    "tier": 1,
+                    "rolledValue": 26
+                  },
+                  {
+                    "id": "affix.bat.mana.flat",
+                    "tier": 1,
+                    "rolledValue": 22
+                  },
+                  {
+                    "id": "affix.poison.resistance",
+                    "tier": 1,
+                    "rolledValue": 8
+                  },
+                  {
+                    "id": "affix.wolf.life.flat",
+                    "tier": 1,
+                    "rolledValue": 25
+                  }
+                ],
+                "generatedName": {},
+                "identified": false,
+                "equipped": false
+              },
+              {
+                "id": "it-8xk6k-2ps",
+                "baseId": "items/base/ring-silver",
+                "rarity": "rare",
+                "level": 19,
+                "ilvl": 19,
+                "baseRolls": {},
+                "affixes": [
+                  {
+                    "id": "affix.ethereal.magic-dodge",
+                    "tier": 1,
+                    "rolledValue": 3
+                  },
+                  {
+                    "id": "affix.vital.life.flat",
+                    "tier": 1,
+                    "rolledValue": 14
+                  },
+                  {
+                    "id": "affix.precise.crit-chance",
+                    "tier": 1,
+                    "rolledValue": 5
+                  },
+                  {
+                    "id": "affix.bat.mana.flat",
+                    "tier": 1,
+                    "rolledValue": 13
+                  },
+                  {
+                    "id": "affix.lightning.resistance",
+                    "tier": 1,
+                    "rolledValue": 8
+                  },
+                  {
+                    "id": "affix.poison.resistance",
+                    "tier": 1,
+                    "rolledValue": 11
+                  }
+                ],
+                "generatedName": {},
+                "identified": false,
+                "equipped": false
+              }
+            ],
+            "removedItemIds": [],
+            "addedClears": [
+              "areas/act1-catacombs"
+            ]
+          },
+          "itemObjects": 3913,
+          "uniqueItemIds": 3913
+        }
+      ]
+    }
+  ],
+  "boundary": {
+    "transfers": [
+      {
+        "owner": "merc",
+        "slot": "weapon",
+        "previousId": "it-7is2r-10i",
+        "selectedId": "it-7i7bl-2n2",
+        "beforeBackpack": 3889,
+        "afterBackpack": 3889,
+        "heroBefore": {
+          "life": 120,
+          "lifeMax": 262,
+          "mana": 102,
+          "manaMax": 188,
+          "attack": 56,
+          "defense": 120,
+          "magicResist": 0,
+          "attackSpeed": 125,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "heroAfter": {
+          "life": 120,
+          "lifeMax": 262,
+          "mana": 102,
+          "manaMax": 188,
+          "attack": 56,
+          "defense": 120,
+          "magicResist": 0,
+          "attackSpeed": 125,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        }
+      },
+      {
+        "owner": "merc",
+        "slot": "head",
+        "previousId": "it-oxm6-129",
+        "selectedId": "it-2hfgx-2my",
+        "beforeBackpack": 3889,
+        "afterBackpack": 3889,
+        "heroBefore": {
+          "life": 120,
+          "lifeMax": 262,
+          "mana": 102,
+          "manaMax": 188,
+          "attack": 56,
+          "defense": 120,
+          "magicResist": 0,
+          "attackSpeed": 125,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "heroAfter": {
+          "life": 120,
+          "lifeMax": 262,
+          "mana": 102,
+          "manaMax": 188,
+          "attack": 56,
+          "defense": 120,
+          "magicResist": 0,
+          "attackSpeed": 125,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        }
+      },
+      {
+        "owner": "hero",
+        "slot": "weapon",
+        "previousId": "it-2c0ac-10m",
+        "selectedId": "it-79786-2n0",
+        "beforeBackpack": 3889,
+        "afterBackpack": 3889,
+        "heroBefore": {
+          "life": 120,
+          "lifeMax": 262,
+          "mana": 102,
+          "manaMax": 188,
+          "attack": 56,
+          "defense": 120,
+          "magicResist": 0,
+          "attackSpeed": 125,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "heroAfter": {
+          "life": 120,
+          "lifeMax": 262,
+          "mana": 102,
+          "manaMax": 188,
+          "attack": 80,
+          "defense": 120,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        }
+      },
+      {
+        "owner": "hero",
+        "slot": "head",
+        "previousId": "it-oxm6-10x",
+        "selectedId": "it-2mhtl-2mz",
+        "beforeBackpack": 3889,
+        "afterBackpack": 3889,
+        "heroBefore": {
+          "life": 120,
+          "lifeMax": 262,
+          "mana": 102,
+          "manaMax": 188,
+          "attack": 80,
+          "defense": 120,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "heroAfter": {
+          "life": 120,
+          "lifeMax": 272,
+          "mana": 102,
+          "manaMax": 188,
+          "attack": 80,
+          "defense": 136,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 15,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        }
+      },
+      {
+        "owner": "hero",
+        "slot": "offhand",
+        "previousId": "it-9mr1x-10o",
+        "selectedId": "it-9mr1x-10o",
+        "beforeBackpack": 3889,
+        "afterBackpack": 3889,
+        "heroBefore": {
+          "life": 120,
+          "lifeMax": 272,
+          "mana": 102,
+          "manaMax": 188,
+          "attack": 80,
+          "defense": 136,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 15,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "heroAfter": {
+          "life": 120,
+          "lifeMax": 272,
+          "mana": 102,
+          "manaMax": 188,
+          "attack": 80,
+          "defense": 136,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 15,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        }
+      },
+      {
+        "owner": "hero",
+        "slot": "chest",
+        "previousId": "it-3zbek-10h",
+        "selectedId": "it-2l5gh-2p5",
+        "beforeBackpack": 3889,
+        "afterBackpack": 3889,
+        "heroBefore": {
+          "life": 120,
+          "lifeMax": 272,
+          "mana": 102,
+          "manaMax": 188,
+          "attack": 80,
+          "defense": 136,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 15,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "heroAfter": {
+          "life": 120,
+          "lifeMax": 272,
+          "mana": 102,
+          "manaMax": 188,
+          "attack": 80,
+          "defense": 137,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 15,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        }
+      },
+      {
+        "owner": "hero",
+        "slot": "belt",
+        "previousId": "it-22zc9-10f",
+        "selectedId": "it-3q5gd-2mw",
+        "beforeBackpack": 3889,
+        "afterBackpack": 3889,
+        "heroBefore": {
+          "life": 120,
+          "lifeMax": 272,
+          "mana": 102,
+          "manaMax": 188,
+          "attack": 80,
+          "defense": 137,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 15,
+            "poison": 0,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "heroAfter": {
+          "life": 120,
+          "lifeMax": 272,
+          "mana": 102,
+          "manaMax": 218,
+          "attack": 80,
+          "defense": 149,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 15,
+            "poison": 0,
+            "arcane": 15,
+            "physical": 0
+          }
+        }
+      },
+      {
+        "owner": "hero",
+        "slot": "gloves",
+        "previousId": "it-96fga-3",
+        "selectedId": "it-96fga-3",
+        "beforeBackpack": 3889,
+        "afterBackpack": 3889,
+        "heroBefore": {
+          "life": 120,
+          "lifeMax": 272,
+          "mana": 102,
+          "manaMax": 218,
+          "attack": 80,
+          "defense": 149,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 15,
+            "poison": 0,
+            "arcane": 15,
+            "physical": 0
+          }
+        },
+        "heroAfter": {
+          "life": 120,
+          "lifeMax": 272,
+          "mana": 102,
+          "manaMax": 218,
+          "attack": 80,
+          "defense": 149,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 15,
+            "poison": 0,
+            "arcane": 15,
+            "physical": 0
+          }
+        }
+      },
+      {
+        "owner": "hero",
+        "slot": "boots",
+        "previousId": "it-9qlpi-10k",
+        "selectedId": "it-483xw-2n1",
+        "beforeBackpack": 3889,
+        "afterBackpack": 3889,
+        "heroBefore": {
+          "life": 120,
+          "lifeMax": 272,
+          "mana": 102,
+          "manaMax": 218,
+          "attack": 80,
+          "defense": 149,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 15,
+            "poison": 0,
+            "arcane": 15,
+            "physical": 0
+          }
+        },
+        "heroAfter": {
+          "life": 120,
+          "lifeMax": 272,
+          "mana": 102,
+          "manaMax": 218,
+          "attack": 80,
+          "defense": 150,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 25,
+            "cold": 0,
+            "lightning": 15,
+            "poison": 0,
+            "arcane": 15,
+            "physical": 0
+          }
+        }
+      },
+      {
+        "owner": "hero",
+        "slot": "amulet",
+        "previousId": null,
+        "selectedId": "it-3yp06-2mv",
+        "beforeBackpack": 3889,
+        "afterBackpack": 3888,
+        "heroBefore": {
+          "life": 120,
+          "lifeMax": 272,
+          "mana": 102,
+          "manaMax": 218,
+          "attack": 80,
+          "defense": 150,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 25,
+            "cold": 0,
+            "lightning": 15,
+            "poison": 0,
+            "arcane": 15,
+            "physical": 0
+          }
+        },
+        "heroAfter": {
+          "life": 120,
+          "lifeMax": 284,
+          "mana": 102,
+          "manaMax": 225,
+          "attack": 80,
+          "defense": 150,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 30,
+            "cold": 0,
+            "lightning": 15,
+            "poison": 0,
+            "arcane": 15,
+            "physical": 4
+          }
+        }
+      },
+      {
+        "owner": "merc",
+        "slot": "offhand",
+        "previousId": null,
+        "selectedId": "it-9mr1x-120",
+        "beforeBackpack": 3888,
+        "afterBackpack": 3887,
+        "heroBefore": {
+          "life": 120,
+          "lifeMax": 284,
+          "mana": 102,
+          "manaMax": 225,
+          "attack": 80,
+          "defense": 150,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 30,
+            "cold": 0,
+            "lightning": 15,
+            "poison": 0,
+            "arcane": 15,
+            "physical": 4
+          }
+        },
+        "heroAfter": {
+          "life": 120,
+          "lifeMax": 284,
+          "mana": 102,
+          "manaMax": 225,
+          "attack": 80,
+          "defense": 150,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 30,
+            "cold": 0,
+            "lightning": 15,
+            "poison": 0,
+            "arcane": 15,
+            "physical": 4
+          }
+        }
+      },
+      {
+        "owner": "merc",
+        "slot": "chest",
+        "previousId": "it-3zbek-11t",
+        "selectedId": "it-43c49-2m3",
+        "beforeBackpack": 3887,
+        "afterBackpack": 3887,
+        "heroBefore": {
+          "life": 120,
+          "lifeMax": 284,
+          "mana": 102,
+          "manaMax": 225,
+          "attack": 80,
+          "defense": 150,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 30,
+            "cold": 0,
+            "lightning": 15,
+            "poison": 0,
+            "arcane": 15,
+            "physical": 4
+          }
+        },
+        "heroAfter": {
+          "life": 120,
+          "lifeMax": 284,
+          "mana": 102,
+          "manaMax": 225,
+          "attack": 80,
+          "defense": 150,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 30,
+            "cold": 0,
+            "lightning": 15,
+            "poison": 0,
+            "arcane": 15,
+            "physical": 4
+          }
+        }
+      },
+      {
+        "owner": "merc",
+        "slot": "belt",
+        "previousId": "it-22zc9-11r",
+        "selectedId": "it-8m36m-2mx",
+        "beforeBackpack": 3887,
+        "afterBackpack": 3887,
+        "heroBefore": {
+          "life": 120,
+          "lifeMax": 284,
+          "mana": 102,
+          "manaMax": 225,
+          "attack": 80,
+          "defense": 150,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 30,
+            "cold": 0,
+            "lightning": 15,
+            "poison": 0,
+            "arcane": 15,
+            "physical": 4
+          }
+        },
+        "heroAfter": {
+          "life": 120,
+          "lifeMax": 284,
+          "mana": 102,
+          "manaMax": 225,
+          "attack": 80,
+          "defense": 150,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 30,
+            "cold": 0,
+            "lightning": 15,
+            "poison": 0,
+            "arcane": 15,
+            "physical": 4
+          }
+        }
+      },
+      {
+        "owner": "merc",
+        "slot": "gloves",
+        "previousId": "it-96fga-8",
+        "selectedId": "it-96fga-8",
+        "beforeBackpack": 3887,
+        "afterBackpack": 3887,
+        "heroBefore": {
+          "life": 120,
+          "lifeMax": 284,
+          "mana": 102,
+          "manaMax": 225,
+          "attack": 80,
+          "defense": 150,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 30,
+            "cold": 0,
+            "lightning": 15,
+            "poison": 0,
+            "arcane": 15,
+            "physical": 4
+          }
+        },
+        "heroAfter": {
+          "life": 120,
+          "lifeMax": 284,
+          "mana": 102,
+          "manaMax": 225,
+          "attack": 80,
+          "defense": 150,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 30,
+            "cold": 0,
+            "lightning": 15,
+            "poison": 0,
+            "arcane": 15,
+            "physical": 4
+          }
+        }
+      },
+      {
+        "owner": "merc",
+        "slot": "boots",
+        "previousId": "it-9qlpi-11w",
+        "selectedId": "it-9qlpi-11w",
+        "beforeBackpack": 3887,
+        "afterBackpack": 3887,
+        "heroBefore": {
+          "life": 120,
+          "lifeMax": 284,
+          "mana": 102,
+          "manaMax": 225,
+          "attack": 80,
+          "defense": 150,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 30,
+            "cold": 0,
+            "lightning": 15,
+            "poison": 0,
+            "arcane": 15,
+            "physical": 4
+          }
+        },
+        "heroAfter": {
+          "life": 120,
+          "lifeMax": 284,
+          "mana": 102,
+          "manaMax": 225,
+          "attack": 80,
+          "defense": 150,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 30,
+            "cold": 0,
+            "lightning": 15,
+            "poison": 0,
+            "arcane": 15,
+            "physical": 4
+          }
+        }
+      }
+    ],
+    "itemIdsConserved": true,
+    "heroStats": {
+      "life": 120,
+      "lifeMax": 284,
+      "mana": 102,
+      "manaMax": 225,
+      "attack": 80,
+      "defense": 150,
+      "magicResist": 0,
+      "attackSpeed": 135,
+      "critChance": 0.05,
+      "critDamage": 2,
+      "physDodge": 0.1,
+      "magicDodge": 0.05,
+      "magicFind": 0,
+      "goldFind": 0,
+      "resistances": {
+        "fire": 30,
+        "cold": 0,
+        "lightning": 15,
+        "poison": 0,
+        "arcane": 15,
+        "physical": 4
+      }
+    },
+    "mercStats": {
+      "life": 252,
+      "lifeMax": 282,
+      "mana": 79,
+      "manaMax": 124,
+      "attack": 100,
+      "defense": 99,
+      "magicResist": 0,
+      "attackSpeed": 137,
+      "critChance": 0.05,
+      "critDamage": 2,
+      "physDodge": 0.094,
+      "magicDodge": 0.05,
+      "magicFind": 0,
+      "goldFind": 0,
+      "resistances": {
+        "fire": 0,
+        "cold": 0,
+        "lightning": 0,
+        "poison": 0,
+        "arcane": 15,
+        "physical": 0
+      }
+    },
+    "items": 3902
+  },
+  "selection": [
+    {
+      "owner": "merc",
+      "slot": "weapon",
+      "previousId": "it-7is2r-10i",
+      "selectedId": "it-7i7bl-2n2",
+      "item": {
+        "id": "it-7i7bl-2n2",
+        "baseId": "items/base/wp1h-short-sword",
+        "rarity": "unique",
+        "level": 9,
+        "ilvl": 9,
+        "baseRolls": {
+          "attack": 5
+        },
+        "affixes": [],
+        "statRolls": {},
+        "generatedName": {},
+        "identified": true,
+        "equipped": false,
+        "uniqueId": "items/unique/blood-crescent"
+      },
+      "scoreKeys": [
+        "attack",
+        "attackSpeed"
+      ],
+      "score": [
+        80,
+        137
+      ],
+      "mods": {
+        "life": 15,
+        "attack": 55,
+        "attackSpeed": 15
+      }
+    },
+    {
+      "owner": "merc",
+      "slot": "head",
+      "previousId": "it-oxm6-129",
+      "selectedId": "it-2hfgx-2my",
+      "item": {
+        "id": "it-2hfgx-2my",
+        "baseId": "items/base/helm-cap",
+        "rarity": "unique",
+        "level": 9,
+        "ilvl": 9,
+        "baseRolls": {
+          "defense": 8
+        },
+        "affixes": [],
+        "statRolls": {},
+        "generatedName": {},
+        "identified": true,
+        "equipped": false,
+        "uniqueId": "items/unique/biggin-bonnet"
+      },
+      "scoreKeys": [
+        "attack",
+        "lifeMax",
+        "defense"
+      ],
+      "score": [
+        100,
+        282,
+        71
+      ],
+      "mods": {
+        "strength": 5,
+        "life": 15,
+        "mana": 15,
+        "attack": 20,
+        "defense": 8
+      }
+    },
+    {
+      "owner": "hero",
+      "slot": "weapon",
+      "previousId": "it-2c0ac-10m",
+      "selectedId": "it-79786-2n0",
+      "item": {
+        "id": "it-79786-2n0",
+        "baseId": "items/base/weapon-wand",
+        "rarity": "set",
+        "level": 9,
+        "ilvl": 9,
+        "baseRolls": {
+          "attack": 9
+        },
+        "affixes": [],
+        "statRolls": {},
+        "generatedName": {},
+        "identified": true,
+        "equipped": false,
+        "setId": "sets/arcanna-tricks",
+        "setPieceId": "sets/arcanna-tricks/weapon"
+      },
+      "scoreKeys": [
+        "attackSpeed",
+        "lifeMax",
+        "magicResist",
+        "defense"
+      ],
+      "score": [
+        135,
+        262,
+        0,
+        120
+      ],
+      "mods": {
+        "attack": 36,
+        "attackSpeed": 10
+      }
+    },
+    {
+      "owner": "hero",
+      "slot": "head",
+      "previousId": "it-oxm6-10x",
+      "selectedId": "it-2mhtl-2mz",
+      "item": {
+        "id": "it-2mhtl-2mz",
+        "baseId": "items/base/helm-skull-cap",
+        "rarity": "unique",
+        "level": 9,
+        "ilvl": 9,
+        "baseRolls": {
+          "defense": 10
+        },
+        "affixes": [],
+        "statRolls": {},
+        "generatedName": {},
+        "identified": true,
+        "equipped": false,
+        "uniqueId": "items/unique/coif-of-glory"
+      },
+      "scoreKeys": [
+        "defense",
+        "lifeMax"
+      ],
+      "score": [
+        136,
+        272
+      ],
+      "mods": {
+        "life": 10,
+        "defense": 30,
+        "lightningRes": 15
+      }
+    },
+    {
+      "owner": "hero",
+      "slot": "offhand",
+      "previousId": "it-9mr1x-10o",
+      "selectedId": "it-9mr1x-10o",
+      "item": {
+        "id": "it-9mr1x-10o",
+        "baseId": "items/base/sh-kite",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "defense": 16
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": true
+      },
+      "scoreKeys": [
+        "defense",
+        "lifeMax"
+      ],
+      "score": [
+        136,
+        272
+      ],
+      "mods": {
+        "defense": 16
+      }
+    },
+    {
+      "owner": "hero",
+      "slot": "chest",
+      "previousId": "it-3zbek-10h",
+      "selectedId": "it-2l5gh-2p5",
+      "item": {
+        "id": "it-2l5gh-2p5",
+        "baseId": "items/base/armor-leather",
+        "rarity": "normal",
+        "level": 14,
+        "ilvl": 14,
+        "baseRolls": {
+          "defense": 24
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      "scoreKeys": [
+        "defense",
+        "lifeMax"
+      ],
+      "score": [
+        137,
+        272
+      ],
+      "mods": {
+        "defense": 24
+      }
+    },
+    {
+      "owner": "hero",
+      "slot": "belt",
+      "previousId": "it-22zc9-10f",
+      "selectedId": "it-3q5gd-2mw",
+      "item": {
+        "id": "it-3q5gd-2mw",
+        "baseId": "items/base/belt-light",
+        "rarity": "unique",
+        "level": 9,
+        "ilvl": 9,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "statRolls": {},
+        "generatedName": {},
+        "identified": true,
+        "equipped": false,
+        "uniqueId": "items/unique/lenymo"
+      },
+      "scoreKeys": [
+        "defense",
+        "lifeMax"
+      ],
+      "score": [
+        149,
+        272
+      ],
+      "mods": {
+        "mana": 30,
+        "defense": 16,
+        "arcaneRes": 15
+      }
+    },
+    {
+      "owner": "hero",
+      "slot": "gloves",
+      "previousId": "it-96fga-3",
+      "selectedId": "it-96fga-3",
+      "item": {
+        "id": "it-96fga-3",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": true
+      },
+      "scoreKeys": [
+        "defense",
+        "lifeMax"
+      ],
+      "score": [
+        149,
+        272
+      ],
+      "mods": {
+        "defense": 5
+      }
+    },
+    {
+      "owner": "hero",
+      "slot": "boots",
+      "previousId": "it-9qlpi-10k",
+      "selectedId": "it-483xw-2n1",
+      "item": {
+        "id": "it-483xw-2n1",
+        "baseId": "items/base/boots",
+        "rarity": "unique",
+        "level": 9,
+        "ilvl": 9,
+        "baseRolls": {
+          "defense": 6
+        },
+        "affixes": [],
+        "statRolls": {},
+        "generatedName": {},
+        "identified": true,
+        "equipped": false,
+        "uniqueId": "items/unique/hotspur"
+      },
+      "scoreKeys": [
+        "fireRes",
+        "lightningRes",
+        "defense"
+      ],
+      "score": [
+        25,
+        15,
+        150
+      ],
+      "mods": {
+        "defense": 6,
+        "fireRes": 25
+      }
+    },
+    {
+      "owner": "hero",
+      "slot": "amulet",
+      "previousId": null,
+      "selectedId": "it-3yp06-2mv",
+      "item": {
+        "id": "it-3yp06-2mv",
+        "baseId": "items/base/amu-tin",
+        "rarity": "rare",
+        "level": 9,
+        "ilvl": 9,
+        "baseRolls": {},
+        "affixes": [
+          {
+            "id": "affix.mystic.mana.flat",
+            "tier": 0,
+            "rolledValue": 7
+          },
+          {
+            "id": "affix.wolf.life.flat",
+            "tier": 0,
+            "rolledValue": 12
+          },
+          {
+            "id": "affix.fire.resistance",
+            "tier": 0,
+            "rolledValue": 5
+          },
+          {
+            "id": "affix.physical.resistance",
+            "tier": 0,
+            "rolledValue": 4
+          }
+        ],
+        "generatedName": {},
+        "identified": false,
+        "equipped": false
+      },
+      "scoreKeys": [
+        "lifeMax",
+        "physicalRes",
+        "manaMax"
+      ],
+      "score": [
+        284,
+        4,
+        225
+      ],
+      "mods": {
+        "life": 12,
+        "mana": 7,
+        "fireRes": 5,
+        "physicalRes": 4
+      }
+    },
+    {
+      "owner": "merc",
+      "slot": "offhand",
+      "previousId": null,
+      "selectedId": "it-9mr1x-120",
+      "item": {
+        "id": "it-9mr1x-120",
+        "baseId": "items/base/sh-kite",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "defense": 16
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      "scoreKeys": [
+        "defense",
+        "lifeMax"
+      ],
+      "score": [
+        87,
+        282
+      ],
+      "mods": {
+        "defense": 16
+      }
+    },
+    {
+      "owner": "merc",
+      "slot": "chest",
+      "previousId": "it-3zbek-11t",
+      "selectedId": "it-43c49-2m3",
+      "item": {
+        "id": "it-43c49-2m3",
+        "baseId": "items/base/armor-leather",
+        "rarity": "normal",
+        "level": 5,
+        "ilvl": 5,
+        "baseRolls": {
+          "defense": 24
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": false
+      },
+      "scoreKeys": [
+        "defense",
+        "lifeMax"
+      ],
+      "score": [
+        88,
+        282
+      ],
+      "mods": {
+        "defense": 24
+      }
+    },
+    {
+      "owner": "merc",
+      "slot": "belt",
+      "previousId": "it-22zc9-11r",
+      "selectedId": "it-8m36m-2mx",
+      "item": {
+        "id": "it-8m36m-2mx",
+        "baseId": "items/base/belt-light",
+        "rarity": "unique",
+        "level": 9,
+        "ilvl": 9,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "statRolls": {},
+        "generatedName": {},
+        "identified": true,
+        "equipped": false,
+        "uniqueId": "items/unique/lenymo"
+      },
+      "scoreKeys": [
+        "defense",
+        "lifeMax"
+      ],
+      "score": [
+        99,
+        282
+      ],
+      "mods": {
+        "mana": 30,
+        "defense": 15,
+        "arcaneRes": 15
+      }
+    },
+    {
+      "owner": "merc",
+      "slot": "gloves",
+      "previousId": "it-96fga-8",
+      "selectedId": "it-96fga-8",
+      "item": {
+        "id": "it-96fga-8",
+        "baseId": "items/base/glove-leather",
+        "rarity": "normal",
+        "level": 2,
+        "ilvl": 2,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": true,
+        "equipSlot": "gloves"
+      },
+      "scoreKeys": [
+        "defense",
+        "lifeMax"
+      ],
+      "score": [
+        99,
+        282
+      ],
+      "mods": {
+        "defense": 5
+      }
+    },
+    {
+      "owner": "merc",
+      "slot": "boots",
+      "previousId": "it-9qlpi-11w",
+      "selectedId": "it-9qlpi-11w",
+      "item": {
+        "id": "it-9qlpi-11w",
+        "baseId": "items/base/boot-leather",
+        "rarity": "normal",
+        "level": 7,
+        "ilvl": 7,
+        "baseRolls": {
+          "defense": 5
+        },
+        "affixes": [],
+        "generatedName": {},
+        "identified": true,
+        "equipped": true,
+        "equipSlot": "boots"
+      },
+      "scoreKeys": [
+        "defense",
+        "lifeMax"
+      ],
+      "score": [
+        99,
+        282
+      ],
+      "mods": {
+        "defense": 5
+      }
+    }
+  ],
+  "andariel": {
+    "openingEnemies": [
+      {
+        "id": "enemy-act1.andariel-0-3b58",
+        "name": "monsters.andariel A (Boss)",
+        "side": "enemy",
+        "level": 19,
+        "tier": "chapter-boss",
+        "stats": {
+          "life": 1200,
+          "lifeMax": 1200,
+          "mana": 0,
+          "manaMax": 0,
+          "attack": 90,
+          "defense": 40,
+          "magicResist": 15,
+          "attackSpeed": 110,
+          "critChance": 0.1,
+          "critDamage": 1.75,
+          "physDodge": 0.05,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 50,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 75,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "life": 1200,
+        "mana": 0,
+        "statuses": [],
+        "cooldowns": {},
+        "skillOrder": [
+          "monster-poison-cloud"
+        ],
+        "activeBuffIds": [],
+        "enraged": false,
+        "summonedAdds": false,
+        "kind": "monster",
+        "gridPosition": {
+          "row": 1,
+          "col": 1
+        }
+      }
+    ],
+    "finalEnemies": [
+      {
+        "id": "enemy-act1.andariel-0-3b58",
+        "name": "monsters.andariel A (Boss)",
+        "side": "enemy",
+        "level": 19,
+        "tier": "chapter-boss",
+        "stats": {
+          "life": 1200,
+          "lifeMax": 1200,
+          "mana": 0,
+          "manaMax": 0,
+          "attack": 90,
+          "defense": 40,
+          "magicResist": 15,
+          "attackSpeed": 110,
+          "critChance": 0.1,
+          "critDamage": 1.75,
+          "physDodge": 0.05,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 50,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 75,
+            "arcane": 0,
+            "physical": 0
+          }
+        },
+        "life": 0,
+        "mana": 0,
+        "statuses": [],
+        "cooldowns": {},
+        "skillOrder": [
+          "monster-poison-cloud"
+        ],
+        "activeBuffIds": [],
+        "enraged": false,
+        "summonedAdds": false,
+        "kind": "monster",
+        "gridPosition": {
+          "row": 1,
+          "col": 1
+        }
+      }
+    ],
+    "finalAllies": [
+      {
+        "id": "player-1792497600000",
+        "name": "Earned Act I",
+        "side": "player",
+        "level": 12,
+        "tier": "trash",
+        "stats": {
+          "life": 120,
+          "lifeMax": 284,
+          "mana": 102,
+          "manaMax": 225,
+          "attack": 80,
+          "defense": 150,
+          "magicResist": 0,
+          "attackSpeed": 135,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.1,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 30,
+            "cold": 0,
+            "lightning": 15,
+            "poison": 0,
+            "arcane": 15,
+            "physical": 4
+          }
+        },
+        "life": 284,
+        "mana": 225,
+        "manaRegenPerSecond": 13.104000000000003,
+        "increasedDamagePct": {
+          "fire": 0.01,
+          "lightning": 0
+        },
+        "manaRegenCarry": 0,
+        "manaRegenCompensation": 0,
+        "manaRegenExactCarry": "0",
+        "statuses": [
+          {
+            "id": "poison",
+            "stacks": 1,
+            "remaining": 5,
+            "sourceId": "enemy-act1.andariel-0-3b58",
+            "appliedAtMs": 18608.14814814815,
+            "expiresAtMs": 23608.14814814815,
+            "damageType": "poison"
+          }
+        ],
+        "cooldowns": {},
+        "skillOrder": [
+          "skills-sorceress-frost-nova",
+          "skills-sorceress-ice-blast"
+        ],
+        "skillLevels": {
+          "sorceress.frost_nova": 2,
+          "sorceress.ice_bolt": 1,
+          "sorceress.fire_bolt": 4,
+          "sorceress.warmth": 1,
+          "sorceress.ice_blast": 8
+        },
+        "activeBuffIds": [],
+        "enraged": false,
+        "summonedAdds": false,
+        "kind": "hero",
+        "equippedWeapon": {
+          "weaponType": "wand",
+          "handedness": "oneHanded"
+        },
+        "gridPosition": {
+          "row": 1,
+          "col": 1
+        },
+        "summonGridPositions": [
+          {
+            "row": 2,
+            "col": 0
+          },
+          {
+            "row": 2,
+            "col": 1
+          },
+          {
+            "row": 2,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 1
+          },
+          {
+            "row": 0,
+            "col": 2
+          },
+          {
+            "row": 1,
+            "col": 0
+          },
+          {
+            "row": 1,
+            "col": 2
+          },
+          {
+            "row": 0,
+            "col": 0
+          }
+        ]
+      },
+      {
+        "id": "merc-mercs/act1-rogue-inner-sight",
+        "name": "Rogue Scout — Inner Sight",
+        "side": "player",
+        "level": 16,
+        "tier": "trash",
+        "stats": {
+          "life": 252,
+          "lifeMax": 282,
+          "mana": 79,
+          "manaMax": 124,
+          "attack": 100,
+          "defense": 99,
+          "magicResist": 0,
+          "attackSpeed": 137,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "physDodge": 0.094,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "goldFind": 0,
+          "resistances": {
+            "fire": 0,
+            "cold": 0,
+            "lightning": 0,
+            "poison": 0,
+            "arcane": 15,
+            "physical": 0
+          }
+        },
+        "life": 282,
+        "mana": 124,
+        "statuses": [
+          {
+            "id": "poison",
+            "stacks": 1,
+            "remaining": 5,
+            "sourceId": "enemy-act1.andariel-0-3b58",
+            "appliedAtMs": 18608.14814814815,
+            "expiresAtMs": 23608.14814814815,
+            "damageType": "poison"
+          }
+        ],
+        "cooldowns": {
+          "mskill-inner-sight": 3596
+        },
+        "skillOrder": [
+          "mskill-inner-sight",
+          "mskill-pierce-arrow",
+          "mskill-basic-arrow"
+        ],
+        "activeBuffIds": [],
+        "enraged": false,
+        "summonedAdds": false,
+        "kind": "merc",
+        "gridPosition": {
+          "row": 0,
+          "col": 0
+        }
+      }
+    ],
+    "rawRewardDelta": {
+      "items": [
+        {
+          "id": "it-4x8ao-2pq",
+          "baseId": "items/base/helm-skull-cap",
+          "rarity": "rare",
+          "level": 19,
+          "ilvl": 19,
+          "baseRolls": {
+            "defense": 11
+          },
+          "affixes": [
+            {
+              "id": "affix.ethereal.magic-dodge",
+              "tier": 1,
+              "rolledValue": 4
+            },
+            {
+              "id": "affix.armor.defense.flat",
+              "tier": 1,
+              "rolledValue": 18
+            },
+            {
+              "id": "affix.vital.life.flat",
+              "tier": 1,
+              "rolledValue": 30
+            },
+            {
+              "id": "affix.lightning.resistance",
+              "tier": 1,
+              "rolledValue": 9
+            },
+            {
+              "id": "affix.fire.resistance",
+              "tier": 1,
+              "rolledValue": 10
+            },
+            {
+              "id": "affix.cold.resistance",
+              "tier": 1,
+              "rolledValue": 17
+            }
+          ],
+          "generatedName": {},
+          "identified": false,
+          "equipped": false
+        },
+        {
+          "id": "it-3o7yq-2pr",
+          "baseId": "items/base/ring-silver",
+          "rarity": "rare",
+          "level": 19,
+          "ilvl": 19,
+          "baseRolls": {},
+          "affixes": [
+            {
+              "id": "affix.savage.crit-damage",
+              "tier": 1,
+              "rolledValue": 24
+            },
+            {
+              "id": "affix.nimble.phys-dodge",
+              "tier": 1,
+              "rolledValue": 4
+            },
+            {
+              "id": "affix.vital.life.flat",
+              "tier": 1,
+              "rolledValue": 26
+            },
+            {
+              "id": "affix.bat.mana.flat",
+              "tier": 1,
+              "rolledValue": 22
+            },
+            {
+              "id": "affix.poison.resistance",
+              "tier": 1,
+              "rolledValue": 8
+            },
+            {
+              "id": "affix.wolf.life.flat",
+              "tier": 1,
+              "rolledValue": 25
+            }
+          ],
+          "generatedName": {},
+          "identified": false,
+          "equipped": false
+        },
+        {
+          "id": "it-8xk6k-2ps",
+          "baseId": "items/base/ring-silver",
+          "rarity": "rare",
+          "level": 19,
+          "ilvl": 19,
+          "baseRolls": {},
+          "affixes": [
+            {
+              "id": "affix.ethereal.magic-dodge",
+              "tier": 1,
+              "rolledValue": 3
+            },
+            {
+              "id": "affix.vital.life.flat",
+              "tier": 1,
+              "rolledValue": 14
+            },
+            {
+              "id": "affix.precise.crit-chance",
+              "tier": 1,
+              "rolledValue": 5
+            },
+            {
+              "id": "affix.bat.mana.flat",
+              "tier": 1,
+              "rolledValue": 13
+            },
+            {
+              "id": "affix.lightning.resistance",
+              "tier": 1,
+              "rolledValue": 8
+            },
+            {
+              "id": "affix.poison.resistance",
+              "tier": 1,
+              "rolledValue": 11
+            }
+          ],
+          "generatedName": {},
+          "identified": false,
+          "equipped": false
+        }
+      ],
+      "runeShards": 4244,
+      "runes": 1,
+      "gems": 1,
+      "wishstones": 24
+    },
+    "actualDelta": {
+      "xp": 190,
+      "mercXp": {
+        "mercs/act1-rogue-inner-sight": 142
+      },
+      "currencies": {
+        "rune-shard": 4245,
+        "wishstone": 24,
+        "gem-shard": 1
+      },
+      "addedItems": [
+        {
+          "id": "it-4x8ao-2pq",
+          "baseId": "items/base/helm-skull-cap",
+          "rarity": "rare",
+          "level": 19,
+          "ilvl": 19,
+          "baseRolls": {
+            "defense": 11
+          },
+          "affixes": [
+            {
+              "id": "affix.ethereal.magic-dodge",
+              "tier": 1,
+              "rolledValue": 4
+            },
+            {
+              "id": "affix.armor.defense.flat",
+              "tier": 1,
+              "rolledValue": 18
+            },
+            {
+              "id": "affix.vital.life.flat",
+              "tier": 1,
+              "rolledValue": 30
+            },
+            {
+              "id": "affix.lightning.resistance",
+              "tier": 1,
+              "rolledValue": 9
+            },
+            {
+              "id": "affix.fire.resistance",
+              "tier": 1,
+              "rolledValue": 10
+            },
+            {
+              "id": "affix.cold.resistance",
+              "tier": 1,
+              "rolledValue": 17
+            }
+          ],
+          "generatedName": {},
+          "identified": false,
+          "equipped": false
+        },
+        {
+          "id": "it-3o7yq-2pr",
+          "baseId": "items/base/ring-silver",
+          "rarity": "rare",
+          "level": 19,
+          "ilvl": 19,
+          "baseRolls": {},
+          "affixes": [
+            {
+              "id": "affix.savage.crit-damage",
+              "tier": 1,
+              "rolledValue": 24
+            },
+            {
+              "id": "affix.nimble.phys-dodge",
+              "tier": 1,
+              "rolledValue": 4
+            },
+            {
+              "id": "affix.vital.life.flat",
+              "tier": 1,
+              "rolledValue": 26
+            },
+            {
+              "id": "affix.bat.mana.flat",
+              "tier": 1,
+              "rolledValue": 22
+            },
+            {
+              "id": "affix.poison.resistance",
+              "tier": 1,
+              "rolledValue": 8
+            },
+            {
+              "id": "affix.wolf.life.flat",
+              "tier": 1,
+              "rolledValue": 25
+            }
+          ],
+          "generatedName": {},
+          "identified": false,
+          "equipped": false
+        },
+        {
+          "id": "it-8xk6k-2ps",
+          "baseId": "items/base/ring-silver",
+          "rarity": "rare",
+          "level": 19,
+          "ilvl": 19,
+          "baseRolls": {},
+          "affixes": [
+            {
+              "id": "affix.ethereal.magic-dodge",
+              "tier": 1,
+              "rolledValue": 3
+            },
+            {
+              "id": "affix.vital.life.flat",
+              "tier": 1,
+              "rolledValue": 14
+            },
+            {
+              "id": "affix.precise.crit-chance",
+              "tier": 1,
+              "rolledValue": 5
+            },
+            {
+              "id": "affix.bat.mana.flat",
+              "tier": 1,
+              "rolledValue": 13
+            },
+            {
+              "id": "affix.lightning.resistance",
+              "tier": 1,
+              "rolledValue": 8
+            },
+            {
+              "id": "affix.poison.resistance",
+              "tier": 1,
+              "rolledValue": 11
+            }
+          ],
+          "generatedName": {},
+          "identified": false,
+          "equipped": false
+        }
+      ],
+      "removedItemIds": [],
+      "addedClears": [
+        "areas/act1-catacombs"
+      ]
+    },
+    "terminalMs": 19656
+  },
+  "map": {
+    "currentAct": 1,
+    "currentSubAreaId": "areas/act1-catacombs",
+    "discoveredAreas": [],
+    "clearedSubAreas": [
+      "areas/act1-den-of-evil",
+      "areas/act1-blood-moor",
+      "areas/act1-cold-plains",
+      "areas/act1-burial-grounds",
+      "areas/act1-dark-wood",
+      "areas/act1-catacombs"
+    ],
+    "questProgress": {
+      "quests/act1-den-of-evil": {
+        "id": "quests/act1-den-of-evil",
+        "status": "completed",
+        "objectives": {
+          "obj-clear-den": true,
+          "obj-return": true
+        },
+        "rewardClaimed": true
+      }
+    }
+  },
+  "files": {
+    "prepared-route-report.json": "56a7c7cb4de7c6609a3e5d90744a477f8ef38adbe807aa88303f2c80e4918abc",
+    "prepared-route-final.json": "83fb9e8fa765e9c5c1d3840241615317eddaa5706d759b0e742d36ba643d21e8",
+    "boundary-before.json": "61806ac364e0f2c2989b9956a9b96b53504f02f838b4faacd18eb43164b19af5",
+    "boundary-after.json": "10c92eb3b39deda760b6a134f8849bdf5565f90508f216fe1ab08a4ef1d8b1cf",
+    "boundary-selection.json": "2515a03f17e39f0c5cd30d52ac1802dc0a04ba4ba333f14c12f32b833575f508",
+    "earned-boundary-route.mjs": "66379847405c82d113c878b51de5a75bae4258dc8e17c0971509831c97594fcd",
+    "boundary-native.spec.ts": "14cbaeb3ed37097a6711db84df08f70e80c5d06c2b365021eaa4e48106da0cf5",
+    "playwright.config.mjs": "de3496c3cbc7ab468b47eea93e7319a3f56d3eb9c19a548dfdb912b5ba0c4227",
+    "audit.json": "df81a7df2ef81dc705dfba2fad39896ab23a461c0535e68048aa9e76fd34ecfc",
+    "audit.mjs": "a39a39cdf6a492f50bc43d83b58f69f497e91ad088fd96c2bd3298753e7d1750",
+    "ui-proof-en-360.json": "0b29dc32e2e1683b63bd02f036facf1fbce7c9b197a05d0862638ac407dce280",
+    "ui-after-en-360.json": "caa00aa23ce0e1ccd69bdd61690d0e018bf8ec0931860cc50f7bf7bbd5208a73",
+    "comparison-en-360.png": "c4f7b94667717384508a8f26315bbe2916e7a1a6b12a89573d477d0586af0f1b",
+    "ui-proof-en-1280.json": "a57e01540ff8462bb9692d8ff8f1745d310f4379327c651ef7a09d31058a21fb",
+    "ui-after-en-1280.json": "caa00aa23ce0e1ccd69bdd61690d0e018bf8ec0931860cc50f7bf7bbd5208a73",
+    "comparison-en-1280.png": "f5140811f502d82754951eb7344de7e5d7e0eee3ed07bfea4865306301ad3c6c",
+    "ui-proof-zh-CN-360.json": "be756d48598f2538e38e518dd8de7d1da5167f70fd5d5f64c72a53e0fc8ceaac",
+    "ui-after-zh-CN-360.json": "2a479624cc5e44027c2abf6c4341fc1a6c853473f96997e194e4197e5cb88058",
+    "comparison-zh-CN-360.png": "51aee0d46929df6823eab3c25af9fa88341d13f392ca6ada0772bc42a5e288f0",
+    "ui-proof-zh-CN-1280.json": "371f56ad2c30f690340ff2827584c0ca9475b5bc511c90810bea175b4f486470",
+    "ui-after-zh-CN-1280.json": "2a479624cc5e44027c2abf6c4341fc1a6c853473f96997e194e4197e5cb88058",
+    "comparison-zh-CN-1280.png": "61a1c226ce2b95c1bfe72d94f9730d7cc4ed65f4e34393d65a8e77643cba025f",
+    "browser.json": "2ac1f16c55b1825f55273362e51a69836b384c3f9efe76229aa11115ccdc78b7",
+    "cleanup-receipt.json": "98de0bae9051c38a70d117648de5fa23adcc4be879f1cf173b7369858fea0a06"
+  },
+  "browser": {
+    "stats": {
+      "startTime": "2026-10-23T00:50:31.526Z",
+      "duration": 92199.97200000001,
+      "expected": 4,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "attempts": [
+      {
+        "attempt": 1,
+        "outcome": "pretty JSON textarea fill timed out before transfers; exact script/log retained"
+      },
+      {
+        "attempt": 2,
+        "outcome": "en360/en1280 pass; zh360 completed transfers but expected save omitted intentional changed locale; zh1280 not run"
+      },
+      {
+        "attempt": 3,
+        "outcome": "four cases pass, no retries or skips; expected exact afterstate includes explicit locale preference"
+      }
+    ],
+    "proofs": [
+      {
+        "locale": "en",
+        "width": 360,
+        "height": 640,
+        "events": [
+          {
+            "owner": "merc",
+            "slot": "weapon",
+            "selectedId": "it-7i7bl-2n2",
+            "previousId": "it-7is2r-10i",
+            "candidateName": "Blood Crescent",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "merc",
+            "slot": "head",
+            "selectedId": "it-2hfgx-2my",
+            "previousId": "it-oxm6-129",
+            "candidateName": "Biggin's Bonnet",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "hero",
+            "slot": "weapon",
+            "selectedId": "it-79786-2n0",
+            "previousId": "it-2c0ac-10m",
+            "candidateName": "Arcanna's Tricks Weapon",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "hero",
+            "slot": "head",
+            "selectedId": "it-2mhtl-2mz",
+            "previousId": "it-oxm6-10x",
+            "candidateName": "Coif of Glory",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "hero",
+            "slot": "offhand",
+            "unchanged": "it-9mr1x-10o"
+          },
+          {
+            "owner": "hero",
+            "slot": "chest",
+            "selectedId": "it-2l5gh-2p5",
+            "previousId": "it-3zbek-10h",
+            "candidateName": "Leather Armor",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "hero",
+            "slot": "belt",
+            "selectedId": "it-3q5gd-2mw",
+            "previousId": "it-22zc9-10f",
+            "candidateName": "Lenymo",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "hero",
+            "slot": "gloves",
+            "unchanged": "it-96fga-3"
+          },
+          {
+            "owner": "hero",
+            "slot": "boots",
+            "selectedId": "it-483xw-2n1",
+            "previousId": "it-9qlpi-10k",
+            "candidateName": "Hotspur",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "hero",
+            "slot": "amulet",
+            "selectedId": "it-3yp06-2mv",
+            "previousId": null,
+            "candidateName": "Tin Amulet",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3888
+          },
+          {
+            "owner": "merc",
+            "slot": "offhand",
+            "selectedId": "it-9mr1x-120",
+            "previousId": null,
+            "candidateName": "Kite Shield",
+            "beforeBackpack": 3888,
+            "afterBackpack": 3887
+          },
+          {
+            "owner": "merc",
+            "slot": "chest",
+            "selectedId": "it-43c49-2m3",
+            "previousId": "it-3zbek-11t",
+            "candidateName": "Leather Armor",
+            "beforeBackpack": 3887,
+            "afterBackpack": 3887
+          },
+          {
+            "owner": "merc",
+            "slot": "belt",
+            "selectedId": "it-8m36m-2mx",
+            "previousId": "it-22zc9-11r",
+            "candidateName": "Lenymo",
+            "beforeBackpack": 3887,
+            "afterBackpack": 3887
+          },
+          {
+            "owner": "merc",
+            "slot": "gloves",
+            "unchanged": "it-96fga-8"
+          },
+          {
+            "owner": "merc",
+            "slot": "boots",
+            "unchanged": "it-9qlpi-11w"
+          }
+        ],
+        "exactBoundaryAfter": true,
+        "saveContinueEquality": true,
+        "pageErrors": []
+      },
+      {
+        "locale": "en",
+        "width": 1280,
+        "height": 800,
+        "events": [
+          {
+            "owner": "merc",
+            "slot": "weapon",
+            "selectedId": "it-7i7bl-2n2",
+            "previousId": "it-7is2r-10i",
+            "candidateName": "Blood Crescent",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "merc",
+            "slot": "head",
+            "selectedId": "it-2hfgx-2my",
+            "previousId": "it-oxm6-129",
+            "candidateName": "Biggin's Bonnet",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "hero",
+            "slot": "weapon",
+            "selectedId": "it-79786-2n0",
+            "previousId": "it-2c0ac-10m",
+            "candidateName": "Arcanna's Tricks Weapon",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "hero",
+            "slot": "head",
+            "selectedId": "it-2mhtl-2mz",
+            "previousId": "it-oxm6-10x",
+            "candidateName": "Coif of Glory",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "hero",
+            "slot": "offhand",
+            "unchanged": "it-9mr1x-10o"
+          },
+          {
+            "owner": "hero",
+            "slot": "chest",
+            "selectedId": "it-2l5gh-2p5",
+            "previousId": "it-3zbek-10h",
+            "candidateName": "Leather Armor",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "hero",
+            "slot": "belt",
+            "selectedId": "it-3q5gd-2mw",
+            "previousId": "it-22zc9-10f",
+            "candidateName": "Lenymo",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "hero",
+            "slot": "gloves",
+            "unchanged": "it-96fga-3"
+          },
+          {
+            "owner": "hero",
+            "slot": "boots",
+            "selectedId": "it-483xw-2n1",
+            "previousId": "it-9qlpi-10k",
+            "candidateName": "Hotspur",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "hero",
+            "slot": "amulet",
+            "selectedId": "it-3yp06-2mv",
+            "previousId": null,
+            "candidateName": "Tin Amulet",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3888
+          },
+          {
+            "owner": "merc",
+            "slot": "offhand",
+            "selectedId": "it-9mr1x-120",
+            "previousId": null,
+            "candidateName": "Kite Shield",
+            "beforeBackpack": 3888,
+            "afterBackpack": 3887
+          },
+          {
+            "owner": "merc",
+            "slot": "chest",
+            "selectedId": "it-43c49-2m3",
+            "previousId": "it-3zbek-11t",
+            "candidateName": "Leather Armor",
+            "beforeBackpack": 3887,
+            "afterBackpack": 3887
+          },
+          {
+            "owner": "merc",
+            "slot": "belt",
+            "selectedId": "it-8m36m-2mx",
+            "previousId": "it-22zc9-11r",
+            "candidateName": "Lenymo",
+            "beforeBackpack": 3887,
+            "afterBackpack": 3887
+          },
+          {
+            "owner": "merc",
+            "slot": "gloves",
+            "unchanged": "it-96fga-8"
+          },
+          {
+            "owner": "merc",
+            "slot": "boots",
+            "unchanged": "it-9qlpi-11w"
+          }
+        ],
+        "exactBoundaryAfter": true,
+        "saveContinueEquality": true,
+        "pageErrors": []
+      },
+      {
+        "locale": "zh-CN",
+        "width": 360,
+        "height": 640,
+        "events": [
+          {
+            "owner": "merc",
+            "slot": "weapon",
+            "selectedId": "it-7i7bl-2n2",
+            "previousId": "it-7is2r-10i",
+            "candidateName": "血月",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "merc",
+            "slot": "head",
+            "selectedId": "it-2hfgx-2my",
+            "previousId": "it-oxm6-129",
+            "candidateName": "毕金的便帽",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "hero",
+            "slot": "weapon",
+            "selectedId": "it-79786-2n0",
+            "previousId": "it-2c0ac-10m",
+            "candidateName": "阿卡娜的法杖",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "hero",
+            "slot": "head",
+            "selectedId": "it-2mhtl-2mz",
+            "previousId": "it-oxm6-10x",
+            "candidateName": "荣耀之盔",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "hero",
+            "slot": "offhand",
+            "unchanged": "it-9mr1x-10o"
+          },
+          {
+            "owner": "hero",
+            "slot": "chest",
+            "selectedId": "it-2l5gh-2p5",
+            "previousId": "it-3zbek-10h",
+            "candidateName": "皮甲",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "hero",
+            "slot": "belt",
+            "selectedId": "it-3q5gd-2mw",
+            "previousId": "it-22zc9-10f",
+            "candidateName": "兰尼摩",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "hero",
+            "slot": "gloves",
+            "unchanged": "it-96fga-3"
+          },
+          {
+            "owner": "hero",
+            "slot": "boots",
+            "selectedId": "it-483xw-2n1",
+            "previousId": "it-9qlpi-10k",
+            "candidateName": "热靴刺",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "hero",
+            "slot": "amulet",
+            "selectedId": "it-3yp06-2mv",
+            "previousId": null,
+            "candidateName": "锡项链",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3888
+          },
+          {
+            "owner": "merc",
+            "slot": "offhand",
+            "selectedId": "it-9mr1x-120",
+            "previousId": null,
+            "candidateName": "鸢盾",
+            "beforeBackpack": 3888,
+            "afterBackpack": 3887
+          },
+          {
+            "owner": "merc",
+            "slot": "chest",
+            "selectedId": "it-43c49-2m3",
+            "previousId": "it-3zbek-11t",
+            "candidateName": "皮甲",
+            "beforeBackpack": 3887,
+            "afterBackpack": 3887
+          },
+          {
+            "owner": "merc",
+            "slot": "belt",
+            "selectedId": "it-8m36m-2mx",
+            "previousId": "it-22zc9-11r",
+            "candidateName": "兰尼摩",
+            "beforeBackpack": 3887,
+            "afterBackpack": 3887
+          },
+          {
+            "owner": "merc",
+            "slot": "gloves",
+            "unchanged": "it-96fga-8"
+          },
+          {
+            "owner": "merc",
+            "slot": "boots",
+            "unchanged": "it-9qlpi-11w"
+          }
+        ],
+        "exactBoundaryAfter": true,
+        "saveContinueEquality": true,
+        "pageErrors": []
+      },
+      {
+        "locale": "zh-CN",
+        "width": 1280,
+        "height": 800,
+        "events": [
+          {
+            "owner": "merc",
+            "slot": "weapon",
+            "selectedId": "it-7i7bl-2n2",
+            "previousId": "it-7is2r-10i",
+            "candidateName": "血月",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "merc",
+            "slot": "head",
+            "selectedId": "it-2hfgx-2my",
+            "previousId": "it-oxm6-129",
+            "candidateName": "毕金的便帽",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "hero",
+            "slot": "weapon",
+            "selectedId": "it-79786-2n0",
+            "previousId": "it-2c0ac-10m",
+            "candidateName": "阿卡娜的法杖",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "hero",
+            "slot": "head",
+            "selectedId": "it-2mhtl-2mz",
+            "previousId": "it-oxm6-10x",
+            "candidateName": "荣耀之盔",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "hero",
+            "slot": "offhand",
+            "unchanged": "it-9mr1x-10o"
+          },
+          {
+            "owner": "hero",
+            "slot": "chest",
+            "selectedId": "it-2l5gh-2p5",
+            "previousId": "it-3zbek-10h",
+            "candidateName": "皮甲",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "hero",
+            "slot": "belt",
+            "selectedId": "it-3q5gd-2mw",
+            "previousId": "it-22zc9-10f",
+            "candidateName": "兰尼摩",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "hero",
+            "slot": "gloves",
+            "unchanged": "it-96fga-3"
+          },
+          {
+            "owner": "hero",
+            "slot": "boots",
+            "selectedId": "it-483xw-2n1",
+            "previousId": "it-9qlpi-10k",
+            "candidateName": "热靴刺",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3889
+          },
+          {
+            "owner": "hero",
+            "slot": "amulet",
+            "selectedId": "it-3yp06-2mv",
+            "previousId": null,
+            "candidateName": "锡项链",
+            "beforeBackpack": 3889,
+            "afterBackpack": 3888
+          },
+          {
+            "owner": "merc",
+            "slot": "offhand",
+            "selectedId": "it-9mr1x-120",
+            "previousId": null,
+            "candidateName": "鸢盾",
+            "beforeBackpack": 3888,
+            "afterBackpack": 3887
+          },
+          {
+            "owner": "merc",
+            "slot": "chest",
+            "selectedId": "it-43c49-2m3",
+            "previousId": "it-3zbek-11t",
+            "candidateName": "皮甲",
+            "beforeBackpack": 3887,
+            "afterBackpack": 3887
+          },
+          {
+            "owner": "merc",
+            "slot": "belt",
+            "selectedId": "it-8m36m-2mx",
+            "previousId": "it-22zc9-11r",
+            "candidateName": "兰尼摩",
+            "beforeBackpack": 3887,
+            "afterBackpack": 3887
+          },
+          {
+            "owner": "merc",
+            "slot": "gloves",
+            "unchanged": "it-96fga-8"
+          },
+          {
+            "owner": "merc",
+            "slot": "boots",
+            "unchanged": "it-9qlpi-11w"
+          }
+        ],
+        "exactBoundaryAfter": true,
+        "saveContinueEquality": true,
+        "pageErrors": []
+      }
+    ]
+  },
+  "cleanup": {
+    "owner": "root",
+    "activeUsers": [],
+    "previewPort60447Closed": true,
+    "removed": [
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-boundary-WP70rVKS/audit-cache",
+        "files": 1,
+        "bytes": 23
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-boundary-WP70rVKS/route-cache",
+        "files": 1,
+        "bytes": 23
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-boundary-WP70rVKS/route-tmp",
+        "files": 0,
+        "bytes": 0
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-boundary-WP70rVKS/browser-output",
+        "files": 5,
+        "bytes": 1267969
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-boundary-WP70rVKS/dist",
+        "files": 760,
+        "bytes": 41050175
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-boundary-WP70rVKS/tmp",
+        "files": 131,
+        "bytes": 1283255
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-boundary-WP70rVKS/cache",
+        "files": 8,
+        "bytes": 622496
+      }
+    ],
+    "absent": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-boundary-WP70rVKS/audit-tmp",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-boundary-WP70rVKS/review-snapshot"
+    ],
+    "remaining": [],
+    "failures": [],
+    "disposableReadersReleased": true
+  },
+  "qa": {
+    "service": "ADEQUATE",
+    "browser": "ADEQUATE",
+    "readersReleased": true,
+    "limits": "Imported earned L12 service outcome and imported-boundary ordinary gear/save only; no fresh C1, Andariel quest or Act II proof."
+  }
+}

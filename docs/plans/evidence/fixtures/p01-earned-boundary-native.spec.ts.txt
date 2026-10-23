@@ -1,0 +1,139 @@
+import { test, expect, type Page } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/@playwright/test/index.mjs';
+import { readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+const raw = '/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-boundary-WP70rVKS';
+const wt = '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2';
+const json = async (file: string) => JSON.parse(await readFile(file, 'utf8'));
+async function nav(page: Page, route: string) {
+ await page.locator(`a[href="/${route}"]`).first().click();
+ await expect(page.getByTestId(`${route}-screen`)).toBeVisible();
+}
+async function backup(page: Page) {
+ const pending = page.waitForEvent('download');
+ await page.getByTestId('export-save-button').click();
+ const download = await pending;
+ try { return JSON.parse(await readFile((await download.path())!, 'utf8')); }
+ finally { await download.delete(); }
+}
+for (const locale of ['en','zh-CN']) for (const [width,height] of [[360,640],[1280,800]]) {
+ test(`earned boundary ordinary transfers/save ${locale} ${width}`, async ({page,context},info) => {
+  const bytes = await readFile(`${raw}/boundary-before.json`);
+  expect(createHash('sha256').update(bytes).digest('hex')).toBe('61806ac364e0f2c2989b9956a9b96b53504f02f838b4faacd18eb43164b19af5');
+  const expectedBytes = await readFile(`${raw}/boundary-after.json`);
+  expect(createHash('sha256').update(expectedBytes).digest('hex')).toBe('10c92eb3b39deda760b6a134f8849bdf5565f90508f216fe1ab08a4ef1d8b1cf');
+  const selectionBytes = await readFile(`${raw}/boundary-selection.json`);
+  expect(createHash('sha256').update(selectionBytes).digest('hex')).toBe('2515a03f17e39f0c5cd30d52ac1802dc0a04ba4ba333f14c12f32b833575f508');
+  const before = JSON.parse(bytes.toString()), expected = JSON.parse(expectedBytes.toString());
+  const selection = JSON.parse(selectionBytes.toString());
+  // The ordinary language button intentionally persists this one preference.
+  expected.meta.settings.locale=locale;
+  const simulation = structuredClone(before);
+  const bases = await json(`${wt}/src/data/items/bases.json`);
+  const uniques = await json(`${wt}/src/data/items/uniques.json`);
+  const sets = await json(`${wt}/src/data/items/sets.json`);
+  const translations = await json(`${wt}/src/i18n/locales/${locale}/items.json`);
+  const resolve = (key: string) => key.replace(/^items[.:]/,'').split('.').reduce((v,k)=>v?.[k],translations);
+  const itemName = (item) => {
+   const unique=uniques.find(v=>v.id===item.uniqueId);
+   const piece=sets.flatMap(v=>v.pieces??[]).find(v=>v.id===item.setPieceId);
+   if(unique) return resolve(unique.name);
+   if(piece) return resolve(piece.name);
+   return [item.generatedName?.prefix,resolve(`base.${item.baseId.split('/').at(-1)}`),item.generatedName?.suffix].filter(Boolean).join(' ');
+  };
+  const english = locale==='en', errors: string[]=[];
+  const mercId=before.mercs.fieldedMercId;
+  const events=[];
+  page.on('pageerror',e=>errors.push(e.message));
+  await page.clock.install({time:new Date(1792497600000)});
+  await page.clock.setFixedTime(1792497600000);
+  await page.setViewportSize({width,height});
+  await page.goto('/'); await page.waitForLoadState('networkidle');
+  expect(await page.evaluate(()=> '__GAME__' in window)).toBe(false);
+  await page.getByTestId('home-new-game').click();
+  await page.getByTestId('class-sorceress').click();
+  await page.getByTestId('character-name-input').fill('Earned boundary QA');
+  await page.getByTestId('character-start-btn').click();
+  await expect(page.getByTestId('town-screen')).toBeVisible();
+  await nav(page,'settings');
+  await page.getByRole('button',{name:/^(Import Save|导入存档)$/}).click();
+  const input=page.getByRole('dialog');
+  await input.getByRole('textbox').fill(JSON.stringify(before));
+  await input.getByRole('button',{name:/^(Import Save|导入存档)$/}).click();
+  await expect(input).toHaveCount(0);
+  expect(await backup(page)).toEqual(before);
+  await page.getByRole('button',{name:english?'English':'简体中文',exact:true}).click();
+  let owner='';
+  for(const choice of selection.choices) {
+   if(choice.selectedId===choice.previousId) {events.push({owner:choice.owner,slot:choice.slot,unchanged:choice.selectedId});continue;}
+   const candidate=simulation.inventory.backpack.find(v=>v.id===choice.selectedId);
+   expect(candidate).toEqual(choice.item);
+   const oldCount=simulation.inventory.backpack.length;
+   if(owner!==choice.owner) {
+    if(owner==='merc') {await page.keyboard.press('Escape');await expect(page.getByRole('dialog')).toHaveCount(0);}
+    await nav(page,choice.owner==='hero'?'inventory':'mercs');
+    if(choice.owner==='merc') await page.getByTestId(`merc-equipment-${mercId.split('#')[0]}`).click();
+    owner=choice.owner;
+   }
+   if(choice.owner==='hero') {
+    await page.getByTestId(`inv-item-${candidate.id}`).click();
+    const detail=page.getByTestId('inv-detail-panel');
+    await expect(detail).toContainText(itemName(candidate));
+    await expect(detail.locator('[data-met="false"]')).toHaveCount(0);
+    await expect(detail.getByTestId('stat-compare-table')).toBeVisible();
+    const action=detail.getByTestId('inv-primary-action');
+    await expect(action).toHaveText(english?'Equip':'装备');
+    await expect(action).toBeEnabled();
+    expect((await action.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+    if(choice.slot==='head') {
+     const row=detail.getByRole('row').filter({has:page.getByText(english?'Defense':'防御',{exact:true})});
+     await expect(row).toContainText('120');await expect(row).toContainText('136');
+     await expect(row.getByTestId('stat-delta')).toHaveAttribute('data-trend','up');
+     await row.scrollIntoViewIfNeeded();await expect(row).toBeInViewport();
+     const shot=`${raw}/comparison-${locale}-${width}.png`;
+     await page.screenshot({path:shot}); await info.attach('head-defense-comparison',{path:shot,contentType:'image/png'});
+    }
+    await action.click();await expect(detail).toHaveCount(0);
+   } else {
+    const dialog=page.getByRole('dialog');
+    await dialog.getByTestId(`merc-equip-slot-${choice.slot}`).press('Enter');
+    const candidates=simulation.inventory.backpack.filter(item=> {
+     const slot=bases.find(v=>v.id===item.baseId)?.slot;
+     return slot===choice.slot || (slot?.startsWith('ring-')&&choice.slot.startsWith('ring-'));
+    });
+    const index=candidates.findIndex(v=>v.id===candidate.id);expect(index).toBeGreaterThanOrEqual(0);
+    const buttons=dialog.getByRole('button',{name:english?'Equip':'装备',exact:true});
+    await expect(buttons).toHaveCount(candidates.length);
+    const button=buttons.nth(index), li=button.locator('..');
+    await expect(li.locator('span')).toHaveText(itemName(candidate));
+    await button.click();await expect(buttons).toHaveCount(0);
+   }
+   const equipment=choice.owner==='hero'?simulation.inventory.equipped:simulation.mercs.mercEquipment[mercId];
+   const old=equipment[choice.slot];
+   expect(old?.id??null).toBe(choice.previousId);
+   simulation.inventory.backpack=simulation.inventory.backpack.filter(v=>v.id!==candidate.id);
+   if(old) {const returned={...old,equipped:false};if(choice.owner==='merc')delete returned.equipSlot;simulation.inventory.backpack.push(returned);}
+   equipment[choice.slot]={...candidate,equipped:true,...(choice.owner==='merc'?{equipSlot:choice.slot}:{})};
+   expect(simulation.inventory.backpack.length).toBeLessThanOrEqual(oldCount);
+   events.push({owner:choice.owner,slot:choice.slot,selectedId:choice.selectedId,previousId:choice.previousId,candidateName:itemName(candidate),beforeBackpack:oldCount,afterBackpack:simulation.inventory.backpack.length});
+  }
+  if(owner==='merc') {await page.keyboard.press('Escape');await expect(page.getByRole('dialog')).toHaveCount(0);}
+  expect(simulation.inventory).toEqual(expected.inventory);expect(simulation.mercs).toEqual(expected.mercs);
+  await nav(page,'settings');
+  await page.getByRole('button',{name:english?'Save':'保存',exact:true}).click();
+  await expect(page.getByRole('status')).toHaveText(english?'Saved':'已保存');
+  const saved=await backup(page);
+  expect(saved).toEqual(expected);
+  await writeFile(`${raw}/ui-after-${locale}-${width}.json`,JSON.stringify(saved));
+  await page.close();
+  const reopened=await context.newPage();reopened.on('pageerror',e=>errors.push(e.message));
+  await reopened.clock.setFixedTime(1792497600000);
+  await reopened.goto('/');await reopened.waitForLoadState('networkidle');
+  expect(await reopened.evaluate(()=> '__GAME__' in window)).toBe(false);
+  await reopened.getByTestId('home-continue').click();await expect(reopened.getByTestId('town-screen')).toBeVisible();
+  await nav(reopened,'settings');
+  expect(await backup(reopened)).toEqual(saved);expect(errors).toEqual([]);
+  expect(await reopened.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth)).toBeLessThanOrEqual(0);
+  await writeFile(`${raw}/ui-proof-${locale}-${width}.json`,JSON.stringify({locale,width,height,events,exactBoundaryAfter:true,saveContinueEquality:true,pageErrors:errors},null,2));
+  await reopened.close();
+ });
+}
