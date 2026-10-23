@@ -403,7 +403,7 @@ function MercEquipmentEditor({
                     <span className="min-w-0 truncate text-sm text-d2-white/85">{tItemName(t, item)}</span>
                     <Button
                       variant="primary"
-                      className="min-h-[36px] text-xs"
+                      className="min-h-[44px] text-xs"
                       onClick={() => {
                         const result = equipOnMerc(mercId, pickerSlot, item);
                         if (result.ok) { setPickerSlot(null); setEquipmentError(null); }
