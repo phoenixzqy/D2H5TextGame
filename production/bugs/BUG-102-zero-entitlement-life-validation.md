@@ -1,6 +1,6 @@
 # BUG-102 — Preserve stat composition without a quest Life entitlement
 
-- Status: Open
+- Status: Fixed
 - Severity: Medium
 - Affected systems: engine-dev; shared equipped stats and summon eligibility
 - Reproduction commit: `965bb8cb6d638071b11fa7be6ce4771a793c08bc`
@@ -31,3 +31,17 @@ no entitlement participates. Scope the new guard to a positive quest Life
 bonus; retain all safety checks when that bonus applies. Preserve the existing
 caller tests and add pure zero-entitlement / participating-bonus regressions in
 `src/engine/progression/quest-life.test.ts`.
+
+## Resolution
+
+Fixed by `93d6867`. The two new nonfinite-level cases fail before the correction
+and pass afterward; all 271 focused tests across the pure Life file and four
+unchanged caller files pass. The correction preserves the participating-bonus
+overflow/refusal controls. Independent read-only QA APPROVE; no test weakening
+or caller patch.
+
+Final integrated head `3233e7b` also includes the separately reviewed Council
+proof admission. Full unit 9393 tests / 324 files PASS, engine 4448 / 119 PASS,
+typecheck/lint/production build PASS. All 955 frozen source/tool files and HEAD
+are unchanged during the full run; see sibling `council-unit-full-result.json`
+and `council-unit-source-freeze.json` in the retained evidence directory above.
