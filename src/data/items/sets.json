@@ -738,7 +738,7 @@
       },
       "3": {
         "statMods": {
-          "physDodge": 15,
+          "physDodge": 0.15,
           "defense": 50,
           "attack": 150
         }
@@ -2205,7 +2205,7 @@
       },
       "3": {
         "statMods": {
-          "critChance": 15
+          "critChance": 0.15
         }
       },
       "4": {
@@ -2221,7 +2221,7 @@
         },
         "statMods": {
           "attackSpeed": 40,
-          "critDamage": 50
+          "critDamage": 0.5
         }
       }
     },

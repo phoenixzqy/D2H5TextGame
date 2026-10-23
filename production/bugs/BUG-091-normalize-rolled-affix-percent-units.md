@@ -1,7 +1,7 @@
 # BUG-091 — Normalize rolled affix percentage units at stat projection
 
-Status: reproduced; unit contract/fix pending. Severity: High.
-Owners: engine-dev/content-designer, GD/TD unit contract required.
+Status: fixed for fresh projections; historical cache follow-up BUG094 open. Severity: High.
+Owners: engine-dev/content-designer; GD/TD/producer unit contract approved.
 
 Environment: aec0041; Node/Vite production-module projection, no browser/viewport
 or locale dependence. Input is the original earned L12 route, seed2223645302,
@@ -38,3 +38,12 @@ independently justified supported-stat gear policy; do not hide, normalize in
 the harness, exploit, discard or alter the affected earned items. Full v1 still
 requires the shared fix, regression coverage and save/display compatibility audit.
 Root retains audit evidence through C1 and removes it after dependent readers finish.
+
+Resolution: convert the four known modern rolled-affix rate fields at
+`computeStats`, preserving raw rolls, legacy maps, flat stats and resistance
+points. [Validation](../../docs/plans/evidence/equipment-percentage-units.md):
+39 genuine RED failures/15 controls; final 8600 tests/typecheck/lint/build pass.
+Producer source APPROVE/security PASS and independent evidence ADEQUATE.
+The workaround above describes historical campaign inputs and remains part of
+their frozen evidence; it is not a restriction on newly corrected projections.
+No historical cache repair, post-fix campaign victory or C1 acceptance is claimed.

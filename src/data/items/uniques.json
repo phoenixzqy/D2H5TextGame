@@ -496,7 +496,7 @@
     "stats": {
       "statMods": {
         "attack": 80,
-        "critChance": 10
+        "critChance": 0.1
       },
       "damageBonus": {
         "min": 6,
@@ -1023,7 +1023,7 @@
     "stats": {
       "statMods": {
         "defense": 30,
-        "critChance": 15
+        "critChance": 0.15
       }
     },
     "flavor": "items.unique.goblin-toe.flavor"
@@ -1704,7 +1704,7 @@
         "cold": 20
       },
       "statMods": {
-        "physDodge": 10,
+        "physDodge": 0.1,
         "defense": 80
       }
     },
@@ -1778,7 +1778,7 @@
       },
       "statMods": {
         "attack": 140,
-        "critChance": 10
+        "critChance": 0.1
       },
       "damageBonus": {
         "min": 20,
@@ -1981,7 +1981,7 @@
       },
       "statMods": {
         "attack": 130,
-        "critChance": 10
+        "critChance": 0.1
       },
       "damageBonus": {
         "min": 15,
@@ -2294,7 +2294,7 @@
     "stats": {
       "statMods": {
         "attack": 200,
-        "critChance": 10
+        "critChance": 0.1
       },
       "damageBonus": {
         "min": 40,
@@ -2375,7 +2375,7 @@
       },
       "statMods": {
         "defense": 60,
-        "magicDodge": 10
+        "magicDodge": 0.1
       }
     },
     "flavor": "items.unique.darksight-helm.flavor"
@@ -2540,7 +2540,7 @@
         "arcane": 30
       },
       "statMods": {
-        "magicDodge": 15,
+        "magicDodge": 0.15,
         "defense": 90
       }
     },
@@ -2935,7 +2935,7 @@
       },
       "statMods": {
         "attack": 160,
-        "critChance": 10
+        "critChance": 0.1
       },
       "damageBonus": {
         "min": 40,
@@ -2972,7 +2972,7 @@
         "cold": 30
       },
       "statMods": {
-        "magicDodge": 20,
+        "magicDodge": 0.2,
         "defense": 150
       }
     },
@@ -4358,7 +4358,7 @@
       },
       "statMods": {
         "defense": 120,
-        "magicDodge": 15
+        "magicDodge": 0.15
       }
     },
     "flavor": "items.unique.steel-shade.flavor"
@@ -4372,7 +4372,7 @@
         "poison": 20
       },
       "statMods": {
-        "physDodge": 15,
+        "physDodge": 0.15,
         "defense": 100
       }
     },
@@ -4565,7 +4565,7 @@
       "statMods": {
         "attack": 175,
         "attackSpeed": 50,
-        "physDodge": 8
+        "physDodge": 0.08
       },
       "damageBonus": {
         "min": 10,
@@ -5060,7 +5060,7 @@
       },
       "statMods": {
         "defense": 200,
-        "magicDodge": 20
+        "magicDodge": 0.2
       }
     },
     "flavor": "items.unique.kerke-sanctuary.flavor"
@@ -5274,8 +5274,8 @@
     "stats": {
       "statMods": {
         "attack": 200,
-        "critChance": 8,
-        "magicDodge": 10
+        "critChance": 0.08,
+        "magicDodge": 0.1
       },
       "coreStats": {
         "dexterity": 25
@@ -5461,7 +5461,7 @@
       },
       "statMods": {
         "defense": 80,
-        "magicDodge": 15
+        "magicDodge": 0.15
       }
     },
     "flavor": "items.unique.shadow-dancer.flavor"
@@ -5541,7 +5541,7 @@
       },
       "statMods": {
         "attack": 240,
-        "critChance": 15
+        "critChance": 0.15
       },
       "damageBonus": {
         "min": 80,
@@ -6228,7 +6228,7 @@
       "statMods": {
         "defense": 250,
         "life": 80,
-        "magicDodge": 15
+        "magicDodge": 0.15
       }
     },
     "flavor": "items.unique.the-gladiator-bane.flavor"
@@ -6244,7 +6244,7 @@
       },
       "statMods": {
         "attack": 300,
-        "critChance": 20
+        "critChance": 0.2
       },
       "damageBonus": {
         "min": 150,
@@ -6267,7 +6267,7 @@
       },
       "statMods": {
         "attack": 320,
-        "critChance": 25
+        "critChance": 0.25
       },
       "damageBonus": {
         "min": 180,
