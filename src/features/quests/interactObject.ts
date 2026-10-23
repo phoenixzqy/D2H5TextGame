@@ -8,6 +8,7 @@ import { listAreaObjectTargets, objectInteractionStatus } from '@/engine/map/que
 import { useMapStore } from '@/stores/mapStore';
 import { resolveSubArea } from '@/stores/subAreaResolver';
 import { areaQuestInsertions } from './questCrafting';
+import { areaQuestActions } from './questActions';
 
 export { assembleQuestItem, questAssemblyStatus, areaQuestInsertions, questInsertionStatus, insertQuestItem } from './questCrafting';
 
@@ -67,7 +68,7 @@ export function areaQuestTools(act: number, areaId: string): readonly (QuestTool
 /** Whether an explicit visit can show a supported Read or Recover object. */
 export function hasAreaObjects(act: number, areaId: string): boolean {
   return areaObjectTargets(act, areaId).length > 0 || areaQuestTools(act, areaId).length > 0 ||
-    areaQuestInsertions(act, areaId).length > 0;
+    areaQuestInsertions(act, areaId).length > 0 || areaQuestActions(act, areaId).length > 0;
 }
 
 /** Durable recovery availability; execution additionally checks hydration, combat and ownership guards. */
