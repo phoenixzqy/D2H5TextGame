@@ -107,7 +107,7 @@ describe('synchronous quest consumer validation', () => {
     expect(second).not.toBe(first);
     expect(second).toEqual(first);
     expect(new Set(first.flatMap(row => row.objectives.map(objective => objective.type))).size).toBe(15);
-    expect(new Set(first.flatMap(row => Object.keys(row.rewards ?? {}))).size).toBe(12);
+    expect(new Set(first.flatMap(row => Object.keys(row.rewards ?? {}))).size).toBe(13);
     expect(JSON.stringify([mainDocument, sideDocument])).toBe(before);
   });
 

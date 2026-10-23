@@ -1,0 +1,12 @@
+{
+  "$schema": "../schema/quest-item.schema.json",
+  "items": [
+    {
+      "id": "items/book_of_skill",
+      "sourceQuestId": "quests/act2-radaments-lair",
+      "nameKey": "inventory:questItems.bookOfSkill.name",
+      "descKey": "inventory:questItems.bookOfSkill.description",
+      "effect": { "skillPoints": 1 }
+    }
+  ]
+}

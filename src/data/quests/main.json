@@ -101,7 +101,7 @@
       "objectives": [
         { "id": "obj-kill-radament", "type": "kill", "targetId": "monsters/act2.radament", "areaId": "areas/act2-far-oasis", "description": "Slay Radament in the sewers." }
       ],
-      "rewards": { "xp": 5000, "skillPoints": 1, "itemDrop": "items/book_of_skill" },
+      "rewards": { "xp": 5000, "questItem": "items/book_of_skill" },
       "unlocks": null,
       "order": 7
     },

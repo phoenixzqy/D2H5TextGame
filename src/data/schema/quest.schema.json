@@ -669,6 +669,10 @@
         "skillPoints": {
           "$ref": "#/$defs/nonnegativeInteger"
         },
+        "questItem": {
+          "$ref": "#/$defs/itemId",
+          "description": "One bound quest-item entitlement; canonical definition/source pairing is checked separately."
+        },
         "statPoints": {
           "$ref": "#/$defs/nonnegativeInteger"
         },

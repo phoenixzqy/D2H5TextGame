@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/quest-item.json",
+  "title": "Bound quest item definitions",
+  "description": "Capacity-independent, source-bound quest items and their authored Read effects.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["items"],
+  "properties": {
+    "$schema": { "type": "string", "description": "Optional authoring schema reference." },
+    "items": {
+      "type": "array",
+      "description": "Unique item and source quest pairs; cross-references are checked by the loader.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "sourceQuestId", "nameKey", "descKey", "effect"],
+        "properties": {
+          "id": {
+            "type": "string", "pattern": "^(quest|items)/[a-z0-9][a-z0-9._-]*$",
+            "description": "Quest item definition identity; this does not identify equippable gear."
+          },
+          "sourceQuestId": {
+            "type": "string", "pattern": "^quests/[a-z0-9][a-z0-9._-]*$",
+            "description": "The sole quest whose questItem reward may issue this entitlement."
+          },
+          "nameKey": { "type": "string", "minLength": 1, "description": "Localized item name key." },
+          "descKey": { "type": "string", "minLength": 1, "description": "Localized effect description key." },
+          "effect": {
+            "type": "object",
+            "description": "Read effect, applied once when the entitlement is consumed.",
+            "additionalProperties": false,
+            "required": ["skillPoints"],
+            "properties": {
+              "skillPoints": {
+                "type": "integer", "minimum": 1, "maximum": 9007199254740991,
+                "description": "Authored positive safe-integer unspent skill points granted by Read."
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
