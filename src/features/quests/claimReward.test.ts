@@ -370,6 +370,13 @@ describe('shared quest claim safety and actual Den contract', () => {
       expect(useInventoryStore.getState().currencies).toEqual({ runes: 4, runeShards: 5, gems: 6, wishstones: 7 });
     });
   });
+
+  it('refuses unsafe authored numbers and currency sums before XP is granted', () => {
+    complete();
+    withRewards({ xp: Number.MAX_SAFE_INTEGER + 1 }, () => { expectRefusal(DEN, 'unsupported-rewards'); });
+    useInventoryStore.setState({ currencies: { wishstones: Number.MAX_SAFE_INTEGER } });
+    withRewards({ xp: 500, wishstones: 1 }, () => { expectRefusal(DEN, 'unsupported-rewards'); });
+  });
 });
 
 

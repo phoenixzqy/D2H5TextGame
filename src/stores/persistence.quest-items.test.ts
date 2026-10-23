@@ -17,6 +17,7 @@ vi.mock('dexie', () => ({ default: class {
 } }));
 
 import { createMockPlayer } from '@/features/character/createMockPlayer';
+import { claimQuestReward, readQuestItem } from '@/features/quests/claimReward';
 import { usePlayerStore } from './playerStore';
 import { useInventoryStore } from './inventoryStore';
 import { useMapStore } from './mapStore';
@@ -44,6 +45,38 @@ beforeEach(() => {
 afterEach(() => { __resetPersistenceForTests(); });
 
 describe('persisted bound quest items', () => {
+  it('round-trips actual Claim and Read with no repeated XP or point grant on Continue/import', async () => {
+    useMapStore.getState().updateQuestProgress(questId, { rewardClaimed: false });
+    expect(claimQuestReward(questId)).toBe('ok');
+    const claimed = snapshotStores();
+    if (!claimed) throw new Error('Missing claimed book save');
+    const unreadJson = exportCurrentSave();
+    if (!unreadJson) throw new Error('Missing unread export');
+    await flushSave();
+    for (const store of [usePlayerStore, useInventoryStore, useMapStore]) store.getState().reset();
+    expect(await hydrateFromSave()).toBe(true);
+    expect(snapshotStores()?.inventory).toEqual(claimed.inventory);
+    expect(usePlayerStore.getState().player).toEqual(claimed.player);
+    await importIntoStores(unreadJson);
+    expect(usePlayerStore.getState().player).toEqual(claimed.player);
+    expect(claimQuestReward(questId)).toBe('already-claimed');
+    expect(readQuestItem(source)).toBe('ok');
+    const consumed = snapshotStores();
+    if (!consumed) throw new Error('Missing consumed book save');
+    expect(consumed.player).toEqual({ ...claimed.player, skillPoints: claimed.player.skillPoints + 1 });
+    expect(consumed.inventory.questItems[source]).toEqual({ itemId: 'items/book_of_skill', state: 'consumed' });
+    const consumedJson = exportCurrentSave();
+    if (!consumedJson) throw new Error('Missing consumed export');
+    await flushSave();
+    for (const store of [usePlayerStore, useInventoryStore, useMapStore]) store.getState().reset();
+    expect(await hydrateFromSave()).toBe(true);
+    for (let repeat = 0; repeat < 2; repeat++) {
+      await importIntoStores(consumedJson);
+      expect(readQuestItem(source)).toBe('already-consumed');
+      expect(usePlayerStore.getState().player).toEqual(consumed.player);
+      expect(snapshotStores()?.inventory).toEqual(consumed.inventory);
+    }
+  });
   it.each(['owned', 'consumed'] as const)('preserves %s across snapshot, Save, reset, Continue and repeated import', async state => {
     const questItems = { [source]: { itemId: 'items/book_of_skill', state } };
     useInventoryStore.setState({ questItems });

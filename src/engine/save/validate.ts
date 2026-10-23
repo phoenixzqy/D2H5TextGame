@@ -4,7 +4,7 @@ import { restoreEquipment, restoreItem, restoreUnit } from './restore';
 import { repairEquipmentRateCache } from './equipment-rate-cache';
 import { repairMercenaryGrowth } from '../progression/merc-growth';
 import { LEVEL_CAP } from '../progression/xp';
-import { CURRENT_SAVE_VERSION, type SaveCurrent, type SaveV7, type SaveV8, type SaveV9, type SaveV10, type SaveV11 } from '../types/save';
+import { CURRENT_SAVE_VERSION, type SaveCurrent, type SaveV7, type SaveV8, type SaveV9, type SaveV10, type SaveV11, type QuestItemLedger } from '../types/save';
 import { runMigrations, type VersionedSave } from './migrate';
 import { loadQuestItems, questItemSource } from '../../data/loaders/quest-items';
 import { loadQuests } from '../../data/loaders/quests';
@@ -155,6 +155,15 @@ const position = object({
   row: { type: 'integer', minimum: 0, maximum: 2 },
   col: { type: 'integer', minimum: 0, maximum: 2 }
 });
+const questProgressSchema = dict(object({
+  id: text,
+  status: { enum: ['locked', 'available', 'inProgress', 'completed'] },
+  objectives: dict(bool)
+}, { rewardClaimed: bool }));
+const questItemLedgerSchema = dict({
+  type: 'object', required: ['itemId', 'state'], additionalProperties: false,
+  properties: { itemId: text, state: { enum: ['owned', 'consumed'] } }
+});
 const saveSchema = (
   version: AnySchema,
   actorProperties: Record<string, AnySchema>,
@@ -202,16 +211,7 @@ const saveSchema = (
     currentSubAreaId: nullableText,
     discoveredAreas: strings,
     clearedSubAreas: strings,
-    questProgress: dict(
-      object(
-        {
-          id: text,
-          status: { enum: ['locked', 'available', 'inProgress', 'completed'] },
-          objectives: dict(bool)
-        },
-        { rewardClaimed: bool }
-      )
-    )
+    questProgress: questProgressSchema
   }),
   meta: object({
     settings: object({
@@ -238,9 +238,14 @@ const ajv = new Ajv({ strictNumbers: true });
 const validate = ajv.compile<SaveCurrent>(saveSchema({ const: CURRENT_SAVE_VERSION }, unitProperties, {
   selectedAuraId: { enum: ['paladin.might', 'paladin.meditation'] }
 }, {
-  questItems: dict({ type: 'object', required: ['itemId', 'state'], additionalProperties: false,
-    properties: { itemId: text, state: { enum: ['owned', 'consumed'] } } })
+  questItems: questItemLedgerSchema
 }));
+interface LedgerContext {
+  questItems: QuestItemLedger;
+  questProgress: SaveCurrent['map']['questProgress'];
+}
+const validateLedgerContext = ajv.compile<LedgerContext>(
+  object({ questItems: questItemLedgerSchema, questProgress: questProgressSchema }));
 const validateV11 = ajv.compile<SaveV11>(saveSchema({ const: 11 }, unitProperties, {
   selectedAuraId: { enum: ['paladin.might', 'paladin.meditation'] }
 }));
@@ -320,19 +325,35 @@ function validateV11Save(value: unknown): void {
   }
 }
 
-/** Entitlements must agree with both the current definition and claimed canonical quest. */
-function validateQuestItemSources(save: SaveCurrent): void {
-  const entries = Object.entries(save.inventory.questItems);
-  if (entries.length === 0) return;
+/** Validate untrusted ledger/progress structure and canonical entitlements without store reads or repair. */
+export function validateQuestItemLedger(questItems: unknown, questProgress: unknown): QuestItemLedger {
+  // Generic save normalization must not erase a Date, Map or inherited receipt.
+  const plainRecord = (value: unknown): value is Record<string, unknown> => {
+    if (!record(value)) return false;
+    const prototype: unknown = Object.getPrototypeOf(value);
+    return prototype === Object.prototype || prototype === null;
+  };
+  if (!plainRecord(questItems) || !plainRecord(questProgress) ||
+    !Object.values(questItems).every(plainRecord) ||
+    !Object.values(questProgress).every(progress => plainRecord(progress) && plainRecord(progress.objectives))) {
+    throw new Error('Invalid save: quest ledger and progress must be JSON records');
+  }
+  const context = { questItems, questProgress };
+  if (!validateLedgerContext(context)) {
+    throw new Error(`Invalid save: ${ajv.errorsText(validateLedgerContext.errors)}`);
+  }
+  const validated = context as LedgerContext;
+  const entries = Object.entries(validated.questItems);
+  if (entries.length === 0) return validated.questItems;
   const definitions = loadQuestItems();
   const quests = loadQuests();
   for (const [source, entry] of entries) {
     const definition = definitions.find(item => questItemSource(item) === source);
     if (!definition || definition.id !== entry.itemId ||
-      !Object.hasOwn(save.map.questProgress, definition.sourceQuestId)) {
+      !Object.hasOwn(validated.questProgress, definition.sourceQuestId)) {
       throw new Error('Invalid save: unknown quest item source or item');
     }
-    const progress = save.map.questProgress[definition.sourceQuestId];
+    const progress = validated.questProgress[definition.sourceQuestId];
     const quest = quests.find(row => row.id === definition.sourceQuestId);
     if (!quest || progress?.id !== definition.sourceQuestId || progress.status !== 'completed' ||
       progress.rewardClaimed !== true || !quest.objectives.every(objective =>
@@ -340,16 +361,19 @@ function validateQuestItemSources(save: SaveCurrent): void {
       throw new Error('Invalid save: quest item source must be completed and claimed');
     }
   }
+  return validated.questItems;
 }
 
 /** Validate a migrated save before any IO or store mutation. Preserves optional fields. */
 export function validateSave(value: unknown): SaveCurrent {
+  if (record(value) && record(value.inventory) && record(value.map)) {
+    validateQuestItemLedger(value.inventory.questItems, value.map.questProgress);
+  }
   const normalized = normalizeMaps(value);
   rejectUndefinedMagicResist(normalized);
   rejectUndefinedSelection(normalized);
   if (!validate(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(validate.errors)}`);
   const save = normalized as SaveCurrent;
-  validateQuestItemSources(save);
   return save;
 }
 

@@ -2,7 +2,7 @@
 import { usePlayerStore } from '@/stores/playerStore';
 import { useInventoryStore } from '@/stores/inventoryStore';
 import { useMapStore } from '@/stores/mapStore';
-import { useMercStore } from '@/stores/mercStore';
+import { useMercStore, MERC_XP_SHARE, mercXpForLevel } from '@/stores/mercStore';
 import { isReplacingSave, useHydrationStore } from '@/stores/persistence';
 import { loadQuests, type QuestDef } from '@/data/loaders/quests';
 import { loadAwardPools } from '@/data/loaders/loot';
@@ -10,6 +10,11 @@ import { rollUniqueItem, type RollUniqueItemInput } from '@/engine/loot/rollItem
 import { createRng, hashSeed } from '@/engine/rng';
 import type { Item } from '@/engine/types/items';
 import { assertIronGolemOwnershipMutationAllowed } from '@/stores/waveTransitionGuard';
+import { loadQuestItems, questItemSource } from '@/data/loaders/quest-items';
+import { validateQuestItemLedger } from '@/engine/save/validate';
+import { awardXp, LEVEL_CAP, xpTotal } from '@/engine/progression/xp';
+import type { Player } from '@/engine/types/entities';
+import type { QuestItemLedger } from '@/engine/types/save';
 
 export type ClaimResult =
   | 'ok'
@@ -45,8 +50,55 @@ export function canClaim(questId: string): boolean {
   return Boolean(quest?.rewards && Object.keys(quest.rewards).length > 0);
 }
 
-// Global across quests: a nested second claim must not be erased by rollback.
+// Shared by Claim and Read: nested grants must not be erased by rollback.
 let claimInProgress = false;
+
+function withQuestTransaction<T>(operation: () => T): T | 'claim-in-progress' {
+  assertIronGolemOwnershipMutationAllowed();
+  if (claimInProgress) return 'claim-in-progress';
+  claimInProgress = true;
+  try { return operation(); } finally { claimInProgress = false; }
+}
+
+function safeCount(value: number): boolean {
+  return Number.isSafeInteger(value) && value >= 0;
+}
+
+/** Use production progression to preflight every participating integer before publication. */
+function safeGrants(player: Player, grants: readonly { kind: NumericReward; amount: number }[]): boolean {
+  const amount = (kind: NumericReward): number => grants.find(grant => grant.kind === kind)?.amount ?? 0;
+  if (!Number.isInteger(player.level) || player.level < 1 || player.level > LEVEL_CAP ||
+    !safeCount(player.experience) || !safeCount(player.skillPoints) || !safeCount(player.statPoints)) return false;
+  const cumulative = xpTotal(player.level) + player.experience;
+  if (!safeCount(cumulative) || !safeCount(cumulative + amount('xp'))) return false;
+  const growth = awardXp(cumulative, amount('xp'));
+  if (!safeCount(player.skillPoints + growth.skillPointsGranted + amount('skillPoints')) ||
+    !safeCount(player.statPoints + growth.statPointsGranted + amount('statPoints'))) return false;
+  const currencies = useInventoryStore.getState().currencies;
+  for (const grant of grants) {
+    if (grant.kind === 'xp' || grant.kind === 'skillPoints' || grant.kind === 'statPoints') continue;
+    const balance = currencies[grant.kind] ?? 0;
+    if (!safeCount(balance) || !safeCount(balance + grant.amount)) return false;
+  }
+  const mercs = useMercStore.getState();
+  const merc = mercs.ownedMercs.find(row => row.id === mercs.fieldedMercId);
+  if (amount('xp') > 0 && merc) {
+    if (!Number.isSafeInteger(merc.level) || merc.level < 1) return false;
+    const progress = mercs.getMercProgress(merc.id);
+    let xp = progress.experience + Math.floor(amount('xp') * MERC_XP_SHARE);
+    let threshold = progress.experienceToNextLevel;
+    let level = merc.level;
+    if (!safeCount(progress.experience) || !safeCount(xp) ||
+      !Number.isSafeInteger(threshold) || threshold <= 0) return false;
+    while (xp >= threshold) {
+      xp -= threshold;
+      level++;
+      threshold = mercXpForLevel(level);
+      if (!Number.isSafeInteger(threshold) || threshold <= 0) return false;
+    }
+  }
+  return true;
+}
 
 /**
  * Preflight the whole bundle before writes, then settle grants and claimed flag.
@@ -56,10 +108,7 @@ let claimInProgress = false;
  * Throws WaveGuardError before reads or claim ownership during an exact Iron debit.
  */
 export function claimQuestReward(questId: string): ClaimResult {
-  assertIronGolemOwnershipMutationAllowed();
-  if (claimInProgress) return 'claim-in-progress';
-  claimInProgress = true;
-  try {
+  return withQuestTransaction<ClaimResult>(() => {
     const progress = useMapStore.getState().questProgress[questId];
     if (!progress || progress.status !== 'completed') return 'not-completed';
     if (progress.rewardClaimed) return 'already-claimed';
@@ -70,12 +119,29 @@ export function claimQuestReward(questId: string): ClaimResult {
     if (useHydrationStore.getState().status !== 'ready' || isReplacingSave()) return 'not-ready';
     const player = usePlayerStore.getState().player;
     if (!player) return 'no-player';
+    const inventory = useInventoryStore.getState();
+    const questProgress = useMapStore.getState().questProgress;
+    try { validateQuestItemLedger(inventory.questItems, questProgress); }
+    catch { return 'unsupported-rewards'; }
 
     const grants: { kind: NumericReward; amount: number }[] = [];
     let uniqueReward: RollUniqueItemInput | undefined;
+    let questItems: QuestItemLedger | undefined;
     for (const [kind, amount] of Object.entries(rewards)) {
       // Gold has no executable economy; authored zero is a harmless no-op.
       if (kind === 'gold' && amount === 0) continue;
+      if (kind === 'questItem') {
+        try {
+          const definition = loadQuestItems().find(row => row.id === amount && row.sourceQuestId === questId);
+          if (!definition || !Object.hasOwn(questProgress, questId)) return 'unsupported-rewards';
+          const source = questItemSource(definition);
+          if (Object.hasOwn(inventory.questItems, source)) return 'unsupported-rewards';
+          questItems = validateQuestItemLedger({ ...inventory.questItems,
+            [source]: { itemId: definition.id, state: 'owned' } },
+          { ...questProgress, [questId]: { ...progress, rewardClaimed: true } });
+        } catch { return 'unsupported-rewards'; }
+        continue;
+      }
       if (kind === 'itemDrop') {
         if (typeof amount !== 'object' || amount === null
           || !('uniqueId' in amount) || typeof amount.uniqueId !== 'string'
@@ -85,10 +151,11 @@ export function claimQuestReward(questId: string): ClaimResult {
         continue;
       }
       if (!isNumericReward(kind) || typeof amount !== 'number'
-        || !Number.isInteger(amount) || amount < 0) return 'unsupported-rewards';
+        || !safeCount(amount)) return 'unsupported-rewards';
       if (amount > 0) grants.push({ kind, amount });
     }
-    if (grants.length === 0 && !uniqueReward) return 'no-rewards';
+    if (grants.length === 0 && !uniqueReward && !questItems) return 'no-rewards';
+    if (!safeGrants(player, grants)) return 'unsupported-rewards';
 
     // Preparation is private: failure here must not publish rollback writes.
     let item: Item | undefined;
@@ -110,10 +177,10 @@ export function claimQuestReward(questId: string): ClaimResult {
     const changesCurrency = grants.some(({ kind }) =>
       kind !== 'xp' && kind !== 'skillPoints' && kind !== 'statPoints');
     const { ownedMercs, mercProgress } = useMercStore.getState();
-    const inventory = useInventoryStore.getState();
     const inventorySnapshot = {
       ...(changesCurrency ? { currencies: inventory.currencies } : {}),
-      ...(item ? { backpack: inventory.backpack } : {})
+      ...(item ? { backpack: inventory.backpack } : {}),
+      ...(questItems ? { questItems: inventory.questItems } : {})
     };
 
     try {
@@ -130,6 +197,7 @@ export function claimQuestReward(questId: string): ClaimResult {
         }
       }
       if (item) useInventoryStore.getState().addItem(item);
+      if (questItems) useInventoryStore.setState({ questItems });
       useMapStore.getState().markQuestRewardClaimed(questId);
       return 'ok';
     } catch (cause) {
@@ -141,7 +209,9 @@ export function claimQuestReward(questId: string): ClaimResult {
       };
       if (changesPlayer) restore(() => { usePlayerStore.setState({ player }); });
       if (sharesXp) restore(() => { useMercStore.setState({ ownedMercs, mercProgress }); });
-      if (changesCurrency || item) restore(() => { useInventoryStore.setState(inventorySnapshot); });
+      if (changesCurrency || item !== undefined || questItems !== undefined) {
+        restore(() => { useInventoryStore.setState(inventorySnapshot); });
+      }
       restore(() => { useMapStore.setState((state) => ({
         questProgress: { ...state.questProgress, [questId]: progress }
       })); });
@@ -150,7 +220,46 @@ export function claimQuestReward(questId: string): ClaimResult {
       }
       return 'grant-failed';
     }
-  } finally {
-    claimInProgress = false;
-  }
+  });
+}
+
+export type ReadQuestItemResult = 'ok' | 'not-ready' | 'no-player' | 'not-owned'
+  | 'already-consumed' | 'unsupported-rewards' | 'claim-in-progress' | 'grant-failed';
+
+/** Read one exact authored source; grant its JSON effect once and retain a consumed receipt.
+ * Shares Claim's synchronous lock and Iron debit guard through all restoration attempts.
+ * Restoration failures throw AggregateError; this is not observer-wide or crash atomicity.
+ */
+export function readQuestItem(source: string): ReadQuestItemResult {
+  return withQuestTransaction<ReadQuestItemResult>(() => {
+    if (useHydrationStore.getState().status !== 'ready' || isReplacingSave()) return 'not-ready';
+    const player = usePlayerStore.getState().player;
+    if (!player) return 'no-player';
+    const questItems = useInventoryStore.getState().questItems;
+    let points: number;
+    let itemId: string;
+    try {
+      validateQuestItemLedger(questItems, useMapStore.getState().questProgress);
+      const definition = loadQuestItems().find(row => questItemSource(row) === source);
+      if (!definition) return 'unsupported-rewards';
+      if (!Object.hasOwn(questItems, source)) return 'not-owned';
+      if (questItems[source]?.state === 'consumed') return 'already-consumed';
+      points = definition.effect.skillPoints;
+      itemId = definition.id;
+      if (!safeCount(player.skillPoints) || !safeCount(points) || points <= 0 ||
+        !safeCount(player.skillPoints + points)) return 'unsupported-rewards';
+    } catch { return 'unsupported-rewards'; }
+    try {
+      usePlayerStore.setState({ player: { ...player, skillPoints: player.skillPoints + points } });
+      useInventoryStore.setState({ questItems: { ...questItems,
+        [source]: { itemId, state: 'consumed' } } });
+      return 'ok';
+    } catch (cause) {
+      const errors: unknown[] = [];
+      try { usePlayerStore.setState({ player }); } catch (error) { errors.push(error); }
+      try { useInventoryStore.setState({ questItems }); } catch (error) { errors.push(error); }
+      if (errors.length > 0) throw new AggregateError(errors, 'Quest item restoration failed', { cause });
+      return 'grant-failed';
+    }
+  });
 }

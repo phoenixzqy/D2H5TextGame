@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { deriveStats } from '../progression/stats';
 import { CURRENT_SAVE_VERSION, MIGRATIONS, type SaveV1 } from '../types/save';
 import { buildSave, toJsonSafe, type BuildSaveInput } from './serialize';
-import { decodeSave, validateSave } from './validate';
+import { decodeSave, validateSave, validateQuestItemLedger } from './validate';
 
 const questId = 'quests/act2-radaments-lair';
 const source = `${questId}#reward:questItem`;
@@ -52,6 +52,16 @@ function legacyV1(): SaveV1 {
 }
 
 describe('v12 source-bound quest item ledger', () => {
+  it.each([
+    { label: 'Map', ledger: new Map([[source, { itemId: bookId, state: 'owned' }]]) },
+    { label: 'Date', ledger: new Date(1000) },
+    { label: 'inherited receipt', ledger: Object.create({ [source]: { itemId: bookId, state: 'owned' } }) as unknown },
+    { label: 'inherited fields', ledger: { [source]: Object.create({ itemId: bookId, state: 'owned' }) as unknown } }
+  ])('rejects a non-JSON ledger before normalization ($label)', ({ ledger }) => {
+    const input = withLedger(ledger);
+    expect(() => validateQuestItemLedger(ledger, input.map.questProgress)).toThrow('Invalid save');
+    expect(() => decodeSave(input)).toThrow('Invalid save');
+  });
   it('decodes a valid original v1 inventory before testing reserved-field corruption', () => {
     const input = legacyV1();
     const before = structuredClone(input);
