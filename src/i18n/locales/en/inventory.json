@@ -1,6 +1,40 @@
 {
   "inventory.title": "Inventory",
   "questItems": {
+    "mephistosSoulstone": {
+      "name": "Mephisto’s Soulstone",
+      "description": "A bound quest trophy granted by The Guardian. Retained; it cannot be read or equipped."
+    },
+    "khalimsHeart": {
+      "name": "Khalim’s Heart",
+      "description": "Recover it in the Flayer Jungle after clearing the area. Consumed when assembling Khalim’s Will."
+    },
+    "khalimsBrain": {
+      "name": "Khalim’s Brain",
+      "description": "Recover it in the Great Marsh after clearing the area. Consumed when assembling Khalim’s Will."
+    },
+    "khalimsEye": {
+      "name": "Khalim’s Eye",
+      "description": "Recover it in the Kurast Bazaar after clearing the area. Consumed when assembling Khalim’s Will."
+    },
+    "khalimsFlail": {
+      "name": "Khalim’s Flail",
+      "description": "Defeat the High Council in Travincal, then recover the Flail explicitly. Consumed when assembling Khalim’s Will."
+    },
+    "khalimsWill": {
+      "name": "Khalim’s Will",
+      "description": "Assemble from all four components using the retained Horadric Cube. Consumed when breaking the Compelling Orb in Travincal. Claim the quest reward separately."
+    },
+    "usedAtDestination": "Used at its destination",
+    "recipe": {
+      "action": "Assemble {{item}}",
+      "inputs": "Assembly consumes every ingredient: {{ingredients}}. {{tool}} is retained.",
+      "ready": "Ready to assemble {{item}} wherever you are.",
+      "unavailable": "Recover every ingredient and {{tool}}, and complete the earlier quest objectives first. Assembly is portable.",
+      "owned": "{{item}} assembled. Claim the quest reward separately in Quests.",
+      "consumed": "{{item}} has been used at its destination. Its ingredients remain recorded as used.",
+      "claimed": "{{item}} assembled. Quest reward claimed."
+    },
     "jadeFigurine": {
       "name": "Jade Figurine",
       "description": "Recover the figurine in the Spider Forest, then give it to Deckard Cain in Kurast Docks in exchange for the Golden Bird."
@@ -41,6 +75,8 @@
       "description": "Read once to gain {{skillPoints}} skill point."
     },
     "feedback": {
+      "item-assembled": "{{item}} assembled.",
+      "assembly-restoration-failed": "The action could not finish safely. Check your quest items and quest progress before trying again.",
       "busy": "A battle or save operation is in progress. Try again when it finishes.",
       "life-increased": "Maximum Life increased by {{maxLife}}. Current Life is unchanged.",
       "life-already-consumed": "This Potion of Life was already read.",

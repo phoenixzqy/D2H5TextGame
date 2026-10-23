@@ -59,7 +59,7 @@ describe.each(['en', 'zh-CN'])('Staff player actions %s', locale => {
     const insert = within(screen.getByTestId('area-object-panel')).getByRole('button', { name: en ? 'Insert Staff' : '嵌入法杖' });
     fireEvent.click(insert); expect(insert).toBeDisabled();
     expect(screen.getByTestId('area-object-panel')).toHaveTextContent(en ? 'Staff inserted. The chamber is open.' : '法杖已嵌入，墓室已开启。');
-    expect(screen.getByTestId('quest-items-panel')).toHaveTextContent(en ? 'Inserted at the tomb' : '已嵌入陵墓');
+    expect(screen.getByTestId('quest-items-panel')).toHaveTextContent(en ? 'Used at its destination' : '已在目标地点使用');
     expect(screen.getByTestId('quest-items-panel').textContent).not.toMatch(/questItems\.|quest\/|undefined/);
     expect(useMapStore.getState().isActUnlocked(3)).toBe(false);
     // Restored ledger subscriptions update both consumption feedback and the action.

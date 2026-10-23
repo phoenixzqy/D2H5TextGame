@@ -1,6 +1,40 @@
 {
   "inventory.title": "背包",
   "questItems": {
+    "mephistosSoulstone": {
+      "name": "墨菲斯托的灵魂石",
+      "description": "守护者任务授予的绑定任务战利品。保留此物品，无需阅读，不可装备。"
+    },
+    "khalimsHeart": {
+      "name": "卡林之心",
+      "description": "清理剥皮丛林后取回。合成卡林的意志时会消耗。"
+    },
+    "khalimsBrain": {
+      "name": "卡林之脑",
+      "description": "清理巨型沼泽后取回。合成卡林的意志时会消耗。"
+    },
+    "khalimsEye": {
+      "name": "卡林之眼",
+      "description": "清理库拉斯特集市后取回。合成卡林的意志时会消耗。"
+    },
+    "khalimsFlail": {
+      "name": "卡林之连枷",
+      "description": "在崔凡卡击败高级议会后，需另行取回连枷。合成卡林的意志时会消耗。"
+    },
+    "khalimsWill": {
+      "name": "卡林的意志",
+      "description": "使用保留的赫拉迪克方块，将四份材料合成为卡林的意志。在崔凡卡击碎强制之球时会消耗，任务奖励需另行领取。"
+    },
+    "usedAtDestination": "已在目标地点使用",
+    "recipe": {
+      "action": "合成{{item}}",
+      "inputs": "合成会消耗全部材料：{{ingredients}}。{{tool}}会保留。",
+      "ready": "已可合成{{item}}，可在任意地点操作。",
+      "unavailable": "请先取回全部材料和{{tool}}，并完成此前的任务目标。合成可在任意地点进行。",
+      "owned": "{{item}}已合成。请前往任务页面另行领取奖励。",
+      "consumed": "{{item}}已在目标地点使用，材料保留已消耗记录。",
+      "claimed": "{{item}}已合成，任务奖励已领取。"
+    },
     "jadeFigurine": {
       "name": "玉制小雕像",
       "description": "在蜘蛛森林取回雕像，再交给库拉斯特码头的迪卡·凯恩，换取金鸟。"
@@ -41,6 +75,8 @@
       "description": "阅读一次，获得 {{skillPoints}} 个技能点。"
     },
     "feedback": {
+      "item-assembled": "{{item}}已合成。",
+      "assembly-restoration-failed": "操作未能安全完成，请检查任务物品与任务进度后再尝试。",
       "busy": "战斗或存档操作正在进行，请稍后重试。",
       "life-increased": "生命上限增加 {{maxLife}} 点，当前生命不变。",
       "life-already-consumed": "这瓶生命药剂已经阅读过。",

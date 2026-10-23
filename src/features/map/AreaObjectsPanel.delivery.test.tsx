@@ -1,5 +1,5 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest';
-import { act, fireEvent, render, screen, within } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '@/i18n';
 import { loadQuestItems, questItemSource } from '@/data/loaders/quest-items';
@@ -44,7 +44,8 @@ describe.each(['en', 'zh-CN'])('Field delivery items %s', locale => {
     expect(panel).toHaveTextContent(i18n.t(item.nameKey));
     expect(panel).toHaveTextContent(i18n.t(item.descKey));
     expect(panel).toHaveTextContent(i18n.t('areaObjects.delivery.unavailable', { ns: 'quests' }));
-    const recover = within(panel).getByRole('button', { name: i18n.t('areaObjects.recover', { ns: 'quests' }) });
+    const recover = screen.getByTestId(`quest-recover-${itemId}`);
+    expect(recover).toHaveAccessibleName(i18n.t('areaObjects.recover', { ns: 'quests' }));
     expect(recover).toBeDisabled();
     act(() => { useMapStore.getState().markCleared(areaId); });
     // Clearing only unlocks recovery; it never gives the bound item automatically.

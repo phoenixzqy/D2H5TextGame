@@ -17,6 +17,16 @@
   "turnIn": "Turn In",
   "abandon": "Abandon",
   "areaObjects": {
+    "actions": {
+      "act3-break-compelling-orb": {
+        "name": "Compelling Orb",
+        "description": "Use Khalim’s Will to break the Orb in Travincal. The Will is consumed; the Cube is retained. This action grants no XP and can be performed before or after claiming Khalim’s Will quest rewards.",
+        "action": "Break Compelling Orb",
+        "ready": "Khalim’s Will is ready. Break the Orb to open the way to the Durance of Hate.",
+        "unavailable": "Track The Guardian, visit Travincal, and assemble Khalim’s Will first.",
+        "consumed": "Orb broken. Khalim’s Will was consumed, and the way to the Durance of Hate is open. Defeat Mephisto, then claim The Guardian reward separately in Quests."
+      }
+    },
     "title": "Area Objects",
     "inspect": "Inspect",
     "read": "Read",
@@ -30,6 +40,34 @@
       "consumed": "Item delivered. This item can only be given once."
     },
     "tools": {
+      "khalims_heart": {
+        "name": "Khalim’s Heart",
+        "ready": "Clear secured. Recover Khalim’s Heart.",
+        "owned": "Recovered. Retain this ingredient until assembly.",
+        "consumed": "Consumed when assembling Khalim’s Will.",
+        "unavailable": "Track Khalim’s Will and clear this area first."
+      },
+      "khalims_brain": {
+        "name": "Khalim’s Brain",
+        "ready": "Clear secured. Recover Khalim’s Brain.",
+        "owned": "Recovered. Retain this ingredient until assembly.",
+        "consumed": "Consumed when assembling Khalim’s Will.",
+        "unavailable": "Track Khalim’s Will and clear this area first."
+      },
+      "khalims_eye": {
+        "name": "Khalim’s Eye",
+        "ready": "Clear secured. Recover Khalim’s Eye.",
+        "owned": "Recovered. Retain this ingredient until assembly.",
+        "consumed": "Consumed when assembling Khalim’s Will.",
+        "unavailable": "Track Khalim’s Will and clear this area first."
+      },
+      "khalims_flail": {
+        "name": "Khalim’s Flail",
+        "ready": "Clear secured. Recover Khalim’s Flail.",
+        "owned": "Recovered. Retain this ingredient until assembly.",
+        "consumed": "Consumed when assembling Khalim’s Will.",
+        "unavailable": "Track Khalim’s Will, clear Travincal and defeat its High Council first."
+      },
       "horadric_cube": {
         "name": "Horadric Cube Coffer",
         "ready": "Recover the Horadric Cube from this coffer.",
@@ -96,6 +134,11 @@
     "5": "Act V Quests"
   },
   "byId": {
+    "act3-guardian": {
+      "name": "The Guardian",
+      "desc": "Use the real assembled Khalim’s Will to break the Compelling Orb in Travincal, then defeat Mephisto in the Durance of Hate. Claim the quest reward separately. Breaking the Orb grants no XP.",
+      "obj1": "Defeat Mephisto"
+    },
     "act3-blade-of-the-old-religion": {
       "name": "Blade of the Old Religion",
       "desc": "Recover the Gidbinn in the Flayer Jungle and give the sacred blade to Ormus.",
@@ -217,12 +260,13 @@
       "obj1": "Recover the Gidbinn"
     },
     "act3-khalims-will": {
-      "name": "Khalim's Will",
-      "desc": "Combine Khalim's Eye, Heart, Brain, and Flail into Khalim's Will.",
-      "obj1": "Khalim's Eye",
-      "obj2": "Khalim's Heart",
-      "obj3": "Khalim's Brain",
-      "obj4": "Khalim's Flail"
+      "name": "Khalim’s Will",
+      "desc": "Recover the Heart in the Flayer Jungle, the Brain in the Great Marsh, the Eye in the Kurast Bazaar, and the Flail after defeating Travincal’s High Council. Recover the four parts in any order, then assemble them using the retained Horadric Cube anywhere. Claim the XP reward separately.",
+      "obj1": "Recover Khalim’s Heart",
+      "obj2": "Recover Khalim’s Brain",
+      "obj3": "Recover Khalim’s Eye",
+      "obj4": "Recover Khalim’s Flail after defeating the High Council",
+      "obj5": "Assemble Khalim’s Will in the Horadric Cube"
     },
     "act3-mephisto": {
       "name": "Bounty: Mephisto",
