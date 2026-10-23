@@ -18,14 +18,40 @@
     "feedback": {
       "ok": "Gained {{skillPoints}} skill point.",
       "not-ready": "Save data is loading or being replaced. Try again when it finishes.",
-      "no-player": "Create or load a character before reading.",
+      "no-player": "Create or load a character before this quest action.",
       "not-owned": "This quest item is no longer available.",
       "already-consumed": "This book was already read.",
       "unsupported-rewards": "This quest item cannot be read right now.",
       "claim-in-progress": "A quest reward action is in progress. Try again when it finishes.",
-      "grant-failed": "The book could not be read. Try again.",
+      "grant-failed": "The quest action could not finish. Try again.",
       "action-failed": "This action is unavailable right now. Try again.",
-      "restoration-failed": "The action could not finish safely. Check your skill points and quest items before trying again."
+      "restoration-failed": "The action could not finish safely. Check your skill points and quest items before trying again.",
+      "assembled": "Horadric Staff assembled.",
+      "already-owned": "This quest item has already been recovered or assembled.",
+      "not-eligible": "Recover the required quest items and complete the earlier objectives first.",
+      "combat-active": "Finish or leave the current battle before assembling."
+    },
+    "staffOfKings": {
+      "name": "Staff of Kings",
+      "description": "Bound component for the Horadric Staff. Consumed during assembly."
+    },
+    "viperAmulet": {
+      "name": "Viper Amulet",
+      "description": "Bound component for the Horadric Staff. Consumed during assembly."
+    },
+    "horadricStaff": {
+      "name": "Horadric Staff",
+      "description": "Insert this bound Staff into the orifice in Tal Rasha’s Tomb."
+    },
+    "usedInAssembly": "Used in assembly",
+    "inserted": "Inserted at the tomb",
+    "assembly": {
+      "action": "Assemble Horadric Staff",
+      "ready": "Combine the shaft and amulet in the Cube. The Cube is retained.",
+      "unavailable": "Recover the Cube, Staff of Kings and Viper Amulet before assembling.",
+      "owned": "Horadric Staff assembled. Claim the quest reward separately in Quests.",
+      "consumed": "The Staff was inserted into the tomb. Its components remain recorded as used.",
+      "claimed": "Horadric Staff assembled. Quest reward claimed."
     }
   },
   "backpack": "Backpack",

@@ -8,6 +8,7 @@ import { subAreas } from '@/data/index';
 import { loadQuests } from '@/data/loaders/quests';
 import { objectInteractionStatus } from '@/engine/map/questInteractions';
 import { areaObjectTargets, areaQuestTools, questToolStatus, recoverQuestTool, interactWithAreaObject, type RecoverToolResult } from '@/features/quests/interactObject';
+import { areaQuestInsertions, questInsertionStatus, insertQuestItem, type QuestCraftingResult } from '@/features/quests/questCrafting';
 import { WaveGuardError } from '@/stores/waveTransitionGuard';
 import { RecordedWaveAccessError } from '@/stores/recordedWaveAccess';
 
@@ -18,7 +19,7 @@ export function AreaObjectsPanel({ act, areaId, onClose }: Props) {
   const { t } = useTranslation(['quests', 'common']);
   const progress = useMapStore(state => state.questProgress);
   useInventoryStore(state => state.questItems);
-  const [failure, setFailure] = useState<RecoverToolResult | 'busy' | 'restoration-failed' | null>(null);
+  const [failure, setFailure] = useState<RecoverToolResult | QuestCraftingResult | 'busy' | 'restoration-failed' | null>(null);
   return (
     <section id="area-objects" data-testid="area-object-panel" aria-labelledby="area-objects-title"
       className="w-full min-w-0 rounded border border-d2-border bg-d2-bg/60 p-3 space-y-3">
@@ -31,7 +32,7 @@ export function AreaObjectsPanel({ act, areaId, onClose }: Props) {
           <div key={targetId} className="space-y-2">
             <h3 className="text-d2-white font-semibold">{t(`${key}.name`)}</h3>
             <p role="status" className="text-sm text-d2-white/90">
-              {status === 'completed' || status === 'claimed' ? t(`${key}.${status}`) : t(`areaObjects.${status}`)}
+              {t(`${key}.${status}`, { defaultValue: t(`areaObjects.${status}`) })}
             </p>
             {(status === 'completed' || status === 'claimed') && (
               <p data-testid="area-object-excerpt" className="text-sm text-d2-white/90 break-words">{t(`${key}.excerpt`)}</p>
@@ -45,7 +46,26 @@ export function AreaObjectsPanel({ act, areaId, onClose }: Props) {
                   if (!(error instanceof WaveGuardError || error instanceof RecordedWaveAccessError)) throw error;
                   setFailure('busy');
                 }
-              }}>{t('areaObjects.read')}</Button>
+              }}>{t(`${key}.action`, { defaultValue: t('areaObjects.read') })}</Button>
+          </div>
+        );
+      })}
+      {areaQuestInsertions(act, areaId).map(item => {
+        const source = questItemSource(item), status = questInsertionStatus(source);
+        return (
+          <div key={source} className="space-y-2">
+            <h3 className="text-d2-white font-semibold">{t('areaObjects.orifice.name')}</h3>
+            <p role="status" className="text-sm text-d2-white/90">{t(`areaObjects.orifice.${status}`)}</p>
+            <Button variant="primary" className="min-h-[44px] min-w-[44px]" disabled={status !== 'ready'} onClick={() => {
+              try {
+                const result = insertQuestItem(source);
+                setFailure(result === 'ok' || result === 'already-consumed' ? null : result);
+              } catch (error) {
+                if (error instanceof AggregateError) setFailure('restoration-failed');
+                else if (error instanceof WaveGuardError || error instanceof RecordedWaveAccessError) setFailure('busy');
+                else throw error;
+              }
+            }}>{t('areaObjects.orifice.insert')}</Button>
           </div>
         );
       })}

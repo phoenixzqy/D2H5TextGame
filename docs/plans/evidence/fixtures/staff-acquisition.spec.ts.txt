@@ -1,0 +1,110 @@
+/** Earned-prefix Staff recovery/assembly/insertion plus separately constructed legacy repair. No combat. */
+import { test, expect, type Page, type BrowserContext } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/@playwright/test/index.mjs';
+import { readFile, writeFile } from 'node:fs/promises';
+import { gunzipSync, gzipSync } from 'node:zlib';
+import { createCharacter, navTo } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/tests/e2e/_helpers';
+const root='/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-staff-xmyimd7c';
+const repo='/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2';
+const quest='quests/act2-horadric-staff', tombQuest='quests/act2-seven-tombs', now=1792497600000;
+async function backup(page:Page) {
+ await navTo(page,'settings'); const pending=page.waitForEvent('download');
+ await page.getByTestId('export-save-button').click(); const download=await pending;
+ try {return JSON.parse(await readFile(await download.path(),'utf8'));} finally {await download.delete();}
+}
+async function disk(page:Page) {return page.evaluate(async()=>{
+ const db=await new Promise<IDBDatabase>((resolve,reject)=>{const req=indexedDB.open('D2H5TextGame');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});
+ try {const record=await new Promise<{data:unknown}>((resolve,reject)=>{const req=db.transaction('saves','readonly').objectStore('saves').get('current');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});return JSON.parse(JSON.stringify(record.data,(_k,v)=>v instanceof Map?[...v.entries()]:v));} finally {db.close();}
+});}
+async function importSave(page:Page, value:unknown, english:boolean) {
+ await navTo(page,'settings');const label=english?'Import Save':'导入存档';await page.getByRole('button',{name:label,exact:true}).click();
+ const dialog=page.getByRole('dialog');await dialog.getByRole('textbox').fill(JSON.stringify(value));await dialog.getByRole('button',{name:label,exact:true}).click();await expect(dialog).toHaveCount(0);
+}
+async function reopen(page:Page, context:BrowserContext, english:boolean, expected:unknown, errors:string[]) {
+ await navTo(page,'settings');await page.getByRole('button',{name:english?'Save':'保存',exact:true}).click();
+ await expect(page.getByRole('status')).toHaveText(english?'Saved':'已保存');expect(await disk(page)).toEqual(expected);expect(await backup(page)).toEqual(expected);
+ await page.close();const next=await context.newPage();next.on('pageerror',error=>errors.push(error.message));await next.clock.setFixedTime(now);await next.goto('/');await next.waitForLoadState('networkidle');
+ await next.getByTestId('home-continue').click();await expect(next.getByTestId('town-screen')).toBeVisible();expect(await backup(next)).toEqual(expected);expect(await disk(next)).toEqual(expected);return next;
+}
+const source=(id:string)=>quest+'#objective:obj-'+id;
+async function inspect(page:Page, english:boolean, shortId:string) {
+ await navTo(page,'map'); const toggle=page.getByRole('button',{name:english?/^Act 2 ·/:/^第 2 章 ·/});
+ if(await toggle.getAttribute('aria-expanded')!=='true')await toggle.click();
+ const trigger=page.getByTestId('area-objects-'+shortId);await trigger.focus();await page.keyboard.press('Enter');
+ const panel=page.getByTestId('area-object-panel');await expect(panel).toBeVisible();
+ await expect(page.getByTestId('combat-screen')).toHaveCount(0);return panel;
+}
+async function retain(name:string,value:unknown) {await writeFile(root+'/'+name+'.json.gz',gzipSync(JSON.stringify(value)));}
+async function assertLayout(page:Page, controls:ReturnType<Page['locator']>[]) {
+ for(const [width,height] of [[360,640],[412,915],[640,360],[1280,800],[1920,1080]]) {
+  await page.setViewportSize({width,height});
+  expect(await page.evaluate(()=>{const main=document.querySelector('main')!;return {document:document.documentElement.scrollWidth<=innerWidth,main:main.scrollWidth<=main.clientWidth};})).toEqual({document:true,main:true});
+  for(const control of controls) {const box=await control.boundingBox();expect(box?.height).toBeGreaterThanOrEqual(44);expect(box?.width).toBeGreaterThanOrEqual(44);}
+ }
+ await page.setViewportSize({width:360,height:640});
+}
+for(const locale of ['en','zh-CN'])test(`Staff earned-prefix chain and explicit legacy repair ${locale}`,async({page,context})=>{
+ const english=locale==='en',errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
+ await page.clock.setFixedTime(now);await page.goto('/');await page.waitForLoadState('networkidle');
+ await createCharacter(page,{class:'sorceress',name:'Staff acquisition'});
+ await navTo(page,'settings');await page.getByRole('button',{name:'English',exact:true}).click();
+ const original=JSON.parse(gunzipSync(await readFile(repo+'/docs/plans/evidence/fixtures/cube-earned-owned.json.gz')).toString('utf8'));
+ expect(original.version).toBe(13);await importSave(page,original,true);expect(await backup(page)).toEqual({...original,version:14});
+ if(!english)await page.getByRole('button',{name:'简体中文',exact:true}).click();
+ await expect.poll(()=>page.evaluate(()=>navigator.serviceWorker.controller?.state),{timeout:60000}).toBe('activated');
+ expect(await page.evaluate(()=>'__GAME__' in window)).toBe(false);
+ const initial=await backup(page);await retain('initial-'+locale,initial);
+ // Track Seven Tombs through ordinary UI; no flags or item receipts are injected.
+ await navTo(page,'quests');await page.getByTestId('quest-start-'+tombQuest).click();
+ const tracked=await backup(page), tombProgress={id:tombQuest,status:'inProgress',objectives:{'obj-open-tomb':false,'obj-kill-duriel':false}};
+ expect(tracked).toEqual({...initial,map:{...initial.map,questProgress:{...initial.map.questProgress,[tombQuest]:tombProgress}}});
+ let panel=await inspect(page,english,'a2-lost-city');const recoverName=english?'Recover':'取回';
+ await expect(panel.getByRole('button',{name:recoverName,exact:true})).toBeDisabled();
+ panel=await inspect(page,english,'a2-far-oasis');
+ const beforeShaft=await backup(page);panel=await inspect(page,english,'a2-far-oasis');await panel.getByRole('button',{name:recoverName,exact:true}).click();
+ const shaft=await backup(page);expect(shaft).toEqual({...beforeShaft,inventory:{...beforeShaft.inventory,questItems:{...beforeShaft.inventory.questItems,[source('shaft')]:{itemId:'quest/staff_of_kings',state:'owned'}}},map:{...beforeShaft.map,questProgress:{...beforeShaft.map.questProgress,[quest]:{...beforeShaft.map.questProgress[quest],objectives:{...beforeShaft.map.questProgress[quest].objectives,'obj-shaft':true}}}}});
+ page=await reopen(page,context,english,shaft,errors);
+ panel=await inspect(page,english,'a2-lost-city');await expect(panel.getByRole('button',{name:english?'Destroy altar':'摧毁祭坛',exact:true})).toBeDisabled();
+ const beforeParts=await backup(page);panel=await inspect(page,english,'a2-lost-city');const recover=panel.getByRole('button',{name:recoverName,exact:true});
+ await recover.focus();await page.keyboard.press('Enter');await expect(recover).toBeDisabled();
+ const parts=await backup(page);expect(parts).toEqual({...beforeParts,inventory:{...beforeParts.inventory,questItems:{...beforeParts.inventory.questItems,[source('amulet')]:{itemId:'quest/viper_amulet',state:'owned'}}},map:{...beforeParts.map,questProgress:{...beforeParts.map.questProgress,[quest]:{...beforeParts.map.questProgress[quest],objectives:{...beforeParts.map.questProgress[quest].objectives,'obj-amulet':true}}}}});
+ await retain('parts-'+locale,parts);page=await reopen(page,context,english,parts,errors);
+ await navTo(page,'inventory');let inventory=page.getByTestId('quest-items-panel');
+ await expect(inventory.getByRole('button',{name:english?'Read':'阅读',exact:true})).toHaveCount(0);
+ const assembleName=english?'Assemble Horadric Staff':'合成赫拉迪克法杖',assemble=inventory.getByRole('button',{name:assembleName,exact:true});
+ await expect(assemble).toBeEnabled();await assertLayout(page,[assemble]);await assemble.focus();await page.keyboard.press('Enter');await expect(assemble).toBeDisabled();
+ await expect(inventory).toContainText(english?'Used in assembly':'已用于合成');await expect(inventory).not.toContainText('questItems.');
+ await inventory.screenshot({path:root+'/assembled-'+locale+'.png'});
+ const assembled=await backup(page);expect(assembled).toEqual({...parts,inventory:{...parts.inventory,questItems:{...parts.inventory.questItems,[source('shaft')]:{itemId:'quest/staff_of_kings',state:'consumed'},[source('amulet')]:{itemId:'quest/viper_amulet',state:'consumed'},[source('transmute')]:{itemId:'quest/horadric_staff',state:'owned'}}},map:{...parts.map,questProgress:{...parts.map.questProgress,[quest]:{...parts.map.questProgress[quest],status:'completed',objectives:{...parts.map.questProgress[quest].objectives,'obj-transmute':true}}}}});
+ await retain('assembled-'+locale,assembled);page=await reopen(page,context,english,assembled,errors);
+ await navTo(page,'inventory');await page.getByTestId('quest-items-panel').getByRole('button',{name:assembleName,exact:true}).evaluate((b:HTMLButtonElement)=>b.click());expect(await backup(page)).toEqual(assembled);
+ // Separate explicit Claim pays its existing XP reward once; it does not recreate quest items.
+ await navTo(page,'quests');const claim=page.getByTestId('quest-claim-'+quest);await expect(claim).toBeEnabled();await claim.click();await expect(claim).toBeDisabled();
+ const claimed=await backup(page);expect(claimed.player).toEqual({...assembled.player,level:13,experience:388,experienceToNextLevel:60933,statPoints:5,skillPoints:1,derivedStats:claimed.player.derivedStats});
+ expect(claimed.player.derivedStats.lifeMax).toBeGreaterThanOrEqual(assembled.player.derivedStats.lifeMax);
+ const mercId=claimed.mercs.fieldedMercId;
+ expect(claimed).toEqual({...assembled,player:claimed.player,mercs:{...assembled.mercs,mercProgress:{...assembled.mercs.mercProgress,[mercId]:{...assembled.mercs.mercProgress[mercId],experience:27976}}},map:{...assembled.map,questProgress:{...assembled.map.questProgress,[quest]:{...assembled.map.questProgress[quest],rewardClaimed:true}}}});
+ await retain('claimed-'+locale,claimed);page=await reopen(page,context,english,claimed,errors);
+ panel=await inspect(page,english,'a2-tomb-of-tal-rasha');const beforeInsert=await backup(page);panel=await inspect(page,english,'a2-tomb-of-tal-rasha');
+ const insertName=english?'Insert Staff':'嵌入法杖',insert=panel.getByRole('button',{name:insertName,exact:true});await expect(insert).toBeEnabled();await assertLayout(page,[insert,panel.getByTestId('area-object-close')]);
+ await insert.focus();await page.keyboard.press('Enter');await expect(insert).toBeDisabled();
+ await expect(panel).toContainText(english?'Staff inserted. The chamber is open.':'法杖已嵌入，墓室已开启。');await panel.screenshot({path:root+'/inserted-'+locale+'.png'});
+ const inserted=await backup(page);expect(inserted).toEqual({...beforeInsert,inventory:{...beforeInsert.inventory,questItems:{...beforeInsert.inventory.questItems,[source('transmute')]:{itemId:'quest/horadric_staff',state:'consumed'}}},map:{...beforeInsert.map,questProgress:{...beforeInsert.map.questProgress,[tombQuest]:{...tombProgress,objectives:{...tombProgress.objectives,'obj-open-tomb':true}}}}});
+ await retain('inserted-'+locale,inserted);page=await reopen(page,context,english,inserted,errors);
+ panel=await inspect(page,english,'a2-tomb-of-tal-rasha');await panel.getByRole('button',{name:insertName,exact:true}).evaluate((b:HTMLButtonElement)=>b.click());expect(await backup(page)).toEqual(inserted);
+ panel=await inspect(page,english,'a2-tomb-of-tal-rasha');await panel.getByTestId('area-object-close').click();await expect(page.getByTestId('area-objects-a2-tomb-of-tal-rasha')).toBeFocused();
+ // Exact imports of each durable prefix retain all receipt identities.
+ for(const value of [parts,assembled,claimed,inserted]) {await importSave(page,value,english);expect(await backup(page)).toEqual(value);}
+ await navTo(page,'map');await page.getByRole('button',{name:english?/^Act 3 ·/:/^第 3 章 ·/}).click();
+ await expect(page.getByTestId('sub-area-row-a3-spider-forest').getByRole('button',{name:english?'Enter':'进入',exact:true})).toHaveCount(0);
+ // Constructed legacy completed+claimed clone: import never infers receipts; explicit repair preserves all flags and claims.
+ const legacy={...initial,version:13,inventory:{...initial.inventory,questItems:{}},map:{...initial.map,questProgress:{...initial.map.questProgress,[quest]:{...initial.map.questProgress[quest],status:'completed',rewardClaimed:true,objectives:{'obj-cube':true,'obj-shaft':true,'obj-amulet':true,'obj-transmute':true}},[tombQuest]:{...tombProgress,status:'completed',rewardClaimed:true,objectives:{'obj-open-tomb':true,'obj-kill-duriel':true}}}}};
+ await retain('legacy-input-'+locale,legacy);await importSave(page,legacy,english);const migrated={...legacy,version:14};expect(await backup(page)).toEqual(migrated);
+ page=await reopen(page,context,english,migrated,errors);
+ for(const shortId of ['a2-dry-hills','a2-far-oasis','a2-lost-city']) {panel=await inspect(page,english,shortId);await panel.getByRole('button',{name:recoverName,exact:true}).click();}
+ await navTo(page,'inventory');await page.getByTestId('quest-items-panel').getByRole('button',{name:assembleName,exact:true}).click();
+ panel=await inspect(page,english,'a2-tomb-of-tal-rasha');await panel.getByRole('button',{name:insertName,exact:true}).click();
+ const repaired=await backup(page);expect(repaired).toEqual({...migrated,inventory:{...migrated.inventory,questItems:inserted.inventory.questItems},map:{...migrated.map,currentSubAreaId:'areas/act2-tomb-of-tal-rasha'}});
+ await retain('legacy-repaired-'+locale,repaired);page=await reopen(page,context,english,repaired,errors);
+ expect(errors).toEqual([]);expect(await page.evaluate(()=>'__GAME__' in window)).toBe(false);
+ await writeFile(root+'/assertions-'+locale+'.json',JSON.stringify({locale,classification:'Earned-prefix Staff chain; separate constructed completed+claimed legacy repair',migrationVersionOnly:true,orderedRecovery:true,assemblyConsumesPartsRetainsCube:true,claimHeroXP:6000,claimMercXP:4500,insertConsumesStaffOnly:true,gearIdentitiesPreserved:4057,noCombatClearsOrKills:true,act3RemainsLockedOrdinary:true,saveCloseContinueStages:['shaft','parts','assembled','claimed','inserted','legacy-migrated','legacy-repaired'],exactImports:['v13-earned-cube', 'parts','assembled','claimed','inserted','v13-legacy'],viewports:5,keyboardActions:true,nativeCloseFocus:true,pageErrors:errors},null,2));await page.close();
+});

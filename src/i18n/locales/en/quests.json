@@ -29,6 +29,20 @@
         "ready": "Recover the Horadric Cube from this coffer.",
         "owned": "Cube recovered.",
         "unavailable": "Track The Horadric Staff quest to recover the Cube."
+      },
+      "staff_of_kings": {
+        "name": "Staff of Kings Chest",
+        "ready": "Recover the Staff shaft from this chest.",
+        "owned": "Staff shaft recovered.",
+        "consumed": "Staff shaft used in assembly.",
+        "unavailable": "Track The Horadric Staff and recover the Cube first."
+      },
+      "viper_amulet": {
+        "name": "Viper Amulet",
+        "ready": "Recover the Viper Amulet from the Serpent Altar.",
+        "owned": "Viper Amulet recovered.",
+        "consumed": "Viper Amulet used in assembly.",
+        "unavailable": "Track The Horadric Staff and recover the shaft first."
       }
     },
     "objects": {
@@ -37,6 +51,15 @@
         "completed": "Journal read. Claim your quest rewards from Quests.",
         "claimed": "Journal read. Quest rewards claimed.",
         "excerpt": "The journal identifies the true Tomb of Tal Rasha. The Lord of Pain awaits within."
+      },
+      "serpent_altar": {
+        "name": "Serpent Altar",
+        "action": "Destroy altar",
+        "ready": "Destroy the Serpent Altar to end the eclipse.",
+        "unavailable": "Track The Tainted Sun to destroy this altar.",
+        "completed": "Altar destroyed. Claim the quest reward separately in Quests.",
+        "claimed": "Altar destroyed. Quest reward claimed.",
+        "excerpt": "Sunlight returns to the desert. The amulet can be recovered separately."
       }
     },
     "feedback": {
@@ -48,8 +71,15 @@
       "not-eligible": "Track the quest and complete its earlier objectives first.",
       "busy": "A battle or save operation is in progress. Try again when it finishes.",
       "claim-in-progress": "A quest action is in progress. Try again when it finishes.",
-      "grant-failed": "The item could not be recovered. Try again.",
+      "grant-failed": "The quest action could not finish. Try again.",
       "restoration-failed": "The action could not finish safely. Check your quest progress and quest items before trying again."
+    },
+    "orifice": {
+      "name": "Tal Rasha’s Orifice",
+      "insert": "Insert Staff",
+      "ready": "Insert the Horadric Staff. The Staff will be consumed.",
+      "unavailable": "Track The Seven Tombs and assemble the Horadric Staff first.",
+      "consumed": "Staff inserted. The chamber is open."
     }
   },
   "act": {
@@ -131,13 +161,14 @@
       "name": "The Horadric Staff",
       "desc": "Collect the parts of the Horadric Staff and combine them.",
       "obj1": "Recover the Horadric Cube from the coffer in the Dry Hills.",
-      "obj2": "Find the Amber Gem",
-      "obj3": "Find the Staff Shaft"
+      "obj2": "Recover the Staff of Kings from the chest in the Far Oasis.",
+      "obj3": "Recover the Viper Amulet from the Serpent Altar in the Lost City.",
+      "obj4": "Assemble the shaft and amulet in the Cube from Inventory."
     },
     "act2-tainted-sun": {
       "name": "The Tainted Sun",
       "desc": "Slay the Claw Viper priests and restore the sun.",
-      "obj1": "Defeat the Claw Viper priest"
+      "obj1": "Destroy the Serpent Altar in the Lost City."
     },
     "act2-arcane-sanctuary": {
       "name": "The Arcane Sanctuary",

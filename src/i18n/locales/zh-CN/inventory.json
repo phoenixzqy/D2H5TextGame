@@ -18,14 +18,40 @@
     "feedback": {
       "ok": "获得 {{skillPoints}} 个技能点。",
       "not-ready": "存档正在载入或替换，请完成后重试。",
-      "no-player": "请先创建或载入角色，再阅读。",
+      "no-player": "请先创建或载入角色，再进行任务操作。",
       "not-owned": "该任务物品已不可用。",
       "already-consumed": "这本书已经阅读过。",
       "unsupported-rewards": "当前无法阅读该任务物品。",
       "claim-in-progress": "正在处理任务奖励，请完成后重试。",
-      "grant-failed": "阅读失败，请重试。",
+      "grant-failed": "任务操作未能完成，请重试。",
       "action-failed": "当前无法执行此操作，请重试。",
-      "restoration-failed": "操作未能安全完成，请检查技能点与任务物品后再尝试。"
+      "restoration-failed": "操作未能安全完成，请检查技能点与任务物品后再尝试。",
+      "assembled": "赫拉迪克法杖已合成。",
+      "already-owned": "这件任务物品已取回或已合成。",
+      "not-eligible": "请先取回所需任务物品并完成前置目标。",
+      "combat-active": "请先完成或离开当前战斗，再进行合成。"
+    },
+    "staffOfKings": {
+      "name": "国王之杖",
+      "description": "合成赫拉迪克法杖的绑定部件，合成时消耗。"
+    },
+    "viperAmulet": {
+      "name": "蝮蛇护符",
+      "description": "合成赫拉迪克法杖的绑定部件，合成时消耗。"
+    },
+    "horadricStaff": {
+      "name": "赫拉迪克法杖",
+      "description": "将这根绑定法杖嵌入塔拉夏古墓的杖孔。"
+    },
+    "usedInAssembly": "已用于合成",
+    "inserted": "已嵌入陵墓",
+    "assembly": {
+      "action": "合成赫拉迪克法杖",
+      "ready": "用方块合成杖身与护符，方块会保留。",
+      "unavailable": "取回方块、国王之杖与蝮蛇护符后即可合成。",
+      "owned": "赫拉迪克法杖已合成。请前往任务页面另行领取奖励。",
+      "consumed": "法杖已嵌入陵墓，部件保留已消耗记录。",
+      "claimed": "赫拉迪克法杖已合成，任务奖励已领取。"
     }
   },
   "backpack": "背包",

@@ -123,7 +123,7 @@ export function claimQuestReward(questId: string): ClaimResult {
       if (kind === 'questItem') {
         try {
           const definition = loadQuestItems().find(row => row.id === amount && row.sourceQuestId === questId);
-          if (!definition || definition.kind === 'tool' || !Object.hasOwn(questProgress, questId)) return 'unsupported-rewards';
+          if (!definition || definition.kind !== undefined || !Object.hasOwn(questProgress, questId)) return 'unsupported-rewards';
           const source = questItemSource(definition);
           if (Object.hasOwn(inventory.questItems, source)) return 'unsupported-rewards';
           questItems = validateQuestItemLedger({ ...inventory.questItems,
@@ -231,7 +231,7 @@ export function readQuestItem(source: string): ReadQuestItemResult {
     try {
       validateQuestItemLedger(questItems, useMapStore.getState().questProgress);
       const definition = loadQuestItems().find(row => questItemSource(row) === source);
-      if (!definition || definition.kind === 'tool') return 'unsupported-rewards';
+      if (!definition || definition.kind !== undefined) return 'unsupported-rewards';
       if (!Object.hasOwn(questItems, source)) return 'not-owned';
       if (questItems[source]?.state === 'consumed') return 'already-consumed';
       points = definition.effect.skillPoints;
