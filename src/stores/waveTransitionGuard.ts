@@ -1,5 +1,5 @@
 /** Process-local wave ownership only; receipt-specific boundaries are caller-owned. */
-export type WaveGuardRefusal = 'waveBusy' | 'restorePending' | 'hydrationNotReady' | 'invalidLease' | 'itemDebitBusy' | 'questBusy';
+export type WaveGuardRefusal = 'waveBusy' | 'restorePending' | 'hydrationNotReady' | 'invalidLease' | 'itemDebitBusy' | 'questBusy' | 'materialBusy';
 
 /** Stable typed refusal for supported guarded actions and invalid lease use. */
 export class WaveGuardError extends Error {
@@ -23,9 +23,14 @@ let itemDebitActive = false;
 const questBrand = Symbol('questTransaction');
 export interface QuestTransactionLease { readonly [questBrand]: true }
 let activeQuest: QuestTransactionLease | null = null;
+const materialBrand = Symbol('materialTransaction');
+/** Exact synchronous owner for material preflight, publication and every rollback. */
+export interface MaterialTransactionLease { readonly [materialBrand]: true }
+let activeMaterial: MaterialTransactionLease | null = null;
 
 /** Acquire exclusive synchronous wave ownership; caller must release in finally. */
 export function beginWaveTransition(hydrationReady: boolean): WaveTransitionLease {
+  if (activeMaterial) throw new WaveGuardError('materialBusy');
   if (activeWave) throw new WaveGuardError('waveBusy');
   if (activeQuest) throw new WaveGuardError('questBusy');
   if (restores.size > 0) throw new WaveGuardError('restorePending');
@@ -46,6 +51,7 @@ export function endWaveTransition(lease: WaveTransitionLease): boolean {
 
 /** Reserve restore ownership synchronously; retain it through installation/failure cleanup. */
 export function reserveWaveRestore(): WaveRestoreLease {
+  if (activeMaterial) throw new WaveGuardError('materialBusy');
   if (activeWave) throw new WaveGuardError('waveBusy');
   if (activeQuest) throw new WaveGuardError('questBusy');
   const lease = Object.freeze({ [restoreBrand]: true as const });
@@ -70,6 +76,7 @@ export function assertWaveRestoreOwner(lease: WaveRestoreLease): void {
 
 /** Refuse snapshots during synchronous transitions or unresolved restore ownership. */
 export function assertWaveSnapshotAllowed(): void {
+  if (activeMaterial) throw new WaveGuardError('materialBusy');
   if (activeWave) throw new WaveGuardError('waveBusy');
   if (activeQuest) throw new WaveGuardError('questBusy');
   if (restores.size > 0) throw new WaveGuardError('restorePending');
@@ -77,7 +84,7 @@ export function assertWaveSnapshotAllowed(): void {
 
 /** Coalesce save scheduling only while busy; the release caller performs the normal wake. */
 export function deferWaveSaveIfBusy(): boolean {
-  if (!activeWave && !activeQuest) return false;
+  if (!activeWave && !activeQuest && !activeMaterial) return false;
   deferredSave = true;
   return true;
 }
@@ -98,7 +105,13 @@ export function endIronGolemDebit(lease: WaveTransitionLease): void {
 
 /** Supported ownership-changing actions must call this before reading or writing items. */
 export function assertIronGolemOwnershipMutationAllowed(): void {
+  assertMaterialMutationAllowed();
   if (itemDebitActive) throw new WaveGuardError('itemDebitBusy');
+}
+
+/** Participating currency helpers cannot publish during a material action or its rollback. */
+export function assertMaterialMutationAllowed(): void {
+  if (activeMaterial) throw new WaveGuardError('materialBusy');
 }
 
 /** Hold snapshot/restore exclusion across every quest publication and rollback attempt. */
@@ -114,6 +127,26 @@ export function endQuestTransaction(lease: QuestTransactionLease): boolean {
   if (lease !== activeQuest) throw new WaveGuardError('invalidLease');
   activeQuest = null;
   if (activeWave) return false;
+  const wakeSave = deferredSave;
+  deferredSave = false;
+  return wakeSave;
+}
+
+/** Material actions never nest inside a wave, quest, restore or another material action. */
+export function beginMaterialTransaction(hydrationReady: boolean): MaterialTransactionLease {
+  assertIronGolemOwnershipMutationAllowed();
+  if (activeWave) throw new WaveGuardError('waveBusy');
+  if (activeQuest) throw new WaveGuardError('questBusy');
+  if (restores.size > 0) throw new WaveGuardError('restorePending');
+  if (!hydrationReady) throw new WaveGuardError('hydrationNotReady');
+  activeMaterial = Object.freeze({ [materialBrand]: true as const });
+  return activeMaterial;
+}
+
+/** Release only the exact material owner and wake one coalesced save after ownership ends. */
+export function endMaterialTransaction(lease: MaterialTransactionLease): boolean {
+  if (lease !== activeMaterial) throw new WaveGuardError('invalidLease');
+  activeMaterial = null;
   const wakeSave = deferredSave;
   deferredSave = false;
   return wakeSave;

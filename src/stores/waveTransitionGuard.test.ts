@@ -150,6 +150,38 @@ describe('shared quest transaction ownership', () => {
   });
 });
 
+describe('shared material transaction ownership', () => {
+  it('excludes nested material actions, wave, restore, quest, item helpers and snapshots until release', () => {
+    const lease = guard.beginMaterialTransaction(true);
+    refuses(() => guard.beginMaterialTransaction(true), 'materialBusy');
+    refuses(() => guard.beginWaveTransition(true), 'materialBusy');
+    refuses(() => guard.reserveWaveRestore(), 'materialBusy');
+    refuses(() => guard.beginQuestTransaction(), 'materialBusy');
+    refuses(() => { guard.assertIronGolemOwnershipMutationAllowed(); }, 'materialBusy');
+    refuses(() => { guard.assertWaveSnapshotAllowed(); }, 'materialBusy');
+    expect(guard.deferWaveSaveIfBusy()).toBe(true);
+    expect(guard.endMaterialTransaction(lease)).toBe(true);
+    expect(() => { guard.assertWaveSnapshotAllowed(); }).not.toThrow();
+    expect(guard.deferWaveSaveIfBusy()).toBe(false);
+    const next = guard.beginMaterialTransaction(true);
+    refuses(() => guard.endMaterialTransaction(lease), 'invalidLease');
+    expect(guard.endMaterialTransaction(next)).toBe(false);
+  });
+  it('refuses during wave, restore, quest, Iron debit or hydration and retains each owner', () => {
+    const wave = guard.beginWaveTransition(true);
+    refuses(() => guard.beginMaterialTransaction(true), 'waveBusy');
+    guard.beginIronGolemDebit(wave);
+    refuses(() => guard.beginMaterialTransaction(true), 'itemDebitBusy');
+    guard.endIronGolemDebit(wave); guard.endWaveTransition(wave);
+    const restore = guard.reserveWaveRestore();
+    refuses(() => guard.beginMaterialTransaction(true), 'restorePending'); guard.releaseWaveRestore(restore);
+    const quest = guard.beginQuestTransaction();
+    refuses(() => guard.beginMaterialTransaction(true), 'questBusy'); guard.endQuestTransaction(quest);
+    refuses(() => guard.beginMaterialTransaction(false), 'hydrationNotReady');
+    expect(() => { guard.assertWaveSnapshotAllowed(); }).not.toThrow();
+  });
+});
+
 
 describe('exact Iron Golem debit ownership', () => {
   it('blocks ownership-changing actions only within the owned debit boundary', () => {

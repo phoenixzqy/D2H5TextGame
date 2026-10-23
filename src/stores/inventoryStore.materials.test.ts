@@ -1,10 +1,19 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { useInventoryStore } from './inventoryStore';
-import { beginIronGolemDebit, beginWaveTransition, endIronGolemDebit, endWaveTransition } from './waveTransitionGuard';
+import { beginIronGolemDebit, beginWaveTransition, endIronGolemDebit, endWaveTransition, beginMaterialTransaction, endMaterialTransaction } from './waveTransitionGuard';
 
 beforeEach(() => { useInventoryStore.getState().reset(); });
 
 describe('concrete inventory materials', () => {
+  it('interlocks every participating material/currency helper with material publication and rollback', () => {
+    const before = useInventoryStore.getState(), lease = beginMaterialTransaction(true);
+    try {
+      expect(() => { before.addMaterials({ 'runes/el': 1 }); }).toThrow('materialBusy');
+      expect(() => { before.addCurrency('rune-shard', 1); }).toThrow('materialBusy');
+      expect(() => before.spendCurrency('rune-shard', 1)).toThrow('materialBusy');
+    } finally { endMaterialTransaction(lease); }
+    expect(useInventoryStore.getState()).toBe(before);
+  });
   it('keeps one capacity-independent ledger and merges all validated stacks in one publication', () => {
     const before = useInventoryStore.getState();
     expect(before.materials).toEqual({});

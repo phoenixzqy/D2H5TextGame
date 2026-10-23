@@ -18,7 +18,7 @@ import {
 } from '@/features/inventory/compareEquip';
 import { usePlayerStore } from './playerStore';
 import { BACKPACK_CAPACITY, STASH_CAPACITY } from './inventoryCapacity';
-import { assertIronGolemOwnershipMutationAllowed } from './waveTransitionGuard';
+import { assertIronGolemOwnershipMutationAllowed, assertMaterialMutationAllowed } from './waveTransitionGuard';
 import { mergeMaterials, type MaterialLedger } from '@/engine/loot/materials';
 
 interface EquipSuccess {
@@ -264,7 +264,7 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
     set({ materials: merged });
   },
 
-  addCurrency: (currencyId, amount) => { set((state) => ({
+  addCurrency: (currencyId, amount) => { assertMaterialMutationAllowed(); set((state) => ({
     currencies: {
       ...state.currencies,
       [currencyId]: (state.currencies[currencyId] ?? 0) + amount
@@ -272,6 +272,7 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
   })); },
   
   spendCurrency: (currencyId, amount) => {
+    assertMaterialMutationAllowed();
     const state = get();
     const current = state.currencies[currencyId] ?? 0;
     
