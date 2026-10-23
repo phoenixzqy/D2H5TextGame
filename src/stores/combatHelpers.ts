@@ -554,7 +554,9 @@ function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {}
 
     const seed = planSeed;
     const formation = useFormationStore.getState();
-    const playerUnit = playerToCombatUnit(playerState.player);
+    const projectedPlayer = playerToCombatUnit(playerState.player);
+    const playerUnit = { ...projectedPlayer,
+      life: projectedPlayer.stats.lifeMax, mana: projectedPlayer.stats.manaMax };
     const mercState = useMercStore.getState();
     const fieldedMerc = mercState.fieldedMercId
       ? mercState.ownedMercs.find(merc => merc.id === mercState.fieldedMercId)

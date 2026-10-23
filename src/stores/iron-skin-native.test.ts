@@ -1,3 +1,4 @@
+import { mockSyntheticEntryPools } from '@/test/fixtures/synthetic-entry-pools';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useHydrationStore } from './hydrationStore';
 // Only disk I/O is faked; real store allocation, equipment, serialization/import and waves run.
@@ -81,7 +82,8 @@ function finalHero() {
 }
 const pools = (hero: ReturnType<typeof currentHero>) => [hero.life, hero.mana,
   hero.manaRegenCarry, hero.manaRegenCompensation, hero.manaRegenExactCarry];
-beforeEach(() => { reset(); useHydrationStore.getState().setStatus('ready'); resetRegistry(); loadDefaultSkills();
+beforeEach(() => {
+  mockSyntheticEntryPools(); reset(); useHydrationStore.getState().setStatus('ready'); resetRegistry(); loadDefaultSkills();
   vi.spyOn(Date, 'now').mockReturnValue(1792454400000); });
 afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); resetRegistry(); loadDefaultSkills(); vi.restoreAllMocks(); });
 

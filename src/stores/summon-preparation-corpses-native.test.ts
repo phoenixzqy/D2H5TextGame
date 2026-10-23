@@ -1,3 +1,4 @@
+import { mockSyntheticEntryPools } from '@/test/fixtures/synthetic-entry-pools';
 import * as wavePlanning from '@/engine/combat/sub-area-run';
 import { preBoundedActOnePlanFixture } from '@/test/fixtures/pre-bounded-act1-plan';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -118,6 +119,7 @@ function setMastery(rank: number): void {
 }
 describe('P07a05C native Skeleton Mastery wave/replay/save boundaries', () => {
 beforeEach(() => {
+  mockSyntheticEntryPools();
   vi.spyOn(wavePlanning, 'resolveChallengeWavePlan').mockImplementation(preBoundedActOnePlanFixture); reset(); resetRegistry(); loadDefaultSkills();
   vi.spyOn(Date, 'now').mockReturnValue(1792454400000);
   useHydrationStore.getState().setStatus('ready'); });

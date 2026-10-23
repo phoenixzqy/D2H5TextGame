@@ -1,3 +1,4 @@
+import { mockSyntheticEntryPools } from '@/test/fixtures/synthetic-entry-pools';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useHydrationStore } from './hydrationStore';
 // Only disk I/O is mocked. Level, gear, allocated ranks/points and finisher are
@@ -95,6 +96,7 @@ function expectBatch(count: number, payment: number): void {
 }
 
 beforeEach(() => {
+  mockSyntheticEntryPools();
   reset(); resetRegistry(); loadDefaultSkills();
   vi.spyOn(Date, 'now').mockReturnValue(1792454400000);
   useHydrationStore.getState().setStatus('ready');

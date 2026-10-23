@@ -4,6 +4,7 @@ import { useHydrationStore } from './hydrationStore';
 vi.mock('./save-adapter', () => ({ hasSave: vi.fn(), loadSave: vi.fn(),
   saveSave: vi.fn(() => Promise.resolve(undefined)), deleteSave: vi.fn() }));
 import * as combatEngine from '@/engine/combat/combat';
+import * as recordedWaveStaging from './recordedWaveStaging';
 import type { CombatSnapshot } from '@/engine/combat/combat';
 import { activeMeditationAura } from '@/engine/skills/meditation';
 import { loadDefaultSkills, registerSkill, resetRegistry } from '@/engine/skills/registry';
@@ -58,6 +59,15 @@ function arrange(rank = 1): void {
   registerSkill({ id: 'fixture.meditation-merc-spend', archetype: 'fixture', target: 'self', minLevel: 1,
     cooldown: 1, manaCost: 8, effects: [{ kind: 'buff', id: 'fixture-merc-paid', duration: -1 }] });
   gear(); configure({ derivedStats: { ...player().derivedStats, life: 1_000_000, mana: 50 } });
+  // Preserve this synthetic low-resource recovery scenario through real staging;
+  // production entry is tested without this wrapper in entry-resources.test.ts.
+  const opening = { id: player().id, life: player().derivedStats.life, mana: player().derivedStats.mana };
+  const stage = recordedWaveStaging.stageRecordedWave;
+  vi.spyOn(recordedWaveStaging, 'stageRecordedWave').mockImplementation(input => stage(
+    input.waveIdx === 0 ? { ...input, snapshot: { ...input.snapshot,
+      playerTeam: input.snapshot.playerTeam.map(unit => unit.id === opening.id
+        ? { ...unit, life: Math.min(opening.life, unit.stats.lifeMax),
+          mana: Math.min(opening.mana, unit.stats.manaMax) } : unit) } } : input));
   useMapStore.getState().setCurrentLocation(1, 'areas/act1-blood-moor');
   registerSkill({ id: FINISHER, archetype: 'fixture', target: 'all-enemies', minLevel: 1,
     cooldown: 1, manaCost: 8, effects: [{ kind: 'damage', damageType: 'physical', base: [100000, 100000] }] });

@@ -1,3 +1,4 @@
+import { mockSyntheticEntryPools } from '@/test/fixtures/synthetic-entry-pools';
 /** Unearned integration fixture; frozen encounters, real engine/settlement/playback. */
 import * as wavePlanning from '@/engine/combat/sub-area-run';
 import { preBoundedActOnePlanFixture } from '@/test/fixtures/pre-bounded-act1-plan';
@@ -33,6 +34,7 @@ function drain() {
   expect(useCombatStore.getState().playbackComplete).toBe(true);
 }
 beforeEach(() => {
+  mockSyntheticEntryPools();
   vi.spyOn(wavePlanning, 'resolveChallengeWavePlan').mockImplementation(preBoundedActOnePlanFixture);
   abortSubAreaRun();
   for (const store of [useCombatStore, usePlayerStore, useInventoryStore, useMercStore,

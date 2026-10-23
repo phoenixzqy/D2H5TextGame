@@ -1,3 +1,4 @@
+import { mockSyntheticEntryPools } from '@/test/fixtures/synthetic-entry-pools';
 /** Read-only presentation with explicit hero/item fixtures; not earned acceptance. */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { Player } from '@/engine/types/entities';
@@ -38,6 +39,7 @@ function pending() {
   if (!value) throw new Error('Missing pending receipt'); return value;
 }
 beforeEach(() => {
+  mockSyntheticEntryPools();
   abortSubAreaRun();
   for (const store of [useCombatStore, usePlayerStore, useInventoryStore, useMercStore,
     useMapStore, useMetaStore, useFormationStore]) store.getState().reset();

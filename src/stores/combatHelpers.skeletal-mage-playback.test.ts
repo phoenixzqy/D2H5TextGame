@@ -1,3 +1,4 @@
+import { mockSyntheticEntryPools } from '@/test/fixtures/synthetic-entry-pools';
 /** Unearned fixture: real planner/engine and native event playback, no injected events. */
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import type { RecordedBattleEvent } from '@/engine/combat/combat';
@@ -27,6 +28,7 @@ function published() {
 }
 let originalLanguage: string;
 beforeEach(() => {
+  mockSyntheticEntryPools();
   originalLanguage = i18n.language;
   abortSubAreaRun();
   for (const store of [useCombatStore, usePlayerStore, useInventoryStore, useMercStore,

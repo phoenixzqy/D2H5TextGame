@@ -1,3 +1,4 @@
+import { mockSyntheticEntryPools } from '@/test/fixtures/synthetic-entry-pools';
 /** Real producer integration with explicit test inventory/configuration and injected faults. */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { Player } from '@/engine/types/entities';
@@ -53,6 +54,7 @@ function drain() {
   while (!useCombatStore.getState().playbackComplete) useCombatStore.getState().advanceEvent();
 }
 beforeEach(() => {
+  mockSyntheticEntryPools();
   abortSubAreaRun();
   for (const store of [useCombatStore, usePlayerStore, useInventoryStore, useMercStore,
     useMapStore, useMetaStore, useFormationStore]) store.getState().reset();

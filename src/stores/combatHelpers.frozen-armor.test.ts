@@ -1,3 +1,4 @@
+import { mockSyntheticEntryPools } from '@/test/fixtures/synthetic-entry-pools';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useHydrationStore } from './hydrationStore';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
@@ -154,6 +155,7 @@ function nextPaidWave(withMarkerRepresentations = false) {
 }
 
 beforeEach(() => {
+  mockSyntheticEntryPools();
   reset();
   useHydrationStore.getState().setStatus('ready');
   vi.spyOn(Date, 'now').mockReturnValue(1792454400000);

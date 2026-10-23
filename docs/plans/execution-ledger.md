@@ -10419,3 +10419,35 @@ script/server/worker PIDs absent and port60319closed. Exact disposable cleanup
 passes, remaining[]/failures[]; rawROOT/cleanup.receipt.json records each path.
 Required reports/events/saves/scripts/screenshots/logs remain at the exact root
 above through progression/C1/umbrella consumers; root removes afterward.
+
+## BUG-088 — Full new-challenge resources; Act I still incomplete
+
+[Evidence](evidence/p14a03-challenge-entry.md) applies the approved fresh-entry
+resource policy at the production entry boundary. The immutable hero projection
+starts full; adapter/persisted pools, wave carry, recovery, staging/receipts and
+startup costs retain their contracts. Seven entry regressions pass after genuine
+5RED/2controls. Explicit synthetic staging restores unrelated depletion fixtures
+without weakening assertions. Producer source/security APPROVE/pass; QA fixture
+ADEQUATE. Final independent evidence QA ADEQUATE; no material mismatch.
+
+Affected334tests and final frozen8543tests/273files pass;215.02s exceeds15s budget.
+All756source/test/config hashes unchanged. Main typecheck/lint/production build
+and5chunkbridge scan pass. Extra node-project typecheck fails preexisting
+workspace maxThreads TS2353, separately tracked BUG089; it is not passing.
+Four production-browser cases pass en/zh-CN ×360×640/1280×800, zero retries/skips/
+flaky/page errors. HP claim is100%bar fill, MP literal188/188; ordinary import,
+Flee/Save/page-close/Continue and complete export equality preserve saved pools.
+
+One approved original-L12 route clears Blood Moor, Cold Plains, Burial Grounds,
+Dark Wood; Catacombs W4defeat19280ms, before Andariel. Full fresh entry and actual
+hero wave carry verified; failed wave awards zero.173item additions reconcile
+3737→3910unique IDs. Final export SHA3065a416... is unchanged because runtime
+entry resources are not persisted. No retry/farming/tuning. The policy fix does
+not complete progression or establish a new balance defect. C0–C4/G0–G7 remain
+unaccepted; umbrella goal/claim active. Raw diagnostics retained root-owned
+through progression/C1 at
+`/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-challenge-entry-r7znpyb5`.
+All readers released and all known handles terminal. Exact disposable cleanup
+passes, remaining[]/failures[]; rawROOT/cleanup.receipt.json records each path.
+Required diagnostics remain at the exact root above through progression/C1; root
+removes after dependent consumers finish. Local only.

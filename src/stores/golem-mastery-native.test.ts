@@ -1,3 +1,4 @@
+import { mockSyntheticEntryPools } from '@/test/fixtures/synthetic-entry-pools';
 // Imported levels, points, survival gear, wait and finisher are unearned integration
 // scaffolding. Real stores, production wave staging and engine; only disk I/O mocked.
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
@@ -71,6 +72,7 @@ function golem() {
   return required(summons[0]);
 }
 beforeEach(() => {
+  mockSyntheticEntryPools();
   reset(); resetRegistry(); loadDefaultSkills(); useHydrationStore.getState().setStatus('ready');
   vi.spyOn(Date, 'now').mockReturnValue(1792454400000);
   registerSkill({ id: WAIT, archetype: 'fixture', target: 'self', isBuff: false, cooldown: 4,

@@ -5,6 +5,7 @@ import { useHydrationStore } from './hydrationStore';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { loadDefaultSkills, registerSkill, resetRegistry } from '@/engine/skills/registry';
 import * as combatEngine from '@/engine/combat/combat';
+import * as recordedWaveStaging from './recordedWaveStaging';
 import { applyStatus } from '@/engine/combat/status';
 import { createRng } from '@/engine/rng';
 import type { Item } from '@/engine/types/items';
@@ -64,6 +65,15 @@ function start(withRecovery = false): void {
   usePlayerStore.getState().setPlayer({ ...equipped, derivedStats: {
     ...equipped.derivedStats, life: 1_000_000, mana: withRecovery ? 0 : 102
   } });
+  if (withRecovery) {
+    // This synthetic recovery fixture starts empty; production new challenges
+    // start full. Feed one coherent input through real recording/publication.
+    const stage = recordedWaveStaging.stageRecordedWave;
+    vi.spyOn(recordedWaveStaging, 'stageRecordedWave').mockImplementation(input => stage(
+      input.waveIdx === 0 ? { ...input, snapshot: { ...input.snapshot,
+        playerTeam: input.snapshot.playerTeam.map(unit => unit.id === fresh.id
+          ? { ...unit, mana: 0 } : unit) } } : input));
+  }
   useMapStore.getState().setCurrentLocation(1, AREA);
   expect(startSubAreaRun({ runSeed: 7, challengeOrdinal: 0 })?.totalWaves).toBeGreaterThan(1);
   expect(useCombatStore.getState().outcome?.winner).toBe('player');
@@ -200,8 +210,11 @@ describe('production continuous-mana carry between recorded waves', () => {
     expect.soft(final.manaRegenCarry).toBeCloseTo(0.64, 12);
     drain();
     abortSubAreaRun();
+    vi.mocked(recordedWaveStaging.stageRecordedWave).mockRestore();
     expect(startSubAreaRun({ runSeed: 7, challengeOrdinal: 0 })).not.toBeNull();
     const fresh = useCombatStore.getState().playerTeam[0];
+    expect(fresh?.life).toBe(fresh?.stats.lifeMax);
+    expect(fresh?.mana).toBe(fresh?.stats.manaMax);
     expect(fresh?.manaRegenCarry).toBe(0);
     expect(fresh?.manaRegenCompensation).toBe(0);
   });

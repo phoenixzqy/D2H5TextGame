@@ -1,3 +1,4 @@
+import { mockSyntheticEntryPools } from '@/test/fixtures/synthetic-entry-pools';
 /** Unearned integration fixture; real production waves/engine, no staging mocks. */
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import type { RecordedBattleEvent } from '@/engine/combat/combat';
@@ -30,6 +31,7 @@ function drain() {
   expect(useCombatStore.getState().playbackComplete).toBe(true);
 }
 beforeEach(() => {
+  mockSyntheticEntryPools();
   abortSubAreaRun();
   for (const store of [useCombatStore, usePlayerStore, useInventoryStore, useMercStore,
     useMapStore, useMetaStore, useFormationStore]) store.getState().reset();

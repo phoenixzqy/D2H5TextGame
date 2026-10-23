@@ -1,3 +1,4 @@
+import { mockSyntheticEntryPools } from '@/test/fixtures/synthetic-entry-pools';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useHydrationStore } from './hydrationStore';
 // Only the disk boundary is fake; selection, validation/import and native combat remain real.
@@ -130,6 +131,7 @@ function merc(id: string): Mercenary {
     alive: true, turnOrder: 0, archetype: 'front', rarity: 'R', equipment: [] };
 }
 beforeEach(() => {
+  mockSyntheticEntryPools();
   reset(); vi.spyOn(Date, 'now').mockReturnValue(1792454400000);
   const original = combatEngine.runBattleRecorded;
   vi.spyOn(combatEngine, 'runBattleRecorded').mockImplementation(input => {

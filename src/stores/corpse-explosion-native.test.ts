@@ -1,3 +1,4 @@
+import { mockSyntheticEntryPools } from '@/test/fixtures/synthetic-entry-pools';
 // Imported levels, points, ranks and survival gear are unearned integration
 // scaffolding. Real stores, production Teeth/CE, wave staging and monster data;
 // only disk I/O is mocked.
@@ -74,6 +75,7 @@ function persistent() {
     cleared: useMapStore.getState().clearedSubAreas };
 }
 beforeEach(() => {
+  mockSyntheticEntryPools();
   reset(); resetRegistry(); loadDefaultSkills(); useHydrationStore.getState().setStatus('ready');
   vi.spyOn(Date, 'now').mockReturnValue(1792454400000);
 });

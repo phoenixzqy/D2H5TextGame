@@ -1,0 +1,83 @@
+{
+  "baseHead": "85537b1175343264698074ee006c8238c322eb01",
+  "inputSha": "8c46c4f4026116360356a2d17dcde3d723310969a25664f85bc291a1886d2afc",
+  "routeScriptSha": "1a7e858fed322c33c61950e6419d38a2b53331fc8f97b4d8dd1aa4debb425608",
+  "rawRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-challenge-entry-r7znpyb5",
+  "commands": {
+    "fullInitial": "npm test ->52failed/8491passed (unit.log)",
+    "focused": "npx vitest run --project ui [18 affected files] ->334pass (fixture-green.log)",
+    "fullDrift": "npm test ->3provenance refusals/8540pass (unit-final.log); native/config edits during execution",
+    "fullInterrupted": "npm test ->exit143 before summary, sender unknown (unit-accepted.log)",
+    "fullCurrent": "npm test -- --maxWorkers=4 --minWorkers=1 ->8543passed/273files,215.02s,exit0 (unit-bounded.log);756frozen input hashes unchanged",
+    "types": "npm run typecheck ->exit0, current native spec included (typecheck-current.log)",
+    "nodeTypes": "npx tsc --noEmit --project tsconfig.node.json --tsBuildInfoFile RAW/tmp/node.tsbuildinfo ->exit2, preexisting TS2353 trackedBUG089",
+    "lint": "npm run lint ->exit0 (lint-accepted.log); earlier lint-final failed missing config include, fixed",
+    "build": "VITE_E2E unset; npm run build -- --outDir RAW/dist ->exit0 (build-final.log)",
+    "bridge": "five repository forbidden patterns against5emittedJS chunks ->pass (bridge-final.json)",
+    "browser": "npx playwright test --config playwright.challenge-entry.config.ts; installed browser cache explicitly selected ->4passed/0skipped/0retry/0flaky (browser-accepted.json)",
+    "route": "node challenge-entry.route.mjs ->exit0 once;four early victories,Catacombs W4defeat19,280ms;no retry;source hashes/full entry/carry/173item awards reconcile"
+  },
+  "routeComplete": false,
+  "runs": [
+    {
+      "area": "areas/act1-blood-moor",
+      "ordinal": 102,
+      "result": "victory",
+      "waves": 3,
+      "combatMs": 28812,
+      "xp": 1460
+    },
+    {
+      "area": "areas/act1-cold-plains",
+      "ordinal": 103,
+      "result": "victory",
+      "waves": 4,
+      "combatMs": 57048,
+      "xp": 3100
+    },
+    {
+      "area": "areas/act1-burial-grounds",
+      "ordinal": 104,
+      "result": "victory",
+      "waves": 4,
+      "combatMs": 112296,
+      "xp": 3130
+    },
+    {
+      "area": "areas/act1-dark-wood",
+      "ordinal": 105,
+      "result": "victory",
+      "waves": 5,
+      "combatMs": 127008,
+      "xp": 6600
+    },
+    {
+      "area": "areas/act1-catacombs",
+      "ordinal": 106,
+      "result": "defeat",
+      "waves": 4,
+      "combatMs": 86072,
+      "xp": 4860
+    }
+  ],
+  "fullEntryAndHeroWaveCarry": true,
+  "sourceHashesUnchanged": true,
+  "itemCountsReconcile": true,
+  "initialItems": 3737,
+  "finalItems": 3910,
+  "finalSaveSha": "3065a41613e3b7c35c963d12d7a037d45ee51f2d10b217d638580366d99da6d1",
+  "hashes": {
+    "entry-route-report.json": "ff084ed50519f2c849780c59534ee43e7fce3215003f84e322e4c1dee2374a9e",
+    "entry-route-final.json": "3065a41613e3b7c35c963d12d7a037d45ee51f2d10b217d638580366d99da6d1",
+    "entry-route.log": "e279a212aae7c866a3a0d24525c815b8c18f894681ef2201379be04e0957f239",
+    "unit-bounded.log": "4e332196f77317a47e28cd55996836e2d5ce8e35be7c955f95a45fba9060b35c",
+    "browser-accepted.json": "2b9093bd5be7f73136fc4775bd567c3ed9c803d6ce21e9045552f4560026b1e0",
+    "browser-accepted-summary.json": "b1023a3ea6d617e0d9448e4c20e682ed8bc07f287d8a40ac49e34e783adf5852",
+    "validated-inputs-accepted.json": "834fddff0819245e74e6bde306455c3e5d5ad0ec7f1d4a6fbe18062eae5a23a6",
+    "typecheck-current.log": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+    "typecheck-node.log": "f666b0d4388c5dde87a0d25e14fd501b1a9ef3e1688538a40f8c480b80e110c9",
+    "lint-accepted.log": "8c9c4fa8fa4eb690889c6af5a8ce94a36ca107353349eded751c1415c3a7eb91",
+    "build-final.log": "f09ffca7f2e612c9aa6ab545b5ce03bc460ece699879ec978a96971d13f77405",
+    "bridge-final.json": "c076234f455babaac8c5d1595e8834548c4477f4326c0cb27dde2afb98947600"
+  }
+}
