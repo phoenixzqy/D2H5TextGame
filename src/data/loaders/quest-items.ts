@@ -6,6 +6,7 @@ import { loadQuests, type QuestDef, type QuestObjective } from './quests';
 import { subAreas } from '../index';
 import { questObjectivePrerequisites } from '../../engine/map/questStages';
 import { loadTownNpcs } from './towns';
+import { loadQuestActions } from './quest-actions';
 
 /** A unique quest reward entitlement and its one-time Read effect. */
 interface QuestItemBase {
@@ -35,6 +36,8 @@ export interface QuestComponentDef extends QuestItemBase {
   readonly kind: 'component';
   readonly sourceObjectiveId: string;
   readonly consumedBy: string;
+  readonly requiresAreaClear?: true;
+  readonly requiredActionSource?: 'quests/act3-khalims-will#action:council-victory';
   readonly effect?: never;
 }
 
@@ -55,7 +58,8 @@ export interface AssembledQuestItemDef extends QuestItemBase {
   readonly requiredTool: string;
   readonly ingredients: readonly string[];
   readonly consumeQuestId: string;
-  readonly consumeObjectiveId: string;
+  readonly consumeObjectiveId?: string;
+  readonly consumeActionId?: 'actions/act3-break-compelling-orb';
   readonly effect?: never;
 }
 
@@ -92,6 +96,7 @@ export function loadQuestItems(): readonly QuestItemDef[] {
   const ids = new Set<string>();
   const sources = new Set<string>();
   const quests = loadQuests();
+  const actions = loadQuestActions();
   const items = document.items as readonly QuestItemDef[];
   for (const item of items) {
     const source = questItemSource(item);
@@ -138,7 +143,11 @@ export function loadQuestItems(): readonly QuestItemDef[] {
       }
     } else if (item.kind === 'component') {
       const output = items.find(row => row.id === item.consumedBy);
-      if (output?.kind !== 'assembled' || !output.ingredients.includes(item.id)) {
+      if (output?.kind !== 'assembled' || !output.ingredients.includes(item.id) ||
+        (actions.some(action => action.itemId === output.id) && item.requiresAreaClear !== true) ||
+        (item.id === 'quest/khalims_flail' && item.requiredActionSource !== 'quests/act3-khalims-will#action:council-victory') ||
+        (item.requiredActionSource !== undefined && (item.id !== 'quest/khalims_flail' ||
+          questItemSource(item) !== 'quests/act3-khalims-will#objective:obj-flail' || item.requiresAreaClear !== true))) {
         throw new Error(`quests/items.json: component/output mismatch for ${item.id}`);
       }
     } else if (item.kind === 'assembled') {
@@ -147,18 +156,28 @@ export function loadQuestItems(): readonly QuestItemDef[] {
       const tool = items.find(row => row.id === item.requiredTool);
       const ingredients = item.ingredients.map(id => items.find(row => row.id === id));
       const predecessors = quest?.objectives.filter(objective => prerequisiteIds?.includes(objective.id)) ?? [];
-      const inputs = [tool, ...ingredients];
       const consumerQuest = quests.find(row => row.id === item.consumeQuestId);
-      const consumer = exactObjective(consumerQuest, item.consumeObjectiveId);
+      const consumer = item.consumeObjectiveId === undefined ? undefined : exactObjective(consumerQuest, item.consumeObjectiveId);
+      const action = actions.find(row => row.id === item.consumeActionId);
+      const localTool = tool?.sourceQuestId === item.sourceQuestId;
       if (!quest || prerequisiteIds === undefined || tool?.kind !== 'tool' ||
         ingredients.some(ingredient => ingredient?.kind !== 'component' || ingredient.consumedBy !== item.id) ||
-        inputs.some(input => input?.kind === undefined || input.sourceQuestId !== item.sourceQuestId ||
+        ingredients.some(input => input?.kind === undefined || input.sourceQuestId !== item.sourceQuestId ||
           !predecessors.some(objective => objective.id === input.sourceObjectiveId)) ||
-        predecessors.filter(objective => objective.type === 'fetch').length !== inputs.length ||
-        !consumerQuest || !consumer || consumer.type !== 'interact' || consumer.itemRequired !== item.id ||
-        !canonicalObject(consumerQuest, consumer)) {
+        (localTool && !predecessors.some(objective => objective.id === tool.sourceObjectiveId)) ||
+        predecessors.filter(objective => objective.type === 'fetch').length !== ingredients.length + (localTool ? 1 : 0) ||
+        !consumerQuest || (item.consumeActionId !== undefined
+          ? !action || action.questId !== item.consumeQuestId || action.inputSource !== questItemSource(item) || action.itemId !== item.id ||
+            tool.id !== 'quest/horadric_cube' || questItemSource(tool) !== 'quests/act2-horadric-staff#objective:obj-cube'
+          : !consumer || consumer.type !== 'interact' || consumer.itemRequired !== item.id || !canonicalObject(consumerQuest, consumer))) {
         throw new Error(`quests/items.json: recipe/consumer mismatch for ${item.id}`);
       }
+    }
+  }
+  for (const action of actions) {
+    if (items.filter(item => item.kind === 'assembled' && item.consumeActionId === action.id &&
+      item.consumeQuestId === action.questId && item.id === action.itemId && questItemSource(item) === action.inputSource).length !== 1) {
+      throw new Error('quests/items.json: action/input mismatch');
     }
   }
   for (const quest of quests) {

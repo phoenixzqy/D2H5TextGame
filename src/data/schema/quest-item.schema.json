@@ -103,6 +103,14 @@
             "pattern": "^(quest|items)/[a-z0-9][a-z0-9._-]*$",
             "description": "Exact assembled output item that consumes this component."
           },
+          "requiresAreaClear": {
+            "const": true,
+            "description": "Explicit recovery additionally requires the source area's full clear."
+          },
+          "requiredActionSource": {
+            "const": "quests/act3-khalims-will#action:council-victory",
+            "description": "Exact qualified Council action proof required by this component."
+          },
           "recipe": {
             "type": "string",
             "pattern": "^[a-z0-9][a-z0-9._-]*$"
@@ -129,6 +137,10 @@
             "type": "string",
             "minLength": 1
           },
+          "consumeActionId": {
+            "const": "actions/act3-break-compelling-orb",
+            "description": "Exact finite item action consuming this assembled output, exclusive with an objective consumer."
+          },
           "outputItemId": {
             "type": "string",
             "pattern": "^(quest|items)/[a-z0-9][a-z0-9._-]*$",
@@ -150,6 +162,9 @@
               "ingredients": false,
               "consumeQuestId": false,
               "consumeObjectiveId": false,
+              "consumeActionId": false,
+              "requiresAreaClear": false,
+              "requiredActionSource": false,
               "outputItemId": false
             }
           },
@@ -169,6 +184,9 @@
               "ingredients": false,
               "consumeQuestId": false,
               "consumeObjectiveId": false,
+              "consumeActionId": false,
+              "requiresAreaClear": false,
+              "requiredActionSource": false,
               "outputItemId": false
             }
           },
@@ -188,6 +206,7 @@
               "ingredients": false,
               "consumeQuestId": false,
               "consumeObjectiveId": false,
+              "consumeActionId": false,
               "outputItemId": false
             }
           },
@@ -198,8 +217,7 @@
               "recipe",
               "requiredTool",
               "ingredients",
-              "consumeQuestId",
-              "consumeObjectiveId"
+              "consumeQuestId"
             ],
             "properties": {
               "kind": {
@@ -207,8 +225,14 @@
               },
               "effect": false,
               "consumedBy": false,
+              "requiresAreaClear": false,
+              "requiredActionSource": false,
               "outputItemId": false
-            }
+            },
+            "oneOf": [
+              { "required": ["consumeObjectiveId"], "properties": { "consumeObjectiveId": {}, "consumeActionId": false } },
+              { "required": ["consumeActionId"], "properties": { "consumeActionId": {}, "consumeObjectiveId": false } }
+            ]
           },
           {
             "required": [
@@ -225,7 +249,10 @@
               "recipe": false,
               "requiredTool": false,
               "ingredients": false,
-              "consumeQuestId": false
+              "consumeQuestId": false,
+              "consumeActionId": false,
+              "requiresAreaClear": false,
+              "requiredActionSource": false
             }
           }
         ]

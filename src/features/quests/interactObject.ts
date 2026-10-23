@@ -81,7 +81,10 @@ export function questToolStatus(source: string): 'ready' | 'owned' | 'consumed' 
   const ledger = useInventoryStore.getState().questItems;
   if (Object.hasOwn(ledger, source)) return ledger[source]?.state === 'consumed' ? 'consumed' : 'owned';
   if (!quest || !eligibleQuestObjective(quest, tool.sourceObjectiveId)) return 'unavailable';
-  if (tool.kind === 'delivery' && !map.clearedSubAreas.includes(area.id)) return 'unavailable';
+  if ((tool.kind === 'delivery' || tool.kind === 'component' && tool.requiresAreaClear === true) &&
+    !map.clearedSubAreas.includes(area.id)) return 'unavailable';
+  if (tool.kind === 'component' && tool.requiredActionSource !== undefined &&
+    (!Object.hasOwn(map.questReceipts, tool.requiredActionSource) || map.questReceipts[tool.requiredActionSource] !== true)) return 'unavailable';
   return 'ready';
 }
 
@@ -99,7 +102,7 @@ export function recoverQuestTool(source: string): RecoverToolResult {
   return withQuestTransaction<RecoverToolResult>(() => {
     const map = useMapStore.getState();
     const inventory = useInventoryStore.getState();
-    try { validateQuestItemLedger(inventory.questItems, map.questProgress); }
+    try { validateQuestItemLedger(inventory.questItems, map.questProgress, map.questReceipts); }
     catch { return 'not-eligible'; }
     const status = questToolStatus(source);
     if (status === 'owned' || status === 'consumed') return 'already-owned';

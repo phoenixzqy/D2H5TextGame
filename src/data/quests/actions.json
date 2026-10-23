@@ -1,0 +1,14 @@
+{
+  "$schema": "../schema/quest-action.schema.json",
+  "actions": [
+    {
+      "id": "actions/act3-break-compelling-orb",
+      "questId": "quests/act3-guardian",
+      "receiptSource": "quests/act3-guardian#action:break-compelling-orb",
+      "areaId": "areas/act3-travincal",
+      "targetId": "objects/compelling_orb",
+      "inputSource": "quests/act3-khalims-will#objective:obj-transmute",
+      "itemId": "items/khalims_will"
+    }
+  ]
+}

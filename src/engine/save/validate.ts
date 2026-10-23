@@ -4,6 +4,7 @@ import { restoreEquipment, restoreItem, restoreUnit } from './restore';
 import { repairEquipmentRateCache, repairQuestLifeCache, repairQuestResistanceCache } from './equipment-rate-cache';
 import { COUNCIL_RECEIPT_SOURCE, isCouncilReceiptProgress } from '../map/council-admission';
 import type { QuestActionReceipts } from '../types/save';
+import { loadQuestActions } from '../../data/loaders/quest-actions';
 import { repairMercenaryGrowth } from '../progression/merc-growth';
 import { LEVEL_CAP } from '../progression/xp';
 import { CURRENT_SAVE_VERSION, type SaveCurrent, type SaveV7, type SaveV8, type SaveV9, type SaveV10, type SaveV11, type QuestItemEntry, type QuestItemLedger } from '../types/save';
@@ -245,9 +246,10 @@ const validate = ajv.compile<SaveCurrent>(saveSchema({ const: CURRENT_SAVE_VERSI
 }, {
   questItems: questItemLedgerSchema
 }, {
-  // Only the exact Council action is admitted; future action keys remain invalid.
+  // The exact Council and Guardian Orb actions form the current closed domain.
   questReceipts: { type: 'object', additionalProperties: false,
-    properties: { [COUNCIL_RECEIPT_SOURCE]: { const: true } } }
+    properties: { [COUNCIL_RECEIPT_SOURCE]: { const: true },
+      'quests/act3-guardian#action:break-compelling-orb': { const: true } } }
 }));
 interface LedgerContext {
   questItems: QuestItemLedger;
@@ -377,11 +379,22 @@ function validLiveObjectiveProgress(context: LedgerContext, quest: QuestDef, obj
     (progress.status !== 'completed' || quest.objectives.every(objective => ownTrue(objective.id)));
 }
 
-/** Validate untrusted ledger/progress structure and canonical entitlements without store reads or repair. */
-export function validateQuestItemLedger(questItems: unknown, questProgress: unknown): QuestItemLedger {
+/** One nonrecursive prospective graph check shared by saves and every item/action transaction. */
+function validateLiveQuestState(questItems: unknown, questProgress: unknown, receipts: unknown):
+  LedgerContext & { questReceipts: QuestActionReceipts } {
   const validated = ledgerContext(questItems, questProgress);
+  const actions = loadQuestActions();
+  if (!record(receipts) || (Object.getPrototypeOf(receipts) !== Object.prototype &&
+    Object.getPrototypeOf(receipts) !== null) || Reflect.ownKeys(receipts).some(key =>
+      typeof key !== 'string' ||
+      (key !== COUNCIL_RECEIPT_SOURCE && !actions.some(action => action.receiptSource === key)) || receipts[key] !== true)) {
+    throw new Error('Invalid save: questReceipts requires a closed JSON action receipt map');
+  }
+  const questReceipts = receipts as QuestActionReceipts;
+  if (Object.hasOwn(questReceipts, COUNCIL_RECEIPT_SOURCE) && !isCouncilReceiptProgress(validated.questProgress)) {
+    throw new Error('Invalid save: Council proof requires canonical tracked Khalim progress');
+  }
   const entries = Object.entries(validated.questItems);
-  if (entries.length === 0) return validated.questItems;
   const definitions = loadQuestItems();
   const quests = loadQuests();
   const itemEntry = (itemId: string): QuestItemEntry | undefined => {
@@ -409,6 +422,10 @@ export function validateQuestItemLedger(questItems: unknown, questProgress: unkn
         ((entry.state === 'consumed') !== (itemEntry(definition.consumedBy) !== undefined))) {
         throw new Error('Invalid save: component consumption requires its exact assembled output');
       }
+      if (definition.kind === 'component' && definition.requiredActionSource !== undefined &&
+        (!Object.hasOwn(questReceipts, definition.requiredActionSource) || questReceipts[definition.requiredActionSource] !== true)) {
+        throw new Error('Invalid save: component requires its qualified action proof');
+      }
       if (definition.kind === 'delivery' && entry.state === 'consumed' &&
         !validLiveObjectiveProgress(validated, quest, definition.consumeObjectiveId)) {
         throw new Error('Invalid save: delivered item requires its exact hand-in objective');
@@ -431,7 +448,12 @@ export function validateQuestItemLedger(questItems: unknown, questProgress: unkn
           !definition.ingredients.every(id => itemEntry(id)?.state === 'consumed')) {
           throw new Error('Invalid save: assembled output requires consumed ingredients and owned tool');
         }
-        if (entry.state === 'consumed') {
+        if (definition.consumeActionId !== undefined) {
+          const action = actions.find(row => row.id === definition.consumeActionId);
+          if (!action || ((entry.state === 'consumed') !== Object.hasOwn(questReceipts, action.receiptSource))) {
+            throw new Error('Invalid save: assembled consumption requires its exact action receipt');
+          }
+        } else if (entry.state === 'consumed' && definition.consumeObjectiveId !== undefined) {
           const consumer = quests.find(row => row.id === definition.consumeQuestId);
           if (!consumer || !validLiveObjectiveProgress(validated, consumer, definition.consumeObjectiveId)) {
             throw new Error('Invalid save: consumed output requires its exact interaction source');
@@ -450,7 +472,28 @@ export function validateQuestItemLedger(questItems: unknown, questProgress: unkn
       throw new Error('Invalid save: reward item requires its real consumed hand-in graph');
     }
   }
-  return validated.questItems;
+  for (const action of actions) {
+    if (!Object.hasOwn(questReceipts, action.receiptSource)) continue;
+    const owner = validated.questProgress[action.questId];
+    const quest = quests.find(row => row.id === action.questId);
+    if (!Object.hasOwn(validated.questProgress, action.questId) || !quest || owner?.id !== action.questId ||
+      !quest.objectives.every(objective => Object.hasOwn(owner.objectives, objective.id) &&
+        typeof owner.objectives[objective.id] === 'boolean') ||
+      !(owner.status === 'inProgress' && owner.rewardClaimed !== true || owner.status === 'completed' &&
+        quest.objectives.every(objective => owner.objectives[objective.id] === true)) ||
+      !Object.hasOwn(validated.questItems, action.inputSource) ||
+      validated.questItems[action.inputSource]?.itemId !== action.itemId ||
+      validated.questItems[action.inputSource]?.state !== 'consumed') {
+      throw new Error('Invalid save: action proof requires its tracked owner and exact consumed assembled input');
+    }
+  }
+  return { ...validated, questReceipts };
+}
+
+/** Validate actual item entitlements and their action graph; omitted context supports older item families only. */
+export function validateQuestItemLedger(questItems: unknown, questProgress: unknown,
+  questReceipts: unknown = {}): QuestItemLedger {
+  return validateLiveQuestState(questItems, questProgress, questReceipts).questItems;
 }
 
 // v12 admitted only the Radament Book. Keep this closed historical domain
@@ -556,27 +599,19 @@ function rejectHistoricalQuestReceipts(value: unknown): void {
 }
 
 /** Closed finite proof map; validates retained history but never reconstructs a proof. */
-export function validateQuestActionReceipts(receipts: unknown, questProgress: unknown): QuestActionReceipts {
-  if (!record(receipts) || (Object.getPrototypeOf(receipts) !== Object.prototype &&
-    Object.getPrototypeOf(receipts) !== null) || Reflect.ownKeys(receipts).some(key =>
-      key !== COUNCIL_RECEIPT_SOURCE || receipts[key] !== true)) {
-    throw new Error('Invalid save: questReceipts requires a closed JSON action receipt map');
-  }
-  const context = ledgerContext({}, questProgress);
-  if (Object.hasOwn(receipts, COUNCIL_RECEIPT_SOURCE) && !isCouncilReceiptProgress(context.questProgress)) {
-    throw new Error('Invalid save: Council proof requires canonical tracked Khalim progress');
-  }
-  return receipts as QuestActionReceipts;
+export function validateQuestActionReceipts(receipts: unknown, questProgress: unknown,
+  questItems: unknown = {}): QuestActionReceipts {
+  return validateLiveQuestState(questItems, questProgress, receipts).questReceipts;
 }
 
 /** Validate a migrated save before any IO or store mutation. Preserves optional fields. */
 export function validateSave(value: unknown): SaveCurrent {
   rejectHistoricalQuestReceipts(value);
-  if (record(value) && value.version === CURRENT_SAVE_VERSION && record(value.map)) {
-    validateQuestActionReceipts(value.map.questReceipts, value.map.questProgress);
-  }
   if (record(value) && record(value.inventory) && record(value.map)) {
-    validateQuestItemLedger(value.inventory.questItems, value.map.questProgress);
+    validateLiveQuestState(value.inventory.questItems, value.map.questProgress,
+      value.version === CURRENT_SAVE_VERSION ? value.map.questReceipts : {});
+  } else if (record(value) && value.version === CURRENT_SAVE_VERSION && record(value.map)) {
+    validateQuestActionReceipts(value.map.questReceipts, value.map.questProgress);
   }
   const normalized = normalizeMaps(value);
   rejectUndefinedMagicResist(normalized);

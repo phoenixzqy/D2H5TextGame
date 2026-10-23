@@ -12,7 +12,8 @@ export function hasQuestDeliveryCompletion(quest: QuestDef): boolean {
   const handIns = quest.objectives.filter(objective => objective.type === 'give');
   if (handIns.length === 0) return true;
   const ledger = useInventoryStore.getState().questItems;
-  try { validateQuestItemLedger(ledger, useMapStore.getState().questProgress); }
+  const map = useMapStore.getState();
+  try { validateQuestItemLedger(ledger, map.questProgress, map.questReceipts); }
   catch { return false; }
   const definitions = loadQuestItems();
   return handIns.every(objective => {
@@ -51,7 +52,7 @@ export function giveQuestItem(source: string, npcId: string): QuestCraftingResul
   if (refusal) return refusal;
   return withQuestTransaction<QuestCraftingResult>(() => {
     const map = useMapStore.getState(), inventory = useInventoryStore.getState();
-    try { validateQuestItemLedger(inventory.questItems, map.questProgress); }
+    try { validateQuestItemLedger(inventory.questItems, map.questProgress, map.questReceipts); }
     catch { return 'not-eligible'; }
     const status = questDeliveryStatus(source, npcId);
     if (status === 'consumed') return 'already-consumed';

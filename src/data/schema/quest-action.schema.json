@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/quest-action.json",
+  "title": "Closed quest item actions",
+  "description": "Finite explicit item consumers; actions never add objective rows or execute arbitrary effects.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["actions"],
+  "properties": {
+    "$schema": { "type": "string", "description": "Optional authoring schema reference." },
+    "actions": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1,
+      "description": "The currently supported Guardian-owned Orb consumer.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "questId", "receiptSource", "areaId", "targetId", "inputSource", "itemId"],
+        "properties": {
+          "id": { "const": "actions/act3-break-compelling-orb", "description": "Canonical finite action identity." },
+          "questId": { "const": "quests/act3-guardian", "description": "The quest owning the action and its retained proof." },
+          "receiptSource": { "const": "quests/act3-guardian#action:break-compelling-orb", "description": "Exact durable action receipt source." },
+          "areaId": { "const": "areas/act3-travincal", "description": "Canonical action location in its owning act." },
+          "targetId": { "const": "objects/compelling_orb", "description": "Explicit object at which the item is consumed." },
+          "inputSource": { "const": "quests/act3-khalims-will#objective:obj-transmute", "description": "Exact assembled input source; action receipts cannot themselves be inputs." },
+          "itemId": { "const": "items/khalims_will", "description": "Exact real assembled input, never a gear instance or matching flag." }
+        }
+      }
+    }
+  }
+}

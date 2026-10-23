@@ -206,14 +206,15 @@
       "giver": "npc/cain",
       "description": "To shatter the Compelling Orb that protects Mephisto, you must reassemble Khalim's Will: his Heart, Brain, Eye, and Flail, scattered across Kurast.",
       "objectives": [
-        { "id": "obj-heart", "type": "fetch", "itemId": "quest/khalims_heart", "areaId": "areas/act3_flayer_dungeon_3", "description": "Recover Khalim's Heart." },
-        { "id": "obj-brain", "type": "fetch", "itemId": "quest/khalims_brain", "areaId": "areas/act3_great_marsh", "description": "Recover Khalim's Brain." },
-        { "id": "obj-eye", "type": "fetch", "itemId": "quest/khalims_eye", "areaId": "areas/act3_sewers_2", "description": "Recover Khalim's Eye." },
-        { "id": "obj-flail", "type": "fetch", "itemId": "quest/khalims_flail", "areaId": "areas/act3_travincal", "description": "Recover Khalim's Flail from the High Council." },
+        { "id": "obj-heart", "type": "fetch", "itemId": "quest/khalims_heart", "areaId": "areas/act3-flayer-jungle", "targetId": "objects/khalims_heart_chest", "description": "Recover Khalim's Heart." },
+        { "id": "obj-brain", "type": "fetch", "itemId": "quest/khalims_brain", "areaId": "areas/act3-great-marsh", "targetId": "objects/khalims_brain_chest", "description": "Recover Khalim's Brain." },
+        { "id": "obj-eye", "type": "fetch", "itemId": "quest/khalims_eye", "areaId": "areas/act3-kurast-bazaar", "targetId": "objects/khalims_eye_chest", "description": "Recover Khalim's Eye." },
+        { "id": "obj-flail", "type": "fetch", "itemId": "quest/khalims_flail", "areaId": "areas/act3-travincal", "targetId": "objects/high_council_reliquary", "description": "Recover Khalim's Flail from the High Council." },
         { "id": "obj-transmute", "type": "transmute", "recipe": "khalims_will", "description": "Transmute the four parts in the Horadric Cube." }
       ],
-      "rewards": { "xp": 8000, "itemDrop": "items/khalims_will" },
-      "unlocks": "areas/act3_durance_of_hate_1",
+      "objectiveStages": [["obj-heart", "obj-brain", "obj-eye", "obj-flail"], ["obj-transmute"]],
+      "rewards": { "xp": 8000 },
+      "unlocks": null,
       "order": 14
     },
     {

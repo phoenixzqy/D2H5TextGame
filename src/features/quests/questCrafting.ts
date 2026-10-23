@@ -1,5 +1,5 @@
 import { loadQuestItems, questItemSource, type AssembledQuestItemDef } from '@/data/loaders/quest-items';
-import { loadQuests } from '@/data/loaders/quests';
+import { loadQuests, type QuestDef } from '@/data/loaders/quests';
 import { validateQuestItemLedger } from '@/engine/save/validate';
 import type { QuestItemEntry } from '@/engine/types/save';
 import { useInventoryStore } from '@/stores/inventoryStore';
@@ -16,8 +16,22 @@ function assembledDefinition(source: string): AssembledQuestItemDef | undefined 
 }
 
 function validLedger(): boolean {
-  try { validateQuestItemLedger(useInventoryStore.getState().questItems, useMapStore.getState().questProgress); return true; }
+  const map = useMapStore.getState();
+  try { validateQuestItemLedger(useInventoryStore.getState().questItems, map.questProgress, map.questReceipts); return true; }
   catch { return false; }
+}
+
+/** Action-bound assembly rewards require their actual output, independently of subsequent use or Claim timing. */
+export function hasQuestAssemblyCompletion(quest: QuestDef): boolean {
+  const outputs = loadQuestItems().filter(item => item.kind === 'assembled' &&
+    item.consumeActionId !== undefined && item.sourceQuestId === quest.id);
+  if (outputs.length === 0) return true;
+  if (!validLedger()) return false;
+  const ledger = useInventoryStore.getState().questItems;
+  return outputs.every(item => {
+    const source = questItemSource(item);
+    return Object.hasOwn(ledger, source) && ledger[source]?.itemId === item.id;
+  });
 }
 
 /** Availability for portable explicit assembly; flags alone never supply ingredients or a tool. */
@@ -76,6 +90,7 @@ export function areaQuestInsertions(act: number, areaId: string): readonly Assem
   const quests = loadQuests();
   return loadQuestItems().filter((item): item is AssembledQuestItemDef => item.kind === 'assembled' &&
     quests.some(quest => quest.id === item.consumeQuestId && quest.actId === area.actId &&
+      item.consumeObjectiveId !== undefined &&
       quest.objectives.some(objective => objective.id === item.consumeObjectiveId && objective.areaId === areaId)));
 }
 
@@ -86,7 +101,7 @@ export function questInsertionStatus(source: string): QuestCraftingStatus {
   const item = areaQuestInsertions(map.currentAct, area.id).find(row => questItemSource(row) === source);
   if (!item) return 'unavailable';
   const quest = loadQuests().find(row => row.id === item.consumeQuestId);
-  if (!quest || !eligibleQuestObjective(quest, item.consumeObjectiveId)) return 'unavailable';
+  if (!quest || item.consumeObjectiveId === undefined || !eligibleQuestObjective(quest, item.consumeObjectiveId)) return 'unavailable';
   const ledger = useInventoryStore.getState().questItems, entry = ledger[source];
   if (!Object.hasOwn(ledger, source) || entry?.itemId !== item.id) return 'unavailable';
   return entry.state === 'consumed' ? 'consumed' : 'ready';
@@ -102,7 +117,7 @@ export function insertQuestItem(source: string): QuestCraftingResult {
     if (status === 'consumed') return 'already-consumed';
     if (status !== 'ready') return 'not-eligible';
     const item = assembledDefinition(source);
-    if (!item) return 'not-eligible';
+    if (item?.consumeObjectiveId === undefined) return 'not-eligible';
     const progress = useMapStore.getState().questProgress[item.consumeQuestId];
     if (!progress) return 'not-eligible';
     return publishQuestItemChange(item.consumeQuestId,

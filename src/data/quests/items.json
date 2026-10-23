@@ -90,6 +90,60 @@
       "descKey": "inventory:questItems.goldenBird.description"
     },
     {
+      "id": "quest/khalims_heart",
+      "sourceQuestId": "quests/act3-khalims-will",
+      "kind": "component",
+      "sourceObjectiveId": "obj-heart",
+      "consumedBy": "items/khalims_will",
+      "requiresAreaClear": true,
+      "nameKey": "inventory:questItems.khalimsHeart.name",
+      "descKey": "inventory:questItems.khalimsHeart.description"
+    },
+    {
+      "id": "quest/khalims_brain",
+      "sourceQuestId": "quests/act3-khalims-will",
+      "kind": "component",
+      "sourceObjectiveId": "obj-brain",
+      "consumedBy": "items/khalims_will",
+      "requiresAreaClear": true,
+      "nameKey": "inventory:questItems.khalimsBrain.name",
+      "descKey": "inventory:questItems.khalimsBrain.description"
+    },
+    {
+      "id": "quest/khalims_eye",
+      "sourceQuestId": "quests/act3-khalims-will",
+      "kind": "component",
+      "sourceObjectiveId": "obj-eye",
+      "consumedBy": "items/khalims_will",
+      "requiresAreaClear": true,
+      "nameKey": "inventory:questItems.khalimsEye.name",
+      "descKey": "inventory:questItems.khalimsEye.description"
+    },
+    {
+      "id": "quest/khalims_flail",
+      "sourceQuestId": "quests/act3-khalims-will",
+      "kind": "component",
+      "sourceObjectiveId": "obj-flail",
+      "consumedBy": "items/khalims_will",
+      "requiresAreaClear": true,
+      "requiredActionSource": "quests/act3-khalims-will#action:council-victory",
+      "nameKey": "inventory:questItems.khalimsFlail.name",
+      "descKey": "inventory:questItems.khalimsFlail.description"
+    },
+    {
+      "id": "items/khalims_will",
+      "sourceQuestId": "quests/act3-khalims-will",
+      "kind": "assembled",
+      "sourceObjectiveId": "obj-transmute",
+      "recipe": "khalims_will",
+      "requiredTool": "quest/horadric_cube",
+      "ingredients": ["quest/khalims_heart", "quest/khalims_brain", "quest/khalims_eye", "quest/khalims_flail"],
+      "consumeQuestId": "quests/act3-guardian",
+      "consumeActionId": "actions/act3-break-compelling-orb",
+      "nameKey": "inventory:questItems.khalimsWill.name",
+      "descKey": "inventory:questItems.khalimsWill.description"
+    },
+    {
       "id": "items/potion_of_life_q",
       "sourceQuestId": "quests/act3-golden-bird",
       "nameKey": "inventory:questItems.potionOfLife.name",
