@@ -26,6 +26,8 @@ import { useCombatStore, type CombatLogEntry } from './combatStore';
 import { stageRecordedWave, type StagedRecordedWave } from './recordedWaveStaging';
 import { captureCouncilEncounter, COUNCIL_QUEST_ID, COUNCIL_RECEIPT_SOURCE,
   hasOriginalCouncilVictory, isCouncilAdmissionEligible, type CouncilEncounter } from '@/engine/map/council-admission';
+import { captureGuardianEncounter, GUARDIAN_QUEST_ID, hasOriginalGuardianVictory,
+  isGuardianAdmissionEligible, type GuardianEncounter } from '@/engine/map/guardian-admission';
 import { withQuestTransaction } from '@/features/quests/questTransaction';
 import { validateQuestActionReceipts } from '@/engine/save/validate';
 import { combatRunLifecycle, type ActiveRun } from './combatRunLifecycle';
@@ -455,9 +457,10 @@ export function refreshActivePlayerCombatConfig({
             publication: original.publication, debitIntent: null }
         : stageWave(run, run.waveIdx, attempt, false, run.carryPlayerTeam, false);
       // Replay retains the originally captured origin, even if mutable plan copies changed.
-      const { councilEncounter: _recaptured, ...replay } = staged;
+      const { councilEncounter: _recaptured, guardianEncounter: _guardianRecaptured, ...replay } = staged;
       commitStagedWave(run, { ...replay,
-        ...(original.councilEncounter ? { councilEncounter: original.councilEncounter } : {}) },
+        ...(original.councilEncounter ? { councilEncounter: original.councilEncounter } : {}),
+        ...(original.guardianEncounter ? { guardianEncounter: original.guardianEncounter } : {}) },
       { kind: 'replay' }, attempt, lease);
     }
   }, 'replay');
@@ -644,6 +647,42 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
       const councilEncounter = binding.councilEncounter;
       const councilEligible = councilEncounter !== undefined &&
         isCouncilAdmissionEligible(useMapStore.getState().questProgress, councilEncounter.historicalRecovery);
+      const guardianProgress = useMapStore.getState().questProgress[GUARDIAN_QUEST_ID];
+      const guardianEligible = (() => {
+        const map = useMapStore.getState();
+        if (!binding.guardianEncounter || !isGuardianAdmissionEligible(map.questProgress, map.questReceipts)) return false;
+        try { validateQuestActionReceipts(map.questReceipts, map.questProgress, useInventoryStore.getState().questItems); return true; }
+        catch { return false; }
+      })();
+      const publishGuardianVictory = (): void => {
+        if (!guardianEligible || !guardianProgress || !binding.guardianEncounter ||
+          binding.targetWaveIdx + 1 !== binding.publication.totalWaves ||
+          binding.recording.chapterBoss?.unitId !== binding.guardianEncounter.originalBossId ||
+          binding.recording.chapterBoss.archetypeId !== binding.guardianEncounter.archetypeId ||
+          !hasOriginalGuardianVictory(binding.guardianEncounter, binding.heroId, outcome) ||
+          useMapStore.getState().questProgress[GUARDIAN_QUEST_ID] !== guardianProgress) return;
+        const result = withQuestTransaction(() => {
+          const map = useMapStore.getState();
+          if (!isGuardianAdmissionEligible(map.questProgress, map.questReceipts)) return;
+          // The shared graph validator must admit the existing Orb and its retained history.
+          validateQuestActionReceipts(map.questReceipts, map.questProgress, useInventoryStore.getState().questItems);
+          const completed = { ...guardianProgress, status: 'completed' as const,
+            objectives: { ...guardianProgress.objectives, 'obj-kill-mephisto': true } };
+          validateQuestActionReceipts(map.questReceipts, { ...map.questProgress, [GUARDIAN_QUEST_ID]: completed },
+            useInventoryStore.getState().questItems);
+          try {
+            useMapStore.setState(state => ({ questProgress: { ...state.questProgress, [GUARDIAN_QUEST_ID]: completed } }));
+          } catch (cause) {
+            try {
+              useMapStore.setState(state => ({ questProgress: { ...state.questProgress, [GUARDIAN_QUEST_ID]: guardianProgress } }));
+            } catch (error) {
+              throw new AggregateError([error], 'Guardian progress restoration failed', { cause });
+            }
+            throw cause;
+          }
+        });
+        if (result === 'claim-in-progress') throw new Error('Guardian victory transaction is busy');
+      };
       const publishCouncilProof = (): void => {
         if (councilEligible &&
           hasOriginalCouncilVictory(councilEncounter, binding.heroId, outcome) &&
@@ -653,7 +692,7 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
             const before = useMapStore.getState().questReceipts;
             if (Object.hasOwn(before, COUNCIL_RECEIPT_SOURCE)) return;
             const receipts = validateQuestActionReceipts({ ...before, [COUNCIL_RECEIPT_SOURCE]: true },
-              useMapStore.getState().questProgress);
+              useMapStore.getState().questProgress, useInventoryStore.getState().questItems);
             try {
               useMapStore.setState({ questReceipts: receipts });
             } catch (cause) {
@@ -763,6 +802,7 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
           useMapStore.getState().markCleared(run.plan.subAreaId);
           combat.markRunVictory();
           publishCouncilProof();
+          publishGuardianVictory();
           finishRecordedWaveSettlement(receipt, lease, { kind: 'terminal', result: 'victory' });
           combatRunLifecycle.activeRun = null;
           return 'victory';
@@ -801,6 +841,7 @@ export function abortSubAreaRun(): void {
 /** Build the whole recording before changing any run metadata or combat state. */
 interface StagedWaveAttempt extends StagedRecordedWave {
   readonly councilEncounter?: CouncilEncounter;
+  readonly guardianEncounter?: GuardianEncounter;
   readonly debitIntent: IronGolemDebitIntent | null;
 }
 function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetRunRewards = false,
@@ -870,6 +911,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
     ? { sourceHeroId: run.playerUnit.id, sourceItemId: captured.intent.item.id, ...projected.bonuses } : null;
   const councilEncounter = captureCouncilEncounter(run.act, run.plan.subAreaId, wave,
     enemies, run.questRecovery === 'khalims-council');
+  const guardianEncounter = captureGuardianEncounter(run.act, run.plan.subAreaId, wave, enemies);
   const staged = stageRecordedWave({
     snapshot: {
       seed: waveSeed,
@@ -903,7 +945,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
     throw new RecordedWaveReceiptError('bindingMismatch');
   }
   return { ...staged, debitIntent: proof && captured?.ok ? captured.intent : null,
-    ...(councilEncounter ? { councilEncounter } : {}) };
+    ...(councilEncounter ? { councilEncounter } : {}),
+    ...(guardianEncounter ? { guardianEncounter } : {}) };
 }
 
 /** Preserve cursor/recording values even if the referenced run changes during staging. */
@@ -957,6 +1000,7 @@ function commitStagedWave(run: ActiveRun, staged: StagedWaveAttempt, intent: Rec
     selection: attempt.selection, ownership: attempt.ownership, debitIntent: staged.debitIntent,
     engineInput: staged.engineInput, attestation: staged.attestation,
     ...(staged.councilEncounter ? { councilEncounter: staged.councilEncounter } : {}),
+    ...(staged.guardianEncounter ? { guardianEncounter: staged.guardianEncounter } : {}),
     recording: staged.recording, publication: staged.publication }, intent, lease);
   const live = captureWaveAttempt();
   try {

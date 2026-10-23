@@ -240,7 +240,7 @@
       "giver": "npc/ormus",
       "description": "Mephisto, Lord of Hatred, awaits in the Durance of Hate beneath Travincal. Strike him down and seal the wound he has torn in the world.",
       "objectives": [
-        { "id": "obj-kill-mephisto", "type": "kill-boss", "targetId": "monsters/mephisto", "areaId": "areas/act3_durance_of_hate_3", "description": "Slay Mephisto." }
+        { "id": "obj-kill-mephisto", "type": "kill-boss", "targetId": "monsters/act3.mephisto", "areaId": "areas/act3-durance-of-hate", "description": "Slay Mephisto." }
       ],
       "rewards": { "xp": 18000, "lootTable": "loot/mephisto-q", "itemDrop": "items/soulstone_mephisto" },
       "unlocks": "acts/act4",

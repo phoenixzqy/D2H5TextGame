@@ -5,6 +5,7 @@ import type { ActiveRun } from './combatRunLifecycle';
 import type { useCombatStore } from './combatStore';
 import type { RecordedBattlePublication } from './recordedBattlePublication';
 import type { CouncilEncounter } from '@/engine/map/council-admission';
+import type { GuardianEncounter } from '@/engine/map/guardian-admission';
 import type { IronGolemOwnership, IronGolemSelection } from './ironGolemSelection';
 import { classifyIronGolemDebit, type IronGolemDebitIntent } from './ironGolemDebit';
 import { assertWaveTransitionOwner, assertWaveSnapshotAllowed, assertWaveRestoreOwner,
@@ -28,6 +29,7 @@ export interface RecordedWaveBinding {
   readonly recording: NonNullable<ActiveRun['recording']>;
   readonly publication: RecordedBattlePublication;
   readonly councilEncounter?: CouncilEncounter;
+  readonly guardianEncounter?: GuardianEncounter;
 }
 /** Authoritative references assembled by the store caller at the operation boundary. */
 export interface RecordedWaveLive {
@@ -185,6 +187,7 @@ export function prepareRecordedWave(binding: RecordedWaveBinding, lease: WaveTra
   }
   const receipt: RecordedWaveReceipt = Object.freeze({ [receiptBrand]: true as const });
   const captured: CapturedBinding = Object.freeze({ ...binding,
+    ...(binding.guardianEncounter ? { guardianEncounter: Object.freeze({ ...binding.guardianEncounter }) } : {}),
     ...(binding.councilEncounter ? { councilEncounter: Object.freeze({ ...binding.councilEncounter,
       originalMemberIds: Object.freeze([...binding.councilEncounter.originalMemberIds]) }) } : {}),
     ownership: Object.freeze({ ...binding.ownership }),

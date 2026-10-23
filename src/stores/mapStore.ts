@@ -13,6 +13,7 @@ import { applyObjectInteraction, type InteractionProgress, type ObjectInteractio
 import { resolveSubArea } from './subAreaResolver';
 import type { WaveSource } from '@/engine/combat/sub-area-run';
 import type { QuestActionReceipts } from '@/engine/types/save';
+import { GUARDIAN_QUEST_ID } from '@/engine/map/guardian-admission';
 
 type QuestProgress = InteractionProgress;
 
@@ -199,6 +200,8 @@ export const useMapStore = create<MapState>((set, get) => ({
   recordBossKill: (event) => { set((state) => {
     let questProgress = state.questProgress;
     for (const quest of loadQuests()) {
+      // Guardian needs the accepted original post-Orb settlement, beyond event metadata.
+      if (quest.id === GUARDIAN_QUEST_ID) continue;
       if (quest.actId !== event.actId) continue;
       const progress = state.questProgress[quest.id];
       if (progress?.status !== 'inProgress' || progress.rewardClaimed) continue;
