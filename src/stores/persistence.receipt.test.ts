@@ -89,7 +89,7 @@ function receiptFixture(phase: Phase, paid = false) {
     events, outcome, unitNameMap: new Map(), currentWave: 1,
     totalWaves: plan.waves.length, subAreaRunId: plan.subAreaId },
   { currentWave: 0, totalWaves: 0, subAreaRunId: null,
-    runRewards: { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0 } });
+    runRewards: { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0, materials: {} } });
   const binding: RecordedWaveBinding = { candidateRun: run, expectedActiveRun: null,
     heroId: hero.id, targetWaveIdx: 0, waveElapsedMs: 1200, selection, ownership,
     debitIntent: intent, attestation: intent ? { sourceHeroId: hero.id, sourceItemId: intent.item.id,

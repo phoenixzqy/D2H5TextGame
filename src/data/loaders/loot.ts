@@ -34,6 +34,7 @@ interface JsonTcEntry {
 }
 interface JsonTreasureClass {
   readonly id: string;
+  readonly materialPoolId?: string;
   readonly name?: string;
   readonly entries: readonly JsonTcEntry[];
 }
@@ -101,7 +102,7 @@ export function loadTreasureClasses(): ReadonlyMap<string, TreasureClass> {
         const pick: TcPick = {
           type: e.type as NonNullable<TcPick['type']>,
           ...(e.itemBase ? { baseId: e.itemBase } : {}),
-          ...(e.itemId ? { itemId: e.itemId } : {}),
+          ...(e.itemId !== undefined ? { itemId: e.itemId } : {}),
           ...(e.rarity ? { rarity: e.rarity } : {}),
           weight: e.weight,
           qlvlMin: e.minLevel ?? 1,
@@ -111,7 +112,7 @@ export function loadTreasureClasses(): ReadonlyMap<string, TreasureClass> {
         };
         return pick;
       });
-    map.set(raw.id, { id: raw.id, picks });
+    map.set(raw.id, { id: raw.id, picks, ...(raw.materialPoolId ? { materialPoolId: raw.materialPoolId } : {}) });
   }
   cachedTcs = map;
   return map;

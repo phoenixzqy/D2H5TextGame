@@ -6,7 +6,7 @@ import { I18nextProvider } from 'react-i18next';
 import { MemoryRouter } from 'react-router-dom';
 import i18n from '@/i18n';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
-import { useCombatStore, useMapStore, useMetaStore, usePlayerStore } from '@/stores';
+import { useCombatStore, useMapStore, useMetaStore, usePlayerStore, useInventoryStore } from '@/stores';
 import { abortSubAreaRun, playerToCombatUnit, startSubAreaRun, advanceWaveOrFinish, performCombatScreenTransition, readCombatTransitionRecovery } from '@/stores/combatHelpers';
 import type { CombatUnit } from '@/engine/combat/types';
 import { CombatScreen } from './CombatScreen';
@@ -337,25 +337,34 @@ describe('captured combat transition recovery UI', () => {
     expect(usePlayerStore.getState().player).toBe(player);
   });
 
-  it('keeps partially finalized idle victory parked across timers, remount and navigation controls', () => {
+  it('parks a rolled-back failed idle victory across timers, remount and navigation controls', () => {
     useMetaStore.getState().setIdleTarget('areas/act1-blood-moor');
     startSubAreaRun({ mode: 'idle', runSeed: 7 });
     while (useCombatStore.getState().currentWave < useCombatStore.getState().totalWaves) {
       drainUIFixture(); expect(advanceWaveOrFinish()).toBe('next-wave');
     }
     drainUIFixture();
+    const playerBefore = usePlayerStore.getState().player;
+    const inventoryBefore = useInventoryStore.getState();
+    const rewardsBefore = useCombatStore.getState().runRewards;
     const original = useCombatStore.getState().markRunVictory;
     vi.spyOn(useCombatStore.getState(), 'markRunVictory').mockImplementation(() => {
       original(); throw new Error('victory subscriber');
     });
     expect(performCombatScreenTransition({ kind: 'advance' })).toBe(false);
-    expect(useCombatStore.getState().runVictory).toBe(true);
+    expect(useCombatStore.getState().runVictory).toBe(false);
+    expect(usePlayerStore.getState().player).toEqual(playerBefore);
+    expect(useInventoryStore.getState().backpack).toEqual(inventoryBefore.backpack);
+    expect(useInventoryStore.getState().currencies).toEqual(inventoryBefore.currencies);
+    expect(useInventoryStore.getState().materials).toEqual(inventoryBefore.materials);
+    expect(useCombatStore.getState().runRewards).toEqual(rewardsBefore);
     const before = useCombatStore.getState(); const holder = inspectRecordedWaves();
     let view = render(tree());
     expect(screen.getByRole('alert')).toBeVisible();
     expect(screen.getByRole('button', { name: 'Retry' })).toBeDisabled();
-    for (const id of ['idle-loop-next-run', 'return-to-map', 'return-to-town', 'continue-next-subarea']) {
-      expect(screen.getByTestId(id)).toBeDisabled(); fireEvent.click(screen.getByTestId(id));
+    // Full settlement rollback removes the terminal panel and its exit actions.
+    for (const id of ['victory-panel', 'idle-loop-next-run', 'return-to-map', 'return-to-town', 'continue-next-subarea']) {
+      expect(screen.queryByTestId(id)).not.toBeInTheDocument();
     }
     act(() => { vi.advanceTimersByTime(10_000); });
     expect(useCombatStore.getState()).toBe(before); expect(inspectRecordedWaves()).toBe(holder);

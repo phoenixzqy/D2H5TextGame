@@ -20,12 +20,13 @@ import { inspectRecordedWaves, RecordedWaveReceiptError } from './recordedWaveRe
 
 const QUEST = 'quests/act1-sisters-to-the-slaughter';
 const AREA = 'areas/act1-catacombs';
+let importedGearSequence = 0;
 function required<T>(value: T | null | undefined): T {
   if (value === null || value === undefined) throw new Error('Missing wiring fixture');
   return value;
 }
 function reset(): void {
-  abortSubAreaRun(); __resetPersistenceForTests();
+  abortSubAreaRun(); __resetPersistenceForTests(); importedGearSequence = 0;
   for (const store of [useCombatStore, useFormationStore, useInventoryStore,
     useMapStore, useMercStore, useMetaStore, usePlayerStore]) store.getState().reset();
 }
@@ -48,7 +49,8 @@ function start(area = AREA, act = 1): number {
   const player = createMockPlayer('BossQuestWiring', 'sorceress');
   usePlayerStore.getState().setPlayer({ ...player, comboOrder: [] });
   // Imported canonical gear and explicit fixture refill, not earned power.
-  const gear = { id: 'boss-quest-imported-cap', baseId: 'items/base/helm-cap', socketCapacity: 0,
+  // Repeated constructed runs retain prior gear, so each new fixture needs its own ID.
+  const gear = { id: `boss-quest-imported-cap-${String(++importedGearSequence)}`, baseId: 'items/base/helm-cap', socketCapacity: 0,
     rarity: 'rare' as const, level: 1, identified: true, equipped: false,
     affixes: [{ affixId: 'imported-wiring-fixture', values: new Map([
       ['statMods.attack', 99978], ['statMods.defense', 99973], ['statMods.life', 999880]

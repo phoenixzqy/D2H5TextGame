@@ -40,7 +40,7 @@ function fixture() {
   const outcome = { winner: 'player' as const, finalPlayerTeam: [hero], finalEnemyTeam: [enemy] };
   const recording = { events, outcome };
   const defaults = { currentWave: 1, totalWaves: plan.waves.length, subAreaRunId: plan.subAreaId,
-    runRewards: { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0 } };
+    runRewards: { items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0, materials: {} } };
   const publication = stageRecordedBattle({ initialPlayerTeam: [hero], initialEnemyTeam: [enemy],
     events, outcome, unitNameMap: new Map() }, defaults);
   const ownership = { backpack: [], stash: [], equipped: {}, mercEquipment: {} };

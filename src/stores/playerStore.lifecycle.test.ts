@@ -20,7 +20,8 @@ function seedRun() {
   if (!player) throw new Error('Missing lifecycle hero');
   armIronGolemSelection(player.id, 'lifecycle-source', true);
   useCombatStore.setState({ ironGolemReplayLocked: true, eventCursor: 2, isPaused: true,
-    runRewards: { items: [], runeShards: 7, runes: 1, gems: 2, wishstones: 3 } });
+    runRewards: { items: [], runeShards: 7, runes: 1, gems: 2, wishstones: 3,
+      materials: { 'runes/ral': 1, 'gems/ruby/chipped': 2 } } });
   expect(useCombatStore.getState().recordedEvents.length).toBeGreaterThan(0);
   return player;
 }

@@ -11,6 +11,8 @@
 import type { Rng } from '../rng';
 import type { Rarity } from '../types/items';
 import type { MonsterTier } from '../combat/types';
+import { materialEconomy, type MaterialProfile } from '../../data/loaders/materials';
+import { MaterialRewardError, sampleMaterial } from './materials';
 
 /** Effective magic find used in the rarity weight modulation. */
 export function effectiveMagicFind(magicFind: number): number {
@@ -39,6 +41,8 @@ export interface TcPick {
 /** A treasure class — a list of picks plus how many independent picks to roll. */
 export interface TreasureClass {
   readonly id: string;
+  /** Authored acquisition profile for generic material picks in a cache. */
+  readonly materialPoolId?: string;
   readonly picks: readonly TcPick[];
   /** How many items to attempt picking (default 1). */
   readonly numPicks?: number;
@@ -85,18 +89,28 @@ export function pickTcPick(
   monsterLevel: number,
   rng: Rng
 ): TcPick | undefined {
+  return pickTcPickWithResidual(tc, monsterLevel, rng)?.pick;
+}
+
+function pickTcPickWithResidual(tc: TreasureClass, monsterLevel: number, rng: Rng):
+  { readonly pick: TcPick; readonly unit: number } | undefined {
   const eligible = tc.picks.filter(
     (p) => monsterLevel >= p.qlvlMin && monsterLevel <= p.qlvlMax
   );
-  if (eligible.length === 0) return undefined;
-  const total = eligible.reduce((s, p) => s + p.weight, 0);
+  if (eligible.some(p => !Number.isFinite(p.weight))) throw new MaterialRewardError('Invalid TC weight');
+  const positive = eligible.filter(p => p.weight > 0);
+  if (positive.length === 0) return undefined;
+  const total = positive.reduce((s, p) => s + p.weight, 0);
+  if (!Number.isFinite(total)) throw new MaterialRewardError('Invalid TC total');
   if (total <= 0) return undefined;
   let roll = rng.next() * total;
-  for (const p of eligible) {
+  for (const p of positive) {
+    const unit = Math.min(1 - Number.EPSILON / 2, Math.max(0, roll / p.weight));
     roll -= p.weight;
-    if (roll <= 0) return p;
+    if (roll <= 0) return { pick: p, unit };
   }
-  return eligible[eligible.length - 1];
+  const pick = positive.at(-1);
+  return pick ? { pick, unit: 1 - Number.EPSILON / 2 } : undefined;
 }
 
 /** Per-monster-tier multipliers from drop-tables.md §3. */
@@ -181,6 +195,8 @@ export interface DropContext {
   readonly magicFind: number;
   /** Applied after the MF curve without further flooring; defaults to one. */
   readonly magicFindMultiplier?: number;
+  /** Authoritative actual live act/difficulty; cache callers use table metadata. */
+  readonly materialProfile?: MaterialProfile;
 }
 
 /**
@@ -194,16 +210,20 @@ export function rollDrops(ctx: DropContext, rng: Rng): readonly DropResult[] {
   const results: DropResult[] = [];
   for (let i = 0; i < picks; i++) {
     if (rng.chance(noDrop)) continue;
-    const pick = pickTcPick(ctx.tc, ctx.monsterLevel, rng);
-    if (!pick) continue;
+    const selection = pickTcPickWithResidual(ctx.tc, ctx.monsterLevel, rng);
+    if (!selection) continue;
+    const { pick, unit } = selection;
     if ((pick.type ?? 'item') === 'item') {
       if (!pick.baseId) continue;
       const rarity = pick.rarity ?? rollRarity(ctx.magicFind, ctx.tier, rng, ctx.magicFindMultiplier);
       results.push({ kind: 'item', baseId: pick.baseId, rarity, ilvl: ctx.monsterLevel });
       continue;
     }
-    const quantityMin = Math.max(0, pick.quantityMin ?? 1);
-    const quantityMax = Math.max(quantityMin, pick.quantityMax ?? quantityMin);
+    const quantityMin = pick.quantityMin ?? 1;
+    const quantityMax = pick.quantityMax ?? quantityMin;
+    if (![quantityMin, quantityMax].every(count => Number.isSafeInteger(count) && count > 0) || quantityMax < quantityMin) {
+      throw new MaterialRewardError('Invalid direct reward quantity');
+    }
     const quantity = rng.nextInt(quantityMin, quantityMax);
     const currency =
       pick.type === 'rune'
@@ -215,8 +235,18 @@ export function rollDrops(ctx: DropContext, rng: Rng): readonly DropResult[] {
               : 'runeShards';
     if (quantity > 0) {
       const result: DirectDropResult = { kind: 'direct', currency, quantity, ilvl: ctx.monsterLevel };
-      if (pick.itemId) {
+      if (Object.hasOwn(pick, 'itemId')) {
+        if (typeof pick.itemId !== 'string' || pick.itemId.length === 0 ||
+          (pick.type === 'currency' && pick.itemId !== 'currency/wishstone' && pick.itemId !== 'currency/rune-shard')) {
+          throw new MaterialRewardError('Invalid explicit reward identity');
+        }
         results.push({ ...result, itemId: pick.itemId });
+      } else if (pick.type === 'rune' || pick.type === 'gem') {
+        const authored = ctx.tc.materialPoolId && Object.hasOwn(materialEconomy.profiles, ctx.tc.materialPoolId)
+          ? materialEconomy.profiles[ctx.tc.materialPoolId] : undefined;
+        const profile = ctx.materialProfile ?? authored;
+        if (!profile) throw new MaterialRewardError('Missing generic material profile');
+        results.push({ ...result, itemId: sampleMaterial(pick.type, { ...profile, tier: ctx.tier }, unit) });
       } else {
         results.push(result);
       }

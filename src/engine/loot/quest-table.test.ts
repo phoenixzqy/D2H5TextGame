@@ -34,13 +34,16 @@ describe('explicit quest table, without independent kill income', () => {
   it.each([
     ['rune', 'runes'], ['gem', 'gems'], ['gold', 'runeShards']
   ] as const)('selects %s with replacement and pays only table %s', (type, target) => {
-    const rewards = rollQuestTableRewards(profile, pools([currency(type)], { numPicks: 1, noDropChance: 1 }), createRng(8));
-    expect(rewards).toEqual({ items: [], runes: 0, gems: 0, runeShards: 0, wishstones: 0, [target]: 15 });
+    const pick = { ...currency(type), ...(type === 'rune' ? { itemId: 'runes/ral' }
+      : type === 'gem' ? { itemId: 'gems/ruby/chipped' } : {}) };
+    const rewards = rollQuestTableRewards(profile, pools([pick], { numPicks: 1, noDropChance: 1 }), createRng(8));
+    expect(rewards).toEqual({ items: [], runes: 0, gems: 0, runeShards: 0, wishstones: 0, [target]: 15,
+      materials: type === 'rune' ? { 'runes/ral': 15 } : type === 'gem' ? { 'gems/ruby/chipped': 15 } : {} });
   });
 
   it('retains explicit wishstone interpretation without secondary drops', () => {
     expect(rollQuestTableRewards(profile, pools([{ ...currency('currency'), itemId: 'currency/wishstone' }]), createRng(8)))
-      .toEqual({ items: [], runes: 0, gems: 0, runeShards: 0, wishstones: 15 });
+      .toEqual({ items: [], runes: 0, gems: 0, runeShards: 0, wishstones: 15, materials: {} });
   });
 
   it.each(['unknown', 'empty', 'ineligible', 'zero-weight', 'missing-base', 'zero-quantity'] as const)(

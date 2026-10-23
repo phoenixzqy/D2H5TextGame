@@ -8,6 +8,7 @@
 
 import type { Rng } from '../rng';
 import type { MonsterTier } from '../combat/types';
+import { sampleMaterial, type MaterialLedger } from './materials';
 
 /** Difficulty enum used for drop multipliers. */
 export type Difficulty = 'normal' | 'nightmare' | 'hell';
@@ -80,6 +81,8 @@ export interface CurrencyDrops {
   readonly wishstones: number;
   readonly runes: number;
   readonly gems: number;
+  /** Concrete owned identities; numeric rune/gem counts are summaries only. */
+  readonly materials: MaterialLedger;
 }
 
 /** All independent drops from a kill. */
@@ -101,8 +104,14 @@ export function rollCurrencyDrops(
     wishstones = Math.floor(wishstoneBase * (tier === 'boss' || tier === 'chapter-boss' ? diff : 1));
   }
 
-  const runes = rng.chance(RUNE_CHANCE[tier]) ? 1 : 0;
-  const gems = rng.chance(GEM_CHANCE[tier]) ? 1 : 0;
+  const runeUnit = rng.next(), gemUnit = rng.next();
+  const runeChance = RUNE_CHANCE[tier], gemChance = GEM_CHANCE[tier];
+  const runes = runeUnit < runeChance ? 1 : 0;
+  const gems = gemUnit < gemChance ? 1 : 0;
+  const materials: Record<string, number> = {};
+  const context = { act, difficulty, tier };
+  if (runes) materials[sampleMaterial('rune', context, runeUnit / runeChance)] = 1;
+  if (gems) materials[sampleMaterial('gem', context, gemUnit / gemChance)] = 1;
   const runeShards = rollRuneShards(monsterLevel, tier, currencyFindPct, rng);
-  return { runeShards, wishstones, runes, gems };
+  return { runeShards, wishstones, runes, gems, materials };
 }

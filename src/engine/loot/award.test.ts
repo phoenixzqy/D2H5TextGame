@@ -62,7 +62,10 @@ describe('award.rollKillRewards', () => {
     const rng = createRng(92374);
     const rewards = rollKillRewards({ tier, monsterLevel: 14, treasureClassId: tc.id,
       magicFind: 137, magicFindMultiplier: 1.4, goldFind: 51, act: 2 }, pools, rng);
-    expect({ rewards, following: rng.next() }).toMatchSnapshot();
+    const { materials, ...legacyRewards } = rewards;
+    expect({ rewards: legacyRewards, following: rng.next() }).toMatchSnapshot();
+    expect(materials).toEqual(tier === 'chapter-boss'
+      ? { 'runes/thul': 1, 'gems/emerald/normal': 1 } : {});
   });
 
   it('is deterministic for a fixed seed', () => {
@@ -90,6 +93,12 @@ describe('award.rollKillRewards', () => {
     );
     expect(r.items).toEqual([]);
     expect(r.runeShards).toBeGreaterThan(0);
+  });
+
+  it('refuses a live whole bag when a selected gear reward cannot be materialized', () => {
+    expect(() => rollKillRewards({ tier: 'boss', monsterLevel: 14, treasureClassId: tc.id,
+      magicFind: 0, goldFind: 0, act: 1 }, { ...pools, bases: new Map() }, createRng(42)))
+      .toThrow(/materializ/i);
   });
 
   it('boss kills produce items and rune-shards', () => {

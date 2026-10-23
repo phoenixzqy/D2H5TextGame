@@ -23,7 +23,8 @@ import { assembleQuestItem } from './questCrafting';
 const QUEST = 'quests/act2-seven-tombs';
 const profile = { tableId: 'loot/duriel-q', ilvl: 32, picks: 5 };
 const stores = [usePlayerStore, useInventoryStore, useMapStore, useMercStore, useMetaStore] as const;
-const inventoryActions = { addItem: useInventoryStore.getState().addItem, addCurrency: useInventoryStore.getState().addCurrency };
+const inventoryActions = { addItem: useInventoryStore.getState().addItem, addCurrency: useInventoryStore.getState().addCurrency,
+  addMaterials: useInventoryStore.getState().addMaterials };
 const mapActions = { markQuestRewardClaimed: useMapStore.getState().markQuestRewardClaimed };
 function required<T>(value: T | null | undefined): T {
   if (value === null || value === undefined) throw new Error('Missing quest cache fixture');
@@ -85,8 +86,9 @@ describe('explicit deterministic quest-table Claim', () => {
     expect(mercXp(id)).toBe(mercBefore + 9000);
     expect(properties()).toEqual(properties([...expected.items]));
     const currencies = useInventoryStore.getState().currencies;
-    expect(currencies['rune-shard'] ?? 0).toBe(expected.runes + expected.runeShards);
-    expect(currencies['gem-shard'] ?? 0).toBe(expected.gems);
+    expect(currencies['rune-shard'] ?? 0).toBe(expected.runeShards);
+    expect(currencies['gem-shard'] ?? 0).toBe(0);
+    expect(useInventoryStore.getState().materials).toEqual(expected.materials);
     expect(currencies.wishstone ?? 0).toBe(expected.wishstones);
     expect(currencies).not.toHaveProperty('gold'); expect(currencies).not.toHaveProperty('runes');
     expect(useMapStore.getState().questProgress[QUEST]?.rewardClaimed).toBe(true);
@@ -105,7 +107,7 @@ describe('explicit deterministic quest-table Claim', () => {
     withRewards({ lootTable: profile, runeShards: 7, runes: 9 }, () => {
       const expected = predict(); expect(claimQuestReward(QUEST)).toBe('ok');
       expect(useInventoryStore.getState().currencies).toMatchObject({ runeShards: 7, runes: 9,
-        'rune-shard': expected.runes + expected.runeShards });
+        'rune-shard': expected.runeShards });
     });
   });
 
@@ -132,10 +134,123 @@ describe('explicit deterministic quest-table Claim', () => {
     });
   });
 
-  it('refuses combined rune destinations even when each table total is separately safe', () => {
+  it('keeps descriptive rune totals out of shard arithmetic even at the safe count limit', () => {
     vi.spyOn(award, 'rollQuestTableRewards').mockReturnValue({ items: [],
-      runes: Number.MAX_SAFE_INTEGER, runeShards: 1, gems: 0, wishstones: 0 });
+      runes: Number.MAX_SAFE_INTEGER, runeShards: 1, gems: 0, wishstones: 0,
+      materials: { 'runes/ral': Number.MAX_SAFE_INTEGER } });
+    expect(claimQuestReward(QUEST)).toBe('ok');
+    expect(useInventoryStore.getState().currencies['rune-shard']).toBe(1);
+    expect(useInventoryStore.getState().materials).toEqual({ 'runes/ral': Number.MAX_SAFE_INTEGER });
+  });
+
+  it('credits actual authored rune identities once and preserves historical currency balances', () => {
+    const input = { tableId: 'loot/countess-runes', ilvl: 12, picks: 3 };
+    useInventoryStore.setState({ currencies: { 'rune-shard': 50, 'gem-shard': 7, runes: 19 },
+      materials: { 'gems/ruby/chipped': 2 } });
+    withRewards({ lootTable: input }, () => {
+      const expected = predict(input);
+      expect(expected.runes).toBe(3);
+      expect(claimQuestReward(QUEST)).toBe('ok');
+      expect(useInventoryStore.getState().materials).toEqual({ 'gems/ruby/chipped': 2, ...expected.materials });
+      expect(useInventoryStore.getState().currencies).toEqual({ 'rune-shard': 50, 'gem-shard': 7, runes: 19 });
+      const before = state(); expect(claimQuestReward(QUEST)).toBe('already-claimed'); expect(state()).toEqual(before);
+    });
+  });
+
+  it('refuses an overflowing material destination before XP, gear, currency or Claim publication', () => {
+    vi.spyOn(award, 'rollQuestTableRewards').mockReturnValue({ items: [], runeShards: 1,
+      wishstones: 1, runes: 1, gems: 0, materials: { 'runes/ral': 1 } });
+    useInventoryStore.getState().addMaterials({ 'runes/ral': Number.MAX_SAFE_INTEGER });
     noWrites('unsupported-rewards');
+  });
+
+  it.each(['xp-currency', 'xp-gear', 'currency-wishstone', 'currency-gear'] as const)(
+    'refuses and restores the whole Claim after %s observer changes the destination', hazard => {
+      const item = required(predict().items[0]);
+      vi.spyOn(award, 'rollQuestTableRewards').mockReturnValue({ items: [item], runeShards: 1,
+        wishstones: 1, runes: 1, gems: 0, materials: { 'runes/ral': 1 } });
+      const before = state(); let observed = false;
+      const alterDestination = () => {
+        if (observed) return;
+        observed = true;
+        if (hazard.endsWith('gear')) useInventoryStore.getState().addItem(item);
+        else useInventoryStore.getState().addCurrency(
+          hazard === 'xp-currency' ? 'rune-shard' : 'wishstone', Number.MAX_SAFE_INTEGER);
+      };
+      const stop = hazard.startsWith('xp')
+        ? usePlayerStore.subscribe(alterDestination)
+        : useInventoryStore.subscribe((next, previous) => {
+          if (next.currencies !== previous.currencies) alterDestination();
+        });
+      try {
+        expect(claimQuestReward(QUEST)).toBe('grant-failed');
+        expect(observed).toBe(true);
+        expect(state()).toEqual(before);
+      } finally { stop(); }
+    }
+  );
+
+  it('refuses a pending cache ID inserted into stash by an XP observer, retaining that separate write', () => {
+    const item = required(predict().items[0]);
+    vi.spyOn(award, 'rollQuestTableRewards').mockReturnValue({ items: [item], runeShards: 1,
+      wishstones: 1, runes: 1, gems: 0, materials: { 'runes/ral': 1 } });
+    const xpBefore = xp(); let observed = false;
+    const stop = usePlayerStore.subscribe(() => {
+      if (observed) return;
+      observed = true;
+      useInventoryStore.getState().addItem(item, true);
+    });
+    try {
+      expect(claimQuestReward(QUEST)).toBe('grant-failed');
+      expect(xp()).toBe(xpBefore);
+      expect(useInventoryStore.getState().stash).toEqual([item]);
+      expect(useInventoryStore.getState().backpack).toEqual([]);
+      expect(useInventoryStore.getState().currencies).toEqual({});
+      expect(useInventoryStore.getState().materials).toEqual({});
+      expect(useMapStore.getState().questProgress[QUEST]?.rewardClaimed).toBe(false);
+    } finally { stop(); }
+  });
+
+  it.each(['xp', 'currency'] as const)('preserves valid %s observer inventory writes alongside the exact cache', source => {
+    const item = required(predict().items[0]);
+    vi.spyOn(award, 'rollQuestTableRewards').mockReturnValue({ items: [item], runeShards: 1,
+      wishstones: 1, runes: 1, gems: 0, materials: { 'runes/ral': 1 } });
+    const observerItem = { ...item, id: 'observer-earned-item' };
+    let observed = false;
+    const alterDestination = () => {
+      if (observed) return;
+      observed = true;
+      useInventoryStore.getState().addCurrency('rune-shard', 5);
+      useInventoryStore.getState().addItem(observerItem);
+      useInventoryStore.getState().addMaterials({ 'runes/ral': 2 });
+    };
+    const stop = source === 'xp'
+      ? usePlayerStore.subscribe(alterDestination)
+      : useInventoryStore.subscribe((next, previous) => {
+        if (next.currencies !== previous.currencies) alterDestination();
+      });
+    try {
+      expect(claimQuestReward(QUEST)).toBe('ok');
+      expect(observed).toBe(true);
+      expect(useInventoryStore.getState().backpack).toEqual([observerItem, item]);
+      expect(useInventoryStore.getState().currencies).toEqual({ 'rune-shard': 6, wishstone: 1 });
+      expect(useInventoryStore.getState().materials).toEqual({ 'runes/ral': 3 });
+    } finally { stop(); }
+  });
+
+  it('restores materials and all existing participants after a material publication mutates then throws', () => {
+    vi.spyOn(award, 'rollQuestTableRewards').mockReturnValue({ items: [], runeShards: 1,
+      wishstones: 1, runes: 1, gems: 0, materials: { 'runes/ral': 1 } });
+    useInventoryStore.getState().addMaterials({ 'runes/ral': 2 });
+    const before = state();
+    useInventoryStore.setState({ addMaterials: materials => {
+      inventoryActions.addMaterials(materials); throw new Error('after material publication');
+    } });
+    expect(claimQuestReward(QUEST)).toBe('grant-failed');
+    expect(state()).toEqual(before);
+    useInventoryStore.setState(inventoryActions);
+    expect(claimQuestReward(QUEST)).toBe('ok');
+    expect(useInventoryStore.getState().materials).toEqual({ 'runes/ral': 3 });
   });
 
   it('keeps cache properties independent of live level, gear, navigation and clock', () => {
@@ -146,7 +261,7 @@ describe('explicit deterministic quest-table Claim', () => {
       const hero = required(usePlayerStore.getState().player);
       usePlayerStore.getState().setPlayer({ ...hero, level: 30, experience: 0,
         derivedStats: { ...hero.derivedStats, magicFind: 900, goldFind: 800 } });
-      useInventoryStore.setState({ backpack: [], currencies: {} });
+      useInventoryStore.setState({ backpack: [], currencies: {}, materials: {} });
       useMapStore.getState().updateQuestProgress(QUEST, { rewardClaimed: false });
       useMapStore.getState().setCurrentLocation(5, 'areas/act5-worldstone-keep');
       vi.mocked(Date.now).mockReturnValue(1792497700000);
@@ -165,7 +280,7 @@ describe('explicit deterministic quest-table Claim', () => {
   });
 
   it.each(['rune-shard', 'runeShards'] as const)('preflights %s overflow before publishing any reward', target => {
-    const expected = predict(); expect(expected.runes + expected.runeShards).toBeGreaterThan(0);
+    const expected = predict(); expect(expected.runeShards).toBeGreaterThan(0);
     useInventoryStore.setState({ currencies: { [target]: Number.MAX_SAFE_INTEGER } });
     withRewards({ lootTable: profile, runeShards: 1, xp: 12000 }, () => { noWrites('unsupported-rewards'); });
   });
@@ -194,7 +309,8 @@ describe('explicit deterministic quest-table Claim', () => {
     if (failure === 'currency') expect(nested).toBe('claim-in-progress');
     useInventoryStore.setState(inventoryActions); useMapStore.setState(mapActions);
     expect(claimQuestReward(QUEST)).toBe('ok'); expect(properties()).toEqual(properties([...expected.items]));
-    expect(useInventoryStore.getState().currencies['rune-shard']).toBe(expected.runes + expected.runeShards);
+    expect(useInventoryStore.getState().currencies['rune-shard']).toBe(expected.runeShards);
+    expect(useInventoryStore.getState().materials).toEqual(expected.materials);
   });
 
   it('refuses preparation failure without XP/currency/claim publication', () => {

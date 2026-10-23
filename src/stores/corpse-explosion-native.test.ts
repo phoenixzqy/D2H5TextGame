@@ -242,7 +242,11 @@ it('settles nonzero XP and loot for every slain enemy including consumed bodies 
     treasureClassId: run.plan.waves[binding.targetWaveIdx]?.lootTable ?? run.plan.defaultLootTable,
     magicFind: player().derivedStats.magicFind, goldFind: player().derivedStats.goldFind,
     act: 1, difficulty: 'normal' }, loadAwardPools(), rng));
-  const expected = { items: rolled.flatMap(r => r.items),
+  const materials: Record<string, number> = {};
+  for (const reward of rolled) {
+    for (const [id, count] of Object.entries(reward.materials)) materials[id] = (materials[id] ?? 0) + count;
+  }
+  const expected = { items: rolled.flatMap(r => r.items), materials,
     runeShards: rolled.reduce((n, r) => n + r.runeShards, 0), runes: rolled.reduce((n, r) => n + r.runes, 0),
     gems: rolled.reduce((n, r) => n + r.gems, 0), wishstones: rolled.reduce((n, r) => n + r.wishstones, 0) };
   expect(expected.items.length).toBeGreaterThan(0); expect(expected.runeShards + expected.runes).toBeGreaterThan(0);
@@ -258,7 +262,8 @@ it('settles nonzero XP and loot for every slain enemy including consumed bodies 
   expect(actual.items.every(item => !before.backpack.some(old => old.id === item.id))).toBe(true);
   expect(useInventoryStore.getState().backpack).toEqual([...before.backpack, ...actual.items]);
   expect(useInventoryStore.getState().currencies['rune-shard'])
-    .toBe((before.currencies['rune-shard'] ?? 0) + expected.runeShards + expected.runes);
+    .toBe((before.currencies['rune-shard'] ?? 0) + expected.runeShards);
+  expect(useInventoryStore.getState().materials).toEqual(expected.materials);
   const after = structuredClone(persistent());
   const next = published();
   expect(next.installation?.settlement.identity).not.toBe(original.installation?.settlement.identity);

@@ -109,7 +109,7 @@ describe('drop-roller', () => {
   it('materializes direct rune/gem/currency picks as direct drop results', () => {
     const rollOnly = (pick: TreasureClass['picks'][number]) => rollDrops(
       {
-        tc: { id: 'direct', picks: [pick], noDropChance: 0, numPicks: 1 },
+        tc: { id: 'direct', picks: [pick], materialPoolId: 'act1-normal', noDropChance: 0, numPicks: 1 },
         tier: 'trash',
         monsterLevel: 5,
         magicFind: 0

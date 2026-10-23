@@ -89,7 +89,8 @@ describe('Guardian exact cache and retained reward', () => {
     expect(useInventoryStore.getState().questItems[SOULSTONE]).toEqual({ itemId: 'items/soulstone_mephisto', state: 'owned' });
     expect(useInventoryStore.getState().backpack.map(item => ({ ...item, id: '' })))
       .toEqual(cache.items.map(item => ({ ...item, id: '' })));
-    expect(useInventoryStore.getState().currencies['rune-shard'] ?? 0).toBe(cache.runes + cache.runeShards);
+    expect(useInventoryStore.getState().currencies['rune-shard'] ?? 0).toBe(cache.runeShards);
+    expect(useInventoryStore.getState().materials).toEqual(cache.materials);
     expect(claimQuestReward(QUEST)).toBe('already-claimed');
     expect(xp()).toBe(heroBefore + 18000); expect(mercXp()).toBe(mercBefore + 13500);
   });

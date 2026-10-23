@@ -56,7 +56,8 @@ describe.each([undefined, 23])('new-run staging with requested ordinal %s', chal
     const heroId = usePlayerStore.getState().player?.id;
     if (!heroId) throw new Error('Hero missing');
     const selection = armIronGolemSelection(heroId, 'retained-selection', true);
-    const rewards = { items: [], runeShards: 13, runes: 2, gems: 3, wishstones: 4 };
+    const rewards = { items: [], runeShards: 13, runes: 2, gems: 3, wishstones: 4,
+      materials: { 'runes/ral': 2, 'gems/ruby/chipped': 3 } };
     useCombatStore.setState({ runRewards: rewards, runVictory: true, runDefeat: true });
     const before = stores.map(store => store.getState());
     const notified = vi.fn();
@@ -105,7 +106,8 @@ describe.each([undefined, 23])('new-run staging with requested ordinal %s', chal
 describe('accepted new-run publication', () => {
   it('publishes its recording and one fresh reward reset together in one notification', () => {
     const previous = start();
-    const oldRewards = { items: [], runeShards: 13, runes: 2, gems: 3, wishstones: 4 };
+    const oldRewards = { items: [], runeShards: 13, runes: 2, gems: 3, wishstones: 4,
+      materials: { 'runes/ral': 2, 'gems/ruby/chipped': 3 } };
     useCombatStore.setState({ runRewards: oldRewards, runVictory: true, runDefeat: true,
       eventCursor: 4, playbackComplete: true, isPaused: true });
     const before = useCombatStore.getState();
@@ -122,9 +124,10 @@ describe('accepted new-run publication', () => {
       expect(state.recordedEvents).not.toBe(before.recordedEvents);
       expect(state.outcome).not.toBe(before.outcome);
       expect(state.recordedEvents.at(-1)?.kind).toBe('end');
-      expect(state.runRewards).toEqual({ items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0 });
+      expect(state.runRewards).toEqual({ items: [], runeShards: 0, runes: 0, gems: 0, wishstones: 0, materials: {} });
       expect(state.runRewards).not.toBe(oldRewards);
-      expect(oldRewards).toEqual({ items: [], runeShards: 13, runes: 2, gems: 3, wishstones: 4 });
+      expect(oldRewards).toEqual({ items: [], runeShards: 13, runes: 2, gems: 3, wishstones: 4,
+      materials: { 'runes/ral': 2, 'gems/ruby/chipped': 3 } });
       expect(state).toMatchObject({ inCombat: true, eventCursor: 0, playbackComplete: false,
         runVictory: false, runDefeat: false, isPaused: false, ironGolemReplayLocked: false });
       expect(next.challengeOrdinal).toBe((previous.challengeOrdinal + 1) % period);

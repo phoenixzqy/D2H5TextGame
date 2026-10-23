@@ -14,7 +14,8 @@ import { loadAwardPools } from '@/data/loaders/loot';
 import { loadQuestUniqueProfile } from '@/data/loaders/quest-rewards';
 import { rollUniqueItem, type RollUniqueItemInput } from '@/engine/loot/rollItem';
 import { isQuestUniqueProfileRewardInput, resolveQuestUniqueProfile } from '@/engine/loot/quest-unique';
-import { isQuestTableRewardInput, rollQuestTableRewards, type QuestTableRewardInput } from '@/engine/loot/award';
+import { isQuestTableRewardInput, rollQuestTableRewards, type KillRewards, type QuestTableRewardInput } from '@/engine/loot/award';
+import { mergeRewards, planRewardGrant } from '@/engine/loot/reward-plan';
 import { createRng, hashSeed } from '@/engine/rng';
 import type { Item } from '@/engine/types/items';
 import { publishQuestItemChange, questActionPreflight, withQuestTransaction } from './questTransaction';
@@ -261,6 +262,7 @@ export function claimQuestReward(questId: string): ClaimResult {
 
     // Preparation is private: failure here must not publish rollback writes.
     const items: Item[] = [];
+    let cacheRewards: KillRewards = mergeRewards();
     const currencyGrants = new Map<string, number>();
     for (const { kind, amount } of grants) {
       if (kind !== 'xp' && kind !== 'skillPoints' && kind !== 'statPoints') {
@@ -284,21 +286,34 @@ export function claimQuestReward(questId: string): ClaimResult {
         ]));
         const cache = rollQuestTableRewards(tableReward, loadAwardPools(), createRng(seed));
         if (!cache) return 'unsupported-rewards';
+        cacheRewards = cache;
         items.push(...cache.items);
-        for (const [target, amount] of [
-          ['rune-shard', cache.runes + cache.runeShards], ['gem-shard', cache.gems], ['wishstone', cache.wishstones]
-        ] as const) {
-          if (amount > 0) currencyGrants.set(target, (currencyGrants.get(target) ?? 0) + amount);
-        }
       }
     } catch {
       return 'grant-failed';
     }
-    // Validate the aggregate at each actual destination, including existing funds.
-    for (const [target, amount] of currencyGrants) {
-      const balance = inventory.currencies[target] ?? 0;
-      if (!safeCount(amount) || !safeCount(balance) || !safeCount(balance + amount)) return 'unsupported-rewards';
+    for (const [target, amount] of [['rune-shard', cacheRewards.runeShards], ['wishstone', cacheRewards.wishstones]] as const) {
+      if (amount > 0) currencyGrants.set(target, (currencyGrants.get(target) ?? 0) + amount);
     }
+    const pendingCurrencies = new Map(currencyGrants);
+    let pendingItems = items;
+    // Observers can change inventory during XP or an earlier grant. Recheck the
+    // remaining exact bag at each add boundary without rerolling or losing writes.
+    const preflightInventory = (): void => {
+      const destination = useInventoryStore.getState();
+      const currencies = { ...destination.currencies };
+      for (const [target, amount] of pendingCurrencies) {
+        const balance = destination.currencies[target] ?? 0;
+        if (!safeCount(amount) || !safeCount(balance) || !safeCount(balance + amount)) {
+          throw new Error('Quest currency destination overflow');
+        }
+        currencies[target] = balance + amount;
+      }
+      planRewardGrant({ ...cacheRewards, items: pendingItems, runeShards: 0, wishstones: 0 },
+        { ...destination, currencies, mercEquipment: useMercStore.getState().mercEquipment });
+    };
+    try { preflightInventory(); }
+    catch { return 'unsupported-rewards'; }
 
     const serviceEntry = questServices?.[serviceSource];
     if (questServices && !serviceEntry) return 'unsupported-rewards';
@@ -307,10 +322,12 @@ export function claimQuestReward(questId: string): ClaimResult {
       kind === 'xp' || kind === 'skillPoints' || kind === 'statPoints');
     const sharesXp = grants.some(({ kind }) => kind === 'xp');
     const changesCurrency = currencyGrants.size > 0;
+    const changesMaterials = Object.keys(cacheRewards.materials).length > 0;
     const { ownedMercs, mercProgress } = useMercStore.getState();
     const inventorySnapshot = {
       ...(changesCurrency ? { currencies: inventory.currencies } : {}),
       ...(items.length > 0 ? { backpack: inventory.backpack } : {}),
+      ...(changesMaterials ? { materials: inventory.materials } : {}),
       ...(questItems ? { questItems: inventory.questItems } : {})
     };
 
@@ -325,8 +342,20 @@ export function claimQuestReward(questId: string): ClaimResult {
             : state);
         }
       }
-      for (const [target, amount] of currencyGrants) useInventoryStore.getState().addCurrency(target, amount);
-      for (const item of items) useInventoryStore.getState().addItem(item);
+      for (const [target, amount] of currencyGrants) {
+        preflightInventory();
+        useInventoryStore.getState().addCurrency(target, amount);
+        pendingCurrencies.delete(target);
+      }
+      for (const item of items) {
+        preflightInventory();
+        useInventoryStore.getState().addItem(item);
+        pendingItems = pendingItems.slice(1);
+      }
+      if (changesMaterials) {
+        preflightInventory();
+        useInventoryStore.getState().addMaterials(cacheRewards.materials);
+      }
       if (questItems) useInventoryStore.setState({ questItems });
       if (serviceEntry) useInventoryStore.setState(state => ({ questServices: { ...state.questServices,
         [serviceSource]: serviceEntry } }));
@@ -351,7 +380,7 @@ export function claimQuestReward(questId: string): ClaimResult {
       };
       if (changesPlayer) restore(() => { usePlayerStore.setState({ player }); });
       if (sharesXp) restore(() => { useMercStore.setState({ ownedMercs, mercProgress }); });
-      if (changesCurrency || items.length > 0 || questItems !== undefined) {
+      if (changesCurrency || changesMaterials || items.length > 0 || questItems !== undefined) {
         restore(() => { useInventoryStore.setState(inventorySnapshot); });
       }
       if (questServices) restore(() => { useInventoryStore.setState(state => {

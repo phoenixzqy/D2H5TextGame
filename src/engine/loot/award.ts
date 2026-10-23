@@ -21,6 +21,9 @@ import { rollDrops, type DropResult, type TreasureClass } from './drop-roller';
 const RARE_ELITE_MAGIC_FIND_BONUS = (defaultEliteConfigJson as EliteConfigDef).rareEliteMagicFindBonus;
 import { rollCurrencyDrops, type Difficulty, type CurrencyDrops } from './orbs-and-currency';
 import { rollItem, type ItemRollPools } from './rollItem';
+import { materialCatalog } from '../../data/loaders/materials';
+import { MaterialRewardError, mergeMaterials, type MaterialLedger } from './materials';
+import { mergeRewards } from './reward-plan';
 
 /** Data pools required to award loot. */
 export interface AwardDataPools extends ItemRollPools {
@@ -49,7 +52,7 @@ export interface KillRewards extends CurrencyDrops {
 }
 
 /** Empty rewards (used for unknown TCs to keep call sites simple). */
-const EMPTY: KillRewards = { items: [], runeShards: 0, wishstones: 0, runes: 0, gems: 0 };
+const EMPTY: KillRewards = { items: [], runeShards: 0, wishstones: 0, runes: 0, gems: 0, materials: {} };
 
 /** Explicit generation context for one quest cache, independent of live combat/gear. */
 export interface QuestTableRewardInput {
@@ -72,6 +75,7 @@ function materializeDrops(drops: readonly DropResult[], pools: AwardDataPools, r
   { rewards: KillRewards; complete: boolean } {
   const items: Item[] = [];
   let runeShards = 0, wishstones = 0, runes = 0, gems = 0;
+  let materials: MaterialLedger = {};
   let complete = true;
   for (const drop of drops) {
     if (drop.kind === 'item') {
@@ -80,29 +84,40 @@ function materializeDrops(drops: readonly DropResult[], pools: AwardDataPools, r
       else complete = false;
     } else if (drop.currency === 'runeShards') runeShards += drop.quantity;
     else if (drop.currency === 'wishstones') wishstones += drop.quantity;
-    else if (drop.currency === 'runes') runes += drop.quantity;
-    else gems += drop.quantity;
+    else {
+      const kind = drop.currency === 'runes' ? 'rune' : 'gem';
+      if (!drop.itemId || materialCatalog.get(drop.itemId)?.kind !== kind) {
+        throw new MaterialRewardError('Unknown or mismatched concrete material');
+      }
+      materials = mergeMaterials(materials, { [drop.itemId]: drop.quantity });
+      if (kind === 'rune') runes += drop.quantity;
+      else gems += drop.quantity;
+    }
   }
-  return { rewards: { items, runeShards, wishstones, runes, gems }, complete };
+  return { rewards: mergeRewards({ items, runeShards, wishstones, runes, gems, materials }), complete };
 }
 
 /**
  * Roll only a quest's authored treasure class: replacement picks, noDrop0, MF0.
  * Unknown/empty/ineligible tables or incomplete materialization refuse the whole
- * bag. All selections precede materialization; exceptions propagate to the caller.
+ * bag. All selections precede materialization; material refusals return undefined,
+ * while unrelated generation exceptions propagate to the caller.
  * No independent kill income is rolled. Failed attempts may leave allocator gaps.
  */
 export function rollQuestTableRewards(input: QuestTableRewardInput, pools: AwardDataPools, rng: Rng): KillRewards | undefined {
   if (!isQuestTableRewardInput(input)) return undefined;
   const tc = pools.treasureClasses.get(input.tableId);
   if (!tc) return undefined;
-  const drops = rollDrops({ tc: { ...tc, numPicks: input.picks, noDropChance: 0 },
-    tier: 'chapter-boss', monsterLevel: input.ilvl, magicFind: 0, magicFindMultiplier: 1 }, rng);
-  if (drops.length !== input.picks) return undefined;
-  const { rewards, complete } = materializeDrops(drops, pools, rng, true);
-  if (!complete || ![rewards.runeShards, rewards.wishstones, rewards.runes, rewards.gems]
-    .every(amount => Number.isSafeInteger(amount) && amount >= 0)) return undefined;
-  return rewards;
+  try {
+    const drops = rollDrops({ tc: { ...tc, numPicks: input.picks, noDropChance: 0 },
+      tier: 'chapter-boss', monsterLevel: input.ilvl, magicFind: 0, magicFindMultiplier: 1 }, rng);
+    if (drops.length !== input.picks) return undefined;
+    const { rewards, complete } = materializeDrops(drops, pools, rng, true);
+    return complete ? rewards : undefined;
+  } catch (cause) {
+    if (cause instanceof MaterialRewardError) return undefined;
+    throw cause;
+  }
 }
 
 /**
@@ -136,12 +151,14 @@ export function rollKillRewards(
       tier: input.tier,
       monsterLevel: input.monsterLevel,
       magicFind: input.magicFind + (input.tier === 'rare-elite' ? RARE_ELITE_MAGIC_FIND_BONUS : 0),
-      magicFindMultiplier: input.magicFindMultiplier ?? 1
+      magicFindMultiplier: input.magicFindMultiplier ?? 1,
+      materialProfile: { act: input.act, difficulty: input.difficulty ?? 'normal' }
     },
     rng
   );
 
-  const direct = materializeDrops(drops, pools, rng).rewards;
+  const { rewards: direct, complete } = materializeDrops(drops, pools, rng);
+  if (!complete) throw new MaterialRewardError('Incomplete reward materialization');
 
   const cur = rollCurrencyDrops(
     input.monsterLevel,
@@ -152,13 +169,7 @@ export function rollKillRewards(
     rng
   );
 
-  return {
-    items: direct.items,
-    runeShards: cur.runeShards + direct.runeShards,
-    wishstones: cur.wishstones + direct.wishstones,
-    runes: cur.runes + direct.runes,
-    gems: cur.gems + direct.gems
-  };
+  return mergeRewards(direct, { items: [], ...cur });
 }
 
 /**
@@ -171,18 +182,5 @@ export function rollBatchRewards(
   rng: Rng
 ): KillRewards {
   if (kills.length === 0) return EMPTY;
-  const items: Item[] = [];
-  let runeShards = 0;
-  let wishstones = 0;
-  let runes = 0;
-  let gems = 0;
-  for (const k of kills) {
-    const r: KillRewards = rollKillRewards(k, pools, rng);
-    items.push(...r.items);
-    runeShards += r.runeShards;
-    wishstones += r.wishstones;
-    runes += r.runes;
-    gems += r.gems;
-  }
-  return { items, runeShards, wishstones, runes, gems };
+  return mergeRewards(...kills.map(k => rollKillRewards(k, pools, rng)));
 }

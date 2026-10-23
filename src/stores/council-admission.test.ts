@@ -20,12 +20,13 @@ import { withoutV17Fields } from '../../tests/helpers/save-fixtures';
 const QUEST = 'quests/act3-khalims-will';
 const SOURCE = `${QUEST}#action:council-victory`;
 const AREA = 'areas/act3-travincal';
+let importedGearSequence = 0;
 function required<T>(value: T | null | undefined): T {
   if (value == null) throw new Error('Missing Council fixture');
   return value;
 }
 function reset(): void {
-  abortSubAreaRun(); __resetPersistenceForTests();
+  abortSubAreaRun(); __resetPersistenceForTests(); importedGearSequence = 0;
   for (const store of [usePlayerStore, useInventoryStore, useMapStore, useCombatStore, useMercStore]) store.getState().reset();
 }
 function track(): void {
@@ -35,7 +36,8 @@ function track(): void {
 function start(options: Parameters<typeof startSubAreaRun>[0] = {}): number {
   const player = createMockPlayer('Council constructed fixture', 'sorceress');
   usePlayerStore.getState().setPlayer({ ...player, comboOrder: [] });
-  const item = { id: 'council-fixture-cap', baseId: 'items/base/helm-cap', socketCapacity: 0, rarity: 'rare' as const,
+  // Repeated constructed runs retain prior gear; never mint a duplicate owned ID.
+  const item = { id: `council-fixture-cap-${String(++importedGearSequence)}`, baseId: 'items/base/helm-cap', socketCapacity: 0, rarity: 'rare' as const,
     level: 1, identified: true, equipped: false,
     affixes: [{ affixId: 'constructed-power', values: new Map([
       ['statMods.attack', 99978], ['statMods.defense', 99973], ['statMods.life', 999880]

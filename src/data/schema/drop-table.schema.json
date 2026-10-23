@@ -4,7 +4,10 @@
   "title": "Drop Table Definition",
   "description": "Loot drop table definition",
   "type": "object",
-  "required": ["id", "entries"],
+  "required": [
+    "id",
+    "entries"
+  ],
   "additionalProperties": false,
   "properties": {
     "id": {
@@ -16,19 +19,52 @@
     },
     "entries": {
       "type": "array",
-      "items": { "$ref": "#/$defs/dropEntry" },
+      "items": {
+        "$ref": "#/$defs/dropEntry"
+      },
       "minItems": 1
+    },
+    "materialPoolId": {
+      "type": "string",
+      "enum": [
+        "act1-normal",
+        "act1-nightmare",
+        "act1-hell",
+        "act2-normal",
+        "act2-nightmare",
+        "act2-hell",
+        "act3-normal",
+        "act3-nightmare",
+        "act3-hell",
+        "act4-normal",
+        "act4-nightmare",
+        "act4-hell",
+        "act5-normal",
+        "act5-nightmare",
+        "act5-hell"
+      ],
+      "description": "Authored generic rune/gem context for quest caches; live awards inject the actual replay profile."
     }
   },
   "$defs": {
     "dropEntry": {
       "type": "object",
-      "required": ["type", "weight"],
+      "required": [
+        "type",
+        "weight"
+      ],
       "additionalProperties": false,
       "properties": {
         "type": {
           "type": "string",
-          "enum": ["item", "gold", "rune", "gem", "material", "currency"]
+          "enum": [
+            "item",
+            "gold",
+            "rune",
+            "gem",
+            "material",
+            "currency"
+          ]
         },
         "weight": {
           "type": "number",
@@ -45,7 +81,14 @@
         },
         "rarity": {
           "type": "string",
-          "enum": ["normal", "magic", "rare", "unique", "set", "runeword"],
+          "enum": [
+            "normal",
+            "magic",
+            "rare",
+            "unique",
+            "set",
+            "runeword"
+          ],
           "description": "Rarity for random item drops"
         },
         "quantityMin": {

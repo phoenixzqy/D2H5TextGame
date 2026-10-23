@@ -85,10 +85,11 @@ describe('lossless inventory award and return ingress', () => {
     expect(state.backpack).toEqual([...before, ...result.items]);
     expect(new Set(state.backpack.map(item => item.id)).size).toBe(state.backpack.length);
     expect(state.currencies).toEqual({
-      'rune-shard': 11 + result.runeShards + result.runes,
-      'gem-shard': 3 + result.gems,
+      'rune-shard': 11 + result.runeShards,
+      'gem-shard': 3,
       wishstone: 7 + result.wishstones
     });
+    expect(state.materials).toEqual(result.materials);
   });
 });
 

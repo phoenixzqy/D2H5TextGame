@@ -4,6 +4,9 @@ import type { MonsterTier } from '../combat/types';
 /** Closed catalog IDs with positive safe counts; absence represents zero. */
 export type MaterialLedger = Readonly<Record<string, number>>;
 
+/** A refused material bag; callers may report refusal without hiding other faults. */
+export class MaterialRewardError extends Error {}
+
 /** Reject malformed, inherited, unknown or unsafe owned stacks at ingress. */
 export function isMaterialLedger(value: unknown): value is MaterialLedger {
   if (typeof value !== 'object' || value === null || Array.isArray(value) ||
@@ -18,10 +21,10 @@ export function isMaterialLedger(value: unknown): value is MaterialLedger {
 export function mergeMaterials(...ledgers: readonly MaterialLedger[]): MaterialLedger {
   const merged: Record<string, number> = {};
   for (const ledger of ledgers) {
-    if (!isMaterialLedger(ledger)) throw new Error('Invalid material ledger');
+    if (!isMaterialLedger(ledger)) throw new MaterialRewardError('Invalid material ledger');
     for (const [id, count] of Object.entries(ledger)) {
       const sum = (merged[id] ?? 0) + count;
-      if (!Number.isSafeInteger(sum)) throw new Error('Material stack overflow');
+      if (!Number.isSafeInteger(sum)) throw new MaterialRewardError('Material stack overflow');
       merged[id] = sum;
     }
   }
@@ -35,7 +38,7 @@ export interface MaterialContext extends MaterialProfile {
 
 function weightedIdentity(entries: readonly (readonly [string, number])[], unit: number): string {
   const total = entries.reduce((sum, [, weight]) => sum + weight, 0);
-  if (!(total > 0) || !Number.isSafeInteger(total)) throw new Error('Empty or invalid material pool');
+  if (!(total > 0) || !Number.isSafeInteger(total)) throw new MaterialRewardError('Empty or invalid material pool');
   let remaining = unit * total;
   for (const [id, weight] of entries) {
     if (weight <= 0) continue;
@@ -43,25 +46,25 @@ function weightedIdentity(entries: readonly (readonly [string, number])[], unit:
     remaining -= weight;
   }
   const last = entries.filter(([, weight]) => weight > 0).at(-1);
-  if (!last) throw new Error('Empty material pool');
+  if (!last) throw new MaterialRewardError('Empty material pool');
   return last[0];
 }
 
 /** Sample a concrete ID from an existing conditional variate; consumes no RNG. */
 export function sampleMaterial(kind: 'rune' | 'gem', context: MaterialContext, unit: number): string {
-  if (!Number.isFinite(unit) || unit < 0 || unit >= 1) throw new Error('Invalid material variate');
+  if (!Number.isFinite(unit) || unit < 0 || unit >= 1) throw new MaterialRewardError('Invalid material variate');
   const config = materialEconomy;
   const profile = config.profiles[`act${String(context.act)}-${context.difficulty}`];
-  if (!profile || !Object.hasOwn(config.gemQualityWeights, context.tier)) throw new Error('Invalid material context');
+  if (!profile || !Object.hasOwn(config.gemQualityWeights, context.tier)) throw new MaterialRewardError('Invalid material context');
   if (kind === 'rune') {
     const actCap = config.actRuneCaps[profile.act - 1];
-    if (actCap === undefined) throw new Error('Missing material act cap');
+    if (actCap === undefined) throw new MaterialRewardError('Missing material act cap');
     const cap = Math.min(actCap, profile.difficulty === 'hell' ? config.runeOrder.length : config.nonHellRuneCap,
       config.highRuneAllowedTiers.includes(context.tier) ? config.runeOrder.length : config.highRuneMinOrdinal - 1);
     return weightedIdentity(config.runeOrder.slice(0, cap).map((id, index) => [id, config.runeWeights[index] ?? 0]), unit);
   }
   const actCap = config.actGemCaps[profile.act - 1];
-  if (actCap === undefined) throw new Error('Missing material act cap');
+  if (actCap === undefined) throw new MaterialRewardError('Missing material act cap');
   const cap = Math.min(actCap, profile.difficulty === 'hell' ? config.gemQualities.length - 1 : config.nonHellGemCap);
   const weights = config.gemQualities.map(() => 0);
   config.gemQualityWeights[context.tier].forEach((weight, index) => {

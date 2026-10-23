@@ -3,6 +3,7 @@ import * as questLoader from '@/data/loaders/quests';
 import mainDocument from '@/data/quests/main.json';
 import * as lootLoader from '@/data/loaders/loot';
 import * as award from '@/engine/loot/award';
+import { mergeMaterials } from '@/engine/loot/materials';
 import { loadMercPool } from '@/data/loaders/mercs';
 import { createRng, hashSeed } from '@/engine/rng';
 import { xpTotal } from '@/engine/progression/xp';
@@ -217,8 +218,9 @@ describe('Act IV exact reward bundle and save boundary', () => {
     for (const id of [IZUAL, FORGE, DIABLO]) { expect(canClaim(id)).toBe(true); expect(claimQuestReward(id)).toBe('ok'); }
     expect(xp()).toBe(xpBefore + 41000); expect(mercXp()).toBe(mercBefore + 30750);
     expect(required(usePlayerStore.getState().player).skillPoints).toBe(points + 2);
-    expect(useInventoryStore.getState().currencies['gem-shard']).toBe(3 + caches.reduce((n, cache) => n + cache.gems, 0));
-    expect(useInventoryStore.getState().currencies['rune-shard']).toBe(caches.reduce((n, cache) => n + cache.runes + cache.runeShards, 0));
+    expect(useInventoryStore.getState().currencies['gem-shard']).toBe(3);
+    expect(useInventoryStore.getState().currencies['rune-shard']).toBe(caches.reduce((n, cache) => n + cache.runeShards, 0));
+    expect(useInventoryStore.getState().materials).toEqual(mergeMaterials(...caches.map(cache => cache.materials)));
     expect(useInventoryStore.getState().backpack.map(item => ({ ...item, id: '' })))
       .toEqual(caches.flatMap(cache => cache.items.map(item => ({ ...item, id: '' }))));
     const paid = data(); for (const id of [IZUAL, FORGE, DIABLO]) expect(claimQuestReward(id)).toBe('already-claimed'); expect(data()).toEqual(paid);
@@ -231,17 +233,19 @@ describe('Act IV exact reward bundle and save boundary', () => {
     vi.spyOn(questLoader, 'loadQuests').mockReturnValue(quests.map(row => row.id === FORGE ? { ...row, rewards: { gemShards: amount } } : row));
     expect(claimQuestReward(FORGE)).toBe('unsupported-rewards'); expect(data()).toEqual(before);
   });
-  it('aggregates direct gemShards and table gems before overflow checks, preserving legacy direct currency destinations', () => {
+  it('separates direct gemShards from concrete table gems, preserving legacy direct currency destinations', () => {
     prepareClaim();
-    const roll = vi.spyOn(award, 'rollQuestTableRewards').mockReturnValue({ items: [], gems: 4, runes: 0, runeShards: 0, wishstones: 0 });
-    useInventoryStore.setState({ currencies: { 'gem-shard': Number.MAX_SAFE_INTEGER - 6, gems: 10, runes: 20, runeShards: 30 } });
+    const roll = vi.spyOn(award, 'rollQuestTableRewards').mockReturnValue({ items: [], gems: 4, runes: 0,
+      runeShards: 0, wishstones: 0, materials: { 'gems/ruby/chipped': 4 } });
+    useInventoryStore.setState({ currencies: { 'gem-shard': Number.MAX_SAFE_INTEGER - 2, gems: 10, runes: 20, runeShards: 30 } });
     const before = data(); expect(claimQuestReward(FORGE)).toBe('unsupported-rewards'); expect(data()).toEqual(before);
     useInventoryStore.setState({ currencies: { 'gem-shard': 0, gems: 10, runes: 20, runeShards: 30 } });
     const profile = required(loadQuests().find(q => q.id === FORGE)?.rewards?.lootTable);
     withRewards({ gemShards: 3, gems: 2, runes: 3, runeShards: 4, lootTable: profile }, () => {
       expect(claimQuestReward(FORGE)).toBe('ok');
     });
-    expect(useInventoryStore.getState().currencies).toEqual({ 'gem-shard': 7, gems: 12, runes: 23, runeShards: 34 }); expect(roll).toHaveBeenCalled();
+    expect(useInventoryStore.getState().currencies).toEqual({ 'gem-shard': 3, gems: 12, runes: 23, runeShards: 34 });
+    expect(useInventoryStore.getState().materials).toEqual({ 'gems/ruby/chipped': 4 }); expect(roll).toHaveBeenCalled();
   });
   it.each(['hero', 'merc', 'currency', 'claimed'].flatMap(fault => [false, true].map(afterWrite => ({ fault, afterWrite }))))(
     'restores all reward participants for $fault after-write=$afterWrite and retries exact Claim', ({ fault, afterWrite }) => {

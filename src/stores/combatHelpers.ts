@@ -385,7 +385,7 @@ export function awardLootForVictory(opts: {
   assertIronGolemOwnershipMutationAllowed();
   const rewards = prepareLootForVictory(opts);
   const inv = useInventoryStore.getState();
-  const grant = planRewardGrant(rewards, inv);
+  const grant = planRewardGrant(rewards, { ...inv, mercEquipment: useMercStore.getState().mercEquipment });
   try { useInventoryStore.setState(grant); }
   catch (cause) {
     try { useInventoryStore.setState(inv, true); }
@@ -862,7 +862,7 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
           });
           // Own diagnostic output before any synchronous observer can touch the grant.
           preparedRewards = structuredClone(rewards);
-          planRewardGrant(rewards, useInventoryStore.getState());
+          planRewardGrant(rewards, { ...useInventoryStore.getState(), mercEquipment: useMercStore.getState().mercEquipment });
           mergeRewards(combat.runRewards, rewards);
           publishPity();
           let xpGained = 0;
@@ -882,7 +882,7 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
 
           // XP observers may legitimately change inventory. Recheck only pure
           // destination arithmetic against their current state, without rerolling.
-          useInventoryStore.setState(current => planRewardGrant(rewards, current));
+          useInventoryStore.setState(current => planRewardGrant(rewards, { ...current, mercEquipment: useMercStore.getState().mercEquipment }));
           combat.accumulateRunRewards(rewards);
         } else publishPity();
 

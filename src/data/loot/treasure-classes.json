@@ -1334,7 +1334,8 @@
         "quantityMin": 1,
         "quantityMax": 2
       }
-    ]
+    ],
+    "materialPoolId": "act1-normal"
   },
   {
     "id": "loot/mini-act2",
@@ -1391,7 +1392,8 @@
         "quantityMin": 1,
         "quantityMax": 3
       }
-    ]
+    ],
+    "materialPoolId": "act2-normal"
   },
   {
     "id": "loot/mini-act3",
@@ -1448,7 +1450,8 @@
         "quantityMin": 2,
         "quantityMax": 3
       }
-    ]
+    ],
+    "materialPoolId": "act3-normal"
   },
   {
     "id": "loot/mini-act4",
@@ -1505,7 +1508,8 @@
         "quantityMin": 2,
         "quantityMax": 3
       }
-    ]
+    ],
+    "materialPoolId": "act4-normal"
   },
   {
     "id": "loot/mini-act5",
@@ -1562,7 +1566,8 @@
         "quantityMin": 2,
         "quantityMax": 4
       }
-    ]
+    ],
+    "materialPoolId": "act5-normal"
   },
   {
     "id": "loot/act1-boss",
@@ -1649,7 +1654,8 @@
         "quantityMin": 1500,
         "quantityMax": 4000
       }
-    ]
+    ],
+    "materialPoolId": "act1-normal"
   },
   {
     "id": "loot/act2-boss",
@@ -1736,7 +1742,8 @@
         "quantityMin": 4000,
         "quantityMax": 9000
       }
-    ]
+    ],
+    "materialPoolId": "act2-normal"
   },
   {
     "id": "loot/act3-boss",
@@ -1823,7 +1830,8 @@
         "quantityMin": 9000,
         "quantityMax": 18000
       }
-    ]
+    ],
+    "materialPoolId": "act3-normal"
   },
   {
     "id": "loot/act4-boss",
@@ -1918,7 +1926,8 @@
         "quantityMin": 18000,
         "quantityMax": 35000
       }
-    ]
+    ],
+    "materialPoolId": "act4-normal"
   },
   {
     "id": "loot/act5-boss",
@@ -2013,7 +2022,8 @@
         "quantityMin": 35000,
         "quantityMax": 80000
       }
-    ]
+    ],
+    "materialPoolId": "act5-normal"
   },
   {
     "id": "loot/treasure-goblin",
@@ -2902,7 +2912,8 @@
         "minLevel": 62,
         "maxLevel": 99
       }
-    ]
+    ],
+    "materialPoolId": "act1-normal"
   },
   {
     "id": "loot/countess-runes",
