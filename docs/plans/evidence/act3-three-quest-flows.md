@@ -1,5 +1,10 @@
 # Act III: three functional quest flows and Council proof
 
+Historical three-flow checkpoint. The later
+[Khalim/Orb/Guardian delivery](act3-khalim-guardian.md) records the current
+five-flow implementation and validation; the results below keep their original
+revision and limits.
+
 2026-10-23. Local branch `feat/playable-foundations`; final validated source
 `3233e7b199b18ecafa783177db58940d4e664bfa`. This implements Golden Bird, Blade
 of the Old Religion and Lam Esen's Tome under the

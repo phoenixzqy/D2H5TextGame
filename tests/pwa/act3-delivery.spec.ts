@@ -395,7 +395,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
 async function expectedMephistoCache(playerId: string, questId: string): Promise<KillRewards> {
   const server = await createServer({ configFile: false, logLevel: 'error',
     root: fileURLToPath(new URL('../..', import.meta.url)),
-    cacheDir: `${process.env.ACT3_DELIVERY_OUTPUT}/oracle-cache`,
+    cacheDir: `${String(process.env.ACT3_DELIVERY_OUTPUT)}/oracle-cache`,
     resolve: { alias: { '@': fileURLToPath(new URL('../../src', import.meta.url)) } },
     server: { middlewareMode: true, watch: null, hmr: false } });
   try {
