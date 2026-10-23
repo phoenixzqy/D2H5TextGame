@@ -342,6 +342,15 @@ Normal historical clears; initialize new Nightmare clears empty. Default
 Normal and no selected title. Unknown historical service usage receives no
 fresh charge. No historical cache or XP repayment.
 
+Apply ADR-008's lossless `inventory.legacyGearQuarantine` policy when a valid16
+item fails new active capacity/base/rune/runeword semantics. Preserve exact
+payload and original location in an inspectable excluded container; never
+silently delete/reroll it or reject prior-valid16 solely for newly strict gear
+semantics. Reject reserved17 fields explicitly on raw historical inputs before
+normalization, since frozen historical object validators are permissive about
+unknown keys. Quarantine and its finite origin types are producer-owned save17
+fields; root supplies active semantic validation.
+
 Historical Prison completed/claimed history may expose Anya's ordinary town
 dialogue for continuity, explicitly labeled as legacy presence; this grants no
 thaw/source proof, side eligibility, services, scroll or resistance. A supported
@@ -358,6 +367,14 @@ atomically. On failure restore exact task-owned source/instance locations,
 attempt all restorations, preserve unrelated observer writes, report rollback
 failure, and grant nothing partially. Save/restore cannot observe half a
 service or quest transaction; active-run partial sequence is discarded.
+
+This requires an actual shared quest snapshot/restore boundary. Expose
+`assertQuestSnapshotAllowed()` and `assertQuestRestoreAllowed()` (or equivalent
+shared lease integration), consult them in snapshot/export and restore before
+capturing/replacing state, and hold ownership through all rollback attempts.
+The existing private reentry-only quest boolean plus recorded-wave guard is
+insufficient. Busy autosave defers/retries; it never serializes an intermediate
+quest/service graph. Restore reservation also prevents a new quest transaction.
 
 ## Implementation handoff, commands and boundaries
 

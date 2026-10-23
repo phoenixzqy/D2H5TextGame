@@ -72,12 +72,35 @@ equipment, preview, comparison and persistence; no live consumer reads
 `base.sockets` directly as capacity. New item constructors, quest caches and
 summon/salvage/equipment representations preserve the field.
 
-Migration of each valid16 gear instance sets capacity to its **previous
-effective capacity**, not a new RNG roll or0. Preserve inserted runes, runeword,
-stats and unique ID. Do not expand, remove or reroll legacy sockets. Historical
-validation retains literal predecessor rules, so unknown future fields do not
-widen older schemas. Legacy fallback is migration-only; native17 missing or
-contradictory capacity is rejected rather than silently normalized.
+For predecessor-valid16 gear that also meets the new semantic constraints,
+migration sets capacity to its **previous effective capacity**, not a new RNG
+roll or0. Preserve inserted runes, runeword, stats and unique ID. Do not expand,
+remove or reroll legacy sockets. Actual16 accepted arbitrary rune arrays and
+runeword IDs without matching capacity/base semantics, so not every valid16
+instance can become legal active17 gear losslessly.
+
+Ratify lossless `inventory.legacyGearQuarantine`, an array of
+`{item:<literal frozen16 Item>, origin:<finite original location>}`. Origin is
+`{container:'backpack'|'stash',index:number}`,
+`{container:'equipped',slot:EquipmentSlot}`, or
+`{container:'mercEquipment',mercId:string,slot:EquipmentSlot}`. Migration moves
+only gear failing the new active semantics into this inspectable preserved
+container and clears its old active location. Keep original ID, runes,
+runeword, stats and origin unchanged; do not synthesize capacity inside the
+preserved payload. Native17 validates that payload with literal16 rules and
+closed finite origin shape, allowing repeated historical item IDs as separate
+array entries with distinct origins. Quarantined gear cannot equip, socket,
+personalize, insert/match runes, salvage or supply summon material. A future
+explicit repair decision is required to release it; no silent repair/deletion
+or rejection of previously valid16 data solely for new semantic constraints.
+
+Historical validation retains literal predecessor rules and explicitly rejects
+reserved17 keys on raw items (`socketCapacity`, `personalizedBy`), inventory
+(`questServices`, `legacyGearQuarantine`) and map (the title/profile/clear/
+ordinal fields below) before normalization/migration. Existing permissive
+`object()` validation alone does not enforce this. Legacy fallback is
+migration-only; native17 active gear missing or contradicting capacity is
+rejected rather than silently normalized.
 
 Socket service on an eligible actual unequipped capacity0 item sets normal to
 maxSockets and magic/rare/unique/set to min(1,maxSockets); runewords are
@@ -88,10 +111,16 @@ No template mutation, cost or hidden extra charge. A future unique/set fixed0
 override needs explicit content review; this slice does not promise one.
 
 Personalization persists `personalizedBy:{characterId:string,name:string}` as
-the current character's stable identity and safe display name; validate the
-identity/name with the established
-character-name boundary, render as text and preserve it through moves/equip/
-save. It has no stats. A used charge names the transformed actual instance.
+the current character's stable identity and safe display name. At service
+entry, ID must be a nonempty string equal to current `player.id`; name must
+equal its trimmed value and contain1..16 UTF-16 code units, matching character
+creation's actual boundary. Render as text and preserve it through moves/equip/
+save. Native17 validates the closed shape and bounds. Invalid imported legacy
+identity/name refuses the service; never truncate or mutate player identity.
+It has no stats. A consumed service names the transformed actual instance;
+when that instance still exists, validate reciprocal transformed fields. Its
+historical target ID remains valid after actual salvage, so continued ownership
+is not required.
 
 ### Replay namespace and anchored chapter-boss scaling
 
