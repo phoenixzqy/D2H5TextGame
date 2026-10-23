@@ -130,7 +130,13 @@
     "act2-arcane-sanctuary": { "name": "奥术庇护所", "desc": "击败召唤师，阅读赫拉森的日记，查明塔拉夏古墓的位置。", "obj1": "击败召唤师", "obj2": "阅读赫拉森的日记" },
     "act2-summoner": { "name": "召唤师", "desc": "击败堕落的霍拉德里姆——召唤师。", "obj1": "击败召唤师" },
     "act2-duriel": { "name": "悬赏：督瑞尔", "desc": "于塔拉夏之墓击败督瑞尔。", "obj1": "击败督瑞尔" },
-    "act3-golden-bird": { "name": "金鸟", "desc": "将金鸟雕像归还给阿卡拉。", "obj1": "归还雕像" },
+    "act3-golden-bird": {
+      "name": "金鸟",
+      "desc": "在蜘蛛森林取回玉制小雕像，交给凯恩换取金鸟，再将金鸟交给艾柯。请在任务界面领取生命药剂，再到背包中阅读。",
+      "obj1": "取回玉制小雕像",
+      "obj2": "将玉制小雕像交给凯恩，换取金鸟",
+      "obj3": "将金鸟交给艾柯"
+    },
     "act3-blade-of-old-religion": { "name": "古神信仰之刃", "desc": "找到剥皮丛林中的祭祀之刃。", "obj1": "找回剥皮兽之刃" },
     "act3-khalims-will": { "name": "卡林的意志", "desc": "集齐卡林的眼、心、脑、肌组装出卡林意志。", "obj1": "卡林之眼", "obj2": "卡林之心", "obj3": "卡林之脑", "obj4": "卡林之肌" },
     "act3-mephisto": { "name": "悬赏：墨菲斯托", "desc": "深入仇恨穿越击败墨菲斯托。", "obj1": "击败墨菲斯托" },
@@ -145,6 +151,7 @@
     "act5-eve-of-destruction": { "name": "毁灭前夕", "desc": "于毁灭王座击败巴尔。", "obj1": "击败巴尔" }
   },
   "rewardLabel": {
+    "lifePotion": "{{item}}——阅读后生命上限增加 {{maxLife}} 点",
     "uniqueRing": "暗金戒指",
     "permanentResistance": "永久火焰抗性 +{{fire}}%，冰冷抗性 +{{cold}}%",
     "rewardCache": "奖励宝箱",

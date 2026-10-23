@@ -56,19 +56,21 @@ import {
   type PlayerLike
 } from './compareEquip';
 import type { QuestProgressContext } from '@/engine/progression/quest-resistance';
+import type { QuestItemLedger } from '@/engine/types/save';
 
 function compareBackpackItem(
   item: Item,
   player: PlayerLike,
   equipped: Readonly<Record<string, Item | null>>,
   bases: ReturnType<typeof loadItemBases>,
-  questProgress: QuestProgressContext
+  questProgress: QuestProgressContext,
+  questItems: QuestItemLedger
 ): CompareResult | null {
   const slot = bases.get(item.baseId)?.slot;
   if (!slot) return null;
   const eligibility = checkEligibility(item, player, bases);
   if (!eligibility.eligible) return null;
-  return compareEquip(player, item, resolveAutoEquipSlot(slot, equipped), equipped, bases, questProgress);
+  return compareEquip(player, item, resolveAutoEquipSlot(slot, equipped), equipped, bases, questProgress, questItems);
 }
 
 type ToastState = { readonly message: string; readonly tone: 'success' | 'error' } | null;
@@ -299,6 +301,7 @@ function BackpackTabContent({
   onBulkDiscard
 }: BackpackTabProps): JSX.Element {
   const questProgress = useMapStore(s => s.questProgress);
+  const questItems = useInventoryStore(s => s.questItems);
   const { t } = useTranslation('inventory');
   const selected = useMemo(() => items.find((i) => i.id === selectedId) ?? null, [items, selectedId]);
   const equippedItems = useMemo(
@@ -312,9 +315,9 @@ function BackpackTabContent({
   const bases = useMemo(() => loadItemBases(), []);
   const selectedCompare = useMemo(
     () => selected && playerForCompare
-      ? compareBackpackItem(selected, playerForCompare, equipped, bases, questProgress)
+      ? compareBackpackItem(selected, playerForCompare, equipped, bases, questProgress, questItems)
       : null,
-    [bases, equipped, playerForCompare, selected, questProgress]
+    [bases, equipped, playerForCompare, selected, questProgress, questItems]
   );
   const selectedEquippedAfter = useMemo(() => {
     if (!selected || !selectedCompare) return [] as Item[];
@@ -328,11 +331,11 @@ function BackpackTabContent({
     if (!playerForCompare) return new Set<string>();
     const ids = new Set<string>();
     for (const item of items) {
-      const compare = compareBackpackItem(item, playerForCompare, equipped, bases, questProgress);
+      const compare = compareBackpackItem(item, playerForCompare, equipped, bases, questProgress, questItems);
       if (compare && isClearNetUpgrade(compare)) ids.add(item.id);
     }
     return ids;
-  }, [bases, equipped, items, playerForCompare, questProgress]);
+  }, [bases, equipped, items, playerForCompare, questProgress, questItems]);
 
   return (
     <div className="flex flex-col">

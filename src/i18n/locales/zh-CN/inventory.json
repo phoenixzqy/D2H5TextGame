@@ -1,6 +1,22 @@
 {
   "inventory.title": "背包",
   "questItems": {
+    "jadeFigurine": {
+      "name": "玉制小雕像",
+      "description": "在蜘蛛森林取回雕像，再交给库拉斯特码头的迪卡·凯恩，换取金鸟。"
+    },
+    "goldenBird": {
+      "name": "金鸟",
+      "description": "凯恩用这只金鸟换取了玉制小雕像。请把它交给库拉斯特码头的艾柯。"
+    },
+    "potionOfLife": {
+      "name": "生命药剂",
+      "description": "阅读一次，永久增加 {{maxLife}} 点生命上限，不改变当前生命或经验值。"
+    },
+    "recovery": {
+      "action": "取回{{item}}",
+      "ready": "取回这份此前已领取的任务奖励物品，不会获得经验值。"
+    },
     "delivered": "已交付给收取者",
     "gidbinn": {
       "name": "吉得宾",
@@ -25,6 +41,11 @@
       "description": "阅读一次，获得 {{skillPoints}} 个技能点。"
     },
     "feedback": {
+      "busy": "战斗或存档操作正在进行，请稍后重试。",
+      "life-increased": "生命上限增加 {{maxLife}} 点，当前生命不变。",
+      "life-already-consumed": "这瓶生命药剂已经阅读过。",
+      "life-restoration-failed": "操作未能安全完成，请检查生命值与任务物品后再尝试。",
+      "reward-recovered": "任务奖励物品已取回，未获得经验值。",
       "ok": "获得 {{skillPoints}} 个技能点。",
       "not-ready": "存档正在载入或替换，请完成后重试。",
       "no-player": "请先创建或载入角色，再进行任务操作。",
@@ -38,7 +59,7 @@
       "assembled": "赫拉迪克法杖已合成。",
       "already-owned": "这件任务物品已取回或已合成。",
       "not-eligible": "请先取回所需任务物品并完成前置目标。",
-      "combat-active": "请先完成或离开当前战斗，再进行合成。"
+      "combat-active": "请先完成或离开当前战斗，再进行任务操作。"
     },
     "staffOfKings": {
       "name": "国王之杖",

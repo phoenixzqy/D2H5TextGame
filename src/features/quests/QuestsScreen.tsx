@@ -267,6 +267,9 @@ function formatReward(
 ): string {
   if (k === 'questItem') {
     const item = loadQuestItems().find(row => row.id === v && row.sourceQuestId === questId);
+    if (item && item.kind === undefined && item.effect.maxLife !== undefined) {
+      return t('rewardLabel.lifePotion', { item: tDataKey(t, item.nameKey), maxLife: item.effect.maxLife });
+    }
     return item ? tDataKey(t, item.nameKey) : t('inventory:questItems.title');
   }
   if (k === 'xp' && typeof v === 'number')

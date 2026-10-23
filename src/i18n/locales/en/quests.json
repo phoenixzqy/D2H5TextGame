@@ -206,8 +206,10 @@
     },
     "act3-golden-bird": {
       "name": "The Golden Bird",
-      "desc": "Return the Golden Bird statue to Akara.",
-      "obj1": "Return the statue"
+      "desc": "Recover the Jade Figurine in the Spider Forest. Give it to Cain for the Golden Bird, then give the bird to Alkor. Claim the Potion of Life in Quests and read it in Inventory.",
+      "obj1": "Recover the Jade Figurine",
+      "obj2": "Give the Jade Figurine to Cain for the Golden Bird",
+      "obj3": "Give the Golden Bird to Alkor"
     },
     "act3-blade-of-old-religion": {
       "name": "Blade of the Old Religion",
@@ -275,6 +277,7 @@
     }
   },
   "rewardLabel": {
+    "lifePotion": "{{item}} — Read for +{{maxLife}} maximum Life",
     "uniqueRing": "Unique ring",
     "permanentResistance": "Permanent fire resistance +{{fire}}%, cold resistance +{{cold}}%",
     "rewardCache": "Reward cache",

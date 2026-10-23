@@ -21,6 +21,8 @@
   "town.npc.asheara": "Asheara",
   "town.npc.meshif": "Meshif",
   "delivery": {
+    "exchanged": "Exchange completed once. Give {{output}} to its recipient to continue the quest.",
+    "exchange": "Giving consumes {{item}} and gives you {{output}}. Claim the quest reward separately after completing the remaining deliveries.",
     "give": "Give {{item}}",
     "consumes": "Giving consumes {{item}}. Claim the quest reward separately in Quests.",
     "ready": "Ready to give.",
@@ -29,10 +31,10 @@
   },
   "dialogue": {
     "greetings": {
-      "cain": "The old records may yet reveal a path through the darkness over Kurast.",
+      "cain": "Bring me the Jade Figurine from the Spider Forest, and I will exchange it for the Golden Bird. Alkor may know its purpose.",
       "hratli": "The Gidbinn once protected Kurast. Recover it in the Flayer Jungle, then give it to Ormus.",
       "ormus": "Bring Ormus the Gidbinn, and its sacred power may shelter this dock once more.",
-      "alkor": "Seek Lam Esen’s Tome in the Kurast Bazaar, then give it to me. Its pages hold knowledge worth preserving.",
+      "alkor": "Bring me the Golden Bird, or recover Lam Esen’s Tome in Kurast Bazaar and give it to me. When the bird is delivered, claim the Potion of Life in Quests and read it in Inventory.",
       "asheara": "The Iron Wolves keep watch over these docks. Beyond them, the jungle offers little shelter.",
       "meshif": "I brought you to Kurast. Take care beyond the docks; the jungle has changed.",
       "akara": "I am Akara. Darkness presses on the camp, and we need your help.",

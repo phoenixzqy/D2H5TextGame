@@ -83,7 +83,7 @@ describe.each(['en', 'zh-CN'])('Town item delivery %s', locale => {
       expect(give).toHaveClass('min-h-[44px]', 'min-w-[44px]');
       fireEvent.click(give);
       expect(give).toBeDisabled();
-      expect(within(panel).getByRole('status')).toHaveTextContent(i18n.t('delivery.consumed', { ns: 'town' }));
+      expect(give.parentElement).toHaveTextContent(i18n.t('delivery.consumed', { ns: 'town' }));
       expect(useInventoryStore.getState().questItems[source]).toEqual({ itemId, state: 'consumed' });
       expect(useMapStore.getState().questProgress[quest.id]?.status).toBe('completed');
       expect(useMapStore.getState().questProgress[quest.id]?.rewardClaimed).not.toBe(true);
@@ -94,17 +94,17 @@ describe.each(['en', 'zh-CN'])('Town item delivery %s', locale => {
       expect(panel.textContent).not.toMatch(/questItems\.|quest\/|delivery\.|undefined/);
       fireEvent.click(screen.getByTestId('town-conversation-close'));
       fireEvent.click(screen.getByTestId(`town-npc-${npcId.replace('npc/', '')}`));
-      expect(within(screen.getByTestId('quest-deliveries')).getByRole('button')).toBeDisabled();
-      fireEvent.click(within(screen.getByTestId('quest-deliveries')).getByRole('button'));
+      expect(screen.getByTestId(`quest-give-${itemId}`)).toBeDisabled();
+      fireEvent.click(screen.getByTestId(`quest-give-${itemId}`));
       expect(rewards()).toEqual(before);
     });
 
-    it('offers no delivery at the wrong NPC and hides the conversation when the act changes', async () => {
+    it('offers no delivery for this item at the wrong NPC and hides the conversation when the act changes', async () => {
       await i18n.changeLanguage(locale);
       const { source, npcId } = recoveredItem(itemId);
       renderTown();
       fireEvent.click(screen.getByTestId('town-npc-cain'));
-      expect(screen.queryByTestId('quest-deliveries')).not.toBeInTheDocument();
+      expect(screen.queryByTestId(`quest-give-${itemId}`)).not.toBeInTheDocument();
       expect(useInventoryStore.getState().questItems[source]?.state).toBe('owned');
       fireEvent.click(screen.getByTestId(`town-npc-${npcId.replace('npc/', '')}`));
       expect(screen.getByTestId('quest-deliveries')).toBeVisible();
@@ -119,7 +119,7 @@ describe.each(['en', 'zh-CN'])('Town item delivery %s', locale => {
       const { source, npcId } = recoveredItem(itemId);
       renderTown();
       fireEvent.click(screen.getByTestId(`town-npc-${npcId.replace('npc/', '')}`));
-      const give = within(screen.getByTestId('quest-deliveries')).getByRole('button');
+      const give = screen.getByTestId(`quest-give-${itemId}`);
       const before = rewards(), progress = useMapStore.getState().questProgress;
       act(() => { useHydrationStore.getState().setStatus('loading'); });
       fireEvent.click(give);
@@ -143,7 +143,7 @@ describe.each(['en', 'zh-CN'])('Town item delivery %s', locale => {
       expect(screen.queryByRole('alert')).not.toBeInTheDocument();
       fireEvent.click(screen.getByTestId(`town-npc-${npcId.replace('npc/', '')}`));
       expect(screen.queryByRole('alert')).not.toBeInTheDocument();
-      expect(within(screen.getByTestId('quest-deliveries')).getByRole('button')).toBeEnabled();
+      expect(screen.getByTestId(`quest-give-${itemId}`)).toBeEnabled();
     });
   });
 });

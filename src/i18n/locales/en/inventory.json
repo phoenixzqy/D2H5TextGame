@@ -1,6 +1,22 @@
 {
   "inventory.title": "Inventory",
   "questItems": {
+    "jadeFigurine": {
+      "name": "Jade Figurine",
+      "description": "Recover the figurine in the Spider Forest, then give it to Deckard Cain in Kurast Docks in exchange for the Golden Bird."
+    },
+    "goldenBird": {
+      "name": "Golden Bird",
+      "description": "Cain exchanged this bird for the Jade Figurine. Give it to Alkor in Kurast Docks."
+    },
+    "potionOfLife": {
+      "name": "Potion of Life",
+      "description": "Read once for +{{maxLife}} permanent maximum Life. Current Life and XP do not change."
+    },
+    "recovery": {
+      "action": "Recover {{item}}",
+      "ready": "Recover this previously claimed quest reward. This does not grant XP."
+    },
     "delivered": "Delivered to its recipient",
     "gidbinn": {
       "name": "The Gidbinn",
@@ -25,6 +41,11 @@
       "description": "Read once to gain {{skillPoints}} skill point."
     },
     "feedback": {
+      "busy": "A battle or save operation is in progress. Try again when it finishes.",
+      "life-increased": "Maximum Life increased by {{maxLife}}. Current Life is unchanged.",
+      "life-already-consumed": "This Potion of Life was already read.",
+      "life-restoration-failed": "The action could not finish safely. Check your Life and quest items before trying again.",
+      "reward-recovered": "Quest reward item recovered. No XP was granted.",
       "ok": "Gained {{skillPoints}} skill point.",
       "not-ready": "Save data is loading or being replaced. Try again when it finishes.",
       "no-player": "Create or load a character before this quest action.",
@@ -38,7 +59,7 @@
       "assembled": "Horadric Staff assembled.",
       "already-owned": "This quest item has already been recovered or assembled.",
       "not-eligible": "Recover the required quest items and complete the earlier objectives first.",
-      "combat-active": "Finish or leave the current battle before assembling."
+      "combat-active": "Finish or leave the current battle before this quest action."
     },
     "staffOfKings": {
       "name": "Staff of Kings",

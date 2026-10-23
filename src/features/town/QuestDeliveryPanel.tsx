@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { questItemSource } from '@/data/loaders/quest-items';
+import { loadQuestItems, questItemSource } from '@/data/loaders/quest-items';
 import { giveQuestItem, npcQuestDeliveries, questDeliveryStatus } from '@/features/quests/questDelivery';
 import type { QuestCraftingResult } from '@/features/quests/questCrafting';
 import { useInventoryStore } from '@/stores/inventoryStore';
@@ -24,13 +24,18 @@ export function QuestDeliveryPanel({ npcId }: { npcId: string }) {
       {deliveries.map(item => {
         const source = questItemSource(item), status = questDeliveryStatus(source, npcId);
         const name = t(item.nameKey);
+        const output = item.outputItemId ? loadQuestItems().find(row => row.id === item.outputItemId) : undefined;
         return (
           <div key={source} className="w-full min-w-0 space-y-2 break-words border-t border-d2-border pt-3">
             <h4 className="font-serif text-d2-gold">{name}</h4>
             <p className="text-sm text-d2-white/90">{t(item.descKey)}</p>
-            <p className="text-sm text-d2-white/90">{t('delivery.consumes', { item: name })}</p>
+            <p className="text-sm text-d2-white/90">{output
+              ? t('delivery.exchange', { item: name, output: t(output.nameKey) })
+              : t('delivery.consumes', { item: name })}</p>
             <p role="status" aria-live="polite" className="text-sm text-d2-white/90">
-              {t(`delivery.${status}`)}
+              {output && status === 'consumed'
+                ? t('delivery.exchanged', { output: t(output.nameKey) })
+                : t(`delivery.${status}`)}
             </p>
             <Button type="button" variant="primary" data-testid={`quest-give-${item.id}`}
               className="min-h-[44px] min-w-[44px] max-w-full whitespace-normal break-words"
