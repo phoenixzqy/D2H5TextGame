@@ -58,6 +58,77 @@ async function continued(page: Page, context: BrowserContext, en: boolean, info:
 }
 
 for (const locale of ['en', 'zh-CN'] as const) for (const [width, height] of sizes) {
+  test(`combat grants inspection, equipment and Continue ${locale} ${String(width)}x${String(height)}`, async ({ page: initial, context }, info) => {
+    const en = locale === 'en', errors: string[] = [];
+    const observe = (current: Page) => {
+      current.on('pageerror', error => errors.push(error.message));
+      current.on('console', entry => {
+        if (entry.type() === 'error' || entry.type() === 'warning') errors.push(entry.text());
+      });
+    };
+    let page = initial; observe(page); await page.setViewportSize({ width, height });
+    await page.goto('/'); await createCharacter(page, { class: 'paladin', name: 'Combat Grant QA' });
+    await navTo(page, 'settings');
+    await page.getByRole('button', { name: en ? 'English' : '简体中文', exact: true }).click();
+    const fresh = await backup(page);
+    const rows = [
+      { id: 'leaf', base: 'weapon-staff', runes: ['tir', 'ral'],
+        lines: [en ? 'While equipped: +12% Fire Damage (self only)' : '装备时：自身火焰伤害 +12%'] },
+      { id: 'infinity', base: 'wp2h-giant-thresher', runes: ['ber', 'mal', 'ber', 'ist'],
+        lines: en ? ['Fire', 'Cold', 'Lightning', 'Poison'].map(type => `While equipped: +10% ${type} Damage (self only)`)
+          .concat('While equipped: +5% Arcane Damage (self only)')
+          : ['火焰', '冰冷', '闪电', '毒素'].map(type => `装备时：自身${type}伤害 +10%`).concat('装备时：自身奥术伤害 +5%') },
+      { id: 'dream', base: 'helm-war-hat', runes: ['io', 'jah', 'pul'],
+        lines: [en ? 'While equipped: +15% Lightning Damage (self only)' : '装备时：自身闪电伤害 +15%'] },
+      { id: 'bramble', base: 'armor-archon-plate', runes: ['ral', 'ohm', 'sur', 'eth'],
+        lines: [en ? 'While equipped: survive a direct physical hit to reflect 20% of Life lost as Thorns Damage (self only)'
+          : '装备时：承受直接物理攻击后若存活，将所失生命的 20% 以荆棘伤害反弹（仅自身）'] },
+      { id: 'phoenix', base: 'sh-monarch', runes: ['vex', 'vex', 'lo', 'jah'],
+        lines: [en ? 'While equipped: +10% to existing Mana Regeneration (self only)' : '装备时：自身已有法力回复速率 +10%'] }
+    ];
+    const items: Item[] = rows.map(row => ({ id: `combat-${row.id}`, baseId: `items/base/${row.base}`,
+      level: 70, rarity: 'runeword', runewordId: `runewords/${row.id}`, identified: true, equipped: false,
+      socketCapacity: row.runes.length, socketContents: row.runes.map(id => ({ kind: 'rune', id: `runes/${id}` })) }));
+    const fixture: SaveCurrent = { ...fresh, player: { ...fresh.player, level: 70,
+      coreStats: { strength: 300, dexterity: 300, vitality: 50, energy: 20 }, equipment: [] },
+      inventory: { ...fresh.inventory, equipped: {}, backpack: items, stash: [] } };
+    const importLabel = en ? 'Import Save' : '导入存档';
+    await page.getByRole('button', { name: importLabel, exact: true }).click();
+    await page.getByRole('dialog').getByRole('textbox').fill(JSON.stringify(fixture));
+    await page.getByRole('dialog').getByRole('button', { name: importLabel, exact: true }).click();
+    await expect(page.getByRole('dialog')).toHaveCount(0);
+    await info.attach('constructed-combat-grants-input', { body: JSON.stringify(fixture), contentType: 'application/json' });
+    await navTo(page, 'inventory');
+    for (const row of rows) {
+      await page.getByTestId(`inv-item-combat-${row.id}`).click(); await page.mouse.move(0, 0);
+      const detail = page.getByTestId('inv-detail-panel');
+      for (const line of row.lines) await expect(detail).toContainText(line);
+      await layout(page, detail);
+      if (row.id === 'bramble') {
+        await detail.getByText(row.lines[0]!, { exact: true }).scrollIntoViewIfNeeded();
+        await expect(detail.getByText(row.lines[0]!, { exact: true })).toBeVisible();
+        await info.attach('reflection-visible', { body: await page.screenshot(), contentType: 'image/png' });
+      }
+      if (row.id === 'phoenix') await detail.getByTestId('inv-primary-action').click();
+      else await detail.getByTestId('inv-detail-close').click();
+    }
+    const equipped = await backup(page);
+    expect(equipped.inventory.equipped.offhand).toEqual({ ...items[4], equipped: true });
+    expect(equipped.player.skillLevels).toEqual(fixture.player.skillLevels);
+    page = await continued(page, context, en, info, 'combat-grants-equipped-continued', { width, height }, observe);
+    await navTo(page, 'inventory'); await page.getByRole('tab', { name: en ? 'Equipment' : '装备', exact: true }).click();
+    await page.getByTestId('equip-slot-offhand-details').click();
+    await expect(page.getByTestId('equipped-item-modal')).toContainText(rows[4]!.lines[0]!);
+    await layout(page, page.getByTestId('equipped-item-modal'));
+    await page.getByTestId('equipped-item-modal-close').click();
+    await page.getByTestId('equip-slot-offhand').getByRole('button', { name: en ? 'Unequip' : '卸下', exact: true }).click();
+    const removed = await backup(page);
+    expect(removed.inventory.backpack).toEqual(items);
+    expect(removed.player.skillLevels).toEqual(fixture.player.skillLevels);
+    const last = await continued(page, context, en, info, 'combat-grants-removed-continued', { width, height }, observe);
+    await last.close(); expect(errors).toEqual([]);
+  });
+
   test(`Exile cache, removal, comparison and Continue ${locale} ${String(width)}x${String(height)}`, async ({ page: initial, context }, info) => {
     const en = locale === 'en', errors: string[] = [], warnings: string[] = [];
     const observe = (page: Page) => {

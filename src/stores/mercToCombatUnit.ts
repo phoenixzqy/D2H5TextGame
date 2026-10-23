@@ -21,6 +21,8 @@ import type { Mercenary } from '@/engine/types/entities';
 import type { CombatUnit, GridPosition } from '@/engine/combat/types';
 import type { Item } from '@/engine/types/items';
 import { deriveEquippedMercStats } from '@/engine/progression/merc-equipment-stats';
+import { resolveEquippedRunewordGrants } from '@/engine/items/runeword-grants';
+import { composeRunewordCombatModifiers } from '@/engine/items/runeword-combat';
 
 const ARCHETYPE_SKILLS: Readonly<Record<string, readonly string[]>> = Object.freeze({
   front: ['mskill-bash'],
@@ -64,6 +66,7 @@ export function mercToCombatUnit(
     stats,
     life: stats.lifeMax,
     mana: stats.manaMax,
+    ...composeRunewordCombatModifiers(resolveEquippedRunewordGrants(equipment)),
     statuses: [],
     cooldowns: {},
     skillOrder: getMercSkillOrder(merc),

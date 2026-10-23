@@ -130,7 +130,7 @@ function assertActualEffect(): void {
 function assertMercEffect(id: string): void {
   const input = latest(); const { meditationAura: _projection, ...none } = input;
   const control = runControl(none);
-  expect(input.playerTeam.find(u => u.id === id)).not.toHaveProperty('manaRegenPerSecond');
+  expect(input.playerTeam.find(u => u.id === id)?.manaRegenPerSecond).toBe(0);
   expect(useCombatStore.getState().recordedEvents).toContainEqual(expect.objectContaining({
     kind: 'mana', target: id, reason: 'cast' }));
   expect(useCombatStore.getState().recordedEvents).toContainEqual(expect.objectContaining({

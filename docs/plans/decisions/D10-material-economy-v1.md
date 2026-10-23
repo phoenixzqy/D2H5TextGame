@@ -508,3 +508,18 @@ Acceptance requires individual positive/removal/duplicate-source controls for
 all ten rows, hero/merc parity, active priority/payment, preserved HP/MP,
 deterministic reflection/replay and the existing earned UI/save requirements.
 Mapping grant strings to generic passive markers alone is not implementation.
+
+### Leaf base availability amendment — 2026-10-23
+
+`[GD-D10-LEAF-STAFF]: APPROVE`. BUG130 identified that the closed staff-only
+Leaf predicate had no matching authored base. Add `items/base/weapon-staff`:
+weapon/staff/twoHanded, physical8–18, required level1, empty stat requirements,
+maximum/fixed sockets2, nonmetal, affixes allowed. Match the existing early
+two-handed sword's damage/socket budget; use bilingual Staff/法杖 names.
+Add one normal staff pick to `loot/trash-act1`, weight100, levels1–10, retaining
+every existing pick/weight. This deliberately changes future ordinary item
+selection proportions, not material/noDrop tuning; it is approved conservative
+content tuning, not measured acquisition balance. Ordinary instance capacity
+continues to roll0–2; Leaf still requires an actual two-socket staff, Tir→Ral,
+and level19 to equip. The two-socket ceiling does not unlock four-socket words.
+Historical earned recordings/outcomes stay immutable.

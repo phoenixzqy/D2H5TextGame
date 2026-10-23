@@ -883,6 +883,27 @@
     }
   },
   {
+    "id": "items/base/weapon-staff",
+    "name": "items.base.weapon-staff",
+    "type": "weapon",
+    "slot": "weapon",
+    "weaponType": "staff",
+    "handedness": "twoHanded",
+    "baseDamage": {
+      "min": 8,
+      "max": 18,
+      "breakdown": {
+        "physical": 18
+      }
+    },
+    "reqLevel": 1,
+    "reqStats": {},
+    "sockets": 2,
+    "maxSockets": 2,
+    "metal": false,
+    "canHaveAffixes": true
+  },
+  {
     "name": "items.base.weapon-wand",
     "reqLevel": 5,
     "type": "weapon",

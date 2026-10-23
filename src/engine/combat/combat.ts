@@ -20,7 +20,7 @@ import type { Rng } from '../rng';
 import { createRng } from '../rng';
 import type { ActiveStatus, CombatUnit, CombatSide, GridPosition } from './types';
 import { inferKind } from './types';
-import { resolveDamage, type DamageInput } from './damage';
+import { resolveDamage, mitigateDamage, type DamageInput } from './damage';
 import {
   applyStatus,
   expireStatuses,
@@ -464,7 +464,7 @@ function applyDamageToUnit(
 ): void {
   const attacker = state.units.get(attackerId);
   const defender = state.units.get(defenderId);
-  if (!attacker || !defender || !alive(defender)) return;
+  if (!attacker || !defender || !alive(attacker) || !alive(defender)) return;
 
   const activeDefender = activeStatusView(defender, state.simClockMs);
   const retaliates = hasPaidFrozenArmor(activeDefender);
@@ -532,6 +532,19 @@ function applyDamageToUnit(
   const after = state.units.get(defenderId);
   if (after && !alive(after)) {
     finishDeaths(state, [activeStatusView(after, state.simClockMs)]);
+  } else if (after && attacker.side !== defender.side && effect.damageType === 'physical' &&
+    defender.life > newLife && (after.physicalReflectionPct ?? 0) > 0) {
+    const target = state.units.get(attackerId);
+    if (!target || !alive(target)) return;
+    const raw = Math.max(1, Math.floor((defender.life - newLife) * (after.physicalReflectionPct ?? 0)));
+    const thorns: DamageEffect = { kind: 'damage', damageType: 'thorns', base: [raw, raw] };
+    const reflected = mitigateDamage(raw,
+      buildDamageInput(state, after, activeStatusView(target, state.simClockMs), thorns));
+    emit(state, { kind: 'damage', source: defenderId, target: attackerId,
+      damageType: 'thorns', amount: reflected.final, crit: false, dodged: false });
+    const damaged = { ...target, life: Math.max(0, target.life - reflected.final) };
+    state.units.set(attackerId, damaged);
+    if (!alive(damaged)) finishDeaths(state, [activeStatusView(damaged, state.simClockMs)]);
   }
 }
 
@@ -809,6 +822,8 @@ function applyEffect(
   skillLevel: number,
   enemySideAlive: readonly CombatUnit[]
 ): void {
+  const acting = state.units.get(actorId);
+  if (!acting || !alive(acting)) return;
   switch (effect.kind) {
     case 'damage': {
       for (const t of enemySideAlive) {

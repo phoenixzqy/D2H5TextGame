@@ -110,6 +110,20 @@ export function resolveSocketDisplayLines(item: Item, t: TFunction): readonly Di
       lines.push({ key: `grant.${grant.id}`, value: grant.allResistance,
         label: t('inventory:detail.stat.allRes'),
         text: t('inventory:detail.grantedFade', { resistance: grant.allResistance, dodge: percent(grant.magicDodge) }) });
+    } else if ('increasedDamagePct' in grant) {
+      for (const [type, value] of Object.entries(grant.increasedDamagePct)) {
+        const label = t(`inventory:detail.damageType.${type}`);
+        lines.push({ key: `grant.${grant.id}.damage.${type}`, value, label,
+          text: t('inventory:detail.grantedDamage', { percent: percent(value), type: label }) });
+      }
+    } else if (grant.id === 'aura-thorns-aura') {
+      lines.push({ key: `grant.${grant.id}`, value: grant.reflectionPct,
+        label: t('inventory:detail.damageType.thorns'),
+        text: t('inventory:detail.grantedReflection', { percent: percent(grant.reflectionPct) }) });
+    } else if (grant.id === 'aura-redemption') {
+      lines.push({ key: `grant.${grant.id}.recovery`, value: grant.manaRegenPct,
+        label: t('inventory:detail.stat.mana'),
+        text: t('inventory:detail.grantedRecovery', { percent: percent(grant.manaRegenPct) }) });
     }
   }
   return lines;

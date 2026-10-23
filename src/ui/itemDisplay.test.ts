@@ -29,6 +29,31 @@ describe.each(['en', 'zh-CN'] as const)('item bonus units %s', locale => {
     expect(lines.filter(line => line.key === 'statMods.defense')).toHaveLength(1);
   });
   it.each([
+    { word: 'leaf', base: 'weapon-staff', runes: ['tir', 'ral'],
+      id: 'skill-fire-bolt.damage.fire', value: .12,
+      en: 'While equipped: +12% Fire Damage (self only)', zh: '装备时：自身火焰伤害 +12%' },
+    { word: 'dream', base: 'helm-war-hat', runes: ['io', 'jah', 'pul'],
+      id: 'aura-holy-shock.damage.lightning', value: .15,
+      en: 'While equipped: +15% Lightning Damage (self only)', zh: '装备时：自身闪电伤害 +15%' },
+    { word: 'bramble', base: 'armor-archon-plate', runes: ['ral', 'ohm', 'sur', 'eth'],
+      id: 'aura-thorns-aura', value: .2,
+      en: 'While equipped: survive a direct physical hit to reflect 20% of Life lost as Thorns Damage (self only)',
+      zh: '装备时：承受直接物理攻击后若存活，将所失生命的 20% 以荆棘伤害反弹（仅自身）' },
+    { word: 'phoenix', base: 'sh-monarch', runes: ['vex', 'vex', 'lo', 'jah'],
+      id: 'aura-redemption.recovery', value: .1,
+      en: 'While equipped: +10% to existing Mana Regeneration (self only)',
+      zh: '装备时：自身已有法力回复速率 +10%' }
+  ])('describes implemented $word combat contribution with exact units', row => {
+    const item: Item = { id: row.word, baseId: `items/base/${row.base}`, rarity: 'runeword',
+      level: 70, identified: true, equipped: false, socketCapacity: row.runes.length,
+      runewordId: `runewords/${row.word}`,
+      socketContents: row.runes.map(id => ({ kind: 'rune', id: `runes/${id}` })) };
+    const grant = resolveSocketDisplayLines(item, i18n.getFixedT(locale, 'inventory'))
+      .find(line => line.key === `grant.${row.id}`);
+    expect(grant?.value).toBe(row.value);
+    expect(grant?.text).toBe(locale === 'en' ? row.en : row.zh);
+  });
+  it.each([
     { word: 'beast', base: 'wp2h-thunder-maul', runes: ['ber', 'tir', 'um', 'mal', 'lum'],
       id: 'skill-lycanthropy', value: .15,
       en: 'While equipped: +15% maximum Life and +5% Attack Speed (self only)',

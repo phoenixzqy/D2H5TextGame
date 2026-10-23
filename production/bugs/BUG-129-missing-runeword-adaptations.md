@@ -1,6 +1,6 @@
 # BUG-129 — Apply the nine approved runeword adaptations
 
-Severity: High. Status: Open; shared contract/stat composition in progress.
+Severity: High. Status: Open; four active integrations remain.
 Owners: content-designer, engine-dev, frontend-dev; root is the sole writer.
 
 Reproduction: local HEAD d5e6cdc; Node/Vitest pure-engine reproduction,
@@ -32,3 +32,11 @@ Beast/Fade composition, masked native19 compatibility and bilingual details
 are implemented. Full10898/396+2existing skips, engine5266/149, types/lint/build
 and production20/20 pass. See `docs/plans/evidence/d10-beast-fade.md`.
 The seven remaining combat/active integrations keep this bug Open.
+
+Combat slice implemented: Leaf/Infinity/Dream additive damage, Phoenix personal
+recovery with a separate pre-item Meditation baseline, and bounded Bramble
+reflection now project through hero/merc factories and next-wave snapshots.
+Infinity/Dream/Bramble have their approved runtime effects; Leaf/Phoenix remain
+partial until their actives execute. Hand of Justice/Blaze and Death/Chain
+Lightning are also open. See `docs/plans/evidence/d10-runeword-combat.md` for
+validation and constructed-browser limits; earned/full-v1 acceptance stays open.

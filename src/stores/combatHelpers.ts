@@ -16,6 +16,8 @@ import type { CombatUnit, MonsterTier } from '@/engine/combat/types';
 import { inferKind } from '@/engine/combat/types';
 import type { Player } from '@/engine/types/entities';
 import type { Item } from '@/engine/types/items';
+import { resolveEquippedRunewordGrants } from '@/engine/items/runeword-grants';
+import { composeRunewordCombatModifiers } from '@/engine/items/runeword-combat';
 import type { MonsterDef } from '@/engine/types/monsters';
 import { rollKillRewards, type KillRewards } from '@/engine/loot/award';
 import { mergeRewards, planRewardGrant } from '@/engine/loot/reward-plan';
@@ -173,7 +175,7 @@ export function playerToCombatUnit(player: Player): CombatUnit {
     stats,
     life: stats.life,
     mana: stats.mana,
-    ...recovery,
+    ...composeRunewordCombatModifiers(resolveEquippedRunewordGrants(equipped), recovery),
     manaRegenCarry: 0,
     manaRegenCompensation: 0,
     manaRegenExactCarry: '0',
@@ -1012,7 +1014,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
   const mightAura = currentPlayer?.id === run.playerUnit.id
     ? composeMightAura(currentPlayer, run.fieldedMercCombatId) : undefined;
   const meditationAura = fresh && currentPlayer?.id === run.playerUnit.id
-    ? composeMeditationAura(currentPlayer, fresh.manaRegenPerSecond ?? 0, run.fieldedMercCombatId) : undefined;
+    ? composeMeditationAura(currentPlayer, fresh.manaRegenBaselinePerSecond ?? fresh.manaRegenPerSecond ?? 0,
+      run.fieldedMercCombatId) : undefined;
   const skeletonMastery = currentPlayer?.id === run.playerUnit.id
     ? composeSkeletonMastery(currentPlayer) : undefined;
   const golemMastery = currentPlayer?.id === run.playerUnit.id
@@ -1027,7 +1030,11 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       // carried HP/MP remain untouched. Never project the bearer bonus onto summons.
       return { ...unit, level: freshMerc.level, stats: freshMerc.stats,
         life: Math.min(unit.life, freshMerc.stats.lifeMax),
-        mana: Math.min(unit.mana, freshMerc.stats.manaMax) };
+        mana: Math.min(unit.mana, freshMerc.stats.manaMax),
+        manaRegenPerSecond: freshMerc.manaRegenPerSecond ?? 0,
+        manaRegenBaselinePerSecond: freshMerc.manaRegenBaselinePerSecond ?? 0,
+        increasedDamagePct: freshMerc.increasedDamagePct ?? {},
+        physicalReflectionPct: freshMerc.physicalReflectionPct ?? 0 };
     }
     if (!fresh || unit.id !== fresh.id) return unit;
     const mana = Math.min(unit.mana, fresh.stats.manaMax);
@@ -1035,7 +1042,9 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
     const refreshed = { ...unit, level: fresh.level, stats: fresh.stats,
       life: Math.min(unit.life, fresh.stats.lifeMax), mana,
       manaRegenPerSecond: fresh.manaRegenPerSecond ?? 0,
+      manaRegenBaselinePerSecond: fresh.manaRegenBaselinePerSecond ?? 0,
       increasedDamagePct: fresh.increasedDamagePct ?? { fire: 0 },
+      physicalReflectionPct: fresh.physicalReflectionPct ?? 0,
       manaRegenCarry: capped ? 0 : unit.manaRegenCarry ?? 0,
       manaRegenCompensation: capped ? 0 : unit.manaRegenCompensation ?? 0,
       ...(capped ? { manaRegenExactCarry: '0' } : {}),

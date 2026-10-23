@@ -93,6 +93,14 @@
       },
       {
         "type": "item",
+        "itemBase": "items/base/weapon-staff",
+        "rarity": "normal",
+        "weight": 100,
+        "minLevel": 1,
+        "maxLevel": 10
+      },
+      {
+        "type": "item",
         "itemBase": "items/base/wp2h-great-axe",
         "rarity": "normal",
         "weight": 70,

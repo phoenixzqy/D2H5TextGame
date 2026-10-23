@@ -232,7 +232,19 @@
     },
     "grantedDefense": "装备时：自身防御 +{{percent}}%",
     "grantedLifeSpeed": "装备时：自身生命上限 +{{life}}%，攻击速度 +{{speed}}%",
-    "grantedFade": "装备时：自身六系抗性 +{{resistance}}，魔法闪避 +{{dodge}}%"
+    "grantedFade": "装备时：自身六系抗性 +{{resistance}}，魔法闪避 +{{dodge}}%",
+    "grantedDamage": "装备时：自身{{type}} +{{percent}}%",
+    "grantedReflection": "装备时：承受直接物理攻击后若存活，将所失生命的 {{percent}}% 以荆棘伤害反弹（仅自身）",
+    "grantedRecovery": "装备时：自身已有法力回复速率 +{{percent}}%",
+    "damageType": {
+      "physical": "物理伤害",
+      "fire": "火焰伤害",
+      "cold": "冰冷伤害",
+      "lightning": "闪电伤害",
+      "poison": "毒素伤害",
+      "arcane": "奥术伤害",
+      "thorns": "荆棘伤害"
+    }
   },
   "discardConfirm": {
     "title": "确认丢弃",

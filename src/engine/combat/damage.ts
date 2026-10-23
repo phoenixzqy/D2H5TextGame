@@ -150,11 +150,20 @@ export function resolveDamage(input: DamageInput, rng: Rng): DamageOutcome {
   const crit = rng.chance(critChance);
   if (crit) dmg = dmg * critMult;
 
+  return { hit: true, dodged: false, crit, ...mitigateDamage(dmg, input) };
+}
+
+/** Deterministic post-roll mitigation shared by ordinary hits and RNG-free reflection. */
+export function mitigateDamage(
+  rawDamage: number,
+  input: Pick<DamageInput, 'type' | 'defenderResistances' | 'defenderArmor' |
+    'defenderMagicResist' | 'resistPenalty' | 'resistCap'>
+): Pick<DamageOutcome, 'raw' | 'mitigated' | 'final' | 'effectiveResistPct'> {
   // Step 6: resistance
   const cap = input.resistCap ?? 75;
   const rawResist = resistOf(input.defenderResistances, input.type);
   const effective = Math.max(-100, Math.min(cap, rawResist - (input.resistPenalty ?? 0)));
-  dmg = dmg * (1 - effective / 100);
+  let dmg = rawDamage * (1 - effective / 100);
 
   // Step 7: flat mitigation
   const mitigation = mitigationFor(
@@ -169,9 +178,6 @@ export function resolveDamage(input: DamageInput, rng: Rng): DamageOutcome {
   const final = Math.max(1, Math.floor(dmg));
 
   return {
-    hit: true,
-    dodged: false,
-    crit,
     raw: Math.floor(beforeMitigation),
     mitigated: Math.max(0, Math.floor(beforeMitigation) - final),
     final,

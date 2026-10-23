@@ -350,8 +350,12 @@ function metalSchemaCandidate(type: ItemBaseType): ItemBase {
 }
 
 describe('reviewed socket maximum metadata', () => {
-  it('covers all 74 bases and preserves their pre-instance socket ceiling', () => {
-    expect(rawItemBases).toHaveLength(74);
+  it('covers all 74 historical bases plus the approved staff and preserves every socket ceiling', () => {
+    expect(rawItemBases.filter(base => base.id !== 'items/base/weapon-staff')).toHaveLength(74);
+    expect(rawItemBases.filter(base => base.id === 'items/base/weapon-staff')).toEqual([
+      expect.objectContaining({ sockets: 2, maxSockets: 2 })
+    ]);
+    expect(rawItemBases).toHaveLength(75);
     for (const base of rawItemBases) {
       expect(base.maxSockets, base.id).toBe('sockets' in base ? base.sockets : 0);
     }

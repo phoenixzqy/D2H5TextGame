@@ -75,6 +75,8 @@ export interface CombatUnit {
   readonly mana: number;
   /** Continuous battle-time MP recovery; absent means zero (never wall-clock recovery). */
   readonly manaRegenPerSecond?: number;
+  /** Ordinary pre-item recovery, used only as the selected Meditation source baseline. */
+  readonly manaRegenBaselinePerSecond?: number;
   /** Fractional MP and compensated integration carry across qualified next waves; absent means zero. */
   readonly manaRegenCarry?: number;
   readonly manaRegenCompensation?: number;
@@ -82,6 +84,8 @@ export interface CombatUnit {
   readonly manaRegenExactCarry?: string;
   /** Per-type increased direct damage, composed once for a frozen wave; absent means zero. */
   readonly increasedDamagePct?: Readonly<Partial<Record<DamageType, number>>>;
+  /** Bearer-only fraction of actual HP lost reflected after a surviving hostile physical hit. */
+  readonly physicalReflectionPct?: number;
   readonly statuses: readonly ActiveStatus[];
   /** Cooldowns: skillId → remaining turns. */
   readonly cooldowns: Readonly<Record<string, number>>;

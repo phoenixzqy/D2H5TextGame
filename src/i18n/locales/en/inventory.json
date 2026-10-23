@@ -232,7 +232,19 @@
     },
     "grantedDefense": "While equipped: +{{percent}}% Defense (self only)",
     "grantedLifeSpeed": "While equipped: +{{life}}% maximum Life and +{{speed}}% Attack Speed (self only)",
-    "grantedFade": "While equipped: +{{resistance}} to all six resistances and +{{dodge}}% Magic Dodge (self only)"
+    "grantedFade": "While equipped: +{{resistance}} to all six resistances and +{{dodge}}% Magic Dodge (self only)",
+    "grantedDamage": "While equipped: +{{percent}}% {{type}} (self only)",
+    "grantedReflection": "While equipped: survive a direct physical hit to reflect {{percent}}% of Life lost as Thorns Damage (self only)",
+    "grantedRecovery": "While equipped: +{{percent}}% to existing Mana Regeneration (self only)",
+    "damageType": {
+      "physical": "Physical Damage",
+      "fire": "Fire Damage",
+      "cold": "Cold Damage",
+      "lightning": "Lightning Damage",
+      "poison": "Poison Damage",
+      "arcane": "Arcane Damage",
+      "thorns": "Thorns Damage"
+    }
   },
   "discardConfirm": {
     "title": "Confirm Discard",
