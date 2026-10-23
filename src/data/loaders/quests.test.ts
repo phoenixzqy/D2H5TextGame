@@ -136,8 +136,8 @@ describe('synchronous quest consumer validation', () => {
     expect(Object.isFrozen(first)).toBe(true);
     expect(second).not.toBe(first);
     expect(second).toEqual(first);
-    expect(new Set(first.flatMap(row => row.objectives.map(objective => objective.type))).size).toBe(15);
-    expect(new Set(first.flatMap(row => Object.keys(row.rewards ?? {}))).size).toBe(13);
+    expect(new Set(first.flatMap(row => row.objectives.map(objective => objective.type))).size).toBe(16);
+    expect(new Set(first.flatMap(row => Object.keys(row.rewards ?? {}))).size).toBe(14);
     expect(JSON.stringify([mainDocument, sideDocument])).toBe(before);
   });
 

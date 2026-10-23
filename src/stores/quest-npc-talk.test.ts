@@ -53,12 +53,15 @@ afterEach(() => {
 });
 
 describe('ordered current-town quest talk events', () => {
-  it('projects authored Act-I and Act-II NPCs without fallback in missing acts', () => {
+  it('projects authored Act-I, Act-II and Act-III NPCs without fallback in missing acts', () => {
     expect(loadTownNpcs(1).map((npc) => npc.id)).toEqual([
       'npc/akara', 'npc/charsi', 'npc/gheed', 'npc/kashya', 'npc/warriv'
     ]);
     expect(loadTownNpcs(2)).toEqual([{ id: 'npc/atma', portraitId: 'atma', nameKey: 'town.npc.atma' }]);
-    for (const act of [0, 3, 4, 5, 6, NaN]) expect(loadTownNpcs(act)).toEqual([]);
+    expect(loadTownNpcs(3).map((npc) => npc.id)).toEqual([
+      'npc/alkor', 'npc/asheara', 'npc/cain', 'npc/hratli', 'npc/meshif', 'npc/ormus'
+    ]);
+    for (const act of [0, 4, 5, 6, NaN]) expect(loadTownNpcs(act)).toEqual([]);
   });
   it('cannot bank return credit before clearing and grants nothing until explicit claim', () => {
     const hero = createMockPlayer('Quest talk', 'sorceress');

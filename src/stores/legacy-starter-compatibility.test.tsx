@@ -57,7 +57,8 @@ function oldSave(intermediate = false): SaveV7 {
   usePlayerStore.getState().setPlayer(createMockPlayer('Current', 'sorceress'));
   const { magicResist: _mr, ...oldStats } = save.player.derivedStats;
   const { questItems: _ledger, ...inventory } = save.inventory;
-  return { ...save, version: 7, player: { ...save.player, derivedStats: oldStats }, inventory: { ...inventory, currencies: { 'rune-shard': 41 } } };
+  const { questReceipts: _receipts, ...map } = save.map;
+  return { ...save, version: 7, player: { ...save.player, derivedStats: oldStats }, inventory: { ...inventory, currencies: { 'rune-shard': 41 } }, map };
 }
 function seedDisk(data: SaveV7) {
   disk.state.record = { id: 'current', data: structuredClone(data), version: 7, timestamp: data.timestamp };

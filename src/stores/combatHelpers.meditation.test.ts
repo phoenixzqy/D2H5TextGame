@@ -311,7 +311,8 @@ describe('native selected Meditation wave composition', () => {
     const jsonSafe = toJsonSafe(save);
     if (typeof jsonSafe !== 'object' || jsonSafe === null) throw new Error('Missing serialized legacy fixture');
     const { questItems: _ledger, ...inventory } = save.inventory;
-    const legacy = { ...jsonSafe, version: 9 as const, inventory };
+    const { questReceipts: _receipts, ...map } = save.map;
+    const legacy = { ...jsonSafe, version: 9 as const, inventory, map };
     expect(save.player).not.toHaveProperty('selectedAuraId');
     await importIntoStores(JSON.stringify(legacy));
     expect(player()).not.toHaveProperty('selectedAuraId');
