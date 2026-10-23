@@ -11,12 +11,13 @@ import type { DerivedStats } from './attributes';
 import type { EquipmentSlot, Inventory, Item } from './items';
 import type { MapProgress } from './maps';
 import type { GridPosition } from '../combat/types';
+import type { MaterialLedger } from '../loot/materials';
 
 /**
  * Current save format version. Bump this and add an entry to {@link MIGRATIONS}
  * whenever the on-disk shape changes.
  */
-export const CURRENT_SAVE_VERSION = 17;
+export const CURRENT_SAVE_VERSION = 18;
 
 /**
  * Save file version (most recent).
@@ -335,7 +336,15 @@ export interface SaveV17 extends Omit<SaveV16, 'version' | 'inventory' | 'map'> 
   readonly inventory: ServiceInventorySaveData;
   readonly map: CampaignMapSaveData;
 }
-export type SaveCurrent = SaveV17;
+/** Native v18 owns concrete materials independently of conserved legacy currencies. */
+export interface MaterialInventorySaveData extends ServiceInventorySaveData {
+  readonly materials: MaterialLedger;
+}
+export interface SaveV18 extends Omit<SaveV17, 'version' | 'inventory'> {
+  readonly version: 18;
+  readonly inventory: MaterialInventorySaveData;
+}
+export type SaveCurrent = SaveV18;
 
 /**
  * Migration function type. Each entry receives the previous version's shape
@@ -536,5 +545,10 @@ export const MIGRATIONS: Record<number, Migration> = {
   /** Widen the domain only; flags create no item, proof, consumption, or reward. */
   16: (raw: unknown): SaveV16 => ({ ...(raw as SaveV15), version: 16 }),
   /** Lossless predecessor migration: no proof or reward is inferred from history. */
-  17: (raw: unknown): SaveV17 => migrateSaveV17(raw as SaveV16)
+  17: (raw: unknown): SaveV17 => migrateSaveV17(raw as SaveV16),
+  /** Frozen v17 is validated before adding empty ownership; old shards mint no identities. */
+  18: (raw: unknown): SaveV18 => {
+    const v17 = raw as SaveV17;
+    return { ...v17, version: 18, inventory: { ...v17.inventory, materials: {} } };
+  }
 };

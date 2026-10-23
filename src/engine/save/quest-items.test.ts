@@ -1,4 +1,4 @@
-import { withoutV17Fields, withV17Defaults } from '../../../tests/helpers/save-fixtures';
+import { withoutV17Fields, withV18Defaults } from '../../../tests/helpers/save-fixtures';
 import { describe, expect, it } from 'vitest';
 import { deriveStats } from '../progression/stats';
 import { CURRENT_SAVE_VERSION, MIGRATIONS, type SaveV1 } from '../types/save';
@@ -41,7 +41,7 @@ function historicalSave<T extends Parameters<typeof withoutV17Fields>[0]>(save: 
 }
 
 function migratedShape<T extends { map: object; inventory: { backpack: readonly object[] } }>(save: T) {
-  return withV17Defaults({ ...save, inventory: { ...save.inventory,
+  return withV18Defaults({ ...save, inventory: { ...save.inventory,
     backpack: save.inventory.backpack.map(item => ({ ...item, socketCapacity: 2 })) },
     map: { ...save.map, questReceipts: {} } });
 }
@@ -142,7 +142,7 @@ describe('v12 source-bound quest item ledger', () => {
     }
   );
   it('emits a required empty ledger for a trusted legacy builder input', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(17);
+    expect(CURRENT_SAVE_VERSION).toBe(18);
     expect(sampleSave().inventory).toHaveProperty('questItems', {});
   });
 

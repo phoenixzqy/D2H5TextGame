@@ -19,6 +19,7 @@ import {
 import { usePlayerStore } from './playerStore';
 import { BACKPACK_CAPACITY, STASH_CAPACITY } from './inventoryCapacity';
 import { assertIronGolemOwnershipMutationAllowed } from './waveTransitionGuard';
+import { mergeMaterials, type MaterialLedger } from '@/engine/loot/materials';
 
 interface EquipSuccess {
   ok: true;
@@ -40,8 +41,10 @@ interface InventoryState {
   stash: Item[];
   equipped: Record<string, Item | null>; // slot -> item
   
-  // Currencies (runes, gems, materials)
+  // Conserved legacy currencies and current shard/wishstone balances.
   currencies: Record<string, number>;
+  /** Concrete catalog stacks; independent of gear capacity and aggregate currencies. */
+  materials: MaterialLedger;
   /** Bound entitlements and consumed receipts, independent of gear capacities. */
   questItems: QuestItemLedger;
   questServices: QuestServiceLedger;
@@ -77,6 +80,8 @@ interface InventoryState {
   addCurrency: (currencyId: string, amount: number) => void;
   spendCurrency: (currencyId: string, amount: number) => boolean;
   getCurrency: (currencyId: string) => number;
+  /** Validate safe whole-bag arithmetic before publishing any material stack. */
+  addMaterials: (materials: MaterialLedger) => void;
   reset: () => void;
 }
 
@@ -85,6 +90,7 @@ const initialState = {
   stash: [] as Item[],
   equipped: {} as Record<string, Item | null>,
   currencies: {} as Record<string, number>,
+  materials: {} as MaterialLedger,
   questItems: {} as QuestItemLedger,
   questServices: {} as QuestServiceLedger,
   legacyGearQuarantine: [] as readonly LegacyGearQuarantineEntry[]
@@ -250,6 +256,12 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
     return slotCandidates(get().backpack, slot, bases).filter(
       (it) => checkEligibility(it, player, bases).eligible
     );
+  },
+
+  addMaterials: (materials) => {
+    assertIronGolemOwnershipMutationAllowed();
+    const merged = mergeMaterials(get().materials, materials);
+    set({ materials: merged });
   },
 
   addCurrency: (currencyId, amount) => { set((state) => ({

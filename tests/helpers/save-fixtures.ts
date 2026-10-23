@@ -5,7 +5,7 @@ import type { SaveCurrent, LegacyGearQuarantineEntry } from '../../src/engine/ty
 export function withoutV17Fields<T extends Omit<SaveCurrent, 'inventory'> & {
   inventory: Omit<SaveCurrent['inventory'], 'questItems'> & { questItems?: unknown }
 }>(save: T) {
-  const { questServices: _services, legacyGearQuarantine: _quarantine, ...inventory } = save.inventory;
+  const { materials: _materials, questServices: _services, legacyGearQuarantine: _quarantine, ...inventory } = save.inventory;
   const { questTitles: _titles, questDifficulties: _difficulties, selectedTitle: _title,
     selectedDifficulty: _difficulty, nightmareClearedSubAreas: _nightmare,
     challengeOrdinals: _ordinals, ...map } = save.map;
@@ -31,4 +31,10 @@ export function withV17Defaults<T extends { inventory: object; map: object }>(sa
     inventory: { questServices: {}, legacyGearQuarantine: [] as LegacyGearQuarantineEntry[], ...save.inventory },
     map: { questTitles: {}, questDifficulties: {}, selectedTitle: null, selectedDifficulty: 'normal' as const,
       nightmareClearedSubAreas: [], challengeOrdinals: { normal: 0, nightmare: 0 }, ...save.map } };
+}
+
+/** Explicit v17→v18 expectation: one empty ledger, no reconstruction of old rewards. */
+export function withV18Defaults<T extends { inventory: object; map: object }>(save: T) {
+  const v17 = withV17Defaults(save);
+  return { ...v17, version: 18, inventory: { ...v17.inventory, materials: {} } };
 }

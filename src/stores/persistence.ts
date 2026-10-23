@@ -103,6 +103,7 @@ function buildStoreSnapshot(now: number, projectBonus: boolean): SaveCurrent | n
       stash: inv.stash,
       equipped: inv.equipped,
       currencies: inv.currencies,
+      materials: inv.materials,
       questItems: inv.questItems, questServices: inv.questServices, legacyGearQuarantine: inv.legacyGearQuarantine
     },
     mercs: {
@@ -369,6 +370,7 @@ function applySaveToStores(data: SaveCurrent, idleBonusAnchor: number, lease: Wa
     stash: [...data.inventory.stash],
     equipped: { ...data.inventory.equipped },
     currencies: { ...data.inventory.currencies },
+    materials: { ...data.inventory.materials },
     questItems: { ...data.inventory.questItems },
     questServices: { ...data.inventory.questServices }, legacyGearQuarantine: [...data.inventory.legacyGearQuarantine]
   });

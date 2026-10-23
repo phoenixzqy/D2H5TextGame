@@ -1,3 +1,4 @@
+import { readMaterialLedger } from './material-state';
 import { ACT5_RECEIPTS, validateAct5QuestGraph } from './act5-state';
 import { ACT5_ENCOUNTERS } from '../map/act5-admission';
 import { validateAct5CampaignRewards } from './act5-campaign';
@@ -14,7 +15,7 @@ import { ACT4_ENCOUNTERS } from '../map/act4-admission';
 import { loadQuestActions, questActionInputs, type QuestItemActionDef } from '../../data/loaders/quest-actions';
 import { repairMercenaryGrowth } from '../progression/merc-growth';
 import { LEVEL_CAP } from '../progression/xp';
-import { CURRENT_SAVE_VERSION, type SaveCurrent, type SaveV7, type SaveV8, type SaveV9, type SaveV10, type SaveV11, type QuestItemEntry, type QuestItemLedger } from '../types/save';
+import { type SaveCurrent, type SaveV17, type SaveV7, type SaveV8, type SaveV9, type SaveV10, type SaveV11, type QuestItemEntry, type QuestItemLedger } from '../types/save';
 import { runMigrations, type VersionedSave } from './migrate';
 import { loadQuestItems, type QuestItemDef, questItemSource } from '../../data/loaders/quest-items';
 import { loadQuests, type QuestDef } from '../../data/loaders/quests';
@@ -248,10 +249,12 @@ const saveSchema = (
   })
 });
 const ajv = new Ajv({ strictNumbers: true });
-const validate = ajv.compile<SaveCurrent>(saveSchema({ const: CURRENT_SAVE_VERSION }, unitProperties, {
+// v17 remains a separate predecessor schema; materials belong only to v18.
+const nativeSaveSchema = (version: 17 | 18) => saveSchema({ const: version }, unitProperties, {
   selectedAuraId: { enum: ['paladin.might', 'paladin.meditation'] }
 }, {
-  questItems: questItemLedgerSchema, questServices: { type: 'object' }, legacyGearQuarantine: array({ type: 'object' })
+  questItems: questItemLedgerSchema, questServices: { type: 'object' }, legacyGearQuarantine: array({ type: 'object' }),
+  ...(version === 18 ? { materials: { type: 'object' } } : {})
 }, {
   questTitles: { type: 'object' }, questDifficulties: { type: 'object' },
   selectedTitle: nullableText, selectedDifficulty: { enum: ['normal', 'nightmare'] },
@@ -262,7 +265,9 @@ const validate = ajv.compile<SaveCurrent>(saveSchema({ const: CURRENT_SAVE_VERSI
       'quests/act3-guardian#action:break-compelling-orb': { const: true },
       ...Object.fromEntries([...ACT4_ENCOUNTERS.map(row => row.proof), ...ACT5_RECEIPTS].map(source => [source, { const: true }])),
       'quests/act4-hellforge#action:shatter-soulstone': { const: true } } }
-}));
+});
+const validateV17 = ajv.compile<SaveV17>(nativeSaveSchema(17));
+const validate = ajv.compile<SaveCurrent>(nativeSaveSchema(18));
 interface LedgerContext {
   questItems: QuestItemLedger;
   questProgress: SaveCurrent['map']['questProgress'];
@@ -685,30 +690,37 @@ export function validateQuestActionReceipts(receipts: unknown, questProgress: un
   return validateLiveQuestState(questItems, questProgress, receipts).questReceipts;
 }
 
-/** Validate a migrated save before any IO or store mutation. Preserves optional fields. */
-export function validateSave(value: unknown): SaveCurrent {
+/** Preserve the v17 native graph/item validator before the v18 ownership-only migration. */
+function validateNativeSave(value: unknown, version: 17 | 18): SaveV17 | SaveCurrent {
   rejectHistoricalQuestReceipts(value);
   if (record(value) && record(value.inventory) && record(value.map)) {
     validateLiveQuestState(value.inventory.questItems, value.map.questProgress,
-      value.version === CURRENT_SAVE_VERSION ? value.map.questReceipts : {});
-  } else if (record(value) && value.version === CURRENT_SAVE_VERSION && record(value.map)) {
+      value.version === version ? value.map.questReceipts : {});
+  } else if (record(value) && value.version === version && record(value.map)) {
     validateQuestActionReceipts(value.map.questReceipts, value.map.questProgress);
   }
-  if (record(value) && value.version === CURRENT_SAVE_VERSION && record(value.map) && record(value.inventory)) {
+  if (record(value) && value.version === version && record(value.map) && record(value.inventory)) {
     validateAct5CampaignRewards(value.map as unknown as SaveCurrent['map'], value.inventory.questItems as QuestItemLedger, value.inventory.questServices);
   }
   const normalized = normalizeMaps(value);
   rejectUndefinedMagicResist(normalized);
   rejectUndefinedSelection(normalized);
-  if (!validate(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(validate.errors)}`);
-  const save = normalized as SaveCurrent;
+  const check = version === 17 ? validateV17 : validate;
+  if (!check(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(check.errors)}`);
+  const save = normalized;
   // Own undefined, inherited values and accessors must not disappear through normalization.
-  validateLegacyQuarantine(value as SaveCurrent, validateFrozenV16Item);
-  validateNativeItemState(value as SaveCurrent);
+  validateLegacyQuarantine(value as SaveV17 | SaveCurrent, validateFrozenV16Item);
+  validateNativeItemState(value as SaveV17 | SaveCurrent);
   validateAct5CampaignRewards(save.map, save.inventory.questItems, save.inventory.questServices);
   validateLegacyQuarantine(save, validateFrozenV16Item);
   validateNativeItemState(save);
   return save;
+}
+
+/** Validate current material ownership before any normalization, IO or store mutation. */
+export function validateSave(value: unknown): SaveCurrent {
+  if (record(value) && record(value.inventory)) readMaterialLedger(value.inventory);
+  return validateNativeSave(value, 18) as SaveCurrent;
 }
 
 /** IndexedDB preserves Maps, whose entries JSON Schema cannot otherwise inspect. */
@@ -735,6 +747,10 @@ export function decodeSave(value: unknown): SaveCurrent {
     throw new Error('Invalid save: version must be a positive integer');
   }
   let input = value as VersionedSave;
+  const originalInventory = 'inventory' in value ? value.inventory : undefined;
+  if (input.version < 18 && record(originalInventory) && 'materials' in originalInventory) {
+    throw new Error('Invalid save: reserved materials in historical inventory');
+  }
   if (input.version < 17) rejectHistoricalServiceFields(input);
   rejectHistoricalQuestReceipts(input);
   const rawInventory = 'inventory' in value ? value.inventory : undefined;
@@ -761,6 +777,8 @@ export function decodeSave(value: unknown): SaveCurrent {
   if (input.version === 15) validateV15Save(input);
   if (input.version < 16) input = runMigrations(input, 16);
   if (input.version === 16) validateV16Save(input);
+  if (input.version < 17) input = runMigrations(input, 17);
+  if (input.version === 17) validateNativeSave(input, 17);
   const save = validateSave(runMigrations(input));
   return repairQuestLifeCache(repairQuestResistanceCache(repairEquipmentRateCache({
     ...save,

@@ -21,11 +21,13 @@ import {
   type FormationPreferences
 } from '../types/save';
 import type { Player } from '../types/entities';
+import type { MaterialLedger } from '../loot/materials';
+import { readMaterialLedger } from './material-state';
 
 /** Inputs required to assemble a {@link SaveCurrent}. */
 export interface BuildSaveInput {
   readonly player: Player;
-  readonly inventory: InventorySaveData & { readonly questItems?: QuestItemLedger } & Partial<Pick<ServiceInventorySaveData, 'questServices' | 'legacyGearQuarantine'>>;
+  readonly inventory: InventorySaveData & { readonly questItems?: QuestItemLedger; readonly materials?: MaterialLedger } & Partial<Pick<ServiceInventorySaveData, 'questServices' | 'legacyGearQuarantine'>>;
   readonly mercs: MercSaveData;
   readonly map: MapSaveData & { readonly questReceipts?: QuestActionReceipts } & Partial<Pick<CampaignMapSaveData, 'questTitles' | 'questDifficulties' | 'selectedTitle' | 'selectedDifficulty' | 'nightmareClearedSubAreas' | 'challengeOrdinals'>>;
   readonly meta: MetaSaveData;
@@ -36,6 +38,7 @@ export interface BuildSaveInput {
 /** Build a {@link SaveCurrent} blob from in-memory state. Pure. */
 export function buildSave(input: BuildSaveInput): SaveCurrent {
   // Only truly absent trusted legacy input defaults; present corruption is never erased.
+  const materials = readMaterialLedger(input.inventory, true);
   const questItems = Object.hasOwn(input.inventory, 'questItems') ? input.inventory.questItems : {};
   if (questItems === undefined) throw new Error('Invalid save: present questItems must be a ledger');
   const questReceipts = Object.hasOwn(input.map, 'questReceipts') ? input.map.questReceipts : {};
@@ -44,7 +47,7 @@ export function buildSave(input: BuildSaveInput): SaveCurrent {
     version: CURRENT_SAVE_VERSION,
     timestamp: input.timestamp ?? Date.now(),
     player: input.player,
-    inventory: { questServices: {}, legacyGearQuarantine: [], ...input.inventory, questItems },
+    inventory: { questServices: {}, legacyGearQuarantine: [], ...input.inventory, questItems, materials },
     mercs: input.mercs,
     map: { questTitles: {}, questDifficulties: {}, selectedTitle: null, selectedDifficulty: 'normal',
       nightmareClearedSubAreas: [], challengeOrdinals: { normal: 0, nightmare: 0 }, ...input.map, questReceipts },
