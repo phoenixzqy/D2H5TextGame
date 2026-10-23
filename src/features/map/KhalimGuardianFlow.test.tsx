@@ -1,10 +1,11 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import { I18nextProvider } from 'react-i18next';
 import { MemoryRouter } from 'react-router-dom';
 import i18n from '@/i18n';
 import { loadQuestItems, questItemSource, type AssembledQuestItemDef } from '@/data/loaders/quest-items';
 import { loadQuests } from '@/data/loaders/quests';
+import { validateQuestItemLedger } from '@/engine/save/validate';
 import { COUNCIL_RECEIPT_SOURCE } from '@/engine/map/council-admission';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { QuestItemsPanel } from '@/features/inventory/QuestItemsPanel';
@@ -200,6 +201,46 @@ describe.each(['en', 'zh-CN'])('Khalim and Guardian player actions %s', locale =
     expect(screen.queryByRole('alert')).not.toBeInTheDocument();
     expect(useMapStore.getState().questReceipts[ORB_SOURCE]).toBe(true);
     expect(hero()).toBe(before);
+  });
+
+  it('previews the actual Guardian rewards and renders a constructed retained Soulstone without Read or recovery', () => {
+    seedTrackedQuests(); recoverCube();
+    const { view, assemble } = recoverComponents(false);
+    fireEvent.click(assemble);
+    act(() => { useMapStore.getState().setCurrentLocation(3, TRAVINCAL); });
+    view.rerender(<AreaObjectsPanel act={3} areaId={TRAVINCAL} onClose={() => undefined} />);
+    fireEvent.click(screen.getByTestId(ORB_BUTTON));
+    const soulstone = loadQuestItems().find(item => item.sourceQuestId === GUARDIAN);
+    const guardian = loadQuests().find(quest => quest.id === GUARDIAN);
+    if (!soulstone || !guardian) throw new Error('Missing authored Guardian reward');
+    const beforePreview = useInventoryStore.getState().questItems;
+    view.rerender(<><QuestsScreen /><QuestItemsPanel /></>);
+    const card = screen.getByTestId(`quest-${GUARDIAN}`);
+    expect(card).toHaveTextContent(i18n.t(soulstone.nameKey));
+    expect(card).toHaveTextContent(i18n.t('rewardLabel.rewardCache', { ns: 'quests' }));
+    expect(card).toHaveTextContent(String(guardian.rewards?.xp));
+    expect(card.textContent).not.toMatch(/questItem|lootTable|tableId|soulstone_mephisto|rewardLabel|[{}]/);
+    expect(screen.queryByTestId(`quest-item-${soulstone.id}`)).not.toBeInTheDocument();
+    expect(useInventoryStore.getState().questItems).toBe(beforePreview);
+    // Constructed post-Claim rendering fixture; this does not exercise or prove Mephisto victory admission.
+    act(() => {
+      useMapStore.setState({ questProgress: { ...useMapStore.getState().questProgress, [GUARDIAN]: {
+        id: GUARDIAN, status: 'completed', rewardClaimed: true,
+        objectives: Object.fromEntries(guardian.objectives.map(objective => [objective.id, true]))
+      } } });
+      useInventoryStore.setState({ questItems: { ...useInventoryStore.getState().questItems,
+        [questItemSource(soulstone)]: { itemId: soulstone.id, state: 'owned' } } });
+    });
+    const ledger = useInventoryStore.getState().questItems, map = useMapStore.getState();
+    expect(validateQuestItemLedger(ledger, map.questProgress, map.questReceipts)).toBe(ledger);
+    view.rerender(<><QuestsScreen /><QuestItemsPanel /></>);
+    const retained = screen.getByTestId(`quest-item-${soulstone.id}`);
+    expect(retained).toHaveTextContent(i18n.t(soulstone.nameKey));
+    expect(retained).toHaveTextContent(i18n.t(soulstone.descKey));
+    expect(retained).toHaveTextContent(i18n.t('questItems.owned', { ns: 'inventory' }));
+    expect(within(retained).queryByRole('button')).not.toBeInTheDocument();
+    expect(screen.queryByTestId(`quest-reward-recover-${GUARDIAN}`)).not.toBeInTheDocument();
+    expect(useInventoryStore.getState().questItems).toBe(ledger);
   });
 
   it('does not invent a Will or Orb completion from objective flags alone or merely viewing the panel', () => {
