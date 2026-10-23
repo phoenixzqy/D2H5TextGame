@@ -1,0 +1,2982 @@
+{
+  "kind": "immutable-authentic-v2-earned-rocky-waste-single-attempt-summary",
+  "reportVersion": 1,
+  "status": "campaign-nonwin",
+  "originalStop": {
+    "action": "rocky-waste",
+    "actualDelta": {
+      "addedClears": [],
+      "addedItems": [],
+      "currencies": {
+        "gem-shard": 0,
+        "rune-shard": 0,
+        "wishstone": 0
+      },
+      "mercXp": {
+        "mercs/act1-rogue-inner-sight": 0
+      },
+      "removedItemIds": [],
+      "xp": 0
+    },
+    "waveIndex": 3,
+    "winner": "enemy"
+  },
+  "handle": {
+    "challengeOrdinal": 108,
+    "runId": "areas/act2-rocky-waste",
+    "runSeed": 3405854382,
+    "totalWaves": 4
+  },
+  "artifacts": {
+    "fullReport": {
+      "path": "native17-v2-rocky-waste-attempt.json.gz",
+      "rawByteLength": 26826518,
+      "rawSha256": "d8755a6fbdf39b9924864a2cadb7e6615dc3ef3c9854fb7a12ff44ff47ebb346",
+      "gzipByteLength": 699586,
+      "gzipSha256": "f2af72bd9d6eadc6054e55d6f4f3ec368e24ec62315fafcf681698aa9e49d78b",
+      "verifiedRoundTrip": true,
+      "compression": "gzip mtime=0; exact original bytes"
+    },
+    "nativeExport": {
+      "path": "native17-v2-rocky-waste-native-export.json.gz",
+      "rawByteLength": 1404754,
+      "rawSha256": "241e6a0a8b2eb0686bdd4dbeac363139558dbf47d139dcd9f1cea6c054711813",
+      "gzipByteLength": 32076,
+      "gzipSha256": "167f9618fec18a72dbedd9af5c8aa902de16aee1789b3f59c44c14c6353bed18",
+      "verifiedRoundTrip": true,
+      "compression": "gzip mtime=0; exact original bytes"
+    },
+    "nativeCapture": {
+      "path": "native17-v2-rocky-waste-native-capture.json.gz",
+      "rawByteLength": 5197673,
+      "rawSha256": "917bb6e1677bdc78f404591816d68366e6b0ee094803b7d0f43a567dc294ffd4",
+      "gzipByteLength": 186902,
+      "gzipSha256": "174650037404dd8ca88ff4cc94cf351062b367659aa9bd8df7deed5aaa249da2",
+      "verifiedRoundTrip": true,
+      "compression": "gzip mtime=0; exact original bytes"
+    }
+  },
+  "ancestry": {
+    "gzipSha256": "51d1611a1dbae156d43293a392ccdb5749a61161605f0a47f91c1c050e48655e",
+    "parentReportRawSha256": "90a79b6c0fe564f250379660705fb7ab9cc619dc2726c5b4fe1eb9d8e021a1cd",
+    "rawSha256": "c038427361d2171ebb3693509804966ff5538f2b9bd6e0da1d23f660516567d6",
+    "saveHash": "688505bef96a7fc2129564d12c1215cc82709d55ffc1d11dac7c365053ed6a8f",
+    "source": "docs/plans/evidence/fixtures/fresh-native17-campaign-screen/native17-v2-native-export.json.gz"
+  },
+  "provenance": {
+    "sourceSha": "5be450a13622cfbc7f15281f880902f0d397550a",
+    "sourceTreeHash": "493a7ef012ddbc800714af6f8d55f0bb600b6abec35dced39cb81c84a4c76820",
+    "dataHash": "a1c9be78af566f3c9bd9fd8df22b25d81423fc1ab43e591c07fac3a794eee851",
+    "nodeVersion": "v24.21.0",
+    "vitestVersion": "1.6.1",
+    "dirty": {
+      "isDirty": false,
+      "porcelainEntries": []
+    },
+    "sourceBeforeImportEqualsBeforeEqualsAfter": true,
+    "referenceInputs": [
+      {
+        "path": "docs/plans/evidence/fixtures/fresh-native17-campaign-screen/native17-v2-native-export.json.gz",
+        "sha256": "51d1611a1dbae156d43293a392ccdb5749a61161605f0a47f91c1c050e48655e"
+      },
+      {
+        "path": "docs/plans/evidence/fixtures/fresh-native17-campaign-screen/native17-v2-rocky-waste-frozen-plan.md",
+        "sha256": "77b9b64043e7d45844707af250e4db0ca00c00be30f111ac13d54a71ed4caa63"
+      }
+    ],
+    "runtimeAndDataEdited": false
+  },
+  "policy": {
+    "id": "native17-v2-earned-rocky-waste-v1",
+    "clockEpochMs": 1792497600000,
+    "exactNativeSaveHydration": true,
+    "reconstructedObservation": false,
+    "offlineAccrual": false,
+    "attempts": 1,
+    "retries": 0,
+    "seedOrOrdinalOverride": false,
+    "noRadamentClaimBookArcane": true
+  },
+  "adaptations": {
+    "actions": [
+      {
+        "action": "audit-exact-earned-amulet",
+        "result": {
+          "affixes": [
+            {
+              "id": "affix.mystic.mana.flat",
+              "rolledValue": 21,
+              "tier": 1
+            },
+            {
+              "id": "affix.nimble.phys-dodge",
+              "rolledValue": 4,
+              "tier": 1
+            },
+            {
+              "id": "affix.savage.crit-damage",
+              "rolledValue": 26,
+              "tier": 1
+            },
+            {
+              "id": "affix.cold.resistance",
+              "rolledValue": 12,
+              "tier": 1
+            },
+            {
+              "id": "affix.bat.mana.flat",
+              "rolledValue": 25,
+              "tier": 1
+            },
+            {
+              "id": "affix.fire.resistance",
+              "rolledValue": 11,
+              "tier": 1
+            }
+          ],
+          "baseId": "items/base/amu-brass",
+          "baseRolls": {},
+          "equipped": false,
+          "generatedName": {},
+          "id": "it-4fzod-2jh",
+          "identified": false,
+          "ilvl": 19,
+          "level": 19,
+          "rarity": "rare"
+        }
+      },
+      {
+        "action": "equip-earned-rogue-amulet",
+        "result": {
+          "candidateIndex": null,
+          "capacity": 0,
+          "itemAfter": {
+            "affixes": [
+              {
+                "id": "affix.mystic.mana.flat",
+                "rolledValue": 21,
+                "tier": 1
+              },
+              {
+                "id": "affix.nimble.phys-dodge",
+                "rolledValue": 4,
+                "tier": 1
+              },
+              {
+                "id": "affix.savage.crit-damage",
+                "rolledValue": 26,
+                "tier": 1
+              },
+              {
+                "id": "affix.cold.resistance",
+                "rolledValue": 12,
+                "tier": 1
+              },
+              {
+                "id": "affix.bat.mana.flat",
+                "rolledValue": 25,
+                "tier": 1
+              },
+              {
+                "id": "affix.fire.resistance",
+                "rolledValue": 11,
+                "tier": 1
+              }
+            ],
+            "baseId": "items/base/amu-brass",
+            "baseRolls": {},
+            "equipSlot": "amulet",
+            "equipped": true,
+            "generatedName": {},
+            "id": "it-4fzod-2jh",
+            "identified": false,
+            "ilvl": 19,
+            "level": 19,
+            "rarity": "rare"
+          },
+          "itemBefore": {
+            "affixes": [
+              {
+                "id": "affix.mystic.mana.flat",
+                "rolledValue": 21,
+                "tier": 1
+              },
+              {
+                "id": "affix.nimble.phys-dodge",
+                "rolledValue": 4,
+                "tier": 1
+              },
+              {
+                "id": "affix.savage.crit-damage",
+                "rolledValue": 26,
+                "tier": 1
+              },
+              {
+                "id": "affix.cold.resistance",
+                "rolledValue": 12,
+                "tier": 1
+              },
+              {
+                "id": "affix.bat.mana.flat",
+                "rolledValue": 25,
+                "tier": 1
+              },
+              {
+                "id": "affix.fire.resistance",
+                "rolledValue": 11,
+                "tier": 1
+              }
+            ],
+            "baseId": "items/base/amu-brass",
+            "baseRolls": {},
+            "equipped": false,
+            "generatedName": {},
+            "id": "it-4fzod-2jh",
+            "identified": false,
+            "ilvl": 19,
+            "level": 19,
+            "rarity": "rare"
+          },
+          "owner": "merc",
+          "slot": "amulet"
+        }
+      },
+      {
+        "action": "allocate-earned-ice-blast-point",
+        "result": "ok"
+      }
+    ],
+    "preparedHash": "ebab2f3662fa532f48ed2f65f1035ffa736269b435e1a7b7103bee3543ed7c8c",
+    "delta": {
+      "addedClears": [],
+      "addedItems": [],
+      "currencies": {
+        "gem-shard": 0,
+        "rune-shard": 0,
+        "wishstone": 0
+      },
+      "mercXp": {
+        "mercs/act1-rogue-inner-sight": 0
+      },
+      "removedItemIds": [],
+      "xp": 0
+    },
+    "heroBefore": {
+      "level": 13,
+      "skillPoints": 1,
+      "statPoints": 5,
+      "skillLevels": {
+        "sorceress.fire_bolt": 4,
+        "sorceress.frost_nova": 2,
+        "sorceress.ice_blast": 8,
+        "sorceress.ice_bolt": 1,
+        "sorceress.warmth": 1
+      }
+    },
+    "heroPrepared": {
+      "level": 13,
+      "skillPoints": 0,
+      "statPoints": 5,
+      "skillLevels": {
+        "sorceress.fire_bolt": 4,
+        "sorceress.frost_nova": 2,
+        "sorceress.ice_blast": 9,
+        "sorceress.ice_bolt": 1,
+        "sorceress.warmth": 1
+      }
+    }
+  },
+  "observed": {
+    "wallSeconds": 2.4896635499999995,
+    "waveTerminals": 4,
+    "waves": [
+      {
+        "waveNumber": 1,
+        "winner": "player",
+        "advanceResult": "next-wave",
+        "terminalSimClockMs": 5460,
+        "beforeAwardHash": "cd12bb03e4be43f93987e4380501e9b92afc39ff3327f1c13e221a2f0d6d3d26",
+        "afterAwardHash": "ba219945c189e3d5d21d60ae778fc48c97a9f49c7f88c3d8ced72a0a8830961d",
+        "actualDelta": {
+          "xp": 1680,
+          "mercXp": {
+            "mercs/act1-rogue-inner-sight": 1260
+          },
+          "currencies": {
+            "gem-shard": 0,
+            "rune-shard": 808,
+            "wishstone": 0
+          },
+          "addedItems": 4,
+          "addedClears": []
+        },
+        "openingParty": [
+          {
+            "id": "player-1792497600000",
+            "level": 13,
+            "life": 342,
+            "lifeMax": 342,
+            "mana": 241,
+            "manaMax": 241
+          },
+          {
+            "id": "merc-mercs/act1-rogue-inner-sight",
+            "level": 16,
+            "life": 293,
+            "lifeMax": 293,
+            "mana": 196,
+            "manaMax": 196
+          }
+        ],
+        "finalParty": [
+          {
+            "id": "player-1792497600000",
+            "level": 13,
+            "life": 342,
+            "lifeMax": 342,
+            "mana": 241,
+            "manaMax": 241
+          },
+          {
+            "id": "merc-mercs/act1-rogue-inner-sight",
+            "level": 16,
+            "life": 293,
+            "lifeMax": 293,
+            "mana": 196,
+            "manaMax": 196
+          }
+        ],
+        "finalEnemies": [
+          {
+            "id": "enemy-act2.sand-raider-0-67f5",
+            "level": 14,
+            "life": 0,
+            "lifeMax": 164,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-1-4d15",
+            "level": 14,
+            "life": 0,
+            "lifeMax": 174,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-2-7209",
+            "level": 14,
+            "life": 0,
+            "lifeMax": 162,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-maggot-0-f515",
+            "level": 14,
+            "life": 0,
+            "lifeMax": 218,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-3-3cda",
+            "level": 14,
+            "life": 0,
+            "lifeMax": 154,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-4-28b3",
+            "level": 14,
+            "life": 0,
+            "lifeMax": 167,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-5-1ab1",
+            "level": 14,
+            "life": 0,
+            "lifeMax": 150,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-maggot-1-dc49",
+            "level": 14,
+            "life": 0,
+            "lifeMax": 242,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-6-0d07",
+            "level": 14,
+            "life": 0,
+            "lifeMax": 160,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-7-7726",
+            "level": 14,
+            "life": 0,
+            "lifeMax": 168,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-8-5cbc",
+            "level": 14,
+            "life": 0,
+            "lifeMax": 163,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-maggot-2-24a7",
+            "level": 14,
+            "life": 0,
+            "lifeMax": 248,
+            "mana": 0,
+            "manaMax": 0
+          }
+        ],
+        "recordedEvents": 197
+      },
+      {
+        "waveNumber": 2,
+        "winner": "player",
+        "advanceResult": "next-wave",
+        "terminalSimClockMs": 8736,
+        "beforeAwardHash": "ba219945c189e3d5d21d60ae778fc48c97a9f49c7f88c3d8ced72a0a8830961d",
+        "afterAwardHash": "ecafdb88efd21515cf8929b1b9f0c2bf620cb015c07925ea240ce6fdac023528",
+        "actualDelta": {
+          "xp": 1950,
+          "mercXp": {
+            "mercs/act1-rogue-inner-sight": 1462
+          },
+          "currencies": {
+            "gem-shard": 0,
+            "rune-shard": 974,
+            "wishstone": 0
+          },
+          "addedItems": 6,
+          "addedClears": []
+        },
+        "openingParty": [
+          {
+            "id": "player-1792497600000",
+            "level": 13,
+            "life": 342,
+            "lifeMax": 342,
+            "mana": 241,
+            "manaMax": 241
+          },
+          {
+            "id": "merc-mercs/act1-rogue-inner-sight",
+            "level": 16,
+            "life": 293,
+            "lifeMax": 293,
+            "mana": 196,
+            "manaMax": 196
+          }
+        ],
+        "finalParty": [
+          {
+            "id": "player-1792497600000",
+            "level": 13,
+            "life": 330,
+            "lifeMax": 342,
+            "mana": 231,
+            "manaMax": 241
+          },
+          {
+            "id": "merc-mercs/act1-rogue-inner-sight",
+            "level": 16,
+            "life": 283,
+            "lifeMax": 293,
+            "mana": 196,
+            "manaMax": 196
+          }
+        ],
+        "finalEnemies": [
+          {
+            "id": "enemy-act2.scarab-0-b960",
+            "level": 15,
+            "life": 0,
+            "lifeMax": 120,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.scarab-1-b142",
+            "level": 15,
+            "life": 0,
+            "lifeMax": 122,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.scarab-2-f127",
+            "level": 15,
+            "life": 0,
+            "lifeMax": 112,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.vulture-demon-0-03a1",
+            "level": 15,
+            "life": 0,
+            "lifeMax": 290,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.vulture-demon-1-fb29",
+            "level": 15,
+            "life": 0,
+            "lifeMax": 305,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.scarab-3-4771",
+            "level": 15,
+            "life": 0,
+            "lifeMax": 125,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.scarab-4-b512",
+            "level": 15,
+            "life": 0,
+            "lifeMax": 117,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.scarab-5-b467",
+            "level": 15,
+            "life": 0,
+            "lifeMax": 111,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.vulture-demon-2-2709",
+            "level": 15,
+            "life": 0,
+            "lifeMax": 291,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.vulture-demon-3-d64b",
+            "level": 15,
+            "life": 0,
+            "lifeMax": 236,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.scarab-6-6923",
+            "level": 15,
+            "life": 0,
+            "lifeMax": 109,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.scarab-7-cffc",
+            "level": 15,
+            "life": 0,
+            "lifeMax": 127,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.scarab-8-2258",
+            "level": 15,
+            "life": 0,
+            "lifeMax": 127,
+            "mana": 0,
+            "manaMax": 0
+          }
+        ],
+        "recordedEvents": 286
+      },
+      {
+        "waveNumber": 3,
+        "winner": "player",
+        "advanceResult": "next-wave",
+        "terminalSimClockMs": 20748,
+        "beforeAwardHash": "ecafdb88efd21515cf8929b1b9f0c2bf620cb015c07925ea240ce6fdac023528",
+        "afterAwardHash": "e4dfe9a158d847b7b14c922b445d5ea212db0eaec3e3e8769c870e271815d660",
+        "actualDelta": {
+          "xp": 2380,
+          "mercXp": {
+            "mercs/act1-rogue-inner-sight": 1785
+          },
+          "currencies": {
+            "gem-shard": 1,
+            "rune-shard": 4502,
+            "wishstone": 5
+          },
+          "addedItems": 70,
+          "addedClears": []
+        },
+        "openingParty": [
+          {
+            "id": "player-1792497600000",
+            "level": 13,
+            "life": 330,
+            "lifeMax": 342,
+            "mana": 231,
+            "manaMax": 241
+          },
+          {
+            "id": "merc-mercs/act1-rogue-inner-sight",
+            "level": 16,
+            "life": 283,
+            "lifeMax": 293,
+            "mana": 196,
+            "manaMax": 196
+          }
+        ],
+        "finalParty": [
+          {
+            "id": "player-1792497600000",
+            "level": 13,
+            "life": 342,
+            "lifeMax": 342,
+            "mana": 241,
+            "manaMax": 241
+          },
+          {
+            "id": "merc-mercs/act1-rogue-inner-sight",
+            "level": 16,
+            "life": 293,
+            "lifeMax": 293,
+            "mana": 196,
+            "manaMax": 196
+          }
+        ],
+        "finalEnemies": [
+          {
+            "id": "enemy-act2.sand-raider-0-dc58",
+            "level": 17,
+            "life": 0,
+            "lifeMax": 496,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-1-79d7",
+            "level": 17,
+            "life": 0,
+            "lifeMax": 523,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.claw-viper-0-938e",
+            "level": 17,
+            "life": 0,
+            "lifeMax": 502,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.claw-viper-1-7ab5",
+            "level": 17,
+            "life": 0,
+            "lifeMax": 447,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-2-24ab",
+            "level": 17,
+            "life": 0,
+            "lifeMax": 508,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-3-6ce2",
+            "level": 17,
+            "life": 0,
+            "lifeMax": 597,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.claw-viper-2-b644",
+            "level": 17,
+            "life": 0,
+            "lifeMax": 538,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.claw-viper-3-fff4",
+            "level": 17,
+            "life": 0,
+            "lifeMax": 472,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-4-336f",
+            "level": 17,
+            "life": 0,
+            "lifeMax": 586,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-5-884d",
+            "level": 17,
+            "life": 0,
+            "lifeMax": 504,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.claw-viper-4-8bc4",
+            "level": 17,
+            "life": 0,
+            "lifeMax": 507,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.claw-viper-5-34c8",
+            "level": 17,
+            "life": 0,
+            "lifeMax": 412,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-6-c231",
+            "level": 17,
+            "life": 0,
+            "lifeMax": 559,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-7-c08b",
+            "level": 17,
+            "life": 0,
+            "lifeMax": 510,
+            "mana": 0,
+            "manaMax": 0
+          }
+        ],
+        "recordedEvents": 754
+      },
+      {
+        "waveNumber": 4,
+        "winner": "enemy",
+        "advanceResult": "defeat",
+        "terminalSimClockMs": 5400,
+        "beforeAwardHash": "e4dfe9a158d847b7b14c922b445d5ea212db0eaec3e3e8769c870e271815d660",
+        "afterAwardHash": "e4dfe9a158d847b7b14c922b445d5ea212db0eaec3e3e8769c870e271815d660",
+        "actualDelta": {
+          "xp": 0,
+          "mercXp": {
+            "mercs/act1-rogue-inner-sight": 0
+          },
+          "currencies": {
+            "gem-shard": 0,
+            "rune-shard": 0,
+            "wishstone": 0
+          },
+          "addedItems": 0,
+          "addedClears": []
+        },
+        "openingParty": [
+          {
+            "id": "player-1792497600000",
+            "level": 13,
+            "life": 342,
+            "lifeMax": 342,
+            "mana": 241,
+            "manaMax": 241
+          },
+          {
+            "id": "merc-mercs/act1-rogue-inner-sight",
+            "level": 16,
+            "life": 293,
+            "lifeMax": 293,
+            "mana": 196,
+            "manaMax": 196
+          }
+        ],
+        "finalParty": [
+          {
+            "id": "player-1792497600000",
+            "level": 13,
+            "life": 0,
+            "lifeMax": 342,
+            "mana": 239,
+            "manaMax": 241
+          },
+          {
+            "id": "merc-mercs/act1-rogue-inner-sight",
+            "level": 16,
+            "life": 284,
+            "lifeMax": 293,
+            "mana": 196,
+            "manaMax": 196
+          }
+        ],
+        "finalEnemies": [
+          {
+            "id": "enemy-act2.horror-mage-0-9ea9",
+            "level": 18,
+            "life": 836,
+            "lifeMax": 1015,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-1-1264",
+            "level": 18,
+            "life": 363,
+            "lifeMax": 374,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-2-2e59",
+            "level": 18,
+            "life": 285,
+            "lifeMax": 385,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-3-1253",
+            "level": 18,
+            "life": 243,
+            "lifeMax": 363,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.horror-mage-4-3370",
+            "level": 18,
+            "life": 442,
+            "lifeMax": 540,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-5-1fa4",
+            "level": 18,
+            "life": 194,
+            "lifeMax": 353,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-6-7546",
+            "level": 18,
+            "life": 254,
+            "lifeMax": 372,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-7-415c",
+            "level": 18,
+            "life": 297,
+            "lifeMax": 421,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.horror-mage-8-2d38",
+            "level": 18,
+            "life": 561,
+            "lifeMax": 561,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-9-53a7",
+            "level": 18,
+            "life": 269,
+            "lifeMax": 386,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-10-38d6",
+            "level": 18,
+            "life": 261,
+            "lifeMax": 370,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-11-a2c9",
+            "level": 18,
+            "life": 234,
+            "lifeMax": 355,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.horror-mage-12-4101",
+            "level": 18,
+            "life": 209,
+            "lifeMax": 521,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-13-08ec",
+            "level": 18,
+            "life": 284,
+            "lifeMax": 404,
+            "mana": 0,
+            "manaMax": 0
+          },
+          {
+            "id": "enemy-act2.sand-raider-14-e7e5",
+            "level": 18,
+            "life": 257,
+            "lifeMax": 385,
+            "mana": 0,
+            "manaMax": 0
+          }
+        ],
+        "recordedEvents": 226
+      }
+    ],
+    "wins": 3,
+    "draws": 0,
+    "enemyVictories": 1,
+    "actualXp": 6010,
+    "actualItems": 80,
+    "terminalHero": {
+      "level": 13,
+      "experience": 9158,
+      "skillPoints": 0,
+      "statPoints": 5,
+      "skillLevels": {
+        "sorceress.fire_bolt": 4,
+        "sorceress.frost_nova": 2,
+        "sorceress.ice_blast": 9,
+        "sorceress.ice_bolt": 1,
+        "sorceress.warmth": 1
+      },
+      "coreStats": {
+        "dexterity": 25,
+        "energy": 63,
+        "strength": 10,
+        "vitality": 37
+      },
+      "comboOrder": [
+        "skills-sorceress-frost-nova",
+        "skills-sorceress-ice-blast"
+      ]
+    },
+    "terminalMercs": [
+      {
+        "alive": true,
+        "archetype": "back",
+        "classId": "rogue",
+        "comboOrder": [
+          "mskill-inner-sight",
+          "mskill-pierce-arrow",
+          "mskill-basic-arrow"
+        ],
+        "cooldowns": [],
+        "coreStats": {
+          "dexterity": 61,
+          "energy": 27,
+          "strength": 25,
+          "vitality": 16
+        },
+        "derivedStats": {
+          "attack": 70,
+          "attackSpeed": 161,
+          "critChance": 0.05,
+          "critDamage": 2,
+          "defense": 65,
+          "goldFind": 0,
+          "life": 252,
+          "lifeMax": 252,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "magicResist": 0,
+          "mana": 79,
+          "manaMax": 150,
+          "physDodge": 0.172,
+          "resistances": {
+            "arcane": 0,
+            "cold": 0,
+            "fire": 0,
+            "lightning": 0,
+            "physical": 0,
+            "poison": 0
+          }
+        },
+        "equipment": [],
+        "id": "mercs/act1-rogue-inner-sight",
+        "level": 16,
+        "name": "Rogue Scout — Inner Sight",
+        "rarity": "R",
+        "signatureSkillId": "mskill-inner-sight",
+        "skills": [],
+        "statusEffects": [],
+        "team": "player",
+        "turnOrder": 0,
+        "type": "mercenary"
+      }
+    ],
+    "nextNormalOrdinal": 109,
+    "terminalHash": "e4dfe9a158d847b7b14c922b445d5ea212db0eaec3e3e8769c870e271815d660",
+    "rockyWasteCleared": false,
+    "invocationWallSeconds": 13.43,
+    "driverTestsPassed": 2,
+    "actualMercXp": 4507,
+    "actualCurrencies": {
+      "gem-shard": 1,
+      "rune-shard": 6284,
+      "wishstone": 5
+    }
+  },
+  "nativeCapture": {
+    "status": "captured",
+    "snapshotHash": "f7ad0d5e0a644ae1b101ec6f07d8f451e907224cc483f6db11fcc82ac4b207e6",
+    "decodedHash": "f7ad0d5e0a644ae1b101ec6f07d8f451e907224cc483f6db11fcc82ac4b207e6",
+    "exportedSha256": "241e6a0a8b2eb0686bdd4dbeac363139558dbf47d139dcd9f1cea6c054711813",
+    "beforeHash": "e4dfe9a158d847b7b14c922b445d5ea212db0eaec3e3e8769c870e271815d660",
+    "afterHash": "e4dfe9a158d847b7b14c922b445d5ea212db0eaec3e3e8769c870e271815d660",
+    "idleMetadata": {
+      "equalOutsideIdleMetadata": true,
+      "exportedDecoded": {
+        "activeMultiplier": 1,
+        "lastOnline": 1792497600000,
+        "multiplierSecondsRemaining": 0,
+        "offlineTime": 0
+      },
+      "matches": true,
+      "snapshot": {
+        "activeMultiplier": 1,
+        "lastOnline": 1792497600000,
+        "multiplierSecondsRemaining": 0,
+        "offlineTime": 0
+      }
+    }
+  },
+  "diagnostics": {
+    "executionFailure": null,
+    "provenanceFailure": null,
+    "cleanupFailures": [],
+    "nativeCaptureFailure": null,
+    "nativePublicationFailure": null
+  },
+  "validation": {
+    "noCombatContracts": "7/7 passed",
+    "typecheck": "passed",
+    "scopedEslint": "passed with --no-ignore",
+    "beforeLaunchDiffCheck": "passed",
+    "concreteDesignReview": "READY",
+    "concreteQaSaveReview": "READY",
+    "terminalEvidenceIndependentReview": "QA/save ADEQUATE; independently recomputed native/terminal hashes, exact adaptation, rewards/owned IDs, source/reference equality and byte-exact deterministic artifacts. Design independently verified recording and source formulas; no damage/scaling correctness mismatch established."
+  },
+  "limitations": [
+    "Continues authenticated saved domains by exact service hydration; no fresh prefix or observation reconstruction.",
+    "Native saves omit transient combat HP/mana. No transplant/heal is applied; ordinary next challenge constructs its native opening.",
+    "No IndexedDB, browser Save/Continue, offline accrual, Radament feasibility, full campaign or C2 acceptance.",
+    "Dedicated task process seeds native item IDs from authentic ownership; its module realm ends with that process."
+  ],
+  "w4Diagnostics": {
+    "presentation": {
+      "difficultyBand": "normal",
+      "forcedEliteKind": "rareElite",
+      "isForcedElite": true,
+      "kind": "elite"
+    },
+    "heroOpening": {
+      "activeBuffIds": [],
+      "cooldowns": {
+        "sorceress.frost_nova": 1580
+      },
+      "enraged": false,
+      "equippedWeapon": {
+        "handedness": "oneHanded",
+        "weaponType": "wand"
+      },
+      "gridPosition": {
+        "col": 1,
+        "row": 1
+      },
+      "id": "player-1792497600000",
+      "increasedDamagePct": {
+        "fire": 0.01,
+        "lightning": 0
+      },
+      "kind": "hero",
+      "level": 13,
+      "life": 342,
+      "mana": 241,
+      "manaRegenCarry": 0,
+      "manaRegenCompensation": 0,
+      "manaRegenExactCarry": "0",
+      "manaRegenPerSecond": 13.104000000000003,
+      "name": "Earned Act I",
+      "side": "player",
+      "skillLevels": {
+        "sorceress.fire_bolt": 4,
+        "sorceress.frost_nova": 2,
+        "sorceress.ice_blast": 9,
+        "sorceress.ice_bolt": 1,
+        "sorceress.warmth": 1
+      },
+      "skillOrder": [
+        "skills-sorceress-frost-nova",
+        "skills-sorceress-ice-blast"
+      ],
+      "stats": {
+        "attack": 80,
+        "attackSpeed": 135,
+        "critChance": 0.05,
+        "critDamage": 2,
+        "defense": 137,
+        "goldFind": 0,
+        "life": 120,
+        "lifeMax": 342,
+        "magicDodge": 0.08,
+        "magicFind": 0,
+        "magicResist": 0,
+        "mana": 102,
+        "manaMax": 241,
+        "physDodge": 0.14,
+        "resistances": {
+          "arcane": 0,
+          "cold": 30,
+          "fire": 30,
+          "lightning": 30,
+          "physical": 20,
+          "poison": 18
+        }
+      },
+      "statuses": [],
+      "summonGridPositions": [
+        {
+          "col": 0,
+          "row": 2
+        },
+        {
+          "col": 1,
+          "row": 2
+        },
+        {
+          "col": 2,
+          "row": 2
+        },
+        {
+          "col": 1,
+          "row": 0
+        },
+        {
+          "col": 2,
+          "row": 0
+        },
+        {
+          "col": 0,
+          "row": 1
+        },
+        {
+          "col": 2,
+          "row": 1
+        },
+        {
+          "col": 0,
+          "row": 0
+        }
+      ],
+      "summonedAdds": false,
+      "tier": "trash"
+    },
+    "mercOpening": {
+      "activeBuffIds": [],
+      "cooldowns": {
+        "mskill-inner-sight": 3908,
+        "mskill-pierce-arrow": 816
+      },
+      "enraged": false,
+      "gridPosition": {
+        "col": 0,
+        "row": 0
+      },
+      "id": "merc-mercs/act1-rogue-inner-sight",
+      "kind": "merc",
+      "level": 16,
+      "life": 293,
+      "mana": 196,
+      "name": "Rogue Scout — Inner Sight",
+      "side": "player",
+      "skillOrder": [
+        "mskill-inner-sight",
+        "mskill-pierce-arrow",
+        "mskill-basic-arrow"
+      ],
+      "stats": {
+        "attack": 125,
+        "attackSpeed": 176,
+        "critChance": 0.05,
+        "critDamage": 2.26,
+        "defense": 141,
+        "goldFind": 0,
+        "life": 252,
+        "lifeMax": 293,
+        "magicDodge": 0.07,
+        "magicFind": 0,
+        "magicResist": 0,
+        "mana": 79,
+        "manaMax": 196,
+        "physDodge": 0.212,
+        "resistances": {
+          "arcane": 0,
+          "cold": 30,
+          "fire": 11,
+          "lightning": 10,
+          "physical": 0,
+          "poison": 17
+        }
+      },
+      "statuses": [],
+      "summonedAdds": false,
+      "tier": "trash"
+    },
+    "frozenHeroGear": {
+      "amulet": {
+        "affixes": [
+          {
+            "id": "affix.mystic.mana.flat",
+            "rolledValue": 29,
+            "tier": 1
+          },
+          {
+            "id": "affix.ethereal.magic-dodge",
+            "rolledValue": 3,
+            "tier": 1
+          },
+          {
+            "id": "affix.vital.life.flat",
+            "rolledValue": 31,
+            "tier": 1
+          },
+          {
+            "id": "affix.physical.resistance",
+            "rolledValue": 8,
+            "tier": 1
+          }
+        ],
+        "baseId": "items/base/amu-brass",
+        "baseRolls": {},
+        "equipped": true,
+        "generatedName": {},
+        "id": "it-6ghhi-2hx",
+        "identified": false,
+        "ilvl": 12,
+        "level": 12,
+        "rarity": "rare"
+      },
+      "belt": {
+        "affixes": [],
+        "baseId": "items/base/belt-light",
+        "baseRolls": {
+          "defense": 6
+        },
+        "equipped": true,
+        "generatedName": {},
+        "id": "it-2jm8r-2h6",
+        "identified": true,
+        "ilvl": 9,
+        "level": 9,
+        "rarity": "normal",
+        "socketCapacity": 1
+      },
+      "boots": {
+        "affixes": [],
+        "baseId": "items/base/boot-leather",
+        "baseRolls": {
+          "defense": 5
+        },
+        "equipped": true,
+        "generatedName": {},
+        "id": "it-24svg-2hv",
+        "identified": true,
+        "ilvl": 12,
+        "level": 12,
+        "rarity": "normal",
+        "socketCapacity": 1
+      },
+      "chest": {
+        "affixes": [
+          {
+            "id": "affix.nimble.phys-dodge",
+            "rolledValue": 4,
+            "tier": 1
+          },
+          {
+            "id": "affix.vital.life.flat",
+            "rolledValue": 31,
+            "tier": 1
+          },
+          {
+            "id": "affix.mystic.mana.flat",
+            "rolledValue": 20,
+            "tier": 1
+          },
+          {
+            "id": "affix.poison.resistance",
+            "rolledValue": 18,
+            "tier": 1
+          },
+          {
+            "id": "affix.lightning.resistance",
+            "rolledValue": 15,
+            "tier": 1
+          },
+          {
+            "id": "affix.physical.resistance",
+            "rolledValue": 12,
+            "tier": 1
+          }
+        ],
+        "baseId": "items/base/armor-leather",
+        "baseRolls": {
+          "defense": 20
+        },
+        "equipped": true,
+        "generatedName": {},
+        "id": "it-111b8-2jg",
+        "identified": false,
+        "ilvl": 19,
+        "level": 19,
+        "rarity": "rare",
+        "socketCapacity": 0
+      },
+      "gloves": {
+        "affixes": [],
+        "baseId": "items/base/glove-leather",
+        "baseRolls": {
+          "defense": 5
+        },
+        "equipped": true,
+        "generatedName": {},
+        "id": "it-96fga-3",
+        "identified": true,
+        "ilvl": 2,
+        "level": 2,
+        "rarity": "normal",
+        "socketCapacity": 1
+      },
+      "head": {
+        "affixes": [],
+        "baseId": "items/base/helm-skull-cap",
+        "baseRolls": {
+          "defense": 11
+        },
+        "equipped": true,
+        "generatedName": {},
+        "id": "it-6zft2-2jk",
+        "identified": true,
+        "ilvl": 19,
+        "level": 19,
+        "rarity": "unique",
+        "socketCapacity": 2,
+        "statRolls": {},
+        "uniqueId": "items/unique/coif-of-glory"
+      },
+      "offhand": {
+        "affixes": [],
+        "baseId": "items/base/sh-kite",
+        "baseRolls": {
+          "defense": 14
+        },
+        "equipped": true,
+        "generatedName": {},
+        "id": "it-1u1tx-10g",
+        "identified": true,
+        "ilvl": 7,
+        "level": 7,
+        "rarity": "normal",
+        "socketCapacity": 1
+      },
+      "weapon": {
+        "affixes": [],
+        "baseId": "items/base/weapon-wand",
+        "baseRolls": {
+          "attack": 7
+        },
+        "equipped": true,
+        "generatedName": {},
+        "id": "it-2w6n3-2gw",
+        "identified": true,
+        "ilvl": 9,
+        "level": 9,
+        "rarity": "set",
+        "setId": "sets/naj-ancient-vestige",
+        "setPieceId": "sets/naj-ancient-vestige/weapon",
+        "socketCapacity": 1,
+        "statRolls": {}
+      }
+    },
+    "monsters": [
+      {
+        "activeBuffIds": [],
+        "cooldowns": {},
+        "enraged": false,
+        "gridPosition": {
+          "col": 1,
+          "row": 1
+        },
+        "id": "enemy-act2.horror-mage-0-9ea9",
+        "kind": "monster",
+        "level": 18,
+        "life": 1015,
+        "mana": 0,
+        "monsterArchetypeId": "monsters/act2.horror-mage",
+        "name": "monsters.horrorMage A",
+        "side": "enemy",
+        "skillOrder": [
+          "monster-lightning-bolt",
+          "monster-frost-bolt",
+          "monster-fire-ball"
+        ],
+        "stats": {
+          "attack": 234,
+          "attackSpeed": 100,
+          "critChance": 0.05,
+          "critDamage": 1.5,
+          "defense": 72,
+          "goldFind": 0,
+          "life": 1015,
+          "lifeMax": 1015,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "magicResist": 26,
+          "mana": 0,
+          "manaMax": 0,
+          "physDodge": 0.05,
+          "resistances": {
+            "arcane": 30,
+            "cold": 55,
+            "fire": 30,
+            "lightning": 55,
+            "physical": 30,
+            "poison": 30
+          }
+        },
+        "statuses": [],
+        "summonedAdds": false,
+        "tier": "rare-elite"
+      },
+      {
+        "activeBuffIds": [],
+        "cooldowns": {},
+        "enraged": false,
+        "gridPosition": {
+          "col": 1,
+          "row": 0
+        },
+        "id": "enemy-act2.sand-raider-1-1264",
+        "kind": "monster",
+        "level": 18,
+        "life": 374,
+        "mana": 0,
+        "monsterArchetypeId": "monsters/act2.sand-raider",
+        "name": "monsters.sandRaider B",
+        "side": "enemy",
+        "skillOrder": [
+          "monster-weak-melee",
+          "monster-fire-ball"
+        ],
+        "stats": {
+          "attack": 152,
+          "attackSpeed": 95,
+          "critChance": 0.05,
+          "critDamage": 1.5,
+          "defense": 52,
+          "goldFind": 0,
+          "life": 374,
+          "lifeMax": 374,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "magicResist": 17,
+          "mana": 0,
+          "manaMax": 0,
+          "physDodge": 0.05,
+          "resistances": {
+            "arcane": 0,
+            "cold": 0,
+            "fire": 0,
+            "lightning": 0,
+            "physical": 0,
+            "poison": 0
+          }
+        },
+        "statuses": [],
+        "summonedAdds": false,
+        "tier": "rare-minion"
+      },
+      {
+        "activeBuffIds": [],
+        "cooldowns": {},
+        "enraged": false,
+        "gridPosition": {
+          "col": 0,
+          "row": 1
+        },
+        "id": "enemy-act2.sand-raider-2-2e59",
+        "kind": "monster",
+        "level": 18,
+        "life": 385,
+        "mana": 0,
+        "monsterArchetypeId": "monsters/act2.sand-raider",
+        "name": "monsters.sandRaider C",
+        "side": "enemy",
+        "skillOrder": [
+          "monster-weak-melee",
+          "monster-fire-ball"
+        ],
+        "stats": {
+          "attack": 152,
+          "attackSpeed": 95,
+          "critChance": 0.05,
+          "critDamage": 1.5,
+          "defense": 52,
+          "goldFind": 0,
+          "life": 385,
+          "lifeMax": 385,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "magicResist": 17,
+          "mana": 0,
+          "manaMax": 0,
+          "physDodge": 0.05,
+          "resistances": {
+            "arcane": 0,
+            "cold": 0,
+            "fire": 0,
+            "lightning": 0,
+            "physical": 0,
+            "poison": 0
+          }
+        },
+        "statuses": [],
+        "summonedAdds": false,
+        "tier": "rare-minion"
+      },
+      {
+        "activeBuffIds": [],
+        "cooldowns": {},
+        "enraged": false,
+        "gridPosition": {
+          "col": 2,
+          "row": 1
+        },
+        "id": "enemy-act2.sand-raider-3-1253",
+        "kind": "monster",
+        "level": 18,
+        "life": 363,
+        "mana": 0,
+        "monsterArchetypeId": "monsters/act2.sand-raider",
+        "name": "monsters.sandRaider D",
+        "side": "enemy",
+        "skillOrder": [
+          "monster-weak-melee",
+          "monster-fire-ball"
+        ],
+        "stats": {
+          "attack": 152,
+          "attackSpeed": 95,
+          "critChance": 0.05,
+          "critDamage": 1.5,
+          "defense": 52,
+          "goldFind": 0,
+          "life": 363,
+          "lifeMax": 363,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "magicResist": 17,
+          "mana": 0,
+          "manaMax": 0,
+          "physDodge": 0.05,
+          "resistances": {
+            "arcane": 0,
+            "cold": 0,
+            "fire": 0,
+            "lightning": 0,
+            "physical": 0,
+            "poison": 0
+          }
+        },
+        "statuses": [],
+        "summonedAdds": false,
+        "tier": "rare-minion"
+      },
+      {
+        "activeBuffIds": [],
+        "cooldowns": {},
+        "enraged": false,
+        "gridPosition": {
+          "col": 1,
+          "row": 2
+        },
+        "id": "enemy-act2.horror-mage-4-3370",
+        "kind": "monster",
+        "level": 18,
+        "life": 540,
+        "mana": 0,
+        "monsterArchetypeId": "monsters/act2.horror-mage",
+        "name": "monsters.horrorMage E",
+        "side": "enemy",
+        "skillOrder": [
+          "monster-lightning-bolt",
+          "monster-frost-bolt",
+          "monster-fire-ball"
+        ],
+        "stats": {
+          "attack": 152,
+          "attackSpeed": 100,
+          "critChance": 0.05,
+          "critDamage": 1.5,
+          "defense": 64,
+          "goldFind": 0,
+          "life": 540,
+          "lifeMax": 540,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "magicResist": 17,
+          "mana": 0,
+          "manaMax": 0,
+          "physDodge": 0.05,
+          "resistances": {
+            "arcane": 0,
+            "cold": 25,
+            "fire": 0,
+            "lightning": 25,
+            "physical": 0,
+            "poison": 0
+          }
+        },
+        "statuses": [],
+        "summonedAdds": false,
+        "tier": "rare-minion"
+      },
+      {
+        "activeBuffIds": [],
+        "cooldowns": {},
+        "enraged": false,
+        "gridPosition": {
+          "col": 0,
+          "row": 0
+        },
+        "id": "enemy-act2.sand-raider-5-1fa4",
+        "kind": "monster",
+        "level": 18,
+        "life": 353,
+        "mana": 0,
+        "monsterArchetypeId": "monsters/act2.sand-raider",
+        "name": "monsters.sandRaider F",
+        "side": "enemy",
+        "skillOrder": [
+          "monster-weak-melee",
+          "monster-fire-ball"
+        ],
+        "stats": {
+          "attack": 152,
+          "attackSpeed": 95,
+          "critChance": 0.05,
+          "critDamage": 1.5,
+          "defense": 52,
+          "goldFind": 0,
+          "life": 353,
+          "lifeMax": 353,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "magicResist": 17,
+          "mana": 0,
+          "manaMax": 0,
+          "physDodge": 0.05,
+          "resistances": {
+            "arcane": 0,
+            "cold": 0,
+            "fire": 0,
+            "lightning": 0,
+            "physical": 0,
+            "poison": 0
+          }
+        },
+        "statuses": [],
+        "summonedAdds": false,
+        "tier": "rare-minion"
+      },
+      {
+        "activeBuffIds": [],
+        "cooldowns": {},
+        "enraged": false,
+        "gridPosition": {
+          "col": 2,
+          "row": 0
+        },
+        "id": "enemy-act2.sand-raider-6-7546",
+        "kind": "monster",
+        "level": 18,
+        "life": 372,
+        "mana": 0,
+        "monsterArchetypeId": "monsters/act2.sand-raider",
+        "name": "monsters.sandRaider G",
+        "side": "enemy",
+        "skillOrder": [
+          "monster-weak-melee",
+          "monster-fire-ball"
+        ],
+        "stats": {
+          "attack": 152,
+          "attackSpeed": 95,
+          "critChance": 0.05,
+          "critDamage": 1.5,
+          "defense": 52,
+          "goldFind": 0,
+          "life": 372,
+          "lifeMax": 372,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "magicResist": 17,
+          "mana": 0,
+          "manaMax": 0,
+          "physDodge": 0.05,
+          "resistances": {
+            "arcane": 0,
+            "cold": 0,
+            "fire": 0,
+            "lightning": 0,
+            "physical": 0,
+            "poison": 0
+          }
+        },
+        "statuses": [],
+        "summonedAdds": false,
+        "tier": "rare-minion"
+      },
+      {
+        "activeBuffIds": [],
+        "cooldowns": {},
+        "enraged": false,
+        "gridPosition": {
+          "col": 0,
+          "row": 2
+        },
+        "id": "enemy-act2.sand-raider-7-415c",
+        "kind": "monster",
+        "level": 18,
+        "life": 421,
+        "mana": 0,
+        "monsterArchetypeId": "monsters/act2.sand-raider",
+        "name": "monsters.sandRaider H",
+        "side": "enemy",
+        "skillOrder": [
+          "monster-weak-melee",
+          "monster-fire-ball"
+        ],
+        "stats": {
+          "attack": 152,
+          "attackSpeed": 95,
+          "critChance": 0.05,
+          "critDamage": 1.5,
+          "defense": 52,
+          "goldFind": 0,
+          "life": 421,
+          "lifeMax": 421,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "magicResist": 17,
+          "mana": 0,
+          "manaMax": 0,
+          "physDodge": 0.05,
+          "resistances": {
+            "arcane": 0,
+            "cold": 0,
+            "fire": 0,
+            "lightning": 0,
+            "physical": 0,
+            "poison": 0
+          }
+        },
+        "statuses": [],
+        "summonedAdds": false,
+        "tier": "rare-minion"
+      },
+      {
+        "activeBuffIds": [],
+        "cooldowns": {},
+        "enraged": false,
+        "gridPosition": {
+          "col": 2,
+          "row": 2
+        },
+        "id": "enemy-act2.horror-mage-8-2d38",
+        "kind": "monster",
+        "level": 18,
+        "life": 561,
+        "mana": 0,
+        "monsterArchetypeId": "monsters/act2.horror-mage",
+        "name": "monsters.horrorMage I",
+        "side": "enemy",
+        "skillOrder": [
+          "monster-lightning-bolt",
+          "monster-frost-bolt",
+          "monster-fire-ball"
+        ],
+        "stats": {
+          "attack": 152,
+          "attackSpeed": 100,
+          "critChance": 0.05,
+          "critDamage": 1.5,
+          "defense": 64,
+          "goldFind": 0,
+          "life": 561,
+          "lifeMax": 561,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "magicResist": 17,
+          "mana": 0,
+          "manaMax": 0,
+          "physDodge": 0.05,
+          "resistances": {
+            "arcane": 0,
+            "cold": 25,
+            "fire": 0,
+            "lightning": 25,
+            "physical": 0,
+            "poison": 0
+          }
+        },
+        "statuses": [],
+        "summonedAdds": false,
+        "tier": "rare-minion"
+      },
+      {
+        "activeBuffIds": [],
+        "cooldowns": {},
+        "enraged": false,
+        "gridPosition": {
+          "col": 0,
+          "row": 3
+        },
+        "id": "enemy-act2.sand-raider-9-53a7",
+        "kind": "monster",
+        "level": 18,
+        "life": 386,
+        "mana": 0,
+        "monsterArchetypeId": "monsters/act2.sand-raider",
+        "name": "monsters.sandRaider J",
+        "side": "enemy",
+        "skillOrder": [
+          "monster-weak-melee",
+          "monster-fire-ball"
+        ],
+        "stats": {
+          "attack": 152,
+          "attackSpeed": 95,
+          "critChance": 0.05,
+          "critDamage": 1.5,
+          "defense": 52,
+          "goldFind": 0,
+          "life": 386,
+          "lifeMax": 386,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "magicResist": 17,
+          "mana": 0,
+          "manaMax": 0,
+          "physDodge": 0.05,
+          "resistances": {
+            "arcane": 0,
+            "cold": 0,
+            "fire": 0,
+            "lightning": 0,
+            "physical": 0,
+            "poison": 0
+          }
+        },
+        "statuses": [],
+        "summonedAdds": false,
+        "tier": "rare-minion"
+      },
+      {
+        "activeBuffIds": [],
+        "cooldowns": {},
+        "enraged": false,
+        "gridPosition": {
+          "col": 1,
+          "row": 3
+        },
+        "id": "enemy-act2.sand-raider-10-38d6",
+        "kind": "monster",
+        "level": 18,
+        "life": 370,
+        "mana": 0,
+        "monsterArchetypeId": "monsters/act2.sand-raider",
+        "name": "monsters.sandRaider K",
+        "side": "enemy",
+        "skillOrder": [
+          "monster-weak-melee",
+          "monster-fire-ball"
+        ],
+        "stats": {
+          "attack": 152,
+          "attackSpeed": 95,
+          "critChance": 0.05,
+          "critDamage": 1.5,
+          "defense": 52,
+          "goldFind": 0,
+          "life": 370,
+          "lifeMax": 370,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "magicResist": 17,
+          "mana": 0,
+          "manaMax": 0,
+          "physDodge": 0.05,
+          "resistances": {
+            "arcane": 0,
+            "cold": 0,
+            "fire": 0,
+            "lightning": 0,
+            "physical": 0,
+            "poison": 0
+          }
+        },
+        "statuses": [],
+        "summonedAdds": false,
+        "tier": "rare-minion"
+      },
+      {
+        "activeBuffIds": [],
+        "cooldowns": {},
+        "enraged": false,
+        "gridPosition": {
+          "col": 2,
+          "row": 3
+        },
+        "id": "enemy-act2.sand-raider-11-a2c9",
+        "kind": "monster",
+        "level": 18,
+        "life": 355,
+        "mana": 0,
+        "monsterArchetypeId": "monsters/act2.sand-raider",
+        "name": "monsters.sandRaider L",
+        "side": "enemy",
+        "skillOrder": [
+          "monster-weak-melee",
+          "monster-fire-ball"
+        ],
+        "stats": {
+          "attack": 152,
+          "attackSpeed": 95,
+          "critChance": 0.05,
+          "critDamage": 1.5,
+          "defense": 52,
+          "goldFind": 0,
+          "life": 355,
+          "lifeMax": 355,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "magicResist": 17,
+          "mana": 0,
+          "manaMax": 0,
+          "physDodge": 0.05,
+          "resistances": {
+            "arcane": 0,
+            "cold": 0,
+            "fire": 0,
+            "lightning": 0,
+            "physical": 0,
+            "poison": 0
+          }
+        },
+        "statuses": [],
+        "summonedAdds": false,
+        "tier": "rare-minion"
+      },
+      {
+        "activeBuffIds": [],
+        "cooldowns": {},
+        "enraged": false,
+        "gridPosition": {
+          "col": 0,
+          "row": 4
+        },
+        "id": "enemy-act2.horror-mage-12-4101",
+        "kind": "monster",
+        "level": 18,
+        "life": 521,
+        "mana": 0,
+        "monsterArchetypeId": "monsters/act2.horror-mage",
+        "name": "monsters.horrorMage M",
+        "side": "enemy",
+        "skillOrder": [
+          "monster-lightning-bolt",
+          "monster-frost-bolt",
+          "monster-fire-ball"
+        ],
+        "stats": {
+          "attack": 152,
+          "attackSpeed": 100,
+          "critChance": 0.05,
+          "critDamage": 1.5,
+          "defense": 64,
+          "goldFind": 0,
+          "life": 521,
+          "lifeMax": 521,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "magicResist": 17,
+          "mana": 0,
+          "manaMax": 0,
+          "physDodge": 0.05,
+          "resistances": {
+            "arcane": 0,
+            "cold": 25,
+            "fire": 0,
+            "lightning": 25,
+            "physical": 0,
+            "poison": 0
+          }
+        },
+        "statuses": [],
+        "summonedAdds": false,
+        "tier": "rare-minion"
+      },
+      {
+        "activeBuffIds": [],
+        "cooldowns": {},
+        "enraged": false,
+        "gridPosition": {
+          "col": 1,
+          "row": 4
+        },
+        "id": "enemy-act2.sand-raider-13-08ec",
+        "kind": "monster",
+        "level": 18,
+        "life": 404,
+        "mana": 0,
+        "monsterArchetypeId": "monsters/act2.sand-raider",
+        "name": "monsters.sandRaider N",
+        "side": "enemy",
+        "skillOrder": [
+          "monster-weak-melee",
+          "monster-fire-ball"
+        ],
+        "stats": {
+          "attack": 152,
+          "attackSpeed": 95,
+          "critChance": 0.05,
+          "critDamage": 1.5,
+          "defense": 52,
+          "goldFind": 0,
+          "life": 404,
+          "lifeMax": 404,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "magicResist": 17,
+          "mana": 0,
+          "manaMax": 0,
+          "physDodge": 0.05,
+          "resistances": {
+            "arcane": 0,
+            "cold": 0,
+            "fire": 0,
+            "lightning": 0,
+            "physical": 0,
+            "poison": 0
+          }
+        },
+        "statuses": [],
+        "summonedAdds": false,
+        "tier": "rare-minion"
+      },
+      {
+        "activeBuffIds": [],
+        "cooldowns": {},
+        "enraged": false,
+        "gridPosition": {
+          "col": 2,
+          "row": 4
+        },
+        "id": "enemy-act2.sand-raider-14-e7e5",
+        "kind": "monster",
+        "level": 18,
+        "life": 385,
+        "mana": 0,
+        "monsterArchetypeId": "monsters/act2.sand-raider",
+        "name": "monsters.sandRaider O",
+        "side": "enemy",
+        "skillOrder": [
+          "monster-weak-melee",
+          "monster-fire-ball"
+        ],
+        "stats": {
+          "attack": 152,
+          "attackSpeed": 95,
+          "critChance": 0.05,
+          "critDamage": 1.5,
+          "defense": 52,
+          "goldFind": 0,
+          "life": 385,
+          "lifeMax": 385,
+          "magicDodge": 0.05,
+          "magicFind": 0,
+          "magicResist": 17,
+          "mana": 0,
+          "manaMax": 0,
+          "physDodge": 0.05,
+          "resistances": {
+            "arcane": 0,
+            "cold": 0,
+            "fire": 0,
+            "lightning": 0,
+            "physical": 0,
+            "poison": 0
+          }
+        },
+        "statuses": [],
+        "summonedAdds": false,
+        "tier": "rare-minion"
+      }
+    ],
+    "incomingPartyBySourceTypeAndLatestAction": [
+      {
+        "target": "player-1792497600000",
+        "source": "enemy-act2.horror-mage-4-3370",
+        "damageType": "lightning",
+        "associatedLatestAction": "monster.lightning_bolt",
+        "amount": 91,
+        "events": 2,
+        "dodges": 0,
+        "crits": 0,
+        "maxAmount": 50
+      },
+      {
+        "target": "player-1792497600000",
+        "source": "enemy-act2.horror-mage-8-2d38",
+        "damageType": "lightning",
+        "associatedLatestAction": "monster.lightning_bolt",
+        "amount": 109,
+        "events": 2,
+        "dodges": 0,
+        "crits": 1,
+        "maxAmount": 56
+      },
+      {
+        "target": "player-1792497600000",
+        "source": "enemy-act2.horror-mage-12-4101",
+        "damageType": "lightning",
+        "associatedLatestAction": "monster.lightning_bolt",
+        "amount": 37,
+        "events": 1,
+        "dodges": 0,
+        "crits": 0,
+        "maxAmount": 37
+      },
+      {
+        "target": "merc-mercs/act1-rogue-inner-sight",
+        "source": "enemy-act2.sand-raider-7-415c",
+        "damageType": "physical",
+        "associatedLatestAction": "monster.weak_melee",
+        "amount": 0,
+        "events": 1,
+        "dodges": 1,
+        "crits": 0,
+        "maxAmount": 0
+      },
+      {
+        "target": "merc-mercs/act1-rogue-inner-sight",
+        "source": "enemy-act2.sand-raider-13-08ec",
+        "damageType": "physical",
+        "associatedLatestAction": "monster.weak_melee",
+        "amount": 1,
+        "events": 2,
+        "dodges": 1,
+        "crits": 0,
+        "maxAmount": 1
+      },
+      {
+        "target": "player-1792497600000",
+        "source": "enemy-act2.sand-raider-10-38d6",
+        "damageType": "physical",
+        "associatedLatestAction": "monster.weak_melee",
+        "amount": 0,
+        "events": 1,
+        "dodges": 1,
+        "crits": 0,
+        "maxAmount": 0
+      },
+      {
+        "target": "player-1792497600000",
+        "source": "enemy-act2.sand-raider-2-2e59",
+        "damageType": "physical",
+        "associatedLatestAction": "monster.weak_melee",
+        "amount": 2,
+        "events": 2,
+        "dodges": 0,
+        "crits": 0,
+        "maxAmount": 1
+      },
+      {
+        "target": "player-1792497600000",
+        "source": "enemy-act2.sand-raider-3-1253",
+        "damageType": "physical",
+        "associatedLatestAction": "monster.weak_melee",
+        "amount": 1,
+        "events": 1,
+        "dodges": 0,
+        "crits": 0,
+        "maxAmount": 1
+      },
+      {
+        "target": "player-1792497600000",
+        "source": "enemy-act2.sand-raider-1-1264",
+        "damageType": "physical",
+        "associatedLatestAction": "monster.weak_melee",
+        "amount": 2,
+        "events": 2,
+        "dodges": 0,
+        "crits": 1,
+        "maxAmount": 1
+      },
+      {
+        "target": "player-1792497600000",
+        "source": "enemy-act2.sand-raider-5-1fa4",
+        "damageType": "physical",
+        "associatedLatestAction": "monster.weak_melee",
+        "amount": 1,
+        "events": 1,
+        "dodges": 0,
+        "crits": 0,
+        "maxAmount": 1
+      },
+      {
+        "target": "merc-mercs/act1-rogue-inner-sight",
+        "source": "enemy-act2.sand-raider-11-a2c9",
+        "damageType": "physical",
+        "associatedLatestAction": "monster.weak_melee",
+        "amount": 0,
+        "events": 1,
+        "dodges": 1,
+        "crits": 0,
+        "maxAmount": 0
+      },
+      {
+        "target": "merc-mercs/act1-rogue-inner-sight",
+        "source": "enemy-act2.sand-raider-6-7546",
+        "damageType": "physical",
+        "associatedLatestAction": "monster.weak_melee",
+        "amount": 2,
+        "events": 2,
+        "dodges": 0,
+        "crits": 0,
+        "maxAmount": 1
+      },
+      {
+        "target": "merc-mercs/act1-rogue-inner-sight",
+        "source": "enemy-act2.sand-raider-14-e7e5",
+        "damageType": "physical",
+        "associatedLatestAction": "monster.weak_melee",
+        "amount": 2,
+        "events": 2,
+        "dodges": 0,
+        "crits": 0,
+        "maxAmount": 1
+      },
+      {
+        "target": "merc-mercs/act1-rogue-inner-sight",
+        "source": "enemy-act2.sand-raider-9-53a7",
+        "damageType": "physical",
+        "associatedLatestAction": "monster.weak_melee",
+        "amount": 1,
+        "events": 1,
+        "dodges": 0,
+        "crits": 0,
+        "maxAmount": 1
+      },
+      {
+        "target": "player-1792497600000",
+        "source": "enemy-act2.horror-mage-8-2d38",
+        "damageType": "cold",
+        "associatedLatestAction": "monster.frost_bolt",
+        "amount": 23,
+        "events": 1,
+        "dodges": 0,
+        "crits": 0,
+        "maxAmount": 23
+      },
+      {
+        "target": "merc-mercs/act1-rogue-inner-sight",
+        "source": "enemy-act2.sand-raider-10-38d6",
+        "damageType": "physical",
+        "associatedLatestAction": "monster.weak_melee",
+        "amount": 1,
+        "events": 2,
+        "dodges": 1,
+        "crits": 0,
+        "maxAmount": 1
+      },
+      {
+        "target": "merc-mercs/act1-rogue-inner-sight",
+        "source": "enemy-act2.sand-raider-2-2e59",
+        "damageType": "physical",
+        "associatedLatestAction": "monster.weak_melee",
+        "amount": 1,
+        "events": 1,
+        "dodges": 0,
+        "crits": 0,
+        "maxAmount": 1
+      },
+      {
+        "target": "player-1792497600000",
+        "source": "enemy-act2.horror-mage-4-3370",
+        "damageType": "cold",
+        "associatedLatestAction": "monster.frost_bolt",
+        "amount": 28,
+        "events": 1,
+        "dodges": 0,
+        "crits": 0,
+        "maxAmount": 28
+      },
+      {
+        "target": "player-1792497600000",
+        "source": "enemy-act2.horror-mage-0-9ea9",
+        "damageType": "lightning",
+        "associatedLatestAction": "monster.lightning_bolt",
+        "amount": 59,
+        "events": 1,
+        "dodges": 0,
+        "crits": 0,
+        "maxAmount": 59
+      },
+      {
+        "target": "player-1792497600000",
+        "source": "enemy-act2.sand-raider-7-415c",
+        "damageType": "physical",
+        "associatedLatestAction": "monster.weak_melee",
+        "amount": 1,
+        "events": 1,
+        "dodges": 0,
+        "crits": 0,
+        "maxAmount": 1
+      },
+      {
+        "target": "merc-mercs/act1-rogue-inner-sight",
+        "source": "enemy-act2.sand-raider-5-1fa4",
+        "damageType": "physical",
+        "associatedLatestAction": "monster.weak_melee",
+        "amount": 1,
+        "events": 1,
+        "dodges": 0,
+        "crits": 0,
+        "maxAmount": 1
+      },
+      {
+        "target": "player-1792497600000",
+        "source": "enemy-act2.sand-raider-11-a2c9",
+        "damageType": "physical",
+        "associatedLatestAction": "monster.weak_melee",
+        "amount": 1,
+        "events": 1,
+        "dodges": 0,
+        "crits": 0,
+        "maxAmount": 1
+      },
+      {
+        "target": "player-1792497600000",
+        "source": "enemy-act2.sand-raider-9-53a7",
+        "damageType": "physical",
+        "associatedLatestAction": "monster.weak_melee",
+        "amount": 0,
+        "events": 1,
+        "dodges": 1,
+        "crits": 0,
+        "maxAmount": 0
+      }
+    ],
+    "heroIncomingByType": {
+      "lightning": 296,
+      "physical": 8,
+      "cold": 51
+    },
+    "heroIncomingRecordedTotal": 355,
+    "heroMaxSingleHit": {
+      "amount": 59,
+      "crit": false,
+      "damageType": "lightning",
+      "dodged": false,
+      "kind": "damage",
+      "simClockMs": 3498.823529411765,
+      "source": "enemy-act2.horror-mage-0-9ea9",
+      "target": "player-1792497600000",
+      "uiDelayMs": 50,
+      "associatedLatestAction": "monster.lightning_bolt"
+    },
+    "heroIncomingEvents": [
+      {
+        "amount": 41,
+        "crit": false,
+        "damageType": "lightning",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 1700,
+        "source": "enemy-act2.horror-mage-4-3370",
+        "target": "player-1792497600000",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "monster.lightning_bolt"
+      },
+      {
+        "amount": 53,
+        "crit": true,
+        "damageType": "lightning",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 1700,
+        "source": "enemy-act2.horror-mage-8-2d38",
+        "target": "player-1792497600000",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "monster.lightning_bolt"
+      },
+      {
+        "amount": 37,
+        "crit": false,
+        "damageType": "lightning",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 1700,
+        "source": "enemy-act2.horror-mage-12-4101",
+        "target": "player-1792497600000",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "monster.lightning_bolt"
+      },
+      {
+        "amount": 0,
+        "crit": false,
+        "damageType": "physical",
+        "dodged": true,
+        "kind": "damage",
+        "simClockMs": 1740,
+        "source": "enemy-act2.sand-raider-10-38d6",
+        "target": "player-1792497600000",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "monster.weak_melee"
+      },
+      {
+        "amount": 1,
+        "crit": false,
+        "damageType": "physical",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 1740,
+        "source": "enemy-act2.sand-raider-2-2e59",
+        "target": "player-1792497600000",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "monster.weak_melee"
+      },
+      {
+        "amount": 1,
+        "crit": false,
+        "damageType": "physical",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 1740,
+        "source": "enemy-act2.sand-raider-3-1253",
+        "target": "player-1792497600000",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "monster.weak_melee"
+      },
+      {
+        "amount": 1,
+        "crit": true,
+        "damageType": "physical",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 1740,
+        "source": "enemy-act2.sand-raider-1-1264",
+        "target": "player-1792497600000",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "monster.weak_melee"
+      },
+      {
+        "amount": 1,
+        "crit": false,
+        "damageType": "physical",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 1740,
+        "source": "enemy-act2.sand-raider-5-1fa4",
+        "target": "player-1792497600000",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "monster.weak_melee"
+      },
+      {
+        "amount": 23,
+        "crit": false,
+        "damageType": "cold",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 3400,
+        "source": "enemy-act2.horror-mage-8-2d38",
+        "target": "player-1792497600000",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "monster.frost_bolt"
+      },
+      {
+        "amount": 28,
+        "crit": false,
+        "damageType": "cold",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 3498.823529411765,
+        "source": "enemy-act2.horror-mage-4-3370",
+        "target": "player-1792497600000",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "monster.frost_bolt"
+      },
+      {
+        "amount": 59,
+        "crit": false,
+        "damageType": "lightning",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 3498.823529411765,
+        "source": "enemy-act2.horror-mage-0-9ea9",
+        "target": "player-1792497600000",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "monster.lightning_bolt"
+      },
+      {
+        "amount": 1,
+        "crit": false,
+        "damageType": "physical",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 3575.632183908046,
+        "source": "enemy-act2.sand-raider-7-415c",
+        "target": "player-1792497600000",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "monster.weak_melee"
+      },
+      {
+        "amount": 1,
+        "crit": false,
+        "damageType": "physical",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 3575.632183908046,
+        "source": "enemy-act2.sand-raider-1-1264",
+        "target": "player-1792497600000",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "monster.weak_melee"
+      },
+      {
+        "amount": 1,
+        "crit": false,
+        "damageType": "physical",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 3575.632183908046,
+        "source": "enemy-act2.sand-raider-11-a2c9",
+        "target": "player-1792497600000",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "monster.weak_melee"
+      },
+      {
+        "amount": 0,
+        "crit": false,
+        "damageType": "physical",
+        "dodged": true,
+        "kind": "damage",
+        "simClockMs": 3575.632183908046,
+        "source": "enemy-act2.sand-raider-9-53a7",
+        "target": "player-1792497600000",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "monster.weak_melee"
+      },
+      {
+        "amount": 56,
+        "crit": false,
+        "damageType": "lightning",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 5100,
+        "source": "enemy-act2.horror-mage-8-2d38",
+        "target": "player-1792497600000",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "monster.lightning_bolt"
+      },
+      {
+        "amount": 1,
+        "crit": false,
+        "damageType": "physical",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 5220,
+        "source": "enemy-act2.sand-raider-2-2e59",
+        "target": "player-1792497600000",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "monster.weak_melee"
+      },
+      {
+        "amount": 50,
+        "crit": false,
+        "damageType": "lightning",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 5400,
+        "source": "enemy-act2.horror-mage-4-3370",
+        "target": "player-1792497600000",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "monster.lightning_bolt"
+      }
+    ],
+    "partyHealingEvents": [],
+    "heroActions": [
+      {
+        "actor": "player-1792497600000",
+        "kind": "action",
+        "simClockMs": 1420,
+        "skillId": "sorceress.ice_blast",
+        "uiDelayMs": 328
+      },
+      {
+        "actor": "player-1792497600000",
+        "kind": "action",
+        "simClockMs": 2840,
+        "skillId": "sorceress.frost_nova",
+        "uiDelayMs": 420
+      },
+      {
+        "actor": "player-1792497600000",
+        "kind": "action",
+        "simClockMs": 4589.4647887323945,
+        "skillId": "sorceress.ice_blast",
+        "uiDelayMs": 221.46478873239448
+      }
+    ],
+    "heroOutgoing": [
+      {
+        "amount": 9,
+        "crit": false,
+        "damageType": "cold",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 1420,
+        "source": "player-1792497600000",
+        "target": "enemy-act2.horror-mage-0-9ea9",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "sorceress.ice_blast"
+      },
+      {
+        "amount": 1,
+        "crit": false,
+        "damageType": "cold",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 2840,
+        "source": "player-1792497600000",
+        "target": "enemy-act2.horror-mage-0-9ea9",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "sorceress.frost_nova"
+      },
+      {
+        "amount": 11,
+        "crit": false,
+        "damageType": "cold",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 2840,
+        "source": "player-1792497600000",
+        "target": "enemy-act2.sand-raider-1-1264",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "sorceress.frost_nova"
+      },
+      {
+        "amount": 0,
+        "crit": false,
+        "damageType": "cold",
+        "dodged": true,
+        "kind": "damage",
+        "simClockMs": 2840,
+        "source": "player-1792497600000",
+        "target": "enemy-act2.sand-raider-2-2e59",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "sorceress.frost_nova"
+      },
+      {
+        "amount": 18,
+        "crit": false,
+        "damageType": "cold",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 2840,
+        "source": "player-1792497600000",
+        "target": "enemy-act2.sand-raider-3-1253",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "sorceress.frost_nova"
+      },
+      {
+        "amount": 10,
+        "crit": false,
+        "damageType": "cold",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 2840,
+        "source": "player-1792497600000",
+        "target": "enemy-act2.horror-mage-4-3370",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "sorceress.frost_nova"
+      },
+      {
+        "amount": 57,
+        "crit": true,
+        "damageType": "cold",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 2840,
+        "source": "player-1792497600000",
+        "target": "enemy-act2.sand-raider-5-1fa4",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "sorceress.frost_nova"
+      },
+      {
+        "amount": 17,
+        "crit": false,
+        "damageType": "cold",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 2840,
+        "source": "player-1792497600000",
+        "target": "enemy-act2.sand-raider-6-7546",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "sorceress.frost_nova"
+      },
+      {
+        "amount": 18,
+        "crit": false,
+        "damageType": "cold",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 2840,
+        "source": "player-1792497600000",
+        "target": "enemy-act2.sand-raider-7-415c",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "sorceress.frost_nova"
+      },
+      {
+        "amount": 0,
+        "crit": false,
+        "damageType": "cold",
+        "dodged": true,
+        "kind": "damage",
+        "simClockMs": 2840,
+        "source": "player-1792497600000",
+        "target": "enemy-act2.horror-mage-8-2d38",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "sorceress.frost_nova"
+      },
+      {
+        "amount": 16,
+        "crit": false,
+        "damageType": "cold",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 2840,
+        "source": "player-1792497600000",
+        "target": "enemy-act2.sand-raider-9-53a7",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "sorceress.frost_nova"
+      },
+      {
+        "amount": 0,
+        "crit": false,
+        "damageType": "cold",
+        "dodged": true,
+        "kind": "damage",
+        "simClockMs": 2840,
+        "source": "player-1792497600000",
+        "target": "enemy-act2.sand-raider-10-38d6",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "sorceress.frost_nova"
+      },
+      {
+        "amount": 13,
+        "crit": false,
+        "damageType": "cold",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 2840,
+        "source": "player-1792497600000",
+        "target": "enemy-act2.sand-raider-11-a2c9",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "sorceress.frost_nova"
+      },
+      {
+        "amount": 10,
+        "crit": false,
+        "damageType": "cold",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 2840,
+        "source": "player-1792497600000",
+        "target": "enemy-act2.horror-mage-12-4101",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "sorceress.frost_nova"
+      },
+      {
+        "amount": 13,
+        "crit": false,
+        "damageType": "cold",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 2840,
+        "source": "player-1792497600000",
+        "target": "enemy-act2.sand-raider-13-08ec",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "sorceress.frost_nova"
+      },
+      {
+        "amount": 19,
+        "crit": false,
+        "damageType": "cold",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 2840,
+        "source": "player-1792497600000",
+        "target": "enemy-act2.sand-raider-14-e7e5",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "sorceress.frost_nova"
+      },
+      {
+        "amount": 13,
+        "crit": false,
+        "damageType": "cold",
+        "dodged": false,
+        "kind": "damage",
+        "simClockMs": 4589.4647887323945,
+        "source": "player-1792497600000",
+        "target": "enemy-act2.horror-mage-0-9ea9",
+        "uiDelayMs": 50,
+        "associatedLatestAction": "sorceress.ice_blast"
+      }
+    ],
+    "deaths": [
+      {
+        "kind": "death",
+        "simClockMs": 5400,
+        "target": "player-1792497600000",
+        "uiDelayMs": 50
+      }
+    ],
+    "rank9Observation": "The native actor has Ice Blast rank9 and casts it twice; recorded cold hits against the rare elite are9 and13. Different targets/mitigation/rolls prevent attributing a measured delta to rank8→9 from these separate encounters. No alternate-rank projection or combat was run.",
+    "attributionLimitation": "Damage records carry no skillId. associatedLatestAction joins each source to its latest prior action in the same ordered recording; raw events are retained for verification.",
+    "observations": [
+      "Hero starts W4 at full native342HP/241MP; Rogue293HP/196MP. No W5 transient HP/mana was transplanted.",
+      "Hero damage records total355: lightning296, cold51, physical8; this includes final13 overkill beyond342HP. Six lightning and two cold hits land with zero spell dodges; two physical hits are dodged.",
+      "All15 enemies remain alive at hero death5400ms; native original-hero requirement terminates despite Rogue284HP.",
+      "Frozen hero has magicResist0, elemental resistances30 and magicDodge0.08; a single observed result does not establish an engine defect or a winning alternative."
+    ],
+    "sourceAudit": {
+      "verdict": "Observed configured risk; no correctness mismatch established by this one under-levelled loss.",
+      "iceBlast9": "Raw77–97; rareelite cold55% then flatMR26 yields floor(raw*.45−26)=8–17, matching actual9/13. Nova2 raw28–38 reaches minimum1. ATK is added only for attackDamagePct effects, absent here.",
+      "incomingLightning": "LightningBolt raw50–70. FrostBolt chills hero3400ms, refreshed3498.823529ms. Lightning vs chill multiplies1.3; hero lightningRes30/MR0 yields noncrit45–63, matching max59. No ATK addition.",
+      "nativeLevel": "Area14 +finalwaveoffset3 +half(authored16−base14)=18.",
+      "eliteTier": "Rareelite MR=round((18−1)*1.5)=26; DEF=round((30+17*1.5)*1.3)=72; intrinsic rareelite+30allres gives cold/lightning55 atop archetype25.",
+      "pack": "ActII forceElitePack config yields15: 1rareelite+14rareminions,4horrorMages total+11sandraiders. SmallerActI guard does not apply.",
+      "affix": {
+        "recordedId": null,
+        "inferredId": "elite-affix/extra-fire-damage",
+        "basis": "All15have appendedFireBall; authored mage has onlyLightningBolt/FrostBolt and shippedconfig uniquely maps extraFireBall to thisaffix. forceElitePack propagatesaffix through nonActI pack.",
+        "observedFireDamage": 0,
+        "intrinsicResistanceBonusIsSeparate": true
+      },
+      "references": [
+        {
+          "path": "src/engine/combat/damage.ts",
+          "line": 153
+        },
+        {
+          "path": "src/engine/combat/combat.ts",
+          "line": 420
+        },
+        {
+          "path": "src/engine/combat/sub-area-run.ts",
+          "line": 271
+        },
+        {
+          "path": "src/engine/combat/sub-area-run.ts",
+          "line": 494
+        },
+        {
+          "path": "src/engine/combat/sub-area-run.ts",
+          "line": 584
+        },
+        {
+          "path": "src/engine/combat/monster-factory.ts",
+          "line": 147
+        },
+        {
+          "path": "src/stores/combatHelpers.ts",
+          "line": 347
+        },
+        {
+          "path": "src/data/elite/elite-config.json",
+          "line": 6
+        },
+        {
+          "path": "src/data/elite/elite-config.json",
+          "line": 25
+        },
+        {
+          "path": "src/engine/skills/builders.ts",
+          "line": 207
+        },
+        {
+          "path": "src/engine/combat/combo.ts",
+          "line": 32
+        }
+      ],
+      "limits": "No extra combat/projection, matched-level win-rate acceptance, winning alternative, or sufficient farming strategy is established."
+    }
+  },
+  "cleanup": {
+    "taskOwnedScratch": "/tmp/d2h5-native17-rocky-waste.HXwmZJ",
+    "removedFiles": [
+      "report.json",
+      "report.json.native-export.json",
+      "report.json.native-capture.json",
+      "harvest.mjs",
+      "finalize.mjs"
+    ],
+    "reviewConsumersFinished": true,
+    "retainedBytesReverifiedBeforeRemoval": true,
+    "verifiedAbsent": true,
+    "remainingTaskOwnedScratch": []
+  }
+}
