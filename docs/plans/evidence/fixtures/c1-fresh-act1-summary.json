@@ -1,0 +1,96 @@
+{
+  "runtimeHead": "5f417b4e0d9303d083ad8f2eee2f9cfac65aefdf",
+  "checkpoint": "C1 original exit accepted; C2-C4/full G0-G7 remain open",
+  "qa": "QA-C1 ADEQUATE; no remaining blocking gap against original C1 exit",
+  "browser": {
+    "verifiedAt": "2026-10-23T02:58:33.334522+00:00",
+    "session": 76296,
+    "exitCode": 0,
+    "source-provenance.json": {
+      "files": 1527,
+      "mismatches": []
+    },
+    "build-provenance.json": {
+      "files": 760,
+      "mismatches": []
+    },
+    "inputs": {
+      "files": 14,
+      "mismatches": []
+    },
+    "reportStats": {
+      "startTime": "2026-10-23T02:45:30.648Z",
+      "duration": 764945.4519999999,
+      "expected": 1,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "outcome": {
+      "outcome": "pass",
+      "ordinal": 107,
+      "level": 12,
+      "heroXP": 179290,
+      "mercXP": 134622,
+      "items": 3920,
+      "errors": []
+    },
+    "previewPort44335Closed": true
+  },
+  "cleanup": {
+    "at": "2026-10-23T03:00:38.535504+00:00",
+    "owner": "root",
+    "process": "session76296 terminal exit0; QA readers released",
+    "removed": [
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-native-growth-draft-gh7sibpa/dist",
+        "files": 760,
+        "bytes": 41054227
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-native-growth-draft-gh7sibpa/tmp",
+        "files": 104,
+        "bytes": 925968
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-native-growth-draft-gh7sibpa/cache",
+        "files": 8,
+        "bytes": 622496
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-native-growth-draft-gh7sibpa/browser-output",
+        "files": 1,
+        "bytes": 45
+      }
+    ],
+    "absent": [],
+    "failures": [],
+    "remaining": [],
+    "helperCachesRemaining": [],
+    "previewPort44335Closed": true
+  },
+  "deliverables": [
+    {
+      "source": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-native-growth-draft-gh7sibpa/fresh-campaign-committed.json.gz",
+      "repository": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/c1-fresh-act1-earned.json.gz",
+      "sha256": "fc98899c8bbe04a29e1b94e865afce87b27670da512d222bd4b24788e095467b",
+      "bytes": 31108
+    },
+    {
+      "source": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-native-growth-draft-gh7sibpa/earned-boss-coif-comparison.png",
+      "repository": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/c1-fresh-act1-boss-reward.png",
+      "sha256": "37d5c9b763024662a4a98a6e4c00c0aa93e18efe3ed99278e78703fb8299d408",
+      "bytes": 57757
+    },
+    {
+      "source": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-native-growth-draft-gh7sibpa/fresh-mobile-act-two-continued.png",
+      "repository": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/c1-fresh-act2-available-continued.png",
+      "sha256": "147e97b44b50551810f625610dcdde340b39c7e3e70161a3bc4672b902c0c562",
+      "bytes": 50504
+    }
+  ],
+  "rawRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-native-growth-draft-gh7sibpa",
+  "retainedManifestSha256": "36590190ac79bae650b0114eded08fba32184708b141b89905c81cd18704f212",
+  "owner": "root",
+  "retainedUntil": "dependent C2/full-v1 consumers finish; root removes afterward"
+}
