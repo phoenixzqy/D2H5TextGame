@@ -68,7 +68,7 @@ export function isQuestTableRewardInput(value: unknown): value is QuestTableRewa
     typeof value.picks === 'number' && Number.isSafeInteger(value.picks) && value.picks > 0;
 }
 
-function materializeDrops(drops: readonly DropResult[], pools: AwardDataPools, rng: Rng):
+function materializeDrops(drops: readonly DropResult[], pools: AwardDataPools, rng: Rng, strictRarity = false):
   { rewards: KillRewards; complete: boolean } {
   const items: Item[] = [];
   let runeShards = 0, wishstones = 0, runes = 0, gems = 0;
@@ -76,7 +76,7 @@ function materializeDrops(drops: readonly DropResult[], pools: AwardDataPools, r
   for (const drop of drops) {
     if (drop.kind === 'item') {
       const item = rollItem(drop, pools, rng);
-      if (item) items.push(item);
+      if (item && (!strictRarity || item.rarity === drop.rarity)) items.push(item);
       else complete = false;
     } else if (drop.currency === 'runeShards') runeShards += drop.quantity;
     else if (drop.currency === 'wishstones') wishstones += drop.quantity;
@@ -99,7 +99,7 @@ export function rollQuestTableRewards(input: QuestTableRewardInput, pools: Award
   const drops = rollDrops({ tc: { ...tc, numPicks: input.picks, noDropChance: 0 },
     tier: 'chapter-boss', monsterLevel: input.ilvl, magicFind: 0, magicFindMultiplier: 1 }, rng);
   if (drops.length !== input.picks) return undefined;
-  const { rewards, complete } = materializeDrops(drops, pools, rng);
+  const { rewards, complete } = materializeDrops(drops, pools, rng, true);
   if (!complete || ![rewards.runeShards, rewards.wishstones, rewards.runes, rewards.gems]
     .every(amount => Number.isSafeInteger(amount) && amount >= 0)) return undefined;
   return rewards;

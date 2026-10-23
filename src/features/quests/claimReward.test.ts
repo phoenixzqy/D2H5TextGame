@@ -14,6 +14,7 @@ import { loadAwardPools } from '@/data/loaders/loot';
 import uniqueItems from '@/data/items/uniques.json';
 import * as itemRoll from '@/engine/loot/rollItem';
 import { createRng, hashSeed } from '@/engine/rng';
+import * as rngModule from '@/engine/rng';
 import { BACKPACK_CAPACITY } from '@/stores/inventoryCapacity';
 import type { Item } from '@/engine/types/items';
 import { canClaim, claimQuestReward } from './claimReward';
@@ -440,6 +441,114 @@ describe('explicit unique quest claim capability (P04a07b)', () => {
       const paid = data();
       expect(claimQuestReward(DEN)).toBe('already-claimed');
       expect(data()).toEqual(paid);
+    });
+  });
+});
+
+describe('closed Gidbinn ring profile through the shared Claim boundary', () => {
+  const profileId = 'quest-rewards/act3-gidbinn-ring-v1';
+  const rewards = { xp: 5000, itemDrop: { profileId } };
+  it.each([
+    ['gidbinn-hero-2', 'items/unique/nagelring'],
+    ['gidbinn-hero-0', 'items/unique/manald-heal'],
+    ['gidbinn-hero-4', 'items/unique/ring-of-the-leech'],
+    ['gidbinn-hero-1', 'items/unique/stone-of-jordan']
+  ])('claims the fixed seed selection for %s once', (playerId, uniqueId) => {
+    const mercId = hire();
+    complete();
+    usePlayerStore.getState().setPlayer({ ...required(usePlayerStore.getState().player),
+      id: playerId, level: 30, experience: 0 });
+    const xpBefore = playerXp();
+    const mercBefore = mercXp(mercId);
+    const exact = { uniqueId, ilvl: 34 };
+    itemRoll.__resetRollItemSeqForTests();
+    const expected = required(itemRoll.rollUniqueItem(exact, loadAwardPools(), createRng(hashSeed(
+      JSON.stringify(['quest-unique-v1', playerId, DEN, uniqueId, 34])
+    ))));
+    itemRoll.__resetRollItemSeqForTests();
+    const privateRngs = vi.spyOn(rngModule, 'createRng');
+    withRewards(rewards, () => {
+      expect(claimQuestReward(DEN)).toBe('ok');
+      expect(useInventoryStore.getState().backpack).toEqual([expected]);
+      expect(playerXp()).toBe(xpBefore + 5000);
+      expect(mercXp(mercId)).toBe(mercBefore + 3750);
+      expect(privateRngs.mock.calls).toEqual([
+        [hashSeed(JSON.stringify(['quest-unique-pool-v1', playerId, DEN, profileId, 34]))],
+        [hashSeed(JSON.stringify(['quest-unique-v1', playerId, DEN, uniqueId, 34]))]
+      ]);
+      const paid = data();
+      expect(claimQuestReward(DEN)).toBe('already-claimed');
+      expect(data()).toEqual(paid);
+    });
+  });
+
+  it('rejects an invalid unselected profile member before allocation or any write', () => {
+    complete();
+    usePlayerStore.getState().setPlayer({ ...required(usePlayerStore.getState().player), id: 'gidbinn-hero-2' });
+    const unselected = required(uniqueItems.find(row => row.id === 'items/unique/stone-of-jordan'));
+    uniqueItems.push(unselected);
+    try { noAllocationRefusal(rewards); }
+    finally { expect(uniqueItems.pop()).toBe(unselected); }
+  });
+
+  it('preflights the whole bag before profile construction', () => {
+    complete();
+    noAllocationRefusal({ ...rewards, service: 'identify_free' });
+  });
+
+  it('retries the same selected ring after a real allocation and constructor failure without rewinding IDs', () => {
+    complete(); complete(SUN);
+    usePlayerStore.getState().setPlayer({ ...required(usePlayerStore.getState().player), id: 'gidbinn-hero-4' });
+    const actual = itemRoll.rollUniqueItem;
+    let prepared: Item | undefined;
+    let reentry = '';
+    vi.spyOn(itemRoll, 'rollUniqueItem').mockImplementationOnce((...args) => {
+      prepared = actual(...args);
+      reentry = claimQuestReward(SUN);
+      throw new Error('Controlled profile preparation failure');
+    });
+    withRewards(rewards, () => {
+      expectRefusal(DEN, 'grant-failed');
+      expect(reentry).toBe('claim-in-progress');
+      expect(prepared?.uniqueId).toBe('items/unique/ring-of-the-leech');
+      expect(claimQuestReward(DEN)).toBe('ok');
+      const item = required(useInventoryStore.getState().backpack[0]);
+      expect(item).toEqual({ ...prepared, id: item.id });
+      expect(item.id).not.toBe(prepared?.id);
+      const sequence = (id: string) => parseInt(required(id.split('-')[2]), 36);
+      expect(sequence(item.id)).toBe(sequence(required(prepared).id) + 1);
+    });
+  });
+
+  it('restores a mutate-then-throw grant and keeps a full backpack lossless on retry', () => {
+    const mercId = hire();
+    complete();
+    usePlayerStore.getState().setPlayer({ ...required(usePlayerStore.getState().player),
+      id: 'gidbinn-hero-1', level: 30, experience: 0 });
+    const backpack = Array.from({ length: BACKPACK_CAPACITY }, () => ordinaryItem());
+    useInventoryStore.setState({ backpack });
+    const xpBefore = playerXp();
+    const mercBefore = mercXp(mercId);
+    const actual = useInventoryStore.getState().addItem;
+    let failedItem: Item | undefined;
+    vi.spyOn(useInventoryStore.getState(), 'addItem').mockImplementationOnce(item => {
+      failedItem = item;
+      actual(item);
+      throw new Error('Controlled profile grant failure');
+    });
+    const before = data();
+    withRewards(rewards, () => {
+      expect(claimQuestReward(DEN)).toBe('grant-failed');
+      expect(data()).toEqual(before);
+      expect(claimQuestReward(DEN)).toBe('ok');
+      const after = useInventoryStore.getState().backpack;
+      expect(after).toHaveLength(BACKPACK_CAPACITY + 1);
+      backpack.forEach((item, index) => { expect(after[index]).toBe(item); });
+      const item = required(after[BACKPACK_CAPACITY]);
+      expect(item).toEqual({ ...failedItem, id: item.id });
+      expect(item.id).not.toBe(failedItem?.id);
+      expect(playerXp()).toBe(xpBefore + 5000);
+      expect(mercXp(mercId)).toBe(mercBefore + 3750);
     });
   });
 });

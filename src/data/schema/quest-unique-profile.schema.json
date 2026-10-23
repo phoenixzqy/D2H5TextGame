@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "quest-unique-profile.schema.json",
+  "title": "Closed v1 Gidbinn unique-ring reward profile",
+  "description": "Membership, literal order, weights and item level are compatibility data. Any change requires a new profile version.",
+  "type": "object",
+  "const": {
+    "id": "quest-rewards/act3-gidbinn-ring-v1",
+    "ilvl": 34,
+    "entries": [
+      { "uniqueId": "items/unique/nagelring", "baseId": "items/base/ring", "reqLevel": 10, "weight": 1 },
+      { "uniqueId": "items/unique/manald-heal", "baseId": "items/base/ring", "reqLevel": 15, "weight": 1 },
+      { "uniqueId": "items/unique/ring-of-the-leech", "baseId": "items/base/ring-jade", "reqLevel": 27, "weight": 1 },
+      { "uniqueId": "items/unique/stone-of-jordan", "baseId": "items/base/ring-silver", "reqLevel": 29, "weight": 1 }
+    ]
+  }
+}

@@ -6,7 +6,9 @@ import { useMercStore, MERC_XP_SHARE, mercXpForLevel } from '@/stores/mercStore'
 import { isReplacingSave, useHydrationStore } from '@/stores/persistence';
 import { loadQuests, type QuestDef } from '@/data/loaders/quests';
 import { loadAwardPools } from '@/data/loaders/loot';
+import { loadQuestUniqueProfile } from '@/data/loaders/quest-rewards';
 import { rollUniqueItem, type RollUniqueItemInput } from '@/engine/loot/rollItem';
+import { isQuestUniqueProfileRewardInput, resolveQuestUniqueProfile } from '@/engine/loot/quest-unique';
 import { isQuestTableRewardInput, rollQuestTableRewards, type QuestTableRewardInput } from '@/engine/loot/award';
 import { createRng, hashSeed } from '@/engine/rng';
 import type { Item } from '@/engine/types/items';
@@ -121,6 +123,7 @@ export function claimQuestReward(questId: string): ClaimResult {
 
     const grants: { kind: NumericReward; amount: number }[] = [];
     let uniqueReward: RollUniqueItemInput | undefined;
+    let uniqueProfileReward = false;
     let tableReward: QuestTableRewardInput | undefined;
     let questItems: QuestItemLedger | undefined;
     let resistanceReward = false;
@@ -145,7 +148,13 @@ export function claimQuestReward(questId: string): ClaimResult {
         continue;
       }
       if (kind === 'itemDrop') {
+        if (isQuestUniqueProfileRewardInput(amount)) {
+          uniqueProfileReward = true;
+          continue;
+        }
         if (typeof amount !== 'object' || amount === null
+          || Object.keys(amount).length !== 2
+          || !Object.hasOwn(amount, 'uniqueId') || !Object.hasOwn(amount, 'ilvl')
           || !('uniqueId' in amount) || typeof amount.uniqueId !== 'string'
           || !('ilvl' in amount) || typeof amount.ilvl !== 'number'
           || !Number.isInteger(amount.ilvl) || amount.ilvl < 1) return 'unsupported-rewards';
@@ -161,8 +170,14 @@ export function claimQuestReward(questId: string): ClaimResult {
         || !safeCount(amount)) return 'unsupported-rewards';
       if (amount > 0) grants.push({ kind, amount });
     }
-    if (grants.length === 0 && !uniqueReward && !tableReward && !questItems && !resistanceReward) return 'no-rewards';
+    if (grants.length === 0 && !uniqueReward && !uniqueProfileReward && !tableReward && !questItems && !resistanceReward) return 'no-rewards';
     if (!safeGrants(player, grants)) return 'unsupported-rewards';
+    if (uniqueProfileReward) {
+      try {
+        uniqueReward = resolveQuestUniqueProfile(loadQuestUniqueProfile(), loadAwardPools(), player.id, quest.id);
+        if (!uniqueReward) return 'unsupported-rewards';
+      } catch { return 'unsupported-rewards'; }
+    }
 
     const claimedContext = { ...questProgress, [questId]: { ...progress, rewardClaimed: true } };
     if (resistanceReward) {

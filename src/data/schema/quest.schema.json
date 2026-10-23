@@ -724,7 +724,7 @@
           "$ref": "#/$defs/statReward"
         },
         "itemDrop": {
-          "description": "Legacy item identifier or one exact unique reward; syntax only, delivery and eligibility are separate.",
+          "description": "Legacy identifier, exact unique reward, or closed versioned unique profile; delivery and eligibility are separate.",
           "oneOf": [
             {
               "type": "string",
@@ -750,6 +750,15 @@
                   "minimum": 1,
                   "description": "Authored item generation level; no campaign cap."
                 }
+              }
+            },
+            {
+              "type": "object",
+              "description": "One ring from the closed Gidbinn v1 profile at its fixed item level.",
+              "required": ["profileId"],
+              "additionalProperties": false,
+              "properties": {
+                "profileId": { "const": "quest-rewards/act3-gidbinn-ring-v1" }
               }
             }
           ]
