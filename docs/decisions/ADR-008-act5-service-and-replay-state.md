@@ -50,8 +50,15 @@ have prefix `items/base/`.
 | 6 | wp1h-legend-sword, wp2h-thunder-maul |
 
 New normal gear rolls seeded uniform integer `socketCapacity` in0..maxSockets;
-magic/rare in0..min(2,maxSockets). Roll capacity after existing item identity,
-base/affix/stat rolls so this is explicit new generation behavior. Unique/set
+magic/rare in0..min(2,maxSockets). Resolve capacity after existing item identity,
+base/affix/stat rolls using a private RNG, preserving the parent loot/combat
+RNG sequence. Seed it with
+`hashSeed(JSON.stringify(['item-socket-capacity-v1', generationEntropy, item.baseId, item.rarity, item.level]))`.
+`generationEntropy` is the seeded RNG component of current generated
+`it-<rng>-<seq>` IDs, excluding the allocator suffix; an equivalent explicit
+stable generation-entropy parameter is acceptable. Do not seed from the whole
+ID: failed claim attempts leave allowed allocator gaps, which must not reroll
+capacity on retry with the same quest seed. Unique/set
 retain fixed current authored capacity (`base.sockets`) unless an explicit
 reviewed template capacity override is added. No such override is authorized
 in this slice. Zero-max bases remain ineligible; no synthetic free gear is
@@ -161,9 +168,10 @@ types and fixtures. New profile fields never widen frozen16 validation.
 
 Services become real persisted selected-instance transformations; new ordinary
 gear can have fewer sockets than its reviewed maximum. Legacy capacity remains
-stable, and fixed unique/set capacity is respected. New seeded capacity rolls
-are an intentional generation change and need deterministic tests; do not
-claim exact future RNG sequences reproduce old generation.
+stable, and fixed unique/set capacity is respected. New seeded capacity is an
+intentional item property change and needs deterministic tests, including
+unchanged capacity across failed-claim allocator gaps. The private roll does
+not consume parent RNG or perturb subsequent ordinary loot outcomes.
 
 Nightmare has real level-derived boss growth and useful ordinary income while
 keeping Normal tuning. Higher monster levels may exceed the hero90 cap; P15
