@@ -1,0 +1,14 @@
+[
+  {
+    "file": "earned-socket-equipped.json.gz",
+    "source": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-socket-dmbgdt1a/before-challenge.json.gz",
+    "sha256": "6fd11ec0b99af022c3c2eeee4a453d859e91bb36a2655b590be8de91bf33311f",
+    "bytes": 68896
+  },
+  {
+    "file": "earned-socket-wave1-settled.json.gz",
+    "source": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-earned-socket-dmbgdt1a/wave-1-settled.json.gz",
+    "sha256": "ac5b91c07f9df1bfc797e78f179e7d12e98c46e8b958098d41638bda5f443a71",
+    "bytes": 68969
+  }
+]
