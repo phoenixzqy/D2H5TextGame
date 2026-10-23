@@ -12,6 +12,8 @@ export interface ActiveRun {
   readonly act: 1 | 2 | 3 | 4 | 5;
   readonly seed: number;
   readonly mode: 'manual' | 'idle';
+  /** Explicit new actual encounter for historical Khalim recovery; never inferred from flags. */
+  readonly questRecovery?: 'khalims-council';
   /** Exact merc unit constructed at run start; roster changes never retarget this run. */
   readonly fieldedMercCombatId?: string;
   playerUnit: CombatUnit;

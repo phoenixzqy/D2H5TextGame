@@ -2,6 +2,8 @@
 import Ajv, { type AnySchema } from 'ajv';
 import { restoreEquipment, restoreItem, restoreUnit } from './restore';
 import { repairEquipmentRateCache, repairQuestLifeCache, repairQuestResistanceCache } from './equipment-rate-cache';
+import { COUNCIL_RECEIPT_SOURCE, isCouncilReceiptProgress } from '../map/council-admission';
+import type { QuestActionReceipts } from '../types/save';
 import { repairMercenaryGrowth } from '../progression/merc-growth';
 import { LEVEL_CAP } from '../progression/xp';
 import { CURRENT_SAVE_VERSION, type SaveCurrent, type SaveV7, type SaveV8, type SaveV9, type SaveV10, type SaveV11, type QuestItemEntry, type QuestItemLedger } from '../types/save';
@@ -243,8 +245,9 @@ const validate = ajv.compile<SaveCurrent>(saveSchema({ const: CURRENT_SAVE_VERSI
 }, {
   questItems: questItemLedgerSchema
 }, {
-  // No action is issuable until its closed definition and source graph are integrated.
-  questReceipts: { type: 'object', additionalProperties: false, properties: {} }
+  // Only the exact Council action is admitted; future action keys remain invalid.
+  questReceipts: { type: 'object', additionalProperties: false,
+    properties: { [COUNCIL_RECEIPT_SOURCE]: { const: true } } }
 }));
 interface LedgerContext {
   questItems: QuestItemLedger;
@@ -552,15 +555,25 @@ function rejectHistoricalQuestReceipts(value: unknown): void {
   }
 }
 
+/** Closed finite proof map; validates retained history but never reconstructs a proof. */
+export function validateQuestActionReceipts(receipts: unknown, questProgress: unknown): QuestActionReceipts {
+  if (!record(receipts) || (Object.getPrototypeOf(receipts) !== Object.prototype &&
+    Object.getPrototypeOf(receipts) !== null) || Reflect.ownKeys(receipts).some(key =>
+      key !== COUNCIL_RECEIPT_SOURCE || receipts[key] !== true)) {
+    throw new Error('Invalid save: questReceipts requires a closed JSON action receipt map');
+  }
+  const context = ledgerContext({}, questProgress);
+  if (Object.hasOwn(receipts, COUNCIL_RECEIPT_SOURCE) && !isCouncilReceiptProgress(context.questProgress)) {
+    throw new Error('Invalid save: Council proof requires canonical tracked Khalim progress');
+  }
+  return receipts as QuestActionReceipts;
+}
+
 /** Validate a migrated save before any IO or store mutation. Preserves optional fields. */
 export function validateSave(value: unknown): SaveCurrent {
   rejectHistoricalQuestReceipts(value);
   if (record(value) && value.version === CURRENT_SAVE_VERSION && record(value.map)) {
-    const receipts = value.map.questReceipts;
-    if (!record(receipts) || (Object.getPrototypeOf(receipts) !== Object.prototype &&
-      Object.getPrototypeOf(receipts) !== null) || Reflect.ownKeys(receipts).length !== 0) {
-      throw new Error('Invalid save: questReceipts requires a closed JSON action receipt map');
-    }
+    validateQuestActionReceipts(value.map.questReceipts, value.map.questProgress);
   }
   if (record(value) && record(value.inventory) && record(value.map)) {
     validateQuestItemLedger(value.inventory.questItems, value.map.questProgress);

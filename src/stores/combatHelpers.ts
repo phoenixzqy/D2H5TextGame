@@ -24,6 +24,10 @@ import { eliteConfig, monsters as monsterList } from '@/data/index';
 import { resolveSubArea } from './subAreaResolver';
 import { useCombatStore, type CombatLogEntry } from './combatStore';
 import { stageRecordedWave, type StagedRecordedWave } from './recordedWaveStaging';
+import { captureCouncilEncounter, COUNCIL_QUEST_ID, COUNCIL_RECEIPT_SOURCE,
+  hasOriginalCouncilVictory, isCouncilAdmissionEligible, type CouncilEncounter } from '@/engine/map/council-admission';
+import { withQuestTransaction } from '@/features/quests/questTransaction';
+import { validateQuestActionReceipts } from '@/engine/save/validate';
 import { combatRunLifecycle, type ActiveRun } from './combatRunLifecycle';
 import { abandonRecordedWaves, readRecordedWaveInstallation, markRecordedWaveMetadataInstalled,
   observeRecordedWaveSelection, recognizeRecordedWavePublication, RecordedWaveReceiptError,
@@ -450,7 +454,11 @@ export function refreshActivePlayerCombatConfig({
             elapsedMs: original.waveElapsedMs, recording: original.recording,
             publication: original.publication, debitIntent: null }
         : stageWave(run, run.waveIdx, attempt, false, run.carryPlayerTeam, false);
-      commitStagedWave(run, staged, { kind: 'replay' }, attempt, lease);
+      // Replay retains the originally captured origin, even if mutable plan copies changed.
+      const { councilEncounter: _recaptured, ...replay } = staged;
+      commitStagedWave(run, { ...replay,
+        ...(original.councilEncounter ? { councilEncounter: original.councilEncounter } : {}) },
+      { kind: 'replay' }, attempt, lease);
     }
   }, 'replay');
 }
@@ -474,6 +482,7 @@ export function resetIdleElitePity(): void {
  *   - `level`: optional override for monster level (else from JSON).
  *   - `runSeed`: uint32 replay seed, including zero; defaults to the historical area/time hash.
  *   - `challengeOrdinal`: integer in [0, 360360); explicit values do not advance the default counter.
+ *   - `questRecovery`: explicit new Council encounter for historical claimed Khalim recovery.
  * @returns the resolved seed/ordinal and run identity, or null without a player.
  * @throws {RangeError} if a provided replay input is outside its integer range;
  * validation precedes any store, active-run or counter mutation.
@@ -494,12 +503,17 @@ export function startSubAreaRun(opts: {
   readonly mode?: 'manual' | 'idle';
   readonly runSeed?: number;
   readonly challengeOrdinal?: number;
+  readonly questRecovery?: 'khalims-council';
 } = {}): { runId: string; totalWaves: number; runSeed: number; challengeOrdinal: number } | null {
   return startSubAreaRunAttempt(opts);
 }
 
 function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {},
   observation?: PublicationAttemptObservation): ReturnType<typeof startSubAreaRun> {
+  const recoveryMode: unknown = opts.questRecovery;
+  if (recoveryMode !== undefined && recoveryMode !== 'khalims-council') {
+    throw new RangeError('Unknown quest recovery mode');
+  }
   if (opts.runSeed !== undefined &&
     (!Number.isInteger(opts.runSeed) || opts.runSeed < 0 || opts.runSeed > 0xffffffff)) {
     throw new RangeError('runSeed must be an unsigned 32-bit integer');
@@ -574,6 +588,7 @@ function startSubAreaRunAttempt(opts: Parameters<typeof startSubAreaRun>[0] = {}
       act,
       seed,
       mode,
+      ...(opts.questRecovery ? { questRecovery: opts.questRecovery } : {}),
       ...(mercUnit ? { fieldedMercCombatId: mercUnit.id } : {}),
       playerUnit,
       waveIdx: 0,
@@ -624,6 +639,38 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
       if (!beginRecordedWaveSettlement(receipt, lease, { activeRun: run,
         heroId: usePlayerStore.getState().player?.id ?? null, combat })) return 'idle';
       const outcome = binding.recording.outcome;
+      // Snapshot eligibility before ordinary income or any quest event can publish.
+      const councilProgress = useMapStore.getState().questProgress[COUNCIL_QUEST_ID];
+      const councilEncounter = binding.councilEncounter;
+      const councilEligible = councilEncounter !== undefined &&
+        isCouncilAdmissionEligible(useMapStore.getState().questProgress, councilEncounter.historicalRecovery);
+      const publishCouncilProof = (): void => {
+        if (councilEligible &&
+          hasOriginalCouncilVictory(councilEncounter, binding.heroId, outcome) &&
+          useMapStore.getState().questProgress[COUNCIL_QUEST_ID] === councilProgress) {
+          // Only this guarded accepted settlement can publish the Council action proof.
+          const result = withQuestTransaction(() => {
+            const before = useMapStore.getState().questReceipts;
+            if (Object.hasOwn(before, COUNCIL_RECEIPT_SOURCE)) return;
+            const receipts = validateQuestActionReceipts({ ...before, [COUNCIL_RECEIPT_SOURCE]: true },
+              useMapStore.getState().questProgress);
+            try {
+              useMapStore.setState({ questReceipts: receipts });
+            } catch (cause) {
+              try {
+                useMapStore.setState(state => {
+                  const { [COUNCIL_RECEIPT_SOURCE]: _removed, ...receipts } = state.questReceipts;
+                  return { questReceipts: receipts };
+                });
+              } catch (error) {
+                throw new AggregateError([error], 'Council proof restoration failed', { cause });
+              }
+              throw cause;
+            }
+          });
+          if (result === 'claim-in-progress') throw new Error('Council proof transaction is busy');
+        }
+      };
       try {
         const completedWave = run.plan.waves[binding.targetWaveIdx];
         if (
@@ -642,7 +689,6 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
           combatRunLifecycle.activeRun = null;
           return 'defeat';
         }
-
         const slain = outcome.finalEnemyTeam.filter(
           (u) => u.life <= 0 && inferKind(u) !== 'summon'
         );
@@ -716,6 +762,7 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
           // Only a complete sequence of won waves can clear an area or unlock idle.
           useMapStore.getState().markCleared(run.plan.subAreaId);
           combat.markRunVictory();
+          publishCouncilProof();
           finishRecordedWaveSettlement(receipt, lease, { kind: 'terminal', result: 'victory' });
           combatRunLifecycle.activeRun = null;
           return 'victory';
@@ -723,6 +770,7 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
         const carryPlayerTeam = outcome.finalPlayerTeam
           .filter(u => inferKind(u) !== 'summon' && u.life > 0)
           .map(u => rebaseStatusClock(u, binding.waveElapsedMs));
+        publishCouncilProof();
         finishRecordedWaveSettlement(receipt, lease, { kind: 'nextWave', carryPlayerTeam });
         next = { nextWaveIdx: binding.targetWaveIdx + 1, carryPlayerTeam };
       } catch (error) {
@@ -752,6 +800,7 @@ export function abortSubAreaRun(): void {
 
 /** Build the whole recording before changing any run metadata or combat state. */
 interface StagedWaveAttempt extends StagedRecordedWave {
+  readonly councilEncounter?: CouncilEncounter;
   readonly debitIntent: IronGolemDebitIntent | null;
 }
 function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetRunRewards = false,
@@ -819,6 +868,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
   const projected = captured?.ok ? projectIronGolemItem(captured.intent.item) : null;
   const ironGolem = captured?.ok && projected?.eligible
     ? { sourceHeroId: run.playerUnit.id, sourceItemId: captured.intent.item.id, ...projected.bonuses } : null;
+  const councilEncounter = captureCouncilEncounter(run.act, run.plan.subAreaId, wave,
+    enemies, run.questRecovery === 'khalims-council');
   const staged = stageRecordedWave({
     snapshot: {
       seed: waveSeed,
@@ -851,7 +902,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
       event.unit.id === proof.spawnedUnitId && event.simClockMs === 0))) {
     throw new RecordedWaveReceiptError('bindingMismatch');
   }
-  return { ...staged, debitIntent: proof && captured?.ok ? captured.intent : null };
+  return { ...staged, debitIntent: proof && captured?.ok ? captured.intent : null,
+    ...(councilEncounter ? { councilEncounter } : {}) };
 }
 
 /** Preserve cursor/recording values even if the referenced run changes during staging. */
@@ -904,6 +956,7 @@ function commitStagedWave(run: ActiveRun, staged: StagedWaveAttempt, intent: Rec
     heroId: run.playerUnit.id, targetWaveIdx: staged.waveIdx, waveElapsedMs: staged.elapsedMs,
     selection: attempt.selection, ownership: attempt.ownership, debitIntent: staged.debitIntent,
     engineInput: staged.engineInput, attestation: staged.attestation,
+    ...(staged.councilEncounter ? { councilEncounter: staged.councilEncounter } : {}),
     recording: staged.recording, publication: staged.publication }, intent, lease);
   const live = captureWaveAttempt();
   try {
