@@ -1,0 +1,307 @@
+{
+  "verdict": "ADEQUATE retained failure evidence; C1 INCOMPLETE",
+  "runtimeHead": "fd2c96e3136807f558ca382f13eb6e7d7d91f333",
+  "rawEvidenceRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-native-early-boundary",
+  "approvedDecision": "docs/plans/decisions/D02-D07-native-earlier-reward-boundary-v1.md",
+  "attempt": {
+    "browser": "Chromium",
+    "viewport": {
+      "width": 360,
+      "height": 640
+    },
+    "startTime": "2026-10-23T01:31:23.046Z",
+    "durationMs": 740881.725,
+    "result": "failed",
+    "retries": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "browserErrors": [],
+    "stop": "First nonwin; no campaign rerun",
+    "reportTopLevelError": "Testing stopped early after 1 maximum allowed failures."
+  },
+  "primaryTerminalCounts": {
+    "victories": 308,
+    "draws": 1,
+    "prepVictories": 40,
+    "initialDenVictories": 4,
+    "repeatDenVictories": 244,
+    "bloodMoor102Victories": 3,
+    "coldPlains103Victories": 4,
+    "burialGrounds104Victories": 4,
+    "darkWood105Victories": 5,
+    "catacombs106Victories": 4
+  },
+  "earlierRewardBoundary": {
+    "original104SaveExactEquality": true,
+    "externalExpectedAfterExactEquality": true,
+    "selectorChoices": 15,
+    "transferActions": 15,
+    "changedDirectSwaps": 7,
+    "beforeOwned": {
+      "backpack": 3849,
+      "stash": 0,
+      "hero": 7,
+      "merc": 6,
+      "total": 3862,
+      "unique": 3862
+    },
+    "afterOwned": {
+      "backpack": 3847,
+      "stash": 0,
+      "hero": 8,
+      "merc": 7,
+      "total": 3862,
+      "unique": 3862
+    },
+    "ownedIdMultisetConserved": true,
+    "savedHeroHpMpBeforeAndAfter": {
+      "life": 120,
+      "mana": 102
+    },
+    "auditRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-after-burial-audit-83dpqT"
+  },
+  "terminal": {
+    "area": "a1-catacombs",
+    "ordinal": 106,
+    "wave": 5,
+    "waves": 6,
+    "nativeSeed": 483175827,
+    "clock": 1792497600000,
+    "seedInput": "areas/act1-catacombs|1792497600000",
+    "kind": "elite",
+    "initialEnemyCount": 14,
+    "enemyLevel": 18,
+    "liveEnemyCount": 3,
+    "enemies": [
+      {
+        "name": "Dark Stalker CInner Sight",
+        "id": "unit-card-enemy-act1.dark-stalker-2-ff08",
+        "hpPercent": 15.6
+      },
+      {
+        "name": "Dark Stalker ADodgeInner Sight",
+        "id": "unit-card-enemy-act1.dark-stalker-0-675e",
+        "hpPercent": 43.33
+      },
+      {
+        "name": "Dark Stalker DInner Sight",
+        "id": "unit-card-enemy-act1.dark-stalker-3-4abb",
+        "hpPercent": 24.3
+      }
+    ],
+    "heroHpPercent": 90.08,
+    "rogueHpPercent": 87,
+    "heroMana": 180,
+    "alliesAlive": true,
+    "lastTurnLog": "Turn 13 begins",
+    "lastLog": "The battle ends in a draw.",
+    "plannedWaveXp": 2520,
+    "plannedWaveXpIsNotAnAward": true,
+    "exactRuntimeHpAndSimulationElapsedTime": "Not supplied by retained DOM"
+  },
+  "lastCapturedSave": {
+    "equalsPriorWave4Export": true,
+    "captureTiming": "Pre-deferred-settlement: the export was captured after the terminal nonwin but before deferred terminal settlement. No failed-wave XP, loot or currency is observed in this capture; later settlement was not observed.",
+    "level": 12,
+    "experience": 21631,
+    "skillPoints": 0,
+    "statPoints": 0,
+    "owned": {
+      "backpack": 3900,
+      "stash": 0,
+      "hero": 8,
+      "merc": 7,
+      "total": 3915,
+      "unique": 3915
+    },
+    "savedHeroResources": {
+      "life": 120,
+      "lifeMax": 262,
+      "mana": 102,
+      "manaMax": 188
+    },
+    "currencies": {
+      "rune-shard": 442789,
+      "wishstone": 1896,
+      "gem-shard": 378
+    },
+    "map": {
+      "currentAct": 1,
+      "currentSubAreaId": "a1-catacombs",
+      "discoveredAreas": [],
+      "clearedSubAreas": [
+        "areas/act1-den-of-evil",
+        "areas/act1-blood-moor",
+        "areas/act1-cold-plains",
+        "areas/act1-burial-grounds",
+        "areas/act1-dark-wood"
+      ],
+      "questProgress": {
+        "quests/act1-den-of-evil": {
+          "id": "quests/act1-den-of-evil",
+          "status": "completed",
+          "objectives": {
+            "obj-clear-den": true,
+            "obj-return": true
+          },
+          "rewardClaimed": true
+        },
+        "quests/act1-sisters-to-the-slaughter": {
+          "id": "quests/act1-sisters-to-the-slaughter",
+          "status": "inProgress",
+          "objectives": {
+            "obj-kill-andariel": false
+          }
+        }
+      }
+    }
+  },
+  "awards": {
+    "rows": 264,
+    "last": {
+      "area": "a1-catacombs",
+      "ordinal": 106,
+      "wave": 4,
+      "xp": 2210,
+      "mercXP": 1657,
+      "addedItems": [],
+      "currencies": {
+        "rune-shard": 1826,
+        "wishstone": 0,
+        "gem-shard": 1
+      },
+      "heroLevel": 12
+    },
+    "wave5AwardArtifactExists": false
+  },
+  "unreached": [
+    "Catacombs wave 6 / Andariel",
+    "Sisters completion and claim",
+    "Boss reward equipment",
+    "Act II unlock/navigation check",
+    "Final Save, close and new-page Continue"
+  ],
+  "provenance": {
+    "postRun": {
+      "frozen": 11,
+      "source": 1346,
+      "build": 760,
+      "mismatches": []
+    },
+    "independentFrozenHashRecheck": {
+      "files": 11,
+      "mismatches": []
+    },
+    "currentMutableWorktreeIsNotRevalidatedByThisRun": true
+  },
+  "cleanup": {
+    "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-native-early-boundary",
+    "checkedAt": "2026-10-23T01:51:30.417866+00:00",
+    "authorizedExactPaths": [
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-native-early-boundary/dist",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-native-early-boundary/tmp",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-native-early-boundary/cache",
+      "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-native-early-boundary/browser-output"
+    ],
+    "preservedBrowserEvidence": [
+      {
+        "source": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-native-early-boundary/browser-output/fresh-native-joined-fresh--07660-Andariel-quest-and-Continue/test-failed-1.png",
+        "retained": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-native-early-boundary/failure-screenshot.png",
+        "bytes": 35263,
+        "sha256": "c79637dad591c738a8bb837481fa4ec101b5fe95c57827a7dcaf0fda4335c11a"
+      },
+      {
+        "source": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-native-early-boundary/browser-output/fresh-native-joined-fresh--07660-Andariel-quest-and-Continue/error-context.md",
+        "retained": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-native-early-boundary/failure-error-context.md",
+        "bytes": 19006,
+        "sha256": "e556f4599370faec142f4f22ed880875f370d22af7ddfef52e27c15827d85044"
+      },
+      {
+        "source": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-native-early-boundary/browser-output/.last-run.json",
+        "retained": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-native-early-boundary/browser-last-run.json",
+        "bytes": 96,
+        "sha256": "b5d0946478419e4985932a45cf209792f52b266c368bda4cfdc0a36042720361"
+      }
+    ],
+    "processVerification": {
+      "matching_campaign_processes": [],
+      "disposable_path_handles": [],
+      "preview_port": 44333,
+      "preview_port_connect_errno": 111,
+      "preview_port_closed": true,
+      "inspector_and_ancestor_processes_excluded": true
+    },
+    "stoppedProcesses": [],
+    "removed": [
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-native-early-boundary/dist",
+        "files": 760,
+        "bytes": 41050175,
+        "subdirectories": 9,
+        "symlinks": 0
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-native-early-boundary/tmp",
+        "files": 104,
+        "bytes": 898441,
+        "subdirectories": 9,
+        "symlinks": 0
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-native-early-boundary/cache",
+        "files": 8,
+        "bytes": 622496,
+        "subdirectories": 1,
+        "symlinks": 0
+      },
+      {
+        "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-native-early-boundary/browser-output",
+        "files": 3,
+        "bytes": 54365,
+        "subdirectories": 2,
+        "symlinks": 0
+      }
+    ],
+    "failures": [],
+    "remainingDisposablePaths": [],
+    "retentionOwner": "Root /root retains the raw campaign evidence until umbrella C1 consumers finish, then removes this exact retained root. No shared cache or worktree cleanup is authorized.",
+    "totals": {
+      "files": 875,
+      "bytes": 42625477
+    }
+  },
+  "retention": {
+    "owner": "Root /root",
+    "reason": "Raw required evidence remains available to umbrella C1 consumers.",
+    "removeWhen": "Root removes this exact raw evidence root after all umbrella C1 consumers finish.",
+    "readerStatus": "All QA readers released. No QA process remains."
+  },
+  "rawFileSha256": {
+    "execution-freeze.json": "215c0be8316737d6f3a4a8f2c88ffd6c7de76f89197f3675c47686051d2709e5",
+    "source-provenance.json": "ca612a64693b37614c9213e8c1c4c6768f7b099fbe03e9fd8bf4dd57cee33903",
+    "build-provenance.json": "494aff81286b4bb5c3c425cd396afa35dbcb58cd747f478935a2161ed490f8fb",
+    "post-run-verification.json": "25cfd8b8a7d527eb68efdfbc4897f4826d8279c96862dc6298169753c3532d62",
+    "outcome.json": "6162f6a6cc8e37bdf7f151949bb5753fb5df2328d0d0696510566d86ead2e264",
+    "browser-report.json": "0d6b725302dfa48e63b559d3244169814b1a952474bb4b4d2bb3c29b8b8f234d",
+    "browser-errors.json.gz": "21947b02ead137acb20e602e9448c7c453b2836d1a755aadd5e1c61ecd2eb034",
+    "fresh-native.spec.ts": "f6c70544ec0795afcdc7e771e5b791014935460c517d3650afd7681da649690d",
+    "fresh-native.config.mjs": "1d06643d897c0c4d547898b0d4f666558e05bd4ef0ee8bcd930be404f6a19568",
+    "fresh-gear-helper.mjs": "8336e0d50800eed61d92a0249a129128a53528e0482aac948a432e421351cff6",
+    "harness-delta.patch": "690a12e5ae0e6726f276f14724bcf2434ed3112fb6d1441c82be27238da617da",
+    "fresh-boundary-before.json.gz": "e0a44e976768a6888f6a887617d8ffad61ff08cb64704945156cea0340c85394",
+    "fresh-boundary-after.json.gz": "e2ab8dbd1c0997ef298baaa27a9bdfb9ec71fb3d903abf108033acb6b0dddc20",
+    "run-105-plan.json.gz": "e63c7d3beaff1d16c8cfc1ce51a26b2fd288d3c223d4208413a09b8adcab1433",
+    "run-105-award-5.json.gz": "b12ff4a7ef6cef227192c23dc47b81e38269b8147bf95de3ccae916d7a53069c",
+    "run-106-plan.json.gz": "fb2ff09f8442d618e16708d754f431d0b7c754c84b3581306b806ff3d0f227ba",
+    "run-106-opening-5.json.gz": "f3b766bf51089afd04e115dad27546a7c279106f54df91b26f46ad0e871fc65f",
+    "run-106-terminal-5.json.gz": "25307135bd73f03ec5a3ad3db940e23843923c376970c12279fe0d93bc450c3c",
+    "run-106-award-4.json.gz": "edbec20a7f05320085945ba96045d8dfca8e5338cbd8551493373b52a62ee7aa",
+    "last-native-save.json.gz": "edbec20a7f05320085945ba96045d8dfca8e5338cbd8551493373b52a62ee7aa",
+    "last-native-DOM.json.gz": "25307135bd73f03ec5a3ad3db940e23843923c376970c12279fe0d93bc450c3c",
+    "wave-awards.jsonl": "060ebabecf48be70dc94e4d2751dc82050777b745c8fa2960a5b713112f6c7f3",
+    "failure-screenshot.png": "c79637dad591c738a8bb837481fa4ec101b5fe95c57827a7dcaf0fda4335c11a",
+    "failure-error-context.md": "e556f4599370faec142f4f22ed880875f370d22af7ddfef52e27c15827d85044",
+    "browser-last-run.json": "b5d0946478419e4985932a45cf209792f52b266c368bda4cfdc0a36042720361",
+    "cleanup-receipt.json": "966c26bc674e8659be8f5679a67537753fa0b89f82eb43be36eb72142c051663"
+  }
+}
