@@ -11,6 +11,7 @@ import { __resetItemSeqForTests } from './item-instance';
 const baseShortSword: ItemBase = {
   id: 'wp1h_short_sword',
   name: 'Short Sword',
+  maxSockets: 2,
   type: 'weapon',
   slot: 'weapon',
   reqLevel: 1,
@@ -19,6 +20,7 @@ const baseShortSword: ItemBase = {
 const baseHelm: ItemBase = {
   id: 'helm_cap',
   name: 'Cap',
+  maxSockets: 2,
   type: 'armor',
   slot: 'head',
   reqLevel: 1,

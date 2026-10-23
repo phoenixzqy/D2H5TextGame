@@ -75,6 +75,7 @@ function createStarterEquipment(cls: CharacterClass, player: PlayerLike): readon
     rarity: 'normal',
     level: 1,
     ilvl: 1,
+    socketCapacity: 0,
     baseRolls: { ...recipe.baseRolls },
     identified: true,
     equipped: true,

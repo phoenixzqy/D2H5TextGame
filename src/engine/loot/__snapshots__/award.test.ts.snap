@@ -28,6 +28,7 @@ exports[`award.rollKillRewards > pins pre-extraction chapter-boss output and fol
         "ilvl": 14,
         "level": 14,
         "rarity": "magic",
+        "socketCapacity": 1,
       },
       {
         "affixes": [],
@@ -40,6 +41,7 @@ exports[`award.rollKillRewards > pins pre-extraction chapter-boss output and fol
         "ilvl": 14,
         "level": 14,
         "rarity": "normal",
+        "socketCapacity": 2,
       },
       {
         "affixes": [
@@ -63,6 +65,7 @@ exports[`award.rollKillRewards > pins pre-extraction chapter-boss output and fol
         "ilvl": 14,
         "level": 14,
         "rarity": "magic",
+        "socketCapacity": 2,
       },
     ],
     "runeShards": 3900,
@@ -105,6 +108,7 @@ exports[`award.rollKillRewards > pins pre-extraction rare-elite output and follo
         "ilvl": 14,
         "level": 14,
         "rarity": "rare",
+        "socketCapacity": 2,
       },
       {
         "affixes": [
@@ -128,6 +132,7 @@ exports[`award.rollKillRewards > pins pre-extraction rare-elite output and follo
         "ilvl": 14,
         "level": 14,
         "rarity": "magic",
+        "socketCapacity": 1,
       },
       {
         "affixes": [
@@ -151,6 +156,7 @@ exports[`award.rollKillRewards > pins pre-extraction rare-elite output and follo
         "ilvl": 14,
         "level": 14,
         "rarity": "magic",
+        "socketCapacity": 2,
       },
     ],
     "runeShards": 580,

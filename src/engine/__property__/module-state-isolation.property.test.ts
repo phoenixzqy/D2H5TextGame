@@ -77,6 +77,7 @@ const BASES: ReadonlyMap<string, ItemBase> = new Map<string, ItemBase>([
       baseDamage: { min: 2, max: 5, breakdown: { physical: 5 } },
       weaponType: 'sword',
       handedness: 'oneHanded',
+      maxSockets: 2,
     } as ItemBase,
   ],
   [
@@ -89,6 +90,7 @@ const BASES: ReadonlyMap<string, ItemBase> = new Map<string, ItemBase>([
       reqLevel: 1,
       canHaveAffixes: true,
       baseDefense: 6,
+      maxSockets: 2,
     } as ItemBase,
   ],
   [
@@ -101,6 +103,7 @@ const BASES: ReadonlyMap<string, ItemBase> = new Map<string, ItemBase>([
       reqLevel: 1,
       canHaveAffixes: true,
       baseDefense: 4,
+      maxSockets: 1,
     } as ItemBase,
   ],
 ]);
@@ -177,6 +180,7 @@ function fingerprintForSeed(seed: number, includeId: boolean): string {
 
   // 3. rollItem — touches itemSeq module state via nextItemId
   const item = rollItem({ baseId, rarity, ilvl: 25 }, POOLS, rng);
+  expect(item).toBeDefined();
 
   const affixSig =
     item?.affixes

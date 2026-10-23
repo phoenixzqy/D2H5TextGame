@@ -5,7 +5,7 @@ import { __resetRollItemSeqForTests, rollItem, rollUniqueItem, type ItemRollPool
 
 const sword: ItemBase = {
   id: 'items/base/test-sword', name: 'Test sword', type: 'weapon', slot: 'weapon',
-  reqLevel: 40, canHaveAffixes: true,
+  reqLevel: 40, canHaveAffixes: true, maxSockets: 0,
   baseDamage: { min: 4, max: 8, breakdown: { physical: 8 } }
 };
 const named: UniqueItemDef = {
@@ -47,7 +47,7 @@ describe('rollUniqueItem exact named construction', () => {
     const { rng, nextInt, unexpected } = traceRng();
     const item = rollUniqueItem({ uniqueId: named.id, ilvl: 4 }, pools, rng);
     expect(item).toEqual({
-      id: 'it-0-1', baseId: sword.id, uniqueId: named.id, rarity: 'unique',
+      id: 'it-0-1', baseId: sword.id, uniqueId: named.id, rarity: 'unique', socketCapacity: 0,
       ilvl: 4, level: 8, baseRolls: { attack: 4 }, statRolls: { shared: 10 },
       affixes: [], generatedName: {}, identified: true, equipped: false
     });

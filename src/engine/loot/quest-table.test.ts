@@ -11,7 +11,7 @@ const currency = (type: NonNullable<TcPick['type']>, amount = 3): TcPick => ({
 });
 function pools(picks: readonly TcPick[], overrides: Partial<TreasureClass> = {}): AwardDataPools {
   return { bases: new Map([['items/base/test', { id: 'items/base/test', name: 'Test', type: 'weapon',
-    slot: 'weapon', reqLevel: 1, canHaveAffixes: true }]]), affixes: [],
+    slot: 'weapon', reqLevel: 1, canHaveAffixes: true, maxSockets: 0 }]]), affixes: [],
     treasureClasses: new Map([[profile.tableId, { id: profile.tableId, picks, ...overrides }]]) };
 }
 beforeEach(() => { __resetRollItemSeqForTests(); vi.restoreAllMocks(); });

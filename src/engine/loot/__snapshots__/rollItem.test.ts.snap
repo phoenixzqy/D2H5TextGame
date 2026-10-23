@@ -25,5 +25,6 @@ exports[`rollItem > is deterministic and snapshots the same seed 1`] = `
   "ilvl": 12,
   "level": 12,
   "rarity": "magic",
+  "socketCapacity": 0,
 }
 `;

@@ -1,4 +1,4 @@
-import type { Rng } from '../rng';
+import { createRng, hashSeed, type Rng } from '../rng';
 import { rollStatPackage } from '../items/statRolls';
 import type { Affix, AffixRoll, Item, ItemBase, ItemBaseType, ItemStatKey, Rarity, SetPieceDef, UniqueItemDef } from '../types/items';
 export interface RarityAffixRange { readonly min: number; readonly max: number }
@@ -16,6 +16,26 @@ export interface ItemRollPools {
 }
 let itemSeq = 0; export function __resetRollItemSeqForTests(): void { itemSeq = 0; }
 function nextItemId(rng: Rng): string { itemSeq = (itemSeq + 1) >>> 0; return `it-${rng.nextInt(0, 0xffffff).toString(36)}-${itemSeq.toString(36)}`; }
+
+function hasReviewedSocketBudget(base: ItemBase): base is ItemBase & { readonly maxSockets: number } {
+  const maximum = base.maxSockets, fixed = base.sockets ?? 0;
+  return typeof maximum === 'number' && Number.isSafeInteger(maximum) && maximum >= 0 && maximum <= 6
+    && Number.isSafeInteger(fixed) && fixed >= 0 && fixed <= maximum;
+}
+
+/** Capacity uses stable generation entropy, preserving parent RNG and retry allocation gaps. */
+function withSocketCapacity(item: Item, base: ItemBase & { readonly maxSockets: number }): Item {
+  if (base.type !== 'weapon' && base.type !== 'armor') return item;
+  if (item.rarity === 'unique' || item.rarity === 'set') {
+    return { ...item, socketCapacity: base.sockets ?? 0 };
+  }
+  const generationEntropy = item.id.slice(3, item.id.lastIndexOf('-'));
+  const rng = createRng(hashSeed(JSON.stringify([
+    'item-socket-capacity-v1', generationEntropy, item.baseId, item.rarity, item.level
+  ])));
+  const maximum = item.rarity === 'normal' ? base.maxSockets : Math.min(2, base.maxSockets);
+  return { ...item, socketCapacity: rng.nextInt(0, maximum) };
+}
 /**
  * Advance the in-memory item-id sequence past the highest seq encoded in
  * any of the given existing ids. Call after hydrating a save so freshly
@@ -56,7 +76,7 @@ function pickTemplate<T extends { readonly weight?: number }>(templates: readonl
   }
   return templates[templates.length - 1];
 }
-function materializeTemplateItem(base: ItemBase, input: RollItemInput, rarity: Extract<Rarity, 'unique' | 'set'>, rng: Rng, template: UniqueItemDef | SetPieceDef): Item {
+function materializeTemplateItem(base: ItemBase & { readonly maxSockets: number }, input: RollItemInput, rarity: Extract<Rarity, 'unique' | 'set'>, rng: Rng, template: UniqueItemDef | SetPieceDef): Item {
   const { statRolls } = rollStatPackage(template.stats, rng);
   const item: Item = {
     id: nextItemId(rng),
@@ -71,9 +91,9 @@ function materializeTemplateItem(base: ItemBase, input: RollItemInput, rarity: E
     identified: true,
     equipped: false
   };
-  if (rarity === 'unique') return { ...item, uniqueId: template.id };
+  if (rarity === 'unique') return withSocketCapacity({ ...item, uniqueId: template.id }, base);
   const piece = template as SetPieceDef;
-  return { ...item, setId: piece.setId, setPieceId: piece.id };
+  return withSocketCapacity({ ...item, setId: piece.setId, setPieceId: piece.id }, base);
 }
 /**
  * Construct one exact unique without weighted selection or rare fallback.
@@ -90,12 +110,12 @@ export function rollUniqueItem(input: RollUniqueItemInput, pools: ItemRollPools,
   const template = matches[0];
   if (matches.length !== 1 || !template) return undefined;
   const base = pools.bases.get(template.baseId);
-  if (!base || base.id !== template.baseId || !eligibleUnique(template, base.id, input.ilvl)) return undefined;
+  if (!base || base.id !== template.baseId || !hasReviewedSocketBudget(base) || !eligibleUnique(template, base.id, input.ilvl)) return undefined;
   return materializeTemplateItem(base, { baseId: base.id, rarity: 'unique', ilvl: input.ilvl }, 'unique', rng, template);
 }
 export function rollItem(input: RollItemInput, pools: ItemRollPools, rng: Rng): Item | undefined {
   const base = pools.bases.get(input.baseId);
-  if (!base) return undefined;
+  if (!base || !hasReviewedSocketBudget(base)) return undefined;
   const ilvl = input.ilvl;
   if (input.rarity === 'unique') {
     const template = pickTemplate((pools.uniques ?? []).filter((u) => eligibleUnique(u, base.id, ilvl)), rng);
@@ -107,5 +127,5 @@ export function rollItem(input: RollItemInput, pools: ItemRollPools, rng: Rng): 
   }
   const rarity = input.rarity === 'unique' || input.rarity === 'set' ? 'rare' : input.rarity;
   const affixes = rollAffixes(base, rarity, ilvl, pools.affixes, rulesFor(rarity, pools.rarityRules), rng);
-  return { id: nextItemId(rng), baseId: base.id, rarity, level: ilvl, ilvl, baseRolls: rollBaseStats(base, rng), affixes, generatedName: {}, identified: rarity === 'normal' || rarity === 'magic', equipped: false };
+  return withSocketCapacity({ id: nextItemId(rng), baseId: base.id, rarity, level: ilvl, ilvl, baseRolls: rollBaseStats(base, rng), affixes, generatedName: {}, identified: rarity === 'normal' || rarity === 'magic', equipped: false }, base);
 }

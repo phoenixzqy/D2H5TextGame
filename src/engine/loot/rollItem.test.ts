@@ -10,6 +10,7 @@ const sword: ItemBase = {
   slot: 'weapon',
   baseDamage: { min: 4, max: 8, breakdown: { physical: 8 } },
   reqLevel: 1,
+  maxSockets: 2,
   canHaveAffixes: true
 };
 
@@ -123,5 +124,4 @@ describe('rollItem', () => {
     expect(set?.setPieceId).toBeUndefined();
   });
 });
-
 

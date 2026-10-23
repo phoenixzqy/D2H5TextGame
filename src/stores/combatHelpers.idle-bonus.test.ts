@@ -250,7 +250,7 @@ function whiteBoundary(eff: number, rareElite = false): number {
 const tc: TreasureClass = { id: 'bonus-boundary', numPicks: 1, noDropChance: 0,
   picks: [{ baseId: 'bonus-base', weight: 1, qlvlMin: 1, qlvlMax: 99 }] };
 const pools = { bases: new Map([['bonus-base', { id: 'bonus-base', name: 'Bonus base',
-  type: 'armor' as const, slot: 'head' as const, reqLevel: 1, canHaveAffixes: false }]]),
+  type: 'armor' as const, slot: 'head' as const, reqLevel: 1, maxSockets: 0, canHaveAffixes: false }]]),
   affixes: [], treasureClasses: new Map([[tc.id, tc]]) };
 const kill: KillRewardInput = { tier: 'trash', monsterLevel: 5, treasureClassId: tc.id,
   magicFind: 300, goldFind: 19, act: 1 };
@@ -286,7 +286,7 @@ describe('effective MF multiplier boundaries', () => {
     const original = rollKillRewards(kill, pools, a);
     expect(original).toEqual({
       items: [{ id: 'it-6otyo-1', baseId: 'bonus-base', rarity: 'magic', level: 5, ilvl: 5,
-        baseRolls: {}, affixes: [], generatedName: {}, identified: true, equipped: false }],
+        baseRolls: {}, affixes: [], generatedName: {}, identified: true, equipped: false, socketCapacity: 0 }],
       runeShards: 25, wishstones: 0, runes: 0, gems: 0
     });
     __resetRollItemSeqForTests();
