@@ -13,6 +13,9 @@ import type { EquipmentSlot, Inventory } from './items';
 import type { MapProgress } from './maps';
 import type { GridPosition } from '../combat/types';
 import type { MaterialLedger } from '../loot/materials';
+import type { CanonicalSocketItem } from '../items/socket-contents';
+import type { MaterialActionReceipt } from '../crafting/action-state';
+import type { MaterialRecoveryEntry } from '../crafting/material-actions';
 
 /**
  * Current save format version. Bump this and add an entry to {@link MIGRATIONS}
@@ -353,6 +356,24 @@ export interface MaterialInventorySaveData extends ServiceInventorySaveData {
 export interface SaveV18 extends Omit<SaveV17, 'version' | 'inventory'> {
   readonly version: 18;
   readonly inventory: MaterialInventorySaveData;
+}
+/** Connected socket/action target; not registered until runtime/UI/persistence rollout. */
+export interface SocketInventorySaveData extends Omit<MaterialInventorySaveData, 'backpack' | 'stash' | 'equipped'> {
+  readonly backpack: readonly CanonicalSocketItem[];
+  readonly stash: readonly CanonicalSocketItem[];
+  readonly equipped: Readonly<Record<string, CanonicalSocketItem | null>>;
+  readonly socketQuarantine: readonly MaterialRecoveryEntry[];
+  readonly materialActionOrdinal: number;
+  readonly latestMaterialAction?: MaterialActionReceipt;
+}
+export interface SaveV19 extends Omit<SaveV18, 'version' | 'inventory' | 'player' | 'mercs'> {
+  readonly version: 19;
+  readonly inventory: SocketInventorySaveData;
+  readonly player: Omit<HistoricalPlayer, 'equipment'> & { readonly equipment: readonly CanonicalSocketItem[] };
+  readonly mercs: Omit<MercSaveData, 'mercEquipment' | 'ownedMercs'> & {
+    readonly mercEquipment: Readonly<Record<string, Partial<Record<EquipmentSlot, CanonicalSocketItem | null>>>>;
+    readonly ownedMercs: readonly (Omit<HistoricalMercenary, 'equipment'> & { readonly equipment: readonly CanonicalSocketItem[] })[];
+  };
 }
 export type SaveCurrent = SaveV18;
 
