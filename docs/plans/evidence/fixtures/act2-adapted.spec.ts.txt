@@ -1,0 +1,174 @@
+/** One earned adapted ActII continuation; first nonwin stops all further combat. */
+import { test, expect, type Page, type BrowserContext } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/@playwright/test/index.mjs';
+import { readFile, writeFile, appendFile } from 'node:fs/promises';
+import { createCharacter, navTo } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/tests/e2e/_helpers';
+import { gunzipSync, gzipSync } from 'node:zlib';
+const root='/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-act2-adapted-119zk0zc';
+const now=1792497600000;
+const quest='quests/act2-radaments-lair';
+async function backup(page:Page) {
+ await navTo(page,'settings'); const pending=page.waitForEvent('download');
+ await page.getByTestId('export-save-button').click(); const download=await pending;
+ try { return JSON.parse(await readFile(await download.path(),'utf8')); } finally { await download.delete(); }
+}
+async function disk(page:Page) {
+ return page.evaluate(async()=>{
+  const db=await new Promise<IDBDatabase>((resolve,reject)=>{const req=indexedDB.open('D2H5TextGame'); req.onsuccess=()=>resolve(req.result); req.onerror=()=>reject(req.error);});
+  try {
+   const record=await new Promise<{data:unknown}>((resolve,reject)=>{const req=db.transaction('saves','readonly').objectStore('saves').get('current'); req.onsuccess=()=>resolve(req.result); req.onerror=()=>reject(req.error);});
+   return JSON.parse(JSON.stringify(record.data,(_key,value)=>value instanceof Map?[...value.entries()]:value));
+  } finally { db.close(); }
+ });
+}
+async function importSave(page:Page, raw:string, english:boolean) {
+ await navTo(page,'settings'); const label=english?'Import Save':'导入存档';
+ await page.getByRole('button',{name:label,exact:true}).click(); const dialog=page.getByRole('dialog');
+ await dialog.getByRole('textbox').fill(raw);
+ await dialog.getByRole('button',{name:label,exact:true}).click(); await expect(dialog).toHaveCount(0);
+}
+async function reopen(page:Page, context:BrowserContext, english:boolean, expected:unknown, errors:string[]) {
+ await navTo(page,'settings');
+ await page.getByRole('button',{name:english?'Save':'保存',exact:true}).click();
+ await expect(page.getByRole('status')).toHaveText(english?'Saved':'已保存');
+ expect(await disk(page)).toEqual(expected); expect(await backup(page)).toEqual(expected);
+ await page.close(); const next=await context.newPage(); next.on('pageerror',error=>errors.push(error.message));
+ await next.clock.setFixedTime(now); await next.goto('/'); await next.waitForLoadState('networkidle');
+ await next.getByTestId('home-continue').click(); await expect(next.getByTestId('town-screen')).toBeVisible();
+ expect(await backup(next)).toEqual(expected); expect(await disk(next)).toEqual(expected);
+ return next;
+}
+
+async function save(label:string,value:unknown) {await writeFile(root+'/'+label+'.json.gz',gzipSync(JSON.stringify(value)));}
+function ids(s) {return [...s.inventory.backpack,...s.inventory.stash,...Object.values(s.inventory.equipped),...Object.values(s.mercs.mercEquipment).flatMap(Object.values)].filter(Boolean).map(x=>x.id);}
+function heroXP(s) {let xp=s.player.experience;for(let l=1;l<s.player.level;l++)xp+=Math.floor(100*l**2.5);return xp;}
+function mercXP(s) {const actor=s.mercs.ownedMercs.find(x=>x.id===s.mercs.fieldedMercId);let xp=s.mercs.mercProgress[actor.id].experience;for(let l=1;l<actor.level;l++)xp+=Math.floor(60*l*1.3**(l-1));return xp;}
+async function wave(page:Page) {return Number((await page.getByTestId('wave-counter').innerText()).match(/\d+/)?.[0]);}
+async function pause(page:Page) {await page.getByRole('button',{name:'Pause',exact:true}).click({timeout:1000});await expect(page.getByRole('button',{name:'Resume',exact:true})).toHaveAttribute('aria-pressed','true');}
+async function terminal(page:Page) {return page.evaluate(()=>({
+ counter:document.querySelector('[data-testid="wave-counter"]')?.textContent,
+ log:Array.from(document.querySelectorAll('[data-testid="combat-log"] > div > span:last-child'),n=>n.textContent),
+ enemies:Array.from(document.querySelectorAll('[data-testid="enemies-grid"] [data-testid^="unit-card-"]'),c=>({id:c.getAttribute('data-testid'),dead:c.getAttribute('data-dead'),text:c.textContent})),
+ hero:document.querySelector('[data-testid="unit-card-player-1792497600000"]')?.getAttribute('data-dead'),
+ defeats:document.querySelectorAll('[data-testid="defeat-panel"]').length,
+ skipDisabled:document.querySelector<HTMLButtonElement>('[data-testid="skip-button"]')?.disabled
+ }));}
+
+const repo='/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2';
+const heroGear=[['gloves','it-2znuq-2y3'],['chest','it-111b8-30s'],['amulet','it-4fzod-30t'],['head','it-23pcn-30u'],['boots','it-2a4mq-2y5'],['offhand','it-7zwo5-312']];
+const mercGear=[['head','it-6zft2-30w'],['gloves','it-2cr71-31m'],['boots','it-420zl-335']];
+function allItems(s){return [...s.inventory.backpack,...s.inventory.stash,...Object.values(s.inventory.equipped),...Object.values(s.mercs.mercEquipment).flatMap(Object.values)].filter(Boolean);}
+function conservation(after,before,allowTransfer=false){
+ const prior=allItems(before),current=allItems(after),byId=new Map(current.map(x=>[x.id,x]));expect(byId.size).toBe(current.length);
+ for(const item of prior){const next=byId.get(item.id);expect(next,'retained '+item.id).toBeTruthy();
+  if(allowTransfer){const clean=x=>{const {equipped,equipSlot,...rest}=x;return rest;};expect(clean(next)).toEqual(clean(item));}else expect(next).toEqual(item);
+ }
+ expect(after.inventory.stash).toEqual(before.inventory.stash);expect(after.mercs.fieldedMercId).toBe(before.mercs.fieldedMercId);
+ if(!allowTransfer){expect(after.inventory.backpack.slice(0,before.inventory.backpack.length)).toEqual(before.inventory.backpack);expect(after.inventory.equipped).toEqual(before.inventory.equipped);expect(after.mercs.mercEquipment).toEqual(before.mercs.mercEquipment);}
+}
+function pointGains(after,before,bonusSP=0){const gained=after.player.level-before.player.level,milestones=[12,24,36].filter(x=>before.player.level<x&&after.player.level>=x).length;expect(after.player.statPoints-before.player.statPoints).toBe(5*gained);expect(after.player.skillPoints-before.player.skillPoints).toBe(gained+milestones+bonusSP);}
+async function expandAct(page,number){const act=page.getByRole('button',{name:new RegExp('^Act '+number+' ·')});if(await act.getAttribute('aria-expanded')!=='true')await act.click();}
+async function points(page,before,label){
+ await navTo(page,'settings');await page.getByRole('button',{name:'Save',exact:true}).click();await expect(page.getByRole('status')).toHaveText('Saved');expect(await disk(page)).toEqual(before);expect(await backup(page)).toEqual(before);
+ const vit=Math.min(before.player.statPoints,500-before.player.coreStats.vitality);let last=before;
+ if(vit){await page.getByTestId('character-hud').click();await expect(page.getByTestId('character-screen')).toBeVisible();for(let i=0;i<vit;i++)await page.getByRole('button',{name:'Increase Vitality',exact:true}).click();
+  // Drafting is local; Apply is the sole publication.
+  expect(await disk(page)).toEqual(before);
+  await page.getByRole('button',{name:'Apply attributes',exact:true}).click();const after=await backup(page);
+  const expected={...before,player:{...before.player,coreStats:{...before.player.coreStats,vitality:before.player.coreStats.vitality+vit},statPoints:before.player.statPoints-vit,derivedStats:after.player.derivedStats}};
+  expect(after).toEqual(expected);expect(after.player.derivedStats.life).toBe(before.player.derivedStats.life);expect(after.player.derivedStats.mana).toBe(before.player.derivedStats.mana);last=after;
+ }
+ let spent=0;const available=last.player.skillPoints;
+ while(spent<available&&(last.player.skillLevels['sorceress.ice_blast']??0)<20){
+  await navTo(page,'skills');await page.getByTestId('skill-node-skills-sorceress-ice-blast').click();const button=page.getByTestId('skill-detail-panel').getByRole('button').first();
+  if(await button.isDisabled())break;await button.click();const after=await backup(page);
+  expect(after).toEqual({...last,player:{...last.player,skillPoints:last.player.skillPoints-1,skillLevels:{...last.player.skillLevels,'sorceress.ice_blast':last.player.skillLevels['sorceress.ice_blast']+1}}});last=after;spent++;
+ }
+ await appendFile(root+'/preparation.jsonl',JSON.stringify({stage:label,vit,skillPointsSpent:spent,playerBefore:before.player,playerAfter:last.player})+'\n');await save(label,last);return last;
+}
+async function equipment(page,before){let last=before;const bases=JSON.parse(await readFile(repo+'/src/data/items/bases.json','utf8'));
+ for(const [slot,id] of heroGear){await navTo(page,'inventory');await page.getByRole('tab',{name:'Equipment',exact:true}).click();await page.getByTestId('equip-slot-'+slot).focus();await page.keyboard.press('Enter');
+  const row=page.getByTestId('equip-picker-row-'+id);await expect(row).toHaveAttribute('aria-disabled','false');await row.click();await page.getByTestId('equip-picker-confirm').click();await expect(page.getByTestId('equip-picker')).toHaveCount(0);
+  const after=await backup(page),item=last.inventory.backpack.find(x=>x.id===id),displaced=last.inventory.equipped[slot];expect(item).toBeTruthy();
+  expect(after).toEqual({...last,player:{...last.player,derivedStats:after.player.derivedStats},inventory:{...last.inventory,backpack:[...last.inventory.backpack.filter(x=>x.id!==id),...(displaced?[{...displaced,equipped:false}]:[])],equipped:{...last.inventory.equipped,[slot]:{...item,equipped:true}}}});
+  expect(after.player.derivedStats.life).toBe(last.player.derivedStats.life);expect(after.player.derivedStats.mana).toBe(last.player.derivedStats.mana);conservation(after,last,true);
+  await appendFile(root+'/transfers.jsonl',JSON.stringify({target:'hero',slot,id,displaced:displaced?.id,displacedLocation:'backpack-tail',derivedBefore:last.player.derivedStats,derivedAfter:after.player.derivedStats})+'\n');last=after;
+ }
+ for(const [slot,id] of mercGear){await navTo(page,'mercs');const mercId=last.mercs.fieldedMercId,baseId=mercId.split('#')[0];await page.getByTestId('merc-equipment-'+baseId).click();await page.getByTestId('merc-equip-slot-'+slot).focus();await page.keyboard.press('Enter');
+  const candidates=last.inventory.backpack.filter(it=>bases.find(b=>b.id===it.baseId)?.slot===slot),index=candidates.findIndex(it=>it.id===id);expect(index).toBeGreaterThanOrEqual(0);
+  const choices=page.getByRole('dialog').getByRole('button',{name:'Equip',exact:true});expect(await choices.count()).toBe(candidates.length);await choices.nth(index).click();
+  const after=await backupAfterClose(page),item=last.inventory.backpack.find(x=>x.id===id),displaced=last.mercs.mercEquipment[mercId][slot];
+  const returned=displaced?{...displaced,equipped:false}:null;if(returned)delete returned.equipSlot;
+  expect(after).toEqual({...last,inventory:{...last.inventory,backpack:[...last.inventory.backpack.filter(x=>x.id!==id),...(returned?[returned]:[])]},mercs:{...last.mercs,mercEquipment:{...last.mercs.mercEquipment,[mercId]:{...last.mercs.mercEquipment[mercId],[slot]:{...item,equipped:true,equipSlot:slot}}}}});conservation(after,last,true);
+  await appendFile(root+'/transfers.jsonl',JSON.stringify({target:mercId,slot,id,index,displaced:displaced?.id,displacedLocation:'backpack-tail'})+'\n');last=after;
+ }
+ return last;
+}
+async function backupAfterClose(page){await page.keyboard.press('Escape');await expect(page.getByRole('dialog')).toHaveCount(0);return backup(page);}
+
+test('earned Staff prefix with fixed legal upgrades through bounded ActII route',async({page,context})=>{
+ let active=page,last,phase='setup',entered=false;const errors:string[]=[],outcomes:unknown[]=[],checks:Record<string,unknown>={classification:'earned historical-C1 continuation; not fresh-current-runtime C2',date:now,retries:0,route:['a2-far-oasis','a2-arcane-sanctuary','a2-tomb-of-tal-rasha'],ordinalPolicy:'Save-close-new-page Continue only at completed checkpoints; next distinct area starts0; never reopen unfinished area'};
+ active.on('pageerror',e=>errors.push(e.message));
+ try{
+  await active.clock.setFixedTime(now);await active.goto('/');await active.waitForLoadState('networkidle');await createCharacter(active,{class:'sorceress',name:'Earned adapted continuation'});await navTo(active,'settings');await active.getByRole('button',{name:'English',exact:true}).click();
+  const raw=gunzipSync(await readFile(repo+'/docs/plans/evidence/fixtures/staff-inserted.json.gz')).toString(),input=JSON.parse(raw);expect(ids(input)).toHaveLength(4057);expect(new Set(ids(input)).size).toBe(4057);expect(input.version).toBe(14);expect(input.player.level).toBe(13);expect(input.player.experience).toBe(388);expect(input.player.statPoints).toBe(5);expect(input.player.skillPoints).toBe(1);
+  await importSave(active,raw,true);expect(await backup(active)).toEqual(input);expect(await disk(active)).toEqual(input);last=input;await save('input',input);
+  await expect.poll(()=>active.evaluate(()=>navigator.serviceWorker.controller?.state),{timeout:60000}).toBe('activated');expect(await active.evaluate(()=>'__GAME__' in window)).toBe(false);
+  phase='input-persistence';active=await reopen(active,context,true,input,errors);
+  phase='equipment-resume';
+  const gearRaw=gunzipSync(await readFile(root+'/equipment-prepared.json.gz')).toString(),gearSave=JSON.parse(gearRaw),expected=structuredClone(input);
+  for(const [slot,id] of heroGear){const item=expected.inventory.backpack.find(x=>x.id===id),displaced=expected.inventory.equipped[slot];expect(item).toBeTruthy();expected.inventory.backpack=expected.inventory.backpack.filter(x=>x.id!==id);if(displaced)expected.inventory.backpack.push({...displaced,equipped:false});expected.inventory.equipped[slot]={...item,equipped:true};}
+  for(const [slot,id] of mercGear){const mid=expected.mercs.fieldedMercId,item=expected.inventory.backpack.find(x=>x.id===id),displaced=expected.mercs.mercEquipment[mid][slot];expect(item).toBeTruthy();expected.inventory.backpack=expected.inventory.backpack.filter(x=>x.id!==id);if(displaced){const returned={...displaced,equipped:false};delete returned.equipSlot;expected.inventory.backpack.push(returned);}expected.mercs.mercEquipment[mid][slot]={...item,equipped:true,equipSlot:slot};}
+  expect(gearSave).toEqual({...expected,player:{...expected.player,derivedStats:gearSave.player.derivedStats}});conservation(gearSave,input,true);
+  expect(gearSave.player.derivedStats).toEqual({life:120,lifeMax:336,mana:102,manaMax:269,attack:80,defense:153,magicResist:0,attackSpeed:135,critChance:.05,critDamage:2.26,physDodge:.23,magicDodge:.09,magicFind:0,goldFind:0,resistances:{fire:19,cold:30,lightning:25,poison:35,arcane:0,physical:12}});
+  await importSave(active,gearRaw,true);expect(await backup(active)).toEqual(gearSave);expect(await disk(active)).toEqual(gearSave);last=gearSave;checks.resumedVerifiedEquipmentPrefix=true;
+  phase='points';last=await points(active,last,'initial-prepared');
+  expect(last.player.coreStats).toEqual({...input.player.coreStats,vitality:42});expect(last.player.skillLevels).toEqual({...input.player.skillLevels,'sorceress.ice_blast':9});expect(last.player.statPoints).toBe(0);expect(last.player.skillPoints).toBe(0);
+  expect(last.player.derivedStats).toMatchObject({life:120,lifeMax:346,mana:102,manaMax:269,attack:80,defense:153,attackSpeed:135,critChance:.05,critDamage:2.26,magicDodge:.09,resistances:{fire:19,cold:30,lightning:25,poison:35,physical:12,arcane:0}});expect(last.player.derivedStats.physDodge).toBeCloseTo(.23,12);
+  expect(last.player.comboOrder).toEqual(input.player.comboOrder);expect(last.map).toEqual(input.map);expect(last.inventory.currencies).toEqual(input.inventory.currencies);expect(last.inventory.questItems).toEqual(input.inventory.questItems);expect(last.mercs.ownedMercs).toEqual(input.mercs.ownedMercs);conservation(last,input,true);await save('prepared',last);
+  phase='prepared-persistence';active=await reopen(active,context,true,last,errors);checks.preparedExact=true;
+  let stopped=false;
+  for(const [area,total,qid] of [['a2-far-oasis',5,quest],['a2-arcane-sanctuary',6,'quests/act2-arcane-sanctuary'],['a2-tomb-of-tal-rasha',6,'quests/act2-seven-tombs']] as const){
+   if(area!=='a2-far-oasis'){
+    phase=area+'-checkpoint-prep';last=await points(active,last,area+'-prepared');
+    if(area==='a2-arcane-sanctuary'){await navTo(active,'quests');await active.getByTestId('quest-start-'+qid).click();const tracked=await backup(active);expect(tracked).toEqual({...last,map:{...last.map,questProgress:{...last.map.questProgress,[qid]:{id:qid,status:'inProgress',objectives:{'obj-find-summoner':false,'obj-read-journal':false}}}}});last=tracked;}
+    active=await reopen(active,context,true,last,errors);
+   }
+   phase=area+'-entry';await navTo(active,'map');await expandAct(active,2);await active.getByTestId('sub-area-row-'+area).getByRole('button',{name:'Enter',exact:true}).click();entered=true;await expect(active.getByTestId('combat-screen')).toBeVisible();await pause(active);expect(await wave(active)).toBe(1);await expect(active.getByTestId('wave-counter')).toContainText('/ '+total);
+   const entry=await backup(active);expect(entry).toEqual({...last,map:{...last.map,currentSubAreaId:'areas/'+area.replace('a2-','act2-')}});last=entry;await save(area+'-entry',entry);await appendFile(root+'/reproducibility.jsonl',JSON.stringify({area,date:now,sessionChallengeOrdinal:0,totalWaves:total,seedInjection:false})+'\n');await navTo(active,'combat');
+   for(let n=1;n<=total;n++){
+    phase=area+'-wave-'+n;expect(await wave(active)).toBe(n);await save(phase+'-opening',await terminal(active));expect(errors).toEqual([]);await active.getByTestId('skip-button').click();await expect(active.getByTestId('skip-button')).toBeDisabled();const result=await terminal(active);outcomes.push({area,wave:n,...result});await save(phase+'-terminal',result);await writeFile(root+'/outcomes.json',JSON.stringify(outcomes,null,2));
+    if(result.log.at(-1)!=='Victory! All enemies are defeated.'){
+     stopped=true;checks.outcome='first-nonwin';checks.stoppedAt={area,wave:n};await active.screenshot({path:root+'/nonwin.png'});const failed=await backup(active);expect(failed).toEqual(last);await save('nonwin-save',failed);last=failed;break;
+    }
+    expect(result.hero).toBeNull();expect(result.defeats).toBe(0);expect(result.enemies.length).toBeGreaterThan(0);expect(result.enemies.every(x=>x.dead==='true')).toBe(true);
+    if(n<total){await expect.poll(()=>wave(active),{timeout:5000,intervals:[50]}).toBe(n+1);await pause(active);}else{await expect(active.getByTestId('victory-panel')).toBeVisible();await active.screenshot({path:root+'/'+area+'-victory.png'});await active.getByTestId('return-to-map').click();await expect(active.getByTestId('cleared-badge-'+area)).toBeVisible();}
+    const after=await backup(active);await save(phase+'-award',after);conservation(after,last);expect(after.player.coreStats).toEqual(last.player.coreStats);expect(after.player.skillLevels).toEqual(last.player.skillLevels);expect(after.player.comboOrder).toEqual(last.player.comboOrder);pointGains(after,last);
+    const xp=heroXP(after)-heroXP(last),mxp=mercXP(after)-mercXP(last);expect(xp).toBeGreaterThan(0);expect(mxp).toBe(Math.floor(xp*.75));const currencies=Object.fromEntries([...new Set([...Object.keys(last.inventory.currencies),...Object.keys(after.inventory.currencies)])].map(k=>[k,(after.inventory.currencies[k]??0)-(last.inventory.currencies[k]??0)]));expect(Object.values(currencies).every(x=>x>=0)).toBe(true);
+    if(n<total)expect(after.map.questProgress).toEqual(last.map.questProgress);
+    await appendFile(root+'/awards.jsonl',JSON.stringify({area,wave:n,heroXP:xp,mercXP:mxp,newItems:after.inventory.backpack.slice(last.inventory.backpack.length),currencies,level:after.player.level})+'\n');last=after;if(n<total){await navTo(active,'combat');await expect(active.getByRole('button',{name:'Resume',exact:true})).toHaveAttribute('aria-pressed','true');}
+   }
+   entered=false;if(stopped)break;
+   if(area==='a2-arcane-sanctuary'){
+    expect(last.map.questProgress[qid]).toMatchObject({status:'inProgress',objectives:{'obj-find-summoner':true,'obj-read-journal':false}});phase='journal';await navTo(active,'map');await expandAct(active,2);await active.getByTestId('area-objects-a2-arcane-sanctuary').click();expect(await backupAfterCloseObjectInspection(active)).toEqual(last);
+    await navTo(active,'map');await expandAct(active,2);await active.getByTestId('area-objects-a2-arcane-sanctuary').click();await active.getByTestId('area-object-panel').getByRole('button',{name:'Read',exact:true}).click();await active.getByTestId('area-object-close').click();const read=await backup(active);expect(read).toEqual({...last,map:{...last.map,questProgress:{...last.map.questProgress,[qid]:{...last.map.questProgress[qid],status:'completed',objectives:{'obj-find-summoner':true,'obj-read-journal':true}}}}});last=read;
+   }
+   if(area==='a2-far-oasis')expect(last.map.questProgress[qid].objectives).toEqual({'obj-kill-radament':true});if(area==='a2-tomb-of-tal-rasha')expect(last.map.questProgress[qid].objectives).toEqual({'obj-open-tomb':true,'obj-kill-duriel':true});expect(last.map.questProgress[qid].status).toBe('completed');expect(last.map.questProgress[qid].rewardClaimed).not.toBe(true);await save(area+'-completed-unclaimed',last);phase=area+'-claim';await navTo(active,'quests');await active.getByTestId('quest-claim-'+qid).click();const paid=await backup(active),xp=area==='a2-far-oasis'?5000:area==='a2-arcane-sanctuary'?7000:12000;
+   expect(heroXP(paid)-heroXP(last)).toBe(xp);expect(mercXP(paid)-mercXP(last)).toBe(Math.floor(xp*.75));pointGains(paid,last,area==='a2-arcane-sanctuary'?1:0);conservation(paid,last);expect(paid.map.questProgress).toEqual({...last.map.questProgress,[qid]:{...last.map.questProgress[qid],rewardClaimed:true}});
+   if(area==='a2-far-oasis'){expect(paid.inventory).toEqual({...last.inventory,questItems:{...last.inventory.questItems,[qid+'#reward:questItem']:{itemId:'items/book_of_skill',state:'owned'}}});}
+   else if(area==='a2-arcane-sanctuary')expect(paid.inventory).toEqual(last.inventory);
+   else{
+    const oracle=JSON.parse(await readFile(repo+'/docs/plans/evidence/fixtures/duriel-cache-oracle.json','utf8')).cache,added=paid.inventory.backpack.slice(last.inventory.backpack.length);
+    expect(added.map(item=>({...item,id:''}))).toEqual(oracle.items.map(item=>({...item,id:''})));expect(added).toHaveLength(4);expect(oracle.runeShards).toBe(21534);expect(oracle.runes).toBe(0);expect(oracle.gems).toBe(0);expect(oracle.wishstones).toBe(0);
+    expect(paid.inventory).toEqual({...last.inventory,backpack:[...last.inventory.backpack,...added],currencies:{...last.inventory.currencies,'rune-shard':last.inventory.currencies['rune-shard']+21534}});
+   }
+   await appendFile(root+'/claims.jsonl',JSON.stringify({area,quest:qid,heroXP:heroXP(paid)-heroXP(last),mercXP:mercXP(paid)-mercXP(last),newItems:paid.inventory.backpack.slice(last.inventory.backpack.length),currencyBefore:last.inventory.currencies,currencyAfter:paid.inventory.currencies,questItemsBefore:last.inventory.questItems,questItemsAfter:paid.inventory.questItems})+'\n');await save(area+'-claimed',paid);last=paid;active=await reopen(active,context,true,last,errors);
+   if(area==='a2-far-oasis'){
+    const source=qid+'#reward:questItem';expect(last.inventory.questItems[source]).toEqual({itemId:'items/book_of_skill',state:'owned'});phase='book-read';await navTo(active,'inventory');await active.getByTestId('quest-items-panel').getByRole('button',{name:'Read',exact:true}).click();const consumed=await backup(active);expect(consumed).toEqual({...last,player:{...last.player,skillPoints:last.player.skillPoints+1},inventory:{...last.inventory,questItems:{...last.inventory.questItems,[source]:{itemId:'items/book_of_skill',state:'consumed'}}}});last=consumed;await save('radament-book-consumed',last);active=await reopen(active,context,true,last,errors);
+   }
+  }
+  phase='final';conservation(last,input,true);await save('earned-prefix',last);if(stopped){await navTo(active,'settings');await active.getByRole('button',{name:'Save',exact:true}).click();await expect(active.getByRole('status')).toHaveText('Saved');expect(await disk(active)).toEqual(last);expect(await backup(active)).toEqual(last);checks.stoppedSamePageSaveExact=true;}else{active=await reopen(active,context,true,last,errors);}expect(errors).toEqual([]);expect(await active.evaluate(()=>'__GAME__' in window)).toBe(false);checks.finalExact=true;checks.outcome??='earned-ActII-route-cleared';checks.originalIDs=4057;checks.finalIDs=ids(last).length;checks.heroXPGain=heroXP(last)-heroXP(input);checks.mercXPGain=mercXP(last)-mercXP(input);checks.heroLevelBefore=input.player.level;checks.heroLevelAfter=last.player.level;
+  if(!stopped){await navTo(active,'map');await expandAct(active,3);await expect(active.getByTestId('sub-area-row-a3-spider-forest').getByRole('button',{name:'Enter',exact:true})).toBeEnabled();checks.actIIIAvailable=true;}
+ }catch(error){checks.error=error instanceof Error?error.stack:String(error);checks.phase=phase;checks.entered=entered;if(!active.isClosed())try{const p=active.getByRole('button',{name:'Pause',exact:true});if(await p.count())await p.click({timeout:1000});await active.screenshot({path:root+'/last-page.png'});await active.keyboard.press('Escape');await save('last-save',await backup(active));}catch(e){checks.diagnosticError=String(e);}throw error;
+ }finally{checks.pageErrors=errors;await writeFile(root+'/assertions.json',JSON.stringify(checks,null,2));if(!active.isClosed())await active.close();}
+});
+async function backupAfterCloseObjectInspection(page){await page.getByTestId('area-object-close').click();return backup(page);}

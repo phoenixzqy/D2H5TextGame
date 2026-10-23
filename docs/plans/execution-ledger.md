@@ -10560,3 +10560,21 @@ root-owned through H1/C2/umbrella at the exact path in the evidence document.
 Next: contract component consumption/output sources, recover shaft/amulet and
 assemble Staff; insertion/Duriel/rewards/access follow. C0/C1 historical acceptance
 retained; C2 underway; C3/C4/fullG0–G7 remain open. Local only.
+
+
+## P14 — Earned adapted preparation; entry harness stops trial
+
+[Evidence](evidence/act2-earned-adaptation.md) records nine ordinary equipment
+transfers,5Vitality+1IceBlast, all4057 original IDs conserved and exact
+Save-close-new-page Continue. One Far Oasis entry stops at an incorrect harness
+namespace assertion before any wave result, award or Claim; no gameplay retry
+or unfinished challenge reopen is permitted. Final export differs only in
+location. Producer and independent QA-ACT2-ADAPTED APPROVE/security PASS cover
+preparation and truthful stopped evidence only, all readers released.
+Setup1/2 exports were not recovered; diagnostic limits are explicit. Inherited
+aba7e12 unit9102/303/engine4357/112/T/L/build and frozen642source/760build/4harness/
+2inputs pass with drift[]/added[]. Exact task-owned dist/browser outputs removed,
+remaining[]/failures[]; raw required evidence remains root-owned through C2/
+umbrella consumers at the exact root in the evidence. Next: Tainted Sun permanent
+resistance implementation, then Canyon metadata. Historical C0/C1 accepted;
+C2 underway; C3/C4/fullG0–G7 remain open. Local only.
