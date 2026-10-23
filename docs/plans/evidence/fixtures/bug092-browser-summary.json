@@ -1,0 +1,102 @@
+{
+  "stats": {
+    "startTime": "2026-10-23T01:20:10.069Z",
+    "duration": 100077.315,
+    "expected": 10,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "errors": [],
+  "measurements": [
+    {
+      "case": "measurements-green-en-1280x800",
+      "buttons": 142,
+      "minWidth": 87.21875,
+      "minHeight": 44,
+      "overflow": 0
+    },
+    {
+      "case": "measurements-green-en-1920x1080",
+      "buttons": 142,
+      "minWidth": 87.21875,
+      "minHeight": 44,
+      "overflow": 0
+    },
+    {
+      "case": "measurements-green-en-360x640",
+      "buttons": 142,
+      "minWidth": 87.21875,
+      "minHeight": 44,
+      "overflow": 0
+    },
+    {
+      "case": "measurements-green-en-412x915",
+      "buttons": 142,
+      "minWidth": 87.21875,
+      "minHeight": 44,
+      "overflow": 0
+    },
+    {
+      "case": "measurements-green-en-640x360",
+      "buttons": 142,
+      "minWidth": 87.21875,
+      "minHeight": 44,
+      "overflow": 0
+    },
+    {
+      "case": "measurements-green-zh-CN-1280x800",
+      "buttons": 142,
+      "minWidth": 72,
+      "minHeight": 44,
+      "overflow": 0
+    },
+    {
+      "case": "measurements-green-zh-CN-1920x1080",
+      "buttons": 142,
+      "minWidth": 72,
+      "minHeight": 44,
+      "overflow": 0
+    },
+    {
+      "case": "measurements-green-zh-CN-360x640",
+      "buttons": 142,
+      "minWidth": 72,
+      "minHeight": 44,
+      "overflow": 0
+    },
+    {
+      "case": "measurements-green-zh-CN-412x915",
+      "buttons": 142,
+      "minWidth": 72,
+      "minHeight": 44,
+      "overflow": 0
+    },
+    {
+      "case": "measurements-green-zh-CN-640x360",
+      "buttons": 142,
+      "minWidth": 72,
+      "minHeight": 44,
+      "overflow": 0
+    }
+  ],
+  "reportSHA256": "41195920f1e561f83c98de57625191f01d1483afa9a82f6c6198dce833af3043",
+  "freeze": {
+    "sourceHead": "8c6a4e7",
+    "redGrep": "en 360x640",
+    "greenCases": 10,
+    "retries": 0,
+    "sourceExport": "../d2h5-fresh-act1-native/prepared.json.gz",
+    "hashes": {
+      "target.spec.ts": "1617798b6ff92dd3a584360b7afc5e5cf9566677a63005c418a780a78322d4e9",
+      "target.config.mjs": "5f5fe1f0f835454e46d5109f28940ad7bc6fbaef9565b2e0c4f2d99fba2cb6a8",
+      "package.json": "a90fc33418afa2b9cbf4768524b021135b965ecdf993457505bfae3ac44a8428"
+    },
+    "scope": "Presentation target measurement plus actual first glove candidate transfer/save equality; imported earned checkpoint, not fresh campaign proof."
+  },
+  "hashesMatch": {
+    "target.spec.ts": true,
+    "target.config.mjs": true,
+    "package.json": true
+  }
+}

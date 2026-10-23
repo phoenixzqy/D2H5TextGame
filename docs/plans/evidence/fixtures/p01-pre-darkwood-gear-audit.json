@@ -1,0 +1,820 @@
+{
+  "kind": "one pure earlier reward-boundary preparation audit; no combat or route execution",
+  "directory": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-after-burial-audit-83dpqT",
+  "input": {
+    "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act1-native/run-104-award-4.json.gz",
+    "compressedSha256": "e0a44e976768a6888f6a887617d8ffad61ff08cb64704945156cea0340c85394",
+    "jsonSha256": "a0ecdf973a8162a03cf29d9d8a40da3a616fe78864e99169a32fab90226fe5dd",
+    "timestamp": 1792497600000,
+    "level": 12,
+    "mercLevel": 15,
+    "backpackCount": 3849,
+    "clearedSubAreas": [
+      "areas/act1-den-of-evil",
+      "areas/act1-blood-moor",
+      "areas/act1-cold-plains",
+      "areas/act1-burial-grounds"
+    ]
+  },
+  "provenance": {
+    "sourceManifestPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act1-native/source-provenance.json",
+    "sourceManifestSha256": "e26f2c22f100b2ee31842a4e42c052875734ae9087f31d2167338a35361d0cff",
+    "manifestHead": "8c6a4e7280395137609e78891f82fe6fe46a2e56",
+    "sourceFilesChecked": 581,
+    "currentDifferences": [
+      {
+        "path": "src/features/mercs/MercsScreen.tsx",
+        "expected": "cdc6d4ea1f6ed8f99da37f2fe7422e26e60c79569766caeb21c161174c1852e1",
+        "actual": "50bb538dbe15272da9551825afa645e94c42d206672ed75e13adf01d17396569"
+      }
+    ],
+    "originalHelperPath": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-fresh-act1-native/fresh-gear-helper.mjs",
+    "helperSha256": "8336e0d50800eed61d92a0249a129128a53528e0482aac948a432e421351cff6",
+    "sourceHashesUnchangedDuringAudit": true,
+    "helperUnchanged": true
+  },
+  "policy": "unchanged boundary phase from frozen fresh-gear-helper.mjs; moved to after Burial Grounds only as a proposed next-route contract amendment",
+  "invariants": {
+    "inputUnchanged": true,
+    "resultDeepFrozen": true,
+    "distinctReservations": true,
+    "originalBackpackOrOwnCurrentOnly": true,
+    "allRequirementsPass": true,
+    "bug091WholeItemExclusions": true,
+    "directNongrowingTransfers": true,
+    "itemIdsConserved": true,
+    "nongearStateUnchanged": true,
+    "persistentHeroResourcesUnchanged": true
+  },
+  "itemCount": 3862,
+  "swaps": 7,
+  "exclusionAudit": [
+    {
+      "id": "it-2znuq-2y3",
+      "baseId": "items/base/glove-heavy",
+      "mods": {
+        "life": 9,
+        "mana": 11,
+        "defense": 8,
+        "magicDodge": 2,
+        "fireRes": 8
+      },
+      "bug091Keys": [
+        "magicDodge"
+      ],
+      "unsupportedKeys": [
+        "magicDodge"
+      ]
+    },
+    {
+      "id": "it-2a4mq-2y5",
+      "baseId": "items/base/boot-heavy",
+      "mods": {
+        "defense": 21,
+        "physDodge": 0.05
+      },
+      "bug091Keys": [
+        "physDodge"
+      ],
+      "unsupportedKeys": [
+        "physDodge"
+      ]
+    }
+  ],
+  "choices": [
+    {
+      "owner": "merc",
+      "slot": "weapon",
+      "previousId": "it-7is2r-106",
+      "selectedId": "it-4bfya-2y6",
+      "name": "Blood Crescent",
+      "baseId": "items/base/wp1h-short-sword",
+      "rarity": "unique",
+      "scoreKeys": [
+        "attack",
+        "attackSpeed"
+      ],
+      "score": [
+        80,
+        137
+      ],
+      "mods": {
+        "life": 15,
+        "attack": 55,
+        "attackSpeed": 15
+      },
+      "transfer": {
+        "owner": "merc",
+        "mercId": "mercs/act1-rogue-inner-sight",
+        "slot": "weapon",
+        "previousId": "it-7is2r-106",
+        "selectedId": "it-4bfya-2y6",
+        "changed": true,
+        "candidateIndex": 1019,
+        "candidateOrdinal": 1020,
+        "candidateCount": 1024,
+        "names": {
+          "en": "Blood Crescent",
+          "zh-CN": "血月"
+        },
+        "beforeBackpackCount": 3849,
+        "afterBackpackCount": 3849
+      }
+    },
+    {
+      "owner": "merc",
+      "slot": "head",
+      "previousId": "it-oxm6-126",
+      "selectedId": "it-518dy-2y2",
+      "name": "Coif of Glory",
+      "baseId": "items/base/helm-skull-cap",
+      "rarity": "unique",
+      "scoreKeys": [
+        "attack",
+        "lifeMax",
+        "defense"
+      ],
+      "score": [
+        80,
+        269,
+        93
+      ],
+      "mods": {
+        "life": 10,
+        "defense": 30,
+        "lightningRes": 15
+      },
+      "transfer": {
+        "owner": "merc",
+        "mercId": "mercs/act1-rogue-inner-sight",
+        "slot": "head",
+        "previousId": "it-oxm6-126",
+        "selectedId": "it-518dy-2y2",
+        "changed": true,
+        "candidateIndex": 629,
+        "candidateOrdinal": 630,
+        "candidateCount": 635,
+        "names": {
+          "en": "Coif of Glory",
+          "zh-CN": "荣耀之盔"
+        },
+        "beforeBackpackCount": 3849,
+        "afterBackpackCount": 3849
+      }
+    },
+    {
+      "owner": "hero",
+      "slot": "weapon",
+      "previousId": "it-2c0ac-10a",
+      "selectedId": "it-2w6n3-2y4",
+      "name": "Naj's Ancient Vestige Weapon",
+      "baseId": "items/base/weapon-wand",
+      "rarity": "set",
+      "scoreKeys": [
+        "attackSpeed",
+        "lifeMax",
+        "magicResist",
+        "defense"
+      ],
+      "score": [
+        135,
+        262,
+        0,
+        120
+      ],
+      "mods": {
+        "attack": 34,
+        "attackSpeed": 10
+      },
+      "transfer": {
+        "owner": "hero",
+        "mercId": null,
+        "slot": "weapon",
+        "previousId": "it-2c0ac-10a",
+        "selectedId": "it-2w6n3-2y4",
+        "changed": true,
+        "candidateIndex": 1018,
+        "candidateOrdinal": 1019,
+        "candidateCount": 1024,
+        "names": {
+          "en": "Naj's Ancient Vestige Weapon",
+          "zh-CN": "纳杰之疑"
+        },
+        "beforeBackpackCount": 3849,
+        "afterBackpackCount": 3849
+      }
+    },
+    {
+      "owner": "hero",
+      "slot": "head",
+      "previousId": "it-oxm6-10m",
+      "selectedId": "it-oxm6-10m",
+      "name": "Skull Cap",
+      "baseId": "items/base/helm-skull-cap",
+      "rarity": "normal",
+      "scoreKeys": [
+        "defense",
+        "lifeMax"
+      ],
+      "score": [
+        120,
+        262
+      ],
+      "mods": {
+        "defense": 14
+      },
+      "transfer": {
+        "owner": "hero",
+        "mercId": null,
+        "slot": "head",
+        "previousId": "it-oxm6-10m",
+        "selectedId": "it-oxm6-10m",
+        "changed": false,
+        "candidateIndex": -1,
+        "candidateOrdinal": null,
+        "candidateCount": 635,
+        "names": {
+          "en": "Skull Cap",
+          "zh-CN": "头盖骨"
+        },
+        "beforeBackpackCount": 3849,
+        "afterBackpackCount": 3849
+      }
+    },
+    {
+      "owner": "hero",
+      "slot": "offhand",
+      "previousId": "it-9mr1x-10c",
+      "selectedId": "it-9mr1x-10c",
+      "name": "Kite Shield",
+      "baseId": "items/base/sh-kite",
+      "rarity": "normal",
+      "scoreKeys": [
+        "defense",
+        "lifeMax"
+      ],
+      "score": [
+        120,
+        262
+      ],
+      "mods": {
+        "defense": 16
+      },
+      "transfer": {
+        "owner": "hero",
+        "mercId": null,
+        "slot": "offhand",
+        "previousId": "it-9mr1x-10c",
+        "selectedId": "it-9mr1x-10c",
+        "changed": false,
+        "candidateIndex": -1,
+        "candidateOrdinal": null,
+        "candidateCount": 258,
+        "names": {
+          "en": "Kite Shield",
+          "zh-CN": "鸢盾"
+        },
+        "beforeBackpackCount": 3849,
+        "afterBackpackCount": 3849
+      }
+    },
+    {
+      "owner": "hero",
+      "slot": "chest",
+      "previousId": "it-3zbek-105",
+      "selectedId": "it-3zbek-105",
+      "name": "Leather Armor",
+      "baseId": "items/base/armor-leather",
+      "rarity": "normal",
+      "scoreKeys": [
+        "defense",
+        "lifeMax"
+      ],
+      "score": [
+        120,
+        262
+      ],
+      "mods": {
+        "defense": 23
+      },
+      "transfer": {
+        "owner": "hero",
+        "mercId": null,
+        "slot": "chest",
+        "previousId": "it-3zbek-105",
+        "selectedId": "it-3zbek-105",
+        "changed": false,
+        "candidateIndex": -1,
+        "candidateOrdinal": null,
+        "candidateCount": 248,
+        "names": {
+          "en": "Leather Armor",
+          "zh-CN": "皮甲"
+        },
+        "beforeBackpackCount": 3849,
+        "afterBackpackCount": 3849
+      }
+    },
+    {
+      "owner": "hero",
+      "slot": "belt",
+      "previousId": "it-22zc9-103",
+      "selectedId": "it-17zko-2za",
+      "name": "Light Belt",
+      "baseId": "items/base/belt-light",
+      "rarity": "normal",
+      "scoreKeys": [
+        "defense",
+        "lifeMax"
+      ],
+      "score": [
+        122,
+        262
+      ],
+      "mods": {
+        "defense": 6
+      },
+      "transfer": {
+        "owner": "hero",
+        "mercId": null,
+        "slot": "belt",
+        "previousId": "it-22zc9-103",
+        "selectedId": "it-17zko-2za",
+        "changed": true,
+        "candidateIndex": 549,
+        "candidateOrdinal": 550,
+        "candidateCount": 550,
+        "names": {
+          "en": "Light Belt",
+          "zh-CN": "轻型腰带"
+        },
+        "beforeBackpackCount": 3849,
+        "afterBackpackCount": 3849
+      }
+    },
+    {
+      "owner": "hero",
+      "slot": "gloves",
+      "previousId": "it-96fga-3",
+      "selectedId": "it-96fga-3",
+      "name": "Leather Gloves",
+      "baseId": "items/base/glove-leather",
+      "rarity": "normal",
+      "scoreKeys": [
+        "defense",
+        "lifeMax"
+      ],
+      "score": [
+        122,
+        262
+      ],
+      "mods": {
+        "defense": 5
+      },
+      "transfer": {
+        "owner": "hero",
+        "mercId": null,
+        "slot": "gloves",
+        "previousId": "it-96fga-3",
+        "selectedId": "it-96fga-3",
+        "changed": false,
+        "candidateIndex": -1,
+        "candidateOrdinal": null,
+        "candidateCount": 553,
+        "names": {
+          "en": "Leather Gloves",
+          "zh-CN": "皮手套"
+        },
+        "beforeBackpackCount": 3849,
+        "afterBackpackCount": 3849
+      }
+    },
+    {
+      "owner": "hero",
+      "slot": "boots",
+      "previousId": "it-9qlpi-108",
+      "selectedId": "it-9qlpi-108",
+      "name": "Boots",
+      "baseId": "items/base/boot-leather",
+      "rarity": "normal",
+      "scoreKeys": [
+        "fireRes",
+        "lightningRes",
+        "defense"
+      ],
+      "score": [
+        0,
+        0,
+        122
+      ],
+      "mods": {
+        "defense": 5
+      },
+      "transfer": {
+        "owner": "hero",
+        "mercId": null,
+        "slot": "boots",
+        "previousId": "it-9qlpi-108",
+        "selectedId": "it-9qlpi-108",
+        "changed": false,
+        "candidateIndex": -1,
+        "candidateOrdinal": null,
+        "candidateCount": 404,
+        "names": {
+          "en": "Boots",
+          "zh-CN": "靴子"
+        },
+        "beforeBackpackCount": 3849,
+        "afterBackpackCount": 3849
+      }
+    },
+    {
+      "owner": "hero",
+      "slot": "amulet",
+      "previousId": null,
+      "selectedId": "it-3h1j3-17",
+      "name": "Tin Amulet",
+      "baseId": "items/base/amu-tin",
+      "rarity": "normal",
+      "scoreKeys": [
+        "lifeMax",
+        "physicalRes",
+        "manaMax"
+      ],
+      "score": [
+        262,
+        0,
+        188
+      ],
+      "mods": {},
+      "transfer": {
+        "owner": "hero",
+        "mercId": null,
+        "slot": "amulet",
+        "previousId": null,
+        "selectedId": "it-3h1j3-17",
+        "changed": true,
+        "candidateIndex": 6,
+        "candidateOrdinal": 7,
+        "candidateCount": 108,
+        "names": {
+          "en": "Tin Amulet",
+          "zh-CN": "锡项链"
+        },
+        "beforeBackpackCount": 3849,
+        "afterBackpackCount": 3848
+      }
+    },
+    {
+      "owner": "merc",
+      "slot": "offhand",
+      "previousId": null,
+      "selectedId": "it-9mr1x-11w",
+      "name": "Kite Shield",
+      "baseId": "items/base/sh-kite",
+      "rarity": "normal",
+      "scoreKeys": [
+        "defense",
+        "lifeMax"
+      ],
+      "score": [
+        109,
+        269
+      ],
+      "mods": {
+        "defense": 16
+      },
+      "transfer": {
+        "owner": "merc",
+        "mercId": "mercs/act1-rogue-inner-sight",
+        "slot": "offhand",
+        "previousId": null,
+        "selectedId": "it-9mr1x-11w",
+        "changed": true,
+        "candidateIndex": 74,
+        "candidateOrdinal": 75,
+        "candidateCount": 258,
+        "names": {
+          "en": "Kite Shield",
+          "zh-CN": "鸢盾"
+        },
+        "beforeBackpackCount": 3848,
+        "afterBackpackCount": 3847
+      }
+    },
+    {
+      "owner": "merc",
+      "slot": "chest",
+      "previousId": "it-3zbek-11p",
+      "selectedId": "it-3zbek-11p",
+      "name": "Leather Armor",
+      "baseId": "items/base/armor-leather",
+      "rarity": "normal",
+      "scoreKeys": [
+        "defense",
+        "lifeMax"
+      ],
+      "score": [
+        109,
+        269
+      ],
+      "mods": {
+        "defense": 23
+      },
+      "transfer": {
+        "owner": "merc",
+        "mercId": "mercs/act1-rogue-inner-sight",
+        "slot": "chest",
+        "previousId": "it-3zbek-11p",
+        "selectedId": "it-3zbek-11p",
+        "changed": false,
+        "candidateIndex": -1,
+        "candidateOrdinal": null,
+        "candidateCount": 248,
+        "names": {
+          "en": "Leather Armor",
+          "zh-CN": "皮甲"
+        },
+        "beforeBackpackCount": 3847,
+        "afterBackpackCount": 3847
+      }
+    },
+    {
+      "owner": "merc",
+      "slot": "belt",
+      "previousId": "it-22zc9-11n",
+      "selectedId": "it-2jm8r-2ye",
+      "name": "Light Belt",
+      "baseId": "items/base/belt-light",
+      "rarity": "normal",
+      "scoreKeys": [
+        "defense",
+        "lifeMax"
+      ],
+      "score": [
+        111,
+        269
+      ],
+      "mods": {
+        "defense": 6
+      },
+      "transfer": {
+        "owner": "merc",
+        "mercId": "mercs/act1-rogue-inner-sight",
+        "slot": "belt",
+        "previousId": "it-22zc9-11n",
+        "selectedId": "it-2jm8r-2ye",
+        "changed": true,
+        "candidateIndex": 542,
+        "candidateOrdinal": 543,
+        "candidateCount": 550,
+        "names": {
+          "en": "Light Belt",
+          "zh-CN": "轻型腰带"
+        },
+        "beforeBackpackCount": 3847,
+        "afterBackpackCount": 3847
+      }
+    },
+    {
+      "owner": "merc",
+      "slot": "gloves",
+      "previousId": "it-96fga-8",
+      "selectedId": "it-96fga-8",
+      "name": "Leather Gloves",
+      "baseId": "items/base/glove-leather",
+      "rarity": "normal",
+      "scoreKeys": [
+        "defense",
+        "lifeMax"
+      ],
+      "score": [
+        111,
+        269
+      ],
+      "mods": {
+        "defense": 5
+      },
+      "transfer": {
+        "owner": "merc",
+        "mercId": "mercs/act1-rogue-inner-sight",
+        "slot": "gloves",
+        "previousId": "it-96fga-8",
+        "selectedId": "it-96fga-8",
+        "changed": false,
+        "candidateIndex": -1,
+        "candidateOrdinal": null,
+        "candidateCount": 553,
+        "names": {
+          "en": "Leather Gloves",
+          "zh-CN": "皮手套"
+        },
+        "beforeBackpackCount": 3847,
+        "afterBackpackCount": 3847
+      }
+    },
+    {
+      "owner": "merc",
+      "slot": "boots",
+      "previousId": "it-9qlpi-11s",
+      "selectedId": "it-9qlpi-11s",
+      "name": "Boots",
+      "baseId": "items/base/boot-leather",
+      "rarity": "normal",
+      "scoreKeys": [
+        "defense",
+        "lifeMax"
+      ],
+      "score": [
+        111,
+        269
+      ],
+      "mods": {
+        "defense": 5
+      },
+      "transfer": {
+        "owner": "merc",
+        "mercId": "mercs/act1-rogue-inner-sight",
+        "slot": "boots",
+        "previousId": "it-9qlpi-11s",
+        "selectedId": "it-9qlpi-11s",
+        "changed": false,
+        "candidateIndex": -1,
+        "candidateOrdinal": null,
+        "candidateCount": 404,
+        "names": {
+          "en": "Boots",
+          "zh-CN": "靴子"
+        },
+        "beforeBackpackCount": 3847,
+        "afterBackpackCount": 3847
+      }
+    }
+  ],
+  "effects": {
+    "hero": {
+      "before": {
+        "life": 120,
+        "lifeMax": 262,
+        "mana": 102,
+        "manaMax": 188,
+        "attack": 56,
+        "defense": 120,
+        "magicResist": 0,
+        "attackSpeed": 125,
+        "critChance": 0.05,
+        "critDamage": 2,
+        "physDodge": 0.1,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "goldFind": 0,
+        "resistances": {
+          "fire": 0,
+          "cold": 0,
+          "lightning": 0,
+          "poison": 0,
+          "arcane": 0,
+          "physical": 0
+        }
+      },
+      "after": {
+        "life": 120,
+        "lifeMax": 262,
+        "mana": 102,
+        "manaMax": 188,
+        "attack": 78,
+        "defense": 122,
+        "magicResist": 0,
+        "attackSpeed": 135,
+        "critChance": 0.05,
+        "critDamage": 2,
+        "physDodge": 0.1,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "goldFind": 0,
+        "resistances": {
+          "fire": 0,
+          "cold": 0,
+          "lightning": 0,
+          "poison": 0,
+          "arcane": 0,
+          "physical": 0
+        }
+      },
+      "delta": {
+        "life": 0,
+        "lifeMax": 0,
+        "mana": 0,
+        "manaMax": 0,
+        "attack": 22,
+        "defense": 2,
+        "magicResist": 0,
+        "attackSpeed": 10,
+        "critChance": 0,
+        "critDamage": 0,
+        "physDodge": 0,
+        "magicDodge": 0,
+        "magicFind": 0,
+        "goldFind": 0
+      },
+      "resistanceDelta": {
+        "fire": 0,
+        "cold": 0,
+        "lightning": 0,
+        "poison": 0,
+        "arcane": 0,
+        "physical": 0
+      }
+    },
+    "merc": {
+      "before": {
+        "life": 244,
+        "lifeMax": 244,
+        "mana": 79,
+        "manaMax": 79,
+        "attack": 43,
+        "defense": 77,
+        "magicResist": 0,
+        "attackSpeed": 122,
+        "critChance": 0.05,
+        "critDamage": 2,
+        "physDodge": 0.094,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "goldFind": 0,
+        "resistances": {
+          "fire": 0,
+          "cold": 0,
+          "lightning": 0,
+          "poison": 0,
+          "arcane": 0,
+          "physical": 0
+        }
+      },
+      "after": {
+        "life": 244,
+        "lifeMax": 269,
+        "mana": 79,
+        "manaMax": 79,
+        "attack": 80,
+        "defense": 111,
+        "magicResist": 0,
+        "attackSpeed": 137,
+        "critChance": 0.05,
+        "critDamage": 2,
+        "physDodge": 0.094,
+        "magicDodge": 0.05,
+        "magicFind": 0,
+        "goldFind": 0,
+        "resistances": {
+          "fire": 0,
+          "cold": 0,
+          "lightning": 15,
+          "poison": 0,
+          "arcane": 0,
+          "physical": 0
+        }
+      },
+      "delta": {
+        "life": 0,
+        "lifeMax": 25,
+        "mana": 0,
+        "manaMax": 0,
+        "attack": 37,
+        "defense": 34,
+        "magicResist": 0,
+        "attackSpeed": 15,
+        "critChance": 0,
+        "critDamage": 0,
+        "physDodge": 0,
+        "magicDodge": 0,
+        "magicFind": 0,
+        "goldFind": 0
+      },
+      "resistanceDelta": {
+        "fire": 0,
+        "cold": 0,
+        "lightning": 15,
+        "poison": 0,
+        "arcane": 0,
+        "physical": 0
+      }
+    }
+  },
+  "artifacts": {
+    "selection": {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-after-burial-audit-83dpqT/boundary-selection.json",
+      "sha256": "1d6afeb21850fd26615d9885a9230a8aa16dd5fdef46fb87906c23c43939ed86"
+    },
+    "expectedAfter": {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-after-burial-audit-83dpqT/expected-after.json.gz",
+      "compressedSha256": "e2ab8dbd1c0997ef298baaa27a9bdfb9ec71fb3d903abf108033acb6b0dddc20",
+      "jsonSha256": "1c805f4a4cfbe776a1b675ddfaa8866ed2ee7dd2f2c3ba53962c85916e340cd9"
+    }
+  },
+  "limits": [
+    "No Dark Wood outcome or victory is predicted.",
+    "The existing published boundary is after Dark Wood; moving it requires an explicit bounded amendment before a new attempt.",
+    "Prior failed final export is not used; no later rewards, affix normalization, cross-owner returns, farming, allocation, replay, seed search or continuation occurred."
+  ]
+}

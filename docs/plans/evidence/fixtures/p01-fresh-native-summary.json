@@ -1,0 +1,186 @@
+{
+  "sourceHead": "8c6a4e7",
+  "outcome": "failed",
+  "failure": {
+    "area": "a1-dark-wood",
+    "ordinal": 105,
+    "seed": 4003329104,
+    "wave": 4,
+    "wavesPlanned": 5,
+    "terminalLog": "The battle ends in a draw.",
+    "liveEnemies": 1,
+    "heroMP": "175",
+    "survivingCards": [
+      {
+        "id": "unit-card-merc-mercs/act1-rogue-inner-sight",
+        "kind": "merc",
+        "dead": null,
+        "hp": "width: 93.85%;",
+        "text": "Rogue Scout — Inner Sight"
+      },
+      {
+        "id": "unit-card-player-1792497600000",
+        "kind": "hero",
+        "dead": null,
+        "hp": "width: 93.89%;",
+        "text": "Earned Act I"
+      },
+      {
+        "id": "unit-card-enemy-act1.dark-stalker-1-f3f2",
+        "kind": "monster",
+        "dead": null,
+        "hp": "width: 19.73%;",
+        "text": "Dark Stalker BFreezeInner SightFreeze"
+      }
+    ]
+  },
+  "stats": {
+    "startTime": "2026-10-23T01:06:01.741Z",
+    "duration": 709100.2150000001,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "nativeInputPolicy": {
+    "head": "8c6a4e7",
+    "attempts": 1,
+    "retries": 0,
+    "viewport": [
+      360,
+      640
+    ],
+    "date": 1792497600000,
+    "nativeSeedAndOrdinal": true,
+    "hashes": {
+      "fresh-native.spec.ts": "75c5255ffa8d7a917bc6ab628e7049bc38a05030866042eeafead417abe3198b",
+      "fresh-native.config.mjs": "93dda6ef2fe03a3bc320b7a99cb26ae07c618b7aa5c0f000041ba25753754569",
+      "fresh-gear-helper.mjs": "8336e0d50800eed61d92a0249a129128a53528e0482aac948a432e421351cff6",
+      "package.json": "a90fc33418afa2b9cbf4768524b021135b965ecdf993457505bfae3ac44a8428",
+      "source-provenance.json": "e26f2c22f100b2ee31842a4e42c052875734ae9087f31d2167338a35361d0cff",
+      "build-audit.json": "c1554c40a8d7363e9396065af30ae657e1957bea46e9764e2f2474e2f5d24d14"
+    }
+  },
+  "prepVictories": 40,
+  "fullChallengeVictoryWaves": 258,
+  "drawWaves": 1,
+  "recordedWaveAwards": 258,
+  "waveAwardsHeroXP": 144900,
+  "waveAwardsMercXP": 108616,
+  "failedWaveExportEqualsPreviousWave": true,
+  "finalOwnedItems": 3875,
+  "finalUniqueIds": 3875,
+  "finalPlayer": {
+    "id": "player-1792497600000",
+    "name": "Earned Act I",
+    "type": "player",
+    "team": "player",
+    "level": 12,
+    "coreStats": {
+      "strength": 10,
+      "dexterity": 25,
+      "vitality": 37,
+      "energy": 63
+    },
+    "derivedStats": {
+      "life": 120,
+      "lifeMax": 262,
+      "mana": 102,
+      "manaMax": 188,
+      "attack": 56,
+      "defense": 120,
+      "magicResist": 0,
+      "attackSpeed": 125,
+      "critChance": 0.05,
+      "critDamage": 2,
+      "physDodge": 0.1,
+      "magicDodge": 0.05,
+      "magicFind": 0,
+      "goldFind": 0,
+      "resistances": {
+        "fire": 0,
+        "cold": 0,
+        "lightning": 0,
+        "poison": 0,
+        "arcane": 0,
+        "physical": 0
+      }
+    },
+    "statusEffects": [],
+    "cooldowns": [],
+    "skills": [],
+    "comboOrder": [
+      "skills-sorceress-frost-nova",
+      "skills-sorceress-ice-blast"
+    ],
+    "skillLevels": {
+      "sorceress.frost_nova": 2,
+      "sorceress.ice_bolt": 1,
+      "sorceress.fire_bolt": 4,
+      "sorceress.warmth": 1,
+      "sorceress.ice_blast": 8
+    },
+    "alive": true,
+    "turnOrder": 0,
+    "class": "sorceress",
+    "experience": 11181,
+    "experienceToNextLevel": 49883,
+    "statPoints": 0,
+    "skillPoints": 0,
+    "equipment": []
+  },
+  "browserErrors": [],
+  "clearedMap": {
+    "currentAct": 1,
+    "currentSubAreaId": "a1-dark-wood",
+    "discoveredAreas": [],
+    "clearedSubAreas": [
+      "areas/act1-den-of-evil",
+      "areas/act1-blood-moor",
+      "areas/act1-cold-plains",
+      "areas/act1-burial-grounds"
+    ],
+    "questProgress": {
+      "quests/act1-den-of-evil": {
+        "id": "quests/act1-den-of-evil",
+        "status": "completed",
+        "objectives": {
+          "obj-clear-den": true,
+          "obj-return": true
+        },
+        "rewardClaimed": true
+      }
+    }
+  },
+  "notReached": [
+    "DarkWoodW5",
+    "rewardGearBoundary",
+    "Catacombs",
+    "Andariel",
+    "SistersClaim",
+    "CoifEquip",
+    "ActIIUnlock",
+    "SaveCloseContinue"
+  ],
+  "independentQA": "ADEQUATE for failure evidence; C1 INCOMPLETE; all6freeze/1346source/760build files matched before CSS edit; failed-wave exact full save unchanged,3875 unique owned IDs; readers released",
+  "hashes": {
+    "fresh-native.spec.ts": "75c5255ffa8d7a917bc6ab628e7049bc38a05030866042eeafead417abe3198b",
+    "fresh-native.config.mjs": "93dda6ef2fe03a3bc320b7a99cb26ae07c618b7aa5c0f000041ba25753754569",
+    "fresh-gear-helper.mjs": "8336e0d50800eed61d92a0249a129128a53528e0482aac948a432e421351cff6",
+    "outcome.json": "2e756e6ee0525d18c89dfa73f43d638eed18635c2cfaa98949469b80d69146cf",
+    "browser-report.json": "1617964ba18f1f0f797551b84b46c18f6fdd9d4f2d8940bbcd72ac430ef4934e",
+    "last-native-save.json.gz": "21767c6fb5889a0257747a32a63d825c844f78f64159d7366dd253f45769b043",
+    "run-104-award-4.json.gz": "e0a44e976768a6888f6a887617d8ffad61ff08cb64704945156cea0340c85394",
+    "run-105-award-3.json.gz": "21767c6fb5889a0257747a32a63d825c844f78f64159d7366dd253f45769b043",
+    "run-105-plan.json.gz": "e63c7d3beaff1d16c8cfc1ce51a26b2fd288d3c223d4208413a09b8adcab1433",
+    "run-105-opening-4.json.gz": "918c448fca5492bc16ee8ccced4932709f559ba3b93e07b13be3d6c63e3e72d2",
+    "run-105-terminal-4.json.gz": "023038fdfdb2c0ac1c8aa4295b414d63cf64b4fe7909f1119b16fd8117a0df19",
+    "progress.jsonl": "b79097e128806e52883e45ee983bfe075b80b330b470d058ee891eb77dcc1700",
+    "wave-awards.jsonl": "e78f35f8821c59bc52382cc4be48a22a3fdd87b8fa525b90cfa702c36e25eeb6",
+    "execution-freeze.json": "897a0bfb6a30e259a9d874ffd8a0beb7cdac94b1291667ee26fbfc680f0357da",
+    "source-provenance.json": "e26f2c22f100b2ee31842a4e42c052875734ae9087f31d2167338a35361d0cff",
+    "build-audit.json": "c1554c40a8d7363e9396065af30ae657e1957bea46e9764e2f2474e2f5d24d14"
+  },
+  "initialDenVictoryWaves": 4,
+  "totalVictoryWaves": 302
+}

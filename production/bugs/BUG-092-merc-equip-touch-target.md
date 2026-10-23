@@ -1,6 +1,6 @@
 # BUG-092 — Give mercenary candidate Equip buttons a 44px touch target
 
-Status: Fixed and validated; commit identity recorded in the execution ledger.
+Status: Fixed in `6e2eb30`; independently validated.
 Severity: Medium — the button works, but is smaller than the mobile target requirement.
 Owner: frontend-dev; verifier: QA.
 

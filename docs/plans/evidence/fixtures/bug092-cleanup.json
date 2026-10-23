@@ -1,0 +1,39 @@
+{
+  "owner": "root",
+  "readersReleased": true,
+  "trackedSessionsTerminal": [
+    2291,
+    87492,
+    68904,
+    58959,
+    92276,
+    91956
+  ],
+  "previewPort37869Closed": true,
+  "removed": [
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-merc-equip-target/dist",
+      "files": 760,
+      "bytes": 41050175
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-merc-equip-target/browser-output",
+      "files": 1,
+      "bytes": 45
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-merc-equip-target/tmp",
+      "files": 102,
+      "bytes": 471838
+    },
+    {
+      "path": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-merc-equip-target/cache",
+      "files": 8,
+      "bytes": 622496
+    }
+  ],
+  "alreadyAbsent": [],
+  "remaining": [],
+  "failures": [],
+  "retainedReason": "Required frozen diagnostics, exports, reports, screenshots and source/build provenance remain through C1/umbrella consumers; root removes after consumers finish."
+}
