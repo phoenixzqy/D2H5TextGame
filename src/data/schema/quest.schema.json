@@ -727,9 +727,38 @@
           ]
         },
         "lootTable": {
-          "type": "string",
-          "pattern": "^loot/[a-z0-9][a-z0-9._-]*$",
-          "description": "Loot table identifier."
+          "description": "Legacy table identifier or explicit quest cache parameters; legacy strings remain unsupported by reward execution.",
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^loot/[a-z0-9][a-z0-9._-]*$"
+            },
+            {
+              "type": "object",
+              "description": "Quest cache with authored generation level and independent pick count.",
+              "required": [
+                "tableId",
+                "ilvl",
+                "picks"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "tableId": {
+                  "type": "string",
+                  "pattern": "^loot/[a-z0-9][a-z0-9._-]*$",
+                  "description": "Treasure-class identifier; existence is checked at reward execution."
+                },
+                "ilvl": {
+                  "$ref": "#/$defs/positiveInteger",
+                  "description": "Authored item generation level."
+                },
+                "picks": {
+                  "$ref": "#/$defs/positiveInteger",
+                  "description": "Number of independent treasure-class picks."
+                }
+              }
+            }
+          ]
         },
         "mercenaryUnlock": {
           "$ref": "#/$defs/mercId"

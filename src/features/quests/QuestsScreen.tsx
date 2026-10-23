@@ -281,6 +281,7 @@ function formatReward(
     return `🎁 ${template ? tDataKey(t, template.name) : t('rewardLabel.uniqueItem')}`;
   }
   if (k === 'lootTable' && typeof v === 'string') return `📦 ${formatRewardValue(v, t)}`;
+  if (k === 'lootTable' && typeof v === 'object' && v !== null) return `📦 ${t('rewardLabel.rewardCache')}`;
   if (k === 'areaUnlock' && typeof v === 'string') return `🗺️ ${formatRewardValue(v, t)}`;
   if (k === 'npcUnlock' && typeof v === 'string') return `👤 ${formatRewardValue(v, t)}`;
   if (k === 'stat' && typeof v === 'object' && v !== null)

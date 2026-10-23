@@ -257,6 +257,7 @@
     }
   },
   "rewardLabel": {
+    "rewardCache": "Reward cache",
     "uniqueItem": "Unique item",
     "imbue": "Imbue Charge",
     "skillPoint": "Skill Point",

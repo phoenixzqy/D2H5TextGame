@@ -160,9 +160,9 @@
       "description": "Within the true Tomb of Tal Rasha, Baal's prison hosts the Lord of Pain himself: Duriel. Shatter the orifice with the Horadric Staff and slay him.",
       "objectives": [
         { "id": "obj-open-tomb", "type": "interact", "targetId": "objects/tal_rasha_orifice", "itemRequired": "quest/horadric_staff", "areaId": "areas/act2-tomb-of-tal-rasha", "description": "Place the Horadric Staff into the orifice in the true Tomb of Tal Rasha." },
-        { "id": "obj-kill-duriel", "type": "kill-boss", "targetId": "monsters/duriel", "areaId": "areas/act2_duriels_lair", "description": "Slay Duriel." }
+        { "id": "obj-kill-duriel", "type": "kill-boss", "targetId": "monsters/act2.duriel", "areaId": "areas/act2-tomb-of-tal-rasha", "description": "Slay Duriel." }
       ],
-      "rewards": { "xp": 12000, "lootTable": "loot/duriel-q" },
+      "rewards": { "xp": 12000, "lootTable": { "tableId": "loot/duriel-q", "ilvl": 32, "picks": 5 } },
       "unlocks": "acts/act3",
       "order": 11
     },
