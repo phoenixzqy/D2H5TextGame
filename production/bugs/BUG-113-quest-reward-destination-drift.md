@@ -1,6 +1,6 @@
 # BUG-113 — Recheck quest inventory destinations during Claim
 
-- Status: Fix implemented; final integrated validation in progress.
+- Status: Fixed in `10a63d9`; full integrated10309/368 tests pass,2 existing opt-in skips.
 - Severity: High (Claim can retain unsafe balances or duplicate gear IDs).
 - Owner: engine-dev; shared quest reward boundary.
 - Build: `3c02cc2` plus the pending D10 acquisition/quest integration.

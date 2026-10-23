@@ -1,6 +1,6 @@
 # BUG-112 — Preserve concrete rune identities from quest caches
 
-- Status: Fix implemented; final integrated validation in progress.
+- Status: Fixed in `10a63d9`; full integrated10309/368 tests pass,2 existing opt-in skips.
 - Severity: High (blocks earning usable rune stacks; anonymous balances cannot recover identity).
 - Owner: engine-dev; inventory/save consumers follow the D10 material contract.
 - Build: `e6b577f48e209f2ffd8d5b971f3f9b3dc09a16f5`.
