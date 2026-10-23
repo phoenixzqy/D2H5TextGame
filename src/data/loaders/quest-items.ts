@@ -6,7 +6,7 @@ import { loadQuests, type QuestDef, type QuestObjective } from './quests';
 import { subAreas } from '../index';
 import { questObjectivePrerequisites } from '../../engine/map/questStages';
 import { loadTownNpcs } from './towns';
-import { loadQuestActions } from './quest-actions';
+import { loadQuestActions, questActionInputs } from './quest-actions';
 
 /** A unique quest reward entitlement and its one-time Read effect. */
 interface QuestItemBase {
@@ -30,12 +30,23 @@ export interface RetainedQuestItemDef extends QuestItemBase {
   readonly sourceObjectiveId?: never;
   readonly effect?: never;
   readonly requiredActionSource: 'quests/act3-guardian#action:break-compelling-orb';
+  readonly consumeActionId?: 'actions/act4-shatter-soulstone';
 }
 
 /** Retained tool issued only by its explicit authored fetch objective. */
 export interface QuestToolDef extends QuestItemBase {
   readonly kind: 'tool';
   readonly sourceObjectiveId: string;
+  readonly effect?: never;
+}
+
+/** Qualified encounter proof followed by explicit recovery at one authored object. */
+export interface QuestEncounterItemDef extends QuestItemBase {
+  readonly kind: 'encounter';
+  readonly sourceObjectiveId: 'obj-kill-hephasto';
+  readonly targetId: 'objects/hellforge_hammer_cache';
+  readonly requiredActionSource: 'quests/act4-hellforge#action:hephasto-victory';
+  readonly consumeActionId: 'actions/act4-shatter-soulstone';
   readonly effect?: never;
 }
 
@@ -71,7 +82,7 @@ export interface AssembledQuestItemDef extends QuestItemBase {
   readonly effect?: never;
 }
 
-export type ObjectiveQuestItemDef = QuestToolDef | QuestComponentDef | QuestDeliveryDef | AssembledQuestItemDef;
+export type ObjectiveQuestItemDef = QuestEncounterItemDef | QuestToolDef | QuestComponentDef | QuestDeliveryDef | AssembledQuestItemDef;
 export type QuestItemDef = ReadQuestItemDef | RetainedQuestItemDef | ObjectiveQuestItemDef;
 
 const ajv = new Ajv2020({ strict: true, allErrors: true });
@@ -116,6 +127,8 @@ export function loadQuestItems(): readonly QuestItemDef[] {
       const objective = exactObjective(quest, item.sourceObjectiveId);
       if (!quest || !objective || (item.kind === 'assembled'
         ? objective.type !== 'transmute' || objective.recipe !== item.recipe
+        : item.kind === 'encounter' ? objective.type !== 'kill' || objective.targetId !== 'monsters/act4.mega-demon' ||
+          objective.areaId !== 'areas/act4-river-of-flame' || quest.id !== 'quests/act4-hellforge'
         : item.kind === 'delivery' && objective.type === 'give'
           ? !items.some(input => input.kind === 'delivery' && input.outputItemId === item.id &&
               input.sourceQuestId === item.sourceQuestId && input.consumeObjectiveId === item.sourceObjectiveId)
@@ -153,6 +166,11 @@ export function loadQuestItems(): readonly QuestItemDef[] {
           throw new Error(`quests/items.json: exchange/output mismatch for ${item.id}`);
         }
       }
+    } else if (item.kind === 'encounter' || item.kind === 'retained') {
+      const action = actions.find(row => row.id === item.consumeActionId);
+      if (!action || !questActionInputs(action).some(input => input.inputSource === questItemSource(item) && input.itemId === item.id)) {
+        throw new Error(`quests/items.json: encounter/retained consumer mismatch for ${item.id}`);
+      }
     } else if (item.kind === 'component') {
       const output = items.find(row => row.id === item.consumedBy);
       if (output?.kind !== 'assembled' || !output.ingredients.includes(item.id) ||
@@ -187,9 +205,11 @@ export function loadQuestItems(): readonly QuestItemDef[] {
     }
   }
   for (const action of actions) {
-    if (items.filter(item => item.kind === 'assembled' && item.consumeActionId === action.id &&
-      item.consumeQuestId === action.questId && item.id === action.itemId && questItemSource(item) === action.inputSource).length !== 1) {
-      throw new Error('quests/items.json: action/input mismatch');
+    for (const input of questActionInputs(action)) {
+      if (items.filter(item => (item.kind === 'assembled' || item.kind === 'encounter' || item.kind === 'retained') &&
+        item.consumeActionId === action.id && item.id === input.itemId && questItemSource(item) === input.inputSource).length !== 1) {
+        throw new Error('quests/items.json: action/input mismatch');
+      }
     }
   }
   for (const quest of quests) {

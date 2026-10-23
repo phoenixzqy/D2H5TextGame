@@ -5,28 +5,116 @@
   "description": "Finite explicit item consumers; actions never add objective rows or execute arbitrary effects.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["actions"],
+  "required": [
+    "actions"
+  ],
   "properties": {
-    "$schema": { "type": "string", "description": "Optional authoring schema reference." },
+    "$schema": {
+      "type": "string",
+      "description": "Optional authoring schema reference."
+    },
     "actions": {
       "type": "array",
-      "minItems": 1,
-      "maxItems": 1,
-      "description": "The currently supported Guardian-owned Orb consumer.",
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "Closed Orb and Hellforge item consumers.",
       "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["id", "questId", "receiptSource", "areaId", "targetId", "inputSource", "itemId"],
-        "properties": {
-          "id": { "const": "actions/act3-break-compelling-orb", "description": "Canonical finite action identity." },
-          "questId": { "const": "quests/act3-guardian", "description": "The quest owning the action and its retained proof." },
-          "receiptSource": { "const": "quests/act3-guardian#action:break-compelling-orb", "description": "Exact durable action receipt source." },
-          "areaId": { "const": "areas/act3-travincal", "description": "Canonical action location in its owning act." },
-          "targetId": { "const": "objects/compelling_orb", "description": "Explicit object at which the item is consumed." },
-          "inputSource": { "const": "quests/act3-khalims-will#objective:obj-transmute", "description": "Exact assembled input source; action receipts cannot themselves be inputs." },
-          "itemId": { "const": "items/khalims_will", "description": "Exact real assembled input, never a gear instance or matching flag." }
-        }
-      }
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "questId",
+              "receiptSource",
+              "areaId",
+              "targetId",
+              "inputSource",
+              "itemId"
+            ],
+            "properties": {
+              "id": {
+                "const": "actions/act3-break-compelling-orb",
+                "description": "Canonical finite action identity."
+              },
+              "questId": {
+                "const": "quests/act3-guardian",
+                "description": "The quest owning the action and its retained proof."
+              },
+              "receiptSource": {
+                "const": "quests/act3-guardian#action:break-compelling-orb",
+                "description": "Exact durable action receipt source."
+              },
+              "areaId": {
+                "const": "areas/act3-travincal",
+                "description": "Canonical action location in its owning act."
+              },
+              "targetId": {
+                "const": "objects/compelling_orb",
+                "description": "Explicit object at which the item is consumed."
+              },
+              "inputSource": {
+                "const": "quests/act3-khalims-will#objective:obj-transmute",
+                "description": "Exact assembled input source; action receipts cannot themselves be inputs."
+              },
+              "itemId": {
+                "const": "items/khalims_will",
+                "description": "Exact real assembled input, never a gear instance or matching flag."
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "questId",
+              "receiptSource",
+              "areaId",
+              "targetId",
+              "inputSource",
+              "itemId",
+              "additionalInputs",
+              "completeObjectiveId"
+            ],
+            "properties": {
+              "id": {
+                "const": "actions/act4-shatter-soulstone"
+              },
+              "questId": {
+                "const": "quests/act4-hellforge"
+              },
+              "receiptSource": {
+                "const": "quests/act4-hellforge#action:shatter-soulstone"
+              },
+              "areaId": {
+                "const": "areas/act4-river-of-flame"
+              },
+              "targetId": {
+                "const": "objects/hellforge"
+              },
+              "inputSource": {
+                "const": "quests/act4-hellforge#objective:obj-kill-hephasto"
+              },
+              "itemId": {
+                "const": "quest/hellforge_hammer"
+              },
+              "additionalInputs": {
+                "const": [
+                  {
+                    "inputSource": "quests/act3-guardian#reward:questItem",
+                    "itemId": "items/soulstone_mephisto"
+                  }
+                ]
+              },
+              "completeObjectiveId": {
+                "const": "obj-shatter"
+              }
+            }
+          }
+        ]
+      },
+      "uniqueItems": true
     }
   }
 }

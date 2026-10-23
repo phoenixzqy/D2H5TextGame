@@ -4,12 +4,14 @@ import { restoreEquipment, restoreItem, restoreUnit } from './restore';
 import { repairEquipmentRateCache, repairQuestLifeCache, repairQuestResistanceCache } from './equipment-rate-cache';
 import { COUNCIL_RECEIPT_SOURCE, isCouncilReceiptProgress } from '../map/council-admission';
 import type { QuestActionReceipts } from '../types/save';
-import { loadQuestActions } from '../../data/loaders/quest-actions';
+import frozenV15 from './frozen-v15-quests.json';
+import { ACT4_ENCOUNTERS } from '../map/act4-admission';
+import { loadQuestActions, questActionInputs, type QuestItemActionDef } from '../../data/loaders/quest-actions';
 import { repairMercenaryGrowth } from '../progression/merc-growth';
 import { LEVEL_CAP } from '../progression/xp';
 import { CURRENT_SAVE_VERSION, type SaveCurrent, type SaveV7, type SaveV8, type SaveV9, type SaveV10, type SaveV11, type QuestItemEntry, type QuestItemLedger } from '../types/save';
 import { runMigrations, type VersionedSave } from './migrate';
-import { loadQuestItems, questItemSource } from '../../data/loaders/quest-items';
+import { loadQuestItems, type QuestItemDef, questItemSource } from '../../data/loaders/quest-items';
 import { loadQuests, type QuestDef } from '../../data/loaders/quests';
 import { questObjectivePrerequisitesMet } from '../map/questStages';
 
@@ -249,7 +251,9 @@ const validate = ajv.compile<SaveCurrent>(saveSchema({ const: CURRENT_SAVE_VERSI
   // The exact Council and Guardian Orb actions form the current closed domain.
   questReceipts: { type: 'object', additionalProperties: false,
     properties: { [COUNCIL_RECEIPT_SOURCE]: { const: true },
-      'quests/act3-guardian#action:break-compelling-orb': { const: true } } }
+      'quests/act3-guardian#action:break-compelling-orb': { const: true },
+      ...Object.fromEntries(ACT4_ENCOUNTERS.map(row => [row.proof, { const: true }])),
+      'quests/act4-hellforge#action:shatter-soulstone': { const: true } } }
 }));
 interface LedgerContext {
   questItems: QuestItemLedger;
@@ -380,14 +384,19 @@ function validLiveObjectiveProgress(context: LedgerContext, quest: QuestDef, obj
 }
 
 /** One nonrecursive prospective graph check shared by saves and every item/action transaction. */
-function validateLiveQuestState(questItems: unknown, questProgress: unknown, receipts: unknown):
+interface QuestStateDomain {
+  readonly actions: readonly QuestItemActionDef[];
+  readonly items: readonly QuestItemDef[];
+  readonly quests: readonly QuestDef[];
+}
+function validateLiveQuestState(questItems: unknown, questProgress: unknown, receipts: unknown, domain?: QuestStateDomain):
   LedgerContext & { questReceipts: QuestActionReceipts } {
   const validated = ledgerContext(questItems, questProgress);
-  const actions = loadQuestActions();
+  const actions = domain?.actions ?? loadQuestActions();
   if (!record(receipts) || (Object.getPrototypeOf(receipts) !== Object.prototype &&
     Object.getPrototypeOf(receipts) !== null) || Reflect.ownKeys(receipts).some(key =>
       typeof key !== 'string' ||
-      (key !== COUNCIL_RECEIPT_SOURCE && !actions.some(action => action.receiptSource === key)) || receipts[key] !== true)) {
+      (key !== COUNCIL_RECEIPT_SOURCE && !(domain === undefined && ACT4_ENCOUNTERS.some(row => row.proof === key)) && !actions.some(action => action.receiptSource === key)) || receipts[key] !== true)) {
     throw new Error('Invalid save: questReceipts requires a closed JSON action receipt map');
   }
   const questReceipts = receipts as QuestActionReceipts;
@@ -395,8 +404,15 @@ function validateLiveQuestState(questItems: unknown, questProgress: unknown, rec
     throw new Error('Invalid save: Council proof requires canonical tracked Khalim progress');
   }
   const entries = Object.entries(validated.questItems);
-  const definitions = loadQuestItems();
-  const quests = loadQuests();
+  const definitions = domain?.items ?? loadQuestItems();
+  const quests = domain?.quests ?? loadQuests();
+  if (domain === undefined) for (const contract of ACT4_ENCOUNTERS) {
+    if (!Object.hasOwn(questReceipts, contract.proof)) continue;
+    const quest = quests.find(row => row.id === contract.questId);
+    if (!quest || !validLiveObjectiveProgress(validated, quest, contract.objectiveId)) {
+      throw new Error('Invalid save: Act IV victory proof requires its canonical objective source');
+    }
+  }
   const itemEntry = (itemId: string): QuestItemEntry | undefined => {
     const definition = definitions.find(item => item.id === itemId);
     if (!definition) return undefined;
@@ -422,7 +438,7 @@ function validateLiveQuestState(questItems: unknown, questProgress: unknown, rec
         ((entry.state === 'consumed') !== (itemEntry(definition.consumedBy) !== undefined))) {
         throw new Error('Invalid save: component consumption requires its exact assembled output');
       }
-      if (definition.kind === 'component' && definition.requiredActionSource !== undefined &&
+      if ((definition.kind === 'component' || definition.kind === 'encounter') && definition.requiredActionSource !== undefined &&
         (!Object.hasOwn(questReceipts, definition.requiredActionSource) || questReceipts[definition.requiredActionSource] !== true)) {
         throw new Error('Invalid save: component requires its qualified action proof');
       }
@@ -471,9 +487,14 @@ function validateLiveQuestState(questItems: unknown, questProgress: unknown, rec
     })) {
       throw new Error('Invalid save: reward item requires its real consumed hand-in graph');
     }
-    if (definition.kind === 'retained' && (entry.state !== 'owned' ||
-      !Object.hasOwn(questReceipts, definition.requiredActionSource))) {
-      throw new Error('Invalid save: retained reward requires owned state and its actual action graph');
+    if (definition.kind === 'retained' && !Object.hasOwn(questReceipts, definition.requiredActionSource)) {
+      throw new Error('Invalid save: retained reward requires its actual action graph');
+    }
+    if (definition.kind === 'retained' || definition.kind === 'encounter') {
+      const consumer = actions.find(action => action.id === definition.consumeActionId);
+      if ((entry.state === 'consumed') !== (consumer !== undefined && Object.hasOwn(questReceipts, consumer.receiptSource))) {
+        throw new Error('Invalid save: retained reward/encounter consumption requires its exact action graph');
+      }
     }
   }
   for (const action of actions) {
@@ -485,9 +506,10 @@ function validateLiveQuestState(questItems: unknown, questProgress: unknown, rec
         typeof owner.objectives[objective.id] === 'boolean') ||
       !(owner.status === 'inProgress' && owner.rewardClaimed !== true || owner.status === 'completed' &&
         quest.objectives.every(objective => owner.objectives[objective.id] === true)) ||
-      !Object.hasOwn(validated.questItems, action.inputSource) ||
-      validated.questItems[action.inputSource]?.itemId !== action.itemId ||
-      validated.questItems[action.inputSource]?.state !== 'consumed') {
+      (action.completeObjectiveId !== undefined && !validLiveObjectiveProgress(validated, quest, action.completeObjectiveId)) ||
+      !questActionInputs(action).every(input => Object.hasOwn(validated.questItems, input.inputSource) &&
+        validated.questItems[input.inputSource]?.itemId === input.itemId &&
+        validated.questItems[input.inputSource]?.state === 'consumed')) {
       throw new Error('Invalid save: action proof requires its tracked owner and exact consumed assembled input');
     }
   }
@@ -602,6 +624,24 @@ function rejectHistoricalQuestReceipts(value: unknown): void {
   }
 }
 
+// Frozen literal v15 domain: future live definitions cannot widen historical imports.
+const validateV15 = ajv.compile(saveSchema({ const: 15 }, unitProperties, {
+  selectedAuraId: { enum: ['paladin.might', 'paladin.meditation'] }
+}, { questItems: questItemLedgerSchema }, {
+  questReceipts: { type: 'object', additionalProperties: false, properties: {
+    'quests/act3-khalims-will#action:council-victory': { const: true },
+    'quests/act3-guardian#action:break-compelling-orb': { const: true }
+  } }
+}));
+function validateV15Save(value: unknown): void {
+  if (!record(value) || !record(value.inventory) || !record(value.map)) throw new Error('Invalid save: v15 structure');
+  validateLiveQuestState(value.inventory.questItems, value.map.questProgress, value.map.questReceipts,
+    frozenV15 as unknown as QuestStateDomain);
+  const normalized = normalizeMaps(value);
+  rejectUndefinedMagicResist(normalized); rejectUndefinedSelection(normalized);
+  if (!validateV15(normalized)) throw new Error(`Invalid save: ${ajv.errorsText(validateV15.errors)}`);
+}
+
 /** Closed finite proof map; validates retained history but never reconstructs a proof. */
 export function validateQuestActionReceipts(receipts: unknown, questProgress: unknown,
   questItems: unknown = {}): QuestActionReceipts {
@@ -670,6 +710,8 @@ export function decodeSave(value: unknown): SaveCurrent {
   if (input.version === 13) validateV13Save(input);
   if (input.version < 14) input = runMigrations(input, 14);
   if (input.version === 14) validateV14Save(input);
+  if (input.version < 15) input = runMigrations(input, 15);
+  if (input.version === 15) validateV15Save(input);
   const save = validateSave(runMigrations(input));
   return repairQuestLifeCache(repairQuestResistanceCache(repairEquipmentRateCache({
     ...save,

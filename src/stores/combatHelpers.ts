@@ -1,3 +1,5 @@
+import { captureAct4Encounter, hasOriginalAct4Victory, isAct4AdmissionEligible, type Act4Encounter } from '@/engine/map/act4-admission';
+import { loadQuests } from '@/data/loaders/quests';
 /**
  * Combat integration helpers
  * Bridge between engine and stores for playability
@@ -457,10 +459,11 @@ export function refreshActivePlayerCombatConfig({
             publication: original.publication, debitIntent: null }
         : stageWave(run, run.waveIdx, attempt, false, run.carryPlayerTeam, false);
       // Replay retains the originally captured origin, even if mutable plan copies changed.
-      const { councilEncounter: _recaptured, guardianEncounter: _guardianRecaptured, ...replay } = staged;
+      const { councilEncounter: _recaptured, guardianEncounter: _guardianRecaptured, act4Encounter: _act4Recaptured, ...replay } = staged;
       commitStagedWave(run, { ...replay,
         ...(original.councilEncounter ? { councilEncounter: original.councilEncounter } : {}),
-        ...(original.guardianEncounter ? { guardianEncounter: original.guardianEncounter } : {}) },
+        ...(original.guardianEncounter ? { guardianEncounter: original.guardianEncounter } : {}),
+        ...(original.act4Encounter ? { act4Encounter: original.act4Encounter } : {}) },
       { kind: 'replay' }, attempt, lease);
     }
   }, 'replay');
@@ -647,6 +650,46 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
       const councilEncounter = binding.councilEncounter;
       const councilEligible = councilEncounter !== undefined &&
         isCouncilAdmissionEligible(useMapStore.getState().questProgress, councilEncounter.historicalRecovery);
+      const act4Encounter = binding.act4Encounter;
+      const act4Progress = act4Encounter ? useMapStore.getState().questProgress[act4Encounter.contract.questId] : undefined;
+      const act4Eligible = act4Encounter !== undefined && isAct4AdmissionEligible(act4Encounter.contract,
+        useMapStore.getState().questProgress);
+      const publishAct4Victory = (): void => {
+        if (!act4Eligible || !act4Progress ||
+          !hasOriginalAct4Victory(act4Encounter, binding.heroId, outcome)) return;
+        const contract = act4Encounter.contract;
+        if (contract.source.kind === 'chapterBoss' && (binding.targetWaveIdx + 1 !== binding.publication.totalWaves ||
+          binding.recording.chapterBoss?.unitId !== act4Encounter.originalMemberIds[0] ||
+          binding.recording.chapterBoss?.archetypeId !== contract.members[0])) return;
+        if (useMapStore.getState().questProgress[contract.questId] !== act4Progress) return;
+        const result = withQuestTransaction(() => {
+          const map = useMapStore.getState();
+          if (!isAct4AdmissionEligible(contract, map.questProgress)) return;
+          const quest = loadQuests().find(row => row.id === contract.questId);
+          if (!quest) throw new Error('Missing Act IV quest contract');
+          const objectives = { ...act4Progress.objectives, [contract.objectiveId]: true };
+          const next = { ...act4Progress, objectives, status: quest.objectives.every(row => objectives[row.id])
+            ? 'completed' as const : 'inProgress' as const };
+          const before = map.questReceipts;
+          validateQuestActionReceipts({ ...before, [contract.proof]: true },
+            { ...map.questProgress, [contract.questId]: next }, useInventoryStore.getState().questItems);
+          try {
+            useMapStore.setState(state => ({ questProgress: { ...state.questProgress, [contract.questId]: next },
+              questReceipts: { ...state.questReceipts, [contract.proof]: true } }));
+          } catch (cause) {
+            try {
+              useMapStore.setState(state => {
+                const restored = { ...state.questReceipts };
+                if (Object.hasOwn(before, contract.proof)) restored[contract.proof] = true;
+                else Reflect.deleteProperty(restored, contract.proof);
+                return { questProgress: { ...state.questProgress, [contract.questId]: act4Progress }, questReceipts: restored };
+              });
+            } catch (error) { throw new AggregateError([error], 'Act IV victory restoration failed', { cause }); }
+            throw cause;
+          }
+        });
+        if (result === 'claim-in-progress') throw new Error('Act IV victory transaction is busy');
+      };
       const guardianProgress = useMapStore.getState().questProgress[GUARDIAN_QUEST_ID];
       const guardianEligible = (() => {
         const map = useMapStore.getState();
@@ -803,6 +846,7 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
           combat.markRunVictory();
           publishCouncilProof();
           publishGuardianVictory();
+          publishAct4Victory();
           finishRecordedWaveSettlement(receipt, lease, { kind: 'terminal', result: 'victory' });
           combatRunLifecycle.activeRun = null;
           return 'victory';
@@ -811,6 +855,7 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
           .filter(u => inferKind(u) !== 'summon' && u.life > 0)
           .map(u => rebaseStatusClock(u, binding.waveElapsedMs));
         publishCouncilProof();
+        publishAct4Victory();
         finishRecordedWaveSettlement(receipt, lease, { kind: 'nextWave', carryPlayerTeam });
         next = { nextWaveIdx: binding.targetWaveIdx + 1, carryPlayerTeam };
       } catch (error) {
@@ -842,6 +887,7 @@ export function abortSubAreaRun(): void {
 interface StagedWaveAttempt extends StagedRecordedWave {
   readonly councilEncounter?: CouncilEncounter;
   readonly guardianEncounter?: GuardianEncounter;
+  readonly act4Encounter?: Act4Encounter;
   readonly debitIntent: IronGolemDebitIntent | null;
 }
 function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetRunRewards = false,
@@ -912,6 +958,7 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
   const councilEncounter = captureCouncilEncounter(run.act, run.plan.subAreaId, wave,
     enemies, run.questRecovery === 'khalims-council');
   const guardianEncounter = captureGuardianEncounter(run.act, run.plan.subAreaId, wave, enemies);
+  const act4Encounter = captureAct4Encounter(run.act, run.plan.subAreaId, wave, enemies);
   const staged = stageRecordedWave({
     snapshot: {
       seed: waveSeed,
@@ -946,7 +993,8 @@ function stageWave(run: ActiveRun, waveIdx: number, attempt: WaveAttempt, resetR
   }
   return { ...staged, debitIntent: proof && captured?.ok ? captured.intent : null,
     ...(councilEncounter ? { councilEncounter } : {}),
-    ...(guardianEncounter ? { guardianEncounter } : {}) };
+    ...(guardianEncounter ? { guardianEncounter } : {}),
+    ...(act4Encounter ? { act4Encounter } : {}) };
 }
 
 /** Preserve cursor/recording values even if the referenced run changes during staging. */
@@ -1001,6 +1049,7 @@ function commitStagedWave(run: ActiveRun, staged: StagedWaveAttempt, intent: Rec
     engineInput: staged.engineInput, attestation: staged.attestation,
     ...(staged.councilEncounter ? { councilEncounter: staged.councilEncounter } : {}),
     ...(staged.guardianEncounter ? { guardianEncounter: staged.guardianEncounter } : {}),
+    ...(staged.act4Encounter ? { act4Encounter: staged.act4Encounter } : {}),
     recording: staged.recording, publication: staged.publication }, intent, lease);
   const live = captureWaveAttempt();
   try {

@@ -1,3 +1,4 @@
+import type { Act4Encounter } from '@/engine/map/act4-admission';
 import type { CombatSnapshot } from '@/engine/combat/combat';
 import type { CombatUnit } from '@/engine/combat/types';
 import type { IronGolemPreparationAttestation } from '@/engine/skills/iron-golem';
@@ -30,6 +31,7 @@ export interface RecordedWaveBinding {
   readonly publication: RecordedBattlePublication;
   readonly councilEncounter?: CouncilEncounter;
   readonly guardianEncounter?: GuardianEncounter;
+  readonly act4Encounter?: Act4Encounter;
 }
 /** Authoritative references assembled by the store caller at the operation boundary. */
 export interface RecordedWaveLive {
@@ -190,6 +192,8 @@ export function prepareRecordedWave(binding: RecordedWaveBinding, lease: WaveTra
     ...(binding.guardianEncounter ? { guardianEncounter: Object.freeze({ ...binding.guardianEncounter }) } : {}),
     ...(binding.councilEncounter ? { councilEncounter: Object.freeze({ ...binding.councilEncounter,
       originalMemberIds: Object.freeze([...binding.councilEncounter.originalMemberIds]) }) } : {}),
+    ...(binding.act4Encounter ? { act4Encounter: Object.freeze({ ...binding.act4Encounter,
+      originalMemberIds: Object.freeze([...binding.act4Encounter.originalMemberIds]) }) } : {}),
     ownership: Object.freeze({ ...binding.ownership }),
     expectedWaveIdx: binding.expectedActiveRun?.waveIdx ?? null,
     expectedRecording: binding.expectedActiveRun?.recording });

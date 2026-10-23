@@ -137,7 +137,12 @@
       "sourceObjectiveId": "obj-transmute",
       "recipe": "khalims_will",
       "requiredTool": "quest/horadric_cube",
-      "ingredients": ["quest/khalims_heart", "quest/khalims_brain", "quest/khalims_eye", "quest/khalims_flail"],
+      "ingredients": [
+        "quest/khalims_heart",
+        "quest/khalims_brain",
+        "quest/khalims_eye",
+        "quest/khalims_flail"
+      ],
       "consumeQuestId": "quests/act3-guardian",
       "consumeActionId": "actions/act3-break-compelling-orb",
       "nameKey": "inventory:questItems.khalimsWill.name",
@@ -158,7 +163,19 @@
       "kind": "retained",
       "requiredActionSource": "quests/act3-guardian#action:break-compelling-orb",
       "nameKey": "inventory:questItems.mephistosSoulstone.name",
-      "descKey": "inventory:questItems.mephistosSoulstone.description"
+      "descKey": "inventory:questItems.mephistosSoulstone.description",
+      "consumeActionId": "actions/act4-shatter-soulstone"
+    },
+    {
+      "id": "quest/hellforge_hammer",
+      "kind": "encounter",
+      "sourceQuestId": "quests/act4-hellforge",
+      "sourceObjectiveId": "obj-kill-hephasto",
+      "nameKey": "questItems.hellforgeHammer.name",
+      "descKey": "questItems.hellforgeHammer.desc",
+      "targetId": "objects/hellforge_hammer_cache",
+      "requiredActionSource": "quests/act4-hellforge#action:hephasto-victory",
+      "consumeActionId": "actions/act4-shatter-soulstone"
     }
   ]
 }

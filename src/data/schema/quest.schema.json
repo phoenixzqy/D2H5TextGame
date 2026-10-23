@@ -758,10 +758,14 @@
             {
               "type": "object",
               "description": "One ring from the closed Gidbinn v1 profile at its fixed item level.",
-              "required": ["profileId"],
+              "required": [
+                "profileId"
+              ],
               "additionalProperties": false,
               "properties": {
-                "profileId": { "const": "quest-rewards/act3-gidbinn-ring-v1" }
+                "profileId": {
+                  "const": "quest-rewards/act3-gidbinn-ring-v1"
+                }
               }
             }
           ]
@@ -830,6 +834,12 @@
           "type": "string",
           "pattern": "^titles/[a-z0-9][a-z0-9._-]*$",
           "description": "Title identifier."
+        },
+        "gemShards": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991,
+          "description": "Generic gem-shard currency granted at Claim."
         }
       }
     },
@@ -894,7 +904,10 @@
             "type": "array",
             "minItems": 1,
             "uniqueItems": true,
-            "items": { "type": "string", "minLength": 1 }
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
           }
         },
         "rewards": {

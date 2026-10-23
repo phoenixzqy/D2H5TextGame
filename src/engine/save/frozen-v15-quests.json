@@ -1,0 +1,478 @@
+{
+  "items": [
+    {
+      "id": "items/book_of_skill",
+      "sourceQuestId": "quests/act2-radaments-lair",
+      "nameKey": "inventory:questItems.bookOfSkill.name",
+      "descKey": "inventory:questItems.bookOfSkill.description",
+      "effect": {
+        "skillPoints": 1
+      }
+    },
+    {
+      "id": "quest/horadric_cube",
+      "sourceQuestId": "quests/act2-horadric-staff",
+      "kind": "tool",
+      "sourceObjectiveId": "obj-cube",
+      "nameKey": "inventory:questItems.horadricCube.name",
+      "descKey": "inventory:questItems.horadricCube.description"
+    },
+    {
+      "id": "quest/staff_of_kings",
+      "sourceQuestId": "quests/act2-horadric-staff",
+      "kind": "component",
+      "sourceObjectiveId": "obj-shaft",
+      "consumedBy": "quest/horadric_staff",
+      "nameKey": "inventory:questItems.staffOfKings.name",
+      "descKey": "inventory:questItems.staffOfKings.description"
+    },
+    {
+      "id": "quest/viper_amulet",
+      "sourceQuestId": "quests/act2-horadric-staff",
+      "kind": "component",
+      "sourceObjectiveId": "obj-amulet",
+      "consumedBy": "quest/horadric_staff",
+      "nameKey": "inventory:questItems.viperAmulet.name",
+      "descKey": "inventory:questItems.viperAmulet.description"
+    },
+    {
+      "id": "quest/horadric_staff",
+      "sourceQuestId": "quests/act2-horadric-staff",
+      "kind": "assembled",
+      "sourceObjectiveId": "obj-transmute",
+      "recipe": "horadric_staff",
+      "requiredTool": "quest/horadric_cube",
+      "ingredients": [
+        "quest/staff_of_kings",
+        "quest/viper_amulet"
+      ],
+      "consumeQuestId": "quests/act2-seven-tombs",
+      "consumeObjectiveId": "obj-open-tomb",
+      "nameKey": "inventory:questItems.horadricStaff.name",
+      "descKey": "inventory:questItems.horadricStaff.description"
+    },
+    {
+      "id": "quest/gidbinn",
+      "sourceQuestId": "quests/act3-blade-of-the-old-religion",
+      "kind": "delivery",
+      "sourceObjectiveId": "obj-find-gidbinn",
+      "consumeObjectiveId": "obj-deliver",
+      "nameKey": "inventory:questItems.gidbinn.name",
+      "descKey": "inventory:questItems.gidbinn.description"
+    },
+    {
+      "id": "quest/lam_esens_tome",
+      "sourceQuestId": "quests/act3-lam-esens-tome",
+      "kind": "delivery",
+      "sourceObjectiveId": "obj-find-tome",
+      "consumeObjectiveId": "obj-deliver",
+      "nameKey": "inventory:questItems.lam_esens_tome.name",
+      "descKey": "inventory:questItems.lam_esens_tome.description"
+    },
+    {
+      "id": "quest/jade_figurine",
+      "sourceQuestId": "quests/act3-golden-bird",
+      "kind": "delivery",
+      "sourceObjectiveId": "obj-find-figurine",
+      "consumeObjectiveId": "obj-give-cain",
+      "outputItemId": "quest/golden_bird",
+      "nameKey": "inventory:questItems.jadeFigurine.name",
+      "descKey": "inventory:questItems.jadeFigurine.description"
+    },
+    {
+      "id": "quest/golden_bird",
+      "sourceQuestId": "quests/act3-golden-bird",
+      "kind": "delivery",
+      "sourceObjectiveId": "obj-give-cain",
+      "consumeObjectiveId": "obj-give-alkor",
+      "nameKey": "inventory:questItems.goldenBird.name",
+      "descKey": "inventory:questItems.goldenBird.description"
+    },
+    {
+      "id": "quest/khalims_heart",
+      "sourceQuestId": "quests/act3-khalims-will",
+      "kind": "component",
+      "sourceObjectiveId": "obj-heart",
+      "consumedBy": "items/khalims_will",
+      "requiresAreaClear": true,
+      "nameKey": "inventory:questItems.khalimsHeart.name",
+      "descKey": "inventory:questItems.khalimsHeart.description"
+    },
+    {
+      "id": "quest/khalims_brain",
+      "sourceQuestId": "quests/act3-khalims-will",
+      "kind": "component",
+      "sourceObjectiveId": "obj-brain",
+      "consumedBy": "items/khalims_will",
+      "requiresAreaClear": true,
+      "nameKey": "inventory:questItems.khalimsBrain.name",
+      "descKey": "inventory:questItems.khalimsBrain.description"
+    },
+    {
+      "id": "quest/khalims_eye",
+      "sourceQuestId": "quests/act3-khalims-will",
+      "kind": "component",
+      "sourceObjectiveId": "obj-eye",
+      "consumedBy": "items/khalims_will",
+      "requiresAreaClear": true,
+      "nameKey": "inventory:questItems.khalimsEye.name",
+      "descKey": "inventory:questItems.khalimsEye.description"
+    },
+    {
+      "id": "quest/khalims_flail",
+      "sourceQuestId": "quests/act3-khalims-will",
+      "kind": "component",
+      "sourceObjectiveId": "obj-flail",
+      "consumedBy": "items/khalims_will",
+      "requiresAreaClear": true,
+      "requiredActionSource": "quests/act3-khalims-will#action:council-victory",
+      "nameKey": "inventory:questItems.khalimsFlail.name",
+      "descKey": "inventory:questItems.khalimsFlail.description"
+    },
+    {
+      "id": "items/khalims_will",
+      "sourceQuestId": "quests/act3-khalims-will",
+      "kind": "assembled",
+      "sourceObjectiveId": "obj-transmute",
+      "recipe": "khalims_will",
+      "requiredTool": "quest/horadric_cube",
+      "ingredients": [
+        "quest/khalims_heart",
+        "quest/khalims_brain",
+        "quest/khalims_eye",
+        "quest/khalims_flail"
+      ],
+      "consumeQuestId": "quests/act3-guardian",
+      "consumeActionId": "actions/act3-break-compelling-orb",
+      "nameKey": "inventory:questItems.khalimsWill.name",
+      "descKey": "inventory:questItems.khalimsWill.description"
+    },
+    {
+      "id": "items/potion_of_life_q",
+      "sourceQuestId": "quests/act3-golden-bird",
+      "nameKey": "inventory:questItems.potionOfLife.name",
+      "descKey": "inventory:questItems.potionOfLife.description",
+      "effect": {
+        "maxLife": 20
+      }
+    },
+    {
+      "id": "items/soulstone_mephisto",
+      "sourceQuestId": "quests/act3-guardian",
+      "kind": "retained",
+      "requiredActionSource": "quests/act3-guardian#action:break-compelling-orb",
+      "nameKey": "inventory:questItems.mephistosSoulstone.name",
+      "descKey": "inventory:questItems.mephistosSoulstone.description"
+    }
+  ],
+  "actions": [
+    {
+      "id": "actions/act3-break-compelling-orb",
+      "questId": "quests/act3-guardian",
+      "receiptSource": "quests/act3-guardian#action:break-compelling-orb",
+      "areaId": "areas/act3-travincal",
+      "targetId": "objects/compelling_orb",
+      "inputSource": "quests/act3-khalims-will#objective:obj-transmute",
+      "itemId": "items/khalims_will"
+    }
+  ],
+  "quests": [
+    {
+      "id": "quests/act2-radaments-lair",
+      "name": "Radament's Lair",
+      "type": "main",
+      "actId": "acts/act2",
+      "giver": "npc/atma",
+      "description": "Atma the tavern keeper begs you to slay Radament, a mummy sheltering in a burial chamber beneath the Far Oasis and preying on Lut Gholein's people.",
+      "objectives": [
+        {
+          "id": "obj-kill-radament",
+          "type": "kill",
+          "targetId": "monsters/act2.radament",
+          "areaId": "areas/act2-far-oasis",
+          "description": "Slay Radament in the burial chamber beneath the Far Oasis."
+        }
+      ],
+      "rewards": {
+        "xp": 5000,
+        "questItem": "items/book_of_skill"
+      },
+      "unlocks": null,
+      "order": 7
+    },
+    {
+      "id": "quests/act2-horadric-staff",
+      "name": "The Horadric Staff",
+      "type": "main",
+      "actId": "acts/act2",
+      "giver": "npc/cain",
+      "description": "Cain reveals that Tal Rasha's tomb can only be opened with the Horadric Staff. Recover the Cube, the Staff shaft, and the Viper Amulet, then assemble them.",
+      "objectives": [
+        {
+          "id": "obj-cube",
+          "type": "fetch",
+          "itemId": "quest/horadric_cube",
+          "areaId": "areas/act2-dry-hills",
+          "targetId": "objects/horadric_cube_chest",
+          "description": "Recover the Horadric Cube from the coffer in the Dry Hills."
+        },
+        {
+          "id": "obj-shaft",
+          "type": "fetch",
+          "itemId": "quest/staff_of_kings",
+          "areaId": "areas/act2-far-oasis",
+          "targetId": "objects/staff_of_kings_chest",
+          "description": "Recover the Staff of Kings from the coffer in the Far Oasis."
+        },
+        {
+          "id": "obj-amulet",
+          "type": "fetch",
+          "itemId": "quest/viper_amulet",
+          "areaId": "areas/act2-lost-city",
+          "targetId": "objects/serpent_altar",
+          "description": "Recover the Amulet of the Viper from the Serpent Altar in the Lost City."
+        },
+        {
+          "id": "obj-transmute",
+          "type": "transmute",
+          "recipe": "horadric_staff",
+          "description": "Combine staff and amulet in the Horadric Cube."
+        }
+      ],
+      "rewards": {
+        "xp": 6000
+      },
+      "unlocks": null,
+      "order": 8
+    },
+    {
+      "id": "quests/act2-seven-tombs",
+      "name": "The Seven Tombs",
+      "type": "main",
+      "actId": "acts/act2",
+      "giver": "npc/jerhyn",
+      "description": "Within the true Tomb of Tal Rasha, Baal's prison hosts the Lord of Pain himself: Duriel. Shatter the orifice with the Horadric Staff and slay him.",
+      "objectives": [
+        {
+          "id": "obj-open-tomb",
+          "type": "interact",
+          "targetId": "objects/tal_rasha_orifice",
+          "itemRequired": "quest/horadric_staff",
+          "areaId": "areas/act2-tomb-of-tal-rasha",
+          "description": "Place the Horadric Staff into the orifice in the true Tomb of Tal Rasha."
+        },
+        {
+          "id": "obj-kill-duriel",
+          "type": "kill-boss",
+          "targetId": "monsters/act2.duriel",
+          "areaId": "areas/act2-tomb-of-tal-rasha",
+          "description": "Slay Duriel."
+        }
+      ],
+      "rewards": {
+        "xp": 12000,
+        "lootTable": {
+          "tableId": "loot/duriel-q",
+          "ilvl": 32,
+          "picks": 5
+        }
+      },
+      "unlocks": "acts/act3",
+      "order": 11
+    },
+    {
+      "id": "quests/act3-golden-bird",
+      "name": "The Golden Bird",
+      "type": "main",
+      "actId": "acts/act3",
+      "giver": "npc/cain",
+      "description": "A jade figurine of a golden bird, looted from Skatsimi monks, can be transmuted into a potion of life. Find it and bring it to Alkor.",
+      "objectives": [
+        {
+          "id": "obj-find-figurine",
+          "type": "fetch",
+          "itemId": "quest/jade_figurine",
+          "areaId": "areas/act3-spider-forest",
+          "targetId": "objects/jade_figurine_cache",
+          "description": "Find the Jade Figurine."
+        },
+        {
+          "id": "obj-give-cain",
+          "type": "give",
+          "npcId": "npc/cain",
+          "itemId": "quest/jade_figurine",
+          "description": "Give the figurine to Cain."
+        },
+        {
+          "id": "obj-give-alkor",
+          "type": "give",
+          "npcId": "npc/alkor",
+          "itemId": "quest/golden_bird",
+          "description": "Bring the Golden Bird to Alkor."
+        }
+      ],
+      "rewards": {
+        "xp": 4000,
+        "questItem": "items/potion_of_life_q"
+      },
+      "unlocks": null,
+      "order": 12
+    },
+    {
+      "id": "quests/act3-blade-of-the-old-religion",
+      "name": "Blade of the Old Religion",
+      "type": "main",
+      "actId": "acts/act3",
+      "giver": "npc/hratli",
+      "description": "Hratli the smith asks you to recover the Gidbinn, a sacred blade hidden in the Flayer Jungle, to free the Kurast refugees from fetish slavery.",
+      "objectives": [
+        {
+          "id": "obj-find-gidbinn",
+          "type": "fetch",
+          "targetId": "objects/gidbinn_altar",
+          "areaId": "areas/act3-flayer-jungle",
+          "description": "Recover the Gidbinn from its altar.",
+          "itemId": "quest/gidbinn"
+        },
+        {
+          "id": "obj-deliver",
+          "type": "give",
+          "npcId": "npc/ormus",
+          "description": "Deliver the Gidbinn to Ormus.",
+          "itemId": "quest/gidbinn"
+        }
+      ],
+      "rewards": {
+        "xp": 5000,
+        "itemDrop": {
+          "profileId": "quest-rewards/act3-gidbinn-ring-v1"
+        }
+      },
+      "unlocks": null,
+      "order": 13
+    },
+    {
+      "id": "quests/act3-khalims-will",
+      "name": "Khalim's Will",
+      "type": "main",
+      "actId": "acts/act3",
+      "giver": "npc/cain",
+      "description": "To shatter the Compelling Orb that protects Mephisto, you must reassemble Khalim's Will: his Heart, Brain, Eye, and Flail, scattered across Kurast.",
+      "objectives": [
+        {
+          "id": "obj-heart",
+          "type": "fetch",
+          "itemId": "quest/khalims_heart",
+          "areaId": "areas/act3-flayer-jungle",
+          "targetId": "objects/khalims_heart_chest",
+          "description": "Recover Khalim's Heart."
+        },
+        {
+          "id": "obj-brain",
+          "type": "fetch",
+          "itemId": "quest/khalims_brain",
+          "areaId": "areas/act3-great-marsh",
+          "targetId": "objects/khalims_brain_chest",
+          "description": "Recover Khalim's Brain."
+        },
+        {
+          "id": "obj-eye",
+          "type": "fetch",
+          "itemId": "quest/khalims_eye",
+          "areaId": "areas/act3-kurast-bazaar",
+          "targetId": "objects/khalims_eye_chest",
+          "description": "Recover Khalim's Eye."
+        },
+        {
+          "id": "obj-flail",
+          "type": "fetch",
+          "itemId": "quest/khalims_flail",
+          "areaId": "areas/act3-travincal",
+          "targetId": "objects/high_council_reliquary",
+          "description": "Recover Khalim's Flail from the High Council."
+        },
+        {
+          "id": "obj-transmute",
+          "type": "transmute",
+          "recipe": "khalims_will",
+          "description": "Transmute the four parts in the Horadric Cube."
+        }
+      ],
+      "objectiveStages": [
+        [
+          "obj-heart",
+          "obj-brain",
+          "obj-eye",
+          "obj-flail"
+        ],
+        [
+          "obj-transmute"
+        ]
+      ],
+      "rewards": {
+        "xp": 8000
+      },
+      "unlocks": null,
+      "order": 14
+    },
+    {
+      "id": "quests/act3-lam-esens-tome",
+      "name": "Lam Esen's Tome",
+      "type": "main",
+      "actId": "acts/act3",
+      "giver": "npc/alkor",
+      "description": "Alkor seeks the Black Book of Lam Esen, hidden somewhere in the temples of Kurast. Recover it and learn its secrets.",
+      "objectives": [
+        {
+          "id": "obj-find-tome",
+          "type": "fetch",
+          "itemId": "quest/lam_esens_tome",
+          "areaId": "areas/act3-kurast-bazaar",
+          "description": "Recover the Black Book of Lam Esen.",
+          "targetId": "objects/lam_esens_tome_chest"
+        },
+        {
+          "id": "obj-deliver",
+          "type": "give",
+          "npcId": "npc/alkor",
+          "description": "Deliver the tome to Alkor.",
+          "itemId": "quest/lam_esens_tome"
+        }
+      ],
+      "rewards": {
+        "xp": 6000,
+        "statPoints": 5
+      },
+      "unlocks": null,
+      "order": 15
+    },
+    {
+      "id": "quests/act3-guardian",
+      "name": "The Guardian",
+      "type": "main",
+      "actId": "acts/act3",
+      "giver": "npc/ormus",
+      "description": "Mephisto, Lord of Hatred, awaits in the Durance of Hate beneath Travincal. Strike him down and seal the wound he has torn in the world.",
+      "objectives": [
+        {
+          "id": "obj-kill-mephisto",
+          "type": "kill-boss",
+          "targetId": "monsters/act3.mephisto",
+          "areaId": "areas/act3-durance-of-hate",
+          "description": "Slay Mephisto."
+        }
+      ],
+      "rewards": {
+        "xp": 18000,
+        "lootTable": {
+          "tableId": "loot/mephisto-q",
+          "ilvl": 47,
+          "picks": 5
+        },
+        "questItem": "items/soulstone_mephisto"
+      },
+      "unlocks": "acts/act4",
+      "order": 16
+    }
+  ]
+}

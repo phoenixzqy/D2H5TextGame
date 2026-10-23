@@ -255,7 +255,7 @@
       "giver": "npc/tyrael",
       "description": "Izual, the fallen angel who betrayed Heaven, wanders the Plains of Despair as a corrupted shade. Free his tortured soul.",
       "objectives": [
-        { "id": "obj-kill-izual", "type": "kill", "targetId": "monsters/izual", "areaId": "areas/act4_plains_of_despair", "description": "Defeat Izual and free his soul." }
+        { "id": "obj-kill-izual", "type": "kill", "targetId": "monsters/act4.izual", "areaId": "areas/act4-plains-of-despair", "description": "Defeat Izual and free his soul." }
       ],
       "rewards": { "xp": 9000, "skillPoints": 2 },
       "unlocks": null,
@@ -269,10 +269,10 @@
       "giver": "npc/cain",
       "description": "Cain bids you destroy Mephisto's Soulstone on the Hellforge. Use Hephasto's hammer to shatter the gem and release a shower of runes and gems.",
       "objectives": [
-        { "id": "obj-kill-hephasto", "type": "kill", "targetId": "monsters/hephasto", "areaId": "areas/act4_river_of_flame", "description": "Defeat Hephasto the Armorer." },
-        { "id": "obj-shatter", "type": "interact", "targetId": "objects/hellforge", "itemRequired": "items/soulstone_mephisto", "description": "Shatter the Soulstone on the Hellforge." }
+        { "id": "obj-kill-hephasto", "type": "kill", "targetId": "monsters/act4.mega-demon", "areaId": "areas/act4-river-of-flame", "description": "Defeat Hephasto the Armorer." },
+        { "id": "obj-shatter", "type": "interact", "targetId": "objects/hellforge", "areaId": "areas/act4-river-of-flame", "itemRequired": "items/soulstone_mephisto", "description": "Shatter the Soulstone on the Hellforge." }
       ],
-      "rewards": { "xp": 7000, "lootTable": "loot/hellforge-runes" },
+      "rewards": { "xp": 7000, "gemShards": 3, "lootTable": { "tableId": "loot/hellforge-runes", "ilvl": 56, "picks": 1 } },
       "unlocks": null,
       "order": 18
     },
@@ -284,12 +284,12 @@
       "giver": "npc/tyrael",
       "description": "Diablo, Lord of Terror, has manifested in the Chaos Sanctuary. Break the seals, draw him out, and end his reign over the mortal world.",
       "objectives": [
-        { "id": "obj-seal-1", "type": "interact", "targetId": "objects/diablo_seal_1", "areaId": "areas/act4_chaos_sanctuary", "description": "Break the first seal." },
-        { "id": "obj-seal-2", "type": "interact", "targetId": "objects/diablo_seal_2", "areaId": "areas/act4_chaos_sanctuary", "description": "Break the second seal." },
-        { "id": "obj-seal-3", "type": "interact", "targetId": "objects/diablo_seal_3", "areaId": "areas/act4_chaos_sanctuary", "description": "Break the third seal." },
-        { "id": "obj-kill-diablo", "type": "kill-boss", "targetId": "monsters/diablo", "areaId": "areas/act4_chaos_sanctuary", "description": "Slay Diablo." }
+        { "id": "obj-seal-1", "type": "interact", "targetId": "objects/diablo_seal_1", "areaId": "areas/act4-chaos-sanctuary", "description": "Break the first seal." },
+        { "id": "obj-seal-2", "type": "interact", "targetId": "objects/diablo_seal_2", "areaId": "areas/act4-chaos-sanctuary", "description": "Break the second seal." },
+        { "id": "obj-seal-3", "type": "interact", "targetId": "objects/diablo_seal_3", "areaId": "areas/act4-chaos-sanctuary", "description": "Break the third seal." },
+        { "id": "obj-kill-diablo", "type": "kill-boss", "targetId": "monsters/act4.diablo", "areaId": "areas/act4-chaos-sanctuary", "description": "Slay Diablo." }
       ],
-      "rewards": { "xp": 25000, "skillPoints": 0, "lootTable": "loot/diablo-q" },
+      "rewards": { "xp": 25000, "lootTable": { "tableId": "loot/diablo-q", "ilvl": 61, "picks": 5 } },
       "unlocks": "acts/act5",
       "order": 19
     },

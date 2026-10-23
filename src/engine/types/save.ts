@@ -14,7 +14,7 @@ import type { GridPosition } from '../combat/types';
  * Current save format version. Bump this and add an entry to {@link MIGRATIONS}
  * whenever the on-disk shape changes.
  */
-export const CURRENT_SAVE_VERSION = 15;
+export const CURRENT_SAVE_VERSION = 16;
 
 /**
  * Save file version (most recent).
@@ -305,7 +305,9 @@ export interface SaveV15 extends Omit<SaveV14, 'version' | 'map'> {
   readonly map: QuestMapSaveData;
 }
 
-export type SaveCurrent = SaveV15;
+/** Save v16 adds qualified Act IV victory and exact two-input Forge receipts. */
+export interface SaveV16 extends Omit<SaveV15, 'version'> { readonly version: 16 }
+export type SaveCurrent = SaveV16;
 
 /**
  * Migration function type. Each entry receives the previous version's shape
@@ -502,5 +504,7 @@ export const MIGRATIONS: Record<number, Migration> = {
   15: (raw: unknown): SaveV15 => {
     const v14 = raw as SaveV14;
     return { ...v14, version: 15, map: { ...v14.map, questReceipts: {} } };
-  }
+  },
+  /** Widen the domain only; flags create no item, proof, consumption, or reward. */
+  16: (raw: unknown): SaveV16 => ({ ...(raw as SaveV15), version: 16 })
 };

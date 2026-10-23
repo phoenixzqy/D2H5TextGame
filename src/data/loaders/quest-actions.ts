@@ -5,14 +5,20 @@ import document from '../quests/actions.json';
 import { subAreas } from '../index';
 import { loadQuests } from './quests';
 
-export interface QuestItemActionDef {
-  readonly id: 'actions/act3-break-compelling-orb';
-  readonly questId: 'quests/act3-guardian';
-  readonly receiptSource: 'quests/act3-guardian#action:break-compelling-orb';
-  readonly areaId: 'areas/act3-travincal';
-  readonly targetId: 'objects/compelling_orb';
-  readonly inputSource: 'quests/act3-khalims-will#objective:obj-transmute';
-  readonly itemId: 'items/khalims_will';
+export interface QuestActionInput { readonly inputSource: string; readonly itemId: string }
+export interface QuestItemActionDef extends QuestActionInput {
+  readonly id: 'actions/act3-break-compelling-orb' | 'actions/act4-shatter-soulstone';
+  readonly questId: string;
+  readonly receiptSource: string;
+  readonly areaId: string;
+  readonly targetId: string;
+  readonly additionalInputs?: readonly QuestActionInput[];
+  readonly completeObjectiveId?: string;
+}
+
+/** All exact physical inputs, preserving the original one-input Orb contract. */
+export function questActionInputs(action: QuestItemActionDef): readonly QuestActionInput[] {
+  return [action, ...(action.additionalInputs ?? [])];
 }
 
 const ajv = new Ajv2020({ strict: true, allErrors: true });
@@ -24,7 +30,9 @@ export function loadQuestActions(): readonly QuestItemActionDef[] {
   const quests = loadQuests();
   for (const action of document.actions) {
     const quest = quests.find(row => row.id === action.questId);
-    if (!quest || !subAreas.some(area => area.id === action.areaId && area.actId === quest.actId)) {
+    if (!quest || (action.completeObjectiveId !== undefined && !quest.objectives.some(objective =>
+      objective.id === action.completeObjectiveId && objective.type === 'interact' &&
+      objective.targetId === action.targetId && objective.areaId === action.areaId)) || !subAreas.some(area => area.id === action.areaId && area.actId === quest.actId)) {
       throw new Error('quests/actions.json: action owner/location mismatch');
     }
   }

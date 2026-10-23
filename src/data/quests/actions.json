@@ -9,6 +9,22 @@
       "targetId": "objects/compelling_orb",
       "inputSource": "quests/act3-khalims-will#objective:obj-transmute",
       "itemId": "items/khalims_will"
+    },
+    {
+      "id": "actions/act4-shatter-soulstone",
+      "questId": "quests/act4-hellforge",
+      "receiptSource": "quests/act4-hellforge#action:shatter-soulstone",
+      "areaId": "areas/act4-river-of-flame",
+      "targetId": "objects/hellforge",
+      "inputSource": "quests/act4-hellforge#objective:obj-kill-hephasto",
+      "itemId": "quest/hellforge_hammer",
+      "additionalInputs": [
+        {
+          "inputSource": "quests/act3-guardian#reward:questItem",
+          "itemId": "items/soulstone_mephisto"
+        }
+      ],
+      "completeObjectiveId": "obj-shatter"
     }
   ]
 }

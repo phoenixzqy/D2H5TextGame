@@ -90,7 +90,8 @@
               "component",
               "assembled",
               "delivery",
-              "retained"
+              "retained",
+              "encounter"
             ],
             "description": "Objective-sourced retained tool, recipe ingredient, or assembled quest key."
           },
@@ -109,7 +110,11 @@
             "description": "Explicit recovery additionally requires the source area's full clear."
           },
           "requiredActionSource": {
-            "enum": ["quests/act3-khalims-will#action:council-victory", "quests/act3-guardian#action:break-compelling-orb"],
+            "enum": [
+              "quests/act3-khalims-will#action:council-victory",
+              "quests/act3-guardian#action:break-compelling-orb",
+              "quests/act4-hellforge#action:hephasto-victory"
+            ],
             "description": "Exact finite action proof required by its closed item variant."
           },
           "recipe": {
@@ -139,13 +144,19 @@
             "minLength": 1
           },
           "consumeActionId": {
-            "const": "actions/act3-break-compelling-orb",
-            "description": "Exact finite item action consuming this assembled output, exclusive with an objective consumer."
+            "description": "Exact finite item action consuming this assembled output, exclusive with an objective consumer.",
+            "enum": [
+              "actions/act3-break-compelling-orb",
+              "actions/act4-shatter-soulstone"
+            ]
           },
           "outputItemId": {
             "type": "string",
             "pattern": "^(quest|items)/[a-z0-9][a-z0-9._-]*$",
             "description": "Optional real delivery output created by this exact hand-in; reciprocal source graph is loader-validated."
+          },
+          "targetId": {
+            "const": "objects/hellforge_hammer_cache"
           }
         },
         "oneOf": [
@@ -166,7 +177,8 @@
               "consumeActionId": false,
               "requiresAreaClear": false,
               "requiredActionSource": false,
-              "outputItemId": false
+              "outputItemId": false,
+              "targetId": false
             }
           },
           {
@@ -188,7 +200,8 @@
               "consumeActionId": false,
               "requiresAreaClear": false,
               "requiredActionSource": false,
-              "outputItemId": false
+              "outputItemId": false,
+              "targetId": false
             }
           },
           {
@@ -201,7 +214,9 @@
               "kind": {
                 "const": "component"
               },
-              "requiredActionSource": { "const": "quests/act3-khalims-will#action:council-victory" },
+              "requiredActionSource": {
+                "const": "quests/act3-khalims-will#action:council-victory"
+              },
               "effect": false,
               "recipe": false,
               "requiredTool": false,
@@ -209,7 +224,8 @@
               "consumeQuestId": false,
               "consumeObjectiveId": false,
               "consumeActionId": false,
-              "outputItemId": false
+              "outputItemId": false,
+              "targetId": false
             }
           },
           {
@@ -229,18 +245,46 @@
               "consumedBy": false,
               "requiresAreaClear": false,
               "requiredActionSource": false,
-              "outputItemId": false
+              "outputItemId": false,
+              "targetId": false,
+              "consumeActionId": {
+                "const": "actions/act3-break-compelling-orb"
+              }
             },
             "oneOf": [
-              { "required": ["consumeObjectiveId"], "properties": { "consumeObjectiveId": {}, "consumeActionId": false } },
-              { "required": ["consumeActionId"], "properties": { "consumeActionId": {}, "consumeObjectiveId": false } }
+              {
+                "required": [
+                  "consumeObjectiveId"
+                ],
+                "properties": {
+                  "consumeObjectiveId": {},
+                  "consumeActionId": false
+                }
+              },
+              {
+                "required": [
+                  "consumeActionId"
+                ],
+                "properties": {
+                  "consumeActionId": {},
+                  "consumeObjectiveId": false
+                }
+              }
             ]
           },
           {
-            "required": ["kind", "requiredActionSource"],
+            "required": [
+              "kind",
+              "requiredActionSource",
+              "consumeActionId"
+            ],
             "properties": {
-              "kind": { "const": "retained" },
-              "requiredActionSource": { "const": "quests/act3-guardian#action:break-compelling-orb" },
+              "kind": {
+                "const": "retained"
+              },
+              "requiredActionSource": {
+                "const": "quests/act3-guardian#action:break-compelling-orb"
+              },
               "effect": false,
               "sourceObjectiveId": false,
               "consumedBy": false,
@@ -249,9 +293,12 @@
               "ingredients": false,
               "consumeQuestId": false,
               "consumeObjectiveId": false,
-              "consumeActionId": false,
+              "consumeActionId": {
+                "const": "actions/act4-shatter-soulstone"
+              },
               "requiresAreaClear": false,
-              "outputItemId": false
+              "outputItemId": false,
+              "targetId": false
             }
           },
           {
@@ -272,7 +319,59 @@
               "consumeQuestId": false,
               "consumeActionId": false,
               "requiresAreaClear": false,
-              "requiredActionSource": false
+              "requiredActionSource": false,
+              "targetId": false
+            }
+          },
+          {
+            "required": [
+              "id",
+              "kind",
+              "sourceQuestId",
+              "sourceObjectiveId",
+              "nameKey",
+              "descKey",
+              "targetId",
+              "requiredActionSource",
+              "consumeActionId"
+            ],
+            "properties": {
+              "effect": false,
+              "consumedBy": false,
+              "requiresAreaClear": false,
+              "recipe": false,
+              "requiredTool": false,
+              "ingredients": false,
+              "consumeQuestId": false,
+              "consumeObjectiveId": false,
+              "outputItemId": false,
+              "id": {
+                "const": "quest/hellforge_hammer"
+              },
+              "kind": {
+                "const": "encounter"
+              },
+              "sourceQuestId": {
+                "const": "quests/act4-hellforge"
+              },
+              "sourceObjectiveId": {
+                "const": "obj-kill-hephasto"
+              },
+              "nameKey": {
+                "const": "questItems.hellforgeHammer.name"
+              },
+              "descKey": {
+                "const": "questItems.hellforgeHammer.desc"
+              },
+              "targetId": {
+                "const": "objects/hellforge_hammer_cache"
+              },
+              "requiredActionSource": {
+                "const": "quests/act4-hellforge#action:hephasto-victory"
+              },
+              "consumeActionId": {
+                "const": "actions/act4-shatter-soulstone"
+              }
             }
           }
         ]

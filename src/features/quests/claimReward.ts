@@ -1,3 +1,4 @@
+import { ACT4_ENCOUNTERS } from '@/engine/map/act4-admission';
 /** Shared synchronous quest reward boundary; completion and claim stay separate. */
 import { usePlayerStore } from '@/stores/playerStore';
 import { useInventoryStore } from '@/stores/inventoryStore';
@@ -36,11 +37,11 @@ export type ClaimResult =
   | 'grant-failed';
 
 type NumericReward = 'xp' | 'skillPoints' | 'statPoints'
-  | 'runes' | 'runeShards' | 'gems' | 'wishstones';
+  | 'runes' | 'runeShards' | 'gems' | 'gemShards' | 'wishstones';
 
 function isNumericReward(key: string): key is NumericReward {
   return key === 'xp' || key === 'skillPoints' || key === 'statPoints'
-    || key === 'runes' || key === 'runeShards' || key === 'gems' || key === 'wishstones';
+    || key === 'runes' || key === 'runeShards' || key === 'gems' || key === 'gemShards' || key === 'wishstones';
 }
 
 function findQuest(questId: string): QuestDef | undefined {
@@ -59,6 +60,18 @@ function hasRetainedQuestRewardCompletion(quest: QuestDef): boolean {
   } catch { return false; }
 }
 
+/** New protected rewards require actual source-bound victories; historical flags grant no proof. */
+function hasAct4Completion(quest: QuestDef): boolean {
+  const contract = ACT4_ENCOUNTERS.find(row => row.questId === quest.id);
+  if (!contract) return true;
+  const map = useMapStore.getState();
+  if (!Object.hasOwn(map.questReceipts, contract.proof)) return false;
+  if (quest.id === 'quests/act4-hellforge' && !Object.hasOwn(map.questReceipts,
+    'quests/act4-hellforge#action:shatter-soulstone')) return false;
+  try { validateQuestItemLedger(useInventoryStore.getState().questItems, map.questProgress, map.questReceipts); return true; }
+  catch { return false; }
+}
+
 /** Basic action availability; execution can still refuse with a retryable reason. */
 export function canClaim(questId: string): boolean {
   const progress = useMapStore.getState().questProgress[questId];
@@ -68,7 +81,7 @@ export function canClaim(questId: string): boolean {
   if (progress.rewardClaimed) return false;
   const quest = findQuest(questId);
   return Boolean(quest?.rewards && Object.keys(quest.rewards).length > 0 &&
-    hasQuestDeliveryCompletion(quest) && hasQuestAssemblyCompletion(quest) && hasRetainedQuestRewardCompletion(quest));
+    hasAct4Completion(quest) && hasQuestDeliveryCompletion(quest) && hasQuestAssemblyCompletion(quest) && hasRetainedQuestRewardCompletion(quest));
 }
 
 function safeCount(value: number): boolean {
@@ -88,7 +101,7 @@ function safeGrants(player: Player, grants: readonly { kind: NumericReward; amou
   const currencies = useInventoryStore.getState().currencies;
   for (const grant of grants) {
     if (grant.kind === 'xp' || grant.kind === 'skillPoints' || grant.kind === 'statPoints') continue;
-    const balance = currencies[grant.kind] ?? 0;
+    const balance = currencies[grant.kind === 'gemShards' ? 'gem-shard' : grant.kind] ?? 0;
     if (!safeCount(balance) || !safeCount(balance + grant.amount)) return false;
   }
   const mercs = useMercStore.getState();
@@ -126,7 +139,7 @@ export function claimQuestReward(questId: string): ClaimResult {
     if (progress.rewardClaimed) return 'already-claimed';
     const quest = findQuest(questId);
     if (!quest) return 'unknown-quest';
-    if (!hasQuestDeliveryCompletion(quest) || !hasQuestAssemblyCompletion(quest) ||
+    if (!hasAct4Completion(quest) || !hasQuestDeliveryCompletion(quest) || !hasQuestAssemblyCompletion(quest) ||
       !hasRetainedQuestRewardCompletion(quest)) return 'not-completed';
     const rewards = quest.rewards;
     if (!rewards || Object.keys(rewards).length === 0) return 'no-rewards';
@@ -185,7 +198,7 @@ export function claimQuestReward(questId: string): ClaimResult {
         continue;
       }
       if (!isNumericReward(kind) || typeof amount !== 'number'
-        || !safeCount(amount)) return 'unsupported-rewards';
+        || !safeCount(amount) || kind === 'gemShards' && amount <= 0) return 'unsupported-rewards';
       if (amount > 0) grants.push({ kind, amount });
     }
     if (grants.length === 0 && !uniqueReward && !uniqueProfileReward && !tableReward && !questItems && !resistanceReward) return 'no-rewards';
@@ -209,7 +222,10 @@ export function claimQuestReward(questId: string): ClaimResult {
     const items: Item[] = [];
     const currencyGrants = new Map<string, number>();
     for (const { kind, amount } of grants) {
-      if (kind !== 'xp' && kind !== 'skillPoints' && kind !== 'statPoints') currencyGrants.set(kind, amount);
+      if (kind !== 'xp' && kind !== 'skillPoints' && kind !== 'statPoints') {
+        const target = kind === 'gemShards' ? 'gem-shard' : kind;
+        currencyGrants.set(target, (currencyGrants.get(target) ?? 0) + amount);
+      }
     }
     try {
       if (uniqueReward) {

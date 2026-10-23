@@ -1,4 +1,5 @@
-import { loadQuestActions, type QuestItemActionDef } from '@/data/loaders/quest-actions';
+import { loadQuestActions, questActionInputs, type QuestItemActionDef } from '@/data/loaders/quest-actions';
+import { questObjectivePrerequisitesMet } from '@/engine/map/questStages';
 import { resolveSubArea } from '@/stores/subAreaResolver';
 import { loadQuests } from '@/data/loaders/quests';
 import { validateQuestActionReceipts } from '@/engine/save/validate';
@@ -29,9 +30,12 @@ export function questActionStatus(source: string): 'ready' | 'consumed' | 'unava
   const row = Object.hasOwn(map.questProgress, action.questId) ? map.questProgress[action.questId] : undefined;
   const quest = loadQuests().find(definition => definition.id === action.questId);
   if (!row || row.id !== action.questId || row.status !== 'inProgress' || row.rewardClaimed === true ||
-    !quest?.objectives.every(objective => Object.hasOwn(row.objectives, objective.id) && row.objectives[objective.id] === false)) return 'unavailable';
-  const input = Object.hasOwn(items, action.inputSource) ? items[action.inputSource] : undefined;
-  return input?.itemId === action.itemId && input.state === 'owned' ? 'ready' : 'unavailable';
+    !quest || !quest.objectives.every(objective => Object.hasOwn(row.objectives, objective.id) && typeof row.objectives[objective.id] === 'boolean') ||
+    (action.completeObjectiveId === undefined
+      ? !quest.objectives.every(objective => row.objectives[objective.id] === false)
+      : row.objectives[action.completeObjectiveId] !== false || !questObjectivePrerequisitesMet(quest, row.objectives, action.completeObjectiveId))) return 'unavailable';
+  return questActionInputs(action).every(input => Object.hasOwn(items, input.inputSource) &&
+    items[input.inputSource]?.itemId === input.itemId && items[input.inputSource]?.state === 'owned') ? 'ready' : 'unavailable';
 }
 
 /** Explicit item-consuming action; progress and rewards are separate. */
@@ -46,8 +50,11 @@ export function executeQuestAction(source: string): QuestActionResult {
     if (!action) return 'not-eligible';
     const map = useMapStore.getState(), progress = map.questProgress[action.questId];
     if (!progress) return 'not-eligible';
-    return publishQuestItemChange(action.questId, progress,
-      { ...useInventoryStore.getState().questItems, [action.inputSource]: { itemId: action.itemId, state: 'consumed' } },
+    const nextProgress = action.completeObjectiveId === undefined ? progress : { ...progress, status: 'completed' as const,
+      objectives: { ...progress.objectives, [action.completeObjectiveId]: true } };
+    return publishQuestItemChange(action.questId, nextProgress,
+      { ...useInventoryStore.getState().questItems, ...Object.fromEntries(questActionInputs(action).map(input =>
+        [input.inputSource, { itemId: input.itemId, state: 'consumed' as const }])) },
       { ...map.questReceipts, [source]: true });
   });
 }

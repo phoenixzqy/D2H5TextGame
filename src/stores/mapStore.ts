@@ -1,3 +1,4 @@
+import { ACT4_ENCOUNTERS } from '@/engine/map/act4-admission';
 /**
  * Map store
  * Manages map progress, current location, and quest state
@@ -201,7 +202,7 @@ export const useMapStore = create<MapState>((set, get) => ({
     let questProgress = state.questProgress;
     for (const quest of loadQuests()) {
       // Guardian needs the accepted original post-Orb settlement, beyond event metadata.
-      if (quest.id === GUARDIAN_QUEST_ID) continue;
+      if (quest.id === GUARDIAN_QUEST_ID || ACT4_ENCOUNTERS.some(row => row.questId === quest.id)) continue;
       if (quest.actId !== event.actId) continue;
       const progress = state.questProgress[quest.id];
       if (progress?.status !== 'inProgress' || progress.rewardClaimed) continue;
@@ -239,6 +240,7 @@ export const useMapStore = create<MapState>((set, get) => ({
     let questProgress = state.questProgress;
     const targets = new Set(event.archetypeIds);
     for (const quest of loadQuests()) {
+      if (ACT4_ENCOUNTERS.some(row => row.questId === quest.id)) continue;
       if (quest.actId !== event.actId) continue;
       const progress = state.questProgress[quest.id];
       if (progress?.status !== 'inProgress' || progress.rewardClaimed) continue;
