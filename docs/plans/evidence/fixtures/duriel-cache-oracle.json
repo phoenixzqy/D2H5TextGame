@@ -1,0 +1,142 @@
+{
+  "seed": 4242445505,
+  "profile": {
+    "tableId": "loot/duriel-q",
+    "ilvl": 32,
+    "picks": 5
+  },
+  "cache": {
+    "items": [
+      {
+        "id": "it-7zgmt-1",
+        "baseId": "items/base/wp1h-long-sword",
+        "rarity": "rare",
+        "level": 32,
+        "ilvl": 32,
+        "baseRolls": {
+          "attack": 18
+        },
+        "affixes": [
+          {
+            "id": "affix.savage.crit-damage",
+            "tier": 2,
+            "rolledValue": 28
+          },
+          {
+            "id": "affix.weapon.attack.flat",
+            "tier": 2,
+            "rolledValue": 18
+          },
+          {
+            "id": "affix.precise.crit-chance",
+            "tier": 2,
+            "rolledValue": 10
+          },
+          {
+            "id": "affix.wolf.life.flat",
+            "tier": 2,
+            "rolledValue": 42
+          }
+        ],
+        "generatedName": {},
+        "identified": false,
+        "equipped": false
+      },
+      {
+        "id": "it-2einf-2",
+        "baseId": "items/base/wp1h-long-sword",
+        "rarity": "rare",
+        "level": 32,
+        "ilvl": 32,
+        "baseRolls": {
+          "attack": 21
+        },
+        "affixes": [
+          {
+            "id": "affix.precise.crit-chance",
+            "tier": 2,
+            "rolledValue": 8
+          },
+          {
+            "id": "affix.savage.crit-damage",
+            "tier": 2,
+            "rolledValue": 31
+          },
+          {
+            "id": "affix.weapon.attack.flat",
+            "tier": 2,
+            "rolledValue": 9
+          },
+          {
+            "id": "affix.wolf.life.flat",
+            "tier": 2,
+            "rolledValue": 35
+          },
+          {
+            "id": "affix.bat.mana.flat",
+            "tier": 2,
+            "rolledValue": 53
+          }
+        ],
+        "generatedName": {},
+        "identified": false,
+        "equipped": false
+      },
+      {
+        "id": "it-jwgi-3",
+        "baseId": "items/base/wp1h-long-sword",
+        "rarity": "rare",
+        "level": 32,
+        "ilvl": 32,
+        "baseRolls": {
+          "attack": 16
+        },
+        "affixes": [
+          {
+            "id": "affix.precise.crit-chance",
+            "tier": 2,
+            "rolledValue": 8
+          },
+          {
+            "id": "affix.weapon.attack.flat",
+            "tier": 2,
+            "rolledValue": 15
+          },
+          {
+            "id": "affix.savage.crit-damage",
+            "tier": 2,
+            "rolledValue": 54
+          },
+          {
+            "id": "affix.wolf.life.flat",
+            "tier": 2,
+            "rolledValue": 52
+          }
+        ],
+        "generatedName": {},
+        "identified": false,
+        "equipped": false
+      },
+      {
+        "id": "it-2px16-4",
+        "baseId": "items/base/armor-chain-mail",
+        "rarity": "unique",
+        "level": 32,
+        "ilvl": 32,
+        "baseRolls": {
+          "defense": 51
+        },
+        "affixes": [],
+        "statRolls": {},
+        "generatedName": {},
+        "identified": true,
+        "equipped": false,
+        "uniqueId": "items/unique/venom-ward"
+      }
+    ],
+    "runeShards": 21534,
+    "wishstones": 0,
+    "runes": 0,
+    "gems": 0
+  }
+}

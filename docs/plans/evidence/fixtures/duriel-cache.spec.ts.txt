@@ -1,0 +1,60 @@
+/** Constructed completion clone of the earned Staff prefix. No earned Duriel victory. */
+import {test,expect,type Page,type BrowserContext} from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/@playwright/test/index.mjs';
+import {readFile,writeFile} from 'node:fs/promises';
+import {gunzipSync,gzipSync} from 'node:zlib';
+import {createCharacter,navTo} from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/tests/e2e/_helpers';
+const root='/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-duriel-v44tgpgo';
+const repo='/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2';
+const quest='quests/act2-seven-tombs',now=1792497600000;
+async function backup(page:Page){
+ await navTo(page,'settings');const pending=page.waitForEvent('download');await page.getByTestId('export-save-button').click();const download=await pending;
+ try{return JSON.parse(await readFile(await download.path(),'utf8'));}finally{await download.delete();}
+}
+async function disk(page:Page){return page.evaluate(async()=>{
+ const db=await new Promise<IDBDatabase>((resolve,reject)=>{const req=indexedDB.open('D2H5TextGame');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});
+ try{const record=await new Promise<{data:unknown}>((resolve,reject)=>{const req=db.transaction('saves','readonly').objectStore('saves').get('current');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});return JSON.parse(JSON.stringify(record.data,(_k,v)=>v instanceof Map?[...v.entries()]:v));}finally{db.close();}
+});}
+async function importSave(page:Page,value:unknown,english:boolean){
+ await navTo(page,'settings');const label=english?'Import Save':'导入存档';await page.getByRole('button',{name:label,exact:true}).click();
+ const dialog=page.getByRole('dialog');await dialog.getByRole('textbox').fill(JSON.stringify(value));await dialog.getByRole('button',{name:label,exact:true}).click();await expect(dialog).toHaveCount(0);
+}
+async function reopen(page:Page,context:BrowserContext,english:boolean,expected:unknown,errors:string[]){
+ await navTo(page,'settings');await page.getByRole('button',{name:english?'Save':'保存',exact:true}).click();await expect(page.getByRole('status')).toHaveText(english?'Saved':'已保存');
+ expect(await disk(page)).toEqual(expected);expect(await backup(page)).toEqual(expected);await page.close();
+ const next=await context.newPage();next.on('pageerror',error=>errors.push(error.message));await next.clock.setFixedTime(now);await next.goto('/');await next.waitForLoadState('networkidle');
+ await next.getByTestId('home-continue').click();await expect(next.getByTestId('town-screen')).toBeVisible();expect(await backup(next)).toEqual(expected);expect(await disk(next)).toEqual(expected);return next;
+}
+async function retain(name:string,value:unknown){await writeFile(root+'/'+name+'.json.gz',gzipSync(JSON.stringify(value)));}
+for(const locale of ['en','zh-CN'])test(`Duriel constructed once-only cache and persistence ${locale}`,async({page,context})=>{
+ const english=locale==='en',errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));await page.clock.setFixedTime(now);await page.goto('/');await page.waitForLoadState('networkidle');
+ await createCharacter(page,{class:'sorceress',name:'Duriel constructed proof'});await navTo(page,'settings');await page.getByRole('button',{name:'English',exact:true}).click();
+ const original=JSON.parse(gunzipSync(await readFile(repo+'/docs/plans/evidence/fixtures/staff-inserted.json.gz')).toString());
+ const input={...original,map:{...original.map,questProgress:{...original.map.questProgress,[quest]:{...original.map.questProgress[quest],status:'completed',objectives:{'obj-open-tomb':true,'obj-kill-duriel':true}}}}};
+ await retain('constructed-input',input);await importSave(page,input,true);expect(await backup(page)).toEqual(input);
+ if(!english)await page.getByRole('button',{name:'简体中文',exact:true}).click();
+ await expect.poll(()=>page.evaluate(()=>navigator.serviceWorker.controller?.state),{timeout:60000}).toBe('activated');expect(await page.evaluate(()=>'__GAME__' in window)).toBe(false);
+ const before=await backup(page);await retain('before-'+locale,before);page=await reopen(page,context,english,before,errors);
+ await navTo(page,'quests');let card=page.getByTestId('quest-'+quest);const claim=page.getByTestId('quest-claim-'+quest);
+ await expect(claim).toBeEnabled();await expect(card).toContainText(english?'Reward cache':'奖励宝箱');await expect(card).not.toContainText('[object Object]');await expect(card).not.toContainText('loot/duriel-q');
+ for(const [width,height] of [[360,640],[412,915],[640,360],[1280,800],[1920,1080]]){
+  await page.setViewportSize({width,height});expect(await page.evaluate(()=>{const main=document.querySelector('main')!;return{document:document.documentElement.scrollWidth<=innerWidth,main:main.scrollWidth<=main.clientWidth};})).toEqual({document:true,main:true});
+  const box=await claim.boundingBox();expect(box?.height).toBeGreaterThanOrEqual(44);expect(box?.width).toBeGreaterThanOrEqual(44);
+ }
+ await page.setViewportSize({width:360,height:640});await card.screenshot({path:root+'/preview-'+locale+'.png'});
+ await claim.focus();await page.keyboard.press('Enter');await expect(claim).toBeDisabled();await card.screenshot({path:root+'/claimed-'+locale+'.png'});
+ const paid=await backup(page),oracle=JSON.parse(await readFile(root+'/cache-oracle.json','utf8')).cache;
+ const added=paid.inventory.backpack.slice(before.inventory.backpack.length);
+ expect(added.map((item:Record<string,unknown>)=>({...item,id:''}))).toEqual(oracle.items.map((item:Record<string,unknown>)=>({...item,id:''})));
+ const expectedCurrencies={...before.inventory.currencies,'rune-shard':before.inventory.currencies['rune-shard']+oracle.runes+oracle.runeShards};
+ expect(oracle.gems).toBe(0);expect(oracle.wishstones).toBe(0);expect(added).toHaveLength(4);expect(oracle.runeShards).toBe(21534);
+ const mercId=before.mercs.fieldedMercId;
+ expect(paid).toEqual({...before,player:{...before.player,experience:before.player.experience+12000},inventory:{...before.inventory,backpack:[...before.inventory.backpack,...added],currencies:expectedCurrencies},mercs:{...before.mercs,mercProgress:{...before.mercs.mercProgress,[mercId]:{...before.mercs.mercProgress[mercId],experience:before.mercs.mercProgress[mercId].experience+9000}}},map:{...before.map,questProgress:{...before.map.questProgress,[quest]:{...before.map.questProgress[quest],rewardClaimed:true}}}});
+ const items=[...paid.inventory.backpack,...paid.inventory.stash,...Object.values(paid.inventory.equipped),...Object.values(paid.mercs.mercEquipment).flatMap((slots:object)=>Object.values(slots))].filter(Boolean);
+ const ids=items.map((item:{id:string})=>item.id);expect(ids).toHaveLength(4061);expect(new Set(ids).size).toBe(4061);
+ await retain('paid-'+locale,paid);page=await reopen(page,context,english,paid,errors);
+ await navTo(page,'quests');card=page.getByTestId('quest-'+quest);await expect(page.getByTestId('quest-claim-'+quest)).toBeDisabled();await page.getByTestId('quest-claim-'+quest).evaluate((button:HTMLButtonElement)=>button.click());expect(await backup(page)).toEqual(paid);
+ // Reimport the settled receipt twice; neither import nor a disabled Claim pays again.
+ for(let index=0;index<2;index++){await importSave(page,paid,english);expect(await backup(page)).toEqual(paid);await navTo(page,'quests');await expect(page.getByTestId('quest-claim-'+quest)).toBeDisabled();}
+ page=await reopen(page,context,english,paid,errors);expect(errors).toEqual([]);expect(await page.evaluate(()=>'__GAME__' in window)).toBe(false);
+ await writeFile(root+'/assertions-'+locale+'.json',JSON.stringify({locale,classification:'Constructed Seven Tombs completion clone of earned Staff prefix; no earned Duriel victory',heroXP:12000,mercXP:9000,cacheItems:4,cacheRuneShards:21534,exactExistingGearAndAllocation:true,uniqueOwnedIDs:4061,onceOnly:true,saveCloseContinue:['before','paid','reimported-paid'],reimports:2,viewports:5,keyboardClaim:true,pageErrors:errors},null,2));await page.close();
+});
