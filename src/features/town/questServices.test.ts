@@ -20,6 +20,8 @@ const LARZUK = 'quests/side-act5-larzuks-sockets#reward:service';
 const HALBU = 'quests/side-act4-halbus-soul#reward:service';
 const PRISON = `${PRISON_QUEST}#reward:service`;
 const ANYA = 'quests/side-act5-anyas-gift#reward:service';
+const FORGE = 'quests/act4-hellforge', GUARDIAN = 'quests/act3-guardian', KHALIM = 'quests/act3-khalims-will';
+const HAMMER = `${FORGE}#objective:obj-kill-hephasto`, STONE = `${GUARDIAN}#reward:questItem`;
 const stores = [usePlayerStore, useInventoryStore, useMapStore, useMercStore, useCombatStore, useMetaStore, useFormationStore] as const;
 const unlock = useMapStore.getState().isActUnlocked;
 const originalTownNpcs = towns.loadTownNpcs;
@@ -36,16 +38,39 @@ function track(id: string): void {
   useMapStore.getState().updateQuestProgress(id, { id, status: 'completed', rewardClaimed: true,
     objectives: Object.fromEntries(quest.objectives.map(row => [row.id, true])) });
 }
+function actualMainSource(id: string): void {
+  track(id);
+  const encounter = ACT5_ENCOUNTERS.find(row => row.questId === id);
+  if (encounter) useMapStore.setState(state => ({ questReceipts: { ...state.questReceipts, [encounter.proof]: true } }));
+  if (id === PRISON_QUEST) {
+    useMapStore.setState(state => ({ questReceipts: { ...state.questReceipts,
+      [INSPECT_PROOF]: true, [POTION_SOURCE]: true, [THAW_PROOF]: true } }));
+    useInventoryStore.setState(state => ({ questItems: { ...state.questItems,
+      [POTION_SOURCE]: { itemId: 'quest/malahs_potion', state: 'consumed' } } }));
+  }
+  if (id === FORGE) {
+    track(KHALIM); track(GUARDIAN);
+    useMapStore.setState(state => ({ questProgress: { ...state.questProgress,
+      'quests/act2-horadric-staff': { id: 'quests/act2-horadric-staff', status: 'inProgress', objectives: {
+        'obj-cube': true, 'obj-shaft': false, 'obj-amulet': false, 'obj-transmute': false } } },
+    questReceipts: { ...state.questReceipts, [`${KHALIM}#action:council-victory`]: true,
+      [`${GUARDIAN}#action:break-compelling-orb`]: true, [`${FORGE}#action:hephasto-victory`]: true,
+      [`${FORGE}#action:shatter-soulstone`]: true } }));
+    useInventoryStore.setState(state => ({ questItems: { ...state.questItems,
+      'quests/act2-horadric-staff#objective:obj-cube': { itemId: 'quest/horadric_cube', state: 'owned' },
+      ...Object.fromEntries(['heart', 'brain', 'eye', 'flail'].map(part =>
+        [`${KHALIM}#objective:obj-${part}`, { itemId: `quest/khalims_${part}`, state: 'consumed' as const }])),
+      [`${KHALIM}#objective:obj-transmute`]: { itemId: 'items/khalims_will', state: 'consumed' },
+      [HAMMER]: { itemId: 'quest/hellforge_hammer', state: 'consumed' },
+      [STONE]: { itemId: 'items/soulstone_mephisto', state: 'consumed' } } }));
+  }
+}
 function grant(...sources: (keyof typeof QUEST_SERVICE_SOURCES)[]): void {
   for (const source of sources) {
-    const id = source.slice(0, source.indexOf('#')); track(id);
-    const encounter = ACT5_ENCOUNTERS.find(row => row.questId === id);
-    if (encounter) useMapStore.setState(state => ({ questReceipts: { ...state.questReceipts, [encounter.proof]: true } }));
-    if (id === PRISON_QUEST) {
-      useMapStore.setState(state => ({ questReceipts: { ...state.questReceipts,
-        [INSPECT_PROOF]: true, [POTION_SOURCE]: true, [THAW_PROOF]: true } }));
-      useInventoryStore.setState({ questItems: { [POTION_SOURCE]: { itemId: 'quest/malahs_potion', state: 'consumed' } } });
-    }
+    const id = source.slice(0, source.indexOf('#')); actualMainSource(id);
+    if (source === LARZUK) actualMainSource(SIEGE.split('#')[0] ?? '');
+    if (source === ANYA) actualMainSource(PRISON_QUEST);
+    if (source === HALBU) actualMainSource(FORGE);
     useInventoryStore.setState(state => ({ questServices: { ...state.questServices,
       [source]: { serviceId: QUEST_SERVICE_SOURCES[source], state: 'available' } } }));
   }
@@ -107,6 +132,63 @@ describe('actual current-town service discovery and selected gear', () => {
     if (fault === 'contradictory') useMapStore.setState(state => ({ questReceipts: { ...state.questReceipts, [THAW_PROOF]: true } }));
     expect(questServiceCandidates(SIEGE)).toEqual([]); noChange(SIEGE);
   });
+  it.each([LARZUK, ANYA, HALBU] as const)('rejects forged side charge %s without its actual main prerequisite', source => {
+    useMapStore.setState({ currentAct: source === HALBU ? 4 : 5, questProgress: {}, questReceipts: {} });
+    track(source.split('#')[0] ?? '');
+    useInventoryStore.setState({ questItems: {}, questServices: {
+      [source]: { serviceId: QUEST_SERVICE_SOURCES[source], state: 'available' } } });
+    useInventoryStore.setState({ backpack: [gear('selected', 'normal', source === HALBU ? armorBase.id : weaponBase.id)] });
+    expect(questServiceCandidates(source)).toEqual([]); noChange(source);
+  });
+  it.each([LARZUK, ANYA, HALBU] as const)('accepts actual completed prerequisite before its separate reward claim for %s', source => {
+    grant(source);
+    const main = source === LARZUK ? SIEGE.split('#')[0] ?? '' : source === ANYA ? PRISON_QUEST : FORGE;
+    useMapStore.getState().updateQuestProgress(main, { rewardClaimed: false });
+    useInventoryStore.setState(state => ({ questServices: { [source]: required(state.questServices[source]) },
+      backpack: [gear('selected', 'normal', source === HALBU ? armorBase.id : weaponBase.id)] }));
+    useMapStore.setState({ currentAct: source === HALBU ? 4 : 5 });
+    expect(applyQuestService(source, 'selected')).toBe('ok');
+  });
+  it('rejects side Larzuk after removing actual Siege victory while retaining canonical completed progress', () => {
+    grant(LARZUK); expect(questServiceCandidates(LARZUK)).toHaveLength(1);
+    const encounter = required(ACT5_ENCOUNTERS.find(row => row.questId === SIEGE.split('#')[0]));
+    const receipts = { ...useMapStore.getState().questReceipts }; Reflect.deleteProperty(receipts, encounter.proof);
+    useMapStore.setState({ questReceipts: receipts });
+    useInventoryStore.setState(state => ({ questServices: { [LARZUK]: required(state.questServices[LARZUK]) } }));
+    expect(questServiceCandidates(LARZUK)).toEqual([]); noChange(LARZUK);
+  });
+  it.each(['inspect', 'potion-receipt', 'thaw', 'victory', 'potion-missing', 'potion-owned', 'potion-identity'] as const)(
+    'rejects side Anya after removing its actual Prison %s edge', fault => {
+      grant(ANYA); expect(questServiceCandidates(ANYA)).toHaveLength(1);
+      const receipts = { ...useMapStore.getState().questReceipts }, items = { ...inventory().questItems };
+      const encounter = required(ACT5_ENCOUNTERS.find(row => row.questId === PRISON_QUEST));
+      if (fault === 'inspect') Reflect.deleteProperty(receipts, INSPECT_PROOF);
+      if (fault === 'potion-receipt') Reflect.deleteProperty(receipts, POTION_SOURCE);
+      if (fault === 'thaw') Reflect.deleteProperty(receipts, THAW_PROOF);
+      if (fault === 'victory') Reflect.deleteProperty(receipts, encounter.proof);
+      if (fault === 'potion-missing') Reflect.deleteProperty(items, POTION_SOURCE);
+      if (fault === 'potion-owned') items[POTION_SOURCE] = { itemId: 'quest/malahs_potion', state: 'owned' };
+      if (fault === 'potion-identity') items[POTION_SOURCE] = { itemId: 'quest/hellforge_hammer', state: 'consumed' };
+      useMapStore.setState({ questReceipts: receipts }); useInventoryStore.setState({ questItems: items });
+      expect(questServiceCandidates(ANYA)).toEqual([]); noChange(ANYA);
+    });
+  it.each(['hephasto', 'shatter', 'hammer-missing', 'stone-missing', 'hammer-owned', 'stone-owned', 'hammer-identity', 'stone-identity'] as const)(
+    'rejects side Halbu after removing its actual Hellforge %s edge', fault => {
+      grant(HALBU); useMapStore.setState({ currentAct: 4 });
+      useInventoryStore.setState({ backpack: [gear('selected', 'normal', armorBase.id)] });
+      expect(questServiceCandidates(HALBU)).toHaveLength(1);
+      const receipts = { ...useMapStore.getState().questReceipts }, items = { ...inventory().questItems };
+      if (fault === 'hephasto') Reflect.deleteProperty(receipts, `${FORGE}#action:hephasto-victory`);
+      if (fault === 'shatter') Reflect.deleteProperty(receipts, `${FORGE}#action:shatter-soulstone`);
+      if (fault === 'hammer-missing') Reflect.deleteProperty(items, HAMMER);
+      if (fault === 'stone-missing') Reflect.deleteProperty(items, STONE);
+      if (fault === 'hammer-owned') items[HAMMER] = { itemId: 'quest/hellforge_hammer', state: 'owned' };
+      if (fault === 'stone-owned') items[STONE] = { itemId: 'items/soulstone_mephisto', state: 'owned' };
+      if (fault === 'hammer-identity') items[HAMMER] = { itemId: 'items/soulstone_mephisto', state: 'consumed' };
+      if (fault === 'stone-identity') items[STONE] = { itemId: 'quest/hellforge_hammer', state: 'consumed' };
+      useMapStore.setState({ questReceipts: receipts }); useInventoryStore.setState({ questItems: items });
+      expect(questServiceCandidates(HALBU)).toEqual([]); noChange(HALBU);
+    });
   it.each(['stash', 'equipped', 'merc', 'duplicate', 'quarantine', 'flag', 'mirror', 'not-owned'] as const)('rejects %s selected ownership', fault => {
     const item = required(inventory().backpack[0]);
     if (fault === 'stash') useInventoryStore.setState({ backpack: [], stash: [item] });
