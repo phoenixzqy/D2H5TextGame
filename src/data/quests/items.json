@@ -171,8 +171,8 @@
       "kind": "encounter",
       "sourceQuestId": "quests/act4-hellforge",
       "sourceObjectiveId": "obj-kill-hephasto",
-      "nameKey": "questItems.hellforgeHammer.name",
-      "descKey": "questItems.hellforgeHammer.desc",
+      "nameKey": "inventory:questItems.hellforgeHammer.name",
+      "descKey": "inventory:questItems.hellforgeHammer.desc",
       "targetId": "objects/hellforge_hammer_cache",
       "requiredActionSource": "quests/act4-hellforge#action:hephasto-victory",
       "consumeActionId": "actions/act4-shatter-soulstone"

@@ -21,8 +21,8 @@ describe.each(ACT4_ENCOUNTERS)('Act IV original admission $questId', contract =>
     tier: chapter ? 'chapter-boss' : 'boss', rng: createRng(4 + index) }), id: `original-${String(index)}` }));
   const hero: CombatUnit = { ...required(originals[0]), id: 'hero', side: 'player', kind: 'hero', life: 7 };
   const victory = { winner: 'player', finalPlayerTeam: [hero], finalEnemyTeam: originals.map(unit => ({ ...unit, life: 0 })) };
-  const objectives: Record<string, boolean> = Object.fromEntries<boolean>([...contract.prerequisites.map(id => [id, true]), [contract.objectiveId, false],
-    ...(contract.questId === 'quests/act4-hellforge' ? [['obj-shatter', false]] : [])]);
+  const objectives: Record<string, boolean> = Object.fromEntries<boolean>([...contract.prerequisites.map(id => [id, true] as const), [contract.objectiveId, false] as const,
+    ...(contract.questId === 'quests/act4-hellforge' ? [['obj-shatter', false] as const] : [])]);
   const row: QuestProgressData = { id: contract.questId, status: 'inProgress', objectives };
   it('copies exact canonical source and all original member identities', () => {
     const captured = required(captureAct4Encounter(4, contract.areaId, wave, originals));

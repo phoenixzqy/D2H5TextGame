@@ -358,10 +358,10 @@
                 "const": "obj-kill-hephasto"
               },
               "nameKey": {
-                "const": "questItems.hellforgeHammer.name"
+                "const": "inventory:questItems.hellforgeHammer.name"
               },
               "descKey": {
-                "const": "questItems.hellforgeHammer.desc"
+                "const": "inventory:questItems.hellforgeHammer.desc"
               },
               "targetId": {
                 "const": "objects/hellforge_hammer_cache"
