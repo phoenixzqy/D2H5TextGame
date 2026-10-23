@@ -1,6 +1,6 @@
 # BUG-110 — Enlarge the inventory detail Close touch target
 
-- Status: Corrected; bilingual360×640 passes; remaining viewport matrix running.
+- Status: Corrected; bilingual production checks pass at all five viewports.
 - Severity: Medium (mobile accessibility; backdrop dismissal is available).
 - Owner: frontend-dev / root.
 - Runtime: `69828f682684ce5fd737bdff801619a57bdadb29`; production Chromium,
@@ -32,5 +32,10 @@ production scenario passes both locale measurements and ordinary dismissal
 after each service, followed by exact Save/Continue. Independent QA accepts
 the bounded source/report evidence. Full unit10070/352files, typecheck,
 full lint, explicit PWA lint, production build and four-chunk bridge scan pass.
-The other four viewport projects are running separately; their acceptance is
-still pending. [Evidence](../../docs/plans/evidence/act5-prison-services.md).
+The other four viewport projects pass8/8, giving10/10 across both locales and
+all five sizes, retry/skips/flaky/errors0. Independent QA verifies all staged
+service/owned-item/save boundaries and the unchanged frozen source/build/input
+hashes. Matrix report SHA256:
+`e542b535a02b3e005737750cd3a062332b1ea399386b2cd50aa674b22badbffc`.
+The passing assertions enforce44px minima; no separate per-case dimension log
+is claimed. [Evidence](../../docs/plans/evidence/act5-prison-services.md).

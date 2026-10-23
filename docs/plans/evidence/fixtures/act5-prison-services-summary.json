@@ -167,9 +167,198 @@
   "retainedDiagnostics": "/tmp/d2h5-a5-integration-650ka_is",
   "cleanupOwner": "root after Act V/umbrella consumers finish",
   "open": [
-    "remaining four viewport projects currently running",
-    "Rite/Eve/title/Nightmare separate scenario running",
     "fresh earned campaign/C2",
-    "C3/C4/full G0-G7"
-  ]
+    "live rune insertion/crafting",
+    "exact Nightmare calibration/manual acceptance/C3/C4/full G0-G7"
+  ],
+  "remainingViewportMatrix": {
+    "path": "/tmp/d2h5-a5-integration-650ka_is/browser-prison-matrix/report.json",
+    "sha256": "e542b535a02b3e005737750cd3a062332b1ea399386b2cd50aa674b22badbffc",
+    "stats": {
+      "startTime": "2026-10-23T11:55:32.631Z",
+      "duration": 1064634.269,
+      "expected": 8,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "errors": [],
+    "cases": [
+      {
+        "locale": "en",
+        "project": "mobile-tall",
+        "status": "passed",
+        "durationMs": 242168,
+        "retry": 0,
+        "nativeExportSHA256": "f9d616301e0b30b78c773279b957cc95351751bddcf2d6bf82ce1597c9a4644f",
+        "nativeExportBytes": 407677,
+        "finalQuestServices": {
+          "quests/act5-siege-on-harrogath#reward:service": {
+            "serviceId": "socket_item",
+            "state": "consumed",
+            "targetItemId": "it-3kk43-cd"
+          },
+          "quests/act5-prison-of-ice#reward:service": {
+            "serviceId": "personalize_item",
+            "state": "consumed",
+            "targetItemId": "it-2gpyd-cq"
+          }
+        }
+      },
+      {
+        "locale": "zh-CN",
+        "project": "mobile-tall",
+        "status": "passed",
+        "durationMs": 249140,
+        "retry": 0,
+        "nativeExportSHA256": "51c9ea72c85e78a795c2725f5c5c2cab2ddfe4d4869c6f82195f2c47f4883a69",
+        "nativeExportBytes": 404044,
+        "finalQuestServices": {
+          "quests/act5-siege-on-harrogath#reward:service": {
+            "serviceId": "socket_item",
+            "state": "consumed",
+            "targetItemId": "it-91kfa-cb"
+          },
+          "quests/act5-prison-of-ice#reward:service": {
+            "serviceId": "personalize_item",
+            "state": "consumed",
+            "targetItemId": "it-8bpf0-cf"
+          }
+        }
+      },
+      {
+        "locale": "en",
+        "project": "mobile-landscape",
+        "status": "passed",
+        "durationMs": 290421,
+        "retry": 0,
+        "nativeExportSHA256": "83d9dd5c067f864385521355d7c95e87049ec1620e23db0a2b0e1c04c3471ccb",
+        "nativeExportBytes": 401249,
+        "finalQuestServices": {
+          "quests/act5-siege-on-harrogath#reward:service": {
+            "serviceId": "socket_item",
+            "state": "consumed",
+            "targetItemId": "it-7uyv7-cj"
+          },
+          "quests/act5-prison-of-ice#reward:service": {
+            "serviceId": "personalize_item",
+            "state": "consumed",
+            "targetItemId": "it-9x2m5-co"
+          }
+        }
+      },
+      {
+        "locale": "zh-CN",
+        "project": "mobile-landscape",
+        "status": "passed",
+        "durationMs": 288618,
+        "retry": 0,
+        "nativeExportSHA256": "0bd751019cfc836a8decb630404627b4f5d0cc60255e66031a097257e1a4b868",
+        "nativeExportBytes": 398039,
+        "finalQuestServices": {
+          "quests/act5-siege-on-harrogath#reward:service": {
+            "serviceId": "socket_item",
+            "state": "consumed",
+            "targetItemId": "it-6qtv-ci"
+          },
+          "quests/act5-prison-of-ice#reward:service": {
+            "serviceId": "personalize_item",
+            "state": "consumed",
+            "targetItemId": "it-20afh-cq"
+          }
+        }
+      },
+      {
+        "locale": "en",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 254489,
+        "retry": 0,
+        "nativeExportSHA256": "321b6fcc72ef758440c81e20ae1d5c9a90d2f624901d37c99ddc0ff3e91da083",
+        "nativeExportBytes": 399517,
+        "finalQuestServices": {
+          "quests/act5-siege-on-harrogath#reward:service": {
+            "serviceId": "socket_item",
+            "state": "consumed",
+            "targetItemId": "it-2zk8o-cd"
+          },
+          "quests/act5-prison-of-ice#reward:service": {
+            "serviceId": "personalize_item",
+            "state": "consumed",
+            "targetItemId": "it-8ehry-cm"
+          }
+        }
+      },
+      {
+        "locale": "zh-CN",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 254712,
+        "retry": 0,
+        "nativeExportSHA256": "da99e2befe4429dc66bed54dd5ccb31821e08b9e05834e07239fb49d7da1e48c",
+        "nativeExportBytes": 396683,
+        "finalQuestServices": {
+          "quests/act5-siege-on-harrogath#reward:service": {
+            "serviceId": "socket_item",
+            "state": "consumed",
+            "targetItemId": "it-4dkoh-ce"
+          },
+          "quests/act5-prison-of-ice#reward:service": {
+            "serviceId": "personalize_item",
+            "state": "consumed",
+            "targetItemId": "it-940c5-ci"
+          }
+        }
+      },
+      {
+        "locale": "en",
+        "project": "desktop-wide",
+        "status": "passed",
+        "durationMs": 266580,
+        "retry": 0,
+        "nativeExportSHA256": "13eeb541df54b776583f09e0196ec5d500edc4e5087385c0a36b2f788eb54c21",
+        "nativeExportBytes": 408013,
+        "finalQuestServices": {
+          "quests/act5-siege-on-harrogath#reward:service": {
+            "serviceId": "socket_item",
+            "state": "consumed",
+            "targetItemId": "it-3lfbc-cd"
+          },
+          "quests/act5-prison-of-ice#reward:service": {
+            "serviceId": "personalize_item",
+            "state": "consumed",
+            "targetItemId": "it-6h58x-cg"
+          }
+        }
+      },
+      {
+        "locale": "zh-CN",
+        "project": "desktop-wide",
+        "status": "passed",
+        "durationMs": 264987,
+        "retry": 0,
+        "nativeExportSHA256": "de879d159465736343bd2dfa30c1d90d083b1ab818d8ada3ea494ba53a88f89c",
+        "nativeExportBytes": 402652,
+        "finalQuestServices": {
+          "quests/act5-siege-on-harrogath#reward:service": {
+            "serviceId": "socket_item",
+            "state": "consumed",
+            "targetItemId": "it-9z9as-ca"
+          },
+          "quests/act5-prison-of-ice#reward:service": {
+            "serviceId": "personalize_item",
+            "state": "consumed",
+            "targetItemId": "it-8hukr-cc"
+          }
+        }
+      }
+    ],
+    "independentQA": "ADEQUATE"
+  },
+  "cleanup": {
+    "removedBuild": "/tmp/d2h5-a5-integration-650ka_is/dist-close",
+    "receipt": "/tmp/d2h5-a5-integration-650ka_is/dist-close-cleanup.json",
+    "remaining": [],
+    "failures": []
+  }
 }

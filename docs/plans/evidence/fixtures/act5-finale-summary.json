@@ -1,0 +1,1737 @@
+{
+  "date": "2026-10-23",
+  "scope": "Constructed-ancestry production browser finale; no earned campaign/balance/pacing acceptance.",
+  "runtimeSource": "d9326ed product, unchanged across integrated harness/evidence commits",
+  "harnessSHA256": "eb5e0108187ed34a67103bd4280cc126f4079922d05ec7223a9732e55ba980aa",
+  "inputSHA256": "977f1f09a2a737f9f54c8ccba76e147954e5839517762db6e212f24356f03746",
+  "reports": [
+    {
+      "path": "/tmp/d2h5-a5-integration-650ka_is/browser-finale-paste-mobile/report.json",
+      "sha256": "ad046186467b8aaf3b13ff513aee19b166284720337c5fb89a944feca9e79168",
+      "stats": {
+        "startTime": "2026-10-23T12:08:06.575Z",
+        "duration": 107170.96599999999,
+        "expected": 2,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "errors": []
+    },
+    {
+      "path": "/tmp/d2h5-a5-integration-650ka_is/browser-finale-paste-matrix/report.json",
+      "sha256": "f8411651d3fa2740a7f6877f7e444a7405442865cf5d1dd7dd796e9e1b10c266",
+      "stats": {
+        "startTime": "2026-10-23T12:10:36.331Z",
+        "duration": 464786.25299999997,
+        "expected": 8,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "errors": []
+    }
+  ],
+  "previousTimedOutReport": {
+    "path": "/tmp/d2h5-a5-integration-650ka_is/browser-finale-mobile/report.json",
+    "sha256": "130bce279e215273dc6985edcac690a5f42c4124e20340d986d69f194976ae0a",
+    "note": "Both time out in multiline locator.fill before import; no finale gameplay proof."
+  },
+  "cases": [
+    {
+      "locale": "en",
+      "project": "mobile-small",
+      "status": "passed",
+      "durationMs": 103892,
+      "retry": 0,
+      "stages": {
+        "rite-claimed-continued": {
+          "sha256": "97c3a9470a50361d2956e91f7af8cba8b0d7ba1b50f8502ca812123c255a9b42",
+          "bytes": 451973,
+          "questProgress": {
+            "quests/act5-siege-on-harrogath": {
+              "id": "quests/act5-siege-on-harrogath",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-shenk": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rescue-on-mount-arreat": {
+              "id": "quests/act5-rescue-on-mount-arreat",
+              "status": "completed",
+              "objectives": {
+                "obj-free-15": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-prison-of-ice": {
+              "id": "quests/act5-prison-of-ice",
+              "status": "completed",
+              "objectives": {
+                "obj-find-anya": true,
+                "obj-thaw": true,
+                "obj-kill-nihlathak": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rite-of-passage": {
+              "id": "quests/act5-rite-of-passage",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-ancients": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-eve-of-destruction": {
+              "id": "quests/act5-eve-of-destruction",
+              "status": "inProgress",
+              "objectives": {
+                "obj-throne-waves": false,
+                "obj-kill-baal": false
+              }
+            }
+          },
+          "questReceipts": {
+            "quests/act5-siege-on-harrogath#action:shenk-victory": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-3": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-1": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-2": true,
+            "quests/act5-prison-of-ice#action:inspect-anya": true,
+            "quests/act5-prison-of-ice#action:receive-potion": true,
+            "quests/act5-prison-of-ice#action:thaw-anya": true,
+            "quests/act5-prison-of-ice#action:nihlathak-victory": true,
+            "quests/act5-prison-of-ice#action:read-resistance-scroll": true,
+            "quests/act5-rite-of-passage#action:ancients-victory": true
+          },
+          "challengeOrdinals": {
+            "normal": 5,
+            "nightmare": 0
+          },
+          "questTitles": {},
+          "questDifficulties": {},
+          "selectedTitle": null,
+          "selectedDifficulty": "normal",
+          "nightmareClearedSubAreas": []
+        },
+        "four-waves-abandoned-continued": {
+          "sha256": "14fdd26ba98554abd3456eeff4bfb2f207e564b046cfcd4bd6b4f173796bea1c",
+          "bytes": 457845,
+          "questProgress": {
+            "quests/act5-siege-on-harrogath": {
+              "id": "quests/act5-siege-on-harrogath",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-shenk": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rescue-on-mount-arreat": {
+              "id": "quests/act5-rescue-on-mount-arreat",
+              "status": "completed",
+              "objectives": {
+                "obj-free-15": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-prison-of-ice": {
+              "id": "quests/act5-prison-of-ice",
+              "status": "completed",
+              "objectives": {
+                "obj-find-anya": true,
+                "obj-thaw": true,
+                "obj-kill-nihlathak": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rite-of-passage": {
+              "id": "quests/act5-rite-of-passage",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-ancients": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-eve-of-destruction": {
+              "id": "quests/act5-eve-of-destruction",
+              "status": "inProgress",
+              "objectives": {
+                "obj-throne-waves": false,
+                "obj-kill-baal": false
+              }
+            }
+          },
+          "questReceipts": {
+            "quests/act5-siege-on-harrogath#action:shenk-victory": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-3": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-1": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-2": true,
+            "quests/act5-prison-of-ice#action:inspect-anya": true,
+            "quests/act5-prison-of-ice#action:receive-potion": true,
+            "quests/act5-prison-of-ice#action:thaw-anya": true,
+            "quests/act5-prison-of-ice#action:nihlathak-victory": true,
+            "quests/act5-prison-of-ice#action:read-resistance-scroll": true,
+            "quests/act5-rite-of-passage#action:ancients-victory": true
+          },
+          "challengeOrdinals": {
+            "normal": 6,
+            "nightmare": 0
+          },
+          "questTitles": {},
+          "questDifficulties": {},
+          "selectedTitle": null,
+          "selectedDifficulty": "normal",
+          "nightmareClearedSubAreas": []
+        },
+        "five-waves-proof-continued": {
+          "sha256": "6265c463ceecc093ddbb6595726becef68b3aa514287814aef37d5eaa7b3939e",
+          "bytes": 463426,
+          "questProgress": {
+            "quests/act5-siege-on-harrogath": {
+              "id": "quests/act5-siege-on-harrogath",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-shenk": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rescue-on-mount-arreat": {
+              "id": "quests/act5-rescue-on-mount-arreat",
+              "status": "completed",
+              "objectives": {
+                "obj-free-15": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-prison-of-ice": {
+              "id": "quests/act5-prison-of-ice",
+              "status": "completed",
+              "objectives": {
+                "obj-find-anya": true,
+                "obj-thaw": true,
+                "obj-kill-nihlathak": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rite-of-passage": {
+              "id": "quests/act5-rite-of-passage",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-ancients": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-eve-of-destruction": {
+              "id": "quests/act5-eve-of-destruction",
+              "status": "inProgress",
+              "objectives": {
+                "obj-throne-waves": true,
+                "obj-kill-baal": false
+              }
+            }
+          },
+          "questReceipts": {
+            "quests/act5-siege-on-harrogath#action:shenk-victory": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-3": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-1": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-2": true,
+            "quests/act5-prison-of-ice#action:inspect-anya": true,
+            "quests/act5-prison-of-ice#action:receive-potion": true,
+            "quests/act5-prison-of-ice#action:thaw-anya": true,
+            "quests/act5-prison-of-ice#action:nihlathak-victory": true,
+            "quests/act5-prison-of-ice#action:read-resistance-scroll": true,
+            "quests/act5-rite-of-passage#action:ancients-victory": true,
+            "quests/act5-eve-of-destruction#action:throne-waves-victory": true
+          },
+          "challengeOrdinals": {
+            "normal": 7,
+            "nightmare": 0
+          },
+          "questTitles": {},
+          "questDifficulties": {},
+          "selectedTitle": null,
+          "selectedDifficulty": "normal",
+          "nightmareClearedSubAreas": []
+        },
+        "baal-won-before-separate-claim": {
+          "sha256": "3dd83c1d67ec51048a5d25d16cf96a156c1dc371cd6e6c9e625a9cb10f80fe0a",
+          "bytes": 463534,
+          "questProgress": {
+            "quests/act5-siege-on-harrogath": {
+              "id": "quests/act5-siege-on-harrogath",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-shenk": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rescue-on-mount-arreat": {
+              "id": "quests/act5-rescue-on-mount-arreat",
+              "status": "completed",
+              "objectives": {
+                "obj-free-15": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-prison-of-ice": {
+              "id": "quests/act5-prison-of-ice",
+              "status": "completed",
+              "objectives": {
+                "obj-find-anya": true,
+                "obj-thaw": true,
+                "obj-kill-nihlathak": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rite-of-passage": {
+              "id": "quests/act5-rite-of-passage",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-ancients": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-eve-of-destruction": {
+              "id": "quests/act5-eve-of-destruction",
+              "status": "completed",
+              "objectives": {
+                "obj-throne-waves": true,
+                "obj-kill-baal": true
+              }
+            }
+          },
+          "questReceipts": {
+            "quests/act5-siege-on-harrogath#action:shenk-victory": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-3": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-1": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-2": true,
+            "quests/act5-prison-of-ice#action:inspect-anya": true,
+            "quests/act5-prison-of-ice#action:receive-potion": true,
+            "quests/act5-prison-of-ice#action:thaw-anya": true,
+            "quests/act5-prison-of-ice#action:nihlathak-victory": true,
+            "quests/act5-prison-of-ice#action:read-resistance-scroll": true,
+            "quests/act5-rite-of-passage#action:ancients-victory": true,
+            "quests/act5-eve-of-destruction#action:throne-waves-victory": true,
+            "quests/act5-eve-of-destruction#action:baal-victory": true
+          },
+          "challengeOrdinals": {
+            "normal": 8,
+            "nightmare": 0
+          },
+          "questTitles": {},
+          "questDifficulties": {},
+          "selectedTitle": null,
+          "selectedDifficulty": "normal",
+          "nightmareClearedSubAreas": []
+        },
+        "eve-cache-entitlements-continued": {
+          "sha256": "9b58ca812eb5d6a4010be147f5115bed9962a60a5b94b542326ee69db08b9694",
+          "bytes": 464962,
+          "questProgress": {
+            "quests/act5-siege-on-harrogath": {
+              "id": "quests/act5-siege-on-harrogath",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-shenk": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rescue-on-mount-arreat": {
+              "id": "quests/act5-rescue-on-mount-arreat",
+              "status": "completed",
+              "objectives": {
+                "obj-free-15": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-prison-of-ice": {
+              "id": "quests/act5-prison-of-ice",
+              "status": "completed",
+              "objectives": {
+                "obj-find-anya": true,
+                "obj-thaw": true,
+                "obj-kill-nihlathak": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rite-of-passage": {
+              "id": "quests/act5-rite-of-passage",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-ancients": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-eve-of-destruction": {
+              "id": "quests/act5-eve-of-destruction",
+              "status": "completed",
+              "objectives": {
+                "obj-throne-waves": true,
+                "obj-kill-baal": true
+              },
+              "rewardClaimed": true
+            }
+          },
+          "questReceipts": {
+            "quests/act5-siege-on-harrogath#action:shenk-victory": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-3": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-1": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-2": true,
+            "quests/act5-prison-of-ice#action:inspect-anya": true,
+            "quests/act5-prison-of-ice#action:receive-potion": true,
+            "quests/act5-prison-of-ice#action:thaw-anya": true,
+            "quests/act5-prison-of-ice#action:nihlathak-victory": true,
+            "quests/act5-prison-of-ice#action:read-resistance-scroll": true,
+            "quests/act5-rite-of-passage#action:ancients-victory": true,
+            "quests/act5-eve-of-destruction#action:throne-waves-victory": true,
+            "quests/act5-eve-of-destruction#action:baal-victory": true
+          },
+          "challengeOrdinals": {
+            "normal": 8,
+            "nightmare": 0
+          },
+          "questTitles": {
+            "titles/slayer_of_baal": true
+          },
+          "questDifficulties": {
+            "difficulty/nightmare": true
+          },
+          "selectedTitle": null,
+          "selectedDifficulty": "normal",
+          "nightmareClearedSubAreas": []
+        },
+        "selected-title-continued": {
+          "sha256": "cfb491d90d4bc2dc9b4cd76e85756c99d6a363b4ebd9d657d4f298f2ee86a582",
+          "bytes": 464981,
+          "questProgress": {
+            "quests/act5-siege-on-harrogath": {
+              "id": "quests/act5-siege-on-harrogath",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-shenk": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rescue-on-mount-arreat": {
+              "id": "quests/act5-rescue-on-mount-arreat",
+              "status": "completed",
+              "objectives": {
+                "obj-free-15": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-prison-of-ice": {
+              "id": "quests/act5-prison-of-ice",
+              "status": "completed",
+              "objectives": {
+                "obj-find-anya": true,
+                "obj-thaw": true,
+                "obj-kill-nihlathak": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rite-of-passage": {
+              "id": "quests/act5-rite-of-passage",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-ancients": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-eve-of-destruction": {
+              "id": "quests/act5-eve-of-destruction",
+              "status": "completed",
+              "objectives": {
+                "obj-throne-waves": true,
+                "obj-kill-baal": true
+              },
+              "rewardClaimed": true
+            }
+          },
+          "questReceipts": {
+            "quests/act5-siege-on-harrogath#action:shenk-victory": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-3": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-1": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-2": true,
+            "quests/act5-prison-of-ice#action:inspect-anya": true,
+            "quests/act5-prison-of-ice#action:receive-potion": true,
+            "quests/act5-prison-of-ice#action:thaw-anya": true,
+            "quests/act5-prison-of-ice#action:nihlathak-victory": true,
+            "quests/act5-prison-of-ice#action:read-resistance-scroll": true,
+            "quests/act5-rite-of-passage#action:ancients-victory": true,
+            "quests/act5-eve-of-destruction#action:throne-waves-victory": true,
+            "quests/act5-eve-of-destruction#action:baal-victory": true
+          },
+          "challengeOrdinals": {
+            "normal": 8,
+            "nightmare": 0
+          },
+          "questTitles": {
+            "titles/slayer_of_baal": true
+          },
+          "questDifficulties": {
+            "difficulty/nightmare": true
+          },
+          "selectedTitle": "titles/slayer_of_baal",
+          "selectedDifficulty": "normal",
+          "nightmareClearedSubAreas": []
+        },
+        "nightmare-victory-continued": {
+          "sha256": "c579b7ecaf8209d7bfdbf7d544e8d362d06a121d1ce99339f5dde505d71e79ba",
+          "bytes": 465020,
+          "questProgress": {
+            "quests/act5-siege-on-harrogath": {
+              "id": "quests/act5-siege-on-harrogath",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-shenk": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rescue-on-mount-arreat": {
+              "id": "quests/act5-rescue-on-mount-arreat",
+              "status": "completed",
+              "objectives": {
+                "obj-free-15": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-prison-of-ice": {
+              "id": "quests/act5-prison-of-ice",
+              "status": "completed",
+              "objectives": {
+                "obj-find-anya": true,
+                "obj-thaw": true,
+                "obj-kill-nihlathak": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rite-of-passage": {
+              "id": "quests/act5-rite-of-passage",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-ancients": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-eve-of-destruction": {
+              "id": "quests/act5-eve-of-destruction",
+              "status": "completed",
+              "objectives": {
+                "obj-throne-waves": true,
+                "obj-kill-baal": true
+              },
+              "rewardClaimed": true
+            }
+          },
+          "questReceipts": {
+            "quests/act5-siege-on-harrogath#action:shenk-victory": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-3": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-1": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-2": true,
+            "quests/act5-prison-of-ice#action:inspect-anya": true,
+            "quests/act5-prison-of-ice#action:receive-potion": true,
+            "quests/act5-prison-of-ice#action:thaw-anya": true,
+            "quests/act5-prison-of-ice#action:nihlathak-victory": true,
+            "quests/act5-prison-of-ice#action:read-resistance-scroll": true,
+            "quests/act5-rite-of-passage#action:ancients-victory": true,
+            "quests/act5-eve-of-destruction#action:throne-waves-victory": true,
+            "quests/act5-eve-of-destruction#action:baal-victory": true
+          },
+          "challengeOrdinals": {
+            "normal": 8,
+            "nightmare": 1
+          },
+          "questTitles": {
+            "titles/slayer_of_baal": true
+          },
+          "questDifficulties": {
+            "difficulty/nightmare": true
+          },
+          "selectedTitle": "titles/slayer_of_baal",
+          "selectedDifficulty": "nightmare",
+          "nightmareClearedSubAreas": [
+            "areas/act5-bloody-foothills"
+          ]
+        },
+        "normal-restored-continued": {
+          "sha256": "1f272e3b4f9bc15aebcb5f6398ff4d48774457a163087e9943282b28ba46ab7a",
+          "bytes": 465017,
+          "questProgress": {
+            "quests/act5-siege-on-harrogath": {
+              "id": "quests/act5-siege-on-harrogath",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-shenk": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rescue-on-mount-arreat": {
+              "id": "quests/act5-rescue-on-mount-arreat",
+              "status": "completed",
+              "objectives": {
+                "obj-free-15": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-prison-of-ice": {
+              "id": "quests/act5-prison-of-ice",
+              "status": "completed",
+              "objectives": {
+                "obj-find-anya": true,
+                "obj-thaw": true,
+                "obj-kill-nihlathak": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rite-of-passage": {
+              "id": "quests/act5-rite-of-passage",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-ancients": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-eve-of-destruction": {
+              "id": "quests/act5-eve-of-destruction",
+              "status": "completed",
+              "objectives": {
+                "obj-throne-waves": true,
+                "obj-kill-baal": true
+              },
+              "rewardClaimed": true
+            }
+          },
+          "questReceipts": {
+            "quests/act5-siege-on-harrogath#action:shenk-victory": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-3": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-1": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-2": true,
+            "quests/act5-prison-of-ice#action:inspect-anya": true,
+            "quests/act5-prison-of-ice#action:receive-potion": true,
+            "quests/act5-prison-of-ice#action:thaw-anya": true,
+            "quests/act5-prison-of-ice#action:nihlathak-victory": true,
+            "quests/act5-prison-of-ice#action:read-resistance-scroll": true,
+            "quests/act5-rite-of-passage#action:ancients-victory": true,
+            "quests/act5-eve-of-destruction#action:throne-waves-victory": true,
+            "quests/act5-eve-of-destruction#action:baal-victory": true
+          },
+          "challengeOrdinals": {
+            "normal": 8,
+            "nightmare": 1
+          },
+          "questTitles": {
+            "titles/slayer_of_baal": true
+          },
+          "questDifficulties": {
+            "difficulty/nightmare": true
+          },
+          "selectedTitle": "titles/slayer_of_baal",
+          "selectedDifficulty": "normal",
+          "nightmareClearedSubAreas": [
+            "areas/act5-bloody-foothills"
+          ],
+          "retainedGzip": {
+            "path": "docs/plans/evidence/fixtures/act5-finale-en.json.gz",
+            "bytes": 21248,
+            "sha256": "41e30cdfec6a422a651365d135b78172723ee9f08f9f55efa702bb2520a4ac76"
+          }
+        }
+      }
+    },
+    {
+      "locale": "zh-CN",
+      "project": "mobile-small",
+      "status": "passed",
+      "durationMs": 104177,
+      "retry": 0,
+      "stages": {
+        "rite-claimed-continued": {
+          "sha256": "78ace8abca66d2d087213e3fc98165e339af8344e4036fa9e699fb5c4da4de25",
+          "bytes": 457330,
+          "questProgress": {
+            "quests/act5-siege-on-harrogath": {
+              "id": "quests/act5-siege-on-harrogath",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-shenk": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rescue-on-mount-arreat": {
+              "id": "quests/act5-rescue-on-mount-arreat",
+              "status": "completed",
+              "objectives": {
+                "obj-free-15": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-prison-of-ice": {
+              "id": "quests/act5-prison-of-ice",
+              "status": "completed",
+              "objectives": {
+                "obj-find-anya": true,
+                "obj-thaw": true,
+                "obj-kill-nihlathak": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rite-of-passage": {
+              "id": "quests/act5-rite-of-passage",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-ancients": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-eve-of-destruction": {
+              "id": "quests/act5-eve-of-destruction",
+              "status": "inProgress",
+              "objectives": {
+                "obj-throne-waves": false,
+                "obj-kill-baal": false
+              }
+            }
+          },
+          "questReceipts": {
+            "quests/act5-siege-on-harrogath#action:shenk-victory": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-3": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-1": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-2": true,
+            "quests/act5-prison-of-ice#action:inspect-anya": true,
+            "quests/act5-prison-of-ice#action:receive-potion": true,
+            "quests/act5-prison-of-ice#action:thaw-anya": true,
+            "quests/act5-prison-of-ice#action:nihlathak-victory": true,
+            "quests/act5-prison-of-ice#action:read-resistance-scroll": true,
+            "quests/act5-rite-of-passage#action:ancients-victory": true
+          },
+          "challengeOrdinals": {
+            "normal": 5,
+            "nightmare": 0
+          },
+          "questTitles": {},
+          "questDifficulties": {},
+          "selectedTitle": null,
+          "selectedDifficulty": "normal",
+          "nightmareClearedSubAreas": []
+        },
+        "four-waves-abandoned-continued": {
+          "sha256": "41c876ee3959d182f1187b3643200a7a31c421b39c569d835f6a41637117e2e0",
+          "bytes": 464124,
+          "questProgress": {
+            "quests/act5-siege-on-harrogath": {
+              "id": "quests/act5-siege-on-harrogath",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-shenk": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rescue-on-mount-arreat": {
+              "id": "quests/act5-rescue-on-mount-arreat",
+              "status": "completed",
+              "objectives": {
+                "obj-free-15": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-prison-of-ice": {
+              "id": "quests/act5-prison-of-ice",
+              "status": "completed",
+              "objectives": {
+                "obj-find-anya": true,
+                "obj-thaw": true,
+                "obj-kill-nihlathak": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rite-of-passage": {
+              "id": "quests/act5-rite-of-passage",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-ancients": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-eve-of-destruction": {
+              "id": "quests/act5-eve-of-destruction",
+              "status": "inProgress",
+              "objectives": {
+                "obj-throne-waves": false,
+                "obj-kill-baal": false
+              }
+            }
+          },
+          "questReceipts": {
+            "quests/act5-siege-on-harrogath#action:shenk-victory": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-3": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-1": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-2": true,
+            "quests/act5-prison-of-ice#action:inspect-anya": true,
+            "quests/act5-prison-of-ice#action:receive-potion": true,
+            "quests/act5-prison-of-ice#action:thaw-anya": true,
+            "quests/act5-prison-of-ice#action:nihlathak-victory": true,
+            "quests/act5-prison-of-ice#action:read-resistance-scroll": true,
+            "quests/act5-rite-of-passage#action:ancients-victory": true
+          },
+          "challengeOrdinals": {
+            "normal": 6,
+            "nightmare": 0
+          },
+          "questTitles": {},
+          "questDifficulties": {},
+          "selectedTitle": null,
+          "selectedDifficulty": "normal",
+          "nightmareClearedSubAreas": []
+        },
+        "five-waves-proof-continued": {
+          "sha256": "d9442d71d38770f42750704d8e96360d2a92cfe10f43318e6b68ea564b1f328d",
+          "bytes": 470780,
+          "questProgress": {
+            "quests/act5-siege-on-harrogath": {
+              "id": "quests/act5-siege-on-harrogath",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-shenk": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rescue-on-mount-arreat": {
+              "id": "quests/act5-rescue-on-mount-arreat",
+              "status": "completed",
+              "objectives": {
+                "obj-free-15": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-prison-of-ice": {
+              "id": "quests/act5-prison-of-ice",
+              "status": "completed",
+              "objectives": {
+                "obj-find-anya": true,
+                "obj-thaw": true,
+                "obj-kill-nihlathak": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rite-of-passage": {
+              "id": "quests/act5-rite-of-passage",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-ancients": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-eve-of-destruction": {
+              "id": "quests/act5-eve-of-destruction",
+              "status": "inProgress",
+              "objectives": {
+                "obj-throne-waves": true,
+                "obj-kill-baal": false
+              }
+            }
+          },
+          "questReceipts": {
+            "quests/act5-siege-on-harrogath#action:shenk-victory": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-3": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-1": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-2": true,
+            "quests/act5-prison-of-ice#action:inspect-anya": true,
+            "quests/act5-prison-of-ice#action:receive-potion": true,
+            "quests/act5-prison-of-ice#action:thaw-anya": true,
+            "quests/act5-prison-of-ice#action:nihlathak-victory": true,
+            "quests/act5-prison-of-ice#action:read-resistance-scroll": true,
+            "quests/act5-rite-of-passage#action:ancients-victory": true,
+            "quests/act5-eve-of-destruction#action:throne-waves-victory": true
+          },
+          "challengeOrdinals": {
+            "normal": 7,
+            "nightmare": 0
+          },
+          "questTitles": {},
+          "questDifficulties": {},
+          "selectedTitle": null,
+          "selectedDifficulty": "normal",
+          "nightmareClearedSubAreas": []
+        },
+        "baal-won-before-separate-claim": {
+          "sha256": "dd253f6b05bc73e456a67fe6ab98333f806ad9b2fd4d66217ca8e2efaafcef7a",
+          "bytes": 470888,
+          "questProgress": {
+            "quests/act5-siege-on-harrogath": {
+              "id": "quests/act5-siege-on-harrogath",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-shenk": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rescue-on-mount-arreat": {
+              "id": "quests/act5-rescue-on-mount-arreat",
+              "status": "completed",
+              "objectives": {
+                "obj-free-15": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-prison-of-ice": {
+              "id": "quests/act5-prison-of-ice",
+              "status": "completed",
+              "objectives": {
+                "obj-find-anya": true,
+                "obj-thaw": true,
+                "obj-kill-nihlathak": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rite-of-passage": {
+              "id": "quests/act5-rite-of-passage",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-ancients": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-eve-of-destruction": {
+              "id": "quests/act5-eve-of-destruction",
+              "status": "completed",
+              "objectives": {
+                "obj-throne-waves": true,
+                "obj-kill-baal": true
+              }
+            }
+          },
+          "questReceipts": {
+            "quests/act5-siege-on-harrogath#action:shenk-victory": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-3": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-1": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-2": true,
+            "quests/act5-prison-of-ice#action:inspect-anya": true,
+            "quests/act5-prison-of-ice#action:receive-potion": true,
+            "quests/act5-prison-of-ice#action:thaw-anya": true,
+            "quests/act5-prison-of-ice#action:nihlathak-victory": true,
+            "quests/act5-prison-of-ice#action:read-resistance-scroll": true,
+            "quests/act5-rite-of-passage#action:ancients-victory": true,
+            "quests/act5-eve-of-destruction#action:throne-waves-victory": true,
+            "quests/act5-eve-of-destruction#action:baal-victory": true
+          },
+          "challengeOrdinals": {
+            "normal": 8,
+            "nightmare": 0
+          },
+          "questTitles": {},
+          "questDifficulties": {},
+          "selectedTitle": null,
+          "selectedDifficulty": "normal",
+          "nightmareClearedSubAreas": []
+        },
+        "eve-cache-entitlements-continued": {
+          "sha256": "5b10de9c84bf73292d7bd8743d81acf3ef24ce66f214647e72f3ad493d4de11d",
+          "bytes": 472316,
+          "questProgress": {
+            "quests/act5-siege-on-harrogath": {
+              "id": "quests/act5-siege-on-harrogath",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-shenk": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rescue-on-mount-arreat": {
+              "id": "quests/act5-rescue-on-mount-arreat",
+              "status": "completed",
+              "objectives": {
+                "obj-free-15": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-prison-of-ice": {
+              "id": "quests/act5-prison-of-ice",
+              "status": "completed",
+              "objectives": {
+                "obj-find-anya": true,
+                "obj-thaw": true,
+                "obj-kill-nihlathak": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rite-of-passage": {
+              "id": "quests/act5-rite-of-passage",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-ancients": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-eve-of-destruction": {
+              "id": "quests/act5-eve-of-destruction",
+              "status": "completed",
+              "objectives": {
+                "obj-throne-waves": true,
+                "obj-kill-baal": true
+              },
+              "rewardClaimed": true
+            }
+          },
+          "questReceipts": {
+            "quests/act5-siege-on-harrogath#action:shenk-victory": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-3": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-1": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-2": true,
+            "quests/act5-prison-of-ice#action:inspect-anya": true,
+            "quests/act5-prison-of-ice#action:receive-potion": true,
+            "quests/act5-prison-of-ice#action:thaw-anya": true,
+            "quests/act5-prison-of-ice#action:nihlathak-victory": true,
+            "quests/act5-prison-of-ice#action:read-resistance-scroll": true,
+            "quests/act5-rite-of-passage#action:ancients-victory": true,
+            "quests/act5-eve-of-destruction#action:throne-waves-victory": true,
+            "quests/act5-eve-of-destruction#action:baal-victory": true
+          },
+          "challengeOrdinals": {
+            "normal": 8,
+            "nightmare": 0
+          },
+          "questTitles": {
+            "titles/slayer_of_baal": true
+          },
+          "questDifficulties": {
+            "difficulty/nightmare": true
+          },
+          "selectedTitle": null,
+          "selectedDifficulty": "normal",
+          "nightmareClearedSubAreas": []
+        },
+        "selected-title-continued": {
+          "sha256": "5f5ce3e0e8a27099d7360fa3fe0cc8083cfa438cb31d4ca7e13c3ceebc3807cc",
+          "bytes": 472335,
+          "questProgress": {
+            "quests/act5-siege-on-harrogath": {
+              "id": "quests/act5-siege-on-harrogath",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-shenk": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rescue-on-mount-arreat": {
+              "id": "quests/act5-rescue-on-mount-arreat",
+              "status": "completed",
+              "objectives": {
+                "obj-free-15": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-prison-of-ice": {
+              "id": "quests/act5-prison-of-ice",
+              "status": "completed",
+              "objectives": {
+                "obj-find-anya": true,
+                "obj-thaw": true,
+                "obj-kill-nihlathak": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rite-of-passage": {
+              "id": "quests/act5-rite-of-passage",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-ancients": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-eve-of-destruction": {
+              "id": "quests/act5-eve-of-destruction",
+              "status": "completed",
+              "objectives": {
+                "obj-throne-waves": true,
+                "obj-kill-baal": true
+              },
+              "rewardClaimed": true
+            }
+          },
+          "questReceipts": {
+            "quests/act5-siege-on-harrogath#action:shenk-victory": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-3": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-1": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-2": true,
+            "quests/act5-prison-of-ice#action:inspect-anya": true,
+            "quests/act5-prison-of-ice#action:receive-potion": true,
+            "quests/act5-prison-of-ice#action:thaw-anya": true,
+            "quests/act5-prison-of-ice#action:nihlathak-victory": true,
+            "quests/act5-prison-of-ice#action:read-resistance-scroll": true,
+            "quests/act5-rite-of-passage#action:ancients-victory": true,
+            "quests/act5-eve-of-destruction#action:throne-waves-victory": true,
+            "quests/act5-eve-of-destruction#action:baal-victory": true
+          },
+          "challengeOrdinals": {
+            "normal": 8,
+            "nightmare": 0
+          },
+          "questTitles": {
+            "titles/slayer_of_baal": true
+          },
+          "questDifficulties": {
+            "difficulty/nightmare": true
+          },
+          "selectedTitle": "titles/slayer_of_baal",
+          "selectedDifficulty": "normal",
+          "nightmareClearedSubAreas": []
+        },
+        "nightmare-victory-continued": {
+          "sha256": "bb2fd0898f16884805072778cd53382be792880aa44874bab0571cf13e81dc03",
+          "bytes": 472374,
+          "questProgress": {
+            "quests/act5-siege-on-harrogath": {
+              "id": "quests/act5-siege-on-harrogath",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-shenk": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rescue-on-mount-arreat": {
+              "id": "quests/act5-rescue-on-mount-arreat",
+              "status": "completed",
+              "objectives": {
+                "obj-free-15": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-prison-of-ice": {
+              "id": "quests/act5-prison-of-ice",
+              "status": "completed",
+              "objectives": {
+                "obj-find-anya": true,
+                "obj-thaw": true,
+                "obj-kill-nihlathak": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rite-of-passage": {
+              "id": "quests/act5-rite-of-passage",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-ancients": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-eve-of-destruction": {
+              "id": "quests/act5-eve-of-destruction",
+              "status": "completed",
+              "objectives": {
+                "obj-throne-waves": true,
+                "obj-kill-baal": true
+              },
+              "rewardClaimed": true
+            }
+          },
+          "questReceipts": {
+            "quests/act5-siege-on-harrogath#action:shenk-victory": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-3": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-1": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-2": true,
+            "quests/act5-prison-of-ice#action:inspect-anya": true,
+            "quests/act5-prison-of-ice#action:receive-potion": true,
+            "quests/act5-prison-of-ice#action:thaw-anya": true,
+            "quests/act5-prison-of-ice#action:nihlathak-victory": true,
+            "quests/act5-prison-of-ice#action:read-resistance-scroll": true,
+            "quests/act5-rite-of-passage#action:ancients-victory": true,
+            "quests/act5-eve-of-destruction#action:throne-waves-victory": true,
+            "quests/act5-eve-of-destruction#action:baal-victory": true
+          },
+          "challengeOrdinals": {
+            "normal": 8,
+            "nightmare": 1
+          },
+          "questTitles": {
+            "titles/slayer_of_baal": true
+          },
+          "questDifficulties": {
+            "difficulty/nightmare": true
+          },
+          "selectedTitle": "titles/slayer_of_baal",
+          "selectedDifficulty": "nightmare",
+          "nightmareClearedSubAreas": [
+            "areas/act5-bloody-foothills"
+          ]
+        },
+        "normal-restored-continued": {
+          "sha256": "2ee53ea05b6d86a9799c1571ab2eb865410b6e06ef274e5bacf64a557f47dde7",
+          "bytes": 472371,
+          "questProgress": {
+            "quests/act5-siege-on-harrogath": {
+              "id": "quests/act5-siege-on-harrogath",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-shenk": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rescue-on-mount-arreat": {
+              "id": "quests/act5-rescue-on-mount-arreat",
+              "status": "completed",
+              "objectives": {
+                "obj-free-15": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-prison-of-ice": {
+              "id": "quests/act5-prison-of-ice",
+              "status": "completed",
+              "objectives": {
+                "obj-find-anya": true,
+                "obj-thaw": true,
+                "obj-kill-nihlathak": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-rite-of-passage": {
+              "id": "quests/act5-rite-of-passage",
+              "status": "completed",
+              "objectives": {
+                "obj-kill-ancients": true
+              },
+              "rewardClaimed": true
+            },
+            "quests/act5-eve-of-destruction": {
+              "id": "quests/act5-eve-of-destruction",
+              "status": "completed",
+              "objectives": {
+                "obj-throne-waves": true,
+                "obj-kill-baal": true
+              },
+              "rewardClaimed": true
+            }
+          },
+          "questReceipts": {
+            "quests/act5-siege-on-harrogath#action:shenk-victory": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-3": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-1": true,
+            "quests/act5-rescue-on-mount-arreat#action:release-cage-2": true,
+            "quests/act5-prison-of-ice#action:inspect-anya": true,
+            "quests/act5-prison-of-ice#action:receive-potion": true,
+            "quests/act5-prison-of-ice#action:thaw-anya": true,
+            "quests/act5-prison-of-ice#action:nihlathak-victory": true,
+            "quests/act5-prison-of-ice#action:read-resistance-scroll": true,
+            "quests/act5-rite-of-passage#action:ancients-victory": true,
+            "quests/act5-eve-of-destruction#action:throne-waves-victory": true,
+            "quests/act5-eve-of-destruction#action:baal-victory": true
+          },
+          "challengeOrdinals": {
+            "normal": 8,
+            "nightmare": 1
+          },
+          "questTitles": {
+            "titles/slayer_of_baal": true
+          },
+          "questDifficulties": {
+            "difficulty/nightmare": true
+          },
+          "selectedTitle": "titles/slayer_of_baal",
+          "selectedDifficulty": "normal",
+          "nightmareClearedSubAreas": [
+            "areas/act5-bloody-foothills"
+          ],
+          "retainedGzip": {
+            "path": "docs/plans/evidence/fixtures/act5-finale-zh-CN.json.gz",
+            "bytes": 21475,
+            "sha256": "a8ed5a9d458fbfd64eb39163896cc097becb13ca4d6b63146f4f8df19a2c31af"
+          }
+        }
+      }
+    }
+  ],
+  "validation": {
+    "typecheckFinalePaste": "PASS",
+    "scopedPwaLint": "PASS",
+    "sourceBuildInputManifest": "741 source, 760 build, 3 harness inputs unchanged",
+    "independentQA": "ADEQUATE for bounded bilingual360x640 result",
+    "remainingViewportMatrix": "8/8 PASS, combined10/10 five viewports/two locales; independent QA ADEQUATE",
+    "integratedContinuationContracts": "7/7 PASS (separate from preceding 8 native-capture contracts and full10070unit baseline)",
+    "integratedTypecheckAndScopedLint": "PASS"
+  },
+  "remaining": [
+    "fresh earned ActV/campaign/C2",
+    "exact Nightmare XP/loot calibration and full scaling",
+    "seven-class builds, pacing, full G0-G7",
+    "manual screen-reader and human playtest acceptance"
+  ],
+  "remainingViewportMatrix": {
+    "cases": [
+      {
+        "locale": "en",
+        "project": "mobile-tall",
+        "status": "passed",
+        "durationMs": 112865,
+        "retry": 0,
+        "stages": {
+          "rite-claimed-continued": {
+            "sha256": "d825948f9e5a58e2cd1cf5980815c6bd169e16c4b5bf99c45fd2332815977ede",
+            "bytes": 454784
+          },
+          "four-waves-abandoned-continued": {
+            "sha256": "03d1886f096d6c36a3acb422a68e2656decf62405a0327807f7eee5edfbf9f5e",
+            "bytes": 460572
+          },
+          "five-waves-proof-continued": {
+            "sha256": "855237026de58f9af94efe2e34ba9408506c4febf5e6600d90ed0ba89aa91121",
+            "bytes": 466022
+          },
+          "baal-won-before-separate-claim": {
+            "sha256": "de310021d87abf516ede16f99f0a88b3a6ed824bbff4489cd73ca0f366ecaa00",
+            "bytes": 466130
+          },
+          "eve-cache-entitlements-continued": {
+            "sha256": "e28403b2ad33329b4bab850986860a3439240cbfacc69403c7c894815bdaa7fc",
+            "bytes": 467558
+          },
+          "selected-title-continued": {
+            "sha256": "8a77dde3fdfa09682441a96a90f512623d888f60dda2af66e517238f473295bd",
+            "bytes": 467577
+          },
+          "nightmare-victory-continued": {
+            "sha256": "8d0ad001e24d4b1880a36e2a0fd6ec26bef68e0d28cfe8165b1877ad256fccb4",
+            "bytes": 467616
+          },
+          "normal-restored-continued": {
+            "sha256": "21f79fc0a6b5aa22fbec2d4eed1e45b7aff0a23989a4600b8f95481464eb52d7",
+            "bytes": 467613,
+            "finalReplayState": {
+              "challengeOrdinals": {
+                "normal": 8,
+                "nightmare": 1
+              },
+              "questTitles": {
+                "titles/slayer_of_baal": true
+              },
+              "questDifficulties": {
+                "difficulty/nightmare": true
+              },
+              "selectedTitle": "titles/slayer_of_baal",
+              "selectedDifficulty": "normal",
+              "nightmareClearedSubAreas": [
+                "areas/act5-bloody-foothills"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "locale": "zh-CN",
+        "project": "mobile-tall",
+        "status": "passed",
+        "durationMs": 113820,
+        "retry": 0,
+        "stages": {
+          "rite-claimed-continued": {
+            "sha256": "16b5443116704ced9564e46f0aa195ee3bc13b34dd42a3c3fa1e726ad8d95aff",
+            "bytes": 452709
+          },
+          "four-waves-abandoned-continued": {
+            "sha256": "f445448be9994dbe9f2761197fa114d5a28b5e64f7a9305ae7c8408d33f8c700",
+            "bytes": 459018
+          },
+          "five-waves-proof-continued": {
+            "sha256": "708e4c423a4ec9be424454f25bfc938c7cc3f1948090c9527cae01f1bf13d2c6",
+            "bytes": 465083
+          },
+          "baal-won-before-separate-claim": {
+            "sha256": "5a2a4f63580bb80ab7b3daeaff522e85922a61f5ed12844f278b1e0e1f70a87c",
+            "bytes": 465191
+          },
+          "eve-cache-entitlements-continued": {
+            "sha256": "c9db51c635339bbb7a5ea60c4fa1338dfde822e1bb26e211232f38678824f449",
+            "bytes": 466619
+          },
+          "selected-title-continued": {
+            "sha256": "2d6a2cc3b2875bf76a1b730d479641b95ddcbb9a23e5bcb77f678fb9ce5e7ab8",
+            "bytes": 466638
+          },
+          "nightmare-victory-continued": {
+            "sha256": "337590c4053b9651a6f6db6117ad2a7f13ea65c2c71c66db0aaa8e1cf0ff1e88",
+            "bytes": 466677
+          },
+          "normal-restored-continued": {
+            "sha256": "a02c4eb272aeeb7f5e977315beb506c2f3346d8b1d6d9e2f1bc94e314b36b3f1",
+            "bytes": 466674,
+            "finalReplayState": {
+              "challengeOrdinals": {
+                "normal": 8,
+                "nightmare": 1
+              },
+              "questTitles": {
+                "titles/slayer_of_baal": true
+              },
+              "questDifficulties": {
+                "difficulty/nightmare": true
+              },
+              "selectedTitle": "titles/slayer_of_baal",
+              "selectedDifficulty": "normal",
+              "nightmareClearedSubAreas": [
+                "areas/act5-bloody-foothills"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "locale": "en",
+        "project": "mobile-landscape",
+        "status": "passed",
+        "durationMs": 103878,
+        "retry": 0,
+        "stages": {
+          "rite-claimed-continued": {
+            "sha256": "af1d0139a68808b5edd3384e07a5653ffcc4658210e1b249ee8568e58e48c16b",
+            "bytes": 457490
+          },
+          "four-waves-abandoned-continued": {
+            "sha256": "a3b4e0b7fc04c4abf00421d7f97a809cb93db02b8e08d0657ec485139938e347",
+            "bytes": 463379
+          },
+          "five-waves-proof-continued": {
+            "sha256": "6b70755f70adf4dfeabc4ba31264898c7774594ef0fd4b25e5a5b4b665cfc2e2",
+            "bytes": 469378
+          },
+          "baal-won-before-separate-claim": {
+            "sha256": "3fc781a38194dccffe1be9cf2142e12e80cd529ba72e49f71d03769794784764",
+            "bytes": 469486
+          },
+          "eve-cache-entitlements-continued": {
+            "sha256": "9c4349e20fe7291f232b2e4e32cad60df7236cadd8e20247f43511d80c409286",
+            "bytes": 470914
+          },
+          "selected-title-continued": {
+            "sha256": "ace198e665fbd70084f950b908644fd77722f60fee6fc6bb8bf40022e0f02a7c",
+            "bytes": 470933
+          },
+          "nightmare-victory-continued": {
+            "sha256": "01cf7cd74c89ac099b112c202c5182c9a9b84c85f4885f63fe494f257a8d905e",
+            "bytes": 470972
+          },
+          "normal-restored-continued": {
+            "sha256": "d4182bfc81f3d8a7bdd01c4cc19cdd7136bcc901f1c856da5c7c6fe0d669d449",
+            "bytes": 470969,
+            "finalReplayState": {
+              "challengeOrdinals": {
+                "normal": 8,
+                "nightmare": 1
+              },
+              "questTitles": {
+                "titles/slayer_of_baal": true
+              },
+              "questDifficulties": {
+                "difficulty/nightmare": true
+              },
+              "selectedTitle": "titles/slayer_of_baal",
+              "selectedDifficulty": "normal",
+              "nightmareClearedSubAreas": [
+                "areas/act5-bloody-foothills"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "locale": "zh-CN",
+        "project": "mobile-landscape",
+        "status": "passed",
+        "durationMs": 106270,
+        "retry": 0,
+        "stages": {
+          "rite-claimed-continued": {
+            "sha256": "0b90f178f9731dd1b592e242317f7b54d88367ca98c09edac4ea54c989eed146",
+            "bytes": 452873
+          },
+          "four-waves-abandoned-continued": {
+            "sha256": "0b44e4a9d2c8a4bb61fcb423bd8f94da86ee2b998a824c7def9ea40988ed07f9",
+            "bytes": 458398
+          },
+          "five-waves-proof-continued": {
+            "sha256": "26f8f16d4ef2d693bad039825a7eab8f984a1565073ed504346fcc6b6aa0cdf4",
+            "bytes": 464471
+          },
+          "baal-won-before-separate-claim": {
+            "sha256": "976646e9651ef6574a77d90b1d9d1b58fd7769e72632dc74c77c6c6fe37ca232",
+            "bytes": 464579
+          },
+          "eve-cache-entitlements-continued": {
+            "sha256": "65cca1859c9eeec12018d38243f4dd56567e824baa0e297569d999af082afabb",
+            "bytes": 466007
+          },
+          "selected-title-continued": {
+            "sha256": "ec0159f4856fcc4e1561396d7050a76f289f5334521575e71f984123b721d390",
+            "bytes": 466026
+          },
+          "nightmare-victory-continued": {
+            "sha256": "bdd30efc901cb03845b437ffe17f8df90bfd99b95cef1a9b5f83834f7de005b6",
+            "bytes": 466065
+          },
+          "normal-restored-continued": {
+            "sha256": "33e1ce1945beb806230e754e4bb5907eabf9986ced1db77d9f8380a92fef4a77",
+            "bytes": 466062,
+            "finalReplayState": {
+              "challengeOrdinals": {
+                "normal": 8,
+                "nightmare": 1
+              },
+              "questTitles": {
+                "titles/slayer_of_baal": true
+              },
+              "questDifficulties": {
+                "difficulty/nightmare": true
+              },
+              "selectedTitle": "titles/slayer_of_baal",
+              "selectedDifficulty": "normal",
+              "nightmareClearedSubAreas": [
+                "areas/act5-bloody-foothills"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "locale": "en",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 99288,
+        "retry": 0,
+        "stages": {
+          "rite-claimed-continued": {
+            "sha256": "a8a7cd71154664d95045f904dfc9ee0bbe13159d2a690ef28891a79446bdad75",
+            "bytes": 457063
+          },
+          "four-waves-abandoned-continued": {
+            "sha256": "1da951dbe70e5c9c0c9480ec6a822466fe2cbbea819f4c98703c62cfec37374f",
+            "bytes": 463594
+          },
+          "five-waves-proof-continued": {
+            "sha256": "b39e382ecf9ef7a2f7705a74ec54d15b97ba2265ba724ee9099e39670ab1eef0",
+            "bytes": 469375
+          },
+          "baal-won-before-separate-claim": {
+            "sha256": "9323f540a18e6f2b4679f1cea4d8d004214b26035f6a8b8f78a097e243a27489",
+            "bytes": 469483
+          },
+          "eve-cache-entitlements-continued": {
+            "sha256": "411184cbe094c85e51db611864e630933728bd36e41ce4514d6079019266aa7b",
+            "bytes": 470911
+          },
+          "selected-title-continued": {
+            "sha256": "febea7f3f1fa2f32d9b4ee509c535a3f53ac46f4841665bb1c82ca6fc3d1bdaa",
+            "bytes": 470930
+          },
+          "nightmare-victory-continued": {
+            "sha256": "ca403c40702772f9de313f7c47103751c9f017feec4c40ce2d93fd26269637fd",
+            "bytes": 470969
+          },
+          "normal-restored-continued": {
+            "sha256": "51c4ce0ccc40eaf87e96f1b76df03505666ea9726a7e1ade93397541cab486f6",
+            "bytes": 470966,
+            "finalReplayState": {
+              "challengeOrdinals": {
+                "normal": 8,
+                "nightmare": 1
+              },
+              "questTitles": {
+                "titles/slayer_of_baal": true
+              },
+              "questDifficulties": {
+                "difficulty/nightmare": true
+              },
+              "selectedTitle": "titles/slayer_of_baal",
+              "selectedDifficulty": "normal",
+              "nightmareClearedSubAreas": [
+                "areas/act5-bloody-foothills"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "locale": "zh-CN",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 100733,
+        "retry": 0,
+        "stages": {
+          "rite-claimed-continued": {
+            "sha256": "008fdeb13640bca9f05314f4f1be61a92faa6a019a5381835b052b5d418d298a",
+            "bytes": 454778
+          },
+          "four-waves-abandoned-continued": {
+            "sha256": "a366cf2bf51bc9ea5c5e65d5fc21abfed01efeddd45dfa532e4c19c8da2bec13",
+            "bytes": 461491
+          },
+          "five-waves-proof-continued": {
+            "sha256": "c1f7b1d06f68ceb8f719477286a5d15a374b3d5d5535637fb6cc49348ce38718",
+            "bytes": 467779
+          },
+          "baal-won-before-separate-claim": {
+            "sha256": "a8db08f523b2cd1b858eff18da8973a4039bfcc5688da541edfb25ed0f695a8c",
+            "bytes": 467887
+          },
+          "eve-cache-entitlements-continued": {
+            "sha256": "37bcab51ff2a3eb2b448834efc07bf0e45a0a6e226a1f55e98e6179e761706c4",
+            "bytes": 469315
+          },
+          "selected-title-continued": {
+            "sha256": "68f732dbd0189438b19c46f1483a572af91c1219124a22b5cec93b87f82daa75",
+            "bytes": 469334
+          },
+          "nightmare-victory-continued": {
+            "sha256": "16ae0afdcda6cafd852651cc144605068e6e4752edee42918ffc26f50ed865bf",
+            "bytes": 469373
+          },
+          "normal-restored-continued": {
+            "sha256": "bab2461eb7df8b563bf295dfeb3cc864ca87f6893588ecced3cd4133e9f654eb",
+            "bytes": 469370,
+            "finalReplayState": {
+              "challengeOrdinals": {
+                "normal": 8,
+                "nightmare": 1
+              },
+              "questTitles": {
+                "titles/slayer_of_baal": true
+              },
+              "questDifficulties": {
+                "difficulty/nightmare": true
+              },
+              "selectedTitle": "titles/slayer_of_baal",
+              "selectedDifficulty": "normal",
+              "nightmareClearedSubAreas": [
+                "areas/act5-bloody-foothills"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "locale": "en",
+        "project": "desktop-wide",
+        "status": "passed",
+        "durationMs": 134286,
+        "retry": 0,
+        "stages": {
+          "rite-claimed-continued": {
+            "sha256": "9b5faa5a57e64ca374d4c9cfeddc71e7f8d636ef5eee907d30845e0d860b85bf",
+            "bytes": 455934
+          },
+          "four-waves-abandoned-continued": {
+            "sha256": "9830ceefa1b29272429bae2cd5ede9a7551a8db5ae02320274f1583ab38e2f99",
+            "bytes": 462606
+          },
+          "five-waves-proof-continued": {
+            "sha256": "e4ed824710459ebabe7780a307557ab7e2dd75e562b13e6bede4054ad3a37e4f",
+            "bytes": 468417
+          },
+          "baal-won-before-separate-claim": {
+            "sha256": "fd757b12762ad4c595ca28e54424ccb1e58466157ab0529efef1d220046204f3",
+            "bytes": 468525
+          },
+          "eve-cache-entitlements-continued": {
+            "sha256": "11469a773e97cee5442ee22d61bf5430c84d35811bdff41c7d9d2a01c1d3d4c6",
+            "bytes": 469953
+          },
+          "selected-title-continued": {
+            "sha256": "a31b6665f6dba27ae6c4ae5278155ec89e2f0e9adc17754fc6f564e7f71cd0aa",
+            "bytes": 469972
+          },
+          "nightmare-victory-continued": {
+            "sha256": "17296c4714a828c1a4109868029177c1c1bd47e69279042edc304a592da5ec97",
+            "bytes": 470011
+          },
+          "normal-restored-continued": {
+            "sha256": "692f6ea8ad77d86904a37c7155be90cac4a3407b8ab70c65af4f84d48f158f4a",
+            "bytes": 470008,
+            "finalReplayState": {
+              "challengeOrdinals": {
+                "normal": 8,
+                "nightmare": 1
+              },
+              "questTitles": {
+                "titles/slayer_of_baal": true
+              },
+              "questDifficulties": {
+                "difficulty/nightmare": true
+              },
+              "selectedTitle": "titles/slayer_of_baal",
+              "selectedDifficulty": "normal",
+              "nightmareClearedSubAreas": [
+                "areas/act5-bloody-foothills"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "locale": "zh-CN",
+        "project": "desktop-wide",
+        "status": "passed",
+        "durationMs": 136846,
+        "retry": 0,
+        "stages": {
+          "rite-claimed-continued": {
+            "sha256": "4aaadbb90093939c85c16b186a48c1585e3cf5defbec78b0a13938b2424c275b",
+            "bytes": 454949
+          },
+          "four-waves-abandoned-continued": {
+            "sha256": "ed68367bde8e7d0a8c53c122fe697a5b7e68072b7ea6889d06409ac3bbd01fff",
+            "bytes": 462050
+          },
+          "five-waves-proof-continued": {
+            "sha256": "9d058eeabc9f82cc18b9cc317ee31c99e65b7952a9a16df8445f70f78f0a2606",
+            "bytes": 468001
+          },
+          "baal-won-before-separate-claim": {
+            "sha256": "d6aef233de5b8d8087fa724adede78d32eef4a15fc6f32c7abc5fc41e94ffffb",
+            "bytes": 468109
+          },
+          "eve-cache-entitlements-continued": {
+            "sha256": "0bd968927a0410de00db97c4e3420a2e402a4e4bcfa21e7a995e2fd1d63a081e",
+            "bytes": 469537
+          },
+          "selected-title-continued": {
+            "sha256": "545129c5a85a276872acd5f01a2a4cc43a5759aaeace57c8160b34cb298bff79",
+            "bytes": 469556
+          },
+          "nightmare-victory-continued": {
+            "sha256": "a7413214fae770fc99a6e9ca927e101d4af24107b10efb6d4f56419b4e68d0f7",
+            "bytes": 469595
+          },
+          "normal-restored-continued": {
+            "sha256": "4d6428b1cf5bfe6fa31fa143f1f7b3cdbd9db2380487f571bf9c4393cf587944",
+            "bytes": 469592,
+            "finalReplayState": {
+              "challengeOrdinals": {
+                "normal": 8,
+                "nightmare": 1
+              },
+              "questTitles": {
+                "titles/slayer_of_baal": true
+              },
+              "questDifficulties": {
+                "difficulty/nightmare": true
+              },
+              "selectedTitle": "titles/slayer_of_baal",
+              "selectedDifficulty": "normal",
+              "nightmareClearedSubAreas": [
+                "areas/act5-bloody-foothills"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "independentQA": "ADEQUATE"
+  },
+  "cleanup": {
+    "disposableBuild": "/tmp/d2h5-a5-integration-650ka_is/dist-close",
+    "receipt": "/tmp/d2h5-a5-integration-650ka_is/dist-close-cleanup.json",
+    "remaining": [],
+    "failures": [],
+    "retainedDiagnostics": "/tmp/d2h5-a5-integration-650ka_is",
+    "owner": "root",
+    "reason": "Raw immutable reports, failed traces, frozen inputs/manifests and required diagnostic logs retained through Act V/umbrella consumers; final native saves/summary preserved in repository."
+  }
+}

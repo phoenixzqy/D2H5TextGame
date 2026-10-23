@@ -1,7 +1,7 @@
 # Act V: Prison, resistance scroll and item services
 
 2026-10-23. The extended production browser scenario passes en and zh-CN at
-360×640. This uses the declared constructed-power ancestry from the prior
+360×640,412×915,640×360,1280×800 and1920×1080. This uses the declared constructed-power ancestry from the prior
 [Siege/Rescue proof](act5-siege-rescue.md); it establishes no fresh earned
 campaign, balance, crafting, or C2 acceptance.
 
@@ -35,16 +35,20 @@ button, and survive exact Save→close→Continue. Consumed service controls sta
 absent. The shared Close control now has a44px minimum in each dimension;
 the original27.734375px RED remains in BUG-110's retained report. No essential
 checked control is undersized and no horizontal overflow/browser error is
-observed in these two cases.
+observed in these ten cases. The numeric Close dimensions are enforced by
+passing usability assertions, not separately recorded measurements per case.
 
 ## Validation and retained deliverables
 
-- Browser:2/2PASS,312.334s, retries/skips/unexpected/flaky0, global errors[].
+- Browser:mobile2/2PASS,312.334s, plus remaining-sizes8/8PASS,1064.634s;
+  combined10/10, retries/skips/unexpected/flaky0, global errors[].
 - Full unit:10070tests/352files PASS,256.82s; test-time budget remains exceeded.
 - Typecheck, full lint/purity, explicit PWA lint with`--no-ignore`, production
   build and four emitted JS chunk scans PASS.
 - Independent QA:ADEQUATE; raw save, services, provenance, exact other-domain
   preservation and741source/760build/three input hashes independently checked.
+  The eight remaining-size cases independently retain the same verdict and
+  preserve all442 literal preparation-owned payloads.
 
 The [compact summary](fixtures/act5-prison-services-summary.json) retains
 report/input hashes, exact target payloads, source service states and validation.
@@ -56,12 +60,16 @@ It preserves constructed ancestry and supplies the separate finale scenario.
 
 The passing report SHA256 is
 `79ae7a6b69b3d748405b2c7560fc0c5c40c93af28554b63e9f7bd7e86a60a50e`.
+The separate remaining-size report SHA256 is
+`e542b535a02b3e005737750cd3a062332b1ea399386b2cd50aa674b22badbffc`.
 Root retains exact raw reports, failed traces, frozen source/config/input
 manifests and command logs at`/tmp/d2h5-a5-integration-650ka_is` through
 Act V/umbrella consumers and owns their removal afterward. Previous failed
 and interrupted reports remain unchanged. Oracle caches are finally-cleaned;
-the exact rebuilt`dist-close/` remains in use by the matrix/finale runners.
+the exact rebuilt`dist-close/` was used by the matrix/finale runners. After
+all readers/runners finished, root removed that disposable build and verified
+absence; the cleanup receipt remains at the diagnostic root.
 
-The other four viewport projects and Rite/Eve/title/Nightmare scenario are
-running separately and are not accepted here. C0/C1 remain narrowly accepted;
+The separate [Rite/Eve/title/Nightmare scenario](act5-finale.md) is accepted
+at all five sizes in both locales; its result is tracked there. C0/C1 remain narrowly accepted;
 C2 underway; C3/C4/full G0–G7 open. No push, PR, merge or deployment.
