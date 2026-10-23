@@ -24,6 +24,15 @@ function required<T>(value: T | undefined): T {
 }
 
 describe('permanent Golden Bird Life from actual consumed sources', () => {
+  it.each([NaN, Infinity])('preserves zero-entitlement composition at level %s while refusing unsafe participating Life', level => {
+    const baseline = deriveStats(coreStats, level);
+    const unchanged = deriveEquippedPlayerStats(hero, level, {});
+    expect(unchanged.lifeMax).toBe(baseline.lifeMax);
+    expect(unchanged.life).toBe(Math.min(baseline.lifeMax, hero.derivedStats.life));
+    expect(() => deriveEquippedPlayerStats(hero, level, {}, { [QUEST]: row }, ledger))
+      .toThrow('Unsafe quest Life arithmetic');
+  });
+
   it('requires the exact consumed Potion, both real hand-ins and all own completion facts', () => {
     expect(resolveQuestLifeBonus({ [QUEST]: row }, ledger)).toBe(20);
     const progressCases: Record<string, QuestProgressData>[] = [

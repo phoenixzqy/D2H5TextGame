@@ -25,8 +25,8 @@ export function deriveEquippedPlayerStats(
   );
   const lifeBonus = resolveQuestLifeBonus(questProgress, questItems);
   const lifeMax = fresh.lifeMax + lifeBonus;
-  if (!Number.isFinite(lifeMax) || Math.abs(lifeMax) > Number.MAX_SAFE_INTEGER ||
-    (lifeBonus > 0 && lifeMax <= fresh.lifeMax)) throw new Error('Unsafe quest Life arithmetic');
+  if (lifeBonus > 0 && (!Number.isFinite(lifeMax) || Math.abs(lifeMax) > Number.MAX_SAFE_INTEGER ||
+    lifeMax <= fresh.lifeMax)) throw new Error('Unsafe quest Life arithmetic');
   const resistances = { ...fresh.resistances };
   if (hasTaintedSunEntitlement(questProgress)) {
     const bonus = resolveQuestResistanceBonus(questProgress);
