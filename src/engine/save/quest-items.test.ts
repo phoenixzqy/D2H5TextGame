@@ -65,7 +65,7 @@ describe('v13 objective-bound retained tools', () => {
 
   it('preserves an owned tool and its exact objective through JSON/native decoding', () => {
     const input = cubeSave();
-    expect(input.version).toBe(13);
+    expect(input.version).toBe(14);
     expect(decodeSave(input)).toEqual(input);
     expect(decodeSave(toJsonSafe(input))).toEqual(input);
   });
@@ -83,14 +83,14 @@ describe('v13 objective-bound retained tools', () => {
     const input = { ...latest, version: 12 };
     const before = structuredClone(input);
     expect(MIGRATIONS[13]?.(input)).toEqual({ ...input, version: 13 });
-    expect(decodeSave(input)).toEqual({ ...input, version: 13 });
+    expect(decodeSave(input)).toEqual({ ...input, version: CURRENT_SAVE_VERSION });
     expect(input).toEqual(before);
   });
 
   it('preserves legacy true Cube flags without manufacturing a missing tool', () => {
     const latest = cubeSave();
     const input = { ...latest, version: 12, inventory: { ...latest.inventory, questItems: {} } };
-    expect(decodeSave(input)).toEqual({ ...input, version: 13 });
+    expect(decodeSave(input)).toEqual({ ...input, version: CURRENT_SAVE_VERSION });
   });
 });
 
@@ -125,7 +125,7 @@ describe('v12 source-bound quest item ledger', () => {
     }
   );
   it('emits a required empty ledger for a trusted legacy builder input', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(13);
+    expect(CURRENT_SAVE_VERSION).toBe(14);
     expect(sampleSave().inventory).toHaveProperty('questItems', {});
   });
 
@@ -211,5 +211,123 @@ describe('v12 source-bound quest item ledger', () => {
   it.each([undefined, null, 'paladin.holy-fire'])('validates frozen v11 before migration (%j)', selectedAuraId => {
     const input = legacySave();
     expect(() => decodeSave({ ...input, player: { ...input.player, selectedAuraId } })).toThrow('Invalid save');
+  });
+});
+
+describe('v14 Staff component and consumption graph', () => {
+  const staffQuest = 'quests/act2-horadric-staff';
+  const tombQuest = 'quests/act2-seven-tombs';
+  const cube = `${staffQuest}#objective:obj-cube`;
+  const shaft = `${staffQuest}#objective:obj-shaft`;
+  const amulet = `${staffQuest}#objective:obj-amulet`;
+  const staff = `${staffQuest}#objective:obj-transmute`;
+  function staffSave(stage: 'components' | 'assembled' | 'inserted' = 'assembled') {
+    const save = sampleSave();
+    const questItems: Record<string, { itemId: string; state: 'owned' | 'consumed' }> = {
+      [cube]: { itemId: 'quest/horadric_cube', state: 'owned' },
+      [shaft]: { itemId: 'quest/staff_of_kings', state: stage === 'components' ? 'owned' : 'consumed' },
+      [amulet]: { itemId: 'quest/viper_amulet', state: stage === 'components' ? 'owned' : 'consumed' }
+    };
+    if (stage !== 'components') questItems[staff] = {
+      itemId: 'quest/horadric_staff', state: stage === 'inserted' ? 'consumed' : 'owned'
+    };
+    return { ...save, inventory: { ...save.inventory, questItems }, map: { ...save.map,
+      questProgress: { ...save.map.questProgress,
+        [staffQuest]: { id: staffQuest, status: stage === 'components' ? 'inProgress' as const : 'completed' as const,
+          objectives: { 'obj-cube': true, 'obj-shaft': true, 'obj-amulet': true, 'obj-transmute': stage !== 'components' } },
+        [tombQuest]: { id: tombQuest, status: 'inProgress' as const,
+          objectives: { 'obj-open-tomb': stage === 'inserted', 'obj-kill-duriel': false } }
+      } } };
+  }
+
+  it.each(['components', 'assembled', 'inserted'] as const)('preserves the %s graph through native and JSON decoding', stage => {
+    const input = staffSave(stage);
+    const original = structuredClone(input);
+    expect(input.version).toBe(14);
+    expect(decodeSave(input)).toEqual(input);
+    expect(decodeSave(toJsonSafe(input))).toEqual(input);
+    expect(input).toEqual(original);
+  });
+
+  it.each([
+    { label: 'missing Cube', source: cube, entry: undefined },
+    { label: 'consumed Cube', source: cube, entry: { itemId: 'quest/horadric_cube', state: 'consumed' } },
+    { label: 'missing ingredient', source: shaft, entry: undefined },
+    { label: 'owned ingredient after assembly', source: amulet, entry: { itemId: 'quest/viper_amulet', state: 'owned' } },
+    { label: 'missing assembly output', source: staff, entry: undefined },
+    { label: 'extra receipt tag', source: staff, entry: { itemId: 'quest/horadric_staff', state: 'owned', kind: 'assembled' } },
+    { label: 'wrong output identity', source: staff, entry: { itemId: 'quest/staff_of_kings', state: 'owned' } }
+  ])('rejects a broken receipt graph: $label', ({ source: key, entry }) => {
+    const input = staffSave();
+    if (entry === undefined) Reflect.deleteProperty(input.inventory.questItems, key);
+    else Reflect.set(input.inventory.questItems, key, entry);
+    const before = structuredClone(input);
+    expect(() => decodeSave(input)).toThrow('Invalid save');
+    expect(input).toEqual(before);
+  });
+
+  it('rejects a consumed Staff without its own true orifice objective', () => {
+    const input = staffSave('inserted');
+    input.map.questProgress[tombQuest].objectives['obj-open-tomb'] = false;
+    expect(() => decodeSave(input)).toThrow('Invalid save');
+  });
+
+  it.each(['obj-cube', 'obj-shaft', 'obj-amulet', 'obj-transmute'] as const)(
+    'rejects an output graph without own true source/predecessor %s', objectiveId => {
+      const input = staffSave();
+      Reflect.deleteProperty(input.map.questProgress[staffQuest].objectives, objectiveId);
+      expect(() => decodeSave(input)).toThrow('Invalid save');
+    }
+  );
+
+  it.each(['owned', 'consumed'] as const)('preserves the unchanged Book %s receipt alongside the inserted Staff', state => {
+    const input = staffSave('inserted');
+    input.inventory.questItems[source] = { itemId: bookId, state };
+    expect(decodeSave(input)).toEqual(input);
+    expect(decodeSave(toJsonSafe(input))).toEqual(input);
+  });
+
+  it.each(['available', 'locked', 'inProgress', 'completed'] as const)('rejects incompatible consumer progress %s', status => {
+    const input = staffSave('inserted');
+    Reflect.set(input.map.questProgress[tombQuest], 'status', status);
+    if (status === 'inProgress') Reflect.set(input.map.questProgress[tombQuest], 'rewardClaimed', true);
+    expect(() => decodeSave(input)).toThrow('Invalid save');
+  });
+
+  it('accepts completed/claimed source and consumer receipts without changing reward ownership', () => {
+    const input = staffSave('inserted');
+    Reflect.set(input.map.questProgress[staffQuest], 'rewardClaimed', true);
+    Reflect.set(input.map.questProgress[tombQuest], 'status', 'completed');
+    input.map.questProgress[tombQuest].objectives['obj-kill-duriel'] = true;
+    Reflect.set(input.map.questProgress[tombQuest], 'rewardClaimed', true);
+    expect(decodeSave(input)).toEqual(input);
+  });
+
+  it('does not infer any receipts from legacy completed/claimed objective flags', () => {
+    const input = staffSave('inserted');
+    input.inventory.questItems = {};
+    Reflect.set(input.map.questProgress[staffQuest], 'rewardClaimed', true);
+    Reflect.set(input.map.questProgress[tombQuest], 'status', 'completed');
+    Reflect.set(input.map.questProgress[tombQuest], 'rewardClaimed', true);
+    input.map.questProgress[tombQuest].objectives['obj-kill-duriel'] = true;
+    const legacy = { ...input, version: 13 };
+    expect(MIGRATIONS[14]?.(legacy)).toEqual({ ...legacy, version: 14 });
+    expect(decodeSave(legacy)).toEqual({ ...legacy, version: 14 });
+  });
+
+  it.each(['components', 'assembled', 'inserted'] as const)('rejects new %s receipts injected into frozen v13', stage => {
+    expect(() => decodeSave({ ...staffSave(stage), version: 13 })).toThrow('Invalid save');
+  });
+
+  it('validates frozen v13 without consulting the widened live definitions', () => {
+    const input = staffSave('components');
+    Reflect.deleteProperty(input.inventory.questItems, shaft);
+    Reflect.deleteProperty(input.inventory.questItems, amulet);
+    const legacy = { ...input, version: 13 };
+    expect(decodeSave(legacy)).toEqual({ ...legacy, version: 14 });
+    const entry = legacy.inventory.questItems[cube];
+    if (!entry) throw new Error('Missing Cube receipt');
+    Reflect.set(entry, 'state', 'consumed');
+    expect(() => decodeSave(legacy)).toThrow('Invalid save');
   });
 });

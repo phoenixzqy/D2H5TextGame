@@ -14,7 +14,7 @@ import type { GridPosition } from '../combat/types';
  * Current save format version. Bump this and add an entry to {@link MIGRATIONS}
  * whenever the on-disk shape changes.
  */
-export const CURRENT_SAVE_VERSION = 13;
+export const CURRENT_SAVE_VERSION = 14;
 
 /**
  * Save file version (most recent).
@@ -122,7 +122,7 @@ export interface QuestItemEntry {
   readonly itemId: string;
   readonly state: 'owned' | 'consumed';
 }
-/** Keys are canonical authored quest reward sources, not generated item instance IDs. */
+/** Keys are canonical authored reward/objective sources, not generated item instance IDs. */
 export type QuestItemLedger = Readonly<Record<string, QuestItemEntry>>;
 
 /** Current inventory; the historical v2–v11 inventory shape above stays frozen. */
@@ -286,7 +286,12 @@ export interface SaveV13 extends Omit<SaveV12, 'version'> {
   readonly version: 13;
 }
 
-export type SaveCurrent = SaveV13;
+/** Save file v14 — reciprocal component, assembled output and insertion receipts. */
+export interface SaveV14 extends Omit<SaveV13, 'version'> {
+  readonly version: 14;
+}
+
+export type SaveCurrent = SaveV14;
 
 /**
  * Migration function type. Each entry receives the previous version's shape
@@ -477,5 +482,6 @@ export const MIGRATIONS: Record<number, Migration> = {
     return { ...v11, version: 12, inventory: { ...v11.inventory, questItems: {} } };
   },
   /** v12 to v13: widen supported sources without inferring or changing any entitlement. */
-  13: (raw: unknown): SaveV13 => ({ ...(raw as SaveV12), version: 13 })
+  13: (raw: unknown): SaveV13 => ({ ...(raw as SaveV12), version: 13 }),
+  14: (raw: unknown): SaveV14 => ({ ...(raw as SaveV13), version: 14 })
 };

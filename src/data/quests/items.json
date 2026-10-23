@@ -17,6 +17,40 @@
       "sourceObjectiveId": "obj-cube",
       "nameKey": "inventory:questItems.horadricCube.name",
       "descKey": "inventory:questItems.horadricCube.description"
+    },
+    {
+      "id": "quest/staff_of_kings",
+      "sourceQuestId": "quests/act2-horadric-staff",
+      "kind": "component",
+      "sourceObjectiveId": "obj-shaft",
+      "consumedBy": "quest/horadric_staff",
+      "nameKey": "inventory:questItems.staffOfKings.name",
+      "descKey": "inventory:questItems.staffOfKings.description"
+    },
+    {
+      "id": "quest/viper_amulet",
+      "sourceQuestId": "quests/act2-horadric-staff",
+      "kind": "component",
+      "sourceObjectiveId": "obj-amulet",
+      "consumedBy": "quest/horadric_staff",
+      "nameKey": "inventory:questItems.viperAmulet.name",
+      "descKey": "inventory:questItems.viperAmulet.description"
+    },
+    {
+      "id": "quest/horadric_staff",
+      "sourceQuestId": "quests/act2-horadric-staff",
+      "kind": "assembled",
+      "sourceObjectiveId": "obj-transmute",
+      "recipe": "horadric_staff",
+      "requiredTool": "quest/horadric_cube",
+      "ingredients": [
+        "quest/staff_of_kings",
+        "quest/viper_amulet"
+      ],
+      "consumeQuestId": "quests/act2-seven-tombs",
+      "consumeObjectiveId": "obj-open-tomb",
+      "nameKey": "inventory:questItems.horadricStaff.name",
+      "descKey": "inventory:questItems.horadricStaff.description"
     }
   ]
 }

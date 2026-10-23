@@ -63,13 +63,48 @@
             }
           },
           "kind": {
-            "const": "tool",
-            "description": "Retained objective-sourced tool without a Read effect."
+            "enum": [
+              "tool",
+              "component",
+              "assembled"
+            ],
+            "description": "Objective-sourced retained tool, recipe ingredient, or assembled quest key."
           },
           "sourceObjectiveId": {
             "type": "string",
             "minLength": 1,
-            "description": "Exact fetch objective that issues this tool; together with sourceQuestId forms its unique source."
+            "description": "Exact issuing fetch or transmute objective; together with sourceQuestId forms the unique source."
+          },
+          "consumedBy": {
+            "type": "string",
+            "pattern": "^(quest|items)/[a-z0-9][a-z0-9._-]*$",
+            "description": "Exact assembled output item that consumes this component."
+          },
+          "recipe": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9._-]*$"
+          },
+          "requiredTool": {
+            "type": "string",
+            "pattern": "^(quest|items)/[a-z0-9][a-z0-9._-]*$",
+            "description": "Retained tool required by this recipe."
+          },
+          "ingredients": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^(quest|items)/[a-z0-9][a-z0-9._-]*$"
+            }
+          },
+          "consumeQuestId": {
+            "type": "string",
+            "pattern": "^quests/[a-z0-9][a-z0-9._-]*$"
+          },
+          "consumeObjectiveId": {
+            "type": "string",
+            "minLength": 1
           }
         },
         "oneOf": [
@@ -80,7 +115,13 @@
             "properties": {
               "effect": {},
               "kind": false,
-              "sourceObjectiveId": false
+              "sourceObjectiveId": false,
+              "consumedBy": false,
+              "recipe": false,
+              "requiredTool": false,
+              "ingredients": false,
+              "consumeQuestId": false,
+              "consumeObjectiveId": false
             }
           },
           {
@@ -92,10 +133,49 @@
               "kind": {
                 "const": "tool"
               },
-              "sourceObjectiveId": {
-                "type": "string"
+              "effect": false,
+              "consumedBy": false,
+              "recipe": false,
+              "requiredTool": false,
+              "ingredients": false,
+              "consumeQuestId": false,
+              "consumeObjectiveId": false
+            }
+          },
+          {
+            "required": [
+              "kind",
+              "sourceObjectiveId",
+              "consumedBy"
+            ],
+            "properties": {
+              "kind": {
+                "const": "component"
               },
-              "effect": false
+              "effect": false,
+              "recipe": false,
+              "requiredTool": false,
+              "ingredients": false,
+              "consumeQuestId": false,
+              "consumeObjectiveId": false
+            }
+          },
+          {
+            "required": [
+              "kind",
+              "sourceObjectiveId",
+              "recipe",
+              "requiredTool",
+              "ingredients",
+              "consumeQuestId",
+              "consumeObjectiveId"
+            ],
+            "properties": {
+              "kind": {
+                "const": "assembled"
+              },
+              "effect": false,
+              "consumedBy": false
             }
           }
         ]

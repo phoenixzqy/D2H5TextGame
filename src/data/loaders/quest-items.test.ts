@@ -21,7 +21,8 @@ describe('bound quest item definitions', () => {
     const before = JSON.stringify(document);
     const items = loadQuestItems();
     expect(items.find(item => item.id === book.id)).toEqual(book);
-    expect(items.map(item => item.id)).toEqual([book.id, 'quest/horadric_cube']);
+    expect(items.map(item => item.id)).toEqual([book.id, 'quest/horadric_cube',
+      'quest/staff_of_kings', 'quest/viper_amulet', 'quest/horadric_staff']);
     expect(questItemSource(book)).toBe('quests/act2-radaments-lair#reward:questItem');
     expect(Object.isFrozen(items)).toBe(true);
     expect(JSON.stringify(document)).toBe(before);

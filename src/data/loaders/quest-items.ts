@@ -2,7 +2,7 @@
 import Ajv2020 from 'ajv/dist/2020';
 import schema from '../schema/quest-item.schema.json';
 import document from '../quests/items.json';
-import { loadQuests } from './quests';
+import { loadQuests, type QuestDef, type QuestObjective } from './quests';
 import { subAreas } from '../index';
 
 /** A unique quest reward entitlement and its one-time Read effect. */
@@ -27,19 +27,52 @@ export interface QuestToolDef extends QuestItemBase {
   readonly effect?: never;
 }
 
-export type QuestItemDef = ReadQuestItemDef | QuestToolDef;
+/** Fetch-sourced ingredient whose consumed receipt is bound to one assembled output. */
+export interface QuestComponentDef extends QuestItemBase {
+  readonly kind: 'component';
+  readonly sourceObjectiveId: string;
+  readonly consumedBy: string;
+  readonly effect?: never;
+}
+
+/** Quest recipe output and its exact subsequent item-dependent interaction. */
+export interface AssembledQuestItemDef extends QuestItemBase {
+  readonly kind: 'assembled';
+  readonly sourceObjectiveId: string;
+  readonly recipe: string;
+  readonly requiredTool: string;
+  readonly ingredients: readonly string[];
+  readonly consumeQuestId: string;
+  readonly consumeObjectiveId: string;
+  readonly effect?: never;
+}
+
+export type ObjectiveQuestItemDef = QuestToolDef | QuestComponentDef | AssembledQuestItemDef;
+export type QuestItemDef = ReadQuestItemDef | ObjectiveQuestItemDef;
 
 const ajv = new Ajv2020({ strict: true, allErrors: true });
 const validate = ajv.compile<{ readonly items: readonly QuestItemDef[] }>(schema);
 
 /** Canonical source identity, independent of gear instances and allocation sequences. */
 export function questItemSource(item: QuestItemDef): string {
-  return item.kind === 'tool'
+  return item.kind !== undefined
     ? `${item.sourceQuestId}#objective:${item.sourceObjectiveId}`
     : `${item.sourceQuestId}#reward:questItem`;
 }
 
-/** Validate the entire definition document and its unique authored reward sources. */
+function exactObjective(quest: QuestDef | undefined, objectiveId: string): QuestObjective | undefined {
+  const matching = quest?.objectives.filter(objective => objective.id === objectiveId);
+  return matching?.length === 1 ? matching[0] : undefined;
+}
+
+function canonicalObject(quest: QuestDef, objective: QuestObjective): boolean {
+  return typeof objective.targetId === 'string' && objective.targetId.startsWith('objects/') &&
+    objective.targetId.length > 'objects/'.length &&
+    (objective.count === undefined || objective.count === 1) &&
+    subAreas.some(area => area.id === objective.areaId && area.actId === quest.actId);
+}
+
+/** Validate closed definitions and the reciprocal recipe/consumer graph, without gameplay effects. */
 export function loadQuestItems(): readonly QuestItemDef[] {
   if (!validate(document)) {
     throw new Error(`quests/items.json: ${ajv.errorsText(validate.errors)}`);
@@ -47,19 +80,19 @@ export function loadQuestItems(): readonly QuestItemDef[] {
   const ids = new Set<string>();
   const sources = new Set<string>();
   const quests = loadQuests();
-  for (const item of document.items as readonly QuestItemDef[]) {
+  const items = document.items as readonly QuestItemDef[];
+  for (const item of items) {
     const source = questItemSource(item);
     if (ids.has(item.id) || sources.has(source)) {
       throw new Error('quests/items.json: duplicate quest item or source');
     }
     const quest = quests.find(row => row.id === item.sourceQuestId);
-    if (item.kind === 'tool') {
-      const objective = quest?.objectives.find(row => row.id === item.sourceObjectiveId);
-      if (!quest || objective?.type !== 'fetch' || objective.itemId !== item.id ||
-        typeof objective.targetId !== 'string' || !objective.targetId.startsWith('objects/') ||
-        objective.targetId.length <= 'objects/'.length || objective.itemRequired !== undefined ||
-        (objective.count !== undefined && objective.count !== 1) ||
-        !subAreas.some(area => area.id === objective.areaId && area.actId === quest.actId)) {
+    if (item.kind !== undefined) {
+      const objective = exactObjective(quest, item.sourceObjectiveId);
+      if (!quest || !objective || (item.kind === 'assembled'
+        ? objective.type !== 'transmute' || objective.recipe !== item.recipe
+        : objective.type !== 'fetch' || objective.itemId !== item.id ||
+          objective.itemRequired !== undefined || !canonicalObject(quest, objective))) {
         throw new Error(`quests/items.json: objective/source mismatch for ${item.id}`);
       }
     } else if (!quest?.rewards || !Object.hasOwn(quest.rewards, 'questItem') || quest.rewards.questItem !== item.id) {
@@ -68,5 +101,31 @@ export function loadQuestItems(): readonly QuestItemDef[] {
     ids.add(item.id);
     sources.add(source);
   }
-  return Object.freeze([...document.items] as QuestItemDef[]);
+  for (const item of items) {
+    if (item.kind === 'component') {
+      const output = items.find(row => row.id === item.consumedBy);
+      if (output?.kind !== 'assembled' || !output.ingredients.includes(item.id)) {
+        throw new Error(`quests/items.json: component/output mismatch for ${item.id}`);
+      }
+    } else if (item.kind === 'assembled') {
+      const quest = quests.find(row => row.id === item.sourceQuestId);
+      const index = quest?.objectives.findIndex(objective => objective.id === item.sourceObjectiveId) ?? -1;
+      const tool = items.find(row => row.id === item.requiredTool);
+      const ingredients = item.ingredients.map(id => items.find(row => row.id === id));
+      const predecessors = quest?.objectives.slice(0, index) ?? [];
+      const inputs = [tool, ...ingredients];
+      const consumerQuest = quests.find(row => row.id === item.consumeQuestId);
+      const consumer = exactObjective(consumerQuest, item.consumeObjectiveId);
+      if (!quest || index < 0 || tool?.kind !== 'tool' ||
+        ingredients.some(ingredient => ingredient?.kind !== 'component' || ingredient.consumedBy !== item.id) ||
+        inputs.some(input => input?.kind === undefined || input.sourceQuestId !== item.sourceQuestId ||
+          !predecessors.some(objective => objective.id === input.sourceObjectiveId)) ||
+        predecessors.filter(objective => objective.type === 'fetch').length !== inputs.length ||
+        !consumerQuest || !consumer || consumer.type !== 'interact' || consumer.itemRequired !== item.id ||
+        !canonicalObject(consumerQuest, consumer)) {
+        throw new Error(`quests/items.json: recipe/consumer mismatch for ${item.id}`);
+      }
+    }
+  }
+  return Object.freeze([...items]);
 }

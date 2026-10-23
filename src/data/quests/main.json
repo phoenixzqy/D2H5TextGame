@@ -114,8 +114,8 @@
       "description": "Cain reveals that Tal Rasha's tomb can only be opened with the Horadric Staff. Recover the Cube, the Staff shaft, and the Viper Amulet, then assemble them.",
       "objectives": [
         { "id": "obj-cube", "type": "fetch", "itemId": "quest/horadric_cube", "areaId": "areas/act2-dry-hills", "targetId": "objects/horadric_cube_chest", "description": "Recover the Horadric Cube from the coffer in the Dry Hills." },
-        { "id": "obj-shaft", "type": "fetch", "itemId": "quest/staff_of_kings", "areaId": "areas/act2_maggot_lair_3", "description": "Recover the Staff of Kings." },
-        { "id": "obj-amulet", "type": "fetch", "itemId": "quest/viper_amulet", "areaId": "areas/act2_claw_viper_temple_2", "description": "Recover the Amulet of the Viper." },
+        { "id": "obj-shaft", "type": "fetch", "itemId": "quest/staff_of_kings", "areaId": "areas/act2-far-oasis", "targetId": "objects/staff_of_kings_chest", "description": "Recover the Staff of Kings from the coffer in the Far Oasis." },
+        { "id": "obj-amulet", "type": "fetch", "itemId": "quest/viper_amulet", "areaId": "areas/act2-lost-city", "targetId": "objects/serpent_altar", "description": "Recover the Amulet of the Viper from the Serpent Altar in the Lost City." },
         { "id": "obj-transmute", "type": "transmute", "recipe": "horadric_staff", "description": "Combine staff and amulet in the Horadric Cube." }
       ],
       "rewards": { "xp": 6000 },
@@ -130,7 +130,7 @@
       "giver": "npc/drognan",
       "description": "An eclipse smothers the desert sun, the work of the Claw Vipers reviving their idol. Destroy the Serpent Altar deep within the Claw Viper Temple.",
       "objectives": [
-        { "id": "obj-destroy-altar", "type": "interact", "targetId": "objects/serpent_altar", "areaId": "areas/act2_claw_viper_temple_2", "description": "Destroy the Serpent Altar." }
+        { "id": "obj-destroy-altar", "type": "interact", "targetId": "objects/serpent_altar", "areaId": "areas/act2-lost-city", "description": "Destroy the Serpent Altar in the Lost City." }
       ],
       "rewards": { "xp": 4500 },
       "unlocks": null,
@@ -159,7 +159,7 @@
       "giver": "npc/jerhyn",
       "description": "Within the true Tomb of Tal Rasha, Baal's prison hosts the Lord of Pain himself: Duriel. Shatter the orifice with the Horadric Staff and slay him.",
       "objectives": [
-        { "id": "obj-open-tomb", "type": "interact", "targetId": "objects/tal_rasha_orifice", "itemRequired": "quest/horadric_staff", "description": "Place the Horadric Staff into the orifice." },
+        { "id": "obj-open-tomb", "type": "interact", "targetId": "objects/tal_rasha_orifice", "itemRequired": "quest/horadric_staff", "areaId": "areas/act2-tomb-of-tal-rasha", "description": "Place the Horadric Staff into the orifice in the true Tomb of Tal Rasha." },
         { "id": "obj-kill-duriel", "type": "kill-boss", "targetId": "monsters/duriel", "areaId": "areas/act2_duriels_lair", "description": "Slay Duriel." }
       ],
       "rewards": { "xp": 12000, "lootTable": "loot/duriel-q" },
