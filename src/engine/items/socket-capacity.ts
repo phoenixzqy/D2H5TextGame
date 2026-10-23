@@ -64,7 +64,8 @@ function validateSocketState(item: Item, base: ItemBase): void {
   }
   if (Object.hasOwn(item, 'runewordId') || item.rarity === 'runeword') {
     const match = matchRuneword({
-      baseType: base.type, sockets: capacity, runes: runeIds,
+      baseType: base.type, slot: base.slot, ...(base.weaponType ? { weaponType: base.weaponType } : {}),
+      sockets: capacity, runes: runeIds,
       isWhiteBase: item.rarity === 'normal' || item.rarity === 'runeword'
     }, recipes);
     if (typeof runewordId !== 'string' || runewordId !== match) throw new Error('Invalid item runeword');
@@ -88,6 +89,11 @@ export function isItemSocketStateValid(item: Item, base: ItemBase): boolean {
  */
 export function validateItemServiceFields(item: Item, base: ItemBase): void {
   validateSocketState(item, base);
+  validateItemPersonalization(item);
+}
+
+/** Validate only the closed persisted cosmetic identity, independently of socket representation. */
+export function validateItemPersonalization(item: Item): void {
   const identity = ownField(item, 'personalizedBy');
   if (!Object.hasOwn(item, 'personalizedBy')) return;
   if (identity === null || typeof identity !== 'object') throw new Error('Invalid personalized identity');

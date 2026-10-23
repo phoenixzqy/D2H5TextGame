@@ -11,7 +11,7 @@ const FRACTIONAL_ROLLED_STATS: ReadonlySet<ItemStatKey> = new Set([
  * fractions and additive critical multipliers. Flat stats and resistance
  * points retain their units. Legacy maps are projected by the gear aggregator.
  */
-export function computeStats(item: Item, base: ItemBase | undefined, affixes: ReadonlyMap<string, Affix>): ItemStatBlock {
+export function computeStats(item: Pick<Item, 'baseRolls' | 'affixes'>, base: ItemBase | undefined, affixes: ReadonlyMap<string, Affix>): ItemStatBlock {
   const stats = { ...ZERO_STATS };
   if (base?.baseDamage) stats.attack += item.baseRolls?.attack ?? base.baseDamage.max;
   if (typeof base?.baseDefense === 'number') stats.defense += item.baseRolls?.defense ?? base.baseDefense;

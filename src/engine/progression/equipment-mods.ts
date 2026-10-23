@@ -14,6 +14,7 @@ import { resolveStatPackage } from '@/engine/items/statRolls';
 import type { DerivedModifiers } from './stats';
 import type { CoreStats, Resistances } from '../types/attributes';
 import type { Item, SetDef, SetPieceDef, UniqueItemDef } from '../types/items';
+import { socketBonusPackages, type CanonicalSocketItem } from '../items/socket-contents';
 
 /** Additive stat deltas contributed by equipped gear. */
 export interface EquipmentMods {
@@ -50,6 +51,9 @@ export interface EquipmentDefinitionPools {
   readonly setPieces?: readonly SetPieceDef[];
   readonly sets?: readonly SetDef[];
 }
+
+/** Base/affix/definition payload shared with historical gear; socket identity is excluded. */
+export type NonSocketEquipmentItem = Pick<Item, 'baseId' | 'baseRolls' | 'affixes' | 'uniqueId' | 'statRolls' | 'setPieceId' | 'setId'>;
 
 const ZERO_MODS: MutableEquipmentMods = {
   strength: 0,
@@ -116,6 +120,30 @@ function compact(mods: MutableEquipmentMods): EquipmentMods {
  */
 export function aggregateEquipmentMods(
   equipped: Readonly<Record<string, Item | null>>,
+  definitionPools: EquipmentDefinitionPools = {}
+): EquipmentMods {
+  return aggregateNonSocketEquipmentMods(equipped, definitionPools);
+}
+
+/** Canonical v19 composition: each inserted material and completed word contributes once per candidate. */
+export function aggregateCanonicalEquipmentMods(
+  equipped: Readonly<Record<string, CanonicalSocketItem | null>>,
+  definitionPools: EquipmentDefinitionPools = {}
+): EquipmentMods {
+  const mods: MutableEquipmentMods = { ...ZERO_MODS, ...aggregateNonSocketEquipmentMods(equipped, definitionPools) };
+  const bases = loadItemBases();
+  for (const item of Object.values(equipped)) {
+    if (!item) continue;
+    const base = bases.get(item.baseId);
+    if (!base) throw new Error('Unknown canonical equipment base');
+    for (const stats of socketBonusPackages(item, base)) addStatPackage(mods, stats, item.statRolls);
+  }
+  return compact(mods);
+}
+
+/** Pre-socket base, affix, unique and set composition, also used by historical migration. */
+export function aggregateNonSocketEquipmentMods(
+  equipped: Readonly<Record<string, NonSocketEquipmentItem | null>>,
   definitionPools: EquipmentDefinitionPools = {}
 ): EquipmentMods {
   const mods: MutableEquipmentMods = { ...ZERO_MODS };

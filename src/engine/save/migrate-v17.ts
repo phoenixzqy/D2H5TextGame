@@ -1,6 +1,6 @@
 import { historicalSocketBases as itemBases } from './historical-sockets';
 import { migrateLegacyItemSocketState } from './historical-sockets';
-import { deriveEquippedPlayerStats } from '../progression/equipped-stats';
+import { deriveHistoricalV16PlayerStats } from './historical-player-stats';
 import type { HistoricalItem as Item } from './historical-items';
 import type { EquipmentSlot } from '../types/items';
 import type { SaveV16, SaveV17, LegacyGearQuarantineEntry, LegacyGearOrigin } from '../types/save';
@@ -31,8 +31,7 @@ export function migrateSaveV17(old: SaveV16): SaveV17 {
   const playerEquipment = Object.values(equipped).filter((item): item is Item => item !== null);
   const lostPlayerGear = quarantine.some(entry => entry.origin.container === 'equipped');
   const player = { ...old.player, equipment: playerEquipment,
-    ...(lostPlayerGear ? { derivedStats: deriveEquippedPlayerStats(old.player, old.player.level, equipped,
-      old.map.questProgress, old.inventory.questItems, old.map.questReceipts) } : {}) };
+    ...(lostPlayerGear ? { derivedStats: deriveHistoricalV16PlayerStats(old, equipped) } : {}) };
   return { ...old, version: 17, player, inventory: { ...old.inventory, backpack, stash, equipped,
     questServices: {}, legacyGearQuarantine: quarantine },
   mercs: { ...old.mercs, mercEquipment, ownedMercs: old.mercs.ownedMercs.map(merc => ({ ...merc,

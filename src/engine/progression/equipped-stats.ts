@@ -2,7 +2,7 @@
 import type { Player } from '../types/entities';
 import type { Item } from '../types/items';
 import type { DerivedStats } from '../types/attributes';
-import { aggregateEquipmentMods, applyEquipmentCoreMods, equipmentModsToDerivedModifiers } from './equipment-mods';
+import { aggregateEquipmentMods, applyEquipmentCoreMods, equipmentModsToDerivedModifiers, type EquipmentMods } from './equipment-mods';
 import { deriveStats } from './stats';
 import { resolveAct5ResistanceBonus, resolveQuestResistanceBonus, type QuestProgressContext } from './quest-resistance';
 import { resolveQuestLifeBonus } from './quest-life';
@@ -32,13 +32,24 @@ export function prepareEquippedPlayerStats(
   questItems: QuestItemLedger = {},
   questReceipts: QuestActionReceipts = {}
 ): (equipped: Readonly<Record<string, Item | null>>) => DerivedStats {
+  const compose = prepareEquipmentStatComposition(player, level, questProgress, questItems, questReceipts);
+  return equipped => compose(aggregateEquipmentMods(equipped));
+}
+
+/** Prepare gear-independent entitlements once; compose each supplied equipment modifier bag afresh. */
+export function prepareEquipmentStatComposition(
+  player: Pick<Player, 'coreStats' | 'derivedStats'>,
+  level: number,
+  questProgress: QuestProgressContext = {},
+  questItems: QuestItemLedger = {},
+  questReceipts: QuestActionReceipts = {}
+): (equipmentMods: EquipmentMods) => DerivedStats {
   const lifeBonus = resolveQuestLifeBonus(questProgress, questItems);
   const allResistance = resolveAct5ResistanceBonus(questProgress, questItems, questReceipts);
   const sun = resolveQuestResistanceBonus(questProgress);
   const bonus = { fire: sun.fire + allResistance, cold: sun.cold + allResistance, lightning: allResistance,
     poison: allResistance, arcane: allResistance, physical: allResistance };
-  return equipped => {
-    const equipmentMods = aggregateEquipmentMods(equipped);
+  return equipmentMods => {
     const coreWithEquipment = applyEquipmentCoreMods(player.coreStats, equipmentMods);
     const fresh = deriveStats(
       coreWithEquipment,

@@ -11,6 +11,10 @@ vi.mock('../items/socket-capacity', () => ({
   validateItemServiceFields: () => { throw new Error('Live rules cannot validate historical gear'); },
   migrateLegacyItemSocketState: () => { throw new Error('Live rules cannot migrate historical gear'); }
 }));
+vi.mock('../progression/equipment-mods', async importOriginal => {
+  const actual = await importOriginal<typeof import('../progression/equipment-mods')>();
+  return { ...actual, aggregateEquipmentMods: () => { throw new Error('Live socket effects cannot recompose historical gear'); } };
+});
 
 function sample() {
   const coreStats = { strength: 10, dexterity: 25, vitality: 10, energy: 35 };
@@ -63,6 +67,33 @@ describe('frozen pre-v19 socket semantics', () => {
     const migrated = migrateSaveV17(input);
     expect(migrated.inventory.backpack).toEqual([lore]);
     expect(migrated.inventory.legacyGearQuarantine).toEqual([]);
+    expect(input).toEqual(before);
+  });
+  it('recomposes retained historical word gear beside quarantined equipment without live socket effects or healing', () => {
+    const save = sample();
+    const { socketCapacity: _capacity, ...oldLore } = lore;
+    const retained = { ...oldLore, equipped: true, equipSlot: 'chest' as const, baseRolls: { defense: 12 },
+      affixes: [{ affixId: 'historical-fixed', values: new Map([
+        ['coreStats.energy', 5], ['statMods.life', 15], ['statMods.mana', 20]
+      ]) }] };
+    const bad = { ...oldLore, id: 'bad-word', baseId: 'items/base/wp1h-short-sword', equipped: true,
+      equipSlot: 'weapon' as const, runewordId: 'unknown', runes: ['unknown'] };
+    const { materials: _materials, questServices: _services, legacyGearQuarantine: _quarantine, ...inventory } = save.inventory;
+    const { questTitles: _titles, questDifficulties: _difficulties, selectedTitle: _title,
+      selectedDifficulty: _difficulty, nightmareClearedSubAreas: _clears, challengeOrdinals: _ordinals, ...map } = save.map;
+    const input: SaveV16 = { ...save, version: 16, player: { ...save.player, equipment: [retained, bad],
+      derivedStats: { ...save.player.derivedStats, life: 7, mana: 9 } },
+      inventory: { ...inventory, equipped: { chest: retained, weapon: bad } },
+      map: { ...map, questProgress: { 'quests/act2-tainted-sun': { id: 'quests/act2-tainted-sun',
+        status: 'completed', rewardClaimed: true, objectives: { 'obj-destroy-altar': true } } } } };
+    const before = structuredClone(input);
+    const expected = deriveStats({ ...input.player.coreStats, energy: input.player.coreStats.energy + 5 }, 1,
+      { flatDefense: 12, flatLife: 15, flatMana: 20, resistances: { fire: 30, cold: 30 } });
+    const migrated = migrateSaveV17(input);
+    expect(migrated.inventory.legacyGearQuarantine).toEqual([{ item: bad, origin: { container: 'equipped', slot: 'weapon' } }]);
+    expect(migrated.inventory.equipped.chest).toEqual({ ...retained, socketCapacity: 2 });
+    expect(migrated.player.equipment).toEqual([{ ...retained, socketCapacity: 2 }]);
+    expect(migrated.player.derivedStats).toEqual({ ...expected, life: 7, mana: 9 });
     expect(input).toEqual(before);
   });
 });
