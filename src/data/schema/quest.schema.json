@@ -639,24 +639,52 @@
       }
     },
     "statReward": {
-      "type": "object",
       "description": "Authored permanent stat reward fields; delivery is a separate gameplay contract.",
-      "required": [],
-      "additionalProperties": false,
-      "properties": {
-        "life": {
-          "$ref": "#/$defs/nonnegativeInteger"
+      "oneOf": [
+        {
+          "type": "object",
+          "description": "Authored permanent stat reward fields; delivery is a separate gameplay contract.",
+          "required": [],
+          "additionalProperties": false,
+          "properties": {
+            "life": {
+              "$ref": "#/$defs/nonnegativeInteger"
+            },
+            "attribute_points": {
+              "$ref": "#/$defs/nonnegativeInteger"
+            },
+            "all_resist": {
+              "$ref": "#/$defs/nonnegativeInteger"
+            },
+            "vitality": {
+              "$ref": "#/$defs/nonnegativeInteger"
+            }
+          }
         },
-        "attribute_points": {
-          "$ref": "#/$defs/nonnegativeInteger"
-        },
-        "all_resist": {
-          "$ref": "#/$defs/nonnegativeInteger"
-        },
-        "vitality": {
-          "$ref": "#/$defs/nonnegativeInteger"
+        {
+          "type": "object",
+          "description": "Permanent hero fire/cold resistance pair in percentage points.",
+          "required": [
+            "fire_resist",
+            "cold_resist"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "fire_resist": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991,
+              "description": "Permanent resistance percentage points."
+            },
+            "cold_resist": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991,
+              "description": "Permanent resistance percentage points."
+            }
+          }
         }
-      }
+      ]
     },
     "rewards": {
       "type": "object",

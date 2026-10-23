@@ -37,7 +37,7 @@ function data() {
 }
 function complete(id = DEN): void {
   useMapStore.getState().updateQuestProgress(id, {
-    status: 'completed', objectives: { 'obj-clear-den': true, 'obj-return': true }
+    status: 'completed', objectives: id === SUN ? { 'obj-destroy-altar': true } : { 'obj-clear-den': true, 'obj-return': true }
   });
 }
 function hire(): string {

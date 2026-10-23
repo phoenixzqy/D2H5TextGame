@@ -1,6 +1,7 @@
 import { loadAffixPool, loadSetPieces } from '@/data/loaders/loot';
 import { deriveEquippedPlayerStats } from '../progression/equipped-stats';
 import type { SaveCurrent } from '../types/save';
+import { hasTaintedSunEntitlement } from '../progression/quest-resistance';
 
 type RateKey = 'critChance' | 'critDamage' | 'physDodge' | 'magicDodge';
 const RATE_KEYS: readonly RateKey[] = ['critChance', 'critDamage', 'physDodge', 'magicDodge'];
@@ -75,4 +76,15 @@ export function repairEquipmentRateCache(save: SaveCurrent): SaveCurrent {
   }
   return Object.keys(changes).length ? { ...save, player: { ...save.player,
     derivedStats: { ...save.player.derivedStats, ...changes } } } : save;
+}
+
+/** Refresh only a qualified claimed Sun row's fire/cold cache using this save's gear and map. */
+export function repairQuestResistanceCache(save: SaveCurrent): SaveCurrent {
+  if (!hasTaintedSunEntitlement(save.map.questProgress)) return save;
+  const { fire, cold } = deriveEquippedPlayerStats(save.player, save.player.level,
+    save.inventory.equipped, save.map.questProgress).resistances;
+  const old = save.player.derivedStats;
+  if (old.resistances.fire === fire && old.resistances.cold === cold) return save;
+  return { ...save, player: { ...save.player, derivedStats: { ...old,
+    resistances: { ...old.resistances, fire, cold } } } };
 }

@@ -17,12 +17,8 @@
  */
 
 import { loadItemBases, resolveItemReqLevel } from '@/data/loaders/loot';
-import {
-  aggregateEquipmentMods,
-  applyEquipmentCoreMods,
-  equipmentModsToDerivedModifiers
-} from '@/engine/progression/equipment-mods';
-import { deriveStats } from '@/engine/progression/stats';
+import { deriveEquippedPlayerStats } from '@/engine/progression/equipped-stats';
+import type { QuestProgressContext } from '@/engine/progression/quest-resistance';
 import { isTwoHanded } from '@/engine/inventory/equipValidator';
 import type { CoreStats, DerivedStats, Resistances } from '@/engine/types/attributes';
 import type { EquipmentSlot, Item, ItemBase } from '@/engine/types/items';
@@ -169,29 +165,21 @@ function simulateEquip(
   return next;
 }
 
-function computeDerived(
-  player: PlayerLike,
-  equipped: Readonly<Record<string, Item | null>>
-): DerivedStats {
-  const mods = aggregateEquipmentMods(equipped);
-  const core = applyEquipmentCoreMods(player.coreStats, mods);
-  return deriveStats(core, player.level, equipmentModsToDerivedModifiers(mods));
-}
-
 export function compareEquip(
   player: PlayerLike,
   candidate: Item,
   slot: EquipmentSlot,
   equipped: Readonly<Record<string, Item | null>>,
-  bases: ReadonlyMap<string, ItemBase> = loadItemBases()
+  bases: ReadonlyMap<string, ItemBase> = loadItemBases(),
+  questProgress: QuestProgressContext = {}
 ): CompareResult {
   const base = bases.get(candidate.baseId);
   const resolved = resolveTargetSlot(base?.slot ?? slot, slot, equipped);
   const current = equipped[resolved] ?? null;
 
-  const currentDerived = computeDerived(player, equipped);
+  const currentDerived = deriveEquippedPlayerStats(player, player.level, equipped, questProgress);
   const candidateEquipped = simulateEquip(equipped, candidate, slot, bases);
-  const candidateDerived = computeDerived(player, candidateEquipped);
+  const candidateDerived = deriveEquippedPlayerStats(player, player.level, candidateEquipped, questProgress);
 
   const stats = {} as Record<ComparableStatKey, StatDelta>;
   for (const key of COMPARABLE_KEYS) {

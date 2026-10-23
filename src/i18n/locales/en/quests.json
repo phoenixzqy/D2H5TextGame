@@ -257,6 +257,7 @@
     }
   },
   "rewardLabel": {
+    "permanentResistance": "Permanent fire resistance +{{fire}}%, cold resistance +{{cold}}%",
     "rewardCache": "Reward cache",
     "uniqueItem": "Unique item",
     "imbue": "Imbue Charge",

@@ -315,3 +315,21 @@ describe('explicit unique reward object syntax (P04a07a)', () => {
     }
   }
 });
+
+
+describe('closed permanent resistance data contract', () => {
+  it.each([
+    { fire_resist: 30 }, { cold_resist: 30 }, { fire_resist: -1, cold_resist: 30 },
+    { fire_resist: 30.5, cold_resist: 30 }, { fire_resist: 30, cold_resist: Number.MAX_SAFE_INTEGER + 1 },
+    { fire_resist: 30, cold_resist: 30, all_resist: 30 }, { fire_resist: '30', cold_resist: 30 }
+  ])('rejects incomplete or unsafe stat pair %j', stat => {
+    withDocuments(envelope([fixture('sun', { rewards: { stat } })]), envelope([]), () => {
+      expect(() => loadQuests()).toThrow();
+    });
+  });
+  it.each([{ fire_resist: 0, cold_resist: 0 }, { fire_resist: 17, cold_resist: 23 }])('accepts safe authored pair %j', stat => {
+    withDocuments(envelope([fixture('sun', { rewards: { stat } })]), envelope([]), () => {
+      expect(loadQuests()[0]?.rewards).toEqual({ stat });
+    });
+  });
+});

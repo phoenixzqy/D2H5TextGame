@@ -20,6 +20,7 @@ import { useTranslation } from 'react-i18next';
 import { Button, Panel, ScreenShell, Tabs, tDataKey } from '@/ui';
 import { loadUniques } from '@/data/loaders/loot';
 import { loadQuestItems } from '@/data/loaders/quest-items';
+import { isQuestResistanceReward } from '@/engine/progression/quest-resistance';
 import { useMapStore } from '@/stores';
 import { claimQuestReward, canClaim, type ClaimResult } from './claimReward';
 import {
@@ -284,6 +285,8 @@ function formatReward(
   if (k === 'lootTable' && typeof v === 'object' && v !== null) return `📦 ${t('rewardLabel.rewardCache')}`;
   if (k === 'areaUnlock' && typeof v === 'string') return `🗺️ ${formatRewardValue(v, t)}`;
   if (k === 'npcUnlock' && typeof v === 'string') return `👤 ${formatRewardValue(v, t)}`;
+  if (k === 'stat' && isQuestResistanceReward(v))
+    return t('rewardLabel.permanentResistance', { fire: v.fire_resist, cold: v.cold_resist });
   if (k === 'stat' && typeof v === 'object' && v !== null)
     return `📈 +${JSON.stringify(v)}`;
   return `${k}: ${typeof v === 'object' ? JSON.stringify(v) : String(v)}`;

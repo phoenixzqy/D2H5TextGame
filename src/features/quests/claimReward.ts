@@ -16,6 +16,8 @@ import { validateQuestItemLedger } from '@/engine/save/validate';
 import { awardXp, LEVEL_CAP, xpTotal } from '@/engine/progression/xp';
 import type { Player } from '@/engine/types/entities';
 import type { QuestItemLedger } from '@/engine/types/save';
+import { deriveEquippedPlayerStats } from '@/engine/progression/equipped-stats';
+import { hasTaintedSunCompletion, isQuestResistanceReward, TAINTED_SUN_QUEST_ID } from '@/engine/progression/quest-resistance';
 
 export type ClaimResult =
   | 'ok'
@@ -46,6 +48,7 @@ export function canClaim(questId: string): boolean {
   const progress = useMapStore.getState().questProgress[questId];
   if (!progress) return false;
   if (progress.status !== 'completed') return false;
+  if (questId === TAINTED_SUN_QUEST_ID && !hasTaintedSunCompletion(useMapStore.getState().questProgress)) return false;
   if (progress.rewardClaimed) return false;
   const quest = findQuest(questId);
   return Boolean(quest?.rewards && Object.keys(quest.rewards).length > 0);
@@ -102,6 +105,7 @@ export function claimQuestReward(questId: string): ClaimResult {
   return withQuestTransaction<ClaimResult>(() => {
     const progress = useMapStore.getState().questProgress[questId];
     if (!progress || progress.status !== 'completed') return 'not-completed';
+    if (questId === TAINTED_SUN_QUEST_ID && !hasTaintedSunCompletion(useMapStore.getState().questProgress)) return 'not-completed';
     if (progress.rewardClaimed) return 'already-claimed';
     const quest = findQuest(questId);
     if (!quest) return 'unknown-quest';
@@ -119,9 +123,15 @@ export function claimQuestReward(questId: string): ClaimResult {
     let uniqueReward: RollUniqueItemInput | undefined;
     let tableReward: QuestTableRewardInput | undefined;
     let questItems: QuestItemLedger | undefined;
+    let resistanceReward = false;
     for (const [kind, amount] of Object.entries(rewards)) {
       // Gold has no executable economy; authored zero is a harmless no-op.
       if (kind === 'gold' && amount === 0) continue;
+      if (kind === 'stat') {
+        if (questId !== TAINTED_SUN_QUEST_ID || !isQuestResistanceReward(amount)) return 'unsupported-rewards';
+        resistanceReward = true;
+        continue;
+      }
       if (kind === 'questItem') {
         try {
           const definition = loadQuestItems().find(row => row.id === amount && row.sourceQuestId === questId);
@@ -151,8 +161,16 @@ export function claimQuestReward(questId: string): ClaimResult {
         || !safeCount(amount)) return 'unsupported-rewards';
       if (amount > 0) grants.push({ kind, amount });
     }
-    if (grants.length === 0 && !uniqueReward && !tableReward && !questItems) return 'no-rewards';
+    if (grants.length === 0 && !uniqueReward && !tableReward && !questItems && !resistanceReward) return 'no-rewards';
     if (!safeGrants(player, grants)) return 'unsupported-rewards';
+
+    const claimedContext = { ...questProgress, [questId]: { ...progress, rewardClaimed: true } };
+    if (resistanceReward) {
+      const xp = grants.find(grant => grant.kind === 'xp')?.amount ?? 0;
+      const level = awardXp(xpTotal(player.level) + player.experience, xp).level;
+      try { deriveEquippedPlayerStats(player, level, inventory.equipped, claimedContext); }
+      catch { return 'unsupported-rewards'; }
+    }
 
     // Preparation is private: failure here must not publish rollback writes.
     const items: Item[] = [];
@@ -192,7 +210,7 @@ export function claimQuestReward(questId: string): ClaimResult {
       if (!safeCount(amount) || !safeCount(balance) || !safeCount(balance + amount)) return 'unsupported-rewards';
     }
 
-    const changesPlayer = grants.some(({ kind }) =>
+    const changesPlayer = resistanceReward || grants.some(({ kind }) =>
       kind === 'xp' || kind === 'skillPoints' || kind === 'statPoints');
     const sharesXp = grants.some(({ kind }) => kind === 'xp');
     const changesCurrency = currencyGrants.size > 0;
@@ -217,6 +235,14 @@ export function claimQuestReward(questId: string): ClaimResult {
       for (const [target, amount] of currencyGrants) useInventoryStore.getState().addCurrency(target, amount);
       for (const item of items) useInventoryStore.getState().addItem(item);
       if (questItems) useInventoryStore.setState({ questItems });
+      if (resistanceReward) {
+        usePlayerStore.setState(state => {
+          if (!state.player) throw new Error('Player disappeared during quest reward');
+          return { player: { ...state.player, derivedStats: deriveEquippedPlayerStats(
+            state.player, state.player.level, useInventoryStore.getState().equipped, claimedContext
+          ) } };
+        });
+      }
       useMapStore.getState().markQuestRewardClaimed(questId);
       return 'ok';
     } catch (cause) {

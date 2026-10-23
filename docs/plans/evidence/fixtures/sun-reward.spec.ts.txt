@@ -1,0 +1,76 @@
+/** Ordinary noncombat Sun path from an unchanged earned pre-entry Staff save. No challenge launch. */
+import { test, expect, type Page, type BrowserContext } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/@playwright/test/index.mjs';
+import { readFile, writeFile } from 'node:fs/promises';
+import { gunzipSync, gzipSync } from 'node:zlib';
+import { createCharacter, navTo } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/tests/e2e/_helpers';
+const root='/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-tainted-sun-31icm_i8', repo='/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2', quest='quests/act2-tainted-sun', now=1792497600000;
+async function backup(page:Page) {
+ await navTo(page,'settings'); const pending=page.waitForEvent('download');
+ await page.getByTestId('export-save-button').click(); const download=await pending;
+ try {return JSON.parse(await readFile(await download.path(),'utf8'));} finally {await download.delete();}
+}
+async function disk(page:Page) {return page.evaluate(async()=>{
+ const db=await new Promise<IDBDatabase>((resolve,reject)=>{const req=indexedDB.open('D2H5TextGame');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});
+ try {const record=await new Promise<{data:unknown}>((resolve,reject)=>{const req=db.transaction('saves','readonly').objectStore('saves').get('current');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});return JSON.parse(JSON.stringify(record.data,(_k,v)=>v instanceof Map?[...v.entries()]:v));} finally {db.close();}
+});}
+async function importSave(page:Page, value:unknown, english:boolean) {
+ await navTo(page,'settings');const label=english?'Import Save':'导入存档';await page.getByRole('button',{name:label,exact:true}).click();
+ const dialog=page.getByRole('dialog');await dialog.getByRole('textbox').fill(JSON.stringify(value));await dialog.getByRole('button',{name:label,exact:true}).click();await expect(dialog).toHaveCount(0);
+}
+async function reopen(page:Page, context:BrowserContext, english:boolean, expected:unknown, errors:string[]) {
+ await navTo(page,'settings');await page.getByRole('button',{name:english?'Save':'保存',exact:true}).click();
+ await expect(page.getByRole('status')).toHaveText(english?'Saved':'已保存');expect(await disk(page)).toEqual(expected);expect(await backup(page)).toEqual(expected);
+ await page.close();const next=await context.newPage();next.on('pageerror',error=>errors.push(error.message));await next.clock.setFixedTime(now);await next.goto('/');await next.waitForLoadState('networkidle');
+ await next.getByTestId('home-continue').click();await expect(next.getByTestId('town-screen')).toBeVisible();expect(await backup(next)).toEqual(expected);expect(await disk(next)).toEqual(expected);return next;
+}
+
+async function retain(name:string,value:unknown) {await writeFile(root+'/'+name+'.json.gz',gzipSync(JSON.stringify(value)));}
+async function inspect(page:Page, english:boolean) {
+ await navTo(page,'map'); const act=page.getByRole('button',{name:english?/^Act 2 ·/:/^第 2 章 ·/});
+ if(await act.getAttribute('aria-expanded')!=='true')await act.click();
+ const trigger=page.getByTestId('area-objects-a2-lost-city');await trigger.focus();await page.keyboard.press('Enter');
+ const panel=page.getByTestId('area-object-panel');await expect(panel).toBeVisible();
+ await expect(page.getByTestId('combat-screen')).toHaveCount(0);return panel;
+}
+for(const locale of ['en','zh-CN'])test('earned-prefix noncombat Sun reward '+locale,async({page,context})=>{
+ const english=locale==='en',errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.clock.setFixedTime(now);await page.goto('/');await page.waitForLoadState('networkidle');
+ await createCharacter(page,{class:'sorceress',name:'Sun reward'});await navTo(page,'settings');
+ await page.getByRole('button',{name:'English',exact:true}).click();
+ const original=JSON.parse(gunzipSync(await readFile(repo+'/docs/plans/evidence/fixtures/staff-inserted.json.gz')).toString('utf8'));
+ expect(original.map.questProgress[quest]).toBeUndefined();await importSave(page,original,true);
+ expect(await backup(page)).toEqual(original);expect(await disk(page)).toEqual(original);
+ if(!english)await page.getByRole('button',{name:'简体中文',exact:true}).click();
+ await expect.poll(()=>page.evaluate(()=>navigator.serviceWorker.controller?.state),{timeout:60000}).toBe('activated');
+ expect(await page.evaluate(()=>'__GAME__' in window)).toBe(false);
+ const initial=await backup(page);await retain('initial-'+locale,initial);
+ await navTo(page,'quests');const card=page.getByTestId('quest-'+quest);
+ await expect(card).toContainText(english?'Permanent fire resistance +30%, cold resistance +30%':'永久火焰抗性 +30%，冰冷抗性 +30%');
+ await expect(card).not.toContainText('fire_resist');await page.getByTestId('quest-start-'+quest).click();
+ const tracked=await backup(page);expect(tracked).toEqual({...initial,map:{...initial.map,questProgress:{...initial.map.questProgress,[quest]:{id:quest,status:'inProgress',objectives:{'obj-destroy-altar':false}}}}});
+ let panel=await inspect(page,english);const opened=await backup(page);
+ expect(opened).toEqual({...tracked,map:{...tracked.map,currentAct:2,currentSubAreaId:'areas/act2-lost-city'}});
+ panel=await inspect(page,english);const destroy=panel.getByRole('button',{name:english?'Destroy altar':'摧毁祭坛',exact:true});await expect(destroy).toBeEnabled();
+ const sizes=[[360,640],[412,915],[640,360],[1280,800],[1920,1080]];
+ for(const [width,height] of sizes){await page.setViewportSize({width,height});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);for(const control of [destroy,panel.getByTestId('area-object-close')]){const b=await control.boundingBox();expect(b?.height).toBeGreaterThanOrEqual(44);expect(b?.width).toBeGreaterThanOrEqual(44);}}
+ await page.setViewportSize({width:360,height:640});await destroy.focus();await page.keyboard.press('Enter');await expect(destroy).toBeDisabled();
+ const completed=await backup(page);expect(completed).toEqual({...opened,map:{...opened.map,questProgress:{...opened.map.questProgress,[quest]:{...opened.map.questProgress[quest],status:'completed',objectives:{'obj-destroy-altar':true}}}}});
+ await retain('completed-'+locale,completed);page=await reopen(page,context,english,completed,errors);
+ await navTo(page,'quests');const claim=page.getByTestId('quest-claim-'+quest);await expect(claim).toBeEnabled();
+ for(const [width,height] of sizes){await page.setViewportSize({width,height});const b=await claim.boundingBox();expect(b?.height).toBeGreaterThanOrEqual(44);expect(b?.width).toBeGreaterThanOrEqual(44);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);}
+ await page.setViewportSize({width:360,height:640});await claim.focus();await page.keyboard.press('Enter');await expect(claim).toBeDisabled();
+ const paid=await backup(page), mercId=completed.mercs.fieldedMercId;
+ expect(paid).toEqual({...completed,player:{...completed.player,experience:completed.player.experience+4500,derivedStats:{...completed.player.derivedStats,resistances:{...completed.player.derivedStats.resistances,fire:completed.player.derivedStats.resistances.fire+30,cold:completed.player.derivedStats.resistances.cold+30}}},mercs:{...completed.mercs,mercProgress:{...completed.mercs.mercProgress,[mercId]:{...completed.mercs.mercProgress[mercId],experience:completed.mercs.mercProgress[mercId].experience+3375}}},map:{...completed.map,questProgress:{...completed.map.questProgress,[quest]:{...completed.map.questProgress[quest],rewardClaimed:true}}}});
+ await retain('claimed-'+locale,paid);page=await reopen(page,context,english,paid,errors);
+ await navTo(page,'quests');const paidClaim=page.getByTestId('quest-claim-'+quest);await expect(paidClaim).toBeDisabled();await expect(paidClaim).toHaveText(english?'Claimed':'已领取');
+ await paidClaim.evaluate((b:HTMLButtonElement)=>b.click());expect(await backup(page)).toEqual(paid);
+ // Explicitly constructed legacy cache only: progress and earned resources stay exact.
+ const legacy={...paid,player:{...paid.player,derivedStats:{...paid.player.derivedStats,resistances:{...paid.player.derivedStats.resistances,fire:0,cold:0}}}};
+ await retain('legacy-constructed-'+locale,legacy);await importSave(page,legacy,english);expect(await backup(page)).toEqual(paid);expect(await disk(page)).toEqual(paid);
+ await importSave(page,paid,english);expect(await backup(page)).toEqual(paid);
+ await importSave(page,initial,english);expect(await backup(page)).toEqual(initial); // No Sun row gains no entitlement from the live prior character.
+ await importSave(page,paid,english);expect(await backup(page)).toEqual(paid);page=await reopen(page,context,english,paid,errors);
+ await navTo(page,'quests');await page.getByTestId('quest-'+quest).screenshot({path:root+'/claimed-'+locale+'.png'});
+ expect(errors).toEqual([]);await expect(page.getByTestId('combat-screen')).toHaveCount(0);
+ await writeFile(root+'/assertions-'+locale+'.json',JSON.stringify({classification:'Earned pre-entry prefix plus ordinary noncombat Sun actions; no campaign victory. Separate legacy cache is constructed.',locale,heroXP:4500,mercXP:3375,permanentFire:30,permanentCold:30,poolsUnchanged:true,wholeSaveDeltaExact:true,originalGearUnchanged:true,saveCloseContinue:['completed-unclaimed','claimed','claimed-after-import'],viewports:sizes,pageErrors:errors,combatLaunches:0,retries:0},null,2));await page.close();
+});

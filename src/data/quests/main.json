@@ -132,7 +132,7 @@
       "objectives": [
         { "id": "obj-destroy-altar", "type": "interact", "targetId": "objects/serpent_altar", "areaId": "areas/act2-lost-city", "description": "Destroy the Serpent Altar in the Lost City." }
       ],
-      "rewards": { "xp": 4500 },
+      "rewards": { "xp": 4500, "stat": { "fire_resist": 30, "cold_resist": 30 } },
       "unlocks": null,
       "order": 9
     },

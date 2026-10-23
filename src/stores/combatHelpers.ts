@@ -46,8 +46,9 @@ import { createRng, hashSeed } from '@/engine/rng';
 import { getIdleEliteMisses, resetIdleEliteMisses, setIdleEliteMisses } from './idleElitePity';
 import { resolveSummonDisplayName } from './summonDisplayName';
 import { loadMercPool } from '@/data/loaders/mercs';
-import { aggregateEquipmentMods, applyEquipmentCoreMods, equipmentModsToDerivedModifiers } from '@/engine/progression/equipment-mods';
-import { deriveStats, effectiveStatValue } from '@/engine/progression/stats';
+import { aggregateEquipmentMods, applyEquipmentCoreMods } from '@/engine/progression/equipment-mods';
+import { effectiveStatValue } from '@/engine/progression/stats';
+import { deriveEquippedPlayerStats } from '@/engine/progression/equipped-stats';
 import { composeHeroRecovery } from '@/engine/progression/warmth';
 import { resolveFrozenArmorRank } from '@/engine/skills/frozen-armor';
 import { composeMightAura } from '@/engine/skills/might';
@@ -137,7 +138,7 @@ export function playerToCombatUnit(player: Player): CombatUnit {
   const equippedWeapon = resolveEquippedWeapon(equipped);
   const mods = aggregateEquipmentMods(equipped);
   const core = applyEquipmentCoreMods(player.coreStats, mods);
-  const freshStats = deriveStats(core, player.level, equipmentModsToDerivedModifiers(mods));
+  const freshStats = deriveEquippedPlayerStats(player, player.level, equipped, useMapStore.getState().questProgress);
   const ironSkinRank = player.class === 'barbarian' && Number.isFinite(player.level) &&
     player.level >= IRON_SKIN_DEFINITION.requiredLevel ? resolveIronSkinRank(player.skillLevels) : 0;
   const stats = { ...freshStats,

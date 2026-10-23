@@ -38,7 +38,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { TFunction } from 'i18next';
 import { Button, GameImage, RarityText, getItemIconUrl, tItemName } from '@/ui';
-import { useInventoryStore, usePlayerStore } from '@/stores';
+import { useInventoryStore, usePlayerStore, useMapStore } from '@/stores';
 import type { EquipFailure } from '@/stores/inventoryStore';
 import {
   checkEligibility,
@@ -288,6 +288,7 @@ function EquipFooter({
 export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props) {
   const { t } = useTranslation(['inventory', 'common']);
   const player = usePlayerStore((s) => s.player);
+  const questProgress = useMapStore(s => s.questProgress);
   const backpack = useInventoryStore((s) => s.backpack);
   const equipped = useInventoryStore((s) => s.equipped);
   const equipItem = useInventoryStore((s) => s.equipItem);
@@ -349,8 +350,8 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
 
   const compare = useMemo(() => {
     if (!selected || !playerForCheck || !slot) return null;
-    return compareEquip(playerForCheck, selected, slot, equipped);
-  }, [selected, playerForCheck, slot, equipped]);
+    return compareEquip(playerForCheck, selected, slot, equipped, undefined, questProgress);
+  }, [selected, playerForCheck, slot, equipped, questProgress]);
 
   const sameAsEquipped = useMemo(() => {
     if (!compare) return false;

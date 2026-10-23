@@ -127,6 +127,7 @@
     "act5-eve-of-destruction": { "name": "毁灭前夕", "desc": "于毁灭王座击败巴尔。", "obj1": "击败巴尔" }
   },
   "rewardLabel": {
+    "permanentResistance": "永久火焰抗性 +{{fire}}%，冰冷抗性 +{{cold}}%",
     "rewardCache": "奖励宝箱",
     "uniqueItem": "暗金装备",
     "imbue": "赋魔卷轴",

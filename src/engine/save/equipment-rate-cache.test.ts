@@ -190,3 +190,22 @@ describe('historical equipped-rate cache compatibility', () => {
       derivedStats: { ...input.player.derivedStats, critDamage: 2.05 } } });
   });
 });
+
+
+describe('qualified Sun resistance cache compatibility', () => {
+  it('repairs exactly two resistance fields, preserves pools and inputs, and decodes idempotently', () => {
+    const original = saved({ amulet: item([{ affixId: 'saved-resists', values: new Map([
+      ['resistances.fire', 91], ['resistances.cold', -12.5]
+    ]) }]) });
+    const id = 'quests/act2-tainted-sun';
+    const save = { ...original, map: { ...original.map, questProgress: { [id]: {
+      id, status: 'completed' as const, rewardClaimed: true, objectives: { 'obj-destroy-altar': true }
+    } } } };
+    const raw = toJsonSafe(save), before = structuredClone(raw);
+    const expected = { ...save, player: { ...save.player, derivedStats: { ...save.player.derivedStats,
+      resistances: { ...save.player.derivedStats.resistances, fire: 121, cold: 17.5 } } } };
+    const decoded = decodeSave(raw);
+    expect(decoded).toEqual(expected); expect(raw).toEqual(before);
+    expect(decodeSave(toJsonSafe(decoded))).toEqual(expected);
+  });
+});

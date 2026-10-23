@@ -13,6 +13,7 @@ import { resolveEligibleMightRank } from '@/engine/skills/might';
 import { resolveEligibleMeditationRank } from '@/engine/skills/meditation';
 import { awardXp, xpRequired, xpTotal, LEVEL_CAP } from '@/engine/progression/xp';
 import { useInventoryStore } from './inventoryStore';
+import { useMapStore } from './mapStore';
 import { clearCombatForHeroReplacement } from './combatRunLifecycle';
 import { assertWaveRestoreOwner, assertWaveSnapshotAllowed, type WaveRestoreLease } from './waveTransitionGuard';
 import {
@@ -154,7 +155,7 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     // Read the authoritative gear only when the action runs, after both stores
     // initialize. The legacy player.equipment array does not track equip actions.
     const equipped = useInventoryStore.getState().equipped;
-    const newDerived = deriveEquippedPlayerStats(player, cappedLevel, equipped);
+    const newDerived = deriveEquippedPlayerStats(player, cappedLevel, equipped, useMapStore.getState().questProgress);
     const levelsGained = cappedLevel - player.level;
     set({
       player: {
@@ -201,7 +202,7 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     return {
       player: {
         ...nextPlayer,
-        derivedStats: deriveEquippedPlayerStats(nextPlayer, nextPlayer.level, useInventoryStore.getState().equipped)
+        derivedStats: deriveEquippedPlayerStats(nextPlayer, nextPlayer.level, useInventoryStore.getState().equipped, useMapStore.getState().questProgress)
       }
     };
   }); },
@@ -227,7 +228,7 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     for (const stat of CORE_STAT_KEYS) coreStats[stat] += deltas[stat];
     const nextPlayer = { ...player, coreStats, statPoints: player.statPoints - total };
     set({ player: { ...nextPlayer,
-      derivedStats: deriveEquippedPlayerStats(nextPlayer, nextPlayer.level, useInventoryStore.getState().equipped)
+      derivedStats: deriveEquippedPlayerStats(nextPlayer, nextPlayer.level, useInventoryStore.getState().equipped, useMapStore.getState().questProgress)
     } });
     return 'ok';
   },
@@ -297,7 +298,7 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     return {
       player: {
         ...state.player,
-        derivedStats: deriveEquippedPlayerStats(state.player, state.player.level, equipped)
+        derivedStats: deriveEquippedPlayerStats(state.player, state.player.level, equipped, useMapStore.getState().questProgress)
       }
     };
   }); },

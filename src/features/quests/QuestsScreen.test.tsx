@@ -52,6 +52,15 @@ describe.each(['zh-CN', 'en'] as const)('QuestsScreen %s', locale => {
     useInventoryStore.getState().reset();
   });
 
+  it('shows readable permanent Sun resistance in the current locale', () => {
+    renderScreen();
+    const card = screen.getByTestId('quest-quests/act2-tainted-sun');
+    expect(card.textContent).toContain(locale === 'en'
+      ? 'Permanent fire resistance +30%, cold resistance +30%'
+      : '永久火焰抗性 +30%，冰冷抗性 +30%');
+    expect(card.textContent).not.toMatch(/fire_resist|cold_resist|[{}]/);
+  });
+
   it('renders the main quest tab with real Act 1 quests by default', () => {
     renderScreen();
     // "Den of Evil" is the first main quest in act1.

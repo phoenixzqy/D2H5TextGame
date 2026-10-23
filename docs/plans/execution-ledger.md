@@ -10578,3 +10578,28 @@ remaining[]/failures[]; raw required evidence remains root-owned through C2/
 umbrella consumers at the exact root in the evidence. Next: Tainted Sun permanent
 resistance implementation, then Canyon metadata. Historical C0/C1 accepted;
 C2 underway; C3/C4/fullG0–G7 remain open. Local only.
+
+
+## P14 — Permanent Tainted Sun resistance
+
+[Evidence](evidence/tainted-sun-resistance.md) records authored+30fire/+30cold
+with existing4500heroXP/3375mercXP and explicit Destroy→Claim. Own canonical
+completed/claimed altar entitlement feeds shared gear/stat/comparison/combat
+projection; no healing or compounding. Claim preflights post-XP composition,
+rolls participating state back and publishes claimed last. Decoder repairs only
+qualified own-save fire/cold caches; no new save version/field or XP backfill.
+Causal engine/Claim/integration/UI REDs precede final9143tests/306files
+PASS183.58s; engine4364/113 PASS31.88s, types/lint/clean build/4chunkbridge PASS.
+Initial type/lint and invalid test-API failures remain diagnostic; final gates
+were rerun after corrections. First browser interrupted for retained obsolete
+build output; complete clean packet2/2en/zh PASS93.086s, retry0/pageErrors[],
+5viewports, exact three Save-close-Continue barriers,4057original gear preserved
+and separately constructed legacy repair. Frozen645source/760build/4harness/
+1input drift[]/added[]; exact fixtures/spec copied. Producer and independent
+QA-SUN-EVIDENCE APPROVE/security PASS; readers released. Exact disposable build/
+browser outputs removed, optionalcache absent, cleanupremaining[]/failures[];
+all sessions terminal and port34573closed. Required raw evidence remains
+root-owned through Sun/C2/umbrella at the exact path in the evidence. Next:
+Canyon metadata correction, then new-current-runtime earned campaign screening.
+Historical stopped challenges remain final; C0/C1 accepted, C2underway,
+C3/C4/fullG0–G7 remain open. Local only.
