@@ -4,6 +4,7 @@ import { isDeepStrictEqual } from 'node:util';
 import { closeSync, openSync, unlinkSync, writeFileSync } from 'node:fs';
 import { snapshotStores, exportCurrentSave } from '@/stores/persistence';
 import { decodeSave } from '@/engine/save/validate';
+import { useMetaStore } from '@/stores/metaStore';
 import type { SaveCurrent } from '@/engine/types/save';
 import { observeEarnedState } from './earned-state';
 import { encodeObservation, hashObservation } from './earned-report';
@@ -55,6 +56,29 @@ export function captureFreshNativeSave() {
       'Export projects idle metadata through readIdleBonus; snapshot retains raw idleState. Both are retained and compared separately.',
       'No IndexedDB write/read, browser Save/Continue, offline reconciliation or C2 acceptance is established.']
   };
+}
+
+/** Inactive-bonus online clock contract; the historical strict capture remains unchanged. */
+export function captureFreshEconomyNativeSave(epochMs: number) {
+  const now = Date.now();
+  const capture = captureFreshNativeSave();
+  let failure: string | null = null;
+  try {
+    assert.ok(capture.snapshot && capture.decoded && capture.exportedJson);
+    assert.equal(capture.beforeHash, capture.afterHash, 'Economic capture changed live domains');
+    assert.equal(capture.snapshot.timestamp, now);
+    assert.deepEqual(capture.snapshot.meta.idleState, { lastOnline: epochMs, offlineTime: 0,
+      multiplierSecondsRemaining: 0, activeMultiplier: 1 });
+    const expectedIdle = { ...capture.snapshot.meta.idleState, lastOnline: now };
+    assert.deepEqual(useMetaStore.getState().readIdleBonus(now), expectedIdle);
+    assert.deepEqual(capture.decoded, { ...capture.snapshot,
+      meta: { ...capture.snapshot.meta, idleState: expectedIdle } }, 'Export differs outside the exact inactive idle projection');
+    assert.equal(hashObservation(observeEarnedState()), capture.afterHash, 'Projection read changed live domains');
+  } catch (error) { failure = error instanceof Error ? error.message : String(error); }
+  return { ...capture, kind: 'live-production-snapshot-and-export' as const,
+    status: failure === null ? 'captured' as const : 'failed' as const, failure,
+    strictCaptureFailure: capture.failure,
+    economicClockContract: { epochMs, now, permittedDifference: 'meta.idleState.lastOnline only; inactive bonus remains 1x/zero' } };
 }
 
 export interface FreshNativeArtifacts { nativeExport: string | null; nativeCapture: string | null }
