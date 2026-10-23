@@ -1,7 +1,7 @@
 # BUG-106 — Require actual prerequisite graphs for side services
 
 - **Severity:** High
-- **Status:** Fixed; reproduced at `2fd0aec`
+- **Status:** Fixed in `4f526d7`; reproduced at `2fd0aec`
 - **Affected systems:** engine-dev / save validation and shared quest service rewards
 - **Environment:** Vitest engine and UI projects, jsdom (no browser viewport), fixture locales; no engine RNG required
 
@@ -26,3 +26,5 @@ The finite wallet validates the claimed side source row, but the shared campaign
 ## Validation
 
 The native17 save and Act V Claim regressions pass (55 tests), including valid actual Siege/Prison prerequisites whose main rewards remain unclaimed, removing each required Act V source edge, and historical16 migration preserving side history without grants. Existing Claim and real-persistence suites pass (77 tests). The Act IV suite passes its 40 behavioral tests; its independent historical15 fixture still carries reserved native17 keys and is assigned to integration fixture repair. Typecheck passes. The shared graph predicate is reused by native17 validation and Claim, with reciprocal item/action validation retained at each caller.
+
+The full engine suite passes (128 files / 4670 tests), and full repository lint passes. Independent service QA passes all 84 cases, including valid unclaimed-main prerequisite graphs and causal removal of required victory/action/item edges.
