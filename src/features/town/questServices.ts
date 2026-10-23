@@ -43,7 +43,7 @@ function readiness(): 'not-ready' | 'no-player' | 'combat-active' | null {
 }
 function atDestination(source: Source): boolean {
   const map = useMapStore.getState(), destination = destinations[source];
-  return map.currentAct === destination.act && map.currentSubAreaId === null && map.selectedDifficulty === 'normal'
+  return map.currentAct === destination.act && map.selectedDifficulty === 'normal'
     && map.isActUnlocked(destination.act) && loadTownNpcs(destination.act).some(npc => npc.id === destination.npcId);
 }
 /** Validate the full live graph directly: snapshotting while owning a quest lease is forbidden. */

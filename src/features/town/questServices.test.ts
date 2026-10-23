@@ -84,8 +84,15 @@ describe('actual current-town service discovery and selected gear', () => {
     expect(inventory().questServices[LARZUK]?.state).toBe('available');
     noChange(SIEGE, 'selected', 'already-consumed');
   });
-  it.each(['field', 'wrong-act', 'locked', 'missing-npc', 'nightmare'] as const)('refuses %s location without writes', fault => {
-    if (fault === 'field') useMapStore.setState({ currentSubAreaId: 'areas/act5-bloody-foothills' });
+  it('uses the current town NPC after returning from combat with a selected map area', () => {
+    useMapStore.setState({ currentSubAreaId: 'areas/act5-bloody-foothills' });
+    expect(questServicesForNpc('npc/larzuk')).toEqual([{ source: SIEGE, serviceId: 'socket_item', state: 'available' }]);
+    expect(questServiceCandidates(SIEGE)).toEqual(inventory().backpack);
+    expect(applyQuestService(SIEGE, 'selected')).toBe('ok');
+    expect(inventory().backpack[0]?.socketCapacity).toBe(weaponBase.maxSockets);
+    expect(useMapStore.getState().currentSubAreaId).toBe('areas/act5-bloody-foothills');
+  });
+  it.each(['wrong-act', 'locked', 'missing-npc', 'nightmare'] as const)('refuses %s location without writes', fault => {
     if (fault === 'wrong-act') useMapStore.setState({ currentAct: 4 });
     if (fault === 'locked') useMapStore.setState({ isActUnlocked: () => false });
     if (fault === 'missing-npc') vi.mocked(towns.loadTownNpcs).mockReturnValue([]);
