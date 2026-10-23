@@ -1740,5 +1740,59 @@
     "hand-of-justice": "Hand of Justice",
     "exile": "Exile",
     "death": "Death"
+  },
+  "gem": {
+    "amethyst": {
+      "chipped": "Chipped Amethyst",
+      "flawed": "Flawed Amethyst",
+      "normal": "Normal Amethyst",
+      "flawless": "Flawless Amethyst",
+      "perfect": "Perfect Amethyst"
+    },
+    "diamond": {
+      "chipped": "Chipped Diamond",
+      "flawed": "Flawed Diamond",
+      "normal": "Normal Diamond",
+      "flawless": "Flawless Diamond",
+      "perfect": "Perfect Diamond"
+    },
+    "emerald": {
+      "chipped": "Chipped Emerald",
+      "flawed": "Flawed Emerald",
+      "normal": "Normal Emerald",
+      "flawless": "Flawless Emerald",
+      "perfect": "Perfect Emerald"
+    },
+    "ruby": {
+      "chipped": "Chipped Ruby",
+      "flawed": "Flawed Ruby",
+      "normal": "Normal Ruby",
+      "flawless": "Flawless Ruby",
+      "perfect": "Perfect Ruby"
+    },
+    "sapphire": {
+      "chipped": "Chipped Sapphire",
+      "flawed": "Flawed Sapphire",
+      "normal": "Normal Sapphire",
+      "flawless": "Flawless Sapphire",
+      "perfect": "Perfect Sapphire"
+    },
+    "skull": {
+      "chipped": "Chipped Skull",
+      "flawed": "Flawed Skull",
+      "normal": "Normal Skull",
+      "flawless": "Flawless Skull",
+      "perfect": "Perfect Skull"
+    },
+    "topaz": {
+      "chipped": "Chipped Topaz",
+      "flawed": "Flawed Topaz",
+      "normal": "Normal Topaz",
+      "flawless": "Flawless Topaz",
+      "perfect": "Perfect Topaz"
+    }
+  },
+  "material": {
+    "scrap": "Scrap"
   }
 }

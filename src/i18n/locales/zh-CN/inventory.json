@@ -313,5 +313,31 @@
       "equipped": "原角色装备 · {{slot}}",
       "mercEquipment": "原佣兵装备 · {{mercenary}} · {{slot}}"
     }
+  },
+  "materials": {
+    "title": "材料",
+    "storage": "材料不占装备栏位。符文碎片与宝石碎片是独立货币。",
+    "empty": "尚无材料。赢得战斗、领取符合条件的任务奖励，即可收集符文与宝石。",
+    "ownedFilter": "已持有材料",
+    "catalogFilter": "全部材料",
+    "ownedCount": "持有：{{quantity}}",
+    "future": "镶嵌与制作将在后续开放。已获得的材料会保存在存档中，供日后使用。",
+    "sourceLabel": "获取途径",
+    "useLabel": "用途",
+    "kind": {
+      "rune": "符文",
+      "gem": "宝石",
+      "scrap": "制作材料"
+    },
+    "source": {
+      "rune": "战斗胜利掉落及部分任务奖励。",
+      "gem": "战斗胜利掉落及部分任务奖励。",
+      "scrap": "制作开放后可通过分解获得。"
+    },
+    "use": {
+      "rune": "后续用于镶嵌、符文之语、符文合成与配方。",
+      "gem": "后续用于镶嵌、宝石合成与配方。",
+      "scrap": "后续用于制作装备。"
+    }
   }
 }

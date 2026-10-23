@@ -46,6 +46,7 @@ import { BulkDiscardToolbar } from './BulkDiscardToolbar';
 import { BackpackGrid } from './BackpackGrid';
 import { LegacyGearQuarantinePanel } from './LegacyGearQuarantinePanel';
 import { QuestItemsPanel } from './QuestItemsPanel';
+import { MaterialsPanel } from './MaterialsPanel';
 import type { Item, EquipmentSlot } from '@/engine/types/items';
 import { loadItemBases } from '@/data/loaders/loot';
 import {
@@ -127,6 +128,7 @@ export function InventoryScreen() {
   return (
     <ScreenShell testId="inventory-screen" title={t('inventory.title')}>
       <div className="max-w-6xl mx-auto">
+        <MaterialsPanel />
         <QuestItemsPanel />
         <LegacyGearQuarantinePanel />
         <Tabs

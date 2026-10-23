@@ -1740,5 +1740,59 @@
     "hand-of-justice": "正义之手",
     "exile": "流放",
     "death": "死亡"
+  },
+  "gem": {
+    "amethyst": {
+      "chipped": "碎裂的紫宝石",
+      "flawed": "裂开的紫宝石",
+      "normal": "普通的紫宝石",
+      "flawless": "无瑕疵的紫宝石",
+      "perfect": "完美的紫宝石"
+    },
+    "diamond": {
+      "chipped": "碎裂的钻石",
+      "flawed": "裂开的钻石",
+      "normal": "普通的钻石",
+      "flawless": "无瑕疵的钻石",
+      "perfect": "完美的钻石"
+    },
+    "emerald": {
+      "chipped": "碎裂的绿宝石",
+      "flawed": "裂开的绿宝石",
+      "normal": "普通的绿宝石",
+      "flawless": "无瑕疵的绿宝石",
+      "perfect": "完美的绿宝石"
+    },
+    "ruby": {
+      "chipped": "碎裂的红宝石",
+      "flawed": "裂开的红宝石",
+      "normal": "普通的红宝石",
+      "flawless": "无瑕疵的红宝石",
+      "perfect": "完美的红宝石"
+    },
+    "sapphire": {
+      "chipped": "碎裂的蓝宝石",
+      "flawed": "裂开的蓝宝石",
+      "normal": "普通的蓝宝石",
+      "flawless": "无瑕疵的蓝宝石",
+      "perfect": "完美的蓝宝石"
+    },
+    "skull": {
+      "chipped": "碎裂的骷髅",
+      "flawed": "裂开的骷髅",
+      "normal": "普通的骷髅",
+      "flawless": "无瑕疵的骷髅",
+      "perfect": "完美的骷髅"
+    },
+    "topaz": {
+      "chipped": "碎裂的黄宝石",
+      "flawed": "裂开的黄宝石",
+      "normal": "普通的黄宝石",
+      "flawless": "无瑕疵的黄宝石",
+      "perfect": "完美的黄宝石"
+    }
+  },
+  "material": {
+    "scrap": "废料"
   }
 }

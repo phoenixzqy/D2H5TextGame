@@ -313,5 +313,31 @@
       "equipped": "Character equipment · {{slot}}",
       "mercEquipment": "Mercenary equipment · {{mercenary}} · {{slot}}"
     }
+  },
+  "materials": {
+    "title": "Materials",
+    "storage": "Materials do not use equipment slots. Rune-shards and gem-shards are separate currencies.",
+    "empty": "No materials yet. Win battles and claim eligible quest rewards to collect runes and gems.",
+    "ownedFilter": "Owned materials",
+    "catalogFilter": "All materials",
+    "ownedCount": "Owned: {{quantity}}",
+    "future": "Socketing and crafting are coming later. Your materials remain saved for future use.",
+    "sourceLabel": "Acquisition",
+    "useLabel": "Uses",
+    "kind": {
+      "rune": "Runes",
+      "gem": "Gems",
+      "scrap": "Crafting materials"
+    },
+    "source": {
+      "rune": "Victory loot and certain quest rewards.",
+      "gem": "Victory loot and certain quest rewards.",
+      "scrap": "Salvage is coming with crafting."
+    },
+    "use": {
+      "rune": "Future socketing, runewords, rune fusion and recipes.",
+      "gem": "Future socketing, gem fusion and recipes.",
+      "scrap": "Future equipment crafting."
+    }
   }
 }
