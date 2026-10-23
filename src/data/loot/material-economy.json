@@ -1,0 +1,227 @@
+{
+  "version": 1,
+  "runeOrder": [
+    "runes/el",
+    "runes/eld",
+    "runes/tir",
+    "runes/nef",
+    "runes/eth",
+    "runes/ith",
+    "runes/tal",
+    "runes/ral",
+    "runes/ort",
+    "runes/thul",
+    "runes/amn",
+    "runes/sol",
+    "runes/shael",
+    "runes/dol",
+    "runes/hel",
+    "runes/io",
+    "runes/lum",
+    "runes/ko",
+    "runes/fal",
+    "runes/lem",
+    "runes/pul",
+    "runes/um",
+    "runes/mal",
+    "runes/ist",
+    "runes/gul",
+    "runes/vex",
+    "runes/ohm",
+    "runes/lo",
+    "runes/sur",
+    "runes/ber",
+    "runes/jah",
+    "runes/cham",
+    "runes/zod"
+  ],
+  "runeWeights": [
+    10000,
+    9000,
+    8000,
+    7000,
+    6000,
+    5000,
+    4500,
+    4000,
+    3500,
+    3000,
+    2500,
+    2000,
+    1500,
+    1200,
+    1000,
+    850,
+    700,
+    580,
+    480,
+    380,
+    280,
+    200,
+    140,
+    95,
+    60,
+    36,
+    22,
+    13,
+    8,
+    5,
+    3,
+    2,
+    1
+  ],
+  "actRuneCaps": [
+    8,
+    15,
+    19,
+    21,
+    33
+  ],
+  "nonHellRuneCap": 22,
+  "highRuneMinOrdinal": 23,
+  "highRuneAllowedTiers": [
+    "elite",
+    "rare-minion",
+    "champion",
+    "rare-elite",
+    "boss",
+    "chapter-boss"
+  ],
+  "gemTypes": [
+    "amethyst",
+    "diamond",
+    "emerald",
+    "ruby",
+    "sapphire",
+    "skull",
+    "topaz"
+  ],
+  "gemQualities": [
+    "chipped",
+    "flawed",
+    "normal",
+    "flawless",
+    "perfect"
+  ],
+  "actGemCaps": [
+    1,
+    2,
+    3,
+    3,
+    4
+  ],
+  "nonHellGemCap": 3,
+  "gemQualityWeights": {
+    "trash": [
+      70,
+      25,
+      5,
+      0,
+      0
+    ],
+    "elite": [
+      30,
+      50,
+      18,
+      2,
+      0
+    ],
+    "rare-minion": [
+      30,
+      50,
+      18,
+      2,
+      0
+    ],
+    "champion": [
+      30,
+      50,
+      18,
+      2,
+      0
+    ],
+    "rare-elite": [
+      10,
+      35,
+      40,
+      15,
+      0
+    ],
+    "boss": [
+      0,
+      0,
+      20,
+      65,
+      15
+    ],
+    "chapter-boss": [
+      0,
+      0,
+      20,
+      65,
+      15
+    ]
+  },
+  "profiles": {
+    "act1-normal": {
+      "act": 1,
+      "difficulty": "normal"
+    },
+    "act1-nightmare": {
+      "act": 1,
+      "difficulty": "nightmare"
+    },
+    "act1-hell": {
+      "act": 1,
+      "difficulty": "hell"
+    },
+    "act2-normal": {
+      "act": 2,
+      "difficulty": "normal"
+    },
+    "act2-nightmare": {
+      "act": 2,
+      "difficulty": "nightmare"
+    },
+    "act2-hell": {
+      "act": 2,
+      "difficulty": "hell"
+    },
+    "act3-normal": {
+      "act": 3,
+      "difficulty": "normal"
+    },
+    "act3-nightmare": {
+      "act": 3,
+      "difficulty": "nightmare"
+    },
+    "act3-hell": {
+      "act": 3,
+      "difficulty": "hell"
+    },
+    "act4-normal": {
+      "act": 4,
+      "difficulty": "normal"
+    },
+    "act4-nightmare": {
+      "act": 4,
+      "difficulty": "nightmare"
+    },
+    "act4-hell": {
+      "act": 4,
+      "difficulty": "hell"
+    },
+    "act5-normal": {
+      "act": 5,
+      "difficulty": "normal"
+    },
+    "act5-nightmare": {
+      "act": 5,
+      "difficulty": "nightmare"
+    },
+    "act5-hell": {
+      "act": 5,
+      "difficulty": "hell"
+    }
+  }
+}

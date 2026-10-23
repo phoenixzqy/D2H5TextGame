@@ -1,0 +1,477 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/material-economy.json",
+  "title": "Versioned deterministic material pools",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "runeOrder",
+    "runeWeights",
+    "actRuneCaps",
+    "nonHellRuneCap",
+    "highRuneMinOrdinal",
+    "highRuneAllowedTiers",
+    "gemTypes",
+    "gemQualities",
+    "actGemCaps",
+    "nonHellGemCap",
+    "gemQualityWeights",
+    "profiles"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "runeOrder": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^runes/[a-z]+$"
+      },
+      "minItems": 33,
+      "maxItems": 33,
+      "uniqueItems": true
+    },
+    "runeWeights": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 9007199254740991
+      },
+      "minItems": 33,
+      "maxItems": 33
+    },
+    "actRuneCaps": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 33
+      },
+      "minItems": 5,
+      "maxItems": 5
+    },
+    "nonHellRuneCap": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 33
+    },
+    "highRuneMinOrdinal": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 33
+    },
+    "highRuneAllowedTiers": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "elite",
+          "rare-minion",
+          "champion",
+          "rare-elite",
+          "boss",
+          "chapter-boss"
+        ]
+      }
+    },
+    "gemTypes": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "amethyst",
+          "diamond",
+          "emerald",
+          "ruby",
+          "sapphire",
+          "skull",
+          "topaz"
+        ]
+      }
+    },
+    "gemQualities": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "chipped",
+          "flawed",
+          "normal",
+          "flawless",
+          "perfect"
+        ]
+      }
+    },
+    "actGemCaps": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 4
+      },
+      "minItems": 5,
+      "maxItems": 5
+    },
+    "nonHellGemCap": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4
+    },
+    "gemQualityWeights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "trash",
+        "elite",
+        "rare-minion",
+        "champion",
+        "rare-elite",
+        "boss",
+        "chapter-boss"
+      ],
+      "properties": {
+        "trash": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "minItems": 5,
+          "maxItems": 5
+        },
+        "elite": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "minItems": 5,
+          "maxItems": 5
+        },
+        "rare-minion": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "minItems": 5,
+          "maxItems": 5
+        },
+        "champion": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "minItems": 5,
+          "maxItems": 5
+        },
+        "rare-elite": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "minItems": 5,
+          "maxItems": 5
+        },
+        "boss": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "minItems": 5,
+          "maxItems": 5
+        },
+        "chapter-boss": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "minItems": 5,
+          "maxItems": 5
+        }
+      }
+    },
+    "profiles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "act1-normal",
+        "act1-nightmare",
+        "act1-hell",
+        "act2-normal",
+        "act2-nightmare",
+        "act2-hell",
+        "act3-normal",
+        "act3-nightmare",
+        "act3-hell",
+        "act4-normal",
+        "act4-nightmare",
+        "act4-hell",
+        "act5-normal",
+        "act5-nightmare",
+        "act5-hell"
+      ],
+      "properties": {
+        "act1-normal": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "act",
+            "difficulty"
+          ],
+          "properties": {
+            "act": {
+              "const": 1
+            },
+            "difficulty": {
+              "const": "normal"
+            }
+          }
+        },
+        "act1-nightmare": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "act",
+            "difficulty"
+          ],
+          "properties": {
+            "act": {
+              "const": 1
+            },
+            "difficulty": {
+              "const": "nightmare"
+            }
+          }
+        },
+        "act1-hell": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "act",
+            "difficulty"
+          ],
+          "properties": {
+            "act": {
+              "const": 1
+            },
+            "difficulty": {
+              "const": "hell"
+            }
+          }
+        },
+        "act2-normal": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "act",
+            "difficulty"
+          ],
+          "properties": {
+            "act": {
+              "const": 2
+            },
+            "difficulty": {
+              "const": "normal"
+            }
+          }
+        },
+        "act2-nightmare": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "act",
+            "difficulty"
+          ],
+          "properties": {
+            "act": {
+              "const": 2
+            },
+            "difficulty": {
+              "const": "nightmare"
+            }
+          }
+        },
+        "act2-hell": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "act",
+            "difficulty"
+          ],
+          "properties": {
+            "act": {
+              "const": 2
+            },
+            "difficulty": {
+              "const": "hell"
+            }
+          }
+        },
+        "act3-normal": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "act",
+            "difficulty"
+          ],
+          "properties": {
+            "act": {
+              "const": 3
+            },
+            "difficulty": {
+              "const": "normal"
+            }
+          }
+        },
+        "act3-nightmare": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "act",
+            "difficulty"
+          ],
+          "properties": {
+            "act": {
+              "const": 3
+            },
+            "difficulty": {
+              "const": "nightmare"
+            }
+          }
+        },
+        "act3-hell": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "act",
+            "difficulty"
+          ],
+          "properties": {
+            "act": {
+              "const": 3
+            },
+            "difficulty": {
+              "const": "hell"
+            }
+          }
+        },
+        "act4-normal": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "act",
+            "difficulty"
+          ],
+          "properties": {
+            "act": {
+              "const": 4
+            },
+            "difficulty": {
+              "const": "normal"
+            }
+          }
+        },
+        "act4-nightmare": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "act",
+            "difficulty"
+          ],
+          "properties": {
+            "act": {
+              "const": 4
+            },
+            "difficulty": {
+              "const": "nightmare"
+            }
+          }
+        },
+        "act4-hell": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "act",
+            "difficulty"
+          ],
+          "properties": {
+            "act": {
+              "const": 4
+            },
+            "difficulty": {
+              "const": "hell"
+            }
+          }
+        },
+        "act5-normal": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "act",
+            "difficulty"
+          ],
+          "properties": {
+            "act": {
+              "const": 5
+            },
+            "difficulty": {
+              "const": "normal"
+            }
+          }
+        },
+        "act5-nightmare": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "act",
+            "difficulty"
+          ],
+          "properties": {
+            "act": {
+              "const": 5
+            },
+            "difficulty": {
+              "const": "nightmare"
+            }
+          }
+        },
+        "act5-hell": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "act",
+            "difficulty"
+          ],
+          "properties": {
+            "act": {
+              "const": 5
+            },
+            "difficulty": {
+              "const": "hell"
+            }
+          }
+        }
+      }
+    }
+  }
+}

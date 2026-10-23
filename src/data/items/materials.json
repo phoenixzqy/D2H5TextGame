@@ -1,0 +1,347 @@
+[
+  {
+    "id": "runes/el",
+    "kind": "rune",
+    "nameKey": "items.rune.el"
+  },
+  {
+    "id": "runes/eld",
+    "kind": "rune",
+    "nameKey": "items.rune.eld"
+  },
+  {
+    "id": "runes/tir",
+    "kind": "rune",
+    "nameKey": "items.rune.tir"
+  },
+  {
+    "id": "runes/nef",
+    "kind": "rune",
+    "nameKey": "items.rune.nef"
+  },
+  {
+    "id": "runes/eth",
+    "kind": "rune",
+    "nameKey": "items.rune.eth"
+  },
+  {
+    "id": "runes/ith",
+    "kind": "rune",
+    "nameKey": "items.rune.ith"
+  },
+  {
+    "id": "runes/tal",
+    "kind": "rune",
+    "nameKey": "items.rune.tal"
+  },
+  {
+    "id": "runes/ral",
+    "kind": "rune",
+    "nameKey": "items.rune.ral"
+  },
+  {
+    "id": "runes/ort",
+    "kind": "rune",
+    "nameKey": "items.rune.ort"
+  },
+  {
+    "id": "runes/thul",
+    "kind": "rune",
+    "nameKey": "items.rune.thul"
+  },
+  {
+    "id": "runes/amn",
+    "kind": "rune",
+    "nameKey": "items.rune.amn"
+  },
+  {
+    "id": "runes/sol",
+    "kind": "rune",
+    "nameKey": "items.rune.sol"
+  },
+  {
+    "id": "runes/shael",
+    "kind": "rune",
+    "nameKey": "items.rune.shael"
+  },
+  {
+    "id": "runes/dol",
+    "kind": "rune",
+    "nameKey": "items.rune.dol"
+  },
+  {
+    "id": "runes/hel",
+    "kind": "rune",
+    "nameKey": "items.rune.hel"
+  },
+  {
+    "id": "runes/io",
+    "kind": "rune",
+    "nameKey": "items.rune.io"
+  },
+  {
+    "id": "runes/lum",
+    "kind": "rune",
+    "nameKey": "items.rune.lum"
+  },
+  {
+    "id": "runes/ko",
+    "kind": "rune",
+    "nameKey": "items.rune.ko"
+  },
+  {
+    "id": "runes/fal",
+    "kind": "rune",
+    "nameKey": "items.rune.fal"
+  },
+  {
+    "id": "runes/lem",
+    "kind": "rune",
+    "nameKey": "items.rune.lem"
+  },
+  {
+    "id": "runes/pul",
+    "kind": "rune",
+    "nameKey": "items.rune.pul"
+  },
+  {
+    "id": "runes/um",
+    "kind": "rune",
+    "nameKey": "items.rune.um"
+  },
+  {
+    "id": "runes/mal",
+    "kind": "rune",
+    "nameKey": "items.rune.mal"
+  },
+  {
+    "id": "runes/ist",
+    "kind": "rune",
+    "nameKey": "items.rune.ist"
+  },
+  {
+    "id": "runes/gul",
+    "kind": "rune",
+    "nameKey": "items.rune.gul"
+  },
+  {
+    "id": "runes/vex",
+    "kind": "rune",
+    "nameKey": "items.rune.vex"
+  },
+  {
+    "id": "runes/ohm",
+    "kind": "rune",
+    "nameKey": "items.rune.ohm"
+  },
+  {
+    "id": "runes/lo",
+    "kind": "rune",
+    "nameKey": "items.rune.lo"
+  },
+  {
+    "id": "runes/sur",
+    "kind": "rune",
+    "nameKey": "items.rune.sur"
+  },
+  {
+    "id": "runes/ber",
+    "kind": "rune",
+    "nameKey": "items.rune.ber"
+  },
+  {
+    "id": "runes/jah",
+    "kind": "rune",
+    "nameKey": "items.rune.jah"
+  },
+  {
+    "id": "runes/cham",
+    "kind": "rune",
+    "nameKey": "items.rune.cham"
+  },
+  {
+    "id": "runes/zod",
+    "kind": "rune",
+    "nameKey": "items.rune.zod"
+  },
+  {
+    "id": "gems/amethyst/chipped",
+    "kind": "gem",
+    "nameKey": "items.gem.amethyst.chipped"
+  },
+  {
+    "id": "gems/amethyst/flawed",
+    "kind": "gem",
+    "nameKey": "items.gem.amethyst.flawed"
+  },
+  {
+    "id": "gems/amethyst/normal",
+    "kind": "gem",
+    "nameKey": "items.gem.amethyst.normal"
+  },
+  {
+    "id": "gems/amethyst/flawless",
+    "kind": "gem",
+    "nameKey": "items.gem.amethyst.flawless"
+  },
+  {
+    "id": "gems/amethyst/perfect",
+    "kind": "gem",
+    "nameKey": "items.gem.amethyst.perfect"
+  },
+  {
+    "id": "gems/diamond/chipped",
+    "kind": "gem",
+    "nameKey": "items.gem.diamond.chipped"
+  },
+  {
+    "id": "gems/diamond/flawed",
+    "kind": "gem",
+    "nameKey": "items.gem.diamond.flawed"
+  },
+  {
+    "id": "gems/diamond/normal",
+    "kind": "gem",
+    "nameKey": "items.gem.diamond.normal"
+  },
+  {
+    "id": "gems/diamond/flawless",
+    "kind": "gem",
+    "nameKey": "items.gem.diamond.flawless"
+  },
+  {
+    "id": "gems/diamond/perfect",
+    "kind": "gem",
+    "nameKey": "items.gem.diamond.perfect"
+  },
+  {
+    "id": "gems/emerald/chipped",
+    "kind": "gem",
+    "nameKey": "items.gem.emerald.chipped"
+  },
+  {
+    "id": "gems/emerald/flawed",
+    "kind": "gem",
+    "nameKey": "items.gem.emerald.flawed"
+  },
+  {
+    "id": "gems/emerald/normal",
+    "kind": "gem",
+    "nameKey": "items.gem.emerald.normal"
+  },
+  {
+    "id": "gems/emerald/flawless",
+    "kind": "gem",
+    "nameKey": "items.gem.emerald.flawless"
+  },
+  {
+    "id": "gems/emerald/perfect",
+    "kind": "gem",
+    "nameKey": "items.gem.emerald.perfect"
+  },
+  {
+    "id": "gems/ruby/chipped",
+    "kind": "gem",
+    "nameKey": "items.gem.ruby.chipped"
+  },
+  {
+    "id": "gems/ruby/flawed",
+    "kind": "gem",
+    "nameKey": "items.gem.ruby.flawed"
+  },
+  {
+    "id": "gems/ruby/normal",
+    "kind": "gem",
+    "nameKey": "items.gem.ruby.normal"
+  },
+  {
+    "id": "gems/ruby/flawless",
+    "kind": "gem",
+    "nameKey": "items.gem.ruby.flawless"
+  },
+  {
+    "id": "gems/ruby/perfect",
+    "kind": "gem",
+    "nameKey": "items.gem.ruby.perfect"
+  },
+  {
+    "id": "gems/sapphire/chipped",
+    "kind": "gem",
+    "nameKey": "items.gem.sapphire.chipped"
+  },
+  {
+    "id": "gems/sapphire/flawed",
+    "kind": "gem",
+    "nameKey": "items.gem.sapphire.flawed"
+  },
+  {
+    "id": "gems/sapphire/normal",
+    "kind": "gem",
+    "nameKey": "items.gem.sapphire.normal"
+  },
+  {
+    "id": "gems/sapphire/flawless",
+    "kind": "gem",
+    "nameKey": "items.gem.sapphire.flawless"
+  },
+  {
+    "id": "gems/sapphire/perfect",
+    "kind": "gem",
+    "nameKey": "items.gem.sapphire.perfect"
+  },
+  {
+    "id": "gems/skull/chipped",
+    "kind": "gem",
+    "nameKey": "items.gem.skull.chipped"
+  },
+  {
+    "id": "gems/skull/flawed",
+    "kind": "gem",
+    "nameKey": "items.gem.skull.flawed"
+  },
+  {
+    "id": "gems/skull/normal",
+    "kind": "gem",
+    "nameKey": "items.gem.skull.normal"
+  },
+  {
+    "id": "gems/skull/flawless",
+    "kind": "gem",
+    "nameKey": "items.gem.skull.flawless"
+  },
+  {
+    "id": "gems/skull/perfect",
+    "kind": "gem",
+    "nameKey": "items.gem.skull.perfect"
+  },
+  {
+    "id": "gems/topaz/chipped",
+    "kind": "gem",
+    "nameKey": "items.gem.topaz.chipped"
+  },
+  {
+    "id": "gems/topaz/flawed",
+    "kind": "gem",
+    "nameKey": "items.gem.topaz.flawed"
+  },
+  {
+    "id": "gems/topaz/normal",
+    "kind": "gem",
+    "nameKey": "items.gem.topaz.normal"
+  },
+  {
+    "id": "gems/topaz/flawless",
+    "kind": "gem",
+    "nameKey": "items.gem.topaz.flawless"
+  },
+  {
+    "id": "gems/topaz/perfect",
+    "kind": "gem",
+    "nameKey": "items.gem.topaz.perfect"
+  },
+  {
+    "id": "materials/scrap",
+    "kind": "scrap",
+    "nameKey": "items.material.scrap"
+  }
+]

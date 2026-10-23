@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://d2h5.game/schemas/materials.json",
+  "title": "Closed material definitions",
+  "type": "array",
+  "minItems": 69,
+  "maxItems": 69,
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "id",
+      "kind",
+      "nameKey"
+    ],
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^(runes/[a-z]+|gems/(amethyst|diamond|emerald|ruby|sapphire|skull|topaz)/(chipped|flawed|normal|flawless|perfect)|materials/scrap)$"
+      },
+      "kind": {
+        "enum": [
+          "rune",
+          "gem",
+          "scrap"
+        ]
+      },
+      "nameKey": {
+        "type": "string",
+        "pattern": "^items\\.[a-z0-9.]+$"
+      }
+    }
+  }
+}
