@@ -7,10 +7,11 @@ import { loadQuests } from '@/data/loaders/quests';
 import { loadItemBases } from '@/data/loaders/loot';
 import type { Item } from '@/engine/types/items';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
+import { EquipPicker } from '@/features/inventory/EquipPicker';
 import { QuestItemsPanel } from '@/features/inventory/QuestItemsPanel';
 import { LegacyGearQuarantinePanel } from '@/features/inventory/LegacyGearQuarantinePanel';
 import { QuestsScreen } from '@/features/quests/QuestsScreen';
-import { claimQuestReward } from '@/features/quests/claimReward';
+import { claimQuestReward, readQuestItem } from '@/features/quests/claimReward';
 import { TownScreen } from '@/features/town/TownScreen';
 import { QuestServicePanel } from '@/features/town/QuestServicePanel';
 import { useCombatStore, useInventoryStore, useMapStore, useMercStore, usePlayerStore } from '@/stores';
@@ -198,6 +199,20 @@ describe.each(['en', 'zh-CN'])('Act V actual-core player controls %s', locale =>
     fireEvent.click(screen.getByTestId('quest-title-none'));
     expect(useMapStore.getState().selectedTitle).toBeNull();
     expect(screen.getByTestId('replay-profile-controls').textContent).not.toMatch(/replay\.|undefined/);
+  });
+
+  it('keeps permanent rescue and scroll resistance in equipment candidate previews', () => {
+    campaignFixture();
+    expect(readQuestItem(SCROLL)).toBe('ok');
+    useInventoryStore.setState({ backpack: [gear('comparison-target')] });
+    mount(<EquipPicker slot="weapon" onClose={() => undefined} />);
+    const table = screen.getByTestId('stat-compare-table');
+    for (const channel of ['fire', 'cold', 'lightning', 'poison', 'arcane', 'physical']) {
+      const label = i18n.t(`equipFlow.compare.resist.${channel}`, { ns: 'inventory' });
+      const row = within(table).getAllByRole('row').find(row => within(row).queryByRole('rowheader', { name: label }));
+      expect(row).toBeDefined();
+      expect(row && within(row).getAllByRole('cell').at(-1)).toHaveTextContent('15%');
+    }
   });
 
   it('keeps preserved duplicate legacy instances inspectable with distinct origins and no ownership actions', () => {
