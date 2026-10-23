@@ -171,7 +171,7 @@ export function ItemDetailPanel({
           type="button"
           onClick={onClose}
           aria-label={t('close')}
-          className="shrink-0 -mr-1 -mt-1 px-2 py-1 text-d2-white/60 hover:text-d2-gold focus:outline-none focus:ring-2 focus:ring-d2-gold rounded"
+          className="shrink-0 min-h-[44px] min-w-[44px] -mr-1 -mt-1 px-2 py-1 text-d2-white/60 hover:text-d2-gold focus:outline-none focus:ring-2 focus:ring-d2-gold rounded"
           data-testid="inv-detail-close"
         >
           ×

@@ -14,7 +14,7 @@ export default defineConfig({
   outputDir: process.env.ACT5_DELIVERY_OUTPUT,
   reporter: [['line'], ['json', { outputFile: `${process.env.ACT5_DELIVERY_OUTPUT}/report.json` }]],
   workers: 2,
-  timeout: 300_000,
+  timeout: 600_000,
   use: { ...production.use, baseURL: `http://127.0.0.1:${String(port)}`,
     contextOptions: { reducedMotion: 'reduce' } },
   webServer: {

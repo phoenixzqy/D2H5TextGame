@@ -10723,3 +10723,23 @@ removed; cache absent; cleanup remaining[]/failures[]. Root retains logs and
 receipts at `/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-a3-stages-1413g41j`
 through A3/umbrella integration and removes them after consumers finish. C0/C1
 remain narrowly accepted; C2 underway; C3/C4 and full G0–G7 remain open. Local only.
+
+
+## Act V — Prison and one-use item services, bilingual mobile
+
+[Bounded evidence](evidence/act5-prison-services.md) records2/2 production
+browser passes at360×640 with explicit constructed-power ancestry. Actual
+Prison ordering, no early-kill backfill, potion/scroll consumption, exact
+six-resistance Read, real-drop socket/personalization and consumed-service
+Save/Continue pass. Independent QA returns ADEQUATE. The explicit inventory
+Close target reproduces27.734375px before the shared44px correction and
+passes ordinary dismissal afterward. Incorrect browser control assumptions
+are corrected without weakening product ARIA or navigation behavior.
+
+Full unit10070/352files PASS, typecheck/full lint/purity/scoped PWA lint/build
+and four-chunk bridge scan PASS. The unit-time budget remains exceeded.
+The actual native final service export and compact target/hash summary are
+committed as continuation evidence. Other viewport projects and the finale
+are separately running; neither is accepted here. C0/C1 accepted; C2 underway;
+C3/C4/fullG0–G7 open. Local only. Exact diagnostics and active dist-close remain
+root-owned at`/tmp/d2h5-a5-integration-650ka_is` through their consumers.

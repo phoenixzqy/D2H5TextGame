@@ -1,0 +1,175 @@
+{
+  "scope": "constructed-power functional browser proof; never earned campaign/balance proof",
+  "reportSHA256": "79ae7a6b69b3d748405b2c7560fc0c5c40c93af28554b63e9f7bd7e86a60a50e",
+  "stats": {
+    "startTime": "2026-10-23T11:49:10.233Z",
+    "duration": 312334.106,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "errors": [],
+  "specAndConfig": {
+    "tests/pwa/act5-delivery.spec.ts": "1922a1f5ed7a2e774ae9a361e935c1d77d5eec12b729590a803e8d2b7fef03bf",
+    "tests/pwa/act5-delivery.config.ts": "546e35925d656d32b67061e3b1b0b3b8e9bab09e8abe8dfe9a53f6e213a7f3f9",
+    "src/features/inventory/ItemDetailPanel.tsx": "4f42eeb7cb5840a9d67b4089690a535a1c65b3d8f6be030b761cf63c40cf6de3"
+  },
+  "sourceFiles": 741,
+  "buildFiles": 760,
+  "originalAct4ExportSHA256": "08d2531df6df82f1c305b02136515b5bd8e97d368af14f9cd6e8b962f076eb79",
+  "validation": {
+    "unit": {
+      "tests": 10070,
+      "files": 352,
+      "durationSeconds": 256.82,
+      "exitCode": 0
+    },
+    "typecheck": "PASS",
+    "fullLint": "PASS",
+    "scopedPwaLint": "PASS",
+    "productionBuild": "PASS",
+    "productionBridgeScanChunks": 4
+  },
+  "independentQA": "ADEQUATE",
+  "results": [
+    {
+      "locale": "en",
+      "project": "mobile-small",
+      "status": "passed",
+      "retry": 0,
+      "nativeExportSHA256": "977f1f09a2a737f9f54c8ccba76e147954e5839517762db6e212f24356f03746",
+      "nativeExportBytes": 391243,
+      "serviceTargets": {
+        "socket": {
+          "id": "it-9gmur-ce",
+          "baseId": "items/base/armor-dusk-shroud",
+          "rarity": "normal",
+          "level": 58,
+          "ilvl": 58,
+          "baseRolls": {
+            "defense": 141
+          },
+          "affixes": [],
+          "generatedName": {},
+          "identified": true,
+          "equipped": false,
+          "socketCapacity": 0
+        },
+        "personalization": {
+          "id": "it-9miwn-cq",
+          "baseId": "items/base/wp1h-phase-blade",
+          "rarity": "normal",
+          "level": 58,
+          "ilvl": 58,
+          "baseRolls": {
+            "attack": 36
+          },
+          "affixes": [],
+          "generatedName": {},
+          "identified": true,
+          "equipped": false,
+          "socketCapacity": 0
+        },
+        "absentFromConstructedPreparation": true,
+        "firstObserved": [
+          {
+            "id": "it-9gmur-ce",
+            "export": "post-shenk-before-claim"
+          },
+          {
+            "id": "it-9miwn-cq",
+            "export": "post-shenk-before-claim"
+          }
+        ],
+        "matcherRecipe": "runewords/spirit",
+        "scope": "capacity/matcher eligibility only; no live rune insertion or crafting proof"
+      },
+      "finalQuestServices": {
+        "quests/act5-siege-on-harrogath#reward:service": {
+          "serviceId": "socket_item",
+          "state": "consumed",
+          "targetItemId": "it-9gmur-ce"
+        },
+        "quests/act5-prison-of-ice#reward:service": {
+          "serviceId": "personalize_item",
+          "state": "consumed",
+          "targetItemId": "it-9miwn-cq"
+        }
+      }
+    },
+    {
+      "locale": "zh-CN",
+      "project": "mobile-small",
+      "status": "passed",
+      "retry": 0,
+      "nativeExportSHA256": "e57e816f7e28d0784dd1730b47979aa670142e9c267e38e89e0132452ce8046e",
+      "nativeExportBytes": 411055,
+      "serviceTargets": {
+        "socket": {
+          "id": "it-2f4so-cn",
+          "baseId": "items/base/armor-dusk-shroud",
+          "rarity": "normal",
+          "level": 58,
+          "ilvl": 58,
+          "baseRolls": {
+            "defense": 124
+          },
+          "affixes": [],
+          "generatedName": {},
+          "identified": true,
+          "equipped": false,
+          "socketCapacity": 0
+        },
+        "personalization": {
+          "id": "it-8lx3h-ct",
+          "baseId": "items/base/boot-demonhide",
+          "rarity": "normal",
+          "level": 58,
+          "ilvl": 58,
+          "baseRolls": {
+            "defense": 37
+          },
+          "affixes": [],
+          "generatedName": {},
+          "identified": true,
+          "equipped": false,
+          "socketCapacity": 0
+        },
+        "absentFromConstructedPreparation": true,
+        "firstObserved": [
+          {
+            "id": "it-2f4so-cn",
+            "export": "post-shenk-before-claim"
+          },
+          {
+            "id": "it-8lx3h-ct",
+            "export": "post-shenk-before-claim"
+          }
+        ],
+        "matcherRecipe": "runewords/spirit",
+        "scope": "capacity/matcher eligibility only; no live rune insertion or crafting proof"
+      },
+      "finalQuestServices": {
+        "quests/act5-siege-on-harrogath#reward:service": {
+          "serviceId": "socket_item",
+          "state": "consumed",
+          "targetItemId": "it-2f4so-cn"
+        },
+        "quests/act5-prison-of-ice#reward:service": {
+          "serviceId": "personalize_item",
+          "state": "consumed",
+          "targetItemId": "it-8lx3h-ct"
+        }
+      }
+    }
+  ],
+  "retainedDiagnostics": "/tmp/d2h5-a5-integration-650ka_is",
+  "cleanupOwner": "root after Act V/umbrella consumers finish",
+  "open": [
+    "remaining four viewport projects currently running",
+    "Rite/Eve/title/Nightmare separate scenario running",
+    "fresh earned campaign/C2",
+    "C3/C4/full G0-G7"
+  ]
+}

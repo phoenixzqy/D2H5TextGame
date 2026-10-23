@@ -11,6 +11,8 @@ import { createCharacter, navTo } from '../e2e/_helpers';
 
 const SIEGE = 'quests/act5-siege-on-harrogath', RESCUE = 'quests/act5-rescue-on-mount-arreat';
 const PRISON = 'quests/act5-prison-of-ice', RITE = 'quests/act5-rite-of-passage', EVE = 'quests/act5-eve-of-destruction';
+const POTION = `${PRISON}#action:receive-potion`, SCROLL = `${PRISON}#reward:questItem`;
+const CHANNELS = ['physical', 'fire', 'cold', 'lightning', 'arcane', 'poison'] as const;
 type Locale = 'en' | 'zh-CN';
 const copy = (locale: Locale) => locale === 'en'
   ? { importSave: 'Import Save', save: 'Save', saved: 'Saved', enter: 'Enter' }
@@ -82,6 +84,9 @@ async function victory(page: Page, area: string, locale: Locale, info: TestInfo,
     }
     return 'playing';
   }, { timeout: 60000, intervals: [100, 200, 500] }).toBe('terminal');
+  const terminal = page.locator('[data-testid="victory-panel"], [data-testid="defeat-panel"]');
+  await terminal.getByRole('heading').scrollIntoViewIfNeeded();
+  await expect(terminal.getByRole('heading')).toBeInViewport();
   await layout(page); await info.attach(`${stage}-terminal`, { body: await page.screenshot(), contentType: 'image/png' });
   const nonwin = page.getByTestId('defeat-panel');
   if (await nonwin.isVisible()) throw new Error(`${stage}: ${await nonwin.getByRole('heading').innerText()}`);
@@ -105,7 +110,7 @@ function exactClaim(before: SaveCurrent, after: SaveCurrent, xp: number, points 
 }
 
 for (const locale of ['en', 'zh-CN'] as const) {
-  test(`constructed A4 migration and actual Siege Rescue rewards ${locale}`, async ({ page: initial, context }, info) => {
+  test(`constructed A4 migration and actual Siege Rescue Prison services ${locale}`, async ({ page: initial, context }, info) => {
     let page = initial; const errors: string[] = [];
     const observe = (target: Page): void => {
       target.on('pageerror', error => errors.push(error.message));
@@ -169,11 +174,13 @@ for (const locale of ['en', 'zh-CN'] as const) {
       for (const n of [1, 2, 3]) await expect(page.getByTestId(`quest-action-actions/act5-release-barbarian-cage-${String(n)}`)).toBeDisabled();
       await victory(page, 'a5-bloody-foothills', locale, info, 'shenk');
       const siege = await backup(page); expect(siege.map.questReceipts[`${SIEGE}#action:shenk-victory`]).toBe(true);
+      await attach(info, 'post-shenk-before-claim', siege);
       await navTo(page, 'quests'); const claimSiege = page.getByTestId(`quest-claim-${SIEGE}`);
       await usable(claimSiege); await claimSiege.click(); await expect(claimSiege).toBeDisabled();
       const siegePaid = await backup(page); exactClaim(siege, siegePaid, 10000);
       expect(siegePaid.inventory.questServices[`${SIEGE}#reward:service`]).toEqual({ serviceId: 'socket_item', state: 'available' });
       await victory(page, 'a5-frigid-highlands', locale, info, 'frigid'); const frigid = await backup(page);
+      await attach(info, 'post-frigid-before-rescue', frigid);
       await inspect(page, 'a5-frigid-highlands');
       for (const n of [3, 1, 2]) {
         const cage = page.getByTestId(`quest-action-actions/act5-release-barbarian-cage-${String(n)}`);
@@ -183,10 +190,158 @@ for (const locale of ['en', 'zh-CN'] as const) {
       expect(freed.map.questProgress[RESCUE]?.status).toBe('completed');
       await navTo(page, 'quests'); await page.getByTestId(`quest-claim-${RESCUE}`).click();
       const rescuePaid = await backup(page); exactClaim(freed, rescuePaid, 8000, 1);
-      for (const channel of ['physical', 'fire', 'cold', 'lightning', 'arcane', 'poison'] as const) {
+      for (const channel of CHANNELS) {
         expect(rescuePaid.player.derivedStats.resistances[channel]).toBe(freed.player.derivedStats.resistances[channel] + 5);
       }
       page = await continued(page, context, locale, info, 'siege-rescue-claimed-continued', observe);
+      // Inspect is available before a clear. The potion is a real source-bound town item.
+      await inspect(page, 'a5-crystalline-passage');
+      const thawId = 'quest-action-actions/act5-thaw-anya';
+      await expect(page.getByTestId(thawId)).toBeDisabled();
+      const inspectAnya = page.getByTestId('quest-action-actions/act5-inspect-anya');
+      await usable(inspectAnya); await inspectAnya.click(); await expect(inspectAnya).toBeDisabled();
+      const inspected = await backup(page);
+      expect(inspected.map.clearedSubAreas).not.toContain('areas/act5-crystalline-passage');
+      expect(inspected.player).toEqual(rescuePaid.player);
+      await navTo(page, 'town'); await page.getByTestId('town-npc-malah').click();
+      const potionButton = page.getByTestId('quest-action-actions/act5-receive-malah-potion');
+      await usable(potionButton); await potionButton.focus(); await potionButton.press('Enter'); await expect(potionButton).toBeDisabled();
+      const potionOwned = await backup(page);
+      expect(potionOwned.player).toEqual(inspected.player); expect(potionOwned.mercs).toEqual(inspected.mercs);
+      expect(potionOwned.inventory).toEqual({ ...inspected.inventory,
+        questItems: { ...inspected.inventory.questItems, [POTION]: { itemId: 'quest/malahs_potion', state: 'owned' } } });
+      page = await continued(page, context, locale, info, 'potion-owned-continued', observe);
+      // An early actual kill gives ordinary income, but cannot backfill post-thaw quest proof.
+      await victory(page, 'a5-crystalline-passage', locale, info, 'nihlathak-before-thaw');
+      const early = await backup(page);
+      expect(early.map.clearedSubAreas).toContain('areas/act5-crystalline-passage');
+      expect(early.map.questReceipts[`${PRISON}#action:nihlathak-victory`]).toBeUndefined();
+      expect(early.map.questProgress[PRISON]?.objectives['obj-kill-nihlathak']).toBe(false);
+      await inspect(page, 'a5-crystalline-passage'); const thaw = page.getByTestId(thawId);
+      await usable(thaw); await thaw.click(); await expect(thaw).toBeDisabled();
+      const thawed = await backup(page);
+      expect(thawed.player).toEqual(early.player); expect(thawed.mercs).toEqual(early.mercs);
+      expect(thawed.inventory).toEqual({ ...early.inventory,
+        questItems: { ...early.inventory.questItems, [POTION]: { itemId: 'quest/malahs_potion', state: 'consumed' } } });
+      expect(thawed.map.questReceipts[`${PRISON}#action:nihlathak-victory`]).toBeUndefined();
+      expect(thawed.map.questProgress[PRISON]?.status).toBe('inProgress');
+      expect(thawed.map.questProgress[PRISON]?.objectives['obj-kill-nihlathak']).toBe(false);
+      page = await continued(page, context, locale, info, 'thawed-without-backfill-continued', observe);
+      await navTo(page, 'quests');
+      await expect(page.getByTestId(`quest-progress-${PRISON}`)).toBeVisible();
+      await expect(page.getByTestId(`quest-claim-${PRISON}`)).toHaveCount(0);
+      await victory(page, 'a5-crystalline-passage', locale, info, 'nihlathak-after-thaw');
+      const prison = await backup(page);
+      expect(prison.map.questReceipts[`${PRISON}#action:nihlathak-victory`]).toBe(true);
+      expect(prison.map.questProgress[PRISON]?.objectives['obj-kill-nihlathak']).toBe(true);
+      await navTo(page, 'quests'); const claimPrison = page.getByTestId(`quest-claim-${PRISON}`);
+      await usable(claimPrison); await claimPrison.click(); await expect(claimPrison).toBeDisabled();
+      const prisonPaid = await backup(page); exactClaim(prison, prisonPaid, 12000);
+      expect(prisonPaid.player.derivedStats.resistances).toEqual(prison.player.derivedStats.resistances);
+      expect(prisonPaid.inventory.questItems).toEqual({ ...prison.inventory.questItems,
+        [SCROLL]: { itemId: 'items/scroll_of_resist', state: 'owned' } });
+      expect(prisonPaid.inventory.questServices).toEqual({ ...prison.inventory.questServices,
+        [`${PRISON}#reward:service`]: { serviceId: 'personalize_item', state: 'available' } });
+      page = await continued(page, context, locale, info, 'prison-unread-scroll-continued', observe);
+      await navTo(page, 'inventory'); const readId = 'quest-item-read-items/scroll_of_resist';
+      const read = page.getByTestId(readId); await usable(read); await read.focus(); await read.press('Enter');
+      await expect(read).toHaveAttribute('aria-disabled', 'true');
+      const readSave = await backup(page);
+      expect(heroXp(readSave)).toBe(heroXp(prisonPaid)); expect(readSave.mercs).toEqual(prisonPaid.mercs);
+      expect(readSave.player.skillPoints).toBe(prisonPaid.player.skillPoints);
+      expect(readSave.player.statPoints).toBe(prisonPaid.player.statPoints);
+      for (const channel of CHANNELS) expect(readSave.player.derivedStats.resistances[channel])
+        .toBe(prisonPaid.player.derivedStats.resistances[channel] + 10);
+      expect(readSave.player).toEqual({ ...prisonPaid.player, derivedStats: { ...prisonPaid.player.derivedStats,
+        resistances: Object.fromEntries(CHANNELS.map(channel => [channel, prisonPaid.player.derivedStats.resistances[channel] + 10])) } });
+      expect(readSave.inventory).toEqual({ ...prisonPaid.inventory, questItems: { ...prisonPaid.inventory.questItems,
+        [SCROLL]: { itemId: 'items/scroll_of_resist', state: 'consumed' } } });
+      expect(readSave.map.questReceipts[`${PRISON}#action:read-resistance-scroll`]).toBe(true);
+      expect(readSave.map).toEqual({ ...prisonPaid.map,
+        questReceipts: { ...prisonPaid.map.questReceipts, [`${PRISON}#action:read-resistance-scroll`]: true } });
+      page = await continued(page, context, locale, info, 'prison-read-scroll-continued', observe);
+      await navTo(page, 'inventory'); await expect(page.getByTestId(readId)).toHaveAttribute('aria-disabled', 'true');
+      await page.getByTestId(readId).focus(); await page.getByTestId(readId).press('Enter');
+      const repeated = await backup(page);
+      for (const key of ['player', 'inventory', 'map', 'mercs', 'formation'] as const) expect(repeated[key]).toEqual(readSave[key]);
+      // Use actual new zero-capacity drops; never manufacture a service target or insert runes.
+      const loot = await oracle.ssrLoadModule('/src/data/loaders/loot.ts') as typeof import('../../src/data/loaders/loot');
+      const definitions = await oracle.ssrLoadModule('/src/data/index.ts') as typeof import('../../src/data');
+      const sockets = await oracle.ssrLoadModule('/src/engine/items/socket-capacity.ts') as typeof import('../../src/engine/items/socket-capacity');
+      const matcher = await oracle.ssrLoadModule('/src/engine/loot/runeword.ts') as typeof import('../../src/engine/loot/runeword');
+      const recipes = definitions.runewords.map(matcher.recipeFromData), bases = loot.loadItemBases();
+      const preparationIds = new Set([...configured.inventory.backpack, ...configured.inventory.stash,
+        ...Object.values(configured.inventory.equipped).filter((item): item is Item => item !== null),
+        ...Object.values(configured.mercs.mercEquipment).flatMap(equipment =>
+          Object.values(equipment).filter((item): item is Item => item !== null))].map(item => item.id));
+      const drops = rescuePaid.inventory.backpack.filter(item => !preparationIds.has(item.id) && !item.equipped
+        && item.socketCapacity === 0 && !item.personalizedBy);
+      const socketTarget = drops.find(item => {
+        const base = bases.get(item.baseId);
+        return item.rarity === 'normal' && !!base && recipes.some(recipe =>
+          recipe.allowedBases.includes(base.type) && recipe.sockets === base.maxSockets);
+      });
+      if (!socketTarget) throw new Error('No actual new normal zero-capacity drop with authored runeword-compatible maximum');
+      const socketBase = bases.get(socketTarget.baseId);
+      if (!socketBase || typeof socketBase.maxSockets !== 'number') throw new Error('Missing selected actual socket base maximum');
+      const recipe = recipes.find(row => row.allowedBases.includes(socketBase.type) && row.sockets === socketBase.maxSockets);
+      if (!recipe) throw new Error('Missing authored recipe');
+      const personalTarget = drops.find(item => item.id !== socketTarget.id && ['normal', 'magic', 'rare', 'unique', 'set'].includes(item.rarity)
+        && ['weapon', 'armor'].includes(bases.get(item.baseId)?.type ?? ''));
+      if (!personalTarget) throw new Error('No distinct actual new zero-capacity personalization drop');
+      for (const target of [socketTarget, personalTarget]) {
+        expect(preparationIds.has(target.id)).toBe(false);
+        expect(frigid.inventory.backpack.find(item => item.id === target.id)).toEqual(target);
+      }
+      await info.attach('service-target-provenance', { body: JSON.stringify({
+        socket: socketTarget, personalization: personalTarget, absentFromConstructedPreparation: true,
+        firstObserved: [socketTarget, personalTarget].map(target => ({ id: target.id,
+          export: siege.inventory.backpack.some(item => item.id === target.id) ? 'post-shenk-before-claim' : 'post-frigid-before-rescue' })),
+        matcherRecipe: recipe.id, scope: 'capacity/matcher eligibility only; no live rune insertion or crafting proof' }), contentType: 'application/json' });
+      const service = async (source: string, npc: string, target: Item, expectedTarget: Item): Promise<void> => {
+        const before = await backup(page);
+        expect(before.inventory.backpack.find(item => item.id === target.id)).toEqual(target);
+        await navTo(page, 'town'); await page.getByTestId(npc).click();
+        const apply = page.getByTestId(`quest-service-use-${source}`); await expect(apply).toBeDisabled();
+        const choice = page.getByTestId(`quest-service-target-${source}`); await usable(choice);
+        await expect(choice).toHaveAccessibleName(/\S/); await choice.selectOption(target.id);
+        await expect(page.getByTestId(`quest-service-preview-${source}`)).toBeVisible();
+        await usable(apply); await expect(apply).toHaveAccessibleName(/\S/); await apply.focus(); await apply.press('Enter');
+        await expect(page.getByTestId(`quest-service-target-${source}`)).toHaveCount(0);
+        const after = await backup(page);
+        for (const key of ['player', 'map', 'mercs', 'formation'] as const) expect(after[key]).toEqual(before[key]);
+        expect(after.inventory).toEqual({ ...before.inventory,
+          backpack: before.inventory.backpack.map(item => item.id === target.id ? expectedTarget : item),
+          questServices: { ...before.inventory.questServices,
+            [source]: { ...before.inventory.questServices[source], state: 'consumed', targetItemId: target.id } } });
+        await navTo(page, 'inventory'); const card = page.getByTestId(`inv-item-${target.id}`);
+        await card.scrollIntoViewIfNeeded(); await card.click(); const detail = page.getByTestId('inv-detail-panel');
+        await detail.scrollIntoViewIfNeeded();
+        const field = page.getByTestId(source.startsWith(SIEGE) ? 'inv-detail-sockets' : 'inv-detail-personalization');
+        await field.scrollIntoViewIfNeeded(); await expect(field).toBeInViewport();
+        if (expectedTarget.personalizedBy) await expect(field).toContainText(expectedTarget.personalizedBy.name);
+        else await expect(field.locator('span')).toHaveCount(expectedTarget.socketCapacity ?? 0);
+        await layout(page); await info.attach(`${npc}-visible-detail`, { body: await page.screenshot(), contentType: 'image/png' });
+        const close = page.getByTestId('inv-detail-close'); await usable(close); await close.click();
+        await expect(page.getByTestId('inv-detail-panel')).toHaveCount(0);
+        await expect(page.getByTestId('inv-detail-sheet')).toHaveCount(0);
+        page = await continued(page, context, locale, info, `${npc}-consumed-continued`, observe);
+        await navTo(page, 'town'); await page.getByTestId(npc).click();
+        await expect(page.getByTestId(`quest-service-${source}`)).toBeVisible();
+        await expect(page.getByTestId(`quest-service-target-${source}`)).toHaveCount(0);
+        await expect(page.getByTestId(`quest-service-use-${source}`)).toHaveCount(0);
+      };
+      expect(matcher.matchRuneword({ baseType: socketBase.type, sockets: sockets.effectiveSocketCapacity(socketTarget, socketBase),
+        runes: recipe.runes, isWhiteBase: true }, recipes)).toBeUndefined();
+      await service(`${SIEGE}#reward:service`, 'town-npc-larzuk', socketTarget,
+        { ...socketTarget, socketCapacity: socketBase.maxSockets });
+      const socketed = await backup(page), actualSocketed = socketed.inventory.backpack.find(item => item.id === socketTarget.id);
+      if (!actualSocketed) throw new Error('Missing actual serviced drop');
+      expect(actualSocketed.runes).toEqual(socketTarget.runes);
+      expect(matcher.matchRuneword({ baseType: socketBase.type, sockets: sockets.effectiveSocketCapacity(actualSocketed, socketBase),
+        runes: recipe.runes, isWhiteBase: true }, recipes)).toBe(recipe.id);
+      await service(`${PRISON}#reward:service`, 'town-npc-anya', personalTarget,
+        { ...personalTarget, personalizedBy: { characterId: readSave.player.id, name: readSave.player.name } });
       await layout(page); expect(errors).toEqual([]);
     } finally { await oracle.close(); await rm(cacheDir, { recursive: true, force: true }); }
   });
