@@ -1,6 +1,6 @@
 # BUG-129 — Apply the nine approved runeword adaptations
 
-Severity: High. Status: Open; four active integrations remain.
+Severity: High. Status: Corrected and validated locally; earned acceptance remains open.
 Owners: content-designer, engine-dev, frontend-dev; root is the sole writer.
 
 Reproduction: local HEAD d5e6cdc; Node/Vitest pure-engine reproduction,
@@ -40,3 +40,23 @@ Infinity/Dream/Bramble have their approved runtime effects; Leaf/Phoenix remain
 partial until their actives execute. Hand of Justice/Blaze and Death/Chain
 Lightning are also open. See `docs/plans/evidence/d10-runeword-combat.md` for
 validation and constructed-browser limits; earned/full-v1 acceptance stays open.
+
+Active integration RED at2317d54: `item-redemption.test.ts` and
+`runeword-active-projection.test.ts` reproduce7failures/7passing controls.
+The heal schema rejects the approved percentage form, authored item row and
+registration are missing, and all four hero/merc factories lack authoritative
+active-rank projection. Corrected real-base fixtures retain the same failures.
+Evidence: root-owned `d2h5-runeword-actives-33rokgzu/active-red-corrected.log`.
+
+Active slice implemented and validated locally: Leaf/FireBolt3, Hand of
+Justice/Blaze5, Death/ChainLightning5 and separate authored Phoenix/Redemption1
+now execute through hero/merc factories and frozen wave inputs without learned
+allocation. Both priority editors and bilingual item details reflect real
+availability; removal retains dormant explicit entries. All nine adaptations
+reported here now have their approved runtime integrations; Exile's separate
+prior slice remains intact. Full11027/407+2existing skips,engine5343/155,
+final types/lint/build and production en/zh×five sizes10/10 pass. All40 attached
+saves audited; independent source CLEAR/browser ADEQUATE. See
+`docs/plans/evidence/d10-runeword-actives.md` for retained failures, runner
+correction, hashes and cleanup. Prepared fixtures do not establish earned
+acquisition/crafting/combat/campaign or full-v1 acceptance.
