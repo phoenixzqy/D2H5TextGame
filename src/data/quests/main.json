@@ -119,7 +119,7 @@
         { "id": "obj-transmute", "type": "transmute", "recipe": "horadric_staff", "description": "Combine staff and amulet in the Horadric Cube." }
       ],
       "rewards": { "xp": 6000 },
-      "unlocks": "areas/act2_canyon_of_the_magi",
+      "unlocks": null,
       "order": 8
     },
     {
@@ -148,7 +148,7 @@
         { "id": "obj-read-journal", "type": "interact", "targetId": "objects/horazon_journal", "areaId": "areas/act2-arcane-sanctuary", "description": "Read Horazon's journal to identify the true tomb." }
       ],
       "rewards": { "xp": 7000, "skillPoints": 1 },
-      "unlocks": "areas/act2_canyon_of_the_magi",
+      "unlocks": null,
       "order": 10
     },
     {
