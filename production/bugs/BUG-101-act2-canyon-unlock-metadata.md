@@ -1,7 +1,8 @@
 # BUG-101 — Remove nonexistent Canyon unlock references
 
 - Severity: Low — stale authored metadata; no observed runtime access failure.
-- Status: Reproduced at `9a4999f`; fix pending.
+- Status: Fixed in `f7b6871`; validation is recorded in
+  `docs/plans/evidence/compact-act2-unlocks.md`.
 - Environment: source/data reproduction, locale-independent. Browser, viewport
   and RNG seed are not applicable to this static reference mismatch.
 - Owners: content-designer / QA; producer coordinates the compact Act II contract.

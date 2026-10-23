@@ -10603,3 +10603,21 @@ root-owned through Sun/C2/umbrella at the exact path in the evidence. Next:
 Canyon metadata correction, then new-current-runtime earned campaign screening.
 Historical stopped challenges remain final; C0/C1 accepted, C2underway,
 C3/C4/fullG0–G7 remain open. Local only.
+
+## P14 — Compact Act II unlock metadata
+
+Implementation `f7b6871` removes only the two nonexistent Canyon unlock
+references from Staff and Arcane Sanctuary. [Evidence](evidence/compact-act2-unlocks.md)
+records causal 3 RED / 1 control, then 390 focused tests and final
+9147 tests / 307 files PASS (188.73s). Types, lint, clean build and four-chunk
+bridge scan pass. All 644 source/config and 760 build hashes match.
+The four regressions cover both nulls, six unchanged areas, actual objective
+references and retained Seven Tombs→Act III metadata. Existing runtime access,
+copy, objectives, rewards, saves and balance stay unchanged.
+Producer plan and independent source/evidence QA approve, security PASS;
+all readers released. No Canyon browser scenario or campaign win is claimed.
+Task-local disposable paths are absent, cleanup remaining[]/failures[]. Raw
+diagnostics remain root-owned through C2/umbrella at the evidence path.
+The build remains root-owned in `d2h5-fresh-act2-vtu72tc9/dist` for the immediate
+fresh current-runtime campaign screen; root removes it after screen consumers.
+C0/C1 remain accepted, C2 underway, C3/C4/full G0–G7 open. Local only.
