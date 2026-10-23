@@ -93,6 +93,7 @@ describe('isolated earned save reconstruction', () => {
       const savedItem = item('it-a-2s'); // base36 2s = 100
       const original = currentSave();
       const save: SaveCurrent = { ...original,
+        player: { ...original.player, equipment: location === 'hero' ? [savedItem] : [] },
         inventory: { ...original.inventory,
           backpack: location === 'backpack' ? [savedItem] : [],
           stash: location === 'stash' ? [savedItem] : [],
@@ -120,7 +121,7 @@ describe('isolated earned save reconstruction', () => {
         derivedStats: { ...baseline.player.derivedStats, life: 17, mana: 3 } },
       inventory: { ...baseline.inventory,
         backpack: [item('it-a-2s')], currencies: { wishstone: 7 } },
-      mercs: { ownedMercs: [{ ...merc, level: 3 }], fieldedMercId: merc.id,
+      mercs: { ownedMercs: [{ ...merc, level: 3, equipment: [item('it-b-2t')] }], fieldedMercId: merc.id,
         mercEquipment: { [merc.id]: { gloves: item('it-b-2t') } },
         mercProgress: { [merc.id]: { experience: 19, experienceToNextLevel: 304 } } },
       map: { ...baseline.map, currentSubAreaId: 'areas/act1-cold-plains',

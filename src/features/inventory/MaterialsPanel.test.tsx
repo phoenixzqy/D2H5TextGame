@@ -66,8 +66,8 @@ describe.each(['en', 'zh-CN'] as const)('material inventory %s', locale => {
     expect(row('materials/scrap')).toHaveTextContent(english ? 'Scrap' : '废料');
     expect(row('runes/el')).toHaveTextContent(english ? 'Owned: 0' : '持有：0');
     expect(panel()).toHaveTextContent(english ? 'Victory loot and certain quest rewards.' : '战斗胜利掉落及部分任务奖励。');
-    expect(panel()).toHaveTextContent(english ? 'Salvage is coming with crafting.' : '制作开放后可通过分解获得。');
-    expect(panel()).toHaveTextContent(english ? 'Socketing and crafting are coming later.' : '镶嵌与制作将在后续开放。');
+    expect(panel()).toHaveTextContent(english ? 'Salvage eligible backpack or stash equipment.' : '分解符合条件的背包或仓库装备。');
+    expect(panel()).toHaveTextContent(english ? 'Preview crafting and socket actions below' : '可在下方预览制作与镶嵌操作');
     expect(panel().textContent).not.toMatch(/items\.(?:rune|gem|material)\.|materials\.(?:title|source|use)/);
     fireEvent.click(within(panel()).getByRole('button', { name: english ? 'Owned materials' : '已持有材料' }));
     expect(within(panel()).queryAllByTestId(/^material-/)).toHaveLength(0);

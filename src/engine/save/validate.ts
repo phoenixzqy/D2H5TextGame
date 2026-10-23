@@ -699,7 +699,7 @@ function validateNativeSave(value: unknown, version: 17 | 18 | 19): SaveV17 | Sa
 
 /** Validate current material ownership before any normalization, IO or store mutation. */
 export function validateSave(value: unknown): SaveCurrent {
-  return validateFrozenV18Save(value);
+  return validateSocketSave(value);
 }
 
 /** Validate the complete raw predecessor before any v19 conversion or defaulting. */
@@ -742,7 +742,9 @@ export function decodeSave(value: unknown): SaveCurrent {
     throw new Error('Invalid save: version must be a positive integer');
   }
   let input = value as VersionedSave;
+  // Reject getters before even historical direct-field reads/normalization.
   if (input.version < 19) rejectPreV19State(input);
+  rejectSocketSaveAccessors(input);
   const originalInventory = 'inventory' in value ? value.inventory : undefined;
   if (input.version < 18 && record(originalInventory) && 'materials' in originalInventory) {
     throw new Error('Invalid save: reserved materials in historical inventory');
@@ -775,6 +777,8 @@ export function decodeSave(value: unknown): SaveCurrent {
   if (input.version === 16) validateV16Save(input);
   if (input.version < 17) input = runMigrations(input, 17);
   if (input.version === 17) validateNativeSave(input, 17);
+  if (input.version < 18) input = runMigrations(input, 18);
+  if (input.version === 18) input = validateFrozenV18Save(input);
   const save = validateSave(runMigrations(input));
   return repairQuestLifeCache(repairQuestResistanceCache(repairEquipmentRateCache({
     ...save,
@@ -783,7 +787,9 @@ export function decodeSave(value: unknown): SaveCurrent {
       ...save.inventory,
       backpack: save.inventory.backpack.map(restoreItem),
       stash: save.inventory.stash.map(restoreItem),
-      equipped: restoreEquipment(save.inventory.equipped)
+      equipped: restoreEquipment(save.inventory.equipped),
+      legacyGearQuarantine: save.inventory.legacyGearQuarantine.map(entry => ({ ...entry, item: restoreItem(entry.item) })),
+      socketQuarantine: save.inventory.socketQuarantine.map(entry => ({ ...entry, item: restoreItem(entry.item) }))
     },
     mercs: {
       ...save.mercs,

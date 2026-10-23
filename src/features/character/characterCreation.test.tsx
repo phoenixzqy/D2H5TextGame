@@ -167,7 +167,7 @@ describe('character creation persistence boundaries', () => {
     expect(isReplacingSave()).toBe(false);
   });
 
-  it('autosaves only the final canonical singleton and empty legacy array', async () => {
+  it('autosaves only the final canonical singleton and its equipment mirror', async () => {
     vi.useFakeTimers();
     startAutoSave();
     showValidCreation();
@@ -177,7 +177,7 @@ describe('character creation persistence boundaries', () => {
     expect(disk.writes).toHaveLength(1);
     const saved = disk.writes[0];
     assert(saved);
-    expect(saved.player.equipment).toEqual([]);
+    expect(saved.player.equipment).toEqual([saved.inventory.equipped.weapon]);
     expect(saved.player.derivedStats.attack).toBe(35);
     expect(saved.inventory.equipped.weapon).toMatchObject({ baseId: 'items/base/weapon-bow-training', baseRolls: { attack: 13 } });
     expect(saved.inventory.backpack).toEqual([]);
@@ -198,7 +198,7 @@ describe('character creation persistence boundaries', () => {
     fireEvent.click(screen.getByTestId('character-start-btn'));
     await act(async () => { await vi.advanceTimersByTimeAsync(AUTO_SAVE_DEBOUNCE_MS + 1); });
     expect(disk.writes).toHaveLength(1);
-    expect(disk.writes[0]?.player.equipment).toEqual([]);
+    expect(disk.writes[0]?.player.equipment).toEqual([disk.writes[0]?.inventory.equipped.weapon]);
     expect(disk.writes[0]?.inventory.equipped.weapon?.baseRolls).toEqual({ attack: 13 });
   });
 });

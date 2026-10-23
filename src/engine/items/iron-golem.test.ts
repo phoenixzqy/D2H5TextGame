@@ -23,7 +23,7 @@ describe('projectIronGolemItem', () => {
   });
 
   it('allows empty sockets, historical equipSlot and unmet wearing requirements', () => {
-    expect(projectIronGolemItem(item({ runes: [], equipSlot: 'weapon', level: 1 })))
+    expect(projectIronGolemItem(item({ socketContents: [], equipSlot: 'weapon', level: 1 })))
       .toEqual({ eligible: true, bonuses: { life: 0, attack: 8, defense: 0 } });
     expect(projectIronGolemItem(item({ baseId: 'items/base/armor-archon-plate' })).eligible).toBe(true);
   });
@@ -163,7 +163,7 @@ describe('projectIronGolemItem', () => {
     [item({ baseId: 'unknown-metal-sword' }), 'ineligibleBase'],
     [item({ baseId: 'items/base/weapon-wand' }), 'ineligibleBase'],
     [item({ baseId: 'items/base/ring-iron' }), 'ineligibleBase'],
-    [item({ runes: ['runes/el'] }), 'unsupportedRunes'],
+    [item({ socketContents: [{ kind: 'rune', id: 'runes/el' }] }), 'unsupportedRunes'],
     [item({ runewordId: '' }), 'unsupportedRunes'],
     [item({ rarity: 'runeword' }), 'unsupportedRunes'],
     [item({ rarity: 'unique', uniqueId: 'unknown' }), 'invalidDefinition'],

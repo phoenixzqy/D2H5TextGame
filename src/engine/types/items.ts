@@ -198,6 +198,10 @@ export interface SetPieceDef {
   readonly flavor?: string;
 }
 
+/** Persisted order of rune/gem inserts; the material catalog validates each exact ID. */
+export type SocketContent = { readonly kind: 'rune'; readonly id: string }
+  | { readonly kind: 'gem'; readonly id: string };
+
 /**
  * Item instance
  */
@@ -225,8 +229,8 @@ export interface Item {
   /** Runeword ID (for runeword items) */
   readonly runewordId?: string;
   
-  /** Socketed runes (if any) */
-  readonly runes?: readonly string[]; // rune IDs
+  /** Ordered inserted materials; empty/absent means no contents. */
+  readonly socketContents?: readonly SocketContent[];
 
   /** Own native-save capacity for weapon/armor; legacy fallback is migration-only. */
   readonly socketCapacity?: number;

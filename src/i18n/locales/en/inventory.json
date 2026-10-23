@@ -227,7 +227,8 @@
       "allRes": "All Resistances",
       "minDamage": "Minimum Damage",
       "maxDamage": "Maximum Damage",
-      "damage": "Damage"
+      "damage": "Damage",
+      "magicResist": "Magic Resist"
     }
   },
   "discardConfirm": {
@@ -321,7 +322,7 @@
     "ownedFilter": "Owned materials",
     "catalogFilter": "All materials",
     "ownedCount": "Owned: {{quantity}}",
-    "future": "Socketing and crafting are coming later. Your materials remain saved for future use.",
+    "future": "Preview crafting and socket actions below before spending materials.",
     "sourceLabel": "Acquisition",
     "useLabel": "Uses",
     "kind": {
@@ -332,12 +333,100 @@
     "source": {
       "rune": "Victory loot and certain quest rewards.",
       "gem": "Victory loot and certain quest rewards.",
-      "scrap": "Salvage is coming with crafting."
+      "scrap": "Salvage eligible backpack or stash equipment."
     },
     "use": {
-      "rune": "Future socketing, runewords, rune fusion and recipes.",
-      "gem": "Future socketing, gem fusion and recipes.",
-      "scrap": "Future equipment crafting."
+      "rune": "Socketing, runewords, rune fusion and recipes.",
+      "gem": "Socketing, gem fusion, dismantling and recipes.",
+      "scrap": "Equipment crafting."
     }
+  },
+  "crafting": {
+    "title": "Crafting & sockets",
+    "action": "Action",
+    "recipeLabel": "Recipe",
+    "material": "Socket material",
+    "preview": "Preview action",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "close": "Close",
+    "completed": "Completed",
+    "progression": "Rune fusion uses your highest unlocked act and selected difficulty: Act I–V caps are rune 8 / 15 / 19 / 21 / 33, with a maximum of 22 outside Hell. Gem fusion can exceed the gem drop cap.",
+    "kind": {
+      "rune-fusion": "Fuse runes",
+      "gem-fusion": "Fuse gems",
+      "gem-dismantle": "Dismantle gems",
+      "socket-insert": "Insert a rune or gem",
+      "socket-armor": "Roll armor sockets",
+      "socket-clear": "Clear sockets",
+      "caster-amulet": "Craft a caster amulet",
+      "salvage": "Salvage equipment",
+      "recover-v18": "Recover preserved v18 gear"
+    },
+    "recipe": {
+      "rune-fusion": "Rune fusion",
+      "gem-fusion": "Gem fusion",
+      "gem-dismantle": "Gem dismantling",
+      "socket-armor": "Armor sockets",
+      "socket-clear": "Clear sockets",
+      "caster-amulet": "Caster amulet"
+    },
+    "rules": {
+      "rune-fusion": "Exchange three identical runes for the next rune. The output must be unlocked.",
+      "gem-fusion": "Exchange three identical subperfect gems and one gem-shard for the next quality.",
+      "gem-dismantle": "Destroy one gem to obtain gem-shards based on its quality.",
+      "socket-insert": "Select one unequipped backpack weapon or armor with an empty socket. Inserts fill the next socket in order. Exact rune order, base, slot and capacity determine a runeword; other combinations retain their plain socket effects.",
+      "socket-armor": "Select one normal chest item in your backpack with empty contents. Its socket capacity is rolled from 1 to the base maximum.",
+      "socket-clear": "Select one backpack weapon or armor with inserted materials. Clearing retains the item and socket capacity, and destroys every insert without a refund.",
+      "caster-amulet": "Select one identified magic amulet in your backpack with empty contents. It becomes rare with Energy +5, Mana +20 and one legal prefix and suffix.",
+      "salvage": "Select unequipped backpack or stash gear. Equipped, quest-bound and reserved Iron Golem items cannot be salvaged. Discarding items is a separate action and grants no materials.",
+      "recover-v18": "Select one preserved v18 item. Recovery places the same item in your backpack as normal gear with empty contents and refunds only its explicitly recorded runes. Older preserved gear remains inspect-only."
+    },
+    "targets": "Target equipment",
+    "search": "Search equipment",
+    "emptyTargets": "No items in this location.",
+    "noMatches": "No matching items.",
+    "selected": "Selected: {{count}}",
+    "page": "Page {{page}} of {{pages}}",
+    "previous": "Previous",
+    "next": "Next",
+    "costs": "Costs",
+    "outputs": "Result",
+    "none": "None",
+    "owned": "Owned: {{quantity}}",
+    "before": "Selected item",
+    "after": "Resulting item",
+    "contents": "Socket order",
+    "emptyContents": "Empty",
+    "word": "Runeword: {{name}}",
+    "noWord": "No completed runeword. Plain socket effects apply.",
+    "capacity": "Socket capacity: {{count}}",
+    "destroyGear": "Selected equipment and all inserted materials will be permanently destroyed. Inserts are not refunded.",
+    "destroyInserts": "Every inserted material and the completed runeword will be permanently removed. No inserts are refunded.",
+    "destroyGem": "The selected gem will be permanently destroyed.",
+    "recoverNotice": "The preserved runeword is removed. The same item ID, base, rolls, capacity and personalization are retained. Only the listed runes are refunded.",
+    "failed": "Could not complete this action. {{reason}}",
+    "previewFailed": "Could not preview this action. {{reason}}",
+    "error": {
+      "idle": "Finish or leave the current battle before crafting.",
+      "ready": "Wait for the character save to finish loading.",
+      "materials": "You do not have enough materials or shards.",
+      "unlock": "This rune fusion output is not unlocked.",
+      "target": "Check the recipe requirements and select eligible items in the required location.",
+      "capacity": "Make room in your backpack for the recovered item.",
+      "stale": "The selected items or action state changed. Close this preview and prepare a new one.",
+      "unknown": "Check your inventory and saved state before retrying.",
+      "rollback": "Restoration could not be verified. Reload or import a verified backup before continuing."
+    },
+    "currency": {
+      "rune-shard": "Rune-shards",
+      "gem-shard": "Gem-shards"
+    },
+    "backpack": "Backpack",
+    "stash": "Stash",
+    "quarantine": "Preserved v18 gear",
+    "preservedContents": "Preserved rune order",
+    "preservedWord": "Preserved word (inactive): {{name}}",
+    "recoveryRequired": "Crafting is paused while the save is unavailable. If restoration failed, reload or import a verified backup before continuing."
   }
 }

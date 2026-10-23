@@ -7,7 +7,7 @@
  * stats is local: red text for unmet entries.
  *
  * Sockets:
- *   Native instance capacity is the slot count. `item.runes` maps each
+ *   Native instance capacity is the slot count. `item.socketContents` maps each
  *   filled socket in order, otherwise `[ ]`.
  *
  * Affix lines reuse `formatAffixRoll()` for the value formatting and
@@ -29,6 +29,7 @@ import { tDataKey } from '@/ui/i18nKey';
 import { loadItemBases, resolveItemReqLevel } from '@/data/loaders/loot';
 import type { CoreStats } from '@/engine/types/attributes';
 import type { Item, ItemBase } from '@/engine/types/items';
+import { materialCatalog } from '@/data/loaders/materials';
 import { effectiveSocketCapacity } from '@/engine/items/socket-capacity';
 import type { CompareResult } from './compareEquip';
 import { ItemComparePanel } from './ItemComparePanel';
@@ -128,12 +129,13 @@ export function ItemDetailPanel({
 
   // Sockets
   const socketCount = base ? effectiveSocketCapacity(item, base) : 0;
-  const runes = item.runes ?? [];
+  const contents = item.socketContents ?? [];
   const socketBoxes: string[] = [];
   for (let i = 0; i < socketCount; i++) {
-    const runeId = runes[i];
-    if (runeId) {
-      const runeName = tItems(`rune.${runeId}`);
+    const content = contents[i];
+    if (content) {
+      const definition = materialCatalog.get(content.id);
+      const runeName = definition ? tDataKey(tItems, definition.nameKey) : content.id;
       socketBoxes.push(t('detail.filledSocket', { name: runeName }));
     } else {
       socketBoxes.push(t('detail.emptySocket'));

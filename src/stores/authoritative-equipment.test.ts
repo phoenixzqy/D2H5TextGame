@@ -170,7 +170,7 @@ describe('equipment resolves the authoritative backpack item', () => {
       rarity: 'rare', level: 3, ilvl: 7, identified: false,
       baseRolls: { defense: 11 }, generatedName: { prefix: 'actual-prefix' },
       affixes: [{ affixId: 'actual-affix', values }],
-      runes: ['actual-rune'], statRolls: { 'statMods.life': 25 }
+      socketContents: [], statRolls: { 'statMods.life': 25 }
     });
     const retained = item('retained');
     arrange([stored, retained]);

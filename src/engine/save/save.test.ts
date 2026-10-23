@@ -1,4 +1,4 @@
-import { withoutV17Fields, withV18Defaults } from '../../../tests/helpers/save-fixtures';
+import { withoutV17Fields, withV19Defaults } from '../../../tests/helpers/save-fixtures';
 import { deriveStats } from '../progression/stats';
 /**
  * Round-trip and migration tests for the save module.
@@ -99,7 +99,8 @@ describe('save round-trip', () => {
     expect(saved.map.questReceipts).toBe(questReceipts);
     expect(toJsonSafe(saved)).toEqual(saved);
     expect(buildSampleSaveCurrent().map.questReceipts).toEqual({});
-    expect(saved.player).toBe(original.player);
+    expect(saved.player).toEqual(original.player);
+    expect(saved.player.equipment).toEqual(Object.values(saved.inventory.equipped).filter(item => item !== null));
     expect(saved.inventory).toEqual(original.inventory);
   });
 
@@ -152,7 +153,7 @@ describe('runMigrations', () => {
     expect(v15).toEqual({ ...historical, version: 15, map: { ...historical.map, questReceipts: {} } });
     expect(v15.player).toBe(historical.player);
     expect(v15.inventory).toBe(historical.inventory);
-    expect(migrated).toEqual(withV18Defaults({ ...historical, map: { ...historical.map, questReceipts: {} } }));
+    expect(migrated).toEqual(withV19Defaults({ ...historical, map: { ...historical.map, questReceipts: {} } }));
     expect(migrated.map.questProgress).toBe(historical.map.questProgress);
     expect(historical).toEqual(before);
     expect(Object.hasOwn(historical.map, 'questReceipts')).toBe(false);

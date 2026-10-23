@@ -55,7 +55,7 @@ for (const locale of ['en', 'zh-CN'] as const) {
     const imported: SaveCurrent = {
       ...original,
       inventory: {
-        materials: {},
+        materials: {}, socketQuarantine: [], materialActionOrdinal: 0,
         questItems: {}, questServices: {}, legacyGearQuarantine: [],
         backpack: [candidate, oneHanded, ...fillers],
         stash: [item('stash-retained', 'items/base/ring', { rarity: 'rare', identified: false })],

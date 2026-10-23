@@ -1,6 +1,7 @@
 import type { TFunction } from 'i18next';
-import { loadSetPieces, loadSets, loadUniques } from '@/data/loaders/loot';
+import { loadItemBases, loadSetPieces, loadSets, loadUniques } from '@/data/loaders/loot';
 import { resolveStatPackage, type ResolvedStatValue } from '@/engine/items/statRolls';
+import { socketBonusPackages } from '@/engine/items/socket-contents';
 import type { Item, SetDef, SetPieceDef, UniqueItemDef } from '@/engine/types/items';
 import { tDataKey, tItemBaseName } from './i18nKey';
 
@@ -39,6 +40,7 @@ const STAT_MOD_LABELS: Readonly<Record<string, string>> = {
   mana: 'detail.stat.mana',
   attack: 'detail.stat.attack',
   defense: 'detail.stat.defense',
+  magicResist: 'detail.stat.magicResist',
   attackSpeed: 'detail.stat.attackSpeed',
   critChance: 'detail.stat.critChance',
   critDamage: 'detail.stat.critDamage',
@@ -75,14 +77,24 @@ function labelKeyForPath(path: string): string {
 }
 
 export function formatDisplayStat(stat: ResolvedStatValue, t: TFunction): DisplayStatLine {
-  const label = t(labelKeyForPath(stat.path));
+  const label = t(`inventory:${labelKeyForPath(stat.path)}`);
   const value = stat.value;
+  const isRatio = ['statMods.critChance', 'statMods.critDamage', 'statMods.physDodge', 'statMods.magicDodge'].includes(stat.path);
+  const displayValue = isRatio ? `${String(Number((value * 100).toFixed(4)))}%` : String(value);
   return {
     key: stat.path,
     label,
     value,
-    text: t('detail.statLine', { label, value: value > 0 ? `+${String(value)}` : String(value) })
+    text: t('inventory:detail.statLine', { label, value: value > 0 ? `+${displayValue}` : displayValue })
   };
+}
+
+/** Display exactly the same plain insert and completed-word packages used by equipment resolution. */
+export function resolveSocketDisplayLines(item: Item, t: TFunction): readonly DisplayStatLine[] {
+  const base = loadItemBases().get(item.baseId);
+  if (!base || !item.socketContents?.length) return [];
+  return socketBonusPackages(item, base).flatMap(stats => resolveStatPackage(stats, item.statRolls))
+    .map(stat => formatDisplayStat(stat, t));
 }
 
 export function resolveItemDisplay(

@@ -68,7 +68,7 @@ export function projectIronGolemItem(
   if (!base || base.metal !== true || (base.type !== 'weapon' && base.type !== 'armor')) {
     return { eligible: false, reason: 'ineligibleBase' };
   }
-  if (item.rarity === 'runeword' || item.runewordId !== undefined || (item.runes?.length ?? 0) > 0) {
+  if (item.rarity === 'runeword' || item.runewordId !== undefined || (item.socketContents?.length ?? 0) > 0) {
     return { eligible: false, reason: 'unsupportedRunes' };
   }
   const pools = {

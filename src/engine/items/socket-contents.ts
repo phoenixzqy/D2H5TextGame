@@ -4,14 +4,10 @@ import { matchRuneword, recipeFromData } from '../loot/runeword';
 import type { Item, ItemBase, ItemBonusStats } from '../types/items';
 import { effectiveSocketCapacity, validateItemPersonalization } from './socket-capacity';
 
-/** The only v19 socket representation; order is part of item identity. */
-export type SocketContent = { readonly kind: 'rune'; readonly id: string }
-  | { readonly kind: 'gem'; readonly id: string };
-/** Explicit integration boundary while the current save format remains frozen v18. */
-export type CanonicalSocketItem = Omit<Item, 'runes'> & {
-  readonly runes?: never;
-  readonly socketContents?: readonly SocketContent[];
-};
+/** Runtime and native19 use one canonical item/contents contract. */
+export type { SocketContent } from '../types/items';
+export type CanonicalSocketItem = Item;
+import type { SocketContent } from '../types/items';
 
 const recipes = socketRunewords.map(recipeFromData);
 function ownData(value: object, key: string): unknown {

@@ -20,6 +20,7 @@ import uniquesJson from '@/data/items/uniques.json';
 import setsJson from '@/data/items/sets.json';
 import treasureClassesJson from '@/data/loot/treasure-classes.json';
 import rarityRulesJson from '@/data/items/rarity-rules.json';
+import { socketRunewords } from './socket-effects';
 
 interface JsonTcEntry {
   readonly type: string;
@@ -127,9 +128,9 @@ export function loadRarityAffixRules(): RarityAffixRules {
   return cachedRarityRules;
 }
 
-/** Effective equip level uses the stricter of base and unique/set template requirements. */
+/** Effective equip level uses the strictest base, unique/set and completed-word requirements. */
 export function resolveItemReqLevel(
-  item: Pick<Item, 'baseId'> & Partial<Pick<Item, 'uniqueId' | 'setPieceId'>>,
+  item: Pick<Item, 'baseId'> & Partial<Pick<Item, 'uniqueId' | 'setPieceId' | 'runewordId'>>,
   base: ItemBase | undefined = loadItemBases().get(item.baseId)
 ): number {
   const baseReq = base?.reqLevel ?? 1;
@@ -139,7 +140,10 @@ export function resolveItemReqLevel(
   const setPieceReq = item.setPieceId
     ? loadSetPieces().find((piece) => piece.id === item.setPieceId)?.reqLevel
     : undefined;
-  return Math.max(baseReq, uniqueReq ?? 1, setPieceReq ?? 1);
+  const runewordReq = item.runewordId
+    ? socketRunewords.find(word => word.id === item.runewordId)?.reqLevel
+    : undefined;
+  return Math.max(baseReq, uniqueReq ?? 1, setPieceReq ?? 1, runewordReq ?? 1);
 }
 
 /** Bundle every loader call into a single award-ready data set. */

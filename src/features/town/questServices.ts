@@ -1,6 +1,7 @@
 import { loadItemBases } from '@/data/loaders/loot';
 import { loadTownNpcs } from '@/data/loaders/towns';
-import { effectiveSocketCapacity, validateItemServiceFields } from '@/engine/items/socket-capacity';
+import { effectiveSocketCapacity } from '@/engine/items/socket-capacity';
+import { validateCanonicalSocketItem } from '@/engine/items/socket-contents';
 import { validateAct5CampaignRewards } from '@/engine/save/act5-campaign';
 import { validateQuestItemLedger } from '@/engine/save/validate';
 import { QUEST_SERVICE_SOURCES, type QuestServiceId, type QuestServiceLedger } from '@/engine/services/quest-services';
@@ -67,20 +68,20 @@ function uniqueBackpackItem(id: string): Item | undefined {
   const inventory = useInventoryStore.getState();
   const item = inventory.backpack.find(row => row.id === id);
   return item && typeof item.equipped === 'boolean' && !item.equipped && ownedItems().filter(row => row.id === id).length === 1
-    && !inventory.legacyGearQuarantine.some(entry => entry.item.id === id) && !inActorEquipment(id) ? item : undefined;
+    && !inventory.legacyGearQuarantine.some(entry => entry.item.id === id) && !inventory.socketQuarantine.some(entry => entry.item.id === id) && !inActorEquipment(id) ? item : undefined;
 }
 function eligible(item: Item, serviceId: QuestServiceId): boolean {
   const base = loadItemBases().get(item.baseId);
   if (!base || (base.type !== 'weapon' && base.type !== 'armor') || item.rarity === 'runeword'
     || 'runewordId' in item || !['normal', 'magic', 'rare', 'unique', 'set'].includes(item.rarity)) return false;
-  try { validateItemServiceFields(item, base); } catch { return false; }
+  try { validateCanonicalSocketItem(item, base); } catch { return false; }
   if (serviceId === 'personalize_item') {
     const hero = usePlayerStore.getState().player;
     return !('personalizedBy' in item) && !!hero && typeof hero.id === 'string' && hero.id.length > 0
       && typeof hero.name === 'string' && hero.name === hero.name.trim() && hero.name.length >= 1 && hero.name.length <= 16;
   }
   return (serviceId !== 'socket_armor' || base.type === 'armor') && effectiveSocketCapacity(item, base) === 0
-    && (item.runes?.length ?? 0) === 0 && typeof base.maxSockets === 'number' && base.maxSockets > 0;
+    && (item.socketContents?.length ?? 0) === 0 && typeof base.maxSockets === 'number' && base.maxSockets > 0;
 }
 
 /** Actual current-town offerings, including historical consumed sources; never infer charges from flags. */
@@ -172,7 +173,7 @@ export function useQuestService(source: string, itemId: string): QuestServiceRes
       : { ...item, socketCapacity: item.rarity === 'normal' ? base.maxSockets : Math.min(1, base.maxSockets) };
     const nextEntry = { serviceId: entry.serviceId, state: 'consumed' as const, targetItemId: item.id };
     const services = { ...inventory.questServices, [source]: nextEntry };
-    try { validateItemServiceFields(nextItem, base); validateGraph(services); } catch { return 'not-eligible'; }
+    try { validateCanonicalSocketItem(nextItem, base); validateGraph(services); } catch { return 'not-eligible'; }
     const backup = structuredClone(item), previousEntry = structuredClone(entry), index = inventory.backpack.indexOf(item);
     const expectedItem = fingerprint(nextItem), expectedEntry = fingerprint(nextEntry);
     try {

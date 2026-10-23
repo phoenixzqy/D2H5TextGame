@@ -17,6 +17,7 @@ import { createMercFromDef } from './mercFactory';
 import { growMercenary, repairMercenaryGrowth } from '@/engine/progression/merc-growth';
 import { useInventoryStore } from './inventoryStore';
 import { BACKPACK_CAPACITY } from './inventoryCapacity';
+import { checkEligibility } from '@/features/inventory/compareEquip';
 
 /**
  * Mercenary XP curve (canonical).
@@ -84,7 +85,7 @@ export type MercEquipment = Partial<Record<EquipmentSlot, Item | null>>;
 /** Settled transfer result; refusal publishes neither inventory nor merc state. */
 export type MercEquipmentResult = { ok: true } | {
   ok: false;
-  reason: 'merc_not_owned' | 'not_in_backpack' | 'incompatible_slot' | 'not_found' | 'backpack_full';
+  reason: 'merc_not_owned' | 'not_in_backpack' | 'incompatible_slot' | 'requirements_not_met' | 'not_found' | 'backpack_full';
 };
 
 interface MercState {
@@ -280,12 +281,14 @@ export const useMercStore = create<MercState>((set, get) => ({
   equipOnMerc: (mercId, slot, requestedItem) => {
     assertIronGolemOwnershipMutationAllowed();
     const state = get();
-    if (!state.ownedMercs.some(merc => merc.id === mercId)) return { ok: false, reason: 'merc_not_owned' };
+    const merc = state.ownedMercs.find(owned => owned.id === mercId);
+    if (!merc) return { ok: false, reason: 'merc_not_owned' };
     const inventory = useInventoryStore.getState();
     const sourceIndex = inventory.backpack.findIndex(item => item.id === requestedItem.id);
     const item = inventory.backpack[sourceIndex];
     if (!item) return { ok: false, reason: 'not_in_backpack' };
     if (!isCompatibleSlot(loadItemBases().get(item.baseId), slot)) return { ok: false, reason: 'incompatible_slot' };
+    if (!checkEligibility(item, merc).eligible) return { ok: false, reason: 'requirements_not_met' };
 
     const current = state.mercEquipment[mercId] ?? {};
     const displaced = current[slot];

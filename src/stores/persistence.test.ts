@@ -133,12 +133,13 @@ describe('persistence', () => {
       useMapStore.setState({ questReceipts });
       const before = snapshotStores();
       if (!before) throw new Error('Missing live character');
+      const livePlayer = usePlayerStore.getState().player;
       const incoming: SaveCurrent = { ...before, player: { ...before.player, id: 'replacement' },
         map: { ...before.map, questReceipts: {} } };
       saveSpy.mockRejectedValueOnce(new Error('Receipt import quota'));
       await expect(importIntoStores(JSON.stringify(incoming))).rejects.toThrow('Receipt import quota');
       expect(useMapStore.getState().questReceipts).toBe(questReceipts);
-      expect(usePlayerStore.getState().player).toBe(before.player);
+      expect(usePlayerStore.getState().player).toBe(livePlayer);
       expect(mockSaveStore.current).toBeNull();
     });
 

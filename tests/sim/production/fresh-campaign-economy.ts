@@ -15,7 +15,7 @@ import { getIdleEliteMisses, setIdleEliteMisses } from '@/stores/idleElitePity';
 import { canClaim, claimQuestReward, readQuestItem } from '@/features/quests/claimReward';
 import { captureEarnedRestorers, earnedDelta, observeEarnedState, observeStore, restoreEarnedSave } from './earned-state';
 import { hashObservation } from './earned-report';
-import { historicalV17Save, historicalV17EarnedState } from './historical-v17';
+import { authenticateHistoricalV17, historicalV17Save, historicalV17EarnedState } from './historical-v17';
 import { FreshGearRefusal, auditFrozenNativeItem, transferFreshItem } from './fresh-campaign-gear';
 import { captureFreshEconomyNativeSave } from './fresh-campaign-save';
 import { startEarnedRun, type EarnedRunHandle } from './earned-playback';
@@ -51,8 +51,8 @@ export interface EconomyWaveAttempt {
 }
 type EconomyCombatState = ReturnType<typeof useCombatStore.getState>;
 
-/** Authenticate exact native bytes, then hydrate once without boot/offline reconciliation. */
-export function hydrateEconomyAncestry() {
+/** Authenticate exact native bytes without touching service stores or starting combat. */
+export function loadAuthenticEconomyAncestry() {
   const compressed = readFileSync(new URL(`../../../${policy.source}`, import.meta.url));
   assert.equal(digest(compressed), policy.sourceGzipSha256);
   const bytes = gunzipSync(compressed);
@@ -61,14 +61,21 @@ export function hydrateEconomyAncestry() {
   assert.ok(typeof original === 'object' && original !== null && 'version' in original && original.version === 17,
     'Authenticated ancestry must remain native v17');
   const save = decodeSave(original);
-  assert.equal(hashObservation(historicalV17Save(save)), policy.sourceSaveHash);
+  const witness = authenticateHistoricalV17(original, policy.sourceSaveHash);
+  assert.equal(hashObservation(historicalV17Save(save, witness)), policy.sourceSaveHash);
+  return { save, witness, ancestry: { source: policy.source, rawSha256: digest(bytes), gzipSha256: digest(compressed),
+    saveHash: hashObservation(historicalV17Save(save, witness)), liveSaveHash: hashObservation(save),
+    liveSaveVersion: save.version, migratedMaterials: structuredClone(save.inventory.materials), parentReportRawSha256: policy.parentReportRawSha256 } };
+}
+
+/** Hydrate authenticated ancestry once without boot/offline reconciliation. */
+export function hydrateEconomyAncestry() {
+  const { save, witness, ancestry } = loadAuthenticEconomyAncestry();
   assert.equal(Date.now(), policy.clockEpochMs);
   restoreEarnedSave(save, policy.clockEpochMs);
   assert.deepEqual(snapshotStores(), save, 'Economic ancestry hydration changed a saved domain');
-  assert.equal(hashObservation(historicalV17EarnedState(observeEarnedState())), policy.sourceEarnedHash);
-  return { source: policy.source, rawSha256: digest(bytes), gzipSha256: digest(compressed),
-    saveHash: hashObservation(historicalV17Save(save)), liveSaveHash: hashObservation(save),
-    liveSaveVersion: save.version, migratedMaterials: structuredClone(save.inventory.materials), parentReportRawSha256: policy.parentReportRawSha256 };
+  assert.equal(hashObservation(historicalV17EarnedState(observeEarnedState(), witness)), policy.sourceEarnedHash);
+  return ancestry;
 }
 
 /** Only real earned points, between complete challenges; no speculative masteries or respec. */

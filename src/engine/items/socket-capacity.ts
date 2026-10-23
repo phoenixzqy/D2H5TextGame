@@ -1,6 +1,7 @@
 import { runes as runeDefinitions, runewords } from '@/data';
 import { matchRuneword, recipeFromData } from '../loot/runeword';
-import type { Item, ItemBase } from '../types/items';
+import type { ItemBase } from '../types/items';
+import type { HistoricalItem as Item } from '../save/historical-items';
 
 const knownRuneIds = new Set(runeDefinitions.map(rune => rune.id));
 const recipes = runewords.map(recipeFromData);

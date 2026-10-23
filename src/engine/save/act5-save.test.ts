@@ -1,9 +1,10 @@
+import { withoutV17Fields } from '../../../tests/helpers/save-fixtures';
 import { describe, expect, it } from 'vitest';
 import { deriveStats } from '../progression/stats';
 import { buildSave } from './serialize';
 import { decodeSave } from './validate';
 import type { SaveV16, SaveCurrent, QuestProgressData } from '../types/save';
-import type { Item } from '../types/items';
+import type { HistoricalItem } from './historical-items';
 import { BAAL_TITLE, NIGHTMARE_UNLOCK } from './act5-campaign';
 import { loadQuests } from '@/data/loaders/quests';
 import { ACT5_ENCOUNTERS, PRISON_QUEST } from '../map/act5-admission';
@@ -37,13 +38,9 @@ function sample(): SaveCurrent {
     formation: { playerPosition: { row: 1, col: 1 }, mercPosition: { row: 0, col: 0 }, summonPositions: [] } });
 }
 function old16(): SaveV16 {
-  const save = sample();
-  const { materials: _materials, questServices: _services, legacyGearQuarantine: _quarantine, ...inventory } = save.inventory;
-  const { questTitles: _titles, questDifficulties: _difficulties, selectedTitle: _title,
-    selectedDifficulty: _difficulty, nightmareClearedSubAreas: _clears, challengeOrdinals: _ordinals, ...map } = save.map;
-  return { ...save, version: 16, inventory, map };
+  return { ...withoutV17Fields(sample()), version: 16 };
 }
-function item(id: string, extra: Partial<Item> = {}): Item {
+function item(id: string, extra: Partial<HistoricalItem> = {}): HistoricalItem {
   return { id, baseId: 'items/base/wp1h-short-sword', rarity: 'normal', level: 1, identified: true, equipped: false, ...extra };
 }
 
@@ -89,7 +86,7 @@ describe('native17 finite campaign save state', () => {
     const migrated = decodeSave({ ...old, map: { ...old.map, questProgress: {
       'quests/act5-eve-of-destruction': { id: 'quests/act5-eve-of-destruction', status: 'completed', rewardClaimed: true,
         objectives: { 'obj-throne-waves': true, 'obj-kill-baal': true } } } } });
-    expect(migrated.version).toBe(18); expect(migrated.inventory.questServices).toEqual({});
+    expect(migrated.version).toBe(19); expect(migrated.inventory.questServices).toEqual({});
     expect(migrated.map).toMatchObject({ questTitles: {}, questDifficulties: {}, selectedTitle: null,
       selectedDifficulty: 'normal', nightmareClearedSubAreas: [], challengeOrdinals: { normal: 0, nightmare: 0 } });
     expect(migrated.map.questReceipts).toEqual({}); expect(migrated.inventory.questItems).toEqual({});

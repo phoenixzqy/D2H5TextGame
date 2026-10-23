@@ -16,6 +16,14 @@ export interface MaterialActionPort {
   onReleased: (wakeSave: boolean) => void;
 }
 
+/** Both failures remain available; this outcome must never be retried against partial state. */
+export class MaterialActionRestorationError extends AggregateError {
+  constructor(publicationError: unknown, restorationError: unknown) {
+    super([publicationError, restorationError], 'Material publication and rollback failed');
+    this.name = 'MaterialActionRestorationError';
+  }
+}
+
 /** Hold shared ownership from live preflight through publication and every rollback attempt. */
 export function runMaterialActionTransaction(port: MaterialActionPort, request: MaterialActionRequest): MaterialActionPlan {
   const lease = beginMaterialTransaction(port.hydrationReady());
@@ -31,7 +39,7 @@ export function runMaterialActionTransaction(port: MaterialActionPort, request: 
         try {
           port.restore(snapshot);
         } catch (rollbackError) {
-          throw new AggregateError([error, rollbackError], 'Material publication and rollback failed');
+          throw new MaterialActionRestorationError(error, rollbackError);
         }
         throw error;
       }

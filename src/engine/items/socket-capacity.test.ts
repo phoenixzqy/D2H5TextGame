@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { loadItemBases } from '@/data/loaders/loot';
-import type { Item, ItemBase, Rarity } from '../types/items';
+import type { ItemBase, Rarity } from '../types/items';
+import type { HistoricalItem as Item } from '../save/historical-items';
 import {
   effectiveSocketCapacity, isItemSocketStateValid, migrateLegacyItemSocketState,
   validateItemServiceFields

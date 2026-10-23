@@ -1,3 +1,4 @@
+import { withoutV19Fields, withV19Defaults } from '../../../tests/helpers/save-fixtures';
 import { describe, expect, it } from 'vitest';
 import { CURRENT_SAVE_VERSION, MIGRATIONS } from '../types/save';
 import { deriveStats } from '../progression/stats';
@@ -21,20 +22,20 @@ function sample() {
 }
 
 function predecessor17() {
-  const current = sample();
+  const current = withoutV19Fields(sample());
   const inventory = Object.fromEntries(Object.entries(current.inventory).filter(([key]) => key !== 'materials'));
   return { ...current, version: 17, inventory };
 }
 
 describe('v18 concrete material ownership', () => {
   it('adds exactly an empty ledger to validated v17 without inventing old shard identities', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(18);
+    expect(CURRENT_SAVE_VERSION).toBe(19);
     const old = predecessor17(), before = structuredClone(old);
     const expected = { ...old, version: 18, inventory: { ...old.inventory, materials: {} } };
     const migrate = MIGRATIONS[18];
     if (!migrate) throw new Error('Missing v18 migration');
     expect(migrate(old)).toEqual(expected);
-    expect(decodeSave(old)).toEqual(expected);
+    expect(decodeSave(old)).toEqual(withV19Defaults(expected));
     expect(old).toEqual(before);
   });
 
@@ -93,17 +94,20 @@ describe('v18 concrete material ownership', () => {
 });
 
 describe('raw pre-v19 reservation before chained normalization or migration', () => {
+  function predecessor18() {
+    return { ...withoutV19Fields(sample()), version: 18 as const };
+  }
   it.each(['Map', 'Set'] as const)('uses intrinsic %s traversal without invoking imported methods', kind => {
     let calls = 0;
     const nested = { baseId: 'items/base/wp1h-short-sword', socketContents: undefined };
     const container = kind === 'Map' ? new Map([['gear', nested]]) : new Set([nested]);
     Object.defineProperty(container, 'values', { get: () => { calls++; return () => []; } });
-    expect(() => decodeSave({ ...sample(), snapshot: container })).toThrow('reserved v19');
+    expect(() => decodeSave({ ...predecessor18(), snapshot: container })).toThrow('reserved v19');
     expect(calls).toBe(0);
   });
   it('rejects a version accessor without invoking it', () => {
     let calls = 0;
-    const input = sample();
+    const input = predecessor18();
     Object.defineProperty(input, 'version', { enumerable: true, get: () => { calls++; return 18; } });
     expect(() => decodeSave(input)).toThrow(/version/i);
     expect(calls).toBe(0);
@@ -112,7 +116,7 @@ describe('raw pre-v19 reservation before chained normalization or migration', ()
     let calls = 0;
     const equipment = new Map();
     Object.defineProperty(equipment, Symbol.iterator, { get: () => { calls++; return Map.prototype[Symbol.iterator]; } });
-    const input = sample();
+    const input = predecessor18();
     const old = { version: 1, timestamp: input.timestamp, player: input.player,
       inventory: { backpack: [], stash: [], equipment }, mercenaries: [],
       mapProgress: { currentAct: 1, currentSubArea: null, completedSubAreas: [] },
@@ -121,7 +125,7 @@ describe('raw pre-v19 reservation before chained normalization or migration', ()
     expect(calls).toBe(0);
   });
   it('preserves same-spelled keys in open historical currency dictionaries', () => {
-    const input = sample();
+    const input = predecessor18();
     const currencies = { socketContents: 1, materialActionOrdinal: 2, latestMaterialAction: 3,
       socketQuarantine: 4, sourceVersion: 5, item: 6, origin: 7 };
     expect(decodeSave({ ...input, inventory: { ...input.inventory, currencies } }).inventory.currencies)
@@ -130,14 +134,14 @@ describe('raw pre-v19 reservation before chained normalization or migration', ()
   it.each(Array.from({ length: 18 }, (_, index) => index + 1).flatMap(version =>
     ['materialActionOrdinal', 'latestMaterialAction', 'socketQuarantine'].map(field => ({ version, field }))))(
     'rejects own undefined $field on raw v$version before migration', ({ version, field }) => {
-      const save = sample();
+      const save = predecessor18();
       const inventory = { ...save.inventory, [field]: undefined };
       expect(() => decodeSave({ ...save, version, inventory })).toThrow('reserved v19');
     });
   it.each(['backpack', 'stash', 'equipped', 'heroMirror', 'mercEquipment', 'mercMirror',
     'legacyEquipmentMap', 'legacyEquipmentArray', 'legacyMercMirror', 'quarantine', 'snapshot'] as const)(
     'rejects reserved sockets in raw %s without invoking the socket getter', site => {
-      const save = sample();
+      const save = predecessor18();
       const gear = { id: 'reserved', baseId: 'items/base/wp1h-short-sword', rarity: 'normal' as const,
         level: 1, socketCapacity: 2, identified: true, equipped: false };
       Object.defineProperty(gear, 'socketContents', { enumerable: true, get: () => { throw new Error('evaluated reserved getter'); } });
@@ -157,7 +161,7 @@ describe('raw pre-v19 reservation before chained normalization or migration', ()
       expect(() => decodeSave(input)).toThrow('reserved v19');
     });
   it('rejects a raw new quarantine discriminator before legacy quarantine normalization', () => {
-    const save = sample();
+    const save = predecessor18();
     expect(() => decodeSave({ ...save, inventory: { ...save.inventory,
       legacyGearQuarantine: [{ sourceVersion: undefined, item: {}, origin: {} }] } })).toThrow('reserved v19');
   });

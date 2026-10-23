@@ -1,10 +1,11 @@
+import { withoutV19Fields } from '../../../tests/helpers/save-fixtures';
 import { describe, expect, it, vi } from 'vitest';
 import { validateNativeItemState } from './service-item-state';
 import { migrateSaveV17 } from './migrate-v17';
 import { buildSave } from './serialize';
 import { deriveStats } from '../progression/stats';
 import type { SaveV16 } from '../types/save';
-import type { Item } from '../types/items';
+import type { HistoricalItem } from './historical-items';
 
 // Future live restrictions must never become historical import restrictions.
 vi.mock('../items/socket-capacity', () => ({
@@ -18,7 +19,7 @@ vi.mock('../progression/equipment-mods', async importOriginal => {
 
 function sample() {
   const coreStats = { strength: 10, dexterity: 25, vitality: 10, energy: 35 };
-  return buildSave({ timestamp: 1000,
+  return { ...withoutV19Fields(buildSave({ timestamp: 1000,
     player: { id: 'hero', name: 'Hero', type: 'player', team: 'player', class: 'sorceress',
       level: 1, coreStats, derivedStats: deriveStats(coreStats, 1), statusEffects: [], cooldowns: [],
       skills: [], comboOrder: [], alive: true, turnOrder: 0, experience: 0,
@@ -30,10 +31,10 @@ function sample() {
       combatSpeed: 1, autoCombat: false },
     idleState: { lastOnline: 1000, offlineTime: 0, multiplierSecondsRemaining: 0, activeMultiplier: 1 },
     gachaState: { currency: 0, ownedMercIds: [], pityCounter: 0 } },
-    formation: { playerPosition: { row: 1, col: 1 }, mercPosition: { row: 0, col: 0 }, summonPositions: [] } });
+    formation: { playerPosition: { row: 1, col: 1 }, mercPosition: { row: 0, col: 0 }, summonPositions: [] } })), version: 18 as const };
 }
 
-const lore: Item = { id: 'historical-lore', baseId: 'items/base/armor-quilted',
+const lore: HistoricalItem = { id: 'historical-lore', baseId: 'items/base/armor-quilted',
   rarity: 'runeword', runewordId: 'runewords/lore', runes: ['runes/ort', 'runes/sol'],
   level: 27, socketCapacity: 2, identified: true, equipped: false };
 

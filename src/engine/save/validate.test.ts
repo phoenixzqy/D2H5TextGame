@@ -1,4 +1,4 @@
-import { withoutV17Fields, withV18Defaults } from '../../../tests/helpers/save-fixtures';
+import { withoutV17Fields, withV19Defaults } from '../../../tests/helpers/save-fixtures';
 import { assert, describe, expect, it } from 'vitest';
 import type { DerivedStats } from '../types/attributes';
 import { CURRENT_SAVE_VERSION, type LegacyDerivedStats } from '../types/save';
@@ -36,7 +36,7 @@ function expectedCurrent<T extends {
   const equipped = expectedSlots(save.inventory.equipped);
   const mercEquipment = Object.fromEntries(Object.entries(save.mercs.mercEquipment)
     .map(([id, slots]) => [id, expectedSlots(slots)]));
-  return withV18Defaults({ ...save,
+  return withV19Defaults({ ...save,
     inventory: { ...save.inventory, questItems: {}, equipped,
       backpack: save.inventory.backpack.map(expectedGear), stash: save.inventory.stash.map(expectedGear) },
     map: { ...save.map, questReceipts: {} },

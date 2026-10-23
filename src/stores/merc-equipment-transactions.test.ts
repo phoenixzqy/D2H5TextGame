@@ -1,5 +1,6 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { loadMercPool } from '@/data/loaders/mercs';
+import * as loot from '@/data/loaders/loot';
 import type { Item } from '@/engine/types/items';
 import { createMercFromDef } from './mercFactory';
 import { useMercStore } from './mercStore';
@@ -50,12 +51,39 @@ beforeEach(() => {
   useMercStore.getState().addMerc(merc);
   useInventoryStore.setState({ stash: [item('stashed')], currencies: { wishstone: 7 } });
 });
+afterEach(() => { vi.restoreAllMocks(); });
 
 describe('mercenary equipment authoritative transfers', () => {
+  it('refuses the actual stored runeword below its required level despite a forged plain caller', () => {
+    const stored = item('steel', sword, { rarity: 'runeword', runewordId: 'runewords/steel', socketCapacity: 2,
+      socketContents: [{ kind: 'rune', id: 'runes/tir' }, { kind: 'rune', id: 'runes/el' }] });
+    useInventoryStore.setState({ backpack: [stored] });
+    expectRefusal(attempt(() => useMercStore.getState().equipOnMerc(mercId, 'weapon', item(stored.id, sword))), 'requirements_not_met');
+    const merc = useMercStore.getState().ownedMercs[0];
+    if (!merc) throw new Error('Missing mercenary fixture');
+    useMercStore.setState({ ownedMercs: [{ ...merc, level: 13, derivedStats: { ...merc.derivedStats, life: 7, mana: 3 } }] });
+    const baseline = useMercStore.getState().ownedMercs;
+    expect(useMercStore.getState().equipOnMerc(mercId, 'weapon', stored)).toEqual({ ok: true });
+    expect(useMercStore.getState().ownedMercs).toBe(baseline);
+    expect(useInventoryStore.getState().backpack).toEqual([]);
+  });
+  it('checks core requirements against the mercenary rather than the hero or item bonuses', () => {
+    const bases = loot.loadItemBases(), base = bases.get(helm);
+    if (!base) throw new Error('Missing helm fixture');
+    vi.spyOn(loot, 'loadItemBases').mockReturnValue(new Map([...bases, [helm, { ...base, reqStats: { strength: 80 } }]]));
+    const merc = useMercStore.getState().ownedMercs[0];
+    if (!merc) throw new Error('Missing mercenary fixture');
+    useMercStore.setState({ ownedMercs: [{ ...merc, level: 99, coreStats: { ...merc.coreStats, strength: 79 } }] });
+    const stored = item('strength-helm', helm, { affixes: [{ affixId: 'requirements-fixture', values: new Map([['coreStats.strength', 100]]) }] });
+    useInventoryStore.setState({ backpack: [stored] });
+    expectRefusal(attempt(() => useMercStore.getState().equipOnMerc(mercId, 'head', stored)), 'requirements_not_met');
+    useMercStore.setState({ ownedMercs: [{ ...merc, level: 99, coreStats: { ...merc.coreStats, strength: 80 } }] });
+    expect(useMercStore.getState().equipOnMerc(mercId, 'head', stored)).toEqual({ ok: true });
+  });
   it('equips the complete stored item despite forged caller fields, consuming its source once', () => {
     const values = new Map([['coreStats.vitality', 5]]);
     const stored = item('selected', helm, { rarity: 'rare', ilvl: 7, identified: false,
-      affixes: [{ affixId: 'saved-affix', values }], baseRolls: { defense: 11 }, runes: ['saved-rune'] });
+      affixes: [{ affixId: 'saved-affix', values }], baseRolls: { defense: 11 }, socketContents: [] });
     const retained = item('retained');
     useInventoryStore.setState({ backpack: [retained, stored] });
     const original = structuredClone(stored);

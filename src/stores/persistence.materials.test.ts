@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { SaveRecord } from './save-adapter';
 import type { SaveCurrent, SaveV17 } from '@/engine/types/save';
+import { withoutV19Fields, withV19Defaults } from '../../tests/helpers/save-fixtures';
 
 const disk = vi.hoisted(() => {
   const state: { record: SaveRecord | undefined } = { record: undefined };
@@ -42,7 +43,7 @@ beforeEach(() => {
 });
 afterEach(() => { __resetPersistenceForTests(); });
 
-describe('native v18 material persistence', () => {
+describe('native material persistence and frozen v17/v18 exports', () => {
   it.each([17, 18])('raw disk export preserves affix Map entries and stored version %i', async version => {
     const values = new Map([['coreStats.energy', 5], ['statMods.mana', 20]]);
     useInventoryStore.getState().addItem({ id: 'caster-map', baseId: 'items/base/amu-tin',
@@ -51,7 +52,7 @@ describe('native v18 material persistence', () => {
     await flushSave();
     const record = disk.state.record;
     if (!record) throw new Error('Missing saved record');
-    const saved = snapshot();
+    const saved = { ...withoutV19Fields(snapshot()), version: 18 as const };
     const { materials: _materials, ...oldInventory } = saved.inventory;
     const historical: SaveV17 = { ...saved, version: 17, inventory: oldInventory };
     disk.state.record = { ...record, version, data: version === 17 ? historical : saved };
@@ -72,7 +73,7 @@ describe('native v18 material persistence', () => {
     useInventoryStore.getState().addMaterials(materials);
     useInventoryStore.getState().addCurrency('rune-shard', 99);
     const before = snapshot();
-    expect(before.version).toBe(18);
+    expect(before.version).toBe(19);
     expect(before.inventory.materials).toEqual(materials);
     const exported = exportCurrentSave();
     if (!exported) throw new Error('Missing export');
@@ -94,13 +95,13 @@ describe('native v18 material persistence', () => {
   it('migrates an actual exported v17 shape to empty typed ownership and conserves legacy balances', async () => {
     useInventoryStore.getState().addCurrency('gem-shard', 41);
     useInventoryStore.getState().addCurrency('historical-token', 8);
-    const current = snapshot();
+    const current = withoutV19Fields(snapshot());
     const { materials: _materials, ...inventory } = current.inventory;
     const old = { ...current, version: 17, inventory };
     useInventoryStore.getState().addMaterials({ 'runes/ral': 1 });
     await importIntoStores(JSON.stringify(old));
-    expect(snapshot().inventory).toEqual({ ...inventory, materials: {} });
-    expect((await loadSave())?.version).toBe(18);
+    expect(snapshot().inventory).toEqual(withV19Defaults(old).inventory);
+    expect((await loadSave())?.version).toBe(19);
   });
 
   it.each([undefined, { 'runes/ral': 0 }, { 'runes/unknown': 1 }, { 'runes/ral': Number.MAX_SAFE_INTEGER + 1 }])(

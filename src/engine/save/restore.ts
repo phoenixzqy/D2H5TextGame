@@ -1,4 +1,5 @@
 /** Pure restoration of validated JSON-safe save values. */
+import type { HistoricalItem } from './historical-items';
 import type { Item } from '../types/items';
 import type { Player, Mercenary } from '../types/entities';
 
@@ -9,7 +10,7 @@ function restoreNumericMap<K extends string>(value: unknown): ReadonlyMap<K, num
   return new Map(Object.entries(value as Record<string, number>) as [K, number][]);
 }
 /** Restore the legacy affix value Maps on a validated item. */
-export function restoreItem(item: Item): Item {
+export function restoreItem<T extends Item | HistoricalItem>(item: T): T {
   if (!item.affixes) return item;
   return {
     ...item,
@@ -19,13 +20,13 @@ export function restoreItem(item: Item): Item {
   };
 }
 /** Restore item affix Maps without mutating the supplied equipment. */
-export function restoreEquipment<T extends Record<string, Item | null | undefined>>(equipment: T): T {
+export function restoreEquipment<T extends Record<string, Item | HistoricalItem | null | undefined>>(equipment: T): T {
   return Object.fromEntries(
     Object.entries(equipment).map(([slot, item]) => [slot, item ? restoreItem(item) : item])
   ) as T;
 }
 /** Restore legacy item and skill Maps without mutating a saved unit. */
-export function restoreUnit<T extends Player | Mercenary>(unit: T): T {
+export function restoreUnit<T extends Omit<Player | Mercenary, 'equipment'> & { readonly equipment: readonly (Item | HistoricalItem)[] }>(unit: T): T {
   return {
     ...unit,
     equipment: unit.equipment.map(restoreItem),

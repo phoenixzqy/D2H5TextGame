@@ -97,7 +97,7 @@ describe('explicit draft, armed instruction and current-recording presentation',
 
   it.each([
     [{ identified: false }, 'unidentified'], [{ equipped: true }, 'equipped'],
-    [{ baseId: 'items/base/unknown' }, 'ineligibleBase'], [{ runes: ['rune'] }, 'unsupportedRunes'],
+    [{ baseId: 'items/base/unknown' }, 'ineligibleBase'], [{ socketContents: [{ kind: 'rune', id: 'runes/el' }] }, 'unsupportedRunes'],
     [{ rarity: 'unique', uniqueId: 'missing' }, 'invalidDefinition'],
     [{ baseRolls: { attack: NaN } }, 'invalidRolls']
   ] as const)('preserves item-local refusal %s', (fields, reason) => {

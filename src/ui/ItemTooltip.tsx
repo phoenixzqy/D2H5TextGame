@@ -22,7 +22,7 @@ import { useTranslation } from 'react-i18next';
 import { RarityText } from './RarityText';
 import { getItemIconUrl } from './imageHelpers';
 import { formatAffixRoll } from './affixFormat';
-import { resolveItemDisplay } from './itemDisplay';
+import { resolveItemDisplay, resolveSocketDisplayLines } from './itemDisplay';
 import { loadItemBases, resolveItemReqLevel } from '@/data/loaders/loot';
 import type { Item, ItemBase, EquipmentSlot } from '@/engine/types/items';
 import { effectiveSocketCapacity } from '@/engine/items/socket-capacity';
@@ -32,6 +32,8 @@ interface ItemTooltipProps {
   className?: string;
   /** Preserve historical quarantine inspection without applying native item requirements. */
   legacyInspection?: boolean;
+  /** v18 quarantine already has a validated capacity, but its unsupported contents stay inactive. */
+  preservedSocketInspection?: boolean;
 }
 
 const RARITY_BORDER: Record<Item['rarity'], string> = {
@@ -89,15 +91,16 @@ function buildDefenseLine(
   return t('tooltip.defense', { value });
 }
 
-export function ItemTooltip({ item, className = '', legacyInspection = false }: ItemTooltipProps): JSX.Element {
+export function ItemTooltip({ item, className = '', legacyInspection = false, preservedSocketInspection = false }: ItemTooltipProps): JSX.Element {
   const { t } = useTranslation('items');
   const { t: tInventory } = useTranslation(['inventory', 'items']);
   const { t: tAffix } = useTranslation('affixes');
   const icon = getItemIconUrl(item);
   const base: ItemBase | undefined = loadItemBases().get(item.baseId);
-  const socketCapacity = legacyInspection ? null : base ? effectiveSocketCapacity(item, base) : 0;
+  const socketCapacity = legacyInspection && !preservedSocketInspection ? null : base ? effectiveSocketCapacity(item, base) : 0;
 
   const display = resolveItemDisplay(item, tInventory);
+  const socketLines = legacyInspection ? [] : resolveSocketDisplayLines(item, tInventory);
   const displayName = display.name;
   const reqLevel = resolveItemReqLevel(item, base);
 
@@ -193,7 +196,7 @@ export function ItemTooltip({ item, className = '', legacyInspection = false }: 
       <div className="text-d2-white/70 text-[11px] text-center mb-2">
         {t('tooltip.ilvl', { value: item.ilvl ?? item.level })}
         {socketCapacity ? ` · ${t('tooltip.sockets', { value: socketCapacity })}` : ''}
-        {legacyInspection && <div>{tInventory('quarantine.socketCapacityUnknown')}</div>}
+        {legacyInspection && !preservedSocketInspection && <div>{tInventory('quarantine.socketCapacityUnknown')}</div>}
       </div>
       {item.personalizedBy && <div className="text-d2-gold text-xs text-center break-words" data-testid="item-tooltip-personalization">
         {tInventory('detail.personalizedBy', { name: item.personalizedBy.name })}
@@ -218,11 +221,14 @@ export function ItemTooltip({ item, className = '', legacyInspection = false }: 
         <ul className="space-y-0.5 pt-2 border-t border-d2-border/60 mt-2" data-testid="item-tooltip-affixes">
           {item.affixes.map((affix, idx) => (
             <li key={idx} className="text-d2-magic text-xs" data-testid="item-tooltip-affix">
-              {formatAffixRoll(affix, tAffix)}
+              {formatAffixRoll(affix, 'values' in affix ? tInventory : tAffix)}
             </li>
           ))}
         </ul>
       )}
+      {socketLines.length > 0 && <ul className="space-y-1 pt-2 border-t border-d2-border/60 mt-2" data-testid="item-tooltip-socket-stats">
+        {socketLines.map((line, index) => <li key={`${line.key}-${String(index)}`} className="text-d2-magic text-sm">{line.text}</li>)}
+      </ul>}
       {display.definitionStatLines.length > 0 && (
         <ul className="space-y-0.5 pt-2 border-t border-d2-border/60 mt-2" data-testid="item-tooltip-definition-stats">
           {display.definitionStatLines.map((line) => (
@@ -244,7 +250,7 @@ export function ItemTooltip({ item, className = '', legacyInspection = false }: 
           ))}
         </div>
       )}
-      {display.definitionStatLines.length === 0 && (!item.affixes || item.affixes.length === 0) && damageLine === null && defenseLine === null && (
+      {display.definitionStatLines.length === 0 && socketLines.length === 0 && (!item.affixes || item.affixes.length === 0) && damageLine === null && defenseLine === null && (
         <div
           className="pt-2 border-t border-d2-border/60 mt-2 text-[11px] text-d2-white/50 italic text-center"
           data-testid="item-tooltip-no-mods"

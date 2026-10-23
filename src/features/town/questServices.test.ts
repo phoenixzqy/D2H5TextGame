@@ -216,7 +216,7 @@ describe('actual current-town service discovery and selected gear', () => {
       : required([...loadItemBases().values()].find(row => row.type === 'jewelry'));
     const { socketCapacity: _capacity, ...legacy } = item;
     useInventoryStore.setState({ backpack: [fault === 'capacity' ? { ...item, socketCapacity: 1 }
-      : fault === 'missing-capacity' ? legacy : fault === 'runes' ? { ...item, runes: ['runes/el'] }
+      : fault === 'missing-capacity' ? legacy : fault === 'runes' ? { ...item, socketContents: [{ kind: 'rune', id: 'runes/el' }] }
         : fault === 'runeword' ? { ...item, runewordId: 'runewords/steel' } : { ...item, baseId: base.id }] });
     noChange(SIEGE);
   });

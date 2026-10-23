@@ -1,3 +1,4 @@
+import { withoutV19Fields } from '../../../tests/helpers/save-fixtures';
 import { describe, expect, it } from 'vitest';
 import { buildSave, toJsonSafe } from './serialize';
 import { validateFrozenV18Save, validateSocketSave } from './validate';
@@ -8,7 +9,7 @@ import { migrateSaveV19 } from './migrate-v19';
 
 function sample(): SaveV18 {
   const coreStats = { strength: 10, dexterity: 25, vitality: 10, energy: 35 };
-  return buildSave({ timestamp: 1000,
+  return { ...withoutV19Fields(buildSave({ timestamp: 1000,
     player: { id: 'hero', name: 'Hero', type: 'player', team: 'player', class: 'sorceress',
       level: 30, coreStats, derivedStats: { ...deriveStats(coreStats, 30), life: 7, mana: 9 }, statusEffects: [], cooldowns: [],
       skills: [], comboOrder: [], alive: true, turnOrder: 0, experience: 0,
@@ -19,7 +20,7 @@ function sample(): SaveV18 {
     meta: { settings: { locale: 'en', stealthMode: false, soundEnabled: false, musicEnabled: false, combatSpeed: 1, autoCombat: false },
       idleState: { lastOnline: 1000, offlineTime: 0, multiplierSecondsRemaining: 0, activeMultiplier: 1 },
       gachaState: { currency: 0, ownedMercIds: [], pityCounter: 0 } },
-    formation: { playerPosition: { row: 1, col: 1 }, mercPosition: { row: 0, col: 0 }, summonPositions: [] } });
+    formation: { playerPosition: { row: 1, col: 1 }, mercPosition: { row: 0, col: 0 }, summonPositions: [] } })), version: 18 as const };
 }
 function sword(id = 'steel'): HistoricalItem {
   return { id, baseId: 'items/base/wp1h-short-sword', rarity: 'runeword', level: 13,

@@ -13,7 +13,7 @@ import { useMetaStore } from '@/stores/metaStore';
 import { useHydrationStore } from '@/stores/hydrationStore';
 import { snapshotStores } from '@/stores/persistence';
 import { captureEarnedRestorers, observeEarnedState } from './earned-state';
-import { hydrateEconomyAncestry, prepareEconomyAncestry, allocateEconomyBoundary,
+import { loadAuthenticEconomyAncestry, hydrateEconomyAncestry, prepareEconomyAncestry, allocateEconomyBoundary,
   economyPlaybackSchedule, playEconomyWave, runEconomyScreen } from './fresh-campaign-economy';
 import { economyPolicy as policy } from './fresh-campaign-economy-policy';
 import { captureFreshEconomyNativeSave, captureFreshNativeSave, publishFreshCampaignReport } from './fresh-campaign-save';
@@ -34,10 +34,10 @@ it('authenticates Rocky native ancestry and exactly hydrates every saved domain 
   expect(hydrateEconomyAncestry().rawSha256).toBe(policy.sourceRawSha256);
   const live = snapshotStores();
   if (!live) throw new Error('Missing migrated ancestry');
-  expect(live.version).toBe(18);
+  expect(live.version).toBe(19);
   expect(live.inventory.materials).toEqual({});
-  expect(hashObservation(historicalV17Save(live))).toBe(policy.sourceSaveHash);
-  expect(hashObservation(historicalV17EarnedState(observeEarnedState()))).toBe(policy.sourceEarnedHash);
+  expect(hashObservation(historicalV17Save(live, loadAuthenticEconomyAncestry().witness))).toBe(policy.sourceSaveHash);
+  expect(hashObservation(historicalV17EarnedState(observeEarnedState(), loadAuthenticEconomyAncestry().witness))).toBe(policy.sourceEarnedHash);
   expect(useHydrationStore.getState().status).toBe('ready');
   expect(useCombatStore.getState().inCombat).toBe(false);
 });

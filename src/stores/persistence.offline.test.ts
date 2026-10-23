@@ -121,12 +121,13 @@ describe('equipment rate cache persistence compatibility', () => {
         { id: 'affix.ethereal.magic-dodge', tier: 0, rolledValue: 1 },
         { affixId: 'legacy-canonical', values: new Map([['statMods.critDamage', .25]]) }
       ] };
-    const input: SaveCurrent = { ...base, player: { ...base.player,
+    const mercAmulet = { ...amulet, id: 'merc-unit-amulet' };
+    const input: SaveCurrent = { ...base, player: { ...base.player, equipment: [amulet],
       derivedStats: { ...base.player.derivedStats, life: 53, mana: 47, magicResist: 17,
         critChance: 2.05, critDamage: 7.25, physDodge: 2.1, magicDodge: 1.05 } },
       inventory: { ...base.inventory, equipped: { amulet } },
-      mercs: { ...base.mercs, ownedMercs: [merc], fieldedMercId: merc.id,
-        mercEquipment: { [merc.id]: { amulet: { ...amulet, id: 'merc-unit-amulet' } } },
+      mercs: { ...base.mercs, ownedMercs: [{ ...merc, equipment: [mercAmulet] }], fieldedMercId: merc.id,
+        mercEquipment: { [merc.id]: { amulet: mercAmulet } },
         mercProgress: { [merc.id]: { level: 5, experience: 73, experienceToNextLevel: 97 } } } };
     const expected = { ...input, player: { ...input.player,
       derivedStats: { ...input.player.derivedStats,

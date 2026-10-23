@@ -1,3 +1,5 @@
+import type { MaterialActionReceipt } from '@/engine/crafting/action-state';
+import type { MaterialRecoveryEntry } from '@/engine/crafting/material-actions';
 import type { QuestServiceLedger } from '@/engine/services/quest-services';
 import type { LegacyGearQuarantineEntry } from '@/engine/types/save';
 /**
@@ -45,6 +47,10 @@ interface InventoryState {
   currencies: Record<string, number>;
   /** Concrete catalog stacks; independent of gear capacity and aggregate currencies. */
   materials: MaterialLedger;
+  socketQuarantine: readonly MaterialRecoveryEntry[];
+  materialActionOrdinal: number;
+  /** Null internally; native saves project null as true absence. */
+  latestMaterialAction: MaterialActionReceipt | null;
   /** Bound entitlements and consumed receipts, independent of gear capacities. */
   questItems: QuestItemLedger;
   questServices: QuestServiceLedger;
@@ -91,6 +97,9 @@ const initialState = {
   equipped: {} as Record<string, Item | null>,
   currencies: {} as Record<string, number>,
   materials: {} as MaterialLedger,
+  socketQuarantine: [] as readonly MaterialRecoveryEntry[],
+  materialActionOrdinal: 0,
+  latestMaterialAction: null as MaterialActionReceipt | null,
   questItems: {} as QuestItemLedger,
   questServices: {} as QuestServiceLedger,
   legacyGearQuarantine: [] as readonly LegacyGearQuarantineEntry[]

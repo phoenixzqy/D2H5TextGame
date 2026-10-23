@@ -55,7 +55,8 @@ function oldSave(intermediate = false): SaveV7 {
   usePlayerStore.getState().setPlayer({ ...player, equipment: [starter] });
   const current = snapshotStores();
   assert(current);
-  const save = withoutV17Fields(current);
+  const historical = withoutV17Fields(current);
+  const save = { ...historical, player: { ...historical.player, equipment: [starter] } };
   usePlayerStore.getState().setPlayer(createMockPlayer('Current', 'sorceress'));
   const { magicResist: _mr, ...oldStats } = save.player.derivedStats;
   const { questItems: _ledger, ...inventory } = save.inventory;

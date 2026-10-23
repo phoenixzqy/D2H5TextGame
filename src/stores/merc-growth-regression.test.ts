@@ -409,8 +409,11 @@ describe('BUG095 validated-save historical repair boundary', () => {
     for (const value of [NaN, Infinity, -Infinity]) {
       const bad = { ...merc, derivedStats: { ...merc.derivedStats, attack: value } };
       const save = saveWith([bad]);
+      const savedMerc = save.mercs.ownedMercs[0];
       expect(() => decodeSave(save)).toThrow('Invalid save');
-      expect(save.mercs.ownedMercs[0]).toBe(bad);
+      expect(save.mercs.ownedMercs[0]).toBe(savedMerc);
+      expect(savedMerc).toEqual(bad);
+      expect(savedMerc?.derivedStats).toBe(bad.derivedStats);
       expect(Object.is(bad.derivedStats.attack, value)).toBe(true);
     }
   });

@@ -33,14 +33,17 @@ export function migrateSaveV19(old: SaveV18): SaveV19 {
   const backpack = bag('backpack'), stash = bag('stash'), equipped = slots(old.inventory.equipped);
   const mercEquipment = Object.fromEntries(Object.entries(old.mercs.mercEquipment)
     .map(([id, equipment]) => [id, slots(equipment, id)]));
-  const compose = prepareEquipmentStatComposition(old.player, old.player.level,
-    old.map.questProgress, old.inventory.questItems, old.map.questReceipts);
+  const heroEffectsChanged = Object.values(old.inventory.equipped).some(item => (item?.runes?.length ?? 0) > 0)
+    || quarantine.some(entry => entry.origin.container === 'equipped');
+  const derivedStats = heroEffectsChanged
+    ? prepareEquipmentStatComposition(old.player, old.player.level, old.map.questProgress,
+      old.inventory.questItems, old.map.questReceipts)(aggregateCanonicalEquipmentMods(restoreEquipment(equipped)))
+    : old.player.derivedStats;
   const present = (item: CanonicalSocketItem | null | undefined): item is CanonicalSocketItem => item != null;
   return { ...old, version: 19,
     inventory: { ...old.inventory, backpack, stash, equipped,
       socketQuarantine: quarantine, materialActionOrdinal: 0 },
-    player: { ...old.player, equipment: Object.values(equipped).filter(present),
-      derivedStats: compose(aggregateCanonicalEquipmentMods(restoreEquipment(equipped))) },
+    player: { ...old.player, equipment: Object.values(equipped).filter(present), derivedStats },
     mercs: { ...old.mercs, mercEquipment, ownedMercs: old.mercs.ownedMercs.map(merc => ({ ...merc,
       equipment: Object.values(mercEquipment[merc.id] ?? {}).filter(present) })) }
   };

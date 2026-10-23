@@ -104,6 +104,8 @@ function buildStoreSnapshot(now: number, projectBonus: boolean): SaveCurrent | n
       equipped: inv.equipped,
       currencies: inv.currencies,
       materials: inv.materials,
+      socketQuarantine: inv.socketQuarantine, materialActionOrdinal: inv.materialActionOrdinal,
+      ...(inv.latestMaterialAction === null ? {} : { latestMaterialAction: inv.latestMaterialAction }),
       questItems: inv.questItems, questServices: inv.questServices, legacyGearQuarantine: inv.legacyGearQuarantine
     },
     mercs: {
@@ -193,6 +195,15 @@ export function exportCurrentSave(): string | null {
 function cancelPendingSave(): void {
   if (timer) clearTimeout(timer);
   timer = null;
+}
+
+/** Preserve the last stored save when a live transaction could not verify its restoration. */
+export function blockSavesForRecovery(): void {
+  writesBlocked = true;
+  cancelPendingSave();
+  const message = 'Material action restoration failed; saved-state recovery is required';
+  useSaveStatusStore.setState({ error: message });
+  useHydrationStore.getState().setStatus('error', message);
 }
 
 /**
@@ -316,6 +327,12 @@ export function hydrateFromSave(): Promise<boolean> {
   return enqueueRestore(lease => hydrateSavedCharacter(false, lease));
 }
 
+/** An empty disk is safe only when no damaged runtime state still needs replacement. */
+function finishEmptyHydration(): void {
+  if (writesBlocked) throw new Error('Stored save needs recovery before continuing');
+  useHydrationStore.getState().setStatus('ready');
+}
+
 async function hydrateSavedCharacter(reconcileOffline: boolean, lease: WaveRestoreLease): Promise<boolean> {
   useHydrationStore.getState().setStatus('loading');
   cancelPendingSave();
@@ -323,7 +340,7 @@ async function hydrateSavedCharacter(reconcileOffline: boolean, lease: WaveResto
   try {
     let data = await loadSave();
     if (!data) {
-      useHydrationStore.getState().setStatus('ready');
+      finishEmptyHydration();
       return false;
     }
     let reconciledAt: number | undefined;
@@ -371,6 +388,8 @@ function applySaveToStores(data: SaveCurrent, idleBonusAnchor: number, lease: Wa
     equipped: { ...data.inventory.equipped },
     currencies: { ...data.inventory.currencies },
     materials: { ...data.inventory.materials },
+    socketQuarantine: [...data.inventory.socketQuarantine], materialActionOrdinal: data.inventory.materialActionOrdinal,
+    latestMaterialAction: data.inventory.latestMaterialAction ?? null,
     questItems: { ...data.inventory.questItems },
     questServices: { ...data.inventory.questServices }, legacyGearQuarantine: [...data.inventory.legacyGearQuarantine]
   });
@@ -420,6 +439,7 @@ function seedItemSeqFromHydratedSave(data: SaveCurrent): void {
       if (it) ids.push(it.id);
     }
   }
+  for (const entry of [...data.inventory.legacyGearQuarantine, ...data.inventory.socketQuarantine]) ids.push(entry.item.id);
   seedItemSeqFromIds(ids);
 }
 
@@ -444,7 +464,7 @@ async function initializePersistence(lease: WaveRestoreLease): Promise<void> {
     if (exists) {
       await hydrateSavedCharacter(true, lease);
     } else {
-      useHydrationStore.getState().setStatus('ready');
+      finishEmptyHydration();
     }
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);

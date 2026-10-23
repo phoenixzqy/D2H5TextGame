@@ -337,7 +337,7 @@ for (const locale of ['en', 'zh-CN'] as const) {
         { ...socketTarget, socketCapacity: socketBase.maxSockets });
       const socketed = await backup(page), actualSocketed = socketed.inventory.backpack.find(item => item.id === socketTarget.id);
       if (!actualSocketed) throw new Error('Missing actual serviced drop');
-      expect(actualSocketed.runes).toEqual(socketTarget.runes);
+      expect(actualSocketed.socketContents).toEqual(socketTarget.socketContents);
       expect(matcher.matchRuneword({ baseType: socketBase.type, sockets: sockets.effectiveSocketCapacity(actualSocketed, socketBase),
         runes: recipe.runes, isWhiteBase: true }, recipes)).toBe(recipe.id);
       await service(`${PRISON}#reward:service`, 'town-npc-anya', personalTarget,

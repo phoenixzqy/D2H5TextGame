@@ -227,7 +227,8 @@
       "allRes": "所有抗性",
       "minDamage": "最小伤害",
       "maxDamage": "最大伤害",
-      "damage": "伤害"
+      "damage": "伤害",
+      "magicResist": "魔法抗性"
     }
   },
   "discardConfirm": {
@@ -321,7 +322,7 @@
     "ownedFilter": "已持有材料",
     "catalogFilter": "全部材料",
     "ownedCount": "持有：{{quantity}}",
-    "future": "镶嵌与制作将在后续开放。已获得的材料会保存在存档中，供日后使用。",
+    "future": "可在下方预览制作与镶嵌操作，再确认消耗材料。",
     "sourceLabel": "获取途径",
     "useLabel": "用途",
     "kind": {
@@ -332,12 +333,100 @@
     "source": {
       "rune": "战斗胜利掉落及部分任务奖励。",
       "gem": "战斗胜利掉落及部分任务奖励。",
-      "scrap": "制作开放后可通过分解获得。"
+      "scrap": "分解符合条件的背包或仓库装备。"
     },
     "use": {
-      "rune": "后续用于镶嵌、符文之语、符文合成与配方。",
-      "gem": "后续用于镶嵌、宝石合成与配方。",
-      "scrap": "后续用于制作装备。"
+      "rune": "镶嵌、符文之语、符文合成与配方制作。",
+      "gem": "镶嵌、宝石合成、分解与配方制作。",
+      "scrap": "装备制作。"
     }
+  },
+  "crafting": {
+    "title": "制作与镶嵌",
+    "action": "操作",
+    "recipeLabel": "配方",
+    "material": "镶嵌材料",
+    "preview": "预览操作",
+    "confirm": "确认",
+    "cancel": "取消",
+    "close": "关闭",
+    "completed": "已完成",
+    "progression": "符文合成取决于最高已解锁章节与当前所选难度：第一至五幕上限分别为第 8 / 15 / 19 / 21 / 33 号符文，非地狱难度最高为第 22 号。宝石合成可以超过宝石掉落品质上限。",
+    "kind": {
+      "rune-fusion": "合成符文",
+      "gem-fusion": "合成宝石",
+      "gem-dismantle": "分解宝石",
+      "socket-insert": "镶嵌符文或宝石",
+      "socket-armor": "重置护甲孔数",
+      "socket-clear": "清空镶嵌孔",
+      "caster-amulet": "制作施法者项链",
+      "salvage": "分解装备",
+      "recover-v18": "恢复保留的 v18 装备"
+    },
+    "recipe": {
+      "rune-fusion": "符文合成",
+      "gem-fusion": "宝石合成",
+      "gem-dismantle": "宝石分解",
+      "socket-armor": "护甲打孔",
+      "socket-clear": "清空镶嵌孔",
+      "caster-amulet": "施法者项链"
+    },
+    "rules": {
+      "rune-fusion": "使用三个相同符文合成下一个符文，产物必须已解锁。",
+      "gem-fusion": "使用三个相同的非完美宝石与一个宝石碎片，合成高一级品质。",
+      "gem-dismantle": "销毁一个宝石，按品质获得宝石碎片。",
+      "socket-insert": "选择背包中一件未装备且有空孔的武器或护甲，材料按顺序填入下一个孔。符文顺序、底材、部位与孔数必须完全匹配才能形成符文之语，其他组合保留普通镶嵌效果。",
+      "socket-armor": "选择背包中一件镶嵌内容为空的普通胸甲，将孔数随机设为 1 至底材孔数上限。",
+      "socket-clear": "选择背包中一件已镶嵌的武器或护甲，保留装备与孔数，销毁全部镶嵌材料且不返还。",
+      "caster-amulet": "选择背包中一件已鉴定、镶嵌内容为空的魔法项链，制作为稀有项链，固定精力 +5、法力 +20，并获得一条合法前缀与后缀。",
+      "salvage": "选择背包或仓库中未装备的物品。已装备、任务绑定及钢铁石魔预留物品不可分解。丢弃是独立操作，不会获得材料。",
+      "recover-v18": "选择一件保留的 v18 装备，以普通装备与空镶嵌内容恢复至背包，仅返还原记录中明确存在的符文。更早的保留装备仍只能查看。"
+    },
+    "targets": "目标装备",
+    "search": "搜索装备",
+    "emptyTargets": "此处没有物品。",
+    "noMatches": "没有匹配的物品。",
+    "selected": "已选择：{{count}}",
+    "page": "第 {{page}} / {{pages}} 页",
+    "previous": "上一页",
+    "next": "下一页",
+    "costs": "消耗",
+    "outputs": "结果",
+    "none": "无",
+    "owned": "持有：{{quantity}}",
+    "before": "所选物品",
+    "after": "结果物品",
+    "contents": "镶嵌顺序",
+    "emptyContents": "空",
+    "word": "符文之语：{{name}}",
+    "noWord": "未形成符文之语，普通镶嵌效果生效。",
+    "capacity": "镶嵌孔数：{{count}}",
+    "destroyGear": "所选装备及全部镶嵌材料将被永久销毁，镶嵌材料不会返还。",
+    "destroyInserts": "所有镶嵌材料与符文之语将被永久移除，不返还镶嵌材料。",
+    "destroyGem": "所选宝石将被永久销毁。",
+    "recoverNotice": "移除保留的符文之语，保留同一物品标识、底材、原始数值、孔数与个性化信息，仅返还下列符文。",
+    "failed": "未能完成操作。{{reason}}",
+    "previewFailed": "未能预览操作。{{reason}}",
+    "error": {
+      "idle": "请先完成或离开当前战斗再制作。",
+      "ready": "请等待角色存档加载完成。",
+      "materials": "材料或碎片不足。",
+      "unlock": "此符文合成产物尚未解锁。",
+      "target": "请检查配方要求，并在指定位置选择符合条件的物品。",
+      "capacity": "请为恢复的装备腾出背包空间。",
+      "stale": "所选物品或操作状态已改变，请关闭预览并重新准备。",
+      "unknown": "再次尝试前，请检查背包与存档状态。",
+      "rollback": "无法验证恢复结果。请重新加载或导入已验证的备份后继续。"
+    },
+    "currency": {
+      "rune-shard": "符文碎片",
+      "gem-shard": "宝石碎片"
+    },
+    "backpack": "背包",
+    "stash": "仓库",
+    "quarantine": "保留的 v18 装备",
+    "preservedContents": "保留的符文顺序",
+    "preservedWord": "保留的符文之语（未生效）：{{name}}",
+    "recoveryRequired": "存档不可用时暂停制作。如恢复失败，请重新加载或导入已验证的备份后继续。"
   }
 }

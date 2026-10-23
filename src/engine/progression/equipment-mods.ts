@@ -122,7 +122,7 @@ export function aggregateEquipmentMods(
   equipped: Readonly<Record<string, Item | null>>,
   definitionPools: EquipmentDefinitionPools = {}
 ): EquipmentMods {
-  return aggregateNonSocketEquipmentMods(equipped, definitionPools);
+  return aggregateCanonicalEquipmentMods(equipped, definitionPools);
 }
 
 /** Canonical v19 composition: each inserted material and completed word contributes once per candidate. */
@@ -134,6 +134,8 @@ export function aggregateCanonicalEquipmentMods(
   const bases = loadItemBases();
   for (const item of Object.values(equipped)) {
     if (!item) continue;
+    // Empty gear has no socket package; shape admission belongs to the native boundary.
+    if (!item.socketContents?.length && !item.runewordId && item.rarity !== 'runeword') continue;
     const base = bases.get(item.baseId);
     if (!base) throw new Error('Unknown canonical equipment base');
     for (const stats of socketBonusPackages(item, base)) addStatPackage(mods, stats, item.statRolls);
