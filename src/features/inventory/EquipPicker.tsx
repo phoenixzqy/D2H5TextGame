@@ -289,6 +289,7 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
   const { t } = useTranslation(['inventory', 'common']);
   const player = usePlayerStore((s) => s.player);
   const questProgress = useMapStore(s => s.questProgress);
+  const questReceipts = useMapStore(s => s.questReceipts);
   const questItems = useInventoryStore(s => s.questItems);
   const backpack = useInventoryStore((s) => s.backpack);
   const equipped = useInventoryStore((s) => s.equipped);
@@ -351,8 +352,8 @@ export function EquipPicker({ slot, onClose, onEquipped, onEquipFailed }: Props)
 
   const compare = useMemo(() => {
     if (!selected || !playerForCheck || !slot) return null;
-    return compareEquip(playerForCheck, selected, slot, equipped, undefined, questProgress, questItems);
-  }, [selected, playerForCheck, slot, equipped, questProgress, questItems]);
+    return compareEquip(playerForCheck, selected, slot, equipped, undefined, questProgress, questItems, questReceipts);
+  }, [selected, playerForCheck, slot, equipped, questProgress, questItems, questReceipts]);
 
   const sameAsEquipped = useMemo(() => {
     if (!compare) return false;

@@ -72,7 +72,7 @@
       "ok": "Action completed.",
       "already-consumed": "This charge or action has already been used.",
       "not-eligible": "This item or character is not eligible.",
-      "not-ready": "Complete the quest requirements first.",
+      "not-ready": "Save data is loading. Try again shortly.",
       "no-player": "Create or load a character first.",
       "combat-active": "Finish or stop combat before continuing.",
       "claim-in-progress": "Another quest action is still finishing. Try again shortly.",

@@ -72,7 +72,7 @@
       "ok": "操作完成。",
       "already-consumed": "此次数或操作已经使用。",
       "not-eligible": "此物品或角色不符合条件。",
-      "not-ready": "请先完成任务条件。",
+      "not-ready": "存档正在载入，请稍后重试。",
       "no-player": "请先创建或载入角色。",
       "combat-active": "请先结束或停止战斗。",
       "claim-in-progress": "另一项任务操作尚未完成，请稍后重试。",
