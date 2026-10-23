@@ -1,0 +1,151 @@
+{
+  "status": "action-refused",
+  "kind": "fresh-production-service-screen",
+  "stage": "accepted-preparation",
+  "runtimeAndHarnessHead": "5fcfbe43ae696c2706e208742dd8aeb8772915ae",
+  "sourceTreeHash": "fb7cb1405f662adb2283b513e2f57fb5b4c9e898a924609ca5d0edd26c08eb9c",
+  "dataHash": "a1c9be78af566f3c9bd9fd8df22b25d81423fc1ab43e591c07fac3a794eee851",
+  "retainedPolicySha256": "bceaab7cb2e1ebf0e3b945c96e3fd1a4959553058871476c42201dbe1f994936",
+  "sourceStable": true,
+  "sourceClean": true,
+  "waves": 40,
+  "wins": 40,
+  "heroXp": 11080,
+  "mercXp": 8310,
+  "ownedBackpackItems": 344,
+  "currencies": {
+    "rune-shard": 5157
+  },
+  "terminalPlayer": {
+    "level": 6,
+    "experience": 67,
+    "skillPoints": 5,
+    "statPoints": 25
+  },
+  "terminalOrdinals": {
+    "nightmare": 0,
+    "normal": 40
+  },
+  "firstRefusal": {
+    "action": "accepted-earned-literal-guard",
+    "actual": {
+      "affixes": [],
+      "baseId": "items/base/glove-leather",
+      "baseRolls": {
+        "defense": 4
+      },
+      "equipped": false,
+      "generatedName": {},
+      "id": "it-8jv2k-1",
+      "identified": true,
+      "ilvl": 2,
+      "level": 2,
+      "rarity": "normal",
+      "socketCapacity": 1
+    },
+    "afterHash": "d4ce61073a8555c3c8d203740128a507efa37f908859ebf56b4895623d1c76c2",
+    "beforeHash": "d4ce61073a8555c3c8d203740128a507efa37f908859ebf56b4895623d1c76c2",
+    "delta": {
+      "addedClears": [],
+      "addedItems": [],
+      "currencies": {
+        "rune-shard": 0
+      },
+      "mercXp": {
+        "mercs/act1-rogue-inner-sight": 0
+      },
+      "removedItemIds": [],
+      "xp": 0
+    },
+    "expected": {
+      "affixes": [],
+      "baseId": "items/base/glove-leather",
+      "baseRolls": {
+        "defense": 4
+      },
+      "equipped": false,
+      "generatedName": {},
+      "id": "it-8jv2k-1",
+      "identified": true,
+      "ilvl": 2,
+      "level": 2,
+      "rarity": "normal"
+    }
+  },
+  "readOnlyEightLiteralAudit": [
+    {
+      "id": "it-8jv2k-1",
+      "found": true,
+      "historicalFieldsEqual": true,
+      "newOwnFields": {
+        "socketCapacity": 1
+      }
+    },
+    {
+      "id": "it-96fga-3",
+      "found": true,
+      "historicalFieldsEqual": true,
+      "newOwnFields": {
+        "socketCapacity": 1
+      }
+    },
+    {
+      "id": "it-5iwwr-4",
+      "found": true,
+      "historicalFieldsEqual": true,
+      "newOwnFields": {
+        "socketCapacity": 0
+      }
+    },
+    {
+      "id": "it-71emu-12",
+      "found": true,
+      "historicalFieldsEqual": true,
+      "newOwnFields": {
+        "socketCapacity": 0
+      }
+    },
+    {
+      "id": "it-8n9ca-1b",
+      "found": true,
+      "historicalFieldsEqual": true,
+      "newOwnFields": {
+        "socketCapacity": 0
+      }
+    },
+    {
+      "id": "it-71emu-1a",
+      "found": true,
+      "historicalFieldsEqual": true,
+      "newOwnFields": {
+        "socketCapacity": 0
+      }
+    },
+    {
+      "id": "it-96fga-8",
+      "found": true,
+      "historicalFieldsEqual": true,
+      "newOwnFields": {
+        "socketCapacity": 1
+      }
+    },
+    {
+      "id": "it-5iwwr-9",
+      "found": true,
+      "historicalFieldsEqual": true,
+      "newOwnFields": {
+        "socketCapacity": 0
+      }
+    }
+  ],
+  "logicalSimSeconds": 962.892,
+  "wallSeconds": 2.6939592089999995,
+  "rawReportSha256": "f271ed9a89c5eb8c85ba63a866b36d5177bc06eba9609e1dda5f78a70c4d6efe",
+  "gzipReportSha256": "3de4c7a3d1c22ba10fe0e44724f04cddbc47197cd68aa73e8acce8c654ba4871",
+  "rawReportBytes": 2151557,
+  "gzipReportBytes": 191899,
+  "limitations": [
+    "No browser, persistence, Save/Continue, or player pacing acceptance.",
+    "Only the declared preparation checkpoint is implemented; Den and later acts remain unattempted."
+  ]
+}
