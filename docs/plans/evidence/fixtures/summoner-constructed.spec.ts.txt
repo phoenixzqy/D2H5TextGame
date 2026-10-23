@@ -1,0 +1,100 @@
+/** Constructed injected-power diagnostic. No earned Arcane/campaign claim. */
+import { test, expect, type Page, type BrowserContext } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/@playwright/test/index.mjs';
+import { readFile, writeFile, appendFile } from 'node:fs/promises';
+import { createCharacter, navTo } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/tests/e2e/_helpers';
+import { gunzipSync, gzipSync } from 'node:zlib';
+const root='/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-summoner-gtbnvvgp';
+const quest='quests/act2-arcane-sanctuary';
+const source=quest+'#reward:questItem';
+const now=1792497600000;
+async function backup(page:Page) {
+ await navTo(page,'settings'); const pending=page.waitForEvent('download');
+ await page.getByTestId('export-save-button').click(); const download=await pending;
+ try { return JSON.parse(await readFile(await download.path(),'utf8')); } finally { await download.delete(); }
+}
+async function disk(page:Page) {
+ return page.evaluate(async()=>{
+  const db=await new Promise<IDBDatabase>((resolve,reject)=>{const req=indexedDB.open('D2H5TextGame'); req.onsuccess=()=>resolve(req.result); req.onerror=()=>reject(req.error);});
+  try {
+   const record=await new Promise<{data:unknown}>((resolve,reject)=>{const req=db.transaction('saves','readonly').objectStore('saves').get('current'); req.onsuccess=()=>resolve(req.result); req.onerror=()=>reject(req.error);});
+   return JSON.parse(JSON.stringify(record.data,(_key,value)=>value instanceof Map?[...value.entries()]:value));
+  } finally { db.close(); }
+ });
+}
+async function importSave(page:Page, raw:string, english:boolean) {
+ await navTo(page,'settings'); const label=english?'Import Save':'导入存档';
+ await page.getByRole('button',{name:label,exact:true}).click(); const dialog=page.getByRole('dialog');
+ await dialog.getByRole('textbox').fill(raw);
+ await dialog.getByRole('button',{name:label,exact:true}).click(); await expect(dialog).toHaveCount(0);
+}
+async function reopen(page:Page, context:BrowserContext, english:boolean, expected:unknown, errors:string[]) {
+ await navTo(page,'settings');
+ await page.getByRole('button',{name:english?'Save':'保存',exact:true}).click();
+ await expect(page.getByRole('status')).toHaveText(english?'Saved':'已保存');
+ expect(await disk(page)).toEqual(expected); expect(await backup(page)).toEqual(expected);
+ await page.close(); const next=await context.newPage(); next.on('pageerror',error=>errors.push(error.message));
+ await next.clock.setFixedTime(now); await next.goto('/'); await next.waitForLoadState('networkidle');
+ await next.getByTestId('home-continue').click(); await expect(next.getByTestId('town-screen')).toBeVisible();
+ expect(await backup(next)).toEqual(expected); expect(await disk(next)).toEqual(expected);
+ return next;
+}
+
+async function save(label:string,value:unknown) {await writeFile(root+'/'+label+'.json.gz',gzipSync(JSON.stringify(value)));}
+function ids(s) {return [...s.inventory.backpack,...s.inventory.stash,...Object.values(s.inventory.equipped),...Object.values(s.mercs.mercEquipment).flatMap(Object.values)].filter(Boolean).map(x=>x.id);}
+function heroXP(s) {let xp=s.player.experience;for(let l=1;l<s.player.level;l++)xp+=Math.floor(100*l**2.5);return xp;}
+function mercXP(s) {const actor=s.mercs.ownedMercs.find(x=>x.id===s.mercs.fieldedMercId);let xp=s.mercs.mercProgress[actor.id].experience;for(let l=1;l<actor.level;l++)xp+=Math.floor(60*l*1.3**(l-1));return xp;}
+function hashSeed(text:string) {let x=0;for(let i=0;i<text.length;i++)x=((x<<5)-x+text.charCodeAt(i))>>>0;return x;}
+async function wave(page:Page) {return Number((await page.getByTestId('wave-counter').innerText()).match(/\d+/)?.[0]);}
+async function pause(page:Page) {await page.getByRole('button',{name:'Pause',exact:true}).click({timeout:1000});await expect(page.getByRole('button',{name:'Resume',exact:true})).toHaveAttribute('aria-pressed','true');}
+async function terminal(page:Page) {return page.evaluate(()=>({
+ counter:document.querySelector('[data-testid="wave-counter"]')?.textContent,
+ log:Array.from(document.querySelectorAll('[data-testid="combat-log"] > div > span:last-child'),n=>n.textContent),
+ enemies:Array.from(document.querySelectorAll('[data-testid="enemies-grid"] [data-testid^="unit-card-"]'),c=>({id:c.getAttribute('data-testid'),dead:c.getAttribute('data-dead'),text:c.textContent})),
+ hero:document.querySelector('[data-testid="unit-card-player-1792497600000"]')?.getAttribute('data-dead'),
+ defeats:document.querySelectorAll('[data-testid="defeat-panel"]').length,
+ skipDisabled:document.querySelector<HTMLButtonElement>('[data-testid="skip-button"]')?.disabled
+ }));}
+function conservation(after,before) {
+ expect(new Set(ids(after)).size).toBe(ids(after).length);const afterIds=new Set(ids(after));expect(ids(before).every(id=>afterIds.has(id))).toBe(true);
+ expect(after.inventory.backpack.slice(0,before.inventory.backpack.length)).toEqual(before.inventory.backpack);
+ expect(after.inventory.stash).toEqual(before.inventory.stash);expect(after.inventory.equipped).toEqual(before.inventory.equipped);
+ expect(after.mercs.mercEquipment).toEqual(before.mercs.mercEquipment);expect(after.mercs.fieldedMercId).toBe(before.mercs.fieldedMercId);
+}
+
+for(const locale of ['en','zh-CN'])test(`constructed Summoner kill and separate journal ${locale}`,async({page,context})=>{
+ const english=locale==='en',errors:string[]=[],outcomes:unknown[]=[];
+ const watch=(p:Page)=>p.on('pageerror',e=>errors.push(e.message));watch(page);
+ await page.clock.setFixedTime(now);await page.goto('/');await page.waitForLoadState('networkidle');
+ await createCharacter(page,{class:'sorceress',name:'Constructed Summoner diagnostic'});
+ await navTo(page,'settings');await page.getByRole('button',{name:'English',exact:true}).click();
+ const raw=await readFile(root+'/constructed-input.json','utf8'),input=JSON.parse(raw);
+ await importSave(page,raw,true);const migrated={...input,version:12,inventory:{...input.inventory,questItems:{}}};expect(await backup(page)).toEqual(migrated);expect(await disk(page)).toEqual(migrated);
+ if(!english)await page.getByRole('button',{name:'简体中文',exact:true}).click();
+ await expect.poll(()=>page.evaluate(()=>navigator.serviceWorker.controller?.state),{timeout:60000}).toBe('activated');expect(await page.evaluate(()=>'__GAME__' in window)).toBe(false);
+ await navTo(page,'quests');const card=page.getByTestId(`quest-${quest}`);await card.scrollIntoViewIfNeeded();
+ await expect(card).toContainText(english?'Defeat the Summoner':'击败召唤师');await expect(card).toContainText(english?"Read Horazon's journal":'阅读赫拉森的日记');
+ await page.getByTestId(`quest-start-${quest}`).click();const tracked=await backup(page);
+ expect(tracked.map.questProgress[quest]).toEqual({id:quest,status:'inProgress',objectives:{'obj-find-summoner':false,'obj-read-journal':false}});
+ await navTo(page,'map');const act=page.getByRole('button',{name:english?/^Act 2 ·/:/^第 2 章 ·/});if(await act.getAttribute('aria-expanded')!=='true')await act.click();
+ await page.getByTestId('sub-area-row-a2-arcane-sanctuary').getByRole('button',{name:english?'Enter':'进入',exact:true}).click();await expect(page.getByTestId('combat-screen')).toBeVisible();
+ const total=Number((await page.getByTestId('wave-counter').innerText()).match(/\d+/g)?.[1]);expect(total).toBe(6);
+ for(let n=1;n<=total;n++) {
+  await page.getByRole('button',{name:english?'Pause':'暂停',exact:true}).click({timeout:1000});expect(await wave(page)).toBe(n);
+  if(n===total) {const opening=await terminal(page);expect(opening.enemies).toHaveLength(4);expect(opening.enemies.some(x=>x.id?.includes('enemy-act2.the-summoner-'))).toBe(true);expect(opening.enemies.some(x=>x.text?.includes(english?'Summoner':'召唤者'))).toBe(true);await writeFile(root+'/opening-'+locale+'.json',JSON.stringify(opening));}
+  await page.getByTestId('skip-button').click();await expect(page.getByTestId('skip-button')).toBeDisabled();const result=await terminal(page);outcomes.push(result);
+  expect(result.log.at(-1)).toBe(english?'Victory! All enemies are defeated.':'胜利！所有敌人已被击败。');expect(result.enemies.every(x=>x.dead==='true')).toBe(true);expect(result.defeats).toBe(0);expect(result.hero).not.toBeUndefined();expect(result.hero).not.toBe('true');
+  if(n<total)await expect.poll(()=>wave(page),{timeout:5000,intervals:[50]}).toBe(n+1);
+ }
+ await writeFile(root+'/outcomes-'+locale+'.json',JSON.stringify(outcomes,null,2));await expect(page.getByTestId('victory-panel')).toBeVisible();await page.getByTestId('return-to-map').click();
+ const partial=await backup(page);await save('partial-'+locale,partial);conservation(partial,tracked);
+ expect(partial.map.questProgress[quest]).toEqual({id:quest,status:'inProgress',objectives:{'obj-find-summoner':true,'obj-read-journal':false}});expect(partial.inventory.questItems).toEqual({});
+ expect(partial.map.clearedSubAreas).toContain('areas/act2-arcane-sanctuary');expect(partial.map.clearedSubAreas).not.toContain('areas/act2-duriels-lair');
+ const levels=partial.player.level-tracked.player.level,milestones=[12,24,36].filter(l=>tracked.player.level<l&&partial.player.level>=l).length;
+ expect(partial.player.skillPoints-tracked.player.skillPoints).toBe(levels+milestones);expect(partial.player.statPoints-tracked.player.statPoints).toBe(levels*5);
+ const takeScreenshot=async()=>{await navTo(page,'quests');await card.scrollIntoViewIfNeeded();await expect(card).toContainText(english?'Defeat the Summoner':'击败召唤师');await expect(card).toContainText(english?"Read Horazon's journal":'阅读赫拉森的日记');await expect(page.getByTestId(`quest-claim-${quest}`)).toHaveCount(0);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:root+'/partial-'+locale+'.png',fullPage:true});};
+ await takeScreenshot();expect(await backup(page)).toEqual(partial);page=await reopen(page,context,english,partial,errors);
+ await navTo(page,'quests');const restored=page.getByTestId(`quest-${quest}`);await expect(restored).toContainText(english?'Defeat the Summoner':'击败召唤师');await expect(restored).toContainText(english?"Read Horazon's journal":'阅读赫拉森的日记');await expect(page.getByTestId(`quest-claim-${quest}`)).toHaveCount(0);
+ await navTo(page,'map');const third=page.getByRole('button',{name:english?/^Act 3 ·/:/^第 3 章 ·/});if(await third.getAttribute('aria-expanded')!=='true')await third.click();await expect(page.getByTestId('sub-area-row-a3-spider-forest').getByRole('button',{name:english?'Enter':'进入',exact:true})).toHaveCount(0);
+ expect(errors).toEqual([]);expect(await page.evaluate(()=>'__GAME__' in window)).toBe(false);
+ await writeFile(root+'/assertions-'+locale+'.json',JSON.stringify({classification:'Constructed injected-power diagnostic; not earned Arcane/campaign',locale,totalWaves:6,actualSummonerAndThreeCompanions:true,killTrueJournalFalse:true,claimUnavailable:true,questPoints:0,act3Locked:true,saveCloseContinueExact:true,originalIDs:ids(tracked).length,finalUniqueIDs:ids(partial).length,pageErrors:errors},null,2));await page.close();
+});

@@ -105,8 +105,9 @@
     },
     "act2-arcane-sanctuary": {
       "name": "The Arcane Sanctuary",
-      "desc": "Find the location of Tal Rasha's tomb in Baal's old sanctuary.",
-      "obj1": "Find the journal"
+      "desc": "Defeat the Summoner and read Horazon's journal to locate Tal Rasha's tomb.",
+      "obj1": "Defeat the Summoner",
+      "obj2": "Read Horazon's journal"
     },
     "act2-summoner": {
       "name": "The Summoner",

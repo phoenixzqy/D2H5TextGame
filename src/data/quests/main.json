@@ -144,8 +144,8 @@
       "giver": "npc/jerhyn",
       "description": "Jerhyn fears the palace cellar holds a portal to Horazon's Arcane Sanctuary. Search it and find the journal that reveals the true Tomb of Tal Rasha.",
       "objectives": [
-        { "id": "obj-find-summoner", "type": "kill", "targetId": "monsters/the_summoner", "areaId": "areas/act2_arcane_sanctuary", "description": "Defeat the Summoner." },
-        { "id": "obj-read-journal", "type": "interact", "targetId": "objects/horazon_journal", "areaId": "areas/act2_arcane_sanctuary", "description": "Read Horazon's journal to identify the true tomb." }
+        { "id": "obj-find-summoner", "type": "kill", "targetId": "monsters/act2.the-summoner", "areaId": "areas/act2-arcane-sanctuary", "description": "Defeat the Summoner." },
+        { "id": "obj-read-journal", "type": "interact", "targetId": "objects/horazon_journal", "areaId": "areas/act2-arcane-sanctuary", "description": "Read Horazon's journal to identify the true tomb." }
       ],
       "rewards": { "xp": 7000, "skillPoints": 1 },
       "unlocks": "areas/act2_canyon_of_the_magi",

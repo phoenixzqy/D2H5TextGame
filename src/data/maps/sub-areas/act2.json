@@ -544,13 +544,14 @@
       "level": 25,
       "monsters": [
         {
-          "archetypeId": "monsters/act2.horror-mage",
+          "archetypeId": "monsters/act2.the-summoner",
           "count": 1,
           "boss": true
         },
         {
           "archetypeId": "monsters/act2.undead-flayer",
-          "count": 3
+          "count": 3,
+          "boss": false
         }
       ]
     },
@@ -663,7 +664,7 @@
             "level": 25,
             "monsters": [
               {
-                "archetypeId": "monsters/act2.horror-mage",
+                "archetypeId": "monsters/act2.the-summoner",
                 "count": 1,
                 "boss": true
               }

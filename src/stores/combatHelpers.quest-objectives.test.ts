@@ -352,3 +352,88 @@ describe('qualified current chapter-boss quest settlement', () => {
       expect(progress()).toBe(before);
     });
 });
+
+
+describe('qualified Summoner settlement leaves the journal for an explicit interaction', () => {
+  const quest = 'quests/act2-arcane-sanctuary';
+  const area = 'areas/act2-arcane-sanctuary';
+  const initial = { id: quest, status: 'inProgress' as const,
+    objectives: { 'obj-find-summoner': false, 'obj-read-journal': false }, rewardClaimed: false };
+  function trackSummoner(): void { useMapStore.getState().updateQuestProgress(quest, initial); }
+  function reachSummoner(): number {
+    const total = start(area, 2); let xp = 0;
+    for (let wave = 1; wave <= total; wave++) {
+      const outcome = required(useCombatStore.getState().outcome);
+      expect(outcome.winner).toBe('player');
+      xp += outcome.finalEnemyTeam.filter(enemy => enemy.life <= 0 && enemy.kind !== 'summon')
+        .reduce((sum, enemy) => sum + xpForKill(enemy.level), 0);
+      if (wave === total) break;
+      drain(); expect(advanceWaveOrFinish()).toBe('next-wave');
+    }
+    return xp;
+  }
+
+  it('credits the actual recorded kill after playback, persists partial progress and refuses claim', () => {
+    trackSummoner(); const xp = reachSummoner();
+    const final = required(useCombatStore.getState().outcome);
+    expect(final.finalEnemyTeam.some(enemy => enemy.monsterArchetypeId === 'monsters/act2.the-summoner' && enemy.life <= 0)).toBe(true);
+    expect(advanceWaveOrFinish()).toBe('idle');
+    expect(useMapStore.getState().questProgress[quest]).toEqual(initial);
+    // UI navigation does not replace the trusted active-run context.
+    useMapStore.getState().setCurrentLocation(1, AREA);
+    drain(); expect(advanceWaveOrFinish()).toBe('victory');
+    const partial = { ...initial, objectives: { 'obj-find-summoner': true, 'obj-read-journal': false } };
+    expect(useMapStore.getState().questProgress[quest]).toEqual(partial);
+    const saved = decodeSave(JSON.parse(required(exportCurrentSave())) as unknown);
+    expect(saved.map.questProgress[quest]).toEqual(partial);
+    expect(xpTotal(saved.player.level) + saved.player.experience).toBe(xp);
+    expect(useMapStore.getState().isActUnlocked(3)).toBe(false);
+    const before = required(snapshotStores());
+    expect(claimQuestReward(quest)).toBe('not-completed');
+    expect(advanceWaveOrFinish()).toBe('idle');
+    expect(snapshotStores()).toEqual(before);
+  });
+
+  it('does not credit another area, including a different genuine named mini-boss', () => {
+    trackSummoner(); const total = start('areas/act2-far-oasis', 2);
+    for (let wave = 1; wave <= total; wave++) {
+      expect(useCombatStore.getState().outcome?.winner).toBe('player'); drain();
+      expect(advanceWaveOrFinish()).toBe(wave === total ? 'victory' : 'next-wave');
+    }
+    expect(useMapStore.getState().questProgress[quest]).toEqual(initial);
+  });
+
+  it('cannot retroactively credit a settled untracked kill', () => {
+    reachSummoner(); drain(); expect(advanceWaveOrFinish()).toBe('victory');
+    expect(useMapStore.getState().questProgress[quest]).toBeUndefined();
+    trackSummoner(); expect(advanceWaveOrFinish()).toBe('idle');
+    expect(useMapStore.getState().questProgress[quest]).toEqual(initial);
+  });
+
+  it('does not credit an abandoned current recording', () => {
+    trackSummoner(); reachSummoner(); drain(); abortSubAreaRun();
+    expect(advanceWaveOrFinish()).toBe('idle');
+    expect(useMapStore.getState().questProgress[quest]).toEqual(initial);
+  });
+
+  it.each(['clone-outcome', 'clone-events'] as const)('rejects stale %s references', kind => {
+    trackSummoner(); reachSummoner(); const current = useCombatStore.getState(); drain();
+    useCombatStore.setState(kind === 'clone-outcome' ? { outcome: { ...required(current.outcome) } }
+      : { recordedEvents: [...current.recordedEvents] });
+    refuseCompletion(); expect(useMapStore.getState().questProgress[quest]).toEqual(initial);
+  });
+
+  it('does not credit a draw even if a dead Summoner appears in the final recording', () => {
+    const original = combatEngine.runBattleRecorded;
+    vi.spyOn(combatEngine, 'runBattleRecorded').mockImplementation(input => {
+      const actual = original(input);
+      return input.enemyTeam.some(enemy => enemy.tier === 'boss')
+        ? { ...actual, result: { ...actual.result, winner: null } } : actual;
+    });
+    trackSummoner(); const total = start(area, 2);
+    for (let wave = 1; wave < total; wave++) { drain(); expect(advanceWaveOrFinish()).toBe('next-wave'); }
+    expect(useCombatStore.getState().outcome?.winner).toBeNull();
+    drain(); expect(advanceWaveOrFinish()).toBe('defeat');
+    expect(useMapStore.getState().questProgress[quest]).toEqual(initial);
+  });
+});

@@ -10488,3 +10488,19 @@ records exact awards, identity conservation, independent QA and limits. All
 readers/processes terminal; exact owned UI/dist and both browser-output folders
 removed, remaining[]/failures[]. Raw evidence roots remain root-owned through
 D11/C2/umbrella consumers. C0/C1 accepted; C2 underway, C3/C4/fullG0–G7 open.
+
+## P14 — Actual Summoner and ordered kill-only quest credit
+
+[Evidence](evidence/summoner-encounter-objective.md) records BUG099: canonical
+encounter/quest IDs, ordinary companions and bilingual ordered copy. Journal
+remains separate and unclaimable after the kill. Seven RED with48controls;
+focused156/4 and final8875/289 pass, exit0,205.13s; types/lint/build/4chunkbridge
+pass. Two constructed production-browser cases pass en/zh at360×640, retry0,
+pageErrors[], exact Save-close-Continue partial progress and item identity.
+Earlier namespace/level and locked-button harness errors are retained honestly.
+Producer and independent QA APPROVE/security PASS; all readers released.
+Exact task-owned build/browser outputs removed after preserving failure evidence;
+cleanup/ownership receipts are at the exact raw root in the evidence document.
+Raw evidence remains root-owned through journal/C2/umbrella consumers. Next is
+explicit recoverable journal reading, not an earned Arcane or C2 acceptance.
+C0/C1 accepted; C2 underway; C3/C4/fullG0–G7 remain open. Local only.
