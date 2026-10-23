@@ -1,0 +1,11 @@
+{
+  "id": "dialogue/act3/asheara",
+  "npcId": "asheara",
+  "greetings": [
+    {
+      "textKey": "town:dialogue.greetings.asheara",
+      "text": "My Iron Wolves stand ready to defend the docks."
+    }
+  ],
+  "services": []
+}

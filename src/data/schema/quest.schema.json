@@ -131,6 +131,9 @@
         },
         {
           "$ref": "#/$defs/useItemObjective"
+        },
+        {
+          "$ref": "#/$defs/giveObjective"
         }
       ]
     },
@@ -1016,6 +1019,39 @@
           "$ref": "#/$defs/areaId"
         },
         "itemRequired": {
+          "$ref": "#/$defs/itemId"
+        }
+      }
+    },
+    "giveObjective": {
+      "type": "object",
+      "description": "Explicit source-bound item hand-in; merely opening an NPC never emits this action.",
+      "required": [
+        "id",
+        "type",
+        "description",
+        "npcId",
+        "itemId"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Objective identifier, scoped to its quest."
+        },
+        "type": {
+          "const": "give"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Authored objective description."
+        },
+        "npcId": {
+          "$ref": "#/$defs/npcId"
+        },
+        "itemId": {
           "$ref": "#/$defs/itemId"
         }
       }

@@ -51,6 +51,24 @@
       "consumeObjectiveId": "obj-open-tomb",
       "nameKey": "inventory:questItems.horadricStaff.name",
       "descKey": "inventory:questItems.horadricStaff.description"
+    },
+    {
+      "id": "quest/gidbinn",
+      "sourceQuestId": "quests/act3-blade-of-the-old-religion",
+      "kind": "delivery",
+      "sourceObjectiveId": "obj-find-gidbinn",
+      "consumeObjectiveId": "obj-deliver",
+      "nameKey": "inventory:questItems.gidbinn.name",
+      "descKey": "inventory:questItems.gidbinn.description"
+    },
+    {
+      "id": "quest/lam_esens_tome",
+      "sourceQuestId": "quests/act3-lam-esens-tome",
+      "kind": "delivery",
+      "sourceObjectiveId": "obj-find-tome",
+      "consumeObjectiveId": "obj-deliver",
+      "nameKey": "inventory:questItems.lam_esens_tome.name",
+      "descKey": "inventory:questItems.lam_esens_tome.description"
     }
   ]
 }

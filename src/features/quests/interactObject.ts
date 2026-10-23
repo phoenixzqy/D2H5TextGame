@@ -1,4 +1,4 @@
-import { loadQuestItems, questItemSource, type QuestToolDef, type QuestComponentDef } from '@/data/loaders/quest-items';
+import { loadQuestItems, questItemSource, type QuestToolDef, type QuestComponentDef, type QuestDeliveryDef } from '@/data/loaders/quest-items';
 import { validateQuestItemLedger } from '@/engine/save/validate';
 import { useInventoryStore } from '@/stores/inventoryStore';
 import { withQuestTransaction, questActionPreflight, eligibleQuestObjective, publishQuestItemChange } from './questTransaction';
@@ -56,9 +56,10 @@ export function interactWithAreaObject(targetId: string): ObjectActionResult {
 }
 
 /** Objective-bound tools placed at this canonical authored location. Listing grants nothing. */
-export function areaQuestTools(act: number, areaId: string): readonly (QuestToolDef | QuestComponentDef)[] {
+export function areaQuestTools(act: number, areaId: string): readonly (QuestToolDef | QuestComponentDef | QuestDeliveryDef)[] {
   const quests = loadQuests();
-  return loadQuestItems().filter((item): item is QuestToolDef | QuestComponentDef => (item.kind === 'tool' || item.kind === 'component') &&
+  return loadQuestItems().filter((item): item is QuestToolDef | QuestComponentDef | QuestDeliveryDef =>
+    (item.kind === 'tool' || item.kind === 'component' || item.kind === 'delivery') &&
     quests.some(quest => quest.id === item.sourceQuestId && quest.actId === `acts/act${String(act)}` &&
       quest.objectives.some(objective => objective.id === item.sourceObjectiveId && objective.areaId === areaId)));
 }
@@ -80,6 +81,7 @@ export function questToolStatus(source: string): 'ready' | 'owned' | 'consumed' 
   const ledger = useInventoryStore.getState().questItems;
   if (Object.hasOwn(ledger, source)) return ledger[source]?.state === 'consumed' ? 'consumed' : 'owned';
   if (!quest || !eligibleQuestObjective(quest, tool.sourceObjectiveId)) return 'unavailable';
+  if (tool.kind === 'delivery' && !map.clearedSubAreas.includes(area.id)) return 'unavailable';
   return 'ready';
 }
 
@@ -102,8 +104,8 @@ export function recoverQuestTool(source: string): RecoverToolResult {
     const status = questToolStatus(source);
     if (status === 'owned' || status === 'consumed') return 'already-owned';
     if (status !== 'ready') return 'not-eligible';
-    const tool = loadQuestItems().find((item): item is QuestToolDef | QuestComponentDef =>
-      (item.kind === 'tool' || item.kind === 'component') && questItemSource(item) === source);
+    const tool = loadQuestItems().find((item): item is QuestToolDef | QuestComponentDef | QuestDeliveryDef =>
+      (item.kind === 'tool' || item.kind === 'component' || item.kind === 'delivery') && questItemSource(item) === source);
     if (!tool) return 'not-eligible';
     const progress = map.questProgress[tool.sourceQuestId];
     if (!progress) return 'not-eligible';

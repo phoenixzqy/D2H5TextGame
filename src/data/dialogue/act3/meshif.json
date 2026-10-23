@@ -1,0 +1,11 @@
+{
+  "id": "dialogue/act3/meshif",
+  "npcId": "meshif",
+  "greetings": [
+    {
+      "textKey": "town:dialogue.greetings.meshif",
+      "text": "The river leads deeper into Kurast. Prepare before you set out."
+    }
+  ],
+  "services": []
+}

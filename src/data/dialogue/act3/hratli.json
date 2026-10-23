@@ -1,0 +1,11 @@
+{
+  "id": "dialogue/act3/hratli",
+  "npcId": "hratli",
+  "greetings": [
+    {
+      "textKey": "town:dialogue.greetings.hratli",
+      "text": "Recover the Gidbinn and take it to Ormus."
+    }
+  ],
+  "services": []
+}

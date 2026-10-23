@@ -66,7 +66,8 @@
             "enum": [
               "tool",
               "component",
-              "assembled"
+              "assembled",
+              "delivery"
             ],
             "description": "Objective-sourced retained tool, recipe ingredient, or assembled quest key."
           },
@@ -176,6 +177,24 @@
               },
               "effect": false,
               "consumedBy": false
+            }
+          },
+          {
+            "required": [
+              "kind",
+              "sourceObjectiveId",
+              "consumeObjectiveId"
+            ],
+            "properties": {
+              "kind": {
+                "const": "delivery"
+              },
+              "effect": false,
+              "consumedBy": false,
+              "recipe": false,
+              "requiredTool": false,
+              "ingredients": false,
+              "consumeQuestId": false
             }
           }
         ]

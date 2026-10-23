@@ -5,6 +5,7 @@ import document from '../quests/items.json';
 import { loadQuests, type QuestDef, type QuestObjective } from './quests';
 import { subAreas } from '../index';
 import { questObjectivePrerequisites } from '../../engine/map/questStages';
+import { loadTownNpcs } from './towns';
 
 /** A unique quest reward entitlement and its one-time Read effect. */
 interface QuestItemBase {
@@ -36,6 +37,14 @@ export interface QuestComponentDef extends QuestItemBase {
   readonly effect?: never;
 }
 
+/** A recovered physical item consumed only by its exact explicit NPC hand-in. */
+export interface QuestDeliveryDef extends QuestItemBase {
+  readonly kind: 'delivery';
+  readonly sourceObjectiveId: string;
+  readonly consumeObjectiveId: string;
+  readonly effect?: never;
+}
+
 /** Quest recipe output and its exact subsequent item-dependent interaction. */
 export interface AssembledQuestItemDef extends QuestItemBase {
   readonly kind: 'assembled';
@@ -48,7 +57,7 @@ export interface AssembledQuestItemDef extends QuestItemBase {
   readonly effect?: never;
 }
 
-export type ObjectiveQuestItemDef = QuestToolDef | QuestComponentDef | AssembledQuestItemDef;
+export type ObjectiveQuestItemDef = QuestToolDef | QuestComponentDef | QuestDeliveryDef | AssembledQuestItemDef;
 export type QuestItemDef = ReadQuestItemDef | ObjectiveQuestItemDef;
 
 const ajv = new Ajv2020({ strict: true, allErrors: true });
@@ -103,7 +112,18 @@ export function loadQuestItems(): readonly QuestItemDef[] {
     sources.add(source);
   }
   for (const item of items) {
-    if (item.kind === 'component') {
+    if (item.kind === 'delivery') {
+      const quest = quests.find(row => row.id === item.sourceQuestId);
+      const consumer = exactObjective(quest, item.consumeObjectiveId);
+      const act = /^acts\/act([1-5])$/.exec(quest?.actId ?? '');
+      if (!quest || !consumer || consumer.type !== 'give' || consumer.itemId !== item.id ||
+        !questObjectivePrerequisites(quest, item.consumeObjectiveId)?.includes(item.sourceObjectiveId) ||
+        !act || !loadTownNpcs(Number(act[1])).some(npc => npc.id === consumer.npcId) ||
+        items.filter(other => other.kind === 'delivery' && other.sourceQuestId === item.sourceQuestId &&
+          other.consumeObjectiveId === item.consumeObjectiveId).length !== 1) {
+        throw new Error(`quests/items.json: delivery/consumer mismatch for ${item.id}`);
+      }
+    } else if (item.kind === 'component') {
       const output = items.find(row => row.id === item.consumedBy);
       if (output?.kind !== 'assembled' || !output.ingredients.includes(item.id)) {
         throw new Error(`quests/items.json: component/output mismatch for ${item.id}`);
@@ -125,6 +145,14 @@ export function loadQuestItems(): readonly QuestItemDef[] {
         !consumerQuest || !consumer || consumer.type !== 'interact' || consumer.itemRequired !== item.id ||
         !canonicalObject(consumerQuest, consumer)) {
         throw new Error(`quests/items.json: recipe/consumer mismatch for ${item.id}`);
+      }
+    }
+  }
+  for (const quest of quests) {
+    for (const objective of quest.objectives.filter(row => row.type === 'give')) {
+      if (!items.some(item => item.kind === 'delivery' && item.sourceQuestId === quest.id &&
+        item.consumeObjectiveId === objective.id)) {
+        throw new Error(`quests/items.json: missing delivery source for ${quest.id}#${objective.id}`);
       }
     }
   }

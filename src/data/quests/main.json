@@ -191,10 +191,10 @@
       "giver": "npc/hratli",
       "description": "Hratli the smith asks you to recover the Gidbinn, a sacred blade hidden in the Flayer Jungle, to free the Kurast refugees from fetish slavery.",
       "objectives": [
-        { "id": "obj-find-gidbinn", "type": "interact", "targetId": "objects/gidbinn_altar", "areaId": "areas/act3_flayer_jungle", "description": "Recover the Gidbinn from its altar." },
-        { "id": "obj-deliver", "type": "talk", "npcId": "npc/ormus", "description": "Deliver the Gidbinn to Ormus." }
+        { "id": "obj-find-gidbinn", "type": "fetch", "targetId": "objects/gidbinn_altar", "areaId": "areas/act3-flayer-jungle", "description": "Recover the Gidbinn from its altar.", "itemId": "quest/gidbinn" },
+        { "id": "obj-deliver", "type": "give", "npcId": "npc/ormus", "description": "Deliver the Gidbinn to Ormus.", "itemId": "quest/gidbinn" }
       ],
-      "rewards": { "xp": 5000, "itemDrop": "items/unique_ring_random" },
+      "rewards": { "xp": 5000, "itemDrop": { "profileId": "quest-rewards/act3-gidbinn-ring-v1" } },
       "unlocks": null,
       "order": 13
     },
@@ -224,10 +224,10 @@
       "giver": "npc/alkor",
       "description": "Alkor seeks the Black Book of Lam Esen, hidden somewhere in the temples of Kurast. Recover it and learn its secrets.",
       "objectives": [
-        { "id": "obj-find-tome", "type": "fetch", "itemId": "quest/lam_esens_tome", "areaId": "areas/act3_kurast_temples", "description": "Recover the Black Book of Lam Esen." },
-        { "id": "obj-deliver", "type": "talk", "npcId": "npc/alkor", "description": "Deliver the tome to Alkor." }
+        { "id": "obj-find-tome", "type": "fetch", "itemId": "quest/lam_esens_tome", "areaId": "areas/act3-kurast-bazaar", "description": "Recover the Black Book of Lam Esen.", "targetId": "objects/lam_esens_tome_chest" },
+        { "id": "obj-deliver", "type": "give", "npcId": "npc/alkor", "description": "Deliver the tome to Alkor.", "itemId": "quest/lam_esens_tome" }
       ],
-      "rewards": { "xp": 6000, "stat": { "attribute_points": 5 } },
+      "rewards": { "xp": 6000, "statPoints": 5 },
       "unlocks": null,
       "order": 15
     },

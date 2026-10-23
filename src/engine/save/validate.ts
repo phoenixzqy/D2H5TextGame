@@ -169,7 +169,8 @@ const saveSchema = (
   version: AnySchema,
   actorProperties: Record<string, AnySchema>,
   playerOptional: Record<string, AnySchema> = {},
-  inventoryProperties: Record<string, AnySchema> = {}
+  inventoryProperties: Record<string, AnySchema> = {},
+  mapProperties: Record<string, AnySchema> = {}
 ): AnySchema => object({
   version,
   timestamp: number,
@@ -212,7 +213,8 @@ const saveSchema = (
     currentSubAreaId: nullableText,
     discoveredAreas: strings,
     clearedSubAreas: strings,
-    questProgress: questProgressSchema
+    questProgress: questProgressSchema,
+    ...mapProperties
   }),
   meta: object({
     settings: object({
@@ -240,6 +242,9 @@ const validate = ajv.compile<SaveCurrent>(saveSchema({ const: CURRENT_SAVE_VERSI
   selectedAuraId: { enum: ['paladin.might', 'paladin.meditation'] }
 }, {
   questItems: questItemLedgerSchema
+}, {
+  // No action is issuable until its closed definition and source graph are integrated.
+  questReceipts: { type: 'object', additionalProperties: false, properties: {} }
 }));
 interface LedgerContext {
   questItems: QuestItemLedger;
@@ -401,6 +406,10 @@ export function validateQuestItemLedger(questItems: unknown, questProgress: unkn
         ((entry.state === 'consumed') !== (itemEntry(definition.consumedBy) !== undefined))) {
         throw new Error('Invalid save: component consumption requires its exact assembled output');
       }
+      if (definition.kind === 'delivery' && entry.state === 'consumed' &&
+        !validLiveObjectiveProgress(validated, quest, definition.consumeObjectiveId)) {
+        throw new Error('Invalid save: delivered item requires its exact hand-in objective');
+      }
       if (definition.kind === 'assembled') {
         if (itemEntry(definition.requiredTool)?.state !== 'owned' ||
           !definition.ingredients.every(id => itemEntry(id)?.state === 'consumed')) {
@@ -527,6 +536,13 @@ function rejectHistoricalQuestReceipts(value: unknown): void {
 /** Validate a migrated save before any IO or store mutation. Preserves optional fields. */
 export function validateSave(value: unknown): SaveCurrent {
   rejectHistoricalQuestReceipts(value);
+  if (record(value) && value.version === CURRENT_SAVE_VERSION && record(value.map)) {
+    const receipts = value.map.questReceipts;
+    if (!record(receipts) || (Object.getPrototypeOf(receipts) !== Object.prototype &&
+      Object.getPrototypeOf(receipts) !== null) || Reflect.ownKeys(receipts).length !== 0) {
+      throw new Error('Invalid save: questReceipts requires a closed JSON action receipt map');
+    }
+  }
   if (record(value) && record(value.inventory) && record(value.map)) {
     validateQuestItemLedger(value.inventory.questItems, value.map.questProgress);
   }

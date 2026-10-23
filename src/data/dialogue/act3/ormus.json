@@ -1,0 +1,11 @@
+{
+  "id": "dialogue/act3/ormus",
+  "npcId": "ormus",
+  "greetings": [
+    {
+      "textKey": "town:dialogue.greetings.ormus",
+      "text": "Bring the Gidbinn here. Its protection belongs to the people of Kurast."
+    }
+  ],
+  "services": []
+}

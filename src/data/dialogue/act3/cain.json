@@ -1,0 +1,11 @@
+{
+  "id": "dialogue/act3/cain",
+  "npcId": "cain",
+  "greetings": [
+    {
+      "textKey": "town:dialogue.greetings.cain",
+      "text": "Let us uncover the secrets hidden in Kurast."
+    }
+  ],
+  "services": []
+}

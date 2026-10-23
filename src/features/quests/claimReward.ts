@@ -13,6 +13,7 @@ import { isQuestTableRewardInput, rollQuestTableRewards, type QuestTableRewardIn
 import { createRng, hashSeed } from '@/engine/rng';
 import type { Item } from '@/engine/types/items';
 import { withQuestTransaction } from './questTransaction';
+import { hasQuestDeliveryCompletion } from './questDelivery';
 import { loadQuestItems, questItemSource } from '@/data/loaders/quest-items';
 import { validateQuestItemLedger } from '@/engine/save/validate';
 import { awardXp, LEVEL_CAP, xpTotal } from '@/engine/progression/xp';
@@ -53,7 +54,7 @@ export function canClaim(questId: string): boolean {
   if (questId === TAINTED_SUN_QUEST_ID && !hasTaintedSunCompletion(useMapStore.getState().questProgress)) return false;
   if (progress.rewardClaimed) return false;
   const quest = findQuest(questId);
-  return Boolean(quest?.rewards && Object.keys(quest.rewards).length > 0);
+  return Boolean(quest?.rewards && Object.keys(quest.rewards).length > 0 && hasQuestDeliveryCompletion(quest));
 }
 
 function safeCount(value: number): boolean {
@@ -111,6 +112,7 @@ export function claimQuestReward(questId: string): ClaimResult {
     if (progress.rewardClaimed) return 'already-claimed';
     const quest = findQuest(questId);
     if (!quest) return 'unknown-quest';
+    if (!hasQuestDeliveryCompletion(quest)) return 'not-completed';
     const rewards = quest.rewards;
     if (!rewards || Object.keys(rewards).length === 0) return 'no-rewards';
     if (useHydrationStore.getState().status !== 'ready' || isReplacingSave()) return 'not-ready';

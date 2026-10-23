@@ -1,0 +1,11 @@
+{
+  "id": "dialogue/act3/alkor",
+  "npcId": "alkor",
+  "greetings": [
+    {
+      "textKey": "town:dialogue.greetings.alkor",
+      "text": "Recover the Black Book from Kurast Bazaar, then give it to me."
+    }
+  ],
+  "services": []
+}

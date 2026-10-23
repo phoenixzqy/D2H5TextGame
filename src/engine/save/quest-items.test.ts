@@ -251,7 +251,8 @@ describe('v14 Staff component and consumption graph', () => {
     const input = historicalSave(withLedger({ [source]: { itemId: futureId, state: 'owned' } }), 14);
     try {
       Object.defineProperty(questItemsDocument, 'items', { ...originalItems,
-        value: [{ id: futureId, sourceQuestId: questId, effect: { skillPoints: 1 },
+        value: [...questItemsDocument.items.filter(item => item.sourceQuestId !== questId),
+          { id: futureId, sourceQuestId: questId, effect: { skillPoints: 1 },
           nameKey: 'inventory:questItems.future.name', descKey: 'inventory:questItems.future.description' }] });
       Object.defineProperty(quest, 'rewards', { ...originalRewards, value: { questItem: futureId } });
       expect(validateQuestItemLedger(input.inventory.questItems, input.map.questProgress)).toEqual(input.inventory.questItems);
