@@ -93,7 +93,11 @@ export function buildMageMasteryFixture(masteryRank: number): MageMasteryFixture
   const enemyTeam = wave.spawns.map(spawn => {
     const def = (monsters as unknown as readonly MonsterDef[]).find(row => row.id === spawn.archetypeId);
     if (!def) throw new Error('Missing exact Mage Mastery monster');
-    return buildMonsterUnit({ def, level: spawn.level, tier: spawn.tier, rng, index: spawn.index });
+    const { monsterArchetypeId, ...historicalUnit } =
+      buildMonsterUnit({ def, level: spawn.level, tier: spawn.tier, rng, index: spawn.index });
+    if (monsterArchetypeId !== def.id) throw new Error('Mage Mastery catalog provenance mismatch');
+    // This versioned historical fixture predates provenance; preserve its exact input bytes.
+    return historicalUnit;
   });
   const snapshot: CombatSnapshot = { seed: recipe.seedStart, act: 2, playerTeam: [hero], enemyTeam,
     ...(skeletonMastery ? { skeletonMastery } : {}) };

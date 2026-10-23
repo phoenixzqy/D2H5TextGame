@@ -1,0 +1,169 @@
+{
+  "scope": "D11 A/B actual Radament encounter and qualified quest credit; constructed integration only",
+  "base": "2b50d0217d08f630cbfe4a03f3f715760cb8f92b",
+  "reviews": {
+    "producer": "APPROVE; security PASS",
+    "independentQA": "ADEQUATE"
+  },
+  "validation": {
+    "full": {
+      "tests": 8735,
+      "files": 282,
+      "seconds": 214.87,
+      "exit": 0
+    },
+    "engine": {
+      "tests": 4237,
+      "files": 109,
+      "exit": 0
+    },
+    "focused": {
+      "tests": 139,
+      "files": 4,
+      "exit": 0
+    },
+    "historicalMage": {
+      "tests": 113,
+      "files": 6,
+      "exit": 0
+    },
+    "typecheck": 0,
+    "lint": 0,
+    "productionBuild": 0,
+    "bridgeScan": {
+      "chunks": [
+        "game-engine-CqIzUXqx.js",
+        "i18n-Bxr3rY09.js",
+        "index-CRKfhEzp.js",
+        "react-vendor-dRBhy6jq.js"
+      ],
+      "violations": []
+    }
+  },
+  "browser": {
+    "english": "first invocation passed28.025s",
+    "chinese": "final isolated invocation passed26.152s;27.776s wall",
+    "failedInvocations": [
+      "English ActII selector in Chinese before combat",
+      "archived old spec rediscovered; corrected spec skipped"
+    ],
+    "freeze": {
+      "source-manifest.json": {
+        "count": 1548,
+        "drift": []
+      },
+      "build-manifest.json": {
+        "count": 760,
+        "drift": []
+      },
+      "browser-input-manifest.json": {
+        "count": 5,
+        "drift": []
+      },
+      "previewPort44337Closed": true,
+      "browserProof": {
+        "en": {
+          "origin": "constructed injected-power diagnostic; NOT earned Act II",
+          "locale": "en",
+          "totalWaves": 5,
+          "unclaimed": true,
+          "saveCloseContinueExact": true,
+          "allOriginalIDsPreserved": true,
+          "ownedIDs": 4005,
+          "pageErrors": []
+        },
+        "zh-CN": {
+          "origin": "constructed injected-power diagnostic; NOT earned Act II",
+          "locale": "zh-CN",
+          "totalWaves": 5,
+          "unclaimed": true,
+          "saveCloseContinueExact": true,
+          "allOriginalIDsPreserved": true,
+          "ownedIDs": 4005,
+          "pageErrors": []
+        }
+      }
+    }
+  },
+  "inputProvenance": {
+    "origin": "constructed diagnostic; injected gear/resources; NOT earned Act II",
+    "earnedSource": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/c1-fresh-act1-earned.json.gz",
+    "earnedSourceSHA256": "fc98899c8bbe04a29e1b94e865afce87b27670da512d222bd4b24788e095467b",
+    "constructedSHA256": "9c5b8658146e13de6962f386c123e7bfae802999108d6f360901fff814848656",
+    "injections": [
+      {
+        "path": "player.name",
+        "before": "Earned Act I",
+        "after": "Constructed Radament QA"
+      },
+      {
+        "path": "player.derivedStats.life",
+        "before": 120,
+        "after": 1000272
+      },
+      {
+        "path": "player.derivedStats.lifeMax",
+        "before": 272,
+        "after": 1000272
+      },
+      {
+        "path": "player.derivedStats.attack",
+        "before": 78,
+        "after": 100078
+      },
+      {
+        "path": "player.derivedStats.defense",
+        "before": 139,
+        "after": 100139
+      },
+      {
+        "path": "player.comboOrder",
+        "before": [
+          "skills-sorceress-frost-nova",
+          "skills-sorceress-ice-blast"
+        ],
+        "after": []
+      },
+      {
+        "path": "inventory.equipped.head.affixes",
+        "before": [],
+        "after": [
+          {
+            "affixId": "constructed-radament-wiring-only",
+            "values": [
+              [
+                "statMods.attack",
+                100000
+              ],
+              [
+                "statMods.defense",
+                100000
+              ],
+              [
+                "statMods.life",
+                1000000
+              ]
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "cleanup": {
+    "removed": [
+      "tmp",
+      "cache",
+      "dist",
+      "browser-output",
+      "browser-attempt1/browser-output"
+    ],
+    "files": 878,
+    "bytes": 42371853,
+    "remaining": [],
+    "failures": []
+  },
+  "retainedRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-radament-09s2yzs1",
+  "retainedOwner": "root; remove after C2/full-v1 dependent consumers finish",
+  "retainedManifestSHA256": "2c5b59cbc6742ff256af5b821b34703ccc55e5f074c467069c1b25655905fe90",
+  "remaining": "Book/codec/claim/Read/Atma/copy, earnedC2, C3/C4 and G0-G7 remain open"
+}

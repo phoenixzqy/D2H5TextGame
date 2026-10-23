@@ -5,6 +5,7 @@ import { claimQuestReward } from '@/features/quests/claimReward';
 import { xpForKill, xpTotal } from '@/engine/progression/xp';
 import { decodeSave } from '@/engine/save/validate';
 import * as combatEngine from '@/engine/combat/combat';
+import * as monsterFactory from '@/engine/combat/monster-factory';
 import { abortSubAreaRun, advanceWaveOrFinish, refreshActivePlayerCombatConfig, startSubAreaRun } from './combatHelpers';
 import { useCombatStore } from './combatStore';
 import { useFormationStore } from './formationStore';
@@ -43,7 +44,7 @@ function refuseCompletion(): void {
   stores.forEach((store, index) => { expect(store.getState()).toBe(before[index]); });
   expect(inspectRecordedWaves()).toBe(holder);
 }
-function start(area = AREA): number {
+function start(area = AREA, act = 1): number {
   const player = createMockPlayer('BossQuestWiring', 'sorceress');
   usePlayerStore.getState().setPlayer({ ...player, comboOrder: [] });
   // Imported canonical gear and explicit fixture refill, not earned power.
@@ -57,7 +58,7 @@ function start(area = AREA): number {
   const equipped = required(usePlayerStore.getState().player);
   usePlayerStore.getState().setPlayer({ ...equipped, derivedStats: {
     ...equipped.derivedStats, life: 1_000_000, mana: player.derivedStats.mana } });
-  return required(startSubAreaRun({ subAreaId: area, act: 1, runSeed: 7,
+  return required(startSubAreaRun({ subAreaId: area, act, runSeed: 7,
     challengeOrdinal: 0 })).totalWaves;
 }
 function drain(): void {
@@ -79,6 +80,158 @@ function reachFinal(): number {
   }
   return expectedXP;
 }
+
+describe('qualified Radament kill settlement (constructed integration fixture)', () => {
+  const quest = 'quests/act2-radaments-lair';
+  function trackRadament(): void {
+    useMapStore.getState().updateQuestProgress(quest, {
+      status: 'inProgress', objectives: { 'obj-kill-radament': false }, rewardClaimed: false
+    });
+  }
+  function reachRadament(): void {
+    const total = start('areas/act2-far-oasis', 2);
+    for (let wave = 1; wave < total; wave++) {
+      expect(useCombatStore.getState().outcome?.winner).toBe('player');
+      drain(); expect(advanceWaveOrFinish()).toBe('next-wave');
+    }
+  }
+
+  it('completes the tracked ordinary-kill objective after actual final playback, without claiming', () => {
+    useMapStore.getState().updateQuestProgress(quest, {
+      status: 'inProgress', objectives: { 'obj-kill-radament': false }, rewardClaimed: false
+    });
+    const total = start('areas/act2-far-oasis', 2);
+    let expectedXP = 0;
+    for (let wave = 1; wave <= total; wave++) {
+      const outcome = required(useCombatStore.getState().outcome);
+      expect(outcome.winner).toBe('player');
+      expectedXP += outcome.finalEnemyTeam.filter(enemy => enemy.life <= 0 && enemy.kind !== 'summon')
+        .reduce((sum, enemy) => sum + xpForKill(enemy.level), 0);
+      expect(useMapStore.getState().questProgress[quest]?.status).toBe('inProgress');
+      if (wave === total) {
+        expect(outcome.finalEnemyTeam.some(enemy => enemy.tier === 'boss' && enemy.life <= 0)).toBe(true);
+        expect(advanceWaveOrFinish()).toBe('idle');
+      }
+      drain();
+      expect(advanceWaveOrFinish()).toBe(wave === total ? 'victory' : 'next-wave');
+    }
+    expect(useMapStore.getState().questProgress[quest]).toEqual({ id: quest, status: 'completed',
+      objectives: { 'obj-kill-radament': true }, rewardClaimed: false });
+    const saved = decodeSave(JSON.parse(required(exportCurrentSave())) as unknown);
+    expect(saved.map.questProgress).toEqual(useMapStore.getState().questProgress);
+    expect(xpTotal(saved.player.level) + saved.player.experience).toBe(expectedXP);
+    const before = required(snapshotStores());
+    expect(advanceWaveOrFinish()).toBe('idle');
+    expect(snapshotStores()).toEqual(before);
+  });
+
+  it('uses active-run context despite navigation and accepts a later genuine replay after tracking', () => {
+    reachRadament(); drain(); expect(advanceWaveOrFinish()).toBe('victory');
+    expect(useMapStore.getState().questProgress[quest]).toBeUndefined();
+    trackRadament(); expect(advanceWaveOrFinish()).toBe('idle');
+    expect(useMapStore.getState().questProgress[quest]?.status).toBe('inProgress');
+    reachRadament();
+    useMapStore.getState().setCurrentLocation(1, AREA);
+    drain(); expect(advanceWaveOrFinish()).toBe('victory');
+    expect(useMapStore.getState().questProgress[quest]?.status).toBe('completed');
+  });
+
+  it('does not credit abandoned playback', () => {
+    trackRadament(); reachRadament(); drain();
+    const before = useMapStore.getState().questProgress;
+    abortSubAreaRun(); expect(advanceWaveOrFinish()).toBe('idle');
+    expect(useMapStore.getState().questProgress).toBe(before);
+  });
+
+  it.each(['clone-outcome', 'clone-events', 'prior-run', 'pre-replay'] as const)(
+    'refuses %s references for the ordinary boss too', kind => {
+      trackRadament(); reachRadament(); const old = useCombatStore.getState();
+      if (kind === 'prior-run') { abortSubAreaRun(); reachRadament(); }
+      if (kind === 'pre-replay') refreshActivePlayerCombatConfig({ replayCurrentWave: true });
+      const current = useCombatStore.getState(); drain();
+      useCombatStore.setState(kind === 'clone-outcome' ? { outcome: { ...required(current.outcome) } }
+        : kind === 'clone-events' ? { recordedEvents: [...current.recordedEvents] }
+        : { outcome: old.outcome, recordedEvents: old.recordedEvents });
+      const before = useMapStore.getState().questProgress;
+      refuseCompletion(); expect(useMapStore.getState().questProgress).toBe(before);
+    });
+
+  it.each(['missing', 'alive', 'wrong-side', 'wrong-kind', 'wrong-tier', 'wrong-id',
+    'wrong-archetype', 'missing-archetype', 'duplicate', 'nonfinite-life'] as const)(
+    'rejects malformed final Radament %s with current receipt references', kind => {
+      const original = combatEngine.runBattleRecorded;
+      let injected = 0;
+      vi.spyOn(combatEngine, 'runBattleRecorded').mockImplementation(input => {
+        const actual = original(input);
+        const boss = actual.result.enemyTeam.find(enemy => enemy.tier === 'boss');
+        if (!boss) return actual;
+        expect(actual.result.winner).toBe('player'); injected++;
+        const { monsterArchetypeId: _archetypeId, ...withoutArchetype } = boss;
+        const changed = kind === 'alive' ? { ...boss, life: 1 }
+          : kind === 'nonfinite-life' ? { ...boss, life: -Infinity }
+          : kind === 'wrong-side' ? { ...boss, side: 'player' as const }
+          : kind === 'wrong-kind' ? { ...boss, kind: 'summon' as const }
+          : kind === 'wrong-tier' ? { ...boss, tier: 'trash' as const }
+          : kind === 'wrong-archetype' ? { ...boss, monsterArchetypeId: 'monsters/act2.greater-mummy' }
+          : kind === 'missing-archetype' ? withoutArchetype
+          : { ...boss, id: 'different-final-instance' };
+        const enemyTeam = kind === 'duplicate' ? [...actual.result.enemyTeam, boss]
+          : actual.result.enemyTeam.flatMap(enemy => enemy.id !== boss.id ? [enemy]
+            : kind === 'missing' ? [] : [changed]);
+        return { ...actual, result: { ...actual.result, enemyTeam } };
+      });
+      trackRadament(); reachRadament(); expect(injected).toBe(1);
+      const before = useMapStore.getState().questProgress[quest]; drain();
+      expect(advanceWaveOrFinish()).toBe('victory');
+      expect(useMapStore.getState().questProgress[quest]).toBe(before);
+    });
+
+  it.each(['enemy', 'draw/timeout', 'dead-hero'] as const)('rejects terminal %s', kind => {
+    const original = combatEngine.runBattleRecorded;
+    vi.spyOn(combatEngine, 'runBattleRecorded').mockImplementation(input => {
+      const actual = original(input);
+      if (!input.enemyTeam.some(enemy => enemy.tier === 'boss')) return actual;
+      return { ...actual, result: { ...actual.result,
+        winner: kind === 'dead-hero' ? 'player' as const : kind === 'enemy' ? 'enemy' as const : null,
+        playerTeam: kind === 'dead-hero' ? actual.result.playerTeam.map(unit =>
+          unit.kind === 'hero' ? { ...unit, life: 0 } : unit) : actual.result.playerTeam
+      } };
+    });
+    trackRadament(); reachRadament();
+    const before = useMapStore.getState().questProgress[quest]; drain();
+    expect(advanceWaveOrFinish()).toBe('defeat');
+    expect(useMapStore.getState().questProgress[quest]).toBe(before);
+  });
+
+  it.each(['archetype', 'side', 'kind', 'tier'] as const)(
+    'rejects mismatched original %s even when the final monster appears to match', kind => {
+      const original = monsterFactory.buildMonsterUnit;
+      let injected = 0;
+      let injectedId = '';
+      vi.spyOn(monsterFactory, 'buildMonsterUnit').mockImplementation(options => {
+        const actual = original(options);
+        if (options.def.id !== 'monsters/act2.radament') return actual;
+        injected++; injectedId = actual.id;
+        return kind === 'archetype' ? { ...actual, monsterArchetypeId: 'monsters/act2.greater-mummy' }
+          : kind === 'side' ? { ...actual, side: 'player' as const }
+          : kind === 'kind' ? { ...actual, kind: 'summon' as const }
+          : { ...actual, tier: 'trash' as const };
+      });
+      const runActualBattle = combatEngine.runBattleRecorded;
+      vi.spyOn(combatEngine, 'runBattleRecorded').mockImplementation(input => {
+        const actual = runActualBattle(input);
+        if (!input.enemyTeam.some(enemy => enemy.id === injectedId)) return actual;
+        expect(actual.result.winner).toBe('player');
+        return { ...actual, result: { ...actual.result, enemyTeam: actual.result.enemyTeam.map(enemy =>
+          enemy.id !== injectedId ? enemy : { ...enemy, side: 'enemy' as const, kind: 'monster' as const,
+            tier: 'boss' as const, monsterArchetypeId: 'monsters/act2.radament' }) } };
+      });
+      trackRadament(); reachRadament(); expect(injected).toBe(1);
+      const before = useMapStore.getState().questProgress[quest]; drain();
+      expect(advanceWaveOrFinish()).toBe('victory');
+      expect(useMapStore.getState().questProgress[quest]).toBe(before);
+    });
+});
 
 describe('qualified current chapter-boss quest settlement', () => {
   it('completes a tracked objective only at final playback settlement, without extra quest rewards', () => {

@@ -22,6 +22,12 @@ const FALLEN: MonsterDef = {
 };
 
 describe('monster-factory', () => {
+  it('captures the actual catalog archetype independently of display name and instance ID', () => {
+    const unit = buildMonsterUnit({ def: { ...FALLEN, name: 'Radament' }, level: 5,
+      tier: 'boss', rng: createRng(7), id: 'enemy-monsters/act2.radament', index: 0 });
+    expect(unit).toMatchObject({ monsterArchetypeId: 'monsters/act1.fallen' });
+  });
+
   it('builds a trash unit from JSON with sensible level-1 stats', () => {
     const unit = buildMonsterUnit({
       def: FALLEN,

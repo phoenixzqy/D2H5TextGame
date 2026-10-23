@@ -1,0 +1,91 @@
+/** Constructed diagnostic import with injected power; never earned Act II evidence. */
+import { test, expect, type Page } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/node_modules/@playwright/test/index.mjs';
+import { readFile, writeFile } from 'node:fs/promises';
+import { createCharacter, navTo } from '/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/tests/e2e/_helpers';
+const root='/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-radament-09s2yzs1';
+const quest='quests/act2-radaments-lair';
+const now=1792497600000;
+async function backup(page:Page) {
+ await navTo(page,'settings'); const pending=page.waitForEvent('download');
+ await page.getByTestId('export-save-button').click();const download=await pending;
+ try{return JSON.parse(await readFile(await download.path(),'utf8'));}finally{await download.delete();}
+}
+async function disk(page:Page) {
+ return page.evaluate(async()=>{
+  const db=await new Promise<IDBDatabase>((resolve,reject)=>{const req=indexedDB.open('D2H5TextGame');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});
+  try{const record=await new Promise<{data:unknown}>((resolve,reject)=>{const req=db.transaction('saves','readonly').objectStore('saves').get('current');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});
+   return JSON.parse(JSON.stringify(record.data,(_key,value)=>value instanceof Map?[...value.entries()]:value));
+  }finally{db.close();}
+ });
+}
+async function terminal(page:Page) {
+ return page.evaluate(()=>({
+  counter:document.querySelector('[data-testid="wave-counter"]')?.textContent,
+  log:Array.from(document.querySelectorAll('[data-testid="combat-log"] > div > span:last-child'),node=>node.textContent),
+  enemies:Array.from(document.querySelectorAll('[data-testid="enemies-grid"] [data-testid^="unit-card-"]'),card=>({id:card.getAttribute('data-testid'),dead:card.getAttribute('data-dead'),text:card.textContent})),
+  hero:document.querySelector('[data-testid="unit-card-player-1792497600000"]')?.getAttribute('data-dead'),
+  defeats:document.querySelectorAll('[data-testid="defeat-panel"]').length
+ }));
+}
+function ids(save) {
+ const gear=[...save.inventory.backpack,...save.inventory.stash,...Object.values(save.inventory.equipped),...Object.values(save.mercs.mercEquipment).flatMap(Object.values)].filter(Boolean);
+ return gear.map(item=>item.id);
+}
+for(const locale of ['en','zh-CN'])test(`constructed Radament kill-credit Save-close-Continue ${locale}`,async({page,context})=>{
+ const errors:string[]=[];const watch=(target:Page)=>target.on('pageerror',error=>errors.push(error.message));watch(page);
+ await page.clock.setFixedTime(now);await page.goto('/');await page.waitForLoadState('networkidle');
+ await createCharacter(page,{class:'sorceress',name:'Constructed Radament QA'});
+ await navTo(page,'settings');await page.getByRole('button',{name:'English',exact:true}).click();
+ const raw=await readFile(root+'/constructed-input.json','utf8'),input=JSON.parse(raw);
+ await page.getByRole('button',{name:'Import Save',exact:true}).click();const dialog=page.getByRole('dialog');
+ await dialog.getByRole('textbox').fill(raw);await dialog.getByRole('button',{name:'Import Save',exact:true}).click();
+ await expect(dialog).toHaveCount(0);await expect.poll(()=>disk(page)).toEqual(input);expect(await backup(page)).toEqual(input);
+ if(locale==='zh-CN')await page.getByRole('button',{name:'简体中文',exact:true}).click();
+ await expect.poll(()=>page.evaluate(()=>navigator.serviceWorker.controller?.state),{timeout:60000}).toBe('activated');
+ expect(await page.evaluate(()=>'__GAME__'in window)).toBe(false);
+ await navTo(page,'quests');await page.getByTestId(`quest-start-${quest}`).click();
+ const tracked=await backup(page);expect(tracked.map.questProgress[quest]).toEqual({id:quest,status:'inProgress',objectives:{'obj-kill-radament':false}});
+ await writeFile(`${root}/tracked-${locale}.json`,JSON.stringify(tracked));
+ await navTo(page,'map');await page.getByRole('button',{name:locale==='en'?/^Act 2 ·/:/^第 2 章 ·/}).click();
+ await page.getByTestId('sub-area-row-a2-far-oasis').getByRole('button',{name:locale==='en'?'Enter':'进入',exact:true}).click();
+ await expect(page.getByTestId('combat-screen')).toBeVisible();
+ const waveText=await page.getByTestId('wave-counter').innerText();const numbers=waveText.match(/\d+/g);expect(numbers).toHaveLength(2);
+ const total=Number(numbers?.[1]);expect(total).toBeGreaterThan(1);const outcomes=[];
+ for(let wave=1;wave<=total;wave++){
+  await expect(page.getByTestId('wave-counter')).toContainText(String(wave));
+  await page.getByRole('button',{name:locale==='en'?'Pause':'暂停',exact:true}).click();
+  if(wave===total){await expect(page.getByTestId('enemies-grid')).toContainText(locale==='en'?'Radament':'拉达蒙特');
+   await page.getByTestId('enemies-grid').locator('[data-testid^="unit-card-"]').filter({hasText:locale==='en'?'Radament':'拉达蒙特'}).first().scrollIntoViewIfNeeded();
+   await page.screenshot({path:`${root}/radament-opening-${locale}.png`});}
+  await page.getByTestId('skip-button').click();const result=await terminal(page);outcomes.push(result);
+  expect(result.log.at(-1)).toBe(locale==='en'?'Victory! All enemies are defeated.':'胜利！所有敌人已被击败。');
+  expect(result.hero).not.toBeUndefined();expect(result.hero).not.toBe('true');expect(result.defeats).toBe(0);
+  expect(result.enemies.length).toBeGreaterThan(0);expect(result.enemies.every(enemy=>enemy.dead==='true')).toBe(true);
+  if(wave<total)await expect.poll(async()=>Number((await page.getByTestId('wave-counter').innerText()).match(/\d+/)?.[0])).toBe(wave+1);
+ }
+ await expect(page.getByTestId('victory-panel')).toBeVisible();
+ await writeFile(`${root}/outcomes-${locale}.json`,JSON.stringify(outcomes,null,2));
+ await page.getByTestId('return-to-town').click();const completed=await backup(page);
+ expect(completed.map.questProgress[quest]).toEqual({id:quest,status:'completed',objectives:{'obj-kill-radament':true}});
+ expect(completed.player.level).toBe(tracked.player.level);expect(completed.player.skillPoints).toBe(tracked.player.skillPoints);
+ expect(completed.map.clearedSubAreas).toContain('areas/act2-far-oasis');
+ const owned=ids(completed);expect(new Set(owned).size).toBe(owned.length);expect(ids(tracked).every(id=>owned.includes(id))).toBe(true);
+ await writeFile(`${root}/completed-${locale}.json`,JSON.stringify(completed));
+ for(const [width,height]of [[360,640],[1280,800]]){
+  await page.setViewportSize({width,height});await navTo(page,'quests');
+  const card=page.getByTestId(`quest-${quest}`);await card.scrollIntoViewIfNeeded();
+  await expect(page.getByTestId(`quest-start-${quest}`)).toHaveCount(0);
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  await page.screenshot({path:`${root}/completed-${locale}-${width}.png`});
+ }
+ expect(await backup(page)).toEqual(completed);
+ await page.getByRole('button',{name:locale==='en'?'Save':'保存',exact:true}).click();
+ await expect(page.getByRole('status')).toHaveText(locale==='en'?'Saved':'已保存');
+ expect(await disk(page)).toEqual(completed);const saved=await backup(page);expect(saved).toEqual(completed);
+ await page.close();const reopened=await context.newPage();watch(reopened);await reopened.clock.setFixedTime(now);
+ await reopened.goto('/');await reopened.waitForLoadState('networkidle');await reopened.getByTestId('home-continue').click();
+ await expect(reopened.getByTestId('town-screen')).toBeVisible();expect(await backup(reopened)).toEqual(saved);expect(await disk(reopened)).toEqual(saved);
+ expect(await reopened.evaluate(()=>'__GAME__'in window)).toBe(false);expect(errors).toEqual([]);
+ await writeFile(`${root}/assertions-${locale}.json`,JSON.stringify({origin:'constructed injected-power diagnostic; NOT earned Act II',locale,totalWaves:total,unclaimed:true,saveCloseContinueExact:true,allOriginalIDsPreserved:true,ownedIDs:owned.length,pageErrors:errors},null,2));
+ await reopened.close();
+});

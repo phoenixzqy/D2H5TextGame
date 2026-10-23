@@ -68,6 +68,8 @@ export interface CombatUnit {
   readonly side: CombatSide;
   readonly level: number;
   readonly tier: MonsterTier;
+  /** Actual resolved monster catalog identity, captured by the builder; transient, never inferred from names/IDs. */
+  readonly monsterArchetypeId?: string;
   readonly stats: DerivedStats;
   readonly life: number;
   readonly mana: number;

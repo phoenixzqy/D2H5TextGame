@@ -224,6 +224,7 @@ export function buildMonsterUnit(opts: BuildMonsterOpts): CombatUnit {
     side: 'enemy',
     level,
     tier,
+    monsterArchetypeId: def.id,
     stats: {
       life: lifeMaxStat,
       lifeMax: lifeMaxStat,

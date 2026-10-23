@@ -675,6 +675,26 @@ function advanceWaveOrFinishAttempt(observation?: PublicationAttemptObservation)
           combat.accumulateRunRewards(rewards);
         }
 
+        if (completedWave?.waveTier === 'boss' && !completedWave.presentation?.isActBoss &&
+          completedWave.spawns.length === binding.engineInput.enemyTeam.length) {
+          const originals = binding.engineInput.enemyTeam;
+          const archetypeIds = completedWave.spawns.flatMap((spawn, index) => {
+            const original = originals[index];
+            if (spawn.tier !== 'boss' || spawn.chapterBoss !== undefined || !getMonsterIndex().has(spawn.archetypeId) ||
+              !original || original.side !== 'enemy' || original.kind !== 'monster' || original.tier !== 'boss' ||
+              original.monsterArchetypeId !== spawn.archetypeId ||
+              originals.filter(unit => unit.id === original.id).length !== 1) return [];
+            const matches = outcome.finalEnemyTeam.filter(enemy => enemy.id === original.id);
+            const final = matches[0];
+            return matches.length === 1 && final?.side === 'enemy' && final.kind === 'monster' &&
+              final.tier === 'boss' && final.monsterArchetypeId === spawn.archetypeId &&
+              Number.isFinite(final.life) && final.life <= 0 ? [spawn.archetypeId] : [];
+          });
+          if (archetypeIds.length > 0) useMapStore.getState().recordMonsterKills({
+            actId: `acts/act${String(run.act)}`, areaId: run.plan.subAreaId, archetypeIds
+          });
+        }
+
         const nextIdx = binding.targetWaveIdx + 1;
         if (nextIdx >= run.plan.waves.length) {
           const recording = binding.recording;

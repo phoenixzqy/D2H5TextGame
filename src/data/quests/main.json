@@ -99,7 +99,7 @@
       "giver": "npc/atma",
       "description": "Atma the tavern keeper begs you to slay Radament, a mummy that haunts the sewers beneath Lut Gholein and devours the city's people.",
       "objectives": [
-        { "id": "obj-kill-radament", "type": "kill", "targetId": "monsters/radament", "areaId": "areas/act2_sewers_3", "description": "Slay Radament in the sewers." }
+        { "id": "obj-kill-radament", "type": "kill", "targetId": "monsters/act2.radament", "areaId": "areas/act2-far-oasis", "description": "Slay Radament in the sewers." }
       ],
       "rewards": { "xp": 5000, "skillPoints": 1, "itemDrop": "items/book_of_skill" },
       "unlocks": null,

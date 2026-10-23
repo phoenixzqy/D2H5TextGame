@@ -194,10 +194,12 @@ export function resolveWavePlan(
     if (!lastIsBoss) {
       const spawns = encountersToSpawns([subArea.bossEncounter], 'boss', rng, subArea.areaLevel, baseLevel);
       if (spawns.length > 0) {
+        const lootTable = subArea.chapterBoss ? undefined : explicitBossLootTable(subArea);
         out.push({
           id: `${subArea.id}-boss`,
           waveTier: 'boss',
-          spawns
+          spawns,
+          ...(lootTable !== undefined ? { lootTable } : {})
         });
       }
     }
@@ -316,10 +318,12 @@ export function resolveChallengeWavePlan(input: ResolveChallengeWavePlanInput): 
       baseLevel
     );
     if (bossSpawns.length > 0) {
+      const lootTable = explicitBossLootTable(subArea);
       out.push({
         id: `${subArea.id}-boss`,
         waveTier: 'boss',
         spawns: bossSpawns,
+        ...(lootTable !== undefined ? { lootTable } : {}),
         presentation: {
           kind: 'boss',
           difficultyBand: difficultyBandForUi(difficulty.finaleBand)
@@ -372,6 +376,13 @@ export function resolveChallengeWavePlan(input: ResolveChallengeWavePlanInput): 
     seed,
     difficulty
   };
+}
+
+/** Keep the authored boss wave as the single TC authority for an explicit encounter. */
+function explicitBossLootTable(subArea: SubAreaDef): string | undefined {
+  const authored = subArea.waves.filter((wave) => wave.type === 'boss' && wave.lootTable !== undefined);
+  if (authored.length > 1) throw new Error(`Ambiguous boss loot tables for ${subArea.id}`);
+  return authored[0]?.lootTable;
 }
 
 function actNumberFromSubArea(subArea: SubAreaDef): 1 | 2 | 3 | 4 | 5 {

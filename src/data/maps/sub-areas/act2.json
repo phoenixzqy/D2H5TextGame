@@ -252,13 +252,14 @@
       "level": 20,
       "monsters": [
         {
-          "archetypeId": "monsters/act2.greater-mummy",
+          "archetypeId": "monsters/act2.radament",
           "count": 1,
           "boss": true
         },
         {
           "archetypeId": "monsters/act2.mummy",
-          "count": 4
+          "count": 4,
+          "boss": false
         }
       ]
     },
@@ -354,7 +355,7 @@
             "level": 20,
             "monsters": [
               {
-                "archetypeId": "monsters/act2.greater-mummy",
+                "archetypeId": "monsters/act2.radament",
                 "count": 1,
                 "boss": true
               }

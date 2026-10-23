@@ -4,6 +4,7 @@
 import { describe, it, expect } from 'vitest';
 import type { SubAreaDef } from '../types/maps';
 import act1Areas from '../../data/maps/sub-areas/act1.json';
+import act2Areas from '../../data/maps/sub-areas/act2.json';
 import type { WaveSpec } from './sub-area-run';
 import {
   resolveWavePlan,
@@ -94,6 +95,96 @@ const DEN_OF_EVIL: SubAreaDef = {
     }
   ]
 };
+
+function required<T>(value: T | undefined): T {
+  if (value === undefined) throw new Error('Missing expected wave');
+  return value;
+}
+
+describe('Radament authored encounter and treasure class', () => {
+  const farOasis = act2Areas.find((area) => area.id === 'areas/act2-far-oasis') as SubAreaDef;
+  const challenge = (subArea: SubAreaDef, mode: 'manual' | 'idle' = 'manual') =>
+    resolveChallengeWavePlan({ subArea, fallbackArchetypeId: 'monsters/act2.mummy',
+      fallbackLevel: 18, seed: 123, challengeOrdinal: 0, mode });
+
+  it.each(['manual', 'idle'] as const)('%s spawns the actual catalog Radament', (mode) => {
+    const boss = required(challenge(farOasis, mode).waves.at(-1));
+    expect(boss.spawns.filter((spawn) => spawn.tier === 'boss').map((spawn) => spawn.archetypeId))
+      .toEqual(['monsters/act2.radament']);
+  });
+
+  it.each(['manual', 'idle'] as const)('%s keeps the four mummy companions ordinary', (mode) => {
+    const boss = required(challenge(farOasis, mode).waves.at(-1));
+    expect(boss.spawns.filter((spawn) => spawn.archetypeId === 'monsters/act2.mummy')
+      .map((spawn) => spawn.tier)).toEqual(['trash', 'trash', 'trash', 'trash']);
+    expect(boss.spawns).toHaveLength(5);
+  });
+
+  it.each(['manual', 'idle'] as const)('%s retains the authored mini-boss treasure class', (mode) => {
+    const plan = challenge(farOasis, mode);
+    expect(plan.waves.at(-1)?.lootTable).toBe('loot/mini-act2');
+    expect(plan.defaultLootTable).toBe('loot/trash-act2');
+  });
+
+  it('also uses catalog Radament in the legacy authored wave', () => {
+    const boss = required(resolveWavePlan(farOasis, 'monsters/act2.mummy', 18, 123).waves.at(-1));
+    expect(boss.spawns.map((spawn) => spawn.archetypeId)).toEqual(['monsters/act2.radament']);
+    expect(boss.spawns[0]?.tier).toBe('boss');
+    expect(boss.lootTable).toBe('loot/mini-act2');
+  });
+
+  it('inherits the sole boss-wave table when legacy resolution appends the explicit encounter', () => {
+    const subArea: SubAreaDef = { ...farOasis, waves: farOasis.waves.map((wave) =>
+      wave.type === 'boss' ? { ...wave, encounters: [] } : wave) };
+    expect(resolveWavePlan(subArea, 'monsters/act2.mummy', 18, 123).waves.at(-1)?.lootTable)
+      .toBe('loot/mini-act2');
+  });
+
+  it.each(['same', 'different'] as const)('rejects ambiguous %s authored boss tables', (kind) => {
+    const subArea: SubAreaDef = { ...farOasis, waves: [
+      ...farOasis.waves.map((wave) => wave.type === 'boss' ? { ...wave, encounters: [] } : wave),
+      { id: 'second-boss', type: 'boss', lootTable: kind === 'same' ? 'loot/mini-act2' : 'loot/other' }
+    ] };
+    expect(() => challenge(subArea)).toThrow(/boss.*loot|loot.*boss/i);
+    expect(() => resolveWavePlan(subArea, 'monsters/act2.mummy', 18, 123)).toThrow(/boss.*loot|loot.*boss/i);
+  });
+
+  it('retains the area fallback when no boss table is authored', () => {
+    const subArea: SubAreaDef = { ...farOasis, waves: farOasis.waves.filter((wave) => wave.type !== 'boss') };
+    for (const plan of [challenge(subArea), resolveWavePlan(subArea, 'monsters/act2.mummy', 18, 123)]) {
+      expect(plan.waves.at(-1)?.lootTable).toBeUndefined();
+      expect(plan.defaultLootTable).toBe('loot/trash-act2');
+    }
+  });
+
+  it('keeps chapter-boss treasure-class authority independent of authored wave tables', () => {
+    const subArea: SubAreaDef = { ...farOasis, chapterBoss: {
+      archetypeId: 'monsters/act2.duriel', hp: 100, atk: 10, def: 1, skills: [], dropTable: 'loot/act2-boss'
+    } };
+    for (const plan of [challenge(subArea), resolveWavePlan(subArea, 'monsters/act2.mummy', 18, 123)]) {
+      expect(plan.waves.at(-1)?.lootTable).toBe('loot/act2-boss');
+      expect(plan.waves.at(-1)?.spawns[0]?.tier).toBe('chapter-boss');
+    }
+  });
+
+  it('is deterministic without mutating canonical map data', () => {
+    const before = structuredClone(farOasis);
+    expect(challenge(farOasis)).toEqual(challenge(farOasis));
+    expect(farOasis).toEqual(before);
+  });
+
+  it('preserves legacy chapter-boss replacement when an explicit append has ambiguous wave tables', () => {
+    const subArea: SubAreaDef = { ...farOasis,
+      waves: [...farOasis.waves.map((wave) => wave.type === 'boss' ? { ...wave, encounters: [] } : wave),
+        { id: 'another-boss', type: 'boss', lootTable: 'loot/other' }],
+      chapterBoss: { archetypeId: 'monsters/act2.duriel', hp: 100, atk: 10, def: 1,
+        skills: ['monster-weak-melee'], dropTable: 'loot/act2-boss' }
+    };
+    const boss = required(resolveWavePlan(subArea, 'monsters/act2.mummy', 18, 123).waves.at(-1));
+    expect(boss.lootTable).toBe('loot/act2-boss');
+    expect(boss.spawns[0]?.tier).toBe('chapter-boss');
+  });
+});
 
 describe('resolveWavePlan', () => {
   it('honors JSON wave order and flags', () => {
