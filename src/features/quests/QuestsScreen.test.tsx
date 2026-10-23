@@ -46,11 +46,11 @@ describe.each(['zh-CN', 'en'] as const)('QuestsScreen %s', locale => {
     });
     await i18n.changeLanguage(locale);
   });
-  afterEach(() => {
+  afterEach(() => { act(() => {
     useHydrationStore.setState({ status: hydrationBefore.status, error: hydrationBefore.error });
     usePlayerStore.getState().reset();
     useInventoryStore.getState().reset();
-  });
+  }); });
 
   it('shows readable permanent Sun resistance in the current locale', () => {
     renderScreen();

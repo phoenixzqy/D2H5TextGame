@@ -48,7 +48,7 @@ function mount(content: React.ReactNode) {
 function forgeFixture(qualified = true, includeSoulstone = true) {
   // Constructed retained campaign proof for functional UI wiring only.
   // This fixture does not prove combat admission, earned progression, or encounter balance.
-  const will = loadQuestItems().find(item => item.id === 'quest/khalims_will');
+  const will = loadQuestItems().find(item => item.sourceQuestId === KHALIM && item.kind === 'assembled');
   if (will?.kind !== 'assembled') throw new Error('Missing actual Khalim recipe');
   const cube = loadQuestItems().find(item => item.id === will.requiredTool);
   if (!cube) throw new Error('Missing actual retained Cube');
