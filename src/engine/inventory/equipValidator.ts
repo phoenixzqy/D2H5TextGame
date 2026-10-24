@@ -3,8 +3,7 @@
  *
  * Owns the single source of truth for:
  *  - "is this base two-handed?" (driving the 2H ↔ offhand mutex)
- *  - "may a weapon-typed item be placed into the offhand slot?" (no, in
- *    v1; dual-wield ships in a follow-up branch)
+ *  - base-aware slot compatibility, including one-handed offhand weapons
  *
  * The Zustand inventory store calls these helpers; they intentionally
  * have no I/O so they're trivial to unit-test.
@@ -12,7 +11,7 @@
  * @module engine/inventory/equipValidator
  */
 
-import type { Item, ItemBase } from '../types/items';
+import type { EquipmentSlot, Item, ItemBase } from '../types/items';
 
 /**
  * Whether a base item is a two-handed weapon.
@@ -37,7 +36,7 @@ export function isTwoHanded(base: ItemBase | undefined): boolean {
 
 /** Reasons an offhand equip can be rejected. */
 export type OffhandRejection =
-  /** A weapon-typed base cannot occupy the offhand slot in v1. */
+  /** Only shields and explicit one-handed weapons can occupy the offhand slot. */
   | 'offhand-weapon-not-supported';
 
 /** Result of {@link validateOffhandEquip}. */
@@ -45,19 +44,23 @@ export type OffhandEquipResult =
   | { readonly ok: true }
   | { readonly ok: false; readonly reason: OffhandRejection };
 
-/**
- * Whether an item base may be placed into the offhand slot.
- *
- * In v1 only items with `slot === 'offhand'` (shields) are allowed.
- * Dual-wielding (two 1H weapons) is **deferred** — attempting to put a
- * weapon-typed base into the offhand slot is rejected with
- * `'offhand-weapon-not-supported'`.
- */
+/** Whether an item is an explicitly authored one-handed weapon. */
+export function isOneHandedWeapon(base: ItemBase | undefined): boolean {
+  return base?.type === 'weapon' && base.slot === 'weapon' && base.handedness === 'oneHanded';
+}
+
+/** Accept shields and explicitly authored one-handed weapons; reject all other bases. */
 export function validateOffhandEquip(base: ItemBase): OffhandEquipResult {
-  if (base.type === 'weapon' || base.slot === 'weapon') {
-    return { ok: false, reason: 'offhand-weapon-not-supported' };
-  }
-  return { ok: true };
+  return (base.type === 'armor' && base.slot === 'offhand') || isOneHandedWeapon(base)
+    ? { ok: true } : { ok: false, reason: 'offhand-weapon-not-supported' };
+}
+
+/** Canonical hero slot compatibility shared by picker, comparison and transaction. */
+export function baseMatchesEquipmentSlot(base: ItemBase | undefined, slot: EquipmentSlot): boolean {
+  if (!base?.slot) return false;
+  if (slot === 'offhand') return validateOffhandEquip(base).ok;
+  if (slot === 'ring-left' || slot === 'ring-right') return base.slot === 'ring-left' || base.slot === 'ring-right';
+  return base.slot === slot;
 }
 
 /** A snapshot of the relevant equipped slots for {@link planEquipMutex}. */

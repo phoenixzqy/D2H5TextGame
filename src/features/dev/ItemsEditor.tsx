@@ -8,7 +8,7 @@ import type { DevDataFile } from './devPaths';
 import { resolveItemIcon } from '@/ui/cardAssets';
 
 const WEAPON_TYPES = [
-  'sword', 'axe', 'mace', 'dagger', 'spear', 'polearm',
+  'claw', 'sword', 'mace', 'dagger', 'spear', 'polearm',
   'bow', 'crossbow', 'throwing',
   'staff', 'wand', 'scepter', 'orb'
 ] as const;

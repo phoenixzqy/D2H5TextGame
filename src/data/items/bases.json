@@ -1060,5 +1060,125 @@
     "maxSockets": 0,
     "metal": true,
     "canHaveAffixes": true
+  },
+  {
+    "id": "items/base/wp1h-katar",
+    "metal": true,
+    "name": "items.base.wp1h-katar",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 4,
+      "max": 8,
+      "breakdown": {
+        "physical": 8
+      }
+    },
+    "reqLevel": 1,
+    "sockets": 2,
+    "maxSockets": 2,
+    "canHaveAffixes": true,
+    "weaponType": "claw",
+    "handedness": "oneHanded"
+  },
+  {
+    "id": "items/base/wp1h-wrist-blade",
+    "metal": true,
+    "name": "items.base.wp1h-wrist-blade",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 7,
+      "max": 13,
+      "breakdown": {
+        "physical": 13
+      }
+    },
+    "reqLevel": 8,
+    "sockets": 2,
+    "maxSockets": 2,
+    "canHaveAffixes": true,
+    "weaponType": "claw",
+    "handedness": "oneHanded"
+  },
+  {
+    "id": "items/base/wp1h-greater-claws",
+    "metal": true,
+    "name": "items.base.wp1h-greater-claws",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 14,
+      "max": 24,
+      "breakdown": {
+        "physical": 24
+      }
+    },
+    "reqLevel": 22,
+    "sockets": 3,
+    "maxSockets": 3,
+    "canHaveAffixes": true,
+    "weaponType": "claw",
+    "handedness": "oneHanded"
+  },
+  {
+    "id": "items/base/wp1h-hand-scythe",
+    "metal": true,
+    "name": "items.base.wp1h-hand-scythe",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 20,
+      "max": 32,
+      "breakdown": {
+        "physical": 32
+      }
+    },
+    "reqLevel": 32,
+    "sockets": 3,
+    "maxSockets": 3,
+    "canHaveAffixes": true,
+    "weaponType": "claw",
+    "handedness": "oneHanded"
+  },
+  {
+    "id": "items/base/wp1h-feral-claws",
+    "metal": true,
+    "name": "items.base.wp1h-feral-claws",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 32,
+      "max": 55,
+      "breakdown": {
+        "physical": 55
+      }
+    },
+    "reqLevel": 50,
+    "sockets": 4,
+    "maxSockets": 4,
+    "canHaveAffixes": true,
+    "weaponType": "claw",
+    "handedness": "oneHanded"
+  },
+  {
+    "id": "items/base/wp1h-runic-talons",
+    "metal": true,
+    "name": "items.base.wp1h-runic-talons",
+    "type": "weapon",
+    "slot": "weapon",
+    "baseDamage": {
+      "min": 45,
+      "max": 75,
+      "breakdown": {
+        "physical": 75
+      }
+    },
+    "reqLevel": 60,
+    "sockets": 6,
+    "maxSockets": 6,
+    "canHaveAffixes": true,
+    "weaponType": "claw",
+    "handedness": "oneHanded"
   }
 ]

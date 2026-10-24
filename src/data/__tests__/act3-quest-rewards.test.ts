@@ -110,10 +110,11 @@ describe('Mephisto dedicated level-47 quest cache', () => {
     return { ...rng, next: () => count++ < 5 ? selection : uniqueSelection };
   }
 
-  it('corrects only the intended forced-unique entry and freezes its other fields', () => {
+  it('preserves the reviewed unique reward and adds a weight-preserving rare claw sibling', () => {
     expect(required(treasureClasses.find(row => row.id === input.tableId)).entries).toEqual([
       { type: 'item', itemBase: 'items/base/armor-breast-plate', rarity: 'unique', weight: 60, minLevel: 38, maxLevel: 60 },
-      { type: 'item', itemBase: 'items/base/wp1h-phase-blade', rarity: 'rare', weight: 150, minLevel: 38, maxLevel: 60 },
+      { type: 'item', itemBase: 'items/base/wp1h-phase-blade', rarity: 'rare', weight: 75, minLevel: 38, maxLevel: 60 },
+      { type: 'item', itemBase: 'items/base/wp1h-feral-claws', rarity: 'rare', weight: 75, minLevel: 38, maxLevel: 60 },
       { type: 'rune', itemId: 'runes/lem', weight: 50 },
       { type: 'gold', weight: 100, quantityMin: 25000, quantityMax: 60000 }
     ]);
@@ -131,11 +132,11 @@ describe('Mephisto dedicated level-47 quest cache', () => {
     }
   );
 
-  it.each([0.3, 0.65, 0.9])('materializes each other selectable table entry at roll=%s', selection => {
+  it.each([0.3, 0.5, 0.65, 0.9])('materializes each other selectable table entry at roll=%s', selection => {
     const cache = required(rollQuestTableRewards(input, pools, controlled(selection)));
-    if (selection === 0.3) {
+    if (selection === 0.3 || selection === 0.5) {
       expect(cache.items).toHaveLength(5);
-      expect(cache.items.every(row => row.baseId === 'items/base/wp1h-phase-blade' && row.rarity === 'rare')).toBe(true);
+      expect(cache.items.every(row => row.baseId === (selection === 0.3 ? 'items/base/wp1h-phase-blade' : 'items/base/wp1h-feral-claws') && row.rarity === 'rare')).toBe(true);
     } else {
       expect(cache.items).toEqual([]);
       if (selection === 0.65) expect(cache.runes).toBe(5);

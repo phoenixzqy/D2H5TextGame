@@ -40,6 +40,12 @@
     "noModifiers": "No special modifiers"
   },
   "base": {
+    "wp1h-katar": "Katar",
+    "wp1h-wrist-blade": "Wrist Blade",
+    "wp1h-greater-claws": "Greater Claws",
+    "wp1h-hand-scythe": "Hand Scythe",
+    "wp1h-feral-claws": "Feral Claws",
+    "wp1h-runic-talons": "Runic Talons",
     "weapon-spear": "Spear",
     "weapon-throwing-knife": "Throwing Knife",
     "helm-cap": "Cap",

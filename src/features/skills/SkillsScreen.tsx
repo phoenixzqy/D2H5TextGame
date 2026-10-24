@@ -50,6 +50,7 @@ import { SKELETON_MASTERY_DEFINITION, composeSkeletonMastery, resolveSkeletonMas
 import { GOLEM_MASTERY_DEFINITION, composeGolemMastery, resolveGolemMasteryRank } from '@/engine/skills/golem-mastery';
 import { LIGHTNING_MASTERY_DEFINITION, resolveLightningMasteryRank } from '@/engine/skills/lightning-mastery';
 import { composeSummonPassives, SUMMON_PASSIVE_IDENTITIES, SUMMON_PASSIVE_DEFINITIONS } from '@/engine/skills/summon-passives';
+import { ASSASSIN_WEAPON_PASSIVE_DEFINITIONS, ASSASSIN_WEAPON_PASSIVE_IDENTITIES } from '@/engine/skills/assassin-weapon-passives';
 import { DAMAGE_MASTERY_DEFINITIONS, DAMAGE_MASTERY_IDENTITIES } from '@/engine/skills/damage-masteries';
 import { COLD_MASTERY_DEFINITION, coldMasteryReductionAtRank, resolveColdMasteryRank } from '@/engine/skills/cold-mastery';
 import { resolveStaticFieldRank } from '@/engine/skills/static-field';
@@ -1153,6 +1154,17 @@ function dynamicDescription(
   stats: SkillRankDisplayStats | undefined,
   t: Translate
 ): string {
+  for (const key of ['claw', 'block'] as const) {
+    const [authored] = ASSASSIN_WEAPON_PASSIVE_IDENTITIES[key];
+    if (skill.id === authored) {
+      const { perRank, requiredLevel, maxRank } = ASSASSIN_WEAPON_PASSIVE_DEFINITIONS[key];
+      return t('assassin.' + authored.slice('skills-assassin-'.length) + '.desc', {
+        attack: perRank.attackPct * 100, critical: perRank.critChancePct * 100,
+        physicalDodge: perRank.physDodgePct * 100, magicDodge: perRank.magicDodgePct * 100,
+        level: requiredLevel, cap: maxRank,
+      });
+    }
+  }
   for (const key of ['mastery', 'resist'] as const) {
     if (skill.id === SUMMON_PASSIVE_IDENTITIES[key][0]) {
       const { lifePerRank, attackPerRank, resistPerRank, requiredLevel, maxRank } = SUMMON_PASSIVE_DEFINITIONS[key];

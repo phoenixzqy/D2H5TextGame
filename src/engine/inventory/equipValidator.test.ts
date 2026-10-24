@@ -79,11 +79,8 @@ describe('validateOffhandEquip', () => {
     expect(validateOffhandEquip(shield)).toEqual({ ok: true });
   });
 
-  it('rejects weapon-typed bases — dual-wield deferred', () => {
-    expect(validateOffhandEquip(sword1H)).toEqual({
-      ok: false,
-      reason: 'offhand-weapon-not-supported'
-    });
+  it('accepts explicit one-handed weapons and rejects two-handed weapons', () => {
+    expect(validateOffhandEquip(sword1H)).toEqual({ ok: true });
     expect(validateOffhandEquip(sword2H)).toEqual({
       ok: false,
       reason: 'offhand-weapon-not-supported'

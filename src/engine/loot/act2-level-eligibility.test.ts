@@ -13,7 +13,7 @@ function required<T>(value: T | undefined | null): T {
   if (value == null) throw new Error('Missing actual Act II content');
   return value;
 }
-const highBases = ['helm-war-hat', 'armor-chain-mail', 'wp1h-long-sword', 'sh-aegis']
+const highBases = ['helm-war-hat', 'armor-chain-mail', 'wp1h-long-sword', 'wp1h-greater-claws', 'sh-aegis']
   .map(id => `items/base/${id}`);
 
 describe('BUG151 late Act II ordinary equipment eligibility', () => {
@@ -22,7 +22,7 @@ describe('BUG151 late Act II ordinary equipment eligibility', () => {
     for (const table of treasureClasses) expect(validate(table), JSON.stringify(validate.errors)).toBe(true);
   });
 
-  it.each([29, 30, 31])('admits the four existing high equipment bases at resolved level%i', level => {
+  it.each([29, 30, 31])('admits the five high equipment bases including Greater Claws at resolved level%i', level => {
     const table = required(loadTreasureClasses().get('loot/trash-act2'));
     expect(table.picks.filter(pick => pick.type === 'item' && level >= pick.qlvlMin && level <= pick.qlvlMax)
       .map(pick => pick.baseId)).toEqual(highBases);
@@ -31,13 +31,13 @@ describe('BUG151 late Act II ordinary equipment eligibility', () => {
   it('preserves exact top-band boundaries and lower equipment rows', () => {
     const table = required(loadTreasureClasses().get('loot/trash-act2'));
     const high = table.picks.filter(pick => highBases.includes(pick.baseId ?? ''));
-    expect(high).toHaveLength(4);
+    expect(high).toHaveLength(5);
     // BUG152 supersedes the Normal-only upper31 with the finite replay cap51.
     for (const pick of high) expect([pick.qlvlMin, pick.qlvlMax]).toEqual([22, 51]);
     expect(table.picks.filter(pick => !highBases.includes(pick.baseId ?? '')).map(pick => pick.qlvlMax))
-      .toEqual([22, 22, 26, 26, 26, 22, 26, 26, 26, 26]);
+      .toEqual([22, 22, 26, 26, 26, 22, 22, 26, 26, 26, 26]);
     for (const level of [21, 52]) expect(high.filter(pick => level >= pick.qlvlMin && level <= pick.qlvlMax)).toEqual([]);
-    for (const level of [22, 28, 31, 32, 51]) expect(high.filter(pick => level >= pick.qlvlMin && level <= pick.qlvlMax)).toHaveLength(4);
+    for (const level of [22, 28, 31, 32, 51]) expect(high.filter(pick => level >= pick.qlvlMin && level <= pick.qlvlMax)).toHaveLength(5);
   });
 
   it.each(['manual', 'idle'] as const)('covers actual ordinary levels in all six Normal Act II areas (%s)', mode => {

@@ -336,9 +336,12 @@ const IRON_METAL_IDS = [
   'boot-chain', 'boot-light-plated', 'boot-myrmidon-greaves',
   'belt-plated', 'belt-mithril-coil', 'sh-aegis', 'sh-monarch'
 ].map(suffix => `items/base/${suffix}`).sort();
+// D05's six explicit claw progression tiers extend the reviewed metal set.
+const CLAW_BASE_IDS = ['katar', 'wrist-blade', 'greater-claws', 'hand-scythe', 'feral-claws', 'runic-talons']
+  .map(suffix => 'items/base/wp1h-' + suffix);
 // D10 source-backed addition; the D06 historical acceptance set above stays literal.
 const CURRENT_IRON_METAL_IDS = [...IRON_METAL_IDS, 'items/base/wp2h-battle-scythe',
-  'items/base/weapon-spear', 'items/base/weapon-throwing-knife'].sort();
+  'items/base/weapon-spear', 'items/base/weapon-throwing-knife', ...CLAW_BASE_IDS].sort();
 
 const BASE_KINDS: readonly ItemBaseType[] = [
   'weapon', 'armor', 'jewelry', 'charm', 'rune', 'gem', 'material'
@@ -353,16 +356,17 @@ function metalSchemaCandidate(type: ItemBaseType): ItemBase {
 }
 
 describe('reviewed socket maximum metadata', () => {
-  it('preserves 74 historical bases and the explicit staff, scythe and mastery additions', () => {
+  it('preserves 74 historical bases and the explicit staff, scythe, mastery and claw additions', () => {
     expect(rawItemBases.filter(base => !['items/base/weapon-staff', 'items/base/wp2h-battle-scythe',
-      'items/base/weapon-spear', 'items/base/weapon-throwing-knife'].includes(base.id))).toHaveLength(74);
+      'items/base/weapon-spear', 'items/base/weapon-throwing-knife', ...CLAW_BASE_IDS].includes(base.id))).toHaveLength(74);
     expect(rawItemBases.filter(base => base.id === 'items/base/weapon-staff')).toEqual([
       expect.objectContaining({ sockets: 2, maxSockets: 2 })
     ]);
     expect(rawItemBases.filter(base => base.id === 'items/base/wp2h-battle-scythe')).toEqual([
       expect.objectContaining({ sockets: 5, maxSockets: 5 })
     ]);
-    expect(rawItemBases).toHaveLength(78);
+    expect(rawItemBases.filter(base => CLAW_BASE_IDS.includes(base.id))).toHaveLength(6);
+    expect(rawItemBases).toHaveLength(84);
     for (const base of rawItemBases) {
       expect(base.maxSockets, base.id).toBe('sockets' in base ? base.sockets : 0);
     }
@@ -375,10 +379,10 @@ describe('reviewed socket maximum metadata', () => {
 });
 
 describe('Iron Golem authored metal metadata', () => {
-  it('preserves the 31 historical metal bases and explicitly adds scythe, spear and throwing knife', () => {
+  it('preserves the 31 historical metal bases and explicitly adds scythe, spear, throwing knife and six claws', () => {
     const catalog = rawItemBases as readonly ItemBase[];
     expect(new Set(IRON_METAL_IDS).size).toBe(31);
-    expect(new Set(CURRENT_IRON_METAL_IDS).size).toBe(34);
+    expect(new Set(CURRENT_IRON_METAL_IDS).size).toBe(40);
     for (const id of IRON_METAL_IDS) {
       expect(catalog.filter(base => base.id === id), id).toHaveLength(1);
     }

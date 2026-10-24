@@ -209,8 +209,8 @@ Below is the **v1 skill list**. `content-designer` will populate the full JSON.
 #### Passive Skills (4)
 | ID | Name (EN / ZH) | Effect | Notes |
 |---|---|---|---|
-| `assassin.claw_mastery` | Claw Mastery / 爪类武器精通 | +50% claw damage | |
-| `assassin.weapon_block` | Weapon Block / 武器格挡 | +30% physical dodge when dual-wielding | |
+| `assassin.claw_mastery` | Claw Mastery / 爪类武器精通 | Per rank +2.5% Attack/+0.5pp critical chance with a main-hand one-handed claw; cap20 | [D05 contract](../plans/decisions/D05-assassin-weapon-passives-v1.md) |
+| `assassin.weapon_block` | Weapon Block / 武器格挡 | Per rank +1pp physical/+0.5pp magical dodge with two distinct one-handed weapons and learned Claw Mastery; unlock12/cap20 | [D05 contract](../plans/decisions/D05-assassin-weapon-passives-v1.md) |
 | `assassin.fade` | Fade / 能量消解 | +30% all resists, +15% physical dodge | Buff at combat start |
 | `assassin.venom` | Venom / 淬毒 | Basic attacks apply 1 poison stack | Passive enchant |
 

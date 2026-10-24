@@ -11,11 +11,10 @@ import { create } from 'zustand';
 import { loadItemBases } from '@/data/loaders/loot';
 import type { EquipmentSlot, Item, ItemBase } from '@/engine/types/items';
 import type { QuestItemLedger } from '@/engine/types/save';
-import { isTwoHanded } from '@/engine/inventory/equipValidator';
+import { baseMatchesEquipmentSlot, isTwoHanded } from '@/engine/inventory/equipValidator';
 import {
   checkEligibility,
   resolveAutoEquipSlot,
-  slotMatches,
   slotCandidates,
   type PlayerLike
 } from '@/features/inventory/compareEquip';
@@ -166,7 +165,7 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
     const bases = loadItemBases();
     const base = bases.get(item.baseId);
     if (!base?.slot) return { ok: false, reason: 'no_slot' };
-    if (requestedSlot !== undefined && !slotMatches(base.slot, requestedSlot)) {
+    if (requestedSlot !== undefined && !baseMatchesEquipmentSlot(base, requestedSlot)) {
       return { ok: false, reason: 'no_slot' };
     }
 

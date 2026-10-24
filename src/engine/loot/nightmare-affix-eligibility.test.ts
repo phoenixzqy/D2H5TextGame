@@ -44,10 +44,11 @@ describe('BUG153 finite Nightmare affix eligibility', () => {
 
   for (const rarity of ['magic', 'rare'] as const) {
     it.each([99, 100, 101, 102])(`materializes legal ${rarity} bonuses on every affixable base at%i`, ilvl => {
-      // The 76 prior bases plus D05's explicit spear/throwing additions.
-      expect(bases.filter(base => !['items/base/weapon-spear', 'items/base/weapon-throwing-knife'].includes(base.id)))
+      // Preserve the 76 original bases and verify the two mastery bases plus six claw tiers.
+      expect(bases.filter(base => base.weaponType !== 'claw' && !['items/base/weapon-spear', 'items/base/weapon-throwing-knife'].includes(base.id)))
         .toHaveLength(76);
-      expect(bases).toHaveLength(78);
+      expect(bases.filter(base => base.weaponType === 'claw')).toHaveLength(6);
+      expect(bases).toHaveLength(84);
       for (const base of bases) {
         const item = required(rollItem({ baseId: base.id, rarity, ilvl }, pools, createRng(seed)));
         expect(item).toMatchObject({ baseId: base.id, rarity, level: ilvl, ilvl });

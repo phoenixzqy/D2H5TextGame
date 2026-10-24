@@ -241,6 +241,14 @@
         "attackPct": 0.025,
         "critChancePct": 0.005
       }
+    },
+    "requires": {
+      "weaponType": [
+        "claw"
+      ],
+      "handedness": [
+        "oneHanded"
+      ]
     }
   },
   {

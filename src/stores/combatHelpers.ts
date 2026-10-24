@@ -77,6 +77,8 @@ import { IRON_SKIN_DEFINITION, resolveIronSkinRank } from '@/engine/skills/iron-
 import { composeBarbarianEndurance } from '@/engine/skills/barbarian-endurance';
 import { composeBarbarianWeaponMasteries } from '@/engine/skills/barbarian-weapon-masteries';
 import { composeDamageMasteries } from '@/engine/skills/damage-masteries';
+import { isDualWielding } from '@/engine/items/equipped-weapon';
+import { composeAssassinWeaponPassives } from '@/engine/skills/assassin-weapon-passives';
 import { composeAmazonPassives } from '@/engine/skills/amazon-passives';
 import { composeSkeletonMastery } from '@/engine/skills/skeleton-mastery';
 import { composeSummonPassives } from '@/engine/skills/summon-passives';
@@ -173,6 +175,9 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
     player.level >= IRON_SKIN_DEFINITION.requiredLevel ? resolveIronSkinRank(player.skillLevels) : 0;
   const amazon = composeAmazonPassives({ classId: player.class, level: player.level,
     ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
+  const assassin = composeAssassinWeaponPassives({ classId: player.class, level: player.level,
+    ...equippedWeapon, dualWielding: isDualWielding(equipped),
+    ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
   const endurance = composeBarbarianEndurance({ classId: player.class, level: player.level,
     ...(player.skillLevels ? { skillLevels: player.skillLevels } : {}) });
   const mastery = composeBarbarianWeaponMasteries({ classId: player.class, level: player.level,
@@ -184,10 +189,10 @@ export function playerToCombatUnit(player: Player): CombatUnit & { readonly gove
   const stats = { ...freshStats,
     lifeMax,
     attackSpeed: freshStats.attackSpeed * endurance.attackSpeedMultiplier * mastery.attackSpeedMultiplier,
-    attack: freshStats.attack * amazon.attackMultiplier,
-    critChance: freshStats.critChance + amazon.critChanceBonus + mastery.critChanceBonus,
-    physDodge: freshStats.physDodge + amazon.physDodgeBonus + endurance.physDodgeBonus,
-    magicDodge: freshStats.magicDodge + amazon.magicDodgeBonus + endurance.magicDodgeBonus + damageMasteries.magicDodgeBonus,
+    attack: freshStats.attack * amazon.attackMultiplier * assassin.attackMultiplier,
+    critChance: freshStats.critChance + amazon.critChanceBonus + mastery.critChanceBonus + assassin.critChanceBonus,
+    physDodge: freshStats.physDodge + amazon.physDodgeBonus + endurance.physDodgeBonus + assassin.physDodgeBonus,
+    magicDodge: freshStats.magicDodge + amazon.magicDodgeBonus + endurance.magicDodgeBonus + damageMasteries.magicDodgeBonus + assassin.magicDodgeBonus,
     resistances: { physical: freshStats.resistances.physical + endurance.resistAllBonus,
       fire: freshStats.resistances.fire + endurance.resistAllBonus,
       cold: freshStats.resistances.cold + endurance.resistAllBonus,

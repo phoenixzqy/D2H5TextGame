@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { resolveEquippedWeapon } from './equipped-weapon';
+import { isDualWielding, resolveEquippedWeapon } from './equipped-weapon';
 import type { Item } from '../types/items';
 
 function weapon(baseId: string): Item {
@@ -22,4 +22,18 @@ describe('canonical equipped weapon metadata', () => {
     expect(resolveEquippedWeapon({ offhand: weapon('items/base/wp1h-short-sword') })).toEqual({});
     expect(resolveEquippedWeapon({ weapon: weapon('items/base/sh-buckler') })).toEqual({});
   });
+});
+
+it('requires two distinct real one-handed weapons for dual wielding', () => {
+  const main = weapon('items/base/wp1h-katar');
+  const offhand = { ...weapon('items/base/wp1h-short-sword'), id: 'offhand' };
+  expect(isDualWielding({ weapon: main, offhand })).toBe(true);
+  expect(resolveEquippedWeapon({ weapon: main, offhand })).toEqual({ weaponType: 'claw', handedness: 'oneHanded' });
+  for (const baseId of ['unknown', 'items/base/sh-buckler', 'items/base/weapon-staff']) {
+    expect(isDualWielding({ weapon: main, offhand: { ...offhand, baseId } })).toBe(false);
+    expect(isDualWielding({ weapon: { ...main, baseId }, offhand })).toBe(false);
+  }
+  expect(isDualWielding({ weapon: main, offhand: { ...offhand, id: main.id } })).toBe(false);
+  expect(isDualWielding({ weapon: main })).toBe(false);
+  expect(isDualWielding({ offhand })).toBe(false);
 });

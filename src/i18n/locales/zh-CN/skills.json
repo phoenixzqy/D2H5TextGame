@@ -84,6 +84,7 @@
     "lockedPrereqName": "{{skill}}（未学习）",
     "weaponRequired": "武器需求",
     "weaponTypes": {
+      "claw": "爪类武器",
       "sword": "剑",
       "axe": "斧",
       "mace": "钝器",
@@ -339,11 +340,11 @@
     },
     "claw-mastery": {
       "name": "爪类精通",
-      "desc": "爪类武器伤害 +50%。"
+      "desc": "主手武器栏装备单手爪时自动生效。每级增加{{attack}}%攻击与{{critical}}个百分点暴击率；最高{{cap}}级，{{level}}级解锁。改动从下一波生效。"
     },
     "weapon-block": {
       "name": "武器格挡",
-      "desc": "双持时获得 30% 物理闪避。"
+      "desc": "装备两件不同的单手武器且已学习爪支配时自动生效。每级增加{{physicalDodge}}个百分点物理闪避与{{magicDodge}}个百分点魔法闪避；最高{{cap}}级，{{level}}级解锁。改动从下一波生效。"
     },
     "fade": {
       "name": "阴影",

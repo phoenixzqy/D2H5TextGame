@@ -40,6 +40,12 @@
     "noModifiers": "无特殊属性"
   },
   "base": {
+    "wp1h-katar": "拳刃",
+    "wp1h-wrist-blade": "腕刃",
+    "wp1h-greater-claws": "巨爪",
+    "wp1h-hand-scythe": "手镰",
+    "wp1h-feral-claws": "猛禽爪",
+    "wp1h-runic-talons": "符文爪",
     "weapon-spear": "长矛",
     "weapon-throwing-knife": "飞刀",
     "helm-cap": "帽子",

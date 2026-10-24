@@ -52,7 +52,7 @@ onto a single shared base in our data:
 | Barbarian primal helms | `helm-*` | Class-specific |
 | Paladin auric / sacred shields | `sh-*` | Sacred Targe is closest |
 | Sorceress orbs | `weapon-wand` | No orb base |
-| Assassin claws | `wp1h-*` | No claw base |
+| Assassin claws | legacy `wp1h-*` mappings | Six claw bases now exist; retain legacy unique mappings pending save compatibility review |
 | Two-handed maces / hammers / mauls | `wp2h-thunder-maul` or `wp2h-colossus-blade` | Closest two-hand bases |
 | Charms, jewels | (skipped) | No base; rule #1 forbids inventing bases |
 

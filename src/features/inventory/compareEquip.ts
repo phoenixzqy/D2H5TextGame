@@ -20,7 +20,7 @@ import type { QuestItemLedger, QuestActionReceipts } from '@/engine/types/save';
 import { loadItemBases, resolveItemReqLevel } from '@/data/loaders/loot';
 import { prepareEquippedPlayerStats } from '@/engine/progression/equipped-stats';
 import type { QuestProgressContext } from '@/engine/progression/quest-resistance';
-import { isTwoHanded } from '@/engine/inventory/equipValidator';
+import { baseMatchesEquipmentSlot, isTwoHanded } from '@/engine/inventory/equipValidator';
 import type { CoreStats, DerivedStats, Resistances } from '@/engine/types/attributes';
 import type { EquipmentSlot, Item, ItemBase } from '@/engine/types/items';
 
@@ -91,7 +91,7 @@ export function slotCandidates(
   slot: EquipmentSlot,
   bases: ReadonlyMap<string, ItemBase> = loadItemBases()
 ): Item[] {
-  return backpack.filter((it) => slotMatches(bases.get(it.baseId)?.slot ?? null, slot));
+  return backpack.filter((it) => baseMatchesEquipmentSlot(bases.get(it.baseId), slot));
 }
 
 export function resolveAutoEquipSlot(
@@ -130,10 +130,12 @@ export function checkEligibility(
 }
 
 function resolveTargetSlot(
-  baseSlot: EquipmentSlot,
+  base: ItemBase | undefined,
   targetSlot: EquipmentSlot,
   equipped: Readonly<Record<string, Item | null>>
 ): EquipmentSlot {
+  const baseSlot = base?.slot ?? targetSlot;
+  if (baseMatchesEquipmentSlot(base, targetSlot)) return targetSlot;
   if (baseSlot === 'ring-left' || baseSlot === 'ring-right') {
     if (targetSlot === 'ring-left' || targetSlot === 'ring-right') return targetSlot;
     if (!equipped['ring-left']) return 'ring-left';
@@ -150,8 +152,7 @@ function simulateEquip(
   bases: ReadonlyMap<string, ItemBase>
 ): Record<string, Item | null> {
   const base = bases.get(candidate.baseId);
-  const slot = base?.slot ?? targetSlot;
-  const resolved = resolveTargetSlot(slot, targetSlot, equipped);
+  const resolved = resolveTargetSlot(base, targetSlot, equipped);
   const next: Record<string, Item | null> = { ...equipped, [resolved]: candidate };
 
   if (resolved === 'weapon' && isTwoHanded(base)) {
@@ -192,7 +193,7 @@ export function prepareCompareEquip(
   const currentDerived = derive(equipped);
   return (candidate, slot) => {
     const base = bases.get(candidate.baseId);
-    const resolved = resolveTargetSlot(base?.slot ?? slot, slot, equipped);
+    const resolved = resolveTargetSlot(base, slot, equipped);
     const current = equipped[resolved] ?? null;
 
     const candidateEquipped = simulateEquip(equipped, candidate, slot, bases);

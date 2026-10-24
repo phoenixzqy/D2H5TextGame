@@ -1,3 +1,4 @@
+import { baseMatchesEquipmentSlot } from '../inventory/equipValidator';
 import { loadItemBases } from '@/data/loaders/loot';
 import { socketRunewords } from '@/data/loaders/socket-effects';
 import type { EquipmentSlot, Item, RunewordGrant } from '../types/items';
@@ -26,10 +27,7 @@ export function resolveEquippedRunewordGrants(
   for (const slot of GRANT_EQUIPMENT_SLOT_ORDER) {
     const item = equipped[slot];
     if (!item) continue;
-    const baseSlot = bases.get(item.baseId)?.slot;
-    const rings = (slot === 'ring-left' || slot === 'ring-right') &&
-      (baseSlot === 'ring-left' || baseSlot === 'ring-right');
-    if (baseSlot !== slot && !rings) continue;
+    if (!baseMatchesEquipmentSlot(bases.get(item.baseId), slot)) continue;
     for (const grant of resolveItemRunewordGrants(item)) {
       const previous = grants.get(grant.id);
       if (!previous || grant.rank > previous.rank) grants.set(grant.id, grant);

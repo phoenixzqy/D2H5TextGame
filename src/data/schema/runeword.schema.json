@@ -432,6 +432,7 @@
       "uniqueItems": true,
       "items": {
         "enum": [
+          "claw",
           "sword",
           "axe",
           "mace",

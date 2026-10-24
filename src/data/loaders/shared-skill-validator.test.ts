@@ -6,7 +6,7 @@ import monsterSchema from '../schema/monster.schema.json';
 afterEach(() => { vi.restoreAllMocks(); });
 
 describe('authored skill modules share compiled schema code', () => {
-  it('reuses one validator across all 24 modules while preserving the monster validator', async () => {
+  it('reuses one validator across all 27 modules while preserving the monster validator', async () => {
     vi.resetModules();
     const compile = vi.spyOn(Ajv2020.prototype, 'compile');
     await Promise.all([
@@ -22,6 +22,8 @@ describe('authored skill modules share compiled schema code', () => {
       import('../../engine/skills/barbarian-weapon-masteries'), import('../../engine/skills/fire-mastery'),
       import('../../engine/skills/item-redemption'), import('../../engine/skills/might'),
       import('../../engine/skills/meditation'), import('../../engine/skills/iron-skin'),
+      import('../../engine/skills/summon-passives'), import('../../engine/skills/damage-masteries'),
+      import('../../engine/skills/assassin-weapon-passives'),
     ]);
     const validatorsFor = (id: string) => compile.mock.calls.flatMap(([schema], index) => {
       const result = compile.mock.results[index];

@@ -97,7 +97,7 @@
     "weaponType": {
       "type": "string",
       "enum": [
-        "sword", "axe", "mace", "dagger", "spear", "polearm",
+        "claw", "sword", "axe", "mace", "dagger", "spear", "polearm",
         "bow", "crossbow", "throwing",
         "staff", "wand", "scepter", "orb"
       ],

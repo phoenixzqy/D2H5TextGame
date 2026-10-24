@@ -87,7 +87,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-short-sword",
         "rarity": "normal",
-        "weight": 250,
+        "weight": 125,
+        "minLevel": 1,
+        "maxLevel": 10
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-katar",
+        "rarity": "normal",
+        "weight": 125,
         "minLevel": 1,
         "maxLevel": 10
       },
@@ -95,7 +103,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-scimitar",
         "rarity": "normal",
-        "weight": 150,
+        "weight": 75,
+        "minLevel": 7,
+        "maxLevel": 38
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-wrist-blade",
+        "rarity": "normal",
+        "weight": 75,
         "minLevel": 7,
         "maxLevel": 38
       },
@@ -245,7 +261,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-scimitar",
         "rarity": "normal",
-        "weight": 300,
+        "weight": 150,
+        "minLevel": 14,
+        "maxLevel": 22
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-wrist-blade",
+        "rarity": "normal",
+        "weight": 150,
         "minLevel": 14,
         "maxLevel": 22
       },
@@ -253,7 +277,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-long-sword",
         "rarity": "normal",
-        "weight": 70,
+        "weight": 35,
+        "minLevel": 22,
+        "maxLevel": 51
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-greater-claws",
+        "rarity": "normal",
+        "weight": 35,
         "minLevel": 22,
         "maxLevel": 51
       },
@@ -363,7 +395,23 @@
         "type": "item",
         "itemBase": "items/base/wp1h-long-sword",
         "rarity": "normal",
-        "weight": 200,
+        "weight": 100,
+        "minLevel": 26,
+        "maxLevel": 38
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-greater-claws",
+        "rarity": "normal",
+        "weight": 50.0,
+        "minLevel": 26,
+        "maxLevel": 38
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-hand-scythe",
+        "rarity": "normal",
+        "weight": 50.0,
         "minLevel": 26,
         "maxLevel": 38
       },
@@ -371,7 +419,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
         "rarity": "normal",
-        "weight": 30,
+        "weight": 15,
+        "minLevel": 38,
+        "maxLevel": 66
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-feral-claws",
+        "rarity": "normal",
+        "weight": 15,
         "minLevel": 38,
         "maxLevel": 66
       },
@@ -473,7 +529,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
         "rarity": "normal",
-        "weight": 180,
+        "weight": 90,
+        "minLevel": 40,
+        "maxLevel": 81
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-feral-claws",
+        "rarity": "normal",
+        "weight": 90,
         "minLevel": 40,
         "maxLevel": 81
       },
@@ -591,7 +655,23 @@
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
         "rarity": "normal",
-        "weight": 200,
+        "weight": 100,
+        "minLevel": 55,
+        "maxLevel": 102
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-feral-claws",
+        "rarity": "normal",
+        "weight": 50.0,
+        "minLevel": 55,
+        "maxLevel": 102
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-runic-talons",
+        "rarity": "normal",
+        "weight": 50.0,
         "minLevel": 55,
         "maxLevel": 102
       },
@@ -685,7 +765,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-scimitar",
         "rarity": "magic",
-        "weight": 150,
+        "weight": 75,
+        "minLevel": 9,
+        "maxLevel": 14
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-wrist-blade",
+        "rarity": "magic",
+        "weight": 75,
         "minLevel": 9,
         "maxLevel": 14
       },
@@ -739,7 +827,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-long-sword",
         "rarity": "magic",
-        "weight": 150,
+        "weight": 75,
+        "minLevel": 22,
+        "maxLevel": 28
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-greater-claws",
+        "rarity": "magic",
+        "weight": 75,
         "minLevel": 22,
         "maxLevel": 28
       },
@@ -785,7 +881,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
         "rarity": "magic",
-        "weight": 120,
+        "weight": 60,
+        "minLevel": 38,
+        "maxLevel": 45
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-feral-claws",
+        "rarity": "magic",
+        "weight": 60,
         "minLevel": 38,
         "maxLevel": 45
       },
@@ -869,7 +973,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
         "rarity": "magic",
-        "weight": 150,
+        "weight": 75,
+        "minLevel": 57,
+        "maxLevel": 75
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-feral-claws",
+        "rarity": "magic",
+        "weight": 75,
         "minLevel": 57,
         "maxLevel": 75
       },
@@ -915,7 +1027,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-scimitar",
         "rarity": "rare",
-        "weight": 120,
+        "weight": 60,
+        "minLevel": 10,
+        "maxLevel": 14
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-wrist-blade",
+        "rarity": "rare",
+        "weight": 60,
         "minLevel": 10,
         "maxLevel": 14
       },
@@ -969,7 +1089,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-long-sword",
         "rarity": "rare",
-        "weight": 120,
+        "weight": 60,
+        "minLevel": 22,
+        "maxLevel": 28
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-greater-claws",
+        "rarity": "rare",
+        "weight": 60,
         "minLevel": 22,
         "maxLevel": 28
       },
@@ -1015,7 +1143,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
         "rarity": "rare",
-        "weight": 100,
+        "weight": 50,
+        "minLevel": 38,
+        "maxLevel": 45
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-feral-claws",
+        "rarity": "rare",
+        "weight": 50,
         "minLevel": 38,
         "maxLevel": 45
       },
@@ -1099,7 +1235,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
         "rarity": "rare",
-        "weight": 120,
+        "weight": 60,
+        "minLevel": 58,
+        "maxLevel": 75
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-feral-claws",
+        "rarity": "rare",
+        "weight": 60,
         "minLevel": 58,
         "maxLevel": 75
       },
@@ -1335,7 +1479,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-scimitar",
         "rarity": "rare",
-        "weight": 100,
+        "weight": 50,
+        "minLevel": 10,
+        "maxLevel": 32
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-wrist-blade",
+        "rarity": "rare",
+        "weight": 50,
         "minLevel": 10,
         "maxLevel": 32
       },
@@ -1401,7 +1553,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-long-sword",
         "rarity": "rare",
-        "weight": 100,
+        "weight": 50,
+        "minLevel": 22,
+        "maxLevel": 28
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-greater-claws",
+        "rarity": "rare",
+        "weight": 50,
         "minLevel": 22,
         "maxLevel": 28
       },
@@ -1459,7 +1619,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
         "rarity": "rare",
-        "weight": 80,
+        "weight": 40,
+        "minLevel": 38,
+        "maxLevel": 63
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-feral-claws",
+        "rarity": "rare",
+        "weight": 40,
         "minLevel": 38,
         "maxLevel": 63
       },
@@ -1575,7 +1743,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
         "rarity": "rare",
-        "weight": 100,
+        "weight": 50,
+        "minLevel": 58,
+        "maxLevel": 95
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-feral-claws",
+        "rarity": "rare",
+        "weight": 50,
         "minLevel": 58,
         "maxLevel": 95
       },
@@ -1633,7 +1809,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-scimitar",
         "rarity": "rare",
-        "weight": 120,
+        "weight": 60,
+        "minLevel": 12,
+        "maxLevel": 39
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-wrist-blade",
+        "rarity": "rare",
+        "weight": 60,
         "minLevel": 12,
         "maxLevel": 39
       },
@@ -1721,7 +1905,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-long-sword",
         "rarity": "rare",
-        "weight": 120,
+        "weight": 60,
+        "minLevel": 22,
+        "maxLevel": 28
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-greater-claws",
+        "rarity": "rare",
+        "weight": 60,
         "minLevel": 22,
         "maxLevel": 28
       },
@@ -1809,7 +2001,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
         "rarity": "rare",
-        "weight": 120,
+        "weight": 60,
+        "minLevel": 38,
+        "maxLevel": 67
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-feral-claws",
+        "rarity": "rare",
+        "weight": 60,
         "minLevel": 38,
         "maxLevel": 67
       },
@@ -1993,7 +2193,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
         "rarity": "rare",
-        "weight": 120,
+        "weight": 60,
+        "minLevel": 60,
+        "maxLevel": 102
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-feral-claws",
+        "rarity": "rare",
+        "weight": 60,
         "minLevel": 60,
         "maxLevel": 102
       },
@@ -2089,7 +2297,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
         "rarity": "rare",
-        "weight": 100,
+        "weight": 50,
+        "minLevel": 50,
+        "maxLevel": 99
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-feral-claws",
+        "rarity": "rare",
+        "weight": 50,
         "minLevel": 50,
         "maxLevel": 99
       },
@@ -2113,7 +2329,7 @@
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
         "rarity": "unique",
-        "weight": 25,
+        "weight": 25.0,
         "minLevel": 50,
         "maxLevel": 99
       },
@@ -2580,7 +2796,7 @@
         "type": "item",
         "itemBase": "items/base/wp1h-legend-sword",
         "rarity": "unique",
-        "weight": 15,
+        "weight": 15.0,
         "minLevel": 60,
         "maxLevel": 99
       },
@@ -2588,7 +2804,7 @@
         "type": "item",
         "itemBase": "items/base/wp1h-long-sword",
         "rarity": "unique",
-        "weight": 15,
+        "weight": 15.0,
         "minLevel": 22,
         "maxLevel": 99
       },
@@ -2596,7 +2812,7 @@
         "type": "item",
         "itemBase": "items/base/wp1h-scimitar",
         "rarity": "unique",
-        "weight": 15,
+        "weight": 15.0,
         "minLevel": 8,
         "maxLevel": 99
       },
@@ -2604,7 +2820,7 @@
         "type": "item",
         "itemBase": "items/base/wp1h-short-sword",
         "rarity": "unique",
-        "weight": 15,
+        "weight": 15.0,
         "minLevel": 1,
         "maxLevel": 99
       },
@@ -2612,7 +2828,7 @@
         "type": "item",
         "itemBase": "items/base/wp1h-war-sword",
         "rarity": "unique",
-        "weight": 15,
+        "weight": 15.0,
         "minLevel": 32,
         "maxLevel": 99
       },
@@ -2924,7 +3140,7 @@
         "type": "item",
         "itemBase": "items/base/wp1h-legend-sword",
         "rarity": "set",
-        "weight": 15,
+        "weight": 15.0,
         "minLevel": 60,
         "maxLevel": 99
       },
@@ -2932,7 +3148,7 @@
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
         "rarity": "set",
-        "weight": 15,
+        "weight": 15.0,
         "minLevel": 50,
         "maxLevel": 99
       },
@@ -2940,7 +3156,7 @@
         "type": "item",
         "itemBase": "items/base/wp1h-scimitar",
         "rarity": "set",
-        "weight": 15,
+        "weight": 15.0,
         "minLevel": 8,
         "maxLevel": 99
       },
@@ -3055,7 +3271,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-long-sword",
         "rarity": "rare",
-        "weight": 200,
+        "weight": 100,
+        "minLevel": 22,
+        "maxLevel": 40
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-greater-claws",
+        "rarity": "rare",
+        "weight": 100,
         "minLevel": 22,
         "maxLevel": 40
       },
@@ -3088,7 +3312,15 @@
         "type": "item",
         "itemBase": "items/base/wp1h-phase-blade",
         "rarity": "rare",
-        "weight": 150,
+        "weight": 75,
+        "minLevel": 38,
+        "maxLevel": 60
+      },
+      {
+        "type": "item",
+        "itemBase": "items/base/wp1h-feral-claws",
+        "rarity": "rare",
+        "weight": 75,
         "minLevel": 38,
         "maxLevel": 60
       },

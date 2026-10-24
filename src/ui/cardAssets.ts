@@ -27,7 +27,7 @@ import type { EquipmentSlot, ItemBase, WeaponType } from '@/engine/types/items';
 
 /** Existing art categories; broader weapon families use explicit interim proxies. */
 const WEAPON_ICONS: Readonly<Record<WeaponType, string>> = {
-  sword: 'sword', axe: 'axe', mace: 'mace', dagger: 'dagger',
+  claw: 'dagger', sword: 'sword', axe: 'axe', mace: 'mace', dagger: 'dagger',
   spear: 'staff', polearm: 'staff', staff: 'staff', wand: 'staff',
   scepter: 'staff', orb: 'staff', bow: 'bow', crossbow: 'bow', throwing: 'dagger'
 };

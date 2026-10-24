@@ -210,6 +210,7 @@
     }
   },
   "weaponType": {
+    "claw": "爪类武器",
     "sword": "剑",
     "axe": "斧",
     "mace": "锤",

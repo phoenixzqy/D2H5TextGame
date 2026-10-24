@@ -84,6 +84,7 @@
     "lockedPrereqName": "{{skill}} (missing)",
     "weaponRequired": "Weapon",
     "weaponTypes": {
+      "claw": "Claw",
       "sword": "Sword",
       "axe": "Axe",
       "mace": "Mace",
@@ -339,11 +340,11 @@
     },
     "claw-mastery": {
       "name": "Claw Mastery",
-      "desc": "Increases damage with claw weapons by 50%."
+      "desc": "Automatically active with a one-handed claw in the main weapon slot. Each rank adds {{attack}}% Attack and {{critical}} percentage points of critical chance; maximum {{cap}} ranks, unlocked at level {{level}}. Changes apply next wave."
     },
     "weapon-block": {
       "name": "Weapon Block",
-      "desc": "When dual-wielding, gain 30% physical dodge chance."
+      "desc": "Automatically active with two distinct one-handed weapons and learned Claw Mastery. Each rank adds {{physicalDodge}} percentage points of physical dodge and {{magicDodge}} percentage points of magical dodge; maximum {{cap}} ranks, unlocked at level {{level}}. Changes apply next wave."
     },
     "fade": {
       "name": "Fade",
