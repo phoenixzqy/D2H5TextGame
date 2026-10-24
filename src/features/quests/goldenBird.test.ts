@@ -1,3 +1,4 @@
+import { resetSkillsForCompositionTest } from '../../../tests/helpers/reset-skills';
 import { withoutV17Fields } from '../../../tests/helpers/save-fixtures';
 import { CURRENT_SAVE_VERSION } from '@/engine/types/save';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -232,7 +233,7 @@ describe('Golden Bird real exchange chain and Life potion', () => {
       skillLevels: { 'sorceress.fire_bolt': 1 } } });
     usePlayerStore.getState().allocateStatPoint('vitality');
     expect(usePlayerStore.getState().allocateStatPoints({ strength: 0, dexterity: 0, vitality: 2, energy: 0 }, hero())).toBe('ok');
-    expect(usePlayerStore.getState().respec({ getGold: () => 999999, spendGold: () => true })).toBe('ok');
+    expect(resetSkillsForCompositionTest()).toBe('ok');
     const expected = deriveEquippedPlayerStats(hero(), hero().level, {}).lifeMax + 20;
     expect(hero().derivedStats.lifeMax).toBe(expected);
     expect(hero().derivedStats.life).toBe(13);

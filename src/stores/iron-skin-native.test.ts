@@ -1,3 +1,4 @@
+import { resetSkillsForCompositionTest } from '../../tests/helpers/reset-skills';
 import { mockSyntheticEntryPools } from '@/test/fixtures/synthetic-entry-pools';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useHydrationStore } from './hydrationStore';
@@ -118,15 +119,10 @@ describe('P07a04C native Iron Skin wave/replay/save boundaries', () => {
     configure({ class: 'amazon' }); expect(playerToCombatUnit(player()).stats.defense).toBe(100000);
   });
 
-  it('uses real paid respec and removes Iron Skin next wave without refilling current pools', () => {
+  it('constructs a free reset input and removes Iron Skin next wave without refilling current pools', () => {
     arrange({ [CANONICAL]: 2 }); start();
     const before = recording(), final = structuredClone(finalHero());
-    useInventoryStore.getState().addCurrency('gold', 20000);
-    expect(usePlayerStore.getState().respec({
-      getGold: () => useInventoryStore.getState().currencies.gold ?? 0,
-      spendGold: cost => useInventoryStore.getState().spendCurrency('gold', cost)
-    })).toBe('ok');
-    expect(useInventoryStore.getState().currencies.gold).toBe(2000);
+    expect(resetSkillsForCompositionTest()).toBe('ok');
     expect(player().skillPoints).toBe(4); expect(player().skillLevels).toEqual({});
     expect(recording()).toEqual(before);
     drain(); expect(advanceWaveOrFinish()).toBe('next-wave');

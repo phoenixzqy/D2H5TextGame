@@ -6,6 +6,8 @@ import type { HistoricalItem } from '../save/historical-items';
 
 import type { QuestServiceLedger } from '../services/quest-services';
 import { migrateSaveV19 } from '../save/migrate-v19';
+import { migrateSaveV21 } from '../save/migrate-v21';
+import type { RespecsRemaining } from '../progression/respec';
 import { migrateSaveV20 } from '../save/migrate-v20';
 import type { EndgameState } from '../endgame/types';
 import { migrateSaveV17 } from '../save/migrate-v17';
@@ -24,7 +26,7 @@ import type { MaterialRecoveryEntry } from '../crafting/material-actions';
  * Current save format version. Bump this and add an entry to {@link MIGRATIONS}
  * whenever the on-disk shape changes.
  */
-export const CURRENT_SAVE_VERSION = 20;
+export const CURRENT_SAVE_VERSION = 21;
 
 /**
  * Save file version (most recent).
@@ -91,7 +93,7 @@ export interface QuestProgressData {
 export type LegacyDerivedStats = Omit<DerivedStats, 'magicResist'> & {
   readonly magicResist?: number;
 };
-export type LegacyPlayer = Omit<Player, 'derivedStats' | 'selectedAuraId' | 'equipment'> & {
+export type LegacyPlayer = Omit<Player, 'derivedStats' | 'selectedAuraId' | 'equipment' | 'respecsRemaining'> & {
   readonly derivedStats: LegacyDerivedStats;
   readonly equipment: readonly HistoricalItem[];
 };
@@ -101,7 +103,7 @@ export type LegacyMercenary = Omit<Mercenary, 'derivedStats' | 'equipment'> & {
 };
 
 /** Actor payloads retain the historical equipment contract through v18. */
-export type HistoricalPlayer = Omit<Player, 'equipment'> & { readonly equipment: readonly HistoricalItem[] };
+export type HistoricalPlayer = Omit<Player, 'equipment' | 'respecsRemaining'> & { readonly equipment: readonly HistoricalItem[] };
 export type HistoricalMercenary = Omit<Mercenary, 'equipment'> & { readonly equipment: readonly HistoricalItem[] };
 
 /**
@@ -387,7 +389,12 @@ export interface SaveV20 extends Omit<SaveV19, 'version' | 'map'> {
   readonly version: 20;
   readonly endgame: EndgameState;
 }
-export type SaveCurrent = SaveV20;
+/** Native v21 persists independent free reset allowances. */
+export interface SaveV21 extends Omit<SaveV20, 'version' | 'player'> {
+  readonly version: 21;
+  readonly player: SaveV20['player'] & { readonly respecsRemaining: RespecsRemaining };
+}
+export type SaveCurrent = SaveV21;
 
 /**
  * Migration function type. Each entry receives the previous version's shape
@@ -596,5 +603,6 @@ export const MIGRATIONS: Record<number, Migration> = {
   },
   /** Decode validates frozen18 before the lossless canonical conversion. */
   19: (raw: unknown): SaveV19 => migrateSaveV19(raw as SaveV18),
-  20: (raw: unknown): SaveV20 => migrateSaveV20(raw as SaveV19)
+  20: (raw: unknown): SaveV20 => migrateSaveV20(raw as SaveV19),
+  21: (raw: unknown): SaveV21 => migrateSaveV21(raw as SaveV20)
 };

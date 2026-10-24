@@ -1,3 +1,4 @@
+import { resetSkillsForCompositionTest } from '../../tests/helpers/reset-skills';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useHydrationStore } from './hydrationStore';
 // Only the disk boundary is fake; selection, validation/import and native combat remain real.
@@ -184,7 +185,7 @@ describe('native selected Meditation wave composition', () => {
   });
   it('successful respec clears selection for the next wave without changing current playback', () => {
     selected(); start(); const before = recording();
-    expect(usePlayerStore.getState().respec({ getGold: () => 100000, spendGold: () => true })).toBe('ok');
+    expect(resetSkillsForCompositionTest()).toBe('ok');
     expect(player()).not.toHaveProperty('selectedAuraId'); expect(recording()).toEqual(before);
     advance(); expect(latest().meditationAura).toBeUndefined();
   });

@@ -1,3 +1,4 @@
+import { resetSkillsForCompositionTest } from '../../tests/helpers/reset-skills';
 import { mockSyntheticEntryPools } from '@/test/fixtures/synthetic-entry-pools';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useHydrationStore } from './hydrationStore';
@@ -171,7 +172,7 @@ describe('native selected Might wave composition', () => {
   });
   it('successful respec clears selection for the next wave without changing current playback', () => {
     selected(); start(); const before = recording();
-    expect(usePlayerStore.getState().respec({ getGold: () => 100000, spendGold: () => true })).toBe('ok');
+    expect(resetSkillsForCompositionTest()).toBe('ok');
     expect(player()).not.toHaveProperty('selectedAuraId'); expect(recording()).toEqual(before);
     advance(); expect(latest().mightAura).toBeUndefined();
   });

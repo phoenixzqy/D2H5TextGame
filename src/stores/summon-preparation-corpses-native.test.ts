@@ -1,3 +1,4 @@
+import { resetSkillsForCompositionTest } from '../../tests/helpers/reset-skills';
 import { mockSyntheticEntryPools } from '@/test/fixtures/synthetic-entry-pools';
 import * as wavePlanning from '@/engine/combat/sub-area-run';
 import { preBoundedActOnePlanFixture } from '@/test/fixtures/pre-bounded-act1-plan';
@@ -158,15 +159,10 @@ afterEach(() => { reset(); useHydrationStore.getState().setStatus('idle'); reset
     expect(player().comboOrder).toEqual([ACTIVE]);
   });
 
-  it('pays real respec and removes both Mastery and active ranks next wave without refilling current pools', () => {
+  it('constructs a free reset input and removes both Mastery and active ranks next wave without refilling current pools', () => {
     arrange(2); start(); expectFreshSummons(174.96, 36.4, 19.38);
     const before = recording(), final = structuredClone(finalHero());
-    useInventoryStore.getState().addCurrency('gold', 26000);
-    expect(usePlayerStore.getState().respec({
-      getGold: () => useInventoryStore.getState().currencies.gold ?? 0,
-      spendGold: cost => useInventoryStore.getState().spendCurrency('gold', cost)
-    })).toBe('ok');
-    expect(useInventoryStore.getState().currencies.gold).toBe(2000);
+    expect(resetSkillsForCompositionTest()).toBe('ok');
     expect(player().skillPoints).toBe(10); expect(player().skillLevels).toEqual({});
     refreshActivePlayerCombatConfig(); expect(recording()).toEqual(before);
     drain(); expect(advanceWaveOrFinish()).toBe('next-wave');

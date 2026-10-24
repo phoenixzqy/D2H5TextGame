@@ -308,7 +308,7 @@ describe('conservative legacy Amazon starter compatibility', () => {
     expect(output.player.derivedStats.life).toBe(17);
     expect(output.player.derivedStats.mana).toBe(9);
     expect({ ...output.player, equipment: input.player.equipment, derivedStats: progressed.player.derivedStats })
-      .toEqual(progressed.player);
+      .toEqual({ ...progressed.player, respecsRemaining: { stat: 3, skill: 3 } });
     expect(output.inventory.currencies).toEqual(progressed.inventory.currencies);
     expect(output.map).toEqual(expectedCurrent(progressed).map);
     expect(output.mercs).toEqual(expectedCurrent(progressed).mercs);

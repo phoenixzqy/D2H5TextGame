@@ -1,3 +1,4 @@
+import { resetSkillsForCompositionTest } from '../../tests/helpers/reset-skills';
 import { mockSyntheticEntryPools } from '@/test/fixtures/synthetic-entry-pools';
 /** Real producer integration with explicit test inventory/configuration and injected faults. */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -170,7 +171,7 @@ it.each(['success', 'poor', 'noSelection'] as const)('replays exact locked %s in
   if (mode === 'noSelection') clearIronGolemSelection();
   const simulate = vi.spyOn(engine, 'runBattleRecorded'); start(); const before = published();
   usePlayerStore.getState().setComboOrder([FINISH]);
-  usePlayerStore.getState().respec({ getGold: () => 100000, spendGold: () => true });
+  resetSkillsForCompositionTest();
   const rearm = armIronGolemSelection('paid-iron-hero', 'after', true);
   const inventory = useInventoryStore.getState();
   const setter = vi.spyOn(useInventoryStore, 'setState');

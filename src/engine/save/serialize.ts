@@ -1,3 +1,4 @@
+import { readRespecsRemaining } from '../progression/respec';
 /**
  * Save serialization helpers (engine-side, no IO).
  *
@@ -57,7 +58,7 @@ export function buildSave(input: BuildSaveInput): SaveCurrent {
     version: CURRENT_SAVE_VERSION,
     endgame,
     timestamp: input.timestamp ?? Date.now(),
-    player: { ...input.player, equipment: Object.values(input.inventory.equipped).filter(item => item !== null) },
+    player: { ...input.player, respecsRemaining: readRespecsRemaining(input.player, true), equipment: Object.values(input.inventory.equipped).filter(item => item !== null) },
     inventory,
     mercs: { ...input.mercs, ownedMercs: input.mercs.ownedMercs.map(merc => ({ ...merc,
       equipment: Object.values(input.mercs.mercEquipment[merc.id] ?? {}).filter((item): item is NonNullable<typeof item> => item != null) })) },

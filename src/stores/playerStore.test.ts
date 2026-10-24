@@ -2,7 +2,7 @@
  * Player store — skill allocation + respec tests.
  */
 import { describe, it, expect, beforeEach } from 'vitest';
-import { usePlayerStore, respecCost } from './playerStore';
+import { usePlayerStore } from './playerStore';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { canonicalSkillIdFromData, getSkillRequiredLevel, getSkillsForClass } from './skillsHelpers';
 import type { Item } from '@/engine/types/items';
@@ -122,52 +122,8 @@ describe('playerStore.allocateSkillPoint', () => {
   });
 });
 
-describe('playerStore.respec', () => {
-  beforeEach(() => { usePlayerStore.getState().reset(); });
-
-  it('returns no-allocations when nothing is allocated', () => {
-    const p = createMockPlayer('Hero', 'sorceress');
-    usePlayerStore.getState().setPlayer({ ...p, skillLevels: {} });
-    const r = usePlayerStore.getState().respec({ getGold: () => 100000, spendGold: () => true });
-    expect(r).toBe('no-allocations');
-  });
-
-  it('refunds points and charges gold on success', () => {
-    const p = createMockPlayer('Hero', 'sorceress');
-    usePlayerStore.getState().setPlayer({
-      ...p,
-      level: 5,
-      skillPoints: 0,
-      skillLevels: { 'a': 2, 'b': 1 }
-    });
-    let spent = 0;
-    const r = usePlayerStore.getState().respec({
-      getGold: () => 100000,
-      spendGold: (n) => { spent = n; return true; }
-    });
-    expect(r).toBe('ok');
-    expect(spent).toBe(respecCost(5));
-    const np = usePlayerStore.getState().player;
-    expect(np?.skillPoints).toBe(3);
-    expect(np?.skillLevels).toEqual({});
-  });
-
-  it('returns insufficient-gold when player cannot pay', () => {
-    const p = createMockPlayer('Hero', 'sorceress');
-    usePlayerStore.getState().setPlayer({ ...p, skillLevels: { 'a': 1 } });
-    const r = usePlayerStore.getState().respec({ getGold: () => 0, spendGold: () => false });
-    expect(r).toBe('insufficient-gold');
-  });
-});
-
-describe('respecCost', () => {
-  it('scales linearly with level and caps at 50k', () => {
-    expect(respecCost(1)).toBe(1000);
-    expect(respecCost(10)).toBe(10000);
-    expect(respecCost(50)).toBe(50000);
-    expect(respecCost(99)).toBe(50000);
-  });
-});
+// Ordinary reset policy/payment/refusal now lives in respecActions.test.ts;
+// the legacy synthetic-gold callback API has been removed.
 
 describe('playerStore.recomputeDerived — heal preservation', () => {
   beforeEach(() => { usePlayerStore.getState().reset(); });

@@ -40,7 +40,7 @@ function historicalSave<T extends Parameters<typeof withoutV17Fields>[0]>(save: 
   return { ...historical, version, map };
 }
 
-function migratedShape<T extends { map: object; inventory: { backpack: readonly object[] } }>(save: T) {
+function migratedShape<T extends { map: object; player: object; inventory: { backpack: readonly object[] } }>(save: T) {
   return withCurrentDefaults({ ...save, inventory: { ...save.inventory,
     backpack: save.inventory.backpack.map(item => ({ ...item, socketCapacity: 2 })) },
     map: { ...save.map, questReceipts: {} } });
@@ -59,7 +59,7 @@ function legacySave() {
 }
 
 function legacyV1(): SaveV1 {
-  const save = sampleSave();
+  const save = historicalSave(sampleSave(), 1);
   return { version: 1, timestamp: save.timestamp, player: save.player,
     inventory: { backpack: [], stash: [], equipment: new Map(), maxBackpack: 100, maxStash: 500 },
     mercenaries: [], mapProgress: { currentAct: 1, currentSubArea: 'rogue-camp',
@@ -142,7 +142,7 @@ describe('v12 source-bound quest item ledger', () => {
     }
   );
   it('emits a required empty ledger for a trusted legacy builder input', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(20);
+    expect(CURRENT_SAVE_VERSION).toBe(21);
     expect(sampleSave().inventory).toHaveProperty('questItems', {});
   });
 

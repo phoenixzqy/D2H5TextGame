@@ -1,3 +1,4 @@
+import { resetSkillsForCompositionTest } from '../../tests/helpers/reset-skills';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useHydrationStore } from './hydrationStore';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
@@ -224,9 +225,8 @@ describe('frozen recording and automatic next-wave configuration', () => {
       // Synthetic absent-property input retains the recorded wave.
       usePlayerStore.setState({ player: withoutLevels });
     } else {
-      // Store-level respec only; no ordinary respec UI or economy acceptance.
-      expect(usePlayerStore.getState().respec({ getGold: () => 10_000,
-        spendGold: cost => cost === 1000 })).toBe('ok');
+      // Constructed post-reset input; ordinary town/payment proof is separate.
+      expect(resetSkillsForCompositionTest()).toBe('ok');
     }
     expect.soft(recording()).toEqual(before);
     drain();

@@ -189,8 +189,8 @@ describe.each(['zh-CN', 'en'] as const)('TownScreen %s', (locale) => {
     const before = rewards();
     const questsBefore = useMapStore.getState().questProgress;
     renderTown();
-    expect(loadTownNpcs(2).map(npc => npc.id)).toEqual(['npc/atma']);
-    expect(screen.getAllByTestId(/^town-npc-/)).toHaveLength(1);
+    expect(loadTownNpcs(2).map(npc => npc.id)).toEqual(['npc/atma', 'npc/drognan']);
+    expect(screen.getAllByTestId(/^town-npc-/)).toHaveLength(2);
     const atma = screen.getByRole('button', { name: locale === 'en' ? 'Atma' : '阿特玛' });
     fireEvent.click(atma);
     expect(talk).toHaveBeenCalledTimes(1);

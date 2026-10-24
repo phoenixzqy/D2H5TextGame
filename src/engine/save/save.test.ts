@@ -18,7 +18,7 @@ import {
   type QuestActionReceipts
 } from '../types/save';
 
-function fakePlayer(): SaveCurrent['player'] {
+function fakePlayer(): Omit<SaveCurrent['player'], 'respecsRemaining'> {
   return {
     id: 'p1',
     name: 'Hero',

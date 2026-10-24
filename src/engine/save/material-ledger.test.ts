@@ -29,7 +29,7 @@ function predecessor17() {
 
 describe('v18 concrete material ownership', () => {
   it('adds exactly an empty ledger to validated v17 without inventing old shard identities', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(20);
+    expect(CURRENT_SAVE_VERSION).toBe(21);
     const old = predecessor17(), before = structuredClone(old);
     const expected = { ...old, version: 18, inventory: { ...old.inventory, materials: {} } };
     const migrate = MIGRATIONS[18];

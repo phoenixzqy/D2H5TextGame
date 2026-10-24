@@ -4,13 +4,14 @@ import type { SaveCurrent, LegacyGearQuarantineEntry } from '../../src/engine/ty
 import { emptyEndgameState } from '../../src/engine/endgame/state';
 
 /** Historical save roots never contain the new durable endgame namespace. */
-export function withoutV20Fields<T extends { endgame?: unknown; map: SaveCurrent['map'] }>(save: T) {
+export function withoutV20Fields<T extends { endgame?: unknown; map: SaveCurrent['map']; player: { respecsRemaining?: unknown } }>(save: T) {
   const { endgame: _endgame, ...historical } = save;
   const selectedTitle = save.map.selectedTitle;
   if (selectedTitle !== null && selectedTitle !== 'titles/slayer_of_baal') {
     throw new Error('An achievement title has no historical representation');
   }
-  return { ...historical, map: { ...save.map, selectedTitle } };
+  const { respecsRemaining: _counts, ...player } = save.player;
+  return { ...historical, player, map: { ...save.map, selectedTitle } };
 }
 
 /** Remove current-only state before constructing a genuine v18 or earlier fixture. */
@@ -32,7 +33,7 @@ export function withoutV19Fields<T extends Omit<SaveCurrent, 'inventory'> & {
   return { ...withoutV20Fields(save), inventory: { ...inventory,
     backpack: inventory.backpack.map(item), stash: inventory.stash.map(item),
     equipped: equipment(inventory.equipped) },
-  player: { ...save.player, equipment: save.player.equipment.map(item) },
+  player: { ...withoutV20Fields(save).player, equipment: save.player.equipment.map(item) },
   mercs: { ...save.mercs,
     ownedMercs: save.mercs.ownedMercs.map(merc => ({ ...merc, equipment: merc.equipment.map(item) })),
     mercEquipment: Object.fromEntries(Object.entries(save.mercs.mercEquipment)
@@ -91,7 +92,13 @@ export function withV20Defaults<T extends { version: number }>(save: T) {
   return { ...unchanged, version: 20 as const, endgame: emptyEndgameState() };
 }
 
+/** Explicit v20→21 expectation; no inferred investment or rewards. */
+export function withV21Defaults<T extends { version: number; player: object }>(save: T) {
+  const { version: _version, player, ...rest } = save;
+  return { ...rest, version: 21 as const, player: { ...player, respecsRemaining: { stat: 3, skill: 3 } } };
+}
+
 /** Older fixture expectations explicitly compose every added empty ownership domain. */
-export function withCurrentDefaults<T extends { inventory: object; map: object }>(save: T) {
-  return withV20Defaults(withV19Defaults(save));
+export function withCurrentDefaults<T extends { inventory: object; map: object; player: object }>(save: T) {
+  return withV21Defaults(withV20Defaults(withV19Defaults(save)));
 }

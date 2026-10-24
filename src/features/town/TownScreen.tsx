@@ -14,6 +14,7 @@ import { Button, Panel, ScreenShell, GameImage, getZoneArtUrl, getNpcPortraitUrl
 import { useInventoryStore, useMapStore, usePlayerStore } from '@/stores';
 import { loadTownNpcs } from '@/data/loaders/towns';
 import { QuestDeliveryPanel } from './QuestDeliveryPanel';
+import { TownRespecPanel } from './TownRespecPanel';
 import { QuestServicePanel } from './QuestServicePanel';
 import { QuestTitleControls } from './QuestTitleControls';
 import { Act5QuestActionsPanel } from '@/features/quests/Act5QuestActionsPanel';
@@ -121,6 +122,7 @@ export function TownScreen() {
             </div>
             <QuestDeliveryPanel key={`${String(currentAct)}:${selectedNpc.id}`} npcId={selectedNpc.id} />
             <Act5QuestActionsPanel key={`actions:${String(currentAct)}:${selectedNpc.id}`} npcId={selectedNpc.id} />
+            <TownRespecPanel key={`reset:${String(currentAct)}:${selectedNpc.id}`} npcId={selectedNpc.id} />
             <QuestServicePanel key={`services:${String(currentAct)}:${selectedNpc.id}`} npcId={selectedNpc.id} />
             <div className="flex flex-wrap gap-2">
               <Button

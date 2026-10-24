@@ -18,7 +18,7 @@ it('records actual spending but refuses to describe shrinking aggregates as earn
 
 it('proves the complete forward representation before recovering authentic v17 lineage', () => {
   const { save, witness } = loadAuthenticV2Terminal();
-  expect(save.version).toBe(20);
+  expect(save.version).toBe(21);
   expect(save.inventory.materials).toEqual({});
   const projected = historicalV17Save(save, witness);
   expect(projected.version).toBe(17);

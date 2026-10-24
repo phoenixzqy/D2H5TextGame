@@ -7,6 +7,7 @@ import type { CoreStats } from '@/engine/types/attributes';
 import type { Item } from '@/engine/types/items';
 import { deriveStats } from '@/engine/progression/stats';
 import { loadClassStarterWeapon } from '@/data/loaders/classes';
+import { RESPEC_POLICY } from '@/data/loaders/respec';
 import { loadItemBases } from '@/data/loaders/loot';
 import { checkEligibility, type PlayerLike } from '@/features/inventory/compareEquip';
 
@@ -118,6 +119,7 @@ export function createMockPlayer(name: string, cls: CharacterClass): Player {
     experienceToNextLevel: 100,
     statPoints: 0,
     skillPoints: 1,
+    respecsRemaining: { stat: RESPEC_POLICY.freeUses, skill: RESPEC_POLICY.freeUses },
     equipment: createStarterEquipment(cls, { level: 1, coreStats, derivedStats }),
   };
 }

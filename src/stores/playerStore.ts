@@ -25,18 +25,6 @@ import {
   type SkillTemplate
 } from './skillsHelpers';
 
-/**
- * Cost in gold to fully respec all skill points.
- *
- * Decision: scale linearly with player level so early-game respecs are
- * cheap (≤ a few thousand gold) while late-game respecs require commitment.
- * Formula: `1000 * level`, capped at 50,000. Documented here as the single
- * source of truth.
- */
-export function respecCost(level: number): number {
-  return Math.min(50000, Math.max(1000, 1000 * Math.max(1, level)));
-}
-
 /** Result codes returned by {@link PlayerState.allocateSkillPoint}. */
 export type AllocateSkillResult =
   | 'ok'
@@ -52,9 +40,6 @@ export type AllocateStatsResult = 'ok' | 'no-player' | 'stale-player' | 'invalid
   | 'empty-draft' | 'insufficient-points' | 'stat-cap';
 
 const CORE_STAT_KEYS = ['strength', 'dexterity', 'vitality', 'energy'] as const;
-
-/** Result codes returned by {@link PlayerState.respec}. */
-export type RespecResult = 'ok' | 'no-player' | 'no-allocations' | 'insufficient-gold';
 
 /** Result of an explicit aura selection request; refusals never publish player state. */
 export type SelectAuraResult = 'ok' | 'no-player' | 'unsupported-aura' | 'ineligible';
@@ -91,12 +76,6 @@ interface PlayerState {
   selectAura: (request: unknown) => SelectAuraResult;
   /** Recompute derived player stats from base stats and equipped item mods. */
   recomputeDerived: (equipped: Record<string, Item | null>) => void;
-  /**
-   * Refund every allocated skill point at the cost of {@link respecCost}
-   * gold. Caller supplies `getGold` / `spendGold` callbacks (the inventory
-   * store owns gold currency).
-   */
-  respec: (deps: { getGold: () => number; spendGold: (amount: number) => boolean }) => RespecResult;
   setComboOrder: (order: string[]) => void;
   /** Clear hero and run/recording/selection, even without a hero; throws WaveGuardError before changes while owned. */
   reset: () => void;
@@ -303,29 +282,6 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     };
   }); },
 
-  respec: (deps) => {
-    const state = get();
-    const player = state.player;
-    if (!player) return 'no-player';
-    const allocated = player.skillLevels ?? {};
-    const totalPoints = Object.values(allocated).reduce((s, v) => s + v, 0);
-    if (totalPoints <= 0) return 'no-allocations';
-
-    const cost = respecCost(player.level);
-    if (deps.getGold() < cost) return 'insufficient-gold';
-    if (!deps.spendGold(cost)) return 'insufficient-gold';
-
-    const { selectedAuraId: _selected, ...withoutAura } = player;
-    set({
-      player: {
-        ...withoutAura,
-        skillPoints: player.skillPoints + totalPoints,
-        skillLevels: {}
-      }
-    });
-    return 'ok';
-  },
-  
   setComboOrder: (order) => { set((state) => {
     if (!state.player) return state;
     return {

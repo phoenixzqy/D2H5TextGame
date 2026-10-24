@@ -1,3 +1,4 @@
+import { resetSkillsForCompositionTest } from '../../tests/helpers/reset-skills';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
 import { compareEquip } from '@/features/inventory/compareEquip';
@@ -48,7 +49,7 @@ describe('permanent quest resistance across live projections', () => {
     if (action === 'draft-points') expect(store.allocateStatPoints({ strength: 0, dexterity: 0, vitality: 5, energy: 0 }, hero())).toBe('ok');
     if (action === 'respec') {
       store.recomputeDerived(useInventoryStore.getState().equipped);
-      expect(store.respec({ getGold: () => 100000, spendGold: () => true })).toBe('ok');
+      expect(resetSkillsForCompositionTest()).toBe('ok');
     }
     expect(hero().derivedStats.resistances).toMatchObject({ fire: 121, cold: 17.5 });
     expect(hero().derivedStats.life).toBe(17); expect(hero().derivedStats.mana).toBe(11);

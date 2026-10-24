@@ -51,3 +51,11 @@ export function loadClassStarterWeapon(cls: keyof typeof documents): StarterWeap
   }
   return recipe;
 }
+
+/** Canonical schema-validated starting core for refunds; unknown classes refuse. */
+export function loadClassStartingStats(cls: string) {
+  if (!Object.hasOwn(documents, cls)) throw new Error('Unknown reset class');
+  const key = cls as keyof typeof documents;
+  loadClassStarterWeapon(key);
+  return { ...documents[key].startingStats };
+}

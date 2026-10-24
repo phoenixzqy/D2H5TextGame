@@ -1,0 +1,12 @@
+{
+  "freeUses": 3,
+  "paidCost": 5,
+  "currency": "wishstone",
+  "townNpcs": {
+    "1": "npc/akara",
+    "2": "npc/drognan",
+    "3": "npc/ormus",
+    "4": "npc/tyrael",
+    "5": "npc/malah"
+  }
+}

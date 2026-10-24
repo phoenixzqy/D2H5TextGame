@@ -25,6 +25,14 @@ afterEach(() => {
 });
 
 describe('createMockPlayer', () => {
+  it.each(CHARACTER_CLASSES)('initializes independent reset allowances for a fresh %s before saving', cls => {
+    const first = createMockPlayer('First', cls);
+    const second = createMockPlayer('Second', cls);
+    expect(first.respecsRemaining).toEqual({ stat: 3, skill: 3 });
+    expect(second.respecsRemaining).toEqual({ stat: 3, skill: 3 });
+    expect(first.respecsRemaining).not.toBe(second.respecsRemaining);
+  });
+
   it('grants new level-1 characters 1 skill point', () => {
     const p = createMockPlayer('Hero', 'barbarian');
     expect(p.level).toBe(1);

@@ -57,7 +57,8 @@
         "halbu": "I am Halbu. These walls offer a brief refuge from the River of Flame. Prepare yourself before returning to battle.",
         "jamella": "The Pandemonium Fortress is a small light against the darkness. Rest here, then choose your next battle carefully.",
         "tyrael": "Track The Fallen Angel before facing Izual on the Plains of Despair. In the Chaos Sanctuary, open the three seals in order, then defeat Diablo for Terror’s End quest credit. Claim each reward in Quests."
-      }
+      },
+      "drognan": "A change of discipline may reveal another path. I can help you recover the points you have invested."
     },
     "den": {
       "untracked": "Demons infest the Den of Evil near camp. Track the Den of Evil in Quests, then clear the cave.",
@@ -108,5 +109,50 @@
     "slayer": "Slayer of Baal",
     "none": "No title",
     "riftwalker": "Riftwalker"
-  }
+  },
+  "respec": {
+    "title": "Reset your build",
+    "policy": "Stats and skills each have {{free}} free resets. Further resets cost {{cost}} wishstones.",
+    "balance_one": "Wishstones: {{count}}",
+    "balance_other": "Wishstones: {{count}}",
+    "remaining_one": "{{count}} free left",
+    "remaining_other": "{{count}} free left",
+    "price_one": "{{count}} wishstone",
+    "price_other": "{{count}} wishstones",
+    "action": {
+      "stat": "Reset stats",
+      "skill": "Reset skills"
+    },
+    "confirmTitle": {
+      "stat": "Reset allocated stats?",
+      "skill": "Reset learned skills?"
+    },
+    "refund": {
+      "stat_one": "Refund {{count}} stat point. Equipment and learned skills stay equipped.",
+      "stat_other": "Refund {{count}} stat points. Equipment and learned skills stay equipped.",
+      "skill_one": "Refund {{count}} skill point. Learned skills, priority and selected aura will be cleared.",
+      "skill_other": "Refund {{count}} skill points. Learned skills, priority and selected aura will be cleared."
+    },
+    "freeConfirmation": "This uses one free reset of this kind.",
+    "paidConfirmation_one": "Spend {{count}} wishstone.",
+    "paidConfirmation_other": "Spend {{count}} wishstones.",
+    "noHealing": "Life and Mana are preserved, clamped if their maximum decreases.",
+    "cancel": "Cancel",
+    "confirm": "Confirm reset",
+    "feedback": {
+      "ok": "Points refunded. Choose your new build in Character or Skills.",
+      "no-player": "Create or continue a character first.",
+      "wrong-town": "Visit the reset NPC in your current unlocked town.",
+      "not-ready": "Wait for the save to finish loading.",
+      "combat-active": "Finish or leave the current run before resetting.",
+      "stale": "Your character, balance or town changed. Review a fresh reset.",
+      "grant-failed": "The reset failed and your points and payment were restored.",
+      "no-allocations": "There are no allocated points of this kind to refund.",
+      "invalid-player": "This character has invalid allocation or reset data.",
+      "insufficient-wishstones": "You need more wishstones for this reset.",
+      "busy": "Wait for the current action to finish.",
+      "restoration-failed": "State recovery failed. Reload your last saved character before continuing."
+    }
+  },
+  "town.npc.drognan": "Drognan"
 }

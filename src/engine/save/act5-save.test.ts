@@ -86,11 +86,11 @@ describe('native17 finite campaign save state', () => {
     const migrated = decodeSave({ ...old, map: { ...old.map, questProgress: {
       'quests/act5-eve-of-destruction': { id: 'quests/act5-eve-of-destruction', status: 'completed', rewardClaimed: true,
         objectives: { 'obj-throne-waves': true, 'obj-kill-baal': true } } } } });
-    expect(migrated.version).toBe(20); expect(migrated.inventory.questServices).toEqual({});
+    expect(migrated.version).toBe(21); expect(migrated.inventory.questServices).toEqual({});
     expect(migrated.map).toMatchObject({ questTitles: {}, questDifficulties: {}, selectedTitle: null,
       selectedDifficulty: 'normal', nightmareClearedSubAreas: [], challengeOrdinals: { normal: 0, nightmare: 0 } });
     expect(migrated.map.questReceipts).toEqual({}); expect(migrated.inventory.questItems).toEqual({});
-    expect(migrated.player).toEqual(old.player); expect(old).toEqual(before);
+    expect(migrated.player).toEqual({ ...old.player, respecsRemaining: { stat: 3, skill: 3 } }); expect(old).toEqual(before);
   });
   it.each(['questTitles', 'questDifficulties', 'selectedTitle', 'selectedDifficulty', 'nightmareClearedSubAreas', 'challengeOrdinals'])(
     'rejects raw historical own reserved map field %s even undefined', key => {

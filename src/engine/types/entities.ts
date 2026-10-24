@@ -84,6 +84,9 @@ export interface Player extends Unit {
   /** Explicit canonical player aura selection. Absence means None; learning never selects. */
   readonly selectedAuraId?: 'paladin.might' | 'paladin.meditation';
   
+  /** Independent town-reset allowances; absent only in trusted pre-v21 runtime input. */
+  readonly respecsRemaining?: Readonly<{ stat: number; skill: number }>;
+
   /** Equipped items */
   readonly equipment: readonly Item[];
 }

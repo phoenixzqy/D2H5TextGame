@@ -1,0 +1,11 @@
+{
+  "id": "dialogue/act2/drognan",
+  "npcId": "drognan",
+  "greetings": [
+    {
+      "text": "A change of discipline may reveal another path. I can help you recover the points you have invested.",
+      "textKey": "town:dialogue.greetings.drognan"
+    }
+  ],
+  "services": []
+}

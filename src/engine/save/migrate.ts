@@ -1,3 +1,4 @@
+import { rejectPreV21Respec } from './respec-state';
 /**
  * Save migration runner.
  *
@@ -29,6 +30,7 @@ export function runMigrations(
   save: VersionedSave,
   targetVersion: number = CURRENT_SAVE_VERSION
 ): VersionedSave {
+  if (save.version < 21 && targetVersion >= 21) rejectPreV21Respec(save);
   if (save.version < 20 && targetVersion >= 20) rejectPreV20State(save);
   let current: VersionedSave = save;
   while (current.version < targetVersion) {

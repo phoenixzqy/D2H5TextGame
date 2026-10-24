@@ -1,7 +1,13 @@
+import { prepareTownRespec, executeTownRespec } from './respecActions';
+import { useInventoryStore } from './inventoryStore';
+import { useMapStore } from './mapStore';
+import { useCombatStore } from './combatStore';
+import { useHydrationStore } from './hydrationStore';
+import { deriveEquippedPlayerStats } from '@/engine/progression/equipped-stats';
 import { beforeEach, describe, expect, it } from 'vitest';
 import type { Player } from '@/engine/types/entities';
 import { createMockPlayer } from '@/features/character/createMockPlayer';
-import { respecCost, usePlayerStore } from './playerStore';
+import { usePlayerStore } from './playerStore';
 
 function player(patch: Partial<Player> = {}): Player {
   const base = createMockPlayer('Hero', 'paladin');
@@ -13,7 +19,13 @@ function observe() {
   const unsubscribe = usePlayerStore.subscribe(state => publications.push(state.player));
   return { publications, unsubscribe };
 }
-beforeEach(() => { usePlayerStore.getState().reset(); });
+beforeEach(() => { useCombatStore.getState().reset(); useMapStore.getState().reset(); useInventoryStore.getState().reset(); useHydrationStore.getState().setStatus('ready'); usePlayerStore.getState().reset(); });
+function respec() { const quote = prepareTownRespec('npc/akara', 'skill'); return quote.kind === 'ok' ? executeTownRespec(quote.request) : quote.kind; }
+function resetExpected(input: Player, free: number) {
+  const { selectedAuraId: _aura, ...base } = input;
+  const next = { ...base, skillLevels: {}, skills: [], comboOrder: [], skillPoints: input.skillPoints + 2, respecsRemaining: { stat: 3, skill: free } };
+  return { ...next, derivedStats: deriveEquippedPlayerStats(next, next.level, {}, {}, {}, {}) };
+}
 
 describe('explicit single player aura selection', () => {
   it('refuses without a player and publishes nothing', () => {
@@ -102,25 +114,19 @@ describe('explicit single player aura selection', () => {
   it('successful respec omits selection in one publication while preserving resources', () => {
     const input = player({ selectedAuraId: 'paladin.might' });
     usePlayerStore.getState().setPlayer(input); const observed = observe();
-    const spent: number[] = [];
     try {
-      expect(usePlayerStore.getState().respec({ getGold: () => 10000,
-        spendGold: cost => { spent.push(cost); return true; } })).toBe('ok');
-      const { selectedAuraId: _selected, ...none } = input;
-      expect(usePlayerStore.getState().player).toEqual({ ...none, skillLevels: {}, skillPoints: 6 });
+      expect(respec()).toBe('ok');
+      expect(usePlayerStore.getState().player).toEqual(resetExpected(input, 2));
       expect(Object.hasOwn(usePlayerStore.getState().player ?? {}, 'selectedAuraId')).toBe(false);
-      expect(spent).toEqual([respecCost(input.level)]); expect(observed.publications).toHaveLength(1);
+      expect(observed.publications).toHaveLength(1);
     } finally { observed.unsubscribe(); }
   });
-  it.each(['no-allocations', 'insufficient-gold', 'spend-refused'] as const)('failed respec %s preserves selection and publishes nothing', reason => {
-    const input = player({ selectedAuraId: 'paladin.might',
+  it.each(['no-allocations', 'insufficient-wishstones'] as const)('failed respec %s preserves selection and publishes nothing', reason => {
+    const input = player({ selectedAuraId: 'paladin.might', respecsRemaining: { stat: 3, skill: 0 },
       ...(reason === 'no-allocations' ? { skillLevels: {} } : {}) });
     usePlayerStore.getState().setPlayer(input); const observed = observe();
-    try {
-      expect(usePlayerStore.getState().respec({ getGold: () => reason === 'insufficient-gold' ? 0 : 10000,
-        spendGold: () => reason !== 'spend-refused' })).toBe(reason === 'no-allocations' ? reason : 'insufficient-gold');
-      expect(usePlayerStore.getState().player).toBe(input); expect(observed.publications).toEqual([]);
-    } finally { observed.unsubscribe(); }
+    try { expect(respec()).toBe(reason); expect(usePlayerStore.getState().player).toBe(input); expect(observed.publications).toEqual([]); }
+    finally { observed.unsubscribe(); }
   });
 });
 
@@ -189,20 +195,17 @@ describe('exclusive Meditation store selection', () => {
     expect(usePlayerStore.getState().player?.selectedAuraId).toBe('paladin.meditation');
     expect(usePlayerStore.getState().player?.skillLevels?.['paladin.meditation']).toBe(2);
   });
-  it.each(['paid', 'no-allocations', 'insufficient-gold', 'spend-refused'] as const)('respec %s clears only on success and publishes once', reason => {
-    const input = player({ level: 24, selectedAuraId: 'paladin.meditation',
+  it.each(['paid', 'no-allocations', 'insufficient-wishstones'] as const)('respec %s clears only on success and publishes once', reason => {
+    const input = player({ level: 24, selectedAuraId: 'paladin.meditation', respecsRemaining: { stat: 3, skill: 0 },
       skillLevels: reason === 'no-allocations' ? {} : { 'paladin.meditation': 2 } });
+    useInventoryStore.setState({ currencies: { wishstone: reason === 'paid' ? 5 : 0 } });
     usePlayerStore.getState().setPlayer(input); const basis = usePlayerStore.getState(); const observed = observe();
-    const spent: number[] = [];
     try {
-      expect(basis.respec({ getGold: () => reason === 'insufficient-gold' ? 0 : 100000,
-        spendGold: cost => { spent.push(cost); return reason !== 'spend-refused'; } }))
-        .toBe(reason === 'paid' ? 'ok' : reason === 'no-allocations' ? reason : 'insufficient-gold');
+      expect(respec()).toBe(reason === 'paid' ? 'ok' : reason);
       if (reason === 'paid') {
-        const { selectedAuraId: _selected, ...none } = input;
-        expect(usePlayerStore.getState().player).toEqual({ ...none, skillLevels: {}, skillPoints: 6 });
+        expect(usePlayerStore.getState().player).toEqual(resetExpected(input, 0));
         expect(Object.hasOwn(usePlayerStore.getState().player ?? {}, 'selectedAuraId')).toBe(false);
-        expect(spent).toEqual([24000]); expect(observed.publications).toHaveLength(1);
+        expect(useInventoryStore.getState().currencies.wishstone).toBe(0); expect(observed.publications).toHaveLength(1);
       } else { expect(usePlayerStore.getState()).toBe(basis); expect(observed.publications).toEqual([]); }
     } finally { observed.unsubscribe(); }
   });

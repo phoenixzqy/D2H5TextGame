@@ -36,7 +36,7 @@ function sampleSave() {
   const { questReceipts: _receipts, ...map } = historical.map;
   return { ...historical, version: 11 as const, inventory, map };
 }
-function currentShape<T extends { inventory: object; map: object }>(save: T) {
+function currentShape<T extends { inventory: object; map: object; player: object }>(save: T) {
   return withCurrentDefaults({ ...save, inventory: { ...save.inventory, questItems: {} },
     map: { ...save.map, questReceipts: {} } });
 }
@@ -51,7 +51,7 @@ const malformedSelections: readonly unknown[] = [
 
 describe('D05 v11 exclusive selected aura save boundary', () => {
   it('retains the v11 contract and its migrations with the current receipt format', () => {
-    expect(CURRENT_SAVE_VERSION).toBe(20);
+    expect(CURRENT_SAVE_VERSION).toBe(21);
     for (const version of [8, 9, 10, 11]) expect(MIGRATIONS[version]).toBeDefined();
   });
 
@@ -92,7 +92,7 @@ describe('D05 v11 exclusive selected aura save boundary', () => {
   it('rejects present undefined at the direct current native validation boundary', () => {
     const base = sampleSave();
     expect(() => validateSave({ ...currentShape(base),
-      player: { ...base.player, selectedAuraId: undefined } })).toThrow('Invalid save');
+      player: { ...currentShape(base).player, selectedAuraId: undefined } })).toThrow('Invalid save');
   });
 
   it.each([
@@ -153,7 +153,7 @@ describe('D05 native Maps and genuine historical migration', () => {
     const output = decodeSave(input);
     expect(output).toEqual({ ...currentShape(input),
       inventory: { ...currentShape(input).inventory, equipped: { head: { ...input.inventory.equipped.head, socketCapacity: 2 } } },
-      player: { ...input.player, equipment: [{ ...input.inventory.equipped.head, socketCapacity: 2 }] } });
+      player: { ...input.player, respecsRemaining: { stat: 3, skill: 3 }, equipment: [{ ...input.inventory.equipped.head, socketCapacity: 2 }] } });
     const affix = output.inventory.equipped.head?.affixes?.[0];
     expect(affix && 'values' in affix && affix.values).toEqual(new Map([['statMods.life', 20]]));
     expect(output.player.skills[0]?.synergies).toEqual(new Map([['physical', 0.2]]));
@@ -179,7 +179,7 @@ describe('D05 native Maps and genuine historical migration', () => {
       expect(input.player.derivedStats).not.toHaveProperty('magicResist');
       expect(input.mercs.ownedMercs.every(m => !Object.hasOwn(m.derivedStats, 'magicResist'))).toBe(true);
       expect(output).toEqual({ ...currentShape(input),
-        player: { ...input.player, derivedStats: { ...input.player.derivedStats, magicResist: 0 } },
+        player: { ...input.player, respecsRemaining: { stat: 3, skill: 3 }, derivedStats: { ...input.player.derivedStats, magicResist: 0 } },
         mercs: { ...input.mercs, ownedMercs: input.mercs.ownedMercs.map(m => ({ ...m,
           derivedStats: { ...m.derivedStats, magicResist: 0 } })) } });
       expect(Object.hasOwn(output.player, 'selectedAuraId')).toBe(selected);
@@ -204,7 +204,7 @@ describe('D05 Meditation v11 acceptance and frozen historical v10', () => {
     'preserves canonical $selectedAuraId in frozen v$version through current native and JSON round trips', ({ version, selectedAuraId }) => {
     const base = sampleSave();
     const input = { ...(version === 11 ? base : currentShape(base)), version,
-      player: { ...base.player, selectedAuraId } };
+      player: { ...(version === 11 ? base.player : currentShape(base).player), selectedAuraId } };
     const before = structuredClone(input);
     const expected = currentShape(input);
     expect(validateSave(expected)).toEqual(expected);
@@ -256,7 +256,7 @@ describe('D05 Meditation v11 acceptance and frozen historical v10', () => {
   ])('retains current canonical Meditation independently of gameplay eligibility %#', patch => {
     const base = sampleSave();
     const input = { ...currentShape(base),
-      player: { ...base.player, ...patch, selectedAuraId: 'paladin.meditation' } };
+      player: { ...currentShape(base).player, ...patch, selectedAuraId: 'paladin.meditation' } };
     expect(decodeSave(input)).toEqual(input);
   });
 
@@ -276,7 +276,7 @@ describe('D05 Meditation v11 acceptance and frozen historical v10', () => {
 
   it('retains Meditation, native affix and synergy Maps and all resources at the current version', () => {
     const base = sampleSave();
-    const input = { ...currentShape(base), player: { ...base.player, selectedAuraId: 'paladin.meditation',
+    const input = { ...currentShape(base), player: { ...base.player, respecsRemaining: { stat: 3, skill: 3 }, selectedAuraId: 'paladin.meditation',
       skills: [{ id: 'current-map-skill', name: 'Map', description: '', trigger: 'active', target: 'single-enemy',
         cooldown: 1, cost: {}, minLevel: 1, level: 1, maxLevel: 20, synergies: new Map([['physical', 0.2]]) }] },
       inventory: { ...currentShape(base).inventory, equipped: { head: { id: 'current-hat', baseId: 'items/base/helm-cap',
