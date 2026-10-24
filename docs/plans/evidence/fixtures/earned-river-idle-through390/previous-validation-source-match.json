@@ -1,0 +1,9 @@
+{
+  "priorFullUnitTests": 11678,
+  "priorFullUnitFiles": 454,
+  "priorExistingSkips": 2,
+  "sourceFilesChecked": 1128,
+  "sourceDrift": [],
+  "priorEvidence": "docs/plans/evidence/p16-merc-equipment-browsing.md",
+  "reasonNoUnitRerun": "no source,test,config or dependency changes; only new browser/evidence scripts outside repo"
+}

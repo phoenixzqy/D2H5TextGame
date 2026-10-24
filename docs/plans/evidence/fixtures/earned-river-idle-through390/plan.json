@@ -1,0 +1,27 @@
+{
+  "kind": "genuine River idle389-390 pilot",
+  "input": "/home/felixzhao/.zai/profiles/anonymous/worktrees/D2H5TextGame-human-worktree-2/docs/plans/evidence/fixtures/earned-river-through388/retained-final.json.gz",
+  "inputRawSHA256": "5f835bccb6715367ff92cd23b6245f1784a6a537460ac591da05a18c307dcae8",
+  "owner": "root",
+  "previousGoalTurn": "no progress: status report only; current state revalidated clean f1935f3 and owned worktree",
+  "planReview": "ready: source confirms real idle mode and 1500ms automatic repeat; observe terminal and settle each wave; exactly two attempts maximum, stop first nonwin or interruption; no attempt replay, manual next-run button, preparation or diagnostic save promotion",
+  "security": "pass: existing local ordinary-production UI only, no network, dependency, privileged endpoint or source changes",
+  "acceptance": [
+    "Farm Here on cleared River sets persisted target and real combat mode",
+    "All original enemy members die with living hero and native victory before rewards",
+    "Every settled prefix preserves ancestral full item payloads and exact reward deltas",
+    "Automatic repeat389 to390 without Enter or Next Run click; capture both native ordinal changes",
+    "Stop Farm after390 victory before391, then advance120s with no rewards or ordinal changes",
+    "Exact initial and stopped Save-close-Continue; stopped target absent after reopen",
+    "Stop immediately on first nonwin or tooling interruption; preserve actual consumed state"
+  ],
+  "maximumChallenges": 2,
+  "firstOrdinal": 389,
+  "lastAllowedOrdinal": 390,
+  "noNewPreparation": true,
+  "productionPort": 4442,
+  "disposable": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/idle389/dist"
+  ],
+  "retention": "root retains required raw browser exports/scripts/logs/source hashes through campaign/full-v1 consumers; removes exact disposable dist after processes finish"
+}

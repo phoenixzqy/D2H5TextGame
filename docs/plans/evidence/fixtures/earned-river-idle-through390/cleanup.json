@@ -1,0 +1,15 @@
+{
+  "removed": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/idle389/dist"
+  ],
+  "previewPID": 1215126,
+  "previewSession": 79411,
+  "previewTerminal": true,
+  "port4442Closed": true,
+  "allConsumersTerminal": true,
+  "remaining": [],
+  "failures": [],
+  "retainedRequiredEvidence": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-static-field-27sv3iop/idle389",
+  "owner": "root",
+  "retention": "retain raw scripts,exports,logs,hashes through campaign/full-v1 consumers; root removes exact directory after consumers finish"
+}

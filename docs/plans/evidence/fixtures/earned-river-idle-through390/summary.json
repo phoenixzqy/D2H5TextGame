@@ -1,0 +1,50 @@
+{
+  "kind": "genuine production UI idle farming pilot; root self-audit; independent acceptance pending",
+  "runtime": "f1935f36bb35cfa36e6a24a868537451ec3be1d1",
+  "inputRawSHA256": "5f835bccb6715367ff92cd23b6245f1784a6a537460ac591da05a18c307dcae8",
+  "finalRawSHA256": "e0e6257e41f7c1ab424a53afd1f4c068302be2765dd50d85d67c97875a8641e8",
+  "firstOrdinal": 389,
+  "lastOrdinal": 390,
+  "nextNormal": 391,
+  "fullClears": 2,
+  "nativeWaveVictories": 12,
+  "nativeNonwins": 0,
+  "automaticRepeats": [
+    {
+      "fromOrdinal": 389,
+      "toOrdinal": 390,
+      "trigger": "native timer",
+      "clickedNextRun": false
+    }
+  ],
+  "stopChecks": [
+    {
+      "requestedWaitMs": 120000,
+      "nextNormal": 391,
+      "noRewardsOrOrdinalChange": true,
+      "idleTargetAbsent": true
+    }
+  ],
+  "saveCloseContinuePairs": 2,
+  "ancestralFullItemsPreserved": 21739,
+  "ownedItemsFinal": 22003,
+  "newItems": 264,
+  "earnedHeroXP": 62570,
+  "heroLevel": 32,
+  "heroXP": 83292,
+  "statPoints": 10,
+  "skillPoints": 4,
+  "sourceFiles": 1112,
+  "sourceDrift": [],
+  "buildFiles": 760,
+  "buildDrift": [],
+  "servedJS": 7,
+  "errors": [],
+  "warnings": [],
+  "scriptWallMs": 84655.677279,
+  "requestedClockAdvanceMs": 367800,
+  "limits": "single genuine English mobile360x640 pilot; fixed historical Date; clock transport only, no pacing/full-idle/weak-build/background/offline/locale matrix acceptance",
+  "retainedSaveSnapshots": 23,
+  "nativeExportDownloads": 20,
+  "countClarification": "See audit-export-count.json; original audit.log retains initial retained-snapshot count under nativeSaveExports."
+}
