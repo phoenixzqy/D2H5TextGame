@@ -1,4 +1,13 @@
 {
+  "pagination": {
+    "label": "物品分页",
+    "status": "第 {{start}}–{{end}} 件，共 {{total}} 件 · 第 {{page}}/{{pages}} 页",
+    "first": "首页",
+    "previous": "上一页",
+    "page": "页码",
+    "next": "下一页",
+    "last": "末页"
+  },
   "inventory.title": "背包",
   "questItems": {
     "malahsPotion": {

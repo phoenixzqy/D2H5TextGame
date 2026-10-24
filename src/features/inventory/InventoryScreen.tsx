@@ -44,6 +44,7 @@ import { EquipPicker } from './EquipPicker';
 import { ItemDetailPanel } from './ItemDetailPanel';
 import { BulkDiscardToolbar } from './BulkDiscardToolbar';
 import { BackpackGrid } from './BackpackGrid';
+import { useInventoryPage, type InventoryPage } from './useInventoryPage';
 import { LegacyGearQuarantinePanel } from './LegacyGearQuarantinePanel';
 import { QuestItemsPanel } from './QuestItemsPanel';
 import { MaterialsPanel } from './MaterialsPanel';
@@ -101,6 +102,8 @@ export function InventoryScreen() {
   const [backpackSelectedId, setBackpackSelectedId] = useState<string | null>(null);
   const [stashSelectedId, setStashSelectedId] = useState<string | null>(null);
   const [discardConfirm, setDiscardConfirm] = useState<DiscardConfirm>(null);
+  const backpackPage = useInventoryPage(backpack, BACKPACK_CAPACITY, () => { setBackpackSelectedId(null); });
+  const stashPage = useInventoryPage(stash, Math.min(STASH_CAPACITY, Math.max(60, stash.length + 20)), () => { setStashSelectedId(null); });
 
   useEffect(() => () => {
     if (toastTimerRef.current !== null) window.clearTimeout(toastTimerRef.current);
@@ -136,6 +139,7 @@ export function InventoryScreen() {
               label: `${t('backpack')} (${String(backpack.length)}/${String(BACKPACK_CAPACITY)})`,
               content: (
                 <BackpackTabContent
+                  page={backpackPage}
                   items={backpack}
                   equipped={equipped}
                   selectedId={backpackSelectedId}
@@ -172,6 +176,7 @@ export function InventoryScreen() {
               label: `${t('stash')} (${String(stash.length)}/${String(STASH_CAPACITY)})`,
               content: (
                 <StashTabContent
+                  page={stashPage}
                   items={stash}
                   selectedId={stashSelectedId}
                   setSelectedId={setStashSelectedId}
@@ -281,6 +286,7 @@ export function InventoryScreen() {
 /* ────────────────────────────────────────────────────────────────────── */
 
 interface BackpackTabProps {
+  readonly page: InventoryPage;
   readonly items: readonly Item[];
   readonly equipped: Record<string, Item | null>;
   readonly selectedId: string | null;
@@ -293,6 +299,7 @@ interface BackpackTabProps {
 }
 
 function BackpackTabContent({
+  page,
   items,
   equipped,
   selectedId,
@@ -337,19 +344,20 @@ function BackpackTabContent({
   const upgradeItemIds = useMemo(() => {
     if (!playerForCompare || !compare) return new Set<string>();
     const ids = new Set<string>();
-    for (const item of items) {
+    for (const item of page.items) {
       const result = compareBackpackItem(item, playerForCompare, equipped, bases, compare);
       if (result && isClearNetUpgrade(result)) ids.add(item.id);
     }
     return ids;
-  }, [bases, equipped, items, playerForCompare, compare]);
+  }, [bases, equipped, page.items, playerForCompare, compare]);
 
   return (
     <div className="flex flex-col">
       <BulkDiscardToolbar backpack={items} equipped={equipped} onDiscard={onBulkDiscard} />
       <ItemGridLayout
-        items={items}
-        capacity={BACKPACK_CAPACITY}
+        items={page.items}
+        capacity={page.capacity}
+        pagination={page.controls}
         emptyKey="emptyBackpack"
         selectedId={selectedId}
         setSelectedId={setSelectedId}
@@ -380,6 +388,7 @@ function BackpackTabContent({
 /* ────────────────────────────────────────────────────────────────────── */
 
 interface StashTabProps {
+  readonly page: InventoryPage;
   readonly items: readonly Item[];
   readonly selectedId: string | null;
   readonly setSelectedId: (id: string | null) => void;
@@ -389,6 +398,7 @@ interface StashTabProps {
 }
 
 function StashTabContent({
+  page,
   items,
   selectedId,
   setSelectedId,
@@ -401,8 +411,9 @@ function StashTabContent({
 
   return (
     <ItemGridLayout
-      items={items}
-      capacity={Math.min(STASH_CAPACITY, Math.max(60, items.length + 20))}
+      items={page.items}
+      capacity={page.capacity}
+      pagination={page.controls}
       emptyKey="emptyStash"
       selectedId={selectedId}
       setSelectedId={setSelectedId}
@@ -426,6 +437,7 @@ function StashTabContent({
 /* ────────────────────────────────────────────────────────────────────── */
 
 interface GridLayoutProps {
+  readonly pagination: React.ReactNode;
   readonly items: readonly Item[];
   readonly capacity: number;
   readonly emptyKey: string;
@@ -443,6 +455,7 @@ function ItemGridLayout({
   selectedId,
   setSelectedId,
   upgradeItemIds,
+  pagination,
   detailPanel
 }: GridLayoutProps): JSX.Element {
   const { t } = useTranslation('inventory');
@@ -471,6 +484,7 @@ function ItemGridLayout({
       data-detail-open={open}
     >
       <div className="min-w-0">
+        {pagination}
         {items.length === 0 ? (
           <p className="text-sm text-d2-white/60 italic p-4 text-center">
             {t(emptyKey)}

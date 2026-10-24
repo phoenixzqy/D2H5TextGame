@@ -1,4 +1,13 @@
 {
+  "pagination": {
+    "label": "Inventory pages",
+    "status": "Items {{start}}–{{end}} of {{total}} · Page {{page}} of {{pages}}",
+    "first": "First page",
+    "previous": "Previous page",
+    "page": "Page",
+    "next": "Next page",
+    "last": "Last page"
+  },
   "inventory.title": "Inventory",
   "questItems": {
     "malahsPotion": {
