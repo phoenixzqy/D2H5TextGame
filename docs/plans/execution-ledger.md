@@ -12,6 +12,7 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D05 Holy Fire/Holy Shock / BUG181 | two pulse effects locally implemented/verified; six distinct auras remain | Runtime df9f1c0; JSON-owned 1s pulses, mitigated Fire Burn, source/death/tie/deadline/cap rules and RNG-neutral damage. Focused164/9, engine6131/209, full12286/519 plus two existing skips; types/lint/build/bridge PASS. Production browser4/4,12 exact five-domain Continue pairs,40 geometry samples. [Evidence](evidence/d05-paladin-pulse-auras.md); all1233 inputs and760 build hashes, HEAD/Git and genuine Rite digest stayed exact. Raw evidence byte-verified; exact task cleanup complete,4464closed.213 IDs:162unverified/49bounded-functional/one bounded-engine-functional/one review-needed. Genuine campaign remainsL33/next402; earned balance, independent acceptance, remaining six aura mechanics, Baal/C2-C4/fullG0-G7 remain open. Local only. |
 | D05 Paladin stat auras / BUG181 | eight effects locally implemented/verified; remaining ten mechanics open | Save a5c9c3a freezes v21 and widens v22 to all20 selections; runtime9329b3f/UI fdbbd55 implement Thorns, Blessed Aim, Fanaticism, Defiance, three Resist auras and Salvation with unchanged authored coefficients. Browser found/fixed canonical allocation alias omission; corrected8causal RED→34GREEN. Finalfull12229/515+two existing skips, engine6088/205, types/lint/build/bridge PASS; production4/4,36 exact Continue pairs,40geometry samples. Earlier full12227/two import timeouts retained as unresolved BUG180. [Evidence](evidence/d05-paladin-stat-auras.md);1222inputs/HEAD/Git state and760build hashes exact,210raw files/34terminal jobs byte-verified;970owned files removed/4462closed.213IDs:166unverified/46bounded functional/one review-needed. Genuine Rite save/next402 unchanged. Next actual enemy effects: Holy Freeze and Conviction; other eight distinct auras and independent/earned/C2–C4/fullG acceptance remain open. |
 | D05 Bone Armor / BUG179 | implemented in1ee014a/8acecc3; locally verified, independent acceptance pending | One finite12/rank personal fresh-run shield; mitigated direct/periodic/reflection settlement, exact lethal timing, Shatter, wave carry/original-input replay, no saved stat or pool. Focused28/7, engine6010/202, full unchanged retry12139/511+two existing skips; types/lint/clean build/bridge PASS; production4/4 with four exact Continue pairs and20geometry samples. Failed full12138/one timeout is retained as unresolved BUG180. All1222inputs/HEAD/Git state and760build hashes stayed exact. [Evidence](evidence/d05-bone-armor.md);117raw files/26terminal process records byte-verified;1637owned disposable files removed/4461closed. Genuine Rite save/next402 unchanged; C2–C4/fullG and earned/independent acceptance open. |
 | Skill inventory reconciliation | nine earlier functional records corrected; no new implementation credit | Warmth, Fire/Lightning Mastery, Iron Skin, Skeleton Mastery, Frozen Armor, Might, Meditation and Static Field now cite existing proof/current consumers. [Audit](evidence/skill-inventory-reconciliation.md). With separate new Bone Armor,213IDs/order remain and174unverified; Cold Mastery stays review-needed. Current integrated independent acceptance and earned viability remain open. |
@@ -11454,3 +11455,34 @@ earned class balance remain open. Genuine claimed Rite save remainsL33/XP149261/
 no actual campaign action or diagnostic-save promotion. Next: remaining distinct
 aura mechanics. Baal/C2–C4/fullG0–G7 and the complete privatev1 remain incomplete.
 Local only; umbrella goal, branch and claimed worktree remain active.
+
+
+## D05 — Selected Holy Fire and Holy Shock / BUG181
+
+Implementation `df9f1c0` adds actual automatic fire/lightning pulses to the shared
+selected wave projection. JSON owns 1000ms timing and 20 base damage; first pulse
+waits a full interval. Fire produces canonical finite Burn at 10% of mitigated
+pulse damage per second, floored/minimum1,3000ms/five-stack cap. Existing source
+increases, combos, mitigation and exact-once death consequences remain shared.
+Source periodic death prevents a tied pulse; pulse precedes surviving actions,
+includes60000ms and never fabricates action-cap catch-up. No hit/crit/proc RNG,
+mana/cast/action slot or save-version change. Both locales explain actual effects.
+
+[Evidence](evidence/d05-paladin-pulse-auras.md): focused164/9, engine6131/209,
+full12286/519 plus two existing skips; final types/lint/build/bridge PASS.
+All1233 source/test/config hashes,760 build hashes, HEAD/Git and the genuine
+claimed Rite digest stayed exact through the full run. Browser4/4 and independent
+attachment audit prove12 exact five-domain Continue pairs;40 geometry samples
+check all15 radio labels. Original RED, stale support/radio assertions, lint and
+auditor failures remain retained. Raw originals/process records are byte-verified;
+exact task cleanup confirms scratch absence,4464closed and no remaining paths
+or failures. Shared caches and older retained campaign evidence remain.
+
+Only these two skill rows gain bounded-functional dispositions:213 IDs remain,
+162unverified/49bounded-functional/one bounded-engine-functional/one review-needed.
+The50 bounded records have different proof scopes. BUG181 remains open for
+Sanctuary, Cleansing, Redemption, Prayer, Vigor and Concentration. Holy Shock's
+base/timing are provisional local design defaults; earned balance and independent
+acceptance remain open. GenuineL33/XP149261/23682gear/nextNormal402 is unchanged;
+no campaign action or diagnostic-save promotion. Baal/C2-C4/fullG0-G7 and complete
+privatev1 remain incomplete. Local only; umbrella goal/branch/worktree stay active.

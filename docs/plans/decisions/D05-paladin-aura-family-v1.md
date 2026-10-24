@@ -108,13 +108,13 @@ Dream's item-granted Holy Shock remains governed by its separate D10 contract.
 
 ## Remaining required effects
 
-Holy Fire/Shock require actual damage pulses; Sanctuary requires undead damage
+Holy Fire/Shock now follow the pulse contract above and have [bounded local verification](../evidence/d05-paladin-pulse-auras.md). Sanctuary requires undead damage
 and explicit no-movement repulsion adaptation. Cleansing requires poison/curse
 duration reduction; Redemption consumes authoritative corpses for life/mana;
 Prayer heals; Vigor requires a truthful no-movement/stamina adaptation;
 Concentration requires an explicit interruption-prevention rule. Existing JSON
-and older descriptions disagree for these eight: resolve their affected rules and
-data explicitly before implementation. Holy Freeze/Conviction follow the resolved
+and older descriptions disagree for the remaining six: resolve their affected rules and
+data explicitly before implementing their remaining mechanics. Holy Freeze/Conviction follow the resolved
 contract above and have [bounded local verification](../evidence/d05-paladin-enemy-auras.md).
 Independent design/QA and earned class/build balance remain open.
 Do not expose or count stat-only

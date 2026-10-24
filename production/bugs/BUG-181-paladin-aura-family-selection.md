@@ -1,7 +1,7 @@
 # BUG-181 — Complete advertised Paladin aura selection and effects
 
 Severity: High
-Status: Open; eight stat auras plus Holy Freeze/Conviction locally verified, eight distinct aura mechanics outstanding
+Status: Open; fourteen selected auras locally verified in bounded scope, six distinct aura mechanics outstanding
 Owners: engine-dev, frontend-dev, content-designer; root sole writer this run
 
 ## Reproduction
@@ -56,6 +56,18 @@ reduction, recipient damage/dodge, source authority, native public allocation,
 replay and persistence pass. Full12261/517/two existing skips, engine6114/207,
 types/lint/build/bridge pass. Production browser4/4 proves12 exact five-domain
 Continue pairs and40 geometry samples. [Evidence and retained original failures](../../docs/plans/evidence/d05-paladin-enemy-auras.md).
-Remaining eight: Holy Fire, Holy Shock, Sanctuary, Cleansing, Redemption, Prayer,
+Remaining after that checkpoint: Holy Fire, Holy Shock, Sanctuary, Cleansing, Redemption, Prayer,
 Vigor and Concentration. The complete family, earned balance and independent
 acceptance remain open.
+
+
+Third batch `df9f1c0` adds actual selected Holy Fire and Holy Shock pulses and
+canonical mitigated Fire Burn, with explicit JSON timing/base/Burn ownership,
+source/death/tie/deadline/cap guards and no damage/proc RNG. Native allocation,
+original-input replay, bilingual UI and savev22 selection pass. Full12286/519
+plus two existing skips, engine6131/209, types/lint/build/bridge PASS; production
+browser4/4,12 exact five-domain Continue pairs and40 geometry samples pass.
+[Evidence and original failures](../../docs/plans/evidence/d05-paladin-pulse-auras.md).
+Remaining six: Sanctuary, Cleansing, Redemption, Prayer, Vigor and Concentration.
+Earned balance and independent whole-family acceptance remain open. Genuine
+campaign save/next402 is unchanged; no actual campaign action occurred.
