@@ -26,6 +26,7 @@ import type { EquipmentSlot, Item } from '@/engine/types/items';
 import { loadItemBases } from '@/data/loaders/loot';
 import { loadMercHireRoster, loadMercPool, resolveMercSkillLoadout, type MercDef } from '@/data/loaders/mercs';
 import { MercSkillPriority } from './MercSkillPriority';
+import { MercEquipmentCandidates } from './MercEquipmentCandidates';
 
 export function MercsScreen() {
   const { t } = useTranslation(['mercs', 'common', 'inventory', 'gacha']);
@@ -399,28 +400,11 @@ function MercEquipmentEditor({
             <div className="text-xs text-d2-white/60">
               {t('selectSlotItem', { slot: t(`inventory:slots.${pickerSlot}`) })}
             </div>
-            {candidates.length === 0 ? (
-              <p className="text-sm text-d2-white/50 italic">{t('noCompatibleItems')}</p>
-            ) : (
-              <ul className="space-y-2">
-                {candidates.map((item) => (
-                  <li key={item.id} className="flex items-center justify-between gap-2 rounded border border-d2-border bg-black/20 p-2">
-                    <span className="min-w-0 truncate text-sm text-d2-white/85">{tItemName(t, item)}</span>
-                    <Button
-                      variant="primary"
-                      className="min-h-[44px] text-xs"
-                      onClick={() => {
-                        const result = equipOnMerc(mercId, pickerSlot, item);
-                        if (result.ok) { setPickerSlot(null); setEquipmentError(null); }
-                        else setEquipmentError({ ...result, item });
-                      }}
-                    >
-                      {t('inventory:equip')}
-                    </Button>
-                  </li>
-                ))}
-              </ul>
-            )}
+            <MercEquipmentCandidates key={pickerSlot} candidates={candidates} onEquip={item => {
+              const result = equipOnMerc(mercId, pickerSlot, item);
+              if (result.ok) { setPickerSlot(null); setEquipmentError(null); }
+              else setEquipmentError({ ...result, item });
+            }} />
           </div>
         </Panel>
       )}
