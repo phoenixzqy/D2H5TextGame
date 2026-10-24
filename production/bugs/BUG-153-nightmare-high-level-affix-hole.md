@@ -1,6 +1,6 @@
 # BUG-153 — Preserve affixes above item level99
 
-Severity: High. Status: reproduced; correction pending.
+Severity: High. Status: corrected locally; independent acceptance pending.
 Owner: root/content/loot QA. Runtime7441227 plus BUG152 equipment-band data;
 unchanged item roller and affix data. Node24.21.0/Vite SSR, no browser interaction;
 locale/viewport not applicable. Seed3286157777.
@@ -29,3 +29,13 @@ or alter previously earned item payloads to conceal the gap.
 
 Security check: pass. Local authored data and deterministic regression tests;
 no dependencies, credentials, networking, permissions, CI or publication.
+
+Correction: [finite D08 contract](../../docs/plans/decisions/D08-nightmare-affix-envelope-v1.md)
+extends exactly16 highest-tier maxima99→102. Production roller/crafting code,
+all authored values/weights and existing items are unchanged. The new30-test
+regression has25 causal failures before the correction and passes afterward,
+including all75 affixable bases and actual caster-recipe costs/identity/replay.
+The complete14850-call item stream at1–99 remains identical for the fixed seed.
+[Validation evidence](../../docs/plans/evidence/d08-nightmare-affix-envelope.md)
+records passing focused/engine/types/lint/build and full11502/439files with
+2existing skips, exit0,420.78s. Full G4/economy acceptance remains open.
