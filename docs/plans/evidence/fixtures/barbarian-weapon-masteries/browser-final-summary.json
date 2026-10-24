@@ -1,0 +1,36 @@
+{
+  "stats": {
+    "startTime": "2026-10-24T17:50:17.843Z",
+    "duration": 79904.019,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "case": "mastery-desktop-en",
+      "status": "passed",
+      "retry": 0,
+      "durationMs": 21462
+    },
+    {
+      "case": "mastery-desktop-zh-CN",
+      "status": "passed",
+      "retry": 0,
+      "durationMs": 19904
+    },
+    {
+      "case": "mastery-mobile-en",
+      "status": "passed",
+      "retry": 0,
+      "durationMs": 17541
+    },
+    {
+      "case": "mastery-mobile-zh-CN",
+      "status": "passed",
+      "retry": 0,
+      "durationMs": 17011
+    }
+  ]
+}

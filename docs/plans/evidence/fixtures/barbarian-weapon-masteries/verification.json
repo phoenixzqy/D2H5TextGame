@@ -1,0 +1,45 @@
+{
+  "implementationCommit": "8e71189",
+  "frozenComposition": {
+    "causalRed": 10,
+    "controlsPassed": 6
+  },
+  "schemaRed": 3,
+  "uiRed": 6,
+  "focused": {
+    "passed": 82,
+    "files": 6,
+    "seconds": 19.42
+  },
+  "engine": {
+    "passed": 5833,
+    "files": 182,
+    "seconds": 84.42
+  },
+  "full": {
+    "passed": 11816,
+    "skipped": 2,
+    "files": 465,
+    "seconds": 678.72,
+    "exit": 0,
+    "sourceLimit": "Started before final semantics-preserving lint and English article corrections; focused/types/lint/build/browser reran afterward. Engine source/data unchanged since engine run."
+  },
+  "typecheck": 0,
+  "lint": 0,
+  "build": 0,
+  "browser": {
+    "passed": 4,
+    "skipped": 0,
+    "flaky": 0,
+    "retries": 0,
+    "seconds": 79.9,
+    "exactContinuePairs": 4,
+    "capturedErrors": 0
+  },
+  "sourceHashesVerified": 14,
+  "productionJSHashesRetained": 4,
+  "independentAcceptance": "pending",
+  "earnedBarbarianBuildBalance": "pending",
+  "genuineProgressChanged": false,
+  "cleanupFailures": []
+}

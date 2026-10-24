@@ -27,6 +27,8 @@ Contract: `docs/plans/decisions/D05-barbarian-weapon-masteries-v1.md`.
 
 ## Resolution and validation
 
+Implementation: `8e71189` (local).
+
 Canonical weapon-slot metadata now gates fresh player composition. Authored
 physical damage uses the existing per-type consumer; critical chance adds once
 to fresh stats. Exact aliases resolve once, and both locale descriptions match

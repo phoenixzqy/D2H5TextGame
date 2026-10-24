@@ -1,0 +1,60 @@
+{
+  "root": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-weapon-masteries-fsusc76b",
+  "owner": "01a1577a-5af4-70e3-8699-50a906877d8f",
+  "purpose": "Sword/Axe/Mace Mastery implementation and verification",
+  "disposable": [],
+  "retained": [
+    "browser-final-report.json",
+    "browser-final.log",
+    "browser-report.json",
+    "browser.log",
+    "build-final.log",
+    "build.log",
+    "cleanup.json",
+    "compatibility.log",
+    "engine.log",
+    "focused-corrected.log",
+    "focused-final.log",
+    "focused-initial.log",
+    "focused.log",
+    "full.log",
+    "green-composition-corrected.log",
+    "green-composition.log",
+    "lint-final.log",
+    "lint.log",
+    "ownership.json",
+    "provenance-initial.json",
+    "provenance.json",
+    "red-composition-corrected.log",
+    "red-composition-frozen.log",
+    "red-composition.log",
+    "red-schema.log",
+    "red-ui.log",
+    "typecheck-corrected.log",
+    "typecheck-final.log",
+    "typecheck.log"
+  ],
+  "processes": [
+    {
+      "session": 86573,
+      "command": "npm test",
+      "log": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-weapon-masteries-fsusc76b/full.log",
+      "state": "terminal",
+      "exit": 0
+    },
+    {
+      "session": 70661,
+      "command": "production Playwright final",
+      "state": "terminal",
+      "exit": 0
+    }
+  ],
+  "removed": [
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-weapon-masteries-fsusc76b/dist",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-weapon-masteries-fsusc76b/dist-final",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-weapon-masteries-fsusc76b/browser-output",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-weapon-masteries-fsusc76b/browser-final-output",
+    "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-weapon-masteries-fsusc76b/initial-mobile-zh-CN.png"
+  ],
+  "retentionReason": "Raw causal/final logs and both complete browser reports retained through full-v1 consumers; root removes afterward."
+}

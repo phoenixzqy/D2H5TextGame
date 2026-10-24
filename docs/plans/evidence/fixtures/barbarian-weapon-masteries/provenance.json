@@ -1,0 +1,28 @@
+{
+  "baseCommit": "2ba488a",
+  "sourceSHA256": {
+    "src/data/schema/skill.schema.json": "76ec1a973aae9d5dea21dc65b74b66b2e6dcb3cb5da3099eab28a68c9402a8fe",
+    "src/data/skills/barbarian.json": "7c61086a035fe370b2e9745f0efd5c97fe3df3c6cf97c49802b121f4f9cd7bea",
+    "src/stores/combatHelpers.ts": "76315c9ef22317627bf19845603d253c36ed0f29d3a1cd4891e62bf61109afb4",
+    "src/features/skills/SkillsScreen.tsx": "4aee70d3009b55acda162c4e17ce7b5efaced2d93fe0fbfc0a05bc72f9fc75de",
+    "src/i18n/locales/en/skills.json": "1789b92ae8ff83013a3e51a2fe8285d07f8d4daeacc28395d30eb80c3ebc82be",
+    "src/i18n/locales/zh-CN/skills.json": "6aefe01f1d754d13bbe6df71e657ff25091dc0c34df1ba52fc35bf8140640e75",
+    "src/engine/skills/barbarian-weapon-masteries.ts": "1109a41120221ed725276429f2e4d852110baf11bfef41e97aa21a454d2303b5",
+    "src/engine/skills/barbarian-weapon-masteries.test.ts": "2ef7e3acf0126fd0faeedfb5c6b749eb9b55f06f4d8d0bb782eb376188afbc04",
+    "src/engine/skills/barbarian-weapon-masteries-schema.test.ts": "eab349eea265a06c3d0db997499ef9cf31f05d789f578ed55aa4030661b4ae0f",
+    "src/stores/barbarian-weapon-masteries.test.ts": "222759d0b5ce97766184e426e9ecfcb42838563ec6c4fe6a833c1eee874d36a1",
+    "src/stores/barbarian-weapon-masteries-native.test.ts": "86454fd6549d9833a6b771541ce78b60bec608a81dc6ecd7bad1cff8340aef35",
+    "src/features/skills/SkillsScreen.weapon-masteries.test.tsx": "d9f09ea3220459b97c2708c9e3f87a4973219b83b017f71f7a151f4aa93c81ac",
+    "tests/pwa/barbarian-weapon-masteries.config.ts": "54760aa638895078f20c2321338562d3b81dc63d5f1372ba66ec19b5f1c98ba5",
+    "tests/pwa/barbarian-weapon-masteries.spec.ts": "3b73b883a18a4ea2312849a32e08708ed0c47016cd3a32cb0633bc1022031679"
+  },
+  "productionJS": {
+    "react-vendor-dRBhy6jq.js": "d023b474fbe60dec77510b20d3560e8a8c6b796e6d623cf648bf12800af453fb",
+    "game-engine-CqIzUXqx.js": "1fa97c84cee8074c2e55d99513c68c552e06b85906d088e0014d0d2f29fe3506",
+    "i18n-Bxr3rY09.js": "cb3cefca3bda4b6da700c1dcd65dae18a27f3a44e5c831c09cacb7652a2505f8",
+    "index-BoCSLkw0.js": "c651bbbd424f80b208fc0fe6b9b96e23f78e0751b4d51ead2b514f624d3fa4ef"
+  },
+  "bridgeViolations": [],
+  "genuineResumeRawSHA256": "c4a543af9db6b6b926ece07417b82c80c39615a53cbb03e2a358074f019a7577",
+  "finalChanges": "Remove unnecessary optional chain from guaranteed recovery map; brace a void test callback; correct English article. Final focused/types/lint/build/browser rerun; full unit run was already live."
+}
