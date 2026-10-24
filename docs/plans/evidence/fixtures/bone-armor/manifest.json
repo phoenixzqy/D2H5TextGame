@@ -1,0 +1,734 @@
+{
+  "scratchRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-armor-99yslx1b",
+  "rawFiles": 117,
+  "terminalProcessRecords": 26,
+  "rawArchive": "raw.tar.gz",
+  "browserFailureTraces": 4,
+  "byteVerified": true,
+  "files": [
+    {
+      "path": "bone-armor-desktop-en.png",
+      "bytes": 124966,
+      "sha256": "e9700d033b4ae0020cb3d648359f3fcecadf2df62f1afef1176f585e10582ab8",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "bone-armor-mobile-zh.png",
+      "bytes": 183508,
+      "sha256": "4487d77e531fbdfe094837ecc11d7bbd7581bf837c3f86f9219d137c6454d2ea",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "bridge-final.json",
+      "bytes": 109,
+      "sha256": "b436b448bf4330883eb57b5fb98654f3cd2189612688ef0177823b3ce805c002",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "bridge.json",
+      "bytes": 91,
+      "sha256": "875f154c532163e0ae05ef4fd1ad1e5d1ab1fa9137551f6151ffd214dc3a5a2c",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "browser-final-audit.json",
+      "bytes": 1643,
+      "sha256": "36dd889c8e21d7bfeb7576119814420c8739c84c9db913b9cdb3a53811cdf4bc",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "browser-final-output/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "browser-final.json",
+      "bytes": 1775549,
+      "sha256": "886c0720bb5ac6c9dc8fb5b36229a66f0f61b0998891d41a0d8329df333c390b",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "browser-final.log",
+      "bytes": 1544,
+      "sha256": "19f56fbf79c0c05bf3f56a96590bc451f3f43b77d3ed6fd7e1a8b98f343d1111",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "browser-final.process.json",
+      "bytes": 143,
+      "sha256": "74e7a70557704f0e5a7e7e94a262c77fedc6facae2f04ceec20adfb9040421cf",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "browser-final.result.json",
+      "bytes": 150,
+      "sha256": "c5ebdfa63775b015cf5876cb96f77a43eba6b48fcd5752762f1f80aa6d5155b7",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "browser-output/.last-run.json",
+      "bytes": 243,
+      "sha256": "6afea541667d018d6575ad67637cc787e2de1df88545f380d6877726514e0e4f",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "browser-output/bone-armor-necromancer-bon-497ad-on-and-exact-Continue-zh-CN-bone-armor-desktop/error-context.md",
+      "bytes": 12460,
+      "sha256": "d337c466e1ebc212f146914ecfda4df21e7cc98de964caa7c0258e2d4c49de76",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "browser-output/bone-armor-necromancer-bon-497ad-on-and-exact-Continue-zh-CN-bone-armor-desktop/test-failed-1.png",
+      "bytes": 55710,
+      "sha256": "f437cbca1eac2efd904d7386e49e50249f3bc4c6b14cc44c3f00c363a9df2bde",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "browser-output/bone-armor-necromancer-bon-497ad-on-and-exact-Continue-zh-CN-bone-armor-desktop/trace.zip",
+      "bytes": 25372070,
+      "sha256": "0f9268c6441770142efe848bceb50105b173193c92265bcfd94eab186e1f78d3",
+      "artifact": "traces/failed-browser-1.zip"
+    },
+    {
+      "path": "browser-output/bone-armor-necromancer-bon-497ad-on-and-exact-Continue-zh-CN-bone-armor-mobile/error-context.md",
+      "bytes": 12460,
+      "sha256": "d337c466e1ebc212f146914ecfda4df21e7cc98de964caa7c0258e2d4c49de76",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "browser-output/bone-armor-necromancer-bon-497ad-on-and-exact-Continue-zh-CN-bone-armor-mobile/test-failed-1.png",
+      "bytes": 114197,
+      "sha256": "01ba98a898913a534bad24d5c8f8fd3a9c90dfbd688a8afcd8d644de410470c0",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "browser-output/bone-armor-necromancer-bon-497ad-on-and-exact-Continue-zh-CN-bone-armor-mobile/trace.zip",
+      "bytes": 26625459,
+      "sha256": "f920e768e0dd93bd77d0c91462154ec44657056d7d944dc4c30165d2b1aa130e",
+      "artifact": "traces/failed-browser-2.zip"
+    },
+    {
+      "path": "browser-output/bone-armor-necromancer-bon-83408-ation-and-exact-Continue-en-bone-armor-desktop/error-context.md",
+      "bytes": 12449,
+      "sha256": "feed9c8a03f6ea000cb3f41b241f29607d379e52db0838b54d982243143100e7",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "browser-output/bone-armor-necromancer-bon-83408-ation-and-exact-Continue-en-bone-armor-desktop/test-failed-1.png",
+      "bytes": 62160,
+      "sha256": "0ceeac5fa3372bfaa808d25bb438afff86ab36b48763b022f2dcd064e849b0a0",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "browser-output/bone-armor-necromancer-bon-83408-ation-and-exact-Continue-en-bone-armor-desktop/trace.zip",
+      "bytes": 24678634,
+      "sha256": "0e682c7403eb71af0f7a7b2f8a93c21044bce697cb5b3f633a628207fe4ae311",
+      "artifact": "traces/failed-browser-3.zip"
+    },
+    {
+      "path": "browser-output/bone-armor-necromancer-bon-83408-ation-and-exact-Continue-en-bone-armor-mobile/error-context.md",
+      "bytes": 12449,
+      "sha256": "feed9c8a03f6ea000cb3f41b241f29607d379e52db0838b54d982243143100e7",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "browser-output/bone-armor-necromancer-bon-83408-ation-and-exact-Continue-en-bone-armor-mobile/test-failed-1.png",
+      "bytes": 123974,
+      "sha256": "0a405e411cbe38e42538f2123910f910ef0d464ba278d62cccde658767042e45",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "browser-output/bone-armor-necromancer-bon-83408-ation-and-exact-Continue-en-bone-armor-mobile/trace.zip",
+      "bytes": 27530373,
+      "sha256": "bdb9ebbef36bbaa995164da77e251f82cf3ae8dc97b3967f822729950e0ab540",
+      "artifact": "traces/failed-browser-4.zip"
+    },
+    {
+      "path": "browser.json",
+      "bytes": 935643,
+      "sha256": "0682c38554cf3a16bb5db2309566ce12cac31b875f1daaecfb19ffd0d0d6c8e7",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "browser.log",
+      "bytes": 14177,
+      "sha256": "684b5a3b0b3dce77c8227417520640cb578021e16b16eb49ef366b9a48ce58cd",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "browser.process.json",
+      "bytes": 143,
+      "sha256": "7ff5a641cc2e4f37f0c4a8afd83f71b7886404a6c3d9d5e68256e484b4b39719",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "browser.result.json",
+      "bytes": 150,
+      "sha256": "c7a3464412725bb4b8f393149049f59687614e4ccf38556c0afe02dfe7985736",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "build-final-hashes.json",
+      "bytes": 101672,
+      "sha256": "afe88420c093deb2085c7e79e2d427a110bb7cc8ff113c41599b141ae1833617",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "build-final.log",
+      "bytes": 2073,
+      "sha256": "7b0fa52729feb0a8fddcd1b7deafd6f9091166e90908c8dcd81db235d3fb9b5f",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "build-final.process.json",
+      "bytes": 206,
+      "sha256": "48587c0b132469e07496d928bc148ca5287ecf19b89c4147befd7973f5e363d4",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "build-final.result.json",
+      "bytes": 229,
+      "sha256": "d14518ebb0aa241eef26e8e781b2b22a2a6553a9bfa7754c153a774595a6b57a",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "build-hashes.json",
+      "bytes": 101672,
+      "sha256": "3a82111d53c2a9a2b27fb06db418d6083f401640dd4faaf6110cf9da23654751",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "build.log",
+      "bytes": 2008,
+      "sha256": "fe99f4bad19713e10b9243824f5e35b79de8790c55617b66d287fdb775bb5c4c",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "build.process.json",
+      "bytes": 200,
+      "sha256": "5e53f3bba8370da9e813703c1a9f2f16e663d36be950af1fd582373a50e6eb93",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "build.result.json",
+      "bytes": 223,
+      "sha256": "575d56ab960961206e82049a0678bd71a07719c14e1785425594bdc49976eac7",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "changed-typescript.json",
+      "bytes": 646,
+      "sha256": "4603540cdd728f12fa6cdb9ac44ecdc3b66172fba4a0194f220fbff18842a2c6",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "d05-bone-armor-draft.md",
+      "bytes": 4677,
+      "sha256": "9b50e1024567711a95425d884fbc9ab5ab64f6346038e5926dde76e460ddc3f1",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "engine-final.log",
+      "bytes": 61629,
+      "sha256": "09cda7801f0cde21290dd59a2193d769b2439ba6b233d8a3ef7d420fdcbcef99",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "engine-final.process.json",
+      "bytes": 113,
+      "sha256": "67845c1bc225e11010ee6e54b3f20e9faed0a0b0ea86115bc0a0342c88d66ab8",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "engine-final.result.json",
+      "bytes": 128,
+      "sha256": "12a43ae9fa2a227e5e68d002a55b14cf83771d6c5859dc5f51dbf1edf37b3925",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "engine.log",
+      "bytes": 61585,
+      "sha256": "7daf6fd35edabc03085c40973718ac8802d21f5ff55436270ed33c83737c22a0",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "engine.process.json",
+      "bytes": 113,
+      "sha256": "9a075a55c07c8fb057b1e4849fa6b43e8772b3bb75bdcf86931ee3d3102052f6",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "engine.result.json",
+      "bytes": 127,
+      "sha256": "d6a1de50ecd8ff81edef15da6225e8b30e3625a44376e0ada1829570c7369b91",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "entry-order-diagnostic.log",
+      "bytes": 2645,
+      "sha256": "df4943f62d17c4a9d9bd89ab4f8ef5a9d2d6a23220da1a90ee132e257fcc4785",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "entry-order-diagnostic.process.json",
+      "bytes": 172,
+      "sha256": "675e6e1d1cf6a27d5d15bd72a0095a3e9d995d887b4db3ff6bb6dec6091fd794",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "entry-order-diagnostic.result.json",
+      "bytes": 182,
+      "sha256": "4d0dadc5bd3e1dc8a14dfc27ef4ecd2a38e2b8ab49e355243c33193a08a538fa",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "focused-final-green.log",
+      "bytes": 767,
+      "sha256": "616e97fa17cb85bf6dfbeafb69048f4180efe9d4d2c913dd0a6953d31a33869f",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "focused-final-green.process.json",
+      "bytes": 420,
+      "sha256": "03336de2f4819c64a71fd0e5365af68401ec5e3679dee243c8991a2b05f79cfa",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "focused-final-green.result.json",
+      "bytes": 455,
+      "sha256": "940a4fe6597b5ad91e2a3e6daaf5457359ad77e71b0740b760b9c00a378eb2d9",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "focused-final.log",
+      "bytes": 1840,
+      "sha256": "7e7348631e3f84d18ddb84a15dd22d2b561f9c66d7506538f5a47721d8f849a9",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "focused-final.process.json",
+      "bytes": 419,
+      "sha256": "a04002b95c3f7b3ff9bafa8a84acec1116a6473d042f4524d67dd42651073153",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "focused-final.result.json",
+      "bytes": 455,
+      "sha256": "5e06cc1988a4826838828e2c80ac9f4a5042d1e6707d0b3690fbae5311fc11d3",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "focused-green.log",
+      "bytes": 767,
+      "sha256": "1b55aedfb7b57e95b1e37297a9959582ee6e45ed7d4bdf7fb8d308cf39b6f069",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "focused-green.process.json",
+      "bytes": 420,
+      "sha256": "b9b282a07331648b2de99d892ef2768e8f77062637ac7a224a12c73b1a3c3503",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "focused-green.result.json",
+      "bytes": 455,
+      "sha256": "4d96d4e223e23c37caa4d7007cf71efaa15dd612f8d399b04103372bbe5cfab3",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "focused2.log",
+      "bytes": 1812,
+      "sha256": "f62a129eaaff0ec5fc93f7cfad0a6ed16d880fa7b8cb99fc3f57ab4424a0864f",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "focused2.process.json",
+      "bytes": 226,
+      "sha256": "4eb931131264af90799e37ca82fb9668394bce511e723d2941a5422c737dc515",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "focused2.result.json",
+      "bytes": 244,
+      "sha256": "6847f02c87cdc8b953312689ba80c12835ac4ea68a384049e3f484c0b41b32d4",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "followup-paladin-auras.json",
+      "bytes": 2448,
+      "sha256": "ca36e7212342df8edd3abdf6995472da7fb1ccc95987b37bc0f65a273441a4da",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "full-final-input-audit.json",
+      "bytes": 396,
+      "sha256": "2c32f97041327733149c890afa57942752a0008d642ca655e7b5907594e2ecc3",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "full-final.log",
+      "bytes": 148056,
+      "sha256": "bb862387a7abe8028348b583f4724142513ff5bf3fee5b924de580b0b4f87541",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "full-final.process.json",
+      "bytes": 99,
+      "sha256": "d3bd410bf22078b13d58cb9e1abc42e6e752623ef41a8f1989b9966cf140cd5f",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "full-final.result.json",
+      "bytes": 111,
+      "sha256": "1d4cfeaa8f144b215d4e8c3e4aea6286c17501f3e8d3767a789450045449f380",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "full-retry.log",
+      "bytes": 147198,
+      "sha256": "71ec3e9dd846e921ec3f266d904830d30bc2f84f2e07b026f94f5ca3652a9cf4",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "full-retry.process.json",
+      "bytes": 99,
+      "sha256": "36c19bdfd0b2b78039f300066fcc755bb9a8d5e341a0e3f18c9ed25a849f4fc3",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "full-retry.result.json",
+      "bytes": 110,
+      "sha256": "9460c14340c2853799db930ae65741657dd06fb3e08667da012f54ad31efb347",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "full.log",
+      "bytes": 17042,
+      "sha256": "666c26c698a6f883fea8c7364735feed0dfb1c787bab4e5db33be0afd9c4bd57",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "full.process.json",
+      "bytes": 98,
+      "sha256": "a6cc7a28bb9f4ac1da9814a425fb2bcf3dc6dca44fd90a80c6bee9bdbc18981a",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "full.result.json",
+      "bytes": 112,
+      "sha256": "f481ddbbead70208ec91a4d7000ab5ff7d97d7422ee5bbf0c03ab68c4eb9a49d",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "git-before.json",
+      "bytes": 1018,
+      "sha256": "ae1d1e1f4bfe13ef52b514b0096893c3be44a9d14d88e994d42b0e6402a561c0",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "git-final-before.json",
+      "bytes": 1111,
+      "sha256": "a3ad0f6c72403be0704c0711afff44bb2b7816d3be164133c43dc35863f01907",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "git-retry-before.json",
+      "bytes": 1171,
+      "sha256": "7000decdc6145d3eb1a2d136e6ccf11b957726c2825b866e6b3daae0a9dd8533",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "green.log",
+      "bytes": 1710,
+      "sha256": "99e8186c1a9774372eea90d7ee8619a77e81b4526fb402c1f651e0884a98f369",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "green.process.json",
+      "bytes": 186,
+      "sha256": "cf8f3368284bd2be5fa00179311d176a32d9fae38de1004d2e933a75f05ac742",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "green.result.json",
+      "bytes": 200,
+      "sha256": "97acb4dad1087aecc0ac99c5767f1e0cf84cdc2890354e6a7676e527297fb331",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "input-audit-final.json",
+      "bytes": 613,
+      "sha256": "5e5a455c1320b8ae2e38051d8de98420757ae6f897efe349c404f33cfe016ef3",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "inputs-before.json",
+      "bytes": 134815,
+      "sha256": "f5372f27cb995ee232f949accd0e67dbd4dfadde6e194d6da52db83cd73f35a0",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "inputs-final-before.json",
+      "bytes": 134815,
+      "sha256": "9a6ef6b00b56a49a9d680f7ccf9d7cbcad85ba3f51307ec590bd3e911168310d",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "inventory-audit.json",
+      "bytes": 503,
+      "sha256": "4ea465b5943458bf2b71a2898d2fc2e01ee22a9122aff135b70ff838684e1aea",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "lint-explicit-green.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "lint-explicit-green.process.json",
+      "bytes": 735,
+      "sha256": "af9ad74bcb4420d53f524644197ce305bf18ddfdb17d326278facd7b83f61a19",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "lint-explicit-green.result.json",
+      "bytes": 805,
+      "sha256": "d0bf1562d231c9cc18da8c3592be3995d5469bdb29cd19cdd3c9fde5f92da6b2",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "lint-explicit.log",
+      "bytes": 1228,
+      "sha256": "5da8d9057ed210c63ca3a803578984090ceadfab794fd7d2f1e91fe50df01614",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "lint-explicit.process.json",
+      "bytes": 735,
+      "sha256": "08e35dcf78a75ad8858a7864e97e0a2e2ee9112644fa8ec28899bbd3d94df77f",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "lint-explicit.result.json",
+      "bytes": 806,
+      "sha256": "8731c6cae9f6ce9c6f762763c2afbd114750ac3168fba9d48621331c7d6e542e",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "lint-green.log",
+      "bytes": 197,
+      "sha256": "ee806373db2b39ee03d8dc1bd8fc48c23edae6768ad8e770bd5126947bd6ec5e",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "lint-green.process.json",
+      "bytes": 82,
+      "sha256": "c841a69e15ad72cdd2f9e4ebb423f44f5947ce7ed35035632f89379451458579",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "lint-green.result.json",
+      "bytes": 90,
+      "sha256": "4a06e14764c1dcbde1948a7db225172e774d680fb69d4384dfcf342e2f1612c8",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "lint.log",
+      "bytes": 1425,
+      "sha256": "fe6fde4ad2b661f1f75e76245d35e19db6742b8460c3b467209e0d965d750d6a",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "lint.process.json",
+      "bytes": 82,
+      "sha256": "915eab6942ecc5f349cb40bf2921708494a1376f1debc32b70d4abd417ff1950",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "lint.result.json",
+      "bytes": 90,
+      "sha256": "16421301de8005de82f5b8de14b60e211cfffbee8ca1ff2b04db6b41fe0206b2",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "native-ui.log",
+      "bytes": 508,
+      "sha256": "db68e9ad0eff005b4088993c96c48b6df77ac131e3f6b6ecce20c5efbf46fc22",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "native-ui.process.json",
+      "bytes": 265,
+      "sha256": "8c9a33bf738e189c53122f093ee64808a57cb23d918eed13093948ea0f788b56",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "native-ui.result.json",
+      "bytes": 283,
+      "sha256": "b4319944d6adc957559fc0797420042e80944e44f0b27da4e903ad9d83c83ae8",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "preliminary-full-stop.json",
+      "bytes": 1276,
+      "sha256": "2d06c849bcf53543bfdff9c354ca3f8279f8dbcd242ba83f791e64fd28b40d22",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "red.log",
+      "bytes": 7449,
+      "sha256": "caafcfd258afc9d482e1849f063b6ce76f247e5b378bbdfb8bed8a38a19cacea",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "red.process.json",
+      "bytes": 186,
+      "sha256": "20a293091c2247953e58e46510a0e8abea4cb64e0c87b885ca0f89839d8f56d9",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "red.result.json",
+      "bytes": 198,
+      "sha256": "2402432c8da9ea3aaf79606e438b882ca392d6a8f6d18b0ce5ced401cd3ea4da",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "run.py",
+      "bytes": 695,
+      "sha256": "d07fc70eabe4ddfb23534cfd886968c47d1712884db27c43bdfa0382d73ef06c",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "self-review.json",
+      "bytes": 2140,
+      "sha256": "bc998e125b4e26b6b5cfec5f5d7a3507fb24cbc54da5253bee6e51f66a041d38",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "source-commits.json",
+      "bytes": 395,
+      "sha256": "bf6d9054e3e8cb314ae2f21b56c9f42a4c15d42cdeac941f9c088ab51090240e",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "terminal-process-audit.json",
+      "bytes": 7676,
+      "sha256": "9165dd3fd947b67f677494a4360e845cddac47523edaecbec54a9e7d08cb84de",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "types-final.log",
+      "bytes": 388,
+      "sha256": "b4ed2fbfe9e48cd0e44ee2fa082db589be78f98de56a4df789ad343367c203e1",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "types-final.process.json",
+      "bytes": 87,
+      "sha256": "49767ba750e830211a0838fc3d2bf221e4cef247ff32f6ad80242e09807e59ab",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "types-final.result.json",
+      "bytes": 94,
+      "sha256": "3520a23fe8ad16580a4f6c5eb61a347dd4ca88987dab77fe5cfa54923cdb74f0",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "types-green.log",
+      "bytes": 50,
+      "sha256": "53a6aa8b4a16237ddc596024409b40a8c8e29e9056c6757c6f5c4fba3b0a7f47",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "types-green.process.json",
+      "bytes": 87,
+      "sha256": "35e4278b7862dcd46367819ebf52b24a3115df690f368669adcaeff8c3725941",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "types-green.result.json",
+      "bytes": 94,
+      "sha256": "7fdbfbd97c2432af8a57956b7ce43689cfa95ddca3a0314bfbe246494bf81cf0",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "types.log",
+      "bytes": 1739,
+      "sha256": "4926db05a85479075c183be5a6ca74cc26f20ea83409b255a3ee501bd037badf",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "types.process.json",
+      "bytes": 87,
+      "sha256": "5365bee4840fef9dc129d10010eb2dd7c95ea6ac8fa523e7aee7ca3dcd6b1691",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "types.result.json",
+      "bytes": 94,
+      "sha256": "4f0bd8bb6f8501011e46a2f024adc2c6ba06b7f38bf5d23bd027a4d04ac960a2",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "ui-red.log",
+      "bytes": 12459,
+      "sha256": "eeaf3d63c47e34457a1957d11de43051bd4cb1040a0dba04bab326f6fce87b75",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "ui-red.process.json",
+      "bytes": 225,
+      "sha256": "2c1feef64b049d0e95a00afc2622641ce035ea9f4d1afa6bd997f0eb326b32c2",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "ui-red.result.json",
+      "bytes": 239,
+      "sha256": "d813d624714d3d219e96520a1d641b0d70611a0defd1a8804cff1ad4942335d1",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "zero-life-red.log",
+      "bytes": 1460,
+      "sha256": "37b67d7aa0397e09783ad1cf5f2b471ade57307f74a5cdec4c05c652d4c99c23",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "zero-life-red.process.json",
+      "bytes": 153,
+      "sha256": "183e25af229939b2897c8b4391f28c7470f280dd18a4193f2e61acf0820dbb6e",
+      "artifact": "raw.tar.gz"
+    },
+    {
+      "path": "zero-life-red.result.json",
+      "bytes": 162,
+      "sha256": "58f54fdcdf0c2443d88ed3a724cc5699a4b0aabc0dbc72b10291dac8b0d754d8",
+      "artifact": "raw.tar.gz"
+    }
+  ],
+  "retainedArtifacts": {
+    "raw.tar.gz": {
+      "bytes": 2866602,
+      "sha256": "b984f9bdab435042eed03123018e4961c66dc4ff5392fb5695b5d67754ad49e5"
+    },
+    "traces/failed-browser-2.zip": {
+      "bytes": 26625459,
+      "sha256": "f920e768e0dd93bd77d0c91462154ec44657056d7d944dc4c30165d2b1aa130e"
+    },
+    "traces/failed-browser-3.zip": {
+      "bytes": 24678634,
+      "sha256": "0e682c7403eb71af0f7a7b2f8a93c21044bce697cb5b3f633a628207fe4ae311"
+    },
+    "traces/failed-browser-1.zip": {
+      "bytes": 25372070,
+      "sha256": "0f9268c6441770142efe848bceb50105b173193c92265bcfd94eab186e1f78d3"
+    },
+    "traces/failed-browser-4.zip": {
+      "bytes": 27530373,
+      "sha256": "bdb9ebbef36bbaa995164da77e251f82cf3ae8dc97b3967f822729950e0ab540"
+    }
+  }
+}

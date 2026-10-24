@@ -1,0 +1,15 @@
+{
+  "whenUTC": "2026-10-24T22:02:14.428866+00:00",
+  "scratchRoot": "/home/felixzhao/.zai/profiles/anonymous/zai-temp/d2h5-bone-armor-99yslx1b",
+  "owner": "root Bone Armor task",
+  "retainedRawFiles": 117,
+  "retainedByteVerified": true,
+  "terminalProcessRecords": 26,
+  "removedFiles": 1637,
+  "ownedManifest": "task-owned-files.json",
+  "rootAbsent": true,
+  "preview4461Closed": true,
+  "remaining": [],
+  "failures": [],
+  "preserved": "Source/history, installed tools, shared caches and older umbrella campaign evidence roots"
+}

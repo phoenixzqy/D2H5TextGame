@@ -12,6 +12,8 @@ Current implementation evidence lives in `evidence/`.
 
 | Card | State | Evidence / remaining |
 | --- | --- | --- |
+| D05 Bone Armor / BUG179 | implemented in1ee014a/8acecc3; locally verified, independent acceptance pending | One finite12/rank personal fresh-run shield; mitigated direct/periodic/reflection settlement, exact lethal timing, Shatter, wave carry/original-input replay, no saved stat or pool. Focused28/7, engine6010/202, full unchanged retry12139/511+two existing skips; types/lint/clean build/bridge PASS; production4/4 with four exact Continue pairs and20geometry samples. Failed full12138/one timeout is retained as unresolved BUG180. All1222inputs/HEAD/Git state and760build hashes stayed exact. [Evidence](evidence/d05-bone-armor.md);117raw files/26terminal process records byte-verified;1637owned disposable files removed/4461closed. Genuine Rite save/next402 unchanged; C2–C4/fullG and earned/independent acceptance open. |
+| Skill inventory reconciliation | nine earlier functional records corrected; no new implementation credit | Warmth, Fire/Lightning Mastery, Iron Skin, Skeleton Mastery, Frozen Armor, Might, Meditation and Static Field now cite existing proof/current consumers. [Audit](evidence/skill-inventory-reconciliation.md). With separate new Bone Armor,213IDs/order remain and174unverified; Cold Mastery stays review-needed. Current integrated independent acceptance and earned viability remain open. |
 | D05 Burst of Speed / BUG178 | implemented in e29a248/96e8bae/837f837; locally verified, independent acceptance pending | Real paid ten-second speed/physical-dodge status, phase-preserving onset/expiry, source/resource guards, no active refresh, residual wave/reset/replay and transient save policy. Bilingual details and finite positive playback fix. Full12111/504+two existing skips, engine5994/200; types/standard+19-path lint/clean build/bridge PASS; production4/4 and four exact Continue pairs. All1350inputs/HEAD/Git state unchanged during full. [Evidence](evidence/d05-burst-of-speed.md);137raw files/33terminal process records archived/byte-verified, exact scratch removed/4460closed/cleanup[].213IDs/184unverified; genuine Rite save unchanged/next402, no campaign action or remote publication. Earned balance, C2–C4/fullG and independent acceptance remain open. |
 | D05 Assassin Fade/Venom / BUG177 | implemented in `947f020`; locally verified; independent acceptance pending | Fresh Fade six-resistance/magical-dodge composition and JSON-tuned Venom basic-hit poison share existing mitigation/stack/expiry/spread rules; no new RNG roll or save field. Strict copied authority/tuning, native next-wave learning, free pure-respec composition/replay and exact save/import; truthful en/zh details. Focused57/6, engine5976/197, full12085/497+two existing skips; types/standard+14-path lint/build/bridge PASS. Production8/8, eight exact Continue pairs, no retries/errors;1340inputs/HEAD/Git state unchanged during full. [Evidence](evidence/d05-assassin-shadow.md),133raw files/22terminal process records archived and byte-verified.213IDs/185unverified; earned balance, independent QA, C2–C4/fullG open. Genuine Rite save unchanged/next402; local only. |
 | D05 Assassin weapons / BUG176 | implemented in `a673b47`; locally verified; independent acceptance pending | Six obtainable claw tiers, explicit one-handed offhand equip, canonical preview/transaction/runeword grants, learned Claw Mastery/Weapon Block and truthful bilingual details. Focused85, loot/quest138, grant78; engine5936/194, full12028/491+two existing skips; types/lint/build/bridge PASS. Production8/8, eight exact Continue pairs, no retries/errors;1202source hashes/Git state unchanged. [Evidence](evidence/d05-assassin-weapons.md).187unverified skills remain; earned class/build balance and C2–C4/fullG open. Genuine Ancients save unchanged/next402; no campaign action or remote publication. |
@@ -11386,3 +11388,33 @@ functional dispositions added. Genuine claimed Rite save/next402 unchanged.
 Independent acceptance, earned class/build balance, Baal, C2–C4/fullG0–G7 remain
 open. Next: reconcile existing skill evidence and implement remaining mechanic
 families; no repeated speculative campaign screens. Local only; goal/worktree active.
+
+
+## D05 — Finite personal Bone Armor / BUG179 and inventory reconciliation
+
+Runtime1ee014a/UI8acecc3 consume authored12absorption per rank once at a fresh
+area run, through all mitigated direct/periodic and reflected damage paths.
+Strict copied source-bound pools preserve HP/mana/stats/RNG; exact periodic
+lethal boundaries and Shatter remain correct. Residual capacity never refills
+between waves; learning applies next fresh run and original-input replay pays
+no income. Both locales show actual12/24 values, pool chips and absorbed logs.
+[Evidence](evidence/d05-bone-armor.md): focused28/7, engine6010/202; final full
+unchanged retry12139/511/two existing skips, types/lint/build/bridge PASS, fresh
+native L1 production browser4/4 and four exact five-domain Continue pairs.
+
+Original full12138PASS/one5000ms import timeout remains archived as unresolved
+BUG180. Isolated13cases and unchanged complete retry pass; no timeout/assertion/
+worker/discovery/runtime workaround. All1222inputs/HEAD/Git state stayed exact
+through retry;760build hashes and genuine claimed Rite digest match.117raw files
+and26terminal process records retained/byte-verified; exact1637file cleanup,
+scratch absent and4461closed. No cleanup of shared caches or older retained roots.
+
+Nine stale skill records separately cite existing consumers/evidence; these are
+bookkeeping corrections, not nine new implementations. Only Bone Armor adds a
+new bounded-functional disposition.213IDs/order unchanged,174unverified; Cold
+Mastery remains review-needed. GenuineL33/XP149261/23682gear/next402 unchanged,
+no campaign action or diagnostic-save promotion. Next family investigation finds
+18remaining advertised Paladin auras outside the two-value selection path; preserve
+pulse/control/corpse identities rather than count stat-only substitutes. All-class
+builds, earned Baal, economy/endgame/pacing/PWA/performance/independent C2–C4/fullG
+remain open. Local only; umbrella goal/worktree/branch remain active.
