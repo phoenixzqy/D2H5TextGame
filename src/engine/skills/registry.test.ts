@@ -103,8 +103,49 @@ describe('P08a04b authored player Frost Nova secondary Freeze', () => {
       { kind: 'debuff', statusId: 'amplify-damage', durationMs: 3000, physicalResistReductionPct: 50 }
     ]);
     expect(listSkills().filter(id => getSkill(id)?.effects.some(effect =>
-      effect.kind === 'damage' && effect.applyStatuses !== undefined)))
-      .toEqual(['sorceress.frost_nova', 'sorceress.meteor']);
+      effect.kind === 'damage' && effect.applyStatuses !== undefined)).sort())
+      .toEqual(['amazon.ice_arrow', 'sorceress.frost_nova', 'sorceress.glacial_spike',
+        'sorceress.ice_blast', 'sorceress.meteor']);
+  });
+});
+
+describe('BUG165 authored cold Freeze/Chill pair', () => {
+  it.each([
+    ['sorceress', 'skills-sorceress-ice-blast'],
+    ['sorceress', 'skills-sorceress-glacial-spike'],
+    ['amazon', 'skills-amazon-ice-arrow']
+  ] as const)('preserves both declared statuses for %s %s', (classId, id) => {
+    const row = PLAYABLE_CLASS_SKILL_DATA[classId].find(skill => skill.id === id);
+    if (!row) throw new Error('Missing authored freezing skill');
+    const before = structuredClone(row);
+    expect(row.appliesStatus).toEqual(['freeze', 'chill']);
+    const skill = registeredSkillFromJson(row);
+    expect(skill.effects).toEqual([expect.objectContaining({
+      kind: 'damage', damageType: 'cold', applyStatuses: [{ id: 'freeze' }, { id: 'chill' }]
+    })]);
+    expect(skill.effects[0]).not.toHaveProperty('applyStatus');
+    expect(getSkill(id)).toEqual(skill);
+    expect(getSkill(skill.id)).toBe(getSkill(id));
+    expect(row).toEqual(before);
+  });
+
+  it('keeps primary metadata separate and enables only the contracted cold active pair', () => {
+    const row = PLAYABLE_CLASS_SKILL_DATA.sorceress.find(skill => skill.id === 'skills-sorceress-ice-blast');
+    if (!row) throw new Error('Missing Ice Blast');
+    const statusEffect = { chance: 0, stacksOnApply: 2, dotPctOfDamage: 0 };
+    const effect = registeredSkillFromJson({ ...row, statusEffect }).effects[0];
+    expect(effect).toMatchObject({ applyStatuses: [
+      { id: 'freeze', ...statusEffect }, { id: 'chill' }
+    ] });
+    for (const alternate of [
+      { ...row, damageType: 'fire' as const },
+      { ...row, trigger: 'passive' as const },
+      { ...row, appliesStatus: ['freeze', 'chill', 'stun'] },
+      { ...row, appliesStatus: ['freeze', 'stun'] },
+      { ...row, appliesStatus: ['burn', 'chill'] }
+    ]) {
+      expect(registeredSkillFromJson(alternate).effects[0]).not.toHaveProperty('applyStatuses');
+    }
   });
 });
 

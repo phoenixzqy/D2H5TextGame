@@ -140,6 +140,9 @@ function effectsForSkill(skill: JsonSkill): SkillEffect[] {
         }
       : undefined;
     const secondaryStatuses = (skill.appliesStatus?.slice(1) ?? []).flatMap((id): OnHitStatus[] => {
+      // The authored freezing cold attacks also slow after Freeze expires.
+      if (id === 'chill' && skill.trigger === 'active' && skill.damageType === 'cold' &&
+        skill.appliesStatus?.length === 2 && skill.appliesStatus[0] === 'freeze') return [{ id }];
       const metadata = id === 'freeze' ? skill.additionalStatusEffects?.freeze : undefined;
       if (metadata) return [{ id, ...metadata }];
       const melt = skill.additionalStatusEffects?.['armor-melt'];
